@@ -6,4 +6,5 @@
 [Visual Studio Code SFTP Plugin](https://marketplace.visualstudio.com/items?itemName=liximomo.sftp)
 [FU Berlin SSH](https://www.mi.fu-berlin.de/w/IT/ItServicesSSHAccess)
 [FU Berlin Poolräume Mathematik und Informatik](https://www.mi.fu-berlin.de/w/IT/ServicesStudentPools)
+[FU Berlin Compute Server](https://www.mi.fu-berlin.de/w/IT/ComputeServer)
 [Byobu](https://www.byobu.org)

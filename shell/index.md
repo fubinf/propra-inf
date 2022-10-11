@@ -1,5 +1,0 @@
-title: Shell
-
-# Shell
-
-!subtoc
