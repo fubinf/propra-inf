@@ -1,5 +1,6 @@
 title: Programmierpraktikum
+header: index_header.html
+footer: index_footer.html
 
-# Programmierpraktikum
-
-!toc
+<div class="sidebar" markdown="1">!subtoc content</div>
+<iframe class="content" name="content" scrolling="no" src="README.html"/></iframe>
