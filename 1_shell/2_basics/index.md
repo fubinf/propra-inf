@@ -5,6 +5,7 @@ title: Prompt und Navigation
 Als Prompt (deutsch "Eingabeaufforderung") werden die Zeilen bezeichnet, die dem Benutzer der Shell signalisieren, dass er eine Eingabe tätigen kann. Üblicherweise handelt es sich hierbei um eine einzelne Zeile mit einer Reihe an Informationen, gefolgt von einem (ggf. blinkenden) Text-Cursor.
 
 Informationen, die man in Prompts häufig findet, sind:
+
 * Name des Benutzers
 * Name des Computers
 * Aktueller Pfad (`pwd` - present working dir)
@@ -22,25 +23,25 @@ Es gibt Funktionen von Shells, die sehr nützlich sind, aber oft nicht bekannt s
 
 * Tab Completion
 
-   Ähnlich wie viele Programmierumgebungen bieten auch Shells die Möglichkeit, Vorschläge dafür zu liefern, was man eintippen möchte. Hierfür beginnt man, etwas zu zu schreiben, und drückt die Tab-Taste, um eine Vervollständigung oder Vorschläge für selbige zu erhalten.
+    Ähnlich wie viele Programmierumgebungen bieten auch Shells die Möglichkeit, Vorschläge dafür zu liefern, was man eintippen möchte. Hierfür beginnt man, etwas zu zu schreiben, und drückt die Tab-Taste, um eine Vervollständigung oder Vorschläge für selbige zu erhalten.
 
-   Üblich ist die Vervollständigung von Befehlen in beispielsweise `ec<tab>` aber auch von Dateien und Verzeichnissen in `ls /ho<tab>`.
+    Üblich ist die Vervollständigung von Befehlen in beispielsweise `ec<tab>` aber auch von Dateien und Verzeichnissen in `ls /ho<tab>`.
 
-   Weniger verbreitet und bekannt ist die Fähigkeit, auch Dinge wie SSH-Hosts oder Programm-Parameter zu vervollständigen. Die Shell `fish` ist hierfür in der Standardkonfiguration besonders weiträumig ausgestattet.
+    Weniger verbreitet und bekannt ist die Fähigkeit, auch Dinge wie SSH-Hosts oder Programm-Parameter zu vervollständigen. Die Shell `fish` ist hierfür in der Standardkonfiguration besonders weiträumig ausgestattet.
 
 * Expansion
 
-   Insbesondere bei der Handhabung von Datei- und Verzeichnispfaden kann es oft vorkommen, dass mehrere ähnliche Argumente für eine Anwendung gebraucht werden. Man kann sich hier sparen, diese immer wieder neu einzugeben, indem man mehrere unterschiedliche Wortteile durch Komma getrennt in geschweiften Klammern angibt.
+    Insbesondere bei der Handhabung von Datei- und Verzeichnispfaden kann es oft vorkommen, dass mehrere ähnliche Argumente für eine Anwendung gebraucht werden. Man kann sich hier sparen, diese immer wieder neu einzugeben, indem man mehrere unterschiedliche Wortteile durch Komma getrennt in geschweiften Klammern angibt.
 
-   So ist beispielweise `echo 1{,2,34}5` äquivalent zu `echo 15 125 1345`. Mehrere Gruppen sind auch möglich und bilden ein Kreuzprodukt.
+    So ist beispielweise `echo 1{,2,34}5` äquivalent zu `echo 15 125 1345`. Mehrere Gruppen sind auch möglich und bilden ein Kreuzprodukt.
 
 * History
 
-   Shells verwalten üblicherweise eine Liste der eingegebenen Befehle, um auf diese später einfacher zugreifen zu können.
+    Shells verwalten üblicherweise eine Liste der eingegebenen Befehle, um auf diese später einfacher zugreifen zu können.
 
-   Geläufig ist, dass man durch die Einträge dieser Liste einfach mit den Pfeiltasten hoch/runter navigieren kann. Es gibt Shells, die hierbei kontextabhängig agieren können. Das heißt, dass beispielsweise `cat <hoch>` nur Einträge aus der History anzeigt, die mit `cat` anfangen.
+    Geläufig ist, dass man durch die Einträge dieser Liste einfach mit den Pfeiltasten hoch/runter navigieren kann. Es gibt Shells, die hierbei kontextabhängig agieren können. Das heißt, dass beispielsweise `cat <hoch>` nur Einträge aus der History anzeigt, die mit `cat` anfangen.
 
-   Es gibt außerdem den Befehl `history`, der die Einträge dieser Liste durchnumeriert anzeigt. Was dieser Befehl sonst anbietet, ist abhängig von der jeweiligen Shell.
+    Es gibt außerdem den Befehl `history`, der die Einträge dieser Liste durchnumeriert anzeigt. Was dieser Befehl sonst anbietet, ist abhängig von der jeweiligen Shell.
 
 #Dateiverwaltung
 
