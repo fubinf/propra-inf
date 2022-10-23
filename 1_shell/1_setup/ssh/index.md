@@ -1,6 +1,6 @@
-Grundsätzlich sind fast alle Linux-Rechner der Freien Universität Berlin inklusive der Poolrechner per SSH zugänglich.
+Grundsätzlich sind fast alle Linux-Rechner der Freien Universität Berlin inklusive der Poolrechner per SSH zugänglich. Es ist auch möglich, auf älteren und gegebenenfalls unbenutzten eigenen Geräten ein Linux einzurichten und sich dorthin zu verbinden.
 
-Als ultra-portable Möglichkeit, unter Windows ssh zu verwenden, wird KiTTY empfohlen.
+Als portable Möglichkeit, unter Windows ssh zu verwenden, wird KiTTY empfohlen.
 
 Die meisten dieser Systeme sind außerhalb des FU-Netzwerkes allerdings ausschließlich mittels Public-Key-Authentifizierung erreichbar.
 Um den Vorteil der Mobilität nicht durch den fehlenden Key zu verlieren, gibt es die Möglichkeit, sich über andorra (`telnet.imp.fu-berlin.de`) via Passwort zu verbinden. Von dort aus ist dann ein Weiterverbinden zu anderen Rechnern möglich.
