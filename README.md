@@ -104,3 +104,10 @@ Bereich wird möglicherweise extrem voll. Sollte man schon früh eine Empfehlung
   - Java: Maven vs Gradle?
 - Postman
   - Relevant für API-Design und WebScraping
+
+### (noch) nicht einsortierbares
+
+- Arbeitsplatzergonomie
+- Suchmaschinennutzung
+  - Welche Suchmaschinen soll man nutzen?
+  - Wie kann ich gezielter suchen? Auf bestimmten Seiten, Filtern von Ergebnissen...
