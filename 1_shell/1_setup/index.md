@@ -7,5 +7,6 @@ Rein prinzipiell ist die Bearbeitung der meisten Aufgaben auch anderweitig unter
 
 !overview WSL WSL -- Windows Subsystem für Linux
 !overview git_bash git bash
-!overview cygwin
+!overview cygwin Cygwin
+!overview mingw MinGW
 !overview ssh SSH -- Secure Shell
