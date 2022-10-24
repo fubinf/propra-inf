@@ -45,7 +45,7 @@ Es gibt Funktionen von Shells, die sehr nützlich sind, aber oft nicht bekannt s
 
 #Dateiverwaltung
 
-Beim Starten einer Shell ist man häufig im Home-Verzeichnis des jeweiligen Benutzers, üblicherweise `/home/<Benutzername>`, auch zu finden in der Variable `$HOME` und dem Kürzel `~`.
+Beim Starten einer Shell ist man häufig im Home-Verzeichnis des jeweiligen Benutzers, üblicherweise `/home/<Benutzername>`, auch zu finden in der Variable `$HOME` und dem Kürzel `~`. Ähnlich dazu gibt es beispielsweise auch `$PWD`, das das aktuelle Verzeichnis beinhaltet.
 
 Zu den häufigen Befehlen der Dateiverwaltung zählen:
 
