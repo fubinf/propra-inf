@@ -1,6 +1,5 @@
 id: concatenate
-
-## Dateien Zusammenfügen
+title: Dateien Zusammenfügen
 
 Gegeben zwei Dateien mit beliebigem Inhalt, erzeugen Sie eine neue Datei, die als Inhalt den Inhalt der ersten beiden Dateien hintereinander enthält.
 

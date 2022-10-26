@@ -1,6 +1,5 @@
 id: stream_usage
-
-## Stream-Umleitung
+title: Stream-Umleitung
 
 Erläutern Sie, wie man statt der Ausgabe eines Befehles die Fehler in eine Datei schreiben kann.
 

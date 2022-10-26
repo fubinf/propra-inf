@@ -1,3 +1,5 @@
+title: git bash
+
 Die Installation von git für Windows enthält bereits eine git bash.
 Diese beinhaltet neben git selbst auch eine Reihe typischer Standard-Anwendungen zum Arbeiten auf der Shell.
 

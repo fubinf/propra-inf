@@ -1,6 +1,5 @@
 id: unknown_manual_cd
-
-## Manual-Einträge
+title: Manual-Einträge
 
 Erläutern Sie, warum es für `pwd` eine Manpage gibt, aber für `cd` nicht.
 
