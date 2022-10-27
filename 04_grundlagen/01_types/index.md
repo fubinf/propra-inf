@@ -1,3 +1,5 @@
+title: Datentypen
+
 Nachdem sichergestellt ist, dass du mit `git`, deiner IDE und dem Terminal umgehen kannst, müssen wir uns nur noch um die grundlegenden Funktionen der von dir gewählten Programmiersprache kümmern. Als erstes kümmern wir uns um die Datentypen, die von der Programmiersprache mitgeliefert werden. Recherchiere dazu in der Dokumentation der Sprache zu den folgenden Punkten:
 
 1. Booleans
