@@ -1,7 +1,7 @@
     </div>
   </body>
   <script>
-    document.querySelector(".sidebar .toc").addEventListener("click", e => {
+    document.querySelector(".sidebar").addEventListener("click", e => {
       if (e.target.nodeName !== "A") { return; }
       document.title = e.target.innerText;
       document.getElementById("content").contentWindow.location.replace(e.target.attributes.href.value.substring(1));
