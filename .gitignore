@@ -1,6 +1,4 @@
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
+# sedrila
 out/
-**/__pycache__/
+out.bak/
+.idea/
