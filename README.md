@@ -2,6 +2,8 @@
 
 Programmierpraktikum Informatik (a bachelor-level self-driven lab course for Informatics, in German)
 
+Uses [sedrila](https://github.com/fubinf/sedrila) and follows its conventions, i.e. is a SeDriLa template.
+
 ## Aufgabenideen
 
 ### Basis
