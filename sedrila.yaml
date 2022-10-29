@@ -1,11 +1,20 @@
 title: Programmierpraktikum WiSe 2023/24 Bachelor Informatik FU Berlin
 shorttitle: ProPra2023
+chapterdir: ch
+templatedir: templates
 chapters:
   - title: "Basis: Unverzichtbare Arbeitsgrundlagen" 
-    shorttitle: Basis,
-    directory: ch/basis
+    shorttitle: Basis
+    slug: basis
+    taskgroups:
+      - title: Linux-Umgebung schaffen
+        shorttitle: LinuxCLI
+        slug: linuxcli
   - title: "Shell: Die (Linux-)Kommandozeile"
-    shorttitle: Shell,
-    directory: ch/shell
-header: html/header.html
-footer: html/footer.html
+    shorttitle: Shell
+    slug: shell
+    taskgroups:
+      - title: Erste Schritte
+        shorttitle: Einstieg
+        slug: einstieg
+    
