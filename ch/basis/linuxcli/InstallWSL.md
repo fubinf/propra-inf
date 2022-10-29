@@ -3,8 +3,6 @@ description: |
   ...
 effort: 1.0
 difficulty: low
-enthusiasm: medium
-depends_on: []
 todo: 
   - write it!
 ---
