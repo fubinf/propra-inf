@@ -13,8 +13,5 @@ chapters:
   - title: "Shell: Die (Linux-)Kommandozeile"
     shorttitle: Shell
     slug: shell
-    taskgroups:
-      - title: Erste Schritte
-        shorttitle: Einstieg
-        slug: einstieg
+    taskgroups: []
     
