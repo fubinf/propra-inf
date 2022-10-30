@@ -1,3 +1,4 @@
+description: "Die Shell: Das Bedienwerkzeug der Profis für alles, was nicht Routine ist."
 ---
 ---
 Dies ist der Textteil der Homepage für das Kapitel 'Shell'.
