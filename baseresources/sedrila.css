@@ -1,0 +1,66 @@
+:root {  
+  /* https://www.htmlgoodies.com/html5/a-guide-to-using-css-variables/ */
+  /* https://www.w3schools.com/cssref/css_colors.php */
+  --main-color: LimeGreen;
+  --diff1-color: LightSkyBlue;
+  --diff2-color: LimeGreen;
+  --diff3-color: Orange;
+  --diff4-color: OrangeRed;
+}
+
+/********** Styles for links: */
+
+a:link {
+  color: var(--main-color);
+  filter: brightness(100%);
+}
+
+a:visited {
+  color: var(--main-color);
+  filter: brightness(70%);
+}
+
+/********** Styles for tags: */
+
+body {
+  font-family: sans-serif;
+  margin: 1em 1.5em 1em 1.5em;
+}
+
+footer {
+    display: flex;
+    margin-top: 2ex;
+    padding: 0.5em;
+    background-color: lightgrey;
+    font-size: 80%;
+}
+
+h1, h2 {
+  font-family: serif;
+}
+
+header {
+    display: flex;
+    margin-bottom: 2ex;
+    padding: 1em 0.5em 0.5em 0.5em;
+    background-color: var(--main-color);
+    font-size: 100%;
+}
+
+/********** Classes: */
+
+
+.gray {
+  color: gray;
+}
+
+.difficulty1 { color: var(--diff1-color); }
+.difficulty2 { color: var(--diff2-color); }
+.difficulty3 { color: var(--diff3-color); }
+.difficulty4 { color: var(--diff4-color); }
+
+.indent0 { display: block; }
+.indent1 { display: block; margin-left: 1em; }
+.indent2 { display: block; margin-left: 2em; }
+.indent3 { display: block; margin-left: 3em; }
+.indent4 { display: block; margin-left: 4em; }

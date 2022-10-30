@@ -1,3 +1,4 @@
+description: Für vieles braucht man eine Linux-Kommandozeile.
 ---
 ---
 Dies ist der Textteil der Homepage für die Taskgroup 'LinuxCLI'.
