@@ -54,26 +54,13 @@ header {
   color: gray;
 }
 
-.indent0 {
-    display: block;
-}
+.difficulty1 { color: var(--diff1-color); }
+.difficulty2 { color: var(--diff2-color); }
+.difficulty3 { color: var(--diff3-color); }
+.difficulty4 { color: var(--diff4-color); }
 
-.indent1 {
-    display: block;
-    margin-left: 1em;
-}
-
-.indent2 {
-    display: block;
-    margin-left: 2em;
-}
-
-.indent3 {
-    display: block;
-    margin-left: 3em;
-}
-
-.indent4 {
-    display: block;
-    margin-left: 4em;
-}
+.indent0 { display: block; }
+.indent1 { display: block; margin-left: 1em; }
+.indent2 { display: block; margin-left: 2em; }
+.indent3 { display: block; margin-left: 3em; }
+.indent4 { display: block; margin-left: 4em; }
