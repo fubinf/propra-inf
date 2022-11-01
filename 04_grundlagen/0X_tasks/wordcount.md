@@ -12,6 +12,6 @@ Als letzten Schritt geben Sie die Zählung als `.csv`-Datei wieder aus.
 
 Food for thought:
 
-    - Diese Aufgabe lässt sich auch mit Kommandozeilenprogrammen lösen. Sie können in der Aufgabe `AUFGABENNAME`im Shell-Bereich mehr dazu erfahren.
-    - Überlegen Sie sich, wie sie die zehn am häufigsten vorkommenden Worte ausgeben können. 
-    - Überlegen Sie sich, wie sie die zehn am häufigsten vorkommenden Worte mit echt mehr als drei Buchstaben ausgeben können.
+- Diese Aufgabe lässt sich auch mit Kommandozeilenprogrammen lösen. Sie können in der Aufgabe `AUFGABENNAME` im Shell-Bereich mehr dazu erfahren.
+- Überlegen Sie sich, wie sie die zehn am häufigsten vorkommenden Worte ausgeben können.
+- Überlegen Sie sich, wie sie die zehn am häufigsten vorkommenden Worte mit echt mehr als drei Buchstaben ausgeben können.
