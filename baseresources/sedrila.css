@@ -1,23 +1,24 @@
 :root {  
   /* https://www.htmlgoodies.com/html5/a-guide-to-using-css-variables/ */
   /* https://www.w3schools.com/cssref/css_colors.php */
-  --main-color: LimeGreen;
-  --diff1-color: LightSkyBlue;
-  --diff2-color: LimeGreen;
-  --diff3-color: Orange;
-  --diff4-color: OrangeRed;
+  /* https://www.fu-berlin.de/sites/corporate-design/grundlagen/farben/index.html */  
+  --main-color: #9c0;  /* FU Berlin main color */ 
+  --diff1-color: #06c;  /* FU Berlin secondary color */
+  --diff2-color: #9c0;  /* the main color */ 
+  --diff3-color: #f90;  /* FU Berlin secondary color */
+  --diff4-color: #c00;  /* FU Berlin secondary color */
 }
 
 /********** Styles for links: */
 
 a:link {
   color: var(--main-color);
-  filter: brightness(100%);
+  filter: brightness(50%);
 }
 
 a:visited {
   color: var(--main-color);
-  filter: brightness(70%);
+  filter: brightness(40%);
 }
 
 /********** Styles for tags: */
