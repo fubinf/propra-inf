@@ -1,6 +1,6 @@
-title: Wordcount
+title: Histogramm
 
-# Wordcount
+# Histogramm
 
 Viele Programmieraufgaben bestehen daraus Dateien einzulesen, die darin enthaltenen Daten zu bewerten und/oder zu transformieren und dann einen Output zu erhalten, der einen Informationsgewinn zu erhalten.
 
