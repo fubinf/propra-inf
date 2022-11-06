@@ -6,7 +6,7 @@ Damit die übrigen Bereiche keine großen Probleme bereiten, möchten wir hier s
 
 - *Typen*,
 - *Verbundanweisungen*,
-- *Importe*,
+- *Import von Standardbibliotheken*,
 - *Nutzereingabe* und
 - *Dateieingabe*.
 
