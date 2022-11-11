@@ -28,6 +28,11 @@ body {
   margin: 1em 1.5em 1em 1.5em;
 }
 
+code {
+    background-color: lightgrey;
+}
+
+
 footer {
     display: flex;
     margin-top: 2ex;
