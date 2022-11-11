@@ -11,6 +11,15 @@ chapters:
       - title: Linux-Umgebung schaffen
         shorttitle: LinuxCLI
         slug: linuxcli
+      - title: "Repo: Mit einem Git-Repository für die Ergebnisse arbeiten"
+        shorttitle: Repo
+        slug: repo
+      - title: "Sprachwahl: Eine Programmiersprache für das ProPra auswählen"
+        shorttitle: Sprachwahl
+        slug: sprachwahl
+      - title: "IDE installieren und in Betrieb nehmen"
+        shorttitle: IDE
+        slug: ide
   - title: "Die Programmiersprache"
     shorttitle: Programmiersprache
     slug: sprache
