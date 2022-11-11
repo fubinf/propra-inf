@@ -24,12 +24,13 @@ a:visited {
 /********** Styles for tags: */
 
 body {
-  font-family: sans-serif;
-  margin: 1em 1.5em 1em 1.5em;
+    font-family: sans-serif;
+    margin: 1em 1.5em 1em 1.5em;
+    line-height: 130%;
 }
 
 code {
-    background-color: lightgrey;
+    background-color: #eee;
 }
 
 
@@ -53,6 +54,10 @@ header {
     font-size: 100%;
 }
 
+li {
+    padding: 0.15em 0em;
+}
+
 /********** Classes: */
 
 
@@ -70,3 +75,11 @@ header {
 .indent2 { display: block; margin-left: 2em; }
 .indent3 { display: block; margin-left: 3em; }
 .indent4 { display: block; margin-left: 4em; }
+
+.indent0, .indent1, .indent2, .indent3, .indent4 { 
+    padding: 0.15em 0em;
+}
+
+.textpart {
+    max-width: 40em;
+}
