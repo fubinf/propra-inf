@@ -85,7 +85,8 @@ Vorkenntnissen passt (siehe unten) und sich dann zum nächst höheren vorarbeite
 
 Schwierigkeit bedeutet dabei nicht unbedingt, dass man die Aufgabe mit zu wenig Vorkenntnissen
 nicht schaffen kann, sondern oft nur, 
-dass das sehr viel länger dauert als für die Aufgabe geplant ist.
+dass das sehr viel länger dauert als für die Aufgabe geplant ist, weil die Anleitung
+viel grober ist und erheblich mehr Selbständigkeit verlangt.
 
 
 #### 2.2.3 Die drei Zielgruppen
@@ -117,7 +118,25 @@ des ProPra vor, die mit unterschiedlich guten Vorkenntnissen kommen:
   Aufgaben der Sorte "Einfach"[DIFF2] sollten unter Ihrer Würde sein.
 
 
-### 2.2.4 Voraussetzungen der Aufgaben
+### 2.2.4 Hinweise in, Zeitwerte für und das Lesen-und-Ausprobieren bei Aufgaben
+
+Die meisten Aufgaben enthalten neben der eigentlichen Aufgabenstellung
+Hinweise zum Vorgehen und Verweise auf umfangreiche externe Quellen.
+
+Bei den einfachen Aufgaben[DIFF2] sind die Hinweise recht präzise und vollständig
+und sagen auch, was Sie in den Quellen nachlesen sollten.
+Wissensdurst und Darüber-Hinaus-Lesen sind erwünscht und nützlich,
+behalten Sie aber dabei den für die Aufgabe angegebenen Zeitwert im Auge.
+
+Bei schwierigen Aufgaben[DIFF4] ist das ganz anders:
+Die Hinweise sind nur grob und es ist viel selbstgesteuertes Lesen nötig,
+um die Aufgabe zu lösen.
+Wie viel da jeweils mindestens nötig ist, ergibt sich wiederum aus dem Zeitwert
+der Aufgabe.
+Liegt der hoch, sollte neben das bloße Lesen ein Ausprobieren treten.
+
+
+### 2.2.5 Voraussetzungen der Aufgaben
 
 Neben dem Schwierigkeitsgrad und dem Zeitwert gibt es bei vielen Aufgaben weitere Angaben:
 
