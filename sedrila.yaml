@@ -11,8 +11,24 @@ chapters:
       - title: Linux-Umgebung schaffen
         shorttitle: LinuxCLI
         slug: linuxcli
-  - title: "Shell: Die (Linux-)Kommandozeile"
-    shorttitle: Shell
-    slug: shell
+  - title: "Die Programmiersprache"
+    shorttitle: Programmiersprache
+    slug: sprache
+    taskgroups: []
+  - title: "Bibliotheken: Die Wiederverwendung fremder Bausteine"
+    shorttitle: Bibliotheken
+    slug: libs
+    taskgroups: []
+  - title: "Testen: Die automatisierte Überprüfung nach Änderungen"
+    shorttitle: Testen
+    slug: testen
+    taskgroups: []
+  - title: "Bestandscode: Alten oder unbekannten Code verstehen und verändern"
+    shorttitle: Bestandscode
+    slug: altcode
+    taskgroups: []
+  - title: "Werkzeuge: Was man noch braucht außer Editor und Compiler"
+    shorttitle: Werkzeuge
+    slug: tools
     taskgroups: []
     
