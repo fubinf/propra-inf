@@ -3,7 +3,7 @@ description: |
   Wir aktivieren Windows Subsystem for Linux (WSL) und
   installieren eine Linux-Distribution.
 effort: 1.0
-difficulty: 3
+difficulty: 1
 todo: 
   - write it!
 ---

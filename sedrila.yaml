@@ -8,7 +8,7 @@ chapters:
     shorttitle: Basis
     slug: basis
     taskgroups:
-      - title: Linux-Umgebung schaffen
+      - title: "Linux-Umgebung schaffen"
         shorttitle: LinuxCLI
         slug: linuxcli
       - title: "Repo: Mit einem Git-Repository für die Ergebnisse arbeiten"
