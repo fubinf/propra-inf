@@ -3,6 +3,19 @@ shorttitle: ProPra2023
 baseresourcedir: baseresources
 chapterdir: ch
 templatedir: templates
+instructors:
+  - nameish: Lutz Prechelt
+    account: prechelt
+    publickey: .
+  - nameish: Christian
+    account: xx
+    publickey: .
+  - nameish: Dominik
+    account: xx
+    publickey: .
+  - nameish: Sven
+    account: xx
+    publickey: .
 chapters:
   - title: "Basis: Unverzichtbare Arbeitsgrundlagen" 
     shorttitle: Basis
