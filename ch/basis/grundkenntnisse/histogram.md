@@ -1,5 +1,11 @@
 title: Histogramm
+description: |
+  Übe hier das Laden von Dateien und den Umgang mit Schleifen und Strings.
+effort: 2.0
+difficulty: 1
 
+---
+---
 # Histogramm
 
 Viele Programmieraufgaben bestehen daraus Dateien einzulesen, die darin enthaltenen Daten zu bewerten und/oder zu transformieren und dann einen Output zu erhalten, der einen Informationsgewinn zu erhalten.
@@ -15,3 +21,9 @@ Food for thought:
 - Diese Aufgabe lässt sich auch mit Kommandozeilenprogrammen lösen. Sie können in der Aufgabe `AUFGABENNAME` im Shell-Bereich mehr dazu erfahren.
 - Überlegen Sie sich, wie sie die zehn am häufigsten vorkommenden Worte ausgeben können.
 - Überlegen Sie sich, wie sie die zehn am häufigsten vorkommenden Worte mit echt mehr als drei Buchstaben ausgeben können.
+
+---
+---
+
+---
+---

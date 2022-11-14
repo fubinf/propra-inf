@@ -1,7 +1,11 @@
 title: FizzBuzz
+description: |
+  Übe hier den Umgang mit Schleifen, If-Else-Statements und dem Laden von Dateien.
+effort: 1.0
+difficulty: 1
 
-# FizzBuzz
-
+---
+---
 Das sogenannte "FizzBuzz", eigentlich ein Gruppen-Wortspiel für Kinder, ist eine in Einstellungsinterviews berühmt gewordene Aufgabe, mit der grundlegende Programmierfähigkeiten gezeigt werden sollen. Schreiben Sie hierfür ein Programm, das folgenden Algorithmus implementiert:
 
 1. Schreiben Sie ein Programm, dass jede Zahl von 1 bis 100 in einer neuen Zeile ausgibt.
@@ -16,3 +20,8 @@ Jetzt wollen wir aber noch einen kleinen Twist hinzufügen. Schreiben Sie noch e
 3. Ist die Zahl durch 3 teilbar, soll "Fizz" anstatt der Zahl ausgegeben werden.
 4. Ist die Zahl durch 5 teilbar, soll "Buzz" anstatt der Zahl ausgegeben werden.
 5. Ist die Zahl durch 3 **und** durch 5 teilbar, soll "FizzBuzz" anstatt der Zahl ausgegeben werden.
+---
+---
+
+---
+---
