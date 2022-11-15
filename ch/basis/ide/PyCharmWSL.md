@@ -3,7 +3,7 @@ description: |
   Hier geht es um die Installation von PyCharm als IDE und die Ersteinrichtung.
 effort: 0.5
 difficulty: 1
-requires: PyCharmWindows
+requires: InstallWSL, PythonWSL
 ---
 ---
 
@@ -15,10 +15,11 @@ Da Sie sich entschieden haben Windows als Betriebssystem zu nutzen und hoffentli
 
 1. Herunterladen und Installieren von PyCharm Community Edition
    Den Installer und eine Installationsanleitung finden sie unter diesem [Link](https://www.jetbrains.com/de-de/pycharm/download/#section=windows).
-2. TODO: Neues Projekt, Interpreter auf Linux-Version zeigen lassen
-3. git auf Linux-git zeigen lassen, Ctrl+Alt+S -> Version Control | Git, git path: \\wsl$\Debian\usr\bin\git
-4. Terminal auf bash ändern, Ctrl+Alt+S -> Tools | Terminal -> Shell path: wsl.exe
+2. Öffnen Sie anschließend PyCharm und drücken Sie `Strg+Alt+S`, um die Einstellungen zu öffnen.
+3. Wählen Sie im linken Menü `Versionskontrolle` bzw. `Version Control` und dann `Git` aus. Stellen Sie dann sicher, dass auf der rechten Seite unter `Pfad zur Git Executable`bzw. `Path to Git executable` der richtige Pfad zu `git` in WSL ausgewählt ist. Sollten Sie der von uns gegebenen WSL-Installation gefolgt sein, ist der Pfad standardmäßig `\\wsl$\Debian\usr\bin\git`. Klicken Sie danach auf Test. Wenn der Test erfolgreich ist, sehen Sie die `git`-Version. Machen Sie nun einen Screenshot vom Einstellungsfenster.
+4. Wählen Sie jetzt im linken Menü `Tools` und dann `Terminal` aus. Ändern Sie den Pfad zur Shell auf `wsl.exe`. Machen Sie nun einen Screenshot vom Einstellungsfenster.
 
+Laden Sie die beiden Screenshots in Ihr GitLab-Repo hoch, um die Arbeitsleistung zu belegen.
 ---
 ---
 
