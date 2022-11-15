@@ -33,13 +33,13 @@ chapters:
       - title: "IDE installieren und in Betrieb nehmen"
         shorttitle: IDE
         slug: ide
-      - title: "Grundkenntnisse fürs Programmieren"
-        shorttitle: Grundkenntnisse
-        slug: grundkenntnisse
   - title: "Die Programmiersprache"
     shorttitle: Programmiersprache
     slug: sprache
-    taskgroups: []
+    taskgroups:
+      - title: "Grundkenntnisse fürs Programmieren"
+        shorttitle: Grundkenntnisse
+        slug: grundkenntnisse
   - title: "Bibliotheken: Die Wiederverwendung fremder Bausteine"
     shorttitle: Bibliotheken
     slug: libs
