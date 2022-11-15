@@ -24,6 +24,9 @@ chapters:
       - title: "Linux-Umgebung schaffen"
         shorttitle: LinuxCLI
         slug: linuxcli
+      - title: "MacOS-Umgebung schaffen"
+        shorttitle: MacCLI
+        slug: maccli
       - title: "Repo: Mit einem Git-Repository für die Ergebnisse arbeiten"
         shorttitle: Repo
         slug: repo
