@@ -6,16 +6,16 @@ templatedir: templates
 instructors:
   - nameish: Lutz Prechelt
     account: prechelt
-    publickey: .
+    keyfingerprint: .
   - nameish: Christian
     account: xx
-    publickey: .
+    keyfingerprint: .
   - nameish: Dominik
     account: xx
-    publickey: .
+    keyfingerprint: .
   - nameish: Sven
     account: xx
-    publickey: .
+    keyfingerprint: .
 chapters:
   - title: "Basis: Unverzichtbare Arbeitsgrundlagen" 
     shorttitle: Basis
