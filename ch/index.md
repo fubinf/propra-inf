@@ -75,10 +75,10 @@ Eine fertig absolvierte Aufgabe kann zur Anrechnung eingereicht werden.
 Jede Aufgabe ist im Inhaltsverzeichnis durch ein farbiges Symbol mit einem 
 Schwierigkeitsgrad wie folgt gekennzeichnet:
 
-- Sehr Einfach[DIFF1]
-- Einfach[DIFF2]
-- Mittel[DIFF3]
-- Schwierig[DIFF4]
+- Sehr Einfach[DIFF::1]
+- Einfach[DIFF::2]
+- Mittel[DIFF::3]
+- Schwierig[DIFF::4]
 
 Die Idee ist, dass man mit Aufgaben des Schwierigkeitsgrades beginnt, der zu den eigenen
 Vorkenntnissen passt (siehe unten) und sich dann zum nächst höheren vorarbeitet.
@@ -98,24 +98,24 @@ des ProPra vor, die mit unterschiedlich guten Vorkenntnissen kommen:
   Diese Studierenden sind mehr oder weniger ohne Programmier-Vorkenntnisse ins Studium gekommen
   und haben im Studium Abkürzungen genommen, z.B. manche Übungsaufgaben nicht selber
   gemacht oder wenig gründlich bearbeitet.  
-  Wenn Sie zu dieser Gruppe gehören, sollten Sie mit den als "Sehr Einfach"[DIFF1]
-  gekennzeichneten Aufgaben anfangen und sich erst dann zu "Einfach"[DIFF2] vorarbeiten.
-  Gegen Ende sollte die eine oder andere Aufgabe der Stufe "Mittel"[DIFF3]
-  möglich sein, aber "Schwierig"[DIFF3] ist wahrscheinlich für Ihren Lernerfolg wenig dienlich.
+  Wenn Sie zu dieser Gruppe gehören, sollten Sie mit den als "Sehr Einfach"[DIFF::1]
+  gekennzeichneten Aufgaben anfangen und sich erst dann zu "Einfach"[DIFF::2] vorarbeiten.
+  Gegen Ende sollte die eine oder andere Aufgabe der Stufe "Mittel"[DIFF::3]
+  möglich sein, aber "Schwierig"[DIFF::4] ist wahrscheinlich für Ihren Lernerfolg wenig dienlich.
 - Normal viele Vorkenntnisse:
   Diese Studierenden sind mit einigen Programmier-Vorkenntnissen ins Studium gekommen
   oder haben im Studium konsequent mitgearbeitet und die Übungsgelegenheiten wahrgenommen.    
-  Wenn Sie zu dieser Gruppe gehören, sollten Sie mit den als "Einfach"[DIFF2]
-  gekennzeichneten Aufgaben anfangen und sich erst dann zu "Mittel"[DIFF3] vorarbeiten.
-  Gegen Ende sollte die eine oder andere Aufgabe der Stufe "Schwierig"[DIFF3] möglich sein.
-  Aufgaben der Sorte "Sehr Einfach"[DIFF1] sollten unter Ihrer Würde sein.
+  Wenn Sie zu dieser Gruppe gehören, sollten Sie mit den als "Einfach"[DIFF::2]
+  gekennzeichneten Aufgaben anfangen und sich erst dann zu "Mittel"[DIFF::3] vorarbeiten.
+  Gegen Ende sollte die eine oder andere Aufgabe der Stufe "Schwierig"[DIFF::4] möglich sein.
+  Aufgaben der Sorte "Sehr Einfach"[DIFF::1] sollten unter Ihrer Würde sein.
 - Viele Vorkenntnisse:
   Diese Studierenden haben viel mehr Programmiererfahrung als man sie allein im Studium erwirbt.
   Häufig sind sie richtige Fans und haben das Programmieren als Hobby oder haben schon
   länger einen Nebenjob, der viel mit Programmieren zu tun hat.  
-  Wenn Sie zu dieser Gruppe gehören, sollten Sie mit den als "Mittel"[DIFF3]
-  gekennzeichneten Aufgaben anfangen und sich zügig zu "Schwierig"[DIFF4] vorarbeiten.
-  Aufgaben der Sorte "Einfach"[DIFF2] sollten unter Ihrer Würde sein.
+  Wenn Sie zu dieser Gruppe gehören, sollten Sie mit den als "Mittel"[DIFF::3]
+  gekennzeichneten Aufgaben anfangen und sich zügig zu "Schwierig"[DIFF::4] vorarbeiten.
+  Aufgaben der Sorte "Einfach"[DIFF::2] sollten unter Ihrer Würde sein.
 
 
 ### 2.2.4 Hinweise in, Zeitwerte für und das Lesen-und-Ausprobieren bei Aufgaben
@@ -123,12 +123,12 @@ des ProPra vor, die mit unterschiedlich guten Vorkenntnissen kommen:
 Die meisten Aufgaben enthalten neben der eigentlichen Aufgabenstellung
 Hinweise zum Vorgehen und Verweise auf umfangreiche externe Quellen.
 
-Bei den einfachen Aufgaben[DIFF2] sind die Hinweise recht präzise und vollständig
+Bei den einfachen Aufgaben[DIFF::2] sind die Hinweise recht präzise und vollständig
 und sagen auch, was Sie in den Quellen nachlesen sollten.
 Wissensdurst und Darüber-Hinaus-Lesen sind erwünscht und nützlich,
 behalten Sie aber dabei den für die Aufgabe angegebenen Zeitwert im Auge.
 
-Bei schwierigen Aufgaben[DIFF4] ist das ganz anders:
+Bei schwierigen Aufgaben[DIFF::4] ist das ganz anders:
 Die Hinweise sind nur grob und es ist viel selbstgesteuertes Lesen nötig,
 um die Aufgabe zu lösen.
 Wie viel da jeweils mindestens nötig ist, ergibt sich wiederum aus dem Zeitwert
