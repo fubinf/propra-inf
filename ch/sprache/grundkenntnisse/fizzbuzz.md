@@ -1,7 +1,7 @@
 title: FizzBuzz
 description: |
   Übe hier den Umgang mit Schleifen, If-Else-Statements und dem Laden von Dateien.
-effort: 1.0
+timevalue: 1.0
 difficulty: 1
 
 ---

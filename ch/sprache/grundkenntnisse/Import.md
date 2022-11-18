@@ -1,7 +1,7 @@
 title: Import von Standardbibliotheken
 description: |
   Hier lernen wir, warum nicht immer alle Funktionalitäten einer Sprache sofort zur Verfügung stehen und wie man diese aktiviert.
-effort: 1.0
+timevalue: 1.0
 difficulty: 1
 ---
 ---

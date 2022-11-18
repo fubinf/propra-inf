@@ -1,7 +1,7 @@
 title: Installation von Python in WSL
 description: |
   Wenn du WSL benutzt, musst du Python in der Linux-Umgebung installieren.
-effort: 0.5
+timevalue: 0.5
 difficulty: 1
 requires: InstallWSL
 ---

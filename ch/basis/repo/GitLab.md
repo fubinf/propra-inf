@@ -2,7 +2,7 @@ title: GitLab-Repo anlegen und klonen
 description: |
   Wir legen das Repo auf dem Server an, vergeben Rechte und koppeln es mit einer
   Kopie auf dem eigenen Rechner.
-effort: 1.0
+timevalue: 1.0
 difficulty: 1
 ---
 ---

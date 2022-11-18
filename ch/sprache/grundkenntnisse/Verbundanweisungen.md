@@ -1,7 +1,7 @@
 title: Verbundanweisungen
 description: |
   Wir lernen, wie man den Ablauf eines Programms steuern kann.
-effort: 1.0
+timevalue: 1.0
 difficulty: 1
 ---
 ---

@@ -1,7 +1,7 @@
 title: Verschiedene Sequenztypen
 description: |
   Erfahre etwas über verschiedene Sequenztypen und welche Unterschiede sie besonders machen.
-effort: 2.0
+timevalue: 2.0
 difficulty: 1
 
 ---

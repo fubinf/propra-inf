@@ -1,7 +1,7 @@
 title: Installation und Einrichtung von PyCharm (Windows)
 description: |
   Hier geht es um die Installation von PyCharm als IDE und die Ersteinrichtung.
-effort: 0.5
+timevalue: 0.5
 difficulty: 1
 requires: InstallWSL, PythonWSL
 ---

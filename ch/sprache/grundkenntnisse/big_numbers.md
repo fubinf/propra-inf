@@ -1,7 +1,7 @@
 title: Big Numbers
 description: |
   Erfahre hier etwas über die Grenzen der Darstellung von ganzen Zahlen.
-effort: 0.5
+timevalue: 0.5
 difficulty: 1
 
 ---

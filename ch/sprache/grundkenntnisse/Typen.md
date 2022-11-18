@@ -1,7 +1,7 @@
 title: Typen
 description: |
   Wir lernen, welche Typen in der gewählten Programmiersprache vordefiniert sind und was man mit diesen anstellen kann.
-effort: 2.0
+timevalue: 2.0
 difficulty: 1
 
 ---

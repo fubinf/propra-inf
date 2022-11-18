@@ -2,7 +2,7 @@ title: Wie man fertige Aufgaben einreicht und angerechnet bekommt
 description: |
   Wir legen die Beschreibungsdatei an, legen das Repo der Tutor_in vor
   und schauen uns anschließend die Ergebnisse an.
-effort: 1.0
+timevalue: 1.0
 difficulty: 1
 requires: Zeiterfassung
 ---

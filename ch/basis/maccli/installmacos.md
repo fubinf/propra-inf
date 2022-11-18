@@ -1,7 +1,7 @@
 title: Einrichten des Paketmanagers Brew auf MacOS
 description: |
   Einrichten eines Paketmanagers zum einfachen installieren und updaten von Softwarepaketen.
-effort: 1.0
+timevalue: 1.0
 difficulty: 1
 
 ---

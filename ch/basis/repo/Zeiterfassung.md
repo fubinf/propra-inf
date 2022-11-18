@@ -3,7 +3,7 @@ description: |
   Wir hinterlegen mit wenig Mühe super nützliche Metadaten in unseren
   Commit-Nachrichten, damit wir später nachvollziehen können, 
   was wie lange gedauert hat.
-effort: 1
+timevalue: 1
 difficulty: 1
 assumes: Git101
 requires: GitLab

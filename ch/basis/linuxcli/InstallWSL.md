@@ -2,7 +2,7 @@ title: Eine Linux-Umgebung mittels WSL installieren (nur für Windows)
 description: |
   Wir aktivieren Windows Subsystem for Linux (WSL) und
   installieren eine Linux-Distribution.
-effort: 1.0
+timevalue: 1.0
 difficulty: 1
 ---
 ---

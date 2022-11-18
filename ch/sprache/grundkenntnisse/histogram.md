@@ -1,7 +1,7 @@
 title: Histogramm
 description: |
   Übe hier das Laden von Dateien und den Umgang mit Schleifen und Strings.
-effort: 2.0
+timevalue: 2.0
 difficulty: 1
 
 ---
