@@ -7,15 +7,14 @@ difficulty: 1
 ---
 ---
 Um in den vollen Genuss dieses Programmierpraktikums auf der Windows-Plattform zu kommen, ist es unbedingt nötig auch Linux-Tools benutzen zu können.
-Der modernste und effektivste Weg hierfür ist es Linux über WSL direkt benutzen zu können.
+Der modernste und effektivste Weg hierfür ist es Linux über [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) direkt benutzen zu können.
 Grundvoraussetzung hierfür ist entweder Windows 10, Version 2004 oder Windows 11.
-Die genaue Anleitung zur Installation von WSL und darauf folgend einer Linux-Distribution findet man unter folgendem [Link](https://learn.microsoft.com/en-us/windows/wsl/install).
 Wichtig sind vor allem die Abschnitte `Prerequisites`, `Install WSL command`, `Change the default Linux distribution installed`.
 Standardmäßig wird über WSL eine Version von Ubuntu installiert. **Wir empfehlen allerdings eine Installation von `debian`**.
 Sollten Sie sich bewusst sein, dass es bei einigen Aufgaben leichte Änderungen an den Befehlen gibt und du selbständig die Lösung zu diesen Problemen finden kannst, ist die Wahl der Distribution Ihnen vollständig selbst überlassen.
 
 Nachdem Ihre Distribution installiert ist, müssen Sie diese zum ersten Mal starten. Sie finden die Distribution wie ein normal installiertes Programm im Programm-Menü.
-Als letztes fehlt nur noch die Einrichtung des Linux-Benutzernamens und -Passworts. Sollten Sie noch nie ein Linux gestartet haben, finden Sie unter folgendem [Link](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password), Abschnitt `Set up your Linux username and password`, weitere Hilfestellung.
+Als letztes fehlt nur noch die Einrichtung des Linux-Benutzernamens und -Passworts. Sollten Sie noch nie ein Linux gestartet haben, finden Sie [hier](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password), Abschnitt `Set up your Linux username and password`, weitere Hilfestellung.
 Hiernach befinden Sie sich in der Shell ihrer Linux-Umgebung. Wenn Sie unserer Empfehlung gefolgt sind und `debian` installiert haben, ist diese standardmäßig `bash`. Überprüfen können Sie dies mittels des Befehls 
   
     echo "$SHELL"
