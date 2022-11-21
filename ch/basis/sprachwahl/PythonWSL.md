@@ -7,16 +7,17 @@ requires: InstallWSL
 ---
 ---
 
-Wenn du WSL eingerichtet hast und die Linux-Umgebung benutzen kannst, musst du noch eine Programmiersprache installieren. 
-Ob Python installiert ist, kannst du überprüfen, indem du im Terminal den folgenden Befehl ausführst:
+Wenn Sie WSL eingerichtet haben und die Linux-Umgebung benutzen kannst, müssen Sie noch eine Programmiersprache installieren.
+Ob Python installiert ist, können Sie überprüfen, indem Sie im Terminal den folgenden Befehl ausführen:
 
     $ python3 --version
 
-Wenn dir eine Versionsnummer angezeigt wird, ist Python bereits installiert. Sollte dir aber stattdessen eine Fehlermeldung angezeigt werden, kannst du über den folgenden Befehl Python installieren:
+Wenn Ihnen eine Versionsnummer angezeigt wird, ist Python bereits installiert. Sollte Ihnen aber stattdessen eine Fehlermeldung angezeigt werden, können Sie über den folgenden Befehl Python installieren:
 
     $ sudo apt install python3 
 
-Führe nach der Installation noch einmal den Befehl zum Anzeigen der Versionsnummer aus. Lade einen Screenshot mit dem Befehl und der ausgegebenen Versionsnummer hoch, um die Aufgabe angerechnet zu bekommen.
+Führen Sie nach der Installation noch einmal den Befehl zum Anzeigen der Versionsnummer aus. 
+Um die Aufgabe angerechnet zu bekommen, müssen Sie einen Screenshot mit dem Befehl und der Versionsnummer hochladen.
 
 ---
 ---
