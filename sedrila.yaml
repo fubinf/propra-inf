@@ -5,16 +5,20 @@ chapterdir: ch
 templatedir: templates
 instructors:
   - nameish: Lutz Prechelt
-    account: prechelt
+    email: prechelt@inf.fu-berlin.de
+    gitaccount: prechelt
     keyfingerprint: .
   - nameish: Christian
-    account: xx
+    email: xx
+    gitaccount: xx
     keyfingerprint: .
   - nameish: Dominik
-    account: xx
+    email: xx
+    gitaccount: xx
     keyfingerprint: .
   - nameish: Sven
-    account: xx
+    email: xx
+    gitaccount: xx
     keyfingerprint: .
 chapters:
   - title: "Basis: Unverzichtbare Arbeitsgrundlagen" 
