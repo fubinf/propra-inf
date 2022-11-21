@@ -7,16 +7,16 @@ requires: InstallWSL
 ---
 ---
 
-Wenn Sie WSL eingerichtet haben und die Linux-Umgebung benutzen können, müssen SIe noch eine Programmiersprache installieren. 
+Wenn Sie WSL eingerichtet haben und die Linux-Umgebung benutzen können, müssen Sie noch eine Programmiersprache installieren. 
 Ob Java installiert ist, können Sie überprüfen, indem Sie im Terminal den folgenden Befehl ausführen:
 
     $ java --version
 
-Wenn Sie nun eine Versionsnummer sehen, haben SIe bereits die Laufzeitumgebung von Java installiert. Sollten Sie aber eine Fehlermeldung sehen, können Sie mittels folgendem Befehl die Laufzeitumgebung nachinstallieren:
+Wenn Sie nun eine Versionsnummer sehen, haben Sie bereits die Laufzeitumgebung von Java installiert. Sollten Sie aber eine Fehlermeldung sehen, können Sie mittels folgendem Befehl die Laufzeitumgebung nachinstallieren:
 
     $ sudo apt install default-jre 
 
-Damit Sie mit Java entwickeln können, müssen Sie aber auch die Entwicklungsumgebung von Java installieren, das sogenannte Java Development Kit. Sie können prüfen, ob diese installiert ist, indem Sie mit folgendem Befehl die Version des Java Development Kits prüfen:
+Damit Sie mit Java entwickeln können, müssen Sie aber auch die Entwicklungsumgebung von Java installieren, das sogenannte Java Development Kit bzw. JDK. Sie können prüfen, ob diese installiert ist, indem Sie mit folgendem Befehl die Version des Java Development Kits prüfen:
 
     $ javac --version
 
