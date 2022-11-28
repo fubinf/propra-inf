@@ -5,8 +5,6 @@ timevalue: 0.5
 difficulty: 1
 requires: InstallWSL, PythonWSL
 ---
----
-
 Wenn Sie sich für Python als Programmiersprache entschieden haben, ist es sinnvoll sich mit einer
 guten IDE auseinanderzusetzen, die auf Python zugeschnitten ist.
 Ein solcher Kandidat ist **PyCharm** von JetBrains.
@@ -28,8 +26,3 @@ Empfehlung gefolgt sind WSL zu installieren, haben wir hier mehrere Arbeitsschri
    auf `wsl.exe`. Machen Sie nun einen Screenshot vom Einstellungsfenster.
 
 Laden Sie die beiden Screenshots in Ihr GitLab-Repo hoch, um die Arbeitsleistung zu belegen.
-
----
----
----
----

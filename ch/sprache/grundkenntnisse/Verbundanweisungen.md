@@ -4,8 +4,6 @@ description: |
 timevalue: 1.0
 difficulty: 1
 ---
----
-
 Nachdem wir einige der Standardtypen der Programmiersprache kennengelernt haben, müssen wir jetzt noch klären, wie man den Kontrollfluss des Programms beinflusst. In vielen Sprachen sind diese Konstrukte ganze Blöcke von Anweisungen, seltener gibt es aber auch einzeilige Konstrukte.
 
 1. Kontrollfluss
@@ -22,9 +20,3 @@ Nachdem wir einige der Standardtypen der Programmiersprache kennengelernt haben,
    - Wenn ich weiß, dass Ausnahmen auftreten können: Welche Anweisung hilft mir bei der Ausnahmenbehandlung?
    - Welche weiteren Anweisungen gibt es in diesem Zusammenhang?
    - Welche Exceptions sind in deiner Programmiersprache schon vordefiniert? Gib fünf Beispiele an und erkläre diese kurz.
-
----
----
-
----
----

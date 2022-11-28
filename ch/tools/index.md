@@ -1,6 +1,5 @@
 description: "Programmierwerkzeuge machen professionelles Arbeiten überhaupt erst möglich"
 ---
----
 Dies ist der Textteil der Homepage für das Kapitel 'Werkzeuge'.
 
 Wir möchten Aufgabengruppen zu folgenden Themen:
@@ -12,5 +11,3 @@ Wir möchten Aufgabengruppen zu folgenden Themen:
 - Testwerkzeuge (leicht, mittel, schwer?)
 - Linter etc. (mittel, schwer?)
 - und was uns sonst noch so einfällt.
----
----

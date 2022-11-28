@@ -3,10 +3,7 @@ description: |
   TODO: Gute Beschreibung überlegen.
 timevalue: 2.0
 difficulty: 2
-
 ---
----
-
 RPN (Reverse Polish Notation) ist eine Suffix-Notation von arithmetischen Ausdrücken.
 Im Gegensatz zu der bei uns geläufigen Infix-Notation werden die Operatoren hier hinter den Operanden geschrieben statt dazwischen.
 
@@ -18,9 +15,3 @@ Entwickeln Sie einen RPN-Taschenrechner. Konzeptbedingt sind Klammern nicht notw
 Es steht Ihnen auch frei, davon auszugehen, dass alle Eingabezahlen einstellig sind, also `10` für die Zahlen Eins und Null stehen, nicht für die Zahl Zehn. In diesem Fall dürfen Sie auch davon ausgehen, dass die Eingabe keine Leerzeichen enthält.
 
 Falls Sie eine größere Herausforderung wollen, implementieren Sie die Evaluation mit einer Reduktion.
-
----
----
-
----
----

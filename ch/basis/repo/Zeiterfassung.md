@@ -8,7 +8,6 @@ difficulty: 1
 assumes: Git101
 requires: GitLab
 ---
----
 Viele Teams geben sich Konventionen für das Format der Commit-Nachrichten,
 damit sie mehr Nutzen aus dem git-Repo ziehen können.
 
@@ -53,7 +52,3 @@ einen Commit machen, ohne eine Datei zuzufügen.)
     - richtig geschriebene Namen
     - Dezimalpunkt (nicht Dezimalkomma) mit Dezimalstunden oder Doppelpunkt mit Minuten, 
     - 'h' ohne Leerzeichen 
----
----
----
----

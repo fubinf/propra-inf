@@ -3,8 +3,6 @@ description: |
   Wir lernen, welche Typen in der gewählten Programmiersprache vordefiniert sind und was man mit diesen anstellen kann.
 timevalue: 2.0
 difficulty: 1
-
----
 ---
 Nachdem sichergestellt ist, dass du mit `git`, deiner IDE und dem Terminal umgehen kannst, müssen wir uns nur noch um die grundlegenden Funktionen der von dir gewählten Programmiersprache kümmern. Als erstes kümmern wir uns um die Datentypen, die von der Programmiersprache mitgeliefert werden. Recherchiere dazu in der Dokumentation der Sprache zu den folgenden Punkten:
 
@@ -35,9 +33,3 @@ Nachdem sichergestellt ist, dass du mit `git`, deiner IDE und dem Terminal umgeh
     - Wie können Schlüssel aussehen? Wie können Werte aussehen?
     - Wie kann der Wert zu einem bestimmten Schlüssel zurückgegeben werden?
     - Welche Operationen können auf die Maps angewendet werden? Beschreibe mindestens drei Operationen und schreibe jeweils ein kleines Anwendungsbeispiel (kein vollständiges Programm, nur die Anwendung der Operation!).
-
----
----
-
----
----

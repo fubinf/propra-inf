@@ -5,7 +5,6 @@ description: |
 timevalue: 1.0
 difficulty: 1
 ---
----
 [TOC]
 
 ## GitLab-Repo anlegen  TODO 1
@@ -39,7 +38,3 @@ Man kann ja hier schon einen Vorwärtsverweis auf jene andere Aufgabe machen.
 !!! instructor
     - Sichtbarkeit "privat" prüfen
     - Schreibrechte aller Tutor_innen prüfen
----
----
----
----

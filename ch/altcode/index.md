@@ -1,6 +1,6 @@
 description: "Die Kunst zu verstehen, was fremder Code macht und wie man ihn fortentwickeln kann"
 ---
----
+
 TODO 3: Dies ist der Textteil der Homepage für das Kapitel 'Bestandscode'.
 
 Ideen für Aufgaben:
@@ -15,6 +15,4 @@ Ideen für Aufgaben:
 -    In einer Datei technische Schulden finden und bereinigen.
 -    Issue-Tracker sichten, einfache Issue auswählen und lösen.
      Als Pull-Request einreichen; ggf. nachbessern; akzeptiert bekommen 
--    Für jede sonstige Aufgabe mit Ergänzung oder Verbesserung des Codes gibt es als optionale Zusatzaufgabe: als Pull-Request einreichen. 
----
----
+-    Für jede sonstige Aufgabe mit Ergänzung oder Verbesserung des Codes gibt es als optionale Zusatzaufgabe: als Pull-Request einreichen.

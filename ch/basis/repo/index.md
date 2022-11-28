@@ -1,6 +1,5 @@
 description: Um das Repo dreht sich im ProPra alles.
 ---
----
 Zur Verwaltung Ihrer Arbeitsergebnisse benutzen wir im ProPra eine
 versionierte Dateiablage, meistens genannt "repository" (also "Ablage", "Lagerstätte)
 oder kurz "repo".
@@ -22,6 +21,3 @@ man Aufgaben bei Tutor_innen einreicht.
     - eine funktionstüchtige git-Umgebung herzustellen
     - das ganz kleine git-Einmaleins zu lernen
     - zu verstehen, dass das Einreichen von Aufgaben ein Präzisionsgeschäft ist. 
----
----
-

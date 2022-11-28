@@ -1,8 +1,8 @@
 description: Bevor wir anfangen, ein paar Dinge, ohne die nichts geht.
 ---
----
-Dies ist der Textteil der Homepage für das Kapitel 'Basis'.
-Er ist aufgebaut wie die Aufgabendateien auch, nur dass der YAML-Teil zuoberst nur wenig enthält,
-weil die anderen Metadaten zwecks besserer Übersicht in der Konfig-Datei versammelt sind.
----
----
+In diesem Kapitel stellen wir die grundlegende Arbeitsfähigkeit
+für das Programmierpraktikum her:
+
+- Arbeitsumgebung installieren (soweit nicht schon vorhanden)
+- Elementares Wissen erwerben (soweit nicht schon vorhanden),  
+  das für _jede_ Aufgabe benötigt wird.

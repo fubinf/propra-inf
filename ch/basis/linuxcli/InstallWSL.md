@@ -5,7 +5,6 @@ description: |
 timevalue: 1.0
 difficulty: 1
 ---
----
 Um in den vollen Genuss dieses Programmierpraktikums auf der Windows-Plattform zu kommen, ist es unbedingt nötig auch Linux-Tools benutzen zu können.
 Der modernste und effektivste Weg hierfür ist es Linux über [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) direkt benutzen zu können.
 Grundvoraussetzung hierfür ist entweder Windows 10, Version 2004 oder Windows 11.
@@ -34,7 +33,3 @@ Wenn Sie diesen Schritten gefolgt sind, haben sie erfolgreich eine minimale Inst
         wsl --setdefault <distro name>
 
     die standardmäßig ausgewählte Distribution geändert werden.
----
----
----
----

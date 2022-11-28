@@ -1,8 +1,5 @@
 description: Welche Programmiersprache sollte ich sinnvollerweise benutzen?
-
 ---
----
-
 Um dieses Programmierpraktikum erfolgreich abzuschließen, ist es unerlässlich sich für ein geeignetes Werkzeug zu entscheiden.
 In diesem Fall ist das Werkzeug eine Programmiersprache.
 Die nachfolgenden Aufgaben wurden vor allem mit **Python** und **Java** im Hinterkopf geschrieben.
@@ -19,5 +16,3 @@ Sollten Sie zwischendurch feststellen, dass Sie doch eine andere Sprache ausprob
     Wer wenig kompetent erscheint und Java gewählt hat, demder sollte man eventuell zu Python zuraten,
     weil dort fast alles handlicher und einfacher ist und am Ende der Stresspegel dort
     vermutlich niedriger liegen wird.
----
----

@@ -6,7 +6,6 @@ timevalue: 1.0
 difficulty: 1
 requires: Zeiterfassung
 ---
----
 [TOC]
 
 TODO 2: einreichungen.md
@@ -31,7 +30,3 @@ Grob gesagt:
 
 !!! instructor 
     Wenn eine wohlgeformte und sinnvolle `submission.yaml` im commit liegt, sind wir schon zufrieden.
----
----
----
----
