@@ -18,4 +18,3 @@ Ideen für Aufgaben:
 -    Für jede sonstige Aufgabe mit Ergänzung oder Verbesserung des Codes gibt es als optionale Zusatzaufgabe: als Pull-Request einreichen. 
 ---
 ---
-TODO 3: Dies werden die Hinweise für die Tutor_innen als Homepage für das Kapitel 'Bestandscode'.

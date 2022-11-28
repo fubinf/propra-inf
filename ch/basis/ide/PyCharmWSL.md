@@ -31,6 +31,5 @@ Laden Sie die beiden Screenshots in Ihr GitLab-Repo hoch, um die Arbeitsleistung
 
 ---
 ---
-
 ---
 ---

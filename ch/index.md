@@ -236,6 +236,71 @@ in Bezeichnern erlaubt:
 
 Die Bedeutung ist dieselbe.
 
+!!! instructor
+    Liebe Tutor_innen,
+    
+    herzlich willkommen beim Programmierpraktikum (ProPra).
+    Diese Seite funktioniert im FAQ-Stil und ist bitte gründlich durchzuarbeiten.
+    
+    [TOC]
+    
+    # Tutor_innenteil
+    ## 1. Was ist das Ziel des ProPra?
+
+    Das ProPra soll
+
+    - praktische Programmierkenntnisse und -fertigkeiten vielerlei Art aufbauen
+    - dabei für Studierende mit sehr unterschiedlichem Vorkönnen geeignet sein
+    - motivierender sein als die meisten Veranstaltungen, indem
+      - die Aufgaben erkennbar praxisorientiert sind
+      - viel weniger Zwang ausgeübt wird als meist üblich
+
+    Wir wollen denen, die hier viel lernen wollen, die beste Unterstützung geben.
+    Diejenigen zu stoppen, die sich nur durchmogeln wollen, hat dagegen viel weniger Priorität.
+    Wir haben die Hoffnung, dass das ProPra cool und deshalb die Zahl der Mogelinteressierten klein ist.
+    
+    
+    ## 2. Was ist hier mein Job?
+    
+    Wir haben an die Tutor_innen folgende Erwartungen:
+
+    - solide Kenntnisse in Java und Python mitbringen (guter Mittelstand, kein Expertenniveau)
+    - solide Kenntnisse in Shell und git mitbringen (guter Mittelstand, kein Expertenniveau)
+    - einen guten Überblick über die Aufgaben des ProPra haben:
+      Was gibt es alles; wo stecken jeweils dabei die Schwierigkeiten?
+    - Problemdiagnose können:
+      Wenn ein Studi mit einer Fehlermeldung ankommt oder (weitaus schwieriger)
+      mit einer diffusen Frage, erkennen wo _vermutlich_ das Problem steckt und 
+      einen Hinweis geben, wie man zur Lösung gelangt -- nicht, was die Lösung ist.
+    
+    Der konkrete Arbeitsauftrag besteht aus zwei Teilen:
+
+    1. Anwesend sein und für Fragen zur Verfügung stehen.
+       Dabei immer nur gerade so viel Hinweis geben, dass die Studierenden danach
+       wieder alleine weiter vorankommen.
+       Bei allein arbeitenden kann der Hinweis auch sein, sich eine Partner_in zu suchen.
+    2. Eingereichte Aufgaben kontrollieren und zurückweisen und/oder akzeptieren.
+       Das Akzeptieren führt zur Zeitgutschrift für die Studis.
+       Die Buchführung erfolgt im Git-Repo der Studierenden und wird dadurch gegen
+       Manipulation abgesichert, dass die Commits der Tutor_innen digital signiert werden.
+
+    
+    ## 3. Was muss ich vor Beginn vorbereiten?  TODO 2
+
+    - GPG-Signaturen verstehen und GPG einrichten.
+    - Ein Schlüsselpaar erzeugen.
+    - Den Fingerprint an die Veranstalter melden.
+    - sedrila installieren. Das ist die technische Infrastruktur, auf der das ProPra basiert.
+    
+    Der öffentliche Schlüssel wird im Webauftritt des ProPra vermerkt.
+    Beim Aufruf des Skripts gibt man diesen Webauftritt an und
+    sedrila akzeptiert dann als gutgeschrieben nur solche Einträge, 
+    deren Commits so signiert sind, dass die Signatur zu einem der vermerkten Schlüssel passt. 
+    
+    
+    ## 4. Wie funktioniert der Einreichungsprozess genau?  TODO 2
+    
+    ...
 ---
 ---
 Liebe Tutor_innen,

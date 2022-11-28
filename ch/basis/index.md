@@ -6,4 +6,3 @@ Er ist aufgebaut wie die Aufgabendateien auch, nur dass der YAML-Teil zuoberst n
 weil die anderen Metadaten zwecks besserer Übersicht in der Konfig-Datei versammelt sind.
 ---
 ---
-Hier wären die Hinweise für die Korrigierenden der Homepage für das Kapitel 'Basis'.

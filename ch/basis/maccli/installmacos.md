@@ -14,11 +14,10 @@ Nach der erfolgreichen installation führen wir einmal den Befehl `brew --versio
 
 Zum erfolgreichen Bestehen der Aufgabe sind folgende Abgaben erforderlich. Ein Screenshot der ausgabe von `brew --version` sowie eine kurze Beschreibung der Ausgabe des Befehls `sl`. 
 
+!!! instructor
+    Ziel der Aufgabe ist das Folgen der Installationsanleitung auf brew.sh.
+    Screenshot von terminal mit ausgeführtem `brew --version`.
 ---
 ---
-
-Ziel der Aufgabe ist das Folgen der Installationsanleitung auf brew.sh.
-Screenshot von terminal mit ausgeführtem `brew --version`.
-
 ---
 ---

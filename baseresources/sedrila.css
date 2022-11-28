@@ -65,6 +65,9 @@ li {
   color: gray;
 }
 
+.admonition.student { background-color: #9c03; }
+.admonition.instructor { background-color: #f903; }
+
 .difficulty1 { color: var(--diff1-color); }
 .difficulty2 { color: var(--diff2-color); }
 .difficulty3 { color: var(--diff3-color); }

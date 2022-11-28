@@ -35,9 +35,11 @@ Man kann ja hier schon einen Vorwärtsverweis auf jene andere Aufgabe machen.
 - (clone erklären)
 - `clone`
 - `git remote -v`
+
+!!! instructor
+    - Sichtbarkeit "privat" prüfen
+    - Schreibrechte aller Tutor_innen prüfen
 ---
 ---
-- Sichtbarkeit "privat" prüfen
-- Schreibrechte aller Tutor_innen prüfen
 ---
 ---

@@ -15,10 +15,13 @@ Rest in einem späteren Kapitel gerade so viel lernen, wie uns interessiert.
 
 In dieser Aufgabengruppe richten wir git für das ProPra ein und lernen dann, wie
 man Aufgaben bei Tutor_innen einreicht.
----
----
-Hier geht es hauptsächlich um drei Dinge:
 
-- eine funktionstüchtige git-Umgebung herzustellen
-- das ganz kleine git-Einmaleins zu lernen
-- zu verstehen, dass das Einreichen von Aufgaben ein Präzisionsgeschäft ist. 
+!!! instructor
+    Hier geht es hauptsächlich um drei Dinge:
+
+    - eine funktionstüchtige git-Umgebung herzustellen
+    - das ganz kleine git-Einmaleins zu lernen
+    - zu verstehen, dass das Einreichen von Aufgaben ein Präzisionsgeschäft ist. 
+---
+---
+

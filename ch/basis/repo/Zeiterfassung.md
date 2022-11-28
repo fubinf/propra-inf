@@ -46,12 +46,14 @@ tragen Sie diese Angaben bitte noch aus dem Gedächtnis
 für jede vorherige Aufgabe mit einem zusätzlichen Commit nach.
 (Man kann bei git [mit der Option `--allow-empty`](https://git-scm.com/docs/git-commit) 
 einen Commit machen, ohne eine Datei zuzufügen.)
+
+!!! instructor
+    Achten auf 
+    - `#` zu Beginn  TODO 1: So? Oder ohne?
+    - richtig geschriebene Namen
+    - Dezimalpunkt (nicht Dezimalkomma) mit Dezimalstunden oder Doppelpunkt mit Minuten, 
+    - 'h' ohne Leerzeichen 
 ---
 ---
-Achten auf 
-- `#` zu Beginn
-- richtig geschriebene Namen
-- Dezimalpunkt (nicht Dezimalkomma), 
-- 'h' ohne Leerzeichen 
 ---
 ---

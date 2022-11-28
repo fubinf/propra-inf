@@ -21,20 +21,20 @@ Hiernach befinden Sie sich in der Shell ihrer Linux-Umgebung. Wenn Sie unserer E
 
 Wenn Sie diesen Schritten gefolgt sind, haben sie erfolgreich eine minimale Installation der Linux-Umgebung durchgeführt und können diese selbständig öffnen. Weiter haben Sie Ihren Benutzer angelegt und sind bereit Programme in Ihrer Linux-Umgebung zu installieren.
 
+!!! instructor
+    Standardmäßig wird richtigerweise WSL 2 installiert.
+    Sollte jemand irgendwie WSL 1 installiert haben, kann es zu Problemen kommen.
+    Die WSL-Version der Linux-Distributionen lässt sich in Powershell mittels `wsl -l -v` sehen.
+    Man kann ein Upgrade der Version mittels 
+
+         wsl --set-version <distro name> 2 
+    durchführen, dabei ist `<distro name>` der Name der Distribution, der unter `wsl -l -v` zu sehen ist.
+    Sollten mehrere Distributionen installiert worden sein, kann mit 
+
+        wsl --setdefault <distro name>
+
+    die standardmäßig ausgewählte Distribution geändert werden.
 ---
 ---
-Standardmäßig wird richtigerweise WSL 2 installiert.
-Sollte jemand irgendwie WSL 1 installiert haben, kann es zu Problemen kommen.
-Die WSL-Version der Linux-Distributionen lässt sich in Powershell mittels `wsl -l -v` sehen.
-Man kann ein Upgrade der Version mittels 
-
-    wsl --set-version <distro name> 2 
-durchführen, dabei ist `<distro name>` der Name der Distribution, der unter `wsl -l -v` zu sehen ist.
-Sollten mehrere Distributionen installiert worden sein, kann mit 
-
-    wsl --setdefault <distro name>
-
- die standardmäßig ausgewählte Distribution geändert werden.
-
 ---
 ---

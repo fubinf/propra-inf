@@ -14,4 +14,3 @@ Wir möchten Aufgabengruppen zu folgenden Themen:
 - und was uns sonst noch so einfällt.
 ---
 ---
-Dies werden die Hinweise für die Korrigierenden als Homepage für das Kapitel 'Werkzeuge'.

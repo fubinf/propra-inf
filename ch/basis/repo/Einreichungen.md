@@ -12,6 +12,7 @@ requires: Zeiterfassung
 TODO 2: einreichungen.md
 
 Grob gesagt:
+
 - sedrila erzeugt Einreichungsdatei `submission.yaml` mit einem Eintrag für jede Aufgabe, 
   zu der es Commits gibt, die aber noch nicht angerechnet ist.
 - Studi löscht Einträge, die ersie noch nicht einreichen will (z.B. weil unfertig).
@@ -27,8 +28,10 @@ Grob gesagt:
 - Tutorin checkt `submission.yaml` ein (signierter Commit) und pusht.
 - Studi pullt, schaut `submission.yaml` an, um die Probleme zu analysieren,
   und ruft evtl. sedrila, um den Kontostand auszurechnen.
+
+!!! instructor 
+    Wenn eine wohlgeformte und sinnvolle `submission.yaml` im commit liegt, sind wir schon zufrieden.
 ---
 ---
-Wenn eine sinnvolle `submission.yaml` im commit liegt, sind wir schon zufrieden.
 ---
 ---

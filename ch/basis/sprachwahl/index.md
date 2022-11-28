@@ -15,8 +15,9 @@ Sollten Sie sich noch nicht entschieden haben, dem bieten wir hier eine kleine E
 
 Sollten Sie zwischendurch feststellen, dass Sie doch eine andere Sprache ausprobieren möchten, weil die Lösung dort vielleicht *einfacher* oder *besser* (was auch immer "besser" in diesem Falle heißen möge) umsetzbar ist, können Sie gerne auch die Sprache wechseln.
 
+!!! instructor
+    Wer wenig kompetent erscheint und Java gewählt hat, demder sollte man eventuell zu Python zuraten,
+    weil dort fast alles handlicher und einfacher ist und am Ende der Stresspegel dort
+    vermutlich niedriger liegen wird.
 ---
 ---
-Wer wenig kompetent erscheint und Java gewählt hat, demder sollte man eventuell zu Python zuraten,
-weil dort fast alles handlicher und einfacher ist und am Ende der Stresspegel dort
-vermutlich niedriger liegen wird.
