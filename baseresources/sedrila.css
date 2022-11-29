@@ -3,7 +3,7 @@
   /* https://www.w3schools.com/cssref/css_colors.php */
   /* https://www.fu-berlin.de/sites/corporate-design/grundlagen/farben/index.html */  
   --main-color: #9c0;  /* FU Berlin main color */ 
-  --diff1-color: #06c;  /* FU Berlin secondary color */
+  --diff1-color: #0066cc;  /* FU Berlin secondary color */
   --diff2-color: #9c0;  /* the main color */ 
   --diff3-color: #f90;  /* FU Berlin secondary color */
   --diff4-color: #c00;  /* FU Berlin secondary color */
@@ -65,8 +65,24 @@ li {
   color: gray;
 }
 
-.admonition.student { background-color: #9c03; }
+.admonition {
+    padding: 0.0em 0.9em;
+    margin: 0.4em 0 0.8em 0;
+    border: 1px solid gray;
+    border-radius: 0.5em;
+    box-shadow: 6px 6px 5px #888;
+}
+
+.admonition-title {
+    font-size: 105%;
+    font-style: italic;
+    font-weight: bold;
+}
+
 .admonition.instructor { background-color: #f903; }
+.admonition.notice { background-color: #06c3; }
+.admonition.submission { background-color: #9c03; }
+.admonition.warning { background-color: #c003; }
 
 .difficulty1 { color: var(--diff1-color); }
 .difficulty2 { color: var(--diff2-color); }
