@@ -1,0 +1,3 @@
+description: Grundlagen der Shell Programmierung
+---
+Das benutzen der Unix-Shell sowie schreiben von Shell-Skripten gehört zu dem unentbehrlichen Grundwissen aller fortgeschrittenen Informatiker\*innen bzw. Programmierer\*innen. In diesem Kapitel lernen wir die Grundlagen dieses nützlichen Werkzeugs grundvorraussetzung dafür ist eine Unix Shell (WSL, MacOS, Linux) sowie ein Terminal und natürlich bash, was auf allen unix shells vorinstalliert sein sollte.

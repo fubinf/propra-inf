@@ -13,4 +13,4 @@ Zum erfolgreichen Bestehen der Aufgabe sind folgende Abgaben erforderlich. Ein S
 
 !!! instructor
     Ziel der Aufgabe ist das Folgen der Installationsanleitung auf brew.sh.
-    Screenshot von terminal mit ausgeführtem `brew --version`.
+    Zur erfolgreichen Abgabe wird die Ausgabe von brew --version sowie eine Beschreibung der Ausgabe von sl erwartet.
