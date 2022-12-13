@@ -84,6 +84,17 @@ li {
 .admonition.submission { background-color: #9c03; }
 .admonition.warning { background-color: #c003; }
 
+.assumes-decoration, .assumed-by-decoration, .requires-decoration, .required-by-decoration {
+    padding-right: 0.1em;
+    font-weight: bold;
+    color: #111;
+}
+
+.assumed-by-decoration, .required-by-decoration {
+    color: var(--diff3-color);
+    filter: brightness(50%);
+}
+
 .difficulty1 { color: var(--diff1-color); }
 .difficulty2 { color: var(--diff2-color); }
 .difficulty3 { color: var(--diff3-color); }
