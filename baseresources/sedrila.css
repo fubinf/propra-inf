@@ -34,6 +34,16 @@ code {
 }
 
 
+details {  /* similar to .admonition */
+    display: block;
+    padding: 0.0em 0.9em;
+    margin: 0.4em 0 0.8em 0;
+    background-color: #06c3;
+    border: 1px solid gray;
+    border-radius: 0.5em;
+    box-shadow: 6px 6px 5px #888;
+}
+
 footer {
     display: flex;
     margin-top: 2ex;
@@ -56,6 +66,13 @@ header {
 
 li {
     padding: 0.15em 0em;
+}
+
+summary { /* similar to .admonition-title */
+    font-size: 105%;
+    font-style: italic;
+    font-weight: bold;
+    border-style: none;
 }
 
 /********** Classes: */
