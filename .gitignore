@@ -2,3 +2,10 @@
 out/
 out.bak/
 .idea/
+
+#vscode
+*.code-workspace
+settings.json
+
+#macos
+.DS_Store
