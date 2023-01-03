@@ -1,24 +1,29 @@
-:root {  
-  /* https://www.htmlgoodies.com/html5/a-guide-to-using-css-variables/ */
-  /* https://www.w3schools.com/cssref/css_colors.php */
-  /* https://www.fu-berlin.de/sites/corporate-design/grundlagen/farben/index.html */  
-  --main-color: #9c0;  /* FU Berlin main color */ 
-  --diff1-color: #0066cc;  /* FU Berlin secondary color */
-  --diff2-color: #9c0;  /* the main color */ 
-  --diff3-color: #f90;  /* FU Berlin secondary color */
-  --diff4-color: #c00;  /* FU Berlin secondary color */
+:root {
+    /* https://www.htmlgoodies.com/html5/a-guide-to-using-css-variables/ */
+    /* https://www.w3schools.com/cssref/css_colors.php */
+    /* https://www.fu-berlin.de/sites/corporate-design/grundlagen/farben/index.html */
+    --main-color: #9c0;
+    /* FU Berlin main color */
+    --diff1-color: #0066cc;
+    /* FU Berlin secondary color */
+    --diff2-color: #9c0;
+    /* the main color */
+    --diff3-color: #f90;
+    /* FU Berlin secondary color */
+    --diff4-color: #c00;
+    /* FU Berlin secondary color */
 }
 
 /********** Styles for links: */
 
 a:link {
-  color: var(--main-color);
-  filter: brightness(50%);
+    color: var(--main-color);
+    filter: brightness(50%);
 }
 
 a:visited {
-  color: var(--main-color);
-  filter: brightness(40%);
+    color: var(--main-color);
+    filter: brightness(40%);
 }
 
 /********** Styles for tags: */
@@ -34,7 +39,8 @@ code {
 }
 
 
-details {  /* similar to .admonition */
+details {
+    /* similar to .admonition */
     display: block;
     padding: 0.0em 0.9em;
     margin: 0.4em 0 0.8em 0;
@@ -52,8 +58,10 @@ footer {
     font-size: 80%;
 }
 
-h1, h2 {
-  font-family: serif;
+h1,
+h2 {
+    font-family: serif;
+    line-height: 0.8;
 }
 
 header {
@@ -68,7 +76,8 @@ li {
     padding: 0.15em 0em;
 }
 
-summary { /* similar to .admonition-title */
+summary {
+    /* similar to .admonition-title */
     font-size: 105%;
     font-style: italic;
     font-weight: bold;
@@ -79,7 +88,7 @@ summary { /* similar to .admonition-title */
 
 
 .gray {
-  color: gray;
+    color: gray;
 }
 
 .admonition {
@@ -96,34 +105,82 @@ summary { /* similar to .admonition-title */
     font-weight: bold;
 }
 
-.admonition.instructor { background-color: #f903; }
-.admonition.notice { background-color: #06c3; }
-.admonition.submission { background-color: #9c03; }
-.admonition.warning { background-color: #c003; }
+.admonition.instructor {
+    background-color: #f903;
+}
 
-.assumes-decoration, .assumed-by-decoration, .requires-decoration, .required-by-decoration {
+.admonition.notice {
+    background-color: #06c3;
+}
+
+.admonition.submission {
+    background-color: #9c03;
+}
+
+.admonition.warning {
+    background-color: #c003;
+}
+
+.assumes-decoration,
+.assumed-by-decoration,
+.requires-decoration,
+.required-by-decoration {
     padding-right: 0.1em;
     font-weight: bold;
     color: #111;
 }
 
-.assumed-by-decoration, .required-by-decoration {
+.assumed-by-decoration,
+.required-by-decoration {
     color: var(--diff3-color);
     filter: brightness(50%);
 }
 
-.difficulty1 { color: var(--diff1-color); }
-.difficulty2 { color: var(--diff2-color); }
-.difficulty3 { color: var(--diff3-color); }
-.difficulty4 { color: var(--diff4-color); }
+.difficulty1 {
+    color: var(--diff1-color);
+}
 
-.indent0 { display: block; }
-.indent1 { display: block; margin-left: 1em; }
-.indent2 { display: block; margin-left: 2em; }
-.indent3 { display: block; margin-left: 3em; }
-.indent4 { display: block; margin-left: 4em; }
+.difficulty2 {
+    color: var(--diff2-color);
+}
 
-.indent0, .indent1, .indent2, .indent3, .indent4 { 
+.difficulty3 {
+    color: var(--diff3-color);
+}
+
+.difficulty4 {
+    color: var(--diff4-color);
+}
+
+.indent0 {
+    display: block;
+}
+
+.indent1 {
+    display: block;
+    margin-left: 1em;
+}
+
+.indent2 {
+    display: block;
+    margin-left: 2em;
+}
+
+.indent3 {
+    display: block;
+    margin-left: 3em;
+}
+
+.indent4 {
+    display: block;
+    margin-left: 4em;
+}
+
+.indent0,
+.indent1,
+.indent2,
+.indent3,
+.indent4 {
     padding: 0.15em 0em;
 }
 
