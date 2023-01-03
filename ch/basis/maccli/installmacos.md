@@ -4,13 +4,13 @@ description: |
 timevalue: 1.0
 difficulty: 1
 ---
-Unter MacOS brauchen wir nicht viel zu installieren. MacOS liefert von Haus aus ein Bash bzw. ZSH Terminal, mit welchem wir die Aufgaben aus dem Bash-Bereich problemlos erledigen, sowie unsere Entwicklungsumgebung einrichten können. Anders als bei Linux fehlt uns jedoch ein Paketmanager mit welchem wir auf einfache Weise Softwarepakete installieren können.  
-Glücklicherweise gibt es inzwischen auch unter MacOS Nutzern eine lebhafte Entwicklercommunity welche das Projekt Homebrew bzw. Brew entwickelt hat. Diese Software stellt auf MacOS unseren Paketmanager dar. Sie wird zwar nicht vorinstalliert, lässt sich jedoch mit wenigen Befehlen von der [Homebrew Website](https://brew.sh/) installieren.
 
-Nach der erfolgreichen installation führen wir einmal den Befehl `brew --version` aus um uns zu überzeugen, dass brew korrekt installiert wurde. Nun installieren wir noch testweise das Paket `sl`.
+MacOS ähnelt zwar in vielen Punkten Linuxsystemen jedoch bietet MacOS von Haus aus kein eigenes Paketverwaltungssystem mit dem sich einfach aus dem Terminal herraus verschiedene Software installieren lässt. Da dies jedoch für jegliche Entwicklungsumgebungen unabdinglich ist gibt es inzwischen Drittanbietertools welche diese Aufgabe erledigen. Das beliebteste, und von uns verwendete, Tool dieser Art nennt sich Homebrew.
 
-Zum erfolgreichen Bestehen der Aufgabe sind folgende Abgaben erforderlich. Ein Screenshot der ausgabe von `brew --version` sowie eine kurze Beschreibung der Ausgabe des Befehls `sl`. 
+Zum installieren brauchen wir einfach nur den Anweisungen auf der Homebrew-Website folgen. Danach können wir, wie dort ebenfalls beschrieben, einfach Programme mit dem Befehl `brew install programm-name` installieren. Genau wie das Installieren übernimmt Homebrew auch das updaten dieser Programme. Zwar passiert dieses nicht automatisch, aber mit einem einfachen Befehl namens `brew update` lassen sich alle mit Homebrew installierten Programme auf einmal aktualisieren.
+
+Die Aufgabe für diesen Teil besteht lediglich darin homebrew zu installieren und zu verifizieren, dass das Programm korrekt installiert wurde. Dazu reicht ein Screenshot der Ausgabe von `brew --version`. Die installation für Homebrew ist Essentiell für die Bearbeitung späterer Aufageben, gehen Sie daher sicher, dass das Programm korrekt installiert wurde und sich Pakete installieren und updaten lassen.
 
 !!! instructor
     Ziel der Aufgabe ist das Folgen der Installationsanleitung auf brew.sh.
-    Zur erfolgreichen Abgabe wird die Ausgabe von brew --version sowie eine Beschreibung der Ausgabe von sl erwartet.
+    Zur erfolgreichen Abgabe wird die Ausgabe von brew --version als screenshot erwartet.
