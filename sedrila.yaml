@@ -53,7 +53,10 @@ chapters:
   - title: "Bibliotheken: Die Wiederverwendung fremder Bausteine"
     shorttitle: Bibliotheken
     slug: libs
-    taskgroups: []
+    taskgroups: 
+      - title: "Open Source Lizenzen"
+        shorttitle: Lizenzen
+        slug: lizenzen
   - title: "Testen: Die automatisierte Überprüfung nach Änderungen"
     shorttitle: Testen
     slug: testen
