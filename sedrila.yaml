@@ -69,4 +69,17 @@ chapters:
     shorttitle: Werkzeuge
     slug: tools
     taskgroups: []
+  - title: "Zentraler Ablageort"
+    shorttitle: Ablage
+    slug: zentraler_ablageort
+    taskgroups:
+      - title: "Alt, vielleicht nicht mehr zu gebrauchen"
+        shorttitle: alt
+        slug: alt
+      - title: "Heimatlose Aufgabe"
+        shorttitle: suche_chapter
+        slug: suche_chapter
+      - title: "Unfertige Ideen"
+        shorttitle: unfertig
+        slug: unfertig
     
