@@ -4,6 +4,8 @@ description: |
 timevalue: 0.25
 difficulty: 1
 ---
+TODO: Aktuell noch auf Python gemünzt. Verallgemeinerung  notwendig.
+
 Programme sind meist komplexer als einfache Skripte, die Zeile für Zeile ausführen. In der Regel
 müssen vorher für die Ausführung bestimmter Schritte Voraussetzungen erfüllt sein. Die Grundlage
 hierfür bieten die Booleans, also die Wahrheitswerte _wahr_ und _falsch_ bzw. `True` und `False`.
@@ -37,8 +39,9 @@ folgenden Fragen:
   - Erlaubt die Sprache, dass man das Verhalten von Vergleichen selbst definiert?
 
 
+TODO: Bessere Aufgabe überlegen, viel zu einfach.
 
-!!! submission
+!!! submission "Abgabeformat"
     Beschreiben Sie in wenigen Sätzen, wie Booleans in Python benutzt werden. Beschreiben Sie auch,
     welche Operationen zwischen Booleans möglich sind und welche Vergleiche standardmäßig in Python
     definiert sind.

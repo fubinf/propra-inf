@@ -26,7 +26,12 @@ bezüglich der Möglichkeiten zum Schreiben Lesen und Schreiben von Dateien.
 - Mit welchen Befehlen lassen sich ganze Dateien oder nur einzelne Zeilen auslesen?
 - Was passiert, wenn Sie in einem Python-Skript eine Datei öffnen möchten, die nicht existiert?
 
-!!! submission
+[HINT::Einlesen von Nutzereingaben]
+Sie können mithilfe der Funktion [`input()`](https://docs.python.org/3/library/functions.
+html#input) die Eingaben des Nutzers aufnehmen. 
+[ENDHINT]
+
+!!! submission "Abgabeformat"
     Erstellen Sie eine leere Textdatei und schreiben Sie dann ein Python-Skript, das die folgenden
     Schritte umsetzt:
 
@@ -37,9 +42,3 @@ bezüglich der Möglichkeiten zum Schreiben Lesen und Schreiben von Dateien.
     Beschreiben Sie, was passiert, wenn Sie dieses Skript mehr als einmal ausführen und jedes mal
     verschiedene Eingaben tätigen: Werden die alten Daten überschrieben oder werden neue Zeilen 
     generiert?
-
-    [HINT::Einlesen von Nutzereingaben]
-    Sie können mithilfe der Funktion [`input()`](https://docs.python.org/3/library/functions.
-    html#input) die Eingaben des Nutzers aufnehmen. 
-    [ENDHINT]
-    
