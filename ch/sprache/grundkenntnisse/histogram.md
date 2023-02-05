@@ -3,7 +3,7 @@ description: |
   Übe hier das Laden von Dateien und den Umgang mit Schleifen und Strings.
 timevalue: 1.0
 difficulty: 2
-assumes: PythonIO, PythonLoops, PythonBooleans
+assumes: PythonLoops, PythonBooleans
 ---
 !!! notice "Was passiert hier?"
     Viele Programmieraufgaben bestehen daraus Dateien einzulesen, die darin enthaltenen Daten zu
