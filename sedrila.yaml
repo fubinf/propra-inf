@@ -50,6 +50,9 @@ chapters:
       - title: "Grundkenntnisse fürs Programmieren"
         shorttitle: Grundkenntnisse
         slug: grundkenntnisse
+      - title: "Fortgeschrittene Programmiertechniken"
+        shorttitle: Fortgeschrittenes
+        slug: fortgeschrittenes
   - title: "Bibliotheken: Die Wiederverwendung fremder Bausteine"
     shorttitle: Bibliotheken
     slug: libs
