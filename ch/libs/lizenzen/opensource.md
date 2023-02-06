@@ -5,22 +5,21 @@ description: |
 timevalue: 2
 difficulty: 1
 ---
-Wenn Sie Programmiertätigkeiten durchführen, egal ob privat oder beruflich, werden Sie kurz über
-lang mit Fremdcode in Berührung kommen. 
-Dabei ist es aber wichtig zu verstehen, _welchen Code man überhaupt unter welchen Bedingungen
-benutzen darf_. 
+Wenn Sie Programmiertätigkeiten durchführen, egal ob privat oder beruflich, werden Sie
+irgendwann mit Fremdcode in Berührung kommen. 
+Dabei ist es aber wichtig zu verstehen, unter welchen _Bedingungen_ vorliegender Code
+benutzt werden darf.
 
-Recherchieren Sie [hier](https://github.com/readme/guides/open-source-licensing),
-[hier](https://opensource.org/licenses) und [hier](https://tldrlegal.com/) bezüglich Open
-Source-Lizenzen. 
-Erarbeiten Sie sich vor allem, warum Lizenzen nützlich sein können und was der Unterschied zwischen
+Recherchieren Sie bezüglich [verschiedener](https://github.com/readme/guides/open-source-licensing)
+für [Open-Source-Software](https://opensource.org/licenses) geeigneter [Lizenzen](https://tldrlegal.com/).
+Erarbeiten Sie vor allem, warum Lizenzen nützlich sein können und was der Unterschied zwischen
 _Copyleft_-, _Permissive_- und _Creative Commons_-Lizenzen und was der Unterschied zu _Public
 Domain_ ist.
 
 !!! submission
     Sie schreiben eigenständig eine Bibliothek oder Software und stellen diese über GitHub zur
     Verfügung. 
-    Welche Open Source Lizenz ist die am besten wählbare?
+    Welche Open-Source-Lizenz würden Sie wählen? Begründen Sie kurz Ihre Wahl.
     
     Einige Zeit später stellen Sie fest, dass eine Fremdbibliothek von GitHub eine ideale Ergänzung 
     für ihr Projekt darstellt.

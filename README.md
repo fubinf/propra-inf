@@ -4,6 +4,36 @@ Programmierpraktikum Informatik (a bachelor-level self-driven lab course for Inf
 
 Uses [sedrila](https://github.com/fubinf/sedrila) and follows its conventions, i.e. is a SeDriLa template.
 
+## Aufgabenstruktur
+
+### Metadaten
+
+Sollen in Descriptions Sätze stehen? Welche Stufen für Zeiteinheiten verwenden wir?
+
+### Admonitions
+
+Wir verwenden sogenannte "Admonitions" zur Markierung verschiedener Dinge in Form von
+formatierten Boxen in den Aufgaben.
+
+Eine Admonition ist ein Block beginnend mit einer Zeile mit 3 Ausrufezeichen, einer Klasse
+und einem optionalem Titel, jeweils durch Leerzeichen getrennt. Der Titel muss, sofern
+angegeben, in doppelten Anführungszeichen stehen. Es sind mehrere Klassen möglich, aber
+generell nicht empfohlen, um eine Wiedererkennung zu vereinfachen.
+
+Wir verwenden folgende Admonition-Klassen:
+ - submission zur Spezifizierung des gewünschten Inhalts der Abgabe
+ - instructor für Inhalte, die nur auf der Tutoren-Ansicht verfügbar sein sollen
+ - warning für ein erwartetes Hindernis, in das Studis potentiell laufen können
+ - notice für hilfreiche Informationen, deren Inhalt für die Bearbeitung nicht relevant ist
+
+### Vokabular
+
+Zur Vermeidung inkonsistenter Sprache sollten wir einheitliche Begriffe für gleiche oder im
+Kontext äquivalente Begriffe verwenden.
+
+ - `Anwendung` statt Programm/Software oder auch Paket (wo sinnvoll)
+ - `Verzeichnis` statt Ordner
+
 ## Aufgabenideen
 
 ### Basis

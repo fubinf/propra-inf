@@ -1,8 +1,8 @@
 description: So viel mehr als nur ein Editor.
 ---
 Eine moderne integrierte Entwicklungsumgebung (integrated development environment, IDE)
-kann so dermaßen viel mehr Unterstützung bei sehr vielen Schritten der Softwareentwicklung
-geben als ein bloßer Programmeditor, dass es unvernünftig wäre, auf diese Hilfe zu verzichten.
+liefert einen Grad an Unterstützung bei der Softwareentwicklung, der weit über herkömmliche
+Texteditoren hinausgeht. 
 
 Deshalb wählen wir in dieser Aufgabengruppe eine IDE aus, installieren sie,
 machen ein paar ganz grundlegende Schritte darin

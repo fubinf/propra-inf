@@ -89,7 +89,7 @@ Vorkenntnissen passt (siehe unten) und sich dann zum nächst höheren vorarbeite
 Schwierigkeit bedeutet dabei nicht unbedingt, dass man die Aufgabe mit zu wenig Vorkenntnissen
 nicht schaffen kann, sondern oft nur, 
 dass das sehr viel länger dauert als für die Aufgabe geplant ist, weil die Anleitung
-viel grober ist und erheblich mehr Selbständigkeit verlangt.
+viel grober ist und erheblich mehr Selbstständigkeit verlangt.
 
 
 #### 2.2.3 Die drei Zielgruppen
@@ -200,6 +200,15 @@ Grob gesagt funktioniert er so:
 9. Sie holen die Datei (`git pull`), freuen sich an den Gutschriften, sichten
    die Probleme und arbeiten weiter am restlichen ProPra.
 
+Im allgemeinen besteht eine Abgabe entweder aus _einer einzelnen_ Datei (üblicherweise
+Markdown, aber gegebenenfalls auch Code, sofern der Umfang dies zulässt) oder
+_einem einzelnen_ Verzeichnis, jeweils mit dem Namen der bearbeiteten Aufgabe.
+
+!!! submission
+    Boxen wie diese hier, spezifizieren, was genau in die Abgabe gehört.
+    Es kann vorkommen, dass Sie in Aufgaben Code oder Ausgabe produzieren, die für die
+    Bewertung unerheblich sind. Darauf werden Sie dann hier hingewiesen.
+
 
 ### 2.5 Wann habe ich das ProPra bestanden? (Soll-Umfang)
 
@@ -265,7 +274,7 @@ Die Bedeutung ist dieselbe.
     
     Wir haben an die Tutor_innen folgende Erwartungen:
 
-    - solide Kenntnisse in Java und Python mitbringen (guter Mittelstand, kein Expertenniveau)
+    - solide Kenntnisse in der Programmierung mitbringen (guter Mittelstand, kein Expertenniveau)
     - solide Kenntnisse in Shell und git mitbringen (guter Mittelstand, kein Expertenniveau)
     - einen guten Überblick über die Aufgaben des ProPra haben:
       Was gibt es alles; wo stecken jeweils dabei die Schwierigkeiten?
