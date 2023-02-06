@@ -6,7 +6,7 @@ difficulty: 1
 requires: InstallWSL, JavaWSL
 ---
 Wenn Sie sich für Java als Programmiersprache entschieden haben, ist es sinnvoll sich mit einer
-guten IDE auseinanderzusetzen, die auf Python zugeschnitten ist.
+guten IDE auseinanderzusetzen, die auf Java zugeschnitten ist.
 Ein solcher Kandidat ist **IntelliJ** von JetBrains.
 Lassen Sie sich nicht von den Unterschieden der Professional- und Community-Version abschrecken: Die
 Community-Edition ist kostenlos und vollkommenend ausreichend für dieses Programmierpraktikum.
