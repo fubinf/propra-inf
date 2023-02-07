@@ -3,7 +3,7 @@ description: |
   Hier geht es um die Installation von IntelliJ als IDE und die Ersteinrichtung.
 timevalue: 0.5
 difficulty: 1
-requires: InstallWSL, ScalaWSL
+requires: InstallWSL
 ---
 Wenn Sie sich für Scala als Programmiersprache entschieden haben, empfehlen wir zur Verwendung
 der IDE **IntelliJ** von JetBrains.
