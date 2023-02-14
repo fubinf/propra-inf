@@ -18,3 +18,10 @@
 
  - automatische quellensicherung beim finalen generieren (archive.org?)
  - github repos mit commit verlinken statt auf master
+
+### git und abgaben
+
+ - git grundlagen. clone, push, pull, commit, fetch, rebase, merge, continue, etc.
+ - wie viel selbst erklären, wie viel verweisen?
+ - abgaben alleine, bearbeiten zu zweit
+ - erweiterter git teil unter tools
