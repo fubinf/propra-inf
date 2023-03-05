@@ -7,9 +7,9 @@ difficulty: 1
 
 MacOS ähnelt zwar in vielen Punkten Linuxsystemen, jedoch bietet MacOS von Haus aus kein
 eigenes Paketverwaltungssystem, mit dem sich einfach aus dem Terminal heraus verschiedene
-Anwendungen installieren lassen. Da dies jedoch für jegliche Entwicklungsumgebungen
-unabdinglich ist, gibt es inzwischen Drittanbietertools, welche diese Aufgabe erledigen.
-Das beliebteste und von uns verwendete Tool dieser Art nennt sich Homebrew.
+Anwendungen installieren lassen. Da dies jedoch besonders für die Softwareentwicklung
+notwendig ist, gibt es inzwischen Drittanbietertools, welche diese Aufgabe erledigen.
+Das beliebteste Tool dieser Art nennt sich Homebrew.
 
 Zum Installieren folgen Sie den Anweisungen auf der [Homebrew-Website](https://brew.sh).
 Danach können Sie, wie dort ebenfalls beschrieben, Programme mit dem Befehl

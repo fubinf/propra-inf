@@ -6,16 +6,16 @@ difficulty: 2
 ---
 !!! notice "Worum geht es hier?"
     Viele Programmieraufgaben lassen sich sequentiell bearbeiten. 
-    Manchmal ist es aber nicht ratsam darauf zu warten, dass eine Routine beendet ist, bevor andere
-    Schritte, die davon unabhängig sind, bearbeitet werden können. 
-    In dieser Aufgabe geht es darum ein Verständnis darüber aufzubauen, welche Konzepte existieren
-    und wie sie sich zu anderen Arten der Aufgabenaufteilung unterscheiden. 
+    Manchmal ist es aber nicht ratsam, darauf zu warten, dass eine Routine beendet ist,
+    bevor andere Schritte, die davon unabhängig sind, bearbeitet werden können. 
+    In dieser Aufgabe geht es darum, ein Verständnis darüber aufzubauen, welche Konzepte
+    existieren und wie sie sich zu anderen Arten der Aufgabenaufteilung unterscheiden. 
 
 Recherchieren Sie in den gegebenen Quellen und gegebenenfalls selbst gesuchten Quellen (z. B. der
-Dokumentation ihrer gewählten Sprache) zu den folgenden Punkten und beschreiben Sie:
+Dokumentation Ihrer gewählten Sprache) zu den folgenden Punkten:
 
 - Was unterscheidet das asynchrone Modell von einem Modell, das Threads benutzt?
-- Welche Use Cases hat eine asynchrone Ausführung?
+- Welche Einsatzbereiche hat eine asynchrone Ausführung?
 - Welche Möglichkeiten zur asynchronen Ausführung bietet Ihre Sprache?
 
 Quellen:
@@ -30,7 +30,9 @@ Quellen:
 - [Wikipedia - Async/await](https://en.wikipedia.org/wiki/Async/await)
 
 !!! submission
-    Die Abgabe besteht aus einer Markdown-Datei mit der geforderten Diskussion.
+    Beschreiben Sie das Ergebnis Ihrer Recherche. Eine einfache Form dafür sind jeweils 2-3
+    Stichpunkte, bzw. bei Vergleichen jeweils so viele Eigenschaften, die eine Option von der
+    anderen unterscheidet.
 
 !!! instructor
     Hier geht es vorranging um das Konzept async/await und dessen Abgrenzung von Threads.

@@ -40,11 +40,19 @@ einen weiteren Zeitschnipsel zur Summe dieser Aufgabe beitragen.
   War das einfach? War es hilfreich?
 - Was vermuten Sie, wie oft sie vergessen werden, das Eintragsformat einzuhalten?
 
-Wenn Sie den Commit für die aktuelle Aufgabe gemacht haben,
-tragen Sie diese Angaben bitte noch aus dem Gedächtnis 
-für jede vorherige Aufgabe mit einem zusätzlichen Commit nach.
+Die angegebene Zeit spielt keinerlei Rolle für die Anrechnung von Aufgaben.
+Sie dient lediglich Ihnen selbst, um gegebenenfalls Ihren realistischen Zeitaufwand für
+weitere Aufgaben besser abzuschätzen, als auch für eine mögliche Anpassung der gegebenen
+Einschätzung für zukünftige Semester.
+In diesem Sinne tragen Sie besser gar keine Zeit ein, als sich einen Wert auszudenken,
+der weit von der Realität abweicht, falls Sie keine Erfassung gemacht haben oder nicht
+machen wollen.
+
+Wenn Sie bereits einen Commit für eine Aufgabe gemacht haben, können Sie diese Angabe
+dennoch mit einem zusätzlichen Commit auch mit Werten aus dem Gedächtnis nachtragen.
+Tun Sie dies bitte für möglicherweise bereits von Ihnen bearbeitete Aufgaben.
 (Man kann bei git [mit der Option `--allow-empty`](https://git-scm.com/docs/git-commit) 
-einen Commit machen, ohne eine Datei zuzufügen.)
+einen Commit machen, ohne eine Datei hinzuzufügen.)
 
 !!! instructor
     Achten auf 
@@ -52,3 +60,6 @@ einen Commit machen, ohne eine Datei zuzufügen.)
     - richtig geschriebene Namen
     - Dezimalpunkt (nicht Dezimalkomma) mit Dezimalstunden oder Doppelpunkt mit Minuten, 
     - 'h' ohne Leerzeichen 
+    
+    Eine Anpassung des Parsers wäre zwar möglich, aber der Fokus liegt hier durchaus darauf,
+    die Studenten zur Einhaltung von definierten Standards zu gewöhnen.

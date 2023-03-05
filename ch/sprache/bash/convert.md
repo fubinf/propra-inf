@@ -21,10 +21,15 @@ Laden Sie das verlinkte Archiv herunter, entpacken Sie selbiges in einem beliebi
 darin, programmatisch alle im Verzeichnis und in Unterverzeichnissen (insgesamt 50 Stück)
 existierenden `png` Bilddateien in das Format `jpg` umzuwandeln.
 
-Geben Sie den zum lösen der Aufgabe verwendeten Befehl an und begründen Sie Ihre Wahl.
+!!! submission
+    Geben Sie den zum lösen der Aufgabe verwendeten Befehl an und begründen Sie Ihre Wahl.
+
+    Es steht Ihnen prinzipiell frei, andere Formen von Konvertierung anzuwenden, die Sie mehr
+    interessiert, solange diese demselben Schema folgen. Es bietet sich beispielsweise eine
+    Konvertierung von Flac nach AAC oder MP3 an.
 
 [archivlink](#tbd)
 
 !!! instructor
-    Ziel der Aufgabe ist das kennenlernen und verstehen von `find`, dieses erlaubt auf alle gefundenen Dateien einen bestimmten Befehl anzuwenden.
+    Ziel der Aufgabe ist das Kennenlernen und Verstehen von `find`. Das erlaubt, auf alle gefundenen Dateien einen bestimmten Befehl anzuwenden.
     Alternativ lässt sich die Aufgabe auch mit anderen Boardmitteln lösen, so wäre z.B. eine Lösung mithilfe von `find` und einem for loop welcher über die gefundenen Dateien iteriert denkbar.
