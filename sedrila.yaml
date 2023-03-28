@@ -53,6 +53,9 @@ chapters:
       - title: "Fortgeschrittene Programmiertechniken"
         shorttitle: Fortgeschrittenes
         slug: fortgeschrittenes
+      - title: "Structured Query Language"
+        shorttitle: sql
+        slug: sql
   - title: "Bibliotheken: Die Wiederverwendung fremder Bausteine"
     shorttitle: Bibliotheken
     slug: libs
