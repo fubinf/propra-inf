@@ -3,9 +3,9 @@ description: |
   Übe hier das Laden von Dateien und den Umgang mit Schleifen und Strings.
 timevalue: 1.0
 difficulty: 2
-assumes: PythonLoops, PythonBooleans
+assumes: PythonBasics101, PythonBasics102, PythonBasics103, PythonNumBoolString
 ---
-!!! notice "Was passiert hier?"
+!!! goal
     Viele Programmieraufgaben bestehen daraus Dateien einzulesen, die darin enthaltenen Daten zu
     bewerten und/oder zu transformieren und dann einen Output zu erhalten, der einen
     Informationsgewinn zu erhalten. 
@@ -23,19 +23,21 @@ Beachten Sie, dass Groß-/Kleinschreibung existiert; suchen Sie eine Funktion, d
 Kleinschreibung umformt.
 Als letzten Schritt geben Sie die Zählung als `.csv`-Datei wieder aus.
 
-[HINT::Format der .csv-Datei]
-`csv` steht für "Comma-separated values".
-Es gibt keinen allgemeingültigen Standard für das Dateiformat und viele Bibliotheken.
-Für unseren einfachen Fall benötigen wir aber keine Bibliothek.
-Es reicht, wenn in jeder Zeile ein Wort und seine absolute Häufigkeit von einem Komma getrennt
-aufgelistet werden.
-[ENDHINT]
+!!! notice "Format der .csv-Datei"
+    `csv` steht für "Comma-separated values".
+    Es gibt keinen allgemeingültigen Standard für das Dateiformat und viele Bibliotheken.
+    Für unseren einfachen Fall benötigen wir aber keine Bibliothek.
+    Es reicht, wenn in jeder Zeile ein Wort und seine absolute Häufigkeit von einem Komma getrennt
+    aufgelistet werden.
+
 
 <!-- Food for thought:
 
-- Diese Aufgabe lässt sich auch mit Kommandozeilenprogrammen lösen. Sie können in der Aufgabe `AUFGABENNAME` im Shell-Bereich mehr dazu erfahren.
+- Diese Aufgabe lässt sich auch mit Kommandozeilenprogrammen lösen. Sie können in der Aufgabe 
+`AUFGABENNAME` im Shell-Bereich mehr dazu erfahren. 
 - Überlegen Sie sich, wie sie die zehn am häufigsten vorkommenden Worte ausgeben können.
-- Überlegen Sie sich, wie sie die zehn am häufigsten vorkommenden Worte mit echt mehr als drei Buchstaben ausgeben können. -->
+- Überlegen Sie sich, wie sie die zehn am häufigsten vorkommenden Worte mit echt mehr als drei 
+Buchstaben ausgeben können. --> 
 
 !!! submission "Abgabeformat"
     Die Abgabe besteht dem lauffähigen Programm und der erzeugten `.csv`-Datei.

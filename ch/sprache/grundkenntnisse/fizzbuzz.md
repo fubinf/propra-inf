@@ -3,7 +3,7 @@ description: |
   Umgang mit Schleifen, Verzweifung und dem Laden von Dateien
 timevalue: 0.25
 difficulty: 1
-assumes: PythonIfThenElse, PythonBooleans, PythonLoops
+assumes: PythonBasics102, PythonNumBoolString
 ---
 !!! goal
     In dieser Aufgabe geht es nur um die Anwendung der fundamentalen Kontrollmechanismen beim
