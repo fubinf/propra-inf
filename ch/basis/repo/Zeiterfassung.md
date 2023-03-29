@@ -6,7 +6,6 @@ description: |
 timevalue: 1
 difficulty: 1
 assumes: Git101
-requires: GitLab
 ---
 Viele Teams geben sich Konventionen für das Format der Commit-Nachrichten,
 damit sie mehr Nutzen aus dem git-Repo ziehen können.
