@@ -1,0 +1,21 @@
+# Tasks, die noch gegengelesen werden müssen
+
+- [ ] GitLab101
+- [ ] PythonBasics101
+- [ ] PythonBasics102
+- [ ] PythonBasics103
+- [ ] PythonAdvanced
+- [ ] PythonDataStructures
+- [ ] PythonNumBoolString
+- [ ] PythonOOP
+- [ ] sql -> index
+- [ ] SQLBasics
+- [ ] SQLFunctions
+- [ ] SQLInjection
+- [ ] SQLJoins
+- [ ] SQLSelect
+- [ ] SQLUpdating
+- [ ] SQLWhere
+- [ ] powershell
+- [ ] WebAPIs
+- [ ] async
