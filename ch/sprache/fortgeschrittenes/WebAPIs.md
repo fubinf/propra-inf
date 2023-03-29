@@ -14,6 +14,8 @@ difficulty: 2
 Recherchieren Sie bezüglich `REST` und `SOAP`. 
 Suchen Sie dabei nach Gemeinsamkeiten und Unterschieden von `REST` und `SOAP`.
 Beschreiben Sie auch, welche HTTP-Methoden an eine `REST`-API geschickt werden können.
+Machen Sie sich als letztes Gedanken darum, ob Sie eher mit `REST`-APIs oder mit `SOAP`-API's 
+arbeiten möchten.
 
 !!! submission
     Beschreiben Sie das Ergebnis Ihrer Recherche. 
