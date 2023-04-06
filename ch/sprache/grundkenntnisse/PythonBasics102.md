@@ -14,5 +14,12 @@ If...Else`, `Python While Loops` und `Python For Loops` auf der unten angegebene
 
 [W3Schools - Python Tutorial](https://www.w3schools.com/python/default.asp)
 
+Mehr Infos zu den Inhalten aus dem Tutorial:
+
+[Python Documentation - More Control Flow Tools](https://docs.python.org/3.
+8/tutorial/controlflow.html) 
+
+
+
 !!! submission
     Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben.

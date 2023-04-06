@@ -15,6 +15,10 @@ angegebenen Seite.
 
 [W3Schools - Python Tutorial](https://www.w3schools.com/python/default.asp)
 
+Mehr Infos zu den Inhalten aus dem Tutorial:
+
+[Python Documentation - Classes](https://docs.python.org/3.8/tutorial/classes.html)
+
 !!! submission
     Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben. Stellen Sie dabei 
     auch dar, wie sich die Speicherung und Organisation von Daten mittels Datenstrukturen und 

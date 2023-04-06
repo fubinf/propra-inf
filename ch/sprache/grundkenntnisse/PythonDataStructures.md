@@ -15,6 +15,10 @@ Dictionaries` auf der unten angegebenen Seite.
 
 [W3Schools - Python Tutorial](https://www.w3schools.com/python/default.asp)
 
+Mehr Infos zu den Inhalten aus dem Tutorial:
+
+[Python Documentation: Data Structures](https://docs.python.org/3.8/tutorial/datastructures.html)
+
 !!! submission
     Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben. Gehen Sie auch 
     darauf ein, worin sich die genannten Datenstrukturen unterscheiden.

@@ -18,6 +18,10 @@ Python-Dokumentation zum Thema String-Formatierung.
 
 [Python-Dokumentation](https://docs.python.org/3.8/tutorial/inputoutput.html#input-and-output)
 
+Mehr Infos zu den Inhalten aus dem Tutorial:
+
+[Python Documentation - An Informal Introduction to Python](https://docs.python.org/3.
+8/tutorial/introduction.html#) 
 
 !!! submission
     Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben.

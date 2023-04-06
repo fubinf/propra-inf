@@ -13,5 +13,16 @@ RegEx` und `Python Dates` auf der unten angegebenen Seite.
 
 [W3Schools - Python Tutorial](https://www.w3schools.com/python/default.asp)
 
+Mehr Infos zu den Inhalten aus dem Tutorial:
+
+[Python Documentation - Modules](https://docs.python.org/3.8/tutorial/modules.html)
+
+[Python Documentation - Brief Tour of the Standard Library](https://docs.python.org/3.
+8/tutorial/stdlib.html) 
+
+[Python Documentation - Brief Tour of the Standard Library -- Part II](https://docs.python.org/3.
+8/tutorial/stdlib2.html)  
+
+
 !!! submission
     Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben. 
