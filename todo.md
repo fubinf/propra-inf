@@ -19,3 +19,6 @@
 - [ ] powershell
 - [ ] WebAPIs
 - [ ] async
+- [ ] finding_frameworks
+- [ ] framework_vs_library
+- [ ] search_engines
