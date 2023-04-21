@@ -4,7 +4,7 @@ description: |
 timevalue: 3
 difficulty: 2
 ---
-!!! notice "Worum geht es hier?"
+!!! goal
     Viele Programmieraufgaben lassen sich sequentiell bearbeiten. 
     Manchmal ist es aber nicht ratsam, darauf zu warten, dass eine Routine beendet ist,
     bevor andere Schritte, die davon unabhängig sind, bearbeitet werden können. 
@@ -35,5 +35,5 @@ Quellen:
     anderen unterscheidet.
 
 !!! instructor
-    Hier geht es vorranging um das Konzept async/await und dessen Abgrenzung von Threads.
+    Hier geht es vorrangig um das Konzept async/await und dessen Abgrenzung von Threads.
     
