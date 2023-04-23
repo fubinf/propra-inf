@@ -11,19 +11,20 @@ assumes: async
     Um diese Aufgabe bearbeiten zu können, benötigen Sie einen Discord-Account.
 
 !!! goal
-    Mithilfe dieser Aufgabe werden Sie lernen sich in eine Bibliothek einzuarbeiten und ein 
+    Mithilfe dieser Aufgabe werden Sie lernen, sich in eine Bibliothek einzuarbeiten und ein 
     funktionierendes Programm zu erstellen. 
-    In diesem Beispiel wird es um die Erstellung eines Discord Bots gehen, der eine Aufgabe 
-    ihrer Wahl übernehmen soll.
-    Um das Hosting von Discord Bots geht es in dieser Aufgabe explizit **nicht**.
+    In diesem Beispiel wird es um die Erstellung eines Discord-Bots gehen, der eine Aufgabe 
+    Ihrer Wahl übernehmen soll.
+    Um das Hosting von Discord-Bots geht es in dieser Aufgabe explizit **nicht**.
 
 Lesen Sie sich in die Dokumentation von Discord ein.
-Ziel der Aufgabe ist es einen Discord Bot zu erstellen, der einige Aufgaben für Sie erledigen soll.
-Erstellen Sie idealerweise einen neuen Discord-Server, auf den ihr Bot sich verbinden soll.
+Ziel der Aufgabe ist es, einen Discord-Bot zu erstellen, der einige Aufgaben für Sie erledigen soll.
+Erstellen Sie idealerweise einen neuen Discord-Server, auf den Ihr Bot sich verbinden soll.
 So haben Sie die volle Kontrolle und alle Rechte zur Verfügung.
-Folgende Aufgaben müssen von ihrem Bot erledigt werden können:
 
-- Wenn der Bot online kommt, soll er sein Erscheinen in einem Textchannel ankündigen.
+Eine Auswahl an Beispielen für Aufgaben, die Ihr Bot erledigen können soll:
+
+- Wenn der Bot online kommt, soll er sein Erscheinen in einem Textchannel ankündigen. Er soll außerdem auf Antworten oder Reactions auf diese Ankündigung reagieren.
 - Erstellen Sie einen Befehl für einen einfachen Taschenrechner. Das erste Zeichen soll eine 
   Operation der Grundrechenarten sein, darauf dürfen beliebig viele Zahlen folgen. Der Bot soll 
   als Antwort das Ergebnis zurückgeben.
@@ -39,10 +40,19 @@ Folgende Aufgaben müssen von ihrem Bot erledigt werden können:
   
   Beispiel: [https://wttr.in/Berlin](https://wttr.in/Berlin)
 
+Wählen Sie mindestens eine dieser Beispiele oder eine von mindestens vergleichbarem Aufwand.
+Sollten Sie sich unsicher sein, ob Ihre Idee der geforderten Mindestanforderung entspricht,
+fragen Sie bei Ihrem/Ihrer Tutor\_in vorher nach.
+
+!!! instructor
+    Hier geht es im Wesentlichen nur um I/O. Solange der Vorschlag ein Lesen und ein Schreiben
+    beinhaltet, ist das okay. Nur eines von beiden ist prinzipiell auch denkbar, wenn der Rest
+    ausreichend komplex ist.
+
 Die Dokumentation von Discord klärt viele Begriffe über die Funktionen von Discord selbst.
-Allerdings geht die Dokumentation von Discord geht davon aus, dass Sie Javascript benutzen.
+Die Dokumentation von Discord davon aus, dass Sie Javascript benutzen.
 Es gibt aber auch Bibliotheken für viele andere Sprachen, recherchieren Sie nach bezüglich einer 
-Bibliothek in ihrer gewünschten Sprache.
+Bibliothek in Ihrer gewünschten Sprache.
 
 [Discord - Building your first Discord app](https://discord.com/developers/docs/intro)
 

@@ -10,12 +10,10 @@ assumes: SQLBasics
     selbst die Daten in einem Format zu erhalten, mit dem man weiterarbeiten kann, ohne eine 
     andere Programmiersprache zur Verarbeitung zu benutzen. 
     In dieser Aufgabe lernen Sie einige Optionen kennen, mit denen Sie dies bewerkstelligen können.
-    
-Bearbeiten Sie die Tutorials `SQL Group By`, `SQL Order By`, `SQL Min and Max` und `SQL Count, 
-Avg, Sum` auf der unten angegebenen Seite. 
 
-[W3Schools - SQL Tutorial](https://www.w3schools.com/sql/default.asp)
+Recherchieren Sie zum Thema Gruppierung und Aggregationsfunktionen in SQL.
 
 !!! submission
-    Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben. 
-    Gehen Sie auch auf mögliche Zusammenhänge zwischen den Begriffen ein.
+    Ihre Abgabe sollte die grundlegende Idee von Gruppierung erklären und mindetens 3
+    Aggregationsfunktionen beschreiben.
+    Erläutern Sie auch die Unterschiede und Gemeinsamkeiten zwischen "Where" und "Having".

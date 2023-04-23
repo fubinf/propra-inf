@@ -1,17 +1,17 @@
 title: SQL Injection
 description: |
   Unsaubere Handhabung von Dateneingaben kann zu Problemen führen.
-timevalue: 2
+timevalue: 2.5
 difficulty: 3
 assumes: SQLBasics, SQLUpdating, SQLWhere
 ---
 !!! goal
-    SQL Injections sind ein potenzielles Sicherheitsrisiko. 
+    SQL-Injections sind ein potenzielles Sicherheitsrisiko. 
     Um die eigene Datenbank nicht zu gefährden, beschäftigen wir uns hier mit möglichen 
     Angriffsszenarien und wie man sich davor schützen kann.
 
 Lesen Sie den Artikel von UnixWiz. 
-Erläutern Sie danach mit eigenen Worten, was eine mögliche Definition von "SQL Injection" ist. 
+Erläutern Sie danach mit eigenen Worten, was eine mögliche Definition von "SQL-Injection" ist. 
 Nehmen Sie sich dazu ein Beispiel, aus der Quelle oder selbst gewählt, und erklären Sie, 
 worin die Injektion bestand und wie mögliche Maßnahmen zur Verhinderung aussehen.
 

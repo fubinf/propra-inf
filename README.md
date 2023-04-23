@@ -41,6 +41,12 @@ Kontext äquivalente Begriffe verwenden.
  - "Defekt" in der Verwendung von Softwaretechnik, insbesondere in Abgrenzung zu "Fehler"
  - "beispielsweise" statt "z.B." in Fließtext
 
+Bei der Einführung neuer Begriffe verwenden wir erstmals Anführungszeichen. Wollen wir sie
+anschließend betont verwenden, machen wir sie *italic*. Bei der Einführung von deutschen
+Fachbegriffen erwähnen wir die korrekte englische Vokabel in Klammern.
+
+Die Verwendung von Blocktext ist für Code oder Codeteile gedacht.
+
 Wir kürzen "Repository" mit "Repo" ab. Wir schreiben "Git", wenn wir die Software in einer
 Art benennen, die kein Kommando ist. In Kommandos schreiben wir "git".
 

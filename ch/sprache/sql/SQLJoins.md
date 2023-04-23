@@ -2,20 +2,29 @@ title: Zusammenführen von Tabellen mittels JOIN
 description: |
   Mehrere Tabellen lassen sich verbinden. Für die verschiedenen JOIN-Ausdrücke benötigt man aber 
   etwas Intuition.
-timevalue: 2
+timevalue: 2.5
 difficulty: 2
 assumes: SQLBasics, SQLSelect
 ---
 !!! goal
     Wenn die benötigten Informationen in verschiedenen Tabellen liegen, müssen diese 
-    zusammengeführt werden. In dieser Aufgabe geht es darum eine Intuition für die verschiedenen 
-    `JOIN`-Ausdrücke zu bekommen.
-    
-Bearbeiten Sie die Tutorials `SQL Joins`, `SQL Inner Join`, `SQL Left Join`, `SQL Right Join`, 
-`SQL Full Join` und `SQL Self Join` auf der unten angegebenen Seite. 
+    zusammengeführt werden. In dieser Aufgabe geht es darum, eine Intuition für die verschiedenen 
+    "JOIN"-Ausdrücke zu bekommen.
 
-[W3Schools - SQL Tutorial](https://www.w3schools.com/sql/default.asp)
+Zum Verknüpfen mehrerer Tabellen in einer Abfrage stellt SQL "Join" bereit.
+Recherchieren Sie verschiedene Varianten des Join-Kommandos.
+
+Es gibt darüber hinaus noch die Möglichkeit, ein Kreuzprodukt mittels kommaseparierter Listen
+im *FROM* und entsprechenden Einschränkungen im *WHERE* ein identisches Ergebnis zu erreichen:
+
+```sql
+SELECT table1, table2, table3 WHERE table1.id = table2.t1_id AND table2.id = table3.t2_id;
+```
+
+In modernen Datenbanken wird das zu Joins optimiert. Was ist die Optimisierung, die hier
+vorgenommen werden kann?
 
 !!! submission
-    Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben. 
-    Gehen Sie auch auf mögliche Zusammenhänge zwischen den Begriffen ein.
+    Erläutern sie kurz, was Join tut und wodurch sich die verschiedenen Varianten unterscheiden.
+    Für die Optimisierungsfrage reicht wahlweise eine kurze Begründung oder eine äquivalente
+    Abfrage aus.

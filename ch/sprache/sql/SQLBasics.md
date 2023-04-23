@@ -8,8 +8,8 @@ difficulty: 1
     Ob Refresher oder Neueinstieg in SQL: Ohne die Grundbegriffe wird es schwer zu verstehen, 
     wie man Daten in oder aus einer Datenbank bekommt.
     
-Bearbeiten Sie die Tutorials `SQL Intro`, `SQL Syntax`, `SQL Select`, `SQL Where`, `SQL 
-Comments`, `SQL Operators` und `SQL Aliases` auf der unten angegebenen Seite. 
+Bearbeiten Sie die Tutorials zu folgenden SQL-Themen: "Intro", "Syntax", "Select", "Where",
+"Comments", "Operators", "Order By" und "Aliases" auf der unten angegebenen Seite. 
 
 [W3Schools - SQL Tutorial](https://www.w3schools.com/sql/default.asp)
 

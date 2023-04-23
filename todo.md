@@ -8,18 +8,18 @@
 - [ ] PythonDataStructures
 - [ ] PythonNumBoolString
 - [ ] PythonOOP
-- [ ] sql -> index
-- [ ] SQLBasics
-- [ ] SQLFunctions
-- [ ] SQLInjection
-- [ ] SQLJoins
-- [ ] SQLSelect
-- [ ] SQLUpdating
-- [ ] SQLWhere
+- [x] sql -> index
+- [x] SQLBasics
+- [x] SQLFunctions
+- [x] SQLInjection
+- [x] SQLJoins
+- [x] SQLSelect
+- [x] SQLUpdating
+- [x] SQLWhere
 - [ ] powershell
 - [ ] WebAPIs
 - [ ] async
-- [ ] finding_frameworks
-- [ ] framework_vs_library
+- [x] finding_frameworks
+- [x] framework_vs_library
 - [ ] search_engines
-- [ ] discordbot
+- [x] discordbot

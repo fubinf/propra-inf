@@ -7,14 +7,16 @@ difficulty: 2
 assumes: SQLBasics, SQLSelect
 ---
 !!! goal
-    Zu `WHERE` gehören noch viele weitere Ausdrücke, mit denen mit `SELECT` gewählte Daten 
+    Zu "WHERE" gehören noch viele weitere Ausdrücke, mit denen mit "SELECT" gewählte Daten 
     gefiltert werden können.  
-    
-Bearbeiten Sie die Tutorials `SQL And, Or, Not`, `SQL Between`, `SQL Exists`, `SQL Any, All`, 
-`SQL In`, `SQL Like`, `SQL Wildcards` und `SQL Having` auf der unten angegebenen Seite. 
 
-[W3Schools - SQL Tutorial](https://www.w3schools.com/sql/default.asp)
+Aus der Prädikatenlogik kennen Sie die Operationen "und", "oder" und "nicht" sowie den Existenz-
+und All-Quantor. Recherchieren Sie, wie diese in SQL abgebildet werden.
+
+SQL bietet darüber hinaus auch Operationen für andere häufige Datenstrukturen:
+Es gibt "Between" für Bereicheabfragen, "In" für Suche in Listen und "Like" für
+Stringvergleiche mit Platzhaltern. Recherchieren Sie auch diese Operationen.
 
 !!! submission
-    Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben. 
+    Erläutern Sie kurz zu den gefunden Operationen, was diese tun und wie sie verwendet werden.
     Gehen Sie auch auf mögliche Zusammenhänge zwischen den Begriffen ein.
