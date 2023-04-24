@@ -34,3 +34,8 @@ Suchen Sie auch jeweils ein Beispiel zu beidem in einer Sprache Ihrer Wahl.
     Eine saubere Argumentation für eine synonyme Verwendung ist keine fehlerhafte Abgabe, aber 
     ein Hinweis auf diesen Punkt sollte den Studierenden mit derartigen Abgaben dringend gegeben
     werden.
+
+    Falls in einer Abgabe für die Synonymität argumentiert wird, ist das nicht notwendigerweise
+    eine falsche Abgabe. Wenn die Begründung "gut" (im Ermessen der Tutor_innen) ist, dann kann
+    die Abgabe als bestanden markiert werden. Gegebenenfalls aber Feedback über die Inversion
+    of control mitgeben.

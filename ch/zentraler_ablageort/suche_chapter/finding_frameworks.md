@@ -19,6 +19,7 @@ Framework entscheidend sein können.
   anderer Programmierer schnell versteht, wie diese funktioniert.
 - Sie benötigen für die Speicherung der Daten des Blogs eine Datenbank. 
   Es ist dem Auftraggeber wichtig, dass die genaue Datenbankimplementierung austauschbar sein soll.
+  Das meint hier beispielsweise die Wahl zwischen SQLite, MySQL, PostgreSQL etc.
 - Der Auftraggeber glaubt, dass er in Zukunft die Webseite durch zusätzliche Funktionalitäten 
   erweitern möchte. 
   Es ist also eine Voraussetzung, dass eine Erweiterung einfach ist.
