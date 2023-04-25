@@ -8,8 +8,12 @@ difficulty: 1
 Die große Stärke des Terminals liegt darin, dass sich einfach Aufgaben bzw. Befehle leicht auf
 viele Dateien/Orte anweden lassen. So kann man beispielsweise ohne größere Probleme verschiedene
 Bildateien von einem Format in ein anderes konvertieren. Lediglich zum Konvertierungsschritt
-wird eine zusätzliche Anwendung benötigt. Die Anwendung `convert` wird unter Debian in dem Paket
-`graphicsmagick` verfügbr. Unter Ubuntu finden Sie es im Paket `imagemagick`.
+wird eine zusätzliche Anwendung benötigt. 
+
+!!! note
+    Die Anwendung `convert` wird unter Debian in dem Paket
+    `graphicsmagick` verfügbr. Unter Ubuntu finden Sie es im Paket `imagemagick`.
+
 
 In dieser Aufgabe werden wir nun eine Vielzahl an Dateien an verschiedenen Orten in einem
 Schritt von `png` in `jpg` umwandeln. Normalerweise wäre dies ein langwieriger Prozess mit
