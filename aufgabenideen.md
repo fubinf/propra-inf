@@ -19,7 +19,11 @@
 
 ## Aufgabenbereich Testen
 
-- ...
+- Vorgegebene Testklasse einfach ausführen
+- Tests korrigieren
+- Test-Coverage bestimmen?
+- SetUp und TearDown bei repetitiven Tests oder teurem Setup
+- Wie groß ist ein Test/eine Testklasse?
 
 ## Aufgabenbereich Bestandscode
 
