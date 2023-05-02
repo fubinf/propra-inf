@@ -8,21 +8,15 @@ assumes: PythonBasics101, PythonBasics102
 !!! goal
     Hier geht es um die Nutzung von (vorinstallierten) Modulen in Python.  
 
-Bearbeiten Sie die Tutorials `Python Modules`, `Python Math`, `Python JSON`, `Python 
-RegEx` und `Python Dates` auf der unten angegebenen Seite. 
+In Python werden Module verwendet, um Funktionalitäten zusammenzufassen und für andere
+verfügbar zu machen. Recherchieren Sie, wie Module in Python funktionieren und schauen
+Sie sich die Module "Math", "JSON", "RegEx" und "Dates" an.
 
-[W3Schools - Python Tutorial](https://www.w3schools.com/python/default.asp)
-
-Mehr Infos zu den Inhalten aus dem Tutorial:
-
-[Python Documentation - Modules](https://docs.python.org/3.8/tutorial/modules.html)
-
-[Python Documentation - Brief Tour of the Standard Library](https://docs.python.org/3.
-8/tutorial/stdlib.html) 
-
-[Python Documentation - Brief Tour of the Standard Library -- Part II](https://docs.python.org/3.
-8/tutorial/stdlib2.html)  
+Zusätzlich bietet sich sich als Quelle an, die offizielle Dokumentation zur Standardbibliothek
+anzuschauen.
 
 
 !!! submission
-    Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben. 
+    Erläutern Sie kurz, wie man Module in Python verwendet und zu jedem der genannten
+    Module in einem bis zwei kurzen Sätzen, was diese tun. Überlegen Sie sich, welche
+    Methoden sie aus den Modulen wohl weniger zu verwenden erwarten.

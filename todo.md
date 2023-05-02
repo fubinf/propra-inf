@@ -1,13 +1,13 @@
 # Tasks, die noch gegengelesen werden müssen
 
 - [ ] GitLab101
-- [ ] PythonBasics101
-- [ ] PythonBasics102
-- [ ] PythonBasics103
-- [ ] PythonAdvanced
-- [ ] PythonDataStructures
-- [ ] PythonNumBoolString
-- [ ] PythonOOP
+- [x] PythonBasics101
+- [x] PythonBasics102
+- [x] PythonBasics103
+- [x] PythonAdvanced
+- [x] PythonDataStructures
+- [x] PythonNumBoolString
+- [x] PythonOOP
 - [x] sql -> index
 - [x] SQLBasics
 - [x] SQLFunctions

@@ -8,10 +8,10 @@ difficulty: 1
     Wenn Sie bisher keine Berührungspunkte mit Python hatten oder sich unsicher in der 
     Handhabung der Sprache fühlen, soll Ihnen diese Aufgabe einen Einstieg bieten. 
 
-Bearbeiten Sie die Tutorials `Python Syntax`, `Python Comments`, `Python Variables`, `Python 
-Data Types` und `Python User Input` auf der unten angegebenen Seite. 
-
-[W3Schools - Python Tutorial](https://www.w3schools.com/python/default.asp)
+Für die Grundlagen recherchieren Sie zu den Themen Syntax, Kommentare, Variablen, Datentypen
+und Benutzereingaben in Python.
 
 !!! submission
-    Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben.
+    Erläutern Sie jeden der genannten Begriffe in jeweils einem oder zwei kurzen Sätzen.
+    Die Erläuterung zur Syntax darf auch etwas ausführlicher ausfallen, es ist aber nicht
+    nötig, tief ins Detail zu gehen.

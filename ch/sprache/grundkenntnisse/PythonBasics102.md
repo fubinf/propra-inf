@@ -9,17 +9,14 @@ assumes: PythonBasics101
     Wenn Sie bisher keine Berührungspunkte mit Python hatten oder sich unsicher in der 
     Handhabung der Sprache fühlen, soll Ihnen diese Aufgabe einen Einstieg bieten. 
 
-Bearbeiten Sie die Tutorials `Python Operators`, `Python Functions`, `Python Scope`, `Python 
-If...Else`, `Python While Loops` und `Python For Loops` auf der unten angegebenen Seite. 
+Recherchieren Sie zu den Themen Operatoren, Funktionen, Gültigkeitsbereich (Scope) und den
+verfügbaren Kontrollstrukturen in Python.
 
-[W3Schools - Python Tutorial](https://www.w3schools.com/python/default.asp)
+Zu letzteren bietet sich auch [Python Documentation - More Control Flow Tools](https://docs.python.org/3.
+8/tutorial/controlflow.html) für weitergehende Informationen an.
 
-Mehr Infos zu den Inhalten aus dem Tutorial:
-
-[Python Documentation - More Control Flow Tools](https://docs.python.org/3.
-8/tutorial/controlflow.html) 
-
-
+Es gibt eine Besonderheit in Pythons Kontrollstrukturen, die die meisten anderen
+Programmiersprachen nicht haben. Welche ist das?
 
 !!! submission
-    Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben.
+    Erläutern Sie jeden der genannten Begriffe in jeweils einem oder zwei kurzen Sätzen.
