@@ -1,3 +1,22 @@
+# 2.5.2023
+
+- http protokoll behandeln?
+- profile
+    - front-/backend geimeinsam(!)
+    - systemprogrammierung?
+    - metadaten für verschiedene profile
+    - allgemeine anwendungsprogrammierung
+        - bezeichnung?
+        - erstmal zurückstellen (im hinterkopfbehalten)
+    - filtern der profile in der sidebar (temporär)
+- python string zweiten char ändern (strings immutable)
+- bessere version eines tooltips statt alt
+    - zurückstellen bis genug aufgaben fertig
+- docker
+    - eigenes docker image erstellen (schreiben?)
+    - docker images verbinden (docker compose)
+
+
 # 14.2.2023
 
 ## zweiter versuch
