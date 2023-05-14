@@ -56,6 +56,19 @@ chapters:
       - title: "Structured Query Language"
         shorttitle: sql
         slug: sql
+  - title: "Webentwicklung"
+    shorttitle: Webentwicklung
+    slug: web
+    taskgroups:
+      - title: "HTML"
+        shorttitle: HTML
+        slug: html
+      - title: "CSS"
+        shorttitle: CSS
+        slug: css
+      - title: "JavaScript"
+        shorttitle: JavaScript
+        slug: js
   - title: "Bibliotheken: Die Wiederverwendung fremder Bausteine"
     shorttitle: Bibliotheken
     slug: libs
