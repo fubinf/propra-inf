@@ -3,6 +3,7 @@ description: |
   grundlegende Struktur von HTML-Dokumenten
 timevalue: 0.5
 difficulty: 1
+profiles: WEB
 ---
 !!! goal
     Hier soll gelernt werden, grundlegende HTML-Dokumente erzeugen zu können.
