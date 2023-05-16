@@ -10,12 +10,36 @@
 ## Aufgabenbereich Programmiersprache
 
 - WebAPIs-Aufgabe um GraphQL erweitern oder dazu eine separate Aufgabe gestalten?
+- C lernen:
+  - Compiler installieren, Hello World
+  - Datei einlesen, Länge der längsten und der kürzesten (nichtleeren) Zeile bestimmen
+  - Datei einlesen, kürzeste und längste Zeile aufbewahren (malloc)
+  - malloc-Puffer überschreiten, Crash erleben
+  - lokale Variable int a = 7, b = 9; Stapel-Layout anschauen und verstehen.
+    Wohin führt push: Zu höheren Adressen oder niedrigeren?
+    Wie groß sind ints? Wie ist die Endianness?
+  - lokale Variable int16 a = 3, b = 4; *(char*)&a = "abcd"; a und b ansehen
+  - jetzt das Gleiche mit einem längeren String --> Crash
+  - Aus Unter-Unteraufruf gezielt eine lokale Variable im Unter-Aufruf verändern.
+  - Betriebssystemaufruf mit handgeklöppelter Datenstruktur machen
 
 ## Aufgabenbereich Bibliotheken
 
 - Rechercheaufgabe: Bibliothek für bestimmten Zweck suchen
   - Wo findet man Bibliotheken?
   - Nach welchen Merkmalen wählt man eine Bibliothek aus?
+- Für Profil DSCI:
+  - Pandas installieren, pandas101
+  - Struktur der Doku verstehen
+  - Theorie: Series, DataFrame, Index, MultiIndex: Zweck, Unterschiede, Gemeinsamkeiten.
+  - Pandas-Cheatsheet: CSV-Tabelle einlesen, diverse Arten von Datenumstrukturieren ausprobieren
+  - matplotlib installieren
+  - Barplot ausprobieren
+  - Boxplot ausprobieren
+  - Multi-Boxplot für Teilmengen von Variable B gemäß der Gruppen laut Variable A
+  - einen komplexen Plot nachahmen, der visuell vorliegt und viele Konfig-Anpassungen braucht
+    (Namen der nötigen Konstrukte sind vorgegeben)
+  - Dito ohne Namensvorgaben.
 
 ## Aufgabenbereich Testen
 
