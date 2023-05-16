@@ -92,7 +92,7 @@ dass das sehr viel länger dauert als für die Aufgabe geplant ist, weil die Anl
 viel grober ist und erheblich mehr Selbstständigkeit verlangt.
 
 
-#### 2.2.3 Die drei Zielgruppen
+#### 2.2.3 Zielgruppen nach Schwierigkeitsgrad: Wenig, normal, viele Vorkenntnisse
 
 Dem entsprechend stellen wir uns beim Konzipieren der Aufgaben drei verschiedene Zielgruppen
 des ProPra vor, die mit unterschiedlich guten Vorkenntnissen kommen:
@@ -121,7 +121,7 @@ des ProPra vor, die mit unterschiedlich guten Vorkenntnissen kommen:
   Aufgaben der Sorte "Einfach"[DIFF::2] sollten unter Ihrer Würde sein.
 
 
-### 2.2.4 Hinweise in, Zeitwerte für und das Lesen-und-Ausprobieren bei Aufgaben
+#### 2.2.4 Hinweise in, Zeitwerte für und das Lesen-und-Ausprobieren bei Aufgaben
 
 Die meisten Aufgaben enthalten neben der eigentlichen Aufgabenstellung
 Hinweise zum Vorgehen und Verweise auf umfangreiche externe Quellen.
@@ -139,7 +139,7 @@ der Aufgabe.
 Liegt der hoch, sollte neben das bloße Lesen ein Ausprobieren treten.
 
 
-### 2.2.5 Voraussetzungen der Aufgaben
+#### 2.2.5 Voraussetzungen der Aufgaben
 
 Neben dem Schwierigkeitsgrad und dem Zeitwert gibt es bei vielen Aufgaben weitere Angaben:
 
@@ -153,6 +153,46 @@ Neben dem Schwierigkeitsgrad und dem Zeitwert gibt es bei vielen Aufgaben weiter
   Man muss also zuvor die anderen Aufgaben bearbeiten.
   Eine Einreichung der jetzigen Aufgabe ohne die vorherige oder gleichzeitige Einreichung
   der anderen wird nicht akzeptiert.
+
+
+#### 2.2.6 Zielgruppen nach Interessenprofil: WEB, DB, SYS, OPS, DSCI
+
+Das Programmierpraktikum soll vor allem allgemeines Handwerkszeug vermitteln,
+das für so ziemlich jede praktisch tätige Informatiker_in relevant ist.
+Darüber hinaus bietet es aber in begrenztem Umfang auch Aufgaben an,
+die spezieller für gewisse Tätigkeitsgebiete sind:
+
+- **WEB**: Webentwicklung.  
+  Die Welt von HTTP, HTML, CSS, JavaScript und den unzähligen Standards, Konventionen,
+  Frameworks, Entwurfs- und Programmierstilen, die es dort gibt.
+  Das Brot-und-Butter-Geschäft der größten Gruppe von Menschen, die heute Software entwickeln.
+  Wir lernen vor allem die Grundlagen, die für ein korrektes mentales Modell nötig sind,
+  damit man später verlässlich weiteres Wissen daraufschichten kann.
+- **DB**: Datenbankverwaltung und -programmierung.  
+  Installation, Betrieb und Konfiguration von Datenbankmanagementsystemen (DBMS);
+  SQL-Programmierung; Einbindung von DBMS in die Anwendungsprogrammierung.
+- **SYS**: Systemnahe Programmierung.  
+  Wir programmieren in C, wo man die einzelne Speicherstelle noch wertschätzt und
+  bisweilen die Bits mit Vornamen kennen muss.
+  Die Programmierung ist frickelig, aber ungeheuer flexibel, und
+  was dabei herauskommt läuft (wenn man alles richtig macht) rasend schnell und ressourcensparend.
+- **OPS**: DevOps.  
+  Wie "skaliert" man eine (Web-)Anwendung so, dass Sie zehntausende von Benutzer_innen
+  zugleich bedienen kann und auch beim Ausfall einzelner Server weiterläuft -- und das
+  obwohl die Anwendung unentwegt fortentwickelt und verändert wird?
+- **DSCI**: Data Science.  
+  Die Welt von Big Data, Datenanalyse und Visualisierung.
+  Natürlich gibt es hier keinen Machine-Learning-Kurs, aber wir lernen einige Teile
+  aus dem Werkzeugkasten von Data Scientists kennen, die man auch für viele
+  andere Zwecke prima brauchen kann.
+
+Jedes einzelne dieser Gebiete ist ungeheuer groß und wir behandeln davon hier
+nur ein paar Grundlagen, aber wer sich für diese Themengebiete interessiert,
+kann hier wunderbar schnuppern und erste Schritte machen.
+
+Die Aufgaben, die speziell zu einem oder mehreren dieser Interessenprofile passen,
+sind in der Übersicht mit dem entsprechenden Kürzel markiert.
+Wo kein Kürzel steht, handelt es sich um eine Aufgabe, die für alle von Interesse sein sollte.
 
 
 ### 2.3 Was mache ich, wenn ich alleine nicht weiterkomme?
