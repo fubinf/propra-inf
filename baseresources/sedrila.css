@@ -141,6 +141,11 @@ summary {
     filter: brightness(50%);
 }
 
+.profiles-decoration {
+    font-size: 90%;
+    font-style: oblique;
+}
+
 .difficulty1 {
     color: var(--diff1-color);
 }
