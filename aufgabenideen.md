@@ -5,7 +5,40 @@
 - Ist schon geklärt, wie das ganze Projekt bootstrapped wird?
 - Hat jemand den vollständigen Weg für ein System einmal durchgespielt?
   Wenn es hier scheitert, ist die Frustrationsgrenze schnell erreicht.
-- 
+
+
+## mlh: my little helpers
+
+Eine CLI-Anwendung, die eine Reihe kleiner Utilities bündelt und
+argparse mit subcommands einsetzt, um das zu strukturieren.
+Diese Anwendung können die TN nach dem ProPra mitnehmen und ein langes und
+abenteuerreiches Leben lang weiterbenutzen (und ergänzen).
+
+Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
+- `acbd`: (for add-commit-by-date) creates a git commit with given files and message
+  where the commit datetime is the modification date of the youngest of those files.
+  Example:  
+  `mlh acbd -m"my commit msg" myfile1 myfile5`
+- `datefile`: Rename multiple files such that the name starts with the file's 
+  current modification date. Report renamings on stdout. Examples:
+  - `mlh datefile myfile`  
+    myfile  -->  2023-05-16-myfile
+  - `mlh datefile --time *` 
+    2023-05-16-myfile  -->  2023-05-18-1541-myfile
+    otherfile  -->  2017-10-11-1711-otherfile
+- `lsnew`: Gegeben ein Verzeichnis oder eine Liste von Dateien, listet daraus
+  die jüngste Datei sowie dem Alter nach alle weiteren, bis eine Lücke von
+  48h (default) auftaucht. Damit kann man schneller verstehen, was man in einem Verzeichnis
+  zuletzt getan hat. Format:  
+  2023-05-18 15:31  myfile.suff
+- `sgrep`: Ein grep, das beliebige Trenner zulässt, anstatt immer nur '\n' als
+  Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
+  Default-Trenner ist '\n\n', so dass es ganze Absätze ausspuckt anstatt Zeilen.
+  Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
+- `rename`: Rename multiple files via regexp search-and-replace.  
+  Example: `mlh rename '\.JPE?G' '.jpg' mydir/*.{JPEG,JPG}`
+- ?
+
 
 ## Aufgabenbereich Programmiersprache
 
