@@ -27,5 +27,8 @@ CoffeeScript und Elm.
 Der Fokus hier liegt klar auf dem "Vanilla" JavaScript, also der Sprache ohne weitere
 Frameworks.
 
+Es wird hier im Gegensatz zum Abschnitt der Grundkenntnisse explizit angenommen, dass
+Programmierkenntnisse (irgendwelcher Art, nicht notwendigerweise JavaScript) vorhanden sind.
+
 Die primären Quellen sind hierbei [W3Schools](https://www.w3schools.com/js/default.asp)
 und das [Mozilla Developers Network (mdn)](https://developer.mozilla.org/en-US/).

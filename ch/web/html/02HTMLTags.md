@@ -4,6 +4,7 @@ description: |
 timevalue: 1
 difficulty: 1
 assumes: 01HTMLBasics
+profiles: WEB
 ---
 !!! goal
     Das Ziel hier sind die strukturellen Grundlagen. Es sind nur wenige Tags für viel

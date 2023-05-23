@@ -4,6 +4,7 @@ description: |
 timevalue: 1
 difficulty: 1
 assumes: 02HTMLTags
+profiles: WEB
 ---
 !!! goal
     Hier wird die Grundlage für den Übergang zu CSS gelegt.
@@ -17,6 +18,7 @@ Diese haben konsequenterweise einen potentiellen Nutzen für alle Elemente und s
 besonders wichtig zu kennen. Welche sind das?
 
 !!! submission
-    Geben Sie 3 Attribute an, die für jedes HTML-Tag definiert werden kann, und was diese
-    jeweils tun. Nennen Sie auch 2-3 Attribute, die speziell für einige Tags gedacht sind
-    und Ihnen nützlich erscheinen.
+    Geben Sie an, wie HTML-Attribute syntaktisch verwendet werden. Geben Sie außerdem 3
+    Attribute an, die für jedes HTML-Tag definiert werden kann, und was diese jeweils tun.
+    Nennen Sie auch 2-3 Attribute, die speziell für einige Tags gedacht sind und Ihnen
+    nützlich erscheinen.
