@@ -2,7 +2,7 @@ title: CSS-Eigenschaften
 description: |
   Einführung in CSS-Eigenschaften
 timevalue: 1.5
-difficulty: 1
+difficulty: 2
 assumes: 01CSSSelectors
 profiles: WEB
 ---

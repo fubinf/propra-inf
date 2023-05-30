@@ -1,6 +1,8 @@
 description: CSS
 ---
 CSS wird verwendet, um das Aussehen von HTML-Dokumenten zu definieren.
+Daher wird hier auch davon ausgegangen, dass HTML-Grundlagen vor der Bearbeitung des Blocks
+vorhanden sind.
 
 Die Möglichkeiten umfassen hierbei weit mehr als nur die Formatierungen, die man aus
 Textverarbeitungsanwendungen kennt. Mit CSS ist es auch möglich, zu definieren, wie Elemente

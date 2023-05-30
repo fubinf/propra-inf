@@ -2,7 +2,7 @@ title: Wesentliche HTML-Tags
 description: |
   eine Basis-Auswahl an Tags
 timevalue: 1
-difficulty: 1
+difficulty: 2
 assumes: 01HTMLBasics
 profiles: WEB
 ---

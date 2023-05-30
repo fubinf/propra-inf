@@ -2,7 +2,7 @@ title: CSS-Selectors
 description: |
   Wie beschreibt man, welches HTML-Element man meint?
 timevalue: 1
-difficulty: 1
+difficulty: 2
 profiles: WEB
 ---
 !!! goal
