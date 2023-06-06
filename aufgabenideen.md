@@ -81,6 +81,9 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 - Test-Coverage bestimmen?
 - SetUp und TearDown bei repetitiven Tests oder teurem Setup
 - Wie groß ist ein Test/eine Testklasse?
+- Resource: BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies  
+  https://dl.acm.org/doi/10.1145/3368089.3417943
+
 
 ## Aufgabenbereich Bestandscode
 
