@@ -69,6 +69,13 @@ chapters:
       - title: "JavaScript"
         shorttitle: JavaScript
         slug: js
+  - title: "Debugging"
+    shorttitle: Debugging
+    slug: debugging
+    taskgroups:
+      - title: "Mindset"
+        shorttitle: mindset
+        slug: mindset
   - title: "Bibliotheken: Die Wiederverwendung fremder Bausteine"
     shorttitle: Bibliotheken
     slug: libs
