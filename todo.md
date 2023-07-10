@@ -23,12 +23,12 @@
 - [x] framework_vs_library
 - [ ] search_engines
 - [x] discordbot
-- [ ] wayofthedetective
-- [ ] wayofthecomputerscientist
-- [ ] wayoftheengineer
-- [ ] wayofthemathematician
-- [ ] wayofthepsychologist
-- [ ] wayofthesafetyexpert
+- [x] wayofthedetective
+- [x] wayofthecomputerscientist
+- [x] wayoftheengineer
+- [x] wayofthemathematician
+- [x] wayofthepsychologist
+- [x] wayofthesafetyexpert
 
 # Korrekturbedarf
 

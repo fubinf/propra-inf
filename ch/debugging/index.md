@@ -7,9 +7,9 @@ Allerdings ist dieser Gedanke auf mehrfache weise schwer so zu halten, denn Code
 Produktspezialisierung, die umfassend und präzise genug ist, um ein Programm zu erstellen.
 Mit anderen Worten macht Ihr Code immer exakt das, was Sie ihm aufgetragen haben.
 
-In diesem Kapitel geht es darum zu lernen, wie man mit solchen Phänomenen umgeht. 
-Da verschiedene Quellen aber bestimmte Sachverhalte unterschiedlich benennen, muss aber eine 
-Begriffsklärung durchgeführt werden:
+In diesem Kapitel geht es darum, zu lernen, wie man mit solchen Phänomenen umgeht. 
+Da verschiedene Quellen aber bestimmte Sachverhalte unterschiedlich benennen, führen wir zunächst
+eine Begriffsklärung durch:
 
 - Ein **Versagen (engl. _failure_)** ist das falsche Verhalten des Programms bezogen zur 
   Spezifikation, 

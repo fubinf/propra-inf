@@ -8,11 +8,11 @@ difficulty: 2
 !!! goal 
     In dieser Aufgabe lernen Sie ein mögliches gedankliches Modell kennen, mit dem die Suche von 
     Problemen durchgeführt werden kann. 
-    Dieses dienen als Grundlage dafür in späteren Aufgaben Lösungen für reale Bugs zu finden.
+    Dieses dient als Grundlage dafür in späteren Aufgaben Lösungen für reale Bugs zu finden.
 
 Besorgen Sie sich das Buch _Debugging by Thinking_ von Robert C. Metzger, z. B. als 
 elektronische Ressource über die Uni-Bibliothek. 
-Dieses Buch wird in dieser und folgenden Aufgaben als Mittel dienen, um herauszufinden, wie 
+Dieses Buch wird in dieser und den folgenden Aufgaben als Mittel dienen, um herauszufinden, wie 
 verschiedene Professionen an die Problemlösung in ihren Feldern herangehen und wie diese 
 Methoden beim Debugging helfen.
 Lesen Sie für diese Aufgabe die Kapitel 2, 3 und 4 in denen beschrieben wird, wie drei der 
@@ -20,7 +20,7 @@ berühmtesten Detektive der Literaturgeschichte an die Problemlösung herantrete
 
 Reflektieren Sie über die drei Kapitel und arbeiten Sie heraus, welche Gemeinsamkeiten die 
 Methoden haben und wo die Unterschiede liegen. 
-Sind Sie der Meinung, dass die drei Herangehensweisen exklusiv sind oder unterstützen Sie 
+Sind Sie der Meinung, dass die drei Herangehensweisen exklusiv sind oder unterstützen sie 
 sich gegenseitig?
 
     

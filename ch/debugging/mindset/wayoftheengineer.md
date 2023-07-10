@@ -7,7 +7,7 @@ difficulty: 2
 assumes: wayofthedetective
 ---
 !!! goal
-    Beim Lernen von Problemlösungsstrategien ist es hilfreich sich damit auseinanderzusetzen, 
+    Beim Lernen von Problemlösungsstrategien ist es hilfreich, sich damit auseinanderzusetzen, 
     wie andere Personen mit ähnlichen Problemen ihre Lösungen erarbeiten.
     In dieser Aufgabe setzen wir uns damit auseinander, wie Ingenieure sicherstellen, dass sie 
     sichere Strukturen bauen.
@@ -29,7 +29,7 @@ Lesen Sie hierzu Kapitel 13 im Buch _Debugging by Thinking_.
 Beschreiben Sie dann den Blickwinkel des Ingenieurs und vergleichen Sie diese mit den Methoden der 
 Detektive aus der vorhergehenden Aufgabe.
 Sind Ähnlichkeiten vorhanden?
-Lassen sich einige Methoden zueinander zuordnen?
+Lassen sich einige Methoden einander zuordnen?
 
 !!! submission
     Erwartet wird eine reine Textabgabe.
