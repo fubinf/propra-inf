@@ -30,6 +30,7 @@
 - [x] wayofthepsychologist
 - [x] wayofthesafetyexpert
 
+
 # Korrekturbedarf
 
 In alphabetischer Reihenfolge der Dateinamen.
@@ -46,3 +47,10 @@ In alphabetischer Reihenfolge der Dateinamen.
   worum es uns mit der Aufgabe eigentlich geht! Worum geht es uns denn? Haben wir das überlegt?
   Müssen die "zwei Wege" zwei verschiedene Kommandos benutzen? Falls nicht, wie soll ich
   darauf ohne Hinweis kommen?
+
+
+# Bedarf an Aufgaben zum Thema X
+
+- Sicherheitslücken durch halluzinierte Paketnamen in ChatGPT-Antworten:  
+  https://vulcan.io/blog/ai-hallucinations-package-risk
+- ...
