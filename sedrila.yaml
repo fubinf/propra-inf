@@ -86,11 +86,17 @@ chapters:
   - title: "Testen: Die automatisierte Überprüfung nach Änderungen"
     shorttitle: Testen
     slug: testen
-    taskgroups: []
+    taskgroups:
+      - title: "Testframeworks"
+        shorttitle: Testframeworks
+        slug: testframeworks
   - title: "Bestandscode: Alten oder unbekannten Code verstehen und verändern"
     shorttitle: Bestandscode
     slug: altcode
-    taskgroups: []
+    taskgroups:
+      - title: "Refactoring"
+        shorttitle: Refactoring
+        slug: refactoring
   - title: "Werkzeuge: Was man noch braucht außer Editor und Compiler"
     shorttitle: Werkzeuge
     slug: tools
