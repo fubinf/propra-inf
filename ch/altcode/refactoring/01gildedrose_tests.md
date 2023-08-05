@@ -3,7 +3,7 @@ description: |
   Üben Sie hier das Erkunden von Legacy Code und Fixieren von Funktionalität mittels Test
 timevalue: 1
 difficulty: 3
-depends: refactoring
+assumes: refactoring
 ---
 !!! goal
     Wenn Sie mitten im Lebenszyklus einer Software zu einem Projekt hinzustoßen, müssen Sie mit 
