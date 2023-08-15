@@ -29,7 +29,14 @@
 - [x] wayofthemathematician
 - [x] wayofthepsychologist
 - [x] wayofthesafetyexpert
-
+- [ ] unittest101
+- [ ] pytest101
+- [ ] pytest102
+- [ ] pytest103
+- [ ] pytest104
+- [ ] coverage
+- [ ] mocking
+- [ ] freezegun
 
 # Korrekturbedarf
 
