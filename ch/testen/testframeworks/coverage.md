@@ -17,7 +17,7 @@ Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 Geben Sie die benutzten Quellen an.
 
 1. Was versteht man unter dem Begriff "Code Coverage"?
-2. Welche Arten von Code Coverage-Metriken gibt es? 
+2. Welche Arten von Code-Coverage-Metriken gibt es? 
    Erläutern Sie die Unterschiede zwischen Zeilenabdeckung, Zweigabdeckung und Pfadabdeckung. 
 3. Kann eine hohe Code Coverage auf die Effektivität der Tests hinweisen?
 4. Warum wird oft betont, dass Code Coverage nicht das gesamte Bild der Testqualität vermittelt?

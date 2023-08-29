@@ -8,12 +8,12 @@ assumes: pytest101
 !!! goal 
     Oftmals benötigten Sie zum Testen bestimmte Voraussetzungen, die erfüllt sein müssen.
     Ohne eine Datenbank können Sie keine Tests über Datenbankabfragen gestalten, ohne Webserver 
-    wird es schwer Abfragen über WebAPIs zu testen.
+    wird es schwer, Abfragen über WebAPIs zu testen.
     Setzen Sie sich hier mit Fixtures auseinander, die diese Hürde angehen.
 
 Fixtures sind Teile von Software, die vor einem Test initialisiert werden und damit 
 Voraussetzungen erfüllen, die ein System hat.
-Setzen Sie sich mithilfe der pytest-Dokumentation und bei Bedarf weiterer Quellen mit den 
+Setzen Sie sich mithilfe der pytest-Dokumentation und bei Bedarf weiteren Quellen mit den 
 folgenden Fragen auseinander:
 
 1. Wie erstellt man einfache Fixtures in pytest?

@@ -10,13 +10,13 @@ assumes: pytest101, pytest103
     abzudecken.
     Der naive Weg hierzu wäre es, alle Kombinationen in einzelnen Tests festzuhalten. 
     Setzen Sie sich in dieser Aufgabe damit auseinander, wie parametrisierte Tests Ihnen helfen 
-    können, ihre Tests besser zu gestalten. 
+    können, Ihre Tests besser zu gestalten. 
 
 
 Ein besonderes Mark in pytest ist `@pytest.mark.parametrize`. 
 So können Sie Tests mit vielen Eingabeparametern versorgen, ohne diese mehrfach schreiben zu 
 müssen.  
-Setzen Sie sich mithilfe der pytest-Dokumentation und bei Bedarf weiterer Quellen mit den 
+Setzen Sie sich mithilfe der pytest-Dokumentation und bei Bedarf weiteren Quellen mit den 
 folgenden Fragen auseinander:
 
 1. Was sind parametrisierte Tests und warum sind sie in der Softwaretestung wichtig?
