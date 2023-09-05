@@ -10,5 +10,9 @@ der Arbeit am Code auftreten können, wie man diese finden, beheben und sogar ve
 
 Wir werden in diesem Kapitel Herangehensweisen zur Fehlersuche, -Behebung und -Vermeidung aus
 der Perspektive verschiedener Professionen betrachten.
-Als Einstieg bietet sich die Profession des Detektivs an.
-In weiteren Aufgaben nehmen wir einen Einstieg in die Themenbereiche anderer Professionen.
+Als Einstieg bietet es sich hier an die Methodiken von fiktiven Figuren anzuschauen, die sehr auf
+das Lösen von Rätseln oder auf das Lösen von Kriminalfällen abzielen.
+Alle drei vorgestellten Figuren, Sherlock Holmes, Lord Peter Wimsey und Professor Solomon, bieten
+aufgrund ihrer verschiedenartig gestalteten Fälle unterschiedliche Herangehensweisen.
+In weiteren Aufgaben nehmen wir einen Einstieg in die Themenbereiche und die Methodiken von
+problemorientierten Professionen und vergleichen diese mit den Ansätzen der fiktiven Figuren.
