@@ -1,3 +1,31 @@
+# Arten von Aufgaben
+
+## Taxonomie
+
+- Nach Struktur der Aufgabenstellung (Vorgabe):
+  - VO: ziemlich offen formuliert
+  - VA: eine konkrete, schrittweise Anleitung ("wie auf Schienen")
+- Nach Art der Tätigkeit:
+  - TP: ganzheitliche praktische Tätigkeit (vulgo "Programmieren") mit nur ungefähr vorbestimmtem Inhalt
+  - TE: wohlbestimmte Technikelemente exemplarisch einsetzen
+  - TL: Aufsätze oder Dokumentation lesen
+- Nach Art des abzuliefernden Resultats:
+  - RP: ein ganzes Programm
+  - RS: ein Programmschnipsel (klein, evtl. kanonisch)
+  - RI: ein Text mit Informationen aus einem Rechercheergebnis
+  - RR: ein Text mit einem Reflektions- oder Bewertungsergebnis
+- Nach Art des angestrebten Lernergebnisses:
+  - LP: praktische Erfahrungen sammeln, inkl. Umgang mit Schwierigkeiten und Rückschlägen
+  - LM: Methode aus eigener Anschauung kennenlernen, Stärken und Problembereiche erkennen
+  - LT: Technikelemente verstehen und aus eigener Anschauung kennenlernen
+  - LI: Ideen (von Methoden oder Technikelementen) verstehen und erkennen wie cool sie sind.
+
+
+## Erwägungen dazu
+
+TODO
+
+
 # Aufgabenideen
 
 ## Aufgabenbereich Basis
