@@ -4,7 +4,7 @@ description: |
   dieses Denken beim Debuggen?
 timevalue: 1
 difficulty: 2
-requires: wayofthedetective
+assumes: wayofthedetective
 ---
 !!! goal
     Beim Lernen von Problemlösungsstrategien ist es hilfreich, sich damit auseinanderzusetzen, 
