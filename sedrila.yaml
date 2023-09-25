@@ -69,6 +69,9 @@ chapters:
       - title: "JavaScript"
         shorttitle: JavaScript
         slug: js
+      - title: "HTTP-Authentifizierung"
+        shorttitle: HTTP-Auth
+        slug: httpauth
   - title: "Debugging"
     shorttitle: Debugging
     slug: debugging
