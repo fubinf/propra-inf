@@ -18,7 +18,8 @@ Geben Sie die benutzten Quellen an.
    Erläutern Sie die Unterschiede und geben Sie jeweils ein Beispiel dazu.
 3. Was haben Fehlerwirkungen, Fehlerzustände, Fehlermaskierungen und Fehlhandlungen mit dem Thema zu tun?
 4. Ist jeder Softwarefehler durch eine 'falsche' Programmierung zurückzuführen?
-5. Kann man aus Fehlern lernen? (optionale, philosophische Frage)
+5. Welche Informationen sollte ein Bug-Report enthalten? 
+6. Kann man aus Fehlern lernen? (optionale, philosophische Frage)
 
 !!! submission
     Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
