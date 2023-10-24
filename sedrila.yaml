@@ -104,9 +104,10 @@ chapters:
     shorttitle: Werkzeuge
     slug: tools
     taskgroups: []
-  - title: "Zentraler Ablageort"
-    shorttitle: Ablage
-    slug: zentraler_ablageort
+  - title: "Inkubator und Dachboden"
+    shorttitle: Inkubator
+    slug: zzincubator
+    status: incomplete
     taskgroups:
       - title: "Alt, vielleicht nicht mehr zu gebrauchen"
         shorttitle: alt
