@@ -70,7 +70,7 @@ In alphabetischer Reihenfolge der Dateinamen.
 Wenn man eine Datei als "potentiell fertig" ansieht, schreibt man sie in diese
 Liste.
 Der Eintrag bedeutet: Liebe andere, bitte seht die Datei durch, korrigiert kleine Schwächen
-und macht TODO-Marker für mich rein für große Schwächen.   
+und macht TODO-Marker für mich rein für große Schwächen.
 Solche Reviews sind ein dauerhaftes TODO_1_alle.  
 Nach dem Review den Eintrag hier wieder entfernen.
 
@@ -87,6 +87,8 @@ Nach dem Review den Eintrag hier wieder entfernen.
 - coverage
 - mocking
 - freezegun
+- aufgabenideen (Testbereich)
+- testen / basiswissen
 
 
 ### 2.4 Globale Qualitätssicherung  TODO_3

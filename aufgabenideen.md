@@ -112,6 +112,47 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 
 ## Aufgabenbereich Testen
 
+Folgende Voraussetzungen sollen gelten / geschaffen werden:
+
+- Wichtige Begrifflichkeiten ist ein theoretischer Teil. Lesen und Antworten
+- alle anderen Teilen sollen praktischer Natur sein
+- hands-on Anteile sollen in Antlassien Jira realisiert werden (registrieren für eine kostenlose Nutzung)
+- für die praktische Ausführung ein SUT mit zu findenden Fehlern entwickeln (einfache Webbasiert:
+FastAPI, Flask, tkinter?)
+- optional: bereitgestelltes SUT in eine Pipeline einbinden und automatisiert Testen
+
+Aufgabenbereiche:
+- Wichtige Begrifflichkeiten
+  - Fehler, Defekt und Fehlerart
+  - Testen, Debuggen und Qualitätssicherung
+  - Testfall, Testsammlung, Testplan und Testdaten
+  - Teststrategie
+  - Reviews
+- Testen im Agilen Projekt / DevOps Testumgebung
+  - Anforderungsreview
+  - CI / CD, CT
+  - manuelles Testen
+    - Testfälle erstellen
+    - Durchführung von manuellen Tests
+    - Fehlerberichterstattung und -verfolgung
+  - automatisiertes Testen
+    - Testautomatisierungstools
+    - Testdatenmanagement
+- Testprozess und -management
+  - Teststrategie und Testplanung
+  - Testdurchführung und Testüberwachung
+  - Testdokumentation und Reporting
+  - Testauswertung / Metrik und Verbesserung
+- Testarten
+  - Funktionales Testen
+  - Last- und Performance Tests
+  - Sicherheitstests
+  - Usability Tests
+  - Exploratives Testen
+  - Abnahmetests
+  - (Regressionstests)
+
+
 - Vorgegebene Testklasse einfach ausführen
 - Tests korrigieren
 - Test-Coverage bestimmen?
