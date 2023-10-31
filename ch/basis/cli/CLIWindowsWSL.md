@@ -1,7 +1,7 @@
-title: Eine Linux-Umgebung mittels WSL installieren (nur für Windows)
+title: Linux-Kommandozeile auf Windows mit WSL
 description: |
   Wir aktivieren Windows Subsystem for Linux (WSL) und
-  installieren eine Linux-Distribution.
+  installieren Debian Linux.
 timevalue: 1.0
 difficulty: 1
 ---
