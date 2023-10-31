@@ -1,6 +1,6 @@
-title: Einrichten des Paketmanagers Brew auf MacOS
+title: Linux-Kommandozeile auf Mac OS mit Homebrew
 description: |
-  Einrichten eines Paketmanagers zum einfachen Installieren und Updaten von Softwarepaketen
+  Einrichten des 'Homebrew'-Paketmanagers
 timevalue: 1.0
 difficulty: 1
 ---
