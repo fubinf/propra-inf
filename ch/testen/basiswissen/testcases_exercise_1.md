@@ -1,5 +1,5 @@
 title: Übung Testfallstrukturen
-description: >
+description:
   Neben Testfällen können weitere Strukturen verwendet werden. Hier lernen Sie Testsammlungen, Testpläne und Testdaten kennen.
 timevalue: 3
 difficulty: 1
@@ -8,7 +8,7 @@ difficulty: 1
 !!! goal
   Ziel dieser Einheit ist es den Zusammenhngen der genannten Begriffe in der Praxis zu üben.
 
-In dieser Übung werden Sie gebeten, Testfälle für die Anmelde- und Registrierungsfunktion einer E-Commerce-Website zu erstellen. Die Website ermöglicht es Benutzern, sich anzumelden, auf ihre Konten zuzugreifen und sich zu registrieren, wenn sie noch keine Konten haben. Ziel ist es, verschiedene Aspekte dieser Funktionen zu testen, um sicherzustellen, dass sie ordnungsgemäß funktionieren und Benutzerfreundlichkeit bieten.
+In dieser Übung werden Sie gebeten, Testfälle für die Anmelde- und Registrierungsfunktion einer E-Commerce-Website zu erstellen. Die Website ermöglicht es Benutzern, sich anzumelden, auf ihre Konten zuzugreifen und sich zu registrieren, wenn sie noch keine Konten haben. Ziel ist es, verschiedene Aspekte dieser Funktionen zu testen, um sicherzustellen, dass sie ordnungsgemäß funktionieren und Benutzerfreundlichkeit bieten. Nutzen Sie bei der Erstellung der Testfälle folgende Informationen: Testfall-ID, Testfall-Name, Testfallbeschreibung, Voraussetzungen: Test-Schritte, Erwartetes Ergebnis, Testdaten, Testumgebung, Verantworliche Person, Priorität=[Hoch, Mittel, Niedrig], Status=[Design, Review, Testready, Done], Änderungsnotizen
 
 Betrachten Siew dazu folgende User Stories:
 
