@@ -24,7 +24,7 @@ Split zwischen Frontend und Backend in separate Profile nötig?
 ## Systemprogrammierer
 
 - Maschinennahe Programmierung
-  - Schwierig. Weder stellen wir Hardware zur Verfügung, noch ist Python trotz MicroPython gut 
+  - Schwierig. Weder stellen wir Hardware zur Verfügung, noch ist Python trotz MicroPython gut
     geeignet.
 - Was für Einblicke könnte man hier im ProPra bieten?
 
@@ -40,7 +40,7 @@ Split zwischen Frontend und Backend in separate Profile nötig?
 ## Data Scientist
 
 Wäre potenziell das erste Profil, das man streichen könnte.
-Aber: Läuft parallel zum Spezialisierungsbereich der neuen Bachelor-SPO (Spezialisierungsbereich 
+Aber: Läuft parallel zum Spezialisierungsbereich der neuen Bachelor-SPO (Spezialisierungsbereich
 mit ML, Datenvisualisierung, siehe TownHall vom 15.12.2022).
 
 - Datenvisualisierung
@@ -48,3 +48,17 @@ mit ML, Datenvisualisierung, siehe TownHall vom 15.12.2022).
 - ML/AI
 - pandas
 - numpy
+
+## Softwaretester
+
+Vom Unittest bis zum E2E Test die Bereiche manuelles, automatisiertes Testen für Backend und Frontend betrachten. Dabei auf ISTQB Empfhelungen eingehen und hinweisen, um einen / den Standard zu vermitteln.
+Zusätzlich die Verbindung zum Requirement Engineering, DevOps Engineering, Testmanagement und der agilen Entwicklung herstellen.
+
+- unittests
+- Basiswissen mit Übungen
+- manuelles Testen
+- automatisiertes Testen
+- Agiles Testen
+- Pipelining und CI / CD
+- Testmanagement und Metriken
+- Testarten

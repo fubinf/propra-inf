@@ -1,12 +1,8 @@
-# Prinzipien
+# Aufgabenideen
 
-Grundideen, die wir noch ins ProPra umsetzen oder besser umsetzen wollen:
-- 12 Prinzipien zur Motivation Lernender:  
-  https://link.springer.com/chapter/10.1007/978-3-658-26990-6_1
-- ...
+## Prinzipien
 
-
-# Arten von Aufgaben
+Unter Beachtung der folgenden [Prinzipien](./principles.md).
 
 ## Taxonomie
 
@@ -28,20 +24,15 @@ Grundideen, die wir noch ins ProPra umsetzen oder besser umsetzen wollen:
   - LT: Technikelemente verstehen und aus eigener Anschauung kennenlernen
   - LI: Ideen (von Methoden oder Technikelementen) verstehen und erkennen wie cool sie sind.
 
-
 ## Erwägungen dazu
 
 TODO
-
-
-# Aufgabenideen
 
 ## Aufgabenbereich Basis
 
 - Ist schon geklärt, wie das ganze Projekt bootstrapped wird?
 - Hat jemand den vollständigen Weg für ein System einmal durchgespielt?
   Wenn es hier scheitert, ist die Frustrationsgrenze schnell erreicht.
-
 
 ## mlh: my little helpers
 
@@ -51,15 +42,16 @@ Diese Anwendung können die TN nach dem ProPra mitnehmen und ein langes und
 abenteuerreiches Leben lang weiterbenutzen (und ergänzen).
 
 Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
+
 - `acbd`: (for add-commit-by-date) creates a git commit with given files and message
   where the commit datetime is the modification date of the youngest of those files.
   Example:  
   `mlh acbd -m"my commit msg" myfile1 myfile5`
-- `datefile`: Rename multiple files such that the name starts with the file's 
+- `datefile`: Rename multiple files such that the name starts with the file's
   current modification date. Report renamings on stdout. Examples:
   - `mlh datefile myfile`  
     myfile  -->  2023-05-16-myfile
-  - `mlh datefile --time *` 
+  - `mlh datefile --time *`
     2023-05-16-myfile  -->  2023-05-18-1541-myfile
     otherfile  -->  2017-10-11-1711-otherfile
 - `lsnew`: Gegeben ein Verzeichnis oder eine Liste von Dateien, listet daraus
@@ -74,7 +66,6 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 - `rename`: Rename multiple files via regexp search-and-replace.  
   Example: `mlh rename '\.JPE?G' '.jpg' mydir/*.{JPEG,JPG}`
 - ?
-
 
 ## Aufgabenbereich Programmiersprache
 
@@ -122,6 +113,7 @@ FastAPI, Flask, tkinter?)
 - optional: bereitgestelltes SUT in eine Pipeline einbinden und automatisiert Testen
 
 Aufgabenbereiche:
+
 - Wichtige Begrifflichkeiten
   - Fehler, Defekt und Fehlerart
   - Testen, Debuggen und Qualitätssicherung
@@ -152,15 +144,13 @@ Aufgabenbereiche:
   - Abnahmetests
   - (Regressionstests)
 
-
 - Vorgegebene Testklasse einfach ausführen
 - Tests korrigieren
 - Test-Coverage bestimmen?
 - SetUp und TearDown bei repetitiven Tests oder teurem Setup
 - Wie groß ist ein Test/eine Testklasse?
 - Resource: BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies  
-  https://dl.acm.org/doi/10.1145/3368089.3417943
-
+  <https://dl.acm.org/doi/10.1145/3368089.3417943>
 
 ## Aufgabenbereich Bestandscode
 
@@ -189,10 +179,9 @@ Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
   - Was kann grep? awk? sed? Wahrscheinlich unnötig separate Aufgaben zu gestalten.
   - Wie verbindet man die Funktionalitäten der Tools?
 - Alternative Shells
-  - Schmökeraufgabe, dürfte nicht mehr als eine Aufgabe sein. zsh existiert und ist super 
-    anpassbar, ksh "existiert", fish bietet Sane Scripting. Wenn bash Programmierungsaufgaben 
+  - Schmökeraufgabe, dürfte nicht mehr als eine Aufgabe sein. zsh existiert und ist super
+    anpassbar, ksh "existiert", fish bietet Sane Scripting. Wenn bash Programmierungsaufgaben
     existieren, lassen sich diese hier in fish nachimplementieren.
-
 
 ### Außerhalb des Terminals
 
@@ -210,18 +199,18 @@ Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
   - Welche Funktionen bietet ein Paketmanager?
   - Wie finde ich Pakete?
   - Fallbeispiel über Probleme mit Paketmanagern
-    - Eine der unzähligen Probleme mit npm heraussuchen, vielleicht mit einem Post Mortem. 
-      Aufgabe ist es herauszuarbeiten, was das Problem genau ist, ob es dauerhaft gefixt ist 
-      oder ob es überhaupt fixbar ist. 
-      Nicht als Draufprügeln für npm, sondern für das Verstehen, dass die Nutzung von Fremdcode 
-      unter der Hand explodieren kann. 
+    - Eine der unzähligen Probleme mit npm heraussuchen, vielleicht mit einem Post Mortem.
+      Aufgabe ist es herauszuarbeiten, was das Problem genau ist, ob es dauerhaft gefixt ist
+      oder ob es überhaupt fixbar ist.
+      Nicht als Draufprügeln für npm, sondern für das Verstehen, dass die Nutzung von Fremdcode
+      unter der Hand explodieren kann.
 - Arbeitsplatzergonomie
-  - _Persönlich_ finde ich wichtig, dass die Studierenden nicht nur ihre Arbeitsumgebung im PC, 
+  - *Persönlich* finde ich wichtig, dass die Studierenden nicht nur ihre Arbeitsumgebung im PC,
     sondern auch um ihren PC herum einrichten können.
     Meistens denkt man da erst dran, wenn es zu spät ist.
     Maximal eine Aufgabe, darf nicht zu viel Platz beanspruchen.
 - Postman
-  - APIs testen und planen, relevant fürs Debugging und Bauen eigener APIs. 
+  - APIs testen und planen, relevant fürs Debugging und Bauen eigener APIs.
     Gehört ins Portfolio des Profils "Webentwickler". In Kombination mit WebAPIs-Aufgabe möglich.
 - docker
   - Wenn es Aufgaben zu docker gibt, dann erst sehr spät.
@@ -229,6 +218,6 @@ Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
 ## Aufgabenideen ohne Heimat
 
 - Lektion: Kämpfe nicht gegen den Compiler an.
-  - Sucht nach einer Umsetzung. 
+  - Sucht nach einer Umsetzung.
     Eine eigene Implementierung vs eine Implementierung der Standardbibliothek zu dekompilieren 
-    führt nicht zum Ziel, Python optimiert recht wenig. 
+    führt nicht zum Ziel, Python optimiert recht wenig.

@@ -3,7 +3,6 @@ description: >
   ohne einen Wahnsinns-Aufwand für Erstellung und Pflege zu benötigen?
 ---
 
-
 Softwaretesten ist ein umfassendes Thema, das verschiedene Bereiche und Aspekte abdeckt. Es gibt verschiedene
 Teststrategien und -ansätze, die in der Softwareentwicklung verwendet werden, um sicherzustellen, dass eine Anwendung
 (fehlerfrei und) gem. den Anforderungen funktioniert.

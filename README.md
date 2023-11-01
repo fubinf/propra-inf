@@ -10,7 +10,7 @@ Uses [sedrila](https://github.com/fubinf/sedrila) and follows its conventions, i
 
 Description: Ist semantisch die Hover-Information der Aufgaben in der Übersicht. Der Fokus
 liegt also darauf, Lust auf die Aufgabe zu machen, nicht auf vollständigen Sätzen oder einer
-Beschreibung des _wie_, sondern mehr des _was_.  
+Beschreibung des *wie*, sondern mehr des *was*.  
 Timevalue: Zeiteinheit in Stunden, die für die Bearbeitung der Aufgabe geschätzt sind. Unsere
 Granularität sind Viertelstunden bis zur ersten vollen Stunde, danach nur halbe Stunden.
 
@@ -25,21 +25,22 @@ angegeben, in doppelten Anführungszeichen stehen. Es sind mehrere Klassen mögl
 generell nicht empfohlen, um eine Wiedererkennung zu vereinfachen.
 
 Wir verwenden folgende Admonition-Klassen:
- - goal zur Angabe des Lernziels einer Aufgabe
- - submission zur Spezifizierung des gewünschten Inhalts der Abgabe
- - instructor für Inhalte, die nur auf der Tutoren-Ansicht verfügbar sein sollen
- - warning für ein erwartetes Hindernis, in das Studis potentiell laufen können
- - notice für hilfreiche Informationen, deren Inhalt für die Bearbeitung nicht relevant ist
+
+- goal zur Angabe des Lernziels einer Aufgabe
+- submission zur Spezifizierung des gewünschten Inhalts der Abgabe
+- instructor für Inhalte, die nur auf der Tutoren-Ansicht verfügbar sein sollen
+- warning für ein erwartetes Hindernis, in das Studis potentiell laufen können
+- notice für hilfreiche Informationen, deren Inhalt für die Bearbeitung nicht relevant ist
 
 ### Sprache und Vokabular
 
 Zur Vermeidung inkonsistenter Sprache sollten wir einheitliche Begriffe für gleiche oder im
 Kontext äquivalente Begriffe verwenden.
 
- - "Anwendung" statt Programm/Software oder auch Paket (wo sinnvoll)
- - "Verzeichnis" statt Ordner
- - "Defekt" in der Verwendung von Softwaretechnik, insbesondere in Abgrenzung zu "Fehler"
- - "beispielsweise" statt "z.B." in Fließtext
+- "Anwendung" statt Programm/Software oder auch Paket (wo sinnvoll)
+- "Verzeichnis" statt Ordner
+- "Defekt" in der Verwendung von Softwaretechnik, insbesondere in Abgrenzung zu "Fehler"
+- "beispielsweise" statt "z.B." in Fließtext
 
 Bei der Einführung neuer Begriffe verwenden wir erstmals Anführungszeichen. Wollen wir sie
 anschließend betont verwenden, machen wir sie *italic*. Bei der Einführung von deutschen

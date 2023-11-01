@@ -1,9 +1,6 @@
 # TODO: Zentrale Datei zur Koordindation unserer Arbeit
 
-
-
 ## 1. Konventionen
-
 
 ### 1.1 TODO-Marker
 
@@ -12,14 +9,16 @@ zugleich sehr bequem ist und sehr flexibel:
 
 Wir schreiben an beliebige Textstellen, die noch Bearbeitungsbedarf haben oder welchen erklären
 eine Marke der Form `TODO_n` oder `TODO_n_name`.  
-Dabei hat `n` den Wert 1, 2 oder 3 und zeigt an, wie bald die Änderung vermutlich 
+Dabei hat `n` den Wert 1, 2 oder 3 und zeigt an, wie bald die Änderung vermutlich
 erfolgen wird (Zeitrahmen):
+
 - `1`: Binnen weniger Tage (weil Kleinigkeit oder dringend)
 - `2`: Binnen einiger Wochen. Kommt dran, sobald die 1er erledigt sind.
 - `3`: Eines schönen Tages oder nie. Geringere Priorität.
 `name` ist der Benutzername der Person, die das TODO _voraussichtlich_ erledigen soll.
 
 Verwendungsweise:
+
 - Wir schreiben reichlich solche Marker überall hin, wo sie nützlich sein könnten:
   - "Hier klafft noch eine große Lücke", z.B. ganze Aufgabengruppe, die noch leer ist.
   - "Hier habe ich gerade keine gute Idee", das muss ich später noch mal verbessern
@@ -33,13 +32,9 @@ Verwendungsweise:
   zu können, was alles zu tun ist, und das zu benutzen, damit 1er-Änderungen immer zügig
   erledigt werden. Fühlt sich gut an.
 
-
 ### 1.2 ?
 
-
-
 ## 2. Korrekturbedarf am Bestand
-
 
 ### 2.1 Korrekturbedarf bei einzelnen Dateien
 
@@ -58,12 +53,10 @@ In alphabetischer Reihenfolge der Dateinamen.
   Müssen die "zwei Wege" zwei verschiedene Kommandos benutzen? Falls nicht, wie soll ich
   darauf ohne Hinweis kommen?
 
-
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
 - Verzeichnis `01_shell` eingliedern  TODO_2_myname
 - Bash-Teile verlegen nach Werkzeuge und auf Schwierigkeit leicht ändern.  TODO_1_prechelt
-
 
 ### 2.3 Reviews Einzeldateien
 
@@ -90,28 +83,25 @@ Nach dem Review den Eintrag hier wieder entfernen.
 - aufgabenideen (Testbereich)
 - testen / basiswissen
 
-
 ### 2.4 Globale Qualitätssicherung  TODO_3
 
 Das machen wir, wenn eine große Konsolidierung angezeigt erscheint.
 
 Prüfpunkte:
+
 - Einreichungsprozess von Studi an Tutor_in
 - Fachliche Korrektheit aller Aufgaben
 - Angemessenheit aller Aufgaben (ProPra-gemäßer Inhalt, Zeitwert)
 - ??
-
 
 ## 3. Bedarf an und Ideen für Aufgaben zum Thema X
 
 Das kann umfangreich werden und steht deshalb in einer separaten Datei namens
 [aufgabenideen.md](aufgabenideen.md).
 
-
-
 ## 4. Themen für nächste Besprechung
 
 - Wo legen wir Resourcen ab?
 - Wie lösen wir das Begriffswirrwarr?  
-  Vorschlag: `index.md` der best passenden Taskgroup oder 
-  ggf. separate erste Aufgabe zu Begriffen in einer Taskgroup. 
+  Vorschlag: `index.md` der best passenden Taskgroup oder
+  ggf. separate erste Aufgabe zu Begriffen in einer Taskgroup.
