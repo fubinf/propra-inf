@@ -1,4 +1,4 @@
-title: Testallstrukturen
+title: Testfallstrukturen
 description: >
   Neben Testfällen können weitere Strukturen verwendet werden. Hier lernen Sie Testsammlungen, Testpläne und Testdaten kennen.
 timevalue: 2
