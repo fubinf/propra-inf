@@ -93,6 +93,9 @@ chapters:
       - title: "Testframeworks"
         shorttitle: Testframeworks
         slug: testframeworks
+      - title: "Basiswissen"
+        shorttitle: Basiswissen
+        slug: basiswissen
   - title: "Bestandscode: Alten oder unbekannten Code verstehen und verändern"
     shorttitle: Bestandscode
     slug: altcode
