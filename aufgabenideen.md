@@ -180,48 +180,41 @@ Folgende Voraussetzungen sollen gelten / geschaffen werden:
 
 - Wichtige Begrifflichkeiten ist ein theoretischer Teil. Lesen und Antworten
 - alle anderen Teilen sollen praktischer Natur sein
-- hands-on Anteile sollen in Antlassien Jira realisiert werden (registrieren für eine kostenlose Nutzung)
-- für die praktische Ausführung ein SUT mit zu findenden Fehlern entwickeln (einfache Webbasiert:
-FastAPI, Flask, tkinter?)
-- optional: bereitgestelltes SUT in eine Pipeline einbinden und automatisiert Testen
+- hands-on Anteile sollen in GitHub realisiert werden
+- Bestand
+- optional: für die praktische Ausführung ein SUT mit zu findenden Fehlern entwickeln (FastAPI, Flask)
 
 Aufgabenbereiche:
 
 - Wichtige Begrifflichkeiten
   - Fehler, Defekt und Fehlerart
+    - Übung
   - Testen, Debuggen und Qualitätssicherung
+    - Übung
   - Testfall, Testsammlung, Testplan und Testdaten
-  - Teststrategie
-  - Reviews
-- Testen im Agilen Projekt / DevOps Testumgebung
-  - Anforderungsreview
-  - CI / CD, CT
-  - manuelles Testen
-    - Testfälle erstellen
-    - Durchführung von manuellen Tests
-    - Fehlerberichterstattung und -verfolgung
-  - automatisiertes Testen
-    - Testautomatisierungstools
-    - Testdatenmanagement
-- Testprozess und -management
-  - Teststrategie und Testplanung
-  - Testdurchführung und Testüberwachung
-  - Testdokumentation und Reporting
-  - Testauswertung / Metrik und Verbesserung
-- Testarten
-  - Funktionales Testen
-  - Last- und Performance Tests
-  - Sicherheitstests
-  - Usability Tests
-  - Exploratives Testen
-  - Abnahmetests
-  - (Regressionstests)
+    - Übung
+- System Under Test
+  - Vorstellung des SUT
+    - Bestandscode v1.0.0
+    - Rest API Application v1.0.0, v1.1.0, v3.0.0
+  - Implementierung
+    - IDE
+    - GitHub Action
+- manuelles Testen
+  - Testfälle erstellen in GitHub
+  - Fehlerberichterstattung und -verfolgung in GitHub
+- automatisiertes Testen
+  - Testautomatisierungstools (Pytest, RF, Cypress, Locust, JMeter, SonarQube, Nessus)
+  - Testarten
+    - Unittests mit Pytest
+    - Integrationstests mit RobotFramework
+    - Systemtests mit Cypress (Optional + Cucumber mit Gherkin)
+    - Last- und Performance Tests mit Locust
+    - Sicherheitstests mit SonarQube (Nessus?)
+    - Linter in der IDE
+- Testdatenmanagement - statischer TF vs generischer TF
+- Testabdeckung
 
-- Vorgegebene Testklasse einfach ausführen
-- Tests korrigieren
-- Test-Coverage bestimmen?
-- SetUp und TearDown bei repetitiven Tests oder teurem Setup
-- Wie groß ist ein Test/eine Testklasse?
 - Resource: BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies  
   <https://dl.acm.org/doi/10.1145/3368089.3417943>
 
