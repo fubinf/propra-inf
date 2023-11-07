@@ -1,89 +1,146 @@
-# Aufgabenideen
+# Globale Festlegungen zu Aufgaben
 
-## Prinzipien
+## Prinzipien für das Produkt
 
-Unter Beachtung der folgenden [Prinzipien](./principles.md).
+Grundideen, die wir noch ins ProPra umsetzen oder besser umsetzen wollen:
 
-## Taxonomie
+- [12 Prinzipien zur Motivation Lernender](https://link.springer.com/chapter/10.1007/978-3-658-26990-6_1)
+- ...
+
+
+## Prinzipien für unseren Arbeitsprozess
+
+TODO_2
+
+## Taxonomie von Aufgabenarten
+
+TODO_1: Lohnt es, das im YAML-Teil jeder Aufgabe explizit zu machen?
 
 - Nach Struktur der Aufgabenstellung (Vorgabe):
-  - VO: ziemlich offen formuliert
-  - VA: eine konkrete, schrittweise Anleitung ("wie auf Schienen")
+  - VA, Vorgabe Anleitung: 
+    eine konkrete, schrittweise Anleitung ("wie auf Schienen")
+  - VO, Vorgabe offen: 
+    offener formuliert und viel weniger detailliert
 - Nach Art der Tätigkeit:
-  - TP: ganzheitliche praktische Tätigkeit (vulgo "Programmieren") mit nur ungefähr vorbestimmtem Inhalt
-  - TE: wohlbestimmte Technikelemente exemplarisch einsetzen
-  - TL: Aufsätze oder Dokumentation lesen
+  - TL, Tätigkeit Lesen: 
+    Aufsätze oder Dokumentation lesen
+  - TE, Tätigkeit Einsatz:
+    wohlbestimmte Technikelemente exemplarisch einsetzen
+  - TG, Tätigkeit ganzheitlich: 
+    ganzheitliche praktische Tätigkeit (vulgo "Programmieren") mit nur ungefähr vorbestimmtem Inhalt
 - Nach Art des abzuliefernden Resultats:
-  - RP: ein ganzes Programm
-  - RS: ein Programmschnipsel (klein, evtl. kanonisch)
-  - RI: ein Text mit Informationen aus einem Rechercheergebnis
-  - RR: ein Text mit einem Reflektions- oder Bewertungsergebnis
+  - RI, Resultat Infos:
+    ein Text mit Informationen aus einem Rechercheergebnis
+  - RT, Resultat Text:
+    ein Text mit einem Reflektions- oder Bewertungsergebnis
+  - RS, Resultat Schnipsel:
+    ein Programmschnipsel (klein, evtl. kanonisch)
+  - RP, Resultat Programm:
+    ein ganzes Programm
 - Nach Art des angestrebten Lernergebnisses:
-  - LP: praktische Erfahrungen sammeln, inkl. Umgang mit Schwierigkeiten und Rückschlägen
-  - LM: Methode aus eigener Anschauung kennenlernen, Stärken und Problembereiche erkennen
-  - LT: Technikelemente verstehen und aus eigener Anschauung kennenlernen
-  - LI: Ideen (von Methoden oder Technikelementen) verstehen und erkennen wie cool sie sind.
+  - LI, Lernergebnis Ideenverstehen: 
+    Ideen (von Methoden oder Technikelementen) verstehen und erkennen wie cool sie sind.
+  - LT, Lernergebnis Technikerprobung:
+    Technikelemente verstehen und aus eigener Anschauung kennenlernen
+  - LM, Lernergebnis Methodenerprobung:
+    Methode aus eigener Anschauung kennenlernen, Stärken und Problembereiche erkennen
+  - LE, Lernergebnis Erfahrungsammeln:
+    praktische Erfahrungen sammeln, inkl. Umgang mit Schwierigkeiten und Rückschlägen
 
-## Erwägungen dazu
+Zu einfachen Aufgaben passen vor allem VA, TL, TE, RI, RT, RS, LI, LT.  
+Zu schweren Aufgaben passen vor allem VO, TE, TG, RS, RP, LT, LM, LE.    
+Bei mittleren Aufgaben kommt alles in Frage.
 
-TODO
 
-## Aufgabenbereich Basis
+# Anwenderprofile
 
-- Ist schon geklärt, wie das ganze Projekt bootstrapped wird?
+Mögliche "Lernpfade" (höchstens sechs) für bestimmte Arten von beruflichem Tätigkeitsprofil.
+Jede Aufgabe kann null, einem oder mehreren Profilen zugeordnet sein.
+Es soll nicht möglich sein mit nur einem Pfad das ProPra zu bestehen.
+
+
+## DBS: Datenbankentwickler_in
+
+- Datenbankdesign
+  - Muss mehr bieten können als DBS, praxisnaher.~~~~
+- SQL
+- Dokumentation
+- Gewahrsein der wichtigsten RDBMSe und ihrer wichtigsten SQL-seitigen Unterschiede
+
+
+## DSCI: Data Scientist
+
+Wäre potenziell das erste Profil, das man streichen könnte.
+Aber: Läuft parallel zum Spezialisierungsbereich der neuen Bachelor-SPO (Spezialisierungsbereich
+mit ML, Datenvisualisierung, siehe TownHall vom 15.12.2022).
+
+- Datenvisualisierung
+- SQL
+- ML/AI
+- pandas
+- numpy
+
+
+## OPS: DevOps
+
+- CI/CD
+- Microservices oder: Deine Software ist noch nicht groß genug dafür.
+- Code Testing
+- Git
+- Werden Tools wie Jenkins (CI) oder Ansible (Configuration Management) angeschnitten?
+- Dokumentation
+
+
+## SYS: Systemprogrammierer_in
+
+- Kleiner Ausflug in die C-Programmierung
+- Evtl. eine Aufgabe, in der eine enge Schleife in Python durch Auslagern nach C
+  enorm viel beschleunigt wird? Der Rest des Codes bleibt in Python.
+  Man schreibt sich also eine ganz kleine Bibliothek für einen Spezialalgorithmus in C 
+  und bindet sie an.
+
+
+## TEST: Testspezialist_in
+
+Vom Unittest bis zum E2E Test die Bereiche manuelles, automatisiertes Testen für Backend und Frontend betrachten. Dabei auf ISTQB Empfhelungen eingehen und hinweisen, um einen / den Standard zu vermitteln.
+Zusätzlich die Verbindung zum Requirement Engineering, DevOps Engineering, Testmanagement und der agilen Entwicklung herstellen.
+
+- unittests
+- Basiswissen mit Übungen
+- manuelles Testen
+- automatisiertes Testen
+- Agiles Testen
+- Pipelining und CI / CD
+- Testmanagement und Metriken
+- Testarten
+
+
+## WEB: Webprogrammierer
+
+Auf Grundlagen beschränken; das ProPra ist kein Workshop für Spezialkenntnisse.  
+Frontend und Backend gemeinsam behandeln; Informatiker_innen sollten einen Überblick haben.
+
+- WebAPIs
+- Postman
+- async
+
+
+
+# Aufgabenideen
+
+## ch/basis
+
+- Konzepte: assymmetrische Kryptographie, kryptographische Hashfunktion (ausprobieren).
 - Hat jemand den vollständigen Weg für ein System einmal durchgespielt?
   Wenn es hier scheitert, ist die Frustrationsgrenze schnell erreicht.
 
-## mlh: my little helpers
 
-Eine CLI-Anwendung, die eine Reihe kleiner Utilities bündelt und
-argparse mit subcommands einsetzt, um das zu strukturieren.
-Diese Anwendung können die TN nach dem ProPra mitnehmen und ein langes und
-abenteuerreiches Leben lang weiterbenutzen (und ergänzen).
+## ch/bestandscode
 
-Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
+- ...
 
-- `acbd`: (for add-commit-by-date) creates a git commit with given files and message
-  where the commit datetime is the modification date of the youngest of those files.
-  Example:  
-  `mlh acbd -m"my commit msg" myfile1 myfile5`
-- `datefile`: Rename multiple files such that the name starts with the file's
-  current modification date. Report renamings on stdout. Examples:
-  - `mlh datefile myfile`  
-    myfile  -->  2023-05-16-myfile
-  - `mlh datefile --time *`
-    2023-05-16-myfile  -->  2023-05-18-1541-myfile
-    otherfile  -->  2017-10-11-1711-otherfile
-- `lsnew`: Gegeben ein Verzeichnis oder eine Liste von Dateien, listet daraus
-  die jüngste Datei sowie dem Alter nach alle weiteren, bis eine Lücke von
-  48h (default) auftaucht. Damit kann man schneller verstehen, was man in einem Verzeichnis
-  zuletzt getan hat. Format:  
-  2023-05-18 15:31  myfile.suff
-- `sgrep`: Ein grep, das beliebige Trenner zulässt, anstatt immer nur '\n' als
-  Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
-  Default-Trenner ist '\n\n', so dass es ganze Absätze ausspuckt anstatt Zeilen.
-  Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
-- `rename`: Rename multiple files via regexp search-and-replace.  
-  Example: `mlh rename '\.JPE?G' '.jpg' mydir/*.{JPEG,JPG}`
-- ?
 
-## Aufgabenbereich Programmiersprache
-
-- WebAPIs-Aufgabe um GraphQL erweitern oder dazu eine separate Aufgabe gestalten?
-- C lernen:
-  - Compiler installieren, Hello World
-  - Datei einlesen, Länge der längsten und der kürzesten (nichtleeren) Zeile bestimmen
-  - Datei einlesen, kürzeste und längste Zeile aufbewahren (malloc)
-  - malloc-Puffer überschreiten, Crash erleben
-  - lokale Variable int a = 7, b = 9; Stapel-Layout anschauen und verstehen.
-    Wohin führt push: Zu höheren Adressen oder niedrigeren?
-    Wie groß sind ints? Wie ist die Endianness?
-  - lokale Variable int16 a = 3, b = 4; *(char*)&a = "abcd"; a und b ansehen
-  - jetzt das Gleiche mit einem längeren String --> Crash
-  - Aus Unter-Unteraufruf gezielt eine lokale Variable im Unter-Aufruf verändern.
-  - Betriebssystemaufruf mit handgeklöppelter Datenstruktur machen
-
-## Aufgabenbereich Bibliotheken
+## ch/libs
 
 - Rechercheaufgabe: Bibliothek für bestimmten Zweck suchen
   - Wo findet man Bibliotheken?
@@ -101,7 +158,23 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
     (Namen der nötigen Konstrukte sind vorgegeben)
   - Dito ohne Namensvorgaben.
 
-## Aufgabenbereich Testen
+## ch/sprache
+
+- WebAPIs-Aufgabe um GraphQL erweitern oder dazu eine separate Aufgabe gestalten?
+- C lernen:
+  - Compiler installieren, Hello World
+  - Datei einlesen, Länge der längsten und der kürzesten (nichtleeren) Zeile bestimmen
+  - Datei einlesen, kürzeste und längste Zeile aufbewahren (malloc)
+  - malloc-Puffer überschreiten, Crash erleben
+  - lokale Variable int a = 7, b = 9; Stapel-Layout anschauen und verstehen.
+    Wohin führt push: Zu höheren Adressen oder niedrigeren?
+    Wie groß sind ints? Wie ist die Endianness?
+  - lokale Variable int16 a = 3, b = 4; *(char*)&a = "abcd"; a und b ansehen
+  - jetzt das Gleiche mit einem längeren String --> Crash
+  - Aus Unter-Unteraufruf gezielt eine lokale Variable im Unter-Aufruf verändern.
+  - Betriebssystemaufruf mit handgeklöppelter Datenstruktur machen
+
+## ch/testen
 
 Folgende Voraussetzungen sollen gelten / geschaffen werden:
 
@@ -152,29 +225,55 @@ Aufgabenbereiche:
 - Resource: BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies  
   <https://dl.acm.org/doi/10.1145/3368089.3417943>
 
-## Aufgabenbereich Bestandscode
-
-- ...
-
-## Aufgabenbereich Werkzeuge
+## ch/tools
 
 Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
 
-### Terminal-Tools
+### ch/tools: bash
 
-- bash
-  - Bash Scripting?
-  - Loops?
-  - Warum sieht so ein Skript gruselig aus? Andere Mittel führen lesbarer zum Ziel.
-- Git
-  - Logs
-  - Merge vs Rebase
-  - Ein Repo, mehrere Origins
-  - Signing
-  - Squashing
-  - bisect
-  - cherry-pick
+- cd, ls, cd -, Shellvars als Abkürzung für lange Verzeichnisnamen, mv, cp, 
+  find um junge Dateien in Baum zu finden,
+  grep,
+  find um Dateien mit Wort X drin zu finden, dann `ls -lt` um davon die jüngste zu finden
+  (mit entsprechender Story dazu, warum das praktisch sein kann: Nadel im Heuhaufen finden)
+- .bashrc: persönlicher PATH, ein schöner Prompt, praktische aliases u.v.a.m.
+- Bash Scripting: argv, if, tests, for, Shellfunktionen, set, ...
+
+
+### ch/tools: git
+
+- [Git Book 1.1](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) lesen.  
+  Zwecke: Änderungen an Dateien und Dateinamen aufheben; Änderungen beschreiben (commit msg); 
+  Autoren und Zeitpunkte festhalten; Daten zwischen Rechnern synchronisieren; gleichzeitige Änderungen zusammenführen,
+  Varianten parallel entwickeln (Zweige, branches); fremde Änderungen prüfen und übernehmen;
+  fremde Änderungen teilweise übernehmen; Backup.  
+  Welche zwei sind am wertvollsten und warum?  
+  Welche zwei benutzt man am meisten und warum?
+- Wie es funktioniert:
+  [Git Book 1.3](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F) lesen;
+  nur auf der Kommandozeile kann man git enträtseln;
+  intern werden die Snapshots (versionierte Zustände des Dateibaums) dargestellt als drei Sorten von Objekten:
+  blobs für Dateien, trees für Verzeichnisse (bestehend aus Pfadnamen mit zugehörigem blob oder tree),
+  und commits für Snapshots.
+  Jedes Objekt jeder Sorte wird durch einen Hashwert identifiziert.  
+  Beispiel selber durchturnen: repo anlegen, Dateien a und subdir/b anlegen, einchecken, dann:  
+  
+- Logs
+- Merge vs Rebase
+- Ein Repo, mehrere Origins
+- Signing
+- Squashing
+- bisect
+- cherry-pick
+
+
+### ch/tools: Terminal-Tools
+
 - ssh
+  - login mit Passwort (Benutzername, Port), remote command
+  - Schlüsselpaar erzeugen, ~/.ssh, ssh-add/ssh-agent (alias ins .bashrc), ssh-copy-id, login damit
+  - scp
+  - Tunnel, um einen Entwicklungswebserver zu sich "herzuholen"
 - grep, awk, sed
   - Was kann grep? awk? sed? Wahrscheinlich unnötig separate Aufgaben zu gestalten.
   - Wie verbindet man die Funktionalitäten der Tools?
@@ -183,7 +282,8 @@ Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
     anpassbar, ksh "existiert", fish bietet Sane Scripting. Wenn bash Programmierungsaufgaben
     existieren, lassen sich diese hier in fish nachimplementieren.
 
-### Außerhalb des Terminals
+
+### ch/tools: Außerhalb des Terminals
 
 - RegEx
 - IDE
@@ -214,6 +314,52 @@ Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
     Gehört ins Portfolio des Profils "Webentwickler". In Kombination mit WebAPIs-Aufgabe möglich.
 - docker
   - Wenn es Aufgaben zu docker gibt, dann erst sehr spät.
+
+
+## ch/web
+
+- assumes: Wissen über http-Header, curl  
+  https://icanhazdadjoke.com liefert im Browser etwas anderes als wenn man es mit curl abruft.
+  Was vermuten Sie, wie funktioniert das? (User-Agent abfragen).
+  Finden Sie eine Website, die Ihnen hilft zu prüfen, ob die Voraussetzung für ihre Vermutung
+  gegeben ist.
+
+
+## mlh: my little helpers
+
+Eine CLI-Anwendung, die eine Reihe kleiner Utilities bündelt und
+argparse mit subcommands einsetzt, um das zu strukturieren.
+Diese Anwendung können die TN nach dem ProPra mitnehmen und ein langes und
+abenteuerreiches Leben lang weiterbenutzen (und ergänzen).
+
+Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
+
+- `acbd`: (for add-commit-by-date) creates a git commit with given files and message
+  where the commit datetime is the modification date of the youngest of those files.
+  Example:  
+  `mlh acbd -m"my commit msg" myfile1 myfile5`
+- `datefile`: Rename multiple files such that the name starts with the file's
+  current modification date. Report renamings on stdout. Examples:
+  - `mlh datefile myfile`  
+    myfile  -->  2023-05-16-myfile
+  - `mlh datefile --time *`
+    2023-05-16-myfile  -->  2023-05-18-1541-myfile
+    otherfile  -->  2017-10-11-1711-otherfile
+- `lsnew`: Gegeben ein Verzeichnis oder eine Liste von Dateien, listet daraus
+  die jüngste Datei sowie dem Alter nach alle weiteren, bis eine Lücke von
+  48h (default) auftaucht. Damit kann man schneller verstehen, was man in einem Verzeichnis
+  zuletzt getan hat. Format:  
+  2023-05-18 15:31  myfile.suff
+- `sgrep`: Ein grep, das beliebige Trenner zulässt, anstatt immer nur '\n' als
+  Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
+  Default-Trenner ist '\n\n', so dass es ganze Absätze ausspuckt anstatt Zeilen.
+  Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
+- `rename`: Rename multiple files via regexp search-and-replace.  
+  Example: `mlh rename '\.JPE?G' '.jpg' mydir/*.{JPEG,JPG}`
+- ?
+
+
+
 
 ## Aufgabenideen ohne Heimat
 
