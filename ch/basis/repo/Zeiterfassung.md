@@ -22,9 +22,9 @@ die auch für Softwareteams nützlich wäre, dort aber wenig gebräuchlich ist:
 Wir geben immer die betreffende Aufgabe an und die investierte Arbeitszeit.
 
 Hier ist ein Beispiel:  
-`#zeiterfassung 2.5h Commit-Format ausprobieren`
+`#Zeiterfassung 2.5h Commit-Format ausprobieren`
 
-Dabei ist `zeiterfassung` der Name der aktuellen Aufgabe (laut Dateiname, 
+Dabei ist `Zeiterfassung` der Name der aktuellen Aufgabe (laut Dateiname, 
 siehe im Adressfeld des Browsers) und `2.5h` besagt, dass wir für die Arbeiten,
 die zu diesem Commit geführt haben, insgesamt zweieinhalb Stunden investiert haben.
 Wir benutzen eine Granularität von 15 Minuten, also 0.25h, 0.5h, 0.75h, 1h etc.
@@ -55,10 +55,10 @@ einen Commit machen, ohne eine Datei hinzuzufügen.)
 
 !!! instructor
     Achten auf 
-    - `#` zu Beginn  TODO 1: So? Oder ohne?
-    - richtig geschriebene Namen
+    - `#` zu Beginn
+    - richtig geschriebene Namen (Groß-/Kleinschreibung zählt auch)
     - Dezimalpunkt (nicht Dezimalkomma) mit Dezimalstunden oder Doppelpunkt mit Minuten, 
     - 'h' ohne Leerzeichen 
     
-    Eine Anpassung des Parsers wäre zwar möglich, aber der Fokus liegt hier durchaus darauf,
-    die Studenten zur Einhaltung von definierten Standards zu gewöhnen.
+    Natürlich könnte man den Parser für diese Einträge weniger pingelig machen, 
+    aber wir wollen die Studis an die präzise Einhaltung von Standards gewöhnen.
