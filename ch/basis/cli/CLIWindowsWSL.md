@@ -6,11 +6,11 @@ timevalue: 1.0
 difficulty: 1
 ---
 Wir gehen im Verlauf des Programmierpraktikums von der Verfügbarkeit einer Linux-Umgebung aus.
-Sollten Sie Windows verwenden, ist es für einige Aufgaben notwendig, eine derartige Umgebung
+Sollten Sie Windows verwenden, ist es für viele Aufgaben notwendig, eine derartige Umgebung
 zunächst einzurichten.
 Der modernste und effektivste Weg hierfür ist es, Linux über
 [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) direkt benutzen zu können.
-Grundvoraussetzung hierfür ist entweder Windows 10, Version 2004 oder Windows 11.
+Grundvoraussetzung hierfür ist entweder Windows 10, Version 2004 oder höher, oder Windows 11.
 
 Wichtig sind vor allem die Abschnitte `Prerequisites`, `Install WSL command`,
 `Change the default Linux distribution installed`.

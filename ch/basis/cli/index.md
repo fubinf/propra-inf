@@ -1,4 +1,5 @@
 description: Für vieles braucht man eine Unix-Kommandozeile.
+minimum: 1
 ---
 Viele unserer Aufgaben werden sich auf der 
 [Kommandozeile](https://de.wikipedia.org/wiki/Kommandozeile) 
@@ -6,7 +7,8 @@ in einer
 [Unix-Shell](https://de.wikipedia.org/wiki/Unix-Shell)
 abspielen.
 Deshalb müssen wir jetzt dafür sorgen, dass Sie eine solche Umgebung zur
-Verfügung haben.
+Verfügung haben, 
+inklusive eines Paketmanagers zum Installieren weiterer Softwarepakete.
 
 Wie das geht, hängt davon ab, welches Betriebssystem Sie benutzen:
 Windows, Mac OS oder Linux.

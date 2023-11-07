@@ -20,23 +20,18 @@ instructors:
     email: xx
     gitaccount: xx
     keyfingerprint: .
+profiles: ['DBS', 'DSCI', 'OPS', 'SYS', 'TEST', 'WEB']
 chapters:
   - title: "Basis: Unverzichtbare Arbeitsgrundlagen" 
     shorttitle: Basis
     slug: basis
     taskgroups:
-      - title: "Linux-Umgebung schaffen"
-        shorttitle: LinuxCLI
-        slug: linuxcli
-      - title: "MacOS-Umgebung schaffen"
-        shorttitle: MacCLI
-        slug: maccli
+      - title: "Unix-Kommandozeilenumgebung (command-line interface, CLI) schaffen"
+        shorttitle: CLI
+        slug: cli
       - title: "Repo: Mit einem Git-Repository für die Ergebnisse arbeiten"
         shorttitle: Repo
         slug: repo
-      - title: "Sprachwahl: Eine Programmiersprache für das ProPra auswählen"
-        shorttitle: Sprachwahl
-        slug: sprachwahl
       - title: "IDE installieren und in Betrieb nehmen"
         shorttitle: IDE
         slug: ide

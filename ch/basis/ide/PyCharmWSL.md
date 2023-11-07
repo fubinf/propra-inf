@@ -3,7 +3,7 @@ description: |
   Hier geht es um die Installation von PyCharm als IDE und die Ersteinrichtung.
 timevalue: 0.5
 difficulty: 1
-requires: InstallWSL, PythonWSL
+requires: cli
 ---
 Wenn Sie sich für Python als Programmiersprache entschieden haben, empfehlen wir zur Verwendung
 der IDE **PyCharm** von JetBrains.

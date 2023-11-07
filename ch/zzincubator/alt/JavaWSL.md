@@ -3,7 +3,7 @@ description: |
   Wenn Sie WSL benutzen, müssen Sie Java in der Linux-Umgebung installieren.
 timevalue: 0.5
 difficulty: 1
-requires: InstallWSL
+requires: CLIWindowsWSL
 ---
 Wenn Sie WSL eingerichtet haben und die Linux-Umgebung benutzen können, müssen Sie noch eine Programmiersprache installieren. 
 Ob Java installiert ist, können Sie überprüfen, indem Sie im Terminal den folgenden Befehl ausführen:
