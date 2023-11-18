@@ -1,5 +1,5 @@
 title: Fehlerarten
-description: |
+description: >
   Ein Fehler ist nicht gleich einem anderen Fehler. Es gibt Unterschiede in der Bedeutung, aber auch glücklicher Weise auch unterschiedliche Begriffe dafür.
 timevalue: 1
 difficulty: 1

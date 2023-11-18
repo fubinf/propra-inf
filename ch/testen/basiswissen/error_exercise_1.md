@@ -1,5 +1,5 @@
 title: Übung Fehlerarten
-description: |
+description: >
   Zahlreiche Managementsysteme können für einen Bug-Workflow in Fragen kommen. Alle haben aber eins gemeinsam: sie beinhalten die Möglichkeit die wesentlichsten Informationen eines Fehlers zu hinterlegen, um ihn reproduzieren zu können.
 timevalue: 1
 difficulty: 1

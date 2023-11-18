@@ -33,4 +33,60 @@ und Bedingungen.
 In diesem Kapitel geht es um die Qualität der Software, die durch Testmanager, Test Leiter, Test Analysten,
 Testautomatisierer und Test Architekten (allg. Tester) optimiert werden kann. Hier betrachten wir den Nutzen des
 Testens (Return On Invest), erlenen die Grundlagen des Testens, betrachten Konzeptionen und lassen den Spaß, das
-Programmieren, definitiv im Thema Testautomatisierung nicht außen vor.  
+Programmieren, definitiv im Thema Testautomatisierung nicht außen vor.
+
+```mermaid
+graph TD
+    A[Softwaretesten] -->|enthält| B[Basiswissen]
+    B --> BA[Übung: Fehler, Defekt, Fehlerart]
+    B --> BB[Übung: Testen, Debuggen, Qualitätssicherung]
+    B --> BC[Übung: Testfall, Testsammlung, Testplan, Testdaten]
+
+    A -->|enthält| C[SUT]
+    C --> CA[Vorstellung des SUT]
+    CA --> CA1[Bestandscode v1.0.0]
+    CA --> CA2[Rest API v1.0.0]
+    CA2 --> CA3[Rest API v1.1.0]
+    CA3 --> CA4[Rest API v3.0.0]
+    CA --> CB[Übung: Implementierung]
+    CB --> CB1[Übung: IDE]
+    CB --> CB2[Übung: GitHub Action]
+
+    A -->|enthält| D[Manuelles Testen]
+    D --> DA[Übung: Testfälle erstellen]
+    DA --> DB[Übung: Fehlerberichterstattung]
+
+    A -->|enthält| E[Automatisiertes Testen]
+    E --> EA[Testautomatisierungstools]
+    EA --> EA1[Übung: Pytest]
+    EA --> EA2[Übung: Robot Framework]
+    EA --> EA3[Übung: Cypress]
+    EA --> EA4[Übung: Cycumber mit Cypress]
+    EA --> EA5[Übung: Locust]
+    EA --> EA6[Übung: JMeter]
+    EA --> EA7[Übung: SonarQube]
+    EA --> EA8[Übung: Nessus]
+
+    E --> EB[Testarten]
+    EB --> EB1[Übung: Unittests]
+    EB --> EB2[Übung: Integrationstests]
+    EB --> EB3[Übung: Systemtests]
+    EB --> EB4[Übung: Last- und Performance Tests]
+    EB --> EB5[Übung: Sicherheitstests]
+    EB --> EB6[Übung: Linter]
+
+    A -->|enthält| F[Testdatenmanagement]
+    F --> FA[Übung: Statischer TF]
+    FA --> FB[Übung: Generischer TF]
+
+    A -->|enthält| G[Übung: Testabdeckung]
+
+    style B fill:#9BCD9B
+    style B color:Black
+    style BA fill:#9BCD9B
+    style BA color:Black
+    style BB fill:#9BCD9B
+    style BB color:Black
+    style BC fill:#9BCD9B
+    style BC color:Black
+```

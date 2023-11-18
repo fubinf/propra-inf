@@ -1,10 +1,9 @@
 title: Übung Testabgrenzungen
 description: >
-  Qualitätssciherung fängt nicht beim Testen an. Hier setzen wir uns mit anderen Möglichkeiten der Qualitätsoptimierung auseinander.
+  Qualitätssicherung fängt nicht beim Testen an. Hier setzen wir uns mit anderen Möglichkeiten der Qualitätsoptimierung auseinander.
 timevalue: 2
 difficulty: 1
 ---
-
 !!! goal
   Ziel dieser Einheit ist es sich mit den Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) in der Praxis zu üben.
 
@@ -14,8 +13,8 @@ Geben Sie die benutzten Quellen an.
 1. Debuggen Sie folgenden Python Code:
 Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben Sie Ihre Anpassung(en).
 
-```Python
-def add_numbers():
+  ```Python
+  def add_numbers():
     num1 = input("Geben Sie die erste Zahl ein: ")
     num2 = input("Geben Sie die zweite Zahl ein: ")
     
@@ -23,32 +22,22 @@ def add_numbers():
     
     print("Das Ergebnis der Addition ist:", result)
 
-add_numbers()
-```
+  add_numbers()
+  ```
 
 2. Debuggen Sie folgenden Java Code:
 Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben Sie Ihre Anpassung(en).
 
-```Java
-public class ArrayOutput {
-    public static void main(String[] args) {
-        int[] numbers = new int[5];
-        numbers[0] = 1;
-        numbers[1] = 2;
-        numbers[2] = 3;
-        numbers[3] = 4;
-        numbers[4] = 5;
-        
-        for (int i = 0; i <= 5; i++) {
-            System.out.println(numbers[i]);
-        }
-    }
-}
-```
+  ```Python
+  numbers = [1, 2, 3, 4, 5]
+
+  for i in range(5):
+      print(numbers[i])
+
+  ```
 
 3. Betrachten Sie folgendes Szenario: In einem agilen Projekt mit 2 Testern wird nach einem QS Audit festgestellt, dass 20% aller Testfälle nahezu identisch sind. Die Tester haben gem- dem Testkonzept gearbeitet. Dieser sieht vor, dass jeder Tester seine Testfälle selber schreibt und ausführt. Eine Zusammenarbeit unter den testern wurde hier nicht festgelegt. Erwarbeiten Sie ein Konzept zur Verbesserung dieser erkannten Problematik durch mindestens 2 Prozessen. Beschreiben Sie, wie dadurch die Zusammenarbeit verbessert wird und warum doppelte Testfälle stark minimiert werden können.
 4. Betrachten Sie folgenden alten Testfall für eine Webseite in deutscher Sprache. Aktualisieren Sie diesen Testfall wenn nötig:
-   
    **Titel:** Erfolgreiche Anmeldung
 
    **Beschreibung:** Der registrierte Nutzer hat die Möglichkeit sich mit seinem Benutzernamen oder seiner E-Mail Adresse am Portal anzumelden. Der Nutzer wird bei erfolgreicher Anmeldung auf sein Profil weitergeleitet.
