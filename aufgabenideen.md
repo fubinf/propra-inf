@@ -182,7 +182,7 @@ Folgende Voraussetzungen sollen gelten / geschaffen werden:
 - alle anderen Teilen sollen praktischer Natur sein
 - hands-on Anteile sollen in GitHub realisiert werden
 - Bestand
-- optional: für die praktische Ausführung ein SUT mit zu findenden Fehlern entwickeln (FastAPI, Flask)
+- optional: für die praktische Ausführung ein SuT mit zu findenden Fehlern entwickeln (FastAPI, Flask)
 
 Aufgabenbereiche:
 
@@ -193,8 +193,8 @@ Aufgabenbereiche:
     - Übung
   - Testfall, Testsammlung, Testplan und Testdaten
     - Übung
-- System Under Test
-  - Vorstellung des SUT
+- System Under Test (SuT)
+  - Vorstellung des SuT
     - Bestandscode v1.0.0
     - Rest API Application v1.0.0, v1.1.0, v3.0.0
   - Implementierung
