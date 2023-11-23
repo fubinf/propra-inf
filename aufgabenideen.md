@@ -14,42 +14,44 @@ TODO_2
 
 ## Taxonomie von Aufgabenarten
 
-TODO_1: Lohnt es, das im YAML-Teil jeder Aufgabe explizit zu machen?
+- [SECTION::goal::product]:  
+  A work product itself is the task's goal (because we want to have it or want to build on top of it).
+  Difficulty 3 or 4.
+- [SECTION::goal::idea]:  
+  Understanding a concept or idea is the goal. Difficulty 2 or 3.
+- [SECTION::goal::experience]:  
+  Accumulating experience from actual technical problem-solving is the task's goal.
+  Difficulty 3 or 4.
+- [SECTION::goal::trial]:  
+  The task's goal is a mix of the types 'idea' (mostly) and 'experience' (smaller part). 
+  Difficulty 1 to 3 (or perhaps 4).
+- [SECTION::instructions::detailed]:  
+  The instructions are such that the student must merely follow them closely for 
+  solving the task and hardly needs to do problem-solving themselves.
+  These tasks are easy (difficulty 1 or 2) for the students but
+  difficult for the authors, because we need to think of so many things.
+- [SECTION::instructions::loose]:  
+  The instructions are less complete; the student must fill instruction gaps of moderate size
+  but we provide good hints where to look for the material to fill them.
+  Difficulty 3 or 4.
+- [SECTION::instructions::tricky]:  
+  The instructions are of a general nature, far removed from the detail required for a solution.
+  The student must not only determine many details, but must also make decisions that can
+  easily go wrong, making a successful solution much harder.
+  Difficulty 4.
+- [SECTION::submission::reflection]:  
+  Students submit a text containing their thoughts about something.
+- [SECTION::submission::information]:  
+  Students submit concrete information they found in an inquiry. 
+- [SECTION::submission::snippet]:  
+  Students submit a short snippet of program text, e.g. a shell command (or a few).
+- [SECTION::submission::trace]:  
+  Students submit a log of an interactive session or the output of a program run. 
+- [SECTION::submission::program]:  
+  Students submit an entire program with many moving parts.
 
-- Nach Struktur der Aufgabenstellung (Vorgabe):
-  - VA, Vorgabe Anleitung: 
-    eine konkrete, schrittweise Anleitung ("wie auf Schienen")
-  - VO, Vorgabe offen: 
-    offener formuliert und viel weniger detailliert
-- Nach Art der Tätigkeit:
-  - TL, Tätigkeit Lesen: 
-    Aufsätze oder Dokumentation lesen
-  - TE, Tätigkeit Einsatz:
-    wohlbestimmte Technikelemente exemplarisch einsetzen
-  - TG, Tätigkeit ganzheitlich: 
-    ganzheitliche praktische Tätigkeit (vulgo "Programmieren") mit nur ungefähr vorbestimmtem Inhalt
-- Nach Art des abzuliefernden Resultats:
-  - RI, Resultat Infos:
-    ein Text mit Informationen aus einem Rechercheergebnis
-  - RT, Resultat Text:
-    ein Text mit einem Reflektions- oder Bewertungsergebnis
-  - RS, Resultat Schnipsel:
-    ein Programmschnipsel (klein, evtl. kanonisch)
-  - RP, Resultat Programm:
-    ein ganzes Programm
-- Nach Art des angestrebten Lernergebnisses:
-  - LI, Lernergebnis Ideenverstehen: 
-    Ideen (von Methoden oder Technikelementen) verstehen und erkennen wie cool sie sind.
-  - LT, Lernergebnis Technikerprobung:
-    Technikelemente verstehen und aus eigener Anschauung kennenlernen
-  - LM, Lernergebnis Methodenerprobung:
-    Methode aus eigener Anschauung kennenlernen, Stärken und Problembereiche erkennen
-  - LE, Lernergebnis Erfahrungsammeln:
-    praktische Erfahrungen sammeln, inkl. Umgang mit Schwierigkeiten und Rückschlägen
-
-Zu einfachen Aufgaben passen vor allem VA, TL, TE, RI, RT, RS, LI, LT.  
-Zu schweren Aufgaben passen vor allem VO, TE, TG, RS, RP, LT, LM, LE.    
-Bei mittleren Aufgaben kommt alles in Frage.
+Open question: Should we have further 'instruction' subtypes according to the type
+of activity required for solving the task?
 
 
 # Anwenderprofile
