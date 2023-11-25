@@ -42,8 +42,8 @@ graph TD
     B --> BB[Übung: Testen, Debuggen, Qualitätssicherung]
     B --> BC[Übung: Testfall, Testsammlung, Testplan, Testdaten]
 
-    A -->|enthält| C[SUT]
-    C --> CA[Vorstellung des SUT]
+    A -->|enthält| C[SuT]
+    C --> CA[Vorstellung des SuT]
     CA --> CA1[Bestandscode v1.0.0]
     CA1 -.-> CA2[Bestandscode v1.1.0]
     CA2 -.-> CA3[Bestandscode v3.0.0]

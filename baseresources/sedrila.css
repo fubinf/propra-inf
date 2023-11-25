@@ -89,19 +89,95 @@ summary {
     border-style: none;
 }
 
-/********** Classes: */
+/********** Classes for sections: */
 
-
-.gray {
-    color: gray;
+.section-background {
+    background-color: #f8f8f8;
+    padding: 0.5em;
 }
 
-.admonition {
+.section-background-default {
+    
+}
+
+
+.admonition,
+.section-goal,
+.section-submission,
+.section-forinstructor {
     padding: 0.0em 0.9em;
     margin: 0.4em 0 0.8em 0;
     border: 1px solid gray;
     border-radius: 0.5em;
     box-shadow: 6px 6px 5px #888;
+}
+
+.section-goal {
+    background-color: #f5f5e0;
+}
+
+.section-goal-product {
+    
+}
+
+.section-goal-idea {
+    
+}
+
+.section-goal-experience {
+    
+}
+
+.section-goal-trial {
+    
+}
+
+.section-instructions {
+    border-left-width: 0.8em;
+    border-left-style: solid;
+    padding-left: 0.8em;
+}
+
+.section-instructions-detailed {
+    border-left-color: var(--diff2-color);
+}
+
+.section-instructions-loose {
+    border-left-color: var(--diff3-color);
+}
+
+.section-instructions-tricky {
+    border-left-color: var(--diff4-color);
+}
+
+.section-submission {
+    
+}
+
+.section-submission-reflection {
+    
+}
+
+.section-submission-information {
+    
+}
+
+.section-submission-snippet {
+    
+}
+
+.section-submission-trace {
+    
+}
+
+.section-submission-program {
+    
+}
+/********** Classes: */
+
+
+.gray {
+    color: gray;
 }
 
 .admonition-title {
@@ -110,7 +186,8 @@ summary {
     font-weight: bold;
 }
 
-.admonition.instructor {
+.admonition.instructor,
+.section-forinstructor {
     background-color: #f903;
 }
 
@@ -118,11 +195,13 @@ summary {
     background-color: #06c3;
 }
 
-.admonition.submission {
+.admonition.submission,
+.section-submission {
     background-color: #9c03;
 }
 
-.admonition.warning {
+.admonition.warning,
+.macro-warning {
     background-color: #c003;
 }
 
