@@ -1,5 +1,5 @@
 description: >
-  Wie schreibt man automatisierte Tests, die viel Zutrauen bringen 
+  Wie schreibt man automatisierte Tests, die viel Zutrauen bringen
   ohne einen Wahnsinns-Aufwand für Erstellung und Pflege zu benötigen?
 ---
 
@@ -45,16 +45,15 @@ graph TD
     A -->|enthält| C[SUT]
     C --> CA[Vorstellung des SUT]
     CA --> CA1[Bestandscode v1.0.0]
-    CA --> CA2[Rest API v1.0.0]
-    CA2 --> CA3[Rest API v1.1.0]
-    CA3 --> CA4[Rest API v3.0.0]
+    CA1 -.-> CA2[Bestandscode v1.1.0]
+    CA2 -.-> CA3[Bestandscode v3.0.0]
     CA --> CB[Übung: Implementierung]
     CB --> CB1[Übung: IDE]
     CB --> CB2[Übung: GitHub Action]
 
     A -->|enthält| D[Manuelles Testen]
     D --> DA[Übung: Testfälle erstellen]
-    DA --> DB[Übung: Fehlerberichterstattung]
+    DA -.-> DB[Übung: Fehlerberichterstattung]
 
     A -->|enthält| E[Automatisiertes Testen]
     E --> EA[Testautomatisierungstools]
@@ -68,7 +67,7 @@ graph TD
     EA --> EA8[Übung: Nessus]
 
     E --> EB[Testarten]
-    EB --> EB1[Übung: Unittests]
+    EB --> EB1[Übung: Unittests / TDD]
     EB --> EB2[Übung: Integrationstests]
     EB --> EB3[Übung: Systemtests]
     EB --> EB4[Übung: Last- und Performance Tests]
@@ -77,7 +76,7 @@ graph TD
 
     A -->|enthält| F[Testdatenmanagement]
     F --> FA[Übung: Statischer TF]
-    FA --> FB[Übung: Generischer TF]
+    FA -.-> FB[Übung: Generischer TF]
 
     A -->|enthält| G[Übung: Testabdeckung]
 
@@ -89,4 +88,32 @@ graph TD
     style BB color:Black
     style BC fill:#9BCD9B
     style BC color:Black
+
+    style CA1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style CB1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5 
+    style CB2 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5 
+    style CB stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5 
+    style DA stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style DB stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA2 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA3 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA4 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA5 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA6 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA7 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA8 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EB1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EB2 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EB3 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EB4 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EB5 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EB6 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style FA stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style G stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+
+    style CA2 stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
+    style FB stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
+
+    style CA3 stroke:#AAAA55,stroke-width:2px,stroke-dasharray:5,5
 ```
