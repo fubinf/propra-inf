@@ -221,3 +221,20 @@ Submission:
   Like the previous three, but for chapters instead of taskgroups.
 
 
+## How we work
+
+Suggested order of work steps towards task descriptions. 
+
+1. Sketch a task group and its motivation.
+2. List candidate tasks for the task group.
+   Order them from more general (and useful for most people) to more specialized.  
+   As a rule, the more general tasks should be difficulty 2, the specialized ones harder.  
+   For the general tasks, split large ones (over two hours) into pieces, including
+   pieces that should be "assumed" and then belong into 
+   different taskgroups or even chapters. Create placeholders with todo markers for those.
+3. Outline a task description by selecting the section structure, 
+   in particular the section subtypes,
+   and formulating the learning goal.
+4. Draft the background (keep it short), instructions, and submission sections.
+5. Have someone else review the description for coherence between goal and instructions/submission
+   and for appropriateness of the instructions given the difficulty.
