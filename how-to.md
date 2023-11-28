@@ -93,3 +93,105 @@ exactly as written and will remove the `<replacement id="someId">` and `</replac
 The `id` should start with the respective task, taskgroup, or chapter name.
 
 
+## Section structure
+
+Sections follow one after another; they cannot be nested.  
+They are marked up using the `[SECTION]` block macro. Example:
+```
+[SECTION::goal::idea]
+Understand section markup
+[ENDSECTION]
+```
+The entire body of a task description is divided into sections; there is no extra text.  
+In contrast, chapters' and taskgroups' `index.md` files can optionally use 
+goal and background sections at their top, but then always
+continue with section-free text for characterizing the content of the chapter or taskgroup.
+
+### `[SECTION::goal::...]`
+
+Short definition what is to be learned (this is the prefered type) or 
+achieved (if this is mostly a stepping stone for something else). 
+
+Either short or a bulleted list of short items.
+Can be positioned first (this is the prefered structure) or 
+in between two background sections or
+after the entire background.
+
+### `[SECTION::background::default]`  
+
+Knowledge required for understanding the instructions and solving the task.
+
+Only present if needed; typically for difficulty levels 1 and 2. Keep this short.  
+If lots of background are needed, turn it into steps of the instructions.
+
+### `[SECTION::instructions::...]`  
+
+The main part of the task: Instructions what to do.
+
+More strongly than for other sections, 
+this section looks hugely different depending on difficulty level.
+See the discussion of difficulty levels above and of instructions subtypes below.
+
+### `[SECTION::submission::...]`  
+
+Final part of the task: Description what to prepare for the instructor to check.
+
+Characterizes 
+
+- the format (eg. `.md` file or `.py` file or directory with several files),
+- the content, 
+- and perhaps quality criteria.
+
+
+## Section subtypes
+
+Goal:
+
+- `[SECTION::goal::product]`:  
+  A work product itself is the task's goal (because we want to have it or want to build on top of it).
+  Usually difficulty 3 or 4.
+- `[SECTION::goal::idea]`:  
+  Understanding a concept or idea is the goal. Difficulty 1, 2, or 3.
+- `[SECTION::goal::experience]`:  
+  Accumulating experience from actual technical problem-solving is the task's goal.
+  Difficulty 3 or 4.
+- `[SECTION::goal::trial]`:  
+  The task's goal is a mix of the types 'idea' (mostly) and 'experience' (smaller part). 
+  Difficulty 1 to 3 (or perhaps 4).
+
+Background:
+
+- `[SECTION::background::default]`:  
+  There is only one type of background section.
+
+Instructions:
+
+- `[SECTION::instructions::detailed]`:  
+  The instructions are such that the student must merely follow them closely for 
+  solving the task and hardly needs to do problem-solving themselves.
+  These tasks are easy (difficulty 1 or 2) for the students but
+  difficult for the authors, because we need to think of so many things.
+- `[SECTION::instructions::loose]`:  
+  The instructions are less complete; the student must fill instruction gaps of moderate size
+  but we provide information where to look for the material to fill them.
+  Difficulty 3 or 4.
+- `[SECTION::instructions::tricky]`:  
+  The instructions are of a general nature, far removed from the detail required for a solution.
+  The student must not only determine many details, but must also make decisions that can
+  easily go wrong, making a successful solution much harder.
+  Difficulty 4.
+
+Submission:
+
+- `[SECTION::submission::reflection]`:  
+  Students submit a text containing their thoughts about something.
+- `[SECTION::submission::information]`:  
+  Students submit concrete information they found in an inquiry. 
+- `[SECTION::submission::snippet]`:  
+  Students submit a short snippet of program text, e.g. a shell command (or a few).
+- `[SECTION::submission::trace]`:  
+  Students submit a log of an interactive session or the output of a program run. 
+- `[SECTION::submission::program]`:  
+  Students submit an entire program with many moving parts.
+
+
