@@ -1,5 +1,0 @@
-[Fish](https://fishshell.com)
-[Zsh](https://www.zsh.org)
-[Zsh in grml](https://grml.org/zsh/)
-[Oh My Zsh](https://ohmyz.sh/)
-[Xonsh](https://xon.sh)
