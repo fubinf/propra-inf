@@ -23,7 +23,7 @@ blockmacro_topmatter:
   section_submission_program: ""
   hint: "## Hinweis (nur bei Bedarf): "
   instructor: "## Kontrolle Tutor_in: "
-  warning: "## WARNUNG: "
+  warning: "**Warnung:** "
 instructors:
   - nameish: Lutz Prechelt
     email: prechelt@inf.fu-berlin.de
