@@ -45,7 +45,7 @@ code {
 
 
 details {
-    /* similar to .admonition */
+    /* similar to .section-goal etc. */
     display: block;
     padding: 0.0em 0.9em;
     margin: 0.4em 0 0.8em 0;
@@ -82,14 +82,22 @@ li {
 }
 
 summary {
-    /* similar to .admonition-title */
-    font-size: 105%;
-    font-style: italic;
-    font-weight: bold;
-    border-style: none;
 }
 
-/********** Classes for sections: */
+/********** Styles for blockmacros: */
+
+.admonition,
+.section-goal,
+.section-submission,
+.blockmacro-hint,
+.blockmacro-instructor,
+.blockmacro-warning {
+    padding: 0.0em 0.9em;
+    margin: 0.4em 0 0.8em 0;
+    border: 1px solid gray;
+    border-radius: 0.5em;
+    box-shadow: 6px 6px 5px #888;
+}
 
 .section-background {
     background-color: #f8f8f8;
@@ -98,18 +106,6 @@ summary {
 
 .section-background-default {
     
-}
-
-
-.admonition,
-.section-goal,
-.section-submission,
-.section-forinstructor {
-    padding: 0.0em 0.9em;
-    margin: 0.4em 0 0.8em 0;
-    border: 1px solid gray;
-    border-radius: 0.5em;
-    box-shadow: 6px 6px 5px #888;
 }
 
 .section-goal {
@@ -173,8 +169,16 @@ summary {
 .section-submission-program {
     
 }
-/********** Classes: */
 
+.blockmacro-instructor {
+    background-color: #f903;
+}
+
+.blockmacro-warning {
+    background-color: #c003;
+}
+
+/********** Admonitions (TODO_2 phase out): */
 
 .gray {
     color: gray;
@@ -186,8 +190,7 @@ summary {
     font-weight: bold;
 }
 
-.admonition.instructor,
-.section-forinstructor {
+.admonition.instructor {
     background-color: #f903;
 }
 
@@ -200,10 +203,11 @@ summary {
     background-color: #9c03;
 }
 
-.admonition.warning,
-.macro-warning {
+.admonition.warning {
     background-color: #c003;
 }
+
+/********** Link and TOC decorations: */
 
 .assumes-decoration,
 .assumed-by-decoration,
