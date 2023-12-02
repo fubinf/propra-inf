@@ -3,26 +3,27 @@ shorttitle: ProPra2023
 baseresourcedir: baseresources
 chapterdir: ch
 templatedir: templates
-section_topmatter:
-  background: "## Hintergrund"
-  background_default: ""
-  goal: "## Ziel"
-  goal_product: ""
-  goal_idea: ""
-  goal_experience: ""
-  goal_trial: ""
-  instructions: "## Arbeitsschritte"
-  instructions_detailed: ""
-  instructions_loose: ""
-  instructions_tricky: ""
-  submission: "## Abgabe"
-  submission_reflection: ""
-  submission_information: ""
-  submission_snippet: ""
-  submission_trace: ""
-  submission_program: ""
-  forinstructor: "## Annahme-Hinweise"
-  forinstructor_default: ""
+blockmacro_topmatter:
+  section_background: "## Hintergrund"
+  section_background_default: ""
+  section_goal: "## Ziel"
+  section_goal_product: ""
+  section_goal_idea: ""
+  section_goal_experience: ""
+  section_goal_trial: ""
+  section_instructions: "## Arbeitsschritte"
+  section_instructions_detailed: ""
+  section_instructions_loose: ""
+  section_instructions_tricky: ""
+  section_submission: "## Abgabe"
+  section_submission_reflection: ""
+  section_submission_information: ""
+  section_submission_snippet: ""
+  section_submission_trace: ""
+  section_submission_program: ""
+  hint: "## Hinweis (nur bei Bedarf): "
+  instructor: "## Kontrolle Tutor_in: "
+  warning: "## WARNUNG: "
 instructors:
   - nameish: Lutz Prechelt
     email: prechelt@inf.fu-berlin.de
