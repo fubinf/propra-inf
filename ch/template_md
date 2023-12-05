@@ -2,13 +2,40 @@ title: ...
 description: |
   ...
 timevalue: 1.0
-difficulty: ...
+difficulty: ?
+profiles: 
+assumes: 
+requires: 
 ---
----
-content for student
----
----
-content for teaching assistant
----
----
-the attic: stuff we expect to need later
+[SECTION::goal::...]
+
+.
+
+[ENDSECTION]
+[SECTION::background::default]
+
+.
+
+[ENDSECTION]
+[SECTION::instructions::...]
+
+### ...
+
+### ...
+
+[WARNING]
+[ENDWARNING]
+[HINT::VisibleTitle]
+[ENDHINT]
+
+[ENDSECTION]
+[SECTION::submission::...]
+
+.
+
+[ENDSECTION]
+
+[INSTRUCTOR::heading]
+.
+[ENDINSTRUCTOR]
+

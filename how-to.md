@@ -95,7 +95,7 @@ The `id` should start with the respective task, taskgroup, or chapter name.
 
 ## Section structure
 
-Sections follow one after another; they cannot be nested.  
+Sections follow one after another; they are usually not nested.  
 They are marked up using the `[SECTION]` block macro. Example:
 ```
 [SECTION::goal::idea]
@@ -227,6 +227,13 @@ Submission:
   Like the previous three, but for task groups instead of tasks.
 - `[CHS::chaptername]`, `[CHL::chaptername]`, `[CHM::chaptername::link text]`:
   Like the previous three, but for chapters instead of taskgroups.
+
+
+## Task file template
+
+When you start a new task description file, 
+copy [ch/template_md](ch/template_md) 
+and use it as a template to have a clean up-to-date starting point.
 
 
 ## Language use (in German because we use German)
