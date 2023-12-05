@@ -114,7 +114,7 @@ achieved (if this is mostly a stepping stone for something else).
 
 Either short or a bulleted list of short items.
 Can be positioned first (this is the prefered structure) or 
-in between two background sections or
+nested inside the background section (using [INNERSECTION::goal::...]) or
 after the entire background.
 
 ### `[SECTION::background::default]`  
@@ -197,6 +197,9 @@ Submission:
 
 ## Other markup and its use
 
+- `[INNERSECTION::type::subtypes]`/`[ENDINNERSECTION]`:
+  The same functionality as `[SECTION::type::subtypes]`, but used within some other section
+  rather than after it. (Needed to make our simplistic parser work properly for this case.)
 - `[WARNING]`/`[ENDWARNING]`:    
   A warning of a pitfall to be avoided.
   Will render as an eye-catching text box.
@@ -207,6 +210,11 @@ Submission:
   Students can fold out the hint body when they recognize they need more help.
   Use this in particular for making sure a task that is intended to be
   difficulty 3 does not end up being difficulty 4.
+- `[INCLUDE::filename]`: inserts the entire contents of file `filename` verbatim
+  into the Markdown input stream at this point.
+  Useful for having small Python programs (etc.) as separate files during development,
+  so they can be executed and tested.
+  The students copy/paste the file from within the page in the web browser.
 - `[TAS::taskname]`: TA for "task", S for "short".
   Create a hyperlink to the task description file for task `taskname`.
   "short" means it looks like in the breadcrumb, essentially using the taskname as the link text.
@@ -219,6 +227,32 @@ Submission:
   Like the previous three, but for task groups instead of tasks.
 - `[CHS::chaptername]`, `[CHL::chaptername]`, `[CHM::chaptername::link text]`:
   Like the previous three, but for chapters instead of taskgroups.
+
+
+## Language use (in German because we use German)
+
+Zur Vermeidung inkonsistenter Sprache sollten wir einheitliche Begriffe für gleiche oder im
+Kontext äquivalente Begriffe verwenden.
+
+- "Anwendung" statt Programm/Software oder auch Paket (wo sinnvoll)
+- "Verzeichnis" statt Ordner
+- "Defekt" in der Verwendung von Softwaretechnik, insbesondere in Abgrenzung zu "Fehler"
+- "beispielsweise" statt "z.B." in Fließtext
+
+Bei der Einführung neuer Begriffe verwenden wir erstmals Anführungszeichen. Wollen wir sie
+anschließend betont verwenden, machen wir sie *italic*. Bei der Einführung von deutschen
+Fachbegriffen erwähnen wir die korrekte englische Vokabel in Klammern.
+
+Die Verwendung von Blocktext ist für Code oder Codeteile oder technische Bezeichner gedacht.
+
+Wir kürzen "Repository" mit "Repo" ab. Wir schreiben "Git", wenn wir die Software in einer
+Art benennen, die kein Kommando ist. In Kommandos schreiben wir "git".
+
+Wir vermeiden die Pluralisierung englischer Wörter, die auf y enden.
+Generell beugen wir Fremdwörter nach deutscher Rechtschreibung.
+
+Wenn wir uns auf einen Teil der Universität beziehen, nennen wir sie beim vollen Namen
+und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe änderbar zu machen.
 
 
 ## How we work
