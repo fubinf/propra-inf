@@ -1,77 +1,3 @@
-# Anwenderprofile
-
-Mögliche "Lernpfade" (höchstens sechs) für bestimmte Arten von beruflichem Tätigkeitsprofil.
-Jede Aufgabe kann null, einem oder mehreren Profilen zugeordnet sein.
-Es soll nicht möglich sein mit nur einem Pfad das ProPra zu bestehen.
-
-
-## DBS: Datenbankentwickler_in
-
-- Datenbankdesign
-  - Muss mehr bieten können als DBS, praxisnaher.~~~~
-- SQL
-- Dokumentation
-- Gewahrsein der wichtigsten RDBMSe und ihrer wichtigsten SQL-seitigen Unterschiede
-
-
-## DSCI: Data Scientist
-
-Wäre potenziell das erste Profil, das man streichen könnte.
-Aber: Läuft parallel zum Spezialisierungsbereich der neuen Bachelor-SPO (Spezialisierungsbereich
-mit ML, Datenvisualisierung, siehe TownHall vom 15.12.2022).
-
-- Datenvisualisierung
-- SQL
-- ML/AI
-- pandas
-- numpy
-
-
-## OPS: DevOps
-
-- CI/CD
-- Microservices oder: Deine Software ist noch nicht groß genug dafür.
-- Code Testing
-- Git
-- Werden Tools wie Jenkins (CI) oder Ansible (Configuration Management) angeschnitten?
-- Dokumentation
-
-
-## SYS: Systemprogrammierer_in
-
-- Kleiner Ausflug in die C-Programmierung
-- Evtl. eine Aufgabe, in der eine enge Schleife in Python durch Auslagern nach C
-  enorm viel beschleunigt wird? Der Rest des Codes bleibt in Python.
-  Man schreibt sich also eine ganz kleine Bibliothek für einen Spezialalgorithmus in C 
-  und bindet sie an.
-
-
-## TEST: Testspezialist_in
-
-Vom Unittest bis zum E2E Test die Bereiche manuelles, automatisiertes Testen für Backend und Frontend betrachten. Dabei auf ISTQB Empfhelungen eingehen und hinweisen, um einen / den Standard zu vermitteln.
-Zusätzlich die Verbindung zum Requirement Engineering, DevOps Engineering, Testmanagement und der agilen Entwicklung herstellen.
-
-- unittests
-- Basiswissen mit Übungen
-- manuelles Testen
-- automatisiertes Testen
-- Agiles Testen
-- Pipelining und CI / CD
-- Testmanagement und Metriken
-- Testarten
-
-
-## WEB: Webprogrammierer
-
-Auf Grundlagen beschränken; das ProPra ist kein Workshop für Spezialkenntnisse.  
-Frontend und Backend gemeinsam behandeln; Informatiker_innen sollten einen Überblick haben.
-
-- WebAPIs
-- Postman
-- async
-
-
-
 # Aufgabenideen
 
 ## ch/basis
@@ -306,3 +232,69 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
   - Sucht nach einer Umsetzung.
     Eine eigene Implementierung vs eine Implementierung der Standardbibliothek zu dekompilieren 
     führt nicht zum Ziel, Python optimiert recht wenig.
+
+
+# Anwenderprofile
+
+Mögliche "Lernpfade" (höchstens sechs) für bestimmte Arten von beruflichem Tätigkeitsprofil.  
+Jede Aufgabe kann null, einem oder mehreren Profilen zugeordnet sein.  
+Es soll nicht möglich sein mit nur einem Pfad das ProPra zu bestehen.  
+Die Profile sind ein kleines Hilfsmittel zur Orientierung für die Studierenden.
+Sie sind aber klar eine Nebensache, kein wichtiges Strukturelement zur Entwicklung des ProPra.
+
+
+## DBS: Datenbankentwicklung (Priorität: mittel)
+
+- SQL
+- ORM mit Python (Django oder sqlalchemy)
+- Antimuster vermeiden: SQL-Injektion, n+1 Queries
+- Praxis Datenbankdesign
+- Vergleich von sqlite, mysql, postgres; evtl. selber Aufsetzen und Ausprobieren.
+
+
+## DSCI: Data Scientist (Priorität: mittel)
+
+- Datenhandling: numpy und pandas
+- Datenvisualisierung: matplotlib, ...
+- SQL
+- Machine Learning: Einfache Gehversuche mit scikit-learn
+
+
+## OPS: DevOps (Priorität: mittel)
+
+- Sysadmin-Sachen (Netzwerk, Dateisysteme, Docker, Cloud etc.)
+- Continuous Integration, Continuous Deployment
+- fortgeschrittenes Git
+- Was noch?
+- 
+
+## SYS: Systemprogrammiererung (Priorität: niedrig)
+
+- Kleiner Ausflug in die C-Programmierung, insbes. Zeiger, manuelle Speicherverwaltung.
+- Evtl. eine Aufgabe, in der eine enge Schleife in Python durch Auslagern nach C
+  enorm viel beschleunigt wird? Der Rest des Codes bleibt in Python.
+  Man schreibt sich also eine ganz kleine Bibliothek für einen Spezialalgorithmus in C 
+  und bindet sie an.
+- Was sonst ist im ProPra machbar??
+
+
+## TEST: Softwaretest (Priorität: hoch)
+
+Vom Unittest bis zum End-to-end-Test die Bereiche manuelles, automatisiertes Testen für Backend und Frontend betrachten. 
+Dabei auf ISTQB Empfehlungen eingehen und hinweisen, um einen Standard zu vermitteln.
+Evtl. Verbindung zu Requirement Engineering, DevOps Engineering, Testmanagement, agiler Entwicklung herstellen?
+
+- unittests
+- Basiswissen mit Übungen
+- manuelles Testen
+- automatisiertes Testen
+- Agiles Testen
+- Pipelining und CI / CD
+- Testmanagement und Metriken
+- Testarten
+
+
+## WEB: Entwicklung von Webanwendungen (Priorität: hoch)
+
+Auf Grundlagen beschränken; das ProPra ist kein Workshop für Spezialkenntnisse.  
+Frontend und Backend gemeinsam behandeln; Informatiker_innen sollten einen Überblick haben.
