@@ -55,8 +55,7 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
-- Verzeichnis `01_shell` eingliedern  TODO_2_myname
-- Bash-Teile verlegen nach Werkzeuge und auf Schwierigkeit leicht ändern.  TODO_1_prechelt
+- derzeit keiner
 
 ### 2.3 Reviews Einzeldateien
 
@@ -67,21 +66,7 @@ und macht TODO-Marker für mich rein für große Schwächen.
 Solche Reviews sind ein dauerhaftes TODO_1_alle.  
 Nach dem Review den Eintrag hier wieder entfernen.
 
-- GitLab101
-- powershell
-- WebAPIs
-- async
-- search_engines
-- unittest101
-- pytest101
-- pytest102
-- pytest103
-- pytest104
-- coverage
-- mocking
-- freezegun
-- aufgabenideen (Testbereich)
-- testen / basiswissen
+- ...
 
 ### 2.4 Globale Qualitätssicherung  TODO_3
 
