@@ -280,19 +280,27 @@ Sie sind aber klar eine Nebensache, kein wichtiges Strukturelement zur Entwicklu
 
 ## TEST: Softwaretest (Priorität: hoch)
 
-Vom Unittest bis zum End-to-end-Test die Bereiche manuelles, automatisiertes Testen für Backend und Frontend betrachten. 
+Vom Unittest bis zum End-to-end-Test die Bereiche manuelles, automatisiertes Testen für Backend und Frontend betrachten.
 Dabei auf ISTQB Empfehlungen eingehen und hinweisen, um einen Standard zu vermitteln.
 Evtl. Verbindung zu Requirement Engineering, DevOps Engineering, Testmanagement, agiler Entwicklung herstellen?
 
-- unittests
-- Basiswissen mit Übungen
-- manuelles Testen
-- automatisiertes Testen
-- Agiles Testen
-- Pipelining und CI / CD
-- Testmanagement und Metriken
-- Testarten
+Themen und Übungen nach Mermaid Diagram im [index.md](./ch/testen/index.md)-file des testen-Verzeichnisses.
 
+### Zusammengefasst
+
+- Kleiner therotischer Bereich nach ISTQB für einen einheitlichen Sprachgerbauch (einfach)
+- Mittels eines eigens hierfür entwickelten **Bestandscodes** in dreierlei Ausfertigung sollen praktische Testautomatisierungerfahrungen vermittelt werden
+  - Tool-Auswahl von Unit-, über Integrations-, hin zu End-zu-End Tests (einfach)
+  - Pipelining in GitHub Action oder GitLab CI (mittel)
+- Mit Testarten den Bezug zu den unterschiedlichen Testebenen vermitteln
+- Testdatenmanagement soll den Vorteil von generischen Testfällen vermitteln
+
+### Schwerpunkte
+
+- Bestandscode in v1, v2 und v3
+- Teststufen (unit-, Integrations- und Systemtests)
+- Testtools auf allen Teststufen / Lokale Last- und Performancetests (API)
+- Testdatenmanagement
 
 ## WEB: Entwicklung von Webanwendungen (Priorität: hoch)
 

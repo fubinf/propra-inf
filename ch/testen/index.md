@@ -58,13 +58,27 @@ graph TD
     A -->|enthält| E[Automatisiertes Testen]
     E --> EA[Testautomatisierungstools]
     EA --> EA1[Übung: Pytest]
+    EA1 --> EA11[Übung: Testabdeckung]
     EA --> EA2[Übung: Robot Framework]
     EA --> EA3[Übung: Cypress]
     EA --> EA4[Übung: Cycumber mit Cypress]
-    EA --> EA5[Übung: Locust]
-    EA --> EA6[Übung: JMeter]
+    EA --> EA5[Übung: Locust - API]
+    EA5 --> EA51[Übung: Verteilte LuP-Tests]
+    EA --> EA6[Übung: JMeter - Capture and Replay]
+    EA6 --> EA61[Übung: Verteilte LuP-Tests]
     EA --> EA7[Übung: SonarQube]
     EA --> EA8[Übung: Nessus]
+    EA1 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA2 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA3 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA4 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA5 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA51 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA6 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA61 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA7 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA8 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA9 ---> EA10[Übung: Umsetzung CI / CD]
 
     E --> EB[Testarten]
     EB --> EB1[Übung: Unittests / TDD]
@@ -78,16 +92,11 @@ graph TD
     F --> FA[Übung: Statischer TF]
     FA -.-> FB[Übung: Generischer TF]
 
-    A -->|enthält| G[Übung: Testabdeckung]
-
-    style B fill:#9BCD9B
-    style B color:Black
-    style BA fill:#9BCD9B
-    style BA color:Black
-    style BB fill:#9BCD9B
-    style BB color:Black
-    style BC fill:#9BCD9B
-    style BC color:Black
+    %% Stil für die Knoten
+    style B fill:#9BCD9B,color:Black
+    style BA fill:#9BCD9B,color:Black
+    style BB fill:#9BCD9B,color:Black
+    style BC fill:#9BCD9B,color:Black
 
     style CA1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style CB1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5 
@@ -96,6 +105,7 @@ graph TD
     style DA stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style DB stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA11 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA2 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA3 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA4 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
@@ -110,10 +120,30 @@ graph TD
     style EB5 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EB6 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style FA stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
-    style G stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+
 
     style CA2 stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
     style FB stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
+    style EA51 stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
+    style EA61 stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
 
     style CA3 stroke:#AAAA55,stroke-width:2px,stroke-dasharray:5,5
+```
+
+Legende:
+
+```mermaid
+graph TD    
+    %% Legende
+    L1["Schwarzer Inhalt: Es besteht noch keine Aufgabe für diesen Bereich"]
+    L2["Neongrüner Inhalt: Aufgabe wurde umgsetzt"]
+    L3["Rote gestrichelte Linie: Bezieht sich auf Bestandscoide V1"]
+    L4["Blaue gestrichelte Linie: Bezieht sich auf Bestandscoide V2"]
+    L5["Gelbe gestrichelte Linie: Bezieht sich auf Bestandscoide V3"]
+
+    %% Stil für Legendenknoten
+    style L2 fill:#9BCD9B,color:Black
+    style L3 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style L4 stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
+    style L5 stroke:#AAAA55,stroke-width:2px,stroke-dasharray:5,5
 ```
