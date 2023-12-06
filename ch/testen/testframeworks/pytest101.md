@@ -1,6 +1,6 @@
 title: pytest - Grundlagen
 description: |
-  Lernen Sie hier den Umgang mit pytest, einer Alternative zu unittest. 
+  Lernen Sie hier den Umgang mit pytest, einer Alternative zu unittest.
 timevalue: 1
 difficulty: 2
 assumes: unittest101
@@ -9,9 +9,9 @@ assumes: unittest101
     pytest versucht Tests besser als unittest zu gestalten und mehr Funktionalität mitzubringen.
     Lernen Sie hier, worin die Unterschiede zwischen den Frameworks liegen.
 
-pytest ist eine in Python häufig genutzte Alternative zum mitgelieferten unittest. 
-Arbeiten Sie sich mittels der Dokumentation von pytest und bei Bedarf weiteren Quellen mittels 
-der folgenden Fragen in das Framework ein. 
+pytest ist eine in Python häufig genutzte Alternative zum mitgelieferten unittest.
+Arbeiten Sie sich mittels der Dokumentation von pytest und bei Bedarf weiteren Quellen mittels
+der folgenden Fragen in das Framework ein.
 
 1. Wie wird pytest installiert?
 2. Wie unterscheiden sich Tests in pytest von denen in unittest?

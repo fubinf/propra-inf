@@ -57,8 +57,8 @@ graph TD
 
     A -->|enthält| E[Automatisiertes Testen]
     E --> EA[Testautomatisierungstools]
-    EA --> EA1[Übung: Pytest]
-    EA1 --> EA11[Übung: Testabdeckung]
+    EA --> EA0[Übung: Unittest]
+    EA0 --> EA1[Übung: Pytest]
     EA --> EA2[Übung: Robot Framework]
     EA --> EA3[Übung: Cypress]
     EA --> EA4[Übung: Cycumber mit Cypress]
@@ -68,6 +68,7 @@ graph TD
     EA6 --> EA61[Übung: Verteilte LuP-Tests]
     EA --> EA7[Übung: SonarQube]
     EA --> EA8[Übung: Nessus]
+    EA0 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
     EA1 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
     EA2 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
     EA3 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
@@ -104,8 +105,8 @@ graph TD
     style CB stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5 
     style DA stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style DB stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA0 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
-    style EA11 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA2 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA3 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA4 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5

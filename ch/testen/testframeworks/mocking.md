@@ -6,15 +6,14 @@ difficulty: 3
 assumes: pytest101, pytest102
 ---
 !!! goal
-    Ziel dieser Einheit ist es sich mittels einer Recherche  mit "Mocking" auseinanderzusetzen.
-    Hierbei lernen Sie, was "Mocks" sind, wie man sie in pytest benutzt und wann man sie benutzt.
+    Ziel dieser Einheit ist es sich mittels einer Recherche mit "Mocking" auseinanderzusetzen.
+    Hierbei lernen Sie, was "Mocks" sind, wie man sie in pytest benutzt.
 
 In dieser Aufgabe werden wir uns mit dem Konzept des "Code Mocking" und der Verwendung von pytest
-als Testframework auseinandersetzen. 
+als Testframework auseinandersetzen.
 Mocking ermöglicht es, reale Abhängigkeiten und externe Ressourcen in Tests zu simulieren, um Tests
 zu isolieren und zuverlässigere Ergebnisse zu erzielen.  
-Recherchieren Sie hierzu anhand der folgenden Leitfragen. 
-Geben Sie die benutzten Quellen an.
+Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 
 1. Was versteht man genau unter dem Begriff "Code Mocking"?
 2. Welches Problem versucht Code Mocking zu lösen?
@@ -28,3 +27,4 @@ Geben Sie die benutzten Quellen an.
     Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
     Halten Sie die Antworten kurz.
     Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+    Geben Sie Quellen an, wenn Sie andere als die gegebenen Quellen hinzuziehen.

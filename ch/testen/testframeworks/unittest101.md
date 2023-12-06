@@ -1,17 +1,17 @@
 title: unittest in Python - Grundlagen
-description: | 
+description: |
   Lernen Sie hier, wie Sie mit den Bordmitteln von Python Tests gestalten und ausführen können.  
 timevalue: 1.5
 difficulty: 2
 ---
 !!! goal
-    Ziel der Aufgabe ist es zu verstehen, wie Tests in Python mittels unittest geschrieben und 
+    Ziel der Aufgabe ist es zu verstehen, wie Tests in Python mittels unittest geschrieben und
     gelesen werden.
-    Dies bietet die Grundlage dafür, eigene Tests zu gestalten und sich in weitere Testframeworks 
+    Dies bietet die Grundlage dafür, eigene Tests zu gestalten und sich in weitere Testframeworks
     einzuarbeiten.
 
 `unittest` ist das von Python mitgelieferte Testframework.
-Arbeiten Sie sich mittels der Dokumentation von `unittest` und bei Bedarf weiteren Quellen mittels 
+Arbeiten Sie sich mittels der Dokumentation von `unittest` und bei Bedarf weiteren Quellen mittels
 der folgenden Fragen in das Framework ein.
 
 1. Wie werden Testfälle in `unittest` erstellt?

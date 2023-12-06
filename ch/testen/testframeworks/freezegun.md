@@ -1,7 +1,7 @@
 title: freezegun - Zeitreise mittels Python-Tests
 description: |
   Lernen Sie hier, wie Sie die zeitabhängige Tests in Python schreiben können, ohne die Systemzeit
-  zu ändern. 
+  zu ändern.
 timevalue: 1.5
 difficulty: 3
 assumes: mocking
