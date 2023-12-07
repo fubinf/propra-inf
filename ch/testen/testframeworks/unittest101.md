@@ -19,8 +19,9 @@ der folgenden Fragen in das Framework ein.
 3. Was ist "test discovery" und wie funktioniert diese in `unittest`?
 4. Wie werden die Tests mit `unittest` durchgeführt?
 5. Wie kann ich die Tests organisieren?
-6. Welche Assertions stehen mir zur Verfügung und wie nutze ich diese am besten?
-7. Welche Informationen stellt mir der Output eines Tests zur Verfügung?
+6. Was sind die Methoden setUp() und tearDown() und wie wendet man sie an?
+7. Welche Assertions stehen mir zur Verfügung und wie nutze ich diese am besten?
+8. Welche Informationen stellt mir der Output eines Tests zur Verfügung?
 
 [unittest - Unit testing framework](https://docs.python.org/3.10/library/unittest.html)
 
