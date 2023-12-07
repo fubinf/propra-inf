@@ -92,6 +92,9 @@ graph TD
     F --> FA[Übung: Statischer TF]
     FA -.-> FB[Übung: Generischer TF]
 
+    A -->|enthält - optional| G[KI Testen]
+    G --> GA[Einführung]
+
     %% Stil für die Knoten
     style B fill:#9BCD9B,color:Black
     style BA fill:#9BCD9B,color:Black

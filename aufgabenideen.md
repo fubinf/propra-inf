@@ -294,6 +294,7 @@ Themen und Übungen nach Mermaid Diagram im [index.md](./ch/testen/index.md)-fil
   - Pipelining in GitHub Action oder GitLab CI (mittel)
 - Mit Testarten den Bezug zu den unterschiedlichen Testebenen vermitteln
 - Testdatenmanagement soll den Vorteil von generischen Testfällen vermitteln
+- (Optionales i-Tüpfelchen) KI Testen
 
 ### Schwerpunkte
 
@@ -306,3 +307,15 @@ Themen und Übungen nach Mermaid Diagram im [index.md](./ch/testen/index.md)-fil
 
 Auf Grundlagen beschränken; das ProPra ist kein Workshop für Spezialkenntnisse.  
 Frontend und Backend gemeinsam behandeln; Informatiker_innen sollten einen Überblick haben.
+
+Behandlung von folgenden Themen:
+
+- HTML
+- CSS
+  - Bootstrap
+- JavaScript
+  - JQuery
+- Python Frontend:
+  - Web: Flask, Django
+  - App: TKinter
+  
