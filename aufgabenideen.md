@@ -3,9 +3,11 @@
 ## ch/basis (prechelt)
 
 Nur das Nötigste, um arbeitsfähig zu sein:
-Technische Infrastruktur aufsetzen (Python, IDE, repo), Commits machen lernen,
-Struktur von ProPra verstehen (difficulties, chapters/taskgroups, profiles, 
-Rolle von Hints, Submission-Arten und -Formate, Arbeitszeiterfassung in Commits)
+Technische Infrastruktur aufsetzen (Python, pip, IDE, repo), 
+Commits machen lernen,
+Struktur von ProPra verstehen (difficulties, chapters/taskgroups, assumes/requires, profiles, 
+Rolle von Hints, Submission-Arten und -Formate), 
+Arbeitszeiterfassung in Commits
 
 Ferner evtl: asymmetrische Kryptographie (aber eher beim Thema ssh), 
 kryptographische Hashfunktion ausprobieren (aber eher beim Thema git).
@@ -13,7 +15,7 @@ kryptographische Hashfunktion ausprobieren (aber eher beim Thema git).
 
 ## ch/altcode 
 
-### ch/altcode/codereading (hofmann)
+### altcode/codereading (hofmann)
 
 - An kleinen Beispielen verstehen, was Codeverstehen einfach oder schwierig macht:
   Namen, gute Hilfsabstraktionen, einfache statt clevere Logik.
@@ -23,15 +25,41 @@ kryptographische Hashfunktion ausprobieren (aber eher beim Thema git).
 - Wo wird vermutlich Funktion X realisiert? Suche auf Basis von Namen:
   Verzeichnisse, Dateien, Klassen. Dann ggf. Verfolgung im Code mit Ctrl-Click.
 
-### ch/altcode/refactoring (pietrak)
+### altcode/logreading (hofmann)
+
+Nutzung existierender Loggingfunktionalität, um grobe Abläufe in der Software zu verstehen.
+Geht natürlich nur, wenn passende Info in den Logs vorhanden ist (existierende Logs)
+oder beschafft werden kann (loglevel konfigurieren, dann passende Aktionen in der Software auslösen).
+
+### altcode/stepping (hofmann)
+
+Der Debugger ist nicht nur hilfreich zum Defektlokalisieren, sondern eventuell auch
+zum Programmverstehen, weil sich der Computer niemals bei der Frage vertut,
+was für Werte in Objekten stehen und welcher Programmzweig anzusteuern ist.
+Außerdem hat er ein sehr viel größeres Arbeitsgedächtnis als der Mensch.
+
+Dies mit einem geeigneten Szenario verdeutlichen, vermutlich mit einem nicht sooo großen Programm.
+
+### altcode/refactoring (pietrak)
 
 - Am kleinen Beispiel üben: Code verständlicher machen durch
-  Rename, Extract variable, Extract method.
+  Rename, Extract variable, Extract method.  
+  Jede solche Operation kristallisiert und persistiert ein Bröckchen von Verständnis,
+  das man sich kurz zuvor erarbeitet hat.  
+  Problem dabei ist die Unsicherheit, ob man etwas vielleicht falsch versteht,
+  denn dann wären die Ergebnisse u.U. irreführend.  
+  Vielleicht als zwei Aufgaben: 
+  Erster Teil zum Lernen der Operationen und ihres Zwecks in Stil _detailed_/DIFF2,
+  Rest dann selbständig in DIFF3. Der Code darf nicht allzu undurchsichtig sein.
+- Kompliziertere Refactorings in der IDE ausprobieren:
+  Push method up/down, add/remove parameter, ...
+- Gilded Rose
 
+Wie viel kann hier VS Code überhaupt?
 
 ## ch/libs
 
-### ch/libs/stdlib (???)
+### libs/stdlib (alle zusammen?)
 
 Hier liegen zahlreiche kleine Aufgaben, mit denen man einzelne oft benötigte Teile der 
 Python-Standardbibliothek ausprobiert.
@@ -65,7 +93,9 @@ Python-Standardbibliothek ausprobiert.
 - fileformat [DIFF::3]: Wahlaufgabe zum Bereich X="File Formats"
 - archives [DIFF::3]: Wahlaufgabe zum Bereich X="Data Compression and Archiving"
 
-### ch/libs/chooselib
+Vermutlich ist das Dranschreiben von Profilen hier eine unsinnige Idee?
+
+### libs/chooselib (???)
 
 Bibliothek für bestimmten Zweck suchen und erlernen.
 Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
@@ -75,14 +105,14 @@ Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
 - Nach welchen Merkmalen wählt man eine Bibliothek aus?
 - Wie lernt man das Nötige für einen schmalen Anwendungsfall (Doku vs. stackoverflow)?
 
-### ch/libs/pandas
+### libs/pandas
 
 - Pandas installieren, pandas101
 - Struktur der Doku verstehen
 - Theorie: Series, DataFrame, Index, MultiIndex: Zweck, Unterschiede, Gemeinsamkeiten.
 - Pandas-Cheatsheet: CSV-Tabelle einlesen, diverse Arten von Datenumstrukturieren ausprobieren
 
-### ch/libs/matplotlib
+### libs/matplotlib
 
 Assumes pandas
 
@@ -104,7 +134,7 @@ Debugging, Refactoring.
 
 ## ch/sprache
 
-### ch/sprache/sh
+### sprache/sh (condric+hüster?)
 
 Puh, wie man das in eine vernünftige Lernreihenfolge bringt, ist nicht offensichtlich.  
 Es wäre schön, die Trennung zwischen der Shellsprache (inkl. builtins) und den Utilities zu vermitteln.  
@@ -125,17 +155,44 @@ Shellprozeduren.
 Typische Idiome in Shellskripten.
 
 
-### ch/sprache/bash
+### sprache/bash (condric+hüster?)
 
 Die wichtigsten Erweiterungen ggü. sh bezüglich Sprache, Variablen, Builtins, etc.
 
 Ziel: Verstehen, dass sh (auf allen Plattformen vorhanden) und bash (deutlich erweitert)
 verschiedene Dinge sind.
 
-### ch/sprache/regexp (???)
+### sprache/regexp (hüster?)
 
 
-### ch/sprache/pythonpraxis (???)
+### sprache/python1 (alle gemeinsam)
+
+Aufgaben mit DIFF1 als unvollkommene Starthilfe für Leute mit zu niedrigem Wissen.
+Wiederholung der absoluten Essentials: 
+alles ist ein Objekt,
+"Variablen" als Binden eines beliebigen Objekts an einen Namen, 
+Nennung von Namen als Referenz auf das Objekt,
+if, for, break, continue, range, enumerate,
+def, return,
+list, dict, set, comprehensions, 
+class, self, Vererbung, super(), Objekterzeugung, 
+with, open, 
+tuple unpacking,
+import, etc.
+
+Vermutlich sinnvoll als Lückentext, sodass sehr kleine und eingegrenzte Aufgaben entstehen?
+
+### sprache/python2 (???)
+
+(Wir sollten mit Max Willert abgleichen, was in python1 und was in python2 gehört)
+
+Fortgeschrittenere Konstrukte:
+*args, **kwargs, 
+try/except, 
+Typdeklarationen für Parameter und Resultate, Modul typing,
+Typdeklarationen für Attribute,
+
+### sprache/pythonpraxis (prechelt)
 
 Eine Reihe von Aufgaben, in denen nach und nach die CLI-Anwendung
 `mlh` ("my little helpers") programmiert wird.
@@ -175,7 +232,7 @@ Voran geht eine Teilaufgabe für den Rahmen mit `argparse_subcommands` (das auch
 benutzt wird; Struktur einfach dort abgucken)
 
 
-### ch/sprache/c
+### sprache/c
 
   - Compiler installieren, Hello World
   - Datei einlesen, Länge der längsten und der kürzesten (nichtleeren) Zeile bestimmen
@@ -189,13 +246,20 @@ benutzt wird; Struktur einfach dort abgucken)
   - Aus Unter-Unteraufruf gezielt eine lokale Variable im Unter-Aufruf verändern.
   - Betriebssystemaufruf mit handgeklöppelter Datenstruktur machen
 
-### ch/sprache/sql
+### sprache/sql
 
 Ein paar Aufgaben zu mittelkomplexen Abfragen (mit etwas Verschacheltung)
 und mittelkomplexen Updates.  
 Assumes: sqlite
 
-### ch/sprache/othershells
+### sprache/dsls
+
+- Was ist eine DSL? (interne, externe)
+- Grundlagen/häufigste Fälle von awk
+- Grundlagen/häufigste Fälle von sed
+- `jq`, `jid`, `jgrep`
+
+### sprache/othershells
 
 Alternative Shells. 
 
@@ -205,7 +269,7 @@ Alternative Shells.
 - Zsh: Die Anpassbarkeit bestaunen. Evtl. [Oh my zsh](https://ohmyz.sh/) durchstöbern.
   Reflektion darüber.
 
-## ch/testen
+## ch/testen (ruhe)
 
 Folgende Voraussetzungen sollen gelten / geschaffen werden:
 
@@ -253,20 +317,51 @@ Aufgabenbereiche:
 
 Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
 
-### ch/tools/bash2
+### tools/bash2 (condric+hüster?)
 
 (Das heißt bash2, weil es schon ch/sprache/bash gibt und taskgroups eindeutig sein müssen.)
 
-Seeehr unvollständig:
-- cd, ls, cd -, Shellvars als Abkürzung für lange Verzeichnisnamen, mv, cp, 
-  find um junge Dateien in Baum zu finden,
-  grep,
-  find um Dateien mit Wort X drin zu finden, dann `ls -lt` um davon die jüngste zu finden
+- Umgang mit Dateien: ls, mv, rm, cp, mkdir, rmdir, ...  
+  Lernziel: die Fälle verstehen, in denen das einer GUI überlegen ist: mit Globbing, mit mehreren Argumenten, mit speziellen Optionen
+- Typische Helfer für die Shellprogrammierung: touch, cat, head, tail, grep, uniq, sort, find, awk, sed, xargs, tee, ...  
+  Lernziel: Je mindestens einen gut erinnerbaren Anwendungsfall ausprobieren, in dem das Helferlein gute Dienste leistet.  
+  Hier kommen natürlich nur noch die dran, die man nicht schon oben bei sprache/sh eingeführt hat.
+- Typische Idiome der Shellprogrammierung.
+
+Beispiele für interaktive Idiome:
+- `cd -` zum Hin- und Herwechseln zwischen zwei Verzeichnissen
+- Shellvars als Abkürzung für lange Verzeichnisnamen 
+- `find`, um junge Dateien in Baum zu finden
+- `grep`, um eine Datei per eindeutigen Inhaltsschlagwort wiederzufinden (etc.)
+- `find` mit `grep`, um Dateien mit Wort X drin zu finden, dann `ls -lt` um davon die jüngste zu finden
   (mit entsprechender Story dazu, warum das praktisch sein kann: Nadel im Heuhaufen finden)
 - .bashrc: persönlicher PATH, ein schöner Prompt, praktische aliases u.v.a.m.
 
+Beispiele für programmatische Idiome:
+- ...
 
-### ch/tools/git
+### tools/network (condric)
+
+- ssh (mehrere Aufgaben) 
+  - Schlüsselpaar erzeugen, ~/.ssh, ssh, ssh-agent (alias ins .bashrc), ssh-copy-id, login damit
+  - login mit Passwort (Benutzername, Port), remote command
+  - tmux, ...
+  - scp
+  - Tunnel, um einen Entwicklungswebserver zu sich "herzuholen"
+- ping, rsync, curl, wget, ...
+
+Lernziel ist immer, typische Anwendungsfälle und Stärken zu verstehen.
+
+### tools/localadmin (condric)
+
+- lokales System, z.B. evtl.: w, uptime, whoami, df, du, tail -f, mount, ps, pgrep, kill/pkill, top/htop, ...  
+  Lernziel: Situationen verstehen, in denen man das jeweils gebrauchen kann.
+- Dateisystemaufbau: /bin, /usr, /var, /etc, /mnt, ...  
+  Lernziel: Grobes Verständnis von "Was ist wo?"
+- fortgeschrittenes Dateihandling: file, dd, tar, zip, gzip, ...
+- root sein, z.B. evtl.: sudo (mit sudoers, visudo etc.), su, Ethos, Vorsicht, /etc/passwd, Gruppen/Gruppenrechte, ...
+
+### tools/git (hüster)
 
 Reizvolle didaktische Aufgabe!  
 Was gehört zum Grundwissen, was ist schon deutlich fortgeschritten?  
@@ -288,7 +383,6 @@ Lernt man Idiome für häufige Situationen lieber durch selbererfinden oder wie 
   und commits für Snapshots.
   Jedes Objekt jeder Sorte wird durch einen Hashwert identifiziert.  
   Beispiel selber durchturnen: ...
-  
 - Logs, Refspecs
 - Merge vs Rebase
 - Ein Repo, mehrere Origins
@@ -296,29 +390,17 @@ Lernt man Idiome für häufige Situationen lieber durch selbererfinden oder wie 
 - reset
 - stash
 - cherry-pick, rebase --interactive
-- 
+- ...
 
 Speziellerer Kram:
 
 - Signing
 - Squashing
 - bisect
+- ...
 
 
-### ch/tools: Terminal-Tools
-
-- ssh
-  - login mit Passwort (Benutzername, Port), remote command
-  - Schlüsselpaar erzeugen, ~/.ssh, ssh-add/ssh-agent (alias ins .bashrc), ssh-copy-id, login damit
-  - scp
-  - Tunnel, um einen Entwicklungswebserver zu sich "herzuholen"
-- grep, awk, sed
-  - Was kann grep? awk? sed? Wahrscheinlich unnötig separate Aufgaben zu gestalten.
-  - Wie verbindet man die Funktionalitäten der Tools?
-
-
-
-### ch/tools: Außerhalb des Terminals
+### tools: sonstige Ideen
 
 - IDE
   - Unterschied IDE und Editor
@@ -343,11 +425,7 @@ Speziellerer Kram:
     sondern auch um ihren PC herum einrichten können.
     Meistens denkt man da erst dran, wenn es zu spät ist.
     Maximal eine Aufgabe, darf nicht zu viel Platz beanspruchen.
-- Postman
-  - APIs testen und planen, relevant fürs Debugging und Bauen eigener APIs.
-    Gehört ins Portfolio des Profils "Webentwickler". In Kombination mit WebAPIs-Aufgabe möglich.
-- docker
-  - Wenn es Aufgaben zu docker gibt, dann erst sehr spät.
+- docker?
 
 
 ## ch/web
