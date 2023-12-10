@@ -9,10 +9,10 @@ requires:
 ---
 [SECTION::goal::idea]
 
-Oftmals benötigten Sie zum Testen bestimmte Voraussetzungen, die erfüllt sein müssen.
-Ohne eine Datenbank können Sie keine Tests über Datenbankabfragen gestalten, ohne Webserver
+Oftmals benötigten ich zum Testen bestimmte Voraussetzungen, die erfüllt sein müssen.
+Ohne eine Datenbank kann ich keine Tests über Datenbankabfragen gestalten, ohne Webserver
 wird es schwer, Abfragen über WebAPIs zu testen.
-Setzen Sie sich hier mit Fixtures auseinander, die diese Hürde angehen.
+In dieser Einheit lernen ich, wie ich mit Fixtures diese Hürde angehen kann.
 
 [ENDSECTION]
 [SECTION::background::default]

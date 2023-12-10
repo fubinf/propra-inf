@@ -10,7 +10,7 @@ requires:
 ---
 [SECTION::goal::idea]
 
-Lernen Sie hier, wie sie bei Tests die Systemzeit mocken können.
+Ziel dieser Einheit ist es, zu lernen, wie ich bei Tests die Systemzeit mocken kann.
 
 [ENDSECTION]
 [SECTION::background::default]

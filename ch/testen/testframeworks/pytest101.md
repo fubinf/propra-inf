@@ -9,7 +9,7 @@ requires:
 ---
 [SECTION::goal::idea]
 
-Pytest versucht Tests besser als unittest zu gestalten und mehr Funktionalität mitzubringen. Lernen Sie hier, worin die Unterschiede zwischen den Frameworks liegen.
+Pytest versucht Tests besser als unittest zu gestalten und mehr Funktionalität mitzubringen. Hier lerne ich den Unterschiede zwischen den zwei Frameworks kennen.
 
 [ENDSECTION]
 [SECTION::background::default]

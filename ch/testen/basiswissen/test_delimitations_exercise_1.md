@@ -9,7 +9,7 @@ requires:
 ---
 [SECTION::goal::trial]
 
-Ziel dieser Einheit ist es sich mit den Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) in der Praxis zu üben.
+Das Ziel dieser Einheit ist es, die Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) in der Praxis zu verstehen.
 
 [ENDSECTION]
 [SECTION::background::default]

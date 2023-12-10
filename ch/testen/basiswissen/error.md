@@ -9,7 +9,7 @@ requires:
 ---
 [SECTION::goal::idea]
 
-Ziel dieser Einheit ist es sich mit dem Begriff des Fehlers auseinanderzusetzen, um einen Fehler in seinem Kontext genau erfassen zu können.
+Das Ziel dieser Einheit ist es, den Begriff des Fehlers zu verstehen und zu lernen, dam,it ich einen Fehler in seinem Kontext genau erfassen kann.
 
 [ENDSECTION]
 [SECTION::background::default]

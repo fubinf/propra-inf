@@ -9,7 +9,7 @@ requires:
 ---
 [SECTION::goal::idea]
 
-Ziel dieser Einheit ist es die Zusammenhänge der genannten Begriffe kennenzulernen.
+Das Ziel dieser Einheit ist es, die Zusammenhänge der genannten Begriffe zu anzuwenden und zu verinnerlichen.
 
 [ENDSECTION]
 [SECTION::background::default]

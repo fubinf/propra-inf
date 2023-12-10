@@ -9,8 +9,7 @@ requires:
 ---
 [SECTION::goal::idea]
 
-Ziel der Aufgabe ist es einfache Pytests zu erstellen und zu üben.
-Hier vertiefen Sie die grundlegenden Pytest-Umsetzungen.
+Ziel dieser Einheit ist es, einfache Pytests zu erstellen und zu üben. Dabei möchte ich die grundlegenden Pytest-Umsetzungen vertiefen.
 
 [ENDSECTION]
 [SECTION::background::default]

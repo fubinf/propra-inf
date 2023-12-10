@@ -9,7 +9,7 @@ requires:
 ---
 [SECTION::goal::idea]
 
-Ziel dieser Einheit ist es sich mit den Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) (eng.: Quality Assurance (QA)) zu beschäftigen.
+Das Ziel dieser Einheit ist es, die Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) (eng.: Quality Assurance (QA)) zu verstehen, damit ich sie eindeutig voneinander unterscheiden kann.
 
 [ENDSECTION]
 [SECTION::background::default]

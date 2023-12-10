@@ -9,7 +9,7 @@ requires:
 ---
 [SECTION::goal::idea]
 
-Ziel dieser Einheit ist es sich damit auseinanderzusetzen, wie sinnvoll es ist, den gesamten Code mit Tests abzudecken.
+Das Ziel dieser Einheit ist es, sich damit auseinanderzusetzen, wie sinnvoll es ist, den gesamten Code mit Tests abzudecken, damit ich die Vor- und Nachteile dieser Herangehensweise verstehe.
 
 [ENDSECTION]
 [SECTION::background::default]

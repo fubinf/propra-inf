@@ -12,8 +12,8 @@ requires:
 Es gibt Tests, die mit vielen Eingabeparametern versorgt werden müssen, um alle Randfälle
 abzudecken.
 Der naive Weg hierzu wäre, alle Kombinationen in einzelnen Tests festzuhalten.
-Setzen Sie sich in dieser Aufgabe damit auseinander, wie parametrisierte Tests Ihnen helfen
-können, Ihre Tests besser zu gestalten.
+Hier setze ich mich mit dieser Aufgabe damit auseinander, wie parametrisierte Tests mir dabei helfen
+können, meine Tests besser zu gestalten.
 
 [ENDSECTION]
 [SECTION::background::default]

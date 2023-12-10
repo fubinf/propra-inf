@@ -9,10 +9,10 @@ requires:
 ---
 [SECTION::goal::idea]
 
-Zur Organisierung von Tests benötigt man häufig Informationen, die nicht direkt in der Logik
+Zur Organisierung von Tests benötigte ich häufig Informationen, die nicht direkt in der Logik
 des Codes festgehalten sind.
-Setzen Sie sich in dieser Aufgabe damit auseinander, wie Sie Ihre Tests mit diesen Metainformationen
-verbessern können.
+Hier setze ich mich mit dieser Aufgabe damit auseinander, wie ich meine Tests mit diesen Metainformationen
+verbessern kann.
 
 [ENDSECTION]
 [SECTION::background::default]

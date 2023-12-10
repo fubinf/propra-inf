@@ -9,8 +9,7 @@ requires:
 ---
 [SECTION::goal::idea]
 
-Ziel dieser Einheit ist es sich mittels einer Recherche mit "Mocking" auseinanderzusetzen.
-Hierbei lernen Sie, was "Mocks" sind, wie man sie in pytest benutzt.
+Das Ziel dieser Einheit ist es, sich mittels einer Recherche mit "Mocking" auseinanderzusetzen. Dabei lernen ich, was "Mocks" sind und wie ich sie in pytest benutzt.
 
 [ENDSECTION]
 [SECTION::background::default]

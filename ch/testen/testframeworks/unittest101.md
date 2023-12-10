@@ -10,8 +10,7 @@ requires:
 [SECTION::goal::idea]
 
 Ziel der Aufgabe ist es zu verstehen, wie Tests in Python mittels unittest geschrieben und
-gelesen werden.
-Dies bietet die Grundlage dafür, eigene Tests zu gestalten und sich in weitere Testframeworks
+gelesen werden. Dies bietet die Grundlage dafür, eigene Tests zu gestalten und sich in weitere Testframeworks
 einzuarbeiten.
 
 [ENDSECTION]

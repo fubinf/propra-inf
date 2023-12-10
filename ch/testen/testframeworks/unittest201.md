@@ -10,7 +10,7 @@ requires:
 [SECTION::goal::idea]
 
 Ziel der Aufgabe ist es einfache Unittest zu erstellen und zu üben.
-Hier vertiefen Sie die grundlegenden Unittest-Umsetzungen.
+Hier vertiefe ich die grundlegende Unittest-Theorie.
 
 [ENDSECTION]
 [SECTION::background::default]

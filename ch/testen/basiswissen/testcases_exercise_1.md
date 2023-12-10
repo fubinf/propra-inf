@@ -9,7 +9,7 @@ requires:
 ---
 [SECTION::goal::trial]
 
-Ziel dieser Einheit ist es den Zusammenhngen der genannten Begriffe in der Praxis zu üben.
+Das Ziel dieser Einheit ist es, die Zusammenhänge der genannten Begriffe zu verstehen, damit ich sie in der Praxis anwenden kann.
 
 [ENDSECTION]
 [SECTION::background::default]
