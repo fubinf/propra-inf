@@ -1,7 +1,7 @@
 title: Unittest in Python - Anwendung
 description: |
   Wenden Sie hier erworbenes Wissen anhand eines Bestandcodes an.
-timevalue: 2.0
+timevalue: 1.0
 difficulty: 2
 profiles: TEST
 assumes: unittest101
@@ -15,15 +15,17 @@ Hier vertiefe ich die grundlegende Unittest-Theorie.
 [ENDSECTION]
 [SECTION::background::default]
 
-Verwenden Sie den `Bestandscode v0.0.1` aus dem Bereich `TODO_2_Ruhe: Pfad zum Bestandscode` für die Erstellung der folgenden Unittests.
+Verwenden Sie den `Bestandscode v0.0.1` aus dem Bereich `TODO_2_Ruhe: Pfad zum Bestandscode` für die Erstellung der folgenden Unittests. Betrachten Sie die bereits erstellten unittests unter /tests/unittests/.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-1. Erstellen Sie einen Unittest für die User Story 1.
-2. Erstellen Sie einen Unittest für die User Story 2.
-3. Erstellen Sie einen Unittest für die User Story 3.
-4. Erstellen Sie einen Unittest für die User Story 4.
+1. Erweitern Sie falls möglich die vorhandenen unittests.
+2. Erstellen Sie einen unittest für test_profile_access()
+3. Erstellen Sie einen unittest für test_logout()
+4. Erstellen Sie einen unittest für test_change_password()
+5. Erstellen Sie einen unittest für test_image_upload()
+6. Erstellen Sie einen unittest für test_reset_password()
 
 [unittest - Unit testing framework](https://docs.python.org/3.10/library/unittest.html)
 
