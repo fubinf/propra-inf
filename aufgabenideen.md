@@ -1,39 +1,182 @@
 # Aufgabenideen
 
-## ch/basis
+## ch/basis (prechelt)
 
-- Konzepte: assymmetrische Kryptographie, kryptographische Hashfunktion (ausprobieren).
-- Hat jemand den vollständigen Weg für ein System einmal durchgespielt?
-  Wenn es hier scheitert, ist die Frustrationsgrenze schnell erreicht.
+Nur das Nötigste, um arbeitsfähig zu sein:
+Technische Infrastruktur aufsetzen (Python, IDE, repo), Commits machen lernen,
+Struktur von ProPra verstehen (difficulties, chapters/taskgroups, profiles, 
+Rolle von Hints, Submission-Arten und -Formate, Arbeitszeiterfassung in Commits)
+
+Ferner evtl: asymmetrische Kryptographie (aber eher beim Thema ssh), 
+kryptographische Hashfunktion ausprobieren (aber eher beim Thema git).
 
 
-## ch/bestandscode
+## ch/altcode 
 
-- ...
+### ch/altcode/codereading (hofmann)
+
+- An kleinen Beispielen verstehen, was Codeverstehen einfach oder schwierig macht:
+  Namen, gute Hilfsabstraktionen, einfache statt clevere Logik.
+- Große Codebasis holen. Obere Baumebenen durchsehen.
+  Zweck der Level-1 und wichtiger Level-2-Verzeichnisse beschreiben.
+  Wo gibt es Doku?
+- Wo wird vermutlich Funktion X realisiert? Suche auf Basis von Namen:
+  Verzeichnisse, Dateien, Klassen. Dann ggf. Verfolgung im Code mit Ctrl-Click.
+
+### ch/altcode/refactoring (pietrak)
+
+- Am kleinen Beispiel üben: Code verständlicher machen durch
+  Rename, Extract variable, Extract method.
 
 
 ## ch/libs
 
-- Rechercheaufgabe: Bibliothek für bestimmten Zweck suchen
-  - Wo findet man Bibliotheken?
-  - Nach welchen Merkmalen wählt man eine Bibliothek aus?
-- Für Profil DSCI:
-  - Pandas installieren, pandas101
-  - Struktur der Doku verstehen
-  - Theorie: Series, DataFrame, Index, MultiIndex: Zweck, Unterschiede, Gemeinsamkeiten.
-  - Pandas-Cheatsheet: CSV-Tabelle einlesen, diverse Arten von Datenumstrukturieren ausprobieren
-  - matplotlib installieren
-  - Barplot ausprobieren
-  - Boxplot ausprobieren
-  - Multi-Boxplot für Teilmengen von Variable B gemäß der Gruppen laut Variable A
-  - einen komplexen Plot nachahmen, der visuell vorliegt und viele Konfig-Anpassungen braucht
-    (Namen der nötigen Konstrukte sind vorgegeben)
-  - Dito ohne Namensvorgaben.
+### ch/libs/stdlib (???)
+
+Hier liegen zahlreiche kleine Aufgaben, mit denen man einzelne oft benötigte Teile der 
+Python-Standardbibliothek ausprobiert.
+
+- datetime (DBS, DSCI, OPS, TEST, WEB)
+- pprint (DBS, DSCI, OPS, TEST)
+- random (SCI, OPS, TEST, WEB)
+- itertools (DBS, DSCI, OPS, TEST, WEB)
+- functools (DBS, DSCI, OPS, TEST, WEB)
+- os.path (DBS, DSCI, OPS, TEST, WEB)
+- tempfile (OPS,TEST)
+- glob (OPS, TEST)
+- shutil (OPS)
+- sqlite (DBS, WEB)
+- markup [DIFF::3]: Wahlaufgabe zum Bereich X="Structured Markup Processing Tools":
+  Wählen Sie ein Modul aus dem Bereich X der Python-Standardbibliothek aus,
+  das Sie noch nie benutzt haben.
+  Verschaffen Sie sich in der Dokumentation einen Überblick über die Funktionalität.
+  Probieren Sie das Modul mit einem nicht zu simplen Anwendungsfall aus.  
+  Abgabe: 
+  - Geben Sie den Code für Ihr Ausprobieren ab
+  - Warum habe Sie gerade dieses Modul ausgesucht?
+  - Hat das Modul eher mehr Funktionalität als Sie erwartet hätten oder eher weniger?
+    Was ist konkret mehr oder weniger da als erwartet?
+  - War das Ausprobieren eher schwieriger als erwartet oder eher einfacher?
+    Was war konkret schwieriger oder einfacher?
+  (Wenn man hierüber eine Zeile zur Deklaration von X packt, kann man obigen Textblock
+  per [INCLUDE] mehrfach wiederverwenden.)
+- protocols [DIFF::3]: Wahlaufgabe zum Bereich X="Internet Protocols and Support"
+- cryptoservice [DIFF::3]: Wahlaufgabe zum Bereich X="Cryptographic Services"
+- fileformat [DIFF::3]: Wahlaufgabe zum Bereich X="File Formats"
+- archives [DIFF::3]: Wahlaufgabe zum Bereich X="Data Compression and Archiving"
+
+### ch/libs/chooselib
+
+Bibliothek für bestimmten Zweck suchen und erlernen.
+Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
+
+- Wo findet man Bibliotheken? PyPI ("pei-pi-ei").
+  Stichwortsuche ausprobieren und sein blaues Wunder erleben ob der vielen Resultate.
+- Nach welchen Merkmalen wählt man eine Bibliothek aus?
+- Wie lernt man das Nötige für einen schmalen Anwendungsfall (Doku vs. stackoverflow)?
+
+### ch/libs/pandas
+
+- Pandas installieren, pandas101
+- Struktur der Doku verstehen
+- Theorie: Series, DataFrame, Index, MultiIndex: Zweck, Unterschiede, Gemeinsamkeiten.
+- Pandas-Cheatsheet: CSV-Tabelle einlesen, diverse Arten von Datenumstrukturieren ausprobieren
+
+### ch/libs/matplotlib
+
+Assumes pandas
+
+- matplotlib installieren
+- Doku sichten, Grundkonzepte lernen (nämlich welche?)
+- Barplot ausprobieren
+- Boxplot ausprobieren
+- Multi-Boxplot für Teilmengen von Variable B gemäß der Gruppen laut Variable A
+- einen komplexen Plot nachahmen, der visuell vorliegt und viele Konfig-Anpassungen braucht
+  (Namen der nötigen Konstrukte sind vorgegeben)
+- Dito ohne Namensvorgaben.
+
+
+## ch/methods
+
+Mögliche bessere Heimat für Altcode (ersetzt das ganze Kapitel),
+Debugging, Refactoring.
+
 
 ## ch/sprache
 
-- WebAPIs-Aufgabe um GraphQL erweitern oder dazu eine separate Aufgabe gestalten?
-- C lernen:
+### ch/sprache/sh
+
+Puh, wie man das in eine vernünftige Lernreihenfolge bringt, ist nicht offensichtlich.  
+Es wäre schön, die Trennung zwischen der Shellsprache (inkl. builtins) und den Utilities zu vermitteln.  
+Ferner den Unterschied zwischen `sh` und `bash`.
+
+Die Utilities gehören an sich nicht hierhin, sondern ins Kapitel `tools`.
+Vermutlich führt man hier von den allerwichtigsten Utilities (z.B. Dateihandling)
+das Grundkonzept ein (weil man ohne sie nichts Sinnvolles tun kann) und 
+in `tools` folgen später diverse Optionen und Varianten der Benutzung.
+
+Wörter, Kommandos, einfaches Quoting, Globbing, Redirect, Pipe.
+if, Tests, for, while, exit codes,
+shell vars, env vars, 
+single vs. double quote, backquote, 
+Quotes um Variablenverwendungen wg. möglicher Blanks,
+Shellprozeduren.
+
+Typische Idiome in Shellskripten.
+
+
+### ch/sprache/bash
+
+Die wichtigsten Erweiterungen ggü. sh bezüglich Sprache, Variablen, Builtins, etc.
+
+Ziel: Verstehen, dass sh (auf allen Plattformen vorhanden) und bash (deutlich erweitert)
+verschiedene Dinge sind.
+
+### ch/sprache/regexp (???)
+
+
+### ch/sprache/pythonpraxis (???)
+
+Eine Reihe von Aufgaben, in denen nach und nach die CLI-Anwendung
+`mlh` ("my little helpers") programmiert wird.
+Diese bündelt eine Reihe kleiner Utilities und
+setzt argparse mit subcommands ein, um das zu strukturieren.
+Diese Anwendung können die TN nach dem ProPra mitnehmen und ein langes und
+abenteuerreiches Leben lang weiterbenutzen (und ergänzen).
+
+Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
+
+- `acbd`: (for add-commit-by-date) creates a git commit with given files and message
+  where the commit datetime is the modification date of the youngest of those files.
+  Example:  
+  `mlh acbd -m"my commit msg" myfile1 myfile5`
+- `datefile`: Rename multiple files such that the name starts with the file's
+  current modification date. Report renamings on stdout. Examples:
+  - `mlh datefile myfile`  
+    myfile  -->  2023-05-16-myfile
+  - `mlh datefile --time *`
+    2023-05-16-myfile  -->  2023-05-18-1541-myfile
+    otherfile  -->  2017-10-11-1711-otherfile
+- `lsnew`: Gegeben ein Verzeichnis oder eine Liste von Dateien, listet daraus
+  die jüngste Datei sowie dem Alter nach alle weiteren, bis eine Lücke von
+  48h (default) auftaucht. Damit kann man schneller verstehen, was man in einem Verzeichnis
+  zuletzt getan hat. Format:  
+  2023-05-18 15:31  myfile.suff
+- `sgrep`: Ein simples grep, das beliebige Trenner zulässt, anstatt immer nur '\n' als
+  Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
+  Default-Trenner ist '\n\n', sodass es ganze Absätze ausspuckt anstatt Zeilen.
+  Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
+- `rename`: Rename multiple files via regexp search-and-replace.  
+  Example: `mlh rename '\.JPE?G' '.jpg' mydir/*.{JPEG,JPG}`
+- ?
+
+Jede Teilanwendung wird in einer größeren Aufgabe oder ggf. in 2-3 Teilaufgaben gebaut.
+Voran geht eine Teilaufgabe für den Rahmen mit `argparse_subcommands` (das auch bei sedrila
+benutzt wird; Struktur einfach dort abgucken)
+
+
+### ch/sprache/c
+
   - Compiler installieren, Hello World
   - Datei einlesen, Länge der längsten und der kürzesten (nichtleeren) Zeile bestimmen
   - Datei einlesen, kürzeste und längste Zeile aufbewahren (malloc)
@@ -45,6 +188,22 @@
   - jetzt das Gleiche mit einem längeren String --> Crash
   - Aus Unter-Unteraufruf gezielt eine lokale Variable im Unter-Aufruf verändern.
   - Betriebssystemaufruf mit handgeklöppelter Datenstruktur machen
+
+### ch/sprache/sql
+
+Ein paar Aufgaben zu mittelkomplexen Abfragen (mit etwas Verschacheltung)
+und mittelkomplexen Updates.  
+Assumes: sqlite
+
+### ch/sprache/othershells
+
+Alternative Shells. 
+
+- Fish1: die netten interaktiven Eigenschaften ausprobieren. Reflektion darüber.
+- Fish2: Ein Skript, das man oben für bash geschrieben (oder gelesen?) hat,
+  nach `fish` umschreiben. Reflektion darüber.
+- Zsh: Die Anpassbarkeit bestaunen. Evtl. [Oh my zsh](https://ohmyz.sh/) durchstöbern.
+  Reflektion darüber.
 
 ## ch/testen
 
@@ -94,18 +253,25 @@ Aufgabenbereiche:
 
 Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
 
-### ch/tools: bash
+### ch/tools/bash2
 
+(Das heißt bash2, weil es schon ch/sprache/bash gibt und taskgroups eindeutig sein müssen.)
+
+Seeehr unvollständig:
 - cd, ls, cd -, Shellvars als Abkürzung für lange Verzeichnisnamen, mv, cp, 
   find um junge Dateien in Baum zu finden,
   grep,
   find um Dateien mit Wort X drin zu finden, dann `ls -lt` um davon die jüngste zu finden
   (mit entsprechender Story dazu, warum das praktisch sein kann: Nadel im Heuhaufen finden)
 - .bashrc: persönlicher PATH, ein schöner Prompt, praktische aliases u.v.a.m.
-- Bash Scripting: argv, if, tests, for, Shellfunktionen, set, ...
 
 
-### ch/tools: git
+### ch/tools/git
+
+Reizvolle didaktische Aufgabe!  
+Was gehört zum Grundwissen, was ist schon deutlich fortgeschritten?  
+Welche Konzepte muss man verstehen?  
+Lernt man Idiome für häufige Situationen lieber durch selbererfinden oder wie Vokabeln?
 
 - [Git Book 1.1](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) lesen.  
   Zwecke: Änderungen an Dateien und Dateinamen aufheben; Änderungen beschreiben (commit msg); 
@@ -121,15 +287,22 @@ Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
   blobs für Dateien, trees für Verzeichnisse (bestehend aus Pfadnamen mit zugehörigem blob oder tree),
   und commits für Snapshots.
   Jedes Objekt jeder Sorte wird durch einen Hashwert identifiziert.  
-  Beispiel selber durchturnen: repo anlegen, Dateien a und subdir/b anlegen, einchecken, dann:  
+  Beispiel selber durchturnen: ...
   
-- Logs
+- Logs, Refspecs
 - Merge vs Rebase
 - Ein Repo, mehrere Origins
+- Arbeit mit Branches
+- reset
+- stash
+- cherry-pick, rebase --interactive
+- 
+
+Speziellerer Kram:
+
 - Signing
 - Squashing
 - bisect
-- cherry-pick
 
 
 ### ch/tools: Terminal-Tools
@@ -142,15 +315,11 @@ Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
 - grep, awk, sed
   - Was kann grep? awk? sed? Wahrscheinlich unnötig separate Aufgaben zu gestalten.
   - Wie verbindet man die Funktionalitäten der Tools?
-- Alternative Shells
-  - Schmökeraufgabe, dürfte nicht mehr als eine Aufgabe sein. zsh existiert und ist super
-    anpassbar, ksh "existiert", fish bietet Sane Scripting. Wenn bash Programmierungsaufgaben
-    existieren, lassen sich diese hier in fish nachimplementieren.
+
 
 
 ### ch/tools: Außerhalb des Terminals
 
-- RegEx
 - IDE
   - Unterschied IDE und Editor
   - Projekterstellung
@@ -188,41 +357,6 @@ Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
   Was vermuten Sie, wie funktioniert das? (User-Agent abfragen).
   Finden Sie eine Website, die Ihnen hilft zu prüfen, ob die Voraussetzung für ihre Vermutung
   gegeben ist.
-
-
-## mlh: my little helpers
-
-Eine CLI-Anwendung, die eine Reihe kleiner Utilities bündelt und
-argparse mit subcommands einsetzt, um das zu strukturieren.
-Diese Anwendung können die TN nach dem ProPra mitnehmen und ein langes und
-abenteuerreiches Leben lang weiterbenutzen (und ergänzen).
-
-Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
-
-- `acbd`: (for add-commit-by-date) creates a git commit with given files and message
-  where the commit datetime is the modification date of the youngest of those files.
-  Example:  
-  `mlh acbd -m"my commit msg" myfile1 myfile5`
-- `datefile`: Rename multiple files such that the name starts with the file's
-  current modification date. Report renamings on stdout. Examples:
-  - `mlh datefile myfile`  
-    myfile  -->  2023-05-16-myfile
-  - `mlh datefile --time *`
-    2023-05-16-myfile  -->  2023-05-18-1541-myfile
-    otherfile  -->  2017-10-11-1711-otherfile
-- `lsnew`: Gegeben ein Verzeichnis oder eine Liste von Dateien, listet daraus
-  die jüngste Datei sowie dem Alter nach alle weiteren, bis eine Lücke von
-  48h (default) auftaucht. Damit kann man schneller verstehen, was man in einem Verzeichnis
-  zuletzt getan hat. Format:  
-  2023-05-18 15:31  myfile.suff
-- `sgrep`: Ein grep, das beliebige Trenner zulässt, anstatt immer nur '\n' als
-  Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
-  Default-Trenner ist '\n\n', so dass es ganze Absätze ausspuckt anstatt Zeilen.
-  Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
-- `rename`: Rename multiple files via regexp search-and-replace.  
-  Example: `mlh rename '\.JPE?G' '.jpg' mydir/*.{JPEG,JPG}`
-- ?
-
 
 
 
