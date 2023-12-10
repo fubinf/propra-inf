@@ -3,9 +3,9 @@ description: |
   ...
 timevalue: 1.0
 difficulty: ?
-profiles: 
-assumes: 
-requires: 
+profiles:
+assumes:
+requires:
 ---
 [SECTION::goal::...]
 
@@ -38,4 +38,3 @@ requires:
 [INSTRUCTOR::heading]
 .
 [ENDINSTRUCTOR]
-

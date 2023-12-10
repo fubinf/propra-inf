@@ -1,14 +1,23 @@
 title: Übung Testabgrenzungen
-description: >
+description: |
   Qualitätssicherung fängt nicht beim Testen an. Hier setzen wir uns mit anderen Möglichkeiten der Qualitätsoptimierung auseinander.
-timevalue: 2
+timevalue: 2.0
 difficulty: 1
+profiles: TEST
+assumes:
+requires:
 ---
-!!! goal
-  Ziel dieser Einheit ist es sich mit den Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) in der Praxis zu üben.
+[SECTION::goal::trial]
+
+Ziel dieser Einheit ist es sich mit den Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) in der Praxis zu üben.
+
+[ENDSECTION]
+[SECTION::background::default]
 
 Testen, Debuggen und Qualitätssicherung (QS), Recherchieren Sie hierzu anhand der folgenden Leitfragen.
-Geben Sie die benutzten Quellen an.
+
+[ENDSECTION]
+[SECTION::instructions::detailed]
 
 1. Debuggen Sie folgenden Python Code:
 Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben Sie Ihre Anpassung(en).
@@ -52,7 +61,22 @@ Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben 
     2. Der Nutzer gibt sein korrektes Passwort *pwd_benutzer1* in die Passwort-Anmeldemakse ein. **Erwartetest Ergebnis:** Das Passwort wird im Klartext angezeigt.
     3. Der Nutzer klickt auf Login. **Erwartetes Ergebnis:** Der Nutzer wird auf die Startseite des Portals weitergeleitet.
 
-!!! submission
-  Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-  Halten Sie die Antworten kurz.
-  Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+[WARNING]
+[ENDWARNING]
+
+[HINT::VisibleTitle]
+[ENDHINT]
+
+[ENDSECTION]
+[SECTION::submission::reflection]
+
+Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
+Halten Sie die Antworten kurz.
+Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+Geben Sie die benutzten Quellen an.
+
+[ENDSECTION]
+
+[INSTRUCTOR::heading]
+.
+[ENDINSTRUCTOR]

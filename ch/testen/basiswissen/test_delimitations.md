@@ -1,15 +1,23 @@
 title: Testabgrenzungen
-description: >
-  Qualitätssciherung fängt nicht beim Testen an. Hier setzen wir uns mit anderen Möglichkeiten der Qualitätsoptimierung auseinander.
-timevalue: 2
+description: |
+  Qualitätssicherung fängt nicht beim Testen an. Hier setzen wir uns mit anderen Möglichkeiten der Qualitätsoptimierung auseinander.
+timevalue: 2.0
 difficulty: 1
+profiles: TEST
+assumes:
+requires:
 ---
+[SECTION::goal::idea]
 
-!!! goal
-  Ziel dieser Einheit ist es sich mit den Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) (eng.: Quality Assurance (QA)) zu beschäftigen.
+Ziel dieser Einheit ist es sich mit den Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) (eng.: Quality Assurance (QA)) zu beschäftigen.
+
+[ENDSECTION]
+[SECTION::background::default]
 
 Testen, Debuggen und Qualitätssicherung (QS), Recherchieren Sie hierzu anhand der folgenden Leitfragen.
-Geben Sie die benutzten Quellen an.
+
+[ENDSECTION]
+[SECTION::instructions::loose]
 
 1. Was versteht man unter Software-Testing?
 2. Was versteht man unter Debugging?
@@ -17,7 +25,22 @@ Geben Sie die benutzten Quellen an.
 4. Was ist der Unterschied zwischen der QS und dem Testen?
 5. Welche Methoden und Techniken werden in der QS eingesetzt?
 
-!!! submission
-  Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-  Halten Sie die Antworten kurz.
-  Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+[WARNING]
+[ENDWARNING]
+
+[HINT::VisibleTitle]
+[ENDHINT]
+
+[ENDSECTION]
+[SECTION::submission::information]
+
+Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
+Halten Sie die Antworten kurz.
+Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+Geben Sie die benutzten Quellen an.
+
+[ENDSECTION]
+
+[INSTRUCTOR::heading]
+.
+[ENDINSTRUCTOR]

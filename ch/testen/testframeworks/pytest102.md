@@ -1,20 +1,29 @@
-title: pytest - Fixtures
+title: Pytest - Fixtures
 description: |
   Lernen Sie hier, was Fixtures sind und wie sie helfen Tests zu entwerfen.
 timevalue: 1.5
 difficulty: 3
+profiles: TEST
 assumes: pytest101
+requires:
 ---
-!!! goal
-    Oftmals benötigten Sie zum Testen bestimmte Voraussetzungen, die erfüllt sein müssen.
-    Ohne eine Datenbank können Sie keine Tests über Datenbankabfragen gestalten, ohne Webserver
-    wird es schwer, Abfragen über WebAPIs zu testen.
-    Setzen Sie sich hier mit Fixtures auseinander, die diese Hürde angehen.
+[SECTION::goal::idea]
+
+Oftmals benötigten Sie zum Testen bestimmte Voraussetzungen, die erfüllt sein müssen.
+Ohne eine Datenbank können Sie keine Tests über Datenbankabfragen gestalten, ohne Webserver
+wird es schwer, Abfragen über WebAPIs zu testen.
+Setzen Sie sich hier mit Fixtures auseinander, die diese Hürde angehen.
+
+[ENDSECTION]
+[SECTION::background::default]
 
 Fixtures sind Teile von Software, die vor einem Test initialisiert werden und damit
 Voraussetzungen erfüllen, die ein System hat.
 Setzen Sie sich mithilfe der pytest-Dokumentation und bei Bedarf weiteren Quellen mit den
 folgenden Fragen auseinander:
+
+[ENDSECTION]
+[SECTION::instructions::loose]
 
 1. Wie erstellt man einfache Fixtures in pytest?
 2. Wie können Sie Fixtures verwenden, um wiederkehrende Testdaten oder -umgebungen zu verwalten?
@@ -25,11 +34,25 @@ folgenden Fragen auseinander:
 6. Wie können Fixtures automatisch für alle Tests im Scope bereitgestellt werden?
 
 [pytest - About fixtures](https://docs.pytest.org/en/stable/explanation/fixtures.
-html#about-fixtures) 
+html#about-fixtures)
 [pytest - How to use fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
 
-!!! submission
-    Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-    Halten Sie die Antworten kurz.
-    Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
-    Geben Sie Quellen an, wenn Sie andere als die gegebenen Quellen hinzuziehen.
+[WARNING]
+[ENDWARNING]
+
+[HINT::VisibleTitle]
+[ENDHINT]
+
+[ENDSECTION]
+[SECTION::submission::information]
+
+Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
+Halten Sie die Antworten kurz.
+Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+Geben Sie Quellen an, wenn Sie andere als die gegebenen Quellen hinzuziehen.
+
+[ENDSECTION]
+
+[INSTRUCTOR::heading]
+.
+[ENDINSTRUCTOR]

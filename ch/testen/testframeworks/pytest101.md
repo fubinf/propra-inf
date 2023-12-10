@@ -1,17 +1,25 @@
 title: pytest - Grundlagen
 description: |
   Lernen Sie hier den Umgang mit pytest, einer Alternative zu unittest.
-timevalue: 1
+timevalue: 1.0
 difficulty: 2
+profiles: TEST
 assumes: unittest101
+requires:
 ---
-!!! goal
-    pytest versucht Tests besser als unittest zu gestalten und mehr Funktionalität mitzubringen.
-    Lernen Sie hier, worin die Unterschiede zwischen den Frameworks liegen.
+[SECTION::goal::idea]
+
+Pytest versucht Tests besser als unittest zu gestalten und mehr Funktionalität mitzubringen. Lernen Sie hier, worin die Unterschiede zwischen den Frameworks liegen.
+
+[ENDSECTION]
+[SECTION::background::default]
 
 pytest ist eine in Python häufig genutzte Alternative zum mitgelieferten unittest.
 Arbeiten Sie sich mittels der Dokumentation von pytest und bei Bedarf weiteren Quellen mittels
 der folgenden Fragen in das Framework ein.
+
+[ENDSECTION]
+[SECTION::instructions::detailed]
 
 1. Wie wird pytest installiert?
 2. Wie unterscheiden sich Tests in pytest von denen in unittest?
@@ -23,8 +31,22 @@ der folgenden Fragen in das Framework ein.
 
 [pytest: helps you write better programs](https://docs.pytest.org/en/stable/)
 
-!!! submission
-    Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-    Halten Sie die Antworten kurz.
-    Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
-    Geben Sie Quellen an, wenn Sie andere als die gegebenen Quellen hinzuziehen.
+[WARNING]
+[ENDWARNING]
+
+[HINT::VisibleTitle]
+[ENDHINT]
+
+[ENDSECTION]
+[SECTION::submission::information]
+
+Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
+Halten Sie die Antworten kurz.
+Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+Geben Sie Quellen an, wenn Sie andere als die gegebenen Quellen hinzuziehen.
+
+[ENDSECTION]
+
+[INSTRUCTOR::heading]
+.
+[ENDINSTRUCTOR]

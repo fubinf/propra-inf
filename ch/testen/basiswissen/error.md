@@ -1,17 +1,24 @@
 title: Fehlerarten
-description: >
+description: |
   Ein Fehler ist nicht gleich einem anderen Fehler. Es gibt Unterschiede in der Bedeutung, aber auch glücklicher Weise auch unterschiedliche Begriffe dafür.
-timevalue: 1
+timevalue: 1.0
 difficulty: 1
+profiles: TEST
+assumes:
+requires:
 ---
+[SECTION::goal::idea]
 
-!!! goal
-    Ziel dieser Einheit ist es sich mit dem Begriff des Fehlers auseinanderzusetzen, um einen Fehler in seinem
-Kontext genau erfassen zu können.
+Ziel dieser Einheit ist es sich mit dem Begriff des Fehlers auseinanderzusetzen, um einen Fehler in seinem Kontext genau erfassen zu können.
+
+[ENDSECTION]
+[SECTION::background::default]
 
 Fehler, Fehlerwirkung,
 Recherchieren Sie hierzu anhand der folgenden Leitfragen.
-Geben Sie die benutzten Quellen an.
+
+[ENDSECTION]
+[SECTION::instructions::loose]
 
 1. Was versteht man unter dem Begriff "Fehler"?
 2. Welche Arten von Fehlern gibt es?
@@ -21,7 +28,22 @@ Geben Sie die benutzten Quellen an.
 5. Welche Informationen sollte ein Bug-Report enthalten?
 6. Kann man aus Fehlern lernen? (optionale, philosophische Frage)
 
-!!! submission
-    Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-    Halten Sie die Antworten kurz.
-    Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+[WARNING]
+[ENDWARNING]
+
+[HINT::VisibleTitle]
+[ENDHINT]
+
+[ENDSECTION]
+[SECTION::submission::information]
+
+Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
+Halten Sie die Antworten kurz.
+Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+Geben Sie die benutzten Quellen an.
+
+[ENDSECTION]
+
+[INSTRUCTOR::heading]
+.
+[ENDINSTRUCTOR]
