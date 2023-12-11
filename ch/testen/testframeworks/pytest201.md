@@ -4,7 +4,7 @@ description: |
 timevalue: 2.0
 difficulty: 2
 profiles: TEST
-assumes: unittest101, pytest201
+assumes: pytest101
 requires:
 ---
 [SECTION::goal::idea]

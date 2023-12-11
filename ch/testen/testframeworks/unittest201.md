@@ -4,7 +4,7 @@ description: |
 timevalue: 1.0
 difficulty: 2
 profiles: TEST
-assumes: unittest101
+assumes: unittest101, unittest102
 requires:
 ---
 [SECTION::goal::idea]
