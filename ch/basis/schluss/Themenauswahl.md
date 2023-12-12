@@ -4,6 +4,7 @@ description: |
 timevalue: 1
 difficulty: 1
 requires: Zeiterfassung
+assumes: ProPraProfile,RequiresAssumes,Schwierigkeitsstufen
 ---
 [SECTION::background::default]
 
@@ -32,8 +33,8 @@ Ziehen Sie dabei alle relevanten Belange mit in Betracht:
 - Wie viel Lust haben Sie auf solche Aufgaben?
 - Vorhandene Vorkenntnisse
 - Granularität der Aufgaben (klein oder groß)
-- Verteilung der Schwierigkeiten-Klassen
-- 
+- Verteilung der Schwierigkeitsstufen
+
 [ENDSECTION]
 [SECTION::submission::reflection]
 
@@ -53,13 +54,3 @@ Man muss verstehen können, wo die Person steht (Können, Interessen)
 und wie sie die Aufgabenbereiche der Kapitel wahrnimmt.
 
 [ENDINSTRUCTOR]
-
-
-
-
-
-
-
-
-!!! submission
-
