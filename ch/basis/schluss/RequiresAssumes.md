@@ -23,10 +23,11 @@ oder als ins ProPra mitgebrachtes Vorwissen.
 
 ### requires, required by
 
-Manche Aufgaben B setzen das konkrete Arbeitsergebnis einer anderen Aufgabe A voraus,
+Manche Aufgaben B setzen das konkrete Arbeitsergebnis (z.B. Programmcode) einer anderen Aufgabe A voraus,
 bauen also direkt auf A auf ("requires-Beziehung").
 
 Bevor man B machen kann, muss man also in jedem Fall A bearbeiten.
+Eine Einreichung von B wird nur akzeptiert, wenn man auch A einreicht oder eingereicht hat.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
