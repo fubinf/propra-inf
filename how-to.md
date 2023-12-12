@@ -112,7 +112,8 @@ continue with section-free text for characterizing the content of the chapter or
 Short definition what is to be learned (this is the prefered type) or 
 achieved (if this is mostly a stepping stone for something else). 
 
-Either short or a bulleted list of short items.
+The goal is always formulated in first-person perspective ("I").
+It is either short or a bulleted list of short items.
 Can be positioned first (this is the prefered structure) or 
 nested inside the background section (using [INNERSECTION::goal::...]) or
 after the entire background.
