@@ -3,10 +3,19 @@ description: |
   Wir hinterlegen mit wenig Mühe super nützliche Metadaten in unseren
   Commit-Nachrichten, damit wir später nachvollziehen können, 
   was wie lange gedauert hat.
-timevalue: 1
-difficulty: 1
-assumes: Git101
+timevalue: 0.5
+difficulty: 2
+requires: Git101
 ---
+[SECTION::goal::trial]
+
+Ich verstehe, wie strukturierte Commit-Nachrichten mir das Leben erleichtern können
+und habe eine solche Erleichterung (nämlich die halbautomatische Arbeitsbuchführung des ProPra)
+ausprobiert.
+
+[ENDSECTION]
+[SECTION::background::default]
+
 Viele Teams geben sich Konventionen für das Format der Commit-Nachrichten,
 damit sie mehr Nutzen aus dem git-Repo ziehen können.
 
@@ -27,38 +36,80 @@ Hier ist ein Beispiel:
 Dabei ist `Zeiterfassung` der Name der aktuellen Aufgabe (laut Dateiname, 
 siehe im Adressfeld des Browsers) und `2.5h` besagt, dass wir für die Arbeiten,
 die zu diesem Commit geführt haben, insgesamt zweieinhalb Stunden investiert haben.
-Wir benutzen eine Granularität von 15 Minuten, also 0.25h, 0.5h, 0.75h, 1h etc.
+Für unsere Zwecke reicht eine Granularität von z.B. 15 Minuten, also 0.25h, 0.5h, 0.75h, 1h etc.
 
 Mit diesen Daten kann uns später ein Skript (und wir haben ein solches Skript!)
 eine hübsche Aufstellung machen, welche Aufgaben wie lange gedauert haben
 und wie sich das mit den Zeitwerten der Aufgaben vergleicht.
+
+[WARNING]
+Unser Skript würde auch die Angabe `2:30h`, also mit Stunden und Minuten verstehen.
+Aber Vorsicht: Wenn man Punkt und Doppelpunkt verwechselt, bekommt man ungültige Daten!
+Entscheiden Sie sich für eine Notation und halten Sie diese konsequent durch.
+[ENDWARNING]
+
 Es können beliebig viele Commits zur selben Aufgabe existieren, die jeder
 einen weiteren Zeitschnipsel zur Summe dieser Aufgabe beitragen.
 
-- Haben Sie jemals zuvor eine systematische Zeiterfassung gemacht?
-  War das einfach? War es hilfreich?
-- Was vermuten Sie, wie oft sie vergessen werden, das Eintragsformat einzuhalten?
-
 Die angegebene Zeit spielt keinerlei Rolle für die Anrechnung von Aufgaben.
-Sie dient lediglich Ihnen selbst, um gegebenenfalls Ihren realistischen Zeitaufwand für
-weitere Aufgaben besser abzuschätzen, als auch für eine mögliche Anpassung der gegebenen
-Einschätzung für zukünftige Semester.
+Sie dient lediglich zwei Zwecken:
+Erstens Ihnen selbst, um gegebenenfalls Ihren realistischen Zeitaufwand für
+weitere Aufgaben besser abzuschätzen.
+Zweitens den ProPra-Autoren für eine mögliche Anpassung der Zeitwerte für zukünftige Semester.
 In diesem Sinne tragen Sie besser gar keine Zeit ein, als sich einen Wert auszudenken,
 der weit von der Realität abweicht, falls Sie keine Erfassung gemacht haben oder nicht
 machen wollen.
 
+[ENDSECTION]
+[SECTION::instructions::loose]
+
+Treffen Sie eine Entscheidung, ob Sie diese Form der Arbeitszeiterfassung
+nutzen möchten.
+
+Wir raten zu, denn Sie können dabei enorm viel lernen.
+
+[ENDSECTION]
+[SECTION::submission::reflection,snippet]
+
+Legen Sie die Markdown-Datei für diese Aufgabe an.  
+Tragen Sie die Antworten auf folgende Fragen ein:  
+
+    - Q1: Haben Sie jemals zuvor eine systematische Zeiterfassung gemacht?
+      War das einfach? War es hilfreich?
+    - Q2: Haben Sie Scheu davor, Ihre Arbeitszeiten schriftlich festzuhalten? Warum?
+    - Q3: Haben Sie Scheu davor, dass Ihre Tutor_innen diese Zeiten einsehen können? 
+      Warum, wenn die doch dafür da sind, Ihnen Lernhilfe und Rückmeldung zu geben?
+    - Q4: Werden Sie im ProPra die beschriebene Arbeitszeiterfassung machen?
+      Falls ja: Was vermuten Sie, wie oft sie vergessen werden, das Eintragsformat einzuhalten?
+
+Machen Sie einen Commit im obigen Format mit Ihrer tatsächlichen Arbeitszeit.
+
 Wenn Sie bereits einen Commit für eine Aufgabe gemacht haben, können Sie diese Angabe
 dennoch mit einem zusätzlichen Commit auch mit Werten aus dem Gedächtnis nachtragen.
-Tun Sie dies bitte für möglicherweise bereits von Ihnen bearbeitete Aufgaben.
-(Man kann bei git [mit der Option `--allow-empty`](https://git-scm.com/docs/git-commit) 
-einen Commit machen, ohne eine Datei hinzuzufügen.)
+Wenn Sie sich für Arbeitszeiterfassung entschieden haben, sollten Sie das für die
+bisher bereits von Ihnen bearbeitetem Aufgaben nun tun:
+Man kann bei git mit der [Option `--allow-empty`](https://git-scm.com/docs/git-commit) 
+einen Commit machen, ohne eine Datei hinzuzufügen.
+Machen Sie also einen separaten solchen Commit für jede bislang bearbeitete Aufgabe.
+Das geht ab dem zweiten sehr einfach und schnell.
 
-!!! instructor
-    Achten auf 
-    - `#` zu Beginn
-    - richtig geschriebene Namen (Groß-/Kleinschreibung zählt auch)
-    - Dezimalpunkt (nicht Dezimalkomma) mit Dezimalstunden oder Doppelpunkt mit Minuten, 
-    - 'h' ohne Leerzeichen 
-    
-    Natürlich könnte man den Parser für diese Einträge weniger pingelig machen, 
-    aber wir wollen die Studis an die präzise Einhaltung von Standards gewöhnen.
+Schauen Sie sich dann den Bericht an, den
+[ENDSECTION]
+
+[INSTRUCTOR::Bitte ggf. zureden]
+Für diese Aufgabe verlangen wir einmalig einen Commit im korrekten Format:
+- `#` zu Beginn
+- richtig geschriebene Namen (Groß-/Kleinschreibung zählt auch)
+- Dezimalpunkt (nicht Dezimalkomma) mit Dezimalstunden oder Doppelpunkt mit Minuten, 
+- 'h' ohne Leerzeichen 
+
+Wenn die Antwort bei Q4 ja lautet, ist alles in Ordnung.  
+Dann bitte mit `sedrila student ...TODO_2` den Bericht auf Plausibilität prüfen.
+
+Lautet sie nein, dann bitte Q2 und Q3 sichten und allen, die sich offenbar nicht ganz sicher sind,
+ermutigend zureden: Wir sind auf Ihrer Seite! Arbeitszeiterfassung hilft beim Lernen!  
+
+Wenn die sich dann umentscheiden, bitte eine korrigierte Einreichung fordern,
+damit dem Gedanken wirklich die schriftliche Erklärung folgt und sich der Gedanke 
+dadurch festsetzt.
+[ENDINSTRUCTOR]
