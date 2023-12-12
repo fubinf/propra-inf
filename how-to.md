@@ -107,6 +107,9 @@ In contrast, chapters' and taskgroups' `index.md` files can optionally use
 goal and background sections at their top, but then always
 continue with section-free text for characterizing the content of the chapter or taskgroup.
 
+The page title is a `<h1>` heading, `[SECTION::...]` macros generate a `<h2>` heading,
+so inside sections you should use (if needed) `### ` headings.
+
 ### `[SECTION::goal::...]`
 
 Short definition what is to be learned (this is the prefered type) or 
