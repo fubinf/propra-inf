@@ -1,6 +1,6 @@
 # Aufgabenideen
 
-## ch/basis (prechelt)
+## ch/basis (prechelt+hofmann)
 
 Nur das Nötigste, um arbeitsfähig zu sein:
 Technische Infrastruktur aufsetzen (Python, pip, IDE, repo), 
@@ -31,7 +31,7 @@ Nutzung existierender Loggingfunktionalität, um grobe Abläufe in der Software 
 Geht natürlich nur, wenn passende Info in den Logs vorhanden ist (existierende Logs)
 oder beschafft werden kann (loglevel konfigurieren, dann passende Aktionen in der Software auslösen).
 
-### altcode/stepping (hofmann)
+### altcode/stepping (pietrak+hofmann)
 
 Der Debugger ist nicht nur hilfreich zum Defektlokalisieren, sondern eventuell auch
 zum Programmverstehen, weil sich der Computer niemals bei der Frage vertut,
@@ -164,8 +164,10 @@ verschiedene Dinge sind.
 
 ### sprache/regexp (hüster?)
 
+Basiskurs in "einfach", fortgeschrittenes Zeug in "mittel".
+Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall kennenlernt.
 
-### sprache/python1 (alle gemeinsam)
+### sprache/python1 (pietrak+alle gemeinsam?)
 
 Aufgaben mit DIFF1 als unvollkommene Starthilfe für Leute mit zu niedrigem Wissen.
 Wiederholung der absoluten Essentials: 
@@ -234,17 +236,19 @@ benutzt wird; Struktur einfach dort abgucken)
 
 ### sprache/c
 
-  - Compiler installieren, Hello World
-  - Datei einlesen, Länge der längsten und der kürzesten (nichtleeren) Zeile bestimmen
-  - Datei einlesen, kürzeste und längste Zeile aufbewahren (malloc)
-  - malloc-Puffer überschreiten, Crash erleben
-  - lokale Variable int a = 7, b = 9; Stapel-Layout anschauen und verstehen.
-    Wohin führt push: Zu höheren Adressen oder niedrigeren?
-    Wie groß sind ints? Wie ist die Endianness?
-  - lokale Variable int16 a = 3, b = 4; *(char*)&a = "abcd"; a und b ansehen
-  - jetzt das Gleiche mit einem längeren String --> Crash
-  - Aus Unter-Unteraufruf gezielt eine lokale Variable im Unter-Aufruf verändern.
-  - Betriebssystemaufruf mit handgeklöppelter Datenstruktur machen
+- Compiler installieren, Hello World
+- Datei einlesen, Länge der längsten und der kürzesten (nichtleeren) Zeile bestimmen
+- Datei einlesen, kürzeste und längste Zeile aufbewahren (malloc).
+  Wenn die längste Zeile sehr lang werden kann, muss man den Puffer immer wieder größer
+  neu allokieren und den Inhalt umkopieren.
+- malloc-Puffer überschreiten, Crash erleben
+- lokale Variable int a = 7, b = 9; Stapel-Layout anschauen und verstehen.
+  Wohin führt push: Zu höheren Adressen oder niedrigeren?
+  Wie groß sind ints? Wie ist die Endianness?
+- lokale Variable int16 a = 3, b = 4; *(char*)&a = "abcd"; a und b ansehen
+- jetzt das Gleiche mit einem längeren String --> Crash
+- Aus Unter-Unteraufruf gezielt eine lokale Variable im Unter-Aufruf verändern.
+- Betriebssystemaufruf mit handgeklöppelter Datenstruktur machen
 
 ### sprache/sql
 
