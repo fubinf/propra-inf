@@ -18,7 +18,11 @@ z.B. Webentwickler_in, Systemprogrammierer_in, Testspezialist_in
 oder Datenbankspezialist_in.
 Für jedes Profil braucht man unterschiedliches Spezialwissen.
 Außerhalb der Profile gibt es viel gemeinsames Allgemeinwissen.
-Beides bieten wir Ihnen im ProPra zum Lernen an.
+
+Das Programmierpraktikum soll vor allem allgemeines Handwerkszeug vermitteln,
+das für so ziemlich jede praktisch tätige Informatiker_in relevant ist.
+Darüber hinaus bietet es aber in begrenztem Umfang auch Aufgaben an,
+die spezieller und relevant vorrangig für einzelne berufliche Profile sind.
 
 An den Aufgaben des Allgemeinwissens stehen keine besonderen Markierungen;
 Aufgaben mit Spezialwissen sind mit dem Profil (evtl. mehrere) markiert,
@@ -39,18 +43,27 @@ Auswahl von Aufgaben; Sie dürfen und sollten Aufgaben vorrangig nach
 Ihrem _spezifischen_ Interesse für eine Aufgabe aussuchen und sich nicht
 zu sehr von den Profilen dirigieren lassen.
 
-Hier kommt die Charakterisierung der Profile:
+Jedes einzelne dieser Gebiete ist ungeheuer groß und wir behandeln davon hier
+nur ein paar Grundlagen, aber wer sich für diese Themengebiete interessiert,
+kann hier wunderbar schnuppern und erste Schritte machen.
+
+Hier kommt die Charakterisierung der Themen der Profile:
+
 
 ### DBS: Datenbankentwicklung
 
-Hierzu gehören beispielsweise Themen wie Datenbankentwurf, SQL, DBMS
-oder typische Fehler bei der Datenbankprogrammierung in Anwendungssystemen.
+Installation, Betrieb und Konfiguration von Datenbankmanagementsystemen (DBMS);
+SQL-Programmierung; Einbindung von DBMS in die Anwendungsprogrammierung (ORM);
+typische Fehler bei der Datenbankprogrammierung in Anwendungssystemen.
 
 
 ### DSCI: Data Science
 
-Ein paar ganz geringe Grundlagen zum Datenhandling, zur Datenvisualisierung
-und einem der diversen Frameworks zum Maschinellen Lernen  TODO_3: Behandeln wir das? 
+Die Welt von Big Data, Datenanalyse und Visualisierung.
+Natürlich gibt es hier keinen Machine-Learning-Kurs, aber wir lernen einige Teile
+aus dem Werkzeugkasten von Data Scientists kennen, die man auch für viele
+andere Zwecke prima brauchen kann, z.B. 
+ein paar Grundlagen zum Datenhandling und zur Datenvisualisierung.
 
 
 ### OPS: Systemadministration
@@ -60,7 +73,11 @@ Aufgaben zur lokalen Systemadministration und dem Netzwerkmanagement.  TODO_3: C
 
 ### SYS: Systemprogrammiererung
 
-Kleiner Ausflug in die C-Programmierung, insbes. Zeiger, manuelle Speicherverwaltung.
+Wir machen einen kleinen Ausflug in die C-Programmierung, 
+wo man die einzelne Speicherstelle noch wertschätzt und
+bisweilen die Bits mit Vornamen kennen muss.
+Die Programmierung ist frickelig, aber ungeheuer flexibel, und
+was dabei herauskommt, läuft (wenn man alles richtig macht) rasend schnell und ressourcensparend.
 
 
 ### TEST: Softwaretest
@@ -78,6 +95,10 @@ Ein riesiges Themenfeld.
 Hierzu gehören beispielsweise Themen wie
 HTTP, HTML, CSS, JavaScript, Cookies, der Request-Zyklus
 und Webentwicklungs-Frameworks.
+
+Webentwicklung ist das Brot-und-Butter-Geschäft der größten Gruppe von Menschen, die heute Software entwickeln.
+Wir lernen vor allem die Grundlagen, die für ein korrektes mentales Modell nötig sind,
+damit man später verlässlich weiteres Wissen daraufschichten kann.
 
 Dieses Profil hat sein komplettes eigenes Kapitel.
 
