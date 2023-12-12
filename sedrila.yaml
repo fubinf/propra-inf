@@ -1,5 +1,5 @@
-title: Programmierpraktikum WiSe 2023/24 Bachelor Informatik FU Berlin
-shorttitle: ProPra2023
+title: Programmierpraktikum SoSe 2024, Bachelor Informatik, FU Berlin
+shorttitle: ProPra2024
 baseresourcedir: baseresources
 chapterdir: ch
 templatedir: templates
@@ -21,7 +21,7 @@ blockmacro_topmatter:
   section_submission_snippet: ""
   section_submission_trace: ""
   section_submission_program: ""
-  hint: "## Hinweis (nur bei Bedarf): "
+  hint: "**Hinweis (nur bei Bedarf):** "
   instructor: "## Kontrolle Tutor_in: "
   warning: "**Warnung:** "
 instructors:
@@ -56,6 +56,9 @@ chapters:
       - title: "IDE installieren und in Betrieb nehmen"
         shorttitle: IDE
         slug: ide
+      - title: "Struktur des ProPra verstehen"
+        shorttitle: ProPraStruktur
+        slug: schluss
   - title: "Die Programmiersprache"
     shorttitle: Programmiersprache
     slug: sprache
