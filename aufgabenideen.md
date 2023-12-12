@@ -51,11 +51,103 @@ Dies mit einem geeigneten Szenario verdeutlichen, vermutlich mit einem nicht soo
   Vielleicht als zwei Aufgaben: 
   Erster Teil zum Lernen der Operationen und ihres Zwecks in Stil _detailed_/DIFF2,
   Rest dann selbständig in DIFF3. Der Code darf nicht allzu undurchsichtig sein.
-- Kompliziertere Refactorings in der IDE ausprobieren:
-  Push method up/down, add/remove parameter, ...
-- Gilded Rose
 
 Wie viel kann hier VS Code überhaupt?
+
+Hier sollen Methoden und Gründe fürs Refactoring beleuchtet werden.
+Guter Anlaufpunkt: <https://refactoring.guru/>
+
+- IDE-Werkzeuge
+  - Rename
+  - Extract Variable
+  - Extract Method
+  - Extract Class
+  - Pull Members Up/Push Members Down
+  - Invert Boolean
+  - Convert to Python Package/Module
+- Code Smells
+
+  Keine Debatte über Sinn und Unsinn von "Clean Code", aber ein Gefühl dafür geben, welcher
+  Code problematisch sein kann.
+
+- Regeln für "guten Code"
+  - Effektive Nutzung von Comments
+  - Assertions
+  - Tests
+- Grenzen der IDE
+  - Polymorphismus
+  - dynamische Typisierung
+    - TODO_3 Aufgabe für Typing in Python nötig
+
+### altcode/debugging (pietrak)
+
+Soll ein Verständnis dafür aufbauen, welche Arten von Bugs existieren und wie man diese vermeidet bzw.
+ihnen auf die Schliche kommt.
+
+- Klassifikation von Bugs
+
+  Basierend auf <https://yurichev.com/mirrors/knuth1989.pdf> und "Find the Bug: A Book of Incorrect Programs".
+  Soll Auge und Hirn darauf schulen, welche Bugs beim Programmieren auftreten können.
+  Diese Aufgaben sollen eine Auseinandersetzung sein mit den Problemen sein.
+  Grundlagenarbeit, also DIFF2 mit viel Erklärung.
+  Jede Aufgabe beinhaltet einen Code, der das relevante Problem beinhaltet.
+  Abgaben bestehen aus Beschreibung der problematischen Stelle und Lösungsansatz.
+  15-30 Minuten je Aufgabe, je nach Komplexität.
+
+  - A: Fehlerhafte Algorithmen und Überraschungen
+    - Off-by-one-Fehler
+    - Logische Fehler
+  - B: Irrtümer (Blunder)
+    - Falscher Variablenname wird genutzt
+    - Auswertung eines Ausdrucks hat einen Fehler
+  - D: Falsche Handhabung von Daten
+    - Index-Fehler
+    - Grenzwertprobleme
+  - F: Vergessenes (Forgotten)
+    - Initialisierungsfehler (schwierig in Python)
+    - Fehlende Ausdrücke
+    - Ausdruck steht am falschen Ort
+
+- Mindset
+  
+  Basierend auf "Debugging by Thinking - A Multidisciplinary Approach". 
+  Studierende sollen das Buch als PDF über die Uni-Bibliothek beziehen und ausgewählte Stellen lesen.
+  Soll trainieren zu verstehen, wie Problemlösungsstrategien zum Finden von Bugs funktionieren.
+  Grundlagenarbeit, also DIFF2.
+  Erklärende Texte stehen aber in der Quelle.
+  Abgabe besteht aus Reflexion.
+  
+  TODO_2_pietrak Aufgaben sind noch zu lang.
+  
+  Way of the...
+  - Detective
+  - Computer Scientist
+  - Engineer
+  - Mathematician
+  - Psychologist
+  - Safety Expert
+
+- Werkzeuge zum Debuggen
+TODO_1_pietrak Eine richtige Motivation für diesen Teil schreiben
+  
+  - IDE
+  Die PyCharm-Dokumentation bietet einen großen Überblick über die Funktionen 
+  <https://www.jetbrains.com/help/pycharm/part-1-debugging-python-code.html#start-debugger-session>.
+  Besondere Aufgaben sollten zu allen wichtigen Funktionen erfolgen.
+    - Breakpoints, Conditional Breakpoints 
+    - Step Over, Step Into, Step Into My Code, Step Out
+    - Watches
+  - pdb <https://docs.python.org/3/library/pdb.html>
+    - Handhabung
+    - Post Mortem Debugging
+    - Verbindung mit pytest als Testrunner
+  - printf-Debugging
+  - Logging
+  - Automatisierte Tests (Verweis auf [ch/testen/testframeworks](ch/testen/testframeworks)?)
+
+- Ablauf des Debugging
+  - Reproduktion 
+  - Hypothesenbildung und Hypothesenprüfung
 
 ## ch/libs
 
