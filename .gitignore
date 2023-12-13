@@ -5,7 +5,7 @@ out.bak/
 
 #vscode
 *.code-workspace
-settings.json
+.vscode/
 
 #macos
 .DS_Store

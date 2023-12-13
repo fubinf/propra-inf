@@ -31,18 +31,15 @@ ordnungsgemäß funktioniert, und Performance- und Leistungstests prüfen die So
 und Bedingungen.
 
 In diesem Kapitel geht es um die Qualität der Software, die durch Testmanager, Test Leiter, Test Analysten,
-Testautomatisierer und Test Architekten (allg. Tester) optimiert werden kann. Hier betrachten wir den Nutzen des
-Testens (Return On Invest), erlenen die Grundlagen des Testens, betrachten Konzeptionen und lassen den Spaß, das
-Programmieren, definitiv im Thema Testautomatisierung nicht außen vor.
+Testautomatisierer und Test Architekten (allg. Tester) optimiert werden kann. Hier erlenen die Grundlagen des
+Testens, betrachten Konzeptionen und lassen den Spaß, das Programmieren, definitiv im Thema Testautomatisierung
+nicht außen vor.
 
 ```mermaid
 graph TD
-    A[Softwaretesten] -->|enthält| B[Basiswissen]
-    B --> BA[Übung: Fehler, Defekt, Fehlerart]
-    B --> BB[Übung: Testen, Debuggen, Qualitätssicherung]
-    B --> BC[Übung: Testfall, Testsammlung, Testplan, Testdaten]
+    A[Softwaretesten] --> B[Basiswissen]
 
-    A -->|enthält| C[SuT]
+    A --> C[SuT]
     C --> CA[Vorstellung des SuT]
     CA --> CA1[Bestandscode v1.0.0]
     CA1 -.-> CA2[Bestandscode v1.1.0]
@@ -51,14 +48,15 @@ graph TD
     CB --> CB1[Übung: IDE]
     CB --> CB2[Übung: GitHub Action]
 
-    A -->|enthält| D[Manuelles Testen]
+    A --> D[Manuelles Testen]
     D --> DA[Übung: Testfälle erstellen]
     DA -.-> DB[Übung: Fehlerberichterstattung]
 
-    A -->|enthält| E[Automatisiertes Testen]
+    A --> E[Automatisiertes Testen]
     E --> EA[Testautomatisierungstools]
-    EA --> EA0[Übung: Unittest]
+    EA --> EA0[Unit Tests]
     EA0 --> EA1[Übung: Pytest]
+    EA0 --> EA01[Übung: Unittest]
     EA --> EA2[Übung: Robot Framework]
     EA --> EA3[Übung: Cypress]
     EA --> EA4[Übung: Cycumber mit Cypress]
@@ -68,7 +66,7 @@ graph TD
     EA6 --> EA61[Übung: Verteilte LuP-Tests]
     EA --> EA7[Übung: SonarQube]
     EA --> EA8[Übung: Nessus]
-    EA0 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
+    EA01 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
     EA1 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
     EA2 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
     EA3 ---> EA9[Übung: Pipelining GitHub Action / Gitlab CI]
@@ -89,26 +87,19 @@ graph TD
     EB --> EB5[Übung: Sicherheitstests]
     EB --> EB6[Übung: Linter]
 
-    A -->|enthält| F[Testdatenmanagement]
-    F --> FA[Übung: Statischer TF]
-    FA -.-> FB[Übung: Generischer TF]
-
-    A -->|enthält - optional| G[KI Testen]
-    G --> GA[Einführung]
-
     %% Stil für die Knoten
     style B fill:#9BCD9B,color:Black
-    style BA fill:#9BCD9B,color:Black
-    style BB fill:#9BCD9B,color:Black
-    style BC fill:#9BCD9B,color:Black
+    style EA0 fill:#9BCD9B,color:Black
+    style EA1 fill:#9BCD9B,color:Black
+    style EA01 fill:#9BCD9B,color:Black
 
     style CA1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style CB1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5 
     style CB2 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5 
-    style CB stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5 
+
     style DA stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style DB stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
-    style EA0 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+    style EA01 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA1 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA2 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EA3 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
@@ -123,31 +114,78 @@ graph TD
     style EB4 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EB5 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
     style EB6 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
-    style FA stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
-
 
     style CA2 stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
-    style FB stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
     style EA51 stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
     style EA61 stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
 
     style CA3 stroke:#AAAA55,stroke-width:2px,stroke-dasharray:5,5
 ```
 
-Legende:
+### Ausblick
+
+Das Feld des Softwaretestens birgt noch zahlreiche weitere spezialisierte Themen, die hier aktuell noch nicht behandelt werden konnten. Für interessierte hier ein kleiner Überblick:
+
+```mermaid
+graph TD
+    A[Ausblick]
+
+    A --> F[Testfalltypen]
+    F --> FA[Statischer TF]
+    FA -.-> FB[Generischer TF]
+    A --> O[Testmanagement]
+    O --> OA[Testkonzepte]
+    A --> P[Testdatenmanagement]
+    A --> G[AI Testing]
+    A --> H[Mobile Testing]
+    A --> I[Security Testing]
+    A --> J[Automotive Testing]
+    A --> K[Agile Testing]
+    A --> L[Game Testing]
+    A --> M[Model Based Testing]
+    A --> N[Usability Testing]
+```
+
+### Legende
 
 ```mermaid
 graph TD    
     %% Legende
     L1["Schwarzer Inhalt: Es besteht noch keine Aufgabe für diesen Bereich"]
+```
+
+```mermaid
+graph TD    
+    %% Legende
     L2["Neongrüner Inhalt: Aufgabe wurde umgsetzt"]
-    L3["Rote gestrichelte Linie: Bezieht sich auf Bestandscoide V1"]
-    L4["Blaue gestrichelte Linie: Bezieht sich auf Bestandscoide V2"]
-    L5["Gelbe gestrichelte Linie: Bezieht sich auf Bestandscoide V3"]
 
     %% Stil für Legendenknoten
     style L2 fill:#9BCD9B,color:Black
+```
+
+```mermaid
+graph TD    
+    %% Legende
+    L3["Rote gestrichelte Linie: Bezieht sich auf Bestandscoide V1"]
+
+    %% Stil für Legendenknoten
     style L3 stroke:#ff6347,stroke-width:2px,stroke-dasharray:5,5
+```
+
+```mermaid
+graph TD    
+    %% Legende
+    L4["Blaue gestrichelte Linie: Bezieht sich auf Bestandscoide V2"]
+
+    %% Stil für Legendenknoten
     style L4 stroke:#00FFFF,stroke-width:2px,stroke-dasharray:5,5
+```
+
+```mermaid
+graph TD    
+    %% Legende
+    L5["Gelbe gestrichelte Linie: Bezieht sich auf Bestandscoide V3"]
+
+    %% Stil für Legendenknoten
     style L5 stroke:#AAAA55,stroke-width:2px,stroke-dasharray:5,5
 ```
