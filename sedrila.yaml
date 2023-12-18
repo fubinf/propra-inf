@@ -98,6 +98,9 @@ chapters:
       - title: "Mindset"
         shorttitle: mindset
         slug: mindset
+      - title: "Klassifikation von Bugs"
+        shorttitle: classification
+        slug: classification
   - title: "Bibliotheken: Die Wiederverwendung fremder Bausteine"
     shorttitle: Bibliotheken
     slug: libs
