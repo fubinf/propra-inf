@@ -100,6 +100,7 @@ def showday(daynumber: int, isleapyear: bool) -> (str, int):
         "July",
         "August",
         "September",
+        "October",
         "November",
         "December",
     )
@@ -133,7 +134,7 @@ def showday(daynumber: int, isleapyear: bool) -> (str, int):
             if daynumber < el.days:
                 return el.name, daynumber
             daynumber = daynumber - el.days
-    raise ValueError("daynumber").with_traceback(daynumber)
+    raise ValueError("daynumber")
 
 
 print(showday(1, False))
