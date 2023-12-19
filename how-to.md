@@ -6,13 +6,24 @@ The target audience of this document is ProPra authors, not instructors and not 
 ## Difficulty levels
 
 Writing a task works differently for different levels of task difficulty.  
+
 Low-difficulty tasks (levels 1 and 2) have lots of detail and guidance in the task description.  
+We do not assume these students can easily discriminate relevant from irrelevant information.
+This means they have a hard time finding suitable pieces in a large documentation
+and they need to be explained the significance of important information.
+This, in turn, means we have to guide them to relevant information by pointing out
+specific sources, sections in sources, names of commands/flags/classes/methods etc. they can use,
+or sometimes providing exact pieces of code they need directly.
+
 High-difficulty tasks (level 4) in contrast rely a lot on external documentation and
 the students' own thinking.  
-Medium-difficulty tasks (level 3) have a mix of both.
+
+Medium-difficulty tasks (level 3) either have a mix of both or 
+are simple cases of what might otherwise be level 4.
 
 There will be a tendency to underestimate how difficult a task is for the students,
-so make sure a level-3 task feels a lot more like level-2 than like level-4.
+so make sure a level-3 task leans more towards level-2 than towards level-4.
+See macro `[HINT]` below.
 
 
 ## The role of motivation
@@ -199,7 +210,7 @@ Submission:
   Students submit an entire program with many moving parts.
 
 
-## Other markup and its use
+## Other markup: INNERSECTION, WARNING, HINT, INCLUDE, hyperlinks
 
 - `[INNERSECTION::type::subtypes]`/`[ENDINNERSECTION]`:
   The same functionality as `[SECTION::type::subtypes]`, but used within some other section
@@ -214,6 +225,8 @@ Submission:
   Students can fold out the hint body when they recognize they need more help.
   Use this in particular for making sure a task that is intended to be
   difficulty 3 does not end up being difficulty 4.
+  Use it also to make it likely that a task at difficulty 2 is interesting enough for
+  somebody who would rather do difficulty 3.
 - `[INCLUDE::filename]`: inserts the entire contents of file `filename` verbatim
   into the Markdown input stream at this point.
   Useful for having small Python programs (etc.) as separate files during development,
