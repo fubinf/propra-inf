@@ -38,27 +38,33 @@ siehe im Adressfeld des Browsers) und `2.5h` besagt, dass wir für die Arbeiten,
 die zu diesem Commit geführt haben, insgesamt zweieinhalb Stunden investiert haben.
 Für unsere Zwecke reicht eine Granularität von z.B. 15 Minuten, also 0.25h, 0.5h, 0.75h, 1h etc.
 
-Mit diesen Daten kann uns später ein Skript (und wir haben ein solches Skript!)
-eine hübsche Aufstellung machen, welche Aufgaben wie lange gedauert haben
-und wie sich das mit den Zeitwerten der Aufgaben vergleicht.
+Mit diesen Daten kann uns später ein Skript eine Aufstellung machen, welche Aufgaben wie
+lange gedauert haben und wie sich das mit den Zeitwerten der Aufgaben vergleicht.
 
-[WARNING]
+[NOTICE]
 Unser Skript würde auch die Angabe `2:30h`, also mit Stunden und Minuten verstehen.
 Aber Vorsicht: Wenn man Punkt und Doppelpunkt verwechselt, bekommt man ungültige Daten!
-Entscheiden Sie sich für eine Notation und halten Sie diese konsequent durch.
-[ENDWARNING]
+Entscheiden Sie sich für eine Notation und verwenden Sie diese konsequent.
+[ENDNOTICE]
 
-Es können beliebig viele Commits zur selben Aufgabe existieren, die jeder
-einen weiteren Zeitschnipsel zur Summe dieser Aufgabe beitragen.
+Sollten Sie mehrere Commits zu derselben Aufgabe anfertigen, geben Sie jeweils die Zeit an,
+die dieser Commit beansprucht hat. Das Ausrechnen der Summe der Commits erfolgt automatisch.
+Auf diesem Weg ist es auch möglich, Zeiten nachträglich einzutragen.
 
 Die angegebene Zeit spielt keinerlei Rolle für die Anrechnung von Aufgaben.
 Sie dient lediglich zwei Zwecken:
-Erstens Ihnen selbst, um gegebenenfalls Ihren realistischen Zeitaufwand für
-weitere Aufgaben besser abzuschätzen.
-Zweitens den ProPra-Autoren für eine mögliche Anpassung der Zeitwerte für zukünftige Semester.
+
+1. Sie gibt Ihnen selbst ein Gefühl dafür, wie viel Zeit Sie tatsächlich in weiteren Aufgaben
+   benötigen könnten.
+2. Sie ermöglicht es, den eingeplanten Zeitwert von Aufgaben in zukünftigen Iterationen des
+   Programmierpraktikums anzupassen.
+
 In diesem Sinne tragen Sie besser gar keine Zeit ein, als sich einen Wert auszudenken,
 der weit von der Realität abweicht, falls Sie keine Erfassung gemacht haben oder nicht
 machen wollen.
+
+Es gibt oben rechts auf jeder Seite ein einfaches Timing-Script, das Sie verwenden können.
+Es liefert auch den Namen der aktuellen Aufgabe.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
@@ -66,7 +72,8 @@ machen wollen.
 Treffen Sie eine Entscheidung, ob Sie diese Form der Arbeitszeiterfassung
 nutzen möchten.
 
-Wir raten zu, denn Sie können dabei enorm viel lernen.
+Wir raten dazu, denn Sie können dabei viel lernen.
+Sie werden in der Praxis häufig vor dem Problem stehen, den Zeitaufwand einer Aufgabe von vornherein einzuschätzen. Dabei ist konkrete Erfahrung, wie sie hier erworben werden kann, sehr hilfreich.
 
 [ENDSECTION]
 [SECTION::submission::reflection,snippet]
@@ -84,22 +91,17 @@ Tragen Sie die Antworten auf folgende Fragen ein:
 
 Machen Sie einen Commit im obigen Format mit Ihrer tatsächlichen Arbeitszeit.
 
-Wenn Sie bereits einen Commit für eine Aufgabe gemacht haben, können Sie diese Angabe
-dennoch mit einem zusätzlichen Commit auch mit Werten aus dem Gedächtnis nachtragen.
 Wenn Sie sich für Arbeitszeiterfassung entschieden haben, sollten Sie das für die
 bisher bereits von Ihnen bearbeitetem Aufgaben nun tun:
 Man kann bei git mit der [Option `--allow-empty`](https://git-scm.com/docs/git-commit) 
 einen Commit machen, ohne eine Datei hinzuzufügen.
 Machen Sie also einen separaten solchen Commit für jede bislang bearbeitete Aufgabe.
-Das geht ab dem zweiten sehr einfach und schnell.
-
-Schauen Sie sich dann den Bericht an, den
 [ENDSECTION]
 
 [INSTRUCTOR::Bitte ggf. zureden]
 Für diese Aufgabe verlangen wir einmalig einen Commit im korrekten Format:
 - `#` zu Beginn
-- richtig geschriebene Namen (Groß-/Kleinschreibung zählt auch)
+- richtig geschriebene Dateinamen (Groß-/Kleinschreibung zählt auch)
 - Dezimalpunkt (nicht Dezimalkomma) mit Dezimalstunden oder Doppelpunkt mit Minuten, 
 - 'h' ohne Leerzeichen 
 
