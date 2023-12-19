@@ -19,9 +19,10 @@ eine Begriffsklärung durch:
   **Symptom (engl. _symptom_)** genannt. 
 - Ein **Defekt (engl. _defect, fault_)** verursacht ein Versagen.
   Häufig wird das Wort **Bug** synonym benutzt.
+  Dies ist eine strukturelle Eigenschaft des Codes und kann damit auch nur in diesem behoben werden.
 - Ein **Fehler (engl. _error_)** führt zum Defekt. 
   Es liegt ein falsches Verhalten (engl. _commission_) oder ein Versäumnis (engl. _omission_) vor.
-  Damit entsteht ein Fehler immer durch einen Entwickler, entweder im Code, bei den 
+  Damit entsteht ein Fehler immer während der Entwicklung, entweder im Code, bei den 
   Anforderungen oder beim Entwurf.
 
 Wenn Sie bereits Berührungspunkte mit der Vorlesung "Softwaretechnik" haben, kommt Ihnen diese 
