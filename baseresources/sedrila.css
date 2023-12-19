@@ -75,6 +75,27 @@ header {
     padding: 1em 0.5em 0.5em 0.5em;
     background-color: var(--main-color);
     font-size: 100%;
+    position: fixed;
+}
+
+.breadcrumbs {
+  float: left;
+}
+
+#timer {
+  float: right;
+}
+#timer::before {
+  content: "⏲ ";
+}
+#timer .play::before {
+  content: "▶";
+}
+#timer .pause::before {
+  content: "⏸";
+}
+#timer .stop::before {
+  content: "⏹";
 }
 
 li {
@@ -89,9 +110,7 @@ summary {
 .admonition,
 .section-goal,
 .section-submission,
-.blockmacro-hint,
-.blockmacro-instructor,
-.blockmacro-warning {
+.blockmacro {
     padding: 0.0em 0.9em;
     margin: 0.4em 0 0.8em 0;
     border: 1px solid gray;
@@ -176,6 +195,10 @@ summary {
 
 .blockmacro-warning {
     background-color: #c003;
+}
+
+.blockmacro-notice {
+    background-color: #06c3;
 }
 
 /********** Admonitions (TODO_2 phase out): */
@@ -275,4 +298,48 @@ summary {
 .indent3,
 .indent4 {
     padding: 0.15em 0em;
+}
+
+@media (prefers-color-scheme: dark) {
+    body, pre {
+        background-color: #222;
+        color: lightgray;
+    }
+
+    .section-goal {
+        background-color: #ae8b0c;
+        color: lightgray;
+    }
+
+    .section-background {
+        background-color: #444;
+        color: lightgray;
+    }
+
+    a:link {
+        color: var(--main-color);
+        filter: brightness(80%);
+    }
+
+    a:visited {
+        color: var(--main-color);
+        filter: brightness(50%);
+    }
+
+    header {
+        background-color: darkolivegreen;
+        color: lightgray;
+    }
+
+    footer, code {
+        background-color: #000;
+        color: lightgray;
+    }
+
+    .admonition,
+    .section-goal,
+    .section-submission,
+    .blockmacro {
+        box-shadow: 6px 6px 5px #000;
+    }
 }
