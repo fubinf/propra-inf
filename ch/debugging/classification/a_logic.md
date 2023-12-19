@@ -108,7 +108,8 @@ in dem die Schlüssel die Schenker und die Werte die Beschenkten darstellen.
 Das ist gar nicht so trivial: Die Funktion muss die Situation verhindern, 
 in der die ersten N-1 Personen unter sich selbst Geschenke verteilen und 
 die letzte Person nur noch sich selbst beschenken könnte.
-Im folgenden Python-Code kann in einigen Iterationen aber genau dieser Fall auftreten:
+Im folgenden Python-Code kann in einigen Iterationen bei der Handhabung dieses Falls
+ein Defekt auftreten, durch den eine Person doppelt beschenkt wird:
 
 ```python
 import random
@@ -170,7 +171,7 @@ print(secret_santa(test_input))
 # possible wrong output:   {'Tom': 'Donna', 'Joe': 'Tom', 'Donna': 'Susan', 'Susan': 'Paul', 'Paul': 'Susan'}
 ```
 
-Versuchen Sie den folgenden Hinweisen zu folgen, um den Bug zu finden:
+Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 1. Es werden zwei Listen (`input_list` und `receivers_list`) und ein Dictionary (`return_dict`) benutzt.
    Benennen Sie, was das Ziel dieser Datenstrukturen in diesem Code ist und 
