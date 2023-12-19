@@ -59,7 +59,7 @@ chapters:
       - title: "Struktur des ProPra verstehen"
         shorttitle: ProPraStruktur
         slug: schluss
-  - title: "Die Programmiersprache"
+  - title: "Programmiersprachen"
     shorttitle: Programmiersprache
     slug: sprache
     taskgroups:
@@ -75,7 +75,45 @@ chapters:
       - title: "Structured Query Language"
         shorttitle: sql
         slug: sql
-  - title: "Webentwicklung"
+  - title: "Bibliotheken"
+    shorttitle: Bibliotheken
+    slug: libs
+    taskgroups: 
+      - title: "Open Source Lizenzen"
+        shorttitle: Lizenzen
+        slug: lizenzen
+  - title: "Testen"
+    shorttitle: Testen
+    slug: testen
+    taskgroups:
+      - title: "Basiswissen"
+        shorttitle: Basiswissen
+        slug: basiswissen
+      - title: "Testframeworks"
+        shorttitle: Testframeworks
+        slug: testframeworks
+  - title: "Debugging"
+    shorttitle: Debugging
+    slug: debugging
+    taskgroups:
+      - title: "Mindset"
+        shorttitle: mindset
+        slug: mindset
+      - title: "Klassifikation von Bugs"
+        shorttitle: classification
+        slug: classification
+  - title: "Arbeiten mit Bestandscode"
+    shorttitle: Bestandscode
+    slug: altcode
+    taskgroups:
+      - title: "Refactoring"
+        shorttitle: Refactoring
+        slug: refactoring
+  - title: "Sonstige Werkzeuge"
+    shorttitle: Werkzeuge
+    slug: tools
+    taskgroups: []
+  - title: "Web-Entwicklung"
     shorttitle: Webentwicklung
     slug: web
     taskgroups:
@@ -91,50 +129,12 @@ chapters:
       - title: "HTTP-Authentifizierung"
         shorttitle: HTTP-Auth
         slug: httpauth
-  - title: "Debugging"
-    shorttitle: Debugging
-    slug: debugging
-    taskgroups:
-      - title: "Mindset"
-        shorttitle: mindset
-        slug: mindset
-      - title: "Klassifikation von Bugs"
-        shorttitle: classification
-        slug: classification
-  - title: "Bibliotheken: Die Wiederverwendung fremder Bausteine"
-    shorttitle: Bibliotheken
-    slug: libs
-    taskgroups: 
-      - title: "Open Source Lizenzen"
-        shorttitle: Lizenzen
-        slug: lizenzen
-  - title: "Testen: Die automatisierte Überprüfung nach Änderungen"
-    shorttitle: Testen
-    slug: testen
-    taskgroups:
-      - title: "Testframeworks"
-        shorttitle: Testframeworks
-        slug: testframeworks
-      - title: "Basiswissen"
-        shorttitle: Basiswissen
-        slug: basiswissen
-  - title: "Bestandscode: Alten oder unbekannten Code verstehen und verändern"
-    shorttitle: Bestandscode
-    slug: altcode
-    taskgroups:
-      - title: "Refactoring"
-        shorttitle: Refactoring
-        slug: refactoring
-  - title: "Werkzeuge: Was man noch braucht außer Editor und Compiler"
-    shorttitle: Werkzeuge
-    slug: tools
-    taskgroups: []
   - title: "Inkubator und Dachboden"
     shorttitle: Inkubator
     slug: zzincubator
     status: incomplete
     taskgroups:
-      - title: "Alt, vielleicht nicht mehr zu gebrauchen"
+      - title: "Schrott?"
         shorttitle: alt
         slug: alt
       - title: "Heimatlose Aufgabe"
