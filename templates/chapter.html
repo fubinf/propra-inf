@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block mainpart %}
   <div>
-      {{ content }}
-  </div>
-  <div>
-      {{ toc }}
+      <div class="pagetype-chapter">
+          {{ content }}
+      </div>
+      <div>
+          {{ toc }}
+      </div>
   </div>
 {% endblock %}
