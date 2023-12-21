@@ -64,22 +64,28 @@ chapters:
     shorttitle: Programmiersprache
     slug: sprache
     taskgroups:
-      - title: "Bash Programmierung"
-        shorttitle: Bash
-        slug: bash
       - title: "Grundkenntnisse fürs Programmieren"
         shorttitle: Grundkenntnisse
         slug: grundkenntnisse
       - title: "Fortgeschrittene Programmiertechniken"
         shorttitle: Fortgeschrittenes
         slug: fortgeschrittenes
-      - title: "Structured Query Language"
-        shorttitle: sql
+      - title: "Python-Praxis mit ganzen Programmen"
+        shorttitle: Python-Praxis
+        slug: pythonpraxis
+      - title: "Bash Programmierung"
+        shorttitle: Bash
+        slug: bash
+      - title: "Structured Query Language (SQL)"
+        shorttitle: SQL
         slug: sql
   - title: "Bibliotheken"
     shorttitle: Bibliotheken
     slug: libs
     taskgroups: 
+      - title: "Python-Standardbibliothek"
+        shorttitle: PythonStdlib
+        slug: stdlib
       - title: "Open Source Lizenzen"
         shorttitle: Lizenzen
         slug: lizenzen
