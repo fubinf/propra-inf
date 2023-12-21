@@ -14,7 +14,7 @@
     /* FU Berlin secondary color */
 }
 
-/********** Styles for links: */
+/********** Links: */
 
 a:link {
     color: var(--main-color);
@@ -31,7 +31,7 @@ a:visited {
     filter: brightness(40%);
 }
 
-/********** Styles for tags: */
+/********** Tags (alphabetical order): */
 
 body {
     font-family: sans-serif;
@@ -78,26 +78,6 @@ header {
     position: fixed;
 }
 
-.breadcrumbs {
-  float: left;
-}
-
-#timer {
-  float: right;
-}
-#timer::before {
-  content: "⏲ ";
-}
-#timer .play::before {
-  content: "▶";
-}
-#timer .pause::before {
-  content: "⏸";
-}
-#timer .stop::before {
-  content: "⏹";
-}
-
 li {
     padding: 0.15em 0em;
 }
@@ -105,7 +85,7 @@ li {
 summary {
 }
 
-/********** Styles for blockmacros: */
+/********** Blockmacros: */
 
 .admonition,
 .section-goal,
@@ -201,33 +181,26 @@ summary {
     background-color: #06c3;
 }
 
-/********** Admonitions (TODO_2 phase out): */
+/********** Custom stuff: */
 
-.gray {
-    color: gray;
+.breadcrumbs {
+  float: left;
 }
 
-.admonition-title {
-    font-size: 105%;
-    font-style: italic;
-    font-weight: bold;
+#timer {
+  float: right;
 }
-
-.admonition.instructor {
-    background-color: #f903;
+#timer::before {
+  content: "⏲ ";
 }
-
-.admonition.notice {
-    background-color: #06c3;
+#timer .play::before {
+  content: "▶";
 }
-
-.admonition.submission,
-.section-submission {
-    background-color: #9c03;
+#timer .pause::before {
+  content: "⏸";
 }
-
-.admonition.warning {
-    background-color: #c003;
+#timer .stop::before {
+  content: "⏹";
 }
 
 /********** Link and TOC decorations: */
@@ -300,6 +273,8 @@ summary {
     padding: 0.15em 0em;
 }
 
+/********** Modifications for dark mode: */
+
 @media (prefers-color-scheme: dark) {
     body, pre {
         background-color: #222;
@@ -343,3 +318,33 @@ summary {
         box-shadow: 6px 6px 5px #000;
     }
 }
+
+/********** Admonitions (TODO_2 phase out): */
+
+.gray {
+    color: gray;
+}
+
+.admonition-title {
+    font-size: 105%;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.admonition.instructor {
+    background-color: #f903;
+}
+
+.admonition.notice {
+    background-color: #06c3;
+}
+
+.admonition.submission,
+.section-submission {
+    background-color: #9c03;
+}
+
+.admonition.warning {
+    background-color: #c003;
+}
+
