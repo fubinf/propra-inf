@@ -57,7 +57,14 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 - derzeit keiner
 
-### 2.3 Reviews Einzeldateien
+### 2.3 Korrekturbedarf an sedrila
+
+- Beim topologischen Sortieren Gruppen gleichwertiger Knoten mittels get_ready()
+  abholen und dann nach primär Difficulty und sekundär Alphabet sortieren,
+  um eine sinnvollere Ordnung in den Taskgroups zu bekommen.
+- `profiles` auf der Ebene `Taskgroup` erlauben: im YAML-Teil angeben, im TOC anzeigen.
+
+### 2.4 Reviews Einzeldateien
 
 Wenn man eine Datei als "potentiell fertig" ansieht, schreibt man sie in diese
 Liste.
@@ -68,7 +75,7 @@ Nach dem Review den Eintrag hier wieder entfernen.
 
 - ...
 
-### 2.4 Globale Qualitätssicherung  TODO_3
+### 2.5 Globale Qualitätssicherung  TODO_3
 
 Das machen wir, wenn eine große Konsolidierung angezeigt erscheint.
 
@@ -84,7 +91,18 @@ Prüfpunkte:
 Das kann umfangreich werden und steht deshalb in einer separaten Datei namens
 [aufgabenideen.md](aufgabenideen.md).
 
-## 4. Themen für nächste Besprechung
+## 4. Bedarf an Glossareinträgen
+
+Wir notieren hier erst mal nur alphabetisch die Stichwörter, für die
+wir uns einen Glossareintrag wünschen:
+
+- Default(wert)
+- Kommandozeilenargument
+- Kommandozeilenparameter
+- Tutorial
+
+
+## 5. Themen für nächste Besprechung
 
 - Wo legen wir Resourcen ab?
 - Wie lösen wir das Begriffswirrwarr?  
