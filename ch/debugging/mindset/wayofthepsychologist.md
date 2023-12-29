@@ -1,34 +1,46 @@
 title: Der Weg des Psychologen
 description: |
   Wie denkt ein Psychologe über menschliche Fehler und wie hilft dieses Denken beim Debuggen?
-timevalue: 2
+timevalue: 1.5
 difficulty: 2
-assumes: wayofthedetective
+profiles:
+assumes:
+requires:
 ---
-!!! goal
-    Beim Lernen von Problemlösungsstrategien ist es hilfreich, sich damit auseinanderzusetzen, 
-    wie andere Personen mit ähnlichen Problemen ihre Lösungen erarbeiten.
-    In dieser Aufgabe setzen wir uns damit auseinander, was die kognitive Psychologie über 
-    menschliche Fehler weiß.
+[SECTION::goal::idea]
+- Ich verstehe, welche Methoden Psychologen verwenden, um menschliche Fehler zu verstehen und
+  kann dieses Wissen auf die Suche nach der Ursache für einen Defekt transferieren.
+- Ich habe eine Intuition darüber, was Psychologen über menschliche Fehler wissen und
+  kann diese dazu nutzen sowohl Fehler zu finden, als auch zu vermeiden.
+[ENDSECTION]
 
+[SECTION::instructions::detailed]
 In der kognitiven Psychologie werden generelle, für alle Menschen gültige psychologische 
 Gesetzmäßigkeiten untersucht, unter anderem in den Funktionen der Bereiche Kognition, Emotion 
 und Motivation.
 Da wir Programmierer auch alle menschlich sind, kann ein Einblick in die kognitive Psychologie 
 helfen, zu verstehen, auf welche Art und Weise menschliche Fehler passieren.
 
-Nachdem Sie sich schon damit auseinandergesetzt haben, wie man die Methoden eines 
-(fiktiven) Detektivs anwenden kann, um Probleme zu lösen, können wir jetzt herausarbeiten, 
-welchen Einfluss der Faktor "Mensch" beim Programmieren und dabei entstehenden Fehlern hat.
-Lesen Sie hierzu Kapitel 12 im Buch _Debugging by Thinking_. 
-Beschreiben Sie dann den Blickwinkel des Psychologen und vergleichen Sie diese mit den Methoden der 
-Detektive aus der vorhergehenden Aufgabe.
-Sind Ähnlichkeiten vorhanden?
-Lassen sich einige Methoden einander zuordnen?
+Lesen Sie hierzu Kapitel 12 (S. 387-413) im Buch _Debugging by Thinking_. 
+Beschreiben Sie dann den Blickwinkel des Psychologen.
 
-!!! submission
-    Erwartet wird eine reine Textabgabe.
-    Legen Sie den Fokus auf den Vergleich der Methoden.
-    Arbeiten Sie auch kurz heraus, wo die Unterschiede und Gemeinsamkeiten in der 
-    Herangehensweise liegen. 
-    
+Reflektieren Sie über dieses Kapitel und arbeiten Sie heraus, welcher Grundgedanke hinter den
+genannten Methoden steckt.
+Sind Sie der Meinung, dass diese Methodik ein sinnvoller Ansatz für das Finden von Fehlern ist?
+Wenn ja, versuchen Sie zu begründen, wobei Ihnen diese Methodik hilft.
+Wenn nein, warum ist das so oder was fehlt Ihnen hierbei?
+
+Achten Sie auf eine schlüssige Argumentation, nicht nur auf reine Wiedergabe der Kapiteltitel.
+[ENDSECTION]
+
+[SECTION::submission::reflection]
+Erwartet wird eine reine Textabgabe als Markdown-Dokument.
+Die Aufgabe ist **keine** Literaturbesprechung.
+Fassen Sie sich kurz, seien Sie präzise bei Ihren Ausführungen.
+[ENDSECTION]
+
+[INSTRUCTOR::Was macht einen Psychologen aus?]
+TODO_2_pietrak Eine gute und kurze Anweisung finden.
+
+Eine Review über das Kapitel gibt es am Ende des Kapitels selbst (S. 426-431).
+[ENDINSTRUCTOR]

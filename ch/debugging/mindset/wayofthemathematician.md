@@ -4,31 +4,41 @@ description: |
   dieses Denken beim Debuggen?
 timevalue: 1
 difficulty: 2
-assumes: wayofthedetective
+profiles:
+assumes:
+requires:
 ---
-!!! goal
-    Beim Lernen von Problemlösungsstrategien ist es hilfreich, sich damit auseinanderzusetzen, 
-    wie andere Personen mit ähnlichen Problemen ihre Lösungen erarbeiten.
-    In dieser Aufgabe nehmen wir uns den Problemlösungsstrategien eines Mathematikers beim 
-    Führen eines Beweises an.   
+[SECTION::goal::idea]
+- Ich verstehe, wie Heuristiken und Beweistechniken einem Mathematiker helfen 
+  und kann dieses Wissen auf die Suche auf die Suche nach der Ursache für einen Defekt transferieren.
+[ENDSECTION]
 
+[SECTION::instructions::detailed]
 Es sollte im bisherigen Studium aufgefallen sein, wie nah die Felder der Informatik und 
 Mathematik verbunden sind.
 Das heißt aber weder, dass Informatiker und Mathematiker gleich denken, noch dass sie vor 
 den gleichen Problemen stehen.
 
-Nachdem Sie sich schon damit auseinandergesetzt haben, wie man die Methoden eines 
-(fiktiven) Detektivs anwenden kann, um Probleme zu lösen, wenden wir uns nun den 
-Problemlösungsstrategien des Mathematikers zu.
-Lesen Sie hierzu Kapitel 6 im Buch _Debugging by Thinking_. 
-Beschreiben Sie dann die Methoden des Mathematikers und vergleichen Sie diese mit denen der 
-Detektive aus der vorhergehenden Aufgabe.
-Sind Ähnlichkeiten vorhanden?
-Lassen sich einige Methoden einander zuordnen?
+Lesen Sie hierzu Kapitel 6 (S. 175-187) im Buch _Debugging by Thinking_. 
+Beschreiben Sie dann die Methoden des Mathematikers.
 
-!!! submission
-    Erwartet wird eine reine Textabgabe.
+Reflektieren Sie über dieses Kapitel und arbeiten Sie heraus, welcher Grundgedanke hinter den
+genannten Methoden steckt.
+Sind Sie der Meinung, dass diese Methodik ein sinnvoller Ansatz für das Finden von Fehlern ist?
+Wenn ja, versuchen Sie zu begründen, wobei Ihnen diese Methodik hilft.
+Wenn nein, warum ist das so oder was fehlt Ihnen hierbei?
+
+Achten Sie auf eine schlüssige Argumentation, nicht nur auf reine Wiedergabe der Kapiteltitel.
+
+[SECTION::submission::reflection]
+    Erwartet wird eine reine Textabgabe als Markdown-Dokument.
     Legen Sie den Fokus auf den Vergleich der Methoden.
     Arbeiten Sie auch kurz heraus, wo die Unterschiede und Gemeinsamkeiten in der 
     Herangehensweise liegen. 
-    
+[ENDSECTION]
+
+[INSTRUCTOR::Was macht den Mathematiker aus?]
+TODO_2_pietrak Gute Beschreibung finden.
+
+Eine Review über das Kapitel gibt es am Ende des Kapitels selbst (S. 187-188).
+[ENDINSTRUCTOR]

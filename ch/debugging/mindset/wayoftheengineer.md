@@ -2,16 +2,19 @@ title: Der Weg des Ingenieurs
 description: |
   Welche Methoden benutzt ein Ingenieur, um Fehler zu vermeiden und wie hilft dieses Denken beim 
   Debuggen?
-timevalue: 2
+timevalue: 1.5
 difficulty: 2
-assumes: wayofthedetective
+profiles:
+assumes:
+requires:
 ---
-!!! goal
-    Beim Lernen von Problemlösungsstrategien ist es hilfreich, sich damit auseinanderzusetzen, 
-    wie andere Personen mit ähnlichen Problemen ihre Lösungen erarbeiten.
-    In dieser Aufgabe setzen wir uns damit auseinander, wie Ingenieure sicherstellen, dass sie 
-    sichere Strukturen bauen.
+[SECTION::goal::idea]
+- Ich verstehe, welche Methoden ein Ingenieur verwendet, um Defekte zu verhindern und 
+  kann dieses Wissen auf die Suche nach der Ursache für einen Defekt transferieren.
+- Ich habe eine Intuition, wie ich systematisch Code durchsuchen kann, um Bugs zu finden.
+[ENDSECTION]
 
+[SECTION::instructions::detailed]
 Beim Betreten eines Hochhauses oder einer Brücke machen wir uns selten Gedanken darum, ob diese 
 Strukturen stabil gebaut sind.
 Auch bei medizinischen Gerätschaften wie einem Kernspintomografen oder einem modernen 
@@ -22,18 +25,26 @@ Ingenieuren haben.
 Auch die Informatik ist eine Ingenieurswissenschaft, daher lohnt sich auch ein Einblick in die 
 Gedankenwelt eines Ingenieurs.
 
-Nachdem Sie sich schon damit auseinandergesetzt haben, wie man die Methoden eines 
-(fiktiven) Detektivs anwenden kann, um Probleme zu lösen, können wir jetzt herausarbeiten, 
-wie man Fehler klassifiziert, ihre Entstehung erkennt und sie so vermeiden kann.
-Lesen Sie hierzu Kapitel 13 im Buch _Debugging by Thinking_. 
-Beschreiben Sie dann den Blickwinkel des Ingenieurs und vergleichen Sie diese mit den Methoden der 
-Detektive aus der vorhergehenden Aufgabe.
-Sind Ähnlichkeiten vorhanden?
-Lassen sich einige Methoden einander zuordnen?
+Lesen Sie hierzu Kapitel 13 (S. 433-469) im Buch _Debugging by Thinking_. 
+Beschreiben Sie dann den Blickwinkel und die Methoden des Ingenieurs.
 
-!!! submission
-    Erwartet wird eine reine Textabgabe.
-    Legen Sie den Fokus auf den Vergleich der Methoden.
-    Arbeiten Sie auch kurz heraus, wo die Unterschiede und Gemeinsamkeiten in der 
-    Herangehensweise liegen. 
-    
+Reflektieren Sie über dieses Kapitel und arbeiten Sie heraus, welcher Grundgedanke hinter den
+genannten Methoden steckt.
+Sind Sie der Meinung, dass diese Methodik ein sinnvoller Ansatz für das Finden von Fehlern ist?
+Wenn ja, versuchen Sie zu begründen, wobei Ihnen diese Methodik hilft.
+Wenn nein, warum ist das so oder was fehlt Ihnen hierbei?
+
+Achten Sie auf eine schlüssige Argumentation, nicht nur auf reine Wiedergabe der Kapiteltitel.
+[ENDSECTION]
+
+[SECTION::submission::reflection]
+Erwartet wird eine reine Textabgabe als Markdown-Dokument.
+Die Aufgabe ist **keine** Literaturbesprechung.
+Fassen Sie sich kurz, seien Sie präzise bei Ihren Ausführungen.
+[ENDSECTION]
+
+[INSTRUCTOR::Was macht einen Ingenieur aus?]
+Es liegen vorrangig Minimalisierung von Fehlerquellen und stabiles Design vor.
+
+Eine Review über das Kapitel gibt es am Ende des Kapitels selbst (S. 469-471).
+[ENDINSTRUCTOR]

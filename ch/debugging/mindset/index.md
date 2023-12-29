@@ -6,10 +6,15 @@ Je komplexer aber die Systeme sind, an denen man arbeitet, desto schwieriger wir
 herauszufinden, _wo_ ein Bug vorliegt, _was_ ihn auslöst und _wie_ er zu beheben ist.
 
 In den folgenden Aufgaben können Sie sich damit auseinandersetzen, welche Art von Problemen bei 
-der Arbeit am Code auftreten können, wie man diese finden, beheben und sogar vermeiden kann.
+der Arbeit am Code auftreten können, wie man diese finden und sogar vermeiden kann.
+Lösungsstrategien für bestimmte Arten von Bugs werden hier aber nicht besprochen.
+Mehr dazu gibt es in der Aufgabengruppe [TGL::classification].
 
 Wir werden in diesem Kapitel Herangehensweisen zur Fehlersuche, -Behebung und -Vermeidung aus
 der Perspektive verschiedener Professionen betrachten.
+Sämtliche hier gestellten Aufgaben sind unabhängig voneinander bearbeitbar.
+Allerdings ist es hilfreich mindestens eine Hand voll der Aufgaben zu bearbeiten, 
+um die Methoden untereinander in Kontext setzen zu können.
 Als Einstieg bietet es sich hier an die Methodiken von fiktiven Figuren anzuschauen, die sehr auf
 das Lösen von Rätseln oder auf das Lösen von Kriminalfällen abzielen.
 Alle drei vorgestellten Figuren, Sherlock Holmes, Lord Peter Wimsey und Professor Solomon, bieten
