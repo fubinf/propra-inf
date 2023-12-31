@@ -1,6 +1,4 @@
 title: Frameworks und Bibliotheken - Gemeinsamkeiten und Unterschiede
-description: |
-  Man könnte ganze Bibliotheken über die Gemeinsamkeiten und Unterschiede füllen. 
 timevalue: 1.5
 difficulty: 3
 ---

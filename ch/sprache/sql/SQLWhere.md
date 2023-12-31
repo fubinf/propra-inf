@@ -1,7 +1,4 @@
 title: WHERE
-description: |
-  WHERE ist ein recht einfaches Mittel, um Daten in SELECT-Statements zu filtern. Hier wird der 
-  Filter feiner.
 timevalue: 2
 difficulty: 2
 assumes: SQLBasics, SQLSelect

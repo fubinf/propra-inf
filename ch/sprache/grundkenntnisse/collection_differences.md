@@ -1,6 +1,4 @@
 title: Verschiedene Sequenztypen
-description: |
-  Unterschiede verschiedener Sequenztypen
 timevalue: 2.0
 difficulty: 1
 ---

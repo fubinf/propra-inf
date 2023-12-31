@@ -1,6 +1,4 @@
 title: Linux-Kommandozeile auf Linux mit Apt
-description: |
-  Klären von Shell und Paketmanager
 timevalue: 0.5
 difficulty: 1
 ---

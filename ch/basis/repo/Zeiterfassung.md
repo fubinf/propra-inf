@@ -1,8 +1,4 @@
 title: Konvention für Commit-Nachrichten zwecks Arbeitszeiterfassung
-description: |
-  Wir hinterlegen mit wenig Mühe super nützliche Metadaten in unseren
-  Commit-Nachrichten, damit wir später nachvollziehen können, 
-  was wie lange gedauert hat.
 timevalue: 0.5
 difficulty: 2
 requires: Git101

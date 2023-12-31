@@ -1,6 +1,4 @@
 title: Python-Grundlagen, Teil 2 -- Funktionen und Kontrollfluss
-description: |
-  Ein Einstieg in Funktionen, Kontrollfluss, Operatoren...
 timevalue: 2
 difficulty: 1
 assumes: PythonBasics101

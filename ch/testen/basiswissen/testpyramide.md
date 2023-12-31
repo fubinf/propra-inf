@@ -1,6 +1,4 @@
 title: Testpyramide
-description: |
-  Beim Testen ist es entscheiden zu wissen, auf welcher Ebene getestet wird. Die Testpyramide definiert unterschiedliche Ebenen.
 timevalue: 1.0
 difficulty: 1
 profiles: TEST

@@ -1,6 +1,4 @@
 title: Python-Grundlagen, Teil 1 -- Syntax, Variablen, Datentypen
-description: |
-  Wer sich mit der Handhabung von Python schwertut, bekommt hier einen Einstieg geboten
 timevalue: 1.5
 difficulty: 1
 ---

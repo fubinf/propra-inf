@@ -1,6 +1,4 @@
 title: JavaScript-Grundlagen
-description: |
-  Wie beschreibt man, welches HTML-Element man meint?
 timevalue: 1.5
 difficulty: 2
 profiles: WEB

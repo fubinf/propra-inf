@@ -1,6 +1,4 @@
 title: Der Weg des Psychologen
-description: |
-  Wie denkt ein Psychologe über menschliche Fehler und wie hilft dieses Denken beim Debuggen?
 timevalue: 1.5
 difficulty: 2
 profiles:

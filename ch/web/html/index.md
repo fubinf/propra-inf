@@ -1,4 +1,3 @@
-description: HTML
 ---
 Eine HTML-Datei beinhaltet eine Baumstruktur sogenannter Tags.
 

@@ -1,6 +1,4 @@
 title: Linux-Kommandozeile auf Mac OS mit Homebrew
-description: |
-  Einrichten des 'Homebrew'-Paketmanagers
 timevalue: 1.0
 difficulty: 1
 ---

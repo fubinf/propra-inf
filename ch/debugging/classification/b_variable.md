@@ -1,6 +1,4 @@
 title: Irrtümer - Falsch benutzte Variable
-description: |
-  ...
 timevalue: 1.0
 difficulty: 2
 profiles:

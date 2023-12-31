@@ -1,6 +1,4 @@
 title: Code Coverage
-description: |
-  Machen Sie sich hier ein paar Gedanken dazu, wie sinnvoll Tests sind und wie Tests sinnvoll werden.
 timevalue: 2.0
 difficulty: 3
 profiles: TEST

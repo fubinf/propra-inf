@@ -1,6 +1,4 @@
 title: Python-Grundlagen, Teil 3 -- Nutzung von Modulen
-description: |
-  Module erlauben es Code an anderen Stellen neu zu verwenden
 timevalue: 1.5
 difficulty: 1
 assumes: PythonBasics101, PythonBasics102

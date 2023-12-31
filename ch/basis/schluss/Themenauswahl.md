@@ -1,6 +1,4 @@
 title: Auswahl der nächsten Themen
-description: |
-  Mal in den Kapiteln umschauen, wo es jetzt weitergehen soll
 timevalue: 1
 difficulty: 1
 requires: Zeiterfassung

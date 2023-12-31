@@ -1,6 +1,4 @@
 title: Berufliche Profile
-description: |
-  ...
 timevalue: 1.0
 difficulty: 2
 assumes: Zeiterfassung

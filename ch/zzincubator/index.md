@@ -1,4 +1,3 @@
-description: Für alles von dem wir nicht wissen, wohin und ob es hier hin gehört.
 ---
 Reine Ablage für Aufgaben, die zum jetzigen Zeitpunkt™ 
 nicht mehr gebraucht werden (`alt/*.md`), 

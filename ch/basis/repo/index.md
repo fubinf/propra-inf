@@ -1,4 +1,3 @@
-description: Um das Repo dreht sich im ProPra alles.
 ---
 Zur Verwaltung Ihrer Arbeitsergebnisse benutzen wir im ProPra eine
 versionierte Dateiablage, meistens genannt "Repository" (also "Ablage", "Lagerstätte")

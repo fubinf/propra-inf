@@ -1,6 +1,4 @@
 title: Gilded Rose 03 - Implementierung der Kundenanforderung
-description: |
-  Üben Sie das Hinzufügen von Funktionalität zu bereits funktionierenden Programmen
 timevalue: 0.5
 difficulty: 3
 requires: 02gildedrose_refactor

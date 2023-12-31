@@ -1,6 +1,4 @@
 title: Abhängigkeiten zwischen Aufgaben
-description: |
-  ...
 timevalue: 0.5
 difficulty: 2
 ---

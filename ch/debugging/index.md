@@ -1,4 +1,3 @@
-description: Einen Defekt zu finden und dann zu beheben ist eine erlernbare Kunst.
 ---
 Egal ob Sie bereits Programmiererfahrung haben oder bisher nur im Studium mit Computerprogrammen 
 zu tun hatten: Sie werden Code produziert haben, der zumindest im ersten Versuch nicht das tat, 

@@ -1,6 +1,4 @@
 title: Histogramm
-description: |
-  Übe hier das Laden von Dateien und den Umgang mit Schleifen und Strings.
 timevalue: 1.0
 difficulty: 2
 assumes: PythonBasics101, PythonBasics102, PythonBasics103, PythonNumBoolString

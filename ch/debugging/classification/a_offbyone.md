@@ -1,7 +1,4 @@
 title: Algorithmisches - Off By One
-description: |
-  Identifizieren Sie und beheben Sie einen potenziellen Off-by-One-Fehler in einem gegebenen Code-Abschnitt, 
-  um die korrekte Funktionalität und Sicherheit der Software zu gewährleisten.
 timevalue: 1.0
 difficulty: 2
 profiles:

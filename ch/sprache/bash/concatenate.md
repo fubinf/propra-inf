@@ -1,6 +1,4 @@
 title: Dateien Zusammenfügen
-description: |
-  Zusammenfügen mehrerer Dateien im Terminal
 timevalue: 1.0
 difficulty: 1
 ---

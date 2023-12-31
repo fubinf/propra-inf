@@ -1,6 +1,4 @@
 title: SQL Injection
-description: |
-  Unsaubere Handhabung von Dateneingaben kann zu Problemen führen.
 timevalue: 2.5
 difficulty: 3
 assumes: SQLBasics, SQLUpdating, SQLWhere

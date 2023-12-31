@@ -1,6 +1,4 @@
 title: Algorithmisches - Logische Defekte
-description: |
-  .
 timevalue: 1
 difficulty: 2
 profiles:

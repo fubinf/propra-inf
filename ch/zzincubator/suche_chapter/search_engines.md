@@ -1,6 +1,4 @@
 title: Effektive Nutzung von Suchmaschinen
-description: |
-  Das Wissen der Welt nützt nichts, wenn man nicht weiß, wie man es findet. 
 timevalue: 1.5
 difficulty: 2
 ---

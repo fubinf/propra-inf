@@ -1,6 +1,3 @@
-description: >
-  Wie schreibt man automatisierte Tests, die viel Zutrauen bringen
-  ohne einen Wahnsinns-Aufwand für Erstellung und Pflege zu benötigen?
 ---
 
 Softwaretesten ist ein umfassendes Thema, das verschiedene Bereiche und Aspekte abdeckt. Es gibt verschiedene

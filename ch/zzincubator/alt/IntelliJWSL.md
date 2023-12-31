@@ -1,6 +1,4 @@
 title: Installation und Einrichtung von IntelliJ für Scala (Windows)
-description: |
-  Hier geht es um die Installation von IntelliJ als IDE und die Ersteinrichtung.
 timevalue: 0.5
 difficulty: 1
 requires: CLIWindowsWSL

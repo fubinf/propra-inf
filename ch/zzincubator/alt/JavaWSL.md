@@ -1,6 +1,4 @@
 title: Installation von Java in WSL
-description: |
-  Wenn Sie WSL benutzen, müssen Sie Java in der Linux-Umgebung installieren.
 timevalue: 0.5
 difficulty: 1
 requires: CLIWindowsWSL

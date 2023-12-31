@@ -1,6 +1,4 @@
 title: Pytest - Marks
-description: |
-  Lernen Sie hier, wie man Tests mit Metadaten versorgt.
 timevalue: 1.5
 difficulty: 3
 profiles: TEST

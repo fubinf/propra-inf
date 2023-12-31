@@ -1,6 +1,4 @@
 title: Python - Numbers, Booleans und Strings 
-description: |
-  
 timevalue: 2
 difficulty: 1
 assumes: PythonBasics101, PythonBasics102, PythonBasics103

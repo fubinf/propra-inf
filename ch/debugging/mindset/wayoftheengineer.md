@@ -1,7 +1,4 @@
 title: Der Weg des Ingenieurs
-description: |
-  Welche Methoden benutzt ein Ingenieur, um Fehler zu vermeiden und wie hilft dieses Denken beim 
-  Debuggen?
 timevalue: 1.5
 difficulty: 2
 profiles:

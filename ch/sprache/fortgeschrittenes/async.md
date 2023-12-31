@@ -1,6 +1,4 @@
 title: Asynchrone Ausführung
-description: |
-  I have an async joke. I promise it will be good.
 timevalue: 3
 difficulty: 2
 ---

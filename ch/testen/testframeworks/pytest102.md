@@ -1,6 +1,4 @@
 title: Pytest - Fixtures
-description: |
-  Lernen Sie hier, was Fixtures sind und wie sie helfen Tests zu entwerfen.
 timevalue: 1.5
 difficulty: 3
 profiles: TEST

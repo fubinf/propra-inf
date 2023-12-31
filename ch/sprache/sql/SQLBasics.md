@@ -1,6 +1,4 @@
 title: SQL Basics -- SELECT, WHERE und Co. 
-description: |
-  Um SQL nutzen zu können, müssen die Grundbegriffe sitzen.
 timevalue: 1
 difficulty: 1
 ---

@@ -1,6 +1,4 @@
 title: Gilded Rose 02 - Refactoring von Legacy Code
-description: |
-  Üben Sie hier das Refaktorieren von Programmen
 timevalue: 1
 difficulty: 3
 requires: 01gildedrose_tests

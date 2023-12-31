@@ -1,4 +1,3 @@
-description: "Die umfangreiche Grundausstattung von Python kennenlernen"
 ---
 Zu jeder Python-Installation gehören Dutzende von Bibliotheksmodulen,
 die immer fest dabei sind -- und mit jeder neuen Python-Version werden es mehr.

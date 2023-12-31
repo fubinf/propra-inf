@@ -1,4 +1,3 @@
-description: Für vieles braucht man eine Unix-Kommandozeile.
 minimum: 1
 ---
 Viele unserer Aufgaben werden sich auf der 

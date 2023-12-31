@@ -1,7 +1,4 @@
 title: Die Methoden des Lord Peter Wimsey
-description: |
-  Welche Prinzipien verfolgt der fiktive Detektiv Lord Peter Wimsey bei der Problemlösung und wie
-  hilft dieses Denken beim Debuggen? 
 timevalue: 1
 difficulty: 2
 profiles:

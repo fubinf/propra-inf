@@ -1,7 +1,4 @@
 title: Beispielanwendung -- Erstellung eines Discord Bots
-description: |
-  Erfahren Sie hier am Beispiel eines Discord Bots, wie man sich in eine neue Bibliothek 
-  einarbeitet. 
 timevalue: 2
 difficulty: 3
 assumes: async

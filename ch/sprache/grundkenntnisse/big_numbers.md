@@ -1,6 +1,4 @@
 title: Big Numbers
-description: |
-  Eigene Implementierung von BigInt (große Ganzzahlen)
 timevalue: 0.5
 difficulty: 1
 ---

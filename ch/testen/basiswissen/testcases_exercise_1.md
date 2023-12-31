@@ -1,6 +1,4 @@
 title: Übung Testfallstrukturen
-description: |
-  Neben Testfällen können weitere Strukturen verwendet werden. Hier lernen Sie Testsammlungen, Testpläne und Testdaten kennen.
 timevalue: 2.0
 difficulty: 1
 profiles: TEST

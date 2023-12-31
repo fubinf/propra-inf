@@ -1,6 +1,4 @@
 title: Python - Objektorientierte Programmierung
-description: |
-  Die Handhabung von Klassen, Objekten und Vererbung muss geübt sein.
 timevalue: 0.75
 difficulty: 1
 assumes: PythonBasics101, PythonBasics102, PythonBasics103, PythonDataStructures

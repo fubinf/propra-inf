@@ -1,6 +1,4 @@
 title: Codeverständnis
-description: |
-  Codeverständnis
 timevalue: 2.0
 difficulty: 2
 ---

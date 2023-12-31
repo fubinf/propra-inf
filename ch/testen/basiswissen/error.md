@@ -1,6 +1,4 @@
 title: Fehlerarten
-description: |
-  Ein Fehler ist nicht gleich einem anderen Fehler. Es gibt Unterschiede in der Bedeutung, aber auch glücklicher Weise auch unterschiedliche Begriffe dafür.
 timevalue: 1.0
 difficulty: 1
 profiles: TEST

@@ -1,6 +1,4 @@
 title: Flow Control - Bedingte Ausführung
-description: |
-  If, Then, Else: Einer der wichtigsten Grundbausteine der Programmierung.
 timevalue: 0.25
 difficulty: 1
 assumes: PythonBooleans

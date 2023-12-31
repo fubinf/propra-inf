@@ -1,7 +1,4 @@
 title: Ein- und Ausgabe in Python
-description: |
-  Wir lernen, wie wir unsere Ausgabe formatieren können
-  und was bei der Dateneingabe zu beachten ist.
 timevalue: 0.5
 difficulty: 1
 ---

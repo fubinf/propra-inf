@@ -1,5 +1,3 @@
-description: >
-  Was bedeutet es zu Testen? Welche Begriffe gibt es, wie kann man strukturiert Testen und was hilft uns dabei Struktur in das komplexe Thema hineinzubringen?
 ---
 Jeder von uns hat schon einmal getestet, ohne es vermutlich bemerkt zu haben. Testen kann viele Gesichter haben:
 

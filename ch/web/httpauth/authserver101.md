@@ -1,6 +1,4 @@
 title: Einfacher HTTP-Proxy
-description: |
-  Einfacher HTTP-Proxy als Grundlage für die späteren Authentifizierungsprobleme
 timevalue: 2
 difficulty: 2
 ---

@@ -1,8 +1,4 @@
 title: Refactoring
-description: |
-  Refactoring ist die was Aufräumen des eigenen Arbeitsbereiches. 
-  Manche mögen es nicht und die meisten machen es nicht richtig.
-  Ein guter Überblick über Refactoring-Methoden hilft aber bei wachsender Projektgröße ungemein!
 timevalue: 2
 difficulty: 3
 ---

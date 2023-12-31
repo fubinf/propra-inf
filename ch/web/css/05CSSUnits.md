@@ -1,6 +1,4 @@
 title: CSS-Einheiten
-description: |
-  CSS-Einheiten
 timevalue: 1
 difficulty: 2
 assumes: 02CSSProperties

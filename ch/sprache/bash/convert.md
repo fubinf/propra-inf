@@ -1,6 +1,4 @@
 title: Schnelle Konvertierung
-description: |
-  Konvertieren mehrerer Dateien in verschiedenen Unterordnern
 timevalue: 1.0
 difficulty: 1
 ---

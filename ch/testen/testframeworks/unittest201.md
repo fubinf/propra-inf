@@ -1,6 +1,4 @@
 title: Unittest in Python - Anwendung
-description: |
-  Wenden Sie hier erworbenes Wissen anhand eines Bestandcodes an.
 timevalue: 1.0
 difficulty: 2
 profiles: TEST

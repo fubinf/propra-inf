@@ -1,6 +1,3 @@
-description: >
-  Wie schreibt man automatisierte Tests, die viel Zutrauen bringen
-  ohne einen Wahnsinns-Aufwand für Erstellung und Pflege zu benötigen?
 ---
 Es ist die eine Sache, Tests als Konzept zu verstehen.
 Darüber hinaus muss man aber auch lernen, diese Tests in Code festzuhalten und auszuwerten.

@@ -1,6 +1,4 @@
 title: Unittest in Python - Mocking Anwendung
-description: |
-  Wenden Sie hier erworbenes Wissen zum Thema Mocking an.
 timevalue: 4.0
 difficulty: 4
 profiles: TEST

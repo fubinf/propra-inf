@@ -1,6 +1,4 @@
 title: Python Advanced -- Lambdas, Iteratoren, Error Handling
-description: |
-  Ein kleiner Einblick in einige fortgeschrittene 
 timevalue: 1
 difficulty: 1
 assumes: PythonBasics101, PythonBasics102, PythonBasics103, PythonOOP

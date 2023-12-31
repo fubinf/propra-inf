@@ -1,6 +1,4 @@
 title: pytest - Grundlagen
-description: |
-  Lernen Sie hier den Umgang mit pytest, einer Alternative zu unittest.
 timevalue: 1.0
 difficulty: 2
 profiles: TEST

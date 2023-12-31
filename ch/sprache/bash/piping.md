@@ -1,6 +1,4 @@
 title: Piping
-description: |
-  Zählen und sortieren von Worten
 timevalue: 1.0
 difficulty: 1
 ---

@@ -1,7 +1,4 @@
 title: Der Weg des Informatikers
-description: |
-  Wie klassifiziert ein Informatiker mittels linguistischer Formalismen und wie hilft dieses 
-  Denken beim Debuggen? 
 timevalue: 2
 difficulty: 2
 profiles:

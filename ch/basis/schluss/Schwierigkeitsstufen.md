@@ -1,6 +1,4 @@
 title: Schwierigkeitsstufen verstehen
-description: |
-  ...
 timevalue: 0.5
 difficulty: 2
 ---

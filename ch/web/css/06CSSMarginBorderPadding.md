@@ -1,6 +1,4 @@
 title: Ränder in CSS
-description: |
-  Ränder in CSS
 timevalue: 1
 difficulty: 2
 assumes: 05CSSUnits

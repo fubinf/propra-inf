@@ -1,6 +1,4 @@
 title: Berechnete Parameter und Variablen in CSS
-description: |
-  Berechnete Parameter und Variablen in CSS
 timevalue: 1
 difficulty: 2
 assumes: 05CSSUnits

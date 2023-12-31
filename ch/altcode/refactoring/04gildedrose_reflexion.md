@@ -1,6 +1,4 @@
 title: Gilded Rose 04 - Reflexion über das Kata
-description: |
-  Hören Sie sich einen Vortrag über das Kata an und reflektieren Sie über Ihr eigenes Vorgehen
 timevalue: 2
 difficulty: 3
 requires: 03gildedrose_implementation

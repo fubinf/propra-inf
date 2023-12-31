@@ -1,6 +1,4 @@
 title: Gruppieren und Sortieren mittels GROUP BY und ORDER BY
-description: |
-  Unsortiert und ungruppiert sind Daten schwer zu lesen.
 timevalue: 1
 difficulty: 2
 assumes: SQLBasics

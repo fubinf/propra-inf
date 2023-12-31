@@ -1,4 +1,3 @@
-description: So viel mehr als nur ein Editor.
 ---
 Eine moderne integrierte Entwicklungsumgebung (integrated development environment, IDE)
 liefert einen Grad an Unterstützung bei der Softwareentwicklung, der weit über herkömmliche

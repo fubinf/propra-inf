@@ -1,7 +1,4 @@
 title: Der Weg des Mathematikers
-description: |
-  Welche Prinzipien verfolgt ein Mathematiker beim Erarbeiten eines Beweises und wie hilft 
-  dieses Denken beim Debuggen?
 timevalue: 1
 difficulty: 2
 profiles:

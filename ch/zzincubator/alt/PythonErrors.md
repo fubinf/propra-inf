@@ -1,6 +1,4 @@
 title: Fehlerbehandlung in Python
-description: |
-  Wir lernen mit Fehlern umzugehen.
 timevalue: 0.5
 difficulty: 2
 assumes: PythonClasses

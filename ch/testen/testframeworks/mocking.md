@@ -1,6 +1,4 @@
 title: Mocking in pytest
-description: |
-  Lernen Sie hier, was Mocks sind und wie man diese in pytest benutzt.
 timevalue: 2.0
 difficulty: 3
 profiles: TEST

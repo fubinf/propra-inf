@@ -1,6 +1,4 @@
 title: Uhrzeiten suchen
-description: |
-  Uhrzeiten suchen
 timevalue: 1.0
 difficulty: 2
 ---

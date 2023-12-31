@@ -1,6 +1,4 @@
 title: CSS-Shorthand-Properties
-description: |
-  zusammengefasste CSS-Eigenschaften
 timevalue: 1
 difficulty: 2
 assumes: 02CSSProperties

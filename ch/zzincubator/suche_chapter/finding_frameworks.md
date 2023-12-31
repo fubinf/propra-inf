@@ -1,6 +1,4 @@
 title: Suchen und Finden passender Frameworks
-description: |
-  Man programmiert deutlich schneller, wenn man das Rad nicht ständig neu erfindet. 
 timevalue: 2
 difficulty: 3
 assumes: framework_vs_library

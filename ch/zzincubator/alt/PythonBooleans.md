@@ -1,6 +1,4 @@
 title: Flow Control - Booleans
-description: |
-  Hier frischen wir die Syntax und die Handhabung von Bool'schen Ausdrücken auf.
 timevalue: 0.25
 difficulty: 1
 ---

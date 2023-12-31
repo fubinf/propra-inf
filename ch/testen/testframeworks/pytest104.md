@@ -1,6 +1,4 @@
 title: Pytest - Parametrisierte Tests
-description: |
-  Lernen Sie hier, wie man Tests parametrisiert und welche Vorteile dies bringt.
 timevalue: 1.5
 difficulty: 3
 profiles: TEST

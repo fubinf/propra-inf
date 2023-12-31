@@ -1,6 +1,4 @@
 title: HTML-Attribute
-description: |
-  Einführung in HTML-Attribute
 timevalue: 1
 difficulty: 2
 assumes: 02HTMLTags

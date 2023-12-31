@@ -1,7 +1,4 @@
 title: Python REPL
-description: |
-  Hier lernt man, wie man für schnelles Prototyping oder Herumprobieren den Python REPL benutzen
-  kann.
 timevalue: 0.5
 difficulty: 1
 assumes: PythonBasics101

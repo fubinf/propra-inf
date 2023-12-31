@@ -1,6 +1,4 @@
 title: Das kleine Einmaleins von Markdown
-description: |
-  Dokumentation ist wichtig, auch außerhalb von Code!
 timevalue: 0.5
 difficulty: 1
 ---

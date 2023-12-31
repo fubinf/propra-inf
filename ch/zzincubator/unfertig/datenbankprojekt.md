@@ -1,6 +1,4 @@
 title: Datenbank-Projekt (working title)
-description: |
-  What shall we do with the drunken data, what shall we do with the drunken data...
 timevalue: 2
 difficulty: 2
 ---

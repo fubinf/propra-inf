@@ -1,6 +1,4 @@
 title: CSS-Pseudo-Klassen und -Elemente
-description: |
-  CSS-Pseudo-Klassen und -Elemente
 timevalue: 1
 difficulty: 2
 assumes: 01CSSSelectors

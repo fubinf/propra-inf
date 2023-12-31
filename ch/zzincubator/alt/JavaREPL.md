@@ -1,6 +1,4 @@
 title: Java REPL
-description: |
-  Hier lernt man, wie man für schnelles Prototyping oder Herumprobieren die Java REPL benutzen kann.
 timevalue: 0.5
 difficulty: 1
 ---

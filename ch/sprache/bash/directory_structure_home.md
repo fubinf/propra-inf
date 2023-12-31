@@ -1,6 +1,4 @@
 title: Verzeichnisstrukturen
-description: |
-  Erstellen von komplizierten Verzeichnisstrukturen mithilfe von Bash
 timevalue: 1.0
 difficulty: 1
 ---

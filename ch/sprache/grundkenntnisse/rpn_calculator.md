@@ -1,6 +1,4 @@
 title: RPN-Taschenrechner
-description: |
-  TODO: Gute Beschreibung überlegen.
 timevalue: 2.0
 difficulty: 2
 ---

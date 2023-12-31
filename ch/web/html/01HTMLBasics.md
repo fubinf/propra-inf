@@ -1,6 +1,4 @@
 title: HTML-Tag-Grundlagen
-description: |
-  grundlegende Struktur von HTML-Dokumenten
 timevalue: 0.5
 difficulty: 2
 profiles: WEB

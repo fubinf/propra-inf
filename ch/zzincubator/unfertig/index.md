@@ -1,4 +1,3 @@
-description: Helft mir, ich wurde noch nicht geschrieben!
 ---
 Du hattest eine Idee und hast angefangen, sie umzusetzen, aber noch keine komplette Umsetzung? 
 Hier gehört die teilfertige Aufgabe rein!

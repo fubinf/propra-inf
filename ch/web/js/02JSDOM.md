@@ -1,6 +1,4 @@
 title: DOM-Funktionen in JavaScript
-description: |
-  DOM-Funktionen in JavaScript
 timevalue: 1.5
 difficulty: 1
 assumes: 01JSBasics

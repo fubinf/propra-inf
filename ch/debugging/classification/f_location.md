@@ -1,6 +1,4 @@
 title: Vergessenes - Lokalisierungsfehler
-description: |
-  ...
 timevalue: 1.0
 difficulty: 2
 profiles:

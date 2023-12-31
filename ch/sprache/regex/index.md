@@ -1,4 +1,3 @@
-description: Reguläre Ausdrücke
 ---
 Reguläre Ausdrücke basierend auf dem Konzept der endlichen Automaten aus der theoretischen
 Informatik finden weite Anwendung in der Softwareentwicklung. Das beschränkt sich hierbei

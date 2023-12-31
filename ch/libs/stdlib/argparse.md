@@ -1,6 +1,4 @@
 title: argparse -- Kommandozeilenparameter analysieren
-description: |
-  argparse ist etwas seltsam, aber sehr mächtig.
 timevalue: 1.5
 difficulty: 3
 ---

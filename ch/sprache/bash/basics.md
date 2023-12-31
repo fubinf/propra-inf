@@ -1,6 +1,4 @@
 title: Bash Grundlagen
-description: |
-  Grundlagen der Bash Sprache
 timevalue: 1.0
 difficulty: 1
 ---

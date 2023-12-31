@@ -1,7 +1,4 @@
 title: Flow Control - Schleifen
-description: |
-  Manchmal wollen wir Instruktionen wiederholen. Manchmal wollen wir Instruktionen wiederholen.
-  Manchmal wollen wir...
 timevalue: 0.5
 difficulty: 1
 assumes: PythonIfThenElse, PythonBooleans

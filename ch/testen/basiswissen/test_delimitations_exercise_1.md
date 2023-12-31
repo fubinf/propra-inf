@@ -1,6 +1,4 @@
 title: Übung Testabgrenzungen
-description: |
-  Qualitätssicherung fängt nicht beim Testen an. Hier setzen wir uns mit anderen Möglichkeiten der Qualitätsoptimierung auseinander.
 timevalue: 2.0
 difficulty: 1
 profiles: TEST

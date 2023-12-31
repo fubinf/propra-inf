@@ -1,4 +1,3 @@
-description: Programmierwissen mit starkem Praxisbezug 
 ---
 Willkommen beim Programmierpraktikum (ProPra)!
 

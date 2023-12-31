@@ -1,4 +1,3 @@
-description: "Etwas größere Programmieraufgaben"
 ---
 Hier gibt es Aufgaben, bei denen man Python ganzheitlich übt und jeweils ein Stück eines
 etwas größeren vollständigen Programms schreibt.

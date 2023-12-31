@@ -1,4 +1,3 @@
-description: Welche Gedanken verfolgen bestimmte Professionen, wenn sie ihre Probleme bearbeiten?
 ---
 Debugging ist die Handlung der Fehlerbehebung.
 Damit man einen Fehler beheben kann, muss man ihn zunächst finden.

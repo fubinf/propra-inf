@@ -1,7 +1,4 @@
 title: Überblick über Open Source Lizenzen
-description: |
-  Es gibt Software, mit der hat man freie Hand. Manchmal ist man bei der Benutzung aber auch stark
-  eingeschränkt. 
 timevalue: 2
 difficulty: 1
 ---

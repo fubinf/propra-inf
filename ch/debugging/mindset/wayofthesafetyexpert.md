@@ -1,7 +1,4 @@
 title: Der Weg des Sicherheitsexperten
-description: |
-  Welche Prinzipien verfolgt ein Sicherheitsexperte finden von Ursachen für kritische Ereignisse 
-  und wie hilft dieses Denken beim Debuggen?
 timevalue: 1.5
 difficulty: 2
 profiles:

@@ -1,6 +1,4 @@
 title: Unittest in Python - Grundlagen Flask-Testing
-description: |
-  Lernen Sie die unittest Erweiterung Flask-Test kennen.
 timevalue: 1.0
 difficulty: 1
 profiles: TEST

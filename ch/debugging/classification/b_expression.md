@@ -1,6 +1,4 @@
 title: Irrtümer - Falscher gewählter Ausdruck
-description: |
-  ...
 timevalue: 1.0
 difficulty: 2
 profiles:

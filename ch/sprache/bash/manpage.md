@@ -1,6 +1,4 @@
 title: Manpages
-description: |
-  Benutzung der Manpages
 timevalue: 1.0
 difficulty: 1
 ---

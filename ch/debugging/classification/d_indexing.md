@@ -1,6 +1,4 @@
 title: Daten - Indexfehler
-description: |
-  TEST
 timevalue: 1.0
 difficulty: 2
 profiles:

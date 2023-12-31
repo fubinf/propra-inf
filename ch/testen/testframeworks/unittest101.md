@@ -1,6 +1,4 @@
 title: Unittest in Python - Grundlagen
-description: |
-  Lernen Sie hier, wie Sie mit den Bordmitteln von Python Tests gestalten und ausführen können.  
 timevalue: 1.5
 difficulty: 2
 profiles: TEST

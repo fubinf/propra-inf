@@ -1,6 +1,4 @@
 title: Anwendung der Fundamentals mit FizzBuzz
-description: |
-  Umgang mit Schleifen, Verzweifung und dem Laden von Dateien
 timevalue: 0.25
 difficulty: 1
 assumes: PythonBasics102, PythonNumBoolString

@@ -1,9 +1,6 @@
 title: Fertige Aufgaben einreichen und angerechnet bekommen (TODO_1)
-description: |
-  Wir legen die Beschreibungsdatei an, legen unser Repo der Tutori\_in vor
-  und schauen uns anschließend die Ergebnisse an.
 timevalue: 1.0
-difficulty: 1
+difficulty: 2
 requires: Zeiterfassung
 ---
 [SECTION::goal::idea]

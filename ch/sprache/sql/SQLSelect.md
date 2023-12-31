@@ -1,6 +1,4 @@
 title: Daten auswählen mittels SELECT und UNION
-description: |
-  Hier geht es um SQL-Ausdrücken neben SELECT, bei denen Daten aus Tabellen ausgewählt werden.
 timevalue: 2
 difficulty: 2
 assumes: SQLBasics

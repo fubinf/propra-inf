@@ -1,7 +1,4 @@
 title: Die Methoden des Sherlock Holmes
-description: |
-  Welche Prinzipien verfolgt der fiktive Detektiv Sherlock Holmes bei der Problemlösung und wie
-  hilft dieses Denken beim Debuggen?
 timevalue: 1
 difficulty: 2
 profiles:

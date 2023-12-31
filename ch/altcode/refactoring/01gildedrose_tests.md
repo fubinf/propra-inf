@@ -1,6 +1,4 @@
 title: Gilded Rose 01 - Fixieren von Funktionalität
-description: |
-  Üben Sie hier das Erkunden von Legacy Code und Fixieren von Funktionalität mittels Test
 timevalue: 1
 difficulty: 3
 assumes: refactoring

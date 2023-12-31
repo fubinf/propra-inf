@@ -1,6 +1,4 @@
 title: WebAPIs -- REST und SOAP
-description: |
-  Moderne Datenübertragung übers Internet ist ohne APIs nicht mehr denkbar. 
 timevalue: 1.5
 difficulty: 2
 ---

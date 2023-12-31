@@ -1,7 +1,4 @@
 title: Zusammenführen von Tabellen mittels JOIN
-description: |
-  Mehrere Tabellen lassen sich verbinden. Für die verschiedenen JOIN-Ausdrücke benötigt man aber 
-  etwas Intuition.
 timevalue: 2.5
 difficulty: 2
 assumes: SQLBasics, SQLSelect

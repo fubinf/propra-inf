@@ -1,7 +1,4 @@
 title: Die Methoden des Professor Solomons 
-description: |
-  Welche Prinzipien verfolgt die fiktive Figur Professor Solomon bei der Problemlösung und wie
-  hilft dieses Denken beim Debuggen?
 timevalue: 1
 difficulty: 2
 profiles:

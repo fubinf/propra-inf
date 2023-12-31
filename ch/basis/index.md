@@ -1,4 +1,3 @@
-description: Bevor wir anfangen, ein paar Dinge, ohne die nichts geht.
 ---
 [SECTION::goal::idea,product]
 

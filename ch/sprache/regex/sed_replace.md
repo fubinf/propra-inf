@@ -1,6 +1,4 @@
 title: Ersetzen mit sed
-description: |
-  Ersetzen mit sed
 timevalue: 1.0
 difficulty: 2
 ---
