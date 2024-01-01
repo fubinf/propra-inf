@@ -79,20 +79,16 @@ header {
 }
 
 li {
-    padding: 0.15em 0em;
+    padding: 0.15em 0;
 }
 
-summary {
-}
+summary {}
 
 /********** Pagetypes: */
 
 .pagetype-homepage {}
-
 .pagetype-chapter {}
-
 .pagetype-taskgroup {}
-
 .pagetype-task {}
 
 .pagetype-task-difficulty1 {
@@ -130,29 +126,16 @@ summary {
     padding: 0.5em;
 }
 
-.section-background-default {
-    
-}
+.section-background-default {}
 
 .section-goal {
     background-color: #f5f5e0;
 }
 
-.section-goal-product {
-    
-}
-
-.section-goal-idea {
-    
-}
-
-.section-goal-experience {
-    
-}
-
-.section-goal-trial {
-    
-}
+.section-goal-product {}
+.section-goal-idea {}
+.section-goal-experience {}
+.section-goal-trial {}
 
 .section-instructions {
     border-left-width: 0.8em;
@@ -162,34 +145,18 @@ summary {
 }
 
 .section-instructions-detailed {}
-
 .section-instructions-loose {}
-
 .section-instructions-tricky {}
 
 .section-submission {
-    
+    background-color: #9c03;
 }
 
-.section-submission-reflection {
-    
-}
-
-.section-submission-information {
-    
-}
-
-.section-submission-snippet {
-    
-}
-
-.section-submission-trace {
-    
-}
-
-.section-submission-program {
-    
-}
+.section-submission-reflection {}
+.section-submission-information {}
+.section-submission-snippet {}
+.section-submission-trace {}
+.section-submission-program {}
 
 .blockmacro-instructor {
     background-color: #f903;
@@ -292,7 +259,21 @@ summary {
 .indent2,
 .indent3,
 .indent4 {
-    padding: 0.15em 0em;
+    padding: 0.15em 0;
+}
+
+.nostage {}
+
+.stage-draft {
+    background-color: #999;
+}
+
+.stage-alpha {
+    background-color: #bbb;
+}
+
+.stage-beta::after {
+    content: " [beta]";
 }
 
 /********** Modifications for dark mode: */
@@ -316,7 +297,6 @@ summary {
     .section-submission {
         background-color: #9c03;
     }
-
 
     a:link {
         color: var(--main-color);
@@ -347,10 +327,6 @@ summary {
 }
 
 /********** Admonitions (TODO_2 phase out): */
-
-.gray {
-    color: gray;
-}
 
 .admonition-title {
     font-size: 105%;
