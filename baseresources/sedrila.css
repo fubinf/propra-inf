@@ -312,6 +312,11 @@ summary {
         background-color: #444;
         color: lightgray;
     }
+    
+    .section-submission {
+        background-color: #9c03;
+    }
+
 
     a:link {
         color: var(--main-color);
@@ -353,20 +358,6 @@ summary {
     font-weight: bold;
 }
 
-.admonition.instructor {
-    background-color: #f903;
+.admonition {
+    background-color: #f5f;
 }
-
-.admonition.notice {
-    background-color: #06c3;
-}
-
-.admonition.submission,
-.section-submission {
-    background-color: #9c03;
-}
-
-.admonition.warning {
-    background-color: #c003;
-}
-
