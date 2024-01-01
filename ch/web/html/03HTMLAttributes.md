@@ -1,4 +1,5 @@
 title: HTML-Attribute
+stage: draft
 timevalue: 1
 difficulty: 2
 assumes: 02HTMLTags

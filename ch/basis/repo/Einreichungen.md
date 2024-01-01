@@ -1,4 +1,5 @@
 title: Fertige Aufgaben einreichen und angerechnet bekommen (TODO_1)
+stage: draft
 timevalue: 1.0
 difficulty: 2
 requires: Zeiterfassung

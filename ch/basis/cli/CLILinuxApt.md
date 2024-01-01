@@ -1,4 +1,5 @@
 title: Linux-Kommandozeile auf Linux mit Apt
+stage: draft
 timevalue: 0.5
 difficulty: 1
 ---

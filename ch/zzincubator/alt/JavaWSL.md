@@ -1,4 +1,5 @@
 title: Installation von Java in WSL
+stage: draft
 timevalue: 0.5
 difficulty: 1
 requires: CLIWindowsWSL

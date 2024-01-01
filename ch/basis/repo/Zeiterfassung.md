@@ -1,4 +1,5 @@
 title: Konvention für Commit-Nachrichten zwecks Arbeitszeiterfassung
+stage: draft
 timevalue: 0.5
 difficulty: 2
 requires: Git101

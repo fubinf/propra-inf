@@ -1,4 +1,5 @@
 title: Der Weg des Sicherheitsexperten
+stage: draft
 timevalue: 1.5
 difficulty: 2
 profiles:

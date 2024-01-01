@@ -1,4 +1,5 @@
 title: Übung Testabgrenzungen
+stage: draft
 timevalue: 2.0
 difficulty: 1
 profiles: TEST

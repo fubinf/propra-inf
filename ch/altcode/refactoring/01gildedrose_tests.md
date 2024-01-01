@@ -1,4 +1,5 @@
 title: Gilded Rose 01 - Fixieren von Funktionalität
+stage: draft
 timevalue: 1
 difficulty: 3
 assumes: refactoring

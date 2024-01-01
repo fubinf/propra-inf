@@ -1,4 +1,5 @@
 title: Flow Control - Schleifen
+stage: draft
 timevalue: 0.5
 difficulty: 1
 assumes: PythonIfThenElse, PythonBooleans

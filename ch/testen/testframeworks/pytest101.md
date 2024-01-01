@@ -1,4 +1,5 @@
 title: pytest - Grundlagen
+stage: draft
 timevalue: 1.0
 difficulty: 2
 profiles: TEST

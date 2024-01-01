@@ -1,4 +1,5 @@
 title: Fehlerbehandlung in Python
+stage: draft
 timevalue: 0.5
 difficulty: 2
 assumes: PythonClasses

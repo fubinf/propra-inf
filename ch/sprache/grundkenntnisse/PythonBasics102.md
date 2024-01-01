@@ -1,4 +1,5 @@
 title: Python-Grundlagen, Teil 2 -- Funktionen und Kontrollfluss
+stage: draft
 timevalue: 2
 difficulty: 1
 assumes: PythonBasics101

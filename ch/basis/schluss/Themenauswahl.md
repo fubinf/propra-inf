@@ -1,4 +1,5 @@
 title: Auswahl der nächsten Themen
+stage: draft
 timevalue: 1
 difficulty: 1
 requires: Zeiterfassung

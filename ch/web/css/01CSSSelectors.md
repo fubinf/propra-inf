@@ -1,4 +1,5 @@
 title: CSS-Selectors
+stage: draft
 timevalue: 1
 difficulty: 2
 profiles: WEB

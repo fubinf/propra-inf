@@ -1,4 +1,5 @@
 title: Einfacher HTTP-Proxy
+stage: draft
 timevalue: 2
 difficulty: 2
 ---

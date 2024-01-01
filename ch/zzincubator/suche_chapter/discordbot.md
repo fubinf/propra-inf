@@ -1,4 +1,5 @@
 title: Beispielanwendung -- Erstellung eines Discord Bots
+stage: draft
 timevalue: 2
 difficulty: 3
 assumes: async

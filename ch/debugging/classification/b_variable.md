@@ -1,4 +1,5 @@
 title: Irrtümer - Falsch benutzte Variable
+stage: draft
 timevalue: 1.0
 difficulty: 2
 profiles:

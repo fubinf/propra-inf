@@ -1,4 +1,5 @@
 title: SQL Basics -- SELECT, WHERE und Co. 
+stage: draft
 timevalue: 1
 difficulty: 1
 ---

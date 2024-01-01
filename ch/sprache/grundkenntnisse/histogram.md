@@ -1,4 +1,5 @@
 title: Histogramm
+stage: draft
 timevalue: 1.0
 difficulty: 2
 assumes: PythonBasics101, PythonBasics102, PythonBasics103, PythonNumBoolString

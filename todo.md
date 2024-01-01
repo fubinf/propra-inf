@@ -55,14 +55,19 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
-- derzeit keiner
+- TODO_1_alle: Admonitions durch SECTIONs ersetzen, CSS löschen
 
 ### 2.3 Korrekturbedarf an sedrila
 
+- `status:`/`STATUS_`/`--incomplete` ersetzen durch 
+  `stage:`/`sedrila.yaml:stages`/`--stage` mit den aufsteigenden Werten
+  `draft`, `alpha`, `beta`. 
+  Gut sichtbare CSS-Klassen für die unfertigen Teile im TOC ergänzen. 
 - Beim topologischen Sortieren Gruppen gleichwertiger Knoten mittels get_ready()
   abholen und dann nach primär Difficulty und sekundär Alphabet sortieren,
   um eine sinnvollere Ordnung in den Taskgroups zu bekommen.
-- `profiles` auf der Ebene `Taskgroup` erlauben: im YAML-Teil angeben, im TOC anzeigen.
+- Sinnvolle Konvention für slugs einführen. `shorttitle` abschaffen?
+- `profiles` auf der Ebene `Taskgroup` erlauben? Im YAML-Teil angeben, im TOC anzeigen.
 
 ### 2.4 Reviews Einzeldateien
 

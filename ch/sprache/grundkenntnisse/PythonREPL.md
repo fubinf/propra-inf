@@ -1,4 +1,5 @@
 title: Python REPL
+stage: draft
 timevalue: 0.5
 difficulty: 1
 assumes: PythonBasics101

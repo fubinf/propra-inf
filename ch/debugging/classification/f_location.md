@@ -1,4 +1,5 @@
 title: Vergessenes - Lokalisierungsfehler
+stage: draft
 timevalue: 1.0
 difficulty: 2
 profiles:

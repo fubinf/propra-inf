@@ -1,4 +1,5 @@
 title: Gilded Rose 04 - Reflexion über das Kata
+stage: draft
 timevalue: 2
 difficulty: 3
 requires: 03gildedrose_implementation

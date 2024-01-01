@@ -1,4 +1,5 @@
 title: Berechnete Parameter und Variablen in CSS
+stage: draft
 timevalue: 1
 difficulty: 2
 assumes: 05CSSUnits

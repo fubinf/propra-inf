@@ -1,4 +1,5 @@
 title: Zusammenführen von Tabellen mittels JOIN
+stage: draft
 timevalue: 2.5
 difficulty: 2
 assumes: SQLBasics, SQLSelect

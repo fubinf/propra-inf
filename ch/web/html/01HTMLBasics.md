@@ -1,4 +1,5 @@
 title: HTML-Tag-Grundlagen
+stage: draft
 timevalue: 0.5
 difficulty: 2
 profiles: WEB

@@ -1,4 +1,5 @@
 title: Linux-Kommandozeile auf Mac OS mit Homebrew
+stage: draft
 timevalue: 1.0
 difficulty: 1
 ---

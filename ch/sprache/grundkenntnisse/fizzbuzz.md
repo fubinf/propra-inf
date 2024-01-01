@@ -1,4 +1,5 @@
 title: Anwendung der Fundamentals mit FizzBuzz
+stage: draft
 timevalue: 0.25
 difficulty: 1
 assumes: PythonBasics102, PythonNumBoolString

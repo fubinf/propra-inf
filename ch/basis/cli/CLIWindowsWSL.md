@@ -1,4 +1,5 @@
 title: Linux-Kommandozeile auf Windows mit WSL
+stage: draft
 timevalue: 1.0
 difficulty: 1
 ---

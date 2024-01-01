@@ -1,4 +1,5 @@
 title: Unittest in Python - Grundlagen Flask-Testing
+stage: draft
 timevalue: 1.0
 difficulty: 1
 profiles: TEST

@@ -140,7 +140,7 @@ chapters:
   - title: "Inkubator und Dachboden"
     shorttitle: Inkubator
     slug: zzincubator
-    status: incomplete
+    stage: draft
     taskgroups:
       - title: "Schrott?"
         shorttitle: alt

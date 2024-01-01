@@ -1,4 +1,5 @@
 title: Dateien Zusammenfügen
+stage: draft
 timevalue: 1.0
 difficulty: 1
 ---

@@ -1,4 +1,5 @@
 title: Mocking in pytest
+stage: draft
 timevalue: 2.0
 difficulty: 3
 profiles: TEST

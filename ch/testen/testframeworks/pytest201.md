@@ -1,4 +1,5 @@
 title: Pytest in Python - Anwendung
+stage: draft
 timevalue: 2.0
 difficulty: 2
 profiles: TEST

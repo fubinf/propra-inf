@@ -1,4 +1,5 @@
 title: Python - Numbers, Booleans und Strings 
+stage: draft
 timevalue: 2
 difficulty: 1
 assumes: PythonBasics101, PythonBasics102, PythonBasics103

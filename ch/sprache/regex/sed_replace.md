@@ -1,4 +1,5 @@
 title: Ersetzen mit sed
+stage: draft
 timevalue: 1.0
 difficulty: 2
 ---

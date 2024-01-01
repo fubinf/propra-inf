@@ -1,4 +1,5 @@
 title: CSS-Eigenschaften
+stage: draft
 timevalue: 1.5
 difficulty: 2
 assumes: 01CSSSelectors

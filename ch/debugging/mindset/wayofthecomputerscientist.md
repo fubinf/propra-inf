@@ -1,4 +1,5 @@
 title: Der Weg des Informatikers
+stage: draft
 timevalue: 2
 difficulty: 2
 profiles:

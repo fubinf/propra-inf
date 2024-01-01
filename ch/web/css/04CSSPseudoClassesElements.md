@@ -1,4 +1,5 @@
 title: CSS-Pseudo-Klassen und -Elemente
+stage: draft
 timevalue: 1
 difficulty: 2
 assumes: 01CSSSelectors

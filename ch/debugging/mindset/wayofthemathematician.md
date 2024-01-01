@@ -1,4 +1,5 @@
 title: Der Weg des Mathematikers
+stage: draft
 timevalue: 1
 difficulty: 2
 profiles:

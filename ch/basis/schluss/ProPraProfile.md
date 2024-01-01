@@ -1,4 +1,5 @@
 title: Berufliche Profile
+stage: draft
 timevalue: 1.0
 difficulty: 2
 assumes: Zeiterfassung

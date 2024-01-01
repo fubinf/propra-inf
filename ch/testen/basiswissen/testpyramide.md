@@ -1,4 +1,5 @@
 title: Testpyramide
+stage: draft
 timevalue: 1.0
 difficulty: 1
 profiles: TEST

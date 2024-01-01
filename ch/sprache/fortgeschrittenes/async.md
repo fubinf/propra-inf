@@ -1,4 +1,5 @@
 title: Asynchrone Ausführung
+stage: draft
 timevalue: 3
 difficulty: 2
 ---

@@ -1,4 +1,5 @@
 title: Bash Grundlagen
+stage: draft
 timevalue: 1.0
 difficulty: 1
 ---

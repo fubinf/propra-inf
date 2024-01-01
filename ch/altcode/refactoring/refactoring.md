@@ -1,4 +1,5 @@
 title: Refactoring
+stage: draft
 timevalue: 2
 difficulty: 3
 ---

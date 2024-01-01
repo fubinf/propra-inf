@@ -1,4 +1,5 @@
 title: Codeverständnis
+stage: draft
 timevalue: 2.0
 difficulty: 2
 ---

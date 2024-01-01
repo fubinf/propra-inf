@@ -1,4 +1,5 @@
 title: Suchen und Finden passender Frameworks
+stage: draft
 timevalue: 2
 difficulty: 3
 assumes: framework_vs_library

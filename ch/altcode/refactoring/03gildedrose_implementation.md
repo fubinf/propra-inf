@@ -1,4 +1,5 @@
 title: Gilded Rose 03 - Implementierung der Kundenanforderung
+stage: draft
 timevalue: 0.5
 difficulty: 3
 requires: 02gildedrose_refactor

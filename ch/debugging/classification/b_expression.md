@@ -1,4 +1,5 @@
 title: Irrtümer - Falscher gewählter Ausdruck
+stage: draft
 timevalue: 1.0
 difficulty: 2
 profiles:

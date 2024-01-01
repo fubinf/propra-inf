@@ -1,4 +1,5 @@
 title: Alternativen zu bash - Powershell
+stage: draft
 timevalue: 0.5
 difficulty: 1
 ---

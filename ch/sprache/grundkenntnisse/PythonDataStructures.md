@@ -1,4 +1,5 @@
 title: Python - Datenstrukturen
+stage: draft
 timevalue: 2
 difficulty: 1
 assumes: PythonBasics101, PythonBasics102

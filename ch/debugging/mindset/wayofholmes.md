@@ -1,4 +1,5 @@
 title: Die Methoden des Sherlock Holmes
+stage: draft
 timevalue: 1
 difficulty: 2
 profiles:

@@ -1,4 +1,5 @@
 title: Pytest - Fixtures
+stage: draft
 timevalue: 1.5
 difficulty: 3
 profiles: TEST

@@ -1,4 +1,5 @@
 title: Algorithmisches - Logische Defekte
+stage: draft
 timevalue: 1
 difficulty: 2
 profiles:

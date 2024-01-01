@@ -1,4 +1,5 @@
 title: Datenbank-Projekt (working title)
+stage: draft
 timevalue: 2
 difficulty: 2
 ---

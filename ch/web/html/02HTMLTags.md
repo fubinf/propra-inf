@@ -1,4 +1,5 @@
 title: Wesentliche HTML-Tags
+stage: draft
 timevalue: 1
 difficulty: 2
 assumes: 01HTMLBasics

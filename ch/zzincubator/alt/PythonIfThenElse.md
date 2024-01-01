@@ -1,4 +1,5 @@
 title: Flow Control - Bedingte Ausführung
+stage: draft
 timevalue: 0.25
 difficulty: 1
 assumes: PythonBooleans

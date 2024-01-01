@@ -1,4 +1,5 @@
 title: Daten auswählen mittels SELECT und UNION
+stage: draft
 timevalue: 2
 difficulty: 2
 assumes: SQLBasics

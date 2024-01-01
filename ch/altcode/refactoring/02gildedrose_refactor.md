@@ -1,4 +1,5 @@
 title: Gilded Rose 02 - Refactoring von Legacy Code
+stage: draft
 timevalue: 1
 difficulty: 3
 requires: 01gildedrose_tests

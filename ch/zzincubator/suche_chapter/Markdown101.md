@@ -1,4 +1,5 @@
 title: Das kleine Einmaleins von Markdown
+stage: draft
 timevalue: 0.5
 difficulty: 1
 ---

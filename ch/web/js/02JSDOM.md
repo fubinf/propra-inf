@@ -1,4 +1,5 @@
 title: DOM-Funktionen in JavaScript
+stage: draft
 timevalue: 1.5
 difficulty: 1
 assumes: 01JSBasics

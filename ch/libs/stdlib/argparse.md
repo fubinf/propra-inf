@@ -1,4 +1,5 @@
 title: argparse -- Kommandozeilenparameter analysieren
+stage: draft
 timevalue: 1.5
 difficulty: 3
 ---

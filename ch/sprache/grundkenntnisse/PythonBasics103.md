@@ -1,4 +1,5 @@
 title: Python-Grundlagen, Teil 3 -- Nutzung von Modulen
+stage: draft
 timevalue: 1.5
 difficulty: 1
 assumes: PythonBasics101, PythonBasics102

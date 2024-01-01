@@ -1,4 +1,5 @@
 title: Prüfsumme von ISBN
+stage: draft
 timevalue: 1.5
 difficulty: 1
 ---

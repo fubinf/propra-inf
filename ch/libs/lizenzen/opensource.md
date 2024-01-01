@@ -1,4 +1,5 @@
 title: Überblick über Open Source Lizenzen
+stage: draft
 timevalue: 2
 difficulty: 1
 ---

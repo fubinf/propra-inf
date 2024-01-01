@@ -1,4 +1,5 @@
 title: CSS-Shorthand-Properties
+stage: draft
 timevalue: 1
 difficulty: 2
 assumes: 02CSSProperties

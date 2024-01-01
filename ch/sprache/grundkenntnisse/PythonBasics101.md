@@ -1,4 +1,5 @@
 title: Python-Grundlagen, Teil 1 -- Syntax, Variablen, Datentypen
+stage: draft
 timevalue: 1.5
 difficulty: 1
 ---

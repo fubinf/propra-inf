@@ -1,4 +1,5 @@
 title: Java REPL
+stage: draft
 timevalue: 0.5
 difficulty: 1
 ---
