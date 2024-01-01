@@ -10,7 +10,7 @@ und wie man versuchen kann diese Bugs zu beheben.
 Alle Code-Beispiele in dieser Aufgabengruppe sind durch aufmerksames Lesen 
 und händisches Durchlaufen des Codes lösbar.
 Wenn Sie allerdings eher direkt am Code arbeiten möchten, dürfen Sie das natürlich auch.
-Einige Mittel und Werkzeuge hierfür finden Sie in der Aufgabengruppe [TGL::debuggingtools].
+Einige Mittel und Werkzeuge hierfür finden Sie in der Aufgabengruppe TODO_2 TGL::debuggingtools.
 Außerdem werden alle Code-Beispiele dieser Aufgabengruppe zwei Hilfen mitgeben:
 
 - Unter dem zu bearbeitenden Code werden einige Punkte erwähnt, 
