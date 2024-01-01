@@ -3,6 +3,8 @@ shorttitle: ProPra2024
 baseresourcedir: baseresources
 chapterdir: ch
 templatedir: templates
+profiles: ['DBS', 'DSCI', 'OPS', 'SYS', 'TEST', 'WEB']
+stages: ['draft', 'alpha', 'beta']  # ordered list of allowed 'stage:' values
 blockmacro_topmatter:
   section_background: "## Hintergrund"
   section_background_default: ""
@@ -42,7 +44,6 @@ instructors:
     email: xx
     gitaccount: xx
     keyfingerprint: .
-profiles: ['DBS', 'DSCI', 'OPS', 'SYS', 'TEST', 'WEB']
 chapters:
   - title: "Basis: Unverzichtbare Arbeitsgrundlagen" 
     shorttitle: Basis
