@@ -1,6 +1,6 @@
 title: Algorithmisches - Off By One
-stage: draft
-timevalue: 1.0
+stage: alpha
+timevalue: 1
 difficulty: 2
 profiles:
 assumes:
@@ -181,7 +181,3 @@ Die Abgabe kann auf zwei Arten erstellt werden:
   Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-TODO_2_pietrak Der Fix findet in Zeile 56 statt. `daynumber` ist 1-based, nicht 0-based (lte statt lt). 
-[ENDINSTRUCTOR]

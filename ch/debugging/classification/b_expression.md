@@ -1,6 +1,6 @@
 title: Irrtümer - Falscher gewählter Ausdruck
-stage: draft
-timevalue: 1.0
+stage: alpha
+timevalue: 1
 difficulty: 2
 profiles:
 assumes:
@@ -221,10 +221,3 @@ Die Abgabe kann auf zwei Arten erstellt werden:
   Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-TODO_2_pietrak Der Fehler liegt in der Zeile `if len(player_hand) == 4:`. 
-               Nicht die Länge der Hand ist entscheidend für das Abwerfen, sondern das vier Karten vom 
-               selben Rang vorhanden sind. 
-               Lösung: `if len(hand[card_rank] == 4:`
-[ENDINSTRUCTOR]

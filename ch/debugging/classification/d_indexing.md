@@ -1,6 +1,6 @@
 title: Daten - Indexfehler
-stage: draft
-timevalue: 1.0
+stage: alpha
+timevalue: 1
 difficulty: 2
 profiles:
 assumes:
@@ -139,8 +139,3 @@ Die Abgabe kann auf zwei Arten erstellt werden:
   Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-Es gibt verschiedene Möglichkeiten den Bug zu fixen. 
-Den Hinweis, was genau schief läuft, liefert Lösungshinweis 3.
-[ENDINSTRUCTOR]

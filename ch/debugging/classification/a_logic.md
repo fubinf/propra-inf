@@ -1,5 +1,5 @@
 title: Algorithmisches - Logische Defekte
-stage: draft
+stage: alpha
 timevalue: 1
 difficulty: 2
 profiles:
@@ -209,8 +209,3 @@ Die Abgabe kann auf zwei Arten erstellt werden:
   Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-TODO_2_pietrak Der Fix ist in Zeile 31 durchzuführen und lautet `return_dict[input_list[-1]] = receivers_list[0]`.
-               Benötige noch eine Idee, wie Beschreibung für den Tutor aussehen soll.
-[ENDINSTRUCTOR]

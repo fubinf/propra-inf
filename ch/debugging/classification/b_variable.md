@@ -1,6 +1,6 @@
 title: Irrtümer - Falsch benutzte Variable
-stage: draft
-timevalue: 1.0
+stage: alpha
+timevalue: 1
 difficulty: 2
 profiles:
 assumes: b_expression, f_location
@@ -279,8 +279,3 @@ Die Abgabe kann auf zwei Arten erstellt werden:
   Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-TODO_2_pietrak Der Fehler liegt in Zeile 61, die Parameter wurden vertauscht.
-               Richtig wäre `found = check_card(hand_name, player_name, rank_to_check, opponent_hand`.
-[ENDINSTRUCTOR]

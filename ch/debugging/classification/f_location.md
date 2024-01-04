@@ -1,6 +1,6 @@
 title: Vergessenes - Lokalisierungsfehler
-stage: draft
-timevalue: 1.0
+stage: alpha
+timevalue: 1
 difficulty: 2
 profiles:
 assumes: b_expression
@@ -233,7 +233,3 @@ Die Abgabe kann auf zwei Arten erstellt werden:
   Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-TODO_2_pietrak Der Fehler liegt in den Zeilen 29-31 (letzte drei Zeilen). Diese sind je eine Ebene zu weit indentiert.
-[ENDINSTRUCTOR]

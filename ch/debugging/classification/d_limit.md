@@ -1,6 +1,6 @@
 title: Daten - Grenzwertfehler 
-stage: draft
-timevalue: 1.0
+stage: alpha
+timevalue: 1
 difficulty: 2
 profiles:
 assumes: d_indexing
@@ -108,7 +108,3 @@ Die Abgabe kann auf zwei Arten erstellt werden:
   Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-TODO_2_pietrak Die Obergrenze der Schleife ist das Problem, es müsste `range(2, (number * 0.5) +1)` heißen.
-[ENDINSTRUCTOR]
