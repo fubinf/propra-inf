@@ -1,7 +1,7 @@
 title: Der Weg des Psychologen
-stage: draft
+stage: alpha
 timevalue: 1.5
-difficulty: 2
+difficulty: 3
 profiles:
 assumes:
 requires:
@@ -39,7 +39,11 @@ Fassen Sie sich kurz, seien Sie präzise bei Ihren Ausführungen.
 [ENDSECTION]
 
 [INSTRUCTOR::Was macht einen Psychologen aus?]
-TODO_2_pietrak Eine gute und kurze Anweisung finden.
+Eine gute Antwort wird Rasmussens Klassifikation menschlicher Leistungsfähigkeit erwähnen:
+
+- kompetenzbasiertes Verhalten,
+- regelbasiertes Verhalten und
+- wissensbasiertes Verhalten.
 
 Eine Review über das Kapitel gibt es am Ende des Kapitels selbst (S. 426-431).
 [ENDINSTRUCTOR]

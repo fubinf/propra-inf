@@ -1,7 +1,7 @@
 title: Der Weg des Mathematikers
-stage: draft
+stage: alpha
 timevalue: 1
-difficulty: 2
+difficulty: 3
 profiles:
 assumes:
 requires:
@@ -36,7 +36,16 @@ Achten Sie auf eine schlüssige Argumentation, nicht nur auf reine Wiedergabe de
 [ENDSECTION]
 
 [INSTRUCTOR::Was macht den Mathematiker aus?]
-TODO_2_pietrak Gute Beschreibung finden.
+Die vier vorgestellten Elemente, die nach Schoenfeld nötig sind, um die
+mathematische Problemlösungsleistung zu charakterisieren sind:
+
+- Ressourcen,
+- Heuristiken,
+- Kontrolle und
+- Glaubenssysteme (_belief systems_, 
+  lies: ein Satz von Determinanten des individuellen Verhaltens).
+
+Eine gute Antwort auf diese Aufgabe sollte alle vier nennen und beschreiben.
 
 Eine Review über das Kapitel gibt es am Ende des Kapitels selbst (S. 187-188).
 [ENDINSTRUCTOR]

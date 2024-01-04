@@ -1,7 +1,7 @@
 title: Der Weg des Informatikers
-stage: draft
+stage: alpha
 timevalue: 2
-difficulty: 2
+difficulty: 3
 profiles:
 assumes:
 requires:
@@ -41,7 +41,9 @@ Fassen Sie sich kurz, seien Sie präzise bei Ihren Ausführungen.
 [ENDSECTION]
 
 [INSTRUCTOR::Was macht den theoretischen Informatiker aus?]
-TODO_2_pietrak Gute Beschreibung finden.
+Die Grundaussage ist in etwa: Der Compiler ist dein bester Freund.
+Statische Analyse des Programms (mittels Compiler) hilft schon ohne exakte Tests Defekte ausfindig zu machen.
+Dazu benötigt der Compiler aber so viele Informationen wie möglich.
 
 Eine Review über das Kapitel gibt es am Ende des Kapitels selbst (S. 505-507).
 [ENDINSTRUCTOR]

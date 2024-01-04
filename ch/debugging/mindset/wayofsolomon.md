@@ -1,5 +1,5 @@
 title: Die Methoden des Professor Solomons 
-stage: draft
+stage: alpha
 timevalue: 1
 difficulty: 2
 profiles:
