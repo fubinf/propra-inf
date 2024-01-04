@@ -1,14 +1,18 @@
 title: Gilded Rose 03 - Implementierung der Kundenanforderung
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 3
+profiles:
+assumes:
 requires: 02gildedrose_refactor
 ---
-!!! goal
-    Nachdem Sie die Tests geschrieben haben und das Programm refaktoriert haben, ist die 
-    Implementierung der neuen Funktionalität dran.
-    Nutzen Sie dafür Ihre Vorarbeit und beenden Sie damit das Kata.
+[SECTION::goal::experience]
 
+- Ich kann neue Funktionalität in Code einbauen, ohne die vorhandene Funktionalität zu beschädigen.
+
+[ENDSECTION]
+
+[SECTION::instructions::loose]
 Der letzte Teil des [Gilded Rose-Kata](https://github.
 com/emilybache/GildedRose-Refactoring-Kata/tree/main) ist die Implementierung der Regeln für die 
 neue Produktklasse "Conjured Items". 
@@ -17,8 +21,11 @@ befolgen.
 Da der Code bis hier hin gut mit Tests abgesichert ist, bietet sich der 
 Test-Driven-Development-Vorgang an: Schreiben Sie _erst_ die Tests zur neuen Funktionalität und 
 schreiben Sie _dann_ die dazugehörige Funktionalität in das Programm.
+[ENDSECTION]
 
-!!! submission
-    Die Abgabe besteht aus dem funktionsfähigen Programm mit der in GildedRoseRequirements.txt 
-    geforderten Änderung und dem dazugehörigen Testskript.
-    Kommentieren Sie hierzu deutlich die Stellen, die zur Lösung der Aufgabe ergänzt worden sind.
+[SECTION::submission::programm]
+Die Abgabe besteht aus dem funktionsfähigen Programm mit der in [GildedRoseRequirements.md](https://
+github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/GildedRoseRequirements.md) 
+geforderten Änderung und dem dazugehörigen Testskript.
+Kommentieren Sie hierzu deutlich die Stellen, die zur Lösung der Aufgabe ergänzt worden sind.
+[ENDSECTION]

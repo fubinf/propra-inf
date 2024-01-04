@@ -1,15 +1,19 @@
 title: Gilded Rose 01 - Fixieren von Funktionalität
-stage: draft
+stage: alpha
 timevalue: 1
 difficulty: 3
+profiles:
 assumes: refactoring
+requires:
 ---
-!!! goal
-    Wenn Sie mitten im Lebenszyklus einer Software zu einem Projekt hinzustoßen, müssen Sie mit 
-    Code umgehen, der zwar funktioniert, aber möglicherweise schlecht wartbar oder erweiterbar
-    ist.
-    Üben Sie hier die Funktionalität des Programms mittels Tests zu fixieren.
+[SECTION::goal::experience]
 
+- Ich kann Funktionalität auf bestimmte Code-Bereiche zurückführen.
+- Ich kann Code, den ich refaktorieren möchte, mittels Tests fixieren.
+
+[ENDSECTION]
+
+[SECTION::instructions::loose]
 Das [Gilded Rose-Kata](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/main) ist 
 eine Aufgabe, bei der Ihnen ein funktionierender Code gegeben wird mit der Bitte eine 
 Anforderungsspezifikation zu erfüllen.  
@@ -21,18 +25,21 @@ Der Einfachheit halber ist das Kata im Programmierpraktikum in mehrere Aufgaben 
 Schreiben Sie in dieser Aufgabe die Tests, die alle aktuellen Funktionen des Programms fixieren.
 Auch wenn die Quelle z. B. bei der Nutzung von Python vom Testframework `unittest` ausgeht, ist 
 Ihnen die Wahl des Testframeworks überlassen.
+Wenn Sie hierzu Unterstützung benötigen, finden Sie in der Aufgabengruppe [TGL::testframeworks]
+weitere Informationen.
 
 Die geforderte Implementierung der Regeln für "Conjured Items" ist hier noch nicht gefragt. 
+[ENDSECTION]
 
-!!! submission
-    Beschreiben Sie kurz ihren Testentwurf für das Programm und beschreiben Sie, welche Fälle 
-    sie gewählt haben und warum.
-    Die Abgabe kann entweder aus dem kommentierten Testskript bestehen oder aus einer separaten 
-    Markdown-Datei, die ihr Testskript beschreibt.
+[SECTION::submission::program]
+Die Abgabe besteht aus dem kommentierten Testskript.
+Beschreiben Sie zu jedem Test (oder jeder Testklasse), welche Fälle abgedeckt werden und warum.
+[ENDSECTION]
 
-!!! instructor
-    Anhand des Testentwurfs kann darüber geurteilt werden, wie gut das Programm verstanden 
-    worden ist.
-    Eine mögliche Herangehensweise ist es die Tests kategorisiert nach der Handhabung der 
-    Qualitätsänderung zu gestalten. 
-    So sollten bis zu 15 Tests entstehen.
+[INSTRUCTOR::Testentwurf]
+Anhand des Testentwurfs kann darüber geurteilt werden, wie gut das Programm verstanden 
+worden ist.
+Eine mögliche Herangehensweise ist es die Tests kategorisiert nach der Handhabung der 
+Qualitätsänderung zu gestalten. 
+So sollten bis zu 15 Tests entstehen.
+[ENDINSTRUCTOR]
