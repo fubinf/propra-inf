@@ -23,7 +23,7 @@ Test-Driven-Development-Vorgang an: Schreiben Sie _erst_ die Tests zur neuen Fun
 schreiben Sie _dann_ die dazugehörige Funktionalität in das Programm.
 [ENDSECTION]
 
-[SECTION::submission::programm]
+[SECTION::submission::program]
 Die Abgabe besteht aus dem funktionsfähigen Programm mit der in [GildedRoseRequirements.md](https://
 github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/GildedRoseRequirements.md) 
 geforderten Änderung und dem dazugehörigen Testskript.
