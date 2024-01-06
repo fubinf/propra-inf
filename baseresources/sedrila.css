@@ -2,17 +2,15 @@
     /* https://www.htmlgoodies.com/html5/a-guide-to-using-css-variables/ */
     /* https://www.w3schools.com/cssref/css_colors.php */
     /* https://www.fu-berlin.de/sites/corporate-design/grundlagen/farben/index.html */
-    --main-color: #9c0;
-    /* FU Berlin main color */
-    --difficulty1-color: #0066cc;
-    /* FU Berlin secondary color */
-    --difficulty2-color: #9c0;
-    /* the main color */
-    --difficulty3-color: #f90;
-    /* FU Berlin secondary color */
-    --difficulty4-color: #c00;
-    /* FU Berlin secondary color */
+    --main-color: #9c0;            /* FU Berlin main color */
+    --difficulty1-color: #0066cc;  /* FU Berlin secondary color */
+    --difficulty2-color: #9c0;     /* the main color */
+    --difficulty3-color: #f90;     /* FU Berlin secondary color */
+    --difficulty4-color: #c00;     /* FU Berlin secondary color */
+    --sidebar-width: 450px;
+    --header-height: 70px;
 }
+
 
 /********** Links: */
 
@@ -31,6 +29,7 @@ a:visited {
     filter: brightness(40%);
 }
 
+
 /********** Tags (alphabetical order): */
 
 body {
@@ -42,7 +41,6 @@ body {
 code {
     background-color: #eee;
 }
-
 
 details {
     /* similar to .section-goal etc. */
@@ -84,6 +82,94 @@ li {
 
 summary {}
 
+/********** sidebar */
+
+.header {
+  width: 100%;
+  z-index: 1;
+}
+
+.sidebar {
+  height: 100%;
+  width: var(--sidebar-width);
+  position: fixed;
+  z-index: 1;
+  top: var(--header-height);
+  left: 0;
+  overflow-x: hidden;
+  padding: 10px;
+  transition: all 0.3s ease-out;
+}
+
+.sidebarhide {
+  left: calc(-20px - var(--sidebar-width)) !important;
+}
+
+.main {
+  margin-left: calc(10px + var(--sidebar-width));
+  padding-top: var(--header-height);
+  transition: all 0.3s ease-out;
+}
+
+.mainfull {
+  margin-left: 0px !important;
+}
+
+.header_in button {
+  background:transparent;
+  border:none;
+  width:30px;
+  height:30px;
+  cursor:pointer;
+  outline:0;
+}
+
+.toggle span {
+  width:100%;
+  height:3px;
+  background:#555;
+  display:block;
+  position:relative;
+  coursor:pointer;
+}
+
+.toggle span:before,
+.toggle span:after {
+  content:'';
+  position:absolute;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#555;
+  transition: all 0.3s ease-out;
+}
+
+.toggle span:before {
+  top:-8px;
+}
+
+.toggle span:after {
+  top:8px;
+}
+
+.toggle span.toggle {
+  background:transparent;
+}
+
+.toggle span.toggle:before {
+  top:0;
+  transform:rotate(-45deg);
+  background:#4CAF50;
+  
+}
+
+.toggle span.toggle:after {
+  top:0;
+  transform:rotate(45deg);
+  background:#4CAF50;
+}
+
+
 /********** Pagetypes: */
 
 .pagetype-homepage {}
@@ -105,6 +191,121 @@ summary {}
 
 .pagetype-task-difficulty4 {
     --instructions-border-color: var(--difficulty4-color);
+}
+
+
+/********** Link and TOC decorations: */
+
+.difficulty1 {
+    color: var(--difficulty1-color);
+}
+
+.difficulty2 {
+    color: var(--difficulty2-color);
+}
+
+.difficulty3 {
+    color: var(--difficulty3-color);
+}
+
+.difficulty4 {
+    color: var(--difficulty4-color);
+}
+
+.timevalue-decoration {}
+
+.timevalue-decoration::after {
+    content: "h";
+}
+
+.assumes-decoration,
+.assumed-by-decoration,
+.requires-decoration,
+.required-by-decoration {
+    padding-right: 0.1em;
+    font-weight: bold;
+    color: #111;
+}
+
+.assumed-by-decoration,
+.required-by-decoration {
+    color: var(--difficulty3-color);
+    filter: brightness(50%);
+}
+
+.assumes-decoration::before {
+    content: " A";
+}
+
+.assumed-by-decoration::before {
+    content: " a";
+}
+
+.requires-decoration::before {
+    content: " R";
+}
+
+.required-by-decoration::before {
+    content: " r";
+}
+
+.profiles-decoration {
+    font-size: 90%;
+    font-style: oblique;
+}
+
+.profiles-decoration::before {
+    content: " (";
+}
+
+.profiles-decoration::after {
+    content: ")";
+}
+
+.nostage {}
+
+.stage-draft {
+    background-color: #999;
+}
+
+.stage-alpha {
+    background-color: #bbb;
+}
+
+.stage-beta::after {
+    content: " [beta]";
+}
+
+.indent0 {
+    display: block;
+}
+
+.indent1 {
+    display: block;
+    margin-left: 1em;
+}
+
+.indent2 {
+    display: block;
+    margin-left: 2em;
+}
+
+.indent3 {
+    display: block;
+    margin-left: 3em;
+}
+
+.indent4 {
+    display: block;
+    margin-left: 4em;
+}
+
+.indent0,
+.indent1,
+.indent2,
+.indent3,
+.indent4 {
+    padding: 0.15em 0;
 }
 
 
@@ -170,11 +371,50 @@ summary {}
     background-color: #06c3;
 }
 
-/********** Custom stuff: */
 
-.breadcrumbs {
-  float: left;
+/********** Glossary: */
+
+.glossary-term-block {
+    margin-top: 1ex;
+    border-top: #bbbbbb solid thin;
+    padding-top: 1ex;
+    margin-bottom: 1ex;
 }
+
+.glossary-term-heading {
+    font-weight: bold;
+}
+
+.glossary-term-body {}
+.glossary-term-linkblock {}
+
+.glossary-term-links-explainedby::before {
+    content: "Explained by: "
+}
+
+.glossary-term-links-mentionedby::before {
+    content: "Mentioned by: "
+}
+
+.glossary-termref-term {
+    text-decoration: none;
+}
+
+.glossary-termref-term:hover {
+    text-decoration: underline;
+}
+
+.glossary-termref-suffix::after {
+    content: "Def"
+}
+
+.glossary-termref-suffix {
+  vertical-align: sub;
+  font-size: smaller;    
+}
+
+
+/********** timer: */
 
 #timer {
   float: right;
@@ -192,89 +432,13 @@ summary {}
   content: "⏹";
 }
 
-/********** Link and TOC decorations: */
 
-.assumes-decoration,
-.assumed-by-decoration,
-.requires-decoration,
-.required-by-decoration {
-    padding-right: 0.1em;
-    font-weight: bold;
-    color: #111;
+/********** misc: */
+
+.breadcrumbs {
+  float: left;
 }
 
-.assumed-by-decoration,
-.required-by-decoration {
-    color: var(--difficulty3-color);
-    filter: brightness(50%);
-}
-
-.profiles-decoration {
-    font-size: 90%;
-    font-style: oblique;
-}
-
-.difficulty1 {
-    color: var(--difficulty1-color);
-}
-
-.difficulty2 {
-    color: var(--difficulty2-color);
-}
-
-.difficulty3 {
-    color: var(--difficulty3-color);
-}
-
-.difficulty4 {
-    color: var(--difficulty4-color);
-}
-
-.indent0 {
-    display: block;
-}
-
-.indent1 {
-    display: block;
-    margin-left: 1em;
-}
-
-.indent2 {
-    display: block;
-    margin-left: 2em;
-}
-
-.indent3 {
-    display: block;
-    margin-left: 3em;
-}
-
-.indent4 {
-    display: block;
-    margin-left: 4em;
-}
-
-.indent0,
-.indent1,
-.indent2,
-.indent3,
-.indent4 {
-    padding: 0.15em 0;
-}
-
-.nostage {}
-
-.stage-draft {
-    background-color: #999;
-}
-
-.stage-alpha {
-    background-color: #bbb;
-}
-
-.stage-beta::after {
-    content: " [beta]";
-}
 
 /********** Modifications for dark mode: */
 
