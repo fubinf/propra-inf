@@ -1,3 +1,4 @@
+title: "Basis: Unverzichtbare Arbeitsgrundlagen"
 ---
 [SECTION::goal::idea,product]
 

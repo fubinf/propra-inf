@@ -1,3 +1,4 @@
+title: HTML
 ---
 Eine HTML-Datei beinhaltet eine Baumstruktur sogenannter Tags.
 
@@ -7,7 +8,7 @@ Tags zur Struktur und zu klassischen UI-Elementen kommt man weit genug, um alles
 
 Mit dem Web-Components-Standard existiert mittlerweile die Möglichkeit, eigene Elemente zu
 erzeugen, die möglicherweise auch von Web-Frameworks verwendet wird, aber das ist hier
-insofern nicht interessant, als dass diese nur Komfort liefern und keine zusätzliche
+insofern nicht interessant, als diese nur Komfort liefern und keine zusätzliche
 Funktionalität.
 
 Insgesamt ist HTML allerdings eine sehr stabile Beschreibungssprache in dem Sinne, als dass

@@ -1,2 +1,4 @@
+title: Programm-Bibliotheken (Libraries)
+stage: draft
 ---
-TODO 3: Dies ist der Textteil der Homepage für das Kapitel 'Bibliotheken'.
+TODO_3: Dies ist der Textteil der Homepage für das Kapitel 'Bibliotheken'.

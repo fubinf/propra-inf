@@ -1,3 +1,5 @@
+title: Structured Query Language (SQL)
+stage: draft
 ---
 Sobald die Daten, mit denen man arbeitet, zu groß werden (was auch immer "groß" in diesem 
 Kontext bedeutet), gut organisiert sein müssen oder häufig Zugriff, vielleicht von verschiedenen 

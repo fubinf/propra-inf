@@ -1,3 +1,4 @@
+title: Grundkenntnisse fürs Programmieren
 ---
 Nichts ist frustrierender, als vor Aufgaben zu stehen und nicht zu wissen, welche Werkzeuge einem zur Verfügung stehen.
 Deshalb wollen wir hier sehr kleinteilig, vielleicht an einigen Stellen etwas zu detailverliebt die Werkzeuge der gewählten Programmiersprache kennenlernen oder auffrischen. 

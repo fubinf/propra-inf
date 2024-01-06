@@ -1,3 +1,4 @@
+title: HTTP, Authentisierung
 ---
 Es ist unter Umständen relevant, Benutzern nur dann Zugang zu bestimmten Dateien auf einem
 Webserver zu geben, wenn sie sich vorher eingeloggt haben. Wir befassen und hier mit einer

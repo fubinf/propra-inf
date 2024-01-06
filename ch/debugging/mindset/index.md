@@ -1,3 +1,4 @@
+title: Denkweisen für erfolgreiches Debugging
 ---
 Debugging ist die Handlung der Fehlerbehebung.
 Damit man einen Fehler beheben kann, muss man ihn zunächst finden.

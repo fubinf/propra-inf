@@ -1,3 +1,5 @@
+title: Inkubator und Dachboden
+stage: draft
 ---
 Reine Ablage für Aufgaben, die zum jetzigen Zeitpunkt™ 
 nicht mehr gebraucht werden (`alt/*.md`), 

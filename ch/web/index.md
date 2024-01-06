@@ -1,3 +1,4 @@
+title: Web-Entwicklung
 ---
 Das WWW ist schon seit einiger Zeit dermaßen relevant, dass es oft Synonym zum Internet
 verstanden wird. Im Laufe der Zeit sind die Fähigkeiten von Webseiten so weit gewachsen,

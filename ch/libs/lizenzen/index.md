@@ -1,2 +1,4 @@
+title: Open-Source-Lizenzen
+stage: draft
 ---
-TODO: Gute Einleitung schreiben und überlegen, ob das hier eine eigene Taskgroup bleibt.
+TODO_2: Gute Einleitung schreiben und überlegen, ob das hier eine eigene Taskgroup bleibt.

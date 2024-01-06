@@ -1,6 +1,7 @@
+title: Arbeiten mit Bestandscode
 ---
 
-TODO 3: Dies ist der Textteil der Homepage für das Kapitel 'Bestandscode'.
+TODO_2_hofmann: Dies ist der Textteil der Homepage für das Kapitel 'Bestandscode'.
 
 Ideen für Aufgaben:
 

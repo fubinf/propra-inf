@@ -1,3 +1,4 @@
+title: Refactoring
 ---
 Refactoring ist ein wesentlicher Bestandteil der Softwareentwicklung, der sich auf die 
 Verbesserung der Codequalität und -struktur konzentriert, ohne die äußere Funktionalität zu 

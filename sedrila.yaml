@@ -1,8 +1,7 @@
 title: Programmierpraktikum SoSe 2024, Bachelor Informatik, FU Berlin
-shorttitle: ProPra2024
+breadcrumb_title: ProPra2024
 baseresourcedir: baseresources
 chapterdir: ch
-templatedir: templates
 profiles: ['DBS', 'DSCI', 'OPS', 'SYS', 'TEST', 'WEB']
 stages: ['draft', 'alpha', 'beta']  # ordered list of allowed 'stage:' values
 blockmacro_topmatter:
@@ -45,110 +44,46 @@ instructors:
     gitaccount: xx
     keyfingerprint: .
 chapters:
-  - title: "Basis: Unverzichtbare Arbeitsgrundlagen" 
-    shorttitle: Basis
-    slug: basis
+  - slug: basis
     taskgroups:
-      - title: "Unix-Kommandozeilenumgebung (command-line interface, CLI) schaffen"
-        shorttitle: CLI
-        slug: cli
-      - title: "Repo: Mit einem Git-Repository für die Ergebnisse arbeiten"
-        shorttitle: Repo
-        slug: repo
-      - title: "IDE installieren und in Betrieb nehmen"
-        shorttitle: IDE
-        slug: ide
-      - title: "Struktur des ProPra verstehen"
-        shorttitle: ProPraStruktur
-        slug: schluss
-  - title: "Programmiersprachen"
-    shorttitle: Programmiersprache
-    slug: sprache
+      - slug: cli
+      - slug: repo
+      - slug: ide
+      - slug: schluss
+  - slug: sprache
     taskgroups:
-      - title: "Grundkenntnisse fürs Programmieren"
-        shorttitle: Grundkenntnisse
-        slug: grundkenntnisse
-      - title: "Fortgeschrittene Programmiertechniken"
-        shorttitle: Fortgeschrittenes
-        slug: fortgeschrittenes
-      - title: "Python-Praxis mit ganzen Programmen"
-        shorttitle: Python-Praxis
-        slug: pythonpraxis
-      - title: "Bash Programmierung"
-        shorttitle: Bash
-        slug: bash
-      - title: "Structured Query Language (SQL)"
-        shorttitle: SQL
-        slug: sql
-  - title: "Bibliotheken"
-    shorttitle: Bibliotheken
-    slug: libs
+      - slug: grundkenntnisse
+      - slug: fortgeschrittenes
+      - slug: pythonpraxis
+      - slug: bash
+      - slug: regex
+      - slug: sql
+  - slug: libs
     taskgroups: 
-      - title: "Python-Standardbibliothek"
-        shorttitle: PythonStdlib
-        slug: stdlib
-      - title: "Open Source Lizenzen"
-        shorttitle: Lizenzen
-        slug: lizenzen
-  - title: "Testen"
-    shorttitle: Testen
-    slug: testen
+      - slug: stdlib
+      - slug: lizenzen
+  - slug: testen
     taskgroups:
-      - title: "Basiswissen"
-        shorttitle: Basiswissen
-        slug: basiswissen
-      - title: "Testframeworks"
-        shorttitle: Testframeworks
-        slug: testframeworks
-  - title: "Debugging"
-    shorttitle: Debugging
-    slug: debugging
+      - slug: basiswissen
+      - slug: testframeworks
+  - slug: debugging
     taskgroups:
-      - title: "Mindset"
-        shorttitle: mindset
-        slug: mindset
-      - title: "Klassifikation von Bugs"
-        shorttitle: classification
-        slug: classification
-  - title: "Arbeiten mit Bestandscode"
-    shorttitle: Bestandscode
-    slug: altcode
+      - slug: mindset
+      - slug: classification
+  - slug: altcode
     taskgroups:
-      - title: "Refactoring"
-        shorttitle: Refactoring
-        slug: refactoring
-  - title: "Sonstige Werkzeuge"
-    shorttitle: Werkzeuge
-    slug: tools
+      - slug: refactoring
+  - slug: tools
     taskgroups: []
-  - title: "Web-Entwicklung"
-    shorttitle: Webentwicklung
-    slug: web
+  - slug: web
     taskgroups:
-      - title: "HTML"
-        shorttitle: HTML
-        slug: html
-      - title: "CSS"
-        shorttitle: CSS
-        slug: css
-      - title: "JavaScript"
-        shorttitle: JavaScript
-        slug: js
-      - title: "HTTP-Authentifizierung"
-        shorttitle: HTTP-Auth
-        slug: httpauth
-  - title: "Inkubator und Dachboden"
-    shorttitle: Inkubator
-    slug: zzincubator
-    stage: draft
+      - slug: html
+      - slug: css
+      - slug: js
+      - slug: httpauth
+  - slug: zzincubator
     taskgroups:
-      - title: "Schrott?"
-        shorttitle: alt
-        slug: alt
-      - title: "Heimatlose Aufgabe"
-        shorttitle: suche_chapter
-        slug: suche_chapter
-      - title: "Unfertige Ideen"
-        shorttitle: unfertig
-        slug: unfertig
+      - slug: alt
+      - slug: suche_chapter
+      - slug: unfertig
     

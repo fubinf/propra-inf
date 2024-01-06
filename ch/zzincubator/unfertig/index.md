@@ -1,5 +1,8 @@
+title: Angefangenes mit unklarer Zuordnung
 ---
-Du hattest eine Idee und hast angefangen, sie umzusetzen, aber noch keine komplette Umsetzung? 
-Hier gehört die teilfertige Aufgabe rein!
+Du hattest eine Aufgabenidee und hast angefangen, sie umzusetzen?
+Aber es gibt noch nirgendwo eine passende Aufgabengruppe?
+Dann gehört die teilfertige Aufgabe hier rein!
 
-Wenn es erst nur ein Stichwort oder eine kurze Idee gibt, gehört das nach `aufgabenideen.md`.
+Wenn es erst nur ein Stichwort oder eine _ganz kurze_ Idee gibt, 
+gehört das hingegen nach `aufgabenideen.md`.

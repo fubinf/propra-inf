@@ -1,3 +1,4 @@
+title: "Unix-Kommandozeilenumgebung (command-line interface, CLI) schaffen"
 minimum: 1
 ---
 Viele unserer Aufgaben werden sich auf der 
@@ -16,7 +17,7 @@ anderen beiden.
 
 Unix und Linux ist nicht ganz das Gleiche, aber ähnlich genug, damit wir hier
 im ProPra die Unterschiede meist nicht bemerken.
-Wir benutzen deshalb "Unix" und "Linux" meistens synonym.
+Wir benutzen deshalb "Unix" und "Linux" meistens synonym.  TODO_2: TERM
 Eine wichtige Ausnahme ist der Unterschied zwischen Mac OS (einem Unix)
 und Linux. 
 Mac-Benutzer_innen lesen deshalb bitte ihre Aufgabe besonders genau.  

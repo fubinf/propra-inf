@@ -1,3 +1,4 @@
+title: JavaScript/ECMAScript
 ---
 Zunächst einmal ist zu erwähnen, dass JavaScript (JS) nichts außer dem Namen mit der
 Programmiersprache Java zu tun hat. Die Benennung erfolgte mutmaßlich, um die Sprache

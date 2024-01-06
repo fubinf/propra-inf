@@ -1,3 +1,4 @@
+title: Defekt-Arten
 ---
 Eine der berühmtesten Klassifikationen von Bugs wurde 1989 von Donald Knuth in "The Errors of TeX" 
 aufgestellt, in der Knuth beschreibt, welche Bugs ihm beim Bau von TeX auf die Füße gefallen sind.
