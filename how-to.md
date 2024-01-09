@@ -232,18 +232,13 @@ Submission:
   Useful for having small Python programs (etc.) as separate files during development,
   so they can be executed and tested.
   The students copy/paste the file from within the page in the web browser.
-- `[TAS::taskname]`: TA for "task", S for "short".
-  Create a hyperlink to the task description file for task `taskname`.
-  "short" means it looks like in the breadcrumb, essentially using the taskname as the link text.
-- `[TAL::taskname]`: TA for "task", L for "long".
-  Also creates a hyperlink to the task description for `taskname`.
-  "long" means it uses the task's title as the link text.
-- `[TAM::taskname::link text]`: TA for "task", M for "manual".
-  A hyperlink to task `taskname` that uses `link text` for the link text.
-- `[TGS::taskgroupname]`, `[TGL::taskgroupname]`, `[TGM::taskgroupname::link text]`:
-  Like the previous three, but for task groups instead of tasks.
-- `[CHS::chaptername]`, `[CHL::chaptername]`, `[CHM::chaptername::link text]`:
-  Like the previous three, but for chapters instead of taskgroups.
+- `[PARTREF::partname]`: 
+  Create a hyperlink to the part description file for task, taskgroup, or chapter `partname`,
+  using the partname as the link text.
+- `[PARTREFTITLE::partname]`: 
+  Ditto, but using the part's title as the link text.
+- `[PARTREFMANUAL::partname::link text]`: 
+  Ditto, but using the given link text.
 
 
 ## Task file template
