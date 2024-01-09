@@ -1,4 +1,5 @@
-# TODO: Zentrale Datei zur Koordindation unserer Arbeit
+# Zentrale Datei zur Koordindation unserer Arbeit
+
 
 ## 1. Konventionen
 
@@ -34,6 +35,7 @@ Verwendungsweise:
 
 ### 1.2 ?
 
+
 ## 2. Korrekturbedarf am Bestand
 
 ### 2.1 Korrekturbedarf bei einzelnen Dateien
@@ -59,26 +61,21 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 ### 2.3 Korrekturbedarf an sedrila
 
-- `status:`/`STATUS_`/`--incomplete` ersetzen durch 
-  `stage:`/`sedrila.yaml:stages`/`--stage` mit den aufsteigenden Werten
-  `draft`, `alpha`, `beta`. 
-  Gut sichtbare CSS-Klassen für die unfertigen Teile im TOC ergänzen. 
-- Beim topologischen Sortieren Gruppen gleichwertiger Knoten mittels get_ready()
-  abholen und dann nach primär Difficulty und sekundär Alphabet sortieren,
-  um eine sinnvollere Ordnung in den Taskgroups zu bekommen.
-- Sinnvolle Konvention für slugs einführen. `shorttitle` abschaffen?
+- Sinnvolle Konvention für slugs einführen. 
+- alphabetische Ordnung in glossary erzwingen, [TERMBLOCKSTART] für Reset
+- Macrocall: markdown_content speichern, daraus Zeilennummern errechnen?
 - `profiles` auf der Ebene `Taskgroup` erlauben? Im YAML-Teil angeben, im TOC anzeigen.
 
 ### 2.4 Reviews Einzeldateien
 
-Wenn man eine Datei als "potentiell fertig" ansieht, schreibt man sie in diese
-Liste.
-Der Eintrag bedeutet: Liebe andere, bitte seht die Datei durch, korrigiert kleine Schwächen
-und macht TODO-Marker für mich rein für große Schwächen.
-Solche Reviews sind ein dauerhaftes TODO_1_alle.  
-Nach dem Review den Eintrag hier wieder entfernen.
+Wenn man eine Datei als "potentiell fertig" ansieht, setzt man bei ihr
+`stage: alpha`.
+Das bedeutet: Liebe andere, bitte seht die Datei durch, korrigiert kleine Schwächen
+und macht TODO_1-Marker für mich rein für große Schwächen.
+Wer beim Review keine solchen Marker reingemacht hat, findet die Datei offenbar
+brauchbar und setzt deshalb zum Abschluss `stage: beta`.
 
-- ...
+Solche Reviews sind ein dauerhaftes TODO_1_alle.  
 
 ### 2.5 Globale Qualitätssicherung  TODO_3
 
@@ -91,25 +88,32 @@ Prüfpunkte:
 - Angemessenheit aller Aufgaben (ProPra-gemäßer Inhalt, Zeitwert)
 - ??
 
+
 ## 3. Bedarf an und Ideen für Aufgaben zum Thema X
 
 Das kann umfangreich werden und steht deshalb in einer separaten Datei namens
 [aufgabenideen.md](aufgabenideen.md).
 
-## 4. Bedarf an Glossareinträgen
 
-Wir notieren hier erst mal nur alphabetisch die Stichwörter, für die
-wir uns einen Glossareintrag wünschen:
+## 4. Stunde 0 und Motivation der Studierenden
 
-- Default(wert)
-- Kommandozeilenargument
-- Kommandozeilenparameter
-- Tutorial
+Die "Stunde 0" ist die Begrüßungsveranstaltung zu Beginn des ProPra.
+Diese findet live statt und wer dabei nicht da ist, kann am ProPra nicht teilnehmen(?).
 
+Dort wird knapp der Aufbau und Ablauf des ProPra erklärt (das macht das Basiskapitel
+ja dann etwas ausführlicher) und vor allem wird Motivation geschaffen:
+
+- Praktische Relevanz des Lernstoffes
+- Nicht-Ersetzbarkeit eigenen Wissens und eigener Fertigkeiten (trotz KI-Assistenten)
+- Traurigkeit des Daseins als SW-Entwickler_in, wenn eigene Kompetenz mangelt.
+
+Quellen dazu:
+- Neil Perry, Megha Srivastava, Deepak Kumar, Dan Boneh:
+  _Do Users Write More Insecure Code with AI Assistants?_, 
+  https://arxiv.org/pdf/2211.03622.pdf.
 
 ## 5. Themen für nächste Besprechung
 
-- Wo legen wir Resourcen ab?
-- Wie lösen wir das Begriffswirrwarr?  
-  Vorschlag: `index.md` der best passenden Taskgroup oder
-  ggf. separate erste Aufgabe zu Begriffen in einer Taskgroup.
+- Namenskonventionen für Tasknamen.
+- Namenskonventionen für Taskgroupnamen.
+- Namen für die Kapitel.
