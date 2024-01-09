@@ -81,7 +81,7 @@ die Einleitung der Aufgabengruppe gelesen haben.
 Aufgaben haben unterschiedliche **Schwierigkeitsgrade**.
 Diese sind im Inhaltsverzeichnis deutlich markiert, damit Sie leicht Aufgaben
 der richtigen Stufe aussuchen können.
-Damit machen Sie sich in der Aufgabe [TAS::Schwierigkeitsstufen] von Kapitel "Basis" vertraut.
+Damit machen Sie sich in der Aufgabe [PARTREF::Schwierigkeitsstufen] von Kapitel "Basis" vertraut.
 Schwierigkeit bedeutet dabei nicht unbedingt, 
 dass man die Aufgabe mit weniger Vorkenntnissen kaum schaffen kann, sondern oft nur, 
 dass das sehr viel länger dauert als für die Aufgabe geplant ist, 
@@ -100,18 +100,18 @@ der kurz oder lang sein kann und z.B. hilfreiche Stichwörter oder Links enthäl
 
 Manchmal sind Aufgaben **von anderen Aufgaben abhängig**.
 Auch das ist im Inhaltsverzeichnis markiert.
-Damit machen Sie sich in der Aufgabe [TAS::RequiresAssumes] von Kapitel "Basis" vertraut.
+Damit machen Sie sich in der Aufgabe [PARTREF::RequiresAssumes] von Kapitel "Basis" vertraut.
 
 Einige Aufgaben sind **beruflichen Profilen zugeordnet**.
 Auch das ist im Inhaltsverzeichnis markiert.
-Damit machen Sie sich in der Aufgabe [TAS::RequiresAssumes] von Kapitel "Basis" vertraut.
+Damit machen Sie sich in der Aufgabe [PARTREF::RequiresAssumes] von Kapitel "Basis" vertraut.
 
 Wenn Sie diese Hilfen für die Aufgabenauswahl verstanden haben,
-suchen Sie in Aufgabe [TAS::Themenauswahl] von Kapitel "Basis" aus,
+suchen Sie in Aufgabe [PARTREF::Themenauswahl] von Kapitel "Basis" aus,
 mit was Sie Ihr eigentliches ProPra beginnen wollen.
 
 Wie man fertige Aufgaben einreicht haben Sie schon zuvor in der Aufgabengruppe 
-[TGS::repo] gelernt und eingerichtet.
+[PARTREF::repo] gelernt und eingerichtet.
 
 
 ### 2.3 Was mache ich, wenn ich alleine nicht weiterkomme?

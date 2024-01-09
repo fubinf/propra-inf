@@ -9,7 +9,7 @@ um zusteuern, ob Teile von Code ausgeführt werden sollen, wenn bestimmte Beding
 
 !!! notice 
     Sehen Sie diese Aufgaben nicht nur als reine Textaufgaben an. Nutzen Sie die Zeit und spiele mit
-    dem Gelernten etwas in der [TAM::PythonREPL::REPL] herum! Manchmal lassen sich Fragen auch
+    dem Gelernten etwas in der [PARTREFMANUAL::PythonREPL::REPL] herum! Manchmal lassen sich Fragen auch
     einfacher klären, wenn man sie einfach direkt ausprobiert.
 
 Recherchiere in der Dokumentation 

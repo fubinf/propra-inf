@@ -19,7 +19,7 @@ requires:
 
 Ausdrucksfehler sind eine generalisierte Form von Variablenfehlern.
 An und für sich ist eine Variable schon ein Ausdruck, aber Variablenfehler sind so geläufig, 
-dass man sie als eigene Klasse sehen kann und in der Aufgabe [TAL::b_variable] behandelt werden.
+dass man sie als eigene Klasse sehen kann und in der Aufgabe [PARTREFTITLE::b_variable] behandelt werden.
 Ausdrucksfehler decken alle anderen Fälle ab, in denen Ausdrücke falsch benutzt werden.
 Die Ursache solcher Fehler liegt nicht daran, dass der Algorithmus falsch wäre, 
 sondern das der Programmierer beim Nachdenken in diesem Moment Pech gehabt hat.
@@ -61,7 +61,7 @@ if (((k-1) / 5) == (k / 5)):
 
 Hier liegt eher ein Logikfehler vor, denn der Kommentar passt zum Code. 
 Allerdings sind sowohl Kommentar als auch Code falsch.
-Näheres zu Logikfehlern erfahren Sie in der Aufgabe [TAL::a_logic].
+Näheres zu Logikfehlern erfahren Sie in der Aufgabe [PARTREFTITLE::a_logic].
 
 Die logischen Operatoren `and` und `or` sind häufige Quellen von Fehlern, 
 bei denen der falsche Operator in einem Ausdruck gewählt worden ist.
@@ -91,7 +91,7 @@ TODO_1_pietrak "einzelne lokale Fehler" klingt merkwürdig, prüfen
 
 Im Folgenden sollen Sie einen Code debuggen, der einen Ausdruckfehler beinhaltet.
 Es handelt sich um einige Funktionen aus dem Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Zusammen mit den Funktionen aus [TAL::f_location] und [TAL::b_variable] 
+Zusammen mit den Funktionen aus [PARTREFTITLE::f_location] und [PARTREFTITLE::b_variable] 
 erhalten Sie die grundlegenden Funktionen des Spiels.
 In dieser Aufgabe geht es erstmal darum die Funktionen zu untersuchen,
 mit denen man eine Karte aus einem Deck zieht und diese in seine Hand legt.

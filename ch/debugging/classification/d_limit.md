@@ -19,7 +19,7 @@ requires:
 
 Der Grenzwertfehler tritt auf, wenn die Daten an den Grenzen des Definitionsbereiches 
 nicht korrekt verarbeitet worden sind, also die ersten paar oder letzten paar Elemente des Datensets.
-Ein Indexfehler ([TAL::d_indexing]) führt häufig zu einem Grenzwertfehler.
+Ein Indexfehler ([PARTREFTITLE::d_indexing]) führt häufig zu einem Grenzwertfehler.
 Er kann dazu führen, dass Code die ersten oder letzten paar Elemente gar nicht bearbeitet,
 also wenn der Index zu restriktiv ist.
 Oder er kann dazu führen, dass der Code abstürzt, wenn er über das Ende der Datenstruktur hinaus zugreifen möchte,
@@ -42,7 +42,7 @@ Wenn der Code **nicht** mit der Zeile "###" endet, könnte die Schleife für imm
 
 Man kann zu Grenzwertfehlern auch Fehler zählen, in denen der Code bei bestimmten Eingaben 
 in der Nähe des Anfangs oder Endes des gültigen Eingabebereichs fehlerhaft ist.
-Das heißt, im Gegensatz zum vorherigen Beispiel und den Beispielen aus [TAL::d_indexing], 
+Das heißt, im Gegensatz zum vorherigen Beispiel und den Beispielen aus [PARTREFTITLE::d_indexing], 
 die dazu neigen, alle Eingaben leicht falsch zu verarbeiten, sind dies Fälle, in denen der Code
 bei den meisten Eingaben gut funktioniert, aber bei einer kleinen Teilmenge nahe der Grenze komplett versagt.
 

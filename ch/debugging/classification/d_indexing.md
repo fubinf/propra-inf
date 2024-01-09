@@ -45,7 +45,7 @@ for (i = 0; i <= n; i++) {
 ```
 
 Manchmal werden solche Fehler auch als Off-By-One-Fehler bezeichnet. 
-Was genau hinter solchen Fehlern steckt, können Sie in der Aufgabe [TAL::a_offbyone] herausfinden.
+Was genau hinter solchen Fehlern steckt, können Sie in der Aufgabe [PARTREFTITLE::a_offbyone] herausfinden.
 Allerdings können Indexfehler auch deutlich größer sein als nur eine Verschiebung um 1,
 besonders wenn der Index Teil einer Berechnung ist.
 

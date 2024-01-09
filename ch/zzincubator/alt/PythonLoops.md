@@ -10,7 +10,7 @@ wahr ist..."_ oder _"Für jedes Element aus Y..."_ ist eine Schleife der beste A
 
 !!! notice 
     Sehen Sie diese Aufgaben nicht nur als reine Textaufgaben an. Nutzen Sie die Zeit und spiele mit
-    dem Gelernten etwas in der [TAM::PythonREPL::REPL] herum! Manchmal lassen sich Fragen auch
+    dem Gelernten etwas in der [PARTREFMANUAL::PythonREPL::REPL] herum! Manchmal lassen sich Fragen auch
     einfacher klären, wenn man sie einfach direkt ausprobiert.
 
 Die einfachste Form der Schleife ist die `while`-Schleife. 

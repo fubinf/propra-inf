@@ -8,7 +8,7 @@ herauszufinden, _wo_ ein Bug vorliegt, _was_ ihn auslöst und _wie_ er zu behebe
 In den folgenden Aufgaben können Sie sich damit auseinandersetzen, welche Art von Problemen bei 
 der Arbeit am Code auftreten können, wie man diese finden und sogar vermeiden kann.
 Lösungsstrategien für bestimmte Arten von Bugs werden hier aber nicht besprochen.
-Mehr dazu gibt es in der Aufgabengruppe [TGL::classification].
+Mehr dazu gibt es in der Aufgabengruppe [PARTREFTITLE::classification].
 
 Wir werden in diesem Kapitel Herangehensweisen zur Fehlersuche, -Behebung und -Vermeidung aus
 der Perspektive verschiedener Professionen betrachten.

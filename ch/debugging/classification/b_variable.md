@@ -15,7 +15,7 @@ requires:
 [SECTION::background::default]
 
 Der in dieser Aufgabe zu bearbeitende Code gehört zum Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Der vorhergehende Code hierzu wird in den Aufgaben [TAL::b_expression] und [TAL::f_location] besprochen.
+Der vorhergehende Code hierzu wird in den Aufgaben [PARTREFTITLE::b_expression] und [PARTREFTITLE::f_location] besprochen.
 Wenn Sie den Code durch aufmerksames Lesen und händisches Durchgehen debuggen, 
 ist es nicht nötig die ersten beiden Aufgaben bearbeitet zu haben. 
 Sollten Sie allerdings dem Bug über Tools oder weitere Zeilen Code auf die Schliche kommen wollen,
@@ -84,8 +84,8 @@ kann der Fehler auch darin liegen die beiden Funktionen zu vertauschen.
 
 Im Folgenden sollen Sie eine Funktion debuggen, in der ein Variablenfehler aufgetreten ist.
 Der Code spielt eine Runde des Spiels "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Er benutzt die korrigierten Funktionen `draw_code()` aus der Aufgabe [TAL::b_expression] und 
-`check_card()` aus der Aufgabe [TAL::f_location].
+Er benutzt die korrigierten Funktionen `draw_code()` aus der Aufgabe [PARTREFTITLE::b_expression] und 
+`check_card()` aus der Aufgabe [PARTREFTITLE::f_location].
 
 Eine Runde wird wie folgt durchgeführt: Es wird ein zufälliger Rang aus der Hand des Spielers ausgewählt und
 der Gegenspieler wird gefragt, ob er Karten dieses Rangs besitzt.
@@ -105,7 +105,7 @@ Um ein vollständiges Spiel zu spielen, wird der Code so lange fortgesetzt,
 bis beide Spieler keine Karten auf der Hand mehr haben.
 
 [NOTICE]
-Falls Sie die Aufgaben [TAL::b_expression] und [TAL::f_location] nicht bearbeitet haben, ist hier eine kurze Erinnerung
+Falls Sie die Aufgaben [PARTREFTITLE::b_expression] und [PARTREFTITLE::f_location] nicht bearbeitet haben, ist hier eine kurze Erinnerung
 über die Datenstrukturen des Spiels "Go Fish":
 
 - Karten werden anhand ihres Rangs und ihrer Farbe identifiziert.
