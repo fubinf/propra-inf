@@ -2,7 +2,7 @@ title: Installation und Einrichtung von PyCharm (Windows)
 stage: draft
 timevalue: 0.5
 difficulty: 1
-requires: cli
+requires: Unix-Umgebung
 ---
 Wenn Sie sich für Python als Programmiersprache entschieden haben, empfehlen wir zur Verwendung
 der IDE **PyCharm** von JetBrains.

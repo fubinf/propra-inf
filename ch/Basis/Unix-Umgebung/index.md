@@ -1,11 +1,8 @@
 title: "Unix-Kommandozeilenumgebung (command-line interface, CLI) schaffen"
 minimum: 1
 ---
-Viele unserer Aufgaben werden sich auf der 
-[Kommandozeile](https://de.wikipedia.org/wiki/Kommandozeile) 
-in einer 
-[Unix-Shell](https://de.wikipedia.org/wiki/Unix-Shell)
-abspielen.
+Viele unserer Aufgaben werden sich auf der Kommandozeile in einer 
+[PARTREF::Unix-Shell] abspielen.
 Deshalb müssen wir jetzt dafür sorgen, dass Sie eine solche Umgebung zur
 Verfügung haben, 
 inklusive eines Paketmanagers zum Installieren weiterer Softwarepakete.
@@ -15,9 +12,12 @@ Windows, Mac OS oder Linux.
 Wählen Sie bitte die dazu passende Aufgabe und ignorieren Sie die
 anderen beiden.
 
-Unix und Linux ist nicht ganz das Gleiche, aber ähnlich genug, damit wir hier
+[TERMREF::Unix] und [TERMREF::Linux] ist nicht ganz das Gleiche, aber ähnlich genug, damit wir hier
 im ProPra die Unterschiede meist nicht bemerken.
-Wir benutzen deshalb "Unix" und "Linux" meistens synonym.  TODO_2: TERM
-Eine wichtige Ausnahme ist der Unterschied zwischen Mac OS (einem Unix)
-und Linux. 
-Mac-Benutzer_innen lesen deshalb bitte ihre Aufgabe besonders genau.  
+Wir benutzen deshalb "Unix" und "Linux" meistens synonym.
+Eine wichtige Ausnahme ist hin und wieder der Unterschied zwischen 
+Mac OS (einem POSIX-kompatiblen Unix)
+und Linux.
+Linux ist nicht POSIX-kompatibel, hat aber die breiteste Softwareunterstützung und
+ist insbesondere auf Servern führend.
+**Wir tun hier immer so, als wären wir auf Linux**, Mac-Benutzer_innen also bitte aufpassen.  

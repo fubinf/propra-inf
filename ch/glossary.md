@@ -73,6 +73,14 @@ oder für ein eingebautes Shell-Kommando
 
 
 ## L
+
+[TERMLONG::Linux|GNU/Linux]
+Eine Familie von Open-Source-Betriebssystem-Distributionen, die auf dem Linux-Betriebssystemkern aufbauen
+sowie auf einem umfangreichen Universum von Softwarepaketen.
+
+https://de.wikipedia.org/wiki/Linux
+[ENDTERMLONG]
+
 ## M
 ## N
 ## O
@@ -87,16 +95,18 @@ In manchen Sprachen können auch andere Dinge parametrisiert sein, z.B. Klassen,
 Makros, Module oder Pakete.
 [ENDTERMLONG]
 
-
 ## Q
 ## R
 
 
 ## S
 
-[TERMLONG::Shell]
-Übliche Bezeichnung für die Kommandozeilen-Interpretierer auf Unix-Systemen,
+[TERMLONG::Shell|Unix-Shell|Linux-Shell|Kommandozeile]
+Übliche Bezeichnung für die Kommandozeilen-Interpretierer auf [TERMREF2::Unix::--] oder [TERMREF2::Linux::--Systemen],
 weil diese aus Sicht einer Benutzer_in wie eine "Schale" den Kern des Betriebssystems umhüllen.
+
+https://de.wikipedia.org/wiki/Kommandozeile  
+https://de.wikipedia.org/wiki/Unix-Shell
 [ENDTERMLONG]
 
 
@@ -116,6 +126,23 @@ um das Lernpensum zu verbreitern.
 
 
 ## U
+
+[TERMLONG::Unix|POSIX]
+Eine große und lose Familie von Betriebssystemen, die auf unterschiedlichen Betriebssystemkernen aufbauen,
+aber viele Grundkonzepte gemeinsam haben.
+
+In einem weiteren Sinne des Wortes sind beiden wichtigsten Untergruppen 
+die POSIX-kompatiblen Systeme und die [TERMREF::Linux]-Systeme.
+
+Im engeren Sinne sind nur POSIX-Systeme Unix, 
+alle anderen (inklusive Linux) werden dann meist "unixoid" genannt,
+aber häufig spart man sich die Mühe dieser Unterscheidung einfach.
+
+https://de.wikipedia.org/wiki/POSIX  
+https://de.wikipedia.org/wiki/Unix
+[ENDTERMLONG]
+
+
 ## V
 ## W
 ## X
