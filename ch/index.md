@@ -44,7 +44,7 @@ und bekommen sie gutgeschrieben oder zur Nachbesserung zurückgegeben.
 
 Insgesamt sieht der Ablauf ungefähr so aus:
 
-1. Arbeitsumgebung einrichten (siehe Kapitel "Basis")
+1. Arbeitsumgebung einrichten (das passiert im Kapitel "Basis")
 2. Aufgabe auswählen
 3. Aufgabe bearbeiten
 4. Aufgabe einchecken (wie das geht, lernt man im Kapitel "Basis")
@@ -111,7 +111,7 @@ suchen Sie in Aufgabe [PARTREF::Themenauswahl] von Kapitel "Basis" aus,
 mit was Sie Ihr eigentliches ProPra beginnen wollen.
 
 Wie man fertige Aufgaben einreicht haben Sie schon zuvor in der Aufgabengruppe 
-[PARTREF::repo] gelernt und eingerichtet.
+[PARTREF::Repo] gelernt und eingerichtet.
 
 
 ### 2.3 Was mache ich, wenn ich alleine nicht weiterkomme?

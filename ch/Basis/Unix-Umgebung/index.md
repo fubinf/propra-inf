@@ -2,7 +2,7 @@ title: "Unix-Kommandozeilenumgebung (command-line interface, CLI) schaffen"
 minimum: 1
 ---
 Viele unserer Aufgaben werden sich auf der Kommandozeile in einer 
-[PARTREF::Unix-Shell] abspielen.
+[TERMREF::Unix-Shell] abspielen.
 Deshalb müssen wir jetzt dafür sorgen, dass Sie eine solche Umgebung zur
 Verfügung haben, 
 inklusive eines Paketmanagers zum Installieren weiterer Softwarepakete.
