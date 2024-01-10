@@ -3,6 +3,20 @@
 The target audience of this document is ProPra authors, not instructors and not students.
 
 
+## Sedrila
+
+First, learn about sedrila in the
+[README.md](https://github.com/fubinf/sedrila/blob/main/README.md) and
+[authors.md](https://github.com/fubinf/sedrila/blob/main/doc/authors.md) parts of its documentation.
+
+
+## Task file template
+
+When you start a new task description file, 
+copy [ch/template_md](ch/template_md) 
+and use it as a template to have a clean up-to-date starting point.
+
+
 ## Difficulty levels
 
 Writing a task works differently for different levels of task difficulty.  
@@ -38,13 +52,6 @@ Therefore,
   why the material will be (or can be) useful for a practicing software engineer;
 - we should make every attempt at implementing one of the principles described in this article:
   [12 Prinzipien zur Motivation Lernender](https://link.springer.com/chapter/10.1007/978-3-658-26990-6_1)
-
-
-## Task file template
-
-When you start a new task description file, 
-copy [ch/template_md](ch/template_md) 
-and use it as a template to have a clean up-to-date starting point.
 
 
 ## Language use (in German because we use German)
