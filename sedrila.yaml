@@ -44,12 +44,12 @@ instructors:
     gitaccount: xx
     keyfingerprint: .
 chapters:
-  - slug: basis
+  - slug: Basis
     taskgroups:
-      - slug: cli
-      - slug: repo
-      - slug: ide
-      - slug: schluss
+      - slug: Unix-Umgebung
+      - slug: Repo
+      - slug: IDE
+      - slug: Schluss
   - slug: sprache
     taskgroups:
       - slug: grundkenntnisse
