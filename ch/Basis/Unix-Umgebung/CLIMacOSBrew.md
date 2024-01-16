@@ -1,10 +1,27 @@
 title: Linux-Kommandozeile auf Mac OS mit Homebrew
 stage: draft
-timevalue: 1.0
-difficulty: 1
+timevalue: 1.5
+difficulty: 2
 ---
+[SECTION::background::default]
 
-## Bash-Shell sicherstellen
+Wir gehen im Verlauf des Programmierpraktikums von einem Standard-Debian-Linux als Umgebung aus.
+Mac OS ist zwar ein Unix-System und dadurch Linux in vielem ähnlich, es gibt aber auch viele relevante
+Unterschiede.
+Deshalb brauchen wir eine Kompatibilitätsschicht, die diese Unterschiede verringert.
+Wir wählen dafür Homebrew, das es erlaubt, viele der unter Debian Linux verfügbaren Pakete
+in gleicher oder ähnlicher Version unter Mac OS X zu installieren.
+
+[ENDSECTION]
+[SECTION::goal::product]
+
+Ich habe sichergestellt, dass ich eine Bash-Shell starten kann und
+dass Homebrew, Python und Pip funktionieren.
+
+[ENDSECTION]
+[SECTION::instructions::loose]
+
+### Bash-Shell sicherstellen
 
 - Starten Sie ein Terminal. 
   Das Programm, das den darin laufenden Kommandozeilen-Interpretierer realisiert,
@@ -13,21 +30,24 @@ difficulty: 1
   Wir werden diese Notation häufig verkürzt verwenden und nur schreiben: `echo $SHELL`.
   Sie müssen dann selbständig verstehen, dass ein Kommando auf der Kommandozeile gemeint ist.
 - Wenn Sie als Ausgabe `/bin/bash` erhalten haben, ist alles in Ordnung: 
-  Es gibt auf Linux zahlreiche verschiedene Shells und wir nehmen hier immer die Bash
+  Es gibt auf Linux/Unix zahlreiche verschiedene Shells und wir nehmen hier immer die Bash
   als Shell an.
-- Aber vermutlich haben sie stattdessen `/bin/zsh` erhalten.
-  Meistens ist das gleichwertig, aber wenn es um speziellere Aspekte von Bash geht,
-  brauchen wir die Bash. Aufruf einfach mittels `bash`, dann haben Sie eine
-  Shell-in-der-Shell, die Sie bei Bedarf mittels `exit` wieder verlassen können,
-  um wieder in der `zsh` weiterzuarbeiten.
+- Haben Sie etwas anderes bekommen (wahrscheinlich `/bin/zsh`), dann können Sie 
+  - entweder in jedem Einzelfall nach Start eines Terminals zur Bash wechseln
+    (mit `bash` oder notfalls `/bin/bash`)
+  - oder ein für alle Mal auf Bash als Standardshell umstellen mit
+    `chsh -s /bin/bash`. 
+    Erläuterungen siehe z.B. auf 
+    [howtogeek](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/)
 
-## Homebrew installieren
+
+### HomeBrew installieren  TODO_1_hüster
 
 MacOS ähnelt zwar in vielen Punkten Linuxsystemen, jedoch bietet MacOS von Haus aus kein
 eigenes Paketverwaltungssystem, mit dem sich einfach aus dem Terminal heraus verschiedene
 Anwendungen installieren lassen. Da dies jedoch besonders für die Softwareentwicklung
 notwendig ist, gibt es inzwischen Drittanbietertools, welche diese Aufgabe erledigen.
-Das beliebteste Tool dieser Art nennt sich Homebrew.
+Wir benutzen das beliebteste Tool dieser Art: Homebrew.
 
 Zum Installieren folgen Sie den Anweisungen auf der [Homebrew-Website](https://brew.sh).
 
@@ -39,17 +59,30 @@ Homebrew installierten Anwendungen auf einmal aktualisieren.
 
 Die Aufgabe für diesen Teil besteht darin, Homebrew zu installieren, und zu überprüfen, dass
 diese Installation korrekt abgeschlossen wurde. Dazu reicht die Ausgabe von `brew --version`.
-Die installation für Homebrew ist essentiell für die Bearbeitung späterer Aufageben, gehen Sie
+Die installation für Homebrew ist essentiell für die Bearbeitung späterer Aufgaben. Gehen Sie
 daher sicher, dass das Programm korrekt installiert wurde und sich weitere Pakete installieren
 und updaten lassen.
 
-## Python sicherstellen
 
-- Probieren Sie `python3 -V`, um die installierte Python-Version zu bestimmen.
-  Wir brauchen mindestens Python 3.9.
-- Wenn Python 3 nicht installiert ist, keines der Kommandos funktioniert, 
+### `apt`-Kommandos auf `homebrew` umsetzen lernen  TODO_1_hüster
 
-!!! submission
-    Ihre Abgabe umfasst lediglich die Ausgabe der Befehle `brew --version` und `brew update`.
-    Falls Sie bereits Pakete kennen, die Sie installieren wollen, können Sie dies tun und die
-    Ausgabe des Installationskommandos ebenfalls abgeben.
+(In den Aufgaben steht manchmal "Installiere Paket X". Erklärt wird das nur für apt.
+ Mac-User müssen selber wissen, wie das bei Ihnen geht und müssen erkennen können,
+ falls es das fragliche Paket gar nicht gibt und sie also diese Aufgabe nicht bearbeiten können.)
+
+
+### Python installieren  TODO_1_hüster
+
+(Gibt es verlässlich in allen MacOS-Versionen ein python3? Nehmen wir das?
+Oder lieber immer eins mit Homebrew? https://docs.brew.sh/Homebrew-and-Python )
+
+[INCLUDE::CheckPython.inc]
+
+Ergänzen Sie noch die Ausgaben der Befehle `brew --version` und `brew update`.
+
+[ENDSECTION]
+[INSTRUCTOR::Warnhinweise]
+
+[INCLUDE::InstructorCheckLinux.inc]
+
+[ENDSECTION]
