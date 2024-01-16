@@ -1,10 +1,26 @@
 title: Linux-Kommandozeile auf Linux mit Apt
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 1
 ---
+[SECTION::background::default]
 
-## Bash-Shell sicherstellen
+Wir gehen im Verlauf des Programmierpraktikums von einem Standard-Debian-Linux als Umgebung aus.
+Sie können auch etwas anderes benutzen, müssen dann die Unterschiede aber aus eigener
+Kraft überbrücken.
+Ubuntu-Linux und Mint sind sehr ähnlich zu Debian,
+aber Arch, Fedora, Suse und diverse andere sind erheblich verschieden.
+
+[ENDSECTION]
+[SECTION::goal::product]
+
+Ich habe sichergestellt, dass ich eine Bash-Shell starten kann und
+dass Python und Pip funktionieren.
+
+[ENDSECTION]
+[SECTION::instructions::loose]
+
+### Bash-Shell sicherstellen
 
 - Starten Sie ein Terminal. 
   Das Programm, das den darin laufenden Kommandozeilen-Interpretierer realisiert,
@@ -18,18 +34,17 @@ difficulty: 1
 - Haben Sie etwas anderes bekommen, dann haben Sie nicht die hier angenommene
   Sorte von Linux-System, nämlich ein standardmäßig konfiguriertes Debian oder Ubuntu.
   In diesem Fall müssen Sie folgendes mit Hilfe geeigneter Web-Recherche selbst herausfinden:
-  - Wie man darauf Bash aufruft (ggf. einfach mit `bash`)
-  - Oder falls keine Bash installiert ist: Was für eine Linux Distribution Sie haben
-  - Wie man darauf Pakete installiert (anstatt mit `apt-get` oder `apt` wie auf Debian)
-  - Wie man konkret Bash installiert und dann aufruft
+  - Wie man darauf Bash aufruft (meist einfach mit `bash`)
+  - Oder falls keine Bash installiert ist: 
+    - Was für eine Linux Distribution Sie haben (Diagnose mittels `cat /etc/os-release`)
+    - Wie man darauf Pakete installiert (anstatt mit `apt-get` oder `apt` wie auf Debian)
+    - Wie man konkret Bash installiert und dann aufruft
 
+[INCLUDE::CheckPython.inc]
 
-## Python sicherstellen
+[ENDSECTION]
+[INSTRUCTOR::Warnhinweise]
 
-- Probieren Sie `python -V` oder `python3 -V`, um die installierte Python-Version zu bestimmen.
-  Wir brauchen mindestens Python 3.9.
-  Merken Sie sich, welches der beiden Kommandos bei Ihnen funktioniert; evtl. sind beide äquivalent.
-  Wir bevorzugen `python3`, weil das unter Umständen Verwirrung vermeidet, wenn auch Python 2
-  installiert sein sollte.
-- Wenn keines der Kommandos funktioniert, dann haben Sie wiederum nicht die hier angenommene
-  Sorte von Linux-System und müssen analog wie oben weiter verfahren.
+[INCLUDE::InstructorCheckLinux.inc]
+
+[ENDSECTION]
