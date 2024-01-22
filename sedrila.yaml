@@ -58,7 +58,7 @@ chapters:
       - slug: bash
       - slug: regex
       - slug: sql
-  - slug: libs
+  - slug: Bibliotheken
     taskgroups: 
       - slug: stdlib
       - slug: lizenzen
