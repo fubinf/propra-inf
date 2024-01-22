@@ -67,7 +67,7 @@ oder Hollywood-Prinzip: _"Don't call us, we'll call you"_.
 ## G
 ## H
 
-[TERMLING::HTTP]
+[TERMLONG::HTTP]
 HTTP steht für "Hypertext Transfer Protocol" und ist ein Protokoll, das für die
 Übertragung von Daten über das World Wide Web verwendet wird. Es bildet die Grundlage
 für den Datenaustausch zwischen Webbrowsern und Webservern. HTTP ermöglicht die Kommunikation
@@ -78,7 +78,7 @@ andere Ressourcen gehostet werden.
 ## I
 ## J
 
-[TERMLING::JSON]
+[TERMLONG::JSON]
 JSON (JavaScript Object Notation) ist ein leichtgewichtiges Datenaustauschformat,
 das für den menschenlesbaren und einfachen Datenaustausch zwischen verschiedenen
 Programmiersprachen konzipiert ist. Es basiert auf einer Untermenge der
