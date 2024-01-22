@@ -10,22 +10,22 @@ sowie ggf. auf Aufgaben, die weitere Erläuterungen dazu enthalten.
 
 ## A
 
-[TERMLONG::Argument]
+[TERM::Argument]
 Der konkrete Wert, den man an einen [TERMREF::Parameter] übergibt, 
 z.B. in Form einer konkreten Variable.
-[ENDTERMLONG]
+[ENDTERM]
 
-[TERMLONG::API]
+[TERM::API]
 Eine API (Application Programming Interface) ist eine Schnittstelle,
 die es verschiedenen Softwareanwendungen ermöglicht, miteinander zu kommunizieren und
 Daten auszutauschen. Sie definiert die Regeln und Protokolle, nach denen Programme
 miteinander interagieren können.
-[ENDTERMLONG]
+[ENDTERM]
 
 
 ## B
 
-[TERMLONG::Bibliothek|Library]
+[TERM::Bibliothek|Library]
 Eine Sammlung von Programmelementen (z.B. Klassen, Funktionen, Datentypen, Module, Pakete)
 ohne Hauptprogramm; 
 dazu bestimmt, von anderen Programmen oder anderen Bibliotheken benutzt zu werden.
@@ -33,7 +33,7 @@ dazu bestimmt, von anderen Programmen oder anderen Bibliotheken benutzt zu werde
 Bibliotheken erlauben es, Programme weitgehend aus vorhandenen Bausteinen zusammenzusetzen
 und nur noch wenig Code selbst schreiben zu müssen.
 Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwicklung.
-[ENDTERMLONG]
+[ENDTERM]
 
 
 ## C
@@ -41,10 +41,10 @@ Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwickl
 
 ## D
 
-[TERMLONG::Default|Defaultwert|Default-Argument]
+[TERM::Default|Defaultwert|Default-Argument]
 Ein [TERMREF::Argument] zur Übergabe an einen [TERMREF::Parameter],
 das implizit benutzt wird, wenn man nicht selbst explizit ein Argument übergibt. 
-[ENDTERMLONG]
+[ENDTERM]
 
 
 ## E
@@ -52,78 +52,78 @@ das implizit benutzt wird, wenn man nicht selbst explizit ein Argument übergibt
 
 ## F
 
-[TERMLONG::Framework|Rahmenwerk]
+[TERM::Framework|Rahmenwerk]
 Ein Rahmenwerk (Framework) ist eine [TERMREF::Bibliothek]
 (oder ein direkt lauffähiges Programm),
-die nicht hauptsächllich von der Benutzer_in aufgerufen wird,
+die nicht hauptsächlich von der Benutzer_in aufgerufen wird,
 sondern bei der die Benutzer_in eigene Programmteile registriert,
 die dann anschließend durch das Rahmenwerk aufgerufen werden.
 
 Dieses Funktionsprinzip ist bekannt als Kontrollumkehr (inversion of control)
 oder Hollywood-Prinzip: _"Don't call us, we'll call you"_.
-[ENDTERMLONG]
+[ENDTERM]
 
 
 ## G
 ## H
 
-[TERMLONG::HTTP]
+[TERM::HTTP]
 HTTP steht für "Hypertext Transfer Protocol" und ist ein Protokoll, das für die
 Übertragung von Daten über das World Wide Web verwendet wird. Es bildet die Grundlage
 für den Datenaustausch zwischen Webbrowsern und Webservern. HTTP ermöglicht die Kommunikation
 zwischen Client-Anwendungen (zum Beispiel Webbrowsern) und Servern, auf denen Webseiten und
 andere Ressourcen gehostet werden.
-[ENDTERMLONG]
+[ENDTERM]
 
 ## I
 ## J
 
-[TERMLONG::JSON]
+[TERM::JSON]
 JSON (JavaScript Object Notation) ist ein leichtgewichtiges Datenaustauschformat,
 das für den menschenlesbaren und einfachen Datenaustausch zwischen verschiedenen
 Programmiersprachen konzipiert ist. Es basiert auf einer Untermenge der
 JavaScript-Programmiersprache, jedoch kann JSON von vielen anderen Sprachen
 unterstützt und interpretiert werden.
-[ENDTERMLONG]
+[ENDTERM]
 
 ## K
 
-[TERMLONG::Kommandozeilenparameter]
+[TERM::Kommandozeilenparameter]
 Ein [TERMREF::Parameter] für ein ausführbares Programm, das per 
 [TERMREF::Shell]-Kommando aufgerufen wird, 
 oder für ein eingebautes Shell-Kommando 
-[ENDTERMLONG]
+[ENDTERM]
 
 
 ## L
 
-[TERMLONG::Linux|GNU/Linux]
+[TERM::Linux|GNU/Linux]
 Eine Familie von Open-Source-Betriebssystem-Distributionen, die auf dem Linux-Betriebssystemkern aufbauen
 sowie auf einem umfangreichen Universum von Softwarepaketen.
 
 https://de.wikipedia.org/wiki/Linux
-[ENDTERMLONG]
+[ENDTERM]
 
 ## M
 ## N
 ## O
 
-[TERMLONG::OpenAPI]
+[TERM::OpenAPI]
 Früher als Swagger Specification bekannt, ist ein Standard, der die Dokumentation
 von RESTful APIs (Representational State Transfer) erleichtert. Es handelt sich um
 eine maschinenlesbare Beschreibung einer API, die Entwicklern ermöglicht, schnell
 zu verstehen, wie die API funktioniert, welche Ressourcen verfügbar sind, welche
 Parameter erwartet werden und welche Antworten zurückgegeben werden können.
-[ENDTERMLONG]
+[ENDTERM]
 
 ## P
 
-[TERMLONG::Parameter]
+[TERM::Parameter]
 Ein Platzhalter für ein [TERMREF::Argument], das man an etwas parametrisiertes übergeben kann.
 Funktionen und Methoden haben in Python sehr oft ein oder mehrere Parameter.
 In manchen Sprachen können auch andere Dinge parametrisiert sein, z.B. Klassen,
 Makros, Module oder Pakete.
-[ENDTERMLONG]
+[ENDTERM]
 
 ## Q
 ## R
@@ -131,18 +131,18 @@ Makros, Module oder Pakete.
 
 ## S
 
-[TERMLONG::Shell|Unix-Shell|Linux-Shell|Kommandozeile]
+[TERM::Shell|Unix-Shell|Linux-Shell|Kommandozeile]
 Übliche Bezeichnung für die Kommandozeilen-Interpretierer auf [TERMREF2::Unix::--] oder [TERMREF2::Linux::--Systemen],
 weil diese aus Sicht einer Benutzer_in wie eine "Schale" den Kern des Betriebssystems umhüllen.
 
 https://de.wikipedia.org/wiki/Kommandozeile  
 https://de.wikipedia.org/wiki/Unix-Shell
-[ENDTERMLONG]
+[ENDTERM]
 
 
 ## T
 
-[TERMLONG::Tutorial]
+[TERM::Tutorial]
 Ein kurzer Lehrgang (in der Regel in Schriftform, eventuell als Video)
 zum Erlernen der Grundzüge eines klar abgegrenzten Themenbereichs,
 meist der Benutzung einer Programmier- oder Kommandosprache,
@@ -152,12 +152,12 @@ Ein Tutorial führt den Lernende_n durch praktische Schritte,
 die dieser selbst durchführen soll, um einen optimalen Lernerfolg zu erreichen.
 Das ermöglicht zugleich, unterwegs direkt andere Varianten der Schritte auszuprobieren,
 um das Lernpensum zu verbreitern.
-[ENDTERMLONG]
+[ENDTERM]
 
 
 ## U
 
-[TERMLONG::Unix|POSIX]
+[TERM::Unix|POSIX]
 Eine große und lose Familie von Betriebssystemen, die auf unterschiedlichen Betriebssystemkernen aufbauen,
 aber viele Grundkonzepte gemeinsam haben.
 
@@ -170,20 +170,20 @@ aber häufig spart man sich die Mühe dieser Unterscheidung einfach.
 
 https://de.wikipedia.org/wiki/POSIX  
 https://de.wikipedia.org/wiki/Unix
-[ENDTERMLONG]
+[ENDTERM]
 
 
 ## V
 ## W
 ## X
 
-[TERMLONG::XML]
+[TERM::XML]
 XML (eXtensible Markup Language) ist eine Auszeichnungssprache zur Darstellung
 hierarchisch strukturierter Daten in einem menschenlesbaren Format. Entwickelt
 wurde XML, um strukturierte Daten zwischen Computersystemen austauschen zu können.
 Im Gegensatz zu [TERMREF::JSON] ist XML nicht auf eine bestimmte Programmiersprache
 beschränkt und kann in einer Vielzahl von Anwendungen und Kontexten eingesetzt werden.
-[ENDTERMLONG]
+[ENDTERM]
 
 ## Y
 ## Z
