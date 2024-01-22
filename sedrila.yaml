@@ -61,6 +61,7 @@ chapters:
   - slug: Bibliotheken
     taskgroups: 
       - slug: stdlib
+      - slug: Frameworks
       - slug: lizenzen
   - slug: testen
     taskgroups:
