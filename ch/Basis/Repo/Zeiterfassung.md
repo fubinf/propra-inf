@@ -1,5 +1,5 @@
 title: Konvention für Commit-Nachrichten zwecks Arbeitszeiterfassung
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 2
 requires: Git101
@@ -69,7 +69,7 @@ Es liefert auch den Namen der aktuellen Aufgabe.
 Treffen Sie eine Entscheidung, ob Sie diese Form der Arbeitszeiterfassung
 nutzen möchten.
 
-Wir raten dazu, denn Sie können dabei viel lernen.
+Wir raten, es zu tun, denn Sie können dabei viel lernen und der Aufwand ist gering.
 Sie werden in der Praxis häufig vor dem Problem stehen, den Zeitaufwand einer Aufgabe von vornherein einzuschätzen. Dabei ist konkrete Erfahrung, wie sie hier erworben werden kann, sehr hilfreich.
 
 [ENDSECTION]
@@ -84,15 +84,16 @@ Tragen Sie die Antworten auf folgende Fragen ein:
     - Q3: Haben Sie Scheu davor, dass Ihre Tutor_innen diese Zeiten einsehen können? 
       Warum, wenn die doch dafür da sind, Ihnen Lernhilfe und Rückmeldung zu geben?
     - Q4: Werden Sie im ProPra die beschriebene Arbeitszeiterfassung machen?
-      Falls ja: Was vermuten Sie, wie oft sie vergessen werden, das Eintragsformat einzuhalten?
+      Falls ja: Was vermuten Sie, wie häufig sie vergessen werden, das Eintragsformat einzuhalten?
 
 Machen Sie einen Commit im obigen Format mit Ihrer tatsächlichen Arbeitszeit.
 
-Wenn Sie sich für Arbeitszeiterfassung entschieden haben, sollten Sie das für die
-bisher bereits von Ihnen bearbeitetem Aufgaben nun tun:
+Wenn Sie sich für Arbeitszeiterfassung entschieden haben, sollten Sie die für die
+bisher bereits von Ihnen bearbeitetem Aufgaben nun nachholen:
 Man kann bei git mit der [Option `--allow-empty`](https://git-scm.com/docs/git-commit) 
 einen Commit machen, ohne eine Datei hinzuzufügen.
-Machen Sie also einen separaten solchen Commit für jede bislang bearbeitete Aufgabe.
+Machen Sie also einen separaten solchen Commit für jede bislang bearbeitete Aufgabe,
+mit einer geschätzten Arbeitszeit.
 [ENDSECTION]
 
 [INSTRUCTOR::Bitte ggf. zureden]
