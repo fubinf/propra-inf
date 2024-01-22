@@ -46,6 +46,12 @@ Ein [TERMREF::Argument] zur Übergabe an einen [TERMREF::Parameter],
 das implizit benutzt wird, wenn man nicht selbst explizit ein Argument übergibt. 
 [ENDTERM]
 
+[TERM::DSL]
+Eine DSL (domänenspezifische Sprache) ist eine speziell auf eine bestimmte Problemstellung
+oder Domäne zugeschnittene Sprache. Im Gegensatz zu allgemeinen Programmiersprachen, die
+für eine Vielzahl von Anwendungen geeignet sind, ist eine DSL darauf ausgerichtet, spezifische
+Aufgaben oder Anforderungen in einem begrenzten Kontext zu adressieren.
+[ENDTERM]
 
 ## E
 
@@ -94,6 +100,15 @@ Ein [TERMREF::Parameter] für ein ausführbares Programm, das per
 oder für ein eingebautes Shell-Kommando 
 [ENDTERM]
 
+[TERM::KDT]
+Schlüsselwortgetriebenes Testen (Keyword-Driven Testing; Schlüsselwortgetriebenes Testen)
+ist eine Testautomatisierungsmethode, bei der Tests mithilfe von Schlüsselwörtern oder
+Aktionen beschrieben werden, die von einem Testframework interpretiert und ausgeführt werden. 
+
+https://de.wikipedia.org/wiki/Keyword-Driven_Testing
+https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#test-templates
+[ENDTERM]
+
 
 ## L
 
@@ -128,6 +143,13 @@ Makros, Module oder Pakete.
 ## Q
 ## R
 
+[TERM::RPA]
+RPA (Robotic Process Automationdeutsch; Robotergesteuerte Prozessautomatisierung) bezieht sich 
+auf die Anwendung von Software-Robotern oder "Bots", um menschenähnliche Aufgaben in Geschäftsprozessen
+zu automatisieren. Diese Roboter agieren in der Regel auf der Benutzeroberfläche von Anwendungen,
+indem sie Aktionen ausführen, Daten erfassen, Entscheidungen treffen und mit anderen Systemen
+interagieren, ähnlich wie es ein menschlicher Bediener tun würde.
+[ENDTERM]
 
 ## S
 

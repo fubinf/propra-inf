@@ -68,6 +68,7 @@ chapters:
       - slug: Basiswissen
       - slug: Unittests
       - slug: API
+      - slug: Testframeworks
   - slug: debugging
     taskgroups:
       - slug: mindset
