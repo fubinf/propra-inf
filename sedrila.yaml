@@ -65,7 +65,7 @@ chapters:
       - slug: lizenzen
   - slug: Testen
     taskgroups:
-      - slug: basiswissen
+      - slug: Basiswissen
       - slug: Unittests
       - slug: API
   - slug: debugging

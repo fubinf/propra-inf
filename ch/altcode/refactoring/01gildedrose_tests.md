@@ -25,7 +25,7 @@ Der Einfachheit halber ist das Kata im Programmierpraktikum in mehrere Aufgaben 
 Schreiben Sie in dieser Aufgabe die Tests, die alle aktuellen Funktionen des Programms fixieren.
 Auch wenn die Quelle z. B. bei der Nutzung von Python vom Testframework `unittest` ausgeht, ist 
 Ihnen die Wahl des Testframeworks überlassen.
-Wenn Sie hierzu Unterstützung benötigen, finden Sie in der Aufgabengruppe [PARTREFTITLE::testframeworks]
+Wenn Sie hierzu Unterstützung benötigen, finden Sie in der Aufgabengruppe [PARTREFTITLE::Unittests]
 weitere Informationen.
 
 Die geforderte Implementierung der Regeln für "Conjured Items" ist hier noch nicht gefragt. 
