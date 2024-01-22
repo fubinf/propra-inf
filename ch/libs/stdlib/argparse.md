@@ -1,5 +1,5 @@
 title: argparse -- Kommandozeilenparameter analysieren
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 3
 ---
@@ -63,11 +63,18 @@ wobei die flags auch als `-c`, `-m` oder `--depth` oder `-d`, `-b` abgekürzt we
 [ENDSECTION]
 [SECTION::submission::program]
 
-Geben Sie die Datei `argparsetest.py` ab.
+Geben Sie zwei Dateien ab 
+- `argparsetest.py`
+- `argparse.md` mit einem Protokoll von der Kommandozeile, in dem Sie `argparsetest` viermal 
+  mit sehr verschiedenen Argumenten aufrufen (davon zweimal korrekt und zweimal unzulässig),
+  um zu zeigen, dass es wohl wie gewünscht funktioniert.
 
 [ENDSECTION]
 
 [INSTRUCTOR::4x add_argument()]
 Eine Lösung, die weniger oder mehr als vier `add_argument()`-Zeilen verwendet,
 ist sehr wahrscheinlich nicht in Ordnung. 
+
+Wenn die Testausgaben sehr wenig Variabilität der Eingaben haben, 
+unter Verweis auf unzureichendes Testen zurückweisen.
 [ENDINSTRUCTOR]
