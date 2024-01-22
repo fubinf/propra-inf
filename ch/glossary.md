@@ -15,6 +15,13 @@ Der konkrete Wert, den man an einen [TERMREF::Parameter] übergibt,
 z.B. in Form einer konkreten Variable.
 [ENDTERMLONG]
 
+[TERMLONG::API]
+Eine API (Application Programming Interface) ist eine Schnittstelle,
+die es verschiedenen Softwareanwendungen ermöglicht, miteinander zu kommunizieren und
+Daten auszutauschen. Sie definiert die Regeln und Protokolle, nach denen Programme
+miteinander interagieren können.
+[ENDTERMLONG]
+
 
 ## B
 
@@ -59,9 +66,25 @@ oder Hollywood-Prinzip: _"Don't call us, we'll call you"_.
 
 ## G
 ## H
+
+[TERMLING::HTTP]
+HTTP steht für "Hypertext Transfer Protocol" und ist ein Protokoll, das für die
+Übertragung von Daten über das World Wide Web verwendet wird. Es bildet die Grundlage
+für den Datenaustausch zwischen Webbrowsern und Webservern. HTTP ermöglicht die Kommunikation
+zwischen Client-Anwendungen (zum Beispiel Webbrowsern) und Servern, auf denen Webseiten und
+andere Ressourcen gehostet werden.
+[ENDTERMLONG]
+
 ## I
 ## J
 
+[TERMLING::JSON]
+JSON (JavaScript Object Notation) ist ein leichtgewichtiges Datenaustauschformat,
+das für den menschenlesbaren und einfachen Datenaustausch zwischen verschiedenen
+Programmiersprachen konzipiert ist. Es basiert auf einer Untermenge der
+JavaScript-Programmiersprache, jedoch kann JSON von vielen anderen Sprachen
+unterstützt und interpretiert werden.
+[ENDTERMLONG]
 
 ## K
 
@@ -85,6 +108,13 @@ https://de.wikipedia.org/wiki/Linux
 ## N
 ## O
 
+[TERMLONG::OpenAPI]
+Früher als Swagger Specification bekannt, ist ein Standard, der die Dokumentation
+von RESTful APIs (Representational State Transfer) erleichtert. Es handelt sich um
+eine maschinenlesbare Beschreibung einer API, die Entwicklern ermöglicht, schnell
+zu verstehen, wie die API funktioniert, welche Ressourcen verfügbar sind, welche
+Parameter erwartet werden und welche Antworten zurückgegeben werden können.
+[ENDTERMLONG]
 
 ## P
 
@@ -146,5 +176,14 @@ https://de.wikipedia.org/wiki/Unix
 ## V
 ## W
 ## X
+
+[TERMLONG::XML]
+XML (eXtensible Markup Language) ist eine Auszeichnungssprache zur Darstellung
+hierarchisch strukturierter Daten in einem menschenlesbaren Format. Entwickelt
+wurde XML, um strukturierte Daten zwischen Computersystemen austauschen zu können.
+Im Gegensatz zu [TERMREF::JSON] ist XML nicht auf eine bestimmte Programmiersprache
+beschränkt und kann in einer Vielzahl von Anwendungen und Kontexten eingesetzt werden.
+[ENDTERMLONG]
+
 ## Y
 ## Z
