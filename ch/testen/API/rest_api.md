@@ -1,5 +1,5 @@
 title: Rest API Test mit Python Request
-stage: alpha TODO_1 Durchsicht und Ergänzung
+stage: alpha #TODO_1 Durchsicht und Ergänzung
 timevalue: 2.0
 difficulty: 2
 profiles: TEST
