@@ -42,11 +42,9 @@ Verwendungsweise:
 
 In alphabetischer Reihenfolge der Dateinamen.
 
-- basis-sprachwahl: Scala ist überholt!
 - chapter-basis: Hier ist einiges besser 'leicht', nicht 'sehr leicht'?
 - Git101: Wie geht denn die Installation? Wo sind die Hyperlinks zu den URLs? 
   Was bedeutet Klonen?
-- IntelliJWSL: Scala ist überholt! 
 - sprache-bash: Hier ist alles(?) besser 'leicht', nicht 'sehr leicht'.
 - basics: Das ist kein guter globaler Taskname. Was ist das Ziel beim Lesen der Bash-Einführung?
   Wie viel Zeit sollte ich investieren? (Dazu brauchen viele Aufgaben einen Hinweis.)
@@ -55,16 +53,23 @@ In alphabetischer Reihenfolge der Dateinamen.
   Müssen die "zwei Wege" zwei verschiedene Kommandos benutzen? Falls nicht, wie soll ich
   darauf ohne Hinweis kommen?
 
+
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
 - TODO_1_alle: Admonitions durch SECTIONs ersetzen, CSS löschen
+- favicon einführen: Einfarbiges grünes Quadrat oder P in der Hauptfarbe.
+  Bei Wahl des "P": Herstellungsprozess hier notieren, denn wir müssen ggf. demnächst
+  die Farbe ändern.
+
 
 ### 2.3 Korrekturbedarf an sedrila
 
+- Volume report per stage.
 - Sinnvolle Konvention für slugs einführen. 
 - alphabetische Ordnung in glossary erzwingen, [TERMBLOCKSTART] für Reset
 - Macrocall: markdown_content speichern, daraus Zeilennummern errechnen?
 - `profiles` auf der Ebene `Taskgroup` erlauben? Im YAML-Teil angeben, im TOC anzeigen.
+
 
 ### 2.4 Reviews Einzeldateien
 
@@ -76,6 +81,7 @@ Wer beim Review keine solchen Marker reingemacht hat, findet die Datei offenbar
 brauchbar und setzt deshalb zum Abschluss `stage: beta`.
 
 Solche Reviews sind ein dauerhaftes TODO_1_alle.  
+
 
 ### 2.5 Globale Qualitätssicherung  TODO_3
 
@@ -100,7 +106,16 @@ Das kann umfangreich werden und steht deshalb in einer separaten Datei namens
 Die "Stunde 0" ist die Begrüßungsveranstaltung zu Beginn des ProPra.
 Diese findet live statt und wer dabei nicht da ist, kann am ProPra nicht teilnehmen(?).
 
-Dort wird knapp der Aufbau und Ablauf des ProPra erklärt (das macht das Basiskapitel
+Start: Frage nach der eigenen Motivationslage für den Informatik-Abschluss:
+- Ich will nur irgendwie einen Abschluss bekommen, damit ich einen sicheren Job 
+  habe und gut verdiene. Ob ich wirklich Informatik kann, ist mir egal.
+- Ich will einen Informatik-Abschluss, weil ich damit einen guten und sicheren Job bekomme.
+  Natürlich will ich das, was dort von mir erwartet wird, auch können.
+- Ich finde Informatik interessant und will darüber möglichst viel lernen.
+  Dass ich damit auch einen guten Job bekomme, finde ich umso besser.
+
+Hoffentlich ist es kaum jemandem egal. Das ist die Basis für den nächsten Schritt:
+Es wird knapp der Aufbau und Ablauf des ProPra erklärt (das macht das Basiskapitel
 ja dann etwas ausführlicher) und vor allem wird Motivation geschaffen:
 
 - Praktische Relevanz des Lernstoffes
@@ -111,6 +126,7 @@ Quellen dazu:
 - Neil Perry, Megha Srivastava, Deepak Kumar, Dan Boneh:
   _Do Users Write More Insecure Code with AI Assistants?_, 
   https://arxiv.org/pdf/2211.03622.pdf.
+
 
 ## 5. Themen für nächste Besprechung
 
