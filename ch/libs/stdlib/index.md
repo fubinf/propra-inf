@@ -2,7 +2,8 @@ title: Python-Standardbibliothek
 ---
 Zu jeder Python-Installation gehören Dutzende von Bibliotheksmodulen,
 die immer fest dabei sind -- und mit jeder neuen Python-Version werden es mehr.
-Diese Sammlung heißt die [Python-Standardbibliothek](https://docs.python.org/3/library/).
+Diese Sammlung heißt die [Python-Standardbibliothek](https://docs.python.org/3/library/)
+(standard library, stdlib).
 Sich darin auszukennen ist von enormem Wert.
 
 Man muss dabei weitaus nicht jede Einzelheit im Kopf haben, sondern vor allem
