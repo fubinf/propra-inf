@@ -9,9 +9,6 @@ Struktur von ProPra verstehen (difficulties, chapters/taskgroups, assumes/requir
 Rolle von Hints, Submission-Arten und -Formate), 
 Arbeitszeiterfassung in Commits
 
-Ferner evtl: asymmetrische Kryptographie (aber eher beim Thema ssh), 
-kryptographische Hashfunktion ausprobieren (aber eher beim Thema git).
-
 
 ## ch/altcode 
 
@@ -261,8 +258,8 @@ Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall ke
 
 ### sprache/python1 (pietrak+alle gemeinsam?)
 
-Aufgaben mit DIFF1 als unvollkommene Starthilfe für Leute mit zu niedrigem Wissen.
-Wiederholung der absoluten Essentials: 
+Aufgaben mit DIFF1 als unvollkommene Starthilfe, überwiegend für Leute mit zu niedrigem Wissen.
+Wiederholung (manches ist aber auch neu!) der absoluten Essentials: 
 alles ist ein Objekt,
 "Variablen" als Binden eines beliebigen Objekts an einen Namen, 
 Nennung von Namen als Referenz auf das Objekt,
@@ -278,13 +275,19 @@ Vermutlich sinnvoll als Lückentext, sodass sehr kleine und eingegrenzte Aufgabe
 
 ### sprache/python2 (???)
 
-(Wir sollten mit Max Willert abgleichen, was in python1 und was in python2 gehört)
-
 Fortgeschrittenere Konstrukte:
 *args, **kwargs, 
-try/except, 
+try/except, eigene Exceptions, realistische Ausnahmebehandlung (try except raise und das dann ganz woanders fangen),
 Typdeklarationen für Parameter und Resultate, Modul typing,
-Typdeklarationen für Attribute,
+Typdeklarationen für Attribute, fast alles aus
+https://medium.com/@rosk.abed/why-python-is-the-best-programming-language-so-far-5e481804159b,
+builtins (all, any, get/set/hasattr, isinstance/issubclass, advanced print/list/dict/set,
+str/bytes, sum, zip etc.)
+und anderes mehr.
+
+Alternativlösung: wir weisen bei den Programmieraufgaben auf diese Konstrukte hin als
+etwas, das man dabei lernen und benutzen kann oder soll.
+Das ist aber nicht zielgenau, wenn die Aufgaben Spielraum bei der Entwurfsstruktur haben.
 
 ### sprache/pythonpraxis (prechelt)
 
