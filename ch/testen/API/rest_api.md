@@ -131,7 +131,7 @@ Die OpenAPI Dokumentaion bietet ebenfalls die Möglichkeit Anfragen zu senden. D
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::reflaction]
+[SECTION::submission::reflection]
 
 Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
 Halten Sie die Antworten kurz.
