@@ -1,5 +1,5 @@
-title: Fertige Aufgaben einreichen und angerechnet bekommen (TODO_1)
-stage: draft
+title: Fertige Aufgaben einreichen und angerechnet bekommen
+stage: draft TODO_1_hofmann
 timevalue: 1.0
 difficulty: 2
 requires: Zeiterfassung
@@ -18,7 +18,9 @@ In der Softwareentwicklung hat es zahlreiche Vorteile, jeden logischen Arbeitssc
 in einem separaten Commit zu verpacken.
 Dann kann man mit solchen Arbeitsschritten anschließend nämlich sehr flexibel hantieren
 und z.B. die gleiche Änderung (etwa eine Defektkorrektur) auf ältere Versionsstände
-anwenden, die noch weitergepflegt werden.
+anwenden, die noch weitergepflegt werden. 
+(Bitte vollziehen Sie diesen Gedanken unbedingt nach. 
+Er hat in der modernen Softwareentwicklung eine erhebliche Bedeutung.)
 
 Deshalb wollen wir uns eine solche Disziplin auch im ProPra angewöhnen:
 Jede Aufgabe wird in einem separaten Commit (oder ggf. mehreren) eingecheckt,
@@ -49,7 +51,7 @@ TODO_1
 Wenn eine wohlgeformte und sinnvolle `submission.yaml` im commit liegt, sind wir schon zufrieden.
 [ENDINSTRUCTOR]
 
-
+_Alter Inhalt (von vor der Einführung der Abschnittstruktur, zu konsolidieren):_
 
 Zur Anrechnung von erledigten Aufgaben kann mit sedrila eine Liste aller Aufgaben erzeugt
 werden, für die bereits Commits vorliegen, aber noch keine Anrechnung vorliegt. Aus dieser
@@ -100,9 +102,3 @@ Grob gesagt funktioniert er so:
 Im allgemeinen besteht eine Abgabe entweder aus _einer einzelnen_ Datei (üblicherweise
 Markdown, aber gegebenenfalls auch Code, sofern der Umfang dies zulässt) oder
 _einem einzelnen_ Verzeichnis, jeweils mit dem Namen der bearbeiteten Aufgabe.
-
-!!! submission
-    Boxen wie diese hier, spezifizieren, was genau in die Abgabe gehört.
-    Es kann vorkommen, dass Sie in Aufgaben Code oder Ausgabe produzieren, die für die
-    Bewertung unerheblich sind. Darauf werden Sie dann hier hingewiesen.
-
