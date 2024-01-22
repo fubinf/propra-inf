@@ -4,7 +4,7 @@ timevalue: 1.0
 difficulty: 1
 profiles: TEST
 assumes:
-requires:
+requires: error
 ---
 [SECTION::goal::trial]
 
@@ -30,11 +30,18 @@ Akzeptanzkriterien (AKs):
 [SECTION::instructions::detailed]
 
 1. Sind alle AKs testbar? Wenn nein, formulieren Sie das AK entsprechend um.
-2. Beinhaltet das folgende Szenario ein Versagen? Wenn ja, erstellen Sie eine Defektmeldung. Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seinen validen Benutzernamen und sein valides Passwort in die vorgesehenen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden. Das Portal leitet den Benutzer auf die Seite seines Portal-Profils weiter.
-3. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie eine Defektmeldung. Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seinen validen Benutzernamen und ein fehlerhaftes Passwort in die vorgesehnen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden. Das Portal gibt eine Fehlermeldung aus und leitet den Benutzer nicht weiter.
-4. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie eine Defektmeldung. Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seine valide E-Mail-Adresse und sein valides Passwort in die vorgesehenen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden. Das Portal leitet den Benutzer auf die Seite seines Portal-Profils weiter.
-5. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie eine Defektmeldung. Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seine valide E-Mail-Adresse und sein valides Passwort in die Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden. Das Portal leitet den Benutzer auf die Seite des Portal-Administrators weiter.
-6. Ergänzen Sie mindestens ein weiteres AK.
+2. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seinen validen Benutzernamen und sein valides Passwort in die vorgesehenen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden. Das Portal leitet den Benutzer auf die Seite seines Portal-Profils weiter.
+1. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seinen validen Benutzernamen und ein fehlerhaftes Passwort in die vorgesehnen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden.
+Das Portal gibt eine Fehlermeldung aus und leitet den Benutzer nicht weiter.
+1. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seine valide E-Mail-Adresse und sein valides Passwort in die vorgesehenen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden.
+Das Portal leitet den Benutzer auf die Seite seines Portal-Profils weiter.
+1. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seine valide E-Mail-Adresse und sein valides Passwort in die Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden.
+Das Portal leitet den Benutzer auf die Seite des Portal-Administrators weiter.
+1. Ergänzen Sie mindestens ein weiteres AK.
 
 [WARNING]
 [ENDWARNING]

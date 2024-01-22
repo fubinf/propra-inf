@@ -2,6 +2,8 @@
 out/
 out.bak/
 .idea/
+sedrila/
+source/
 
 #vscode
 *.code-workspace
