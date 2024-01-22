@@ -50,7 +50,7 @@ chapters:
       - slug: Repo
       - slug: IDE
       - slug: Schluss
-  - slug: sprache
+  - slug: Sprachen
     taskgroups:
       - slug: grundkenntnisse
       - slug: fortgeschrittenes
