@@ -63,10 +63,11 @@ chapters:
       - slug: stdlib
       - slug: Frameworks
       - slug: lizenzen
-  - slug: testen
+  - slug: Testen
     taskgroups:
       - slug: basiswissen
       - slug: testframeworks
+      - slug: API
   - slug: debugging
     taskgroups:
       - slug: mindset
