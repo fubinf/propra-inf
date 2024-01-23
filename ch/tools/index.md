@@ -1,14 +1,9 @@
 title: Sonstige Werkzeuge
-stage: draft
 ---
-Dies ist der Textteil der Homepage für das Kapitel 'Werkzeuge'.
+Das Wort "Werkzeug" kann in der Softwareentwicklung für alles Mögliche stehen,
+angefangen von Programmiersprachen über einzelne Bibliotheken
+bis hin zu kleinen Features der Shell
+und von all diesen Teilen haben wir in den obigen Kapiteln ja schon einiges kennengelernt.
 
-Wir möchten Aufgabengruppen zu folgenden Themen:
-
-- git (Branching, Merging, diff, log, ..., everyday git) (leicht, mittel, schwer)
-- IDE (insbesondere Navigation, Suche, Debugger, Refactoring) (leicht, mittel)
-- Kommandozeile (Linux): bash, apt, ssh, ... (leicht, mittel, schwer)
-- Paketmanager der Programmiersprache (mittel)
-- Testwerkzeuge (leicht, mittel, schwer?)
-- Linter etc. (mittel, schwer?)
-- und was uns sonst noch so einfällt.
+Aber es gibt noch ungeheuer viel mehr, das unter diesen Oberbegriff fällt,
+und ein paar weitere Kategorien von Werkzeugen wollen wir hier noch anreißen.
