@@ -10,6 +10,19 @@ sowie ggf. auf Aufgaben, die weitere Erläuterungen dazu enthalten.
 
 ## A
 
+[TERM::apt|apt-get|Debian-Paketmanager]
+Das Hilfsprogramm bei Debian (und von Debian abgeleiteten Systemen wie Ubuntu oder Mint),
+das die Paketinstallationen auf einem Debian-System durchführt und überwacht.
+
+Es kennt die Abhängigkeiten zwischen Paketen und sorgt automatisch dafür, dass
+bei Installation von Paket A auch die davon benötigten Pakete B und C installiert werden,
+sowie die von B benötigten Pakete B1, B2, B3 usw.
+
+Beim Deinstallieren von A werden alle diese auch wieder mit abgeräumt -- es sei denn,
+z.B. B2 würde auch noch von einem anderen installierten Paket benötigt
+oder sei manuell installiert worden: dann bleibt es da.
+[ENDTERM]
+
 [TERM::Argument]
 Der konkrete Wert, den man an einen [TERMREF::Parameter] übergibt, 
 z.B. in Form einer konkreten Variable.
@@ -24,6 +37,15 @@ miteinander interagieren können.
 
 
 ## B
+
+[TERM::Bash|.bashrc]
+Die meistbenutzte [TERMREF::Shell] auf Linux-Systemen.
+
+Kommandos zur Initialisierung der Shell stehen in der Datei `.bashrc` im HOME-Verzeichnis
+(das stimmt nur ungefähr, etwas genauer steht es in 
+https://linuxize.com/post/bashrc-vs-bash-profile/).
+Richtig genau steht es in der Dokumentation von Bash.
+[ENDTERM]
 
 [TERM::Bibliothek|Library]
 Eine Sammlung von Programmelementen (z.B. Klassen, Funktionen, Datentypen, Module, Pakete)
@@ -55,10 +77,15 @@ Aufgaben oder Anforderungen in einem begrenzten Kontext zu adressieren.
 
 ## E
 
+[TERM::Executable|ausführbare Datei]
+Eine Datei, deren "executable"-Bit gesetzt ist (mit dem Kommando `chmod`)
+und die entweder Maschinencode enthält
+oder mit einer [TERMREF::Shebang-Zeile] beginnt.
+[ENDTERM]
 
 ## F
 
-[TERM::Framework|Rahmenwerk]
+[TERM::Rahmenwerk|Framework]
 Ein Rahmenwerk (Framework) ist eine [TERMREF::Bibliothek]
 (oder ein direkt lauffähiges Programm),
 die nicht hauptsächlich von der Benutzer_in aufgerufen wird,
@@ -131,6 +158,7 @@ zu verstehen, wie die API funktioniert, welche Ressourcen verfügbar sind, welch
 Parameter erwartet werden und welche Antworten zurückgegeben werden können.
 [ENDTERM]
 
+
 ## P
 
 [TERM::Parameter]
@@ -139,6 +167,15 @@ Funktionen und Methoden haben in Python sehr oft ein oder mehrere Parameter.
 In manchen Sprachen können auch andere Dinge parametrisiert sein, z.B. Klassen,
 Makros, Module oder Pakete.
 [ENDTERM]
+
+[TERM::PATH]
+Eine [TERMREF::Umgebungsvariable], die eine Liste von Verzeichnispfaden enthält,
+durch Doppelpunkte getrennt.
+Wenn für ein Kommando auf der [TERMREF::Kommandozeile] ein 
+[TERMREF::Executable] benötigt wird, wird es in jedem dieser Verzeichnisse gesucht.
+Beispiel: `PATH=/bin:/usr/bin:~/bin`
+[ENDTERM]
+
 
 ## Q
 ## R
@@ -152,6 +189,18 @@ interagieren, ähnlich wie es ein menschlicher Bediener tun würde.
 [ENDTERM]
 
 ## S
+
+[TERM::Shebang|Shebang-Zeile]
+Ein Mechanismus auf Unix-Systemen, der aus einer Datei, die Programmcode für eine interpretierte
+Sprache enthält, eine ausführbare Datei macht:
+Die erste Zeile der Datei hat das Format `#!/call/to/interpreter`, also beispielsweise
+`#!/usr/bin/python` oder `#!/bin/env python`.
+
+Steht dies z.B. in der Datei `a.py` und diese wird ausgeführt, so ist die Wirkung
+ungefähr so wie beim Kommando `/usr/bin/python a.py`.
+Der Rest der Datei `a.py` enthält also (hoffentlich) Python-Quellcode und das Verfahren ist
+für alle Sprachen anwendbar, bei denen ein `#` am Zeilenanfang einen Kommentar anzeigt.
+[ENDTERM]
 
 [TERM::Shell|Unix-Shell|Linux-Shell|Kommandozeile]
 Übliche Bezeichnung für die Kommandozeilen-Interpretierer auf [TERMREF2::Unix::--] oder [TERMREF2::Linux::--Systemen],
@@ -178,6 +227,18 @@ um das Lernpensum zu verbreitern.
 
 
 ## U
+
+[TERM::Umgebungsvariable|environment variable]
+Ein Paar aus Name und Wert, das einem Prozess eines Unix-Betriebssystems zugeordnet ist
+und an von diesem Prozess aus gestartete Unterprozesse weitergegeben wird und deshalb zur
+Ausführungsumgebung beider Prozesse gezählt wird.
+
+In der [TERMREF::Bash] kann man Umgebungsvariablen setzen, 
+indem man das Kommando `export` benutzt
+(Beispiel: `export HOME=/home/myusername`), 
+und anzeigen mittels `echo`
+(Beispiel: `echo $HOME`).
+[ENDTERM]
 
 [TERM::Unix|POSIX]
 Eine große und lose Familie von Betriebssystemen, die auf unterschiedlichen Betriebssystemkernen aufbauen,
