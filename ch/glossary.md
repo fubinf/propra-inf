@@ -176,6 +176,14 @@ Wenn für ein Kommando auf der [TERMREF::Kommandozeile] ein
 Beispiel: `PATH=/bin:/usr/bin:~/bin`
 [ENDTERM]
 
+[TERM::pip]
+"Package installer for Python":
+Das Programm, mit dem man üblicherweise externe Bibliotheken von einem entsprechenden
+Server ("package index", meist wird pypi.org benutzt) lädt und installiert.
+
+Dokumentation: https://pip.pypa.io/en/stable/getting-started/
+[ENDTERM]
+
 
 ## Q
 ## R
@@ -257,6 +265,23 @@ https://de.wikipedia.org/wiki/Unix
 
 
 ## V
+
+[TERM::venv|virtual environment]
+Virtuelle Python-Umgebung:
+Ein Dateibaum, der konzeptuell eine eigene Installation von Python enthält
+sowie einen eigenen Unterdateibaum für installierte Pakete.
+
+Wird ein `venv` aktiviert, was mittels `source myvenv/bin/activate` geschieht,
+wird das Python-[TERMREF::Executable] des `venv` zuvorderst in den 
+[TERMREF::PATH] geschrieben und benutzt dann die installierten Pakete des `venv`
+anstatt (oder anstatt nur) der global installierten.
+
+Der `venv`-Mechanismus erlaubt, für mehrere Python-Projekte, an denen man entwickelt,
+separate Mengen installierter Pakete zu haben und bei Bedarf auch unterschiedliche Versionen
+von Python selbst, sodass es insbesondere keine Probleme macht, falls verschiedene Projekte
+das gleiche Paket X in unterschiedlichen Versionen benötigen.
+[ENDTERM]
+
 ## W
 ## X
 
