@@ -509,6 +509,7 @@ Speziellerer Kram:
   - Refactoring
   - git-Integration
   - Integriertes Terminal
+- Linter
 - Paketmanager
   - Welche stehen in meiner Sprache zur Verfügung? Gibt es überhaupt welche?
   - Welche Funktionen bietet ein Paketmanager?
