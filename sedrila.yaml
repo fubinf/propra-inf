@@ -77,7 +77,8 @@ chapters:
     taskgroups:
       - slug: refactoring
   - slug: tools
-    taskgroups: []
+    taskgroups:
+      - slug: Paketmanager
   - slug: web
     taskgroups:
       - slug: html
