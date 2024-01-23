@@ -19,12 +19,12 @@ Sehr viele davon sind Open Source und also frei verfügbar und benutzbar.
 In der Python-Welt ist es üblich, Open-Source-Bibliotheken 
 (und Frameworks und auch ganze Anwendungen, all dies wird "Paket" genannt) 
 auf PyPI abzulegen, dem "Python Package Index":
-https://pypi.org.
+[pypi.org](https://pypi.org).
 
 Der Paketmanager `pip` kann 
+
 - ein Python-Paket von PyPI (oder einem anderen Paketserver) holen,
-- systemweit installieren oder
-- benutzerspezifisch installieren,
+- installieren (systemweit, benutzerspezifisch oder in ein `venv`),
 - kann das installierte Paket wieder entfernen oder
 - die Installation auf eine andere Version des Pakets aktualisieren
 - und kann die installierten Pakete samt Versionsnummern auflisten.
