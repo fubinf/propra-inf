@@ -76,15 +76,15 @@ chapters:
   - slug: altcode
     taskgroups:
       - slug: refactoring
-  - slug: tools
-    taskgroups:
-      - slug: Paketmanager
   - slug: web
     taskgroups:
       - slug: html
       - slug: css
       - slug: js
       - slug: httpauth
+  - slug: Werkzeuge
+    taskgroups:
+      - slug: Paketmanager
   - slug: zzincubator
     taskgroups:
       - slug: alt
