@@ -85,6 +85,7 @@ chapters:
   - slug: Werkzeuge
     taskgroups:
       - slug: Paketmanager
+      - slug: Netzwerk
   - slug: zzincubator
     taskgroups:
       - slug: alt
