@@ -54,6 +54,22 @@ Therefore,
   [12 Prinzipien zur Motivation Lernender](https://link.springer.com/chapter/10.1007/978-3-658-26990-6_1)
 
 
+## Didactic methods
+
+When designing a set of tasks, many difficult didactic decisions must be made:
+What to cover at all? In which depth? In which order?
+Using which scenarios/examples/instructions/problems?
+
+For answering these, there are two approaches:
+- Find sources (in your specific topic area) that do it visibly well
+  and copy many of their ideas or solutions
+- Develop your decisions from well-tried general teaching methods.
+
+For the latter, find a list of possible models (mostly geared to interactive teaching
+in schools) here:
+[Liste der Unterrichtsmethoden (Wikipedia)](https://de.wikipedia.org/wiki/Liste_der_Unterrichtsmethoden)
+
+
 ## Language use (in German because we use German)
 
 Zur Vermeidung inkonsistenter Sprache sollten wir einheitliche Begriffe für gleiche oder im
