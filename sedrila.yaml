@@ -22,10 +22,16 @@ blockmacro_topmatter:
   section_submission_snippet: ""
   section_submission_trace: ""
   section_submission_program: ""
-  hint: "**Hinweis (nur bei Bedarf):** "
-  instructor: "## Kontrolle Tutor_in: "
-  warning: "**Warnung:** "
-  notice: "**Bemerkung:** "
+  blocks:
+    hint:
+      tag: details
+      arg: true
+      label: "**Hinweis (nur bei Bedarf):** "
+    instructor:
+      arg: true
+      label: "## Kontrolle Tutor_in: "
+    warning: "**Warnung:** "
+    notice: "**Bemerkung** "
 instructors:
   - nameish: Lutz Prechelt
     email: prechelt@inf.fu-berlin.de

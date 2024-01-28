@@ -20,7 +20,7 @@ a:link {
 }
 
 a>code {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.25);
     color: var(--main-color);
 }
 
@@ -495,6 +495,11 @@ summary {}
     footer, code {
         background-color: #000;
         color: lightgray;
+    }
+
+    .codehilite, .codehilite pre {
+        background: #000 !important;
+        background-color: #000 !important;
     }
 
     .admonition,
