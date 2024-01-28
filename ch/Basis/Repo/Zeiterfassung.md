@@ -78,13 +78,13 @@ Sie werden in der Praxis häufig vor dem Problem stehen, den Zeitaufwand einer A
 Legen Sie die Markdown-Datei für diese Aufgabe an.  
 Tragen Sie die Antworten auf folgende Fragen ein:  
 
-    - Q1: Haben Sie jemals zuvor eine systematische Zeiterfassung gemacht?
-      War das einfach? War es hilfreich?
-    - Q2: Haben Sie Scheu davor, Ihre Arbeitszeiten schriftlich festzuhalten? Warum?
-    - Q3: Haben Sie Scheu davor, dass Ihre Tutor_innen diese Zeiten einsehen können? 
-      Warum, wenn die doch dafür da sind, Ihnen Lernhilfe und Rückmeldung zu geben?
-    - Q4: Werden Sie im ProPra die beschriebene Arbeitszeiterfassung machen?
-      Falls ja: Was vermuten Sie, wie häufig sie vergessen werden, das Eintragsformat einzuhalten?
+1. Haben Sie jemals zuvor eine systematische Zeiterfassung gemacht?
+   War das einfach? War es hilfreich?
+2. Haben Sie Scheu davor, Ihre Arbeitszeiten schriftlich festzuhalten? Warum?
+3. Haben Sie Scheu davor, dass Ihre Tutor_innen diese Zeiten einsehen können? 
+   Warum, wenn die doch dafür da sind, Ihnen Lernhilfe und Rückmeldung zu geben?
+4. Werden Sie im ProPra die beschriebene Arbeitszeiterfassung machen?
+   Falls ja: Was vermuten Sie, wie oft sie vergessen werden, das Eintragsformat einzuhalten?
 
 Machen Sie einen Commit im obigen Format mit Ihrer tatsächlichen Arbeitszeit.
 
@@ -103,10 +103,10 @@ Für diese Aufgabe verlangen wir einmalig einen Commit im korrekten Format:
 - Dezimalpunkt (nicht Dezimalkomma) mit Dezimalstunden oder Doppelpunkt mit Minuten, 
 - 'h' ohne Leerzeichen 
 
-Wenn die Antwort bei Q4 ja lautet, ist alles in Ordnung.  
+Wenn die Antwort der vierten Frage ja lautet, ist alles in Ordnung.  
 Dann bitte mit `sedrila student ...TODO_2` den Bericht auf Plausibilität prüfen.
 
-Lautet sie nein, dann bitte Q2 und Q3 sichten und allen, die sich offenbar nicht ganz sicher sind,
+Lautet sie nein, dann bitte die Antworten zu Fragen 2 und 3 sichten und allen, die sich offenbar nicht ganz sicher sind,
 ermutigend zureden: Wir sind auf Ihrer Seite! Arbeitszeiterfassung hilft beim Lernen!  
 
 Wenn die sich dann umentscheiden, bitte eine korrigierte Einreichung fordern,

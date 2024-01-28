@@ -29,10 +29,38 @@ Dann kann man in der Commit-Nachricht die betreffende Aufgabe so markieren,
 dass sich das automatisch verarbeiten lässt.
 
 [ENDSECTION]
+
+## Übliches Abgabeformat
+
+In der Zeiterfassungsaufgabe haben wir uns mit der Commit-Nachricht beschäftigt,
+hier soll es um den Commit-Inhalt gehen.
+
+Grundsätzlich liegt im Hauptverzeichnis eures Repos idealerweise eine Datei pro
+Aufgabe oder alternativ ein Verzeichnis bei mehreren Dateien, die zu derselben
+Aufgabe gehören.
+
+Angenommen, es gibt eine (nicht geforderte) Datei für die Aufgabe "Zeiterfassung"
+sowie zwei Dateien --- `Script.py` und `Screenshot.png` --- für diese Aufgabe, dann
+sieht das Verzeichnis etwa so aus:
+
+```
+Programmierpraktikum
+├─README.md
+├─Zeiterfassung.md
+└─Einreichung
+  ├─Script.py
+  └─Screenshot.png
+```
+
+Die Endung der Einzeldateien ist hierbei unerheblich und richtet sich nach der
+geforderten Abgabeform. Für Code wird die Endung beispielsweise eher .py sein,
+während sie für Text wie eine Reflexion eher .md (Markdown) sein wird.
+
+Machen Sie sich keine Sorgen, falls Sie Markdown nicht beherrschen. Es ist
+völlig in Ordnung, einfach unformatierten Text abzugeben. Bemühen Sie sich
+bitte dennoch um eine sinnvolle Struktur mit Einrückung und Absätzen.
+
 [SECTION::instructions::detailed]
-
-### ...
-
 ### ...
 
 [WARNING]
