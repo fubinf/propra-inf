@@ -1,5 +1,5 @@
 title: Unittest in Python - Grundlagen
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 profiles: TEST

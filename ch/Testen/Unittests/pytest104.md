@@ -1,5 +1,5 @@
 title: Pytest - Parametrisierte Tests
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 3
 profiles: TEST

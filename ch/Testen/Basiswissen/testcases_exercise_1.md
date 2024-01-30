@@ -1,5 +1,5 @@
 title: Übung Testfallstrukturen
-stage: draft
+stage: alpha
 timevalue: 2.0
 difficulty: 1
 profiles: TEST

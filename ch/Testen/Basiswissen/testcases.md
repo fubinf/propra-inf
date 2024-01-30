@@ -1,5 +1,5 @@
 title: Testfallstrukturen
-stage: draft
+stage: alpha
 timevalue: 2.0
 difficulty: 2
 profiles: TEST

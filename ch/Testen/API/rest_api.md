@@ -1,5 +1,5 @@
 title: Rest API Test mit Python Request
-stage: alpha #TODO_1 Durchsicht und Ergänzung
+stage: alpha
 timevalue: 2.0
 difficulty: 2
 profiles: TEST
@@ -17,7 +17,8 @@ Das Ziel dieser Einheit ist es, den Begriff des API zu verstehen, Python request
 ### API - Was ist das?
 [TERMREF::API]s erleichtern die Integration von Funktionen einer Software in eine andere und ermöglichen so die Entwicklung von Anwendungen, die auf bereits vorhandenen Diensten oder Plattformen aufbauen.
 
-Es gibt verschiedene Arten von APIs, darunter Web APIs, Bibliotheks-APIs und Betriebssystem-APIs. Web APIs sind besonders verbreitet und ermöglichen die Kommunikation zwischen verschiedenen Anwendungen über das Internet. Sie basieren oft auf standardisierten Protokollen wie [TERMREF::HTTP] und können verschiedene Datenformate wie [TERMREF:JSON] oder [TERMREF::XML] verwenden.
+Es gibt verschiedene Arten von APIs, darunter Web APIs, Bibliotheks-APIs und Betriebssystem-APIs. Web APIs sind besonders verbreitet und ermöglichen die Kommunikation zwischen verschiedenen Anwendungen über das Internet.
+Sie basieren oft auf standardisierten Protokollen wie [TERMREF::HTTP] und können verschiedene Datenformate wie [TERMREF:JSON] oder [TERMREF::XML] verwenden.
 
 Eine API stellt normalerweise eine Sammlung von definierten Schnittstellen und Funktionen bereit, die von Entwicklern genutzt werden können, um auf bestimmte Dienste oder Ressourcen zuzugreifen. Eine solche Sammlung kann u.a. mit Hilfe
 von [TERMREF:OpenAPI] dokumentiert werden. Diese Dokumentationshilfe wird uns in diesem Kapitel dabei helfen, Schnittstellen anzusprechen und zu testen. 

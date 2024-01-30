@@ -1,5 +1,5 @@
 title: Unittest in Python - Mocking Anwendung
-stage: draft
+stage: alpha
 timevalue: 4.0
 difficulty: 4
 profiles: TEST
