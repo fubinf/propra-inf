@@ -61,7 +61,8 @@ Verständnis des Protokolls nicht erschwert.
 
 - Rufen Sie `nano typescript` auf.
   Nano ist ein einfacher Texteditor, der auf allen Linux-Systemen vorhanden ist.
-  Die Bedienung ist in den unteren Zeilen erklärt.
+  Die Bedienung ist in den unteren Zeilen erklärt. 
+  (`^` steht für die Umschalttaste Ctrl-/Strg-, `M-` ("meta") steht für `Alt-`.)
 - Wie Sie sehen, sieht das Protokoll plötzlich viel komplizierter aus.
   Das liegt daran, dass die Steuercodes für die Farbänderungen jetzt sichtbar gemacht werden.
 - Schneiden Sie das Kommando `whoareyou` aus, samt des Shell-Prompts davor
