@@ -107,6 +107,19 @@ oder Hollywood-Prinzip: _"Don't call us, we'll call you"_.
 
 
 ## G
+
+[TERM::Globbing]
+Globbing bezeichnet die Expansion von Dateinamensmustern in eine Liste von Dateinamen.
+Dabei wird insbesondere das Zeichen `*` als Platzhalter für irgendeinen Dateinamens-Teil interpretiert,
+sodass sich z.B. mittels `*.txt` alle Dateien mit dem Suffix `.txt` (im selben Verzeichnis)
+zugleich ansprechen lassen.
+
+Globbing ist insbesondere in allen gängigen [TERMREF2::Shell::-s] implementiert.
+
+Kurzerläuterung: [https://tldp.org/LDP/abs/html/globbingref.html](https://tldp.org/LDP/abs/html/globbingref.html)
+[ENDTERM]
+
+
 ## H
 
 [TERM::HTTP]
