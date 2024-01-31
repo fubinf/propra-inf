@@ -100,9 +100,7 @@ Unterkommandos an, aber noch ohne richtige Implementierung.
 [ENDSECTION]
 [SECTION::submission::trace]
 
-Geben Sie eine mit `script` erzeugte `*.txt`-Datei ab,
-die die Eingaben und Ausgaben der obigen Kommandos K1, K2, ...
-enthält.
+[INCLUDE::../../_include/Kommandoprotokoll.md]
 
 Geben Sie den Dateibaum `mlh` mit seinen vier `*.py`-Dateien ab.
 
