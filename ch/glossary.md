@@ -47,6 +47,15 @@ https://linuxize.com/post/bashrc-vs-bash-profile/).
 Richtig genau steht es in der Dokumentation von Bash.
 [ENDTERM]
 
+[TERM::BDD]
+Behavior Driven Development (BDD) ist eine agile Softwareentwicklungsmethode, die sich auf die Zusammenarbeit
+zwischen Entwicklern, Testern und nicht-technischen Stakeholdern konzentriert. In BDD werden Anforderungen
+in verständlichen, natürlichsprachlichen Szenarien formuliert, die als "Gherkin"-Syntax bekannt sind. 
+
+https://docs.robotframework.org/docs/testcase_styles/bdd#what-is-bdd
+https://www.codecentric.de/wissens-hub/blog/givenwhenthen-and-example-tables-using-the-robot-framework
+[ENDTERM]
+
 [TERM::Bibliothek|Library]
 Eine Sammlung von Programmelementen (z.B. Klassen, Funktionen, Datentypen, Module, Pakete)
 ohne Hauptprogramm; 
@@ -280,6 +289,20 @@ Der `venv`-Mechanismus erlaubt, für mehrere Python-Projekte, an denen man entwi
 separate Mengen installierter Pakete zu haben und bei Bedarf auch unterschiedliche Versionen
 von Python selbst, sodass es insbesondere keine Probleme macht, falls verschiedene Projekte
 das gleiche Paket X in unterschiedlichen Versionen benötigen.
+[ENDTERM]
+
+[TERM::Verifizierung]
+Verifizierung oder Verifikation (von lateinisch veritas ‚Wahrheit' und facere ‚machen') ist
+die Bestätigung durch Bereitstellung eines objektiven Nachweises, dass festgelegte
+Anforderungen erfüllt worden sind.
+
+https://glossary.istqb.org/de_DE/term/verifizierung
+[ENDTERM]
+
+[TERM::Validierung]
+Bestätigung durch Überprüfung, dass ein Arbeitsergebnis den Bedürfnissen eines Stakeholders entspricht.
+
+https://glossary.istqb.org/de_DE/term/validierung-1
 [ENDTERM]
 
 ## W
