@@ -8,7 +8,8 @@ requires: error
 ---
 [SECTION::goal::trial]
 
-Das Ziel dieser Einheit ist es, Übung darin zu bekommen, einen Fehlerbericht anzufertigen und dabei die grundlegenden Informationen korrekt zu erfassen und zu dokumentieren.
+- Ich habe Abweichungen entdeckt
+- Ich habe Fehlerberichte erstellt
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -29,19 +30,19 @@ Akzeptanzkriterien (AKs):
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-1. Sind alle AKs testbar? Wenn nein, formulieren Sie das AK entsprechend um.
-2. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+- [EQ] Sind alle AKs testbar? Wenn nein, formulieren Sie das AK entsprechend um.
+- [EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
 Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seinen validen Benutzernamen und sein valides Passwort in die vorgesehenen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden. Das Portal leitet den Benutzer auf die Seite seines Portal-Profils weiter.
-1. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+- [EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
 Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seinen validen Benutzernamen und ein fehlerhaftes Passwort in die vorgesehnen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden.
 Das Portal gibt eine Fehlermeldung aus und leitet den Benutzer nicht weiter.
-1. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+- [EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
 Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seine valide E-Mail-Adresse und sein valides Passwort in die vorgesehenen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden.
 Das Portal leitet den Benutzer auf die Seite seines Portal-Profils weiter.
-1. Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+- [EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
 Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seine valide E-Mail-Adresse und sein valides Passwort in die Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden.
 Das Portal leitet den Benutzer auf die Seite des Portal-Administrators weiter.
-1. Ergänzen Sie mindestens ein weiteres AK.
+- [EQ] Ergänzen Sie mindestens ein weiteres AK.
 
 [WARNING]
 [ENDWARNING]
@@ -50,16 +51,10 @@ Das Portal leitet den Benutzer auf die Seite des Portal-Administrators weiter.
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::reflection]
+[SECTION::submission::trace]
 
-Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-Halten Sie die Antworten kurz.
-Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+[INCLUDE::../../_include/Markdowndokument.md]
 Sollten Ihnen zur Erstellung der Bug-Reports Informationen Fehlen, dürfen Sie diese fiktiv belegen. Bitte mit (fiktiv) markieren.
 Geben Sie die benutzten Quellen an.
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-.
-[ENDINSTRUCTOR]
