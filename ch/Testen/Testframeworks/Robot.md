@@ -3,29 +3,24 @@ stage: alpha
 timevalue: 1.5
 difficulty: 2
 profiles: TEST
-explains:
-assumes:
-requires:
 ---
-[SECTION::goal::trial]
+[SECTION::goal::experience,product]
 
-Das Ziel dieser Einheit ist es, das Robot Framework zu erkunden, um eine breite Test-Möglichkeit auf dem Gebiet der Testautomatisierung kennenzulernen.
+- Ich habe erste Robot Frtamework Testfälle ausgeführt
+- Ich habe kleine Erweiterungen zu bestehenden Testfällen durchgeführt
+- Ich habe BDD kennengelernt
 
 [ENDSECTION]
 [SECTION::background::default]
 
 ### Was ist das Robot Framework und wie kann ich es nutzen?
 
-Das Robot Framework (RF) ist ein Open-Source-Automatisierungs-Framework für Software-Tests und RPA [TERMREF::RPA], welches in Python entwickelt wurde. 
-Es ermöglicht die Erstellung von automatisierten Test- und Automatisierungsprozessen durch den Einsatz von einfach lesbaren, schlüsselwortbasierten [TERMREF::KDT] Testskripten. 
-Schlüsselwörter dienen als Aktionen oder Anweisungen, die zusammengefügt werden, um Tests oder Automatisierungsaufgaben zu definieren und auszuführen. 
+Das Robot Framework (RF) ist ein Open-Source-Automatisierungs-Framework für Software-Tests und RPA [TERMREF::RPA], welches in Python entwickelt wurde.
+Es ermöglicht die Erstellung von automatisierten Test- und Automatisierungsprozessen durch den Einsatz von einfach lesbaren, schlüsselwortbasierten [TERMREF::KDT] Testskripten.
+Schlüsselwörter dienen als Aktionen oder Anweisungen, die zusammengefügt werden, um Tests oder Automatisierungsaufgaben zu definieren und auszuführen.
 Das fördert eine leicht verständliche und wartbare Automatisierung.
 
-Um das RF nutzen zu können, ist neben Python das Paket **"robotframework"** zu installieren:
-
-```bash
-pip install robotframework
-```
+Um das RF nutzen zu können, ist neben Python das Paket **"robotframework"** zu installieren: `pip install robotframework`
 
 Anschließend können automatisierte Prozesse erstellt und ausgeführt werden. Machen Sie sich dazu mit der Erstellung von Testfällen auf der offiziellen RF Seite vertraut.
 
@@ -34,13 +29,9 @@ Anschließend können automatisierte Prozesse erstellt und ausgeführt werden. M
 ### Kann ich das Robotframework nur zum Testen verwenden?
 
 Obwohl es ursprünglich für Softwaretests entwickelt wurde, hat es sich zu einem vielseitigen Automatisierungsframework entwickelt und kann für verschiedene Arten von Automatisierungsaufgaben
-eingesetzt werden. Das Robot Framework kann verwendet werden, um wiederholbare Geschäftsprozesse zu automatisieren, indem es auf die Benutzeroberfläche von Anwendungen zugreift und
-Aktionen durchführt. [TERMREF::RPA] Neben der GUI-Testautomatisierung kann das Robot Framework auch für die Automatisierung von API-Tests genutzt werden. Hierbei können HTTP-Anfragen an
-APIs getestet und validiert werden. [TERMREF::API] Das Robot Framework kann eingesetzt werden, um Datenmigrationen zu automatisieren und sicherzustellen, dass Daten zwischen verschiedenen
-Systemen korrekt übertragen und validiert werden. Weiterhin können automatisiere Tests für Systemfunktionalitäten, Netzwerkkonnektivität und andere infrastrukturelle Aspekte durchgeführt werden. 
-Last but not least - und damit auch nicht die letzte Möglichkeit - kann das Robot Framework verwendet werden, um automatisiert Testberichte und Dokumentationen zu generieren, die den aktuellen
-Stand und die Ergebnisse der Testläufe zu beschreiben. (Zum Beispiel um Testergebnisse aus einer Pipeline direkt in ein Managementsystem wie Jira zu importieren)
-
+eingesetzt werden. Das Robot Framework kann verwendet werden, um wiederholbare Geschäftsprozesse zu automatisieren, indem es auf die Benutzeroberfläche von Anwendungen zugreift und Aktionen durchführt. [TERMREF::RPA] Neben der GUI-Testautomatisierung kann das Robot Framework auch für die Automatisierung von API-Tests genutzt werden. Hierbei können HTTP-Anfragen an APIs getestet und validiert werden. [TERMREF::API] Das Robot Framework kann eingesetzt werden, um Datenmigrationen zu automatisieren und sicherzustellen, dass Daten zwischen verschiedenen
+Systemen korrekt übertragen und validiert werden. Weiterhin können automatisiere Tests für Systemfunktionalitäten, Netzwerkkonnektivität und andere infrastrukturelle Aspekte durchgeführt werden.
+Last but not least - und damit auch nicht die letzte Möglichkeit - kann das Robot Framework verwendet werden, um automatisiert Testberichte und Dokumentationen zu generieren, die den aktuellen Stand und die Ergebnisse der Testläufe zu beschreiben. (Zum Beispiel um Testergebnisse aus einer Pipeline direkt in ein Managementsystem wie Jira zu importieren)
 
 [ENDSECTION]
 [SECTION::instructions::loose]
@@ -49,10 +40,10 @@ Nutzen Sie den Online Editor auf der Robot Framework Seite, um erste Schritte mi
 
 Betrachten Sie das Beispiel **"Simple Example"**:
 
-1. Wieviele und welche Dateien werden für dieses Beispiel verwendet?
-2. Wie heißen die Dateien, die nach einer Testausführung entstehen und einsehbar sind?
-3. Welche Testfälle beinhaltet das Beispiel?
-4. Ergänzen Sie den folgenden Testfall. Ist der Test erfolgreich durchgelaufen?
+- [EQ] Wieviele und welche Dateien werden für dieses Beispiel verwendet?
+- [EQ] Wie heißen die Dateien, die nach einer Testausführung entstehen und einsehbar sind?
+- [EQ] Welche Testfälle beinhaltet das Beispiel?
+- [EC] Ergänzen Sie den folgenden Testfall. Ist der Test erfolgreich durchgelaufen?
 
 ```python
 Administrator login
@@ -60,7 +51,7 @@ Administrator login
     Login Admin
 ```
 
-5. Implementieren Sie folgenden Testfall. Welche Fehlermeldung erhalten Sie? Was müsste passieren, um keinen Fehler zu erhalten?
+- [EC] Implementieren Sie folgenden Testfall. Welche Fehlermeldung erhalten Sie? Was müsste passieren, um keinen Fehler zu erhalten?
 
 ```python
 Request Userlist as User
@@ -75,12 +66,12 @@ Get Userlist
     Get All Users
 ```
 
-6. Implementieren Sie einen erfolgreichen Testfall für die Funktion 'get_server_version' aus der CustomLibrary.py. Eine Verifizierung [TERMREF:Verifizierung] des Ergebnisses ist nicht notwenid. 
+- [EC] Implementieren Sie einen erfolgreichen Testfall für die Funktion 'get_server_version' aus der CustomLibrary.py. Eine Verifizierung [TERMREF:Verifizierung] des Ergebnisses ist nicht notwenid.
 
-Wechseln Sie zum Beispiel **"BDD-Example"**
+Wechseln Sie zum Beispiel **BDD-Example**
 
-7. Machen Sie sich mit dem Themma [TERMREF:BDD] vertraut. Beschreiben Sie den Aufbau des Testfalls unter 'Calculator_Test_Suite.robot'. 
-8. Ergänzen Sie die Zeile **"Then The Result Should Not Be "1""** mit dem folgenden Testfall und erkären Sie, was dieser Testschritt prüft.
+- [EQ] Machen Sie sich mit dem Themma [TERMREF:BDD] vertraut. Beschreiben Sie den Aufbau des Testfalls unter 'Calculator_Test_Suite.robot'.
+- [EC] Ergänzen Sie in der `.robot`-Datei die Zeile **Then The Result Should Not Be "1"**, zusätzlich den folgenden Testfall in der `.resource`-Datei und erkären Sie, was dieser Testschritt verifiziert.
 
 ```python
 The Result Should Not Be "${expected}"
@@ -88,8 +79,7 @@ The Result Should Not Be "${expected}"
     Should Not Be Equal As Numbers    ${result}    ${expected}
 ```
 
-9. Ist es sinnvoll mehrer Schritte in einem Testfall zu nutzen, um Ergebnisse zu verifizieren? Wenn ja, gibt es ein Maximum?
-
+- [EQ] Ist es sinnvoll mehrer Schritte in einem Testfall zu nutzen, um Ergebnisse zu verifizieren? Wenn ja, gibt es ein Maximum?
 
 [WARNING]
 [ENDWARNING]
@@ -99,9 +89,15 @@ Zusätzlich ist es zur Erfüllung der Aufgaben nicht notwendig die CustomLibrary
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::reflection]
+[SECTION::submission::trace]
 
-Zu 5. wird erwartet zu erkennen, dass die Abfrage durch einen unberechtigten Nutzer durchgeführt wird. Ein Administrator jedoch die Möglichkeit hat. 
-Daher kann ein fehlerfreier Test durch das ersetzen des Login User durch Login Admin realisiert werden, da diese Funktionalität beriets vorhanden ist.
+[INCLUDE::../../_include/Kommandoprotokoll.md]
 
 [ENDSECTION]
+[INSTRUCTOR::Erwartung]
+
+- [EREFC::2] wird erwartet zu erkennen, dass die Abfrage durch einen unberechtigten Nutzer durchgeführt wird. Ein Administrator jedoch diese Möglichkeit hat. Daher kann ein fehlerfreier Test durch das ersetzen des `Login User` durch `Login Admin` realisiert werden, da diese Funktionalität beriets vorhanden ist.
+
+- erscheint für [EREFC::2] erst `file3`, dann `file3, file1`, dann `file3, file1, file2`
+- erscheint `nonsense` nicht und auch keine Fehlermeldung
+[ENDINSTRUCTOR]
