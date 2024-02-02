@@ -21,6 +21,10 @@ requires:
 
 ### ...
 
+- [EC] Kommando
+- [EQ] Frage
+- [ER] Anforderung
+
 ### ...
 
 [WARNING]
