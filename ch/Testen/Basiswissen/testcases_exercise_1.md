@@ -3,12 +3,10 @@ stage: alpha
 timevalue: 2.0
 difficulty: 1
 profiles: TEST
-assumes:
-requires:
 ---
 [SECTION::goal::trial]
 
-Das Ziel dieser Einheit ist es, die Zusammenhänge der genannten Begriffe zu verstehen, damit ich sie in der Praxis anwenden kann.
+- Ich kann Testfälle lesen und erstellen
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -27,12 +25,12 @@ Betrachten Siew dazu folgende User Stories:
 
 Erstellen Sie folgende Testfälle:
 
-1. Erstellen Sie einen einfachen Testplan.
-2. Erstellen Sie einen statischen Testfall für eine erfolgreiche Registrierung.
-3. Erstellen Sie einen negativ Testfall für zu 1.
-4. Erstellen Sie einen generischen testfall, der 5 unterschiedliche Kunden erfolgreich anmelden. geben Sie die verwendetetn Testdaten separat zum testfall mit an.
-5. Erstellen Sie einen statischen oder generischen Testfall, um Ihren angegebenen Benutzernamen zu überprüfen.
-6. Erstellen Sie zwei Testsammlungen mit den erstellten Testfällen. Erweitern Sie falls nötig weitere Testfälle, um die Testsammlungen voneinander zu unterscheiden. Schreiben Sie statische Testfälle in generische Testfälle um und hinterlegen Sie die benötigten Testdaten in der Testsammlung.
+- [EC] Erstellen Sie einen einfachen Testplan.
+- [EC] Erstellen Sie einen statischen Testfall für eine erfolgreiche Registrierung.
+- [EC] Erstellen Sie einen negativ Testfall für zu 1.
+- [EC] Erstellen Sie einen generischen Testfall, der 5 unterschiedliche Kunden erfolgreich anmelden. geben Sie die verwendetetn Testdaten separat zum testfall mit an.
+- [EC] Erstellen Sie einen statischen oder generischen Testfall, um Ihren angegebenen Benutzernamen zu überprüfen.
+- [EC] Erstellen Sie zwei Testsammlungen mit den erstellten Testfällen. Erweitern Sie falls nötig weitere Testfälle, um die Testsammlungen voneinander zu unterscheiden. Schreiben Sie statische Testfälle in generische Testfälle um und hinterlegen Sie die benötigten Testdaten in der Testsammlung.
 
 [WARNING]
 [ENDWARNING]
@@ -41,14 +39,8 @@ Erstellen Sie folgende Testfälle:
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::reflection]
+[SECTION::submission::trace]
 
-Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-Halten Sie die Antworten kurz.
-Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
+[INCLUDE::../../_include/Markdowndokument.md]
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-.
-[ENDINSTRUCTOR]
