@@ -3,12 +3,10 @@ stage: alpha
 timevalue: 2.0
 difficulty: 1
 profiles: TEST
-assumes:
-requires:
 ---
 [SECTION::goal::idea]
 
-Das Ziel dieser Einheit ist es, die Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) (eng.: Quality Assurance (QA)) zu verstehen, damit ich sie eindeutig voneinander unterscheiden kann.
+- Ich kenne die Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) (eng.: Quality Assurance (QA))
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -18,11 +16,11 @@ Testen, Debuggen und Qualitätssicherung (QS), Recherchieren Sie hierzu anhand d
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-1. Was versteht man unter Software-Testing?
-2. Was versteht man unter Debugging?
-3. Was versteht man unter QS?
-4. Was ist der Unterschied zwischen der QS und dem Testen?
-5. Welche Methoden und Techniken werden in der QS eingesetzt?
+- [EQ] Was versteht man unter Software-Testing?
+- [EQ] Was versteht man unter Debugging?
+- [EQ] Was versteht man unter QS?
+- [EQ] Was ist der Unterschied zwischen der QS und dem Testen?
+- [EQ] Welche Methoden und Techniken werden in der QS eingesetzt?
 
 [WARNING]
 [ENDWARNING]
@@ -31,15 +29,8 @@ Testen, Debuggen und Qualitätssicherung (QS), Recherchieren Sie hierzu anhand d
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::information]
+[SECTION::submission::trace]
 
-Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-Halten Sie die Antworten kurz.
-Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
-Geben Sie die benutzten Quellen an.
+[INCLUDE::../../_include/Markdowndokument.md]
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-.
-[ENDINSTRUCTOR]

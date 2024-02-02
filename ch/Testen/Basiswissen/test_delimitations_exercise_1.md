@@ -3,12 +3,10 @@ stage: alpha
 timevalue: 2.0
 difficulty: 1
 profiles: TEST
-assumes:
-requires:
 ---
 [SECTION::goal::trial]
 
-Das Ziel dieser Einheit ist es, die Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) in der Praxis zu verstehen.
+- Ich kann die Abgrenzungen des Testens zum Debuggen und zur Qualitätssicherung (QS) in der Praxis zu anwenden
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -18,7 +16,7 @@ Testen, Debuggen und Qualitätssicherung (QS), Recherchieren Sie hierzu anhand d
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-1. Debuggen Sie folgenden Python Code:
+- [EC] Debuggen Sie folgenden Python Code:
 Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben Sie Ihre Anpassung(en).
 
   ```Python
@@ -33,7 +31,7 @@ Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben 
   add_numbers()
   ```
 
-2. Debuggen Sie folgenden Java Code:
+- [EC] Debuggen Sie folgenden Java Code:
 Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben Sie Ihre Anpassung(en).
 
   ```Python
@@ -44,8 +42,8 @@ Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben 
 
   ```
 
-3. Betrachten Sie folgendes Szenario: In einem agilen Projekt mit 2 Testern wird nach einem QS Audit festgestellt, dass 20% aller Testfälle nahezu identisch sind. Die Tester haben gem- dem Testkonzept gearbeitet. Dieser sieht vor, dass jeder Tester seine Testfälle selber schreibt und ausführt. Eine Zusammenarbeit unter den testern wurde hier nicht festgelegt. Erwarbeiten Sie ein Konzept zur Verbesserung dieser erkannten Problematik durch mindestens 2 Prozessen. Beschreiben Sie, wie dadurch die Zusammenarbeit verbessert wird und warum doppelte Testfälle stark minimiert werden können.
-4. Betrachten Sie folgenden alten Testfall für eine Webseite in deutscher Sprache. Aktualisieren Sie diesen Testfall wenn nötig:
+- [EQ] Betrachten Sie folgendes Szenario: In einem agilen Projekt mit 2 Testern wird nach einem QS Audit festgestellt, dass 20% aller Testfälle nahezu identisch sind. Die Tester haben gem- dem Testkonzept gearbeitet. Dieser sieht vor, dass jeder Tester seine Testfälle selber schreibt und ausführt. Eine Zusammenarbeit unter den testern wurde hier nicht festgelegt. Erwarbeiten Sie ein Konzept zur Verbesserung dieser erkannten Problematik durch mindestens 2 Prozessen. Beschreiben Sie, wie dadurch die Zusammenarbeit verbessert wird und warum doppelte Testfälle stark minimiert werden können.
+- [EC] Betrachten Sie folgenden alten Testfall für eine Webseite in deutscher Sprache. Aktualisieren Sie diesen Testfall wenn nötig:
    **Titel:** Erfolgreiche Anmeldung
 
    **Beschreibung:** Der registrierte Nutzer hat die Möglichkeit sich mit seinem Benutzernamen oder seiner E-Mail Adresse am Portal anzumelden. Der Nutzer wird bei erfolgreicher Anmeldung auf sein Profil weitergeleitet.
@@ -67,15 +65,8 @@ Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben 
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::reflection]
+[SECTION::submission::trace]
 
-Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-Halten Sie die Antworten kurz.
-Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
-Geben Sie die benutzten Quellen an.
+[INCLUDE::../../_include/Markdowndokument.md]
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-.
-[ENDINSTRUCTOR]
