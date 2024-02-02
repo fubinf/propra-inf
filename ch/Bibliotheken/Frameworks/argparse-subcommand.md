@@ -63,9 +63,9 @@ als auch als nettes Hilfsmittel für späteres Programmieren.
 7. Legen Sie eine leere Datei `mlh/subcmds/__init__.py` an, um `subcmds` zu einem Modul zu machen.
    Diese Datei legt die Schnittstelle des Moduls fest und bleibt bei uns leer, 
    weil wir nur an den Untermodulen interessiert sind, nicht an `subcmds` selbst.
-8. K1: Rufen Sie `python mlh/mlh.py` auf und überzeugen Sie sich, dass beide Unterkommandos
+8. [EC] Rufen Sie `python mlh/mlh.py` auf und überzeugen Sie sich, dass beide Unterkommandos
    vom Framework korrekt erkannt werden.
-9. K2: Rufen Sie `python mlh/mlh.py acbd` auf und überzeugen Sie sich,
+9. [EC] Rufen Sie `python mlh/mlh.py acbd` auf und überzeugen Sie sich,
    dass das Unterkommando aufgerufen werden kann (und natürlich noch gar nichts tut).
 
 ### `mlh`: Struktur ausprägen
@@ -75,25 +75,25 @@ Unterkommandos an, aber noch ohne richtige Implementierung.
 
 10. Tragen Sie als Implementierung von `execute` bei beiden Unterkommandos ein  
     `print(args)`.
-11. K3: Rufen Sie erneut `python mlh/mlh.py acbd` auf und überzeugen Sie sich,
+11. [EC] Rufen Sie erneut `python mlh/mlh.py acbd` auf und überzeugen Sie sich,
     dass die gewünschte Meldung erscheint.
 12. Ergänzen Sie nun `subcmds.acbd.add_arguments()` so, dass Sie auf 
     `python mlh/mlh.py acbd --help` die Hilfezeile 
     "usage: mlh.py acbd [-h] [-m commit msg] file [file ...]" erhalten
     und alternativ auch `--message` anstatt `-m` funktioniert.
-13. K4: Zeigen Sie folgende gültige Kommandos und ihre Ausgaben:  
+13. [EC] Zeigen Sie folgende gültige Kommandos und ihre Ausgaben:  
     `python mlh/mlh.py acbd file1`  
     `python mlh/mlh.py acbd file1 file2`  
     `python mlh/mlh.py acbd -m "my commit message" file1 file2`  
     `python mlh/mlh.py acbd --message "other msg" file1 file2 file3`  
-14. K5: Zeigen Sie folgende ungültige Kommandos und ihre Ausgaben:  
+14. [EC] Zeigen Sie folgende ungültige Kommandos und ihre Ausgaben:  
     `python mlh/mlh.py acbd`  
     `python mlh/mlh.py acbd -m file1`  
 15. Ergänzen Sie nun `subcmds.lsnew.add_arguments()` so, dass Sie auf 
     `python mlh/mlh.py lsnew --help` die Hilfezeile 
     "usage: mlh.py lsnew [-h] [--age maxage] file [file ...]" erhalten
     und `age` den Standardwert "48h" hat`.
-16. K6: Zeigen Sie folgende gültige Kommandos und ihre Ausgaben:  
+16. [EC] Zeigen Sie folgende gültige Kommandos und ihre Ausgaben:  
     `python mlh/mlh.py lsnew file1`  
     `python mlh/mlh.py lsnew --age 30s file1 file2`  
 
@@ -106,9 +106,10 @@ Geben Sie den Dateibaum `mlh` mit seinen vier `*.py`-Dateien ab.
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::Teile der Ausgaben prüfen]
 Es genügt, zu kontrollieren, 
-- ob die Kommandos von K4 und K6 alle erfolgreich sind,
+
+- ob die Kommandos von [EREFC::4] und [EREFC::6] alle erfolgreich sind,
 - ob bei `lsnew file1` der richtige Defaultwert `age='48h'` ankommt,
-- ob die Kommandos von K5 alle zu Fehlermeldungen führen.
+- ob die Kommandos von [EREFC::5] alle zu Fehlermeldungen führen.
 [ENDINSTRUCTOR]

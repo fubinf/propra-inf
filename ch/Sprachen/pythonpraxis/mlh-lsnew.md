@@ -79,8 +79,8 @@ Siehe Modul `datetime` in der Python-Standardbibliothek.
 
 Führen Sie zum Testen insbesondere folgende Kommandos aus:
 
-- K1: `python mlh/mlh.py lsnew --age 365000d` *.md
-- K2: `touch file2; sleep 5; touch file1; sleep 5; touch file3; python mlh/mlh.py lsnew --age 2s file?; echo; python mlh/mlh.py lsnew --age 7s file?; echo; python mlh/mlh.py lsnew --age 1m nonsense file?; rm file{1,2,3}`
+- [EC] `python mlh/mlh.py lsnew --age 365000d` *.md
+- [EC] `touch file2; sleep 5; touch file1; sleep 5; touch file3; python mlh/mlh.py lsnew --age 2s file?; echo; python mlh/mlh.py lsnew --age 7s file?; echo; python mlh/mlh.py lsnew --age 1m nonsense file?; rm file{1,2,3}`
 
 [ENDSECTION]
 [SECTION::submission::trace]
@@ -92,6 +92,6 @@ Führen Sie zum Testen insbesondere folgende Kommandos aus:
 [INSTRUCTOR::Testfall prüfen]
 Bei korrekter Funktion
 
-- erscheint für K2 erst `file3`, dann `file3, file1`, dann `file3, file1, file2`
+- erscheint für [EREFC::2] erst `file3`, dann `file3, file1`, dann `file3, file1, file2`
 - erscheint `nonsense` nicht und auch keine Fehlermeldung
 [ENDINSTRUCTOR]
