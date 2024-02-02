@@ -4,13 +4,10 @@ timevalue: 1.0
 difficulty: 1
 profiles: TEST
 assumes: unittest101
-requires:
 ---
 [SECTION::goal::idea]
 
-Ziel der Aufgabe ist es zu verstehen, wie Tests in Python Flask mittels der unittest Erweiterung geschrieben und
-gelesen werden. Dies bietet die Grundlage dafür, eigene Tests in Python Flask zu gestalten und sich in weitere Testframeworks
-einzuarbeiten.
+- Ich lerne wie mann fpr Python Flask Unittetst schreibt
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -22,9 +19,9 @@ der folgenden Fragen in die Erweiterung ein.
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-1. Wie kann ich die Erweiterung verwenden und starten?
-2. Welche Vorteile bietet diese Erweiterung?
-3. Welche Nachteile hat die Verwendung dieser Erweiterung?
+- [EQ] Wie kann ich die Erweiterung verwenden und starten?
+- [EQ] Welche Vorteile bietet diese Erweiterung?
+- [EQ] Welche Nachteile hat die Verwendung dieser Erweiterung?
 
 [Flask-Testing Dokumentation](https://flask-testing.readthedocs.io/en/latest/)
 [Flask-Testing GitHub Repository](https://github.com/jarus/flask-testing/tree/master)
@@ -39,15 +36,8 @@ der folgenden Fragen in die Erweiterung ein.
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::information]
+[SECTION::submission::trace]
 
-Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-Halten Sie die Antworten kurz.
-Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
-Geben Sie Quellen an, wenn Sie andere als die gegebenen Quellen hinzuziehen.
+[INCLUDE::../../_include/Markdowndokument.md]
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-.
-[ENDINSTRUCTOR]
