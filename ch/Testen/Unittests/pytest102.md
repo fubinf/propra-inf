@@ -4,17 +4,17 @@ timevalue: 1.5
 difficulty: 3
 profiles: TEST
 assumes: pytest101
-requires:
 ---
 [SECTION::goal::idea]
+
+- Ich kann Fixtiures einordnen und lerne, was ich damit machen
+
+[ENDSECTION]
+[SECTION::background::default]
 
 Oftmals benötigten ich zum Testen bestimmte Voraussetzungen, die erfüllt sein müssen.
 Ohne eine Datenbank kann ich keine Tests über Datenbankabfragen gestalten, ohne Webserver
 wird es schwer, Abfragen über WebAPIs zu testen.
-In dieser Einheit lernen ich, wie ich mit Fixtures diese Hürde angehen kann.
-
-[ENDSECTION]
-[SECTION::background::default]
 
 Fixtures sind Teile von Software, die vor einem Test initialisiert werden und damit
 Voraussetzungen erfüllen, die ein System hat.
@@ -24,13 +24,13 @@ folgenden Fragen auseinander:
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-1. Wie erstellt man einfache Fixtures in pytest?
-2. Wie können Sie Fixtures verwenden, um wiederkehrende Testdaten oder -umgebungen zu verwalten?
-3. Was ist der Unterschied zwischen "function scope", "class scope" und "module scope" bei
+- [EQ] Wie erstellt man einfache Fixtures in pytest?
+- [EQ] Wie können Sie Fixtures verwenden, um wiederkehrende Testdaten oder -umgebungen zu verwalten?
+- [EQ] Was ist der Unterschied zwischen "function scope", "class scope" und "module scope" bei
    Fixtures und wann sollten Sie sie jeweils verwenden?
-4. Wie können Sie Fixture-Abhängigkeiten in pytest definieren?
-5. Wie können Sie in pytest mit Fixture-Finalizern aufräumen oder Ressourcen freigeben?
-6. Wie können Fixtures automatisch für alle Tests im Scope bereitgestellt werden?
+- [EQ] Wie können Sie Fixture-Abhängigkeiten in pytest definieren?
+- [EQ] Wie können Sie in pytest mit Fixture-Finalizern aufräumen oder Ressourcen freigeben?
+- [EQ] Wie können Fixtures automatisch für alle Tests im Scope bereitgestellt werden?
 
 [pytest - About fixtures](https://docs.pytest.org/en/stable/explanation/fixtures.
 html#about-fixtures)
@@ -43,15 +43,8 @@ html#about-fixtures)
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::information]
+[SECTION::submission::trace]
 
-Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-Halten Sie die Antworten kurz.
-Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
-Geben Sie Quellen an, wenn Sie andere als die gegebenen Quellen hinzuziehen.
+[INCLUDE::../../_include/Markdowndokument.md]
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-.
-[ENDINSTRUCTOR]

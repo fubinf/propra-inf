@@ -4,17 +4,16 @@ timevalue: 1.5
 difficulty: 3
 profiles: TEST
 assumes: pytest101, pytest102
-requires:
 ---
 [SECTION::goal::idea]
 
-Zur Organisierung von Tests benötigte ich häufig Informationen, die nicht direkt in der Logik
-des Codes festgehalten sind.
-Hier setze ich mich mit dieser Aufgabe damit auseinander, wie ich meine Tests mit diesen Metainformationen
-verbessern kann.
+- Ich lerne, wie ich meine Tests mit Metainformationen verbessern kann.
 
 [ENDSECTION]
 [SECTION::background::default]
+
+Zur Organisierung von Tests benötigte ich häufig Informationen, die nicht direkt in der Logik
+des Codes festgehalten sind.
 
 Marks in pytest sind ein leistungsfähiges Feature, mit dem Sie Tests oder Testfunktionen mit
 speziellen Eigenschaften versehen können.
@@ -26,13 +25,13 @@ folgenden Fragen auseinander:
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-1. Wie sehen Marks in pytest aus und wie können sie in Tests verwendet werden?
-2. Auf welche Teile von pytest können Marks angewandt werden?
-3. Welche Marks sind in pytest vordefiniert und welche Funktionen haben sie?
-4. Wie können benutzerdefinierte Marks erzeugt werden?
-5. Wie können Marks verwendet werden, um bestimmte Tests auf bestimmten Umgebungen oder
+- [EQ] Wie sehen Marks in pytest aus und wie können sie in Tests verwendet werden?
+- [EQ] Auf welche Teile von pytest können Marks angewandt werden?
+- [EQ] Welche Marks sind in pytest vordefiniert und welche Funktionen haben sie?
+- [EQ] Wie können benutzerdefinierte Marks erzeugt werden?
+- [EQ] Wie können Marks verwendet werden, um bestimmte Tests auf bestimmten Umgebungen oder
    Plattformen auszuführen?
-6. Welche Bedeutung haben Marks bei der Testpriorisierung und -ausführung? Wie können sie
+- [EQ] Welche Bedeutung haben Marks bei der Testpriorisierung und -ausführung? Wie können sie
    bestimmte Tests priorisieren oder auslassen?
 
 [pytest - How to mark test functions with attributes](https://docs.pytest.org/en/stable/how-to/mark.
@@ -45,18 +44,10 @@ html)
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::information]
+[SECTION::submission::trace]
 
-    Die Abgabe besteht aus einem Markdown-Dokument mit den Antworten zu den oben gestellten Fragen.
-    Halten Sie die Antworten kurz.
-    Sie dürfen Code-Beispiele benutzen, wenn diese zur Antwort hilfreich sind.
-    Geben Sie Quellen an, wenn Sie andere als die gegebenen Quellen hinzuziehen.
-
-    Reflektieren Sie anschließend in wenigen Sätzen, welche der Marks Ihnen am nützlichsten
-    erscheinen.
+[INCLUDE::../../_include/Markdowndokument.md]
+Reflektieren Sie anschließend in wenigen Sätzen, welche der Marks Ihnen am nützlichsten
+erscheinen.
 
 [ENDSECTION]
-
-[INSTRUCTOR::heading]
-.
-[ENDINSTRUCTOR]
