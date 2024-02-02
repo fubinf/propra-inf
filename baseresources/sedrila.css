@@ -372,6 +372,40 @@ summary {}
 }
 
 
+/********** Enumeration macros: */
+
+.enumeration-ec,
+.enumeration-eq,
+.enumeration-er,
+.enumeration-erefc,
+.enumeration-erefq,
+.enumeration-erefr {
+    color: var(--difficulty1-color);
+    font-weight: bold;
+}
+
+
+.enumeration-ec::before,
+.enumeration-erefc::before {
+    content: "K";  /* "Kommando" */
+}
+
+.enumeration-eq::before,
+.enumeration-erefq::before {
+    content: "F";  /* "Frage" */
+}
+
+.enumeration-er::before,
+.enumeration-erefr::before {
+    content: "A";  /* "Anforderung" */
+}
+
+.enumeration-ec::after,
+.enumeration-eq::after,
+.enumeration-er::after {
+    content: ":";
+}
+
 /********** Specifics for Tasks: */
 
 .assumes-requires-linkblock {
