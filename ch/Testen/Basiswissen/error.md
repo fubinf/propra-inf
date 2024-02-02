@@ -6,7 +6,8 @@ profiles: TEST
 ---
 [SECTION::goal::idea]
 
-Das Ziel dieser Einheit ist es, den Begriff des Fehlers zu verstehen und zu lernen, damit ich einen Fehler in seinem Kontext genau erfassen kann.
+- Ich habe den Begriff Fehler kennengelernt
+- Ich kann die Ursache eines Fehler genauer definieren
 
 [ENDSECTION]
 [SECTION::background::default]
