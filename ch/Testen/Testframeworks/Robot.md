@@ -98,6 +98,4 @@ Zusätzlich ist es zur Erfüllung der Aufgaben nicht notwendig die CustomLibrary
 
 - [EREFC::2] wird erwartet zu erkennen, dass die Abfrage durch einen unberechtigten Nutzer durchgeführt wird. Ein Administrator jedoch diese Möglichkeit hat. Daher kann ein fehlerfreier Test durch das ersetzen des `Login User` durch `Login Admin` realisiert werden, da diese Funktionalität beriets vorhanden ist.
 
-- erscheint für [EREFC::2] erst `file3`, dann `file3, file1`, dann `file3, file1, file2`
-- erscheint `nonsense` nicht und auch keine Fehlermeldung
 [ENDINSTRUCTOR]
