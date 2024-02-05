@@ -36,7 +36,7 @@ graph TD
     EA0 --> EA01[Übung: Unittest]
     EA --> EA2[Übung: Robot Framework]
     EA --> EA3[Übung: Playwright]
-    EA --> EA4[Übung: Cycumber mit Playwright]
+    EA --> EA4[Übung: Cucumber mit Playwright]
     EA --> EA5[Übung: Locust - API]
     EA5 --> EA51[Übung: Verteilte LuP-Tests]
     EA --> EA6[Übung: JMeter - Capture and Replay]
