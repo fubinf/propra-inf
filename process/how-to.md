@@ -13,7 +13,7 @@ First, learn about sedrila in the
 ## Task file template
 
 When you start a new task description file, 
-copy [ch/template_md](ch/template_md) 
+copy [ch/template_md](../ch/template_md) 
 and use it as a template to have a clean up-to-date starting point.
 
 
