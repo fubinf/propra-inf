@@ -1,8 +1,9 @@
 title: Übung Testfallstrukturen
 stage: alpha
 timevalue: 2.0
-difficulty: 1
+difficulty: 2
 profiles: TEST
+assumes: testcases
 ---
 [SECTION::goal::trial]
 
@@ -25,22 +26,15 @@ Betrachten Siew dazu folgende User Stories:
 
 Erstellen Sie folgende Testfälle:
 
-- [EC] Erstellen Sie einen einfachen Testplan.
-- [EC] Erstellen Sie einen statischen Testfall für eine erfolgreiche Registrierung.
-- [EC] Erstellen Sie einen negativ Testfall für zu 1.
-- [EC] Erstellen Sie einen generischen Testfall, der 5 unterschiedliche Kunden erfolgreich anmelden. geben Sie die verwendetetn Testdaten separat zum testfall mit an.
-- [EC] Erstellen Sie einen statischen oder generischen Testfall, um Ihren angegebenen Benutzernamen zu überprüfen.
-- [EC] Erstellen Sie zwei Testsammlungen mit den erstellten Testfällen. Erweitern Sie falls nötig weitere Testfälle, um die Testsammlungen voneinander zu unterscheiden. Schreiben Sie statische Testfälle in generische Testfälle um und hinterlegen Sie die benötigten Testdaten in der Testsammlung.
-
-[WARNING]
-[ENDWARNING]
-
-[HINT::VisibleTitle]
-[ENDHINT]
+[EC] Erstellen Sie einen einfachen Testplan.
+[EC] Erstellen Sie einen statischen Testfall für eine erfolgreiche Registrierung.
+[EC] Erstellen Sie einen negativ Testfall für zu 1.
+[EC] Erstellen Sie einen generischen Testfall, der 5 unterschiedliche Kunden erfolgreich anmelden. geben Sie die verwendetetn Testdaten separat zum testfall mit an.
+[EC] Erstellen Sie einen statischen oder generischen Testfall, um Ihren angegebenen Benutzernamen zu überprüfen.
+[EC] Erstellen Sie zwei Testsammlungen mit den erstellten Testfällen. Erweitern Sie falls nötig weitere Testfälle, um die Testsammlungen voneinander zu unterscheiden. Schreiben Sie statische Testfälle in generische Testfälle um und hinterlegen Sie die benötigten Testdaten in der Testsammlung.
 
 [ENDSECTION]
+
 [SECTION::submission::trace]
-
 [INCLUDE::../../_include/Markdowndokument.md]
-
 [ENDSECTION]
