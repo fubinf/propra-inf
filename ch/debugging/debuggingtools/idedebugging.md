@@ -36,17 +36,18 @@ Bearbeiten Sie das [Tutorial](https://www.jetbrains.com/help/pycharm/part-1-debu
 Beschreiben Sie danach in eigenen Worten 
 
   - [EQ] wie Sie das Debugging mit PyCharms Debugger starten, 
-  - [EQ] welche Kommandos Ihnen zur Steuerung des Debuggers zur Verfügung stehen,
+  - [EQ] welche Möglichkeiten Ihnen zur Steuerung des Debuggers zur Verfügung stehen,
   - [EQ] welche Voraussetzung erfüllt sein muss, um mittels eines interaktiven Debuggers einen Bug zu finden und
   - [EQ] wie nützlich Sie das Debugging mit den von PyCharm mitgelieferten Werkzeugen empfinden. 
 [ENDSECTION]
 
 
 [SECTION::submission::information]
-Die Abgabe besteht aus einem Markdown-Dokument, das die geforderten Angaben beinhaltet.
-Halten Sie die Abgabe kurz und bündig.
+
+[INCLUDE::../../_include/Markdowndokument.md]
+
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
-.
+[INSTRUCTOR::Nötige Begriffe]
+Eine Abgabe ohne Breakpoints, Stepping und Watching ist unvollständig.
 [ENDINSTRUCTOR]
