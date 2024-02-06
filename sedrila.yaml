@@ -80,6 +80,7 @@ chapters:
     taskgroups:
       - slug: mindset
       - slug: classification
+      - slug: debuggingtools
   - slug: altcode
     taskgroups:
       - slug: refactoring
