@@ -44,11 +44,13 @@ Recherchieren Sie und begründen Sie ihre Aussagen, wenn nötig, zu den folgende
 
 [ENDSECTION]
 [SECTION::submission::reflection]
-Die Abgabe besteht aus einem Markdown-Dokument mit den geforderten Angaben.
-Bitte halten Sie die Antworten kurz und bündig.
-Geben Sie Quellen an, sofern Sie welche benutzen.
+
+[INCLUDE::../../_include/Markdowndokument.md]
+
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
-.
+[INSTRUCTOR::Mögliche Abgaben]
+Eine Musterabgabe zu bestimmen ist hier schwer, da die Konzepte je nach eigenem Vorwissen etwas vorbelastet sein können.
+Im Idealfall wird zwischen den beiden Konzepten abgewogen und gesehen, dass man beide zusammen nutzen kann.
+Hierbei auf eine schlüssige Argumentation achten.
 [ENDINSTRUCTOR]
