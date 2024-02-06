@@ -84,6 +84,7 @@ chapters:
   - slug: altcode
     taskgroups:
       - slug: refactoring
+      - slug: refactoringtools
   - slug: web
     taskgroups:
       - slug: html
