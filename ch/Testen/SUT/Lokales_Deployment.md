@@ -2,10 +2,10 @@ title: Lokale Bereitstellung des System unter Test
 stage: draft
 timevalue: 1.0
 difficulty: 1
-profiles:
+profiles: TEST
 explains:
-assumes:
-requires: 
+assumes: venv, pip
+requires:
 ---
 [SECTION::goal::product]
 
@@ -61,33 +61,75 @@ ist eine Portion Motivation, Geduld und Bereitschaft zum Lernen. Vorblickend wer
 
 Starten Sie ein eine neue Terminal Session.
 Wir wollen unser SUT gleich strukturiert ablegen und navigieren in folgendes Verzeichnis: `cd ~/ws/sut`.
-Sollte das Verzeichnis nicht existieren, könne Sie es mir dem folgenden Befehl anlegen: `mkdir ~/ws/sut`.
+Sollte das Verzeichnis nicht existieren, könne Sie es mit dem folgenden Befehl anlegen: `mkdir ~/ws/sut`.
 Jetzt beschaffen wir uns den Quellcode mit `git clone https://github.com/fubinf/propra-inf-testobjekt.git`.
 [WARNING]
 Achten Sie darauf, dass Sie sich **im** Verzeichnis *sut* befinden und nach dem pullen nicht die Überraschung entdecken, dass sich
 Ihr Repo auf einmal wo anders befindet.
 [ENDWARNING]
+
 - [EQ] Wie heißt das erstellte Verzeichnis unter `~/ws/sut/`?
 
 ### Requirements erfüllen
 
+Bevor wir die Anwendung starten können, benötigen wir die für diese Webanwendung genutzten Entwicklungsvorbedingungen. Da
+dieser Webauftritt ein Python Projekt ist, wird als aller erstes Python benötigt. Sie installieren Python mit `apt-get install python`
+
+- [EQ] Welche Pythonversion wird ihnen angezeigt?
+
+Wenn Sie mit mehreren Pythonprojekten arbeiten, werden Sie auch auf unterschiedliche Vorbedingen oder Abhängigkeiten treffen. Daber bietet
+es sich an diese Projekte in unterschiedlichen Umgebungen zu verwenden. Tiefergehende Informationen finden Sie im Kapitel **venv.md**.
+
+- [EC] Installieren Sie in Ihrem Verzeichnis eine neue Virtuelle Python-Umgebung mit `python -m venv ./sut`
+- [EC] Wechseln sie, wenn noch nicht geschehen, in diese Umgebung: `source ./sut/bin/active`
+- [EQ] Wie setzt sich Ihr [TERMREF::Prompt] zusammen?
+
+Neben der Entwicklungssprache Python werden auch weitere Open-Source Pakete / Frameworks verwendet, um diese Seite zu realisieren. Diese
+Erweiterungen werden in einer einzelnen Datei dokuemtniert. Diese finden Sie standardmäßig im Stammverzeichnis unter **requirements.txt**.
+Diese Datei ermöglicht es uns die Abhängigkeiten schnell und unkompliziert zu installieren.
+
+- [ER] Zu erst wechseln wir in das vom GitHub gepullte Verzeichnis mit dem Kommando `cd`. Hier müssen Sie noch das aus [EREFQ::1] erkannte
+  Verzeichnis ergänzen
+
+Da das SUT aus unterschiedlichen Versionen besteht, müssen wir uns für eins entscheiden (bzw. wird ihnen die Version in der jeweiligen
+Aufgabe nahegelegt). wechselen Sie in das vorgesehene Verzueichnis mit der angegebenen Versionsnummer (hier examplarisch v1.0.0)
+
+- [EC] `cd v1.0.0`
+- [EC] Jetzt installieren Sie einmalig die hinterlegten Abhängigkeiten mit `pip install -r requirements.txt`
+
 ### Anwendung starten
+
+Jetzt haben wir alles, was wir zum Starten benötigen. Aber wir müssen unsere Anwendung noch zum Laufen bringen. Das realisieren wir wie folgt:
+
+- [EC] Starten Sie die Anwendung mit `python app.py`
+
+Jetzt läuft im Hintergrund die bereiztgestellte Webanwendung. Diese wartet auf Interaktionen auf der lokalen Schnittstelle 127.0.0.1 über
+den Port 5000.
+
+[WARNING]
+In unserem Fall muss das Terminalfenster, aus dem wir unsere Anwendung gestartet haben, geöffnet bleiben, um damit arbeiten zu können.
+[ENDWARNING]
+
+[HINT::Anwednung beenden]
+In Ihrer geöffneten Terminalsitzung läuft die Anwendung im Vordergrund mit. Um diese zu beenden, drücken Sie die Tastenkombination
+`Control + C`, oder schließen das Terminalfenster.
+[ENDHINT]
 
 ### Anwendung aufrufen
 
+Jetzt müssen wir nur noch damit interagieren. Öffnen Sie ein Browserfenster.
 
-[WARNING]
-[ENDWARNING]
-[HINT::VisibleTitle]
-[ENDHINT]
+- [EC] Rufen Sie im Browser die folgende Seite auf: `http://127.0.0.1:5000`
 
-[ENDSECTION]
-[SECTION::submission::...]
+Wenn Sie jetzt eine Webseite sehen, hat alles funktioniert.
 
-.
-
+[SECTION::submission::trace]
+[INCLUDE::../../_include/Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::heading]
-- [EREFC::1] Nach diesen Schitten sollte das folgende Verzeichnis `propra-inf-testobjekt` unter `~/ws/sut/` gefunden worden sein.
+
+- [EREFQ::1] Nach diesen Schitten sollte das folgende Verzeichnis `propra-inf-testobjekt` unter `~/ws/sut/` gefunden worden sein.
+- [EREFQ::2] Hier soll kenntlich gemact werden, dass die venv im Prompt angezeiugt wird: **(sut)**
+
 [ENDINSTRUCTOR]

@@ -76,6 +76,7 @@ chapters:
       - slug: Unittests
       - slug: API
       - slug: Testframeworks
+      - slug: SUT
   - slug: debugging
     taskgroups:
       - slug: mindset

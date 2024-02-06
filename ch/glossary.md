@@ -206,6 +206,14 @@ Server ("package index", meist wird pypi.org benutzt) lädt und installiert.
 Dokumentation: https://pip.pypa.io/en/stable/getting-started/
 [ENDTERM]
 
+[TERM::Prompt]
+Die Prompt ist eine Textzeichenfolge, die in der Kommandozeile angezeigt wird, um den
+Benutzer zur Eingabe von Befehlen zu ermutigen. Sie enthält oft Informationen wie den
+Benutzernamen, den Hostnamen, den aktuellen Pfad und möglicherweise andere relevante Informationen.
+
+Bsp: student1@propra_pc:#$
+[ENDTERM]
+
 
 ## Q
 ## R
