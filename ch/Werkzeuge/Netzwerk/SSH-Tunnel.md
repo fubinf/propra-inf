@@ -36,7 +36,7 @@ def hello():
     return 'Hello Tunnel'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=8080)
 ```
 - [ER] Stellen Sie sicher, dass sie [PARTREF::venv] eingerichtet haben.
 
@@ -60,6 +60,15 @@ if __name__ == '__main__':
 - [EC] Öffnen Sie in einem Browser auf Ihrem System: `localhost:8080`
 
 - [EC] Nachdem Sie erfolgreich `Hello Tunnel` im Browser gesehen haben, schließen Sie den Webserver auf `andorra` per `STRG+C` im Terminal.
+
+### X11 Weiterleitung
+
+- [EC] Durch einen X11-Tunnel wird das X Window System auf dem entfernten Rechner an Ihren lokalen Rechner geleitet. Dazu übergeben Sie ssh einfach die Option -Y.
+- `ssh -Y username@andorra.imp.fu-berlin.de`
+
+- [EC] Öffnen Sie `firefox` oder `chromium` um sicherzustellen, dass die X11-Weiterleitung aktiv ist.
+
+- [EC] Schließen Sie den Browser.
 
 [ENDSECTION]
 [SECTION::submission::trace]
