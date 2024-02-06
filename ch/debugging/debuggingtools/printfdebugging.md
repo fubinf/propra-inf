@@ -46,17 +46,21 @@ Beschreiben Sie danach in eigenen Worten
   - [EQ] welche Voraussetzung erfüllt sein muss, um mittels `print()`-Ausdrücken einen Bug zu finden und
   - [EQ] wie nützlich Sie das Debugging mit `print()`-Ausdrücken empfinden. 
 
+Überlegen Sie danach noch folgendes:
+In Python gibt es kein "private"-Schlüsselwort wie in Java, Scala oder C++.
+Sprachen, die dieses Schlüsselwort benutzen, können mithilfe von "private" Variablen und Methoden nach außen hin
+unsichtbar machen.
+Nehmen Sie aber einmal an, dass Sie eine Sprache benutzen, in der dieses Konzept existiert:
 
-[HINT::VisibleTitle]
-[ENDHINT]
+  - [EQ] Sind Sie in der Lage mit "private" versteckte Inhalte mittels `print()`-Ausdrücken anzuzeigen?
 
 [ENDSECTION]
 [SECTION::submission::information]
-Die Abgabe besteht aus einem Markdown-Dokument mit den geforderten Angaben.
-Bitte halten Sie die Antworten kurz und bündig.
-Geben Sie Quellen an, sofern Sie welche benutzen.
+
+[INCLUDE::../../_include/Markdowndokument.md]
+
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
-.
+[INSTRUCTOR::Hinweise]
+f-Strings in Python sind sehr mächtig.
 [ENDINSTRUCTOR]
