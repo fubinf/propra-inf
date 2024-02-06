@@ -19,5 +19,3 @@ Außerdem werden alle Code-Beispiele dieser Aufgabengruppe zwei Hilfen mitgeben:
 - Im aufklappbaren Feld "Lösungshinweise" finden Sie Informationen und
   Beispieleingaben für die Programme, um dem Fehler auf die Schliche zu kommen.
   **Versuchen Sie die Aufgabe zuerst ohne diese Hilfe zu bearbeiten.**
-
-TODO_1_pietrak Taskgroup Debugging-Tools einführen.
