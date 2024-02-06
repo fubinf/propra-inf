@@ -3,8 +3,7 @@ stage: alpha
 timevalue: 1.0
 difficulty: 1
 profiles: TEST
-assumes:
-requires: error
+assumes: error
 ---
 [SECTION::goal::trial]
 
@@ -14,12 +13,13 @@ requires: error
 [ENDSECTION]
 [SECTION::background::default]
 
-Fehler, Fehlerwirkung,
-Grundlage dieser Übung ist folgende User Story:
+Nachdem Sie nun wissen, wie man Fehler definiert, sollen Sie auch lernen diese zu erkennen.
+
+Dazu verwenden wir als Grundlage dieser Übung folgende [TERMREF::User Story]:
 Als registrierter Benutzer möchte ich mich Portal anmelden können, damit ich auf meine Kontoinformationen zugreifen
 kann.
 
-Akzeptanzkriterien (AKs):
+[TERMREF::Akzeptanzkriterien] (AKs):
 
 - Ein registrierter und aktiver Benutzer kann sich mit einer gültigen E-Mail-Adresse und seinem zugehörigen Passwort anmelden.
 - Das System zeigt eine Fehlermeldung, wenn die E-Mail-Adresse ungültig ist.
@@ -30,25 +30,19 @@ Akzeptanzkriterien (AKs):
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-- [EQ] Sind alle AKs testbar? Wenn nein, formulieren Sie das AK entsprechend um.
-- [EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+[EQ] Sind alle AKs testbar? Wenn nein, formulieren Sie das AK entsprechend um.
+[EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
 Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seinen validen Benutzernamen und sein valides Passwort in die vorgesehenen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden. Das Portal leitet den Benutzer auf die Seite seines Portal-Profils weiter.
-- [EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+[EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
 Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seinen validen Benutzernamen und ein fehlerhaftes Passwort in die vorgesehnen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden.
 Das Portal gibt eine Fehlermeldung aus und leitet den Benutzer nicht weiter.
-- [EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+[EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
 Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seine valide E-Mail-Adresse und sein valides Passwort in die vorgesehenen Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden.
 Das Portal leitet den Benutzer auf die Seite seines Portal-Profils weiter.
-- [EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
+[EQ] Beinhaltet das folgende Szenario einen Fehler? Wenn ja, erstellen Sie einen Fehlerbericht.
 Aktion: Ein Benutzer befindet sich auf der Loginseite eines Portals. Hier gibt der Nutzer seine valide E-Mail-Adresse und sein valides Passwort in die Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden.
 Das Portal leitet den Benutzer auf die Seite des Portal-Administrators weiter.
-- [EQ] Ergänzen Sie mindestens ein weiteres AK.
-
-[WARNING]
-[ENDWARNING]
-
-[HINT::VisibleTitle]
-[ENDHINT]
+[EQ] Ergänzen Sie mindestens ein weiteres AK.
 
 [ENDSECTION]
 [SECTION::submission::trace]

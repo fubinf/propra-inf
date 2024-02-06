@@ -12,8 +12,8 @@ profiles: TEST
 [ENDSECTION]
 [SECTION::background::default]
 
-Fehler, Fehlerwirkung, Defekt, Versagen
-Recherchieren Sie hierzu anhand der folgenden Leitfragen.
+In der Qualitätssicherung werden unterschiedliche Bergriffe verwendet, die einen Fehlerzustand beschreiben. Die
+richtige Verwendung der definierten Begriffe kann und funktionieren, wenn man die feinen Unterschiede kennengelernt hat.  
 
 [ENDSECTION]
 [SECTION::instructions::loose]
@@ -25,20 +25,14 @@ Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 - [EQ] Ist jeder Softwarefehler durch eine 'falsche' Programmierung zurückzuführen?
 - [EQ] Welche Informationen sollte ein Bug-Report (Defektmeldung) enthalten?
 
-[WARNING]
-[ENDWARNING]
-
-[HINT::VisibleTitle]
-[ENDHINT]
-
 [ENDSECTION]
 [SECTION::submission::trace]
 
 [INCLUDE::../../_include/Markdowndokument.md]
 
 [ENDSECTION]
-[INSTRUCTOR::Fehler]
+[INSTRUCTOR::heading]
 
-- - Wichtige Hervorhebung: "Fehler" heißen in Softwaretechnik "Defekt" (und Fehler sind, was mir beim Programmieren passiert ist, damit der Defekt entstand). (Anm. von Prof. Prechelt)
+- Wichtige Hervorhebung: "Fehler" heißen in Softwaretechnik "Defekt" (und Fehler sind, was mir beim Programmieren passiert ist, damit der Defekt entstand). (Anm. von Prof. Prechelt)
 
 [ENDINSTRUCTOR]

@@ -10,6 +10,10 @@ sowie ggf. auf Aufgaben, die weitere Erläuterungen dazu enthalten.
 
 ## A
 
+[TERM::Akzeptanzkriterien]
+Akzeptanzkriterien sind spezifische, messbare Bedingungen, die definieren, wann eine User Story oder eine Funktion als abgeschlossen und akzeptiert betrachtet wird. Sie legen die Erwartungen und Anforderungen fest, die erfüllt sein müssen, damit das Produkt oder die Funktion als erfolgreich betrachtet wird. Akzeptanzkriterien dienen dazu, Missverständnisse zu vermeiden, indem sie klare Richtlinien für die Entwicklung und das Testen geben.
+[ENDTERM]
+
 [TERM::apt|apt-get|Debian-Paketmanager]
 Das Hilfsprogramm bei Debian (und von Debian abgeleiteten Systemen wie Ubuntu oder Mint),
 das die Paketinstallationen auf einem Debian-System durchführt und überwacht.
@@ -291,6 +295,10 @@ aber häufig spart man sich die Mühe dieser Unterscheidung einfach.
 
 https://de.wikipedia.org/wiki/POSIX  
 https://de.wikipedia.org/wiki/Unix
+[ENDTERM]
+
+[TERM::User Story]
+Eine User Story ist eine kurze, informelle Beschreibung einer Funktion oder Anforderung aus der Perspektive eines Endbenutzers. Sie umfasst typischerweise wer die Funktion nutzt, was getan werden soll und warum es wichtig ist. User Stories dienen als Kommunikationsmittel zwischen Entwicklern, Kunden und anderen Stakeholdern, um Anforderungen klar zu definieren und das Verständnis zu verbessern. Oftmals werden zusätzlich [TERMREF:Akzeptanzkriterien] verwendet.
 [ENDTERM]
 
 
