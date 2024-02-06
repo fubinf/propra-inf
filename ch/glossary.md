@@ -81,6 +81,12 @@ Ein [TERMREF::Argument] zur Übergabe an einen [TERMREF::Parameter],
 das implizit benutzt wird, wenn man nicht selbst explizit ein Argument übergibt. 
 [ENDTERM]
 
+[TERM::Defekt|Defect|Fault]
+Ein Defekt (engl. _defect, fault_) verursacht ein Versagen.
+Häufig wird das Wort Bug synonym benutzt.
+Dies ist eine strukturelle Eigenschaft des Codes und kann damit auch nur in diesem behoben werden.
+[ENDTERM]
+
 [TERM::DSL]
 Eine DSL (domänenspezifische Sprache) ist eine speziell auf eine bestimmte Problemstellung
 oder Domäne zugeschnittene Sprache. Im Gegensatz zu allgemeinen Programmiersprachen, die
@@ -101,6 +107,13 @@ oder mit einer [TERMREF::Shebang-Zeile] beginnt.
 [ENDTERM]
 
 ## F
+
+[TERM::Fehler|Error]
+Ein Fehler (engl. _error_) führt zum Defekt. 
+Es liegt ein falsches Verhalten (engl. _commission_) oder ein Versäumnis (engl. _omission_) vor.
+Damit entsteht ein Fehler immer während der Entwicklung, entweder im Code, bei den 
+Anforderungen oder beim Entwurf.
+[ENDTERM]
 
 [TERM::Rahmenwerk|Framework]
 Ein Rahmenwerk (Framework) ist eine [TERMREF::Bibliothek]
@@ -341,6 +354,14 @@ die Bestätigung durch Bereitstellung eines objektiven Nachweises, dass festgele
 Anforderungen erfüllt worden sind.
 
 https://glossary.istqb.org/de_DE/term/verifizierung
+[ENDTERM]
+
+[TERM::Versagen|Failure|Symptom]
+Ein Versagen (engl. _failure_) ist das falsche Verhalten des Programms bezogen zur 
+Spezifikation, der Anforderung oder den Erwartungen.
+Da es genau dieses Phänomen ist, welches man bei einer Programmausführung bemerkt und zumeist 
+nicht direkt auf die Ursache schließen kann, wird es in einigen Quellen auch 
+Symptom (engl. _symptom_) genannt. 
 [ENDTERM]
 
 [TERM::Validierung]
