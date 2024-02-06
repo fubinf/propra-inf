@@ -1,4 +1,5 @@
 title: "Unix-Kommandozeilenumgebung (command-line interface, CLI) schaffen"
+stage: alpha
 minimum: 1
 ---
 Viele unserer Aufgaben werden sich auf der Kommandozeile in einer 

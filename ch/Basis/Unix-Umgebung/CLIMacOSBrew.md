@@ -1,5 +1,5 @@
 title: Linux-Kommandozeile auf Mac OS mit Homebrew
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 ---
@@ -40,6 +40,11 @@ dass Homebrew, Python und Pip funktionieren.
     Erläuterungen siehe z.B. auf 
     [howtogeek](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/)
 
+[NOTICE]
+Sollten Sie ihre Standardshell auf Bash umgestellt haben, bedenken Sie bitte, dass Internetanleitungen zu 
+macOS-Kommandozeilendingen sehr wahrscheinlich `zsh` referenzieren und nicht ohne weiteres kompatibel sein müssen.
+[ENDNOTICE]
+
 
 ### HomeBrew installieren  TODO_1_hüster
 
@@ -57,24 +62,39 @@ Genau wie das Installieren übernimmt Homebrew auch das Update dieser Programme.
 Dies passiert nicht automatisch. Mit dem Befehl `brew update` lassen sich alle mit
 Homebrew installierten Anwendungen auf einmal aktualisieren.
 
-Die Aufgabe für diesen Teil besteht darin, Homebrew zu installieren, und zu überprüfen, dass
+Die Aufgabe für diesen Teilabschnitt besteht darin, Homebrew zu installieren, und zu überprüfen, dass
 diese Installation korrekt abgeschlossen wurde. Dazu reicht die Ausgabe von `brew --version`.
-Die installation für Homebrew ist essentiell für die Bearbeitung späterer Aufgaben. Gehen Sie
+Die installation für Homebrew ist essenziell für die Bearbeitung späterer Aufgaben. Gehen Sie
 daher sicher, dass das Programm korrekt installiert wurde und sich weitere Pakete installieren
 und updaten lassen.
 
 
-### `apt`-Kommandos auf `homebrew` umsetzen lernen  TODO_1_hüster
+### `apt`-Kommandos auf `brew` umsetzen lernen
 
-(In den Aufgaben steht manchmal "Installiere Paket X". Erklärt wird das nur für apt.
- Mac-User müssen selber wissen, wie das bei Ihnen geht und müssen erkennen können,
- falls es das fragliche Paket gar nicht gibt und sie also diese Aufgabe nicht bearbeiten können.)
+Üblicherweise werden in den Aufgaben `apt` Paketnamen referenziert, sprich Pakete welche für Debian-basierte 
+Linux-Distributionen gebaut wurden.
+Diese Paketnamen funktionieren nicht immer in Brew, jedoch sind die Paketnamen häufig sehr ähnlich gehalten.
+Am schnellsten ist eine einfache Suche mithilfe des Befehls `brew search programm-name` welche die Homebrew Paketquellen 
+nach Paketen mit dem angegebenen Namen durchsucht.
+Oft lohnt es sich *zuerst* nach dem Paket zu suchen und es erst *danach* zu installieren. 
+So spart man sich ggf. das falsche Paket zu installieren und dadurch auch nervige Aufräumarbeiten.
+Sollte sich mit dem `search` Befehl nichts finden lassen, dann lohnt sich eine Suche mit der Suchmaschine ihrer Wahl.
 
 
-### Python installieren  TODO_1_hüster
 
-(Gibt es verlässlich in allen MacOS-Versionen ein python3? Nehmen wir das?
-Oder lieber immer eins mit Homebrew? https://docs.brew.sh/Homebrew-and-Python )
+### Python installieren
+
+Seit macOS Catalina ist Python nicht mehr vorinstalliert. Um Python selbst zu installieren, 
+können wir nun wieder Homebrew bemühen. Die Installation des gleichnamigen Python-Pakets sollte ausreichen.
+Die dazu notwendigen Schritte haben wir im vorherigen Abschnitt gelernt und können sie nun einfach anwenden.
+
+[NOTICE]
+Homebrew benötigt zum Installieren des Python-Pakets die 'Xcode command line tools'. 
+In der Kommandozeile sollte beim Versuch das Python-Paket zu installieren auch der Befehl angezeigt werden,
+welcher zum Installieren der command line tools notwendig ist.
+[ENDNOTICE]
+
+War die Installation erfolgreich können wir nun die installierte Python-version prüfen.
 
 [INCLUDE::CheckPython.inc]
 
