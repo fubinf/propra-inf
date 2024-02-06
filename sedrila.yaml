@@ -92,6 +92,8 @@ chapters:
       - slug: css
       - slug: js
       - slug: httpauth
+      - slug: basiswissen
+      - slug: frontend
   - slug: Werkzeuge
     taskgroups:
       - slug: Paketmanager

@@ -1,0 +1,5 @@
+title: Web Frontend
+---
+Das Frontend ist der sichtbare Teil einer Website oder Anwendung, mit dem Benutzer interagieren. Es umfasst das Design, die Struktur und die Funktionalität, die Benutzern präsentiert werden. In der Frontend-Entwicklung werden HTML, CSS und JavaScript verwendet, um das Aussehen, die Gestaltung und die Interaktivität von Websites und Anwendungen zu definieren und zu implementieren. 
+
+Die Frontend-Entwicklung hat sich in den letzten Jahren stark weiterentwickelt, wobei modernste Technologien wie React, Vue.js und Angular die Entwicklung von interaktiven und reaktionsfähigen Benutzeroberflächen ermöglichen. Eine verstärkte Integration von funktionalen Bibliotheken und UI-Komponentenbibliotheken erleichtert die Entwicklung konsistenter und skalierbarer Benutzeroberflächen über verschiedene Projekte hinweg. Der Fokus liegt auch auf der Barrierefreiheit und der Optimierung der Leistung, um sicherzustellen, dass Webseiten und Anwendungen für eine breite Nutzerbasis zugänglich und benutzbar sind.
