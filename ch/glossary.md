@@ -88,6 +88,10 @@ für eine Vielzahl von Anwendungen geeignet sind, ist eine DSL darauf ausgericht
 Aufgaben oder Anforderungen in einem begrenzten Kontext zu adressieren.
 [ENDTERM]
 
+[TERM::Dynamische analytische Qualitätssicherung]
+Die dynamische analytische Qualitätssicherung bezieht sich auf den Prozess der Überprüfung der Softwarequalität durch das Testen der Software während ihrer Ausführung. Dies umfasst verschiedene Testmethoden wie unit tests, Integrationstests, Systemtests und Leistungstests, um sicherzustellen, dass die Software die erwarteten Anforderungen erfüllt und ordnungsgemäß funktioniert. 
+[ENDTERM]
+
 ## E
 
 [TERM::Executable|ausführbare Datei]
@@ -218,8 +222,17 @@ Benutzernamen, den Hostnamen, den aktuellen Pfad und möglicherweise andere rele
 Bsp: student1@propra_pc:#$
 [ENDTERM]
 
-
 ## Q
+
+[TERM::Qualitätssicherung|QS]
+Qualitätssicherung (QS) bezeichnet den Prozess, durch den sicherzustellen versucht wird, dass ein Produkt oder
+eine Dienstleistung die festgelegten Qualitätsstandards erfüllt oder übertrifft. Dieser Prozess umfasst
+verschiedene Aktivitäten wie Planung, Kontrolle, Überprüfung und Verbesserung, die darauf abzielen, Fehler zu
+minimieren und die Kundenzufriedenheit zu maximieren.
+Zusätzlich unterscheiden wir zwischen den zwei Bereichen [TERMREF::Dynamische analytische Qualitätssicherung] und
+[TERMREF::Statische analytische Qualitätssicherung].
+[ENDTERM]
+
 ## R
 
 [TERM::RPA]
@@ -252,6 +265,9 @@ https://de.wikipedia.org/wiki/Kommandozeile
 https://de.wikipedia.org/wiki/Unix-Shell
 [ENDTERM]
 
+[TERM::Statische analytische Qualitätssicherung]
+Die statische analytische Qualitätssicherung bezieht sich auf den Prozess der Überprüfung von Softwareartefakten wie Code, Spezifikationen und Dokumentation, ohne dass die Software tatsächlich ausgeführt wird. Dabei werden Werkzeuge und Techniken wie Code-Reviews, statische Code-Analyse und formale Methoden eingesetzt, um potenzielle Fehler, Inkonsistenzen oder Verbesserungsmöglichkeiten frühzeitig zu identifizieren.
+[ENDTERM]
 
 ## T
 
@@ -300,7 +316,6 @@ https://de.wikipedia.org/wiki/Unix
 [TERM::User Story]
 Eine User Story ist eine kurze, informelle Beschreibung einer Funktion oder Anforderung aus der Perspektive eines Endbenutzers. Sie umfasst typischerweise wer die Funktion nutzt, was getan werden soll und warum es wichtig ist. User Stories dienen als Kommunikationsmittel zwischen Entwicklern, Kunden und anderen Stakeholdern, um Anforderungen klar zu definieren und das Verständnis zu verbessern. Oftmals werden zusätzlich [TERMREF:Akzeptanzkriterien] verwendet.
 [ENDTERM]
-
 
 ## V
 
