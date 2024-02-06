@@ -44,8 +44,9 @@ Beschreiben Sie in eigenen Worten
 
 
 [SECTION::submission::information]
-Die Abgabe besteht aus einem Markdown-Dokument, das die geforderten Angaben beinhaltet.
-Halten Sie die Abgabe kurz und bündig.
+
+[INCLUDE::../../_include/Markdowndokument.md]
+
 [ENDSECTION]
 
 [INSTRUCTOR::Hinweise]
