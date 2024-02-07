@@ -18,24 +18,17 @@ Verwenden Sie den `Bestandscode v0.0.1` aus dem Bereich `TODO_2_Ruhe: Pfad zum B
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-- [ER] Erweitern Sie falls möglich die vorhandenen unittests.
-- [ER] Erstellen Sie einen unittest für test_profile_access()
-- [ER] Erstellen Sie einen unittest für test_logout()
-- [ER] Erstellen Sie einen unittest für test_change_password()
-- [ER] Erstellen Sie einen unittest für test_image_upload()
-- [ER] Erstellen Sie einen unittest für test_reset_password()
+[ER] Erweitern Sie falls möglich die vorhandenen unittests.
+[ER] Erstellen Sie einen unittest für test_profile_access()
+[ER] Erstellen Sie einen unittest für test_logout()
+[ER] Erstellen Sie einen unittest für test_change_password()
+[ER] Erstellen Sie einen unittest für test_image_upload()
+[ER] Erstellen Sie einen unittest für test_reset_password()
 
 [unittest - Unit testing framework](https://docs.python.org/3.10/library/unittest.html)
 
-[WARNING]
-[ENDWARNING]
-
-[HINT::VisibleTitle]
-[ENDHINT]
-
 [ENDSECTION]
+
 [SECTION::submission::trace]
-
 [INCLUDE::../../_include/Markdowndokument.md]
-
 [ENDSECTION]

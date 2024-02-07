@@ -20,23 +20,16 @@ Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-- [EQ] Was versteht man unter dem Begriff "Code Coverage"?
-- [EQ] Welche Arten von Code-Coverage-Metriken gibt es?
+[EQ] Was versteht man unter dem Begriff "Code Coverage"?
+[EQ] Welche Arten von Code-Coverage-Metriken gibt es?
    Erläutern Sie die Unterschiede zwischen Zeilenabdeckung, Zweigabdeckung und Pfadabdeckung.
-- [EQ] Kann eine hohe Code Coverage auf die Effektivität der Tests hinweisen?
-- [EQ] Warum wird oft betont, dass Code Coverage nicht das gesamte Bild der Testqualität vermittelt?
-- [EQ] Wie hoch sollte die Code Coverage in einem Projekt sein?
+[EQ] Kann eine hohe Code Coverage auf die Effektivität der Tests hinweisen?
+[EQ] Warum wird oft betont, dass Code Coverage nicht das gesamte Bild der Testqualität vermittelt?
+[EQ] Wie hoch sollte die Code Coverage in einem Projekt sein?
    Begründen Sie Ihre Antwort.
 
-[WARNING]
-[ENDWARNING]
-
-[HINT::VisibleTitle]
-[ENDHINT]
-
 [ENDSECTION]
+
 [SECTION::submission::trace]
-
 [INCLUDE::../../_include/Markdowndokument.md]
-
 [ENDSECTION]

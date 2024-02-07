@@ -24,27 +24,20 @@ Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-- [EQ] Welche Vorteile bietet das Einfrieren der Zeit in Testfällen?
-- [EQ] Welche Probleme könnten auftreten, wenn Tests von realer Zeit abhängig sind und wie versucht
+[EQ] Welche Vorteile bietet das Einfrieren der Zeit in Testfällen?
+[EQ] Welche Probleme könnten auftreten, wenn Tests von realer Zeit abhängig sind und wie versucht
    "freezegun" diese Probleme lösen?
-- [EQ] Können Sie ein einfaches Beispiel für die Verwendung von "freezegun" in einem Testfall mit
+[EQ] Können Sie ein einfaches Beispiel für die Verwendung von "freezegun" in einem Testfall mit
    "pytest" skizzieren?
-- [EQ] Unterstützt "freezegun" die Möglichkeit, die Zeit auf einen bestimmten Wert einzustellen, anstatt
+[EQ] Unterstützt "freezegun" die Möglichkeit, die Zeit auf einen bestimmten Wert einzustellen, anstatt
    sie vollständig einzufrieren?
-- [EQ] Kann "freezegun" verwendet werden, um die Zeit in einer gesamten Test-Suite zu manipulieren? Wenn
+[EQ] Kann "freezegun" verwendet werden, um die Zeit in einer gesamten Test-Suite zu manipulieren? Wenn
    ja, wie?
-- [EQ] Welche potenziellen Nachteile oder Risiken könnten mit der Verwendung von "freezegun" verbunden
+[EQ] Welche potenziellen Nachteile oder Risiken könnten mit der Verwendung von "freezegun" verbunden
    sein?
 
-[WARNING]
-[ENDWARNING]
-
-[HINT::VisibleTitle]
-[ENDHINT]
-
 [ENDSECTION]
+
 [SECTION::submission::trace]
-
 [INCLUDE::../../_include/Markdowndokument.md]
-
 [ENDSECTION]

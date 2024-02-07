@@ -25,29 +25,22 @@ folgenden Fragen auseinander:
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-- [EQ] Wie sehen Marks in pytest aus und wie können sie in Tests verwendet werden?
-- [EQ] Auf welche Teile von pytest können Marks angewandt werden?
-- [EQ] Welche Marks sind in pytest vordefiniert und welche Funktionen haben sie?
-- [EQ] Wie können benutzerdefinierte Marks erzeugt werden?
-- [EQ] Wie können Marks verwendet werden, um bestimmte Tests auf bestimmten Umgebungen oder
+[EQ] Wie sehen Marks in pytest aus und wie können sie in Tests verwendet werden?
+[EQ] Auf welche Teile von pytest können Marks angewandt werden?
+[EQ] Welche Marks sind in pytest vordefiniert und welche Funktionen haben sie?
+[EQ] Wie können benutzerdefinierte Marks erzeugt werden?
+[EQ] Wie können Marks verwendet werden, um bestimmte Tests auf bestimmten Umgebungen oder
    Plattformen auszuführen?
-- [EQ] Welche Bedeutung haben Marks bei der Testpriorisierung und -ausführung? Wie können sie
+[EQ] Welche Bedeutung haben Marks bei der Testpriorisierung und -ausführung? Wie können sie
    bestimmte Tests priorisieren oder auslassen?
 
 [pytest - How to mark test functions with attributes](https://docs.pytest.org/en/stable/how-to/mark.
 html)
 
-[WARNING]
-[ENDWARNING]
-
-[HINT::VisibleTitle]
-[ENDHINT]
-
 [ENDSECTION]
-[SECTION::submission::trace]
 
+[SECTION::submission::trace]
 [INCLUDE::../../_include/Markdowndokument.md]
 Reflektieren Sie anschließend in wenigen Sätzen, welche der Marks Ihnen am nützlichsten
 erscheinen.
-
 [ENDSECTION]
