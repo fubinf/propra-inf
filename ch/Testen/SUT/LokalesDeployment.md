@@ -6,7 +6,7 @@ profiles: TEST
 explains:
 assumes: venv, pip, basics, Git101
 ---
-[SECTION::goal::product]
+[SECTION::goal::idea]
 
 - Ich besitze erste Kenntnisse über das zu verwendende SUT
 - Ich erlerne die Voraussetzungemn dafür, das SUT lokal zu starten und zu verwenden
