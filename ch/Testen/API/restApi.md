@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 2.0
 difficulty: 2
 profiles: TEST
-assumes: WebAPIs
+assumes: WebAPIs, pip
 ---
 [SECTION::goal::trial]
 
@@ -13,8 +13,13 @@ assumes: WebAPIs
 [ENDSECTION]
 [SECTION::background::default]
 
-### API - Was ist das?
 [TERMREF::API]s erleichtern die Integration von Funktionen einer Software in eine andere und ermöglichen so die Entwicklung von Anwendungen, die auf bereits vorhandenen Diensten oder Plattformen aufbauen.
+So können Sie zu jeder freigegebene Schnittstelle eigene Funktionalitäten, Programme oder Anwendungen entwickeln, die mit diesen Schnittstellen kommunizieren. 
+
+[ENDSECTION]
+[SECTION::instructions::loose]
+
+### API - Was ist das?
 
 Es gibt verschiedene Arten von APIs, darunter Web APIs, Bibliotheks-APIs und Betriebssystem-APIs. Web APIs sind besonders verbreitet und ermöglichen die Kommunikation zwischen verschiedenen Anwendungen über das Internet.
 Sie basieren oft auf standardisierten Protokollen wie [TERMREF::HTTP] und können verschiedene Datenformate wie [TERMREF:JSON] oder [TERMREF::XML] verwenden.
@@ -22,29 +27,28 @@ Sie basieren oft auf standardisierten Protokollen wie [TERMREF::HTTP] und könne
 Eine API stellt normalerweise eine Sammlung von definierten Schnittstellen und Funktionen bereit, die von Entwicklern genutzt werden können, um auf bestimmte Dienste oder Ressourcen zuzugreifen. Eine solche Sammlung kann u.a. mit Hilfe
 von [TERMREF:OpenAPI] dokumentiert werden. Diese Dokumentationshilfe wird uns in diesem Kapitel dabei helfen, Schnittstellen anzusprechen und zu testen.
 
+[EQ] Welche HTTP-Methoden gibt es?
+
 ### Python Request - Wofür benötige ich das?
 
 Das requests-Modul ist eine externe Bibliothek für Python, die die Arbeit mit HTTP-Anfragen vereinfacht. Es bietet eine einfach zu bedienende API für das Senden von HTTP-Anfragen und das Verarbeiten von HTTP-Antworten.
+Um die Petstore-Schnittstellen abzufragen, verwenden Sie das requests-Modul in Python.
 
-Um die Petstore-Schnittstellen abzufragen, verwenden Sie das requests-Modul in Python. Wenn Sie es noch nicht installiert haben. Sie können es mit dem Befehl `pip install requests` installieren.
-
-[ENDSECTION]
-[SECTION::instructions::loose]
+[EC] Wenn Sie das Paket noch nicht installiert haben, können Sie es mit folgendem Befehl `pip install requests` nachholen.
 
 ### Petstore kennenlernen
 
 Für die kommenden Aufgaben werden wir die freie API Petstore verwenden, die uns unter [swagger.io](https://petstore.swagger.io) zur Verfügung steht. Machen Sie sich mit der Navigation und der Beschreibung des Petstores vertraut.
 Lesen Sie den Artikel [REST Web Services](http://www.thomas-bayer.com/resources/rest/rest_webservices.pdf) und beantworten Sie folgende Fragen:
 
-- [EQ] Was versteht man unter REST?
-- [EQ] Welche HTTP-Methoden werden verwendet?
-- [EQ] Kann ich einen POST Request über einen Webbrowser absetzen?
+[EQ] Was versteht man unter REST?
+[EQ] Kann ich einen POST Request über einen Webbrowser absetzen?
 
 ### Petstore-Schnittstellen verwenden
 
 Jetzt widmen wir uns den praktischen Aufgaben zu. nachdem Sie einen Blick in die Petstore-Dokumemntation geworfen haben, sind Ihnen bestimmt auch verschiedene Schnittstellen aufgefallen. Diese nutzen wir jetzt, um Informationen zu erhalten.
 
-- [EC] Nutzen Sie folgendes Script, um eine API Anfrage zu senden. Kommentieren und beschreiben Sie die fehlenden TODOs:
+[EC] Nutzen Sie folgendes Script, um eine API Anfrage zu senden. Kommentieren und beschreiben Sie die fehlenden TODOs:
 
 ```Python
 # todo 1
@@ -73,7 +77,7 @@ if __name__ == "__main__":
     get_pet_data()
 ```
 
-- [EC] Im folgenden POST Request ist ein Fehler unterlaufen. Korrigieren Sie das Problem und Beschreiben Sie die Rückgabe (JSON Response).
+[EC] Im folgenden POST Request ist ein Fehler unterlaufen. Korrigieren Sie das Problem und Beschreiben Sie die Rückgabe (JSON Response).
 
 ```Python
 import requests
@@ -121,23 +125,21 @@ if __name__ == "__main__":
     create_pet()
 ```
 
-- [ER] Erstellen Sie ein Update und ein Delete Request für eine beliebige existierene Pet-ID (Suchen Sie eigenständig nach einem vorhandenen Eintrag.)
+[ER] Erstellen Sie ein Update und ein Delete Request für eine beliebige existierene Pet-ID (Suchen Sie eigenständig nach einem vorhandenen Eintrag.)
 
-[WARNING]
-[ENDWARNING]
 [HINT::VisibleTitle]
-Die OpenAPI Dokumentaion bietet ebenfalls die Möglichkeit Anfragen zu senden. Dadurch erhalten Sie die Möglichkeiten Ihren Response mit Hilfe Ihrer Scripte mit dem Responser über OpenAPI zu vergleichen.  
+Die OpenAPI Dokumentaion bietet ebenfalls die Möglichkeit Anfragen zu senden. Dadurch erhalten Sie die Möglichkeiten Ihren Response mit Hilfe 
+Ihrer Scripte mit dem Responser über OpenAPI zu vergleichen.  
 [ENDHINT]
 
 [ENDSECTION]
+
 [SECTION::submission::trace]
-
 [INCLUDE::../../_include/Markdowndokument.md]
-
+[INCLUDE::../../_include/Kommandoprotokoll.md]
 [ENDSECTION]
+
 [INSTRUCTOR::Pet-ID]
-
-- die gefundene Pet-Id in [EREFR::1] kann von Fall zu Fall unterschiedlich sein, aber auch nicht mehr existieren, da
+[EREFR::1] Die gefundene Pet-Id kann von Fall zu Fall unterschiedlich sein, aber auch nicht mehr existieren, da
 diese Schnittstelle jedermann zugänglich ist und somit ständig unter Anwendung steht.
-
 [ENDINSTRUCTOR]
