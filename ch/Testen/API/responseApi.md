@@ -39,7 +39,7 @@ Daten auslasen. Daher werden wir mit diesem Response weiter arbeiten und uns die
 [EQ] Warum ist der Statuscode `200` und nicht `201`?
 
 In dem erhaltenen Resonse ist ein Array enthalten. Dieses Array besitzt JSON Objekte. Wir wollen einen Blick auf alle
-erhaltenen Werte des Feldes `id` werfen. Nutzen Sie ausreichend die Möglichkeit des [PARTFEF::json] Paket, um an diese
+erhaltenen Werte des Feldes `id` werfen. Nutzen Sie ausreichend die Möglichkeit des [PARTREF::json] Paket, um an diese
 Informationen heran zu kommen.
 
 [ER] Filtern Sie alle erhaltenen `id`-Werte aus dem Response.
@@ -48,7 +48,7 @@ Informationen heran zu kommen.
 Jetzt wollen wir diese Werte an einer anderen Schnittstelle anwenden.
 
 [ER] Erstellen Sie ein Python Script zum Abfragen der `GET`-Petstore-Schnittstelle `/pet/{tId}`.
-[EC] Verwenden Sie den unter [EREF::5] erstellten Code mit allen unter [EREFR::4] erzeugten id's.
+[EC] Verwenden Sie den unter [EREFR::5] erstellten Code mit allen unter [EREFR::4] erzeugten id's.
 [EQ] Gibt es einen Statuscode ungleich `200`? Falls ja, warum, falls nein, warum nicht?
 
 [ENDSECTION]
