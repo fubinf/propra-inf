@@ -359,7 +359,7 @@ https://glossary.istqb.org/de_DE/term/verifizierung
 [TERM::Versagen|Failure|Symptom]
 Ein Versagen (engl. _failure_) ist das falsche Verhalten des Programms relativ zur 
 Spezifikation, der Anforderung oder den Erwartungen.
-Manchmal auch Symptom (engl. _symptom_) eines [TERMREF::Defekts] genannt. 
+Manchmal auch Symptom (engl. _symptom_) eines [TERMREF2::Defekt::-s] genannt. 
 [ENDTERM]
 
 [TERM::Validierung]
