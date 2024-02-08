@@ -82,7 +82,7 @@ das implizit benutzt wird, wenn man nicht selbst explizit ein Argument übergibt
 [ENDTERM]
 
 [TERM::Defekt|Defect|Fault]
-Ein Defekt (engl. _defect, fault_) verursacht ein Versagen.
+Ein Defekt (engl. _defect, fault_) entsteht durch einen [TERMREF::Fehler] und verursacht ein [TERMREF::Versagen].
 Häufig wird das Wort Bug synonym benutzt.
 Dies ist eine strukturelle Eigenschaft des Codes und kann damit auch nur in diesem behoben werden.
 [ENDTERM]
@@ -109,7 +109,7 @@ oder mit einer [TERMREF::Shebang-Zeile] beginnt.
 ## F
 
 [TERM::Fehler|Error]
-Ein Fehler (engl. _error_) führt zum Defekt. 
+Ein Fehler (engl. _error_) führt zum [TERMREF::Defekt]. 
 Es liegt ein falsches Verhalten (engl. _commission_) oder ein Versäumnis (engl. _omission_) vor.
 Damit entsteht ein Fehler immer während der Entwicklung, entweder im Code, bei den 
 Anforderungen oder beim Entwurf.
@@ -357,11 +357,9 @@ https://glossary.istqb.org/de_DE/term/verifizierung
 [ENDTERM]
 
 [TERM::Versagen|Failure|Symptom]
-Ein Versagen (engl. _failure_) ist das falsche Verhalten des Programms bezogen zur 
+Ein Versagen (engl. _failure_) ist das falsche Verhalten des Programms relativ zur 
 Spezifikation, der Anforderung oder den Erwartungen.
-Da es genau dieses Phänomen ist, welches man bei einer Programmausführung bemerkt und zumeist 
-nicht direkt auf die Ursache schließen kann, wird es in einigen Quellen auch 
-Symptom (engl. _symptom_) genannt. 
+Manchmal auch Symptom (engl. _symptom_) eines [TERMREF::Defekts] genannt. 
 [ENDTERM]
 
 [TERM::Validierung]
