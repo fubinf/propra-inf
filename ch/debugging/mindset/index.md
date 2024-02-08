@@ -1,23 +1,24 @@
 title: Denkweisen für erfolgreiches Debugging
 ---
-Debugging ist die Handlung der Fehlerbehebung.
-Damit man einen Fehler beheben kann, muss man ihn zunächst finden.
-Je komplexer aber die Systeme sind, an denen man arbeitet, desto schwieriger wird es, überhaupt 
-herauszufinden, _wo_ ein Bug vorliegt, _was_ ihn auslöst und _wie_ er zu beheben ist.
+Debugging kann im konkreten Fall sehr schwierig sein.
+Also wie macht man das?
 
-In den folgenden Aufgaben können Sie sich damit auseinandersetzen, welche Art von Problemen bei 
-der Arbeit am Code auftreten können, wie man diese finden und sogar vermeiden kann.
-Lösungsstrategien für bestimmte Arten von Bugs werden hier aber nicht besprochen.
-Mehr dazu gibt es in der Aufgabengruppe [PARTREFTITLE::classification].
+Dazu kann man sich entweder mit bestimmten, immer wieder auftretenden Sorten von Defekten
+auseinandersetzen, für die es zugehörige Prüfschritte gibt, um ihnen auf die Spur zu kommen.
+Diesem Ansatz folgen wir in der Aufgabengruppe [PARTREF::classification].
 
-Wir werden in diesem Kapitel Herangehensweisen zur Fehlersuche, -Behebung und -Vermeidung aus
-der Perspektive verschiedener Professionen betrachten.
-Sämtliche hier gestellten Aufgaben sind unabhängig voneinander bearbeitbar.
-Allerdings ist es hilfreich mindestens eine Hand voll der Aufgaben zu bearbeiten, 
-um die Methoden untereinander in Kontext setzen zu können.
-Als Einstieg bietet es sich hier an die Methodiken von fiktiven Figuren anzuschauen, die sehr auf
-das Lösen von Rätseln oder auf das Lösen von Kriminalfällen abzielen.
-Alle drei vorgestellten Figuren, Sherlock Holmes, Lord Peter Wimsey und Professor Solomon, bieten
-aufgrund ihrer verschiedenartig gestalteten Fälle unterschiedliche Herangehensweisen.
-In weiteren Aufgaben nehmen wir einen Einstieg in die Themenbereiche und die Methodiken von
-problemorientierten Professionen und vergleichen diese mit den Ansätzen der fiktiven Figuren.
+Oder man sucht nach ganz _allgemeinen_ Regeln für die Suche, die für alle Arten von Defekten
+anwendbar sind, inklusive exotischer Fälle.
+Das tun wir hier.
+
+Sie benötigen dazu das Buch _Debugging by Thinking_ von Robert C. Metzger.
+<replacement id="mindset_howtoget_metzgerbook">Sie finden es 
+(nur aus dem FU-Netz oder mit VPN-Verbindung) elektronisch in der Unibibliothek.</replacement>
+Darin wird in je einem Kapitel die Denkweise je einer literarischen Figure beschrieben
+(z.B. [PARTREFMANUAL::wayofholmes::Sherlock Holmes])
+oder die einer Berufsgruppe (z.B [PARTREFMANUAL::wayofthesafetyexpert::Sicherheitsexpert_innen]).
+
+Deren Denkweise lässt sich auf das Debugging übertragen, was im Buch jeweils erklärt wird.
+In den Aufgaben reflektieren wir über diese Vorschläge.
+Sie sollten mindestens zwei dieser Kapitel bearbeiten (denn aus dem Vergleich lässt sich
+viel lernen), aber nicht zu viele (denn dann bleibt zu wenig hängen).
