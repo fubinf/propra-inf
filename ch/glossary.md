@@ -143,12 +143,30 @@ Kurzerläuterung: [https://tldp.org/LDP/abs/html/globbingref.html](https://tldp.
 
 ## H
 
+[TERM::Header]
+Header bezieht sich auf eine Struktur oder einen Abschnitt, der am Anfang eines Dokuments, einer Nachricht oder einer
+Datei steht und wichtige Informationen über den Inhalt oder den Kontext bereitstellt.
+[ENDTERM]
+
+[TERM::Header-Metadaten]
+Metadaten im [TERMREF::Header] einer API-Antwort sind zusätzliche Informationen, die den Kontext der Antwort liefern und wie
+sie interpretiert werden sollte. Diese Metadaten werden in Form von Headerfeldern bereitgestellt, die bestimmte
+Informationen über die Antwort enthalten. Beispiele für Metadaten sind: Content-Type, Set-Cookie oder Cache-Controle.
+[ENDTERM]
+
 [TERM::HTTP]
 HTTP steht für "Hypertext Transfer Protocol" und ist ein Protokoll, das für die
 Übertragung von Daten über das World Wide Web verwendet wird. Es bildet die Grundlage
 für den Datenaustausch zwischen Webbrowsern und Webservern. HTTP ermöglicht die Kommunikation
 zwischen Client-Anwendungen (zum Beispiel Webbrowsern) und Servern, auf denen Webseiten und
 andere Ressourcen gehostet werden.
+[ENDTERM]
+
+[TERM::HTTP-Statuscode]
+Ein HTTP-Statuscode ist eine dreistellige numerische Kennung, die von einem Webserver an den Client
+gesendet wird, um den Status einer HTTP-Anfrage zu kennzeichnen. Diese Statuscodes geben an, ob eine
+Anfrage erfolgreich war, eine Weiterleitung erforderlich ist, ein Fehler aufgetreten ist oder andere
+Informationen über den Status der Anfrage liefern.
 [ENDTERM]
 
 ## I
@@ -219,6 +237,14 @@ Wenn für ein Kommando auf der [TERMREF::Kommandozeile] ein
 Beispiel: `PATH=/bin:/usr/bin:~/bin`
 [ENDTERM]
 
+[TERM::Payload]
+Dieser Begriff wird u.a. verwendet, um den Teil einer API-Antwort zu beschreiben,
+der die tatsächlichen Daten oder Informationen enthält, die von der Anfrage zurückgegeben
+werden. In einem HTTP-Kontext bezieht sich der Payload normalerweise auf den Inhalt des
+Antwortkörpers, der nach den [TERMREF::Header]-Informationen kommt. Dies könnte JSON-, XML-,
+Text- oder Binärdaten sein, abhängig von der Art der API und dem Endpunkt, den Sie aufrufen.
+[ENDTERM]
+
 [TERM::pip]
 "Package installer for Python":
 Das Programm, mit dem man üblicherweise externe Bibliotheken von einem entsprechenden
@@ -248,12 +274,26 @@ Zusätzlich unterscheiden wir zwischen den zwei Bereichen [TERMREF::Dynamische a
 
 ## R
 
+[TERM::Response]
+Eine "Response" (Antwort) bezieht sich in der Informatik auf die Daten oder Informationen,
+die ein Server an einen Client zurücksendet, als Reaktion auf eine Anfrage ([TERMREF::Request]),
+die der Client zuvor gesendet hat. Die Response enthält normalerweise den angeforderten Inhalt
+oder gibt Informationen darüber, ob die Anfrage erfolgreich war oder nicht.
+[ENDTERM]
+
 [TERM::RPA]
 RPA (Robotic Process Automationdeutsch; Robotergesteuerte Prozessautomatisierung) bezieht sich 
 auf die Anwendung von Software-Robotern oder "Bots", um menschenähnliche Aufgaben in Geschäftsprozessen
 zu automatisieren. Diese Roboter agieren in der Regel auf der Benutzeroberfläche von Anwendungen,
 indem sie Aktionen ausführen, Daten erfassen, Entscheidungen treffen und mit anderen Systemen
 interagieren, ähnlich wie es ein menschlicher Bediener tun würde.
+[ENDTERM]
+
+[TERM::Request]
+Ein "Request" (Anfrage) bezieht sich in der Informatik auf eine Aktion, die ein Client ausführt,
+um Daten oder Informationen von einem Server anzufordern oder eine bestimmte Operation durchzuführen.
+Ein Request wird typischerweise an eine spezifische Ressource oder URL auf dem Server gesendet, die dann
+entsprechend behandelt wird.
 [ENDTERM]
 
 ## S
@@ -348,7 +388,7 @@ von Python selbst, sodass es insbesondere keine Probleme macht, falls verschiede
 das gleiche Paket X in unterschiedlichen Versionen benötigen.
 [ENDTERM]
 
-[TERM::Verifizierung]
+[TERM::Verifizierung|verifizieren]
 Verifizierung oder Verifikation (von lateinisch veritas ‚Wahrheit' und facere ‚machen') ist
 die Bestätigung durch Bereitstellung eines objektiven Nachweises, dass festgelegte
 Anforderungen erfüllt worden sind.
