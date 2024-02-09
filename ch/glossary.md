@@ -170,6 +170,21 @@ Informationen über den Status der Anfrage liefern.
 [ENDTERM]
 
 ## I
+
+[TERM::Issue Tracker|Bug Tracker|Defect Tracker|Defektdatenbank]
+Ein Programm zur Koordination der Arbeit an bekannten (aber anfangs noch nicht bereinigten
+und meist auch noch nicht lokalisierten) Defekten oder sonstigen Verbesserungswünschen (feature requests)
+einer Software.
+
+Ein Issue Tracker erlaubt insbesondere 
+
+- die Klassifikation der Einträge nach diversen verschiedenen Kriterien, 
+  sodass man schnell auf Teilmengen der Einträge zugreifen kann,
+- die Markierung eines Eintrags als "offen" (open, in Bearbeitung) oder "geschlossen" (closed) und
+- die Zuweisung zuständiger Personen für die Bearbeitung.
+[ENDTERM]
+
+
 ## J
 
 [TERM::JSON]
@@ -179,6 +194,7 @@ Programmiersprachen konzipiert ist. Es basiert auf einer Untermenge der
 JavaScript-Programmiersprache, jedoch kann JSON von vielen anderen Sprachen
 unterstützt und interpretiert werden.
 [ENDTERM]
+
 
 ## K
 
@@ -364,6 +380,27 @@ aber häufig spart man sich die Mühe dieser Unterscheidung einfach.
 
 https://de.wikipedia.org/wiki/POSIX  
 https://de.wikipedia.org/wiki/Unix
+[ENDTERM]
+
+[TERM::Urgrund|root cause|Urgrundanalyse|root cause analysis|Grundursachen-Analyse]
+Eine Urgrund-Analyse (Grundursachen-Analyse, root cause analysis) geht so:
+Ausgehend von einem Problem, z.B. einem [TERMREF::Versagen], stellt man die Frage
+"Warum ist das passiert?".
+Für die Antwort(en) stellt man die Frage erneut und immer so weiter.
+
+Dann ist der Urgrund die letzte Antwort, für die noch gilt, dass man auf den betreffenden
+Faktor nennenswert Einfluss nehmen kann, um künftige Probleme zu verhindern,
+die vom gleichen Faktor ausgelöst werden könnten.
+
+Simples Beispiel: Ich bin zu spät gekommen, weil ich zu spät losgefahren bin,
+weil mir die Uhrzeit nicht genügend bewusst war, weil ich unkonzentriert war,
+weil ich zu wenig geschlafen hatte, weil ich zu spät ins Bett gegangen bin,
+weil ich so viel Spaß an der Party hatte.  
+Den Spaß an der Party kann (oder will) man nicht sinnvoll verändern,
+das zu späte Insbettgehen aber sehr wohl; also ist das der Urgrund.
+
+Wenn man dann diesen Faktor tatsächlich passend verändert, ist 
+Urgrundanalyse eine hochwirksame Methode zur Vorbeugung von Problemen.
 [ENDTERM]
 
 [TERM::User Story]
