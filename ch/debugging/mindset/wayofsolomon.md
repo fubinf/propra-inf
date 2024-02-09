@@ -27,7 +27,8 @@ Warum glauben Sie das jeweils?
 
 [SECTION::submission::reflection]
 [INCLUDE::../../_include/Markdowndokument.md]
-Gesucht ist keine Literaturbesprechung; fassen Sie sich kurz.
+Gefragt ist keine Literaturbesprechung oder -zusammenfassung,
+sondern _Ihre_ persönliche Stellungnahme.
 [ENDSECTION]
 
 [INSTRUCTOR::Was macht Professor Solomon aus?]

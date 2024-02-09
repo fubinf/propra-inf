@@ -19,6 +19,6 @@ Darin wird in je einem Kapitel die Denkweise je einer literarischen Figure besch
 oder die einer Berufsgruppe (z.B [PARTREFMANUAL::wayofthesafetyexpert::Sicherheitsexpert_innen]).
 
 Deren Denkweise lässt sich auf das Debugging übertragen, was im Buch jeweils erklärt wird.
-In den Aufgaben reflektieren wir über diese Vorschläge.
-Sie sollten mindestens zwei dieser Kapitel bearbeiten (denn aus dem Vergleich lässt sich
+In den Aufgaben reflektieren wir über diese Vorschläge; die Aufgaben sind also theoretisch.
+Sie sollten mindestens zwei dieser Buchkapitel bearbeiten (denn aus dem Vergleich lässt sich
 viel lernen), aber nicht zu viele (denn dann bleibt zu wenig hängen).
