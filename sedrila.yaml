@@ -77,9 +77,9 @@ chapters:
       - slug: API
       - slug: Testframeworks
       - slug: SUT
-  - slug: debugging
+  - slug: Debugging
     taskgroups:
-      - slug: mindset
+      - slug: Denkweisen
       - slug: classification
       - slug: debuggingtools
   - slug: altcode
