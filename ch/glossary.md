@@ -10,8 +10,13 @@ sowie ggf. auf Aufgaben, die weitere Erläuterungen dazu enthalten.
 
 ## A
 
-[TERM::Akzeptanzkriterien]
-Akzeptanzkriterien sind spezifische, messbare Bedingungen, die definieren, wann eine User Story oder eine Funktion als abgeschlossen und akzeptiert betrachtet wird. Sie legen die Erwartungen und Anforderungen fest, die erfüllt sein müssen, damit das Produkt oder die Funktion als erfolgreich betrachtet wird. Akzeptanzkriterien dienen dazu, Missverständnisse zu vermeiden, indem sie klare Richtlinien für die Entwicklung und das Testen geben.
+[TERM::Akzeptanzkriterien|acceptance criteria]
+Spezifische, messbare Bedingungen, die definieren, 
+wann eine User Story oder eine Funktion als abgeschlossen und akzeptiert betrachtet wird. 
+Sie legen die Erwartungen und Anforderungen fest, die erfüllt sein müssen, 
+damit das Produkt oder die Funktion als erfolgreich betrachtet wird. 
+Akzeptanzkriterien dienen dazu, Missverständnisse zu vermeiden, indem sie 
+klare Richtlinien für die Entwicklung und das Testen geben.
 [ENDTERM]
 
 [TERM::apt|apt-get|Debian-Paketmanager]
@@ -32,8 +37,8 @@ Der konkrete Wert, den man an einen [TERMREF::Parameter] übergibt,
 z.B. in Form einer konkreten Variable.
 [ENDTERM]
 
-[TERM::API]
-Eine API (Application Programming Interface) ist eine Schnittstelle,
+[TERM::API|Application Programming Interface]
+Eine Schnittstelle,
 die es verschiedenen Softwareanwendungen ermöglicht, miteinander zu kommunizieren und
 Daten auszutauschen. Sie definiert die Regeln und Protokolle, nach denen Programme
 miteinander interagieren können.
@@ -51,10 +56,12 @@ https://linuxize.com/post/bashrc-vs-bash-profile/).
 Richtig genau steht es in der Dokumentation von Bash.
 [ENDTERM]
 
-[TERM::BDD]
-Behavior Driven Development (BDD) ist eine agile Softwareentwicklungsmethode, die sich auf die Zusammenarbeit
-zwischen Entwicklern, Testern und nicht-technischen Stakeholdern konzentriert. In BDD werden Anforderungen
-in verständlichen, natürlichsprachlichen Szenarien formuliert, die als "Gherkin"-Syntax bekannt sind. 
+[TERM::BDD|Behavior Driven Development]
+Eine agile Softwareentwicklungsmethode, die sich auf die Zusammenarbeit
+zwischen Entwicklern, Testern und nicht-technischen Stakeholdern konzentriert. 
+In BDD werden Anforderungen
+in verständlichen, natürlichsprachlichen Szenarien formuliert (meist mittels "Gherkin"-Syntax),
+die dann mechanisch ist automatisierte Tests übersetzt werden.
 
 https://docs.robotframework.org/docs/testcase_styles/bdd#what-is-bdd
 https://www.codecentric.de/wissens-hub/blog/givenwhenthen-and-example-tables-using-the-robot-framework
@@ -78,24 +85,28 @@ Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwickl
 
 [TERM::Default|Defaultwert|Default-Argument]
 Ein [TERMREF::Argument] zur Übergabe an einen [TERMREF::Parameter],
-das implizit benutzt wird, wenn man nicht selbst explizit ein Argument übergibt. 
+das implizit benutzt wird, wenn man nicht explizit ein Argument übergibt. 
 [ENDTERM]
 
-[TERM::Defekt|Defect|Fault]
-Ein Defekt (engl. _defect, fault_) entsteht durch einen [TERMREF::Fehler] und verursacht ein [TERMREF::Versagen].
-Häufig wird das Wort Bug synonym benutzt.
-Dies ist eine strukturelle Eigenschaft des Codes und kann damit auch nur in diesem behoben werden.
+[TERM::Defekt|Defect|Fault|Bug]
+Eine strukturelle Eigenschaft des Produkts (meistens des Codes, aber es könnte auch z.B. eine
+Entwurfs-, Test- oder Anforderungsbeschreibung betroffen sein):
+Eine mögliche Folge eines menschlichen [TERMREF2::Fehler::-s] beim Programmieren; 
+verursacht meistens ein [TERMREF::Versagen].
+Zur Korrektur eines Defekts wird in der Regel der Code verändert.
 [ENDTERM]
 
-[TERM::DSL]
-Eine DSL (domänenspezifische Sprache) ist eine speziell auf eine bestimmte Problemstellung
-oder Domäne zugeschnittene Sprache. Im Gegensatz zu allgemeinen Programmiersprachen, die
+[TERM::DSL|Domänenspezifische Sprache]
+Eine speziell auf eine bestimmten Anwendungsbereich ("Domäne") zugeschnittene Sprache. 
+Im Gegensatz zu allgemeinen Programmiersprachen, die
 für eine Vielzahl von Anwendungen geeignet sind, ist eine DSL darauf ausgerichtet, spezifische
-Aufgaben oder Anforderungen in einem begrenzten Kontext zu adressieren.
+Aufgaben oder Anforderungen in einem begrenzten Kontext besonders elegant zu adressieren.
 [ENDTERM]
 
 [TERM::Dynamische analytische Qualitätssicherung]
-Die dynamische analytische Qualitätssicherung bezieht sich auf den Prozess der Überprüfung der Softwarequalität durch das Testen der Software während ihrer Ausführung. Dies umfasst verschiedene Testmethoden wie unit tests, Integrationstests, Systemtests und Leistungstests, um sicherzustellen, dass die Software die erwarteten Anforderungen erfüllt und ordnungsgemäß funktioniert. 
+Die Überprüfung der Softwarequalität durch das Testen der Software. 
+Dazu gehören verschiedene Testmethoden wie [TERMREF::Modultest], [TERMREF::Integrationstest], 
+[TERMREF::Systemtest] und [TERMREF::Leistungstest]. 
 [ENDTERM]
 
 ## E
@@ -109,28 +120,15 @@ oder mit einer [TERMREF::Shebang-Zeile] beginnt.
 ## F
 
 [TERM::Fehler|Error]
-Ein Fehler (engl. _error_) führt zum [TERMREF::Defekt]. 
-Es liegt ein falsches Verhalten (engl. _commission_) oder ein Versäumnis (engl. _omission_) vor.
-Damit entsteht ein Fehler immer während der Entwicklung, entweder im Code, bei den 
-Anforderungen oder beim Entwurf.
-[ENDTERM]
-
-[TERM::Rahmenwerk|Framework]
-Ein Rahmenwerk (Framework) ist eine [TERMREF::Bibliothek]
-(oder ein direkt lauffähiges Programm),
-die nicht hauptsächlich von der Benutzer_in aufgerufen wird,
-sondern bei der die Benutzer_in eigene Programmteile registriert,
-die dann anschließend durch das Rahmenwerk aufgerufen werden.
-
-Dieses Funktionsprinzip ist bekannt als Kontrollumkehr (inversion of control)
-oder Hollywood-Prinzip: _"Don't call us, we'll call you"_.
+Ein menschliches Verhalten, das u.U. zu einem [TERMREF::Defekt] führt. 
+Entweder ein falsches Verhalten (engl. _commission_) oder ein Versäumnis (engl. _omission_).
 [ENDTERM]
 
 
 ## G
 
 [TERM::Globbing]
-Globbing bezeichnet die Expansion von Dateinamensmustern in eine Liste von Dateinamen.
+Die Expansion von Dateinamensmustern in eine Liste von Dateinamen.
 Dabei wird insbesondere das Zeichen `*` als Platzhalter für irgendeinen Dateinamens-Teil interpretiert,
 sodass sich z.B. mittels `*.txt` alle Dateien mit dem Suffix `.txt` (im selben Verzeichnis)
 zugleich ansprechen lassen.
@@ -143,23 +141,23 @@ Kurzerläuterung: [https://tldp.org/LDP/abs/html/globbingref.html](https://tldp.
 
 ## H
 
-[TERM::Header]
-Header bezieht sich auf eine Struktur oder einen Abschnitt, der am Anfang eines Dokuments, einer Nachricht oder einer
-Datei steht und wichtige Informationen über den Inhalt oder den Kontext bereitstellt.
+[TERM::Header|Header-Metadaten|HTTP-Header]
+Ein Abschnitt, der am Anfang eines Dokuments, einer Nachricht oder einer
+Datei steht und meist Metadaten, also Informationen über den Inhalt oder den Kontext bereitstellt.
+
+Bei einer API-Antwort sind dies z.B. zusätzliche Informationen, die den Kontext der Antwort beschreiben
+und wie sie interpretiert werden sollte. 
+Diese Metadaten werden z.B. bei [TERMREF::HTTP] in Form von Headerfeldern bereitgestellt, 
+die durch ein Schlüsselwort eingeleitet werden,
+z.B. `Content-Type:`, `Set-Cookie:`, `Cache-Control:`.
+
+https://de.wikipedia.org/wiki/Liste_der_HTTP-Headerfelder
 [ENDTERM]
 
-[TERM::Header-Metadaten]
-Metadaten im [TERMREF::Header] einer API-Antwort sind zusätzliche Informationen, die den Kontext der Antwort liefern und wie
-sie interpretiert werden sollte. Diese Metadaten werden in Form von Headerfeldern bereitgestellt, die bestimmte
-Informationen über die Antwort enthalten. Beispiele für Metadaten sind: Content-Type, Set-Cookie oder Cache-Controle.
-[ENDTERM]
-
-[TERM::HTTP]
-HTTP steht für "Hypertext Transfer Protocol" und ist ein Protokoll, das für die
-Übertragung von Daten über das World Wide Web verwendet wird. Es bildet die Grundlage
-für den Datenaustausch zwischen Webbrowsern und Webservern. HTTP ermöglicht die Kommunikation
-zwischen Client-Anwendungen (zum Beispiel Webbrowsern) und Servern, auf denen Webseiten und
-andere Ressourcen gehostet werden.
+[TERM::HTTP|Hypertext Transfer Protocol]
+Ein [TERMREF::Protokoll], das für die Übertragung von Daten im World Wide Web verwendet wird. 
+Ermöglicht die Kommunikation zwischen Client-Anwendungen (wie Webbrowsern) und Servern, 
+auf denen statische Ressourcen (wie Bilder) oder Anwendungen gehostet werden.
 [ENDTERM]
 
 [TERM::HTTP-Statuscode]
@@ -170,6 +168,13 @@ Informationen über den Status der Anfrage liefern.
 [ENDTERM]
 
 ## I
+
+[TERM::Integrationstest|Integration Test]
+Ein Test, der im Gegensatz zum [TERMREF::Modultest] das korrekte Zusammenspiel mehrerer 
+(evtl. sehr vieler) Module oder Komponenten prüfen will,
+dafür aber im Gegensatz zum [TERMREF::Systemtest] programmatische Schnittstellen benutzt,
+nicht solche für menschliche Benutzer_innen. 
+[ENDTERM]
 
 [TERM::Issue Tracker|Bug Tracker|Defect Tracker|Defektdatenbank]
 Ein Programm zur Koordination der Arbeit an bekannten (aber anfangs noch nicht bereinigten
@@ -187,12 +192,20 @@ Ein Issue Tracker erlaubt insbesondere
 
 ## J
 
-[TERM::JSON]
-JSON (JavaScript Object Notation) ist ein leichtgewichtiges Datenaustauschformat,
-das für den menschenlesbaren und einfachen Datenaustausch zwischen verschiedenen
-Programmiersprachen konzipiert ist. Es basiert auf einer Untermenge der
-JavaScript-Programmiersprache, jedoch kann JSON von vielen anderen Sprachen
-unterstützt und interpretiert werden.
+[TERM::JavaScript|Javascript|JS|ECMAScript|ES]
+Eine dynamisch typisierte Programmiersprache mit einer Syntax, die der von Java ähnelt,
+aber einer völlig anderen Semantik.
+Ist in Webbrowsern implementiert und wird dort verwendet, um HTML-basierten Webseiten
+dynamisches Verhalten zu geben.
+Wird seit einigen Jahren auch außerhalb des Browsers verwendet, insbesondere auf der
+Serverseite von Webanwendungen ("backend").
+[ENDTERM]
+
+[TERM::JSON|JavaScript Object Notation]
+Leichtgewichtiges Datenaustauschformat.
+Ursprünglich eine kleine Teilmenge der Programmiersprache [TERMREF::JavaScript],
+heute aber in jeder gängigen Programmiersprache als [TERMREF::Bibliothek] implementiert
+und sehr verbreitet für den Datenaustausch zwischen Anwendungen.
 [ENDTERM]
 
 
@@ -204,17 +217,21 @@ Ein [TERMREF::Parameter] für ein ausführbares Programm, das per
 oder für ein eingebautes Shell-Kommando 
 [ENDTERM]
 
-[TERM::KDT]
-Schlüsselwortgetriebenes Testen (Keyword-Driven Testing; Schlüsselwortgetriebenes Testen)
-ist eine Testautomatisierungsmethode, bei der Tests mithilfe von Schlüsselwörtern oder
+[TERM::KDT|Keyword-Driven Testing|Schlüsselwortgetriebenes Testen]
+Eine Testautomatisierungsmethode, bei der Tests mithilfe von Schlüsselwörtern oder
 Aktionen beschrieben werden, die von einem Testframework interpretiert und ausgeführt werden. 
 
-https://de.wikipedia.org/wiki/Keyword-Driven_Testing
+https://de.wikipedia.org/wiki/Keyword-Driven_Testing  
 https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#test-templates
 [ENDTERM]
 
 
 ## L
+
+[TERM::Leistungstest|Performance Test]
+Ein Test, der prüft, ob ein Programm schnell genug arbeitet und genügend große Datenmengen 
+verkraften kann.
+[ENDTERM]
 
 [TERM::Linux|GNU/Linux]
 Eine Familie von Open-Source-Betriebssystem-Distributionen, die auf dem Linux-Betriebssystemkern aufbauen
@@ -223,15 +240,27 @@ sowie auf einem umfangreichen Universum von Softwarepaketen.
 https://de.wikipedia.org/wiki/Linux
 [ENDTERM]
 
+
 ## M
+
+[TERM::Modultest|Unit Test]
+Ein Test, der das korrekte Funktionieren eines bestimmten Moduls prüfen soll.
+Dabei wird entweder nur dieses eine Modul ausgeführt (weil es keine weiteren davon benötigten
+Module gibt oder indem diese durch Attrappen ersetzt werden)
+oder es wird zwar der ganz darunter hängende Teilgraph von benötigten Modulen
+auch mit verwendet, aber die Testeingaben so ausgewählt, dass es voraussichtlich für das
+Ergebnis nur auf das zu testende Modul ankommt.
+[ENDTERM]
+
+
 ## N
 ## O
 
-[TERM::OpenAPI]
-Früher als Swagger Specification bekannt, ist ein Standard, der die Dokumentation
-von RESTful APIs (Representational State Transfer) erleichtert. Es handelt sich um
-eine maschinenlesbare Beschreibung einer API, die Entwicklern ermöglicht, schnell
-zu verstehen, wie die API funktioniert, welche Ressourcen verfügbar sind, welche
+[TERM::OpenAPI|Swagger]
+Ein Standard, der die Dokumentation
+von RESTful APIs (Representational State Transfer) erleichtert. 
+Maschinenlesbare Beschreibung einer API, die Entwicklern ermöglicht, schnell
+zu verstehen, welche Ressourcen verfügbar sind, welche
 Parameter erwartet werden und welche Antworten zurückgegeben werden können.
 [ENDTERM]
 
@@ -239,7 +268,7 @@ Parameter erwartet werden und welche Antworten zurückgegeben werden können.
 ## P
 
 [TERM::Parameter]
-Ein Platzhalter für ein [TERMREF::Argument], das man an etwas parametrisiertes übergeben kann.
+Ein Platzhalter für ein [TERMREF::Argument], das man an etwas Parametrisiertes übergeben kann.
 Funktionen und Methoden haben in Python sehr oft ein oder mehrere Parameter.
 In manchen Sprachen können auch andere Dinge parametrisiert sein, z.B. Klassen,
 Makros, Module oder Pakete.
@@ -253,12 +282,14 @@ Wenn für ein Kommando auf der [TERMREF::Kommandozeile] ein
 Beispiel: `PATH=/bin:/usr/bin:~/bin`
 [ENDTERM]
 
-[TERM::Payload]
-Dieser Begriff wird u.a. verwendet, um den Teil einer API-Antwort zu beschreiben,
+[TERM::Payload|HTTP-Body]
+Der Teil einer Nachricht (insbesondere: einer API-Antwort),
 der die tatsächlichen Daten oder Informationen enthält, die von der Anfrage zurückgegeben
-werden. In einem HTTP-Kontext bezieht sich der Payload normalerweise auf den Inhalt des
-Antwortkörpers, der nach den [TERMREF::Header]-Informationen kommt. Dies könnte JSON-, XML-,
-Text- oder Binärdaten sein, abhängig von der Art der API und dem Endpunkt, den Sie aufrufen.
+werden. 
+
+Bei HTTP heißt die Payload "Rumpf" (body), davor stehen die [TERMREF::Header].
+Der Rumpf kann z.B. JSON-, XML-, JPG-, PDF-, Text- oder beliebige Binärdaten enthalten.
+Der Header `Content-Type:` gibt an, als was der Rumpf interpretiert werden soll.
 [ENDTERM]
 
 [TERM::pip]
@@ -270,46 +301,70 @@ Dokumentation: https://pip.pypa.io/en/stable/getting-started/
 [ENDTERM]
 
 [TERM::Prompt]
-Die Prompt ist eine Textzeichenfolge, die in der Kommandozeile angezeigt wird, um den
-Benutzer zur Eingabe von Befehlen zu ermutigen. Sie enthält oft Informationen wie den
+Eine Textzeichenfolge, die in der Kommandozeile angezeigt wird, um den
+Benutzer zur Eingabe eines Befehles aufzufordern. Sie enthält oft Informationen wie den
 Benutzernamen, den Hostnamen, den aktuellen Pfad und möglicherweise andere relevante Informationen.
 
-Bsp: student1@propra_pc:#$
+Beispiel: `student1@computer1 /my/dir/path/to/my/workdir 12:24:01  515`
 [ENDTERM]
+
+[TERM::Protokoll|Protocol]
+Spezifikation einer Verfahrensweise.
+In der Informatik ist damit meist ein Kommunikationsprotokoll gemeint,
+das beschreibt, wie Kommunikationspartner Nachrichten austauschen.
+Es legt fest, welche Nachrichtentypen es gibt, wie jeder Typ aufgebaut ist
+und unter welchen Umständen welcher Nachrichtentyp gesendet werden darf oder muss.
+
+Es gibt zahlreiche Kommunikationsprotokolle.
+Hier im ProPra ist meist nur [TERMREF::HTTP] von Interesse.
+[ENDTERM]
+
 
 ## Q
 
-[TERM::Qualitätssicherung|QS]
-Qualitätssicherung (QS) bezeichnet den Prozess, durch den sicherzustellen versucht wird, dass ein Produkt oder
-eine Dienstleistung die festgelegten Qualitätsstandards erfüllt oder übertrifft. Dieser Prozess umfasst
-verschiedene Aktivitäten wie Planung, Kontrolle, Überprüfung und Verbesserung, die darauf abzielen, Fehler zu
-minimieren und die Kundenzufriedenheit zu maximieren.
-Zusätzlich unterscheiden wir zwischen den zwei Bereichen [TERMREF::Dynamische analytische Qualitätssicherung] und
+[TERM::Qualitätssicherung|QS|Quality Assurance|QA]
+Alle Schritte, durch die man sicherstellen will, dass ein Produkt oder
+eine Dienstleistung die festgelegten Qualitätsstandards erfüllt. 
+Umfasst Schritte zur Planung, Kontrolle, Überprüfung und Verbesserung, die darauf abzielen, 
+Mängel zu vermeiden oder zu beseitigen und die Kundenzufriedenheit zu maximieren.
+
+Im ProPra interessieren uns vor allem zwei Bereiche der QS:
+[TERMREF::Dynamische analytische Qualitätssicherung] und
 [TERMREF::Statische analytische Qualitätssicherung].
 [ENDTERM]
 
 ## R
 
-[TERM::Response]
-Eine "Response" (Antwort) bezieht sich in der Informatik auf die Daten oder Informationen,
-die ein Server an einen Client zurücksendet, als Reaktion auf eine Anfrage ([TERMREF::Request]),
-die der Client zuvor gesendet hat. Die Response enthält normalerweise den angeforderten Inhalt
-oder gibt Informationen darüber, ob die Anfrage erfolgreich war oder nicht.
+[TERM::Rahmenwerk|Framework|Kontrollumkehr|Inversion of Control]
+Eine [TERMREF::Bibliothek] (oder ein direkt lauffähiges Programm),
+die nicht hauptsächlich vom Code der Benutzer_in aufgerufen wird,
+sondern bei der der Benutzercode eigene Programmteile registriert,
+die dann anschließend durch das Rahmenwerk aufgerufen werden.
+
+Dieses Funktionsprinzip ist bekannt als Kontrollumkehr (inversion of control)
+oder Hollywood-Prinzip: _"Don't call us, we'll call you"_.
 [ENDTERM]
 
-[TERM::RPA]
-RPA (Robotic Process Automationdeutsch; Robotergesteuerte Prozessautomatisierung) bezieht sich 
-auf die Anwendung von Software-Robotern oder "Bots", um menschenähnliche Aufgaben in Geschäftsprozessen
-zu automatisieren. Diese Roboter agieren in der Regel auf der Benutzeroberfläche von Anwendungen,
+[TERM::Request|Anfrage]
+Nachricht, die im Rahmen eines [TERMREF2::Protokoll::-s] ein Client an einen Server sendet,
+um Daten anzufordern oder eine Operation auszulösen.
+
+Bei [TERMREF::HTTP] wird ein Request an eine spezifische _Ressource_ auf dem Server gesendet,
+die durch einen URI/URL identifiziert wird.
+[ENDTERM]
+
+[TERM::Response|Antwort]
+Die Daten, die im Rahmen eines [TERMREF2::Protokoll::-s]
+ein Server an einen Client zurücksendet, als Reaktion auf eine [TERMREF::Anfrage],
+die der Client zuvor gesendet hat. 
+Enthält den angeforderten Inhalt und/oder gibt Informationen darüber, ob die Anfrage erfolgreich war oder nicht.
+[ENDTERM]
+
+[TERM::RPA|Robotic Process Automation|Robotische Prozessautomatisierung]
+Die Anwendung von Software-Robotern oder "Bots", um menschliche Aufgaben in Geschäftsprozessen
+zu automatisieren. Diese Bots agieren in der Regel auf der Benutzeroberfläche von Anwendungen,
 indem sie Aktionen ausführen, Daten erfassen, Entscheidungen treffen und mit anderen Systemen
 interagieren, ähnlich wie es ein menschlicher Bediener tun würde.
-[ENDTERM]
-
-[TERM::Request]
-Ein "Request" (Anfrage) bezieht sich in der Informatik auf eine Aktion, die ein Client ausführt,
-um Daten oder Informationen von einem Server anzufordern oder eine bestimmte Operation durchzuführen.
-Ein Request wird typischerweise an eine spezifische Ressource oder URL auf dem Server gesendet, die dann
-entsprechend behandelt wird.
 [ENDTERM]
 
 ## S
@@ -323,7 +378,8 @@ Die erste Zeile der Datei hat das Format `#!/call/to/interpreter`, also beispiel
 Steht dies z.B. in der Datei `a.py` und diese wird ausgeführt, so ist die Wirkung
 ungefähr so wie beim Kommando `/usr/bin/python a.py`.
 Der Rest der Datei `a.py` enthält also (hoffentlich) Python-Quellcode und das Verfahren ist
-für alle Sprachen anwendbar, bei denen ein `#` am Zeilenanfang einen Kommentar anzeigt.
+für alle Sprachen anwendbar, bei denen ein `#` am Zeilenanfang einen Kommentar anzeigt
+oder die erste Zeile gesondert behandelt wird.
 [ENDTERM]
 
 [TERM::Shell|Unix-Shell|Linux-Shell|Kommandozeile]
@@ -335,10 +391,30 @@ https://de.wikipedia.org/wiki/Unix-Shell
 [ENDTERM]
 
 [TERM::Statische analytische Qualitätssicherung]
-Die statische analytische Qualitätssicherung bezieht sich auf den Prozess der Überprüfung von Softwareartefakten wie Code, Spezifikationen und Dokumentation, ohne dass die Software tatsächlich ausgeführt wird. Dabei werden Werkzeuge und Techniken wie Code-Reviews, statische Code-Analyse und formale Methoden eingesetzt, um potenzielle Fehler, Inkonsistenzen oder Verbesserungsmöglichkeiten frühzeitig zu identifizieren.
+Überprüfung von Softwareartefakten wie Code, Spezifikationen und Dokumentation, 
+ohne dass die Software dabei ausgeführt wird. 
+Umfasst Techniken wie Code-Reviews, statische Code-Analyse und formale Methoden, 
+die potenzielle Fehler, Inkonsistenzen oder Verbesserungsmöglichkeiten identifizieren.
+
+Kann (im Gegensatz zu [TERMREF2::Test::-s]) auch für nicht ausführbare Produkte benutzt werden.
+Findet für Code im Vergleich zu Tests manche Sorten von Problem leichter, andere schwieriger,
+sodass sich beide Verfahrensweisen gut ergänzen.
+[ENDTERM]
+
+[TERM::Systemtest|System Test]
+Ein Test des Gesamtsystems unter Verwendung von dessen natürlichen Schnittstellen,
+meist einem GUI.
+Solche Tests sind aufwändig zu implementieren, brauchen komplizierte Testwerkzeuge,
+laufen langsam und gehen beim Weiterentwickeln der Software häufig kaputt,
+weil die GUI sich oft ändert. 
 [ENDTERM]
 
 ## T
+
+[TERM::Test]
+Das Ausprobieren von Software, um relevante Eigenschaften zu überprüfen;
+meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
+[ENDTERM]
 
 [TERM::Tutorial]
 Ein kurzer Lehrgang (in der Regel in Schriftform, eventuell als Video)
@@ -348,8 +424,8 @@ einer [TERMREF::Bibliothek] oder eines [TERMREF2::Framework::-s].
 
 Ein Tutorial führt den Lernende_n durch praktische Schritte,
 die dieser selbst durchführen soll, um einen optimalen Lernerfolg zu erreichen.
-Das ermöglicht zugleich, unterwegs direkt andere Varianten der Schritte auszuprobieren,
-um das Lernpensum zu verbreitern.
+Die Lernenden können Varianten der Schritte auszuprobieren,
+um ihren Lernerfolg zu verbreitern.
 [ENDTERM]
 
 
@@ -404,7 +480,12 @@ Urgrundanalyse eine hochwirksame Methode zur Vorbeugung von Problemen.
 [ENDTERM]
 
 [TERM::User Story]
-Eine User Story ist eine kurze, informelle Beschreibung einer Funktion oder Anforderung aus der Perspektive eines Endbenutzers. Sie umfasst typischerweise wer die Funktion nutzt, was getan werden soll und warum es wichtig ist. User Stories dienen als Kommunikationsmittel zwischen Entwicklern, Kunden und anderen Stakeholdern, um Anforderungen klar zu definieren und das Verständnis zu verbessern. Oftmals werden zusätzlich [TERMREF:Akzeptanzkriterien] verwendet.
+Kurze, informelle Beschreibung einer Funktion aus der Perspektive eines Endbenutzers. 
+Umfasst typischerweise wer die Funktion nutzt, was getan werden soll und wozu es relevant ist. 
+
+User Stories dienen als Kommunikationsmittel zwischen Entwicklern, Kunden und anderen Stakeholdern, 
+um Anforderungen klar zu definieren und das Verständnis zu verbessern. 
+Oft werden begleitend [TERMREF:Akzeptanzkriterien] definiert.
 [ENDTERM]
 
 ## V
@@ -430,13 +511,13 @@ Verifizierung oder Verifikation (von lateinisch veritas ‚Wahrheit' und facere 
 die Bestätigung durch Bereitstellung eines objektiven Nachweises, dass festgelegte
 Anforderungen erfüllt worden sind.
 
-https://glossary.istqb.org/de_DE/term/verifizierung
+https://glossary.istqb.org/de_DE/term/verifizierung  TODO_2_ruhe/prechelt: AchduliebeGüte!
 [ENDTERM]
 
 [TERM::Versagen|Failure|Symptom]
-Ein Versagen (engl. _failure_) ist das falsche Verhalten des Programms relativ zur 
+Falsches Verhalten eines Programms relativ zur 
 Spezifikation, der Anforderung oder den Erwartungen.
-Manchmal auch Symptom (engl. _symptom_) eines [TERMREF2::Defekt::-s] genannt. 
+Ist ein Symptom eines [TERMREF2::Defekt::-s]. 
 [ENDTERM]
 
 [TERM::Validierung]
@@ -452,7 +533,7 @@ https://glossary.istqb.org/de_DE/term/validierung-1
 XML (eXtensible Markup Language) ist eine Auszeichnungssprache zur Darstellung
 hierarchisch strukturierter Daten in einem menschenlesbaren Format. Entwickelt
 wurde XML, um strukturierte Daten zwischen Computersystemen austauschen zu können.
-Im Gegensatz zu [TERMREF::JSON] ist XML nicht auf eine bestimmte Programmiersprache
+Genau wie [TERMREF::JSON] ist XML nicht auf eine bestimmte Programmiersprache
 beschränkt und kann in einer Vielzahl von Anwendungen und Kontexten eingesetzt werden.
 [ENDTERM]
 
