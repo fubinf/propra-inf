@@ -16,7 +16,7 @@ Sie benötigen dazu das Buch _Debugging by Thinking_ von Robert C. Metzger.
 (nur aus dem FU-Netz oder mit VPN-Verbindung) elektronisch in der Unibibliothek.</replacement>
 Darin wird in je einem Kapitel die Denkweise je einer literarischen Figure beschrieben
 (z.B. [PARTREFMANUAL::wayofholmes::Sherlock Holmes])
-oder die einer Berufsgruppe (z.B [PARTREFMANUAL::wayofthesafetyexpert::Sicherheitsexpert_innen]).
+oder die einer Berufsgruppe (z.B [PARTREFMANUAL::Safety-Expert::Sicherheitsexpert_innen]).
 
 Deren Denkweise lässt sich auf das Debugging übertragen, was im Buch jeweils erklärt wird.
 In den Aufgaben reflektieren wir über diese Vorschläge; die Aufgaben sind also theoretisch.
