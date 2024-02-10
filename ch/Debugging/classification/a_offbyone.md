@@ -8,8 +8,8 @@ requires:
 ---
 [SECTION::goal::idea]
 
-- Ich verstehe, welche Form Off-By-One-Bugs im Code annehmen können
-- Ich habe eine Idee, wie ich Off-By-One-Bugs aufspüren und lösen kann
+- Ich verstehe, welche Form Off-By-One-Defekte im Code annehmen können
+- Ich habe einen solchen Defekt in fremdem Code erfolgreich gefunden
 
 [ENDSECTION]
 
@@ -18,11 +18,7 @@ requires:
 ### Eine Heranführung an Off-By-One-Error
 
 Off-By-One-Error, manchmal OBOE abgekürzt, gehören zu den ikonischsten Defekten in Programmen.
-Er tritt auf, wenn der Code eine Berechnung durchführt 
-oder einen Ausdruck enthält, der um eins von dem abweicht, was er hätte sein sollen. 
-Das führt dazu, dass der Code die falsche Anzahl von Daten verarbeitet, 
-einen falschen Wert zurückgibt oder eine Verzweigung im Code zum falschen Zeitpunkt vornimmt.
-"One" kann hierbei vielfältig interpretiert werden: 1 Byte, eine Stelle im Array, ein Eintrag in einer Datei, usw.
+Er tritt beim Umgang mit Integers auf: Eine Berechnung oder Abfrage ist um 1 zu groß oder zu klein.
 
 Zu den bekanntesten Fehlern dieser Art gehört der Zaunpfahlfehler.
 Überlegen Sie kurz:
@@ -30,8 +26,8 @@ Wie lang ist ein Zaun mit 11 Zaunpfählen, bei dem alle 10 Meter ein Pfahl steck
 Wenn Sie jetzt "110 Meter" geantwortet haben, sind Sie genau in die Falle getappt. 
 Dieser Fehler entsteht (meist und auch in diesem Beispiel) dadurch,
 dass die Anzahl der Elemente falsch gezählt werden, 
-indem Anfangs- oder Endelement nicht mitgezählt werden.
-Ein Beispiel liefert auch dieses Code-Snippet:
+indem Anfangs- oder Endelement nicht oder zuviel mitgezählt werden.
+Ein Beispiel liefert auch der folgende fehlerhafte Code-Schnipsel:
 
 ```python
 # count how many pages will be printed
@@ -41,11 +37,13 @@ lastpagenumber: int
 pagecount = lastpagenumber - firstpagenumber
 ```
 
-Eine weitere Art von OBOE entsteht, wenn man den falschen Vergleichsoperator benutzt,
-also > und >=, sowie < und <= verwechselt.
+Warum und um wieviel ist der Wert von `pagecount` falsch?
+
+Die zweite wichtige Art von OBOE entsteht, wenn man den falschen Vergleichsoperator benutzt,
+also `>` mit `>=` verwechselt oder `<` mit `<=` verwechselt.
 Der folgende Code prüft, ob jemand alt genug ist, um in Deutschland bei der Bundestagswahl mitzumachen
 (Stand 2023 ist man ab 18 wahlberechtigt).
-Darf jemand nach diesem Code-Snippet wählen, wenn die Person genau 18 Jahre alt ist?
+Darf jemand nach diesem Code-Schnipsel wählen, wenn die Person genau 18 Jahre alt ist?
 
 ```python
 age: int
@@ -56,10 +54,9 @@ if age > 18:
 
 In Sprachen, die Arrays von 0 an indizieren, 
 kann der Code fälschlicherweise bei dem Element mit dem Index 1 (also dem zweiten Element) beginnen. 
-Dieser Fehler wird manchmal als OBOE bezeichnet, 
-aber da diese Fehler in der Regel die Verarbeitung der Daten betreffen, 
-werden sie hier als Indexfehler klassifiziert.
-Hierzu wird mehr in der Aufgabe [PARTREFTITLE::d_indexing] gesprochen.
+Solche Defekte werden oft als OBOE bezeichnet, 
+aber wir klassifizieren sie separat als Indexdefekt 
+siehe Aufgabe [PARTREFTITLE::d_indexing].
 
 
 ### Ihre Aufgabe
@@ -76,23 +73,24 @@ Ihre Aufgabe liegt jetzt darin herauszufinden, wo der Defekt liegt und wie man i
 [INCLUDE::a_offbyone.py]
 ```
 
-Hier sind einige Vorschläge, um an den Code heranzutreten:
+- Legen Sie den obigen Python-Code unter dem Namen `a_offbyone.py` in Ihrem Arbeitsverzeichnis ab.
+- Machen sie einen Commit `a_offbyone.py`, der nur genau diese neue Datei enthält.
+- Suchen Sie nun den Defekt. Hier sind einige Vorschläge für das Vorgehen:
 
-1. Bestimmen Sie den Zweck des Codes bis Zeile 47. 
-   Wie viele und welche der genutzten Variablen sind nach Zeile 47 wichtig?
-   Was ist das Ziel der Nutzung dieser Variablen?
-   Werden die Variablen richtig initialisiert, um dieses Ziel zu erreichen?
-2. Stellen Sie sicher, dass die Zeile 41 richtig funktioniert.
-   Wie viele Eingaben benötigt diese Code-Zeile?
-   Wie viele verschiedene Werte sind nötig, um diese Code-Zeile zu testen?
-3. Die Liste `months` kann häufig überlesen werden, weil jeder die Monate kennt.
-   Aber ist sie korrekt?
-   Sind die Monate in der richtigen Reihenfolge und auch richtig geschrieben?
-4. Eine Möglichkeit diesen Code zu prüfen ist es anzunehmen, 
-   dass `daymap` richtig initialisiert ist und einfach ab Zeile 54 zu prüfen.
-   Angenommen, Sie entscheiden sich für dieses Vorgehen und prüfen die Tage im Januar
-   (also mit `daynumber` zwischen 1 und 31): 
-   Welche Werte lohnen sich besonders zum Prüfen?
+    1. Bestimmen Sie den Zweck des Codes bis Zeile 47.  
+       Wie viele und welche der genutzten Variablen sind nach Zeile 47 wichtig?  
+       Was ist das Ziel der Nutzung dieser Variablen?  
+       Werden die Variablen richtig initialisiert, um dieses Ziel zu erreichen?
+    2. Stellen Sie sicher, dass die Zeile 41 richtig funktioniert.  
+       Wie viele Eingaben benötigt diese Code-Zeile?  
+       Wie viele verschiedene Werte sind nötig, um diese Code-Zeile zu testen?
+    3. Die Liste `months` überliest man leicht, weil jeder die Monate kennt.  
+       Aber ist sie korrekt?
+    4. Eine Möglichkeit diesen Code zu prüfen ist es anzunehmen, 
+       dass `daymap` richtig initialisiert ist und erst ab Zeile 54 zu prüfen.  
+       Angenommen, Sie entscheiden sich für dieses Vorgehen und prüfen die Tage im Januar
+       (also mit `daynumber` zwischen 1 und 31): 
+       Welche Werte lohnen sich besonders zum Prüfen?
 
 [HINT::Lösungshinweis 1]
 Der erste Tag im Jahr: `daynumber = 1`, `isleapyear = False`.
@@ -107,14 +105,13 @@ Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
 [ENDHINT]
 [ENDHINT]
 
+- Defekt gefunden? Prima. Dann jetzt bitte in `a_offbyone.py` korrigieren.
+- Machen sie einen Commit `a_offbyone.py corrected`, der nur genau diese modifizierte Datei enthält.
+- [EC] `git show --color=always HEAD | cat`
+
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-Die Abgabe kann auf zwei Arten erstellt werden:
-
-- Sie können den oben gegebenen Code fixen und geben die .py-Datei ab.
-  Markieren Sie die Stelle, in der der Fix durchgeführt wurde, damit man ihn beim Prüfen schnell findet.
-- Oder sie erstellen eine Markdown-Datei und beschreiben die Stelle, an der der Bug auftritt.
-  Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
+[INCLUDE::../../_include/Kommandoprotokoll.md]
 
 [ENDSECTION]
