@@ -80,7 +80,7 @@ chapters:
   - slug: Debugging
     taskgroups:
       - slug: Denkweisen
-      - slug: classification
+      - slug: Häufige-Defektarten
       - slug: debuggingtools
   - slug: altcode
     taskgroups:

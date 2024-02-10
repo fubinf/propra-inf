@@ -5,7 +5,7 @@ Also wie macht man das?
 
 Dazu kann man sich entweder mit bestimmten, immer wieder auftretenden Sorten von Defekten
 auseinandersetzen, für die es zugehörige Prüfschritte gibt, um ihnen auf die Spur zu kommen.
-Diesem Ansatz folgen wir in der Aufgabengruppe [PARTREF::classification].
+Diesem Ansatz folgen wir in der Aufgabengruppe [PARTREF::Häufige-Defektarten].
 
 Oder man sucht nach ganz _allgemeinen_ Regeln für die Suche, die für alle Arten von Defekten
 anwendbar sind, inklusive exotischer Fälle.
