@@ -75,11 +75,24 @@ Verständnis des Protokolls nicht erschwert.
 
 Benennen Sie die Datei `typescript` in die Form `*.txt` um.
 Dabei steht der Stern für den Aufgabennamen.
-Der Zielname ist also `Kommandoprotokolle.txt`:
+Der Zielname ist in unserem Fall also `Kommandoprotokolle.txt` und Sie rufen auf:
 `rename typescript Kommandoprotokolle.txt`.
 Geben Sie diese Datei ab.
 
 Analog werden wir das künftig bei vielen Aufgaben machen.
+- Die sehen jeweils so aus, dass bei den Arbeitsschritten einige mit 
+  [EC], [EC] usw. markiert sind.
+- Genau diese Schritte sollen im abzugebenden Kommandoprotokoll stehen.
+- Vor dem ersten solchen Kommando rufen Sie also selbständig `script` auf
+  und nach dem letzten `exit`, dann benennen Sie die Datei `typescript` um.
+  (Eine Datei namens `typescript` sollte selbst nie eingecheckt werden.)
+- Falls Sie unterwegs Fehler gemacht haben, benutzen Sie nun den Editor,
+  um diese Teile zu entfernen.
+- Wenn anhand der Arbeitsschritte zu erkennen ist, dass Sie zwischen den
+  markierten, ins Protokoll zu übernehmenden Arbeitsschritten weitere
+  Kommandos brauchen werden, empfiehlt es sich, eine zweite Shell zu
+  starten, in der Sie nur die Kommandos eingeben, die für das `typescript`
+  gedacht sind und sonst nichts.
 
 [ENDSECTION]
 
