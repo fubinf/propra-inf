@@ -1,6 +1,6 @@
 title: HTML 101
 stage: draft
-timevalue: 2.0
+timevalue: 1.0
 difficulty: 1
 profiles: WEB
 explains: HTML
@@ -14,12 +14,10 @@ Das Ziel dieser Einheit ist es, den Aufbau einer Webseite anhand ihrer HTML-Stru
 [ENDSECTION]
 [SECTION::background::default]
 
-HTML, Tags
+HTML ermöglicht die Erstellung von Webseiten, indem es den Inhalt strukturiert und formatiert. Dabei werden Markup-Tags verwendet, um einzelne Elemente auf einer Webseite zu kennzeichnen und zu definieren.
 
 [ENDSECTION]
 [SECTION::instructions::...]
-
-HTML ermöglicht die Erstellung von Webseiten, indem es den Inhalt strukturiert und formatiert. Dabei werden Markup-Tags verwendet, um einzelne Elemente auf einer Webseite zu kennzeichnen und zu definieren.
 
 In dieser Aufgabe werden Sie eine simple HTML-Seite erstellen. Fügen Sie die Antworten der folgenden Fragen in den Inhalt der Seite ein.
 
@@ -49,14 +47,9 @@ In dieser Aufgabe werden Sie eine simple HTML-Seite erstellen. Fügen Sie die An
 </html>
 ```
 
-Speichern Sie die Datei und öffnen Sie sie in einem Browser Ihrer Wahl. Bearbeiten Sie den Inhalt des ersten \<p>-Tags und ersetzen Sie “[Name]” mit Ihrem eigenen Namen. Laden Sie die Seite in Ihrem Browser neu und beobachten Sie, wie sich die Seite ändert.
+[ER] Speichern Sie die Datei und öffnen Sie sie in einem Browser Ihrer Wahl. Bearbeiten Sie den Inhalt des ersten \<p>-Tags und ersetzen Sie “[Name]” mit Ihrem eigenen Namen. Laden Sie die Seite in Ihrem Browser neu und beobachten Sie, wie sich die Seite ändert.
 
 [ER] Fügen Sie nun eine nummerierte Liste hinzu. Schreiben Sie die Antworten zu den oben stehenden Fragen in die Listenelemente.
-
-[WARNING]
-[ENDWARNING]
-[HINT::VisibleTitle]
-[ENDHINT]
 
 [ENDSECTION]
 [SECTION::submission::...]

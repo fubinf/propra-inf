@@ -1,6 +1,6 @@
 title: HTML 102
 stage: draft
-timevalue: 2.0
+timevalue: 1.0
 difficulty: 1
 profiles: WEB
 explains: HTML
@@ -14,14 +14,12 @@ Das Ziel dieser Einheit ist es, HTML Attribute zu verstehen und weitere Tags ken
 [ENDSECTION]
 [SECTION::background::default]
 
-HTML, Tags, Attribute
+HTML-Attribute sind zusätzliche Informationen, die zu HTML-Elementen hinzugefügt werden, um ihre Eigenschaften zu definieren oder anzupassen. Diese Attribute geben spezifische Anweisungen oder Details über das Element.
 
 [ENDSECTION]
 [SECTION::instructions::...]
 
 ### HTML Attribute
-
-HTML-Attribute sind zusätzliche Informationen, die zu HTML-Elementen hinzugefügt werden, um ihre Eigenschaften zu definieren oder anzupassen. Diese Attribute geben spezifische Anweisungen oder Details über das Element.
 
 [ER] Erstellen Sie das Skelett für eine neue HTML-Seite. Beantworten Sie die folgenden Fragen auf der Seite.
 
@@ -32,11 +30,6 @@ HTML-Attribute sind zusätzliche Informationen, die zu HTML-Elementen hinzugefü
 [EQ] Welchen Zweck erfüllen die Attribute `class` und `id`, insbesondere im Zusammenhang mit CSS und JavaScript?
 
 [ER] Erstellen Sie eine Liste Ihrer Lieblingsfilme. Fügen Sie für jeden Film einen Wikipedia-Link und das Filmplakat als Bild hinzu. Benutzen Sie hierfür die oben gelernten neuen Tags und Attribute, wo anwendbar.
-
-[WARNING]
-[ENDWARNING]
-[HINT::VisibleTitle]
-[ENDHINT]
 
 [ENDSECTION]
 [SECTION::submission::...]
