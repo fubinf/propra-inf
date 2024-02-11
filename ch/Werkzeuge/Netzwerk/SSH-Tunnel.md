@@ -24,20 +24,12 @@ OpenSSH bietet eine sehr mächtige Weiterleitungsfunktion, die den Verkehr an ei
 
 ### Vorbereitungen
 
-- [ER]  Erstellen Sie auf Ihrem Rechner eine Datei mit dem Namen `webserver.py` und kopieren sie den unteren Programmcode in die Datei.
+- [ER] Kopieren Sie die Datei `webserver.py` auf Ihr System.
 
 ```python
- from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello():
-    return 'Hello Tunnel'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+[INCLUDE::webserver.py]
 ```
+
 - [ER] Stellen Sie sicher, dass sie [PARTREF::venv] eingerichtet haben.
 
 ### Starten des Webservers und des Porttunnels

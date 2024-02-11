@@ -2,7 +2,8 @@ title: SSH-Reversetunnel
 stage: draft
 timevalue: 1.0
 difficulty: 3
-assumes: SSH, SSH-Tunnel
+assumes: SSH
+requires: SSH-Tunnel
 ---
 [SECTION::goal::idea]
 
@@ -23,7 +24,7 @@ Ein Reversetunnel wird mit dem Flag `-R` aufgerufen.
 
 ### Reversetunnel
 
-- [EC] Starten Sie den Webserver aus der Aufgabe [PARTREF::SSH] auf Ihrem Rechner.
+- [EC] Starten Sie den Webserver aus der Aufgabe [PARTREF::SSH-Tunnel] auf Ihrem Rechner.
 
 - [EC] Verbinden Sie sich per SSH auf `andorra` mit aktiviertem Reversetunnel auf den Port aus dem Skript und mit aktivierter X11-Weiterleitung.
 

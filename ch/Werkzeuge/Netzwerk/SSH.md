@@ -22,10 +22,8 @@ Die Sicherung von Daten durch Verschlüsselung ist in vielen Bereichen moderner 
 
 ### Prüfen ob SSH installiert ist
 
-- [ER] Prüfen Sie auf Ihrem System oder Ihrer WSL-Umgebung mit dem Befehl  
-   `dpkg -l | grep openssh-client`  
-   ob der openssh-client auf Ihrem System installiert ist.  
-   Ist der openssh-client nicht auf Ihrem System installiert, holen Sie das mit diesen zwei Befehlen nach.  
+- [ER] Stellen Sie sicher, dass der `openssh-client` installiert ist: `dpkg -l | grep openssh-client`  
+   Ist der openssh-client nicht auf Ihrem System installiert, holen Sie das mit diesen zwei Befehlen nach:  
    `sudo apt update`  
    `sudo apt -y install openssh-client`  
 
@@ -66,11 +64,6 @@ Die Sicherung von Daten durch Verschlüsselung ist in vielen Bereichen moderner 
     Geben Sie Ihre Passphrase ein.  
     Verbinden Sie sich nun ein letztes Mal mit `andorra.imp.fu-berlin.de`.  
 
-[WARNING]
-[ENDWARNING]
-[HINT::VisibleTitle]
-[ENDHINT]
-
 [ENDSECTION]
 [SECTION::submission::trace]
 
@@ -78,6 +71,3 @@ Die Sicherung von Daten durch Verschlüsselung ist in vielen Bereichen moderner 
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
-.
-[ENDINSTRUCTOR]
