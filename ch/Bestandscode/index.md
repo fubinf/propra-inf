@@ -1,18 +1,14 @@
 title: Arbeiten mit Bestandscode
 ---
+Im Studium hat man meist mit Software zu tun, die man von Null an entwickelt.
+Das kommt im Leben professioneller Softwareentwickler_innen jedoch nur selten vor,
+sondern die meiste Zeit ändert, repariert oder erweitert man eine Software,
+die schon lange da ist: Bestandscode.
 
-TODO_2_hofmann: Dies ist der Textteil der Homepage für das Kapitel 'Bestandscode'.
+Das wirft viele ganz eigene Probleme auf.
+Zwei der wichtigsten lernen wir in diesem Kapitel kennen:
 
-Ideen für Aufgaben:
-
--    Mittelkleines Open-Source-Projekt P auswählen und Code holen
--    Ggf. Dokumentation sichten: Architektur/Entwurfsstruktur/Konzepte; Vorgaben und Verfahren zur Mitarbeit
--    Tutorial (wir machen mehrere Vorschläge) über Codeverstehen lesen. Ausprobieren. Wichtigste Erkenntnisse formulieren.
--    Mit eigenen Worten beschreiben: Was sind die wichtigsten Konzepte (nicht nur Klassennamen!) von der Architektur von P?
--    Welche Teile des Codes deckt die Testsuite gut ab? Schlecht ab?
--    Tests ergänzen
--    Eine größere Quellcode-Datei linter-konform machen.
--    In einer Datei technische Schulden finden und bereinigen.
--    Issue-Tracker sichten, einfache Issue auswählen und lösen.
-     Als Pull-Request einreichen; ggf. nachbessern; akzeptiert bekommen 
--    Für jede sonstige Aufgabe mit Ergänzung oder Verbesserung des Codes gibt es als optionale Zusatzaufgabe: als Pull-Request einreichen.
+- Bestandscode hat nicht überall eine günstige Struktur.
+  Wie verbessert man die, um den Code leichter verstehen und ändern zu können?
+- Bestandscode ist umfangreich und teilweise kompliziert.
+  Wie versteht man genug davon, um die nächste Änderung zu machen?
