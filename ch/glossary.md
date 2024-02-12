@@ -80,6 +80,17 @@ Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwickl
 
 ## C
 
+[TERM::Charakterisierungstest|Characterization Test]
+Ein [TERMREF2::Modultest::Modul-] oder [TERMREF::Integrationstest],
+der aber nicht überprüft, ob das Verhalten korrekt ist,
+sondern nur, ob es "wie bisher" ist.
+Das beim Erstellen des Tests aktuell Verhalten der Software wird dabei 
+als korrekt angenommen und mit dem Test festgeschrieben.
+
+Eine Menge solcher Tests, die den Eingaberaum gut abdeckt, _charakterisiert_
+also das Verhalten der Software.
+[ENDTERM]
+
 
 ## D
 
@@ -343,6 +354,29 @@ die dann anschließend durch das Rahmenwerk aufgerufen werden.
 
 Dieses Funktionsprinzip ist bekannt als Kontrollumkehr (inversion of control)
 oder Hollywood-Prinzip: _"Don't call us, we'll call you"_.
+[ENDTERM]
+
+[TERM::Refactoring|Refaktorisierung]
+Eine Veränderung der Struktur einer Software, die das Verhalten der
+Software unverändert lässt. Dient zur Pflege der Struktur.
+
+Wenn man eine Software viele Male ändert und erweitert, verfällt dabei
+ihre Entwurfsstruktur, wenn man sich nicht aktiv dagegenstemmt.
+Man muss also neben den gewünschten Änderungen am Verhalten der Software
+zusätzlich welche machen, die "nur" der Strukturverbesserung dienen.
+
+Es hat sich bewährt, diese beiden Sorten von Änderung nicht zu vermischen,
+sondern strikt getrennt durchzuführen, denn wenn man nur die Struktur
+verändert (nicht das Verhalten; das Verhalten wird lediglich "refaktorisiert") 
+bleiben vorhandene automatisierte Tests gültig
+und man kann sich mir deren Hilfe versichern, dass man beim Strukturverändern
+das Verhalten nicht versehentlich doch mitverändert hat.
+Nur mit dieser Absicherung hat man den Mut, solche Refactorings
+wirklich immer durchzuführen, wenn sie sinnvoll sind.
+
+Es gibt einen weitgehend kanonischen Katalog von elementaren Refactoring-Operationen,
+aus denen sich alle Refactorings zusammensetzen lassen:
+https://refactoring.com/
 [ENDTERM]
 
 [TERM::Request|Anfrage]
