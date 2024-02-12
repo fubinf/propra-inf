@@ -1,6 +1,6 @@
 # Aufgabenideen
 
-## ch/basis (prechelt+hofmann)
+## ch/Basis (hofmann)
 
 Nur das Nötigste, um arbeitsfähig zu sein:
 Technische Infrastruktur aufsetzen (Python, pip, IDE, repo), 
@@ -10,9 +10,23 @@ Rolle von Hints, Submission-Arten und -Formate),
 Arbeitszeiterfassung in Commits
 
 
-## ch/altcode 
+## ch/Bestandscode 
 
-### altcode/codereading (hofmann)
+Ideen für Aufgaben:
+
+-    Mittelkleines Open-Source-Projekt P auswählen und Code holen
+-    Ggf. Dokumentation sichten: Architektur/Entwurfsstruktur/Konzepte; Vorgaben und Verfahren zur Mitarbeit
+-    Tutorial (wir machen mehrere Vorschläge) über Codeverstehen lesen. Ausprobieren. Wichtigste Erkenntnisse formulieren.
+-    Mit eigenen Worten beschreiben: Was sind die wichtigsten Konzepte (nicht nur Klassennamen!) von der Architektur von P?
+-    Welche Teile des Codes deckt die Testsuite gut ab? Schlecht ab?
+-    Tests ergänzen
+-    Eine größere Quellcode-Datei linter-konform machen.
+-    In einer Datei technische Schulden finden und bereinigen.
+-    Issue-Tracker sichten, einfache Issue auswählen und lösen.
+     Als Pull-Request einreichen; ggf. nachbessern; akzeptiert bekommen 
+-    Für jede sonstige Aufgabe mit Ergänzung oder Verbesserung des Codes gibt es als optionale Zusatzaufgabe: als Pull-Request einreichen.
+
+### Bestandscode/codereading (hofmann)
 
 - An kleinen Beispielen verstehen, was Codeverstehen einfach oder schwierig macht:
   Namen, gute Hilfsabstraktionen, einfache statt clevere Logik.
@@ -22,13 +36,13 @@ Arbeitszeiterfassung in Commits
 - Wo wird vermutlich Funktion X realisiert? Suche auf Basis von Namen:
   Verzeichnisse, Dateien, Klassen. Dann ggf. Verfolgung im Code mit Ctrl-Click.
 
-### altcode/logreading (hofmann)
+### Bestandscode/logreading (hofmann)
 
 Nutzung existierender Loggingfunktionalität, um grobe Abläufe in der Software zu verstehen.
 Geht natürlich nur, wenn passende Info in den Logs vorhanden ist (existierende Logs)
 oder beschafft werden kann (loglevel konfigurieren, dann passende Aktionen in der Software auslösen).
 
-### altcode/stepping (pietrak+hofmann)
+### Bestandscode/stepping (pietrak+hofmann)
 
 Der Debugger ist nicht nur hilfreich zum Defektlokalisieren, sondern eventuell auch
 zum Programmverstehen, weil sich der Computer niemals bei der Frage vertut,
@@ -37,7 +51,7 @@ Außerdem hat er ein sehr viel größeres Arbeitsgedächtnis als der Mensch.
 
 Dies mit einem geeigneten Szenario verdeutlichen, vermutlich mit einem nicht sooo großen Programm.
 
-### altcode/refactoring (pietrak)
+### Bestandscode/Refactoring* (pietrak)
 
 - Am kleinen Beispiel üben: Code verständlicher machen durch
   Rename, Extract variable, Extract method.  
@@ -58,7 +72,6 @@ Guter Anlaufpunkt: <https://refactoring.guru/>
   - Rename
   - Extract Variable
   - Extract Method
-  - Extract Class
   - Pull Members Up/Push Members Down
   - Invert Boolean
   - Convert to Python Package/Module
@@ -76,7 +89,8 @@ Guter Anlaufpunkt: <https://refactoring.guru/>
   - dynamische Typisierung
     - TODO_3 Aufgabe für Typing in Python nötig
 
-### altcode/debugging (pietrak)
+
+## ch/Debugging (pietrak)
 
 Soll ein Verständnis dafür aufbauen, welche Arten von Bugs existieren und wie man diese vermeidet bzw.
 ihnen auf die Schliche kommt.
@@ -105,25 +119,6 @@ ihnen auf die Schliche kommt.
     - Fehlende Ausdrücke
     - Ausdruck steht am falschen Ort
 
-- Mindset
-  
-  Basierend auf "Debugging by Thinking - A Multidisciplinary Approach". 
-  Studierende sollen das Buch als PDF über die Uni-Bibliothek beziehen und ausgewählte Stellen lesen.
-  Soll trainieren zu verstehen, wie Problemlösungsstrategien zum Finden von Bugs funktionieren.
-  Grundlagenarbeit, also DIFF2.
-  Erklärende Texte stehen aber in der Quelle.
-  Abgabe besteht aus Reflexion.
-  
-  TODO_2_pietrak Aufgaben sind noch zu lang.
-  
-  Way of the...
-  - Detective
-  - Computer Scientist
-  - Engineer
-  - Mathematician
-  - Psychologist
-  - Safety Expert
-
 - Werkzeuge zum Debuggen
 TODO_1_pietrak Eine richtige Motivation für diesen Teil schreiben
   
@@ -146,9 +141,10 @@ TODO_1_pietrak Eine richtige Motivation für diesen Teil schreiben
   - Reproduktion 
   - Hypothesenbildung und Hypothesenprüfung
 
-## ch/libs
 
-### libs/stdlib (alle zusammen?)
+## ch/Bibliotheken
+
+### Bibliotheken/stdlib (alle zusammen?)
 
 Hier liegen zahlreiche kleine Aufgaben, mit denen man einzelne oft benötigte Teile der 
 Python-Standardbibliothek ausprobiert.
@@ -184,7 +180,7 @@ Python-Standardbibliothek ausprobiert.
 
 Vermutlich ist das Dranschreiben von Profilen hier eine unsinnige Idee?
 
-### libs/chooselib (???)
+### Bibliotheken/chooselib (???)
 
 Bibliothek für bestimmten Zweck suchen und erlernen.
 Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
@@ -194,14 +190,14 @@ Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
 - Nach welchen Merkmalen wählt man eine Bibliothek aus?
 - Wie lernt man das Nötige für einen schmalen Anwendungsfall (Doku vs. stackoverflow)?
 
-### libs/pandas
+### Bibliotheken/pandas
 
 - Pandas installieren, pandas101
 - Struktur der Doku verstehen
 - Theorie: Series, DataFrame, Index, MultiIndex: Zweck, Unterschiede, Gemeinsamkeiten.
 - Pandas-Cheatsheet: CSV-Tabelle einlesen, diverse Arten von Datenumstrukturieren ausprobieren
 
-### libs/matplotlib
+### Bibliotheken/matplotlib
 
 Assumes pandas
 
@@ -215,15 +211,9 @@ Assumes pandas
 - Dito ohne Namensvorgaben.
 
 
-## ch/methods
+## ch/Sprachen
 
-Mögliche bessere Heimat für Altcode (ersetzt das ganze Kapitel),
-Debugging, Refactoring.
-
-
-## ch/sprache
-
-### sprache/sh (condric+hüster?)
+### Sprachen/sh (condric+hüster?)
 
 Puh, wie man das in eine vernünftige Lernreihenfolge bringt, ist nicht offensichtlich.  
 Es wäre schön, die Trennung zwischen der Shellsprache (inkl. builtins) und den Utilities zu vermitteln.  
@@ -244,19 +234,19 @@ Shellprozeduren.
 Typische Idiome in Shellskripten.
 
 
-### sprache/bash (condric+hüster?)
+### Sprachen/bash (condric+hüster?)
 
 Die wichtigsten Erweiterungen ggü. sh bezüglich Sprache, Variablen, Builtins, etc.
 
 Ziel: Verstehen, dass sh (auf allen Plattformen vorhanden) und bash (deutlich erweitert)
 verschiedene Dinge sind.
 
-### sprache/regexp (hüster?)
+### Sprachen/regexp (hüster?)
 
 Basiskurs in "einfach", fortgeschrittenes Zeug in "mittel".
 Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall kennenlernt.
 
-### sprache/python1 (pietrak+alle gemeinsam?)
+### Sprachen/python1 (pietrak+alle gemeinsam?)
 
 Aufgaben mit DIFF1 als unvollkommene Starthilfe, überwiegend für Leute mit zu niedrigem Wissen.
 Wiederholung (manches ist aber auch neu!) der absoluten Essentials: 
@@ -273,7 +263,7 @@ import, etc.
 
 Vermutlich sinnvoll als Lückentext, sodass sehr kleine und eingegrenzte Aufgaben entstehen?
 
-### sprache/python2 (???)
+### Sprachen/python2 (???)
 
 Fortgeschrittenere Konstrukte:
 *args, **kwargs, 
@@ -289,7 +279,7 @@ Alternativlösung: wir weisen bei den Programmieraufgaben auf diese Konstrukte h
 etwas, das man dabei lernen und benutzen kann oder soll.
 Das ist aber nicht zielgenau, wenn die Aufgaben Spielraum bei der Entwurfsstruktur haben.
 
-### sprache/pythonpraxis (prechelt)
+### Sprachen/Pythonpraxis (prechelt)
 
 Eine Reihe von Aufgaben, in denen nach und nach die CLI-Anwendung
 `mlh` ("my little helpers") programmiert wird.
@@ -329,7 +319,7 @@ Voran geht eine Teilaufgabe für den Rahmen mit `argparse_subcommands` (das auch
 benutzt wird; Struktur einfach dort abgucken)
 
 
-### sprache/c
+### Sprachen/C
 
 - Compiler installieren, Hello World
 - Datei einlesen, Länge der längsten und der kürzesten (nichtleeren) Zeile bestimmen
@@ -345,20 +335,20 @@ benutzt wird; Struktur einfach dort abgucken)
 - Aus Unter-Unteraufruf gezielt eine lokale Variable im Unter-Aufruf verändern.
 - Betriebssystemaufruf mit handgeklöppelter Datenstruktur machen
 
-### sprache/sql
+### Sprachen/SQL
 
 Ein paar Aufgaben zu mittelkomplexen Abfragen (mit etwas Verschacheltung)
 und mittelkomplexen Updates.  
 Assumes: sqlite
 
-### sprache/dsls
+### Sprachen/DSLs
 
 - Was ist eine DSL? (interne, externe)
 - Grundlagen/häufigste Fälle von awk
 - Grundlagen/häufigste Fälle von sed
 - `jq`, `jid`, `jgrep`
 
-### sprache/othershells
+### Sprachen/Andere-Shells
 
 Alternative Shells. 
 
@@ -368,7 +358,8 @@ Alternative Shells.
 - Zsh: Die Anpassbarkeit bestaunen. Evtl. [Oh my zsh](https://ohmyz.sh/) durchstöbern.
   Reflektion darüber.
 
-## ch/testen (ruhe)
+
+## ch/Testen (ruhe)
 
 Folgende Voraussetzungen sollen gelten / geschaffen werden:
 
@@ -412,11 +403,12 @@ Aufgabenbereiche:
 - Resource: BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies  
   <https://dl.acm.org/doi/10.1145/3368089.3417943>
 
-## ch/tools
+
+## ch/Werkzeuge
 
 Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
 
-### tools/bash2 (condric+hüster?)
+### Werkzeuge/bash2 (condric+hüster?)
 
 (Das heißt bash2, weil es schon ch/sprache/bash gibt und taskgroups eindeutig sein müssen.)
 
@@ -439,7 +431,7 @@ Beispiele für interaktive Idiome:
 Beispiele für programmatische Idiome:
 - ...
 
-### tools/network (condric)
+### Werkzeuge/Netzwerk (condric)
 
 - ssh (mehrere Aufgaben) 
   - Schlüsselpaar erzeugen, ~/.ssh, ssh, ssh-agent (alias ins .bashrc), ssh-copy-id, login damit
@@ -451,7 +443,7 @@ Beispiele für programmatische Idiome:
 
 Lernziel ist immer, typische Anwendungsfälle und Stärken zu verstehen.
 
-### tools/localadmin (condric)
+### Werkzeuge/Admin (condric)
 
 - lokales System, z.B. evtl.: w, uptime, whoami, df, du, tail -f, mount, ps, pgrep, kill/pkill, top/htop, ...  
   Lernziel: Situationen verstehen, in denen man das jeweils gebrauchen kann.
@@ -460,7 +452,7 @@ Lernziel ist immer, typische Anwendungsfälle und Stärken zu verstehen.
 - fortgeschrittenes Dateihandling: file, dd, tar, zip, gzip, ...
 - root sein, z.B. evtl.: sudo (mit sudoers, visudo etc.), su, Ethos, Vorsicht, /etc/passwd, Gruppen/Gruppenrechte, ...
 
-### tools/git (hüster)
+### Werkzeuge/git (hüster)
 
 Reizvolle didaktische Aufgabe!  
 Was gehört zum Grundwissen, was ist schon deutlich fortgeschritten?  
@@ -499,7 +491,7 @@ Speziellerer Kram:
 - ...
 
 
-### tools: sonstige Ideen
+### Werkzeuge: sonstige Ideen
 
 - IDE
   - Unterschied IDE und Editor
@@ -528,14 +520,13 @@ Speziellerer Kram:
 - docker?
 
 
-## ch/web
+## ch/Web
 
 - assumes: Wissen über http-Header, curl  
   https://icanhazdadjoke.com liefert im Browser etwas anderes als wenn man es mit curl abruft.
   Was vermuten Sie, wie funktioniert das? (User-Agent abfragen).
   Finden Sie eine Website, die Ihnen hilft zu prüfen, ob die Voraussetzung für ihre Vermutung
   gegeben ist.
-
 
 
 ## Aufgabenideen ohne Heimat
