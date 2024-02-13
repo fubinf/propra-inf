@@ -1,22 +1,17 @@
-title: Gilded Rose 02 - Refactoring von Legacy Code
+title: "Gilded Rose: Refaktorieren von Legacy Code"
 stage: alpha
 timevalue: 1
 difficulty: 3
-profiles:
-assumes: refactoring
 requires: 01gildedrose_tests
 ---
 [SECTION::goal::experience]
-
-- Ich kann Code refaktorieren, ohne die Funktionalität zu ändern.
-- Ich kann Code refaktorieren, um die Wartbarkeit und das Verständnis des Codes zu verbessern.
-
+- Ich kann Code refaktorieren, um die Wartbarkeit und das Verständnis des Codes zu verbessern, 
+  ohne die Funktionalität zu ändern.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
-Beim Betrachten des Codes des [Gilded Rose-Kata](https://github.
-com/emilybache/GildedRose-Refactoring-Kata/tree/main) sollte Ihnen auffallen, dass die benutzte 
-Logik viel Komplexität in Anspruch nimmt.
+Beim Betrachten des Codes des [Gilded Rose-Kata](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/main) 
+sollte Ihnen auffallen, dass die benutzte Logik viel Komplexität in Anspruch nimmt.
 Setzen Sie sich mit dem Code auseinander und refaktorieren Sie das Programm.
 Beachten Sie dabei, welche Änderungen Sie laut der GildedRoseRequirements.txt durchführen dürfen 
 und welche nicht.
