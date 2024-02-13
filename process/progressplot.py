@@ -1,3 +1,4 @@
+"""python process/progressplot.py process/progress.csv process/progressplot.pdf"""
 import sys
 
 # pandas and matplotlib are not in sedrila's requirements-dev.txt, install them manually
