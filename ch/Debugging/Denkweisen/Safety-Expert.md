@@ -4,8 +4,8 @@ timevalue: 1.5
 difficulty: 3
 ---
 [SECTION::goal::idea]
-- Ich verstehe, welche Methoden Sicherheitsexperten verwenden, um aus Problemen zu lernen,
-  um damit den Lösungsaufwand abschätzen oder sogar künftige Probleme verhindern zu können.
+Ich verstehe, welche Methoden Sicherheitsexperten verwenden, um aus Problemen zu lernen,
+um damit den Lösungsaufwand abschätzen oder sogar künftige Probleme verhindern zu können.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -68,16 +68,10 @@ Erwarten Sie, dass Sie je solche Umstände haben werden?
 [INCLUDE::../../_include/Markdowndokument.md]
 [ENDSECTION]
     
-[INSTRUCTOR::Echte Auseinandersetzung sichtbar?]  TODO_1_prechelt an zentrale Stelle verschieben?
+[INSTRUCTOR::Echte Auseinandersetzung sichtbar?]
 Man kann bei 11.4 abstruse Dinge aussuchen, die wir nicht akzeptieren sollten.
-Aber es kommt uns weniger auf ein perfektes Auswahlergebnis an als darauf,
-dass sich die Studierenden erkennbar mit den Ideen des Kapitels auseinandergesetzt haben
-und sie zumindest überwiegend richtig verstanden haben.
-Vor allem sollen also die angegebenen Gründe nachvollziehbar sein (selbst, wenn man
-ihnen dann vielleicht nicht zustimmt) und sie müssen auf Eigenschaften des Studis Bezug nehmen.
 
-Dass sie aufgrund ihrer wenigen Erfahrung eventuell schlechte Entscheidungen fällen,
-sehen wir aber _nicht_ als Problem an, denn das löst sich mit der Zeit von selbst.
+[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
 
 Eine Zusammenfassung des Kapitels steht auf S. 384-385.
 [ENDINSTRUCTOR]
