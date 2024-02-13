@@ -91,6 +91,11 @@ Eine Menge solcher Tests, die den Eingaberaum gut abdeckt, _charakterisiert_
 also das Verhalten der Software.
 [ENDTERM]
 
+[TERM::Code Convention|Programming Style|Programmierstil]
+Ein Programmierstil und die Vorgaben dazu regeln, „wie“ ein Programm, d. h. sein Quellcode, 
+in formaler und struktureller Hinsicht gestaltet sein soll – 
+unabhängig davon, „was“ das Programm leisten soll.
+[ENDTERM]
 
 ## D
 
