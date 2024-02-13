@@ -127,6 +127,12 @@ Dazu gehören verschiedene Testmethoden wie [TERMREF::Modultest], [TERMREF::Inte
 
 ## E
 
+[TERM::Encoding|Zeichenkodierung]
+Die Art und Weise, wie eine Nachricht oder ein Zeichenvorrat als Folge von Bits oder von Bytes dargestellt wird.
+
+https://de.wikipedia.org/wiki/Zeichenkodierung
+[ENDTERM]
+
 [TERM::Executable|ausführbare Datei]
 Eine Datei, deren "executable"-Bit gesetzt ist (mit dem Kommando `chmod`)
 und die entweder Maschinencode enthält
