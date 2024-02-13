@@ -39,7 +39,7 @@ Verwechseln Sie diese nicht mit dem Python Debugger [PARTREF::pdb].
 [EQ] Sind Sie der Meinung, dass man diese Fehlerquellen absolut verhindern kann?
 Warum sind sie dieser Meinung?
 
-[EQ] In Kapitel 13.5 werden Code Konventionen besprochen. 
+[EQ] In Kapitel 13.5 werden [TERMREF::Code Convention] besprochen. 
 Für Python existiert z. B. die [PEP 8](https://peps.python.org/pep-0008/).
 Vergleichen Sie die im Kapitel genannten Regeln mit PEP 8.
 Welche der Regeln finden sich nicht in PEP 8?
