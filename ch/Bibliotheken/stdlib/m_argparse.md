@@ -65,7 +65,7 @@ wobei die flags auch als `-c`, `-m` oder `--depth` oder `-d`, `-b` abgekürzt we
 
 Geben Sie zwei Dateien ab 
 - `argparsetest.py`
-- `argparse.md` mit einem Protokoll von der Kommandozeile, in dem Sie `argparsetest` viermal 
+- `m_argparse.md` mit einem [PARTREFMANUAL::Kommandoprotokolle::Kommandoprotokoll], in dem Sie `argparsetest` viermal 
   mit sehr verschiedenen Argumenten aufrufen (davon zweimal korrekt und zweimal unzulässig),
   um zu zeigen, dass es wohl wie gewünscht funktioniert.
 

@@ -3,7 +3,7 @@ stage: draft
 timevalue: 1.0
 difficulty: 3
 explains: Framework
-assumes: argparse, pip
+assumes: m_argparse, pip
 ---
 [SECTION::goal::trial,product]
 
