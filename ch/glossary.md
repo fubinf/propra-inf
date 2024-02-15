@@ -99,6 +99,11 @@ unabhängig davon, „was“ das Programm leisten soll.
 
 ## D
 
+[TERM::Deduktion|deduktive Methode|deduktiver Schluss]
+Der Prozess des Ziehens logisch zwingender Schlussfolgerungen. 
+Mittels Deduktion können aus Theorien Aussagen über Einzelfälle gewonnen werden.
+[ENDTERM]
+
 [TERM::Default|Defaultwert|Default-Argument]
 Ein [TERMREF::Argument] zur Übergabe an einen [TERMREF::Parameter],
 das implizit benutzt wird, wenn man nicht explizit ein Argument übergibt. 
