@@ -1,5 +1,5 @@
 title: Die Methoden des Professor Solomons 
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 2
 ---
@@ -32,6 +32,7 @@ sondern _Ihre_ persönliche Stellungnahme.
 [ENDSECTION]
 
 [INSTRUCTOR::Was macht Professor Solomon aus?]
-Manche der Prinzipien scheinen eher weniger praktikabel oder weniger relevant,
-aber wir akzeptieren alles, was vernünftig _personenbezogen_ begründet ist.
+[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+
+Eine Zusammenfassung des Kapitels gibt es auf S. 60-61.
 [ENDINSTRUCTOR]
