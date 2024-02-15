@@ -189,6 +189,17 @@ Anfrage erfolgreich war, eine Weiterleitung erforderlich ist, ein Fehler aufgetr
 Informationen über den Status der Anfrage liefern.
 [ENDTERM]
 
+[TERM::Hypothese]
+Eine Hypothese im wissenschaftlichen Sinne ist eine auf dem Stand der Wissenschaft gegründete 
+Annahme, die zwar geeignet ist, bestimmte Erscheinungen zu erklären, deren Gültigkeit aber noch 
+nicht bewiesen oder verifiziert ist.
+
+In der Logik werden Hypothesen in Form von logischen Aussagen formuliert. 
+In einem logischen Gespräch ist eine Hypothese die Prämisse eines Arguments, deren Wahrheit 
+zunächst ausgeklammert wird.
+Dabei wirken Hypothesen als Implikationen, die der Verteidigung einer These dienen.
+[ENDTERM]
+
 ## I
 
 [TERM::Integrationstest|Integration Test]
