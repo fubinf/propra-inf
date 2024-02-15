@@ -323,7 +323,7 @@ Beispiel: `PATH=/bin:/usr/bin:~/bin`
 [TERM::Payload|HTTP-Body]
 Der Teil einer Nachricht (insbesondere: einer API-Antwort),
 der die tatsächlichen Daten oder Informationen enthält, die von der Anfrage zurückgegeben
-werden. 
+werden.
 
 Bei HTTP heißt die Payload "Rumpf" (body), davor stehen die [TERMREF::Header].
 Der Rumpf kann z.B. JSON-, XML-, JPG-, PDF-, Text- oder beliebige Binärdaten enthalten.
@@ -336,6 +336,13 @@ Das Programm, mit dem man üblicherweise externe Bibliotheken von einem entsprec
 Server ("package index", meist wird pypi.org benutzt) lädt und installiert.
 
 Dokumentation: https://pip.pypa.io/en/stable/getting-started/
+[ENDTERM]
+
+[TERM::Pipeline]
+Das ist eine Abfolge von automatisierten Schritten oder Prozessen, die in einem
+Workflow ausgeführt werden, um bestimmte Aufgaben oder Abläufe zu erledigen. Sie ermöglicht
+die Automatisierung von komplexen Abläufen, indem sie verschiedene Schritte wie Builds, Tests,
+Bereitstellungen und mehr integriert.
 [ENDTERM]
 
 [TERM::Prompt]
