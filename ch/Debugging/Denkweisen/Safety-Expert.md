@@ -1,5 +1,5 @@
 title: Der Weg des Sicherheitsexperten
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 ---
