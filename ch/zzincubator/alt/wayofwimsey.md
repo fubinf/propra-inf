@@ -16,11 +16,6 @@ requires:
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-Besorgen Sie sich das Buch _Debugging by Thinking_ von Robert C. Metzger, z. B. als 
-elektronische Ressource über die Uni-Bibliothek. 
-Dieses Buch wird in dieser und den folgenden Aufgaben als Mittel dienen, um herauszufinden, wie 
-verschiedene Professionen an die Problemlösung in ihren Feldern herangehen und wie diese 
-Methoden beim Debugging helfen.
 Lesen Sie für diese Aufgabe das Kapitel 3 (S. 33-47), in denen der Charakter und die Methoden von 
 Lord Peter Wimsey im Kontext des Debugging beschrieben werden.
 
