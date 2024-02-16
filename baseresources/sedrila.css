@@ -38,6 +38,12 @@ body {
     line-height: 130%;
 }
 
+#preheader {
+  height: 1em;
+  margin-top: -1em;
+  background-color: white;
+}
+
 code {
     background-color: #eee;
 }
@@ -67,7 +73,7 @@ h2 {
     line-height: 0.95;
 }
 
-header {
+header, #preheader {
     display: flex;
     margin-bottom: 2ex;
     padding: 1em 0.5em 0.5em 0.5em;
@@ -84,7 +90,7 @@ summary {}
 
 /********** sidebar */
 
-.header {
+.header, #preheader {
   width: 100%;
   z-index: 1;
 }
@@ -430,6 +436,10 @@ summary {}
     margin-bottom: 1ex;
 }
 
+.glossary-term-block a {
+    scroll-margin-top: 100px;
+}
+
 .glossary-term-heading {
     font-weight: bold;
 }
@@ -519,6 +529,10 @@ summary {}
     a:visited {
         color: var(--main-color);
         filter: brightness(50%);
+    }
+
+    #preheader {
+        background-color: #222;
     }
 
     header {
