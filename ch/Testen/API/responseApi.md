@@ -1,5 +1,5 @@
 title: API Antworten verarbeiten
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 3
 profiles: TEST
