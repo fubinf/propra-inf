@@ -82,6 +82,7 @@ chapters:
       - slug: Denkweisen
       - slug: Häufige-Defektarten
       - slug: debuggingtools
+      - slug: Debugging-Praxis
   - slug: Bestandscode
     taskgroups:
       - slug: Refactoring-Grundlagen
