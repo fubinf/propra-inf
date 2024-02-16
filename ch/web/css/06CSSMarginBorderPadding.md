@@ -11,6 +11,6 @@ profiles: WEB
     
 
 !!! submission
-    Beschreiben Sie den Unterschied zwischen den Begriffen "Magin", "Border" und "Padding".
+    Beschreiben Sie den Unterschied zwischen den Begriffen "Margin", "Border" und "Padding".
     Es gibt insbesondere CSS-Eigenschaften, die nur für Border existieren. Welche sind das
     und was tun sie?

@@ -42,6 +42,10 @@ dass Python und Pip funktionieren.
 
 [INCLUDE::CheckPython.inc]
 
+[NOTICE]
+Je nach gewählter Distribution liegen die Programme auch als `python3` und `pip3` statt `python` und `pip` vor.
+[ENDNOTICE]
+
 [ENDSECTION]
 [INSTRUCTOR::Warnhinweise]
 

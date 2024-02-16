@@ -2,7 +2,7 @@
 Willkommen beim Programmierpraktikum (ProPra)!
 
 Auf dieser Seite ist erklärt, was das ProPra soll und wie es funktioniert.
-**Bittebitte sehr sorgfältig lesen und verstehen und bei Verständnisproblemen fragen.**
+**Bitte sehr sorgfältig lesen und verstehen und bei Verständnisproblemen fragen.**
 
 [INSTRUCTOR::Hinweise für Tutor_innen]
 Die Hinweise für die Tutor_innen sehen immer so aus wie dies hier.
