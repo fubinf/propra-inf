@@ -1,5 +1,5 @@
 title: Lokale Bereitstellung des System unter Test
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 1
 profiles: TEST
