@@ -133,3 +133,9 @@ Quellen dazu:
 - Namenskonventionen für Tasknamen.
 - Namenskonventionen für Taskgroupnamen.
 - Namen für die Kapitel.
+
+## 6. Zipfiles in PARTREF einbauen
+
+In `authors.md` ist in 1.9.1 dokumentiert, dass zipfiles über das [PARTREF::zipfilename] 
+referenzierbar sein sollen.
+Bisher ist das nicht implementiert, wäre aber konsistent mit allen anderen PARTREFs.
