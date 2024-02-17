@@ -24,7 +24,7 @@ Wer kein Stümper sein will, muss sich damit auskennen.
 
 ### Datei lesen, naiv
 
-- Laden Sie die Datei [encoding.zip](encoding.zip) herunter und packen Sie sie aus
+- Laden Sie die Datei [PARTREF::encoding.zip] herunter und packen Sie sie aus
   in das Verzeichnis `encoding` in Ihrem Arbeitsbereich.
 - Legen Sie ein Programm `open.py` an.
 - Schreiben Sie folgenden Code und lassen Sie ihn laufen:

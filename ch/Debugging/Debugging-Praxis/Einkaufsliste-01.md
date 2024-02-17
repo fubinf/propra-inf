@@ -27,7 +27,7 @@ Defekt aufzufinden und zu beheben.
 
 ### Erste Sichtung der Dateien
 
-- Laden Sie die Datei [grocery_list.zip](grocery_list.zip) herunter und packen Sie sie aus 
+- Laden Sie die Datei [PARTREF::grocery_list.zip] herunter und packen Sie sie aus 
   in das Verzeichnis `grocery_list` in Ihrem Arbeitsbereich.
 - Das Verzeichnis besteht aus drei Dateien.
   `recipes.json` bildet die Datengrundlage für die Rezepte und `ingredients.json` gibt an, wo 

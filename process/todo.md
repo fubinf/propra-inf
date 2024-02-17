@@ -64,9 +64,7 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 ### 2.3 Korrekturbedarf an sedrila
 
-- Volume report per stage.
-- Sinnvolle Konvention für slugs einführen. 
-- alphabetische Ordnung in glossary erzwingen, [TERMBLOCKSTART] für Reset
+- Formatkonvention für slugs einführen?
 - Macrocall: markdown_content speichern, daraus Zeilennummern errechnen?
 - `profiles` auf der Ebene `Taskgroup` erlauben? Im YAML-Teil angeben, im TOC anzeigen.
 
@@ -133,9 +131,3 @@ Quellen dazu:
 - Namenskonventionen für Tasknamen.
 - Namenskonventionen für Taskgroupnamen.
 - Namen für die Kapitel.
-
-## 6. Zipfiles in PARTREF einbauen
-
-In `authors.md` ist in 1.9.1 dokumentiert, dass zipfiles über das [PARTREF::zipfilename] 
-referenzierbar sein sollen.
-Bisher ist das nicht implementiert, wäre aber konsistent mit allen anderen PARTREFs.
