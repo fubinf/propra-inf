@@ -97,7 +97,7 @@ unabhängig davon, „was“ das Programm leisten soll.
 [TERM::CRUD|Create Read Update Delete]
 EIn Ausdruck der die grundlegenden Operationen bezeichnet, die auf Daten angewendet werden können:
 Erstellen, Lesen, Ändern, Löschen. Diese vier CRUD-Operationen bilden die grundlegenden Funktionen
-für die Interaktion mit Daten in den meisten Anwendungen. [TERMREF2::Regressionstest]s beziehen sich
+für die Interaktion mit Daten in den meisten Anwendungen. [TERMREF::Regressionstest]s beziehen sich
 auf dieses Schema zum Testen von Daten und Objekten, um die Zugverlässigkeit einer Anwendung
 sicherzustellen.
 [ENDTERM]
