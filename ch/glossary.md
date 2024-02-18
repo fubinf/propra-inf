@@ -353,6 +353,13 @@ die Automatisierung von komplexen Abläufen, indem sie verschiedene Schritte wie
 Bereitstellungen und mehr integriert.
 [ENDTERM]
 
+[TERM::Post Mortem|Post-Mortem-Analyse]
+Eine Analyse, die nach Ende des zu analysierenden Ereignisses durchgeführt wird.
+Dadurch lassen sich Vorfälle untersuchen, dokumentieren und zu Lernzwecken festhalten.
+Sie hat keine feste Form, enthält aber in der Regel die Gründe für den Vorfall, die Lösung des 
+Vorfalls und Nachbereitungen, die solche Vorfälle verhindern sollen.
+[ENDTERM]
+
 [TERM::Prompt]
 Eine Textzeichenfolge, die in der Kommandozeile angezeigt wird, um den
 Benutzer zur Eingabe eines Befehles aufzufordern. Sie enthält oft Informationen wie den
