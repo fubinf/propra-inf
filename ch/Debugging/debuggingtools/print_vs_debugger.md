@@ -4,7 +4,7 @@ timevalue: 1.5
 difficulty: 3
 profiles:
 explains:
-assumes: printfdebugging, pdb, idedebugging
+assumes: printfdebugging, pdb, IDE-Debugging
 requires:
 ---
 [SECTION::goal::idea]
@@ -29,7 +29,7 @@ in welchem Bereich der Code angewandt wird und welche Programmiersprache benutzt
 
 ### Ihre Aufgabe
 
-Sie haben sich bereits in den Aufgaben [PARTREF::printfdebugging], [PARTREF::pdb] und [PARTREF::idedebugging] 
+Sie haben sich bereits in den Aufgaben [PARTREF::printfdebugging], [PARTREF::pdb] und [PARTREF::IDE-Debugging] 
 mit den beiden hier gefragten Debugging-Arten auseinandergesetzt.
 Ihre Aufgabe besteht darin sich eine Meinung zum "heiligen Krieg" der Debugging-Tools zu bilden.
 Recherchieren Sie und begründen Sie ihre Aussagen, wenn nötig, zu den folgenden Fragen:

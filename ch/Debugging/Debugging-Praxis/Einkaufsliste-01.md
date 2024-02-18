@@ -2,7 +2,7 @@ title: Finden eines Defekts mittels Debugger und Fehlermeldungen
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: idedebugging
+assumes: IDE-Debugging
 ---
 [SECTION::goal::trial,product]
 Ich bin in der Lage mittels Debugger durch ein Programm zu navigieren und zielstrebig einen 

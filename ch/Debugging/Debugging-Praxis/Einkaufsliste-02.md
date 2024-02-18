@@ -2,7 +2,7 @@ title: Debugging eines Einkaufslisten-Generators mit falschem Output
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: idedebugging
+assumes: IDE-Debugging
 requires: Einkaufsliste-01
 ---
 [SECTION::goal::trial,product]
