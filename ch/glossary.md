@@ -75,6 +75,13 @@ und nur noch wenig Code selbst schreiben zu müssen.
 Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwicklung.
 [ENDTERM]
 
+[TERM::Breakpoint|Haltepunkt]
+Ein Breakpoint bezeichnet beim Debugging von Computerprogrammen eine besonders markierte Stelle 
+im Programm. 
+Erkennt ein Debugger beim Ausführen des Programms eine mit einem Breakpoint markierte Stelle, 
+wird hier die Verarbeitung der Befehle angehalten.
+[ENDTERM]
+
 ## C
 
 [TERM::Charakterisierungstest|Characterization Test]
@@ -92,6 +99,10 @@ also das Verhalten der Software.
 Ein Programmierstil und die Vorgaben dazu regeln, „wie“ ein Programm, d. h. sein Quellcode,
 in formaler und struktureller Hinsicht gestaltet sein soll –
 unabhängig davon, „was“ das Programm leisten soll.
+[ENDTERM]
+
+[TERM::Conditional Breakpoint|Bedingter Haltepunkt]
+Ein [TERMREF::Breakpoint], der erst ausgelöst wird, wenn eine vorgegebene Bedingung erfüllt ist.
 [ENDTERM]
 
 [TERM::CRUD|Create Read Update Delete]
