@@ -1,18 +1,14 @@
 title: Finden eines Defekts mittels Debugger und Fehlermeldungen
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 2
 assumes: idedebugging
 ---
 [SECTION::goal::trial,product]
 Ich bin in der Lage mittels Debugger durch ein Programm zu navigieren und zielstrebig einen 
-Defekt aufzufinden und zu beheben.
+[TERMREF::Defekt] aufzufinden und zu beheben.
 [ENDSECTION]
-[SECTION::background::default]
 
-.
-
-[ENDSECTION]
 [SECTION::instructions::detailed]
 
 ### Was soll das Programm können?
@@ -24,6 +20,12 @@ Defekt aufzufinden und zu beheben.
   scampi`" auswählen.
 - Die Ausgabe des Programms ist eine Liste von Zutaten, die Sie für dieses Menü einkaufen müssen.
 - Dabei sollen die Artikel nach Ihrer Abteilung im Supermarkt sortiert angegeben werden.
+
+[HINT::Gewünschter Output zur Eingabe `0,0,4`]
+```console
+[INCLUDE::Einkaufsliste_Gewünschter-Output.inc]
+```
+[ENDHINT]
 
 ### Erste Sichtung der Dateien
 
@@ -38,31 +40,30 @@ Defekt aufzufinden und zu beheben.
 
 - [EC] Führen Sie `grocery_list.py` in Ihrem Terminal aus. 
   Geben Sie als Input `0,0,1,2` ein.
-  Der gesuchte Output ist die Fehlermeldung des Programms.
-- In der Fehlermeldung werden Ihnen vier Zeilen im Code genannt.
+  Die gesuchte Ausgabe ist die Fehlermeldung des Programms.
+- In der Fehlermeldung werden Ihnen vier Zeilen im Quellcode genannt.
   Lesen Sie diese Liste von unten nach oben: 
-  [EQ] Was für eine Art von Defekt liegt vor? 
-  [EQ] Welches ist die erste Zeile, in der der Defekt auftritt?
-  [EQ] Welcher Funktionsaufruf löst den Defekt aus?
+    - [EQ] Was für eine Art von [TERMREF::Defekt] liegt vor? 
+    - [EQ] Welches ist die erste Zeile, in der der [TERMREF::Defekt] auftritt?
+    - [EQ] Welcher Funktionsaufruf löst den Defekt aus?
 - Öffnen Sie nun `grocery_list.py` in PyCharm.
-- Setzen Sie einen Breakpoint auf der in [EREFQ::1] gefundenen Zeile und starten Sie den Debugger.
-- [EQ] Prüfen Sie den Wert der Variable, die in [EREFQ::3] als Argument des Funktionsaufrufes 
+- Setzen Sie einen [TERMREF::Breakpoint] auf der in [EREFQ::2] gefundenen Zeile und starten Sie den Debugger.
+- [EQ] Prüfen Sie den Wert der Variable, die in [EREFQ::3] als Argument des Funktionsaufrufs 
   mitgegeben wird.
 - [EQ] Geben Sie über die Konsole des Debuggers die in [EREFQ::3] gefundene Funktion auf. 
   Geben Sie als Argument den Wert der Variable aus [EREFQ::4] ein.
   Sie werden eine Fehlermeldung erhalten.
   Um was für einen Fehler handelt es sich?
 - Suchen Sie die Stelle im Code, an der `all_ingredient_locs` erstellt worden ist und springen 
-  Sie zu der entsprechenden Funktion.
+  Sie zu der erzeugenden Funktion.
 - [EQ] In der Rückgabe dieser Funktion wird eine von Python mitgelieferte Funktion benutzt.
   Prüfen Sie nach, welchen Typ die Rückgabe in diesem Fall hat.
 
 [HINT::Die gefragte Funktion...]
 ...lautet `json.load()` und hat je nach Form des eingegebenen JSON einen anderen Rückgabetypen.
-Sie finden die Tabelle mit dieser Information unter [https://docs.python.org/3/library/json.
-html#encoders-and-decoders](https://docs.python.org/3/library/json.html#encoders-and-decoders).
+Sie finden die Tabelle mit dieser Information unter [https://docs.python.org/3/library/json.html#encoders-and-decoders](https://docs.python.org/3/library/json.html#encoders-and-decoders).
 [HINT::Das eingegebene Argument von `json.load()`...]
-...ist die Datei `ingredients.json`. Es handelt sich um ein Array.
+...ist die Datei `ingredients.json`. Es handelt sich um ein JSON-Array.
 [ENDHINT]
 [ENDHINT]  
 
@@ -71,13 +72,30 @@ html#encoders-and-decoders](https://docs.python.org/3/library/json.html#encoders
   eigentlich erwartet?
 - [ER] Implementieren Sie einen Fix an der in [EREFQ::6] gefundenen Stelle, der den richtigen 
   Datentypen zurückgibt.
-[ENDSECTION]
-[SECTION::submission::trace,snippet]
-[INCLUDE::../../_include/Kommandoprotokoll.md]
-Geben Sie den Quellcode der Funktion an, in der Sie den Fix implementiert haben, inklusive des 
-Fixes.
+- [EC] Führen Sie das Programm `grocery_list.py` im Terminal aus. 
+  Geben Sie die Ausgabe des Programms mit der Eingabe `0,0,4` an.
+
+[NOTICE]
+Wenn Sie der Aufgabe gefolgt sind, sollte der Output ohne Ausgabe von Fehlern funktionieren.
+Allerdings ist das Programm noch nicht fehlerfrei, wenn Sie die Ausgabe mit der Beispielausgabe 
+aus dem obigen Hinweis vergleichen. 
+Darum kümmern wir uns aber erst in [PARTREF::Einkaufsliste-02].
+[ENDNOTICE]
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
-.
+[SECTION::submission::trace,snippet,information]
+[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Markdowndokument.md]
+Geben Sie außerdem den Quellcode der Funktion an, in der Sie den Fix implementiert haben, inklusive 
+des Fixes.
+[ENDSECTION]
+
+[INSTRUCTOR::Inhalte der Abgabe]
+Der Weg zum Ziel der Aufgabe ist sehr geradlinig beschrieben, alle Abgaben sollten in etwa die 
+gleichen Inhalte haben.
+
+Der geforderte Fix findet in nur einer Funktion statt.
+
+Die vom Studi zurückgegebene Ausgabe entspricht _nicht_ der Beispielausgabe aus dem obigen Hinweis.
+Hierfür fehlt noch ein Fix aus der Aufgabe [PARTREF::Einkaufsliste-02].
 [ENDINSTRUCTOR]
