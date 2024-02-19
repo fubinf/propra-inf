@@ -2,14 +2,11 @@ title: Daten - Indexfehler
 stage: alpha
 timevalue: 1
 difficulty: 2
-profiles:
-assumes:
-requires:
 ---
 [SECTION::goal::idea]
 
-- Ich verstehe, welche Form Indexfehler im Code annehmen können
-- Ich habe eine Idee, wie ich Indexfehler aufspüren und lösen kann
+Ich verstehe, welche Form Indexfehler im Code annehmen können und habe einen solchen Defekt in 
+fremdem Code erfolgreich gefunden. 
 
 [ENDSECTION]
 
@@ -21,22 +18,21 @@ Indexfehler treten auf, wenn man einen ungültigen Index beim Durchlaufen eines 
 oder einer anderen Datenstruktur benutzt.
 Viele Sprachen benutzen nullbasierte Indizes.
 Das heißt, dass gültige Indizes bei einem Array der Größe `N` von `0` bis `N-1` gehen.
-Dies führt zu häufigen Indexfehlern, wenn man mittels einer Schleife durch so eine Datenstruktur läuft
-und mit dem Index 1 statt 0 beginnt.
+Dies führt zu häufigen Indexfehlern, wenn man mittels einer Schleife durch so eine Datenstruktur 
+läuft und mit dem Index 1 statt 0 beginnt.
 Das sollte man z. B. in Python bei der Nutzung der Funktion `range(1, n)` beachten, 
 die die Zahlen von `1` bis `n-1` beinhaltet.
 
-```text
+```python
 for i in range(1, n):
     # code that processes array[i]
 ```
-Wenn du die Indizierung bei 1 statt bei 0 beginnst, 
-verpasst der Code das erste Element des Arrays.
-(In Python kann man "range(n)" als Abkürzung für "range(0,n)" schreiben, 
-wodurch dieser Fehler seltener auftritt.)
-Den gleichen Fehler können Sie aber auch auf der anderen Seite machen, 
-indem man über das Ende des Arrays hinausgeht.
-Wir veranschaulichen dies mit einer for-Schleife in C:
+Wenn Sie die Indizierung bei 1 statt bei 0 beginnen, verpasst der Code das erste Element des 
+Arrays.
+In Python kann man `range(n)` als Abkürzung für `range(0,n)` schreiben, 
+wodurch dieser Fehler seltener auftritt.
+Den gleichen Fehler können Sie aber auch auf der anderen des Arrays machen.
+Wir veranschaulichen dies mit einer `for`-Schleife in C:
 
 ```c
 for (i = 0; i <= n; i++) { 
@@ -45,24 +41,27 @@ for (i = 0; i <= n; i++) {
 ```
 
 Manchmal werden solche Fehler auch als Off-By-One-Fehler bezeichnet. 
-Was genau hinter solchen Fehlern steckt, können Sie in der Aufgabe [PARTREFTITLE::a_offbyone] herausfinden.
+Was genau hinter solchen Fehlern steckt, können Sie in der Aufgabe [PARTREFTITLE::a_offbyone] 
+herausfinden.
 Allerdings können Indexfehler auch deutlich größer sein als nur eine Verschiebung um 1,
 besonders wenn der Index Teil einer Berechnung ist.
 
-```java
-int process_array(int my_array[]) {
-   int index_to_check;
-   for (int k = 0; k < my_array.length; k++) {
-        if (k < my_array.length / 2)
-            index_to_check = k;
-        else 
-            index_to_check = my_array.length + k;
-        check(k[index_to_check])
-    }
-}
+```python 
+def check(array_entry):
+    ... # do some stuff with array_entry
+
+def process_array(my_array):
+   for k in range(len(my_array)):
+     index_to_check: int 
+     if k < len(my_array) // 2:
+         index_to_check = k
+     else:
+         index_to_check = len(my_array) + k
+     check(my_array[index_to_check])
 ```
-Dieser Code berechnet `index_to_check` im `else`-Ausdruck falsch, 
-wodurch es zu einem Indexfehler kommt.
+
+Dieser Code berechnet `index_to_check` im `else`-Ausdruck falsch, wodurch es zu einem 
+Indexfehler kommt. 
 
 ### Ihre Aufgabe
 
@@ -91,6 +90,9 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
 3. Sehen Sie sich die Stellen an, an denen `outer_string` und `sub_string` indiziert werden.
    Welche Einschränkungen gibt es für die Indizierung in diesen Zeichenketten 
    und was bedeutet das für die Einschränkung der verwendeten Variablen?
+4. Überlegen Sie, wann genau das `else` der `for`-Schleife in Zeile 19 ausgelöst wird. Falls das 
+   nicht intuitiv klar ist, hilft ein Blick in die [Python-Dokumentation](https://docs.python.org/3/reference/compound_stmts.html#for).
+   
 
 [HINT::Lösungshinweis]
 Führen Sie die Funktion mit den folgenden Eingaben aus:
@@ -103,14 +105,13 @@ Führen Sie die Funktion mit den folgenden Eingaben aus:
    `outer_string == "ball"`, `sub_string == "llama"`
 [ENDHINT]
 
+- Defekt gefunden? Prima. Dann jetzt bitte in `d_indexing.py` korrigieren.
+- Machen sie einen Commit `d_indexing corrected`, der nur genau diese modifizierte Datei enthält.
+- [EC] `git show --color=always HEAD | cat`
+
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-Die Abgabe kann auf zwei Arten erstellt werden:
-
-- Sie können den oben gegebenen Code fixen und geben die .py-Datei ab.
-  Markieren Sie die Stelle, in der der Fix durchgeführt wurde, damit man ihn beim Prüfen schnell findet.
-- Oder sie erstellen eine Markdown-Datei und beschreiben die Stelle, an der der Bug auftritt.
-  Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
+[INCLUDE::../../_include/Kommandoprotokoll.md]
 
 [ENDSECTION]

@@ -2,34 +2,29 @@ title: Vergessenes - Lokalisierungsfehler
 stage: alpha
 timevalue: 1
 difficulty: 2
-profiles:
 assumes: b_expression
-requires:
 ---
 [SECTION::goal::idea]
 
-- Ich verstehe, in welcher Form Lokalisierungsfehler meinen Code fehlerhaft werden lassen 
-- Ich habe eine Idee, wie ich versuchen kann die Stelle zu finden, an der ein Ausdruck falsch platziert ist
-  und dies zu fixen
-
-[ENDSECTION]
-[SECTION::background::default]
-
-Der in dieser Aufgabe zu bearbeitende Code gehört zum Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Ein erster Code hierzu wird in der Aufgabe [PARTREFTITLE::b_expression] besprochen.
-Es ist nicht nötig diese Aufgabe vorher bearbeitet zu haben, da die beiden Probleme keinen Code teilen.
-Allerdings liefert die Bearbeitung der ersten Aufgabe etwas mehr Kontext über das ganze Programm.
+Ich verstehe, in welcher Form Lokalisierungsfehler meinen Code fehlerhaft werden lassen und
+habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+[WARNING]
+Der in dieser Aufgabe zu bearbeitende Code gehört zum Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
+Ein erster Code hierzu wird in der Aufgabe [PARTREFTITLE::b_expression] besprochen.
+Es ist nicht nötig diese Aufgabe vorher bearbeitet zu haben, da die beiden Probleme keinen Code teilen.
+Allerdings liefert die Bearbeitung der ersten Aufgabe etwas mehr Kontext über das ganze Programm.
+[ENDWARNING]
 
 ### Eine Heranführung an Lokalisierungsfehler
 
 Als Lokalisierungsfehler werden Fehler bezeichnet, bei dem sich Code in der falschen Reihenfolge 
 innerhalb des Programms befindet.
 Ein Beispiel wäre es, wenn die Initialisierung einer Variable innerhalb einer Schleife
-anstatt außerhalb:
+anstatt außerhalb stattfindet:
 
 ```python
 while some_condition():
@@ -39,7 +34,7 @@ while some_condition():
 
 Ein weiteres Beispiel für einen Lokalisierungsfehler ist es, wenn die Reihenfolge der Anweisungen
 nicht mit der gewünschten Reihenfolge der Operationen übereinstimmt. 
-Häufig werden ausversehen zwei Instruktionen vertauscht.
+Häufig werden aus Versehen zwei Instruktionen vertauscht.
 Der folgende Code versucht ein Element aus einer Liste auf 0 zu setzen, nachdem es den Wert
 zu einer Summe hinzugefügt hat.
 Leider sind die beiden Instruktionen vertauscht:
@@ -59,7 +54,7 @@ c = math.pow(a,2) + math.pow(b,2)
 ```
 
 Anweisungen können auch im falschen Block stehen, vor allem wenn die Blocks über mehrere Ebenen
-hinweg eingenestet sind:
+hinweg verschachtelt sind:
 
 ```python
 if found_blank:
@@ -72,7 +67,8 @@ if found_blank:
 ```
 
 In diesem Fall sollte der `return`-Ausdruck wahrscheinlich eine Ebene tiefer liegen 
-(die Funktion soll also nur zurückkehren, wenn `string_done` wahr ist, aber nicht nur, weil `found_blank` wahr ist).
+(die Funktion soll also nur zurückkehren, wenn `string_done` wahr ist, aber nicht nur, weil 
+`found_blank` wahr ist). 
 Natürlich könnte dieser Code auch ebenso richtig sein.
 Es ist nur wichtig zu begreifen, dass solche Fehler sehr einfach zu übersehen sind,
 wenn man sich den Code einfach nur so anschaut und der einzige Unterschied im Code die Reihenfolge der 
@@ -106,10 +102,12 @@ werden diese Karten von der Hand des Spielers abgeworfen.
 Falls Sie die Aufgabe [PARTREFTITLE::b_expression] nicht bearbeitet haben, ist hier eine kurze Erinnerung
 über die Datenstrukturen des Spiels "Go Fish", die auch in dieser Aufgabe benutzt werden:
 
-- Karten werden anhand ihres Rangs und ihrer Farbe identifiziert.
-  Dabei ist der Rang ein Element aus der Liste `["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]`
-  und die Farbe ein Element aus der Liste `["spades", "hearts", "diamonds", "clubs"]`.
-- Eine Hand ist ein Wörterbuch.
+- Karten werden anhand ihres Rangs und ihrer Farbe identifiziert.  
+  Dabei ist der Rang ein Element aus der Liste 
+  `["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]`
+  und die Farbe ein Element aus der Liste 
+  `["spades", "hearts", "diamonds", "clubs"]`.
+- Eine Hand ist ein Wörterbuch.  
   In jedem Element des Wörterbuchs ist der Schlüssel ein Rang und sein Wert eine Liste von
   dazugehörigen Farben, die der Spieler in seiner Hand hält.
   Wenn also z. B. ein Spieler die "Pik 3" und "Herz 3" in seiner Hand hält, aber keine weiteren 3er-Karten,
@@ -120,7 +118,8 @@ Falls Sie die Aufgabe [PARTREFTITLE::b_expression] nicht bearbeitet haben, ist h
 
 Die Funktion `check_card()` nimmt vier Parameter:
 
-- den Namen des Spielers als String (wird nur genutzt, um beim Ablegen sagen zu können, wer denn überhaupt ablegt),
+- den Namen des Spielers als String (wird nur genutzt, um beim Ablegen sagen zu können, wer denn 
+  überhaupt ablegt),
 - die Hand des Spielers,
 - den Rang, der in der Hand des Gegenspielers geprüft werden soll und
 - die Hand des Gegenspielers.
@@ -131,17 +130,16 @@ Die Funktion `check_card()` nimmt vier Parameter:
 
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
-1. Besitzt der Code implizierte `else`-Ausdrücke?
+1. Besitzt der Code implizierte `else`-Ausdrücke?  
    Welche Eingaben würden dazu führen, dass diese ausgeführt werden?
 2. Der Kommentar in Zeile 18 ist einer der wenigen Kommentare im Hauptalgorithmus, 
-   der auf einen nicht offensichtlichen Aspekt des Codes hinweist.
+   der auf einen nicht offensichtlichen Aspekt des Codes hinweist.  
    Ist der Kommentar richtig?
 3. Da die Anweisung in Zeile 23 in einem echten "Go Fish"-Spiel normalerweise nicht ausgeführt würde
    (man kann nicht nach einem bestimmten Rang fragen, wenn man nicht bereits eine Karte dieses
-   Rangs auf der Hand hat),
-   ist es ein riskanter Code.
+   Rangs auf der Hand hat), ist es ein riskanter Code.
    Er wurde vielleicht nie getestet, aber jemand, der diese Funktion von irgendwo anders aufruft,
-   könnte annehmen, dass sie funktioniert.
+   könnte annehmen, dass sie funktioniert.  
    Es ist also ein guter Bereich, um nach einem Fehler zu suchen.
    
 
@@ -191,15 +189,13 @@ opponent_hand = {"2": ["clubs", "spades"]}
 [ENDHINT]
 [ENDHINT]
 
+- Defekt gefunden? Prima. Dann jetzt bitte in `f_location.py` korrigieren.
+- Machen sie einen Commit `f_location.py corrected`, der nur genau diese modifizierte Datei enthält.
+- [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-Die Abgabe kann auf zwei Arten erstellt werden:
-
-- Sie können den oben gegebenen Code fixen und geben die .py-Datei ab.
-  Markieren Sie die Stelle, in der der Fix durchgeführt wurde, damit man ihn beim Prüfen schnell findet.
-- Oder sie erstellen eine Markdown-Datei und beschreiben die Stelle, an der der Bug auftritt.
-  Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
+[INCLUDE::../../_include/Kommandoprotokoll.md]
 
 [ENDSECTION]

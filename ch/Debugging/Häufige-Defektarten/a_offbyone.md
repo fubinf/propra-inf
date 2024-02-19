@@ -2,14 +2,11 @@ title: Algorithmisches - Off By One
 stage: alpha
 timevalue: 1
 difficulty: 2
-profiles:
-assumes:
-requires:
 ---
 [SECTION::goal::idea]
 
-- Ich verstehe, welche Form Off-By-One-Defekte im Code annehmen können
-- Ich habe einen solchen Defekt in fremdem Code erfolgreich gefunden
+Ich verstehe, welche Form Off-By-One-Defekte im Code annehmen können und habe einen solchen Defekt 
+in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
 
@@ -37,7 +34,7 @@ lastpagenumber: int
 pagecount = lastpagenumber - firstpagenumber
 ```
 
-Warum und um wieviel ist der Wert von `pagecount` falsch?
+Warum und um wie viel ist der Wert von `pagecount` falsch?
 
 Die zweite wichtige Art von OBOE entsteht, wenn man den falschen Vergleichsoperator benutzt,
 also `>` mit `>=` verwechselt oder `<` mit `<=` verwechselt.

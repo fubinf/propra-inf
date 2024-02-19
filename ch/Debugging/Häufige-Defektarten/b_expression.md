@@ -2,14 +2,11 @@ title: Irrtümer - Falscher gewählter Ausdruck
 stage: alpha
 timevalue: 1
 difficulty: 2
-profiles:
-assumes:
-requires:
 ---
 [SECTION::goal::idea]
 
-- Ich verstehe, in welcher Form falsch benutzte Ausdrücke meinen Code fehlerhaft werden lassen 
-- Ich habe eine Idee, wie ich versuchen kann falsch benutzte Ausdrücke im Code zu finden und zu fixen
+Ich verstehe, in welcher Form falsch benutzte Ausdrücke meinen Code fehlerhaft werden lassen und 
+habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
 
@@ -80,12 +77,12 @@ if ((count > min_value) and (count < max_value)):
 
 Im ersten Fall hat der `if`-Ausdruck geprüft, ob die Zählung außerhalb des gültigen Bereichs liegt.
 Dagegen hat der `if`-Ausdruck im zweiten Fall geprüft, ob die Zählung innerhalb des gültigen Bereichs liegt.
-Aber auch hier müsste man prüfen, ob `>=`und `<=` nicht eher die richtigen Operatoren gewesen wären.
+Hier müsste man prüfen, ob `>=`und `<=` nicht eher die richtigen Operatoren gewesen wären, aber
+das ist ein Thema für die Aufgabe [PARTREF::a_offbyone].
 
 Letztendlich ist es uninteressant, warum der Code falsch ist; er muss immer noch gefixt werden.
-Trotzdem ist ein Verschreiber eher zu erwarten als ein einzelner lokaler Fehler, während logische Fehler
-eher fundamentale Probleme aufzeigen.
-TODO_1_pietrak "einzelne lokale Fehler" klingt merkwürdig, prüfen
+Trotzdem ist ein Verschreiber eher zu erwarten als lokalisierte Fehler, während 
+logische Fehler eher fundamentale Probleme aufzeigen.
 
 ### Ihre Aufgabe
 
@@ -98,8 +95,10 @@ mit denen man eine Karte aus einem Deck zieht und diese in seine Hand legt.
 Erhält man vier Karten desselben Rangs, also z. B. 4 Asse, legt man diese Karten ab.  
 
 Karten werden anhand ihres Rangs und ihrer Farbe identifiziert.
-Dabei ist der Rang ein Element aus der Liste `["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]`
-und die Farbe ein Element aus der Liste `["spades", "hearts", "diamonds", "clubs"]`.
+Dabei ist der Rang ein Element aus der Liste 
+`["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]`
+und die Farbe ein Element aus der Liste 
+`["spades", "hearts", "diamonds", "clubs"]`.
 
 Ein Deck ist eine Liste mit 52 Elementen.
 Jedes Element im Deck ist ein Tupel der Form `(Rang, Farbe)`.
@@ -118,19 +117,24 @@ wenn keine Karte des gegebenen Rangs existiert, dann existiert kein Wert für di
 
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
-1. `deck` und `player_hand` sind im obigen Code nicht definiert. 
-   Wählen Sie geeignete Werte für diese beiden Datenstrukturen, damit Ihr Vorgehen reproduzierbar ist.
-   Stellen Sie sicher, dass beide Datenstrukturen der Form entsprechen, die über dem Code angegeben ist.
-2. Der Typ des Rückgabewerts der Funktion `get_card()` sollte ein Tupel sein.
-   Prüfen Sie, ob das wirklich der Fall ist (sofern die Argumente für `get_card()` die richtigen Typen haben).
-3. Höchstwahrscheinlich ist das `player_hand`-Wörterbuch die komplizierteste Datenstruktur in diesem Programm.
-   Untersuchen Sie alle Stellen, an denen das Wörterbuch benutzt oder modifiziert wird, 
+1. `deck` und `player_hand` sind im obigen Code nicht definiert.  
+   Wählen Sie geeignete Werte für diese beiden Datenstrukturen, damit Ihr Vorgehen 
+   reproduzierbar ist.  
+   Stellen Sie sicher, dass beide Datenstrukturen der Form entsprechen, die über dem Code 
+   angegeben ist.
+2. Der Typ des Rückgabewerts der Funktion `get_card()` sollte ein Tupel sein.  
+   Prüfen Sie, ob das wirklich der Fall ist (sofern die Argumente für `get_card()` die richtigen 
+   Typen haben).
+3. Höchstwahrscheinlich ist das `player_hand`-Wörterbuch die komplizierteste Datenstruktur in 
+   diesem Programm.  
+   Untersuchen Sie alle Stellen, an denen das Wörterbuch benutzt oder modifiziert wird,
    um sicherzustellen, dass `player_hand` richtig benutzt wird und konsistent bleibt.
-4. In Zeile 14 wird eine zufällige Zahl erzeugt.
+4. In Zeile 14 wird eine zufällige Zahl erzeugt.  
    Was ist ein guter Satz an Werten, die Sie als Ergebnis dieser Zufallszahl auswählen können,
    wenn Sie durch das Programm laufen?
-5. Welcher Satz von Eingaben in `draw_card()` stellt sicher, dass der gesamte Code abgedeckt wird,
-   insbesondere, dass das `if` in Zeile 37 sowohl getestet wird, wenn es wahr als auch wenn es falsch ist?
+5. Welcher Satz von Eingaben in `draw_card()` stellt sicher, dass der gesamte Code abgedeckt wird?  
+   Stellen Sie sicher, dass das `if` in Zeile 37 getestet wird, wenn die Bedingung wahr 
+   als auch wenn sie falsch ist.
 
 
 [HINT::Lösungshinweise]
@@ -166,14 +170,14 @@ hand = {"2": ["hearts", "spades"],
 [ENDHINT]
 [ENDHINT]
 
+- Defekt gefunden? Prima. Dann jetzt bitte in `b_expression.py` korrigieren.
+- Machen sie einen Commit `b_expression.py corrected`, der nur genau diese modifizierte Datei 
+  enthält.
+- [EC] `git show --color=always HEAD | cat`
+
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-Die Abgabe kann auf zwei Arten erstellt werden:
-
-- Sie können den oben gegebenen Code fixen und geben die .py-Datei ab.
-  Markieren Sie die Stelle, in der der Fix durchgeführt wurde, damit man ihn beim Prüfen schnell findet.
-- Oder sie erstellen eine Markdown-Datei und beschreiben die Stelle, an der der Bug auftritt.
-  Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
+[INCLUDE::../../_include/Kommandoprotokoll.md]
 
 [ENDSECTION]
