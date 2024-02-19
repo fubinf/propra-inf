@@ -1,13 +1,8 @@
-# propra-inf
+# Programmierpraktikum Informatik (a bachelor-level self-driven lab course for Informatics, in German)
 
-Programmierpraktikum Informatik (a bachelor-level self-driven lab course for Informatics, in German)
+Useful starting points (partly in German):
 
-Uses [sedrila](https://github.com/fubinf/sedrila) and follows its conventions, i.e. is a SeDriLa template.
-
-Sinnvolle Einstiegspunkte:
-
-- Um zu verstehen, was das Programmierpraktikum ("ProPra") ist: [ch/index.md](ch/index.md)
-- Um zu verstehen, wie es technisch aufgebaut ist: [sedrila's README](https://github.com/fubinf/sedrila/README.md)
-- Das ProPra ist noch in der Entwicklung. Um die Arbeitsweise zu verstehen: [how-to.md](process/how-to.md)
-- Um den aktuellen Arbeitsstand zu verstehen: [todo.md](process/todo.md) und [aufgabenideen.md](process/aufgabenideen.md)
-  
+- For understanding what the Programmierpraktikum ("ProPra") is: [ch/index.md](ch/index.md)
+- For understanding how it is structured technically: [sedrila's README](https://github.com/fubinf/sedrila/README.md)
+- For understanding how to develop it: [how-to.md](process/how-to.md)
+- For understanding the development status: [todo.md](process/todo.md) und [aufgabenideen.md](process/aufgabenideen.md)

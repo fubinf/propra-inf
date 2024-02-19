@@ -2,22 +2,86 @@
 
 The target audience of this document is ProPra authors, not instructors and not students.
 
+## Principles
 
-## Sedrila
+During the development of propra-inf, we have discovered the following principles
+for its structure and have attempted to obey them throughout:
+
+- **SeDriLa template:** 
+  We use [sedrila](https://github.com/fubinf/sedrila) and follow its conventions
+  (as described in [doc/authors.md](https://github.com/fubinf/sedrila/blob/main/doc/authors.md)).
+- **regular structure:**
+  All tasks are arranged into a simple chapter/taskgroup/task hierarchy.
+  All tasks follow the same simple goal/background/instructions/submission section structure.
+- **motivation focus:**
+  "At the door" into each part (landing pages of chapters and taskgroups, goal sections of tasks),
+  we greet students with a very short text that explains why they might be interested in this
+  material.
+- **all audiences:**
+  We have tasks at different levels of difficulty.
+  Most are aimed at "average" students, but others cater for stronger ones or very weak ones.
+- **fine granularity:**
+  Our tasks are small, most in the 0.5...1.5 hour range, with a 4 hours maximum.
+- **heavy cross referencing:**
+  Our tasks cross-reference each other a lot to show their interconnectedness and to support
+  the fine granularity. 
+  There are standard types of cross-reference (`assumes`, `requires`, `explains`)
+  and free-form ones (`[PARTREF]`).
+- **glossary as glue:**
+  A glossary entry lists all tasks referencing it and so serves as powerful glue in the 
+  cross-referencing structure.
+- **simple reviewing:**
+  The requirements for what students submit are geared towards making it simple and quick
+  for instructors to review them, in particular by means of shell command protocols:
+  [Kommandoprotokolle](ch/_include/Kommandoprotokolle.md).
+- **avoid academic material:**
+  We avoid duplicating (or even refering to) academic material known from lectures
+  and prefer tasks that feel practical, real-worldly and that can be understood
+  mostly with common sense.
+
+Most of these principles serve the same purpose:
+Maximizing the students' motivation to learn and try out things
+because they find them interesting and relevant, find the tasks are fun to do,
+and can observe their progress well. 
+
+
+## Specific assumptions
+
+We assume the students taking the propra-inf to have the following knowledge and skills:
+- Boolean logic
+- Programming:
+  - procedural programming with variables and state and common control flow constructs:
+    if-then-else, for, while
+  - programming with parameterized subroutines
+  - object-oriented programming with classes, methods, inheritance
+  - functional programming style
+- Corresponding syntax, semantics and handling of Python,
+  including basic use of lists, dictionaries, a small subset of `builtins`, and 
+  hardly anything from the standard library.
+- A second-semester course on algorithms and data structures
+
+We do _not_ assume a good understanding of software design, especially modularization.
+In parallel to this course, the students ought to take a big (9 ECTS) introductory
+software engineering course, but some of them may do this earlier, later, or never (non-CS majors).
+
+
+## Learning to write ProPra tasks
+
+### 1. Learn Sedrila
 
 First, learn about sedrila in the
 [README.md](https://github.com/fubinf/sedrila/blob/main/README.md) and
 [authors.md](https://github.com/fubinf/sedrila/blob/main/doc/authors.md) parts of its documentation.
 
 
-## Task file template
+### 2. Use the task file template
 
 When you start a new task description file, 
 copy [ch/template_md](../ch/template_md) 
 and use it as a template to have a clean up-to-date starting point.
 
 
-## Difficulty levels
+### 3. Design for difficulty level
 
 Writing a task works differently for different levels of task difficulty.  
 
@@ -40,7 +104,7 @@ so make sure a level-3 task leans more towards level-2 than towards level-4.
 See macro `[HINT]` below.
 
 
-## The role of motivation
+### 4. The role of motivation
 
 Given the huge freedom we give students and the superficial manner in which we
 check their solutions, the ProPra's success depends massively on the students'
@@ -48,13 +112,13 @@ own motivation to learn.
 
 Therefore,
 
-- each taskgroup (the typical case) or individual task (as needed) must carefully explain 
+- each taskgroup (the typical case) or individual task (as needed) should explain 
   why the material will be (or can be) useful for a practicing software engineer;
 - we should make every attempt at implementing one of the principles described in this article:
   [12 Prinzipien zur Motivation Lernender](https://link.springer.com/chapter/10.1007/978-3-658-26990-6_1)
 
 
-## Didactic methods
+### 5. Strive to re-use known didactic methods
 
 When designing a set of tasks, many difficult didactic decisions must be made:
 What to cover at all? In which depth? In which order?
@@ -68,6 +132,25 @@ For answering these, there are two approaches:
 For the latter, find a list of possible models (mostly geared to interactive teaching
 in schools) here:
 [Liste der Unterrichtsmethoden (Wikipedia)](https://de.wikipedia.org/wiki/Liste_der_Unterrichtsmethoden)
+
+
+### 6. Work steps towards a task description 
+
+Suggested procedure:
+
+1. Sketch a task group and its motivation.
+2. List candidate tasks for the task group.
+   Order them from more general (and useful for most people) to more specialized.  
+   As a rule, the more general tasks should be difficulty 2, the specialized ones harder.  
+   For the general tasks, split large ones (over two hours) into pieces, including
+   pieces that should be "assumed" and then belong into 
+   different taskgroups or even chapters. Create placeholders with todo markers for those.
+3. Outline a task description by selecting the section structure, 
+   in particular the section subtypes,
+   and formulating the learning goal.
+4. Draft the background (keep it short), instructions, and submission sections.
+5. Have someone else review the description for coherence between goal and instructions/submission
+   and for appropriateness of the instructions given the difficulty.
 
 
 ## Language use (in German because we use German)
@@ -94,22 +177,3 @@ Generell beugen wir Fremdwörter nach deutscher Rechtschreibung.
 
 Wenn wir uns auf einen Teil der Universität beziehen, nennen wir sie beim vollen Namen
 und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe änderbar zu machen.
-
-
-## How we work
-
-Suggested order of work steps towards task descriptions. 
-
-1. Sketch a task group and its motivation.
-2. List candidate tasks for the task group.
-   Order them from more general (and useful for most people) to more specialized.  
-   As a rule, the more general tasks should be difficulty 2, the specialized ones harder.  
-   For the general tasks, split large ones (over two hours) into pieces, including
-   pieces that should be "assumed" and then belong into 
-   different taskgroups or even chapters. Create placeholders with todo markers for those.
-3. Outline a task description by selecting the section structure, 
-   in particular the section subtypes,
-   and formulating the learning goal.
-4. Draft the background (keep it short), instructions, and submission sections.
-5. Have someone else review the description for coherence between goal and instructions/submission
-   and for appropriateness of the instructions given the difficulty.
