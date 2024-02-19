@@ -23,8 +23,5 @@ def find_substring (outer_string: str, sub_string:str) -> (str, str):
 
     return outer_string[:(i+flag)], outer_string[(i+flag):]
 
-print(find_substring("Hello", "l"))
-# print(find_substring("Hello", "Hi"))
-# print(find_substring("blue", "l"))
-# print(find_substring("ball", "llama"))
 
+print(find_substring("Hello", "l"))
