@@ -2,14 +2,11 @@ title: Algorithmisches - Logische Defekte
 stage: alpha
 timevalue: 1
 difficulty: 2
-profiles:
-assumes:
-requires:
 ---
 [SECTION::goal::idea]
 
-- Ich verstehe, welche Form logische Defekte in Code annehmen können
-- Ich habe eine Idee, wie ich versuchen kann logische Defekte im Code zu lösen
+Ich verstehe, welche Form logische Defekte in Code annehmen können und habe einen solchen Defekt 
+in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -18,22 +15,20 @@ Logische Defekte können zu Fehlfunktionen, Sicherheitslücken und einer beeintr
 Entwickler sollten diese Defekte verstehen, um präventive Maßnahmen zu ergreifen, 
 effizientes Debugging zu ermöglichen und qualitativ hochwertigen Code zu schreiben. 
 Dies fördert nicht nur die Effizienz und Sicherheit von Software, 
-sondern erleichtert auch die Zusammenarbeit in Teams.
+sondern erleichtert auch die Zusammenarbeit in Teams.   
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
 ### Eine Heranführung an logische Defekte
 
-Ein Computer ist sehr gut darin exakt das zu tun, was man ihm sagt. 
-Allerdings ist er sehr ungeschickt darin zu antizipieren, was eigentlich gemeint gewesen ist.
-Logische Defekte sind eine der stärksten Ausprägungen dieses Fakts.
-In vielen Fällen handelt es sich bei dieser Art von Defekt um falsche Annehmen über 
-die zugrunde liegenden Daten.
+Computer sind präzise in der Ausführung von Anweisungen, aber oft unfähig, Absichten zu 
+antizipieren, was zu logischen Defekten führt, oft basierend auf fehlerhaften Annahmen über Daten. 
 Sehen Sie sich hierfür das folgende Code-Beispiel in Python an. 
 Hier wird versucht mittels Wissen über die Repräsentation von ASCII-Zeichen 
 einen String in eine kleingeschriebene Variante umzuwandeln.
-`ord()` wandelt dabei ein Zeichen in seinen numerischen ASCII-Wert um, während `chr()` das Gegenteil macht.
+`ord()` wandelt dabei ein Zeichen in seinen numerischen ASCII-Wert um, während `chr()` das 
+Gegenteil macht. 
 
 ```python
 s = "TESt"
@@ -42,23 +37,26 @@ for k in range(0, len(s)):
     lower += chr(ord(s[k]) - ord("A") + ord("a"))
 ```
 
-Versuchen Sie für sich den Code mittels einer ASCII-Tabelle 
-(z. B. [https://www.asciitable.com/](https://www.asciitable.com/)) nachzuvollziehen.
+Versuchen Sie für sich den Code mittels einer 
+[ASCII-Tabelle](https://www.asciitable.com/) nachzuvollziehen.
 Der Code funktioniert... solange `s[k]` ein Großbuchstabe ist. 
 Bei Kleinbuchstaben, Satzzeichen und Leerzeichen würde der Code nicht das gewünschte Resultat liefern. 
 
 Gerade Schleifen können sehr anfällig für logische Defekte sein. 
 Vor allem bei der Überlegung, wie man die Schleife beendet können Denkfehler auftreten.
-Sehen Sie sich als Beispiel hierzu diese Initialisierung einer for-Schleife in C an.
+Als Beispiel dient diese Initialisierung einer `for`-Schleife in C.
+Sehen Sie schon das Problem?
 
 ```C
 for (j = 1; j != 100; j = j + 2)
 ```
 
-Der Index der Schleife fängt bei 1 an, wird bei jeder Iteration um 2 erhöht 
+[HINT::Der Index der Schleife...]
+...fängt bei 1 an, wird bei jeder Iteration um 2 erhöht 
 und die Schleife läuft, solange der Index den Wert 100 nicht annimmt.
 Dies kann niemals der Fall sein, sofern `j` nicht innerhalb der Schleife manipuliert wird,
 also wird die Schleife niemals terminieren.
+[ENDHINT]
 
 Genauso kann durch ein falsch gesetztes oder vergessenes `break` 
 der richtige Zeitpunkt zum Austritt aus der Schleife verpasst werden,
@@ -71,7 +69,7 @@ def end_of_line():
 def cleanup():
     ... # some code cleaning up the processing pipeline
 
-while (1):
+while True:
     if end_of_line():
         cleanup()
         # probably missing a break statement here
@@ -79,7 +77,8 @@ while (1):
 ```
 
 Am Ende der Zeile (`end_of_line()`) wird eine Aufräum-Funktion (`cleanup()`) aufgerufen.
-Es wird aber verpasst danach aus der while-Schleife auszubrechen, wodurch es folgend zum Programmabsturz kommen kann.
+Es wird aber verpasst danach aus der while-Schleife auszubrechen, wodurch es folgend zum 
+Programmabsturz kommen kann.
 
 Die bisherigen Beispiele für Defekte sind durch kleine Änderungen behebbar gewesen.
 Dass das nicht immer der Fall sein muss, soll das folgende Beispiel zeigen.
@@ -93,10 +92,13 @@ for k in range(len(a)-1):
         biggest = distance
 ```
 
-Hier wird versucht den Abstand zwischen den zwei Zahlen in `a` zu finden, die am weitesten voneinander entfernt sind.
-Dieser Code tut genau das, was der Programmierer vor hat, der Algorithmus ist aber falsch.
-Es wird davon ausgegangen, dass die zwei am weitesten voneinander entfernten Zahlen nebeneinander liegen.
-Eine kleine Änderung wird bei diesem logischen Defekt nicht helfen; der gesamte Algorithmus muss überarbeitet werden.
+Hier wird versucht den Abstand zwischen den zwei Zahlen in `a` zu finden, die am weitesten 
+voneinander entfernt sind. 
+Dieser Code tut genau das, was der Programmierer vorhat, der Algorithmus ist aber falsch.
+Es wird davon ausgegangen, dass die zwei am weitesten voneinander entfernten Zahlen 
+nebeneinander liegen. 
+Eine kleine Änderung wird bei diesem logischen Defekt nicht helfen; der gesamte Algorithmus muss 
+überarbeitet werden. 
 
 ### Ihre Aufgabe
 
@@ -116,17 +118,18 @@ ein Defekt auftreten, durch den eine Person doppelt beschenkt wird:
 
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
-1. Es werden zwei Listen (`input_list` und `receivers_list`) und ein Dictionary (`return_dict`) benutzt.
-   Benennen Sie, was das Ziel dieser Datenstrukturen in diesem Code ist und 
+1. Es werden zwei Listen (`input_list` und `receivers_list`) und ein Dictionary (`return_dict`) 
+   benutzt.  
+   Benennen Sie, was das Ziel dieser Datenstrukturen in diesem Code ist und
    notieren Sie, wo und wie diese verändert werden.
-2. In Zeile 43 wird die Funktion `index()` benutzt, 
-   um eine Person in `receivers_list` zu finden. 
-   Das impliziert, dass diese Person in `receivers_list` sein muss. 
+2. In Zeile 43 wird die Funktion `index()` benutzt, um eine Person in `receivers_list` zu finden.
+   Das impliziert, dass diese Person in `receivers_list` sein muss.  
    Gibt es eine Garantie, dass das der Fall sein muss?
-3. Es existiert eine Invariante zwischen `return_dict` und `receivers_list`, 
+3. Es existiert eine Invariante zwischen `return_dict` und `receivers_list`,
    in welcher ein Element in einer der Listen ist, aber nicht in der anderen.
-   Prüfen Sie, die entsprechenden Zeilen Code, die sicherstellen, dass diese Invariante immer wahr ist.
-4. Was ist das Ziel des Codes in den Zeilen 41 bis 46?
+   Prüfen Sie, die entsprechenden Zeilen Code, die sicherstellen, dass diese Invariante immer
+   wahr ist.
+4. Was ist das Ziel des Codes in den Zeilen 41 bis 46?  
    Wie viele Pfade kann man in diesem Code zu durchlaufen?
 
 [HINT::Lösungshinweis 1]
@@ -142,14 +145,13 @@ nehmen Sie an, dass die `receivers_list` jetzt aus `["Donna, "Paul"]` besteht.
 [ENDHINT]
 [ENDHINT]
 
+- Defekt gefunden? Prima. Dann jetzt bitte in `a_logic.py` korrigieren.
+- Machen sie einen Commit `a_logic.py corrected`, der nur genau diese modifizierte Datei enthält.
+- [EC] `git show --color=always HEAD | cat`
+
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-Die Abgabe kann auf zwei Arten erstellt werden:
-
-- Sie können den oben gegebenen Code fixen und geben die .py-Datei ab.
-  Markieren Sie die Stelle, in der der Fix durchgeführt wurde, damit man ihn beim Prüfen schnell findet.
-- Oder sie erstellen eine Markdown-Datei und beschreiben die Stelle, an der der Bug auftritt.
-  Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
+[INCLUDE::../../_include/Kommandoprotokoll.md]
 
 [ENDSECTION]
