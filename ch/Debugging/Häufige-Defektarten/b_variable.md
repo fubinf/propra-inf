@@ -2,27 +2,25 @@ title: Irrtümer - Falsch benutzte Variable
 stage: alpha
 timevalue: 1
 difficulty: 2
-profiles:
 assumes: b_expression, f_location
-requires:
 ---
 [SECTION::goal::idea]
 
-- Ich verstehe, in welcher Form falsch benutzte Variablen meinen Code fehlerhaft werden lassen 
-- Ich habe eine Idee, wie ich versuchen kann falsch benutzte Variablen im Code zu finden und zu fixen
-
-[ENDSECTION]
-[SECTION::background::default]
-
-Der in dieser Aufgabe zu bearbeitende Code gehört zum Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Der vorhergehende Code hierzu wird in den Aufgaben [PARTREFTITLE::b_expression] und [PARTREFTITLE::f_location] besprochen.
-Wenn Sie den Code durch aufmerksames Lesen und händisches Durchgehen debuggen, 
-ist es nicht nötig die ersten beiden Aufgaben bearbeitet zu haben. 
-Sollten Sie allerdings dem Bug über Tools oder weitere Zeilen Code auf die Schliche kommen wollen,
-benötigen Sie den (gefixten) Code aus den anderen beiden Aufgaben.
+Ich verstehe, in welcher Form falsch benutzte Variablen meinen Code fehlerhaft werden lassen und 
+habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
+
+[WARNING]
+Der in dieser Aufgabe zu bearbeitende Code gehört zum Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
+Der vorhergehende Code hierzu wird in den Aufgaben [PARTREFTITLE::b_expression] und 
+[PARTREFTITLE::f_location] besprochen.
+Wenn Sie den Code durch aufmerksames Lesen und händisches Durchgehen debuggen, 
+ist es nicht nötig die ersten beiden Aufgaben bearbeitet zu haben. 
+Sollten Sie allerdings dem Bug über Tools oder weitere Zeilen Code auf die Schliche kommen wollen,
+benötigen Sie den (korrigierten) Code aus den anderen beiden Aufgaben.
+[ENDWARNING]
 
 ### Eine Heranführung an falsch benutzte Variablen
 
@@ -39,17 +37,19 @@ schreiben, hat aber stattdessen folgendes geschrieben:
 j = 5
 ```
 
-In vielen Sprachen führt dies zu einem Fehler, es sei denn, `j` ist definiert und hat denselben Typ wie `i`,
-aber das Vorhandensein von zwei Variablen desselben Typs und ähnlicher Namen kann die Ursache für einen Fehler sein
-(weil der Programmierer an beide Variablen denkt),
-daher ist dies häufiger der Fall, als Sie vielleicht erwarten.
-Es kann zum Beispiel schnell passieren, dass man mit dem Finger ausrutscht und benachbarte Tasten mitdrückt:
+In vielen Sprachen kann dies zu einem Fehler führen, es sei denn, j ist definiert und hat 
+denselben Typ wie i. Das Vorhandensein von zwei Variablen desselben Typs und ähnlicher Namen 
+kann zu Fehlern führen, da der Programmierer an beide Variablen denkt. Dies tritt häufiger auf, 
+als man erwarten könnte.
+Es kann zum Beispiel schnell passieren, dass man mit dem Finger ausrutscht und benachbarte
+Tasten mitdrückt:
 
 ```python
 io = 5
 ```
 
-Ob das schnell auffällt, kann davon abhängen, wie die Programmiersprache mit undeklarierten Variablen umgeht.
+Ob das schnell auffällt, kann davon abhängen, wie die Programmiersprache mit undeklarierten 
+Variablen umgeht.
 
 Eine Quelle von solchen Variablenfehlern ist auch das Kopieren und Einfügen von ähnlichem Code. 
 Wenn der Code zum Beispiel wie folgt aussieht
@@ -60,15 +60,19 @@ x1 = transform(x1, x2, current_transform)
 x2 = transform(y1, x2, current_transform)
 ```
 
-wurde höchstwahrscheinlich die zweite Codezeile von der ersten kopiert und händisch das Auftreten von `x` geändert.
-Allerdings wurde eine Stelle übersehen, die zwar zu einem legalen Ausdruck führt, aber falschen Code produziert.
+wurde höchstwahrscheinlich die zweite Codezeile von der ersten kopiert und händisch das
+Auftreten von `x` geändert.
+Allerdings wurde eine Stelle übersehen, die zwar zu einem legalen Ausdruck führt, aber falschen
+Code produziert.
 
-Überall, wo eine Variable benutzt wird, ist es möglich, die falsche Variable auf der linken oder rechten Seite
-der Zuweisung, als Argument für eine Funktion, als Rückgabewert usw. zu verwenden. 
+Überall, wo eine Variable benutzt wird, ist es möglich, die falsche Variable auf der linken oder
+rechten Seite der Zuweisung, als [TERMREF::Argument] für eine Funktion, als Rückgabewert usw. zu 
+verwenden.
 Es kann z. B. dazu kommen, dass zwei Variablen als Parameter einer Funktion mitgegeben werden,
 aber vertauscht worden sind.
 Der Compiler wird diesen Fehler nicht entdecken, sofern beide Parameter vom selben Typ sind.
-Durch bloßes Draufgucken kann man ohne genaue Kenntnisse der Programmlogik im folgenden Beispiel nicht erkennen, 
+Durch bloßes Draufgucken kann man ohne genaue Kenntnisse der Programmlogik im folgenden Beispiel
+nicht erkennen,
 welcher Funktionsaufruf der richtige ist:
 
 ```python
@@ -78,7 +82,6 @@ draw_dot(x,y)
 
 Wenn Ihr Code zwei Funktionen mit ähnlichem Namen verwendet, 
 kann der Fehler auch darin liegen die beiden Funktionen zu vertauschen.
-
 
 ### Ihre Aufgabe
 
@@ -105,15 +108,17 @@ Um ein vollständiges Spiel zu spielen, wird der Code so lange fortgesetzt,
 bis beide Spieler keine Karten auf der Hand mehr haben.
 
 [NOTICE]
-Falls Sie die Aufgaben [PARTREFTITLE::b_expression] und [PARTREFTITLE::f_location] nicht bearbeitet haben, ist hier eine kurze Erinnerung
-über die Datenstrukturen des Spiels "Go Fish":
+Falls Sie die Aufgaben [PARTREFTITLE::b_expression] und [PARTREFTITLE::f_location] nicht 
+bearbeitet haben, ist hier eine kurze Erinnerung über die Datenstrukturen des Spiels "Go Fish":
 
 - Karten werden anhand ihres Rangs und ihrer Farbe identifiziert.
-  Dabei ist der Rang ein Element aus der Liste `["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]`
-  und die Farbe ein Element aus der Liste `["spades", "hearts", "diamonds", "clubs"]`.
+  Dabei ist der Rang ein Element aus der Liste 
+  `["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]`
+  und die Farbe ein Element aus der Liste 
+  `["spades", "hearts", "diamonds", "clubs"]`.
 - Ein Deck ist eine Liste mit 52 Elementen.
   Jedes Element im Deck ist ein Tupel der Form `(Rang, Farbe)`.
-- Eine Hand ist ein Wörterbuch.
+- Eine Hand ist ein Wörterbuch.  
   In jedem Element des Wörterbuchs ist der Schlüssel ein Rang und sein Wert eine Liste von
   dazugehörigen Farben, die der Spieler in seiner Hand hält.
   Wenn also z. B. ein Spieler die "Pik 3" und "Herz 3" in seiner Hand hält, aber keine weiteren 3er-Karten,
@@ -128,14 +133,15 @@ Falls Sie die Aufgaben [PARTREFTITLE::b_expression] und [PARTREFTITLE::f_locatio
 
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
-1. Es ist eine gute Idee, von unten nach oben vorzugehen:
-   Überprüfe, ob die `do_turn()`-Funktion korrekt ist, bevor du mit der `play_go_fish()`-Funktion weitermachst.
-   Überlege dir eine Reihe von Parametern, mit denen du `do_turn()` testen kannst.
-2. Ist die Abfrage in Zeile 92 richtig?
-   Wird das Spiel immer enden?
+1. Es ist eine gute Idee, von unten nach oben vorzugehen:  
+   Überprüfen Sie, ob die `do_turn()`-Funktion korrekt ist, bevor Sie mit der 
+   `play_go_fish()`-Funktion weitermachen.  
+   Überlegen Sie sich eine Reihe von Parametern, mit denen Sie `do_turn()` testen können.
+2. Ist die Abfrage in Zeile 92 richtig?  
+   Wird das Spiel immer enden?  
    Wird das Spiel zur richtigen Zeit enden?
 3. Ist die Initialisierung des Decks in den Zeilen 81 und 82 korrekt?
-4. Sehen Sie sich die vier Parameter der Funktion `do_turn()` an. 
+4. Sehen Sie sich die vier Parameter der Funktion `do_turn()` an.  
    Welche werden modifiziert und welche werden nur benutzt?
 
 [HINT::Lösungshinweise]
@@ -176,14 +182,13 @@ Das Programm befindet sich genau vor Zeile 88 und wird als nächstes die `while`
 Wird das Programm ordnungsgemäß beendet?
 [ENDHINT]
 
+- Defekt gefunden? Prima. Dann jetzt bitte in `b_variable.py` korrigieren.
+- Machen sie einen Commit `b_variable.py corrected`, der nur genau diese modifizierte Datei enthält.
+- [EC] `git show --color=always HEAD | cat`
+
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-Die Abgabe kann auf zwei Arten erstellt werden:
-
-- Sie können den oben gegebenen Code fixen und geben die .py-Datei ab.
-  Markieren Sie die Stelle, in der der Fix durchgeführt wurde, damit man ihn beim Prüfen schnell findet.
-- Oder sie erstellen eine Markdown-Datei und beschreiben die Stelle, an der der Bug auftritt.
-  Geben Sie in diesem Fall auch an, wie der Fix aussehen soll.
+[INCLUDE::../../_include/Kommandoprotokoll.md]
 
 [ENDSECTION]
