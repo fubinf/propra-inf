@@ -114,7 +114,7 @@ aus und bekommen dafür Zeit gutgeschrieben).
 Grob gesagt funktioniert er so:
 
 1. Aufgaben zur Einreichung auswählen
-2. Diese Menge in einer Datei !!! spezifizieren
+2. Diese Menge in einer Datei `submission.yaml` spezifizieren
 3. Einchecken (`git commit`; für all dieses `git`-Zeug siehe nächster Abschnitt)
 4. Zum GitLab-Server hochladen (`git push`)
 5. Bei der Tutor_in um Kontrolle bitten
