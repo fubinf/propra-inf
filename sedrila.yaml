@@ -68,6 +68,7 @@ chapters:
   - slug: Bibliotheken
     taskgroups: 
       - slug: stdlib
+      - slug: pip-popular
       - slug: Frameworks
       - slug: lizenzen
   - slug: Testen
