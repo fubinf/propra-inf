@@ -8,13 +8,20 @@ assumes: WebAPIs, pip, requests
 [SECTION::goal::trial]
 
 - Ich habe gelernt, was eine API-Schnittstelle ist
+- Ich kenne die Eigenschaften einer RESTful-API
 - Ich habe mit Python erste API-Schnittstellentests durchgeführt
 
 [ENDSECTION]
 [SECTION::background::default]
 
-[TERMREF::API]s erleichtern die Integration von Funktionen einer Software in eine andere und ermöglichen so die Entwicklung von Anwendungen, die auf bereits vorhandenen Diensten oder Plattformen aufbauen.
-So können Sie zu jeder freigegebene Schnittstelle eigene Funktionalitäten, Programme oder Anwendungen entwickeln, die mit diesen Schnittstellen kommunizieren. 
+[TERMREF::API]s erleichtern die Integration von Funktionen einer Software in eine andere und ermöglichen
+so die Entwicklung von Anwendungen, die auf bereits vorhandenen Diensten oder Plattformen aufbauen.
+So können Sie zu jeder freigegebene Schnittstelle eigene Funktionalitäten, Programme oder Anwendungen
+entwickeln, die mit diesen Schnittstellen kommunizieren.
+Eine RESTful API baut auf den Prinzipien des REST-Architekturstils auf und ermöglicht die Kommunikation
+zwischen Client und Server über **standardisierte** HTTP-Anfragen. Durch die Nutzung diese standarisierten
+HTTP-Methoden bietet eine RESTful API eine flexible und effiziente Möglichkeit, Daten zwischen verschiedenen
+Anwendungen auszutauschen.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
@@ -27,7 +34,18 @@ Sie basieren oft auf standardisierten Protokollen wie [TERMREF::HTTP] und könne
 Eine API stellt normalerweise eine Sammlung von definierten Schnittstellen und Funktionen bereit, die von Entwicklern genutzt werden können, um auf bestimmte Dienste oder Ressourcen zuzugreifen. Eine solche Sammlung kann u.a. mit Hilfe
 von [TERMREF::OpenAPI] dokumentiert werden. Diese Dokumentationshilfe wird uns in diesem Kapitel dabei helfen, Schnittstellen anzusprechen und zu testen.
 
-- [EQ] Welche HTTP-Methoden gibt es?
+- [EQ] Werfen Sie einen Blick in ein beliebiges OpenAPI Projekt. Welche HTTP-Methoden finden Sie dort wieder?
+
+### RESTful-API
+
+Eine RESTful-API hat besondere Eigenschaften, die wir uns hier genauer anschuen. Recherchieren Sie auf der
+[RESTful-API-Seite](https://restfulapi.net):
+
+- [EQ] Was zeichnet eine RESTful-API Architektur aus?
+- [EQ] Was sind die 6 grundlegenden Prozipien?
+- [EQ] Wie sieht ein REST-Endpunkt aus und werden Ressourcen-Endpunkte in Singulkar oder Plural bezeichnet?
+- [EQ] Worin unterscheiden sich `PUT` und `POST`? Erstellen Sie jeweils ein Beipiel, um den Unterschied zu verdeutlichen.
+- [EQ] Sind REST udn HTPS gleichzusetzen?
 
 ### Python Request - Wofür benötige ich das?
 
@@ -128,7 +146,7 @@ if __name__ == "__main__":
 - [ER] Erstellen Sie ein Update und ein Delete Request für eine beliebige existierene Pet-ID (Suchen Sie eigenständig nach einem vorhandenen Eintrag.)
 
 [HINT::VisibleTitle]
-Die OpenAPI Dokumentaion bietet ebenfalls die Möglichkeit Anfragen zu senden. Dadurch erhalten Sie die Möglichkeiten Ihren Response mit Hilfe 
+Die OpenAPI Dokumentaion bietet ebenfalls die Möglichkeit Anfragen zu senden. Dadurch erhalten Sie die Möglichkeiten Ihren Response mit Hilfe
 Ihrer Scripte mit dem Responser über OpenAPI zu vergleichen.  
 [ENDHINT]
 
@@ -140,6 +158,8 @@ Ihrer Scripte mit dem Responser über OpenAPI zu vergleichen.
 [ENDSECTION]
 
 [INSTRUCTOR::Pet-ID]
+
 - [EREFR::1] Die gefundene Pet-Id kann von Fall zu Fall unterschiedlich sein, aber auch nicht mehr existieren, da
 diese Schnittstelle jedermann zugänglich ist und somit ständig unter Anwendung steht.
+
 [ENDINSTRUCTOR]
