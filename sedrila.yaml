@@ -90,10 +90,8 @@ chapters:
       - slug: Refactoringpraxis
   - slug: web
     taskgroups:
+      - slug: basiswissen
       - slug: html
-      - slug: css
-      - slug: js
-      - slug: httpauth
   - slug: Werkzeuge
     taskgroups:
       - slug: Paketmanager
