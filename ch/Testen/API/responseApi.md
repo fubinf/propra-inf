@@ -4,7 +4,7 @@ timevalue: 1.5
 difficulty: 3
 profiles: TEST
 explains:
-assumes: restApi, json
+assumes: restApi, jsonBasic
 ---
 [SECTION::goal::idea]
 
@@ -39,7 +39,7 @@ Daten auslasen. Daher werden wir mit diesem Response weiter arbeiten und uns die
 - [EQ] Warum ist der Statuscode `200` und nicht `201`?
 
 In dem erhaltenen Resonse ist ein Array enthalten. Dieses Array besitzt JSON Objekte. Wir wollen einen Blick auf alle
-erhaltenen Werte des Feldes `id` werfen. Nutzen Sie ausreichend die Möglichkeit des [PARTREF::json] Paket, um an diese
+erhaltenen Werte des Feldes `id` werfen. Nutzen Sie ausreichend die Möglichkeit des [PARTREF::jsonBasic] Paket, um an diese
 Informationen heran zu kommen.
 
 - [ER] Filtern Sie alle erhaltenen `id`-Werte aus dem Response.

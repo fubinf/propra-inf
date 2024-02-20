@@ -1,14 +1,13 @@
-title: Python JSON-Objekte
+title: Grundlagen JSON-Objekt
 stage: alpha
-timevalue: 3.0
-difficulty: 3
+timevalue: 1.0
+difficulty: 2
 explains: JSON
 assumes: PythonDataStructures
 ---
 [SECTION::goal::trial]
 
-- Ich kann ein JSON-Objekt lesen und bearbeiten
-- Ich kann das Paket `json` verwenden, um JSON-Dateien in Python zu bearbeiten
+- Ich kann ein [TERMREF::JSON]-Objekt lesen und bearbeiten
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -16,17 +15,17 @@ assumes: PythonDataStructures
 JSON ist nicht nur einfach zu lesen und zu schreiben, sondern auch sehr flexibel. Es erlaubt
 die Darstellung komplexer Datenstrukturen, einschließlich verschachtelter Objekte und Arrays.
 Dadurch eignet es sich ideal für die Darstellung von Daten in vielen verschiedenen Szenarien,
-von einfachen Konfigurationsdateien bis hin zu komplexen API-Antworten.
+von einfachen Konfigurationsdateien bis hin zu komplexen [TERMREF::API]-Antworten.
 
 In dieser Einführung werden wir uns damit beschäftigen, wie JSON strukturiert ist, wie man es
-liest und schreibt, und wie es in der Praxis verwendet wird.
+liest und erstellt.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
 ### JSON Syntax
 
-Betrachten Sie das folgende JSON-Objekt und beantworten Sie folgende Fragen mit Hilfer der
+Betrachten Sie das folgende JSON-Objekt und beantworten Sie folgende Fragen mit Hilfe der
 folgenden Quelle [w3schools](https://www.w3schools.com/js/js_json_intro.asp)
 
 ```JSON
@@ -55,14 +54,16 @@ Recherchieren Sie im Netz:
 
 Jetzt sind sie gefragt. Sie sollen im folgenden anhand der gegebenen Informationen eine eigenes JSON-Obnjekt erstellen.
 
-- [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `student.json` anhand der folgenden Vorgabe.
+- [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `books.json` anhand der folgenden Vorgabe.
 
 ```md
 Ein Buch, das von einem Autor namens "Alice" geschrieben wurde. Der Titel des Buches lautet 
 "Die Abenteuer von Alice im Wunderland" und es hat 200 Seiten.
 ```
 
-- [ER] Erstellen Sie ein JSON-Objekt anhand der folgenden Vorgabe.
+- [ER] Ergänzen Sie aus [EREFR::1] zdie Eigenschaften `ISBN` und `Auflage` mit beliebigen Werten.
+
+- [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `student.json` anhand der folgenden Vorgabe.
 
 ```md
 Ein Student namens "Max" besucht die Universität. Max hat die Fächer Softwaretechnik, Lineare Algebra und das
@@ -78,29 +79,7 @@ Max strebt folgende Wunschnoten für jedes Fach an:
 - Programmierpraktikum: 1,0
 ```
 
-- [ER] Ergänzen Sie aus [EREFR:1] zwei weitere Bücher.
-
-### JSON mit Python
-
-Im folgenden wollen wir mit dem von Ihnen erstellten JSON-Objekt aus Aufgabe [EREFR:2] weiter arbeiten.
-
-- [ER] Erstellen Sie zusätzlich ein Python Script, dass diese Datei einliest.
-
-[HINT::VisibleTitle]
-
-[json.loads()](https://www.w3schools.com/python/python_json.asp) bietet die Möglichkeit das JSON-Objekt wie ein Python Dictionary zu verwenden.
-
-[ENDHINT]
-
-- [ER] Ändern Sie über eine Funktion die Wunschnote `Lineare Algebra` in 2,0 ab.
-- [ER] Ergänzen Sie einen weiteren beliebigen Studenten über eine Funktion.
-
-### JSON Performance
-
-Betrachten Sie folgenden Artikel auf [Medium](https://medium.com/data-science-community-srm/json-is-incredibly-slow-heres-what-s-faster-ca35d5aaf9e8)
-
-- [EQ] Welcher entscheidenede Nachteil wird hier addressiert und welche Gründe werden genannt?
-- [EQ] Welche Tips werden gegeben, um diesen Nachteil bestmöglich entgegen zu wirken?
+- [ER] Ergänzen Sie aus [EREFR::3] einen weiteren Studenten.
 
 [ENDSECTION]
 
@@ -109,9 +88,9 @@ Betrachten Sie folgenden Artikel auf [Medium](https://medium.com/data-science-co
 [INCLUDE::../../_include/Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::possible solution]
+[INSTRUCTOR::heading]
 
-- [EREFR:1] Mögliche Lösung:
+- [EREFR::1] Mögliche Lösung:
 
 ```JSON
 {
@@ -121,7 +100,7 @@ Betrachten Sie folgenden Artikel auf [Medium](https://medium.com/data-science-co
 }
 ```
 
-- [EREFR:2] Mögliche Lösung:
+- [EREFR::2] Mögliche Lösung:
 
 ```JSON
 {
