@@ -24,13 +24,13 @@ folgenden Fragen auseinander:
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-[EQ] Wie erstellt man einfache Fixtures in pytest?
-[EQ] Wie können Sie Fixtures verwenden, um wiederkehrende Testdaten oder -umgebungen zu verwalten?
-[EQ] Was ist der Unterschied zwischen "function scope", "class scope" und "module scope" bei
+- [EQ] Wie erstellt man einfache Fixtures in pytest?
+- [EQ] Wie können Sie Fixtures verwenden, um wiederkehrende Testdaten oder -umgebungen zu verwalten?
+- [EQ] Was ist der Unterschied zwischen "function scope", "class scope" und "module scope" bei
    Fixtures und wann sollten Sie sie jeweils verwenden?
-[EQ] Wie können Sie Fixture-Abhängigkeiten in pytest definieren?
-[EQ] Wie können Sie in pytest mit Fixture-Finalizern aufräumen oder Ressourcen freigeben?
-[EQ] Wie können Fixtures automatisch für alle Tests im Scope bereitgestellt werden?
+- [EQ] Wie können Sie Fixture-Abhängigkeiten in pytest definieren?
+- [EQ] Wie können Sie in pytest mit Fixture-Finalizern aufräumen oder Ressourcen freigeben?
+- [EQ] Wie können Fixtures automatisch für alle Tests im Scope bereitgestellt werden?
 
 [pytest - About fixtures](https://docs.pytest.org/en/stable/explanation/fixtures.
 html#about-fixtures)

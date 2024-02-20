@@ -25,17 +25,17 @@ folgenden Fragen auseinander:
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-[EQ] Was sind parametrisierte Tests und warum sind sie in der Softwaretestung wichtig?
-[EQ] Wie unterscheiden sich parametrisierte Tests von herkömmlichen (nicht-parametrisierten) Tests
+- [EQ] Was sind parametrisierte Tests und warum sind sie in der Softwaretestung wichtig?
+- [EQ] Wie unterscheiden sich parametrisierte Tests von herkömmlichen (nicht-parametrisierten) Tests
    in pytest?
-[EQ] Wie werden parametrisierte Tests in pytest implementiert? Geben Sie Beispiele für die Syntax
+- [EQ] Wie werden parametrisierte Tests in pytest implementiert? Geben Sie Beispiele für die Syntax
    und die Verwendung von parametrisierten Tests.
-[EQ] Welche Vorteile bieten parametrisierte Tests im Vergleich zu nicht-parametrisierten Tests?
+- [EQ] Welche Vorteile bieten parametrisierte Tests im Vergleich zu nicht-parametrisierten Tests?
    Gibt es auch Nachteile?
-[EQ] Welche Arten von Parametern können in pytest für die Tests verwendet werden?
-[EQ] Welche speziellen Pytest-Funktionen und -Dekoratoren sind für parametrisierte Tests verfügbar?
+- [EQ] Welche Arten von Parametern können in pytest für die Tests verwendet werden?
+- [EQ] Welche speziellen Pytest-Funktionen und -Dekoratoren sind für parametrisierte Tests verfügbar?
    Wie können Sie sie effektiv nutzen?
-[EQ] Wie können Sie mithilfe von parametrisierten Tests in pytest Edge Cases und seltene Szenarien
+- [EQ] Wie können Sie mithilfe von parametrisierten Tests in pytest Edge Cases und seltene Szenarien
    effektiv testen?  
 
 [How to parametrize fixtures and test functions](https://docs.pytest.

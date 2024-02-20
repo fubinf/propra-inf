@@ -19,9 +19,9 @@ der folgenden Fragen in die Erweiterung ein.
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-[EQ] Wie kann ich die Erweiterung verwenden und starten?
-[EQ] Welche Vorteile bietet diese Erweiterung?
-[EQ] Welche Nachteile hat die Verwendung dieser Erweiterung?
+- [EQ] Wie kann ich die Erweiterung verwenden und starten?
+- [EQ] Welche Vorteile bietet diese Erweiterung?
+- [EQ] Welche Nachteile hat die Verwendung dieser Erweiterung?
 
 [Flask-Testing Dokumentation](https://flask-testing.readthedocs.io/en/latest/)
 [Flask-Testing GitHub Repository](https://github.com/jarus/flask-testing/tree/master)

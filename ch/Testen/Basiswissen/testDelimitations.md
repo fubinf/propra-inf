@@ -18,11 +18,11 @@ zu verstehen, wenn man sie genau einordnen möchte.
 [SECTION::instructions::loose]
 Recherchieren Sie hierzu anhand der folgenden Leitfragen:
 
-[EQ] Was versteht man unter Software-Testing?
-[EQ] Was versteht man unter Debugging?
-[EQ] Was versteht man unter QS?
-[EQ] Was ist der Unterschied zwischen der QS und dem Testen?
-[EQ] Welche Methoden und Techniken werden in der QS eingesetzt?
+- [EQ] Was versteht man unter Software-Testing?
+- [EQ] Was versteht man unter Debugging?
+- [EQ] Was versteht man unter QS?
+- [EQ] Was ist der Unterschied zwischen der QS und dem Testen?
+- [EQ] Welche Methoden und Techniken werden in der QS eingesetzt?
 
 [ENDSECTION]
 

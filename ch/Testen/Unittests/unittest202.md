@@ -19,7 +19,7 @@ konzentrieren können.
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-[EC] Schreiben Sie einen Unittest für eine Funktion *get_weather_data()*, die ich in der Datei *weather.py* befindet, die eine externe API aufruft. Mocken Sie den API-Aufruf, um
+- [EC] Schreiben Sie einen Unittest für eine Funktion *get_weather_data()*, die ich in der Datei *weather.py* befindet, die eine externe API aufruft. Mocken Sie den API-Aufruf, um
 sicherzustellen, dass keine echten Netzwerkanfragen während des Tests gemacht werden.
 
 ```Python
@@ -31,7 +31,7 @@ def get_weather_data(city):
     return response.json()
 ```
 
-[EC] Schreiben Sie einen Unittests für eine Funktion *read_log_file()* aus der Datei *my_logs.py*, die eine Datei liest und verarbeitet. Mocken Sie die Dateioperationen, um zu verhindern, dass während der Tests echte Dateien gelesen oder geschrieben werden.
+- [EC] Schreiben Sie einen Unittests für eine Funktion *read_log_file()* aus der Datei *my_logs.py*, die eine Datei liest und verarbeitet. Mocken Sie die Dateioperationen, um zu verhindern, dass während der Tests echte Dateien gelesen oder geschrieben werden.
 
 ```Python
 def read_log_file(file_path):
@@ -43,7 +43,7 @@ def read_log_file(file_path):
     return count
 ```
 
-[EC] Schreiben Sie einen Unittests für eine Funktion *process_user_data()* in der Datei *user_manager.py*, die von einer Klasse in Ihrem Projekt abhängt. Mocken Sie die Abhängigkeit, um isolierte Tests durchzuführen.
+- [EC] Schreiben Sie einen Unittests für eine Funktion *process_user_data()* in der Datei *user_manager.py*, die von einer Klasse in Ihrem Projekt abhängt. Mocken Sie die Abhängigkeit, um isolierte Tests durchzuführen.
 
 ```Python
 class UserManager:
@@ -58,7 +58,7 @@ def process_user_data(user_id):
     return user_data
 ```
 
-[EC] Schreibe, Sie eine Funktion *get_user_age()* aus der Datei *my_db_module.py*, die das Alter eines Benutzers aus einer SQL-Datenbank abruft. Schreiben Sie anschließend Unittests für diese Funktion, wobei die Datenbankverbindung und -abfragen gemockt werden, um keine echte Datenbank zu verwenden.
+- [EC] Schreibe, Sie eine Funktion *get_user_age()* aus der Datei *my_db_module.py*, die das Alter eines Benutzers aus einer SQL-Datenbank abruft. Schreiben Sie anschließend Unittests für diese Funktion, wobei die Datenbankverbindung und -abfragen gemockt werden, um keine echte Datenbank zu verwenden.
 
 ```Python
 import sqlite3
@@ -82,7 +82,7 @@ def get_user_age(user_id):
 [INSTRUCTOR::Lösungsvorschläge]
 Lösungen könnten so aussehen:
 
-[EREFC::1] Wetter-Mocking
+- [EREFC::1] Wetter-Mocking
 
 ```Python
 import unittest
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-[EREFC::2] Datei Mocking
+- [EREFC::2] Datei Mocking
 
 ```Python
 import unittest
@@ -150,7 +150,7 @@ if __name__ == '__main__':
 
 ```
 
-[EREFC::3] Objekt Mocking
+- [EREFC::3] Objekt Mocking
 
 ```Python
 import unittest
@@ -178,7 +178,7 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-[EREFC::4] Datenbank Mocking
+- [EREFC::4] Datenbank Mocking
 
 ```Python
 import unittest

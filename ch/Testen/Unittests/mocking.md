@@ -21,12 +21,12 @@ Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-[EQ] Was versteht man genau unter dem Begriff "Code Mocking"?
-[EQ] Welches Problem versucht Code Mocking zu lösen?
-[EQ] Welchen Unterschied gibt es zwischen Mocking und Fixtures?
+- [EQ] Was versteht man genau unter dem Begriff "Code Mocking"?
+- [EQ] Welches Problem versucht Code Mocking zu lösen?
+- [EQ] Welchen Unterschied gibt es zwischen Mocking und Fixtures?
    Ergänzen sie sich gegenseitig?
-[EQ] Wie werden Mock-Objekte zur Nutzung in pytest erstellt?
-[EQ] In welchen Situationen sollten wir Mocks verwenden, und wann sollten wir auf echte
+- [EQ] Wie werden Mock-Objekte zur Nutzung in pytest erstellt?
+- [EQ] In welchen Situationen sollten wir Mocks verwenden, und wann sollten wir auf echte
    Implementierungen zugreifen?
 
 [ENDSECTION]

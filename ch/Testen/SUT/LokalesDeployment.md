@@ -1,6 +1,6 @@
 title: Lokale Bereitstellung des System unter Test
 stage: alpha
-timevalue: 1.0
+timevalue: 1.5
 difficulty: 1
 profiles: TEST
 explains:
@@ -37,15 +37,15 @@ Entwicklung teilnehmen.
 Verschaffen Sie sich einen Überblick über das Codestand, welches Sie im [GitHub Repository](https://github.com/fubinf/propra-inf-testobjekt).
 </replacement>
 
-[EQ] Welche Versionen befinden sich im Repository?
+- [EQ] Welche Versionen befinden sich im Repository?
 
 ### Repository pullen
 
 Starten Sie ein eine neue Terminal Session. Wir wollen unser SUT gleich strukturiert ablegen.
-[EC] Legen Sie dazu ein neues Verzeichnis an: `mkdir ~/ws/sut`.
-[EC] Navigieren Sie anschließend in dieses Verzeichnis: `cd ~/ws/sut`.
-[EC] Jetzt beschaffen wir uns den Quellcode mit `git clone https://github.com/fubinf/propra-inf-testobjekt.git`.
-[EQ] Wie heißt das erstellte Verzeichnis unter `~/ws/sut/`?
+- [EC] Legen Sie dazu ein neues Verzeichnis an: `mkdir ~/ws/sut`.
+- [EC] Navigieren Sie anschließend in dieses Verzeichnis: `cd ~/ws/sut`.
+- [EC] Jetzt beschaffen wir uns den Quellcode mit `git clone https://github.com/fubinf/propra-inf-testobjekt.git`.
+- [EQ] Wie heißt das erstellte Verzeichnis unter `~/ws/sut/`?
 
 [WARNING]
 Achten Sie darauf, dass Sie sich **im** Verzeichnis *sut* befinden und nach dem pullen nicht die Überraschung entdecken, dass sich
@@ -56,23 +56,23 @@ Ihr Repo auf einmal wo anders befindet.
 
 Bevor wir die Anwendung starten können, benötigen wir die für diese Webanwendung genutzten Entwicklungsvorbedingungen. Da
 dieser Webauftritt ein Python Projekt ist, wird als aller erstes Python benötigt.
-[EC] Sie installieren Python mit `apt-get install python`
-[EQ] Welche Pythonversion wird bei Ihnen angezeigt?
+- [EC] Sie installieren Python mit `apt-get install python`
+- [EQ] Welche Pythonversion wird bei Ihnen angezeigt?
 
 Wenn Sie mit mehreren Pythonprojekten arbeiten, werden Sie auch auf unterschiedliche Vorbedingen oder Abhängigkeiten treffen. Daber bietet es sich an diese Projekte in unterschiedlichen Umgebungen mit Hilfe von [TERMREF::venv] zu verwenden. Tiefergehende Informationen finden Sie im Kapitel [PARTREF::venv].
 
-[EC] Zu erst wechseln wir in das vom GitHub gepullte Verzeichnis mit dem Kommando `cd`. Hier müssen Sie noch das aus [EREFQ::2] erkannte Verzeichnis ergänzen.
-[EC] Installieren Sie in Ihrem Verzeichnis eine neue Virtuelle Umgebung mit: `python -m venv ./sut`
-[EC] Wechseln sie in diese Virtuielle Umgebung: `source ./sut/bin/active`
-[EQ] Wie setzt sich Ihr [TERMREF::Prompt] zusammen?
+- [EC] Zu erst wechseln wir in das vom GitHub gepullte Verzeichnis mit dem Kommando `cd`. Hier müssen Sie noch das aus [EREFQ::2] erkannte Verzeichnis ergänzen.
+- [EC] Installieren Sie in Ihrem Verzeichnis eine neue Virtuelle Umgebung mit: `python -m venv ./sut`
+- [EC] Wechseln sie in diese Virtuielle Umgebung: `source ./sut/bin/active`
+- [EQ] Wie setzt sich Ihr [TERMREF::Prompt] zusammen?
 
 Neben der Entwicklungssprache Python werden auch weitere [TERMREF::Framework]s verwendet, um diese Seite zu realisieren. Diese
 Erweiterungen werden in einer einzelnen Datei dokumentiert. Diese finden Sie standardmäßig im Stammverzeichnis unter `requirements.txt`. Mit dieser Datei haben Sie die Möglichkeit Abhängigkeiten schnell und unkompliziert zu installieren.
 
 Da das SUT aus unterschiedlichen Versionen besteht, müssen wir uns für eins entscheiden (bzw. wird ihnen die Version in der jeweiligen Aufgabe nahegelegt).
 
-[EC] Wechseln Sie in das vorgesehene Verzeichnis mit der angegebenen Versionsnummer (hier examplarisch v1.0.0) `cd v1.0.0`
-[EC] Anschließend installieren Sie einmalig die hinterlegten Abhängigkeiten mit `pip install -r requirements.txt`
+- [EC] Wechseln Sie in das vorgesehene Verzeichnis mit der angegebenen Versionsnummer (hier examplarisch v1.0.0) `cd v1.0.0`
+- [EC] Anschließend installieren Sie einmalig die hinterlegten Abhängigkeiten mit `pip install -r requirements.txt`
 
 [WARNING]
 Da Sie die Virtuelle Umgebung `sut` verwenden, sind die installierten Abhängigkeiten nur für diese Umgebung gültig. Wechseln Sie
@@ -84,7 +84,7 @@ auftauchen.
 
 Jetzt haben wir alles, was wir zum Starten benötigen. Jedoch wir müssen unsere Anwendung noch zum Laufen bringen. Das realisieren wir mit dem folgenden Kommando:
 
-[EC] Starten der Anwendung mit `python app.py`
+- [EC] Starten der Anwendung mit `python app.py`
 
 [HINT::Datei nicht gefunden]
 Sollte die Datei nicht gefunden werden, müssen die den Pfad anpassen oder ins Verzeichnis der vorgeschriebenen Version wechseln.
@@ -106,7 +106,7 @@ In Ihrer geöffneten Terminalsitzung läuft die Anwendung im Vordergrund mit. Um
 
 Um mit der Webanwednung zu interagieren zu können, benötigen Sie ein Browserfenster.
 
-[EC] Rufen Sie im Browser die folgende Seite auf: `http://127.0.0.1:5000`
+- [EC] Rufen Sie im Browser die folgende Seite auf: `http://127.0.0.1:5000`
 
 Wenn Sie jetzt eine Webseite sehen, hat alles funktioniert.
 

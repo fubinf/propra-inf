@@ -17,7 +17,7 @@ Sie haben gelernt, wie sich das Testen zum Debuggen unterscheidet. Hier sollen S
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-[EC] Debuggen Sie folgenden Python Code:
+- [EC] Debuggen Sie folgenden Python Code:
 Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben Sie Ihre Anpassung(en).
 
   ```Python
@@ -32,7 +32,7 @@ Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben 
   add_numbers()
   ```
 
-[EC] Debuggen Sie folgenden Java Code:
+- [EC] Debuggen Sie folgenden Java Code:
 Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben Sie Ihre Anpassung(en).
 
   ```Python
@@ -43,9 +43,9 @@ Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben 
 
   ```
 
-[EQ] Betrachten Sie folgendes Szenario: In einem agilen Projekt mit 2 Testern wird nach einem QS Audit festgestellt, dass 20% aller Testfälle nahezu identisch sind. Die Tester haben gem- dem Testkonzept gearbeitet. Dieser sieht vor, dass jeder Tester seine Testfälle selber schreibt und ausführt. Eine Zusammenarbeit unter den testern wurde hier nicht festgelegt. Erwarbeiten Sie ein Konzept zur Verbesserung dieser erkannten Problematik durch mindestens 2 Prozessen. Beschreiben Sie, wie dadurch die Zusammenarbeit verbessert wird und warum doppelte Testfälle stark minimiert werden können.
+- [EQ] Betrachten Sie folgendes Szenario: In einem agilen Projekt mit 2 Testern wird nach einem QS Audit festgestellt, dass 20% aller Testfälle nahezu identisch sind. Die Tester haben gem- dem Testkonzept gearbeitet. Dieser sieht vor, dass jeder Tester seine Testfälle selber schreibt und ausführt. Eine Zusammenarbeit unter den testern wurde hier nicht festgelegt. Erwarbeiten Sie ein Konzept zur Verbesserung dieser erkannten Problematik durch mindestens 2 Prozessen. Beschreiben Sie, wie dadurch die Zusammenarbeit verbessert wird und warum doppelte Testfälle stark minimiert werden können.
 
-[EC] Betrachten Sie folgenden alten Testfall für eine Webseite in deutscher Sprache. Aktualisieren Sie diesen Testfall wenn nötig:
+- [EC] Betrachten Sie folgenden alten Testfall für eine Webseite in deutscher Sprache. Aktualisieren Sie diesen Testfall wenn nötig:
    **Titel:** Erfolgreiche Anmeldung
 
    **Beschreibung:** Der registrierte Nutzer hat die Möglichkeit sich mit seinem Benutzernamen oder seiner E-Mail Adresse am Portal anzumelden. Der Nutzer wird bei erfolgreicher Anmeldung auf sein Profil weitergeleitet.
