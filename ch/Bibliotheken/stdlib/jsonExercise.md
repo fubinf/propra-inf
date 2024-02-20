@@ -24,7 +24,7 @@ in der Datenanalyse oder der Automatisierung von Aufgaben.
 
 ### JSON mit Python
 
-Im folgenden wollen wir mit dem von Ihnen erstellten JSON-Objekt aus Aufgabe [EREFR::3] der Übung [TERMREF::jsonBasic] weiter arbeiten.
+Im folgenden wollen wir mit dem von Ihnen erstellten JSON-Objekt aus Aufgabe [EREFR::3] der Übung [PARTREF::jsonBasic] weiter arbeiten.
 
 - [ER] Erstellen Sie ein Python Script, dass diese Datei einliest.
 
