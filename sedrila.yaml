@@ -96,6 +96,7 @@ chapters:
     taskgroups:
       - slug: Paketmanager
       - slug: Netzwerk
+      - slug: Benutzerverwaltung
   - slug: zzincubator
     taskgroups:
       - slug: alt
