@@ -379,6 +379,18 @@ Es gibt zahlreiche Kommunikationsprotokolle.
 Hier im ProPra ist meist nur [TERMREF::HTTP] von Interesse.
 [ENDTERM]
 
+[TERM::Public-Key-Kryptographie|Assymetrische Kryptographie|Schlüsselpaar]
+Asymmetrische Kryptographie, auch als Public-Key-Kryptographie bekannt, ist ein 
+Verschlüsselungsverfahren, bei dem zwei unterschiedliche Schlüssel verwendet 
+werden: ein öffentlicher Schlüssel zur Verschlüsselung von Daten und ein privater 
+Schlüssel zur Entschlüsselung. Anders als bei symmetrischen Verfahren, bei denen 
+ein einziger Schlüssel für beide Vorgänge genutzt wird, bietet die asymmetrische 
+Kryptographie eine sicherere Lösung für den Datenaustausch, da der private Schlüssel 
+geheim gehalten werden kann, während der öffentliche Schlüssel frei zugänglich ist. 
+Diese Technik wird häufig für sichere Kommunikation, digitale Signaturen und 
+Schlüsselaustauschmechanismen in der Informationssicherheit eingesetzt
+[ENDTERM]
+
 ## Q
 
 [TERM::Qualitätssicherung|QS|Quality Assurance|QA]
@@ -487,6 +499,20 @@ die potenzielle Fehler, Inkonsistenzen oder Verbesserungsmöglichkeiten identifi
 Kann (im Gegensatz zu [TERMREF2::Test::-s]) auch für nicht ausführbare Produkte benutzt werden.
 Findet für Code im Vergleich zu Tests manche Sorten von Problem leichter, andere schwieriger,
 sodass sich beide Verfahrensweisen gut ergänzen.
+[ENDTERM]
+
+
+[TERM::su]
+`su` steht für "Substitute User" und ist ein Befehl in Linux-Systemen, der es einem 
+Benutzer ermöglicht, die Identität zu einem anderen Benutzer zu wechseln, normalerweise 
+zum Superuser (Root), nach Eingabe des entsprechenden Passworts. Im Gegensatz zu `sudo` 
+wechselt `su` vollständig zur Identität des anderen Benutzers, und die erhöhten Rechte 
+bleiben aktiv, bis der Benutzer sich explizit wieder ausloggt oder den Befehl exit eingibt.
+[ENDTERM]
+
+[TERM::sudo]
+`sudo` ist ein Befehl in Linux-Systemen, der es autorisierten Benutzern ermöglicht, 
+vorübergehend erhöhte Rechte zu erhalten, um administrative Aufgaben auszuführen.
 [ENDTERM]
 
 [TERM::Systemtest|System Test]
