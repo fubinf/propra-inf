@@ -43,7 +43,7 @@ Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben 
 
   ```
 
-- [EQ] Betrachten Sie folgendes Szenario: In einem agilen Projekt mit 2 Testern wird nach einem QS Audit festgestellt, dass 20% aller Testfälle nahezu identisch sind. Die Tester haben gem- dem Testkonzept gearbeitet. Dieser sieht vor, dass jeder Tester seine Testfälle selber schreibt und ausführt. Eine Zusammenarbeit unter den testern wurde hier nicht festgelegt. Erwarbeiten Sie ein Konzept zur Verbesserung dieser erkannten Problematik durch mindestens 2 Prozessen. Beschreiben Sie, wie dadurch die Zusammenarbeit verbessert wird und warum doppelte Testfälle stark minimiert werden können.
+- [EQ] Betrachten Sie folgendes Szenario: In einem agilen Projekt mit 2 Testern wird nach einem QS Audit festgestellt, dass 20% aller Testfälle nahezu identisch sind. Die Tester haben gem- dem Testkonzept gearbeitet. Dieser sieht vor, dass jeder Tester seine Testfälle selber schreibt und ausführt. Eine Zusammenarbeit unter den Testern wurde hier nicht festgelegt. Erarbeiten Sie ein Konzept zur Verbesserung dieser erkannten Problematik durch mindestens 2 Prozessen. Beschreiben Sie, wie dadurch die Zusammenarbeit verbessert wird und warum doppelte Testfälle stark minimiert werden können.
 
 - [EC] Betrachten Sie folgenden alten Testfall für eine Webseite in deutscher Sprache. Aktualisieren Sie diesen Testfall wenn nötig:
    **Titel:** Erfolgreiche Anmeldung
@@ -52,12 +52,12 @@ Geben Sie die gefundenen Fehlermeldungen zusammengefasst wieder und beschreiben 
 
    **Testfall-ID:** 1
 
-   **Voraussetzung:** Der Nutzer ist im System regsitriert und aktiv. Der Nutzer befindet sich auf der Anmeldeseite des Portals.
+   **Voraussetzung:** Der Nutzer ist im System registriert und aktiv. Der Nutzer befindet sich auf der Anmeldeseite des Portals.
 
    **Schritte:**
 
-    1. Der Nutzer gibt seinen korrekten Anmeldenamen *benutzer1* und seine korrekte Emailadresse *benutzer1@portal.de* in die Benutzer-Anmeldemakse ein. **Erwartetest Ergebnis:** Der Anmeldename und die Emailadresse *benutzer1benutzer1@portal.de* werden im Klartext angezeigt.
-    2. Der Nutzer gibt sein korrektes Passwort *pwd_benutzer1* in die Passwort-Anmeldemakse ein. **Erwartetest Ergebnis:** Das Passwort wird im Klartext angezeigt.
+    1. Der Nutzer gibt seinen korrekten Anmeldenamen *benutzer1* und seine korrekte Emailadresse *benutzer1@portal.de* in die Benutzer-Anmeldemaske ein. **Erwartetest Ergebnis:** Der Anmeldename und die Emailadresse *benutzer1benutzer1@portal.de* werden im Klartext angezeigt.
+    2. Der Nutzer gibt sein korrektes Passwort *pwd_benutzer1* in die Passwort-Anmeldemaske ein. **Erwartetest Ergebnis:** Das Passwort wird im Klartext angezeigt.
     3. Der Nutzer klickt auf Login. **Erwartetes Ergebnis:** Der Nutzer wird auf die Startseite des Portals weitergeleitet.
 
 [ENDSECTION]

@@ -27,7 +27,7 @@ Recherchieren Sie anhand der folgenden Leitfragen unter Beachtung der folgenden 
 - [EQ] Was versteht man unter einer Testsammlung? Erstellen Sie eine Testsammlung und verdeutlichen Sie, wo Ihr erstellter Testfall mit dieser Testsammlung in Verbindung stehen kann.
 - [EQ] Was versteht man unter einem Testplan? Erstellen Sie einen fiktiven Testplan mit mindestens 10 Kriterien.
 - [EQ] Was versteht man unter Testdaten? Wie können Testdaten in einem Testfall verwendet werden?
-- [EQ] Schreiben Sie Ihren statischen Testfall aus 1. in einen generischen Testfall um. Nutzen Sie finktive Testdaten, um mindestens 3 Iterationen zu diesem Testfall zu erstellen.
+- [EQ] Schreiben Sie Ihren statischen Testfall aus 1. in einen generischen Testfall um. Nutzen Sie fiktive Testdaten, um mindestens 3 Iterationen zu diesem Testfall zu erstellen.
 
 [ENDSECTION]
 

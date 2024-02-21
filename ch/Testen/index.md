@@ -6,11 +6,11 @@ Teststrategien und -ansätze, die in der Softwareentwicklung verwendet werden, u
 (fehlerfrei und) gem. den Anforderungen funktioniert.
 
 In diesem Kapitel geht es um die Qualität der Software, die durch Testmanager, Test Leiter, Test Analysten,
-Testautomatisierer und Test Architekten (allg. Tester) optimiert werden kann. Hier erlenen Sie die Grundlagen des
+Testautomatisierer und Test Architekten (allg. Tester) optimiert werden kann. Hier erlernen Sie die Grundlagen des
 Testens, betrachten Konzeptionen und lassen den Spaß, das Programmieren, definitiv im Themenbereich Testautomatisierung
 nicht außen vor.
 
-Im folgenden Diagram erhalten Sie eine grobe Übersicht übe die möglichen Themen, die Sie bearbeiten können.
+Im folgenden Diagramm erhalten Sie eine grobe Übersicht übe die möglichen Themen, die Sie bearbeiten können.
 
 ```mermaid
 graph TD

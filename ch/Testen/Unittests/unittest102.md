@@ -7,7 +7,7 @@ assumes: unittest101
 ---
 [SECTION::goal::idea]
 
-- Ich lerne wie mann fpr Python Flask Unittetst schreibt
+- Ich lerne wie man für Python Flask Unittest schreibt
 
 [ENDSECTION]
 [SECTION::background::default]

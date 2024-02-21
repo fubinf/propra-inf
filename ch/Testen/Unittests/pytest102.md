@@ -7,7 +7,7 @@ assumes: pytest101
 ---
 [SECTION::goal::idea]
 
-- Ich kann Fixtiures einordnen und lerne, was ich damit machen
+- Ich kann Fixtures einordnen und lerne, was ich damit machen
 
 [ENDSECTION]
 [SECTION::background::default]

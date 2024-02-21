@@ -14,13 +14,13 @@ assumes: restApi, jsonBasic
 [ENDSECTION]
 [SECTION::background::default]
 
-Mit einem API [TERMREF::Request] erhält man unteschiedliche Antworten zurück. Neben dem [TERMREF::HTTP-Statuscode],
+Mit einem API [TERMREF::Request] erhält man unterschiedliche Antworten zurück. Neben dem [TERMREF::HTTP-Statuscode],
 werden [TERMREF::Header-Metadaten] und manchmal auch [TERMREF::Response]-Daten zurückgegeben.
 
 [ENDSECTION]
 [SECTION::instructions::tricky]
 
-Wenn wir einen API Request absetzen, wollen wir oftmal direkt erfahren, welchen HTTP-Statuscode wir erhalten haben.
+Wenn wir einen API Request absetzen, wollen wir oftmals direkt erfahren, welchen HTTP-Statuscode wir erhalten haben.
 
 - [EQ] Welche Bedeutung haben die folgenden Statuscode-Berieche: `2xx`, `3xx`, `5xx`?
 - [EQ] Was bedeuten die spezifischen Statuscodes `201`, `404`, `503`?
@@ -33,12 +33,12 @@ uns bereits bekannte [Petstore-Seite](https://petstore.swagger.io).
 `available`, `pending`, oder `sold` aus.
 
 In einem Regressionstest möchte man gerne auf Aktionen aufbauen, die bestimmte Daten erzeugen, manipulieren oder einfach nur
-Daten auslasen. Daher werden wir mit diesem Response weiter arbeiten und uns die erhaltenene Daten etwas verfeinern.
+Daten auslasen. Daher werden wir mit diesem Response weiter arbeiten und uns die erhaltenen Daten etwas verfeinern.
 
 - [ER] Erweitern Sie den Code und filtern Sie den Statuscode aus dem Response.
 - [EQ] Warum ist der Statuscode `200` und nicht `201`?
 
-In dem erhaltenen Resonse ist ein Array enthalten. Dieses Array besitzt JSON Objekte. Wir wollen einen Blick auf alle
+In dem erhaltenen Response ist ein Array enthalten. Dieses Array besitzt JSON Objekte. Wir wollen einen Blick auf alle
 erhaltenen Werte des Feldes `id` werfen. Nutzen Sie ausreichend die Möglichkeit des [PARTREF::jsonBasic] Paket, um an diese
 Informationen heran zu kommen.
 
@@ -60,6 +60,6 @@ Jetzt wollen wir diese Werte an einer anderen Schnittstelle anwenden.
 
 [INSTRUCTOR::heading]
 
-- [EREFQ::5] Hier sollte die Antwort nein sein, da alle ID's vorab abgefragt wurden. Falls doch ja heraus kommt, kann es zu einer Übeschneidung mit einem anderen Nutzer geben, der dieses Objekt verändert hat.
+- [EREFQ::5] Hier sollte die Antwort nein sein, da alle ID's vorab abgefragt wurden. Falls doch ja heraus kommt, kann es zu einer Überschneidung mit einem anderen Nutzer geben, der dieses Objekt verändert hat.
 
 [ENDINSTRUCTOR]

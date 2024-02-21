@@ -6,7 +6,7 @@ profiles: TEST
 ---
 [SECTION::goal::experience,product]
 
-- Ich habe erste Robot Frtamework Testfälle ausgeführt
+- Ich habe erste Robot Framework Testfälle ausgeführt
 - Ich habe kleine Erweiterungen zu bestehenden Testfällen durchgeführt
 - Ich habe BDD kennengelernt
 
@@ -40,7 +40,7 @@ Nutzen Sie den Online Editor auf der Robot Framework Seite, um erste Schritte mi
 
 Betrachten Sie das Beispiel **"Simple Example"**:
 
-- [EQ] Wieviele und welche Dateien werden für dieses Beispiel verwendet?
+- [EQ] Wie viele und welche Dateien werden für dieses Beispiel verwendet?
 - [EQ] Wie heißen die Dateien, die nach einer Testausführung entstehen und einsehbar sind?
 - [EQ] Welche Testfälle beinhaltet das Beispiel?
 - [EC] Ergänzen Sie den folgenden Testfall. Ist der Test erfolgreich durchgelaufen?
@@ -66,12 +66,12 @@ Get Userlist
     Get All Users
 ```
 
-- [EC] Implementieren Sie einen erfolgreichen Testfall für die Funktion 'get_server_version' aus der CustomLibrary.py. Eine Verifizierung [TERMREF:Verifizierung] des Ergebnisses ist nicht notwenid.
+- [EC] Implementieren Sie einen erfolgreichen Testfall für die Funktion 'get_server_version' aus der CustomLibrary.py. Eine Verifizierung [TERMREF:Verifizierung] des Ergebnisses ist nicht notwendig.
 
 Wechseln Sie zum Beispiel **BDD-Example**
 
 - [EQ] Machen Sie sich mit dem Themma [TERMREF:BDD] vertraut. Beschreiben Sie den Aufbau des Testfalls unter 'Calculator_Test_Suite.robot'.
-- [EC] Ergänzen Sie in der `.robot`-Datei die Zeile **Then The Result Should Not Be "1"**, zusätzlich den folgenden Testfall in der `.resource`-Datei und erkären Sie, was dieser Testschritt verifiziert.
+- [EC] Ergänzen Sie in der `.robot`-Datei die Zeile **Then The Result Should Not Be "1"**, zusätzlich den folgenden Testfall in der `.resource`-Datei und erklären Sie, was dieser Testschritt verifiziert.
 
 ```python
 The Result Should Not Be "${expected}"
@@ -79,7 +79,7 @@ The Result Should Not Be "${expected}"
     Should Not Be Equal As Numbers    ${result}    ${expected}
 ```
 
-- [EQ] Ist es sinnvoll mehrer Schritte in einem Testfall zu nutzen, um Ergebnisse zu verifizieren? Wenn ja, gibt es ein Maximum?
+- [EQ] Ist es sinnvoll mehrere Schritte in einem Testfall zu nutzen, um Ergebnisse zu verifizieren? Wenn ja, gibt es ein Maximum?
 
 [WARNING]
 [ENDWARNING]
@@ -96,6 +96,6 @@ Zusätzlich ist es zur Erfüllung der Aufgaben nicht notwendig die CustomLibrary
 [ENDSECTION]
 [INSTRUCTOR::Erwartung]
 
-- [EREFC::2] wird erwartet zu erkennen, dass die Abfrage durch einen unberechtigten Nutzer durchgeführt wird. Ein Administrator jedoch diese Möglichkeit hat. Daher kann ein fehlerfreier Test durch das ersetzen des `Login User` durch `Login Admin` realisiert werden, da diese Funktionalität beriets vorhanden ist.
+- [EREFC::2] wird erwartet zu erkennen, dass die Abfrage durch einen unberechtigten Nutzer durchgeführt wird. Ein Administrator jedoch diese Möglichkeit hat. Daher kann ein fehlerfreier Test durch das ersetzen des `Login User` durch `Login Admin` realisiert werden, da diese Funktionalität bereits vorhanden ist.
 
 [ENDINSTRUCTOR]

@@ -30,7 +30,7 @@ folgenden GutHub Beitrag: [Fork Repository](https://docs.github.com/de/pull-requ
 
 ### Workflow anlegen
 
-Als nächstes Benötigen wir eine Workflow-Datei, die Github Anweisungen gibt, was unsere Pipleine alles machen soll. Um
+Als nächstes Benötigen wir eine Workflow-Datei, die Github Anweisungen gibt, was unsere Pipeline alles machen soll. Um
 eine Datei über die GitHub GUI zu erstellen, gehen Sie wie [hier](https://docs.github.com/de/repositories/working-with-files/managing-files/creating-new-files#) beschrieben vor.
 
 - [EC] Erstellen Sie im Verzeichnis in Ihrem abgezweigten Repository `.githuib/workflow/` eine Datei `sut.yaml` und fügen Sie folgenden Inhalt ein:
@@ -88,7 +88,7 @@ Nachdem Sie diese Datei committet haben, wir die Pipeline auch direkt ausgeführ
 ### Pipeline prüfen
 
 Um den Status der Pipeline zu inspizieren, gehen Sie wie [hier](https://docs.github.com/de/actions/quickstart#viewing-your-workflow-results) beschrieben vor.
-Öffnen Sie den Workflow `System under Test`. Auf der rechten Seite sehen Sie alle Workflow läufe. Klicken
+Öffnen Sie den Workflow `System under Test`. Auf der rechten Seite sehen Sie alle Workflow Durchläufe. Klicken
 Sie auf den obersten Eintrag, der Ihrer Commit-Nachricht enthalten sollte. Innerhalb dieses Laufs sehen Sie
 die definierten Jobs. Wenn Sie auf den Job klicken (hier ist nur einer vorhanden: `build`), können sie die
 einzelnen Schritte genauer unter die Lupe nehmen.

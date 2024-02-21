@@ -9,7 +9,7 @@ assumes: venv, pip, basics, Git101
 [SECTION::goal::idea]
 
 - Ich besitze erste Kenntnisse über das zu verwendende SUT
-- Ich erlerne die Voraussetzungemn dafür, das SUT lokal zu starten und zu verwenden
+- Ich erlerne die Voraussetzungen dafür, das SUT lokal zu starten und zu verwenden
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -27,7 +27,7 @@ Webanwendung.
 Es werden Aufgaben zur Verfügung stehen, die eine besondere Grundlage benötigen, um korrekt gelöst werden zu können. Primär ist
 das SUT für den Bereich TEST vorgesehen, kann auch auch für alle anderen Bereiche der Softwareentwicklung verwendet werden,
 um z.B. die Webentwicklung im Front- und Backend zu erkunden, oder sich mit der Bereitstellung (Deployment) von Anwendungen zu befassen.
-In jedem Fall wird es ein Hinweis geben, der sich auf diese Grunlagen bezieht.
+In jedem Fall wird es ein Hinweis geben, der sich auf diese Grundlagen bezieht.
 
 Natürlich können Sie auch jederzeit explorativ das SUT erkunden, verbessern oder erweitern. Sollten Ihnen merkwürdige Verhaltensmuster
 an der Software auffallen, können Sie ebenfalls die Gelegenheit nutzen dies in GitHub als Issue kenntlich zu machen und so an der
@@ -42,6 +42,7 @@ Verschaffen Sie sich einen Überblick über das Codestand, welches Sie im [GitHu
 ### Repository pullen
 
 Starten Sie ein eine neue Terminal Session. Wir wollen unser SUT gleich strukturiert ablegen.
+
 - [EC] Legen Sie dazu ein neues Verzeichnis an: `mkdir ~/ws/sut`.
 - [EC] Navigieren Sie anschließend in dieses Verzeichnis: `cd ~/ws/sut`.
 - [EC] Jetzt beschaffen wir uns den Quellcode mit `git clone https://github.com/fubinf/propra-inf-testobjekt.git`.
@@ -56,14 +57,15 @@ Ihr Repo auf einmal wo anders befindet.
 
 Bevor wir die Anwendung starten können, benötigen wir die für diese Webanwendung genutzten Entwicklungsvorbedingungen. Da
 dieser Webauftritt ein Python Projekt ist, wird als aller erstes Python benötigt.
-- [EC] Sie installieren Python mit `apt-get install python`
-- [EQ] Welche Pythonversion wird bei Ihnen angezeigt?
 
-Wenn Sie mit mehreren Pythonprojekten arbeiten, werden Sie auch auf unterschiedliche Vorbedingen oder Abhängigkeiten treffen. Daber bietet es sich an diese Projekte in unterschiedlichen Umgebungen mit Hilfe von [TERMREF::venv] zu verwenden. Tiefergehende Informationen finden Sie im Kapitel [PARTREF::venv].
+- [EC] Sie installieren Python mit `apt-get install python`
+- [EQ] Welche Python Version wird bei Ihnen angezeigt?
+
+Wenn Sie mit mehreren Python Projekten arbeiten, werden Sie auch auf unterschiedliche Vorbedingen oder Abhängigkeiten treffen. Daher bietet es sich an diese Projekte in unterschiedlichen Umgebungen mit Hilfe von [TERMREF::venv] zu verwenden. Tiefer gehende Informationen finden Sie im Kapitel [PARTREF::venv].
 
 - [EC] Zu erst wechseln wir in das vom GitHub gepullte Verzeichnis mit dem Kommando `cd`. Hier müssen Sie noch das aus [EREFQ::2] erkannte Verzeichnis ergänzen.
 - [EC] Installieren Sie in Ihrem Verzeichnis eine neue Virtuelle Umgebung mit: `python -m venv ./sut`
-- [EC] Wechseln sie in diese Virtuielle Umgebung: `source ./sut/bin/active`
+- [EC] Wechseln sie in diese Virtuelle Umgebung: `source ./sut/bin/active`
 - [EQ] Wie setzt sich Ihr [TERMREF::Prompt] zusammen?
 
 Neben der Entwicklungssprache Python werden auch weitere [TERMREF::Framework]s verwendet, um diese Seite zu realisieren. Diese
@@ -71,7 +73,7 @@ Erweiterungen werden in einer einzelnen Datei dokumentiert. Diese finden Sie sta
 
 Da das SUT aus unterschiedlichen Versionen besteht, müssen wir uns für eins entscheiden (bzw. wird ihnen die Version in der jeweiligen Aufgabe nahegelegt).
 
-- [EC] Wechseln Sie in das vorgesehene Verzeichnis mit der angegebenen Versionsnummer (hier examplarisch v1.0.0) `cd v1.0.0`
+- [EC] Wechseln Sie in das vorgesehene Verzeichnis mit der angegebenen Versionsnummer (hier exemplarisch v1.0.0) `cd v1.0.0`
 - [EC] Anschließend installieren Sie einmalig die hinterlegten Abhängigkeiten mit `pip install -r requirements.txt`
 
 [WARNING]
@@ -117,7 +119,7 @@ Wenn Sie jetzt eine Webseite sehen, hat alles funktioniert.
 
 [INSTRUCTOR::heading]
 
-- [EREFQ::2] Nach diesen Schitten sollte das folgende Verzeichnis `propra-inf-testobjekt` unter `~/ws/sut/` gefunden worden sein.
-- [EREFQ::3] Hier soll kenntlich gemact werden, dass die venv im Prompt angezeiugt wird: **(sut)**
+- [EREFQ::2] Nach diesen Schritten sollte das folgende Verzeichnis `propra-inf-testobjekt` unter `~/ws/sut/` gefunden worden sein.
+- [EREFQ::3] Hier soll kenntlich gemacht werden, dass die venv im Prompt angezeigt wird: **(sut)**
 
 [ENDINSTRUCTOR]

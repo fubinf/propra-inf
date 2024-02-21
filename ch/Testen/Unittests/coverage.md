@@ -13,7 +13,7 @@ profiles: TEST
 
 Es gibt beim Programmieren viele Fragen, deren Antwort davon abhängig ist, wen man nach einer Antwort
 fragt.
-Eines dieser Themen ist die Frage, wieviele Tests denn ausreichend sind, um die Funktionalität eines
+Eines dieser Themen ist die Frage, wie viele Tests denn ausreichend sind, um die Funktionalität eines
 Programms sicherzustellen.
 Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 

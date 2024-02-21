@@ -13,7 +13,7 @@ requires: GitHubDeployment
 [ENDSECTION]
 [SECTION::background::default]
 
-Potentielel Fehler sollen erkannt werden, bevor man mit der aktuellen Codebasis
+Potentielle Fehler sollen erkannt werden, bevor man mit der aktuellen Codebasis
 weiter arbeitet. Das gelingt am Besten, indem Tests nach einem Commit ausgeführt
 werden und eine Rückmeldung geben. Hier schauen wir uns an, wie es Grundlegend
 funktioniert.
@@ -25,7 +25,7 @@ funktioniert.
 
 Wir haben in unsere Übung [PARTREF::GitHubDeployment] einen Workflow erstellt, der jetzt
 um einen Unittest erweitert werden soll. Dieser Unittest soll vor dem Starten der Anwendung
-ausgeführt werden und sicherstellen, dass die folgenden Schtitte nicht ausgeführt werden,
+ausgeführt werden und sicherstellen, dass die folgenden Schritte nicht ausgeführt werden,
 wenn diese Phase fehlschlägt.
 Fügen Sie dazu folgenden Abschnitt in die `sut.yaml` ein
 

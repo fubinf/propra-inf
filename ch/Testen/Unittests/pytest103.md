@@ -12,7 +12,7 @@ assumes: pytest101, pytest102
 [ENDSECTION]
 [SECTION::background::default]
 
-Zur Organisierung von Tests benötigte ich häufig Informationen, die nicht direkt in der Logik
+Zur Organisation von Tests benötigte wir häufig Informationen, die nicht direkt in der Logik
 des Codes festgehalten sind.
 
 Marks in pytest sind ein leistungsfähiges Feature, mit dem Sie Tests oder Testfunktionen mit

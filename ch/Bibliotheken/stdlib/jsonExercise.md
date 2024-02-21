@@ -36,7 +36,7 @@ Im folgenden wollen wir mit dem von Ihnen erstellten JSON-Objekt aus Aufgabe [ER
 
 - [ER] Erstellen Sie eine Funktion, die die Wunschnote eines Faches von einem Studenten ändert.
 - [ER] Erstellen Sie eine Funktion, die das Lieblingsfach eines Studenten ändert.
-(Optional Advanced: Es soll nur ein Lieblinsgfach pro Student geben. )
+(Optional Advanced: Es soll nur ein Lieblingsfach pro Student geben. )
 - [ER] Erstellen Sie eine Funktion, die ein Studienfach hinzufügt zu einem Studenten hinzufügt.
 - [ER] Erstellen Sie eine Funktion, die einen neuen Studenten mit allen vorhandenen Eigenschaften anlegt. Der Student muss mindestens ein Fach ausgewählt haben.
 

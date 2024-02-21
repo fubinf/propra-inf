@@ -19,9 +19,9 @@ Integrationstest und E2E Test, die eingeordnet werden wollen und ob wir die Pyra
 [SECTION::instructions::loose]
 
 - [EQ] Was versteht man unter einer Testpyramide?
-- [EQ] Gibt es eine einheitliche Definition einer Testpyramide? Wenn nein, welche Unetrschiede gibt es?
+- [EQ] Gibt es eine einheitliche Definition einer Testpyramide? Wenn nein, welche Unterschiede gibt es?
 - [EQ] Wie unterscheiden sich die Ebenen der Testpyramide hinsichtlich der Kosten, der Geschwindigkeit, der Komplexität und der Testanzahl?
-- [EQ] Welchen Bezug hat die Testautomatisierung zu der jeweiligen Tetsebene?
+- [EQ] Welchen Bezug hat die Testautomatisierung zu der jeweiligen Testebene?
 - [EQ] Diskutieren Sie alternative Ansätze und wie diese sich von der Testpyramide unterscheiden.
 
 [ENDSECTION]

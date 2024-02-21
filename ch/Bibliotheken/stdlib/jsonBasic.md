@@ -52,7 +52,7 @@ Recherchieren Sie im Netz:
 
 ### JSON-Objekt erstellen
 
-Jetzt sind sie gefragt. Sie sollen im folgenden anhand der gegebenen Informationen eine eigenes JSON-Obnjekt erstellen.
+Jetzt sind sie gefragt. Sie sollen im folgenden anhand der gegebenen Informationen eine eigenes JSON-Objekt erstellen.
 
 - [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `books.json` anhand der folgenden Vorgabe.
 
@@ -61,7 +61,7 @@ Ein Buch, das von einem Autor namens "Alice" geschrieben wurde. Der Titel des Bu
 "Die Abenteuer von Alice im Wunderland" und es hat 200 Seiten.
 ```
 
-- [ER] Ergänzen Sie aus [EREFR::1] zdie Eigenschaften `ISBN` und `Auflage` mit beliebigen Werten.
+- [ER] Ergänzen Sie aus [EREFR::1] die Eigenschaften `ISBN` und `Auflage` mit beliebigen Werten.
 
 - [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `student.json` anhand der folgenden Vorgabe.
 

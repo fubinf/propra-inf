@@ -11,8 +11,8 @@ erfolgreich ausprobiert.
 [ENDSECTION]
 [SECTION::background::default]
 
-Ein Pythonprogramm, das auf der Kommandozeile aufgerufen werden soll, muss meistens
-Argumente verarbeiten, die beim Aufruf mit auf der Kommandozeile angegeben werden, etwa bei 
+Ein Python Programm, das auf der Kommandozeile aufgerufen werden soll, muss meistens
+Argumente verarbeiten, die beim Aufruf mit auf der Kommandozeile angegeben werden, etwa bei
 `head -4 ~/.bashrc`.
 
 Das kann schnell ganz schön kompliziert werden,
@@ -27,7 +27,7 @@ Das ist der Job von `argparse`.
 Leider ist die normale 
 [Dokumentation von `argparse`](https://docs.python.org/3/library/argparse.html)
 nicht so gut verständlich wie sonst meistens.
-Lesen Sie diese Seite bis einschließlich der Tabelle bei 
+Lesen Sie diese Seite bis einschließlich der Tabelle bei
 "Quick Links for add_argument()".
 Versuchen Sie, ein ungefähres Verständnis der Tabelleneinträge zu entwickeln,
 ohne die Details nachzulesen.
@@ -63,9 +63,11 @@ wobei die flags auch als `-c`, `-m` oder `--depth` oder `-d`, `-b` abgekürzt we
 [ENDSECTION]
 [SECTION::submission::program]
 
-Geben Sie zwei Dateien ab 
+Geben Sie zwei Dateien ab
+
 - `argparsetest.py`
-- `m_argparse.md` mit einem [PARTREFMANUAL::Kommandoprotokolle::Kommandoprotokoll], in dem Sie `argparsetest` viermal 
+- `m_argparse.md` mit einem [PARTREFMANUAL::Kommandoprotokolle::Kommandoprotokoll], in dem Sie `argparsetest` viermal
+
   mit sehr verschiedenen Argumenten aufrufen (davon zweimal korrekt und zweimal unzulässig),
   um zu zeigen, dass es wohl wie gewünscht funktioniert.
 
@@ -73,8 +75,8 @@ Geben Sie zwei Dateien ab
 
 [INSTRUCTOR::4x add_argument()]
 Eine Lösung, die weniger oder mehr als vier `add_argument()`-Zeilen verwendet,
-ist sehr wahrscheinlich nicht in Ordnung. 
+ist sehr wahrscheinlich nicht in Ordnung.
 
-Wenn die Testausgaben sehr wenig Variabilität der Eingaben haben, 
+Wenn die Testausgaben sehr wenig Variabilität der Eingaben haben,
 unter Verweis auf unzureichendes Testen zurückweisen.
 [ENDINSTRUCTOR]

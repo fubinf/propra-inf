@@ -19,7 +19,7 @@ so die Entwicklung von Anwendungen, die auf bereits vorhandenen Diensten oder Pl
 So können Sie zu jeder freigegebene Schnittstelle eigene Funktionalitäten, Programme oder Anwendungen
 entwickeln, die mit diesen Schnittstellen kommunizieren.
 Eine RESTful API baut auf den Prinzipien des REST-Architekturstils auf und ermöglicht die Kommunikation
-zwischen Client und Server über **standardisierte** HTTP-Anfragen. Durch die Nutzung diese standarisierten
+zwischen Client und Server über **standardisierte** HTTP-Anfragen. Durch die Nutzung diese standardisierten
 HTTP-Methoden bietet eine RESTful API eine flexible und effiziente Möglichkeit, Daten zwischen verschiedenen
 Anwendungen auszutauschen.
 
@@ -38,14 +38,14 @@ von [TERMREF::OpenAPI] dokumentiert werden. Diese Dokumentationshilfe wird uns i
 
 ### RESTful-API
 
-Eine RESTful-API hat besondere Eigenschaften, die wir uns hier genauer anschuen. Recherchieren Sie auf der
+Eine RESTful-API hat besondere Eigenschaften, die wir uns hier genauer anschauen. Recherchieren Sie auf der
 [RESTful-API-Seite](https://restfulapi.net):
 
 - [EQ] Was zeichnet eine RESTful-API Architektur aus?
-- [EQ] Was sind die 6 grundlegenden Prozipien?
-- [EQ] Wie sieht ein REST-Endpunkt aus und werden Ressourcen-Endpunkte in Singulkar oder Plural bezeichnet?
-- [EQ] Worin unterscheiden sich `PUT` und `POST`? Erstellen Sie jeweils ein Beipiel, um den Unterschied zu verdeutlichen.
-- [EQ] Sind REST udn HTPS gleichzusetzen?
+- [EQ] Was sind die 6 grundlegenden Prinzipien?
+- [EQ] Wie sieht ein REST-Endpunkt aus und werden Ressourcen-Endpunkte in Singular oder Plural bezeichnet?
+- [EQ] Worin unterscheiden sich `PUT` und `POST`? Erstellen Sie jeweils ein Beispiel, um den Unterschied zu verdeutlichen.
+- [EQ] Sind REST udn HTTP gleichzusetzen?
 
 ### Python Request - Wofür benötige ich das?
 
@@ -64,7 +64,7 @@ Lesen Sie den Artikel [REST Web Services](http://www.thomas-bayer.com/resources/
 
 ### Petstore-Schnittstellen verwenden
 
-Jetzt widmen wir uns den praktischen Aufgaben zu. nachdem Sie einen Blick in die Petstore-Dokumemntation geworfen haben, sind Ihnen bestimmt auch verschiedene Schnittstellen aufgefallen. Diese nutzen wir jetzt, um Informationen zu erhalten.
+Jetzt widmen wir uns den praktischen Aufgaben zu. nachdem Sie einen Blick in die Petstore-Dokumentation geworfen haben, sind Ihnen bestimmt auch verschiedene Schnittstellen aufgefallen. Diese nutzen wir jetzt, um Informationen zu erhalten.
 
 - [EC] Nutzen Sie folgendes Script, um eine API Anfrage zu senden. Kommentieren und beschreiben Sie die fehlenden TODOs:
 
@@ -143,11 +143,11 @@ if __name__ == "__main__":
     create_pet()
 ```
 
-- [ER] Erstellen Sie ein Update und ein Delete Request für eine beliebige existierene Pet-ID (Suchen Sie eigenständig nach einem vorhandenen Eintrag.)
+- [ER] Erstellen Sie ein Update und ein Delete Request für eine beliebige existierende Pet-ID (Suchen Sie eigenständig nach einem vorhandenen Eintrag.)
 
 [HINT::VisibleTitle]
-Die OpenAPI Dokumentaion bietet ebenfalls die Möglichkeit Anfragen zu senden. Dadurch erhalten Sie die Möglichkeiten Ihren Response mit Hilfe
-Ihrer Scripte mit dem Responser über OpenAPI zu vergleichen.  
+Die OpenAPI Dokumentation bietet ebenfalls die Möglichkeit Anfragen zu senden. Dadurch erhalten Sie die
+Möglichkeiten Ihren Response mit Hilfe Ihrer Scripte mit dem Response über OpenAPI zu vergleichen.  
 [ENDHINT]
 
 [ENDSECTION]

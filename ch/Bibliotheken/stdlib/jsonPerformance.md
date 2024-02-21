@@ -33,8 +33,8 @@ Tausenden von Datensätzen.
 
 Betrachten Sie folgenden Artikel auf [Medium](https://medium.com/data-science-community-srm/json-is-incredibly-slow-heres-what-s-faster-ca35d5aaf9e8)
 
-- [EQ] Welcher entscheidende Nachteil wird hier addressiert und welche Gründe werden genannt?
-- [EQ] Welche Tips werden gegeben, um diesen Nachteil bestmöglich entgegen zu wirken?
+- [EQ] Welcher entscheidende Nachteil wird hier adressiert und welche Gründe werden genannt?
+- [EQ] Welche Tipps werden gegeben, um diesen Nachteil bestmöglich entgegen zu wirken?
 
 [ENDSECTION]
 
