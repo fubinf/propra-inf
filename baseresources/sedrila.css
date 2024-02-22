@@ -130,6 +130,11 @@ summary {}
   outline:0;
 }
 
+.header_in a {
+  text-decoration: none;
+  color: black;
+}
+
 .toggle span {
   width:100%;
   height:3px;
@@ -540,6 +545,11 @@ summary {}
         color: lightgray;
     }
 
+    .header_in a {
+        text-decoration: none;
+        color: white !important;
+    }
+
     footer, code {
         background-color: #000;
         color: lightgray;
@@ -548,6 +558,10 @@ summary {}
     .codehilite, .codehilite pre {
         background: #000 !important;
         background-color: #000 !important;
+    }
+
+    .codehilitetable .linenos .normal:only-child {
+        display: none;
     }
 
     .admonition,
