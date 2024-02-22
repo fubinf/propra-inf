@@ -33,7 +33,45 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
-- ...
+- ch/Bibliotheken/stdlib/jsonBasic.md (Ronny Ruhe)
+- ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
+- ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
+
+- ch/Testen/SUT/index.md (Ronny Ruhe)
+- ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
+- ch/Testen/SUT/GitHubDeployment.md (Ronny Ruhe)
+
+- ch/Testen/Testframeworks/index.md (Ronny Ruhe)
+- ch/Testen/Testframeworks/Robot.md (Ronny Ruhe)
+
+- ch/Testen/API/index.md (Ronny Ruhe)
+- ch/Testen/API/restApi.md (Ronny Ruhe)
+- ch/Testen/API/responseApi.md (Ronny Ruhe)
+- ch/Testen/API/CRUDApi.md (Ronny Ruhe)
+
+- ch/Testen/Basiswissen/index.md (Ronny Ruhe)
+- ch/Testen/Basiswissen/error.md (Ronny Ruhe)
+- ch/Testen/Basiswissen/errorExercise1.md (Ronny Ruhe)
+- ch/Testen/Basiswissen/testcases.md (Ronny Ruhe)
+- ch/Testen/Basiswissen/testcasesExercvise1.md (Ronny Ruhe)
+- ch/Testen/Basiswissen/testDelimitations.md (Ronny Ruhe)
+- ch/Testen/Basiswissen/testDelimitationsExercvise1.md (Ronny Ruhe)
+- ch/Testen/Basiswissen/testpyramide.md (Ronny Ruhe)
+
+- ch/Testen/Unittests/index.md (Dominik Pietrak und Ronny Ruhe)
+- ch/Testen/Unittests/unittest101.md (Dominik Pietrak und Ronny Ruhe)
+- ch/Testen/Unittests/unittest102.md (Ronny Ruhe)
+- ch/Testen/Unittests/unittest201.md (Ronny Ruhe)
+- ch/Testen/Unittests/unittest202.md (Ronny Ruhe)
+- ch/Testen/Unittests/unittest301.md (Ronny Ruhe)
+- ch/Testen/Unittests/pytest101.md (Dominik Pietrak und Ronny Ruhe)
+- ch/Testen/Unittests/pytest102.md (Dominik Pietrak und Ronny Ruhe)
+- ch/Testen/Unittests/pytest103.md (Dominik Pietrak und Ronny Ruhe)
+- ch/Testen/Unittests/pytest104.md (Dominik Pietrak und Ronny Ruhe)
+- ch/Testen/Unittests/pytest201.md (Ronny Ruhe)
+- ch/Testen/Unittests/coverage.md (Dominik Pietrak und Ronny Ruhe)
+- ch/Testen/Unittests/freezegun.md (Dominik Pietrak und Ronny Ruhe)
+- ch/Testen/Unittests/mocking.md (Dominik Pietrak und Ronny Ruhe)
 
 
 ## Reviews to do for Christian Hofmann
