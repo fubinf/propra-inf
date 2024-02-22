@@ -15,7 +15,7 @@ btn.onclick = () => {
 
 let filename = location.pathname.split("/").at(-1);
 if (filename) {
-  filename = filename.substr(0, filename.length - 5);
+  filename = decodeURIComponent(filename.substr(0, filename.length - 5));
 }
 const timer = document.getElementsByClassName("breadcrumbs")?.[0]
   ?.parentElement?.appendChild(document.createElement("span"));
