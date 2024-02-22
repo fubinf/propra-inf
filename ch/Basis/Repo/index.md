@@ -6,11 +6,9 @@ oder kurz "Repo".  TODO_2: TERM
 
 Die dabei benutzte Software heißt Git (gesprochen "gitt", mal großgeschrieben und mal klein).
 
-[WARNING]
 Git ist ungeheuer leistungsfähig und für die moderne Softwareentwicklung von _sehr_ zentraler
 Bedeutung -- es lohnt sich enorm, gut mit git umgehen zu können.
 Leider ist es auch ungeheuer kompliziert.
-[ENDWARNING]
 
 Glücklicherweise brauchen Sie im ProPra nur die einfachsten Funktionen von Git und können
 in einem späteren Kapitel in aller Ruhe fortgeschrittene Funktionen kennenlernen.

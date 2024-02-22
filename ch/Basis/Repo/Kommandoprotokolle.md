@@ -49,6 +49,9 @@ In dieser Aufgabe lernen wir eine bessere Lösung kennen und probieren sie aus.
 - Sehen Sie es sich mit `less typescript` an.
   So ungefähr wird das Ergebnis auch für die Tutor_in aussehen.
   
+[NOTICE]
+Es ist auch möglich, einzelne Befehle direkt zu protokollieren und sich das `exit` zu sparen. Schauen Sie sich hierzu wie erwähnt die Hilfe an.
+[ENDNOTICE]
 
 ### Protokoll korrigieren
 
@@ -70,6 +73,12 @@ Verständnis des Protokolls nicht erschwert.
   Speichern Sie das Ergebnis und prüfen Sie es sorgfältig.
   Nichts zu viel oder zu wenig gelöscht? Prima. Dann abgeben:
   
+[NOTICE]
+Es ist auch möglich, einen anderen Texteditor als `nano` zu verwenden. Seien Sie sich aber
+bewusst, dass die Dateien möglicherweise Symbole beinhalten werden, die Ihnen nicht vertraut
+sind. Diese dienen der Formatierung (also beispielsweise Farbe) und sind der Grund, aus dem
+wir diesen Weg gegangen sind. Entfernen Sie diese daher nicht pauschal alle diese Symbole!
+[ENDNOTICE]
 [ENDSECTION]
 [SECTION::submission::trace]
 
