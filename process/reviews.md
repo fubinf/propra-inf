@@ -72,16 +72,32 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/coverage.md (Dominik Pietrak und Ronny Ruhe)
 - ch/Testen/Unittests/freezegun.md (Dominik Pietrak und Ronny Ruhe)
 - ch/Testen/Unittests/mocking.md (Dominik Pietrak und Ronny Ruhe)
+- ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Dominik Pietrak)
 
 
 ## Reviews to do for Christian Hofmann
 
-- ...
+- ch/Debugging/Debugging-Praxis/Einkaufsliste-01.md (Dominik Pietrak)
+- ch/Debugging/Debugging-Praxis/Einkaufsliste-02.md (Dominik Pietrak)
+- ch/Debugging/Debugging-Praxis/Einkaufsliste-03.md (Dominik Pietrak)
+
+- ch/Debugging/Denkweisen/Mathematician.md (Dominik Pietrak)
+- ch/Debugging/Denkweisen/Professor-Solomon.md (Dominik Pietrak)
+- ch/Debugging/Denkweisen/Psychologist.md (Dominik Pietrak)
+- ch/Debugging/Denkweisen/Sherlock-Holmes.md (Dominik Pietrak)
+
+- ch/Debugging/Häufige-Defektarten/a_logic.md (Dominik Pietrak)
+- ch/Debugging/Häufige-Defektarten/b_expression.md (Dominik Pietrak)
+- ch/Debugging/Häufige-Defektarten/b_variable.md (Dominik Pietrak)
+- ch/Debugging/Häufige-Defektarten/d_indexing.md (Dominik Pietrak)
+- ch/Debugging/Häufige-Defektarten/d_limit.md (Dominik Pietrak)
+- ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak)
 
 
 ## Reviews to do for Lutz Prechelt
 
-- ...
+- ch/Debugging/Denkweisen/Safety-Expert.md (Dominik Pietrak)
+- ch/Debugging/Häufige-Defektarten/a_offbyone.md (Dominik Pietrak)
 
 
 ## Reviews to do for Hanen Alrwasheda
@@ -119,3 +135,6 @@ We will modify these rules over time when others appear more useful.
 - ...
 
 
+## Reviews to do for Dominik Pietrak
+
+- ...
