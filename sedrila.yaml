@@ -50,6 +50,12 @@ instructors:
     email: xx
     gitaccount: xx
     keyfingerprint: .
+init_data:
+  studentprompts:
+    student_name: Eigener Name
+    student_id: Matrikelnummer
+    partner_student_name: Name des Übungspartners
+    partner_student_id: Matrikelnummer des Übungspartners
 chapters:
   - slug: Basis
     taskgroups:
