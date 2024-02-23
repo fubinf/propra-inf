@@ -6,7 +6,7 @@ profiles:
 ---
 [SECTION::goal::...]
 Ich lerne ein praktisches Beispiel für reguläre Ausdrücke kennen 
-und probiere so viele Sonderfällle wie möglich abzubilden.
+und probiere so viele Sonderfälle wie möglich abzubilden.
 [ENDSECTION]
 
 [SECTION::background::default]

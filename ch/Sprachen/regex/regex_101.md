@@ -6,7 +6,8 @@ profiles:
 explains:
 ---
 [SECTION::goal::snippet]
-Einstieg in Reguläre Ausdrücke. Ich verstehe die grundlegenden Operatoren von POSIX style Regex und kann einfache Matches selbst schreiben.
+Einstieg in reguläre Ausdrücke. Ich verstehe die grundlegenden Operatoren von POSIX-style Regex 
+und kann einfache Matches selbst schreiben.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -15,28 +16,15 @@ Einstieg in Reguläre Ausdrücke. Ich verstehe die grundlegenden Operatoren von 
 
 [SECTION::instructions::loose]
 Wir beginnen mit der Einführung auf folgender Seite: 
-https://www.oreilly.com/content/an-introduction-to-regular-expressions/ und arbeiten diese komplett durch. 
+https://www.oreilly.com/content/an-introduction-to-regular-expressions/ und arbeiten diese durch bis wir am Abschnitt
+der Prä- und Suffixe ankommen. Diese sind für das Grundverständnis nicht allzu wichtig.
 
-Dort wird auch auf Möglichkeiten zum testen bzw. ausprobieren von Regulären Ausdrücken eingegangen. 
-Dazu wird zu einen auf Websites wie https://regex101.com/ sowie das Python Paket `re` verwiesen.
+Dort wird auch auf Möglichkeiten zum Testen bzw. Ausprobieren von regulären Ausdrücken eingegangen. 
+Dazu wird zu einem auf Websites wie https://regex101.com/ sowie das Python-Paket `re` verwiesen.
 
-Das referenzierte Minimalbeispiel sähe folgendermaßen aus:
-
-```python
-import re
-
-result = re.fullmatch(pattern="[A-Z]{2}", string="TX")
-
-if result:
-    print("match")
-else:
-    print("Doesn't match")
-```
-
-Eine weitere gute Seite mit vielen nützlichen Informationen ist: https://regexr.com/ 
-Dort lässt sich ebenso die Regex-Syntax auswählen und auch finden sich viele Erklärungen zu bestimmten Syntaxelementen.
-Für die meisten Aufgaben in diesem Bereich werden Seiten wie regexr reichen. Jedoch ist zu Empfehlen trotzdem einmal 
-die Nutzung in Python durchzuspielen, da sie doch eine der gängigsten Arten regex zu Nutzen darstellt.
+Zum Bearbeiten dieser Aufgabe sind mehrere reguläre Ausdrücke gegeben sowie Textstücke 
+gegen welche diese Ausdrücke geprüft werden sollten. Ihre Aufgabe ist es nun für jeden Ausdruck herauszufinden
+auf welchen Teil des Textes dieser Matcht und zu erklären, warum das der Fall ist.
 
 ### ...
 
@@ -47,8 +35,6 @@ die Nutzung in Python durchzuspielen, da sie doch eine der gängigsten Arten reg
 ### ...
 
 [ENDSECTION]
-
-TODO_1_hüster sinnvolle abgabe überlegen
 
 [SECTION::submission::snippet]
 
