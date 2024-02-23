@@ -5,7 +5,7 @@ difficulty: 1
 profiles:
 explains:
 ---
-[SECTION::goal::snippet]
+[SECTION::goal::idea]
 Einstieg in reguläre Ausdrücke. Ich verstehe die grundlegenden Operatoren von POSIX-style Regex 
 und kann einfache Matches selbst schreiben.
 [ENDSECTION]
@@ -36,7 +36,7 @@ auf welchen Teil des Textes dieser Matcht und zu erklären, warum das der Fall i
 
 [ENDSECTION]
 
-[SECTION::submission::snippet]
+[SECTION::submission::reflection]
 
 .
 
