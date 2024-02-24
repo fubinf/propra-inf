@@ -72,6 +72,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/coverage.md (Dominik Pietrak und Ronny Ruhe)
 - ch/Testen/Unittests/freezegun.md (Dominik Pietrak und Ronny Ruhe)
 - ch/Testen/Unittests/mocking.md (Dominik Pietrak und Ronny Ruhe)
+- ch/Testen/Unittests/tdd.md (Ronny Ruhe)
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Dominik Pietrak)
 
 
