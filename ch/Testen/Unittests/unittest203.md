@@ -1,14 +1,14 @@
-title: TDD mit Pytest in der Anwendung
+title: TDD mit Unittests in der Anwendung
 stage: draft
 timevalue: 1.0
 difficulty: 3
 profiles: TEST
-assumes: pytest101, pytest201, tdd
+assumes: unittest101, unittest201, tdd
 requires: LokalesDeployment
 ---
 [SECTION::goal::product]
 
-- Ich kann Pytests nach TDD anwenden
+- Ich kann Unittests nach TDD anwenden
 
 [ENDSECTION]
 [SECTION::background::default]
