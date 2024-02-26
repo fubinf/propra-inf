@@ -1,6 +1,6 @@
 title: Algorithmisches - Off By One
-stage: alpha
-timevalue: 1
+stage: beta
+timevalue: 1.0
 difficulty: 2
 ---
 [SECTION::goal::idea]
@@ -103,7 +103,7 @@ Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `a_offbyone.py` korrigieren.
-- Machen sie einen Commit `a_offbyone.py corrected`, der nur genau diese modifizierte Datei enthält.
+- Machen sie einen Commit `a_offbyone.py corrected`, der nur genau diese Defektkorrektur enthält.
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]
@@ -112,3 +112,13 @@ Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
 [INCLUDE::../../_include/Kommandoprotokoll.md]
 
 [ENDSECTION]
+[INSTRUCTOR::Nur die Defektkorrektur bitte]
+Zurückweisen, wenn
+
+- das Kommandoprotokoll die ganze Python-Datei zeigt statt nur die Defektkorrektur oder
+- die Defektkorrektur falsch ist.
+
+Wenn zusätzliche unnötige Änderungen über die Defektkorrektur hinaus gemacht wurden,
+mündlich ermahnen, dass in der Praxis oft semantisch reine Commits (mit nur einem Zweck) 
+benötigt werden.
+[ENDINSTRUCTOR]
