@@ -290,29 +290,15 @@ abenteuerreiches Leben lang weiterbenutzen (und ergänzen).
 
 Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 
-- `acbd`: (for add-commit-by-date) creates a git commit with given files and message
-  where the commit datetime is the modification date of the youngest of those files.
-  Example:  
-  `mlh acbd -m"my commit msg" myfile1 myfile5`
-- `datefile`: Rename multiple files such that the name starts with the file's
-  current modification date. Report renamings on stdout. Examples:
-  - `mlh datefile myfile`  
-    myfile  -->  2023-05-16-myfile
-  - `mlh datefile --time *`
-    2023-05-16-myfile  -->  2023-05-18-1541-myfile
-    otherfile  -->  2017-10-11-1711-otherfile
-- `lsnew`: Gegeben ein Verzeichnis oder eine Liste von Dateien, listet daraus
-  die jüngste Datei sowie dem Alter nach alle weiteren, bis eine Lücke von
-  48h (default) auftaucht. Damit kann man schneller verstehen, was man in einem Verzeichnis
-  zuletzt getan hat. Format:  
-  2023-05-18 15:31  myfile.suff
 - `sgrep`: Ein simples grep, das beliebige Trenner zulässt, anstatt immer nur '\n' als
   Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
   Default-Trenner ist '\n\n', sodass es ganze Absätze ausspuckt anstatt Zeilen.
   Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
 - `rename`: Rename multiple files via regexp search-and-replace.  
   Example: `mlh rename '\.JPE?G' '.jpg' mydir/*.{JPEG,JPG}`
-- ?
+- `pseudonymizer`: process a stream of one-line text records such that personal identification
+  is replaced by consistent pseudonyms like "user123", "email123" etc.
+  Based on a single regexp with named groups??
 
 Jede Teilanwendung wird in einer größeren Aufgabe oder ggf. in 2-3 Teilaufgaben gebaut.
 Voran geht eine Teilaufgabe für den Rahmen mit `argparse_subcommands` (das auch bei sedrila
