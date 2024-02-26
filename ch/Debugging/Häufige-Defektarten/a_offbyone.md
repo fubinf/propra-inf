@@ -113,12 +113,7 @@ Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
 
 [ENDSECTION]
 [INSTRUCTOR::Nur die Defektkorrektur bitte]
-Zurückweisen, wenn
 
-- das Kommandoprotokoll die ganze Python-Datei zeigt statt nur die Defektkorrektur oder
-- die Defektkorrektur falsch ist.
+[INCLUDE::../../_include/Instructor-nur-Defektkorrektur.md]
 
-Wenn zusätzliche unnötige Änderungen über die Defektkorrektur hinaus gemacht wurden,
-mündlich ermahnen, dass in der Praxis oft semantisch reine Commits (mit nur einem Zweck) 
-benötigt werden.
 [ENDINSTRUCTOR]
