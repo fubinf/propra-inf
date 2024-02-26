@@ -97,7 +97,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Lutz Prechelt
 
-- ch/Debugging/Denkweisen/Safety-Expert.md (Dominik Pietrak)
+- ...
 
 
 ## Reviews to do for Hanen Alrwasheda
