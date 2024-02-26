@@ -6,7 +6,7 @@ assumes: b_expression, f_location
 ---
 [SECTION::goal::idea]
 
-Ich verstehe, in welcher Form falsch benutzte Variablen meinen Code fehlerhaft werden lassen und 
+Ich verstehe, in welcher Form falsch benutzte Variablen als Defekte auftreten und 
 habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
@@ -24,7 +24,7 @@ benötigen Sie den (korrigierten) Code aus den anderen beiden Aufgaben.
 
 ### Eine Heranführung an falsch benutzte Variablen
 
-Ein einfacher und häufiger Fehler ist es den falschen Variablennamen zu benutzen.
+Ein einfacher und häufiger Defekt ist es den falschen Variablennamen zu benutzen.
 Zum Beispiel wollte der Autor 
 
 ```python
@@ -37,9 +37,9 @@ schreiben, hat aber stattdessen folgendes geschrieben:
 j = 5
 ```
 
-In vielen Sprachen kann dies zu einem Fehler führen, es sei denn, j ist definiert und hat 
+In vielen Sprachen kann dies zu einem Defekt führen, es sei denn, j ist definiert und hat 
 denselben Typ wie i. Das Vorhandensein von zwei Variablen desselben Typs und ähnlicher Namen 
-kann zu Fehlern führen, da der Programmierer an beide Variablen denkt. Dies tritt häufiger auf, 
+kann zu Defekten führen, da der Programmierer an beide Variablen denkt. Dies tritt häufiger auf, 
 als man erwarten könnte.
 Es kann zum Beispiel schnell passieren, dass man mit dem Finger ausrutscht und benachbarte
 Tasten mitdrückt:
@@ -51,7 +51,7 @@ io = 5
 Ob das schnell auffällt, kann davon abhängen, wie die Programmiersprache mit undeklarierten 
 Variablen umgeht.
 
-Eine Quelle von solchen Variablenfehlern ist auch das Kopieren und Einfügen von ähnlichem Code. 
+Eine Quelle von solchen Variablendefekten ist auch das Kopieren und Einfügen von ähnlichem Code. 
 Wenn der Code zum Beispiel wie folgt aussieht
 
 ```python
@@ -70,7 +70,7 @@ rechten Seite der Zuweisung, als [TERMREF::Argument] für eine Funktion, als Rü
 verwenden.
 Es kann z. B. dazu kommen, dass zwei Variablen als Parameter einer Funktion mitgegeben werden,
 aber vertauscht worden sind.
-Der Compiler wird diesen Fehler nicht entdecken, sofern beide Parameter vom selben Typ sind.
+Der Compiler wird diesen Defekt nicht entdecken, sofern beide Parameter vom selben Typ sind.
 Durch bloßes Draufgucken kann man ohne genaue Kenntnisse der Programmlogik im folgenden Beispiel
 nicht erkennen,
 welcher Funktionsaufruf der richtige ist:
@@ -81,11 +81,11 @@ draw_dot(x,y)
 ```
 
 Wenn Ihr Code zwei Funktionen mit ähnlichem Namen verwendet, 
-kann der Fehler auch darin liegen die beiden Funktionen zu vertauschen.
+kann der Defekt auch darin liegen die beiden Funktionen zu vertauschen.
 
 ### Ihre Aufgabe
 
-Im Folgenden sollen Sie eine Funktion debuggen, in der ein Variablenfehler aufgetreten ist.
+Im Folgenden sollen Sie eine Funktion debuggen, in der ein Variablendefekt aufgetreten ist.
 Der Code spielt eine Runde des Spiels "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
 Er benutzt die korrigierten Funktionen `draw_code()` aus der Aufgabe [PARTREFTITLE::b_expression] und 
 `check_card()` aus der Aufgabe [PARTREFTITLE::f_location].
