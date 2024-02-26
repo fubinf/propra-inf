@@ -17,14 +17,14 @@ in fremdem Code erfolgreich gefunden.
 Off-By-One-Error, manchmal OBOE abgekürzt, gehören zu den ikonischsten Defekten in Programmen.
 Er tritt beim Umgang mit Integers auf: Eine Berechnung oder Abfrage ist um 1 zu groß oder zu klein.
 
-Zu den bekanntesten Fehlern dieser Art gehört der Zaunpfahlfehler.
+Zu den bekanntesten Defekten dieser Art gehört der Zaunpfahlfehler.
 Überlegen Sie kurz:
 Wie lang ist ein Zaun mit 11 Zaunpfählen, bei dem alle 10 Meter ein Pfahl steckt?
 Wenn Sie jetzt "110 Meter" geantwortet haben, sind Sie genau in die Falle getappt. 
-Dieser Fehler entsteht (meist und auch in diesem Beispiel) dadurch,
+Dieser Defekt entsteht (meist und auch in diesem Beispiel) dadurch,
 dass die Anzahl der Elemente falsch gezählt werden, 
 indem Anfangs- oder Endelement nicht oder zuviel mitgezählt werden.
-Ein Beispiel liefert auch der folgende fehlerhafte Code-Schnipsel:
+Ein Beispiel liefert auch der folgende mangelhafte Code-Schnipsel:
 
 ```python
 # count how many pages will be printed
