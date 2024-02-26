@@ -1,4 +1,4 @@
-title: HTML Formulare
+title: Formulare
 stage: alpha
 timevalue: 1.5
 difficulty: 2
@@ -6,7 +6,7 @@ profiles: WEB
 ---
 [SECTION::goal::trial]
 
-Das Ziel dieser Einheit ist es, HTML-Formularen kennenzulernen und zu verwenden.
+Ich weiß, wie ich ein Formular in HTML erstelle, um unterschiedliche Arten von Daten zu sammeln.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -16,7 +16,7 @@ HTML-Formulare ermöglichen die Interaktion mit Benutzern und machen Webseiten d
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-[ER] Erarbeiten Sie den Inhalt der folgenden Artikel:
+Erarbeiten Sie die Inhalte der folgenden Artikel:
 
 * [HTML Forms](https://www.w3schools.com/html/html_forms.asp)
 

@@ -1,4 +1,4 @@
-title: HTML Elemente
+title: Elemente
 stage: alpha
 timevalue: 1.0
 difficulty: 1
@@ -7,7 +7,7 @@ assumes: einfuehrung
 ---
 [SECTION::goal::trial]
 
-Das Ziel dieser Einheit ist es, den Aufbau von HTML-Elementen zu verstehen.
+Ich verstehe den Aufbau von HTML Elementen.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -17,9 +17,11 @@ HTML-Elemente sind die Bausteine von Webseiten, die den Inhalt und die Struktur 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-[ER] Erarbeiten Sie den Inhalt von [HTML Basic](https://www.w3schools.com/html/html_basic.asp).
+Erarbeiten Sie die Inhalte aus:
 
-[ER] Erarbeiten Sie den Inhalt von [HTML Elements](https://www.w3schools.com/html/html_elements.asp).
+* [HTML Basic](https://www.w3schools.com/html/html_basic.asp)
+
+* [HTML Elements](https://www.w3schools.com/html/html_elements.asp)
 
 [ER] Erstellen Sie eine neue HTML-Datei mit den folgenden Anforderungen:
 

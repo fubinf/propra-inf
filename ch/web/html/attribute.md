@@ -1,4 +1,4 @@
-title: HTML Attribute
+title: Attribute
 stage: alpha
 timevalue: 0.5
 difficulty: 1
@@ -7,7 +7,7 @@ assumes: elemente
 ---
 [SECTION::goal::trial]
 
-Das Ziel dieser Einheit ist es, HTML Attribute zu verstehen.
+Ich verstehe was ein HTML Attribut ist.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -17,7 +17,7 @@ HTML-Attribute sind zusätzliche Informationen, die zu HTML-Elementen hinzugefü
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-[ER] Erarbeiten Sie den Inhalt von [HTML Attributes](https://www.w3schools.com/html/html_attributes.asp).
+Erarbeiten Sie den Inhalt von [HTML Attributes](https://www.w3schools.com/html/html_attributes.asp).
 
 [ER] Erstellen Sie eine neue HTML-Datei, in der Sie mindestens fünf verschiedene Tags sinnvoll einsetzen.
 

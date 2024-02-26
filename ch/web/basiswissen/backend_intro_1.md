@@ -6,7 +6,7 @@ profiles: WEB
 ---
 [SECTION::goal::idea]
 
-Das Ziel dieser Einheit ist es, den Begriff “Backend” und den Zusammenhang zum Frontend zu verstehen.
+Ich verstehe den Begriff "Backend" und den Zusammenhang zum Frontend.
 
 [ENDSECTION]
 [SECTION::background::default]

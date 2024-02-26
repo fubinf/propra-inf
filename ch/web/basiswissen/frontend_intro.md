@@ -6,7 +6,7 @@ profiles: WEB
 ---
 [SECTION::goal::idea]
 
-Das Ziel dieser Einheit ist es, den Begriff “Frontend” zu verstehen und die generellen Bestandsteile wiederzugeben.
+Ich verstehe den Begriff "Frontend" und kann die generelle Struktur wiedergeben.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -20,7 +20,7 @@ Das Frontend ist der Teil einer Website oder App, den der Benutzer sieht und mit
 
 [EQ] Was ist HTML und welche Aufgabe erfüllt es in dem Frontend einer Webseite?
 
-[EQ] Was unterscheidet eine Auszeichnungssprache wie HTML von einer objektorientierten Programmiersprache wie Java?
+[EQ] Was unterscheidet eine Auszeichnungssprache wie HTML von einer Programmiersprache wie Python?
 
 [EQ] Was ist CSS und welche Aufgabe erfüllt es in dem Frontend einer Webseite? Wie steht CSS im Zusammenhang mit HTML?
 

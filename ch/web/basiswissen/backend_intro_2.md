@@ -7,7 +7,7 @@ assumes: backend_intro_1
 ---
 [SECTION::goal::idea]
 
-Das Ziel dieser Einheit ist es, ein bereits bestehendes Backend anhand seiner API zu erkunden.
+Ich kann ein bereits bestehendes Backend anhand seiner API verstehen.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -32,6 +32,8 @@ Betrachten Sie die [Tagesschau API](https://tagesschau.api.bund.dev/).
 [EQ] Betrachten Sie nun die Methode GET /api2/news/. Benutzen Sie dieses Mal curl, um Ihre Anfragen über Ihre Konsole zu schicken. Welches Kommando kann man ausführen, um diese Methode mit den Parametern regions=1 und ressort=ausland aufzurufen? Wie ist der Titel der ersten zurückgegebenen Nachricht? 
 
 [EQ] Schicken Sie nun eine Anfrage mit dem Parameter ressort=blablabla. Was ist die Antwort des Servers? Was bedeutet der Statuscode, der zurückgeschickt wird?
+
+Um tiefer in das Thema einzusteigen, wird stark empfohlen sich den Abschnitt [PARTREFTITLE::restApi] zu erarbeiten.
 
 [ENDSECTION]
 [SECTION::submission::information]

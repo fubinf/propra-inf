@@ -1,4 +1,4 @@
-title: HTML Semantische Tags
+title: Semantische Tags
 stage: alpha
 timevalue: 0.5
 difficulty: 1
@@ -7,7 +7,7 @@ assumes: elemente
 ---
 [SECTION::goal::trial]
 
-Das Ziel dieser Einheit ist es, semantische HTML-Tags kennenzulernen und zu verwenden.
+Ich verstehe den Sinn von semantischen Tags und kann eine HTML-Seite semantisch sinnvoll aufbauen.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -17,7 +17,11 @@ Semantische HTML-Tags sind Tags, die Elemente beschreiben. Sie geben Auskunft da
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-[ER] Erarbeiten Sie sich [HTML Semantics](https://www.w3schools.com/html/html5_semantic_elements.asp) und [Semantics in HTML](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#semantics_in_html).
+Erarbeiten Sie sich die Inhalte aus:
+
+* [HTML Semantics](https://www.w3schools.com/html/html5_semantic_elements.asp)
+
+* [Semantics in HTML](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#semantics_in_html)
 
 [EQ] Fassen Sie kurz zusammen, warum semantische Elemente verwendet werden.
 
