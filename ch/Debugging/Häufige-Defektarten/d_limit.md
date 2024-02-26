@@ -93,3 +93,8 @@ Setzen Sie `number` auf 2, 3, 4, 5 und 6.
 [INCLUDE::../../_include/Kommandoprotokoll.md]
 
 [ENDSECTION]
+[INSTRUCTOR::Nur die Defektkorrektur bitte]
+
+[INCLUDE::../../_include/Instructor-nur-Defektkorrektur.md]
+
+[ENDINSTRUCTOR]
