@@ -134,7 +134,7 @@ Zur Korrektur eines Defekts wird in der Regel der Code verändert.
 [ENDTERM]
 
 [TERM::DSL|Domänenspezifische Sprache]
-Eine speziell auf eine bestimmten Anwendungsbereich ("Domäne") zugeschnittene Sprache.
+Eine speziell auf einen bestimmten Anwendungsbereich ("Domäne") zugeschnittene Sprache.
 Im Gegensatz zu allgemeinen Programmiersprachen, die
 für eine Vielzahl von Anwendungen geeignet sind, ist eine DSL darauf ausgerichtet, spezifische
 Aufgaben oder Anforderungen in einem begrenzten Kontext besonders elegant zu adressieren.
@@ -602,7 +602,7 @@ Urgrundanalyse eine hochwirksame Methode zur Vorbeugung von Problemen.
 
 [TERM::User Story]
 Kurze, informelle Beschreibung einer Funktion aus der Perspektive eines Endbenutzers.
-Umfasst typischerweise wer die Funktion nutzt, was getan werden soll und wozu es relevant ist.
+Umfasst typischerweise, wer die Funktion nutzt, was getan werden soll und wozu es relevant ist.
 
 User Stories dienen als Kommunikationsmittel zwischen Entwicklern, Kunden und anderen Stakeholdern,
 um Anforderungen klar zu definieren und das Verständnis zu verbessern.
