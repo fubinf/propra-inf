@@ -5,23 +5,23 @@ difficulty: 2
 ---
 [SECTION::goal::idea]
 
-Ich verstehe, in welcher Form falsch benutzte Ausdrücke meinen Code fehlerhaft werden lassen und 
+Ich verstehe, in welcher Form falsch benutzte Ausdrücke meinen Code haft werden lassen und 
 habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### Eine Heranführung an Ausdrucksfehler
+### Eine Heranführung an Ausdrucksdefekte
 
-Ausdrucksfehler sind eine generalisierte Form von Variablenfehlern.
-An und für sich ist eine Variable schon ein Ausdruck, aber Variablenfehler sind so geläufig, 
+Ausdrucksdefekte sind eine generalisierte Form von Variablendefekten.
+An und für sich ist eine Variable schon ein Ausdruck, aber Variablendefekte sind so geläufig, 
 dass man sie als eigene Klasse sehen kann und in der Aufgabe [PARTREFTITLE::b_variable] behandelt werden.
-Ausdrucksfehler decken alle anderen Fälle ab, in denen Ausdrücke falsch benutzt werden.
-Die Ursache solcher Fehler liegt nicht daran, dass der Algorithmus falsch wäre, 
+Ausdrucksdefekte decken alle anderen Fälle ab, in denen Ausdrücke falsch benutzt werden.
+Die Ursache solcher Defekte liegt nicht daran, dass der Algorithmus falsch wäre, 
 sondern das der Programmierer beim Nachdenken in diesem Moment Pech gehabt hat.
 
-Der einfachste Fall von Ausdrucksfehlern ist es, den falschen Operator benutzt zu haben,
+Der einfachste Fall von Ausdrucksdefekten ist es, den falschen Operator benutzt zu haben,
 z. B. wenn man zu einem Integer 2 hinzufügen möchte:
 
 ```python
@@ -29,7 +29,7 @@ a = a + 2  # right
 a = a * 2  # wrong
 ```
 
-Da Ausdrücke beliebig komplex sein können, gibt es beliebig viele Möglichkeiten Fehler zu machen.
+Da Ausdrücke beliebig komplex sein können, gibt es beliebig viele Möglichkeiten Defekte einzubauen.
 Beliebte Stellen für falsche Ausdrücke sind z. B. `if`-Ausdrücke:
 
 ```python
@@ -56,11 +56,11 @@ if (((k-1) / 5) == (k / 5)):
     ...
 ```
 
-Hier liegt eher ein Logikfehler vor, denn der Kommentar passt zum Code. 
+Hier liegt eher ein Logikdefekt vor, denn der Kommentar passt zum Code. 
 Allerdings sind sowohl Kommentar als auch Code falsch.
-Näheres zu Logikfehlern erfahren Sie in der Aufgabe [PARTREFTITLE::a_logic].
+Näheres zu Logikdefekten erfahren Sie in der Aufgabe [PARTREFTITLE::a_logic].
 
-Die logischen Operatoren `and` und `or` sind häufige Quellen von Fehlern, 
+Die logischen Operatoren `and` und `or` sind häufige Quellen von Defekten, 
 bei denen der falsche Operator in einem Ausdruck gewählt worden ist.
 Das obere Beispiel hätte z. B. so aussehen können:
 
@@ -81,12 +81,12 @@ Hier müsste man prüfen, ob `>=`und `<=` nicht eher die richtigen Operatoren ge
 das ist ein Thema für die Aufgabe [PARTREF::a_offbyone].
 
 Letztendlich ist es uninteressant, warum der Code falsch ist; er muss immer noch gefixt werden.
-Trotzdem ist ein Verschreiber eher zu erwarten als lokalisierte Fehler, während 
-logische Fehler eher fundamentale Probleme aufzeigen.
+Trotzdem ist ein Verschreiber eher zu erwarten als lokalisierte Defekte, während 
+logische Defekte eher fundamentale Probleme aufzeigen.
 
 ### Ihre Aufgabe
 
-Im Folgenden sollen Sie einen Code debuggen, der einen Ausdruckfehler beinhaltet.
+Im Folgenden sollen Sie einen Code debuggen, der einen Ausdruckdefekt beinhaltet.
 Es handelt sich um einige Funktionen aus dem Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
 Zusammen mit den Funktionen aus [PARTREFTITLE::f_location] und [PARTREFTITLE::b_variable] 
 erhalten Sie die grundlegenden Funktionen des Spiels.
