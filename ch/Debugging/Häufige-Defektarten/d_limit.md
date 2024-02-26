@@ -40,7 +40,7 @@ while True:
 Wenn die Datei **nicht** mit der Zeile "###" endet, könnte die Schleife für immer laufen.
 
 Man kann zu Grenzdefekten auch solche zählen, in denen der Code bei bestimmten Eingaben 
-in der Nähe des Anfangs oder Endes des gültigen Eingabebereichs fehlerhaft ist.
+in der Nähe des Anfangs oder Endes des gültigen Eingabebereichs schlecht oder gar nicht definiert ist.
 Das heißt, im Gegensatz zum vorherigen Beispiel und den Beispielen aus [PARTREFTITLE::d_indexing], 
 die dazu neigen, _alle_ Eingaben leicht falsch zu verarbeiten, sind dies Fälle, in denen der Code
 bei den meisten Eingaben gut funktioniert, aber bei einer kleinen Teilmenge versagt,
