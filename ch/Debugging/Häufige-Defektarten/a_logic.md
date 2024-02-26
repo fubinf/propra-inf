@@ -23,7 +23,7 @@ sondern erleichtert auch die Zusammenarbeit in Teams.
 ### Eine Heranführung an logische Defekte
 
 Computer sind präzise in der Ausführung von Anweisungen, aber oft unfähig, Absichten zu 
-antizipieren, was zu logischen Defekten führt, oft basierend auf fehlerhaften Annahmen über Daten. 
+antizipieren, was zu logischen Defekten führt, oft basierend auf schlechten Annahmen über Daten. 
 Sehen Sie sich hierfür das folgende Code-Beispiel in Python an. 
 Hier wird versucht mittels Wissen über die Repräsentation von ASCII-Zeichen 
 einen String in eine kleingeschriebene Variante umzuwandeln.
