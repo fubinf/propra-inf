@@ -17,8 +17,8 @@ requires:
 [SECTION::background::default]
 
 Das Arbeiten mit Zeit- und Datumsangaben ist in vielen Anwendungen essenziell. Eine dafür geeignete Datenstruktur
-selbst zu erstellen ist jedoch aufwändiger, als man zuerst annehmen würde. Neben verschiedenen Datumsformaten (z.B.
-amerikanische und deutsche Schreibweise) muss diese auch verschiedene Zeitzonen und auch Sommerzeiten mit 
+selbst zu erstellen ist jedoch aufwändiger, als man zuerst annehmen würde. Neben verschiedenen Formaten (z.B.
+amerikanische und deutsche Datumsschreibweise) muss diese auch verschiedene Zeitzonen und auch Sommerzeiten mit 
 berücksichtigen können. Die `datetime` Bibliothek bietet einige Werkzeuge, um mit den meisten dieser Anwendungsfälle
 umgehen zu können. 
 
@@ -92,16 +92,15 @@ umgehen zu können.
  ('2024-01-01##10:11:14', 2, 'end'),]
 ```
 
-- Fügen Sie die folgende Funktion in ihre Datei ein und vervollständigen Sie sie.
-  Rufen Sie sie anschließend mit der oben stehenden Beispielliste auf.
+- Fügen Sie die folgende Funktion in ihre Datei ein und vervollständigen Sie sie, sodass sie die Ausführungszeit aller
+  übergebenen Tasks berechnet und anschließend daraus den Durchschnitt bestimmt.
+- Rufen Sie die Funktion anschließend mit der oben stehenden Beispielliste als Eingabe auf.
 
 ```python
-from datetime import timedelta
-
 def time_average(logs):
     start = {}
     diffs = []
-    result = timedelta(0)
+    result = dt.timedelta(0)
 
     # convert strings and calculate difference
     for l in logs:
@@ -118,19 +117,19 @@ def time_average(logs):
 
 ### Programmlauf für die Abgabe
 
-- [EC] Führen Sie das gesamte so erzeugte Programm einmal aus.
+- [EC] Führen Sie das gesamte so erzeugte Programm `datetime.py` einmal aus.
 
 [ENDSECTION]
 
 [SECTION::submission::program]
 
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Kommandoprotokoll.md]
 
 [INCLUDE::../../_include/Quellcode.md]
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::Codedurchsicht]
 
 Den Code lesen und manuell auf Richtigkeit prüfen.
 Das Kommandoprotokoll zur Unterstützung heranziehen.
