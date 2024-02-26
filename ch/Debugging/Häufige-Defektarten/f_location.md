@@ -1,14 +1,12 @@
-title: Vergessenes - Lokalisierungsfehler
+title: Vergessenes - Lokalisierungsdefekte
 stage: alpha
 timevalue: 1
 difficulty: 2
 assumes: b_expression
 ---
 [SECTION::goal::idea]
-
-Ich verstehe, in welcher Form Lokalisierungsfehler meinen Code fehlerhaft werden lassen und
+Ich verstehe, in welcher Form Lokalisierungsdefekte meinen Code mangelhaft werden lassen und
 habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
-
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -19,9 +17,9 @@ Es ist nicht nötig diese Aufgabe vorher bearbeitet zu haben, da die beiden Prob
 Allerdings liefert die Bearbeitung der ersten Aufgabe etwas mehr Kontext über das ganze Programm.
 [ENDWARNING]
 
-### Eine Heranführung an Lokalisierungsfehler
+### Eine Heranführung an Lokalisierungsdefekte
 
-Als Lokalisierungsfehler werden Fehler bezeichnet, bei dem sich Code in der falschen Reihenfolge 
+Als Lokalisierungsdefekt werden Defekte bezeichnet, bei dem sich Code in der falschen Reihenfolge 
 innerhalb des Programms befindet.
 Ein Beispiel wäre es, wenn die Initialisierung einer Variable innerhalb einer Schleife
 anstatt außerhalb stattfindet:
@@ -32,7 +30,7 @@ while some_condition():
     # code that updates count
 ```
 
-Ein weiteres Beispiel für einen Lokalisierungsfehler ist es, wenn die Reihenfolge der Anweisungen
+Ein weiteres Beispiel für einen Lokalisierungsdefekt ist es, wenn die Reihenfolge der Anweisungen
 nicht mit der gewünschten Reihenfolge der Operationen übereinstimmt. 
 Häufig werden aus Versehen zwei Instruktionen vertauscht.
 Der folgende Code versucht ein Element aus einer Liste auf 0 zu setzen, nachdem es den Wert
@@ -70,11 +68,11 @@ In diesem Fall sollte der `return`-Ausdruck wahrscheinlich eine Ebene tiefer lie
 (die Funktion soll also nur zurückkehren, wenn `string_done` wahr ist, aber nicht nur, weil 
 `found_blank` wahr ist). 
 Natürlich könnte dieser Code auch ebenso richtig sein.
-Es ist nur wichtig zu begreifen, dass solche Fehler sehr einfach zu übersehen sind,
+Es ist nur wichtig zu begreifen, dass solche Defekte sehr einfach zu übersehen sind,
 wenn man sich den Code einfach nur so anschaut und der einzige Unterschied im Code die Reihenfolge der 
 Ausdrücke ist.
 
-Lokalisierungsfehler können aber auch so aussehen, dass Code-Zeilen hinzugefügt worden sind, 
+Lokalisierungsdefekte können aber auch so aussehen, dass Code-Zeilen hinzugefügt worden sind, 
 aber keinerlei Sinn ergeben:
 
 ```python
@@ -90,7 +88,7 @@ ein Fehler beim Kopieren und Einfügen oder einfach ein Fehler des Programmierer
 
 ### Ihre Aufgabe
 
-In dieser Aufgabe sollen Sie einen Code debuggen, der einen Lokalisierungsfehler beinhaltet.
+In dieser Aufgabe sollen Sie einen Code debuggen, der einen Lokalisierungsdefekt beinhaltet.
 Die Funktion beinhaltet einen weiteren Teil des Spiels "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)", 
 das in der Aufgabe [PARTREFTITLE::b_expression] eingeführt worden ist.
 Sie prüft, ob er Gegenspieler Karten von einem bestimmten Rang besitzt.
@@ -140,7 +138,7 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
    Rangs auf der Hand hat), ist es ein riskanter Code.
    Er wurde vielleicht nie getestet, aber jemand, der diese Funktion von irgendwo anders aufruft,
    könnte annehmen, dass sie funktioniert.  
-   Es ist also ein guter Bereich, um nach einem Fehler zu suchen.
+   Es ist also ein guter Bereich, um nach einem Defekt zu suchen.
    
 
 [HINT::Lösungshinweis]
