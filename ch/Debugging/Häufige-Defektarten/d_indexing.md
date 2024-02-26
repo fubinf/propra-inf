@@ -1,24 +1,24 @@
-title: Daten - Indexfehler
+title: Daten - Indexdefekt
 stage: alpha
 timevalue: 1
 difficulty: 2
 ---
 [SECTION::goal::idea]
 
-Ich verstehe, welche Form Indexfehler im Code annehmen können und habe einen solchen Defekt in 
+Ich verstehe, welche Form Indexdefekte im Code annehmen können und habe einen solchen Defekt in 
 fremdem Code erfolgreich gefunden. 
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### Eine Heranführung an Indexfehler
+### Eine Heranführung an Indexdefekte
 
-Indexfehler treten auf, wenn man einen ungültigen Index beim Durchlaufen eines Arrays
+Indexdefekte treten auf, wenn man einen ungültigen Index beim Durchlaufen eines Arrays
 oder einer anderen Datenstruktur benutzt.
 Viele Sprachen benutzen nullbasierte Indizes.
 Das heißt, dass gültige Indizes bei einem Array der Größe `N` von `0` bis `N-1` gehen.
-Dies führt zu häufigen Indexfehlern, wenn man mittels einer Schleife durch so eine Datenstruktur 
+Dies führt zu häufigen Indexdefekten, wenn man mittels einer Schleife durch so eine Datenstruktur 
 läuft und mit dem Index 1 statt 0 beginnt.
 Das sollte man z. B. in Python bei der Nutzung der Funktion `range(1, n)` beachten, 
 die die Zahlen von `1` bis `n-1` beinhaltet.
@@ -30,8 +30,8 @@ for i in range(1, n):
 Wenn Sie die Indizierung bei 1 statt bei 0 beginnen, verpasst der Code das erste Element des 
 Arrays.
 In Python kann man `range(n)` als Abkürzung für `range(0,n)` schreiben, 
-wodurch dieser Fehler seltener auftritt.
-Den gleichen Fehler können Sie aber auch auf der anderen des Arrays machen.
+wodurch dieser Defekt seltener auftritt.
+Der gleiche Defekt kann aber auch auf der anderen Seite des Arrays auftauchen.
 Wir veranschaulichen dies mit einer `for`-Schleife in C:
 
 ```c
@@ -40,10 +40,10 @@ for (i = 0; i <= n; i++) {
     }
 ```
 
-Manchmal werden solche Fehler auch als Off-By-One-Fehler bezeichnet. 
-Was genau hinter solchen Fehlern steckt, können Sie in der Aufgabe [PARTREFTITLE::a_offbyone] 
+Manchmal werden solche Defekte auch als Off-By-One-Error bezeichnet. 
+Was genau hinter solchen Defekten steckt, können Sie in der Aufgabe [PARTREFTITLE::a_offbyone] 
 herausfinden.
-Allerdings können Indexfehler auch deutlich größer sein als nur eine Verschiebung um 1,
+Allerdings können Indexdefekte auch deutlich größer sein als nur eine Verschiebung um 1,
 besonders wenn der Index Teil einer Berechnung ist.
 
 ```python 
@@ -61,11 +61,11 @@ def process_array(my_array):
 ```
 
 Dieser Code berechnet `index_to_check` im `else`-Ausdruck falsch, wodurch es zu einem 
-Indexfehler kommt. 
+Indexdefekte kommt. 
 
 ### Ihre Aufgabe
 
-Im Folgenden sollen Sie eine Funktion debuggen, in der ein Indexfehler vorliegt. 
+Im Folgenden sollen Sie eine Funktion debuggen, in der ein Indexdefekt vorliegt. 
 Die Funktion findet einen Substring in einem String.
 Die Rückgabe ist ein Tupel mit zwei Elementen:
 
