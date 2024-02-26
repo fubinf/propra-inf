@@ -33,10 +33,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
-- ch/Bibliotheken/stdlib/jsonBasic.md (Ronny Ruhe)
-- ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
-- ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
-
 - ch/Testen/SUT/index.md (Ronny Ruhe)
 - ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
 - ch/Testen/SUT/GitHubDeployment.md (Ronny Ruhe)
@@ -91,7 +87,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Debugging/Häufige-Defektarten/b_expression.md (Dominik Pietrak)
 - ch/Debugging/Häufige-Defektarten/b_variable.md (Dominik Pietrak)
 - ch/Debugging/Häufige-Defektarten/d_indexing.md (Dominik Pietrak)
-- ch/Debugging/Häufige-Defektarten/d_limit.md (Dominik Pietrak)
 - ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak)
 
 
@@ -102,7 +97,10 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ...
+- ch/Debugging/Häufige-Defektarten/d_limit.md (Dominik Pietrak)
+- ch/Bibliotheken/stdlib/jsonBasic.md (Ronny Ruhe)
+- ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
+- ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
 
 
 ## Reviews to do for Ivan Condric
