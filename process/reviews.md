@@ -71,6 +71,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/tdd.md (Ronny Ruhe)
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Dominik Pietrak)
 
+- ch/Bibliotheken/stdlib/datetime.md (Sven Wegner)
+
 
 ## Reviews to do for Christian Hofmann
 
