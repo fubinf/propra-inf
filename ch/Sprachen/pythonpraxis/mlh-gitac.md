@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1.5
 difficulty: 3
 assumes: m_subprocess
-requires: argparse-subcommand
+requires: mlh-lsnew
 ---
 [SECTION::goal::experience,product]
 
@@ -32,31 +32,38 @@ Das bauen wir uns jetzt.
 - Angenommen, wir haben (in dieser Reihenfolge) die Dateien A, B, C, D und E geändert.
   Dabei gehören inhaltlich A und D in einen Commit, B, C und E in einen zweiten.
 - Unser Programm hat folgendes Aufrufformat:   
-  `python mlh/mlh.py gitac [-m|--message commit-msg] file...`
+  `python mlh gitac [-m|--message commit-msg] file...`
 - Es macht zunächst `git add` auf die angegebenen Dateien.
 - Dann macht es `git commit`, ggf. mit der angegebenen Option.
 - Beim Commit wird der Zeitstempel entsprechend der mtime der jüngsten Datei gesetzt.
-
-[HINT::Wie fragt man die mtime einer Datei ab?]
-Siehe `os.stat` in der Python-Standardbibliothek.
-[ENDHINT]
-[HINT::Wie rechnet man eine mtime auf Datum und Uhrzeit um?]
-Siehe Modul `datetime` in der Python-Standardbibliothek: `fromtimestamp()`
-[ENDHINT]
+- Auch diese Aufgabe lässt sehr gut komplett mit der Standardbibliothek lösen;
+  sie brauchen keine zusätzlichen Pakete.
 
 
+### Aufräumen
+
+- [EQ] `mlh gitac` überlappt sich von der Funktionalität her mit `mlh lsnew`.
+  Haben Sie diese Überlappung bereits im Code widergespiegelt oder gibt es noch Duplikationen im Code?
+  Lagern Sie alle gemeinsamen Teile in ein Hilfsmodul `mlh.utils` aus.
+
+ 
 ### Ausprobieren
+
+- [EQ] Führen Sie beim Testen des Programms Protokoll über die Defekte, die Sie entdecken.
+- Testen Sie Ihr Programm entweder auf einem Hilfsrepo oder machen Sie die Test-Commits
+  mit `git reset` wieder rückgängig.
 
 Führen Sie nach ausreichendem Testen zur Abgabe folgende Kommandos aus:
 
-- [EC] `f=mlh/subcmd/gitac.py; date; ls -l $f; python mlh/mlh.py gitac -m"$f, committed by itself" $f`
-- Sie haben das Kommando doch hoffentlich verstanden bevor Sie es ausgeführt haben?
+- [EC] `f=mlh/subcmds/gitac.py; date; ls -l $f; python mlh gitac -m"$f, committed by itself" $f`
+- Sie haben das Kommando doch hoffentlich genau verstanden bevor Sie es ausgeführt haben?
 - [EC] `git show HEAD`
 
 [ENDSECTION]
 [SECTION::submission::trace]
 
 [INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Markdowndate.md]
 
 [ENDSECTION]
 
