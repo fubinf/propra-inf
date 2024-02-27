@@ -28,7 +28,7 @@ Wir bauen uns hier ein Hilfsprogramm, das für diesen Zweck maßgeschneidert ist
 
 - Unser Programm empfängt eine Liste von Dateinamen, die typischerweise bequem 
   von der Shell mittels [TERMREF::Globbing] erzeugt wird.  
-  Beispiel: `python mlh/mlh.py *.md mlh/*, mlh/*/*`
+  Beispiel: `python mlh *.md mlh/*, mlh/*/*`
 - Zu jedem dieser Dateinamen wird das Datum der letzten Änderung der Datei ermittelt.
 - Die Dateinamen werden nach diesen Zeitpunkten sortiert, jüngste zuerst.
 - Von der entstehenden Liste werden nur diejenigen Dateinamen ausgegeben,
@@ -42,7 +42,7 @@ Wir bauen uns hier ein Hilfsprogramm, das für diesen Zweck maßgeschneidert ist
 - Die Ausgabe hat folgendes Format:
 
 ```bash
-$ python mlh/mlh.py lsnew --age 1h * mlh/* mlh/*/* nonsense
+$ python mlh lsnew --age 1h * mlh/* mlh/*/* nonsense
 2024-01-31 10:16:07  mlh/subcmds/__pycache__
 2024-01-31 10:16:06  mlh/subcmds
 2024-01-31 10:16:06  mlh/subcmds/lsnew.py
@@ -79,8 +79,8 @@ Siehe Modul `datetime` in der Python-Standardbibliothek.
 
 Führen Sie zum Testen insbesondere folgende Kommandos aus:
 
-- [EC] `python mlh/mlh.py lsnew --age 365000d` *.md
-- [EC] `touch file2; sleep 5; touch file1; sleep 5; touch file3; python mlh/mlh.py lsnew --age 2s file?; echo; python mlh/mlh.py lsnew --age 7s file?; echo; python mlh/mlh.py lsnew --age 1m nonsense file?; rm file{1,2,3}`
+- [EC] `python mlh lsnew --age 365000d` *.md
+- [EC] `touch file2; sleep 5; touch file1; sleep 5; touch file3; python mlh lsnew --age 2s file?; echo; python mlh lsnew --age 7s file?; echo; python mlh lsnew --age 1m nonsense file?; rm file{1,2,3}`
 
 [ENDSECTION]
 [SECTION::submission::trace]
