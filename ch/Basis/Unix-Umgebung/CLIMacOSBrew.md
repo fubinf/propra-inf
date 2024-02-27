@@ -1,5 +1,5 @@
 title: Linux-Kommandozeile auf Mac OS mit Homebrew
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 ---
@@ -62,6 +62,13 @@ Genau wie das Installieren übernimmt Homebrew auch das Update dieser Programme.
 Dies passiert nicht automatisch. Mit dem Befehl `brew update` lassen sich alle mit
 Homebrew installierten Anwendungen auf einmal aktualisieren.
 
+Wenn alle Pakete aktualisiert sind, sollte die Ausgabe von `brew update` so aussehen:
+
+```
+$ brew update
+Already up-to-date.
+```
+
 Die Aufgabe für diesen Teilabschnitt besteht darin, Homebrew zu installieren, und zu überprüfen, dass
 diese Installation korrekt abgeschlossen wurde. Dazu reicht die Ausgabe von `brew --version`.
 Die installation für Homebrew ist essenziell für die Bearbeitung späterer Aufgaben. Gehen Sie
@@ -98,11 +105,17 @@ War die Installation erfolgreich können wir nun die installierte Python-version
 
 [INCLUDE::CheckPython.inc]
 
-Ergänzen Sie noch die Ausgaben der Befehle `brew --version` und `brew update`.
-
 [ENDSECTION]
+
 [INSTRUCTOR::Warnhinweise]
 
 [INCLUDE::InstructorCheckLinux.inc]
+
+Die Ausgabe für `brew --version` sieht wie folgt aus:
+
+```
+$ brew version
+Homebrew 4.2.7
+```
 
 [ENDSECTION]
