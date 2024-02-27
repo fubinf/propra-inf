@@ -77,7 +77,7 @@ Stellen Sie sicher, dass Sie sich im Netz der Universität oder im VPN befinden.
 [ENDSECTION]
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 

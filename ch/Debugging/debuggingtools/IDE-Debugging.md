@@ -36,9 +36,9 @@ eine vernünftige Dokumentation zum Umgang mit diesem.
 [ENDSECTION]
 
 [SECTION::submission::information]
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Nötige Begriffe]
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 [ENDINSTRUCTOR]

@@ -54,7 +54,7 @@ Es erstellt einen neuen Ordner `rsync_copy_data` mit 20 Textdateien.
 [ENDSECTION]
 [SECTION::submission::reflection]
 
-[INCLUDE::../../_include/Markdowndokument.md]
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]

@@ -109,8 +109,8 @@ print(content)
 [ENDSECTION]
 [SECTION::submission::information,program]
 
-[INCLUDE::../../_include/Markdowndokument.md]
-[INCLUDE::../../_include/Quellcode.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

@@ -30,7 +30,7 @@ Erarbeiten Sie sich die Inhalte aus:
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

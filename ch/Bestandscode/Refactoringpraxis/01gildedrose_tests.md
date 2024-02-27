@@ -67,8 +67,8 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
 [ENDSECTION]
 
 [SECTION::submission::program]
-[INCLUDE::../../_include/Kommandoprotokoll.md]
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Testentwurf]

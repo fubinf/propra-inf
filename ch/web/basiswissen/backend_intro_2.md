@@ -38,7 +38,7 @@ Um tiefer in das Thema einzusteigen, wird stark empfohlen sich den Abschnitt [PA
 [ENDSECTION]
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

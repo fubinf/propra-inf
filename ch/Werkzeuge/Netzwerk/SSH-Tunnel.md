@@ -65,7 +65,7 @@ OpenSSH bietet eine sehr mächtige Weiterleitungsfunktion, die den Verkehr an ei
 [ENDSECTION]
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 

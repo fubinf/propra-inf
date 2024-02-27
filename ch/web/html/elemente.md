@@ -36,7 +36,7 @@ Erarbeiten Sie die Inhalte aus:
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Quellcode.md]
+[INCLUDE::../../_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

@@ -153,8 +153,8 @@ Möglichkeiten Ihren Response mit Hilfe Ihrer Scripte mit dem Response über Ope
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Markdowndokument.md]
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Pet-ID]

@@ -90,8 +90,8 @@ Funktionen tunlichst auskennen sollte.
 [ENDSECTION]
 [SECTION::submission::information,program]
 
-[INCLUDE::../../_include/Quellcode.md]
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 

@@ -152,6 +152,6 @@ nehmen Sie an, dass die `receivers_list` jetzt aus `["Donna, "Paul"]` besteht.
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]

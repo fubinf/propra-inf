@@ -100,6 +100,6 @@ Betrachten Sie erneut den zur Verfügung gestellten Yaml-Code.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Kommandoprotokoll.md]
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 [ENDSECTION]

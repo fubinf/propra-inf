@@ -62,8 +62,8 @@ Führen Sie nach ausreichendem Testen zur Abgabe folgende Kommandos aus:
 [ENDSECTION]
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Kommandoprotokoll.md]
-[INCLUDE::../../_include/Markdowndate.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

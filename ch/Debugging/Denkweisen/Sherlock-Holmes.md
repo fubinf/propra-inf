@@ -32,7 +32,7 @@ Gibt es Ihrer Meinung nach weitere Gründe, wieso dieses Vorgehen nützlich sein
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 Gefragt ist keine Literaturbesprechung oder -zusammenfassung,
 sondern _Ihre_ persönliche Stellungnahme.
 [ENDSECTION]
