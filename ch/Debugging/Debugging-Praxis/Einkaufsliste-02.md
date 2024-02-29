@@ -63,8 +63,8 @@ hier ein [TERMREF::Versagen] beheben.
 
 [ENDSECTION]
 [SECTION::submission::trace,snippet,information]
-[INCLUDE::../../_include/Kommandoprotokoll.md]
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 Geben Sie außerdem den Quellcode der Funktion an, in der Sie den Fix implementiert haben, inklusive 
 des Fixes.
 [ENDSECTION]

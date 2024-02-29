@@ -194,6 +194,6 @@ opponent_hand = {"2": ["clubs", "spades"]}
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]

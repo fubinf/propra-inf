@@ -45,7 +45,7 @@ Beschreiben Sie in eigenen Worten
 
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

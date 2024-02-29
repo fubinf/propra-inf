@@ -55,6 +55,6 @@ das geordnete Auslagern der Python Methoden nach den HTTP-Methoden an.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Markdowndokument.md]
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]

@@ -35,6 +35,6 @@ Ein Reversetunnel wird mit dem Flag `-R` aufgerufen.
 [ENDSECTION]
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]

@@ -123,9 +123,9 @@ def time_average(logs):
 
 [SECTION::submission::program]
 
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
-[INCLUDE::../../_include/Quellcode.md]
+[INCLUDE::../../_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

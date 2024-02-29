@@ -46,7 +46,7 @@ Genauso wie es Nutzer in Linux gibt, gibt es auch Gruppen. Gruppen sind nützlic
 - [EC] Zuguterletzt löschen Sie beide erstellten Gruppen wieder. Nutzen Sie dafür `delgroup`.
 [ENDSECTION]
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Kommandoprotokoll.md]
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 

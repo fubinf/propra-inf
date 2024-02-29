@@ -48,7 +48,7 @@ Das Portal leitet den Benutzer auf die Seite des Portal-Administrators weiter.
 [ENDSECTION]
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 Sollten Ihnen zur Erstellung der Bug-Reports Informationen Fehlen, dürfen Sie diese fiktiv belegen. Bitte mit (fiktiv) markieren.
 Geben Sie die benutzten Quellen an.
 

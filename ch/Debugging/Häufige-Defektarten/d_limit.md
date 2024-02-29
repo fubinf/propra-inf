@@ -90,7 +90,7 @@ Setzen Sie `number` auf 2, 3, 4, 5 und 6.
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Nur die Defektkorrektur bitte]

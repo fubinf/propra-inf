@@ -189,6 +189,6 @@ Wird das Programm ordnungsgemäß beendet?
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]

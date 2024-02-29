@@ -104,6 +104,6 @@ Sie, welche Schritte wir verändert haben.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Kommandoprotokoll.md]
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 [ENDSECTION]

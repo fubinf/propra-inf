@@ -31,7 +31,7 @@ Wenn nein: Fällt Ihnen ein besseres Beispiel ein, das die drei Begriffe im Kont
 anschaulich macht?
 [ENDSECTION]
 [SECTION::submission::reflection]
-[INCLUDE::../../_include/Markdowndokument.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 Gefragt ist keine Literaturbesprechung oder -zusammenfassung,
 sondern _Ihre_ persönliche Stellungnahme.
 [ENDSECTION]
