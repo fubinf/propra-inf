@@ -4,6 +4,37 @@ timevalue: 1
 difficulty: 2
 assumes: d_indexing
 ---
+
+TODO_1_pietrak:
+1)
+"Der Grenzwertfehler tritt auf, wenn die Daten an den Grenzen des Definitionsbereiches nicht korrekt verarbeitet worden sind, also die ersten paar oder letzten paar Elemente des Datensets."
+
+Die Definition von Grenzwertfehlern könnte durch leicht verständliche Beispiele weiter verdeutlicht werden.
+
+2)
+Unterschied zwischen Grenzwertfehler und Indexfehler könnte klarer gemacht werden. 
+
+3)
+Beispiel von Dateiabschnitten könnte noch anhand verschiedener Eingaben klarer gemacht werden.
+
+4)
+Beispiel von Dateiabschnitten könnte nach der Erklärung eine korrigierte Anpassung vom Code zur Behebung des definierten Problems enthalten. 
+
+5)
+Vorschlag 3 in der zu bearbeitenden Aufgabe könnte zu Missverständnissen führen.
+
+6)
+Die Lösung der zu bearbeitenden Aufgabe lässt sich ohne Rückkehr zu den mathematischen Eigenschaften einer Primzahl nicht erkennen. 
+
+7)
+"Die Funktion muss nur mit positiven Zahlen und 0 richtig funktionieren." Könnte so verstanden werden, dass die Funktion bei den erwähnten Werten True zurückgeben würde, falls man mit den Primzahlen zum ersten Mal arbeitet. Es wäre noch zu klären, dass "..richtig funktionieren" nicht gleich "..richtig zurückgeben" ist, oder einfach den Satz anders formulieren.
+
+8)
+Kleinere Aufgaben, die sich mit den beschriebenen Fällen von Grenzwertfehlern beschäftigen, könnten hilfreicher sein. 
+
+9)
+Insgesamt benötigt die Bearbeitung der ganzen Aufgabe inkl. Abgabe weniger als die geschätzte Zeit (1 h).
+
 [SECTION::goal::idea]
 
 Ich verstehe, welche Form Grenzdefekte im Code annehmen können und habe einen solchen Defekt 
