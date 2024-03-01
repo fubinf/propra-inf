@@ -99,7 +99,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Debugging/Häufige-Defektarten/d_limit.md (Dominik Pietrak)
 - ch/Bibliotheken/stdlib/jsonBasic.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
@@ -137,4 +136,4 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Dominik Pietrak
 
-- ...
+- ch/Debugging/Häufige-Defektarten/d_limit.md (Dominik Pietrak)
