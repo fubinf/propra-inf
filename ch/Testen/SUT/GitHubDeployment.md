@@ -4,6 +4,17 @@ timevalue: 1
 difficulty: 1
 profiles: TEST
 ---
+# Review (DM)
+- Ziele: Outcomeorientiert und klar und deutlich formulieren. In diesem Fall vielleicht sowas wie:
+"Ich kann mit GitHub Action eine Website bereitstellen, um sie für automatisierte Tests zu verwenden"
+
+- F1: Ist etwas schwammig formuliert. Wie sollen die Kommentarzeilen kommentiert werden? "Ergänzen Sie" vielleicht ein sinnvollerer Operator.
+- Abgabe: Sinvoll als .md? Warum nicht einfach die ausgefüllte YAML abgeben? 
+- Alternativ anstatt das in der YAML zu kommentieren (was sicherlich auch sinnvolle Praxis ist), die einzelnen Schritte des build-Jobs beschreiben lassen -> Dann als .md sinnvoller.
+
+- Schau nochmal auf Schreibfehler, ".githuib" scheint mir falsch.
+
+
 [SECTION::goal::idea]
 
 - Ich habe eine Vorstellung davon, wie ich mit GitHub Action eine Webanwendung bereitstellen kann,

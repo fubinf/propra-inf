@@ -6,6 +6,14 @@ profiles: TEST
 explains:
 assumes: venv, pip, basics, Git101
 ---
+# Review (DM)
+- Kompetenzen/Ziele sind i.d.R. Output-orient, d.h., wenn ich mit der Bearbeitung der Aufgabe fertig bin, habe ich das Lernziel erreicht. z.B. "Ich kann das SUT lokal starten und verwenden."
+- Abschnitt "Warum benutze ich das SUT?" ist doch eher noch Hintergrund als Teil der Arbeitsschritte.
+- Codestand Begriff? ggf. erklären, Satz ist unvollständig.
+- Ist es an dieser Stelle notwendig, so detailliert auf das Benutzen von git und python einzugehen? Achtung auch python bzw. python3-Paketen. Python sollte doch schon installiert sein nach Durchführen der Basis-Module? Zumal die Aufgabe ja Git101, basics, pip, venv annimmt.
+- Allgemein sehr kleinschrittige, geschlossene Aufgabe. Das ist für die absoluten Grundlagen sicherlich sinnvoll.
+
+
 [SECTION::goal::idea]
 
 - Ich besitze erste Kenntnisse über das zu verwendende SUT

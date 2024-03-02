@@ -32,11 +32,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Daniel Müllers
-
-- ch/Testen/SUT/index.md (Ronny Ruhe)
-- ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
-- ch/Testen/SUT/GitHubDeployment.md (Ronny Ruhe)
-
 - ch/Testen/Testframeworks/index.md (Ronny Ruhe)
 - ch/Testen/Testframeworks/Robot.md (Ronny Ruhe)
 
@@ -91,6 +86,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Debugging/Häufige-Defektarten/d_indexing.md (Dominik Pietrak)
 - ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak)
 
+- ch/Testen/SUT/index.md (Ronny Ruhe)
+
+
 
 ## Reviews to do for Lutz Prechelt
 
@@ -123,7 +121,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
 
-
+- ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
+- ch/Testen/SUT/GitHubDeployment.md (Ronny Ruhe)
 
 ## Reviews to do for Sven Hüster
 
