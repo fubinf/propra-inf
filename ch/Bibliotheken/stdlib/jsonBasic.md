@@ -5,6 +5,27 @@ difficulty: 2
 explains: JSON
 assumes: PythonDataStructures
 ---
+
+TODO_1_ruhe
+
+1)
+JSON wurde in der Gloassar mit "leichtgewichtig" bezeichnet. Eine weitere Frage (bspw. F9) könnte sich mit der Bedeutung dieser Eigenschaft befassen. F8 fragt schon allgemein nach der Popularität von JSON, es könnte allerdings einfacher und gezielter sein, nach den einzelnen Haupteigenschaften von JSON zu fragen. 
+
+2)
+Der Hintergrund könnte mit höherer Ebene beginnen und direkt am Anfang ein bisschen über das Thema "Datenaustausch" und "Datenaustauschformate" sprechen. Es könnten einige Formate auch erwähnt werden, sodass man selbst später (bspw. in der Frage F8) den Unterschied zu JSON recherchiert. 
+
+3)
+Eine weitere Frage könnte sich damit befassen, ob man in JSON auch Kommentare schreiben kann oder nicht.
+
+4)
+In den zu bearbeitenden Aufgaben könnte es noch Attribute geben, die Boolean-Werte annehmen. 
+
+Tippfehler:
+1) "..Sie sollen im (f)olgenden" -> "..Sie sollen im (F)olgenden"
+2) "..der gegebenen Informationen ein(e)" -> "..der gegebenen Informationen ein"
+
+--------
+
 [SECTION::goal::trial]
 
 - Ich kann ein [TERMREF::JSON]-Objekt lesen und bearbeiten
