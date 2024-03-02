@@ -6,6 +6,23 @@ explains: JSON
 assumes: jsonExercise
 requires: jsonBasic
 ---
+
+TODO_1_ruhe
+
+1)
+Definition von Serialisierung und Deserialisierung fehlt.
+
+2)
+In der abzugebenden Aufgabe könnte man noch ineffiziente JSON-Objekte geben, sodass der Student diese Objekte anhand der Empfehlungen (mindestens die Punkte von 1 bis 4) aus dem Medium-Artikel/"Optimizing JSON Performance" effizienter macht. 
+
+3)
+In der abzugebenden Aufgabe könnte man auch nach den anderen erwähnten Serialisierungsformaten fragen und eventuell auch danach, warum JSON trotz aller Vorteile der anderen Formate immer noch beliebt und weit verbreitet ist, nur zur Sicherung, dass der Student die Eigenschaften von JSON gut verstanden hat. 
+
+4)
+Die geschätzte Bearbeitungszeit ist ein bisschen wenig, wenn man in Betrachtung nimmt, dass der Student den Medium-Artikel inkl. Abgabe ausführlich bearbeiten würde. Vielleicht 1.5 h ?
+
+-----------------
+
 [SECTION::goal::trial]
 
 - Ich kann JSON-Objekte performant gestalten
