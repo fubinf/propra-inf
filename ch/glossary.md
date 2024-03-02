@@ -119,6 +119,8 @@ sicherzustellen.
 Dateiberechtigungen in Linux legen fest, welche Aktionen (Lesen, Schreiben, Ausführen) für 
 bestimmte Benutzer oder Benutzergruppen erlaubt sind. Die Berechtigungen werden durch die 
 Zeichenkette "rwx" dargestellt, wobei "r" für Lesen, "w" für Schreiben und "x" für Ausführen steht.
+Die ersten drei Zeichen geben die Berechtigungen für den Nutzer an, die nächsten drei geben es für die 
+Gruppe an und die letzten drei geben es für alle anderen Benutzer an.
 [ENDTERM]
 
 [TERM::Deduktion|deduktive Methode|deduktiver Schluss]
@@ -140,7 +142,7 @@ Zur Korrektur eines Defekts wird in der Regel der Code verändert.
 [ENDTERM]
 
 [TERM::DSL|Domänenspezifische Sprache]
-Eine speziell auf einen bestimmten Anwendungsbereich ("Domäne") zugeschnittene Sprache.
+Eine speziell auf eine bestimmten Anwendungsbereich ("Domäne") zugeschnittene Sprache.
 Im Gegensatz zu allgemeinen Programmiersprachen, die
 für eine Vielzahl von Anwendungen geeignet sind, ist eine DSL darauf ausgerichtet, spezifische
 Aufgaben oder Anforderungen in einem begrenzten Kontext besonders elegant zu adressieren.
@@ -536,14 +538,6 @@ Das Ausprobieren von Software, um relevante Eigenschaften zu überprüfen;
 meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
 [ENDTERM]
 
-[TERM::TDD|Test Driven Development]
-ist eine Softwareentwicklungsmethode, bei der [TERMREF2::Tests::-s] vor der eigentlichen Implementierung
-des Codes geschrieben werden. Der Prozess beginnt mit dem Schreiben eines Tests, der das
-erwartete Verhalten der Funktionalität beschreibt. Dann wird der minimal notwendige Code
-implementiert, um den Test erfolgreich durchzuführen. Dieser iterative Prozess von Schreiben
-von Tests, Implementieren des Codes wird fortgesetzt, bis die gewünschte Funktionalität erreicht ist.
-[ENDTERM]
-
 [TERM::Tutorial]
 Ein kurzer Lehrgang (in der Regel in Schriftform, eventuell als Video)
 zum Erlernen der Grundzüge eines klar abgegrenzten Themenbereichs,
@@ -608,7 +602,7 @@ Urgrundanalyse eine hochwirksame Methode zur Vorbeugung von Problemen.
 
 [TERM::User Story]
 Kurze, informelle Beschreibung einer Funktion aus der Perspektive eines Endbenutzers.
-Umfasst typischerweise, wer die Funktion nutzt, was getan werden soll und wozu es relevant ist.
+Umfasst typischerweise wer die Funktion nutzt, was getan werden soll und wozu es relevant ist.
 
 User Stories dienen als Kommunikationsmittel zwischen Entwicklern, Kunden und anderen Stakeholdern,
 um Anforderungen klar zu definieren und das Verständnis zu verbessern.
