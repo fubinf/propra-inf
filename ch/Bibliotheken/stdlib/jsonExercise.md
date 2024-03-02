@@ -5,6 +5,35 @@ difficulty: 3
 explains: JSON
 requires: jsonBasic
 ---
+
+TODO_1_ruhe
+
+1)
+A1: Hier wird angenommen, dass der Student die Lösung von der erwähnten Aufgabe A3 aus jsonBasic in einer Datei gepeichert hat und diese Datei zur Lösung von A1 verwenden sollte.
+
+2)
+Der Hinweis in A1 zeigt schon eine Empfehlung (loads()-Funktion) schon im Titel. Somit würde der Student den Hinweis sogar nicht öffnen müssen, um Hilfe zu bekommen.
+
+3) 
+Der Hinweis in A1 schlägt die Funktion json.loads() vor. Diese Funktion nimmt aber keine Datei an, sondern nur Strings. Falls der Student doch mit einer Datei arbeiten muss, dann könnte man im Hinweis die beiden Funktionen json.load() und eventuell auch open() vorschlagen.
+
+4)
+In A3: Die zusätzliche Aufgabe "Optional Advanced" ist nicht klar genug definiert und kann anhand der (in jsonBasic/A3) ausgewählten Lösung unterschiedlich interpretiert werden. 
+
+5)
+In A5: "..Der Student muss mindestens ein Fach ausgewählt haben." Heißt "ausgewählt haben", dass die zu schreibende Funktion ein Fach als Argument oder als Nutzereingabe erwartet?
+
+6) Vielleicht die anderen Funktionen im JSON-Paket kurz empfehlen?
+
+7) Vielleicht andere Abgabeform? Bspw. Submission-Quellcode.md? Vielleicht auch für die Abgabe von "jsonBasic"
+
+Tippfehler:
+1) "Zusätzlich ist diese Bibliothek ein sehr nützlicher Helfe(_)" -> "Zusätzlich ist diese Bibliothek ein sehr nützlicher Helfe(r)" oder "Zusätzlich ist diese Bibliothek eine sehr nützliche Hilfe"
+2) In A3: vielleicht anstatt von "advanced" die deutsche Variante "fortgeschritten" benutzen?
+3) In A4: "..die ein Studienfach (hinzufügt) zu einem.." -> "..die ein Studienfach zu einem.."
+
+-----------
+
 [SECTION::goal::trial]
 
 - Ich kann das Paket `json` verwenden, um JSON-Dateien in Python zu bearbeiten
