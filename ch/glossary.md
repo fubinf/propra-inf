@@ -115,6 +115,12 @@ sicherzustellen.
 
 ## D
 
+[TERM::Dateiberechtigungen]
+Dateiberechtigungen in Linux legen fest, welche Aktionen (Lesen, Schreiben, Ausführen) für 
+bestimmte Benutzer oder Benutzergruppen erlaubt sind. Die Berechtigungen werden durch die 
+Zeichenkette "rwx" dargestellt, wobei "r" für Lesen, "w" für Schreiben und "x" für Ausführen steht.
+[ENDTERM]
+
 [TERM::Deduktion|deduktive Methode|deduktiver Schluss]
 Der Prozess des Ziehens logisch zwingender Schlussfolgerungen.
 Mittels Deduktion können aus Theorien Aussagen über Einzelfälle gewonnen werden.
