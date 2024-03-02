@@ -99,7 +99,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Bibliotheken/stdlib/jsonBasic.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
 
@@ -121,7 +120,8 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ronny Ruhe
 
-- ...
+- ch/Bibliotheken/stdlib/jsonBasic.md (Ronny Ruhe)
+
 
 
 ## Reviews to do for Sven Hüster
