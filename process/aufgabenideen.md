@@ -376,11 +376,8 @@ Beispiele für programmatische Idiome:
 ### Werkzeuge/Netzwerk (condric)
 
 - ssh (mehrere Aufgaben) 
-  - Schlüsselpaar erzeugen, ~/.ssh, ssh, ssh-agent (alias ins .bashrc), ssh-copy-id, login damit
-  - login mit Passwort (Benutzername, Port), remote command
+  - ssh-agent (alias ins .bashrc)
   - tmux, ...
-  - scp
-  - Tunnel, um einen Entwicklungswebserver zu sich "herzuholen"
 - ping, rsync, curl, wget, ...
 
 Lernziel ist immer, typische Anwendungsfälle und Stärken zu verstehen.
