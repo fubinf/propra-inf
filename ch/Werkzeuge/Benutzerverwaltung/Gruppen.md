@@ -1,4 +1,4 @@
-title: gruppen
+title: Gruppen
 stage: draft
 timevalue: 1.0
 difficulty: 2
@@ -11,7 +11,7 @@ Ich verstehe Gruppen in Linux und wie ich diese anwenden kann.
 [ENDSECTION]
 [SECTION::background::default]
 
-Genauso wie es Nutzer in Linux gibt, gibt es auch Gruppen. Gruppen sind nützlich, zum Beispiel, wenn amn mehreren Nutzern Zugriff auf bestimmte Dateien geben möchte.
+In Linux spielen Gruppen eine wichtige Rolle bei der Verwaltung von Benutzerrechten und der Organisation von Benutzern auf einem System.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]

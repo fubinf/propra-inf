@@ -1,4 +1,4 @@
-title: nutzer
+title: Nutzer
 stage: draft
 timevalue: 1.0
 difficulty: 2
@@ -11,7 +11,7 @@ Ich verstehe wie man einen Nutzer erstellt, bei einem Nutzer die Rechte ändert,
 [ENDSECTION]
 [SECTION::background::default]
 
-Linux Systeme sind meist Systeme, die von mehreren Nutzern gleichzeitig genutzt werden. Somit braucht jeder Nutzende ein eigenes Konto.
+Nutzer in Linux sind individuelle Konten, die es den Benutzern ermöglichen, auf einem System zu arbeiten und Ressourcen zu nutzen.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
@@ -35,7 +35,7 @@ Linux Systeme sind meist Systeme, die von mehreren Nutzern gleichzeitig genutzt 
 
 ### Ändern der Rechte für Nutzer
 
-Nach bestimmten Datenschutzrichtlinien müssen Benutzer eines Systems aufbewahrt werden. Somit müssen sie erst gesperrt werden.  
+In den meisten Firmen müssen Nutzer eines Systems nach bestimmten Datenschutzrichtlinien aufvewahrt werden. Somit müssen diese erst gesperrt werden  
 - [EC] Nutzen sie `usermod` um den Nutzer `bob` und `otto` zu sperren.
 
 Nachdem die Nutzer gesperrt wurden und eine bestimmte Zeitspanne vorbei ist, müsssen Nutzer und Dateien des Nutzers auf dem System gelöscht werden.  

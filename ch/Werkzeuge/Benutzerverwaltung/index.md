@@ -1,4 +1,5 @@
 title: Benutzerverwaltung
 ---
-Linux ist ein Multi User System.
-Hier beschäftigen wir uns mit der Benutzerverwaltung.
+
+Die Benutzerverwaltung in Linux umfasst die Verwaltung von Benutzerkonten, Gruppen und deren Berechtigungen auf einem Linux-System.
+TODO_2_condric motivierenderen Text hier einfügen
