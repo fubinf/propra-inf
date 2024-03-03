@@ -38,7 +38,7 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
 - `test_gilded_rose.py` enthält genau einen Test.
   Führen Sie die Datei aus: Der Test schlägt fehl.
   Lesen, verstehen und reparieren Sie den Test.
-- Machen Sie einen Commit mit der reparierten Datei `test_guilded_rose.py`.
+- Machen Sie einen Commit mit der reparierten Datei `test_gilded_rose.py`.
 - [EC] `git show --color=always HEAD | cat`
   (Achtung: Starten Sie `script` diesmal in einer zweiten Shell, sonst werden Sie viel zu
   bereinigen haben.)
@@ -78,7 +78,7 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
 - Wer `unittest` benutzt und sich selbst eine tabellengesteuerte Testlogik gebaut hat,
   kann wahrscheinlich pro Testlauf nur 1 Versagen sehen, nicht mehrere.
   Auf die Vorzüge von `pytest` hinweisen, wo das ohne Mehraufwand besser geht.
-- Wenn die Sulfuras-Regel, dass sich `selL_in` nicht verändert, nicht überprüft wird,
+- Wenn die Sulfuras-Regel, dass sich `sell_in` nicht verändert, nicht überprüft wird,
   die Tests zurückweisen.  
   Ob man das hingegen in der Tabelle widerspiegelt oder in der Testlogik separat abfragt,
   ist Geschmackssache.
