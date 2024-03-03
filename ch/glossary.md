@@ -319,6 +319,17 @@ zu verstehen, welche Ressourcen verfügbar sind, welche
 Parameter erwartet werden und welche Antworten zurückgegeben werden können.
 [ENDTERM]
 
+[TERM::Optionen]
+In Linux beziehen sich die Optionen zu Befehlen auf zusätzliche Parameter oder 
+Argumente, die einem Befehl hinzugefügt werden können, um sein Verhalten zu 
+steuern oder anzupassen. Diese Optionen ermöglichen es Benutzern, die 
+Funktionalität eines Befehls auf verschiedene Weisen zu beeinflussen. Optionen 
+werden in der Regel durch Buchstaben oder Wörter dargestellt und können durch 
+Bindestriche oder doppelte Bindestriche eingeleitet werden.
+Bei den meisten Befehlen gibt die Option `-h` eine kurze Auflistung der meistgenutzten 
+Optionen des Befehls.
+[ENDTERM]
+
 ## P
 
 [TERM::Parameter]
