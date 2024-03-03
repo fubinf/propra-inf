@@ -319,7 +319,7 @@ zu verstehen, welche Ressourcen verfügbar sind, welche
 Parameter erwartet werden und welche Antworten zurückgegeben werden können.
 [ENDTERM]
 
-[TERM::Optionen]
+[TERM::Optionen|Option]
 In Linux beziehen sich die Optionen zu Befehlen auf zusätzliche Parameter oder 
 Argumente, die einem Befehl hinzugefügt werden können, um sein Verhalten zu 
 steuern oder anzupassen. Diese Optionen ermöglichen es Benutzern, die 
