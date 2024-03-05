@@ -1,5 +1,5 @@
 title: Einfühung in Regex
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 1
 profiles:
