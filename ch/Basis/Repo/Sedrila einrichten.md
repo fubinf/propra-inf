@@ -1,5 +1,5 @@
 title: SeDriLa lauffähig machen für die Verwendung der Teilnehmer
-stage: draft
+stage: alpha
 timevalue: 0.25
 difficulty: 2
 requires: Zeiterfassung
@@ -12,7 +12,7 @@ für die Tutor\_innen festgehalten.
 Das Programmierpraktikum basiert auf der Anwendung SeDriLa (Self-Driven Lab).
 Das dient Ihnen grundlegend für folgende Dinge:
 
-1. Einhaltung einer einheitliche Abgabeform, damit Ihre Tutor\_innen weniger
+1. Einhaltung einer einheitlichen Abgabeform, damit Ihre Tutor\_innen weniger
    unnötigen Verwaltungsaufwand bei der Bewertungen haben und Ihnen damit
    schneller Rückmeldung geben können.
 2. Einen Überblick über den eigenen Fortschritt schaffen.
@@ -29,10 +29,11 @@ wurden.
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-Zunächst müssen Sie SeDriLa installieren. Führen Sie hierzu folgenden Befehl aus:
+Zunächst müssen Sie SeDriLa installieren:
 
 ```
-pip install sedrila
+sudo apt install pipx
+pipx install sedrila
 ```
 
 In Ihrem ProPra-Verzeichnis führen Sie anschließend folgenden Befehl aus:
@@ -51,10 +52,10 @@ leer sein. In diesem Fall erstellen Sie Commits ihrer bisher bearbeiteten
 Aufgaben (einschließlich dieser hier) in dem Format, das in
 [PARTREF::Zeiterfassung] beschrieben wurde.
 
-Lassen Sie sich nicht von dem Timevalue TOTAL abschrecken. Das beinhaltet nur
+Lassen Sie sich nicht von dem "Timevalue TOTAL" abschrecken. Das beinhaltet nur
 bereits akzeptierte Abgaben und entspricht daher nicht der geleisteten Arbeit.
 
 [ENDSECTION]
 [SECTION::submission::snippet]
-Die Abgabe besteht aus der generierten Datei student.yaml.
+Die Abgabe besteht aus der generierten Datei `student.yaml`.
 [ENDSECTION]
