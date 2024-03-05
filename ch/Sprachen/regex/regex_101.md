@@ -24,9 +24,7 @@ Dort wird auch auf Möglichkeiten zum Testen bzw. Ausprobieren von regulären Au
 Dazu wird zu einem auf Websites wie https://regex101.com/ sowie das Python-Paket `re` verwiesen.
 
 Wenn Sie den Blogpost auf der O'Reilly-Seite durchgearbeitet haben bearbeiten Sie die folgenden 
-Aufgaben. Ziel ist es jeweils einen regulären Ausdruck passend zur Aufgabenstellung, einige 
-Beispiele zum Testen, sowie eine kurze Reflexion zur Vorgehensweise aufzuschreiben.
-
+Aufgaben.
 
 1. Einfaches Abgleichen von Wörtern Teil 2 (Wortgrenzen)
     - Schreiben Sie einen regulären Ausdruck welcher alle Wörter findet welche auf das wort **end** 
@@ -36,7 +34,7 @@ Beispiele zum Testen, sowie eine kurze Reflexion zur Vorgehensweise aufzuschreib
 [NOTICE]
 Zur Einfachheit nehmen wir an, dass Kreditkartennummern bis zu 16 Zeichen lang sind und, in 
 4er-Blöcken, separiert durch Leerzeichen oder Bindestriche, auftreten können. 
-z.B. `45444 6146 9321 714`
+z.B. `4544 4614 6932 1714`
 [ENDNOTICE]
 3. Jahreszahl aus Datum finden
     - Schreiben Sie einen regulären Ausdruck welcher die Jahreszahl aus verschiedenen Formaten zur 
@@ -61,7 +59,8 @@ Die Tags haben keine attribute und bestehen lediglich aus ihrem Bezeichner, z.B.
 
 [SECTION::submission::reflection]
 
-.
+Ziel ist es jeweils einen regulären Ausdruck passend zur Aufgabenstellung, einige 
+Beispiele zum Testen, sowie eine kurze Reflexion zur Vorgehensweise aufzuschreiben.
 
 [ENDSECTION]
 
