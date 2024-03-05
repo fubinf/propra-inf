@@ -52,7 +52,9 @@ z.B. `name@example.com`.
 6. Simples HTML-Tag matching
     - Schreiben Sie einen regulären Ausdruck, welcher einfache HTML bzw. XML tags matchen kann.
 [NOTICE]
-Die Tags haben keine attribute und bestehen lediglich aus ihrem Bezeichner, z.B. <a> oder </br>.
+Die Tags haben keine attribute und bestehen lediglich aus ihrem Bezeichner, z.B. `\<a\>` oder 
+`\</br\>`. Diskutieren Sie auch warum sich reguläre Ausdrücke nicht zum vollständigen 
+Parsen von HTML eignen.
 [ENDNOTICE]
 
 [ENDSECTION]
@@ -84,6 +86,8 @@ Beschreibung hervorgeht, dass die Studierenden selbst auf die Lösung gekommen s
    - Dieser Regex nimmt zwar eine gewisse "Validierung" der E-Mail, kann aber über die Wirkliche 
      Validität ebendieser nichts aussagen, da z.B. E-Mails mit Sonderzeichen vor dem @ durch 
      doppelte Anführungszeichen markiert werden müssten.
+6. HTML
+   - Mögliche Lösung: `\<(\\?\w+)\>`
 
 Alle Beispiellösungen nutzen Groups zum Erkennen einzelner Teilabschnitte der gesuchten Objekte. 
 In der Praxis ist dies häufig hilfreich, da diese Gruppen dann weiter genutzt werden könnten, 
