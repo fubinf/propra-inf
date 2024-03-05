@@ -57,9 +57,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
 - TODO_1_alle: Admonitions durch SECTIONs ersetzen, CSS löschen
-- favicon einführen: Einfarbiges grünes Quadrat oder P in der Hauptfarbe.
-  Bei Wahl des "P": Herstellungsprozess hier notieren, denn wir müssen ggf. demnächst
-  die Farbe ändern.
 
 
 ### 2.3 Korrekturbedarf an sedrila
@@ -67,6 +64,7 @@ In alphabetischer Reihenfolge der Dateinamen.
 - Formatkonvention für slugs einführen?
 - Macrocall: markdown_content speichern, daraus Zeilennummern errechnen?
 - `profiles` auf der Ebene `Taskgroup` erlauben? Im YAML-Teil angeben, im TOC anzeigen.
+- ZIP-Dateien sollten nicht die Ordnerhierarchie mitschleppen.
 
 
 ### 2.4 Reviews Einzeldateien
