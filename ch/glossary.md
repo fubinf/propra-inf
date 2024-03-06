@@ -326,8 +326,9 @@ steuern oder anzupassen. Diese Optionen ermöglichen es Benutzern, die
 Funktionalität eines Befehls auf verschiedene Weisen zu beeinflussen. Optionen 
 werden in der Regel durch Buchstaben oder Wörter dargestellt und können durch 
 Bindestriche oder doppelte Bindestriche eingeleitet werden.
-Bei den meisten Befehlen gibt die Option `-h` eine kurze Auflistung der meistgenutzten 
+Bei den meisten Befehlen geben die Optionen `-h`, `--help`, `-help` eine kurze Auflistung der meistgenutzten 
 Optionen des Befehls.
+Für Windows-Befehle ist es meistens die Option `/h`, die diese Hilfe anbietet.
 [ENDTERM]
 
 ## P
