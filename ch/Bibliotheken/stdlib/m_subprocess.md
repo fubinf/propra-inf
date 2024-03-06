@@ -1,4 +1,4 @@
-title: "subprocess: write to and read from newly started subprocesses"
+title: "subprocess: Unterprozesse starten und ihre Ausgaben lesen"
 stage: draft
 timevalue: 1.5
 difficulty: 2

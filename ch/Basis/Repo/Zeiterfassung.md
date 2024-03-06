@@ -66,11 +66,12 @@ Es liefert auch den Namen der aktuellen Aufgabe.
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-Treffen Sie eine Entscheidung, ob Sie diese Form der Arbeitszeiterfassung
-nutzen möchten.
+Treffen Sie anhand der unten angegebenen Fragen eine Entscheidung, 
+ob Sie diese Form der Arbeitszeiterfassung nutzen möchten.
 
 Wir raten, es zu tun, denn Sie können dabei viel lernen und der Aufwand ist gering.
-Sie werden in der Praxis häufig vor dem Problem stehen, den Zeitaufwand einer Aufgabe von vornherein einzuschätzen. Dabei ist konkrete Erfahrung, wie sie hier erworben werden kann, sehr hilfreich.
+Sie werden in der Praxis häufig vor dem Problem stehen, den Zeitaufwand einer Aufgabe von vornherein einzuschätzen. 
+Dabei ist konkrete Erfahrung, wie sie hier erworben werden kann, sehr hilfreich.
 
 [ENDSECTION]
 [SECTION::submission::reflection,snippet]
@@ -98,6 +99,7 @@ mit einer geschätzten Arbeitszeit.
 
 [INSTRUCTOR::Bitte ggf. zureden]
 Für diese Aufgabe verlangen wir einmalig einen Commit im korrekten Format:
+
 - `#` zu Beginn
 - richtig geschriebene Dateinamen (Groß-/Kleinschreibung zählt auch)
 - Dezimalpunkt (nicht Dezimalkomma) mit Dezimalstunden oder Doppelpunkt mit Minuten, 

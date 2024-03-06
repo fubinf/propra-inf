@@ -1,5 +1,5 @@
 title: Ein hilfreicher Prompt für unsere Shell
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 2
 requires: Git101
@@ -41,6 +41,7 @@ Aktivieren Sie ihn durch Aufruf von `source ~/.bashrc`.
 ### Prompt verstehen
 
 Der Prompt hat folgende Elemente:
+
 - Benutzername und Hostname:  
   Die sind wichtig zur Orientierung, sobald man im Bereich Systemadministration unterwegs ist.
 - Aktuelles Verzeichnis:  
@@ -87,12 +88,16 @@ Das Thema ist leider ziemlich kompliziert.
 
 Falls Sie sich einen eigenen Prompt bauen, behalten Sie bitte mindestens folgende Elemente
 des obigen Vorschlags bei, um den Tutor_innen die Arbeit zu erleichtern:
+
 - Benutzername
 - aktuelles Verzeichnis
 - Uhrzeit (24h-Format, mit Sekunden)
 - Kommandonummer
 - mindestens zwei verschiedene Farben
 - mindestens einen auffällig massivfarbenen Block
+
+Der Prompt sollte ordentlich mit dunklem Bildschirmhintergrund funktionieren,
+auch wenn Sie selbst vielleicht einen hellen einsetzen.
 
 [ENDSECTION]
 [SECTION::submission::reflection]

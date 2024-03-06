@@ -12,23 +12,29 @@ We will modify these rules over time when others appear more useful.
     Use your own judgment whether or when this is useful.
     Do it at least when you do not find your task very convincing.  
     Tasks come with `stage: alpha` and leave with `alpha` or `draft`.
-  - Holistic review by Christian Hofmann.
+  - Holistic review by Christian Hofmann or Hanen Alrwasheda.
     Tasks come with `stage: alpha` and leave with `alpha`, `beta`, or `draft`.
   - Review for release by Lutz Prechelt.
     Tasks come with `stage: alpha` or `beta` and should leave with `beta`, or `done`.
   - Review by anybody else for specific topic reasons as needed.
 - Authors assign a task to a reviewer by writing a line of the following form
   in the reviewer's section below:  
-  `ch/chaptername/taskgroupname/taskname.md (authorname)```
-- Reviewers make simple changes themselves and defer complex changes to the author.
+  `ch/chaptername/taskgroupname/taskname.md (authorname)`
+- Reviewers make simple changes (typos, hard-to-understand formulations, formatting stuff, etc.)
+  themselves and defer complex changes to the author.
   They should leave simple changes to the author as well if they believe the author
   will learn from making them.
 - Reviewers may add feedback in the task file 
   (a paragraph or itemized list starting with a TODO_1_someauthor marker; default case)
   or write them in the Discord if they believe everybody should see them.
-- Reviewers hand the task back to the author or forward to the next reviewer by moving the assignment line
-  to the author's section below.
-- Authors hand over the improved task to the next reviewer (or the same one again when appropriate).
+- Reviewers then move the review task assignment line to the section (in `review.md`)
+  of the next person that needs to consider the given task:
+  They either hand the task back to the author (if the author needs to make changes or should
+  look at changes the reviewer made) or forward it to the next reviewer.
+- Authors, after reworking a task, hand over the improved task either to the next reviewer
+  or to the same one again when appropriate.
+  If the task appears to be finished, they assign `stage: beta` (or perhaps even no stage at all)
+  and hand over to no one. 
 
 
 ## Reviews to do for Daniel Müllers
@@ -88,6 +94,8 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Testen/SUT/index.md (Ronny Ruhe)
 
+- ch/Bibliotheken/stdlib/m_subprocess2.md (Lutz Prechelt)
+
 
 
 ## Reviews to do for Lutz Prechelt
@@ -97,7 +105,9 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ...
+- ch/Basis/Repo/Shellprompt.md (Lutz Prechelt)
+- ch/Basis/Repo/Zeiterfassung.md (Lutz Prechelt)
+- ch/Basis/Repo/Sedrila einrichten.md (Christian Hofmann)
 
 
 ## Reviews to do for Ivan Condric
@@ -110,11 +120,6 @@ We will modify these rules over time when others appear more useful.
 - ...
 
 
-## Reviews to do for Phuong Anh Ngo
-
-- ...
-
-
 ## Reviews to do for Ronny Ruhe
 
 - ch/Bibliotheken/stdlib/jsonBasic.md (Ronny Ruhe)
@@ -123,6 +128,7 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
 - ch/Testen/SUT/GitHubDeployment.md (Ronny Ruhe)
+
 
 ## Reviews to do for Sven Hüster
 
