@@ -26,7 +26,7 @@ umgehen zu können.
 
 [SECTION::instructions::detailed]
 
-- Legen Sie die Datei `datetime.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. Fügen Sie ihre Python
+- Legen Sie die Datei `datetime_task.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. Fügen Sie ihre Python
   Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile getrennt.
 
 ### `import datetime as dt`
@@ -117,7 +117,7 @@ def time_average(logs):
 
 ### Programmlauf für die Abgabe
 
-- [EC] Führen Sie das gesamte so erzeugte Programm `datetime.py` einmal aus.
+- [EC] Führen Sie das gesamte so erzeugte Programm `datetime_task.py` einmal aus.
 
 [ENDSECTION]
 

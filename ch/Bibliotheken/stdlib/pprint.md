@@ -25,7 +25,7 @@ dass einem im Alltag einiges an Zeit und Arbeit sparen kann.
 
 [SECTION::instructions::detailed]
 
-- Legen Sie die Datei `pprint.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. Fügen Sie ihre Python
+- Legen Sie die Datei `pprint_task.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. Fügen Sie ihre Python
   Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile getrennt.
 - Kopieren Sie den folgenden Code-Block und speichern diesen in einer JSON-Datei im selben Verzeichnis.  
 ```json
@@ -82,7 +82,7 @@ dass einem im Alltag einiges an Zeit und Arbeit sparen kann.
 
 ### Programmlauf für die Abgabe
 
-- [EC] Führen Sie das gesamte so erzeugte Programm `pprint.py` einmal aus.
+- [EC] Führen Sie das gesamte so erzeugte Programm `pprint_taks.py` einmal aus.
 
 [ENDSECTION]
 
