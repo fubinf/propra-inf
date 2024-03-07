@@ -1,4 +1,4 @@
-title: Einfühung in Regex
+title: Einführung in Regex
 stage: alpha
 timevalue: 2.0
 difficulty: 1
@@ -14,7 +14,7 @@ und kann einfache Matches selbst schreiben.
 
 [ENDSECTION]
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 Wir beginnen mit der Einführung auf folgender Seite: 
 https://www.oreilly.com/content/an-introduction-to-regular-expressions/ und arbeiten diese durch 
 bis wir am Abschnitt der Prä- und Suffixe ankommen. Diese sind für das Grundverständnis nicht 
@@ -60,10 +60,8 @@ Parsen von HTML eignen.
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-
 Ziel ist es jeweils einen regulären Ausdruck passend zur Aufgabenstellung, einige 
 Beispiele zum Testen, sowie eine kurze Reflexion zur Vorgehensweise aufzuschreiben.
-
 [ENDSECTION]
 
 [INSTRUCTOR::heading]
