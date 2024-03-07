@@ -89,7 +89,7 @@ Also bauen wir uns sowas für `mlh`, wo wir es hoffentlich leicht wiederfinden u
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::source]
+[SECTION::submission::program]
 
 [INCLUDE::../../_include/Submission-Quellcode.md]
 
