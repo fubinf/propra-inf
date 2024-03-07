@@ -550,6 +550,8 @@ Das Ausprobieren von Software, um relevante Eigenschaften zu überprüfen;
 meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
 [ENDTERM]
 
+[TERM0::TDD|Test-Driven Development|Test-Driven Design]
+
 [TERM::Tutorial]
 Ein kurzer Lehrgang (in der Regel in Schriftform, eventuell als Video)
 zum Erlernen der Grundzüge eines klar abgegrenzten Themenbereichs,
