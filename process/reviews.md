@@ -112,6 +112,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ivan Condric
 
+- ch/Sprachen/pythonpraxis/mlh-rename (Lutz Prechelt)
 - ...
 
 
@@ -129,9 +130,12 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
 - ch/Testen/SUT/GitHubDeployment.md (Ronny Ruhe)
 
+- ch/Sprachen/pythonpraxis/mlh-lsnew (Lutz Prechelt)
+
 
 ## Reviews to do for Sven Hüster
 
+- ch/Sprachen/pythonpraxis/mlh-gitac (Lutz Prechelt)
 - ...
 
 
@@ -143,3 +147,4 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Dominik Pietrak
 
 - ch/Debugging/Häufige-Defektarten/d_limit.md (Dominik Pietrak)
+
