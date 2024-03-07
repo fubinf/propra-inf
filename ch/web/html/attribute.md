@@ -1,5 +1,5 @@
 title: Attribute
-stage: alpha
+stage: draft
 timevalue: 0.5
 difficulty: 1
 profiles: WEB

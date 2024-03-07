@@ -1,5 +1,5 @@
 title: Semantische Tags
-stage: alpha
+stage: draft
 timevalue: 0.5
 difficulty: 1
 profiles: WEB
