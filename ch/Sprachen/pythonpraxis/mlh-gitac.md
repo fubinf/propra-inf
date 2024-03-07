@@ -14,7 +14,7 @@ requires: mlh-lsnew
 [SECTION::background::default]
 
 Wenn man an einer kleinen oder mittelgroßen Software arbeitet, fokussiert man oft
-nicht nur auf eine einige Änderung, sondern macht mehrere "zugleich".
+nicht nur auf eine einzige Änderung, sondern macht mehrere "zugleich".
 Nach einer Weile hat man dann mehrere Dateien geändert, was in git aber auf mehrere
 Commits aufgeteilt werden sollte.
 Dabei macht man sich meist nicht die Mühe, diesen Commits realistische Zeitstempel
