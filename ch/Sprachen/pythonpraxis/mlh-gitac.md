@@ -31,7 +31,7 @@ Das bauen wir uns jetzt.
 
 - Angenommen, wir haben (in dieser Reihenfolge) die Dateien A, B, C, D und E geändert.
   Dabei gehören inhaltlich A und D in einen Commit, B, C und E in einen zweiten.
-- Unser Programm hat folgendes Aufrufformat:   
+- [ER] Unser Programm hat folgendes Aufrufformat:   
   `python mlh gitac [-m|--message commit-msg] file...`
 - Es macht zunächst `git add` auf die angegebenen Dateien.
 - Dann macht es `git commit`, ggf. mit der angegebenen Option.
@@ -50,8 +50,9 @@ Das bauen wir uns jetzt.
 ### Ausprobieren
 
 - [EQ] Führen Sie beim Testen des Programms Protokoll über die Defekte, die Sie entdecken.
-- Testen Sie Ihr Programm entweder auf einem Hilfsrepo oder machen Sie die Test-Commits
-  mit `git reset` wieder rückgängig.
+- Testen Sie Ihr Programm entweder auf einem Hilfsrepo oder 
+  schreiben Sie das Programm richtig genug, dass es schon beim Testen nur sinnvolle Commits macht,
+  oder machen Sie reine Test-Commits mit `git reset` wieder rückgängig.
 
 Führen Sie nach ausreichendem Testen zur Abgabe folgende Kommandos aus:
 
@@ -62,6 +63,7 @@ Führen Sie nach ausreichendem Testen zur Abgabe folgende Kommandos aus:
 [ENDSECTION]
 [SECTION::submission::trace]
 
+[INCLUDE::../../_include/Submission-Quellcode.md]
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 
