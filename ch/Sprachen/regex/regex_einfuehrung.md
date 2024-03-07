@@ -56,8 +56,8 @@ z.B. `name@example.com`.
 Die Tags haben keine attribute und bestehen lediglich aus ihrem Bezeichner, z.B. `\<a\>` oder 
 `\</br\>`. Diskutieren Sie auch warum sich reguläre Ausdrücke nicht zum vollständigen 
 Parsen von HTML eignen.
-
 [ENDNOTICE]
+
 [ENDSECTION]
 [SECTION::submission::reflection]
 
