@@ -18,6 +18,13 @@ Aufgaben schaffen.
 Lesen Sie https://git-scm.com/book/en/v2/Getting-Started-What-is-git%3F gründlich durch und 
 bearbeiten Sie die nachfolgende Aufgabenstellung.
 
+[NOTICE]
+Eine deutlich ausführlichere Erklärung des Arbeitens mit Dateien in git finden Sie hier:
+https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository
+Zwar brauchen Sie diese Seite nicht zum Bearbeiten der Aufgabe, für noch tiefergehendes 
+Verständnis empfiehlt sich aber trotzdem diese Seite mal zu Lesen.
+[ENDNOTICE]
+
 [ENDSECTION]
 [SECTION::submission::reflection]
 Fassen Sie die Hauptpunkte der verlinkten Seite in eigenen Worten zusammen.
