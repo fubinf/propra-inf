@@ -373,6 +373,13 @@ die Automatisierung von komplexen Abläufen, indem sie verschiedene Schritte wie
 Bereitstellungen und mehr integriert.
 [ENDTERM]
 
+[TERM::Pipes|Pipe]
+Pipes dienen dazu, die Ausgabe einer Anwendung direkt als Eingabe für eine andere zu verwenden, 
+ohne dass die Zwischenspeicherung in Dateien erforderlich ist. In Betriebssystemen wie Unix und 
+Linux werden Pipes durch das vertikale Strichzeichen (|) dargestellt und ermöglichen die nahtlose 
+Kommunikation zwischen verschiedenen Befehlen in der Kommandozeile.
+[ENDTERM]
+
 [TERM::Post Mortem|Post-Mortem-Analyse]
 Eine Analyse, die nach Ende des zu analysierenden Ereignisses durchgeführt wird.
 Dadurch lassen sich Vorfälle untersuchen, dokumentieren und zu Lernzwecken festhalten.
