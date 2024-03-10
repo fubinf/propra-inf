@@ -8,7 +8,7 @@ difficulty: 2
 Ich weiß wie ich mit Befehlen auf der Kommandozeile navigieren kann.
 [ENDSECTION]
 [SECTION::background::default]
-Man sollte einige Befehle wissen, damit man nicht komplett mit der Kommandozeile aufgeschmissen ist.
+Ein Linux-Administrator bewegt sich hauptsächlich auf der Kommandozeile.
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
