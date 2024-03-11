@@ -258,6 +258,8 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 - `Umgebungsvariablen-Manager`: Ein Skript, das die Verwaltung von Umgebungsvariablen in
   verschiedenen Umgebungen (Entwicklung, Test, Produktion usw.) erleichtert, indem es das Laden,
   Überprüfen und Aktualisieren von Konfigurationsdateien automatisiert.
+- `Code-Snippets`: Ein Tool, das es Entwicklern ermöglicht, Code-Snippets zu organisieren,
+  zu suchen und wiederzuverwenden; Evt. gut geeignet um auch mlh als code-snippets aufzunehmen?
 
 Jede Teilanwendung wird in einer größeren Aufgabe oder ggf. in 2-3 Teilaufgaben gebaut.
 Voran geht eine Teilaufgabe für den Rahmen mit `argparse_subcommands` (das auch bei sedrila
