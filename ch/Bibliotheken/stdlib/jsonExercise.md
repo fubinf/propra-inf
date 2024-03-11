@@ -5,35 +5,6 @@ difficulty: 3
 explains: JSON
 requires: jsonBasic
 ---
-
-TODO_1_ruhe
-
-1)
-A1: Hier wird angenommen, dass der Student die Lösung von der erwähnten Aufgabe A3 aus jsonBasic in einer Datei gepeichert hat und diese Datei zur Lösung von A1 verwenden sollte.
-
-2)
-Der Hinweis in A1 zeigt schon eine Empfehlung (loads()-Funktion) schon im Titel. Somit würde der Student den Hinweis sogar nicht öffnen müssen, um Hilfe zu bekommen.
-
-3) 
-Der Hinweis in A1 schlägt die Funktion json.loads() vor. Diese Funktion nimmt aber keine Datei an, sondern nur Strings. Falls der Student doch mit einer Datei arbeiten muss, dann könnte man im Hinweis die beiden Funktionen json.load() und eventuell auch open() vorschlagen.
-
-4)
-In A3: Die zusätzliche Aufgabe "Optional Advanced" ist nicht klar genug definiert und kann anhand der (in jsonBasic/A3) ausgewählten Lösung unterschiedlich interpretiert werden. 
-
-5)
-In A5: "..Der Student muss mindestens ein Fach ausgewählt haben." Heißt "ausgewählt haben", dass die zu schreibende Funktion ein Fach als Argument oder als Nutzereingabe erwartet?
-
-6) Vielleicht die anderen Funktionen im JSON-Paket kurz empfehlen?
-
-7) Vielleicht andere Abgabeform? Bspw. Submission-Quellcode.md? Vielleicht auch für die Abgabe von "jsonBasic"
-
-Tippfehler:
-1) "Zusätzlich ist diese Bibliothek ein sehr nützlicher Helfe(_)" -> "Zusätzlich ist diese Bibliothek ein sehr nützlicher Helfe(r)" oder "Zusätzlich ist diese Bibliothek eine sehr nützliche Hilfe"
-2) In A3: vielleicht anstatt von "advanced" die deutsche Variante "fortgeschritten" benutzen?
-3) In A4: "..die ein Studienfach (hinzufügt) zu einem.." -> "..die ein Studienfach zu einem.."
-
------------
-
 [SECTION::goal::trial]
 
 - Ich kann das Paket `json` verwenden, um JSON-Dateien in Python zu bearbeiten
@@ -45,7 +16,7 @@ Durch die Verwendung des json-Pakets in Python können Sie JSON-Daten mühelos l
 analysieren, aktualisieren und speichern. Diese Fähigkeit ist von unschätzbarem Wert,
 wenn Sie mit Web-APIs arbeiten, Daten zwischen verschiedenen Anwendungen austauschen
 oder einfach nur Daten in einem strukturierten Format verwalten müssen. Zusätzlich ist
-diese Bibliothek ein sehr nützlicher Helfe in der Entwicklung von Webanwendungen,
+diese Bibliothek ein sehr nützlicher Helfer in der Entwicklung von Webanwendungen,
 in der Datenanalyse oder der Automatisierung von Aufgaben.
 
 [ENDSECTION]
@@ -57,20 +28,24 @@ Im folgenden wollen wir mit dem von Ihnen erstellten JSON-Objekt aus Aufgabe [ER
 
 - [ER] Erstellen Sie ein Python Script, dass diese Datei einliest.
 
-[HINT::loads()-Funktion]
+[HINT::JSON-Funktion]
 
-[json.loads()](https://docs.python.org/3/library/json.html#json.loads) bietet die Möglichkeit das JSON-Objekt wie ein Python Dictionary zu verwenden und erleichtert die Handhabung.
+- [json.loads()](https://docs.python.org/3/library/json.html#json.loads) bietet die Möglichkeit das
+JSON-Objekt wie ein Python Dictionary zu verwenden und erleichtert die Handhabung.
+- [open()](https://docs.python.org/3/library/functions.html#open) bietet die Möglichkeit
+  Informationen aus Dateien zu lesen
 
 [ENDHINT]
 
 - [ER] Erstellen Sie eine Funktion, die die Wunschnote eines Faches von einem Studenten ändert.
 - [ER] Erstellen Sie eine Funktion, die das Lieblingsfach eines Studenten ändert.
-(Optional Advanced: Es soll nur ein Lieblingsfach pro Student geben. )
-- [ER] Erstellen Sie eine Funktion, die ein Studienfach hinzufügt zu einem Studenten hinzufügt.
-- [ER] Erstellen Sie eine Funktion, die einen neuen Studenten mit allen vorhandenen Eigenschaften anlegt. Der Student muss mindestens ein Fach ausgewählt haben.
+- [ER] Erstellen Sie eine Funktion, die ein Studienfach zu einem Studenten hinzufügt.
+- [ER] Erstellen Sie eine Funktion, die einen neuen Studenten mit allen möglichen Eigenschaften.
+  anlegt. Der Student soll beim Anlegen mindestens ein Fach belegen, ansonsten folgt eine
+  Fehlermeldung.
 
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Quellcode.md]
 [ENDSECTION]
