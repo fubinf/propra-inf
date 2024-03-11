@@ -557,7 +557,13 @@ Das Ausprobieren von Software, um relevante Eigenschaften zu überprüfen;
 meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
 [ENDTERM]
 
-[TERM0::TDD|Test-Driven Development|Test-Driven Design]
+[TERM::TDD|Test-Driven Development|Test-Driven Design]
+ist eine Softwareentwicklungsmethode, bei der [TERMREF2::Tests::-s] vor der eigentlichen Implementierung
+des Codes geschrieben werden. Der Prozess beginnt mit dem Schreiben eines Tests, der das
+erwartete Verhalten der Funktionalität beschreibt. Dann wird der minimal notwendige Code
+implementiert, um den Test erfolgreich durchzuführen. Dieser iterative Prozess von Schreiben
+von Tests, Implementieren des Codes wird fortgesetzt, bis die gewünschte Funktionalität erreicht ist.
+[ENDTERM]
 
 [TERM::Tutorial]
 Ein kurzer Lehrgang (in der Regel in Schriftform, eventuell als Video)
