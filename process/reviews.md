@@ -93,6 +93,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak)
 
 - ch/Testen/SUT/index.md (Ronny Ruhe)
+- ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
 
 - ch/Bibliotheken/stdlib/m_subprocess2.md (Lutz Prechelt)
 
@@ -127,7 +128,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
 
-- ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
 - ch/Testen/SUT/GitHubDeployment.md (Ronny Ruhe)
 
 - ch/Sprachen/pythonpraxis/mlh-lsnew (Lutz Prechelt)
