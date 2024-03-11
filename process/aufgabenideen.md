@@ -255,6 +255,9 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 - `pseudonymizer`: process a stream of one-line text records such that personal identification
   is replaced by consistent pseudonyms like "user123", "email123" etc.
   Based on a single regexp with named groups??
+- `Umgebungsvariablen-Manager`: Ein Skript, das die Verwaltung von Umgebungsvariablen in
+  verschiedenen Umgebungen (Entwicklung, Test, Produktion usw.) erleichtert, indem es das Laden,
+  Überprüfen und Aktualisieren von Konfigurationsdateien automatisiert.
 
 Jede Teilanwendung wird in einer größeren Aufgabe oder ggf. in 2-3 Teilaufgaben gebaut.
 Voran geht eine Teilaufgabe für den Rahmen mit `argparse_subcommands` (das auch bei sedrila
