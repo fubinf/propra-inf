@@ -5,24 +5,7 @@ difficulty: 2
 explains: JSON
 assumes: PythonDataStructures
 ---
-
-TODO_1_ruhe
-
-1)
-JSON wurde in der Gloassar mit "leichtgewichtig" bezeichnet. Eine weitere Frage (bspw. F9) könnte sich mit der Bedeutung dieser Eigenschaft befassen. F8 fragt schon allgemein nach der Popularität von JSON, es könnte allerdings einfacher und gezielter sein, nach den einzelnen Haupteigenschaften von JSON zu fragen. 
-
-2)
-Der Hintergrund könnte mit höherer Ebene beginnen und direkt am Anfang ein bisschen über das Thema "Datenaustausch" und "Datenaustauschformate" sprechen. Es könnten einige Formate auch erwähnt werden, sodass man selbst später (bspw. in der Frage F8) den Unterschied zu JSON recherchiert. 
-
-3)
-Eine weitere Frage könnte sich damit befassen, ob man in JSON auch Kommentare schreiben kann oder nicht.
-
-4)
-In den zu bearbeitenden Aufgaben könnte es noch Attribute geben, die Boolean-Werte annehmen. 
-
-Tippfehler:
-1) "..Sie sollen im (f)olgenden" -> "..Sie sollen im (F)olgenden"
-2) "..der gegebenen Informationen ein(e)" -> "..der gegebenen Informationen ein"
+1) "..der gegebenen Informationen ein(e)" -> "..der gegebenen Informationen ein"
 
 --------
 
@@ -33,13 +16,16 @@ Tippfehler:
 [ENDSECTION]
 [SECTION::background::default]
 
-JSON ist nicht nur einfach zu lesen und zu schreiben, sondern auch sehr flexibel. Es erlaubt
-die Darstellung komplexer Datenstrukturen, einschließlich verschachtelter Objekte und Arrays.
-Dadurch eignet es sich ideal für die Darstellung von Daten in vielen verschiedenen Szenarien,
-von einfachen Konfigurationsdateien bis hin zu komplexen [TERMREF::API]-Antworten.
+JSON ist nicht nur einfach zu lesen und zu schreiben, sondern auch äußerst flexibel und
+anpassungsfähig. Es erlaubt die Darstellung komplexer Datenstrukturen, darunter verschachtelte
+Objekte und Arrays, wodurch es sich ideal für die Repräsentation von Daten in einer Vielzahl von
+Szenarien eignet. Von einfachen Konfigurationsdateien bis hin zu komplexen [TERMREF::API]-Antworten
+findet JSON breite Anwendung in der Softwareentwicklung und im Datenaustausch zwischen Anwendungen.
 
-In dieser Einführung werden wir uns damit beschäftigen, wie JSON strukturiert ist, wie man es
-liest und erstellt.
+Bei der Einführung in JSON werden wir uns nicht nur damit beschäftigen, wie das Format strukturiert
+ist und wie man es liest und erstellt, sondern auch seine Rolle im größeren Kontext des
+Datenaustauschs und der Datenaustauschformate betrachten. Zusätzlich wollen wir die Vor- und
+Nachteile in Bezug Alternativen wie XML oder YAML im Blick haben.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
@@ -69,11 +55,16 @@ folgenden Quelle [w3schools](https://www.w3schools.com/js/js_json_intro.asp)
 
 Recherchieren Sie im Netz:
 
-- [EQ] Warum ist JSON so populär?
+- [EQ] Welche Haupteingenschaften machen JSON so populär?
+- [EQ] Warum wird JSON als 'leichtgewichtig' bezeichnet?
+- [EQ] Stellen Sie JSON bezüglich der Lesbarkeit, Effizienz und Verwendungsszenarien YAML und XML
+  gegenüber
+- [EQ] Bietet JSON die Möglichkeit Kommentare bzw. Kommentarzeilen einzubinden?
 
 ### JSON-Objekt erstellen
 
-Jetzt sind sie gefragt. Sie sollen im folgenden anhand der gegebenen Informationen eine eigenes JSON-Objekt erstellen.
+Jetzt sind sie gefragt. Sie sollen im Folgenden anhand der gegebenen Informationen ein eigenes
+JSON-Objekt erstellen.
 
 - [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `books.json` anhand der folgenden Vorgabe.
 
@@ -83,13 +74,11 @@ Ein Buch, das von einem Autor namens "Alice" geschrieben wurde. Der Titel des Bu
 ```
 
 - [ER] Ergänzen Sie aus [EREFR::1] die Eigenschaften `ISBN` und `Auflage` mit beliebigen Werten.
-
 - [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `student.json` anhand der folgenden Vorgabe.
 
 ```md
-Ein Student namens "Max" besucht die Universität. Max hat die Fächer Softwaretechnik, Lineare Algebra und das
-Programmierpraktikum gewählt. Das Programmierpraktikum ist sein Lieblingsfach. Seine Lieblingsprogrammiersprache
-ist Python. Die Vorlesungszeiten für jedes Fach sind wie folgt:
+Ein Student namens "Max" besucht die Universität. Max hat die Fächer Softwaretechnik, Lineare
+Algebra und das Programmierpraktikum gewählt. Das Programmierpraktikum ist sein Lieblingsfach. Seine Lieblingsprogrammiersprache ist Python. Die Vorlesungszeiten für jedes Fach sind wie folgt:
 - Softwaretechnik: Montag und Mittwoch von 10:00 bis 12:00 Uhr
 - Lineare Algebra: Dienstag und Donnerstag von 14:00 bis 16:00 Uhr
 - Programmierpraktikum: keine
