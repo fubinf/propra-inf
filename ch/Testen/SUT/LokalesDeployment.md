@@ -6,43 +6,37 @@ profiles: TEST
 explains:
 assumes: venv, pip, basics, Git101
 ---
-# Review (DM)
-- Kompetenzen/Ziele sind i.d.R. Output-orient, d.h., wenn ich mit der Bearbeitung der Aufgabe fertig bin, habe ich das Lernziel erreicht. z.B. "Ich kann das SUT lokal starten und verwenden."
-- Abschnitt "Warum benutze ich das SUT?" ist doch eher noch Hintergrund als Teil der Arbeitsschritte.
-- Codestand Begriff? ggf. erklären, Satz ist unvollständig.
-- Ist es an dieser Stelle notwendig, so detailliert auf das Benutzen von git und python einzugehen? Achtung auch python bzw. python3-Paketen. Python sollte doch schon installiert sein nach Durchführen der Basis-Module? Zumal die Aufgabe ja Git101, basics, pip, venv annimmt.
-- Allgemein sehr kleinschrittige, geschlossene Aufgabe. Das ist für die absoluten Grundlagen sicherlich sinnvoll.
-
 
 [SECTION::goal::idea]
 
-- Ich besitze erste Kenntnisse über das zu verwendende SUT
-- Ich erlerne die Voraussetzungen dafür, das SUT lokal zu starten und zu verwenden
+- Ich kann das SUT lokal starten und verwenden.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Das SUT ist eine einfache Webanwendung, die eigens zu dem Zweck des ProPra für die Testautomatisierung
-entwickelt wurde. Diese Webanwendung ist darauf ausgerichtet, nur geringe Vorbedingungen für die
-Bereitstellung zu erfordern und fungiert gleichzeitig als praktisches Beispiel für eine gut zu testende
-Webanwendung.
+Das SUT ist eine einfache Webanwendung, die eigens zu dem Zweck des ProPra für die
+Testautomatisierung entwickelt wurde. Diese Webanwendung ist darauf ausgerichtet, nur geringe
+Vorbedingungen für die Bereitstellung zu erfordern und fungiert gleichzeitig als praktisches
+Beispiel für eine gut zu testende Webanwendung.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
 ### Warum benutze ich das SUT?
 
-Es werden Aufgaben zur Verfügung stehen, die eine besondere Grundlage benötigen, um korrekt gelöst werden zu können. Primär ist
-das SUT für den Bereich TEST vorgesehen, kann auch auch für alle anderen Bereiche der Softwareentwicklung verwendet werden,
-um z.B. die Webentwicklung im Front- und Backend zu erkunden, oder sich mit der Bereitstellung (Deployment) von Anwendungen zu befassen.
+Es werden Aufgaben zur Verfügung stehen, die eine besondere Grundlage benötigen, um korrekt gelöst
+werden zu können. Primär ist das SUT für den Bereich TEST vorgesehen, kann auch auch für alle
+anderen Bereiche der Softwareentwicklung verwendet werden, um z.B. die Webentwicklung im Front- und
+Backend zu erkunden, oder sich mit der Bereitstellung (Deployment) von Anwendungen zu befassen.
 In jedem Fall wird es ein Hinweis geben, der sich auf diese Grundlagen bezieht.
 
-Natürlich können Sie auch jederzeit explorativ das SUT erkunden, verbessern oder erweitern. Sollten Ihnen merkwürdige Verhaltensmuster
-an der Software auffallen, können Sie ebenfalls die Gelegenheit nutzen dies in GitHub als Issue kenntlich zu machen und so an der
-Entwicklung teilnehmen.
+Natürlich können Sie auch jederzeit explorativ das SUT erkunden, verbessern oder erweitern. Sollten
+Ihnen merkwürdige Verhaltensmuster an der Software auffallen, können Sie ebenfalls die Gelegenheit
+nutzen dies in GitHub als Issue kenntlich zu machen und so an der Entwicklung teilnehmen.
 
 <replacement id=SUTCopyRepoLink>
-Verschaffen Sie sich einen Überblick über das Codestand, welches Sie im [GitHub Repository](https://github.com/fubinf/propra-inf-testobjekt).
+Verschaffen Sie sich einen Überblick über den Entwicklungsstand, welchen Sie im
+[GitHub Repository](https://github.com/fubinf/propra-inf-testobjekt) finden.
 </replacement>
 
 - [EQ] Welche Versionen befinden sich im Repository?
@@ -57,59 +51,75 @@ Starten Sie ein eine neue Terminal Session. Wir wollen unser SUT gleich struktur
 - [EQ] Wie heißt das erstellte Verzeichnis unter `~/ws/sut/`?
 
 [WARNING]
-Achten Sie darauf, dass Sie sich **im** Verzeichnis *sut* befinden und nach dem pullen nicht die Überraschung entdecken, dass sich
-Ihr Repo auf einmal wo anders befindet.
+Achten Sie darauf, dass Sie sich **im** Verzeichnis *sut* befinden und nach dem pullen nicht die
+Überraschung entdecken, dass sich Ihr Repo auf einmal wo anders befindet.
 [ENDWARNING]
 
 ### Anforderungen erfüllen
 
-Bevor wir die Anwendung starten können, benötigen wir die für diese Webanwendung genutzten Entwicklungsvorbedingungen. Da
-dieser Webauftritt ein Python Projekt ist, wird als aller erstes Python benötigt.
+Bevor wir die Anwendung starten können, benötigen wir die für diese Webanwendung genutzten
+Entwicklungsvorbedingungen. Da dieser Webauftritt ein Python Projekt ist, wird als aller erstes
+Python benötigt.
 
-- [EC] Sie installieren Python mit `apt-get install python`
-- [EQ] Welche Python Version wird bei Ihnen angezeigt?
+- [EQ] Aktualisieren Sie, falls notwendig, auf Python Version 3.12
 
-Wenn Sie mit mehreren Python Projekten arbeiten, werden Sie auch auf unterschiedliche Vorbedingen oder Abhängigkeiten treffen. Daher bietet es sich an diese Projekte in unterschiedlichen Umgebungen mit Hilfe von [TERMREF::venv] zu verwenden. Tiefer gehende Informationen finden Sie im Kapitel [PARTREF::venv].
+Wenn Sie mit mehreren Python Projekten arbeiten, werden Sie auch auf unterschiedliche Vorbedingen
+oder Abhängigkeiten treffen. Daher bietet es sich an diese Projekte in unterschiedlichen Umgebungen
+mit Hilfe von [TERMREF::venv] zu verwenden. Tiefer gehende Informationen finden Sie im Kapitel
+[PARTREF::venv].
 
-- [EC] Zu erst wechseln wir in das vom GitHub gepullte Verzeichnis mit dem Kommando `cd`. Hier müssen Sie noch das aus [EREFQ::2] erkannte Verzeichnis ergänzen.
-- [EC] Installieren Sie in Ihrem Verzeichnis eine neue Virtuelle Umgebung mit: `python -m venv ./sut`
-- [EC] Wechseln sie in diese Virtuelle Umgebung: `source ./sut/bin/active`
 - [EQ] Wie setzt sich Ihr [TERMREF::Prompt] zusammen?
 
-Neben der Entwicklungssprache Python werden auch weitere [TERMREF::Framework]s verwendet, um diese Seite zu realisieren. Diese
-Erweiterungen werden in einer einzelnen Datei dokumentiert. Diese finden Sie standardmäßig im Stammverzeichnis unter `requirements.txt`. Mit dieser Datei haben Sie die Möglichkeit Abhängigkeiten schnell und unkompliziert zu installieren.
+[HINT:: VENV einrichten]
 
-Da das SUT aus unterschiedlichen Versionen besteht, müssen wir uns für eins entscheiden (bzw. wird ihnen die Version in der jeweiligen Aufgabe nahegelegt).
+- Zu erst wechseln wir in das vom GitHub gepullte Verzeichnis mit dem Kommando `cd`. Hier
+  müssen Sie noch das aus [EREFQ::1] erkannte Verzeichnis ergänzen.
+- Installieren Sie in Ihrem Verzeichnis eine neue Virtuelle Umgebung mit: `python -m venv ./sut`
+- Wechseln sie in diese Virtuelle Umgebung: `source ./sut/bin/active`
 
-- [EC] Wechseln Sie in das vorgesehene Verzeichnis mit der angegebenen Versionsnummer (hier exemplarisch v1.0.0) `cd v1.0.0`
+[ENDHINT]
+
+Neben der Entwicklungssprache Python werden auch weitere [TERMREF::Framework]s verwendet, um diese
+Seite zu realisieren. Diese Erweiterungen werden in einer einzelnen Datei dokumentiert. Diese
+finden Sie standardmäßig im Stammverzeichnis unter `requirements.txt`. Mit dieser Datei haben Sie
+die Möglichkeit Abhängigkeiten schnell und unkompliziert zu installieren.
+
+Da das SUT aus unterschiedlichen Versionen besteht, müssen wir uns für eins entscheiden (bzw. wird
+ihnen die Version in der jeweiligen Aufgabe nahegelegt).
+
+- [EC] Wechseln Sie in das vorgesehene Verzeichnis mit der angegebenen Versionsnummer (hier
+  exemplarisch v1.0.0) `cd v1.0.0`
 - [EC] Anschließend installieren Sie einmalig die hinterlegten Abhängigkeiten mit `pip install -r requirements.txt`
 
 [WARNING]
-Da Sie die Virtuelle Umgebung `sut` verwenden, sind die installierten Abhängigkeiten nur für diese Umgebung gültig. Wechseln Sie
-in eine andere Umgebung, die diese Abhängigkeiten nicht installiert hat, wird beim folgenden Ausführen eine Fehlermeldung
-auftauchen.
+Da Sie die Virtuelle Umgebung `sut` verwenden, sind die installierten Abhängigkeiten nur für diese
+Umgebung gültig. Wechseln Sie in eine andere Umgebung, die diese Abhängigkeiten nicht installiert
+hat, wird beim folgenden Ausführen eine Fehlermeldung auftauchen.
 [ENDWARNING]
 
 ### Anwendung starten
 
-Jetzt haben wir alles, was wir zum Starten benötigen. Jedoch wir müssen unsere Anwendung noch zum Laufen bringen. Das realisieren wir mit dem folgenden Kommando:
+Jetzt haben wir alles, was wir zum Starten benötigen. Jedoch wir müssen unsere Anwendung noch zum
+Laufen bringen. Das realisieren wir mit dem folgenden Kommando:
 
 - [EC] Starten der Anwendung mit `python app.py`
 
 [HINT::Datei nicht gefunden]
-Sollte die Datei nicht gefunden werden, müssen die den Pfad anpassen oder ins Verzeichnis der vorgeschriebenen Version wechseln.
+Sollte die Datei nicht gefunden werden, müssen die den Pfad anpassen oder ins Verzeichnis der
+vorgeschriebenen Version wechseln.
 [ENDHINT]
 
-Jetzt läuft im Hintergrund die bereitgestellte Webanwendung. Diese wartet auf Interaktionen auf der lokalen Schnittstelle
-127.0.0.1 über den Port 5000.
+Jetzt läuft im Hintergrund die bereitgestellte Webanwendung. Diese wartet auf Interaktionen auf der
+lokalen Schnittstelle 127.0.0.1 über den Port 5000.
 
 [WARNING]
-In unserem Fall muss das Terminalfenster, aus dem wir unsere Anwendung gestartet haben, geöffnet bleiben, um damit arbeiten zu können.
+In unserem Fall muss das Terminalfenster, aus dem wir unsere Anwendung gestartet haben, geöffnet
+bleiben, um damit arbeiten zu können.
 [ENDWARNING]
 
 [HINT::Anwendung beenden]
-In Ihrer geöffneten Terminalsitzung läuft die Anwendung im Vordergrund mit. Um diese zu beenden, drücken Sie die Tastenkombination
-`Control + C`, oder schließen das Terminalfenster.
+In Ihrer geöffneten Terminalsitzung läuft die Anwendung im Vordergrund mit. Um diese zu beenden,
+drücken Sie die Tastenkombination `Control + C`, oder schließen das Terminalfenster.
 [ENDHINT]
 
 ### Anwendung aufrufen
@@ -127,7 +137,8 @@ Wenn Sie jetzt eine Webseite sehen, hat alles funktioniert.
 
 [INSTRUCTOR::heading]
 
-- [EREFQ::2] Nach diesen Schritten sollte das folgende Verzeichnis `propra-inf-testobjekt` unter `~/ws/sut/` gefunden worden sein.
+- [EREFQ::2] Nach diesen Schritten sollte das folgende Verzeichnis `propra-inf-testobjekt` unter
+  `~/ws/sut/` gefunden worden sein.
 - [EREFQ::3] Hier soll kenntlich gemacht werden, dass die venv im Prompt angezeigt wird: **(sut)**
 
 [ENDINSTRUCTOR]
