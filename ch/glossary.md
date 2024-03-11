@@ -141,6 +141,14 @@ verursacht meistens ein [TERMREF::Versagen].
 Zur Korrektur eines Defekts wird in der Regel der Code verändert.
 [ENDTERM]
 
+[TERM::Deserialisierung]
+Ein Mechanismus, der sich auf den Prozess bezieht, bei dem die serialisierten Daten
+(s. [TERMREF::Serialisierung]) wieder in ihre ursprüngliche Form zurückkonvertiert werden. In Bezug
+auf JSON bedeutet dies, dass die JSON-Zeichenkette in Datenstrukturen einer bestimmten
+Programmiersprache zurücktransformiert wird. Auf diese Weise können die Daten nach dem Transfer
+oder der Speicherung wieder von einer Anwendung gelesen und verwendet werden.
+[ENDTERM]
+
 [TERM::DSL|Domänenspezifische Sprache]
 Eine speziell auf eine bestimmten Anwendungsbereich ("Domäne") zugeschnittene Sprache.
 Im Gegensatz zu allgemeinen Programmiersprachen, die
@@ -495,6 +503,14 @@ interagieren, ähnlich wie es ein menschlicher Bediener tun würde.
 [ENDTERM]
 
 ## S
+
+[TERM::Serialisierung]
+Ein Mechanismus der sich auf den Prozess bezieht, bei dem Datenstrukturen in ein Format umgewandelt
+werden, das für die Speicherung oder Übertragung geeignet ist. Im Falle von JSON bedeutet dies,
+dass Datenstrukturen, wie zum Beispiel Objekte oder Arrays in einer Programmiersprache, in das
+JSON-Format umgewandelt werden. Während der Serialisierung werden die Daten in eine Zeichenkette
+konvertiert, die gemäß der JSON-Syntax strukturiert ist.
+[ENDTERM]
 
 [TERM::Shebang|Shebang-Zeile]
 Ein Mechanismus auf Unix-Systemen, der aus einer Datei, die Programmcode für eine interpretierte
