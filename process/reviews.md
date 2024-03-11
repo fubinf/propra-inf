@@ -105,7 +105,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Lutz Prechelt
 
-- ...
+- ch/Sprachen/pythonpraxis/mlh-lsnew (zurück von Ronny Ruhe)
 
 
 ## Reviews to do for Hanen Alrwasheda
@@ -128,7 +128,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ronny Ruhe
 
-- ch/Sprachen/pythonpraxis/mlh-lsnew (Lutz Prechelt)
+- ...
 
 
 ## Reviews to do for Sven Hüster

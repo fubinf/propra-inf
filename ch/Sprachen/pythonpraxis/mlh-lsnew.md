@@ -4,6 +4,26 @@ timevalue: 1.5
 difficulty: 3
 requires: argparse-subcommand
 ---
+TODO_1_Prechelt:
+
+- der Aufruf `python mlh lsnew <optional timespan> <datei_1> .. <datei_n>` hat mich verwirrt, da ich
+  für meine implementierung kein `lsnew` benötigte. Soll das explizit umgesetzt werden, dass mit
+  lsnew ein bestimmte Prozedur aufgefufen wird (Um viele kleine mlh's zu vereinen?)
+
+- Angehende Entwickler könnten frühzeitig daran gewöhnt werden Unittests zu ihrem Code zu erstellen;
+  Macht es evt. Sinn das hier schon mit vorzusehen und zu fordern? (Wobei ich [EREFC::2] als sehr
+  schöne Alternative sehe)
+
+- die angesetzte Zeit von 1.5h würde ich für Anfänger sehr sportlich finden, vor allem, da man sich
+  erst einmal mit der Idee und der Aufgabe vertraut machen muss, Struktur in seine Umsetzung
+  reinbringt und dann sicherlich sehr sehr viel troubleshooting betreibt. Evt. noch etwas groß-
+  zügiger sein und auf 2h hoch gehen?
+
+- (Überschrift gefällt mir; Jedoch habe ich irgendwo gelesen, dass wir wo möglich Deutsch verwenden
+  wollen?)
+
+- kleine Typos ausgebessert
+
 [SECTION::goal::experience,product]
 
 - Ich habe einige Teile der Python-Standardbibliothek für ein echtes Problem gefunden und eingesetzt.
@@ -52,14 +72,14 @@ $ python mlh lsnew --age 1h * mlh/* mlh/*/* nonsense
 
 ### Programmieren
 
-- Die Aufgabe lässt sehr gut komplett mit der Standardbibliothek lösen;
-  sie brauchen keine zusätzlichen Pakete.
+- Die Aufgabe lässt sich sehr gut komplett mit der Standardbibliothek lösen;
+  Sie brauchen keine zusätzlichen Pakete.
 - Effizienz ist nicht besonders beachtenswert.
   Der teuerste Schritt ist die Abfrage des Änderungsdatums.
-  Solange sie das nur einmal pro Dateiname machen, ist ihr Programm effizient genug.
+  Solange Sie das nur einmal pro Dateiname machen, ist Ihr Programm effizient genug.
 - Ein ungefähr funktionaler Programmierstil eignet sich deshalb gut.
-- Strukturieren Sie Ihre Implementierung so, dass jedes Unterprogramm nicht länger als
-  20 Zeilen ist und die Aufgabe jedes Unterprogramms klar und einleuchtend.
+- Organisieren Sie Ihre Implementierung so, dass jedes Unterprogramm nicht mehr als 20 Zeilen
+  umfasst und die Funktion jedes Unterprogramms klar und verständlich ist.
 
 [WARNING]
 Aufpassen mit den Zeitzonen!
@@ -79,7 +99,7 @@ Siehe Modul `datetime` in der Python-Standardbibliothek.
 
 Führen Sie zum Testen insbesondere folgende Kommandos aus:
 
-- [EC] `python mlh lsnew --age 365000d` *.md
+- [EC] `python mlh lsnew --age 365000d *.md`
 - [EC] `touch file2; sleep 5; touch file1; sleep 5; touch file3; python mlh lsnew --age 2s file?; echo; python mlh lsnew --age 7s file?; echo; python mlh lsnew --age 1m nonsense file?; rm file{1,2,3}`
 
 [ENDSECTION]
