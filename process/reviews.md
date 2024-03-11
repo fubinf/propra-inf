@@ -99,6 +99,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
 - ch/Testen/SUT/GitHubDeployment.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonBasic.md (Ronny Ruhe)
+- ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
 
 
 ## Reviews to do for Lutz Prechelt
@@ -126,7 +127,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ronny Ruhe
 
-- ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
 
 - ch/Sprachen/pythonpraxis/mlh-lsnew (Lutz Prechelt)
