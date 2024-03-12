@@ -1,28 +1,9 @@
 title: "My Little Helpers: lsnew, list youngest files only"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 requires: argparse-subcommand
 ---
-TODO_1_Prechelt:
-
-- der Aufruf `python mlh lsnew <optional timespan> <datei_1> .. <datei_n>` hat mich verwirrt, da ich
-  für meine implementierung kein `lsnew` benötigte. Soll das explizit umgesetzt werden, dass mit
-  lsnew ein bestimmte Prozedur aufgefufen wird (Um viele kleine mlh's zu vereinen?)
-
-- Angehende Entwickler könnten frühzeitig daran gewöhnt werden Unittests zu ihrem Code zu erstellen;
-  Macht es evt. Sinn das hier schon mit vorzusehen und zu fordern? (Wobei ich [EREFC::2] als sehr
-  schöne Alternative sehe)
-
-- die angesetzte Zeit von 1.5h würde ich für Anfänger sehr sportlich finden, vor allem, da man sich
-  erst einmal mit der Idee und der Aufgabe vertraut machen muss, Struktur in seine Umsetzung
-  reinbringt und dann sicherlich sehr sehr viel troubleshooting betreibt. Evt. noch etwas groß-
-  zügiger sein und auf 2h hoch gehen?
-
-- (Überschrift gefällt mir; Jedoch habe ich irgendwo gelesen, dass wir wo möglich Deutsch verwenden
-  wollen?)
-
-- kleine Typos ausgebessert
 
 [SECTION::goal::experience,product]
 
@@ -48,7 +29,7 @@ Wir bauen uns hier ein Hilfsprogramm, das für diesen Zweck maßgeschneidert ist
 
 - Unser Programm empfängt eine Liste von Dateinamen, die typischerweise bequem 
   von der Shell mittels [TERMREF::Globbing] erzeugt wird.  
-  Beispiel: `python mlh *.md mlh/*, mlh/*/*`
+  Beispiel: `python mlh lsnew *.md mlh/*, mlh/*/*`
 - Zu jedem dieser Dateinamen wird das Datum der letzten Änderung der Datei ermittelt.
 - Die Dateinamen werden nach diesen Zeitpunkten sortiert, jüngste zuerst.
 - Von der entstehenden Liste werden nur diejenigen Dateinamen ausgegeben,
@@ -72,6 +53,7 @@ $ python mlh lsnew --age 1h * mlh/* mlh/*/* nonsense
 
 ### Programmieren
 
+- Arbeiten Sie für diese Aufgabe an `mlh/mlh/subcmds/lsnew.py` weiter.
 - Die Aufgabe lässt sich sehr gut komplett mit der Standardbibliothek lösen;
   Sie brauchen keine zusätzlichen Pakete.
 - Effizienz ist nicht besonders beachtenswert.
