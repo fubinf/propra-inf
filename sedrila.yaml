@@ -84,7 +84,6 @@ chapters:
       - slug: API
       - slug: Testframeworks
       - slug: SUT
-      - slug: Linter
   - slug: Debugging
     taskgroups:
       - slug: Denkweisen
@@ -106,6 +105,7 @@ chapters:
       - slug: Netzwerk
       - slug: Benutzerverwaltung
       - slug: Git
+      - slug: Linter
   - slug: zzincubator
     taskgroups:
       - slug: alt
