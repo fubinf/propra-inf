@@ -141,12 +141,35 @@ verursacht meistens ein [TERMREF::Versagen].
 Zur Korrektur eines Defekts wird in der Regel der Code verändert.
 [ENDTERM]
 
+[TERM::de-morganschen Gesetze|de-morganschen Regeln]
+Die de-morganschen Regeln sind zwei grundlegende Regeln für logische Aussagen und gelten in 
+allen Boolschen Algebren und sind bedeutsam in der Aussagenlogik und Mengenlehre.
+
+Sie lauten in der Logik:
+`nicht (a und b) ist äquivalent zu ((nicht a) oder (nicht b))`, sowie
+`nicht (a oder b) ist äquivalent zu ((nicht a) und (nicht b))`.
+[ENDTERM]
+
 [TERM::Deserialisierung]
 Ein Mechanismus, der sich auf den Prozess bezieht, bei dem die serialisierten Daten
 (s. [TERMREF::Serialisierung]) wieder in ihre ursprüngliche Form zurückkonvertiert werden. In Bezug
 auf JSON bedeutet dies, dass die JSON-Zeichenkette in Datenstrukturen einer bestimmten
 Programmiersprache zurücktransformiert wird. Auf diese Weise können die Daten nach dem Transfer
 oder der Speicherung wieder von einer Anwendung gelesen und verwendet werden.
+[ENDTERM]
+
+[TERM::Design Pattern|Verhaltensmuster]
+Design Patterns sind typische Lösungen für wiederkehrende Probleme im Softwareentwurf, ähnlich 
+vorgefertigten Bauplänen. Sie dienen als allgemeine Konzepte zur Lösung spezifischer Probleme 
+und ermöglichen Anpassungen an die Bedürfnisse deines eigenen Programms.  
+Es wird zwischen Erzeugungsmustern (Creational Patterns), Strukturmustern (Structural Patterns) 
+und Verhaltensmustern (Behavioral Patterns) unterschieden.
+[ENDTERM]
+
+[TERM::DRY|DRY-Prinzip|Don't repeat yourself]
+DRY steht für "don't repeat yourself" ist ein Prinzip, dass besagt, Redundanz zu vermeiden oder 
+zumindest zu reduzieren.  
+Das gegenteilige Prinzip wird [TERMREF::WET] genannt.
 [ENDTERM]
 
 [TERM::DSL|Domänenspezifische Sprache]
@@ -568,6 +591,11 @@ Findet für Code im Vergleich zu Tests manche Sorten von Problem leichter, ander
 sodass sich beide Verfahrensweisen gut ergänzen.
 [ENDTERM]
 
+[TERM::Strategy Pattern|Strategie-Muster]
+Das Strategy Pattern ist ein [TERMREF::Verhaltensmuster], das es ermöglicht, eine Familie von 
+Algorithmen zu definieren, jeden von ihnen in eine separate Klasse zu setzen und ihre Objekte 
+austauschbar zu machen.
+[ENDTERM]
 
 [TERM::su]
 `su` steht für "Substitute User" und ist ein Befehl in Linux-Systemen, der es einem 
@@ -715,6 +743,13 @@ https://glossary.istqb.org/de_DE/term/validierung-1
 [ENDTERM]
 
 ## W
+
+[TERM::WET|Write every time|Write everything twice]
+Das Gegenteil zu [TERMREF::DRY].  
+Während WET nicht als zu verfolgendes Prinzip gilt, ist es manchmal eine gute Variante, um Code 
+lesbarer und wartbarer zu machen.
+[ENDTERM]
+
 ## X
 
 [TERM::XML]
