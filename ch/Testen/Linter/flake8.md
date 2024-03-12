@@ -87,7 +87,7 @@ if __name__ == "__main__":
 - [EQ] Können Sie sich vorstellen, diesen Linter in einem Projekt einzusetzen? Diskutieren Sie Ihre
   Antwort.
 - [EQ] Gibt es aus Ihrer Sicht Fehlercodes, die weniger kritisch zu betrachten sind und in Projekten
-  gegebenenfalls aus-konfiguriert werden können? Diskutieren Sie.
+  gegebenenfalls aus-konfiguriert werden können? Diskutieren Sie Ihre Antwort.
 
 
 [ENDSECTION]
@@ -97,6 +97,3 @@ if __name__ == "__main__":
 [INCLUDE::../../_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
-.
-[ENDINSTRUCTOR]
