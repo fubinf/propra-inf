@@ -8,7 +8,7 @@ assumes:
 requires:
 ---
 
-[SECTION::goal::...]
+[SECTION::goal::product/idea/experience/trial]
 
 .
 
@@ -18,7 +18,7 @@ requires:
 .
 
 [ENDSECTION]
-[SECTION::instructions::...]
+[SECTION::instructions::detailed/loose/tricky]
 
 ### ...
 
@@ -34,7 +34,7 @@ requires:
 [ENDHINT]
 
 [ENDSECTION]
-[SECTION::submission::...]
+[SECTION::submission::reflection/information/snippet/trace/program]
 
 .
 
