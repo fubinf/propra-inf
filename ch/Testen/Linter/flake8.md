@@ -82,6 +82,14 @@ if __name__ == "__main__":
 - [ER] Verwenden Sie den gegebenen Code und **konfigurieren** Sie flake8 so, dass keine
   Fehlermeldung ausgegeben wird.
 
+### Reflexion
+
+- [EQ] Können Sie sich vorstellen, diesen Linter in einem Projekt einzusetzen? Diskutieren Sie Ihre
+  Antwort.
+- [EQ] Gibt es aus Ihrer Sicht Fehlercodes, die weniger kritisch zu betrachten sind und in Projekten
+  gegebenenfalls aus-konfiguriert werden können? Diskutieren Sie.
+
+
 [ENDSECTION]
 
 [SECTION::submission::trace]
