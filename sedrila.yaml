@@ -84,6 +84,7 @@ chapters:
       - slug: API
       - slug: Testframeworks
       - slug: SUT
+      - slug: Linter
   - slug: Debugging
     taskgroups:
       - slug: Denkweisen
