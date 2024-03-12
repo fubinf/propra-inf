@@ -1,5 +1,5 @@
 title: argparse-subcommand, ein sehr einfaches Framework
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 3
 explains: Framework
@@ -63,7 +63,7 @@ als auch als nettes Hilfsmittel für späteres Programmieren.
    Ergänzen Sie darin den fehlenden Import, sowie  
    `explanation = "My Little Helpers: a collection of small utility programs"`
 6. Legen Sie ein Untermodul `mlh.subcmds` für die subcommands an:
-   Unterordner, Datei `__init__.py`.  
+   Unterordner `subcmds`, Datei `__init__.py`.  
    `__init__.py` legt die Schnittstelle des Moduls fest und bleibt bei uns leer, 
    weil wir nur an den Unter-Untermodulen interessiert sind, nicht an `subcmds` selbst.
 7. Legen Sie darin zwei Dateien `gitac.py` und `lsnew.py` an;
