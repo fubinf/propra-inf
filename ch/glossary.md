@@ -362,7 +362,7 @@ deren Folgezeilen dann evtl. kein solches Standardformat haben.
 
 ## M
 
-[TERM:manpage|manpages]
+[TERM::manpage|manpages]
 Manpages, auch als Handbuchseiten oder Manual Pages bezeichnet, sind Kurzreferenzen oder 
 Dokumentationen in Unix-ähnlichen Betriebssystemen. Jede Manpage bietet detaillierte 
 Informationen zu einem bestimmten Befehl, Programm oder Systemaufruf. Diese Seiten sind 
