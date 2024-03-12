@@ -328,6 +328,14 @@ Ein Test, der prüft, ob ein Programm schnell genug arbeitet und genügend groß
 verkraften kann.
 [ENDTERM]
 
+[TERM::Linter|Codeprüfer|Stilprüfer]
+Linting bezieht sich auf den Prozess der statischen Codeanalyse, bei dem ein Linter verwendet wird,
+um den Quellcode automatisch auf potenzielle Fehler, Stilprobleme und Sicherheitsrisiken zu
+überprüfen. Der Begriff stammt ursprünglich aus der Softwareentwicklung und bezieht sich auf die
+Verwendung eines Werkzeugs (dem Linter), um "Lint" zu entfernen, das sind potenziell problematische
+oder unnötige Codefragmente.
+[ENDTERM]
+
 [TERM::Linux|GNU/Linux]
 Eine Familie von Open-Source-Betriebssystem-Distributionen, die auf dem Linux-Betriebssystemkern aufbauen
 sowie auf einem umfangreichen Universum von Softwarepaketen.
@@ -411,6 +419,15 @@ werden.
 Bei HTTP heißt die Payload "Rumpf" (body), davor stehen die [TERMREF::Header].
 Der Rumpf kann z.B. JSON-, XML-, JPG-, PDF-, Text- oder beliebige Binärdaten enthalten.
 Der Header `Content-Type:` gibt an, als was der Rumpf interpretiert werden soll.
+[ENDTERM]
+
+[TERM::PEP8|PEP 8|Python Enhancement Proposal 8]
+Ist der offizielle Style-Guide für Python-Code. Sie wurde von Guido van Rossum, dem Schöpfer von
+Python, sowie anderen führenden Entwicklern der Python-Community entwickelt. PEP 8 definiert eine
+Reihe von Regeln und Best Practices für die Formatierung von Python-Code, um die Lesbarkeit zu
+verbessern und eine konsistente und einheitliche Codebasis zu fördern.
+
+Dokumentation: https://peps.python.org/pep-0008/
 [ENDTERM]
 
 [TERM::pip]
