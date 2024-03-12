@@ -362,6 +362,16 @@ deren Folgezeilen dann evtl. kein solches Standardformat haben.
 
 ## M
 
+[TERM:manapage|manpages]
+Manpages, auch als Handbuchseiten oder Manual Pages bezeichnet, sind Kurzreferenzen oder 
+Dokumentationen in Unix-ähnlichen Betriebssystemen. Jede Manpage bietet detaillierte 
+Informationen zu einem bestimmten Befehl, Programm oder Systemaufruf. Diese Seiten sind 
+in der Regel über die Kommandozeile zugänglich und bieten eine strukturierte Zusammenfassung 
+von Syntax, Optionen, Funktionalitäten und Beispielen für die Verwendung des betreffenden Befehls.
+Falls der Befehl keine Manpage hat, dann kann man den Befehl `help` probieren um mehr Informationen
+zu bekommen.
+[ENDTERM]
+
 [TERM::Modultest|Unit Test]
 Ein Test, der das korrekte Funktionieren eines bestimmten Moduls prüfen soll.
 Dabei wird entweder nur dieses eine Modul ausgeführt (weil es keine weiteren davon benötigten
