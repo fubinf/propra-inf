@@ -33,7 +33,15 @@ Verwendungsweise:
   zu können, was alles zu tun ist, und das zu benutzen, damit 1er-Änderungen immer zügig
   erledigt werden. Fühlt sich gut an.
 
-### 1.2 ?
+### 1.2 Namenskonventionen
+
+- Kapitelnamen beginnen mit Großbuchstaben
+- Taskgroupnamen beginnen in der Regel mit Großbuchstaben
+- Tasknamen folgen innerhalb einer Aufgabengruppe möglichst einem festen Schema
+  oder bilden zumindest Subgruppen mit je einem festen Namensschema.
+- Namen enthalten keine Leerzeichen,
+  sondern nötigenfalls Underscores (wenn es um Python-Dateien geht)
+  oder Trennstriche (sonst).
 
 
 ## 2. Korrekturbedarf am Bestand
@@ -56,27 +64,22 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
-- TODO_1_alle: Admonitions durch SECTIONs ersetzen, CSS löschen
+- TODO_1_alle: Admonitions durch SECTIONs ersetzen, Admonition-CSS löschen
+- `profiles:`-Header aus allen Tasks entfernen.
 
 
 ### 2.3 Korrekturbedarf an sedrila
 
 - Formatkonvention für slugs einführen?
 - Macrocall: markdown_content speichern, daraus Zeilennummern errechnen?
-- `profiles` auf der Ebene `Taskgroup` erlauben? Im YAML-Teil angeben, im TOC anzeigen.
-- ZIP-Dateien sollten nicht die Ordnerhierarchie mitschleppen.
+- ZIP-Dateien sollten nicht die Ordnerhierarchie mitschleppen, sondern als
+  oberste Verzeichnisebene ihren eigenen Basisnamen haben.
+- `profiles`-Mechanismus in Sedrila und der Doku entfernen.
 
 
 ### 2.4 Reviews Einzeldateien
 
-Wenn man eine Datei als "potentiell fertig" ansieht, setzt man bei ihr
-`stage: alpha`.
-Das bedeutet: Liebe andere, bitte seht die Datei durch, korrigiert kleine Schwächen
-und macht TODO_1-Marker für mich rein für große Schwächen.
-Wer beim Review keine solchen Marker reingemacht hat, findet die Datei offenbar
-brauchbar und setzt deshalb zum Abschluss `stage: beta`.
-
-Solche Reviews sind ein dauerhaftes TODO_1_alle.  
+Dieser Prozess ist beschrieben in `process/reviews.md`.
 
 
 ### 2.5 Globale Qualitätssicherung  TODO_3
