@@ -68,7 +68,7 @@ def main():
         print(i)
     print(i)
 
-    print("Dies ist eine lange Zeile, die die maximale Zeilenlänge von 79 Zeichen in PEP 8 überschreitet. Dies sollte vermieden werden, um die Lesbarkeit des Codes zu verbessern.")
+    print("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,")
 
 if __name__ == "__main__":
     main()
@@ -96,4 +96,3 @@ if __name__ == "__main__":
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 [INCLUDE::../../_include/Submission-Quellcode.md]
 [ENDSECTION]
-
