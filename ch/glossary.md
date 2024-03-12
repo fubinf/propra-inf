@@ -183,6 +183,13 @@ Ein menschliches Verhalten, das u.U. zu einem [TERMREF::Defekt] führt.
 Entweder ein falsches Verhalten (engl. _commission_) oder ein Versäumnis (engl. _omission_).
 [ENDTERM]
 
+[TERM::Filter]
+In Unix werden Programme, die von Standardeingabe (stdin) lesen und nach Standardausgabe (stdout)
+schreiben, Filter genannt.
+Bei Programmen wie `grep`, die Teile der Eingabe weglassen, leuchtet die Bezeichnung ein,
+aber sie gilt auch für Programme wie `sort`, die die Eingabe nur umformen.
+[ENDTERM]
+
 ## G
 
 [TERM::Globbing]
@@ -304,6 +311,23 @@ sowie auf einem umfangreichen Universum von Softwarepaketen.
 
 https://de.wikipedia.org/wiki/Linux
 [ENDTERM]
+
+[TERM::Logfile|Logdatei]
+Eine Textdatei (selten auch Binärdatei), in der Logdatensätze stehen,
+die gewisse Abläufe protokollieren.
+
+Beispielsweise führt ein Webserver 
+eine Logdatei über alle HTTP-Requests, die er erhalten hat (`access.log`) und 
+eine zweite über alle Fehler, die bei deren Bearbeitung aufgetreten sind (`error.log`).
+
+Meistens besteht jeder Logdatensatz aus genau einer Zeile.
+Oft haben alle Logdatensätze dasselbe Format oder 
+es gibt jedenfalls nur eine handvoll verschiedener Formate.
+
+Manchmal gibt es allerdings auch mehrzeilige Einträge in Logdateien,
+deren Folgezeilen dann evtl. kein solches Standardformat haben.
+[ENDTERM]
+
 
 ## M
 
