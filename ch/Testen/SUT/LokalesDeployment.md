@@ -61,7 +61,7 @@ Bevor wir die Anwendung starten können, benötigen wir die für diese Webanwend
 Entwicklungsvorbedingungen. Da dieser Webauftritt ein Python Projekt ist, wird als aller erstes
 Python benötigt.
 
-- [EQ] Aktualisieren Sie, falls notwendig, auf Python Version 3.12
+- [EQ] Aktualisieren Sie, falls notwendig, auf Python Version 3.11
 
 Wenn Sie mit mehreren Python Projekten arbeiten, werden Sie auch auf unterschiedliche Vorbedingen
 oder Abhängigkeiten treffen. Daher bietet es sich an diese Projekte in unterschiedlichen Umgebungen
