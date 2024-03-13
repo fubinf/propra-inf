@@ -4,6 +4,15 @@ timevalue: 0.25
 difficulty: 2
 requires: Zeiterfassung
 ---
+TODO_1_hofmann:
+1) "In Ihrem ProPra-Verzeichnis führen Sie anschließend folgenden Befehl aus:"
+Als Kursteilnehmer ist "ProPra-Verzeichnis" für mich nicht klar. Meint man hiermit das Repo "propra-inf" oder einfach einen geeigneten (noch leeren) Ordner auf meinem PC, in dem ich meine Arbeit in diesem Modul abspeichere?
+
+2) "Sie werden aufgefordert, die URL dieses Kurses anzugeben"
+Als Kursteilnehmer weiß ich nicht, was die Kurs-URL ist und wo sie überhaupt gefunden werden kann. Bekomme ich diese Info von Tutor_innen?
+
+3) Wo kann ich als Kursteilnehmer die autogenerierte 'student.yaml' Datei finden, um sie abgeben zu können?
+---
 [SECTION::goal::idea]
 Ich kann `sedrila` aufrufen und habe meinen Übungspartner und mein Semester
 für die Tutor\_innen festgehalten.
