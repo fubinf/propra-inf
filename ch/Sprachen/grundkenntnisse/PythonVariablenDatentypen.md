@@ -153,7 +153,7 @@ Beachten Sie dabei Sonderfälle, wie Strings, die numerische Zeichen haben, bspw
 **Beispiel:**
 
 - **`int`, `string`:**  
-    - **Multiplikation**: zulässig, Ergebnisdatentyp: `string`  
+    - **Multiplikation**: zulässig (mit und ohne Typumwandlung), Ergebnisdatentyp: `string` ohne Typumwandlung, `int` mit Typumwandlung (`str -> int`) bei Strings mit numerischen Zeichen. 
     - **Division**: zulässig, wenn String numerische Zeichen enthält (Sonderfall: "0" könnte zur Nulldivision führen), aber nur mit Typumwandlung (`str -> int`), Ergebnisdatentyp: `float` oder `int` bei ganzzahliger Division.   
     - **Addition**: ... ?  
     - **Subtraktion**: ... ?  
