@@ -2,7 +2,7 @@ title: Fertige Aufgaben einreichen und angerechnet bekommen
 stage: draft
 timevalue: 0.5
 difficulty: 2
-requires: Sedrila einrichten
+requires: SedrilaEinrichten
 ---
 [SECTION::goal::idea]
 
