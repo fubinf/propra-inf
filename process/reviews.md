@@ -110,12 +110,12 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Lutz Prechelt
 
 - ch/Sprachen/pythonpraxis/mlh-lsnew (zurück von Ronny Ruhe)
+- ch/Basis/Repo/Zeiterfassung.md (Lutz Prechelt)
 
 
 ## Reviews to do for Hanen Alrwasheda
 
 - ch/Basis/Repo/Shellprompt.md (Lutz Prechelt)
-- ch/Basis/Repo/Zeiterfassung.md (Lutz Prechelt)
 - ch/Basis/Repo/Sedrila einrichten.md (Christian Hofmann)
 
 

@@ -1,5 +1,5 @@
 title: Konvention für Commit-Nachrichten zwecks Arbeitszeiterfassung
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 requires: Git101
