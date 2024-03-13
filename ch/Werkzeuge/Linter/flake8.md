@@ -44,6 +44,7 @@ vertraut und beantworten Sie die folgenden Fragen.
 - [EQ] Welche Ressourcen stehen zur Verfügung, um flake8 zu erlernen und effektiv einzusetzen,
   wie z.B. Dokumentation, Tutorials oder Beispiele?
 - [EQ] Wofür steht der Fehlercode F401 in flake8?
+- [EQ] Gehört flake8 zu den aktiven oder passiven Lintern?
 
 ### Flake8 installieren
 
