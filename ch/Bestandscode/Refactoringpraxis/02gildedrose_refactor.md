@@ -66,7 +66,8 @@ erstellen und die Strategien in Methoden festhalten.
   `updater.normal_item(item)` und `updater.backstage_passes(item)`.
 - [EQ] In welcher Reihenfolge sollten die Gegenstände Ihrer Meinung nach in dieser Kette von 
   `if-elif-else`-Ausdrücken stehen? Warum?
-- Lassen Sie Ihre Testfälle laufen und überzeugen Sie sich, dass nun alle Testfälle fehlschlagen.
+- [EC] Lassen Sie Ihre Testfälle laufen und überzeugen Sie sich, dass nun alle Testfälle 
+  fehlschlagen.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
 - [EC] `git show --color=always HEAD | cat`
 
@@ -82,19 +83,19 @@ erstellen und die Strategien in Methoden festhalten.
 - [EC] `git show --color=always HEAD | cat`
 - Implementieren Sie die Aktualisierungsregeln, die für normale Gegenstände gelten, in der
   Methode `normal_item`.
-- Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Ihre Testfälle, die "normale Gegenstände" betreffen, sollen jetzt erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
 - [EC] `git show --color=always HEAD | cat`
 - Implementieren Sie die Aktualisierungsregeln, die für den Gegenstand "Aged Brie" gelten, in der
   Methode `aged_brie`.
-- Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Ihre Testfälle, die "Aged Brie" betreffen, sollen jetzt erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
 - [EC] `git show --color=always HEAD | cat`
 - Implementieren Sie die Aktualisierungsregeln, die für "Backstage passes" gelten, in der
   Methode `backstage_passes`.
-- Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Ihre Testfälle, die "Backstage passes" betreffen, sollen jetzt erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
 - [EC] `git show --color=always HEAD | cat`
@@ -126,7 +127,7 @@ Block**" inkl. der Hervorhebung bezeichnet.
   Benutzen Sie die [TERMREF::de-morganschen Regeln], um diesen Ausdruck umzuschreiben.
 - Der `if`-Ausdruck hat jetzt die Form `if not (...)` und wird von einem `else` gefolgt.
   Tauschen Sie den Inhalt von `if` und `else` und ändern Sie den `if`-Ausdruck zu `if (...)`.
-- Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - [EQ] Beschreiben Sie, ob es diese Änderungen den Code lesbarer oder wartbarer machen. Warum?
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
@@ -152,7 +153,7 @@ Zwei Ebenen darunter wird noch einmal gefragt, ob das `item` den Namen
   Darauf folgt ein `elif`-Ausdruck, in dem nach "Backstage passes to a TAFKAL80ETC concert" 
   gefragt wird.  
   Verschieben und kopieren Sie die relevanten Code-Teile in die zugehörigen Abschnitte.
-- Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - [EQ] Viele Programmierer halten sich gerne an das [TERMREF::DRY-Prinzip].
   Die gerade durchgeführte Änderung bricht aber mit diesem Prinzip.
@@ -176,7 +177,7 @@ Im letzten `else`-Ausdruck wird dies andersherum gehandhabt, äquivalent zu [ERE
 - Finden Sie die Stelle und vertauschen Sie die beiden `if`-Ausdrücke.
 - Auf den `else`-Ausdruck folgt ein `if`-Ausdruck.
   Führen Sie die beiden zu einem `elif`-Ausdruck zusammen.
-- Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - [EQ] Beschreiben Sie den Effekt, den diese Änderungen auf den Code haben.  
   Wird er lesbarer? Wird er wartbarer?  
@@ -197,7 +198,7 @@ Verringerung von `item.quality` äquivalent die `max()`-Funktion.
 - Ersetzen Sie den `if`-Ausdruck und die dazugehörige Änderung von `item.quality` durch eine 
   geeignete `min()`- oder `max()`-Funktion. 
   Benutzen Sie hierfür die eingeführten Konstanten.
-- Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
 - [EC] `git show --color=always HEAD | cat`
@@ -215,7 +216,7 @@ und abschließend die Änderung durchführt.
   Konditionen, und setzen Sie in diesen eine Variable `quality_adjustment = X`, wobei `X` den 
   den Anforderungen entsprechenden Wert der Qualitätsänderung ist.
 - Ändern Sie erst nach diesem `if-elif-else`-Block den Wert von `item.quality`. 
-- Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
 - [EC] `git show --color=always HEAD | cat`
@@ -249,7 +250,7 @@ Vergessen Sie nicht das richtige Vorzeichen zu benutzen.
   Ändern Sie die abgefragte Bedingung zu `if quality_adjustment != 0: (...)`.
 - Fügen Sie hier eine Zeile Code ein, die `item.quality` mithilfe von `quality_adjustment` ändert. 
   Stellen Sie dabei auch sicher, dass `item.quality` zwischen Minimum und Maximum bleibt.
-- Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
 - [EC] `git show --color=always HEAD | cat`
@@ -265,7 +266,7 @@ Bisher sind diese im **dritten Block** versammelt.
   Qualitätsänderung durchgeführt werden kann.  
   Achten Sie darauf, dass die neu eingeführte Struktur erhalten bleibt.
 - Nach dieser Änderung sollte der **dritte Block** aufgelöst sein.
-- Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
 - [EC] `git show --color=always HEAD | cat`
