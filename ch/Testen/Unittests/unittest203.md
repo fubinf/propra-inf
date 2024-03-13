@@ -11,17 +11,4 @@ requires: LokalesDeployment
 - Ich kann Unittests nach TDD anwenden
 
 [ENDSECTION]
-[SECTION::background::default]
-
-.
-
-[ENDSECTION]
-[SECTION::instructions::loose]
-
-.
-
-[ENDSECTION]
-[SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
-[ENDSECTION]
+TODO_Ruhe
