@@ -9,7 +9,7 @@ Ich verstehe wie git "funktioniert" und was der Hauptunterschied zu anderen
 Versionierungswerkzeugen ist.
 [ENDSECTION]
 [SECTION::background::default]
-Um git wirklich gut benutzen zu können, muss man verstehen wie git eigentlich funktioniert. Dieses 
+Um git wirklich gut benutzen zu können, muss man verstehen wie es funktioniert. Dieses 
 Grundverständnis werden wir uns in dieser Aufgabe aneignen und damit die Basis für weitere 
 Aufgaben schaffen.
 [ENDSECTION]
