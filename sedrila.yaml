@@ -5,34 +5,29 @@ chapterdir: ch
 profiles: ['DBS', 'DSCI', 'OPS', 'SYS', 'TEST', 'WEB']
 stages: ['draft', 'alpha', 'beta']  # ordered list of allowed 'stage:' values
 blockmacro_topmatter:
-  section_background: "## Hintergrund"
+  # --- builtin blockmacros:
+  section_background: "<h2>Hintergrund</h2>"
   section_background_default: ""
-  section_goal: "## Ziel"
-  section_goal_product: ""
-  section_goal_idea: ""
-  section_goal_experience: ""
-  section_goal_trial: ""
-  section_instructions: "## Arbeitsschritte"
-  section_instructions_detailed: ""
-  section_instructions_loose: ""
-  section_instructions_tricky: ""
-  section_submission: "## Abgabe"
-  section_submission_reflection: ""
-  section_submission_information: ""
-  section_submission_snippet: ""
-  section_submission_trace: ""
-  section_submission_program: ""
-  hint: "**Hinweis (nur bei Bedarf):** "
-  blockmacros:
-    INSTRUCTOR:
-      args: 1
-      label: "## Kontrolle Tutor_in: "
-    WARNING:
-      args: 0
-      label: "**Warnung:** "
-    NOTICE:
-      args: 0
-      label: "**Bemerkung** "
+  section_goal: "<h2>Ziel</h2>"
+  section_goal_product: "Product"
+  section_goal_idea: "Idea"
+  section_goal_experience: "Experience"
+  section_goal_trial: "Trial"
+  section_instructions: "<h2>Arbeitsschritte</h2>"
+  section_instructions_detailed: "Detailed"
+  section_instructions_loose: "Loose"
+  section_instructions_tricky: "Tricky"
+  section_submission: "<h2>Abgabe</h2>"
+  section_submission_reflection: "Reflection"
+  section_submission_information: "Information"
+  section_submission_snippet: "Snippet"
+  section_submission_trace: "Trace"
+  section_submission_program: "Program"
+  hint: "<strong>Hinweis (nur bei Bedarf):</strong> {arg1}"
+  # --- user-defined blockmacros:
+  INSTRUCTOR: "<h2>Kontrolle Tutor_in: {arg1}</h2>"
+  WARNING: "<strong>Warnung:</strong>"
+  NOTICE: "<strong>Bemerkung:</strong>"
 instructors:
   - nameish: Lutz Prechelt
     email: prechelt@inf.fu-berlin.de
