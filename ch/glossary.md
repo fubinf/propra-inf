@@ -637,6 +637,13 @@ bleiben aktiv, bis der Benutzer sich explizit wieder ausloggt oder den Befehl ex
 vorübergehend erhöhte Rechte zu erhalten, um administrative Aufgaben auszuführen.
 [ENDTERM]
 
+[TERM::SUT|System Under Test]
+Hierbei handelt es sich um ein Konzept in der Softwaretestung, das das System oder die Komponente
+bezeichnet, die gerade getestet wird. Es ist das Hauptziel des Testprozesses und wird auf mögliche
+Fehler, Schwachstellen oder Funktionsstörungen untersucht. Das SUT kann eine einzelne
+Softwareanwendung, ein Modul, eine Funktion oder sogar ein gesamtes System umfassen.
+[ENDTERM]
+
 [TERM::Systemtest|System Test]
 Ein Test des Gesamtsystems unter Verwendung von dessen natürlichen Schnittstellen,
 meist einem GUI.
@@ -644,6 +651,7 @@ Solche Tests sind aufwändig zu implementieren, brauchen komplizierte Testwerkze
 laufen langsam und gehen beim Weiterentwickeln der Software häufig kaputt,
 weil die GUI sich oft ändert.
 [ENDTERM]
+
 
 ## T
 
