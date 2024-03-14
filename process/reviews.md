@@ -107,6 +107,11 @@ We will modify these rules over time when others appear more useful.
 - ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
 - ch/Basis/Repo/SedrilaEinrichten.md (Christian Hofmann)
 
+- ch/Bestandscode/Refactoringpraxis/01gildedrose_tests.md (Dominik Pietrak)
+- ch/Bestandscode/Refactoringpraxis/02gildedrose_refactor.md (Dominik Pietrak)
+- ch/Bestandscode/Refactoringpraxis/03gildedrose_implementation.md (Dominik Pietrak)
+- ch/Bestandscode/Refactoringpraxis/04gildedrose_reflexion.md (Dominik Pietrak)
+
 
 ## Reviews to do for Lutz Prechelt
 
@@ -147,6 +152,3 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Dominik Pietrak
-
-- ch/Debugging/Häufige-Defektarten/d_limit.md (Dominik Pietrak)
-
