@@ -27,7 +27,10 @@ Filter Sie weshalb gewählt haben.
 [EQ] Beschreiben Sie außerdem 1-2 weitere Szenarien für mögliche Filter in der `.gitignore`-Datei.
 
 [ENDSECTION]
-[SECTION::submission::reflection/information/snippet/trace/program]
+
+TODO_2_Hüster: reflection/information/snippet/trace entfernt und lediglich als Platzhalter `program` stehenlassen; Warum? Fehlermeldung beim bauen mit stage draft
+
+[SECTION::submission::program]
 
 Abzugeben ist eine Markdown datei mit den Antworten zu den obigen Aufgaben, sowie die `.
 gitignore`-Datei für ihr Repository im gleichen commit.
