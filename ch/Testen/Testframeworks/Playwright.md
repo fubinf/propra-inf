@@ -12,11 +12,13 @@ requires:
 .
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 .
 
 [ENDSECTION]
+
 [SECTION::instructions::loose]
 
 ### ...
@@ -25,10 +27,12 @@ requires:
 
 [WARNING]
 [ENDWARNING]
+
 [HINT::VisibleTitle]
 [ENDHINT]
 
 [ENDSECTION]
+
 [SECTION::submission::reflection]
 
 .

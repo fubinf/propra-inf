@@ -9,6 +9,7 @@ requires: SedrilaEinrichten
 Ich habe gelernt, wie ich etwas bei der Tutor_in einreiche und habe das einmal ausprobiert.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 Das ProPra ist eine ideale Gelegenheit, das ordentliche Arbeiten mit git zu lernen.
@@ -80,6 +81,7 @@ Hierfür verwendet man `git commit --allow-empty`.
 
 Vergessen Sie nicht, Ihren Stand mittels `git push` auch verfügbar zu machen!
 [ENDSECTION]
+
 [SECTION::submission::snippet]
 Die Abgabe besteht entgegen dem Format diesmal nur aus dem leeren Commit.
 

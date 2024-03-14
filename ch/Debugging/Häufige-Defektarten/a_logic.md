@@ -5,30 +5,32 @@ difficulty: 2
 ---
 [SECTION::goal::idea]
 
-Ich verstehe, welche Form logische Defekte in Code annehmen können und habe einen solchen Defekt 
+Ich verstehe, welche Form logische Defekte in Code annehmen können und habe einen solchen Defekt
 in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
-Logische Defekte können zu Fehlfunktionen, Sicherheitslücken und einer beeinträchtigten Benutzererfahrung führen. 
-Entwickler sollten diese Defekte verstehen, um präventive Maßnahmen zu ergreifen, 
-effizientes Debugging zu ermöglichen und qualitativ hochwertigen Code zu schreiben. 
-Dies fördert nicht nur die Effizienz und Sicherheit von Software, 
-sondern erleichtert auch die Zusammenarbeit in Teams.   
+Logische Defekte können zu Fehlfunktionen, Sicherheitslücken und einer beeinträchtigten Benutzererfahrung führen.
+Entwickler sollten diese Defekte verstehen, um präventive Maßnahmen zu ergreifen,
+effizientes Debugging zu ermöglichen und qualitativ hochwertigen Code zu schreiben.
+Dies fördert nicht nur die Effizienz und Sicherheit von Software,
+sondern erleichtert auch die Zusammenarbeit in Teams.
 
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
 ### Eine Heranführung an logische Defekte
 
-Computer sind präzise in der Ausführung von Anweisungen, aber oft unfähig, Absichten zu 
-antizipieren, was zu logischen Defekten führt, oft basierend auf schlechten Annahmen über Daten. 
-Sehen Sie sich hierfür das folgende Code-Beispiel in Python an. 
-Hier wird versucht mittels Wissen über die Repräsentation von ASCII-Zeichen 
+Computer sind präzise in der Ausführung von Anweisungen, aber oft unfähig, Absichten zu
+antizipieren, was zu logischen Defekten führt, oft basierend auf schlechten Annahmen über Daten.
+Sehen Sie sich hierfür das folgende Code-Beispiel in Python an.
+Hier wird versucht mittels Wissen über die Repräsentation von ASCII-Zeichen
 einen String in eine kleingeschriebene Variante umzuwandeln.
-`ord()` wandelt dabei ein Zeichen in seinen numerischen ASCII-Wert um, während `chr()` das 
-Gegenteil macht. 
+`ord()` wandelt dabei ein Zeichen in seinen numerischen ASCII-Wert um, während `chr()` das
+Gegenteil macht.
 
 ```python
 s = "TESt"
@@ -37,12 +39,12 @@ for k in range(0, len(s)):
     lower += chr(ord(s[k]) - ord("A") + ord("a"))
 ```
 
-Versuchen Sie für sich den Code mittels einer 
+Versuchen Sie für sich den Code mittels einer
 [ASCII-Tabelle](https://www.asciitable.com/) nachzuvollziehen.
-Der Code funktioniert... solange `s[k]` ein Großbuchstabe ist. 
-Bei Kleinbuchstaben, Satzzeichen und Leerzeichen würde der Code nicht das gewünschte Resultat liefern. 
+Der Code funktioniert... solange `s[k]` ein Großbuchstabe ist.
+Bei Kleinbuchstaben, Satzzeichen und Leerzeichen würde der Code nicht das gewünschte Resultat liefern.
 
-Gerade Schleifen können sehr anfällig für logische Defekte sein. 
+Gerade Schleifen können sehr anfällig für logische Defekte sein.
 Vor allem bei der Überlegung, wie man die Schleife beendet können Denkfehler auftreten.
 Als Beispiel dient diese Initialisierung einer `for`-Schleife in C.
 Sehen Sie schon das Problem?
@@ -52,13 +54,13 @@ for (j = 1; j != 100; j = j + 2)
 ```
 
 [HINT::Der Index der Schleife...]
-...fängt bei 1 an, wird bei jeder Iteration um 2 erhöht 
+...fängt bei 1 an, wird bei jeder Iteration um 2 erhöht
 und die Schleife läuft, solange der Index den Wert 100 nicht annimmt.
 Dies kann niemals der Fall sein, sofern `j` nicht innerhalb der Schleife manipuliert wird,
 also wird die Schleife niemals terminieren.
 [ENDHINT]
 
-Genauso kann durch ein falsch gesetztes oder vergessenes `break` 
+Genauso kann durch ein falsch gesetztes oder vergessenes `break`
 der richtige Zeitpunkt zum Austritt aus der Schleife verpasst werden,
 wie z. B. in diesem Python-Code.
 
@@ -134,15 +136,19 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 [HINT::Lösungshinweis 1]
 Durchlaufen Sie eine Iteration des Codes mit der unter `test_input` angegebenen Liste.
+
 [HINT::Lösungshinweis 2]
 Nehmen Sie noch einmal die Eingabe aus `test_input`.
 Stellen Sie sich vor, dass die zweite Iteration läuft, also `person` gleich `Joe` ist und 
 die `receivers_list` aus `["Tom", "Donna", "Susan", "Paul"]` besteht.
+
 [HINT::Lösungshinweis 3]
 Bedenken Sie eine vierte Iteration, in der `person` aus `"Susan"` besteht und
 nehmen Sie an, dass die `receivers_list` jetzt aus `["Donna, "Paul"]` besteht.
 [ENDHINT]
+
 [ENDHINT]
+
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `a_logic.py` korrigieren.

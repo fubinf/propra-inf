@@ -15,6 +15,7 @@ requires:
 - Ich kenne Möglichkeiten mittels Bibliotheken den Informationsgehalt meiner Ausgaben zu verbessern.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 Sobald Code komplex genug wird und nicht mehr mittels "Lesen und Verstehen" debuggt werden kann, muss der Code
 systematisch untersucht werden.
@@ -22,6 +23,7 @@ Das kann zum einen bedeuten, dass man punktuell Informationen über den Zustand 
 oder ob Code-Bereiche überhaupt erreicht werden.
 Eine Möglichkeit hier für haben Sie höchstwahrscheinlich schon einmal in Ihrem Code benutzt: `print()`-Ausdrücke.
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
 ### Die grundsätzliche Idee
@@ -55,6 +57,7 @@ Nehmen Sie aber einmal an, dass Sie eine Sprache benutzen, in der dieses Konzept
   - [EQ] Sind Sie in der Lage mit "private" versteckte Inhalte mittels `print()`-Ausdrücken anzuzeigen?
 
 [ENDSECTION]
+
 [SECTION::submission::information]
 
 [INCLUDE::../../_include/Submission-Markdowndokument.md]

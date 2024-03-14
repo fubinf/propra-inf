@@ -75,10 +75,13 @@ Gehen Sie diesen Code mit den folgenden Werten für den Parameter `number` durch
 [HINT::Erste Eingabe]
 Testen Sie den Spezialfall: Setzen Sie `number` auf 1.
 [ENDHINT]
+
 [HINT::Zweite Eingabe]
 Testen Sie die Hauptlogik mit einer Mischung aus kleinen Primzahlen und Nicht-Primzahlen:
 Setzen Sie `number` auf 2, 3, 4, 5 und 6.
+
 [ENDHINT]
+
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `d_limit.py` korrigieren.
@@ -86,11 +89,13 @@ Setzen Sie `number` auf 2, 3, 4, 5 und 6.
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]
+
 [SECTION::submission::snippet]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
+
 [INSTRUCTOR::Nur die Defektkorrektur bitte]
 
 [INCLUDE::../../_include/Instructor-nur-Defektkorrektur.md]

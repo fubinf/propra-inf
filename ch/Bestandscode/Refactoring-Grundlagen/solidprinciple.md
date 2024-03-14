@@ -13,6 +13,7 @@ requires:
   verstehen zu machen.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 Kaum ein Konzept löst in der Welt der Programmierer solche Glaubenskämpfe aus wie das Konzept von "Clean Code", also
@@ -20,6 +21,7 @@ Kaum ein Konzept löst in der Welt der Programmierer solche Glaubenskämpfe aus 
 
 
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
 Sehen Sie sich [https://www.youtube.com/watch?v=pTB30aXS77U](https://www.youtube.com/watch?v=pTB30aXS77U) an.
@@ -31,6 +33,7 @@ Erklären Sie anschließend in eigenen Worten
 - welche der Prinzipien im Kontext zueinander stehen.
 
 [ENDSECTION]
+
 [SECTION::submission::information]
 Die Abgabe erfolgt in Form einer Markdown-Datei.
 Halten Sie sich kurz, seien Sie aber so beschreibend wie möglich.

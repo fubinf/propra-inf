@@ -9,11 +9,13 @@ difficulty: 2
 Ich kenne grundsätzliche Informationen über mein System und weiß, wie ich auf diese Informationen zugreife.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 Als Systemadministrator sollte man wissen, welche technischen Daten das System hat, damit die Lösungsfindung leichter wird.
 
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 ### Kennenlernen des eigenen System
 
@@ -35,6 +37,7 @@ Alle unten aufgeführten Befehle geben nur Informationen aus, aber sie sind sehr
 - [EC] Finden Sie ihre IP-Adresse heraus.
 
 [ENDSECTION]
+
 [SECTION::submission::trace]
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]

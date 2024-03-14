@@ -64,9 +64,11 @@ Ich bin in der Lage mittels Debugger durch ein Programm zu navigieren und zielst
 Sie finden die Tabelle mit dieser Information unter [https://docs.python.org/3/library/json.html#encoders-and-decoders](https://docs.python.org/3/library/json.html#encoders-and-decoders).  
 Wenn Sie sich mehr für JSON und der Handhabung von JSON in Python interessieren, 
 finden Sie in den Aufgaben [PARTREF::jsonBasic] und [PARTREF::jsonExercise] einen Einstieg.
+
 [HINT::Das eingegebene Argument von `json.load()`...]
 ...ist die Datei `ingredients.json`. Es handelt sich um ein JSON-Array.
 [ENDHINT]
+
 [ENDHINT]  
 
 - [EQ] Sehen Sie sich noch einmal den entstehenden Rückgabetypen an und die Stelle, an der der 
@@ -83,6 +85,7 @@ Allerdings ist das Programm noch nicht fehlerfrei, wenn Sie die Ausgabe mit der 
 aus dem obigen Hinweis vergleichen. 
 Darum kümmern wir uns aber erst in [PARTREF::Einkaufsliste-02].
 [ENDNOTICE]
+
 [ENDSECTION]
 
 [SECTION::submission::trace,snippet,information]

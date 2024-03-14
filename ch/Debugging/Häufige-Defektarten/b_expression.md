@@ -152,6 +152,7 @@ deck = [("3", "hearts")]
 hand = {"2": ["hearts", "spades"]}
 ```
 [ENDHINT]
+
 [HINT::Zweite Eingabe]
 Die Karte aus dem Deck passt zum vorhandenen Rang in der Hand:
 ```python
@@ -160,6 +161,7 @@ hand = {"2": ["hearts", "spades"],
         "3": ["diamonds"]}
 ```
 [ENDHINT]
+
 [HINT::Dritte Eingabe]
 Die Karte aus dem Deck ist die vierte Karte des Rangs, sodass dieser Rang abgelegt wird.
 ```python
@@ -168,6 +170,7 @@ hand = {"2": ["hearts", "spades"],
         "3": ["diamonds", "clubs", "spades"]}
 ```
 [ENDHINT]
+
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `b_expression.py` korrigieren.
@@ -176,6 +179,7 @@ hand = {"2": ["hearts", "spades"],
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]
+
 [SECTION::submission::snippet]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]

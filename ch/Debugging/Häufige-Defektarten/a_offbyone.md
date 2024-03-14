@@ -91,15 +91,22 @@ Ihre Aufgabe liegt jetzt darin herauszufinden, wo der Defekt liegt und wie man i
 
 [HINT::Lösungshinweis 1]
 Der erste Tag im Jahr: `daynumber = 1`, `isleapyear = False`.
+
 [HINT::Lösungshinweis 2]
 Der erste Tag im Monat außerhalb von Januar: `daynumber = 32`, `isleapyear = False`.
+
 [HINT::Lösungshinweis 3]
 Der 29. Februar: `daynumber = 60`, `isleapyear = True`.
+
 [HINT::Lösungshinweis 4]
 Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
+
 [ENDHINT]
+
 [ENDHINT]
+
 [ENDHINT]
+
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `a_offbyone.py` korrigieren.
@@ -107,11 +114,13 @@ Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]
+
 [SECTION::submission::snippet]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
+
 [INSTRUCTOR::Nur die Defektkorrektur bitte]
 
 [INCLUDE::../../_include/Instructor-nur-Defektkorrektur.md]

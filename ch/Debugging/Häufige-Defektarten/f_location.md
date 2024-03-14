@@ -10,6 +10,7 @@ habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+
 [WARNING]
 Der in dieser Aufgabe zu bearbeitende Code gehört zum Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
 Ein erster Code hierzu wird in der Aufgabe [PARTREFTITLE::b_expression] besprochen.
@@ -154,6 +155,7 @@ opponent_hand = {"6": ["diamonds"],
                  "10": ["clubs"]}
 ````
 [ENDHINT]
+
 [HINT::Zweite Eingabe]
 Der Gegenspieler besitzt keine Karte des gefragten Rangs:
 ````python
@@ -163,6 +165,7 @@ card_rank = "A"
 opponent_hand = {"2": ["hearts"]}
 ````
 [ENDHINT]
+
 [HINT::Dritte Eingabe]
 Der Gegenspieler besitzt zwei Karten des Rangs und 
 der Spieler hält nach dem Transfer alle vier Karten des Rangs.
@@ -174,6 +177,7 @@ card_rank = "6"
 opponent_hand = {"6": ["diamonds", "clubs"]}
 ````
 [ENDHINT]
+
 [HINT::Vierte Eingabe]
 Der Gegenspieler besitzt Karten vom gefragten Rang, aber 
 der Spieler besitzt keine Karten von diesem Rang
@@ -185,6 +189,7 @@ card_rank = "2"
 opponent_hand = {"2": ["clubs", "spades"]}
 ````
 [ENDHINT]
+
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `f_location.py` korrigieren.
@@ -192,6 +197,7 @@ opponent_hand = {"2": ["clubs", "spades"]}
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]
+
 [SECTION::submission::snippet]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]

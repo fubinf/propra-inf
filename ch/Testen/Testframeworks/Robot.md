@@ -11,6 +11,7 @@ profiles: TEST
 - Ich habe BDD kennengelernt
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 ### Was ist das Robot Framework und wie kann ich es nutzen?
@@ -34,6 +35,7 @@ Systemen korrekt übertragen und validiert werden. Weiterhin können automatisie
 Last but not least - und damit auch nicht die letzte Möglichkeit - kann das Robot Framework verwendet werden, um automatisiert Testberichte und Dokumentationen zu generieren, die den aktuellen Stand und die Ergebnisse der Testläufe zu beschreiben. (Zum Beispiel um Testergebnisse aus einer Pipeline direkt in ein Managementsystem wie Jira zu importieren)
 
 [ENDSECTION]
+
 [SECTION::instructions::loose]
 
 Nutzen Sie den Online Editor auf der Robot Framework Seite, um erste Schritte mit den Testfällen zu machen.
@@ -83,6 +85,7 @@ The Result Should Not Be "${expected}"
 
 [WARNING]
 [ENDWARNING]
+
 [HINT::VisibleTitle]
 Die bereitgestellten Codeabschnitte können per copy and paste in die Web-Konsole eingefügt und ausgeführt werden. 
 Zusätzlich ist es zur Erfüllung der Aufgaben nicht notwendig die CustomLibrary.py zu erweitern.
@@ -94,6 +97,7 @@ Zusätzlich ist es zur Erfüllung der Aufgaben nicht notwendig die CustomLibrary
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
+
 [INSTRUCTOR::Erwartung]
 
 - [EREFC::2] wird erwartet zu erkennen, dass die Abfrage durch einen unberechtigten Nutzer durchgeführt wird. Ein Administrator jedoch diese Möglichkeit hat. Daher kann ein fehlerfreier Test durch das ersetzen des `Login User` durch `Login Admin` realisiert werden, da diese Funktionalität bereits vorhanden ist.

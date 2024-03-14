@@ -11,9 +11,11 @@ Einstieg in reguläre Ausdrücke. Ich verstehe die grundlegenden Operatoren von 
 und kann einfache Matches selbst schreiben.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
 Wir beginnen mit der Einführung auf folgender Seite: 
@@ -32,11 +34,13 @@ Aufgaben.
    enden.  
 [ER] Einfaches Abgleichen von Zahlen (Kreditkartennummer)  
     - Schreiben Sie einen regulären Ausdruck welcher Kreditkartennummern matcht.   
+
 [NOTICE]
 Zur Einfachheit nehmen wir an, dass Kreditkartennummern bis zu 16 Zeichen lang sind und, in 
 4er-Blöcken, separiert durch Leerzeichen oder Bindestriche, auftreten können. 
 z.B. `4544 4614 6932 1714`  
 [ENDNOTICE]
+
 [ER] Jahreszahl aus Datum finden  
     - Schreiben Sie einen regulären Ausdruck welcher die Jahreszahl aus verschiedenen Formaten zur 
    Darstellung von Daten erkennt.  
@@ -46,12 +50,15 @@ z.B. `4544 4614 6932 1714`
     - Schreiben Sie einen regulären Ausdruck welcher Hex-Farben erkennt.  
 [ER] Simpler E-Mail-Abgleich  
     - Schreiben Sie einen regulären Ausdruck welcher einen simplen E-Mail-Abgleich vornimmt.  
+
 [NOTICE]
 Simpel bedeutet, dass die E-Mail aus Zeichen vor dem @ Domainname sowie toplevel-Domain besteht. 
 z.B. `name@example.com`.  
 [ENDNOTICE]
+
 [ER] Simples HTML-Tag matching  
     - Schreiben Sie einen regulären Ausdruck, welcher einfache HTML bzw. XML tags matchen kann.
+
 [NOTICE]
 Die Tags haben keine attribute und bestehen lediglich aus ihrem Bezeichner, z.B. `\<a\>` oder 
 `\</br\>`. Diskutieren Sie auch warum sich reguläre Ausdrücke nicht zum vollständigen 
@@ -59,11 +66,13 @@ Parsen von HTML eignen.
 [ENDNOTICE]
 
 [ENDSECTION]
+
 [SECTION::submission::reflection]
 
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
+
 [INSTRUCTOR::heading]
 
 Prüfen Sie, ob die regulären Ausdrücke die gegebenen Anforderungen erfüllen und ob aus der 

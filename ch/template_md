@@ -13,11 +13,13 @@ requires:
 .
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 .
 
 [ENDSECTION]
+
 [SECTION::instructions::detailed/loose/tricky]
 
 ### ...
@@ -30,10 +32,12 @@ requires:
 
 [WARNING]
 [ENDWARNING]
+
 [HINT::VisibleTitle]
 [ENDHINT]
 
 [ENDSECTION]
+
 [SECTION::submission::reflection/information/snippet/trace/program]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]

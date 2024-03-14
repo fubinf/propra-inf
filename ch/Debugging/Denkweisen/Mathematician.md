@@ -30,6 +30,7 @@ Wenn ja: Welcher der beiden Beispiele ist besser verständlich im Kontext des De
 Wenn nein: Fällt Ihnen ein besseres Beispiel ein, das die drei Begriffe im Kontext von Debugging 
 anschaulich macht?
 [ENDSECTION]
+
 [SECTION::submission::reflection]
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 Gefragt ist keine Literaturbesprechung oder -zusammenfassung,

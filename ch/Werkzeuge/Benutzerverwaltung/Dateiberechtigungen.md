@@ -7,9 +7,11 @@ difficulty: 2
 [SECTION::goal::idea]
 Ich verstehe Dateiberechtigungen und wie ich diese ändern kann.
 [ENDSECTION]
+
 [SECTION::background::default]
 Dateiberechtigungen in Linux spielen eine entscheidende Rolle bei der Sicherheit und dem Zugriff auf Dateien und Verzeichnisse.
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
 ### Dateiberechtigungen

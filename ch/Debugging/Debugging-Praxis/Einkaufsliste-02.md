@@ -62,6 +62,7 @@ hier ein [TERMREF::Versagen] beheben.
   Geben Sie die Ausgabe des Programms mit der Eingabe `0,0,4` an.
 
 [ENDSECTION]
+
 [SECTION::submission::trace,snippet,information]
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::../../_include/Submission-Markdowndokument.md]

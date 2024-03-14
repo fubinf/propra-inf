@@ -7,15 +7,18 @@ difficulty: 2
 [SECTION::goal::idea]
 Ich weiß wie ich mit Befehlen auf der Kommandozeile navigieren kann.
 [ENDSECTION]
+
 [SECTION::background::default]
 Ein Linux-Administrator bewegt sich hauptsächlich auf der Kommandozeile.
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
 ### Navigieren im Dateisystem
 
 Wenn Sie sich das erste Mal an Ihrer Linuxumgebung anmelden, sieht diese etwas leer aus.  
-Schauen Sie sich die Kommandos auf dieser [Seite](https://bytescout.com/blog/most-used-linux-commands.html) an, und nutzen Sie die Kommandos, die Sie als richtig empfinden für die unteren Aufgaben.  
+Schauen Sie sich die Kommandos auf dieser [Seite](https://bytescout.com/blog/most-used-linux-commands.html) an, und nutzen Sie die Kommandos, die Sie als richtig empfinden für die unteren Aufgaben.
+
 [HINT::Hilfe für die Kommandos]
 Lesen Sie sich [TERMREF::Option] durch.  
 [ENDHINT]
@@ -23,7 +26,7 @@ Lesen Sie sich [TERMREF::Option] durch.
 - [EC] Listen Sie die Dateien in Ihrem `home`-Ordner.
 
 - [EC] Geben Sie Ihre Dateien aus Ihrem `home`-Ordner in einer Listenansicht aus.
-    
+
 - [EC] Erstellen Sie nun einen Ordner namens `Marvel`.
 
 - [EC] Wechseln Sie in das oben erstellte Verzeichnis.

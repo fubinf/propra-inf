@@ -17,6 +17,7 @@ Als Kursteilnehmer weiß ich nicht, was die Kurs-URL ist und wo sie überhaupt g
 Ich kann `sedrila` aufrufen und habe meinen Übungspartner und mein Semester
 für die Tutor\_innen festgehalten.
 [ENDSECTION]
+
 [SECTION::background::default]
 Das Programmierpraktikum basiert auf der Anwendung SeDriLa (Self-Driven Lab).
 Das dient Ihnen grundlegend für folgende Dinge:
@@ -36,6 +37,7 @@ Auch der Überblick kann schnell verloren gehen, insbesondere darüber, welche
 Aufgaben bereits bearbeitet, aber noch nicht bewertet oder gar abgelehnt
 wurden.
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
 Zunächst müssen Sie SeDriLa installieren:
@@ -65,6 +67,7 @@ Lassen Sie sich nicht von dem "Timevalue TOTAL" abschrecken. Das beinhaltet nur
 bereits akzeptierte Abgaben und entspricht daher nicht der geleisteten Arbeit.
 
 [ENDSECTION]
+
 [SECTION::submission::snippet]
 Die Abgabe besteht aus der generierten Datei `student.yaml`.
 [ENDSECTION]

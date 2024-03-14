@@ -10,6 +10,7 @@ Ich verstehe, in welcher Form falsch benutzte Variablen als Defekte auftreten un
 habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
 [WARNING]
@@ -160,6 +161,7 @@ player_hand = {"7": ["clubs", "spades"]}
 opponent_hand = {"7": ["hearts", "diamonds"]}
 ```
 [ENDHINT]
+
 [HINT::Zweite Eingabe]
 Der Spieler fragt seinen Gegenspieler nach einem Rang, den der Gegenspieler nicht besitzt.
 ```python
@@ -170,6 +172,7 @@ player_hand = {"10": ["diamonds"],
 opponent_hand = {"Q": ["clubs"]}
 ```
 [ENDHINT]
+
 [HINT::Dritte Eingabe]
 Betrachten Sie die folgende Situation kurz vor dem Ende des Spiels. 
 Die Variablen sind wie folgt belegt:
@@ -187,6 +190,7 @@ Wird das Programm ordnungsgemäß beendet?
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]
+
 [SECTION::submission::snippet]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]

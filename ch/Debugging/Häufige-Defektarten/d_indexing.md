@@ -110,6 +110,7 @@ Führen Sie die Funktion mit den folgenden Eingaben aus:
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]
+
 [SECTION::submission::snippet]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]

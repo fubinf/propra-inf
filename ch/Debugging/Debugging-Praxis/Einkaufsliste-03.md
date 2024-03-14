@@ -49,7 +49,9 @@ Eingaben gibt.
 In der Realität möchte man dieses Vorgehen aber mit geeigneten Tests automatisieren.
 Mehr dazu lernen Sie in der Aufgabengruppe [PARTREF::Unittests].
 [ENDNOTICE]
+
 [ENDSECTION]
+
 [SECTION::submission::trace,snippet,information]
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::../../_include/Submission-Markdowndokument.md]

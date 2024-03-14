@@ -11,6 +11,7 @@ requires: argparse-subcommand
 - Ich habe mir ein Hilfsprogramm gebaut, um mein Gedächtnis auffrischen zu helfen.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 Wenn man an mehreren Dateien arbeitet, verliert man leicht aus dem Blick, 
@@ -23,6 +24,7 @@ aber dabei kommt u.U. eine überwältigend umfangreiche Auflistung heraus.
 Wir bauen uns hier ein Hilfsprogramm, das für diesen Zweck maßgeschneidert ist. 
 
 [ENDSECTION]
+
 [SECTION::instructions::loose]
 
 ### Anforderungen
@@ -66,12 +68,15 @@ $ python mlh lsnew --age 1h * mlh/* mlh/*/* nonsense
 [WARNING]
 Aufpassen mit den Zeitzonen!
 [ENDWARNING]
+
 [HINT::Wie fragt man die mtime einer Datei ab?]
 Siehe `os.stat` in der Python-Standardbibliothek.
 [ENDHINT]
+
 [HINT::Wie rechnet man eine mtime auf Datum und Uhrzeit um?]
 Siehe Modul `datetime` in der Python-Standardbibliothek.
 [ENDHINT]
+
 [HINT::Wie rechnet man eine mtime auf Datum und Uhrzeit um? (2)]
 `fromtimestamp()`
 [ENDHINT]

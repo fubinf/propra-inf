@@ -9,12 +9,14 @@ profiles: TEST
 - Ich kenne die Abgrenzungen des Testens zum Debuggen und zur [TERMREF::Qualitätssicherung] (QS) (eng.: Quality Assurance (QA))
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 Testen und Debuggen gehören zur Qualitätssicherung, haben jedoch unterschiedliche Ziele und Herangehensweisen, die wichtig sind
 zu verstehen, wenn man sie genau einordnen möchte.
 
 [ENDSECTION]
+
 [SECTION::instructions::loose]
 Recherchieren Sie hierzu anhand der folgenden Leitfragen:
 

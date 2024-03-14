@@ -9,11 +9,13 @@ difficulty: 2
 Ich verstehe Gruppen in Linux und wie ich diese anwenden kann.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 In Linux spielen Gruppen eine wichtige Rolle bei der Verwaltung von Benutzerrechten und der Organisation von Benutzern auf einem System.
 
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 ### Nutzer erstellen
 
@@ -45,8 +47,8 @@ In Linux spielen Gruppen eine wichtige Rolle bei der Verwaltung von Benutzerrech
 
 - [EC] Zuguterletzt löschen Sie beide erstellten Gruppen wieder. Nutzen Sie dafür `delgroup`.
 [ENDSECTION]
+
 [SECTION::submission::trace]
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 [ENDSECTION]
-
