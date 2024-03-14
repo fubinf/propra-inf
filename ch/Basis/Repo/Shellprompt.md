@@ -4,6 +4,12 @@ timevalue: 0.5
 difficulty: 2
 requires: Git101
 ---
+TODO_1_prechelt:
+
+"Prompt einstellen":
+Wäre es nicht besser, die Konfiguration direkt in '.bash_profile' zu schreiben, damit der Student nicht bei jeder Terminal-Sitzung 'source .bashrc' ausführen muss, um die gewünschte Änderung zu aktivieren?
+---
+
 [SECTION::goal::product]
 
 Ich habe in meiner Shell einen informativen Prompt, der die Orientierung 
