@@ -94,6 +94,7 @@ chapters:
     taskgroups:
       - slug: Refactoring-Grundlagen
       - slug: Refactoringpraxis
+      - slug: SystemUnderTest
   - slug: web
     taskgroups:
       - slug: basiswissen
