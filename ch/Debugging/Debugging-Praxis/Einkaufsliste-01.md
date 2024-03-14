@@ -61,7 +61,8 @@ Ich bin in der Lage mittels Debugger durch ein Programm zu navigieren und zielst
 
 [HINT::Die gefragte Funktion...]
 ...lautet `json.load()` und hat je nach Form des eingegebenen JSON einen anderen Rückgabetypen.
-Sie finden die Tabelle mit dieser Information unter [https://docs.python.org/3/library/json.html#encoders-and-decoders](https://docs.python.org/3/library/json.html#encoders-and-decoders).  
+Sie finden die Tabelle mit dieser Information unter 
+[HREF::https://docs.python.org/3/library/json.html#encoders-and-decoders].  
 Wenn Sie sich mehr für JSON und der Handhabung von JSON in Python interessieren, 
 finden Sie in den Aufgaben [PARTREF::jsonBasic] und [PARTREF::jsonExercise] einen Einstieg.
 

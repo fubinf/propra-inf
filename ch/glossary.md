@@ -223,7 +223,7 @@ zugleich ansprechen lassen.
 
 Globbing ist insbesondere in allen gängigen [TERMREF2::Shell::-s] implementiert.
 
-Kurzerläuterung: [https://tldp.org/LDP/abs/html/globbingref.html](https://tldp.org/LDP/abs/html/globbingref.html)
+Kurzerläuterung: [HREF::https://tldp.org/LDP/abs/html/globbingref.html]
 [ENDTERM]
 
 ## H
