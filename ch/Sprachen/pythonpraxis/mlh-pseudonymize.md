@@ -312,11 +312,11 @@ Checken Sie auch die Logdateien `*.log` und die Linetype-Dateien `*.pseu` ein.
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
-Kommandoprotokoll ansehen:
+[INSTRUCTOR::Kommandoprotokoll ansehen]
 
 - Wenn in einer der Kategorien "linetype" und "pseudonymizer" nur 1 Testfall auftaucht,
   Test-Quelltext ansehen, ob da mehrere Fälle geprüft werden. 2 sollten es mindestens sein.
 - Output bei "access.log" prüfen: Da müssten auftauchen "host007", "username001", "username002".
 - Output bei "from-to.log" prüfen: Da müssten (ggf. erst beim zweiten Mal) auftauchen 1->2, 2->1, 2->3.
+
 [ENDINSTRUCTOR]

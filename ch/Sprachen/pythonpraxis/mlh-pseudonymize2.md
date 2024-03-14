@@ -120,6 +120,7 @@ Checken Sie auch `auth.log` und `auth.pseu` ein.
 [ENDSECTION]
 
 [INSTRUCTOR::Protokoll kontrollieren]
+
 - `Pseudonym-class frequency:` Es muss mindestens Klassen wie `user`, `host` und `uid` geben.
   Die müssen aber nicht genauso heißen.  
   Die Daten am Anfang der Zeilen sollten erhalten bleiben (Datum, Uhrzeit, betroffener Host, Dienstname).  
@@ -134,4 +135,5 @@ Checken Sie auch `auth.log` und `auth.pseu` ein.
   die Lösung bitte mit Hinweis auf die obige Anmerkung 
   "Achtung: Dies ist nur ein kleiner Ausschnitt" zurückweisen, damit die Studis
   sich der Programmierschwierigkeit stellen müssen.
+
 [ENDINSTRUCTOR]
