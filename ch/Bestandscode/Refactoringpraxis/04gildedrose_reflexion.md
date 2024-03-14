@@ -1,25 +1,54 @@
-title: Gilded Rose 04 - Reflexion über das Kata
-stage: draft
-timevalue: 2
+title: "Gilded Rose: Reflexion über das Kata"
+stage: alpha
+timevalue: 1
 difficulty: 3
 requires: 03gildedrose_implementation
 ---
 [SECTION::goal::idea]
-    Die Ergebnisse einer Refaktorierung können vielfältig sein.
-    Setzen Sie sich in dieser Aufgabe damit auseinander, wie jemand mit viel Erfahrung in diesem 
-    Thema eine Lösung konstruiert. 
+
 [ENDSECTION]
 
-[SECTION::instructions::loose]
-Sehen Sie sich den Vortrag [Gilding the Rose: Refactoring-Driven Development](https://www.
-youtube.com/watch?v=kTcDBYCpj7Q) von Kevlin Henney an. 
-Reflektieren Sie beim Sehen über ihr eigenes Vorgehen beim Kata.
-Beschreiben Sie dabei, in welche der im Video genannten Fallen sie getappt sind und wie Sie 
-diese zukünftig vermeiden.
+[SECTION::background::default]
+Nachdem Sie das Gilded Rose Kata gelöst haben, können Sie hier nochmal über das erlebte 
+reflektieren.
+[ENDSECTION]
 
-TODO_2_pietrak Zeitstempel erstellen und auf bestimmte Stellen verweisen, um den Zeitaufwand zu kürzen.
+[SECTION::instructions::loose] 
+### Allgemeines 
+
+- [EQ] Wie empfanden Sie diese Aufgabengruppe?  
+  Waren die Aufgaben zu schwer?  
+  Wurde zu viel erklärt?  
+  Waren die Erklärungen irgendwo nicht genau genug?
+- [EQ] Sind die Aufgaben für Sie in der vorgegebenen Zeit umsetzbar gewesen?
+  Wenn nein: Woran könnte das gelegen haben?
+
+### Zu [PARTREF::01gildedrose_tests]:
+
+- [EQ] Empfinden Sie die Fokussierung auf Tests als zielführend oder eher als lästig? Begründen Sie.
+- [EQ] Wie werden Sie zukünftig mit Tests umgehen?
+  Werden Sie Tests vor dem Schreiben des Codes einsetzen (Stichwort [TERMREF::TDD])?  
+  Oder werden Sie Tests zeitnah nach dem Schreiben des Codes einführen?  
+  Oder verzichten Sie gar ganz auf Tests?  
+  Wenn Sie auf Tests verzichten werden, wieso?
+
+### Zu [PARTREF::02gildedrose_refactor]:
+ 
+- [EQ] Welche der Varianten erschien Ihnen schlüssiger?
+- [EQ] Ist Ihnen noch eine weitere Variante zur Refaktorierung eingefallen? 
+  Wenn ja: Skizzieren Sie diese in einem kurzen Absatz.
+
+### Zu [PARTREF::03gildedrose_implementation]
+
+- [EQ] Gab es nach der Vorarbeit hier Probleme bei der Implementierung?
+- [EQ] Schauen Sie sich nochmal den Original-Code an.
+  Glauben Sie, dass Sie Implementierung dort genauso einfach hätten machen können?
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-Die Abgabe besteht aus einem kurzen Markdown-Dokument mit Ihrer Reflexion über das Kata.
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
+[INSTRUCTOR::Reflektion]
+[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+[ENDINSTRUCTOR]
