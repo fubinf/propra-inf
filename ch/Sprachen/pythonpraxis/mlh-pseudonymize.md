@@ -1,5 +1,5 @@
 title: "My Little Helpers: pseudonymize: filter for replacing person-identifiable data"
-stage: draft
+stage: alpha
 timevalue: 4.0
 difficulty: 3
 explains: Logfile
@@ -77,19 +77,19 @@ Damit das passiert, sieht der `configfile` z.B. so aus
 (übertragen Sie diese Daten in die Datei `mlh/config/login.pseu`)
 
 ```
-[-0-9T:]+Z (login|logout) (?P&lt;user&gt;\w+)\n
+[-0-9T:]+Z (login|logout) (?P<user>\w+)\n
 ```
 TODO_1 Layout of angle brackets is broken. How to fix this?
 
 Das Ganze ist ein regulärer Ausdruck in der normalen Python-Notation.
-`(?P&lt;user&gt;\w+)` ist eine _benannte Gruppe_ (named group).
+`(?P<user>\w+)` ist eine _benannte Gruppe_ (named group).
 (Wenn Sie sich damit nicht auskennen, bearbeiten Sie jetzt passende Aufgaben 
 in der Gruppe [PARTREF::regex], um sich das hier benötigte Grundwissen zuzulegen.)
 
 Der zugehörige Aufruf wäre dann z.B.
 
 ```
-python mlh pseudonymize mlh/config/login.pseu &lt;mlh/input/login1.log
+python mlh pseudonymize mlh/config/login.pseu < mlh/input/login1.log
 ```
 
 An die Implementierung dieser Funktionalität arbeiten wir uns in den nächsten
@@ -134,7 +134,7 @@ von links nach rechts durch `orig` und konstruiert unterwegs `rewritten` und `re
 Sie brauchen getrennte Logik für
 `(`, `)`, `\`, `|` und alle übrigen Zeichen.  
 Die meiste Logik hängt am Fall `(`.  
-Den Marker `?P&lt;groupname&gt;` für eine benannte Gruppe sollte man nicht zeichenweise bearbeiten,
+Den Marker `?P<groupname>` für eine benannte Gruppe sollte man nicht zeichenweise bearbeiten,
 sondern "in einem Rutsch" mit einem regulären Ausdruck.
 [ENDHINT]
 
@@ -256,7 +256,7 @@ Dies sind Logdaten im Format eines realen Webservers (Apache httpd):
   die also mit etwas wie `/~username` beginnen (`username`).
 - Schreiben Sie eine passende Konfigurationsdatei `mlh/config/access.pseu`.
 - [EC] Zeigen Sie einen erfolgreichen Aufruf von  
-  `python mlh pseudonymize mlh/config/access.pseu &lt;mlh/input/access.log | grep '/~'`.
+  `python mlh pseudonymize mlh/config/access.pseu < mlh/input/access.log | grep '/~'`.
 - [EQ] Ergänzen Sie `mlh-pseudonymize.md`.  
   Tragen Sie eine Überschrift **access.log** ein.  
   Diskutieren Sie die Frage, wie weit Sie Ihrem Programm jetzt trauen:
@@ -286,10 +286,10 @@ from eden to lottermeier
   Warum glauben Sie das?
 - [EQ] Checken Sie `mlh-pseudonymize.md` jetzt ein.
 - [EC] Zeigen Sie den erfolgreichen oder erfolglosen Aufruf von  
-  `python mlh pseudonymize mlh/config/from-to.pseu &lt;mlh/input/from-to.log
+  `python mlh pseudonymize mlh/config/from-to.pseu < mlh/input/from-to.log`
 - Korrigieren Sie Ihr Programm, falls nötig.
 - [EC] Zeigen Sie dann ggf. erstmals einen erfolgreichen Aufruf von  
-  `python mlh pseudonymize mlh/config/from-to.pseu &lt;mlh/input/from-to.log`
+  `python mlh pseudonymize mlh/config/from-to.pseu < mlh/input/from-to.log`
 
 [HINT::Was ist mein Problem, wenn es nicht geht?]
 Ein regulärer Ausdruck kann nicht zwei benannten Gruppen enthalten, die denselben Namen haben.
@@ -306,6 +306,8 @@ Zum Nachschlagen der Synonyme muss man das Suffix natürlich wieder entfernen.
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::../../_include/Submission-Quellcode.md]
+Checken Sie auch die Logdateien `*.log` und die Linetype-Dateien `*.pseu` ein.
+
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
