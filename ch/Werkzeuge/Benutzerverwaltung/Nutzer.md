@@ -15,6 +15,8 @@ Nutzer in Linux sind individuelle Konten, die es den Benutzern ermöglichen, auf
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
+Machen Sie sich mit den Kommandos in diesem [Beitrag](https://wiki.ubuntuusers.de/Benutzer_und_Gruppen/) vertraut.  
+
 ### Neuen Nutzer erstellen
 
 - [EC] Erstellen Sie einen neuen Nutzer namens `otto` mit dem Befehl `useradd`:  
@@ -31,15 +33,15 @@ Nutzer in Linux sind individuelle Konten, die es den Benutzern ermöglichen, auf
 
 ### Passwörter für Nutzer setzen
 
-- [EC] Setzen Sie ein Passwort für beide oben erstellte Nutzer. Nutzen Sie dafür den Befehl `passwd`.
+- [EC] Setzen Sie ein Passwort für beide oben erstellte Nutzer.
 
 ### Ändern der Rechte für Nutzer
 
 In den meisten Firmen müssen Nutzer eines Systems nach bestimmten Datenschutzrichtlinien aufvewahrt werden. Somit müssen diese erst gesperrt werden  
-- [EC] Nutzen sie `usermod` um den Nutzer `bob` und `otto` zu sperren.
+- [EC] Sperren Sie die Nutzer `bob` und `otto`.
 
 Nachdem die Nutzer gesperrt wurden und eine bestimmte Zeitspanne vorbei ist, müsssen Nutzer und Dateien des Nutzers auf dem System gelöscht werden.  
-- [EC] Nutzen Sie den Befehl `deluser` um alle Dateien der Nutzer und die Nutzer selber von ihrem System zu löschen.
+- [EC] Löschen Sie beide Nutzer und all deren Dateien von Ihrem System.
 [ENDSECTION]
 [SECTION::submission::trace]
 
