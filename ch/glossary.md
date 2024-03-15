@@ -274,6 +274,10 @@ dafür aber im Gegensatz zum [TERMREF::Systemtest] programmatische Schnittstelle
 nicht solche für menschliche Benutzer_innen.
 [ENDTERM]
 
+[TERM::Interpreter]
+Ein Interpreter, insbesondere der Python-Interpreter, ist ein Programm, das Quellcode in einer bestimmten Programmiersprache analysiert, interpretiert und ausführt. Im Falle des Python-Interpreters wird Python-Quellcode Zeile für Zeile analysiert und in Maschinenanweisungen umgewandelt, die vom Computer ausgeführt werden können. Der Interpreter führt den Code schrittweise aus und überprüft dabei Syntax und Semantik, um sicherzustellen, dass der Code korrekt ist und die beabsichtigten Aktionen ausführt.
+[ENDTERM]
+
 [TERM::Issue Tracker|Bug Tracker|Defect Tracker|Defektdatenbank]
 Ein Programm zur Koordination der Arbeit an bekannten (aber anfangs noch nicht bereinigten
 und meist auch noch nicht lokalisierten) Defekten oder sonstigen Verbesserungswünschen (feature requests)
@@ -376,6 +380,10 @@ zu bekommen.
 Ist eine Auszeichnungssprache, die verwendet wird, um Text mit einer einfachen Syntax zu formatieren.
 Sie wurde entwickelt, um das Schreiben von Texten für das Web zu erleichtern, ohne die Notwendigkeit
 von komplexen HTML-Tags oder Formatierungsbefehlen.
+[ENDTERM]
+
+[TERM::Modul]
+Ein Modul in Python, oder allgemein in Programmiersprachen, ist eine Datei, die Definitionen bzw. Implementierungen unter anderem von Variablen, Funktionen und Klassen enthalten kann. Module dienen dazu, den Code in logisch getrennte Einheiten zu organisieren, wodurch die Wiederverwendbarkeit, Lesbarkeit und Strukturierung von Softwareprojekten verbessert wird. Sie ermöglichen es Entwicklern, gemeinsam genutzte Funktionalitäten in einer zentralen Stelle zu definieren und diese dann in verschiedenen Teilen eines Programms oder in unterschiedlichen Projekten durch Importieren des Moduls wiederzuverwenden.
 [ENDTERM]
 
 [TERM::Modultest|Unit Test]
@@ -611,6 +619,10 @@ weil diese aus Sicht einer Benutzer_in wie eine "Schale" den Kern des Betriebssy
 
 https://de.wikipedia.org/wiki/Kommandozeile  
 https://de.wikipedia.org/wiki/Unix-Shell
+[ENDTERM]
+
+[TERM::Schlüsselwort|Keyword]
+Schlüsselwörter (Englisch: "keyword") beziehen sich im Allgemeinen auf reservierte Wörter oder Zeichenfolgen, die eine spezielle Bedeutung innerhalb der Programmiersprachen haben. Diese Schlüsselwörter sind Teil der Sprachsyntax und haben vordefinierte Funktionen oder Operationen. Schlüsselwörter dürfen nicht als Namen für Variablen oder Funktionen oder irgendwelche Elemente im Programm verwendet werden, das führt (in Python) direkt zu (Laufzeit-) Fehler. 
 [ENDTERM]
 
 [TERM::Statische analytische Qualitätssicherung]
