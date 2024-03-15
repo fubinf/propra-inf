@@ -132,6 +132,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Melis Atarim
 
+- ch/Sprachen/pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
 - ...
 
 
@@ -153,3 +154,5 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Dominik Pietrak
+
+- ch/Sprachen/pythonpraxis/mlh-pseudonymize.md (Lutz Prechelt)
