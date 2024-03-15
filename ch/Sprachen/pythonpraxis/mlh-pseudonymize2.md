@@ -39,8 +39,6 @@ Pseudonym-class frequency:
 
 ### `--linetypes`
 
-(?P<groupname>\w+)  TODO_1
-
 Diese Option soll eine Tabelle ausgeben, wie oft jeder Linetype benutzt wurde,
 häufigster zuerst.
 

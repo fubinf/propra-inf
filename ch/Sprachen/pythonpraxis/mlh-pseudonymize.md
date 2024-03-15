@@ -79,7 +79,6 @@ Damit das passiert, sieht der `configfile` z.B. so aus
 ```
 [-0-9T:]+Z (login|logout) (?P<user>\w+)\n
 ```
-TODO_1 Layout of angle brackets is broken. How to fix this?
 
 Das Ganze ist ein regulärer Ausdruck in der normalen Python-Notation.
 `(?P<user>\w+)` ist eine _benannte Gruppe_ (named group).
