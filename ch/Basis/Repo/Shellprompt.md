@@ -1,15 +1,9 @@
 title: Ein hilfreicher Prompt für unsere Shell
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 requires: Git101
 ---
-TODO_1_prechelt:
-
-"Prompt einstellen":
-Wäre es nicht besser, die Konfiguration direkt in '.bash_profile' zu schreiben, damit der Student nicht bei jeder Terminal-Sitzung 'source .bashrc' ausführen muss, um die gewünschte Änderung zu aktivieren?
----
-
 [SECTION::goal::product]
 
 Ich habe in meiner Shell einen informativen Prompt, der die Orientierung 
@@ -35,7 +29,8 @@ was wo ist. Deshalb ist es hilfreich, wenn der Prompt darüber Auskunft gibt.
 
 Fügen Sie an die Datei `.bashrc` in Ihrem Homeverzeichnis (`~/.bashrc`)
 folgende Zeile an:  
-`export PS1="\[\e[1;33m\]\u\[\e[1;31m\]@\h \[\e[0;32m\]\w \[\e[0;37m\]\t \[\e[44m\] \! \[\e[40m\]\n\$ "`
+`export PS1="\[\e[1;33m\]\u\[\e[1;31m\]@\h \[\e[0;32m\]\w \[\e[0;37m\]\t \[\e[44m\] \! \[\e[40m\]\n\$ "`  
+(Falls es bei Ihnen die Datei `~/.bash_profile` geben sollte, ist die Zeile hingegen dort richtig aufgehoben.)
 
 Das ist ein Prompt, der für schwarzen Terminal-Hintergrund konzipiert ist.
 Für einen weißen sollte man z.B. das "33m" auch durch "31m" ersetzen.
