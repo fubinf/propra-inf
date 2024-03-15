@@ -372,7 +372,7 @@ Falls der Befehl keine Manpage hat, dann kann man den Befehl `help` probieren um
 zu bekommen.
 [ENDTERM]
 
-[TERM:Markdown]
+[TERM::Markdown]
 Ist eine Auszeichnungssprache, die verwendet wird, um Text mit einer einfachen Syntax zu formatieren.
 Sie wurde entwickelt, um das Schreiben von Texten für das Web zu erleichtern, ohne die Notwendigkeit
 von komplexen HTML-Tags oder Formatierungsbefehlen.
