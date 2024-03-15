@@ -372,6 +372,12 @@ Falls der Befehl keine Manpage hat, dann kann man den Befehl `help` probieren um
 zu bekommen.
 [ENDTERM]
 
+[TERM:Markdown]
+Ist eine Auszeichnungssprache, die verwendet wird, um Text mit einer einfachen Syntax zu formatieren.
+Sie wurde entwickelt, um das Schreiben von Texten für das Web zu erleichtern, ohne die Notwendigkeit
+von komplexen HTML-Tags oder Formatierungsbefehlen.
+[ENDTERM]
+
 [TERM::Modultest|Unit Test]
 Ein Test, der das korrekte Funktionieren eines bestimmten Moduls prüfen soll.
 Dabei wird entweder nur dieses eine Modul ausgeführt (weil es keine weiteren davon benötigten
