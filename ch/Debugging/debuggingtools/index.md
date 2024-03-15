@@ -1,12 +1,13 @@
-title: Die Werkzeuge des fleißigen Debuggers
+title: Die Werkzeuge der fleißigen Debugger_in
 ---
-TODO_1_pietrak Motivierenden Text für Debugging-Tools schreiben
+Ob in einer Programmierhausaufgabe oder in einem Programmierprojekt, Sie kennen das Problem: 
+Es hat sich mal wieder ein Defekt eingeschlichen.
+Auch beim wiederholten Lesen des Codes können Sie nicht die Stelle ausfindig machen,
+von der das Problem ausgeht, es ist also Debugging nötig.
 
-Ob in einer Programmierhausaufgabe oder in einem Programmierprojekt, sie kennen das Problem: 
-Es hat sich mal wieder ein Bug eingeschlichen.
-Auch beim wiederholten Lesen des Codes können Sie nicht die Stelle ausfindig machen, in der der Bug wohnt.
-In dieser Aufgabengruppe finden Sie eine Auswahl an Werkzeugen, mit der Sie sich diese Hürde vereinfachen können.
+In dieser Aufgabengruppe finden Sie eine Auswahl an Hilfsmitteln, 
+die das Debugging erleichtern -- und manchmal enorm erleichtern.
 
-Die einfachste Methode ist das sogenannte "printf-Debugging", benannt nach der Print-Funktion in C. 
-Daher ist es eine Empfehlung ist es zuerst die Aufgabe [PARTREF::printfdebugging] zu bearbeiten und sich danach mit den
-anderen Werkzeugen auseinanderzusetzen.
+Die einfachste Methode ist das sogenannte "printf-Debugging" (gesprochen "print eff dibagging"), 
+benannt nach der printf-Funktion in C.
+Deshalb ist die Aufgabe [PARTREF::printfdebugging] ein guter Startpunkt.
