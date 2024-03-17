@@ -77,12 +77,18 @@ In alphabetischer Reihenfolge der Dateinamen.
 - `profiles`-Mechanismus in Sedrila und der Doku entfernen.
 
 
-### 2.4 Reviews Einzeldateien
+### 2.4 Anträge an den Rechnerbetrieb
+
+Was auf den Poolrechnern noch installiert werden muss:
+- ...
+
+
+### 2.5 Reviews Einzeldateien
 
 Dieser Prozess ist beschrieben in `process/reviews.md`.
 
 
-### 2.5 Globale Qualitätssicherung  TODO_3
+### 2.6 Globale Qualitätssicherung  TODO_3
 
 Das machen wir, wenn eine große Konsolidierung angezeigt erscheint.
 
