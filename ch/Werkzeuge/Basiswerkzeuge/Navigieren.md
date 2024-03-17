@@ -24,23 +24,14 @@ Lesen Sie sich [TERMREF::Option] durch.
 [ENDHINT]
 
 - [EC] Listen Sie die Dateien in Ihrem `home`-Ordner.
-
 - [EC] Geben Sie Ihre Dateien aus Ihrem `home`-Ordner in einer Listenansicht aus.
-
 - [EC] Erstellen Sie nun einen Ordner namens `Marvel`.
-
 - [EC] Wechseln Sie in das oben erstellte Verzeichnis.
-
 - [EC] Erstellen Sie in dem Verzeichnis eine Datei namens `Thor`.
-
 - [EC] Kopieren Sie die Datei `Thor` ins `home`-Verzeichnis
-
 - [EC] Benennen Sie die Datei `Thor` im `Marvel`-Ordner nach `Hulk` um.
-
 - [EC] Wechseln Sie zurück in ihr `home`-Verzeichnis und erstellen Sie einen neuen Ordner namens `DC`. Verschieben Sie die Dateien aus `Marvel` in den Ordner `DC`.
-
 - [EC] Löschen Sie den Ordner `Marvel`.
-
 - [EC] Löschen sie den Ordner `DC`.
 
 [SECTION::submission::trace]
