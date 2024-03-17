@@ -28,7 +28,7 @@ die auch für Softwareteams nützlich wäre, dort aber wenig gebräuchlich ist:
 Wir geben immer die betreffende Aufgabe an und die investierte Arbeitszeit.
 
 Hier ist ein Beispiel:  
-`#Zeiterfassung 2.5h Commit-Format ausprobieren`
+`%Zeiterfassung 2.5h Commit-Format ausprobieren`
 
 Dabei ist `Zeiterfassung` der Name der aktuellen Aufgabe (laut Dateiname, 
 siehe im Adressfeld des Browsers) und `2.5h` besagt, dass wir für die Arbeiten,
@@ -100,7 +100,7 @@ mit einer geschätzten Arbeitszeit.
 [INSTRUCTOR::Bitte ggf. zureden]
 Für diese Aufgabe verlangen wir einmalig einen Commit im korrekten Format:
 
-- `#` zu Beginn
+- `%` zu Beginn
 - richtig geschriebene Dateinamen (Groß-/Kleinschreibung zählt auch)
 - Dezimalpunkt (nicht Dezimalkomma) mit Dezimalstunden oder Doppelpunkt mit Minuten, 
 - 'h' ohne Leerzeichen 

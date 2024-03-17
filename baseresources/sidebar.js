@@ -32,7 +32,7 @@ if (timer) {
   function showTime() {
     const quarters = Math.max(time / (60 * 60 * 1000), 1);
     const mins = (quarters % 4) * 25;
-    controls.time.textContent = "#" + filename + " " + Math.floor(quarters / 4) + (mins ? ("." + mins) : "") + "h ";
+    controls.time.textContent = "%" + filename + " " + Math.floor(quarters / 4) + (mins ? ("." + mins) : "") + "h ";
   }
 
   Object.entries(controls).forEach(e => e[1].className = e[0])
