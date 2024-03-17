@@ -21,7 +21,7 @@ Wie Sie oben im Hintergrundabschnitt gelesen haben, arbeiten wir während Progra
 Mit dem folgenden interaktiven [Artikel](https://www.learnpython.org/en/Variables_and_Types) werden Sie einige der grundlegenden Datentypen in Python kennenlernen. Lesen Sie den Artikel und bearbeiten Sie die interaktiven Beispiele, beantworten Sie danach folgende Fragen:
 
 [NOTICE]
-Die Beispiele im Artikel sind interaktiv und können in den jeweiligen kleinen Programmierumgebungen innerhalb des Artikels getestet und auch bearbeitet werden. Sie können eine beliebige externe Programmierumgebung Ihrer Wahl auch nutzen, um die Beispiel und Ihre Antworten zu testen, bspw. [programiz](https://www.programiz.com/python-programming/online-compiler/).
+Die Beispiele im Artikel sind interaktiv und können in den jeweiligen kleinen Programmierumgebungen innerhalb des Artikels getestet und auch bearbeitet werden. Sie können eine beliebige externe Programmierumgebung Ihrer Wahl auch nutzen, um die Beispiel und Ihre Antworten zu testen, bspw. [online-python](https://www.online-python.com/).
 [ENDNOTICE]  
 
 [EQ] Was ist damit gemeint, dass Python nicht "statisch typisiert" ist, und wie nennt sich diese Art von Typisierung? Recherchieren Sie.
