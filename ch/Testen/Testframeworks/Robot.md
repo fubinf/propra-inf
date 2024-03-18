@@ -4,6 +4,12 @@ timevalue: 1.5
 difficulty: 2
 profiles: TEST
 ---
+# Review (DM)
+"Machen Sie sich mit der Erstellung von Testfällen vertraut" im Hintergrund-Bereich. Das ist ja definitiv schon ein Teil der Lernaufgabe, sollte dann auch als eine solche deklariert werden. Oder ist das eine Zusammenfassung der Aufgabe? Dann den Text entsprechend verständlicher formulieren.
+
+Fragen in Richtung der ersten drei Fagen "Wie viele und welche ..., Wie heißen ..., etc" sind denke ich eher geeignet, um eine Aufgabe zur Leistungskontrolle zu stellen. Für eine Lernaufgabe ist es vermutlich sinnvoller, wenn man die Erkentnisse dann gleich selbst anwenden kann. Ich würde das ggf. einfach weglassen. Ähnliches für "Beschreiben Sie den Aufbau des Testfalls". Die letzte Aufgabe finde ich hingegen wieder sinnvoller, weil das zum Denken anregt.
+
+
 [SECTION::goal::experience,product]
 
 - Ich habe erste Robot Framework Testfälle ausgeführt
@@ -100,6 +106,6 @@ Zusätzlich ist es zur Erfüllung der Aufgaben nicht notwendig die CustomLibrary
 
 [INSTRUCTOR::Erwartung]
 
-- [EREFC::2] wird erwartet zu erkennen, dass die Abfrage durch einen unberechtigten Nutzer durchgeführt wird. Ein Administrator jedoch diese Möglichkeit hat. Daher kann ein fehlerfreier Test durch das ersetzen des `Login User` durch `Login Admin` realisiert werden, da diese Funktionalität bereits vorhanden ist.
+- [EREFC::2] wird erwartet zu erkennen, dass die Abfrage durch einen unberechtigten Nutzer durchgeführt wird. Ein Administrator hat jedoch diese Möglichkeit. Daher kann ein fehlerfreier Test durch das ersetzen des `Login User` durch `Login Admin` realisiert werden, da diese Funktionalität bereits vorhanden ist.
 
 [ENDINSTRUCTOR]
