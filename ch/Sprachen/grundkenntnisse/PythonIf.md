@@ -2,16 +2,11 @@ title: "Kontrollstrukturen in Python: Fallunterscheidung mit der if-Anweisung"
 stage: draft
 timevalue: 0.75
 difficulty: 1
----
-<!-- 
-Referenzierte Aufgaben sind noch in Bearbeitung
-assumes: PythonComments
 requires: PythonBooleans
--->
+---
 <!--
 noch in Bearbeitung
-*1: link to comments article
-*2: link to strings datatype artikel
+*2: link to strings datatype task
 -->
 [SECTION::goal::idea]
 
@@ -40,7 +35,7 @@ if Bedingung:
 
 [NOTICE]
 
-Man kann zwischen dem Schlüsselwort `if` und der Bedingung sowie zwischen der Bedingung und dem Doppelpunkt beliebig viele Leerzeichen hinzufügen, das beeinträchtigt jedoch die Lesbarkeit. Das gilt allgemein in den meisten Programmiersprachen und liegt daran, dass Leerzeichen **an Stellen, die das Verhalten des Programms nicht beeinfulssen** in der Regel ignoriert werden, wie die Kommentare (*1). Der Python-Interpreter wird also die Bedingung betrachten, sobald er auf das Schlüsselwort `if` trifft, unabhängig von der Anzahl der Leerzeichen dazwischen.
+Man kann zwischen dem Schlüsselwort `if` und der Bedingung sowie zwischen der Bedingung und dem Doppelpunkt beliebig viele Leerzeichen hinzufügen, das beeinträchtigt jedoch die Lesbarkeit. Das gilt allgemein in den meisten Programmiersprachen und liegt daran, dass Leerzeichen **an Stellen, die das Verhalten des Programms nicht beeinfulssen** in der Regel ignoriert werden, wie die Kommentare. Der Python-Interpreter wird also die Bedingung betrachten, sobald er auf das Schlüsselwort `if` trifft, unabhängig von der Anzahl der Leerzeichen dazwischen.
 
 [ENDNOTICE]
  
