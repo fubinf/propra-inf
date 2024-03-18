@@ -77,6 +77,7 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Sprachen/grundkenntnisse/PythonVariablenDatentypen.md (Hanen Alrwasheda)
 - ch/Sprachen/grundkenntnisse/PythonComments.md (Hanen Alrwasheda)
+- ch/Sprachen/grundkenntnisse/PythonStrings.md (Hanen Alrwasheda)
 
 ## Reviews to do for Christian Hofmann
 
