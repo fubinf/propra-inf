@@ -2,7 +2,7 @@ title: Anwendung der Fundamentals mit FizzBuzz
 stage: draft
 timevalue: 0.25
 difficulty: 1
-assumes: PythonBasics102, PythonNumBoolString
+assumes: PythonBasics102
 ---
 !!! goal
     In dieser Aufgabe geht es nur um die Anwendung der fundamentalen Kontrollmechanismen beim

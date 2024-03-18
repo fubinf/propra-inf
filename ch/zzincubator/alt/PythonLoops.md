@@ -2,7 +2,7 @@ title: Flow Control - Schleifen
 stage: draft
 timevalue: 0.5
 difficulty: 1
-assumes: PythonIfThenElse, PythonBooleans
+assumes: PythonBooleans
 ---
 Schleifen ermöglichen es bestimmte Arbeitsschritte zu wiederholen, solange bestimmte
 Voraussetzungen erfüllt sind. Wenn zur Problemlösung solche Sätze fallen wie _"Solange X
