@@ -2,7 +2,6 @@ title: Python REPL
 stage: draft
 timevalue: 0.5
 difficulty: 1
-assumes: PythonBasics101
 ---
 !!! goal
     Eine *REPL* (Read-Evaluate-Print-Loop) ist ziemlich nützlich, wenn man einfache Konzepte

@@ -2,7 +2,7 @@ title: Python - Objektorientierte Programmierung
 stage: draft
 timevalue: 0.75
 difficulty: 1
-assumes: PythonBasics101, PythonBasics102, PythonBasics103, PythonDataStructures
+assumes: PythonBasics102, PythonBasics103, PythonDataStructures
 ---
 !!! goal
     Um Daten und Funktionen zu organisieren, sind Klassen und Objekte hilfreiche Werkzeuge zur 

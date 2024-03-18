@@ -2,7 +2,7 @@ title: Python Advanced -- Lambdas, Iteratoren, Error Handling
 stage: draft
 timevalue: 1
 difficulty: 1
-assumes: PythonBasics101, PythonBasics102, PythonBasics103, PythonOOP
+assumes: PythonBasics102, PythonBasics103, PythonOOP
 ---
 !!! goal
     In dieser Einheit geht es darum einen kurzen Einblick in weitere Funktionen zu bekommen, die 

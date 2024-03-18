@@ -2,7 +2,7 @@ title: Histogramm
 stage: draft
 timevalue: 1.0
 difficulty: 2
-assumes: PythonBasics101, PythonBasics102, PythonBasics103, PythonNumBoolString
+assumes: PythonBasics102, PythonBasics103
 ---
 !!! goal
     Viele Programmieraufgaben bestehen daraus Dateien einzulesen, die darin enthaltenen Daten zu

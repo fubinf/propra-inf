@@ -2,7 +2,7 @@ title: Python-Grundlagen, Teil 3 -- Nutzung von Modulen
 stage: draft
 timevalue: 1.5
 difficulty: 1
-assumes: PythonBasics101, PythonBasics102
+assumes: PythonBasics102
 ---
 !!! goal
     Hier geht es um die Nutzung von (vorinstallierten) Modulen in Python.  
