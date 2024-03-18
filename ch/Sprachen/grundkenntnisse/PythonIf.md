@@ -35,7 +35,7 @@ if Bedingung:
 
 [NOTICE]
 
-Man kann zwischen dem Schlüsselwort `if` und der Bedingung sowie zwischen der Bedingung und dem Doppelpunkt beliebig viele Leerzeichen hinzufügen, das beeinträchtigt jedoch die Lesbarkeit. Das gilt allgemein in den meisten Programmiersprachen und liegt daran, dass Leerzeichen **an Stellen, die das Verhalten des Programms nicht beeinfulssen** in der Regel ignoriert werden, wie die Kommentare. Der Python-Interpreter wird also die Bedingung betrachten, sobald er auf das Schlüsselwort `if` trifft, unabhängig von der Anzahl der Leerzeichen dazwischen.
+Man kann zwischen dem Schlüsselwort `if` und der Bedingung sowie zwischen der Bedingung und dem Doppelpunkt beliebig viele Leerzeichen hinzufügen, das beeinträchtigt jedoch die Lesbarkeit. Das gilt allgemein in den meisten Programmiersprachen und liegt daran, dass Leerzeichen **an Stellen, die das Verhalten des Programms nicht beeinfulssen** in der Regel ignoriert werden, genau wie die Kommentare ([PARTREF::PythonComments]). Der Python-Interpreter wird also die Bedingung betrachten, sobald er auf das Schlüsselwort `if` trifft, unabhängig von der Anzahl der Leerzeichen dazwischen.
 
 [ENDNOTICE]
  
