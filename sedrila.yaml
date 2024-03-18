@@ -32,19 +32,15 @@ instructors:
   - nameish: Lutz Prechelt
     email: prechelt@inf.fu-berlin.de
     gitaccount: prechelt
-    keyfingerprint: .
+    keyfingerprint: D39826E6F5ED9171C452932565C4F8F4D817AFE2
   - nameish: Christian
-    email: xx
-    gitaccount: xx
-    keyfingerprint: .
-  - nameish: Dominik
-    email: xx
-    gitaccount: xx
-    keyfingerprint: .
-  - nameish: Sven
-    email: xx
-    gitaccount: xx
-    keyfingerprint: .
+    email: myname@mynery.eu
+    gitaccount: c.hofmann
+    keyfingerprint: 22C7664CCFB337CD3B3377F109226547CCFC767D
+  - nameish: Ronny
+    email: ronnyruhe@icloud.com
+    gitaccount: ronnyruhe
+    keyfingerprint: 5A29244E5855AAAB3CAD016696C3AF9A5065861B
 init_data:
   studentprompts:
     student_name: Eigener Name
