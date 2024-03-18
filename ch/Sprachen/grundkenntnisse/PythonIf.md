@@ -6,7 +6,7 @@ requires: PythonBooleans
 ---
 <!--
 noch in Bearbeitung
-*2: link to strings datatype task
+*1: link to PythonCasting
 -->
 [SECTION::goal::idea]
 
@@ -83,7 +83,7 @@ if Bedingung:
 
 [HINT::Boolean-Werte von Strings]
 
-Lesen Sie die Aufgabe PythonStringDatatype (*2), dort ist erklärt wie Strings als Boolean ausgewertet werden.
+Lesen Sie die Aufgabe PythonCasting (*1), dort ist erklärt wie Strings als Boolean ausgewertet werden.
 
 [ENDHINT]
 
