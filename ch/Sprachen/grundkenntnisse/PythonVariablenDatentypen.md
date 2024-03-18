@@ -1,5 +1,5 @@
 title: "Erste Schritte in Python: Variablen und Datentypen"
-stage: alpha
+stage: draft
 timevalue: 2
 difficulty: 2
 ---
