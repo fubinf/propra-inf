@@ -38,10 +38,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Daniel Müllers
-- ch/Testen/API/index.md (Ronny Ruhe)
-- ch/Testen/API/restApi.md (Ronny Ruhe)
-- ch/Testen/API/responseApi.md (Ronny Ruhe)
-- ch/Testen/API/CRUDApi.md (Ronny Ruhe)
+
 
 - ch/Testen/Basiswissen/index.md (Ronny Ruhe)
 - ch/Testen/Basiswissen/error.md (Ronny Ruhe)
@@ -112,6 +109,11 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoringpraxis/03gildedrose_implementation.md (Dominik Pietrak)
 - ch/Bestandscode/Refactoringpraxis/04gildedrose_reflexion.md (Dominik Pietrak)
 
+- ch/Testen/API/index.md (Ronny Ruhe)
+- ch/Testen/API/responseApi.md (Ronny Ruhe)
+- ch/Testen/API/CRUDApi.md (Ronny Ruhe)
+
+
 
 ## Reviews to do for Lutz Prechelt
 
@@ -140,6 +142,8 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Testen/Testframeworks/index.md (Ronny Ruhe)
 - ch/Testen/Testframeworks/Robot.md (Ronny Ruhe)
+- ch/Testen/API/restApi.md (Ronny Ruhe)
+
 
 ## Reviews to do for Sven Hüster
 

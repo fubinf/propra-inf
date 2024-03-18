@@ -33,7 +33,7 @@ uns bereits bekannte [Petstore-Seite](https://petstore.swagger.io).
 `available`, `pending`, oder `sold` aus.
 
 In einem Regressionstest möchte man gerne auf Aktionen aufbauen, die bestimmte Daten erzeugen, manipulieren oder einfach nur
-Daten auslasen. Daher werden wir mit diesem Response weiter arbeiten und uns die erhaltenen Daten etwas verfeinern.
+Daten auslassen. Daher werden wir mit diesem Response weiter arbeiten und die erhaltenen Daten etwas verfeinern.
 
 - [ER] Erweitern Sie den Code und filtern Sie den Statuscode aus dem Response.
 - [EQ] Warum ist der Statuscode `200` und nicht `201`?

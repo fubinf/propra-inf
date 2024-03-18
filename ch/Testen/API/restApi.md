@@ -5,6 +5,10 @@ difficulty: 2
 profiles: TEST
 assumes: WebAPIs, pip, requests
 ---
+# Review
+- Fragen zur Restful API: Finde ich als Lernaufgabe nicht so schön. Beispiel bauen ist super. Vielleicht findest du ja eine Möglichkeit, die anderen Dinge da auch irgendwie einzubauen? Also du lässt z.B. den API-Endpunkt so bauen, dass all die erkannten Grundsätze und Regeln da auch angewandt werden müssen.
+- Ähnliches auch für den Teil zum Petstore.
+
 [SECTION::goal::trial]
 
 - Ich habe gelernt, was eine API-Schnittstelle ist
@@ -66,7 +70,7 @@ Lesen Sie den Artikel [REST Web Services](http://www.thomas-bayer.com/resources/
 
 Jetzt widmen wir uns den praktischen Aufgaben zu. nachdem Sie einen Blick in die Petstore-Dokumentation geworfen haben, sind Ihnen bestimmt auch verschiedene Schnittstellen aufgefallen. Diese nutzen wir jetzt, um Informationen zu erhalten.
 
-- [EC] Nutzen Sie folgendes Script, um eine API Anfrage zu senden. Kommentieren und beschreiben Sie die fehlenden TODOs:
+- [EC] Nutzen Sie folgendes Script, um eine API Anfrage zu senden. Kommentieren und beschreiben Sie die enthaltenen TODOs:
 
 ```Python
 # todo 1
