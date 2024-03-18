@@ -74,7 +74,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Linter/flake8.md (Ronny Ruhe)
 - ch/Testen/Linter/flake8_SUT.md (Ronny Ruhe)
 - ch/Werkzeuge/Linter/black.md (Ronny Ruhe)
+
 - ch/Sprachen/grundkenntnisse/PythonVariablenDatentypen.md (Hanen Alrwasheda)
+- ch/Sprachen/grundkenntnisse/PythonComments.md (Hanen Alrwasheda)
 
 ## Reviews to do for Christian Hofmann
 
