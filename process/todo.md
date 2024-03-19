@@ -80,6 +80,8 @@ In alphabetischer Reihenfolge der Dateinamen.
 ### 2.4 Anträge an den Rechnerbetrieb
 
 Was auf den Poolrechnern noch installiert werden muss:
+- pipx
+- python-is-python3
 - ...
 
 
