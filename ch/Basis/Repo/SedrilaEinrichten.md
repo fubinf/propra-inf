@@ -4,15 +4,7 @@ timevalue: 0.25
 difficulty: 2
 requires: Zeiterfassung
 ---
-TODO_1_hofmann:
-1) "In Ihrem ProPra-Verzeichnis führen Sie anschließend folgenden Befehl aus:"
-Als Kursteilnehmer ist "ProPra-Verzeichnis" für mich nicht klar. Meint man hiermit das Repo "propra-inf" oder einfach einen geeigneten (noch leeren) Ordner auf meinem PC, in dem ich meine Arbeit in diesem Modul abspeichere?
 
-2) "Sie werden aufgefordert, die URL dieses Kurses anzugeben"
-Als Kursteilnehmer weiß ich nicht, was die Kurs-URL ist und wo sie überhaupt gefunden werden kann. Bekomme ich diese Info von Tutor_innen?
-
-3) Wo kann ich als Kursteilnehmer die autogenerierte 'student.yaml' Datei finden, um sie abgeben zu können?
----
 [SECTION::goal::idea]
 Ich kann `sedrila` aufrufen und habe meinen Übungspartner und mein Semester
 für die Tutor\_innen festgehalten.
@@ -47,15 +39,22 @@ sudo apt install pipx
 pipx install sedrila
 ```
 
-In Ihrem ProPra-Verzeichnis führen Sie anschließend folgenden Befehl aus:
+In Ihrem ProPra-Verzeichnis (git-Arbeitsverzeichnis) führen Sie anschließend folgenden Befehl aus:
 
 ```
 sedrila student --init
 ```
 
-Sie werden aufgefordert, die URL dieses Kurses anzugeben, zusammen mit einigen
-Daten über sich und ihren Übungspartner.
-Diese Daten werden in einer Datei namens student.yaml festgehalten.
+Sie werden aufgefordert, folgende Daten anzugeben, die Sie zuvor bereithalten sollten:
+- die URL dieses Kurses anzugeben
+- Ihren vollen Namen
+- Ihre Matrikelnummer
+- den vollen Namen Ihrer Paar-Partner_in (oder einen Querstrich, falls Sie allein arbeiten)
+- die Matrikelnummer Ihrer Paar-Partner_in (oder einen Querstrich, falls Sie allein arbeiten)
+
+Diese Daten werden in einer Datei namens `student.yaml` festgehalten.
+Dort können Sie nötigenfalls mit einem Texteditor später auch Änderungen vornehmen
+(in Git einchecken nicht vergessen!), wenn sich ausnahmsweise die Partner_in ändern sollte.
 
 Sie sollten anschließend in der Lage sein, `sedrila student` auszuführen und
 eine Tabelle mit den bisher bearbeiteten Aufgaben sehen. Diese kann noch
@@ -63,11 +62,12 @@ leer sein. In diesem Fall erstellen Sie Commits ihrer bisher bearbeiteten
 Aufgaben (einschließlich dieser hier) in dem Format, das in
 [PARTREF::Zeiterfassung] beschrieben wurde.
 
-Lassen Sie sich nicht von dem "Timevalue TOTAL" abschrecken. Das beinhaltet nur
-bereits akzeptierte Abgaben und entspricht daher nicht der geleisteten Arbeit.
+"Timevalue TOTAL" ist bislang 0, denn das umfasst nur bereits eingereichte und akzeptierte Abgaben.
+Wie man Einreichungen macht, lernen Sie in der nächsten Aufgabe.
 
 [ENDSECTION]
 
 [SECTION::submission::snippet]
-Die Abgabe besteht aus der generierten Datei `student.yaml`.
+Die Abgabe besteht aus der von `sedrila student --init`
+generierten Datei `student.yaml`.
 [ENDSECTION]
