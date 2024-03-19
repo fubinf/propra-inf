@@ -65,7 +65,17 @@ In alphabetischer Reihenfolge der Dateinamen.
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
 - TODO_1_alle: Admonitions durch SECTIONs ersetzen, Admonition-CSS löschen
-- `profiles:`-Header aus allen Tasks entfernen.
+- `profiles:`-Header aus allen Tasks entfernen (die sind optional);
+   dann `profiles` aus sedrila.yaml entfernen, dann aus `sedrila`.
+- Kapitel unbenennen: `web` --> `Web`
+- Taskgroups umbenennen:
+
+  - Große Anfangsbuchstaben für 
+    `grundkenntnisse`, `fortgeschrittenes` , `pythonpraxis` , `Bash` , `Regex`, 
+    `lizenzen`, `debuggingtools`  
+  - `sql` --> `SQL`
+  - `basiswissen` --> `Web-Grundlagen`
+  - `html` --> `HTML`
 
 
 ### 2.3 Korrekturbedarf an sedrila
