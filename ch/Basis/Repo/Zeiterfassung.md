@@ -46,14 +46,14 @@ Entscheiden Sie sich für eine Notation und verwenden Sie diese konsequent.
 
 Sollten Sie mehrere Commits zu derselben Aufgabe anfertigen, geben Sie jeweils die Zeit an,
 die dieser Commit beansprucht hat. Das Ausrechnen der Summe der Commits erfolgt automatisch.
-Auf diesem Weg ist es auch möglich, Zeiten nachträglich einzutragen.
+Auf diesem Weg ist es auch möglich, Zeiten nachträglich einzutragen. 
 
 Die angegebene Zeit spielt keinerlei Rolle für die Anrechnung von Aufgaben.
 Sie dient lediglich zwei Zwecken:
 
 1. Sie gibt Ihnen selbst ein Gefühl dafür, wie viel Zeit Sie tatsächlich in weiteren Aufgaben
    benötigen könnten.
-2. Sie ermöglicht es, den eingeplanten Zeitwert von Aufgaben in zukünftigen Iterationen des
+2. Sie ermöglicht es uns, den eingeplanten Zeitwert von Aufgaben in zukünftigen Iterationen des
    Programmierpraktikums anzupassen.
 
 In diesem Sinne tragen Sie besser gar keine Zeit ein, als sich einen Wert auszudenken,
@@ -61,7 +61,7 @@ der weit von der Realität abweicht, falls Sie keine Erfassung gemacht haben ode
 machen wollen.
 
 Es gibt oben rechts auf jeder Seite ein einfaches Timing-Script, das Sie verwenden können.
-Es liefert auch den Namen der aktuellen Aufgabe.
+Es zeigt beim Stoppen den Eintrag für die Commit-Nachricht der aktuellen Aufgabe.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
@@ -73,24 +73,30 @@ Wir raten, es zu tun, denn Sie können dabei viel lernen und der Aufwand ist ger
 Sie werden in der Praxis häufig vor dem Problem stehen, den Zeitaufwand einer Aufgabe von vornherein einzuschätzen. 
 Dabei ist konkrete Erfahrung, wie sie hier erworben werden kann, sehr hilfreich.
 
+Zusatznutzen: Mit Zeiterfassung macht Ihnen das im ProPra verwendete Werkzeug `sedrila` 
+(das lernen Sie in der nächsten Aufgabe kennen) 
+automatisch die Liste von möglichen Einreichungen bei der Tutor_in.
+Ohne Zeiterfassung müssen Sie die Einträge in Ihrer Einreichungsdatei
+manuell machen.
+
 [ENDSECTION]
 [SECTION::submission::reflection,snippet]
 
 Legen Sie die Markdown-Datei für diese Aufgabe an.  
 Tragen Sie die Antworten auf folgende Fragen ein:  
 
-1. Haben Sie jemals zuvor eine systematische Zeiterfassung gemacht?
-   War das einfach? War es hilfreich?
-2. Haben Sie Scheu davor, Ihre Arbeitszeiten schriftlich festzuhalten? Warum?
-3. Haben Sie Scheu davor, dass Ihre Tutor_innen diese Zeiten einsehen können? 
-   Warum, wenn die doch dafür da sind, Ihnen Lernhilfe und Rückmeldung zu geben?
-4. Werden Sie im ProPra die beschriebene Arbeitszeiterfassung machen?
-   Falls ja: Was vermuten Sie, wie oft sie vergessen werden, das Eintragsformat einzuhalten?
+- [EQ] Haben Sie jemals zuvor eine systematische Zeiterfassung gemacht?
+  War das einfach? War es hilfreich?
+- [EQ] Haben Sie Scheu davor, Ihre Arbeitszeiten schriftlich festzuhalten? Warum?
+- [EQ] Haben Sie Scheu davor, dass Ihre Tutor_innen diese Zeiten einsehen können? 
+  Warum, wenn die doch dafür da sind, Ihnen Lernhilfe und Rückmeldung zu geben?
+- [EQ] Werden Sie im ProPra die beschriebene Arbeitszeiterfassung machen?
+  Falls ja: Was vermuten Sie, wie oft sie vergessen werden, das Eintragsformat einzuhalten?
 
 Machen Sie einen Commit im obigen Format mit Ihrer tatsächlichen Arbeitszeit.
 
 Wenn Sie sich für Arbeitszeiterfassung entschieden haben, sollten Sie die für die
-bisher bereits von Ihnen bearbeitetem Aufgaben nun nachholen:
+bisher bereits von Ihnen bearbeiteten Aufgaben nun nachholen:
 Man kann bei git mit der [Option `--allow-empty`](https://git-scm.com/docs/git-commit) 
 einen Commit machen, ohne eine Datei hinzuzufügen.
 Machen Sie also einen separaten solchen Commit für jede bislang bearbeitete Aufgabe,
@@ -113,5 +119,5 @@ ermutigend zureden: Wir sind auf Ihrer Seite! Arbeitszeiterfassung hilft beim Le
 
 Wenn die sich dann umentscheiden, bitte eine korrigierte Einreichung fordern,
 damit dem Gedanken wirklich die schriftliche Erklärung folgt und sich der Gedanke 
-dadurch festsetzt.
+dadurch hoffentlich festsetzt.
 [ENDINSTRUCTOR]
