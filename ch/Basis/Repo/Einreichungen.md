@@ -1,5 +1,5 @@
 title: Fertige Aufgaben einreichen und angerechnet bekommen
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 2
 requires: SedrilaEinrichten
