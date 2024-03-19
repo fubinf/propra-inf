@@ -89,6 +89,7 @@ Der Zielname ist in unserem Fall also `Kommandoprotokolle.txt` und Sie rufen auf
 Geben Sie diese Datei ab.
 
 Analog werden wir das künftig bei vielen Aufgaben machen.
+
 - Die sehen jeweils so aus, dass bei den Arbeitsschritten einige mit 
   [EC], [EC] usw. markiert sind.
 - Genau diese Schritte sollen im abzugebenden Kommandoprotokoll stehen.
