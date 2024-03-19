@@ -11,6 +11,19 @@ Kraft überbrücken.
 Ubuntu-Linux und Mint sind sehr ähnlich zu Debian,
 aber Arch, Fedora, Suse und diverse andere sind erheblich verschieden.
 
+[NOTICE]
+Falls Sie auf einem öffentlichen Pool-Rechner arbeiten, haben Sie dort keine
+Superuser-Rechte (root-Rechte).
+Das heißt, Sie können die in manchen Aufgaben vorkommenden Kommandos, 
+die mit `sudo` beginnen, nicht ausführen.  
+Soweit dies Kommandos zur Installation von Linux-Paketen sind (`sudo apt install ...`),
+wird das meistens nichts ausmachen, weil die betreffenden Pakete dort schon installiert sind.  
+Die übrigen solchen Aufgaben kann man auf einem Poolrechner nicht bearbeiten;
+sie müssen sich eine neue aussuchen.
+[ENDNOTICE]
+
+
+
 [ENDSECTION]
 [SECTION::goal::product]
 
@@ -43,7 +56,8 @@ dass Python und Pip funktionieren.
 [INCLUDE::CheckPython.inc]
 
 [NOTICE]
-Je nach gewählter Distribution liegen die Programme auch als `python3` und `pip3` statt `python` und `pip` vor.
+Je nach gewählter Distribution liegen die Programme stattdessen oder zusätzlich als 
+`python3` und `pip3` statt `python` und `pip` vor.
 [ENDNOTICE]
 
 [ENDSECTION]
