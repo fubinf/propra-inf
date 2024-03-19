@@ -123,7 +123,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ...
+- ch/Debugging/debuggingtools/gitbisect.md (Dominik Pietrak)
 
 
 ## Reviews to do for Ivan Condric
