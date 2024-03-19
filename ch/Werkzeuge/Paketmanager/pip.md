@@ -83,6 +83,24 @@ Der Paketmanager `pip` kann
    `pip uninstall colorama`
 10. Und wieder das Ergebnis ansehen: `pip freeze`
 
+[WARNING]
+Falls Sie PyCharm Community Edition unter Windows benutzen, dann verwenden Sie zwei
+Python-Interpretierer: Einen unter WSL in der Shell, einen anderen unter PyCharm.
+Wenn die sich beide gleich verhalten sollen (und das sollen sie natürlich),
+dann braucht der unter PyCharm die gleichen pip-Pakete wie der unter WSL.
+
+Sie müssen also jede Installation eines Python-Pakets mit `pip`, die Sie in der Shell vornehmen, 
+in PyCharm von Hand nachvollziehen.
+Das geht am einfachsten, wenn Sie die Paketnamen in eine Datei `requirements.txt`
+in Ihrem Arbeitsverzeichnis eintragen, denn dann bietet PyCharm die Installation von
+alleine an (am oberen Rand).
+
+Bei einem richtig aufgesetzten PyCharm Professional
+(das direkt mit einem WSL-`venv` arbeitet) tritt das Problem nicht auf.
+Bei einem PyCharm (egal ob Community oder Professional), das direkt auf
+Linux oder MacOS arbeitet (also in deren Fenstersystem), tritt es ebenfalls nicht auf.
+[ENDWARNING]
+
 [ENDSECTION]
 [SECTION::submission::trace]
 
