@@ -3,8 +3,8 @@ stage: alpha
 timevalue: 1.0
 difficulty: 2
 explains: JSON
-assumes: PythonDataStructures
 ---
+<!-- assumes: PythonDataStructures -->
 1) "..der gegebenen Informationen ein(e)" -> "..der gegebenen Informationen ein"
 
 --------
