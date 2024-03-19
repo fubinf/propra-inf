@@ -1,12 +1,18 @@
 title: Python IDE in Windows installieren
 stage: draft
 timevalue: 1.0
-difficulty: 1
-profiles:
+difficulty: 2
 explains:
 assumes:
 requires: Unix-Umgebung
 ---
+TODO_1_wegner:
+
+- mindestens bei PyCharm Community Edition muss man sich um eine git-Installation kümmern. 
+- eigentlich sollte man auch bei PyCharm Community Edition mit einem venv arbeiten.
+  Da das aber im Basiskapitel noch gar nicht dran kommt, verschweigen wir das hier
+  und fügen 
+
 
 [SECTION::goal::idea]
 
@@ -18,29 +24,38 @@ Ich habe eine funktionierende IDE auf Windows und kann diese in Zusammenarbeit m
 
 Auf Windows haben Sie die Wahl zwischen drei verschiedenen IDEs, mit denen sich dieser Kurs absolvieren lässt:
 
-#### PyCharm Professional  
-- Empfohlene Variante, da sie hier nativ mit der WSL arbeiten können. Allerdings müssen Sie vorher bei JetBrains das
+### 1. PyCharm Professional  
+- Empfohlene Variante, da sie hier nativ mit der WSL arbeiten können. 
+- Allerdings müssen Sie vorher bei JetBrains das
   "Product Pack for Students" beantragen, um die Version kostenlos verwenden zu können. Hierfür benötigen Sie eine
   Immatrikulationsbescheinigung für das aktuelle bzw. falls verfügbar für das kommende Semester. Diese können Sie im
   ZEDAT-Portal herunterladen. Die Beantragung kann bis zu einer Woche dauern und muss ggf. einmal pro Semester
   wiederholt werden.
+- Empfohlen.
 
-#### PyCharm Community Edition  
+### 2. PyCharm Community Edition  
 - Diese Version ist kostenlos, arbeitet aber nicht mit dem WSL zusammen, weshalb zusätzlich eine Python-Installation auf
-  Windows vorhanden sein muss. Die Verwaltung beider Python-Environments könnte auf Dauer aufwendig und vor allem für
-  Anfänger verwirrend werden. Verwenden Sie die Variante daher nur, wenn Sie Probleme bei der Aktivierung der Pro-Lizenz
-  haben.
+  Windows vorhanden sein muss. 
+- Die Verwaltung beider Python-Environments könnte auf Dauer aufwendig und vor allem für
+  Anfänger verwirrend werden. 
+- Empfohlen nur, wenn Sie Probleme bei der Aktivierung der PyCharm-Pro-Lizenz haben.
 
-#### Visual Studio Code  
-- Arbeitet problemlos mit dem WSL zusammen und ist. Da der Kurs auf PyCharm aufgebaut ist, können vor allem bei fortgeschrittenen
+### 3. Visual Studio Code  
+- Arbeitet problemlos mit dem WSL zusammen. 
+- Da der Kurs jedoch vorrangig auf PyCharm aufgebaut ist, können vor allem bei fortgeschrittenen
   Themen benötigte IDE-Features anders funktionieren. Hier müssen Sie ggf. selbst nach alternativen Wegen suchen.
-  Empfohlen für Teilnehmer, die VS Code bereits im Alltag nutzen.
+- Empfohlen für Teilnehmer, die VS Code bereits im Alltag nutzen und keine weitere IDE lernen möchten.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### PyCharm Professional
+Wenn Sie sich schon für eine IDE entschieden haben, 
+brauchen Sie nur einen der drei Abschnitte zu bearbeiten.
+Wenn Sie noch unsicher sind, lesen Sie vielleicht in alle Abschnitte rein, 
+was da für die Installation auf Sie zukommt. 
+
+### 1. PyCharm Professional
 
 #### Beantragen des "Product Pack for Students"
 
@@ -81,7 +96,8 @@ diesen Schritt überspringen.
 - Wählen Sie im nächsten Fenster links "System Interpreter" aus. Im Drop-Down-Menü rechts sollte der WSL-Python
   Interpreter `/usr/bin/python3` ausgewählt sein.
 
-### PyCharm Community Edition
+
+### 2. PyCharm Community Edition
 
 #### Python 3.11 auf Windows installieren
 
@@ -110,10 +126,18 @@ Die auf Windows installierte Python-Version unterscheidet sich von der im WSL in
 die IDE wird ihr Code immer mit der Windows-Version ausgeführt, für die Abgabe muss aber ihr Code immer über das WSL
 ausgeführt werden.
 
-Wenn Sie beispielsweise weitere Pakete installieren, müssen Sie dies immer in beiden Installationen vornehmen.
+Das kann zu Problemen führen:
+
+- Es gibt kleine Unterschiede zwischen Python auf Linux und Python auf Windows,
+  insbesondere beim Format von Dateinamen.
+- Wenn Sie zusätzliche Python-Pakete installieren (was für viele Aufgaben nötig sein wird), 
+  müssen Sie dies immer in beiden Installationen vornehmen, 
+  was ebenso lästig wie fehleranfällig ist.
+  Lesen Sie zur Information schon jetzt den Warnhinweis in der Aufgabe [PARTREF::pip].
 [ENDWARNING]
 
-### Visual Studio Code
+
+### 3. Visual Studio Code
 
 #### VS Code herunterladen und installieren
 
