@@ -32,15 +32,59 @@ instructors:
   - nameish: Lutz Prechelt
     email: prechelt@inf.fu-berlin.de
     gitaccount: prechelt
-    keyfingerprint: D39826E6F5ED9171C452932565C4F8F4D817AFE2
+    keyfingerprint: 65C4F8F4D817AFE2
+    pubkey: >
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
+
+      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
+      =CPKo
+      -----END PGP PUBLIC KEY BLOCK-----
   - nameish: Christian
     email: myname@mynery.eu
     gitaccount: c.hofmann
-    keyfingerprint: 22C7664CCFB337CD3B3377F109226547CCFC767D
+    keyfingerprint: ""
+    pubkey: ""
   - nameish: Ronny
     email: ronnyruhe@icloud.com
     gitaccount: ronnyruhe
-    keyfingerprint: 5A29244E5855AAAB3CAD016696C3AF9A5065861B
+    keyfingerprint: ""
+    pubkey: 
 init_data:
   studentprompts:
     student_name: Eigener Name
