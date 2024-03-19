@@ -1,5 +1,5 @@
 title: Schwierigkeitsstufen verstehen
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 2
 ---
@@ -82,37 +82,57 @@ länger zu dauern als man dachte.
 [ENDSECTION]
 [SECTION::instructions::loose]
 
+### In die Schwierigkeitsstufen einlesen
+
 Suchen Sie im Inhaltsverzeichnis je eine Aufgabe auf Stufe "einfach [DIFF::2]",
 Stufe "mittel [DIFF::3]" und Stufe "schwierig [DIFF::4]",
 die Ihnen interessant vorkommt.
 (Nehmen Sie zügig irgendwelche; es ist nicht wichtig, dass es eine "gute" Auswahl ist.)
 
 Lesen Sie die Aufgaben grob(!) durch.
-Achten Sie dabei darauf, wie konkret und detailliert (oder eben nicht) die Anleitung
+Achten Sie dabei hauptsächlich darauf, wie konkret und detailliert (oder eben nicht) die Anleitung
 geschrieben ist.
 
 Wiederholen Sie das mit zwei weiteren Tripeln solcher Aufgaben.
 
+- [EQ] Welche drei einfachen Aufgaben haben Sie sich angesehen?  
+- [EQ] Welche drei mittelschwierigen?  
+- [EQ] Welche drei schwierigen?
+
+
+### Die Schwierigkeit ist oft etwas variabel
+
+Bei vielen Aufgaben gibt es farbige Kästen, die mit "Hinweis (nur bei Bedarf)" betitelt sind.
+Wenn man die aufklappt, findet man eine Information, die das Lösen der Aufgabe erleichtert.
+
+Dadurch kann man den Schwierigkeitsgrad der Aufgabe etwas absenken.
+Oder ihn erhöhen, indem man sich das Öffnen dieser Kästen auch bei Ratlosigkeit versagt.
+
+
+### Reflektion über den richtigen Schwierigkeitsgrad
+
+- [EQ] Welche Schwierigkeitsstufe ist die, in der Sie anfangs vor allem arbeiten möchten?
+  Warum?
+- [EQ] Was vermuten Sie, wieviel Prozent einfache und wieviel Prozent mittlere Aufgaben
+  werden Sie _in der ersten Hälfte_ Ihres Programmierpraktikums machen wollen?
+- [EQ] Wieviel in der zweiten Hälfte?
+
 [ENDSECTION]
 [SECTION::submission::reflection]
 
-Geben Sie eine Markdown-Datei ab, die folgende Fragen beantwortet:
-- Q1: Welche drei einfachen Aufgaben haben Sie sich angesehen?  
-  Welche drei mittelschwierigen?  
-  Welche drei schwierigen?
-- Q2: Welche Schwierigkeitsstufe ist die, in der Sie anfangs vor allem arbeiten möchten?
-  Warum?
-- Q3: Was vermuten Sie, wieviel Prozent einfache und wieviel Prozent mittlere Aufgaben
-  werden Sie _in der ersten Hälfte_ Ihres Programmierpraktikums machen wollen?
-- Q4: Wieviel in der zweiten Hälfte?
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Es kommt auf das "Warum" an]
-Entscheidend ist eine schlüssige Antwort auf das "Warum".
+Entscheidend ist eine schlüssige Antwort auf das "Warum" bei [EREFQ::4].
 
-Wer bei Q3 vor allem "schwierig" bearbeiten will, sollte wahrscheinlich 
+Wer dort vor allem "schwierig" bearbeiten will, sollte wahrscheinlich 
 etwas gebremst werden: Grundwissen, wo man sich noch nicht gut auskennt, lässt sich
 viel besser in Stufen "einfach" oder "mittel" aufbauen.
+
+Wer auch später allem "sehr einfach" bearbeiten will, wird angespornt,
+sich mehr zuzutrauen: Im ProPra passiert das Lernen sehr effektiv.
+Wenn man richtig mitmacht, geht es zügig voran mit dem eigenen Können.
 [ENDINSTRUCTOR]
 
