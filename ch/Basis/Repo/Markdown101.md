@@ -1,7 +1,8 @@
 title: Das kleine Einmaleins von Markdown
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 1
+requires: Kommandoprotokolle
 ---
 
 [SECTION::goal::idea]
@@ -13,14 +14,28 @@ difficulty: 1
 
 [SECTION::background::default]
 
-[TERMREF::Markdown] ist eine Markup-Sprache, die einfach schreibbar ist, einfach lesbar ist und es
-erlaubt relativ schnell strukturierte Texte zu schreiben. Die Dateiendung für Markdown-Dateien ist
-`.md`.
-Sie finden [hier](https://gist.github.com/pixelspencil/87dfff9816e4bf41f5f6e5bf62eebff4)
+Sie werden im gesamten ProPra neben Kommandoeingaben bzw. Kommandoausgaben 
+auch an vielen Stellen selbst Texte schreiben, um etwas zu erklären 
+oder über ein Thema zu reflektieren.
+
+Sollten Sie noch keinen Berührungspunkt mit Markdown gehabt haben, ist diese Aufgabe 
+Ihre Chance das nachzuholen.
 
 [ENDSECTION]
 
 [SECTION::instructions::loose]
+
+[TERMREF::Markdown] ist eine Markup-Sprache, die einfach schreibbar ist, einfach lesbar ist und es
+erlaubt relativ schnell strukturierte Texte zu schreiben. 
+Die Dateiendung für Markdown-Dateien ist `.md`.
+Sie finden [hier](https://gist.github.com/pixelspencil/87dfff9816e4bf41f5f6e5bf62eebff4)
+eine Beschreibung der Elemente und Strukturen eines Markdown-Dokuments.
+
+Mit etwas Übung sind Markdown-Texte auch in ihrer Rohform gut lesbar.
+Allerdings hilft es gerade am Anfang, direkt zu sehen, was das Markup im Text bewirkt.
+Dafür gibt es in den gängigen Editoren Plugins, die direkt die "hübsche" Version zeigen.  
+Damit Sie direkt sehen können, wie der von Ihnen geschriebene Markup-Text aussieht, 
+können Sie gerne einen Online-Editor wie [StackEdit.io](https://stackedit.io/) verwenden.
 
 ### Welche Formatierungmöglichkeiten gibt es in Markdown?
 
@@ -34,7 +49,7 @@ Texte können **fett**, *kursiv* oder ~~durchgestrichen~~ sein.
 
 Bis zu diesem Zeitpunkt wurden vier Überschriftenebenen benutzt.
 
-- [ER] Erstellen Sie ein Layout mit 5 Überschrift-Ebenen
+- [ER] Erstellen Sie ein Layout mit fünf Überschrift-Ebenen.
 
 #### Listen
 
@@ -62,10 +77,12 @@ Man kann beide Arten von Listen auch verschachteln:
 Häufig ist es nützlich wenige Code-Zeilen zu zeigen.
 
 ```python
-    print("Das ist ein Codeblock!")
+import antigravity
+
+antigravity.fly()
 ```
 
-- [ER] Erstellen Sie ein `bash` Codeblock
+- [ER] Erstellen Sie ein `bash` Codeblock.
 
 
 #### Blockzitate
@@ -82,11 +99,6 @@ und noch vieles mehr. Einige der Beispiele dafür finden Sie in der oben genannt
 einen Markdown-Editor schreibt, kann man auch selbst Strukturen entwerfen.
 [Hier](https://gist.github.com/pixelspencil/87dfff9816e4bf41f5f6e5bf62eebff4#github-treats) stehen
 ein paar Beispiele für Konstrukte, die auf GitHub möglich sind.
-
-[WARNING]
-Es kann sein, dass Ihre Abgabe farblich nicht der Aufgabenseite gleicht. Lassen Sie sich nicht davon
-stören, das ist nicht Teil der Aufgabe. Wichtig ist es sich mit der Struktur auseinanderzusetzen!
-[ENDWARNING]
 
 [ENDSECTION]
 
