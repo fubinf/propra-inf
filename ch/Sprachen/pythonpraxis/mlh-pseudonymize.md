@@ -1,5 +1,5 @@
 title: "My Little Helpers: pseudonymize: filter for replacing person-identifiable data"
-stage: alpha
+stage: beta
 timevalue: 4.0
 difficulty: 3
 explains: Logfile
@@ -73,7 +73,7 @@ Dann sieht die Ausgabe u.U. so aus:
 2024-03-12T11:28:11Z logout user001
 ```
 
-Damit das passiert, sieht der `configfile` z.B. so aus
+Damit das passiert, sieht die `configfile` z.B. so aus
 (übertragen Sie diese Daten in die Datei `mlh/config/login.pseu`)
 
 ```
@@ -141,10 +141,11 @@ sondern "in einem Rutsch" mit einem regulären Ausdruck.
 Für R1 und R4 bis R9 müssen Sie die Verschachtelungstiefe von Klammern mitzählen.  
 Für R1 und R9 müssen Sie mitzählen, ob die zusätzliche "künstliche" Klammer auf
 der obersten Eben gerade geöffnet ist oder nicht.  
-Für R2 und R3 müssen Sie mitzählen, wieviele Regexp-Gruppen schon gebildet wurden.  
+Für R2 und R3 müssen Sie mitzählen, wie viele Regexp-Gruppen schon gebildet wurden.  
 [ENDHINT]
 
 [HINT::Wie sollte man die Logik in der Programmstruktur abbilden?]
+
 - Obige Zustandsvariablen könnten z.B. heißen `paren_level: int`, `artificial_paren_open: bool`,
   `groups: int`.
 - Es kann bequem sein diese (und weitere) Zustandsvariable in `self` einzutragen,
@@ -153,6 +154,7 @@ Für R2 und R3 müssen Sie mitzählen, wieviele Regexp-Gruppen schon gebildet wu
   Hilfsfunktionen einzuführen. 
   Das erleichtert die Korrektur Ihrer kaum vermeidlichen Programmierfehler sehr.
 - Stellen Sie sich darauf ein, für den Konstruktur ca. 100 Programmzeilen zu brauchen.
+
 [ENDHINT]
 
 
