@@ -46,7 +46,8 @@ sedrila student --init
 ```
 
 Sie werden aufgefordert, folgende Daten anzugeben, die Sie zuvor bereithalten sollten:
-- die URL dieses Kurses anzugeben
+
+- die URL der Homepage des ProPras
 - Ihren vollen Namen
 - Ihre Matrikelnummer
 - den vollen Namen Ihrer Paar-Partner_in (oder einen Querstrich, falls Sie allein arbeiten)
