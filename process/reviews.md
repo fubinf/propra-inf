@@ -39,7 +39,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
-
 - ch/Testen/Basiswissen/index.md (Ronny Ruhe)
 - ch/Testen/Basiswissen/error.md (Ronny Ruhe)
 - ch/Testen/Basiswissen/errorExercise1.md (Ronny Ruhe)
@@ -77,6 +76,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/grundkenntnisse/PythonIntegers.md (Hanen Alrwasheda)
 - ch/Sprachen/grundkenntnisse/PythonFloats.md (Hanen Alrwasheda)
 
+
 ## Reviews to do for Christian Hofmann
 
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-01.md (Dominik Pietrak)
@@ -104,6 +104,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
 - ch/Basis/Repo/SedrilaEinrichten.md (Christian Hofmann)
+- ch/Basis/Repo/Einreichungen.md (Lutz Prechelt)
 
 - ch/Bestandscode/Refactoringpraxis/01gildedrose_tests.md (Dominik Pietrak)
 - ch/Bestandscode/Refactoringpraxis/02gildedrose_refactor.md (Dominik Pietrak)
@@ -115,17 +116,15 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/API/CRUDApi.md (Ronny Ruhe)
 
 
-
 ## Reviews to do for Lutz Prechelt
 
-- ch/Sprachen/pythonpraxis/mlh-lsnew (zurück von Ronny Ruhe)
-- ch/Basis/Repo/Zeiterfassung.md (Lutz Prechelt)
-- ch/Basis/Repo/Shellprompt.md (Lutz Prechelt)
+- ...
 
 
 ## Reviews to do for Hanen Alrwasheda
 
 - ...
+
 
 ## Reviews to do for Ivan Condric
 
@@ -155,6 +154,8 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Sven Wegner
 
+- ch/Werkzeuge/Paketmanager/venv.md (Lutz Prechelt)
+- ch/Werkzeuge/Paketmanager/pip.md (Lutz Prechelt)
 - ch/Bibliotheken/Frameworks/argparse-subcommand.md (Lutz Prechelt)
 
 
