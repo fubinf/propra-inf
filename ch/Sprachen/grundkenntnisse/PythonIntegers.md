@@ -53,30 +53,34 @@ In Python können alle grundlegenden arithmetischen Operationen durchgeführt we
 
     # Addition
     ergebnis_addition = x + y
-    print(ergebnis_addition)
+    print("Addition:", ergebnis_addition)
 
     # Subtraktion
     ergebnis_subtraktion = x - x
-    print(ergebnis_subtraktion)
+    print("Subtraktion:", ergebnis_subtraktion)
 
     # Multiplikation
     ergebnis_multiplikation = x * y
-    print(ergebnis_multiplikation)
+    print("Multiplikation:", ergebnis_multiplikation)
 
     # Division
     ergebnis_division = y / x
-    print(ergebnis_division)
+    print("Division:", ergebnis_division)
+
+    # Ganzzahlige Division: Ergebnis wird auf die nächstgelegene Zahl gerundet
+    ergebnis_ganzzahlige_division = y // x
+    print("Ganzzahlige Division:", ergebnis_ganzzahlige_division)
 
     # Modulo (Rest der Division)
     ergebnis_modulo = y % x
-    print(ergebnis_modulo)
+    print("Modulo:", ergebnis_modulo)
 
     # Potenz
     ergebnis_potenz = y ** x
-    print(ergebnis_potenz)
+    print("Potenz:", ergebnis_potenz)
 ```
 
-[ER] Führen Sie den obigen Python-Code in Ihrer Programmierumgebung aus und notieren Sie neben jedem `print()`-Aufruf das Ergebnis. Geben Sie den obigen Code mit Ihrem Ergbeniskommentaren ab.
+[ER] Führen Sie den obigen Python-Code in Ihrer Programmierumgebung aus und notieren Sie neben jedem `print()`-Aufruf das Ergebnis. Geben Sie den obigen Code mit Ihren Ergbeniskommentaren ab.
 
 ### Beantworten Sie dazu folgende Fragen:
 
