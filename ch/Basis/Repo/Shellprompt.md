@@ -126,7 +126,7 @@ bei jedem einzelnen Kommando den Prompt etwas verlangsamen.
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::Prompt-Elemente vorhanden?]
 Nur kontrollieren, ob die obigen Bedingungen von
 "Prompt selber bauen" eingehalten sind.
 Die Kontrolle erfolgt anhand der Abgabe zu [PARTREF::Kommandoprotokolle].
