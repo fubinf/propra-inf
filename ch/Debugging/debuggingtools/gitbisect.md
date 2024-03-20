@@ -1,5 +1,5 @@
 title: git bisect
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 3
 ---
