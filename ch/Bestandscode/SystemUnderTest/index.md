@@ -5,5 +5,5 @@ Datenbankmanagementsystem oder ein beliebiges Softwareprodukt sein, das entwicke
 darauf überprüft wird, ob es den Anforderungen entspricht und wie gut es funktioniert.
 
 Das hier entwickelte SUT dient hauptsächlich der Taskgroup [PARTREF::Testen], nin den Bereichen
-[PARTREF::Unittests] und [PARTREF::SUT], aber auch [PARTREF::Linter], um die dynamische und
+[PARTREF::Unittests] und [PARTREF::Betriebsumgebung], aber auch [PARTREF::Linter], um die dynamische und
 statische Qualitätssicherung in der Praxis anzuwenden.
