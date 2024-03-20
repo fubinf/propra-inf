@@ -22,9 +22,11 @@ manpages durch.
 Schauen Sie sich die Manpages von find und von grep an. Sie müssen sich die 
 Manpage nicht komplett durchlesen. Sie sollen nur einen Überblick über die 
 Seite bekommen.
+
 - [EQ] Wie finden Sie diese manpage?
 
 Schauen Sie sich die manpage von locate an.
+
 - [EQ] Wie finden Sie im Gegensatz zur oberen diese manpage?
 - [EQ] Mit welcher manpage würden Sie persönlich eher Informationen finden?
 
