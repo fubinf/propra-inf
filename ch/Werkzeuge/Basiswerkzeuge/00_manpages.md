@@ -4,7 +4,7 @@ timevalue: 1.0
 difficulty: 1
 ---
 
-[SECTION::goal::product/idea/experience/trial]
+[SECTION::goal::idea]
 Ich verstehe wie ich mir Infos aus Manpages holen kann, wenn ich nicht mehr weiter komme.
 [ENDSECTION]
 
