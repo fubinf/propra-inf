@@ -118,7 +118,7 @@ chapters:
       - slug: Unittests
       - slug: API
       - slug: Testframeworks
-      - slug: SUT
+      - slug: Betriebsumgebung
   - slug: Debugging
     taskgroups:
       - slug: Denkweisen
