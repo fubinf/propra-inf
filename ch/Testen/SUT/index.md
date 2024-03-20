@@ -1,12 +1,22 @@
-title: System under Test
+title: Betriebsumgebung für ein System-under-Test
 ---
-Das Testen eines Systems soll idealer Weise unter so realistischen Bedingungen wie möglich
-durchgeführt werden, um die Funktionalität, Leistung und Zuverlässigkeit eines Produkts zu
-überprüfen und sicherzustellen. Hierbei wird u.a. auch die eingesetzt Umgebung betrachtet. Wo
-stelle ich mein [TERMREF::SUT] zur Verfügung? Welche Hardwareanforderungen stelle ich zur Verfügung?
+Das Testen eines [TERMREF::SUT] soll idealerweise unter so realistischen Bedingungen wie möglich
+durchgeführt werden, um die Funktionalität, Leistung und Zuverlässigkeit eines Produkts 
+zutreffend überprüfen und sicherzustellen zu können. 
+Bei umfangreichen Anwendungssystemen stellt das ein erhebliches Problem dar.
 
-Unser SUT wird diese Vorbetrachtung nicht benötigen, da wir lediglich zu Lernzwecken Funktionen
-betrachten, ändern, oder erweitern wollen. Daher nutzen wir unser System zu aller Erst lokal
-(d.h. auf Ihrem Rechner), aber auch in einer Serviceumgebung wie z.B. GitHub.
+Bei dem heute häufigsten Fall, einer Webanwendung, gibt es folgende typische Sorten
+von Betriebsumgebung für das Testen:
 
-Eine Einführung zum SUT finden Sie unter [PARTREF::SystemUnderTest].
+- Entwickler_innen-Rechner, zum automatischen und manuellen Testen durch die 
+  Entwickler_innen direkt während der Entwicklung.
+- Build-Umgebung, zum automatisierten Testen, wenn neue Codebeiträge in die Versionsverwaltung
+  gepusht wurden.
+- Staging- oder Qualitätssicherungsumgebung, wo man versucht, die endgültige Betriebsumgebung
+  ("Produktionsumgebung") ziemlich genau zu duplizieren.
+
+Für unser einfaches SUT (siehe die Einführung unter [PARTREF::SystemUnderTest])
+ist das noch nicht sehr kompliziert.
+Zudem fallen die Fälle 1 und 3 weitgehend zusammen.
+
+Dennoch gibt es dazu einiges zu lernen und das ist der Zweck dieser Aufgabengruppe.
