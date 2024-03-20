@@ -32,8 +32,9 @@ instructors:
   - nameish: Lutz Prechelt
     email: prechelt@inf.fu-berlin.de
     gitaccount: prechelt
+    webaccount: prechelt
     keyfingerprint: 65C4F8F4D817AFE2
-    pubkey: >
+    pubkey: |
       -----BEGIN PGP PUBLIC KEY BLOCK-----
 
       mQGNBGN0ol4BDADHc9sKSsU2SdQbsAvwx9vBwqlCcYtUySfRjMzaUWmlWdzzWByS
@@ -77,14 +78,25 @@ instructors:
       -----END PGP PUBLIC KEY BLOCK-----
   - nameish: Christian
     email: myname@mynery.eu
-    gitaccount: c.hofmann
+    gitaccount: chofmann
+    webaccount: chofmann
     keyfingerprint: ""
     pubkey: ""
   - nameish: Ronny
     email: ronnyruhe@icloud.com
     gitaccount: ronnyruhe
+    webaccount: ronnyruhe
     keyfingerprint: ""
     pubkey: 
+htaccess_template: |
+    AuthName "FU Berlin, FB Mathematik/Informatik"
+    AuthType Basic
+    AuthBasicProvider ldap
+    AuthBasicAuthoritative on                                       
+    AuthLDAPGroupAttributeIsDN off                                  
+    AuthLDAPGroupAttribute memberUid                                
+    AuthLDAPUrl "ldaps://ldap1.imp.fu-berlin.de ldap2.imp.fu-berlin.de ldap3.imp.fu-berlin.de/ou=People,ou=mi,dc=imp,dc=fu-berlin,dc=de?cn"
+    Require ldap-user {userlist_quotes_spaces}
 init_data:
   studentprompts:
     student_name: Eigener Name
