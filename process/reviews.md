@@ -120,7 +120,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Basis/Repo/Markdown101.md (Dominik Pietrak)
+- ...
 
 
 ## Reviews to do for Ivan Condric
@@ -162,3 +162,5 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Dominik Pietrak
+
+- ch/Basis/Repo/Markdown101.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)

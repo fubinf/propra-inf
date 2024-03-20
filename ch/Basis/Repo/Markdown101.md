@@ -4,6 +4,8 @@ timevalue: 0.5
 difficulty: 1
 requires: Kommandoprotokolle
 ---
+TODO_1_pietrak:
+Die vorgeschlagene Form der Abgabe nutzt "Submission-Markdowndokument.md". Es wird gesagt: "...Antworten zu den oben gestellten Fragen F1, F2, … Geben Sie diese Marker mit an.". Die Aufgabe aber nutzt überall [ER] (A1, A2, ..). Also vielleicht den Abgabetext anpassen, damit sich der Bearbeiter nicht fragt, wo man all die F1, F2, .. finden kann. 
 
 [SECTION::goal::idea]
 
