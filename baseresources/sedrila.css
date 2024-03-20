@@ -438,12 +438,16 @@ summary {}
     margin-bottom: 2ex;
 }
 
-.assumes-links::before {
-    content: "Assumes: "
+.assumedby-requiredby-linkblock {
+    margin-top: 2ex;
 }
 
-.requires-links::before {
-    content: "Requires: "
+.assumedby-links::before {
+    content: "Assumed by: "
+}
+
+.requiredby-links::before {
+    content: "Required by: "
 }
 
 
