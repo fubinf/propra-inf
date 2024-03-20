@@ -79,7 +79,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Christian Hofmann
 
-- ch/Debugging/Debugging-Praxis/Einkaufsliste-01.md (Dominik Pietrak)
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-02.md (Dominik Pietrak)
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-03.md (Dominik Pietrak)
 

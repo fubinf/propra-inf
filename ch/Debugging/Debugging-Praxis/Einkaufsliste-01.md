@@ -1,5 +1,5 @@
 title: Finden eines Defekts mittels Debugger und Fehlermeldungen
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: IDE-Debugging
@@ -13,7 +13,7 @@ Ich bin in der Lage mittels Debugger durch ein Programm zu navigieren und zielst
 
 ### Was soll das Programm können?
 
-- Das Programm `grocery_list.py` soll Ihnen im Terminal 10 Gerichten anzeigen und Ihnen 
+- Das Programm `grocery_list.py` soll Ihnen im Terminal 10 Gerichte anzeigen und Ihnen 
   ermöglichen, eine Einkaufsliste für ein von Ihnen zusammengestelltes Menü zusammenzustellen.
 - Das Menü darf aus mehreren, auch doppelten, Gerichten bestehen.
 - Zum Beispiel würde die Eingabe `0,0,4` das Menü "2x `spaghetti bolognese` und 1x `shrimp 
@@ -44,13 +44,14 @@ Ich bin in der Lage mittels Debugger durch ein Programm zu navigieren und zielst
 - In der Fehlermeldung werden Ihnen vier Zeilen im Quellcode genannt.
   Lesen Sie diese Liste von unten nach oben: 
     - [EQ] Was für eine Art von [TERMREF::Defekt] liegt vor? 
-    - [EQ] Welches ist die erste Zeile, in der der [TERMREF::Defekt] auftritt?
-    - [EQ] Welcher Funktionsaufruf löst den Defekt aus?
+    - [EQ] Welches ist die erste Zeile, in der der Defekt sichtbar wird?
+    - [EQ] Welcher Funktionsaufruf löst das [TERMREF::Versagen] aus?
 - Öffnen Sie nun `grocery_list.py` in PyCharm.
-- Setzen Sie einen [TERMREF::Breakpoint] auf der in [EREFQ::2] gefundenen Zeile und starten Sie den Debugger.
+- Setzen Sie einen [TERMREF::Breakpoint] auf die in [EREFQ::2] gefundene Zeile und starten Sie 
+  den Programmlauf mit dem Debugger.
 - [EQ] Prüfen Sie den Wert der Variable, die in [EREFQ::3] als Argument des Funktionsaufrufs 
   mitgegeben wird.
-- [EQ] Geben Sie über die Konsole des Debuggers die in [EREFQ::3] gefundene Funktion auf. 
+- [EQ] Rufen Sie über die Konsole des Debuggers die in [EREFQ::3] gefundene Funktion auf. 
   Geben Sie als Argument den Wert der Variable aus [EREFQ::4] ein.
   Sie werden eine Fehlermeldung erhalten.
   Um was für einen Fehler handelt es sich?
@@ -73,9 +74,9 @@ finden Sie in den Aufgaben [PARTREF::jsonBasic] und [PARTREF::jsonExercise] eine
 [ENDHINT]  
 
 - [EQ] Sehen Sie sich noch einmal den entstehenden Rückgabetypen an und die Stelle, an der der 
-  Defekt das erste mal aufgefallen ist: Welcher Datentyp wird von der aufrufenden Stelle 
+  Defekt das erste Mal aufgefallen ist: Welcher Datentyp wird von der aufrufenden Stelle 
   eigentlich erwartet?
-- [ER] Implementieren Sie einen Fix an der in [EREFQ::6] gefundenen Stelle, der den richtigen 
+- [ER] Implementieren Sie eine Korrektur an der in [EREFQ::6] gefundenen Stelle, der den richtigen 
   Datentypen zurückgibt.
 - [EC] Führen Sie das Programm `grocery_list.py` im Terminal aus. 
   Geben Sie die Ausgabe des Programms mit der Eingabe `0,0,4` an.
