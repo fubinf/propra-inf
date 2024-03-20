@@ -1,8 +1,7 @@
 title: pprint - Daten leserlich formatiert ausgeben
-stage: draft
-timevalue: 0.5
+stage: alpha
+timevalue: 1
 difficulty: 2
-profiles:
 explains:
 assumes: jsonExercise, open
 requires:
@@ -17,7 +16,7 @@ Ich weiß, wie ich auch komplexere Datensätze über die Kommandozeile lesbar fo
 
 Daten über die Kommandozeile auszugeben ist wohl eines der grundlegendsten Features jeder Programmiersprache und
 meistens das Erste, was man beim Erlernen einer neuen Programmiersprache lernt (HelloWorld). Möchte man aber komplexere
-Datenstrukturen ausgeben, kann ein simpler `print()`-Befehl schnell unleserlich werden, und das manuelle Formatieren der
+Datenstrukturen ausgeben, kann ein simpler `print()`-Befehl schnell unleserlich werden und das manuelle Formatieren der
 Datenstruktur ist repetitiv und zeitaufwändig. Daher bietet die Standardbibliothek mit `pprint` (Pretty Print) ein Tool,
 dass einem im Alltag einiges an Zeit und Arbeit sparen kann.
 
@@ -25,7 +24,7 @@ dass einem im Alltag einiges an Zeit und Arbeit sparen kann.
 
 [SECTION::instructions::detailed]
 
-- Legen Sie die Datei `pprint_task.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. Fügen Sie ihre Python
+- Legen Sie die Datei `m_pprint.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. Fügen Sie ihre Python
   Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile getrennt.
 - Kopieren Sie den folgenden Code-Block und speichern diesen in einer JSON-Datei im selben Verzeichnis.  
 ```json
@@ -64,8 +63,8 @@ dass einem im Alltag einiges an Zeit und Arbeit sparen kann.
 
 - Geben Sie das Objekt `data` zuerst einmal mit `print()` aus (Die Ausgabe muss nicht ins Kommandoprotokoll). Finden
   Sie, die Ausgabe ist sinnvoll lesbar?
-- [EQ] Überlegen Sie, wie eine Funktion aussehen könnte, die mithilfe von `print()` eine besser lesbare Ausgabe erzeugt.
-  (nur überlegen, nicht implementieren). Welche Herausforderungen könnten dabei auftreten?
+- [EQ] Beschreiben Sie, wie eine Funktion aussehen könnte, die mithilfe von `print()` eine besser lesbare Ausgabe
+  erzeugt. (nur beschreiben, nicht implementieren). Welche Herausforderungen könnten dabei auftreten?
 - Finden Sie in der [Dokumentation von pprint](https://docs.python.org/3/library/pprint.html) eine Funktion, mit der sie
   `data` mithilfe der Bibliothek ausgeben können. Fügen Sie hinter ihrem Befehl den Kommentar `# Antwort 1` ein.
 
@@ -82,7 +81,7 @@ dass einem im Alltag einiges an Zeit und Arbeit sparen kann.
 
 ### Programmlauf für die Abgabe
 
-- [EC] Führen Sie das gesamte so erzeugte Programm `pprint_taks.py` einmal aus.
+- [EC] Führen Sie das gesamte so erzeugte Programm `m_pprint.py` einmal aus.
 
 [ENDSECTION]
 
