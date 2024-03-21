@@ -1,13 +1,11 @@
 title: "Kontrollstrukturen in Python: Fallunterscheidung mit der if-Anweisung"
-stage: draft
+stage: alpha
 timevalue: 0.75
 difficulty: 1
-requires: PythonBooleans
+requires: PythonBooleans, PythonIntegers
+assumes: PythonCasting, PythonStrings, PythonComments
 ---
-<!--
-noch in Bearbeitung
-*1: link to PythonCasting
--->
+
 [SECTION::goal::idea]
 
 - Ich verstehe, wie Fallunterscheidung in Python mit der bedingten `if`-Anweisung simuliert werden kann.
@@ -83,7 +81,7 @@ if Bedingung:
 
 [HINT::Boolean-Werte von Strings]
 
-Lesen Sie die Aufgabe PythonCasting (*1), dort ist erklärt wie Strings als Boolean ausgewertet werden.
+Lesen Sie die Aufgabe [PARTREF::PythonCasting], dort ist erklärt wie Strings als Boolean ausgewertet werden.
 
 [ENDHINT]
 
