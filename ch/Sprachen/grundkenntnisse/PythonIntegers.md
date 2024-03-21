@@ -2,7 +2,7 @@ title: "Integer Datentyp in Python"
 stage: alpha
 timevalue: 0.25
 difficulty: 1
-assumes: PythonComments
+assumes: PythonComments, PythonBooleans
 ---
 
 [SECTION::goal::idea]
@@ -78,6 +78,25 @@ In Python können alle grundlegenden arithmetischen Operationen durchgeführt we
     # Potenz
     ergebnis_potenz = y ** x
     print("Potenz:", ergebnis_potenz)
+
+    # Vergleichsoperationen: Ausgabe ist ein boolescher Wert (True, False)
+    # Größer
+    print("Größer:", y > x)
+    
+    # Größer
+    print("Kleiner:", y < x)
+    
+    # Größer
+    print("Größer oder gleich:", x >= y)
+
+    # Größer
+    print("Kleiner oder gleich:", x <= y)
+
+    # Gleichheit
+    print("Kleiner oder gleich:", x == y)
+
+    # Ungleichheit
+    print("Kleiner oder gleich:", x != y)
 ```
 
 [ER] Führen Sie den obigen Python-Code in Ihrer Programmierumgebung aus und notieren Sie neben jedem `print()`-Aufruf das Ergebnis. Geben Sie den obigen Code mit Ihren Ergbeniskommentaren ab.
