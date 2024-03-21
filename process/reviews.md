@@ -75,6 +75,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/grundkenntnisse/PythonStrings.md (Hanen Alrwasheda)
 - ch/Sprachen/grundkenntnisse/PythonIntegers.md (Hanen Alrwasheda)
 - ch/Sprachen/grundkenntnisse/PythonFloats.md (Hanen Alrwasheda)
+- ch/Sprachen/grundkenntnisse/PythonBooleans.md (Hanen Alrwasheda)
 - ch/Sprachen/grundkenntnisse/PythonCasting.md (Hanen Alrwasheda)
 
 

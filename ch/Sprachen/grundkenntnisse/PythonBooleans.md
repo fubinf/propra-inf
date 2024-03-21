@@ -1,9 +1,8 @@
 
 title: "Boolean Datentyp in Python"
-stage: draft
+stage: alpha
 timevalue: 0.75
 difficulty: 1
-requires: PythonVariablenDatentypen
 ---
 
 [SECTION::goal::idea]
@@ -51,7 +50,7 @@ Zwei der logischen Operatoren, die wir hier besprechen, sind binär und erwarten
 
 Der "AND" Operator ist sehr strikt und gibt nur dann `True` aus, wenn die beiden Operanden `True` sind. 
 
-[ER] Bestimmen Sie mithilfe folgender Python-Beispiele die Ausgaben des Operators `and` bei allen möglichen Eingaben. Für die Abgabe reicht die Ermittlung der Ausgaben der `print()`-Funktionen. 
+[EQ] Bestimmen Sie mithilfe folgender Python-Beispiele die Ausgaben des Operators `and` bei allen möglichen Eingaben. Für die Abgabe reicht die Ermittlung der Ausgaben der `print()`-Funktionen. 
 
 ```Python
     #Beispiel 1
@@ -80,7 +79,7 @@ Der "AND" Operator ist sehr strikt und gibt nur dann `True` aus, wenn die beiden
 
 Der "OR" Operator ist lockerer und gibt `True` aus, wenn mindestens einer der beiden Eingabeoperanden `True` ist.
 
-[ER] Bestimmen Sie hier auch mithilfe folgender Python-Beispiele die Ausgaben des Operators `or` bei allen möglichen Eingaben. Für die Abgabe reicht die Ermittlung der Ausgaben der `print()`-Funktionen. 
+[EQ] Bestimmen Sie hier auch mithilfe folgender Python-Beispiele die Ausgaben des Operators `or` bei allen möglichen Eingaben. Für die Abgabe reicht die Ermittlung der Ausgaben der `print()`-Funktionen. 
 
 ```Python
     #Beispiel 1
@@ -109,7 +108,7 @@ Der "OR" Operator ist lockerer und gibt `True` aus, wenn mindestens einer der be
 
 Der "NOT" Operator darf als fauler Operator beschrieben werden, obwohl er sehr essentielle Rolle in logischen Ausdrücken spielt. Das werden Sie selbst durch die Bearbeitung der Aufgaben herausfinden. Dieser Operator negiert einfach den Eingabeoperanden.
 
-[ER] Erstellen Sie diesmal selbst einen Python-Code für die Ermittlung der Ausgaben des Operators `not`. Hierfür dürfen Sie die Ergebnisse aus den `print()`-Funktionen als Kommentar neben dem jeweiligen `print()`-Aufruf schreiben. Ihren Python-Code dürfen Sie auch in der Markdown-Datei schreiben, die Sie abgeben werden. Hier ist eine passende Vorlage:
+[EQ] Erstellen Sie diesmal selbst einen Python-Code für die Ermittlung der Ausgaben des Operators `not`. Hierfür dürfen Sie die Ergebnisse aus den `print()`-Funktionen als Kommentar neben dem jeweiligen `print()`-Aufruf schreiben. Ihren Python-Code dürfen Sie auch in der Markdown-Datei schreiben, die Sie abgeben werden. Hier ist eine passende Vorlage:
 
 ```Python
     #Benutzen Sie `not` für die Negierung des booleschen Wertes `True`:
@@ -126,11 +125,11 @@ Die Ergebnisse, die Sie in den obigen Python-Beispielen gefunden haben, repräse
 
 [ENDNOTICE]
 
-### Beantworten Sie dazu folgende Fragen.
+### Beantworten Sie nun auch folgende Fragen:
 
-[ER] Recherchieren Sie: Was versteht man unter dem Begriff "Bindungsstärke" im Bezug auf die logischen Operatoren? Ordnen Sie die drei booleschen Operatoren nach Bindungsstärke an.
+[EQ] Recherchieren Sie: Was versteht man unter dem Begriff "Bindungsstärke" im Bezug auf die logischen Operatoren? Ordnen Sie die drei booleschen Operatoren nach Bindungsstärke an.
 
-[ER] Geben Sie mithilfe Ihrer Antwort der vorherigen Frage die Ausgaben folgener booleschen Ausdrücke in Python an.
+[EQ] Geben Sie mithilfe Ihrer Antwort der vorherigen Frage die Ausgaben folgener booleschen Ausdrücke in Python an.
 
 - a)
 ```python
@@ -151,7 +150,7 @@ Die Ergebnisse, die Sie in den obigen Python-Beispielen gefunden haben, repräse
 Beginnen Sie mit der Auswertung der stärksten Operatoren. Wiederholen Sie den Vorgang, bis Sie auf einen einzelnen booleschen Wert kommen. Um die Lesbarkeit zu erleichtern, können Sie zuerst die überflüssigen Klammern entfernen. 
 [ENDHINT]
 
-[ER] Warum brauchen wir überhaupt den Datentyp `Boolean`, wenn wir die beiden einzigen booleschen Werte wahr (`True`) und falsch (`False`) einfach mit irgendwelchen passenden Werten aus anderen Datentypen wie `int` (1/0, gerade Zahl/ungerade Zahl, negative Zahl/positive Zahl etc.) oder `string` ('ja'/'nein', 'geht'/'geht nicht', 'ok'/'nicht ok' etc.) darstellen können? Recherchieren Sie.
+[EQ] Warum brauchen wir überhaupt den Datentyp `Boolean`, wenn wir die beiden einzigen booleschen Werte wahr (`True`) und falsch (`False`) einfach mit irgendwelchen passenden Werten aus anderen Datentypen wie `int` (1/0, gerade Zahl/ungerade Zahl, negative Zahl/positive Zahl etc.) oder `string` ('ja'/'nein', 'geht'/'geht nicht', 'ok'/'nicht ok' etc.) darstellen können? Recherchieren Sie.
 
 [ENDSECTION]
 
