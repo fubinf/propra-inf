@@ -3,6 +3,7 @@ stage: alpha
 timevalue: 0.5
 difficulty: 1
 requires: PythonIntegers
+assumes: PythonBooleans
 ---
 
 [SECTION::goal::idea]
@@ -68,6 +69,9 @@ Alle grundlegenden arithmetischen Operationen können in Python durchgeführt we
     # Potenz
     ergebnis_potenz = x ** y
     print("Potenz:", ergebnis_potenz)
+
+    """Vergleichsoperationen sind auch möglich wie bei dem int-Datentyp,
+    wobei das Ergebnis hiervon immer den Datentyp bool hat."""
 ```
 
 [ER] Führen Sie den obigen Python-Code in Ihrer Programmierumgebung aus und notieren Sie neben jedem `print()`-Aufruf das Ergebnis. Geben Sie den obigen Code mit Ihren Ergbeniskommentaren ab.
