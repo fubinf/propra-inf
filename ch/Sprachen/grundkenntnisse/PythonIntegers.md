@@ -83,20 +83,20 @@ In Python können alle grundlegenden arithmetischen Operationen durchgeführt we
     # Größer
     print("Größer:", y > x)
     
-    # Größer
+    # Kleiner
     print("Kleiner:", y < x)
     
-    # Größer
+    # Größer oder gleich
     print("Größer oder gleich:", x >= y)
 
-    # Größer
+    # Kleiner oder gleich
     print("Kleiner oder gleich:", x <= y)
 
     # Gleichheit
-    print("Kleiner oder gleich:", x == y)
+    print("Gleichheit:", x == y)
 
     # Ungleichheit
-    print("Kleiner oder gleich:", x != y)
+    print("Ungleichheit:", x != y)
 ```
 
 [ER] Führen Sie den obigen Python-Code in Ihrer Programmierumgebung aus und notieren Sie neben jedem `print()`-Aufruf das Ergebnis. Geben Sie den obigen Code mit Ihren Ergbeniskommentaren ab.
