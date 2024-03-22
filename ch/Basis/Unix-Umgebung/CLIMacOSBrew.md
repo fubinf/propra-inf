@@ -13,12 +13,14 @@ Wir wählen dafür Homebrew, das es erlaubt, viele der unter Debian Linux verfü
 in gleicher oder ähnlicher Version unter Mac OS X zu installieren.
 
 [ENDSECTION]
+
 [SECTION::goal::product]
 
 Ich habe sichergestellt, dass ich eine Bash-Shell starten kann und
 dass Homebrew, Python und Pip funktionieren.
 
 [ENDSECTION]
+
 [SECTION::instructions::loose]
 
 ### Bash-Shell sicherstellen
@@ -92,8 +94,9 @@ Sollte sich mit dem `search` Befehl nichts finden lassen, dann lohnt sich eine S
 ### Python installieren
 
 Seit macOS Catalina ist Python nicht mehr vorinstalliert. Um Python selbst zu installieren, 
-können wir nun wieder Homebrew bemühen. Die Installation des gleichnamigen Python-Pakets sollte ausreichen.
-Die dazu notwendigen Schritte haben wir im vorherigen Abschnitt gelernt und können sie nun einfach anwenden.
+können wir nun wieder Homebrew bemühen. Die Installation des gleichnamigen Python-Pakets sollte 
+ausreichen. Die dazu notwendigen Schritte haben wir im vorherigen Abschnitt gelernt und können 
+sie jetzt einfach anwenden.
 
 [NOTICE]
 Homebrew benötigt zum Installieren des Python-Pakets die 'Xcode command line tools'. 
@@ -104,6 +107,8 @@ welcher zum Installieren der command line tools notwendig ist.
 War die Installation erfolgreich können wir nun die installierte Python-version prüfen.
 
 [INCLUDE::CheckPython.inc]
+
+Gehen Sie sicher, dass mindestens Version 3.11 installiert ist.
 
 [ENDSECTION]
 
@@ -117,5 +122,7 @@ Die Ausgabe für `brew --version` sieht wie folgt aus:
 $ brew version
 Homebrew 4.2.7
 ```
+
+Prüfen Sie, dass mindestens Python-Version 3.11 installiert worden ist.
 
 [ENDSECTION]
