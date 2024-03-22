@@ -442,6 +442,14 @@ summary {}
     margin-top: 2ex;
 }
 
+.assumes-links::before {
+    content: "Assumes: "
+}
+
+.requires-links::before {
+    content: "Requires: "
+}
+
 .assumedby-links::before {
     content: "Assumed by: "
 }
