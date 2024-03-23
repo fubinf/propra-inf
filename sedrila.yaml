@@ -80,8 +80,18 @@ instructors:
     email: myname@mynery.eu
     gitaccount: chofmann
     webaccount: chofmann
-    keyfingerprint: ""
-    pubkey: ""
+    keyfingerprint: 22C7664CCFB337CD3B3377F109226547CCFC767D
+    pubkey: |
+      mDMEZfhvMhYJKwYBBAHaRw8BAQdAOA1MqV/PUNr6imYpDb7od0j44GbBSgqGGizU
+      Ojzd2z20EG15bmFtZUBteW5lcnkuZXWIkwQTFgoAOxYhBHY1A0p9P5fjtX06GF9D
+      lNAFF2KXBQJl+G8yAhsDBQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAAAoJEF9D
+      lNAFF2KXvcEA/Rc9t9r5Iq366NNJRzB9jCAq+wlNhYMChwdf0s0H8C0YAQCPzpyY
+      v4DQ9yHPfJ2xzx5MfqXQhjlmCdWxCvxYsqoiAbg4BGX4bzISCisGAQQBl1UBBQEB
+      B0Ar7+hqL3rsYOEtxGr++FZI5hGj1GcWYomUukvtk3hTGQMBCAeIeAQYFgoAIBYh
+      BHY1A0p9P5fjtX06GF9DlNAFF2KXBQJl+G8yAhsMAAoJEF9DlNAFF2KXSgAA/3RW
+      z1MtW0LhLpq6XKpAc0pJociuahL2JiGXI5ifr3tCAQDW3PJA8JsoR+jZV19SXSvl
+      wiYnMRzZ9E6brfoWxssDAw==
+      =o7me
   - nameish: Ronny
     email: ronnyruhe@icloud.com
     gitaccount: ronnyruhe
