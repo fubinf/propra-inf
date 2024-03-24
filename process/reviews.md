@@ -143,8 +143,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Testframeworks/index.md (Ronny Ruhe)
 - ch/Testen/Testframeworks/Robot.md (Ronny Ruhe)
 - ch/Testen/API/restApi.md (Ronny Ruhe)
-- ch/Testen/Betriebsumgebung/index.md:
-  Komplett neugeschrieben.
 
 
 ## Reviews to do for Sven Hüster
