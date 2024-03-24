@@ -145,9 +145,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/API/restApi.md (Ronny Ruhe)
 - ch/Testen/Betriebsumgebung/index.md:
   Komplett neugeschrieben.
-- ch/Testen/Betriebsumgebung/GitHubDeployment.md (Ronny Ruhe, zurück von Lutz Prechelt):
-  Ich habe recht massive Änderungen gemacht, bitte vollziehen Sie nach, warum.
-  Kann jetzt von mir aus so bleiben, wenn Sie keine Fehler entdecken.
 
 
 ## Reviews to do for Sven Hüster
