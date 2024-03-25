@@ -2,7 +2,7 @@ title: "Funktionen in Python"
 stage: draft
 timevalue: 0.75
 difficulty: 2
-assumes: PythonLists, PythonConditionalStatements, PyhtonIntegers, PythonBooleans, PythonComments, PythonForLoop, PythonWhileLoop
+assumes: PythonLists, PythonIf, PythonElifElse, PythonIntegers, PythonBooleans, PythonComments, PythonForLoop, PythonWhileLoop
 ---
 
 [SECTION::goal::idea]

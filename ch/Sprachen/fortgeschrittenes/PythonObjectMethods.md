@@ -3,7 +3,7 @@ stage: draft
 timevalue: 0.75
 difficulty: 2
 requires: PythonObjectsClassesIntro, PythonFunctions
-assumes: PythonStrings, PythonIntegers, PythonBooleans, PythonComments, PythonCasting, PythonConditionalstatements
+assumes: PythonStrings, PythonIntegers, PythonBooleans, PythonComments, PythonCasting, PythonIf, PythonElifElse
 ---
 
 [SECTION::goal::idea]
