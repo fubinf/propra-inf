@@ -90,6 +90,8 @@ Betrachten Sie folgende Klassendefinition:
 
 [EQ] In der Definition der `__init__()`-Funktion habe wir das Attribut `verfuegbar` auf `True` gesetzt. Wir haben dabei also angenommen, dass jedes Buch am Anfang immer verfügbar ist. Wie Sie wahrscheinlich gemerkt haben, muss dieses Attribut bei der Erstellung von Ojekten nicht als Parameter für den Konstruktor angegeben werden. Wie würde man solche Attribute nennen und wann sind sie hilfreich?
 
+[EQ] In [PARTREF::PythonObjectsClassesIntro] haben Sie Klassenattibute kennengelernt. Sie haben auch gelernt, wie sich Klassenattribute von Objektattributen unterscheiden. Kann man das Attribut `verfuegbar` auch als Klassenattribut definieren? Warum?
+
 [ENDSECTION]
 
 [SECTION::submission::program]
