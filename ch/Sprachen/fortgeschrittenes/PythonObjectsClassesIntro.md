@@ -1,5 +1,5 @@
 title: "Einführung in Klassen und Objekte in Python"
-stage: alpha
+stage: draft
 timevalue: 1
 difficulty: 2
 assumes: PythonStrings, PythonComments
