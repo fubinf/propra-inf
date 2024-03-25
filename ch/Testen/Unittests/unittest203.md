@@ -10,4 +10,4 @@ requires: LokalesDeployment
 - Ich kann Unittests nach TDD anwenden
 
 [ENDSECTION]
-TODO_2_Ruhe
+TODO_2_Ruhe: Pair Programming nutzen

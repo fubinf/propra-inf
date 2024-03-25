@@ -396,6 +396,14 @@ Ergebnis nur auf das zu testende Modul ankommt.
 [ENDTERM]
 
 ## N
+
+[TERM::Negativtest|Negativszenario]
+Ist eine Art von Softwaretest, der darauf abzielt, sicherzustellen, dass ein System korrekt auf
+ungültige Eingaben oder unerwartete Bedingungen reagiert. Im Gegensatz zu Positivtests, die prüfen,
+ob das System die erwarteten Ergebnisse auf gültige Eingaben liefert, testen Negativtests die
+Handhabung von Fehlern oder ungültigen Daten.
+[ENDTERM]
+
 ## O
 
 [TERM::OpenAPI|Swagger]
@@ -420,7 +428,7 @@ Für Windows-Befehle ist es meistens die Option `/h`, die diese Hilfe anbietet.
 
 ## P
 
-[TERM::Paar Programming|Paarprogrammierung]
+[TERM::Pair Programming|Paarprogrammierung]
 Eine agile Entwicklungsmethode, bei der zwei Entwickler gemeinsam an derselben Aufgabe arbeiten.
 Während einer Person aktiv codiert, beobachtet die andere den Prozess, bietet Feedback und denkt
 über mögliche Verbesserungen nach.

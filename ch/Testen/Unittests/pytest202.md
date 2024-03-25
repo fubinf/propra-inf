@@ -11,4 +11,4 @@ requires: LokalesDeployment
 
 [ENDSECTION]
 
-TODO_2_Ruhe
+TODO_2_Ruhe: Pair Programming nutzen
