@@ -1,8 +1,7 @@
 title: TDD mit Pytest in der Anwendung
 stage: draft
-timevalue: 1.0
+timevalue: 0.1
 difficulty: 3
-profiles: TEST
 assumes: pytest101, pytest201, tdd
 requires: LokalesDeployment
 ---
@@ -11,4 +10,5 @@ requires: LokalesDeployment
 - Ich kann Pytests nach TDD anwenden
 
 [ENDSECTION]
-TODO_Ruhe
+
+TODO_2_Ruhe

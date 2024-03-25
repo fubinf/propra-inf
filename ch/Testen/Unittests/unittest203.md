@@ -1,8 +1,7 @@
 title: TDD mit Unittests in der Anwendung
 stage: draft
-timevalue: 1.0
+timevalue: 0.1
 difficulty: 3
-profiles: TEST
 assumes: unittest101, unittest201, tdd
 requires: LokalesDeployment
 ---
@@ -11,4 +10,4 @@ requires: LokalesDeployment
 - Ich kann Unittests nach TDD anwenden
 
 [ENDSECTION]
-TODO_Ruhe
+TODO_2_Ruhe

@@ -1,11 +1,10 @@
 title: ...
 stage: draft
-timevalue: 1.0
+timevalue: 0.1
 difficulty: 1
-profiles:
 explains:
 assumes:
 requires:
 ---
 
-TODO_Ruhe
+TODO_2_Ruhe
