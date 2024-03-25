@@ -115,6 +115,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/API/CRUDApi.md (Ronny Ruhe)
 - ch/Testen/API/restApi.md (Ronny Ruhe)
 
+- ch/Testen/Testframeworks/index.md (Ronny Ruhe)
+- ch/Testen/Testframeworks/Robot.md (Ronny Ruhe)
+
 
 ## Reviews to do for Lutz Prechelt
 
@@ -140,9 +143,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Ronny Ruhe
-
-- ch/Testen/Testframeworks/index.md (Ronny Ruhe)
-- ch/Testen/Testframeworks/Robot.md (Ronny Ruhe)
 
 
 ## Reviews to do for Sven Hüster
