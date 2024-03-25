@@ -420,6 +420,12 @@ Für Windows-Befehle ist es meistens die Option `/h`, die diese Hilfe anbietet.
 
 ## P
 
+[TERM::Paar Programming|Paarprogrammierung]
+Eine agile Entwicklungsmethode, bei der zwei Entwickler gemeinsam an derselben Aufgabe arbeiten.
+Während einer Person aktiv codiert, beobachtet die andere den Prozess, bietet Feedback und denkt
+über mögliche Verbesserungen nach.
+[ENDTERM]
+
 [TERM::Parameter]
 Ein Platzhalter für ein [TERMREF::Argument], das man an etwas Parametrisiertes übergeben kann.
 Funktionen und Methoden haben in Python sehr oft ein oder mehrere Parameter.
@@ -679,7 +685,7 @@ meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
 [ENDTERM]
 
 [TERM::TDD|Test-Driven Development|Test-Driven Design]
-ist eine Softwareentwicklungsmethode, bei der [TERMREF2::Tests::-s] vor der eigentlichen Implementierung
+Eine Softwareentwicklungsmethode, bei der [TERMREF2::Test::-s] vor der eigentlichen Implementierung
 des Codes geschrieben werden. Der Prozess beginnt mit dem Schreiben eines Tests, der das
 erwartete Verhalten der Funktionalität beschreibt. Dann wird der minimal notwendige Code
 implementiert, um den Test erfolgreich durchzuführen. Dieser iterative Prozess von Schreiben
