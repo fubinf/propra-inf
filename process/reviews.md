@@ -78,6 +78,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/grundkenntnisse/PythonBooleans.md (Hanen Alrwasheda)
 - ch/Sprachen/grundkenntnisse/PythonCasting.md (Hanen Alrwasheda)
 - ch/Sprachen/grundkenntnisse/PythonIf.md (Hanen Alrwasheda)
+- ch/Sprachen/grundkenntnisse/PythonElifElse.md (Hanen Alrwasheda)
 
 ## Reviews to do for Christian Hofmann
 

@@ -1,5 +1,5 @@
 title: "Weitere Teile der Fallunterscheidung in Python"
-stage: draft
+stage: alpha
 timevalue: 0.75
 difficulty: 2
 assumes: PythonStrings, PythonIntegers, PythonBooleans, PythonComments
