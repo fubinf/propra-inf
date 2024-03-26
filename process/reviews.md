@@ -124,6 +124,7 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Lutz Prechelt
 
 - ch/Debugging/debuggingtools/gitbisect.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
+- ch/Basis/Repo/Markdown101.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
 - ...
 
 
@@ -163,4 +164,4 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Dominik Pietrak
 
-- ch/Basis/Repo/Markdown101.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
+- ...

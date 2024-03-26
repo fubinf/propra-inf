@@ -4,8 +4,6 @@ timevalue: 0.5
 difficulty: 1
 requires: Kommandoprotokolle
 ---
-TODO_1_pietrak:
-Die vorgeschlagene Form der Abgabe nutzt "Submission-Markdowndokument.md". Es wird gesagt: "...Antworten zu den oben gestellten Fragen F1, F2, … Geben Sie diese Marker mit an.". Die Aufgabe aber nutzt überall [ER] (A1, A2, ..). Also vielleicht den Abgabetext anpassen, damit sich der Bearbeiter nicht fragt, wo man all die F1, F2, .. finden kann. 
 
 [SECTION::goal::idea]
 
@@ -38,6 +36,8 @@ Allerdings hilft es gerade am Anfang, direkt zu sehen, was das Markup im Text be
 Dafür gibt es in den gängigen Editoren Plugins, die direkt die "hübsche" Version zeigen.  
 Damit Sie direkt sehen können, wie der von Ihnen geschriebene Markup-Text aussieht, 
 können Sie gerne einen Online-Editor wie [StackEdit.io](https://stackedit.io/) verwenden.
+
+- Erstellen Sie eine Datei `markdown101.md` und machen Sie einen Commit mit dieser Datei.
 
 ### Welche Formatierungmöglichkeiten gibt es in Markdown?
 
@@ -106,6 +106,11 @@ ein paar Beispiele für Konstrukte, die auf GitHub möglich sind.
 
 [SECTION::submission::program]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+Geben Sie das Dokument `markdown101.md` mit den im Text unter [EREFR::1] bis [EREFR::5]
+geforderten Markdown-Formatierungen ab.
+Geben Sie die Marker mit an.
+
+Dort, wo keine expliziten Texte gefordert sind, dürfen Sie diese frei wählen. 
+Aber: Halten Sie diese kurz, es geht um die Formatierungen!
 
 [ENDSECTION]
