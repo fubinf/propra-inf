@@ -1,5 +1,5 @@
 title: APT Paketverwaltung
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 2
 ---
