@@ -6,12 +6,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.backends.backend_pdf as mbbp
 
-def plot_progress(df: pd.DataFrame):
+def plot_progress(df: pd.DataFrame, columns: list[str]):
     # ----- x data:
     x = pd.to_datetime(df.iloc[:, 0])  # The date is in the first column
     # ----- y data series:
-    for i in range(1, len(df.columns)):
-        plt.plot(x, df.iloc[:, i], label=df.columns[i])
+    for col in columns:
+        plt.plot(x, df.loc[:, col], label=col)
     # ----- helper lines:
     plt.axhline(y=400, color='darkgreen', linestyle='dotted', linewidth=2, label='Good')
     plt.axhline(y=300, color='darkblue', linestyle='dotted', linewidth=2, label='OK')
@@ -28,10 +28,11 @@ def plot_progress(df: pd.DataFrame):
 inputfile = sys.argv[1]
 outputfile = sys.argv[2]  # we do no checking 
 df = pd.read_csv(inputfile)
+df['total'] = df['alpha'] + df['beta'] + df['done']
 pdf = mbbp.PdfPages(outputfile)
 plt.figure(figsize=(15, 6))  # Landscape orientation
 
-plot_progress(df)
+plot_progress(df, ["alpha", "beta", "done", "total"])
 
 pdf.savefig()
 plt.close()
