@@ -48,7 +48,7 @@ macOS-Kommandozeilendingen sehr wahrscheinlich `zsh` referenzieren und nicht ohn
 [ENDNOTICE]
 
 
-### HomeBrew installieren  TODO_1_hüster
+### HomeBrew installieren
 
 MacOS ähnelt zwar in vielen Punkten Linuxsystemen, jedoch bietet MacOS von Haus aus kein
 eigenes Paketverwaltungssystem, mit dem sich einfach aus dem Terminal heraus verschiedene
