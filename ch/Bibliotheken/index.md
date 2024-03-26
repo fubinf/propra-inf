@@ -9,6 +9,7 @@ um ein Tausendfaches umfangreicher als die Software selbst
 und auch für große Software meist noch um ein Vielfaches.
 
 Deshalb ist es offensichtlich wichtig, sich mit Bibliotheken auszukennen:
+
 - Überblickswissen: Was für Bibliotheken gibt es insgesamt?
 - Anwendungswissen: Wie funktionieren die, die für meine Arbeit am wichtigsten sind?
 - Urteilsvermögen: Wie erkenne ich gute Bibliotheken? Wie suche ich eine aus, wenn es mehrere passende gibt?
