@@ -82,7 +82,8 @@ Löschen Sie die drei Variablen (`matrikelnummer`, `vorname`, `nachname`), die S
 
 [WARNING]
 
-Vergessen Sie hierbei nicht den ersten Parameter `self`! In weiteren Abschnitten des Artikels ist das bereits erklärt. Im Allgemeinen ist aber wichtig zu verstehen, dass `self` kein [TERMREF::Schlüsselwort] ist, sondern eine Konvention für die Refernzierung auf das Objekt, das die Methode aufruft. In vielen anderen Programmiersprachen findet man das gleiche Konzept mithilfe von Schlüsselwörtern, bspw. `this`. Sie werden ohnehin dieses Konzept in [PARTREF::PythonObjectsClassesPractice] vertieft üben können. 
+Vergessen Sie hierbei nicht den ersten Parameter `self`! In weiteren Abschnitten des Artikels ist das bereits erklärt. Im Allgemeinen ist aber wichtig zu verstehen, dass `self` kein [TERMREF::Schlüsselwort] ist, sondern eine Konvention für die Refernzierung auf das Objekt, das die Methode aufruft. In vielen anderen Programmiersprachen findet man das gleiche Konzept mithilfe von Schlüsselwörtern, bspw. `this`. Sie werden ohnehin dieses Konzept in PythonObjectsClassesPractice* vertieft üben können. 
+<!-- ref:PythonObjectsClassesPractice -->*
 
 [ENDWARNING]
 
