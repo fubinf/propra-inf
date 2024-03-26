@@ -25,11 +25,8 @@ Ein Reversetunnel wird mit dem Flag `-R` aufgerufen.
 ### Reversetunnel
 
 - [EC] Starten Sie den Webserver aus der Aufgabe [PARTREF::SSH-Tunnel] auf Ihrem Rechner.
-
 - [EC] Verbinden Sie sich per SSH auf `andorra` mit aktiviertem Reversetunnel auf den Port aus dem Skript und mit aktivierter X11-Weiterleitung.
-
 - [EC] Öffnen Sie einen Browser Ihrer Wahl `chromium` oder `firefox`.
-
 - [EC] Schließen Sie den Browser und den Webserver.
 
 [ENDSECTION]

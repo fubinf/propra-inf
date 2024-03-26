@@ -1,8 +1,7 @@
 title: SSH-Tunnel
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 3
-explains:
 assumes: SSH
 requires: venv
 ---
@@ -22,6 +21,10 @@ OpenSSH bietet eine sehr mächtige Weiterleitungsfunktion, die den Verkehr an ei
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
+<replacement id='targetserver'>
+Zielserver = `andorra.imp.fu-berlin.de`
+</replacement>
+
 ### Vorbereitungen
 
 - [ER] Kopieren Sie die Datei `webserver.py` auf Ihr System.
@@ -34,32 +37,17 @@ OpenSSH bietet eine sehr mächtige Weiterleitungsfunktion, die den Verkehr an ei
 
 ### Starten des Webservers und des Porttunnels
 
-- [EC] Kopieren Sie das Programm mit scp nach `andorra.imp.fu-berlin.de`:  
-    `scp /path/to/webserver.py username@andorra.imp.fu-berlin.de:~`
-
-- [EC] Öffnen Sie den Porttunnel:  
-       `ssh username@andorra.imp.fu-berlin.de -L 8080:localhost:16300`  
-         
-       `username@andorra.imp.fu-berlin.de`: hiermit authentifizieren Sie sich gegen den Server  
-       `-L`: gibt an, dass Sie einen Porttunnel öffnen möchten  
-       `8080`: gibt an, welchen Port sie lokal für den Tunnel öffnen möchten  
-       `localhost:16300`: gibt an, auf welchem Port der Service zuhören soll  
-
-- [EC] Installieren Sie `Flask` mit pip: `pip install flask`
-
+- [EC] Kopieren Sie das Programm mit scp auf den Zielserver  
+- [EC] Installieren Sie `Flask` mit pip in ihrer [TERMREF::venv].
 - [EC] Starten sie den Webserver: `python webserver.py`
-
 - [EC] Öffnen Sie in einem Browser auf Ihrem System: `localhost:8080`
-
-- [EC] Nachdem Sie erfolgreich `Hello Tunnel` im Browser gesehen haben, schließen Sie den Webserver auf `andorra` per `STRG+C` im Terminal.
+- [EC] Nachdem Sie erfolgreich `Hello Tunnel` im Browser gesehen haben, schließen Sie den Webserver auf dem Zielserver.
+- [EC] Öffnen Sie einen Porttunnel auf dem Port 8080.  
 
 ### X11 Weiterleitung
 
 - [EC] Durch einen X11-Tunnel wird das X Window System auf dem entfernten Rechner an Ihren lokalen Rechner geleitet. Dazu übergeben Sie ssh einfach die Option -Y.
-- `ssh -Y username@andorra.imp.fu-berlin.de`
-
 - [EC] Öffnen Sie `firefox` oder `chromium` um sicherzustellen, dass die X11-Weiterleitung aktiv ist.
-
 - [EC] Schließen Sie den Browser.
 
 [ENDSECTION]

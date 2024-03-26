@@ -1,11 +1,7 @@
 title: SSH
-stage: draft
+stage: alpha
 timevalue: 2.0 
 difficulty: 2
-profiles:
-explains:
-assumes:
-requires:
 ---
 [SECTION::goal::idea]
 
@@ -13,12 +9,16 @@ requires:
  - Ich verstehe wie ich ein Schlüsselpaar erstelle und wie ich diesen nutze.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 Die Sicherung von Daten durch Verschlüsselung ist in vielen Bereichen moderner Systemadministration von größter Bedeutung. Im Gegensatz zu unsicheren Lösungen wie telnet, rlogin oder FTP wurde das Protokoll SSH (Secure Shell) mit Blick auf die Sicherheit entwickelt. Mit Hilfe der Public-Key-Kryptographie authentifiziert es sowohl die Hosts als auch die Benutzer und verschlüsselt den gesamten nachfolgenden Informationsaustausch.
 
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
+
+Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/SSH/) von ubuntuusers über SSH durch.
 
 <replacement id='targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
@@ -65,19 +65,18 @@ Stellen Sie sicher, dass Sie sich im Netz der Universität oder im VPN befinden.
 
 - [EC] Melden Sie sich jetzt auf den Zielserver an. Beschreiben Sie kurz was sich geändert hat.
 
-### Nutzen eines SSH-Agenten
+<!-- ### Nutzen eines SSH-Agenten
 
 - [EC] Stellen Sie sich mal vor, Sie sind ein Administrator in einer mittelständischen Firma. Sie verwalten 100 virtuelle Maschinen. Auf jeder dieser Maschinen ist ihr SSH-Schlüssel hinterlegt. Für die Entschlüsselung haben Sie ein 25-stelliges zufällig generiertes Passwort gewählt. Jetzt müssen Sie jedes Mal Ihr langes kompliziertes Passwort neu eingeben, wenn Sie sich auf einem der VMs anmelden wollen. Um das zu umgehen und trotzdem die Sicherheit der Schlüssel beizubehalten, gibt es den SSH-Agenten. Mit dem SSH-Agenten müssen Sie ihre Passphrase nur beim Starten des Agenten eingeben und danach übernimmt der Agent das Anmelden auf den virtuellen Maschinen, weil der Agent Ihren Schlüssel zwischenspeichert.  
   
     Starten Sie den SSH-Agenten mit: `ssh-agent /bin/bash`  
     Fügen Sie Ihren Schlüssel dem Agenten hinzu: `ssh-add`  
     Geben Sie Ihre Passphrase ein.  
-    Verbinden Sie sich nun ein letztes Mal mit dem Zielserver.  
+    Verbinden Sie sich nun ein letztes Mal mit dem Zielserver.   -->
 
 [ENDSECTION]
+
 [SECTION::submission::trace]
-
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
