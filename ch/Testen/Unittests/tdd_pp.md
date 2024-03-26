@@ -2,7 +2,7 @@ title: TDD im Pair Programming
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-assumes: tdd, grundkenntnisse
+assumes: tdd, grundkenntnisse, jsonBasic, open
 ---
 
 [SECTION::goal::product]
@@ -49,13 +49,20 @@ Hinzufügen, Entfernen, Markieren als erledigt und Anzeigen von Aufgaben.
   Erweiterbarkeit zu ermöglichen.
 - Verwenden Sie wahlweise unittest oder pytest für die Qualitätssicherung.
 - Kommentieren Sie Ihren Code, um seine Funktionsweise zu erklären und die Lesbarkeit zu verbessern.
+- Verwenden Sie für die Datenhaltung ein Format Ihrer Wahl; JSON, XML, YAML, SQL oder andere.
+
+[HINT::Interaktion]
+Natürlich können Benutzer mit der Anwendung interagieren. Es ist jedoch empfehlenswert, die
+Interaktion mit der Anwendung aufgrund ihrer Einfachheit über Parameter zu gestalten. Zum Beispiel
+können Benutzer die Befehle `main.py list` und "main.py add `Meine neue Aufgabe` verwenden.
+[ENDHINT]
 
 #### Projektstruktur
 
 - **main.py**: Die Hauptdatei, die die Implementierung der ToDo-Liste enthält, einschließlich der
   Funktionalitäten zum Hinzufügen, Entfernen, Markieren als erledigt und Anzeigen von Aufgaben.
-
 - **tests/**: Ein Ordner, der alle Testdateien für das Projekt enthält
+- **data/**: Ein Ordner, der alle Todo's enthält, z.B. eine csv,  oder json Datei.
 - **README:md**: Eine Datei, die eine kurze Anleitung zur Verwendung der ToDo-Liste und Anweisungen
   zum Ausführen der Tests enthält.
 
@@ -67,6 +74,8 @@ Daher sind zur Erfüllung dieser Aufgabe keine komplizierten Algorithmen oder st
 Szenarien notwendig. Konzentrieren Sie sich auf mögliche Fallstricke, die in der Ausführung einer
 Funktion einhergehen können und lassen Sie diese Möglichkeiten in die Testfälle einfließen.
 [ENDWARNING]
+
+
 
 ### Umsetzung
 
