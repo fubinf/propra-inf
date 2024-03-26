@@ -93,10 +93,17 @@ was da für die Installation auf Sie zukommt.
 
 [SECTION::submission::information]
 
-.
+Zeigen Sie ihrem/ihrer Tutor_in ihre eingerichtete PyCharm IDE oder VSCode mit ihrem geöffneten 
+ProPra.
+
+Sollten Sie ihre Entwicklungsumgebung an einem stationären Desktop eingerichtet haben, erstellen 
+Sie einen aussagekräftigen Screenshot und zeigen Sie diesen ihrem/ihrer Tutor_in.
 
 [ENDSECTION]
 
-.
+[INSTRUCTOR::heading]
+
+Lassen Sie sich von den Studierenden die vollständig aufgesetzte IDE zeigen. Achten Sie vor 
+allem auf die korrekte Python-Version.
 
 [ENDINSTRUCTOR]
