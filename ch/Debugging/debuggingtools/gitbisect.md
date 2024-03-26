@@ -11,28 +11,32 @@ difficulty: 3
 
 [ENDSECTION]
 
+[SECTION::background::default]
+
+Stellen Sie sich vor, **Ihre Codebasis hat eine Million Zeilen Code**.
+Und nun entdecken Sie ein Versagen, das offenbar nichts mit dem zu tun hat,
+woran Sie zuletzt gearbeitet haben, sondern der Defekt muss schon länger
+in der Codebasis schlummern.
+
+Wenn man eine gute Versionshistorie hat, kann man die benutzen, um den Defekt einzukreisen, 
+indem man einen automatisierten Test schreibt, der das Versagen zeigt,
+und dann den jüngsten Commit X sucht, bei dem das Versagen auftritt.
+Beim letzten Commit vor X ist das jetzt defekte Verhalten also noch intakt.
+Dann müsste doch Commit X den Defekt enthalten?
+
+Und wenn in jedem Commit nur wenig geändert wird, ist ein Defekt innerhalb 
+dieser Änderungen viel leichter zu lokalisieren als in der Codebasis insgesamt.
+
+Das ist die Grundidee von `git bisect`, das wir in dieser Aufgabe kennenlernen wollen.
+
+Leider ist "automatisierter Test" in diesem Zusammenhang viel schwieriger als es klingt,
+denn die Codebasis ist ja bei jedem Commit anders (und bei sehr alten Commits sehr anders).
+Außerdem gibt es Commits, die keinen konsistenten Zustand bieten, den man überhaupt sinnvoll
+testen kann.
+Deshalb ist der Test in vielen Fällen dann doch manuell.
+
+[ENDSECTION]
 [SECTION::instructions::loose]
-
-### Die grundsätzliche Idee
-
-Viele Bugs passieren direkt vor der eigenen Nase.
-Allerdings kann es in einigen Fällen sein, dass Commits Funktionalität brechen, die vorher einwandfrei funktioniert hat.
-In diesem Fall muss erst einmal herausgefunden werden, _wann_ der Bug in der Commit History passiert ist.
-Sollten Sie das Konzept der binären Suche verstanden haben, werden Sie das Vorgehen schnell verstehen:
-
-1. Betrachten Sie die Commit History als einen Zeitstrahl.
-2. Wählen Sie den einen Zeitpunkt, an dem der Bug nicht auftritt als Start des Zeitstrahls.
-3. Wählen Sie einen Zeitpunkt, an dem der Bug nicht mehr auftritt als Ende des Zeitstrahls. 
-4. Wählen Sie den Zeitpunkt, der mittig zwischen Start und Ende liegt:
-    - Wenn der Bug in diesem Commit nicht auftritt, ist dies der neue Start.
-    - Wenn der Bug in diesem Commit auftritt, ist dies das neue Ende.
-5. Wiederholen Sie 4., bis nur noch ein Commit übrig ist.
-
-So einfach das Vorgehen ist, so aufwendig ist es auch händisch durchzuführen.
-Wir wären aber nicht Programmierer, wenn wir nicht versuchen würden dieses Vorgehen zu automatisieren.
-Eine Möglichkeit hierfür bietet `git bisect`.
-
-### Ihre Aufgabe
 
 Beschäftigen Sie sich mit der Dokumentation von [`git bisect`](https://git-scm.com/docs/git-bisect).
 

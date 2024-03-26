@@ -123,7 +123,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Lutz Prechelt
 
-- ch/Debugging/debuggingtools/gitbisect.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
 - ch/Basis/Repo/Markdown101.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
 - ...
 
@@ -142,7 +141,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Melis Atarim
 
-- ch/Sprachen/pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
 - ...
 
 
@@ -165,4 +163,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Dominik Pietrak
 
-- ...
+- ch/Debugging/debuggingtools/gitbisect.md (Dominik Pietrak, reviewed by Lutz Prechelt):
+  Habe die Einleitung ganz neu geschrieben, hoffentlich klarer.
+  Die dient zur Motivation, gehört also nach [SECTION::Background].
+- ch/Sprachen/pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
