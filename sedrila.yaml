@@ -96,7 +96,11 @@ instructors:
     gitaccount: ronnyruhe
     webaccount: ronnyruhe
     keyfingerprint: ""
-    pubkey: 
+    pubkey:
+  - nameish: Sven Hüster
+    email: svnhstr@fu-berlin.de
+    gitaccount: svnhstr
+    webaccount: svnhstr
 htaccess_template: |
     AuthName "FU Berlin, FB Mathematik/Informatik"
     AuthType Basic
