@@ -1,5 +1,5 @@
 title: Gruppen
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 2
 ---
@@ -26,27 +26,20 @@ Machen Sie sich mit den Kommandos in diesem [Beitrag](https://wiki.ubuntuusers.d
 ### Gruppe erstellen
 
 - [EC] Erstellen Sie eine neue Gruppe namens `propra`.
-
 - [EC] Fügen sie die Gruppe Bob hinzu.
 
 ### Standardgruppe setzen
 
 - [EC] Erstellen sie eine beliebige Datei mit dem Nutzer `bob`.
-
 - [EC] Erstellen Sie eine neue Gruppe namens `standard`. 
-
 - [EC] Setzen Sie diese Gruppe als Standardgruppe für den Nutzer `bob`.
-
 - [EC] Erstellen Sie eine beliebige Datei mit dem Nutzer `bob`.
-
 - [EQ] Schauen Sie sich die Berechtigungen der beiden Dateien an. Was fällt auf?
-
 - [EC] Setzen Sie die Standardgruppe von `bob` wieder zurück.
 
 ### Nutzer und Gruppe löschen
 
 - [EC] Löschen Sie den gerade erstellten Nutzer `bob`.
-
 - [EC] Zuguterletzt löschen Sie beide erstellten Gruppen wieder.
 [ENDSECTION]
 
