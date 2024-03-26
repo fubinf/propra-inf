@@ -112,7 +112,7 @@ init_data:
     student_id: Matrikelnummer
     partner_student_name: Name des Übungspartners
     partner_student_id: Matrikelnummer des Übungspartners
-rejection_allowance: 2
+allowed_attempts: "2 + 0.4/h"
 chapters:
   - slug: Basis
     taskgroups:
