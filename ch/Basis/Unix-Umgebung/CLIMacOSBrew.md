@@ -8,8 +8,9 @@ difficulty: 2
 Wir gehen im Verlauf des Programmierpraktikums von einem Standard-Debian-Linux als Umgebung aus.
 Mac OS ist zwar ein Unix-System und dadurch Linux in vielem ähnlich, es gibt aber auch viele relevante
 Unterschiede.
-Deshalb brauchen wir eine Kompatibilitätsschicht, die diese Unterschiede verringert.
-Wir wählen dafür Homebrew, das es erlaubt, viele der unter Debian Linux verfügbaren Pakete
+Deshalb brauchen wir für manche Aufgaben eine Kompatibilitätsschicht, die diese Unterschiede verringert.
+
+Wir wählen dafür _Homebrew_, das es erlaubt, viele der unter Debian Linux verfügbaren Pakete
 in gleicher oder ähnlicher Version unter Mac OS X zu installieren.
 
 [ENDSECTION]
@@ -35,26 +36,30 @@ dass Homebrew, Python und Pip funktionieren.
   Es gibt auf Linux/Unix zahlreiche verschiedene Shells und wir nehmen hier immer die Bash
   als Shell an.
 - Haben Sie etwas anderes bekommen (wahrscheinlich `/bin/zsh`), dann können Sie 
-  - entweder in jedem Einzelfall nach Start eines Terminals zur Bash wechseln
-    (mit `bash` oder notfalls `/bin/bash`)
-  - oder ein für alle Mal auf Bash als Standardshell umstellen mit
-    `chsh -s /bin/bash`. 
-    Erläuterungen siehe z.B. auf 
-    [howtogeek](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/)
+    - entweder in jedem Einzelfall nach Start eines Terminals zur Bash wechseln
+      (mit `bash` oder notfalls `/bin/bash`)
+    - oder ein für alle Mal auf Bash als Standardshell umstellen mit
+      `chsh -s /bin/bash`. 
+      Erläuterungen siehe z.B. auf 
+      [howtogeek](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/)
 
 [NOTICE]
-Sollten Sie ihre Standardshell auf Bash umgestellt haben, bedenken Sie bitte, dass Internetanleitungen zu 
-macOS-Kommandozeilendingen sehr wahrscheinlich `zsh` referenzieren und nicht ohne weiteres kompatibel sein müssen.
+Sollten Sie ihre Standardshell auf Bash umgestellt haben, bedenken Sie bitte, 
+dass jüngere Internetanleitungen zu macOS-Kommandozeilendingen 
+oft von `zsh` ausgehen und deshalb manchmal Information liefern,
+die für `bash` ganz oder teilweise nicht zutrifft.
+
+Auf Mac OS
 [ENDNOTICE]
 
 
 ### HomeBrew installieren
 
-MacOS ähnelt zwar in vielen Punkten Linuxsystemen, jedoch bietet MacOS von Haus aus kein
+MacOS ähnelt zwar in vielen Punkten Linux-Systemen, jedoch bietet MacOS von Haus aus kein
 eigenes Paketverwaltungssystem, mit dem sich einfach aus dem Terminal heraus verschiedene
 Anwendungen installieren lassen. Da dies jedoch besonders für die Softwareentwicklung
 notwendig ist, gibt es inzwischen Drittanbietertools, welche diese Aufgabe erledigen.
-Wir benutzen das beliebteste Tool dieser Art: Homebrew.
+Wir benutzen das beliebteste Tool dieser Art: _Homebrew_.
 
 Zum Installieren folgen Sie den Anweisungen auf der [Homebrew-Website](https://brew.sh).
 
@@ -80,15 +85,18 @@ und updaten lassen.
 
 ### `apt`-Kommandos auf `brew` umsetzen lernen
 
-Üblicherweise werden in den Aufgaben `apt` Paketnamen referenziert, sprich Pakete welche für Debian-basierte 
-Linux-Distributionen gebaut wurden.
-Diese Paketnamen funktionieren nicht immer in Brew, jedoch sind die Paketnamen häufig sehr ähnlich gehalten.
+Üblicherweise werden in den Aufgaben `apt` Paketnamen referenziert, 
+die für Debian-basierte Linux-Distributionen gültig sind.
+
+Diese Paketnamen funktionieren oft auch in Brew.
+Wenn nicht, sind die dortigen Paketnamen häufig zumindest ähnlich gehalten.
 Am schnellsten ist eine einfache Suche mithilfe des Befehls `brew search programm-name` welche die Homebrew Paketquellen 
 nach Paketen mit dem angegebenen Namen durchsucht.
-Oft lohnt es sich *zuerst* nach dem Paket zu suchen und es erst *danach* zu installieren. 
-So spart man sich ggf. das falsche Paket zu installieren und dadurch auch nervige Aufräumarbeiten.
-Sollte sich mit dem `search` Befehl nichts finden lassen, dann lohnt sich eine Suche mit der Suchmaschine ihrer Wahl.
+Oft lohnt es sich, zuerst nach dem Paket zu suchen und nichts blind mit geratenem Namen zu installieren,
+denn eine falsche Installation kann erhebliche Verwirrung stiften.
 
+Sollte sich mit dem `search` Befehl nichts finden lassen, 
+dann lohnt sich eine Suche mit der Suchmaschine ihrer Wahl und dem Zusatzstichwort "homebrew".
 
 
 ### Python installieren
@@ -100,15 +108,13 @@ sie jetzt einfach anwenden.
 
 [NOTICE]
 Homebrew benötigt zum Installieren des Python-Pakets die 'Xcode command line tools'. 
-In der Kommandozeile sollte beim Versuch das Python-Paket zu installieren auch der Befehl angezeigt werden,
-welcher zum Installieren der command line tools notwendig ist.
+Wie man die installiert, wird angezeigt, wenn man versucht,
+das Python-Paket zu installieren.
 [ENDNOTICE]
 
 War die Installation erfolgreich können wir nun die installierte Python-version prüfen.
 
 [INCLUDE::CheckPython.inc]
-
-Gehen Sie sicher, dass mindestens Version 3.11 installiert ist.
 
 [ENDSECTION]
 
@@ -116,7 +122,7 @@ Gehen Sie sicher, dass mindestens Version 3.11 installiert ist.
 
 [INCLUDE::InstructorCheckLinux.inc]
 
-Die Ausgabe für `brew --version` sieht wie folgt aus:
+Die Ausgabe für `brew --version` sieht ungefähr wie folgt aus:
 
 ```
 $ brew version
