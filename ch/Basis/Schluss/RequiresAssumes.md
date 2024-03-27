@@ -1,5 +1,5 @@
 title: Abhängigkeiten zwischen Aufgaben
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 ---
@@ -24,7 +24,7 @@ sonst kann eine Aufgabe weitaus schwieriger werden als vorgesehen.
 
 ### assumes, assumed by
 
-Manche Aufgaben B setzen das Wissen voraus, das man in einer anderen Aufgabe A erworben 
+Manche Aufgaben B setzen das Wissen voraus, das man entweder in einer anderen Aufgabe A erworben 
 oder schon mitgebracht hat.
 Im ProPra heißt das "assumes-Beziehung".
 
@@ -39,8 +39,9 @@ Manche Aufgaben B setzen das konkrete Arbeitsergebnis (z.B. Programmcode) einer 
 bauen also direkt auf A auf.
 Im ProPra heißt das "requires-Beziehung".
 
-Bevor man B machen kann, muss man also in jedem Fall A bearbeiten.
+Bevor man B machen kann, muss man also _in jedem Fall_ A bearbeiten.
 Eine Einreichung von B wird nur akzeptiert, wenn man auch A einreicht oder eingereicht hat.
+
 
 ### Siehe Inhaltsverzeichnis
 
@@ -53,16 +54,31 @@ Probieren Sie dies aus.
 - [EQ] Geben Sie den Namen dreier Aufgaben an, die miteinander eine "required"-Kette bilden,
   die man also in genau dieser Reihenfolge bearbeiten muss, wenn man die letzte davon bearbeiten will.
 
+
+### Siehe die Aufgabe selbst
+
+Öffnet man eine Aufgabe, so findet man deren Voraussetzungen oben als Hyperlinks.
+Wenn einem davon etwas fehlt oder wenn man sich bei "assumes" vergewissern möchte,
+kann man also sehr bequem zu den betreffenden anderen Aufgaben gelangen.
+
+Nachlaufende Aufgaben, die die aktuelle als Voraussetzung haben,
+findet man hingegen ganz unten auf der Seite.
+Damit kann man also bei Interesse sofort bei etwas eng Verwandtem weiterarbeiten.
+
+Vollziehen Sie das mit den Aufgaben Ihrer oben gefundenen "required"-Kette
+nach. Starten Sie beim vorletzten Element, navigieren Sie mit den oberen Links
+zurück zum Start und dann mit den unteren Links nach und nach bis zum Ende der Kette.
+
 [ENDSECTION]
 [SECTION::submission::information]
 
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
-
 [INSTRUCTOR::Korrektheit prüfen]
-Die Antworten müssen stimmen; auch Tippfehler akzeptieren wir nicht.  
+
+Die Antworten müssen stimmen; auch Tippfehler akzeptieren wir nicht,
+denn Aufgabennamen sind technische Bezeichner, z.B. in `submission.yaml`.    
 Die Studis müssen sich an präzises Arbeiten gewöhnen.
+
 [ENDINSTRUCTOR]
-
-
