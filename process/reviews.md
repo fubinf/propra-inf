@@ -131,6 +131,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoring-Grundlagen/Extraction-Of-Code.md (Dominik Pietrak)
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Dominik Pietrak)
 
+- ch/Sprachen/sql/SQLBasics.md (Ronny Ruhe)
+
 
 ## Reviews to do for Ivan Condric
 

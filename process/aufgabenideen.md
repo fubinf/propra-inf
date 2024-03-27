@@ -280,7 +280,7 @@ Kleiner Ausflug in die C-Programmierung, insbes. Zeiger, manuelle Speicherverwal
   und bindet sie an.
 
 
-### Sprachen/SQL (N.N.)
+### Sprachen/SQL (ruhe)
 
 Ein paar Aufgaben zu mittelkomplexen Abfragen (mit etwas Verschacheltung)
 und mittelkomplexen Updates.  

@@ -105,6 +105,13 @@ unabhängig davon, „was“ das Programm leisten soll.
 Ein [TERMREF::Breakpoint], der erst ausgelöst wird, wenn eine vorgegebene Bedingung erfüllt ist.
 [ENDTERM]
 
+[TERM::Constrain]
+In Bezug auf Datenbanken bezieht sich ein "Constraint" auf eine Regel oder Bedingung, die auf eine
+oder mehrere Spalten einer Tabelle angewendet wird, um die Integrität der Datenbank zu gewährleisten.
+Constraints dienen dazu, sicherzustellen, dass die Datenbankkonsistenz erhalten bleibt, indem sie
+bestimmte Regeln erzwingen.
+[ENDTERM]
+
 [TERM::CRUD|Create Read Update Delete]
 EIn Ausdruck der die grundlegenden Operationen bezeichnet, die auf Daten angewendet werden können:
 Erstellen, Lesen, Ändern, Löschen. Diese vier CRUD-Operationen bilden die grundlegenden Funktionen
