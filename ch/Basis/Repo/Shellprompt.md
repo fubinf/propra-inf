@@ -33,7 +33,11 @@ folgende Zeile an:
 (Falls es bei Ihnen die Datei `~/.bash_profile` geben sollte, ist die Zeile hingegen dort richtig aufgehoben.)
 
 Benutzen Sie dafür z.B. den Editor nano:
-`nano .bashrc`
+`nano .bashrc`.
+Wie man da wieder rauskommt, ist am unteren Bildschirmrand beschrieben
+(`^` steht für die Umschalttaste Ctrl-/Strg-, `M-` ("meta") steht für `Alt-`.).
+
+
 
 Obiges erzeugt einen Prompt, der für schwarzen Terminal-Hintergrund konzipiert ist.
 Für einen weißen sollte man z.B. das "33m" auch durch "31m" ersetzen.
