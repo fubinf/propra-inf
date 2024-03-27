@@ -8,7 +8,7 @@ Die genaue Version ist nicht wichtig, aber `pip` muss funktionieren.
 Pip ist der Paketmanager von Python und dient dazu, zusätzliche Python-Bibliotheken zu installieren.
 
 Sind Python oder Pip nicht installiert, so holen Sie dies mittels
-`sudo apt python3 python3-pip python3-venv python-is-python3`
+`sudo apt install python3 python3-pip python3-venv python-is-python3`
 nach und wiederholen Sie dann die obigen beiden Tests.
 
 Sobald Sie im nächsten Abschnitt des Basiskapitels gelernt haben, wie das geht, 
