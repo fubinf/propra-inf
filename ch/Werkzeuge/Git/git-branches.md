@@ -62,13 +62,24 @@ pflegen diese zum Schluss wieder in den Main-Branch ein. Sollten Sie nach dem Ei
 - [EC] Nun pflegen Sie den neuen Branch wieder in ihren Main-Branch ein. Geben Sie alle dazu 
   verwendeten Befehle sowie die verwendete Methode an.
 
+### Git-Log
+
+- [EC] Erstellen Sie eine Ausgabe des git-log Befehls aus der ersichtlich wird, dass der Branch 
+  erstellt, bearbeitet und wieder eingepflegt wurde. Sorgen Sie außerdem dafür, dass die Ausgabe 
+  auch zeigt *von wem* die Änderungen vorgenommen wurden.  
+
+[HINT::Ausgabe des git-log Befehls]
+Falls Sie Probleme haben die Ausgabe des Befehls anzupassen, schauen Sie doch mal in die 
+man-page für `git-log`.
+[ENDNOTICE]
+
 [ENDSECTION]
 
 [SECTION::submission::trace]
 
 Abzugeben ist ein Kommandozeilenlog über das erstellen, bearbeiten und mergen eines git-Branches 
-im ProPra repo. Abschließend erstellen Sie eine ansicht des git-logs in der "Tree" Ansicht um zu 
-zeigen wie sich die verschiedenen Branches entwickelt haben.
+im ProPra repo. Abschließend erstellen Sie eine ansicht des git-logs aus der die Änderungen und 
+wer diese vorgenommen hat ersichtlich werden.
 
 [ENDSECTION]
 
@@ -76,6 +87,10 @@ zeigen wie sich die verschiedenen Branches entwickelt haben.
 
 Prüfen Sie wie die Studierenden vorgegangen sind und welche Befehle verwendet wurden und schauen 
 Sie ob der git-log zur Abgabe passt. Er sollte einen neuen Branch zeigen, mindestens einen 
-Commit mit der Abgabe und danach wieder in den Main-Branch gemerged werden. 
+Commit mit der Abgabe und danach wieder in den Main-Branch gemergt werden. 
+
+Der git-log Befehl sollte ungefähr folgendermaßen aussehen:
+
+`git log --oneline --decorate --graph --all --format=%aE`
 
 [ENDINSTRUCTOR]
