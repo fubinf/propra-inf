@@ -1,5 +1,5 @@
 title: Linux-Kommandozeile auf Linux mit Apt
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 1
 ---
@@ -8,7 +8,7 @@ difficulty: 1
 Wir gehen im Verlauf des Programmierpraktikums von einem Standard-Debian-Linux als Umgebung aus.
 Sie können auch etwas anderes benutzen, müssen dann die Unterschiede aber aus eigener
 Kraft überbrücken.
-Ubuntu-Linux und Mint sind sehr ähnlich zu Debian,
+Ubuntu-Linux und Mint sind sehr ähnlich zu Debian (und sind kein Problem),
 aber Arch, Fedora, Suse und diverse andere sind erheblich verschieden.
 
 [NOTICE]
@@ -47,11 +47,11 @@ dass Python und Pip funktionieren.
 - Haben Sie etwas anderes bekommen, dann haben Sie nicht die hier angenommene
   Sorte von Linux-System, nämlich ein standardmäßig konfiguriertes Debian oder Ubuntu.
   In diesem Fall müssen Sie folgendes mit Hilfe geeigneter Web-Recherche selbst herausfinden:
-  - Wie man darauf Bash aufruft (meist einfach mit `bash`)
-  - Oder falls keine Bash installiert ist: 
-    - Was für eine Linux Distribution Sie haben (Diagnose mittels `cat /etc/os-release`)
-    - Wie man darauf Pakete installiert (anstatt mit `apt-get` oder `apt` wie auf Debian)
-    - Wie man konkret Bash installiert und dann aufruft
+    - Wie man darauf Bash aufruft (meist einfach mit `bash`)
+    - Oder falls keine Bash installiert ist: 
+        - Was für eine Linux-Distribution Sie haben (Diagnose mittels `cat /etc/os-release`)
+        - Wie man darauf Pakete installiert (anstatt mit `apt-get` oder `apt` wie auf Debian)
+        - Wie man konkret Bash installiert und dann aufruft
 
 [INCLUDE::CheckPython.inc]
 

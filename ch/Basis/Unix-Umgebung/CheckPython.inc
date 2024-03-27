@@ -1,7 +1,7 @@
 ### Python prüfen
 
 Rufen Sie `python -V` auf, um die Python-Version zu prüfen.
-Wir brauchen mindestens Python 3.11.
+Wir brauchen [mindestens](https://semver.org/) Python 3.11.
 
 Rufen Sie `pip -V` auf, um die Version von Pip zu prüfen.
 Die genaue Version ist nicht wichtig, aber `pip` muss funktionieren.
