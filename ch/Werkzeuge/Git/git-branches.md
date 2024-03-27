@@ -19,22 +19,28 @@ Wer sich gewundert hat, warum es "Worktree" heißt, wird hier vermutlich einen k
 haben. Diese bieten uns nämlich verschiedene Möglichkeiten, um unser Projekt zu verwalten,  
 Code zu pflegen bzw. einzupflegen. Auch die verteilte Arbeit wird mit Branches etwas einfacher.
 
-Um zu verstehen, warum Branches nützlich sind, ist es auch hilfreich sich verschiedene 
-Anwendungsfälle von Branches anzusehen: 
+Im Allgemeinen unterscheidet man zwischen kurz- und langlebigen Branches. Um zu verstehen, warum 
+Branches nützlich sind, ist es auch hilfreich sich verschiedene Anwendungsfälle von Branches 
+anzusehen.
 
 1. Feature-Branches. Hier arbeitet der Entwickler auf einer Kopie des Main-Branches 
-   und implementiert das gewünschte Feature. Ist das Feature fertig, wird der Code wieder in den 
+   und implementiert das geplante Feature. Ist das Feature fertig, wird der Code wieder in den 
    Main-Branch eingepflegt.
 2. Fix-Branches. Hierbei handelt sich im Grunde auch um Feature-Branches nur, dass hier eben 
-   kein Feature, sondern ein Bugfix implementiert wird.
+   kein Feature, sondern ein Bugfix implementiert wird. Sowohl bei Feature- als auch bei 
+   Fix-Branches handelt es sich um kurzlebige/short-lived bzw. sogenannte "Topic" Branches.
 3. Release Branches. Wird eine bestimmte Version erreicht, so ist es oft hilfreich einen Branch 
    für diese Version zu erstellen. Dadurch kann man in Zukunft auf diesen Branch zurückgreifen 
    sollten Änderungen an dem Code dieser Version vornehmen um z.B. Patches oder evtl. auch neue 
-   Features zu implementieren.
+   Features zu implementieren. Diese Art von Branch fällt unter die Kategorie der 
+   langlebigen/long-lived Branches.
 
 Natürlich haben wir im ProPra nicht vor eigene Features oder Releases zu bauen, jedoch ist es 
 sinnvoll einmal auszuprobieren wie Branches in git funktionieren und wie man die Änderungen aus 
 einem Branch wieder in den Main-Branch bekommt.
+
+Weitere Informationen zu dem Thema "Branching Workflows" findet man [unter dem gleichnamigen 
+Thema im Git-Book](https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows).
 
 [ENDSECTION]
 
