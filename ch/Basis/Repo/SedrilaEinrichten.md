@@ -1,5 +1,5 @@
 title: SeDriLa lauffähig machen für die Verwendung der Teilnehmer
-stage: alpha
+stage: beta
 timevalue: 0.25
 difficulty: 2
 requires: Zeiterfassung
@@ -11,23 +11,20 @@ für die Tutor\_innen festgehalten.
 [ENDSECTION]
 
 [SECTION::background::default]
-Das Programmierpraktikum basiert auf der Anwendung SeDriLa (Self-Driven Lab).
-Das dient Ihnen grundlegend für folgende Dinge:
+Das Programmierpraktikum basiert auf der Anwendung `sedrila`
+([Dokumentation](https://sedrila.readthedocs.io/en/latest/)).
+sedrila dient Ihnen für zwei Zwecke:
 
-1. Einhaltung einer einheitlichen Abgabeform, damit Ihre Tutor\_innen weniger
-   unnötigen Verwaltungsaufwand bei der Bewertungen haben und Ihnen damit
+1. Einhaltung und halbautomatische Erstellung einer einheitlichen Beschreibungsdatei
+   für jede Abgabe, damit Ihre Tutor\_innen weniger
+   Verwaltungsaufwand bei den Bewertungen haben und Ihnen damit
    schneller Rückmeldung geben können.
-2. Einen Überblick über den eigenen Fortschritt schaffen.
+2. Überblick über Ihren Fortschritt bekommen.
 
-Unterschätzen Sie diese Punkte nicht! Zur Verwaltung zählt beispielsweise
-auch, die Zuordnung des Übungspartners und des Semesters festzuhalten. Das
-gewährt Ihnen grundsätzlich die Freiheit, das Modul in ihrem eigenen Tempo
-zu einer späteren Zeit abzuschließen als das Semester, in dem Sie begonnen
-haben.
-
+Unterschätzen Sie diese Punkte nicht!
+Die Erleichterung für die Tutoren vermeidet Missverständnisse und spart damit auch Ihnen Zeit.
 Auch der Überblick kann schnell verloren gehen, insbesondere darüber, welche
-Aufgaben bereits bearbeitet, aber noch nicht bewertet oder gar abgelehnt
-wurden.
+Aufgaben bereits bearbeitet, aber noch nicht bewertet wurden.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -54,14 +51,20 @@ Sie werden aufgefordert, folgende Daten anzugeben, die Sie zuvor bereithalten so
 - die Matrikelnummer Ihrer Paar-Partner_in (oder einen Querstrich, falls Sie allein arbeiten)
 
 Diese Daten werden in einer Datei namens `student.yaml` festgehalten.
-Dort können Sie nötigenfalls mit einem Texteditor später auch Änderungen vornehmen
-(in Git einchecken nicht vergessen!), wenn sich ausnahmsweise die Partner_in ändern sollte.
+(Dort können Sie nötigenfalls mit einem Texteditor später auch Änderungen vornehmen
+und in Git einchecken, wenn sich ausnahmsweise die Partner_in ändern sollte.
+Keinesfalls ändern sollten Sie hingegen den URL, jedenfalls sobald Sie erstmalig eine Aufgabe
+erfolgreich bei der Tutor_in eingereicht haben, denn dadurch würde Ihr bis dahin angesammeltes
+Stundenkonto ungültig.)
 
 Sie sollten anschließend in der Lage sein, `sedrila student` auszuführen und
-eine Tabelle mit den bisher bearbeiteten Aufgaben sehen. Diese kann noch
-leer sein. In diesem Fall erstellen Sie Commits ihrer bisher bearbeiteten
-Aufgaben (einschließlich dieser hier) in dem Format, das in
-[PARTREF::Zeiterfassung] beschrieben wurde.
+bekommen dann eine Tabelle mit den bisher bearbeiteten Aufgaben zu sehen.
+Darin stehen zwei Sorten von Aufgaben:
+Erstens die, die Sie schon mal eingereicht haben.
+Zweitens die, für die Sie einen Commit, in dem Format gemacht haben,
+das in [PARTREF::Zeiterfassung] beschrieben wurde.
+Uneingereichtes ohne einen solchen Commit fehlt in der Tabelle, denn darüber kann sedrila nichts
+Nützliches sagen. Holen Sie ggf. solche Commits wie dort beschrieben nach.
 
 "Timevalue TOTAL" ist bislang 0, denn das umfasst nur bereits eingereichte und akzeptierte Abgaben.
 Wie man Einreichungen macht, lernen Sie in der nächsten Aufgabe.
