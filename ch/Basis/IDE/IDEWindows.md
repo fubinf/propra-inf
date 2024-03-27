@@ -98,7 +98,7 @@ diesen Schritt überspringen.
   <no interpreter\> → Add New Interpreter → Add Local Interpreter
 - Wählen Sie links "System Interpreter" aus. Im Drop-Down-Menu kann nun die Windows-Python-Installation ausgewählt
   werden.
-gi
+
 [WARNING]
 Die auf Windows installierte Python-Version unterscheidet sich von der im WSL installierten Version. Über PyCharm
 Community wird ihr Code immer mit der Windows-Version ausgeführt, für die Abgabe muss aber ihr Code immer über das WSL
