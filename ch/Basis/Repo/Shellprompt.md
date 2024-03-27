@@ -7,7 +7,7 @@ requires: Git101
 [SECTION::goal::product]
 
 Ich habe in meiner Shell einen informativen Prompt, der die Orientierung 
-in meiner Shell erleichtert.
+in meinen Terminalfenstern erleichtert.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -32,9 +32,12 @@ folgende Zeile an:
 `export PS1="\[\e[1;33m\]\u\[\e[1;31m\]@\h \[\e[0;32m\]\w \[\e[0;37m\]\t \[\e[44m\] \! \[\e[40m\]\n\$ "`  
 (Falls es bei Ihnen die Datei `~/.bash_profile` geben sollte, ist die Zeile hingegen dort richtig aufgehoben.)
 
-Das ist ein Prompt, der für schwarzen Terminal-Hintergrund konzipiert ist.
+Benutzen Sie dafür z.B. den Editor nano:
+`nano .bashrc`
+
+Obiges erzeugt einen Prompt, der für schwarzen Terminal-Hintergrund konzipiert ist.
 Für einen weißen sollte man z.B. das "33m" auch durch "31m" ersetzen.
-Er benutzt zwei Zeilen für den Prompt, um eine ungestörte Eingabe zu erlauben.
+Er benutzt pro Promptausgabe _zwei_ Zeilen, um eine ungestörte Eingabe zu erlauben.
 
 Aktivieren Sie ihn durch Aufruf von `source ~/.bashrc`.
 
@@ -85,6 +88,7 @@ oder
 [WARNING]
 Die genaue Anzeige der Farben hängt vom verwendeten Terminal (und u.U. dessen Einstellungen) ab.
 Das Thema ist leider ziemlich kompliziert.
+Versuchen Sie also besser kein Finetuning.
 [ENDWARNING]
 
 Falls Sie sich einen eigenen Prompt bauen, behalten Sie bitte mindestens folgende Elemente
@@ -122,7 +126,7 @@ gibt es beispielsweise direkt bei git.
 Nachteile solcher Lösungen sind, dass sie den Prompt noch schwerer verständlich machen,
 die Konfiguration der Shell komplizierter und viel schwerer verständlich machen,
 hin und wieder kaputtgehen und
-bei jedem einzelnen Kommando den Prompt etwas verlangsamen.
+bei jedem einzelnen Kommando den Prompt verlangsamen.
 
 [ENDSECTION]
 
