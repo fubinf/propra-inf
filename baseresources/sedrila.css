@@ -35,7 +35,7 @@ a:visited {
 body {
     font-family: sans-serif;
     margin: 1em 1.5em 1em 1.5em;
-    line-height: 130%;
+    line-height: 1.4;
 }
 
 #preheader {
@@ -70,7 +70,7 @@ footer {
 h1,
 h2 {
     font-family: serif;
-    line-height: 0.95;
+    line-height: 1.0;
 }
 
 header, #preheader {
