@@ -17,10 +17,10 @@ Sie stehen überwiegend _hinter_ den Informationen für die Studierenden.
 Das Informatikstudium vermittelt in den ersten Semestern hauptsächlich sehr theoretisches Wissen.
 Das ist gut, weil dieses Wissen sehr breit anwendbar und sehr langlebig ist.
 Das ist aber auch schlecht, weil für professionelle Softwareentwicklung auch
-bergeweise praktisches Wissen und technologisches Detailwissen benötigt wird.
+bergeweise _praktisches_ Wissen und technologisches Detailwissen benötigt wird.
 
-Solches praktisches und Detailwissen will das ProPra vermitteln.
-Genauer gesagt: Es gibt Ihnen die Gelegenheit, solches Wissen zu erwerben.
+**Solches praktisches Wissen und Detailwissen will das ProPra vermitteln.**
+Genauer gesagt: Es gibt Ihnen die _Gelegenheit_, solches Wissen selbständig zu erwerben.
 Das ProPra ist nämlich sehr offen angelegt: Sie können aus einer großen Palette möglicher Aufgaben
 selbst auswählen, was Ihnen am lohnenswertesten erscheint.
 Es gibt Aufgaben aus verschiedenen Themenbereichen und mit unterschiedlichem Schwierigkeitsgrad.
@@ -49,9 +49,8 @@ Insgesamt sieht der Ablauf ungefähr so aus:
 3. Aufgabe bearbeiten
 4. Aufgabe einchecken (wie das geht, lernt man im Kapitel "Basis")
 5. Weiter bei 2 bis man ein geeignetes Paket Aufgaben beisammen hat.
-6. Aufgabenpaket beschreiben (auch das lernt man im Kapitel "Basis")
-7. Aufgabenpaket bei der Tutor_in einreichen
-8. Wenn der Soll-Umfang (siehe unten) noch nicht erreicht ist, weiter bei 2.
+6. Aufgabenpaket beschreiben und bei der Tutor_in einreichen (auch das lernt man im Kapitel "Basis")
+7. Wenn der Soll-Umfang (siehe unten) noch nicht erreicht ist, weiter bei 2.
 
 Sie genießen bei der Auswahl von Aufgaben große Freiheit; 
 es gibt viel mehr Aufgaben als zum Bestehen des ProPra nötig sind.
@@ -60,7 +59,7 @@ Lernerfolg günstig ist.
 
 ### 2.2 Wie wähle ich Aufgaben aus?
 
-Die Aufgaben sind in einem dreistufigen Schema angeordnet, wie in einem Verzeichnisbaum:
+Die Aufgaben (siehe der Menübaum) sind in einem dreistufigen Schema angeordnet, wie in einem Verzeichnisbaum:
 Kapitel, Aufgabengruppe, Aufgabe.
 
 **Kapitel** beschreiben große Themenkreise.
@@ -71,17 +70,23 @@ gar nicht teilnehmen kann.
 **Aufgabengruppen** fassen mehrere verwandte Aufgaben zusammen.
 Die Verwandtschaft kann unterschiedlicher Art sein, z.B.
 ein Themenkreis zur freien Auswahl, eine Sequenz voneinander abhängiger Aufgaben oder
-manchmal eine Auswahl _alternativer_ Aufgaben (1-aus-N-Auswahl).
+(selten) eine Auswahl _alternativer_ Aufgaben (1-aus-N-Auswahl).
 
 **Aufgaben** sind die kleinsten in sich abgeschlossenen Einheiten des Lernens im ProPra.
-Nur Aufgaben werden absolviert und eingereicht, aber bevor Sie eine Aufgabe
-beginnen sollten Sie unbedingt die Einleitung des zugehörigen Kapitels und
-die Einleitung der Aufgabengruppe gelesen haben.
+Nur Aufgaben werden absolviert und eingereicht, 
+nicht Aufgabengruppen oder Kapitel,  
+aber bevor Sie eine Aufgabe beginnen, 
+sollten Sie unbedingt die kurze Einleitung des zugehörigen Kapitels und
+die kurze Einleitung der Aufgabengruppe gelesen haben.
+
+Die komplette Liste aller Kapitel, Aufgabengruppen und Aufgaben finden Sie
+ausschließlich hier auf der Homepage. 
+Überall sonst ist im Menü immer nur ein Bereich aufgeklappt.
 
 Aufgaben haben unterschiedliche **Schwierigkeitsgrade**.
 Diese sind im Inhaltsverzeichnis deutlich markiert, damit Sie leicht Aufgaben
 der richtigen Stufe aussuchen können.
-Damit machen Sie sich in der Aufgabe [PARTREF::Schwierigkeitsstufen] von Kapitel "Basis" vertraut.
+Auch damit machen Sie sich im Kapitel "Basis" vertraut.
 Schwierigkeit bedeutet dabei nicht unbedingt, 
 dass man die Aufgabe mit weniger Vorkenntnissen kaum schaffen kann, sondern oft nur, 
 dass das sehr viel länger dauert als für die Aufgabe geplant ist, 
@@ -99,37 +104,76 @@ der kurz oder lang sein kann und z.B. hilfreiche Stichwörter oder Links enthäl
 [ENDHINT]
 
 Manchmal sind Aufgaben **von anderen Aufgaben abhängig**.
-Auch das ist im Inhaltsverzeichnis markiert.
-Damit machen Sie sich in der Aufgabe [PARTREF::RequiresAssumes] von Kapitel "Basis" vertraut.
-
-Einige Aufgaben sind **beruflichen Profilen zugeordnet**.
-Auch das ist im Inhaltsverzeichnis markiert.
-Damit machen Sie sich in der Aufgabe [PARTREF::RequiresAssumes] von Kapitel "Basis" vertraut.
+Auch das ist im Inhaltsverzeichnis markiert und
+auch damit machen Sie sich im Kapitel "Basis" vertraut.
 
 Wenn Sie diese Hilfen für die Aufgabenauswahl verstanden haben,
-suchen Sie in Aufgabe [PARTREF::Themenauswahl] von Kapitel "Basis" aus,
+suchen Sie in der letzten von Kapitel "Basis" aus,
 mit was Sie Ihr eigentliches ProPra beginnen wollen.
 
-Wie man fertige Aufgaben einreicht haben Sie schon zuvor in der Aufgabengruppe 
-[PARTREF::Repo] gelernt und eingerichtet.
+Wie man fertige Aufgaben einreicht haben Sie schon zuvor in einer anderen Aufgabe
+gelernt und eingerichtet, ebenfalls im Basis-Kapitel.
+
+Sie merken es schon: Das Basis-Kapitel ist etwas Besonderes.
+Es ist das einzige Kapitel, dass Sie komplett von vorn bis hinten durcharbeiten müssen.
+Außerdem ist hier die Reihenfolge nicht beliebig, sondern ebenfalls strikt von vorn nach hinten nötig.
+Drittens müssen Sie mit diesem Kapitel anfangen, sonst sind Sie für den Rest gar nicht arbeitsfähig.
+
+Danach beginnt die Wahlfreiheit.
 
 
-### 2.3 Was mache ich, wenn ich alleine nicht weiterkomme?
+### 2.3 Paararbeit: Was ist mit "zu zweit" gemeint?
 
-1. Sie dürfen fast alle Aufgaben auch **zu zweit bearbeiten** ("Paarprogrammierung").
-   Jede_r von Ihnen beiden macht am Ende eine eigene Abgabe 
-   (und formuliert, wo als Ergebnis Text gefragt ist, eigenen Text)
-   und muss sich voll und ganz mit dem Ergebnis auskennen,
-   aber erarbeiten können Sie dieses Ergebnis gemeinsam.  
-   Das viele Sprechen über die Aufgabe, das sich dabei ergibt, erleichtert das Verständnis nicht nur,
-   sondern verbessert es sogar.
-2. Die **Tutor_innen** stehen für (kurze!) **Hilfestellung** zur Verfügung.
-   Bitte formulieren Sie dafür stets eine präzise Frage.
-   Also nicht _"Ich komme hier irgendwie nicht weiter"_ oder 
-   _"Ich habe keine Ahnung, was ich hier machen soll"_.
-   Sondern z.B. _"Wo finde ich die-und-die Information?"_ oder
-   _"Was bedeutet diese Meldung?"_ oder
-   _"Warum passiert hier das-und-das?"_
+Oben stand "Sie arbeiten im ProPra zu zweit".
+Wie ist das zu verstehen?
+
+1. Das ProPra ist dafür konzipiert, dass Sie Aufgaben mit einer anderen Teilnehmer_in besprechen
+  und sich gemeinsam Gedanken über die Lösung machen.
+2. Abgaben macht hingegen jeder von Ihnen völlig separat. Wie ist das zu verstehen?:
+3. Wenn ein längerer Programmtext zu erarbeiten ist (bei den meisten Aufgaben ist das nicht der
+   Fall), schreiben Sie auch diesen zu zweit, kopieren ihn dann
+   und reichen dann jede_r den gleichen Programmtext ein.
+4. Wenn die Abgabe hingegen Text ist oder ein Kommandoprotokoll,
+   fertigt das jede_r von Ihnen beiden allein an.
+   Bei Kommandoprotokollen dürfen beide Abgaben fast identisch sein.
+   Bei Textabgaben (Markdown-Dokument) formuliert aber jede_r seine eigenen Gedanken selbst.
+5. Jede_r von Ihnen muss sich mit jedem Aspekt Ihrer Abgabe voll und ganz auskennen
+   und bei Rückfragen der Tutor_in kompetente Antworten geben.
+
+Was haben wir uns bei diesen Regeln gedacht?
+
+- Das viele Sprechen über die Aufgabe, das sich beim gemeinsamen Erarbeiten ergibt, 
+  erleichtert das Verständnis nicht nur, sondern verbessert es sogar.
+- Bei Denkfehlern findet man das Problem zu zweit viel schneller.
+- Man hat zu zweit auch mehr und bessere Ideen.
+- Beim Programmieren ist die Neigung zum Pfuschen bei Paaren geringer.
+- Beim Programmieren finden Paare bessere Programmentwürfe.
+- Paarprogrammierung (nichts anderes ist das hier) ist eine wichtige
+  Technik für schwierige Aufgaben bei professioneller Softwareentwicklung.
+- Paarprogrammierung funktioniert hingegen nicht, wenn sich ein Paarmitglied
+  passiv zurücklehnt.
+
+
+### 2.4 Was mache ich, wenn ich alleine nicht weiterkomme?
+
+- Beachten Sie den Schwierigkeitsgrad der Aufgabe.
+  Wählen Sie nötigenfalls Aufgaben mit niedrigerem Schwierigkeitsgrad.
+- Lesen Sie die Aufgabe sorg-fäl-tig.  
+  Aufgaben mit Schwierigkeitsgrad "leicht" sind auch leicht; Sie müssen aber genau lesen
+  und mitdenken.
+- Nutzen Sie die Aufklapp-Hinweise.
+  Ebenfalls sorgfältig.
+- Sie arbeiten doch zu zweit?
+  Besprechen Sie das Problem miteinander; das erzeugt Ideen.
+- Die **Tutor_innen** stehen für (kurze!) **Hilfestellung** zur Verfügung.  
+  Die helfen aber nur, wenn Sie mit einer _konkreten_ Frage ankommen.
+  Also nicht _"Ich komme hier irgendwie nicht weiter"_ oder 
+  _"Ich habe keine Ahnung, was ich hier machen soll"_.
+  Sondern z.B. _"Wo finde ich die-und-die Information?"_ oder
+  _"Was bedeutet diese Meldung?"_ oder
+  _"Warum passiert hier das-und-das?"_  
+  Solches sehr gezieltes Nachfragen ist eine wichtige Fertigkeit in der
+  professionellen Softwareentwicklung und deshalb ein Lernziel des ProPra.
 
 
 ### 2.5 Wann habe ich das ProPra bestanden? (Soll-Umfang)
@@ -139,7 +183,8 @@ Das ist die erwartete Arbeitszeit für diese Aufgabe.
 Wenn Sie diese Aufgabe einreichen und die Tutor_in akzeptiert die Einreichung, 
 wird dieser Wert Ihrem ProPra-Konto gutgeschrieben (Ausnahme siehe unten).
 Sobald die Summe dieser Werte mindestens dem Kursumfang entspricht (30 Stunden pro Leistungspunkt)
-und Sie die Tutor_in darauf hinweisen, ist das ProPra erfolgreich absolviert.
+**und Sie die Tutor_in darauf hinweisen und diese einen entsprechenden Eintrag macht**, 
+ist das ProPra erfolgreich absolviert.
 
 Ihre tatsächliche Arbeitszeit kann darunter liegen.
 Das kommt vor, wenn Sie Aufgaben wählen, die zu einfach für Ihre vorhandenen Fertigkeiten sind
@@ -149,18 +194,22 @@ Ihre tatsächliche Arbeitszeit kann aber auch darüber liegen.
 Das kommt vor, wenn Sie Aufgaben wählen, die zu schwierig für Ihre vorhandenen Fertigkeiten sind
 oder wenn bei Aufgaben der richtigen Schwierigkeitsstufe mehr schiefgeht, als wir
 eingeplant haben. Das kommt beim Programmieren leider oft vor und passiert auch hoch kompetenten
-Softwareentwickler_innen.
+Softwareentwickler_innen ständig.
 
 Um Sie zum sorgfältigen Arbeiten zu animieren und die Tutor_innen vor Überlastung zu schützen,
-wird der Zeitwert einer Aufgabe nur angerechnet, 
-wenn Ihre Lösung bei der ersten oder zweiten Kontrolle dieser Aufgabe akzeptiert wird.
+wird der Zeitwert einer Aufgabe nicht angerechnet, 
+wenn die Tutor_in Ihre Lösung zu oft zurückweisen muss, weil sie nicht den Anforderungen genügt.
+Klingt vage?
+Wie Sie Genaueres herausfinden, lernen Sie im Basis-Kapitel.
 
 
 ## 3. Anmerkung zum Gendern
 
+<replacement id="genderregel">
 [Eigentlich](https://www.fu-berlin.de/sites/diversity/antidiskriminierung/sprache/gender/index.html#Regelung)
 soll an der Freien Universität mit dem Genderstern gegendert werden:
 **Tutor*innen.**
+</replacement>
 
 Aber leider ist der Stern in den meisten Programmiersprachen ein Operator und kann deshalb
 nicht als Bestandteil von Bezeichnern auftreten.
@@ -174,7 +223,9 @@ Die Bedeutung ist dieselbe.
 Liebe Tutor_innen,
 
 herzlich willkommen beim Programmierpraktikum (ProPra).
-Diese Seite funktioniert im FAQ-Stil und ist bitte gründlich durchzuarbeiten.
+Diese Seite funktioniert im FAQ-Stil und ist bitte 
+**vor der ersten Woche des ProPra**
+gründlich durchzuarbeiten.
 
 # Tutor_innenteil
 ## 1. Was ist das Ziel des ProPra?
@@ -184,8 +235,8 @@ Das ProPra soll
 - praktische Programmierkenntnisse und -fertigkeiten vielerlei Art aufbauen
 - dabei für Studierende mit sehr unterschiedlichem Vorkönnen geeignet sein
 - motivierender sein als die meisten Veranstaltungen, indem
-  - die Aufgaben erkennbar praxisorientiert sind
-  - viel weniger Zwang ausgeübt wird als meist üblich
+    - die Aufgaben erkennbar praxisorientiert sind
+    - viel weniger Zwang ausgeübt wird als meist üblich
 
 Wir wollen denen, die hier viel lernen wollen, die beste Unterstützung geben.
 Diejenigen zu stoppen, die sich nur durchmogeln wollen, hat dagegen viel weniger Priorität.
@@ -196,42 +247,79 @@ Wir haben die Hoffnung, dass das ProPra cool und deshalb die Zahl der Mogelinter
 
 Wir haben an die Tutor_innen folgende Erwartungen:
 
-- solide Kenntnisse in der Programmierung mitbringen (guter Mittelstand, kein Expertenniveau)
-- solide Kenntnisse in Shell und git mitbringen (guter Mittelstand, kein Expertenniveau)
-- einen guten Überblick über die Aufgaben des ProPra haben:
+- Solide Kenntnisse in der Programmierung mitbringen (guter Mittelstand, kein Expertenniveau)
+- Solide Kenntnisse in Shell und git mitbringen (guter Mittelstand, kein Expertenniveau)
+- Den Studi-Teil dieser Homepage sorgfältig durchgearbeitet haben.
+- Einen guten Überblick über die Aufgaben des ProPra haben:
   Was gibt es alles; wo stecken jeweils dabei die Schwierigkeiten?
 - Problemdiagnose können:
   Wenn ein Studi mit einer Fehlermeldung ankommt oder (weitaus schwieriger)
-  mit einer diffusen Frage, erkennen wo _vermutlich_ das Problem steckt und 
+  mit einer etwas diffusen Frage, erkennen wo _vermutlich_ das Problem steckt und 
   einen Hinweis geben, wie man zur Lösung gelangt -- nicht, was die Lösung ist.
+- Sich nicht um jeden Käse kümmern:
+  Wenn ein Studi mit einer unkonkreten Frage kommt, diese Frage nicht beantworten,
+  sondern auf den obigen Abschnitt "Wenn ich allein nicht weiterkomme" verweisen,
+  wo die Natur brauchbarer Fragen beschrieben ist.
+- Zur Härte fähig sein:
+  Unsere Ansprüche an die abgelieferten Aufgaben sind insgesamt nicht hoch,
+  denn viele Aspekte prüfen wir kaum oder gar nicht.  
+  Aber wenn diese Ansprüche nicht erfüllt sind, erwarten wir von den Tutor_innen,
+  zuverlässig und unbedingt die Anrechnung zu verweigern -- auch wenn das dazu
+  führt, dass die Studierenden diese Aufgabe gar nicht mehr angerechnet bekommen
+  können, weil sie die Maximalzahl von Versuchen erreicht haben.
 
 Der konkrete Arbeitsauftrag besteht aus zwei Teilen:
 
 1. Anwesend sein und für Fragen zur Verfügung stehen.
    Dabei immer nur gerade so viel Hinweis geben, dass die Studierenden danach
    wieder alleine weiter vorankommen.
-   Bei allein arbeitenden kann der Hinweis auch sein, sich eine Partner_in zu suchen.
+   Eine gute Antwort ist oft eine Gegenfrage.
+   Sie bringt die Studierenden dazu, die Antwort oder Lösung anschließend
+   selbst zu finden.
+   Bei allein arbeitenden Studierenden sollte die Antwort anfangs häufig der Hinweis sein, 
+   sich eine Partner_in zu suchen.
 2. Eingereichte Aufgaben kontrollieren und zurückweisen und/oder akzeptieren.
    Das Akzeptieren führt zur Zeitgutschrift für die Studis.
-   Die Buchführung erfolgt im Git-Repo der Studierenden und wird dadurch gegen
-   Manipulation abgesichert, dass die Commits der Tutor_innen digital signiert werden.
+   Die Buchführung erfolgt im Git-Repo der Studierenden und wird gegen
+   Manipulation abgesichert, indem die Commits der Tutor_innen digital signiert werden.
 
 
-## 3. Was muss ich vor Beginn vorbereiten?  TODO 2
+## 3. Was muss ich vor Beginn vorbereiten?
 
-- GPG-Signaturen verstehen und GPG einrichten.
-- Ein Schlüsselpaar erzeugen.
-- Den Fingerprint an die Veranstalter melden.
-- sedrila installieren. Das ist die technische Infrastruktur, auf der das ProPra basiert.
+Das ProPra basiert auf dem Werkzeug `sedrila`,
+das von Studierenden ("students") benutzt wird, um Aufgaben einzureichen, 
+und von Tutor_innen ("instructors"), um Aufgaben zu prüfen und Prüfergebnisse zu hinterlegen.
 
-Der öffentliche Schlüssel wird im Webauftritt des ProPra vermerkt.
-Beim Aufruf des Skripts gibt man diesen Webauftritt an und
-sedrila akzeptiert dann als gutgeschrieben nur solche Einträge, 
-deren Commits so signiert sind, dass die Signatur zu einem der vermerkten Schlüssel passt. 
+Vor dem Start des ProPra müssen die Tutor_innen ein instructor-Setup von sedrila
+vorbereiten.
+Wie das geht, ist im entsprechenden Abschnitt von
+[sedrila User Guide for Course Instructors](https://sedrila.readthedocs.io/en/latest/instructors/)
+beschrieben.
 
 
-## 4. Wie funktioniert der Einreichungsprozess genau?  TODO 2
+## 4. Wie funktioniert der Einreichungsprozess genau?
 
-...
+Das Funktionsprinzip von sedrila für die Verwaltung der gutgeschriebenen Arbeitsstunden
+der Studierenden ist folgendes:
+  
+- sedrila benutzt das studentische Repo auch zur Verwaltung der gutgeschriebenen Arbeitsstunden,
+  was natürlich unter der Hoheit der Tutor_innen stehen muss.
+  Das studentische Repo steht aber unter der Hoheit der Studierenden, ist also
+  von Fälschung bedroht.
+- Um solche Fälschung zu verhindern, werden die Commits, mit denen Tutor_innen Stunden gutschreiben
+  (oder Aufgabeneinreichungen zurückweisen, was ebenfalls gesichert gespeichert werden muss),
+  digital signiert.
+  Studierende können also zwar solche Commits löschen, indem sie entsprechende Teile des Repos
+  wegschneiden, aber sie können weder die!!! 
+- Der öffentliche Schlüssel jeder Tutor_in wird im Webauftritt des ProPra vermerkt.
+- Beim Aufruf des Skripts gibt man diesen Webauftritt an und
+  sedrila akzeptiert dann als gutgeschrieben nur solche Einträge, 
+  deren Commits so signiert sind, dass die Signatur zu einem der vermerkten Schlüssel passt. 
+
+Der Vorgang, den eine Tutor_in durchläuft, wenn eine Student_in Aufgaben einreicht,
+ist im entsprechenden Abschnitt von
+[sedrila User Guide for Course Instructors](https://sedrila.readthedocs.io/en/latest/instructors/)
+beschrieben.
+Bitte sorgfältig durchlesen und bei den ersten Einreichungen wieder zur Hand nehmen.
 
 [ENDINSTRUCTOR]
