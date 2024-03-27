@@ -98,7 +98,7 @@ diesen Schritt überspringen.
   <no interpreter\> → Add New Interpreter → Add Local Interpreter
 - Wählen Sie links "System Interpreter" aus. Im Drop-Down-Menu kann nun die Windows-Python-Installation ausgewählt
   werden.
-
+gi
 [WARNING]
 Die auf Windows installierte Python-Version unterscheidet sich von der im WSL installierten Version. Über PyCharm
 Community wird ihr Code immer mit der Windows-Version ausgeführt, für die Abgabe muss aber ihr Code immer über das WSL
@@ -145,29 +145,19 @@ Alle im ProPra benötigten Extensions werden von Microsoft bereitgestellt.
 [ENDSECTION]
 [SECTION::submission::information]
 
-<<<<<<< HEAD
-Zeigen Sie ihrem/ihrer Tutor_in ihre eingerichtete IDE mit ihrem geöffneten ProPra.
-
-Sollten Sie ihre Entwicklungsumgebung an einem stationären Desktop eingerichtet haben, erstellen 
-Sie einen aussagekräftigen Screenshot und zeigen Sie diesen ihrem/ihrer Tutor_in.
-=======
 Diesmal gibt es nichts einzuchecken.
-Zeigen Sie zur Prüfung einfach Ihren Laptopbildschirm mit gestarteter IDE.
+Zeigen Sie zur Prüfung einfach Ihren Laptopbildschirm mit gestarteter IDE
+mit erkennbarer Python-Version und geöffnetem ProPra.
+
 Wenn Sie keinen Laptop benutzen, machen Sie einen Fullscreen-Screenshot und checken Sie 
-ihn als `*.png` doch ein.
->>>>>>> 0dd97bf (ch/Basis/IDE/IDEWindows.md: stage: beta)
+den als `*.png`-Datei doch ein.
 
 [ENDSECTION]
 [INSTRUCTOR::Minimale Prüfung]
 
-<<<<<<< HEAD
-[INSTRUCTOR::heading]
-
-Lassen Sie sich von den Studierenden die vollständig aufgesetzte IDE zeigen. Achten Sie vor 
-allem auf die korrekte Python-Version.
-=======
 Nur per kurzem Augenschein prüfen, ob das im Sinne unserer Aufgabe zu sein scheint.
 Ein Studi, der hier etwas verschlampert hat, wird es noch ausführlich bereuen.
->>>>>>> 0dd97bf (ch/Basis/IDE/IDEWindows.md: stage: beta)
+Achten Sie aber auf die korrekte Python-Version, denn daraus resultierende Abweichungen
+könnten subtil ausfallen.
 
 [ENDINSTRUCTOR]
