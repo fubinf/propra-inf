@@ -1,13 +1,4 @@
-# Aufgabenideen
-
-## ch/Basis (hofmann)
-
-Nur das Nötigste, um arbeitsfähig zu sein:
-Technische Infrastruktur aufsetzen (Python, pip, IDE, repo), 
-Commits machen lernen,
-Struktur von ProPra verstehen (difficulties, chapters/taskgroups, assumes/requires, profiles, 
-Rolle von Hints, Submission-Arten und -Formate), 
-Arbeitszeiterfassung in Commits
+# Aufgabenideen zu Kapiteln
 
 
 ## ch/Bestandscode 
@@ -100,7 +91,7 @@ Guter Anlaufpunkt: <https://refactoring.guru/>
 
 ## ch/Bibliotheken
 
-### Bibliotheken/stdlib (alle zusammen?)
+### Bibliotheken/stdlib (wegner)
 
 Hier liegen zahlreiche kleine Aufgaben, mit denen man einzelne oft benötigte Teile der 
 Python-Standardbibliothek ausprobiert.
@@ -136,7 +127,7 @@ Python-Standardbibliothek ausprobiert.
 
 Vermutlich ist das Dranschreiben von Profilen hier eine unsinnige Idee?
 
-### Bibliotheken/chooselib (???)
+### Bibliotheken/chooselib (N.N.)
 
 Bibliothek für bestimmten Zweck suchen und erlernen.
 Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
@@ -146,14 +137,14 @@ Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
 - Nach welchen Merkmalen wählt man eine Bibliothek aus?
 - Wie lernt man das Nötige für einen schmalen Anwendungsfall (Doku vs. stackoverflow)?
 
-### Bibliotheken/pandas
+### Bibliotheken/pandas (N.N.)
 
 - Pandas installieren, pandas101
 - Struktur der Doku verstehen
 - Theorie: Series, DataFrame, Index, MultiIndex: Zweck, Unterschiede, Gemeinsamkeiten.
 - Pandas-Cheatsheet: CSV-Tabelle einlesen, diverse Arten von Datenumstrukturieren ausprobieren
 
-### Bibliotheken/matplotlib
+### Bibliotheken/matplotlib (N.N.)
 
 Assumes pandas
 
@@ -169,16 +160,16 @@ Assumes pandas
 
 ## ch/Sprachen
 
-### Sprachen/sh (condric+hüster?)
+### Sprachen/Shell (condric+hüster?)
 
-Puh, wie man das in eine vernünftige Lernreihenfolge bringt, ist nicht offensichtlich.  
+Puh, wie man folgendes in eine vernünftige Lernreihenfolge bringt, ist nicht offensichtlich:  
 Es wäre schön, die Trennung zwischen der Shellsprache (inkl. builtins) und den Utilities zu vermitteln.  
 Ferner den Unterschied zwischen `sh` und `bash`.
 
-Die Utilities gehören an sich nicht hierhin, sondern ins Kapitel `tools`.
+Die Utilities gehören an sich nicht hierhin, sondern ins Kapitel `Werkzeuge`.
 Vermutlich führt man hier von den allerwichtigsten Utilities (z.B. Dateihandling)
 das Grundkonzept ein (weil man ohne sie nichts Sinnvolles tun kann) und 
-in `tools` folgen später diverse Optionen und Varianten der Benutzung.
+in `Werkzeuge` folgen später diverse Optionen und Varianten der Benutzung?
 
 Wörter, Kommandos, einfaches Quoting, Globbing, Redirect, Pipe.
 if, Tests, for, while, exit codes,
@@ -190,19 +181,21 @@ Shellprozeduren.
 Typische Idiome in Shellskripten.
 
 
-### Sprachen/bash (condric+hüster?)
+### Sprachen/Bash (condric+hüster?)
 
 Die wichtigsten Erweiterungen ggü. sh bezüglich Sprache, Variablen, Builtins, etc.
 
-Ziel: Verstehen, dass sh (auf allen Plattformen vorhanden) und bash (deutlich erweitert)
-verschiedene Dinge sind.
+Ziel: Verstehen, dass sh (auf allen Plattformen vorhanden, wenn auch nicht immer _genau_ gleich) 
+und bash (deutlich erweitert) verschiedene Dinge sind.
 
-### Sprachen/regexp (hüster?)
+
+### Sprachen/Regexp (hüster)
 
 Basiskurs in "einfach", fortgeschrittenes Zeug in "mittel".
 Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall kennenlernt.
 
-### Sprachen/python1 (pietrak+alle gemeinsam?)
+
+### Sprachen/Python1 (alrwasheda)
 
 Aufgaben mit DIFF1 als unvollkommene Starthilfe, überwiegend für Leute mit zu niedrigem Wissen.
 Wiederholung (manches ist aber auch neu!) der absoluten Essentials: 
@@ -219,7 +212,8 @@ import, etc.
 
 Vermutlich sinnvoll als Lückentext, sodass sehr kleine und eingegrenzte Aufgaben entstehen?
 
-### Sprachen/python2 (???)
+
+### Sprachen/Python2 (alrwasheda)
 
 Fortgeschrittenere Konstrukte:
 *args, **kwargs, 
@@ -234,6 +228,7 @@ und anderes mehr.
 Alternativlösung: wir weisen bei den Programmieraufgaben auf diese Konstrukte hin als
 etwas, das man dabei lernen und benutzen kann oder soll.
 Das ist aber nicht zielgenau, wenn die Aufgaben Spielraum bei der Entwurfsstruktur haben.
+
 
 ### Sprachen/Pythonpraxis (prechelt)
 
@@ -250,23 +245,21 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
   Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
   Default-Trenner ist '\n\n', sodass es ganze Absätze ausspuckt anstatt Zeilen.
   Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
-- `rename`: Rename multiple files via regexp search-and-replace.  
-  Example: `mlh rename '\.JPE?G' '.jpg' mydir/*.{JPEG,JPG}`
-- `pseudonymizer`: process a stream of one-line text records such that personal identification
-  is replaced by consistent pseudonyms like "user123", "email123" etc.
-  Based on a single regexp with named groups??
-- `Umgebungsvariablen-Manager`: Ein Skript, das die Verwaltung von Umgebungsvariablen in
-  verschiedenen Umgebungen (Entwicklung, Test, Produktion usw.) erleichtert, indem es das Laden,
-  Überprüfen und Aktualisieren von Konfigurationsdateien automatisiert.
+- `diffenv`: Ein Skript, das die Verwaltung von Umgebungsvariablen in
+  verschiedenen Umgebungen (Entwicklung, Test, Produktion usw.) erleichtert, indem es die Mengen
+  von Umgebungsvariablen-Definitionen in zwei Dateien vergleicht.
+  Es ignoriert also im Gegensatz zu normalem `diff ` sowohl die Werte dieser Variablen 
+  als auch die Reihenfolge ihrer Definition.
+  Zeilen, die nicht die Form `A=b` oder `export A=b` haben, können wahlweise ignoriert, gezählt,
+  oder als Fehler (mit exit status) gemeldet werden.
+  Mehrfache Definitionen derselben Variablen werden als Warnung gemeldet.
 - `Code-Snippets`: Ein Tool, das es Entwicklern ermöglicht, Code-Snippets zu organisieren,
   zu suchen und wiederzuverwenden; Evt. gut geeignet um auch mlh als code-snippets aufzunehmen?
 
-Jede Teilanwendung wird in einer größeren Aufgabe oder ggf. in 2-3 Teilaufgaben gebaut.
-Voran geht eine Teilaufgabe für den Rahmen mit `argparse_subcommands` (das auch bei sedrila
-benutzt wird; Struktur einfach dort abgucken)
 
+### Sprachen/C (N.N.)
 
-### Sprachen/C
+Kleiner Ausflug in die C-Programmierung, insbes. Zeiger, manuelle Speicherverwaltung.
 
 - Compiler installieren, Hello World
 - Datei einlesen, Länge der längsten und der kürzesten (nichtleeren) Zeile bestimmen
@@ -281,21 +274,28 @@ benutzt wird; Struktur einfach dort abgucken)
 - jetzt das Gleiche mit einem längeren String --> Crash
 - Aus Unter-Unteraufruf gezielt eine lokale Variable im Unter-Aufruf verändern.
 - Betriebssystemaufruf mit handgeklöppelter Datenstruktur machen
+- Evtl. eine Aufgabe, in der eine enge Schleife in Python durch Auslagern nach C
+  enorm viel beschleunigt wird? Der Rest des Codes bleibt in Python.
+  Man schreibt sich also eine ganz kleine Bibliothek für einen Spezialalgorithmus in C 
+  und bindet sie an.
 
-### Sprachen/SQL
+
+### Sprachen/SQL (N.N.)
 
 Ein paar Aufgaben zu mittelkomplexen Abfragen (mit etwas Verschacheltung)
 und mittelkomplexen Updates.  
 Assumes: sqlite
 
-### Sprachen/DSLs
+
+### Sprachen/DSLs (N.N.)
 
 - Was ist eine DSL? (interne, externe)
 - Grundlagen/häufigste Fälle von awk
 - Grundlagen/häufigste Fälle von sed
 - `jq`, `jid`, `jgrep`
 
-### Sprachen/Andere-Shells
+
+### Sprachen/Andere-Shells (N.N.)
 
 Alternative Shells. 
 
@@ -353,11 +353,7 @@ Aufgabenbereiche:
 
 ## ch/Werkzeuge
 
-Hier muss explizit mehr vermittelt werden, als im Grundlagenbereich.
-
-### Werkzeuge/bash2 (condric+hüster?)
-
-(Das heißt bash2, weil es schon ch/sprache/bash gibt und taskgroups eindeutig sein müssen.)
+### Werkzeuge/Bash2 (condric+hüster?)
 
 - Umgang mit Dateien: ls, mv, rm, cp, mkdir, rmdir, ...  
   Lernziel: die Fälle verstehen, in denen das einer GUI überlegen ist: mit Globbing, mit mehreren Argumenten, mit speziellen Optionen
@@ -396,7 +392,7 @@ Lernziel ist immer, typische Anwendungsfälle und Stärken zu verstehen.
 - fortgeschrittenes Dateihandling: file, dd, tar, zip, gzip, ...
 - root sein, z.B. evtl.: sudo (mit sudoers, visudo etc.), su, Ethos, Vorsicht, /etc/passwd, Gruppen/Gruppenrechte, ...
 
-### Werkzeuge/git (hüster)
+### Werkzeuge/Git (hüster)
 
 Reizvolle didaktische Aufgabe!  
 Was gehört zum Grundwissen, was ist schon deutlich fortgeschritten?  
@@ -445,7 +441,6 @@ Speziellerer Kram:
   - Refactoring
   - git-Integration
   - Integriertes Terminal
-- Linter
 - Paketmanager
   - Welche stehen in meiner Sprache zur Verfügung? Gibt es überhaupt welche?
   - Welche Funktionen bietet ein Paketmanager?
@@ -464,105 +459,27 @@ Speziellerer Kram:
 - docker?
 
 
-## ch/Web
+## ch/Web (müllers)
 
 - assumes: Wissen über http-Header, curl  
   https://icanhazdadjoke.com liefert im Browser etwas anderes als wenn man es mit curl abruft.
   Was vermuten Sie, wie funktioniert das? (User-Agent abfragen).
   Finden Sie eine Website, die Ihnen hilft zu prüfen, ob die Voraussetzung für ihre Vermutung
   gegeben ist.
+- Auf Grundlagen beschränken; das ProPra ist kein Workshop für Spezialkenntnisse.  
+- Frontend und Backend gemeinsam behandeln; Informatiker_innen sollten einen Überblick haben.
+- Behandlung von folgenden Themen: HTML, CSS, Bootstrap(?), JavaScript,
+  evtl. TypeScript, Flask, Django, Vue(?), React(?).
 
 
-## Aufgabenideen ohne Heimat
+# Aufgabenideen ohne Heimat
 
 - Lektion: Kämpfe nicht gegen den Compiler an.
   - Sucht nach einer Umsetzung.
     Eine eigene Implementierung vs eine Implementierung der Standardbibliothek zu dekompilieren 
     führt nicht zum Ziel, Python optimiert recht wenig.
-
-
-# Anwenderprofile
-
-Mögliche "Lernpfade" (höchstens sechs) für bestimmte Arten von beruflichem Tätigkeitsprofil.  
-Jede Aufgabe kann null, einem oder mehreren Profilen zugeordnet sein.  
-Es soll nicht möglich sein mit nur einem Pfad das ProPra zu bestehen.  
-Die Profile sind ein kleines Hilfsmittel zur Orientierung für die Studierenden.
-Sie sind aber klar eine Nebensache, kein wichtiges Strukturelement zur Entwicklung des ProPra.
-
-
-## DBS: Datenbankentwicklung (Priorität: mittel)
-
-- SQL
 - ORM mit Python (Django oder sqlalchemy)
-- Antimuster vermeiden: SQL-Injektion, n+1 Queries
+- DB-Programmierung-Antimuster vermeiden: SQL-Injektion, n+1 Queries
 - Praxis Datenbankdesign
 - Vergleich von sqlite, mysql, postgres; evtl. selber Aufsetzen und Ausprobieren.
-
-
-## DSCI: Data Scientist (Priorität: mittel)
-
-- Datenhandling: numpy und pandas
-- Datenvisualisierung: matplotlib, ...
-- SQL
-- Machine Learning: Einfache Gehversuche mit scikit-learn
-
-
-## OPS: DevOps (Priorität: mittel)
-
-- Sysadmin-Sachen (Netzwerk, Dateisysteme, Docker, Cloud etc.)
-- Continuous Integration, Continuous Deployment
-- fortgeschrittenes Git
-- Was noch?
-- 
-
-## SYS: Systemprogrammiererung (Priorität: niedrig)
-
-- Kleiner Ausflug in die C-Programmierung, insbes. Zeiger, manuelle Speicherverwaltung.
-- Evtl. eine Aufgabe, in der eine enge Schleife in Python durch Auslagern nach C
-  enorm viel beschleunigt wird? Der Rest des Codes bleibt in Python.
-  Man schreibt sich also eine ganz kleine Bibliothek für einen Spezialalgorithmus in C 
-  und bindet sie an.
-- Was sonst ist im ProPra machbar??
-
-
-## TEST: Softwaretest (Priorität: hoch)
-
-Vom Unittest bis zum End-to-end-Test die Bereiche manuelles, automatisiertes Testen für Backend und Frontend betrachten.
-Dabei auf ISTQB Empfehlungen eingehen und hinweisen, um einen Standard zu vermitteln.
-Evtl. Verbindung zu Requirement Engineering, DevOps Engineering, Testmanagement, agiler Entwicklung herstellen?
-
-Themen und Übungen nach Mermaid Diagram im [index.md](./ch/testen/index.md)-file des testen-Verzeichnisses.
-
-### Zusammengefasst
-
-- Kleiner therotischer Bereich nach ISTQB für einen einheitlichen Sprachgerbauch (einfach)
-- Mittels eines eigens hierfür entwickelten **Bestandscodes** in dreierlei Ausfertigung sollen praktische Testautomatisierungerfahrungen vermittelt werden
-  - Tool-Auswahl von Unit-, über Integrations-, hin zu End-zu-End Tests (einfach)
-  - Pipelining in GitHub Action oder GitLab CI (mittel)
-- Mit Testarten den Bezug zu den unterschiedlichen Testebenen vermitteln
-- Testdatenmanagement soll den Vorteil von generischen Testfällen vermitteln
-- (Optionales i-Tüpfelchen) KI Testen
-
-### Schwerpunkte
-
-- Bestandscode in v1, v2 und v3
-- Teststufen (unit-, Integrations- und Systemtests)
-- Testtools auf allen Teststufen / Lokale Last- und Performancetests (API)
-- Testdatenmanagement
-
-## WEB: Entwicklung von Webanwendungen (Priorität: hoch)
-
-Auf Grundlagen beschränken; das ProPra ist kein Workshop für Spezialkenntnisse.  
-Frontend und Backend gemeinsam behandeln; Informatiker_innen sollten einen Überblick haben.
-
-Behandlung von folgenden Themen:
-
-- HTML
-- CSS
-  - Bootstrap
-- JavaScript
-  - JQuery
-- Python Frontend:
-  - Web: Flask, Django
-  - App: TKinter
-  
+- Machine Learning: Einfache Gehversuche mit scikit-learn (dubios: braucht erstmal Theoriewissen)
