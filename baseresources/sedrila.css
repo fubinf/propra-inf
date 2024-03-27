@@ -597,6 +597,14 @@ summary {}
     .blockmacro {
         box-shadow: 6px 6px 5px #000;
     }
+
+    .stage-draft {
+        background-color: #555;
+    }
+
+    .stage-alpha {
+        background-color: #333;
+    }
 }
 
 /********** Admonitions (TODO_2 phase out): */
