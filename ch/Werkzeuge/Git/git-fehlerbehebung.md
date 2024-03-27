@@ -1,5 +1,5 @@
 title: Fehler beheben im git Repository
-stage: draft
+stage: alpha
 timevalue: 2.0
 difficulty: 1
 assumes: git-funktionsweise
