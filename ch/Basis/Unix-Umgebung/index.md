@@ -1,5 +1,4 @@
 title: "Unix-Kommandozeilenumgebung (command-line interface, CLI) schaffen"
-stage: alpha
 minimum: 1
 ---
 Viele unserer Aufgaben werden sich auf der Kommandozeile in einer 
@@ -21,4 +20,6 @@ Mac OS (einem POSIX-kompatiblen Unix)
 und Linux.
 Linux ist nicht POSIX-kompatibel, hat aber die breiteste Softwareunterstützung und
 ist insbesondere auf Servern führend.
-**Wir tun hier immer so, als wären wir auf Linux**, Mac-Benutzer_innen also bitte aufpassen.  
+
+**Wir tun hier immer so, als wären wir auf Linux**.
+Mac-Benutzer_innen müssen also bitte selber etwas zusätzlich aufpassen.  
