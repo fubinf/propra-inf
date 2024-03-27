@@ -1,5 +1,5 @@
 title: Fertige Aufgaben einreichen und angerechnet bekommen
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 requires: SedrilaEinrichten
@@ -27,11 +27,11 @@ Deshalb wollen wir uns eine solche Disziplin auch im ProPra angewöhnen:
 Jede Aufgabe wird in einem separaten Commit (oder ggf. mehreren) eingecheckt,
 niemals mehrere Aufgaben zugleich.
 Dann kann man in der Commit-Nachricht die betreffende Aufgabe so markieren,
-dass sich das automatisch verarbeiten lässt.
+dass sich das automatisch verarbeiten lässt -- und das macht `sedrila` sich zunutze.
 
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
+[SECTION::instructions::loose]
 
 ### Übliches Abgabeformat
 
@@ -57,6 +57,12 @@ Programmierpraktikum
   └─Screenshot.png
 ```
 
+Kurz gesagt: Abgabedateien haben immer den Aufgabennamen als Basisname (die Suffixe wechseln)
+oder sie liegen in einem Verzeichnis, das wie die Aufgabe heißt.
+
+Genauer gesagt, ist es so:
+
+
 ### Datei-Basisnamen und -Namensendungen
 
 Wir verwenden im gesamten Programmierpraktikum folgende Dateinamens-Konventionen
@@ -78,7 +84,7 @@ Wir verwenden im gesamten Programmierpraktikum folgende Dateinamens-Konventionen
 ### Was gehört in welche Dateien?
 
 Manchmal ist verbal beschrieben, was Sie in welchen Dateien abliefern sollen.
-Manchmal (aber nur ab Schwierigkeitsgrad mittel) müssen Sie es selbst herausfinden.
+Manchmal (aber nur ab Schwierigkeitsgrad mittel) müssen Sie es teilweise selbst herausfinden.
 
 Meistens ergibt es sich jedoch aus folgender Konvention: 
 
@@ -89,18 +95,18 @@ Meistens ergibt es sich jedoch aus folgender Konvention:
   dann ist als Abgabe dazu ein Kommandoprotokoll gefragt.
 - Wenn Sie in der Anleitung Markierungen sehen wie [ER], [ER], [ER],
   dann gehört das zugehörige Arbeitsergebnis in Quellcodedateien.
-
-Machen Sie sich keine Sorgen, falls Sie Markdown nicht beherrschen. 
-Sie dürfen ersatzweise auch unformatierten Text abgeben.
-Schreiben Sie dann zu jeder Antwort einen Absatz.
+- **F** steht für Frage, **K** für Kommando und **A** für Anforderung.
 
 
 ### Commits nachholen
 
 Prüfen Sie ihre Commits zu den vorherigen Aufgaben.
-Benennen Sie falsch benannte Dateien um 
-und checken Sie sie (ohne Zeiterfassungs-Eintrag) erneut ein.
-Holen Sie ggf. fehlende Commits nach.
+
+- Benennen Sie falsch benannte Dateien um 
+  und checken Sie sie (ohne Zeiterfassungs-Eintrag) erneut ein.
+- Holen Sie ggf. fehlende Commits nach.
+- Falls [PARTREFMANUAL::Zeiterfassung::Zeiterfassungs-Einträge] fehlen, holen Sie diese 
+  mit geschätzten Zeiten ebenfalls nach.
 
 
 ### Abgaben (Einreichungen) machen
@@ -113,14 +119,15 @@ sedrila student --submission
 ```
 
 Sie bekommen dann eine Liste mit Aufgaben, zu denen Sie Commits angelegt
-haben, zusammen mit der entsprechenden aufsummierten aufgewendeten Zeit.
-Sie können darin auswählen, welche Aufgaben zur Kontrolle vorgelegt werden
-sollen. Daraus wird eine Datei submission.yaml erzeugt und Ihnen weitere
-Anweisungen gegeben.
+haben.
+Sie können darin auswählen (TODO_1 Wie?), welche Aufgaben zur Kontrolle vorgelegt werden
+sollen. 
+Daraus wird eine Datei submission.yaml im richigen Format erzeugt.
+Abschließend zeigt das Kommando an, wie es weitergeht: Email an eine Tutor_in.
 
 Da hier nichts weiter zu tun ist, Sie aber trotzdem Zeit gutgeschrieben haben
 wollen, können Sie ausnahmsweise einen Zeiterfassungscommit ohne Inhalt machen.
-Hierfür verwendet man `git commit --allow-empty`.
+Hierfür verwendet man `git commit --allow-empty -m"..."`.
 
 Vergessen Sie nicht, Ihren Stand mittels `git push` verfügbar zu machen!
 [ENDSECTION]
@@ -132,6 +139,11 @@ Zeigen Sie nun Ihre bisherigen Ergebnisse bei der Tutor_in vor wie vom Kommando
 `sedrila student --submission` beschrieben.
 
 Die Email dient dabei nur zum Übermitteln der Zugangsdaten,
-für die Abnahme müssen Sie persönlich hingehen, damit die Tutor_in
-Ihnen mündlich Rückmeldung geben kann.
+für die Abnahme müssen Sie **stets persönlich hingehen**, 
+damit die Tutor_in Ihnen mündlich Rückmeldung geben kann oder Rückfragen stellen.
 [ENDSECTION]
+
+[INSTRUCTOR::Nichts zu prüfen]
+Wer geschafft hat, eine sinnvolle `submission.yaml` einzureichen, 
+hat diese Aufgabe schon erledigt.
+[ENDINSTRUCTOR]
