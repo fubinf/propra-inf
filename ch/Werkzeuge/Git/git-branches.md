@@ -1,5 +1,5 @@
 title: Git Branches
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 1
 assumes: git-funktionsweise
