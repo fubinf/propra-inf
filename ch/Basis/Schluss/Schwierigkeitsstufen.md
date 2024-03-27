@@ -1,5 +1,5 @@
 title: Schwierigkeitsstufen verstehen
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 ---
@@ -14,14 +14,15 @@ welches vermutlich das richtige Niveau für mich ist.
 ### Farbcode
 
 Im Inhaltsverzeichnis ist jede Aufgabe mit einem Farbcode versehen,
-der den Schwierigkeitsgrad der Aufgabe beschreibt:
-1 (sehr einfach [DIFF::1]),
-2 (einfach [DIFF::2]),
-3 (mittel [DIFF::3]) oder
+der den Schwierigkeitsgrad der Aufgabe beschreibt:  
+1 (sehr einfach [DIFF::1]),  
+2 (einfach [DIFF::2]),  
+3 (mittel [DIFF::3]) oder  
 4 (schwierig [DIFF::4]).
 
 Diese Markierungen sind wichtig, um zügig Aufgaben auswählen zu können,
 deren Schwierigkeitsgrad zum eigenen Können passt.
+
 
 ### Schwierigkeitsstufen und Aufgabenauswahl
 
@@ -39,6 +40,7 @@ Der normale Schwierigkeitsbereich ist also "einfach [DIFF::2]" und "mittel [DIFF
 Bitte wählen Sie immer möglichst Aufgaben mit dem für Sie passendsten Schwierigkeitsgrad;
 allerdings hängen "mittel [DIFF::3]"-Aufgaben oft von "einfach [DIFF::2]"-Aufgaben ab,
 sodass man an denen oft nicht vorbeikommt; das ist kein Problem.
+
 
 ### Schwierigkeitsstufen und Zielgruppen
 
@@ -73,8 +75,8 @@ gekennzeichneten Aufgaben anfangen und sich zu "schwierig[DIFF::4]" vorarbeiten.
 Aufgaben der Sorte "einfach[DIFF::2]" kann man wegen Abhängigkeiten zwischen den Aufgaben
 unterwegs nicht immer alle auslassen; auch sind ihre Themen oft interessant.
 Aber erstens enthalten viele "einfach[DIFF::2]"-Aufgaben aufklappbare Hinweise als Hilfen.
-Wenn man die allesamt zu lässt, ist die Aufgabe faktisch oftmals "mittel[DIFF::3]".
-Zweitens kann man sich andernfalls hier ein Zeitpolster erarbeiten, dass man später bei
+Wenn man die allesamt zu lässt, ist die Aufgabe faktisch oftmals "mittel".
+Zweitens kann man sich ansonsten hier ein Zeitpolster erarbeiten, dass man später bei
 einer "schwierig[DIFF::4]"-Aufgabe wieder verbrät, die naturgemäß die Neigung hat,
 länger zu dauern als man dachte.
 
@@ -84,9 +86,10 @@ länger zu dauern als man dachte.
 
 ### In die Schwierigkeitsstufen einlesen
 
-Suchen Sie im Inhaltsverzeichnis je eine Aufgabe auf Stufe "einfach [DIFF::2]",
+Suchen Sie im Inhaltsverzeichnis _außerhalb_ des Basis-Kapitels
+je eine Aufgabe auf Stufe "einfach [DIFF::2]",
 Stufe "mittel [DIFF::3]" und Stufe "schwierig [DIFF::4]",
-die Ihnen interessant vorkommt.
+die Ihnen vom Namen her interessant vorkommt.
 (Nehmen Sie zügig irgendwelche; es ist nicht wichtig, dass es eine "gute" Auswahl ist.)
 
 Lesen Sie die Aufgaben grob(!) durch.
@@ -102,7 +105,8 @@ Wiederholen Sie das mit zwei weiteren Tripeln solcher Aufgaben.
 
 ### Die Schwierigkeit ist oft etwas variabel
 
-Bei vielen Aufgaben gibt es farbige Kästen, die mit "Hinweis (nur bei Bedarf)" betitelt sind.
+Bei vielen Aufgaben gibt es wie schon erwähnt farbige Kästen, 
+die mit "Hinweis (nur bei Bedarf)" betitelt sind.
 Wenn man die aufklappt, findet man eine Information, die das Lösen der Aufgabe erleichtert.
 
 Dadurch kann man den Schwierigkeitsgrad der Aufgabe etwas absenken.
