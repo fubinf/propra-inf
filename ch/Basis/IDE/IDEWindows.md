@@ -12,7 +12,6 @@ requires: Unix-Umgebung
 Ich habe eine funktionierende IDE auf Windows und kann diese in Zusammenarbeit mit WSL verwenden.
 
 [ENDSECTION]
-
 [SECTION::background::default]
 
 Auf Windows haben Sie die Wahl zwischen drei verschiedenen IDEs, mit denen sich dieser Kurs absolvieren lässt:
@@ -25,18 +24,18 @@ Auf Windows haben Sie die Wahl zwischen drei verschiedenen IDEs, mit denen sich 
 
 ### 2. PyCharm Community Edition  
 - Diese Version ist kostenlos, arbeitet aber nicht mit dem WSL zusammen, weshalb zusätzlich eine Python-Installation auf
-  Windows vorhanden sein muss. 
+  Windows vorhanden sein muss. (TODO_1_wegner Stimmt das? Wenn nicht, empfehlen wir allen die Community Edition.)
 - Die Verwaltung beider Python-Environments könnte auf Dauer aufwendig und vor allem für Anfänger verwirrend werden. 
 - Nur Empfohlen, wenn Sie Probleme bei der Aktivierung der PyCharm-Pro-Lizenz haben.
 
 ### 3. Visual Studio Code  
 - Arbeitet problemlos mit dem WSL zusammen. 
 - Da der Kurs jedoch vorrangig auf PyCharm aufgebaut ist, können vor allem bei fortgeschrittenen Themen benötigte
-  IDE-Features anders funktionieren. Hier müssen Sie ggf. selbst nach alternativen Wegen suchen.
+  IDE-Features anders funktionieren. Hier müssen Sie ggf. selbst nach alternativen Wegen suchen;
+  der Unterschied betrifft aber nur wenige Aufgaben.
 - Empfohlen, falls Sie VS Code bereits im Alltag nutzen und keine weitere IDE lernen möchten.
 
 [ENDSECTION]
-
 [SECTION::instructions::detailed]
 
 Wenn Sie sich schon für eine IDE entschieden haben, brauchen Sie nur einen der drei Abschnitte zu bearbeiten.
@@ -51,8 +50,7 @@ Sollten Sie bereits einen JetBrains-Account haben und eine gültige Lizenz für 
 diesen Schritt überspringen.
 
 - Beantragen Sie die Pro-Lizenz auf [HREF::https://www.jetbrains.com/shop/eform/students].
-- Füllen Sie das Formular entsprechend aus. Verwenden Sie ihre Universitäts-E-Mail-Adresse für die Beantragung
-  (akzeptiert wird die `@zedat.fu-berlin.de` Adresse sowie der `@fu-berlin.de` Alias).
+- Füllen Sie das Formular entsprechend aus. Verwenden Sie ihre **Universitäts-Emailadresse** für die Beantragung.
 - Bei Problemen mit der Freischaltung können Sie auch die Beantragung über ein offizielles Dokument, z.B. einer
   Immatrikulationsbescheinigung, versuchen. Sie müssen hier aber mit einer längeren Bearbeitungszeit rechnen.
 - Sobald Sie die Bestätigungs-E-Mail erhalten haben, gehen Sie auf den Link und verknüpfen Sie ihre Lizenz mit ihrem
@@ -67,22 +65,21 @@ diesen Schritt überspringen.
   Free Trial aus.
 - Sie sollten bereits ein git-Repository für ihre Aufgaben erstellt und in ein Verzeichnis in ihrem WSL geklont haben.
   Um dieses nun in der IDE zu öffnen, gehen Sie auf "Open Project" und navigieren Sie zu dem Verzeichnis ihres
-  Repos. Dieses sollte unter `\\wsl$\Debian\home\<WSL Benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
+  Repos. Dieses sollte unter `\\wsl$\Debian\home\<benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
 - Damit Sie auch ihr WSL Environment als Interpreter nutzen können, klicken Sie unten rechts auf:  
   <no interpreter\> → add new interpreter → On WSL ...
-- falls Sie mehrere WSL Distributionen installiert haben, wählen Sie Debian aus.
-- sollte hierbei eine Fehlermeldung auftauchen, überprüfen Sie ihre Python Installation im WSL und versuchen Sie es
-  erneut.
+- Falls Sie mehrere WSL Distributionen installiert haben, wählen Sie Debian aus.
+- Sollte hierbei eine Fehlermeldung auftauchen, überprüfen Sie ihre Python-Installation im WSL.
 - Wählen Sie im nächsten Fenster links "System Interpreter" aus. Im Drop-Down-Menü rechts sollte der WSL-Python
   Interpreter `/usr/bin/python3` ausgewählt sein.
 
 
 ### 2. PyCharm Community Edition
 
-#### Python 3.11 auf Windows installieren
+#### Python auf Windows installieren
 
 - Gehen Sie auf [HREF::https://www.python.org/downloads/]
-- scrollen Sie nach unten und laden Sie die aktuellste Version von Python 3.11 herunter.
+- scrollen Sie nach unten und laden Sie Python 3.11 herunter (keine neuere Version!).
 - Starten Sie den Installer.
 - setzen Sie das Häkchen bei "Add python.exe to PATH", um Python auch über die CMD/PowerShell ansprechen zu können.
 - Die Standard-Installation ist ausreichend, sie können aber auch auf "Customize install" klicken und folgende
@@ -96,7 +93,7 @@ diesen Schritt überspringen.
   führen Sie den Installer aus. Anschließend öffnen Sie PyCharm.
 - Sie sollten bereits ein git-Repository für ihre Aufgaben erstellt und in ein Verzeichnis in ihrem WSL geklont haben.
   Um dieses nun in der IDE zu öffnen, gehen Sie auf "Open Project" und navigieren Sie zu dem Verzeichnis ihres
-  Repos. Dieses sollte unter `\\wsl$\Debian\home\<WSL Benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
+  Repos. Dieses sollte unter `\\wsl$\Debian\home\<benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
 - Um ihren Code mit dem auf Windows installierten Python-Interpreter auszuführen, gehen Sie unten rechts auf:  
   <no interpreter\> → Add New Interpreter → Add Local Interpreter
 - Wählen Sie links "System Interpreter" aus. Im Drop-Down-Menu kann nun die Windows-Python-Installation ausgewählt
@@ -109,7 +106,8 @@ ausgeführt werden.
 
 Das kann zu Problemen führen:
 
-- Es gibt kleine Unterschiede zwischen Python auf Linux und Python auf Windows, insbesondere beim Format von Dateinamen.
+- Es gibt kleine Unterschiede zwischen Python auf Linux und Python auf Windows,
+  insbesondere beim Format von Dateinamen und Pfaden.
 - Wenn Sie zusätzliche Python-Pakete installieren (was für viele Aufgaben nötig sein wird), müssen Sie dies immer in
   beiden Installationen vornehmen, was ebenso lästig wie fehleranfällig ist.
   Lesen Sie zur Information vorab die Warnhinweise in den Aufgaben [PARTREF::venv] und [PARTREF::pip].
@@ -128,8 +126,8 @@ Das kann zu Problemen führen:
 
 [WARNING]
 Es gibt viele verschiedene Extensions bei VS Code, die häufig gleiche oder ähnliche Namen haben. Installieren Sie wenn
-möglich nur Extensions von vertrauenswürdigen Anbietern. Alle hier benötigten Extensions werden von Microsoft
-bereitgestellt.
+möglich nur Extensions von vertrauenswürdigen Anbietern. 
+Alle im ProPra benötigten Extensions werden von Microsoft bereitgestellt.
 [ENDWARNING]
 
 - Klicken Sie unten links auf den "Open Remote Connection" Button oder drücken Sie F1 und geben "wsl" ein. Wählen Sie
@@ -145,19 +143,31 @@ bereitgestellt.
 - Wählen Sie "Yes, I trust the authors".
 
 [ENDSECTION]
-
 [SECTION::submission::information]
 
+<<<<<<< HEAD
 Zeigen Sie ihrem/ihrer Tutor_in ihre eingerichtete IDE mit ihrem geöffneten ProPra.
 
 Sollten Sie ihre Entwicklungsumgebung an einem stationären Desktop eingerichtet haben, erstellen 
 Sie einen aussagekräftigen Screenshot und zeigen Sie diesen ihrem/ihrer Tutor_in.
+=======
+Diesmal gibt es nichts einzuchecken.
+Zeigen Sie zur Prüfung einfach Ihren Laptopbildschirm mit gestarteter IDE.
+Wenn Sie keinen Laptop benutzen, machen Sie einen Fullscreen-Screenshot und checken Sie 
+ihn als `*.png` doch ein.
+>>>>>>> 0dd97bf (ch/Basis/IDE/IDEWindows.md: stage: beta)
 
 [ENDSECTION]
+[INSTRUCTOR::Minimale Prüfung]
 
+<<<<<<< HEAD
 [INSTRUCTOR::heading]
 
 Lassen Sie sich von den Studierenden die vollständig aufgesetzte IDE zeigen. Achten Sie vor 
 allem auf die korrekte Python-Version.
+=======
+Nur per kurzem Augenschein prüfen, ob das im Sinne unserer Aufgabe zu sein scheint.
+Ein Studi, der hier etwas verschlampert hat, wird es noch ausführlich bereuen.
+>>>>>>> 0dd97bf (ch/Basis/IDE/IDEWindows.md: stage: beta)
 
 [ENDINSTRUCTOR]
