@@ -1,7 +1,7 @@
 title: Linux-Kommandozeile auf Linux mit Apt
 stage: beta
 timevalue: 0.5
-difficulty: 1
+difficulty: 2
 ---
 [SECTION::background::default]
 

@@ -1,7 +1,7 @@
 title: Auswahl der nächsten Themen
 stage: alpha
 timevalue: 1.0
-difficulty: 1
+difficulty: 2
 requires: Zeiterfassung
 assumes: RequiresAssumes,Schwierigkeitsstufen
 ---
