@@ -132,6 +132,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Dominik Pietrak)
 
 - ch/Sprachen/sql/SQLBasics.md (Ronny Ruhe)
+- ch/Sprache/sql/SQLSelect.md (Ronny Ruhe)
 
 
 ## Reviews to do for Ivan Condric

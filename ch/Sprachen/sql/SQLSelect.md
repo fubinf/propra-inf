@@ -1,23 +1,235 @@
-title: Daten auswählen mittels SELECT und UNION
-stage: draft
+title: SQL Select anwenden
+stage: alpha
 timevalue: 2
 difficulty: 2
 assumes: SQLBasics
 ---
-!!! goal
-    Es gibt Möglichkeiten, das Resultat einer Abfrage einzuschränken, die sich mit *SELECT*
-    und *WHERE* alleine nicht realisieren lassen. Wir wollen hier einige davon kennenlernen.
 
-Auch, wenn SQL gerne so behandelt wird, als würde es mit Mengem (im mathematischen Sinn)
-arbeiten, so ist das in der Praxis nicht der Fall. Ergebnisse sind wohlgeordnet und Duplikate
-sind möglich.
+[SECTION::goal::experience]
 
-Recherchieren Sie, wie man Duplikate in Ergebnissen entfernt und nur bestimmte Bereiche des
-Ergebnisses (beispielsweise die ersten 10) abfragen kann.
+Ich kann komplexere SELECT Anweisungen schreiben und die Ergebnisse ausgeben lassen.
 
-Recherchieren Sie außerdem, wie "Union" funktioniert. Achten Sie besonders auf die dort
-auftretenden Einschränkungen.
+[ENDSECTION]
 
-!!! submission
-    Erläutern Sie in kurzen Sätzen, was Sie in den Tutorials gelernt haben. 
-    Gehen Sie auch auf mögliche Zusammenhänge zwischen den Begriffen ein.
+[SECTION::background::default]
+
+Das Abfragen einer kleinen gesamten Tabelle ist manchmal ausreichend, um manuell sein gewpünschtes
+Ergebnis einzusehen. Wenn es aber darum geht mit einem Ergebnis zu arbeiten, da dieses in einer
+neuen Funktion benötigt wird, benötigen wir genauere Angaben in der Abfrage, die das eine, oder alle
+Ergebnisse zurück gibt.
+
+[ENDSECTION]
+
+[SECTION::instructions::detailed]
+
+### Grundlage unsere Abfrage
+
+Zu erst schaffen uns unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQLBasics] bekannte
+Seite, um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgende Tabelle, mit
+der wir in dieser Aufgabe arbeiten wollen.
+
+- [EC] Erstellen Sie die Tabelle `dogs` mit den Spalten `name`, `breed`, `age`, `gender`, `color`,
+  `birthdate`, `owner_id` und den folgenden Einträgen. Verwenden Sie die folgende Tabelle 
+  `id INTEGER PRIMARY KEY`.
+
+```sql
+('Buddy', 'Labrador Retriever', 3, 'Male', 'Golden', '2019-05-10', 1),
+('Max', 'German Shepherd', 5, 'Male', 'Black and Tan', '2017-08-15', 2),
+('Bella', 'Golden Retriever', 2, 'Female', 'Golden', '2020-02-20', 3),
+('Charlie', 'Poodle', 4, 'Male', 'White', '2018-11-28', 1),
+('Lucy', 'Beagle', 6, 'Female', 'Tricolor', '2016-04-03', 4),
+('Rocky', 'Boxer', 3, 'Male', 'Brindle', '2019-09-08', 5),
+('Luna', 'Siberian Husky', 1, 'Female', 'Gray and White', '2023-01-15', 6),
+('Bailey', 'Dachshund', 8, 'Female', 'Red', '2015-07-20', 7),
+('Cooper', 'Golden Retriever', 2, 'Male', 'Golden', '2020-03-25', 8),
+('Molly', 'Yorkshire Terrier', 5, 'Female', 'Black and Tan', '2017-11-12', 9),
+('Duke', 'Doberman Pinscher', 4, 'Male', 'Black and Rust', '2018-04-30', 10),
+('Zoe', 'Shih Tzu', 7, 'Female', 'White and Brown', '2015-12-03', 11),
+('Milo', 'Cavalier King Charles Spaniel', 6, 'Male', 'Blenheim', '2016-08-22', 12),
+('Sadie', 'Australian Shepherd', 3, 'Female', 'Blue Merle', '2019-10-10', 13),
+('Toby', 'Border Collie', 4, 'Male', 'Black and White', '2018-03-18', 14),
+('Roxy', 'Pomeranian', 2, 'Female', 'Orange', '2020-04-05', 15),
+('Bear', 'Bernese Mountain Dog', 5, 'Male', 'Tricolor', '2017-11-28', 16),
+('Ruby', 'Cocker Spaniel', 7, 'Female', 'Golden', '2015-05-14', 17),
+('Jack', 'Jack Russell Terrier', 9, 'Male', 'White with Brown Spots', '2013-12-10', 18),
+('Chloe', 'Great Dane', 3, 'Female', 'Fawn', '2019-08-02', 19),
+('Maximus', 'Rottweiler', 4, 'Male', 'Black and Tan', '2018-02-09', 20),
+('Sophie', 'Maltese', 6, 'Female', 'White', '2016-06-28', 21),
+('Ollie', 'Shetland Sheepdog', 2, 'Male', 'Sable and White', '2020-06-15', 22),
+('Lola', 'French Bulldog', 4, 'Female', 'Fawn', '2018-01-04', 23),
+('Hunter', 'Labrador Retriever', 8, 'Male', 'Chocolate', '2014-04-20', 24),
+('Bailey', 'Pug', 5, 'Female', 'Fawn', '2017-11-10', 25),
+('Bentley', 'Bulldog', 3, 'Male', 'Brindle and White', '2019-02-28', 26),
+('Lilly', 'Chihuahua', 2, 'Female', 'Tan', '2020-08-03', 27),
+('Zeus', 'Schnauzer', 6, 'Male', 'Salt and Pepper', '2016-04-15', 28),
+('Coco', 'Shiba Inu', 4, 'Female', 'Red Sesame', '2018-09-22', 29),
+('Apollo', 'Dalmatian', 5, 'Male', 'White with Black Spots', '2017-10-05', 30),
+('Stella', 'Pomeranian', 1, 'Female', 'Cream', '2023-03-20', 31),
+('Rocky', 'Boxer', 7, 'Male', 'Fawn and White', '2015-01-12', 32),
+('Penny', 'Corgi', 3, 'Female', 'Red and White', '2019-06-08', 33),
+('Leo', 'Australian Cattle Dog', 2, 'Male', 'Red Heeler', '2020-05-17', 34),
+('Maggie', 'Shetland Sheepdog', 8, 'Female', 'Blue Merle', '2014-07-30', 35),
+('Shadow', 'Border Collie', 4, 'Male', 'Black and White', '2018-02-14', 36),
+('Lucky', 'Beagle', 6, 'Male', 'Tricolor', '2016-08-07', 37),
+('Mia', 'Miniature Schnauzer', 3, 'Female', 'Salt and Pepper', '2019-09-18', 38),
+('Sam', 'Golden Retriever', 9, 'Male', 'Golden', '2013-04-25', 39),
+('Bella', 'Labrador Retriever', 2, 'Female', 'Black', '2020-10-10', 40),
+('Bear', 'Bernese Mountain Dog', 3, 'Male', 'Tricolor', '2019-07-03', 41),
+('Daisy', 'Cocker Spaniel', 5, 'Female', 'Golden', '2017-12-20', 42),
+('Rocco', 'Boxer', 4, 'Male', 'Brindle', '2018-05-30', 43),
+('Holly', 'Jack Russell Terrier', 6, 'Female', 'White with Brown Spots', '2016-03-05', 44);
+```
+
+[HINT::Query]
+Es wurden nur die Datensätze zur Verfügung gestellt, die Anfrage zum Erstellen und zum Einfügen der
+Daten müssen leider Sie übernehmen.
+[ENDHINT]
+
+### SELECT Anfragen
+
+Jetzt spielen wir mit den Daten herum und lassen uns spezielle Werte ausgeben. 
+
+#### Alles Abfragen und filtern
+
+Starten wir leicht durch. Erinnern Sie sich zurück, wie sie Daten aus einer Tabelle abgefragt haben.
+
+- [EC] Lassen Sie sich die gesamte Tabelle zurück geben.
+- [EC] Lassen Sie sich nur die Besitze `owner_id` zurück geben.
+
+Aus dem Bereich `Tabelleneintrag löschen` der Aufgabe [PARTREF::SQLBasics] haben sie das Löschen
+einzelner Zeilen einer Tabelle kennengelernt, die sie mit Hilfe von `WHERE` gezielt identifiziert
+haben. SELECT kann auch diese Bedingungsvariable verwenden und so Ergebnisse filtern.
+
+- [EC] Fragen Sie alle Hundenamen ab, die `8` Jahre alt sind.
+- [EC] Jetzt wollen Sie sie sich alle Hunde ausgeben lassen, die `Bear` genannt werden.
+
+Zusätzlich können wir mit `LIMIT <int>` auch nur eine bestimmte Anzahl an Werten zurückgeben, oder
+vergleichbare Werte mit `<`, `>` einschränken.
+
+- [EC] Geben Sie die ersten zwei Treffer aller weiblichen Hunde zurück.
+- [EC] Geben Sie alle Besitzer IDs zurück, die zwischen 10 (ausschließlich) und einschließlich 20
+  liegen.
+
+Und zu guter letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren.
+
+- [EC] Listen Sie alle Hunde auf, die 4 Jahre alt und männlich sind.
+- [EC] Listen Sie alle Hunde auf, die `Golden Retriever`, jünger als `8` und `männlich` sind.
+
+#### Unterabfragen
+
+Wenn wir einen Treffer haben, wollen wir dieses Ergebnis oftmals weiterverwenden. Unter anderem auch
+in einer weiteren SQL Anfrage. Das klappt auch sehr gut mit SQL: So haben wir eine Abfrage in einer
+Abfrage.
+
+- [EC] Erstellen Sie eine Abfrage, die die Besitzer ID des Hundes mit dem Namen `Charlie` zurück
+  gibt. Verwenden Sie diese Abfrage als Bedinung für eine weitere Abfrage nach dem Namen des Hundes,
+  dessen `id` mit dem Wert aus der Abfrage belegt ist.
+
+[HINT]
+
+```sql
+Ein allgemeines Beispiel:
+SELECT <column_1>, <column_2> .. FROM <table_name> WHERE <column> IN WHERE (
+    SELECT <column> FROM <table_name> WHERE <column> NOT '1';)
+```
+
+[ENDHINT]
+
+#### Aliases
+
+Aliases werden in SQL verwendet, um Spaltennamen oder Ergebnisse von Abfragen umbenennen zu können.
+Sie sind besonders nützlich, um die Lesbarkeit von Abfragen zu verbessern und komplexe Abfragen
+besser zu verstehen. Verwenden wird dafür das Schlüsselwort `AS`.
+
+```sql
+SELECT <column_1> AS <alias_1>, <column_2> AS <alias_2>, ...
+FROM <table_name>;
+```
+
+oder auch eine gesamte Abfrage:
+
+```sql
+SELECT * FROM <table_name> AS result;
+```
+
+- [EC] Vergeben Sie für die erste Abfragen aus Aufgabe [EREFC::9] einen Alias und verwenden Sie
+  den Alias in der zweiten Abfrage.
+
+#### Aggregatsfunktionen
+
+Aggregatfunktionen ermöglichen es, statistische Informationen über Daten zu erhalten, wie z.B. die
+Anzahl der Zeilen (COUNT), die Summe von Werten (SUM), den Durchschnitt (AVG), das Minimum (MIN)
+oder das Maximum (MAX). Diese Funktionen sind nützlich, um Zusammenfassungen über Daten zu erhalten
+und um Analysen durchzuführen. Dabei geht man wie folgt vor:
+
+```sql
+SELECT <Aggregantsfunktion>(*)
+FROM dogs;
+```
+
+Der Stern (*) wird verwendet, um anzugeben, dass die Aggregatfunktion auf alle Zeilen oder Datensätze
+in der Tabelle angewendet werden soll, ohne spezifische Bedingungen anzugeben.
+
+- [EC] Berechnen Sie die Anzahl der Einträge.
+- [EC] Berechnen Sie die Summer aller Altersangaben.
+- [EC] Berechnen Sie den Durchschnitt der Benutzer IDs.
+
+#### Gruppieren
+
+Gruppierungen in SQL ermöglichen es, Daten basierend auf bestimmten Kriterien zusammenzufassen und
+statistische Informationen wie Summen, Durchschnitte, Anzahlen usw. für jede Gruppe zu berechnen.
+Dazu verwendet man am Ende einer Abfrage das Schlüsselwort `GROUP BY`.
+
+- [EC] Gruppieren Sie alle Hunderassen
+- [EC] Gruppieren Sie: Die Anzahl der Hunde pro Besitzer
+
+Mit dem Schlüsselwort `HAVING` können Sie weitere Bedingungen nach einer Gruppierung festlegen.
+
+```sql
+SELECT <column>, COUNT(*)
+FROM <table_name>
+GROUP BY <column>
+HAVING COUNT(*) > <int>;
+```
+
+- [EC] Gruppieren Sie: Die Anzahl der Hunde pro Besitzer, die mehr als gleich 2 Hunde haben.
+
+#### Sortieren
+
+In SQL kannst du die ORDER BY-Klausel verwenden, um die Ergebnisse deiner Abfrage basierend auf den
+Werten einer oder mehrerer Spalten zu sortieren. Hier ist die grundlegende Syntax:
+
+```sql
+SELECT <column_1>, <column_2>, ...
+FROM <table_name>
+ORDER BY <column_1> [ASC | DESC], <column_2> [ASC | DESC], ...;
+```
+
+- [EC] Geben Sie die Namen und das Alter aller Hunde aus der Tabelle "dogs" zurück, sortiert nach
+  dem Alter in absteigender Reihenfolge.
+- [EC] Sortiert Sie die Hunde zuerst nach dem Alter in absteigender Reihenfolge und dann innerhalb
+  desselben Alters nach der Rasse in aufsteigender Reihenfolge.
+
+#### Dublikate
+
+Manchmal kann es überraschend sein, wenn man trotz gut gezielter Einschränkung mehr als ein Ergebnis
+zurück bekommt. Um das zu verweiden, kann man eindeutige Werte verwenden (z.B. eine ID), die das
+Objekt der Begierde beschreibt. Jedoch muss man diesen eindeutigen Wert kennen. Die DISTINCT-Klausel
+sorgt dafür, dass Duplikate aus den Ergebnissen entfernt und nur eindeutige Werte zurück gegeben
+werden.
+
+```sql
+SELECT DISTINCT <column_1>, <column_2>, ...
+FROM <table_name>;
+```
+
+- [EC] Entfernen Sie alle Doppelten Hundenamen und zählen Sie die Anzahl der übrig gebliebenen Hunde.
+- [EC] Entfernen Sie alle alle doppelten Rassen und lassen Sie sich nur die Rassen zurück geben.
+
+[ENDSECTION]
+
+[SECTION::submission::reflection]
+
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+
+[ENDSECTION]

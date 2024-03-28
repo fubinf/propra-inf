@@ -205,7 +205,7 @@ was wir uns in den folgenden Aufgaben anschauen werden.
 
 [ENDSECTION]
 
-[SECTION::submission::reflection]
+[SECTION::submission::snippet]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
