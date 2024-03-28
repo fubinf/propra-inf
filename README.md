@@ -7,6 +7,6 @@ Useful starting points (partly in German):
 - For understanding how to develop it: [how-to.md](process/how-to.md)
 - For understanding the development status: [todo.md](process/todo.md) und [aufgabenideen.md](process/aufgabenideen.md)
 
-![OER logo, CC-BY Jonathasmello](https://de.wikipedia.org/wiki/Open_Educational_Resources#/media/Datei:Global_Open_Educational_Resources_Logo.svg "OER logo, CC-BY Jonathasmello")
+![OER logo, CC-BY Jonathasmello](https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Global_Open_Educational_Resources_Logo.svg/330px-Global_Open_Educational_Resources_Logo.svg.png "OER logo, CC-BY Jonathasmello")
 
-![CC-BY 4.0](https://en.wikipedia.org/wiki/Creative_Commons_license#/media/File:CC_BY_icon.svg "CC-BY 4.0")
+![CC-BY 4.0](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by.svg "CC-BY 4.0")
