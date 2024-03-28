@@ -1,5 +1,5 @@
 title: Auswahl der nächsten Themen
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 requires: Zeiterfassung
@@ -36,7 +36,7 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
 - Wer seine methodischen Fertigkeiten verbessern möchte, dem legen wir die Kapitel
   [PARTREF::Testen] und [PARTREF::Debugging] ans Herz:
   Was Sie dort lernen, ist auch in 30 Jahren noch wertvoll; 
-  zugehörige Technikwerkzeuge lernen Sie dort zusätzlich ebenfalls kennen.
+  tolle aktuelle Technikwerkzeuge lernen Sie dort zusätzlich kennen.
   Das Kapitel [PARTREF::Bestandscode] gehört auch in diese Kategorie.
 - Wer angesichts des Titels "Programmierpraktikum" ganze Programme (statt nur kleiner Schnipsel)
   schreiben und so ganzheitlich üben möchte,
@@ -90,6 +90,10 @@ und wie sie die Aufgabenbereiche der Kapitel wahrnimmt.
 
 Wer mit der Haltung "Ist mir doch egal, ich mache halt _irgendwelche_ Aufgaben"
 bei der Tutor_in aufschlägt, soll bitte eine Extrarunde drehen und sich eine
-eigene Meinung bilden, denn erst dann ist gute Lernmotivation da.
+eigene Meinung bilden, denn erst bei einer eigenen Meinungsbildung kann
+gute Lernmotivation entstehen.
+
+Wer seine Abgabe unübersichtlich formatiert hat, bekommt bitte einen Hinweis
+"Das ist nicht nett gegenüber den Tutor_innen!".
 
 [ENDINSTRUCTOR]
