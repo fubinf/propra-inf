@@ -105,7 +105,7 @@ unabhängig davon, „was“ das Programm leisten soll.
 Ein [TERMREF::Breakpoint], der erst ausgelöst wird, wenn eine vorgegebene Bedingung erfüllt ist.
 [ENDTERM]
 
-[TERM::Constrain]
+[TERM::Constraint]
 In Bezug auf Datenbanken bezieht sich ein "Constraint" auf eine Regel oder Bedingung, die auf eine
 oder mehrere Spalten einer Tabelle angewendet wird, um die Integrität der Datenbank zu gewährleisten.
 Constraints dienen dazu, sicherzustellen, dass die Datenbankkonsistenz erhalten bleibt, indem sie
