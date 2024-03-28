@@ -5,7 +5,7 @@ difficulty: 2
 assumes: PythonIf, PythonElifElse, PythonIntegers, PythonBooleans, PythonComments
 ---
 
-<!-- PythonLists, PythonForLoop, PythonWhileLoop -->
+<!-- TODO_1_HANEN: add to "assumes" when ready: PythonLists, PythonForLoop, PythonWhileLoop -->
 
 [SECTION::goal::idea]
 
