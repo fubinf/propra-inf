@@ -39,15 +39,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
-- ch/Testen/Basiswissen/index.md (Ronny Ruhe)
-- ch/Testen/Basiswissen/error.md (Ronny Ruhe)
-- ch/Testen/Basiswissen/errorExercise1.md (Ronny Ruhe)
-- ch/Testen/Basiswissen/testcases.md (Ronny Ruhe)
-- ch/Testen/Basiswissen/testcasesExercvise1.md (Ronny Ruhe)
-- ch/Testen/Basiswissen/testDelimitations.md (Ronny Ruhe)
-- ch/Testen/Basiswissen/testDelimitationsExercvise1.md (Ronny Ruhe)
-- ch/Testen/Basiswissen/testpyramide.md (Ronny Ruhe)
-
 - ch/Testen/Unittests/index.md (Dominik Pietrak und Ronny Ruhe)
 - ch/Testen/Unittests/unittest101.md (Dominik Pietrak und Ronny Ruhe)
 - ch/Testen/Unittests/unittest102.md (Ronny Ruhe)
@@ -63,6 +54,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/freezegun.md (Dominik Pietrak und Ronny Ruhe)
 - ch/Testen/Unittests/mocking.md (Dominik Pietrak und Ronny Ruhe)
 - ch/Testen/Unittests/tdd.md (Ronny Ruhe)
+
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Dominik Pietrak)
 
 - ch/Bibliotheken/stdlib/datetime.md (Sven Wegner)
@@ -147,6 +139,14 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Ronny Ruhe
+- ch/Testen/Basiswissen/index.md (Ronny Ruhe) (Review Daniem Müllers)
+- ch/Testen/Basiswissen/error.md (Ronny Ruhe) (Review Daniem Müllers)
+- ch/Testen/Basiswissen/errorExercise1.md (Ronny Ruhe) (Review Daniem Müllers)
+- ch/Testen/Basiswissen/testcases.md (Ronny Ruhe) (Review Daniem Müllers)
+- ch/Testen/Basiswissen/testcasesExercvise1.md (Ronny Ruhe) (Review Daniem Müllers)
+- ch/Testen/Basiswissen/testDelimitations.md (Ronny Ruhe) (Review Daniem Müllers)
+- ch/Testen/Basiswissen/testDelimitationsExercvise1.md (Ronny Ruhe) (Review Daniem Müllers)
+- ch/Testen/Basiswissen/testpyramide.md (Ronny Ruhe) (Review Daniem Müllers)
 
 
 ## Reviews to do for Sven Hüster

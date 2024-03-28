@@ -6,7 +6,7 @@ profiles: TEST
 ---
 [SECTION::goal::idea]
 
-- Ich kenne die Abgrenzungen des Testens zum Debuggen und zur [TERMREF::Qualitätssicherung] (QS) (eng.: Quality Assurance (QA))
+- Ich kann die Abgrenzungen des Testens zum Debuggen und zur [TERMREF::Qualitätssicherung] (QS) (eng.: Quality Assurance (QA)) benennen
 
 [ENDSECTION]
 

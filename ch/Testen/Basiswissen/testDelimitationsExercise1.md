@@ -5,9 +5,15 @@ difficulty: 3
 profiles: TEST
 assumes: testDelimitations
 ---
+# Review (DM)
+- Aufgabe K2, soll da Java stehen?
+- Aufgabe F2, 3. Satz
+- Schau dir auch nochmal die Formatierung an.
+- Didaktisch keine Einwände.
+
 [SECTION::goal::trial]
 
-- Ich kann die Abgrenzungen des Testens zum Debuggen und zur [TERMREF::Qualitätssicherung] (QS) in der Praxis zu anwenden
+- Ich kann die Abgrenzungen des Testens zum Debuggen und zur [TERMREF::Qualitätssicherung] (QS) in der Praxis anwenden
 
 [ENDSECTION]
 [SECTION::background::default]

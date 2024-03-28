@@ -4,9 +4,13 @@ timevalue: 1.0
 difficulty: 1
 profiles: TEST
 ---
+# Review (DM)
+- Soll bei den ersten Aufgaben recherche passieren? Wenn ja, würde ich das ggf. auch etwas klarer formulieren. Im Zweifel frage ich mich beim Bearbeiten der Aufgabe: Woher soll ich das denn wissen? Das hast du bei den anderen Aufgaben definitiv schön gemacht. ;)
+- Ansonsten scheint mir das eine gut geleitete Exploration der Theorie. Praxis wäre natürlich schön, aber ist vermutlich hier schwer zu finden. mMn. Beta, wenn Aufgabenstellung etwas präzisiert.
+
 [SECTION::goal::idea]
 
-- Ich habe die Ebenen einer Testpyramide von Unittest bis Abnahmetest kennengelernt
+- Ich kann die Ebenen einer Testpyramide von Unittest bis Abnahmetest erklären
 - Ich kann Vor- und Nachteile einer jeweiligen Ebene erkennen
 
 [ENDSECTION]

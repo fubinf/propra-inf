@@ -5,10 +5,16 @@ difficulty: 1
 profiles: TEST
 assumes: error
 ---
+# Review (DM)
+- Kompetenzen umformuliert (vgl commit diff)
+- Anstatt die Aufgabenbeschreibung 4x zu wiederholen, kann man das vielleicht nur einmal schreiben und schöner formatieren?
+- Didaktisch sonst sicherlich sinnvoll. Vielleicht wäre es gut für die letzte Aufgabe, die vier Scenarios mit dem neuen Akzeptanzkriterium einmal prüfen zu lassen. Das schärft dann gleich den Denkschritt zu überlegen, was das Kriterium denn für Auswirkungen haben würde.
+- Überleg mal, ob nicht einmal überall die Abkürzung (AK) ersetzten willst. Liest sich immer einfacher. Du kannst sie ja trotzdem definiert lassen, dann können die Studis das in der Abgabe nutzen.
+
 [SECTION::goal::trial]
 
-- Ich habe Abweichungen entdeckt
-- Ich habe Fehlerberichte erstellt
+- Ich kann Abweichungen finden
+- Ich kann Fehlerberichte erstellen
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -20,7 +26,7 @@ Dazu verwenden wir als Grundlage dieser Übung folgende [TERMREF::User Story]:
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-Als registrierter Benutzer möchte ich mich Portal anmelden können, damit ich auf meine Kontoinformationen zugreifen
+Als registrierter Benutzer möchte ich mich im Portal anmelden können, damit ich auf meine Kontoinformationen zugreifen
 kann.
 
 [TERMREF::Akzeptanzkriterien] (AKs):
@@ -49,7 +55,7 @@ Das Portal leitet den Benutzer auf die Seite des Portal-Administrators weiter.
 [SECTION::submission::trace]
 
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
-Sollten Ihnen zur Erstellung der Bug-Reports Informationen Fehlen, dürfen Sie diese fiktiv belegen. Bitte mit (fiktiv) markieren.
+Sollten Ihnen zur Erstellung der Fehlerberichte Informationen Fehlen, dürfen Sie diese fiktiv belegen. Bitte mit (fiktiv) markieren.
 Geben Sie die benutzten Quellen an.
 
 [ENDSECTION]
