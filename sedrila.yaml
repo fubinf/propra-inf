@@ -168,6 +168,10 @@ chapters:
       - slug: Benutzerverwaltung
       - slug: Git
       - slug: Linter
+  - slug: Feedback
+    taskgroups:
+      - slug: ProPra-Mängel
+      - slug: ProPra-Ideen
   - slug: zzincubator
     taskgroups:
       - slug: alt
