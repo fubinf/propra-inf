@@ -125,10 +125,9 @@ Abfrage.
   gibt. Verwenden Sie diese Abfrage als Bedinung für eine weitere Abfrage nach dem Namen des Hundes,
   dessen `id` mit dem Wert aus der Abfrage belegt ist.
 
-[HINT]
+[HINT::Allgemeine Syntax]
 
 ```sql
-Ein allgemeines Beispiel:
 SELECT <column_1>, <column_2> .. FROM <table_name> WHERE <column> IN WHERE (
     SELECT <column> FROM <table_name> WHERE <column> NOT '1';)
 ```
