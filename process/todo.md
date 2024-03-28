@@ -50,6 +50,9 @@ Verwendungsweise:
 
 In alphabetischer Reihenfolge der Dateinamen.
 
+- sedrila.css: Farben besser abstimmen. 
+  Evtl. Farbschema von creativecommons benutzen?
+  https://creativecommons.org/mission/downloads/ ganz unten.
 - chapter-basis: Hier ist einiges besser 'leicht', nicht 'sehr leicht'?
 - Git101: Wie geht denn die Installation? Wo sind die Hyperlinks zu den URLs? 
   Was bedeutet Klonen?
