@@ -17,6 +17,7 @@ TODO_2 assumes: m_shutil, m_tempfile, m_os.path
 [SECTION::background::default]
 
 Es gibt natürlich auf Linux diverse Hilfsprogramme in der Kategorie `rename`, z.B.
+
 - `rename`, das standardmäßig installiert ist, aber nur die simplere Form dessen kann,
   was wir hier bauen werden.
 - `qmv` (aus Paket `renameutils`), wo man Dateinamen mit einem Texteditor bearbeitet.
