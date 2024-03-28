@@ -90,7 +90,7 @@ Meistens ergibt es sich jedoch aus folgender Konvention:
 
 - Wenn Sie in der Anleitung Markierungen sehen wie [EQ], [EQ], [EQ],
   dann ist als Abgabe dazu eine Markdown-Datei gefragt und 
-  Sie sollten darin die gleichen Markierungen für die zugehörigen Antworten verwenden.
+  Sie sollten darin die gleichen Markierungen (nur ohne Farbe) für die zugehörigen Antworten verwenden.
 - Wenn Sie in der Anleitung Markierungen sehen wie [EC], [EC], [EC],
   dann ist als Abgabe dazu ein Kommandoprotokoll gefragt.
 - Wenn Sie in der Anleitung Markierungen sehen wie [ER], [ER], [ER],
