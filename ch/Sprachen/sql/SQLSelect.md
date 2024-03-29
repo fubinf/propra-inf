@@ -2,7 +2,7 @@ title: SQL Select anwenden
 stage: alpha
 timevalue: 2
 difficulty: 2
-assumes: SQLBasics
+assumes: SQLBasic
 ---
 
 [SECTION::goal::experience]
@@ -13,7 +13,7 @@ Ich kann komplexere SELECT Anweisungen schreiben und die Ergebnisse ausgeben las
 
 [SECTION::background::default]
 
-Das Abfragen einer kleinen gesamten Tabelle ist manchmal ausreichend, um manuell sein gewpünschtes
+Das Abfragen einer kleinen gesamten Tabelle ist manchmal ausreichend, um manuell sein gewünschtes
 Ergebnis einzusehen. Wenn es aber darum geht mit einem Ergebnis zu arbeiten, da dieses in einer
 neuen Funktion benötigt wird, benötigen wir genauere Angaben in der Abfrage, die das eine, oder alle
 Ergebnisse zurück gibt.
@@ -24,7 +24,7 @@ Ergebnisse zurück gibt.
 
 ### Grundlage unsere Abfrage
 
-Zu erst schaffen uns unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQLBasics] bekannte
+Zu erst schaffen uns unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQLBasic] bekannte
 Seite, um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgende Tabelle, mit
 der wir in dieser Aufgabe arbeiten wollen.
 
@@ -96,7 +96,7 @@ Starten wir leicht durch. Erinnern Sie sich zurück, wie sie Daten aus einer Tab
 - [EC] Lassen Sie sich die gesamte Tabelle zurück geben.
 - [EC] Lassen Sie sich nur die Besitze `owner_id` zurück geben.
 
-Aus dem Bereich `Tabelleneintrag löschen` der Aufgabe [PARTREF::SQLBasics] haben sie das Löschen
+Aus dem Bereich `Tabelleneintrag löschen` der Aufgabe [PARTREF::SQLBasic] haben sie das Löschen
 einzelner Zeilen einer Tabelle kennengelernt, die sie mit Hilfe von `WHERE` gezielt identifiziert
 haben. SELECT kann auch diese Bedingungsvariable verwenden und so Ergebnisse filtern.
 
@@ -226,7 +226,7 @@ FROM <table_name>;
 - [EC] Entfernen Sie alle alle doppelten Rassen und lassen Sie sich nur die Rassen zurück geben.
 
 Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als nächstes die Bearbeitung der
-Aufgabe [PARTREF::SQLJoins].
+Aufgabe [PARTREF::SQLJoin].
 
 [ENDSECTION]
 

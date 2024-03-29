@@ -129,9 +129,10 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoring-Grundlagen/Extraction-Of-Code.md (Dominik Pietrak)
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Dominik Pietrak)
 
-- ch/Sprachen/sql/SQLBasics.md (Ronny Ruhe)
+- ch/Sprachen/sql/SQLBasic.md (Ronny Ruhe)
 - ch/Sprache/sql/SQLSelect.md (Ronny Ruhe)
-- ch/Sprache/sql/SQLJoins.md (Ronny Ruhe)
+- ch/Sprache/sql/SQLJoin.md (Ronny Ruhe)
+- ch/Sprache/sql/SQLProject.md (Ronny Ruhe)
 
 
 ## Reviews to do for Ivan Condric

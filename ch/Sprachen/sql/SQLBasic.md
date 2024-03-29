@@ -59,7 +59,7 @@ eine Tabelle anlegen, Inhalt aus einer Tabelle erhalten und manipulieren, aber a
 Die Syntax zum Erstellen einer Tabelle ist intuitiv:
 
 ```sql
-CREATE TABLE <tabelname>;
+CREATE TABLE <tabel_name>;
 ```
 
 [HINT::SQL Query Abschluss]
@@ -134,10 +134,10 @@ Einschränkungen können sein:
 Um eine Tabelle mit contrains anzulegen, gehen Sie wie folgt vor:
 
 ```sql
-CREATE TABLE <tabelname> (
-  column1 datatype contrain,
-  column2 datatype contrain,
-  column3 datatype contrain,
+CREATE TABLE <tabel_name> (
+  <column_1> <datatype> <contrain>,
+  <column_2> <datatype> <contrain>,
+  <column_3> <datatype> <contrain>,
   ...
 );
 ```
@@ -152,8 +152,8 @@ Tabellen ohne Inhalt wirken schnell langweilig, deshalb werden Sie jetzt Inhalt 
 Um einen Eintrag in einer Tabelle zu erzeigen, hilft Ihnen die folgende Query:
 
 ```sql
-INSERT INTO TABLE <tabelname> (column1, column2, ...)
-VALUE (value1, value2, ...);
+INSERT INTO TABLE <tabel_name> (<column_1>, <column_2>, ...)
+VALUE (<value_1>, <value_2>, ...);
 ```
 
 [HINT::Anzahl]
@@ -169,7 +169,7 @@ Natürlich gibt es immer jemanden, der Interessan an den erzeugten Daten hat. Wi
 wir wissen, welche Einträge unsere Tabelle für uns bereit hält.
 
 ```sql
-SELECT <column_name_1>, <column_name_2>, ... FROM <tabelname>;
+SELECT <column_1>, <column_2>, ... FROM <tabel_name>;
 ```
 
 hilft uns dabei, das Ziel zu erreichen. Ein Asterisk (*) ist noch komfortabler, wenn es sich um eine
@@ -181,7 +181,7 @@ anstelle der Tabellennamen alle Spalte auflisten lassen.
 
 #### Tabelleneintrag löschen
 
-Hin und wieder sind auch Daten enhalten, die entfernt werden müssen. Um die Tabelle nicht komplett
+Hin und wieder sind auch Daten enthalten, die entfernt werden müssen. Um die Tabelle nicht komplett
 löschen zu müssen, haben Sie die Möglichkeit einen bestimmten Eintrag zu entfernen. Dazu wird jedoch
 eine Bedingung benötigt, die das (oder auch mehrere) Element eingrenzt, um es zu löschen.
 
@@ -203,7 +203,7 @@ Sie kennen jetzt einige Grundlegende SQL Befehle, mit denen Sie wichtige Abfrage
 Diese Abfragen können sogar verknüpft, komplex erweitert und mit weiteren Funktionen genutzt werden,
 was wir uns in den folgenden Aufgaben anschauen werden.
 
-Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als nächstes die Bearbeitung der
+Nachdem Sie dieses Kapitel abgeschlossen haben, empfehle ich Ihnen als nächstes die Bearbeitung der
 Aufgabe [PARTREF::SQLSelect].
 
 [ENDSECTION]

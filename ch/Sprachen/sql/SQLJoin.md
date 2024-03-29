@@ -2,7 +2,7 @@ title: Zusammenführen von Tabellen mittels JOIN
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: SQLBasics, SQLSelect
+assumes: SQLBasic, SQLSelect
 ---
 
 [SECTION::goal::product]
@@ -97,7 +97,7 @@ FULL JOIN <table2> ON <table1.column> = <table2.column>;
 
 ### Praktischer Anteil
 
-Jetzt erst schaffen uns wieder unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQLBasics]
+Jetzt erst schaffen uns wieder unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQLBasic]
 bekannte Seite, um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgenden
 Tabellen, mit der wir in dieser Aufgabe arbeiten wollen.
 
@@ -164,7 +164,9 @@ Vergleichen Sie diese Ergebnisse mit:
   mit dem INNER JOIN auszukommen?
 
 Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als nächstes die Bearbeitung der
-Aufgabe [PARTREF::SQLWhere].
+Aufgabe 
+
+TODO_2_Ruhe - Aufgabe finden
 
 [ENDSECTION]
 
