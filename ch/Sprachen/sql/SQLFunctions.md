@@ -1,6 +1,6 @@
 title: Gruppieren und Sortieren mittels GROUP BY und ORDER BY
 stage: draft
-timevalue: 1
+timevalue: 0.1
 difficulty: 2
 assumes: SQLBasics
 ---
