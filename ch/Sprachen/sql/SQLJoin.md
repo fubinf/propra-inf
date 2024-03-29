@@ -164,9 +164,7 @@ Vergleichen Sie diese Ergebnisse mit:
   mit dem INNER JOIN auszukommen?
 
 Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als nächstes die Bearbeitung der
-Aufgabe 
-
-TODO_2_Ruhe - Aufgabe finden
+Aufgabe [PARTREF::SQLProject].
 
 [ENDSECTION]
 

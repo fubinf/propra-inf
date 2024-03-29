@@ -5,7 +5,7 @@ difficulty: 4
 assumes: SQLBasic, SQLSelect, SQLJoin
 ---
 
-[SECTION::goal::product/idea/experience/trial]
+[SECTION::goal::product]
 
 Ich kann eine komplexe Datenbankstruktur aufbauen.
 
