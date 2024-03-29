@@ -31,10 +31,12 @@ Machen Sie sich mit den Kommandos in diesem [Beitrag](https://wiki.ubuntuusers.d
 
 ### Ändern der Rechte für Nutzer
 
-In den meisten Firmen müssen Nutzer eines Systems nach bestimmten Datenschutzrichtlinien aufvewahrt werden. Somit müssen diese erst gesperrt werden  
+In den meisten Firmen müssen Nutzer eines Systems nach bestimmten Datenschutzrichtlinien aufvewahrt werden. Somit müssen diese erst gesperrt werden.
+
 - [EC] Sperren Sie die Nutzer `bob` und `otto`.
 
-Nachdem die Nutzer gesperrt wurden und eine bestimmte Zeitspanne vorbei ist, müsssen Nutzer und Dateien des Nutzers auf dem System gelöscht werden.  
+Nachdem die Nutzer gesperrt wurden und eine bestimmte Zeitspanne vorbei ist, müsssen Nutzer und Dateien des Nutzers auf dem System gelöscht werden.
+
 - [EC] Löschen Sie beide Nutzer und all deren Dateien von Ihrem System.
 [ENDSECTION]
 
@@ -43,5 +45,5 @@ Nachdem die Nutzer gesperrt wurden und eine bestimmte Zeitspanne vorbei ist, mü
 [ENDSECTION]
 
 [INSTRUCTOR::heading]
-[EREFC::7] Prüfen ob die Option für alle Dateien gesetzt ist.
+[EREFC::6] Prüfen ob die Option für alle Dateien gesetzt ist.
 [ENDINSTRUCTOR]
