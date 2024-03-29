@@ -203,6 +203,9 @@ Sie kennen jetzt einige Grundlegende SQL Befehle, mit denen Sie wichtige Abfrage
 Diese Abfragen können sogar verknüpft, komplex erweitert und mit weiteren Funktionen genutzt werden,
 was wir uns in den folgenden Aufgaben anschauen werden.
 
+Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als nächstes die Bearbeitung der
+Aufgabe [PARTREF::SQLSelect].
+
 [ENDSECTION]
 
 [SECTION::submission::snippet]

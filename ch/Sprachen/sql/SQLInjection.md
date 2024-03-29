@@ -2,7 +2,7 @@ title: SQL Injection
 stage: draft
 timevalue: 0.1
 difficulty: 3
-assumes: SQLBasics, SQLUpdating, SQLWhere
+assumes: SQLBasics, SQLSelect, SQLWhere
 ---
 !!! goal
     SQL-Injections sind ein potenzielles Sicherheitsrisiko. 
