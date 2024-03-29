@@ -121,6 +121,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Basiswissen/testcases.md (Ronny Ruhe) (nach Review von Daniel Müllers)
 - ch/Testen/Basiswissen/testcasesExercise1.md (Ronny Ruhe) (nach Review von Daniel Müllers)
 - ch/Testen/Basiswissen/testpyramide.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Basiswissen/testDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Basiswissen/testDelimitationsExercvise1.md (Ronny Ruhe) (Review Daniel Müllers)
 
 ## Reviews to do for Hanen Alrwasheda
 
@@ -143,9 +145,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Ronny Ruhe
-
-- ch/Testen/Basiswissen/testDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
-- ch/Testen/Basiswissen/testDelimitationsExercvise1.md (Ronny Ruhe) (Review Daniel Müllers)
 
 
 ## Reviews to do for Sven Hüster

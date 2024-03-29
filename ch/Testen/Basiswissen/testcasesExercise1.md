@@ -1,8 +1,7 @@
 title: Übung Testfallstrukturen
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 2
-profiles: TEST
 assumes: testcases
 ---
 [SECTION::goal::trial]
@@ -32,6 +31,9 @@ Erstellen Sie folgende Testfälle:
 - [EC] Erstellen Sie einen generischen Testfall, der 5 unterschiedliche Kunden erfolgreich anmelden. geben Sie die verwendeten Testdaten separat zum testfall mit an.
 - [EC] Erstellen Sie einen statischen oder generischen Testfall, um Ihren angegebenen Benutzernamen zu überprüfen.
 - [EC] Erstellen Sie zwei Testsammlungen mit den erstellten Testfällen. Erweitern Sie falls nötig weitere Testfälle, um die Testsammlungen voneinander zu unterscheiden. Schreiben Sie statische Testfälle in generische Testfälle um und hinterlegen Sie die benötigten Testdaten in der Testsammlung.
+
+Nachdem Sie diesen Bereich bearbeiten haben, empfehle ich Ihnen zum Task [PARTREF::testDelimitations]
+zu wechseln, um die Abgrenzung des Testens zum Debugging kennenzulernen.
 
 [ENDSECTION]
 

@@ -1,8 +1,7 @@
 title: Testfallstrukturen
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 2
-profiles: TEST
 ---
 [SECTION::goal::idea]
 
@@ -28,6 +27,9 @@ Recherchieren Sie anhand der folgenden Leitfragen unter Beachtung der folgenden 
 - [EQ] Was versteht man unter einem Testplan? Erstellen Sie einen fiktiven Testplan mit mindestens 10 Kriterien.
 - [EQ] Was versteht man unter Testdaten? Wie können Testdaten in einem Testfall verwendet werden?
 - [EQ] Schreiben Sie Ihren statischen Testfall aus 1. in einen generischen Testfall um. Nutzen Sie fiktive Testdaten, um mindestens 3 Iterationen zu diesem Testfall zu erstellen.
+
+In der Aufagbe [PARTREF::testcasesExercise1] bekommen Sie die Gelegenheit Ihr hier erworbenes Wissen
+praktisch anzuwenden.
 
 [ENDSECTION]
 
