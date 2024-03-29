@@ -131,6 +131,7 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Sprachen/sql/SQLBasics.md (Ronny Ruhe)
 - ch/Sprache/sql/SQLSelect.md (Ronny Ruhe)
+- ch/Sprache/sql/SQLJoins.md (Ronny Ruhe)
 
 
 ## Reviews to do for Ivan Condric

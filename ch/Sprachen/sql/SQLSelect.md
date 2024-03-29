@@ -162,7 +162,7 @@ oder das Maximum (MAX). Diese Funktionen sind nützlich, um Zusammenfassungen ü
 und um Analysen durchzuführen. Dabei geht man wie folgt vor:
 
 ```sql
-SELECT <Aggregantsfunktion>(*)
+SELECT <Aggregatsfunktion>(*)
 FROM dogs;
 ```
 
@@ -230,7 +230,7 @@ Aufgabe [PARTREF::SQLJoins].
 
 [ENDSECTION]
 
-[SECTION::submission::reflection]
+[SECTION::submission::snippet]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
