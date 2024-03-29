@@ -115,8 +115,9 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Lutz Prechelt
 
-- ...
-
+- ch/Testen/Basiswissen/index.md (Ronny Ruhe) (nach Review Daniem Müllers)
+- ch/Testen/Basiswissen/error.md (Ronny Ruhe) (nach Review Daniem Müllers)
+- ch/Testen/Basiswissen/errorExercise1.md (Ronny Ruhe) (nach Review Daniem Müllers)
 
 ## Reviews to do for Hanen Alrwasheda
 
@@ -139,9 +140,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Ronny Ruhe
-- ch/Testen/Basiswissen/index.md (Ronny Ruhe) (Review Daniem Müllers)
-- ch/Testen/Basiswissen/error.md (Ronny Ruhe) (Review Daniem Müllers)
-- ch/Testen/Basiswissen/errorExercise1.md (Ronny Ruhe) (Review Daniem Müllers)
+
 - ch/Testen/Basiswissen/testcases.md (Ronny Ruhe) (Review Daniem Müllers)
 - ch/Testen/Basiswissen/testcasesExercvise1.md (Ronny Ruhe) (Review Daniem Müllers)
 - ch/Testen/Basiswissen/testDelimitations.md (Ronny Ruhe) (Review Daniem Müllers)
