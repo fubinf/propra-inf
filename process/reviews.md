@@ -126,7 +126,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Sprache/sql/SQLSelect.md (Ronny Ruhe)
 - ch/Sprache/sql/SQLJoin.md (Ronny Ruhe)
 - ch/Sprache/sql/SQLProject.md (Ronny Ruhe)
 
@@ -145,6 +144,7 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Ronny Ruhe
 
 - ch/Sprachen/sql/SQLBasic.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
+- ch/Sprache/sql/SQLSelect.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 
 ## Reviews to do for Sven Hüster
 

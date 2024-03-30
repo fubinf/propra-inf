@@ -5,18 +5,23 @@ difficulty: 2
 assumes: SQLBasic
 ---
 
+TODO_ruhe:
+
+- K1: "... Verwenden Sie die folgende Tabelle id INTEGER PRIMARY KEY." Was ist hiermit gemeint? Bitte verständlicher formulieren.
+
+- K17: "Gruppieren Sie: Die Anzahl der Hunde pro Besitzer, die mehr als gleich 2 Hunde haben" Bitte verständlicher formulieren.
+
+---
+
 [SECTION::goal::experience]
 
-Ich kann komplexere SELECT Anweisungen schreiben und die Ergebnisse ausgeben lassen.
+Ich kann komplexere `SELECT` Anweisungen schreiben und die Ergebnisse ausgeben lassen.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Das Abfragen einer kleinen gesamten Tabelle ist manchmal ausreichend, um manuell sein gewünschtes
-Ergebnis einzusehen. Wenn es aber darum geht mit einem Ergebnis zu arbeiten, da dieses in einer
-neuen Funktion benötigt wird, benötigen wir genauere Angaben in der Abfrage, die das eine, oder alle
-Ergebnisse zurück gibt.
+Das Abfragen einer kleinen gesamten Tabelle kann gelegentlich ausreichen, um das gewünschte Ergebnis manuell zu überprüfen. Wenn jedoch das Ergebnis für eine neue Funktion benötigt wird und weiterverarbeitet werden soll, sind präzisere Abfrageangaben erforderlich, um entweder ein bestimmtes Ergebnis oder alle Ergebnisse zurückzugeben.
 
 [ENDSECTION]
 
@@ -24,8 +29,8 @@ Ergebnisse zurück gibt.
 
 ### Grundlage unsere Abfrage
 
-Zu erst schaffen uns unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQLBasic] bekannte
-Seite, um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgende Tabelle, mit
+Zuerst schaffen wir uns unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQLBasic] bekannte
+Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgende Tabelle, mit
 der wir in dieser Aufgabe arbeiten wollen.
 
 - [EC] Erstellen Sie die Tabelle `dogs` mit den Spalten `name`, `breed`, `age`, `gender`, `color`,
@@ -82,33 +87,32 @@ der wir in dieser Aufgabe arbeiten wollen.
 
 [HINT::Query]
 Es wurden nur die Datensätze zur Verfügung gestellt, die Anfrage zum Erstellen und zum Einfügen der
-Daten müssen leider Sie übernehmen.
+Daten übernehmen Sie, dabei hilft Ihnen [PARTREF::SQLBasic].
 [ENDHINT]
 
 ### SELECT Anfragen
 
 Jetzt spielen wir mit den Daten herum und lassen uns spezielle Werte ausgeben. 
 
-#### Alles Abfragen und filtern
+#### Alles abfragen und filtern
 
 Starten wir leicht durch. Erinnern Sie sich zurück, wie sie Daten aus einer Tabelle abgefragt haben.
 
-- [EC] Lassen Sie sich die gesamte Tabelle zurück geben.
-- [EC] Lassen Sie sich nur die Besitze `owner_id` zurück geben.
+- [EC] Lassen Sie sich die gesamte Tabelle zurückgeben.
+- [EC] Lassen Sie sich nur die `owner_id` zurückgeben.
 
 Aus dem Bereich `Tabelleneintrag löschen` der Aufgabe [PARTREF::SQLBasic] haben sie das Löschen
-einzelner Zeilen einer Tabelle kennengelernt, die sie mit Hilfe von `WHERE` gezielt identifiziert
-haben. SELECT kann auch diese Bedingungsvariable verwenden und so Ergebnisse filtern.
+einzelner Zeilen einer Tabelle kennengelernt, die Sie mithilfe von `WHERE` gezielt identifiziert
+haben. `SELECT` kann auch diese Bedingungsvariable verwenden und somit Ergebnisse filtern.
 
 - [EC] Fragen Sie alle Hundenamen ab, die `8` Jahre alt sind.
-- [EC] Jetzt wollen Sie sie sich alle Hunde ausgeben lassen, die `Bear` genannt werden.
+- [EC] Jetzt wollen Sie sich alle Hunde ausgeben, die `Bear` genannt werden.
 
-Zusätzlich können wir mit `LIMIT <int>` auch nur eine bestimmte Anzahl an Werten zurückgeben, oder
+Zusätzlich können wir mit `LIMIT <int>` auch nur eine bestimmte Anzahl an Werten zurückgeben lassen, oder
 vergleichbare Werte mit `<`, `>` einschränken.
 
 - [EC] Geben Sie die ersten zwei Treffer aller weiblichen Hunde zurück.
-- [EC] Geben Sie alle Besitzer IDs zurück, die zwischen 10 (ausschließlich) und einschließlich 20
-  liegen.
+- [EC] Geben Sie alle Besitzer-IDs zurück, die zwischen 10 (ausschließlich) und 20 (einschließlich) liegen.
 
 Und zu guter letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren.
 
@@ -118,11 +122,9 @@ Und zu guter letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombini
 #### Unterabfragen
 
 Wenn wir einen Treffer haben, wollen wir dieses Ergebnis oftmals weiterverwenden. Unter anderem auch
-in einer weiteren SQL Anfrage. Das klappt auch sehr gut mit SQL: So haben wir eine Abfrage in einer
-Abfrage.
+in einer weiteren SQL Abfrage. Das klappt auch sehr gut mit SQL: So haben wir eine Abfrage in einer anderen Abfrage.
 
-- [EC] Erstellen Sie eine Abfrage, die die Besitzer ID des Hundes mit dem Namen `Charlie` zurück
-  gibt. Verwenden Sie diese Abfrage als Bedinung für eine weitere Abfrage nach dem Namen des Hundes,
+- [EC] Erstellen Sie eine Abfrage, die die Besitzer-ID des Hundes mit dem Namen `Charlie` zurückgibt. Verwenden Sie diese Abfrage als Bedinung für eine weitere Abfrage nach dem Namen des Hundes,
   dessen `id` mit dem Wert aus der Abfrage belegt ist.
 
 [HINT::Allgemeine Syntax]
@@ -170,8 +172,8 @@ Der Stern (*) wird verwendet, um anzugeben, dass die Aggregatfunktion auf alle Z
 in der Tabelle angewendet werden soll, ohne spezifische Bedingungen anzugeben.
 
 - [EC] Berechnen Sie die Anzahl der Einträge.
-- [EC] Berechnen Sie die Summer aller Altersangaben.
-- [EC] Berechnen Sie den Durchschnitt der Benutzer IDs.
+- [EC] Berechnen Sie die Summe aller Altersangaben.
+- [EC] Berechnen Sie den Durchschnitt der Besitzer-IDs.
 
 #### Gruppieren
 
@@ -195,7 +197,7 @@ HAVING COUNT(*) > <int>;
 
 #### Sortieren
 
-In SQL kannst du die ORDER BY-Klausel verwenden, um die Ergebnisse deiner Abfrage basierend auf den
+In SQL können Sie die `ORDER BY`-Klausel verwenden, um die Ergebnisse einer Abfrage basierend auf den
 Werten einer oder mehrerer Spalten zu sortieren. Hier ist die grundlegende Syntax:
 
 ```sql
@@ -206,26 +208,23 @@ ORDER BY <column_1> [ASC | DESC], <column_2> [ASC | DESC], ...;
 
 - [EC] Geben Sie die Namen und das Alter aller Hunde aus der Tabelle "dogs" zurück, sortiert nach
   dem Alter in absteigender Reihenfolge.
-- [EC] Sortiert Sie die Hunde zuerst nach dem Alter in absteigender Reihenfolge und dann innerhalb
-  desselben Alters nach der Rasse in aufsteigender Reihenfolge.
+- [EC] Sortieren Sie die Hunde zuerst nach dem Alter in absteigender Reihenfolge und dann innerhalb desselben Alters nach der Rasse in aufsteigender Reihenfolge.
 
 #### Dublikate
 
-Manchmal kann es überraschend sein, wenn man trotz gut gezielter Einschränkung mehr als ein Ergebnis
-zurück bekommt. Um das zu verweiden, kann man eindeutige Werte verwenden (z.B. eine ID), die das
-Objekt der Begierde beschreibt. Jedoch muss man diesen eindeutigen Wert kennen. Die DISTINCT-Klausel
-sorgt dafür, dass Duplikate aus den Ergebnissen entfernt und nur eindeutige Werte zurück gegeben
-werden.
+Manchmal kann es überraschend sein, wenn man trotz gut gezielter Einschränkung mehr als ein Ergebnis zurückbekommt. Um das zu vermeiden, kann man eindeutige Werte verwenden (z.B. eine ID), die das
+Objekt der Begierde beschreibt. Jedoch muss man diesen eindeutigen Wert kennen. Die `DISTINCT`-Klausel
+sorgt dafür, dass Duplikate aus den Ergebnissen entfernt und nur eindeutige Werte zurückgegeben werden.
 
 ```sql
 SELECT DISTINCT <column_1>, <column_2>, ...
 FROM <table_name>;
 ```
 
-- [EC] Entfernen Sie alle Doppelten Hundenamen und zählen Sie die Anzahl der übrig gebliebenen Hunde.
-- [EC] Entfernen Sie alle alle doppelten Rassen und lassen Sie sich nur die Rassen zurück geben.
+- [EC] Entfernen Sie alle doppelten Hundenamen und zählen Sie die Anzahl der übrig gebliebenen Hunde.
+- [EC] Entfernen Sie alle doppelten Rassen und lassen Sie sich nur die Rassen zurückgeben.
 
-Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als nächstes die Bearbeitung der
+Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als Nächstes die Bearbeitung der
 Aufgabe [PARTREF::SQLJoin].
 
 [ENDSECTION]
