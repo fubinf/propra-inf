@@ -3,11 +3,20 @@ stage: alpha
 timevalue: 1
 difficulty: 3
 ---
+
+TODO_pietrak:
+
+- Hier auch bin ich der Meinung, dass ein praktisches Beispiel, an dem man im Rahmen von SOLID arbeitet, das Thema klarer machen könnte. Das könnte aber auch übertrieben sein, weil es nicht einfach wäre, so ein umfassendes Beispiel so konstruieren, ohne vom Hauptthema auszuweichen. 
+
+- Es könnte auch hilfreich sein, über mögliche Nachteile zu diskutieren, die durch (übertriebene) Anwendung der SOLID-Prinzipien entstehen könnten, nur um teilweise umfassenderes Verständnis zu erlangen.
+
+PS: Falls du der Meinung wärest, dass man ohne die oben vorgeschlagenen Erweiterungen genug verstehen würde, dann könntest du den stage auf "beta" erhöhen und an Final-Review weiterleiten. 
+---
+
 [SECTION::goal::idea]
 
 - Ich verstehe, welche Entwurfsprinzipien hinter dem Akronym SOLID stehen.
-- Ich kann in eigenen Worten erklären, wie die SOLID-Entwurfsprinzipien mir helfen Code zu wartbarer und einfacher zu 
-  verstehen zu machen.
+- Ich kann in eigenen Worten erklären, wie die SOLID-Entwurfsprinzipien dazu beitragen, meinen Code wartbarer und verständlicher zu gestalten.
 
 [ENDSECTION]
 
