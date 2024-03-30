@@ -126,9 +126,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-
-- ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Dominik Pietrak)
-
 - ch/Sprachen/sql/SQLBasic.md (Ronny Ruhe)
 - ch/Sprache/sql/SQLSelect.md (Ronny Ruhe)
 - ch/Sprache/sql/SQLJoin.md (Ronny Ruhe)
@@ -175,3 +172,4 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
 
 - ch/Bestandscode/Refactoring-Grundlagen/Extraction-Of-Code.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
+- ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
