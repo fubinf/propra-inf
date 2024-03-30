@@ -57,9 +57,7 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Dominik Pietrak)
 
-- ch/Werkzeuge/Linter/flake8.md (Ronny Ruhe)
 - ch/Testen/Linter/flake8_SUT.md (Ronny Ruhe)
-- ch/Werkzeuge/Linter/black.md (Ronny Ruhe)
 
 - ch/Sprachen/grundkenntnisse/PythonComments.md (Hanen Alrwasheda)
 - ch/Sprachen/grundkenntnisse/PythonStrings.md (Hanen Alrwasheda)
@@ -111,6 +109,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Testframeworks/Robot.md (Ronny Ruhe)
 
 - ch/Bibliotheken/stdlib/datetime.md (Sven Wegner, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
+- ch/Werkzeuge/Linter/flake8.md (Ronny Ruhe, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
+- ch/Werkzeuge/Linter/black.md (Ronny Ruhe, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
 
 ## Reviews to do for Lutz Prechelt
 
