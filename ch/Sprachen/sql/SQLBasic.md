@@ -4,9 +4,22 @@ timevalue: 1
 difficulty: 1
 ---
 
+TODO_ruhe:
+
+- Warnung über Datenverlust bei Neuladen der vorgeschlagenen Seite stimmt nicht ganz. Die Daten werden im local storage gespeichert. 
+
+- "Navigieren Sie in die SQLite DB auf der linken Seite und wählen Sie `click to connect`, um
+sich mit der DB zu verbinden." Dieser Schritt ist nicht klar genug und könnte auch überflüssig sein. Ich habe es selbst probiert, eine manuelle Verbindung war überhaupt nicht nötig. 
+
+- Die Infos über "SQL Query Abschluss" und "Abhängigkeiten" passen eher als Notizen (s.b. NOTICE Makro) und nicht als Hinweise
+
+- Unter "Tabelle bearbeiten" bitte besser erklären, dass "ALTER TABLE <table_name>;" nur der erste Teil des Befehls ist (nur wegen Semikolon). Ein Beispiel mit einer der Operationen könnte die Idee verständlicher machen. 
+
+---
+
 [SECTION::goal::idea]
 
-Ich kann eine Tabelle und dessen Inhalt anlegen, bearbeiten und löschen.
+Ich kann eine Tabelle und deren Inhalt anlegen, bearbeiten und löschen.
 
 [ENDSECTION]
 
@@ -20,14 +33,10 @@ zu löschen und einzufügen, was SQL zu einem unverzichtbaren Werkzeug für die 
 macht.
 
 Es gibt verschiedene Arten von Datenbanken, die je nach ihren Strukturen, Funktionalitäten und
-Verwendungszwecken kategorisiert werden können. Jede von Ihnen hat je nach Anwendungsfall seine
-spezifischen Vor- und Nachteile. Wir werden zum Erlernen der Syntax den Fokus auf SQLite legen.
+Verwendungszwecken kategorisiert werden können. Jede von ihnen hat je nach Anwendungsfall seine
+spezifischen Vor- und Nachteile. Wir werden zum Erlernen der Syntax den Fokus auf SQLite-Datenbank legen.
 
-Durch das Erlernen von SQL können Sie Ihre Fähigkeiten im Bereich Datenbankmanagement erweitern und
-Ihnen ermöglichen, Daten effizient zu organisieren, abzurufen und zu analysieren. Mit SQL können Sie
-komplexe Abfragen erstellen, um genau die Daten zu erhalten, die Sie benötigen, und Sie können Ihre
-Fähigkeiten in verschiedenen beruflichen Bereichen wie Softwareentwicklung, Datenanalyse,
-Datenbankadministration und mehr einsetzen.
+Durch das Erlernen von SQL können Sie Ihre Fähigkeiten im Bereich Datenbankmanagement erweitern. SQL ermöglicht es Ihnen, Daten effizient zu organisieren, abzurufen und zu analysieren, indem Sie komplexe Abfragen erstellen, um genau die benötigten Informationen zu erhalten. Diese Fähigkeiten sind in verschiedenen beruflichen Bereichen gefragt, darunter Softwareentwicklung, Datenanalyse, Datenbankadministration und mehr.
 
 Nice-to-know: SQL spricht man auch gerne "Ess-Que-Ell" oder aber auch "sequel" aus.
 
@@ -41,8 +50,8 @@ bekommen wir direkt zugriff auf eine Online DB, mit der wir bis zu einer gewisse
 agieren können.
 
 [WARNING]
-Das erneute Laden einer Seite für nicht angemeldete Nutzer sorgt dafür, dass die gemachten
-Änderungen zurück gesetzt werden. An Registrieren oder Anmelden ist für unsere Zwecke nicht
+Das erneute Laden der Seite für nicht angemeldete Nutzer sorgt dafür, dass die gemachten
+Änderungen zurückgesetzt werden. Registrieren oder Anmelden ist aber für unsere Zwecke nicht
 notwendig.
 [ENDWARNING]
 
@@ -67,8 +76,8 @@ Ein beliebter Fehler im Umgang mit einer SQL Abfrage ist das 'versehentliche' we
 notwendigen Semikolons am Ende.
 [ENDHINT]
 
-Eine leere Tabelle gibt erst einmal nicht viel Spielraum für einen guten Nutzen. Daher sollte eine
-Tabelle Informationen aufnehmen können. Diese Informationen werden ebenfalls strukturiert. Dabei
+Eine leere Tabelle gibt erst einmal nicht viel Spielraum für einen guten Nutzen, daher sollte eine
+Tabelle Informationen aufnehmen können. Diese Informationen werden ebenfalls strukturiert, dabei
 kommen Tabellenspalten zum Tragen.
 
 Dadurch erweitert sich die Syntax wie folgt:
@@ -84,7 +93,7 @@ CREATE TABLE <tabelname> (
 
 Es gibt zahlreiche Datentypen, zwei der wichtigsten sind `INT(size)` und `TEXT`.
 
-- [EC] Erstellen Sie eine neue Tabelle mit dem Namen "dogs" und den Tabellen DogID (INT), DogName (Text),
+- [EC] Erstellen Sie eine neue Tabelle mit dem Namen "dogs" und den Spalten DogID (INT), DogName (Text),
   Gender (Char) und Owner (Text).
 
 #### Tabelle bearbeiten
@@ -98,10 +107,10 @@ Mit folgendem Befehl ist das Manipulieren einer Tabelle möglich:
 ALTER TABLE <table_name>;
 ```
 
-Je nachdem was man machen möchte, folgte `ADD <column_name> <datatype>`, `DROP COLUMN <column_name>`
+Je nachdem was man machen möchte, folgt danach `ADD <column_name> <datatype>`, `DROP COLUMN <column_name>`
 oder `RENAME COLUMN <column_name> to <column_name_new>`.
 
-- [EC] Ändern Sie die Tabellennamen so um, dass sie nur noch klein geschrieben sind.
+- [EC] Ändern Sie die Tabellennamen so um, dass sie nur noch kleingeschrieben sind.
 - [EC] Fügen Sie eine neue Spalte ein, die das Alter des Hundes speichern soll.
 - [EC] Löschen Sie die Spalte `Owner`.
 
@@ -118,7 +127,7 @@ DROP TABLE <table_name>;
 
 [HINT::Abhängigkeiten]
 Tabelleninhalte können Abhängigkeiten oder Regeln ("[TERMREF::Constraint]") haben, die das Löschen
-einer Tabelle ohne weiteren EIngriff verhindert. Dies ist hier nicht der Fall, weshalb der Befehl
+einer Tabelle ohne weiteren EIngriff verhindern. Dies ist hier nicht der Fall, weshalb der Befehl
 alle Inhalte und die Tabelle selbst löscht.
 [ENDHINT]
 
@@ -128,28 +137,28 @@ Hierbei handelt es sich um einen sehr nützlichen Zusatz zum Einschränken von D
 Einschränkungen können sein:
 
 - Sicherstellen, dass ein Wert immer gesetzt wird und nicht `NULL` sein kann - `NOT NULL`
-- Das ein Wert einmal ist, z.B. eine ID - `UNIQUE`
+- Dass ein bestimmter Wert nur einmal vorkommen darf, z.B. eine ID - `UNIQUE`
 - Standardwert, falls kein Wert mitgegeben wurde - `DEFAULT`
 
 Um eine Tabelle mit contrains anzulegen, gehen Sie wie folgt vor:
 
 ```sql
 CREATE TABLE <tabel_name> (
-  <column_1> <datatype> <contrain>,
-  <column_2> <datatype> <contrain>,
-  <column_3> <datatype> <contrain>,
+  <column_1> <datatype> <constraint>,
+  <column_2> <datatype> <constraint>,
+  <column_3> <datatype> <constraint>,
   ...
 );
 ```
 
-- [EC] Erstellen Sie die Tabelle aus [EREFC::1] und ergänzen Sie sinnvolle constrains.
+- [EC] Erstellen Sie die Tabelle aus [EREFC::1] und ergänzen Sie sinnvolle constraints.
 - [EC] Stellen Sie sicher, dass `dogID` sowohl einzigartig, als auch nicht NULL ist.
 
 #### Tabelle befüllen
 
 Tabellen ohne Inhalt wirken schnell langweilig, deshalb werden Sie jetzt Inhalt produzieren.
 
-Um einen Eintrag in einer Tabelle zu erzeigen, hilft Ihnen die folgende Query:
+Um einen Eintrag in einer Tabelle zu erzeugen, hilft Ihnen die folgende Query:
 
 ```sql
 INSERT INTO TABLE <tabel_name> (<column_1>, <column_2>, ...)
@@ -166,7 +175,7 @@ zu der entsprechenden Spalte.
 #### Tabelle auslesen
 
 Natürlich gibt es immer jemanden, der Interessan an den erzeugten Daten hat. Wir auch, daher wollen
-wir wissen, welche Einträge unsere Tabelle für uns bereit hält.
+wir wissen, welche Einträge unsere Tabelle für uns bereithält.
 
 ```sql
 SELECT <column_1>, <column_2>, ... FROM <tabel_name>;
@@ -174,10 +183,10 @@ SELECT <column_1>, <column_2>, ... FROM <tabel_name>;
 
 hilft uns dabei, das Ziel zu erreichen. Ein Asterisk (*) ist noch komfortabler, wenn es sich um eine
 übersichtliche Tabelle handelt, die für eine Abfrage nicht zu viel Kosten erzeugt. Damit können Sie
-anstelle der Tabellennamen alle Spalte auflisten lassen.
+anstelle der Tabellennamen alle Spalten auflisten lassen.
 
 - [EC] Geben Sie lediglich die `dogID`'s zurück.
-- [EC] Lassen Sie sich mit Asterisk die gesamte Tabelle zurück geben.
+- [EC] Lassen Sie sich mit Asterisk die gesamte Tabelle zurückgeben.
 
 #### Tabelleneintrag löschen
 
