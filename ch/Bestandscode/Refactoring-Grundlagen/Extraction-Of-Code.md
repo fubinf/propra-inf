@@ -3,11 +3,21 @@ stage: alpha
 timevalue: 2
 difficulty: 2
 ---
+
+TODO_pietrak:
+
+- timevalue ist ziemlich groß. Die Beantwortung der Fragen inkl. Bearbeitung der 3 Artikel dauert weniger als 2 Stunden. 
+
+- Die Frage "wie wird diese Refaktorierung per Hand durchgeführt" ist gut, damit der Student lernt, wie man schrittweise Refaktorierung durchführt. Das ist alles schon genug detailliert erklärt in jedem der 3 Artikel, aber im Rahmen dieser Frage könnten wir dazu ein refaktorierungsbedürftiges (Python-)Beispiel für jede der Refaktorierungsmethoden zur Verfügung stellen, sodass man anhand dieser Beispiele selbst auch die jeweilige Refaktorierungsmethode durchführt. 
+
+PS: Falls du der Meinung wärest, dass man ohne die oben vorgeschlagene Erweiterung auf refaktorierungsbedürftige Beispiele die Refaktorierungsschritte genug verstehen würde, dann könntest du den stage auf "beta" erhöhen und an Final-Review weiterleiten. 
+---
+
 [SECTION::goal::idea]
 
 - Ich verstehe, wie ich Variablen, Methoden und Klassen extrahieren kann.
 - Ich verstehe, wie ich meinen Code verändern muss, damit diese Änderung funktioniert.
-- Ich verstehe, wann es nützlich ist diese Refaktorierungen durchzuführen.
+- Ich verstehe, wann es nützlich ist, diese Refaktorierungen durchzuführen.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -15,7 +25,7 @@ difficulty: 2
 Code schreiben kann am Anfang sehr einfach sein.
 Etwas Datenstruktur hier, etwas Funktionalität da... und irgendwann hat man ein Produkt, 
 mit dem man etwas anfangen kann.
-Achtet man aber anfangs nicht so sehr darauf, dass der Entwurf des Programms logisch und gut 
+Achtet man aber anfangs nicht so sehr darauf, dass der Entwurf des Programms logisch und gut  
 wartbar ist, können einem später Stolpersteine entgegenkommen.
 Möchte man das Programm später um Funktionalität erweitern, kann es nun schwierig sein diese 
 einzubauen.
