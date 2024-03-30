@@ -126,7 +126,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Bestandscode/Refactoring-Grundlagen/Extraction-Of-Code.md (Dominik Pietrak)
+
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Dominik Pietrak)
 
 - ch/Sprachen/sql/SQLBasic.md (Ronny Ruhe)
@@ -173,3 +173,5 @@ We will modify these rules over time when others appear more useful.
   ich habe es trotzdem in [EQ] geändert, damit die Regel "[EQ] heißt: Markdown abgeben"
   übersichtlich gültig bleibt.
 - ch/Sprachen/pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
+
+- ch/Bestandscode/Refactoring-Grundlagen/Extraction-Of-Code.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
