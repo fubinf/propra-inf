@@ -125,11 +125,11 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Basiswissen/testDelimitationsExercvise1.md (Ronny Ruhe) (Review Daniel Müllers)
 
 - ch/Sprache/sql/SQLJoin.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
+- ch/Sprache/sql/SQLProject.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Sprache/sql/SQLProject.md (Ronny Ruhe)
-
+- ...
 
 ## Reviews to do for Ivan Condric
 

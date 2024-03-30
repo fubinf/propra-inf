@@ -1,5 +1,5 @@
 title: SQL Datenbankprojekt
-stage: alpha
+stage: beta
 timevalue: 2
 difficulty: 4
 assumes: SQLBasic, SQLSelect, SQLJoin
@@ -13,7 +13,7 @@ Ich kann eine komplexe Datenbankstruktur aufbauen.
 
 [SECTION::background::default]
 
-Die Softwareentwickler sind auf Sie angewisen, denn eine persitente Speicherung wird für die geplante
+Die Softwareentwickler sind auf Sie angewisen, denn eine persistent Speicherung wird für die geplante
 Webanwendung benötigt. Hier können Sie zeigen, was Sie in dieser Taskgroup gelernt haben. Bauen Sie
 eine Datenbankstruktur auf.
 
@@ -63,26 +63,24 @@ Sie folgende Queries:
 - [EC] Zeigen Sie den Durchschnitt der Noten für alle Aufgaben in einem bestimmten Kurs an.
 - [EC] Sortieren Sie die Studenten nach ihrem Alter in absteigender Reihenfolge.
 - [EC] Filtern Sie alle Kurse, die mehr als 3 Credits haben.
-- [EC] Zeigen Sie den Namen jedes Studenten und die Anzahl der Kurse an, die sie belegen.
-- [EC] Zeigen Sie den Namen jedes Professors und die Anzahl der Kurse an, die sie unterrichten.
+- [EC] Zeigen Sie den Namen jedes Studenten und die Anzahl der Kurse an, die er belegt.
+- [EC] Zeigen Sie den Namen jedes Professors und die Anzahl der Kurse an, die er unterrichtet.
 - [EC] Gruppieren Sie die Studenten nach ihrem Hauptfach und zeige die Anzahl der Studenten in jedem
   Hauptfach an.
-- [EC] Zeigen Sie den Namen jedes Studenten und die Durchschnittsnote aller ihrer Bewertungen an.
+- [EC] Zeigen Sie den Namen jedes Studenten und die Durchschnittsnote aller seiner Bewertungen an.
 
 ### Testdaten einspielen
 
-Nicht nur Entwickler, auch Tester (aber auch andere Stakeholder) sind an Testdaten interessiert, ohne
+Nicht nur Entwickler, auch Tester (aber auch andere "Stakeholder") sind an Testdaten interessiert, ohne
 die das System nicht einmal begutachtet werden kann. Erstellen Sie daher folgende Testdaten:
 
-- [EC] Erstellen Sie 5 neue Kurse und fügen Sie gleichzeitig 10 neue Einschreibungen von Studenten
-  in diese Kurse ein.
-- [EC] Erstellen Sie 3 neue Abteilungen und fügen Sie gleichzeitig 5 neue Professoren in diese
-  Abteilungen ein.
+- [EC] Erstellen Sie 5 neue Kurse und fügen Sie gleichzeitig 10 neue Einschreibungen von Studenten in diese Kurse ein.
+- [EC] Erstellen Sie 3 neue Abteilungen und fügen Sie gleichzeitig 5 neue Professoren in diese Abteilungen ein.
 - [EC] Erstellen Sie 3 Prüfungen, die jeweils 5 Teilnehmer haben. (Teilnehmer sind diesem Kurz zugeordnet)
 
-[HINT::VisibleTitle]
+[WARNING]
 Sollten Abhängigkeiten fehlen, so sind diese ebenfalls zu erstellen.
-[ENDHINT]
+[ENDWARNING]
 
 [ENDSECTION]
 
