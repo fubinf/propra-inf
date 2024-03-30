@@ -1,5 +1,5 @@
 title: Zusammenführen von Tabellen mittels JOIN
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: SQLBasic, SQLSelect
@@ -7,8 +7,7 @@ assumes: SQLBasic, SQLSelect
 
 [SECTION::goal::product]
 
-Ich kann mehrere Tabellen in einer Abfrage verbinden und kenne die Eigenschaften der unterschiedlichen
-Verbindungen.
+Ich kann mehrere Tabellen in einer Abfrage verbinden und kenne die Eigenschaften der unterschiedlichen Verbindungen.
 
 [ENDSECTION]
 
@@ -18,9 +17,9 @@ In einem Datenbankprojekt sind mehrere Tabellen üblich, die jeweils unterschied
 Informationsbereiche repräsentieren. Um Daten nicht redundant zu speichern und potenzielle
 Inkonsistenzen zu vermeiden, werden Referenzen zu anderen Tabellen genutzt, die die benötigten Daten
 enthalten. Für den Zugriff auf relevante Informationen, die in unterschiedlichen Tabellen gespeichert
-sind, werden diese Tabellen mithilfe von JOIN-Operationen zusammengeführt. Dies ermöglicht es, Daten
+sind, werden diese Tabellen mithilfe von `JOIN`-Operationen zusammengeführt. Dies ermöglicht es, Daten
 basierend auf gemeinsamen Schlüsseln oder Bedingungen aus mehreren Tabellen abzurufen. In dieser
-Aufgabe werden verschiedene JOIN-Arten untersucht, um ein Verständnis für ihre Anwendung und
+Aufgabe werden verschiedene `JOIN`-Arten untersucht, um ein Verständnis für ihre Anwendung und
 Funktionsweise zu entwickeln.
 
 [ENDSECTION]
@@ -39,19 +38,19 @@ SELECT table1, table2, table3 WHERE table1.id = table2.t1_id AND table2.id = tab
 
 Jedoch können solche Abfragen sehr komplex und ineffizient werden, insbesondere wenn große Datenmengen
 verarbeitet werden müssen. Um die Lesbarkeit zu verbessern und die Performance zu optimieren, bietet
-SQL eine elegantere Lösung: das Schlüsselwort JOIN. Dadurch können mehrere Tabellen in einer Abfrage
+`SQL` eine elegantere Lösung: das Schlüsselwort `JOIN`. Dadurch können mehrere Tabellen in einer Abfrage
 miteinander verknüpft werden.
 
-Es gibt verschiedene JOIN-Verfahren, die je nach Tabellenstruktur und Abfrageziel sinnvoll eingesetzt
-werden können. Zu den gängigsten JOIN-Typen gehören INNER JOIN, LEFT JOIN, RIGHT JOIN und FULL JOIN.
-Jeder dieser Join-Typen hat seine eigenen Eigenschaften und Anwendungsfälle, die es ermöglichen,
+Es gibt verschiedene `JOIN`-Verfahren, die je nach Tabellenstruktur und Abfrageziel sinnvoll eingesetzt
+werden können. Zu den gängigsten `JOIN`-Typen gehören `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN` und `FULL JOIN`.
+Jeder dieser `JOIN`-Typen hat seine eigenen Eigenschaften und Anwendungsfälle, die es ermöglichen,
 Daten effektiv und genau zu kombinieren, um die gewünschten Ergebnisse zu erhalten.
 
 Angenommen, Sie besitzen zwei Tabellen:
 
-#### INNER JOIN
+#### `INNER JOIN`
 
-Ein INNER JOIN gibt nur die Datensätze zurück, die in beiden Tabellen übereinstimmen, basierend auf
+Ein `INNER JOIN` gibt nur die Datensätze zurück, die in beiden Tabellen übereinstimmen, basierend auf
 einem gemeinsamen Wert in beiden Tabellen.
 
 ```sql
@@ -60,10 +59,10 @@ FROM <table1>
 INNER JOIN <table2> ON <table1.column> = <table2.column>;
 ```
 
-#### LEFT JOIN
+#### `LEFT JOIN`
 
-Ein LEFT JOIN gibt alle Datensätze aus der linken Tabelle und die übereinstimmenden Datensätze aus
-der rechten Tabelle zurück. Wenn keine Übereinstimmung gefunden wird, werden NULL-Werte für die
+Ein `LEFT JOIN` gibt alle Datensätze aus der linken Tabelle und die übereinstimmenden Datensätze aus
+der rechten Tabelle zurück. Wenn keine Übereinstimmung gefunden wird, werden `NULL`-Werte für die
 Spalten der rechten Tabelle zurückgegeben.
 
 ```sql
@@ -72,10 +71,10 @@ FROM <table1>
 LEFT JOIN <table2> ON <table1.column> = <table2.column>;
 ```
 
-#### RIGHT JOIN
+#### `RIGHT JOIN`
 
-Ein RIGHT JOIN gibt alle Datensätze aus der rechten Tabelle und die übereinstimmenden Datensätze aus
-der linken Tabelle zurück. Wenn keine Übereinstimmung gefunden wird, werden NULL-Werte für die Spalten
+Ein `RIGHT JOIN` gibt alle Datensätze aus der rechten Tabelle und die übereinstimmenden Datensätze aus
+der linken Tabelle zurück. Wenn keine Übereinstimmung gefunden wird, werden `NULL`-Werte für die Spalten
 der linken Tabelle zurückgegeben.
 
 ```sql
@@ -84,10 +83,10 @@ FROM <table1>
 RIGHT JOIN <table2> ON <table1.column> = <table2.column>;
 ```
 
-#### FULL JOIN
+#### `FULL JOIN`
 
-Ein FULL JOIN gibt alle Datensätze aus beiden Tabellen zurück. Wenn es keine Übereinstimmung gibt,
-werden NULL-Werte für die fehlenden Spalten zurückgegeben.
+Ein `FULL JOIN` gibt alle Datensätze aus beiden Tabellen zurück. Wenn es keine Übereinstimmung gibt,
+werden `NULL`-Werte für die fehlenden Spalten zurückgegeben.
 
 ```sql
 SELECT <columns>
@@ -97,9 +96,8 @@ FULL JOIN <table2> ON <table1.column> = <table2.column>;
 
 ### Praktischer Anteil
 
-Jetzt erst schaffen uns wieder unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQLBasic]
-bekannte Seite, um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgenden
-Tabellen, mit der wir in dieser Aufgabe arbeiten wollen.
+Jetzt erst schaffen wir uns wieder unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQLBasic]
+bekannte Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgenden Tabellen, mit der wir in dieser Aufgabe arbeiten wollen.
 
 **Tabelle 1:**
 
@@ -147,23 +145,22 @@ INSERT INTO courses (name, teacher, semester) VALUES
 ('Physical Education', 'Coach Taylor', 2);
 ```
 
-Verwenden Sie für die Abfrage ein INNER JOIN. Verwenden sie wenn nötig eine Gruppierung oder auch eine
+Verwenden Sie für die Abfrage ein `INNER JOIN`. Verwenden sie wenn nötig eine Gruppierung oder auch eine
 Aggregatsfunktion.
 
 - [EC] Fragen Sie den Namen des Kurses ab, den jeder Student belegt.
-- [EC] Fragen Sie die Anzahl der Studenten in jedem Kurs an.
+- [EC] Fragen Sie die Anzahl der Studenten in jedem Kurs ab.
 - [EC] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben.
 
 Vergleichen Sie diese Ergebnisse mit:
 
-- [EC] einem LEFT JOIN.
-- [EC] einem RIGHT JOIN.
-- [EC] einem FULL JOIN.
+- [EC] einem `LEFT JOIN`.
+- [EC] einem `RIGHT JOIN`.
+- [EC] einem `FULL JOIN`.
 
-- [EQ] Sehen Sie den Bedarf der LEFT, RIGHT und FULL JOINS, oder können Sie sich vorstellen lediglich
-  mit dem INNER JOIN auszukommen?
+- [EQ] Sehen Sie den Bedarf der `LEFT`, `RIGHT` und `FULL` JOINS, oder können Sie sich vorstellen, lediglich mit dem `INNER JOIN` auszukommen?
 
-Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als nächstes die Bearbeitung der
+Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als Nächstes die Bearbeitung der
 Aufgabe [PARTREF::SQLProject].
 
 [ENDSECTION]
