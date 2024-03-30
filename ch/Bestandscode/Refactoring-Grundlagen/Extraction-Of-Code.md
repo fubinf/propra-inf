@@ -25,8 +25,7 @@ PS: Falls du der Meinung wärest, dass man ohne die oben vorgeschlagene Erweiter
 Code schreiben kann am Anfang sehr einfach sein.
 Etwas Datenstruktur hier, etwas Funktionalität da... und irgendwann hat man ein Produkt, 
 mit dem man etwas anfangen kann.
-Achtet man aber anfangs nicht so sehr darauf, dass der Entwurf des Programms logisch und gut  
-wartbar ist, können einem später Stolpersteine entgegenkommen.
+Achtet man aber anfangs nicht so sehr darauf, dass der Entwurf des Programms logisch und gut wartbar ist, können einem später Stolpersteine entgegenkommen.
 Möchte man das Programm später um Funktionalität erweitern, kann es nun schwierig sein diese 
 einzubauen.
 
