@@ -5,7 +5,7 @@ difficulty: 2
 assumes: IDE-Debugging
 ---
 [SECTION::goal::trial,product]
-Ich bin in der Lage mittels Debugger durch ein Programm zu navigieren und zielstrebig einen 
+Ich bin in der Lage, mittels Debugger durch ein Programm zu navigieren und zielstrebig einen 
 [TERMREF::Defekt] aufzufinden und zu beheben.
 [ENDSECTION]
 
@@ -21,17 +21,16 @@ Ich bin in der Lage mittels Debugger durch ein Programm zu navigieren und zielst
 - Die Ausgabe des Programms ist eine Liste von Zutaten, die Sie für dieses Menü einkaufen müssen.
 - Dabei sollen die Artikel nach Ihrer Abteilung im Supermarkt sortiert angegeben werden.
 
-[HINT::Gewünschter Output zur Eingabe `0,0,4`]
+[FOLDOUT::Gewünschter Output zur Eingabe `0,0,4`]
 ```console
 [INCLUDE::Einkaufsliste_Gewünschter-Output.inc]
 ```
-[ENDHINT]
+[ENDFOLDOUT]
 
 ### Erste Sichtung der Dateien
 
-- Laden Sie die Datei [PARTREF::grocery_list.zip] herunter und packen Sie sie aus 
-  in das Verzeichnis `grocery_list` in Ihrem Arbeitsbereich.
-- Das Verzeichnis besteht aus drei Dateien.
+- Laden Sie die Datei [PARTREF::grocery_list.zip] herunter und entpacken Sie diese.
+- Das darin enthaltene Verzeichnis besteht aus drei Dateien:
   `recipes.json` bildet die Datengrundlage für die Rezepte und `ingredients.json` gibt an, wo 
   die Zutaten im Supermarkt liegen.
   `grocery_list.py` ist das oben beschriebene Programm.
@@ -83,8 +82,8 @@ finden Sie in den Aufgaben [PARTREF::jsonBasic] und [PARTREF::jsonExercise] eine
 
 [NOTICE]
 Wenn Sie der Aufgabe gefolgt sind, sollte der Output ohne Ausgabe von Fehlern funktionieren.
-Allerdings ist das Programm noch nicht fehlerfrei, wenn Sie die Ausgabe mit der Beispielausgabe 
-aus dem obigen Hinweis vergleichen. 
+Allerdings ist das Programm noch nicht fehlerfrei, wenn Sie die Ausgabe mit der oben gegebenen
+Beispielausgabe vergleichen. 
 Darum kümmern wir uns aber erst in [PARTREF::Einkaufsliste-02].
 [ENDNOTICE]
 

@@ -6,7 +6,7 @@ assumes: IDE-Debugging
 requires: Einkaufsliste-02
 ---
 [SECTION::goal::trial,product]
-Ich bin in der Lage mittels Debugger durch ein Programm zu navigieren, kann 
+Ich bin in der Lage, mittels Debugger durch ein Programm zu navigieren, kann 
 bedingungsabhängige Defekte erkennen und beheben.
 [ENDSECTION]
 
@@ -15,7 +15,7 @@ bedingungsabhängige Defekte erkennen und beheben.
 ### Der letzte Bug: Ein bedingungsabhängiger Bug
 
 - [EQ] Testen Sie manuell alle möglichen Eingaben für das Programm einzeln, also erst `0`, dann 
-  `1,`, usw.
+  `1`, usw.
   Bei welchen Eingaben erhalten Sie eine Fehlermeldung?
   Wie lautet die Fehlermeldung?
 - [EQ] Die in den Fehlermeldungen genannte Stelle kommt uns aus der 
@@ -32,10 +32,10 @@ bedingungsabhängige Defekte erkennen und beheben.
       - Welche Zutat wird in `ingr` gerade abgefragt?
       - Finden Sie diese Zutat in `all_ingredient_locs`? 
         Wenn nein, gibt es eine ähnlich klingende Zutat? Worin liegt der Unterschied?
-- Es gibt hier, wie meistens, verschiedene Möglichkeiten den Defekt zu lösen. 
+- Es gibt hier, wie meistens, verschiedene Möglichkeiten, den Defekt zu lösen. 
   Wenn Sie sich `ingredients.json`, aus der die Daten von `all_ingredient_locs` kommen, 
   anschauen, stellen Sie fest, dass alle Zutaten ähnlich geschrieben sind und nur die von Ihnen 
-  identifizierte Stelle ein Ausreißer darstellt.
+  identifizierte Stelle einen Ausreißer darstellt.
 - [ER] Beheben Sie den falsch geschriebenen Dateneintrag.
 - [EQ] Führen Sie das Programm mit den korrigierten Daten noch einmal aus. 
   Finden Sie noch eine Stelle, in der solch ein Fehler auftritt?
