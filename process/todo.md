@@ -84,11 +84,14 @@ In alphabetischer Reihenfolge der Dateinamen.
     - `css` -> `CSS`
     - `javascript` -> `JavaScript`
   Bitte als separaten Commit.
+  Erwähnungen an anderen Stellen mit ändern!
 - Taskgroups verlagern:
     - `Testen/Linter` -> `Werkzeuge/Linter`
   Bitte als separaten Commit.
+  Erwähnungen an anderen Stellen mit ändern!
 - Tasks so benennen, wie es sich aus authors.md 1.13 ergibt:
-  https://sedrila.readthedocs.io/en/latest/authors/#113-naming-conventions
+  https://sedrila.readthedocs.io/en/latest/authors/#113-naming-conventions  
+  Erwähnungen an anderen Stellen mit ändern!
 
 
 ### 2.3 Korrekturbedarf an sedrila
