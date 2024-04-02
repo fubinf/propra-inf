@@ -112,6 +112,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Linter/flake8.md (Ronny Ruhe, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
 - ch/Werkzeuge/Linter/black.md (Ronny Ruhe, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
 
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Dominik Pietrak)
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Dominik Pietrak)
+
 ## Reviews to do for Lutz Prechelt
 
 - ch/Testen/Basiswissen/index.md (Ronny Ruhe) (nach Review von Daniel Müllers)

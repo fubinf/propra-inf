@@ -71,7 +71,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 - Taskgroups umbenennen:
     - `grundkenntnisse` -> `Python1`
     - `fortgeschrittenes` -> `Python2`
-    - `pythonpraxis` -> `Pythonpraxis`
     - `regex` -> `RegExp`
     - `lizenzen` -> `Lizenzen`
     - `debuggingtools` -> `Debuggingtools`
@@ -84,10 +83,14 @@ In alphabetischer Reihenfolge der Dateinamen.
     - `css` -> `CSS`
     - `javascript` -> `JavaScript`
   Bitte als separaten Commit.
+  Erwähnungen an anderen Stellen mit ändern!
 - Taskgroups verlagern:
     - `Testen/Linter` -> `Werkzeuge/Linter`
   Bitte als separaten Commit.
-
+  Erwähnungen an anderen Stellen mit ändern!
+- Tasks so benennen, wie es sich aus authors.md 1.13 ergibt:
+  https://sedrila.readthedocs.io/en/latest/authors/#113-naming-conventions  
+  Erwähnungen an anderen Stellen mit ändern!
 
 
 ### 2.3 Korrekturbedarf an sedrila
@@ -97,7 +100,9 @@ In alphabetischer Reihenfolge der Dateinamen.
 - `profiles`-Mechanismus in Sedrila und der Doku entfernen.
 - Konsistenzcheck, dass beim Aktualisieren eines Kurses keine bisherigen Aufgaben
   verschwinden.
-- `cino2r2s2tu` -> `instructor`
+- Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
+  muss es eine Fehlermeldung geben, keinen toten Link.
+- ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)
 
 
 ### 2.4 Anträge an den Rechnerbetrieb

@@ -3,6 +3,7 @@ stage: alpha
 timevalue: 2.0
 difficulty: 1
 assumes: git-funktionsweise
+requires: git-vorbereitung
 ---
 
 [SECTION::goal::experience]

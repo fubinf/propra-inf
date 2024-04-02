@@ -462,7 +462,7 @@ Speziellerer Kram:
 - docker?
 
 
-## ch/Web (müllers)
+## ch/Web (müllers, hofmann)
 
 - assumes: Wissen über http-Header, curl  
   https://icanhazdadjoke.com liefert im Browser etwas anderes als wenn man es mit curl abruft.
