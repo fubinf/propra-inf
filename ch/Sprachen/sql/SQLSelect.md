@@ -224,9 +224,6 @@ FROM <table_name>;
 - [EC] Entfernen Sie alle doppelten Hundenamen und zählen Sie die Anzahl der übrig gebliebenen Hunde.
 - [EC] Entfernen Sie alle doppelten Rassen und lassen Sie sich nur die Rassen zurückgeben.
 
-Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als Nächstes die Bearbeitung der
-Aufgabe [PARTREF::SQLJoin].
-
 [ENDSECTION]
 
 [SECTION::submission::snippet]

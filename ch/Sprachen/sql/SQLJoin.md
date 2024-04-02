@@ -160,9 +160,6 @@ Vergleichen Sie diese Ergebnisse mit:
 
 - [EQ] Sehen Sie den Bedarf der `LEFT`, `RIGHT` und `FULL` JOINS, oder können Sie sich vorstellen, lediglich mit dem `INNER JOIN` auszukommen?
 
-Nachdem Sie dieses Kanpital abgeschlossen haben, empfehle ich Ihnen als Nächstes die Bearbeitung der
-Aufgabe [PARTREF::SQLProject].
-
 [ENDSECTION]
 
 [SECTION::submission::snippet,reflection]
