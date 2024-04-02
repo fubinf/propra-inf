@@ -41,7 +41,7 @@ das Einrichten der Community Edition.
 [SECTION::instructions::detailed]
 
 Wenn Sie sich schon für eine IDE entschieden haben, 
-brauchen Sie nur einen der drei Abschnitte zu bearbeiten.
+brauchen Sie nur einen der beiden Abschnitte zu bearbeiten.
 Wenn Sie noch unsicher sind, lesen Sie vielleicht in alle Abschnitte rein, 
 was da für die Installation auf Sie zukommt. 
 
@@ -51,7 +51,7 @@ was da für die Installation auf Sie zukommt.
 #### PyCharm Community Edition installieren und einrichten
 
 - Gehen Sie auf [HREF::https://www.jetbrains.com/pycharm/download/?section=mac], scrollen Sie 
-  ein Stück nach unten bis Sie den Download-Button für die PyCharm Community Edition sehen und 
+  ein Stück nach unten, bis Sie den Download-Button für die PyCharm **Community Edition** sehen, und 
   laden Sie die passende .dmg für ihren Mac (Intel/Apple Silicon) herunter.
 - Öffnen Sie die .dmg-Datei und schieben Sie, wie angezeigt, die PyCharm Community Edition App in 
   ihren Anwendungsordner.
@@ -73,31 +73,24 @@ was da für die Installation auf Sie zukommt.
 
 
 
-### 3. Visual Studio Code
+### 2. Visual Studio Code
 
 #### VS Code herunterladen und installieren
 
 - Gehen Sie auf [HREF::https://code.visualstudio.com/docs/?dv=osx], laden Sie das zip Archiv 
   herunter und verschieben Sie nach dem Entpacken die "Visual Studio Code" App in ihren 
   Anwendungsordner. 
-- Starten Sie Visual Studio Code und öffnen Sie ihr ProPra Projekt.
-- In der linken Seitenleiste sollten Sie ein Symbol erkennen, welches aus Vier Quadraten besteht.
-  Klicken Sie darauf werden sie mit der "Extensions"-Seitenleiste begrüßt.
-- VSCode sollte ihnen vermutlich schon automatisch vorschlagen die Python-Extension zu 
-  installieren. Sollte das nicht der Fall sein geben Sie in die Suche "Python" ein und 
-  installieren Sie die offizielle Erweiterung von Microsoft.
-- Wenn Sie auf die Python-Extension klicken wird im Hauptfenster die Extension-Seite geladen, dort 
-  finden Sie auch eine Anleitung zum korrekten Einrichten ebendieser.
+[INCLUDE::VSSetup.inc]
 
 [ENDSECTION]
 
 [SECTION::submission::information]
 
-Zeigen Sie ihrem/ihrer Tutor_in ihre eingerichtete PyCharm IDE oder VSCode mit ihrem geöffneten 
+Zeigen Sie Ihrem/Ihrer Tutor_in Ihre eingerichtete PyCharm IDE oder VSCode mit Ihrem geöffneten 
 ProPra.
 
-Sollten Sie ihre Entwicklungsumgebung an einem stationären Desktop eingerichtet haben, erstellen 
-Sie einen aussagekräftigen Screenshot und zeigen Sie diesen ihrem/ihrer Tutor_in.
+Sollten Sie Ihre Entwicklungsumgebung an einem stationären Desktop eingerichtet haben, erstellen 
+Sie einen aussagekräftigen Screenshot und zeigen Sie diesen Ihrem/Ihrer Tutor_in.
 
 [ENDSECTION]
 
