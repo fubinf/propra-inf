@@ -2,7 +2,6 @@ title: Unittest in Python - Grundlagen
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-profiles: TEST
 ---
 [SECTION::goal::idea]
 

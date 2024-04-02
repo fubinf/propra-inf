@@ -2,7 +2,6 @@ title: Code Coverage
 stage: alpha
 timevalue: 2.0
 difficulty: 3
-profiles: TEST
 ---
 [SECTION::goal::idea]
 

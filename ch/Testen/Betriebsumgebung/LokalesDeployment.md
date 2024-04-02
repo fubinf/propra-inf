@@ -2,7 +2,6 @@ title: Lokale Bereitstellung des System unter Test
 stage: alpha
 timevalue: 1.5
 difficulty: 1
-profiles: TEST
 explains:
 assumes: venv, pip, basics, Git101
 ---

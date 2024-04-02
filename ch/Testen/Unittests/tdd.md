@@ -2,7 +2,6 @@ title: Grundlagen des Test Driven Development mit Python
 stage: alpha
 timevalue: 0.5
 difficulty: 1
-profiles: TEST
 explains: TDD
 ---
 

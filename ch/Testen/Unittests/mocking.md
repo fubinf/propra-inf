@@ -2,7 +2,6 @@ title: Mocking in pytest
 stage: alpha
 timevalue: 2.0
 difficulty: 3
-profiles: TEST
 assumes: pytest101, pytest102
 ---
 [SECTION::goal::idea]

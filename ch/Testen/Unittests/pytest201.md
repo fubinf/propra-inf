@@ -2,7 +2,6 @@ title: Pytest in Python - Anwendung
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-profiles: TEST
 assumes: pytest101
 ---
 [SECTION::goal::idea]

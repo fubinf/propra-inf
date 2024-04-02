@@ -2,7 +2,6 @@ title: Unittest in Python - Grundlagen Flask-Testing
 stage: alpha
 timevalue: 1.0
 difficulty: 1
-profiles: TEST
 assumes: unittest101
 ---
 [SECTION::goal::idea]

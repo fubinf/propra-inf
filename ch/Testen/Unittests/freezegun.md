@@ -2,7 +2,6 @@ title: Freezegun - Zeitreise mittels Python-Tests
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-profiles: TEST
 assumes: mocking
 requires:
 ---

@@ -2,7 +2,6 @@ title: Unittest in Python - Mocking Anwendung
 stage: alpha
 timevalue: 4.0
 difficulty: 4
-profiles: TEST
 assumes: unittest101, mocking
 ---
 [SECTION::goal::idea]

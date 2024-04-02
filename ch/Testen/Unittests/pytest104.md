@@ -2,7 +2,6 @@ title: Pytest - Parametrisierte Tests
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-profiles: TEST
 assumes: pytest101, pytest103
 ---
 [SECTION::goal::idea]

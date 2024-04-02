@@ -2,7 +2,6 @@ title: Unittest in Python - Anwendung
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-profiles: TEST
 assumes: unittest101, unittest102
 ---
 [SECTION::goal::idea]

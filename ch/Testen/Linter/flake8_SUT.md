@@ -2,7 +2,6 @@ title: SUT mit flake8 analysieren
 stage: alpha
 timevalue: 0.5
 difficulty: 4
-profiles: Test
 explains: Linter
 assumes: flake8
 requires: LokalesDeployment
