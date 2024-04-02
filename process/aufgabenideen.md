@@ -229,6 +229,9 @@ Alternativlösung: wir weisen bei den Programmieraufgaben auf diese Konstrukte h
 etwas, das man dabei lernen und benutzen kann oder soll.
 Das ist aber nicht zielgenau, wenn die Aufgaben Spielraum bei der Entwurfsstruktur haben.
 
+Aufgabe(n) zu den Dunder-Methoden von Klassen (z. B. `__init__`, `__bool__`, `__add__`,...) als 
+Folgeaufgabe zu ch/Sprachen/fortgeschrittenes/PythonObjectsClassesIntro.md
+
 
 ### Sprachen/Pythonpraxis (prechelt)
 
