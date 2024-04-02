@@ -101,7 +101,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 - `profiles`-Mechanismus in Sedrila und der Doku entfernen.
 - Konsistenzcheck, dass beim Aktualisieren eines Kurses keine bisherigen Aufgaben
   verschwinden.
-- `cino2r2s2tu` -> `instructor`
 - Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
   muss es eine Fehlermeldung geben, keinen toten Link.
 - ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)
