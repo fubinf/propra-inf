@@ -71,7 +71,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 - Taskgroups umbenennen:
     - `grundkenntnisse` -> `Python1`
     - `fortgeschrittenes` -> `Python2`
-    - `pythonpraxis` -> `Pythonpraxis`
     - `regex` -> `RegExp`
     - `lizenzen` -> `Lizenzen`
     - `debuggingtools` -> `Debuggingtools`

@@ -187,7 +187,7 @@ chapters:
     taskgroups:
       - slug: grundkenntnisse
       - slug: fortgeschrittenes
-      - slug: pythonpraxis
+      - slug: Pythonpraxis
       - slug: bash
       - slug: regex
       - slug: sql
