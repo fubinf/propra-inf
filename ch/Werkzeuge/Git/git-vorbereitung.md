@@ -22,28 +22,22 @@ Schritte genutzt werden.
 [ENDSECTION]
 
 TODO_1_hüster: aufgabentext schreiben
-[SECTION::instructions::detailed/loose/tricky]
+[SECTION::instructions::loose]
 
 - [EC] Kommando
 - [EQ] Frage
 - [ER] Anforderung
 
-[WARNING]
-[ENDWARNING]
-
-[HINT::VisibleTitle]
-[ENDHINT]
-
 [ENDSECTION]
 
-[SECTION::submission::reflection/information/snippet/trace/program]
+[SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Quellcode.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+Geben Sie einen Link zu ihrem Test-Repo ab.
 
 [ENDSECTION]
 
 [INSTRUCTOR::heading]
-.
+
+Studierende geben einen Link zum test-repo ab.
+
 [ENDINSTRUCTOR]
