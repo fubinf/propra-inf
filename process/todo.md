@@ -87,7 +87,8 @@ In alphabetischer Reihenfolge der Dateinamen.
 - Taskgroups verlagern:
     - `Testen/Linter` -> `Werkzeuge/Linter`
   Bitte als separaten Commit.
-
+- Tasks so benennen, wie es sich aus authors.md 1.13 ergibt:
+  https://sedrila.readthedocs.io/en/latest/authors/#113-naming-conventions
 
 
 ### 2.3 Korrekturbedarf an sedrila
@@ -98,6 +99,9 @@ In alphabetischer Reihenfolge der Dateinamen.
 - Konsistenzcheck, dass beim Aktualisieren eines Kurses keine bisherigen Aufgaben
   verschwinden.
 - `cino2r2s2tu` -> `instructor`
+- Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
+  muss es eine Fehlermeldung geben, keinen toten Link.
+- ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)
 
 
 ### 2.4 Anträge an den Rechnerbetrieb
