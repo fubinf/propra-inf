@@ -53,48 +53,56 @@ In alphabetischer Reihenfolge der Dateinamen.
 - sedrila.css: Farben besser abstimmen. 
   Evtl. Farbschema von creativecommons benutzen?
   https://creativecommons.org/mission/downloads/ ganz unten.
-- chapter-basis: Hier ist einiges besser 'leicht', nicht 'sehr leicht'?
 - Git101: Wie geht denn die Installation? Wo sind die Hyperlinks zu den URLs? 
   Was bedeutet Klonen?
-- sprache-bash: Hier ist alles(?) besser 'leicht', nicht 'sehr leicht'.
-- basics: Das ist kein guter globaler Taskname. Was ist das Ziel beim Lesen der Bash-Einführung?
-  Wie viel Zeit sollte ich investieren? (Dazu brauchen viele Aufgaben einen Hinweis.)
-- concatenate: Das kann man nur mit Googlen vernünftig lösen. Dann braucht es aber einen Hinweis,
-  worum es uns mit der Aufgabe eigentlich geht! Worum geht es uns denn? Haben wir das überlegt?
-  Müssen die "zwei Wege" zwei verschiedene Kommandos benutzen? Falls nicht, wie soll ich
-  darauf ohne Hinweis kommen?
-
+- Sprachen/bash/basics: Wir brauchen eine Mininmaleinführung namens
+  `Shell-Grundlagen` als brauchbare Aufgabe.
+- `glossary.md`: Bitte jeder durchgehen und ergänzen:  
+  Was fehlt an Begriffen zu eigenen Aufgaben?  
+  Was fehlt an Verweisen zwischen existierenden Begriffen und Aufgaben?
 
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
-- TODO_1_alle: Admonitions durch SECTIONs ersetzen, Admonition-CSS löschen
+- Admonitions durch SECTIONs ersetzen, Admonition-CSS löschen
 - `profiles:`-Header aus allen Tasks entfernen (die sind optional);
    dann `profiles` aus sedrila.yaml entfernen, dann aus `sedrila`.
-- Kapitel unbenennen: `web` --> `Web`
+- Kapitel unbenennen: `web` --> `Web`  
+  Bitte als separaten Commit.
 - Taskgroups umbenennen:
+    - `grundkenntnisse` -> `Python1`
+    - `fortgeschrittenes` -> `Python2`
+    - `pythonpraxis` -> `Pythonpraxis`
+    - `regex` -> `RegExp`
+    - `lizenzen` -> `Lizenzen`
+    - `debuggingtools` -> `Debuggingtools`
+    - `sql` -> `SQL`
+    - `basiswissen` -> `Web-Grundlagen`
+    - `html` -> `HTML`
+    - `Basiswissen` -> `Testen1`
+    - `stdlib` -> `Python-Standardbibliothek`
+    - `Denkweisen` -> `Debugging-Denken`
+    - `css` -> `CSS`
+    - `javascript` -> `JavaScript`
+  Bitte als separaten Commit.
+- Taskgroups verlagern:
+    - `Testen/Linter` -> `Werkzeuge/Linter`
+  Bitte als separaten Commit.
 
-  - Große Anfangsbuchstaben für 
-    `grundkenntnisse`, `fortgeschrittenes` , `pythonpraxis` , `Bash` , `Regex`, 
-    `lizenzen`, `debuggingtools`  
-  - `sql` --> `SQL`
-  - `basiswissen` --> `Web-Grundlagen`
-  - `html` --> `HTML`
 
 
 ### 2.3 Korrekturbedarf an sedrila
 
-- Formatkonvention für slugs einführen?
-- Macrocall: markdown_content speichern, daraus Zeilennummern errechnen?
 - ZIP-Dateien sollten nicht die Ordnerhierarchie mitschleppen, sondern als
   oberste Verzeichnisebene ihren eigenen Basisnamen haben.
 - `profiles`-Mechanismus in Sedrila und der Doku entfernen.
+- Konsistenzcheck, dass beim Aktualisieren eines Kurses keine bisherigen Aufgaben
+  verschwinden.
+- `cino2r2s2tu` -> `instructor`
 
 
 ### 2.4 Anträge an den Rechnerbetrieb
 
 Was auf den Poolrechnern noch installiert werden muss:
-- pipx
-- python-is-python3
 - ...
 
 
