@@ -57,7 +57,7 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Dominik Pietrak)
 
-- ch/Testen/Linter/flake8_SUT.md (Ronny Ruhe)
+- ch/Werkzeuge/Linter/flake8_SUT.md (Ronny Ruhe)
 
 - ch/Sprachen/grundkenntnisse/PythonComments.md (Hanen Alrwasheda)
 - ch/Sprachen/grundkenntnisse/PythonStrings.md (Hanen Alrwasheda)
