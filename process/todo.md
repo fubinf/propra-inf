@@ -63,7 +63,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
-- Admonitions durch SECTIONs ersetzen, Admonition-CSS löschen
 - `profiles:`-Header aus allen Tasks entfernen (die sind optional);
    dann `profiles` aus sedrila.yaml entfernen, dann aus `sedrila`.
 - Kapitel unbenennen: `web` --> `Web`  

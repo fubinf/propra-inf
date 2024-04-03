@@ -337,7 +337,6 @@ summary {}
     border-radius: 0.8ex;
 }
 
-.admonition,
 .section-goal,
 .section-submission,
 .blockmacro {
@@ -590,7 +589,6 @@ summary {}
         display: none;
     }
 
-    .admonition,
     .section-goal,
     .section-submission,
     .blockmacro {
@@ -604,16 +602,4 @@ summary {}
     .stage-alpha {
         background-color: #333;
     }
-}
-
-/********** Admonitions (TODO_2 phase out): */
-
-.admonition-title {
-    font-size: 105%;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.admonition {
-    background-color: #f5f;
 }
