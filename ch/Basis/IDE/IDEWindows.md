@@ -24,12 +24,13 @@ Auf Windows haben Sie die Wahl zwischen drei verschiedenen IDEs, mit denen sich 
 
 ### 2. PyCharm Community Edition  
 - Diese Version ist kostenlos, arbeitet aber nicht mit dem WSL zusammen, weshalb zusätzlich eine Python-Installation auf
-  Windows vorhanden sein muss. (TODO_1_wegner Stimmt das? Wenn nicht, empfehlen wir allen die Community Edition.)
-- Die Verwaltung beider Python-Environments könnte auf Dauer aufwendig und vor allem für Anfänger verwirrend werden. 
+  Windows vorhanden sein muss.
+- Die Verwaltung und die Arbeit mit beiden Python-Environments kann auf Dauer aufwendig und vor allem für Anfänger
+  verwirrend werden.
 - Nur Empfohlen, wenn Sie Probleme bei der Aktivierung der PyCharm-Pro-Lizenz haben.
 
 ### 3. Visual Studio Code  
-- Arbeitet problemlos mit dem WSL zusammen. 
+- Arbeitet problemlos mit dem WSL zusammen und ist daher eine mögliche Alternative zu PyCharm. 
 - Da der Kurs jedoch vorrangig auf PyCharm aufgebaut ist, können vor allem bei fortgeschrittenen Themen benötigte
   IDE-Features anders funktionieren. Hier müssen Sie ggf. selbst nach alternativen Wegen suchen;
   der Unterschied betrifft aber nur wenige Aufgaben.
@@ -50,7 +51,7 @@ Sollten Sie bereits einen JetBrains-Account haben und eine gültige Lizenz für 
 diesen Schritt überspringen.
 
 - Beantragen Sie die Pro-Lizenz auf [HREF::https://www.jetbrains.com/shop/eform/students].
-- Füllen Sie das Formular entsprechend aus. Verwenden Sie ihre **Universitäts-Emailadresse** für die Beantragung.
+- Füllen Sie das Formular entsprechend aus. Verwenden Sie ihre **Universitäts-E-Mail-Adresse** für die Beantragung.
 - Bei Problemen mit der Freischaltung können Sie auch die Beantragung über ein offizielles Dokument, z.B. einer
   Immatrikulationsbescheinigung, versuchen. Sie müssen hier aber mit einer längeren Bearbeitungszeit rechnen.
 - Sobald Sie die Bestätigungs-E-Mail erhalten haben, gehen Sie auf den Link und verknüpfen Sie ihre Lizenz mit ihrem
@@ -65,7 +66,7 @@ diesen Schritt überspringen.
   Free Trial aus.
 - Sie sollten bereits ein git-Repository für ihre Aufgaben erstellt und in ein Verzeichnis in ihrem WSL geklont haben.
   Um dieses nun in der IDE zu öffnen, gehen Sie auf "Open Project" und navigieren Sie zu dem Verzeichnis ihres
-  Repos. Dieses sollte unter `\\wsl$\Debian\home\<benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
+  Repos. Dieses sollte unter `\\wsl$\Debian\home\<WSL-Benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
 - Damit Sie auch ihr WSL Environment als Interpreter nutzen können, klicken Sie unten rechts auf:  
   <no interpreter\> → add new interpreter → On WSL ...
 - Falls Sie mehrere WSL Distributionen installiert haben, wählen Sie Debian aus.
@@ -76,10 +77,25 @@ diesen Schritt überspringen.
 
 ### 2. PyCharm Community Edition
 
+[WARNING]
+In PyCharm Community wird ihr Code immer mit der Windows-Version von Python ausgeführt. Für ihre Abgabe muss ihr Code
+aber **immer einmal über das WSL ausgeführt werden!** Die Windows-Python-Version unterscheidet sich teilweise von der
+im WSL installierten Version. 
+
+Das kann zu Problemen führen:
+
+- Es gibt kleine Unterschiede zwischen Python auf Linux und Python auf Windows,
+  insbesondere beim Format von Dateinamen und Pfaden.
+- Wenn Sie zusätzliche Python-Pakete installieren (was für viele Aufgaben nötig sein wird), müssen Sie dies immer in
+  beiden Umgebungen vornehmen, was ebenso lästig wie fehleranfällig ist.  
+  Lesen Sie zur Information vorab den Warnhinweis in der Aufgabe [PARTREF::venv].
+[ENDWARNING]
+
 #### Python auf Windows installieren
 
 - Gehen Sie auf [HREF::https://www.python.org/downloads/]
-- scrollen Sie nach unten und laden Sie Python 3.11 herunter (keine neuere Version!).
+- scrollen Sie nach unten und laden Sie aktuellste Version von Python 3.11.x herunter
+  (**Keine** neuere Version wie 3.12).
 - Starten Sie den Installer.
 - setzen Sie das Häkchen bei "Add python.exe to PATH", um Python auch über die CMD/PowerShell ansprechen zu können.
 - Die Standard-Installation ist ausreichend, sie können aber auch auf "Customize install" klicken und folgende
@@ -93,25 +109,11 @@ diesen Schritt überspringen.
   führen Sie den Installer aus. Anschließend öffnen Sie PyCharm.
 - Sie sollten bereits ein git-Repository für ihre Aufgaben erstellt und in ein Verzeichnis in ihrem WSL geklont haben.
   Um dieses nun in der IDE zu öffnen, gehen Sie auf "Open Project" und navigieren Sie zu dem Verzeichnis ihres
-  Repos. Dieses sollte unter `\\wsl$\Debian\home\<benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
+  Repos. Dieses sollte unter `\\wsl$\Debian\home\<WSL-Benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
 - Um ihren Code mit dem auf Windows installierten Python-Interpreter auszuführen, gehen Sie unten rechts auf:  
   <no interpreter\> → Add New Interpreter → Add Local Interpreter
 - Wählen Sie links "System Interpreter" aus. Im Drop-Down-Menu kann nun die Windows-Python-Installation ausgewählt
   werden.
-
-[WARNING]
-Die auf Windows installierte Python-Version unterscheidet sich von der im WSL installierten Version. Über PyCharm
-Community wird ihr Code immer mit der Windows-Version ausgeführt, für die Abgabe muss aber ihr Code immer über das WSL
-ausgeführt werden.
-
-Das kann zu Problemen führen:
-
-- Es gibt kleine Unterschiede zwischen Python auf Linux und Python auf Windows,
-  insbesondere beim Format von Dateinamen und Pfaden.
-- Wenn Sie zusätzliche Python-Pakete installieren (was für viele Aufgaben nötig sein wird), müssen Sie dies immer in
-  beiden Installationen vornehmen, was ebenso lästig wie fehleranfällig ist.
-  Lesen Sie zur Information vorab die Warnhinweise in den Aufgaben [PARTREF::venv] und [PARTREF::pip].
-[ENDWARNING]
 
 
 ### 3. Visual Studio Code
@@ -138,7 +140,7 @@ Alle im ProPra benötigten Extensions werden von Microsoft bereitgestellt.
   Falls nicht, tun Sie dies manuell.
 - Sie sollten bereits ein git-Repository für ihre Aufgaben erstellt und in ein Verzeichnis in ihrem WSL geklont haben.
   Um dieses nun in der IDE zu öffnen, gehen Sie links auf den Reiter "Explorer", klicken Sie auf "Open Folder" und
-  navigieren Sie zu dem Verzeichnis ihres Repos. Dieses sollte unter `\home\<WSL Benutzername>\<Pfad zu ihrem Repo>` zu
+  navigieren Sie zu dem Verzeichnis ihres Repos. Dieses sollte unter `\home\<WSL-Benutzername>\<Pfad zu ihrem Repo>` zu
   finden sein.
 - Wählen Sie "Yes, I trust the authors".
 
@@ -149,14 +151,14 @@ Diesmal gibt es nichts einzuchecken.
 Zeigen Sie zur Prüfung einfach Ihren Laptopbildschirm mit gestarteter IDE
 mit erkennbarer Python-Version und geöffnetem ProPra.
 
-Wenn Sie keinen Laptop benutzen, machen Sie einen Fullscreen-Screenshot und checken Sie 
-den als `*.png`-Datei doch ein.
+Wenn Sie keinen Laptop benutzen, machen Sie einen aussagekräftigen Screenshot und checken Sie 
+den als `png`-Datei doch ein.
 
 [ENDSECTION]
 [INSTRUCTOR::Minimale Prüfung]
 
 Nur per kurzem Augenschein prüfen, ob das im Sinne unserer Aufgabe zu sein scheint.
-Ein Studi, der hier etwas verschlampert hat, wird es noch ausführlich bereuen.
+Ein Studi, der hier etwas verschlampt hat, wird es noch ausführlich bereuen.
 Achten Sie aber auf die korrekte Python-Version, denn daraus resultierende Abweichungen
 könnten subtil ausfallen.
 
