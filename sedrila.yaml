@@ -199,7 +199,7 @@ chapters:
       - slug: lizenzen
   - slug: Testen
     taskgroups:
-      - slug: Basiswissen
+      - slug: Testgrundlagen
       - slug: Unittests
       - slug: API
       - slug: Testframeworks
