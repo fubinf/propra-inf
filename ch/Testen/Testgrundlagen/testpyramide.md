@@ -24,7 +24,7 @@ oben, oder unten betrachten.
 
 [SECTION::instructions::loose]
 
-Zu erste sollten Sie sich einen Verständnis über das Thema Testpyramide entwicklen. Anschließend
+Zu erste sollten Sie sich einen Verständnis über das Thema Testpyramide entwickeln. Anschließend
 reflektieren Sie das neu erworbene Wissen. Lesen Sie dazu den kurzen aber informativen Beitrag des
 [Austrian Testing Board - Testpyramide](https://www.austriantestingboard.at/die-testautomationspyramide-ein-einfaches-gebilde-voller-missverstaendnisse/), um die folgenden
 Fragen zu beantworten.
