@@ -2,7 +2,7 @@ title: API Antworten verarbeiten
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-assumes: restApi, jsonBasic
+assumes: RestApi, jsonBasic
 ---
 [SECTION::goal::idea]
 

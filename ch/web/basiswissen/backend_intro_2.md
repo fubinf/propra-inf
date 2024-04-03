@@ -33,7 +33,7 @@ Betrachten Sie die [Tagesschau API](https://tagesschau.api.bund.dev/).
 
 [EQ] Schicken Sie nun eine Anfrage mit dem Parameter ressort=blablabla. Was ist die Antwort des Servers? Was bedeutet der Statuscode, der zurückgeschickt wird?
 
-Um tiefer in das Thema einzusteigen, wird stark empfohlen sich den Abschnitt [PARTREFTITLE::restApi] zu erarbeiten.
+Um tiefer in das Thema einzusteigen, wird stark empfohlen sich den Abschnitt [PARTREFTITLE::RestApi] zu erarbeiten.
 
 [ENDSECTION]
 [SECTION::submission::information]
