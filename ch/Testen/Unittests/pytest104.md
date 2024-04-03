@@ -4,9 +4,13 @@ timevalue: 1.5
 difficulty: 3
 assumes: pytest101, pytest103
 ---
+# Review (DM)
+- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
+- Frage 2 und 4 sind inhaltlich sehr nah beeinander. Entweder konkretisieren (Vor/Nachteile bei der Verwendung in pytest/generell) oder zusammenfassen.
+
 [SECTION::goal::idea]
 
-- Ich lerne, wie parametrisierte Tests mir dabei helfen können, meine Tests besser zu gestalten.
+- Ich kann Tests unter Anwendung von parametrisierten Tests besser gestalten.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -24,7 +28,7 @@ folgenden Fragen auseinander:
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-- [EQ] Was sind parametrisierte Tests und warum sind sie in der Softwaretestung wichtig?
+- [EQ] Was sind parametrisierte Tests und warum sind sie bei Softwaretests wichtig?
 - [EQ] Wie unterscheiden sich parametrisierte Tests von herkömmlichen (nicht-parametrisierten) Tests
    in pytest?
 - [EQ] Wie werden parametrisierte Tests in pytest implementiert? Geben Sie Beispiele für die Syntax
@@ -32,9 +36,9 @@ folgenden Fragen auseinander:
 - [EQ] Welche Vorteile bieten parametrisierte Tests im Vergleich zu nicht-parametrisierten Tests?
    Gibt es auch Nachteile?
 - [EQ] Welche Arten von Parametern können in pytest für die Tests verwendet werden?
-- [EQ] Welche speziellen Pytest-Funktionen und -Dekoratoren sind für parametrisierte Tests verfügbar?
+- [EQ] Welche speziellen pytest-Funktionen und -Dekoratoren sind für parametrisierte Tests verfügbar?
    Wie können Sie sie effektiv nutzen?
-- [EQ] Wie können Sie mithilfe von parametrisierten Tests in pytest Edge Cases und seltene Szenarien
+- [EQ] Wie können Sie mithilfe von parametrisierten Tests in pytest Grenzfälle und seltene Szenarien
    effektiv testen?  
 
 [How to parametrize fixtures and test functions](https://docs.pytest.

@@ -4,15 +4,22 @@ timevalue: 4.0
 difficulty: 4
 assumes: unittest101, mocking
 ---
+# Review (DM)
+- Sind die Code-Schnipsel jetzt die Funktionen, für die die Vortäuschung vorgenommen werden soll? Warum wird dann auf eine Datei referenziert? -> Macht Arbeitsanweisung unklarer.
+ -> Vielleicht: "Schreiben Sie einen Unittest für die nachstehende Funktion *xyz()* aus *abc.py*, ... "
+- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
+- Dafür in die Hintergrund-Sektion: Was lerne ich in dieser Aufgabe? Warum ist die für mich interessant?
+ -> z.B. Mocking ist ja bla bla und wird oft gebraucht/ist wichtig zu können/etc, hier lernen wir das jetzt anzuwenden.
+
 [SECTION::goal::idea]
 
-- Ich kann einfache Unittest zu mocken
+- Ich kann einfache Unittest mocken
 
 [ENDSECTION]
 [SECTION::background::default]
 
 Zu jeder Aufgabe wird es eine kleine Funktion geben. Ihre Aufgabe ist es, die externe Abhängigkeiten und Seiteneffekte
-in zu Ihrem Tests zu isolieren, damit Sie sich auf das Testen der eigentlichen Logik deiner Funktionen und Methoden
+in zu Ihrem Tests zu isolieren, damit Sie sich auf das Testen der eigentlichen Logik einer Funktionen und Methoden
 konzentrieren können.
 
 [ENDSECTION]
@@ -30,7 +37,7 @@ def get_weather_data(city):
     return response.json()
 ```
 
-- [EC] Schreiben Sie einen Unittests für eine Funktion *read_log_file()* aus der Datei *my_logs.py*, die eine Datei liest und verarbeitet. Mocken Sie die Dateioperationen, um zu verhindern, dass während der Tests echte Dateien gelesen oder geschrieben werden.
+- [EC] Schreiben Sie einen Unittest für eine Funktion *read_log_file()* aus der Datei *my_logs.py*, die eine Datei liest und verarbeitet. Mocken Sie die Dateioperationen, um zu verhindern, dass während der Tests echte Dateien gelesen oder geschrieben werden.
 
 ```Python
 def read_log_file(file_path):
@@ -57,7 +64,7 @@ def process_user_data(user_id):
     return user_data
 ```
 
-- [EC] Schreibe, Sie eine Funktion *get_user_age()* aus der Datei *my_db_module.py*, die das Alter eines Benutzers aus einer SQL-Datenbank abruft. Schreiben Sie anschließend Unittests für diese Funktion, wobei die Datenbankverbindung und -abfragen gemockt werden, um keine echte Datenbank zu verwenden.
+- [EC] Schreiben Sie eine Funktion *get_user_age()* aus der Datei *my_db_module.py*, die das Alter eines Benutzers aus einer SQL-Datenbank abruft. Schreiben Sie anschließend Unittests für diese Funktion, wobei die Datenbankverbindung und -abfragen gemockt werden, um keine echte Datenbank zu verwenden.
 
 ```Python
 import sqlite3

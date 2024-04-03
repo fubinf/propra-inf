@@ -3,9 +3,13 @@ stage: alpha
 timevalue: 2.0
 difficulty: 3
 ---
+# Review (DM)
+- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
+- Ggf. als zusätzliche Hilfe Quellen angeben.
+
 [SECTION::goal::idea]
 
-- Ich verstehe die Vor- und Nachteile von einer hohen Testabdeckung
+- Ich kann die Vor- und Nachteile von einer hohen Testabdeckung erklären.
 
 [ENDSECTION]
 [SECTION::background::default]

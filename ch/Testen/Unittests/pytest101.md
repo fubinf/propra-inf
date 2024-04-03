@@ -4,6 +4,10 @@ timevalue: 1.0
 difficulty: 2
 assumes: unittest101
 ---
+# Review (DM)
+- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
+- F1: Wie wird pytest installiert? -> Ggf. konkret nach Kommandos fragen für eine eindeutigere Lösung. Oder vielleicht hier schon installieren lassen.
+
 [SECTION::goal::idea]
 
 - Ich kenne die Unterschiede zwischen Unittests und Pytests

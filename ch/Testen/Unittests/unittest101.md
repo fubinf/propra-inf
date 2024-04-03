@@ -3,9 +3,12 @@ stage: alpha
 timevalue: 1.5
 difficulty: 2
 ---
+# Review (DM)
+- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
+
 [SECTION::goal::idea]
 
-- Ich weiß was Unittests in Python sind
+- Ich kann Unittests in Python beschreiben
 
 [ENDSECTION]
 [SECTION::background::default]

@@ -4,9 +4,16 @@ timevalue: 2.0
 difficulty: 3
 assumes: pytest101, pytest102
 ---
+# Review (DM)
+ - Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
+ - ggf. Quelle(n) als Hilfestellung, wenn mehr als Wikipedia erwartet wird.
+ - Ziele ergänzt (siehe commit diff)
+
 [SECTION::goal::idea]
 
-- Ich lernen was "Mocks" sind und wie ich sie in pytest benutzte
+- Ich kann beschreiben, was "Mocks" sind und wie sie in pytest Anwendung finden.
+- Ich kann "Mocks" von anderen Testmethoden abgrenzen.
+- Ich kann begründen, wann die Anwendung von "Mocks" sinnvoll ist.
 
 [ENDSECTION]
 [SECTION::background::default]

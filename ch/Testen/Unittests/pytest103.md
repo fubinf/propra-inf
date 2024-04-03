@@ -4,14 +4,18 @@ timevalue: 1.5
 difficulty: 3
 assumes: pytest101, pytest102
 ---
+# Review (DM)
+- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
+- Eine weitere Aufgabe befindet sich ebenfalls in der Abgabendokumentation.
+
 [SECTION::goal::idea]
 
-- Ich lerne, wie ich meine Tests mit Metainformationen verbessern kann.
+- Ich kann Tests mit Metainformationen verbessern.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Zur Organisation von Tests benötigte wir häufig Informationen, die nicht direkt in der Logik
+Zur Organisation von Tests benötigten wir häufig Informationen, die nicht direkt in der Logik
 des Codes festgehalten sind.
 
 Marks in pytest sind ein leistungsfähiges Feature, mit dem Sie Tests oder Testfunktionen mit

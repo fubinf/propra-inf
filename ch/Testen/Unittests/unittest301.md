@@ -5,6 +5,10 @@ difficulty: 2
 assumes: unittest101
 requires: GitHubDeployment
 ---
+# Review (DM)
+- Didaktisch keine Einwände. Offene Aufgabe am Ende schön.
+- Aufgabe K1: `sur.yaml` ist korrekt und soll nicht `sut.yaml` heißen?
+
 [SECTION::goal::idea]
 
 - Ich kann vorhandene Unittests in meiner Pipeline ausführen
@@ -22,11 +26,11 @@ funktioniert.
 
 ### Stage einbinden
 
-Wir haben in unsere Übung [PARTREF::GitHubDeployment] einen Workflow erstellt, der jetzt
+Wir haben in unserer Übung [PARTREF::GitHubDeployment] einen Workflow erstellt, der jetzt
 um einen Unittest erweitert werden soll. Dieser Unittest soll vor dem Starten der Anwendung
 ausgeführt werden und sicherstellen, dass die folgenden Schritte nicht ausgeführt werden,
 wenn diese Phase fehlschlägt.
-Fügen Sie dazu folgenden Abschnitt in die `sut.yaml` ein
+Fügen Sie dazu folgenden Abschnitt in die `sut.yaml` ein:
 
 ```yaml
     - name: Run Unittest

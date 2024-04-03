@@ -7,7 +7,7 @@ explains: TDD
 
 [SECTION::goal::idea]
 
-- Ich verstehe das Konzept von TDD
+- Ich kann das Konzept von TDD erklären
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -32,7 +32,7 @@ frühzeitig Fehler zu erkennen und eine sichere Entwicklungsumgebung zu schaffen
 ## Schreiben eines Tests
 
 Beginne mit einem einfachen Test, der das erwartete Verhalten der zu entwickelnden Funktion
-beschreibt. Für folgeaufgaben verwende das Python-Modul *unittest* oder *pytest* für das Testen.
+beschreibt. Für Folgeaufgaben verwende das Python-Modul *unittest* oder *pytest* für das Testen.
 
 Betrachte folgendes Test-Beispiel:
 
@@ -51,7 +51,7 @@ class TestSquareRoot(unittest.TestCase):
 
 Jetzt kann der Code implementiert werden. Implementiere den Code so, dass der Test erfolgreich durchgeführt wird. Halte den Code einfach und minimal, um die Anforderungen des Tests zu erfüllen.
 
-Betrachte folgende Code Beispiel:
+Betrachte folgendes Code-Beispiel:
 
 ```Python
 import math
@@ -67,7 +67,7 @@ ob der Testfall auch positiv ausfällt. Führe den Test aus, um sicherzustellen,
 
 ## Refactoring
 
-Manchmal Testen man beim Entwickeln herum. Dabei entsteht unnötiger oder schwer lesbarer Code.
+Manchmal testet man beim Entwickeln herum. Dabei entsteht unnötiger oder schwer lesbarer Code.
 Nutze hier die Chance den Code zu refaktorisieren, um ihn klarer und wartbarer zu machen,
 oder auch Kommentare einzufügen, aber achte darauf, dass alle Tests weiterhin erfolgreich
 durchgeführt werden.
@@ -93,10 +93,10 @@ def square_root(x):
 
 ## Ergänze Testfälle
 
-In der Entwicklung müssen viele (Sonder-)Fälle betrachtet werden. Durch die Erstellung von negativ-
+In der Entwicklung müssen viele (Sonder-)Fälle betrachtet werden. Durch die Erstellung von Negativ-
 Tests hat man eine schöne Möglichkeit den Code zu verbessern.
 
-- [ER] Erstelle einen Testfall, der den oben abgebildeten Codeteil (x < 0) Testet
+- [ER] Erstelle einen Testfall, der den oben abgebildeten Codeteil (x < 0) testet.
 - [EQ] Wir haben den zuvor erklärten Zyklus des TDD in diesem Beispiel nicht eingehalten: Erklären
 Sie, welche Schritte wir verändert haben.
 

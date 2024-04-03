@@ -39,22 +39,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
-- ch/Testen/Unittests/index.md (Dominik Pietrak und Ronny Ruhe)
-- ch/Testen/Unittests/unittest101.md (Dominik Pietrak und Ronny Ruhe)
-- ch/Testen/Unittests/unittest102.md (Ronny Ruhe)
-- ch/Testen/Unittests/unittest201.md (Ronny Ruhe)
-- ch/Testen/Unittests/unittest202.md (Ronny Ruhe)
-- ch/Testen/Unittests/unittest301.md (Ronny Ruhe)
-- ch/Testen/Unittests/pytest101.md (Dominik Pietrak und Ronny Ruhe)
-- ch/Testen/Unittests/pytest102.md (Dominik Pietrak und Ronny Ruhe)
-- ch/Testen/Unittests/pytest103.md (Dominik Pietrak und Ronny Ruhe)
-- ch/Testen/Unittests/pytest104.md (Dominik Pietrak und Ronny Ruhe)
-- ch/Testen/Unittests/pytest201.md (Ronny Ruhe)
-- ch/Testen/Unittests/coverage.md (Dominik Pietrak und Ronny Ruhe)
-- ch/Testen/Unittests/freezegun.md (Dominik Pietrak und Ronny Ruhe)
-- ch/Testen/Unittests/mocking.md (Dominik Pietrak und Ronny Ruhe)
-- ch/Testen/Unittests/tdd.md (Ronny Ruhe)
-
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Dominik Pietrak)
 
 - ch/Werkzeuge/Linter/flake8_SUT.md (Ronny Ruhe)
@@ -151,6 +135,22 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Sprachen/sql/SQLBasic.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 - ch/Sprache/sql/SQLSelect.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
+
+- ch/Testen/Unittests/index.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/unittest101.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/unittest102.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/unittest201.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/unittest202.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/unittest301.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/pytest101.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/pytest102.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/pytest103.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/pytest104.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/pytest201.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/coverage.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/freezegun.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/mocking.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/tdd.md (Ronny Ruhe) (Review Daniel Müllers)
 
 ## Reviews to do for Sven Hüster
 

@@ -1,9 +1,14 @@
 title: Pytest in Python - Anwendung
-stage: alpha
+stage: draft
 timevalue: 2.0
 difficulty: 2
 assumes: pytest101
 ---
+# Reviews (DM)
+- Todos vervollständigen. 
+- Wo finden sich die User Stories?
+- Kannst du natürlich auch einfach als eine Aufgabe formulieren...
+
 [SECTION::goal::idea]
 
 - Ich kann einfache Pytests erstellen

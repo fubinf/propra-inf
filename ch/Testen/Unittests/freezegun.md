@@ -5,9 +5,14 @@ difficulty: 3
 assumes: mocking
 requires:
 ---
+# Review (DM)
+- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
+- Ziel ist schwammig. Habe mal einen anderen Vorschlag gemacht. (siehe commit diff)
+
+
 [SECTION::goal::idea]
 
-Ich lerne mit unittests die Systemzeit zu mocken
+- Ich kann erklären, wie das Python-Modul freezegun bei der Erstellung von Unittests hilft und welche Risiken die Verwendung birgt.
 
 [ENDSECTION]
 [SECTION::background::default]

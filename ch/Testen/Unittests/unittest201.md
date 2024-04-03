@@ -4,6 +4,10 @@ timevalue: 1.0
 difficulty: 2
 assumes: unittest101, unittest102
 ---
+# Review (DM)
+- Hintergrund-Sektion enthält hier die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.- Dafür in die Hintergrund-Sektion: Was lerne ich in dieser Aufgabe? Warum ist die für mich interessant?
+- TODOs vervollständigen...
+
 [SECTION::goal::idea]
 
 - Ich kann einfache Unittests erstellen
