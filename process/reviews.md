@@ -138,7 +138,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ivan Condric
 
-- ch/Sprachen/pythonpraxis/mlh-rename (Lutz Prechelt)
+- ch/Sprachen/Pythonpraxis/mlh-rename (Lutz Prechelt)
 - ...
 
 
@@ -154,7 +154,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Sven Hüster
 
-- ch/Sprachen/pythonpraxis/mlh-gitac (Lutz Prechelt)
+- ch/Sprachen/Pythonpraxis/mlh-gitac (Lutz Prechelt)
 - ch/Sprachen/regex/log_sanitizer (Sven Hüster, fertiggestellt von Lutz Prechelt)
 - ...
 
@@ -175,6 +175,6 @@ We will modify these rules over time when others appear more useful.
   [ER] ist hier in gewissem Sinne natürlich richtig,
   ich habe es trotzdem in [EQ] geändert, damit die Regel "[EQ] heißt: Markdown abgeben"
   übersichtlich gültig bleibt.
-- ch/Sprachen/pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
+- ch/Sprachen/Pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
 
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)

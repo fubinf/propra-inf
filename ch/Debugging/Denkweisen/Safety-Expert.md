@@ -46,7 +46,7 @@ Welche Teile von 11.4 würden Sie dann benutzen?
 
 [EQ] Welche scheinen Ihnen davon am vermutlich nützlichsten? Warum glauben Sie das?
 
-[EQ] Sichten Sie die Aufgaben der Gruppe [PARTREF::pythonpraxis].
+[EQ] Sichten Sie die Aufgaben der Gruppe [PARTREF::Pythonpraxis].
 Haben Sie die Neigung, die oben benannten Teile von 11.4 tatsächlich einzusetzen,
 wenn (und falls) Sie diese Aufgaben bearbeiten?  
 Wenn nein: Was hält Sie ab?  

@@ -40,7 +40,7 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
   Das Kapitel [PARTREF::Bestandscode] gehört auch in diese Kategorie.
 - Wer angesichts des Titels "Programmierpraktikum" ganze Programme (statt nur kleiner Schnipsel)
   schreiben und so ganzheitlich üben möchte,
-  findet passendes Material bei [PARTREF::pythonpraxis].
+  findet passendes Material bei [PARTREF::Pythonpraxis].
 - Wer sich stark für Technologisches interessiert, fühlt sich hingegen im Kapitel 
   [PARTREF::web] zuhause. Das ist ein gigantischer Themenkreis, deshalb gibt es hier
   vor allem dessen Grundlagen, was ebenfalls wieder halbwegs langlebiges Wissen zu sein verspricht.
