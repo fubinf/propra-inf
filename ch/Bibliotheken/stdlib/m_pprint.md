@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1
 difficulty: 2
 explains:
-assumes: jsonExercise, open
+assumes: jsonExercise, encoding_and_open
 requires:
 ---
 [SECTION::goal::trial]
