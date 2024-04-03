@@ -101,7 +101,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoringpraxis/04gildedrose_reflexion.md (Dominik Pietrak)
 
 - ch/Testen/API/index.md (Ronny Ruhe)
-- ch/Testen/API/responseApi.md (Ronny Ruhe)
+- ch/Testen/API/ResponseApi.md (Ronny Ruhe)
 - ch/Testen/API/CRUDApi.md (Ronny Ruhe)
 - ch/Testen/API/restApi.md (Ronny Ruhe)
 

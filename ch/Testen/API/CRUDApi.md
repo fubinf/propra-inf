@@ -2,7 +2,7 @@ title: API Tests nach CRUD
 stage: alpha
 timevalue: 1.0
 difficulty: 3
-assumes: restApi, responseApi
+assumes: restApi, ResponseApi
 ---
 [SECTION::goal::experience]
 
