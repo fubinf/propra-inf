@@ -27,7 +27,7 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
 - Wer sich als Fortgeschrittene_r betrachtet, aber sich ein viel vollständigeres Rüstzeug
   zulegen möchte, sollte bei [PARTREF::stdlib] (im Kapitel [PARTREF::Bibliotheken]) starten
   und eine passende Dosis von
-  [PARTREF::fortgeschrittenes] (aus Kapitel [PARTREF::Sprachen]) dazumixen.
+  [PARTREF::Python2] (aus Kapitel [PARTREF::Sprachen]) dazumixen.
 - Wer noch nicht ziiiemlich gut mit git umgehen kann (und wer kann das schon!),
   kann bei [PARTREF::Git] Schritt für Schritt eine recht große Schippe drauflegen
   und sich damit in die Riege bewunderter Technikbeherscher_innen vorarbeiten,

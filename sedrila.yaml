@@ -186,7 +186,7 @@ chapters:
   - slug: Sprachen
     taskgroups:
       - slug: Python1
-      - slug: fortgeschrittenes
+      - slug: Python2
       - slug: Pythonpraxis
       - slug: bash
       - slug: regex
