@@ -158,7 +158,7 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Sven Hüster
 
 - ch/Sprachen/Pythonpraxis/mlh-gitac (Lutz Prechelt)
-- ch/Sprachen/regex/log_sanitizer (Sven Hüster, fertiggestellt von Lutz Prechelt)
+- ch/Sprachen/RegExp/log_sanitizer (Sven Hüster, fertiggestellt von Lutz Prechelt)
 - ...
 
 

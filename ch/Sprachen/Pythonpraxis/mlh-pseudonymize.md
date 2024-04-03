@@ -3,7 +3,7 @@ stage: beta
 timevalue: 4.0
 difficulty: 3
 explains: Logfile
-assumes: regex
+assumes: RegExp
 requires: mlh-lsnew
 ---
 
@@ -83,7 +83,7 @@ Damit das passiert, sieht die `configfile` z.B. so aus
 Das Ganze ist ein regulärer Ausdruck in der normalen Python-Notation.
 `(?P<user>\w+)` ist eine _benannte Gruppe_ (named group).
 (Wenn Sie sich damit nicht auskennen, bearbeiten Sie jetzt passende Aufgaben 
-in der Gruppe [PARTREF::regex], um sich das hier benötigte Grundwissen zuzulegen.)
+in der Gruppe [PARTREF::RegExp], um sich das hier benötigte Grundwissen zuzulegen.)
 
 Der zugehörige Aufruf wäre dann z.B.
 

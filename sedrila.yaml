@@ -189,7 +189,7 @@ chapters:
       - slug: Python2
       - slug: Pythonpraxis
       - slug: bash
-      - slug: regex
+      - slug: RegExp
       - slug: SQL
   - slug: Bibliotheken
     taskgroups: 

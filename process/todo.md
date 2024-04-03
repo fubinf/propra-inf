@@ -68,7 +68,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 - Kapitel unbenennen: `web` --> `Web`  
   Bitte als separaten Commit.
 - Taskgroups umbenennen:
-    - `regex` -> `RegExp`
     - `lizenzen` -> `Lizenzen`
     - `debuggingtools` -> `Debuggingtools`
     - `basiswissen` -> `Web-Grundlagen`
