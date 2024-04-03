@@ -28,7 +28,7 @@ Recherchieren Sie anhand der folgenden Leitfragen unter Beachtung der folgenden 
 - [EQ] Was versteht man unter Testdaten? Wie können Testdaten in einem Testfall verwendet werden?
 - [EQ] Schreiben Sie Ihren statischen Testfall aus 1. in einen generischen Testfall um. Nutzen Sie fiktive Testdaten, um mindestens 3 Iterationen zu diesem Testfall zu erstellen.
 
-In der Aufagbe [PARTREF::testcasesExercise1] bekommen Sie die Gelegenheit Ihr hier erworbenes Wissen
+In der Aufagbe [PARTREF::TestcasesExercise] bekommen Sie die Gelegenheit Ihr hier erworbenes Wissen
 praktisch anzuwenden.
 
 [ENDSECTION]

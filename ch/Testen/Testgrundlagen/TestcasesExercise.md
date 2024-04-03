@@ -2,7 +2,7 @@ title: Übung Testfallstrukturen
 stage: beta
 timevalue: 2.0
 difficulty: 2
-assumes: testcases
+assumes: Testcases
 ---
 [SECTION::goal::trial]
 
