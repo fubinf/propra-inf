@@ -2,7 +2,7 @@ title: "subprocess: Unterprozesse starten und ihre Ausgaben lesen"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: open
+assumes: encoding_and_open
 ---
 
 [SECTION::goal::trial]
@@ -63,9 +63,6 @@ bash-Shell an.
 
 Das war's schon!
 
-[HINT::VisibleTitle]
-[ENDHINT]
-
 [HINT::Welches Argument brauche ich für `args`?]
 `"ps aux"` genügt.
 
@@ -94,8 +91,6 @@ Iterieren Sie über `out.split(b"\n")`
 [ENDHINT]
 
 
-
-
 - [EC] `python m_subprocess.py`
 
 
@@ -111,17 +106,15 @@ das kann man z.B. für die Aufgabe [PARTREF::mlh-gitac] gebrauchen.
 
 [HREF::https://docs.python.org/3/library/os.html#os.system]
 
-
 [ENDSECTION]
-
-[SECTION::submission::reflection/information/snippet/trace/program]
+[SECTION::submission::trace,program]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::../../_include/Submission-Quellcode.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
-.
+[INSTRUCTOR::Kurzer Blick auf das Programm]
+Das kann die Abfrage entweder als `line.endswith(b" -bash")` formulieren
+oder die Ausgabe zunächst dekodieren und dann mit Strings weiterarbeiten.
 [ENDINSTRUCTOR]
