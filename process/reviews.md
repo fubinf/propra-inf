@@ -115,6 +115,9 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Bestandscode/Refactoring-Grundlagen/Extraction-Of-Code.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
 
+- ch/Werkzeuge/Paketmanager/venv.md (Lutz Prechelt, reviewed by Sven Wegner)
+- ch/Werkzeuge/Paketmanager/pip.md (Lutz Prechelt, reviewed by Sven Wegner)
+
 
 ## Reviews to do for Hanen Alrwasheda
 
@@ -161,8 +164,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Sven Wegner
 
-- ch/Werkzeuge/Paketmanager/venv.md (Lutz Prechelt)
-- ch/Werkzeuge/Paketmanager/pip.md (Lutz Prechelt)
 - ch/Bibliotheken/Frameworks/argparse-subcommand.md (Lutz Prechelt)
 
 
