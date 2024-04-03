@@ -71,10 +71,8 @@ In alphabetischer Reihenfolge der Dateinamen.
     - `lizenzen` -> `Lizenzen`
     - `debuggingtools` -> `Debuggingtools`
     - `basiswissen` -> `Web-Grundlagen`
-    - `html` -> `HTML`
     - `stdlib` -> `Python-Standardbibliothek`
     - `Denkweisen` -> `Debugging-Denken`
-    - `css` -> `CSS`
     - `javascript` -> `JavaScript`
   Bitte als separaten Commit.
   Erwähnungen an anderen Stellen mit ändern!
