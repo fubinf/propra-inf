@@ -77,15 +77,10 @@ In alphabetischer Reihenfolge der Dateinamen.
     - `sql` -> `SQL`
     - `basiswissen` -> `Web-Grundlagen`
     - `html` -> `HTML`
-    - `Basiswissen` -> `Testen1`
     - `stdlib` -> `Python-Standardbibliothek`
     - `Denkweisen` -> `Debugging-Denken`
     - `css` -> `CSS`
     - `javascript` -> `JavaScript`
-  Bitte als separaten Commit.
-  Erwähnungen an anderen Stellen mit ändern!
-- Taskgroups verlagern:
-    - `Testen/Linter` -> `Werkzeuge/Linter`
   Bitte als separaten Commit.
   Erwähnungen an anderen Stellen mit ändern!
 - Tasks so benennen, wie es sich aus authors.md 1.13 ergibt:
