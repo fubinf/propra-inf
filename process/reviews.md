@@ -110,8 +110,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Basiswissen/TestDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
 - ch/Testen/Basiswissen/TestDelimitationsExercise.md (Ronny Ruhe) (Review Daniel Müllers)
 
-- ch/Sprache/sql/SQLJoin.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
-- ch/Sprache/sql/SQLProject.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
+- ch/Sprache/SQL/SQLJoin.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
+- ch/Sprache/SQL/SQLProject.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 
 - ch/Bestandscode/Refactoring-Grundlagen/Extraction-Of-Code.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
 
@@ -136,8 +136,8 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ronny Ruhe
 
-- ch/Sprachen/sql/SQLBasic.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
-- ch/Sprache/sql/SQLSelect.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
+- ch/Sprachen/SQL/SQLBasic.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
+- ch/Sprache/SQL/SQLSelect.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 
 - ch/Testen/Unittests/index.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
 - ch/Testen/Unittests/unittest101.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)

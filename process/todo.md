@@ -73,7 +73,6 @@ In alphabetischer Reihenfolge der Dateinamen.
     - `basiswissen` -> `Web-Grundlagen`
     - `stdlib` -> `Python-Standardbibliothek`
     - `Denkweisen` -> `Debugging-Denken`
-    - `javascript` -> `JavaScript`
   Bitte als separaten Commit.
   Erwähnungen an anderen Stellen mit ändern!
 - Tasks so benennen, wie es sich aus authors.md 1.13 ergibt:
