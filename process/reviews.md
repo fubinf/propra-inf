@@ -92,7 +92,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Testframeworks/index.md (Ronny Ruhe)
 - ch/Testen/Testframeworks/Robot.md (Ronny Ruhe)
 
-- ch/Bibliotheken/stdlib/datetime.md (Sven Wegner, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
+- ch/Bibliotheken/stdlib/m_datetime.md (Sven Wegner, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
 - ch/Werkzeuge/Linter/flake8.md (Ronny Ruhe, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
 - ch/Werkzeuge/Linter/black.md (Ronny Ruhe, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
 

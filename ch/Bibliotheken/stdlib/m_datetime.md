@@ -2,7 +2,6 @@ title: datetime - Datum, Uhrzeit und Zeitdifferenzen
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-profiles:
 explains:
 assumes:
 requires:
@@ -26,7 +25,7 @@ umgehen zu können.
 
 [SECTION::instructions::detailed]
 
-- Legen Sie die Datei `datetime_task.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. Fügen Sie ihre Python
+- Legen Sie die Datei `m_datetime.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. Fügen Sie ihre Python
   Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile getrennt.
 
 ### `import datetime as dt`
@@ -35,14 +34,14 @@ umgehen zu können.
   Außerdem gibt es darin eine Klasse, die ebenfalls `datetime` heißt: verwirrend.
 - Deshalb importieren wir per Konvention das Modul stets so:  
   `import datetime as dt`
-- Das Konstrukt `from datetime import *` is generell nicht zu empfehlen,
+- Das Konstrukt `from datetime import *` ist generell nicht zu empfehlen,
   weil man dann leicht etwas importiert, dass einen anderen Import überdeckt.
   Der Code wird auch schwerer lesbar.
 
 ### Zeit-Objekte anlegen und ausgeben
 
-- Finden Sie in der [Dokumentation](https://docs.python.org/3/library/datetime.html), wie man die aktuelle lokale Zeit abfragt und geben diese mit
-  `print(...) # Antwort 1` aus.  
+- Finden Sie in der [Dokumentation](https://docs.python.org/3/library/datetime.html), wie man die aktuelle lokale Zeit
+  abfragt und geben diese mit `print(...) # Antwort 1` aus.  
   Falls Sie angesichts des Umfangs der Doku dabei verzweifeln:
   So etwas geht mit einer Web-Suche oft schneller. Allerdings muss man sich dann vor irreführenden oder veralteten
   Antworten in Acht nehmen und sollte die Information in der aktuellen Dokumentation nachprüfen.
@@ -51,34 +50,35 @@ umgehen zu können.
   können:  
   `Sonntag, der 01. Dezember 2024, 13:09 Uhr`  
   Geben Sie das Ergebnis der Funktion mit `print(...) # Antwort 2` aus.  
-  Falls das nur fast klappt und Sie bekommen Monat und Wochentag in einer anderen Sprache,
-  ist bei Ihnen eine andere "Locale" (Gebietsschema) eingestellt.
-  Lesen Sie beim Modul `[locale](https://docs.python.org/3/library/locale.html)`
-  nach, was es damit auf sich hat - aber wir lösen das jetzt hier nicht, Ihre Ausgabe ist OK wie sie ist.
+  Falls das nur fast klappt und Sie Monat und Wochentag in einer anderen Sprache ausgegeben bekommen, ist bei Ihnen eine
+  andere "locale" (Gebietsschema) eingestellt. Ihre Ausgabe ist in dem Fall OK wie sie ist. Bei Bedarf können Sie im
+  Modul [`locale`](https://docs.python.org/3/library/locale.html) nachlesen, was es damit auf sich hat.
 
 ### Zeiten einlesen
 
 - Finden Sie heraus, wie der umgekehrte Weg funktioniert: Strings in `datetime`-Objekte wandeln.
-- Wandeln Sie folgenden String: `2024-12-15##13:09:44` in ein `datetime`- Objekt um und geben Sie das Ergebnis aus mit
-  `print(...)  # Antwort 3`.
+- Wandeln Sie den folgenden String: `2024-12-15##13:09:44` in ein `datetime`- Objekt um und geben Sie das Ergebnis mit
+  `print(...)  # Antwort 3` aus.
 
 ### Zeitzonen
 
-- Lesen Sie in der [Dokumentation](https://docs.python.org/3/library/datetime.html) die Konzepte "naive" (naiv) und "aware" (gewahr) nach.
-- Ist Ihr letztes erzeugtes `datetime`-Objekt naiv oder gewahr?
-- Sorgen Sie dafür, dass es in der hiesigen Zeitzone (Europe/Berlin) gewahr ist. Geben Sie das Ergebnis aus mit
-  `print(...)  # Antwort 4`.  
-  Für diese Aufgabe kann das Modul [`zoneinfo`](https://docs.python.org/3/library/zoneinfo.html#module-zoneinfo) nützlich sein, welches eine konkrete Implementierung der Klasse
-  `datetime.tzinfo` bietet. Andere Module von Drittanbietern sollen in dieser Aufgabe *nicht* verwendet werden.
+- Lesen Sie in der [Dokumentation](https://docs.python.org/3/library/datetime.html) die Konzepte "naive" (naiv) und
+  "aware" (gewahr) nach. Ist Ihr letztes erzeugtes `datetime`-Objekt naiv oder gewahr?
+- Sorgen Sie dafür, dass es in der hiesigen Zeitzone (Europe/Berlin) gewahr wird. Geben Sie das Ergebnis mit
+  `print(...)  # Antwort 4` aus.  
+  Für diese Aufgabe kann das Modul [`zoneinfo`](https://docs.python.org/3/library/zoneinfo.html#module-zoneinfo)
+  nützlich sein, welches eine konkrete Implementierung der Klasse `datetime.tzinfo` bietet. Andere Module von
+  Drittanbietern sollen in dieser Aufgabe *nicht* verwendet werden.
+- Erzeugen Sie ein zweites Objekt zum selben Zeitpunkt wie das vorherige, aber in der Zeitzone
+  "America/Caracas".
+- Bestimmen Sie die Differenz zur UTC (koordinierte Weltzeit) als `timedelta`-Objekt. Geben Sie dies mit
+  `print(...)  # Antwort 5` aus.
 
 ### mit Zeiten rechnen
 
-- Erzeugen Sie ein zweites Objekt zum selben Zeitpunkt wie das vorherige, aber in der Zeitzone
-  "America/Caracas".
-- Bestimmen Sie die Differenz zur UTC (koordinierte Weltzeit) als `timedelta`-Objekt.
-- Ziehen Sie diese Differenz von der Zeit ab. Geben Sie dies mit `print(...)  # Antwort 5` aus.
+- Ziehen Sie diese Differenz von der Caracas-Zeit ab. Geben Sie dies mit `print(...)  # Antwort 6` aus.
 - Addieren Sie auf das Ergebnis 1024 Tage und 512 Minuten, Ergebnis soll erneut ein `datetime`-Objekt sein. Geben Sie
-  dies mit `print(...)  # Antwort 6` aus.
+  dies mit `print(...)  # Antwort 7` aus.
 
 ### Praxisbeispiel
 
@@ -117,11 +117,11 @@ def time_average(logs):
 
 ### Programmlauf für die Abgabe
 
-- [EC] Führen Sie das gesamte so erzeugte Programm `datetime_task.py` einmal aus.
+- [EC] Führen Sie das gesamte so erzeugte Programm `m_datetime.py` einmal aus.
 
 [ENDSECTION]
 
-[SECTION::submission::program]
+[SECTION::submission::trace]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
