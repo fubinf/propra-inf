@@ -101,14 +101,14 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Lutz Prechelt
 
-- ch/Testen/Basiswissen/index.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Basiswissen/Error.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Basiswissen/ErrorExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Basiswissen/Testcases.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Basiswissen/TestcasesExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Basiswissen/Testpyramide.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Basiswissen/TestDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
-- ch/Testen/Basiswissen/TestDelimitationsExercise.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Testgrundlagen/index.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Testgrundlagen/Error.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Testgrundlagen/ErrorExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Testgrundlagen/Testcases.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Testgrundlagen/TestcasesExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Testgrundlagen/Testpyramide.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Testgrundlagen/TestDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ronny Ruhe) (Review Daniel Müllers)
 
 - ch/Sprache/SQL/SQLJoin.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 - ch/Sprache/SQL/SQLProject.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)

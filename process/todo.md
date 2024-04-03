@@ -65,12 +65,9 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 - `profiles:`-Header aus allen Tasks entfernen (die sind optional);
    dann `profiles` aus sedrila.yaml entfernen, dann aus `sedrila`.
-- Kapitel unbenennen: `web` --> `Web`  
-  Bitte als separaten Commit.
 - Taskgroups umbenennen:
     - `lizenzen` -> `Lizenzen`
     - `debuggingtools` -> `Debuggingtools`
-    - `basiswissen` -> `Web-Grundlagen`
     - `stdlib` -> `Python-Standardbibliothek`
     - `Denkweisen` -> `Debugging-Denken`
   Bitte als separaten Commit.

@@ -217,7 +217,7 @@ chapters:
       - slug: SystemUnderTest
   - slug: Web
     taskgroups:
-      - slug: basiswissen
+      - slug: Web-Grundlagen
       - slug: HTML
   - slug: Werkzeuge
     taskgroups:
