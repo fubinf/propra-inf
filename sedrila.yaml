@@ -190,7 +190,7 @@ chapters:
       - slug: Pythonpraxis
       - slug: bash
       - slug: regex
-      - slug: sql
+      - slug: SQL
   - slug: Bibliotheken
     taskgroups: 
       - slug: stdlib
