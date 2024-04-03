@@ -103,7 +103,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/API/index.md (Ronny Ruhe)
 - ch/Testen/API/ResponseApi.md (Ronny Ruhe)
 - ch/Testen/API/CRUDApi.md (Ronny Ruhe)
-- ch/Testen/API/restApi.md (Ronny Ruhe)
+- ch/Testen/API/RestApi.md (Ronny Ruhe)
 
 - ch/Testen/Testframeworks/index.md (Ronny Ruhe)
 - ch/Testen/Testframeworks/Robot.md (Ronny Ruhe)

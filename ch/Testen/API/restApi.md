@@ -7,7 +7,6 @@ assumes: WebAPIs, pip, requests
 # Review
 - Fragen zur Restful API: Finde ich als Lernaufgabe nicht so schön. Beispiel bauen ist super. Vielleicht findest du ja eine Möglichkeit, die anderen Dinge da auch irgendwie einzubauen? Also du lässt z.B. den API-Endpunkt so bauen, dass all die erkannten Grundsätze und Regeln da auch angewandt werden müssen.
 - Ähnliches auch für den Teil zum Petstore.
-
 Anmerkung Ruhe: Restful API Anteil wurde auf Grundlage Review 1 (Discord) mit aufgenommen.
 
 [SECTION::goal::trial]
