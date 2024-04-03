@@ -63,9 +63,6 @@ Vorbedingung: Ein Benutzer befindet sich auf der Login Seite eines Portals.
 - [EQ] Ergänzen Sie mindestens ein weiteres Akzeptanzkriterium. Überprüfen Sie, ob die Kriterien aus
   [EREFQ::2] bis [EREFQ::5] weiterhin testbar sind und Gültigkeit besitzen.
 
-Nachdem Sie diesen Bereich bearbeiten haben, empfehle ich Ihnen zum Task [PARTREF::Testcases] zu
-wechseln, um gefundene Fehler zu dokumentieren.
-
 [ENDSECTION]
 
 [SECTION::submission::trace]

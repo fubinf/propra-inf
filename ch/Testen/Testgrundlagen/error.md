@@ -38,9 +38,6 @@ müssen, um Ressourcen optimal zu nutzen und den Entwicklungs- und Testzeitplan 
 - [EQ] Diskutieren Sie: Ist jeder Softwarefehler auf eine 'falsche' Programmierung zurückzuführen?
 - [EQ] Welche Informationen sollte ein [Fehlerbericht](https://search.ebscohost.com/login.aspx?direct=true&db=nlebk&AN=1170217&site=ehost-live&ebv=EB&ppid=pp_110) enthalten?
 
-In der Aufagbe [PARTREF::ErrorExercise] bekommen Sie die Gelegenheit Ihr hier erworbenes Wissen
-praktisch anzuwenden.
-
 [ENDSECTION]
 [SECTION::submission::trace]
 

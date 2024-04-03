@@ -2,7 +2,7 @@ title: Übung Testabgrenzungen
 stage: beta
 timevalue: 2.0
 difficulty: 3
-assumes: testDelimitations, grundkenntnisse, debuggingtools
+assumes: TestDelimitations, grundkenntnisse, debuggingtools
 ---
 # Review (DM)
 - Aufgabe K2, soll da Java stehen? -> done R.R.
@@ -88,9 +88,6 @@ Testern wurde hier nicht festgelegt.
   3. Der Nutzer klickt auf Login.
    **Erwartetes Ergebnis:**
    Der Nutzer wird auf die Startseite des Portals weitergeleitet.
-
-Nachdem Sie diesen Bereich bearbeiten haben, empfehle ich Ihnen zum Task [PARTREF::Testframeworks] zu
-wechseln, die zu Testen verwendeten Tools kennenzulernen.
 
 [ENDSECTION]
 

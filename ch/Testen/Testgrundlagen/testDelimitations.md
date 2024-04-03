@@ -27,9 +27,6 @@ Recherchieren Sie hierzu anhand der folgenden Leitfragen:
 - [EQ] Was ist der Unterschied zwischen der QS und dem Testen?
 - [EQ] Welche Methoden und Techniken werden in der QS eingesetzt?
 
-In der Aufagbe [PARTREF::testDelimitationsExercise1] bekommen Sie die Gelegenheit Ihr hier erworbenes
-Wissen praktisch anzuwenden.
-
 [ENDSECTION]
 
 [SECTION::submission::trace]

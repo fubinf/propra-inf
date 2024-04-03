@@ -107,8 +107,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Basiswissen/Testcases.md (Ronny Ruhe) (nach Review von Daniel Müllers)
 - ch/Testen/Basiswissen/TestcasesExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
 - ch/Testen/Basiswissen/testpyramide.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Basiswissen/testDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
-- ch/Testen/Basiswissen/testDelimitationsExercvise1.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Basiswissen/TestDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Basiswissen/TestDelimitationsExercise.md (Ronny Ruhe) (Review Daniel Müllers)
 
 - ch/Sprache/sql/SQLJoin.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 - ch/Sprache/sql/SQLProject.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
