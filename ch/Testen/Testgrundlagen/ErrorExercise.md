@@ -2,7 +2,7 @@ title: Übung Fehlerarten
 stage: beta
 timevalue: 1.0
 difficulty: 1
-assumes: error
+assumes: Error
 ---
 # Review (DM)
 - Kompetenzen umformuliert (vgl commit diff)
@@ -33,7 +33,8 @@ Kontoinformationen zugreifen kann.
 
 ### [TERMREF::Akzeptanzkriterien] (AKs):
 
-- Ein registrierter und aktiver Benutzer kann sich mit einer gültigen E-Mail-Adresse und seinem zugehörigen Passwort anmelden.
+- Ein registrierter und aktiver Benutzer kann sich mit einer gültigen E-Mail-Adresse und seinem
+  zugehörigen Passwort anmelden.
 - Das System zeigt eine Fehlermeldung, wenn die E-Mail-Adresse ungültig ist.
 - Das System zeigt eine Fehlermeldung, wenn das Passwort zu kurz ist.
 - Ein aktiver Benutzer kann sein Passwort auf der Anmeldeseite neu vergeben.

@@ -102,8 +102,8 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Lutz Prechelt
 
 - ch/Testen/Basiswissen/index.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Basiswissen/error.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Basiswissen/errorExercise1.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Basiswissen/Error.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Basiswissen/ErrorExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
 - ch/Testen/Basiswissen/testcases.md (Ronny Ruhe) (nach Review von Daniel Müllers)
 - ch/Testen/Basiswissen/testcasesExercise1.md (Ronny Ruhe) (nach Review von Daniel Müllers)
 - ch/Testen/Basiswissen/testpyramide.md (Ronny Ruhe) (nach Review von Daniel Müllers)
