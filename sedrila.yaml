@@ -215,7 +215,7 @@ chapters:
       - slug: Refactoring-Grundlagen
       - slug: Refactoringpraxis
       - slug: SystemUnderTest
-  - slug: web
+  - slug: Web
     taskgroups:
       - slug: basiswissen
       - slug: html

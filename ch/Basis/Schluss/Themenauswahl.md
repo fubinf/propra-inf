@@ -42,7 +42,7 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
   schreiben und so ganzheitlich üben möchte,
   findet passendes Material bei [PARTREF::Pythonpraxis].
 - Wer sich stark für Technologisches interessiert, fühlt sich hingegen im Kapitel 
-  [PARTREF::web] zuhause. Das ist ein gigantischer Themenkreis, deshalb gibt es hier
+  [PARTREF::Web] zuhause. Das ist ein gigantischer Themenkreis, deshalb gibt es hier
   vor allem dessen Grundlagen, was ebenfalls wieder halbwegs langlebiges Wissen zu sein verspricht.
   (Fortgeschrittene Technologiesachen sind hingegen detailreich und zugleich furchtbar kurzlebig.
   Sie lohnen die Lerninvestition nur, wenn man genau das Gelernte alsbald intensiv benutzen möchte.)
