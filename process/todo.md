@@ -68,12 +68,10 @@ In alphabetischer Reihenfolge der Dateinamen.
 - Kapitel unbenennen: `web` --> `Web`  
   Bitte als separaten Commit.
 - Taskgroups umbenennen:
-    - `grundkenntnisse` -> `Python1`
     - `fortgeschrittenes` -> `Python2`
     - `regex` -> `RegExp`
     - `lizenzen` -> `Lizenzen`
     - `debuggingtools` -> `Debuggingtools`
-    - `sql` -> `SQL`
     - `basiswissen` -> `Web-Grundlagen`
     - `html` -> `HTML`
     - `stdlib` -> `Python-Standardbibliothek`

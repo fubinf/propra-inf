@@ -23,7 +23,7 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
 ### Ein paar Empfehlungen
 
 - Wer sich noch als Programmieranfänger_in betrachtet, ist als erstes 
-  bei [PARTREF::grundkenntnisse] (im Kapitel [PARTREF::Sprachen]) richtig.
+  bei [PARTREF::Python1] (im Kapitel [PARTREF::Sprachen]) richtig.
 - Wer sich als Fortgeschrittene_r betrachtet, aber sich ein viel vollständigeres Rüstzeug
   zulegen möchte, sollte bei [PARTREF::stdlib] (im Kapitel [PARTREF::Bibliotheken]) starten
   und eine passende Dosis von

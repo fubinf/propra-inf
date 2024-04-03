@@ -2,7 +2,7 @@ title: Übung Testabgrenzungen
 stage: beta
 timevalue: 2.0
 difficulty: 3
-assumes: TestDelimitations, grundkenntnisse, debuggingtools
+assumes: TestDelimitations, Python1, debuggingtools
 ---
 # Review (DM)
 - Aufgabe K2, soll da Java stehen? -> done R.R.

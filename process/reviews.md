@@ -43,14 +43,14 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Werkzeuge/Linter/flake8_SUT.md (Ronny Ruhe)
 
-- ch/Sprachen/grundkenntnisse/PythonComments.md (Hanen Alrwasheda)
-- ch/Sprachen/grundkenntnisse/PythonStrings.md (Hanen Alrwasheda)
-- ch/Sprachen/grundkenntnisse/PythonIntegers.md (Hanen Alrwasheda)
-- ch/Sprachen/grundkenntnisse/PythonFloats.md (Hanen Alrwasheda)
-- ch/Sprachen/grundkenntnisse/PythonBooleans.md (Hanen Alrwasheda)
-- ch/Sprachen/grundkenntnisse/PythonCasting.md (Hanen Alrwasheda)
-- ch/Sprachen/grundkenntnisse/PythonIf.md (Hanen Alrwasheda)
-- ch/Sprachen/grundkenntnisse/PythonElifElse.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonComments.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonStrings.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonIntegers.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonFloats.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonBooleans.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonCasting.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonIf.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonElifElse.md (Hanen Alrwasheda)
 
 - ch/Testen/Unittests/tdd_pp.md (Ronny Ruhe)
 

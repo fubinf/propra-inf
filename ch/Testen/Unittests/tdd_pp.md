@@ -2,7 +2,7 @@ title: TDD im Pair Programming
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-assumes: tdd, grundkenntnisse, jsonBasic, encoding_and_open
+assumes: tdd, Python1, jsonBasic, encoding_and_open
 ---
 
 [SECTION::goal::product]

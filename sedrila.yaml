@@ -185,7 +185,7 @@ chapters:
       - slug: Schluss
   - slug: Sprachen
     taskgroups:
-      - slug: grundkenntnisse
+      - slug: Python1
       - slug: fortgeschrittenes
       - slug: Pythonpraxis
       - slug: bash
