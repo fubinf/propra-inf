@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1.5
 difficulty: 2
 explains: JSON
-assumes: jsonExercise
+assumes: m_json2
 requires: m_json1
 ---
 [SECTION::goal::trial]

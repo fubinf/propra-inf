@@ -63,7 +63,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Bibliotheken/stdlib/m_subprocess2.md (Lutz Prechelt)
 
 - ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
-- ch/Bibliotheken/stdlib/jsonExercise.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
 - ch/Basis/Repo/SedrilaEinrichten.md (Christian Hofmann)
 - ch/Basis/Repo/Einreichungen.md (Lutz Prechelt)
