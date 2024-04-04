@@ -2,6 +2,7 @@ title: Manpages
 stage: alpha
 timevalue: 1.0
 difficulty: 1
+explains: manpage
 ---
 
 [SECTION::goal::idea]
