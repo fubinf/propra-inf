@@ -2,7 +2,7 @@ title: Rebasing in git
 stage: draft
 timevalue: 1.0
 difficulty: 2
-requires: git-vorbereitung git-branches
+requires: git-vorbereitung, git-branches
 ---
 
 [SECTION::goal::experience]
@@ -45,7 +45,7 @@ auch darin eine neue Datei, diesmal **REBASE-B.md**. Auch in diese Datei schreib
   branch existieren und *kein* merge-Commit für die Änderungen vom **rebase-task-b** Branch 
   entstanden ist.
 
-[SECTION::submission::reflection/information/snippet/trace/program]
+[SECTION::submission::trace]
 
 Geben Sie die eingegebenen git-Befehle von beiden Rechnern ab und beschreiben Sie ihre 
 Vorgehensweise und ggf. Probleme, auf welche Sie während dem Bearbeiten der Aufgabe gestoßen sind 
