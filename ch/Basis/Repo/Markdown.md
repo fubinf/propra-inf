@@ -2,7 +2,6 @@ title: Das kleine Einmaleins von Markdown
 stage: beta
 timevalue: 0.5
 difficulty: 2
-requires: Kommandoprotokolle
 ---
 
 [SECTION::goal::idea]

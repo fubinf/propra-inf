@@ -44,6 +44,8 @@ In dieser Aufgabe lernen wir eine bessere Lösung kennen und probieren sie aus.
     - `whoami`
     - `whoareyou`
     - `uname -a`
+    - `cat /etc/os-release`
+    - `python -V; pip -V`
     - `exit`
 - `exit` hat die neue Shell beendet und damit auch die Protokollierung.
 - Das Protokoll steht jetzt in der Datei `typescript`
