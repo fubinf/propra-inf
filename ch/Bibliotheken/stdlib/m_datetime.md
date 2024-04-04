@@ -1,25 +1,22 @@
 title: datetime - Datum, Uhrzeit und Zeitdifferenzen
-stage: alpha
-timevalue: 1.0
+stage: beta
+timevalue: 1.5
 difficulty: 2
-explains:
-assumes:
-requires:
 ---
 [SECTION::goal::trial]
 
-- Ich weiß, wie man in Python Zeit- und Datumswerte erstellt, ausgibt und diese miteinander verrechnet.
-- Ich kenne außerdem den Unterschied zwischen aware und naive datetime.
+- Ich kann in Python Zeit- und Datumswerte erstellen, formatieren und verrechnen.
+- Ich kenne den Unterschied zwischen aware und naive `datetime`.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Das Arbeiten mit Zeit- und Datumsangaben ist in vielen Anwendungen essenziell. Eine dafür geeignete Datenstruktur
-selbst zu erstellen ist jedoch aufwändiger, als man zuerst annehmen würde. Neben verschiedenen Formaten (z.B.
-amerikanische und deutsche Datumsschreibweise) muss diese auch verschiedene Zeitzonen und auch Sommerzeiten mit 
-berücksichtigen können. Die `datetime` Bibliothek bietet einige Werkzeuge, um mit den meisten dieser Anwendungsfälle
-umgehen zu können. 
+Das Arbeiten mit Zeit- und Datumsangaben ist in vielen Anwendungen essenziell, aber frappierend kompliziert:
+verschiedene Monatslängen, Schaltjahre, Zeitzonen; 
+das alles bietet tausendfach Gelegenheit für Fehler und Verwirrung.
+Die `datetime` Bibliothek geht souverän mit alldem um und gehört zum Grundstock dessen,
+was man über die Standardbibliothek wissen muss. 
 
 [ENDSECTION]
 
@@ -33,15 +30,16 @@ umgehen zu können.
 - Der Modulname `datetime` ist länger als die meisten in der Standardbibliothek.
   Außerdem gibt es darin eine Klasse, die ebenfalls `datetime` heißt: verwirrend.
 - Deshalb importieren wir per Konvention das Modul stets so:  
-  `import datetime as dt`
-- Das Konstrukt `from datetime import *` ist generell nicht zu empfehlen,
-  weil man dann leicht etwas importiert, dass einen anderen Import überdeckt.
+  `import datetime as dt`.
+  Die `datetime`-Klasse ist anschließend also als `dt.datetime` anzusprechen.
+- Das Konstrukt `from datetime import *` ist (auch generell) nicht zu empfehlen,
+  weil man dann leicht etwas importiert, das einen anderen Import überdeckt.
   Der Code wird auch schwerer lesbar.
 
 ### Zeit-Objekte anlegen und ausgeben
 
 - Finden Sie in der [Dokumentation](https://docs.python.org/3/library/datetime.html), wie man die aktuelle lokale Zeit
-  abfragt und geben diese mit `print(...) # Antwort 1` aus.  
+  abfragt und geben diese mit `print("aktuelle Zeit:", ...)` aus.  
   Falls Sie angesichts des Umfangs der Doku dabei verzweifeln:
   So etwas geht mit einer Web-Suche oft schneller. Allerdings muss man sich dann vor irreführenden oder veralteten
   Antworten in Acht nehmen und sollte die Information in der aktuellen Dokumentation nachprüfen.
@@ -49,36 +47,38 @@ umgehen zu können.
 - Finden Sie eine Funktion, mit der Sie das oben angelegte `datetime`-Objekt als String im folgenden Format ausgeben
   können:  
   `Sonntag, der 01. Dezember 2024, 13:09 Uhr`  
-  Geben Sie das Ergebnis der Funktion mit `print(...) # Antwort 2` aus.  
-  Falls das nur fast klappt und Sie Monat und Wochentag in einer anderen Sprache ausgegeben bekommen, ist bei Ihnen eine
-  andere "locale" (Gebietsschema) eingestellt. Ihre Ausgabe ist in dem Fall OK wie sie ist. Bei Bedarf können Sie im
-  Modul [`locale`](https://docs.python.org/3/library/locale.html) nachlesen, was es damit auf sich hat.
+  Geben Sie das Ergebnis der Funktion mit `print("formatierte Zeit:", ...)` aus.  
+  Falls das nur fast klappt und Sie Monat und Wochentag in einer anderen Sprache ausgegeben bekommen, 
+  ist bei Ihnen eine andere "locale" (Gebietsschema) eingestellt. 
+  Ihre Ausgabe ist in dem Fall OK wie sie ist. 
+  Bei Bedarf können Sie im Modul [`locale`](https://docs.python.org/3/library/locale.html) nachlesen, was es damit auf sich hat.
 
 ### Zeiten einlesen
 
 - Finden Sie heraus, wie der umgekehrte Weg funktioniert: Strings in `datetime`-Objekte wandeln.
 - Wandeln Sie den folgenden String: `2024-12-15##13:09:44` in ein `datetime`- Objekt um und geben Sie das Ergebnis mit
-  `print(...)  # Antwort 3` aus.
+  `print("geparste Zeit:", ...)` aus.
 
 ### Zeitzonen
 
 - Lesen Sie in der [Dokumentation](https://docs.python.org/3/library/datetime.html) die Konzepte "naive" (naiv) und
   "aware" (gewahr) nach. Ist Ihr letztes erzeugtes `datetime`-Objekt naiv oder gewahr?
 - Sorgen Sie dafür, dass es in der hiesigen Zeitzone (Europe/Berlin) gewahr wird. Geben Sie das Ergebnis mit
-  `print(...)  # Antwort 4` aus.  
+  `print("Berliner Zeit:", ...)` aus.  
   Für diese Aufgabe kann das Modul [`zoneinfo`](https://docs.python.org/3/library/zoneinfo.html#module-zoneinfo)
   nützlich sein, welches eine konkrete Implementierung der Klasse `datetime.tzinfo` bietet. Andere Module von
   Drittanbietern sollen in dieser Aufgabe *nicht* verwendet werden.
-- Erzeugen Sie ein zweites Objekt zum selben Zeitpunkt wie das vorherige, aber in der Zeitzone
+- Erzeugen Sie ein zweites Objekt zum textuell selben Zeitpunkt wie das vorherige, aber in der Zeitzone
   "America/Caracas".
 - Bestimmen Sie die Differenz zur UTC (koordinierte Weltzeit) als `timedelta`-Objekt. Geben Sie dies mit
-  `print(...)  # Antwort 5` aus.
+  `print("UTC-Abstand:", ...)` aus.
 
-### mit Zeiten rechnen
+### Mit Zeiten rechnen
 
-- Ziehen Sie diese Differenz von der Caracas-Zeit ab. Geben Sie dies mit `print(...)  # Antwort 6` aus.
-- Addieren Sie auf das Ergebnis 1024 Tage und 512 Minuten, Ergebnis soll erneut ein `datetime`-Objekt sein. Geben Sie
-  dies mit `print(...)  # Antwort 7` aus.
+- Ziehen Sie diese Differenz von der Caracas-Zeit ab. 
+  Geben Sie das Ergebnis mit `print("Caracas-nach-UTC:", ...)` aus.
+- Addieren Sie auf das Ergebnis 1024 Tage und 512 Minuten, Ergebnis soll erneut ein `datetime`-Objekt sein.
+  Geben Sie dies mit `print("+1024d+512m:", ...)` aus.
 
 ### Praxisbeispiel
 
@@ -86,33 +86,35 @@ umgehen zu können.
   haben Sie bereits implementiert und die Daten als Tupel-Liste wie folgt vorliegen:
 
 ```python
-[('2024-01-01##10:11:14', 1, 'start'),
- ('2024-01-01##10:11:14', 2, 'start'),
- ('2024-01-01##10:11:14', 1, 'end'),
- ('2024-01-01##10:11:14', 2, 'end'),]
+logs = [
+  ('2024-01-01##10:11:14', 1, 'start'),
+  ('2024-01-02##03:01:01', 2, 'start'),
+  ('2024-01-03##00:11:15', 1, 'end'),
+  ('2024-01-03##03:02:02', 2, 'end')
+]
 ```
 
 - Fügen Sie die folgende Funktion in ihre Datei ein und vervollständigen Sie sie, sodass sie die Ausführungszeit aller
-  übergebenen Tasks berechnet und anschließend daraus den Durchschnitt bestimmt.
-- Rufen Sie die Funktion anschließend mit der oben stehenden Beispielliste als Eingabe auf.
+  übergebenen Tasks berechnet und anschließend daraus den Durchschnitt als `timedelta` bestimmt.
+- Rufen Sie die Funktion anschließend mit der oben stehenden Beispielliste als Eingabe auf
+  und geben Sie das Ergebnis mit `print` aus.
 
 ```python
-def time_average(logs):
+def time_average(logs: list[tuple[str,int,str]]) -> dt.timedelta:
     start = {}
     diffs = []
-    result = dt.timedelta(0)
 
     # convert strings and calculate difference
-    for l in logs:
-        if l[2] == 'start':
-            start[l[1]] = _____
-        elif l[2] == 'end':
+    for timestamp, eventnumber, flag in logs:
+        if flag == 'start':
+            start[eventnumber] = _____
+        elif flag == 'end':
             diffs.append(_____)
 
     # calculate average
     _____
 
-    print(result)
+    return _____
 ```
 
 ### Programmlauf für die Abgabe
@@ -120,18 +122,15 @@ def time_average(logs):
 - [EC] Führen Sie das gesamte so erzeugte Programm `m_datetime.py` einmal aus.
 
 [ENDSECTION]
-
-[SECTION::submission::trace]
+[SECTION::submission::trace,program]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-
 [INCLUDE::../../_include/Submission-Quellcode.md]
 
 [ENDSECTION]
-
 [INSTRUCTOR::Codedurchsicht]
 
-Den Code lesen und manuell auf Richtigkeit prüfen.
+Den Code lesen und manuell ungefähr auf Richtigkeit prüfen.
 Das Kommandoprotokoll zur Unterstützung heranziehen.
 Klare Defekte und sehr ungünstige Konstruktionen zurückweisen,
 insbesondere solche, die zu wenig Gebrauch vom Können von `datetime` machen.
