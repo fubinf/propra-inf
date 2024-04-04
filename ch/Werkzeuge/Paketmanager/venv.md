@@ -1,5 +1,5 @@
 title: "venv: Separate Paketumgebungen für Python"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 explains: venv
@@ -15,7 +15,7 @@ Ein `venv` (virtual environment) ist ein "Sandkasten",
 in dem man nach Herzenslust Python-Pakete installieren kann,
 ohne die restliche Systemumgebung damit zu verändern.
 
-Auf Debian-Systemen ist es die einzige Möglichkeit, 
+Auf Debian-Systemen ist ein `venv` die einzige Möglichkeit, 
 _überhaupt_ mit [TERMREF::pip] Pakete installieren zu können,
 weil die restliche Systemumgebung vor Veränderungen geschützt sein soll, die der 
 [TERMREF::Debian-Paketmanager] nicht kennt. 
@@ -39,12 +39,12 @@ für so ziemlich jeden (selbst kleinen) Entwicklungszweck ein eigenes `venv` anl
 
 ### `venv propra` aktivieren
 
-3. Mit `which` kann man herausfinden, wo ein bestimmtes Kommando gefunden wird.
+3. [EC] Mit `which` kann man herausfinden, wo ein bestimmtes Kommando gefunden wird.
    Rufen Sie das für Python auf: `which python`.
-4. Aktivieren Sie nun Ihr neues `venv`:
+4. [EC] Aktivieren Sie nun Ihr neues `venv`:
    `source ~/venv/propra/bin/activate`.
    Ihr Shell-Prompt müsste nun mit `(propra)` beginnen.
-5. Überzeugen Sie sich, dass nun ein anderes Python-Executable aktiv ist:
+5. [EC] Überzeugen Sie sich, dass nun ein anderes Python-Executable aktiv ist:
    `which python`
 
 
@@ -53,12 +53,12 @@ für so ziemlich jeden (selbst kleinen) Entwicklungszweck ein eigenes `venv` anl
 6. Den obigen `source`-Aufruf müssen Sie in jeder frischen Shell wiederholen.
    Das ist umständlich. Deshalb legen wir uns dafür jetzt ein bequemeres Shell-Kommando an:
    Öffnen Sie ihre [TERMREF::.bashrc] in ihrem Home-Verzeichnis und fügen Sie unten oder an
-   geeigneter Stelle folgende Shell-Funktion zu:
+   geeigneter Stelle ungefähr folgende Shell-Funktion zu (mit angepassten Pfaden):
 
 ```bash
 init_propra() {
-    propra_d=~/ws/propra
-    cd $propra_d
+    propra_dir=~/ws/propra
+    cd $propra_dir
     source ~/venv/propra/bin/activate
 }
 ```
@@ -66,8 +66,8 @@ init_propra() {
 7. Deaktivieren Sie das `venv` (mit `deactivate`)
    und überzeugen Sie sich von der Wirkung (mit `which python`).
 8. Starten Sie eine neue Shell, damit das geänderte `.bashrc` eingelesen wird: `bash`
-9. Aktivieren Sie das `venv` mit dem neuen Kommando: `init_propra`.
-10. Überzeugen Sie sich von der Wirkung (mit `which python`).
+9. [EC] Aktivieren Sie das `venv` mit dem neuen Kommando: `init_propra`.
+10. [EC] Überzeugen Sie sich von der Wirkung (mit `which python`).
 11. Rufen Sie ab jetzt, wann immer Sie mit einer neuen Shell am ProPra arbeiten wollen,
     `init_propra` auf.
 
@@ -97,7 +97,7 @@ können.
 
 Damit sich beide Interpreter gleich verhalten, müssen neue Pakete **immer in beiden `venv` installiert werden**.
 Achten Sie darauf in Aufgabe [PARTREF::pip] und bei allen Aufgaben, die die Installation weiterer Pakete voraussetzen.
-Insbesondere die Verwendung einer `requirements.txt` sollte ihnen dabei helfen, ihre benötigten Abhängigkeiten
+Die Verwendung einer Datei `requirements.txt` kann dabei helfen, ihre benötigten Abhängigkeiten
 konsistent zu halten.
 [ENDWARNING]
 
@@ -124,6 +124,8 @@ Protokoll auf Schlüssigkeit kontrollieren.
 Wenn eine Ausgabe nicht zu den vorangegangenen Kommandos passt, Abgabe zurückweisen,
 denn wer schon diese grundlegende und genau vorgegebene Sache falsch macht, 
 rennt sonst später wahrscheinlich in riesige Schwierigkeiten.
+Tückisch ist an obigen Anweisungen, dass zwischen den zu protokollierenden Kommandos
+andere kommen, die nicht ins Protokoll gehören.
 
 Grob überprüfen, ob das venv auch korrekt in der IDE eingerichtet wurde, um Folgefehler bei darauf aufbauenden
 Aufgaben zu vermeiden.
