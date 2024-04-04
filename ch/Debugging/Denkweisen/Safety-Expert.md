@@ -30,7 +30,7 @@ Beispiele:
 - Manches ist übertrieben kleinteilig, etwa 11.4.3.1, 11.4.3.5, 11.4.4.3 u.v.a.m.
 
 Passen Sie deshalb die Vorschläge nach eigenem Ermessen an Ihre Bedürfnisse an
-bzw. suchen Sie die für Sie nützlichen Teile heraus.
+beziehungsweise suchen Sie die für Sie nützlichen Teile heraus.
 [ENDWARNING]
 
 [WARNING]
@@ -52,9 +52,9 @@ wenn (und falls) Sie diese Aufgaben bearbeiten?
 Wenn nein: Was hält Sie ab?  
 Wenn ja: Denken Sie, dass es tatsächlich dazu kommen wird?
 
-[EQ] Wenn eben die Antwort "ja" gelautet hat, besuchen Sie bitte die Webseite ihres
+[EQ] Wenn eben die Antwort "ja" gelautet hat, besuchen Sie bitte die Webseite Ihres
 Git-Repos und sichten Sie dort die Funktionalität des [TERMREF2::Issue Tracker::-s].
-Bei einem Repo, an dem man allein arbeitet, wie hier im ProPra, könnte man den ja für
+Bei einem Repo, an dem man wie hier allein arbeitet, könnte man den ja für
 die Datensammlung einsetzen.  
 Welche Stärken hätte das? Welche Schwächen?  
 Welche Lösung käme alternativ in Frage? Vorteile? Nachteile?

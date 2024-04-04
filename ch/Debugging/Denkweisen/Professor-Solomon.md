@@ -9,13 +9,13 @@ kann dieses Wissen auf die Suche nach einem Defekt übertragen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-Lesen Sie für diese Aufgabe das Kapitel 4 (S. 49-60), in denen die Methoden von 
+Lesen Sie für diese Aufgabe das Kapitel 4 (S. 49-60), in dem die Methoden von 
 Professor Solomon im Kontext des Debugging beschrieben werden.
 Er verwendet 12 Prinzipien für die Suche.
 
 [EQ] Welche 2-3 dieser Prinzipien scheinen Ihnen _für Ihr persönliches Debuggingleben_
-am vielversprechendsten, also angesichts der Programme, die _Sie_ schreiben und Ihrer
-_persönlichen_ Eigenschaften beim Programmieren und beim Debugging?
+am vielversprechendsten, also angesichts der Programme, die _Sie_ schreiben und Ihren
+_persönlichen_ Eigenschaften beim Programmieren und Debugging entsprechen?
 Warum glauben Sie das jeweils?
 
 [EQ] Welche 2-3 dieser Prinzipien scheinen Ihnen für Ihr persönliches Debuggingleben

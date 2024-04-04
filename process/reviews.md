@@ -54,14 +54,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Christian Hofmann
 
-- ch/Debugging/Debugging-Praxis/Einkaufsliste-02.md (Dominik Pietrak)
-- ch/Debugging/Debugging-Praxis/Einkaufsliste-03.md (Dominik Pietrak)
-
-- ch/Debugging/Denkweisen/Mathematician.md (Dominik Pietrak)
-- ch/Debugging/Denkweisen/Professor-Solomon.md (Dominik Pietrak)
-- ch/Debugging/Denkweisen/Psychologist.md (Dominik Pietrak)
-- ch/Debugging/Denkweisen/Sherlock-Holmes.md (Dominik Pietrak)
-
 - ch/Debugging/Häufige-Defektarten/a_logic.md (Dominik Pietrak)
 - ch/Debugging/Häufige-Defektarten/b_expression.md (Dominik Pietrak)
 - ch/Debugging/Häufige-Defektarten/b_variable.md (Dominik Pietrak)
@@ -104,6 +96,14 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprache/SQL/SQLProject.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 
 - ch/Bestandscode/Refactoring-Grundlagen/Extraction-Of-Code.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
+
+- ch/Debugging/Debugging-Praxis/Einkaufsliste-02.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Debugging-Praxis/Einkaufsliste-03.md (Dominik Pietrak, reviewed by Christian Hofmann)
+
+- ch/Debugging/Denkweisen/Mathematician.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Denkweisen/Professor-Solomon.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Denkweisen/Psychologist.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Denkweisen/Sherlock-Holmes.md (Dominik Pietrak, reviewed by Christian Hofmann)
 
 
 ## Reviews to do for Hanen Alrwasheda

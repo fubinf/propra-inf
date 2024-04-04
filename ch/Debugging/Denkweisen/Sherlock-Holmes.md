@@ -18,8 +18,8 @@ Sind Sie der Meinung, dass einige der Kategorien nicht für eine [TERMREF::Deduk
 Wenn ja, welche und warum?
 
 [EQ] Welche 2-3 der Kategorien scheinen Ihnen _für Ihr persönliches Debuggingleben_
-am vielversprechendsten, also angesichts der Programme, die _Sie_ schreiben und Ihrer
-_persönlichen_ Eigenschaften beim Programmieren und beim Debugging?
+am vielversprechendsten, also angesichts der Programme, die _Sie_ schreiben und Ihren
+_persönlichen_ Eigenschaften beim Programmieren und Debugging entsprechen?
 Warum glauben Sie das jeweils?
 
 [EQ] Welche 2-3 dieser Kategorien scheinen Ihnen für Ihr persönliches Debuggingleben
@@ -27,7 +27,7 @@ am wenigsten vielversprechend?
 Warum glauben Sie das jeweils?
 
 [EQ] Eine der Kategorien lautet "Erkläre jemand anderem die Fakten".
-Als Begründung wird angeführt, dass man versucht die Sichtweise einer anderen Person zu erhalten.
+Als Begründung wird angeführt, dass man versucht, die Sichtweise einer anderen Person zu erhalten.
 Gibt es Ihrer Meinung nach weitere Gründe, wieso dieses Vorgehen nützlich sein kann?
 [ENDSECTION]
 

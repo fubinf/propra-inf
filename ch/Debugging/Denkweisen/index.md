@@ -4,12 +4,13 @@ Debugging kann im konkreten Fall sehr schwierig sein.
 Also wie macht man das?
 
 Dazu kann man sich entweder mit bestimmten, immer wieder auftretenden Sorten von Defekten
-auseinandersetzen, für die es zugehörige Prüfschritte gibt, um ihnen auf die Spur zu kommen.
-Diesem Ansatz folgen wir in der Aufgabengruppe [PARTREF::Häufige-Defektarten].
-
-Oder man sucht nach ganz _allgemeinen_ Regeln für die Suche, die für alle Arten von Defekten
+auseinandersetzen, für die es zugehörige Prüfschritte gibt, um ihnen auf die Spur zu kommen,
+oder man sucht nach ganz _allgemeinen_ Regeln für die Suche, die für alle Arten von Defekten
 anwendbar sind, inklusive exotischer Fälle.
+
+Dem ersten Ansatz folgen wir in der Aufgabengruppe [PARTREF::Häufige-Defektarten], dem anderen hier.
 Das tun wir hier.
+
 
 Sie benötigen dazu das Buch _Debugging by Thinking_ von Robert C. Metzger.
 <replacement id="mindset_howtoget_metzgerbook">Sie finden es 

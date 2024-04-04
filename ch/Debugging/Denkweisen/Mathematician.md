@@ -4,7 +4,7 @@ timevalue: 1
 difficulty: 3
 ---
 [SECTION::goal::idea]
-Ich verstehe, wie Heuristiken und Beweistechniken einem Mathematiker helfen 
+Ich verstehe, wie Heuristiken und Beweistechniken einem Mathematiker helfen,
 und kann dieses Wissen auf die Suche nach der Ursache für einen Defekt transferieren.
 [ENDSECTION]
 
@@ -16,14 +16,14 @@ Beweisführung behandelt werden können.
 Sind Sie der Meinung, dass diese Metapher gut gewählt ist? 
 Begründen Sie kurz.
 
-[EQ] In Kapitel 6.4 werden einige Texte vorgestellt, in denen Studenten der Mathematik 
+[EQ] In Abschnitt 6.4 werden einige Texte vorgestellt, in denen Studenten der Mathematik 
 beim Lernen von Beweisführung unterstützt werden.
 Welche der vorgestellten Ideen helfen Ihnen Ihrer Meinung nach beim Debugging?
-Wenn Sie keine der Ideen fürs Debugging relevant finden: Wieso ist das so?
+Wenn Sie keine der Ideen relevant für Debugging finden: Wieso ist das so?
 
-[EQ] Kapitel 6.6 versucht die im vorhergehenden Text eingeführten Begriffe "Taktik", "Heuristik" 
+[EQ] Abschnitt 6.6 versucht die im vorhergehenden Text eingeführten Begriffe "Taktik", "Heuristik" 
 und "Stategie" auf das Debugging anzuwenden. 
-Dazu versucht er das Vorgehen mittels einer Militäranalogie und mittels der Erstellung und 
+Dazu versucht er, das Vorgehen mittels einer Militäranalogie und mittels der Erstellung und 
 Auswertung einer [TERMREF::Hypothese] zu vermitteln.
 Sind diese Ansätze für Sie verständlich?
 Wenn ja: Welcher der beiden Beispiele ist besser verständlich im Kontext des Debugging?
