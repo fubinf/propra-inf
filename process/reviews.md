@@ -39,8 +39,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
-- ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Dominik Pietrak)
-
 - ch/Werkzeuge/Linter/flake8_SUT.md (Ronny Ruhe)
 
 - ch/Sprachen/Python1/PythonComments.md (Hanen Alrwasheda)
@@ -179,3 +177,4 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/Pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
 
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
+- ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Dominik Pietrak, rewieved by Daniel Müllers)
