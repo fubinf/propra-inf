@@ -23,7 +23,7 @@ für das Programmierpraktikum herstellen:
 
 Anders als in allen anderen Kapiteln, wo Sie recht frei auswählen können,
 was Sie bearbeiten wollen, müssen Sie in diesem (kleinen) Kapitel
-**alles abarbeiten**. 
+**alles abarbeiten** und sollten das **von oben nach unten** tun. 
 Nur dann haben Sie verlässlich die in den Aufgaben angenommene Arbeitsumgebung
 und das Grundverständnis für den Arbeitsablauf im ProPra.
 
