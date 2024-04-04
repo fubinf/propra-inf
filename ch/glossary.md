@@ -374,13 +374,14 @@ deren Folgezeilen dann evtl. kein solches Standardformat haben.
 ## M
 
 [TERM::manpage|manpages]
-Manpages, auch als Handbuchseiten oder Manual Pages bezeichnet, sind Kurzreferenzen oder 
-Dokumentationen in Unix-ähnlichen Betriebssystemen. Jede Manpage bietet detaillierte 
-Informationen zu einem bestimmten Befehl, Programm oder Systemaufruf. Diese Seiten sind 
-in der Regel über die Kommandozeile zugänglich und bieten eine strukturierte Zusammenfassung 
-von Syntax, Optionen, Funktionalitäten und Beispielen für die Verwendung des betreffenden Befehls.
-Falls der Befehl keine Manpage hat, dann kann man den Befehl `help` probieren um mehr Informationen
-zu bekommen.
+Eine Manpage ("manual page", Handbuch-Seite) gibt es zu (fast) jedem Unix-Kommando.
+Man findet die für das Kommando `xy` mittels `man xy`.
+Manpages sind kurze Referenzdokumentationen. 
+Sie bieten eine strukturierte Zusammenfassung von Syntax, Optionen, Funktionalitäten und 
+manchmal Beispielen für die Verwendung des betreffenden Befehls.
+
+Fest in die Shell eingebaute Kommandos haben keine eigene Manpage; 
+das Kommando `help` zeigt eine Kurzinformation dazu.
 [ENDTERM]
 
 [TERM::Markdown]
