@@ -64,7 +64,7 @@ Ich bin in der Lage, mittels Debugger durch ein Programm zu navigieren und ziels
 Sie finden die Tabelle mit dieser Information unter 
 [HREF::https://docs.python.org/3/library/json.html#encoders-and-decoders].  
 Wenn Sie sich mehr für JSON und der Handhabung von JSON in Python interessieren, 
-finden Sie in den Aufgaben [PARTREF::jsonBasic] und [PARTREF::jsonExercise] einen Einstieg.
+finden Sie in den Aufgaben [PARTREF::m_json1] und [PARTREF::jsonExercise] einen Einstieg.
 
 [HINT::Das eingegebene Argument von `json.load()`...]
 ...ist die Datei `ingredients.json`. Es handelt sich um ein JSON-Array.

@@ -2,7 +2,7 @@ title: API Antworten verarbeiten
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-assumes: RestApi, jsonBasic
+assumes: RestApi, m_json1
 ---
 [SECTION::goal::idea]
 
@@ -37,8 +37,8 @@ Daten auslassen. Daher werden wir mit diesem Response weiter arbeiten und die er
 - [EQ] Warum ist der Statuscode `200` und nicht `201`?
 
 In dem erhaltenen Response ist ein Array enthalten. Dieses Array besitzt JSON Objekte. Wir wollen einen Blick auf alle
-erhaltenen Werte des Feldes `id` werfen. Nutzen Sie ausreichend die Möglichkeit des [PARTREF::jsonBasic] Paket, um an diese
-Informationen heran zu kommen.
+erhaltenen Werte des Feldes `id` werfen. 
+Nutzen Sie das [PARTREFMANUAL::m_json1::json]-Modul, um an diese Informationen heranzukommen.
 
 - [ER] Filtern Sie alle erhaltenen `id`-Werte aus dem Response.
 - [ER] Erweitern Sie den Code so, dass alle Werte in einem Array stehen.

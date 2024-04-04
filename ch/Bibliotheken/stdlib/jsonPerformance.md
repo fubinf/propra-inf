@@ -4,7 +4,7 @@ timevalue: 1.5
 difficulty: 2
 explains: JSON
 assumes: jsonExercise
-requires: jsonBasic
+requires: m_json1
 ---
 [SECTION::goal::trial]
 
