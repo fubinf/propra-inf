@@ -22,8 +22,6 @@ Die übrigen solchen Aufgaben kann man auf einem Poolrechner nicht bearbeiten;
 sie müssen sich eine neue aussuchen.
 [ENDNOTICE]
 
-
-
 [ENDSECTION]
 [SECTION::goal::product]
 
@@ -59,6 +57,8 @@ dass Python und Pip funktionieren.
 Je nach gewählter Distribution liegen die Programme stattdessen oder zusätzlich als 
 `python3` und `pip3` statt `python` und `pip` vor.
 [ENDNOTICE]
+
+[INCLUDE::CdLsMvEtc.inc]
 
 [ENDSECTION]
 [INSTRUCTOR::Warnhinweise]

@@ -1,6 +1,6 @@
 title: Linux-Kommandozeile auf Windows mit WSL
 stage: beta
-timevalue: 1.0
+timevalue: 1.5
 difficulty: 2
 ---
 [SECTION::background::default]
@@ -33,6 +33,8 @@ Wichtig sind vor allem die Abschnitte `Prerequisites`, `Install WSL command`,
 
 Standardmäßig wird bei WSL ein Ubuntu Linux installiert.
 **Wir empfehlen allerdings eine Installation von Debian Linux.**.
+An der entsprechenden Stelle in obiger Anleitung machen Sie also bitte
+`wsl --install -d Debian`.
 
 Sollten Sie sich bewusst sein, dass es bei einigen Aufgaben leichte Änderungen an den Befehlen
 gibt und Sie selbständig die Lösung zu diesen Problemen finden können, ist die Wahl der
@@ -51,7 +53,7 @@ Sollten Sie noch nie ein Linux verwendet haben, finden Sie in der
 weitere Hilfestellung.
 
 Hiernach befinden Sie sich in der Shell ihrer Linux-Umgebung. Wenn Sie unserer Empfehlung
-gefolgt sind und `debian` installiert haben, ist diese standardmäßig `/bin/bash`.
+gefolgt sind und Debian installiert haben, ist diese standardmäßig `/bin/bash`.
 Überprüfen können Sie dies mittels des Befehls 
   
     echo "$SHELL"
@@ -61,12 +63,20 @@ der Linux-Umgebung durchgeführt und können diese selbständig öffnen.
 Weiter haben Sie Ihren Benutzer angelegt und sind bereit, Programme in Ihrer Linux-Umgebung
 zu installieren.
 
+[WARNING]
+Wenn künftig von "Shell" oder "Kommandozeile" die Rede ist, 
+ist immer die Linux-Shell gemeint, nie die Windows-Kommandozeile mit
+`cmd.exe` oder der Powershell.
+[ENDWARNING]
+
 [INCLUDE::CheckPython.inc]
+[INCLUDE::CdLsMvEtc.inc]
 
 [ENDSECTION]
 [INSTRUCTOR::Warnhinweise]
 
 Zum Prüfen dient `cat /etc/os-release; python -V; pip -V`. 
+Der Output davon findet sich im Kommandoprotokoll von [PARTREF::Kommandoprotokolle].
 Wer etwas anderes als ein aktuelles Debian installiert hat, sollte bestätigen, 
 sich einigermaßen sicher mit Linux auszukennen. 
 Ubuntu ist weitgehend unproblematisch,

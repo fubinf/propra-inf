@@ -14,14 +14,12 @@ Wir wählen dafür _Homebrew_, das es erlaubt, viele der unter Debian Linux verf
 in gleicher oder ähnlicher Version unter Mac OS X zu installieren.
 
 [ENDSECTION]
-
 [SECTION::goal::product]
 
 Ich habe sichergestellt, dass ich eine Bash-Shell starten kann und
 dass Homebrew, Python und Pip funktionieren.
 
 [ENDSECTION]
-
 [SECTION::instructions::loose]
 
 ### Bash-Shell sicherstellen
@@ -115,9 +113,9 @@ das Python-Paket zu installieren.
 War die Installation erfolgreich können wir nun die installierte Python-version prüfen.
 
 [INCLUDE::CheckPython.inc]
+[INCLUDE::CdLsMvEtc.inc]
 
 [ENDSECTION]
-
 [INSTRUCTOR::Warnhinweise]
 
 [INCLUDE::InstructorCheckLinux.inc]
