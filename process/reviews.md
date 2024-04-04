@@ -99,13 +99,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Lutz Prechelt
 
-- ch/Testen/Testgrundlagen/Error.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Testgrundlagen/ErrorExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Testgrundlagen/Testcases.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Testgrundlagen/TestcasesExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Testgrundlagen/Testpyramide.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Testgrundlagen/TestDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
-- ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ronny Ruhe) (Review Daniel Müllers)
 
 - ch/Sprache/SQL/SQLJoin.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 - ch/Sprache/SQL/SQLProject.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
@@ -132,6 +125,14 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Sprachen/SQL/SQLBasic.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 - ch/Sprache/SQL/SQLSelect.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
+
+- ch/Testen/Testgrundlagen/Error.md (Ronny Ruhe) (Ruhe->Müllers->Prechelt->Ruhe)
+- ch/Testen/Testgrundlagen/ErrorExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Testgrundlagen/Testcases.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Testgrundlagen/TestcasesExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Testgrundlagen/Testpyramide.md (Ronny Ruhe) (nach Review von Daniel Müllers)
+- ch/Testen/Testgrundlagen/TestDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ronny Ruhe) (Review Daniel Müllers)
 
 - ch/Testen/Unittests/index.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
 - ch/Testen/Unittests/unittest101.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)

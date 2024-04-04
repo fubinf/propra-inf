@@ -1,25 +1,17 @@
 title: Fehlerarten
-stage: beta
+stage: alpha
 timevalue: 1.0
 difficulty: 2
 ---
-# Review (DM)
-- Kompetenz umformuliert
-- Frage 1 umformuliert (vgl. mit Commit diff)
-
-- In Motivation vielleicht noch: Warum sind diese verschiedenen Fehlerarten denn für die Studis interessant? Wieso sollte ich mich damit befassen? Ist das Grundlage für andere Aufgaben, muss ich das später wissen? -> Done, R.R.
-- Vielleicht findest du eine Möglichkeit für ein "praktisches" Anwenden der erlangten Kompetenzen in dieser Aufgabe? Oder bauen andere darauf auf? -> Oder ggf. Hinweis auf die Übungsaufgabe. -> Done R.R.
-
-
 [SECTION::goal::idea]
 
 - Ich kann den Begriff Fehler definieren
-- Ich kann die Ursache eines Fehler genauer definieren
+- Ich kann die Ursache eines Fehlers genauer definieren
 
 [ENDSECTION]
 [SECTION::background::default]
 
-In der Qualitätssicherung werden unterschiedliche Bergriffe verwendet, die einen Fehlerzustand
+In der Qualitätssicherung werden unterschiedliche Begriffe verwendet, die einen Fehlerzustand
 beschreiben. Die richtige Verwendung der definierten Begriffe kann nur funktionieren, wenn man die
 feinen Unterschiede kennengelernt hat. Durch ein präzises Verständnis dieser Begriffe können
 Entwickler und Tester effektiver zusammenarbeiten, um Fehler zu identifizieren und in einem
