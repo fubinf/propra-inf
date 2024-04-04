@@ -7,10 +7,10 @@ requires: Kommandoprotokolle
 
 [SECTION::goal::idea]
 
-Ich kann in Markdown Überschriften, Listen, Codeblöcke und Blockzitate ausdrücken
+Ich kann in Markdown Überschriften, Listen, Codeblöcke, Blockzitate
+und Hyperlinks ausdrücken
 
 [ENDSECTION]
-
 [SECTION::background::default]
 
 Sie werden im gesamten ProPra neben Kommandoeingaben bzw. Kommandoausgaben 
@@ -20,7 +20,6 @@ oder über ein Thema zu reflektieren.
 Dazu verwenden wir die schön simple Notation "Markdown".
 
 [ENDSECTION]
-
 [SECTION::instructions::loose]
 
 [TERMREF::Markdown] ist eine Markup-Sprache, die einfach schreibbar und gut lesbar ist.
@@ -35,14 +34,14 @@ Dafür gibt es in den gängigen Editoren Plugins, die direkt die "hübsche" Vers
 Damit Sie direkt sehen können, wie der von Ihnen geschriebene Markup-Text aussieht, 
 können Sie gerne einen Online-Editor wie [StackEdit.io](https://stackedit.io/) verwenden.
 
-- [EQ] Erstellen Sie die Datei `Markdown101.md` und machen Sie einen Commit mit dieser Datei.
+- [EQ] Erstellen Sie die Datei `Markdown.md` und machen Sie einen Commit mit dieser Datei.
 
 
 ### Welche Formatierungmöglichkeiten gibt es in Markdown?
 
 #### Text Decoration
 
-Texte können **fett**, *kursiv* oder ~~durchgestrichen~~ sein.
+Text kann **fett** oder *kursiv* sein.
 
 - [EQ] Schreiben Sie in der Datei Text wie den obigen.
 
@@ -71,11 +70,31 @@ Manchmal wollen wir aber Gedanken ordnen.
 Man kann beide Arten von Listen auch verschachteln:
 
 1. Das ist die erste Ebene.
-    a. Das ist die zweite Ebene.
-        - Und eine dritte, ungeordnete Ebene gibt es auch!
+    1. Das ist die zweite Ebene.
+    1. Wieder zweite Ebene.
+        1. Und eine dritte Ebene gibt es auch!
+        1. Jawoll!
 
-- [EQ] Erstellen Sie eine Auflistung mit 5 Ebenen mit Zahlen, Buchstaben und Bullet-Points.
-  Mindestens die Ebenen 1, 3, und 5 sollen mehrere Einträge haben.
+- Das ist die erste Ebene.
+    - Das ist die zweite Ebene.
+    - Wieder zweite Ebene.
+        - Und eine dritte Ebene gibt es auch!
+        - Jawoll!
+
+[WARNING]
+Markdown hat zahlreiche Dialekte, d.h.
+nicht alle Markdown-Implementierungen [funktionieren gleich](https://johnmacfarlane.net/babelmark2/faq.html).
+Wer halbwegs sicher sein will, sollte bei allen Verschachtelungen 
+jeweils 4 zusätzliche Leerzeichen weit einrücken.
+
+Eine "offizielle" Spezifikation gibt es nicht.
+Am ehesten kommt noch die [Urfassung](https://daringfireball.net/projects/markdown/syntax)
+infrage.
+Eine besonders wichtige Variante ist 
+[GitHub-Markdown](https://docs.github.com/en/get-started/writing-on-github)
+[ENDWARNING]
+
+- [EQ] Erstellen Sie eine verschachtelte Auflistung.
 
 
 #### Code-Blöcke
@@ -101,19 +120,15 @@ antigravity.fly()
 
 #### Was gibt es noch?
 
-Man kann auch Bilder einfügen, Tabellen schreiben, per CSS das Aussehen der Markdown-Dateien ändern
-und noch vieles mehr. Einige der Beispiele dafür finden Sie in der oben genannten Quelle. Wenn man
-einen Markdown-Editor schreibt, kann man auch selbst Strukturen entwerfen.
-
-Achtung: Es gibt leider eine Reihe von Dialekten von Markdown.
-Lesen Sie ein paar
-[Beispiele für Konstrukte, die mit GitHub-Markdown möglich sind](https://gist.github.com/pixelspencil/87dfff9816e4bf41f5f6e5bf62eebff4#github-treats).
+Man kann auch Bilder einfügen, Tabellen schreiben, 
+per [TERMREF::CSS] das Aussehen der Markdown-Dateien ändern
+und noch vieles mehr; 
+siehe die oben genannten Quellen.
 
 [ENDSECTION]
-
 [SECTION::submission::program]
 
-Geben Sie das Dokument `Markdown101.md` mit den im Text unter [EREFR::1], [EREFR::2], ...
+Geben Sie das Dokument `Markdown.md` mit den im Text unter [EREFQ::1], [EREFQ::2], ...
 geforderten Markdown-Formatierungen ab.
 Geben Sie die Marker mit an.
 

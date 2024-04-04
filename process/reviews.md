@@ -167,10 +167,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Debugging/debuggingtools/gitbisect.md (Dominik Pietrak, reviewed by Lutz Prechelt):
   Habe die Einleitung ganz neu geschrieben, hoffentlich klarer.
   Die dient zur Motivation, gehört also nach [SECTION::Background].
-- ch/Basis/Repo/Markdown101.md (Dominik Pietrak, reviewed by Lutz Prechelt)
-  [ER] ist hier in gewissem Sinne natürlich richtig,
-  ich habe es trotzdem in [EQ] geändert, damit die Regel "[EQ] heißt: Markdown abgeben"
-  übersichtlich gültig bleibt.
 - ch/Sprachen/Pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
 
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
