@@ -99,7 +99,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Lutz Prechelt
 
-- ch/Testen/Testgrundlagen/index.md (Ronny Ruhe) (nach Review von Daniel Müllers)
 - ch/Testen/Testgrundlagen/Error.md (Ronny Ruhe) (nach Review von Daniel Müllers)
 - ch/Testen/Testgrundlagen/ErrorExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
 - ch/Testen/Testgrundlagen/Testcases.md (Ronny Ruhe) (nach Review von Daniel Müllers)

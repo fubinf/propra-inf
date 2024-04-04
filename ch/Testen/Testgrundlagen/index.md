@@ -1,12 +1,12 @@
 title: Test-Basiswissen
 ---
-Im Kontext der Softwaretechnik ist der Begriff des Testens spezifisch das Ausführen eines
-Softwareprodukts ein Akt, der unter die Kategorie [TERMREF::Dynamische analytische Qualitätssicherung]
-fällt. Alle anderen Aspekte, wie beispielsweise das manuelle Überprüfen von Dokumenten, gehören zur
-Kategorie [TERMREF::Statische analytische Qualitätssicherung].
+[TERMREF::Qualitätssicherung] ist ein sehr bedeutsamer Teil der Softwareentwicklung.
+Dabei bedeutet Testen, ein Programm dadurch zu prüfen, dass man es ausführt.
+Testen fällt in die Kategorie [TERMREF::Dynamische analytische Qualitätssicherung].
+Es gibt verschiedene Arten von Tests.
+Manuelles Überprüfen von Dokumenten (Review) gehört hingegen in die Kategorie
+[TERMREF::Statische analytische Qualitätssicherung].
+Auch darin gibt es diverse Arten.
 
-Das Testen in der Softwareentwicklung ist daher ein spezialisierter und strukturierter Prozess, der dazu dient, die Qualität
-und Zuverlässigkeit von Software sicherzustellen. In der Softwarewelt gibt es verschiedene Begriffe und Ansätze, die uns
-dabei helfen, strukturiert zu testen und eine gewisse Ordnung in das komplexe Thema zu bringen. Dabei dabei keine bis wenig
-Verwirrung aufkommt, gibt es einheitliche Begriffe, Vorgehensweisen und Empfehlungen, die die gemeinsame Arbeit in der
-[TERMREF::Qualitätssicherung] enorm vereinfachen.
+Hier lernen wir grundlegende Begriffe, Vorgehensweisen und Empfehlungen für das Testen
+von Software kennen.
