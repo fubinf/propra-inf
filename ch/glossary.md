@@ -120,6 +120,17 @@ auf dieses Schema zum Testen von Daten und Objekten, um die Zugverlässigkeit ei
 sicherzustellen.
 [ENDTERM]
 
+[TERM::CSS|Cascading Style Sheets]
+Eine deklarative Sprache, in der man ausdrücken kann, wie [TERMREF::HTML]-Seiten formatiert 
+und angezeigt werden sollen.
+CSS-Spezifikationen formulieren Regeln ("styles"), die dann auf einzelne Elemente
+der HTML-Datei Anwendung finden.
+Dadurch sind die Dokumentstruktur (ausgedrückt in HTML)
+und die Formatierung (ausgedrückt in CSS) relativ gut voneinander getrennt
+und man kann die Formatierung sehr schnell global über viele Dokumente hinweg anpassen,
+indem man Styles ändert, die in allen diesen Dokumenten benutzt werden.
+[ENDTERM]
+
 ## D
 
 [TERM::Dateiberechtigungen]
