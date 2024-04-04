@@ -1,31 +1,26 @@
 title: Grundlagen JSON-Objekt
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 explains: JSON
 ---
-<!-- assumes: PythonDataStructures -->
-1) "..der gegebenen Informationen ein(e)" -> "..der gegebenen Informationen ein"
-
---------
+<!-- TODO_1: assumes: PythonDataStructures -->
 
 [SECTION::goal::trial]
 
-- Ich kann ein [TERMREF::JSON]-Objekt lesen und bearbeiten
+Ich kann die [TERMREF::JSON]-Notation lesen und schreiben.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-JSON ist nicht nur einfach zu lesen und zu schreiben, sondern auch äußerst flexibel und
-anpassungsfähig. Es erlaubt die Darstellung komplexer Datenstrukturen, darunter verschachtelte
-Objekte und Arrays, wodurch es sich ideal für die Repräsentation von Daten in einer Vielzahl von
-Szenarien eignet. Von einfachen Konfigurationsdateien bis hin zu komplexen [TERMREF::API]-Antworten
-findet JSON breite Anwendung in der Softwareentwicklung und im Datenaustausch zwischen Anwendungen.
-
-Bei der Einführung in JSON werden wir uns nicht nur damit beschäftigen, wie das Format strukturiert
-ist und wie man es liest und erstellt, sondern auch seine Rolle im größeren Kontext des
-Datenaustauschs und der Datenaustauschformate betrachten. Zusätzlich wollen wir die Vor- und
-Nachteile in Bezug Alternativen wie XML oder YAML im Blick haben.
+[TERMREF::JSON] repräsentiert Datenstrukturen.
+Es ist einfach zu lesen und zu schreiben, flexibel und anpassungsfähig. 
+Es erlaubt die Darstellung komplexer Datenstrukturen, darunter verschachtelte
+Objekte und Arrays, wodurch es sich für die Repräsentation von Daten in einer Vielzahl von
+Szenarien eignet. 
+Von einfachen Konfigurationsdateien bis hin zu komplexen [TERMREF::API]-Antworten
+findet JSON breite Anwendung in der Softwareentwicklung.
+Man muss JSON also kennen.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
@@ -51,22 +46,23 @@ folgenden Quelle [w3schools](https://www.w3schools.com/js/js_json_intro.asp)
 - [EQ] Wie werden Zahlen in JSON dargestellt?
 - [EQ] Wie werden boolesche Werte in JSON ausgedrückt?
 - [EQ] Wie werden Arrays in JSON notiert?
-- [EQ] Gibt es irgendwelche speziellen Regeln für das Formatieren von JSON?
+- [EQ] Welche Regeln gelten für das Formatieren von JSON?
 
 Recherchieren Sie im Netz:
 
-- [EQ] Welche Haupteingenschaften machen JSON so populär?
 - [EQ] Warum wird JSON als 'leichtgewichtig' bezeichnet?
-- [EQ] Stellen Sie JSON bezüglich der Lesbarkeit, Effizienz und Verwendungsszenarien YAML und XML
-  gegenüber
-- [EQ] Bietet JSON die Möglichkeit Kommentare bzw. Kommentarzeilen einzubinden?
+- [EQ] Was sind die wichtigsten Stärken und Schwächen im Vergleich der drei
+  Notationen JSON, YAML und XML?
+- [EQ] Wie kann man bei JSON Kommentare einbinden?
+
 
 ### JSON-Objekt erstellen
 
 Jetzt sind sie gefragt. Sie sollen im Folgenden anhand der gegebenen Informationen ein eigenes
 JSON-Objekt erstellen.
 
-- [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `books.json` anhand der folgenden Vorgabe.
+- [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `m_json_books.json` anhand der folgenden Vorgabe.
+  Verwenden Sie Feldnamen in normaler Groß-/Kleinschreibung, obwohl man sonst tendenziell nur Kleinschreibung benutzt.
 
 ```md
 Ein Buch, das von einem Autor namens "Alice" geschrieben wurde. Der Titel des Buches lautet 
@@ -74,22 +70,26 @@ Ein Buch, das von einem Autor namens "Alice" geschrieben wurde. Der Titel des Bu
 ```
 
 - [ER] Ergänzen Sie aus [EREFR::1] die Eigenschaften `ISBN` und `Auflage` mit beliebigen Werten.
-- [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `student.json` anhand der folgenden Vorgabe.
+- [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `m_json_student.json` anhand der folgenden Vorgabe.
+  Jeder Datenwert (z.B. "16:00") soll ein eigenes Feld bekommen.
 
 ```md
-Ein Student namens "Max" besucht die Universität. Max hat die Fächer Softwaretechnik, Lineare
-Algebra und das Programmierpraktikum gewählt. Das Programmierpraktikum ist sein Lieblingsfach. Seine Lieblingsprogrammiersprache ist Python. Die Vorlesungszeiten für jedes Fach sind wie folgt:
+Ein Student namens "Max" besucht die Universität. 
+Max hat die Fächer Softwaretechnik, Lineare Algebra und das Programmierpraktikum gewählt. 
+Das Programmierpraktikum ist sein Lieblingsfach. 
+Seine Lieblingsprogrammiersprache ist Python. 
+Die Vorlesungszeiten für jedes Fach sind wie folgt:
 - Softwaretechnik: Montag und Mittwoch von 10:00 bis 12:00 Uhr
 - Lineare Algebra: Dienstag und Donnerstag von 14:00 bis 16:00 Uhr
 - Programmierpraktikum: keine
 
 Max strebt folgende Wunschnoten für jedes Fach an:
-- Softwaretechnik: 1,2
-- Lineare Algebra: 2,4
-- Programmierpraktikum: 1,0
+- Softwaretechnik: 1,3
+- Lineare Algebra: 2,7
 ```
 
-- [ER] Ergänzen Sie aus [EREFR::3] einen weiteren Studenten.
+- [ER] Ergänzen Sie einen Eintrag für einen zweiten Studenten in das JSON-Objekt.
+  Sie brauchen nur einen Namen anzugeben, die übrigen Felder können entfallen.
 
 [ENDSECTION]
 
@@ -110,7 +110,7 @@ Max strebt folgende Wunschnoten für jedes Fach an:
 }
 ```
 
-- [EREFR::2] Mögliche Lösung:
+- [EREFR::2] Mögliche Lösung (es gibt natürlich viele andere):
 
 ```JSON
 {
@@ -124,14 +124,16 @@ Max strebt folgende Wunschnoten für jedes Fach an:
         "Vorlesungszeiten": [
           {
             "Tag": "Montag",
-            "Zeit": "10:00 - 12:00 Uhr"
+            "Startzeit": "10:00",
+            "Endzeit": "12:00"
           },
           {
             "Tag": "Mittwoch",
-            "Zeit": "10:00 - 12:00 Uhr"
+            "Startzeit": "10:00",
+            "Endzeit": "12:00"
           }
         ],
-        "Wunschnote": 1.2
+        "Wunschnote": 1.3
       },
       {
         "Fachname": "Lineare Algebra",
@@ -139,20 +141,20 @@ Max strebt folgende Wunschnoten für jedes Fach an:
         "Vorlesungszeiten": [
           {
             "Tag": "Dienstag",
-            "Zeit": "14:00 - 16:00 Uhr"
+            "Startzeit": "14:00",
+            "Endzeit": "16:00"
           },
           {
             "Tag": "Donnerstag",
-            "Zeit": "14:00 - 16:00 Uhr"
+            "Startzeit": "14:00",
+            "Endzeit": "16:00"
           }
         ],
-        "Wunschnote": 2.4
+        "Wunschnote": 2.7
       },
       {
         "Fachname": "Programmierpraktikum",
         "Lieblingsfach": true,
-        "Vorlesungszeiten": "",
-        "Wunschnote": 1.0
       }
     ]
   }
