@@ -2,7 +2,8 @@ title: Ein hilfreicher Prompt für unsere Shell
 stage: beta
 timevalue: 0.5
 difficulty: 2
-requires: Git101
+explains: Prompt
+requires: Git101, Markdown
 ---
 [SECTION::goal::product]
 
@@ -33,17 +34,15 @@ folgende Zeile an:
 (Falls es bei Ihnen die Datei `~/.bash_profile` geben sollte, ist die Zeile hingegen dort richtig aufgehoben.)
 
 Benutzen Sie dafür z.B. den Editor nano:
-`nano .bashrc`.
+`nano ~/.bashrc`.
 Wie man da wieder rauskommt, ist am unteren Bildschirmrand beschrieben
 (`^` steht für die Umschalttaste Ctrl-/Strg-, `M-` ("meta") steht für `Alt-`.).
-
-
 
 Obiges erzeugt einen Prompt, der für schwarzen Terminal-Hintergrund konzipiert ist.
 Für einen weißen sollte man z.B. das "33m" auch durch "31m" ersetzen.
 Er benutzt pro Promptausgabe _zwei_ Zeilen, um eine ungestörte Eingabe zu erlauben.
 
-Aktivieren Sie ihn durch Aufruf von `source ~/.bashrc`.
+Aktivieren Sie den neuen Prompt durch Aufruf von `source ~/.bashrc`.
 
 
 ### Prompt verstehen
