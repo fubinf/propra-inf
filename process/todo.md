@@ -63,8 +63,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
-- `profiles:`-Header aus allen Tasks entfernen (die sind optional);
-   dann `profiles` aus sedrila.yaml entfernen, dann aus `sedrila`.
 - Taskgroups umbenennen:
     - `lizenzen` -> `Lizenzen`
     - `debuggingtools` -> `Debuggingtools`
@@ -79,8 +77,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 ### 2.3 Korrekturbedarf an sedrila
 
-- ZIP-Dateien sollten nicht die Ordnerhierarchie mitschleppen, sondern als
-  oberste Verzeichnisebene ihren eigenen Basisnamen haben.
 - `profiles`-Mechanismus in Sedrila und der Doku entfernen.
 - Konsistenzcheck, dass beim Aktualisieren eines Kurses keine bisherigen Aufgaben
   verschwinden.
