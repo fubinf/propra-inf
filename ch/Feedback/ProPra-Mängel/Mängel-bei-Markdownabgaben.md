@@ -2,7 +2,7 @@ title: Mängel bei Aufgaben mit Markdown-Abgabe
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: Einreichungen,Markdown101
+assumes: Einreichungen,Markdown
 ---
 
 [SECTION::goal::idea]

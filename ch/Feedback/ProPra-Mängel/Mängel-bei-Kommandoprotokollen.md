@@ -2,7 +2,7 @@ title: Mängel bei Aufgaben mit Kommandoprotokoll-Abgabe
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: Kommandoprotokolle,Einreichungen,Markdown101
+assumes: Kommandoprotokolle,Einreichungen,Markdown
 ---
 
 [SECTION::goal::idea]
