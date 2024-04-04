@@ -2,6 +2,7 @@ title: Protokolle von Kommandos und Kommandoausgaben abgeben
 stage: beta
 timevalue: 0.5
 difficulty: 2
+explains: manpage
 requires: Shellprompt
 ---
 [SECTION::goal::trial]
@@ -48,6 +49,7 @@ In dieser Aufgabe lernen wir eine bessere Lösung kennen und probieren sie aus.
 - Das Protokoll steht jetzt in der Datei `typescript`
 - Sehen Sie es sich mit `less typescript` an.
   So ungefähr wird das Ergebnis auch für die Tutor_in aussehen.
+  (Verlassen mit 'q', Hilfe mit 'h'. `less` kann eine ganze Menge.)
   
 [NOTICE]
 Es ist auch möglich, ohne neue Shell die Befehle einzeln nach und nach zu protokollieren.
@@ -90,7 +92,8 @@ Entfernen Sie diese daher nicht pauschal alle diese Symbole!
 Es ist auch möglich, einen anderen Texteditor als `nano` zu verwenden,
 falls Sie mit einem anderen besser vertraut sind.
 `nano` hat aber zwei Vorteile: Er ist anfängertauglich und auf so ziemlich jedem
-Linux-System vorhanden. 
+Linux-System vorhanden.
+(Allerdings kann `nano` auch nicht viel; man setzt ihn meist nur für einfache Zwecke ein.)
 [ENDNOTICE]
 
 [ENDSECTION]
@@ -99,8 +102,13 @@ Linux-System vorhanden.
 Benennen Sie die Datei `typescript` in die Form `*.txt` um.
 Dabei steht der Stern für den Aufgabennamen.
 Der Zielname ist in unserem Fall also `Kommandoprotokolle.txt` und Sie rufen auf:
-`rename typescript Kommandoprotokolle.txt`.
+`mv typescript Kommandoprotokolle.txt`.
 Geben Sie diese Datei ab.
+
+[NOTICE]
+Man kann `script` auch gleich so aufrufen, dass von vornherein der richtige Zieldateiname entsteht:
+`script zieldateiname`.
+[ENDNOTICE]
 
 Analog werden wir das künftig bei vielen Aufgaben machen.
 
@@ -110,6 +118,7 @@ Analog werden wir das künftig bei vielen Aufgaben machen.
 - Vor dem ersten solchen Kommando rufen Sie also **selbständig** `script` auf
   und nach dem letzten `exit`, dann benennen Sie die Datei `typescript` um.
   (Eine Datei namens `typescript` sollte selbst nie eingecheckt werden.)
+- Oder Sie benutzen einzelne `script`-Aufrufe für jedes zu protokollierende Kommando.
 - Falls Sie unterwegs Fehler gemacht haben, benutzen Sie nun den Editor,
   um diese Teile zu entfernen.
 - Wenn anhand der Arbeitsschritte zu erkennen ist, dass Sie zwischen den
