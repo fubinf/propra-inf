@@ -1,5 +1,5 @@
 title: pip, der Paketmanager von Python
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 explains: pip
@@ -48,14 +48,14 @@ Environment installiert werden.
    zu installieren.
 3. Überzeugen Sie sich davon, dass das Paket `colorama` nun installiert ist:  
    `python -c "import colorama"`
-4. Lesen Sie kurz nach, [wozu colorama dient](https://pypi.org/project/colorama/),
+4. [EC] Lesen Sie kurz nach, [wozu colorama dient](https://pypi.org/project/colorama/),
    und geben Sie ein Wort in Rot aus:  
    `python -c "import colorama as c; print('Ich bin ein' + c.Fore.RED + ' rotes ' + c.Style.RESET_ALL + 'Wort')"`
 
 
 ### `pip freeze`
 
-5. Betrachten Sie die Liste installierter Pakete:
+5. [EC] Betrachten Sie die Liste installierter Pakete:
    `pip freeze`  
    Hätte colorama Abhängigkeiten gehabt, also weitere Pakete, die installiert sein müssen,
    damit colorama funktionieren kann, dann wären diese mit installiert worden
@@ -83,12 +83,12 @@ Environment installiert werden.
 
 ### `pip uninstall`
 
-9. Wenn man ein Paket nicht mehr braucht (oft, weil man es nach dem Ausprobieren
+9. [EC] Wenn man ein Paket nicht mehr braucht (oft, weil man es nach dem Ausprobieren
    doch nicht einsetzen möchte), sollte man es wieder deinstallieren,
    damit die Paketliste verständlich bleibt.
    Auch das probieren wir jetzt aus:  
    `pip uninstall colorama`
-10. Und wieder das Ergebnis ansehen:  
+10. [EC] Und wieder das Ergebnis ansehen:  
     `pip freeze`
 
 ### `requirements.txt`
@@ -113,7 +113,8 @@ Pakete im Environment zu installieren.
 **Tipp:** Viele IDEs unterstützen die Verwendung von `requirements.txt` und bieten automatisch die Installation
 benötigter Pakete im eingerichteten `venv` an.
 
-Sie können `colorama` nach Fertigstellung der Aufgabe wieder deinstallieren und aus der `requirements.txt` entfernen,
+Sie können, wenn Sie es aufgeräumt mögen, `colorama` nach Fertigstellung der Aufgabe wieder 
+deinstallieren und aus der `requirements.txt` entfernen,
 sofern es nicht von einer anderen Aufgabe benötigt wird.
 
 [ENDSECTION]
