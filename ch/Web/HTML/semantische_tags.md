@@ -2,7 +2,6 @@ title: Semantische Tags
 stage: draft
 timevalue: 0.5
 difficulty: 1
-profiles: WEB
 assumes: elemente
 ---
 [SECTION::goal::trial]

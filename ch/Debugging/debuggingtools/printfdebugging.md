@@ -2,10 +2,6 @@ title: printf-Debugging
 stage: draft
 timevalue: 1.0
 difficulty: 2
-profiles:
-explains:
-assumes:
-requires:
 ---
 [SECTION::goal::idea]
 

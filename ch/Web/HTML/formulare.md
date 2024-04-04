@@ -2,7 +2,6 @@ title: Formulare
 stage: draft
 timevalue: 1.5
 difficulty: 2
-profiles: WEB
 ---
 [SECTION::goal::trial]
 

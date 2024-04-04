@@ -2,7 +2,6 @@ title: Elemente
 stage: draft
 timevalue: 1.0
 difficulty: 1
-profiles: WEB
 assumes: einfuehrung
 ---
 [SECTION::goal::trial]

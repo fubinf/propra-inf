@@ -2,7 +2,6 @@ title: Linting mit black
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-profiles: TEST
 explains: Linter
 assumes: venv, flake8
 ---

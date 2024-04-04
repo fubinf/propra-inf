@@ -2,10 +2,6 @@ title: Überblick über Open Source Lizenzen
 stage: draft
 timevalue: 2
 difficulty: 2
-profiles:
-explains:
-assumes:
-requires:
 ---
 [SECTION::goal::idea]
 - Ich habe eine Orientierung darüber, welche Lizenzen bei der Softwareentwicklung existieren.

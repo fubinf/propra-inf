@@ -2,9 +2,6 @@ title: Die Methoden des Ingenieurs
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-profiles:
-assumes:
-requires:
 ---
 [SECTION::goal::idea]
 Ich verstehe, welche Methoden Ingenieure verwenden, um einen zuverlässigen Entwurf zu gestalten

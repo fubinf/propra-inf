@@ -2,7 +2,6 @@ title: Backend Intro 2
 stage: draft
 timevalue: 1.0
 difficulty: 1
-profiles: WEB
 assumes: backend_intro_1
 ---
 [SECTION::goal::idea]

@@ -2,7 +2,6 @@ title: Frontend Intro
 stage: draft
 timevalue: 1.0
 difficulty: 1
-profiles: WEB
 ---
 [SECTION::goal::idea]
 

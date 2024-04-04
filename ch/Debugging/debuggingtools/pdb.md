@@ -2,10 +2,6 @@ title: PDB - Der Python DeBugger
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-profiles:
-explains:
-assumes:
-requires:
 ---
 [SECTION::goal::idea]
 

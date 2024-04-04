@@ -2,7 +2,6 @@ title: Funktionale Tests mit dem Robot Framework
 stage: beta
 timevalue: 1.5
 difficulty: 2
-profiles: TEST
 ---
 
 [SECTION::goal::experience,product]

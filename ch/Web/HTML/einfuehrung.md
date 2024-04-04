@@ -2,7 +2,6 @@ title: Einführung
 stage: draft
 timevalue: 0.5
 difficulty: 1
-profiles: WEB
 ---
 [SECTION::goal::trial]
 

@@ -2,7 +2,6 @@ title: printf-Debugging vs interaktives Debugging
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-profiles:
 explains:
 assumes: printfdebugging, pdb, IDE-Debugging
 requires:

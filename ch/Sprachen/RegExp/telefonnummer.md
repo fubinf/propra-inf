@@ -2,7 +2,6 @@ title: Telefonnummer Parsen
 stage: alpha
 timevalue: 1.0
 difficulty: 1
-profiles:
 ---
 [SECTION::goal::experience]
 Ich lerne ein praktisches Beispiel für reguläre Ausdrücke kennen 
