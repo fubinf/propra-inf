@@ -4,13 +4,11 @@ timevalue: 1.5
 difficulty: 3
 assumes: pytest101
 ---
-# Review (DM)
-- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
 
 
 [SECTION::goal::idea]
 
-- Ich kann Fixtures einordnen und anwenden
+Ich kann Fixtures einordnen und anwenden
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -20,12 +18,13 @@ Ohne eine Datenbank kann ich keine Tests über Datenbankabfragen gestalten, ohne
 wird es schwer, Abfragen über WebAPIs zu testen.
 
 Fixtures sind Teile von Software, die vor einem Test initialisiert werden und damit
-Voraussetzungen erfüllen, die ein System hat.
-Setzen Sie sich mithilfe der pytest-Dokumentation und bei Bedarf weiteren Quellen mit den
-folgenden Fragen auseinander:
+Voraussetzungen erfüllen, die ein System hat. Hier lernen Sie, wie Sie Fixtures nutzen können.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
+
+Setzen Sie sich mithilfe der pytest-Dokumentation und bei Bedarf weiteren Quellen mit den
+folgenden Fragen auseinander:
 
 - [EQ] Wie erstellt man einfache Fixtures in pytest?
 - [EQ] Wie können Sie Fixtures verwenden, um wiederkehrende Testdaten oder -umgebungen zu verwalten?
