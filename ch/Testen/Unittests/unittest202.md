@@ -4,29 +4,30 @@ timevalue: 4.0
 difficulty: 4
 assumes: unittest101, mocking
 ---
-# Review (DM)
-- Sind die Code-Schnipsel jetzt die Funktionen, für die die Vortäuschung vorgenommen werden soll? Warum wird dann auf eine Datei referenziert? -> Macht Arbeitsanweisung unklarer.
- -> Vielleicht: "Schreiben Sie einen Unittest für die nachstehende Funktion *xyz()* aus *abc.py*, ... "
-- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
-- Dafür in die Hintergrund-Sektion: Was lerne ich in dieser Aufgabe? Warum ist die für mich interessant?
- -> z.B. Mocking ist ja bla bla und wird oft gebraucht/ist wichtig zu können/etc, hier lernen wir das jetzt anzuwenden.
 
 [SECTION::goal::idea]
 
-- Ich kann einfache Unittest mocken
+Ich kann einfache Unittest mocken
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Zu jeder Aufgabe wird es eine kleine Funktion geben. Ihre Aufgabe ist es, die externe Abhängigkeiten und Seiteneffekte
-in zu Ihrem Tests zu isolieren, damit Sie sich auf das Testen der eigentlichen Logik einer Funktionen und Methoden
-konzentrieren können.
+Hier erhalten Sie die Gelegenheit Ihre Mocking Erfahrung auszuspielen. Dabei kommen API Mocks,
+Dateienmocks, SQL Mocks und Klassenmocks in den Vordergrund. Solche Mocks sind zeimlich oft anzufinden
+und daher als eine wichtige Grundlage im Umgang mit Unittests zu sehen.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-- [EC] Schreiben Sie einen Unittest für eine Funktion *get_weather_data()*, die ich in der Datei *weather.py* befindet, die eine externe API aufruft. Mocken Sie den API-Aufruf, um
-sicherzustellen, dass keine echten Netzwerkanfragen während des Tests gemacht werden.
+Zu jeder Aufgabe wird es eine kleine Funktion geben, die in einer bestimmten Datei abgelegt ist.
+Erstellen Sie diese Datei um anschließend damit zu arbeiten.
+Ihre Aufgabe ist es, die externe Abhängigkeiten und Seiteneffekte zu Ihrem Tests zu isolieren,
+damit Sie sich auf das Testen der eigentlichen Logik einer Funktionen und Methoden konzentrieren
+können.
+
+- [EC] Schreiben Sie einen Unittest für eine Funktion *get_weather_data()*, die sich in der Datei
+  *weather.py* befindet, die eine externe API aufruft. Mocken Sie den API-Aufruf, um sicherzustellen,
+  dass keine echten Netzwerkanfragen während des Tests gemacht werden.
 
 ```Python
 import requests
@@ -37,7 +38,9 @@ def get_weather_data(city):
     return response.json()
 ```
 
-- [EC] Schreiben Sie einen Unittest für eine Funktion *read_log_file()* aus der Datei *my_logs.py*, die eine Datei liest und verarbeitet. Mocken Sie die Dateioperationen, um zu verhindern, dass während der Tests echte Dateien gelesen oder geschrieben werden.
+- [EC] Schreiben Sie einen Unittest für eine Funktion *read_log_file()* aus der Datei *my_logs.py*,
+  die eine Datei liest und verarbeitet. Mocken Sie die Dateioperationen, um zu verhindern, dass
+  während der Tests echte Dateien gelesen oder geschrieben werden.
 
 ```Python
 def read_log_file(file_path):
@@ -49,7 +52,9 @@ def read_log_file(file_path):
     return count
 ```
 
-- [EC] Schreiben Sie einen Unittests für eine Funktion *process_user_data()* in der Datei *user_manager.py*, die von einer Klasse in Ihrem Projekt abhängt. Mocken Sie die Abhängigkeit, um isolierte Tests durchzuführen.
+- [EC] Schreiben Sie einen Unittests für eine Funktion *process_user_data()* in der Datei
+  *user_manager.py*, die von einer Klasse in Ihrem Projekt abhängt. Mocken Sie die Abhängigkeit,
+  um isolierte Tests durchzuführen.
 
 ```Python
 class UserManager:
@@ -64,7 +69,10 @@ def process_user_data(user_id):
     return user_data
 ```
 
-- [EC] Schreiben Sie eine Funktion *get_user_age()* aus der Datei *my_db_module.py*, die das Alter eines Benutzers aus einer SQL-Datenbank abruft. Schreiben Sie anschließend Unittests für diese Funktion, wobei die Datenbankverbindung und -abfragen gemockt werden, um keine echte Datenbank zu verwenden.
+- [EC] Schreiben Sie eine Funktion *get_user_age()* aus der Datei *my_db_module.py*, die das Alter
+  eines Benutzers aus einer SQL-Datenbank abruft. Schreiben Sie anschließend Unittests für diese
+  Funktion, wobei die Datenbankverbindung und -abfragen gemockt werden, um keine echte Datenbank zu
+  verwenden.
 
 ```Python
 import sqlite3
