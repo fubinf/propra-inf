@@ -7,7 +7,7 @@ explains: TDD
 
 [SECTION::goal::idea]
 
-- Ich kann das Konzept von TDD erklären
+Ich kann das Konzept von TDD erklären
 
 [ENDSECTION]
 [SECTION::background::default]

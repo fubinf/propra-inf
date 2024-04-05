@@ -115,6 +115,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/unittest201.md (Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
 - ch/Testen/Unittests/unittest202.md (Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
 - ch/Testen/Unittests/unittest301.md (Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
+- ch/Testen/Unittests/tdd.md (Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
 
 ## Reviews to do for Ivan Condric
 
@@ -142,7 +143,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/pytest103.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
 - ch/Testen/Unittests/pytest104.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
 - ch/Testen/Unittests/pytest201.md (Ronny Ruhe) (Review Daniel Müllers)
-- ch/Testen/Unittests/tdd.md (Ronny Ruhe) (Review Daniel Müllers)
 
 ## Reviews to do for Sven Hüster
 
