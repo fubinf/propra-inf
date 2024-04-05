@@ -2,24 +2,26 @@ title: Unittest in Python - Anwendung
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: unittest101, unittest102
+assumes: unittest101, unittest102, LokalesDeployment
 ---
-# Review (DM)
-- Hintergrund-Sektion enthält hier die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.- Dafür in die Hintergrund-Sektion: Was lerne ich in dieser Aufgabe? Warum ist die für mich interessant?
-- TODOs vervollständigen...
 
 [SECTION::goal::idea]
 
-- Ich kann einfache Unittests erstellen
-- Ich kann einfache Unittests am Bestandscode erweitern
+Ich kann einfache Unittests erstellen
+Ich kann einfache Unittests am Bestandscode erweitern
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Verwenden Sie den `Bestandscode v0.0.1` aus dem Bereich `TODO_2_Ruhe: Pfad zum Bestandscode` für die Erstellung der folgenden Unittests. Betrachten Sie die bereits erstellten unittests unter /tests/unittests/.
+Nachdem Sie viel über das Thema Unittests erfahren haben, können Sie hier die praktischen Erfahrungen
+sammeln und an einem Bestandscode die Qualität auf Ebene der Unittest prüfen. Dadurch bekommen Sie
+ein Gefühl dafür, wie sie einfache Unittest für bestehende Funktionen umsetzen können.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
+
+Verwenden Sie den `Bestandscode v1.0.0` aus dem Repository [PARTREF::SUT_v100] für die
+Erstellung der folgenden Unittests. Betrachten Sie die bereits erstellten unittests unter /tests/unittests/.
 
 - [ER] Erweitern Sie falls möglich die vorhandenen unittests.
 - [ER] Erstellen Sie einen unittest für test_profile_access().
