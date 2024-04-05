@@ -3,33 +3,30 @@ stage: alpha
 timevalue: 1.5
 difficulty: 3
 assumes: mocking
-requires:
 ---
-# Review (DM)
-- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
-- Ziel ist schwammig. Habe mal einen anderen Vorschlag gemacht. (siehe commit diff)
-
 
 [SECTION::goal::idea]
 
-- Ich kann erklären, wie das Python-Modul freezegun bei der Erstellung von Unittests hilft und welche Risiken die Verwendung birgt.
+Ich kann erklären, wie das Python-Modul freezegun bei der Erstellung von Unittests hilft und welche
+Risiken die Verwendung birgt.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Stellen Sie sich vor, dass Sie an einem Projekt beteiligt sind, beidem die aktuelle Tageszeit ein
-wichtiges Kriterium für die Ausführung von Code ist, z. B. ein Alarm in einem Kalender oder die
-tägliche Generierung von Logs.
-Da diese Programme aber nur zu bestimmten Zeitpunkten laufen und auf die Systemzeit zugreifen, muss
-die Zeit für Tests kontrolliert werden.
-Ein Modul, das dieses Problem in Python löst, ist "freezegun".
+Angenommen, Sie arbeiten an einem Projekt, in dem zeitgesteuerte Abläufe eine zentrale Rolle spielen,
+sei es das Auslösen eines Alarms im Kalender oder die regelmäßige Protokollierung von Daten. Doch
+für effektive Tests ist es oft unpraktisch, sich auf die aktuelle Systemzeit zu verlassen. Hier
+kommt das Python-Paket "freezegun" ins Spiel.
 Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-- [EQ] Welche Vorteile bietet das Einfrieren der Zeit in Testfällen?
-[EQ] Welche Probleme könnten auftreten, wenn Tests von realer Zeit abhängig sind und wie versucht
+Diese Bibliothek ermöglicht es, die Zeit in Tests zu kontrollieren, was besonders nützlich ist,
+wenn Code zu bestimmten Zeitpunkten ausgeführt werden soll.
+
+- [EQ] Sehen Sie Vorteile, die das Einfrieren der Zeit in Testfällen bietet?
+- [EQ] Welche Probleme könnten auftreten, wenn Tests von realer Zeit abhängig sind und wie versucht
    "freezegun" diese Probleme lösen?
 - [EQ] Können Sie ein einfaches Beispiel für die Verwendung von "freezegun" in einem Testfall mit
    "pytest" skizzieren?
@@ -39,6 +36,8 @@ Recherchieren Sie hierzu anhand der folgenden Leitfragen.
    ja, wie?
 - [EQ] Welche potenziellen Nachteile oder Risiken könnten mit der Verwendung von "freezegun" verbunden
    sein?
+- [EQ] Könnten Sie sich vorstellen ein Problem zu lösen, das mit freezegun gelöst werden kann, ohne
+  dieses Paket zu verwenden?
 
 [ENDSECTION]
 
