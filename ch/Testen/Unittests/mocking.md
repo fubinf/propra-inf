@@ -4,28 +4,28 @@ timevalue: 2.0
 difficulty: 3
 assumes: pytest101, pytest102
 ---
-# Review (DM)
- - Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
- - ggf. Quelle(n) als Hilfestellung, wenn mehr als Wikipedia erwartet wird.
- - Ziele ergänzt (siehe commit diff)
 
 [SECTION::goal::idea]
 
-- Ich kann beschreiben, was "Mocks" sind und wie sie in pytest Anwendung finden.
-- Ich kann "Mocks" von anderen Testmethoden abgrenzen.
-- Ich kann begründen, wann die Anwendung von "Mocks" sinnvoll ist.
+Ich kann beschreiben, was "Mocks" sind und wie sie in pytest Anwendung finden.
+Ich kann "Mocks" von anderen Testmethoden abgrenzen.
+Ich kann begründen, wann die Anwendung von "Mocks" sinnvoll ist.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-In dieser Aufgabe werden wir uns mit dem Konzept des "Code Mocking" und der Verwendung von pytest
-als Testframework auseinandersetzen.
-Mocking ermöglicht es, reale Abhängigkeiten und externe Ressourcen in Tests zu simulieren, um Tests
-zu isolieren und zuverlässigere Ergebnisse zu erzielen.  
+Wenn Sie vor der Herausforderung stehen, Unittests für Code zu schreiben, der auf Datenbankzugriffe,
+Nutzerverwaltung und externe API-Aufrufe angewiesen ist, aber keine echte Netzwerkverbindung oder
+andere Ressourcen zur Verfügung haben, können Mocking-Techniken Ihnen dabei helfen, diese
+Abhängigkeiten unter realen Bedingungen zu simulieren.
+
 Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
+
+In dieser Aufgabe werden wir uns mit dem Konzept des "Code Mocking" und der Verwendung von pytest
+als Testframework auseinandersetzen.
 
 - [EQ] Was versteht man genau unter dem Begriff "Code Mocking"?
 - [EQ] Welches Problem versucht Code Mocking zu lösen?
@@ -34,6 +34,7 @@ Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 - [EQ] Wie werden Mock-Objekte zur Nutzung in pytest erstellt?
 - [EQ] In welchen Situationen sollten wir Mocks verwenden, und wann sollten wir auf echte
    Implementierungen zugreifen?
+- [EQ] Können Sie sich vorstellen alle Ihre Testfälle zu mocken, oder gar keine Mocks einzusetzen?
 
 [ENDSECTION]
 
