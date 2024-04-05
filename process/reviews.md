@@ -60,8 +60,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Debugging/Häufige-Defektarten/d_indexing.md (Dominik Pietrak)
 - ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak)
 
-- ch/Bibliotheken/stdlib/m_subprocess2.md (Lutz Prechelt)
-
 - ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
 - ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
 - ch/Basis/Repo/SedrilaEinrichten.md (Christian Hofmann)
@@ -152,6 +150,9 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Sven Wegner
+
+- ch/Bibliotheken/stdlib/m_subprocess2.md (Lutz Prechelt)
+- ch/Bibliotheken/stdlib/sorted_and_sort.md (Lutz Prechelt)
 
 - ch/Bibliotheken/Frameworks/argparse-subcommand.md (Lutz Prechelt)
 
