@@ -5,13 +5,10 @@ difficulty: 2
 assumes: unittest101
 requires: GitHubDeployment
 ---
-# Review (DM)
-- Didaktisch keine Einwände. Offene Aufgabe am Ende schön.
-- Aufgabe K1: `sur.yaml` ist korrekt und soll nicht `sut.yaml` heißen?
 
 [SECTION::goal::idea]
 
-- Ich kann vorhandene Unittests in meiner Pipeline ausführen
+Ich kann vorhandene Unittests in meiner Pipeline ausführen
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -59,7 +56,7 @@ Wir wollen im folgenden einen Fehlerstatus betrachten.
 
 ### Fehler beseitigen
 
-- [EC] Beseitigen Sie selbstständig das Problem durch Korrigieren der `sur.yaml` Datei.
+- [EC] Beseitigen Sie selbstständig das Problem durch Korrigieren der `sut.yaml` Datei.
 
 [ENDSECTION]
 
