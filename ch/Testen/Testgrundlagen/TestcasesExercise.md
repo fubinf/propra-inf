@@ -1,5 +1,5 @@
 title: Übung Testfallstrukturen
-stage: beta
+stage: draft
 timevalue: 2.0
 difficulty: 2
 assumes: Testcases
