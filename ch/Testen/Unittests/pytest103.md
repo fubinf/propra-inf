@@ -4,29 +4,29 @@ timevalue: 1.5
 difficulty: 3
 assumes: pytest101, pytest102
 ---
-# Review (DM)
-- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
-- Eine weitere Aufgabe befindet sich ebenfalls in der Abgabendokumentation.
 
 [SECTION::goal::idea]
 
-- Ich kann Tests mit Metainformationen verbessern.
+Ich kann Tests mit Metainformationen verbessern.
 
 [ENDSECTION]
 [SECTION::background::default]
 
 Zur Organisation von Tests benötigten wir häufig Informationen, die nicht direkt in der Logik
-des Codes festgehalten sind.
+des Codes festgehalten sind. Pytest-Marks sind eine bemerkenswerte Funktion, die es den Entwicklern
+ermöglicht, Tests auf vielfältige Weise zu kennzeichnen und zu organisieren. Hier lernen Sie, wie Sie
+mit Hilfe von Marks selbst bei sehr vielen Tests den Überblick behalten.
+
+[ENDSECTION]
+[SECTION::instructions::loose]
 
 Marks in pytest sind ein leistungsfähiges Feature, mit dem Sie Tests oder Testfunktionen mit
 speziellen Eigenschaften versehen können.
 Sie können verwendet werden, um Tests zu organisieren, zu kennzeichnen oder sogar das Verhalten
 der Tests zu steuern.
+
 Setzen Sie sich mithilfe der pytest-Dokumentation und bei Bedarf weiteren Quellen mit den
 folgenden Fragen auseinander:
-
-[ENDSECTION]
-[SECTION::instructions::loose]
 
 - [EQ] Wie sehen Marks in pytest aus und wie können sie in Tests verwendet werden?
 - [EQ] Auf welche Teile von pytest können Marks angewandt werden?
