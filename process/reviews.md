@@ -39,7 +39,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
-- ch/Werkzeuge/Linter/flake8_SUT.md (Ronny Ruhe)
+- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->Müllers)
 
 - ch/Sprachen/Python1/PythonComments.md (Hanen Alrwasheda)
 - ch/Sprachen/Python1/PythonStrings.md (Hanen Alrwasheda)
@@ -50,7 +50,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/Python1/PythonIf.md (Hanen Alrwasheda)
 - ch/Sprachen/Python1/PythonElifElse.md (Hanen Alrwasheda)
 
-- ch/Testen/Unittests/tdd_pp.md (Ronny Ruhe)
+- ch/Testen/Unittests/tdd_pp.md (Ruhe->Müllers)
 
 - ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Müllers)
 - ch/Sprache/SQL/SQLSelect.md (Ruhe->Alrwasheda->Müllers)
@@ -65,8 +65,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Debugging/Häufige-Defektarten/d_indexing.md (Dominik Pietrak)
 - ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak)
 
-- ch/Testen/SUT/LokalesDeployment.md (Ronny Ruhe)
-- ch/Bibliotheken/stdlib/jsonPerformance.md (Ronny Ruhe)
+- ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
+- ch/Bibliotheken/stdlib/jsonPerformance.md (Ruhe->Hofmann)
 - ch/Basis/Repo/SedrilaEinrichten.md (Christian Hofmann)
 - ch/Basis/Repo/Einreichungen.md (Lutz Prechelt)
 
@@ -75,16 +75,16 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoringpraxis/03gildedrose_implementation.md (Dominik Pietrak)
 - ch/Bestandscode/Refactoringpraxis/04gildedrose_reflexion.md (Dominik Pietrak)
 
-- ch/Testen/API/index.md (Ronny Ruhe)
-- ch/Testen/API/ResponseApi.md (Ronny Ruhe)
-- ch/Testen/API/CRUDApi.md (Ronny Ruhe)
-- ch/Testen/API/RestApi.md (Ronny Ruhe)
+- ch/Testen/API/index.md (Ruhe->Hofmann)
+- ch/Testen/API/ResponseApi.md (Ruhe->Hofmann)
+- ch/Testen/API/CRUDApi.md (Ruhe->Hofmann)
+- ch/Testen/API/RestApi.md (Ruhe->Hofmann)
 
-- ch/Testen/Testframeworks/index.md (Ronny Ruhe)
-- ch/Testen/Testframeworks/Robot.md (Ronny Ruhe)
+- ch/Testen/Testframeworks/index.md (Ruhe->Hofmann)
+- ch/Testen/Testframeworks/Robot.md (Ruhe->Hofmann)
 
-- ch/Werkzeuge/Linter/flake8.md (Ronny Ruhe, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
-- ch/Werkzeuge/Linter/black.md (Ronny Ruhe, didaktischer Review von Hanen Alrwasheda anstatt Daniel Müllers)
+- ch/Werkzeuge/Linter/flake8.md (Ruhe->Alrwasheda->Hofmann)
+- ch/Werkzeuge/Linter/black.md (Ruhe->Alrwasheda->Hofmann)
 
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Dominik Pietrak)
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Dominik Pietrak)
