@@ -4,23 +4,22 @@ timevalue: 1.0
 difficulty: 2
 assumes: unittest101
 ---
-# Review (DM)
-- Hintergrund-Sektion enthält hier (z.T.) die Aufgabenbeschreibung. Das sollte wohl eher Teil der Aufgabeninstruktionen sein.
-- F1: Wie wird pytest installiert? -> Ggf. konkret nach Kommandos fragen für eine eindeutigere Lösung. Oder vielleicht hier schon installieren lassen.
 
 [SECTION::goal::idea]
 
-- Ich kenne die Unterschiede zwischen Unittests und Pytests
+Ich kenne die Unterschiede zwischen Unittests und Pytests
 
 [ENDSECTION]
 [SECTION::background::default]
 
-pytest ist eine in Python häufig genutzte Alternative zum mitgelieferten unittest.
-Arbeiten Sie sich mittels der Dokumentation von pytest und bei Bedarf weiteren Quellen mittels
-der folgenden Fragen in das Framework ein.
+Pytest ist eine in Python häufig genutzte Alternative zum mitgelieferten unittest. Dieses Framework
+bietet die eine umfassende Sammlung an Assertions und ist leichter zu bedienen als Unittet-Framework.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
+
+Arbeiten Sie sich mittels der Dokumentation von pytest und bei Bedarf weiteren Quellen mittels
+der folgenden Fragen in das Framework ein.
 
 - [EQ] Wie wird pytest installiert?
 - [EQ] Wie unterscheiden sich Tests in pytest von denen in unittest?

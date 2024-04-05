@@ -106,16 +106,17 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Testen/Unittests/index.md (Dominik Pietrak und Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
-- ch/Testen/Unittests/coverage.md (Dominik Pietrak und Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
-- ch/Testen/Unittests/freezegun.md (Dominik Pietrak und Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
-- ch/Testen/Unittests/mocking.md (Dominik Pietrak und Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
-- ch/Testen/Unittests/unittest101.md (Dominik Pietrak und Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
-- ch/Testen/Unittests/unittest102.md (Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
-- ch/Testen/Unittests/unittest201.md (Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
-- ch/Testen/Unittests/unittest202.md (Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
-- ch/Testen/Unittests/unittest301.md (Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
-- ch/Testen/Unittests/tdd.md (Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
+- ch/Testen/Unittests/index.md (Pietrak und Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/coverage.md (Pietrak und Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/mocking.md (Pietrak und Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/unittest101.md (Pietrak und Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/unittest201.md (Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/unittest202.md (Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/unittest301.md (Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/tdd.md (Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/pytest101.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 
 ## Reviews to do for Ivan Condric
 
@@ -130,19 +131,18 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ronny Ruhe
 
-- ch/Testen/Testgrundlagen/Error.md (Ronny Ruhe) (Ruhe->Müllers->Prechelt->Ruhe)
-- ch/Testen/Testgrundlagen/ErrorExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Testgrundlagen/Testcases.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Testgrundlagen/TestcasesExercise.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Testgrundlagen/Testpyramide.md (Ronny Ruhe) (nach Review von Daniel Müllers)
-- ch/Testen/Testgrundlagen/TestDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
-- ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Testgrundlagen/Error.md (Ruhe->Müllers->Prechelt->Ruhe)
+- ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
+- ch/Testen/Testgrundlagen/Testcases.md (Ruhe->Müllers->Prechelt->Ruhe)
+- ch/Testen/Testgrundlagen/TestcasesExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
+- ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->Müllers->Prechelt->Ruhe)
+- ch/Testen/Testgrundlagen/TestDelimitations.md (Ruhe->Müllers->Prechelt->Ruhe)
+- ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
 
-- ch/Testen/Unittests/pytest101.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
-- ch/Testen/Unittests/pytest102.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
-- ch/Testen/Unittests/pytest103.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
-- ch/Testen/Unittests/pytest104.md (Dominik Pietrak und Ronny Ruhe) (Review Daniel Müllers)
-- ch/Testen/Unittests/pytest201.md (Ronny Ruhe) (Review Daniel Müllers)
+- ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/pytest104.md (Pietrak und Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/pytest201.md (Ruhe->Müllers->Alrwasheda)
 
 ## Reviews to do for Sven Hüster
 
