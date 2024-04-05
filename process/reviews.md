@@ -111,6 +111,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/freezegun.md (Dominik Pietrak und Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
 - ch/Testen/Unittests/mocking.md (Dominik Pietrak und Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
 - ch/Testen/Unittests/unittest101.md (Dominik Pietrak und Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
+- ch/Testen/Unittests/unittest102.md (Ronny Ruhe->Daniel Müllers->Hanen Alrwasheda)
 
 ## Reviews to do for Ivan Condric
 
@@ -133,7 +134,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Testgrundlagen/TestDelimitations.md (Ronny Ruhe) (Review Daniel Müllers)
 - ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ronny Ruhe) (Review Daniel Müllers)
 
-- ch/Testen/Unittests/unittest102.md (Ronny Ruhe) (Review Daniel Müllers)
 - ch/Testen/Unittests/unittest201.md (Ronny Ruhe) (Review Daniel Müllers)
 - ch/Testen/Unittests/unittest202.md (Ronny Ruhe) (Review Daniel Müllers)
 - ch/Testen/Unittests/unittest301.md (Ronny Ruhe) (Review Daniel Müllers)
