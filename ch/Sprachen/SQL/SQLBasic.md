@@ -1,20 +1,7 @@
-title: SQL Grundlagen
+title: SQL Grundlagenbefehle
 stage: alpha
 timevalue: 1
 difficulty: 1
----
-
-TODO_ruhe:
-
-- Warnung über Datenverlust bei Neuladen der vorgeschlagenen Seite stimmt nicht ganz. Die Daten werden im local storage gespeichert. 
-
-- "Navigieren Sie in die SQLite DB auf der linken Seite und wählen Sie `click to connect`, um
-sich mit der DB zu verbinden." Dieser Schritt ist nicht klar genug und könnte auch überflüssig sein. Ich habe es selbst probiert, eine manuelle Verbindung war überhaupt nicht nötig. 
-
-- Die Infos über "SQL Query Abschluss" und "Abhängigkeiten" passen eher als Notizen (s.b. NOTICE Makro) und nicht als Hinweise
-
-- Unter "Tabelle bearbeiten" bitte besser erklären, dass "ALTER TABLE <table_name>;" nur der erste Teil des Befehls ist (nur wegen Semikolon). Ein Beispiel mit einer der Operationen könnte die Idee verständlicher machen. 
-
 ---
 
 [SECTION::goal::idea]
@@ -49,14 +36,7 @@ wir das Erlernen der Syntax zunächst über die Seite [SQLite Online](https://sq
 bekommen wir direkt zugriff auf eine Online DB, mit der wir bis zu einer gewissen Grenze frei
 agieren können.
 
-[WARNING]
-Das erneute Laden der Seite für nicht angemeldete Nutzer sorgt dafür, dass die gemachten
-Änderungen zurückgesetzt werden. Registrieren oder Anmelden ist aber für unsere Zwecke nicht
-notwendig.
-[ENDWARNING]
-
-Navigieren Sie in die SQLite DB auf der linken Seite und wählen Sie `click to connect`, um
-sich mit der DB zu verbinden.
+Navigieren Sie in die SQLite DB, falls nicht automatisch geschehen.
 
 ### Tabelle
 
@@ -71,10 +51,10 @@ Die Syntax zum Erstellen einer Tabelle ist intuitiv:
 CREATE TABLE <tabel_name>;
 ```
 
-[HINT::SQL Query Abschluss]
+[NOTICE]
 Ein beliebter Fehler im Umgang mit einer SQL Abfrage ist das 'versehentliche' weglassen des
 notwendigen Semikolons am Ende.
-[ENDHINT]
+[ENDNOTICE]
 
 Eine leere Tabelle gibt erst einmal nicht viel Spielraum für einen guten Nutzen, daher sollte eine
 Tabelle Informationen aufnehmen können. Diese Informationen werden ebenfalls strukturiert, dabei
@@ -107,8 +87,14 @@ Mit folgendem Befehl ist das Manipulieren einer Tabelle möglich:
 ALTER TABLE <table_name>;
 ```
 
-Je nachdem was man machen möchte, folgt danach `ADD <column_name> <datatype>`, `DROP COLUMN <column_name>`
-oder `RENAME COLUMN <column_name> to <column_name_new>`.
+Je nachdem was man machen möchte, folgt hinter dem Tabellennamen, aber vor dem Smikolon
+`ADD <column_name> <datatype>`, `DROP COLUMN <column_name>` oder
+`RENAME COLUMN <column_name> to <column_name_new>`. Zum Beispiel:
+
+```sql
+ALTER TABLE <table_name>
+DROP COLUMN <column_name>;
+```
 
 - [EC] Ändern Sie die Tabellennamen so um, dass sie nur noch kleingeschrieben sind.
 - [EC] Fügen Sie eine neue Spalte ein, die das Alter des Hundes speichern soll.
@@ -125,11 +111,11 @@ Tabellen können wie folgt gelöscht werden:
 DROP TABLE <table_name>;
 ```
 
-[HINT::Abhängigkeiten]
+[NOTICE]
 Tabelleninhalte können Abhängigkeiten oder Regeln ("[TERMREF::Constraint]") haben, die das Löschen
 einer Tabelle ohne weiteren EIngriff verhindern. Dies ist hier nicht der Fall, weshalb der Befehl
 alle Inhalte und die Tabelle selbst löscht.
-[ENDHINT]
+[ENDNOTICE]
 
 #### Tabelle mit Constraints erstellen
 

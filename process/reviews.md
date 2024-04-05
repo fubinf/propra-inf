@@ -88,7 +88,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Lutz Prechelt
 
-
+- ch/Sprachen/SQL/SQLBasic.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 - ch/Sprache/SQL/SQLJoin.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 - ch/Sprache/SQL/SQLProject.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 
@@ -120,7 +120,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ronny Ruhe
 
-- ch/Sprachen/SQL/SQLBasic.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 - ch/Sprache/SQL/SQLSelect.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 
 - ch/Testen/Testgrundlagen/Error.md (Ronny Ruhe) (Ruhe->Müllers->Prechelt->Ruhe)
