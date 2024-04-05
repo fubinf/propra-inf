@@ -5,14 +5,6 @@ difficulty: 2
 assumes: SQLBasic
 ---
 
-TODO_ruhe:
-
-- K1: "... Verwenden Sie die folgende Tabelle id INTEGER PRIMARY KEY." Was ist hiermit gemeint? Bitte verständlicher formulieren.
-
-- K17: "Gruppieren Sie: Die Anzahl der Hunde pro Besitzer, die mehr als gleich 2 Hunde haben" Bitte verständlicher formulieren.
-
----
-
 [SECTION::goal::experience]
 
 Ich kann komplexere `SELECT` Anweisungen schreiben und die Ergebnisse ausgeben lassen.
@@ -34,8 +26,8 @@ Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. D
 der wir in dieser Aufgabe arbeiten wollen.
 
 - [EC] Erstellen Sie die Tabelle `dogs` mit den Spalten `name`, `breed`, `age`, `gender`, `color`,
-  `birthdate`, `owner_id` und den folgenden Einträgen. Verwenden Sie die folgende Tabelle 
-  `id INTEGER PRIMARY KEY`.
+  `birthdate`, `owner_id` und den folgenden Einträgen. Nehmen Sie die Spalte `id INTEGER PRIMARY KEY`
+  mit in die Tabelle auf.
 
 ```sql
 ('Buddy', 'Labrador Retriever', 3, 'Male', 'Golden', '2019-05-10', 1),
@@ -193,7 +185,7 @@ GROUP BY <column>
 HAVING COUNT(*) > <int>;
 ```
 
-- [EC] Gruppieren Sie: Die Anzahl der Hunde pro Besitzer, die mehr als gleich 2 Hunde haben.
+- [EC] Gruppieren Sie: Die Anzahl der Hunde pro Besitzer, mit mehr als gleich 2 Hunde pro Besitzer.
 
 #### Sortieren
 
