@@ -2,24 +2,26 @@ title: Pytest in Python - Anwendung
 stage: draft
 timevalue: 2.0
 difficulty: 2
-assumes: pytest101
+assumes: pytest101, LokalesDeployment
 ---
-# Reviews (DM)
-- Todos vervollständigen. 
-- Wo finden sich die User Stories?
-- Kannst du natürlich auch einfach als eine Aufgabe formulieren...
 
 [SECTION::goal::idea]
 
-- Ich kann einfache Pytests erstellen
+Ich kann einfache Pytests erstellen
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Verwenden Sie den `Bestandscode v0.0.1` aus dem Bereich `TODO_2_Ruhe: Pfad zum Bestandscode` für die Erstellung der folgenden Pytests.
+Hier können Sie Ihr Wissen und vor allem Können im Umgang mit Pytests an einem Bestandscode anwenden.
+Dabei erhalten Sie ein Gefühl dafür, wie Sie Unittests mittel dem Pytest-Framework an einem Code
+anwenden, den Sie nichzt selbst geschrieben haben, was Ihre Fähigkeiten und Ihr Verständnis im
+Umgang mit Unittests verbessert.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
+
+Verwenden Sie den `Bestandscode v1.0.0` aus dem Bereich [PARTREF::SUT_v100] für die Erstellung der
+folgenden Pytests.
 
 - [EC] Erstellen Sie einen Pytest für die User Story 1.
 - [EC] Erstellen Sie einen Pytest für die User Story 2.

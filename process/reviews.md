@@ -118,6 +118,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 - ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 - ch/Testen/Unittests/pytest104.md (Pietrak und Ruhe->Müllers->Alrwasheda)
+- ch/Testen/Unittests/pytest201.md (Ruhe->Müllers->Alrwasheda)
 
 ## Reviews to do for Ivan Condric
 
@@ -139,8 +140,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/TestDelimitations.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
-
-- ch/Testen/Unittests/pytest201.md (Ruhe->Müllers->Alrwasheda)
 
 ## Reviews to do for Sven Hüster
 
