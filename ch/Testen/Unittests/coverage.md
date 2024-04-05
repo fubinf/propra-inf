@@ -18,13 +18,16 @@ Quellcodes von Tests getestet wird, was die Wahrscheinlichkeit von Fehlern verri
 Stabilität des Programms verbessert. Darüber hinaus kann eine gute Code-Abdeckung auch das
 Vertrauen in den Code erhöhen, da Entwickler und Stakeholder ein besseres Verständnis dafür
 bekommen, welche Teile des Codes abgesichert sind und welche nicht. Jedoch können wenige Testfälle
-auch viel Abdecken, viele Testfälle bestimmte Bereiche doppelt testen. Hier sollen sie sich mit dem
-Theme auseinander setzen, wie man sicherstellen kann, dass Tests eine angemessene Code-Abdeckung
-bieten?
-Recherchieren Sie hierzu anhand der folgenden Leitfragen.
+auch viel Abdecken, viele Testfälle bestimmte Bereiche doppelt testen.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
+
+Hier sollen sie sich mit dem
+Thema auseinander setzen, wie man sicherstellen kann, dass Tests eine angemessene Code-Abdeckung
+bieten?
+
+Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 
 - [EQ] Was versteht man unter dem Begriff "Code Coverage"?
 - [EQ] Welche Arten von Code-Coverage-Metriken gibt es?

@@ -17,13 +17,14 @@ Angenommen, Sie arbeiten an einem Projekt, in dem zeitgesteuerte Abläufe eine z
 sei es das Auslösen eines Alarms im Kalender oder die regelmäßige Protokollierung von Daten. Doch
 für effektive Tests ist es oft unpraktisch, sich auf die aktuelle Systemzeit zu verlassen. Hier
 kommt das Python-Paket "freezegun" ins Spiel.
-Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
 
 Diese Bibliothek ermöglicht es, die Zeit in Tests zu kontrollieren, was besonders nützlich ist,
 wenn Code zu bestimmten Zeitpunkten ausgeführt werden soll.
+
+Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 
 - [EQ] Sehen Sie Vorteile, die das Einfrieren der Zeit in Testfällen bietet?
 - [EQ] Welche Probleme könnten auftreten, wenn Tests von realer Zeit abhängig sind und wie versucht

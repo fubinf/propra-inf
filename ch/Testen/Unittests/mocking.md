@@ -15,17 +15,17 @@ Ich kann begründen, wann die Anwendung von "Mocks" sinnvoll ist.
 [SECTION::background::default]
 
 Wenn Sie vor der Herausforderung stehen, Unittests für Code zu schreiben, der auf Datenbankzugriffe,
-Nutzerverwaltung und externe API-Aufrufe angewiesen ist, aber keine echte Netzwerkverbindung oder
+Nutzerverwaltung und externe [TERMREF::API]-Aufrufe angewiesen ist, aber keine echte Netzwerkverbindung oder
 andere Ressourcen zur Verfügung haben, können Mocking-Techniken Ihnen dabei helfen, diese
 Abhängigkeiten unter realen Bedingungen zu simulieren.
-
-Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
 
 In dieser Aufgabe werden wir uns mit dem Konzept des "Code Mocking" und der Verwendung von pytest
 als Testframework auseinandersetzen.
+
+Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 
 - [EQ] Was versteht man genau unter dem Begriff "Code Mocking"?
 - [EQ] Welches Problem versucht Code Mocking zu lösen?
