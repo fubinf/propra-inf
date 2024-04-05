@@ -52,6 +52,11 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Testen/Unittests/tdd_pp.md (Ronny Ruhe)
 
+- ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Müllers)
+- ch/Sprache/SQL/SQLSelect.md (Ruhe->Alrwasheda->Müllers)
+- ch/Sprache/SQL/SQLJoin.md (Ruhe->Alrwasheda->Müllers)
+- ch/Sprache/SQL/SQLProject.md (Ruhe->Alrwasheda->Müllers)
+
 ## Reviews to do for Christian Hofmann
 
 - ch/Debugging/Häufige-Defektarten/a_logic.md (Dominik Pietrak)
@@ -85,11 +90,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Dominik Pietrak)
 
 ## Reviews to do for Lutz Prechelt
-
-- ch/Sprachen/SQL/SQLBasic.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
-- ch/Sprache/SQL/SQLSelect.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
-- ch/Sprache/SQL/SQLJoin.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
-- ch/Sprache/SQL/SQLProject.md (Ronny Ruhe, reviewed by Hanen Alrwasheda)
 
 - ch/Bestandscode/Refactoring-Grundlagen/Extraction-Of-Code.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
 
