@@ -5,7 +5,7 @@ difficulty: 2
 assumes: d_indexing
 ---
 [SECTION::goal::idea]
-Ich verstehe, welche Form Grenzdefekte im Code annehmen können und habe einen solchen Defekt 
+Ich verstehe, welche Form Grenzdefekte im Code annehmen können, und habe einen solchen Defekt 
 in fremdem Code erfolgreich gefunden.
 [ENDSECTION]
 
@@ -18,7 +18,7 @@ nicht korrekt verarbeitet werden, also etwa die ersten oder letzten Elemente ein
 Ein Indexdefekt ([PARTREFTITLE::d_indexing]) führt häufig zu einem Grenzdefekt.
 Er kann dazu führen, dass Code die ersten oder letzten paar Elemente gar nicht bearbeitet,
 also wenn der Index zu restriktiv ist.
-Oder er kann dazu führen, dass der Code abstürzt, weil er über das Ende der Datenstruktur hinaus 
+Er kann auch dazu führen, dass das Programm abstürzt, weil es über das Ende der Datenstruktur hinaus 
 zugreifen möchte, also der Index zu weitgefasst ist.
 
 Andere Grenzdefekte treten auf, wenn der Code falsche Annahmen trifft, die auf das erste oder 
@@ -64,7 +64,7 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
 2. Sind die `return`-Ausdrücke richtig?  
    Stellen Sie sicher, dass die Funktion dem vorgegebenen Verhalten folgt, 
    also nicht aus Versehen `False` und `True` verwechselt.
-3. Welchen Satz von Eingaben müssen Sie wählen, um sicherzustellen, dass jede Zeile des Codes 
+3. Welche Menge von Eingaben müssen Sie wählen, um sicherzustellen, dass jede Zeile des Codes 
    abgedeckt ist?
 
 [HINT::Lösungshinweise]
@@ -72,9 +72,8 @@ Bei einem solchen Algorithmus ist es wahrscheinlich, dass das Versagen in der N�
 auftritt, in diesem Fall also bei kleinen Zahlen.
 Gehen Sie diesen Code mit den folgenden Werten für den Parameter `number` durch:
 
-[HINT::Erste Eingabe]
+#### Erste Eingabe
 Testen Sie den Spezialfall: Setzen Sie `number` auf 1.
-[ENDHINT]
 
 [HINT::Zweite Eingabe]
 Testen Sie die Hauptlogik mit einer Mischung aus kleinen Primzahlen und Nicht-Primzahlen:

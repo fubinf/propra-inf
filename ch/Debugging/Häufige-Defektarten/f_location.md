@@ -5,7 +5,7 @@ difficulty: 2
 assumes: b_expression
 ---
 [SECTION::goal::idea]
-Ich verstehe, in welcher Form Lokalisierungsdefekte meinen Code mangelhaft werden lassen und
+Ich verstehe, in welcher Form Lokalisierungsdefekte meinen Code mangelhaft werden lassen, und
 habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 [ENDSECTION]
 
@@ -22,7 +22,7 @@ Allerdings liefert die Bearbeitung der ersten Aufgabe etwas mehr Kontext über d
 
 Als Lokalisierungsdefekt werden Defekte bezeichnet, bei dem sich Code in der falschen Reihenfolge 
 innerhalb des Programms befindet.
-Ein Beispiel wäre es, wenn die Initialisierung einer Variable innerhalb einer Schleife
+Ein Beispiel ist es, wenn die Initialisierung einer Variable innerhalb einer Schleife
 anstatt außerhalb stattfindet:
 
 ```python
@@ -33,7 +33,7 @@ while some_condition():
 
 Ein weiteres Beispiel für einen Lokalisierungsdefekt ist es, wenn die Reihenfolge der Anweisungen
 nicht mit der gewünschten Reihenfolge der Operationen übereinstimmt. 
-Häufig werden aus Versehen zwei Instruktionen vertauscht.
+Häufig werden versehentlich zwei Instruktionen vertauscht.
 Der folgende Code versucht ein Element aus einer Liste auf 0 zu setzen, nachdem es den Wert
 zu einer Summe hinzugefügt hat.
 Leider sind die beiden Instruktionen vertauscht:
@@ -52,7 +52,7 @@ result = math.sqrt(c)
 c = math.pow(a,2) + math.pow(b,2)
 ```
 
-Anweisungen können auch im falschen Block stehen, vor allem wenn die Blocks über mehrere Ebenen
+Anweisungen können auch im falschen Block stehen, vor allem wenn die Blöcke über mehrere Ebenen
 hinweg verschachtelt sind:
 
 ```python
@@ -84,7 +84,7 @@ print(list_head)
 ```
 
 Diese überflüssige Anweisung könnte ein Überbleibsel eines früheren Algorithmus sein,
-ein Fehler beim Kopieren und Einfügen oder einfach ein Fehler des Programmierers gewesen sein.
+ein Fehler beim Kopieren und Einfügen oder einfach ein Fehler des Programmierers.
 
 
 ### Ihre Aufgabe
@@ -106,7 +106,7 @@ Falls Sie die Aufgabe [PARTREFTITLE::b_expression] nicht bearbeitet haben, ist h
   `["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]`
   und die Farbe ein Element aus der Liste 
   `["spades", "hearts", "diamonds", "clubs"]`.
-- Eine Hand ist ein Wörterbuch.  
+- Eine Hand ist ein [TERMREF::Wörterbuch].  
   In jedem Element des Wörterbuchs ist der Schlüssel ein Rang und sein Wert eine Liste von
   dazugehörigen Farben, die der Spieler in seiner Hand hält.
   Wenn also z. B. ein Spieler die "Pik 3" und "Herz 3" in seiner Hand hält, aber keine weiteren 3er-Karten,
@@ -145,7 +145,7 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
 [HINT::Lösungshinweis]
 Durchlaufen Sie den Code mit den folgenden Parametern:
 
-[HINT::Erste Eingabe]
+#### Erste Eingabe
 Der Gegenspieler hat eine Karte des gefragten Rangs:
 ````python
 hand_name = "HAND"
@@ -154,7 +154,6 @@ card_rank = "5"
 opponent_hand = {"6": ["diamonds"], 
                  "10": ["clubs"]}
 ````
-[ENDHINT]
 
 [HINT::Zweite Eingabe]
 Der Gegenspieler besitzt keine Karte des gefragten Rangs:

@@ -184,6 +184,19 @@ Es wird zwischen Erzeugungsmustern (Creational Patterns), Strukturmustern (Struc
 und Verhaltensmustern (Behavioral Patterns) unterschieden.
 [ENDTERM]
 
+[TERM::Dictionary|dict|Wörterbuch|Map]
+Hierbei handelt es sich um eine Datenstruktur, die Werte einer Menge (genannt "Schlüssel"/"Keys")
+auf Werte einer anderen (möglicherweise überschneidenden oder sogar deckungsgleichen) Menge
+(genannt "Werte"/"Values") abbildet.  
+Eine oft gesehene Notation ist `{key1: value1, key2: value2}`.  
+Dieses konkrete Beispiel bildet den Schlüssel `key1` auf den Wert `value1` und `key2` auf
+`value2` ab. Alle anderen möglichen Schlüssel werden nicht abgebildet, gelten also nicht als
+Teil der Datenstruktur.  
+Häufig sind die Schlüssel skalar (also beispielsweise Zahlen oder Zeichenketten), aber die
+Werte beliebiger Natur (beispielsweise Listen).  
+Zur Verwendung siehe [die Python-Dokumentation zu Dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries).
+[ENDTERM]
+
 [TERM::DRY|DRY-Prinzip|Don't repeat yourself]
 DRY steht für "don't repeat yourself" ist ein Prinzip, dass besagt, Redundanz zu vermeiden oder 
 zumindest zu reduzieren.  

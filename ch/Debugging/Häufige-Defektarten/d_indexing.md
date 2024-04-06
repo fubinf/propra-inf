@@ -5,7 +5,7 @@ difficulty: 2
 ---
 [SECTION::goal::idea]
 
-Ich verstehe, welche Form Indexdefekte im Code annehmen können und habe einen solchen Defekt in 
+Ich verstehe, welche Form Indexdefekte im Code annehmen können, und habe einen solchen Defekt in 
 fremdem Code erfolgreich gefunden. 
 
 [ENDSECTION]
@@ -20,7 +20,7 @@ Viele Sprachen benutzen nullbasierte Indizes.
 Das heißt, dass gültige Indizes bei einem Array der Größe `N` von `0` bis `N-1` gehen.
 Dies führt zu häufigen Indexdefekten, wenn man mittels einer Schleife durch so eine Datenstruktur 
 läuft und mit dem Index 1 statt 0 beginnt.
-Das sollte man z. B. in Python bei der Nutzung der Funktion `range(1, n)` beachten, 
+Das sollte man beispielsweise in Python bei der Nutzung der Funktion `range(1, n)` beachten, 
 die die Zahlen von `1` bis `n-1` beinhaltet.
 
 ```python
@@ -37,7 +37,7 @@ Wir veranschaulichen dies mit einer `for`-Schleife in C:
 ```c
 for (i = 0; i <= n; i++) { 
     // code that processes array[i]
-    }
+}
 ```
 
 Manchmal werden solche Defekte auch als Off-By-One-Error bezeichnet. 
@@ -84,9 +84,9 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 1. Betrachten Sie die Variable `flag`.
    Sie hat einen sehr unglücklich gewählten Namen.
-   Bestimmen Sie, wofür `flag` benutzt wird und benennen Sie die Variable um.
+   Bestimmen Sie, wofür `flag` benutzt wird, und benennen Sie die Variable um.
 2. Finden Sie heraus, welche Situationen in diesem Code auftreten können
-   (z. B. der Substring wird gar nicht gefunden).
+   (wie beispielsweise, dass der Substring gar nicht gefunden wird).
 3. Sehen Sie sich die Stellen an, an denen `outer_string` und `sub_string` indiziert werden.
    Welche Einschränkungen gibt es für die Indizierung in diesen Zeichenketten 
    und was bedeutet das für die Einschränkung der verwendeten Variablen?

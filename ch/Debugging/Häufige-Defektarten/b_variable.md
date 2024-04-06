@@ -6,7 +6,7 @@ assumes: b_expression, f_location
 ---
 [SECTION::goal::idea]
 
-Ich verstehe, in welcher Form falsch benutzte Variablen als Defekte auftreten und 
+Ich verstehe, in welcher Form falsch benutzte Variablen als Defekte auftreten, und 
 habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
@@ -18,14 +18,14 @@ Der in dieser Aufgabe zu bearbeitende Code gehört zum Spiel "[Go Fish](https://
 Der vorhergehende Code hierzu wird in den Aufgaben [PARTREFTITLE::b_expression] und 
 [PARTREFTITLE::f_location] besprochen.
 Wenn Sie den Code durch aufmerksames Lesen und händisches Durchgehen debuggen, 
-ist es nicht nötig die ersten beiden Aufgaben bearbeitet zu haben. 
-Sollten Sie allerdings dem Bug über Tools oder weitere Zeilen Code auf die Schliche kommen wollen,
+ist es nicht nötig, die ersten beiden Aufgaben bearbeitet zu haben. 
+Sollten Sie allerdings dem Bug über Tools oder zusätzlichen Code auf die Schliche kommen wollen,
 benötigen Sie den (korrigierten) Code aus den anderen beiden Aufgaben.
 [ENDWARNING]
 
 ### Eine Heranführung an falsch benutzte Variablen
 
-Ein einfacher und häufiger Defekt ist es den falschen Variablennamen zu benutzen.
+Ein einfacher und häufiger Defekt ist die Benutzung des falschen Variablennamens.
 Zum Beispiel wollte der Autor 
 
 ```python
@@ -38,10 +38,10 @@ schreiben, hat aber stattdessen folgendes geschrieben:
 j = 5
 ```
 
-In vielen Sprachen kann dies zu einem Defekt führen, es sei denn, j ist definiert und hat 
-denselben Typ wie i. Das Vorhandensein von zwei Variablen desselben Typs und ähnlicher Namen 
-kann zu Defekten führen, da der Programmierer an beide Variablen denkt. Dies tritt häufiger auf, 
-als man erwarten könnte.
+In Sprachen, in denen Variablen deklariert werden müssen, kann das alleine bereits zu einem
+Defekt führen, wenn `j` nicht deklariert wurde. Es kann aber auch sein, dass `j` auch deklariert
+wurde und denselben Typ wie `i` hat.
+Dies tritt häufiger auf, als man erwarten könnte.
 Es kann zum Beispiel schnell passieren, dass man mit dem Finger ausrutscht und benachbarte
 Tasten mitdrückt:
 
@@ -63,15 +63,15 @@ x2 = transform(y1, x2, current_transform)
 
 wurde höchstwahrscheinlich die zweite Codezeile von der ersten kopiert und händisch das
 Auftreten von `x` geändert.
-Allerdings wurde eine Stelle übersehen, die zwar zu einem legalen Ausdruck führt, aber falschen
-Code produziert.
+Allerdings wurde eine Stelle übersehen, die zwar zu einem gültigen Ausdruck führt, aber
+nicht das intendierte Verhalten darstellt.
 
 Überall, wo eine Variable benutzt wird, ist es möglich, die falsche Variable auf der linken oder
 rechten Seite der Zuweisung, als [TERMREF::Argument] für eine Funktion, als Rückgabewert usw. zu 
 verwenden.
-Es kann z. B. dazu kommen, dass zwei Variablen als Parameter einer Funktion mitgegeben werden,
+Es kann beispielsweise dazu kommen, dass zwei Variablen als Parameter einer Funktion mitgegeben werden,
 aber vertauscht worden sind.
-Der Compiler wird diesen Defekt nicht entdecken, sofern beide Parameter vom selben Typ sind.
+Der Compiler wird diesen Defekt nicht entdecken, sofern beide Parameter von demselben Typ sind.
 Durch bloßes Draufgucken kann man ohne genaue Kenntnisse der Programmlogik im folgenden Beispiel
 nicht erkennen,
 welcher Funktionsaufruf der richtige ist:
@@ -106,7 +106,7 @@ Dieser Code prüft das nicht und das ist auch nicht der Bug, der zu suchen ist!
 [ENDWARNING]
 
 Um ein vollständiges Spiel zu spielen, wird der Code so lange fortgesetzt, 
-bis beide Spieler keine Karten auf der Hand mehr haben.
+bis beide Spieler keine Karten mehr auf der Hand haben.
 
 [NOTICE]
 Falls Sie die Aufgaben [PARTREFTITLE::b_expression] und [PARTREFTITLE::f_location] nicht 
@@ -119,7 +119,7 @@ bearbeitet haben, ist hier eine kurze Erinnerung über die Datenstrukturen des S
   `["spades", "hearts", "diamonds", "clubs"]`.
 - Ein Deck ist eine Liste mit 52 Elementen.
   Jedes Element im Deck ist ein Tupel der Form `(Rang, Farbe)`.
-- Eine Hand ist ein Wörterbuch.  
+- Eine Hand ist ein [TERMREF::Wörterbuch].  
   In jedem Element des Wörterbuchs ist der Schlüssel ein Rang und sein Wert eine Liste von
   dazugehörigen Farben, die der Spieler in seiner Hand hält.
   Wenn also z. B. ein Spieler die "Pik 3" und "Herz 3" in seiner Hand hält, aber keine weiteren 3er-Karten,
@@ -151,7 +151,8 @@ Das Deck hat nur eine Karte, damit die Zufälligkeit beim Kartenziehen eliminier
 (auch wenn in einem echten Spiel das Deck 52 Karten hat, 
 müssen Sie einen Bug reproduzieren können, um ihn zu untersuchen).
 
-[HINT::Erste Eingabe]
+#### Erste Eingabe
+
 Der Spieler fragt seinen Gegenspieler nach einem Rang und 
 als Resultat hat der Spieler alle vier Karten des Ranges auf seiner Hand:
 ```python
@@ -160,7 +161,6 @@ deck = [("3", "hearts")]
 player_hand = {"7": ["clubs", "spades"]}
 opponent_hand = {"7": ["hearts", "diamonds"]}
 ```
-[ENDHINT]
 
 [HINT::Zweite Eingabe]
 Der Spieler fragt seinen Gegenspieler nach einem Rang, den der Gegenspieler nicht besitzt.

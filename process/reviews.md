@@ -59,12 +59,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Christian Hofmann
 
-- ch/Debugging/Häufige-Defektarten/a_logic.md (Dominik Pietrak)
-- ch/Debugging/Häufige-Defektarten/b_expression.md (Dominik Pietrak)
-- ch/Debugging/Häufige-Defektarten/b_variable.md (Dominik Pietrak)
-- ch/Debugging/Häufige-Defektarten/d_indexing.md (Dominik Pietrak)
-- ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak)
-
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
 - ch/Bibliotheken/stdlib/jsonPerformance.md (Ruhe->Hofmann)
 - ch/Basis/Repo/SedrilaEinrichten.md (Christian Hofmann)
@@ -100,6 +94,12 @@ We will modify these rules over time when others appear more useful.
 - ch/Debugging/Denkweisen/Professor-Solomon.md (Dominik Pietrak, reviewed by Christian Hofmann)
 - ch/Debugging/Denkweisen/Psychologist.md (Dominik Pietrak, reviewed by Christian Hofmann)
 - ch/Debugging/Denkweisen/Sherlock-Holmes.md (Dominik Pietrak, reviewed by Christian Hofmann)
+
+- ch/Debugging/Häufige-Defektarten/a_logic.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Häufige-Defektarten/b_expression.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Häufige-Defektarten/b_variable.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Häufige-Defektarten/d_indexing.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak, reviewed by Christian Hofmann)
 
 
 ## Reviews to do for Hanen Alrwasheda

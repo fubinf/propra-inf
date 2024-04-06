@@ -27,7 +27,7 @@ sondern erleichtert auch die Zusammenarbeit in Teams.
 Computer sind präzise in der Ausführung von Anweisungen, aber oft unfähig, Absichten zu
 antizipieren, was zu logischen Defekten führt, oft basierend auf schlechten Annahmen über Daten.
 Sehen Sie sich hierfür das folgende Code-Beispiel in Python an.
-Hier wird versucht mittels Wissen über die Repräsentation von ASCII-Zeichen
+Hier wird versucht, mittels Wissen über die Repräsentation von ASCII-Zeichen
 einen String in eine kleingeschriebene Variante umzuwandeln.
 `ord()` wandelt dabei ein Zeichen in seinen numerischen ASCII-Wert um, während `chr()` das
 Gegenteil macht.
@@ -45,7 +45,7 @@ Der Code funktioniert... solange `s[k]` ein Großbuchstabe ist.
 Bei Kleinbuchstaben, Satzzeichen und Leerzeichen würde der Code nicht das gewünschte Resultat liefern.
 
 Gerade Schleifen können sehr anfällig für logische Defekte sein.
-Vor allem bei der Überlegung, wie man die Schleife beendet können Denkfehler auftreten.
+Vor allem bei der Überlegung, wie man die Schleife beendet, können Denkfehler auftreten.
 Als Beispiel dient diese Initialisierung einer `for`-Schleife in C.
 Sehen Sie schon das Problem?
 
@@ -58,6 +58,9 @@ for (j = 1; j != 100; j = j + 2)
 und die Schleife läuft, solange der Index den Wert 100 nicht annimmt.
 Dies kann niemals der Fall sein, sofern `j` nicht innerhalb der Schleife manipuliert wird,
 also wird die Schleife niemals terminieren.
+
+Hier wäre vermutlich die Bedingung `j < 100` sinnvoller. Um genau diese Art von Fehler
+zu vermeiden, ist der idiomatische Weg in Python auch `for j in range(1, 100, 2)`.
 [ENDHINT]
 
 Genauso kann durch ein falsch gesetztes oder vergessenes `break`
@@ -106,7 +109,7 @@ Eine kleine Änderung wird bei diesem logischen Defekt nicht helfen; der gesamte
 
 Im Folgenden sollen Sie eine Funktion debuggen, in der ein logischer Defekt vorliegt.
 Diese Funktion teilt Personen fürs Weihnachtswichteln ihren Partnern zu.
-Hierfür erhält die Funktion eine Liste von Namen und gibt ein Dictionary zurück, 
+Hierfür erhält die Funktion eine Liste von Namen und gibt ein [TERMREF::Dictionary] zurück, 
 in dem die Schlüssel die Schenker und die Werte die Beschenkten darstellen.
 Das ist gar nicht so trivial: Die Funktion muss die Situation verhindern, 
 in der die ersten N-1 Personen unter sich selbst Geschenke verteilen und 

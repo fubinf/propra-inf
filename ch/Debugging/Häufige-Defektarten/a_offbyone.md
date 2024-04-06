@@ -15,7 +15,7 @@ in fremdem Code erfolgreich gefunden.
 ### Eine Heranführung an Off-By-One-Error
 
 Off-By-One-Error, manchmal OBOE abgekürzt, gehören zu den ikonischsten Defekten in Programmen.
-Er tritt beim Umgang mit Integers auf: Eine Berechnung oder Abfrage ist um 1 zu groß oder zu klein.
+Er tritt beim Umgang mit Integern auf: Eine Berechnung oder Abfrage ist um 1 zu groß oder zu klein.
 
 Zu den bekanntesten Defekten dieser Art gehört der Zaunpfahlfehler.
 Überlegen Sie kurz:
@@ -37,7 +37,7 @@ pagecount = lastpagenumber - firstpagenumber
 Warum und um wie viel ist der Wert von `pagecount` falsch?
 
 Die zweite wichtige Art von OBOE entsteht, wenn man den falschen Vergleichsoperator benutzt,
-also `>` mit `>=` verwechselt oder `<` mit `<=` verwechselt.
+also `>` mit `>=` oder `<` mit `<=` verwechselt.
 Der folgende Code prüft, ob jemand alt genug ist, um in Deutschland bei der Bundestagswahl mitzumachen
 (Stand 2023 ist man ab 18 wahlberechtigt).
 Darf jemand nach diesem Code-Schnipsel wählen, wenn die Person genau 18 Jahre alt ist?
