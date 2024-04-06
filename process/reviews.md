@@ -57,6 +57,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprache/SQL/SQLJoin.md (Ruhe->Alrwasheda->Müllers)
 - ch/Sprache/SQL/SQLProject.md (Ruhe->Alrwasheda->Müllers)
 
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
+
 ## Reviews to do for Christian Hofmann
 
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)

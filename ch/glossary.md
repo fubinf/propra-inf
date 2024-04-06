@@ -141,6 +141,14 @@ Die ersten drei Zeichen geben die Berechtigungen für den Nutzer an, die nächst
 Gruppe an und die letzten drei geben es für alle anderen Benutzer an.
 [ENDTERM]
 
+[TERM::Decorator|Dekorator]
+Dies eine Funktion in einer Programmiersprache, die eine andere Funktion oder eine Klasse
+modifiziert oder erweitert. Es ermöglicht, das Verhalten einer Funktion oder Klasse zu ändern,
+ohne deren Code direkt zu ändern. Durch Dekoratoren können beispielsweise Funktionen mit
+zusätzlicher Funktionalität versehen werden, wie das Hinzufügen von Logging oder das Implementieren
+von Sicherheitsüberprüfungen.
+[ENDTERM]
+
 [TERM::Deduktion|deduktive Methode|deduktiver Schluss]
 Der Prozess des Ziehens logisch zwingender Schlussfolgerungen.
 Mittels Deduktion können aus Theorien Aussagen über Einzelfälle gewonnen werden.
