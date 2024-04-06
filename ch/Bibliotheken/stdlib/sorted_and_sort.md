@@ -157,6 +157,9 @@ Wahrscheinlich nicht. So geht es ganz hübsch:
 [ENDHINT]
 
 - [EC] Lassen Sie das fertige Skript einmal laufen.
+- Wer noch weitere Techniken für fortgeschrittenes Sortieren kennenlernen möchte,
+  liest hier nach:
+  [HREF::https://docs.python.org/3/howto/sorting.html]
 
 [ENDSECTION]
 
