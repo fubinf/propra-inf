@@ -422,6 +422,13 @@ Sie wurde entwickelt, um das Schreiben von Texten für das Web zu erleichtern, o
 von komplexen HTML-Tags oder Formatierungsbefehlen.
 [ENDTERM]
 
+[TERM::Median]
+Der Median ist ein statistisches Maß, das in der Mitte einer sortierten Liste von Zahlen liegt.
+Wenn eine Liste von Zahlen nach Größe sortiert ist, ist der Median der Wert, der genau in der Mitte
+der Liste liegt. Das bedeutet, dass die Hälfte der Zahlen in der Liste größer als der Median ist
+und die andere Hälfte kleiner ist.
+[ENDTERM]
+
 [TERM::Modul]
 Ein Modul in Python, oder allgemein in Programmiersprachen, ist eine Datei, die Definitionen bzw. Implementierungen unter anderem von Variablen, Funktionen und Klassen enthalten kann. Module dienen dazu, den Code in logisch getrennte Einheiten zu organisieren, wodurch die Wiederverwendbarkeit, Lesbarkeit und Strukturierung von Softwareprojekten verbessert wird. Sie ermöglichen es Entwicklern, gemeinsam genutzte Funktionalitäten in einer zentralen Stelle zu definieren und diese dann in verschiedenen Teilen eines Programms oder in unterschiedlichen Projekten durch Importieren des Moduls wiederzuverwenden.
 [ENDTERM]
