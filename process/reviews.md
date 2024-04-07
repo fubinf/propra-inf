@@ -60,6 +60,8 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
 
+- ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers)
+
 ## Reviews to do for Christian Hofmann
 
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
