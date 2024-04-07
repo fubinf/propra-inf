@@ -12,7 +12,11 @@ difficulty: 2
 
 [SECTION::background::default]
 
-String (`str`) ist einer der grundlegenden Datentypen in Python. Damit können wir viele textbasierten Daten verarbeiten, Passwörter, Benutzereingaben, Dateinamen und Pfade etc.  Eine Variable mit dem Datentyp String `str` ist also einfach eine Variable, die eine Zeichenkette als Wert enthält.
+String (`str`) ist einer der grundlegenden Datentypen in Python.
+Damit können wir viele textbasierten Daten verarbeiten, Passwörter, Benutzereingaben,
+Dateinamen und Pfade etc.
+Eine Variable mit dem Datentyp String `str` ist also einfach eine Variable, 
+die eine Zeichenkette als Wert enthält.
 
 [ENDSECTION]
 
@@ -20,15 +24,23 @@ String (`str`) ist einer der grundlegenden Datentypen in Python. Damit können w
 
 ### Zeichenketten in Python:
 
-Zeichenketten in Python können "alphanumerisch" sein, sie können also nicht nur aus Texten, Symbolen oder auch Buchstaben bestehen, sondern auch aus Zahlen. Sie werden innerhalb von einzelnen oder doppelten Anführungszeichen geschreiben. 
+Zeichenketten in Python können "alphanumerisch" sein, sie können also nicht nur aus Texten,
+Symbolen oder auch Buchstaben bestehen, sondern auch aus Zahlen.
+Sie werden innerhalb von einzelnen oder doppelten Anführungszeichen geschreiben. 
 
 **Beispiel:**
 
 ```python
     string_variable1 = 'Hallo!'
-    #Nutzung von DOPPELTEN Anführungszeichen innerhalb von einem String mit EINZELNEN Anführungszeichen
+    '''
+    Nutzung von DOPPELTEN Anführungszeichen innerhalb von
+    einem String mit EINZELNEN Anführungszeichen
+    '''
     string_variable3 = 'Willkommen in "ProPra"'
-    #Nutzung von EINZELNEN Anführungszeichen innerhalb von einem String mit DOPPELTEN Anführungszeichen
+    '''
+    Nutzung von EINZELNEN Anführungszeichen innerhalb von
+    einem String mit DOPPELTEN Anführungszeichen
+    '''
     string_variable2 = "Willkommen in 'ProPra'"
     string_variable4 = "01234..9"
     string_variable5 = '0o"ma85;*?|"as!s@we'
@@ -49,11 +61,21 @@ Zeichenketten in Python können "alphanumerisch" sein, sie können also nicht nu
 
 ### "Nullbasierte Indizierung":
 
-Definiert haben wir Strings als Zeichenketten, die in Python als Sequenzen von alphanumerischen Zeichen dargestellt werden. Um Zugriff auf einzelne Zeichen innerhalb dieser Zeichenketten, arbeiten wir mit dem Konzept der Indizierung, sodass jedes der einzelnen Zeichen einen eigenen Index hat, mit dem man auf dieses Zeichen zugreifen kann.
+Definiert haben wir Strings als Zeichenketten, die in Python als Sequenzen von
+alphanumerischen Zeichen dargestellt werden.
+Um Zugriff auf einzelne Zeichen innerhalb dieser Zeichenketten,
+arbeiten wir mit dem Konzept der Indizierung,
+sodass jedes der einzelnen Zeichen einen eigenen Index hat,
+mit dem man auf dieses Zeichen zugreifen kann.
 
-Bei der nullbasierten Indizierung beginnt die Zählung der Positionen innerhalb einer Zeichenkette bei 0. Das bedeutet, dass das erste Zeichen den Index 0 hat, das zweite den Index 1, das dritte den Index 2 und so weiter.
+Bei der nullbasierten Indizierung beginnt die Zählung der Positionen
+innerhalb einer Zeichenkette bei 0. Das bedeutet, dass das erste Zeichen den Index 0 hat,
+das zweite den Index 1, das dritte den Index 2 und so weiter.
 
-In der Welt der Programmierung ist diese Konvention weit verbreitet und erleichtert den Zugriff und die Manipulation nicht nur von Zeichen (Englisch: Characters) innerhalb von Strings, sondern auch von Elementen innerhalb von anderen Datenstrukturen, wie Sie in anderen Aufgaben kennenlernen werden.
+In der Welt der Programmierung ist diese Konvention weit verbreitet und
+erleichtert den Zugriff und die Manipulation nicht nur von Zeichen (Englisch: Characters)
+innerhalb von Strings, sondern auch von Elementen innerhalb von anderen Datenstrukturen,
+wie Sie in anderen Aufgaben kennenlernen werden.
 
 **Beispiel:**
 
@@ -71,11 +93,13 @@ achtes_zeichen = meine_zeichenfolge[7] #Leerzeichen
 
 ```
 
-[ER] Recherchieren Sie: Wie kann man auf das letzte Zeichen in einem String zugreifen kann, ohne bis zur Position des letzten Zeichens zählen zu müssen?
+[ER] Recherchieren Sie: Wie kann man auf das letzte Zeichen in einem String zugreifen kann,
+ohne bis zur Position des letzten Zeichens zählen zu müssen?
 
 [HINT::Länge von Strings]
 
-Würden Sie den Index des letzten Zeichens schnell erkennen, wenn Sie die Länge, also die Anzahl der Zeichen, in dem String wüßten? Wie erreicht man das in Python?
+Würden Sie den Index des letzten Zeichens schnell erkennen, wenn Sie die Länge,
+also die Anzahl der Zeichen, in dem String wüßten? Wie erreicht man das in Python?
 
 [ENDHINT]
 
@@ -83,7 +107,8 @@ Würden Sie den Index des letzten Zeichens schnell erkennen, wenn Sie die Länge
 
 ### String Konkatenation:
 
-[ER] Testen Sie folgenden Code-Abschnitt in Ihrer Programmierumgebung und erklären Sie anhand der Ergebnisse, mit welchem Operator sich die Strings in Python konkatenieren lassen.
+[ER] Testen Sie folgenden Code-Abschnitt in Ihrer Programmierumgebung und erklären Sie anhand
+der Ergebnisse, mit welchem Operator sich die Strings in Python konkatenieren lassen.
 
 ```python
     zeichenkette1 = 'Pro'
@@ -102,11 +127,15 @@ Würden Sie den Index des letzten Zeichens schnell erkennen, wenn Sie die Länge
 
 ### Eingebaute Python-Funktionen zum Umgang mit Strings:
 
-Bearbeiten Sie mithilfe dieser [Liste](https://www.w3schools.com/python/python_ref_string.asp) von String-Funktionen in Python folgende Fragen.
+Bearbeiten Sie mithilfe dieser
+[Liste von String-Funktionen in Python](https://www.w3schools.com/python/python_ref_string.asp)
+folgende Fragen.
 
-[ER] Ganz oben im gelben Kasten im Artikel wurde gesagt: "All string methods returns new values. They do not change the original string."
+[ER] Ganz oben im gelben Kasten im Artikel wurde gesagt:
+"All string methods returns new values. They do not change the original string."
 
-- a) Testen Sie erst die Aussage mit diesem Code-Abschnitt und beantworten Sie die Fragen in den Kommentaren.
+- a) Testen Sie erst die Aussage mit diesem Code-Abschnitt und
+beantworten Sie die Fragen in den Kommentaren.
 
 ```python
     #Beispiel 1
@@ -132,7 +161,11 @@ Bearbeiten Sie mithilfe dieser [Liste](https://www.w3schools.com/python/python_r
 
 - b) Wie nennt sich diese Eigenschaft von diesen unveränderlichen Strings auf Englisch?
 
-- c) Wie können wir die neuen Werte der String-Variablen nach den Änderungen, die wir in den obigen Code-Beispielen in `a)` gemacht haben, sehen? Ergänzen Sie hierfür passende Stellen im obigen Code und schreiben Sie Ihren bearbeiteten Python-Code auch innerhalb der Markdown-Abgabedatei. Lesen Sie hierfür, wie die Funktionen im erwähnten Artikel benutzt werden. 
+- c) Wie können wir die neuen Werte der String-Variablen nach den Änderungen,
+die wir in den obigen Code-Beispielen in `a)` gemacht haben, sehen?
+Ergänzen Sie hierfür passende Stellen im obigen Code und
+schreiben Sie Ihren bearbeiteten Python-Code auch innerhalb der Markdown-Abgabedatei.
+Lesen Sie hierfür, wie die Funktionen im erwähnten Artikel benutzt werden. 
 
 [ENDSECTION]
 
@@ -150,11 +183,14 @@ Frage 1:
 - b) ungültig: Anführungszeichen am Anfang und am Ende nicht gleich  
 - c) gültig
 - d) gültig
-- e) ungültig: "Eine " wird allein als String gelesen. Alles danach hat falsche Anführungszeichen und wird nicht als gültiger String erkannt. 
+- e) ungültig: "Eine " wird allein als String gelesen.
+Alles danach hat falsche Anführungszeichen und wird nicht als gültiger String erkannt. 
 
 Frage 2:
 
-Man kann mithilfe der `len()`-Funktion die Länge des Strings wissen. Somit wäre der Index des letzten Zeichens = `len(string_variable) - 1` und man kann darauf mit `string_variable[len(string_variable) - 1]`  
+Man kann mithilfe der `len()`-Funktion die Länge des Strings wissen.
+Somit wäre der Index des letzten Zeichens = `len(string_variable) - 1` und
+man kann darauf mit `string_variable[len(string_variable) - 1]`  
 Eine andere abgekürzte Lösung könnte auch `string_variable[-1]` sein.
 
 Frage 3:
