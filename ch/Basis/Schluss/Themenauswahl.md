@@ -25,7 +25,7 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
 - Wer sich noch als Programmieranfänger_in betrachtet, ist als erstes 
   bei [PARTREF::Python1] (im Kapitel [PARTREF::Sprachen]) richtig.
 - Wer sich als Fortgeschrittene_r betrachtet, aber sich ein viel vollständigeres Rüstzeug
-  zulegen möchte, sollte bei [PARTREF::stdlib] (im Kapitel [PARTREF::Bibliotheken]) starten
+  zulegen möchte, sollte bei [PARTREF::Python-Standardbibliothek] (im Kapitel [PARTREF::Bibliotheken]) starten
   und eine passende Dosis von
   [PARTREF::Python2] (aus Kapitel [PARTREF::Sprachen]) dazumixen.
 - Wer noch nicht ziiiemlich gut mit git umgehen kann (und wer kann das schon!),
