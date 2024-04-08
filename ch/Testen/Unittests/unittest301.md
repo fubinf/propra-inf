@@ -2,7 +2,7 @@ title: GitHub Action - Unittests in der Pipeline
 stage: alpha
 timevalue: 0.5
 difficulty: 2
-assumes: unittest101
+assumes: unittest101, tdd, tdd_pp
 requires: GitHubDeployment
 ---
 

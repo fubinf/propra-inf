@@ -62,6 +62,9 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers)
 
+- ch/Testen/Unittests/unittest203.md (Ruhe->Müller)
+- ch/Testen/Unittests/pytest202.md (Ruhe->Müller)
+
 ## Reviews to do for Christian Hofmann
 
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
