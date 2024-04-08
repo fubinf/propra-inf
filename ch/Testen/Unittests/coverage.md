@@ -1,5 +1,5 @@
 title: Code Coverage
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 3
 ---
