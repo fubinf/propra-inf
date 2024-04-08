@@ -1,5 +1,5 @@
 title: Mocking in pytest
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 3
 assumes: pytest101, pytest102
@@ -7,9 +7,9 @@ assumes: pytest101, pytest102
 
 [SECTION::goal::idea]
 
-Ich kann beschreiben, was "Mocks" sind und wie sie in pytest Anwendung finden.
-Ich kann "Mocks" von anderen Testmethoden abgrenzen.
-Ich kann begründen, wann die Anwendung von "Mocks" sinnvoll ist.
+- Ich kann beschreiben, was "Mocks" sind und wie sie in pytest Anwendung finden.
+- Ich kann "Mocks" von anderen Testmethoden abgrenzen.
+- Ich kann begründen, wann die Anwendung von "Mocks" sinnvoll ist.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -29,8 +29,8 @@ Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 
 - [EQ] Was versteht man genau unter dem Begriff "Code Mocking"?
 - [EQ] Welches Problem versucht Code Mocking zu lösen?
-- [EQ] Welchen Unterschied gibt es zwischen Mocking und Fixtures?
-   Ergänzen sie sich gegenseitig?
+- [EQ] Welchen Unterschied gibt es zwischen Mocking und Fixtures und
+wie ergänzen sie sich gegenseitig?
 - [EQ] Wie werden Mock-Objekte zur Nutzung in pytest erstellt?
 - [EQ] In welchen Situationen sollten wir Mocks verwenden, und wann sollten wir auf echte
    Implementierungen zugreifen?
