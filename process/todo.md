@@ -66,7 +66,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 - Taskgroups umbenennen:
     - `lizenzen` -> `Lizenzen`
     - `debuggingtools` -> `Debuggingtools`
-    - `stdlib` -> `Python-Standardbibliothek`
     - `Denkweisen` -> `Debugging-Denken`
   Bitte als separaten Commit.
   Erwähnungen an anderen Stellen mit ändern!

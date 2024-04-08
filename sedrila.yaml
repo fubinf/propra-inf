@@ -192,7 +192,7 @@ chapters:
       - slug: SQL
   - slug: Bibliotheken
     taskgroups: 
-      - slug: stdlib
+      - slug: Python-Standardbibliothek
       - slug: pip-popular
       - slug: Frameworks
       - slug: lizenzen
