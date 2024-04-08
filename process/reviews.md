@@ -109,13 +109,12 @@ We will modify these rules over time when others appear more useful.
 - ch/Debugging/Häufige-Defektarten/d_indexing.md (Dominik Pietrak, reviewed by Christian Hofmann)
 - ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak, reviewed by Christian Hofmann)
 
-- ch/Testen/Unittests/coverage.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
-
+- ch/Testen/Unittests/coverage.md (Pietrak und Ruhe -> Müllers -> Alrwasheda -> Prechelt)
+- ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe -> Müllers -> Alrwasheda -> Prechelt)
 ## Reviews to do for Hanen Alrwasheda
 
 - ch/Testen/Unittests/index.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 
-- ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 - ch/Testen/Unittests/mocking.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 - ch/Testen/Unittests/unittest101.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 - ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda)

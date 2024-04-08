@@ -1,5 +1,5 @@
 title: Freezegun - Zeitreise mittels Python-Tests
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 assumes: mocking
@@ -28,7 +28,7 @@ Recherchieren Sie hierzu anhand der folgenden Leitfragen.
 
 - [EQ] Sehen Sie Vorteile, die das Einfrieren der Zeit in Testfällen bietet?
 - [EQ] Welche Probleme könnten auftreten, wenn Tests von realer Zeit abhängig sind und wie versucht
-   "freezegun" diese Probleme lösen?
+   "freezegun" diese Probleme zu lösen?
 - [EQ] Können Sie ein einfaches Beispiel für die Verwendung von "freezegun" in einem Testfall mit
    "pytest" skizzieren?
 - [EQ] Unterstützt "freezegun" die Möglichkeit, die Zeit auf einen bestimmten Wert einzustellen, anstatt
