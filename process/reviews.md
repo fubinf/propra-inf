@@ -118,7 +118,7 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Testen/Unittests/index.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 
-- ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda)
+
 - ch/Testen/Unittests/unittest201.md (Ruhe->Müllers->Alrwasheda)
 - ch/Testen/Unittests/unittest202.md (Ruhe->Müllers->Alrwasheda)
 - ch/Testen/Unittests/unittest301.md (Ruhe->Müllers->Alrwasheda)
@@ -149,6 +149,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/TestDelimitations.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
+
+- ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda->Ruhe)
 
 ## Reviews to do for Sven Hüster
 
