@@ -1,5 +1,5 @@
 title: Unittest in Python - Mocking Anwendung
-stage: alpha
+stage: beta
 timevalue: 4.0
 difficulty: 4
 assumes: unittest101, mocking
@@ -21,7 +21,7 @@ und daher als eine wichtige Grundlage im Umgang mit Unittests zu sehen.
 
 Zu jeder Aufgabe wird es eine kleine Funktion geben, die in einer bestimmten Datei abgelegt ist.
 Erstellen Sie diese Datei um anschließend damit zu arbeiten.
-Ihre Aufgabe ist es, die externe Abhängigkeiten und Seiteneffekte zu Ihrem Tests zu isolieren,
+Ihre Aufgabe ist es, die externen Abhängigkeiten und Seiteneffekte zu Ihrem Tests zu isolieren,
 damit Sie sich auf das Testen der eigentlichen Logik einer Funktionen und Methoden konzentrieren
 können.
 
