@@ -27,33 +27,13 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
-- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->Müllers)
 
-- ch/Sprachen/Python1/PythonComments.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonStrings.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonIntegers.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonFloats.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonBooleans.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonCasting.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonIf.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonElifElse.md (Hanen Alrwasheda)
-
-- ch/Testen/Unittests/tdd_pp.md (Ruhe->Müllers)
-- ch/Testen/Unittests/pytestBenchmark.md (Ruhe->Müller)
-
-- ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Müllers)
-- ch/Sprache/SQL/SQLSelect.md (Ruhe->Alrwasheda->Müllers)
-- ch/Sprache/SQL/SQLJoin.md (Ruhe->Alrwasheda->Müllers)
-- ch/Sprache/SQL/SQLProject.md (Ruhe->Alrwasheda->Müllers)
-
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
-
-- ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers)
-
-- ch/Testen/Unittests/unittest203.md (Ruhe->Müller)
-- ch/Testen/Unittests/pytest202.md (Ruhe->Müller)
 
 ## Reviews to do for Christian Hofmann
+
+
+
+## Reviews to do for Lutz Prechelt
 
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
@@ -79,8 +59,32 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Dominik Pietrak)
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Dominik Pietrak)
 
-## Reviews to do for Lutz Prechelt
+- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->Müllers)
 
+- ch/Sprachen/Python1/PythonComments.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonStrings.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonIntegers.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonFloats.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonBooleans.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonCasting.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonIf.md (Hanen Alrwasheda)
+- ch/Sprachen/Python1/PythonElifElse.md (Hanen Alrwasheda)
+
+- ch/Testen/Unittests/tdd_pp.md (Ruhe->Müllers)
+- ch/Testen/Unittests/pytestBenchmark.md (Ruhe->Müller)
+
+- ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Müllers)
+- ch/Sprache/SQL/SQLSelect.md (Ruhe->Alrwasheda->Müllers)
+- ch/Sprache/SQL/SQLJoin.md (Ruhe->Alrwasheda->Müllers)
+- ch/Sprache/SQL/SQLProject.md (Ruhe->Alrwasheda->Müllers)
+
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
+
+- ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers)
+
+- ch/Testen/Unittests/unittest203.md (Ruhe->Müller)
+- ch/Testen/Unittests/pytest202.md (Ruhe->Müller)
+ 
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-02.md (Dominik Pietrak, reviewed by Christian Hofmann)
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-03.md (Dominik Pietrak, reviewed by Christian Hofmann)
 
@@ -160,10 +164,10 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 ## Reviews to do for Dominik Pietrak
 
-- ch/Debugging/debuggingtools/gitbisect.md (Dominik Pietrak, reviewed by Lutz Prechelt):
+- ch/Debugging/debuggingtools/gitbisect.md (Pietrak -> Prechelt -> Pietrak):
   Habe die Einleitung ganz neu geschrieben, hoffentlich klarer.
   Die dient zur Motivation, gehört also nach [SECTION::Background].
 - ch/Sprachen/Pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
 
-- ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
-- ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Dominik Pietrak, rewieved by Daniel Müllers)
+- ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Pietrak->Alrwasheda->Pietrak)
+- ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Pietrak->Müllers->Pietrak)
