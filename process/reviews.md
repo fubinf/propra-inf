@@ -68,7 +68,7 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Christian Hofmann
 
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
-- ch/Bibliotheken/stdlib/jsonPerformance.md (Ruhe->Hofmann)
+- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
 - ch/Basis/Repo/SedrilaEinrichten.md (Christian Hofmann)
 - ch/Basis/Repo/Einreichungen.md (Lutz Prechelt)
 
@@ -92,8 +92,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Dominik Pietrak)
 
 ## Reviews to do for Lutz Prechelt
-
-- ch/Bestandscode/Refactoring-Grundlagen/Extraction-Of-Code.md (Dominik Pietrak, reviewed by Hanen Alrwasheda)
 
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-02.md (Dominik Pietrak, reviewed by Christian Hofmann)
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-03.md (Dominik Pietrak, reviewed by Christian Hofmann)
@@ -166,8 +164,8 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 ## Reviews to do for Sven Wegner
 
-- ch/Bibliotheken/stdlib/m_subprocess2.md (Lutz Prechelt)
-- ch/Bibliotheken/stdlib/sorted_and_sort.md (Lutz Prechelt)
+- ch/Bibliotheken/Python-Standardbibliothek/m_subprocess2.md (Lutz Prechelt)
+- ch/Bibliotheken/Python-Standardbibliothek/sorted_and_sort.md (Lutz Prechelt)
 
 - ch/Bibliotheken/Frameworks/argparse-subcommand.md (Lutz Prechelt)
 

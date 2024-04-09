@@ -1,5 +1,5 @@
 title: Extrahieren von Code
-stage: alpha
+stage: beta
 timevalue: 2.5
 difficulty: 2
 ---
@@ -15,11 +15,17 @@ difficulty: 2
 
 Code schreiben kann am Anfang sehr einfach sein.
 Etwas Datenstruktur hier, etwas Funktionalität da... und irgendwann hat man ein Produkt, 
-mit dem man etwas anfangen kann.
-Achtet man aber anfangs nicht so sehr darauf, dass der Entwurf des Programms logisch und gut 
-wartbar ist, können einem später Stolpersteine entgegenkommen.
-Möchte man das Programm später um Funktionalität erweitern, kann es nun schwierig sein diese 
-einzubauen.
+das funktioniert.
+Die innere Struktur ist zu diesem Zeitpunkt aber oft nicht gut:
+Stellenweise zu wenig Abstraktion und Modularität, stellenweise gibt es Redundanz
+oder der Code ist einfach verworren.
+
+Wenn man das nicht aufräumt, wird die künftige Fortentwicklung eines Programms
+sehr schnell sehr schwierig.
+Aber was heißt "Aufräumen"? Und wie geht das?
+Ein wichtiger Ansatz dafür ist die Bildung von Abstraktionen durch Extraktion von Teilen.
+
+Das ist unser Thema hier.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
@@ -27,6 +33,7 @@ einzubauen.
 Diese Aufgabe teilt sich in einen Theorieteil und einen Praxisteil.
 Erstellen Sie zunächst ein Markdown-Dokument `Extraction-Of-Code.md` und erstellen Sie darin 
 zwei Überschriften "Theorie" und "Praxis". 
+
 
 ### Teil 1: Die Theorie
 
@@ -43,7 +50,8 @@ zwei Überschriften "Theorie" und "Praxis".
     - [EQ] Recherchieren und beschreiben Sie, wie Ihre IDE Ihnen hilft diese Refaktorierung
       durchzuführen.  
       Bietet Ihre IDE Ihnen hierfür eine Funktion an?  
-      Wie löst man diese Funktion aus?
+      Wie löst man diese Funktion aus (per Menü-Klick, per Tastatur)?
+
 
 ### Teil 2: Die Praxis
 
@@ -79,8 +87,6 @@ def what_to_eat(month):
 - Machen Sie einen Commit mit der Datei `Extraction-Of-Code.py`.
 - [EC] `git show --color=always HEAD | cat`
 - Die Logik des Programms ist jetzt schon deutlich einfacher zu verstehen.
-  Auch wenn das Programm anfangs recht unkompliziert aussah, erkennt man nach dieser Extraktion, 
-  wie viel hier tatsächlich passiert.
   Allerdings sind Erweiterung und Testbarkeit immer noch eher schwierig.
 - [ER] Extrahieren Sie die Boolschen Ausdrücke der if-Ausdrücke in eigene Funktionen.
   Benutzen Sie hierfür die in [EREFR::1] eingeführten Variablen.
@@ -97,10 +103,13 @@ def what_to_eat(month):
   Achten Sie darauf ausdrucksstarke Variablennamen zu vergeben!
 - Machen Sie einen Commit mit der Datei `Extraction-Of-Code.py`.
 - [EC] `git show --color=always HEAD | cat`
-- Das Programm sieht jetzt sehr aufgeräumt auf.
+- Das Programm sieht jetzt aufgeräumt auf.
   Es existieren Funktionen, die die beiden Boolschen Werte für die Austern- und Tomatensaison 
   berechnen und diese Ergebnisse sind mittels einer Variable erreichbar.
   Um eine gute Testbarkeit zu erreichen, wären aber Klassen sehr angenehm.
+  (Für unser Miniprogramm ist der nächste Schritt übertrieben, 
+  aber für ein größeres Programm wäre er unter Umständen sinnvoll.
+  Wir machen ihn zu Übungszwecken.)
 - [ER] Erstellen Sie die zwei Klassen `OystersGood` und `TomatoesGood`.
   Bilden Sie die Funktionen aus [EREFR::2] in diesen Klassen ab.  
   Implementieren Sie hierfür die Methode `__init__(self, month)`, um die Logik der Funktionen 
@@ -109,10 +118,8 @@ def what_to_eat(month):
   `TomatoesGood(month)`.
 - Machen Sie einen Commit mit der Datei `Extraction-Of-Code.py`.
 - [EC] `git show --color=always HEAD | cat`
-- Das Programm hat bis hierhin einen ziemlichen Wandel hingelegt. 
-  Von einer einfachen, bedingten Anweisung über Funktionsaufrufe bis hin zu Klassen, die die 
-  Komplexität abbilden ist alles dabei.
-  Mithilfe dieser Klassen ist die Testbarkeit auch gut gegeben, mehr dazu in [PARTREF::Testen].
+- Das Programm hat nun einen ziemlichen Wandel hingelegt. 
+  Mithilfe dieser Klassen ist optimale Testbarkeit gegeben, mehr dazu in [PARTREF::Testen].
 - [EQ] Welche der Varianten des Programms gefällt Ihnen am besten? Begründen Sie kurz.
 
 [ENDSECTION]
@@ -138,13 +145,13 @@ def what_to_eat(month):
 ### Teil 2
 
 - Bei der Variablenextraktion können Lösungen mit 3 bis 5 Variablen entstehen. 
-  Weniger bzw. mehr Variablen zeigen eher Veränderungen am Programm und sind ohne 
-  Vorliegen von guten Begründungen abzuweisen.
-- Bei der Funktionsextraktion werden exakt zwei Funktionen benötigt.  
-  Die Variablen aus der ersten Extraktion gehen hier voll auf.
+  Weniger bzw. mehr Variablen sind fragwürdig. 
+  Bitte nachfragen und bei schwachen Begründungen abweisen.
+- Bei der Funktionsextraktion werden exakt zwei Funktionen benötigtm, beide mit einem Parameter `month``.  
+  Die Variablen aus der ersten Extraktion gehören _in_ die Funktionen.
   Sind diese Variablen noch außerhalb der Funktionen zu sehen, ist die Abgabe abzuweisen.
 - Die Klassenextraktion benötigt nur die beiden Methoden `__init__(self, month)` und 
   `__bool__(self, month)`.
-  Die vorher definierten Variablen gehen hier als Attribute auf.
+  Die vorher definierten Variablen werden in `__init__` als Attribute definiert.
 
 [ENDINSTRUCTOR]
