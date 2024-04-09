@@ -50,7 +50,7 @@ Die meistbenutzte [TERMREF::Shell] auf Linux-Systemen.
 
 Kommandos zur Initialisierung der Shell stehen in der Datei `.bashrc` im HOME-Verzeichnis
 (das stimmt nur ungefähr, etwas genauer steht es in
-https://linuxize.com/post/bashrc-vs-bash-profile/).
+[HREF::https://linuxize.com/post/bashrc-vs-bash-profile/]).
 Richtig genau steht es in der Dokumentation von Bash.
 [ENDTERM]
 
@@ -61,8 +61,8 @@ In BDD werden Anforderungen
 in verständlichen, natürlichsprachlichen Szenarien formuliert (meist mittels "Gherkin"-Syntax),
 die dann mechanisch ist automatisierte Tests übersetzt werden.
 
-https://docs.robotframework.org/docs/testcase_styles/bdd#what-is-bdd
-https://www.codecentric.de/wissens-hub/blog/givenwhenthen-and-example-tables-using-the-robot-framework
+[HREF::https://docs.robotframework.org/docs/testcase_styles/bdd#what-is-bdd]  
+[HREF::https://www.codecentric.de/wissens-hub/blog/givenwhenthen-and-example-tables-using-the-robot-framework]
 [ENDTERM]
 
 [TERM::Bibliothek|Library]
@@ -229,7 +229,7 @@ Dazu gehören verschiedene Testmethoden wie [TERMREF::Modultest], [TERMREF::Inte
 [TERM::Encoding|Zeichenkodierung]
 Die Art und Weise, wie eine Nachricht oder ein Zeichenvorrat als Folge von Bits oder von Bytes dargestellt wird.
 
-https://de.wikipedia.org/wiki/Zeichenkodierung
+[HREF::https://de.wikipedia.org/wiki/Zeichenkodierung]
 [ENDTERM]
 
 [TERM::Executable|ausführbare Datei]
@@ -277,7 +277,7 @@ Diese Metadaten werden z.B. bei [TERMREF::HTTP] in Form von Headerfeldern bereit
 die durch ein Schlüsselwort eingeleitet werden,
 z.B. `Content-Type:`, `Set-Cookie:`, `Cache-Control:`.
 
-https://de.wikipedia.org/wiki/Liste_der_HTTP-Headerfelder
+[HREF::https://de.wikipedia.org/wiki/Liste_der_HTTP-Headerfelder]
 [ENDTERM]
 
 [TERM::HTTP|Hypertext Transfer Protocol]
@@ -360,8 +360,8 @@ oder für ein eingebautes Shell-Kommando
 Eine Testautomatisierungsmethode, bei der Tests mithilfe von Schlüsselwörtern oder
 Aktionen beschrieben werden, die von einem Testframework interpretiert und ausgeführt werden.
 
-https://de.wikipedia.org/wiki/Keyword-Driven_Testing  
-https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#test-templates
+[HREF::https://de.wikipedia.org/wiki/Keyword-Driven_Testing]  
+[HREF::https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#test-templates]
 [ENDTERM]
 
 ## L
@@ -383,7 +383,7 @@ oder unnötige Codefragmente.
 Eine Familie von Open-Source-Betriebssystem-Distributionen, die auf dem Linux-Betriebssystemkern aufbauen
 sowie auf einem umfangreichen Universum von Softwarepaketen.
 
-https://de.wikipedia.org/wiki/Linux
+[HREF::https://de.wikipedia.org/wiki/Linux]
 [ENDTERM]
 
 [TERM::Logfile|Logdatei]
@@ -512,7 +512,7 @@ Python, sowie anderen führenden Entwicklern der Python-Community entwickelt. PE
 Reihe von Regeln und Best Practices für die Formatierung von Python-Code, um die Lesbarkeit zu
 verbessern und eine konsistente und einheitliche Codebasis zu fördern.
 
-Dokumentation: https://peps.python.org/pep-0008/
+Dokumentation: [HREF::https://peps.python.org/pep-0008/]
 [ENDTERM]
 
 [TERM::pip]
@@ -520,7 +520,7 @@ Dokumentation: https://peps.python.org/pep-0008/
 Das Programm, mit dem man üblicherweise externe Bibliotheken von einem entsprechenden
 Server ("package index", meist wird pypi.org benutzt) lädt und installiert.
 
-Dokumentation: https://pip.pypa.io/en/stable/getting-started/
+Dokumentation: [HREF::https://pip.pypa.io/en/stable/getting-started/]
 [ENDTERM]
 
 [TERM::Pipeline]
@@ -620,7 +620,7 @@ wirklich immer durchzuführen, wenn sie sinnvoll sind.
 
 Es gibt einen weitgehend kanonischen Katalog von elementaren Refactoring-Operationen,
 aus denen sich alle Refactorings zusammensetzen lassen:
-https://refactoring.com/
+[HREF::https://refactoring.com/].
 [ENDTERM]
 
 [TERM::Regressionstest]
@@ -678,8 +678,8 @@ oder die erste Zeile gesondert behandelt wird.
 Übliche Bezeichnung für die Kommandozeilen-Interpretierer auf [TERMREF2::Unix::--] oder [TERMREF2::Linux::--Systemen],
 weil diese aus Sicht einer Benutzer_in wie eine "Schale" den Kern des Betriebssystems umhüllen.
 
-https://de.wikipedia.org/wiki/Kommandozeile  
-https://de.wikipedia.org/wiki/Unix-Shell
+[HREF::https://de.wikipedia.org/wiki/Kommandozeile]  
+[HREF::https://de.wikipedia.org/wiki/Unix-Shell]
 [ENDTERM]
 
 [TERM::Schlüsselwort|Keyword]
@@ -784,8 +784,8 @@ Im engeren Sinne sind nur POSIX-Systeme Unix,
 alle anderen (inklusive Linux) werden dann meist "unixoid" genannt,
 aber häufig spart man sich die Mühe dieser Unterscheidung einfach.
 
-https://de.wikipedia.org/wiki/POSIX  
-https://de.wikipedia.org/wiki/Unix
+[HREF::https://de.wikipedia.org/wiki/POSIX]  
+[HREF::https://de.wikipedia.org/wiki/Unix]
 [ENDTERM]
 
 [TERM::Urgrund|root cause|Urgrundanalyse|root cause analysis|Grundursachen-Analyse]
@@ -841,7 +841,7 @@ Verifizierung oder Verifikation (von lateinisch veritas ‚Wahrheit' und facere 
 die Bestätigung durch Bereitstellung eines objektiven Nachweises, dass festgelegte
 Anforderungen erfüllt worden sind.
 
-https://glossary.istqb.org/de_DE/term/verifizierung  TODO_2_ruhe/prechelt: AchduliebeGüte!
+[HREF::https://glossary.istqb.org/de_DE/term/verifizierung]  TODO_2_ruhe/prechelt: AchduliebeGüte!
 [ENDTERM]
 
 [TERM::Versagen|Failure|Symptom]
@@ -853,7 +853,7 @@ Ist ein Symptom eines [TERMREF2::Defekt::-s].
 [TERM::Validierung]
 Bestätigung durch Überprüfung, dass ein Arbeitsergebnis den Bedürfnissen eines Stakeholders entspricht.
 
-https://glossary.istqb.org/de_DE/term/validierung-1
+[HREF::https://glossary.istqb.org/de_DE/term/validierung-1]
 [ENDTERM]
 
 ## W
