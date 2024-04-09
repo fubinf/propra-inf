@@ -6,35 +6,23 @@ We will modify these rules over time when others appear more useful.
 
 - When an author finds a task as far developed as they can sensibly do,
   they put it in `stage: alpha` and send it into review.
-- A task typically goes through two or three (usually sequential) stages of review:
-  - Review by Daniel Müllers for possibly more or better didactical ideas
-    for the task.
-    Use your own judgment whether or when this is useful.
-    Do it at least when you do not find your task very convincing.  
-    Tasks come with `stage: alpha` and leave with `alpha` or `draft`.
-  - Holistic review by Christian Hofmann or Hanen Alrwasheda.
-    Tasks come with `stage: alpha` and leave with `alpha`, `beta`, or `draft`.
-  - Review for release by Lutz Prechelt.
-    Tasks come with `stage: alpha` or `beta` and should leave with `beta`, or `done`.
-  - Review by anybody else for specific topic reasons as needed.
+- A task goes through one or possibly two stages of review:
+  - Normal case: Hand it to Lutz Prechelt (who will finish it or hand it back to you with feedback).
+  - If you are afraid your task may not be ready for this, hand it to Christian Hofmann first.
+  - Tasks come into review with `stage: alpha` and leave with `alpha` or `beta`, or `draft`.
+  - In special cases, send your task into review by anybody else as needed.
 - Authors assign a task to a reviewer by writing a line of the following form
   in the reviewer's section below:  
   `ch/chaptername/taskgroupname/taskname.md (authorname)`
-- Reviewers make simple changes (typos, hard-to-understand formulations, formatting stuff, etc.)
-  themselves and defer complex changes to the author.
+- Reviewers make simple changes themselves and defer complex changes to the author.
   They should leave simple changes to the author as well if they believe the author
   will learn from making them.
 - Reviewers may add feedback in the task file 
   (a paragraph or itemized list starting with a TODO_1_someauthor marker; default case)
   or write them in the Discord if they believe everybody should see them.
 - Reviewers then move the review task assignment line to the section (in `review.md`)
-  of the next person that needs to consider the given task:
-  They either hand the task back to the author (if the author needs to make changes or should
-  look at changes the reviewer made) or forward it to the next reviewer.
-- Authors, after reworking a task, hand over the improved task either to the next reviewer
-  or to the same one again when appropriate.
-  If the task appears to be finished, they assign `stage: beta` (or perhaps even no stage at all)
-  and hand over to no one. 
+  of the next person that needs to consider the given task (author or reviewer) or
+  delete it if the task has arrived in `beta`.
 
 
 ## Reviews to do for Daniel Müllers
