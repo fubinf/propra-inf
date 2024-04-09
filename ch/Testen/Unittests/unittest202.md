@@ -7,7 +7,7 @@ assumes: unittest101, mocking
 
 [SECTION::goal::idea]
 
-Ich kann einfache Unittest mocken
+- Ich bin in der Lage, grundlegende Unittests in verschiedenen Anwendungsbereichen zu mocken.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -17,15 +17,15 @@ Dateienmocks, SQL Mocks und Klassenmocks in den Vordergrund. Solche Mocks sind z
 und daher als eine wichtige Grundlage im Umgang mit Unittests zu sehen.
 
 [ENDSECTION]
-[SECTION::instructions::detailed]
+[SECTION::instructions::loose]
 
 Zu jeder Aufgabe wird es eine kleine Funktion geben, die in einer bestimmten Datei abgelegt ist.
 Erstellen Sie diese Datei um anschließend damit zu arbeiten.
-Ihre Aufgabe ist es, die externen Abhängigkeiten und Seiteneffekte zu Ihrem Tests zu isolieren,
+Ihre Aufgabe ist es, die externen Abhängigkeiten und Seiteneffekte zu Ihren Tests zu isolieren,
 damit Sie sich auf das Testen der eigentlichen Logik einer Funktionen und Methoden konzentrieren
 können.
 
-- [EC] Schreiben Sie einen Unittest für eine Funktion *get_weather_data()*, die sich in der Datei
+- [ER] Schreiben Sie einen Unittest für eine Funktion *get_weather_data()*, die sich in der Datei
   *weather.py* befindet, die eine externe API aufruft. Mocken Sie den API-Aufruf, um sicherzustellen,
   dass keine echten Netzwerkanfragen während des Tests gemacht werden.
 
@@ -38,7 +38,7 @@ def get_weather_data(city):
     return response.json()
 ```
 
-- [EC] Schreiben Sie einen Unittest für eine Funktion *read_log_file()* aus der Datei *my_logs.py*,
+- [ER] Schreiben Sie einen Unittest für eine Funktion *read_log_file()* aus der Datei *my_logs.py*,
   die eine Datei liest und verarbeitet. Mocken Sie die Dateioperationen, um zu verhindern, dass
   während der Tests echte Dateien gelesen oder geschrieben werden.
 
@@ -52,7 +52,7 @@ def read_log_file(file_path):
     return count
 ```
 
-- [EC] Schreiben Sie einen Unittests für eine Funktion *process_user_data()* in der Datei
+- [ER] Schreiben Sie einen Unittest für eine Funktion *process_user_data()* in der Datei
   *user_manager.py*, die von einer Klasse in Ihrem Projekt abhängt. Mocken Sie die Abhängigkeit,
   um isolierte Tests durchzuführen.
 
@@ -69,7 +69,7 @@ def process_user_data(user_id):
     return user_data
 ```
 
-- [EC] Schreiben Sie eine Funktion *get_user_age()* aus der Datei *my_db_module.py*, die das Alter
+- [ER] Schreiben Sie eine Funktion *get_user_age()* aus der Datei *my_db_module.py*, die das Alter
   eines Benutzers aus einer SQL-Datenbank abruft. Schreiben Sie anschließend Unittests für diese
   Funktion, wobei die Datenbankverbindung und -abfragen gemockt werden, um keine echte Datenbank zu
   verwenden.
@@ -89,14 +89,17 @@ def get_user_age(user_id):
 
 [ENDSECTION]
 
-[SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[SECTION::submission::program]
+
+Reichen Sie für jede der Aufgaben [EREFR::1], [EREFR::2], [EREFR::3] und [EREFR::4]
+Ihre Python-Dateien ein.
+
 [ENDSECTION]
 
 [INSTRUCTOR::Lösungsvorschläge]
 Lösungen könnten so aussehen:
 
-- [EREFC::1] Wetter-Mocking
+- [EREFR::1] Wetter-Mocking
 
 ```Python
 import unittest
@@ -131,7 +134,7 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-- [EREFC::2] Datei Mocking
+- [EREFR::2] Datei Mocking
 
 ```Python
 import unittest
@@ -164,7 +167,7 @@ if __name__ == '__main__':
 
 ```
 
-- [EREFC::3] Objekt Mocking
+- [EREFR::3] Objekt Mocking
 
 ```Python
 import unittest
@@ -192,7 +195,7 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-- [EREFC::4] Datenbank Mocking
+- [EREFR::4] Datenbank Mocking
 
 ```Python
 import unittest
