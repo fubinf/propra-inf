@@ -1,5 +1,5 @@
 title: GitHub Action - Unittests in der Pipeline
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 assumes: unittest101, tdd, tdd_pp
@@ -8,14 +8,14 @@ requires: GitHubDeployment
 
 [SECTION::goal::idea]
 
-Ich kann vorhandene Unittests in meiner Pipeline ausführen
+- Ich kann vorhandene Unittests in meiner Pipeline ausführen.
 
 [ENDSECTION]
 [SECTION::background::default]
 
 Potentielle Fehler sollen erkannt werden, bevor man mit der aktuellen Codebasis
-weiter arbeitet. Das gelingt am Besten, indem Tests nach einem Commit ausgeführt
-werden und eine Rückmeldung geben. Hier schauen wir uns an, wie es Grundlegend
+weiter arbeitet. Das gelingt am besten, indem Tests nach einem Commit ausgeführt
+werden und eine Rückmeldung geben. Hier schauen wir uns an, wie es grundlegend
 funktioniert.
 
 [ENDSECTION]
