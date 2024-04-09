@@ -26,15 +26,16 @@ TDD eine weit verbreitete Praxis in der Softwareentwicklung ist.
 
 TDD ist eine Entwicklungspraxis, bei der Tests vor der Implementierung des Codes geschrieben werden.
 Der Prozess folgt einem einfachen Zyklus: Schreiben eines Tests, Implementieren des minimal
-notwendigen Codes, Testen und Refaktorisieren. Ziel ist es, die Codequalität zu verbessern,
-frühzeitig Fehler zu erkennen und eine sichere Entwicklungsumgebung zu schaffen.
+notwendigen Codes, Testen und abschließende [TERMREF::Reaktorisierung]. Ziel ist es, die
+Codequalität zu verbessern, frühzeitig Fehler zu erkennen und eine sichere Entwicklungsumgebung zu
+schaffen.
 
 ## Schreiben eines Tests
 
-Beginne mit einem einfachen Test, der das erwartete Verhalten der zu entwickelnden Funktion
-beschreibt. Für Folgeaufgaben verwende das Python-Modul *unittest* oder *pytest* für das Testen.
+Beginnen Sie mit einem einfachen Test, der das erwartete Verhalten der zu entwickelnden Funktion
+beschreibt. Für Folgeaufgaben verwende Sie das Python-Modul *unittest* oder *pytest* für das Testen.
 
-Betrachte folgendes Test-Beispiel:
+Betrachten Sie folgendes Test-Beispiel:
 
 ```Python
 import unittest
@@ -49,9 +50,10 @@ class TestSquareRoot(unittest.TestCase):
 
 ## Code implementieren
 
-Jetzt kann der Code implementiert werden. Implementiere den Code so, dass der Test erfolgreich durchgeführt wird. Halte den Code einfach und minimal, um die Anforderungen des Tests zu erfüllen.
+Jetzt kann der Code implementiert werden. Implementieren Sie den Code so, dass der Test erfolgreich
+durchgeführt wird. Halten Sie den Code einfach und minimal, um die Anforderungen des Tests zu erfüllen.
 
-Betrachte folgendes Code-Beispiel:
+Betrachten Sie folgendes Code-Beispiel:
 
 ```Python
 import math
@@ -63,13 +65,14 @@ def square_root(x):
 ## Testausführung / Testen
 
 Bevor es mit der Entwicklung neuer Testfälle und damit weiterem Code weiter geht, ist zu prüfen,
-ob der Testfall auch positiv ausfällt. Führe den Test aus, um sicherzustellen, dass die Funktion wie erwartet funktioniert.
+ob der Testfall auch positiv ausfällt. Führen Sie den Test aus, um sicherzustellen, dass die
+Funktion wie erwartet funktioniert.
 
 ## Refactoring
 
 Manchmal testet man beim Entwickeln herum. Dabei entsteht unnötiger oder schwer lesbarer Code.
-Nutze hier die Chance den Code zu refaktorisieren, um ihn klarer und wartbarer zu machen,
-oder auch Kommentare einzufügen, aber achte darauf, dass alle Tests weiterhin erfolgreich
+Nutzen Sie hier die Chance den Code zu Refaktorisieren, um ihn klarer und wartbarer zu machen,
+oder auch Kommentare einzufügen, aber achten Sie darauf, dass alle Tests weiterhin erfolgreich
 durchgeführt werden.
 
 ```Python
@@ -96,7 +99,7 @@ def square_root(x):
 In der Entwicklung müssen viele (Sonder-)Fälle betrachtet werden. Durch die Erstellung von Negativ-
 Tests hat man eine schöne Möglichkeit den Code zu verbessern.
 
-- [ER] Erstelle einen Testfall, der den oben abgebildeten Codeteil (x < 0) testet.
+- [ER] Erstellen Sie einen Testfall, der den oben abgebildeten Codeteil (x < 0) testet.
 - [EQ] Wir haben den zuvor erklärten Zyklus des TDD in diesem Beispiel nicht eingehalten: Erklären
 Sie, welche Schritte wir verändert haben.
 
