@@ -1,13 +1,13 @@
 title: Erweiterung unseres Passwortgenerators - Eselsbrücke für Passworter einbauen
 stage: draft
-timevalue: 1.0
+timevalue: 0.1
 difficulty: 4
 requires: Passwortgenerator
 ---
 
 [SECTION::goal::product]
 
-Ich kann ein Python Programm erstellen, dass mir sichere und zufällige Passwörter ausgibt.
+Ich kann das Python Programm `Passwortgenerator` mit dem Feature von Merkhilfen erweitern.
 
 [ENDSECTION]
 

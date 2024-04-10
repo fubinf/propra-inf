@@ -97,6 +97,7 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Unittests/unittest202.md (Ruhe->Müllers->Alrwasheda->Prechelt)
 - ch/Testen/Unittests/unittest301.md (Ruhe->Müllers->Alrwasheda->Prechelt)
 
+- ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->Prechelt)
 
 ## Reviews to do for Hanen Alrwasheda
 

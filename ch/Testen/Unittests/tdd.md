@@ -26,7 +26,7 @@ TDD eine weit verbreitete Praxis in der Softwareentwicklung ist.
 
 TDD ist eine Entwicklungspraxis, bei der Tests vor der Implementierung des Codes geschrieben werden.
 Der Prozess folgt einem einfachen Zyklus: Schreiben eines Tests, Implementieren des minimal
-notwendigen Codes, Testen und abschließende [TERMREF::Reaktorisierung]. Ziel ist es, die
+notwendigen Codes, Testen und abschließende [TERMREF::Refaktorisierung]. Ziel ist es, die
 Codequalität zu verbessern, frühzeitig Fehler zu erkennen und eine sichere Entwicklungsumgebung zu
 schaffen.
 

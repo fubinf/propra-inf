@@ -1,13 +1,13 @@
 title: Erweiterung unseres Passwortgenerators - Erinnerung zu Wechseln unsere Passwörter
 stage: draft
-timevalue: 1.0
+timevalue: 0.1
 difficulty: 3
-requires: Passwortgenerator
+requires: Passwortgenerator, PasswortgeneratorSpeicher
 ---
 
 [SECTION::goal::product]
 
-Ich kann ein Python Programm erstellen, dass mir sichere und zufällige Passwörter ausgibt.
+Ich kann das Python Programm `Passwortgenerator` mit dem Feature einer Erinnerung erweitern.
 
 [ENDSECTION]
 

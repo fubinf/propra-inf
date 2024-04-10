@@ -1,13 +1,14 @@
 title: Erweiterung unseres Passwortgenerators - Passwortspeicher
 stage: draft
-timevalue: 1.0
+timevalue: 0.1
 difficulty: 4
 requires: Passwortgenerator
 ---
 
 [SECTION::goal::product]
 
-Ich kann ein Python Programm erstellen, dass mir sichere und zufällige Passwörter ausgibt.
+Ich kann das Python Programm `Passwortgenerator` mit dem Feature des sicheren lokalen Abspeichern
+erweitern.
 
 [ENDSECTION]
 
