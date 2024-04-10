@@ -99,23 +99,22 @@ We will modify these rules over time when others appear more useful.
 - ch/Debugging/Häufige-Defektarten/d_indexing.md (Dominik Pietrak, reviewed by Christian Hofmann)
 - ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak, reviewed by Christian Hofmann)
 
-- ch/Testen/Unittests/coverage.md (Pietrak und Ruhe -> Müllers -> Alrwasheda -> Prechelt)
-- ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe -> Müllers -> Alrwasheda -> Prechelt)
-- ch/Testen/Unittests/mocking.md (Pietrak und Ruhe -> Müllers -> Alrwasheda -> Prechelt)
-- ch/Testen/Unittests/unittest101.md (Pietrak und Ruhe -> Müllers -> Alrwasheda -> Prechelt)
+- ch/Testen/Unittests/coverage.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
+- ch/Testen/Unittests/mocking.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
+- ch/Testen/Unittests/unittest101.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
 
-- ch/Testen/Unittests/unittest201.md (Ruhe -> Müllers -> Alrwasheda -> Prechelt):
+- ch/Testen/Unittests/unittest201.md (Ruhe->Müllers->Alrwasheda->Prechelt):
 Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
 kann verzichtet werden. Bitte überprüfen.
 Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
-- ch/Testen/Unittests/unittest202.md (Ruhe -> Müllers -> Alrwasheda -> Prechelt)
-- ch/Testen/Unittests/unittest301.md (Ruhe -> Müllers -> Alrwasheda -> Prechelt)
+- ch/Testen/Unittests/unittest202.md (Ruhe->Müllers->Alrwasheda->Prechelt)
+- ch/Testen/Unittests/unittest301.md (Ruhe->Müllers->Alrwasheda->Prechelt)
+
 
 ## Reviews to do for Hanen Alrwasheda
 
 - ch/Testen/Unittests/index.md (Pietrak und Ruhe->Müllers->Alrwasheda)
-
 
 - ch/Testen/Unittests/tdd.md (Ruhe->Müllers->Alrwasheda)
 - ch/Testen/Unittests/pytest101.md (Pietrak und Ruhe->Müllers->Alrwasheda)
@@ -123,6 +122,7 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 - ch/Testen/Unittests/pytest104.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 - ch/Testen/Unittests/pytest201.md (Ruhe->Müllers->Alrwasheda)
+
 
 ## Reviews to do for Ivan Condric
 
@@ -146,6 +146,8 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
 
 - ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda->Ruhe)
+- ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt->Pietrak und Ruhe)
+
 
 ## Reviews to do for Sven Hüster
 
@@ -164,10 +166,11 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 ## Reviews to do for Dominik Pietrak
 
-- ch/Debugging/debuggingtools/gitbisect.md (Pietrak -> Prechelt -> Pietrak):
+- ch/Debugging/debuggingtools/gitbisect.md (Pietrak->Prechelt->Pietrak):
   Habe die Einleitung ganz neu geschrieben, hoffentlich klarer.
   Die dient zur Motivation, gehört also nach [SECTION::Background].
 - ch/Sprachen/Pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
 
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Pietrak->Alrwasheda->Pietrak)
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Pietrak->Müllers->Pietrak)
+- ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt->Pietrak und Ruhe)

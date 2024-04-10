@@ -1,9 +1,19 @@
 title: Freezegun - Zeitreise mittels Python-Tests
-stage: beta
-timevalue: 1.5
+stage: draft
+timevalue: 1.0
 difficulty: 3
 assumes: mocking
 ---
+
+TODO_1_pietrak  TODO_1_ruhe Bitte in ein praktisches Szenario verwandeln:
+Produkte (class Product) haben nach dem Kaufen (Methode buy()) 12 Monate Garantie (Methode has_warranty()).
+Die kann man mittels Zuzahlung (Methode extend_warranty()) auf 24 Monate verlängern,
+wenn man das spätestens 1 Monat nach dem Kauf zukauft.
+Die Tests schauen, ob anfangs Garantie gegeben ist, nach 12 Monaten nicht mehr,
+extend_warranty im ersten Monat wirkt, danach aber nicht mehr (da müsste die Methode dann wohl
+leider eine Ausnahme werfen...).
+
+Der Code von Product ist vorgegeben, die Tests schreiben die Studis mit freezegun hin.
 
 [SECTION::goal::idea]
 
