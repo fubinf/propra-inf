@@ -1,9 +1,26 @@
 title: SQL Grundlagenbefehle
-stage: alpha
-timevalue: 1
+stage: draft
+timevalue: 1.0
 difficulty: 1
 ---
-
+TODO_1_ruhe  Stichworte für Gespräch mit Lutz Prechelt:
+- Annahmen über Vorwissen machen; hinschreiben
+- Quellen für Erwerb von Vorwissen angeben
+- Text knapp halten
+- Konzepteinführungen ins Glossar verlagern
+- Background falls möglich ans Glossar delegieren
+- Notationen wie `<tablename>` explizit einführen
+- Sowas aber möglichst an externe Quelle delegieren und noch besser überhaupt vermeiden.
+- Für difficulty 1 sehr viel mehr erklären, was da passiert.
+- Für difficulty 2 viel mehr erklären, was da passiert.
+- Zu diesem Thema passt eher difficulty 2.
+- "Ich kann eine Tabelle und deren Inhalt anlegen"  
+  Inhalt?
+  Um das Konzept und den Begriff Schema kommen wir bei SQL nicht herum; wir sind an der Uni.
+  Auch hier wieder: Nicht selber machen, sondern externe Quelle suchen.
+- Wir haben die Regel, dass die Autoren eine Aufgabe selber machen.
+  Das haben Sie nicht getan, sonst wäre ihnen aufgefallen, dass man von https://sqliteonline.com/
+  nicht gut ein Kommandoprotokoll machen kann.
 [SECTION::goal::idea]
 
 Ich kann eine Tabelle und deren Inhalt anlegen, bearbeiten und löschen.
@@ -13,27 +30,25 @@ Ich kann eine Tabelle und deren Inhalt anlegen, bearbeiten und löschen.
 [SECTION::background::default]
 
 SQL (Structured Query Language) ist eine standardisierte Programmiersprache, die für das Verwalten
-und Abfragen von Datenbanken (DB) verwendet wird. Mit SQL können Benutzer Datenbanken erstellen,
-verwalten, abfragen und aktualisieren, indem sie spezifische Befehle verwenden, um auf Daten
-zuzugreifen und sie zu manipulieren. Diese Befehle ermöglichen es, Daten zu extrahieren, zu ändern,
-zu löschen und einzufügen, was SQL zu einem unverzichtbaren Werkzeug für die Datenbankverwaltung
-macht.
+und Abfragen von relationalen Datenbanken (DB) verwendet wird. 
+Mit SQL können Benutzer Datenbanken erstellen,
+verwalten, abfragen und aktualisieren.
 
-Es gibt verschiedene Arten von Datenbanken, die je nach ihren Strukturen, Funktionalitäten und
-Verwendungszwecken kategorisiert werden können. Jede von ihnen hat je nach Anwendungsfall seine
-spezifischen Vor- und Nachteile. Wir werden zum Erlernen der Syntax den Fokus auf SQLite-Datenbank legen.
+Es gibt verschiedene relationale Datenbankmanagementsysteme (RDBMS), die alle
+leicht verschiedene Dialekte von SQL benutzen.
+Für einfache Fälle fallen diese Unterschiede aber noch nicht auf.
+Wir benutzen hier SQlite, eins sehr kleines und einfach zu benutzendes RDBMS.
 
-Durch das Erlernen von SQL können Sie Ihre Fähigkeiten im Bereich Datenbankmanagement erweitern. SQL ermöglicht es Ihnen, Daten effizient zu organisieren, abzurufen und zu analysieren, indem Sie komplexe Abfragen erstellen, um genau die benötigten Informationen zu erhalten. Diese Fähigkeiten sind in verschiedenen beruflichen Bereichen gefragt, darunter Softwareentwicklung, Datenanalyse, Datenbankadministration und mehr.
-
-Nice-to-know: SQL spricht man auch gerne "Ess-Que-Ell" oder aber auch "sequel" aus.
+SQL spricht man Englisch entweder wie "Ess-Que-Ell" oder wie "sequel" aus.
+Das geht auch für Deutsch, aber S-Q-L ist natürlich auch in Ordnung.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
 Um uns am Anfang nicht mit aufwendigen Installationen und Konfigurationen herum zu ärgern, starten
-wir das Erlernen der Syntax zunächst über die Seite [SQLite Online](https://sqliteonline.com). Hier
-bekommen wir direkt zugriff auf eine Online DB, mit der wir bis zu einer gewissen Grenze frei
+wir das Erlernen der Syntax zunächst über die Seite [SQLite Online](https://sqliteonline.com). 
+Hier bekommen wir direkt Zugriff auf eine Online DB, mit der wir (für keine Datenmengen) frei
 agieren können.
 
 Navigieren Sie in die SQLite DB, falls nicht automatisch geschehen.
@@ -48,11 +63,11 @@ eine Tabelle anlegen, Inhalt aus einer Tabelle erhalten und manipulieren, aber a
 Die Syntax zum Erstellen einer Tabelle ist intuitiv:
 
 ```sql
-CREATE TABLE <tabel_name>;
+CREATE TABLE <tablename>;
 ```
 
 [NOTICE]
-Ein beliebter Fehler im Umgang mit einer SQL Abfrage ist das 'versehentliche' weglassen des
+Ein beliebter Fehler im Umgang mit SQL ist das Weglassen des
 notwendigen Semikolons am Ende.
 [ENDNOTICE]
 
@@ -63,7 +78,7 @@ kommen Tabellenspalten zum Tragen.
 Dadurch erweitert sich die Syntax wie folgt:
 
 ```sql
-CREATE TABLE <tabelname> (
+CREATE TABLE <tablename> (
   column1 datatype,
   column2 datatype,
   column3 datatype,

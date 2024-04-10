@@ -73,11 +73,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/tdd_pp.md (Ruhe->Müllers)
 - ch/Testen/Unittests/pytestBenchmark.md (Ruhe->Müller)
 
-- ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Müllers)
-- ch/Sprache/SQL/SQLSelect.md (Ruhe->Alrwasheda->Müllers)
-- ch/Sprache/SQL/SQLJoin.md (Ruhe->Alrwasheda->Müllers)
-- ch/Sprache/SQL/SQLProject.md (Ruhe->Alrwasheda->Müllers)
-
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
 
 - ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers)
@@ -147,6 +142,14 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 - ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda->Ruhe)
 - ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt->Pietrak und Ruhe)
+
+- ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Prechelt->Ruhe)  
+  Bitte verfrachten Sie den allgemeinen Teil von Background ins Glossar.
+  Ein Eintrag für SQL, einer für DBMS/RDBMS, die aufeinander verweisen.
+  Es bleibt nur der Hinweis auf SQlite in der Aufgabe stehen.
+- ch/Sprache/SQL/SQLSelect.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
+- ch/Sprache/SQL/SQLJoin.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
+- ch/Sprache/SQL/SQLProject.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
 
 
 ## Reviews to do for Sven Hüster
