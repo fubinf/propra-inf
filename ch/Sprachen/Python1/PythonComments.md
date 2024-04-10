@@ -1,8 +1,14 @@
 title: "Kommentare in Python"
-stage: alpha
+stage: draft
 timevalue: 0.25
 difficulty: 1
 ---
+TODO_1_alrwasheda:
+- Für F1, F2 brauchen wir bei difficulty 1 eine gut passende Quelle
+- 0.25h ist selbst dann zu wenig.
+- F3 ist für Leute, die difficulty 1 machen, nicht so wahrscheinlich, oder?
+  Die Frage passt eher zu einer viel fortgeschritteneren Aufgabe zum Thema Programmierstil
+  (Kapitel Bestandscode wahrscheinlich)
 
 [SECTION::goal::idea]
 
@@ -40,22 +46,26 @@ x = 5  # Eine Variable zuweisen
 
 - **Mehrzeilige Kommentare:**
 
-Mehrzeilige Kommentare werden mit drei einzelenen oder doppelten Anführungszeichen geschrieben. Sie eignen sich für längere Notizen und Erklärungen.
+Mehrzeilige Kommentare kann man auch einfach in drei doppelte (oder seltener einzelne) Anführungszeichen stecken.
+Das ist aber nur üblich für sogenannte Docstrings (documentation strings) am Anfang der Datei (Modulebene) 
+oder am Anfang einer Klasse oder einer Funktion.
+Sonst sind mehrere aufeinanderfolgende einzeilige Kommentare vorzuziehen.
+Das ist zwar etwas umständlicher (doch die IDE kann helfen!), drückt aber die verschiedenen
+Zwecke klarer aus und Klarheit nimmt man in Python recht ernst.
 
 **Beispiele:**
 
 ```python
 """
-Das ist ein mehrzeiliger Kommentar.
+Das ist ein mehrzeiliger Docstring am Anfang der Datei.
+Er ist ein beliebig langer Kommentar, der die Datei (also das Modul) im Ganzen erklärt.
 Er erstreckt sich über mehrere Zeilen.
 """
 
 if user_age < 18:
-    '''
-    Kommentare können auch
-    innerhalb von einem
-    Code-Block geschreiben werden.
-    '''
+    # Mehrzeilige Kommentare innerhalb eines Code-Blocks
+    # sollten lieber das Kommentarzeichen benutzen
+    # auch wenn das vielleicht umständlicher wirkt.
     print('user is not allowed yet to have his own account')
 ```
 

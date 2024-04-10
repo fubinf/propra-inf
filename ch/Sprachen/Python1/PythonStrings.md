@@ -1,9 +1,19 @@
 title: "String Datentyp in Python"
-stage: alpha
+stage: draft
 timevalue: 1.0
 difficulty: 2
 ---
-
+TODO_1_alrwasheda Stichpunkte für Gespräch mit Lutz Prechelt:
+- Über das Konzept "Variable" müssen wir mal sprechen:  
+  Es wird so vieles so viel leichter zu verstehen, wenn man weiß,
+  dass da nur Namen an Objekte gebunden werden und Objekte mutable oder immutable sein können.  
+  https://www.youtube.com/watch?v=_AEJHKGk9ns
+- goal: "gut umgehen können" ist wahnsinnig vage.
+  Damit das Ziel informativ ist, brauchen wir eine konkretere Idee.
+- "Beispiel:" Docstrings zu Variablen sieht man selten.
+- Die Aufgaben sollten bitte guten Python-Stil widerspiegeln:
+  Ein Docstring muss die Variable beschreiben, nicht die Syntax eines Literals.
+  Hier kommen nur normale Kommentare in Frage.
 [SECTION::goal::idea]
 
 - Ich verstehe, was Strings sind und kann mit dem Datentyp String in Python gut umgehen.

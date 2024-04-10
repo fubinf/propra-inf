@@ -61,15 +61,6 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->Müllers)
 
-- ch/Sprachen/Python1/PythonComments.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonStrings.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonIntegers.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonFloats.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonBooleans.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonCasting.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonIf.md (Hanen Alrwasheda)
-- ch/Sprachen/Python1/PythonElifElse.md (Hanen Alrwasheda)
-
 - ch/Testen/Unittests/tdd_pp.md (Ruhe->Müllers)
 - ch/Testen/Unittests/pytestBenchmark.md (Ruhe->Müller)
 
@@ -108,6 +99,19 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 
 ## Reviews to do for Hanen Alrwasheda
+
+- ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda)
+- ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->Prechelt->Alrwasheda) 
+- ch/Sprachen/Python1/PythonComments.md (Alrwasheda->Prechelt->Alrwasheda)
+  Über PythonBooleans und PythonStrings sprechen wir mal.
+  PythonComments habe ich auch angeschaut und kommentiert.
+  Alle übrigen gebe ich auf Verdacht zurück, weil manche der Kommentare vmtl. auch dort
+  irgendwo relevant sind.
+- ch/Sprachen/Python1/PythonIntegers.md (Alrwasheda->Prechelt->Alrwasheda)
+- ch/Sprachen/Python1/PythonFloats.md (Alrwasheda->Prechelt->Alrwasheda)
+- ch/Sprachen/Python1/PythonCasting.md (Alrwasheda->Prechelt->Alrwasheda)
+- ch/Sprachen/Python1/PythonIf.md (Alrwasheda->Prechelt->Alrwasheda)
+- ch/Sprachen/Python1/PythonElifElse.md (Alrwasheda->Prechelt->Alrwasheda)
 
 - ch/Testen/Unittests/index.md (Pietrak und Ruhe->Müllers->Alrwasheda)
 

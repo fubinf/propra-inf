@@ -1,9 +1,20 @@
-
 title: "Boolean Datentyp in Python"
-stage: alpha
+stage: draft
 timevalue: 0.75
 difficulty: 1
 ---
+TODO_1_alrwasheda Stichpunkte für Gespräch mit Lutz Prechelt:
+- Das Zitat kann verwirren
+- Sind diese vielen Variablen sinnvoll, wenn die Namen gar nichts aussagen?
+- "Bestimmen Sie mithilfe folgender Python-Beispiele die Ausgaben":
+  Es fehlt der Hinweis, dass man _nachdenken_ soll, nicht laufenlassen.
+- Das ermöglicht einen Reflektionsschritt (was sehr oft die schönste Sorte von Auftrag ist):
+  Wo haben Sie sich vertan und warum?
+- F3 ist superverwirrend
+- "Recherchieren Sie: Was versteht man unter dem Begriff "Bindungsstärke"":
+  Das ist für difficulty 1 zu offen. Quelle angeben.
+- F6 ist für difficulty 1 zu schwer.
+
 
 [SECTION::goal::idea]
 
