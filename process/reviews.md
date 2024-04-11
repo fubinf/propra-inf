@@ -101,6 +101,7 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->Prechelt)
 - ch/Bestandscode/Refactoring-Grundlagen/open_closed_prinzip.md (Pietrak->Prechelt)
 - ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->Prechelt)
+- ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->Prechelt)
 
 
 ## Reviews to do for Hanen Alrwasheda
