@@ -1,7 +1,7 @@
 title: "Gilded Rose: Struktur verbessern"
 stage: alpha
 timevalue: 3
-difficulty: 2
+difficulty: 3
 assumes: Refactoring-Grundlagen
 requires: gildedrose_tests
 ---
