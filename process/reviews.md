@@ -38,10 +38,10 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
 
-- ch/Bestandscode/Refactoringpraxis/01gildedrose_tests.md (Pietrak)
-- ch/Bestandscode/Refactoringpraxis/02gildedrose_refactor.md (Pietrak)
-- ch/Bestandscode/Refactoringpraxis/03gildedrose_implementation.md (Pietrak)
-- ch/Bestandscode/Refactoringpraxis/04gildedrose_reflexion.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/gildedrose_tests.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/gildedrose_refactor.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/gildedrose_implementation.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/gildedrose_reflexion.md (Pietrak)
 
 - ch/Testen/API/index.md (Ruhe->Hofmann)
 - ch/Testen/API/ResponseApi.md (Ruhe->Hofmann)
@@ -69,8 +69,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/unittest203.md (Ruhe->Müller)
 - ch/Testen/Unittests/pytest202.md (Ruhe->Müller)
  
-- ch/Debugging/Debugging-Praxis/Einkaufsliste-02.md (Pietrak->Hofmann)
-- ch/Debugging/Debugging-Praxis/Einkaufsliste-03.md (Pietrak->Hofmann)
+- ch/Debugging/Debugging-Praxis/einkaufsliste-versagen.md (Pietrak->Hofmann)
+- ch/Debugging/Debugging-Praxis/einkaufsliste-conditional.md (Pietrak->Hofmann)
 
 - ch/Debugging/Denkweisen/Mathematician.md (Pietrak->Hofmann)
 - ch/Debugging/Denkweisen/Professor-Solomon.md (Pietrak->Hofmann)
@@ -96,8 +96,8 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->Prechelt)
 
-- ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Pietrak->Müllers->Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Pietrak->Alrwasheda->Pietrak->Prechelt)
+- ch/Debugging/Debugging-Praxis/einkaufsliste-postmortem.md (Pietrak->Müllers->Pietrak->Prechelt)
+- ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->Alrwasheda->Pietrak->Prechelt)
 - ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->Prechelt)
 - ch/Bestandscode/Refactoring-Grundlagen/open_closed_prinzip.md (Pietrak->Prechelt)
 - ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->Prechelt)
