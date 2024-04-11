@@ -1,8 +1,17 @@
 title: Unittest in Python - Grundlagen
-stage: beta
+stage: draft
 timevalue: 1.5
 difficulty: 2
 ---
+
+TODO_1_ruhe: Bitte in eine aktive Aufgabe verwandeln:
+- Kleines zu testendes Progrämmchen im Aufgabentext vorgeben
+- Und dann immer abwechselnd ein Häppchen was lesen
+- und dann den praktischen Schritt dazu machen
+- bis man am Ende alle untigen Aufgaben als [ER] (und am Ende einmal [EC] erledigt hat).
+- [EQ] bleibt allenfalls für Test Discovery und Testorganisation übrig.
+- setUp() und erst recht tearDown() müssen von mir aus nicht zwingend vorkommen,
+  erst recht nicht im praktischen Teil.
 
 [SECTION::goal::idea]
 
