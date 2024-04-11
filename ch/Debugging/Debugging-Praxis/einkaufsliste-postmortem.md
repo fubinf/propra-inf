@@ -2,10 +2,10 @@ title: Post-Mortem-Analyse zum Einkaufslisten-Programm
 stage: alpha
 timevalue: 0.75
 difficulty: 3
-requires: Einkaufsliste-03
+requires: einkaufsliste-conditional
 ---
 [SECTION::background::default]
-Eine [TERMREF::Post-Mortem-Analyse]  lohnt sich, da sie ermöglicht, aus vergangenen Ereignissen 
+Eine [TERMREF::Post-Mortem-Analyse] lohnt sich, da sie ermöglicht, aus vergangenen Ereignissen 
 zu lernen, Fehler zu identifizieren, bewährte Verfahren zu erkennen und strategische Anpassungen 
 vorzunehmen, um zukünftige Ergebnisse zu optimieren. 
 Sie fördert offene Kommunikation, konstruktives Feedback und verbessert die Teamarbeit, was 
@@ -23,7 +23,8 @@ Ich kann erklären, welche Wege ich zum Beheben eines Defekts gegangen bin und d
 
 [SECTION::instructions::detailed]
 Stellen Sie sich vor, dass Sie in einer Firma arbeiten und im Laufe Ihrer Arbeit den Code von 
-[PARTREF::Einkaufsliste-01], [PARTREF::Einkaufsliste-02] und [PARTREF::Einkaufsliste-03] 
+[PARTREF::einkaufsliste-defekt], [PARTREF::einkaufsliste-versagen] und 
+[PARTREF::einkaufsliste-conditional] 
 bearbeitet haben. 
 Um für die Nachwelt festzuhalten, was passiert ist und wie das Problem gelöst wurde, sollen Sie 
 einen Blog-Eintrag schreiben.

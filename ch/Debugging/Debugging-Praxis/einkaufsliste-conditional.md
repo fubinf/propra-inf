@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1.0
 difficulty: 2
 assumes: IDE-Debugging
-requires: Einkaufsliste-02
+requires: einkaufsliste-versagen
 ---
 [SECTION::goal::trial,product]
 Ich bin in der Lage, mittels Debugger durch ein Programm zu navigieren, kann 
@@ -19,7 +19,7 @@ bedingungsabhängige Defekte erkennen und beheben.
   Bei welchen Eingaben erhalten Sie eine Fehlermeldung?
   Wie lautet die Fehlermeldung?
 - [EQ] Die in den Fehlermeldungen genannte Stelle kommt uns aus der 
-  [PARTREFMANUAL::Einkaufsliste-01::ersten Aufgabe] bekannt vor.
+  [PARTREFMANUAL::einkaufsliste-defekt::ersten Aufgabe] bekannt vor.
   Welche Zeile wird in der Fehlermeldung referenziert?
 - Setzen Sie an der in der Fehlermeldung genannten Stelle im Quellcode einen Breakpoint.
   Da dieser Fehler innerhalb einer `for`-Schleife stattfindet und bisher nur bekannt ist, dass 

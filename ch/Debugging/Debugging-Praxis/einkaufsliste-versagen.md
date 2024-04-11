@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1.0
 difficulty: 2
 assumes: IDE-Debugging
-requires: Einkaufsliste-01
+requires: einkaufsliste-defekt
 ---
 [SECTION::goal::trial,product]
 Ich bin in der Lage, mittels Debugger durch ein Programm zu navigieren und zielstrebig einen 
@@ -32,7 +32,7 @@ Vergleichen Sie dazu diese beiden Ausgaben.
 ```
 [ENDFOLDOUT]
 
-Während in [PARTREFMANUAL::Einkaufsliste-01::der ersten Aufgabe] noch ein [TERMREF::Defekt] zu 
+Während in [PARTREFMANUAL::einkaufsliste-defekt::der ersten Aufgabe] noch ein [TERMREF::Defekt] zu 
 beheben war, müssen wir 
 hier ein [TERMREF::Versagen] beheben.
 
