@@ -68,7 +68,7 @@ und darf mit der Software sehr vieles machen.
 Halten Sie die Abgabe kurz und bündig.
 
 [ENDSECTION]
-[INSTRUCTOR::Hinweise]
+[INSTRUCTOR::Ist GPL "viral"?]
 
 Relevante Punkte sind nur:
 
