@@ -97,6 +97,8 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->Prechelt)
 
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Pietrak->Müllers->Pietrak->Prechelt)
+- ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Pietrak->Alrwasheda->Pietrak->Prechelt)
+
 
 ## Reviews to do for Hanen Alrwasheda
 
@@ -182,5 +184,4 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
   Die dient zur Motivation, gehört also nach [SECTION::Background].
 - ch/Sprachen/Pythonpraxis/mlh-pseudonymize2.md (Prechelt)
 
-- ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Pietrak->Alrwasheda->Pietrak)
 - ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt->Pietrak und Ruhe)
