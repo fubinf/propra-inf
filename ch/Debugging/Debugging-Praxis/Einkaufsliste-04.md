@@ -4,13 +4,17 @@ timevalue: 0.75
 difficulty: 3
 requires: Einkaufsliste-03
 ---
-# Review (DM)
-- Vielleicht nochmal motivieren, was eine Post-Mortem-Analyse ist, warum sie interessant ist und warum man sie machen sollte, über den Eintrag im Glossar hinaus. -> Background-Section?
-- Zu F1: Wenn eine Antwort von mehr als ein paar Worten erwartet ist, ist es sicherlich sinnvoll die Aufgabenstellung hier etwas anzupassen in Richtung von: "Beschreiben Sie das aufgetretene Problem" oder so. Oder wenn es in Frageform bleiben soll, vielleicht ergänzen: "Welches Problem ist aufgetreten? Wie hat sich das Problem ausgewirkt?". Vielleicht findest du ja eine bessere formulierung, würde ich aber auf jeden Fall noch etwas spezifizieren bzw. erweitern.
-- Die Aufgabe ist relativ offen, das ist denke ich auch sinnvoll. Birgt aber natürlich das Risiko, wie oben beschrieben, dass sich da jemand 10 Minuten hinsetzt und jeweils so zwei Halbsätze antwortet. Dem könnte man ggf. mit der oben beschriebenen Motivation etwas entgegenwirken, denn wenn die Studis verstehen, warum das für sie eigentlich interessant ist, sich mit der Analyse zu befassen, dann ist ggf. eher das Interesse da, die Fragen sinngemäß und etwas ausführlicher zu beantworten.
-- Rein formal, sind nicht alle 3 Einkaufsliste-Aufgaben Vorraussetzung? (Ja, ich weiß, ist eine Kette)
-
-
+[SECTION::background::default]
+Eine [TERMREF::Post-Mortem-Analyse]  lohnt sich, da sie ermöglicht, aus vergangenen Ereignissen 
+zu lernen, Fehler zu identifizieren, bewährte Verfahren zu erkennen und strategische Anpassungen 
+vorzunehmen, um zukünftige Ergebnisse zu optimieren. 
+Sie fördert offene Kommunikation, konstruktives Feedback und verbessert die Teamarbeit, was 
+letztendlich die Effizienz steigert, Risiken minimiert und die Gesamtleistung verbessert.  
+Leider werden Post-Mortem-Analysen nicht so häufig veröffentlicht, wie man es sich wünscht.
+Dabei sind sie gute Werbeträger für Entwickler, Teams oder eine Firma, da sie den Umgang mit 
+Fehlern offen zeigt und einen Einblick in die Interna verschafft, ohne alle Arbeitsprozesse 
+offenzulegen.
+[ENDSECTION]
 
 [SECTION::goal::idea]
 Ich kann erklären, welche Wege ich zum Beheben eines Defekts gegangen bin und diese in einer 
@@ -18,12 +22,17 @@ Ich kann erklären, welche Wege ich zum Beheben eines Defekts gegangen bin und d
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-Beantworten Sie die folgenden Fragen in eigenen Worten jeweils zu [PARTREF::Einkaufsliste-01], 
-[PARTREF::Einkaufsliste-02] und [PARTREF::Einkaufsliste-03].
+Stellen Sie sich vor, dass Sie in einer Firma arbeiten und im Laufe Ihrer Arbeit den Code von 
+[PARTREF::Einkaufsliste-01], [PARTREF::Einkaufsliste-02] und [PARTREF::Einkaufsliste-03] 
+bearbeitet haben. 
+Um für die Nachwelt festzuhalten, was passiert ist und wie das Problem gelöst wurde, sollen Sie 
+einen Blog-Eintrag schreiben.
+Orientieren Sie sich an den folgenden Fragen, um alle relevanten Dinge zu erwähnen:
 
-- [EQ] Welches Problem ist aufgetreten?
-- [EQ] Wie haben Sie dieses Problem identifiziert?
-- [EQ] Wie haben Sie dieses Problem gelöst?
+- [EQ] Welche Probleme sind aufgetreten? 
+  Beschreiben Sie kurz, um welche Defekte, Fehler oder Versagen es sich handelte.
+- [EQ] Wie haben Sie diese Probleme identifiziert?
+- [EQ] Wie haben Sie diese Probleme gelöst?
 - [EQ] Gab es andere Optionen zur Lösung? Welche fallen Ihnen ein?
 [ENDSECTION]
 
