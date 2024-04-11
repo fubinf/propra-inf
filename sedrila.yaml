@@ -195,7 +195,7 @@ chapters:
       - slug: Python-Standardbibliothek
       - slug: pip-popular
       - slug: Frameworks
-      - slug: lizenzen
+      - slug: Dokumentation
   - slug: Testen
     taskgroups:
       - slug: Testgrundlagen
