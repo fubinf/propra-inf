@@ -40,7 +40,7 @@ Beschreiben Sie danach in eigenen Worten
 
   - [EQ] welche Möglichkeiten Ihnen `print()`-Ausdrücke in Python geben, um den Zustand Ihres Codes zu zeigen,
   - [EQ] welche Möglichkeiten Python Ihnen von Haus aus mitgibt, um diese `print()`-Ausdrücke zu formatieren,
-  - [EQ] welche Möglichkeiten zur Formatierung in weiteren Bibliothken zur Verfügung stehen,
+  - [EQ] welche Möglichkeiten zur Formatierung in weiteren Bibliotheken zur Verfügung stehen,
   - [EQ] welche Voraussetzung erfüllt sein muss, um mittels `print()`-Ausdrücken einen Bug zu finden und
   - [EQ] wie nützlich Sie das Debugging mit `print()`-Ausdrücken empfinden. 
 
@@ -61,5 +61,7 @@ Nehmen Sie aber einmal an, dass Sie eine Sprache benutzen, in der dieses Konzept
 [ENDSECTION]
 
 [INSTRUCTOR::Hinweise]
-f-Strings in Python sind sehr mächtig.
+f-Strings in Python sind sehr mächtig.  
+Wenn jemand das Modul `logging` in der Antwort anführt, ist er einen Schritt zu weit gegangen,
+bitte zurückweisen und auf die Aufgabe [PARTREF::m_logging] verweisen.
 [ENDINSTRUCTOR]

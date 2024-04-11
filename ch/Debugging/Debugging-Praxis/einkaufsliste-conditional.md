@@ -2,7 +2,7 @@ title: Debugging eines Einkaufslisten-Generators mit bedingungsabhängigem Defek
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: IDE-Debugging
+assumes: IDE_debugging
 requires: einkaufsliste-versagen
 ---
 [SECTION::goal::trial,product]

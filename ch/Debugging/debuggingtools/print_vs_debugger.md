@@ -2,9 +2,7 @@ title: printf-Debugging vs interaktives Debugging
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-explains:
-assumes: printfdebugging, pdb, IDE-Debugging
-requires:
+assumes: printfdebugging, pdb, IDE_debugging
 ---
 [SECTION::goal::idea]
 
@@ -28,8 +26,8 @@ in welchem Bereich der Code angewandt wird und welche Programmiersprache benutzt
 
 ### Ihre Aufgabe
 
-Sie haben sich bereits in den Aufgaben [PARTREF::printfdebugging], [PARTREF::pdb] und [PARTREF::IDE-Debugging] 
-mit den beiden hier gefragten Debugging-Arten auseinandergesetzt.
+Sie haben sich bereits in den Aufgaben [PARTREF::printfdebugging], [PARTREF::pdb] und 
+[PARTREF::IDE_debugging] mit den beiden hier gefragten Debugging-Arten auseinandergesetzt.
 Ihre Aufgabe besteht darin sich eine Meinung zum "heiligen Krieg" der Debugging-Tools zu bilden.
 Recherchieren Sie und begründen Sie ihre Aussagen, wenn nötig, zu den folgenden Fragen:
 

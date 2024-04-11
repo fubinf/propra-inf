@@ -8,5 +8,6 @@ TODO_2_pietrak Code-Base finden für diff3/diff4 Debugging und folgenden Text da
 
 Dabei gibt es einige Aufgaben, die sehr geleitet durch den Prozess führen und andere, die von 
 Ihnen verlangen auf eigenen Beinen zu stehen und den Weg zum Defekt zu finden.
-Wenn Sie sich noch etwas unsicher fühlen, wird Ihnen die Aufgabe [PARTREF::Einkaufsliste-01] 
+Wenn Sie sich noch etwas unsicher fühlen, wird Ihnen die Aufgabe 
+[PARTREFTITLE::einkaufsliste-defekt] 
 einen geleiteten Einstieg in die Praxis bieten.

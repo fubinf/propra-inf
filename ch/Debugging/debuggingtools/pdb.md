@@ -18,7 +18,7 @@ Da das handschriftlich oder im Kopf schon bei relativ kleinen Programmen umstän
 ein gutes Werkzeug darstellen.
 In diesem Fall schauen wir uns "pdb" an. 
 "pdb" ist ein interaktiver Debugger, der über das Terminal gesteuert wird.
-Eine GUI-Variante eines Debuggers lernen Sie in [PARTREF::IDE-Debugging] kennen.
+Eine GUI-Variante eines Debuggers lernen Sie in [PARTREF::IDE_debugging] kennen.
 [ENDSECTION]
 
 
