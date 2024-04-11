@@ -38,10 +38,10 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
 
-- ch/Bestandscode/Refactoringpraxis/01gildedrose_tests.md (Dominik Pietrak)
-- ch/Bestandscode/Refactoringpraxis/02gildedrose_refactor.md (Dominik Pietrak)
-- ch/Bestandscode/Refactoringpraxis/03gildedrose_implementation.md (Dominik Pietrak)
-- ch/Bestandscode/Refactoringpraxis/04gildedrose_reflexion.md (Dominik Pietrak)
+- ch/Bestandscode/Refactoringpraxis/01gildedrose_tests.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/02gildedrose_refactor.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/03gildedrose_implementation.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/04gildedrose_reflexion.md (Pietrak)
 
 - ch/Testen/API/index.md (Ruhe->Hofmann)
 - ch/Testen/API/ResponseApi.md (Ruhe->Hofmann)
@@ -54,13 +54,13 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Linter/flake8.md (Ruhe->Alrwasheda->Hofmann)
 - ch/Werkzeuge/Linter/black.md (Ruhe->Alrwasheda->Hofmann)
 
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Dominik Pietrak)
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Dominik Pietrak)
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
 
 - ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->Müllers)
 
 - ch/Testen/Unittests/tdd_pp.md (Ruhe->Müllers)
-- ch/Testen/Unittests/pytestBenchmark.md (Ruhe->Müller)
+- ch/Testen/Unittests/pytestBenchmark.md (Ruhe->Müllers)
 
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
 
@@ -69,23 +69,22 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/unittest203.md (Ruhe->Müller)
 - ch/Testen/Unittests/pytest202.md (Ruhe->Müller)
  
-- ch/Debugging/Debugging-Praxis/Einkaufsliste-02.md (Dominik Pietrak, reviewed by Christian Hofmann)
-- ch/Debugging/Debugging-Praxis/Einkaufsliste-03.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Debugging-Praxis/Einkaufsliste-02.md (Pietrak->Hofmann)
+- ch/Debugging/Debugging-Praxis/Einkaufsliste-03.md (Pietrak->Hofmann)
 
-- ch/Debugging/Denkweisen/Mathematician.md (Dominik Pietrak, reviewed by Christian Hofmann)
-- ch/Debugging/Denkweisen/Professor-Solomon.md (Dominik Pietrak, reviewed by Christian Hofmann)
-- ch/Debugging/Denkweisen/Psychologist.md (Dominik Pietrak, reviewed by Christian Hofmann)
-- ch/Debugging/Denkweisen/Sherlock-Holmes.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->Hofmann)
+- ch/Debugging/Denkweisen/Professor-Solomon.md (Pietrak->Hofmann)
+- ch/Debugging/Denkweisen/Psychologist.md (Pietrak->Hofmann)
+- ch/Debugging/Denkweisen/Sherlock-Holmes.md (Pietrak->Hofmann)
 
-- ch/Debugging/Häufige-Defektarten/a_logic.md (Dominik Pietrak, reviewed by Christian Hofmann)
-- ch/Debugging/Häufige-Defektarten/b_expression.md (Dominik Pietrak, reviewed by Christian Hofmann)
-- ch/Debugging/Häufige-Defektarten/b_variable.md (Dominik Pietrak, reviewed by Christian Hofmann)
-- ch/Debugging/Häufige-Defektarten/d_indexing.md (Dominik Pietrak, reviewed by Christian Hofmann)
-- ch/Debugging/Häufige-Defektarten/f_location.md (Dominik Pietrak, reviewed by Christian Hofmann)
+- ch/Debugging/Häufige-Defektarten/a_logic.md (Pietrak->Hofmann)
+- ch/Debugging/Häufige-Defektarten/b_expression.md (Pietrak->Hofmann)
+- ch/Debugging/Häufige-Defektarten/b_variable.md (Pietrak->Hofmann)
+- ch/Debugging/Häufige-Defektarten/d_indexing.md (Pietrak->Hofmann)
+- ch/Debugging/Häufige-Defektarten/f_location.md (Pietrak->Hofmann)
 
 - ch/Testen/Unittests/coverage.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
 - ch/Testen/Unittests/mocking.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
-- ch/Testen/Unittests/unittest101.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
 
 - ch/Testen/Unittests/unittest201.md (Ruhe->Müllers->Alrwasheda->Prechelt):
 Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
@@ -124,7 +123,7 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 ## Reviews to do for Ivan Condric
 
-- ch/Sprachen/Pythonpraxis/mlh-rename (Lutz Prechelt)
+- ch/Sprachen/Pythonpraxis/mlh-rename (Prechelt)
 - ...
 
 
@@ -146,8 +145,9 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Bibliotheken/changelog.md (Prechelt->Ruhe)
 - ch/Bibliotheken/changelog2.md (Prechelt->Ruhe)
 
+- ch/Testen/Unittests/unittest101.md (Ruhe->Müllers->Alrwasheda->Prechelt->Ruhe)
 - ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda->Ruhe)
-- ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt->Pietrak und Ruhe)
+- ch/Testen/Unittests/freezegun.md (Ruhe->Müllers->Alrwasheda->Prechelt->Ruhe)
 
 - ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Prechelt->Ruhe)  
   Bitte verfrachten Sie den allgemeinen Teil von Background ins Glossar.
@@ -160,17 +160,17 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 ## Reviews to do for Sven Hüster
 
-- ch/Sprachen/Pythonpraxis/mlh-gitac (Lutz Prechelt)
-- ch/Sprachen/RegExp/log_sanitizer (Sven Hüster, fertiggestellt von Lutz Prechelt)
+- ch/Sprachen/Pythonpraxis/mlh-gitac (Prechelt)
+- ch/Sprachen/RegExp/log_sanitizer (Hüster, fertiggestellt von Prechelt)
 - ...
 
 
 ## Reviews to do for Sven Wegner
 
-- ch/Bibliotheken/Python-Standardbibliothek/m_subprocess2.md (Lutz Prechelt)
-- ch/Bibliotheken/Python-Standardbibliothek/sorted_and_sort.md (Lutz Prechelt)
+- ch/Bibliotheken/Python-Standardbibliothek/m_subprocess2.md (Prechelt)
+- ch/Bibliotheken/Python-Standardbibliothek/sorted_and_sort.md (Prechelt)
 
-- ch/Bibliotheken/Frameworks/argparse_subcommand.md (Lutz Prechelt)
+- ch/Bibliotheken/Frameworks/argparse_subcommand.md (Prechelt)
 
 
 ## Reviews to do for Dominik Pietrak
@@ -178,7 +178,7 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Debugging/debuggingtools/gitbisect.md (Pietrak->Prechelt->Pietrak):
   Habe die Einleitung ganz neu geschrieben, hoffentlich klarer.
   Die dient zur Motivation, gehört also nach [SECTION::Background].
-- ch/Sprachen/Pythonpraxis/mlh-pseudonymize2.md (Lutz Prechelt)
+- ch/Sprachen/Pythonpraxis/mlh-pseudonymize2.md (Prechelt)
 
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID-Principle.md (Pietrak->Alrwasheda->Pietrak)
 - ch/Debugging/Debugging-Praxis/Einkaufsliste-04.md (Pietrak->Müllers->Pietrak)
