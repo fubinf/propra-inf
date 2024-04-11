@@ -254,6 +254,19 @@ aber sie gilt auch für Programme wie `sort`, die die Eingabe nur umformen.
 
 ## G
 
+[TERM::Git]
+Das heute mit weitem Abstand verbreitetste 
+[Versionsverwaltungssystem](https://de.wikipedia.org/wiki/Versionsverwaltung).
+[ENDTERM]
+
+[TERM::GitHub|github|github.com]
+GitHub ([HREF::https://github.com]) ist ein Dienst, der Zusammenarbeitsfunktionen bereitstellt, 
+mit denen Teams ihre Arbeit auf Basis von [TERMREF::Git] organisieren können.
+Für öffentliche Repositories ist GitHub seit jeher gratis.
+Für private (d.h. nur einer festen Gruppe von Personen zugängliche) Repositories gilt das
+seit einigen Jahren bis zu gewissen Grenzen ebenfalls.
+[ENDTERM]
+
 [TERM::Globbing]
 Die Expansion von Dateinamensmustern in eine Liste von Dateinamen.
 Dabei wird insbesondere das Zeichen `*` als Platzhalter für irgendeinen Dateinamens-Teil interpretiert,
@@ -263,6 +276,10 @@ zugleich ansprechen lassen.
 Globbing ist insbesondere in allen gängigen [TERMREF2::Shell::-s] implementiert.
 
 Kurzerläuterung: [HREF::https://tldp.org/LDP/abs/html/globbingref.html]
+[ENDTERM]
+
+[TERM::Glossar]
+[Griechisch-lateinischer Ausdruck für](https://de.wikipedia.org/wiki/Glossar) Begriffsverzeichnis.
 [ENDTERM]
 
 ## H
