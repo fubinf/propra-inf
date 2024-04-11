@@ -37,8 +37,6 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
-- ch/Basis/Repo/SedrilaEinrichten.md (Christian Hofmann)
-- ch/Basis/Repo/Einreichungen.md (Lutz Prechelt)
 
 - ch/Bestandscode/Refactoringpraxis/01gildedrose_tests.md (Dominik Pietrak)
 - ch/Bestandscode/Refactoringpraxis/02gildedrose_refactor.md (Dominik Pietrak)

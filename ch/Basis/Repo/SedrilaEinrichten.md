@@ -75,3 +75,9 @@ Wie man Einreichungen macht, lernen Sie in der nächsten Aufgabe.
 Die Abgabe besteht aus der von `sedrila student --init`
 generierten Datei `student.yaml`.
 [ENDSECTION]
+
+[INSTRUCTOR::Kann man kaum falschmachen]
+Wenn für diese Aufgabe eine Einreichung ankommt,
+ist sie damit normalerweise automatisch auch akzeptabel.
+Kuriose Ausnahmen sind natürlich denkbar.
+[ENDINSTRUCTOR]
