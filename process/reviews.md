@@ -170,7 +170,7 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Bibliotheken/Python-Standardbibliothek/m_subprocess2.md (Lutz Prechelt)
 - ch/Bibliotheken/Python-Standardbibliothek/sorted_and_sort.md (Lutz Prechelt)
 
-- ch/Bibliotheken/Frameworks/argparse-subcommand.md (Lutz Prechelt)
+- ch/Bibliotheken/Frameworks/argparse_subcommand.md (Lutz Prechelt)
 
 
 ## Reviews to do for Dominik Pietrak

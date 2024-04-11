@@ -2,7 +2,7 @@ title: "My Little Helpers: lsnew, list youngest files only"
 stage: beta
 timevalue: 1.5
 difficulty: 3
-requires: argparse-subcommand
+requires: argparse_subcommand
 ---
 
 [SECTION::goal::experience,product]
@@ -49,7 +49,7 @@ $ python mlh lsnew --age 1h * mlh/* mlh/*/* nonsense
 2024-01-31 10:16:07  mlh/subcmds/__pycache__
 2024-01-31 10:16:06  mlh/subcmds
 2024-01-31 10:16:06  mlh/subcmds/lsnew.py
-2024-01-31 09:20:38  argparse-subcommand.txt
+2024-01-31 09:20:38  argparse_subcommand.txt
 ```
 
 

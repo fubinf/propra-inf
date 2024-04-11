@@ -1,4 +1,4 @@
-title: argparse-subcommand, ein sehr einfaches Framework
+title: argparse_subcommand, ein sehr einfaches Framework
 stage: alpha
 timevalue: 1.0
 difficulty: 3
@@ -8,7 +8,7 @@ assumes: m_argparse, pip
 [SECTION::goal::trial,product]
 
 - Ich verstehe, was ein Framework ausmacht und habe eines ausprobiert.
-- Ich kann mit `argparse-subcommand` aufgeräumte Kommandozeilenprogramme mit mehreren Unterkommandos schreiben.
+- Ich kann mit `argparse_subcommand` aufgeräumte Kommandozeilenprogramme mit mehreren Unterkommandos schreiben.
 - Ich habe die Programmstruktur für mehrere nachfolgende Aufgaben angelegt.
 
 [ENDSECTION]
@@ -20,12 +20,12 @@ Wenn das Kommando allerdings mehrere Unterkommandos hat
 wird es kompliziert: Dann muss man je nach gegebenem Unterkommandonamen
 den `ArgumentParser` ganz anders konfigurieren.
 
-`argparse-subcommand` ist ein klitzekleines Framework, um das zu vereinfachen.
+`argparse_subcommand` ist ein klitzekleines Framework, um das zu vereinfachen.
 Es gibt eine feste Programmstruktur für die Unterkommandos vor, was beim Programmieren
 ein bisschen Code einspart, vor allem aber zu einer immer gleichen und deshalb schnell verständlichen
 Gesamtstruktur führt.
 
-In dieser Aufgabe lernen wir `argparse-subcommand` sowohl, um zu verstehen, was ein Framework ist,
+In dieser Aufgabe lernen wir `argparse_subcommand` sowohl, um zu verstehen, was ein Framework ist,
 als auch als nettes Hilfsmittel für späteres Programmieren.
 
 [ENDSECTION]
@@ -33,14 +33,14 @@ als auch als nettes Hilfsmittel für späteres Programmieren.
 
 ### Installieren
 
-1. Verwenden Sie `[TERMREF::pip]`, um das Paket `argparse-subcommand`
+1. Verwenden Sie `[TERMREF::pip]`, um das Paket `argparse_subcommand`
    in Ihr `[TERMREF::venv]` zu installieren.
 
 
-### In `argparse-subcommand` einlesen: Was ist ein Framework?
+### In `argparse_subcommand` einlesen: Was ist ein Framework?
 
 2. Lesen und verstehen Sie die kurze 
-   [Dokumentation von `argparse-subcommand`](https://github.com/prechelt/argparse_subcommand).  
+   [Dokumentation von `argparse_subcommand`](https://github.com/prechelt/argparse_subcommand).  
    Der Frameworkcharakter besteht darin, dass der Aufruf von `parser.execute_subcommand(args)`
    (dieser Teil steht im Hauptprogramm Ihres Programms)
    bewirkt, dass in einem der subcommand-Module `execute(args)` aufgerufen wird,
@@ -69,7 +69,7 @@ als auch als nettes Hilfsmittel für späteres Programmieren.
 7. Legen Sie darin zwei Dateien `gitac.py` und `lsnew.py` an;
    das werden die beiden ersten Subcommands für mlh. 
    Kopieren Sie in jede der Dateien den subcommand-Modul-Basiscode
-   aus der `argparse-subcommand`-Dokumentation und formatieren Sie ihn ordentlich.
+   aus der `argparse_subcommand`-Dokumentation und formatieren Sie ihn ordentlich.
 8. [EC] Rufen Sie `python mlh` auf und überzeugen Sie sich, dass beide Unterkommandos
    vom Framework korrekt erkannt werden.
 9. [EC] Rufen Sie `python mlh gitac` auf und überzeugen Sie sich,

@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1.5
 difficulty: 3
 assumes:
-requires: argparse-subcommand
+requires: argparse_subcommand
 ---
 TODO_2 assumes: m_shutil, m_tempfile, m_os.path
 
