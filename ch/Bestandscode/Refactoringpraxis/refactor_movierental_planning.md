@@ -28,7 +28,7 @@ Die tatsächliche Lösung ist aber ganz Ihnen überlassen.
 [WARNING]
 In dieser Aufgabe sind sie bis auf die Aufgabenstellung selbst sich selbst überlassen.
 Wenn Sie zuerst eine geführte Variante einer Refaktorierung bearbeiten möchten, werden Sie in 
-[PARTREFTITLE::01gildedrose_tests] und dessen Folgeaufgaben fündig.
+[PARTREFTITLE::gildedrose_tests] und dessen Folgeaufgaben fündig.
 [ENDWARNING]
 
 

@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 3
 difficulty: 2
 assumes: Refactoring-Grundlagen
-requires: 01gildedrose_tests
+requires: gildedrose_tests
 ---
 [SECTION::goal::experience]
 Ich kann Code refaktorieren, ohne die Funktionalität zu ändern und um die 
@@ -34,7 +34,7 @@ Die Regeln des Programms sind bekannt und sind mittels Tests festgehalten.
 - Erstellen Sie in Ihrem Arbeitsverzeichnis drei Ordner mit den Namen `Variante_01` und 
   `Variante_02`. 
 - Kopieren Sie die Dateien `gilded_rose.py` und `test_gilded_rose.py` aus 
-  [PARTREF::01gildedrose_tests] in jeden dieser Ordner.
+  [PARTREF::gildedrose_tests] in jeden dieser Ordner.
 - Machen Sie einen Commit mit diesen Dateien.
 
 ### Variante 1: Einführung einer Updater-Klasse
@@ -282,7 +282,7 @@ Bisher sind diese im **dritten Block** versammelt.
 - Der Code wird kleinteilig geändert.
   "Kleinteilig" heißt hier nicht "wenig Text", sondern "wenig Struktur".
 - Vor jedem Commit sollen die Testfälle gestartet worden sein. 
-  Wenn die Testfälle aus [PARTREFTITLE::01gildedrose_tests] nicht wie beschrieben reagieren, 
+  Wenn die Testfälle aus [PARTREFTITLE::gildedrose_tests] nicht wie beschrieben reagieren, 
   bitte zurückweisen.
 - Die Code-Abgaben sollten zueinander relativ ähnlich aussehen, es ist also nicht mit viel 
   Streuung bei den Lösungen zu rechnen.

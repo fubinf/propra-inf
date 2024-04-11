@@ -2,7 +2,7 @@ title: "Gilded Rose: Reflexion über das Kata"
 stage: alpha
 timevalue: 1
 difficulty: 3
-requires: 03gildedrose_implementation
+requires: gildedrose_implementation
 ---
 [SECTION::goal::idea]
 
@@ -23,7 +23,7 @@ reflektieren.
 - [EQ] Sind die Aufgaben für Sie in der vorgegebenen Zeit umsetzbar gewesen?
   Wenn nein: Woran könnte das gelegen haben?
 
-### Zu [PARTREF::01gildedrose_tests]:
+### Zu [PARTREF::gildedrose_tests]:
 
 - [EQ] Empfinden Sie die Fokussierung auf Tests als zielführend oder eher als lästig? Begründen Sie.
 - [EQ] Wie werden Sie zukünftig mit Tests umgehen?
@@ -32,13 +32,13 @@ reflektieren.
   Oder verzichten Sie gar ganz auf Tests?  
   Wenn Sie auf Tests verzichten werden, wieso?
 
-### Zu [PARTREF::02gildedrose_refactor]:
+### Zu [PARTREF::gildedrose_refactor]:
  
 - [EQ] Welche der Varianten erschien Ihnen schlüssiger?
 - [EQ] Ist Ihnen noch eine weitere Variante zur Refaktorierung eingefallen? 
   Wenn ja: Skizzieren Sie diese in einem kurzen Absatz.
 
-### Zu [PARTREF::03gildedrose_implementation]
+### Zu [PARTREF::gildedrose_implementation]
 
 - [EQ] Gab es nach der Vorarbeit hier Probleme bei der Implementierung?
 - [EQ] Schauen Sie sich nochmal den Original-Code an.
