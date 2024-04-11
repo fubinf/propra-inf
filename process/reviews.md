@@ -145,6 +145,9 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Testgrundlagen/TestDelimitations.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
 
+- ch/Bibliotheken/changelog.md (Prechelt->Ruhe)
+- ch/Bibliotheken/changelog2.md (Prechelt->Ruhe)
+
 - ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda->Ruhe)
 - ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt->Pietrak und Ruhe)
 
