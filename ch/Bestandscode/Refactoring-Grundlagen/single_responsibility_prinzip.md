@@ -2,7 +2,7 @@ title: Single Responsibility Prinzip
 stage: alpha
 timevalue: 0.75
 difficulty: 3
-assumes: SOLID-Principle
+assumes: SOLID_principle
 ---
 
 [SECTION::goal::idea]

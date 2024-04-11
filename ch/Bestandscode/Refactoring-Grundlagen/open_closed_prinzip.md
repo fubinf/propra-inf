@@ -2,7 +2,7 @@ title: Open/Closed Prinzip
 stage: alpha
 timevalue: 1
 difficulty: 3
-assumes: SOLID-Principle, m_abc
+assumes: SOLID_principle, m_abc
 ---
 
 [SECTION::goal::idea]

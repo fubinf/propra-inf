@@ -2,7 +2,7 @@ title: Interface Segregation Prinzip
 stage: alpha
 timevalue: 1
 difficulty: 3
-assumes: SOLID-Principle
+assumes: SOLID_principle
 ---
 
 [SECTION::goal::idea]
