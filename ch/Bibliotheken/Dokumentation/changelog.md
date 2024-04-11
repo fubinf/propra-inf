@@ -15,7 +15,7 @@ Ich verstehe, wie man Nutzer_innen über Änderungen an einer Software informier
 Früher wurden mit jeder neuen Version einer (ordentlichen) Software so genannte
 "Release Notes" herausgegeben, die mehr oder weniger genau beschrieben, was sich geändert hat.
 
-Heute haben sich im Open-Source-Bereich schlanke und etwas besser standardisierte Formate 
+Heute haben sich im Open-Source-Bereich schlanke und etwas besser standardisierte Formate
 für den gleichen Zweck herausbildet, bei denen das Dokument meistens
 CHANGELOG (also "change log", Protokoll von Änderungen) genannt wird.
 
@@ -26,11 +26,9 @@ damit vertraut machen.
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-
 ### Wissen anlesen
 
 Arbeiten Sie [HREF::https://keepachangelog.com/de/1.0.0/] durch.
-
 
 ### Mit Realität vergleichen
 
@@ -46,12 +44,11 @@ GitHub: `docs/releases`
 Gerendert: [HREF::https://django.readthedocs.io/en/stable/]
 [ENDHINT]
 
-
 ### Reflektion darüber
 
 - [EQ] Warum benutzt Django wohl diese Form?
 - [EQ] Angenommen, Sie entwickeln eine Webanwendung mit Django, die derzeit
-  mit Django Version 4.1.7 läuft und wollen jetzt ein Upgrade auf die 
+  mit Django Version 4.1.7 läuft und wollen jetzt ein Upgrade auf die
   Version 5.0.4 machen.  
   Welche Dateien müssen Sie studieren, um die wichtigsten Dinge (nicht jede Einzelheit) zu überschauen,
   die bei dieser Umstellung schiefgehen könnten und vielleicht Änderungen an Ihrer
@@ -76,6 +73,6 @@ welche unterschiedliche Relevanz die haben:
 
 - Neu hinzugekommene Funktionalität, wo es also Chancen zu nutzen gibt
 - Änderungen am vorherigen Bestand, die existierende Software zum Stolpern bringen können
-- Defektkorrekturen, die meist(!) nicht so viel Beachtung benötigen. 
+- Defektkorrekturen, die meist(!) nicht so viel Beachtung benötigen.
 
-- [ENDINSTRUCTOR]
+[ENDINSTRUCTOR]

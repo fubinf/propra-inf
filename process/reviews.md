@@ -104,6 +104,11 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->Prechelt)
 - ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->Prechelt)
 
+- ch/Bibliotheken/Dokumentation/changelog.md (Prechelt->Ruhe->Prechelt) Keine Anmerkungen.
+- ch/Bibliotheken/Dokumentation/changelog2.md (Prechelt->Ruhe->Prechelt) Zwei Übungen ergänzt, eine
+  davon auf das SUT bezigen, um nachzuvollziehen, dass ein vorhandenes Changelog schöner ist, als
+  eins aus einem wenig bekannten Produkt zu extrahieren. (darauf aufbauend könnte man noch mehr in
+  die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
 
 ## Reviews to do for Hanen Alrwasheda
 
@@ -150,9 +155,6 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/TestDelimitations.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
-
-- ch/Bibliotheken/changelog.md (Prechelt->Ruhe)
-- ch/Bibliotheken/changelog2.md (Prechelt->Ruhe)
 
 - ch/Testen/Unittests/unittest101.md (Ruhe->Müllers->Alrwasheda->Prechelt->Ruhe)
 - ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda->Ruhe)

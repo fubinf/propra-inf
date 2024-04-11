@@ -34,25 +34,32 @@ Wenn nicht, bitte jetzt nachholen.
   als eine Release von `mlh` und dokumentieren Sie, was da jeweils passiert ist.
     - Schreiben Sie das in eine Datei `CHANGELOG.md` im `mlh`-Dateibaum.
     - Vergeben Sie nachträglich künstliche Versionsnummern
-    - Schlagen Sie das jeweilige Datum in der 
+    - Schlagen Sie das jeweilige Datum in der
       [Commit-Historie](https://git-scm.com/docs/git-log) nach.
     - Wenn Sie für eine Aufgabe mehrere Commits gemacht haben, betrachten Sie jeden
       Commit als eine Release und verwenden Sie [semantische Versionsnummern](https://semver.org/).
 - [EQ] Welchen Verzeichnispfad hat die Changelog-Datei, die Sie soeben geschrieben haben?
 
-
-### Changelog zu `xxx` schreiben
+### Changelog zu `Passwortgenerator` schreiben
 
 - Diesen Teil können Sie bearbeiten, wenn (und nur wenn) Sie von den
-  `xxx`-Aufgaben mindestens !!! bearbeitet haben.
+  `Passwortgeneratoraufgaben`-Aufgaben in der Gruppe [PARTREF::Pythonpraxis] mindestens 2 bearbeitet
+  haben, wobei die erste die Grundlagenentwicklung ist und mit in die Zählung einfließt. (Diese
+  haben Sie jedoch bereits fleißig dokumentiert)
 - Folgen Sie den gleichen Anweisungen wie oben bei `mlh` beschrieben analog.
 
 
-### Changelog zu `yyy` schreiben
+### Changelog zu `SUT` schreiben
 
 - Diesen Teil können Sie bearbeiten, wenn (und nur wenn) Sie von den
-  `yyy`-Aufgaben mindestens !!! bearbeitet haben.
-- Folgen Sie den gleichen Anweisungen wie oben bei `mlh` beschrieben analog.
+  `SystemUnderTest`-Aufgaben in der Gruppe [PARTREF::SystemUnderTest] mindestens eine bearbeitet haben.
+- Betrachten Sie die beschriebenen Implementationen ihrer bearbeiteten Aufgabe jeweils als ein Release
+  des SUT und dokumentieren Sie, was passiert ist.
+    - Schreiben Sie das in eine Datei `CHANGELOG.md` im `SUT`-Dateibaum Ihrer ausgewählten Version.
+    - Vergeben Sie nachträglich künstliche Versionsnummern und fiktive aufeinander folgende Datumswerte.
+- [EQ] Welchen Verzeichnispfad hat die Changelog-Datei, die Sie soeben geschrieben haben?
+- [EQ] War es Ihnen als nicht-Mitentwickler einfach gelungen zu erahnen, was wie aufbauend umgesetzt
+  wurde?
 
 [ENDSECTION]
 [SECTION::submission::information]
