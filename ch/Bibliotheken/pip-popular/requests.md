@@ -2,22 +2,21 @@ title: Python requests
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-assumes: Python1, WebAPIs, pip
+assumes: WebAPIs, pip
 ---
 [SECTION::goal::trial]
 
-Ich kann das Python Paket `requests` für verschiedene Arten von HTTP-Anfragen verwenden.
+Ich kann das Python-Paket `requests` für verschiedene Arten von HTTP-Anfragen verwenden.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
 Da viele moderne Anwendungen auf externe Dienste angewiesen sind, die über [TERMREF::API]
-kommunizieren, ist das Beherrschen von Python Requests wichtig, um Daten von verschiedenen Quellen
-abzurufen und zu verarbeiten. Zusätzlich ist Python Requests eine weit verbreitete und gut
-dokumentierte Bibliothek, die in der Entwicklergemeinschaft breite Unterstützung und Ressourcen
-bietet, was es zu einem wertvollen Werkzeug für Entwickler auf jedem Erfahrungslevel macht und auch
-leicht anzuwenden ist, wenn man das einmal gemacht hat.
+kommunizieren, ist das Beherrschen einer http-Bibliothek wichtig.
+Es gibt in der Standardbibliothek [http.client](https://docs.python.org/3/library/http.client.html),
+aber das ist recht umständlich, weshalb die meisten Programme lieber
+das viel einfacher zu benutzende [`requests`](https://requests.readthedocs.io) verwenden.
 
 [ENDSECTION]
 
