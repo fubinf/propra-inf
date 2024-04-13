@@ -110,6 +110,9 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
   eins aus einem wenig bekannten Produkt zu extrahieren. (darauf aufbauend könnte man noch mehr in
   die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
 
+- ch/Testen/Testgrundlagen/Error.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt)
+- ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt)
+
 ## Reviews to do for Hanen Alrwasheda
 
 - ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda)
@@ -148,8 +151,6 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 ## Reviews to do for Ronny Ruhe
 
-- ch/Testen/Testgrundlagen/Error.md (Ruhe->Müllers->Prechelt->Ruhe)
-- ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/Testcases.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/TestcasesExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->Müllers->Prechelt->Ruhe)
