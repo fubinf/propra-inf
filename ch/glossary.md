@@ -283,6 +283,12 @@ Kurzerläuterung: [HREF::https://tldp.org/LDP/abs/html/globbingref.html]
 [ENDTERM]
 
 ## H
+[TERM::Hardlink]
+Hard Links sind alternative Verweise auf eine Datei im Dateisystem, die denselben Inhalt wie 
+die Originaldatei teilen. Sie verweisen direkt auf die Inode-Nummer der Datei und ermöglichen so 
+eine effiziente Nutzung des Speicherplatzes.
+[ENDTERM]
+
 
 [TERM::Header|Header-Metadaten|HTTP-Header]
 Ein Abschnitt, der am Anfang eines Dokuments, einer Nachricht oder einer
@@ -701,6 +707,12 @@ weil diese aus Sicht einer Benutzer_in wie eine "Schale" den Kern des Betriebssy
 
 [TERM::Schlüsselwort|Keyword]
 Schlüsselwörter (Englisch: "keyword") beziehen sich im Allgemeinen auf reservierte Wörter oder Zeichenfolgen, die eine spezielle Bedeutung innerhalb der Programmiersprachen haben. Diese Schlüsselwörter sind Teil der Sprachsyntax und haben vordefinierte Funktionen oder Operationen. Schlüsselwörter dürfen nicht als Namen für Variablen oder Funktionen oder irgendwelche Elemente im Programm verwendet werden, das führt (in Python) direkt zu (Laufzeit-) Fehler. 
+[ENDTERM]
+
+[TERM::Softlink|Symlink]
+Symbolische Links (Soft Links) sind Verweise auf Dateien oder Verzeichnisse, die durch einen 
+separaten Pfad dargestellt werden. Sie bieten Flexibilität und ermöglichen es, auf Dateien oder 
+Verzeichnisse zuzugreifen, unabhängig von ihrem physischen Speicherort.
 [ENDTERM]
 
 [TERM::Statische analytische Qualitätssicherung]
