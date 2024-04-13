@@ -27,7 +27,9 @@ Alle unten aufgeführten Befehle geben nur Informationen aus, aber sie sind sehr
 - [EC] Finden Sie heraus in welchen Gruppen ihr Nutzer ist, und welche PID und GID ihrem Nutzer zugewiesen wurde. Nutzen Sie dafür nur einen Befehl ohne [TERMREF::Pipes].
 - [EC] Geben Sie an, wie viel Speicherplatz ihr System in dem Moment noch frei hat. Geben Sie es in einem menschlich lesbarem Format an.
 - [EC] Ein weiteres wichtiges Programm auf Linux ist `htop`. Es ist ähnlich wie der Taskmanager bei Windows. Starten Sie htop und verstehen Sie welche Informationen es Ihnen pro Prozess gibt.
-- [EC] Finden Sie heraus wie viel freien Speicher auf Ihrem System noch vorhanden ist. Additionally finden Sie heraus wie viel Speicherplatz ihr `/`-Verzeichnis verbraucht und wie viel Speicherplatz ihr `home`-Verzeichnis verbraucht.
+- [EC] Finden Sie heraus wie viel freien Arbeitsspeicher auf Ihrem System noch vorhanden ist. 
+- [EC] Finden Sie heraus wie groß ihr `/`-Verzeichnis ist.
+- [EC] Finden Sie heraus wie groß ihr `home`-Verzeichnis ist.
 - [EC] Finden Sie ihre IP-Adresse heraus.
 [ENDSECTION]
 
