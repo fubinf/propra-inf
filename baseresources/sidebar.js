@@ -22,7 +22,7 @@ const timer = document.getElementsByClassName("breadcrumbs")?.[0]
 if (timer) {
   timer.id = "timer";
   let time = 0, start;
-  const controls = Object.fromEntries(["time", "play", "pause", "stop"].map(c => [c, timer.appendChild(document.createElement("span"))]));
+  const controls = Object.fromEntries(["time", "copy", "play", "pause", "stop"].map(c => [c, timer.appendChild(document.createElement("span"))]));
 
   function playPause(play, pause) {
     controls.pause.style.display = play ? "inline" : "none";
@@ -33,12 +33,17 @@ if (timer) {
     const quarters = Math.max(time / (60 * 60 * 1000), 1);
     const mins = (quarters % 4) * 25;
     controls.time.textContent = "%" + filename + " " + Math.floor(quarters / 4) + (mins ? ("." + mins) : "") + "h ";
+    controls.copy.style.display = "inline";
   }
 
   Object.entries(controls).forEach(e => e[1].className = e[0])
+  controls.copy.style.display = "none";
   controls.pause.style.display = "none";
   controls.stop.style.display = "none";
   playPause(false);
+  controls.copy.onclick = () => {
+    navigator.clipboard.writeText(controls.time.textContent);
+  }
   controls.play.onclick = () => {
     start = new Date();
     playPause(true);
