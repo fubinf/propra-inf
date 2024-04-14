@@ -52,6 +52,10 @@ In dieser Aufgabe lernen wir eine bessere Lösung kennen und probieren sie aus.
 - Sehen Sie es sich mit `less typescript` an.
   So ungefähr wird das Ergebnis auch für die Tutor_in aussehen.
   (Verlassen mit 'q', Hilfe mit 'h'. `less` kann eine ganze Menge.)
+
+Es ist möglich, den Dateinamen als Argument zu übergeben, und es bietet sich an, das an die
+jeweilig bearbeitete Aufgabe anzupassen. Ein Aufruf von `script Kommandoprotokolle.txt` erzeugt
+beispielsweise eine Datei "Kommandoprotokolle.txt" statt "typescript".
   
 [NOTICE]
 Es ist auch möglich, ohne neue Shell die Befehle einzeln nach und nach zu protokollieren.
@@ -87,7 +91,7 @@ Verständnis des Protokolls nicht erschwert.
 [NOTICE]
 Seien Sie sich bewusst, dass die Dateien möglicherweise Symbole beinhalten werden, die Ihnen nicht vertraut
 sind. Diese dienen der Formatierung (also beispielsweise Farbe). 
-Entfernen Sie diese daher nicht pauschal alle diese Symbole!
+Entfernen Sie daher nicht pauschal alle diese Symbole!
 [ENDNOTICE]
 
 [NOTICE]
@@ -101,16 +105,11 @@ Linux-System vorhanden.
 [ENDSECTION]
 [SECTION::submission::trace]
 
-Benennen Sie die Datei `typescript` in die Form `*.txt` um.
-Dabei steht der Stern für den Aufgabennamen.
+Falls Sie keinen geeigneten Ausgabedateinamen beim Aufruf von `script` angegeben haben,
+nenennen Sie die Datei `typescript` in in eine Datei mit Endung `.txt` um.
 Der Zielname ist in unserem Fall also `Kommandoprotokolle.txt` und Sie rufen auf:
 `mv typescript Kommandoprotokolle.txt`.
 Geben Sie diese Datei ab.
-
-[NOTICE]
-Man kann `script` auch gleich so aufrufen, dass von vornherein der richtige Zieldateiname entsteht:
-`script zieldateiname`.
-[ENDNOTICE]
 
 Analog werden wir das künftig bei vielen Aufgaben machen.
 
@@ -118,7 +117,7 @@ Analog werden wir das künftig bei vielen Aufgaben machen.
   [EC], [EC] usw. markiert sind.
 - Genau diese Schritte sollen im abzugebenden Kommandoprotokoll stehen.
 - Vor dem ersten solchen Kommando rufen Sie also **selbständig** `script` auf
-  und nach dem letzten `exit`, dann benennen Sie die Datei `typescript` um.
+  und nach dem letzten `exit`, dann benennen Sie die Ausgabedatei gegebenenfalls um.
   (Eine Datei namens `typescript` sollte selbst nie eingecheckt werden.)
 - Oder Sie benutzen einzelne `script`-Aufrufe für jedes zu protokollierende Kommando.
 - Falls Sie unterwegs Fehler gemacht haben, benutzen Sie nun den Editor,

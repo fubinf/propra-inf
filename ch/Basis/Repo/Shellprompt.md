@@ -28,21 +28,14 @@ was wo ist. Deshalb ist es hilfreich, wenn der Prompt darüber Auskunft gibt.
 
 ### Prompt einstellen
 
-Fügen Sie an die Datei `.bashrc` in Ihrem Homeverzeichnis (`~/.bashrc`)
-folgende Zeile an:  
-`export PS1="\[\e[1;33m\]\u\[\e[1;31m\]@\h \[\e[0;32m\]\w \[\e[0;37m\]\t \[\e[44m\] \! \[\e[40m\]\n\$ "`  
-(Falls es bei Ihnen die Datei `~/.bash_profile` geben sollte, ist die Zeile hingegen dort richtig aufgehoben.)
-
-Benutzen Sie dafür z.B. den Editor nano:
-`nano ~/.bashrc`.
-Wie man da wieder rauskommt, ist am unteren Bildschirmrand beschrieben
-(`^` steht für die Umschalttaste Ctrl-/Strg-, `M-` ("meta") steht für `Alt-`.).
+Führen Sie in Ihrer Shell folgenden Befehl aus:
+```
+export PS1="\[\e[1;33m\]\u\[\e[1;31m\]@\h \[\e[0;32m\]\w \[\e[0;37m\]\t \[\e[44m\] \! \[\e[40m\]\n\$ "
+```  
 
 Obiges erzeugt einen Prompt, der für schwarzen Terminal-Hintergrund konzipiert ist.
 Für einen weißen sollte man z.B. das "33m" auch durch "31m" ersetzen.
 Er benutzt pro Promptausgabe _zwei_ Zeilen, um eine ungestörte Eingabe zu erlauben.
-
-Aktivieren Sie den neuen Prompt durch Aufruf von `source ~/.bashrc`.
 
 
 ### Prompt verstehen
@@ -94,6 +87,9 @@ Das Thema ist leider ziemlich kompliziert.
 Versuchen Sie also besser kein Finetuning.
 [ENDWARNING]
 
+Sie können damit ruhig expermentieren und eigene Anpassungen vornehmen. Sollte etwas schiefgehen,
+können Sie Ihre Shell einfach schließen und wieder öffnen, um die Situation von davor zu haben.
+
 Falls Sie sich einen eigenen Prompt bauen, behalten Sie bitte mindestens folgende Elemente
 des obigen Vorschlags bei, um den Tutor_innen die Arbeit zu erleichtern:
 
@@ -106,6 +102,30 @@ des obigen Vorschlags bei, um den Tutor_innen die Arbeit zu erleichtern:
 
 Der Prompt sollte ordentlich mit dunklem Bildschirmhintergrund funktionieren,
 auch wenn Sie selbst vielleicht einen hellen einsetzen.
+
+### Prompt persistieren
+
+Sollten Sie einen Prompt haben, mit dem Sie zufrieden sind, sorgen Sie dafür, dass er auch für neue
+Shell-Instanzen verwendet wird. Hierfür führen Sie folgende Befehle aus.
+
+```
+echo "" > ~/.bashrc
+echo "export PS1=\"\\[\\e...\"" > ~/.bashrc
+```
+
+[WARNING]
+Für das `echo "export PS1"` stehen wir vor einem klassischen Problem in der Software-Entwicklung:
+Strings in Strings. Das übliche Vorgehen wird auch hier verwendet:
+Setzen Sie zunächst ein zusätzliches Backslash vor alle vorhandenen (also "\[" wird "\\[") und
+zusätzlich um die Stringseparatoren von dem Wert für PS1 (also PS1=\"...\" statt PS1="").
+Anschließend Werden Anführungszeichen um den gesamten Teil gesetzt (also "export PS1=...").
+
+Sie können den zweiten Befehl ohne das abschließende `> ~/.bashrc` ausführen, um zu überprüfen, ob
+Ihre Anpassung korrekt ist. Es sollte exakt derselbe Text ausgegeben werden, mit dem Sie ihren
+Prompt angepasst haben.
+[ENDWARNING]
+
+Falls noch nicht aktiv, aktivieren Sie den neuen Prompt durch Aufruf von `source ~/.bashrc`.
 
 [ENDSECTION]
 [SECTION::submission::reflection]
