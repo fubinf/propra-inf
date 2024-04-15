@@ -113,9 +113,10 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Testgrundlagen/Error.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt)
 - ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt)
 
+- ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
+
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda)
 - ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->Prechelt->Alrwasheda) 
 - ch/Sprachen/Python1/PythonComments.md (Alrwasheda->Prechelt->Alrwasheda)
   Über PythonBooleans und PythonStrings sprechen wir mal.
