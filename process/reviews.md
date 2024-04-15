@@ -122,10 +122,10 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Unittests/pytest201.md (Ruhe->Müllers->Prechelt)
 
 - ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
+- ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt) 
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->Prechelt->Alrwasheda) 
 - ch/Sprachen/Python1/PythonComments.md (Alrwasheda->Prechelt->Alrwasheda)
   Über PythonBooleans und PythonStrings sprechen wir mal.
   PythonComments habe ich auch angeschaut und kommentiert.
