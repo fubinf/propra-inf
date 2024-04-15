@@ -1,6 +1,6 @@
 title: "Integer Datentyp in Python"
 stage: alpha
-timevalue: 0.5
+timevalue: 0.75
 difficulty: 1
 assumes: PythonComments, PythonBooleans
 ---
@@ -38,17 +38,13 @@ In Python kann man die ganzen Zahlen (Integers) auf einfache Weise deklarieren:
     # Syntax:
     # Variablenname = Ganzzahl
 
-    x = 10     # Positive Ganzzahl
-    y = -5     # Negative Ganzzahl
-    z = 0      # Null
-
     # Ausgeben der Ergebnisse mit der Python-Funktion print() 
-    print(x) # 10
-    print(y) # -5
-    print(z) # 0
+    print(10) # 10
+    print(-5) # -5
+    print(0) # 0
 
     # Mit der Python-Funktion type() können Sie den Datentyp einer Variable herausfinden. 
-    print(type(x)) # <class 'int'> 
+    print(type(7)) # <class 'int'> 
 ```
 
 ### Arithmetische Operationen:
@@ -60,57 +56,40 @@ In Python können alle grundlegenden arithmetischen Operationen durchgeführt we
     x = 2 # Hier haben wir dem Namen x den Integer-Wert 2 gegeben, somit entsteht die Variable x.
     y = 17 # Hier haben wir dem Namen y den Integer-Wert 17 gegeben, somit entsteht die Variable y.
 
-    # Addition
-    ergebnis_addition = x + y
-    print("Addition:", ergebnis_addition)
+    # Addition: +
+    print("Addition:", x + y)
 
-    # Subtraktion
-    ergebnis_subtraktion = x - x
-    print("Subtraktion:", ergebnis_subtraktion)
+    # Subtraktion: -
+    print("Subtraktion:", x - y)
 
-    # Multiplikation
-    ergebnis_multiplikation = x * y
-    print("Multiplikation:", ergebnis_multiplikation)
+    # Multiplikation: *
 
-    # Division
-    ergebnis_division = y / x
-    print("Division:", ergebnis_division)
+    # Division: /
 
-    # Ganzzahlige Division: Ergebnis wird auf die nächstgelegene Zahl gerundet
-    ergebnis_ganzzahlige_division = y // x
-    print("Ganzzahlige Division:", ergebnis_ganzzahlige_division)
+    # Ganzzahlige Division: // (Ergebnis wird auf die nächstgelegene Zahl gerundet)
 
-    # Modulo (Rest der Division)
-    ergebnis_modulo = y % x
-    print("Modulo:", ergebnis_modulo)
+    # Modulo (Rest der Division): %
 
-    # Potenz
-    ergebnis_potenz = y ** x
-    print("Potenz:", ergebnis_potenz)
+    # Potenz: **
 
-    # Vergleichsoperationen: Ausgabe ist ein boolescher Wert (True, False)
-    # Größer
-    print("Größer:", y > x)
+    # Größer: >
     
-    # Kleiner
-    print("Kleiner:", y < x)
+    # Kleiner: <
     
-    # Größer oder gleich
-    print("Größer oder gleich:", x >= y)
+    # Größer oder gleich: >=
 
-    # Kleiner oder gleich
-    print("Kleiner oder gleich:", x <= y)
+    # Kleiner oder gleich: <=
 
-    # Gleichheit
-    print("Gleichheit:", x == y)
+    # Gleichheit: == 
 
-    # Ungleichheit
-    print("Ungleichheit:", x != y)
+    # Ungleichheit: !=
+
 ```
 
-[ER] Führen Sie den obigen Python-Code in Ihrer Programmierumgebung aus und
-notieren Sie neben jedem `print()`-Aufruf das Ergebnis.
-Geben Sie den obigen Code mit Ihren Ergbeniskommentaren ab.
+[ER] Ergänzen Sie unter jeder der Operationen in den Kommentaren.
+Nutzen Sie, wie bei der Addition und der Subtraktion, die `print()`-Funktion,
+um das Ergebnis der entsprechenden Operation anzugeben.
+Geben Sie den obigen Code mit den Ergänzungen der fehlenden Operationen ab.
 
 ### Beantworten Sie dazu folgende Fragen:
 
