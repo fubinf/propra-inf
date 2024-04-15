@@ -7,7 +7,7 @@ difficulty: 2
 [SECTION::goal::idea]
 
 - Ich verstehe, was Wahrheitswerte bzw. boolesche Werte sind.
-- Ich kann mit logischen bzw. booleschen Operatoren gut umgehen.
+- Ich verstehe, wie ich mithilfe logischer Operatoren boolesche Ausdrücke erstellen kann.
 
 [ENDSECTION]
 
