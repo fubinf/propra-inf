@@ -232,6 +232,7 @@ Das ist aber nicht zielgenau, wenn die Aufgaben Spielraum bei der Entwurfsstrukt
 Aufgabe(n) zu den Dunder-Methoden von Klassen (z. B. `__init__`, `__bool__`, `__add__`,...) als 
 Folgeaufgabe zu ch/Sprachen/Python2/PythonObjectsClassesIntro.md
 
+String-Formatierung
 
 ### Sprachen/Pythonpraxis (prechelt)
 
