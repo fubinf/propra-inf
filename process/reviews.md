@@ -113,6 +113,14 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Testgrundlagen/Error.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt)
 - ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt)
 
+- ch/Testen/Unittests/index.md (Pietrak und Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/tdd.md (Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/pytest101.md (Pietrak und Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/pytest104.md (Pietrak und Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/pytest201.md (Ruhe->Müllers->Prechelt)
+
 - ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 
 ## Reviews to do for Hanen Alrwasheda
@@ -129,14 +137,6 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Sprachen/Python1/PythonIf.md (Alrwasheda->Prechelt->Alrwasheda)
 - ch/Sprachen/Python1/PythonElifElse.md (Alrwasheda->Prechelt->Alrwasheda)
 
-- ch/Testen/Unittests/index.md (Pietrak und Ruhe->Müllers->Alrwasheda)
-
-- ch/Testen/Unittests/tdd.md (Ruhe->Müllers->Alrwasheda)
-- ch/Testen/Unittests/pytest101.md (Pietrak und Ruhe->Müllers->Alrwasheda)
-- ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->Müllers->Alrwasheda)
-- ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->Müllers->Alrwasheda)
-- ch/Testen/Unittests/pytest104.md (Pietrak und Ruhe->Müllers->Alrwasheda)
-- ch/Testen/Unittests/pytest201.md (Ruhe->Müllers->Alrwasheda)
 
 
 ## Reviews to do for Ivan Condric
