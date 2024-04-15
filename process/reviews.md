@@ -129,6 +129,7 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Sprachen/Python1/PythonCasting.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonIf.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonElifElse.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
+- ch/Sprachen/Python1/PythonFunctions.md (Alrwasheda->Prechelt)
 
 ## Reviews to do for Hanen Alrwasheda
 
