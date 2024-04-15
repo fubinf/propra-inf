@@ -123,14 +123,10 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 - ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt) 
+- ch/Sprachen/Python1/PythonComments.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Sprachen/Python1/PythonComments.md (Alrwasheda->Prechelt->Alrwasheda)
-  Über PythonBooleans und PythonStrings sprechen wir mal.
-  PythonComments habe ich auch angeschaut und kommentiert.
-  Alle übrigen gebe ich auf Verdacht zurück, weil manche der Kommentare vmtl. auch dort
-  irgendwo relevant sind.
 - ch/Sprachen/Python1/PythonIntegers.md (Alrwasheda->Prechelt->Alrwasheda)
 - ch/Sprachen/Python1/PythonFloats.md (Alrwasheda->Prechelt->Alrwasheda)
 - ch/Sprachen/Python1/PythonCasting.md (Alrwasheda->Prechelt->Alrwasheda)
