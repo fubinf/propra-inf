@@ -4,6 +4,21 @@ timevalue: 1.0
 difficulty: 2
 ---
 
+TODO_1_condric:
+
+- Kaum jemand sagt Softlink, Symlink ist weitaus gebräuchlicher.
+- Die beiden Glossareinträge versteht niemand, der es nicht schon vorher weiß.
+  Da muss ein guter Quellenverweis dazu.
+- Wer es schon vorher weiß, erkennt, dass die Beschreibung von Hardlink falsch ist:
+  Das sind keine "alternativen" Einträge. Jeder Eintrag ist ein Hardlink; alle gleichberechtigt.
+- Die ubuntuusers-Quelle sagt das auch so.
+- Hardlinks sind auch problematisch, weil man bei Änderungen an Dateien meist nicht so genau weiß,
+  ob die vorhandene Datei modifiziert wird oder eine ganz frische geschrieben.
+  Aber dann bekommt man eine völlig andere Semantik.
+- Die Aufgabe sollte klarer stellen, dass man Hardlinks selten benutzt, sondern nur unbedingt
+  wissen muss, was das ist -- und sei es, um besser zu verstehen, was Symlinks sind.
+
+
 [SECTION::goal::idea]
 Ich verstehe den Unterschied zwischen Hard- und [TERMREF::Softlink]. Ich weiß, wie ich diese anlege.
 [ENDSECTION]
