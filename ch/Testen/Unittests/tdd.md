@@ -4,6 +4,18 @@ timevalue: 0.5
 difficulty: 1
 explains: TDD
 ---
+TODO_1_ruhe:
+- TDD nur Erklärenkönnen ist nicht unser Ding. 
+- Bitte in eine praktische Aufgabe verwandeln.
+- Davor braucht man die technischen Grundlagen für Unittests, pytest101 vermutlich.
+- Dann braucht man eine Quelle, die ein Beispiel theoretisch durchexerziert, mit Diskussion
+  vor allem des Refaktoringschritts.
+- Dann sollen die Studis selber ein Beispiel durchlaufen, das mindestens drei Tests braucht.
+  FizzBuzz wäre wohl so ungefähr das Einfachste.
+- Nach jedem Schritt ist ein Commit zu machen und am Ende sind alle diese Commits (`git show`)
+  als Kommandoprotokoll vorzuzeigen.
+- Paararbeit anregen: Einer schreibt den Test, der andere den Code und den nächsten Test.
+  Dabei ständige Diskussion.
 
 [SECTION::goal::idea]
 
