@@ -25,6 +25,20 @@ We will modify these rules over time when others appear more useful.
   delete it if the task has arrived in `beta`.
 
 
+## Priority order
+
+We need to produce material that students can start with, quick.
+
+- Basis: Are the pubkey issues solved?
+- Sprachen: 
+    - Some Python2 is needed, e.g. import (Python1 is not urgent)
+    - Pythonpraxis looks OK
+    - bash: Basic stuff urgently needed
+- Bibliotheken:
+    - stdlib looks OK
+    - 
+- Feedback: 7h available, but not suitable early.
+
 ## Reviews to do for Daniel Müllers
 
 
@@ -59,7 +73,6 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->Müllers)
 
-- ch/Testen/Unittests/tdd_pp.md (Ruhe->Müllers)
 - ch/Testen/Unittests/pytestBenchmark.md (Ruhe->Müllers)
 
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
@@ -77,7 +90,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Debugging/Denkweisen/Psychologist.md (Pietrak->Hofmann)
 - ch/Debugging/Denkweisen/Sherlock-Holmes.md (Pietrak->Hofmann)
 
-- ch/Debugging/Häufige-Defektarten/a_logic.md (Pietrak->Hofmann)
 - ch/Debugging/Häufige-Defektarten/b_expression.md (Pietrak->Hofmann)
 - ch/Debugging/Häufige-Defektarten/b_variable.md (Pietrak->Hofmann)
 - ch/Debugging/Häufige-Defektarten/d_indexing.md (Pietrak->Hofmann)
@@ -146,7 +158,6 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 ## Reviews to do for Ivan Condric
 
-- ch/Sprachen/Pythonpraxis/mlh-rename (Prechelt)
 - ...
 
 
@@ -157,6 +168,8 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 ## Reviews to do for Ronny Ruhe
 
+Bitte von oben nach unten abarbeiten:
+
 - ch/Testen/Testgrundlagen/Testcases.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/TestcasesExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->Müllers->Prechelt->Ruhe)
@@ -166,6 +179,8 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Unittests/unittest101.md (Ruhe->Müllers->Alrwasheda->Prechelt->Ruhe)
 - ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda->Ruhe)
 - ch/Testen/Unittests/freezegun.md (Ruhe->Müllers->Alrwasheda->Prechelt->Ruhe)
+
+- ch/Testen/Unittests/tdd_pp.md (Ruhe->Prechelt->Ruhe)
 
 - ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Prechelt->Ruhe)  
   Bitte verfrachten Sie den allgemeinen Teil von Background ins Glossar.
@@ -178,17 +193,12 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 ## Reviews to do for Sven Hüster
 
-- ch/Sprachen/Pythonpraxis/mlh-gitac (Prechelt)
 - ch/Sprachen/RegExp/log_sanitizer (Hüster, fertiggestellt von Prechelt)
 - ...
 
 
 ## Reviews to do for Sven Wegner
 
-- ch/Bibliotheken/Python-Standardbibliothek/m_subprocess2.md (Prechelt)
-- ch/Bibliotheken/Python-Standardbibliothek/sorted_and_sort.md (Prechelt)
-
-- ch/Bibliotheken/Frameworks/argparse_subcommand.md (Prechelt)
 
 
 ## Reviews to do for Dominik Pietrak
@@ -196,6 +206,4 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Debugging/debuggingtools/gitbisect.md (Pietrak->Prechelt->Pietrak):
   Habe die Einleitung ganz neu geschrieben, hoffentlich klarer.
   Die dient zur Motivation, gehört also nach [SECTION::Background].
-- ch/Sprachen/Pythonpraxis/mlh-pseudonymize2.md (Prechelt)
-
-- ch/Testen/Unittests/freezegun.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt->Pietrak und Ruhe)
+- ch/Debugging/Häufige-Defektarten/a_logic.md (Pietrak->Hofmann->Prechelt->Pietrak)

@@ -3,6 +3,23 @@ stage: alpha
 timevalue: 1
 difficulty: 2
 ---
+TODO_1_pietrak:
+
+- Quelle für ASCII fehlt, um das Beispiel 1 verstehen zu können.
+- Die Beispiele in der Heranführung wirken total beliebig.
+  Aber wahrscheinlich ließen die sich doch gewissen Sorten von logischem Problem zuordnen?
+- Man kann nicht mit einem for-Schleifen-C-Beispiel um die Ecke kommen, ohne es zu erläutern.
+- Der Hint im HINT sollte so formuliert sein, dass der Groschen dann auch fällt.
+  Für `j != 100` siehe meine Korrektur.
+- Beim Beispiel mit `biggest` wird der Code hingeklatscht ohne eine Vorgabe,
+  was er tun soll; die wird erst danach formuliert. Schwierig.
+- Der Fehler in diesem Code ist dermaßen hochbeknackt, dass viele Leute vermutlich
+  überhaupt nicht verstehen, was gemeint ist.
+- Den Aufgaben dieser Gruppe fehlt reihenweise der INSTRUCTOR-Block!
+  Ganz ohne geht's aber nicht. 
+  Bitte überall eine sinnvolle Arbeitshypothese zufügen, was den Tutoren helfen mag.
+
+
 [SECTION::goal::idea]
 
 Ich verstehe, welche Form logische Defekte in Code annehmen können und habe einen solchen Defekt
@@ -10,21 +27,11 @@ in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
 
-[SECTION::background::default]
-
-Logische Defekte können zu Fehlfunktionen, Sicherheitslücken und einer beeinträchtigten Benutzererfahrung führen.
-Entwickler sollten diese Defekte verstehen, um präventive Maßnahmen zu ergreifen,
-effizientes Debugging zu ermöglichen und qualitativ hochwertigen Code zu schreiben.
-Dies fördert nicht nur die Effizienz und Sicherheit von Software,
-sondern erleichtert auch die Zusammenarbeit in Teams.
-
-[ENDSECTION]
-
 [SECTION::instructions::detailed]
 
 ### Eine Heranführung an logische Defekte
 
-Computer sind präzise in der Ausführung von Anweisungen, aber oft unfähig, Absichten zu
+Computer sind präzise in der Ausführung von Anweisungen, aber unfähig, Absichten zu
 antizipieren, was zu logischen Defekten führt, oft basierend auf schlechten Annahmen über Daten.
 Sehen Sie sich hierfür das folgende Code-Beispiel in Python an.
 Hier wird versucht, mittels Wissen über die Repräsentation von ASCII-Zeichen
@@ -41,8 +48,8 @@ for k in range(0, len(s)):
 
 Versuchen Sie für sich den Code mittels einer
 [ASCII-Tabelle](https://www.asciitable.com/) nachzuvollziehen.
-Der Code funktioniert... solange `s[k]` ein Großbuchstabe ist.
-Bei Kleinbuchstaben, Satzzeichen und Leerzeichen würde der Code nicht das gewünschte Resultat liefern.
+Der Code funktioniert, wenn `s[k]` ein Großbuchstabe ist.
+Bei Kleinbuchstaben, Satzzeichen und Leerzeichen liefert er aber nicht das gewünschte Resultat.
 
 Gerade Schleifen können sehr anfällig für logische Defekte sein.
 Vor allem bei der Überlegung, wie man die Schleife beendet, können Denkfehler auftreten.
@@ -54,10 +61,11 @@ for (j = 1; j != 100; j = j + 2)
 ```
 
 [HINT::Der Index der Schleife...]
-...fängt bei 1 an, wird bei jeder Iteration um 2 erhöht
+...fängt bei 1 an, wird bei jeder Iteration um 2 erhöht (ist also immer ungerade)
 und die Schleife läuft, solange der Index den Wert 100 nicht annimmt.
-Dies kann niemals der Fall sein, sofern `j` nicht innerhalb der Schleife manipuliert wird,
-also wird die Schleife niemals terminieren.
+Das Abbruchkriterium kann also allenfalls erfüllt werden, wenn der Schleifenrumpf weitere
+Änderungen an `j` macht;
+andernfalls wird die Schleife niemals anhalten.
 
 Hier wäre vermutlich die Bedingung `j < 100` sinnvoller. Um genau diese Art von Fehler
 zu vermeiden, ist der idiomatische Weg in Python auch `for j in range(1, 100, 2)`.
@@ -82,8 +90,8 @@ while True:
 ```
 
 Am Ende der Zeile (`end_of_line()`) wird eine Aufräum-Funktion (`cleanup()`) aufgerufen.
-Es wird aber verpasst danach aus der while-Schleife auszubrechen, wodurch es folgend zum 
-Programmabsturz kommen kann.
+Es wird aber verpasst, danach aus der while-Schleife auszubrechen, wodurch es folgend zum 
+Versagen kommen kann.
 
 Die bisherigen Beispiele für Defekte sind durch kleine Änderungen behebbar gewesen.
 Dass das nicht immer der Fall sein muss, soll das folgende Beispiel zeigen.
@@ -135,7 +143,7 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
    Prüfen Sie, die entsprechenden Zeilen Code, die sicherstellen, dass diese Invariante immer
    wahr ist.
 4. Was ist das Ziel des Codes in den Zeilen 41 bis 46?  
-   Wie viele Pfade kann man in diesem Code zu durchlaufen?
+   Über wie viele Pfade kann man in diesen Code durchlaufen?
 
 [HINT::Lösungshinweis 1]
 Durchlaufen Sie eine Iteration des Codes mit der unter `test_input` angegebenen Liste.
