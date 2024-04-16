@@ -1,6 +1,6 @@
 title: Daten - Indexdefekt
-stage: alpha
-timevalue: 1
+stage: beta
+timevalue: 1.0
 difficulty: 2
 ---
 [SECTION::goal::idea]
@@ -31,14 +31,9 @@ Wenn Sie die Indizierung bei 1 statt bei 0 beginnen, verpasst der Code das erste
 Arrays.
 In Python kann man `range(n)` als Abkürzung für `range(0,n)` schreiben, 
 wodurch dieser Defekt seltener auftritt.
-Der gleiche Defekt kann aber auch auf der anderen Seite des Arrays auftauchen.
-Wir veranschaulichen dies mit einer `for`-Schleife in C:
-
-```c
-for (i = 0; i <= n; i++) { 
-    // code that processes array[i]
-}
-```
+Der gleiche Defekt kann aber auch auf der anderen Seite des Arrays auftauchen:
+indem man nämlich `i <= n` als Fortsetzungsbedingung benutzt und fälschlich einen letzten Durchlauf
+mit `i == n` bekommt, der gar nicht funktioniert.
 
 Manchmal werden solche Defekte auch als Off-By-One-Error bezeichnet. 
 Was genau hinter solchen Defekten steckt, können Sie in der Aufgabe [PARTREFTITLE::a_offbyone] 
@@ -60,8 +55,8 @@ def process_array(my_array):
      check(my_array[index_to_check])
 ```
 
-Dieser Code berechnet `index_to_check` im `else`-Ausdruck falsch, wodurch es zu einem 
-Indexdefekte kommt. 
+Dieser Code berechnet `index_to_check` im `else`-Ausdruck völlig falsch. 
+
 
 ### Ihre Aufgabe
 
@@ -90,8 +85,9 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
 3. Sehen Sie sich die Stellen an, an denen `outer_string` und `sub_string` indiziert werden.
    Welche Einschränkungen gibt es für die Indizierung in diesen Zeichenketten 
    und was bedeutet das für die Einschränkung der verwendeten Variablen?
-4. Überlegen Sie, wann genau das `else` der `for`-Schleife in Zeile 19 ausgelöst wird. Falls das 
-   nicht intuitiv klar ist, hilft ein Blick in die [Python-Dokumentation](https://docs.python.org/3/reference/compound_stmts.html#for).
+4. Überlegen Sie, wann genau das `else` der `for`-Schleife in Zeile 19 ausgelöst wird. 
+   Falls `for-else` nicht bekannt ist, hilft ein Blick in die 
+   [Python-Dokumentation](https://docs.python.org/3/reference/compound_stmts.html#for).
    
 
 [HINT::Lösungshinweis]
