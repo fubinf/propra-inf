@@ -1,5 +1,5 @@
 title: "subprocess: Unterprozess starten, um ein Speicherlimit zu lösen"
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 4
 assumes: m_random, m_subprocess, pytest104
@@ -162,8 +162,8 @@ def test_median(generator):
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
-
 [INSTRUCTOR::Ist das Problem gelöst? Und seriös gelöst?]
+
 - Hilfestellung: Wer nicht in jedem Test und auch im Hauptprogramm `initrandom()` aufruft, 
   bekommt Probleme.
 - Hilfestellung: Generatoren macht man durch Verwendung von `yield`.
@@ -171,4 +171,5 @@ def test_median(generator):
 - Kontrollieren, dass im Quellcode alles mit rechten Dingen zugeht.
 - Loben, falls das Hauptprogramm einen Benutzungshinweis ausgibt, wenn die
   Argumente falsch verwendet werden.
+
 [ENDINSTRUCTOR]
