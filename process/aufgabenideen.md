@@ -481,12 +481,15 @@ Speziellerer Kram:
    - Was ist ein Tag? Was ist ein Attribut? Verschachtelung
    - Einige Standard-Tags mit besonderer Relevanz, hauptsächlich div/span/a/img
    - ggf. semantic Tags, die würde ich aber eigentlich nur bei Template/Slot später erwähnen
+   - Tabellen, Formulare
 2. CSS
-   - Jeweils eine Aufgabe für: Selectors, Properties, PseudoClasses, Units
+   - Jeweils eine Aufgabe für: Basics, häufig benutzte Eigenschaften Box Model, Selectors, (Pseudo)Classes
    - Es gab auch noch Shorthands (border statt border-left/-right/-top/-bottom)
-     und Margin/Border/Padding, weil das besondere Relevanz hat.
-   - Fortgeschritten: Calculated Properties und Variablen
+     und Margin/Border/Padding, weil das besondere Relevanz hat. -> Aufgabe Box Model.
+   - Fortgeschritten: Calculated Properties und Variablen, Grid und Flex
+   - Optional: Verwenden von CSS Frameworks
 3. JS
+   - Verwenden von Ressourcen die JS für Python-Devs erklären.
    - Kurze Erwähnung, dass Syntax C-Style ist. Könnte man ggf. ausweisen.
      Erwähnung von function() {} vs () => {} als Frage, weil häufiger Stolperstein.
    - Einführung des DOM als Struktur mit einfachen Funktionen zur Manipulation
@@ -508,7 +511,8 @@ Speziellerer Kram:
        Nett, weil wenig Fremd-Information, aber sehr mühsam mit vergleichsweise wenig Lerneffekt.
    - Shadow-DOM motivieren und ggf. mit Drittanbieter-Bibliothek anbinden
    - Struktur des Frameworks der Wahl präsentieren und zeigen, wie es das gelernte umsetzt.
-    
+4. Backend mit Python
+  - Flask, Django?
 
 
 # Aufgabenideen ohne Heimat
