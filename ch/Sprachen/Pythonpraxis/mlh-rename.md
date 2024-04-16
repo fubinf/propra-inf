@@ -1,5 +1,5 @@
 title: "My Little Helpers: rename - rename multiple files via a pattern"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 assumes:
@@ -74,10 +74,11 @@ Also bauen wir uns sowas für `mlh`, wo wir es hoffentlich leicht wiederfinden u
 - Prüfen, dass es `other.JPG` nicht mehr gibt, aber `other.jpg` gibt.
 - (Sie lassen den Test doch hoffentlich schon unterwegs immer mal laufen?)
 - Das Python-Äquivalent von `mlh rename` so auf `240307_105133_myimg.jpg` aufrufen, 
-  dass der Datums-Zeitstempel am Anfang in `2024-03-07` geändert wird. Die Uhrzeit bleibt.``
+  dass der Datums-Zeitstempel am Anfang in `2024-03-07` geändert wird. Die Uhrzeit bleibt.
 - Prüfen, dass es `2024-03-07_105133_myimg.jpg` gibt.
 - Prüfen, dass es `JPGlist` immer noch gibt.
-- Sicherstellen, dass das Python-Äquivalent von `mlh rename ja nein nonexisting.ja` funktioniert
+- Sicherstellen, dass das Python-Äquivalent von `mlh rename ja nein nonexisting.ja` 
+  funktioniert, wenn die Datei `nonexisting.ja` nicht existiert,
   und keinen Unsinn macht.
 
 
@@ -97,6 +98,7 @@ Also bauen wir uns sowas für `mlh`, wo wir es hoffentlich leicht wiederfinden u
 [ENDSECTION]
 
 [INSTRUCTOR::Umbenennen sauber? Dateierzeugung sauber?]
+- Zu betrachten sind hier `mlh/mlh/subcommands/rename.py` und die Tests dazu.
 - Verwendet das Programm korrekt `shutil.move()` und nicht etwas Schmutziges wie `os.system()`?
 - Haben die Studis im Test eine Hilfsfunktion `create` (o.ä.) zum Erzeugen der Dateien angelegt?
   Und wie vorgesehen `tempfile` benutzt?
