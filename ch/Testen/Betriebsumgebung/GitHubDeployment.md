@@ -1,5 +1,6 @@
 title: GitHub Deployment
 timevalue: 0.75
+stage: alpha
 difficulty: 2
 explains: Pipeline
 ---
