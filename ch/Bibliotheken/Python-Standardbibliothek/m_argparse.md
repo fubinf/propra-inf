@@ -1,5 +1,5 @@
-title: argparse -- Kommandozeilenparameter analysieren
-stage: alpha
+title: "argparse: Kommandozeilenparameter analysieren"
+stage: beta
 timevalue: 1.5
 difficulty: 3
 ---
@@ -13,7 +13,7 @@ erfolgreich ausprobiert.
 
 Ein Python Programm, das auf der Kommandozeile aufgerufen werden soll, muss meistens
 Argumente verarbeiten, die beim Aufruf mit auf der Kommandozeile angegeben werden, etwa bei
-`head -4 ~/.bashrc`.
+`grep -n alias ~/.bashrc`.
 
 Das kann schnell ganz schön kompliziert werden,
 deshalb ist es schön, wenn eine Bibliothek diese Arbeit vereinfacht.
@@ -66,8 +66,8 @@ wobei die flags auch als `-c`, `-m` oder `--depth` oder `-d`, `-b` abgekürzt we
 Geben Sie zwei Dateien ab
 
 - `argparsetest.py`
-- `m_argparse.md` mit einem [PARTREFMANUAL::Kommandoprotokolle::Kommandoprotokoll], in dem Sie `argparsetest` viermal
-
+- `m_argparse.md` mit einem [PARTREFMANUAL::Kommandoprotokolle::Kommandoprotokoll], 
+  in dem Sie `argparsetest` viermal
   mit sehr verschiedenen Argumenten aufrufen (davon zweimal korrekt und zweimal unzulässig),
   um zu zeigen, dass es wohl wie gewünscht funktioniert.
 
