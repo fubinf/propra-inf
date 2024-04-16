@@ -60,6 +60,7 @@ In alphabetischer Reihenfolge der Dateinamen.
 - `glossary.md`: Bitte jeder durchgehen und ergänzen:  
   Was fehlt an Begriffen zu eigenen Aufgaben?  
   Was fehlt an Verweisen zwischen existierenden Begriffen und Aufgaben?
+- Aufgaben umbenennen: Häufige-Defektarten/*
 
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
@@ -82,7 +83,8 @@ In alphabetischer Reihenfolge der Dateinamen.
 - Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
   muss es eine Fehlermeldung geben, keinen toten Link.
 - ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)
-
+- Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
+- 
 
 ### 2.4 Anträge an den Rechnerbetrieb
 
