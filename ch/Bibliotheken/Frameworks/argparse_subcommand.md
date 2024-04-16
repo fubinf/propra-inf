@@ -1,5 +1,5 @@
 title: argparse_subcommand, ein sehr einfaches Framework
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 3
 explains: Framework
@@ -116,7 +116,7 @@ Geben Sie den Dateibaum `mlh` mit seinen diversen `*.py`-Dateien ab.
 [INSTRUCTOR::Teile der Ausgaben prüfen]
 Es genügt, zu kontrollieren, 
 
-- dass die Kommandos von [EREFC::13] und [EREFC::16] alle erfolgreich sind,
+- dass die Kommandos von [EREFC::4] und [EREFC::6] alle erfolgreich sind,
 - dass bei `lsnew file1` der richtige Defaultwert `age='48h'` ankommt,
-- dass die Kommandos von [EREFC::14] alle zu Fehlermeldungen führen.
+- dass die Kommandos von [EREFC::5] alle zu Fehlermeldungen führen.
 [ENDINSTRUCTOR]
