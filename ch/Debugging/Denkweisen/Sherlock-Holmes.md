@@ -1,5 +1,5 @@
 title: Die Methoden des Sherlock Holmes
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 ---
@@ -11,7 +11,7 @@ kann dieses Wissen auf die Suche nach einem Defekt übertragen.
 [SECTION::instructions::detailed]
 Lesen Sie für diese Aufgabe das Kapitel 2 (S. 15-31), in denen der Charakter und die Methoden von 
 Sherlock Holmes im Kontext des Debugging beschrieben werden.
-Seine Methodologie lässt sich 10 Kategorien zuordnen.
+Seine Methoden lassen sich 10 Kategorien zuordnen.
 
 [EQ] Sherlock Holmes wird als Musterbeispiel für die [TERMREF::deduktive Methode] geführt.
 Sind Sie der Meinung, dass einige der Kategorien nicht für eine [TERMREF::Deduktion] notwendig sind?
@@ -28,7 +28,7 @@ Warum glauben Sie das jeweils?
 
 [EQ] Eine der Kategorien lautet "Erkläre jemand anderem die Fakten".
 Als Begründung wird angeführt, dass man versucht, die Sichtweise einer anderen Person zu erhalten.
-Gibt es Ihrer Meinung nach weitere Gründe, wieso dieses Vorgehen nützlich sein kann?
+Sehen Sie weitere Gründe, wieso dieses Vorgehen nützlich sein kann?
 [ENDSECTION]
 
 [SECTION::submission::reflection]
