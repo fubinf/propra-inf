@@ -32,7 +32,8 @@ Wir bauen uns hier ein Hilfsprogramm, das für diesen Zweck maßgeschneidert ist
 - Unser Programm empfängt eine Liste von Dateinamen, die typischerweise bequem 
   von der Shell mittels [TERMREF::Globbing] erzeugt wird.  
   Beispiel: `python mlh lsnew *.md mlh/*, mlh/*/*`
-- Zu jedem dieser Dateinamen wird das Datum der letzten Änderung der Datei ermittelt.
+- Zu jedem dieser Dateinamen wird das Datum der letzten Änderung der Datei ermittelt,
+  genannt [mtime](https://www.howtogeek.com/517098/linux-file-timestamps-explained-atime-mtime-and-ctime/). 
 - Die Dateinamen werden nach diesen Zeitpunkten sortiert, jüngste zuerst.
 - Von der entstehenden Liste werden nur diejenigen Dateinamen ausgegeben,
   für die die Datei jünger ist als 48 Stunden.

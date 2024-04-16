@@ -1,5 +1,5 @@
 title: "My Little Helpers: gitac - git add+commit by file date"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 assumes: m_subprocess
@@ -18,7 +18,7 @@ nicht nur auf eine einzige Änderung, sondern macht mehrere "zugleich".
 Nach einer Weile hat man dann mehrere Dateien geändert, was in git aber auf mehrere
 Commits aufgeteilt werden sollte.
 Dabei macht man sich meist nicht die Mühe, diesen Commits realistische Zeitstempel
-mitzugeben, sondern die Commits liegen nur um Sekunden oder Minuten auseinander
+mitzugeben, sondern die Zeitstempel der Commits liegen nur um Sekunden oder Minuten auseinander
 am Ende der Arbeitsperiode.
 
 Wäre es nicht hübsch, wenn ein Hilfsprogramm sinnvollere Zeitpunkte in diese Commits schreibt?
@@ -35,7 +35,8 @@ Das bauen wir uns jetzt.
   `python mlh gitac [-m|--message commit-msg] file...`
 - Es macht zunächst `git add` auf die angegebenen Dateien.
 - Dann macht es `git commit`, ggf. mit der angegebenen Option.
-- Beim Commit wird der Zeitstempel entsprechend der mtime der jüngsten Datei gesetzt.
+- Beim Commit wird der Zeitstempel entsprechend der 
+  mtime der jüngsten Datei gesetzt.
 - Auch diese Aufgabe lässt sehr gut komplett mit der Standardbibliothek lösen;
   sie brauchen keine zusätzlichen Pakete.
 
