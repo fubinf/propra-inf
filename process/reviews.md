@@ -90,7 +90,6 @@ We need to produce material that students can start with, quick.
 - ch/Debugging/Denkweisen/Psychologist.md (Pietrak->Hofmann)
 - ch/Debugging/Denkweisen/Sherlock-Holmes.md (Pietrak->Hofmann)
 
-- ch/Debugging/Häufige-Defektarten/b_expression.md (Pietrak->Hofmann)
 - ch/Debugging/Häufige-Defektarten/b_variable.md (Pietrak->Hofmann)
 - ch/Debugging/Häufige-Defektarten/d_indexing.md (Pietrak->Hofmann)
 - ch/Debugging/Häufige-Defektarten/f_location.md (Pietrak->Hofmann)

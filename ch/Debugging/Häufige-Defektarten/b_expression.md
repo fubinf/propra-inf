@@ -1,6 +1,6 @@
 title: Irrtümer - Falscher gewählter Ausdruck
-stage: alpha
-timevalue: 1
+stage: beta
+timevalue: 1.0
 difficulty: 2
 ---
 [SECTION::goal::idea]
@@ -29,36 +29,28 @@ a = a + 2  # right
 a = a * 2  # wrong
 ```
 
-Da Ausdrücke beliebig komplex sein können, gibt es beliebig viele Möglichkeiten, Defekte einzubauen.
-Häufige Stellen für falsche Ausdrücke sind z. B. `if`-Bedingungen:
+Das wirkt vielleicht so dämlich, dass man glaubt, es könne einem nie passieren,
+aber bei anderen Operatoren sieht das analoge Problem gleich viel subtiler aus:
 
 ```python
-if ((count < min_value) and (count > max_value)):
+if (count < min_value) and (count > max_value):
     ...
 ```
 
 Dieses Beispiel ist mit ziemlicher Sicherheit nicht das, was der Autor eigentlich schreiben wollte.
-Sofern man annimmt, dass `min_value` kleiner als `max_value` ist, wird der Ausdruck eine Kontradiktion.
+Wenn `min_value` kleiner als `max_value` (wie es sich natürlich gehört), wird der Ausdruck unerfüllbar.
+
 Manchmal ist es aber auch nicht klar, ob der Algorithmus schlecht gebaut ist oder ein Verschreiber vorliegt.
 In solchen Fällen kann es hilfreich sein, naheliegende Kommentare zu sichten, wie
 beispielsweise bei diesem Verschreiber:
 
 ```python
-# make sure a is less than 100
+# make sure a is small enough:
 if a > 100:
     ...
 ```
 
-Anders wird es wahrscheinlich bei diesem Code-Stück sein:
-
-```python
-# if these are equal, k is divisible by five
-if (((k-1) / 5) == (k / 5)):
-    ...
-```
-
-Hier liegt eher ein Logikdefekt vor, denn der Kommentar passt zum Code. 
-Allerdings sind sowohl Kommentar als auch Code falsch.
+Hier passt der Code nicht zum Kommentar und ist wahrscheinlich falsch.
 Näheres zu Logikdefekten erfahren Sie in der Aufgabe [PARTREFTITLE::a_logic].
 
 Die logischen Operatoren `and` und `or` sind häufige Quellen von Defekten, 
@@ -66,22 +58,24 @@ bei denen der falsche Operator in einem Ausdruck gewählt worden ist.
 Das obere Beispiel hätte beispielsweise so aussehen können:
 
 ```python
-if ((count < min_value) or (count > max_value)): 
-    # code to handle an invalid count
+if (count < min_value) or (count > max_value): 
+    ...  # code to handle an invalid count
 ```
 
 Alternativ hätte auch das `and` richtig sein können und die beiden Vergleichsoperatoren waren vertauscht:
 ```python
 if ((count > min_value) and (count < max_value)): 
-    # code to handle an valid count
+    # code to handle a valid count
 ```
 
-Im ersten Fall hat die `if`-Bedingung geprüft, ob die Zählung außerhalb des gültigen Bereichs liegt.
-Dagegen hat die `if`-Bedinging im zweiten Fall geprüft, ob die Zählung innerhalb des gültigen Bereichs liegt.
+Im ersten Fall hat die `if`-Bedingung geprüft, ob die Zählung _außerhalb_ des gültigen Bereichs liegt.
+Dagegen hat die `if`-Bedinging im zweiten Fall geprüft, ob die Zählung _innerhalb_ des gültigen Bereichs liegt.
 Hier müsste man prüfen, ob `>=`und `<=` nicht eher die richtigen Operatoren gewesen wären, aber
 das ist ein Thema für die Aufgabe [PARTREF::a_offbyone].
 
-Letztendlich ist es uninteressant, warum der Code falsch ist; er muss immer noch gefixt werden.
+Oft bleibt unklar, _warum_ der Code falsch ist (stellen sollte man sich diese Frage durchaus!), 
+aber in jedem Fall muss er korrigiert werden.
+
 
 ### Ihre Aufgabe
 
@@ -96,8 +90,11 @@ Erhält man vier Karten desselben Rangs, also beispielsweise 4 Asse, legt man di
 Karten werden anhand ihres Rangs und ihrer Farbe identifiziert.
 Dabei ist der Rang ein Element aus der Liste 
 `["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]`
+(auf Englisch: 2 to 10, Jack, Queen, King, Ace; 
+auf Deutsch: 2 bis 10, Bube, Dame, König, Ass)
 und die Farbe ein Element aus der Liste 
-`["spades", "hearts", "diamonds", "clubs"]`.
+`["spades", "hearts", "diamonds", "clubs"]`
+(auf Deutsch: Pik, Herz, Karo, Kreuz).
 
 Ein Deck ist eine Liste mit 52 Elementen.
 Jedes Element im Deck ist ein Tupel der Form `(Rang, Farbe)`.
@@ -107,12 +104,13 @@ Dieses bildet für die Karten, die der Spieler hat, Ränge auf eine Liste von Fa
 Wenn also z. B. ein Spieler die "Pik 3" und "Herz 3" in seiner Hand hält, aber keine weiteren 3er-Karten,
 dann sieht das Wörterbuch so aus: `{"3": ["spades", "hearts"]}`.
 Ein Schlüssel sollte keine leeren Listen beinhalten; 
-wenn keine Karte des gegebenen Rangs existiert, dann existiert dieser nicht im Wörterbuch.
+wenn keine Karte des gegebenen Rangs existiert, dann existiert dieser Rang nicht im Wörterbuch.
 
 ```python
 [INCLUDE::b_expression.py]
 ```
 
+Übernehmen Sie diesen Code nach `b_expression.py`.
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 1. `deck` und `player_hand` sind im obigen Code nicht definiert.  
@@ -134,7 +132,7 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 [HINT::Lösungshinweise]
 Gehe die Funktion `draw_card()` mit den folgenden Parametern durch. 
-(In allen Fällen hat DECK der Einfachheit halber nur eine Karte, die 3 der Herzen; 
+(In allen Fällen hat DECK der Einfachheit halber nur eine Karte, die Herz 3; 
 in dieser Situation ist die zufällig ausgewählte Karte immer dieselbe). 
 
 #### Erste Eingabe
