@@ -133,6 +133,13 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 
 - ch/Web/HTML/HTMLErsteSchritte.md (Müllers)
 
+- ch/Werkzeuge/Git/index.md (Hüster)
+- ch/Werkzeuge/Git/git-fehlerbehebung.md (Hüster)
+- ch/Werkzeuge/Git/git-funktionsweise.md (Hüster)
+- ch/Werkzeuge/Git/git-ignore.md (Hüster)
+- ch/Werkzeuge/Git/git-branches.md (Hüster)
+- ch/Werkzeuge/Git/git-rebase.md (Hüster)
+
 ## Reviews to do for Hanen Alrwasheda
 
 - ...
