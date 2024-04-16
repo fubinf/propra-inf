@@ -1,5 +1,5 @@
 title: Sortieren in Python
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 ---
@@ -12,6 +12,7 @@ wenn eine besondere Sortierordnung gefragt ist.
 [ENDSECTION]
 [SECTION::background::default]
 
+Sortieren braucht man beim Programmieren ziemlich oft.
 Wer in normalen Anwendungen selber ein Sortierverfahren implementiert,
 hat wahrscheinlich nicht mehr alle Tassen im Schrank,
 denn es gibt in jeder ernstzunehmenden Sprache gute Implementierungen, 
@@ -31,7 +32,7 @@ Hier lernen wir also das nötige Grundwissen über Sortieren in Python.
 
 ### Startpunkt
 
-- [ER] Legen Sie die Datei `sorted_and_sort.py` an und fügen Sie folgendes dort ein:
+- [ER] Legen Sie die Datei `sorted_and_sort.py` an und fügen Sie Folgendes dort ein:
  
 ```
 what = "Tupel von Alter, Gewicht, Körpergröße"
@@ -85,7 +86,7 @@ nicht das Ergebnis eines Aufrufs davon, wie bei `key=height()` u.ä.
   `operator.attrgetter` (um ein Attribut mit dem Namen `name` zu holen).  
   Lesen Sie `itemgetter` nach: 
   [HREF::https://docs.python.org/3/library/operator.html#operator.itemgetter]
-- Diese beiden Funktionen liefern also bei Aufruf eine Funktion, nicht einen passiven Datenwert.
+- Diese beiden Funktionen liefern also bei Aufruf eine _Funktion_, nicht einen passiven Datenwert.
   Nur deshalb können wir einen solchen Aufruf für `key=` bei `sorted()` gebrauchen.
 - [ER] Ergänzen Sie `import operator` und benutzen Sie einen Aufruf von 
   `operator.itemgetter` als Funktion, um das dritte Element jedes Tupels als Sortierschlüssel
@@ -99,7 +100,7 @@ Haben Sie daran gedacht, dass das dritte Element den Index 2 hat?
 - [ER] Nach einer einfachen Faustformel ist "Normalgewicht" die Körpergröße minus 100
   (jedenfalls für Männer, aber den Unterschied ignorieren wir hier).
   Übergewicht hat also, wer schwerer ist als dieser Wert.
-  (Negative Werte sind nicht gleich Untergewicht, aber auch diese Feinheit ignorieren wir hier.)  
+  (Negative Werte sind nicht sofort ein Untergewicht, aber auch diese Feinheit ignorieren wir hier.)  
   Schreiben Sie eine Funktion `excess_weight(mytuple: tuple[int, int, int]) -> int`, 
   die das positive oder negative "Übergewicht" in diesem Sinne berechnet, 
   übergeben Sie sie bei `key` und geben Sie bei Schritt 4 
@@ -128,6 +129,7 @@ data2 = [MyTuple(t) for t in data]
 
 - Damit sind die Tupel in `data2` gleichwertig zu denen in `data`, aber sie gehören nun
   einer Klasse an, die wir erweitern können.
+  Dieser Kniff (für Tupel, Listen und Dictionaries) ist in Python nicht ungewöhnlich.
 - Python benutzt für die Vergleiche beim Sortieren, den "kleiner"-Operator.
   In Python kann man Operatoren überladen, also selber umdefinieren.
   Dazu haben die Operatoren einen festen Funktionsnamen.
