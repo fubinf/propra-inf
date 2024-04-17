@@ -1,6 +1,6 @@
 title: Irrtümer - Falsch benutzte Variable
-stage: alpha
-timevalue: 1
+stage: beta
+timevalue: 1.0
 difficulty: 2
 assumes: b_expression, f_location
 ---
@@ -19,7 +19,7 @@ Der vorhergehende Code hierzu wird in den Aufgaben [PARTREFTITLE::b_expression] 
 [PARTREFTITLE::f_location] besprochen.
 Wenn Sie den Code durch aufmerksames Lesen und händisches Durchgehen debuggen, 
 ist es nicht nötig, die ersten beiden Aufgaben bearbeitet zu haben. 
-Sollten Sie allerdings dem Bug über Tools oder zusätzlichen Code auf die Schliche kommen wollen,
+Sollten Sie allerdings dem Defekt über Tools oder zusätzlichen Code auf die Schliche kommen wollen,
 benötigen Sie den (korrigierten) Code aus den anderen beiden Aufgaben.
 [ENDWARNING]
 
@@ -102,7 +102,7 @@ In diesem Fall muss der Spieler "fischen" gehen und eine neue Karte vom Deck zie
 Wenn Sie die Regeln des Spiels "Go Fish" auf Wikipedia gelesen haben, sollte Ihnen aufgefallen sein, 
 dass der Spieler nach dem Ziehen der Karte immer noch am Zug ist, wenn die gezogene Karte den Rang der
 zuletzt gefragten Karte hat.
-Dieser Code prüft das nicht und das ist auch nicht der Bug, der zu suchen ist!
+Dieser Code prüft das nicht und das ist auch nicht der Defekt, der zu suchen ist!
 [ENDWARNING]
 
 Um ein vollständiges Spiel zu spielen, wird der Code so lange fortgesetzt, 
@@ -149,7 +149,7 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
 Durchlaufen Sie die `do_turn()`-Funktion mit den folgenden Parametern:
 Das Deck hat nur eine Karte, damit die Zufälligkeit beim Kartenziehen eliminiert wird 
 (auch wenn in einem echten Spiel das Deck 52 Karten hat, 
-müssen Sie einen Bug reproduzieren können, um ihn zu untersuchen).
+müssen Sie ein Versagen reproduzieren können, um es zu untersuchen).
 
 #### Erste Eingabe
 
@@ -181,7 +181,7 @@ hand1 = {}
 hand2 = {"4": ["diamonds", "clubs"]} 
 deck = [("4", "hearts"), ("4", "spades")]
 ```
-Das Programm befindet sich genau vor Zeile 88 und wird als nächstes die `while`-Schleife iterieren.
+Das Programm befindet sich genau vor Zeile 88 und wird als Nächstes die `while`-Schleife iterieren.
 Wird das Programm ordnungsgemäß beendet?
 [ENDHINT]
 
