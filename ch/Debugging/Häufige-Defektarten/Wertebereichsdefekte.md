@@ -54,7 +54,7 @@ Die Funktion muss nur mit nichtnegativen ganzen Zahlen richtig funktionieren.
 
 
 ```python
-[INCLUDE::d_limit.py]
+[INCLUDE::Wertebereichsdefekte.py]
 ```
 
 Hier sind einige Vorschläge, um an den Code heranzutreten:
@@ -83,8 +83,8 @@ Setzen Sie `number` auf 2, 3, 4, 5 und 6.
 
 [ENDHINT]
 
-- Defekt gefunden? Prima. Dann jetzt bitte in `d_limit.py` korrigieren.
-- Machen sie einen Commit `d_limit.py corrected`, der nur genau diese Modifikation enthält.
+- Defekt gefunden? Prima. Dann jetzt bitte in `Wertebereichsdefekte.py` korrigieren.
+- Machen sie einen Commit `Wertebereichsdefekte.py corrected`, der nur genau diese Modifikation enthält.
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]
