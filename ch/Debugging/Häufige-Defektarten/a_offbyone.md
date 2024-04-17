@@ -1,4 +1,4 @@
-title: Algorithmisches - Off By One
+title: '"Off By One"-Defekte'
 stage: beta
 timevalue: 1.0
 difficulty: 2
@@ -53,7 +53,7 @@ In Sprachen, die Arrays von 0 an indizieren,
 kann der Code fälschlicherweise bei dem Element mit dem Index 1 (also dem zweiten Element) beginnen. 
 Solche Defekte werden oft als OBOE bezeichnet, 
 aber wir klassifizieren sie separat als Indexdefekt 
-siehe Aufgabe [PARTREFTITLE::d_indexing].
+siehe Aufgabe [PARTREFTITLE::Indexierungsdefekte].
 
 
 ### Ihre Aufgabe
@@ -67,11 +67,11 @@ Wenn die Zahl außerhalb des gültigen Bereichs liegt, soll die Funktion einen `
 Ihre Aufgabe liegt jetzt darin herauszufinden, wo der Defekt liegt und wie man ihn beheben kann.
 
 ```python
-[INCLUDE::a_offbyone.py]
+[INCLUDE::Off-by-1-Defekte.py]
 ```
 
-- Legen Sie den obigen Python-Code unter dem Namen `a_offbyone.py` in Ihrem Arbeitsverzeichnis ab.
-- Machen sie einen Commit `a_offbyone.py`, der nur genau diese neue Datei enthält.
+- Legen Sie den obigen Python-Code unter dem Namen `Off-by-1-Defekte.py` in Ihrem Arbeitsverzeichnis ab.
+- Machen sie einen Commit `Off-by-1-Defekte.py`, der nur genau diese neue Datei enthält.
 - Suchen Sie nun den Defekt. Hier sind einige Vorschläge für das Vorgehen:
 
     1. Bestimmen Sie den Zweck des Codes bis Zeile 47.  
@@ -109,8 +109,8 @@ Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
 
 [ENDHINT]
 
-- Defekt gefunden? Prima. Dann jetzt bitte in `a_offbyone.py` korrigieren.
-- Machen sie einen Commit `a_offbyone.py corrected`, der nur genau diese Defektkorrektur enthält.
+- Defekt gefunden? Prima. Dann jetzt bitte in `Off-by-1-Defekte.py` korrigieren.
+- Machen sie einen Commit `Off-by-1-Defekte.py corrected`, der nur genau diese Defektkorrektur enthält.
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]

@@ -1,4 +1,4 @@
-title: Irrtümer - Falscher gewählter Ausdruck
+title: Defekte Ausdrücke
 stage: beta
 timevalue: 1.0
 difficulty: 2
@@ -16,7 +16,7 @@ habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 Ausdrucksdefekte sind eine generalisierte Form von Variablendefekten.
 An und für sich ist eine Variable schon ein Ausdruck, aber Variablendefekte sind so geläufig, 
-dass man sie als eigene Klasse sehen kann und in der Aufgabe [PARTREFTITLE::b_variable] behandelt werden.
+dass man sie als eigene Klasse sehen kann und in der Aufgabe [PARTREFTITLE::Defekte-bei-Variablen] behandelt werden.
 Ausdrucksdefekte decken alle anderen Fälle ab, in denen Ausdrücke falsch benutzt werden.
 Die Ursache solcher Defekte liegt nicht daran, dass der Algorithmus falsch wäre, 
 sondern dass der Programmierer beim Nachdenken in diesem Moment nicht korrekt gearbeitet hat.
@@ -51,7 +51,7 @@ if a > 100:
 ```
 
 Hier passt der Code nicht zum Kommentar und ist wahrscheinlich falsch.
-Näheres zu Logikdefekten erfahren Sie in der Aufgabe [PARTREFTITLE::a_logic].
+Näheres zu Logikdefekten erfahren Sie in der Aufgabe [PARTREFTITLE::Logikdefekte].
 
 Die logischen Operatoren `and` und `or` sind häufige Quellen von Defekten, 
 bei denen der falsche Operator in einem Ausdruck gewählt worden ist.
@@ -71,7 +71,7 @@ if ((count > min_value) and (count < max_value)):
 Im ersten Fall hat die `if`-Bedingung geprüft, ob die Zählung _außerhalb_ des gültigen Bereichs liegt.
 Dagegen hat die `if`-Bedinging im zweiten Fall geprüft, ob die Zählung _innerhalb_ des gültigen Bereichs liegt.
 Hier müsste man prüfen, ob `>=`und `<=` nicht eher die richtigen Operatoren gewesen wären, aber
-das ist ein Thema für die Aufgabe [PARTREF::a_offbyone].
+das ist ein Thema für die Aufgabe [PARTREF::Off-by-1-Defekte].
 
 Oft bleibt unklar, _warum_ der Code falsch ist (stellen sollte man sich diese Frage durchaus!), 
 aber in jedem Fall muss er korrigiert werden.
@@ -81,7 +81,7 @@ aber in jedem Fall muss er korrigiert werden.
 
 Im Folgenden sollen Sie einen Code debuggen, der einen Ausdrucksdefekt beinhaltet.
 Es handelt sich um einige Funktionen aus dem Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Zusammen mit den Funktionen aus [PARTREFTITLE::f_location] und [PARTREFTITLE::b_variable] 
+Zusammen mit den Funktionen aus [PARTREFTITLE::Anordnungsdefekte] und [PARTREFTITLE::Defekte-bei-Variablen] 
 erhalten Sie die grundlegenden Funktionen des Spiels.
 In dieser Aufgabe geht es erstmal darum, die Funktionen zu untersuchen,
 mit denen man eine Karte aus einem Deck zieht und diese in seine Hand legt.
@@ -107,10 +107,10 @@ Ein Schlüssel sollte keine leeren Listen beinhalten;
 wenn keine Karte des gegebenen Rangs existiert, dann existiert dieser Rang nicht im Wörterbuch.
 
 ```python
-[INCLUDE::b_expression.py]
+[INCLUDE::Defekte-in-Ausdrücken.py]
 ```
 
-Übernehmen Sie diesen Code nach `b_expression.py`.
+Übernehmen Sie diesen Code nach `Defekte-in-Ausdrücken.py`.
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 1. `deck` und `player_hand` sind im obigen Code nicht definiert.  
@@ -162,8 +162,8 @@ hand = {"2": ["hearts", "spades"],
 
 [ENDHINT]
 
-- Defekt gefunden? Prima. Dann jetzt bitte in `b_expression.py` korrigieren.
-- Machen sie einen Commit `b_expression.py corrected`, der nur genau diese modifizierte Datei 
+- Defekt gefunden? Prima. Dann jetzt bitte in `Defekte-in-Ausdrücken.py` korrigieren.
+- Machen sie einen Commit `Defekte-in-Ausdrücken.py corrected`, der nur genau diese modifizierte Datei 
   enthält.
 - [EC] `git show --color=always HEAD | cat`
 

@@ -1,4 +1,4 @@
-title: Algorithmisches - Logische Defekte
+title: Logikdefekte
 stage: alpha
 timevalue: 1
 difficulty: 2
@@ -125,7 +125,7 @@ Im folgenden Python-Code kann in einigen Iterationen bei der Handhabung dieses F
 ein Defekt auftreten, durch den eine Person doppelt beschenkt wird:
 
 ```python
-[INCLUDE::a_logic.py]
+[INCLUDE::Logikdefekte.py]
 ```
 
 Hier sind einige Vorschläge, um an den Code heranzutreten:
@@ -162,8 +162,8 @@ Welche Zuteilungen sind hier noch möglich?
 
 [ENDHINT]
 
-- Defekt gefunden? Prima. Dann jetzt bitte in `a_logic.py` korrigieren.
-- Machen sie einen Commit `a_logic.py corrected`, der nur genau diese modifizierte Datei enthält.
+- Defekt gefunden? Prima. Dann jetzt bitte in `Logikdefekte.py` korrigieren.
+- Machen sie einen Commit `Logikdefekte.py corrected`, der nur genau diese modifizierte Datei enthält.
 - [EC] `git -P show --color=always HEAD`
 
 [ENDSECTION]

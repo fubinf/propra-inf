@@ -1,8 +1,8 @@
-title: Daten - Grenzdefekt 
+title: Defekte an Wertebereichs-Grenzen 
 stage: beta
 timevalue: 1
 difficulty: 2
-assumes: d_indexing
+assumes: Indexierungsdefekte
 ---
 [SECTION::goal::idea]
 Ich verstehe, welche Form Grenzdefekte im Code annehmen können, und habe einen solchen Defekt 
@@ -15,7 +15,7 @@ in fremdem Code erfolgreich gefunden.
 
 Ein Grenzdefekt tritt auf, wenn die Daten an den Rändern (Grenzen) des Definitionsbereiches 
 nicht korrekt verarbeitet werden, also etwa die ersten oder letzten Elemente eines Datenbehälters.
-Ein Indexdefekt ([PARTREFTITLE::d_indexing]) führt häufig zu einem Grenzdefekt.
+Ein Indexdefekt ([PARTREFTITLE::Indexierungsdefekte]) führt häufig zu einem Grenzdefekt.
 Er kann dazu führen, dass Code die ersten oder letzten paar Elemente gar nicht bearbeitet,
 also wenn der Index zu restriktiv ist.
 Er kann auch dazu führen, dass das Programm abstürzt, weil es über das Ende der Datenstruktur hinaus 
@@ -39,7 +39,7 @@ Wenn die Datei **nicht** mit der Zeile "###" endet, könnte die Schleife für im
 
 Man kann zu Grenzdefekten auch solche zählen, in denen der Code bei bestimmten Eingaben 
 in der Nähe des Anfangs oder Endes des gültigen Eingabebereichs schlecht oder gar nicht definiert ist.
-Das heißt, im Gegensatz zum vorherigen Beispiel und den Beispielen aus [PARTREFTITLE::d_indexing], 
+Das heißt, im Gegensatz zum vorherigen Beispiel und den Beispielen aus [PARTREFTITLE::Indexierungsdefekte], 
 die dazu neigen, _alle_ Eingaben leicht falsch zu verarbeiten, sind dies Fälle, in denen der Code
 bei den meisten Eingaben gut funktioniert, aber bei einer kleinen Teilmenge versagt,
 wenn diese nahe der Grenze auftreten.

@@ -1,4 +1,4 @@
-title: Daten - Indexdefekt
+title: Indexdefekte
 stage: beta
 timevalue: 1.0
 difficulty: 2
@@ -36,7 +36,7 @@ indem man nämlich `i <= n` als Fortsetzungsbedingung benutzt und fälschlich ei
 mit `i == n` bekommt, der gar nicht funktioniert.
 
 Manchmal werden solche Defekte auch als Off-By-One-Error bezeichnet. 
-Was genau hinter solchen Defekten steckt, können Sie in der Aufgabe [PARTREFTITLE::a_offbyone] 
+Was genau hinter solchen Defekten steckt, können Sie in der Aufgabe [PARTREFTITLE::Off-by-1-Defekte] 
 herausfinden.
 Allerdings können Indexdefekte auch deutlich größer sein als nur eine Verschiebung um 1,
 besonders wenn der Index Teil einer Berechnung ist.
@@ -72,7 +72,7 @@ und das zweite Element ist ein leerer String.
 
 
 ```python
-[INCLUDE::d_indexing.py]
+[INCLUDE::Indexierungsdefekte.py]
 ```
 
 Hier sind einige Vorschläge, um an den Code heranzutreten:
@@ -101,8 +101,8 @@ Führen Sie die Funktion mit den folgenden Eingaben aus:
    `outer_string == "ball"`, `sub_string == "llama"`
 [ENDHINT]
 
-- Defekt gefunden? Prima. Dann jetzt bitte in `d_indexing.py` korrigieren.
-- Machen sie einen Commit `d_indexing corrected`, der nur genau diese modifizierte Datei enthält.
+- Defekt gefunden? Prima. Dann jetzt bitte in `Indexierungsdefekte.py` korrigieren.
+- Machen sie einen Commit `Indexierungsdefekte corrected`, der nur genau diese modifizierte Datei enthält.
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]

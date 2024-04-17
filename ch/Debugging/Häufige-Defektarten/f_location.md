@@ -1,8 +1,8 @@
-title: Vergessenes - Lokalisierungsdefekte
+title: Defekte durch falsche Anordnung von Anweisungen
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: b_expression
+assumes: Defekte-in-Ausdrücken
 ---
 [SECTION::goal::idea]
 Ich verstehe, in welcher Form Lokalisierungsdefekte meinen Code mangelhaft werden lassen, und
@@ -13,7 +13,7 @@ habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 [WARNING]
 Der in dieser Aufgabe zu bearbeitende Code gehört zum Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Ein erster Code hierzu wird in der Aufgabe [PARTREFTITLE::b_expression] besprochen.
+Ein erster Code hierzu wird in der Aufgabe [PARTREFTITLE::Defekte-in-Ausdrücken] besprochen.
 Es ist nicht nötig diese Aufgabe vorher bearbeitet zu haben, da die beiden Probleme keinen Code teilen.
 Allerdings liefert die Bearbeitung der ersten Aufgabe etwas mehr Kontext über das ganze Programm.
 [ENDWARNING]
@@ -89,14 +89,14 @@ ein Fehler beim Kopieren und Einfügen oder einfach ein Fehler des Programmierer
 
 In dieser Aufgabe sollen Sie einen Code debuggen, der einen Lokalisierungsdefekt beinhaltet.
 Die Funktion beinhaltet einen weiteren Teil des Spiels "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)", 
-das in der Aufgabe [PARTREFTITLE::b_expression] eingeführt worden ist.
+das in der Aufgabe [PARTREFTITLE::Defekte-in-Ausdrücken] eingeführt worden ist.
 Sie prüft, ob er Gegenspieler Karten von einem bestimmten Rang besitzt.
 Wenn dem so ist, werden diese Karten in die Hand des Spielers transferiert.
 Wenn dies dazu führt, dass der Spieler vier Karten desselben Rangs auf der Hand hält, 
 werden diese Karten von der Hand des Spielers abgeworfen.
 
 [NOTICE]
-Falls Sie die Aufgabe [PARTREFTITLE::b_expression] nicht bearbeitet haben, ist hier eine kurze Erinnerung
+Falls Sie die Aufgabe [PARTREFTITLE::Defekte-in-Ausdrücken] nicht bearbeitet haben, ist hier eine kurze Erinnerung
 über die Datenstrukturen des Spiels "Go Fish", die auch in dieser Aufgabe benutzt werden:
 
 - Karten werden anhand ihres Rangs und ihrer Farbe identifiziert.  
@@ -125,7 +125,7 @@ Die Funktion `check_card()` nimmt vier Parameter:
 - die Hand des Gegenspielers.
 
 ```python
-[INCLUDE::f_location.py]
+[INCLUDE::Anordnungsdefekte.py]
 ```
 
 Hier sind einige Vorschläge, um an den Code heranzutreten:
@@ -192,8 +192,8 @@ opponent_hand = {"2": ["clubs", "spades"]}
 
 [ENDHINT]
 
-- Defekt gefunden? Prima. Dann jetzt bitte in `f_location.py` korrigieren.
-- Machen sie einen Commit `f_location.py corrected`, der nur genau diese modifizierte Datei enthält.
+- Defekt gefunden? Prima. Dann jetzt bitte in `Anordnungsdefekte.py` korrigieren.
+- Machen sie einen Commit `Anordnungsdefekte.py corrected`, der nur genau diese modifizierte Datei enthält.
 - [EC] `git show --color=always HEAD | cat`
 
 [ENDSECTION]
