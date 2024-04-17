@@ -63,5 +63,5 @@ Nehmen Sie aber einmal an, dass Sie eine Sprache benutzen, in der dieses Konzept
 [INSTRUCTOR::Hinweise]
 f-Strings in Python sind sehr mächtig.  
 Wenn jemand das Modul `logging` in der Antwort anführt, ist er einen Schritt zu weit gegangen,
-bitte zurückweisen und auf die Aufgabe [PARTREF::m_logging] verweisen.
+bitte zurückweisen und auf die Aufgabe PARTREF::m_logging (TODO_1: einführen!) verweisen.
 [ENDINSTRUCTOR]
