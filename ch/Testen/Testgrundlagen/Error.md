@@ -59,7 +59,7 @@ Diese Ereignisse können auftreten, wenn ein Fehler gemacht wurde. Müssen aber 
 - [EQ] Können Sie sich ein Programm größeres Programm vorstellen, dass keine Fehlerzustände hat?
 
 [ENDSECTION]
-[SECTION::submission::information,refelction]
+[SECTION::submission::information,reflection]
 
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 
