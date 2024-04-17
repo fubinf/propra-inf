@@ -1,6 +1,6 @@
 title: Vergessenes - Lokalisierungsdefekte
-stage: alpha
-timevalue: 1
+stage: beta
+timevalue: 1.0
 difficulty: 2
 assumes: b_expression
 ---
@@ -26,7 +26,7 @@ Ein Beispiel ist es, wenn die Initialisierung einer Variable innerhalb einer Sch
 anstatt außerhalb stattfindet:
 
 ```python
-while some_condition():
+while count < maxcount:
     count = 0
     # code that updates count
 ```
@@ -52,8 +52,9 @@ result = math.sqrt(c)
 c = math.pow(a,2) + math.pow(b,2)
 ```
 
-Anweisungen können auch im falschen Block stehen, vor allem wenn die Blöcke über mehrere Ebenen
-hinweg verschachtelt sind:
+Die bisherigen Beispiele erkennt man noch relativ leicht als falsch.
+Schwieriger wird es, wenn verschachtelte Blöcke im Spiel sind und Anweisungen zwar in der optisch
+richtigen Reihenfolge, aber leider im falschen Block stehen:
 
 ```python
 if found_blank:
@@ -69,12 +70,9 @@ In diesem Fall sollte der `return`-Ausdruck wahrscheinlich eine Ebene tiefer lie
 (die Funktion soll also nur zurückkehren, wenn `string_done` wahr ist, aber nicht nur, weil 
 `found_blank` wahr ist). 
 Natürlich könnte dieser Code auch ebenso richtig sein.
-Es ist nur wichtig zu begreifen, dass solche Defekte sehr einfach zu übersehen sind,
-wenn man sich den Code einfach nur so anschaut und der einzige Unterschied im Code die Reihenfolge der 
-Ausdrücke ist.
+Es ist nur wichtig zu begreifen, dass solche Defekte sehr leicht zu übersehen sind.
 
-Lokalisierungsdefekte können aber auch so aussehen, dass Code-Zeilen hinzugefügt worden sind, 
-aber keinerlei Sinn ergeben:
+Lokalisierungsdefekte können auch so aussehen, dass ganz fremde Code-Zeilen hinzugefügt worden sind:
 
 ```python
 # sort the list
@@ -104,8 +102,11 @@ Falls Sie die Aufgabe [PARTREFTITLE::b_expression] nicht bearbeitet haben, ist h
 - Karten werden anhand ihres Rangs und ihrer Farbe identifiziert.  
   Dabei ist der Rang ein Element aus der Liste 
   `["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]`
+  (auf Englisch: 2 to 10, Jack, Queen, King, Ace; 
+  auf Deutsch: 2 bis 10, Bube, Dame, König, Ass)
   und die Farbe ein Element aus der Liste 
-  `["spades", "hearts", "diamonds", "clubs"]`.
+  `["spades", "hearts", "diamonds", "clubs"]`
+  (auf Deutsch: Pik, Herz, Karo, Kreuz).
 - Eine Hand ist ein [TERMREF::Wörterbuch].  
   In jedem Element des Wörterbuchs ist der Schlüssel ein Rang und sein Wert eine Liste von
   dazugehörigen Farben, die der Spieler in seiner Hand hält.
