@@ -151,6 +151,10 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Werkzeuge/Git/git-branches.md (Hüster)
 - ch/Werkzeuge/Git/git-rebase.md (Hüster)
 
+- ch/Debugging/Häufige-Defektarten/a_logic.md (Pietrak->Hofmann->Prechelt->Pietrak-> Prechelt)
+  INSTRUCTOR-Teil existiert, wird nach Implementierung des submodules nachgliefert
+
+
 ## Reviews to do for Hanen Alrwasheda
 
 - ...
@@ -201,8 +205,3 @@ Bitte von oben nach unten abarbeiten:
 
 
 ## Reviews to do for Dominik Pietrak
-
-- ch/Debugging/debuggingtools/gitbisect.md (Pietrak->Prechelt->Pietrak):
-  Habe die Einleitung ganz neu geschrieben, hoffentlich klarer.
-  Die dient zur Motivation, gehört also nach [SECTION::Background].
-- ch/Debugging/Häufige-Defektarten/a_logic.md (Pietrak->Hofmann->Prechelt->Pietrak)
