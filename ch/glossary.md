@@ -43,6 +43,16 @@ Daten auszutauschen. Sie definiert die Regeln und Protokolle, nach denen Program
 miteinander interagieren können.
 [ENDTERM]
 
+[TERM::ASCII]
+Der American Standard Code for Information Interchange, kurz ASCII, ist ein 
+Zeichenkodierungsstandard, der Zahlen den Buchstaben des englischen Alphabets, Satzzeichen und 
+Steuerzeichen zuordnet, um sie in Computern und anderen elektronischen Geräten darzustellen.
+Die Kodierung definiert 128 Zeichen, bestehend aus 33 nicht druckbaren und 95 druckbaren 
+Leerzeichen, beginnend mit dem Leerzeichen.  
+In Code kann so z. B. der Buchstabe "A" auch durch seinen ASCII-Wert "65" dargestellt werden.
+Eine ASCII-Tabelle finden Sie unter [HREF::https://www.asciitable.com/].
+[ENDTERM]
+
 ## B
 
 [TERM::Bash|.bashrc]
