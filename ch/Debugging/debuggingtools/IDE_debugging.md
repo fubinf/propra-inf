@@ -1,7 +1,8 @@
 title: Debugging mittels IDE
-stage: alpha
+stage: beta
 timevalue: 1.0
-difficulty: 2
+difficulty: 3
+assumes: pdb
 ---
 [SECTION::goal::idea]
 
@@ -9,36 +10,45 @@ difficulty: 2
 - Ich kann den Debugger von PyCharm einsetzen, um meinen Code systematisch zu durchlaufen.
 
 [ENDSECTION]
-Wenn Sie gerne die Werkzeuge Ihrer IDE verwenden wollen, um mit Ihrem Code umzugehen, werden Sie 
-hier die nötigen Werkzeuge zum Thema Debugging finden.
+[SECTION::background::default]
+
+Für viele einfache Debugging-Fälle ist [PARTREF::pdb] die handlichste Lösung,
+wenn man einen Debugger braucht.
+Aber wenn es komplizierter wird, kann eine IDE wesentlich mehr leisten.
+Das probieren wir hier aus.
+
 [ENDSECTION]
-[SECTION::instructions::detailed]
+[SECTION::instructions::loose]
 
-[NOTICE]
-Wenn Sie stattdessen an einer Terminal-gesteuerten Variante eines Debuggers interessiert sind, 
-werden Sie in [PARTREF::pdb] fündig.
-[ENDNOTICE]
+Verwenden Sie für das Folgende
+    - die [Debugger-Dokumentation für PyCharm](https://www.jetbrains.com/help/pycharm/debugging-code.html) oder
+    - die [Debugger-Dokumentation für VS Code](https://learn.microsoft.com/en-us/visualstudio/python/debugging-python-in-visual-studio)
 
-Wir können uns gleich doppelt glücklich schätzen: 
-Zum einen liefert PyCharm einen Debugger direkt mit und zum anderen gibt es auf der Webseite von PyCharm
-eine vernünftige Dokumentation zum Umgang mit diesem. 
 
-- Öffnen Sie die [Dokumentation](https://www.jetbrains.com/help/pycharm/debugging-code.html) von 
-  PyCharm zum Thema Debugging.
-- [EQ] Was sind [TERMREF::Breakpoint] und welche Eigenschaften können Sie in diesen verändern?
+### Ausprobieren!
+
+Laden Sie das Programm aus der Aufgabe [PARTREF::pdb] in Ihre IDE
+und probieren Sie die folgenden Dinge damit aus, während die die Antworten zu 
+den folgenden Fragen recherchieren:
+ 
+- [EQ] Wie startet man das Debugging? (Das ist leider gar nicht mal so einfach.)
+- [EQ] Was ist ein [TERMREF::Breakpoint] und welche Eigenschaften können Sie daran verändern?
 - [EQ] Wie können Sie einen [TERMREF::Breakpoint] zu einem [TERMREF::Conditional Breakpoint] 
   machen?
-- [EQ] Wie starten Sie das Debugging mit PyCharms Debugger? 
-- [EQ] Welche Möglichkeiten stehen Ihnen zur Steuerung des Debuggers zur Verfügung?
-- [EQ] Welche Voraussetzung erfüllt sein muss, um mittels eines interaktiven Debuggers einen 
-  Bug zu finden?
-- [EQ] Wie nützlich empfinden Sie die von PyCharm mitgelieferten Werkzeugen zum Debugging? 
-[ENDSECTION]
+- Probieren Sie die Funktionen zum Steuern des schrittweisen Programmablaufs
+  und die Funktionen zum Erkunden von Datenstrukturen aus.
+- [EQ] Was sind Ihrer Einschätzung nach die 10 wichtigsten Funktionen des Debuggers?
+- [EQ] Als wie nützlich empfinden Sie den grafischen Debugger?
+  Was gefällt Ihnen gut (insbesondere im Vergleich zu [PARTREF::pdb]), was schlecht?
 
+[ENDSECTION]
 [SECTION::submission::information]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
-[ENDSECTION]
 
-[INSTRUCTOR::Nötige Begriffe]
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
+
+[ENDSECTION]
+[INSTRUCTOR::???]
+
+TODO_1_pietrak
+
 [ENDINSTRUCTOR]
