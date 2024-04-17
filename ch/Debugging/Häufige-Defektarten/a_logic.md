@@ -3,23 +3,6 @@ stage: alpha
 timevalue: 1
 difficulty: 2
 ---
-TODO_1_pietrak:
-
-- Quelle für ASCII fehlt, um das Beispiel 1 verstehen zu können.
-- Die Beispiele in der Heranführung wirken total beliebig.
-  Aber wahrscheinlich ließen die sich doch gewissen Sorten von logischem Problem zuordnen?
-- Man kann nicht mit einem for-Schleifen-C-Beispiel um die Ecke kommen, ohne es zu erläutern.
-- Der Hint im HINT sollte so formuliert sein, dass der Groschen dann auch fällt.
-  Für `j != 100` siehe meine Korrektur.
-- Beim Beispiel mit `biggest` wird der Code hingeklatscht ohne eine Vorgabe,
-  was er tun soll; die wird erst danach formuliert. Schwierig.
-- Der Fehler in diesem Code ist dermaßen hochbeknackt, dass viele Leute vermutlich
-  überhaupt nicht verstehen, was gemeint ist.
-- Den Aufgaben dieser Gruppe fehlt reihenweise der INSTRUCTOR-Block!
-  Ganz ohne geht's aber nicht. 
-  Bitte überall eine sinnvolle Arbeitshypothese zufügen, was den Tutoren helfen mag.
-
-
 [SECTION::goal::idea]
 
 Ich verstehe, welche Form logische Defekte in Code annehmen können und habe einen solchen Defekt
@@ -34,7 +17,7 @@ in fremdem Code erfolgreich gefunden.
 Computer sind präzise in der Ausführung von Anweisungen, aber unfähig, Absichten zu
 antizipieren, was zu logischen Defekten führt, oft basierend auf schlechten Annahmen über Daten.
 Sehen Sie sich hierfür das folgende Code-Beispiel in Python an.
-Hier wird versucht, mittels Wissen über die Repräsentation von ASCII-Zeichen
+Hier wird versucht, mittels Wissen über die Repräsentation von [TERMREF::ASCII]-Zeichen
 einen String in eine kleingeschriebene Variante umzuwandeln.
 `ord()` wandelt dabei ein Zeichen in seinen numerischen ASCII-Wert um, während `chr()` das
 Gegenteil macht.
@@ -50,10 +33,21 @@ Versuchen Sie für sich den Code mittels einer
 [ASCII-Tabelle](https://www.asciitable.com/) nachzuvollziehen.
 Der Code funktioniert, wenn `s[k]` ein Großbuchstabe ist.
 Bei Kleinbuchstaben, Satzzeichen und Leerzeichen liefert er aber nicht das gewünschte Resultat.
+Der Grund hierfür ist, dass man die Logik der ASCII-Tabelle ignoriert hat.
+Hier haben Klein- und Großbuchstaben verschiedene Codierungen.
 
-Gerade Schleifen können sehr anfällig für logische Defekte sein.
+Ein weiteres Beispiel findet man bei der Initialisierung von Schleifen.
+Pythons `for`-Schleife ist hier sehr robust, deshalb behelfen wir uns der Syntax einer 
+`for`-Schleife in C.
 Vor allem bei der Überlegung, wie man die Schleife beendet, können Denkfehler auftreten.
-Als Beispiel dient diese Initialisierung einer `for`-Schleife in C.
+In C-Syntax besteht die Initialisierung einer `for`-Schleife aus drei Teilen:
+
+- Zuerst wird eine Laufvariable, auch Index genannt, initialisiert.
+- Danach wird eine Abbruchbedingung gestellt und die `for`-Schleife läuft, solange diese 
+  Bedingung nicht erfüllt ist.
+  In der Regel benutzt man den Index zur Definition der Abbruchbedingung.
+- Letztlich wird noch definiert wie der Index innerhalb der Schleife inkrementiert wird.
+
 Sehen Sie schon das Problem?
 
 ```C
@@ -95,23 +89,28 @@ Versagen kommen kann.
 
 Die bisherigen Beispiele für Defekte sind durch kleine Änderungen behebbar gewesen.
 Dass das nicht immer der Fall sein muss, soll das folgende Beispiel zeigen.
+Im folgenden Python-Code wird versucht den Abstand zwischen den zwei Zahlen in der Liste `a` zu 
+finden, die am weitesten voneinander entfernt sind.
+In der Liste `a = [2, 1, 10, 100]` sollte also das Ergebnis 99 lauten, denn die beiden am weitesten 
+voneinander entfernten Zahlen lauten 1 und 100.
 
 ```python
-a = [...] # list with unsorted ints
+a = [2, 1, 10, 100] # list with unsorted ints
 biggest = 0 
 for k in range(len(a)-1):
     distance = abs(a[k] - a[k+1])
     if distance > biggest:
         biggest = distance
+
+print(biggest) # 90
 ```
 
-Hier wird versucht den Abstand zwischen den zwei Zahlen in `a` zu finden, die am weitesten 
-voneinander entfernt sind. 
-Dieser Code tut genau das, was der Programmierer vorhat, der Algorithmus ist aber falsch.
-Es wird davon ausgegangen, dass die zwei am weitesten voneinander entfernten Zahlen 
-nebeneinander liegen. 
+Dieser Code tut genau das, was der Programmierer vorhat und berechnet den Abstand zwischen zwei 
+Zahlen aus der Liste `a`.
+Der Algorithmus ist aber falsch, da er davon ausgeht, dass die zwei am weitesten voneinander 
+entfernten Zahlen nebeneinander liegen.
 Eine kleine Änderung wird bei diesem logischen Defekt nicht helfen; der gesamte Algorithmus muss 
-überarbeitet werden. 
+überarbeitet werden.
 
 ### Ihre Aufgabe
 
@@ -155,7 +154,8 @@ die `receivers_list` aus `["Tom", "Donna", "Susan", "Paul"]` besteht.
 
 [HINT::Lösungshinweis 3]
 Bedenken Sie eine vierte Iteration, in der `person` aus `"Susan"` besteht und
-nehmen Sie an, dass die `receivers_list` jetzt aus `["Donna, "Paul"]` besteht.
+nehmen Sie an, dass die `receivers_list` jetzt aus `["Donna, "Paul"]` besteht.  
+Welche Zuteilungen sind hier noch möglich?
 [ENDHINT]
 
 [ENDHINT]
@@ -164,7 +164,7 @@ nehmen Sie an, dass die `receivers_list` jetzt aus `["Donna, "Paul"]` besteht.
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `a_logic.py` korrigieren.
 - Machen sie einen Commit `a_logic.py corrected`, der nur genau diese modifizierte Datei enthält.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -P show --color=always HEAD`
 
 [ENDSECTION]
 [SECTION::submission::snippet]
