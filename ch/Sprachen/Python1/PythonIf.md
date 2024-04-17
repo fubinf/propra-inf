@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 0.75
 difficulty: 1
 requires: PythonBooleans, PythonIntegers
-assumes: PythonCasting, PythonStrings, PythonComments
+assumes: PythonTypeConversion, PythonStrings, PythonComments
 ---
 
 [SECTION::goal::idea]
@@ -98,7 +98,7 @@ um die Instruktionen innerhalb der `if`-Anweisungen ausführen zu lassen.
 
 [HINT::Boolean-Werte von Strings]
 
-Lesen Sie die Aufgabe [PARTREF::PythonCasting],
+Lesen Sie die Aufgabe [PARTREF::PythonTypeConversion],
 dort ist erklärt wie Strings als Boolean ausgewertet werden.
 
 [ENDHINT]
