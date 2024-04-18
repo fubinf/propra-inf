@@ -17,7 +17,7 @@ Aufgaben schaffen.
 
 [SECTION::instructions::loose]
 
-Lesen Sie [What is Git](https://git-scm.com/book/en/v2/Getting-Started-What-is-git%3F) gründlich 
+Lesen Sie [What is Git](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F) gründlich 
 durch und bearbeiten Sie die nachfolgende Aufgabenstellung.
 
 [NOTICE]
