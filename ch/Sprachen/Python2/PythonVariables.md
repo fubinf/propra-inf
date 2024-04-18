@@ -65,7 +65,7 @@ einfach als eine eingebaute Funktion zur Typumwandlung?
 
 ```python
     mylist = [5, 12]
-    mylist2 = a
+    mylist2 = mylist
     mylist[0] = 1
 ```
 - a) Worauf zeigt der Name `mylist2`, nachdem wir den Code laufen lassen? Warum?
@@ -97,7 +97,7 @@ Beschreiben Sie in eigenen Worten, was diese Eigenschaft bedeutet.
     y = x
 ```
 - a) Worauf zeigt hier der Name `y`?
-- b) Welcher Name zeigt auf das Element `7` in der Liste `mylist`?
+- b) Welche Namen zeigen auf das Element `7` in der Liste `mylist`?
 
 [EQ] Zeigen `x` und `y` im Folgenden Code auf dasselbe Objekt mit dem Wert 10? Wieso?
 
@@ -138,7 +138,7 @@ wo sich die gespeicherten Daten bewegen.
 - dass der Student den Unterschied zwischen veränderlichen und unveränderlichen Datentypen versteht.
 
 Mögliche Überlegung für [EREFQ::14]:
-Es macht in diesem Fall Sinn, dass zwei verschiedene Namen auf dasselbe Objekt zeigt,
+Es macht in diesem Fall Sinn, dass zwei verschiedene Namen auf dasselbe Objekt zeigen,
 wenn diese beiden Namen bei der Zuweisung denselben Wert haben,
 weil bspw. Ganzzahlen oder Zeichenketten in Python "unveränderlich" sind und
 somit nicht direkt "in-place" geändert werden können. Es spielt also keine Rolle,
