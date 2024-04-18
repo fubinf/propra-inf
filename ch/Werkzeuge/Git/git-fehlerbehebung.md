@@ -2,7 +2,7 @@ title: Fehler beheben im git Repository
 stage: alpha
 timevalue: 2.0
 difficulty: 1
-assumes: git-funktionsweise
+assumes: git-Funktionsweise
 requires: git-Zweitrepo
 ---
 
