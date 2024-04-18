@@ -18,7 +18,7 @@ eine sogenannte `.gitignore`-Datei. Wie man diese Verwendet werden wir in dieser
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-Lesen Sie den Abschnitt [Ignoring Files](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository) des Pro Git Buches.
+Lesen Sie den Abschnitt "Ignoring Files" auf dieser Seite: https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository
 
 [ER] Erstellen Sie eine passende `.gitignore`-Datei für ihr ProPra-Repository und erklären Sie 
 welche 
