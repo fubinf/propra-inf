@@ -211,9 +211,9 @@ chapters:
     taskgroups:
       - slug: Basiswerkzeuge
       - slug: Paketmanager
+      - slug: Git
       - slug: Netzwerk
       - slug: Benutzerverwaltung
-      - slug: Git
       - slug: Linter
   - slug: Feedback
     taskgroups:
