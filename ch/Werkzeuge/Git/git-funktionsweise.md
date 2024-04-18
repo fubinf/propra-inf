@@ -1,51 +1,51 @@
 title: Wie funktioniert git?
-stage: alpha
-timevalue: 1.0
-difficulty: 1
+stage: beta
+timevalue: 0.75
+difficulty: 2
 ---
 
 [SECTION::goal::idea]
-Ich verstehe wie git "funktioniert" und was der Hauptunterschied zu anderen 
-Versionierungswerkzeugen ist.
+Ich verstehe 5 Grundideen der Funktionsweise von git und habe ein korrektes
+mentales Modell von git.
 [ENDSECTION]
 
 [SECTION::background::default]
-Um git wirklich gut benutzen zu können, muss man verstehen wie es funktioniert. Dieses 
-Grundverständnis werden wir uns in dieser Aufgabe aneignen und damit die Basis für weitere 
-Aufgaben schaffen.
+Wenn man diese 5 Tatsachen nicht kennt, bleibt vieles in git rätselhaft,
+das an sich gar nicht sehr kompliziert ist.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
 
-Lesen Sie [What is Git](https://git-scm.com/book/en/v2/Getting-Started-What-is-git%3F) gründlich 
-durch und bearbeiten Sie die nachfolgende Aufgabenstellung.
+### Einlesen
 
-[NOTICE]
-Eine deutlich ausführlichere Erklärung des Arbeitens mit Dateien in git finden Sie auf der Seite 
-["Recording Changes to the Repository"](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository).
-Zum Bearbeiten der Aufgabe werden die darin beschriebenen Inhalte zwar nicht benötigt, für noch 
-tiefergehendes Verständnis empfiehlt sich aber trotzdem diese Seite mal zu Lesen.
-[ENDNOTICE]
+Lesen Sie [What is Git](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F) gründlich durch.
+Identifizieren und verstehen Sie die fünf Ideen.
+
+Neugierig geworden?
+Dann lesen Sie gleich auf
+"[Recording Changes to the Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)" 
+weiter.
+Das dortige Wissen wird zwar erst für spätere Aufgaben relevant, ergänzt die Grundideen
+aber gut um zugehörige praktische Aspekte.
+
+### Reflektieren
+
+- [EQ] Fassen Sie die fünf Hauptpunkte in eigenen Worten in je einem Satz zusammen.
+- [EQ] Wenn man eine Datei so ändert, dass ihre Größe und ihr Zeitstempel gleich bleiben,
+  woran kann git trotzdem feststellen, dass sie geändert wurde?
+- [EQ] Warum kann man git auch unterwegs oder ohne Internet gut benutzen?
+- [EQ] Warum gehen viele Operationen in git so schnell?
+- [EQ] In welchen drei Punkten lässt sich der Git workflow einfach zusammenfassen?
+
 
 [ENDSECTION]
-
 [SECTION::submission::reflection]
-Fassen Sie die Hauptpunkte der verlinkten Seite in eigenen Worten zusammen.
-Klären Sie außerdem diese weiteren Fragen:
-
-[EQ] Warum kann man git auch unterwegs oder ohne Internet gut benutzen?
-[EQ] Warum gehen viele Operationen in git so schnell?
-[EQ] Wie stellt git Dateiintegrität sicher?
-[EQ] In welchen drei Punkten lässt sich der Git workflow einfach zusammenfassen?
 
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
-Lesen Sie die Abgabe der Studierenden und stellen Sie sicher, dass die Hauptpunkte der verlinkten 
-Seite verstanden wurden. Wichtig ist, dass verstanden wird, dass git snapshots, statt 
-diffs verwendet und dieses Prinzip die Grundlage bildet.
-Außerdem sollte auf die drei Statuszustände "Modified, Staged, Committed" eingegangen werden was 
-wiederrum zum Workflow "Modify files, stage changes and commit snapshots" führt.
+[INSTRUCTOR::Die 5 Ideen liefern alle Antworten]
+Die Hauptpunkte entsprechen den Überschriften auf "What is Git?": 
+Schnappschüsse, lokale Operationen, Hashes, Zufügen-statt-Ändern, Zustände modified/staged/committed.
 [ENDINSTRUCTOR]
