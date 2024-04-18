@@ -2,7 +2,7 @@ title: Rebasing in git
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-requires: git-vorbereitung, git-branches
+requires: git-Zweitrepo, git-branches
 ---
 
 [SECTION::goal::experience]
