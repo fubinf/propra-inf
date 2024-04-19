@@ -55,7 +55,7 @@ In alphabetischer Reihenfolge der Dateinamen.
   https://creativecommons.org/mission/downloads/ ganz unten.
 - Git101: Wie geht denn die Installation? Wo sind die Hyperlinks zu den URLs? 
   Was bedeutet Klonen?
-- Sprachen/bash/basics: Wir brauchen eine Mininmaleinführung namens
+- Werkzeuge/Unix-Basiswerkzeuge: Wir brauchen eine Mininmaleinführung namens
   `Shell-Grundlagen` als brauchbare Aufgabe.
 - `glossary.md`: Bitte jeder durchgehen und ergänzen:  
   Was fehlt an Begriffen zu eigenen Aufgaben?  

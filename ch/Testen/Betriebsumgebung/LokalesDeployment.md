@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1.5
 difficulty: 1
 explains:
-assumes: venv, pip, basics, Git101
+assumes: venv, pip, Shell-Grundlagen, Git101
 ---
 
 [SECTION::goal::idea]

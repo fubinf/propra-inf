@@ -50,7 +50,7 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
   Insbesondere kann man dort in den Aufgabengruppen
   [PARTREF::Basiswerkzeuge], [PARTREF::Netzwerk] und [PARTREF::Benutzerverwaltung]
   so einiges über Unix lernen, was ebenfalls recht langlebiges Wissen darstellt.
-  Allerdings sollte man zwischendurch noch bei [PARTREF::bash] vorbeischauen.
+  Wer Unix fast gar nicht kennt, sollte unbedingt früh bei [PARTREF::Shell-Grundlagen] vorbeischauen.
 
 
 ### Selber Umsehen
