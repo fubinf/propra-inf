@@ -208,7 +208,7 @@ chapters:
       - slug: HTML
   - slug: Werkzeuge
     taskgroups:
-      - slug: Basiswerkzeuge
+      - slug: Unix-Basiswerkzeuge
       - slug: Paketmanager
       - slug: Git
       - slug: Netzwerk
