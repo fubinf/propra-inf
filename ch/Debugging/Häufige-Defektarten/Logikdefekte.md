@@ -112,6 +112,7 @@ entfernten Zahlen nebeneinander liegen.
 Eine kleine Änderung wird bei diesem logischen Defekt nicht helfen; der gesamte Algorithmus muss 
 überarbeitet werden.
 
+
 ### Ihre Aufgabe
 
 Im Folgenden sollen Sie eine Funktion debuggen, in der ein logischer Defekt vorliegt.
@@ -169,6 +170,7 @@ Welche Zuteilungen sind hier noch möglich?
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::ALT:]
 
 [ENDSECTION]
