@@ -48,7 +48,7 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
   Sie lohnen die Lerninvestition nur, wenn man genau das Gelernte alsbald intensiv benutzen möchte.)
 - Das Kapitel [PARTREF::Werkzeuge] ist ein recht bunter und ziemlich interessanter Kramladen.
   Insbesondere kann man dort in den Aufgabengruppen
-  [PARTREF::Basiswerkzeuge], [PARTREF::Netzwerk] und [PARTREF::Benutzerverwaltung]
+  [PARTREF::Unix-Basiswerkzeuge], [PARTREF::Netzwerk] und [PARTREF::Benutzerverwaltung]
   so einiges über Unix lernen, was ebenfalls recht langlebiges Wissen darstellt.
   Wer Unix fast gar nicht kennt, sollte unbedingt früh bei [PARTREF::Shell-Grundlagen] vorbeischauen.
 
