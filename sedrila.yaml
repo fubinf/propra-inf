@@ -219,8 +219,3 @@ chapters:
     taskgroups:
       - slug: ProPra-Mängel
       - slug: ProPra-Ideen
-  - slug: zzincubator
-    taskgroups:
-      - slug: alt
-      - slug: suche_chapter
-    
