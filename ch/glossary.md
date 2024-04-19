@@ -333,7 +333,6 @@ nicht bewiesen oder verifiziert ist.
 In der Logik werden Hypothesen in Form von logischen Aussagen formuliert.
 In einem logischen Gespräch ist eine Hypothese die Prämisse eines Arguments, deren Wahrheit
 zunächst ausgeklammert wird.
-Dabei wirken Hypothesen als Implikationen, die der Verteidigung einer These dienen.
 [ENDTERM]
 
 ## I
@@ -345,8 +344,17 @@ dafür aber im Gegensatz zum [TERMREF::Systemtest] programmatische Schnittstelle
 nicht solche für menschliche Benutzer_innen.
 [ENDTERM]
 
-[TERM::Interpreter]
-Ein Interpreter, insbesondere der Python-Interpreter, ist ein Programm, das Quellcode in einer bestimmten Programmiersprache analysiert, interpretiert und ausführt. Im Falle des Python-Interpreters wird Python-Quellcode Zeile für Zeile analysiert und in Maschinenanweisungen umgewandelt, die vom Computer ausgeführt werden können. Der Interpreter führt den Code schrittweise aus und überprüft dabei Syntax und Semantik, um sicherzustellen, dass der Code korrekt ist und die beabsichtigten Aktionen ausführt.
+[TERM::Interpreter|Interpretierer]
+Ein Interpretierer (engl. "interpreter"), insbesondere der Python-Interpreter, ist ein Programm, 
+das Quellcode in einer bestimmten Programmiersprache analysiert (insbesondere auf korrekte
+Syntax und erlaubte Semantik) und ausführt.
+
+Bei Python spricht man oft vom Interpretierer, obwohl das nicht ganz stimmt,
+denn Python wird auch bei der Standardimplementation CPython 
+von einem Python-Compiler in Bytecode übersetzt und erst der
+wird dann interpretiert.
+
+[HREF::https://devguide.python.org/internals/]
 [ENDTERM]
 
 [TERM::Issue Tracker|Bug Tracker|Defect Tracker|Defektdatenbank]
@@ -462,14 +470,26 @@ und die andere Hälfte kleiner ist.
 [ENDTERM]
 
 [TERM::Modul]
-Ein Modul in Python, oder allgemein in Programmiersprachen, ist eine Datei, die Definitionen bzw. Implementierungen unter anderem von Variablen, Funktionen und Klassen enthalten kann. Module dienen dazu, den Code in logisch getrennte Einheiten zu organisieren, wodurch die Wiederverwendbarkeit, Lesbarkeit und Strukturierung von Softwareprojekten verbessert wird. Sie ermöglichen es Entwicklern, gemeinsam genutzte Funktionalitäten in einer zentralen Stelle zu definieren und diese dann in verschiedenen Teilen eines Programms oder in unterschiedlichen Projekten durch Importieren des Moduls wiederzuverwenden.
+"Modul" ist in der Softwaretechnik ein abstraktes Konzept.
+Es beschreibt eine Sammlung von Programmelementen, die zusammen entworfen werden
+und ein Innen (Einzelheiten des Moduls, Implementierungsdetails) 
+von einem Außen trennen. 
+Außerhalb des Moduls ist nur die Modulschnittstelle sichtbar.
+
+In einer konkreten technischen Welt wie Python ist ein Modul ein technisches Konstrukt.
+Ein Modul in Python ist etwas, das mit `import` in ein Python-Programm importiert
+werden kann und meistens durch eine einzelne Datei oder einen ganzen Dateibaum 
+von Python-Code realisiert wird.
+Ziele bei der Gestaltung von Modulen sind meistens Abstraktion und oft Wiederverwendung.
+
+[HREF::https://docs.python.org/3/tutorial/modules.html]
 [ENDTERM]
 
 [TERM::Modultest|Unit Test]
 Ein Test, der das korrekte Funktionieren eines bestimmten Moduls prüfen soll.
 Dabei wird entweder nur dieses eine Modul ausgeführt (weil es keine weiteren davon benötigten
 Module gibt oder indem diese durch Attrappen ersetzt werden)
-oder es wird zwar der ganz darunter hängende Teilgraph von benötigten Modulen
+oder es wird zwar der ganze darunter hängende Teilgraph von benötigten Modulen
 auch mit verwendet, aber die Testeingaben so ausgewählt, dass es voraussichtlich für das
 Ergebnis nur auf das zu testende Modul ankommt.
 [ENDTERM]
@@ -500,7 +520,7 @@ steuern oder anzupassen. Diese Optionen ermöglichen es Benutzern, die
 Funktionalität eines Befehls auf verschiedene Weisen zu beeinflussen. Optionen 
 werden in der Regel durch Buchstaben oder Wörter dargestellt und können durch 
 Bindestriche oder doppelte Bindestriche eingeleitet werden.
-Bei den meisten Befehlen geben die Optionen `-h`, `--help`, `-help` eine kurze Auflistung der meistgenutzten 
+Bei den meisten Befehlen geben die Optionen `-h` oder `--help` eine kurze Auflistung der meistgenutzten 
 Optionen des Befehls.
 Für Windows-Befehle ist es meistens die Option `/h`, die diese Hilfe anbietet.
 [ENDTERM]
@@ -509,8 +529,15 @@ Für Windows-Befehle ist es meistens die Option `/h`, die diese Hilfe anbietet.
 
 [TERM::Pair Programming|Paarprogrammierung]
 Eine agile Entwicklungsmethode, bei der zwei Entwickler gemeinsam an derselben Aufgabe arbeiten.
-Während einer Person aktiv codiert, beobachtet die andere den Prozess, bietet Feedback und denkt
-über mögliche Verbesserungen nach.
+Gelungene Paarprogrammierung ist ein kontinuierlicher Dialog über Ideen, Vorschläge, Erkenntnisse
+und Tätigkeiten, bei dem die Partner beim Denken ständig eng beeinander bleiben ("togetherness")
+und deshalb schneller gute Ideen produzieren können und Denkfehler schneller und verlässlicher
+aufdecken und lösen.
+
+Paarprogrammierung wird in der professionellen Softwareentwicklung insbesondere dann benutzt,
+wenn das Problem schwierig ist oder das Wissen von zwei Teammitgliedern zusammengeworfen werden muss.
+In der Lehre ist es als motivierende und lernförderliche Verfahrensweise für vielerlei
+Zwecke bekannt und als wirksam nachgewiesen.
 [ENDTERM]
 
 [TERM::Parameter]
@@ -715,7 +742,13 @@ weil diese aus Sicht einer Benutzer_in wie eine "Schale" den Kern des Betriebssy
 [ENDTERM]
 
 [TERM::Schlüsselwort|Keyword]
-Schlüsselwörter (Englisch: "keyword") beziehen sich im Allgemeinen auf reservierte Wörter oder Zeichenfolgen, die eine spezielle Bedeutung innerhalb der Programmiersprachen haben. Diese Schlüsselwörter sind Teil der Sprachsyntax und haben vordefinierte Funktionen oder Operationen. Schlüsselwörter dürfen nicht als Namen für Variablen oder Funktionen oder irgendwelche Elemente im Programm verwendet werden, das führt (in Python) direkt zu (Laufzeit-) Fehler. 
+Schlüsselwörter (Englisch: "keyword") nennt man reservierte Wörter oder Zeichenfolgen in Programmiersprachen.
+Sie sind Teil der Sprachsyntax und haben eine vordefinierte Bedeutung, die in der Sprachbeschreibung
+nachzulesen ist.
+Das steht im Gegensatz zu Namen ("identifier") in Programmen, deren Bedeutung sich nicht aus der Programmiersprache
+ergibt, sondern aus dem jeweiligen Programmtext.
+Schlüsselwörter können nicht als Namen für Variablen oder Funktionen oder 
+irgendwelche Elemente im Programm verwendet werden. 
 [ENDTERM]
 
 [TERM::Symlink|Symlinks]
