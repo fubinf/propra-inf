@@ -152,6 +152,10 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Debugging/Häufige-Defektarten/Logikdefekte.md (Pietrak->Hofmann->Prechelt->Pietrak-> Prechelt)
   INSTRUCTOR-Teil existiert, wird nach Implementierung des submodules nachgliefert
 
+- ch/Werkzeuge/Unix-Basiswerkzeuge/02_apt.md (Condric)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/04_eigenes_System.md (Condric)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/05_Editoren.md (Condric)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/06_Links.md (Condric)
 
 ## Reviews to do for Hanen Alrwasheda
 
