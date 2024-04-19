@@ -1,0 +1,3 @@
+[submodule "altdir"]
+	path = altdir
+	url = git@github.com:fubinf/propra-inf-instructorparts.git
