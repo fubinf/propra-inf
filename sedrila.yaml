@@ -2,6 +2,7 @@ title: Programmierpraktikum SoSe 2024, Bachelor Informatik, FU Berlin
 breadcrumb_title: ProPra2024
 baseresourcedir: baseresources
 chapterdir: ch
+altdir: altdir/ch
 stages: ['draft', 'alpha', 'beta']  # ordered list of allowed 'stage:' values
 blockmacro_topmatter:
   # --- builtin blockmacros:
