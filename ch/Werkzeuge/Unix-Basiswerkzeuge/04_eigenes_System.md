@@ -2,7 +2,7 @@ title: Eigenes System kennenlernen
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: 02_apt
+assumes: apt
 ---
 
 [SECTION::goal::idea]
