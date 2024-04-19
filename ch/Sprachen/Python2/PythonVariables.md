@@ -1,14 +1,13 @@
 title: "Variablen: Namen und Werte in Python"
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 2
 ---
 
-
 [SECTION::goal::idea]
 
 - Ich verstehe die Verbindung zwischen Objekten und Namen,
-wenn ich Zuweisungen in meinem Programm erstelle.
+  wenn ich Zuweisungen in meinem Programm erstelle.
 - Ich bin in der Lage, sinnvoll mit Zuweisungen umzugehen. 
 - Ich verstehe "Dynamic Typing", "Mutability" und "Immutability" in Python.
 
@@ -16,22 +15,26 @@ wenn ich Zuweisungen in meinem Programm erstelle.
 
 [SECTION::background::default]
 
-Wir verwenden kontinuierlich Daten in Verbindung mit Variablen und erstellen zahlreiche Zuweisungen,
-die uns erlauben, mit diesen Daten innerhalb eines gesamten Programms zu arbeiten.
-Hier haben wir die Gelegenheit,
-diesbezüglich ein vertieftes Wissen über dieses Verhalten im Hintergrund zu erwerben. 
+Ständig gehen wir mit Variablen um,
+ebenso mit anderen Namen, die für Klassen, Funktionen oder Module stehen.
+Aber wissen wir präzise, was das bedeutet -- gar nicht mal intern, sondern direkt
+auf der Ebene der Programmiersprache?
 
 [ENDSECTION]
 
-[SECTION::instructions::tricky]
+[SECTION::instructions::loose]
 
-Schauen Sie sich erst [dieses Video](https://www.youtube.com/watch?v=_AEJHKGk9ns) an.
-Es hilft Ihnen dabei, ein Gefühl dafür zu entwickeln, was wir genau tun,
-wenn wir mit "Variablen" arbeiten und was wir genau meinen,
-wenn wir den Begriff "Variable" verwenden. Versuchen Sie hierbei, sich auf das Konzept der 
-Zuweisung zu fokussieren und nicht auf die Syntax selbst.
+Schauen Sie sich erst [dieses Video](https://www.youtube.com/watch?v=_AEJHKGk9ns) an (von 0:50 bis 22:40) und verstehen Sie alle 
+Aussagen, die darin gemacht werden.
+Probieren Sie die einzelnen Punkte selbst in Python aus, wenn Sie sich nicht sicher sind.
 
-[EQ] Was ist genau die Beziehung zwichen Objekten und Werten von "Variablen"? 
+Dieses Material hilft zu verstehen, was "Variablen" in Python wirklich sind, 
+nämlich nur Namen, an die allerlei Objekte gebunden werden können.
+Die Hauptsache sind aber immer die Objekte!
+Die Semantik von Python ist einfacher als in den meisten anderen Sprachen,
+weil alles schön orthogonal ist und nur wenige Konzepte braucht.
+
+[EQ] Was ist die Beziehung zwischen Objekten und Werten von "Variablen"? 
 
 [EQ] was ist der Unterschied zwischen folgenden beiden Zuweisungsvarianten?
 
@@ -49,7 +52,7 @@ Normalerweise nutzen wir die Funktion `int()`, wenn wir den Datentyp eines Werte
 Gilt somit `int()` als Konstruktor der Klasse `int` oder
 einfach als eine eingebaute Funktion zur Typumwandlung?
 
-[EQ] Was ist im Video damit gemeint, dass Speicher in Python "dynmaisch" verwaltet wird?
+[EQ] Was ist im Video damit gemeint, dass Speicher in Python "dynamisch" verwaltet wird?
 
 [EQ] Welcher Name zeigt auf den Wert 5, nachdem wir diesen Code ausführen?
 
@@ -70,7 +73,7 @@ einfach als eine eingebaute Funktion zur Typumwandlung?
 ```
 - a) Worauf zeigt der Name `mylist2`, nachdem wir den Code laufen lassen? Warum?
 - b) Welcher Name zeigt auf das `int`-Objekt mit dem Wert 5, nachdem wir den Code laufen lassen?
-Warum?
+  Warum?
 
 [EQ] Was sind "immutable values" ganz genau und welche Datentypen sind in Python "immutable"?
 
@@ -83,7 +86,7 @@ Wenn ja, wie genau?
 [EQ] Wir haben gelernt,
 dass das "Ändern" eines "unveränderlichen" Datentyps einfach eine neue Zuweisung bedeutet und
 dass dieses "Ändern" bei "veränderlichen" Datentypen wirklich den Wert "in-place" ändert.
-Geben Sie ein kleines  Python-Beispiel für eine "Änderung" eines "veränderlichen" Datentyps, 
+Geben Sie ein kleines Python-Beispiel für eine "Änderung" eines "veränderlichen" Datentyps, 
 wo dabei ein neues Objekt erstellt wird. 
 
 [EQ] Im Video wurde die Bedeutung von "Dynamic Typing" in Python erläutert.
