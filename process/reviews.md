@@ -29,15 +29,11 @@ We will modify these rules over time when others appear more useful.
 
 We need to produce material that students can start with, quick.
 
-- Basis: Are the pubkey issues solved?
 - Sprachen: 
     - Some Python2 is needed, e.g. import (Python1 is not urgent)
     - Pythonpraxis looks OK
-    - bash: Basic stuff urgently needed
 - Bibliotheken:
-    - stdlib looks OK
-    - 
-- Feedback: 7h available, but not suitable early.
+    - Python-Standardbibliothek: implement TODO-marked pseudo-assumes entries
 
 ## Reviews to do for Daniel Müllers
 
@@ -49,89 +45,8 @@ We need to produce material that students can start with, quick.
 
 ## Reviews to do for Lutz Prechelt
 
-- ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
-- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
-
-- ch/Bestandscode/Refactoringpraxis/gildedrose_tests.md (Pietrak)
-- ch/Bestandscode/Refactoringpraxis/gildedrose_refactor.md (Pietrak)
-- ch/Bestandscode/Refactoringpraxis/gildedrose_implementation.md (Pietrak)
-- ch/Bestandscode/Refactoringpraxis/gildedrose_reflexion.md (Pietrak)
-
-- ch/Testen/API/index.md (Ruhe->Hofmann)
-- ch/Testen/API/ResponseApi.md (Ruhe->Hofmann)
-- ch/Testen/API/CRUDApi.md (Ruhe->Hofmann)
-- ch/Testen/API/RestApi.md (Ruhe->Hofmann)
-
-- ch/Testen/Testframeworks/index.md (Ruhe->Hofmann)
-- ch/Testen/Testframeworks/Robot.md (Ruhe->Hofmann)
-
-- ch/Werkzeuge/Linter/flake8.md (Ruhe->Alrwasheda->Hofmann)
-- ch/Werkzeuge/Linter/black.md (Ruhe->Alrwasheda->Hofmann)
-
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
-
-- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->Müllers)
-
-- ch/Testen/Unittests/pytestBenchmark.md (Ruhe->Müllers)
-
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
-
-- ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers)
-
-- ch/Testen/Unittests/unittest203.md (Ruhe->Müller)
-- ch/Testen/Unittests/pytest202.md (Ruhe->Müller)
- 
-- ch/Debugging/Debugging-Praxis/einkaufsliste-versagen.md (Pietrak->Hofmann)
-- ch/Debugging/Debugging-Praxis/einkaufsliste-conditional.md (Pietrak->Hofmann)
-
-- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->Hofmann)
-- ch/Debugging/Denkweisen/Professor-Solomon.md (Pietrak->Hofmann)
-- ch/Debugging/Denkweisen/Psychologist.md (Pietrak->Hofmann)
-- ch/Debugging/Denkweisen/Sherlock-Holmes.md (Pietrak->Hofmann)
-
-- ch/Debugging/Häufige-Defektarten/Defekte-bei-Variablen.md (Pietrak->Hofmann)
-- ch/Debugging/Häufige-Defektarten/Indexierungsdefekte.md (Pietrak->Hofmann)
-- ch/Debugging/Häufige-Defektarten/Anordnungsdefekte.md (Pietrak->Hofmann)
-
-- ch/Testen/Unittests/coverage.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
-- ch/Testen/Unittests/mocking.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
-
-- ch/Testen/Unittests/unittest201.md (Ruhe->Müllers->Alrwasheda->Prechelt):
-Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
-kann verzichtet werden. Bitte überprüfen.
-Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
-
-- ch/Testen/Unittests/unittest202.md (Ruhe->Müllers->Alrwasheda->Prechelt)
-- ch/Testen/Unittests/unittest301.md (Ruhe->Müllers->Alrwasheda->Prechelt)
 
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->Prechelt)
-
-- ch/Debugging/Debugging-Praxis/einkaufsliste-postmortem.md (Pietrak->Müllers->Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->Alrwasheda->Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/open_closed_prinzip.md (Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->Prechelt)
-
-- ch/Bibliotheken/Dokumentation/changelog.md (Prechelt->Ruhe->Prechelt) Keine Anmerkungen.
-- ch/Bibliotheken/Dokumentation/changelog2.md (Prechelt->Ruhe->Prechelt) Zwei Übungen ergänzt, eine
-  davon auf das SUT bezigen, um nachzuvollziehen, dass ein vorhandenes Changelog schöner ist, als
-  eins aus einem wenig bekannten Produkt zu extrahieren. (darauf aufbauend könnte man noch mehr in
-  die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
-
-- ch/Testen/Testgrundlagen/Error.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt)
-- ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt)
-
-- ch/Testen/Unittests/index.md (Pietrak und Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/tdd.md (Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/pytest101.md (Pietrak und Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/pytest104.md (Pietrak und Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/pytest201.md (Ruhe->Müllers->Prechelt)
-
 - ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt) 
 - ch/Sprachen/Python1/PythonComments.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
@@ -143,18 +58,79 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Sprachen/Python1/PythonFunctions.md (Alrwasheda->Prechelt)
 - ch/Sprachen/Python2/PythonVariables.md (Alrwasheda->Prechelt)
 
+
+- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
+- ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers)
+- ch/Bibliotheken/Dokumentation/changelog.md (Prechelt->Ruhe->Prechelt) Keine Anmerkungen.
+- ch/Bibliotheken/Dokumentation/changelog2.md (Prechelt->Ruhe->Prechelt) Zwei Übungen ergänzt, eine
+  davon auf das SUT bezigen, um nachzuvollziehen, dass ein vorhandenes Changelog schöner ist, als
+  eins aus einem wenig bekannten Produkt zu extrahieren. (darauf aufbauend könnte man noch mehr in
+  die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
+
+
+- ch/Testen/Testgrundlagen/Error.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt) !!!
+- ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt)
+- ch/Testen/Unittests/index.md (Pietrak und Ruhe->Müllers->Prechelt) !!!
+- ch/Testen/Unittests/tdd.md (Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/pytest101.md (Pietrak und Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/pytest104.md (Pietrak und Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/pytest201.md (Ruhe->Müllers->Prechelt)
+- ch/Testen/Unittests/unittest201.md (Ruhe->Müllers->Alrwasheda->Prechelt):
+  Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
+  kann verzichtet werden. Bitte überprüfen.
+  Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
+- ch/Testen/Unittests/unittest202.md (Ruhe->Müllers->Alrwasheda->Prechelt)
+- ch/Testen/Unittests/unittest301.md (Ruhe->Müllers->Alrwasheda->Prechelt)
+- ch/Testen/Unittests/unittest203.md (Ruhe->Müller)
+- ch/Testen/Unittests/pytest202.md (Ruhe->Müller)
+- ch/Testen/Unittests/coverage.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
+- ch/Testen/Unittests/mocking.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
+- ch/Testen/Unittests/pytestBenchmark.md (Ruhe->Müllers)
+- ch/Testen/API/index.md (Ruhe->Hofmann)
+- ch/Testen/API/ResponseApi.md (Ruhe->Hofmann)
+- ch/Testen/API/CRUDApi.md (Ruhe->Hofmann)
+- ch/Testen/API/RestApi.md (Ruhe->Hofmann)
+- ch/Testen/Testframeworks/index.md (Ruhe->Hofmann)
+- ch/Testen/Testframeworks/Robot.md (Ruhe->Hofmann)
+- ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
+
+- ch/Debugging/Debugging-Praxis/einkaufsliste-versagen.md (Pietrak->Hofmann)
+- ch/Debugging/Debugging-Praxis/einkaufsliste-conditional.md (Pietrak->Hofmann)
+- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->Hofmann)
+- ch/Debugging/Denkweisen/Psychologist.md (Pietrak->Hofmann)
+- ch/Debugging/Debugging-Praxis/einkaufsliste-postmortem.md (Pietrak->Müllers->Pietrak->Prechelt)
+
+
+- ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->Alrwasheda->Pietrak->Prechelt)
+- ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->Prechelt)
+- ch/Bestandscode/Refactoring-Grundlagen/open_closed_prinzip.md (Pietrak->Prechelt)
+- ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->Prechelt)
+- ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->Prechelt)
+- ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->Prechelt)
+- ch/Bestandscode/Refactoringpraxis/gildedrose_tests.md (Pietrak)  !!!
+- ch/Bestandscode/Refactoringpraxis/gildedrose_refactor.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/gildedrose_implementation.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/gildedrose_reflexion.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
+
+
 - ch/Web/HTML/HTMLErsteSchritte.md (Müllers)
 
-- ch/Werkzeuge/Git/git-fehlerbehebung.md (Hüster)
-- ch/Werkzeuge/Git/git-branches.md (Hüster)
-- ch/Werkzeuge/Git/git-rebase.md (Hüster)
-
-- ch/Debugging/Häufige-Defektarten/Logikdefekte.md (Pietrak->Hofmann->Prechelt->Pietrak-> Prechelt)
-  INSTRUCTOR-Teil existiert, wird nach Implementierung des submodules nachgliefert
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/04_eigenes_System.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/05_Editoren.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/06_Links.md (Condric)
+- ch/Werkzeuge/Git/git-fehlerbehebung.md (Hüster) !!!
+- ch/Werkzeuge/Git/git-branches.md (Hüster)
+- ch/Werkzeuge/Git/git-rebase.md (Hüster)
+- ch/Werkzeuge/Linter/flake8.md (Ruhe->Alrwasheda->Hofmann)
+- ch/Werkzeuge/Linter/black.md (Ruhe->Alrwasheda->Hofmann)
+- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->Müllers)
+
 
 - ch/Werkzeuge/Benutzerverwaltung/Dateiberechtigungen.md (Condric)
 - ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric)
