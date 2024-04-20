@@ -1,6 +1,6 @@
 title: rsync
-stage: draft
-timevalue: 0.5
+stage: alpha
+timevalue: 1
 difficulty: 2
 ---
 [SECTION::goal::idea]
@@ -45,13 +45,14 @@ Wie im "Hintergrund" beschrieben, können Daten auf einen entfernten Pfad kopier
 - [EC] Kopieren Sie die Daten von Ihrem System auf den Zielserver.  
 Andersrum funktioniert es auch.
 - [EC] Kopieren Sie die Daten vom Zielserver auf ihr System.
-- [EC] Fügen Sie der Datei `/home/username/rsync_copy_data/datei_1.txt` zufälligen Text hinzu, damit sich das `modification date` der Datei ändert.  
+- [EC] Fügen Sie der Datei `/home/username/rsync_copy_data/datei_1.txt` zufälligen Text hinzu.  
     Kopieren Sie die Datei per rsync auf in den `/tmp/propra_sync` Ordner. 
-- [EQ] Was beobachten Sie?
+- [EQ] Was fällt Ihnen auf?
 
 
 [ENDSECTION]
 
 [SECTION::submission::reflection]
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
 [ENDSECTION]
