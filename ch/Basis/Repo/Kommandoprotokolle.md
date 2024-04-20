@@ -56,16 +56,29 @@ In dieser Aufgabe lernen wir eine bessere Lösung kennen und probieren sie aus.
 Es ist möglich, den Dateinamen als Argument zu übergeben, und es bietet sich an, das an die
 jeweilig bearbeitete Aufgabe anzupassen. Ein Aufruf von `script Kommandoprotokolle.txt` erzeugt
 beispielsweise eine Datei "Kommandoprotokolle.txt" statt "typescript".
-  
-[NOTICE]
-Es ist auch möglich, ohne neue Shell die Befehle einzeln nach und nach zu protokollieren.
-Dann entfällt das `exit` und man kann zwischen den protokollierten Kommandos
-andere machen, die nicht protokolliert werden.
-Siehe `script --help`. 
 
-Wenn Sie das interessiert, probieren Sie es aus.
-Wenn nicht, geht es auch ohne.
-[ENDNOTICE]
+
+### Taktik für spätere Aufgaben
+
+In den Aufgaben wird es später oft so sein, dass Sie zwischen den Kommandos A und B,
+die ins Kommandoprotokoll sollen, andere Kommandos brauchen, sei es i) zur Vorbereitung von B
+oder ii) weil Sie erst herausbekommen müssen, wie Kommando B überhaupt lautet, wenn es 
+nicht angegeben, sondern nur umschrieben ist.
+
+Es gibt grundsätzlich drei Arten, wie man damit umgehen kann:
+
+1. Eine zweite Shell geöffnet haben, in der man diese Hilfsschritte zuführt.
+   In der ersten Shell läuft währenddessen `script`, dort macht man nur A und B, sonst nichts.
+   Dies ist die Methode der Wahl.
+2. Sich erst einmal ohne laufendes `script` durcharbeiten und dann `script` erst starten,
+   wenn man weiß, wie A und B gehen. 
+   Das hilft allerdings nur im obigen Fall ii), nicht bei i).
+3. Es ist auch möglich, ohne neue Shell die Befehle einzeln nach und nach zu protokollieren.
+   Man ruft für jedes zu protokollierende Kommando einzeln `script -a -c 'mycmd myarg1'` auf
+   (siehe `script --help`).  
+   Leider wird dann im Protokoll jeder Kommandooutput von einer Start- und einer Endmeldung
+   umschlossen und die farbigen Shellprompts fehlen, so dass dieses Format für die 
+   Tutor_innen zu unübersichtlich ist und für das ProPra nicht in Frage kommt.
 
 
 ### Protokoll korrigieren
@@ -80,9 +93,13 @@ Verständnis des Protokolls nicht erschwert.
 - Rufen Sie `nano typescript` auf.
   Nano ist ein einfacher Texteditor, der auf allen Linux-Systemen vorhanden ist.
   Die Bedienung ist in den unteren Zeilen erklärt. 
-  (`^` steht für die Umschalttaste Ctrl-/Strg-, `M-` ("meta") steht für `Alt-`.)
+  (`^` steht für die Umschalttaste Ctrl-/Strg-, `M-` ("meta") steht für `Alt-`.)  
+  Sie können alternativ auch ihre IDE benutzen, was einfacher sein dürfte.
+  Allerdings ist es in vielen Notfällen hilfreich, `nano` bedienen zu können -- also
+  vielleicht zumindest dieses eine Mal ausprobieren.
 - Wie Sie sehen, sieht das Protokoll plötzlich viel komplizierter aus.
   Das liegt daran, dass Steuercodes jetzt sichtbar gemacht werden.
+  Die im Terminal von diesen Steuercodes bewirkte Farbigkeit ist hingegen verschwunden.
 - Schneiden Sie das Kommando `whoareyou` aus, samt des Shell-Prompts davor
   und der Fehlermeldung dahinter.
   Speichern Sie das Ergebnis und prüfen Sie es sorgfältig.
