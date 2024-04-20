@@ -2,18 +2,15 @@ title: Gruppen
 stage: alpha
 timevalue: 1.0
 difficulty: 2
+assumes: Nutzer, Dateiberechtigungen
 ---
 
 [SECTION::goal::idea]
-
 Ich verstehe Gruppen in Linux und wie ich diese anwenden kann.
-
 [ENDSECTION]
 
 [SECTION::background::default]
-
 In Linux spielen Gruppen eine wichtige Rolle bei der Verwaltung von Benutzerrechten und der Organisation von Benutzern auf einem System.
-
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -31,11 +28,12 @@ Machen Sie sich mit den Kommandos in diesem [Beitrag](https://wiki.ubuntuusers.d
 ### Standardgruppe setzen
 
 - [EC] Erstellen sie eine beliebige Datei mit dem Nutzer `bob`.
+- [EC] Welche Berechtigungen hat diese Datei. Welchen Nutzer und welche Gruppe hat diese.
 - [EC] Erstellen Sie eine neue Gruppe namens `standard`. 
 - [EC] Setzen Sie diese Gruppe als Standardgruppe für den Nutzer `bob`.
-- [EC] Erstellen Sie eine beliebige Datei mit dem Nutzer `bob`.
+- [EC] Erstellen Sie eine neue Datei mit dem Nutzer `bob`.
 - [EQ] Schauen Sie sich die Berechtigungen der beiden Dateien an. Was fällt auf?
-- [EC] Setzen Sie die Standardgruppe von `bob` wieder zurück.
+- [EC] Setzen Sie die Gruppe von `bob` wieder zurück.
 
 ### Nutzer und Gruppe löschen
 
