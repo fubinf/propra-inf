@@ -56,7 +56,6 @@ We need to produce material that students can start with, quick.
 - ch/Sprachen/Python1/PythonIf.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonElifElse.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonFunctions.md (Alrwasheda->Prechelt)
-- ch/Sprachen/Python2/PythonVariables.md (Alrwasheda->Prechelt)
 
 
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
