@@ -157,6 +157,12 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Werkzeuge/Unix-Basiswerkzeuge/05_Editoren.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/06_Links.md (Condric)
 
+- ch/Werkzeuge/Benutzerverwaltung/Dateiberechtigungen.md (Condric)
+- ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric)
+- ch/Werkzeuge/Benutzerverwaltung/Nutzer.md (Condric)
+- ch/Werkzeuge/Benutzerverwaltung/sudo.md (Condric)
+
+
 ## Reviews to do for Hanen Alrwasheda
 
 - ...
