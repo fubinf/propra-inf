@@ -18,7 +18,7 @@ Die Sicherung von Daten durch Verschlüsselung ist in vielen Bereichen moderner 
 
 [SECTION::instructions::detailed]
 
-Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/SSH/) von ubuntuusers über SSH durch.
+Lesen Sie den ersten Abschnitt des [Beitrags](https://wiki.ubuntuusers.de/SSH/) von ubuntuusers über SSH durch.
 
 <replacement id='targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
@@ -36,7 +36,7 @@ Zielserver = `andorra.imp.fu-berlin.de`
 Stellen Sie sicher, dass Sie sich im Netz der Universität oder im VPN befinden. Unter Umständen kann die Verbindung zum Zielserver nicht hergestellt werden.
 [ENDNOTICE]
 
-### Per SSH auf einem entferntem Rechner anmelden
+### Per [TERMREF::SSH] auf einem entferntem Rechner anmelden
 
 - [EC] Im Allgemeinen verbindet man sich mit einem entfernten Rechner per `ssh username@hostname` beziehungsweise mit `ssh username@IP-address` um sich per IP-Adresse anzumelden.  
    Falls Ihr Nutzername auf Ihrem System identisch zu dem Nutzernamen auf dem entfernten Rechner ist, dann können sie `username` auslassen.  
