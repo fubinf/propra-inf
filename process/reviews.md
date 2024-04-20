@@ -162,6 +162,10 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Werkzeuge/Benutzerverwaltung/Nutzer.md (Condric)
 - ch/Werkzeuge/Benutzerverwaltung/sudo.md (Condric)
 
+- ch/Werkzeuge/Netzwerk/SSH.md (Condric)
+- ch/Werkzeuge/Netzwerk/SSH-Tunnel.md (Condric)
+- ch/Werkzeuge/Netzwerk/SSH-Reversetunnel.md (Condric)
+- ch/Werkzeuge/Netzwerk/rsync.md (Condric)
 
 ## Reviews to do for Hanen Alrwasheda
 
