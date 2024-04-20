@@ -2,6 +2,7 @@ title: Dateiberechtigungen
 stage: alpha
 timevalue: 1.0
 difficulty: 2
+assumes: Nutzer
 ---
 
 [SECTION::goal::idea]
@@ -17,13 +18,14 @@ Dateiberechtigungen in Linux spielen eine entscheidende Rolle bei der Sicherheit
 ### Dateiberechtigungen
 
 Lesen Sie sich [TERMREF::Dateiberechtigungen] durch.  
-Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/Rechte/) über chmod durch.
+Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/Rechte/) über `chmod` durch.
 
 - [EC] Erstellen Sie eine Datei namens `berechtigungen`.
 - [EC] Schauen Sie sich die Berechtigungen der Datei mit `ls -l` an. Beschreiben Sie die Berechtigungen der Datei.
-- [EC] Geben Sie der Gruppe für die Datei volle Zugriffsrechte. Nutzen Sie dafür `chmod`.
-- [EC] Ändern Sie den Eigentümer der Datei zu `bob`. Nutzern Sie dafür `chown`.
-- [EC] Ändern Sie die Gruppe zu `bob`. Nutzen Sie dafür `chgrp`.
+- [EC] Geben Sie der Gruppe für die Datei volle Zugriffsrechte.
+- [EC] Ändern Sie den Eigentümer von `berechtigungen` zu `bob`.
+- [EC] Ändern Sie die Gruppe von `berechtigungen` zu `bob`.
+- [EQ] Was macht dieses Kommando: `chmod 0754 ~/berechtigungen && sudo chown 1001:1001 ~/berechtigungen`?
 
 
 [SECTION::submission::trace]
