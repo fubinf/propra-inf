@@ -751,6 +751,12 @@ Schlüsselwörter können nicht als Namen für Variablen oder Funktionen oder
 irgendwelche Elemente im Programm verwendet werden. 
 [ENDTERM]
 
+[TERM::SSH]
+Secure Shell (SSH) ist das meistgenutzte Protokoll, um sich auf entfernten Rechnern anzumelden. 
+Es ermöglicht eine sichere Remote-Verwaltung und den Datenaustausch über unsichere Netzwerke, 
+indem es Authentifizierung und Verschlüsselung verwendet.
+[ENDTERM]
+
 [TERM::Symlink|Symlinks]
 Symbolische Links sind Verknüpfungen auf Dateien oder Verzeichnisse, die an einem anderen Ort ist, 
 als die originale Datei. Sie bieten Flexibilität und ermöglichen es, auf Dateien oder 
