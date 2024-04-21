@@ -1,14 +1,12 @@
-title: Navigieren in der Kommandozeile
+title: Umgang mit Verzeichnissen in der Kommandozeile
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: 03_Manpages
+assumes: Manpages, Shell-Grundlagen
 ---
 
-TODO_1: assume Shell-Wildcards und andere Shell-Grundlagen wie TAB.
-
 [SECTION::goal::idea]
-Ich weiß wie ich mit Befehlen auf der Kommandozeile navigieren kann.
+Ich kann mich mittels Kommandozeile in Verzeichnissen bewegen und mit Dateien umgehen.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -25,10 +23,10 @@ Wir machen hier die allerersten Gehversuche.
 Lesen Sie in dieser
 [Kommandoübersicht](https://bytescout.com/blog/most-used-linux-commands.html)
 mindestens folgende Einträge: 
-`cd, ls, man, cat, mkdir, rmdir, touch, rm, mv, echo, free, head, history, alias, df`.
+`cd, ls, cat, mkdir, rmdir, touch, rm, mv, echo, free, head, history, df`.
 
 Wenn Ihnen etwas seltsam vorkommt (und dafür gibt es eine Menge Anlass),
-klären Sie es mit der passenden [PARTREFMANUAL::03_Manpages::manpage] auf
+klären Sie es mit der passenden [PARTREFMANUAL::Manpages::manpage] auf
 und überfliegen Sie auch, welche [TERMREF2::Option::-en] es gibt.
 Diese Webseite ist ein gutes Beispiel dafür, dass solche Fundstücke im Web
 zwar oft recht praktisch, aber nicht immer auch zuverlässig sind.
