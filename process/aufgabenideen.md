@@ -16,6 +16,9 @@ Ideen für Aufgaben:
 -    Issue-Tracker sichten, einfache Issue auswählen und lösen.
      Als Pull-Request einreichen; ggf. nachbessern; akzeptiert bekommen 
 -    Für jede sonstige Aufgabe mit Ergänzung oder Verbesserung des Codes gibt es als optionale Zusatzaufgabe: als Pull-Request einreichen.
+-    https://www.youtube.com/watch?v=M6_a2wBK-yc  Siehe Discord-Kommentar prechelt 2024-04-20 16:05
+-    https://www.youtube.com/watch?v=2qYll837a_0  Siehe Discord-Kommentar prechelt 2024-04-20 16:21
+-    https://www.youtube.com/watch?v=Bks59AaHe1c  Siehe Discord-Kommentar prechelt 2024-04-20 16:54
 
 ### Bestandscode/codereading (hofmann)
 
@@ -83,6 +86,7 @@ Guter Anlaufpunkt: <https://refactoring.guru/>
 - Werkzeuge zum Debuggen
   - Logging
   - Automatisierte Tests (Verweis auf [ch/testen/testframeworks](ch/testen/testframeworks)?)
+  - Rubberducking
 
 - Ablauf des Debugging
   - Reproduktion 
