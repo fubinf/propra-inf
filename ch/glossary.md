@@ -215,6 +215,13 @@ Werte beliebiger Natur (beispielsweise Listen).
 Zur Verwendung siehe [die Python-Dokumentation zu Dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries).
 [ENDTERM]
 
+[TERM::dig|Dig]
+Dig, kurz für "Domain Information Groper", ist ein Befehlszeilenwerkzeug, das in Unix-basierten 
+Betriebssystemen verwendet wird, um DNS-Abfragen durchzuführen. Es ermöglicht das Abfragen von 
+DNS-Servern, um Informationen über DNS-Datensätze wie IP-Adressen, Nameserver und andere 
+DNS-Ressourceneinträge für eine bestimmte Domain zu erhalten.
+[ENDTERM]
+
 [TERM::DRY|DRY-Prinzip|Don't repeat yourself]
 DRY steht für "don't repeat yourself" ist ein Prinzip, dass besagt, Redundanz zu vermeiden oder 
 zumindest zu reduzieren.  
@@ -574,6 +581,12 @@ verbessern und eine konsistente und einheitliche Codebasis zu fördern.
 Dokumentation: [HREF::https://peps.python.org/pep-0008/]
 [ENDTERM]
 
+[TERM::ping|Ping]
+Ping ist ein Befehl, um die Erreichbarkeit einer anderen Ressource im Netzwerk zu überprüfen. Es 
+sendet kleine Pakete an das Ziel und erwartet eine Antwort der Ressource. Die Antwortzeit und 
+eventuelle Paketverluste werden gemessen, um die Netzwerkverbindung zu bewerten.
+[ENDTERM]
+
 [TERM::pip]
 "Package installer for Python":
 Das Programm, mit dem man üblicherweise externe Bibliotheken von einem entsprechenden
@@ -822,6 +835,11 @@ des Codes geschrieben werden. Der Prozess beginnt mit dem Schreiben eines Tests,
 erwartete Verhalten der Funktionalität beschreibt. Dann wird der minimal notwendige Code
 implementiert, um den Test erfolgreich durchzuführen. Dieser iterative Prozess von Schreiben
 von Tests, Implementieren des Codes wird fortgesetzt, bis die gewünschte Funktionalität erreicht ist.
+[ENDTERM]
+
+[TERM::traceroute|Traceroute]
+Traceroute ist ein Befehl, um den Pfad von Datenpaketen in einem Netzwerk zu verfolgen. Es zeigt 
+die einzelnen Hops und die Antwortzeit zum Hop entlang des Weges an.
 [ENDTERM]
 
 [TERM::Tutorial]
