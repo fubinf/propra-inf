@@ -38,6 +38,9 @@ requires:
 [HINT::VisibleTitle]
 [ENDHINT]
 
+[FOLDOUT::VisibleTitle]
+[ENDFOLDOUT]
+
 [ENDSECTION]
 
 [SECTION::submission::reflection/information/snippet/trace/program]
