@@ -166,6 +166,7 @@ Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Werkzeuge/Netzwerk/SSH-Tunnel.md (Condric)
 - ch/Werkzeuge/Netzwerk/SSH-Reversetunnel.md (Condric)
 - ch/Werkzeuge/Netzwerk/rsync.md (Condric)
+- ch/Werkzeuge/Netzwerk/dnstools.md (Condric)
 
 ## Reviews to do for Hanen Alrwasheda
 
