@@ -8,6 +8,9 @@ Die hier untergeordneten Aufgaben sind alle nicht schwierig. Es werden keine Alg
 Die Erstellung der Aufgaben verwendete [W3Schools - Python Tutorial](https://www.w3schools.com/python/default.asp) als Referenzquelle, aber andere Quellen sind zulässig und möglicherweise sinnvoll.
 Insbesondere die Verwendung der offiziellen [Python-Dokumentation](https://docs.python.org/3/) ist etwas, mit dem Sie sich langfristig vertraut machen möchten.
 
-!!! instructor
-    Hier soll aufgefrischt werden, welche grundlegenden Werkzeuge die gewählte Programmiersprache mitbringt.
-    Das umfasst Typen, Operatoren, Anweisungen, File I/O, usw.
+[INSTRUCTOR::Zielgruppe]
+Dies richtet sich an Menschen, die weniger Python können als wir aus den vorangegangenen Lehrveranstaltungen
+eigentlich erwarten.
+Das können Hauptfachstudierende sein, die die Übungen nicht richtig mitgemacht haben
+oder andere, die von Vornherein weniger Lehrstoff hatten.
+[ENDINSTRUCTOR]
