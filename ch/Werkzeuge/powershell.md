@@ -1,6 +1,6 @@
 title: Alternativen zu bash - Powershell
 stage: draft
-timevalue: 0.5
+timevalue: 0.1
 difficulty: 1
 ---
 !!! goal

@@ -1,6 +1,6 @@
 title: WebAPIs -- REST und SOAP
 stage: draft
-timevalue: 1.5
+timevalue: 0.1
 difficulty: 2
 ---
 !!! goal

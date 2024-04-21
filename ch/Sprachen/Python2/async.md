@@ -1,6 +1,6 @@
 title: Asynchrone Ausführung
 stage: draft
-timevalue: 3
+timevalue: 0.1
 difficulty: 2
 ---
 !!! goal
