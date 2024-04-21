@@ -111,37 +111,3 @@ Prüfpunkte:
 
 Das kann umfangreich werden und steht deshalb in einer separaten Datei namens
 [aufgabenideen.md](aufgabenideen.md).
-
-
-## 4. Stunde 0 und Motivation der Studierenden
-
-Die "Stunde 0" ist die Begrüßungsveranstaltung zu Beginn des ProPra.
-Diese findet live statt und wer dabei nicht da ist, kann am ProPra nicht teilnehmen(?).
-
-Start: Frage nach der eigenen Motivationslage für den Informatik-Abschluss:
-- Ich will nur irgendwie einen Abschluss bekommen, damit ich einen sicheren Job 
-  habe und gut verdiene. Ob ich wirklich Informatik kann, ist mir egal.
-- Ich will einen Informatik-Abschluss, weil ich damit einen guten und sicheren Job bekomme.
-  Natürlich will ich das, was dort von mir erwartet wird, auch können.
-- Ich finde Informatik interessant und will darüber möglichst viel lernen.
-  Dass ich damit auch einen guten Job bekomme, finde ich umso besser.
-
-Hoffentlich ist es kaum jemandem egal. Das ist die Basis für den nächsten Schritt:
-Es wird knapp der Aufbau und Ablauf des ProPra erklärt (das macht das Basiskapitel
-ja dann etwas ausführlicher) und vor allem wird Motivation geschaffen:
-
-- Praktische Relevanz des Lernstoffes
-- Nicht-Ersetzbarkeit eigenen Wissens und eigener Fertigkeiten (trotz KI-Assistenten)
-- Traurigkeit des Daseins als SW-Entwickler_in, wenn eigene Kompetenz mangelt.
-
-Quellen dazu:
-- Neil Perry, Megha Srivastava, Deepak Kumar, Dan Boneh:
-  _Do Users Write More Insecure Code with AI Assistants?_, 
-  https://arxiv.org/pdf/2211.03622.pdf.
-
-
-## 5. Themen für nächste Besprechung
-
-- Namenskonventionen für Tasknamen.
-- Namenskonventionen für Taskgroupnamen.
-- Namen für die Kapitel.
