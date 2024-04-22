@@ -2,7 +2,7 @@ title: Übung Testabgrenzungen
 stage: draft
 timevalue: 2.0
 difficulty: 3
-assumes: TestDelimitations, Python1, debuggingtools
+assumes: TestDelimitations, Python1, Debuggingtools
 ---
 # Review (DM)
 - Aufgabe K2, soll da Java stehen? -> done R.R.

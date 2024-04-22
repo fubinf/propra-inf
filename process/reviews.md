@@ -219,6 +219,6 @@ Bitte von oben nach unten abarbeiten:
 
 ## Reviews to do for Dominik Pietrak
 
-- ch/Debugging/debuggingtools/IDE_debugging.md (Pietrak->Prechelt->Pietrak)  
+- ch/Debugging/Debuggingtools/IDE_debugging.md (Pietrak->Prechelt->Pietrak)  
   Bitte nochmal prüfen (ich habe einiges geändert), dann auf beta setzen.
 

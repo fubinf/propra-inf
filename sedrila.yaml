@@ -196,7 +196,7 @@ chapters:
     taskgroups:
       - slug: Denkweisen
       - slug: Häufige-Defektarten
-      - slug: Debugging-Tools
+      - slug: Debuggingtools
       - slug: Debugging-Praxis
   - slug: Bestandscode
     taskgroups:

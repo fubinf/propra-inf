@@ -1,6 +1,6 @@
 title: Debugging in der Praxis
 ---
-Während andere Aufgabengruppen in diesem Kapitel die [PARTREFMANUAL::debuggingtools::Werkzeuge] 
+Während andere Aufgabengruppen in diesem Kapitel die [PARTREFMANUAL::Debuggingtools::Werkzeuge] 
 oder die [PARTREFMANUAL::Denkweisen::Denkweise] beim Debugging beleuchten, geht es hier um 
 Praxisbeispiele.
 
