@@ -194,7 +194,7 @@ chapters:
       - slug: Betriebsumgebung
   - slug: Debugging
     taskgroups:
-      - slug: Denkweisen
+      - slug: Debugging-Denken
       - slug: Häufige-Defektarten
       - slug: Debuggingtools
       - slug: Debugging-Praxis

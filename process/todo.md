@@ -66,7 +66,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 - Taskgroups umbenennen:
     - `lizenzen` -> `Lizenzen`
-    - `Denkweisen` -> `Debugging-Denken`
   Bitte als separaten Commit.
   Erwähnungen an anderen Stellen mit ändern!
 - Tasks so benennen, wie es sich aus authors.md 1.13 ergibt:

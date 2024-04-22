@@ -1,7 +1,7 @@
 title: Debugging in der Praxis
 ---
 Während andere Aufgabengruppen in diesem Kapitel die [PARTREFMANUAL::Debuggingtools::Werkzeuge] 
-oder die [PARTREFMANUAL::Denkweisen::Denkweise] beim Debugging beleuchten, geht es hier um 
+oder die [PARTREFMANUAL::Debugging-Denken::Denkweise] beim Debugging beleuchten, geht es hier um 
 Praxisbeispiele.
 
 Wenn Sie sich noch etwas unsicher fühlen, wird Ihnen die Aufgabe 
