@@ -2,7 +2,7 @@ title: Netzwerkgrundlagen mit DNS Werkzeugen
 stage: alpha
 timevalue: 1
 difficulty: 2
-assumes: 02_apt
+assumes: apt
 ---
 
 [SECTION::goal::idea]
