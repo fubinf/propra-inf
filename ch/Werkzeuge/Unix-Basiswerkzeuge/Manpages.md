@@ -28,6 +28,14 @@ sollte bei diesem
 weiterlesen.
 
 
+### Installieren
+
+Auf manchen Varianten von Unix sind die Manpages nicht standardmäßig installiert.
+Probieren Sie `man man`. 
+Wenn das nicht funktioniert, führen Sie 
+`sudo apt update && sudo apt install man-db manpages manpages-dev` aus.
+
+
 ### Ausprobieren
 
 - [EQ] Schauen Sie sich die Manpages von `find` und von `grep` an.
