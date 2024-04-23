@@ -8,7 +8,7 @@ requires: git-Zweitrepo
 
 [SECTION::goal::experience]
 
-Wir lernen verschiedene Fehlerszenarien in git kennen und lernen wie man diese beheben kann.
+Ich lerne verschiedene Fehlerarten für das Arbeiten mit git kennen und wie ich diese behebe.
 
 [ENDSECTION]
 [SECTION::background::default]
