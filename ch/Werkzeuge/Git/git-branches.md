@@ -84,8 +84,8 @@ man-page für `git-log`.
 
 [SECTION::submission::trace]
 
-Abzugeben ist ein Kommandozeilenlog über das erstellen, bearbeiten und mergen eines git-Branches 
-im ProPra repo. Abschließend erstellen Sie eine ansicht des git-logs aus der die Änderungen und 
+Abzugeben ist ein Kommandozeilenlog über das Erstellen, Bearbeiten und Mergen eines git-Branches 
+im ProPra repo. Abschließend erstellen Sie eine Ansicht des git-logs aus der die Änderungen und 
 wer diese vorgenommen hat ersichtlich werden.
 
 [ENDSECTION]
