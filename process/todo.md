@@ -75,14 +75,19 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 ### 2.3 Korrekturbedarf an sedrila
 
-- `profiles`-Mechanismus in Sedrila und der Doku entfernen.
 - Konsistenzcheck, dass beim Aktualisieren eines Kurses keine bisherigen Aufgaben
   verschwinden.
 - Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
   muss es eine Fehlermeldung geben, keinen toten Link.
 - ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)
 - Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
-- 
+- http-Server ergänzen, der bei `sedrila instructor --http` den ganzen Baum unter dem aktuellen
+  Verzeichnis zur Verfügung stellt (nur für localhost) mit folgenden Funktionen:
+    - Verzeichnis anzeigen, als lauter Links zum Navigieren, inkl. `..` (mit Sperre nach oben)
+    - *.md-Datei wird gerendert
+    - *.txt-Datei etc. wird verbatim angezeigt
+    - *.py etc. wird in Markdown eingepackt und dann gerendert.
+
 
 ### 2.4 Anträge an den Rechnerbetrieb
 
