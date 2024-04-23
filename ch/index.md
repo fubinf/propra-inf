@@ -6,7 +6,7 @@ Auf dieser Seite ist erklärt, was das ProPra soll und wie es funktioniert.
 
 [INSTRUCTOR::Hinweise für Tutor_innen]
 Die Hinweise für die Tutor_innen sehen immer so aus wie dies hier.
-Sie stehen überwiegend _hinter_ den Informationen für die Studierenden.
+Sie stehen fast immer _hinter_ den Informationen für die Studierenden.
 [ENDINSTRUCTOR]
 
 [TOC]
@@ -218,6 +218,17 @@ in Bezeichnern erlaubt:
 **Tutor_innen**.
 
 Die Bedeutung ist dieselbe.
+
+
+## 4. Änderungen nach dem Start
+
+Leider ist das ProPra noch nicht fertig entwickelt.
+Deshalb liefern wir ca. wöchentlich Aufgaben nach.
+Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
+
+- ...
+
+
 
 [INSTRUCTOR::Und wie geht das für die Tutor_innen?]
 Liebe Tutor_innen,
