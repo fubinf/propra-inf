@@ -26,14 +26,14 @@ Erreichbarkeit der Ressource finden können, behandeln wir hier Befehle, die dab
 ### [TERMREF::Ping]
 Lesen Sie sich den [Beitrag](https://wiki.ubuntuusers.de/ping/) über ping von ubuntuusers durch.
 
-- [EC] Pingen Sie den Server genau 10 mal an. Nutzen Sie genau ein Kommando dafür.
+- [EC] Pingen Sie den Server genau 10 mal an. Nutzen Sie eine [TERMREF::Option] dafür.
 - [EQ] Erkären Sie die einzelnen Spalten Ihres Ergebnisses.
 
 ### [TERMREF::Dig]
 Lesen Sie sich den [Beitrag](https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/) 
 über dig von nixcraft durch.
 
-- [EC] Nutzen Sie nun dig um die IP des Zielservers herauszufinden.
+- [EC] Nutzen Sie nun `dig` um die IP des Zielservers herauszufinden.
 - [EC] Erklären Sie kurz die verschiedenen Abschnitte des Ergebnisses.
 - [EC] Finden Sie den Mailserver des Zielservers heraus.
 
