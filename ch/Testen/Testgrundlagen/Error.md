@@ -3,6 +3,16 @@ stage: draft
 timevalue: 0.75
 difficulty: 2
 ---
+
+TODO_1_ruhe:
+
+- Die ganze Terminologie gehört ins Glossar (und wir müssen alle Stellen finden, wo sie benutzt wird
+  und für einheitliche Verwendung sorgen). In dieser Aufgabe sollten nur Verweise und ein Leseauftrag stehen. 
+- Was haben Sie bei F4 im Sinn? Falls der Test alle Aspekte des Verhaltens erfasst, ja, sonst nein.
+  Möglich ist es, aber nur bei sehr einfachen Fällen auch praktikabel.
+- "Fehlerbericht" müsste Defektbericht oder Versagensbericht heißen.
+- Die Aufgabe sollte vermutlich Fehler-Defekt-Versagen heißen, Titel auch so ähnlich.
+
 [SECTION::goal::idea]
 
 - Ich kann den Begriff Fehler definieren
@@ -54,7 +64,7 @@ Diese Ereignisse können auftreten, wenn ein Fehler gemacht wurde. Müssen aber 
 - [EQ] Was haben Fehlerwirkungen und Fehlhandlungen mit dem Thema zu tun? [Recherchieren Sie in diesem Lehrplan](https://www.german-testing-board.info/wp-content/uploads/2022/01/GTB-CTFL_Lehrplan_v3.1_DE.pdf).
 - [EQ] Diskutieren Sie: Ist jeder Softwarefehler auf eine 'falsche' Programmierung zurückzuführen?
 - [EQ] Welche Informationen sollte ein [Fehlerbericht](https://search.ebscohost.com/login.aspx?direct=true&db=nlebk&AN=1170217&site=ehost-live&ebv=EB&ppid=pp_110) enthalten?
-- [EQ] Angenommen, Sie haben einen Testfall erstellt, der ein bestimmtest Szenario testet. Kann
+- [EQ] Angenommen, Sie haben einen Testfall erstellt, der ein bestimmtes Szenario testet. Kann
   dieser Testfall jedes Versagen in diesem Szenario entdecken?
 - [EQ] Können Sie sich ein Programm größeres Programm vorstellen, dass keine Fehlerzustände hat?
 

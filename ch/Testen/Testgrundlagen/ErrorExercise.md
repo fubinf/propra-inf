@@ -4,11 +4,18 @@ timevalue: 1.0
 difficulty: 1
 assumes: Error
 ---
-# Review (DM)
-- Kompetenzen umformuliert (vgl commit diff)
-- Anstatt die Aufgabenbeschreibung 4x zu wiederholen, kann man das vielleicht nur einmal schreiben und schöner formatieren? -> Geändert, R.R:
-- Didaktisch sonst sicherlich sinnvoll. Vielleicht wäre es gut für die letzte Aufgabe, die vier Scenarios mit dem neuen Akzeptanzkriterium einmal prüfen zu lassen. Das schärft dann gleich den Denkschritt zu überlegen, was das Kriterium denn für Auswirkungen haben würde. -> Done R.R.
-- Überleg mal, ob nicht einmal überall die Abkürzung (AK) ersetzten willst. Liest sich immer einfacher. Du kannst sie ja trotzdem definiert lassen, dann können die Studis das in der Abgabe nutzen. -> geändert, R.R.
+TODO_1_ruhe
+
+- Bitte Begriffe gemäß [PARTREF::Error] anpassen. Hier geht es um Versagen und einen 
+  Defektbericht
+- Für difficulty 1 müsste "testbar" definiert werden. Für 2 vielleicht sogar ebenfalls.
+  Ebenso "Szenario". Beides gehört ins Glossar. 
+- Was sollen F2 bis F5? Da gibt es doch gar nichts zu antworten.
+  Sondern stattdessen beim Text "Beinhaltet das folgende Szenario einen Fehler?" obendrüber.
+  Dort wiederum steht keine Fragennummer.
+- Auch diese Aufgabe haben Sie ganz offenbar nicht selber durchgeführt, sonst wäre Ihnen das
+  sofort aufgefallen.
+- INSTRUCTOR-Teil fehlt.
 
 [SECTION::goal::trial]
 
@@ -59,9 +66,10 @@ Vorbedingung: Ein Benutzer befindet sich auf der Login Seite eines Portals.
   Das Portal leitet den Benutzer auf die Seite seines Portal-Profils weiter.
 - [EQ] Hier gibt der Nutzer seine **valide** E-Mail-Adresse und sein **valides** Passwort in die
   Eingabemasken ein. Anschließend klickt der Benutzer auf Anmelden.
-  Das Portal leitet den Benutzer auf die Seite des Portal-Administrators weiter.
-- [EQ] Ergänzen Sie mindestens ein weiteres Akzeptanzkriterium. Überprüfen Sie, ob die Kriterien aus
-  [EREFQ::2] bis [EREFQ::5] weiterhin testbar sind und Gültigkeit besitzen.
+  Das Portal leitet den Benutzer auf die Seite des Portal-Administrators weiter. 
+
+[EQ] Ergänzen Sie mindestens ein weiteres Akzeptanzkriterium. Überprüfen Sie, ob die Kriterien aus
+[EREFQ::2] bis [EREFQ::5] weiterhin testbar sind und Gültigkeit besitzen.
 
 [ENDSECTION]
 

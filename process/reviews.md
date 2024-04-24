@@ -65,9 +65,6 @@ We need to produce material that students can start with, quick.
   die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
 
 
-- ch/Testen/Testgrundlagen/Error.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt) !!!
-- ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt)
-- ch/Testen/Unittests/index.md (Pietrak und Ruhe->Müllers->Prechelt) !!!
 - ch/Testen/Unittests/tdd.md (Ruhe->Müllers->Prechelt)
 - ch/Testen/Unittests/pytest101.md (Pietrak und Ruhe->Müllers->Prechelt)
 - ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->Müllers->Prechelt)
@@ -159,6 +156,8 @@ We need to produce material that students can start with, quick.
 
 Bitte von oben nach unten abarbeiten:
 
+- ch/Testen/Testgrundlagen/Error.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt->Ruhe)
+- ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/Testcases.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/TestcasesExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
 - ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->Müllers->Prechelt->Ruhe)
@@ -170,9 +169,9 @@ Bitte von oben nach unten abarbeiten:
 - ch/Testen/Unittests/freezegun.md (Ruhe->Müllers->Alrwasheda->Prechelt->Ruhe)
 - ch/Testen/Unittests/tdd_pp.md (Ruhe->Prechelt->Ruhe)
 
-- ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->Prechelt)
+- ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->Prechelt->Ruhe)
 
-- ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers)
+- ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers->Prechelt->Ruhe)
 
 - ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Prechelt->Ruhe)  
   Bitte verfrachten Sie den allgemeinen Teil von Background ins Glossar.
