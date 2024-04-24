@@ -5,6 +5,26 @@ difficulty: 1
 assumes: git-Funktionsweise
 requires: git-Zweitrepo
 ---
+TODO_1_hüster:
+
+- Das ist eine Aufgabe für ein Kommandoprotokoll!
+  Einfacher für alle Beteiligten.
+  Ein paar zusätzliche Fragen in Markdown gehen trotzdem, wenn an die braucht.
+- F4: "Beschreiben Sie, wie Sie mit git restore eine Datei aus einem ungepushten Commit entfernen können."
+  Gar nicht. Da haben Sie was falsch verstanden oder falsch formuliert.
+- Das ist nie im Leben difficulty 1, machen Sie 2 draus.
+- F5: "Beschreiben Sie, wie Sie mit git restore den Zustand einer Datei zurück 
+  auf den letzten Commit zurücksetzen können."  
+  Hier (und an allen ähnlichen Stellen) wünsche ich mir mehr sprachliche Genauigkeit, 
+  um das Verständnis zu erleichtern, den wer git-Denke nicht gewohnt ist, für den ist das
+  alles ziemlich anpruchsvoll:  
+  "...zurück auf ihren Zustand im letzten Commit setzen können."
+- Huch, unten wird ja schon ein Kommandoprotokoll verlangt. Das wäre also leer.
+- Die Zwischenüberschriften im Tutorenteil finde ich Overkill.
+  Die Fx-Marker reichen zum Finden völlig aus.
+- Hingegen ist "heading" keine sehr aussagekräftige Überschrift.
+  Ich habe in meinen Aufgaben da immer so eine Art Generalklausel stehen:
+  Worauf der Fokus der Korrektur liegt.
 
 [SECTION::goal::experience]
 

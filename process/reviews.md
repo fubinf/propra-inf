@@ -118,7 +118,6 @@ We need to produce material that students can start with, quick.
 - ch/Werkzeuge/Unix-Basiswerkzeuge/04_eigenes_System.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/05_Editoren.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/06_Links.md (Condric)
-- ch/Werkzeuge/Git/git-fehlerbehebung.md (Hüster) !!!
 - ch/Werkzeuge/Git/git-branches.md (Hüster)
 - ch/Werkzeuge/Git/git-rebase.md (Hüster)
 - ch/Werkzeuge/Linter/flake8.md (Ruhe->Alrwasheda->Hofmann)
@@ -184,7 +183,9 @@ Bitte von oben nach unten abarbeiten:
 
 ## Reviews to do for Sven Hüster
 
-- ch/Sprachen/RegExp/log_sanitizer (Hüster, fertiggestellt von Prechelt)
+- ch/Sprachen/RegExp/log_sanitizer (Hüster->fertiggestellt-Prechelt->Hüster)
+- ch/Werkzeuge/Git/git-Fehlerbehebung.md (Hüster->Prechelt->Hüster)
+
 - ...
 
 
