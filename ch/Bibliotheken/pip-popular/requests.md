@@ -4,6 +4,18 @@ timevalue: 1.5
 difficulty: 3
 assumes: WebAPIs, pip
 ---
+
+TODO_2_ruhe:
+
+- Diese Aufgabe braucht Grundlagen aus dem Webkapitel über http und URLs, denn hier sollte
+  es nur um die Bibliothek gehen.
+- So lange es passende Grundlagenaufgaben nicht gibt, können wir diese Aufgabe nicht sinnvoll
+  in Betrieb nehmen.
+- Die Aufgaben und Fragen scheinen mir überwiegend gut.
+- Eine Ja/Nein-Frage wie "Überrascht Sie das Ergebnis?" ist aber nicht brauchbar;
+  wir wollen ja die Gedanken dahinter zu sehen bekommen.
+- INSTRUCTOR-Teil fehlt.
+
 [SECTION::goal::trial]
 
 Ich kann das Python-Paket `requests` für verschiedene Arten von HTTP-Anfragen verwenden.

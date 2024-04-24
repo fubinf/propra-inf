@@ -58,7 +58,6 @@ We need to produce material that students can start with, quick.
 
 
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
-- ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers)
 - ch/Bibliotheken/Dokumentation/changelog.md (Prechelt->Ruhe->Prechelt) Keine Anmerkungen.
 - ch/Bibliotheken/Dokumentation/changelog2.md (Prechelt->Ruhe->Prechelt) Zwei Übungen ergänzt, eine
   davon auf das SUT bezigen, um nachzuvollziehen, dass ein vorhandenes Changelog schöner ist, als
@@ -172,6 +171,8 @@ Bitte von oben nach unten abarbeiten:
 - ch/Testen/Unittests/tdd_pp.md (Ruhe->Prechelt->Ruhe)
 
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->Prechelt)
+
+- ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers)
 
 - ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Prechelt->Ruhe)  
   Bitte verfrachten Sie den allgemeinen Teil von Background ins Glossar.
