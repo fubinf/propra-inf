@@ -2,9 +2,8 @@ title: "subprocess: Unterprozess starten, um ein Speicherlimit zu lösen"
 stage: beta
 timevalue: 2.0
 difficulty: 4
-assumes: m_random, m_subprocess, pytest104
+assumes: m_random, m_subprocess, pytest104, m_hashlib
 ---
-TODO_2: assumes: m_hashlib
 
 [SECTION::goal::experience]
 

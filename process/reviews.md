@@ -63,6 +63,7 @@ We need to produce material that students can start with, quick.
   davon auf das SUT bezigen, um nachzuvollziehen, dass ein vorhandenes Changelog schöner ist, als
   eins aus einem wenig bekannten Produkt zu extrahieren. (darauf aufbauend könnte man noch mehr in
   die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
+- ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner)
 
 
 - ch/Testen/Unittests/tdd.md (Ruhe->Müllers->Prechelt)
