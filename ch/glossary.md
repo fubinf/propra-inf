@@ -305,6 +305,24 @@ Hardlinks sind Einträge auf eine Datei im Dateisystem. Hardlinks werden im Syst
 an sich behandelt, weil die Links physisch auf die Datei auf die Festplatte zeigt.
 [ENDTERM]
 
+[TERM::Hashfunktion|kryptografische Hashfunktion]
+Funktion, die eine beliebig große Eingabedaten annimmt und einen Wert in einer fest definierten 
+Größe ausgibt (genannt _hash_ oder _digest_). Für sie gelten folgende Eigenschaften:
+
+1. Die Eingabelänge kann beliebig lang sein.
+2. Die Ausgabelänge ist fest.
+3. Die Berechnung des Hashwertes ist für beliebige Eingaben effizient.
+
+Für kryptografische Hashfunktionen gelten zusätzlich folgende Eigenschaften:
+
+4. Einwegfunktion: Es ist praktisch unmöglich für einen gegebenen Ausgabewert einen passenden 
+   Eingabewert für die Funktion zu finden.
+5. Schwache Kollisionsresistenz: Es ist praktisch unmöglich, für eine feste Eingabe eine
+   davon verschiedene Eingabe zu finden, die den gleichen Hashwert ergibt.
+6. Starke Kollisionsresistenz: Es ist praktisch unmöglich, zwei beliebige und unterschiedliche 
+   Eingaben zu finden, die den gleichen Hashwert ergeben.
+7. Die Ausgabe der Hashfunktion ist pseudozufällig (statistisch nicht vorhersehbar).
+[ENDTERM]
 
 [TERM::Header|Header-Metadaten|HTTP-Header]
 Ein Abschnitt, der am Anfang eines Dokuments, einer Nachricht oder einer
@@ -409,6 +427,11 @@ Aktionen beschrieben werden, die von einem Testframework interpretiert und ausge
 
 [HREF::https://de.wikipedia.org/wiki/Keyword-Driven_Testing]  
 [HREF::https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#test-templates]
+[ENDTERM]
+
+[TERM::Kollision]
+Ereignis, wenn bei einer [TERMREF::Hashfunktion] zwei unterschiedliche Eingaben den gleichen Hash 
+erzeugen.
 [ENDTERM]
 
 ## L
@@ -633,6 +656,16 @@ und unter welchen Umständen welcher Nachrichtentyp gesendet werden darf oder mu
 
 Es gibt zahlreiche Kommunikationsprotokolle.
 Hier im ProPra ist meist nur [TERMREF::HTTP] von Interesse.
+[ENDTERM]
+
+[TERM::Prüfsumme|Checksum]
+Ergebnis einer (kryptografischen) [TERMREF::Hashfunktion], die auf Daten, z.B. in Form einer Datei, 
+angewendet wurde.
+
+Prüfsummen helfen dabei, die Integrität von Daten sicherzustellen. Hierfür wird eine Prüfsumme der
+"originalen" Daten mit der Prüfsumme der vorhandenen Daten verglichen. Sind beide gleich, geht 
+man davon aus, dass die Daten nicht verändert wurden, da es sehr unwahrscheinlich ist, dass zwei
+unterschiedliche Dateien denselben Hash haben.
 [ENDTERM]
 
 [TERM::Public-Key-Kryptographie|Assymetrische Kryptographie|Schlüsselpaar]
