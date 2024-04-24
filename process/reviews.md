@@ -46,7 +46,6 @@ We need to produce material that students can start with, quick.
 ## Reviews to do for Lutz Prechelt
 
 
-- ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->Prechelt)
 - ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt) 
 - ch/Sprachen/Python1/PythonComments.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
@@ -170,16 +169,17 @@ Bitte von oben nach unten abarbeiten:
 - ch/Testen/Unittests/unittest101.md (Ruhe->Müllers->Alrwasheda->Prechelt->Ruhe)
 - ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda->Ruhe)
 - ch/Testen/Unittests/freezegun.md (Ruhe->Müllers->Alrwasheda->Prechelt->Ruhe)
-
 - ch/Testen/Unittests/tdd_pp.md (Ruhe->Prechelt->Ruhe)
+
+- ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->Prechelt)
 
 - ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Prechelt->Ruhe)  
   Bitte verfrachten Sie den allgemeinen Teil von Background ins Glossar.
   Ein Eintrag für SQL, einer für DBMS/RDBMS, die aufeinander verweisen.
   Es bleibt nur der Hinweis auf SQlite in der Aufgabe stehen.
-- ch/Sprache/SQL/SQLSelect.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
-- ch/Sprache/SQL/SQLJoin.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
-- ch/Sprache/SQL/SQLProject.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
+- ch/Sprachen/SQL/SQLSelect.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
+- ch/Sprachen/SQL/SQLJoin.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
+- ch/Sprachen/SQL/SQLProject.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
 
 
 ## Reviews to do for Sven Hüster

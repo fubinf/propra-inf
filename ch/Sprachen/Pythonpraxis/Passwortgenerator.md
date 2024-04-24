@@ -5,6 +5,23 @@ difficulty: 3
 assumes: m_random, m_json1, m_argparse, encoding_and_open
 ---
 
+TODO_1_ruhe:
+
+- Haben Sie selber diese Aufgabe gelöst? Die Beschreibung klingt nicht so, sie ist
+  an recht vielen Stellen vage.
+- In dieser Form ist das für den Tutor eine Zumutung: Was sind denn die Kriterien für eine
+  akzeptable Lösung? Und wie prüft man die zügig, wenn jeder was ganz verschiedenes baut?
+- Ich glaube, wir brauchen eine Spezifikation mit viel weniger Freiheitsgraden bei den
+  Anforderungen.
+- Und es wäre schön, wenn das Ergebnis praktikabel wäre. Die Regeln für muss-enthalten und
+  darf-nicht-enthalten sind aber bei verschiedenen Websites sehr unterschiedlich.
+  Ich finde, das Programm sollte die wichtigsten Sorten davon als Auswahltyp abbilden.
+- Und eine zufällige Länge scheint mir eine sehr seltsame Idee. Damit will niemand arbeiten.
+- Statt `secure` gibt es in der stdlib `secrets`.
+- Ein Verweis auf `encoding_and_open` ist auf dem Niveau dieser Aufgabe nicht mehr sinnvoll;
+  das ist mit dem assumes erledigt.
+- INSTRUCTOR-Teil fehlt.
+
 [SECTION::goal::product]
 
 Ich kann ein Python Programm erstellen, dass mir sichere und zufällige Passwörter ausgibt.
