@@ -91,11 +91,8 @@ We need to produce material that students can start with, quick.
 - ch/Testen/Testframeworks/Robot.md (Ruhe->Hofmann)
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
 
-- ch/Debugging/Debugging-Praxis/einkaufsliste-versagen.md (Pietrak->Hofmann)
-- ch/Debugging/Debugging-Praxis/einkaufsliste-conditional.md (Pietrak->Hofmann)
 - ch/Debugging/Denkweisen/Mathematician.md (Pietrak->Hofmann)
 - ch/Debugging/Denkweisen/Psychologist.md (Pietrak->Hofmann)
-- ch/Debugging/Debugging-Praxis/einkaufsliste-postmortem.md (Pietrak->Müllers->Pietrak->Prechelt)
 
 
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->Alrwasheda->Pietrak->Prechelt)

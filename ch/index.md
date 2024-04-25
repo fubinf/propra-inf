@@ -226,6 +226,9 @@ Leider ist das ProPra noch nicht fertig entwickelt.
 Deshalb liefern wir ca. wöchentlich Aufgaben nach.
 Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 
+- 2024-04-25: Aufgabe ch/Sprachen/Pythonpraxis/[PARTREF::mlh-gitmeister] zugefügt
+- 2024-04-25: Aufgabe ch/Debugging/Debugging-Praxis/[PARTREF::einkaufsliste-defekt2],
+  [PARTREF::einkaufsliste-defekt3], [PARTREF::einkaufsliste-postmortem] zugefügt
 - ...
 
 
