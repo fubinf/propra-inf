@@ -1,46 +1,46 @@
-title: Post-Mortem-Analyse zum Einkaufslisten-Programm
-stage: alpha
-timevalue: 0.75
+title: Post-Mortem-Analyse zu einer mehrteiligen Debugging-Epísode
+stage: beta
+timevalue: 0.5
 difficulty: 3
 requires: einkaufsliste-defekt3
 ---
 [SECTION::background::default]
 Eine [TERMREF::Post-Mortem-Analyse] lohnt sich, da sie ermöglicht, aus vergangenen Ereignissen 
-zu lernen, Fehler zu identifizieren, bewährte Verfahren zu erkennen und strategische Anpassungen 
-vorzunehmen, um zukünftige Ergebnisse zu optimieren. 
-Sie fördert offene Kommunikation, konstruktives Feedback und verbessert die Teamarbeit, was 
-letztendlich die Effizienz steigert, Risiken minimiert und die Gesamtleistung verbessert.  
-Leider werden Post-Mortem-Analysen nicht so häufig veröffentlicht, wie man es sich wünscht.
-Dabei sind sie gute Werbeträger für Entwickler, Teams oder eine Firma, da sie den Umgang mit 
-Fehlern offen zeigt und einen Einblick in die Interna verschafft, ohne alle Arbeitsprozesse 
-offenzulegen.
+zu lernen, Fehler zu identifizieren und die eigene Arbeitsweise zu verbessern. 
+Sie fördert offene Kommunikation und verbessert dadurch die Teamarbeit.  
+Leider werden Post-Mortem-Analysen eher selten veröffentlicht, obwohl sie werbewirksam
+sein dürften, da sie konstruktiven Umgang mit Fehlern zeigen.
 [ENDSECTION]
 
-[SECTION::goal::idea]
-Ich kann erklären, welche Wege ich zum Beheben eines Defekts gegangen bin und diese in einer 
-[TERMREF::Post-Mortem-Analyse] festhalten.
+[SECTION::goal::idea,trial]
+Ich kann erklären, welche Aspekte an einer Arbeitsepisode günstig und welche ungünstig waren,
+und dies in einer [TERMREF::Post-Mortem-Analyse] festhalten.
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
-Stellen Sie sich vor, dass Sie in einer Firma arbeiten und im Laufe Ihrer Arbeit den Code von 
+[SECTION::instructions::loose]
+Stellen Sie sich vor, dass Sie in einer Firma arbeiten und im Laufe Ihrer Arbeit die Defekte von
 [PARTREF::einkaufsliste-defekt], [PARTREF::einkaufsliste-defekt2] und 
 [PARTREF::einkaufsliste-defekt3] 
 bearbeitet haben. 
-Um für die Nachwelt festzuhalten, was passiert ist und wie das Problem gelöst wurde, sollen Sie 
+
+[EQ] Um für die Nachwelt festzuhalten, was passiert ist und wie das Problem gelöst wurde, sollen Sie 
 einen Blog-Eintrag schreiben.
 Orientieren Sie sich an den folgenden Fragen, um alle relevanten Dinge zu erwähnen:
 
-- [EQ] Welche Probleme sind aufgetreten? 
-  Beschreiben Sie kurz, um welche Defekte, Fehler oder Versagen es sich handelte.
-- [EQ] Wie haben Sie diese Probleme identifiziert?
-- [EQ] Wie haben Sie diese Probleme gelöst?
-- [EQ] Gab es andere Optionen zur Lösung? Welche fallen Ihnen ein?
+- Was war insgesamt die Problemlage, also die Art des Problems oder der Probleme? 
+- Insofern das nichttrivial war: Wie haben Sie diese Probleme identifiziert?
+- Mit welchen Methoden haben Sie diese Probleme bearbeitet und gelöst?
+  Inwiefern waren die günstig? Hätte es bessere Ansätze gegeben?
+- Wo haben Sie bei der Anwendung der Methoden nicht ideal agiert? Warum?
+  Worauf muss man achten, um das künftig besser zu machen?
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+Bitte finden Sie für die Antwort selber eine geeignete Struktur und orientieren Sie sich nicht
+zu eng an der obigen Spiegelstrichliste.
 [ENDSECTION]
 
-[INSTRUCTOR::Inhalt der Abgabe]
-[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+[INSTRUCTOR::Zweck verstanden?]
+[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 [ENDINSTRUCTOR]
