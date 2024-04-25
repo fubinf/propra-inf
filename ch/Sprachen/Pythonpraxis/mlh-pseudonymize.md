@@ -160,12 +160,12 @@ Für R2 und R3 müssen Sie mitzählen, wie viele Regexp-Gruppen schon gebildet w
 
 ### Tests dazu
 
-- Legen Sie die pytest-Datei `mlh/test_pseudonymize.py` an.
+- Legen Sie die pytest-Datei `mlh/tests/test_pseudonymize.py` an.
 - Schreiben Sie darin 2-4 Tests, die sich für je einen Fall davon überzeugen,
   dass für `Linetype(line_from_configfile)` in `rewritten` und `replacement`
   das Erwartete herauskommt.
 - [EC] Zeigen Sie einen erfolgreichen Aufruf von  
-  `pytest -v mlh/test_pseudonymize.py`
+  `pytest -v mlh/tests/test_pseudonymize.py`
 
 
 ### Implementierung 2: `Pseudonymizer`
@@ -193,10 +193,10 @@ Eine passende Signatur für eine Ersetzungsfunktion könnte lauten
 
 ### Tests dazu
 
-- Schreiben Sie in `mlh/test_pseudonymize.py` ein paar Tests, die sich davon überzeugen,
+- Schreiben Sie in `mlh/tests/test_pseudonymize.py` ein paar Tests, die sich davon überzeugen,
   dass `Pseudonymizer.pseudonymize()` für einen Input den korrekten Output liefert.
 - [EC] Zeigen Sie einen erfolgreichen Aufruf von  
-  `pytest -v mlh/test_pseudonymize.py`
+  `pytest -v mlh/tests/test_pseudonymize.py`
 
 
 ### Implementierung 3: `execute()`

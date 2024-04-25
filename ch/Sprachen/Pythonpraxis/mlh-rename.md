@@ -63,7 +63,7 @@ Also bauen wir uns sowas für `mlh`, wo wir es hoffentlich leicht wiederfinden u
 
 ### Test
 
-- [ER] Legen Sie eine Datei `mlh/test_rename.py` an und schreiben Sie darin einen `pytest`-Test
+- [ER] Legen Sie eine Datei `mlh/tests/test_rename.py` an und schreiben Sie darin einen `pytest`-Test
   (oder wenn Sie es lieber sauber haben auch gern zwei), der folgendes tut:
 - Mittels `tempfile.TemporaryDirectory` ein temporäres Verzeichnis anlegen, in dem Sie
   die Testdateien erzeugen.
