@@ -25,24 +25,6 @@ We will modify these rules over time when others appear more useful.
   delete it if the task has arrived in `beta`.
 
 
-## Priority order
-
-We need to produce material that students can start with, quick.
-
-- Sprachen: 
-    - Some Python2 is needed, e.g. import (Python1 is not urgent)
-    - Pythonpraxis looks OK
-- Bibliotheken:
-    - Python-Standardbibliothek: implement TODO-marked pseudo-assumes entries
-
-## Reviews to do for Daniel Müllers
-
-
-
-## Reviews to do for Christian Hofmann
-
-
-
 ## Reviews to do for Lutz Prechelt
 
 
@@ -57,12 +39,13 @@ We need to produce material that students can start with, quick.
 - ch/Sprachen/Python1/PythonFunctions.md (Alrwasheda->Prechelt)
 
 
-- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
 - ch/Bibliotheken/Dokumentation/changelog.md (Prechelt->Ruhe->Prechelt) Keine Anmerkungen.
 - ch/Bibliotheken/Dokumentation/changelog2.md (Prechelt->Ruhe->Prechelt) Zwei Übungen ergänzt, eine
   davon auf das SUT bezigen, um nachzuvollziehen, dass ein vorhandenes Changelog schöner ist, als
   eins aus einem wenig bekannten Produkt zu extrahieren. (darauf aufbauend könnte man noch mehr in
   die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
+
+- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
 - ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner)
 
 
@@ -91,6 +74,7 @@ We need to produce material that students can start with, quick.
 - ch/Testen/Testframeworks/Robot.md (Ruhe->Hofmann)
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
 
+
 - ch/Debugging/Denkweisen/Mathematician.md (Pietrak->Hofmann)
 - ch/Debugging/Denkweisen/Psychologist.md (Pietrak->Hofmann)
 
@@ -116,12 +100,13 @@ We need to produce material that students can start with, quick.
 - ch/Werkzeuge/Unix-Basiswerkzeuge/04_eigenes_System.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/05_Editoren.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/06_Links.md (Condric)
+
 - ch/Werkzeuge/Git/git-branches.md (Hüster)
 - ch/Werkzeuge/Git/git-rebase.md (Hüster)
+
 - ch/Werkzeuge/Linter/flake8.md (Ruhe->Alrwasheda->Hofmann)
 - ch/Werkzeuge/Linter/black.md (Ruhe->Alrwasheda->Hofmann)
 - ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->Müllers)
-
 
 - ch/Werkzeuge/Benutzerverwaltung/Dateiberechtigungen.md (Condric)
 - ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric)
@@ -134,9 +119,11 @@ We need to produce material that students can start with, quick.
 - ch/Werkzeuge/Netzwerk/rsync.md (Condric)
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric)
 
+
 ## Reviews to do for Hanen Alrwasheda
 
 - ...
+
 
 ## Reviews to do for Ivan Condric
 
@@ -144,9 +131,26 @@ We need to produce material that students can start with, quick.
 - ...
 
 
-## Reviews to do for Melis Atarim
+## Reviews to do for Christian Hofmann
+
+
+
+## Reviews to do for Sven Hüster
+
+- ch/Sprachen/RegExp/log_sanitizer (Hüster->fertiggestellt-Prechelt->Hüster)
+- ch/Werkzeuge/Git/git-Fehlerbehebung.md (Hüster->Prechelt->Hüster)
 
 - ...
+
+
+## Reviews to do for Daniel Müllers
+
+
+
+## Reviews to do for Dominik Pietrak
+
+- ch/Debugging/Debuggingtools/IDE_debugging.md (Pietrak->Prechelt->Pietrak)  
+  Bitte nochmal prüfen (ich habe einiges geändert), dann auf beta setzen.
 
 
 ## Reviews to do for Ronny Ruhe
@@ -179,20 +183,7 @@ Bitte von oben nach unten abarbeiten:
 - ch/Sprachen/SQL/SQLProject.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
 
 
-## Reviews to do for Sven Hüster
-
-- ch/Sprachen/RegExp/log_sanitizer (Hüster->fertiggestellt-Prechelt->Hüster)
-- ch/Werkzeuge/Git/git-Fehlerbehebung.md (Hüster->Prechelt->Hüster)
-
-- ...
-
-
 ## Reviews to do for Sven Wegner
 
-
-
-## Reviews to do for Dominik Pietrak
-
-- ch/Debugging/Debuggingtools/IDE_debugging.md (Pietrak->Prechelt->Pietrak)  
-  Bitte nochmal prüfen (ich habe einiges geändert), dann auf beta setzen.
+- ...
 
