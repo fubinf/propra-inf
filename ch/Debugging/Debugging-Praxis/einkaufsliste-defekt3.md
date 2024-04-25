@@ -1,4 +1,4 @@
-title: Debugging eines Einkaufslisten-Generators mit bedingungsabhängigem Defekt
+title: Debugging eines bedingungsabhängigen Versagens
 stage: beta
 timevalue: 1.0
 difficulty: 2
