@@ -1,9 +1,9 @@
 title: Debugging eines Einkaufslisten-Generators mit bedingungsabhängigem Defekt
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: IDE_debugging
-requires: einkaufsliste-versagen
+requires: einkaufsliste-defekt2
 ---
 [SECTION::goal::trial,product]
 Ich bin in der Lage, mittels Debugger durch ein Programm zu navigieren, kann 
@@ -34,13 +34,15 @@ bedingungsabhängige Defekte erkennen und beheben.
         Wenn nein, gibt es eine ähnlich klingende Zutat? Worin liegt der Unterschied?
 - Es gibt hier, wie meistens, verschiedene Möglichkeiten, den Defekt zu lösen. 
   Wenn Sie sich `ingredients.json`, aus der die Daten von `all_ingredient_locs` kommen, 
-  anschauen, stellen Sie fest, dass alle Zutaten ähnlich geschrieben sind und nur die von Ihnen 
+  anschauen, stellen Sie fest, dass bezüglich der Schreibweise der Zutaten die von Ihnen 
   identifizierte Stelle einen Ausreißer darstellt.
 - [ER] Beheben Sie den falsch geschriebenen Dateneintrag.
 - [EQ] Führen Sie das Programm mit den korrigierten Daten noch einmal aus. 
   Finden Sie noch eine Stelle, in der solch ein Fehler auftritt?
 - [EC] Führen Sie das Programm `grocery_list.py` im Terminal aus. 
   Geben Sie die Ausgabe des Programms mit der Eingabe `5` an.
+- [EC] Machen Sie einen separaten Commit des korrigierten Quellcodes und zeigen Sie dann
+  `git show HEAD`.
 
 [NOTICE]
 Wir haben in diesem Fall ein händisches Testen durchgeführt. 
@@ -53,10 +55,9 @@ Mehr dazu lernen Sie in der Aufgabengruppe [PARTREF::Unittests].
 [ENDSECTION]
 
 [SECTION::submission::trace,snippet,information]
+[INCLUDE::../../_include/Submission-Quellcode.md]
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
-Geben Sie außerdem den Quellcode der Funktion an, in der Sie den Fix implementiert haben, inklusive 
-des Fixes.
 [ENDSECTION]
 
 [INSTRUCTOR::Inhalt der Abgabe]
