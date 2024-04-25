@@ -23,7 +23,7 @@ Ich kann erklären, welche Wege ich zum Beheben eines Defekts gegangen bin und d
 
 [SECTION::instructions::detailed]
 Stellen Sie sich vor, dass Sie in einer Firma arbeiten und im Laufe Ihrer Arbeit den Code von 
-[PARTREF::einkaufsliste-defekt], [PARTREF::einkaufsliste-versagen] und 
+[PARTREF::einkaufsliste-defekt], [PARTREF::einkaufsliste-defekt2] und 
 [PARTREF::einkaufsliste-conditional] 
 bearbeitet haben. 
 Um für die Nachwelt festzuhalten, was passiert ist und wie das Problem gelöst wurde, sollen Sie 

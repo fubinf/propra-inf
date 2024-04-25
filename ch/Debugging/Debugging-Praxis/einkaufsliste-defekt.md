@@ -84,7 +84,7 @@ finden Sie in den Aufgaben [PARTREF::m_json1] und [PARTREF::m_json2] einen Einst
 Wenn Sie der Aufgabe gefolgt sind, sollte der Output ohne Ausgabe von Fehlern funktionieren.
 Allerdings ist das Programm noch nicht fehlerfrei, wenn Sie die Ausgabe mit der oben gegebenen
 Beispielausgabe vergleichen. 
-Darum kümmern wir uns aber erst in [PARTREF::einkaufsliste-versagen].
+Darum kümmern wir uns aber erst in [PARTREF::einkaufsliste-defekt2].
 [ENDNOTICE]
 
 [ENDSECTION]
@@ -103,5 +103,5 @@ gleichen Inhalte haben.
 Der geforderte Fix findet in nur einer Funktion statt.
 
 Die vom Studi zurückgegebene Ausgabe entspricht _nicht_ der Beispielausgabe aus dem obigen Hinweis.
-Hierfür fehlt noch ein Fix aus der Aufgabe [PARTREF::einkaufsliste-versagen].
+Hierfür fehlt noch ein Fix aus der Aufgabe [PARTREF::einkaufsliste-defekt2].
 [ENDINSTRUCTOR]

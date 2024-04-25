@@ -22,13 +22,13 @@ Vergleichen Sie dazu diese beiden Ausgaben.
 
 [FOLDOUT::Aktueller Output für `0,0,4`]
 ```console
-[INCLUDE::Einkaufsliste_Falscher-Output.inc]
+[INCLUDE::einkaufsliste-output-falsch.inc]
 ```
 [ENDFOLDOUT]
 
 [FOLDOUT::Gewünschter Output für `0,0,4`]
 ```console
-[INCLUDE::Einkaufsliste_Gewünschter-Output.inc]
+[INCLUDE::einkaufsliste-output-korrekt.inc]
 ```
 [ENDFOLDOUT]
 
