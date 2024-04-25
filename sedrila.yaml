@@ -144,7 +144,7 @@ instructors:
     keyfingerprint: "-"
     pubkey: ""
   - nameish: Sven Hüster
-    email: svnhstr@fu-berlin.de
+    email: svnhstr@zedat.fu-berlin.de
     gitaccount: svnhstr
     webaccount: svnhstr
     keyfingerprint: "-"
