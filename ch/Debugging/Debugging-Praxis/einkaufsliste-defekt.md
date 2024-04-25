@@ -23,13 +23,13 @@ Programmabsturz zu analysieren und zu beheben.
 
 [FOLDOUT::Gewünschter Output zur Eingabe `0,0,4`]
 ```console
-[INCLUDE::Einkaufsliste_Gewünschter-Output.inc]
+[INCLUDE::einkaufsliste-output-korrekt.inc]
 ```
 [ENDFOLDOUT]
 
 ### Erste Sichtung der Dateien
 
-- Laden Sie die Datei [PARTREF::grocery_list.zip] herunter und entpacken Sie diese.
+- Laden Sie die Datei [PARTREF::einkaufsliste.zip] herunter und entpacken Sie diese.
 - Das darin enthaltene Verzeichnis besteht aus drei Dateien:
   `recipes.json` bildet die Datengrundlage für die Rezepte und `ingredients.json` gibt an, wo 
   die Zutaten im Supermarkt liegen.
