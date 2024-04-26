@@ -171,6 +171,11 @@ Welche Zuteilungen sind hier noch möglich?
 [SECTION::submission::snippet]
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::ALT:]
 
 [ENDSECTION]
+
+[INSTRUCTOR::Lösungsansatz]
+
+[INCLUDE::ALT:]
+
+[ENDINSTRUCTOR]
