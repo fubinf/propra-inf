@@ -3,28 +3,20 @@ stage: alpha
 timevalue: 1.0
 difficulty: 2
 ---
-TODO_1_condric:
-    - Wenn Sie eine so umfassende Quelle benutzen wie https://wiki.ubuntuusers.de/apt/apt/,
-      machen Sie bitte hinterher eine Guided Tour durch die relevanten Teile,
-      damit man das alles mal ausprobiert hat:
-      neben dem jetzigen Umfang fehlt mir da derzeit search, show, und list.
-    - X11 Apps auf WSL? Haben Sie das mal ausprobiert? 
-      Das ist ein Alptraum, auf Win10 anders als auf Win11, sicher nicht ohne Anleitung zu schaffen,
-      ganz sicher nicht in einer Stunde zu schaffen.
-   - Sie wollen doch hoffentlich nicht jemanden eine Software installieren lassen,
-     die ersie nicht ausprobieren kann, oder? Bitte wählen Sie ein anderes Beispiel.
 
 [SECTION::goal::idea]
-Ich verstehe wie apt funktioniert und wie ich es anwenden kann
+Ich verstehe wie `apt` funktioniert und wie ich es anwenden kann
 [ENDSECTION]
 
 [SECTION::background::default]
-apt ist bei Debian Systemen das standardmäßige Paketverwaltungssystem. Mit apt werden Pakete 
+`apt` ist bei Debian Systemen das standardmäßige Paketverwaltungssystem. Mit `apt` werden Pakete 
 beispielsweise installiert, deinstalliert und aktualisiert.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/apt/apt/) von ubuntuusers durch.
+Lesen Sie diesen [Beitrag](https://wiki.ubuntuusers.de/apt/apt/) von ubuntuusers, 
+insbesondere die Kapitel **Pakete verwalten** und **Suchen/Durchsuchen**.
+
 ### System aktualisieren
 
 Systeme sollten immer aktuell sein, also fangen wir auch mit einem aktuellen System an.
@@ -32,26 +24,22 @@ Systeme sollten immer aktuell sein, also fangen wir auch mit einem aktuellen Sys
 - [EC] Aktualisieren Sie ihr System.
 
 ### Pakete installieren
+In dieser Aufgabe nehmen wir als Beispiel den `midnight commadner`. Es ist ein textbasierter Commander.
 
-In dieser Aufgabe nehmen wir als Beispiel die X11 Apps, die eine Reihe von kleinen graphischen Programmen bietet.
+- [EC] Suchen Sie mit `apt` nach dem Begriff `midnight commander`.
+- [EC] Geben Sie die Informationen des Paketes von `midnight commander` aus.
+- [EC] Installieren Sie den `midnight commander`.
+- [EC] Geben Sie die Liste von installierten Paketen aus und stellen Sie sicher, dass der `midnight commander` installiert wurde.
 
-- [EC] Suchen Sie nach den X11 Apps.
-- [EC] Geben Sie die Informationen von den X11 Apps aus.
-- [EC] Installieren Sie die X11 Apps.
-- [EC] Geben Sie die Liste von installierten Paketen aus und filtern Sie nach den X11 Apps.
+### Pakete deinstallieren
+Bei einer Aktualisierung ihres Systems werden die alten Pakete nicht gelöscht, sondern bleiben auf ihrem System liegen.
 
-### Installation von Paketen manipulieren
+- [EC] Finden Sie im [Beitrag](https://wiki.ubuntuusers.de/apt/apt/) das Kommando, um veraltete 
+Pakete von Ihrem System zu löschen und führen Sie es aus.
 
-Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/apt/apt-Kommandos/) von ubuntuusers durch.
+Pakete können manuell deinstalliert werden. Es gibt zwei verschieden Kommandos dafür.
 
-Manchmal passiert es, dass die neueste Version eines Paketes Probleme mit ihrem System verursachen. 
-
-- [EC] Installieren Sie eine alte Version von X11 Apps.
-- [EC] Stellen Sie ein, dass X11 Apps nicht mehr aktualisiert wird.
-
-Angenommen, Sie haben schon viel herumprobiert ihr Problem zu lösen, und als letzten Ausweg sehen Sie nur noch die Neuinstallation des Pakets.
-
-- [EC] Installieren Sie die X11 Apps neu.
+- [EQ] Erklären Sie den Unterschied zwischen den Optionen `remove` und `purge`.
 
 [ENDSECTION]
 
