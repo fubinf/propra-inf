@@ -1,4 +1,4 @@
-def find_substring (outer_string: str, sub_string:str) -> (str, str):
+def find_substring(outer_string: str, sub_string:str) -> (str, str):
     """Finds the first occurrence of sub_string within outer_string.
 
        Returns a tuple of the part of the string
@@ -11,6 +11,7 @@ def find_substring (outer_string: str, sub_string:str) -> (str, str):
     outer_len = len(outer_string)
     sub_len = len(sub_string)
     flag = 1
+    i = 0   # declaring i beforehand so we can use it in the return statement
 
     for i in range(outer_len):
         for j in range(sub_len):
