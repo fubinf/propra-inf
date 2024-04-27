@@ -119,7 +119,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Netzwerk/rsync.md (Condric)
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric)
 
-- ch/Werkzeuge/Paketmanager/apt.md (Condric)
 
 ## Reviews to do for Hanen Alrwasheda
 
@@ -128,6 +127,8 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ivan Condric
 
+- ch/Werkzeuge/Paketmanager/apt.md (Condric):
+  OK, prima. Aber ohne INSTRUCTOR-Teil ist das keine komplette Aufgabe. Bitte zufügen.
 - ...
 
 
