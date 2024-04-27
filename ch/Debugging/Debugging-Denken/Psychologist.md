@@ -1,11 +1,12 @@
 title: Der Weg des Psychologen
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 ---
 [SECTION::goal::idea]
 Ich verstehe, welche Methoden Psychologen verwenden, um menschliche Fehler zu verstehen,
-und kann dieses Wissen auf die Suche nach der Ursache für einen Defekt transferieren.
+und kann dieses Wissen auf die Suche nach der Ursache eines Defekts (also dem zugrunde liegenden
+Fehler) anwenden.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -25,14 +26,17 @@ Bei Interesse können Sie diese lesen, aber für diese Aufgabe ist dieser Abschn
 wenn es ums Debugging geht?
 Begründen Sie Ihre Antwort kurz.
 
-[EQ] In Abschnitt 12.5.8 wird versucht zu erklären, welche Gründe hinter wissensbasierten Fehlern 
+In Abschnitt 12.5.8 wird versucht zu erklären, welche Gründe hinter wissensbasierten Fehlern 
 stecken.
-Denken Sie an vergangene Programmierprojekte oder Hausaufgaben zurück: 
-Welche dieser Fehlerquellen fallen Ihnen bei Ihrer eigenen Arbeit auf?
-Welche Lösung fällt Ihnen ein, um diese Fehlerquelle zu minimieren?
+Denken Sie an vergangene Programmiertätigkeiten (egal wann und wo) zurück: 
 
-[EQ] Welche neuen Perspektiven oder Einsichten haben Sie durch das Lesen dieses Kapitels
-gewonnen, die Ihnen beim Debugging helfen könnten?
+- [EQ] Welche dieser Fehlerquellen fallen Ihnen bei Ihrer eigenen Arbeit auf?
+- [EQ] Zu welchen davon fallen Ihnen Ansätze ein, um diese Fehler zu minimieren?
+  Beschreiben Sie den Ansatz jeweils kurz.
+
+Wenn Ihnen zur zweiten Frage nichts einfällt, können Sie diese Aufgabe noch nicht
+absolvieren. 
+Machen Sie dann erstmal woanders im ProPra weiter und achten Sie auf diese Fehlerquellen.
 [ENDSECTION]
 
 [SECTION::submission::reflection]

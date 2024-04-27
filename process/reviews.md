@@ -10,6 +10,7 @@ We will modify these rules over time when others appear more useful.
   - Normal case: Hand it to Lutz Prechelt (who will finish it or hand it back to you with feedback).
   - If you are afraid your task may not be ready for this, hand it to Christian Hofmann first.
   - Tasks come into review with `stage: alpha` and leave with `alpha` or `beta`, or `draft`.
+    `beta` is assigned by Lutz Prechelt only.
   - In special cases, send your task into review by anybody else as needed.
 - Authors assign a task to a reviewer by writing a line of the following form
   in the reviewer's section below:  
@@ -76,7 +77,6 @@ We will modify these rules over time when others appear more useful.
 
 
 - ch/Debugging/Denkweisen/Mathematician.md (Pietrak->Hofmann)
-- ch/Debugging/Denkweisen/Psychologist.md (Pietrak->Hofmann)
 
 
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->Alrwasheda->Pietrak->Prechelt)
