@@ -4,21 +4,19 @@ timevalue: 1
 difficulty: 2
 ---
 [SECTION::goal::idea]
-
 - Ich verstehe wie rsync funktioniert und wie ich dieses anwende.
-
 [ENDSECTION]
+
 [SECTION::background::default]
-
-`rsync` ist ein Programm, um Dateien zwischen lokalen oder entfernten 
-Pfaden abzugleichen. Dabei werden zunächst die Größe und die Änderungszeit 
-der Dateien in Quelle und Ziel verglichen („Quick Check“-Algorithmus). 
-Dadurch werden nur die Dateien behandelt, bei denen es Änderungen gegeben hat.
-
+`rsync` ist ein Programm, um Dateien zwischen lokalen oder entfernten Pfaden abzugleichen.
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
 Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/rsync/) von ubuntuusers über rsync durch.
+
+Lesen Sie insbesondere die Anwendung des Befehls und die Option `-a` und verstehen Sie, was diese 
+Option alles beinhaltet.
 
 <replacement id='targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
@@ -43,10 +41,10 @@ Es erstellt einen neuen Ordner `rsync_copy_data` mit 20 Textdateien.
 
 Wie im "Hintergrund" beschrieben, können Daten auf einen entfernten Pfad kopiert werden.  
 - [EC] Kopieren Sie die Daten von Ihrem System auf den Zielserver.  
-Andersrum funktioniert es auch.
+  Andersrum funktioniert es auch.
 - [EC] Kopieren Sie die Daten vom Zielserver auf ihr System.
 - [EC] Fügen Sie der Datei `/home/username/rsync_copy_data/datei_1.txt` zufälligen Text hinzu.  
-    Kopieren Sie die Datei per rsync auf in den `/tmp/propra_sync` Ordner. 
+  Kopieren Sie die Datei per rsync auf in den `/tmp/propra_sync` Ordner. 
 - [EQ] Was fällt Ihnen auf?
 
 
@@ -56,3 +54,11 @@ Andersrum funktioniert es auch.
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
+[INSTRUCTOR::Erwartung]
+
+[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+
+- [EREFQ::1] Bei dem ersten Befehl fehlt ein `/`. Damit verändert sich das Ergebnis von rsync.
+
+[ENDINSTRUCTOR]
