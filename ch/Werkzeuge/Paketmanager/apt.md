@@ -51,5 +51,16 @@ Pakete können manuell deinstalliert werden. Es gibt zwei verschieden Kommandos 
 [ENDSECTION]
 
 [SECTION::submission::trace]
+
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::../../_include/Submission-Markdowndokument.md]
+
 [ENDSECTION]
+
+[INSTRUCTOR::Auf die Optionen achten]
+
+- [EREFC::1] Darauf achten, dass beide Kommandos zum Aktualisieren angewendet wurden.
+- [EREFC::5] Achten, dass das richtige Kommando und der reguläre Ausdruck genutzt wird.
+- Die Aufgaben sollen die Optionen von `apt` nutzen
+
+[ENDINSTRUCTOR]
