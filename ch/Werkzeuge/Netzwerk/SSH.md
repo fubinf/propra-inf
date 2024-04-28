@@ -4,16 +4,12 @@ timevalue: 2.0
 difficulty: 2
 ---
 [SECTION::goal::idea]
-
  - Ich verstehe was SSH (Secure Shell) ist und wie ich mich auf einem entfernten Rechner anmelden kann.
  - Ich verstehe wie ich ein Schlüsselpaar erstelle und wie ich diesen nutze.
-
 [ENDSECTION]
 
 [SECTION::background::default]
-
 Die Sicherung von Daten durch Verschlüsselung ist in vielen Bereichen moderner Systemadministration von größter Bedeutung. Im Gegensatz zu unsicheren Lösungen wie telnet, rlogin oder FTP wurde das Protokoll SSH (Secure Shell) mit Blick auf die Sicherheit entwickelt. Mit Hilfe der Public-Key-Kryptographie authentifiziert es sowohl die Hosts als auch die Benutzer und verschlüsselt den gesamten nachfolgenden Informationsaustausch.
-
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -77,6 +73,13 @@ Stellen Sie sicher, dass Sie sich im Netz der Universität oder im VPN befinden.
 [ENDSECTION]
 
 [SECTION::submission::trace]
+
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+
 [ENDSECTION]
 
+[INSTRUCTOR::heading]
+
+[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+
+[ENDINSTRUCTOR]
