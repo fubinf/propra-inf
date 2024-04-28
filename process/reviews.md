@@ -97,9 +97,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Web/HTML/HTMLErsteSchritte.md (Müllers)
 
 
-- ch/Werkzeuge/Unix-Basiswerkzeuge/04_eigenes_System.md (Condric)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/05_Editoren.md (Condric)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/06_Links.md (Condric)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric)
 
 - ch/Werkzeuge/Git/git-branches.md (Hüster)
 - ch/Werkzeuge/Git/git-rebase.md (Hüster)
