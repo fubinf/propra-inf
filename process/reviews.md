@@ -98,7 +98,7 @@ We will modify these rules over time when others appear more useful.
 
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/05_Editoren.md (Condric)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric)
 
 - ch/Werkzeuge/Git/git-branches.md (Hüster)
