@@ -3,6 +3,35 @@ stage: alpha
 timevalue: 2.0 
 difficulty: 2
 ---
+
+TODO_1_condric
+
+- Was ist der "erste Abschnitt" der Quelle? Leseauftrag lieber passend zu den Teilaufgaben stückeln.
+- K1: Was sollen die Punkte vor den Kommandos?
+- K2: Die Leute sollten selbst in der manpage gewisse Sachen nachschlagen.  
+  Hier reichen uns Rechnernamen, IPs sind für Fortgeschrittene und dann nicht schwierig.
+- Ob Ctrl-D funktioniert, hängt von Shelleinstellungen ab.  
+- Der Teil über Authentizität ist vage und kaum verständlich.
+  Gute Quelle suchen, eng umgrenzten Leseauftrag geben, Frage dazu stellen.
+- Man-in-the-Middle-Angriff ist _nicht_ wahrscheinlich, sondern nur denkbar.
+  Und dann mit yes zu antworten wäre absurd.
+- K3: Da fehlt der Leseauftrag. Wir sind hier bei "einfach".
+- K4: Da fehlt ein Leseauftrag. Schlüsselerzeugung muss konzeptuell (grob) verstanden sein.
+- K5: Leseauftrag bitte. Die sind immer so schmal wie möglich, gell?
+  Die Manpage von `ssh-copy-id` ist vergleichsweise kurz, aber immer noch viel zu lang für
+  ein pauschales "Lies die manpage": Was genau soll ich via manpage rausfinden?
+- K7 (auskommentiert): Für meine Begriffe gehört ssh-agent fest zu ssh, denn erst dann
+  versteht man, warum das Schlüsselpaar auch praktisch besser ist als ein Passwort.  
+  Ich verwende folgende Aliase:  
+  `alias ssha='eval ``ssh-agent``; ssh-add'`  
+  `alias sshae='echo export SSH_AUTH_SOCK=$SSH_AUTH_SOCK'\'';'\'' export SSH_AGENT_PID=$SSH_AGENT_PID'`  
+  Die (oder etwas Ähnliches) sollten sich die Teilnehmenden ins .bashrc eintragen und verstehen,
+  was die tun und wie man sie benutzt. Der zweite dient dazu, einen vorhandenen ssh-agent in
+  neuen Shells bekannt zu machen, statt immer wieder zusätzliche zu starten.
+- Wenn die Aufgabe länger als 2 Stunden wird, ist das OK, 
+  aber bislang sind die 2 Stunden sogar weit übertrieben, oder?
+- Bitte nicht so lange Zeilen schreiben, sondern auf ca. 100 Zeichen begrenzen. 
+
 [SECTION::goal::idea]
  - Ich verstehe was SSH (Secure Shell) ist und wie ich mich auf einem entfernten Rechner anmelden kann.
  - Ich verstehe wie ich ein Schlüsselpaar erstelle und wie ich diesen nutze.
