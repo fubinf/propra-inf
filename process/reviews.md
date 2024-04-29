@@ -47,7 +47,6 @@ We will modify these rules over time when others appear more useful.
   die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
 
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
-- ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner)
 
 
 - ch/Testen/Unittests/tdd.md (Ruhe->Müllers->Prechelt)
@@ -94,7 +93,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
 
 
-- ch/Web/HTML/HTMLErsteSchritte.md (Müllers)
 
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric)
@@ -146,6 +144,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
+- ch/Web/HTML/HTMLErsteSchritte.md (Müllers)
 
 
 ## Reviews to do for Dominik Pietrak
@@ -185,6 +184,12 @@ Bitte von oben nach unten abarbeiten:
 
 
 ## Reviews to do for Sven Wegner
+
+- ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner):  
+  Die Aufgabe ist in vieler Hinsicht super, aber Sie haben sie abermals nicht selber
+  durchgeführt. Das funktioniert nicht!
+  Bitte holen Sie das jetzt nach und prüfen Sie, ob ich alle ihre Fehler erwischt habe;
+  ich habe es nämlich auch nur teilweise praktisch durchgeturnt.
 
 - ...
 

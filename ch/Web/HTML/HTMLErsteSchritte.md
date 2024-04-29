@@ -1,8 +1,25 @@
 title: Erste Schritte in HTML
 stage: alpha
-timevalue: 1
+timevalue: 1.0
 difficulty: 1
 ---
+TODO_1_müllers
+
+- Background dient bei uns zur Movation; Wissensvermittlung passiert in instructions.
+- Wir brauchen einen Glossareintrag HTML, da passt vieles vom jetztigen Background rein.
+- Texteditor und Im-Browser-Öffnen eignen sich nicht für [EC], auch die anderen solchen Schritte nicht.
+- Manche davon gehen als [ER], wenn man am Ende die HTML-Datei abgibt.
+- Die darf dann aber nicht `index.html` heißen, sondern `HTMLErsteSchritte.html`.
+- Spätestens für den "Grundstruktur"-Teil gehört eine Referenzquelle angegeben.
+  Ebenso im Glossareintrag.
+- Die Beschreibung für Listen ist ganz schön abstrakt. Unter "sehr einfach" fällt das nicht,
+  schon gar nicht (später mal) für Nichtinformatiker_innen.
+  Es gibt keinen Grund, den Leuten das ohne ein Beispiel zuzumuten; damit fährt man deren
+  Einstellung gegenüber dem ProPra sauer, das dürfen wir nicht machen.
+- So ein verschämtes "In Teilen: Quelle: SelfHTML" gaaanz unten ist nicht unser Stil.
+  Sondern wir machen die Quelle direkt bei der ersten Nutzung sichtbar:
+  "Aus ... stammt folgendes Beispiel" oder so.
+
 [SECTION::goal::experience]
 
 - Ich kann HTML-Elemente identifizieren und einige einfache HTML-Elemente anwenden.
