@@ -21,7 +21,8 @@ Recherchieren Sie, wie eine HTTP-Anfrage (HTTP Request) aufgebaut ist.
 
 [EQ] Nennen Sie mindestens zwei andere Header und erklären Sie kurz deren Bedeutung. 
 
-[EC] Rufen Sie mittels [PARTREF::netcat] eine beliebige Datei des Programmierpraktikums auf.
+[EC] Rufen Sie mittels TODO_2:netcat eine beliebige Datei des Programmierpraktikums 
+auf.
 Sie dürfen hierfür HTTP 1.0 annehmen. Weiterleitungen müssen Sie nicht folgen, sie sollten
 aber keinen "Bad Request"-Fehler als Antwort erhalten.
 
