@@ -3,6 +3,11 @@ stage: alpha
 timevalue: 0.5
 difficulty: 1
 ---
+TODO_1_alrwasheda
+
+- Ohne eine Quelle, aus der man sich diese Info ziemlich 1:1 rausholen kann, sind die beiden
+  Frage (die ich ansonsten gut finde) nicht "sehr einfach".
+- Diese konkrete Quelle finde ich furchtbar lieblos und ihr fehlen gute Beispiele
 
 [SECTION::goal::idea]
 

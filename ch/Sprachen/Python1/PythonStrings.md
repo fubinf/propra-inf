@@ -4,6 +4,22 @@ timevalue: 1.0
 difficulty: 2
 ---
 
+TODO_1_alrwasheda
+
+- Ich habe auch hier (wie bei Booleans) das Gefühl, dass bei diesem Stoff unser didaktisches Konzept ungeeignet ist.
+  Die Konsequenz daraus? Unklar. Lassen wir also mangels einer besseren Idee die Aufgabe stehen.
+- Dito die Bemerkung zu difficulty 1 vs 2.
+- F2 ist für sehr leicht zu schwer; es geht nicht "wie auf Schienen"
+- F3: Für Literale geht es auch ganz ohne Operator und passiert dann schon zur Übersetzungszeit.
+- F4: Hier geht es viel mehr um die Unterscheidung von Funktionen (keine Nebenwirkung) 
+  und Prozeduren (mit Nebenwirkung) als um Strings, denn auch wenn die mutable wären, könnte
+  ja capitalize() eine Kopie erzeugen.
+- mutability sollte vmtl. _explizit_ ein Thema dieser Aufgabe sein?
+- Wie schon bei Booleans bin ich mit der Aufgabe wenig glücklich und sehe auch nicht,
+  wie man es viel besser machen soll.
+- Vielleicht machen wir uns lieber erstmal an Python2 und kommen zu Python1 zurück, wenn 
+  wir aus Python2 klüger geworden sind?
+
 [SECTION::goal::idea]
 
 - Ich verstehe, was Strings sind und wie man auf Zeichen in Strings zugreift.

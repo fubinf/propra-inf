@@ -4,6 +4,21 @@ timevalue: 0.75
 difficulty: 2
 ---
 
+TODO_1_alrwasheda
+
+- Ich habe das Gefühl, dass bei diesem Stoff unser didaktisches Konzept ungeeignet ist.
+  Die Konsequenz daraus? Unklar. Lassen wir also mangels einer besseren Idee die Aufgabe stehen.
+- Aber diese "Programmier"teile mit `print(False and False) # False` etc. scheinen mir
+  furchtbar unklar in ihrer Erwartung.
+  Ich schlage vor, statt dessen `assert` einzuführen und `==`. Man schreibt dann:
+  `assert False and False == False` und Python sagt einem, ob man es richtig gemacht hat.
+- Dann muss man allerdings unbedingt über den typischen Anfängerfehler reden,
+  dass kein richtiger Programmierer das so hinschreiben sollte, sondern immer
+  `assert False and False` oder `assert not (False and False)`.
+  Jedenfalls, wenn mindestens ein Literal beteiligt ist. `a == False` ist schlecht, `a == b` ist OK.
+- Hier steht: `difficulty: 2`. Alles in Python1 soll aber per Definition "sehr leicht" sein. 
+  Wenn Sie daran hier Zweifel haben, ist die Aufgabe noch nicht tauglich.
+
 [SECTION::goal::idea]
 
 - Ich verstehe, was Wahrheitswerte bzw. boolesche Werte sind.

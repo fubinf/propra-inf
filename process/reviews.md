@@ -29,9 +29,6 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Lutz Prechelt
 
 
-- ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
-- ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt) 
-- ch/Sprachen/Python1/PythonComments.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonIntegers.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonFloats.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonTypeConversion.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
@@ -122,6 +119,9 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
+- ch/Sprachen/Python1/PythonComments.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt->Alrwasheda)
+- ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt->Alrwasheda)
+- ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt->Alrwasheda) 
 - ...
 
 
@@ -144,7 +144,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
-- ch/Web/HTML/HTMLErsteSchritte.md (Müllers)
+- ch/Web/HTML/HTMLErsteSchritte.md (Müllers->Prechelt->Müllers)
 
 
 ## Reviews to do for Dominik Pietrak
@@ -185,7 +185,7 @@ Bitte von oben nach unten abarbeiten:
 
 ## Reviews to do for Sven Wegner
 
-- ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner):  
+- ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner->Prechelt->Wegner):  
   Die Aufgabe ist in vieler Hinsicht super, aber Sie haben sie abermals nicht selber
   durchgeführt. Das funktioniert nicht!
   Bitte holen Sie das jetzt nach und prüfen Sie, ob ich alle ihre Fehler erwischt habe;
