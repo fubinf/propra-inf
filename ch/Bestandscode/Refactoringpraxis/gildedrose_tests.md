@@ -2,7 +2,7 @@ title: "Gilded Rose: Festhalten der Funktionalität"
 stage: alpha
 timevalue: 1
 difficulty: 3
-assumes: unittest101, pytest104
+assumes: m_unittest, pytest104
 ---
 [SECTION::goal::experience]
 Ich kann mich für Code, den ich refaktorieren möchte, dagegen versichern,
@@ -19,6 +19,7 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
 
 
 [SECTION::instructions::loose]
+
 - Einlesen in die Domäne:
   Lesen Sie grob die Anforderungsbeschreibung (nur lesen, noch nichts machen) von
   "Gilded Rose": 
@@ -64,6 +65,7 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
   übervorsichtig (sehr viele Tests, vermutlich mehr als nötig) oder für
   hoffnungsvoll (eher wenige Tests: "Wird schon klappen") oder für 
   genau passend? Warum?
+
 [ENDSECTION]
 
 [SECTION::submission::program]

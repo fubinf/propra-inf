@@ -2,7 +2,7 @@ title: Unittest in Python - Grundlagen Flask-Testing
 stage: draft
 timevalue: 1.0
 difficulty: 1
-assumes: unittest101
+assumes: m_unittest
 ---
 TODO_ruhe:
 

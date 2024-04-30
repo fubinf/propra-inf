@@ -2,7 +2,7 @@ title: Unittest in Python - Anwendung
 stage: beta
 timevalue: 1.5
 difficulty: 3
-assumes: unittest101, unittest102, LokalesDeployment
+assumes: m_unittest, unittest102, LokalesDeployment
 ---
 
 [SECTION::goal::idea]

@@ -2,7 +2,7 @@ title: pytest - Grundlagen
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: unittest101
+assumes: m_unittest
 ---
 
 [SECTION::goal::idea]

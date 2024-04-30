@@ -164,7 +164,6 @@ Bitte von oben nach unten abarbeiten:
 - ch/Testen/Testgrundlagen/TestDelimitations.md (Ruhe->DM->LP->RR)
 - ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->DM->LP->RR)
 
-- ch/Testen/Unittests/unittest101.md (Ruhe->DM->HA->LP->RR)
 - ch/Testen/Unittests/unittest102.md (Ruhe->DM->HA->RR)
 - ch/Testen/Unittests/freezegun.md (Ruhe->DM->HA->LP->RR)
 - ch/Testen/Unittests/tdd_pp.md (Ruhe->LP->RR)

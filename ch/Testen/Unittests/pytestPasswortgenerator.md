@@ -2,7 +2,7 @@ title: Pytests für Passwortgenerator
 stage: alpha
 timevalue: 0.5
 difficulty: 4
-assumes: unittest101
+assumes: m_unittest
 requires: Passwortgenerator
 ---
 
