@@ -30,6 +30,15 @@ Erklären Sie anschließend in eigenen Worten:
   Beschreiben Sie auch in kurzen Worten, was hinter den Begriffen steckt.
 - [EQ] Wie erzielt man die durch SOLID gewünschten Effekte?
 - [EQ] Welche der Prinzipien stehen im Kontext zueinander?
+- [EQ] Im ProPra wird vorrangig Python benutzt.
+  Geben Sie eine erste Einschätzung ab, welche der Prinzipien beim Schreiben von Python-Code 
+  *immer* oder *manchmal* oder *fast nie* relevant sind.  
+  Begründen Sie Ihre Wahl.
+
+Wenn Sie glauben, dass Sie die letzte Frage noch nicht begründet beantworten können, fehlt es 
+Ihnen vielleicht noch etwas an Programmiererfahrung.
+Damit können Sie diese Aufgabe noch nicht absolvieren.
+Machen Sie dann erstmal woanders im ProPra weiter und kommen Sie später hier her zurück.
 
 [ENDSECTION]
 
