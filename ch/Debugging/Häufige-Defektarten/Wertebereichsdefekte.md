@@ -99,4 +99,6 @@ Setzen Sie `number` auf 2, 3, 4, 5 und 6.
 
 [INCLUDE::../../_include/Instructor-nur-Defektkorrektur.md]
 
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]

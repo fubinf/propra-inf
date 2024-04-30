@@ -1,5 +1,5 @@
 title: Logikdefekte
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 2
 ---

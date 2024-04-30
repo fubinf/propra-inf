@@ -125,4 +125,6 @@ Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
 
 [INCLUDE::../../_include/Instructor-nur-Defektkorrektur.md]
 
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]

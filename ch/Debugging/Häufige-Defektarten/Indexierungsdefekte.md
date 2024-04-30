@@ -111,4 +111,6 @@ Führen Sie die Funktion mit den folgenden Eingaben aus:
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
+[INCLUDE::ALT:]
+
 [ENDSECTION]

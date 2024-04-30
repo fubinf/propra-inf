@@ -195,4 +195,6 @@ Wird das Programm ordnungsgemäß beendet?
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
+[INCLUDE::ALT:]
+
 [ENDSECTION]
