@@ -21,6 +21,8 @@ in seiner Standardbibliothek. Das sollten wir natürlich kennen!
 Nutzen Sie die [`unittest`-Dokumentation](https://docs.python.org/3.10/library/unittest.html)
 um die nachfolgenden Aufgaben zu lösen:
 
+### Ein erfolgreicher Test
+
 - Legen Sie die Datei `unittests/test_unittest.py` an.
 - [ER] Schreiben Sie darin einen Test `test_addition`, der sicherstellt, dass `1+1` gleich `2` ist.
   Bilden Sie die Struktur der Testklasse wie in "Basic example" beschrieben.
@@ -29,6 +31,10 @@ um die nachfolgenden Aufgaben zu lösen:
 - [EQ] Was bedeutet vermutlich der Punkt in der ersten Zeile der Ausgabe?
 - [EC] Machen Sie einen Commit von `unittests/test_unittest.py`.  
   `git -P show HEAD`
+
+
+### Ein fehlschlagender Test
+
 - [ER] Schreiben Sie einen zweiten Test `test_sqrt`, der sicherstellt, 
   dass `math.sqrt(10)**2` (lesen Sie ggf. nach, was das bedeutet) gleich `10` ist.  
   Dieser Test wird fehlschlagen, weil Gleitkomma-Arithmetik nicht beliebig genau ist.
@@ -47,11 +53,19 @@ um die nachfolgenden Aufgaben zu lösen:
 - [EQ] Was bedeutet offenbar die Änderung in der ersten Zeile der Ausgabe?
 - [EC] Machen Sie einen Commit von `unittests/test_unittest.py`.  
   `git -P show HEAD`
+
+
+### Lösung für Vergleiche bei Gleitkomma-Arithmetik
+
 - [ER] Es gibt für Tests mit Gleitkommaarithmetik eine andere Assertion, die auf
   "fast gleich" prüft statt auf "gleich". Damit lässt sich der Test `test_sqrt` doch noch retten.  
   Bauen Sie den Test entsprechend um und aktivieren Sie ihn wieder.
   Nehmen Sie zur Kenntnis, was diese Assertion intern tut (rechte Spalte der Tabelle).
 - [EC] Lassen Sie beide Tests laufen.
+
+
+### Test mit erwarteter Exception
+ 
 - [ER] Schreiben Sie einen dritten Test, der sicherstellt, dass `math.sqrt(-1)` genau die
   in dessen Dokumentation angekündigte Exception erzeugt.
   Wählen Sie einen beschreibenden Namen für den Test.
