@@ -22,7 +22,7 @@ Welche der vorgestellten Ideen helfen Ihnen Ihrer Meinung nach beim Debugging?
 Wenn Sie keine der Ideen relevant für Debugging finden: Wieso ist das so?
 
 [EQ] Abschnitt 6.6 versucht die im vorhergehenden Text eingeführten Begriffe "Taktik", "Heuristik" 
-und "Stategie" auf das Debugging anzuwenden. 
+und "Strategie" auf das Debugging anzuwenden. 
 Dazu versucht er, das Vorgehen mittels einer Militäranalogie und mittels der Erstellung und 
 Auswertung einer [TERMREF::Hypothese] zu vermitteln.
 Sind diese Ansätze für Sie verständlich?
