@@ -337,6 +337,27 @@ z.B. `Content-Type:`, `Set-Cookie:`, `Cache-Control:`.
 [HREF::https://de.wikipedia.org/wiki/Liste_der_HTTP-Headerfelder]
 [ENDTERM]
 
+[TERM::HTML|Hypertext Markup Language]
+HTML steht für Hypertext Markup Language. Es eine Auszeichnungssprache, ähnlich wie [TERMREF::Markdown].
+Das Hyper in Hypertext bedeutet dabei, dass es sich eben nicht nur um einen normalen Text handelt, 
+sondern einen solchen, der um Verknüpfungen zu anderen Textstellen erweitert ist. 
+In HTML wird dieses Prinzip umgesetzt, indem spezielle Zeichenfolgen in den Text eingefügt werden. 
+Diese Markierungen ermöglichen nicht nur die angespochenen Verknüpfungen, sondern auch eine Strukturierung des Inhalts.
+
+[HREF::https://wiki.selfhtml.org/wiki/HTML/Tutorials/Entstehung_und_Entwicklung]
+[ENDTERM]
+
+[TERM::HTML-Tag|HTML-Element]
+Eine Markierung in einem [TERMREF::HTML]-Dokument, die angibt wo bestimmte Teile eines Dokuments beginnen und enden. Ein solches Tag besteht am Beginn eines Dokumentteiles aus einem Namen, der in spitze Klammern eingeschlossen ist. Für das Ende fügt man vor dem Namen noch einen Schrägstrich hinzu. 
+Eines dieser Tags heißt z.B. `h1` und markiert die Haupt-Überschrift einer Seite:
+
+```html
+<h1>Erste Schritte in HTML</h1>
+```
+
+Das Anfangs-Tag, den Inhalt dazwischen und das Ende-Tag bilden zusammen ein HTML-Element.
+[ENDTERM]
+
 [TERM::HTTP|Hypertext Transfer Protocol]
 Ein [TERMREF::Protokoll], das für die Übertragung von Daten im World Wide Web verwendet wird.
 Ermöglicht die Kommunikation zwischen Client-Anwendungen (wie Webbrowsern) und Servern,

@@ -1,56 +1,32 @@
 title: Erste Schritte in HTML
 stage: alpha
 timevalue: 1.0
-difficulty: 1
+difficulty: 2
 ---
-TODO_1_müllers
-
-- Background dient bei uns zur Movation; Wissensvermittlung passiert in instructions.
-- Wir brauchen einen Glossareintrag HTML, da passt vieles vom jetztigen Background rein.
-- Texteditor und Im-Browser-Öffnen eignen sich nicht für [EC], auch die anderen solchen Schritte nicht.
-- Manche davon gehen als [ER], wenn man am Ende die HTML-Datei abgibt.
-- Die darf dann aber nicht `index.html` heißen, sondern `HTMLErsteSchritte.html`.
-- Spätestens für den "Grundstruktur"-Teil gehört eine Referenzquelle angegeben.
-  Ebenso im Glossareintrag.
-- Die Beschreibung für Listen ist ganz schön abstrakt. Unter "sehr einfach" fällt das nicht,
-  schon gar nicht (später mal) für Nichtinformatiker_innen.
-  Es gibt keinen Grund, den Leuten das ohne ein Beispiel zuzumuten; damit fährt man deren
-  Einstellung gegenüber dem ProPra sauer, das dürfen wir nicht machen.
-- So ein verschämtes "In Teilen: Quelle: SelfHTML" gaaanz unten ist nicht unser Stil.
-  Sondern wir machen die Quelle direkt bei der ersten Nutzung sichtbar:
-  "Aus ... stammt folgendes Beispiel" oder so.
 
 [SECTION::goal::experience]
 
+- Ich kann Unterschiede in der Interpretation eines Textdokuments und eines HTML-Dokuments durch einen Browser benennen.
 - Ich kann HTML-Elemente identifizieren und einige einfache HTML-Elemente anwenden.
 - Ich kann mit der Grundstruktur eines HTML-Dokuments umgehen.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-HTML steht für Hypertext Markup Language. Es eine Auszeichnungssprache, ähnlich wie das Markdown, das in diesem Kurs an vielen Orten verwendet wird. 
-Das Hyper in Hypertext bedeutet dabei, dass es sich eben nicht nur um einen normalen Text handelt, 
-sondern einen solchen, der um Verknüpfungen zu anderen Textstellen erweitert ist. 
-In HTML (genau wie auch in Markdown) wird dieses Prinzip umgesetzt, indem spezielle Zeichenfolgen in den Text eingefügt werden. 
-Diese Markierungen ermöglichen nicht nur die angespochenen Verknüpfungen, sondern auch eine Strukturierung des Inhalts.
-
-Diese **Tag** genannten Markierungen geben an, wo bestimmte Teile eines Dokuments beginnen und enden. Ein solches Tag besteht am Beginn eines Dokumentteiles aus einem Namen, der in spitze Klammern eingeschlossen ist. Für das Ende fügt man vor dem Namen noch einen Schrägstrich hinzu. 
-Eines dieser Tags heißt `h1` und markiert die Haupt-Überschrift einer Seite:
-
-```html
-<h1>Erste Schritte in HTML</h1>
-```
-
-Das Anfangs-Tag, den Inhalt dazwischen und das Ende-Tag bilden zusammen ein HTML-Element.
+[TERMREF::HTML] ist die Grundlage einer jeden im Browser angezeigten Webseite. 
+Diese Aufgabe beschäftigt sich damit, wie der Browser ein HTML-Dokument interpretiert und insbesondere mit den Basics dieser Auszeichnungssprache. 
+Mit einem Beispiel wird eine erste simple Webseite erstellt, anhand deren erste grundlegenede [TERMREF2::HTML-Element::-e] erkundet werden können. 
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-In dieser Aufgabe soll eine exemplarische Firmenwebseite von einem Konzepttext ohne jegliches Markup in ein HTML-Dokument ausgebaut werden.
+In dieser Aufgabe, angelehnt an die ersten Schritte des [SelfHTML](http://de.selfhtml.org)-Tutorials, 
+soll eine exemplarische Firmenwebseite von einem Konzepttext ohne jegliche Auszeichnungen in ein HTML-Dokument ausgebaut werden.
+
 ```text
 Softwareschmide ProPy, ihre Werkstatt für geniale Programme
 
-Willkommen bei der Softwareschmiede Meier im Internet!
+Willkommen bei der Softwareschmiede ProPy im Internet!
     
 Wir sind seit einigen Jahren darauf spezialisiert, alle Kundenwünsche zu erfüllen. In unserer 
 Werkstatt produzieren wir selbst - mit Python.
@@ -71,26 +47,46 @@ Angefangen hat alles mit dem Programmierpraktikum. Seitdem betreiben wir Python-
 Zunächst haben wir in der Universität zu Softwareprojekten beigetragen und dann nach und nach auch mehr und mehr externe Aufträge angenommen.
 Heute bieten wir unsere Leistung in ganz Europa an.
 ```
-* [EC] Kopieren sie den Text in einen Texteditor Ihrer Wahl und speichern Sie ihn als `index.txt` ab. Öffnen Sie die Textdatei in Ihrem Browser.  
-* [EC] Ändern Sie im nächsten Schritt die Dateiendung auf `.html` und öffnen Sie die umbenannte Datei im Browser.  
+
+* [ER] Im ersten Schritt möchten wir uns damit vertraut machen, wie der Browser mit einer HTML-Datei im Unterschied zu einer Textdatei umgeht und unsere Arbeitsdatei für diese Aufgabe vorbereiten.
+    - Kopieren sie den Text in einen Texteditor Ihrer Wahl und speichern Sie ihn als `HTMLErsteSchritte.txt` ab. Öffnen Sie die Textdatei in Ihrem Browser.  
+    - Ändern Sie im nächsten Schritt die Dateiendung auf `.html` und öffnen Sie die umbenannte Datei im Browser.  
 * [EQ] Welche Änderungen haben sich ergeben? Beschreiben Sie, was Sie beobachten können.  
 
-Wie oben bereits geschrieben, wird die Hauptüberschrift eines Dokuments mit dem `h1`-Element ausgezeichnet. Weitere, untergeordnete Überschriftenebenen werden von 2-6 durchnummeriert, also `h2`, `h3`, ..., `h6`. Damit lässt sich die Struktur eines HTML-Dokuments bereits gut unterteilen.
+Die Hauptüberschrift eines Dokuments wird mit dem `h1`-Element ausgezeichnet. 
+Weitere, untergeordnete Überschriftenebenen werden von 2-6 durchnummeriert, also `h2`, `h3`, ..., `h6`. 
+Damit lässt sich die Struktur eines HTML-Dokuments bereits gut unterteilen.
 
-Ein Textabsatz wird grundsätzlich mit dem Tag `<p>` begonnen und mit `</p>` beendet. Der Name für das `p`-Element entstammt dabei dem Englischen: *paragraph* bedeutet "Absatz".
+Ein Textabsatz wird grundsätzlich mit dem Tag `<p>` begonnen und mit `</p>` beendet. 
+Der Name für das `p`-Element entstammt dabei dem Englischen: *paragraph* bedeutet "Absatz".
 
-* [EC] Ergänzen Sie im Dokument `index.html` die Markierungen für Überschriften und vorhandene Absätze. Speichern Sie die Datei und laden Sie die Webseite im Browser neu.
+* [ER] Ergänzen Sie im Dokument `HTMLErsteSchritte.html` die Markierungen für Überschriften und vorhandene Absätze. Speichern Sie die Datei und laden Sie die Webseite im Browser neu.
 * [EQ] Beschreiben Sie, wie sich die Webseite verändert hat.
 
-Im Entwurf gilt es jetzt noch die aufgeführten Leistungen als Liste darzustellen. In HTML gibt es zwei Arten von Listen. Geortnete und ungeordnete Listen. Geordnete Listen haben fortlaufend gekennzeichnete Einträge (z.B. 1,2,3,... oder a,b,c,...). Ungeordnete Listen entsprechen einer Strichpunktliste. Um in HTML nun Listen zu markieren, müssen zwei Dinge getan werden. Zunächst die Liste als solches markieren und dann jeden einzelnen Listeneintrag. Eine Liste startet so also entweder mit `<ul>` (für *unordered* - ungeordnet) oder `<ol>` (für *ordered* - geordnet). Es folgen die Listeneinträge mit `<li> ... </li>`. Schließlich wird die Liste mit `</ul>` bzw. `</ol>` beendet.
+Im Entwurf gilt es jetzt noch die aufgeführten Leistungen als Liste darzustellen. 
+In HTML gibt es zwei Arten von Listen. Geordnete und ungeordnete Listen. 
+Geordnete Listen haben fortlaufend gekennzeichnete Einträge (z.B. 1,2,3,... oder a,b,c,...). Ungeordnete Listen entsprechen einer Strichpunktliste. 
+Um in HTML nun Listen zu markieren, müssen zwei Dinge getan werden. Zunächst die Liste als solches markieren und dann jeden einzelnen Listeneintrag. 
+Eine Liste startet so also entweder mit `<ul>` (für *unordered* - ungeordnet) oder `<ol>` (für *ordered* - geordnet). 
+Es folgen die Listeneinträge mit `<li> ... </li>`. Schließlich wird die Liste mit `</ul>` bzw. `</ol>` beendet. Ein Beispiel:
+```html
+<ol>
+  <li>Erster Punkt</li>
+  <li>Zweiter Punkt</li>
+  <li>Dritter Punkt</li>
+</ol>
+```
 
-* [EC] Ergänzen Sie das HTML-Markup für Liste der Leistungen im HTML-Dokument.
+* [ER] Ergänzen Sie das HTML-Markup für Liste der Leistungen im HTML-Dokument.
 
 Nun können Sie auch Listen ineinander verschachteln. Dazu fügen Sie innerhalb der Liste einfach eine weitere Liste ein. Anstatt eines `li`-Elements fügen Sie so z.B. ein `ul`-Element ein. Dies erlaubt es zu einzelnen Listenelementen Unterpunkte einzufügen.
 
-* [EC] Unter dem Stichpunkt "Programme nach Ihren Wünschen" fügen Sie folgende Unterpunkte ein: Bibliotheken, Frameworks, Werkzeuge.
+* [ER] Unter dem Stichpunkt "Programme nach Ihren Wünschen" fügen Sie folgende Unterpunkte ein: Bibliotheken, Frameworks, Werkzeuge.
 
-Eine Konvention für HTML-Dokumente ist, dass sie einer ganz bestimmten Grundstruktur folgen. Insbesondere soll es in jeder HTML-Datei einen Kopf geben, in dem Informationen für den Browser stehen, wie z.B. der Titel der Webseite. Dieser Bereich wird in das `head`-Element eingeschlossen. Zwischen `<body>` und `</body>` findet sich der eigentliche Inhalt wieder. Die Grundstruktur sieht dabei aus wie folgt:
+Eine Konvention für HTML-Dokumente ist, dass sie einer ganz bestimmten Grundstruktur folgen. 
+Insbesondere soll es in jeder HTML-Datei einen Kopf geben, in dem Informationen für den Browser stehen, wie z.B. der Titel der Webseite. 
+Dieser Bereich wird in das `head`-Element eingeschlossen. 
+Zwischen `<body>` und `</body>` findet sich der eigentliche Inhalt wieder. Die HTML5-Grundstruktur sieht dabei aus wie folgt:
 
 ```html
 <!doctype html>
@@ -105,8 +101,10 @@ Eine Konvention für HTML-Dokumente ist, dass sie einer ganz bestimmten Grundstr
   </body>
 </html>
 ```
+Referenz mit weiteren Hintergründen: [HREF::https://wiki.selfhtml.org/wiki/HTML/Tutorials/Grundger%C3%BCst]
 
-* [EC] Ergänzen Sie die Grundstruktur. Finden Sie das Element, das dem Browser den Titel der Webseite mitteilt und geben Sie der Webseite einen passenden Titel.
+* [ER] Ergänzen Sie die Grundstruktur. Finden Sie das Element, das dem Browser den Titel der Webseite mitteilt und geben Sie der Webseite einen passenden Titel.
+Den Titel finden Sie für gewöhnlich als Überschrift des Tabs im Browser wieder.
 
 [ENDSECTION]
 [SECTION::submission::reflection,program]
@@ -116,10 +114,11 @@ Eine Konvention für HTML-Dokumente ist, dass sie einer ganz bestimmten Grundstr
 
 [ENDSECTION]
 
-In Teilen: Quelle: [SelfHTML](http://de.selfhtml.org)
 
 [INSTRUCTOR::Auf Korrektheit achten]
-Im Markdown-Dokument sind zwei Fragen zu Beobachtungen zu beantworten. Hier ist das Ziel eigentlich hauptsächlich, dass man sich mit den Fragen befasst hat, um ein bisschen zu reflektieren, wie der Browser HTML interpretiert.
+Im Markdown-Dokument sind zwei Fragen zu Beobachtungen zu beantworten. 
+Hier ist das Ziel eigentlich hauptsächlich, dass man sich mit den Fragen befasst hat, um ein bisschen zu reflektieren, wie der Browser HTML interpretiert.
 
-Das HTML sollte möglichst korrekt sein. Browser sind z.T. sehr gnädig auch fehlerhaftes HTML zu akzeptieren. Um sich nicht etwas falsches anzugewöhnen, ist es hier sicherlich sinnvoll relativ penibel mit Fehlern umzugehen.
+Das HTML sollte möglichst korrekt sein. Browser sind z.T. sehr gnädig auch fehlerhaftes HTML zu akzeptieren. 
+Um sich nicht etwas falsches anzugewöhnen, ist es hier sicherlich sinnvoll relativ penibel mit Fehlern umzugehen.
 [ENDINSTRUCTOR]
