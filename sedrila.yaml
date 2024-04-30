@@ -200,6 +200,7 @@ chapters:
       - slug: Debugging-Praxis
   - slug: Bestandscode
     taskgroups:
+      - slug: Entwurfsentscheidungen
       - slug: Refactoring-Grundlagen
       - slug: Refactoringpraxis
       - slug: SystemUnderTest
