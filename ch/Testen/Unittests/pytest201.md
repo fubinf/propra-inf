@@ -2,7 +2,7 @@ title: Pytest in Python - Anwendung
 stage: draft
 timevalue: 2.0
 difficulty: 2
-assumes: pytest101, LokalesDeployment
+assumes: m_pytest, LokalesDeployment
 ---
 
 [SECTION::goal::idea]

@@ -47,7 +47,6 @@ We will modify these rules over time when others appear more useful.
 
 
 - ch/Testen/Unittests/tdd.md (Ruhe->DM->LP)
-- ch/Testen/Unittests/pytest101.md (Pietrak und Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest104.md (Pietrak und Ruhe->DM->LP)

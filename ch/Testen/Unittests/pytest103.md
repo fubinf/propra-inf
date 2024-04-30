@@ -2,7 +2,7 @@ title: Pytest - Marks
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-assumes: pytest101, pytest102
+assumes: m_pytest, pytest102
 ---
 
 [SECTION::goal::idea]

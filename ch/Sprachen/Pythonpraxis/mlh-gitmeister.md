@@ -2,7 +2,7 @@ title: "My Little Helpers: gitmeister: find top contributors"
 stage: beta
 timevalue: 4.0
 difficulty: 3
-assumes: regex_einfuehrung, pip, m_subprocess, sorted_and_sort, pytest101
+assumes: regex_einfuehrung, pip, m_subprocess, sorted_and_sort, m_pytest
 requires: mlh-lsnew
 ---
 

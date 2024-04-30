@@ -2,7 +2,7 @@ title: Pytest - Parametrisierte Tests
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-assumes: pytest101, pytest103
+assumes: m_pytest, pytest103
 ---
 
 [SECTION::goal::idea]

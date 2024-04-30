@@ -2,7 +2,7 @@ title: TDD mit Pytest in der Paar-Anwendung
 stage: alpha
 timevalue: 1.0
 difficulty: 4
-assumes: pytest101, pytest201, tdd, tdd_pp
+assumes: m_pytest, pytest201, tdd, tdd_pp
 requires: LokalesDeployment
 ---
 [SECTION::goal::experience]

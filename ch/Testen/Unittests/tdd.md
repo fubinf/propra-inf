@@ -7,7 +7,7 @@ explains: TDD
 TODO_1_ruhe:
 - TDD nur Erklärenkönnen ist nicht unser Ding. 
 - Bitte in eine praktische Aufgabe verwandeln.
-- Davor braucht man die technischen Grundlagen für Unittests, pytest101 vermutlich.
+- Davor braucht man die technischen Grundlagen für Unittests, m_pytest vermutlich.
 - Dann braucht man eine Quelle, die ein Beispiel theoretisch durchexerziert, mit Diskussion
   vor allem des Refaktoringschritts.
 - Dann sollen die Studis selber ein Beispiel durchlaufen, das mindestens drei Tests braucht.
