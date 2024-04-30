@@ -499,7 +499,7 @@ der Liste liegt. Das bedeutet, dass die Hälfte der Zahlen in der Liste größer
 und die andere Hälfte kleiner ist.
 [ENDTERM]
 
-[TERM::Modul]
+[TERM::Modul|Module]
 "Modul" ist in der Softwaretechnik ein abstraktes Konzept.
 Es beschreibt eine Sammlung von Programmelementen, die zusammen entworfen werden
 und ein Innen (Einzelheiten des Moduls, Implementierungsdetails) 
