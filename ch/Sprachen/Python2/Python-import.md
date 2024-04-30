@@ -4,6 +4,19 @@ timevalue: 0.75
 difficulty: 2
 ---
 
+TODO_1_alrwasheda
+
+- "Um mit den Funktionen sayHi oder sayBye in anderen Dateien zu arbeiten":
+  In welchen anderen geht das denn? Das ist gar nicht so simpel.  
+  Man kann kaum über `import` reden, ohne `PYTHONPATH` zu diskutieren. Bitte zufügen.
+- Statt die Erklärungen auf dem Silbertablett zu bekommen (die dann vorbeirauschen)
+  sollten die Studis praktische Aufträge bekommen, in deren Rahmen sie das in einer
+  geeigneten Quelle selbst nachlesen. F1 und F2 gefallen mir nicht
+- F3 wäre viel besser, wenn es mehr als eine Möglichkeit gäbe, denn dann erst versteht 
+  man das Problem von `import *`.
+- F4 kann man machen, aber der Autor ist dabei bitte egal.
+
+
 [SECTION::goal::idea]
 
 - Ich weiß, wie ich externe Module in Python importieren kann, um sie in meinem Code zu verwenden.
