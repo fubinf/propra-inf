@@ -755,6 +755,13 @@ dass früher funktionierende Teile einer Software nach einer Änderung weiterhin
 funktionieren und somit unerwünschte Seiteneffekte schnellstmöglich erkannt werden.
 [ENDTERM]
 
+[TERM::REPL]
+REPL steht für eine "Read-Eval-Print-Loop", also das wiederholte Ausführung vom Auslesen einer
+Eingabe des Benutzers, der Auswertung dieser Eingabe und dem Ausgeben des Ergebnisses.  
+Wenn Sie `python` ohne weitere Argumente ausführen, landen Sie beispielsweise in einer solchen REPL
+und können dort nach belieben Code ausführen.
+[ENDTERM]
+
 [TERM::Request|Anfrage]
 Nachricht, die im Rahmen eines [TERMREF2::Protokoll::-s] ein Client an einen Server sendet,
 um Daten anzufordern oder eine Operation auszulösen.

@@ -207,6 +207,7 @@ chapters:
     taskgroups:
       - slug: Web-Grundlagen
       - slug: HTML
+      - slug: JavaScript
       - slug: HTTP
   - slug: Werkzeuge
     taskgroups:
