@@ -1,5 +1,5 @@
 title: Unittest in Python - Mocking Anwendung
-stage: beta
+stage: alpha
 timevalue: 4.0
 difficulty: 4
 assumes: m_unittest, mocking

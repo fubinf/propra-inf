@@ -1,5 +1,5 @@
 title: GitHub Action - Unittests in der Pipeline
-stage: beta
+stage: alpha
 timevalue: 0.5
 difficulty: 2
 assumes: m_unittest, tdd, tdd_pp

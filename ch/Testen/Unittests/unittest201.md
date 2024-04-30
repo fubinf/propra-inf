@@ -1,5 +1,5 @@
 title: Unittest in Python - Anwendung
-stage: beta
+stage: alpha
 timevalue: 1.5
 difficulty: 3
 assumes: m_unittest, unittest102, LokalesDeployment

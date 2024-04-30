@@ -1,5 +1,5 @@
 title: Mocking in pytest
-stage: beta
+stage: alpha
 timevalue: 2.0
 difficulty: 3
 assumes: m_pytest, pytest102

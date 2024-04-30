@@ -231,6 +231,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   [PARTREF::einkaufsliste-defekt3], [PARTREF::einkaufsliste-postmortem] zugefügt
 - Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_hashlib] zugefügt
 - Aufgaben Testen/Unittests/[PARTREF::m_unittest] und [PARTREF::m_pytest] zugefügt
+- unreife Aufgaben coverage, mocking und unittest201,202,301 zurückgezogen
 - ...
 
 
