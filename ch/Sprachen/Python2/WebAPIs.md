@@ -18,5 +18,3 @@ arbeiten möchten.
 
 !!! submission
     Beschreiben Sie das Ergebnis Ihrer Recherche. 
-
-TODO_1: Admonitions entfernen und überarbeiten
