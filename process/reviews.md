@@ -35,6 +35,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/Python1/PythonIf.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonElifElse.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
 - ch/Sprachen/Python1/PythonFunctions.md (Alrwasheda->Prechelt)
+- ch/Sprachen/Python2/Python-import.md (Alrwasheda->Prechelt)
 
 
 - ch/Bibliotheken/Dokumentation/changelog.md (Prechelt->Ruhe->Prechelt) Keine Anmerkungen.
