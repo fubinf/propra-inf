@@ -29,66 +29,65 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Lutz Prechelt
 
 
-- ch/Sprachen/Python1/PythonIntegers.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
-- ch/Sprachen/Python1/PythonFloats.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
-- ch/Sprachen/Python1/PythonTypeConversion.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
-- ch/Sprachen/Python1/PythonIf.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
-- ch/Sprachen/Python1/PythonElifElse.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt)
-- ch/Sprachen/Python1/PythonFunctions.md (Alrwasheda->Prechelt)
-- ch/Sprachen/Python2/Python-import.md (Alrwasheda->Prechelt)
+- ch/Sprachen/Python1/PythonIntegers.md (Alrwasheda->LP->HA->LP)
+- ch/Sprachen/Python1/PythonFloats.md (Alrwasheda->LP->HA->LP)
+- ch/Sprachen/Python1/PythonTypeConversion.md (Alrwasheda->LP->HA->LP)
+- ch/Sprachen/Python1/PythonIf.md (Alrwasheda->LP->HA->LP)
+- ch/Sprachen/Python1/PythonElifElse.md (Alrwasheda->LP->HA->LP)
+- ch/Sprachen/Python1/PythonFunctions.md (Alrwasheda->LP)
 
 
-- ch/Bibliotheken/Dokumentation/changelog.md (Prechelt->Ruhe->Prechelt) Keine Anmerkungen.
-- ch/Bibliotheken/Dokumentation/changelog2.md (Prechelt->Ruhe->Prechelt) Zwei Übungen ergänzt, eine
+- ch/Bibliotheken/Dokumentation/changelog.md (Prechelt->RR->LP) Keine Anmerkungen.
+- ch/Bibliotheken/Dokumentation/changelog2.md (Prechelt->RR->LP) Zwei Übungen ergänzt, eine
   davon auf das SUT bezigen, um nachzuvollziehen, dass ein vorhandenes Changelog schöner ist, als
   eins aus einem wenig bekannten Produkt zu extrahieren. (darauf aufbauend könnte man noch mehr in
   die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
 
-- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->Hofmann)
+- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->CH)
 
 
-- ch/Testen/Unittests/tdd.md (Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/pytest101.md (Pietrak und Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/pytest104.md (Pietrak und Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/pytest201.md (Ruhe->Müllers->Prechelt)
-- ch/Testen/Unittests/unittest201.md (Ruhe->Müllers->Alrwasheda->Prechelt):
+- ch/Testen/Unittests/tdd.md (Ruhe->DM->LP)
+- ch/Testen/Unittests/pytest101.md (Pietrak und Ruhe->DM->LP)
+- ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->DM->LP)
+- ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->DM->LP)
+- ch/Testen/Unittests/pytest104.md (Pietrak und Ruhe->DM->LP)
+- ch/Testen/Unittests/pytest201.md (Ruhe->DM->LP)
+- ch/Testen/Unittests/unittest201.md (Ruhe->DM->HA->LP):
   Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
   kann verzichtet werden. Bitte überprüfen.
   Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
-- ch/Testen/Unittests/unittest202.md (Ruhe->Müllers->Alrwasheda->Prechelt)
-- ch/Testen/Unittests/unittest301.md (Ruhe->Müllers->Alrwasheda->Prechelt)
+- ch/Testen/Unittests/unittest202.md (Ruhe->DM->HA->LP)
+- ch/Testen/Unittests/unittest301.md (Ruhe->DM->HA->LP)
 - ch/Testen/Unittests/unittest203.md (Ruhe->Müller)
 - ch/Testen/Unittests/pytest202.md (Ruhe->Müller)
-- ch/Testen/Unittests/coverage.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
-- ch/Testen/Unittests/mocking.md (Pietrak und Ruhe->Müllers->Alrwasheda->Prechelt)
-- ch/Testen/Unittests/pytestBenchmark.md (Ruhe->Müllers)
-- ch/Testen/API/index.md (Ruhe->Hofmann)
-- ch/Testen/API/ResponseApi.md (Ruhe->Hofmann)
-- ch/Testen/API/CRUDApi.md (Ruhe->Hofmann)
-- ch/Testen/API/RestApi.md (Ruhe->Hofmann)
-- ch/Testen/Testframeworks/index.md (Ruhe->Hofmann)
-- ch/Testen/Testframeworks/Robot.md (Ruhe->Hofmann)
-- ch/Testen/SUT/LokalesDeployment.md (Ruhe->Hofmann)
+- ch/Testen/Unittests/coverage.md (Pietrak und Ruhe->DM->HA->LP)
+- ch/Testen/Unittests/mocking.md (Pietrak und Ruhe->DM->HA->LP)
+- ch/Testen/Unittests/pytestBenchmark.md (Ruhe->DM)
+- ch/Testen/API/index.md (Ruhe->CH)
+- ch/Testen/API/ResponseApi.md (Ruhe->CH)
+- ch/Testen/API/CRUDApi.md (Ruhe->CH)
+- ch/Testen/API/RestApi.md (Ruhe->CH)
+- ch/Testen/Testframeworks/index.md (Ruhe->CH)
+- ch/Testen/Testframeworks/Robot.md (Ruhe->CH)
+- ch/Testen/SUT/LokalesDeployment.md (Ruhe->CH)
 
 
-- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->Hofmann)
+- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH)
 
 
-- ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->Alrwasheda->Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/open_closed_prinzip.md (Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->Prechelt)
-- ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->Prechelt)
+- ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->HA->DP->LP)
+- ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->LP)
+- ch/Bestandscode/Refactoring-Grundlagen/open_closed_prinzip.md (Pietrak->LP)
+- ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->LP)
+- ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->LP)
+- ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->LP)
 - ch/Bestandscode/Refactoringpraxis/gildedrose_tests.md (Pietrak)  !!!
 - ch/Bestandscode/Refactoringpraxis/gildedrose_refactor.md (Pietrak)
 - ch/Bestandscode/Refactoringpraxis/gildedrose_implementation.md (Pietrak)
 - ch/Bestandscode/Refactoringpraxis/gildedrose_reflexion.md (Pietrak)
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->Müllers)
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->DM)
 
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric)
@@ -98,9 +97,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Git/git-branches.md (Hüster)
 - ch/Werkzeuge/Git/git-rebase.md (Hüster)
 
-- ch/Werkzeuge/Linter/flake8.md (Ruhe->Alrwasheda->Hofmann)
-- ch/Werkzeuge/Linter/black.md (Ruhe->Alrwasheda->Hofmann)
-- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->Müllers)
+- ch/Werkzeuge/Linter/flake8.md (Ruhe->HA->CH)
+- ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH)
+- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->DM)
 
 - ch/Werkzeuge/Benutzerverwaltung/Dateiberechtigungen.md (Condric)
 - ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric)
@@ -117,9 +116,10 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Hanen Alrwasheda
 
-- ch/Sprachen/Python1/PythonComments.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt->Alrwasheda)
-- ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt->Alrwasheda)
-- ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->Prechelt->Alrwasheda->Prechelt->Alrwasheda) 
+- ch/Sprachen/Python1/PythonComments.md (Alrwasheda->LP->HA->LP->HA)
+- ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->LP->HA->LP->HA)
+- ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->LP->HA->LP->HA) 
+- ch/Sprachen/Python2/Python-import.md (Alrwasheda->P->A)
 - ...
 
 
@@ -135,20 +135,20 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Sven Hüster
 
-- ch/Sprachen/RegExp/log_sanitizer (Hüster->fertiggestellt-Prechelt->Hüster)
-- ch/Werkzeuge/Git/git-Fehlerbehebung.md (Hüster->Prechelt->Hüster)
+- ch/Sprachen/RegExp/log_sanitizer (Hüster->fertiggestellt-Prechelt->SH)
+- ch/Werkzeuge/Git/git-Fehlerbehebung.md (Hüster->LP->SH)
 
 - ...
 
 
 ## Reviews to do for Daniel Müllers
 
-- ch/Web/HTML/HTMLErsteSchritte.md (Müllers->Prechelt->Müllers)
+- ch/Web/HTML/HTMLErsteSchritte.md (Müllers->LP->DM)
 
 
 ## Reviews to do for Dominik Pietrak
 
-- ch/Debugging/Debuggingtools/IDE_debugging.md (Pietrak->Prechelt->Pietrak)  
+- ch/Debugging/Debuggingtools/IDE_debugging.md (Pietrak->LP->DP)  
   Bitte nochmal prüfen (ich habe einiges geändert), dann auf beta setzen.
 
 
@@ -156,35 +156,35 @@ We will modify these rules over time when others appear more useful.
 
 Bitte von oben nach unten abarbeiten:
 
-- ch/Testen/Testgrundlagen/Error.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt->Ruhe)
-- ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->Müllers->Prechelt->Ruhe->Prechelt->Ruhe)
-- ch/Testen/Testgrundlagen/Testcases.md (Ruhe->Müllers->Prechelt->Ruhe)
-- ch/Testen/Testgrundlagen/TestcasesExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
-- ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->Müllers->Prechelt->Ruhe)
-- ch/Testen/Testgrundlagen/TestDelimitations.md (Ruhe->Müllers->Prechelt->Ruhe)
-- ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->Müllers->Prechelt->Ruhe)
+- ch/Testen/Testgrundlagen/Error.md (Ruhe->DM->LP->RR->LP->RR)
+- ch/Testen/Testgrundlagen/ErrorExercise.md (Ruhe->DM->LP->RR->LP->RR)
+- ch/Testen/Testgrundlagen/Testcases.md (Ruhe->DM->LP->RR)
+- ch/Testen/Testgrundlagen/TestcasesExercise.md (Ruhe->DM->LP->RR)
+- ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->DM->LP->RR)
+- ch/Testen/Testgrundlagen/TestDelimitations.md (Ruhe->DM->LP->RR)
+- ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->DM->LP->RR)
 
-- ch/Testen/Unittests/unittest101.md (Ruhe->Müllers->Alrwasheda->Prechelt->Ruhe)
-- ch/Testen/Unittests/unittest102.md (Ruhe->Müllers->Alrwasheda->Ruhe)
-- ch/Testen/Unittests/freezegun.md (Ruhe->Müllers->Alrwasheda->Prechelt->Ruhe)
-- ch/Testen/Unittests/tdd_pp.md (Ruhe->Prechelt->Ruhe)
+- ch/Testen/Unittests/unittest101.md (Ruhe->DM->HA->LP->RR)
+- ch/Testen/Unittests/unittest102.md (Ruhe->DM->HA->RR)
+- ch/Testen/Unittests/freezegun.md (Ruhe->DM->HA->LP->RR)
+- ch/Testen/Unittests/tdd_pp.md (Ruhe->LP->RR)
 
-- ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->Prechelt->Ruhe)
+- ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->LP->RR)
 
-- ch/Bibliotheken/pip-popular/requests.md (Ruhe->Müllers->Prechelt->Ruhe)
+- ch/Bibliotheken/pip-popular/requests.md (Ruhe->DM->LP->RR)
 
-- ch/Sprachen/SQL/SQLBasic.md (Ruhe->Alrwasheda->Prechelt->Ruhe)  
+- ch/Sprachen/SQL/SQLBasic.md (Ruhe->HA->LP->RR)  
   Bitte verfrachten Sie den allgemeinen Teil von Background ins Glossar.
   Ein Eintrag für SQL, einer für DBMS/RDBMS, die aufeinander verweisen.
   Es bleibt nur der Hinweis auf SQlite in der Aufgabe stehen.
-- ch/Sprachen/SQL/SQLSelect.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
-- ch/Sprachen/SQL/SQLJoin.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
-- ch/Sprachen/SQL/SQLProject.md (Ruhe->Alrwasheda->Prechelt->Ruhe)
+- ch/Sprachen/SQL/SQLSelect.md (Ruhe->HA->LP->RR)
+- ch/Sprachen/SQL/SQLJoin.md (Ruhe->HA->LP->RR)
+- ch/Sprachen/SQL/SQLProject.md (Ruhe->HA->LP->RR)
 
 
 ## Reviews to do for Sven Wegner
 
-- ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner->Prechelt->Wegner):  
+- ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner->LP->SW):  
   Die Aufgabe ist in vieler Hinsicht super, aber Sie haben sie abermals nicht selber
   durchgeführt. Das funktioniert nicht!
   Bitte holen Sie das jetzt nach und prüfen Sie, ob ich alle ihre Fehler erwischt habe;
