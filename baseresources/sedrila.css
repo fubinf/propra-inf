@@ -495,7 +495,7 @@ summary {}
 }
 
 .glossary-termref-suffix::after {
-    content: "Def"
+    content: "B"
 }
 
 .glossary-termref-suffix {
