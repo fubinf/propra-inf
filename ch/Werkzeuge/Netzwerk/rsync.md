@@ -2,6 +2,7 @@ title: rsync
 stage: alpha
 timevalue: 1
 difficulty: 2
+assumes: Umgang-mit-Verzeichnissen
 ---
 [SECTION::goal::idea]
 - Ich verstehe wie rsync funktioniert und wie ich dieses anwende.
@@ -13,10 +14,8 @@ difficulty: 2
 
 [SECTION::instructions::detailed]
 
-Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/rsync/) von ubuntuusers über rsync durch.
-
-Lesen Sie insbesondere die Anwendung des Befehls und die Option `-a` und verstehen Sie, was diese 
-Option alles beinhaltet.
+Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/rsync/) von ubuntuusers über rsync durch.  
+Lesen Sie insbesondere den Abschnitt **Anwendung** und verstehen Sie, was die Option `-a` macht.
 
 <replacement id='targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
@@ -35,18 +34,37 @@ Es erstellt einen neuen Ordner `rsync_copy_data` mit 20 Textdateien.
 
 ### Nutzen von rsync
 
+Man muss immer darauf achten, wie die Befehle aussehen. Sonst hat man hinterher doppelt so viel 
+Arbeit. Schauen Sie sich in der nächsten Aufgabe beide Befehle genau an.
+
+- [EC] Erstellen Sie den Ordner `/tmp/propra_sync`.
 - [EQ] Führen Sie nacheinander beide Befehle aus und beschreiben Sie was sie beobachten:  
     `rsync -a /home/username/rsync_copy_data /tmp/propra_rsync/`  
     `rsync -a /home/username/rsync_copy_data/ /tmp/propra_rsync/`  
 
+Merken Sie sich dieses Verhalten von rsync. Es gibt weitere Kopier-Befehle, die eine ähnliche 
+Semantik haben.
+
 Wie im "Hintergrund" beschrieben, können Daten auf einen entfernten Pfad kopiert werden.  
+Lesen Sie unter dem Abschnitt **Beispiele** des Beitrags
+[Beitrag](https://wiki.ubuntuusers.de/rsync/#Beispiele) von ubuntuusers über rsync die Beispiele 
+durch.
+
 - [EC] Kopieren Sie die Daten von Ihrem System auf den Zielserver.  
   Andersrum funktioniert es auch.
 - [EC] Kopieren Sie die Daten vom Zielserver auf ihr System.
-- [EC] Fügen Sie der Datei `/home/username/rsync_copy_data/datei_1.txt` zufälligen Text hinzu.  
-  Kopieren Sie die Datei per rsync auf in den `/tmp/propra_sync` Ordner. 
-- [EQ] Was fällt Ihnen auf?
 
+rsync hat einen ganz bestimmten Vorteil gegenüber anderen Kopier-Befehlen. Es vergleicht die zu 
+kopierenden Daten, bevor sie kopiert werden, somit werden nur die Daten kopiert, die verändert 
+wurden. Somit wird rsync gerne als Backup-Lösung genutzt, da es nur die veränderten Daten kopiert. 
+
+Zur Veranschaulichung ändern wir eine Datei aus den vorhin erstellten Dateien und kopieren Sie in 
+einen Ordner.
+
+- [EC] Kopieren Sie die Dateien aus dem Ordner `/home/username/rsync_copy_data` per rsync in den `/tmp/propra_sync` Ordner. 
+- [EC] Fügen Sie der Datei `/home/username/rsync_copy_data/datei_1.txt` zufälligen Text hinzu.  
+- [EC] Kopieren Sie die Dateien aus dem Ordner `/home/username/rsync_copy_data` per rsync in den `/tmp/propra_sync` Ordner. 
+- [EC] Vergewissern Sie sich, dass die Datei `datei1.txt` in den `/tmp/propra_sync` Ordner geändert wurde.
 
 [ENDSECTION]
 
