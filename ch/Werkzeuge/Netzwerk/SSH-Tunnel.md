@@ -48,7 +48,7 @@ Schauen Sie sich die [Beispiele](https://wiki.ubuntuusers.de/SSH/#scp) von `scp`
 
 Stellen Sie sicher, dass sie ein [PARTREF::venv] auf Ihrem System eingerichtet haben.
 
-- [EC] Installieren Sie `Flask` mit pip in ihrer [TERMREF::venv].
+- [EC] Installieren Sie `Flask` mit pip in ihrer [TERMREF::venv] auf dem Zielserver.
 
 Schauen Sie sich die [Beispiele](https://wiki.ubuntuusers.de/SSH/#SSH-Tunnel) von SSH-Tunneln von 
 ubuntuusers an.  
