@@ -225,9 +225,17 @@ DNS-Ressourceneinträge für eine bestimmte Domain zu erhalten.
 [ENDTERM]
 
 [TERM::DRY|DRY-Prinzip|Don't repeat yourself]
-DRY steht für "don't repeat yourself" ist ein Prinzip, dass besagt, Redundanz zu vermeiden oder 
-zumindest zu reduzieren.  
+DRY steht für "don't repeat yourself".
+Das Prinzip besagt, man solle Redundanz vermeiden oder zumindest reduzieren,
+also nicht gleiche Information (etwa bestimmte Strings) oder Anweisungen an mehreren Stellen
+im Programm haben.  
+DRY ist tendenziell eine sehr gute Idee, aber wie fast alles kann man es übertreiben
+und handelt sich dann mehr Probleme ein als man damit löst.   
 Das gegenteilige Prinzip wird [TERMREF::WET] genannt.
+
+[OAOO auf c2.com](https://wiki.c2.com/?OnceAndOnlyOnce)  
+[DRY auf c2.com](https://wiki.c2.com/?DontRepeatYourself)  
+[TwiceAndOnlyTwice](https://wiki.c2.com/?TwiceAndOnlyTwice)
 [ENDTERM]
 
 [TERM::DSL|Domänenspezifische Sprache]
@@ -557,6 +565,10 @@ Handhabung von Fehlern oder ungültigen Daten.
 [ENDTERM]
 
 ## O
+
+[TERM::OAOO|Once and only once]
+Siehe [TERMREF::DRY].
+[ENDTERM]
 
 [TERM::OpenAPI|Swagger]
 Ein Standard, der die Dokumentation
@@ -1018,7 +1030,8 @@ Bestätigung durch Überprüfung, dass ein Arbeitsergebnis den Bedürfnissen ein
 
 [TERM::WET|Write every time|Write everything twice]
 Das Gegenteil zu [TERMREF::DRY].  
-Während WET nicht als zu verfolgendes Prinzip gilt, ist es manchmal eine gute Variante, um Code 
+Während WET nicht als allgemein zu verfolgendes Prinzip gilt, 
+ist es in Einzelfällen sehr wohl eine gute Variante, um Code 
 lesbarer und wartbarer zu machen.
 [ENDTERM]
 
