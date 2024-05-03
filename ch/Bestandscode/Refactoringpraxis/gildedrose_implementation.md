@@ -23,12 +23,12 @@ Folgende Arbeitsschritte sind in jeder Variante einmal durchzugehen.
 - [EC] Lassen Sie die Testfälle laufen und überzeugen Sie sich, dass alle Testfälle **außer** den 
   Testfällen zu den "Conjured items" erfolgreich sind.
 - Machen Sie einen Commit mit Ihren Ergänzungen.
-- [EC] `git -p show HEAD`
+- [EC] `git -P show HEAD`
 - Implementieren Sie in `gilded_rose.py` die Handhabung der "Conjured items".  
   Beachten Sie dabei, dass Sie die Struktur des Codes nicht mehr ändern müssen.
 - [EC] Lassen Sie die Testfälle laufen und überzeugen Sie sich, dass alle Tests erfolgreich sind.
 - Machen Sie einen Commit mit Ihren Ergänzungen.
-- [EC] `git -p show HEAD`
+- [EC] `git -P show HEAD`
 [ENDSECTION]
 
 [SECTION::submission::program]

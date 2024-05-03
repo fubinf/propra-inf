@@ -85,7 +85,7 @@ Setzen Sie `number` auf 2, 3, 4, 5 und 6.
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Wertebereichsdefekte.py` korrigieren.
 - Machen sie einen Commit `Wertebereichsdefekte.py corrected`, der nur genau diese Modifikation enthält.
-- [EC] `git -p show HEAD`
+- [EC] `git -P show HEAD`
 
 [ENDSECTION]
 

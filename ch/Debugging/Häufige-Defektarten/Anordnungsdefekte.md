@@ -194,7 +194,7 @@ opponent_hand = {"2": ["clubs", "spades"]}
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Anordnungsdefekte.py` korrigieren.
 - Machen sie einen Commit `Anordnungsdefekte.py corrected`, der nur genau diese modifizierte Datei enthält.
-- [EC] `git -p show HEAD`
+- [EC] `git -P show HEAD`
 
 [ENDSECTION]
 

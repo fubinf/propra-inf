@@ -78,7 +78,7 @@ finden Sie in den Aufgaben [PARTREF::m_json1] und [PARTREF::m_json2] einen Einst
 - [ER] Implementieren Sie eine Korrektur an der in [EREFQ::6] gefundenen Stelle, die den richtigen 
   Datentyp zurückgibt.
 - [EC] Machen Sie einen separaten Commit des korrigierten Quellcodes und zeigen Sie dann
-  `git -p show HEAD`.
+  `git -P show HEAD`.
 - [EC] Führen Sie das Programm `grocery_list.py` im Terminal aus. 
   Geben Sie die Ausgabe des Programms mit der Eingabe `0,0,4` an.
 
