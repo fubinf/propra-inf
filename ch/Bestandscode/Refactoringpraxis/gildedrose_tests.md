@@ -1,8 +1,8 @@
 title: "Gilded Rose: Festhalten der Funktionalität"
 stage: alpha
-timevalue: 1
+timevalue: 1.0
 difficulty: 3
-assumes: m_unittest, pytest104
+assumes: m_unittest, m_pytest_parametrize
 ---
 [SECTION::goal::experience]
 Ich kann mich für Code, den ich refaktorieren möchte, dagegen versichern,
@@ -29,14 +29,14 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
   aber da die Software auf Englisch ist, geht die Arbeit mit der englischen besser.)
 - Software beschaffen:
   Kopieren Sie (einfach per Copy/Paste) den Quellcode von 
-  `[gilded_rose.py](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/python/gilded_rose.py)`
+  [`gilded_rose.py`](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/python/gilded_rose.py)
   in die Datei `gildedrose/gilded_rose.py` in Ihrem ProPra-Verzeichnis.
 - Testbasis beschaffen:
   Kopieren Sie (einfach per Copy/Paste) den Quellcode von 
-  `[test_gilded_rose.py](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/python/test_gilded_rose.py)`
+  [`test_gilded_rose.py`](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/python/test_gilded_rose.py)
   in die Datei `gildedrose/test_gilded_rose.py` in Ihrem ProPra-Verzeichnis.
 - Machen Sie einen Commit mit den beiden Dateien `gildedrose/*`.
-- `test_gilded_rose.py` enthält genau einen Test.
+- [ER] `test_gilded_rose.py` enthält genau einen Test.
   Führen Sie die Datei aus: Der Test schlägt fehl.
   Lesen, verstehen und reparieren Sie den Test.
 - Machen Sie einen Commit mit der reparierten Datei `test_gilded_rose.py`.
@@ -45,7 +45,7 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
   bereinigen haben.)
 - Sie können mit dieser Testsuite weiterarbeiten, die `unittest` benutzt.
   Praktischer ist aber, Sie verwenden `pytest` mit tabellengesteuerten Tests,
-  wie aus Aufgabe [PARTREF::pytest104] bekannt.
+  wie aus Aufgabe [PARTREF::m_pytest_parametrize] bekannt.
   Wir empfehlen _dringend_, den Test jetzt diese Form umzuarbeiten.
   Gestalten Sie Test und Tabelle so, wie es zum Hinschreiben der Testfälle am praktischsten ist.
 - Arbeiten Sie nun die Anforderungen durch und schreiben Sie, wo nötig, jeweils
