@@ -233,7 +233,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - Aufgaben Testen/Unittests/[PARTREF::m_unittest] und [PARTREF::m_pytest] zugefügt
 - unreife Aufgaben coverage, mocking und unittest201,202,301 zurückgezogen
 - **2024-05-03**: Aufgabe Testen/Unittests/[PARTREF::m_pytest_parametrize] zugefügt
-- Aufgabe Bestandscode/Refactoringpraxis/[PARETREF::gildedrose_tests] zugefügt.
+- Aufgaben Bestandscode/Refactoringpraxis/[PARTREF::gildedrose_tests] und [PARTREF::gildedrose_implementation] zugefügt.
 - ...
 
 
