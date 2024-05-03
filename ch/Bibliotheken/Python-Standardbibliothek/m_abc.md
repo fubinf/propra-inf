@@ -15,8 +15,8 @@ Bestandscode/Refactoring-Grundlagen/{srp,ocp,lsp,isp,dip}
 [ENDSECTION]
 
 [SECTION::submission::information]
-[INCLUDE::../../_include/Submission-Quellcode.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::heading]

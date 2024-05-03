@@ -209,7 +209,7 @@ anstatt nur zu sagen, dass es irgendwo im Output eine Abweichung gibt.
 
 [SECTION::submission::program]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Test prüfen, Entwurfsstil prüfen]

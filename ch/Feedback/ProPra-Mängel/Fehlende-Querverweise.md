@@ -68,7 +68,7 @@ Setzen Sie T in die erste Zeile und "Formulierung" in die zweite.
 [ENDSECTION]
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 [INSTRUCTOR::heading]

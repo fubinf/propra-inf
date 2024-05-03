@@ -40,14 +40,14 @@ Machen Sie dann erstmal woanders im ProPra weiter und achten Sie auf diese Fehle
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 Die Aufgabe ist **keine** Literaturbesprechung.
 Fassen Sie sich kurz und seien Sie präzise bei Ihren Ausführungen.
 [ENDSECTION]
 
 [INSTRUCTOR::Was macht einen Psychologen aus?]
-[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
 Eine Zusammenfassung des Kapitels gibt es auf S. 426-431.
 [ENDINSTRUCTOR]

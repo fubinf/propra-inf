@@ -30,7 +30,7 @@ Das Backend ist der unsichtbare Teil einer Website oder App, der die meiste Logi
 [ENDSECTION]
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

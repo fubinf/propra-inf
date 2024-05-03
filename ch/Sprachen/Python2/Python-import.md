@@ -175,7 +175,7 @@ Können Sie an andere denken?
 
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

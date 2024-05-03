@@ -117,13 +117,13 @@ Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
 
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Nur die Defektkorrektur bitte]
 
-[INCLUDE::../../_include/Instructor-nur-Defektkorrektur.md]
+[INCLUDE::/_include/Instructor-nur-Defektkorrektur.md]
 
 [INCLUDE::ALT:]
 

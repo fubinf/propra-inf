@@ -109,7 +109,7 @@ Führen Sie die Funktion mit den folgenden Eingaben aus:
 
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [INCLUDE::ALT:]
 

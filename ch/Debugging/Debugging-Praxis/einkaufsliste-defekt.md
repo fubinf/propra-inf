@@ -92,9 +92,9 @@ Darum kümmern wir uns aber erst in [PARTREF::einkaufsliste-defekt2].
 [ENDSECTION]
 
 [SECTION::submission::trace,snippet,information]
-[INCLUDE::../../_include/Submission-Quellcode.md]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Inhalte der Abgabe]

@@ -76,6 +76,6 @@ Verarbeitung und Manipulation der Daten führen.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]

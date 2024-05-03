@@ -42,6 +42,6 @@ Mit den folgenden Punkten können Sie das erreichen:
 
 [SECTION::submission::program]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]

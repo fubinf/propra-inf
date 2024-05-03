@@ -67,14 +67,14 @@ Dieser Text wurde mit Nano kopiert.
 
 [SECTION::submission::reflection]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
 
 [INSTRUCTOR::Erwartung]
 
-[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
 [ENDINSTRUCTOR]

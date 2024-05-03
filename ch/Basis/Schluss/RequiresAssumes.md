@@ -72,7 +72,7 @@ zurück zum Start und dann mit den unteren Links nach und nach bis zum Ende der 
 [ENDSECTION]
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Korrektheit prüfen]

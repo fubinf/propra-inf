@@ -82,7 +82,7 @@ You earned 2 frequent renter points
 
 [SECTION::submission::information,program]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

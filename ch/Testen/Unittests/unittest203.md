@@ -80,7 +80,7 @@ Betrachten Sie die `login()` Funktion in der `main.py`.
 
 [SECTION::submission::reflection,program]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]

@@ -44,7 +44,7 @@ Machen Sie dann erstmal woanders im ProPra weiter und kommen Sie später hier he
 
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

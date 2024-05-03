@@ -42,7 +42,7 @@ Recherchieren Sie und begründen Sie ihre Aussagen, wenn nötig, zu den folgende
 [ENDSECTION]
 [SECTION::submission::reflection]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

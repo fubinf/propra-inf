@@ -19,7 +19,7 @@ Höchstwahrscheinlich separate Aufgaben je Tool.
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Sinnvoller Titel]

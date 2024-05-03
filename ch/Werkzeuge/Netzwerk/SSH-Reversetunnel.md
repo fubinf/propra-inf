@@ -43,9 +43,9 @@ Webserver und den Porttunnel wieder schließen.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Erwartung]
-[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 [ENDINSTRUCTOR]

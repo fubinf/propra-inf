@@ -93,7 +93,7 @@ Führen Sie zum Testen insbesondere folgende Kommandos aus:
 [ENDSECTION]
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 

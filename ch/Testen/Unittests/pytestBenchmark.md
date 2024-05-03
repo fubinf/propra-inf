@@ -60,6 +60,6 @@ Lassen Sie alle Testfälle **9-fach** durchlaufen und bilden Sie den [TERMREF::M
 
 [SECTION::submission::reflection]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]

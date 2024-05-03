@@ -52,8 +52,8 @@ Jetzt wollen wir diese Werte an einer anderen Schnittstelle anwenden.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::heading]

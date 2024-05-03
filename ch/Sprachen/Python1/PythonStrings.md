@@ -178,7 +178,7 @@ Lesen Sie hierfür, wie die Funktionen im erwähnten Artikel benutzt werden.
 
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

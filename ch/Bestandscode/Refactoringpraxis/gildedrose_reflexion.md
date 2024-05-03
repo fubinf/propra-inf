@@ -46,9 +46,9 @@ reflektieren.
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Reflektion]
-[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 [ENDINSTRUCTOR]

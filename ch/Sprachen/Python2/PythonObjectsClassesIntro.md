@@ -170,7 +170,7 @@ Zur Hilfe können Sie diesen kleinen [Artikel](https://www.educative.io/answers/
 
 Bearbeiten Sie die Anforderungen [EREFR::1], [EREFR::2], ... Am Ende sollte eine Python-Datei `propra_objects_classes_intro.py` abgegeben werden. Der Zustand Ihrer Abgabedatei sollte etwa dem in [EREFR::3] beschriebenen Zustand entsprechen. 
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

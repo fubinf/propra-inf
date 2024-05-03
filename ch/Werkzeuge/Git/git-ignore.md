@@ -54,8 +54,8 @@ Lesen Sie den Abschnitt "Ignoring Files" auf dieser Seite:
 [ENDSECTION]
 [SECTION::submission::program,trace]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 

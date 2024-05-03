@@ -156,9 +156,9 @@ def test_median(generator):
 [ENDSECTION]
 [SECTION::submission::program,trace,information]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Ist das Problem gelöst? Und seriös gelöst?]

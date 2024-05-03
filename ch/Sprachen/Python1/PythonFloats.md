@@ -121,7 +121,7 @@ können Sie für die Abgabe auch unter dem Code als Kommentar beschreiben.
 
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

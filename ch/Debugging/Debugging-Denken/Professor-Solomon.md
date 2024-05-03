@@ -26,13 +26,13 @@ Warum glauben Sie das jeweils?
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 Gefragt ist keine Literaturbesprechung oder -zusammenfassung,
 sondern _Ihre_ persönliche Stellungnahme.
 [ENDSECTION]
 
 [INSTRUCTOR::Was macht Professor Solomon aus?]
-[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
 Eine Zusammenfassung des Kapitels gibt es auf S. 60-61.
 [ENDINSTRUCTOR]

@@ -64,7 +64,7 @@ Wenn nicht, bitte jetzt nachholen.
 [ENDSECTION]
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 `changelog2.md` enthält also nur den Dateinamen der eigentlichen Abgabedatei.
 
 [ENDSECTION]

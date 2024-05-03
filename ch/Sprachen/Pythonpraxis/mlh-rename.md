@@ -93,7 +93,7 @@ Also bauen wir uns sowas für `mlh`, wo wir es hoffentlich leicht wiederfinden u
 [ENDSECTION]
 [SECTION::submission::program]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

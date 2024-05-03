@@ -116,7 +116,7 @@ Die Funktion erhält die Längen der drei Seiten des Dreiecks als Eingabeparamet
 
 [SECTION::submission::information,program]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 Bearbeiten Sie die Anforderungen [EREFR::1], [EREFR::2] und [EREFR::3].
 Erstellen Sie dafür eine geeignete Python-Datei `python_functions_abgabe.py` und

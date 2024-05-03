@@ -104,7 +104,7 @@ Nutzen Sie die `print()`-Funktion in Python für die Ausgabe der Ergebnisse.
 
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

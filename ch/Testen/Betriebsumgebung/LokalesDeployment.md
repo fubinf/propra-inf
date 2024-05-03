@@ -130,8 +130,8 @@ Um mit der Webanwednung zu interagieren zu können, benötigen Sie ein Browserfe
 Wenn Sie jetzt eine Webseite sehen, hat alles funktioniert.
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::heading]

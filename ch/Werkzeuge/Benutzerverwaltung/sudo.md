@@ -56,5 +56,5 @@ Sie haben Adminrechte, weil Ihr Nutzer in der Gruppe sudo vorhanden ist.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]

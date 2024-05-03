@@ -109,8 +109,8 @@ das kann man z.B. für die Aufgabe [PARTREF::mlh-gitac] gebrauchen.
 [ENDSECTION]
 [SECTION::submission::trace,program]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

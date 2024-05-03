@@ -62,7 +62,7 @@ Gerendert: [HREF::https://django.readthedocs.io/en/stable/]
 [ENDSECTION]
 [SECTION::submission::reflection]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Hauptsachen: Neues, Geändertes, Korrekturen]

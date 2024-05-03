@@ -220,6 +220,6 @@ FROM <table_name>;
 
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]

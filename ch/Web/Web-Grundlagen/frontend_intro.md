@@ -28,7 +28,7 @@ Das Frontend ist der Teil einer Website oder App, den der Benutzer sieht und mit
 [ENDSECTION]
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

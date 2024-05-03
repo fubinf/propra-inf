@@ -66,5 +66,5 @@ Sie sollen testen, ob ...
 [ENDSECTION]
 
 [SECTION::submission::trace,reflection]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]

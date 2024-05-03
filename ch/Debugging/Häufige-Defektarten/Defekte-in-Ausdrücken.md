@@ -171,7 +171,7 @@ hand = {"2": ["hearts", "spades"],
 
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [INCLUDE::ALT:]
 

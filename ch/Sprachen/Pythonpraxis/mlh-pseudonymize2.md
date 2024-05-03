@@ -111,8 +111,8 @@ Debian-Installation (übertragen Sie diese Daten in die Datei `mlh/inputs/auth.l
 [ENDSECTION]
 [SECTION::submission::trace,program]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 Checken Sie auch `auth.log` und `auth.pseu` ein.
 
 [ENDSECTION]

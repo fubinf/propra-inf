@@ -50,7 +50,7 @@ Verwenden Sie sinnvolle HTML-Elemente. Alle Felder müssen beschriftet sein. Val
 [ENDSECTION]
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

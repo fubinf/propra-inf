@@ -107,7 +107,7 @@ Unterkommandos an, aber noch ohne richtige Implementierung.
 [ENDSECTION]
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 Geben Sie den Dateibaum `mlh` mit seinen diversen `*.py`-Dateien ab.
 

@@ -96,8 +96,8 @@ einmal durch und überlegen Sie wie Sie die Aufgaben vielleicht noch lösen kön
 [ENDSECTION]
 [SECTION::submission::reflection]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

@@ -49,6 +49,6 @@ Lesen Sie sich den [Beitrag](https://www.cyberciti.biz/faq/traceroute-tracepath-
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]

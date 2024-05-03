@@ -151,8 +151,8 @@ das dort als Bytestrom gelesene explizit dekodieren, umgefähr so:
 [ENDSECTION]
 [SECTION::submission::information,program]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

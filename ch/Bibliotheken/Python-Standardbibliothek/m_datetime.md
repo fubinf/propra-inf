@@ -124,8 +124,8 @@ def time_average(logs: list[tuple[str,int,str]]) -> dt.timedelta:
 [ENDSECTION]
 [SECTION::submission::trace,program]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Codedurchsicht]

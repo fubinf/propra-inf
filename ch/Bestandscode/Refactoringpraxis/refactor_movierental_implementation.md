@@ -55,13 +55,13 @@ Ausgeliehene Filme:
 
 [SECTION::submission::information,program]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Kein fester Lösungsweg vorgebbar]
 
-[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
 [ENDINSTRUCTOR]

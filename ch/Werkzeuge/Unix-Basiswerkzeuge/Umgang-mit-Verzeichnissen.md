@@ -50,5 +50,5 @@ Unixsystem auch wirklich installiert.
 - [EC] Löschen sie den Ordner `mydir2`.
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]

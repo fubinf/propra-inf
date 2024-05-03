@@ -37,7 +37,7 @@ Es gibt `function(arg) { code }` und `arg => { code }`. Worin unterscheiden sich
 [ENDSECTION]
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

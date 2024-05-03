@@ -48,5 +48,5 @@ um sich mithilfe der folgenden Fragen mit der Erweiterung vertraut zu machen.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]

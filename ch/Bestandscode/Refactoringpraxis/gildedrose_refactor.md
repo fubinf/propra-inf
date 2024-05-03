@@ -274,8 +274,8 @@ Bisher sind diese im **dritten Block** versammelt.
 [ENDSECTION]
 
 [SECTION::submission::program]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
     
 [INSTRUCTOR::Tipps zur Korrektur]

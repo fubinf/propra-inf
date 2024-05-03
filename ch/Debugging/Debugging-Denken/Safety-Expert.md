@@ -65,13 +65,13 @@ Erwarten Sie, dass Sie je solche Umstände haben werden?
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
     
 [INSTRUCTOR::Echte Auseinandersetzung sichtbar?]
 Man kann bei 11.4 abstruse Dinge aussuchen, die wir nicht akzeptieren sollten.
 Aber:
-[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
 Eine Zusammenfassung des Kapitels steht auf S. 384-385.
 [ENDINSTRUCTOR]

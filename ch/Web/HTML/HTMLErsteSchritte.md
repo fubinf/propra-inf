@@ -109,8 +109,8 @@ Den Titel finden Sie für gewöhnlich als Überschrift des Tabs im Browser wiede
 [ENDSECTION]
 [SECTION::submission::reflection,program]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

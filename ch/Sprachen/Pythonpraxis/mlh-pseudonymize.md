@@ -305,11 +305,11 @@ Zum Nachschlagen der Synonyme muss man das Suffix natürlich wieder entfernen.
 [ENDSECTION]
 [SECTION::submission::trace,program,reflection]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 Checken Sie auch die Logdateien `*.log` und die Linetype-Dateien `*.pseu` ein.
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

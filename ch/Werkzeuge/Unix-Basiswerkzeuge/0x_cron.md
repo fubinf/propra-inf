@@ -20,7 +20,7 @@ Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/Cron/) zu cron durch
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
 [INSTRUCTOR::heading]

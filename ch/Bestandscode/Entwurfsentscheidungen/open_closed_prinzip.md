@@ -51,8 +51,8 @@ Dazu müssten Sie in diesem Beispiel allerdings die Methoden `.__init__()` und
 [ENDSECTION]
 
 [SECTION::submission::information]
-[INCLUDE::../../_include/Submission-Quellcode.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Problem und Ansatz der Lösung]

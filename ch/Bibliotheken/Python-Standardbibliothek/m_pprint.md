@@ -63,9 +63,9 @@ dass einem im Alltag einiges an Zeit und Arbeit sparen kann.
 
 [SECTION::submission::program]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

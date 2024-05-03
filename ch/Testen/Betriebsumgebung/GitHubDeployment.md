@@ -125,5 +125,5 @@ Um den Status der Pipeline zu inspizieren, gehen Sie wie [hier](https://docs.git
 [ENDSECTION]
 
 [SECTION::submission::information]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]

@@ -32,13 +32,13 @@ Sehen Sie weitere Gründe, wieso dieses Vorgehen nützlich sein kann?
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 Gefragt ist keine Literaturbesprechung oder -zusammenfassung,
 sondern _Ihre_ persönliche Stellungnahme.
 [ENDSECTION]
 
 [INSTRUCTOR::Was macht Sherlock Homes aus?]
-[INCLUDE::../../_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
 Eine Zusammenfassung des Kapitels gibt es auf S. 31-32.
 [ENDINSTRUCTOR]

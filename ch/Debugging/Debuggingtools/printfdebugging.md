@@ -56,7 +56,7 @@ Nehmen Sie aber einmal an, dass Sie eine Sprache benutzen, in der dieses Konzept
 
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

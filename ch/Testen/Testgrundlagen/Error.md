@@ -71,6 +71,6 @@ Diese Ereignisse können auftreten, wenn ein Fehler gemacht wurde. Müssen aber 
 [ENDSECTION]
 [SECTION::submission::information,reflection]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]

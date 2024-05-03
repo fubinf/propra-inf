@@ -64,7 +64,7 @@ und darf mit der Software sehr vieles machen.
 [ENDSECTION]
 [SECTION::submission::information,reflection]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 Halten Sie die Abgabe kurz und bündig.
 
 [ENDSECTION]

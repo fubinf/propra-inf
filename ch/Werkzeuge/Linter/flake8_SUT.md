@@ -34,7 +34,7 @@ ist, achten Sie darauf, dieses Verzeichnis auszuschließen.
 [ENDSECTION]
 
 [SECTION::submission::information]
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
 [INSTRUCTOR::heading]

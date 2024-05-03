@@ -75,7 +75,7 @@ Vorbedingung: Ein Benutzer befindet sich auf der Login Seite eines Portals.
 
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 Sollten Ihnen zur Erstellung der Fehlerberichte Informationen Fehlen, dürfen Sie diese fiktiv belegen.
 Bitte mit (fiktiv) markieren.
 

@@ -86,6 +86,6 @@ Sollten Abhängigkeiten fehlen, so sind diese ebenfalls zu erstellen.
 
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]

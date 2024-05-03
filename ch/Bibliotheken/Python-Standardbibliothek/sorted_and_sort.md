@@ -167,8 +167,8 @@ Wahrscheinlich nicht. So geht es ganz hübsch:
 
 [SECTION::submission::trace,program]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Korrektheit und Stil prüfen]

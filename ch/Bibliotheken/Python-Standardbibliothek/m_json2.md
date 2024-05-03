@@ -50,7 +50,7 @@ Die meisten optionalen Parameter brauchen Sie nicht.
 [ENDSECTION]
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 Geben Sie auch `m_json_student2.json` ab.
 
 [ENDSECTION]

@@ -193,7 +193,7 @@ Wird das Programm ordnungsgemäß beendet?
 
 [SECTION::submission::snippet]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [INCLUDE::ALT:]
 

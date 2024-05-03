@@ -121,7 +121,7 @@ sofern es nicht von einer anderen Aufgabe benötigt wird.
 
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 

@@ -133,7 +133,7 @@ z.B. `%1`
 [ENDSECTION]
 [SECTION::submission::information,reflection]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Bitte auf eigenständige Formulierungen achten, ggf. mündlich nachfragen]

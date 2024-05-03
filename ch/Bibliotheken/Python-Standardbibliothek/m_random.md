@@ -73,8 +73,8 @@ Sie erhalten also bei jeder Ausführung neue Zufallszahlen, was oft erwünscht i
 [ENDSECTION]
 [SECTION::submission::program]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Codedurchsicht]

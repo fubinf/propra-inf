@@ -52,8 +52,8 @@ Pakete können manuell deinstalliert werden. Es gibt zwei verschieden Kommandos 
 
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

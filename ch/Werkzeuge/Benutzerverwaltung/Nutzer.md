@@ -42,7 +42,7 @@ Nachdem die Nutzer gesperrt wurden und eine bestimmte Zeitspanne vorbei ist, mü
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
 [INSTRUCTOR::heading]

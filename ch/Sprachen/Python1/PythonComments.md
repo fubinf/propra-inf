@@ -101,7 +101,7 @@ wem und wie die Kommentare wirklich helfen:
 
 [SECTION::submission::reflection]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

@@ -101,6 +101,6 @@ bereit sein, mit dieser Version zu arbeiten.
 
 [SECTION::submission::reflection]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]

@@ -102,7 +102,7 @@ Bearbeiten Sie die Anforderungen [EREFR::1], [EREFR::2]. Am Ende sollte eine Pyt
 
 [SECTION::submission::information]
 
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

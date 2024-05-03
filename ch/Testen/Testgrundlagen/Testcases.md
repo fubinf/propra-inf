@@ -31,5 +31,5 @@ Recherchieren Sie anhand der folgenden Leitfragen unter Beachtung der folgenden 
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]

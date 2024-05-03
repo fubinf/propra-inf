@@ -32,8 +32,8 @@ Folgende Arbeitsschritte sind in jeder Variante einmal durchzugehen.
 [ENDSECTION]
 
 [SECTION::submission::program]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Verschiedene Implementierungen]

@@ -33,7 +33,7 @@ das nur unwichtige Daten enthält.
 [ENDSECTION]
 [SECTION::submission::trace]
 
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Fast keine Kontrolle nötig]

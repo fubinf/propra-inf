@@ -191,7 +191,7 @@ zu arbeiten. Stöbern Sie in der genannten Dokumention herum, um einen tieferen 
 
 [SECTION::submission::information,snippet]
 
-[INCLUDE::../../_include/Submission-Quellcode.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
