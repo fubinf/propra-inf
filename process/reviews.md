@@ -49,7 +49,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/tdd.md (Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->DM->LP)
-- ch/Testen/Unittests/m_pytest_parametrize.md (Pietrak und Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest201.md (Ruhe->DM->LP)
 - ch/Testen/Unittests/unittest201.md (Ruhe->DM->HA->LP):
   Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
