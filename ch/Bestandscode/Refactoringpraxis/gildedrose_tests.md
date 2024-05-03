@@ -1,5 +1,5 @@
 title: "Gilded Rose: Festhalten der Funktionalität"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 3
 assumes: m_unittest, m_pytest_parametrize
@@ -41,7 +41,7 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
   Lesen, verstehen und reparieren Sie den Test.
 - Machen Sie einen Commit mit der reparierten Datei `test_gilded_rose.py`.
 - [EC] `git show --color=always HEAD | cat`
-  (Achtung: Starten Sie `script` diesmal in einer zweiten Shell, sonst werden Sie viel zu
+  (Achtung: Starten Sie `script` in einer zusätzlichen zweiten Shell, sonst werden Sie viel zu
   bereinigen haben.)
 - Sie können mit dieser Testsuite weiterarbeiten, die `unittest` benutzt.
   Praktischer ist aber, Sie verwenden `pytest` mit tabellengesteuerten Tests,
@@ -51,29 +51,35 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
 - Arbeiten Sie nun die Anforderungen durch und schreiben Sie, wo nötig, jeweils
   eine oder mehrere Testeingaben mit einer immer gleichen beliebigen Testausgabe.
   (Die Anforderung zu "conjured items" ist dabei natürlich auszulassen, denn die ist ja noch
-  gar nicht umgesetzt, sondern ist der Anlass für das ganze Softwareprojekt.)
+  gar nicht umgesetzt, sondern ist der Anlass für das ganze "Softwareprojekt".)
 - Lassen Sie die Testfälle laufen und ergänzen Sie die erhaltene Testausgabe zu jedem Testfall.
+  Es geht nicht darum, ob die Ausgabe richtig oder falsch ist, 
+  sondern die Tests sind [TERMREF2::Charakterisierungstest::-s].
 - [EC] Lassen Sie die Testfälle laufen und überzeugen Sie sich, dass alle Tests erfolgreich sind.
 - Machen Sie einen Commit mit Ihren Ergänzungen.
 - [EC] `git show --color=always HEAD | cat`
 - [EQ] Betrachten Sie nun die Tabelle bzw. die Klasse mit Ihren Testfällen.
   Ist sie übersichtlich? Gut verständlich? 
   Könnte man z.B. ggf. einen duplizierten Testfall leicht erkennen?
-- [EQ] Falls nicht, reflektieren Sie darüber, warum Ihnen das unterwegs nicht aufgefallen ist
-  bzw. warum Sie nichts dagegen unternommen haben.
+- [EQ] Falls nicht: Warum (vermutlich) ist Ihnen das unterwegs nicht aufgefallen?
+  Bzw. warum haben Sie nichts dagegen unternommen?
 - [EQ] Halten Sie Ihre Testfallmenge eher für 
   übervorsichtig (sehr viele Tests, vermutlich mehr als nötig) oder für
   hoffnungsvoll (eher wenige Tests: "Wird schon klappen") oder für 
   genau passend? Warum?
+  Welches wäre der erste übervorsichtige Test, den man streichen könnte,
+  bzw. der nächste, den man zufügen sollte, um weniger hoffnungsvoll zu agieren?
 
 [ENDSECTION]
-
 [SECTION::submission::program]
-[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::../../_include/Submission-Markdowndokument.md]
-[ENDSECTION]
 
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+
+[ENDSECTION]
 [INSTRUCTOR::Testentwurf]
+
 - Der ursprüngliche Test sollte erhalten bleiben oder in den tabellengesteuerten integriert werden.
 - Wer `unittest` benutzt hat und jeden Testfall einzeln handkodiert, bitte zurückweisen:
   das ist unprofessionell.
@@ -87,4 +93,5 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
 - Wenn jemand noch mehr Regeln mit Testlogik abgebildet hat anstatt über Daten,
   bitte ermahnen: Das würde einem im wirklichen Leben schnell über den Kopf wachsen.
   Für Charakterisierungstests sind Testtabellen die Methode der Wahl.
+
 [ENDINSTRUCTOR]

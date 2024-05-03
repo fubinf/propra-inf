@@ -103,6 +103,8 @@ als korrekt angenommen und mit dem Test festgeschrieben.
 
 Eine Menge solcher Tests, die den Eingaberaum gut abdeckt, _charakterisiert_
 also das Verhalten der Software.
+Das ist enorm nützlich, wenn man anschließend mittels 
+[TERMREF::Refactoring] die Struktur der Software verbessern möchte.
 [ENDTERM]
 
 [TERM::Code Convention|Programming Style|Programmierstil]
