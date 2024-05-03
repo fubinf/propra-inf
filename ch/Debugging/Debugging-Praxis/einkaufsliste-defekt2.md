@@ -53,7 +53,7 @@ ist hier nicht so klar, wo man mit der Suche nach dem [TERMREF::Defekt] anfangen
   Beschreiben Sie in eigenen Worten, wie das [TERMREF::Versagen] zustande kommt.
 - [ER] Beheben Sie den zugrunde liegenden [TERMREF::Defekt].
 - [EC] Machen Sie einen separaten Commit des korrigierten Quellcodes und zeigen Sie dann
-  `git show HEAD`.
+  `git -p show HEAD`.
 - [EC] Führen Sie das Programm `grocery_list.py` im Terminal aus. 
   Geben Sie die Ausgabe des Programms mit der Eingabe `0,0,4` an.
 

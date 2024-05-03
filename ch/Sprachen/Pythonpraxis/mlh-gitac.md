@@ -59,7 +59,7 @@ Führen Sie nach ausreichendem Testen zur Abgabe folgende Kommandos aus:
 
 - [EC] `f=mlh/subcmds/gitac.py; date; ls -l $f; python mlh gitac -m"$f, committed by itself" $f`
 - Sie haben das Kommando doch hoffentlich genau verstanden bevor Sie es ausgeführt haben?
-- [EC] `git show HEAD`
+- [EC] `git -p show HEAD`
 
 [ENDSECTION]
 [SECTION::submission::trace]

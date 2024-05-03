@@ -187,7 +187,7 @@ Wird das Programm ordnungsgemäß beendet?
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Defekte-bei-Variablen.py` korrigieren.
 - Machen sie einen Commit `Defekte-bei-Variablen.py corrected`, der nur genau diese modifizierte Datei enthält.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 [ENDSECTION]
 

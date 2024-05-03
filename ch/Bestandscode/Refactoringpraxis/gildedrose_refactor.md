@@ -69,7 +69,7 @@ erstellen und die Strategien in Methoden festhalten.
 - [EC] Lassen Sie Ihre Testfälle laufen und überzeugen Sie sich, dass nun alle Testfälle 
   fehlschlagen.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 #### Schritt 2: Einführen der `Updater`-Klasse
 
@@ -80,25 +80,25 @@ erstellen und die Strategien in Methoden festhalten.
   Schreiben Sie vorerst `pass` in den Methodenkörper, die Inhalte werden gleich nach und nach 
   eingefügt.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - Implementieren Sie die Aktualisierungsregeln, die für normale Gegenstände gelten, in der
   Methode `normal_item`.
 - [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Ihre Testfälle, die "normale Gegenstände" betreffen, sollen jetzt erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - Implementieren Sie die Aktualisierungsregeln, die für den Gegenstand "Aged Brie" gelten, in der
   Methode `aged_brie`.
 - [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Ihre Testfälle, die "Aged Brie" betreffen, sollen jetzt erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - Implementieren Sie die Aktualisierungsregeln, die für "Backstage passes" gelten, in der
   Methode `backstage_passes`.
 - [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Ihre Testfälle, die "Backstage passes" betreffen, sollen jetzt erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - [EQ] Eine Änderung der Funktion `sulfuras` ist nicht nötig. Wieso?
 
 ### Variante 2: Transformation des Codes
@@ -131,7 +131,7 @@ Block**" inkl. der Hervorhebung bezeichnet.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - [EQ] Beschreiben Sie, ob es diese Änderungen den Code lesbarer oder wartbarer machen. Warum?
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 [NOTICE]
 In der Regel wird in diesem Code zuerst `item.name` überprüft, dann die `item.quality`. 
@@ -160,7 +160,7 @@ Zwei Ebenen darunter wird noch einmal gefragt, ob das `item` den Namen
   Beschreiben Sie den Effekt, den diese Änderung auf den Code hat: 
   Wird er lesbarer? Wird er wartbarer?
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - Betrachten Sie den dritten `if`-Ausdruck, `if item.sell_in < 0: (...)`.
   Dieser `if`-Ausdruck hat auch die Form `if not (...)`, gefolgt von einem `else`-Teil.
   Tauschen Sie die Inhalte der beiden Ausdrücke und ändern Sie den `if`-Ausdruck zu `if (...)`.
@@ -182,7 +182,7 @@ Im letzten `else`-Ausdruck wird dies andersherum gehandhabt, äquivalent zu [ERE
 - [EQ] Beschreiben Sie den Effekt, den diese Änderungen auf den Code haben.  
   Wird er lesbarer? Wird er wartbarer?  
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 [NOTICE]
 In der gesamten `for`-Schleife gibt es sieben Stellen, an denen mit einer 
@@ -201,7 +201,7 @@ Verringerung von `item.quality` äquivalent die `max()`-Funktion.
 - [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 [NOTICE]
 Im **ersten Block** wird `item.quality` eines "Backstage passes" in Abhängigkeit vom Wert 
@@ -219,7 +219,7 @@ und abschließend die Änderung durchführt.
 - [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 [NOTICE]
 `item.quality` wird noch an anderen Stellen im Code in Abhängigkeit vom Namen und des 
@@ -253,7 +253,7 @@ Vergessen Sie nicht das richtige Vorzeichen zu benutzen.
 - [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 [NOTICE]
 Ein Großteil der Änderungen von `item.quality` sind zu `quality_adjustment` refaktoriert.
@@ -269,7 +269,7 @@ Bisher sind diese im **dritten Block** versammelt.
 - [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
   Alle Testfälle sollen weiterhin erfolgreich sein.
 - Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 [ENDSECTION]
 

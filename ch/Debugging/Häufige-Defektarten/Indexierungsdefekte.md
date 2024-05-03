@@ -103,7 +103,7 @@ Führen Sie die Funktion mit den folgenden Eingaben aus:
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Indexierungsdefekte.py` korrigieren.
 - Machen sie einen Commit `Indexierungsdefekte corrected`, der nur genau diese modifizierte Datei enthält.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 [ENDSECTION]
 

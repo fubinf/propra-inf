@@ -165,7 +165,7 @@ hand = {"2": ["hearts", "spades"],
 - Defekt gefunden? Prima. Dann jetzt bitte in `Defekte-in-Ausdrücken.py` korrigieren.
 - Machen sie einen Commit `Defekte-in-Ausdrücken.py corrected`, der nur genau diese modifizierte Datei 
   enthält.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 [ENDSECTION]
 

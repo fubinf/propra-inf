@@ -40,7 +40,7 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
   Führen Sie die Datei aus: Der Test schlägt fehl.
   Lesen, verstehen und reparieren Sie den Test.
 - Machen Sie einen Commit mit der reparierten Datei `test_gilded_rose.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
   (Achtung: Starten Sie `script` in einer zusätzlichen zweiten Shell, sonst werden Sie viel zu
   bereinigen haben.)
 - Sie können mit dieser Testsuite weiterarbeiten, die `unittest` benutzt.
@@ -57,7 +57,7 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
   sondern die Tests sind [TERMREF2::Charakterisierungstest::-s].
 - [EC] Lassen Sie die Testfälle laufen und überzeugen Sie sich, dass alle Tests erfolgreich sind.
 - Machen Sie einen Commit mit Ihren Ergänzungen.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - [EQ] Betrachten Sie nun die Tabelle bzw. die Klasse mit Ihren Testfällen.
   Ist sie übersichtlich? Gut verständlich? 
   Könnte man z.B. ggf. einen duplizierten Testfall leicht erkennen?

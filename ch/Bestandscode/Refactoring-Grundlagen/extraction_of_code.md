@@ -78,21 +78,21 @@ def what_to_eat(month):
         print(f"{month}: asparagus")
 ```
 - Machen Sie einen Commit mit der Datei `Extraction-Of-Code.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - Der Code nimmt einen Monat als Eingabe und gibt zurück, welches Essen in diesem Monat Saison hat. 
   Zwar ist der Code einfach gehalten, allerdings ist er schlecht testbar oder erweiterbar.
 - [ER] Extrahieren Sie die Ausdrücke `month.lower().endswith("r")`, `month.lower().endswith("ary")` 
   und `8 > MONTHS.index(month) > 4` in eigene Variablen.
   Achten Sie darauf den Variablen ausdrucksstarke Namen zu geben!
 - Machen Sie einen Commit mit der Datei `Extraction-Of-Code.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - Die Logik des Programms ist jetzt schon deutlich einfacher zu verstehen.
   Allerdings sind Erweiterung und Testbarkeit immer noch eher schwierig.
 - [ER] Extrahieren Sie die Boolschen Ausdrücke der if-Ausdrücke in eigene Funktionen.
   Benutzen Sie hierfür die in [EREFR::1] eingeführten Variablen.
   Achten Sie darauf ausdrucksstarke Funktionsnamen zu vergeben!
 - Machen Sie einen Commit mit der Datei `Extraction-Of-Code.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - Aktuell wird beim Durchlauf des `if-elif-else`-Ausdrucks in jedem Schritt eine Funktion 
   aufgerufen.
   Aus verschiedensten Gründen kann es aber nützlich sein diese Aufrufe schon vor Beginn des 
@@ -102,7 +102,7 @@ def what_to_eat(month):
 - [ER] Extrahieren Sie die Funktionsaufrufe im `if`- bzw. `elif`-Ausdruck in eigene Variablen.
   Achten Sie darauf ausdrucksstarke Variablennamen zu vergeben!
 - Machen Sie einen Commit mit der Datei `Extraction-Of-Code.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - Das Programm sieht jetzt aufgeräumt auf.
   Es existieren Funktionen, die die beiden Boolschen Werte für die Austern- und Tomatensaison 
   berechnen und diese Ergebnisse sind mittels einer Variable erreichbar.
@@ -117,7 +117,7 @@ def what_to_eat(month):
   Ersetzen Sie danach die Funktionsaufrufe aus [EREFR::3] durch `OystersGood(month)` bzw. 
   `TomatoesGood(month)`.
 - Machen Sie einen Commit mit der Datei `Extraction-Of-Code.py`.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 - Das Programm hat nun einen ziemlichen Wandel hingelegt. 
   Mithilfe dieser Klassen ist optimale Testbarkeit gegeben, mehr dazu in [PARTREF::Testen].
 - [EQ] Welche der Varianten des Programms gefällt Ihnen am besten? Begründen Sie kurz.

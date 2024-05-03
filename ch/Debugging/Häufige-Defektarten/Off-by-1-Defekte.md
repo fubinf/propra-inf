@@ -111,7 +111,7 @@ Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Off-by-1-Defekte.py` korrigieren.
 - Machen sie einen Commit `Off-by-1-Defekte.py corrected`, der nur genau diese Defektkorrektur enthält.
-- [EC] `git show --color=always HEAD | cat`
+- [EC] `git -p show HEAD`
 
 [ENDSECTION]
 

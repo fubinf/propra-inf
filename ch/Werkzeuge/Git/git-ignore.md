@@ -27,7 +27,7 @@ Lesen Sie den Abschnitt "Ignoring Files" auf dieser Seite:
   (voraussichtlich) nie werden einchecken wollen.
   Verallgemeinern Sie dabei ggf. hin zu sinnvollen Dateinamen-Mustern.
 - Machen Sie einen Commit mit dieser Datei.
-- [EC] `git show HEAD`
+- [EC] `git -p show HEAD`
 - Bei GitHub gibt es eine umfangreiche Vorlage für eine 
   [.gitignore für Python-Projekte](https://github.com/github/gitignore/blob/main/Python.gitignore),
   mehr als 150 Zeilen!
@@ -38,7 +38,7 @@ Lesen Sie den Abschnitt "Ignoring Files" auf dieser Seite:
   (Das zweite Muster betrifft _drei_ Arten von Dateien.)
 - Übernehmen Sie davon alles, was für Ihren Fall sinnvoll erscheint, in Ihre `.gitignore`.
 - Machen Sie einen Commit mit dieser Datei.
-- [EC] `git show HEAD`
+- [EC] `git -p show HEAD`
 - Falls Sie PyCharm verwenden: Ganz unten in der Python-Vorlage ist eine
   JetBrains-IDEA-Vorlage erwähnt, die für PyCharm relevante Einträge enthält:
   [HREF::https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore].
@@ -49,7 +49,7 @@ Lesen Sie den Abschnitt "Ignoring Files" auf dieser Seite:
   Erklären Sie nur deren Bedeutung in je einem Satz. 
 - Fügen Sie diese Einträge Ihrem `.gitignore` zu.
 - Machen Sie einen Commit mit dieser Datei.
-- [EC] `git show HEAD`
+- [EC] `git -p show HEAD`
 
 [ENDSECTION]
 [SECTION::submission::program,trace]
