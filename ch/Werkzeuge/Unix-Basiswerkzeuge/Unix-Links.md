@@ -20,19 +20,36 @@ Lesen Sie insbesondere die Abschnitte **Anwendung/Terminal** und **Beispiele**.
 
 ### Erstellen von Links
 
+Wir brauchen erstmal einen Ordner und ein paar Dateien, damit wir darauf die Links verknüpfen 
+können.
+
 - [EC] Erstellen sie zwei Dateien namens `softdata` und `harddata` unter `~/physical/`, und 
 schreiben Sie jeweils softdata und harddata in die Datei.
+
+Nachdem wir jetzt den Ordner und die Daten haben, brauchen wir noch die Links auf die Daten.
+
 - [EC] Erstellen sie einen [TERMREF::Symlink] von `softdata` unter `~/symlinks/symlink`.
 - [EC] erstellen sie einen [TERMREF::Hardlink] von `harddata` unter `~/symlinks/hardlink`.
-fddsaf
 
-### Verschieben von Links und Dateien
+### Verschieben von Links
 
-- [EC] Was passiert mit dem [TERMREF::Symlink] `~/links/symlink`, wenn Sie es nach `/tmp/` verschieben.
-- [EC] Was passiert mit dem [TERMREF::Hardlink] `~/links/hardlink`, wenn Sie es nach `/tmp/` verschieben.
+Links haben besondere Eigenschaften, wenn die Links verschoben werden, die Daten verschoben 
+werden, oder aber die Daten gelöscht werden. Verschieben Sie erstmal die Links und erklären Sie 
+was passiert. 
+
+- [EC] Was passiert mit dem [TERMREF::Symlink] `~/links/symlink`, wenn Sie es nach `/tmp/` 
+   verschieben.
+- [EC] Was passiert mit dem [TERMREF::Hardlink] `~/links/hardlink`, wenn Sie es nach `/tmp/` 
+   verschieben.
 - [EC] Schieben Sie wieder beide Links zurück nach `~/links/`.
-- [EC] Was passiert mit dem [TERMREF::Symlink] `~/links/symlink`, wenn Sie die Datei `~/physical/softdata` nach `/tmp/` verschieben.
-- [EC] Was passiert mit dem [TERMREF::Symlink] `~/links/harddata`, wenn Sie die Datei `~/physical/harddata` nach `/tmp/` verschieben.
+
+### Verschieben von Dateien
+
+- [EC] Was passiert mit dem [TERMREF::Symlink] `~/links/symlink`, wenn Sie die Datei 
+   `~/physical/softdata` nach `/tmp/` verschieben.
+- [EC] Was passiert mit dem [TERMREF::Symlink] `~/links/harddata`, wenn Sie die Datei 
+   `~/physical/harddata` nach `/tmp/` verschieben.
+- [EC] Schieben Sie die Dateien wieder zurück nach `~/physical/`.
 
 ### Löschen von Links
 
@@ -41,7 +58,7 @@ fddsaf
 
 ### Reflektion
 
-- [EQ] Nennen Sie drei Gründe, warum [TERMREF::Symlinks] sinnvoller sind.
+- [EQ] Nennen Sie zwei Gründe, warum [TERMREF::Symlinks] sinnvoller sind.
 - [EQ] Nennen sie zwei Beispiele, wo sich [TERMREF::Hardlinks] lohnen könnten.
 
 [ENDSECTION]
