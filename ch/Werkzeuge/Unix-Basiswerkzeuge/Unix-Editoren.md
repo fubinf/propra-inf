@@ -9,7 +9,8 @@ Ich verstehe die Funkstionsweise von `nano` und `vim` in Linux
 [ENDSECTION]
 
 [SECTION::background::default]
-Systemadministratoren bearbeiten Dateien oft. `nano` und `vim` sind die meist benutzten Editoren in Linux.
+Oft geht es als Administrator schneller die Datei mit Bordmitteln zu bearbeiten, dabei kommen 
+unter anderem vim oder nano zum Einsatz.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -24,8 +25,8 @@ Werden sie vertraut mit vim. Nutzen Sie als Hilfestellung diesen kurzen Beitrag
 Lesen Sie insbesondere die Abschnitte **Editing Vim Style**, **Searching And Replacing**, 
 **Copying And Pasting** und **Saving And Quitting**
 
-- [EC] Suchen Sie nach `Vulnerability`.
-- [EC] Ersetzen Sie `Vulnerability` mit `ersetzt mit vim`.
+- [EC] Suchen Sie nach `CPU`.
+- [EC] Ersetzen Sie es mit `ersetzt mit vim`.
 - [EC] Kopieren Sie den nächsten Text und fügen Sie diesen Ihrer Datei hinzu.
 
 ```
@@ -46,7 +47,7 @@ lernen.
 Machen Sie sich mit nano vertraut. Nutzen Sie als Hilfestellung [nano101](https://linuxize.com/post/how-to-use-nano-text-editor/).
 Lesen Sie insbesondere die Abschnitte **Editing Files** und **Saving and Exiting**.
 
-- [EC] Suchen Sie nach `Mitigation`.
+- [EC] Suchen Sie nach `cache`.
 - [EC] Ersetzen Sie es mit `ersetzt mit nano`
 - [EC] Kopieren Sie den unteren Text und fügen Sie diesen Ihrer Datei hinzu.
 
