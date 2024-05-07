@@ -23,9 +23,9 @@ andere Eingabedaten zu finden, die zum selben Hashwert führen.
 Das erlaubt den Hashwert als eine Art Stellvertreter für den Inhalt der Datei anzusehen,
 was für viele Zwecke in der Computersicherheit wertvoll ist und auch von git benutzt wird.
 
-Das Python-Modul `hashlib` stellt einige häufig 
-verwendete und standardisierte [TERMREF2::kryptografische Hashfunktion::-en] zur Verfügung, die für 
-verschiedene kryptografische Zwecke und zur Integritätsprüfung durch Generierung von 
+Das Python-Modul `hashlib` stellt einige häufig verwendete und standardisierte 
+[TERMREF2::kryptografische Hashfunktion::-en] zur Verfügung, die für verschiedene 
+kryptografische Zwecke und zur Integritätsprüfung durch Generierung von 
 [TERMREF2::Prüfsumme::-n] verwendet werden können.
 
 [ENDSECTION]
@@ -51,34 +51,43 @@ unterschiedliche Eingaben [TERMREF2::Kollision::-en] zu erzeugen (Kollisionsresi
 
 ### Hashes erzeugen
 
-- [ER] Erzeugen Sie ein neues hash-Objekt `hash` mithilfe eines Konstruktors. Dieses soll die
+- [ER] Erzeugen Sie ein neues Hash-Objekt `hash` mithilfe eines Konstruktors. Dieses soll die
   Hash-Funktion `SHA-256` verwenden.
-- [ER] Erzeugen Sie den Hash für den Bytestring `b"ProPra"` und geben Sie ihn als Hexadezimalwert aus:  
+- [ER] Erzeugen Sie den Hash für den String `ProPra` und geben Sie ihn als Hexadezimalwert aus:  
   `print("1. ProPra SHA-256:\t", ...)`
+
+[HINT::Wie kann man Strings an ein Hash-Objekt übergeben?]
+Hash-Funktionen verarbeiten nur unformatierten Bytecode und können daher nicht direkt mit
+Datentypen wie Strings umgehen. Lesen Sie hier nach, wie Sie Text als Bytes interpretieren können:
+[HREF::https://docs.python.org/3/library/stdtypes.html#binary-sequence-types-bytes-bytearray-memoryview]
+[ENDHINT]
+
 - [ER] Hashfunktionen besitzen die Eigenschaft, dass nur minimale Änderungen am Input komplett 
   verschiedenen Output erzeugen. Testen Sie das aus, indem Sie nur ein Leerzeichen hinzufügen:  
   `print("2. added a space:\t", ...)`
-- [ER] Schreiben Sie Code, der nachzählt, an wievielen Stellen die Ausgabe 2 mit Ausgabe 1
-  übereinstimmt und wie viele Übereinstimmungen statistisch zu erwarten sind:  
-  `print("3. identical digits: expected:", ..., " found: ", ...)`
+- [ER] Schreiben Sie Code, der nachzählt, an wie vielen Stellen die Ausgabe 2 mit Ausgabe 1
+  übereinstimmt. Vergleichen Sie das Ergebnis mit der statistisch zu erwartenden Anzahl an 
+  Übereinstimmungen: 
+  `print("3. identical digits: expected: ", ..., "; found: ", ...)`
 
 Über die `update()` Funktion wird die gehashte Eingabe nicht überschrieben, sondern die neue an die 
 alte angefügt. `hash.update(a); hash.update(b)` ist also identisch zu `hash.update(a + b)`.
 
-- [ER] Zeigen Sie dies, indem ein neues Hash-Objekt für `b"ProPra FU Berlin"` anlegen, sowie den 
-  alten Hash entsprechend aktualisieren. Vergleichen Sie die beiden Hashes miteinander: 
-  `print("u(a); u(b) ->", ..., "\nu(a + b) ->", ...)`
+- [ER] Zeigen Sie dies, indem Sie ein neues Hash-Objekt für `ProPra FU Berlin` anlegen, sowie den 
+  alten Hash entsprechend aktualisieren. Vergleichen Sie beide Hashes miteinander und geben Sie 
+  entsprechend True oder False aus, je nachdem ob die Werte übereinstimmen: 
+  `print("4. u(a); u(b) = u(a + b):\t", ...)`
 
 
 ### Hashes aus Dateien erzeugen
 
 Hashes können aus jeder Art von Datenströmen erstellt werden. Häufiger Anwendungsfall ist das 
-Erstellen von Hashes für Dateien.
+Erstellen von [TERMREF2::Prüfsumme::-n] für Dateien.
 
 - [ER] Legen Sie eine Textdatei mit dem Inhalt `ProPra` im selben Verzeichnis an.
 - [ER] Erzeugen Sie für diese Datei die `SHA-256` Prüfsumme.
-  Geben Sie dies als Hexadezimalwert aus:  
-  `print("4. file checksum:\t", ...)`
+  Geben Sie dies als Hexadezimalwert aus: 
+  `print("5. file checksum:\t", ...)`
 
 [NOTICE]
 Seit Python 3.11 geht das direkt über `hashlib`, was für uns die bevorzugte Variante ist.
@@ -86,8 +95,7 @@ Wenn man trotzdem die Variante über `with open() ...` wählt, sollte man die Da
 einlesen (z.B. in Happen von 1 MB), um Speicherüberläufe durch sehr große Dateien zu vermeiden.
 [ENDNOTICE]
 
-
-Wenn der Wert nicht mit dem von Schritt 1 übereinstimmt, haben Sie etwas falsch gemacht.
+Wenn der Wert nicht mit dem von Ausgabe 1 übereinstimmt, haben Sie etwas falsch gemacht.
 Korrigieren Sie dies.
 
 [HINT::Was habe ich falschgemacht?]
@@ -110,10 +118,11 @@ Enthält ihre Datei ein Zeilenende-Zeichen? Das gehört nicht hinein.
 [INSTRUCTOR::Codedurchsicht]
 
 Code lesen und manuell grob auf Richtigkeit prüfen.
-Das Kommandoprotokoll zur Unterstützung heranziehen.  
+Das Kommandoprotokoll zur Unterstützung heranziehen.
 Falls jemand nicht weiß, wie viele Übereinstimmungen in Schritt 3 zu erwarten sind
 (nämlich 64/16, also 4), kurz mündlich erklären, aber die Einreichung nicht zurückweisen.  
 Klare Defekte und sehr ungünstige Konstruktionen zurückweisen,
 insbesondere solche, die zu wenig Gebrauch von `hashlib` machen.
+A8: Ergebnis muss True sein, andernfalls liegt ein Defekt vor.
 
 [ENDINSTRUCTOR]

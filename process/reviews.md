@@ -44,6 +44,8 @@ We will modify these rules over time when others appear more useful.
   die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
 
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->CH)
+- ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner->LP->SW) (kleine Änderungen, 
+  Hint für Erklärung von Bytestrings)
 
 
 - ch/Testen/Unittests/tdd.md (Ruhe->DM->LP)
@@ -175,12 +177,4 @@ Bitte von oben nach unten abarbeiten:
 
 
 ## Reviews to do for Sven Wegner
-
-- ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner->LP->SW):  
-  Die Aufgabe ist in vieler Hinsicht super, aber Sie haben sie abermals nicht selber
-  durchgeführt. Das funktioniert nicht!
-  Bitte holen Sie das jetzt nach und prüfen Sie, ob ich alle ihre Fehler erwischt habe;
-  ich habe es nämlich auch nur teilweise praktisch durchgeturnt.
-
-- ...
 
