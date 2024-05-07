@@ -1,7 +1,7 @@
 title: Editoren
 stage: alpha
 timevalue: 1.0
-difficulty: 3
+difficulty: 2
 ---
 
 [SECTION::goal::idea]
@@ -21,7 +21,8 @@ Bearbeiten Sie die Datei `editor.txt`, mit den beiden unten genannten Editoren.
 Werden sie vertraut mit vim. Nutzen Sie als Hilfestellung diesen kurzen Beitrag 
 [Vim101](https://www.linuxfoundation.org/blog/blog/classic-sysadmin-vim-101-a-beginners-guide-to-vim).
 
-Lesen Sie insbesondere, wie man den `insert mode` startet und wie Sie `vim` schließen.
+Lesen Sie insbesondere die Abschnitte **Editing Vim Style**, **Searching And Replacing**, 
+**Copying And Pasting** und **Saving And Quitting**
 
 - [EC] Suchen Sie nach `Vulnerability`.
 - [EC] Ersetzen Sie `Vulnerability` mit `ersetzt mit vim`.
@@ -43,6 +44,7 @@ lernen.
 ### Nano
 
 Machen Sie sich mit nano vertraut. Nutzen Sie als Hilfestellung [nano101](https://linuxize.com/post/how-to-use-nano-text-editor/).
+Lesen Sie insbesondere die Abschnitte **Editing Files** und **Saving and Exiting**.
 
 - [EC] Suchen Sie nach `Mitigation`.
 - [EC] Ersetzen Sie es mit `ersetzt mit nano`
