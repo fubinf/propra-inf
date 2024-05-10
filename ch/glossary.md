@@ -740,6 +740,14 @@ Dieses Funktionsprinzip ist bekannt als Kontrollumkehr (inversion of control)
 oder Hollywood-Prinzip: _"Don't call us, we'll call you"_.
 [ENDTERM]
 
+[TERM::redirect-Operator]
+Die Verwendung des Operators kann die Ausgabe von Befehlen in Dateien umleiten, um Daten zu 
+speichern oder zu protokollieren, sowie Eingabedaten aus Dateien lesen. Darüber hinaus ermöglicht 
+der Redirect-Operator die Weiterleitung von Ausgaben an verschiedene Ziele wie andere Befehle, 
+Netzwerkverbindungen oder Programme, was die Integration in komplexe Datenverarbeitungs- und 
+Analyseworkflows erleichtert. 
+[ENDTERM]
+
 [TERM::Refactoring|Refaktorisierung]
 Eine Veränderung der Struktur einer Software, die das Verhalten der
 Software unverändert lässt. Dient zur Pflege der Struktur.
