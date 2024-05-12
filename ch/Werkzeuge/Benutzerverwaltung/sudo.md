@@ -14,24 +14,26 @@ Sudo ist der Befehl, um dem Nutzer Administratorrechte zu geben. Man sollte mit 
 
 [SECTION::instructions::detailed]
 
-Lesen Sie sich die Glossareinträge [TERMREF::sudo] und [TERMREF::su] durch.
-
 ### Sudo verstehen und nutzen
 
-Versuchen sie /etc/shadow zu öffnen
+Lesen Sie den Glossareinträge [TERMREF::sudo].  
+Lesen Sie den [Beitrag](https://wiki.ubuntuusers.de/sudo/) über sudo von ubuntuusers bis zum 
+Abschnitt **Installation**.
 
-- [EC] Öffnen Sie `/etc/shadow` mit einem beliebigen Editor.
+- [EC] Versuchen Sie die Datei `/etc/shadow` mit einem beliebigen Editor zu lesen.
 
-Wie Sie sehen, können Sie die Datei nicht öffnen, da der Nutzer und die Gruppe der Datei zu `root` gehören.
+Sie können die Datei nicht lesen. Der Nutzer und die Gruppe der Datei gehören zu `root` und Sie 
+haben keine Leserechte für die Datei. 
 
-- [EC] Prüfen Sie obige Aussage nach.
-- [EC] Setzen sie ein sudo vor den Befehl aus der Aufgabe [EREFC::1].
+- [EC] Setzen Sie nun ein sudo vor Ihren Befehl aus der Aufgabe [EREFC::1].
 
-Durch sudo haben sie zeitweise Administratorrechte für Ihren Nutzer bekommen, somit können Sie jetzt auch 
-die Datei öffnen und schreiben.  
-Sie haben Adminrechte, weil Ihr Nutzer in der Gruppe sudo vorhanden ist.
+Durch sudo haben sie zeitweise Administratorrechte für Ihren Nutzer bekommen. Somit haben Sie die 
+Möglichkeit bekommen, die Datei zu lesen.  
 
-- [EC] Öffnen Sie die Datei `/etc/group` und bestätigen Sie obige Aussage.
+Damit Sie sudo nutzen können, müssen Sie in der sudo Gruppe sein. Um das zu prüfen, muss Ihr 
+Nutzername hinter der sudo-Gruppe in der Datei /etc/group vorhanden sein.
+
+- [EC] Suchen Sie in der Datei `/etc/group` nach der sudo Gruppe und Ihrem Nutzernamen.
 
 ### Neuen Nutzer erstellen und sudo-Rechte verteilen
 
@@ -41,20 +43,28 @@ Sie haben Adminrechte, weil Ihr Nutzer in der Gruppe sudo vorhanden ist.
     Lassen sie bei allen Fragen die Felder leer.  
     (Wir werden mehr auf die Nutzererstellung in [PARTREF::Nutzer] eingehen.)
 
+Lesen Sie den Glossareintrag [TERMREF::su] und lesen Sie die **Synopsis** und die **Description** der 
+su(1) [manpage](https://manpages.debian.org/bookworm/util-linux/su.1.en.html).
+
 - [EC] Melden Sie sich als `sudotest` an.
-- [EC] Nun versuchen Sie wieder `/etc/shadow` zu öffnen.  
-    Sie können die Datei immer noch nicht öffnen, auch wenn Sie `sudo` vor den Befehl setzen.  
+- [EC] Versuchen Sie mit dem Nutzer sudotest die Datei `/etc/shadow` zu lesen.
+
+    Sie können die Datei immer noch nicht lesen, auch wenn Sie `sudo` vor den Befehl setzen.  
     Der Nutzer ist nämlich noch nicht in der Gruppe `sudo`. Lassen Sie uns das erledigen.  
+
 - [EC] Wechseln Sie zurück zu Ihrem Nutzer und fügen Sie `sudotest` der Gruppe `sudo` hinzu:
 
     `usermod -aG sudo sudotest`  
 
     (Wir werden mehr auf die Gruppen in [PARTREF::Gruppen] eingehen.)
 
-- [EC] Prüfen sie jetzt, ob `sudotest` die Datei `/etc/shadow` lesen kann.
+- [EC] Prüfen Sie, ob `sudotest` die Datei `/etc/shadow` lesen kann.
 
 [ENDSECTION]
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
+
+[INSTRUCTOR::Erwartung]
+[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
