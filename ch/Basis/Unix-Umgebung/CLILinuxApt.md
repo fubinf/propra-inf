@@ -65,4 +65,4 @@ Je nach gewählter Distribution liegen die Programme stattdessen oder zusätzlic
 
 [INCLUDE::InstructorCheckLinux.inc]
 
-[ENDSECTION]
+[ENDINSTRUCTOR]

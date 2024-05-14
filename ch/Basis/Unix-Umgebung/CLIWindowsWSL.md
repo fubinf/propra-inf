@@ -94,4 +94,4 @@ Sollten mehrere Distributionen installiert worden sein, kann mit
 `wsl --setdefault <distro name>`
 die standardmäßig ausgewählte Distribution geändert werden.
 
-[ENDSECTION]
+[ENDINSTRUCTOR]

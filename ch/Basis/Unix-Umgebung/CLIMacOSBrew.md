@@ -129,4 +129,4 @@ Homebrew 4.2.7
 
 Prüfen Sie, dass mindestens Python-Version 3.11 installiert worden ist.
 
-[ENDSECTION]
+[ENDINSTRUCTOR]
