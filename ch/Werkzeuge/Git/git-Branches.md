@@ -48,11 +48,8 @@ Thema im Git-Book](https://git-scm.com/book/en/v2/Git-Branching-Branching-Workfl
 [SECTION::instructions::detailed]
 
 Lesen Sie die [Git-Book Seite zu Git Branches](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell) 
-gründlich durch.
-
-Für diese Aufgabe erstellen Sie die abzugebenden Dateien *in ihrem neu zu erstellenden Branch* und 
-pflegen diese zum Schluss wieder in den Main-Branch ein. Sollten Sie nach dem Einpflegen noch 
-änderungen an der abzugebenden Datei vornehmen müssen, so können Sie das auch im Main-Branch machen.
+gründlich durch und bearbeiten Sie dann die folgenden Aufgaben. Nutzen Sie dafür ihr Zweitrepo 
+was sie in [PARTREF::git-Zweitrepo] erstellt haben.
 
 ### Erstellen des Branches
 
