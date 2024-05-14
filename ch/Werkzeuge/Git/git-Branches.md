@@ -105,7 +105,7 @@ Nutzen wir jetzt also `git merge` um unsere Änderungen in den Main-Branch einzu
 - [EQ] Worauf sollte man nach dem erneuten wechsel auf den Main-Branch und *vor* dem 
 Einpflegen des anderen Branches besonders achten?
 
-[HINT]
+[HINT::Was könnte Probleme beim Mergen in den Main-Branch verursachen?]
 Es kann sein, dass ein anderer Projektteilnehmer auf den git-Server in der Zwischenzeit neue 
 Commits in den Main-Branch gepusht hat. Wie kann man hier Konflikte bzw. Probleme beim pushen 
 vermeiden?
