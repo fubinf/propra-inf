@@ -132,7 +132,7 @@ man-page für `git-log`.
 [SECTION::submission::trace]
 
 Abzugeben ist ein Kommandozeilenlog über das Erstellen, Bearbeiten und Mergen eines git-Branches 
-im ProPra repo. Abschließend erstellen Sie eine Ansicht des git-logs aus der die Änderungen und 
+in ihrem Zweitrepo. Abschließend erstellen Sie eine Ansicht des git-logs aus der die Änderungen und 
 wer diese vorgenommen hat ersichtlich werden.
 
 [ENDSECTION]
@@ -151,6 +151,6 @@ in der Zwischenzeit Änderungen auf dem Server bzw. Main-Branch gegeben hat.
 
 [EREFC::4] Der git-log Befehl sollte ungefähr folgendermaßen aussehen:
 
-`git log --oneline --decorate --graph --all --format=%aE`
+`git log --oneline --decorate --graph --all`
 
 [ENDINSTRUCTOR]
