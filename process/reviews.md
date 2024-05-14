@@ -107,6 +107,10 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Werkzeuge/Paketmanager/apt.md (Condric)
 
+- ch/Werkzeuge/Git/Git-Fehlerbehebung.md (Hüster)
+- ch/Werkzeuge/Git/Git-Branches.md (Hüster)
+- ch/Werkzeuge/Git/Git-Rebase.md (Hüster)
+
 
 ## Reviews to do for Hanen Alrwasheda
 
