@@ -58,7 +58,7 @@ schnell gar nicht mehr so gruselig.
 
 Was wollen wir jetzt eigentlich als nächstes Bewerkstelligen?
 
-Nun, die Änderungen aus **rebase-task-b** sollten jetzt auch in den Main-Branch eingepflegt 
+Nun, die Änderungen aus **rebase-b** sollten jetzt auch in den Main-Branch eingepflegt 
 werden. Allerdings wollen wir jetzt im Gegensatz zu vorher unsere Änderungen mit rebase 
 einpflegen und damit die commits direkt in den Main-Branch schreiben anstatt wie bei `git merge` 
 einfach einen neuen commit für den merge zu erstellen und somit quasi die "Historie" neu zu 
@@ -66,7 +66,7 @@ schreiben. Tun wir dies nicht, wird uns git mit der Aufforderung begrüßen eine
 neuen merge-Commit zu schreiben. 
 
 [NOTICE]
-Sollte man etwas übereifrig schon versucht haben **rebase-task-b** in main zu mergen kann man 
+Sollte man etwas übereifrig schon versucht haben **rebase-b** in main zu mergen kann man 
 einfach die vorgeschriebene Nachricht löschen und den Editor wieder schließen. Der oder dem 
 aufmerksamen Leser_innen sollte das auch schon aufgefallen sein, denn es steht am Ende des 
 langen Kommentars im neu geöffneten Editor.
@@ -81,8 +81,33 @@ was recht oft, wenn nicht sogar fast immer, passiert.
 - [EC] Geben Sie das Kommando an um Branch **rebase-b** auf **main** zu rebasen
 - [EC] Geben Sie das Kommando an wie man das Ganze im interaktiven Modus machen kann
 
-TODO_1_Hüster: soll hier nochmal ein git log angeschaut werden um den unterschied zwischen 
-rebase und merge zu sehen?
+[NOTICE]
+In der Aufgabe zu Branches haben wir uns schon mal die Graphenansicht für `git log` angeschaut. 
+Zur besseren Visualisierung von merging und rebasing kann man auch hier am Ende mal einen Blick auf 
+den git log werfen.
+
+Die Ausgabe sollte in etwa so aussehen:
+
+```git
+* 1a62513 (HEAD -> master) add rebase-a.md
+* 8c841bb (rebase-b) add rebase-b.md
+| * 3124383 (rebase-a) add rebase-a.md
+|/
+* 776de6c better state
+* ca4ac0b good state
+* 80d0877 added test.md
+```
+
+Zum Beispiel stellt sich einem dort auch die Frage, warum taucht eigentlich der commit in dem 
+wir "rebase-a.md" hinzugefügt haben zweimal auf, der commit mit "rebase-b.md" aber nur einmal?
+
+Wer diese Frage nicht beantworten kann, liest am besten nochmal den Unterschied zwischen merge 
+und rebase und rebase nach!
+
+Dazu kann man sich auch mal die Frage stellen wie unser Graph aussehen würde, wenn man für beide 
+Branches `git rebase` verwendet hätte? Oder wie, wenn man die branches jeweils getauscht, also 
+`rebase-a` mit rebase und `rebase-b` mit merge eingepflegt hätte?
+[ENDNOTICE]
 
 [SECTION::submission::trace]
 
@@ -98,6 +123,16 @@ rebase nutzt und warum das nützlich ist.]
 Prüfen Sie die Vorgehensweise der Studierenden, vor allem beim rebasen von branch b auf den main 
 branch.
 
-TODO_1_Hüster: Hier fehlt noch der rest an Infos für den Instructor
+Im Grunde benötigen die studis zum Lösen der aufgabe einfach nur `git merge rebase-a` und `git 
+rebase rebase-b`. Beide Befehle sollten jeweils ohne Probleme durchlaufen.
+
+Wichtig ist, dass verstanden wird, dass beim rebase die commits aus dem branch übertragen werden,
+währen bei merge ggf. neue commits erstellt werden. 
+
+Das erklärt auch warum in der Graphenansicht der `rebase-a` Commit zweimal auftaucht, wurde für 
+diesen eben beim mergen ein neuer Commit erstellt und `rebase-b` nur einmal, da der commit 
+übertragen wurde und somit den gleichen hash hat.
+Ändert man die Reihenfolge bzw. die Befehle so ändert sich dann natürlich auch die 
+Graphenansicht entsprechend.
 
 [ENDINSTRUCTOR]
