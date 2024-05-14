@@ -33,7 +33,7 @@ gekommen sind. Diskutieren Sie außerdem, ob diese Vorgehensweise sinnvoll für 
 oder ob es dafür andere bessere Lösungen geben könnte.
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::]
 Prüfen Sie den Ausdruck mit mindestens einer gültigen E.164 Nummer sowie weiteren Beispielnummern.
 
 Beispielnummern:

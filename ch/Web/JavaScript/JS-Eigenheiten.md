@@ -41,6 +41,6 @@ Es gibt `function(arg) { code }` und `arg => { code }`. Worin unterscheiden sich
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::]
 .
 [ENDINSTRUCTOR]

@@ -98,7 +98,7 @@ Max strebt folgende Wunschnoten für jedes Fach an:
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::Musterlösung]
 
 - [EREFR::1] Mögliche Lösung:
 

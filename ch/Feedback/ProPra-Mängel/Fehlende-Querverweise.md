@@ -71,7 +71,7 @@ Setzen Sie T in die erste Zeile und "Formulierung" in die zweite.
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
-[INSTRUCTOR::heading]
+[INSTRUCTOR::Je 2 Stück prüfen]
 
 Aus jeder Kategorie mindestens zufällige zwei der Einträge kontrollieren:
 - Besteht der Mangel überhaupt noch oder ist er inzwischen gelöst?

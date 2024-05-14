@@ -86,7 +86,7 @@ Als Nächstes versuchen wir `git bisect` an einem Beispiel-Repo einzusetzen.
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::bisect bitte!]
 
 Wenn `git bisect` nicht automatisiert benutzt worden ist, zurückweisen.
 

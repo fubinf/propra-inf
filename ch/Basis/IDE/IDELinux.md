@@ -92,7 +92,7 @@ Sie einen aussagekräftigen Screenshot und zeigen Sie diesen Ihrem/Ihrer Tutor_i
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::IDE angucken]
 
 Lassen Sie sich von den Studierenden die vollständig aufgesetzte IDE zeigen. Achten Sie vor 
 allem auf die korrekte Python-Version.

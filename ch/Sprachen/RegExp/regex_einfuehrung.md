@@ -71,7 +71,7 @@ Parsen von HTML eignen.
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::Ausdrücke prüfen]
 
 Prüfen Sie, ob die regulären Ausdrücke die gegebenen Anforderungen erfüllen und ob aus der 
 Beschreibung hervorgeht, dass die Studierenden selbst auf die Lösung gekommen sind.

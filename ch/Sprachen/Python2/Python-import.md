@@ -179,7 +179,7 @@ Können Sie an andere denken?
 
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::Varianten verstehen]
 
 Hier ist es wichtig, die möglichen Varianten beim Importieren zu verstehen und wie mit jeder davon 
 umzugehen ist. 
