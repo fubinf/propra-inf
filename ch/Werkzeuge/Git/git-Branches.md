@@ -57,11 +57,11 @@ Zuerst müssen wir den neuen Branch erstellen. Standardmäßig befinden wir uns 
 Master-Branch, dieser ist jedoch in vielen öffentlichen bzw. größeren Projekten gesperrt bzw. 
 geschützt. Geschützt deshalb, weil man oft davon ausgeht, dass dieser Branch problemlos 
 funktionieren sollte. Zwar könnten wir lokal Änderungen an diesem Branch vornehmen, allerdings 
-würden wir spätestens beim pushen auf den git-Server Probleme bekommen. Ein anderer Grund für 
+würden wir spätestens beim Pushen auf den git-Server Probleme bekommen. Ein anderer Grund für 
 eigene Branches kann auch schlichtweg sein, dass man über längere Zeit an einem eigenen Feature 
 arbeiten und sich nicht mit dem ständigen updaten herumschlagen möchte. Oder aber man möchte 
 eine bestimmte Version festhalten.
-In jedem Fall bietet uns git jedoch einfache Mittel um unsere eigenen Branches zu erstellen und 
+In jedem Fall bietet uns git jedoch einfache Mittel, um unsere eigenen Branches zu erstellen und 
 zwischen diesen hin und her zu wechseln.
 Fangen wir nun also damit an. In fast allen Teilen dieser Aufgabe werden wir `git branch` bzw. 
 `git checkout` verwenden. Es bietet sich also an von beiden Befehlen mal die Dokumentation bzw. 
@@ -72,14 +72,14 @@ wechseln Sie auf diesen. Nennen Sie ihren Branch "propra-git-branches". Grundsä
 durchaus zu empfehlen Branches bezeichnende Namen zu geben, unter denen man sich auch einfach 
 etwas vorstellen kann. Das hilft vor allem Ihnen selbst. 
 
-- [EC] Welche Befehle haben Sie verwendet um den neuen Branch zu erstellen?
+- [EC] Welche Befehle haben Sie verwendet, um den neuen Branch zu erstellen?
 
 ### Bearbeiten 
 
 In unserem neuen Branch können wir ganz wie gewohnt arbeiten. Neue Dateien erstellen oder 
 bestehende modifizieren. Auch commits können wir erstellen und bearbeiten wie wir lustig sind. 
 Es ist nicht anzuraten die Historie *vor* dem Startpunkt des erstellten Branches zu modifizieren, 
-ist es zwar grundsätzlich sowieso nicht, aber hier noch viel weniger da das einpflegen in andere 
+ist es zwar grundsätzlich sowieso nicht, aber hier noch viel weniger da das Einpflegen in andere 
 Branches dadurch nur noch viel, viel komplizierter wird.
 
 Nun da wir das geklärt haben, können wir eine neue Datei erstellen, nennen wir sie `branches.md` 
@@ -107,7 +107,7 @@ Einpflegen des anderen Branches besonders achten?
 
 [HINT::Was könnte Probleme beim Mergen in den Main-Branch verursachen?]
 Es kann sein, dass ein anderer Projektteilnehmer auf den git-Server in der Zwischenzeit neue 
-Commits in den Main-Branch gepusht hat. Wie kann man hier Konflikte bzw. Probleme beim pushen 
+Commits in den Main-Branch gepusht hat. Wie kann man hier Konflikte bzw. Probleme beim Pushen 
 vermeiden?
 [ENDHINT]
 
@@ -125,7 +125,100 @@ entsprechende Optionen anhängen, um sich einen schicken Graphen ausgeben zu las
 [HINT::Ausgabe des git-log Befehls]
 Falls Sie Probleme haben die Ausgabe des Befehls anzupassen, schauen Sie doch mal in die 
 man-page für `git-log`.
-[ENDNOTICE]
+[ENDHINT]
+
+### Merge-Konflikte
+
+Beim Arbeiten mit mehreren Branches und der Merge-Methode kann es immer wieder dazu kommen, dass 
+man sogenannte Merge-Konflikte (merge-conflicts) verursacht. Diese Zu verstehen ist zu Beginn 
+nicht trivial. Im Grunde geht es dabei aber nur darum, dass es zwei Änderungen an der gleichen 
+Datei gibt welche miteinander Konkurrieren, da sie wahrscheinlich den gleichen Bereich einer 
+Datei verändern wollen.
+
+Unser aktueller Stand sollte folgender sein: 
+
+- Wir haben den Main oder Master-branch ausgecheckt
+- Der letzte commit hat die Datei "branches.md" hinzugefügt
+
+Jetzt wollen wir unseren Zustand kaputt machen!
+
+- Öffnen Sie die `branches.md` Datei, schreiben Sie einen Text in die erste Zeile und 
+  speichern die Datei. 
+- Sichern Sie ihre Änderungen in einem neuen Commit.
+- Wechseln Sie dann auf den `propra-git-branches` Branch und öffnen Sie auch dort die `branches.
+  md` Datei und schreiben sie einen anderen(!) Text in die erste Zeile. Auch diese speichern Sie 
+  wieder.
+- Auch hier brauchen wir wieder einen neuen Commit der unsere Änderungen beinhaltet.
+- Wechseln Sie jetzt wieder auf den Main bzw. Master-Branch.
+
+Jetzt haben wir alles für unser perfektes Desaster vorbereitet. Wenn wir uns vergewissern wollen, 
+können wir noch einmal `git log` mit den Argumenten `--all --decorate --graph --name-only 
+--oneline` aufrufen, dann sehen wir schon, dass in beiden Commits die gleiche Datei bearbeitet 
+wurde.
+
+Das könnte dann nämlich z.B. so aussehen:
+
+```
+* 19a0399 (propra-git-branches) changed branches.md but in a branch
+| branches.md
+| * 14f53dd (HEAD -> master) changed branches.md
+|/
+|   branches.md
+* 69fa86b added branches.md
+| branches.md
+```
+
+Als Nächstes wollen wir doch mal unseren Merge-Konflikt auslösen!
+
+- Mergen Sie den Branch **propra-git-branches** in den Master bzw. Main-Branch.
+
+Wenn die vorherigen Schritte richtig befolgt wurden sollten wir jetzt mit der folgenden 
+Nachricht begrüßt werden:
+
+```
+Auto-merging branches.md
+CONFLICT (content): Merge conflict in branches.md
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+Also öffnen wir unsere branches.md um uns den Schaden mal genauer anzuschauen:
+
+```
+<<<<<<< HEAD
+This is fine!
+=======
+This is not fine!
+>>>>>>> propra-git-branches
+```
+
+Was wir hier jetzt sehen ist wie git uns ermöglicht Merge konflikte aufzulösen.
+Über dem `=======` stehen die Änderungen in unserem Main-Branch, darunter die Änderungen aus dem 
+`propra-git-branches`-Branch.
+Der simpelste Weg ist jetzt einfach alles zu löschen, was wir nicht haben wollen, die Datei zu 
+speichern und dann wieder mit `git add` hinzuzufügen. 
+Der Merge-Konflikt wäre damit behoben. 
+Allerdings muss trotzdem noch einmal `git commit` ausgeführt werden, was einem auch von `git 
+status` mitgeteilt wird, wenn man es nach `git add` einmal aufruft.
+
+Alternativ gibt es noch das sogenannte `git mergetool`, das hier zu erklären würde vermutlich 
+den Rahmen sprengen und ist eher Fortgeschrittenen (vim) Nutzer_innen zu empfehlen.
+
+Wer sich trotzdem mal daran versuchen möchte, findet hier [die nötige Dokumentation.](https://git-scm.com/docs/vimdiff/en)
+
+Und jetzt schauen wir uns noch ein letztes Mal den `git log` Graphen an und können jetzt sehr 
+schön sehen an welcher Stelle wir die beiden Branches zusammengeführt haben.
+
+```
+*   a76ed22 (HEAD -> master) Merge branch 'propra-git-branches'
+|\
+| * 19a0399 (propra-git-branches) changed branches.md but in a branch
+| | branches.md
+* | 14f53dd changed branches.md
+|/
+|   branches.md
+* 69fa86b added branches.md
+| branches.md
+```
 
 [ENDSECTION]
 
@@ -133,20 +226,26 @@ man-page für `git-log`.
 
 Abzugeben ist ein Kommandozeilenlog über das Erstellen, Bearbeiten und Mergen eines git-Branches 
 in ihrem Zweitrepo. Abschließend erstellen Sie eine Ansicht des git-logs aus der die Änderungen und 
-wer diese vorgenommen hat ersichtlich werden.
+wer diese vorgenommen hat ersichtlich werden. Um diese Situation bewältigen zu können müssen wir 
+Sie erstmal verstehen. Glücklicherweise hat auch dazu das git book wieder einen Abschnitt parat. 
+Lesen Sie den Teil [Basic Merge Conflicts im Kapitel Basic Branching and Merging.](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+Das mag erstmal sehr viel und komplex erscheinen aber wir Arbeiten uns Schritt für Schritt durch.
+
+
 
 [ENDSECTION]
 
-[INSTRUCTOR::Befehle prüfen und schauen ob das mentale Modell vom Branching verstanden wurde]
+[INSTRUCTOR::Befehle prüfen und schauen ob das mentale Modell vom Branching und die Behebung von 
+Merge-Konflikten verstanden wurde]
 
-Prüfen Sie die abgegeben Kommandologs.
+Prüfen Sie die abgegeben Kommandozeilenlogs.
 
 Der neue Branch sollte mit [EREFC::1] `git branch` erstellt und mit `git checkout` 
 ausgecheckt werden. Danach wird mit [EREFC::2] `git add` und `git commit` der neue Commit 
 erstellt und schlussendlich mit [EREFC::3] `git merge` wieder in Main gemergt.
 
 [EREFQ::1] Natürlich sollte man Main zuerst mit `git pull` auf den aktuellen Stand bringen bevor 
-die Änderungen eingepflegt werden weil es sonst zu ganz unangenehmen Problemen kommen kann wenn 
+die Änderungen eingepflegt werden, weil es sonst zu ganz unangenehmen Problemen kommen kann, wenn 
 in der Zwischenzeit Änderungen auf dem Server bzw. Main-Branch gegeben hat.
 
 [EREFC::4] Der git-log Befehl sollte ungefähr folgendermaßen aussehen:
