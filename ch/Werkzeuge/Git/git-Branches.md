@@ -1,7 +1,7 @@
 title: Git Branches
 stage: alpha
-timevalue: 1.0
-difficulty: 1
+timevalue: 2.0
+difficulty: 2
 assumes: git-Funktionsweise
 requires: git-Zweitrepo
 ---
