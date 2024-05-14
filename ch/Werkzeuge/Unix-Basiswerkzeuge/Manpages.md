@@ -115,3 +115,4 @@ Was haben Sie neues darüber gelernt?
 - Die Manpages von `grep` und `find` sind umfangreich und dementsprechend einschüchternd,
   mit der von `wc` sollte hingegen jeder klar kommen.
 - `grep -l *.md`
+[ENDINSTRUCTOR]

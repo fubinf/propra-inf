@@ -68,3 +68,4 @@ su(1) [manpage](https://manpages.debian.org/bookworm/util-linux/su.1.en.html).
 
 [INSTRUCTOR::Erwartung]
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[ENDINSTRUCTOR]

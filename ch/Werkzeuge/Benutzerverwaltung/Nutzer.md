@@ -79,3 +79,4 @@ man Nutzer und deren Dateien löscht.
 [INSTRUCTOR::Erwartung]
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 [EREFC::6] Prüfen ob die Option für alle Dateien gesetzt ist.
+[ENDINSTRUCTOR]
