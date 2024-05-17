@@ -69,15 +69,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/SUT/LokalesDeployment.md (Ruhe->CH)
 
 
-- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH)
+- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH->LP)
 
-
-- ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->HA->DP->LP)
-- ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->LP)
-- ch/Bestandscode/Refactoring-Grundlagen/open_closed_prinzip.md (Pietrak->LP)
-- ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->LP)
-- ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->LP)
-- ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->LP)
 
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
@@ -143,6 +136,13 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Debugging/Debuggingtools/IDE_debugging.md (Pietrak->LP->DP)  
   Bitte nochmal prüfen (ich habe einiges geändert), dann auf beta setzen.
+
+- ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->HA->DP->LP->DP)
+- ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->LP->DP)
+- ch/Bestandscode/Refactoring-Grundlagen/open_closed_prinzip.md (Pietrak->LP->DP)
+- ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->LP->DP)
+- ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->LP->DP)
+- ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->LP->DP)
 
 
 ## Reviews to do for Ronny Ruhe
