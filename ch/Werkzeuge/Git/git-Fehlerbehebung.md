@@ -5,10 +5,22 @@ difficulty: 2
 assumes: git-Funktionsweise
 requires: git-Zweitrepo
 ---
+TODO_1_hüster:
+
+- K2: Das geht nicht mit einem Kommando, sondern nur durch reset auf den vorherigen Commit und
+  Neuerzeugen eines passenderen Commits.  
+  Ihre Musterlösung verweist auf den Fall, dass die falsche Datei nur dem Index zugefügt ist,
+  noch nicht dem Commit. Das ist ein übler inhaltlicher Fehler. Warum passiert der?
+- Ich habe mein Review an dieser Stelle gestoppt. 
+  Wir brauchen eine Antwort auf obige Frage und dann eine nochmalige gründliche Durchsicht der 
+  restlichen Aufgabe Ihrerseits.
+- Bitte achten Sie auch auf die Großschreibung von "Commit", die schwankt oft.
+- Siehe bitte auch ein git show auf meine sonstigen Änderungen an dieser Datei.
+
 
 [SECTION::goal::experience]
 
-Ich lerne verschiedene Fehlerarten für das Arbeiten mit git kennen und wie ich diese behebe.
+Ich kann einige kleine Pannen beheben, wie sie beim Arbeiten mit git oft vorkommen.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -21,27 +33,29 @@ Sie rückgängig machen bzw. beheben kann.
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-Zuallererst lesen wir wieder einmal eine Seite aus dem Git Buch. Diesmal geht es darum wie wir 
-[Dinge rückgängig machen](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things) können.
+Zuerst lesen wir wieder eine Seite aus dem Git Buch:
+[Wie wir Dinge rückgängig machen können](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things).
 
 [WARNING]
-Lesen Sie die Seite gründlich durch! Viele der hier gelernten Befehle können Änderungen 
-verursachen, welche **nicht** ohne weiteres rückgängig gemacht werden können.
+Lesen Sie die Seite _gründlich_! Viele der hier gelernten Befehle können Änderungen 
+verursachen, welche **nur aufwändig** wieder rückgängig gemacht werden können -- und
+manche auch gar nicht.
 [ENDWARNING]
 
 Nun machen wir uns daran, das gelesene selbst auszuprobieren.
 
 ### Änderungen an einen bestehenden Commit anhängen
 
-Es kann vorkommen, dass wir auch nachdem wir bereits Änderungen an einer Datei einem commit 
-hinzugefügt haben, noch weitere Änderungen vornehmen und diese dem gleichen commit hinzufügen 
-wollen. Wie das funktioniert lernen wir in dieser Aufgabe.
+Es kann vorkommen, dass wir einem schon angefertigten Commit weitere Änderungen hinzufügen 
+wollen. Wie das funktioniert, lernen wir in dieser Aufgabe.
 
-1. Erstellen sie eine neue Datei namens `amend.md` und fügen sie diese mit `git add` und `git 
+1. Erstellen sie eine minimale neue Datei namens `amend.md` und fügen sie diese mit `git add` und `git 
    commit` einem neuen Commit hinzu.
+   (Minimal heißt z.B. nur eine Zeile wie "Ich bin amend.md.". 
+   So ähnlich ist das in dieser Aufgabe oft sinnvoll.)
 2. Nehmen Sie nun weitere Änderungen an der Datei vor.
 3. Verwenden sie nun `git commit` und `git log` um diese Änderungen dem vorherigen Commit aus 
-   Schritt 1 hinzuzufügen. 
+   Schritt 1 hinzuzufügen, ohne einen zusätzlichen Commit zu erzeugen. 
 
 [EC] Mit welchem Befehl haben Sie die Änderungen an den bestehenden Commit angehangen?
 
@@ -61,9 +75,10 @@ diese vielleicht doch lieber in einem anderen Commit haben wollen.
 [EC] Mit welchem Befehl können Sie die Datei `remove.md` aus dem Commit entfernen?
 
 [WARNING]
-Seien Sie besonders sicher, wenn Sie sensible Informationen wie Schlüssel in ihrem git repo 
-liegen haben (am besten sollte das nie der Fall sein). Diese aus Versehen zu einem Commit 
-hinzuzufügen, oder noch schlimmer, zu pushen, kann weitreichende Fatale folgen haben.
+Geheime Informationen wie Schlüssel oder Passwörter sollte man nie in ein git Repo speichern.
+Hat man das doch mal getan und noch nicht gepusht, ist das ein guter Anwendungsfall für 
+obige Operation.
+Hat man hingegen schon gepusht, wird es richtig aufwändig; dazu mehr später.
 [ENDWARNING]
 
 ### Änderungen an einer Datei rückgängig machen
