@@ -5,7 +5,7 @@ difficulty: 2
 ---
 [SECTION::goal::idea]
 Ich verstehe, welche Methoden Ingenieure verwenden, um einen zuverlässigen Entwurf zu gestalten
-und um aus vergangenen Fehlern zu lernen.
+und um aus vergangenen [TERMREF2::Fehler::-n] zu lernen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]

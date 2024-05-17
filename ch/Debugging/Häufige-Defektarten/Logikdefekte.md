@@ -5,7 +5,7 @@ difficulty: 2
 ---
 [SECTION::goal::idea]
 
-Ich verstehe, welche Form logische Defekte in Code annehmen können und habe einen solchen Defekt
+Ich verstehe, welche Form logische Defekte in Code annehmen können und habe einen solchen [TERMREF::Defekt]
 in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
@@ -85,7 +85,7 @@ while True:
 
 Am Ende der Zeile (`end_of_line()`) wird eine Aufräum-Funktion (`cleanup()`) aufgerufen.
 Es wird aber verpasst, danach aus der while-Schleife auszubrechen, wodurch es folgend zum 
-Versagen kommen kann.
+[TERMREF::Versagen] kommen kann.
 
 Die bisherigen Beispiele für Defekte sind durch kleine Änderungen behebbar gewesen.
 Dass das nicht immer der Fall sein muss, soll das folgende Beispiel zeigen.

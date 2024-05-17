@@ -132,7 +132,7 @@ def time_average(logs: list[tuple[str,int,str]]) -> dt.timedelta:
 
 Den Code lesen und manuell ungefähr auf Richtigkeit prüfen.
 Das Kommandoprotokoll zur Unterstützung heranziehen.
-Klare Defekte und sehr ungünstige Konstruktionen zurückweisen,
+Klare [TERMREF2::Defekt::-e] und sehr ungünstige Konstruktionen zurückweisen,
 insbesondere solche, die zu wenig Gebrauch vom Können von `datetime` machen.
 
 [ENDINSTRUCTOR]

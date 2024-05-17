@@ -5,7 +5,7 @@ difficulty: 2
 ---
 [SECTION::goal::idea]
 
-Ich verstehe, welche Form Indexdefekte im Code annehmen können, und habe einen solchen Defekt in 
+Ich verstehe, welche Form Indexdefekte im Code annehmen können, und habe einen solchen [TERMREF::Defekt] in 
 fremdem Code erfolgreich gefunden. 
 
 [ENDSECTION]

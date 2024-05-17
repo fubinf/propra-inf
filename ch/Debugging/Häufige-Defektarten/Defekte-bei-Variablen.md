@@ -6,7 +6,7 @@ assumes: Defekte-in-Ausdrücken, Anordnungsdefekte
 ---
 [SECTION::goal::idea]
 
-Ich verstehe, in welcher Form falsch benutzte Variablen als Defekte auftreten, und 
+Ich verstehe, in welcher Form falsch benutzte Variablen als [TERMREF2::Defekt::-e] auftreten, und 
 habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
@@ -149,7 +149,7 @@ Hier sind einige Vorschläge, um an den Code heranzutreten:
 Durchlaufen Sie die `do_turn()`-Funktion mit den folgenden Parametern:
 Das Deck hat nur eine Karte, damit die Zufälligkeit beim Kartenziehen eliminiert wird 
 (auch wenn in einem echten Spiel das Deck 52 Karten hat, 
-müssen Sie ein Versagen reproduzieren können, um es zu untersuchen).
+müssen Sie ein [TERMREF::Versagen] reproduzieren können, um es zu untersuchen).
 
 #### Erste Eingabe
 

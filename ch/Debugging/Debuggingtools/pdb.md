@@ -36,7 +36,7 @@ Beschreiben Sie in eigenen Worten:
   - [EQ] Was sind die beiden verschiedenen Methoden des Tutorials, wie Sie das Debugging mit pdb starten? 
   - [EQ] Welche wichtigsten Kommandos stehen Ihnen zur Steuerung von pdb zur Verfügung?
   - [EQ] Welche Voraussetzung sollte bei einem größeren Programm erfüllt sein, 
-    um mittels "pdb" einen Defekt gut finden zu können?
+    um mittels "pdb" einen [TERMREF::Defekt] gut finden zu können?
   - [EQ] Wie nützlich finden Sie das Debugging mit "pdb"? Was gefällt Ihnen gut, was nicht? 
 [ENDSECTION]
 

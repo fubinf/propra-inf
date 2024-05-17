@@ -122,7 +122,7 @@ Code lesen und manuell grob auf Richtigkeit prüfen.
 Das Kommandoprotokoll zur Unterstützung heranziehen.
 Falls jemand nicht weiß, wie viele Übereinstimmungen in Schritt 3 zu erwarten sind
 (nämlich 64/16, also 4), kurz mündlich erklären, aber die Einreichung nicht zurückweisen.  
-Klare Defekte und sehr ungünstige Konstruktionen zurückweisen,
+Klare [TERMREF2::Defekt::-e] und sehr ungünstige Konstruktionen zurückweisen,
 insbesondere solche, die zu wenig Gebrauch von `hashlib` machen.
 A8: Ergebnis muss True sein, andernfalls liegt ein Defekt vor.
 

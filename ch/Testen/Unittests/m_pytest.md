@@ -71,7 +71,7 @@ nur dann aus, wenn der Test fehlschlägt.
 
 Dadurch kann man seine Tests so konzipieren, dass sie allerlei Informationen, die für die
 Diagnose eines Fehlschlags hilfreich sein könnten, routinemäßig ausgeben.
-Wenn dann ein Versagen auftritt, hat man es im Nu verstanden.
+Wenn dann ein [TERMREF::Versagen] auftritt, hat man es im Nu verstanden.
 Das ist für [TERMREF2::Modultest::-s] meist nicht nötig, 
 aber für komplexe [TERMREF2::Integrationstest::-s] unbezahlbar.
 

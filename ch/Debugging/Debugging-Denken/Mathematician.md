@@ -5,7 +5,7 @@ difficulty: 3
 ---
 [SECTION::goal::idea]
 Ich verstehe, wie Heuristiken und Beweistechniken einem Mathematiker helfen,
-und kann dieses Wissen auf die Suche nach der Ursache für einen Defekt transferieren.
+und kann dieses Wissen auf die Suche nach der Ursache für einen [TERMREF::Defekt] transferieren.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]

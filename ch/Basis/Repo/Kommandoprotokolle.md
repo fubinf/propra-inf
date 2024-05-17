@@ -137,7 +137,7 @@ Analog werden wir das künftig bei vielen Aufgaben machen.
   und nach dem letzten `exit`, dann benennen Sie die Ausgabedatei gegebenenfalls um.
   (Eine Datei namens `typescript` sollte selbst nie eingecheckt werden.)
 - Oder Sie benutzen einzelne `script`-Aufrufe für jedes zu protokollierende Kommando.
-- Falls Sie unterwegs Fehler gemacht haben, benutzen Sie nun den Editor,
+- Falls Sie unterwegs [TERMREF::Fehler] gemacht haben, benutzen Sie nun den Editor,
   um diese Teile zu entfernen.
 - Wenn anhand der Arbeitsschritte zu erkennen ist, dass Sie zwischen den
   markierten, ins Protokoll zu übernehmenden Arbeitsschritten weitere

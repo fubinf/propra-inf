@@ -84,7 +84,7 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
 - Wer `unittest` benutzt hat und jeden Testfall einzeln handkodiert, bitte zurückweisen:
   das ist unprofessionell.
 - Wer `unittest` benutzt und sich selbst eine tabellengesteuerte Testlogik gebaut hat,
-  kann wahrscheinlich pro Testlauf nur 1 Versagen sehen, nicht mehrere.
+  kann wahrscheinlich pro Testlauf nur 1 [TERMREF::Versagen] sehen, nicht mehrere.
   Auf die Vorzüge von `pytest` hinweisen, wo das ohne Mehraufwand besser geht.
 - Wenn die Sulfuras-Regel, dass sich `sell_in` nicht verändert, nicht überprüft wird,
   die Tests zurückweisen.  

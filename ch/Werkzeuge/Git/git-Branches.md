@@ -10,7 +10,7 @@ TODO_1_hüster
 - Es fehlt eine kurze Definition von Branch als paralleler Versionshistorie.
   Sie gehen davon aus, dass jede_r das schon weiß, was ganz klar nicht haltbar ist.
   Es ist wichtig, dass Sie üben, solche Annahmen zu bemerken.
-- Es fehlen Glossareinträge/-verweise zu Branch/Zweig, Fix/Defektfix/Defektkorrektur,
+- Es fehlen Glossareinträge/-verweise zu Branch/Zweig, Fix/[TERMREF::Defekt]fix/Defektkorrektur,
   Feature, Release/Freigabe/Patchrelease, evtl. Patch.
 - Background soll bei uns nur zur Motivation dienen, nicht zur Wissensvermittlung;
   die gehört nach instructions.

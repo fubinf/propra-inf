@@ -6,7 +6,7 @@ assumes: Defekte-in-Ausdrücken
 ---
 [SECTION::goal::idea]
 Ich verstehe, in welcher Form Lokalisierungsdefekte meinen Code mangelhaft werden lassen, und
-habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
+habe einen solchen [TERMREF::Defekt] in fremdem Code erfolgreich gefunden.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]

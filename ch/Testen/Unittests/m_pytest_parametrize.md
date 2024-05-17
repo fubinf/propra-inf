@@ -47,7 +47,7 @@ einer Datentabelle.
   4 für alle nötigen Kombinationen von `None` und Nicht-`None`,
   2 weitere für grundlegend verschiedene Inputs für 2 dieser Fälle, wo die Logik intern anders funktioniert.
 - Falls Sie gleich alles richtig gemacht haben: Probieren Sie auch aus, wie die Ausgabe im
-  Versagensfall aussieht; studieren Sie das in Ruhe, denn es ist im Ernstfall sehr nützlich.
+  [TERMREF2::Versagen::-s]fall aussieht; studieren Sie das in Ruhe, denn es ist im Ernstfall sehr nützlich.
 - [EC] `pytest pytests/test_pytest_parametrize.py`
 - [EQ] Welchen Nachteil hätte es, wenn man nicht `pytest.mark.parametrize` benutzen würde,
   sondern in der Testfunktion eine Schleife macht, um deren Einträge zu durchlaufen? 

@@ -50,7 +50,7 @@ Das bauen wir uns jetzt.
  
 ### Ausprobieren
 
-- [EQ] Führen Sie beim Testen des Programms Protokoll über die Defekte, die Sie entdecken.
+- [EQ] Führen Sie beim Testen des Programms Protokoll über die [TERMREF2::Defekt::-e], die Sie entdecken.
 - Testen Sie Ihr Programm entweder auf einem Hilfsrepo oder 
   schreiben Sie das Programm richtig genug, dass es schon beim Testen nur sinnvolle Commits macht,
   oder machen Sie reine Test-Commits mit `git reset` wieder rückgängig.

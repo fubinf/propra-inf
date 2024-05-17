@@ -269,7 +269,17 @@ oder mit einer [TERMREF::Shebang-Zeile] beginnt.
 
 [TERM::Fehler|Error]
 Ein menschliches Verhalten, das u.U. zu einem [TERMREF::Defekt] führt.
-Entweder ein falsches Verhalten (engl. _commission_) oder ein Versäumnis (engl. _omission_).
+Weitere Unterscheidungen:
+  - Falschtun: So ein Fehler kann durch eine falsche Umsetzung erfolgen (commission)
+  - Versäumnis: oder dadurch, das etwas gar nicht erst umgesetzt wurde (omission)
+  - Irrtum: Weil man sich dessen nicht bewusst war (misconception)
+  - Versehen: oder es anders machen wollte (blunder)
+[ENDTERM]
+
+[TERM::Fehlerzustand|invalid state]
+Ein Fehlerzustand tritt auf, wenn das System aufgrund eines Fehlers in einen nicht beabsichtigten
+oder inkonsistenten Zustand gerät. Das kann dazu führen, dass das System unerwartete Ergebnisse
+produziert oder nicht ordnungsgemäß funktioniert.
 [ENDTERM]
 
 [TERM::Filter]
@@ -910,6 +920,14 @@ weil die GUI sich oft ändert.
 [TERM::Test]
 Das Ausprobieren von Software, um relevante Eigenschaften zu überprüfen;
 meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
+[ENDTERM]
+
+[TERM::Testszenario]
+Hierbei handel es sich um eine detaillierte Beschreibung eines spezifischen Testfalls oder einer
+Testsequenz, die darauf abzielt, eine bestimmte Funktionalität oder ein bestimmtes Verhalten einer
+Software zu überprüfen. Ein Testszenario umfasst normalerweise eine Reihe von Schritten, die
+ausgeführt werden müssen, um das gewünschte Ergebnis zu erzielen, sowie die erwarteten Ergebnisse
+oder Verhaltensweisen der Software.
 [ENDTERM]
 
 [TERM::TDD|Test-Driven Development|Test-Driven Design|Testgetriebener Entwicklung]

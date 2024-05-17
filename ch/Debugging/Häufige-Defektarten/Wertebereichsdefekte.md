@@ -5,7 +5,7 @@ difficulty: 2
 assumes: Indexierungsdefekte
 ---
 [SECTION::goal::idea]
-Ich verstehe, welche Form Grenzdefekte im Code annehmen können, und habe einen solchen Defekt 
+Ich verstehe, welche Form Grenzdefekte im Code annehmen können, und habe einen solchen [TERMREF::Defekt] 
 in fremdem Code erfolgreich gefunden.
 [ENDSECTION]
 

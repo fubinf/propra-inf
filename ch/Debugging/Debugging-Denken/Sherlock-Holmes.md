@@ -5,7 +5,7 @@ difficulty: 2
 ---
 [SECTION::goal::idea]
 Ich verstehe, welche Methoden Sherlock Holmes verwendet, um einen Täter zu finden, und
-kann dieses Wissen auf die Suche nach einem Defekt übertragen.
+kann dieses Wissen auf die Suche nach einem [TERMREF::Defekt] übertragen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]

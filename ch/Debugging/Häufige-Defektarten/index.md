@@ -18,5 +18,5 @@ Außerdem werden alle Code-Beispiele dieser Aufgabengruppe zwei Hilfen mitgeben:
 - Unter dem zu bearbeitenden Code werden einige Punkte erwähnt, 
   mittels derer der Code verstanden und geprüft werden kann.
 - Im aufklappbaren Feld "Lösungshinweise" finden Sie Informationen und
-  Beispieleingaben für die Programme, um dem Defekt auf die Schliche zu kommen.
+  Beispieleingaben für die Programme, um dem [TERMREF::Defekt] auf die Schliche zu kommen.
   **Versuchen Sie die Aufgabe zuerst ohne diese Hilfe zu bearbeiten.**

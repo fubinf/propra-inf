@@ -14,8 +14,8 @@ difficulty: 3
 [SECTION::background::default]
 
 Stellen Sie sich vor, **Ihre Codebasis hat eine Million Zeilen Code**.
-Und nun entdecken Sie ein Versagen, das offenbar nichts mit dem zu tun hat,
-woran Sie zuletzt gearbeitet haben, sondern der Defekt muss schon länger
+Und nun entdecken Sie ein [TERMREF::Versagen], das offenbar nichts mit dem zu tun hat,
+woran Sie zuletzt gearbeitet haben, sondern der [TERMREF::Defekt] muss schon länger
 in der Codebasis schlummern.
 
 Wenn man eine gute Versionshistorie hat, kann man die benutzen, um den Defekt einzukreisen, 

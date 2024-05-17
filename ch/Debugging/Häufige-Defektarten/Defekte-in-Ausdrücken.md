@@ -6,7 +6,7 @@ difficulty: 2
 [SECTION::goal::idea]
 
 Ich verstehe, in welcher Form falsch benutzte Ausdrücke in Code zu Defekten führen, und 
-habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
+habe einen solchen [TERMREF::Defekt] in fremdem Code erfolgreich gefunden.
 
 [ENDSECTION]
 

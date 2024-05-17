@@ -5,7 +5,7 @@ difficulty: 3
 ---
 [SECTION::goal::idea]
 Ich verstehe, welche Methoden Psychologen verwenden, um menschliche Fehler zu verstehen,
-und kann dieses Wissen auf die Suche nach der Ursache eines Defekts (also dem zugrunde liegenden
+und kann dieses Wissen auf die Suche nach der Ursache eines [TERMREF2::Defekt::-s] (also dem zugrunde liegenden
 Fehler) anwenden.
 [ENDSECTION]
 
