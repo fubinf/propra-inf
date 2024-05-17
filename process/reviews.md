@@ -44,9 +44,6 @@ We will modify these rules over time when others appear more useful.
   die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
 
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->CH)
-- ch/Bibliotheken/Python-Standardbibliothek/m_hashlib.md (Wegner->LP->SW) (kleine Änderungen, 
-  Hint für Erklärung von Bytestrings)
-
 
 - ch/Testen/Unittests/tdd.md (Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->DM->LP)
@@ -81,8 +78,10 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->LP)
 - ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->LP)
 - ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->LP)
+
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
+
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->DM)
 
 
@@ -107,9 +106,6 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Werkzeuge/Paketmanager/apt.md (Condric)
 
-- ch/Werkzeuge/Git/Git-Fehlerbehebung.md (Hüster)
-- ch/Werkzeuge/Git/Git-Branches.md (Hüster)
-- ch/Werkzeuge/Git/Git-Rebase.md (Hüster)
 
 
 ## Reviews to do for Hanen Alrwasheda
@@ -131,9 +127,10 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Sven Hüster
 
+- ch/Werkzeuge/Git/Git-Fehlerbehebung.md (Hüster->LP->SH->LP->SH)
+- ch/Werkzeuge/Git/Git-Branches.md (Hüster->LP->SH)
+- ch/Werkzeuge/Git/Git-Rebase.md (Hüster)
 - ch/Sprachen/RegExp/log_sanitizer (Hüster->fertiggestellt-Prechelt->SH)
-- ch/Werkzeuge/Git/git-Fehlerbehebung.md (Hüster->LP->SH)
-
 - ...
 
 

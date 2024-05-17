@@ -5,6 +5,31 @@ difficulty: 2
 requires: git-Zweitrepo, git-Branches
 ---
 
+TODO_1_hüster:
+
+- goal: "git rebase benutzen" ist kein sinnvolles Lernziel. 
+  Sondern: Was kann ich mit dem hier Gelernten erreichen?
+- Die Arbeitsschritte beginnen mit einer rein mechanischen Abfolge von Schritten.
+  Wir brauchen aber ein _vom Arbeitszweck_ her verständliches Szenario ("A arbeitet an Auftrag X,
+  B zugleich an Y" usw.), damit die Studis verstehen, wozu das alles dient.
+- `git rebase --interactive` ist konzeptuell etwas völlig anderes als `git rebase`
+  und stellt eine der größeren Usability-Katastrophen von git dar.
+  Es empfiehlt sich, das sehr separat zu behandeln (eigene Aufgabe), erst dann kann man auch ein
+  vernünftiges goal formulieren.
+- Außerdem brauchen wir semantisch mehr Schärfe.  
+  Insbesondere müssen die Studis lernen, die zwei Sichten auf Commits auseinanderzuhalten:
+  Commit als Schnappschuss (bezeichnet durch einen Hash) und Commit als Änderungsoperation.
+  Die Formulierung "der commit in dem wir rebase-a.md hinzugefügt haben" in der zweiten 
+  Bemerkung bezieht sich z.B. auf letztere Sicht und die Angelegenheit wird erst mit ihr
+  wirklich verständlich.  
+  Dafür dürfen und sollten wir uns viel Zeit nehmen und hilfreiche Verständnisfragen formulieren.  
+  Das sollte bei git-Fehlerbehebung los- und hier weitergehen und darf gern dazu führen,
+  dass aus diesen zwei Aufgaben drei oder vier oder fünf werden.
+- Siehe https://stackoverflow.com/questions/40617288/a-commit-in-git-is-it-a-snapshot-state-image-or-is-it-a-change-diff-patch-delta  
+  Dass diese Frage so wenig Views hat und dass so viele Leute bei git nicht durchblicken,
+  hat meiner Ansicht nach viel miteinander zu tun.  
+  ProPra-Teilnehmer_innen sollen in dieser Hinsicht bitte auf einem hohen Verständnisniveau rauskommen.
+
 [SECTION::goal::experience]
 
 Wir lernen und verstehen wie wir `git rebase` benutzen und in welchen Situationen man `git 
