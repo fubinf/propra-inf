@@ -5,10 +5,25 @@ difficulty: 2
 assumes: git-Funktionsweise
 requires: git-Zweitrepo
 ---
+TODO_1_hüster
+
+- Es fehlt eine kurze Definition von Branch als paralleler Versionshistorie.
+  Sie gehen davon aus, dass jede_r das schon weiß, was ganz klar nicht haltbar ist.
+  Es ist wichtig, dass Sie üben, solche Annahmen zu bemerken.
+- Es fehlen Glossareinträge/-verweise zu Branch/Zweig, Fix/Defektfix/Defektkorrektur,
+  Feature, Release/Freigabe/Patchrelease, evtl. Patch.
+- Background soll bei uns nur zur Motivation dienen, nicht zur Wissensvermittlung;
+  die gehört nach instructions.
+- Aktuell steht der gitbook-Verweis auf Branching Workflows vor dem auf Branches.
+  Das ist keine sinnvolle Didaktik, oder?
+- K1, K2, K3: Von der Sache her ist es OK, dass hier die Befehle nicht stehen, sondern die
+  Studis die selbst erarbeiten sollen. Allerdings sollte das als Nominalphrase formuliert sein,
+  nicht als Frage, damit man es nicht mit einem Fx verwechselt.
+- Für Schwierigkeit leicht sollte man den Leseauftrag in Häppchen zerlegen, entlang der Arbeitsschritte.
 
 [SECTION::goal::idea]
 
-Ich verstehe wie Branches in git funktionieren, wann es sinnvoll ist Branches zu verwenden und 
+Ich verstehe wie Branches in git funktionieren, wann es sinnvoll ist, Branches zu verwenden und 
 welche Probleme dabei entstehen können.
 
 [ENDSECTION]
