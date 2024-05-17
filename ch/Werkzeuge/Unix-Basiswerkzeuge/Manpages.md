@@ -112,7 +112,9 @@ Was haben Sie neues darüber gelernt?
 [ENDSECTION]
 
 [INSTRUCTOR::Wir haben geringe Ansprüche]
+
 - Die Manpages von `grep` und `find` sind umfangreich und dementsprechend einschüchternd,
-  mit der von `wc` sollte hingegen jeder klar kommen.
+  mit der von `wc` sollte hingegen jede_r klarkommen.
 - `grep -l *.md`
+
 [ENDINSTRUCTOR]
