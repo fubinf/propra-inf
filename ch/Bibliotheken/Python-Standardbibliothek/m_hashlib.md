@@ -57,8 +57,9 @@ unterschiedliche Eingaben [TERMREF2::Kollision::-en] zu erzeugen (Kollisionsresi
   `print("1. ProPra SHA-256:\t", ...)`
 
 [HINT::Wie kann man Strings an ein Hash-Objekt übergeben?]
-Hash-Funktionen verarbeiten nur unformatierten Bytecode und können daher nicht direkt mit
-Datentypen wie Strings umgehen. Lesen Sie hier nach, wie Sie Text als Bytes interpretieren können:
+Hash-Funktionen verarbeiten nur Binärdaten und können daher nicht direkt mit
+Strings umgehen, denn die haben ja je nach [TERMREF::Encoding] verschiedene Binärdarstellungen. 
+Lesen Sie über die Python-Datentypen zur Darstellung von Binärdaten nach:
 [HREF::https://docs.python.org/3/library/stdtypes.html#binary-sequence-types-bytes-bytearray-memoryview]
 [ENDHINT]
 
