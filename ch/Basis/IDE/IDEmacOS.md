@@ -1,5 +1,5 @@
 title: Python IDE in macOS installieren
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 requires: Unix-Umgebung
@@ -44,6 +44,9 @@ Wenn Sie sich schon für eine IDE entschieden haben,
 brauchen Sie nur einen der beiden Abschnitte zu bearbeiten.
 Wenn Sie noch unsicher sind, lesen Sie vielleicht in alle Abschnitte rein, 
 was da für die Installation auf Sie zukommt. 
+
+Die Anleitung ist nicht detailgenau; bitte entscheiden Sie den Rest nach bestem Ermessen,
+es kommt nicht auf jeden Millimeter an.
 
 
 ### 1. PyCharm Community Edition

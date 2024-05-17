@@ -1,9 +1,7 @@
 title: Python IDE in Windows installieren
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
-explains:
-assumes:
 requires: Unix-Umgebung
 ---
 
@@ -43,6 +41,10 @@ Wenn Sie sich schon für eine IDE entschieden haben, brauchen Sie nur einen der 
 Wenn Sie noch unsicher sind, lesen Sie vorher in alle Abschnitte rein, um zu sehen, was da für die Installation auf Sie
 zukommt. 
 
+Die Anleitung ist nicht detailgenau; bitte entscheiden Sie den Rest nach bestem Ermessen,
+es kommt nicht auf jeden Millimeter an.
+
+
 ### 1. PyCharm Professional
 
 #### Beantragen des "Product Pack for Students"
@@ -72,7 +74,7 @@ diesen Schritt überspringen.
 - Falls Sie mehrere WSL Distributionen installiert haben, wählen Sie Debian aus.
 - Sollte hierbei eine Fehlermeldung auftauchen, überprüfen Sie ihre Python-Installation im WSL.
 - Wählen Sie im nächsten Fenster links "System Interpreter" aus. Im Drop-Down-Menü rechts sollte der WSL-Python
-  Interpreter `/usr/bin/python3` ausgewählt sein.
+  Interpreter `/usr/bin/python3` ausgewählt sein. Falls das schon von allein passiert ist: prima.
 
 
 ### 2. PyCharm Community Edition
