@@ -1,11 +1,8 @@
-title: Testpyramide
-stage: draft
-timevalue: 1.0
+title: Die Testpyramide verstehen
+stage: alpha
+timevalue: 1.5
 difficulty: 1
 ---
-# Review (DM)
-- Soll bei den ersten Aufgaben recherche passieren? Wenn ja, würde ich das ggf. auch etwas klarer formulieren. Im Zweifel frage ich mich beim Bearbeiten der Aufgabe: Woher soll ich das denn wissen? Das hast du bei den anderen Aufgaben definitiv schön gemacht. ;) -> Done R.R.
-- Ansonsten scheint mir das eine gut geleitete Exploration der Theorie. Praxis wäre natürlich schön, aber ist vermutlich hier schwer zu finden. mMn. Beta, wenn Aufgabenstellung etwas präzisiert. -> Reflexionsfragen eingebunden, da das hier Beschriebene ein Konzept ist R.R.
 
 [SECTION::goal::idea]
 
@@ -68,3 +65,16 @@ Sie sollen testen, ob ...
 [SECTION::submission::trace,reflection]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
+[INSTRUCTOR::Prüfhilfen]
+
+- [EREFQ::1]: Ein Konzept aus drei Ebenen (Unit-, Integrations- und Systemtestebene)
+- [EREFQ::2]: Nein, zB die umgedrehte Testpyramide.
+- [EREFQ::3]: Kosten: unten gering, oben hoch; Geschwindigkeit: unten hoch, oben langsam; Komplexität:
+  unten gering, oben hoch; (kann anders herum sein für nicht Entwickler) Testanzahl: unten hoch, oben gering(er)
+- [EREFQ::4]: Unittest: vollautomatisiert, Integrations- und Systemtest: automatisiert/manuell
+- [EREFQ::5]: Z.B. die umgedrehte Testpyramide: Fokus auf mehr E-2-E/Systemtests oder Abnahmetest,
+  als auf Unit- oder Integrationstests
+- [EREFQ::10]: Unittests: 1., 4., (5.), Integrationstests: 1., 3. (5.), Systemtest: 2., 5.
+
+[ENDINSTRUCTOR]
