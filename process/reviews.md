@@ -104,6 +104,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (Ruhe->DM->LP->RR->LP)
   (Merge aus Testcases und TestcasesExercise)
 - ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->DM->LP->RR->LP)
+- ch/Testen/Testgrundlagen/Testabgrenzung.md (Ruhe->DM->LP->RR)
+  (Merge aus TestDelimitations und TestDelimitationsExercise)
 
 ## Reviews to do for Hanen Alrwasheda
 
@@ -152,9 +154,6 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Ronny Ruhe
 
 Bitte von oben nach unten abarbeiten:
-
-- ch/Testen/Testgrundlagen/TestDelimitations.md (Ruhe->DM->LP->RR)
-- ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->DM->LP->RR)
 
 - ch/Testen/Unittests/unittest102.md (Ruhe->DM->HA->RR)
 - ch/Testen/Unittests/freezegun.md (Ruhe->DM->HA->LP->RR)
