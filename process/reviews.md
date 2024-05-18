@@ -99,8 +99,10 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Werkzeuge/Paketmanager/apt.md (Condric)
 
-- ch/Testen/Testgrundlagen/Fehler-Defekt-Versagen.md (Ruhe->DM->LP->RR->LP->RR->LP) 
-  (Merge asu Error und ErrorExercise.md)
+- ch/Testen/Testgrundlagen/Fehler-Defekt-Versagen.md (Ruhe->DM->LP->RR->LP->RR->LP)
+  (Merge aus Error und ErrorExercise.md)
+- ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (Ruhe->DM->LP->RR->LP)
+  (Merge aus Testcases und TestcasesExercise)
 
 ## Reviews to do for Hanen Alrwasheda
 
@@ -150,8 +152,6 @@ We will modify these rules over time when others appear more useful.
 
 Bitte von oben nach unten abarbeiten:
 
-- ch/Testen/Testgrundlagen/Testcases.md (Ruhe->DM->LP->RR)
-- ch/Testen/Testgrundlagen/TestcasesExercise.md (Ruhe->DM->LP->RR)
 - ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->DM->LP->RR)
 - ch/Testen/Testgrundlagen/TestDelimitations.md (Ruhe->DM->LP->RR)
 - ch/Testen/Testgrundlagen/TestDelimitationsExercise.md (Ruhe->DM->LP->RR)

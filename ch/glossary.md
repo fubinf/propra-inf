@@ -922,6 +922,20 @@ Das Ausprobieren von Software, um relevante Eigenschaften zu überprüfen;
 meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
 [ENDTERM]
 
+[TERM::Testiteration]
+Eine Testiteration bezieht sich auf einen Zyklus oder eine Runde von Testaktivitäten, die
+durchgeführt werden, um bestimmte Aspekte einer Software zu überprüfen oder zu testen. Während
+einer Testiteration wird ein Testfall mit einem festen Satz an Testdaten ausgeführt. Dieser
+Testfall wird oftmals n-Mal ausgeführt, jedoch mit unterschiedlichen Werten ausgeführt. Das erhöht
+die Testabdeckung mit minimalen Testerstellungsaufwand.
+[ENDTERM]
+
+[TERM::Testsammlung|Testsuite]
+bezeichnet eine Sammlung von Testfällen, die dazu dienen, verschiedene Aspekte einer Softwareanwendung
+zu testen, indem unterschiedliche Funktionen oder Eigenschaften der Software getestet werden. Diese
+Sammlungen enhalten i.d.R. mehrere Testfälle und werden chronoilogisch durchgeführt.
+[ENDTERM]
+
 [TERM::Testszenario]
 Hierbei handel es sich um eine detaillierte Beschreibung eines spezifischen Testfalls oder einer
 Testsequenz, die darauf abzielt, eine bestimmte Funktionalität oder ein bestimmtes Verhalten einer
