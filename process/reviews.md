@@ -107,6 +107,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Testgrundlagen/Testabgrenzung.md (Ruhe->DM->LP->RR)
   (Merge aus TestDelimitations und TestDelimitationsExercise)
 
+- ch/Testen/Unittests/freezegun.md (Ruhe->DM->HA->LP->RR_LP)
+
 ## Reviews to do for Hanen Alrwasheda
 
 - ch/Sprachen/Python1/PythonComments.md (Alrwasheda->LP->HA->LP->HA)
@@ -156,7 +158,6 @@ We will modify these rules over time when others appear more useful.
 Bitte von oben nach unten abarbeiten:
 
 - ch/Testen/Unittests/unittest102.md (Ruhe->DM->HA->RR)
-- ch/Testen/Unittests/freezegun.md (Ruhe->DM->HA->LP->RR)
 - ch/Testen/Unittests/tdd_pp.md (Ruhe->LP->RR)
 
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->LP->RR)
