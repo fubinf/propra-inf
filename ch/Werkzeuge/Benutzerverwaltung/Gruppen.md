@@ -32,7 +32,7 @@ chgrp(1) [manpage](https://linux.die.net/man/1/chgrp)
 - [EC] Ändern Sie die Gruppe der datei1 zu propra.
 - [EC] Melden Sie sich als `nutzer2` an und versuchen Sie die `datei1` zu bearbeiten.
 
-Wie Sie merken, können Sie die Datei nicht bearbeiten. Es gibt jedoch noch eine Möglichkeit ohne dass 
+Wie Sie merken, können Sie die Datei nicht bearbeiten. Es gibt jedoch eine Möglichkeit ohne dass 
 `nutzer2` der Gruppe `propra` zugehörig ist, um die Datei zu bearbeiten.
 
 - [EC] Finden Sie die Möglichkeit heraus und wenden Sie sie an.
