@@ -108,6 +108,7 @@ We will modify these rules over time when others appear more useful.
   (Merge aus TestDelimitations und TestDelimitationsExercise)
 
 - ch/Testen/Unittests/freezegun.md (Ruhe->DM->HA->LP->RR_LP)
+- ch/Testen/Unittets/m_unittest_fixtures.md (RR->LP)
 
 ## Reviews to do for Hanen Alrwasheda
 
