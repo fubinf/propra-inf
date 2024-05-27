@@ -58,7 +58,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/pytest202.md (Ruhe->Müller)
 - ch/Testen/Unittests/coverage.md (Pietrak und Ruhe->DM->HA->LP)
 - ch/Testen/Unittests/mocking.md (Pietrak und Ruhe->DM->HA->LP)
-- ch/Testen/Unittests/pytestBenchmark.md (Ruhe->DM)
+- ch/Testen/Unittests/m_pytest_benchmark.md (Ruhe->DM->LP)
 - ch/Testen/API/index.md (Ruhe->CH)
 - ch/Testen/API/ResponseApi.md (Ruhe->CH)
 - ch/Testen/API/CRUDApi.md (Ruhe->CH)
