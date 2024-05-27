@@ -108,12 +108,13 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Testen/Unittests/freezegun.md (Ruhe->DM->HA->LP->RR_LP)
 - ch/Testen/Unittets/m_unittest_fixtures.md (RR->LP)
+- ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP)
 
 ## Reviews to do for Hanen Alrwasheda
 
 - ch/Sprachen/Python1/PythonComments.md (Alrwasheda->LP->HA->LP->HA)
 - ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->LP->HA->LP->HA)
-- ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->LP->HA->LP->HA) 
+- ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->LP->HA->LP->HA)
 - ch/Sprachen/Python2/Python-import.md (Alrwasheda->P->A)
 - ...
 
@@ -156,8 +157,6 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Ronny Ruhe
 
 Bitte von oben nach unten abarbeiten:
-
-- ch/Testen/Unittests/m_pytest_fixtures.md (Pietrak und Ruhe->DM->LP)
 
 - ch/Testen/Unittests/unittest102.md (Ruhe->DM->HA->RR)
 - ch/Testen/Unittests/tdd_pp.md (Ruhe->LP->RR)
