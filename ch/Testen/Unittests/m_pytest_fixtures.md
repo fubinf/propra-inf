@@ -1,14 +1,13 @@
-title: Pytest - Fixtures
-stage: alpha
+title: Fixtures mit dem Pytest Framework
+stage: draft
 timevalue: 1.5
 difficulty: 3
 assumes: m_pytest
 ---
 
-
 [SECTION::goal::idea]
 
-Ich kann Fixtures einordnen und anwenden
+Ich kann Fixtures mit dem Pytest Framework anwenden.
 
 [ENDSECTION]
 [SECTION::background::default]

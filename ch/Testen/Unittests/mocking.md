@@ -2,7 +2,7 @@ title: Mocking in pytest
 stage: alpha
 timevalue: 2.0
 difficulty: 3
-assumes: m_pytest, pytest102
+assumes: m_pytest, m_pytest_fixtures
 ---
 
 [SECTION::goal::idea]

@@ -46,7 +46,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->CH)
 
 - ch/Testen/Unittests/tdd.md (Ruhe->DM->LP)
-- ch/Testen/Unittests/pytest102.md (Pietrak und Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest201.md (Ruhe->DM->LP)
 - ch/Testen/Unittests/unittest201.md (Ruhe->DM->HA->LP):
@@ -157,6 +156,8 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Ronny Ruhe
 
 Bitte von oben nach unten abarbeiten:
+
+- ch/Testen/Unittests/m_pytest_fixtures.md (Pietrak und Ruhe->DM->LP)
 
 - ch/Testen/Unittests/unittest102.md (Ruhe->DM->HA->RR)
 - ch/Testen/Unittests/tdd_pp.md (Ruhe->LP->RR)
