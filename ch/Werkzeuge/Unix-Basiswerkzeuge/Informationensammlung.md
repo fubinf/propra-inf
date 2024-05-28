@@ -32,12 +32,16 @@ Auf dieser Seite ist eine Anzahl an Kommandos vorhanden, auf die sie immer wiede
 Falls Ihnen ein Paket fehlt, installieren Sie es nach.  
 Schauen Sie sich insbesondere die Kommandos `id, htop, uptime, lsb_release, free, lsblk, du, df, ip` an.
 
-### Kennenlernen des eigenen System
+### Kennenlernen des eigenen Systems
+
+Wenn die entsprechenden Kommandos eine Option für menschenfreundliches Ausgabeformat haben,
+benutzen Sie sie jeweils.
 
 - [EC] Finden Sie den Namen ihrer Distribution heraus.
 - [EC] Finden Sie heraus, seit wann Ihr System hochgefahren ist.
-- [EC] Finden Sie heraus in welchen Gruppen ihr Nutzer ist, und welche PID und GID ihrem Nutzer zugewiesen wurde. Nutzen Sie dafür genau ein Befehl ohne [TERMREF::Pipes].
-- [EC] Geben Sie an, wie viel freien Speicherplatz Ihr System hat. Geben Sie es in einem menschlich lesbarem Format an.
+- [EC] Finden Sie heraus in welchen Gruppen ihr Nutzer ist, und welche PID und GID ihrem Nutzer zugewiesen wurde. 
+  Nutzen Sie dafür genau einen Befehl ohne [TERMREF::Pipes].
+- [EC] Geben Sie aus, wie viel freien Speicherplatz Ihr System hat.
 - [EC] Finden Sie heraus wie viel freien Arbeitsspeicher auf Ihrem System noch vorhanden ist.
 - [EC] Finden Sie heraus wie groß ihr `/`-Verzeichnis ist.
 - [EC] Finden Sie heraus wie groß ihr `home`-Verzeichnis ist.

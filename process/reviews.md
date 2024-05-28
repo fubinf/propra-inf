@@ -86,7 +86,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->DM)
 
 
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric)
 
@@ -118,6 +117,12 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Ivan Condric
+
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric)  
+  Hübsch!  
+  Bitte in `altdir` eine Musterlösung ablegen.  
+  Was hat es mit dem "exclude"-Hinweis auf sich? Den verstehe ich nicht.  
+  Für htop braucht man Markdown, nicht Kommandoprotokoll, oder?
 - ...
 
 
