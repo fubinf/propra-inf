@@ -113,8 +113,8 @@ Was haben Sie neues darüber gelernt?
 
 [INSTRUCTOR::Wir haben geringe Ansprüche]
 
-- Die Manpages von `grep` und `find` sind umfangreich und dementsprechend einschüchternd,
-  mit der von `wc` sollte hingegen jede_r klarkommen.
-- `grep -l *.md`
+1. Die Manpages von `grep` und `find` sind umfangreich und dementsprechend einschüchternd.
+2. Mit der von `wc` sollte hingegen jede_r klarkommen.
+3. `grep -l meistens *.md`
 
 [ENDINSTRUCTOR]
