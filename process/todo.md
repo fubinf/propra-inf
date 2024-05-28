@@ -79,6 +79,8 @@ In alphabetischer Reihenfolge der Dateinamen.
   verschwinden.
 - Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
   muss es eine Fehlermeldung geben, keinen toten Link.
+- student.yaml ergänzen um `git_username` und `partner_git_username`, damit man die
+  verwandten Repos identifizieren kann.
 - ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)
 - Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
 - http-Server ergänzen, der bei `sedrila instructor --http` den ganzen Baum unter dem aktuellen
