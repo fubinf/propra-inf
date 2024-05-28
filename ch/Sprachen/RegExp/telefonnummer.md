@@ -33,7 +33,8 @@ gekommen sind. Diskutieren Sie außerdem, ob diese Vorgehensweise sinnvoll für 
 oder ob es dafür andere bessere Lösungen geben könnte.
 [ENDSECTION]
 
-[INSTRUCTOR::]
+[INSTRUCTOR::Hier reicht es die Beispielnummern mithilfe des gegebenen regulären Ausdrucks zu 
+prüfen.]
 Prüfen Sie den Ausdruck mit mindestens einer gültigen E.164 Nummer sowie weiteren Beispielnummern.
 
 Beispielnummern:
