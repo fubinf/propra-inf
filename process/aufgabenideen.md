@@ -100,16 +100,13 @@ Guter Anlaufpunkt: <https://refactoring.guru/>
 Hier liegen zahlreiche kleine Aufgaben, mit denen man einzelne oft benötigte Teile der 
 Python-Standardbibliothek ausprobiert.
 
-- datetime (DBS, DSCI, OPS, TEST, WEB)
-- pprint (DBS, DSCI, OPS, TEST)
-- random (SCI, OPS, TEST, WEB)
-- itertools (DBS, DSCI, OPS, TEST, WEB)
-- functools (DBS, DSCI, OPS, TEST, WEB)
-- os.path (DBS, DSCI, OPS, TEST, WEB)
-- tempfile (OPS,TEST)
-- glob (OPS, TEST)
-- shutil (OPS)
-- sqlite (DBS, WEB)
+- itertools
+- functools
+- os.path
+- tempfile
+- glob
+- shutil
+- sqlite
 - markup [DIFF::3]: Wahlaufgabe zum Bereich X="Structured Markup Processing Tools":
   Wählen Sie ein Modul aus dem Bereich X der Python-Standardbibliothek aus,
   das Sie noch nie benutzt haben.
@@ -203,9 +200,6 @@ Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall ke
 
 Aufgaben mit DIFF1 als unvollkommene Starthilfe, überwiegend für Leute mit zu niedrigem Wissen.
 Wiederholung (manches ist aber auch neu!) der absoluten Essentials: 
-alles ist ein Objekt,
-"Variablen" als Binden eines beliebigen Objekts an einen Namen, 
-Nennung von Namen als Referenz auf das Objekt,
 if, for, break, continue, range, enumerate,
 def, return,
 list, dict, set, comprehensions, 
