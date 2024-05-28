@@ -1,13 +1,15 @@
 title: Vom Fehler, über Defekt, hin zum Versagen
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
+explains: User Story
 ---
 
 [SECTION::goal::trial]
 
-- Ich kann Fehlerbegriffe definieren
-- Ich kann Versagen erkennen
+- Ich kann Fehler, Defekte, Versagen und Akzeptanzkriterien definieren und unterscheiden und 
+  kann die Begriffe anwenden.
+- Ich kann Versagen erkennen.
 
 [ENDSECTION]
 
@@ -21,21 +23,23 @@ feinen Unterschiede kennengelernt hat.
 
 [SECTION::instructions::loose]
 
-### Fehlerarten
+### Problemarten
 
-Wenn Sie das Modul `Softwaretechnik` besucht haben, sind Ihnen die Bergiffe Fehler, Defekt,
-Fehlerzustand und Versagen sicherlich noch bekannt. Falls nein, hier ein kleiner Refresher:
+Damit man vernünftig über Testen sprechen und nachdenken kann, muss man ein paar Dinge
+sorgfältig auseinanderhalten.
+Bitte lesen Sie die folgenden Begriffe im Glossar nach: [TERMREF::Fehler],
+[TERMREF::Defekt], [TERMREF::Fehlerzustand], [TERMREF::Versagen].
+<replacement id="Fehler-Defekt-Versagen1">(Falls Sie das Modul `Softwaretechnik` besucht haben, 
+sind Ihnen die Bergiffe Fehler, Defekt, und Versagen von dort bekannt.)
+</replacement>
 
-Lesen Sie zu aller erst die folgenden Begriffe im Glassar nach: [TERMREF::Fehler],
-[TERMREF::Defekt], [TERMREF::Fehlerzustand], [TERMREF::Versagen]
-
-- [EQ] Diskutieren Sie: Ist jeder Defekt auf eine 'falsche' Programmierung zurückzuführen?
+- [EQ] Diskutieren Sie: Ist jeder Defekt auf eine falsche Programmierung zurückzuführen?
 - [EQ] Können Sie sich ein komplexes Programm vorstellen, dass keine Defekte hat?
 - [EQ] Warum folgt aus einem Fehler nicht zwangsläufig ein Defekt? Beschreiben Sie ein Beispiel.
-- [EQ] Welche Funktionalität könnte aus Ihrer Sicht zu 100% selbst bei einer einfachen Testabdeckung
-  keinen Defekt beinhalten? (Beschreibung oder Pseudocode reicht aus)
-- [EQ] Sie haben zwei unterschiedliche Systemumgebungen, auf denen eine Anwendung, die einen Defekt aufweist,
-  läuft. Dieser Defekt ist jedoch nur auf einer Systemumgebung reproduzierbar. Spekulieren Sie, warum.
+- [EQ] Sie haben zwei unterschiedliche Systemumgebungen, auf denen eine Anwendung läuft.
+  Die Anwendung hat einen Defekt.
+  Ein Versagen tritt jedoch nur auf einer Systemumgebung auf, nicht auf der anderen.
+  Spekulieren Sie, warum.
 
 Nachdem Sie nun wissen, was ein Fehler definiert, sollen Sie auch lernen diesen zu erkennen. Dazu
 verwenden wir als Grundlage dieser Übung folgende [TERMREF::User Story]:
@@ -54,14 +58,16 @@ Kontoinformationen zugreifen kann.
 - Das System zeigt eine Fehlermeldung, wenn die E-Mail-Adresse ungültig ist.
 - Das System zeigt eine Fehlermeldung, wenn das Passwort zu kurz ist.
 - Ein aktiver Benutzer kann sein Passwort auf der Anmeldeseite neu vergeben.
-- Das System sperrt das Konto nach drei aufeinanderfolgenden fehlgeschlagenen Anmeldeversuchen.
+- Das System sperrt das Konto nach drei aufeinanderfolgenden fehlgeschlagenen Anmeldeversuchen
+  für 24 Stunden.
 - Nach erfolgreicher Anmeldung wird der Nutzer auf die Nutzer-Profilseite weitergeleitet.
 
-#### Aufgabenn zu der User Story
+#### Aufgaben zu der User Story
 
-- [EQ] Sind alle Akzeptanzkriterien für einen Menschen prüfbar? Wenn nein, formulieren Sie das
+- [EQ] Sind alle Akzeptanzkriterien praktikabel überprüfbar? Wenn nein, formulieren Sie das
   Akzeptanzkriterium entsprechend um.
-- [EQ] Welche der folgenden Testbeschreibungen ([TERMREF::Testszenario]) führen zu einem [TERMREF::Versagen]?
+- [EQ] Welche der folgenden Szenarios ([TERMREF::Testszenario]) beschreiben 
+  in Bezug auf obige Akzeptanzkriterien ein [TERMREF::Versagen]?
 
 Vorbedingung: Ein Benutzer befindet sich auf der Login Seite eines Portals.
 
@@ -84,19 +90,20 @@ Das Portal leitet den Benutzer auf die Seite des Portal-Administrators weiter.
 5. Hier gibt der Nutzer seine **valide** E-Mail-Adresse und sein **gültiges** Passwort in die
 Eingabemasken ein. Anschließend wartet der Nutzer 100 Jahre, bis er angemeldet ist.
 
-[EQ] Ergänzen Sie mindestens ein weiteres Akzeptanzkriterium.
+[EQ] Ergänzen Sie mindestens ein weiteres Akzeptanzkriterium, damit es für das letzte Szenario
+keine Meinungsverschiedenheiten mehr geben kann.
 
-### Ferhlerbericht
+### Problembericht
 
-Wenn ein Defekt vorliegt, sollte dieser auch Dokumentiert und Kommuniziert werden. Dazu sind einige
-Informationen wichtig, um sowohl diesen Defektbericht eindeutig zuordnen zu können, aber auch dem
-Entwickler / Bug-Fixer bestmöglich Informationen zum Debugging und Nachstellen des Problems zu liefern.
-Recherchieren Sie, was einen guten Defektbericht aus macht: [Defektbericht](https://www.guru99.com/de/how-to-write-a-bug-report.html)
+Wenn ein Versagen erkannt wurde und nicht sofort beseitigt werden kann, 
+sollte es dokumentiert und kommuniziert werden. 
+Dazu sind einige Informationen wichtig, um den Bericht zuordnen zu können und um den
+Entwickler_innen bestmöglich Informationen zum Debugging und Nachstellen des Problems zu liefern.
+Recherchieren Sie, was einen guten Problembericht aus macht: [Problembericht](https://www.guru99.com/de/how-to-write-a-bug-report.html)
 
-- [EQ] Erstellen Sie zu einem entdeckten Defekt einen guten udn einen schlechten Defektbericht
-- [EQ] Was würden Sie tun, wenn Sie 3 Fehlerberichte bekommen haben, die durch einen und den selben
-  Fehler ausgelöst werden, aber alle unterschiedlich gut in der Erzwingung der Fehlerwirkung und der
-  verwendeten Daten beschrieben sind?
+- [EQ] Erstellen Sie zu einem der oben entdeckten Versagen einen guten und einen schlechten Problembericht.
+- [EQ] Was würden Sie tun, wenn Sie 3 Problemberichte bekommen, die wahrscheinlich vom selben
+  Defekt handeln, aber unterschiedlich gut beschrieben sind?
 
 [ENDSECTION]
 
@@ -108,21 +115,24 @@ Recherchieren Sie, was einen guten Defektbericht aus macht: [Defektbericht](http
 
 [INSTRUCTOR::Prüfhilfen]
 
-- [EREFQ::1]: hier sollte ein nein argumentiert werden, da u.a. Missverständnisse oder inkonsistente
-  Architekturen Gründe sein können
-- [EREFQ::2] nein, da eine 100% Testabdeckung bei komplexen Systemen nahezu unmöglich ist (Aufwand und Testdaten)
-- [EREFQ::3] Seiteneffekte: Ein Fehler hebt einen anderen Fehler auf; Ein Fehler tritt sehr
-  unwahrscheinlich ein (zB. bei 0,0001% aller Fälle)
-- [EREFQ::4]: Da Systemarchitektur, -konfiguration oder abhängige Versionierungen anders sind;
-  das verhindert die Erkennung des Defekt oder der Defekt ist dadurch obsolet
-- [EREFQ::5]: hier sollte etwas triviales beschrieben werden (z.B.: 1+1=2)
-- 
-- [EREFQ::6]: Nr. 5 nicht, da die Wartezeit unzumutbar ist.
-- [EREFQ::7]: Nr.1-2: E-Mail, kein Benutzername ist gefordert; Nr.4: Falsche Weiterleitung;
-  Nr.5: blockiert, da in keiner angemessenen Zeit testbar
-- [EREFQ::8]: hier kann auf eines weiteren Akzeptanzkriterien eingegangen werden, die in der User
-  Story aufgelistet sind
-- [EREFQ::9]: ungenaue und sehr genaue Beschreibung sollte hervorstechen
-- [EREFQ::10]: verifizieren, dokumentieren und miteinander verknüpfen/verlinken
+- [EREFQ::1]: Viele Strukturen werden erst zum Defekt, wenn eine vormals vage Erwartung konkreter wird.
+- [EREFQ::2] Ja, aber das kommt selten auf Anhieb vor, da es so viele Möglichkeiten für Defekte gibt.
+- [EREFQ::3] Beispiel: beim Ausdruck `f > 0` die Variable `r` mit der 
+  hier falschen verwandten Variable `f` verwechselt, 
+  die aber größer Null genau dann ist, wenn `r` es auch ist.
+- [EREFQ::4]: Die Umgebungen verhalten sich verschieden. Z.B. findet Windows eine Datei,
+  auch wenn beim Namen die Groß-/Kleinschreibung falsch ist; 
+  bei Linux wird die Datei mit dem gleichen Schreibfehler nicht gefunden.
+- [EREFQ::5]: Nr. 5 nicht, da die Wartezeit unzumutbar ist. Reduktion auf 1 Minute Sperre hilft.
+- [EREFQ::6]: Nr.1 und 2, denn es ist eine Emailadresse gefordert, nicht ein Benutzername.  
+  Nr.4, denn die Weiterleitung ist falsch.  
+  Nr.5, da die lange Wartezeit nach den Akzeptanzkriterien nicht zu erwarten und 
+  plausiblerweise auch nicht akzeptabel ist.
+- [EREFQ::7]: Entgegen Nr. 5 eine nur kurze Wartezeit fordern.
+- [EREFQ::8]: ungenaue und sehr genaue Beschreibung sollte hervorstechen
+- [EREFQ::9]: verifizieren, dokumentieren, miteinander verlinken und dabei darauf hinweisen,
+  welcher die genaueste Beschreibung enthält.  
+  Man könnte sie auch zusammenführen, aber das macht viel Arbeit und falls dann doch nicht der gleiche
+  Defekt dahintersteckt, hat man sich erst recht keinen Gefallen getan.
 
 [ENDINSTRUCTOR]

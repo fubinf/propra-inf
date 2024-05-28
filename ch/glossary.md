@@ -10,8 +10,9 @@ sowie ggf. auf Aufgaben, die weitere Erläuterungen dazu enthalten.
 ## A
 
 [TERM::Akzeptanzkriterien|acceptance criteria]
-Spezifische, messbare Bedingungen, die definieren,
-wann eine User Story oder eine Funktion als abgeschlossen und akzeptiert betrachtet wird.
+Spezifische, überprüfbare Bedingungen, die definieren,
+wann eine User Story oder eine Funktion als vollständig und akzeptabel
+(und hoffentlich korrekt) betrachtet wird.
 Sie legen die Erwartungen und Anforderungen fest, die erfüllt sein müssen,
 damit das Produkt oder die Funktion als erfolgreich betrachtet wird.
 Akzeptanzkriterien dienen dazu, Missverständnisse zu vermeiden, indem sie
@@ -174,9 +175,12 @@ das implizit benutzt wird, wenn man nicht explizit ein Argument übergibt.
 [TERM::Defekt|Defect|Fault|Bug]
 Eine strukturelle Eigenschaft des Produkts (meistens des Codes, aber es könnte auch z.B. eine
 Entwurfs-, Test- oder Anforderungsbeschreibung betroffen sein):
-Eine mögliche Folge eines menschlichen [TERMREF2::Fehler::-s] beim Programmieren;
-verursacht meistens ein [TERMREF::Versagen].
-Zur Korrektur eines Defekts wird in der Regel der Code verändert.
+Eine Abweichung von den möglichen korrekten Strukturen.
+"Korrekt" bezieht sich dabei manchmal auf eine genaue Spezifikation, oft aber auf eine viel weniger
+konkrete und oft nirgends aufgeschriebene Erwartung.
+Ein Defekt ist eine mögliche Folge eines menschlichen [TERMREF2::Fehler::-s] beim Programmieren;
+viele (aber nicht alle) Defekte verursachen immer oder manchmal ein [TERMREF::Versagen].
+Zur Korrektur eines Defekts wird in der Regel das Produkt (z.B. der Code) verändert.
 [ENDTERM]
 
 [TERM::de-morganschen Gesetze|de-morganschen Regeln]
@@ -1019,18 +1023,18 @@ Wenn man dann diesen Faktor tatsächlich passend verändert, ist
 Urgrundanalyse eine hochwirksame Methode zur Vorbeugung von Problemen.
 [ENDTERM]
 
-[TERM::User Story]
+[TERM::User Story|Userstory]
 Kurze, informelle Beschreibung einer Funktion aus der Perspektive eines Endbenutzers.
-Umfasst typischerweise wer die Funktion nutzt, was getan werden soll und wozu es relevant ist.
+Umfasst meist mindestens wer die Funktion nutzt, was getan werden soll und wozu es relevant ist.
 
 User Stories dienen als Kommunikationsmittel zwischen Entwicklern, Kunden und anderen Stakeholdern,
 um Anforderungen klar zu definieren und das Verständnis zu verbessern.
-Oft werden begleitend [TERMREF:Akzeptanzkriterien] definiert.
+Oft werden begleitend [TERMREF::Akzeptanzkriterien] definiert.
 [ENDTERM]
 
 ## V
 
-[TERM::venv|virtual environment]
+[TERM::venv|virtualenv|virtual environment]
 Virtuelle Python-Umgebung:
 Ein Dateibaum, der konzeptuell eine eigene Installation von Python enthält
 sowie einen eigenen Unterdateibaum für installierte Pakete.

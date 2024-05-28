@@ -45,6 +45,15 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->CH)
 
+- ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (Ruhe->DM->LP->RR->LP)
+  (Merge aus Testcases und TestcasesExercise)
+- ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->DM->LP->RR->LP)
+- ch/Testen/Testgrundlagen/Testabgrenzung.md (Ruhe->DM->LP->RR)
+  (Merge aus TestDelimitations und TestDelimitationsExercise)
+
+- ch/Testen/Unittests/freezegun.md (Ruhe->DM->HA->LP->RR_LP)
+- ch/Testen/Unittets/m_unittest_fixtures.md (RR->LP)
+- ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP)
 - ch/Testen/Unittests/tdd.md (Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->DM->LP)
 - ch/Testen/Unittests/pytest201.md (Ruhe->DM->LP)
@@ -98,17 +107,6 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Werkzeuge/Paketmanager/apt.md (Condric)
 
-- ch/Testen/Testgrundlagen/Fehler-Defekt-Versagen.md (Ruhe->DM->LP->RR->LP->RR->LP)
-  (Merge aus Error und ErrorExercise.md)
-- ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (Ruhe->DM->LP->RR->LP)
-  (Merge aus Testcases und TestcasesExercise)
-- ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->DM->LP->RR->LP)
-- ch/Testen/Testgrundlagen/Testabgrenzung.md (Ruhe->DM->LP->RR)
-  (Merge aus TestDelimitations und TestDelimitationsExercise)
-
-- ch/Testen/Unittests/freezegun.md (Ruhe->DM->HA->LP->RR_LP)
-- ch/Testen/Unittets/m_unittest_fixtures.md (RR->LP)
-- ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP)
 
 ## Reviews to do for Hanen Alrwasheda
 
