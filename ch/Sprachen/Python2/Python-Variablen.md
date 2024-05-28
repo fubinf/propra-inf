@@ -135,16 +135,18 @@ was gemeint ist, wenn wir sagen, **"Variablen sind einfach Namen, die auf Objekt
 [INSTRUCTOR::Konzept der Zuweisung]
 
 Bitte anhand der Antworten folgendes überprüfen:
+
 - ob der Student versteht, dass Namen lediglich Referenzen auf Objekte im Speicher sind.
 - ob der Student trotz zahlreicher Zuweisungen immer noch bestimmen kann,
-wo sich die gespeicherten Daten bewegen.
+  wo sich die gespeicherten Daten bewegen.
 - dass der Student den Unterschied zwischen veränderlichen und unveränderlichen Datentypen versteht.
 
 Mögliche Überlegung für [EREFQ::14]:
 Es macht in diesem Fall Sinn, dass zwei verschiedene Namen auf dasselbe Objekt zeigen,
-wenn diese beiden Namen bei der Zuweisung denselben Wert haben,
 weil bspw. Ganzzahlen oder Zeichenketten in Python "unveränderlich" sind und
 somit nicht direkt "in-place" geändert werden können. Es spielt also keine Rolle,
 wie viele Verweise es auf dasselbe Objekt gibt.
+Beide Verweise können auf dasselbe Objekt zeigen, es könnten aber auch zwei verschiedene Objekte sein;
+das ist eine Implementierungsfrage.
 
 [ENDINSTRUCTOR]
