@@ -236,6 +236,9 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - Aufgaben Bestandscode/Refactoringpraxis/[PARTREF::gildedrose_tests],
   [PARTREF::gildedrose_refactor], [PARTREF::gildedrose_implementation] und
   [PARTREF::gildedrose_reflexion] zugefügt.
+- **2024-05-17**: Aufgabengruppe Basis/[PARTREF::IDE] zugefügt. 
+  Die hatten wir bei der Freigabe anfangs übersehen, sorry!
+  _Durchführung bitte ggf. unbedingt nachholen!_
 - ...
 
 
