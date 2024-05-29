@@ -159,9 +159,13 @@ den als `png`-Datei doch ein.
 [ENDSECTION]
 [INSTRUCTOR::Minimale Prüfung]
 
-Nur per kurzem Augenschein prüfen, ob das im Sinne unserer Aufgabe zu sein scheint.
+Nur per kurzem Augenschein prüfen, ob die IDE im Sinne unserer Aufgaben eingerichtet ist.
 Ein Studi, der hier etwas verschlampt hat, wird es noch ausführlich bereuen.
-Achten Sie aber auf die korrekte Python-Version, denn daraus resultierende Abweichungen
-könnten subtil ausfallen.
+
+Achten Sie auf die korrekte Python-Version (sowohl in PyCharm als auch in VS Code im 
+Anwendungsfenster unten rechts erkennbar), denn daraus resultierende Abweichungen könnten subtil 
+ausfallen.  
+Bei PyCharm Pro sollte "WSL" mit beim Interpreter aufgeführt sein.  
+Bei VS Code sollte unten links "WSL Debian" als Remote Connection sichtbar sein.
 
 [ENDINSTRUCTOR]
