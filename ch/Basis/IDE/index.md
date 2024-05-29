@@ -9,8 +9,8 @@ machen ein paar ganz grundlegende Schritte darin
 und überzeugen uns, dass wir damit Programme übersetzen und ausführen können.
 
 [INSTRUCTOR::Unsere Ziele]
-    Hier geht es uns um zwei Dinge:
+Hier geht es uns um zwei Dinge:
 
-    - eine funktionstüchtige IDE-Umgebung herzustellen
-    - die Scheu vor dieser sehr komplizierten Software abzubauen. 
+- eine funktionstüchtige IDE-Umgebung herzustellen
+- die Scheu vor dieser sehr komplizierten Software abzubauen. 
 [ENDINSTRUCTOR]
