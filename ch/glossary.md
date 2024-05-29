@@ -18,6 +18,8 @@ im System über gewisse Rechte (z.B. Zugriff auf gewisse Dateien.)
 Die Ausdrücke Benutzer, Nutzer oder User sind mehrdeutig und können auch die
 menschliche Benutzer_in meinen oder mitmeinen, nicht nur deren Account.
 Leider ist in Unix für Accounts die mehrdeutige Bezeichnung 'user' üblich.
+
+[Zum Gebrauch der Wörter Nutzer/Benutzer/Anwender(in)](https://german.stackexchange.com/a/47502). 
 [ENDTERM]
 
 [TERM::Akzeptanzkriterien|acceptance criteria]
@@ -157,7 +159,7 @@ indem man Styles ändert, die in allen diesen Dokumenten benutzt werden.
 
 ## D
 
-[TERM::Dateiberechtigungen]
+[TERM::Dateiberechtigungen|Rechte|Leserecht|Schreibrecht]
 Dateiberechtigungen in Unix legen fest, welche Aktionen (Lesen, Schreiben, Ausführen) für 
 bestimmte Benutzer oder Benutzergruppen erlaubt sind. Volle Berechtigungen werden durch die 
 Zeichenkette "rwx" dargestellt, wobei 
@@ -913,8 +915,8 @@ austauschbar zu machen.
 `su` steht für "Substitute User" und ist ein Befehl in Linux-Systemen, der es einem 
 Benutzer ermöglicht, die Identität zu einem anderen Benutzer zu wechseln, normalerweise 
 zum Superuser (Root), nach Eingabe des entsprechenden Passworts. Im Gegensatz zu `sudo` 
-wechselt `su` vollständig zur Identität des anderen Benutzers, und die erhöhten Rechte 
-bleiben aktiv, bis der Benutzer sich explizit wieder ausloggt oder den Befehl exit eingibt.
+wechselt `su` vollständig zur Identität des anderen Benutzers und startet eine neue Shell.
+Die dadurch veränderten Rechte bleiben aktiv, bis man die Shell beendet.
 [ENDTERM]
 
 [TERM::sudo]

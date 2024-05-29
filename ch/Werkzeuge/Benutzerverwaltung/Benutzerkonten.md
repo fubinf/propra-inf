@@ -3,6 +3,7 @@ stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: sudo
+explains: Account
 ---
 
 [SECTION::goal::idea]

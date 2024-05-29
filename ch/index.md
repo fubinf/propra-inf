@@ -239,7 +239,9 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-05-17**: Aufgabengruppe Basis/[PARTREF::IDE] zugefügt. 
   Die hatten wir bei der Freigabe anfangs übersehen, sorry!
   _Durchführung bitte ggf. unbedingt nachholen!_
-- **2024-05-28**: Aufgabe Testen/Testgrundlagen[PARTREF::Fehler-Defekt-Versagen] zugefügt
+- **2024-05-29**: Aufgabe Testen/Testgrundlagen[PARTREF::Fehler-Defekt-Versagen] zugefügt.
+- Aufgaben Werkzeuge/Benutzerverwaltung/[PARTREF::sudo], [PARTREF::Benutzerkonten], [PARTREF::Dateiberechtigungen]
+  zugefügt
 - ...
 
 

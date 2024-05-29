@@ -69,10 +69,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric)
 
-- ch/Werkzeuge/Benutzerverwaltung/Dateiberechtigungen.md (Condric)
-- ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric)
-- ch/Werkzeuge/Benutzerverwaltung/Nutzer.md (Condric)
-- ch/Werkzeuge/Benutzerverwaltung/sudo.md (Condric)
+- ch/Werkzeuge/Linter/flake8.md (Ruhe->HA->CH)
+- ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH)
+- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->DM)
 
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric)
 - ch/Werkzeuge/Netzwerk/SSH-Tunnel.md (Condric)
@@ -94,11 +93,20 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ivan Condric
 
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric)  
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric->LP->IC)  
   Hübsch!  
   Bitte in `altdir` eine Musterlösung ablegen.  
   Was hat es mit dem "exclude"-Hinweis auf sich? Den verstehe ich nicht.  
   Für htop braucht man Markdown, nicht Kommandoprotokoll, oder?
+- ch/Werkzeuge/Benutzerverwaltung/sudo.md (Condric->LP->IC)  
+  ch/Werkzeuge/Benutzerverwaltung/Accounts.md (Condric->LP->IC)  
+  ch/Werkzeuge/Benutzerverwaltung/Dateiberechtigungen.md (Condric->LP->IC)  
+  Gefallen mir inhaltlich gut, im Detail habe ich aber doch eine Menge Änderungswünsche gehabt
+  und großenteils gleich umgesetzt. 
+  Bitte vollziehen Sie das anhand der Commits oder des Endresultats nach.  
+  Ich habe alle drei schon mal auf beta gesetzt, aber die brauchen bitte alle noch eine
+  **Musterlösung**.
+  Welchen Sinn hat das **`-R`** bei `chmod/chgrp`? Wenn da kein Hintergedanke steckt, bitte entfernen.
 - ...
 
 
