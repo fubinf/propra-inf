@@ -22,7 +22,7 @@ Unittesting, um Unittests mit der Standardbibliothek unittest zu erstellen.
 
 [SECTION::instructions::tricky]
 
-Wir wollen für unsere kleine Anwendung eine 100% [PARTREFMANUAL::coverage::Testabdeckung] erzielen.
+Wir wollen für unsere kleine Anwendung eine 100% [PARTREFMANUAL::m_testcoverage::Testabdeckung] erzielen.
 Mit den folgenden Punkten können Sie das erreichen:
 
 - Erstellen Sie zu jeder erstellten Methode mindestens einen positiv und einen negativ Testfall,
