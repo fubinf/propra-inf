@@ -44,6 +44,7 @@ We will modify these rules over time when others appear more useful.
   die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
 
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->CH)
+- ch/Bibliotheken/Python-Standardbibliothek/os_path.md (Wegner)
 
 - ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (Ruhe->DM->LP->RR->LP)
   (Merge aus Testcases und TestcasesExercise)

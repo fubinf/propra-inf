@@ -102,7 +102,6 @@ Python-Standardbibliothek ausprobiert.
 
 - itertools
 - functools
-- os.path
 - tempfile
 - glob
 - shutil
