@@ -43,56 +43,29 @@ We will modify these rules over time when others appear more useful.
   eins aus einem wenig bekannten Produkt zu extrahieren. (darauf aufbauend könnte man noch mehr in
   die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
 
-- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (Ruhe->CH)
+- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH)
 - ch/Bibliotheken/Python-Standardbibliothek/os_path.md (Wegner)
 
-- ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (Ruhe->DM->LP->RR->LP)
-  (Merge aus Testcases und TestcasesExercise)
-- ch/Testen/Testgrundlagen/Testpyramide.md (Ruhe->DM->LP->RR->LP)
-- ch/Testen/Testgrundlagen/Testabgrenzung.md (Ruhe->DM->LP->RR)
-  (Merge aus TestDelimitations und TestDelimitationsExercise)
-
-- ch/Testen/Unittests/freezegun.md (Ruhe->DM->HA->LP->RR_LP)
+- ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (RR->LP) (Merge aus Testcases und TestcasesExercise)
+- ch/Testen/Testgrundlagen/Testpyramide.md (RR->LP)
+- ch/Testen/Testgrundlagen/Testabgrenzung.md (RR->LP) (Merge aus TestDelimitations und TestDelimitationsExercise)
 - ch/Testen/Unittets/m_unittest_fixtures.md (RR->LP)
 - ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP)
-- ch/Testen/Unittests/tdd.md (Ruhe->DM->LP)
-- ch/Testen/Unittests/pytest103.md (Pietrak und Ruhe->DM->LP)
-- ch/Testen/Unittests/pytest201.md (Ruhe->DM->LP)
-- ch/Testen/Unittests/unittest201.md (Ruhe->DM->HA->LP):
-  Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
-  kann verzichtet werden. Bitte überprüfen.
-  Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
-- ch/Testen/Unittests/unittest202.md (Ruhe->DM->HA->LP)
-- ch/Testen/Unittests/unittest301.md (Ruhe->DM->HA->LP)
-- ch/Testen/Unittests/unittest203.md (Ruhe->Müller)
-- ch/Testen/Unittests/pytest202.md (Ruhe->Müller)
-- ch/Testen/Unittests/coverage.md (Pietrak und Ruhe->DM->HA->LP)
-- ch/Testen/Unittests/mocking.md (Pietrak und Ruhe->DM->HA->LP)
-- ch/Testen/Unittests/m_pytest_benchmark.md (Ruhe->DM->LP)
-- ch/Testen/API/index.md (Ruhe->CH)
-- ch/Testen/API/ResponseApi.md (Ruhe->CH)
-- ch/Testen/API/CRUDApi.md (Ruhe->CH)
-- ch/Testen/API/RestApi.md (Ruhe->CH)
-- ch/Testen/Testframeworks/index.md (Ruhe->CH)
-- ch/Testen/Testframeworks/Robot.md (Ruhe->CH)
-- ch/Testen/SUT/LokalesDeployment.md (Ruhe->CH)
+- ch/Testen/Unittests/m_pytest_benchmark.md (RR->DM->LP)
 
+- ch/Werkzeuge/Linter/flake8.md (RR->HA->CH)
+- ch/Werkzeuge/Linter/black.md (RR->HA->CH)
+- ch/Werkzeuge/Linter/flake8_SUT.md (RR->DM)
+
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->DM)
 
 - ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH->LP)
-
 
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
 
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (Ruhe->DM)
-
-
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric)
-
-- ch/Werkzeuge/Linter/flake8.md (Ruhe->HA->CH)
-- ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH)
-- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->DM)
 
 - ch/Werkzeuge/Benutzerverwaltung/Dateiberechtigungen.md (Condric)
 - ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric)
@@ -160,22 +133,40 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ronny Ruhe
 
-Bitte von oben nach unten abarbeiten:
+- ch/Testen/Unittests/m_testcoverage.md (RR->LP)
+- ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP)
+- ch/Testen/Unittests/unittest102.md (RR->DM->HA->RR)
+- ch/Testen/Unittests/tdd_pp.md (RR->LP->RR)
+- ch/Testen/Unittests/freezegun.md (RR->DM->HA->LP->RR_LP)
+- ch/Testen/Unittests/tdd.md (RR->DM->LP)
+- ch/Testen/Unittests/pytest103.md (Pietrak und RR->DM->LP)
+- ch/Testen/Unittests/pytest201.md (RR->DM->LP)
+- ch/Testen/Unittests/unittest201.md (RR->DM->HA->LP):
+  Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
+  kann verzichtet werden. Bitte überprüfen.
+  Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
+- ch/Testen/Unittests/unittest202.md (RR->DM->HA->LP)
+- ch/Testen/Unittests/unittest301.md (RR->DM->HA->LP)
+- ch/Testen/Unittests/unittest203.md (RR->Müller)
+- ch/Testen/Unittests/pytest202.md (RR->Müller)
+- ch/Testen/API/ResponseApi.md (RR->CH)
+- ch/Testen/API/CRUDApi.md (RR->CH)
+- ch/Testen/API/RestApi.md (RR->CH)
+- ch/Testen/Testframeworks/index.md (RR->CH)
+- ch/Testen/Testframeworks/Robot.md (RR->CH)
+- ch/Testen/SUT/LokalesDeployment.md (RR->CH)
 
-- ch/Testen/Unittests/unittest102.md (Ruhe->DM->HA->RR)
-- ch/Testen/Unittests/tdd_pp.md (Ruhe->LP->RR)
+- ch/Sprachen/Pythonpraxis/Passwortgenerator.md (RR->LP->RR)
 
-- ch/Sprachen/Pythonpraxis/Passwortgenerator.md (Ruhe->LP->RR)
+- ch/Bibliotheken/pip-popular/requests.md (RR->DM->LP->RR)
 
-- ch/Bibliotheken/pip-popular/requests.md (Ruhe->DM->LP->RR)
-
-- ch/Sprachen/SQL/SQLBasic.md (Ruhe->HA->LP->RR)  
+- ch/Sprachen/SQL/SQLBasic.md (RR->HA->LP->RR)  
   Bitte verfrachten Sie den allgemeinen Teil von Background ins Glossar.
   Ein Eintrag für SQL, einer für DBMS/RDBMS, die aufeinander verweisen.
   Es bleibt nur der Hinweis auf SQlite in der Aufgabe stehen.
-- ch/Sprachen/SQL/SQLSelect.md (Ruhe->HA->LP->RR)
-- ch/Sprachen/SQL/SQLJoin.md (Ruhe->HA->LP->RR)
-- ch/Sprachen/SQL/SQLProject.md (Ruhe->HA->LP->RR)
+- ch/Sprachen/SQL/SQLSelect.md (RR->HA->LP->RR)
+- ch/Sprachen/SQL/SQLJoin.md (RR->HA->LP->RR)
+- ch/Sprachen/SQL/SQLProject.md (RR->HA->LP->RR)
 
 
 ## Reviews to do for Sven Wegner
