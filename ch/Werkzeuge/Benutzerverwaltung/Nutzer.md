@@ -1,5 +1,5 @@
-title: Nutzer
-stage: alpha
+title: Umgang mit Benutzerkonten
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: sudo
@@ -11,19 +11,33 @@ löscht und welche Befehle ich dafür nutzen muss.
 [ENDSECTION]
 
 [SECTION::background::default]
-Nutzer in Linux sind individuelle Konten, die es den Benutzern ermöglichen, auf einem System zu 
+Nutzer (users) in Linux sind individuelle Konten, die es den Benutzer_innen ermöglichen, auf einem System zu 
 arbeiten und Ressourcen zu nutzen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
+### Differenzierung nötig!
+
+Für den Umgang mit Accounts ist es wichtig, beim Denken stets zu unterscheiden,
+ob es gerade um die Person geht, der ein Account gehört, oder um den Account selbst.
+Das ist nicht immer einfach, denn für den Begriff Account sind viele Synonyme gängig,
+von denen viele nach einer Person klingen. 
+Bitte lesen Sie den Eintrag [TERMREF::Account] und beachten Sie die Synomymliste.
+
+Um das Unterscheiden zu erleichtern, bezeichnen wir hier die Person immer gegendert als 
+Benutzer_in oder Nutzer_in -- für den Account ergibt das natürlich keinen Sinn.
+Und um Ihre Fähigkeit zur Unterscheidung zu trainieren, verwenden wir für den Account oft
+das Wort Nutzer.
+
 ### Neuen Nutzer erstellen
 
-Stellen Sie sich vor, Sie sind ein Administrator in einer mittelständischen Firma. Ein neuer 
-Mitarbeiter wurde angestellt. Sie wurden beauftragt diesen Nutzer einzurichten. Sie informieren 
-sich, wie man Nutzer auf Linux einrichtet und finden zwei Möglichkeiten: `useradd` und `adduser`.
-Sie probieren beide aus, damit Sie sich entscheiden können, welche von beiden Sie später weiter
-nutzen möchten.
+Stellen Sie sich vor, Sie sind ein Administrator in einer mittelständischen Firma. Eine neue 
+Mitarbeiter_in wurde angestellt. 
+Sie wurden beauftragt, zwei zugehörige Nutzerkonten einzurichten. 
+Sie informieren sich, wie man Nutzer auf Linux einrichtet und finden zwei Möglichkeiten: 
+`useradd` und `adduser`.
+Wir probieren hier beide aus.
 
 Verstehen Sie die **Synopsis**, lesen Sie die **Description**, und die Optionen **-g, -N, -U** der 
 useradd(8) [manpage](https://linux.die.net/man/8/useradd).
@@ -32,16 +46,17 @@ useradd(8) [manpage](https://linux.die.net/man/8/useradd).
 
 Lesen Sie die **Description** der passwd(5) [manpage](https://linux.die.net/man/5/passwd).
 
-- [EQ] Erklären Sie die einzelnen Spalten des Nutzers `user1` aus der `/etc/passwd`.
+- [EC] Holen Sie nur den Eintrag von user1 aus der Benutzerkontendatei: `grep user1 /etc/passwd`
+- [EQ] Erklären Sie die einzelnen Spalten dieses Eintrags.
 - [EC] Überprüfen Sie ob der home-Ordner von `user1` vorhanden ist.
 
+Betrachten Sie die adduser(8) [manpage](https://manpages.debian.org/bookworm/adduser/adduser.8.en.html).
 Verstehen Sie die **Synopsis**, lesen Sie die **Description** und lesen Sie die Abschnitte 
-**Add a normal user** und **Add a system user** der adduser(8) 
-[manpage](https://manpages.debian.org/bookworm/adduser/adduser.8.en.html).
+**Add a normal user** und **Add a system user**. 
 
 - [EC] Erstellen Sie einen neuen Nutzer namens `user2` mit dem `adduser` Befehl.  
-    Bei den persönlichen Fragen, lassen Sie die Felder leer.
-- [EQ] Erklären Sie den Unterschied der Befehle `useradd` und `adduser`.
+  Bei den persönlichen Fragen lassen Sie die Felder leer.
+- [EQ] Charakterisieren Sie den Unterschied der Befehle `useradd` und `adduser`.
 
 ### Passwörter für Nutzer setzen
 
@@ -53,21 +68,31 @@ Passwort setzt.
 
 ### Ändern der Rechte für Nutzer
 
-Ein Mitarbeiter kündigt und Sie sind zuständig, dass die Nutzerkonten des Mitarbeiters gesperrt 
+Die Mitarbeiter_in kündigt und Sie sind zuständig, dass die zugehörigen Nutzerkonten gesperrt 
 werden.
 
-Schauen Sie in der [useradd(8)](https://linux.die.net/man/8/useradd) manpage nach Optionen, wie 
+Schauen Sie in der [useradd(8)](https://linux.die.net/man/8/useradd) manpage nach Optionen oder einem verwandten Kommando, wie 
 man Nutzer sperrt.
+Vorsicht: Ein Passwort sperren ist nicht das Gleiche wie das ganze Konto zu sperren,
+denn man könnte sich dann immer noch mit [PARTREF::SSH]-Keys anmelden.
 
 - [EC] Sperren Sie die Nutzer `user1` und `user2`.
 
-Nachdem die Nutzer gesperrt wurden und eine datenschutzrechtliche konforme Zeitspanne vorbei ist, 
+[HINT::Nutzer sperren ("lock"/"disable")]
+...geht mit `usermod -e`.
+[ENDHINT]
+
+Nachdem die Nutzer gesperrt wurden und eine rechtlich konforme Zeitspanne vorbei ist, 
 müsssen Nutzer und Dateien des Nutzers auf dem System gelöscht werden.
 
-Schauen Sie in der [useradd(8)](https://linux.die.net/man/8/useradd) manpage nach Optionen, wie 
+Schauen Sie in der [useradd(8)](https://linux.die.net/man/8/useradd) manpage nach Optionen oder einem verwandten Kommando, wie 
 man Nutzer und deren Dateien löscht.
 
-- [EC] Löschen Sie beide Nutzer und all deren Dateien von Ihrem System.
+- [EC] Löschen Sie beide Nutzer und deren Homeverzeichnis von Ihrem System.
+
+[HINT::Nutzer löschen ("delete"/"remove")]
+...geht mit `userdel`.
+[ENDHINT]
 
 [ENDSECTION]
 

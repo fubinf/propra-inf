@@ -9,6 +9,17 @@ sowie ggf. auf Aufgaben, die weitere Erläuterungen dazu enthalten.
 
 ## A
 
+[TERM::Account|Konto|Benutzeraccount|Benutzerkonto|Useraccount|Benutzer|User|Nutzer]
+Synonyme für die Identität eines (menschlichen oder nichtmenschlichen) Benutzers
+in einem Betriebssystem.
+Ein Account ist mit einem Zugangsschutz versehen (z.B. Passwort) und verfügt
+im System über gewisse Rechte (z.B. Zugriff auf gewisse Dateien.)
+
+Die Ausdrücke Benutzer, Nutzer oder User sind mehrdeutig und können auch die
+menschliche Benutzer_in meinen oder mitmeinen, nicht nur deren Account.
+Leider ist in Unix für Accounts die mehrdeutige Bezeichnung 'user' üblich.
+[ENDTERM]
+
 [TERM::Akzeptanzkriterien|acceptance criteria]
 Spezifische, überprüfbare Bedingungen, die definieren,
 wann eine User Story oder eine Funktion als vollständig und akzeptabel
@@ -147,11 +158,19 @@ indem man Styles ändert, die in allen diesen Dokumenten benutzt werden.
 ## D
 
 [TERM::Dateiberechtigungen]
-Dateiberechtigungen in Linux legen fest, welche Aktionen (Lesen, Schreiben, Ausführen) für 
-bestimmte Benutzer oder Benutzergruppen erlaubt sind. Die Berechtigungen werden durch die 
-Zeichenkette "rwx" dargestellt, wobei "r" für Lesen, "w" für Schreiben und "x" für Ausführen steht.
-Die ersten drei Zeichen geben die Berechtigungen für den Nutzer an, die nächsten drei geben es für die 
-Gruppe an und die letzten drei geben es für alle anderen Benutzer an.
+Dateiberechtigungen in Unix legen fest, welche Aktionen (Lesen, Schreiben, Ausführen) für 
+bestimmte Benutzer oder Benutzergruppen erlaubt sind. Volle Berechtigungen werden durch die 
+Zeichenkette "rwx" dargestellt, wobei 
+"r" (read) für Lesen, "w" (write) für Schreiben und "x" (execute) für Ausführen steht.
+Ein "-" zeigt an, dass ein Recht nicht gegeben ist.
+Bei Verzeichnissen ist "x" das Recht, die Dateien des Verzeichnisses aufzulisten.
+
+Bei `ls -l` werden neun Stellen mit diesen Zeichen angegeben.
+Die ersten drei Zeichen geben die Berechtigungen für den Nutzer an, dem die Datei gehört (owner, o),
+die nächsten drei geben sie für die Gruppe an, der die Datei gehört (group, g), 
+und die letzten drei geben sie für alle anderen Benutzer an (other, o).
+
+Genaueres siehe z.B. [HREF::https://wiki.ubuntuusers.de/Rechte/].
 [ENDTERM]
 
 [TERM::Decorator|Dekorator]
