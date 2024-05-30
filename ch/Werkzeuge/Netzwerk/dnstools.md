@@ -10,17 +10,17 @@ Ich verstehe Netzwerkgrundlagen, um DNS-Informationen eines Servers herauszufind
 [ENDSECTION]
 
 [SECTION::background::default]
-Mit DNS-Werkzeugen finden Sie Probleme mit den Namensauflösung und der Kommunikation zwischen 
-Ressourcen.
+Mit DNS-Werkzeugen finden Sie Probleme mit der Namensauflösung und der Kommunikation zwischen 
+Rechnern.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-<replacement id='dnsserver'>
+<replacement id='dnstools-dnsserver'>
 Zielserver = `fu-berlin.de`
 </replacement>
 
-Angenommen Sie sind ein Netzwerkadministrator und Ihre Kollegen erzählen Ihnen, dass sie keinen 
-Zugriff auf eine Ressource haben. Wir zeigen Ihnen hier ein paar Befehle, die zur Problemlösung
+Angenommen Sie sind ein Netzwerkadministrator und Kolleg_innen erzählen Ihnen, dass sie keinen 
+Zugriff auf eine Ressource haben. Wir zeigen Ihnen hier Befehle, die zur Problemlösung
 helfen können.
 
 ### [TERMREF::Ping]
@@ -42,7 +42,7 @@ Lesen Sie den Abschnitt **Optionen** des oberen [Beitrags](https://wiki.ubuntuus
 
 ### [TERMREF::Dig]
 
-`dig` wird primär genutzt, um die IP-Adresse eines Systems herauszufinden. Es hat mehr Funktionen 
+`dig` wird primär genutzt, um die IP-Adresse eines Systems herauszufinden. Es hat mehr Funktionen, 
 auf die wir unten näher eingehen werden.
 
 Lesen Sie die dig(1) [manpage](https://linux.die.net/man/1/dig).
