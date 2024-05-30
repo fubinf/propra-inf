@@ -71,13 +71,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH)
 - ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->DM)
 
-- ch/Werkzeuge/Netzwerk/SSH.md (Condric)
 - ch/Werkzeuge/Netzwerk/SSH-Tunnel.md (Condric)
 - ch/Werkzeuge/Netzwerk/SSH-Reversetunnel.md (Condric)
 - ch/Werkzeuge/Netzwerk/rsync.md (Condric)
-- ch/Werkzeuge/Netzwerk/dnstools.md (Condric)
-
-- ch/Werkzeuge/Paketmanager/apt.md (Condric)
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric)
@@ -115,6 +111,28 @@ We will modify these rules over time when others appear more useful.
   Einmal habe ich das korrigiert, andere sind noch falsch.  
   Beim Aufräumen sollte die Aufgabe die zu löschenden Teile nennen, damit das auch richtig klappt.
   Auch hier bitte **Musterlösung**.
+- ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC)  
+  dig muss erst installiert werden. Wir sollten uns nicht auf eine "so kannste das installieren"-Meldung
+  a la Debian verlassen.  
+  Den traceroute-Teil finde ich sehr anspruchsvoll. Wenn ich die Ähnlichkeiten und Unterschiede von
+  `traceroute -T fu-berlin.de` und `traceroute fu-berlin.de` erklären sollte, würde ich ins
+  Schleudern kommen. Oder warum im internen Netz manchmal bei fast jedem Hop ein Fehlschlag dabei ist.
+  Und beim nächsten Mal wieder keiner. oderoderoder.
+  Kriegen wir das besser eingehegt?  
+  Beispielsweise hatte ich mich gefragt, ob eine Route zur Uni Luxemburg wohl über Frankreich
+  oder Belgien führt, um dann erstaunt zu lernen, dass sie bevorzugt über Polen plus Tschechien führt
+  und alternativ über Niederlande plus Belgien. Staun.  https://network.geant.org/gn4-3n/  
+  Nötigenfalls Schwierigkeit "mittel" nehmen und/oder traceroute abspalten.
+- ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC)  
+  Siehe Notizen in der Datei. Schwierig!
+- Bei folgenden Aufgaben, die ich jetzt freigegeben habe, fehlt nur noch die **Musterlösung**:  
+  apt.md.  
+  Diese sollte in der Regel nur die Kommandos enthalten (nicht deren Output), aber sehr wohl
+  Hinweise, worauf ggf. im Output zu achten ist.  
+  Von mir aus muss da nicht immer [EREFC::...] stehen, sondern man kann einfach eine
+  Aufzählungsliste mit lauter Einsen schreiben (die Markdown dann fortlaufend nummeriert),
+  dann sind eventuelle spätere Zufügungen/Löschungen einfacher. 
+  Für Markdown ist [EREFQ::...] sinnvoll, wenn weitaus nicht jede Frage eine Behandlung braucht.  
 - ...
 
 
