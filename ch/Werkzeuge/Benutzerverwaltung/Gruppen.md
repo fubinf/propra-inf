@@ -5,67 +5,67 @@ difficulty: 2
 assumes: Benutzerkonten, Dateiberechtigungen, sudo
 ---
 
-[SECTION::goal::idea]
+[SECTION::goal::trial]
 Ich verstehe Gruppen in Linux und wie ich diese bei Nutzern ändern kann.
 [ENDSECTION]
 
 [SECTION::background::default]
-In Linux spielen Gruppen eine wichtige Rolle bei der Verwaltung von Benutzerrechten und der 
+In Unix spielen Gruppen eine wichtige Rolle bei der Verwaltung von Benutzerrechten und der 
 Organisation von Nutzern auf einem System.
+Man braucht sie, wenn Dateien von mehreren aber nicht allen Benutzern zugreifbar sein sollen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 ### Nutzer erstellen
 
-- [EC] Erstellen Sie zwei neuen Nutzer namens `nutzer1` und `nutzer2`.
+- [EC] Erstellen Sie zwei neue Nutzer namens `nutzer1` und `nutzer2`.
 
 ### Gruppe erstellen
 
+Lesen Sie die Abschnitte **Synopsis** und **Description** (Einleitung reicht) der 
+[adduser(8) manpage](https://linux.die.net/man/8/adduser) (ja, das ist kein Irrtum).
+
 - [EC] Erstellen Sie eine neue Gruppe namens `propra`.
-- [EC] Fügen sie die Gruppe `propra` `nutzer1` hinzu.
-- [EC] Melden Sie sich als `nutzer1` an.
-- [EC] Erstellen Sie eine Datei namens `datei1` mit `nutzer1`.
+- [EC] Fügen sie der Gruppe `propra` den Account `nutzer1` hinzu.
+- [EC] Wechseln Sie zu `nutzer1`.
+- [EC] Erstellen Sie als `nutzer1` eine Datei namens `datei1` mit dem Inhalt "ich bin datei1".
+- [EC] Stellen Sie mit `chmod` sicher, dass `datei1` volle Rechte (rwx) für seine Gruppe hat
+  und keine Rechte (---) für Other.
 
 Lesen Sie die Abschnitte **Synopsis**, **Description** und **Examples** der
-chgrp(1) [manpage](https://linux.die.net/man/1/chgrp)
+[chgrp(1) manpage](https://linux.die.net/man/1/chgrp)
 
-- [EC] Ändern Sie die Gruppe der datei1 zu propra.
-- [EC] Melden Sie sich als `nutzer2` an und versuchen Sie die `datei1` zu bearbeiten.
+- [EC] Ändern Sie mit `chgrp` die Gruppe der `datei1` zu `propra`.
+- [EC] Melden Sie sich als `nutzer2` an und versuchen Sie die `datei1` auszugeben.
 
-Wie Sie merken, können Sie die Datei nicht bearbeiten. Es gibt jedoch eine Möglichkeit ohne dass 
-`nutzer2` der Gruppe `propra` zugehörig ist, um die Datei zu bearbeiten.
-
-- [EC] Finden Sie die Möglichkeit heraus und wenden Sie sie an.
+Wie Sie merken, können Sie die Datei nicht lesen. 
 
 ### Standardgruppe setzen
 
-Die Standardgruppe eines Nutzers gibt an, welche Gruppe die Dateien eines Nutzers haben sollen 
-und worauf dieser Nutzer Zugriff haben soll.
-Das Ändern diese Gruppe kann sinnvoll sein, wenn man seine Dateien mit anderen Mitarbeitern auf 
-seinem System teilen möchte, indem man nur die Dateiberechtigungen ändern kann.
+Die Standardgruppe eines Nutzers gibt an, welche Gruppe neue Dateien eines Nutzers bekommen sollen.
+Das Ändern dieser Gruppe kann sinnvoll sein, 
+wenn man über eine gemeinsame Gruppe Dateien mit anderen Benutzern teilen möchte.
 
-- [EC] Erstellen sie eine Datei `datei2` mit dem Nutzer `nutzer1`.
-- [EC] Welche Berechtigungen hat die Datei. Welchen Nutzer und welche Gruppe hat die Datei.
-
-Lesen Sie die Abschnitte **Synopsis** und **Description** der adduser(8) 
-[manpage](https://linux.die.net/man/8/adduser).
-
+- [EC] Gehen Sie zurück zu `nutzer1`.
+- [EC] Erstellen sie eine Datei `datei2`.
+- [EC] Welche Berechtigungen hat die Datei? Welchen Nutzer und welche Gruppe hat die Datei?
 - [EC] Erstellen Sie eine neue Gruppe namens `standard`. 
 
 Lesen Sie die Abschnitte **Synopsis**, **Description** und die **Optionen** -a, -g, -G der 
-usermod(8) [manpage](https://linux.die.net/man/8/usermod)
+[usermod(8) manpage](https://linux.die.net/man/8/usermod)
 
 - [EC] Setzen Sie die Gruppe `standard` als Standardgruppe für den Nutzer `nutzer1`.
-- [EC] Erstellen Sie eine Datei `datei3` mit dem Nutzer `nutzer1`.
+- [EC] Erstellen Sie (weiterhin als Nutzer `nutzer1`) eine Datei `datei3`.
 - [EQ] Schauen Sie sich die Berechtigungen der beiden Dateien an. Was fällt auf?
-- [EC] Setzen Sie die Gruppe von `nutzer1` wieder zurück.
+  Was folgt daraus für eine Zusammenarbeit mit gemeinsamen Dateien?
+- [EC] Setzen Sie die Gruppe von `nutzer1` wieder zurück auf den vorherigen Wert.
 
 ### Nutzer und Gruppe löschen
 
 Damit Ihr System nicht vollgemüllt wird, löschen wir noch die gerade erstellten Nutzer und Gruppen.
 
-Lesen Sie die Abschnitte **Synopsis**, **Description** und **Remove a group** der deluser(8) 
-[manpage](https://manpages.debian.org/jessie/adduser/deluser.8.en.html).
+Lesen Sie die Abschnitte **Synopsis**, **Description** und **Remove a group** der 
+[deluser(8) manpage](https://manpages.debian.org/jessie/adduser/deluser.8.en.html).
 
 - [EC] Löschen Sie die erstellten Nutzer.
 - [EC] Löschen Sie die erstellten Gruppen.

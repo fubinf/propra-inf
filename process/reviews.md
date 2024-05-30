@@ -108,6 +108,13 @@ We will modify these rules over time when others appear more useful.
   Ich habe alle drei schon mal auf beta gesetzt, aber die brauchen bitte alle noch eine
   **Musterlösung**.
   Welchen Sinn hat das **`-R`** bei `chmod/chgrp`? Wenn da kein Hintergedanke steckt, bitte entfernen.
+- ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric->LP->IC)  
+  "Finden Sie die Lösung und wenden Sie sie an." 
+  Sowas kann man auf Stufe 'schwer' machen, aber nicht bei 'leicht'. Gelöscht.   
+  Für manche Schritte fehlt das Vorwissen, denn das passende Lesen erfolgt erst weiter unten.
+  Einmal habe ich das korrigiert, andere sind noch falsch.  
+  Beim Aufräumen sollte die Aufgabe die zu löschenden Teile nennen, damit das auch richtig klappt.
+  Auch hier bitte **Musterlösung**.
 - ...
 
 
