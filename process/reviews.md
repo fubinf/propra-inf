@@ -53,6 +53,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP)
 - ch/Testen/Unittests/m_pytest_benchmark.md (RR->DM->LP)
 - ch/Testen/Unittests/m_unittest_mocking.md (RR->DM->HA->LP)
+- ch/Testen/Unittests/m_unittest_github.md (RR->LP)
 
 - ch/Werkzeuge/Linter/flake8.md (RR->HA->CH)
 - ch/Werkzeuge/Linter/black.md (RR->HA->CH)
@@ -146,7 +147,6 @@ We will modify these rules over time when others appear more useful.
   Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
   kann verzichtet werden. Bitte überprüfen.
   Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
-- ch/Testen/Unittests/unittest301.md (RR->DM->HA->LP)
 - ch/Testen/Unittests/unittest203.md (RR->Müller)
 - ch/Testen/Unittests/pytest202.md (RR->Müller)
 - ch/Testen/API/ResponseApi.md (RR->CH)
