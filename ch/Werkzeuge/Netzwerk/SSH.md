@@ -5,41 +5,75 @@ difficulty: 2
 assumes: Shell-Grundlagen, apt, Manpages
 ---
 
-[SECTION::goal::idea]
- - Ich verstehe was SSH (Secure Shell) ist und wie ich mich auf einem entfernten Rechner anmelden kann.
- - Ich verstehe wie ich ein Schlüsselpaar erstelle und wie ich diesen nutze und was der Vorteil davon ist.
- - Ich verstehe wie der SSH-Agent funktioniert und wie ich diesen nutze.
+TODO_1_condric:
+
+- Wie bei git gilt auch hier, dass wir ein (korrektes, wenn auch vereinfachtes) mentales Modell vermitteln sollten.
+- Was symmetrische oder asymmetrische Verschlüsselung ist, dürfen wir voraussetzen
+  (nur jeweils Glossareintrag mit Verweis auf passende Quelle), ebenso kryptographische Hashfunktionen.
+- Aber was davon an welcher Stelle zum Zug kommt, um SSH abzusichern, sollten sich die Leute
+  hier erarbeiten; am besten in der Reihenfolge "erst machen, dann verstehen".
+- Im Prinzip leisten die Leseaufträge davon einiges, aber der Detailgrad passt nicht gut
+  zum Ziel. Siehe z.B. "Verifying host keys", wo die Konzepte vermischt sind mit sehr technischen
+  Einzelheiten. Wir müssen dafür sorgen, dass die Erkenntnis geleitet passiert und wir
+  nicht viel mehr Information anbieten als im jeweiligen Schritt nötig ist.
+  Wenn die manpage nichts Passendes hat, müssen wir was anderes finden und wenn das nicht klappt,
+  es selber erledigen. Müsste aber klappen, denn ssh besprechen auch Unis.
+- Das praktische Benutzen läuft parallel.
+- Ich sollte also nicht nur lernen: "So loggste dich ein und das ist _irgendwie_ sicher.",
+  sondern die Sicherheitseigenschaften (mich authentisieren, Rechner authentisieren, Verkehr
+  vertraulich halten) zerlegen und auf die technischen Einzelteile abbilden können
+  (Passwort, mein privater Schlüssel, mein öff. Schlüssel, Rechnerschlüssel, dessen Fingerprint,
+  symmetr. Sitzungsschlüssel, symmetr. Chipher, assymetr. Verfahren, Signaturverfahren;
+  alles nur grob) und das pro Schritt des Prozesses.
+- Es liegt für mich nicht auf der Hand, wie die Aufgabe dann aussieht...
+- Es liegt aber auf der Hand, dass sie deutlich umfangreicher wird und länger dauern darf.
+  Das ist aber eine Stelle, an der in er Praxis enormer Wissensmangel herrscht, der auch immer
+  wieder zu Sicherheitslücken führt, z.B. weil Server so konfiguriert sind, dass der Klient
+  sie beim Verbindungsaufbau auf uralte und wenig sichere Verfahren herunterhandeln kann.
+  Idealerweise würden unsere Leute solcher Sachverhalte gewahr (auch wenn Sie die Einzelheiten,
+  was gut und was zu alt ist, gar nicht kennen).
+- Was man auch verstehen sollte: Wo liegt und welchen Schutz hat mein Geheimmaterial?
+  Passwort nur im Kopf, beim (häufigen!) Eingeben wenig geschützt; 
+  privater Schlüssel in verschlüsselter und von Dateirechten geschützter Datei;
+  geladener privater Schlüssel (im ssh-Agent) im Hauptspeicher meines Rechners, auch im Standby.
+- Gut möglich, dass man einiges von diesem Pensum in eine zweite, fortgeschrittene Aufgabe
+  hochdrücken kann.
+- Anspruchsvoll!
+
+[SECTION::goal::trial]
+Ich kann mich mit SSH (Secure Shell) auf einem entfernten Rechner anmelden und habe mir
+ein Schlüsselpaar erstellt und den SSH-Agenten eingerichtet, um das wie ein Profi tun zu können.
 [ENDSECTION]
 
 [SECTION::background::default]
-Die Sicherung von Daten durch Verschlüsselung ist in vielen Bereichen moderner 
-Systemadministration von größter Bedeutung. Im Gegensatz zu unsicheren Lösungen wie telnet, 
-rlogin oder FTP wurde das Protokoll SSH (Secure Shell) mit Blick auf die Sicherheit entwickelt.
-Mit Hilfe der Public-Key-Kryptographie authentifiziert es sowohl die Hosts als auch die Benutzer
-und verschlüsselt den gesamten nachfolgenden Informationsaustausch.
+Bei der Systemadministration geht es die halbe Zeit um Sicherheit.
+Zwei wichtige Themen dafür sind Authentisierung und verschlüsselte Kommunikation.
+Das sind Kernkompetenzen von SSH, dem Schweizer Messer unter den Netzwerk-Werkzeugen,
+mit dem man sich unbedingt gut auskennen muss.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-<replacement id='targetserver'>
+<replacement id='SSH-targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
 </replacement>
 
 ### Prüfen ob SSH installiert ist
 
 - [EC] Stellen Sie sicher, dass der `openssh-client` installiert ist:  
-      - `apt list --installed | grep openssh-client`  
+      - `apt list --installed openssh-client`  
    Ist der openssh-client nicht auf Ihrem System installiert, holen Sie das mit diesen zwei 
    Befehlen nach:  
       - `sudo apt update`  
       - `sudo apt -y install openssh-client`  
 
 [NOTICE]
-Stellen Sie sicher, dass Sie sich im Netz der Universität oder im VPN befinden. Unter Umständen 
-kann die Verbindung zum Zielserver nicht hergestellt werden.
+Stellen Sie sicher, dass Sie sich im Netz der Hochschule befinden, nötigenfalls über VPN. 
+Unter Umständen kann die Verbindung zum Zielserver sonst nicht hergestellt werden.
 [ENDNOTICE]
 
 ### Per [TERMREF::SSH] auf einem entferntem Rechner anmelden
+
 Lesen Sie die kurze Beschreibung der ssh(1) [manpage](https://man.openbsd.org/ssh).
 
 - [EC] Verbinden Sie sich mit dem Zielserver per ssh.
@@ -69,8 +103,9 @@ Schlüsselpaar anzumelden.
 Lesen Sie die Optionen **-t**, **-b** und die **Description** der ssh-keygen(1) 
 [manpage](https://man.openbsd.org/ssh-keygen.1).
 
-- [EC] Erstellen Sie ein Schlüsselpaar mit dem Verschlüsselungstyp `ed25519`. Setzen Sie ein neues 
-Passwort für das Schlüsselpaar.
+- [EC] Erstellen Sie ein Schlüsselpaar mit dem Verschlüsselungstyp `ed25519`. 
+  Setzen Sie ein Passwort für das Schlüsselpaar, das Sie sonst nirgends benutzen, denn Sie werden
+  mit diesem Schlüsselpaar nach einiger Zeit enorm vieles abgesichert haben.
 
 Es sollten nun zwei neue Dateien unter `~/.ssh/` vorhanden sein. `ed25519` ist Ihr privater Schlüssel 
 und sollte von Ihnen gut aufbewahrt werden. `ed25519.pub` ist Ihr öffentlicher Schlüssel. Diesen 
@@ -78,7 +113,7 @@ kopieren wir auf den Zielserver, damit Sie sich damit anmelden können.
 
 Lesen Sie die ssh-copy-id(1) 
 [manpage](https://manpages.debian.org/testing/openssh-client/ssh-copy-id.1.en.html).  
-Verstehen Sie insbesondere das example was am Ende gegeben ist. 
+Verstehen Sie insbesondere das example am Ende. 
 
 - [EC] Kopieren Sie Ihren öffentlichen Schlüssel auf den Zielserver.
 
