@@ -1,16 +1,18 @@
 title: APT Paketverwaltung
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 ---
 
-[SECTION::goal::idea,trial]
+[SECTION::goal::trial]
 Ich kann `apt` zur Verwaltung von Debian-Softwarepaketen anwenden.
 [ENDSECTION]
 
 [SECTION::background::default]
-`apt` ist bei Debian Systemen das standardmäßige Paketverwaltungssystem. Mit `apt` werden Pakete 
+`apt` ist bei Debian-Systemen das standardmäßige Paketverwaltungssystem. Mit `apt` werden Pakete 
 gesucht, installiert, deinstalliert und aktualisiert.
+Auf einem selbstverwalteten Debian-System benutzt man es ziemlich häufig und wer gut damit
+umgehen kann, darf sich oft wie ein Wizard fühlen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -41,12 +43,13 @@ Das ist ein textbasierter, halbgrafischer Dateimanager -- ziemlich praktisch.
 
 Bei einer Aktualisierung ihres Systems werden die alten Pakete nicht gelöscht, sondern bleiben auf ihrem System liegen.
 
-- [EC] Finden Sie im [Beitrag](https://wiki.ubuntuusers.de/apt/apt/) das Kommando, um veraltete 
-  Pakete von Ihrem System zu löschen und führen Sie es aus.
+- [EC] Finden und verstehen Sie im Beitrag das Kommando, um nicht mehr benötigte 
+  Pakete von Ihrem System zu löschen und probieren Sie es aus.
 
-Pakete können manuell deinstalliert werden. Es gibt zwei verschieden Kommandos dafür.
+Pakete können natürlich auch explizit deinstalliert werden. Es gibt zwei verschiedene Kommandos dafür.
 
-- [EQ] Erklären Sie den Unterschied zwischen den Optionen `remove` und `purge`.
+- [EQ] Erklären Sie den Unterschied zwischen `apt remove` und `apt purge`.
+- [EQ] In welcher Situation ist `apt remove` sinnvoller?
 
 [ENDSECTION]
 
