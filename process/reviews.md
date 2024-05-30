@@ -56,16 +56,14 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/m_pytest_benchmark.md (RR->DM->LP)
 - ch/Testen/Unittests/m_unittest_mocking.md (RR->DM->HA->LP)
 - ch/Testen/Unittests/m_unittest_github.md (RR->LP)
-
+- ch/Testen/Unittests/m_testcoverage.md (RR->LP)
 
 - ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH->LP)
 
-
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
-- 
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->DM)
 
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->DM)
 
 - ch/Werkzeuge/Linter/flake8.md (Ruhe->HA->CH)
 - ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH)
@@ -169,7 +167,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ronny Ruhe
 
-- ch/Testen/Unittests/m_testcoverage.md (RR->LP)
 - ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP)
 - ch/Testen/Unittests/unittest102.md (RR->DM->HA->RR)
 - ch/Testen/Unittests/tdd_pp.md (RR->LP->RR)
