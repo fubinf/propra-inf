@@ -1,5 +1,5 @@
 title: Mocking in pytest
-stage: alpha
+stage: draft
 timevalue: 2.0
 difficulty: 3
 assumes: m_pytest, m_pytest_fixtures

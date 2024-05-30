@@ -1,5 +1,5 @@
 title: TDD mit Pytest in der Paar-Anwendung
-stage: alpha
+stage: draft
 timevalue: 1.0
 difficulty: 4
 assumes: m_pytest, pytest201, tdd, tdd_pp
