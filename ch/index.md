@@ -242,6 +242,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-05-29**: Aufgabe Testen/Testgrundlagen[PARTREF::Fehler-Defekt-Versagen] zugefügt.
 - Aufgaben Werkzeuge/Benutzerverwaltung/[PARTREF::sudo], [PARTREF::Benutzerkonten], [PARTREF::Dateiberechtigungen]
   zugefügt
+- **2024-05-30**: Aufgabe Werkzeuge/Paketmanager/[TERMREF::apt] zugefügt.
 - ...
 
 
