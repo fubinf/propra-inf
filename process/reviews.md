@@ -28,6 +28,7 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Lutz Prechelt
 
+**Kapitel bitte in Reihenfolge des Inhaltsverzeichnisses, alles darunter in alphabetischer, Leerzeile pro Gruppe**
 
 - ch/Sprachen/Python1/PythonIntegers.md (Alrwasheda->LP->HA->LP)
 - ch/Sprachen/Python1/PythonFloats.md (Alrwasheda->LP->HA->LP)
@@ -49,25 +50,22 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (RR->LP) (Merge aus Testcases und TestcasesExercise)
 - ch/Testen/Testgrundlagen/Testpyramide.md (RR->LP)
 - ch/Testen/Testgrundlagen/Testabgrenzung.md (RR->LP) (Merge aus TestDelimitations und TestDelimitationsExercise)
-- ch/Testen/Unittets/m_unittest_fixtures.md (RR->LP)
+
+- ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP)
 - ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP)
 - ch/Testen/Unittests/m_pytest_benchmark.md (RR->DM->LP)
 - ch/Testen/Unittests/m_unittest_mocking.md (RR->DM->HA->LP)
 - ch/Testen/Unittests/m_unittest_github.md (RR->LP)
 
-- ch/Werkzeuge/Linter/flake8.md (RR->HA->CH)
-- ch/Werkzeuge/Linter/black.md (RR->HA->CH)
-- ch/Werkzeuge/Linter/flake8_SUT.md (RR->DM)
-
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->DM)
 
 - ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH->LP)
 
+
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
 - ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
+- 
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->DM)
 
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric)
 
 - ch/Werkzeuge/Linter/flake8.md (Ruhe->HA->CH)
 - ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH)
@@ -80,6 +78,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric)
 
 - ch/Werkzeuge/Paketmanager/apt.md (Condric)
+
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric)
 
 
 ## Reviews to do for Hanen Alrwasheda
@@ -95,7 +96,7 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric->LP->IC)  
   Hübsch!  
-  Bitte in `altdir` eine Musterlösung ablegen.  
+  Bitte in `altdir` eine **Musterlösung** ablegen.  
   Was hat es mit dem "exclude"-Hinweis auf sich? Den verstehe ich nicht.  
   Für htop braucht man Markdown, nicht Kommandoprotokoll, oder?
 - ch/Werkzeuge/Benutzerverwaltung/sudo.md (Condric->LP->IC)  
