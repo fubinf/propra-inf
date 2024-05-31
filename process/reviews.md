@@ -18,26 +18,23 @@ We will modify these rules over time when others appear more useful.
 - Reviewers make simple changes themselves and defer complex changes to the author.
   They should leave simple changes to the author as well if they believe the author
   will learn from making them.
-- Reviewers may add feedback in the task file 
-  (a paragraph or itemized list starting with a TODO_1_someauthor marker; default case)
-  or write them in the Discord if they believe everybody should see them.
+- Reviewers may add long feedback in the task file 
+  (a paragraph or itemized list starting with a TODO_1_someauthor marker)
+  or shorter feedback in reviews.md
+  or write feedback in the Discord if they believe everybody should see it.
 - Reviewers then move the review task assignment line to the section (in `review.md`)
   of the next person that needs to consider the given task (author or reviewer) or
-  delete it if the task has arrived in `beta`.
+  delete it if the task has arrived in `beta` and needs no further change or check.
 
 
 ## Reviews to do for Lutz Prechelt
 
 **Kapitel bitte in Reihenfolge des Inhaltsverzeichnisses, alles darunter in alphabetischer, Leerzeile pro Gruppe**
 
-- ch/Sprachen/Python1/PythonIntegers.md (Alrwasheda->LP->HA->LP)
-- ch/Sprachen/Python1/PythonFloats.md (Alrwasheda->LP->HA->LP)
-- ch/Sprachen/Python1/PythonTypeConversion.md (Alrwasheda->LP->HA->LP)
-- ch/Sprachen/Python1/PythonIf.md (Alrwasheda->LP->HA->LP)
-- ch/Sprachen/Python1/PythonElifElse.md (Alrwasheda->LP->HA->LP)
-- ch/Sprachen/Python1/PythonFunctions.md (Alrwasheda->LP)
+### Sprachen
 
 
+### Bibliotheken
 - ch/Bibliotheken/Dokumentation/changelog.md (Prechelt->RR->LP) Keine Anmerkungen.
 - ch/Bibliotheken/Dokumentation/changelog2.md (Prechelt->RR->LP) Zwei Übungen ergänzt, eine
   davon auf das SUT bezigen, um nachzuvollziehen, dass ein vorhandenes Changelog schöner ist, als
@@ -47,6 +44,19 @@ We will modify these rules over time when others appear more useful.
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH)
 - ch/Bibliotheken/Python-Standardbibliothek/os_path.md (Wegner)
 
+
+### Bestandscode
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
+
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->DM)
+
+
+### Debugging
+- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH->LP)
+
+
+### Testen
 - ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (RR->LP) (Merge aus Testcases und TestcasesExercise)
 - ch/Testen/Testgrundlagen/Testpyramide.md (RR->LP)
 - ch/Testen/Testgrundlagen/Testabgrenzung.md (RR->LP) (Merge aus TestDelimitations und TestDelimitationsExercise)
@@ -58,20 +68,11 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/m_unittest_github.md (RR->LP)
 - ch/Testen/Unittests/m_testcoverage.md (RR->LP)
 
-- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH->LP)
 
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
-
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->DM)
-
+### Werkzeuge
 - ch/Werkzeuge/Linter/flake8.md (Ruhe->HA->CH)
 - ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH)
 - ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->DM)
-
-- ch/Werkzeuge/Netzwerk/SSH-Tunnel.md (Condric)
-- ch/Werkzeuge/Netzwerk/SSH-Reversetunnel.md (Condric)
-- ch/Werkzeuge/Netzwerk/rsync.md (Condric)
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric)
@@ -155,7 +156,7 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Dominik Pietrak
 
 - ch/Debugging/Debuggingtools/IDE_debugging.md (Pietrak->LP->DP)  
-  Bitte nochmal prüfen (ich habe einiges geändert), dann auf beta setzen.
+  Bitte nochmal prüfen (ich habe einiges geändert), ggf. korrigieren, Eintrag hier löschen.
 
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->HA->DP->LP->DP)
 - ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->LP->DP)
