@@ -35,14 +35,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Bibliotheken
-- ch/Bibliotheken/Dokumentation/changelog.md (Prechelt->RR->LP) Keine Anmerkungen.
-- ch/Bibliotheken/Dokumentation/changelog2.md (Prechelt->RR->LP) Zwei Übungen ergänzt, eine
-  davon auf das SUT bezigen, um nachzuvollziehen, dass ein vorhandenes Changelog schöner ist, als
-  eins aus einem wenig bekannten Produkt zu extrahieren. (darauf aufbauend könnte man noch mehr in
-  die Reflektion gehen, wie sinnvoll so etwas gehalten wird?)
-
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH)
-- ch/Bibliotheken/Python-Standardbibliothek/os_path.md (Wegner)
 
 
 ### Bestandscode
@@ -53,7 +46,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Debugging
-- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH->LP)
 
 
 ### Testen
@@ -158,9 +150,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Dominik Pietrak
 
-- ch/Debugging/Debuggingtools/IDE_debugging.md (Pietrak->LP->DP)  
-  Bitte nochmal prüfen (ich habe einiges geändert), ggf. korrigieren, Eintrag hier löschen.
-
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->HA->DP->LP->DP)
 - ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->LP->DP)
 - ch/Bestandscode/Refactoring-Grundlagen/open_closed_prinzip.md (Pietrak->LP->DP)
@@ -168,28 +157,37 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->LP->DP)
 - ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->LP->DP)
 
+- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH->LP->DP)  
+  Für die ganze Taskgruppe bitte jeweils Korrekturhilfen in altdir zufügen.
+  Z.B. könnten die für jede Frage beispielhaft je einen Gesichtspunkt für zwei gegensätzliche
+  denkbare (akzeptable) Positionen der Studis benennen, um den Rahmen abzustecken,
+  in dem die Antworten ungefähr erwartet werden.
+  Vielleicht manchmal auch unakzeptable erläutern.
+- ch/Debugging/Debuggingtools/IDE_debugging.md (Pietrak->LP->DP)  
+  Bitte nochmal prüfen (ich habe einiges geändert), ggf. korrigieren, Eintrag hier löschen.
+
 
 ## Reviews to do for Ronny Ruhe
 
 - ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP)
 - ch/Testen/Unittests/unittest102.md (RR->DM->HA->RR)
 - ch/Testen/Unittests/tdd_pp.md (RR->LP->RR)
-- ch/Testen/Unittests/freezegun.md (RR->DM->HA->LP->RR_LP)
-- ch/Testen/Unittests/tdd.md (RR->DM->LP)
-- ch/Testen/Unittests/pytest103.md (Pietrak und RR->DM->LP)
-- ch/Testen/Unittests/pytest201.md (RR->DM->LP)
-- ch/Testen/Unittests/unittest201.md (RR->DM->HA->LP):
+- ch/Testen/Unittests/freezegun.md (RR->DM->HA->LP->RR->LP->RR)
+- ch/Testen/Unittests/tdd.md (RR->DM->LP->RR)
+- ch/Testen/Unittests/pytest103.md (Pietrak und RR->DM->LP->RR)
+- ch/Testen/Unittests/pytest201.md (RR->DM->LP->RR)
+- ch/Testen/Unittests/unittest201.md (RR->DM->HA->LP->RR):
   Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
   kann verzichtet werden. Bitte überprüfen.
   Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
-- ch/Testen/Unittests/unittest203.md (RR->Müller)
-- ch/Testen/Unittests/pytest202.md (RR->Müller)
-- ch/Testen/API/ResponseApi.md (RR->CH)
-- ch/Testen/API/CRUDApi.md (RR->CH)
-- ch/Testen/API/RestApi.md (RR->CH)
-- ch/Testen/Testframeworks/index.md (RR->CH)
-- ch/Testen/Testframeworks/Robot.md (RR->CH)
-- ch/Testen/SUT/LokalesDeployment.md (RR->CH)
+- ch/Testen/Unittests/unittest203.md (RR->Müller->LP->RR)
+- ch/Testen/Unittests/pytest202.md (RR->Müller->LP->RR)
+- ch/Testen/API/ResponseApi.md (RR->CH->LP->RR)
+- ch/Testen/API/CRUDApi.md (RR->CH->LP->RR)
+- ch/Testen/API/RestApi.md (RR->CH->LP->RR)
+- ch/Testen/Testframeworks/index.md (RR->CH->LP->RR)
+- ch/Testen/Testframeworks/Robot.md (RR->CH->LP->RR)
+- ch/Testen/SUT/LokalesDeployment.md (RR->CH->LP->RR)
 
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (RR->LP->RR)
 
@@ -206,3 +204,5 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Sven Wegner
 
+- ch/Bibliotheken/Python-Standardbibliothek/m_os.path.md (Wegner->LP->SW)  
+  Musterlösung ergänzen (siehe TODO), meine Änderungen prüfen. Ist schon beta.
