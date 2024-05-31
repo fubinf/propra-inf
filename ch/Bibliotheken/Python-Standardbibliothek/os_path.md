@@ -1,12 +1,12 @@
-title: os.path - mit Pfadangaben arbeiten
-stage: alpha
-timevalue: 1.0
+title: "os.path: mit Pfadangaben arbeiten"
+stage: beta
+timevalue: 1.5
 difficulty: 2
 ---
 
 [SECTION::goal::idea]
 
-Ich kann mit Pfadangaben in Python umgehen.
+Ich kann mit in Python mit Datei- und Verzeichnispfaden umgehen.
 
 [ENDSECTION]
 
@@ -15,110 +15,104 @@ Ich kann mit Pfadangaben in Python umgehen.
 Wenn Sie mit ihrem Programm auf externe Dateien zugreifen wollen, müssen Sie sich folglich auch 
 mit Pfadangaben auseinandersetzen. Möglicherweise müssen Sie dabei überprüfen, ob ein Pfad 
 tatsächlich existiert, oder ihn entsprechend bearbeiten. Falls Sie mit unterschiedlichen 
-Betriebssystemen arbeiten, müssen Sie gegebenenfalls auch verschiedene Pfadformate beachten.
+Betriebssystemen arbeiten, müssen Sie mindestens bei 
+[absoluten Pfaden](https://www.redhat.com/sysadmin/linux-path-absolute-relative) 
+auch 
+[verschiedene Pfadformate](https://stackoverflow.com/a/62328554/2810305) 
+beachten.
 
 `os.path` ist ein Submodul von `os`, welches wiederum verschiedene Schnittstellen zum 
 Betriebssystem bündelt. `path` bietet hierbei einige grundsätzliche Interaktionsmöglichkeiten 
 mit Pfaden.
 
-[WARNING]
-Pfadangaben unterscheiden sich deutlich, je nachdem welches Betriebssystem Sie verwenden. Achten 
-Sie darauf, dass ihre Abgabe vorrangig auf Linux funktionieren muss!
-[ENDWARNING]
-
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-- [ER] Machen Sie sich mit der [Dokumentation](https://docs.python.org/3/library/os.path.html)
-  von `os.path` vertraut.
-- [ER] Legen Sie die Datei `os_path.py` an und benutzen Sie diese Datei für den Rest der 
+- [ER] Verschaffen Sie sich einen Überblick über die
+  [Dokumentation von `os.path`](https://docs.python.org/3/library/os.path.html).
+- [ER] Legen Sie die Datei `m_os_path.py` an und benutzen Sie diese Datei für den Rest der 
   Aufgabe. Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit 
   Leerzeile getrennt.
 
-### Relativer Pfad zum Home-Verzeichnis
 
-Für die Aufgabe verwenden wir ihr Home-Verzeichnis, i.d.R. unter `/home/<Username>`. Anstatt aber 
-den absoluten Pfad anzugeben, verwenden wir die Environment Variable `$HOME`. So erhalten wir 
-unabhängig vom User immer den Pfad zum Home-Verzeichnis.
-Alternativ gibt es auch das Symbol `~`, welches ebenfalls auf das Home-Verzeichnis des aktuellen 
-Users verweist.
+### Pfad zum Home-Verzeichnis
 
-- [ER] Erstellen Sie den String `$HOME` und finden Sie einen Weg, die Systemvariable über `os.
-  path` in den absoluten Pfad zu ihrem Home-Verzeichnis umzuwandeln. Geben Sie das Ergebnis aus:  
+Für die Aufgabe verwenden wir ihr Home-Verzeichnis, i.d.R. unter `/home/<Username>`. 
+Anstatt aber den Pfad direkt anzugeben, verwenden wir die [TERMREF::Umgebungsvariable] `HOME`. 
+So erhalten wir unabhängig vom User immer den Pfad zum Home-Verzeichnis.
+
+Alternativ gibt es auch das Symbol `~`, welches in der Shell und in `os.path` 
+ein Synonym für `$HOME` ist.
+
+- [ER] Wandeln Sie mittels `os.path` den String "$HOME" um in den absoluten Pfad zu ihrem Home-Verzeichnis.
+  Geben Sie das Ergebnis aus:    
   `print("home directory: ", ...)`
-- [ER] Testen Sie mithilfe von `os.path`, ob die Umwandlung funktioniert hat und der so erhaltene 
-  Pfad auch existiert. Geben Sie das Ergebnis aus:  
-  `print("path exists: ", ...)`
+- [ER] Testen Sie mithilfe von `os.path`, ob der so erhaltene Pfad wirklich existiert. 
+  Geben Sie das Ergebnis aus:    
+  `print("home directory exists: ", ...)`
 
-[INSTRUCTOR::path exists]
-Sollte immer True sein. Falls nicht, zurückweisen.
+[INSTRUCTOR::home directory exists]
+Sollte immer True sein. Falls nicht, ist die Lösung falsch oder jemand hat seine HOME-Variable geändert.
 [ENDINSTRUCTOR]
+
 
 ### Mit Pfaden arbeiten
 
-- [ER] Verwenden Sie [`os.listdir()`](https://docs.python.org/3/library/os.html#os.listdir), um 
+- [ER] Verwenden Sie [`os.listdir()`](https://docs.python.org/3/library/os.html#os.listdir) (also aus dem Obermodul!), um 
   eine Liste aller Dateien und Verzeichnisse in ihrem Home-Verzeichnis zu erhalten.
 - [ER] Verknüpfen Sie mithilfe von `os.path` alle Dateien mit ihrem Pfad, sodass Sie für jede Datei
-  einen absoluten Pfad erhalten. Geben Sie die Liste aus:  
-  `print("files in home directory:\n", ...)`
+  einen absoluten Pfad erhalten. Geben Sie das (z.B.) dritte Element der Liste aus:  
+  `print("an entry in my home directory:", ...)`
 - [ER] Prüfen Sie mithilfe von `os.path` für jedes Element, ob es sich um eine Datei oder um ein 
   Verzeichnis handelt. Geben Sie jeweils die Anzahl der Verzeichnisse und Dateien aus:  
-  `print("# directories: ", ..., "\n# files:       ", ...)`
+  `print("# directories:", ..., ", # files:", ...)`
 
 [INSTRUCTOR::Symbolische Links]
-Falls ihr Home Directory symbolische Links enthält: os.path interpretiert Links auf Verzeichnisse 
-als Verzeichnis und Links auf Dateien als Datei. Andere File Viewer interpretieren Links u.U. nur 
-als Datei.
+Falls das Verzeichnis symbolische Links enthält: `os.path` interpretiert korrekterweise
+Links auf Verzeichnisse als Verzeichnis und Links auf Dateien als Datei.
 [ENDINSTRUCTOR]
 
 - [ER] Betrachten Sie für diese Aufgabe nur alle Dateien. Listen Sie auf
-    - welche Datei am größten ist
-    - welche Datei zuletzt erstellt wurde
-    - welche Datei zuletzt geändert wurde
-    - welche Dateiendung am häufigsten vorkommt</ul>
-  `print("biggest file: ", ..., "\nlast created: ", ..., "\nlast changed: ", ..., "\nmost common file extension: '", ..., "'", sep='')`
+  welche Datei am größten ist; welche zuletzt erstellt wurde; welche zuletzt geändert wurde;
+  welche Dateiendung am häufigsten vorkommt  
+  `print("biggest file:", ..., "\nlast created:", ..., "\nlast changed:", ..., "\nmost common file extension:", ...)`    
+  (eine elegante Lösung verwendet `min()`/`max()` und [PARTREF::Python-list-comprehensions])
 - [ER] Verwenden Sie [`os.getcwd()`](https://docs.python.org/3/library/os.html#os.getcwd), um 
-  den Pfad zu ihrem aktuellen Arbeitsverzeichnis zu erhalten (i.d.R. identisch zum Pfad zu ihrem 
-  Programm im Repo, außer sie rufen es aus einem anderen Verzeichnis heraus auf).  
-  Erstellen Sie einen relativen Pfad, der von ihrem Home-Verzeichnis zu ihrem Arbeitsverzeichnis 
+  den Pfad zu ihrem aktuellen Arbeitsverzeichnis (im ProPra-Repo) zu erhalten.  
+  Erstellen Sie mittels `os.path` einen relativen Pfad, der von ihrem Home-Verzeichnis zu ihrem Arbeitsverzeichnis 
   führt und geben Sie ihn aus:  
-  `print("relative path to cwd: ", ...)`
+  `print("relative path from home to cwd: ", ...)`
 - [ER] Erstellen Sie nun den relativen Pfad, der von ihrem Arbeitsverzeichnis zu ihrem 
-  Home-Verzeichnis führt. Verknüpfen Sie die beiden Pfade miteinander und geben Sie ihn aus:  
-  `print("path to cwd and back: ", ...)`
-- [ER] Der erhaltene Pfad ist immer noch valide, aber unschön, da er nur auf das 
-  Ausgangsverzeichnis `.` verweist und somit unnötige Zwischenschritte enthält. Verwenden Sie 
-  `os.path`, um den Pfad zu normalisieren:  
+  Home-Verzeichnis führt. Verknüpfen Sie die beiden Pfade miteinander und geben Sie das Resultat aus:  
+  `print("path home to cwd and back: ", ...)`
+- [ER] Der erhaltene Pfad ist gültig, aber natürlich unnötig kompliziert. Verwenden Sie 
+  `os.path`, um den Pfad zu vereinfachen (nämlich redundantes Runter-und-Rauf zu normalisieren):  
   `print("relative path normalized: ", ...)`
 
-[INSTRUCTOR::relative path normalized]
-Sollte immer `.` sein. Falls nicht, zurückweisen.
-[ENDINSTRUCTOR]
 
 ### Programmlauf für die Abgabe
 
-- [EC] Führen Sie das gesamte so erzeugte Programm `os_path.py` einmal aus.
+- [EC] Führen Sie das gesamte so erzeugte Programm `m_os_path.py` einmal aus.
 
 [ENDSECTION]
 
 [SECTION::submission::trace]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-Da ihr Home-Verzeichnis sensible Daten enthalten kann, prüfen Sie vorher ihr Protokoll und 
-entfernen Sie ggf. Angaben, die Sie nicht veröffentlichen möchten (z.B. ihren Benutzernamen oder 
-persönliche Dateien).
-
 [INCLUDE::../../_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Eine Ausgabe als "Muster"]
-Das Kommandoprotokoll hängt stark vom Inhalt ihres Home-Verzeichnisses ab und ist daher nur 
-in wenigen Fällen hilfreich.
+Das Kommandoprotokoll hängt vom Inhalt des Home-Verzeichnisses ab und ist daher nur 
+mäßig gut prüfbar.
 Prüfen Sie stattdessen eine Abgabe etwas genauer, sodass Sie sicher sind, dass dessen Ausgabe 
 korrekt ist und verwenden Sie diese als "Musterausgabe" für die Kontrolle der anderen Abgaben.
 
-Klare [TERMREF2::Defekt::-e] und ungünstige Konstruktionen zurückweisen, insbesondere solche, 
+Klare Defekte und übermäßig ungeschickte Konstruktionen zurückweisen, insbesondere solche, 
 die zu wenig Gebrauch von `os.path` machen.
+Wer keine list comprehensions kann, darf aber vorerst auch Schleifen schreiben.
+
+TODO_1_wegner: Musterlösung für `m_os_path.py` in `altdir` machen, dann die Anweisungen hier vereinfachen.
 [ENDINSTRUCTOR]
