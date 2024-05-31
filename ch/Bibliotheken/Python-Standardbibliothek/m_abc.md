@@ -1,11 +1,11 @@
-title: Abstract Base Class
+title: Abstract Base Classes
 stage: draft
 timevalue: 0.1
 difficulty: 3
 ---
 
-[SECTION::goal::idea]
-TODO_1 Einführen in abstrakte Klassen in Python, u. a. benötigt in 
+[SECTION::goal::trial]
+TODO_1_alrwasheda: Einführen in abstrakte Klassen in Python, u. a. benötigt in 
 Bestandscode/Refactoring-Grundlagen/{srp,ocp,lsp,isp,dip}
 [ENDSECTION]
 
