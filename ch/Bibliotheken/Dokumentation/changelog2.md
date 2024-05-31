@@ -1,6 +1,6 @@
 title: Selber ein Changelog schreiben
-stage: draft
-timevalue: 0.5
+stage: beta
+timevalue: 0.75
 difficulty: 2
 assumes: changelog
 ---
@@ -19,17 +19,20 @@ Wenn nicht, bitte jetzt nachholen.
 [SECTION::instructions::loose]
 
 [WARNING]
+
 1. Achtung, von den folgenden Abschnitten brauchen Sie **nur einen** zu bearbeiten,
    um diese Aufgabe zu absolvieren.
-2. Diese Aufgabe hat faktisch "requires"-Abhängigkeiten, aber wegen der obigen Wahlmöglichkeit
-   sind die nicht formell benannt.
+2. Diese Aufgabe hat faktisch "requires"-Abhängigkeiten, aber wegen der Wahlmöglichkeit
+   (siehe unten) sind die nicht formell benannt.
+
 [ENDWARNING]
 
 
 ### Changelog zu `mlh` schreiben
 
-- Diesen Teil können Sie bearbeiten, wenn (und nur wenn) Sie von den
-  `mlh`-Aufgaben in der Gruppe [PARTREF::Pythonpraxis] mindestens vier bearbeitet haben.
+Diesen Teil können Sie bearbeiten, wenn (und nur wenn) Sie von den
+`mlh`-Aufgaben in der Gruppe [PARTREF::Pythonpraxis] mindestens vier bearbeitet haben.
+
 - Betrachten Sie das Ergebnis jeder `mlh`-Aufgabe ([PARTREF::argparse_subcommand] zählt auch mit)
   als eine Release von `mlh` und dokumentieren Sie, was da jeweils passiert ist.
     - Schreiben Sie das in eine Datei `CHANGELOG.md` im `mlh`-Dateibaum.
@@ -40,39 +43,43 @@ Wenn nicht, bitte jetzt nachholen.
       Commit als eine Release und verwenden Sie [semantische Versionsnummern](https://semver.org/).
 - [EQ] Welchen Verzeichnispfad hat die Changelog-Datei, die Sie soeben geschrieben haben?
 
+
 ### Changelog zu `Passwortgenerator` schreiben
 
-- Diesen Teil können Sie bearbeiten, wenn (und nur wenn) Sie von den
-  `Passwortgeneratoraufgaben`-Aufgaben in der Gruppe [PARTREF::Pythonpraxis] mindestens 2 bearbeitet
-  haben, wobei die erste die Grundlagenentwicklung ist und mit in die Zählung einfließt. (Diese
-  haben Sie jedoch bereits fleißig dokumentiert)
+Diesen Teil können Sie bearbeiten, wenn (und nur wenn) Sie von den
+Passwortgenerator-Aufgaben in der Gruppe [PARTREF::Pythonpraxis] mindestens 2 bearbeitet
+haben, wobei die erste die Grundlagenentwicklung ist und mit in die Zählung einfließt. (Diese
+haben Sie jedoch dort bereits fleißig dokumentiert.)
+
 - Folgen Sie den gleichen Anweisungen wie oben bei `mlh` beschrieben analog.
 
 
 ### Changelog zu `SUT` schreiben
 
-- Diesen Teil können Sie bearbeiten, wenn (und nur wenn) Sie von den
-  `SystemUnderTest`-Aufgaben in der Gruppe [PARTREF::SystemUnderTest] mindestens eine bearbeitet haben.
+Diesen Teil können Sie bearbeiten, wenn (und nur wenn) Sie von den
+SystemUnderTest-Aufgaben in der Gruppe [PARTREF::SystemUnderTest] mindestens eine bearbeitet haben.
+
 - Betrachten Sie die beschriebenen Implementationen ihrer bearbeiteten Aufgabe jeweils als ein Release
   des SUT und dokumentieren Sie, was passiert ist.
     - Schreiben Sie das in eine Datei `CHANGELOG.md` im `SUT`-Dateibaum Ihrer ausgewählten Version.
     - Vergeben Sie nachträglich künstliche Versionsnummern und fiktive aufeinander folgende Datumswerte.
 - [EQ] Welchen Verzeichnispfad hat die Changelog-Datei, die Sie soeben geschrieben haben?
-- [EQ] War es Ihnen als nicht-Mitentwickler einfach gelungen zu erahnen, was wie aufbauend umgesetzt
-  wurde?
+- [EQ] Ist es Ihnen als Nicht-Mitentwickler_in leicht gefallen, zu erahnen, was wie aufbauend umgesetzt
+  wurde? Warum?
 
 [ENDSECTION]
 [SECTION::submission::information]
 
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-`changelog2.md` enthält also nur den Dateinamen der eigentlichen Abgabedatei.
+`changelog2.md` enthält also den _Dateinamen_ der eigentlichen Abgabedatei und
+`CHANGELOG.md` wird im passenden Pfad zusätzlich eingecheckt.
 
 [ENDSECTION]
 [INSTRUCTOR::Sind Neues, Geändertes und Defektkorrekturen klar getrennt?]
 
 Dieses Changelog kann natürlich u.U. recht simpel ausfallen, aber die drei
 obigen Sorten von Eintrag sollten korrekt markiert und klar getrennt sein.
-Außerdem der Detailgrad vernünftig: 
+Außerdem muss der Detailgrad vernünftig sein: 
 Nicht jedes Komma erwähnt, aber separate Teile in separaten Einträgen.
 
 [ENDINSTRUCTOR]
