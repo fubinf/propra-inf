@@ -22,6 +22,13 @@ Leider ist in Unix für Accounts die mehrdeutige Bezeichnung 'user' üblich.
 [Zum Gebrauch der Wörter Nutzer/Benutzer/Anwender(in)](https://german.stackexchange.com/a/47502). 
 [ENDTERM]
 
+[TERM::ACL|ACLs]
+Access Control Lists (ACLs) in Linux bieten eine erweiterte Möglichkeit, Berechtigungen für 
+Dateien und Verzeichnisse zu verwalten. Im Gegensatz zum traditionellen Unix-Berechtigungssystem, 
+das Berechtigungen für Besitzer, Gruppe und andere Benutzer definiert, ermöglichen ACLs die 
+Zuweisung granularer Berechtigungen für einzelne Benutzer oder Gruppen.
+[ENDTERM]
+
 [TERM::Akzeptanzkriterien|acceptance criteria]
 Spezifische, überprüfbare Bedingungen, die definieren,
 wann eine User Story oder eine Funktion als vollständig und akzeptabel
