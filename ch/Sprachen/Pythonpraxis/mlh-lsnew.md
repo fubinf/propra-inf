@@ -96,10 +96,13 @@ Führen Sie zum Testen insbesondere folgende Kommandos aus:
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
-
 [INSTRUCTOR::Testfall prüfen]
+
 Bei korrekter Funktion
 
 - erscheint für [EREFC::2] erst `file3`, dann `file3, file1`, dann `file3, file1, file2`
 - erscheint `nonsense` nicht und auch keine Fehlermeldung
+
+Quellcode siehe [TREEREF::/mlh/mlh/subcmds/lsnew.py]. 
+
 [ENDINSTRUCTOR]
