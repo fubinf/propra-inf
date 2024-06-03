@@ -69,9 +69,12 @@ Führen Sie nach ausreichendem Testen zur Abgabe folgende Kommandos aus:
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
-
 [INSTRUCTOR::Testfall prüfen]
+
 Bei korrekter Funktion entspricht der Zeitstempel im `git show` am Ende dem
 vom vorherigen `ls` und nicht dem vom anfänglichen `date`.  
 Ob das auch bei mehreren Dateien korrekt funktionieren würde, sehen wir so allerdings nicht.
+
+Beispiellösung siehe [TREEREF::/mlh/mlh/subcmds/gitac.py]
+
 [ENDINSTRUCTOR]
