@@ -61,11 +61,13 @@ als auch als nettes Hilfsmittel für späteres Programmieren.
 5. Legen Sie in diesem Unterordner die Datei `__main__.py` an und implementieren Sie darin das
    kurze Hauptprogramm wie in der Dokumentation von `argparse_subcommand` beschrieben.  
    Ergänzen Sie darin den fehlenden Import, sowie  
-   `explanation = "My Little Helpers: a collection of small utility programs"`
+   `explanation = "My Little Helpers: a collection of small utility programs"`.
 6. Legen Sie ein Untermodul `mlh.subcmds` für die subcommands an:
    Unterordner `subcmds`, Datei `__init__.py`.  
    `__init__.py` legt die Schnittstelle des Moduls fest und bleibt bei uns leer, 
    weil wir nur an den Unter-Untermodulen interessiert sind, nicht an `subcmds` selbst.
+   Sie können das obige Hauptprogramm auch als `main.py` hierher legen und dann
+   `__main__.py` als Zweizeiler gestalten, was zu normaleren Namen in den Tests führt -- Geschmackssache. 
 7. Legen Sie darin zwei Dateien `gitac.py` und `lsnew.py` an;
    das werden die beiden ersten Subcommands für mlh. 
    Kopieren Sie in jede der Dateien den subcommand-Modul-Basiscode
@@ -119,4 +121,7 @@ Es genügt, zu kontrollieren,
 - dass die Kommandos von [EREFC::4] und [EREFC::6] alle erfolgreich sind,
 - dass bei `lsnew file1` der richtige Defaultwert `age='48h'` ankommt,
 - dass die Kommandos von [EREFC::5] alle zu Fehlermeldungen führen.
+
+Für Musterlösungen der späteren echten Kommandos, siehe
+[PARTREF::mlh-gitac] und [PARTREF::mlh-lsnew].
 [ENDINSTRUCTOR]
