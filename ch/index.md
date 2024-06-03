@@ -242,7 +242,10 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-05-29**: Aufgabe Testen/Testgrundlagen[PARTREF::Fehler-Defekt-Versagen] zugefügt.
 - Aufgaben Werkzeuge/Benutzerverwaltung/[PARTREF::sudo], [PARTREF::Benutzerkonten], [PARTREF::Dateiberechtigungen]
   zugefügt
-- **2024-05-30**: Aufgabe Werkzeuge/Paketmanager/[TERMREF::apt] zugefügt.
+- **2024-06-03**: Aufgabe Werkzeuge/Paketmanager/[PARTREF::apt] zugefügt.
+- Aufgabe Bibliotheken/Dokumentation/[PARTREF::changelog2] zugefügt.
+- Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_os.path] zugefügt.
+- Aufgabe Debugging/Debugging-Denken/[PARTREF::Mathematician] zugefügt.
 - ...
 
 
@@ -314,6 +317,8 @@ Der konkrete Arbeitsauftrag besteht aus zwei Teilen:
 
 ## 3. Was muss ich vor Beginn vorbereiten?
 
+### 3.1 sedrila-Setup
+
 Das ProPra basiert auf dem Werkzeug `sedrila`,
 das von Studierenden ("students") benutzt wird, um Aufgaben einzureichen, 
 und von Tutor_innen ("instructors"), um Aufgaben zu prüfen und Prüfergebnisse zu hinterlegen.
@@ -323,6 +328,19 @@ vorbereiten.
 Wie das geht, ist im entsprechenden Abschnitt von
 [sedrila User Guide for Course Instructors](https://sedrila.readthedocs.io/en/latest/instructors/)
 beschrieben.
+
+### 3.2 itree
+
+Neben den Lösungshinweisen direkt in den Aufgaben auf dieser Website gibt es eine
+Reihe von Dateien, die nützlicher sind, wenn Sie sie direkt als Dateien in einem fertigen
+Dateibaum haben.
+Dazu gehören Kommandoprotokolle (die man am besten per 'less'-Kommando im Terminal anschaut),
+Python-Quellcode, Ein- und Ausgabedateien für Programmläufe u.a.m.
+
+Dieser Dateibaum heißt bei sedrila 'itree' (für "instructor tree").
+Bitte laden Sie ihn sich hier herunter, packen Sie die ZIP-Datei aus und halten
+Sie den Baum in Ihrer IDE bereit.
+Er liegt als ZIP-Datei vor: [HREF::itree.zip].
 
 
 ## 4. Wie funktioniert der Einreichungsprozess genau?
