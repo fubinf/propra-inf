@@ -96,13 +96,15 @@ Also bauen wir uns sowas für `mlh`, wo wir es hoffentlich leicht wiederfinden u
 [INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
-
 [INSTRUCTOR::Umbenennen sauber? Dateierzeugung sauber?]
+
 - Zu betrachten sind hier `mlh/mlh/subcommands/rename.py` und die Tests dazu.
+  Beispiellösung siehe [TREEREF::/mlh/mlh/subcmds/rename.py].
 - Verwendet das Programm korrekt `shutil.move()` und nicht etwas Schmutziges wie `os.system()`?
 - Haben die Studis im Test eine Hilfsfunktion `create` (o.ä.) zum Erzeugen der Dateien angelegt?
   Und wie vorgesehen `tempfile` benutzt?
   Das sollten sie.
 - Nach kurzer Codedurchsicht des Tests, den mal laufen lassen:  
-  `cd mlh; pytest -v`
+  `(cd mlh; pytest -v)`
+
 [ENDINSTRUCTOR]
