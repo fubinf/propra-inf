@@ -319,6 +319,15 @@ summary {}
     padding: 0.15em 0;
 }
 
+.treeref::before {
+    content: "itree:";
+}
+
+.treeref {  /* akin to <code> */
+    background-color: #eee;
+    font-family: monospace;
+}
+
 
 /********** Blockmacros: */
 
