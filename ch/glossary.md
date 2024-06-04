@@ -831,7 +831,7 @@ Nachricht, die im Rahmen eines [TERMREF2::Protokoll::-s] ein Client an einen Ser
 um Daten anzufordern oder eine Operation auszulösen.
 
 Bei [TERMREF::HTTP] wird ein Request an eine spezifische _Ressource_ auf dem Server gesendet,
-die durch einen URI/URL identifiziert wird.
+die durch einen URI/[TERMREF::URL] identifiziert wird.
 [ENDTERM]
 
 [TERM::Response|Antwort]
@@ -849,6 +849,10 @@ interagieren, ähnlich wie es ein menschlicher Bediener tun würde.
 [ENDTERM]
 
 ## S
+
+[TERM::Screenreader]
+Ein Screenreader ist eine spezielle Software, die es Menschen mit Sehbehinderungen oder Blindheit ermöglicht, auf die Inhalte eines Computerbildschirms zuzugreifen. Der Screenreader liest den Text auf dem Bildschirm mittels synthetischer Sprache vor und/oder konvertiert ihn in Brailleschrift, die dann auf einer angeschlossenen Braillezeile angezeigt wird.
+[ENDTERM]
 
 [TERM::Serialisierung]
 Ein Mechanismus der sich auf den Prozess bezieht, bei dem Datenstrukturen in ein Format umgewandelt
@@ -1049,6 +1053,10 @@ das zu späte Insbettgehen aber sehr wohl; also ist das der Urgrund.
 
 Wenn man dann diesen Faktor tatsächlich passend verändert, ist
 Urgrundanalyse eine hochwirksame Methode zur Vorbeugung von Problemen.
+[ENDTERM]
+
+[TERM::URL|URI]
+Eine URL (Uniform Resource Locator) ist die Adresse einer Ressource im Internet, wie eine Webseite oder eine Datei. Sie besteht aus mehreren Teilen, darunter das Protokoll (z.B. "http" oder "https"), der Domainname (z.B. "www.beispiel.com") und möglicherweise ein Pfad zu einer spezifischen Seite oder Datei innerhalb der Website. URLs ermöglichen es Browsern, diese Ressourcen zu finden und abzurufen. Sie sind ein grundlegendes Element des World Wide Web und der Vernetzung von Online-Inhalten.
 [ENDTERM]
 
 [TERM::User Story|Userstory]
