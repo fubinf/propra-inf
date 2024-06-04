@@ -515,11 +515,17 @@ verkraften kann.
 [ENDTERM]
 
 [TERM::Linter|Codeprüfer|Stilprüfer]
-Linting bezieht sich auf den Prozess der statischen Codeanalyse, bei dem ein Linter verwendet wird,
-um den Quellcode automatisch auf potenzielle Fehler, Stilprobleme und Sicherheitsrisiken zu
-überprüfen. Der Begriff stammt ursprünglich aus der Softwareentwicklung und bezieht sich auf die
-Verwendung eines Werkzeugs (dem Linter), um "Lint" zu entfernen, das sind potenziell problematische
-oder unnötige Codefragmente.
+Linting ist die automatisierte statische Analyse von Programmcode, 
+um den Code auf potenzielle Fehler, Stilprobleme oder Sicherheitsrisiken zu überprüfen.
+Die zugehörigen Werkzeuge werden Linter genannt.
+"lint" ist Englisch für Fussel oder Fluse; Linter sollen also helfen, störende Kleinigkeiten ("Flusen")
+im Code zu entfernen.
+
+Linting hilft Entwicklern, qualitativ hochwertigen und konsistenten Code zu schreiben. Es trägt dazu
+bei, Fehler frühzeitig im Entwicklungsprozess zu erkennen, die Lesbarkeit des Codes zu verbessern
+und die Einhaltung von Coding-Standards sicherzustellen. 
+Linter stellen also Know-How und Detailaufmerksamkeit bereit, die die Entwickler_innen
+dadurch nicht mehr immer selbst aufbringen müssen.
 [ENDTERM]
 
 [TERM::Linux|GNU/Linux]
