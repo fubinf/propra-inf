@@ -70,9 +70,12 @@ Die bewirken unerhört viel.
 ### Start 2: Ein paar Kommandos, Terminologie, Kommandozeilen-Editor
 
 Für unsere Fragen brauchen wir ein paar Kommandos, die nicht zur Shell gehören.
-Lesen Sie (jetzt oder bei Bedarf) auf den jeweiligen Manpages kurz(!) nach, 
+Lesen Sie auf den jeweiligen Manpages kurz(!) nach, 
 wozu folgende Kommandos dienen:
 `cat`, `echo`, `find`, `grep`, `less`, `sort`, `wc`. 
+
+[EQ] Was vermuten Sie, welche zwei dieser Kommandos Sie am häufigsten verwenden werden?
+Warum glauben Sie das?
 
 Hier ist ein Beispiel für ein komplexes Kommando:
 
