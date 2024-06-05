@@ -87,7 +87,9 @@ sonst findet man es unter Umständen nicht.
 
 [HINT::Lesetipp]
 Häufig geht eine solche Suche am besten, wenn man sich auf die Langnamen der
-Optionen konzentriert und die Seite durchblättert, anstatt eine Textsuche zu probieren.
+Optionen konzentriert und die Seite durchblättert, 
+anstatt eine maschinelle Suche mit einem festen Suchbegriff zu probieren,
+denn einen nützlichen Suchbegriff richtig zu raten ist meist schwierig.
 Aber der erste Schritt ist immer, zu entscheiden, welches Kommando überhaupt das Richtige ist,
 also auf welcher Manpage man suchen sollte.
 [ENDHINT]
