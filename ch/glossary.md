@@ -39,6 +39,13 @@ Akzeptanzkriterien dienen dazu, Missverständnisse zu vermeiden, indem sie
 klare Richtlinien für die Entwicklung und das Testen geben.
 [ENDTERM]
 
+[TERM::Alias]
+Ein alternativer Name (meist im Sinne einer Abkürzung) für ein Kommando
+(meist mit Optionen und deshalb länger) in der [TERMREF::Shell].
+Weniger flexibel, aber in einfachen bequemer hinzuschreiben als eine
+[TERMREF::Shellfunktion].
+[ENDTERM]
+
 [TERM::apt|apt-get|Debian-Paketmanager]
 Das Hilfsprogramm bei Debian (und von Debian abgeleiteten Systemen wie Ubuntu oder Mint),
 das die Paketinstallationen auf einem Debian-System durchführt und überwacht.
@@ -435,6 +442,17 @@ zunächst ausgeklammert wird.
 
 ## I
 
+[TERM::IDE|Integrated Development Envrionment]
+Eine Kategorie komplexer interaktiver Softwarewerkzeuge.
+Eine IDE bietet eine große Zahl von Funktionen an, um Programmcode zu erzeugen,
+zu erkunden, zu modifizieren und damit zusammenhängende Operationen zu starten,
+etwa Läufe automatisierter Tests, Inbetriebnahmen von Webanwendungen und viele andere mehr.
+
+Wer eine IDE gut beherrscht, kann damit deutlich produktiver arbeiten als mit der
+manuellen Kombination anderer Werkzeuge.
+Dies gilt umso mehr, je größer die Codebasis wird.
+[ENDTERM]
+
 [TERM::Integrationstest|Integration Test]
 Ein Test, der im Gegensatz zum [TERMREF::Modultest] das korrekte Zusammenspiel mehrerer
 (evtl. sehr vieler) Module oder Komponenten prüfen will,
@@ -763,6 +781,11 @@ Diese Technik wird häufig für sichere Kommunikation, digitale Signaturen und
 Schlüsselaustauschmechanismen in der Informationssicherheit eingesetzt
 [ENDTERM]
 
+[TERM::PyCharm]
+Leistungsfähige IDE von JetBrains, in die viel Spezialwissen über das Python-Universum 
+eingebaut ist.
+[ENDTERM]
+
 ## Q
 
 [TERM::Qualitätssicherung|QS|Quality Assurance|QA]
@@ -887,6 +910,13 @@ weil diese aus Sicht einer Benutzer_in wie eine "Schale" den Kern des Betriebssy
 
 [HREF::https://de.wikipedia.org/wiki/Kommandozeile]  
 [HREF::https://de.wikipedia.org/wiki/Unix-Shell]
+[ENDTERM]
+
+[TERM::Shellfunktion|Shellprozedur]
+Eine Prozedur, die in der [TERMREF::Unix-Shell] einmal definiert wird,
+z.B. in [TERMREF::.bashrc] oder einem Shellskript,
+und sich dann immer wieder aufrufen lässt.
+Fasst mehrere Kommandos zu einem zusammen, ggf. auch mit Schleifen oder Fallunterscheidungen.
 [ENDTERM]
 
 [TERM::Schlüsselwort|Keyword]
