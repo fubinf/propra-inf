@@ -2,7 +2,7 @@ title: Grundlagen der Shell (bash, sh und andere)
 stage: beta
 timevalue: 2.0
 difficulty: 2
-explains: Shell
+explains: Shell, Alias, Shellfunktion
 assumes: Manpages
 ---
 [SECTION::goal::idea,trial]
