@@ -35,12 +35,12 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Bibliotheken
-- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH)
+- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
 
 
 ### Bestandscode
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak)
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak)
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak->LP)
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak->LP)
 
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->DM)
 
@@ -66,12 +66,11 @@ We will modify these rules over time when others appear more useful.
   Ich bin mir noch unsicher wie lange es sein soll und welche Schwierigkeit die Aufgabe haben soll
 - ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric->LP->IC->LP)  
 
-- ch/Werkzeuge/Linter/flake8.md (Ruhe->HA->CH)
-- ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH)
-- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->DM)
+- ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH->LP)
+- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->DM->LP)
 
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP)
 
 
 ## Reviews to do for Hanen Alrwasheda

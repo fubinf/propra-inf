@@ -246,6 +246,8 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - Aufgabe Bibliotheken/Dokumentation/[PARTREF::changelog2] zugefügt.
 - Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_os.path] zugefügt.
 - Aufgabe Debugging/Debugging-Denken/[PARTREF::Mathematician] zugefügt.
+- **2024-06-06**: Aufgabe Sprachen/Python2/[PARTREF::PEP8] zugefügt.
+- Aufgabe Werkzeuge/Linter/[PARTREF::flake8] zugefügt.
 - ...
 
 
