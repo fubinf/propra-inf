@@ -1,9 +1,26 @@
 title: "unittest fixtures - Jetzt wird vor- und nachgearbeitet"
-stage: alpha
+stage: draft
 timevalue: 2
 difficulty: 2
 assumes: m_unittest
 ---
+
+TODO_1_ruhe:
+
+- Sehr gutgelaunter Titel, gefällt mir!
+- Ich interpretiere A2,3,5,6,7,8 so, dass man da nur mal elementar die pure Frameworkeigenschaft
+  aktiviert. Kann man machen, aber hübscher (und mehr unser ProPra-Stil) wäre es,
+  wenn man dabei gleich etwas Sinnvolles täte.
+- Bei A9 ist erstens unklar, was denn diese Fixture bereitstellen sollte.
+  Zweitens gibt es dort nichts aufzuräumen, sodass die entsprechende Aufforderung verwirrend ist.
+- Aber was das allerschlimmste ist:
+  Ich finde, wir sollten auf diesem _ganzen_ Thema 'Fixture' für `unittest` nicht herumreiten.
+  Niemand benutzt das.  
+  Ich habe eben aufs Geratewohl vier sehr unterschiedliche moderne Python-Projekte aufgeklappt 
+  (pip, requests, freezegun, poetry) und alle vier benutzen `pytest`.
+- Ich finde wichtig, dass unsere Studis von `unittest` gehört haben, da es zur stdlib gehört.
+  Aber das reicht dann auch.
+- Sorry, dass ich Ihnen _schon wieder_ eine Aufgabe verderbe, die Sie mühevoll ausgearbeitet haben!
 
 [SECTION::goal::idea]
 
