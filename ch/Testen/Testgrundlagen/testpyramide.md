@@ -1,8 +1,34 @@
 title: Die Testpyramide verstehen
-stage: alpha
+stage: draft
 timevalue: 1.5
 difficulty: 1
 ---
+
+TODO_2_ruhe:
+
+Diese Aufgabe funktioniert so nicht, fürchte ich.
+Ich sehe zwei Hauptprobleme:
+
+- Der Artikel setzt viel Wissen voraus, dass unsere Studis an dieser Stelle nicht haben.
+  (Außerdem widerspricht er sich teilweise verwirrend selbst, z.B. bei Wieso Pyramide?)
+- Das ist für ProPra zu theoretisch.  
+  Mindestens sollte man sich ein reales Beispielprojekt angucken, das alle drei Sorten hat,
+  alle drei Sorten nachzählen, alle drei Sorten laufenlassen und die Zeiten beobachten,
+  für alle drei Sorten in der git-Historie stöbern und nachvollziehen, dass welche
+  Sorten wie oft weswegen geändert werden.  
+  Dann wäre das eine supertolle Aufgabe! Allerdings auch eine sehr umfangreiche und
+  sehr schwierige.  
+  Und der Aufwand, sie zu bauen, ist auch riesig. Allein, ein solches Projekt auszusuchen...
+
+- Die "kleine" Lösung für Problem 2 wäre, ein Projekt zu finden, das solche Statistiken schon
+  öffentlich bereit hält und die dann nur zu studieren. Ich kenne auf Anhieb keins.
+- Eine andere kleine Lösung könnte sein, in einem Projekt nur je zwei Exemplare von
+  Unittest, Integrationstest und E2E-Test genauer anzusehen: Wie viel Code ist das?
+  Wie viele Einzelteile werden benutzt? Wie viel Funktionalität deckt das ab?
+  Wie oft ist es korrigiert worden? etc.
+- In jedem Fall ergibt die Aufgabe erst Sinn, wenn das Vorwissen über die Testarten da ist.
+  Und da nach meinem Eindruck kaum jemand Unittests von Integrationstests klar unterscheidet,
+  wenn beide mit einem "Unit"test-Framework gebaut sind, ist das alles in der Praxis unübersichtlich.
 
 [SECTION::goal::idea]
 
