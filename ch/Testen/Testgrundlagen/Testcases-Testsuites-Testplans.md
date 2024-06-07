@@ -1,8 +1,37 @@
-title: Aufbau von Testfällen, testsammlungen und Testplänen
-stage: alpha
+title: Aufbau von Testfällen, Testsammlungen und Testplänen
+stage: draft
 timevalue: 2.0
 difficulty: 2
 ---
+
+TODO_1_ruhe:
+
+- ProPra handelt von technischen Fertigkeiten der Einzelperson.
+  Für Fragen der Teamarbeit wäre das Softwareprojekt gedacht.
+  Insofern finde ich, dass Testpläne hier den Rahmen sprengen.
+- Testsammlungen sind ein hinreichend banales Konzept, dass man sie nicht zu behandeln braucht, oder?
+- Die Quelle für "Testfall" finde ich nicht hochwertig:  
+  Die Liste "sollten einige Bedingungen beachtet werden" ist nur unter ziemlich
+  krassen Randbedingungen sinnvoll; diese Randbedingungen sind aber nicht mal angedeutet.  
+  "Es folgen Test Cases für Performance, Security, Database und schließlich Usability.":
+  Was hat "Database" in dieser Liste verloren; das ist keine Qualitätseigenschaft.  
+  Die Liste ließe sich fortsetzen.
+- Ich finde, "Testfall" können wir für unsere Zwecke gut genug im Glossar definieren, denn:
+- Testfallentwurf ist ein super wertvolles Thema für das ProPra. Aber:
+  damit das praktisch wird, müssen wir die Testfälle hinterher auch einsetzen.
+  Dafür wäre hilfreich, automatisierte Testfälle zu machen.
+  Das geht wesentlich einfacher für Unittests.
+- Ich finde deshalb, wir sollten ein zu testendes Modul bereitstellen, das relativ
+  komplizierte (aber halbwegs spezifizierte) Logik hat und nicht trivial zu testen ist.
+  Sowas kann man sicher irgendwo finden und muss es sich nicht selbst ausdenken.
+- In Softwaretechnik lehre ich als Ansätze zum Testfallentwurf den Funktionstest (black box)
+  und den Strukturtest (white box). Das sollten wir hier auch machen:
+  Erst die Äquivalenzklassen der Spezifikation durchturnen mit je einem Testfall,
+  insbesondere Randfälle, dann Fehlerfälle,
+  dann im Code gucken, ob es noch unausgeleuchtete Ecken gibt.
+- Das passt besser in eine Gruppe "Methoden" _hinter_ Gruppe "Unittests" als hierher davor.
+
+
 [SECTION::goal::trial]
 
 - Ich kann Testfälle lesen und erstellen
