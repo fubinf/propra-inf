@@ -49,12 +49,8 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Testen
-- ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (RR->LP) (Merge aus Testcases und TestcasesExercise)
-- ch/Testen/Testgrundlagen/Testpyramide.md (RR->LP)
-- ch/Testen/Testgrundlagen/Testabgrenzung.md (RR->LP) (Merge aus TestDelimitations und TestDelimitationsExercise)
 
-- ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP)
-- ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP)
+- ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP->RR)
 - ch/Testen/Unittests/m_pytest_benchmark.md (RR->DM->LP)
 - ch/Testen/Unittests/m_unittest_mocking.md (RR->DM->HA->LP)
 - ch/Testen/Unittests/m_unittest_github.md (RR->LP)
@@ -65,9 +61,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Benutzerverwaltung/ACL.md
   Ich bin mir noch unsicher wie lange es sein soll und welche Schwierigkeit die Aufgabe haben soll
 - ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric->LP->IC->LP)  
-
-- ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH->LP)
-- ch/Werkzeuge/Linter/flake8_SUT.md (Ruhe->DM->LP)
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP)
@@ -140,7 +133,24 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ronny Ruhe
 
-- ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP)
+- ch/Testen/API/ResponseApi.md (RR->CH->LP->RR)
+- ch/Testen/API/CRUDApi.md (RR->CH->LP->RR)
+- ch/Testen/API/RestApi.md (RR->CH->LP->RR)
+
+- ch/Testen/Testframeworks/index.md (RR->CH->LP->RR)
+- ch/Testen/Testframeworks/Robot.md (RR->CH->LP->RR)
+
+- ch/Testen/Testgrundlagen/Testabgrenzung.md (RR->LP->RR)
+- ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (RR->LP->RR)
+- ch/Testen/Testgrundlagen/Testpyramide.md (RR->LP->RR)
+- Hmm, die Gruppe "Testgrundlagen" wird immer leerer.  
+  Ist aber auch logisch: Das ist alles Theorie, passt also nicht von allein ins ProPra.
+  Sondern nur, wenn man gute Reflektionsaufgaben findet oder einen empirischen "Forschungsteil" konstruiert.
+
+- ch/Testen/SUT/LokalesDeployment.md (RR->CH->LP->RR)
+
+- ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
+- ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
 - ch/Testen/Unittests/unittest102.md (RR->DM->HA->RR)
 - ch/Testen/Unittests/tdd_pp.md (RR->LP->RR)
 - ch/Testen/Unittests/freezegun.md (RR->DM->HA->LP->RR->LP->RR)
@@ -153,12 +163,6 @@ We will modify these rules over time when others appear more useful.
   Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Unittests/unittest203.md (RR->Müller->LP->RR)
 - ch/Testen/Unittests/pytest202.md (RR->Müller->LP->RR)
-- ch/Testen/API/ResponseApi.md (RR->CH->LP->RR)
-- ch/Testen/API/CRUDApi.md (RR->CH->LP->RR)
-- ch/Testen/API/RestApi.md (RR->CH->LP->RR)
-- ch/Testen/Testframeworks/index.md (RR->CH->LP->RR)
-- ch/Testen/Testframeworks/Robot.md (RR->CH->LP->RR)
-- ch/Testen/SUT/LokalesDeployment.md (RR->CH->LP->RR)
 
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (RR->LP->RR)
 
@@ -172,6 +176,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/SQL/SQLJoin.md (RR->HA->LP->RR)
 - ch/Sprachen/SQL/SQLProject.md (RR->HA->LP->RR)
 
+- ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH->LP->RR)  
+  siehe in der Datei
 
 ## Reviews to do for Sven Wegner
 
