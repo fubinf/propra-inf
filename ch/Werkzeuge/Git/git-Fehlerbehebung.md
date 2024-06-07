@@ -5,18 +5,8 @@ difficulty: 2
 assumes: git-Funktionsweise
 requires: git-Zweitrepo
 ---
-TODO_1_hüster:
 
-- K2: Das geht nicht mit einem Kommando, sondern nur durch reset auf den vorherigen Commit und
-  Neuerzeugen eines passenderen Commits.  
-  Ihre Musterlösung verweist auf den Fall, dass die falsche Datei nur dem Index zugefügt ist,
-  noch nicht dem Commit. Das ist ein übler inhaltlicher Fehler. Warum passiert der?
-- Ich habe mein Review an dieser Stelle gestoppt. 
-  Wir brauchen eine Antwort auf obige Frage und dann eine nochmalige gründliche Durchsicht der 
-  restlichen Aufgabe Ihrerseits.
-- Bitte achten Sie auch auf die Großschreibung von "Commit", die schwankt oft.
 - Siehe bitte auch ein git show auf meine sonstigen Änderungen an dieser Datei.
-
 
 [SECTION::goal::experience]
 
@@ -49,6 +39,10 @@ Nun machen wir uns daran, das gelesene selbst auszuprobieren.
 Es kann vorkommen, dass wir einem schon angefertigten Commit weitere Änderungen hinzufügen 
 wollen. Wie das funktioniert, lernen wir in dieser Aufgabe.
 
+Dazu lesen wir zuerst [die verlinkte Quelle bis zum Abschnitt "Unstaging a Staged File"](
+https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things) 
+und bearbeiten dann die nachfolgende Aufgabe.
+
 1. Erstellen sie eine minimale neue Datei namens `amend.md` und fügen sie diese mit `git add` und `git 
    commit` einem neuen Commit hinzu.
    (Minimal heißt z.B. nur eine Zeile wie "Ich bin amend.md.". 
@@ -59,18 +53,34 @@ wollen. Wie das funktioniert, lernen wir in dieser Aufgabe.
 
 [EC] Mit welchem Befehl haben Sie die Änderungen an den bestehenden Commit angehangen?
 
+[HINT::Das erstellen und bearbeiten der amend.md datei lässt sich mit Hilfe der Kommandozeile auch in einem Schritt erledigen.]
+Wem es zu lästig ist, das Erstellen der Datei und das Bearbeiten der neu erstellten Datei in 
+verschiedenen Schritten abzuarbeiten, der kann das ganze auch mit der Kommandozeile abkürzen.
+So lässt sich z.B. der erste Schritt der obigen aufgabe mit `echo 'Ich bin amend.md' > amend.md` 
+abkürzen. Wichtig zu beachten ist, dass hierbei eine bestehende `amend.md`-Datei überschrieben 
+werden würde. 
+Wer mehr darüber lernen will wie der Befehl funktioniert und was man sonst noch so für nützliche 
+Dinge auf der Kommandozeile machen kann, schaut am besten mal in die [PARTREF::redirect]-Aufgabe.
+[ENDHINT]
+
 ### Eine Datei(-änderung) aus einem ungepushten Commit entfernen/unstagen
 
 In bestimmten Situationen kann es auch hilfreicher sein eine Datei einfach aus einem Commit zu 
 entfernen, entweder weil wir Sie aus Versehen hinzugefügt haben oder weil wir merken, dass wir 
 diese vielleicht doch lieber in einem anderen Commit haben wollen.
 
+Um mehr darüber zu lernen, lesen Sie nun weiter [bis zum Abschnitt "Unmodifying a Modified File"](
+https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things)
+und bearbeiten anschließend wieder die folgende Aufgabe. 
+
 1. Legen Sie zwei neue Dateien mit den Namen `add.md` und `remove.md` an und fügen Sie diese mit 
-   `git add` und `git commit` einem neuen Commit hinzu.
-2. Mit `git show` können wir nun den Inhalt des Commits sehen.
-3. Nun wollen wir die datei `remove.md` aus dem Commit entfernen. Wie Sie das anstellen können 
-   Sie wieder der verlinkten Quelle entnehmen. 
-4. Stellen sie nun mit `git show` sicher, dass der Commit nur die Datei `add.md` enthält.
+   `git add` der staging area hinzu. Auch hier möchten wir wieder einen kurzen Text in beiden 
+   Dateien haben, z.B. "Ich bin add.md" und "Ich bin remove.md".
+2. Mit `git status` können wir nun den aktuellen Status der staging Area begutachten.
+3. Nun wollen wir die datei `remove.md` aus der Staging-Area entfernen. Wie genau das 
+   funktioniert, haben Sie gerade gelesen.
+4. Stellen Sie nun mit `git show` sicher, dass die Staging-Area nur die Datei `add.md` enthält.
+5. Erstellen Sie nun einen Commit mit der Datei `add.md` und einer sinnvollen Commit-Nachricht.
 
 [EC] Mit welchem Befehl können Sie die Datei `remove.md` aus dem Commit entfernen?
 
@@ -88,23 +98,34 @@ nicht brauchen, z.B. eine ungenutzte Funktion hinzugefügt. Wenn, ausser dieser 
 Änderungen an einer Datei vorgenommen wurden, können wir einfach git benutzen, um die Datei auf 
 ihren letzten Snapshot im vorherigen Commit zurückzusetzen.
 
-Dafür benutzen wir in dieser Aufgabe `git reset`
+Um zu Lernen wie das funktioniert, lesen wir jetzt [bis zum Abschnitt "Undoing things with git 
+restore"](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things). Und bearbeiten dann wieder 
+die kommende Aufgabe.
 
-1. Zunächst erstellen wir eine neue Datei namens `reset.md` und fügen diese einem neuen commit 
-   hinzu. Mit `git log`, `git show` und `git status` können wir prüfen, ob alles in Ordnung ist.
-2. Als Nächstes nehmen wir nun einige Änderungen an der `reset.md` vor und speichern diese. 
-3. Schauen wir nun in `git status` sollten wir "untracked changes" dieser Datei sehen.
-4. Jetzt geht es darum, diese Änderungen wieder Rückgängig zu machen. Das ganze machen wir mit 
-   `git reset`. Welchen Befehl wir genau verwenden müssen, können wir der oben verlinkten Quelle 
-   entnehmen bzw. in der manpage (`man git-reset`) nachschlagen.
+1. Erstellen Sie eine neue Datei, mit Inhalt, und nennen Sie sie `checkout.md`.
+2. Fügen Sie die Datei einem neuen Commit hinzu.
+3. Nehmen Sie nun Änderungen an der datei vor und führen Sie dann `git status` aus um zu 
+   verifizieren, dass die Änderungen von git erfasst wurden.
+4. Setzen Sie nun die datei auf den Zustand des vorher erzeugten Commits zurück.
+5. Vergewissern Sie sich, dass die Datei korrekt zurückgesetzt wurde.
 
-[EC] Mit welchem Befehl setzen wir die Datei `reset.md` nach Schritt 3 auf den Zustand von 
-Schritt 1 zurück?
+[EC] Mit welchem Befehl haben Sie die bearbeitete Datei zurückgesetzt?
+
+[NOTICE]
+In der verlinkten Quelle steht "It tells you pretty explicitly how to discard the changes 
+you’ve made. Let’s do what it says". 
+In neueren git-Versionen steht in der `git status` Ausgabe nicht mehr "(use "git checkout -- 
+<file>..." to discard changes in working directory)", sondern "(use "git restore <file>..." to 
+discard changes in working directory)". Falls das bei ihnen steht ist also nichts kaputt, 
+sondern Sie haben einfach nur eine neuere Version von git.
+[ENDNOTICE]
 
 ### Wie man git restore benutzt
 
-Anstelle von git revert lässt sich z.B. für das Wiederherstellen einer Datei auf einen anderen 
-Zustand auch git restore benutzen. 
+Anstelle von `git checkout` lässt sich z.B. für das Wiederherstellen einer Datei auf einen anderen 
+Zustand auch `git restore` benutzen. 
+Wenn Sie jetzt bis zum Ende der Seite die verlinkte Quelle lesen, sollten Sie alles gesehen 
+haben, was wir für die noch kommenden Aufgaben brauchen.
 
 Zuerst werden wir `git restore` nutzen um Änderungen an einer Datei, welche noch nicht commitet 
 wurden, rückgängig zu machen.
@@ -125,13 +146,23 @@ Jetzt wollen wir einen Schritt weiter gehen und die Datei vor dem Zurücksetzen 
 Dazu machen wir weiter nach Schritt 3 der vorherigen Aufgabe. Die Änderungen sollten jetzt 
 uncommited in die Datei geschrieben worden sein.
 
-1. Fügen Sie nun einen neuen commit mit dem neuen Inhalt der Datei hinzu.
+1. Fügen Sie nun einen neuen Commit mit dem neuen Inhalt der Datei hinzu.
 2. Nutzen sie nun `git log` bzw. `git reflog` und die manpage für `git restore` (`man git-restore`)
-   um herauszufinden, wie Sie mit `git restore` auf den Zustand des Vorherigen commits aus 
+   um herauszufinden, wie Sie mit `git restore` auf den Zustand des vorherigen Commits aus 
    Schritt 2 kommen.
 
 [EC] Wie muss der `git restore`-Befehl aussehen, um eine Datei auf den Zustand des vorherigen 
 Commits zurückzusetzen?
+
+[WARNING]
+Auch wenn es bereits in unserer Quelle steht. Falls Sie es überlesen, haben hier noch einmal:
+
+> It’s important to understand that git restore <file> is a dangerous command. Any local changes 
+> you made to that file are gone — Git just replaced that file with the last staged or committed 
+> version. Don’t ever use this command unless you absolutely know that you don’t want those 
+> unsaved local changes.
+
+[ENDWARNING]
 
 [ENDSECTION]
 [SECTION::submission::trace]
