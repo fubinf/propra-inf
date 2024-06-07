@@ -65,7 +65,7 @@ In alphabetischer Reihenfolge der Dateinamen.
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
 - Taskgroups umbenennen:
-    - `lizenzen` -> `Lizenzen`
+    - ...
   Bitte als separaten Commit.
   Erwähnungen an anderen Stellen mit ändern!
 - Tasks so benennen, wie es sich aus authors.md 1.13 ergibt:
@@ -81,7 +81,8 @@ In alphabetischer Reihenfolge der Dateinamen.
   muss es eine Fehlermeldung geben, keinen toten Link.
 - student.yaml ergänzen um `git_username` und `partner_git_username`, damit man die
   verwandten Repos identifizieren kann.
-- ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)
+- ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)?
+  Gehört es allgemein in sedrila eingebaut, selbst solche Graphen zu erzeugen?
 - Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
 - http-Server ergänzen, der bei `sedrila instructor --http` den ganzen Baum unter dem aktuellen
   Verzeichnis zur Verfügung stellt (nur für localhost) mit folgenden Funktionen:
