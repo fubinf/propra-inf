@@ -1,9 +1,24 @@
 title: Testabgrenzung zum Debugging
-stage: alpha
+stage: draft
 timevalue: 1
 difficulty: 3
 assumes: Python1, Debuggingtools
 ---
+
+TODO_1_ruhe:
+
+Ich glaube, diese Aufgabe sollten wir auflösen und verteilen:
+
+- Der "Was ist"-Teil gehört in die Softwaretechnik-Vorlesung, nicht ins ProPra.
+- Der "Reflektion"-Teil unterstellt eine Rollenaufteilung, die mir viel zu starr ist.
+  Viele Teams im Webbereich kommen heute prima ganz ohne Tester aus.
+  Die brauchen dann andere Maßnahmen. Auch das gehört, wenn überhaupt, in die Vorlesung.
+  Hier sprengt es den Rahmen.
+- Die Abgrenzung Testen/Debugging finde ich hingegen einschlägig für das ProPra.
+  Dafür brauchen wir passende Glossareinträge und an den richtigen Stellen in den
+  Kapiteln Debugging und Testen Verweise auf die.
+  Bitte betätigen Sie sich in diese Richtung.
+
 
 [SECTION::goal::trial]
 
