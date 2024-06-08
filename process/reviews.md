@@ -64,6 +64,7 @@ We will modify these rules over time when others appear more useful.
 ### Werkzeuge
 - ch/Werkzeuge/Benutzerverwaltung/ACL.md
   Ich bin mir noch unsicher wie lange es sein soll und welche Schwierigkeit die Aufgabe haben soll
+- ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric->LP->IC->LP)  
 
 - ch/Werkzeuge/Linter/flake8.md (Ruhe->HA->CH)
 - ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH)
@@ -84,27 +85,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ivan Condric
 
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric->LP->IC)  
-  Hübsch!  
-  Bitte in `altdir` eine **Musterlösung** ablegen.  
-  Was hat es mit dem "exclude"-Hinweis auf sich? Den verstehe ich nicht.  
-  Für htop braucht man Markdown, nicht Kommandoprotokoll, oder?
-- ch/Werkzeuge/Benutzerverwaltung/sudo.md (Condric->LP->IC)  
-  ch/Werkzeuge/Benutzerverwaltung/Accounts.md (Condric->LP->IC)  
-  ch/Werkzeuge/Benutzerverwaltung/Dateiberechtigungen.md (Condric->LP->IC)  
-  Gefallen mir inhaltlich gut, im Detail habe ich aber doch eine Menge Änderungswünsche gehabt
-  und großenteils gleich umgesetzt. 
-  Bitte vollziehen Sie das anhand der Commits oder des Endresultats nach.  
-  Ich habe alle drei schon mal auf beta gesetzt, aber die brauchen bitte alle noch eine
-  **Musterlösung**.
-  Welchen Sinn hat das **`-R`** bei `chmod/chgrp`? Wenn da kein Hintergedanke steckt, bitte entfernen.
-- ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric->LP->IC)  
-  "Finden Sie die Lösung und wenden Sie sie an." 
-  Sowas kann man auf Stufe 'schwer' machen, aber nicht bei 'leicht'. Gelöscht.   
-  Für manche Schritte fehlt das Vorwissen, denn das passende Lesen erfolgt erst weiter unten.
-  Einmal habe ich das korrigiert, andere sind noch falsch.  
-  Beim Aufräumen sollte die Aufgabe die zu löschenden Teile nennen, damit das auch richtig klappt.
-  Auch hier bitte **Musterlösung**.
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC)  
   dig muss erst installiert werden. Wir sollten uns nicht auf eine "so kannste das installieren"-Meldung
   a la Debian verlassen.  
@@ -117,18 +97,10 @@ We will modify these rules over time when others appear more useful.
   oder Belgien führt, um dann erstaunt zu lernen, dass sie bevorzugt über Polen plus Tschechien führt
   und alternativ über Niederlande plus Belgien. Staun.  https://network.geant.org/gn4-3n/  
   Nötigenfalls Schwierigkeit "mittel" nehmen und/oder traceroute abspalten.
+
+
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC)  
   Siehe Notizen in der Datei. Schwierig!
-- Bei folgenden Aufgaben, die ich jetzt freigegeben habe, fehlt nur noch die **Musterlösung**:  
-  apt.md.  
-  Diese sollte in der Regel nur die Kommandos enthalten (nicht deren Output), aber sehr wohl
-  Hinweise, worauf ggf. im Output zu achten ist.  
-  Von mir aus muss da nicht immer [EREFC::...] stehen, sondern man kann einfach eine
-  Aufzählungsliste mit lauter Einsen schreiben (die Markdown dann fortlaufend nummeriert),
-  dann sind eventuelle spätere Zufügungen/Löschungen einfacher. 
-  Für Markdown ist [EREFQ::...] sinnvoll, wenn weitaus nicht jede Frage eine Behandlung braucht.  
-- ...
-
 
 ## Reviews to do for Christian Hofmann
 
