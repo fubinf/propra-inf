@@ -72,28 +72,20 @@ Passwort setzt.
 Die Mitarbeiter_in kündigt und Sie sind zuständig, dass die zugehörigen Nutzerkonten gesperrt 
 werden.
 
-Schauen Sie in der [useradd(8)](https://linux.die.net/man/8/useradd) manpage nach Optionen oder einem verwandten Kommando, wie 
+Schauen Sie in der [usermod(8)](https://linux.die.net/man/8/usermod) manpage nach Optionen, wie 
 man Nutzer sperrt.
 Vorsicht: Ein Passwort sperren ist nicht das Gleiche wie das ganze Konto zu sperren,
 denn man könnte sich dann immer noch mit [PARTREF::SSH]-Keys anmelden.
 
 - [EC] Sperren Sie die Nutzer `user1` und `user2`.
 
-[HINT::Nutzer sperren ("lock"/"disable")]
-...geht mit `usermod -e`.
-[ENDHINT]
-
 Nachdem die Nutzer gesperrt wurden und eine rechtlich konforme Zeitspanne vorbei ist, 
 müsssen Nutzer und Dateien des Nutzers auf dem System gelöscht werden.
 
-Schauen Sie in der [useradd(8)](https://linux.die.net/man/8/useradd) manpage nach Optionen oder einem verwandten Kommando, wie 
-man Nutzer und deren Dateien löscht.
+Betrachten Sie die [deluser(8)](https://manpages.debian.org/bookworm/adduser/deluser.8.en.html) manpage.
+Verstehen Sie die **Synopsis**, lesen Sie die **Description** und den Abschnitt **Remove a user**.
 
 - [EC] Löschen Sie beide Nutzer und deren Homeverzeichnis von Ihrem System.
-
-[HINT::Nutzer löschen ("delete"/"remove")]
-...geht mit `userdel`.
-[ENDHINT]
 
 [ENDSECTION]
 
