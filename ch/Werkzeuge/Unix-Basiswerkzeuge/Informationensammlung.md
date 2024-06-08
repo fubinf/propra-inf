@@ -30,7 +30,7 @@ Auf dieser Seite ist eine Anzahl an Kommandos vorhanden, auf die sie immer wiede
 - [ubuntuusers](https://wiki.ubuntuusers.de/Shell/Befehls%C3%BCbersicht/)
 
 Falls Ihnen ein Paket fehlt, installieren Sie es nach.  
-Schauen Sie sich insbesondere die Kommandos `id, htop, uptime, lsb_release, free, lsblk, du, df, ip` an.
+Schauen Sie sich insbesondere die Kommandos `id, htop, uptime, lsb_release, free, du, df, ip` an.
 
 ### Kennenlernen des eigenen Systems
 
@@ -47,7 +47,7 @@ benutzen Sie sie jeweils.
 - [EC] Finden Sie heraus wie groß ihr `home`-Verzeichnis ist.
 - [EC] Finden Sie ihre IP-Adresse heraus.
 - Ein weiteres wichtiges Programm auf Linux ist `htop`. Es ist dem Taskmanager auf Windows ähnlich.
-- [EC] Starten Sie htop und geben Sie wider, welche Informationen htop Ihnen pro Prozess gibt.
+- [EQ] Starten Sie htop und geben Sie wider, welche Informationen htop Ihnen pro Prozess gibt.
 
 [HINT::Optionen]
 Beim Herausfinden der Größen der Verzeichnisse könnte es nützlich sein einige Ordner zu `excluden`.
@@ -58,6 +58,7 @@ Beim Herausfinden der Größen der Verzeichnisse könnte es nützlich sein einig
 [SECTION::submission::trace]
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
