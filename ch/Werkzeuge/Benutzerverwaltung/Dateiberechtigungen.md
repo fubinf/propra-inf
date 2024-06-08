@@ -56,7 +56,7 @@ Lesen Sie die Abschnitte **Syntax** und **Beispiel** von
 
 - [EC] Ändern Sie die Gruppe von `Dateiberechtigungen1` zu `rechtenutzer`.
 - [EQ] Beschreiben Sie in Ihren Worten, was dieses Kommando macht: 
-   `chmod -R 0754 Dateiberechtigungen1 && sudo chown -R rechtenutzer:rechtenutzer Dateiberechtigungen1`?
+   `chmod -R 0754 Dateiberechtigungsordner/ && sudo chown -R rechtenutzer:rechtenutzer Dateiberechtigungsordner/`?
 - [EC] Löschen Sie die Datei `Dateiberechtigungen1` und den Benutzer `rechtenutzer`.
 
 [SECTION::submission::trace]
