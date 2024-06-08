@@ -22,8 +22,11 @@ Man braucht sie, wenn Dateien von mehreren aber nicht allen Benutzern zugreifbar
 
 ### Gruppe erstellen
 
-Lesen Sie die Abschnitte **Synopsis** und **Description** (Einleitung reicht) der 
-[adduser(8) manpage](https://linux.die.net/man/8/adduser) (ja, das ist kein Irrtum).
+Verstehen Sie die **Synopsis** (insbesondere die Punkte des Befehls `addgroup`) und lesen Sie die 
+**Description**, insbesondere die Abschnitte **Add a group** und 
+**Add an existing user to an existing group** der 
+[adduser(8) manpage](https://manpages.debian.org/bookworm/adduser/adduser.8.en.html) 
+(ja, das ist kein Irrtum).
 
 - [EC] Erstellen Sie eine neue Gruppe namens `propra`.
 - [EC] Fügen sie der Gruppe `propra` den Account `nutzer1` hinzu.
@@ -32,13 +35,16 @@ Lesen Sie die Abschnitte **Synopsis** und **Description** (Einleitung reicht) de
 - [EC] Stellen Sie mit `chmod` sicher, dass `datei1` volle Rechte (rwx) für seine Gruppe hat
   und keine Rechte (---) für Other.
 
-Lesen Sie die Abschnitte **Synopsis**, **Description** und **Examples** der
+Verstehen Sie die **Synopsis**, lesen Sie die **Description** (Einleitung reicht) und die **Examples** der
 [chgrp(1) manpage](https://linux.die.net/man/1/chgrp)
 
+- [EC] Wechseln Sie zurück zu Ihrem personlichen Nutzer.
 - [EC] Ändern Sie mit `chgrp` die Gruppe der `datei1` zu `propra`.
-- [EC] Melden Sie sich als `nutzer2` an und versuchen Sie die `datei1` auszugeben.
+- [EC] Wechseln Sie zu `nutzer2`.
+- [EC] Versuchen Sie die Datei `datei1` auszugeben.
 
-Wie Sie merken, können Sie die Datei nicht lesen. 
+Wie Sie merken, können Sie die Datei nicht lesen. `nutzer2` ist nicht der Besitzer der Datei, 
+ist nicht in der Gruppe `propra` und Other dürfen die Datei nicht lesen.
 
 ### Standardgruppe setzen
 
@@ -46,29 +52,31 @@ Die Standardgruppe eines Nutzers gibt an, welche Gruppe neue Dateien eines Nutze
 Das Ändern dieser Gruppe kann sinnvoll sein, 
 wenn man über eine gemeinsame Gruppe Dateien mit anderen Benutzern teilen möchte.
 
-- [EC] Gehen Sie zurück zu `nutzer1`.
-- [EC] Erstellen sie eine Datei `datei2`.
-- [EC] Welche Berechtigungen hat die Datei? Welchen Nutzer und welche Gruppe hat die Datei?
-- [EC] Erstellen Sie eine neue Gruppe namens `standard`. 
-
-Lesen Sie die Abschnitte **Synopsis**, **Description** und die **Optionen** -a, -g, -G der 
+Lesen Sie die Abschnitte **Synopsis**, **Description** und die **Optionen** **-a, -g, -G** der 
 [usermod(8) manpage](https://linux.die.net/man/8/usermod)
 
+- [EC] Wechseln Sie zu `nutzer1`.
+- [EC] Erstellen sie eine Datei `datei2` mit dem Inhalt "ich bin datei2".
+- [EQ] Welche Berechtigungen hat die Datei? Welchen Nutzer und welche Gruppe hat die Datei?
+- [EC] Wechseln Sie zurück zu Ihrem persönlichen Nutzer.
+- [EC] Erstellen Sie eine neue Gruppe namens `standard`. 
 - [EC] Setzen Sie die Gruppe `standard` als Standardgruppe für den Nutzer `nutzer1`.
-- [EC] Erstellen Sie (weiterhin als Nutzer `nutzer1`) eine Datei `datei3`.
-- [EQ] Schauen Sie sich die Berechtigungen der beiden Dateien an. Was fällt auf?
+- [EC] Wechseln Sie zu `nutzer1`.
+- [EC] Erstellen Sie eine Datei `datei3`.
+- [EQ] Schauen Sie sich die Berechtigungen der beiden Dateien an. Was fällt auf? 
   Was folgt daraus für eine Zusammenarbeit mit gemeinsamen Dateien?
+- [EC] Wechseln Sie zurück zu Ihrem persönlichen Nutzer.
 - [EC] Setzen Sie die Gruppe von `nutzer1` wieder zurück auf den vorherigen Wert.
 
 ### Nutzer und Gruppe löschen
 
-Damit Ihr System nicht vollgemüllt wird, löschen wir noch die gerade erstellten Nutzer und Gruppen.
+Damit Ihr System nicht vollgemüllt wird, löschen wir noch die gerade erstellten Nutzer, Gruppen und Dateien.
 
 Lesen Sie die Abschnitte **Synopsis**, **Description** und **Remove a group** der 
-[deluser(8) manpage](https://manpages.debian.org/jessie/adduser/deluser.8.en.html).
+[deluser(8) manpage](https://manpages.debian.org/bookworm/adduser/deluser.8.en.html).
 
-- [EC] Löschen Sie die erstellten Nutzer.
-- [EC] Löschen Sie die erstellten Gruppen.
+- [EC] Löschen Sie die erstellten Nutzer `nutzer1`, `nutzer2` und deren home-Verzeichnis.
+- [EC] Löschen Sie die erstellten Gruppen `propra` und `standard`.
 
 [ENDSECTION]
 
