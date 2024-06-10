@@ -5,8 +5,11 @@ difficulty: 2
 assumes: git-Funktionsweise
 requires: git-Zweitrepo
 ---
+TODO_1_hüster: Ich habe Background umgeschrieben, um die Motivation konkreter zu machen.
+Bitte suchen Sie noch ein paar hübsche Beispiele, wo sich git-Loser im Netz outen,
+für die Hyperlinks. Müssen nicht unbedingt 5 werden.
+StackOverflow ist bei git-Fragen voll davon; bestimmt gibt es auch ein paar Blog-Artikel.
 
-- Siehe bitte auch ein git show auf meine sonstigen Änderungen an dieser Datei.
 
 [SECTION::goal::experience]
 
@@ -15,17 +18,28 @@ Ich kann einige kleine Pannen beheben, wie sie beim Arbeiten mit git oft vorkomm
 [ENDSECTION]
 [SECTION::background::default]
 
-Im Laufe des Programmierpraktikums und auch danach werden wir mit ziemlich großer Sicherheit 
-Fehler beim Bedienen von git machen, daher ist es natürlich hilfreich diese Fehler einfach mal 
-in einer kontrollierten Testumgebung zu machen und dabei auch direkt wieder zu lernen wie man 
-Sie rückgängig machen bzw. beheben kann.
+Wer arbeitet, macht Fehler; das Arbeiten mit git ist da keine Ausnahme.
+Wenn man sich dann schlecht mit git auskennt, ist das oft sofort sehr stressig,
+denn man muss für die Korrektur des Fehlers die gewohnten Abläufe verlassen.
+
+Hier probieren wir diese Dinge "im Sandkasten" aus: in einer Extraumgebung, 
+mit nur wenig Angst, wertvolle Arbeit zu verlieren.
+Hier können Sie lernen, sich nicht wie die 
+[armen Git-Stümper_innen]()
+zu verhalten, die bei Problemen nicht selten 
+[ihr ganzes Repo löschen]()
+und
+[mit dem letzten Stand]() 
+[vom Server]()
+nochmal umständlich neu anfangen -- oder sogar
+[getane Arbeit verloren geben]().
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
 In dieser Aufgabe beschäftigen wir uns Hauptsächlich mit der git-book seite darüber [wie wir 
 Dinge rückgängig machen können](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things).
-Für jede Unteraufgabe lesen wir je einen Abschnitt damit wir inhaltlich besser folgen können
+Für jede Unteraufgabe lesen wir nur je einen Abschnitt, damit wir inhaltlich leicht folgen können
 
 [WARNING]
 Lesen Sie die Abschnitte _gründlich_! Viele der hier gelernten Befehle können Änderungen 
@@ -33,12 +47,13 @@ verursachen, welche **nur aufwändig** wieder rückgängig gemacht werden könne
 manche auch gar nicht.
 [ENDWARNING]
 
-### Änderungen an einen bestehenden Commit anhängen
+
+### Änderungen an einen bestehenden lokalen Commit anhängen
 
 Es kann vorkommen, dass wir einem schon angefertigten Commit weitere Änderungen hinzufügen 
 wollen. Wie das funktioniert, lernen wir in dieser Aufgabe.
 
-Dazu lesen wir zuerst [die verlinkte Quelle bis zum Abschnitt "Unstaging a Staged File"](
+Dazu lesen wir zuerst [bis zum Abschnitt "Unstaging a Staged File"](
 https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things) 
 und bearbeiten dann die nachfolgende Aufgabe.
 
@@ -46,31 +61,44 @@ und bearbeiten dann die nachfolgende Aufgabe.
    commit` einem neuen Commit hinzu.
    (Minimal heißt z.B. nur eine Zeile wie "Ich bin amend.md.". 
    So ähnlich ist das in dieser Aufgabe oft sinnvoll.)
-2. Nehmen Sie nun weitere Änderungen an der Datei vor.
+
+[HINT::"amend.md" schnell und bequem erstellen]
+Haben Sie schon die Aufgabe [PARTREF::redirect] bearbeitet?
+Danach kennen Sie ein Konstrukt wie `echo 'Ich bin amend.md' > amend.md`,
+mit dem das Erstellen einer solchen Minidatei einfacher geht als mit einem Editor.
+Aber Vorsicht vor dem versehentlichen Überschreiben!
+[ENDHINT]
+
+2. Nehmen Sie nun Änderungen (z.B. eine Zufügung) an der Datei vor.
 3. Verwenden sie nun `git commit` und `git log` um diese Änderungen dem vorherigen Commit aus 
    Schritt 1 hinzuzufügen, ohne einen zusätzlichen Commit zu erzeugen. 
 
 [EC] Mit welchem Befehl haben Sie die Änderungen an den bestehenden Commit angehangen?
 
-[HINT::Das erstellen und bearbeiten der amend.md datei lässt sich mit Hilfe der Kommandozeile auch in einem Schritt erledigen.]
-Wem es zu lästig ist, das Erstellen der Datei und das Bearbeiten der neu erstellten Datei in 
-verschiedenen Schritten abzuarbeiten, der kann das ganze auch mit der Kommandozeile abkürzen.
-So lässt sich z.B. der erste Schritt der obigen Aufgabe mit `echo 'Ich bin amend.md' > amend.md` 
-abkürzen. Wichtig zu beachten ist, dass hierbei eine bestehende `amend.md`-Datei überschrieben 
-werden würde. 
-Wer mehr darüber lernen will wie der Befehl funktioniert und was man sonst noch so für nützliche 
-Dinge auf der Kommandozeile machen kann, schaut am besten mal in die [PARTREF::redirect]-Aufgabe.
-[ENDHINT]
 
-### Eine Datei(-änderung) aus einem ungepushten Commit entfernen/unstagen
+### Eine Datei(-änderung) aus einem lokalen Commit entfernen/unstagen
 
 In bestimmten Situationen kann es auch hilfreicher sein eine Datei einfach aus einem Commit zu 
-entfernen, entweder weil wir Sie aus Versehen hinzugefügt haben oder weil wir merken, dass wir 
-diese vielleicht doch lieber in einem anderen Commit haben wollen.
+entfernen, entweder weil wir sie aus Versehen hinzugefügt haben oder weil wir merken, dass wir 
+diese lieber in einem anderen Commit haben wollen.
 
 Um mehr darüber zu lernen, lesen Sie nun weiter [bis zum Abschnitt "Unmodifying a Modified File"](
 https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things)
 und bearbeiten anschließend wieder die folgende Aufgabe. 
+
+TODO_1_hüster: 
+
+- Die Einleitung ist irreführend, denn bei "Unmodifying a Modified File"
+  wird kein Commit modifiziert.  
+- Außerdem sollte der vorherige Abschnitt (über `--amend`) erst später kommen, denn
+  dort wird ja sehr wohl ein Commit modifiziert, was erheblich invasiver ist.  
+- Drittens passt die nachfolgende Anleitung unten gar nicht zum gelesenen Abschnitt im Buch,
+  denn in der Anleitung wird wiederum sehr wohl ein Commit modifiziert.  
+- Viertens ergibt das Wording der Aufgabe keinen Sinn: Man kann einen git-Commit nicht modifizieren.
+  Sondern nur einen neuen erzeugen, der an seine Stelle tritt.
+  Das gilt analog oben bei `--amend`.   
+  Wir brauchen in den git-Aufgaben eine präzise Redeweise, sonst wird der Aufbau des korrekten mentalen Modells
+  zu schwierig.
 
 1. Legen Sie zwei neue Dateien mit den Namen `add.md` und `remove.md` an und fügen Sie diese mit 
    `git add` der staging area hinzu. Auch hier möchten wir wieder einen kurzen Text in beiden 
