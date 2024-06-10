@@ -39,8 +39,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Bestandscode
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak->LP)
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak->LP)
 
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->DM)
 
@@ -120,6 +118,12 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->LP->DP)
 - ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->LP->DP)
 - ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->LP->DP)
+
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak->LP)  
+  ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak->LP)  
+  Auf beta gesetzt, aber bitte die Musterlösung noch konkretisieren.
+  Zu jedem Item brauchen die Tutoren Anhaltspunkte.
+  Bei _implementation darf das gern Bezug auf _planning nehmen.
 
 - ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH->LP->DP)  
   Für die ganze Taskgruppe bitte jeweils Korrekturhilfen in altdir zufügen.

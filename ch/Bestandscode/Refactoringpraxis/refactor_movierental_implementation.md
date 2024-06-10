@@ -1,5 +1,5 @@
 title: Movie Rental - Refaktorierung
-stage: alpha
+stage: beta
 timevalue: 4.0
 difficulty: 4
 requires: refactor_movierental_planning
@@ -15,10 +15,9 @@ requires: refactor_movierental_planning
 [SECTION::instructions::tricky]
 
 [WARNING]
-In vielen Aufgaben lohnt es sich immer nur den nächsten Arbeitsschritt zu lesen, um die 
+In vielen Aufgaben funktioniert es gut, immer nur den nächsten Arbeitsschritt zu lesen, um die 
 Anforderung genau zu erfüllen.  
-Sie tun sich bei dieser Aufgabe aber einen Gefallen, wenn Sie zuerst alle Arbeitsschritte 
-durchlesen, da die Schritte im Kontext zueinander stehen.
+Bei dieser Aufgabe ist sinnvoller, zuerst _alle_ Arbeitsschritte zu lesen.
 [ENDWARNING]
 
 - [ER] Setzen Sie Ihren in [PARTREFTITLE::refactor_movierental_planning] formulierten Plan 
@@ -33,7 +32,7 @@ durchlesen, da die Schritte im Kontext zueinander stehen.
   Wenn es solche Schritte gibt: Wieso haben Sie diese wieder rückgängig gemacht?
 - [EQ] Schreiben Sie eine kurze Dokumentation zum fertigen Produkt:
     - Erklären Sie, welche Funktion von welchem Teil des Codes abgedeckt wird.
-    - Erklären Sie, warum Ihre Lösung Vorteile gegenüber dem originalen Quellcode besitzt.
+    - Erklären Sie, wo und wie Ihre Lösung Vorteile gegenüber dem originalen Quellcode besitzt.
 - [EC] Zeigen Sie eine Ausgabe Ihres überarbeiteten Programms.
   Übernehmen Sie hierfür die Beispiel-Eingabe aus dem originalen Testskript.
 

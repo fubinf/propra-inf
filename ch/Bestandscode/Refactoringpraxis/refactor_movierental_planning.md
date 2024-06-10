@@ -1,5 +1,5 @@
 title: Movie Rental - Codeerkundung
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 4
 ---
@@ -11,7 +11,6 @@ difficulty: 4
 - Ich bin in der Lage zu formulieren, welche Refaktorierungen ich durchführen möchte.
 
 [ENDSECTION]
-
 [SECTION::background::default]
 
 Sich in fremden Code einzuarbeiten ist gar keine leichte Aufgabe. 
@@ -22,11 +21,10 @@ Abgabe möglich ist.
 Die tatsächliche Lösung ist aber ganz Ihnen überlassen.
 
 [ENDSECTION]
-
 [SECTION::instructions::tricky]
 
 [WARNING]
-In dieser Aufgabe sind sie bis auf die Aufgabenstellung selbst sich selbst überlassen.
+In dieser Aufgabe formuliert die Aufgabenstellung nur Ziele, keine Schritte.
 Wenn Sie zuerst eine geführte Variante einer Refaktorierung bearbeiten möchten, werden Sie in 
 [PARTREFTITLE::gildedrose_tests] und dessen Folgeaufgaben fündig.
 [ENDWARNING]
@@ -62,31 +60,40 @@ You earned 2 frequent renter points
 <p>You earned <em>2</em> frequent renter points</p>
 ```
 
-- [EQ] Machen Sie sich mit dem Code vertraut und beschreiben Sie, welche Teile welche Funktion 
-  im Code übernehmen.
+
+- [EQ] Machen Sie sich mit dem Code vertraut und beschreiben Sie kurz, welche Teile welche Funktion 
+  im Code übernehmen.  
+  Natürlich ist `movie_rental.py` zu klein, um beim Ändern große Probleme aufzuwerfen, denn man kann
+  den Code komplett durchdringen. Bei großen Programmen ist das nicht möglich.
+  Stellen Sie sich deshalb bitte vor, im gleichen Stil hätten Sie es mit 100.000 Zeilen Code zu tun
+  und betrachten Sie `movie_rental.py` aus diesem Blickwinkel.
 - [EQ] Beschreiben Sie, worin die Probleme in dem Code liegen.  
   Was macht den Code schlecht wartbar?  
-  Wieso ist der Code schlecht zu verstehen?  
+  Wieso ist der Code unnötig schlecht zu verstehen?  
   Begründen Sie Ihre Angaben kurz!
-- [EQ] Gibt es Teile des Codes oder an der gewünschten Funktionalität, die Sie noch nicht 
-  verstehen bzw. beherrschen?  
+- [EQ] Gibt es Aspekte des Codes oder der gewünschten Funktionalität, die Sie noch nicht 
+  verstehen?  
   Wenn ja, welche sind das? Recherchieren Sie dazu und beschreiben Sie Ihre Funde kurz.
 - [EQ] Überlegen Sie sich einen Plan: Wie möchten Sie vorgehen, um den Code zu refaktorieren?  
   Wie sollen die Tests dazu aussehen?  
-  Wie wird die Implementierung der HTML-Ausgabe in etwa funktionieren?
-  Denken Sie daran, dass Sie die Schnittstellen des Programms für den Nutzer nicht verändern 
-  dürfen (die Ausgabe des Programms darf sich aber so wie oben beschrieben ändern!)
+  Wie wird die Implementierung der HTML-Ausgabe in etwa funktionieren?  
+  Denken Sie daran, dass Sie das sichtbare Verhalten des Programms nicht verändern 
+  dürfen.
+  Erst im letzten Schritt (nach vollzogenem Refactoring) soll sich dann die Ausgabe des Programms
+  wie oben beschrieben ändern.
+- Die neue Funktionalität sollte natürlich mindestens so gut verstehbar und wartbar sein
+  wie die überarbeitete Fassung des vorherigen Codes.
 
+Hier ist erstmal nur der Plan gefragt; die Umsetzung folgt in der nächsten Aufgabe.
 
 [ENDSECTION]
-
 [SECTION::submission::information,program]
 
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
-
 [INSTRUCTOR::Probleme des Codes]
+
 Der Code hat viele Problemstellen, u. a.:
 
 - Die Verantwortlichkeiten sind schlecht getrennt, mehr Klassen können helfen.
@@ -99,4 +106,5 @@ Der Code hat viele Problemstellen, u. a.:
 Es geht nicht darum _alle_ diese Punkte zu finden, da sich einige Punkte auch beim Beheben 
 anderer Punkte von alleine lösen. 
 Diese Punkte sollen aber begründet sein. Ohne Begründung soll die Lösung zurückgewiesen werden.
+
 [ENDINSTRUCTOR]
