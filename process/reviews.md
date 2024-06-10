@@ -26,6 +26,7 @@ We will modify these rules over time when others appear more useful.
   of the next person that needs to consider the given task (author or reviewer) or
   delete it if the task has arrived in `beta` and needs no further change or check.
 
+-------------------------------------------------------------------------------------------
 
 ## Reviews to do for Lutz Prechelt
 
@@ -56,13 +57,9 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Werkzeuge
-- ch/Werkzeuge/Benutzerverwaltung/ACL.md
-  Ich bin mir noch unsicher wie lange es sein soll und welche Schwierigkeit die Aufgabe haben soll
-- ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric->LP->IC->LP)  
 
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP)
 
+-------------------------------------------------------------------------------------------
 
 ## Reviews to do for Hanen Alrwasheda
 
@@ -74,6 +71,10 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Ivan Condric
+
+- ch/Werkzeuge/Benutzerverwaltung/ACL.md (Condric->LP->IC) siehe in der Datei
+- ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric->LP->IC->LP->IC)  
+  ist jetzt schonmal beta, braucht aber bitte noch eine Musterlösung. 
 
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC)  
   dig muss erst installiert werden. Wir sollten uns nicht auf eine "so kannste das installieren"-Meldung
@@ -87,10 +88,12 @@ We will modify these rules over time when others appear more useful.
   oder Belgien führt, um dann erstaunt zu lernen, dass sie bevorzugt über Polen plus Tschechien führt
   und alternativ über Niederlande plus Belgien. Staun.  https://network.geant.org/gn4-3n/  
   Nötigenfalls Schwierigkeit "mittel" nehmen und/oder traceroute abspalten.
-
-
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC)  
   Siehe Notizen in der Datei. Schwierig!
+
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC)
+
 
 ## Reviews to do for Christian Hofmann
 
@@ -119,8 +122,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->LP->DP)
 - ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->LP->DP)
 
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak->LP)  
-  ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak->LP)  
+- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak->LP->DP)  
+  ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak->LP->DP)  
   Auf beta gesetzt, aber bitte die Musterlösung noch konkretisieren.
   Zu jedem Item brauchen die Tutoren Anhaltspunkte.
   Bei _implementation darf das gern Bezug auf _planning nehmen.
