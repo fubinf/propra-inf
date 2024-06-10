@@ -1,8 +1,17 @@
 title: Links in Unix
-stage: alpha
+stage: draft
 timevalue: 1.0
 difficulty: 2
 ---
+
+TODO_1_condric:
+
+- Bitte ein präzises mentales Modell herstellen: Von "die Daten" zu sprechen ist viel zu unscharf.
+  Wir brauchen erstens inodes und dahinterliegende Daten als Konzept und zweitens Verzeichniseinträge.
+- Die Aufgabe sollte für symlinks unbedingt sowohl mit einem absoluten als auch mit einem
+  relativen Pfad arbeiten und einen Schritt beinhalten, wo der ganze Baum verlegt wird
+  und dann der relative Link intakt bleibt (während in der jetzigen der absolute intakt bleibt).
+- Und bitte eine Musterlösung formulieren.
 
 [SECTION::goal::idea]
 Ich verstehe den Unterschied zwischen Hardlink und Symlink.  
@@ -23,8 +32,8 @@ Lesen Sie insbesondere die Abschnitte **Anwendung/Terminal** und **Beispiele**.
 Wir brauchen erstmal einen Ordner und ein paar Dateien, damit wir darauf die Links verknüpfen 
 können.
 
-- [EC] Erstellen sie zwei Dateien namens `softdata` und `harddata` unter `~/physical/`, und 
-schreiben Sie jeweils softdata und harddata in die Datei.
+- [EC] Erstellen sie zwei Dateien namens `softdata` und `harddata` unter `~/physical/`, mit
+  dem Dateiinhalt "Ich bin softdata" bzw. "Ich bin harddata".
 
 Nachdem wir jetzt den Ordner und die Daten haben, brauchen wir noch die Links auf die Daten.
 
