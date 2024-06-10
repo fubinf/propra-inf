@@ -3,6 +3,25 @@ stage: alpha
 timevalue: 1.0
 difficulty: 2
 ---
+TODO_1_condric:
+
+- Zwei Editoren ausprobieren und vergleichen ist eine schöne Idee!
+- Nee, `editor.txt` liegt nicht in "diesem Verzeichnis". Ich bin auf einer Webseite.  
+  Wahrscheinlich ist am sinnvollsten, ein INCLUDE in triple dashes zu machen, oder?
+- Ich finde als Minimalprogramm sinnvoll, alles Folgende auszuprobieren:
+  Bewegen auf Zeilen, bewegen wortweise, einfügen, lösche Zeichen, lösche Wort, 
+  lösche Zeilenrest, Zeile löschen und zweimal woanders einfügen, Block von Zeilen löschen und woanders einfügen,
+  Suchen-und-Ersetzen, Save, Save as.
+- Damit die Leute vim zu schätzen wissen, sollte man auch eine Aufgabe stellen, die 
+  mit nano nicht geht, z.B. drei Blöcke a, b, c in drei Register füllen und dann mehrmals in
+  wilder Reihenfolge a, b, c, b, c, a einsetzen.
+- Angeben, wo man vimtutor findet.
+- Sind Sie sicher, dass irgendjemand dieses Kommandoprotokoll angucken will?
+  Ich glaube, dies ist eine Aufgabe, wo wir unseren Studis einfach vertrauen, dass sie
+  das Gewünschte getan haben.
+- Vielleicht fragt man nach den Kommandos für das Drei-Blöcke-Problem und fragt, wie man das
+  in nano letztlich löst (nämlich: erst alle a-, dann alle b-, dann alle c-Einfügungen machen, oder?).
+- Ich habe die Reflektionsaufgaben umformuliert.
 
 [SECTION::goal::idea]
 Ich verstehe die Funkstionsweise von `nano` und `vim` in Linux
@@ -19,7 +38,7 @@ Bearbeiten Sie die Datei `editor.txt`, mit den beiden unten genannten Editoren.
 
 ### Vim
 
-Werden sie vertraut mit vim. Nutzen Sie als Hilfestellung diesen kurzen Beitrag 
+Werden Sie vertraut mit vim. Nutzen Sie als Hilfestellung diesen kurzen Beitrag 
 [Vim101](https://www.linuxfoundation.org/blog/blog/classic-sysadmin-vim-101-a-beginners-guide-to-vim).
 
 Lesen Sie insbesondere die Abschnitte **Editing Vim Style**, **Searching And Replacing**, 
@@ -61,10 +80,11 @@ Dieser Text wurde mit Nano kopiert.
 
 ### Reflektion
 
-- [EQ] Was finden Sie gut an `vim` und `nano`?
-- [EQ] Was finden Sie schlecht an `vim` und `nano`?
-- [EQ] Was für Unterschiede sind Ihnen zu anderen Editoren aufgefallen?
-- [EQ] Welchen der beiden Editoren würden Sie weiter nutzen? Begründen Sie ihre Antwort.
+- [EQ] Was gefällt ihnen besonders gut an `vim`?
+- [EQ] Was gefällt ihnen besonders gut an `nano`?
+- [EQ] Was missfällt ihnen am meisten an `vim`? Was an `nano`?
+- [EQ] Würde das vermutlich weiterhin so sein, wenn Sie den Editor täglich benutzen würden?
+- [EQ] Da man immer mal einen Textmode-Editor braucht: Welchen werden Sie lernen?
 
 [ENDSECTION]
 
