@@ -248,6 +248,8 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - Aufgabe Debugging/Debugging-Denken/[PARTREF::Mathematician] zugefügt.
 - **2024-06-06**: Aufgabe Sprachen/Python2/[PARTREF::PEP8] zugefügt.
 - Aufgabe Werkzeuge/Linter/[PARTREF::flake8] zugefügt.
+- **2024-06-10**: Aufgaben Bestandscode/Refactoringpraxis/[PARTREF::refactor_movierental_planning]
+  und [PARTREF::refactor_movierental_implementation] zugefügt.
 - ...
 
 
