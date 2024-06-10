@@ -4,6 +4,27 @@ timevalue: 2
 difficulty: 3
 assumes: apt, Gruppen, sudo, Umgang-mit-Verzeichnissen
 ---
+TODO_1_condric
+
+- Das Geschäftsführer-Szenario ist ein guter Ansatz, wird aber noch zu wenig ausgenutzt.
+  Die Studis sollten hier weniger alle Einzelheiten von ACL-Manipulation ausprobieren
+  als vielmehr eine Vorstellung davon entwickeln, was die Momente sind, wo man ACLs benutzen
+  will und wann nicht.
+- Dafür sollte der erste Schritt sein, sich im Szenario klar zu werden, was das für eine
+  gruppenbasierte Lösung hieße (Spezialgruppe) und wo das seine Grenzen findet
+  (wenn zugleich `rwx` und `r-x` gefragt sind, `other` aber `---` haben soll.)
+- Dann, sich klar zu werden, dass das recht speziell ist, und man mit den normalen Unix-Rechten
+  schon ganz schön weit kommt, wenn man genügend viele Gruppen einrichtet.
+- ACLs sind in zwei Fällen sinnvoll: Obigem Fall, wo Gruppen nicht mehr reichen.
+  Und one-of-a-kind-Fälle, wo wirklich nur eine Datei/Verzeichnis genau dieses Rechtekonstrukt braucht.
+- Beim konkreten Bedienen sollten wir uns auf die wichtigsten Fälle beschränken:
+  Setzen, Zufügen, Auflisten, Löschen, Entfernen, rekursiv?
+- Und wenn man die dann je einmal ausprobiert hat, reicht es auch.
+- Hübsch wäre, wenn das Szenario immer mitläuft und die Aufgabe einen Anlass für jede Operation angibt.
+  Muss aber nicht unbedingt sein.
+- "Erstellen Sie den Ordner `/folder`"  
+  Echt? Im Rootverzeichnis? Das finde ich etwas wild.  
+  Wie wäre es mit `/tmp/folder`?
 
 [SECTION::goal::idea]
 
