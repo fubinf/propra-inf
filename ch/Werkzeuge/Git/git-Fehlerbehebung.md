@@ -23,16 +23,15 @@ Sie rückgängig machen bzw. beheben kann.
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-Zuerst lesen wir wieder eine Seite aus dem Git Buch:
-[Wie wir Dinge rückgängig machen können](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things).
+In dieser Aufgabe beschäftigen wir uns Hauptsächlich mit der git-book seite darüber [wie wir 
+Dinge rückgängig machen können](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things).
+Für jede Unteraufgabe lesen wir je einen Abschnitt damit wir inhaltlich besser folgen können
 
 [WARNING]
-Lesen Sie die Seite _gründlich_! Viele der hier gelernten Befehle können Änderungen 
+Lesen Sie die Abschnitte _gründlich_! Viele der hier gelernten Befehle können Änderungen 
 verursachen, welche **nur aufwändig** wieder rückgängig gemacht werden können -- und
 manche auch gar nicht.
 [ENDWARNING]
-
-Nun machen wir uns daran, das gelesene selbst auszuprobieren.
 
 ### Änderungen an einen bestehenden Commit anhängen
 
@@ -56,7 +55,7 @@ und bearbeiten dann die nachfolgende Aufgabe.
 [HINT::Das erstellen und bearbeiten der amend.md datei lässt sich mit Hilfe der Kommandozeile auch in einem Schritt erledigen.]
 Wem es zu lästig ist, das Erstellen der Datei und das Bearbeiten der neu erstellten Datei in 
 verschiedenen Schritten abzuarbeiten, der kann das ganze auch mit der Kommandozeile abkürzen.
-So lässt sich z.B. der erste Schritt der obigen aufgabe mit `echo 'Ich bin amend.md' > amend.md` 
+So lässt sich z.B. der erste Schritt der obigen Aufgabe mit `echo 'Ich bin amend.md' > amend.md` 
 abkürzen. Wichtig zu beachten ist, dass hierbei eine bestehende `amend.md`-Datei überschrieben 
 werden würde. 
 Wer mehr darüber lernen will wie der Befehl funktioniert und was man sonst noch so für nützliche 
@@ -76,7 +75,7 @@ und bearbeiten anschließend wieder die folgende Aufgabe.
 1. Legen Sie zwei neue Dateien mit den Namen `add.md` und `remove.md` an und fügen Sie diese mit 
    `git add` der staging area hinzu. Auch hier möchten wir wieder einen kurzen Text in beiden 
    Dateien haben, z.B. "Ich bin add.md" und "Ich bin remove.md".
-2. Mit `git status` können wir nun den aktuellen Status der staging Area begutachten.
+2. Mit `git status` können wir nun den aktuellen Status der Staging-Area begutachten.
 3. Nun wollen wir die datei `remove.md` aus der Staging-Area entfernen. Wie genau das 
    funktioniert, haben Sie gerade gelesen.
 4. Stellen Sie nun mit `git show` sicher, dass die Staging-Area nur die Datei `add.md` enthält.
@@ -99,8 +98,7 @@ nicht brauchen, z.B. eine ungenutzte Funktion hinzugefügt. Wenn, ausser dieser 
 ihren letzten Snapshot im vorherigen Commit zurückzusetzen.
 
 Um zu Lernen wie das funktioniert, lesen wir jetzt [bis zum Abschnitt "Undoing things with git 
-restore"](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things). Und bearbeiten dann wieder 
-die kommende Aufgabe.
+restore"](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things). Und bearbeiten dann wieder die dazugehörige Aufgabe.
 
 1. Erstellen Sie eine neue Datei, mit Inhalt, und nennen Sie sie `checkout.md`.
 2. Fügen Sie die Datei einem neuen Commit hinzu.
@@ -123,7 +121,8 @@ sondern Sie haben einfach nur eine neuere Version von git.
 ### Wie man git restore benutzt
 
 Anstelle von `git checkout` lässt sich z.B. für das Wiederherstellen einer Datei auf einen anderen 
-Zustand auch `git restore` benutzen. 
+Zustand auch `git restore` benutzen. Das sieht ein bisschen eleganter aus, braucht weniger 
+Argumente und ist inzwischen in neueren git-Versionen auch zum De-Facto-Standard geworden.
 Wenn Sie jetzt bis zum Ende der Seite die verlinkte Quelle lesen, sollten Sie alles gesehen 
 haben, was wir für die noch kommenden Aufgaben brauchen.
 
@@ -147,15 +146,22 @@ Dazu machen wir weiter nach Schritt 3 der vorherigen Aufgabe. Die Änderungen so
 uncommited in die Datei geschrieben worden sein.
 
 1. Fügen Sie nun einen neuen Commit mit dem neuen Inhalt der Datei hinzu.
-2. Nutzen sie nun `git log` bzw. `git reflog` und die manpage für `git restore` (`man git-restore`)
-   um herauszufinden, wie Sie mit `git restore` auf den Zustand des vorherigen Commits aus 
+2. Nutzen sie nun `git log` und die manpage für `git restore` (`man git-restore` bzw. `git help 
+   restore`) um herauszufinden, wie Sie mit `git restore` auf den Zustand des vorherigen Commits aus 
    Schritt 2 kommen.
 
 [EC] Wie muss der `git restore`-Befehl aussehen, um eine Datei auf den Zustand des vorherigen 
 Commits zurückzusetzen?
 
+[NOTICE]
+Anders als bei den anderen Befehlen würde es in diesem Fall nötig sein einen neuen Commit mit 
+den Änderungen zu pushen, wenn der Zwischenstand bereits gepusht wurde. Wäre das noch nicht der 
+Fall, könnte man natürlich die Änderungen noch zum vorherigen Commit hinzufügen, indem man 
+sich wieder an die erste Aufgabe zurückerinnert. 
+[ENDNOTICE]
+
 [WARNING]
-Auch wenn es bereits in unserer Quelle steht. Falls Sie es überlesen, haben hier noch einmal:
+Auch wenn es bereits in unserer Quelle steht. Falls Sie es überlesen haben, hier noch einmal:
 
 > It’s important to understand that git restore <file> is a dangerous command. Any local changes 
 > you made to that file are gone — Git just replaced that file with the last staged or committed 
@@ -177,6 +183,6 @@ Auch wenn es bereits in unserer Quelle steht. Falls Sie es überlesen, haben hie
 - [EREFC::2] `git reset HEAD filename`
 - [EREFC::3] `git checkout -- filename`
 - [EREFC::4] `git restore filename`
-- [EREFC::5] `git restore --source=HEAD~ filename`
+- [EREFC::5] `git restore --source=HEAD~1 filename`
 
 [ENDINSTRUCTOR]
