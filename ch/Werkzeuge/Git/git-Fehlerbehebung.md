@@ -5,10 +5,6 @@ difficulty: 2
 assumes: git-Funktionsweise
 requires: git-Zweitrepo
 ---
-TODO_1_hüster: Ich habe Background umgeschrieben, um die Motivation konkreter zu machen.
-Bitte suchen Sie noch ein paar hübsche Beispiele, wo sich git-Loser im Netz outen,
-für die Hyperlinks. Müssen nicht unbedingt 5 werden.
-StackOverflow ist bei git-Fragen voll davon; bestimmt gibt es auch ein paar Blog-Artikel.
 
 
 [SECTION::goal::experience]
@@ -25,14 +21,14 @@ denn man muss für die Korrektur des Fehlers die gewohnten Abläufe verlassen.
 Hier probieren wir diese Dinge "im Sandkasten" aus: in einer Extraumgebung, 
 mit nur wenig Angst, wertvolle Arbeit zu verlieren.
 Hier können Sie lernen, sich nicht wie die 
-[armen Git-Stümper_innen]()
+[armen Git-Stümper_innen](https://stackoverflow.com/questions/40503417/how-can-i-add-a-file-to-the-last-commit-in-git)
 zu verhalten, die bei Problemen nicht selten 
-[ihr ganzes Repo löschen]()
+[ihr ganzes Repo löschen](https://stackoverflow.com/questions/66394191/accidentally-deleted-overwrote-local-files-in-git-repo)
 und
-[mit dem letzten Stand]() 
-[vom Server]()
+[mit dem letzten Stand](https://stackoverflow.com/questions/5788037/recover-from-losing-uncommitted-changes-by-git-reset-hard) 
+[vom Server](https://www.reddit.com/r/git/comments/17kte2s/newbie_screwed_up_and_i_need_to_start_over/)
 nochmal umständlich neu anfangen -- oder sogar
-[getane Arbeit verloren geben]().
+[getane Arbeit verloren geben](https://stackoverflow.com/questions/75908629/i-mistakenly-deleted-most-of-my-files-with-git-is-there-a-way-to-recover).
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
