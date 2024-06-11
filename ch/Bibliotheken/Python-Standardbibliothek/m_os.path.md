@@ -39,7 +39,7 @@ mit Pfaden.
 ### Pfad zum Home-Verzeichnis
 
 Für die Aufgabe verwenden wir ihr Home-Verzeichnis, i.d.R. unter `/home/<Username>`. 
-Anstatt aber den Pfad direkt anzugeben, verwenden wir die [TERMREF::Umgebungsvariable] `HOME`. 
+Anstatt aber den Pfad direkt anzugeben, verwenden wir die [TERMREF::Umgebungsvariable] `$HOME`. 
 So erhalten wir unabhängig vom User immer den Pfad zum Home-Verzeichnis.
 
 Alternativ gibt es auch das Symbol `~`, welches in der Shell und in `os.path` 
@@ -86,10 +86,14 @@ Links auf Verzeichnisse als Verzeichnis und Links auf Dateien als Datei.
 - [ER] Erstellen Sie nun den relativen Pfad, der von ihrem Arbeitsverzeichnis zu ihrem 
   Home-Verzeichnis führt. Verknüpfen Sie die beiden Pfade miteinander und geben Sie das Resultat aus:  
   `print("path home to cwd and back: ", ...)`
-- [ER] Der erhaltene Pfad ist gültig, aber natürlich unnötig kompliziert. Verwenden Sie 
+- [ER] Der erhaltene Pfad ist gültig, aber womöglich unnötig kompliziert. Verwenden Sie 
   `os.path`, um den Pfad zu vereinfachen (nämlich redundantes Runter-und-Rauf zu normalisieren):  
   `print("relative path normalized: ", ...)`
 
+[INSTRUCTOR::relative normalized path]
+Wenn das cwd im Home-Verzeichnis liegt, sollte hier `.` herauskommen. Liegt die cwd außerhalb 
+kann der Pfad nicht weiter gekürzt werden.
+[ENDINSTRUCTOR]
 
 ### Programmlauf für die Abgabe
 
@@ -105,14 +109,15 @@ Links auf Verzeichnisse als Verzeichnis und Links auf Dateien als Datei.
 [ENDSECTION]
 
 [INSTRUCTOR::Eine Ausgabe als "Muster"]
-Das Kommandoprotokoll hängt vom Inhalt des Home-Verzeichnisses ab und ist daher nur 
-mäßig gut prüfbar.
-Prüfen Sie stattdessen eine Abgabe etwas genauer, sodass Sie sicher sind, dass dessen Ausgabe 
-korrekt ist und verwenden Sie diese als "Musterausgabe" für die Kontrolle der anderen Abgaben.
+Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_os_path.py]
+
+Das Kommandoprotokoll hängt vom Inhalt des Home-Verzeichnisses ab und ist daher nur bedingt für 
+die Bewertung verwendbar.
+Führen Sie stattdessen die Musterlösung einmal aus und verwenden Sie die Ausgabe als 
+Muster-Kommandoprotokoll.
 
 Klare Defekte und übermäßig ungeschickte Konstruktionen zurückweisen, insbesondere solche, 
 die zu wenig Gebrauch von `os.path` machen.
 Wer keine list comprehensions kann, darf aber vorerst auch Schleifen schreiben.
 
-TODO_1_wegner: Musterlösung für `m_os_path.py` in `altdir` machen, dann die Anweisungen hier vereinfachen.
 [ENDINSTRUCTOR]
