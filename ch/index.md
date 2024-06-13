@@ -250,6 +250,11 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - Aufgabe Werkzeuge/Linter/[PARTREF::flake8] zugefügt.
 - **2024-06-10**: Aufgaben Bestandscode/Refactoringpraxis/[PARTREF::refactor_movierental_planning]
   und [PARTREF::refactor_movierental_implementation] zugefügt.
+- **2024-06-13**: Wir entwickeln auch am `sedrila`-Werkzeug weiter.
+  Das führt gelegentlich zu Inkompatibilitäten zwischen der Website und den früheren Versionen
+  von `sedrila`. Wenn ein `sedrila`-Aufruf abstürzt, ist ein Aktualisieren auf die neueste
+  Version (mit `pipx upgrade`) meist die Lösung.
+- Beschreibung des Konzepts von Abgaben in die erste Aufgabe (CLI*) ergänzt. 
 - ...
 
 
