@@ -73,6 +73,7 @@ ist immer die Linux-Shell gemeint, nie die Windows-Kommandozeile mit
 [INCLUDE::CdLsMvEtc.inc]
 
 [ENDSECTION]
+[INCLUDE::Abgabe.inc] 
 [INSTRUCTOR::Warnhinweise]
 
 Zum Prüfen dient `cat /etc/os-release; python -V; pip -V`. 

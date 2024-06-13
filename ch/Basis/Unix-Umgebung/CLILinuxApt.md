@@ -61,6 +61,7 @@ Je nach gewählter Distribution liegen die Programme stattdessen oder zusätzlic
 [INCLUDE::CdLsMvEtc.inc]
 
 [ENDSECTION]
+[INCLUDE::Abgabe.inc]
 [INSTRUCTOR::Warnhinweise]
 
 [INCLUDE::InstructorCheckLinux.inc]

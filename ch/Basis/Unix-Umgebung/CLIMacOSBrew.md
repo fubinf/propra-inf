@@ -116,6 +116,7 @@ War die Installation erfolgreich können wir nun die installierte Python-version
 [INCLUDE::CdLsMvEtc.inc]
 
 [ENDSECTION]
+[INCLUDE::Abgabe.inc]
 [INSTRUCTOR::Warnhinweise]
 
 [INCLUDE::InstructorCheckLinux.inc]
