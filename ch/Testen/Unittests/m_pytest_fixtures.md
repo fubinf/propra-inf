@@ -1,9 +1,25 @@
 title: Fixtures mit dem Pytest Framework
-stage: alpha
+stage: draft
 timevalue: 2
 difficulty: 3
 assumes: m_pytest
 ---
+
+TODO_1_ruhe:
+
+- `@pytest.fixture` ist für den Zweck tabellengesteuerter Tests nicht der beste Mechanismus,
+  weil dann alle Eingabedatensätze in nur einem Test benutzt werden müssen und wenn einer davon
+  fehlschlägt, sieht man nicht, was beim Rest passiert.
+- `@pytest.parametrize` ist für diesen Zweck richtig und wird schon in `m_pytest_parametrize`
+  abgehandelt. (Das wandelt jeden Datensatz in einen virtuell separaten Test um.)
+- Schauen Sie gern beide dieser Aufgaben durch, ob noch ein Gedanke aus Ihrer in `m_pytest_parametrize`
+  ergänzt werden sollte (Achtung: Die Aufgabe ist schon freigegeben), aber vermutlich eher nicht.
+- Gegen eine Aufgabe zu `@pytest.fixture` ist nichts zu sagen, aber dafür müsste man sich erst
+  noch einen neuen Zweck ausdenken.
+- Man könnte eine Aufgabe machen, die ein paar der in pytest eingebauten Fixtures ausprobiert.
+  Z.B. capsys ist ganz nützlich: Damit kann man die von pytest aufgefangenen Ausgaben des SUT 
+  in die Hand bekommen, um zu prüfen, ob sie den Erwartungen entsprechen.
+
 
 [SECTION::goal::idea]
 
