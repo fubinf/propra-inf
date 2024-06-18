@@ -1,10 +1,18 @@
 title: GitHub Action - Unittests in der Pipeline
-stage: alpha
+stage: draft
 timevalue: 1
 difficulty: 3
 assumes: m_unittest, tdd, tdd_pp, m_testcoverage
 requires: GitHubDeployment
 ---
+
+TODO_1_ruhe:
+
+- Schönes Teil!
+- Aber bitte stellen Sie die Tests auf pytest um, sodass unittest nur der Vollständigkeit halber
+  eingeführt wird und nicht viel Gewicht bekommt, denn das würde irreführen.
+- Und die Aufgabe gehört für meine Begriffe eher nach `Betriebsumgebung/GitHub-Build2`.
+
 
 [SECTION::goal::idea]
 
