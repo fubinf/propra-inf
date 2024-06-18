@@ -1,9 +1,27 @@
 title: GitHub Deployment
+stage: draft
 timevalue: 0.75
-stage: alpha
 difficulty: 2
 explains: Pipeline
 ---
+TODO_1_ruhe:
+
+- Sich damit auseinanderzusetzen, finde ich gut.
+- Allerdings ist das kompliziertes und frustrationslastiges Gelände.
+  Die aktuelle Aufgabe wird dem beides nicht gerecht:
+  Die Auseinandersetzung ist zu gering, um das Komplizierte zu verstehen
+  und die Vorgabe zu komfortabel, um das frustrationlastige zu erleben.
+- Ich schlage vor, den Teilnehmenden viel mehr zuzumuten:
+- Sie sollten `actions/checkout@v3` und `actions/setup-python@v3` nachlesen
+  und erklären (notfalls: ausprobieren), was passiert, wenn man eines davon weglässt.
+- Sie sollten einen eigenen Schritt zufügen (vielleicht ein Aufruf von `flake8`), 
+  der kompliziert genug ist, damit die Studis
+  dabei wahrscheinlich einen Fehler machen -- um zu erleben, wie langwierig das Hindeichseln
+  so eines Build-Scripts ist. (Vielleicht geben wir vor, absichtlich anfangs einen Fehler zu machen?)
+- Die Aufgabe hat dann eine ganze Reihe von assumes-Beziehungen.
+- Ich glaube `GitHub-Build` oder `-CI` wäre ein besserer Name.
+
+
 [SECTION::goal::idea]
 
 Ich kann mit GitHub Actions einen Build-Prozess bereitstellen,
