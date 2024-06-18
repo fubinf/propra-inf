@@ -1,9 +1,21 @@
 title: Code Coverage - Code angemessen abdecken
-stage: alpha
+stage: draft
 timevalue: 2.0
 difficulty: 3
 assumes: m_unittest
 ---
+TODO_1_ruhe:
+
+- Im Prinzip eine schöne Kombination von technischer und methodischer Aufgabe!
+- Bitte stellen Sie das auf pytest-coverage um.
+  Das ist ein eigenes Paket, das ein pytest-Plugin liefert, mit dem coverage dann netter
+  in pytest integriert ist als bei unittest möglich.
+- Die Überlegungen zur "sinnvollen" Testabdeckung finde ich sehr wertvoll.  
+  Allerdings ist es schade, dass auf einem Trivialbeispiel zu machen.  
+  Sondern diese Aufgabe sollte eine Folgeaufgabe von derjenigen (noch zu erstellenden)
+  Aufgabe sein, die den Testfallentwurf und sinnvolle Überlegungen zum black-box-Testen
+  und White-Box-Testen an einem nicht ganz simplen (gern auch realen -- wir dürfen uns für diesen
+  wichtigen Stoff gern ausgiebig Zeit lassen) Beispiel lehrt.
 
 [SECTION::goal::idea]
 
