@@ -117,8 +117,11 @@ Den Titel finden Sie für gewöhnlich als Überschrift des Tabs im Browser wiede
 
 [INSTRUCTOR::Auf Korrektheit achten]
 Im Markdown-Dokument sind zwei Fragen zu Beobachtungen zu beantworten. 
-Hier ist das Ziel eigentlich hauptsächlich, dass man sich mit den Fragen befasst hat, um ein bisschen zu reflektieren, wie der Browser HTML interpretiert.
+Hier ist das Ziel hauptsächlich, dass man sich mit den Fragen befasst hat, um ein bisschen zu reflektieren, wie der Browser HTML interpretiert.
 
 Das HTML sollte möglichst korrekt sein. Browser sind z.T. sehr gnädig auch fehlerhaftes HTML zu akzeptieren. 
 Um sich nicht etwas falsches anzugewöhnen, ist es hier sicherlich sinnvoll relativ penibel mit Fehlern umzugehen.
+
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]

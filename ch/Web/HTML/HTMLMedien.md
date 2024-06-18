@@ -1,6 +1,6 @@
 title: Multimedia in HTML
 stage: alpha
-timevalue: 0.5
+timevalue: 0.75
 difficulty: 2
 requires: HTMLErsteSchritte
 ---
@@ -55,3 +55,9 @@ Möchten Sie auf einen Service wie Youtube verzichten, so müssen Sie das [`<vid
 [INCLUDE::../../_include/Submission-Quellcode.md]
 
 [ENDSECTION]
+
+[INSTRUCTOR::Musterlösung]
+
+[INCLUDE::ALT:]
+
+[ENDINSTRUCTOR]
