@@ -49,11 +49,8 @@ We will modify these rules over time when others appear more useful.
 
 ### Testen
 
-- ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP->RR)
 - ch/Testen/Unittests/m_pytest_benchmark.md (RR->DM->LP)
 - ch/Testen/Unittests/m_unittest_mocking.md (RR->DM->HA->LP)
-- ch/Testen/Unittests/m_unittest_github.md (RR->LP)
-- ch/Testen/Unittests/m_testcoverage.md (RR->LP)
 
 
 ### Werkzeuge
@@ -144,6 +141,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/API/CRUDApi.md (RR->CH->LP->RR)
 - ch/Testen/API/RestApi.md (RR->CH->LP->RR)
 
+- ch/Testen/Betriebsumgebung/GitHubDeployment (RR->LP->RR)
+
 - ch/Testen/Testframeworks/index.md (RR->CH->LP->RR)
 - ch/Testen/Testframeworks/Robot.md (RR->CH->LP->RR)
 
@@ -156,20 +155,23 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Testen/SUT/LokalesDeployment.md (RR->CH->LP->RR)
 
-- ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
-- ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
-- ch/Testen/Unittests/unittest102.md (RR->DM->HA->RR)
-- ch/Testen/Unittests/tdd_pp.md (RR->LP->RR)
 - ch/Testen/Unittests/freezegun.md (RR->DM->HA->LP->RR->LP->RR)
-- ch/Testen/Unittests/tdd.md (RR->DM->LP->RR)
+- ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP->RR)
+- ch/Testen/Unittests/m_testcoverage.md (RR->LP->RR)
+- ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
+- ch/Testen/Unittests/m_unittest_github.md (RR->LP->RR)
+- ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
 - ch/Testen/Unittests/pytest103.md (Pietrak und RR->DM->LP->RR)
 - ch/Testen/Unittests/pytest201.md (RR->DM->LP->RR)
+- ch/Testen/Unittests/pytest202.md (RR->Müller->LP->RR)
+- ch/Testen/Unittests/tdd.md (RR->DM->LP->RR)
+- ch/Testen/Unittests/tdd_pp.md (RR->LP->RR)
+- ch/Testen/Unittests/unittest102.md (RR->DM->HA->RR)
 - ch/Testen/Unittests/unittest201.md (RR->DM->HA->LP->RR):
   Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
   kann verzichtet werden. Bitte überprüfen.
   Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Unittests/unittest203.md (RR->Müller->LP->RR)
-- ch/Testen/Unittests/pytest202.md (RR->Müller->LP->RR)
 
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (RR->LP->RR)
 
