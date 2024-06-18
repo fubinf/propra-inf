@@ -5,16 +5,28 @@ difficulty: 2
 ---
 
 <!--
-TODO: Alrwasheda 
+TODO_1_Alrwasheda 
 
-Dealing with Generators:
-- when to force a Generator to create the whole list and why if we already have List-Comp?
-- next() and other generator methods throw, send, close
-- attributes? gi_frame, -code, -running, -yieldfrom
-- yield keyword
-- resources for all of the upper points
+Main ideas to be added:
+- Generator functions
+- Generator expressions
+- Generator functions vs Generator expressions: when what to use and why
+- Generator object: methods and attributes
+- Exceptions: StopIteration, GeneratorExit
+- Generators: Pros and Cons, reason for each point 
+- Where to find Generators in Python (Details about Generator usage will be mentioned in the respective tasks)
+- Generator vs Iterator: Generator as a special type of Iterator
+- Where to find Ienerators in Python (Details about Iterator usage will be mentioned in the respective tasks)
 
-separate both concepts each in its own task?
+Possible structure:
+Separate tasks for:
+- Comprehensions
+- Generators
+- Iterators
+
+Resources:
+- Finding detailed, trustworthy resources may prove challenging.
+- I prefer providing my own explanation to ensure high quality content.
 -->
 
 
