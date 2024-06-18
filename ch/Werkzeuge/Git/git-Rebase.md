@@ -12,10 +12,6 @@ TODO_1_hüster:
 - Die Arbeitsschritte beginnen mit einer rein mechanischen Abfolge von Schritten.
   Wir brauchen aber ein _vom Arbeitszweck_ her verständliches Szenario ("A arbeitet an Auftrag X,
   B zugleich an Y" usw.), damit die Studis verstehen, wozu das alles dient.
-- `git rebase --interactive` ist konzeptuell etwas völlig anderes als `git rebase`
-  und stellt eine der größeren Usability-Katastrophen von git dar.
-  Es empfiehlt sich, das sehr separat zu behandeln (eigene Aufgabe), erst dann kann man auch ein
-  vernünftiges goal formulieren.
 - Außerdem brauchen wir semantisch mehr Schärfe.  
   Insbesondere müssen die Studis lernen, die zwei Sichten auf Commits auseinanderzuhalten:
   Commit als Schnappschuss (bezeichnet durch einen Hash) und Commit als Änderungsoperation.
@@ -98,13 +94,9 @@ langen Kommentars im neu geöffneten Editor.
 [ENDNOTICE]
 
 Damit das nicht passiert nutzen wir nun also `git rebase`. Wie genau, steht auch in der 
-ursprünglich verlinkten Seite. Es bietet sich auch an, das ganze mal im interaktiven Modus 
-auszuprobieren, dann sieht man nämlich welchen rebase-Modus git verwendet, inklusive kurzer 
-Erklärungen. Besonders praktisch, wenn der Branch den man rebasen möchte, mehrere Commits enthält,
-was recht oft, wenn nicht sogar fast immer, passiert.
+ursprünglich verlinkten Seite.
 
 - [EC] Geben Sie das Kommando an um Branch **rebase-b** auf **main** zu rebasen
-- [EC] Geben Sie das Kommando an wie man das Ganze im interaktiven Modus machen kann
 
 [NOTICE]
 In der Aufgabe zu Branches haben wir uns schon mal die Graphenansicht für `git log` angeschaut. 
