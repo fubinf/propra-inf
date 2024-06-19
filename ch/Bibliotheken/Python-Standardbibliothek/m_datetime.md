@@ -1,4 +1,4 @@
-title: datetime - Datum, Uhrzeit und Zeitdifferenzen
+title: "datetime: Datum, Uhrzeit und Zeitdifferenzen"
 stage: beta
 timevalue: 1.5
 difficulty: 2
@@ -22,68 +22,76 @@ was man über die Standardbibliothek wissen muss.
 
 [SECTION::instructions::detailed]
 
-- Legen Sie die Datei `m_datetime.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. Fügen Sie ihre Python
-  Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile getrennt.
+- [ER] Legen Sie die Datei `m_datetime.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. 
+  Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile getrennt.
 
 ### `import datetime as dt`
 
-- Der Modulname `datetime` ist länger als die meisten in der Standardbibliothek.
-  Außerdem gibt es darin eine Klasse, die ebenfalls `datetime` heißt: verwirrend.
-- Deshalb importieren wir per Konvention das Modul stets so:  
-  `import datetime as dt`.
-  Die `datetime`-Klasse ist anschließend also als `dt.datetime` anzusprechen.
-- Das Konstrukt `from datetime import *` ist (auch generell) nicht zu empfehlen,
-  weil man dann leicht etwas importiert, das einen anderen Import überdeckt.
-  Der Code wird auch schwerer lesbar.
+Der Modulname `datetime` ist länger als die meisten in der Standardbibliothek. Außerdem gibt es 
+darin eine Klasse, die ebenfalls `datetime` heißt: verwirrend. Das Konstrukt `from datetime 
+import *` ist (auch generell) nicht zu empfehlen, weil man dann leicht etwas importiert, das 
+einen anderen Import überdeckt. Der Code wird dadurch schwerer lesbar.
+
+- [ER] Importieren Sie deshalb per Konvention das Modul so:  
+  `import datetime as dt`  
+  Die `datetime`-Klasse ist anschließend mit `dt.datetime` anzusprechen.
 
 ### Zeit-Objekte anlegen und ausgeben
 
-- Finden Sie in der [Dokumentation](https://docs.python.org/3/library/datetime.html), wie man die aktuelle lokale Zeit
-  abfragt und geben diese mit `print("aktuelle Zeit:", ...)` aus.  
+- [ER] Finden Sie in der [Dokumentation von datetime](https://docs.python.org/3/library/datetime.html),
+  wie man die aktuelle lokale Zeit abfragt und geben diese mit `print("aktuelle Zeit:", ...)` aus.  
   Falls Sie angesichts des Umfangs der Doku dabei verzweifeln:
-  So etwas geht mit einer Web-Suche oft schneller. Allerdings muss man sich dann vor irreführenden oder veralteten
-  Antworten in Acht nehmen und sollte die Information in der aktuellen Dokumentation nachprüfen.
-- Legen Sie nun ein `datetime`-Objekt an, welches den Zeitpunkt `01.12.2024, 13:09 Uhr` repräsentiert.
-- Finden Sie eine Funktion, mit der Sie das oben angelegte `datetime`-Objekt als String im folgenden Format ausgeben
-  können:  
+  So etwas geht mit einer Web-Suche oft schneller. Allerdings muss man sich dann vor irreführenden 
+  oder veralteten Antworten in Acht nehmen und sollte die Information in der aktuellen 
+  Dokumentation nachprüfen.
+- [ER] Legen Sie nun ein `datetime`-Objekt an, welches den Zeitpunkt `01.12.2024, 13:09 Uhr` 
+  repräsentiert.
+- [ER] Finden Sie eine Funktion, mit der Sie das oben angelegte `datetime`-Objekt als String im 
+  folgenden Format ausgeben können:  
   `Sonntag, der 01. Dezember 2024, 13:09 Uhr`  
-  Geben Sie das Ergebnis der Funktion mit `print("formatierte Zeit:", ...)` aus.  
-  Falls das nur fast klappt und Sie Monat und Wochentag in einer anderen Sprache ausgegeben bekommen, 
-  ist bei Ihnen eine andere "locale" (Gebietsschema) eingestellt. 
-  Ihre Ausgabe ist in dem Fall OK wie sie ist. 
-  Bei Bedarf können Sie im Modul [`locale`](https://docs.python.org/3/library/locale.html) nachlesen, was es damit auf sich hat.
+  Geben Sie das Ergebnis der Funktion mit `print("formatierte Zeit:", ...)` aus.
+
+[FOLDOUT::Ich bekomme Monat und Wochentag in einer anderen Sprache angezeigt]
+Bei Ihnen ist vermutlich eine andere "locale" (Gebietsschema) eingestellt. 
+Ihre Ausgabe ist in dem Fall OK wie sie ist und Sie müssen Sie nicht entsprechend anpassen.  
+Bei Bedarf können Sie im Modul [`locale`](https://docs.python.org/3/library/locale.html) 
+nachlesen, was es damit auf sich hat.
+[ENDFOLDOUT]
 
 ### Zeiten einlesen
 
-- Finden Sie heraus, wie der umgekehrte Weg funktioniert: Strings in `datetime`-Objekte wandeln.
-- Wandeln Sie den folgenden String: `2024-12-15##13:09:44` in ein `datetime`- Objekt um und geben Sie das Ergebnis mit
-  `print("geparste Zeit:", ...)` aus.
+Finden Sie nun heraus, wie der umgekehrte Weg funktioniert: Strings in `datetime`-Objekte wandeln.
+
+- [ER] Wandeln Sie den folgenden String: `2024-12-15##13:09:44` in ein `datetime`- Objekt um und 
+  geben Sie das Ergebnis mit `print("geparste Zeit:", ...)` aus.
 
 ### Zeitzonen
 
-- Lesen Sie in der [Dokumentation](https://docs.python.org/3/library/datetime.html) die Konzepte "naive" (naiv) und
-  "aware" (gewahr) nach. Ist Ihr letztes erzeugtes `datetime`-Objekt naiv oder gewahr?
-- Sorgen Sie dafür, dass es in der hiesigen Zeitzone (Europe/Berlin) gewahr wird. Geben Sie das Ergebnis mit
-  `print("Berliner Zeit:", ...)` aus.  
+- [EQ] Lesen Sie in der [Dokumentation](https://docs.python.org/3/library/datetime.html) die 
+  Konzepte für Zeitzonen "naive" (naiv) und "aware" (gewahr) nach. Ist Ihr letztes erzeugtes 
+  `datetime`-Objekt naiv oder gewahr? Woran können Sie das erkennen?
+- [ER] Sorgen Sie dafür, dass es in der hiesigen Zeitzone (Europe/Berlin) gewahr wird. Geben Sie 
+  das Ergebnis mit `print("Berliner Zeit:", ...)` aus.  
   Für diese Aufgabe kann das Modul [`zoneinfo`](https://docs.python.org/3/library/zoneinfo.html#module-zoneinfo)
-  nützlich sein, welches eine konkrete Implementierung der Klasse `datetime.tzinfo` bietet. Andere Module von
-  Drittanbietern sollen in dieser Aufgabe *nicht* verwendet werden.
-- Erzeugen Sie ein zweites Objekt zum textuell selben Zeitpunkt wie das vorherige, aber in der Zeitzone
-  "America/Caracas".
-- Bestimmen Sie die Differenz zur UTC (koordinierte Weltzeit) als `timedelta`-Objekt. Geben Sie dies mit
-  `print("UTC-Abstand:", ...)` aus.
+  nützlich sein, welches eine konkrete Implementierung der Klasse `datetime.tzinfo` bietet. 
+  Andere Module von Drittanbietern sollen in dieser Aufgabe **nicht** verwendet werden.
+- [ER] Erzeugen Sie ein zweites Objekt zum textuell selben Zeitpunkt wie das vorherige, aber in der 
+  Zeitzone "America/Caracas".
+- [ER] Bestimmen Sie den Abstand zur UTC (koordinierte Weltzeit) als `timedelta`-Objekt. Geben 
+  Sie dies mit `print("UTC-Abstand:", ...)` aus.
 
 ### Mit Zeiten rechnen
 
-- Ziehen Sie diese Differenz von der Caracas-Zeit ab. 
+- [ER] Ziehen Sie diesen Abstand von der Caracas-Zeit ab und ändern Sie die Zeitzone nach UTC. 
   Geben Sie das Ergebnis mit `print("Caracas-nach-UTC:", ...)` aus.
-- Addieren Sie auf das Ergebnis 1024 Tage und 512 Minuten, Ergebnis soll erneut ein `datetime`-Objekt sein.
-  Geben Sie dies mit `print("+1024d+512m:", ...)` aus.
+- [ER] Addieren Sie auf das Ergebnis 1024 Tage und 512 Minuten. Das Ergebnis soll erneut ein 
+  `datetime`-Objekt sein. Geben Sie dies mit `print("+1024d+512m:", ...)` aus.
 
 ### Praxisbeispiel
 
-- Sie wollen aus einem Log-File die durchschnittliche Ausführzeit mehrerer Tasks bestimmen. Das Auslesen aus der Datei
-  haben Sie bereits implementiert und die Daten als Tupel-Liste wie folgt vorliegen:
+Sie wollen aus einem Log-File die durchschnittliche Ausführzeit mehrerer Tasks bestimmen. Das 
+Auslesen aus der Datei haben Sie bereits implementiert und die Daten als Tupel-Liste wie folgt 
+vorliegen:
 
 ```python
 logs = [
@@ -94,10 +102,11 @@ logs = [
 ]
 ```
 
-- Fügen Sie die folgende Funktion in ihre Datei ein und vervollständigen Sie sie, sodass sie die Ausführungszeit aller
-  übergebenen Tasks berechnet und anschließend daraus den Durchschnitt als `timedelta` bestimmt.
-- Rufen Sie die Funktion anschließend mit der oben stehenden Beispielliste als Eingabe auf
-  und geben Sie das Ergebnis mit `print` aus.
+- [ER] Fügen Sie die folgende Funktion in ihre Datei ein und vervollständigen Sie sie, sodass sie 
+  die Ausführungszeit aller übergebenen Tasks berechnet und anschließend daraus den Durchschnitt 
+  als `timedelta` bestimmt.
+- [ER] Rufen Sie die Funktion anschließend mit der oben stehenden Beispielliste als Eingabe auf 
+  und geben Sie das Ergebnis mit `print(durchschnittliche Ausführungszeit:", ...)` aus.
 
 ```python
 def time_average(logs: list[tuple[str,int,str]]) -> dt.timedelta:
@@ -126,13 +135,18 @@ def time_average(logs: list[tuple[str,int,str]]) -> dt.timedelta:
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 [INSTRUCTOR::Codedurchsicht]
 
+Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_datetime.py]
+
+[INCLUDE::ALT:]
+
 Den Code lesen und manuell ungefähr auf Richtigkeit prüfen.
 Das Kommandoprotokoll zur Unterstützung heranziehen.
 Klare [TERMREF2::Defekt::-e] und sehr ungünstige Konstruktionen zurückweisen,
-insbesondere solche, die zu wenig Gebrauch vom Können von `datetime` machen.
+insbesondere solche, die zu wenig Gebrauch von `datetime` machen.
 
 [ENDINSTRUCTOR]
