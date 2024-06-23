@@ -74,17 +74,22 @@ We will modify these rules over time when others appear more useful.
   ist jetzt schonmal beta, braucht aber bitte noch eine Musterlösung. 
 
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC)  
+
   dig muss erst installiert werden. Wir sollten uns nicht auf eine "so kannste das installieren"-Meldung
   a la Debian verlassen.  
+
   Den traceroute-Teil finde ich sehr anspruchsvoll. Wenn ich die Ähnlichkeiten und Unterschiede von
   `traceroute -T fu-berlin.de` und `traceroute fu-berlin.de` erklären sollte, würde ich ins
   Schleudern kommen. Oder warum im internen Netz manchmal bei fast jedem Hop ein Fehlschlag dabei ist.
   Und beim nächsten Mal wieder keiner. oderoderoder.
+
   Kriegen wir das besser eingehegt?  
+
   Beispielsweise hatte ich mich gefragt, ob eine Route zur Uni Luxemburg wohl über Frankreich
   oder Belgien führt, um dann erstaunt zu lernen, dass sie bevorzugt über Polen plus Tschechien führt
   und alternativ über Niederlande plus Belgien. Staun.  https://network.geant.org/gn4-3n/  
   Nötigenfalls Schwierigkeit "mittel" nehmen und/oder traceroute abspalten.
+
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC)  
   Siehe Notizen in der Datei. Schwierig!
 
