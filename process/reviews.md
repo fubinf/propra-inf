@@ -54,7 +54,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Werkzeuge
-
+ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
 
