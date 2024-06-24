@@ -5,21 +5,9 @@ difficulty: 2
 assumes: git-Funktionsweise
 requires: git-Zweitrepo
 ---
-TODO_1_hüster
-
-- Es fehlt eine kurze Definition von Branch als paralleler Versionshistorie.
-  Sie gehen davon aus, dass jede_r das schon weiß, was ganz klar nicht haltbar ist.
-  Es ist wichtig, dass Sie üben, solche Annahmen zu bemerken.
+#TODO_Hüster:
 - Es fehlen Glossareinträge/-verweise zu Branch/Zweig, Fix/[TERMREF::Defekt]fix/Defektkorrektur,
   Feature, Release/Freigabe/Patchrelease, evtl. Patch.
-- Background soll bei uns nur zur Motivation dienen, nicht zur Wissensvermittlung;
-  die gehört nach instructions.
-- Aktuell steht der gitbook-Verweis auf Branching Workflows vor dem auf Branches.
-  Das ist keine sinnvolle Didaktik, oder?
-- K1, K2, K3: Von der Sache her ist es OK, dass hier die Befehle nicht stehen, sondern die
-  Studis die selbst erarbeiten sollen. Allerdings sollte das als Nominalphrase formuliert sein,
-  nicht als Frage, damit man es nicht mit einem Fx verwechselt.
-- Für Schwierigkeit leicht sollte man den Leseauftrag in Häppchen zerlegen, entlang der Arbeitsschritte.
 
 [SECTION::goal::idea]
 
@@ -33,114 +21,126 @@ welche Probleme dabei entstehen können.
 Ein in der Praxis sehr wichtiger und nützlicher Aspekt von git sind die sogenannten Branches. 
 Wer sich gewundert hat, warum es "Worktree" heißt, wird hier vermutlich einen kleinen aha!-Moment 
 haben. Diese bieten uns nämlich verschiedene Möglichkeiten, um unser Projekt zu verwalten,  
-Code zu pflegen bzw. einzupflegen. Auch die verteilte Arbeit wird mit Branches etwas einfacher.
-
-Im Allgemeinen unterscheidet man zwischen kurz- und langlebigen Branches. Um zu verstehen, warum 
-Branches nützlich sind, ist es auch hilfreich sich verschiedene Anwendungsfälle von Branches 
-anzusehen.
-
-1. Feature-Branches. Hier arbeitet der Entwickler auf einer Kopie des Main-Branches 
-   und implementiert das geplante Feature. Ist das Feature fertig, wird der Code wieder in den 
-   Main-Branch eingepflegt.
-2. Fix-Branches. Hierbei handelt sich im Grunde auch um Feature-Branches nur, dass hier eben 
-   kein Feature, sondern ein Bugfix implementiert wird. Sowohl bei Feature- als auch bei 
-   Fix-Branches handelt es sich um kurzlebige/short-lived bzw. sogenannte "Topic" Branches.
-3. Release Branches. Wird eine bestimmte Version erreicht, so ist es oft hilfreich einen Branch 
-   für diese Version zu erstellen. Dadurch kann man in Zukunft auf diesen Branch zurückgreifen 
-   sollten Änderungen an dem Code dieser Version vornehmen um z.B. Patches oder evtl. auch neue 
-   Features zu implementieren. Diese Art von Branch fällt unter die Kategorie der 
-   langlebigen/long-lived Branches.
-
-Natürlich haben wir im ProPra nicht vor eigene Features oder Releases zu bauen, jedoch ist es 
-sinnvoll einmal auszuprobieren wie Branches in git funktionieren und wie man die Änderungen aus 
-einem Branch wieder in den Main-Branch bekommt.
-
-Weitere Informationen zu dem Thema "Branching Workflows" findet man [unter dem gleichnamigen 
-Thema im Git-Book](https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows).
+Code zu pflegen bzw. einzupflegen. Auch die verteilte Arbeit wird mit Branches deutlich einfacher.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+Zu aller erst sollten wir die Frage klären "Was sind eigentlich Branches?". Ohne tief in die 
+technischen Details zu gehen, lässt sich Sagen, dass Branches einfach nur parallel laufende 
+Versionshistorie sind. Sprich man kann an zwei vollkommen Verschiedenen Branches gleichzeitig 
+Arbeiten, diese Arbeit commiten und dann sogar ins Repo pushen, ohne dass man sich in die Quere 
+kommt. Zwischen Branches hin und her zu springen ist aufgrund der Snapshot-basierten Architektur 
+von git gar kein Problem und geht auch super schnell.
 
-Lesen Sie die [Git-Book Seite zu Git Branches](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell) 
-gründlich durch und bearbeiten Sie dann die folgenden Aufgaben. Nutzen Sie dafür ihr Zweitrepo 
-was sie in [PARTREF::git-Zweitrepo] erstellt haben.
+Wenn wir uns jetzt die technischen Details anschauen, wird es eigentlich sogar gar nicht so viel 
+komplizierter. Denn wenn ein Branch erzeugt wird, wird einfach nur eine Datei erzeugt, welche 
+den Branchnamen enthält und mit welchem Commit der Branch "beginnt". 
+Wird dieser Branch nun aktiviert, zeigt unser git Pointer/Zeiger auf diesen Commit und alle 
+neuen Commits werden nun darauf aufbauen.
+Wechseln wir auf einen anderen Branch, wird der Pointer entsprechend umgesetzt und der Zustand 
+des Repositories auf dessen Zustand umgesetzt.
 
-### Erstellen des Branches
+Das klingt jetzt natürlich alles doch etwas komplizierter als gedacht aber spätestens, wenn Sie 
+gleich den Abschnitt im git Book lesen und die entsprechenden Illustrationen sehen werden Sie 
+merken wie simpel genial diese ganze Vorgehensweise eigentlich implementiert wurde und vor allem 
+lernen Sie endlich was eigentlich dieses ominöse HEAD bedeutet, was man immer mal wieder beim 
+Arbeiten mit git zu Gesicht bekommt.
 
-Zuerst müssen wir den neuen Branch erstellen. Standardmäßig befinden wir uns auf dem Main oder 
-Master-Branch, dieser ist jedoch in vielen öffentlichen bzw. größeren Projekten gesperrt bzw. 
-geschützt. Geschützt deshalb, weil man oft davon ausgeht, dass dieser Branch problemlos 
-funktionieren sollte. Zwar könnten wir lokal Änderungen an diesem Branch vornehmen, allerdings 
-würden wir spätestens beim Pushen auf den git-Server Probleme bekommen. Ein anderer Grund für 
-eigene Branches kann auch schlichtweg sein, dass man über längere Zeit an einem eigenen Feature 
-arbeiten und sich nicht mit dem ständigen updaten herumschlagen möchte. Oder aber man möchte 
-eine bestimmte Version festhalten.
-In jedem Fall bietet uns git jedoch einfache Mittel, um unsere eigenen Branches zu erstellen und 
-zwischen diesen hin und her zu wechseln.
-Fangen wir nun also damit an. In fast allen Teilen dieser Aufgabe werden wir `git branch` bzw. 
-`git checkout` verwenden. Es bietet sich also an von beiden Befehlen mal die Dokumentation bzw. 
-man-page aufzurufen. 
+Lesen wir jetzt also [den Abschnitt über Branches im git-Book](https://git-scm.
+com/book/en/v2/Git-Branching-Branches-in-a-Nutshell). 
+Schauen Sie sich vor allem die Grafiken genau an, die Zeigen nämlich wunderbar wie git Pointer, 
+Branch und Commit zueinander stehen.
 
-Erstellen Sie nun einen neuen Branch basierend auf dem Main-Branch ihres Test-Repositories und 
-wechseln Sie auf diesen. Nennen Sie ihren Branch "propra-git-branches". Grundsätzlich ist es 
-durchaus zu empfehlen Branches bezeichnende Namen zu geben, unter denen man sich auch einfach 
-etwas vorstellen kann. Das hilft vor allem Ihnen selbst. 
+Das ist ganz schön viel Stoff daher werden Sie sicherlich noch das ein oder andere Mal im Verlauf 
+dieser Aufgabe nachschlagen müssen.
 
-- [EC] Welche Befehle haben Sie verwendet, um den neuen Branch zu erstellen?
+Wenn Sie die Seite durchgelesen haben, öffnen Sie ein Terminal mit ihrem Test-Repository was Sie 
+in der entsprechenden Aufgabe erstellt haben.
 
-### Bearbeiten 
+### Einen neuen Branch erstellen
 
-In unserem neuen Branch können wir ganz wie gewohnt arbeiten. Neue Dateien erstellen oder 
-bestehende modifizieren. Auch commits können wir erstellen und bearbeiten wie wir lustig sind. 
-Es ist nicht anzuraten die Historie *vor* dem Startpunkt des erstellten Branches zu modifizieren, 
-ist es zwar grundsätzlich sowieso nicht, aber hier noch viel weniger da das Einpflegen in andere 
-Branches dadurch nur noch viel, viel komplizierter wird.
+Stellen wir uns jetzt also folgende Situation vor: 
+Wir haben unser Arbeitsrepository. Das haben Sie gerade frisch geklont und jetzt wollen Sie ein 
+neues Feature hinzufügen. Im ersten Moment denkt man natürlich "Da fang' ich einfach an 
+draufloszuschreiben, erstell dann meinen Commit und push den zurück auf den Main-Branch". 
+Blöd nur, wenn jetzt eine der folgenden Situationen eintritt:
 
-Nun da wir das geklärt haben, können wir eine neue Datei erstellen, nennen wir sie `branches.md` 
-und erstellen wir einen neuen Commit der diese beinhaltet.
+1. Der Main-Branch ist gesperrt! 
+2. Einer ihre_r Kolleg_innen hat gleichzeitig an den gleichen Dateien gearbeitet und 
+   zwischenzeitlich Änderungen vorgenommen die mit ihren Kollidieren könnten.
 
-- [EC] Welche Befehle haben Sie hier verwendet?
+Ersteres ist vermutlich eher nicht der Fall, wenn Sie alleine Arbeiten, gehört aber inzwischen 
+häufig zum guten Ton beim Arbeiten mit git. Das ist ganz einfach so, weil häufig die Faustregel 
+gilt: "Der Main-Branch muss funktionieren!" sprich, wenn man den Main branch klont und baut, 
+dann sollte das einfach alles gehen. Wenn jetzt jeder einfach so Änderungen dort hineinpushen 
+kann, dann kann das unweigerlich dazuführen, dass mal aus Versehen Fehler gepusht werden.
+Damit das nicht passiert, gibt es auf git Servern wie Github und GitLab Werkzeuge um den 
+Main-Branch zu sperren, sodass nur durch sogenannte Pull-Requests Änderungen von anderen 
+Branches in den Main-Branch gemergt (integriert) werden können, nachdem Sie getestet und
+reviewt (gesichtet) wurden.
 
-### Einpflegen
+Zweiteres wird in ihrem Test-Repo auch (noch!) nicht der Fall sein, da Sie sehr wahrscheinlich 
+bis hierher nur alleine an einem Repo gearbeitet haben. Ist aber ganz oft der Fall, wenn man mit 
+anderen Menschen zusammenarbeitet. 
+Um also die möglichen Kollisionen zu minimieren, arbeitet erstmal jeder für sich auf dem eigenen 
+Branch, mergt dann nach Fertigstellung der Arbeit seine Änderungen wieder in den Main-Branch 
+und löst zu diesem Zeitpunkt ggf. Auftretende Konflikte im eigenen Branch.
+Das erspart allen Beteiligten viel Zeit und Schmerz.
 
-Einer der häufigsten, und durchaus nicht einfachen, Arbeitswege ist von einem Branch Änderungen 
-wieder in den Main-Branch einzupflegen. Das wollen wir hier einmal üben.
+Der erste Schritt für beide Situationen ist aber natürlich jetzt erstmal einen neuen Branch zu 
+erstellen!
 
-Dafür gibt es im Grunde zwei Wege. Der eine verwendet den sogenannten "merge" Ansatz, diesen 
-werden wir hier verwenden. In einem extra Kapitel schauen wir uns jedoch noch `git rebase` an. 
-Das ist etwas komplizierter, erzielt aber meistens viel schönere Ergebnisse. Warum das so ist 
-erfahren wir auch dort, es lohnt sich also auf jeden Fall auch diesen Teil anzuschauen!
+Sie wollen ihrer modernen Applikation jetzt ein neues Feature hinzufügen, sagen wir... 
+einen KI-Assistenten. Erstellen Sie also jetzt einen neuen Branch und benennen diesen 
+entsprechend (Wie wär's mit "AI-Assistant"?). Anschließend wechseln Sie auf diesen Branch.
 
-Nutzen wir jetzt also `git merge` um unsere Änderungen in den Main-Branch einzupflegen.
+[EC] Welche(n) Befehl(e) nutzen wir um einen neuen Branch zu erstellen und auf diesen zu Wechseln?
 
-- [EC] Nennen Sie alle Befehle, in der richtigen Reihenfolge, um ihre Änderungen bzw. commits 
-  vom Branch "propra-git-branches" in den Main bzw. Master-Branch einzupflegen.
+### Arbeiten auf einem Branch 
 
-- [EQ] Worauf sollte man nach dem erneuten wechsel auf den Main-Branch und *vor* dem 
-Einpflegen des anderen Branches besonders achten?
+In unserem neuen Branch können wir jetzt ganz wie gewohnt arbeiten. Neue Dateien erstellen oder 
+bestehende modifizieren. Auch Commits können wir erstellen und bearbeiten wie wir lustig sind. 
+Denn unser neuer Branch unterscheidet sich von der Funktionsweise ja absolut gar nicht vom 
+Main-Branch. Der einzige Unterschied ist, dass der Main-Branch der erste von git erstellte 
+Branch ist und deswegen immer da ist. Alle Branches verhalten sich aber grundsätzlich gleich.
 
-[HINT::Was könnte Probleme beim Mergen in den Main-Branch verursachen?]
-Es kann sein, dass ein anderer Projektteilnehmer auf den git-Server in der Zwischenzeit neue 
-Commits in den Main-Branch gepusht hat. Wie kann man hier Konflikte bzw. Probleme beim Pushen 
-vermeiden?
-[ENDHINT]
+Ärger können Sie sich sparen, wenn Sie erst den Branch erstellen und dann ihre Änderungen 
+vornehmen und commiten. Zur not kann man Commits auch zwischen Branches hin und her schieben, 
+aber das ist eher nervig und lässt sich einfach vermeiden.
 
-### Git-Log
+Erstellen Sie jetzt eine neue Datei in ihrem aktiven AI-Assistant-Branch. Geben Sie dieser einen 
+sinnvollen namen z.B. `assistant.py` und ein paar Zeilen inhalt. Dann commiten Sie diese Datei auf
+ihren neuen Branch und schauen sich mal den `git log` mit Decorations an.
 
-Ein sehr nützliches Tool zum Prüfen und Visualisieren der verschiedenen Branches ist `git log`. 
-Grundsätzlich liefert dieser Befehl beim Ausführen einfach nur eine Liste *aller* Commits des 
-aktuell ausgecheckten Branches und deren Hashes und Commit-Nachrichten. Allerdings kann man auch 
-entsprechende Optionen anhängen, um sich einen schicken Graphen ausgeben zu lassen.
+[EC] Welche Kommandos haben Sie für diesen Teilabschnitt verwendet?
+[EC] Wie sieht der Befehl und die Ausgabe von `git log` mit Decorations aus?
 
-- [EC] Erstellen Sie eine Ausgabe des git-log Befehls aus der ersichtlich wird, dass der Branch 
-  erstellt, bearbeitet und wieder eingepflegt wurde. Sorgen Sie außerdem dafür, dass die Ausgabe 
-  auch zeigt *von wem* die Änderungen vorgenommen wurden.  
+### Einpflegen bzw. kombinieren von Änderungen zwischen Branches
 
-[HINT::Ausgabe des git-log Befehls]
-Falls Sie Probleme haben die Ausgabe des Befehls anzupassen, schauen Sie doch mal in die 
-man-page für `git-log`.
-[ENDHINT]
+Jetzt geht's ans Eingemachte. Und zwar wollen wir jetzt unsere Änderungen von unserem 
+AI-Assistant-Branch in den Main-Branch mergen.
+
+Grundsätzlich gibt es hierfür zwei Vorgehensweisen. Das mergen mit `git merge` und das `git 
+rebase`. Letzeres ist aber richtig kompliziert und kann einiges kaputt machen, deswegen 
+behandeln wir das in einer anderen Aufgabe, damit wir hier nicht komplett den Rahmen sprengen.
+
+Also wollen wir jetzt die folgenden Schritte erledigen:
+
+1. Wir wechseln auf den Main-Branch und aktualisieren diesen mit `git pull`. (Sehr 
+   wahrscheinlich wird es keine neuen Änderungen geben, aber hier geht es um sogenannte "best 
+   practice")
+2. Wir mergen den AI-Assistant-Branch in den Main-Branch.
+
+[EC] Welche Befehle haben Sie für diese beiden Schritte verwendet? Gab es evtl. Probleme dabei? 
+Wenn ja, wie haben Sie diese gelöst.
+
+[WARNING]
+Man sollte immer(!) vor dem mergen in den Main-Branch diesen nochmal mit `git pull` aktualisieren.
+So spart man sich, mal wieder, viel Zeit und Ärger. Es ist nämlich nicht unwahrscheinlich, dass, 
+wenn man mit anderen Menschen zusammenarbeitet, jemand schon wieder neue Änderungen dort 
+vorgenommen hat.
+[ENDWARNING]
 
 ### Merge-Konflikte
 
@@ -148,23 +148,20 @@ Beim Arbeiten mit mehreren Branches und der Merge-Methode kann es immer wieder d
 man sogenannte Merge-Konflikte (merge-conflicts) verursacht. Diese Zu verstehen ist zu Beginn 
 nicht trivial. Im Grunde geht es dabei aber nur darum, dass es zwei Änderungen an der gleichen 
 Datei gibt welche miteinander Konkurrieren, da sie wahrscheinlich den gleichen Bereich einer 
-Datei verändern wollen.
+Datei verändern sollen.
 
-Unser aktueller Stand sollte folgender sein: 
+In unserem Main-Branch des Testrepos befindet sich nun unsere `assitant.py`.
 
-- Wir haben den Main oder Master-branch ausgecheckt
-- Der letzte commit hat die Datei "branches.md" hinzugefügt
+Diese nutzen wir jetzt, um gezielt einen merge-Konflikt zu erzeugen!
 
-Jetzt wollen wir unseren Zustand kaputt machen!
-
-- Öffnen Sie die `branches.md` Datei, schreiben Sie einen Text in die erste Zeile und 
+- Öffnen Sie die `assistant.py` Datei, schreiben Sie einen Text in die erste Zeile und 
   speichern die Datei. 
-- Sichern Sie ihre Änderungen in einem neuen Commit.
-- Wechseln Sie dann auf den `propra-git-branches` Branch und öffnen Sie auch dort die `branches.
-  md` Datei und schreiben sie einen anderen(!) Text in die erste Zeile. Auch diese speichern Sie 
-  wieder.
+- Fügen Sie diese Änderungen einem neuen Commit hinzu.
+- Wechseln Sie jetzt zurück in ihren AI-Assistant-Branch und öffnen Sie dort wieder die 
+  `assistant.py` Datei und schreiben sie einen anderen(!) Text in die erste Zeile und speichern 
+  Sie diese Änderungen.
 - Auch hier brauchen wir wieder einen neuen Commit der unsere Änderungen beinhaltet.
-- Wechseln Sie jetzt wieder auf den Main bzw. Master-Branch.
+- Wechseln Sie jetzt wieder auf den Main-Branch.
 
 Jetzt haben wir alles für unser perfektes Desaster vorbereitet. Wenn wir uns vergewissern wollen, 
 können wir noch einmal `git log` mit den Argumenten `--all --decorate --graph --name-only 
@@ -183,9 +180,9 @@ Das könnte dann nämlich z.B. so aussehen:
 | branches.md
 ```
 
-Als Nächstes wollen wir doch mal unseren Merge-Konflikt auslösen!
+Jetzt lösen wir den Merge-Konflikt aus!
 
-- Mergen Sie den Branch **propra-git-branches** in den Master bzw. Main-Branch.
+- Mergen Sie nochmal den AI-Assistant-Branch in den Main-Branch.
 
 Wenn die vorherigen Schritte richtig befolgt wurden sollten wir jetzt mit der folgenden 
 Nachricht begrüßt werden:
@@ -196,29 +193,24 @@ CONFLICT (content): Merge conflict in branches.md
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-Also öffnen wir unsere branches.md um uns den Schaden mal genauer anzuschauen:
+Also öffnen wir unsere `assistant.py` um uns den Schaden mal genauer anzuschauen:
 
 ```
 <<<<<<< HEAD
 This is fine!
 =======
 This is not fine!
->>>>>>> propra-git-branches
+>>>>>>> ai-assistant
 ```
 
 Was wir hier jetzt sehen ist wie git uns ermöglicht Merge konflikte aufzulösen.
 Über dem `=======` stehen die Änderungen in unserem Main-Branch, darunter die Änderungen aus dem 
-`propra-git-branches`-Branch.
+AI-Assistant-Branch.
 Der simpelste Weg ist jetzt einfach alles zu löschen, was wir nicht haben wollen, die Datei zu 
 speichern und dann wieder mit `git add` hinzuzufügen. 
 Der Merge-Konflikt wäre damit behoben. 
 Allerdings muss trotzdem noch einmal `git commit` ausgeführt werden, was einem auch von `git 
 status` mitgeteilt wird, wenn man es nach `git add` einmal aufruft.
-
-Alternativ gibt es noch das sogenannte `git mergetool`, das hier zu erklären würde vermutlich 
-den Rahmen sprengen und ist eher Fortgeschrittenen (vim) Nutzer_innen zu empfehlen.
-
-Wer sich trotzdem mal daran versuchen möchte, findet hier [die nötige Dokumentation.](https://git-scm.com/docs/vimdiff/en)
 
 Und jetzt schauen wir uns noch ein letztes Mal den `git log` Graphen an und können jetzt sehr 
 schön sehen an welcher Stelle wir die beiden Branches zusammengeführt haben.
@@ -235,18 +227,20 @@ schön sehen an welcher Stelle wir die beiden Branches zusammengeführt haben.
 | branches.md
 ```
 
+[NOTICE]
+Es gibt zum Mergen von branches bzw. zum Beheben von Konflikten auch das sogenannte `git 
+mergetool`, das zu erklären würde hier den Rahmen sprengen und ist eher Fortgeschrittenen (vim) 
+Nutzer_innen zu empfehlen.
+
+Wer sich trotzdem mal daran versuchen möchte oder einfach nur interessiert ist, findet hier [die 
+nötige Dokumentation.](https://git-scm.com/docs/vimdiff/en)
+[ENDNOTICE]
+
 [ENDSECTION]
 
 [SECTION::submission::trace]
 
-Abzugeben ist ein Kommandozeilenlog über das Erstellen, Bearbeiten und Mergen eines git-Branches 
-in ihrem Zweitrepo. Abschließend erstellen Sie eine Ansicht des git-logs aus der die Änderungen und 
-wer diese vorgenommen hat ersichtlich werden. Um diese Situation bewältigen zu können müssen wir 
-Sie erstmal verstehen. Glücklicherweise hat auch dazu das git book wieder einen Abschnitt parat. 
-Lesen Sie den Teil [Basic Merge Conflicts im Kapitel Basic Branching and Merging.](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
-Das mag erstmal sehr viel und komplex erscheinen aber wir Arbeiten uns Schritt für Schritt durch.
-
-
+[INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 
@@ -255,16 +249,10 @@ Merge-Konflikten verstanden wurde]
 
 Prüfen Sie die abgegeben Kommandozeilenlogs.
 
-Der neue Branch sollte mit [EREFC::1] `git branch` erstellt und mit `git checkout` 
-ausgecheckt werden. Danach wird mit [EREFC::2] `git add` und `git commit` der neue Commit 
-erstellt und schlussendlich mit [EREFC::3] `git merge` wieder in Main gemergt.
+[EREFC::1] `git branch` `git checkout`  
+[EREFC::2] `git log --oneline --decorate --graph --all`  
+[EREFC::3] `git add` `git commit`    
+[EREFC::4] `git merge`
 
-[EREFQ::1] Natürlich sollte man Main zuerst mit `git pull` auf den aktuellen Stand bringen bevor 
-die Änderungen eingepflegt werden, weil es sonst zu ganz unangenehmen Problemen kommen kann, wenn 
-in der Zwischenzeit Änderungen auf dem Server bzw. Main-Branch gegeben hat.
-
-[EREFC::4] Der git-log Befehl sollte ungefähr folgendermaßen aussehen:
-
-`git log --oneline --decorate --graph --all`
 
 [ENDINSTRUCTOR]
