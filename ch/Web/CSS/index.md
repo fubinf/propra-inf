@@ -8,5 +8,5 @@ CSS ermöglicht außerdem die Erstellung von Animationen und visuellen Effekten.
 
 CSS ist im Gegensatz zu HTML generell in einem viel stärkerem Wandel, bleibt aber abwärtskompatibel. Neue Techniken vereinfachen auch komplexe Aufgaben. So war es früher schwierig, ein Element mittig auf einer Webseite zu platzieren. Mit CSS ist dies heute jedoch mit einer Zeile möglich.
 
-Die primären Quellen sind hierbei [W3Schools](https://www.w3schools.com/css/default.asp)
+Die primären Quellen sind hierbei [SelfHTML](https://wiki.selfhtml.org/wiki/CSS)
 und das [Mozilla Developers Network (mdn)](https://developer.mozilla.org/en-US/).
