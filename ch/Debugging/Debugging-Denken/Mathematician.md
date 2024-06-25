@@ -33,6 +33,11 @@ anschaulich macht?
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 Gefragt ist keine Literaturbesprechung oder -zusammenfassung,
 sondern _Ihre_ persönliche Stellungnahme.
+
+Die Verbindung zwischen zu beweisendem Theorem und der Beweis (des Ursprungs) des Defekts ist 
+greifbar, wenn man sich der Grundlagen von Hypothesenbildung und Hypothesenprüfung bewusst wird.
+Auch wenn die Studierenden diese Metapher eher ablehnen, muss auf eine schlüssige Argumentation 
+geachtet werden, sonst zurückweisen!
 [ENDSECTION]
 
 [INSTRUCTOR::Was macht den Mathematiker aus?]
