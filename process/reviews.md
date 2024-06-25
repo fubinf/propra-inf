@@ -52,6 +52,12 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/m_pytest_benchmark.md (RR->DM->LP)
 - ch/Testen/Unittests/m_unittest_mocking.md (RR->DM->HA->LP)
 
+### Web
+
+- ch/Web/HTML/HTMLErsteSchritte.md (DM->LP->DM)
+- ch/Web/HTML/HTMLMedien.md (DM)
+- ch/Web/CSS/CSSEinfuehrung.md (DM)
+
 
 ### Werkzeuge
 ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric->LP->IC->LP)
@@ -112,7 +118,6 @@ ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric->LP->IC->LP)
 
 ## Reviews to do for Daniel Müllers
 
-- ch/Web/HTML/HTMLErsteSchritte.md (Müllers->LP->DM)
 
 
 ## Reviews to do for Dominik Pietrak
