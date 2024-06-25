@@ -412,6 +412,16 @@ Diese Markierungen ermöglichen nicht nur die angespochenen Verknüpfungen, sond
 [HREF::https://wiki.selfhtml.org/wiki/HTML/Tutorials/Entstehung_und_Entwicklung]
 [ENDTERM]
 
+[TERM::HTML-Attribut]
+Ein HTML-Attribut ist eine Eigenschaft eines [TERMREF2::HTML-Element::-s], die zusätzliche Informationen über dieses Element bereitstellt. Attribute werden innerhalb des Start-Tags eines HTML-Elements deklariert und bestehen aus einem Namen und einem Wert. Sie beeinflussen das Verhalten oder das Erscheinungsbild des Elements. Ein typisches Attribut besteht aus einem Namen, gefolgt von einem Gleichheitszeichen und einem Wert in Anführungszeichen.
+
+```html
+<a href="https://www.beispielseite.com" target="_blank">Besuche Beispielseite</a>
+```
+In diesem Beispiel gibt das `href`-Attribut die URL an, zu der der Link führt, und das `target`-Attribut bestimmt, dass der Link in einem neuen Tab oder Fenster geöffnet wird.
+[ENDTERM]
+
+
 [TERM::HTML-Tag|HTML-Element]
 Eine Markierung in einem [TERMREF::HTML]-Dokument, die angibt wo bestimmte Teile eines Dokuments beginnen und enden. Ein solches Tag besteht am Beginn eines Dokumentteiles aus einem Namen, der in spitze Klammern eingeschlossen ist. Für das Ende fügt man vor dem Namen noch einen Schrägstrich hinzu. 
 Eines dieser Tags heißt z.B. `h1` und markiert die Haupt-Überschrift einer Seite:
@@ -420,7 +430,7 @@ Eines dieser Tags heißt z.B. `h1` und markiert die Haupt-Überschrift einer Sei
 <h1>Erste Schritte in HTML</h1>
 ```
 
-Das Anfangs-Tag, den Inhalt dazwischen und das Ende-Tag bilden zusammen ein HTML-Element.
+Das Anfangs-Tag, der Inhalt dazwischen und das Ende-Tag bilden zusammen ein HTML-Element.
 [ENDTERM]
 
 [TERM::HTTP|Hypertext Transfer Protocol]

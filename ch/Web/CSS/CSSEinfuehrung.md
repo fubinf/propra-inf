@@ -59,7 +59,7 @@ für gewöhnlich mit der Endung `.css`. In dieser Datei befindet sich dann aussc
 Im HTML-Dokument wird innerhalb des `head`-Elements ein Element eingefügt, sodass der Browser weiß, wo nach der CSS-Datei zu suchen ist:
 
 ```html
-    <link rel="stylesheet" type="text/css" href="beispiel.css">
+  <link rel="stylesheet" type="text/css" href="beispiel.css">
 ```
 
 Vorteil hierbei ist, dass derselbe CSS-Code für mehrere HTML-Dokumente verwendet werden kann. Dies ist daher auch der Standard zum Einbinden von CSS.
@@ -75,10 +75,10 @@ Vorteil hierbei ist, dass derselbe CSS-Code für mehrere HTML-Dokumente verwende
 </head>
 ```
 
-3. **Innerhalb von HTML-Tags**: Über das `style`-Attribut kann CSS direkt am Element platziert werden, für das die Eigenschaften gelten sollen. Hierbei entfällt dann der Selektor sowie die geschweiften Klammern:
+3. **Innerhalb von HTML-Tags**: Über das `style`-[TERMREF2::HTML-Attribut::Attribut] kann CSS direkt im Element platziert werden, für das die Eigenschaften gelten sollen. Hierbei entfällt dann der Selektor sowie die geschweiften Klammern:
 
 ```html
-<p style="color: purple; text-decoration: underline;">Beispieltext</p>
+  <p style="color: purple; text-decoration: underline;">Beispieltext</p>
 ```
 
 ### Aufgaben
