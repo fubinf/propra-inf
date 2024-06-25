@@ -84,32 +84,6 @@ In alphabetischer Reihenfolge der Dateinamen.
 - ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)?
   Gehört es allgemein in sedrila eingebaut, selbst solche Graphen zu erzeugen?
 - Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
-- http-Server ergänzen, der bei `sedrila instructor --http` den ganzen Baum unter dem aktuellen
-  Verzeichnis zur Verfügung stellt (nur für localhost) mit folgenden Funktionen:
-    - Verzeichnis anzeigen, als lauter Links zum Navigieren, inkl. `..` (mit Sperre nach oben)
-    - *.md-Datei wird gerendert
-    - *.txt-Datei etc. wird verbatim angezeigt
-    - *.py etc. wird in Markdown eingepackt und dann gerendert.
-
-How to implement a complete build process that caches all previous results:
-
-- We modify the output directory instead of re-creating it completely.
-  `out.bak` no longer exists.
-- We need to keep cached the parts that go into each template and render a target file again
-  (only) if any of those parts has changed according to a single 'previous rendering time'.
-- These are: {homepage,chapter,taskgroup}-content and *-toc, glossary-content,
-  task-{linkslist-top,linkslist-bottom,content}.
-  They could all be stored in a dbm file.
-- Beyond the tocs, we need the list of include files for each part to re-render them
-  if an include changed (which will happen for altdir).
-- Due to our flat namespace, moving (without renaming) a task or taskgroup impacts the tocs only.
-  Renaming is best handled as delete+insert.
-- We must delete superfluous files in the output at the end.
-- sedrila could then run through the file tree (chapterdir, altdir, itreedir), 
-  collecting the files that are newer than the previous rendering time
-  and rebuild the files suggested by that list plus the known dependencies.
-- Should be rebuild zip files from scratch or replace modified files in them?
-  Will mostly be relevant for itree.zip only, the others are hardly problematic.
 
 
 ### 2.4 Anträge an den Rechnerbetrieb
