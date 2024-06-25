@@ -5,10 +5,6 @@ difficulty: 2
 assumes: git-Funktionsweise
 requires: git-Zweitrepo
 ---
-#TODO_Hüster:
-- Es fehlen Glossareinträge/-verweise zu Branch/Zweig, Fix/[TERMREF::Defekt]fix/Defektkorrektur,
-  Feature, Release/Freigabe/Patchrelease, evtl. Patch.
-- Redo Solutions
 
 [SECTION::goal::idea]
 
@@ -27,26 +23,26 @@ Code zu pflegen bzw. einzupflegen. Auch die verteilte Arbeit wird mit Branches d
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-Zu aller erst sollten wir die Frage klären "Was sind eigentlich Branches?". Ohne tief in die 
-technischen Details zu gehen, lässt sich Sagen, dass Branches einfach nur parallel laufende 
-Versionshistorie sind. Sprich man kann an zwei vollkommen Verschiedenen Branches gleichzeitig 
-Arbeiten, diese Arbeit commiten und dann sogar ins Repo pushen, ohne dass man sich in die Quere 
-kommt. Zwischen Branches hin und her zu springen ist aufgrund der Snapshot-basierten Architektur 
-von git gar kein Problem und geht auch super schnell.
+Zu aller erst sollten wir die Frage klären "Was sind eigentlich Branches?". Ganz vereinfacht lässt 
+sich Sagen, dass Branches einfach nur parallel laufende Versionshistorie sind. Sprich man kann 
+an zwei vollkommen Verschiedenen Branches gleichzeitig Arbeiten, diese Arbeit commiten und dann 
+sogar ins Repo pushen, ohne dass man sich in die Quere kommt. Zwischen Branches hin und her zu 
+springen ist aufgrund der Snapshot-basierten Architektur von git gar kein Problem und geht auch 
+super schnell.
 
 Wenn wir uns jetzt die technischen Details anschauen, wird es eigentlich sogar gar nicht so viel 
 komplizierter. Denn wenn ein Branch erzeugt wird, wird einfach nur eine Datei erzeugt, welche 
-den Branchnamen enthält und mit welchem Commit der Branch "beginnt". 
+den Branchnamen enthält und den Hash des Commits mit dem der Branch "beginnt". 
 Wird dieser Branch nun aktiviert, zeigt unser git Pointer/Zeiger auf diesen Commit und alle 
-neuen Commits werden nun darauf aufbauen.
+neuen Commits werden darauf aufbauen.
 Wechseln wir auf einen anderen Branch, wird der Pointer entsprechend umgesetzt und der Zustand 
 des Repositories auf dessen Zustand umgesetzt.
 
 Das klingt jetzt natürlich alles doch etwas komplizierter als gedacht aber spätestens, wenn Sie 
-gleich den Abschnitt im git Book lesen und die entsprechenden Illustrationen sehen werden Sie 
-merken wie simpel genial diese ganze Vorgehensweise eigentlich implementiert wurde und vor allem 
-lernen Sie endlich was eigentlich dieses ominöse HEAD bedeutet, was man immer mal wieder beim 
-Arbeiten mit git zu Gesicht bekommt.
+gleich den Abschnitt im git Book lesen und die entsprechenden Grafiken sehen werden Sie 
+merken wie simpel diese ganze Vorgehensweise eigentlich ist und vor allem lernen Sie endlich was 
+eigentlich dieses ominöse HEAD bedeutet, was man immer mal wieder beim Arbeiten mit git zu 
+Gesicht bekommt.
 
 Lesen wir jetzt also [den Abschnitt über Branches im git-Book](https://git-scm.
 com/book/en/v2/Git-Branching-Branches-in-a-Nutshell). 
@@ -56,15 +52,15 @@ Branch und Commit zueinander stehen.
 Das ist ganz schön viel Stoff daher werden Sie sicherlich noch das ein oder andere Mal im Verlauf 
 dieser Aufgabe nachschlagen müssen.
 
-Wenn Sie die Seite durchgelesen haben, öffnen Sie ein Terminal mit ihrem Test-Repository was Sie 
-in der entsprechenden Aufgabe erstellt haben.
+Wenn Sie die Seite durchgelesen haben, öffnen Sie ein Terminal und navigieren Sie in ihr 
+Test-Repository was Sie in der zugehörigen Aufgabe [PARTREF::git-Zweitrepo] erstellt haben.
 
 ### Einen neuen Branch erstellen
 
 Stellen wir uns jetzt also folgende Situation vor: 
 Wir haben unser Arbeitsrepository. Das haben Sie gerade frisch geklont und jetzt wollen Sie ein 
 neues Feature hinzufügen. Im ersten Moment denkt man natürlich "Da fang' ich einfach an 
-draufloszuschreiben, erstell dann meinen Commit und push den zurück auf den Main-Branch". 
+draufloszuschreiben, erstell dann meinen Commit und push den zurück auf den [TERMREF::Main-Branch]". 
 Blöd nur, wenn jetzt eine der folgenden Situationen eintritt:
 
 1. Der Main-Branch ist gesperrt! 
@@ -72,7 +68,7 @@ Blöd nur, wenn jetzt eine der folgenden Situationen eintritt:
    zwischenzeitlich Änderungen vorgenommen die mit ihren Kollidieren könnten.
 
 Ersteres ist vermutlich eher nicht der Fall, wenn Sie alleine Arbeiten, gehört aber inzwischen 
-häufig zum guten Ton beim Arbeiten mit git. Das ist ganz einfach so, weil häufig die Faustregel 
+häufig beim Arbeiten mit git zum guten Ton. Das ist ganz einfach so, weil häufig die Faustregel 
 gilt: "Der Main-Branch muss funktionieren!" sprich, wenn man den Main branch klont und baut, 
 dann sollte das einfach alles gehen. Wenn jetzt jeder einfach so Änderungen dort hineinpushen 
 kann, dann kann das unweigerlich dazuführen, dass mal aus Versehen Fehler gepusht werden.
@@ -97,6 +93,21 @@ einen KI-Assistenten. Erstellen Sie also jetzt einen neuen Branch und benennen d
 entsprechend (Wie wär's mit "AI-Assistant"?). Anschließend wechseln Sie auf diesen Branch.
 
 [EC] Welche(n) Befehl(e) nutzen wir um einen neuen Branch zu erstellen und auf diesen zu Wechseln?
+
+[NOTICE]
+Wir sprechen hier und auch in weiteren Aufgaben meistens vom [TERMREF::Main-Branch]. Ab und zu wird 
+allerdings auch mal der Master-Branch referenziert. Das kann durchaus verwirren, falls Sie den 
+Glossareintrag noch nicht gelesen haben. Deshalb hier nochmal eine kurze Zusammenfassung:
+`master` und `main` branch sind die Standardnamen für den Namen des ersten Branches, welcher beim 
+Initialisieren eines Git-Repos erstellt wird. Die meisten Server (GitHub/GitLab/GitTea) benutzen 
+`main`. Git selbst benutzt (noch) `master`, verweist allerdings selbst auch darauf, dass der 
+Name in Zukunft geändert werden kann.
+Funktional unterscheiden sich die beiden, wie alle anderen Branches auch, absolut nicht. Es ist 
+schlicht ein Bezeichner.
+Wer noch mehr darüber lernen will, wie diese Abweichung zustande kam, kann sich den Blogpost von 
+[GitLab](https://about.gitlab.com/blog/2021/03/10/new-git-default-branch-name/) durchlesen, in 
+welchem die Thematik ausführlich behandelt wird.
+[ENDNOTICE]
 
 ### Arbeiten auf einem Branch 
 
@@ -198,9 +209,9 @@ Also öffnen wir unsere `assistant.py` um uns den Schaden mal genauer anzuschaue
 
 ```
 <<<<<<< HEAD
-This is fine!
+This is old!
 =======
-This is not fine!
+This is new!
 >>>>>>> ai-assistant
 ```
 
@@ -270,7 +281,8 @@ brauchen, können wir diese nach dem erfolgreichen Merge auch löschen.
 [INSTRUCTOR::Befehle prüfen und schauen ob das mentale Modell vom Branching und die Behebung von 
 Merge-Konflikten verstanden wurde]
 
-Prüfen Sie die abgegeben Kommandozeilenlogs.
+Prüfen Sie die abgegeben Kommandozeilenlogs und lassen Sie sich ggf. Probleme bzw. Hindernisse 
+der Studierenden erklären und wie diese überwunden wurden.
 
 [EREFC::1] `git branch ai-assistant` `git checkout ai-assistant`/`git checkout -b 
 ai-assistant`/`git switch -c 

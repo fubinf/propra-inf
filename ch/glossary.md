@@ -113,6 +113,12 @@ und nur noch wenig Code selbst schreiben zu müssen.
 Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwicklung.
 [ENDTERM]
 
+[TERM::Branch|Zweig]
+Häufig eine parallel laufende Abzweigung des Hauptzweiges des git-Arbeitsverzeichnis.
+Unterscheidet sich technisch aber eigentlich nicht vom Hauptzweig.
+Die Abzweigung entsteht durch einen Verweis auf den aktuellsten Commit zum Zeitpunkt der Abzweigung.
+[ENDTERM]
+
 [TERM::Breakpoint|Haltepunkt]
 Ein Breakpoint bezeichnet beim Debugging von Computerprogrammen eine besonders markierte Stelle 
 im Programm. 
@@ -571,6 +577,14 @@ deren Folgezeilen dann evtl. kein solches Standardformat haben.
 
 
 ## M
+
+[TERM::Main-Branch|Master-Branch]
+Der Hauptzweig in einem git-Repository, welcher beim Initialisieren des Repos erstellt wird. 
+Dieser wird je nach Client und Server entweder `main` oder `master` heißen. In der 
+Debian-Installation von git wird weiterhin `master` verwendet, allerdings mit einem Verweis 
+darauf, dass sich dieser in Zukunft ändern wird. Wann das sein wird, ist unklar.
+Mit der Option `init.defaultBranch` lässt sich der Standardname permanent ändern.
+[ENDTERM]
 
 [TERM::manpage|manpages]
 Eine Manpage ("manual page", Handbuch-Seite) gibt es zu (fast) jedem Unix-Kommando.
