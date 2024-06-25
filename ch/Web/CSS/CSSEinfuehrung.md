@@ -6,13 +6,14 @@ requires: HTMLErsteSchritte
 ---
 
 [SECTION::goal::experience]
-- Ich kann CSS in HTML oder als separate Datei einbinden
-- Ich kann CSS-Elemente identifizieren und einige einfache CSS-Eigenschaften anwenden.
+
+ - Ich kann CSS in HTML oder als separate Datei einbinden
+ - Ich kann CSS-Elemente identifizieren und einige einfache CSS-Eigenschaften anwenden.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-[TERMREF::CSS] wird benutzt um [TERMREF2::HTML::--Dokumente] mit Layout und Design zu versehen. 
+[TERMREF::CSS] wird benutzt um [TERMREF2::HTML::-\-Dokumente] mit Layout und Design zu versehen. 
 Diese Aufgabe beschäftigt sich damit, wie CSS in HTML zur Anwendung kommt und mit ersten Selektoren und Eigenschaften.
 
 [ENDSECTION]
@@ -84,11 +85,11 @@ Vorteil hierbei ist, dass derselbe CSS-Code für mehrere HTML-Dokumente verwende
 
 Als Grundlage für das Experimentieren mit CSS soll das erstellte Dokument aus [PARTREF::HTMLErsteSchritte] verwendet werden.
 
-[ER] Zunächst soll die Hauptüberschrift auf der Seite zentriert werden. Benutzen Sie dafür die CSS-Eigenschaft `text-align` mit dem Wert `center`. Ändern Sie außerdem die Schriftfarbe zu einem Python-gerechten Blau.
+[ER] Zunächst soll die Hauptüberschrift auf der Seite zentriert werden. Benutzen Sie dafür die CSS-Eigenschaft `text-align` mit dem Wert `center`. Ändern Sie außerdem die Schriftfarbe zu einem Python-gerechten Blau. Verwenden Sie ein `style`-Attribut.
 
 [ER] Mittels eines internen oder externen Stylesheets, ändern Sie die Hintergrundfarbe der Webseite. Um den gesamten Inhalt der Website zu beinflussen, ist es sinnvoll, das `body`-Element zu selektieren.
 
-[ER] Ändern Sie Schriftart, Schriftgröße und Schriftstärke für Absätze und Listen auf der Seite.
+[ER] Ändern Sie Schriftart, Schriftgröße und Schriftstärke für Absätze und Listen auf der Seite. Geben Sie den anderen Überschriften eine passende Farbe.
 
 [HINT::Einige Beispiele für Eigenschaften und mögliche Werte]
 
