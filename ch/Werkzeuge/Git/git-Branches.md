@@ -64,8 +64,8 @@ draufloszuschreiben, erstell dann meinen Commit und push den zurück auf den [TE
 Blöd nur, wenn jetzt eine der folgenden Situationen eintritt:
 
 1. Der Main-Branch ist gesperrt! 
-2. Einer ihre_r Kolleg_innen hat gleichzeitig an den gleichen Dateien gearbeitet und 
-   zwischenzeitlich Änderungen vorgenommen die mit ihren Kollidieren könnten.
+2. Einer ihre_r Kolleg_innen hat gleichzeitig an denselben Dateien wie Sie gearbeitet und 
+   nun Änderungen gespusht die mit Ihren Änderungen Kollidieren könnten.
 
 Ersteres ist vermutlich eher nicht der Fall, wenn Sie alleine Arbeiten, gehört aber inzwischen 
 häufig beim Arbeiten mit git zum guten Ton. Das ist ganz einfach so, weil häufig die Faustregel 
@@ -88,7 +88,7 @@ Das erspart allen Beteiligten viel Zeit und Schmerz.
 Der erste Schritt für beide Situationen ist aber natürlich jetzt erstmal einen neuen Branch zu 
 erstellen!
 
-Sie wollen ihrer modernen Applikation jetzt ein neues Feature hinzufügen, sagen wir... 
+Sie wollen ihrer modernen Applikation jetzt ein neues Feature hinzufügen, sagen wir ... 
 einen KI-Assistenten. Erstellen Sie also jetzt einen neuen Branch und benennen diesen 
 entsprechend (Wie wär's mit "AI-Assistant"?). Anschließend wechseln Sie auf diesen Branch.
 
@@ -134,7 +134,7 @@ Jetzt geht's ans Eingemachte. Und zwar wollen wir jetzt unsere Änderungen von u
 AI-Assistant-Branch in den Main-Branch mergen.
 
 Grundsätzlich gibt es hierfür zwei Vorgehensweisen. Das mergen mit `git merge` und das `git 
-rebase`. Letzeres ist aber richtig kompliziert und kann einiges kaputt machen, deswegen 
+rebase`. Letzteres ist aber richtig kompliziert und kann einiges kaputt machen, deswegen 
 behandeln wir das in einer anderen Aufgabe, damit wir hier nicht komplett den Rahmen sprengen.
 
 Also wollen wir jetzt die folgenden Schritte erledigen:
@@ -252,7 +252,7 @@ nötige Dokumentation.](https://git-scm.com/docs/vimdiff/en)
 ### Branches löschen
 
 Wenn wir nun unseren Merge-Konflikt behoben und unsere Änderungen in den Main-Branch gemergt 
-haben, können wir unseren Arbeits-Branch löschen.
+haben, können wir unseren Arbeitsbranch löschen.
 
 Hierzu gibt es ein paar nützliche Werkzeuge. 
 
