@@ -8,6 +8,7 @@ requires: git-Zweitrepo
 #TODO_Hüster:
 - Es fehlen Glossareinträge/-verweise zu Branch/Zweig, Fix/[TERMREF::Defekt]fix/Defektkorrektur,
   Feature, Release/Freigabe/Patchrelease, evtl. Patch.
+- Redo Solutions
 
 [SECTION::goal::idea]
 
@@ -171,13 +172,13 @@ wurde.
 Das könnte dann nämlich z.B. so aussehen:
 
 ```
-* 19a0399 (propra-git-branches) changed branches.md but in a branch
-| branches.md
-| * 14f53dd (HEAD -> master) changed branches.md
+* 19a0399 (ai-assistant) changed assistant.py but in a branch
+| assistant.py
+| * 14f53dd (HEAD -> master) changed assistant.py
 |/
-|   branches.md
-* 69fa86b added branches.md
-| branches.md
+|   assistant.py
+* 69fa86b added assistant.py
+| assistant.py
 ```
 
 Jetzt lösen wir den Merge-Konflikt aus!
@@ -188,8 +189,8 @@ Wenn die vorherigen Schritte richtig befolgt wurden sollten wir jetzt mit der fo
 Nachricht begrüßt werden:
 
 ```
-Auto-merging branches.md
-CONFLICT (content): Merge conflict in branches.md
+Auto-merging assistant.py
+CONFLICT (content): Merge conflict in assistant.py
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
@@ -216,15 +217,15 @@ Und jetzt schauen wir uns noch ein letztes Mal den `git log` Graphen an und kön
 schön sehen an welcher Stelle wir die beiden Branches zusammengeführt haben.
 
 ```
-*   a76ed22 (HEAD -> master) Merge branch 'propra-git-branches'
+*   a76ed22 (HEAD -> master) Merge branch 'ai-assistant'
 |\
-| * 19a0399 (propra-git-branches) changed branches.md but in a branch
-| | branches.md
-* | 14f53dd changed branches.md
+| * 19a0399 (ai-assistant) changed assistant.py but in a branch
+| | assistant.py
+* | 14f53dd changed assistant.py
 |/
-|   branches.md
-* 69fa86b added branches.md
-| branches.md
+|   assistant.py
+* 69fa86b added assistant.py
+| assistant.py
 ```
 
 [NOTICE]
@@ -235,6 +236,28 @@ Nutzer_innen zu empfehlen.
 Wer sich trotzdem mal daran versuchen möchte oder einfach nur interessiert ist, findet hier [die 
 nötige Dokumentation.](https://git-scm.com/docs/vimdiff/en)
 [ENDNOTICE]
+
+
+### Branches löschen
+
+Wenn wir nun unseren Merge-Konflikt behoben und unsere Änderungen in den Main-Branch gemergt 
+haben, können wir unseren Arbeits-Branch löschen.
+
+Hierzu gibt es ein paar nützliche Werkzeuge. 
+
+Zum einen können wir natürlich wieder mit `git log` unsere Commits sehen und auf welchen Branch 
+sie angewandt wurden bzw. wo sich aktuell unser `HEAD` befindet.
+
+Andererseits können wir aber auch einfach mit `git branch` prüfen, ob es andere Branches gibt 
+die in den aktuell aktiven Branch gemergt wurden. 
+
+[EC] Welches Argument nimmt `git branch` an um anzuzeigen welche Branches bereits in den aktuell 
+aktiven Branch gemergt wurden?
+
+Nun da wir ein Kommando haben, welches uns hilft, anzuzeigen welche Branches wir nicht mehr 
+brauchen, können wir diese nach dem erfolgreichen Merge auch löschen.
+
+[EC] Welchen Befehl nutzen wir, um nicht mehr benötigte Branches zu löschen?
 
 [ENDSECTION]
 
@@ -249,10 +272,14 @@ Merge-Konflikten verstanden wurde]
 
 Prüfen Sie die abgegeben Kommandozeilenlogs.
 
-[EREFC::1] `git branch` `git checkout`  
-[EREFC::2] `git log --oneline --decorate --graph --all`  
-[EREFC::3] `git add` `git commit`    
-[EREFC::4] `git merge`
+[EREFC::1] `git branch ai-assistant` `git checkout ai-assistant`/`git checkout -b 
+ai-assistant`/`git switch -c 
+ai-assistant`    
+[EREFC::2] `git log --oneline --decorate --graph --all`    
+[EREFC::3] `git add assistant.py` `git commit -m "add assistant"`  
+[EREFC::4] `git switch main`/`git checkout main` `git merge`
+[EREFC::5] `git branch --merged`  
+[EREFC::6] `git branch -d branchname`  
 
 
 [ENDINSTRUCTOR]
