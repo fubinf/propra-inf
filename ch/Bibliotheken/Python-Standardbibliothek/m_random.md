@@ -13,15 +13,15 @@ Ich weiß, wie man zufällige Zahlen generieren oder zufällige Elemente aus ein
 
 Manche Algorithmen basieren auf zufälligen Eingaben (randomisierte Algorithmen). Aber auch für die Simulation oder die
 Generierung von Eingaben zu Testzwecke sind Zufallsgeneratoren nützlich.
-[`random`](https://docs.python.org/3/library/random.html#recipes) bietet einen Zufallsgenerator, der für die Generierung
+[`random`](https://docs.python.org/3/library/random.html) bietet einen Zufallsgenerator, der für die Generierung
 zufälliger Floats, Integer oder die Wahl von Elementen aus Sequenzen verwendet werden kann.
 
 `random` implementiert einen sogenannten Pseudo-Zufallsgenerator (PRNG). Diese basieren auf deterministischen, und damit
 vorhersehbaren Algorithmen. Für viele Anwendungsfälle ist das wünschenswert.
 In der Kryptografie und anderen sicherheitskritischen Anwendungen kann Vorhersehbarkeit aber 
 ein Sicherheitsrisiko darstellen.
-Andere Bibliotheken (z.B. [`secrets`](https://docs.python.org/3/library/secrets.html#module-secrets)) greifen auf echte
-Zufallsgeneratoren (TRNG) zurück, für die dedizierte Hardware notwendig ist.
+Andere Bibliotheken (z.B. [`secrets`](https://docs.python.org/3/library/secrets.html)) greifen auf 
+echte Zufallsgeneratoren (TRNG) zurück, für die dedizierte Hardware notwendig ist.
 
 Bei Interesse lesen Sie eine [Einführung in das Thema Zufallsgeneratoren](https://www.random.org/randomness/) 
 
@@ -81,7 +81,19 @@ Sie erhalten also bei jeder Ausführung neue Zufallszahlen, was oft erwünscht i
 
 Den Code lesen und manuell grob auf Richtigkeit prüfen.
 Das Kommandoprotokoll zur Unterstützung heranziehen.
+
+Sollte die Abgabe komplett andere Zufallszahlen beinhalten, ist eventuell beim Festlegen des 
+Seeds etwas schiefgelaufen. Prüfen Sie in dem Fall A2 genauer.
+
+Beachten Sie: Bei A7 sollen die Elemente verschieden sein, bei A8/9 kann 
+dasselbe Element mehrfach vorkommen. Schauen Sie ggf. in der Musterlösung nach den korrekten 
+Funktionen.
+
 Klare Defekte und sehr ungünstige Konstruktionen zurückweisen,
 insbesondere solche, die zu wenig Gebrauch von `random` machen.
+
+Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_pprint.py]
+
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
