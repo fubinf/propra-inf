@@ -33,6 +33,11 @@ Orientieren Sie sich an den folgenden Fragen, um alle relevanten Dinge zu erwäh
   Inwiefern waren die günstig? Hätte es bessere Ansätze gegeben?
 - Wo haben Sie bei der Anwendung der Methoden nicht ideal agiert? Warum?
   Worauf muss man achten, um das künftig besser zu machen?
+
+[NOTICE]
+Wenn Sie sich noch für weitere Möglichkeiten zum Umgang mit Defekten interessieren, kann Ihnen 
+die Aufgabe [PARTREF::Safety-Expert] einen Einstieg bieten.
+[ENDNOTICE]
 [ENDSECTION]
 
 [SECTION::submission::reflection]
