@@ -60,6 +60,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Werkzeuge
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric->LP->IC->LP->IC->LP)  
 
 
 -------------------------------------------------------------------------------------------
@@ -101,11 +102,6 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric->LP->IC->LP->IC)  
-  Ich habe noch ein wenig überarbeitet. So finde ich die Aufgabe jetzt OK, aber wir
-  brauchen bitte noch eine Musterlösung.  
-  Bitte lassen Sie die Studis nicht so viel auf Vorrat lesen, sondern geben Sie taktische
-  Hinweise, worauf zu achten ist.
 
 
 ## Reviews to do for Christian Hofmann
