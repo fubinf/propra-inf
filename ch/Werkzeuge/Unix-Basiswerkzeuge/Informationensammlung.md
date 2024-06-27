@@ -69,4 +69,6 @@ falls diese sehr viele Dateien enthalten, damit der Prozess nicht so lange dauer
 
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
