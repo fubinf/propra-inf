@@ -61,9 +61,5 @@ Pakete können natürlich auch explizit deinstalliert werden. Es gibt zwei versc
 [ENDSECTION]
 
 [INSTRUCTOR::Auf die Optionen achten]
-
-- [EREFC::1] Darauf achten, dass beide Kommandos zum Aktualisieren angewendet wurden.
-- [EREFC::5] Achten, dass das richtige Kommando und der reguläre Ausdruck genutzt wird.
-- Die Aufgaben sollen die Optionen von `apt` nutzen
-
+[INCLUDE::ALTDIR:]
 [ENDINSTRUCTOR]
