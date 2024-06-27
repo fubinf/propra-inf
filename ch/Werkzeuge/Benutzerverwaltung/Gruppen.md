@@ -88,5 +88,6 @@ Lesen Sie die Abschnitte **Synopsis**, **Description** und **Remove a group** de
 [INSTRUCTOR::Erwartung]
 
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
