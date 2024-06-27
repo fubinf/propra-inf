@@ -97,5 +97,5 @@ Verstehen Sie die **Synopsis**, lesen Sie die **Description** und den Abschnitt 
 [INSTRUCTOR::Erwartung]
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 [EREFC::6] Prüfen ob die Option für alle Dateien gesetzt ist.
-[INCLUDE::ALTDIR:]
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
