@@ -66,4 +66,5 @@ Lesen Sie die Abschnitte **Syntax** und **Beispiel** von
 
 [INSTRUCTOR::Erwartung]
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::ALTDIR:]
 [ENDINSTRUCTOR]
