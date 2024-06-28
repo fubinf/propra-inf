@@ -88,7 +88,8 @@ kann der Defekt auch darin liegen die beiden Funktionen zu vertauschen.
 
 Im Folgenden sollen Sie eine Funktion debuggen, in der ein Variablendefekt aufgetreten ist.
 Der Code spielt eine Runde des Spiels "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Er benutzt die korrigierten Funktionen `draw_code()` aus der Aufgabe [PARTREFTITLE::Defekte-in-Ausdrücken] und 
+Er benutzt die korrigierten Funktionen `draw_card()` aus der Aufgabe 
+[PARTREFTITLE::Defekte-in-Ausdrücken] und 
 `check_card()` aus der Aufgabe [PARTREFTITLE::Anordnungsdefekte].
 
 Eine Runde wird wie folgt durchgeführt: Es wird ein zufälliger Rang aus der Hand des Spielers ausgewählt und
