@@ -281,7 +281,7 @@ brauchen, können wir diese nach dem erfolgreichen Merge auch löschen.
 [INSTRUCTOR::Befehle prüfen und schauen ob das mentale Modell vom Branching und die Behebung von 
 Merge-Konflikten verstanden wurde]
 
-Prüfen Sie die abgegeben Kommandozeilenlogs und lassen Sie sich ggf. Probleme bzw. Hindernisse 
+Prüfen Sie die abgegebenen Kommandoprotokolle und lassen Sie sich ggf. Probleme bzw. Hindernisse 
 der Studierenden erklären und wie diese überwunden wurden.
 
 [EREFC::1] `git branch ai-assistant` `git checkout ai-assistant`/`git checkout -b 
