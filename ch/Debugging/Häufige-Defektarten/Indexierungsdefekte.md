@@ -111,6 +111,12 @@ Führen Sie die Funktion mit den folgenden Eingaben aus:
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
+[ENDSECTION]
+
+[INSTRUCTOR::Nur die Defektkorrektur bitte]
+
+[INCLUDE::/_include/Instructor-nur-Defektkorrektur.md]
+
 [INCLUDE::ALT:]
 
-[ENDSECTION]
+[ENDINSTRUCTOR]
