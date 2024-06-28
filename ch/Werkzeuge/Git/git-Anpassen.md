@@ -72,20 +72,20 @@ für Sie Interessant sind.
 
 Ein weiteres sehr nützliches Boardmittel von git sind die sogenannten Aliase. Diese kennen Sie 
 vielleicht bereits aus dem Bash/Unix-Teil dieses Kurses. Wenn nicht, ist das aber auch nicht 
-schlimm, da wir alles nötige hier erklären und durchexerzieren werden.
+schlimm, da wir alles nötige hier erklären und durchexerzieren werden.  
 Im Grunde sind Aliase einfach nur neue Namen für ausgewählte git Kommandos. Welche Kommandos und 
-welche Namen können wir dabei komplett frei wählen.
+welche Namen können wir dabei komplett frei wählen.  
 So ließe sich z.B. ein eigener git-Befehl erstellen, welcher `git commit -m "message"` auf `git 
 cm "message"` kürzt. Gerade für Befehle, welche man öfter benutzt, bietet es sich an eigene Aliase 
-anzulegen.
+anzulegen.  
 Auch hierfür gibt es wieder [eine Seite im git Book](https://git-scm.
 com/book/en/v2/Git-Basics-Git-Aliases) welche uns alles Wichtige nochmal gründlich erklärt.
-Als Erstes lesen Sie einmal diese Seite komplett bis zum Ende.
-Wenn ihnen dabei schon Aliase auffallen die Sie für Nützlich halten, können Sie diese natürlich 
-gerne schon auf ihrem eigenen System einrichten.
+Als Erstes lesen Sie einmal diese Seite komplett bis zum Ende. Wenn ihnen dabei schon Aliase 
+auffallen die Sie für Nützlich halten, können Sie diese natürlich gerne schon auf ihrem eigenen 
+System einrichten.
 
 Sie haben es vielleicht schon geahnt, aber auch hier geht es wieder um eine kleine "Recherche". 
-Suchen Sie im Internet nach weiteren git Aliases. 
+Suchen Sie im Internet nach weiteren git Aliasen. 
 
 [EC] Suchen Sie mindestens drei weitere git-Aliase und erklären Sie, warum gerade diese 
 für Sie Interessant sind.
