@@ -37,7 +37,8 @@ den folgenden Fragen recherchieren:
   machen?
 - Probieren Sie die Funktionen zum Steuern des schrittweisen Programmablaufs
   und die Funktionen zum Erkunden von Datenstrukturen aus.
-- [EQ] Was sind Ihrer Einschätzung nach die 10 wichtigsten Funktionen des Debuggers?
+- [EQ] Was sind Ihrer Einschätzung nach die 5 wichtigsten Funktionen des Debuggers?
+  Erklären Sie kurz, was diese Funktionen genau machen.
 - [EQ] Als wie nützlich empfinden Sie den grafischen Debugger?
   Was gefällt Ihnen gut (insbesondere im Vergleich zu [PARTREF::pdb]), was schlecht?
 
@@ -47,8 +48,25 @@ den folgenden Fragen recherchieren:
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
-[INSTRUCTOR::???]
 
-TODO_1_pietrak
+[INSTRUCTOR::Allgemeines]
+
+- "Definitionen" für die verschiedenen Breakpoints können direkt unter den Links gefunden werden.
+- In [EREFQ::5] geht es eher die eigene Einschätzung der Studierenden.
+  Auf schlüssige Argumentation achten, sonst zurückweisen. 
+
+[ENDINSTRUCTOR]
+
+[INSTRUCTOR::Frage 4]
+
+Ungeordnete Liste mit möglichen Angaben: 
+
+- Stepping In/Over/Out
+- Anzeige Datenstrukturen
+- Anzeige aktueller Werte von Variablen
+- Watches
+- Ausführung von Code mit aktuellem Programmzustand
+- Thread Concurrency Visualization
+- ...
 
 [ENDINSTRUCTOR]

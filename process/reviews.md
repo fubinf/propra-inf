@@ -144,8 +144,6 @@ We will modify these rules over time when others appear more useful.
   denkbare (akzeptable) Positionen der Studis benennen, um den Rahmen abzustecken,
   in dem die Antworten ungefähr erwartet werden.
   Vielleicht manchmal auch unakzeptable erläutern.
-- ch/Debugging/Debuggingtools/IDE_debugging.md (Pietrak->LP->DP)  
-  Bitte nochmal prüfen (ich habe einiges geändert), ggf. korrigieren, Eintrag hier löschen.
 
 
 ## Reviews to do for Ronny Ruhe
