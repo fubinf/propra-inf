@@ -78,6 +78,12 @@ Als Nächstes versuchen wir `git bisect` an einem Beispiel-Repo einzusetzen.
   Beenden Sie den `git bisect`-Prozess.
 - [EQ] Wie würde jetzt das weitere Vorgehen aussehen?
 
+[NOTICE]
+Diese Aufgabe ist nur eine sehr zielstrebige Einführung in *eine* Funktion von git.
+Wenn Sie sich mehr mit dem Programm auseinandersetzen wollen, werden Sie in 
+[PARTREFTITLE::Git] fündig!
+[ENDNOTICE]
+
 [ENDSECTION]
 [SECTION::submission::information]
 
