@@ -35,4 +35,7 @@ sondern _Ihre_ persönliche Stellungnahme.
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
 Eine Zusammenfassung des Kapitels gibt es auf S. 60-61.
+
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]

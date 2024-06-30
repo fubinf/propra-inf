@@ -50,4 +50,7 @@ Fassen Sie sich kurz und seien Sie präzise bei Ihren Ausführungen.
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
 Eine Zusammenfassung des Kapitels gibt es auf S. 426-431.
+
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]

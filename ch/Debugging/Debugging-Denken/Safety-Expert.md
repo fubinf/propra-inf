@@ -74,4 +74,7 @@ Aber:
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
 Eine Zusammenfassung des Kapitels steht auf S. 384-385.
+
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]

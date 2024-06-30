@@ -138,12 +138,6 @@ We will modify these rules over time when others appear more useful.
   Zu jedem Item brauchen die Tutoren Anhaltspunkte.
   Bei _implementation darf das gern Bezug auf _planning nehmen.
 
-- ch/Debugging/Denkweisen/Mathematician.md (Pietrak->CH->LP->DP)  
-  Für die ganze Taskgruppe bitte jeweils Korrekturhilfen in altdir zufügen.
-  Z.B. könnten die für jede Frage beispielhaft je einen Gesichtspunkt für zwei gegensätzliche
-  denkbare (akzeptable) Positionen der Studis benennen, um den Rahmen abzustecken,
-  in dem die Antworten ungefähr erwartet werden.
-  Vielleicht manchmal auch unakzeptable erläutern.
 
 
 ## Reviews to do for Ronny Ruhe

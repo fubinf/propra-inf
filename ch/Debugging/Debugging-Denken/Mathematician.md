@@ -44,4 +44,7 @@ geachtet werden, sonst zurückweisen!
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
 Eine Zusammenfassung des Kapitels gibt es auf S. 187-188.
+
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
