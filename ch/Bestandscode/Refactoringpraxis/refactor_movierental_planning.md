@@ -107,4 +107,6 @@ Es geht nicht darum _alle_ diese Punkte zu finden, da sich einige Punkte auch be
 anderer Punkte von alleine lösen. 
 Diese Punkte sollen aber begründet sein. Ohne Begründung soll die Lösung zurückgewiesen werden.
 
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]

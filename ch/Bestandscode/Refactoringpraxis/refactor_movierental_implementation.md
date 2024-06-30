@@ -63,4 +63,6 @@ Ausgeliehene Filme:
 
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
 
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
