@@ -46,6 +46,8 @@ We will modify these rules over time when others appear more useful.
 
 ### Debugging
 
+- ch/Debugging/Debuggingtools/printfdebugging.md (DP->LP)
+
 
 ### Testen
 
