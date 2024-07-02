@@ -34,6 +34,7 @@ We will modify these rules over time when others appear more useful.
 
 ### Sprachen
 
+- ch/Sprachen/Python2/Python-List-Comprehensions.md (HA->LP)
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
