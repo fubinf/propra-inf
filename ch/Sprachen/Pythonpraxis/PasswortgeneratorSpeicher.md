@@ -1,6 +1,6 @@
 title: Erweiterung unseres Passwortgenerators - Passwortspeicher
 stage: draft
-timevalue: 0.1
+timevalue: 0
 difficulty: 4
 requires: Passwortgenerator
 ---
