@@ -51,7 +51,8 @@ We will modify these rules over time when others appear more useful.
 ### Testen
 
 - ch/Testen/Unittests/m_unittest_mocking.md (RR->DM->HA->LP)
-- ch/Testen/Testframeworks/Robot.md (Von Beta in Alpha, da kein Review stattgefunden hat)
+- ch/Testen/Testframeworks/Robot.md (RR->LP; von Beta in Alpha, da kein Review stattgefunden hat)
+- ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP)
 
 ### Web
 
