@@ -198,7 +198,7 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
 - Bis zum nächsten `git pull` kann man jetzt im submodule **Commits machen**.
 - Wenn man das **Bereinigen vergessen** hat und hat schon lokale Änderungen gemacht, muss man die
   zunächst beiseitelegen, damit sie beim `git switch` nicht pulverisiert werden:
-    - `(cd altdir; git add myfile.xyz ...; git stash push -mmyfile.xyz -- myfile.xyz ...)`
+    - `(cd altdir; git add myfile.xyz ...; git stash push -m myfile.xyz -- myfile.xyz ...)`
       (das `add` ist nur nötig, wenn `myfile.xyz` noch nicht versioniert wird.)
     - Dann Bereinigung durchführen und Datei(en) mit `(cd altdir; git stash pop)` zurückholen.
     - Wer solche lokalen Änderungen allen Warnungen von git zum Trotze schon committet hat:
