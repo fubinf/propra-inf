@@ -177,3 +177,39 @@ Generell beugen wir Fremdwörter nach deutscher Rechtschreibung.
 
 Wenn wir uns auf einen Teil der Universität beziehen, nennen wir sie beim vollen Namen
 und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe änderbar zu machen.
+
+
+## Tech stuff
+
+### Arbeit mit dem `altdir` submodule
+
+- **Nach `git pull`** ist das submodule immer im Zustand **"detached HEAD"**,
+  weil im Ober-Repo eine bestimmte Commit-ID steht, und dieser Commit nun ausgecheckt wurde.
+  Das ist meist auch der jüngste Commit und identisch mit `origin/main`, aber das ist nicht garantiert.
+- Wenn man im submodule etwas ändern möchte (also meistens), muss man das
+  **bereinigen**: 
+    - `(cd altdir; git log)` sollte zeigen, dass `HEAD` und `origin/main` zusammenfallen
+    - `(cd altdir; git switch main; git pull)` bringt dann das lokale `main` auf diesen Stand.
+- Falls bei obiger Prüfung `HEAD` und `origin/main` _nicht_ zusammenfallen, hat jemand was verbockt.
+  Ich fand 2024-07-02 z.B. bei `HEAD` einen Zweig `origin/detached` vor, der `origin/main`
+  einen Commit weit vorauslief. Nach obiger Bereinigung fehlt also noch dieser Commit.
+  Er ließ sich ergänzen mit `(cd altdir; git reset --hard origin/detached)`; man hätte alternativ auch
+  `git cherry-pick <commit-id>` benutzen können -- vor `git reset --hard` sollte man gehörigen Respekt haben.
+- Bis zum nächsten `git pull` kann man jetzt im submodule **Commits machen**.
+- Wenn man das **Bereinigen vergessen** hat und hat schon lokale Änderungen gemacht, muss man die
+  zunächst beiseitelegen, damit sie beim `git switch` nicht pulverisiert werden:
+    - `(cd altdir; git add myfile.xyz ...; git stash push -mmyfile.xyz -- myfile.xyz ...)`
+      (das `add` ist nur nötig, wenn `myfile.xyz` noch nicht versioniert wird.)
+    - Dann Bereinigung durchführen und Datei(en) mit `(cd altdir; git stash pop)` zurückholen.
+    - Wer solche lokalen Änderungen allen Warnungen von git zum Trotze schon committet hat:
+      Diese Commits gehen bei der Bereinigung verloren, weil sie ja an keinen richtigen Branch
+      anschließen. Lösung:
+      Commit-ID merken; Bereinigung normal durchführen; Commit mit `cherry-pick` zufügen;
+      Vorfall merken und git-Warnungen künftig ernster nehmen.
+- Im Hauptrepo bekommt man bei `git pull` nach Änderungen gern die Meldung
+  "fatal: cannot rebase with locally recorded submodule modifications".
+  Grund und Lösung sind beschrieben auf 
+  https://stackoverflow.com/questions/54215983/git-pull-error-fatal-cannot-rebase-with-locally-recorded-submodule-modificati
+  in der Antwort von Prechelt. Die Lösung ist meist:  
+  `git pull --rebase --no-recurse-submodules`  
+  `git submodule update --recursive`
