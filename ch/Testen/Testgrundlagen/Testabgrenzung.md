@@ -1,6 +1,6 @@
 title: Testabgrenzung zum Debugging
 stage: draft
-timevalue: 1
+timevalue: 0
 difficulty: 3
 assumes: Python1, Debuggingtools
 ---

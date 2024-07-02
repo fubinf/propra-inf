@@ -1,6 +1,6 @@
 title: ...
 stage: draft
-timevalue: 0.1
+timevalue: 0
 difficulty: 1
 explains:
 assumes:

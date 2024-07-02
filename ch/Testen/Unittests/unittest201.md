@@ -1,6 +1,6 @@
 title: Unittest in Python - Anwendung
 stage: draft
-timevalue: 1.5
+timevalue: 0
 difficulty: 3
 assumes: m_unittest, unittest102, LokalesDeployment
 ---

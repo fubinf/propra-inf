@@ -1,6 +1,6 @@
 title: API Antworten verarbeiten
-stage: alpha
-timevalue: 1.5
+stage: draft
+timevalue: 0
 difficulty: 3
 assumes: RestApi, m_json1
 ---

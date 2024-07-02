@@ -1,6 +1,6 @@
 title: Pytest in Python - Anwenden des Benchmark Fixtures
-stage: alpha
-timevalue: 1.0
+stage: draft
+timevalue: 0
 difficulty: 3
 assumes: m_pytest, m_pytest_fixtures, mocking
 requires: LokalesDeployment, pytest201

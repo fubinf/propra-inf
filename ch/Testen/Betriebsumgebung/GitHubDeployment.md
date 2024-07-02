@@ -1,6 +1,6 @@
 title: GitHub Deployment
 stage: draft
-timevalue: 0.75
+timevalue: 0
 difficulty: 2
 explains: Pipeline
 ---

@@ -1,6 +1,6 @@
 title: Pytest in Python - Anwendung
 stage: draft
-timevalue: 2.0
+timevalue: 0
 difficulty: 2
 assumes: m_pytest, LokalesDeployment
 ---

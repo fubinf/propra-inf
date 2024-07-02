@@ -1,6 +1,6 @@
 title: Grundlagen des Test Driven Development mit Python
 stage: draft
-timevalue: 0.5
+timevalue: 0
 difficulty: 1
 explains: TDD
 ---

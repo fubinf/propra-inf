@@ -1,6 +1,6 @@
 title: "unittest fixtures - Jetzt wird vor- und nachgearbeitet"
 stage: draft
-timevalue: 2
+timevalue: 0
 difficulty: 2
 assumes: m_unittest
 ---

@@ -1,6 +1,6 @@
 title: Rest API Test mit Python Request
-stage: beta
-timevalue: 2.0
+stage: draft
+timevalue: 0
 difficulty: 2
 assumes: WebAPIs, pip, requests
 ---

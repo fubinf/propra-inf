@@ -1,6 +1,6 @@
 title: TDD im Pair Programming
 stage: draft
-timevalue: 1.5
+timevalue: 0
 difficulty: 3
 assumes: tdd, Python1, m_json1, encoding_and_open
 ---

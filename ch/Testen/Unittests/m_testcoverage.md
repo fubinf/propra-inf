@@ -1,6 +1,6 @@
 title: Code Coverage - Code angemessen abdecken
 stage: draft
-timevalue: 2.0
+timevalue: 0
 difficulty: 3
 assumes: m_unittest
 ---

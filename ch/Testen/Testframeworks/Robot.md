@@ -1,5 +1,5 @@
 title: Funktionale Tests mit dem Robot Framework
-stage: beta
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 ---

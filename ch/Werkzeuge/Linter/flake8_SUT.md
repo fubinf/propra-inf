@@ -1,5 +1,5 @@
 title: SUT mit flake8 analysieren
-stage: alpha
+stage: draft
 timevalue: 0.5
 difficulty: 4
 explains: Linter

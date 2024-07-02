@@ -1,6 +1,6 @@
 title: GitHub Action - Unittests in der Pipeline
 stage: draft
-timevalue: 1
+timevalue: 0
 difficulty: 3
 assumes: m_unittest, tdd, tdd_pp, m_testcoverage
 requires: GitHubDeployment

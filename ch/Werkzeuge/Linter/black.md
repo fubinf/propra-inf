@@ -1,6 +1,6 @@
 title: Linting mit black
 stage: draft
-timevalue: 1.0
+timevalue: 0
 difficulty: 2
 explains: Linter
 assumes: venv, flake8

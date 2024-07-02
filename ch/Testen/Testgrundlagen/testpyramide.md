@@ -1,6 +1,6 @@
 title: Die Testpyramide verstehen
 stage: draft
-timevalue: 1.5
+timevalue: 0
 difficulty: 1
 ---
 

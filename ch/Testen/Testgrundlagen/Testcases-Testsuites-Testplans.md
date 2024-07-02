@@ -1,6 +1,6 @@
 title: Aufbau von Testfällen, Testsammlungen und Testplänen
 stage: draft
-timevalue: 2.0
+timevalue: 0
 difficulty: 2
 ---
 

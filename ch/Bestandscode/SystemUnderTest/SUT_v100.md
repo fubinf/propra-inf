@@ -1,6 +1,6 @@
 title: Einführung in das SUT v1.0.0
-stage: alpha
-timevalue: 1.0
+stage: draft
+timevalue: 0
 difficulty: 3
 explains: SUT
 ---

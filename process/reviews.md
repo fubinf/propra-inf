@@ -50,8 +50,8 @@ We will modify these rules over time when others appear more useful.
 
 ### Testen
 
-- ch/Testen/Unittests/m_pytest_benchmark.md (RR->DM->LP)
 - ch/Testen/Unittests/m_unittest_mocking.md (RR->DM->HA->LP)
+- ch/Testen/Testframeworks/Robot.md (Von Beta in Alpha, da kein Review stattgefunden hat)
 
 ### Web
 
@@ -170,6 +170,7 @@ We will modify these rules over time when others appear more useful.
   kann verzichtet werden. Bitte überprüfen.
   Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Unittests/unittest203.md (RR->Müller->LP->RR)
+- ch/Testen/Unittests/m_pytest_benchmark.md (RR->DM)
 
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (RR->LP->RR)
 

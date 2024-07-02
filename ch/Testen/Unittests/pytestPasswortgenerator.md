@@ -1,6 +1,6 @@
 title: Pytests für Passwortgenerator
 stage: draft
-timevalue: 0.5
+timevalue: 0
 difficulty: 4
 assumes: m_unittest
 requires: Passwortgenerator

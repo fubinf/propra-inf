@@ -1,6 +1,6 @@
 title: Entwicklung eines eigenen Passwortgenerators
-stage: alpha
-timevalue: 2
+stage: draft
+timevalue: 0
 difficulty: 3
 assumes: m_random, m_json1, m_argparse, encoding_and_open
 ---

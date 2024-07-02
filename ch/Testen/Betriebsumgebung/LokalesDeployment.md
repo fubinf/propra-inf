@@ -1,6 +1,6 @@
 title: Lokale Bereitstellung des System unter Test
-stage: alpha
-timevalue: 1.5
+stage: draft
+timevalue: 0
 difficulty: 1
 explains:
 assumes: venv, pip, Shell-Grundlagen, Git101

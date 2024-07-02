@@ -1,6 +1,6 @@
 title: API Tests nach CRUD 
-stage: alpha
-timevalue: 1.0
+stage: draft
+timevalue: 0
 difficulty: 3
 assumes: RestApi, ResponseApi
 ---
