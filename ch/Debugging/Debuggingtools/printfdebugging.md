@@ -1,5 +1,5 @@
 title: printf-Debugging
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 ---
@@ -39,7 +39,7 @@ definieren welche relevanten Informationen für Sie ausgegeben werden sollen,
 führen das Programm erneut aus und studieren die Ausgaben.
 Aus mehr Schritten besteht das printf-Debugging nicht.  
 
-Lesen Sie den Adam Gordon Bells Artikel 
+Lesen Sie Adam Gordon Bells Artikel 
 [Printf Debugging and Srinivasa Ramanujan](https://earthly.dev/blog/printf-debugging/)
 und beantworten Sie die folgenden Fragen:
 
