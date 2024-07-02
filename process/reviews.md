@@ -47,8 +47,6 @@ We will modify these rules over time when others appear more useful.
 
 ### Debugging
 
-- ch/Debugging/Debuggingtools/printfdebugging.md (DP->LP)
-
 
 ### Testen
 
@@ -125,6 +123,11 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Dominik Pietrak
+
+- ch/Debugging/Debuggingtools/printfdebugging.md (DP->LP->DP)  
+  Ich habe viel umgebaut, aber die beiden Quellen sind _super_.
+  Bitte machen jetzt Sie eine Durchsicht und Schlussredaktion und setzen Sie
+  dann die Aufgabe auf beta.
 
 - ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->HA->DP->LP->DP)
 - ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->LP->DP)

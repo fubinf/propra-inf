@@ -8,6 +8,6 @@ von der das Problem ausgeht, es ist also Debugging nötig.
 In dieser Aufgabengruppe finden Sie eine Auswahl an Hilfsmitteln, 
 die das Debugging erleichtern -- und manchmal enorm erleichtern.
 
-Die einfachste Methode ist das sogenannte "printf-Debugging" (gesprochen "print eff dibagging"), 
-benannt nach der printf-Funktion in C.
+Die einfachste Methode ist das sogenannte "printf-Debugging" (gesprochen "print eff dibagging"; 
+benannt nach der printf-Funktion in C, die formatierte Ausgaben erlaubt).
 Deshalb ist die Aufgabe [PARTREF::printfdebugging] ein guter Startpunkt.
