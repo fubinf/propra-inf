@@ -1,5 +1,5 @@
 title: Dependency Inversion Prinzip
-stage: alpha
+stage: draft
 timevalue: 1
 difficulty: 3
 assumes: SOLID_principle, m_abc

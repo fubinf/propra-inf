@@ -1,5 +1,5 @@
 title: Clean Code - Das SOLID-Prinzip
-stage: alpha
+stage: draft
 timevalue: 1
 difficulty: 3
 ---

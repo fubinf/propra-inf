@@ -1,5 +1,5 @@
 title: Single Responsibility Prinzip
-stage: alpha
+stage: draft
 timevalue: 0.75
 difficulty: 3
 assumes: SOLID_principle
