@@ -502,6 +502,13 @@ Ein Issue Tracker erlaubt insbesondere
 - die Zuweisung zuständiger Personen für die Bearbeitung.
 [ENDTERM]
 
+[TERM::Iterables|Iterables in Python]
+Iterables in Python sind Objekte, die eine Sequenz von Elementen bereitstellen,
+über die iteriert werden kann,
+indem sie entweder die `__iter__()`-Methode implementieren oder ein Iterable zurückgeben.
+Typische Beispiele für Iterables in Python sind Listen, Tupel, Sets und Dictionaries.
+[ENDTERM]
+
 ## J
 
 [TERM::JavaScript|Javascript|JS|ECMAScript|ES]

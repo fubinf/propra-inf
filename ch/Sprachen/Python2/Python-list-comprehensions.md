@@ -1,42 +1,16 @@
-title: "list and generator comprehensions: Ausdrücke, die komplette Datenreihungen beschreiben"
-stage: draft
-timevalue: 2
+title: "List-Comprehensions in Python: Ausdrücke, die komplette Datenreihungen beschreiben"
+stage: alpha
+timevalue: 1.25
 difficulty: 2
 ---
 
-<!--
-TODO_1_Alrwasheda 
-
-Main ideas to be added:
-- Generator functions
-- Generator expressions
-- Generator functions vs Generator expressions: when what to use and why
-- Generator object: methods and attributes
-- Exceptions: StopIteration, GeneratorExit
-- Generators: Pros and Cons, reason for each point 
-- Where to find Generators in Python (Details about Generator usage will be mentioned in the respective tasks)
-- Generator vs Iterator: Generator as a special type of Iterator
-- Where to find Ienerators in Python (Details about Iterator usage will be mentioned in the respective tasks)
-
-Possible structure:
-Separate tasks for:
-- Comprehensions
-- Generators
-- Iterators
-
-Resources:
-- Finding detailed, trustworthy resources may prove challenging.
-- I prefer providing my own explanation to ensure high quality content.
--->
-
-
 [SECTION::goal::idea]
-- Ich verstehe List-Comprehension und -Generators in Python und kenne die Unterschiede dazwischen.
+Ich verstehe List-Comprehension in Python und kann sie in meinem Code richtig einsetzen.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
 Lesen Sie erst diesen Artikel über
-[List-Comprehension und -Generators in Python.](https://djangostars.com/blog/list-comprehensions-and-generator-expressions/)
+[List-Comprehension in Python.](https://www.programiz.com/python-programming/list-comprehension)
 
 
 [NOTICE]
@@ -45,15 +19,15 @@ List-Comprehension könnte unter "Listenabstraktion" in manchen deutschen Quelle
 
 Bearbeiten Sie danach folgende Anforderungen:
 
-# List Comprehensions:
-
 [ER] Gegeben ist eine Liste von Zahlen. Schreiben Sie eine List-Comprehension,
-um alle geraden Zahlen aus der Liste zu filtern und sie in eine neue Liste zu speichern.
+um alle ungeraden Zahlen aus der Liste zu filtern und sie in eine neue Liste zu speichern.
 
 ```python
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+numbers = [42, 87, 13, 29, 65, 98, 7, 54, 33]
 # Ihre Lösung hier
 ```
+
+---
 
 [ER] Gegeben ist eine Liste von Wörtern, die verschiedene Programmiersprachen repräsentieren.
 Schreiben Sie eine List-Comprehension,
@@ -65,7 +39,9 @@ languages = ["Python", "Java", "JavaScript", "C++", "Ruby"]
 # Ihre Lösung hier
 ```
 
-[ER] Betrachten Sie folgenden Code:
+---
+
+Betrachten Sie folgenden Code:
 
 ```python
 words = ["Hallo", "Hello", "Ciao", "Hola", "Bonjour"]
@@ -75,61 +51,40 @@ for word in words:
         short_words.append(word.upper())
 print(short_words)
 ```
-Schreiben Sie den obigen Code so um, dass er **mit** List-Comprehension das gleiche Ergebnis erzielt.
+[ER] Schreiben Sie den obigen Code so um,
+dass er **mit** List-Comprehension das gleiche Ergebnis erzielt.
 
-[ER] Betrachten Sie folgenden Code:
+---
+
+Betrachten Sie folgenden Code:
 
 ```python
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 collatz = [number // 2 if number % 2 == 0 else 3 * number + 1 for number in numbers]
 print(collatz)
 ```
-Schreiben Sie den obigen Code so um, dass er **ohne** List-Comprehension das gleiche Ergebnis erzielt.
+[ER] Schreiben Sie den obigen Code so um,
+dass er **ohne** List-Comprehension das gleiche Ergebnis erzielt.
 Verwenden Sie dazu normale Schleifen und Bedingungen.
 
 ---
 
-# Generator Expressions
+[EQ] Was ist Ihrer Meinung nach der Nutzen von List-Comprehensions bzw.
+würden Sie jede `for`-Schleife in Ihrem Code durch List-Comprehensions ersetzen, warum?
 
-[EQ] Erklären Sie kurz anhand des Artikels,
-warum List-Generators speichereffiziernter sind als List-Comprehension.
-
-[EQ] Wie begründet der Artikel die Langsamkeit von List-Generators?
-
-[EQ] Überlegen Sie:
-Spielt die Größe der Sequenz eine Rolle bei der Entscheidung zwischen List-Comprehension und
--Generators? Wie? Gibt es andere Faktoren, die Sie bei solcher Entscheidung betrachten sollten?
-
-Betrachten Sie folgenden Code:
-
-```python
-def generate_numbers():
-    return (x+2 for x in range(5))
-
-print(generate_numbers() + [1, 2, 3])
-print(generate_numbers()[0])
-```
-Beantworten Sie jetzt folgende Fragen mithilfe des Artikels:
-
-[EQ] Was gibt die Funktion `generate_numbers()` zurück?
-
-[EQ] Sind die Ausdrücke innerhalb der `print()`-Aufrufe zulässig? Überlegen Sie erst, bevor Sie den
-Code testen.
-
-[EQ] Welche Fehler entstehen daraus? Begründen Sie.
-
-[ER] Geben Sie einen möglichen Generator-Ausdruck für die obige Collatz-Aufgabe an.
-
-<!-- schwache Frage -->
-[EQ] Wäre der Ausdruck, den Sie für Ihre List-Comprehension-Antwort auch gültig für einen Generator?
-Was müssen Sie tun, um von diesem Generator zu profitieren und darüber iterieren zu können? 
-[ENDSECTION]
+[NOTICE]
+Comprehension können nicht nur für Listen benutzt werden,
+sondern für alle [TERMREF::Iterables in Python].
+Hierbei stellen die Klammern und die Ausgaben der Comprehensions den Hauptunterschied dar. 
+[ENDNOTICE]
 
 [SECTION::submission::snippet]
-<!-- hier noch die Abgabeform nicht vergessen -->
+Erstellen Sie eine Abgabedatei mit dem Namen `Python-List-Comprehensions-Abgabe.py`.
+Kopieren Sie den Code jeder Aufgabe in diese Datei und
+fügen Sie Ihre Lösungen unter den jeweiligen Aufgaben hinzu.
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::Konzepte verstehen]
 Hier sollte der Bearbeiter den Inhalt des referenzierten Artikels verstanden haben.
 Lösungen können aus dem Artikel leicht abgeleitet werden und erfordern wenig bis gar kein Nachdenken.
 Daher sollten die Lösungen möglichst präzise formuliert werden.
@@ -140,7 +95,6 @@ und der Fokus auf die im Rahmen dieser Aufgabe wichtigen Konzepte liegt.
 Aus diesen Gründen dürfte hier die Korrektur auch streng sein und nur die Lösungen akzeptiert werden,
 die die Anforderungen zum größten Teil erfüllen. 
 
-Bei [EREFQ::5] und [EREFQ::6] wird man ein bisschen tiefer nachdenken müssen, aber unmachbar sind diese
-Fragen nicht. Es geht hier um die Beobachtung, dass ein Generator-Ausdruck ein Generator-Objekt
-darstellt bzw. erzeugt und keine Liste wie bei List-Comprehension.
+Die Meinungsfrage [EREFQ::1] kann verschiedene Überlegungen annehmen,
+solange sie sinnvoll auf den Einsatz von Comprehensions in Python ausgerichtet sind. 
 [ENDINSTRUCTOR]
