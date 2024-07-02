@@ -1,4 +1,4 @@
-title: Hashlib - Hashes und Prüfsummen erzeugen
+title: "hashlib: Hashes und Prüfsummen erzeugen"
 stage: beta
 timevalue: 1.0
 difficulty: 2
@@ -71,6 +71,11 @@ Lesen Sie über die Python-Datentypen zur Darstellung von Binärdaten nach:
   Übereinstimmungen: 
   `print("3. identical digits: expected: ", ..., "; found: ", ...)`
 
+[INSTRUCTOR::Erwartete Übereinstimmung]
+Falls jemand nicht weiß, wie viele Übereinstimmungen zu erwarten sind (nämlich 64/16, also 4), 
+kurz mündlich erklären, aber die Einreichung nicht zurückweisen.
+[ENDINSTRUCTOR]
+
 Über die `update()` Funktion wird die gehashte Eingabe nicht überschrieben, sondern die neue an die 
 alte angefügt. `hash.update(a); hash.update(b)` ist also identisch zu `hash.update(a + b)`.
 
@@ -92,14 +97,15 @@ Erstellen von [TERMREF2::Prüfsumme::-n] für Dateien.
 
 [NOTICE]
 Seit Python 3.11 geht das direkt über `hashlib`, was für uns die bevorzugte Variante ist.
-Wenn man trotzdem die Variante über `with open() ...` wählt, sollte man die Datei blockweise
-einlesen (z.B. in Happen von 1 MB), um Speicherüberläufe durch sehr große Dateien zu vermeiden.
+Wenn man trotzdem die herkömmliche Variante wählt (die noch in vielen Tutorials zu finden ist), 
+sollte man die Datei blockweise einlesen (z.B. in Happen von 1 MB), um Speicherüberläufe durch 
+sehr große Dateien zu vermeiden.
 [ENDNOTICE]
 
 Wenn der Wert nicht mit dem von Ausgabe 1 übereinstimmt, haben Sie etwas falsch gemacht.
 Korrigieren Sie dies.
 
-[HINT::Was habe ich falschgemacht?]
+[HINT::Was habe ich falsch gemacht?]
 Enthält ihre Datei ein Zeilenende-Zeichen? Das gehört nicht hinein.
 [ENDHINT]
 
@@ -120,10 +126,11 @@ Enthält ihre Datei ein Zeilenende-Zeichen? Das gehört nicht hinein.
 
 Code lesen und manuell grob auf Richtigkeit prüfen.
 Das Kommandoprotokoll zur Unterstützung heranziehen.
-Falls jemand nicht weiß, wie viele Übereinstimmungen in Schritt 3 zu erwarten sind
-(nämlich 64/16, also 4), kurz mündlich erklären, aber die Einreichung nicht zurückweisen.  
-Klare [TERMREF2::Defekt::-e] und sehr ungünstige Konstruktionen zurückweisen,
+Klare Defekte und sehr ungünstige Konstruktionen zurückweisen,
 insbesondere solche, die zu wenig Gebrauch von `hashlib` machen.
-A8: Ergebnis muss True sein, andernfalls liegt ein Defekt vor.
+
+Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_hashlib.py]
+
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
