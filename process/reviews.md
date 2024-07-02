@@ -131,12 +131,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->LP->DP)
 - ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->LP->DP)
 
-- ch/Bestandscode/Refactoringpraxis/refactor_movierental_planning.md (Pietrak->LP->DP)  
-  ch/Bestandscode/Refactoringpraxis/refactor_movierental_implementation.md (Pietrak->LP->DP)  
-  Auf beta gesetzt, aber bitte die Musterlösung noch konkretisieren.
-  Zu jedem Item brauchen die Tutoren Anhaltspunkte.
-  Bei _implementation darf das gern Bezug auf _planning nehmen.
-
 
 
 ## Reviews to do for Ronny Ruhe
