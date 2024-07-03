@@ -62,7 +62,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Werkzeuge
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Informationensammlung.md (Condric->LP->IC->LP->IC->LP)  
 
 
 -------------------------------------------------------------------------------------------
@@ -79,8 +78,6 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Ivan Condric
 
 - ch/Werkzeuge/Benutzerverwaltung/ACL.md (Condric->LP->IC) siehe in der Datei
-- ch/Werkzeuge/Benutzerverwaltung/Gruppen.md (Condric->LP->IC->LP->IC)  
-  ist jetzt schonmal beta, braucht aber bitte noch eine Musterlösung. 
 
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC)  
 
