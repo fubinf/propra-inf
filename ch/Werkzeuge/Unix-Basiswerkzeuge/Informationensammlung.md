@@ -26,10 +26,6 @@ Webseiten zu finden sind:
 - [HREF::https://www.linuxteck.com/linux-system-information-command-cheat-sheet/]
 - [HREF::https://www.cyberciti.biz/open-source/linux-commands-to-know-the-system/]
 
-Nehmen Sie diese als dritte noch mit in die Hinterhand:
-
-- [HREF::https://wiki.ubuntuusers.de/Shell/Befehls%C3%BCbersicht/]
-
 Verwenden Sie diese Informationen, um die nachfolgenden Aufgaben zu lösen.
 Falls Ihnen ein Paket fehlt, installieren Sie es nach.  
 Schauen Sie sich insbesondere die Kommandos `id, htop, uptime, lsb_release, free, du, df, ip` an.
