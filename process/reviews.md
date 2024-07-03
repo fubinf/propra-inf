@@ -62,7 +62,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Werkzeuge
-
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
 
@@ -100,7 +100,6 @@ We will modify these rules over time when others appear more useful.
   Siehe Notizen in der Datei. Schwierig!
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC)
 
 
 ## Reviews to do for Christian Hofmann
