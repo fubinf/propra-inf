@@ -41,7 +41,7 @@ manche auch gar nicht.
 [ENDWARNING]
 
 
-### Änderungen an einen bestehenden lokalen Commit anhängen
+### Einen bestehenden lokalen Commit mit weiteren Änderungen ergänzen
 
 Es kann vorkommen, dass wir einem schon angefertigten Commit weitere Änderungen hinzufügen 
 wollen. Wie das funktioniert, lernen wir in dieser Aufgabe.
@@ -66,7 +66,7 @@ Aber Vorsicht vor dem versehentlichen Überschreiben!
 3. Verwenden sie nun `git commit` und `git log` um diese Änderungen dem vorherigen Commit aus 
    Schritt 1 hinzuzufügen, ohne einen zusätzlichen Commit zu erzeugen. 
 
-[EC] Mit welchem Befehl haben Sie die Änderungen an den bestehenden Commit angehangen?
+[EC] Mit welchem Befehl haben Sie die Änderungen an den bestehenden Commit angehangen?  
 [EQ] Wird hier wirklich ein bestehender Commit modifiziert? Wenn nein, was passiert stattdessen? 
 
 
@@ -74,9 +74,9 @@ Aber Vorsicht vor dem versehentlichen Überschreiben!
 
 Nach fertiggestellter Arbeit wollen wir natürlich neue Dateien oder Dateiänderungen in unser 
 Repository commiten. Manchmal kann es aber vorkommen, dass man etwas zu voreilig mehrere 
-Veränderungen mit `git add` der Staging-Area hinzugefügt hat un dann aber merkt, dass man evtl. 
-nur ein Subset darin haben möchte. Zum Glück kann man mit git ganz einfach ungewünschte Dateien 
-oder Dateiänderungen wieder aus der Staging-Area entfernen.
+Veränderungen mit `git add` der Staging-Area hinzugefügt hat und dann aber merkt, dass man evtl. 
+nur einen Teil dieser Änderunge Commiten möchte. Zum Glück kann man mit git ganz einfach 
+ungewünschte Dateien oder Dateiänderungen wieder aus der Staging-Area entfernen.
 
 Um zu lernen, wie das funktioniert, lesen Sie nun weiter [bis zum Abschnitt "Unmodifying a Modified 
 File"](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things) und bearbeiten anschließend 
@@ -93,7 +93,7 @@ wieder die folgende Aufgabe.
    und danach einen weiteren Commit der die Datei `remove.md` hinzufügt, ebenfalls mit einer 
    sinnvollen Commit-Nachricht.
 
-[EC] Mit welchen Befehlen können Sie die Datei `remove.md` aus der Staging Area entfernen?
+[EC] Mit welchen Befehlen können Sie die Datei `remove.md` aus der Staging-Area entfernen?
 
 [WARNING]
 Geheime Informationen wie Schlüssel oder Passwörter sollte man nie in ein git Repo speichern.
@@ -105,11 +105,11 @@ Hat man hingegen schon gepusht, wird es richtig aufwändig; dazu mehr später.
 ### Änderungen an einer Datei rückgängig machen
 
 Manchmal merken wir, dass wir Änderungen an einer Datei vorgenommen haben die wir eigentlich gar 
-nicht brauchen, z.B. eine ungenutzte Funktion hinzugefügt. Wenn, ausser dieser keine weiteren
+nicht brauchen, z.B. eine ungenutzte Funktion hinzugefügt. Wenn, ausser dieser, keine weiteren
 Änderungen an einer Datei vorgenommen wurden, können wir einfach git benutzen, um die Datei auf 
 ihren letzten Snapshot im vorherigen Commit zurückzusetzen.
 
-Um zu Lernen wie das funktioniert, lesen wir jetzt [bis zum Abschnitt "Undoing things with git 
+Lesen Sie weiter [bis zum Abschnitt "Undoing things with git 
 restore"](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things). Und bearbeiten dann wieder die dazugehörige Aufgabe.
 
 1. Erstellen Sie eine neue Datei, mit Inhalt, und nennen Sie sie `checkout.md`.
@@ -119,14 +119,15 @@ restore"](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things). Und bearbei
 4. Setzen Sie nun die datei auf den Zustand des vorher erzeugten Commits zurück.
 5. Vergewissern Sie sich, dass die Datei korrekt zurückgesetzt wurde.
 
-[EC] Mit welchem Befehl haben Sie die bearbeitete Datei zurückgesetzt?
+[EC] Mit welchem Befehl haben Sie die bearbeitete Datei auf den Zustand des letzten Commits 
+zurückgesetzt?
 
 [NOTICE]
 In der verlinkten Quelle steht "It tells you pretty explicitly how to discard the changes 
 you’ve made. Let’s do what it says". 
-In neueren git-Versionen steht in der `git status` Ausgabe nicht mehr "(use "git checkout -- 
-<file>..." to discard changes in working directory)", sondern "(use "git restore <file>..." to 
-discard changes in working directory)". Falls das bei ihnen steht ist also nichts kaputt, 
+In neueren git-Versionen steht in der `git status` Ausgabe nicht mehr `"(use "git checkout -- 
+<file>..." to discard changes in working directory)"`, sondern `"(use "git restore <file>..." to 
+discard changes in working directory)"`. Falls das bei ihnen steht ist also nichts kaputt, 
 sondern Sie haben einfach nur eine neuere Version von git.
 [ENDNOTICE]
 
@@ -163,7 +164,7 @@ uncommited in die Datei geschrieben worden sein.
    Schritt 2 kommen.
 
 [EC] Wie muss der `git restore`-Befehl aussehen, um eine Datei auf den Zustand des vorherigen 
-Commits zurückzusetzen?
+Commits zurückzusetzen?  
 [EQ] Wir setzen mit unseren Befehlen die Datei auf einen vorherigen Zustand zurück, wird damit 
 auch der vorherige Commit entfernt?
 
