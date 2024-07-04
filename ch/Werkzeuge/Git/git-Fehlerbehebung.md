@@ -164,16 +164,12 @@ uncommited in die Datei geschrieben worden sein.
 
 [EC] Wie muss der `git restore`-Befehl aussehen, um eine Datei auf den Zustand des vorherigen 
 Commits zurückzusetzen?
-
-[NOTICE]
-Anders als bei den anderen Befehlen würde es in diesem Fall nötig sein einen neuen Commit mit 
-den Änderungen zu pushen, wenn der Zwischenstand bereits gepusht wurde. Wäre das noch nicht der 
-Fall, könnte man natürlich die Änderungen noch zum vorherigen Commit hinzufügen, indem man 
-sich wieder an die erste Aufgabe zurückerinnert. 
-[ENDNOTICE]
+[EQ] Wir setzen mit usneren Befehlen die Datei auf einen vorherigen Zustand zurück, wird damit 
+auch der vorherige Commit entfernt?
 
 [WARNING]
-Auch wenn es bereits in unserer Quelle steht. Falls Sie es überlesen haben, hier noch einmal:
+Auch wenn es bereits in unserer Quelle steht. Falls Sie es überlesen haben, hier noch einmal, 
+weil es so wichtig ist:
 
 > It’s important to understand that git restore <file> is a dangerous command. Any local changes 
 > you made to that file are gone — Git just replaced that file with the last staged or committed 
@@ -186,15 +182,12 @@ Auch wenn es bereits in unserer Quelle steht. Falls Sie es überlesen haben, hie
 [SECTION::submission::trace]
 
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Auf verwendung der korrekten Befehle achten und ]
 
-- [EREFC::1] `git commit --ammend`
-- [EREFC::2] `git reset HEAD filename`
-- [EREFC::3] `git checkout -- filename`
-- [EREFC::4] `git restore filename`
-- [EREFC::5] `git restore --source=HEAD~1 filename`
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
