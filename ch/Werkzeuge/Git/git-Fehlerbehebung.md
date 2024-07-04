@@ -69,40 +69,31 @@ Aber Vorsicht vor dem versehentlichen Überschreiben!
 [EC] Mit welchem Befehl haben Sie die Änderungen an den bestehenden Commit angehangen?
 
 
-### Eine Datei(-änderung) aus einem lokalen Commit entfernen/unstagen
+### Eine Datei(-änderung) aus der Staging-Area entfernen
 
-In bestimmten Situationen kann es auch hilfreicher sein eine Datei einfach aus einem Commit zu 
-entfernen, entweder weil wir sie aus Versehen hinzugefügt haben oder weil wir merken, dass wir 
-diese lieber in einem anderen Commit haben wollen.
+Nach fertiggestellter Arbeit wollen wir natürlich neue Dateien oder Dateiänderungen in unser 
+Repository commiten. Manchmal kann es aber vorkommen, dass man etwas zu voreilig mehrere 
+Veränderungen mit `git add` der Staging-Area hinzugefügt hat un dann aber merkt, dass man evtl. 
+nur ein Subset darin haben möchte. Zum Glück kann man mit git ganz einfach ungewünschte Dateien 
+oder Dateiänderungen wieder aus der Staging-Area entfernen.
 
-Um mehr darüber zu lernen, lesen Sie nun weiter [bis zum Abschnitt "Unmodifying a Modified File"](
-https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things)
-und bearbeiten anschließend wieder die folgende Aufgabe. 
-
-TODO_1_hüster: 
-
-- Die Einleitung ist irreführend, denn bei "Unmodifying a Modified File"
-  wird kein Commit modifiziert.  
-- Außerdem sollte der vorherige Abschnitt (über `--amend`) erst später kommen, denn
-  dort wird ja sehr wohl ein Commit modifiziert, was erheblich invasiver ist.  
-- Drittens passt die nachfolgende Anleitung unten gar nicht zum gelesenen Abschnitt im Buch,
-  denn in der Anleitung wird wiederum sehr wohl ein Commit modifiziert.  
-- Viertens ergibt das Wording der Aufgabe keinen Sinn: Man kann einen git-Commit nicht modifizieren.
-  Sondern nur einen neuen erzeugen, der an seine Stelle tritt.
-  Das gilt analog oben bei `--amend`.   
-  Wir brauchen in den git-Aufgaben eine präzise Redeweise, sonst wird der Aufbau des korrekten mentalen Modells
-  zu schwierig.
+Um zu lernen, wie das funktioniert, lesen Sie nun weiter [bis zum Abschnitt "Unmodifying a Modified 
+File"](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things) und bearbeiten anschließend 
+wieder die folgende Aufgabe.
 
 1. Legen Sie zwei neue Dateien mit den Namen `add.md` und `remove.md` an und fügen Sie diese mit 
-   `git add` der staging area hinzu. Auch hier möchten wir wieder einen kurzen Text in beiden 
+   `git add` der Staging-Area hinzu. Auch hier möchten wir wieder einen kurzen Text in beiden 
    Dateien haben, z.B. "Ich bin add.md" und "Ich bin remove.md".
 2. Mit `git status` können wir nun den aktuellen Status der Staging-Area begutachten.
 3. Nun wollen wir die datei `remove.md` aus der Staging-Area entfernen. Wie genau das 
    funktioniert, haben Sie gerade gelesen.
 4. Stellen Sie nun mit `git show` sicher, dass die Staging-Area nur die Datei `add.md` enthält.
-5. Erstellen Sie nun einen Commit mit der Datei `add.md` und einer sinnvollen Commit-Nachricht.
+5. Erstellen Sie nun einen Commit mit der Datei `add.md` und einer sinnvollen Commit-Nachricht 
+   und danach einen weiteren Commit der die Datei `remove.md` hinzufügt, ebenfalls mit einer 
+   sinnvollen Commit-Nachricht.
 
-[EC] Mit welchem Befehl können Sie die Datei `remove.md` aus dem Commit entfernen?
+[EC] Mit welchem Befehl bzw. mit welchen Befehlen können Sie die Datei `remove.md` aus dem Commit 
+entfernen?
 
 [WARNING]
 Geheime Informationen wie Schlüssel oder Passwörter sollte man nie in ein git Repo speichern.
