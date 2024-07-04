@@ -164,7 +164,7 @@ uncommited in die Datei geschrieben worden sein.
 
 [EC] Wie muss der `git restore`-Befehl aussehen, um eine Datei auf den Zustand des vorherigen 
 Commits zurückzusetzen?
-[EQ] Wir setzen mit usneren Befehlen die Datei auf einen vorherigen Zustand zurück, wird damit 
+[EQ] Wir setzen mit unseren Befehlen die Datei auf einen vorherigen Zustand zurück, wird damit 
 auch der vorherige Commit entfernt?
 
 [WARNING]
