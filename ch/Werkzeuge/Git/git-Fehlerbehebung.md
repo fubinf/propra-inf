@@ -48,7 +48,7 @@ wollen. Wie das funktioniert, lernen wir in dieser Aufgabe.
 
 Dazu lesen wir zuerst [bis zum Abschnitt "Unstaging a Staged File"](
 https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things) 
-und bearbeiten dann die nachfolgende Aufgabe.
+und bearbeiten dann die nachfolgenden Aufgabenteile.
 
 1. Erstellen sie eine minimale neue Datei namens `amend.md` und fügen sie diese mit `git add` und `git 
    commit` einem neuen Commit hinzu.
@@ -67,6 +67,7 @@ Aber Vorsicht vor dem versehentlichen Überschreiben!
    Schritt 1 hinzuzufügen, ohne einen zusätzlichen Commit zu erzeugen. 
 
 [EC] Mit welchem Befehl haben Sie die Änderungen an den bestehenden Commit angehangen?
+[EQ] Wird hier wirklich ein bestehender Commit modifiziert? Wenn nein, was passiert stattdessen? 
 
 
 ### Eine Datei(-änderung) aus der Staging-Area entfernen
@@ -92,8 +93,7 @@ wieder die folgende Aufgabe.
    und danach einen weiteren Commit der die Datei `remove.md` hinzufügt, ebenfalls mit einer 
    sinnvollen Commit-Nachricht.
 
-[EC] Mit welchem Befehl bzw. mit welchen Befehlen können Sie die Datei `remove.md` aus dem Commit 
-entfernen?
+[EC] Mit welchen Befehlen können Sie die Datei `remove.md` aus der Staging Area entfernen?
 
 [WARNING]
 Geheime Informationen wie Schlüssel oder Passwörter sollte man nie in ein git Repo speichern.
