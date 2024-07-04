@@ -1,6 +1,6 @@
 title: Git Anpassen
 stage: alpha
-timevalue: 0.1
+timevalue: 1
 difficulty: 2
 assumes: git-Funktionsweise
 ---
