@@ -2,7 +2,7 @@ title: "Objektmethoden in Python"
 stage: draft
 timevalue: 0.75
 difficulty: 2
-requires: PythonObjectsClassesIntro, PythonFunctions
+requires: Python-Objects-Classes-Intro, PythonFunctions
 assumes: PythonStrings, PythonIntegers, PythonBooleans, PythonComments, PythonTypeConversion, PythonIf, PythonElifElse
 ---
 
@@ -14,11 +14,17 @@ assumes: PythonStrings, PythonIntegers, PythonBooleans, PythonComments, PythonTy
 
 [SECTION::instructions::loose]
 
-Lesen Sie den folgenden kleinen [Artikel](https://www.w3schools.com/python/gloss_python_object_methods.asp). Sie haben in [PARTREF::PythonObjectsClassesIntro] Objekte kennengelernt. Sie haben auch gelernt, dass Objekte Attribute haben können und diese Attribute bei der Objekterstellung beliebig gesetzt werden können. 
+Lesen Sie den folgenden kleinen
+[Artikel](https://www.w3schools.com/python/gloss_python_object_methods.asp).
+Sie haben in [PARTREF::Python-Objects-Classes-Intro] Objekte kennengelernt.
+Sie haben auch gelernt, dass Objekte Attribute haben können und
+diese Attribute bei der Objekterstellung beliebig gesetzt werden können. 
 
-[EQ] Was haben Sie von dem kleinen Artikel verstanden? Was sind diese Methoden, die wir innerhalb der Klasse angeben, um damit später über erstellte Objekte arbeiten zu können? 
+[EQ] Was haben Sie von dem kleinen Artikel verstanden? Was sind diese Methoden,
+die wir innerhalb der Klasse angeben, um damit später über erstellte Objekte arbeiten zu können? 
 
-[EQ] Welchen Aspekt von einem Objekt beschreiben diese Methoden, wenn Sie wissen würden, dass die Attribute die **Eigenschaften** von einem Objekt darstellen. 
+[EQ] Welchen Aspekt von einem Objekt beschreiben diese Methoden, wenn Sie wissen würden,
+dass die Attribute die **Eigenschaften** von einem Objekt darstellen. 
 
 [EQ] Wie kann auf die Objektattribute innerhalb dieser Objektmethoden zugegriffen werden?
 
@@ -84,19 +90,30 @@ Betrachten Sie folgende Klassendefinition:
     print(buch2.titel + ' ist verfügbar: ' + str(buch2.verfuegbar))
 ```
 
-[ER] Erstellen Sie zuerst eine geeignete Python-Datei und kopieren Sie dann den gesamten Code hinein. Ergänzen Sie danach die drei Objektmethoden `info()`, `ausleihen()` und `zurueckgeben()` anhand der Kommentare, die die Ausgaben jeder Methode beschreiben.
+[ER] Erstellen Sie zuerst eine geeignete Python-Datei und kopieren Sie dann den gesamten Code hinein.
+Ergänzen Sie danach die drei Objektmethoden `info()`, `ausleihen()` und
+`zurueckgeben()` anhand der Kommentare, die die Ausgaben jeder Methode beschreiben.
 
-[ER] Testen Sie Ihre Implementierungen mithilfe des Beispiels der beiden zur Verfügung gestellten Bücher-Objekte `buch1` und `buch2` und schreiben Sie die Ausgaben als Kommentare an passende Stellen im Code.
+[ER] Testen Sie Ihre Implementierungen mithilfe des Beispiels der beiden zur Verfügung gestellten
+Bücher-Objekte `buch1` und `buch2` und schreiben Sie die Ausgaben als Kommentare
+an passende Stellen im Code.
 
-[EQ] In der Definition der `__init__()`-Funktion habe wir das Attribut `verfuegbar` auf `True` gesetzt. Wir haben dabei also angenommen, dass jedes Buch am Anfang immer verfügbar ist. Wie Sie wahrscheinlich gemerkt haben, muss dieses Attribut bei der Erstellung von Ojekten nicht als Parameter für den Konstruktor angegeben werden. Wie würde man solche Attribute nennen und wann sind sie hilfreich?
+[EQ] In der Definition der `__init__()`-Funktion habe wir das Attribut `verfuegbar` auf `True` gesetzt.
+Wir haben dabei also angenommen, dass jedes Buch am Anfang immer verfügbar ist.
+Wie Sie wahrscheinlich gemerkt haben, muss dieses Attribut bei der Erstellung von Ojekten
+nicht als Parameter für den Konstruktor angegeben werden. Wie würde man solche Attribute nennen und
+wann sind sie hilfreich?
 
-[EQ] In [PARTREF::PythonObjectsClassesIntro] haben Sie Klassenattibute kennengelernt. Sie haben auch gelernt, wie sich Klassenattribute von Objektattributen unterscheiden. Kann man das Attribut `verfuegbar` auch als Klassenattribut definieren? Warum?
+[EQ] In [PARTREF::Python-Objects-Classes-Intro] haben Sie Klassenattibute kennengelernt.
+Sie haben auch gelernt, wie sich Klassenattribute von Objektattributen unterscheiden.
+Kann man das Attribut `verfuegbar` auch als Klassenattribut definieren? Warum?
 
 [ENDSECTION]
 
 [SECTION::submission::program]
 
-Bearbeiten Sie die Anforderungen [EREFR::1], [EREFR::2]. Am Ende sollte eine Python-Datei abgegeben werden.
+Bearbeiten Sie die Anforderungen [EREFR::1], [EREFR::2].
+Am Ende sollte eine Python-Datei abgegeben werden.
 
 [ENDSECTION]
 
@@ -109,11 +126,13 @@ Bearbeiten Sie die Anforderungen [EREFR::1], [EREFR::2]. Am Ende sollte eine Pyt
 
 [INSTRUCTOR::Syntax und Konzepte]
 
-In den abgegebenen Python-Dateien könnte überprüft werden, ob man die Syntax für den Umgang mit Objektattributen und Objektmethoden verstanden hat.
+In den abgegebenen Python-Dateien könnte überprüft werden,
+ob man die Syntax für den Umgang mit Objektattributen und Objektmethoden verstanden hat.
 
 Bei schriftlichen Markdown-Abgaben bitte überprüfen:  
 - ob, der Student verstanden hat, was eine Objektmethode ist.  
 - ob, der Student mit den Objektattributen innerhalb der Methoden arbeiten kann.  
-- ob, der Student Default-Attribute versteht, die für alle Objekte der Klasse gleiche Werte haben sollten.  
+- ob, der Student Default-Attribute versteht,
+die für alle Objekte der Klasse gleiche Werte haben sollten.  
 
 [ENDINSTRUCTOR]
