@@ -77,7 +77,7 @@ Links auf Verzeichnisse als Verzeichnis und Links auf Dateien als Datei.
   welche Datei am größten ist; welche zuletzt erstellt wurde; welche zuletzt geändert wurde;
   welche Dateiendung am häufigsten vorkommt  
   `print("biggest file:", ..., "\nlast created:", ..., "\nlast changed:", ..., "\nmost common file extension:", ...)`    
-  (eine elegante Lösung verwendet `min()`/`max()` und [PARTREF::Python-list-comprehensions])
+  (eine elegante Lösung verwendet `min()`/`max()` und [PARTREF::Python-List-Comprehensions])
 - [ER] Verwenden Sie [`os.getcwd()`](https://docs.python.org/3/library/os.html#os.getcwd), um 
   den Pfad zu ihrem aktuellen Arbeitsverzeichnis (im ProPra-Repo) zu erhalten.  
   Erstellen Sie mittels `os.path` einen relativen Pfad, der von ihrem Home-Verzeichnis zu ihrem Arbeitsverzeichnis 
