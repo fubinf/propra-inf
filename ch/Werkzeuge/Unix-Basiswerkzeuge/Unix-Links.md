@@ -1,9 +1,22 @@
 title: Links in Unix
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 2
 assumes: Umgang-mit-Verzeichnissen
 ---
+TODO_1_condric:
+
+- Wir hatten schon besprochen dass "Lesen Sie folgenden Artikel" doof ist.
+- Ich finde die Quelle schwach. Der Witz bei Hardlinks ist doch, dass man einzelne löschen kann,
+  ohne dass das die anderen tangiert und _ohne_ dass eine Kopie der Datei entsteht.
+  Der Artikel suggeriert hingegen fast, dass `cp` und `ln` ohne `-s` das Gleiche sei.
+  Verwirrend!
+- Man sollte nach Verschieben und Löschen auch noch Editieren:
+  Die meisten Editoren editieren eine Datei _nicht_, sondern nennen Sie nach .bak um
+  und legen eine neue an. Hingegen kann man mit `echo mehr! >>datei` eine Datei wirklich ändern.  
+  Mit diesem Paar von Operationen verstehen man den Unterschied Hardlink/Softlink am eindrucksvollsten
+  und versteht auch, warum niemand hardlinks benutzt: Man will über die Art der Änderungen an
+  Dateien (Ändern vs. Neuschreiben) meist nicht nachdenken.
 
 [SECTION::goal::idea]
 Ich verstehe den Unterschied zwischen Hardlink und Symlink.  

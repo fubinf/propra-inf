@@ -61,7 +61,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Werkzeuge
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
 
@@ -100,7 +99,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC)  
   Siehe Notizen in der Datei. Schwierig!
 
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC)
 
 
 ## Reviews to do for Christian Hofmann
