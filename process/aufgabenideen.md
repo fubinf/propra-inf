@@ -434,6 +434,8 @@ Speziellerer Kram:
 
 ### Werkzeuge: sonstige Ideen
 
+- Shell:
+  - https://writing.kemitchell.com/2024/03/28/Pick-From-a-List-Tools
 - IDE
   - Unterschied IDE und Editor
   - Projekterstellung
