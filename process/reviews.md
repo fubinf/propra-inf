@@ -55,7 +55,6 @@ We will modify these rules over time when others appear more useful.
 
 ### Web
 
-- ch/Web/HTML/HTMLErsteSchritte.md (DM->LP->DM)
 - ch/Web/HTML/HTMLMedien.md (DM)
 - ch/Web/CSS/CSSEinfuehrung.md (DM)
 

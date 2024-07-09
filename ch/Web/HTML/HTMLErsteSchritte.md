@@ -1,8 +1,13 @@
 title: Erste Schritte in HTML
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 ---
+
+TODO_1_müllers:
+
+- Bitte abstrakte Erklärungen vermeiden; wir sind im Praktikum, nicht in der Vorlesung.
+- 
 
 [SECTION::goal::experience]
 
@@ -14,8 +19,9 @@ difficulty: 2
 [SECTION::background::default]
 
 [TERMREF::HTML] ist die Grundlage einer jeden im Browser angezeigten Webseite. 
-Diese Aufgabe beschäftigt sich damit, wie der Browser ein HTML-Dokument interpretiert und insbesondere mit den Basics dieser [TERMREF::Auszeichnungssprache]. 
-Mit einem Beispiel wird eine erste simple Webseite erstellt, anhand deren erste grundlegenede [TERMREF2::HTML-Element::-e] erkundet werden können. 
+Diese Aufgabe beschäftigt sich damit, wie der Browser ein HTML-Dokument interpretiert und insbesondere 
+mit den Basics dieser [TERMREF::Auszeichnungssprache]. 
+Mit einem Beispiel wird eine erste simple Webseite erstellt, anhand deren grundlegenede [TERMREF2::HTML-Element::-e] erkundet werden können. 
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
@@ -48,27 +54,28 @@ Zunächst haben wir in der Universität zu Softwareprojekten beigetragen und dan
 Heute bieten wir unsere Leistung in ganz Europa an.
 ```
 
-* [ER] Im ersten Schritt möchten wir uns damit vertraut machen, wie der Browser mit einer HTML-Datei im Unterschied zu einer Textdatei umgeht und unsere Arbeitsdatei für diese Aufgabe vorbereiten.
-    - Kopieren sie den Text in einen Texteditor Ihrer Wahl und speichern Sie ihn als `HTMLErsteSchritte.txt` ab. Öffnen Sie die Textdatei in Ihrem Browser.  
-    - Ändern Sie im nächsten Schritt die Dateiendung auf `.html` und öffnen Sie die umbenannte Datei im Browser.  
+* [ER] Im ersten Schritt möchten wir uns damit vertraut machen, wie der Browser mit einer HTML-Datei 
+  im Unterschied zu einer Textdatei umgeht und unsere Arbeitsdatei für diese Aufgabe vorbereiten.
+    - Kopieren sie den Text in einen Texteditor Ihrer Wahl und speichern Sie ihn als `HTMLErsteSchritte.txt` ab.
+      Öffnen Sie die Textdatei in Ihrem Browser.  
+    - Kopieren Sie `HTMLErsteSchritte.txt` nach `HTMLErsteSchritte.html` und öffnen Sie diese Datei im Browser.  
 * [EQ] Welche Änderungen haben sich ergeben? Beschreiben Sie, was Sie beobachten können.  
 
-Die Hauptüberschrift eines Dokuments wird mit dem `h1`-Element ausgezeichnet. 
+Die Hauptüberschrift eines Dokuments wird 
+[mit dem `h1`-Element ausgezeichnet](https://wiki.selfhtml.org/wiki/HTML/Tutorials/Seitenstrukturierung). 
 Weitere, untergeordnete Überschriftenebenen werden von 2-6 durchnummeriert, also `h2`, `h3`, ..., `h6`. 
 Damit lässt sich die Struktur eines HTML-Dokuments bereits gut unterteilen.
 
-Ein Textabsatz wird grundsätzlich mit dem Tag `<p>` begonnen und mit `</p>` beendet. 
+Ein Textabsatz wird mit dem Tag `<p>` begonnen und mit `</p>` beendet. 
 Der Name für das `p`-Element entstammt dabei dem Englischen: *paragraph* bedeutet "Absatz".
 
-* [ER] Ergänzen Sie im Dokument `HTMLErsteSchritte.html` die Markierungen für Überschriften und vorhandene Absätze. Speichern Sie die Datei und laden Sie die Webseite im Browser neu.
+* [ER] Ergänzen Sie im Dokument `HTMLErsteSchritte.html` die Markierungen für Überschriften und vorhandene Absätze. 
+  Speichern Sie die Datei und laden Sie die Webseite im Browser neu.
 * [EQ] Beschreiben Sie, wie sich die Webseite verändert hat.
 
 Im Entwurf gilt es jetzt noch die aufgeführten Leistungen als Liste darzustellen. 
-In HTML gibt es zwei Arten von Listen. Geordnete und ungeordnete Listen. 
-Geordnete Listen haben fortlaufend gekennzeichnete Einträge (z.B. 1,2,3,... oder a,b,c,...). Ungeordnete Listen entsprechen einer Strichpunktliste. 
-Um in HTML nun Listen zu markieren, müssen zwei Dinge getan werden. Zunächst die Liste als solches markieren und dann jeden einzelnen Listeneintrag. 
-Eine Liste startet so also entweder mit `<ul>` (für *unordered* - ungeordnet) oder `<ol>` (für *ordered* - geordnet). 
-Es folgen die Listeneinträge mit `<li> ... </li>`. Schließlich wird die Liste mit `</ul>` bzw. `</ol>` beendet. Ein Beispiel:
+In HTML gibt es zwei Arten von Listen: geordnete und ungeordnete. 
+Eine geordnete sieht z.B. so aus:
 ```html
 <ol>
   <li>Erster Punkt</li>
@@ -76,17 +83,32 @@ Es folgen die Listeneinträge mit `<li> ... </li>`. Schließlich wird die Liste 
   <li>Dritter Punkt</li>
 </ol>
 ```
+Es gibt also ein Tag `<ol>` für die Liste im Ganzen und ein anderes, `<li>`, für jeden Aufzählungspunkt darin.
+Die Tags sind verschachtelt, ein wichtiges Prinzip bei HTML.
+
+Das Beispiel ist eine geordnete Liste (ordered list, ol, d.h. nummeriert).
+Ersetzt man `<ol>` durch `<ul>` (unordered list), erhält man eine Spiegelstrichliste.
+
+Eine solche Formulierung wie "Ersetzt man `<ol>` durch `<ul>`" heißt in HTML immer, dass man auch
+`</ol>` durch `</ul>` ersetzt. 
+Die Tag-Paare müssen immer zusammenpassen, sonst ist es kein korrektes HTML.
+(Allerdings gibt es ein paar Tags, die kein schließendes Gegenstück haben.)
+
 
 * [ER] Ergänzen Sie das HTML-Markup für Liste der Leistungen im HTML-Dokument.
 
-Nun können Sie auch Listen ineinander verschachteln. Dazu fügen Sie innerhalb der Liste einfach eine weitere Liste ein. Anstatt eines `li`-Elements fügen Sie so z.B. ein `ul`-Element ein. Dies erlaubt es zu einzelnen Listenelementen Unterpunkte einzufügen.
+Man kann auch Listen ineinander verschachteln. Dazu fügen Sie innerhalb der Liste einfach eine weitere Liste ein. 
+Anstatt eines `li`-Elements fügen Sie so z.B. ein `ul`-Element ein.
+Die innere Liste wird eingerückt dargestellt.
 
-* [ER] Unter dem Stichpunkt "Programme nach Ihren Wünschen" fügen Sie folgende Unterpunkte ein: Bibliotheken, Frameworks, Werkzeuge.
+* [ER] Fügen Sie unter dem Stichpunkt "Programme nach Ihren Wünschen" folgende Unterpunkte ein: 
+  Bibliotheken, Frameworks, Werkzeuge.
 
-Eine Konvention für HTML-Dokumente ist, dass sie einer ganz bestimmten Grundstruktur folgen. 
+Eine Konvention für HTML-Dokumente ist, dass sie einer festen Grundstruktur folgen, die die äußeren paar Tags festlegt. 
 Insbesondere soll es in jeder HTML-Datei einen Kopf geben, in dem Informationen für den Browser stehen, wie z.B. der Titel der Webseite. 
-Dieser Bereich wird in das `head`-Element eingeschlossen. 
-Zwischen `<body>` und `</body>` findet sich der eigentliche Inhalt wieder. Die HTML5-Grundstruktur sieht dabei aus wie folgt:
+Dieser Bereich wird in das `<head>`-Element eingeschlossen. 
+Zwischen `<body>` und `</body>` findet sich der eigentliche Inhalt. 
+Eine typische HTML5-Grundstruktur sieht aus wie folgt:
 
 ```html
 <!doctype html>
@@ -94,17 +116,20 @@ Zwischen `<body>` und `</body>` findet sich der eigentliche Inhalt wieder. Die H
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beschreibung der Seite</title>
+    <title>Titel des Browser-Tabs</title>
   </head>
   <body>
-    <p>Inhalt der Seite</p>
+    ...
   </body>
 </html>
 ```
 Referenz mit weiteren Hintergründen: [HREF::https://wiki.selfhtml.org/wiki/HTML/Tutorials/Grundger%C3%BCst]
 
-* [ER] Ergänzen Sie die Grundstruktur. Finden Sie das Element, das dem Browser den Titel der Webseite mitteilt und geben Sie der Webseite einen passenden Titel.
-Den Titel finden Sie für gewöhnlich als Überschrift des Tabs im Browser wieder.
+* [ER] Ergänzen Sie die Grundstruktur. 
+  Lesen Sie nach, [wie man ein Favicon einbindet](https://wiki.selfhtml.org/wiki/Favicon),
+  erzeugen Sie sich ein beliebiges Favicon auf [favicon.io](https://favicon.io/)
+  und binden Sie es als `HTMLErsteSchritte-favicon.ico` ein.
+  (Anstelle von `.ico`-Dateien werden heute meist `.png`-Dateien benutzt, die kompakter und flexibler sind.)
 
 [ENDSECTION]
 [SECTION::submission::reflection,program]
@@ -116,11 +141,15 @@ Den Titel finden Sie für gewöhnlich als Überschrift des Tabs im Browser wiede
 
 
 [INSTRUCTOR::Auf Korrektheit achten]
-Im Markdown-Dokument sind zwei Fragen zu Beobachtungen zu beantworten. 
-Hier ist das Ziel hauptsächlich, dass man sich mit den Fragen befasst hat, um ein bisschen zu reflektieren, wie der Browser HTML interpretiert.
 
-Das HTML sollte möglichst korrekt sein. Browser sind z.T. sehr gnädig auch fehlerhaftes HTML zu akzeptieren. 
-Um sich nicht etwas falsches anzugewöhnen, ist es hier sicherlich sinnvoll relativ penibel mit Fehlern umzugehen.
+[EREFQ::1] Der Inhalt verwandelt sich in Fließtext.
+
+[EREFQ::2] Die Überschriften werden zu Überschriften (fett, groß, abgesetzt).
+Die Absätze sind durch Absatzabstände getrennt. Innerhalb der Absätze ist alles wie zuvor.
+
+Achtung: Das HTML soll korrekt sein. Browser akzeptieren auch schwer fehlerhaftes HTML, 
+aber um sich nicht etwas Falsches anzugewöhnen, weisen wir fehlerhaftes HTML zurück,
+wenn das mehr als ein oder zwei Flüchtigkeitsfehler betrifft.
 
 [INCLUDE::ALT:]
 
