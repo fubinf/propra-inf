@@ -14,7 +14,7 @@ difficulty: 2
 [SECTION::background::default]
 
 [TERMREF::HTML] ist die Grundlage einer jeden im Browser angezeigten Webseite. 
-Diese Aufgabe beschäftigt sich damit, wie der Browser ein HTML-Dokument interpretiert und insbesondere mit den Basics dieser Auszeichnungssprache. 
+Diese Aufgabe beschäftigt sich damit, wie der Browser ein HTML-Dokument interpretiert und insbesondere mit den Basics dieser [TERMREF::Auszeichnungssprache]. 
 Mit einem Beispiel wird eine erste simple Webseite erstellt, anhand deren erste grundlegenede [TERMREF2::HTML-Element::-e] erkundet werden können. 
 
 [ENDSECTION]

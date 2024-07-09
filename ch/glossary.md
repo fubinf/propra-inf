@@ -81,6 +81,16 @@ In Code kann so z. B. der Buchstabe "A" auch durch seinen ASCII-Wert "65" darges
 Eine ASCII-Tabelle finden Sie unter [HREF::https://www.asciitable.com/].
 [ENDTERM]
 
+[TERM::Auszeichnungssprache]
+Eine Auszeichnungssprache ist eine formale Sprache, die verwendet wird, um die Struktur und Darstellung von Texten in einem Dokument zu definieren. Sie besteht aus Markierungen (Tags oder Syntaxelementen), die den Text umgeben und so dessen Bedeutung und Formatierung festlegen. Auszeichnungssprachen werden häufig in der Dokumentverarbeitung, im Webdesign und in der Datenbeschreibung verwendet.
+
+Ein bekanntes Beispiel für eine Auszeichnungssprache ist [TERMREF::HTML], die zur Erstellung und Strukturierung von Inhalten im World Wide Web verwendet wird. HTML verwendet Tags, um verschiedene Elemente wie Überschriften, Absätze und Links zu kennzeichnen.
+
+[TERMREF::Markdown] ist ein weiteres Beispiel für eine Auszeichnungssprache. Es wird oft in Texteditoren und auf Plattformen wie GitHub verwendet, um einfache Textformatierungen wie Überschriften, Listen und Links zu erstellen. Markdown zeichnet sich durch eine einfache und leicht lesbare Syntax aus.
+
+Weitere Informationen zu Auszeichnungssprachen: [HREF:https://de.wikipedia.org/wiki/Auszeichnungssprache]
+[ENDTERM]
+
 ## B
 
 [TERM::Bash|.bashrc]
@@ -403,7 +413,7 @@ z.B. `Content-Type:`, `Set-Cookie:`, `Cache-Control:`.
 [ENDTERM]
 
 [TERM::HTML|Hypertext Markup Language]
-HTML steht für Hypertext Markup Language. Es eine Auszeichnungssprache, ähnlich wie [TERMREF::Markdown].
+HTML steht für Hypertext Markup Language. Es eine [TERMREF::Auszeichnungssprache], ähnlich wie [TERMREF::Markdown].
 Das Hyper in Hypertext bedeutet dabei, dass es sich eben nicht nur um einen normalen Text handelt, 
 sondern einen solchen, der um Verknüpfungen zu anderen Textstellen erweitert ist. 
 In HTML wird dieses Prinzip umgesetzt, indem spezielle Zeichenfolgen in den Text eingefügt werden. 
@@ -615,7 +625,7 @@ das Kommando `help` zeigt eine Kurzinformation dazu.
 [ENDTERM]
 
 [TERM::Markdown]
-Ist eine Auszeichnungssprache, die verwendet wird, um Text mit einer einfachen Syntax zu formatieren.
+Ist eine [TERMREF::Auszeichnungssprache], die verwendet wird, um Text mit einer einfachen Syntax zu formatieren.
 Sie wurde entwickelt, um das Schreiben von Texten für das Web zu erleichtern, ohne die Notwendigkeit
 von komplexen HTML-Tags oder Formatierungsbefehlen.
 [ENDTERM]
@@ -1185,7 +1195,7 @@ lesbarer und wartbarer zu machen.
 ## X
 
 [TERM::XML]
-XML (eXtensible Markup Language) ist eine Auszeichnungssprache zur Darstellung
+XML (eXtensible Markup Language) ist eine [TERMREF::Auszeichnungssprache] zur Darstellung
 hierarchisch strukturierter Daten in einem menschenlesbaren Format. Entwickelt
 wurde XML, um strukturierte Daten zwischen Computersystemen austauschen zu können.
 Genau wie [TERMREF::JSON] ist XML nicht auf eine bestimmte Programmiersprache
