@@ -1,5 +1,5 @@
 title: "String Datentyp in Python"
-stage: alpha
+stage: draft
 timevalue: 1.0
 difficulty: 2
 ---

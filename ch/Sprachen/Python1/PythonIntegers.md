@@ -1,5 +1,5 @@
 title: "Integer Datentyp in Python"
-stage: alpha
+stage: draft
 timevalue: 0.75
 difficulty: 1
 assumes: PythonComments, PythonBooleans

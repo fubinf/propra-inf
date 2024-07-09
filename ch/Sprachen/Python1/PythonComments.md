@@ -1,5 +1,5 @@
 title: "Kommentare in Python"
-stage: alpha
+stage: draft
 timevalue: 0.5
 difficulty: 1
 ---

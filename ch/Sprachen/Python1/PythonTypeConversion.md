@@ -1,5 +1,5 @@
 title: "Typumwandlung in Python"
-stage: alpha
+stage: draft
 timevalue: 1.0
 difficulty: 2
 requires: PythonIntegers, PythonFloats, PythonStrings, PythonBooleans

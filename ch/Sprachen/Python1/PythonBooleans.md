@@ -1,5 +1,5 @@
 title: "Boolean Datentyp in Python"
-stage: alpha 
+stage: draft 
 timevalue: 0.75
 difficulty: 2
 ---

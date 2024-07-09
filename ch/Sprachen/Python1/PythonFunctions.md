@@ -1,5 +1,5 @@
 title: "Funktionen in Python"
-stage: alpha
+stage: draft
 timevalue: 1
 difficulty: 2
 assumes: PythonIntegers, PythonBooleans, PythonComments

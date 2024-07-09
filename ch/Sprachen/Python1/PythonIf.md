@@ -1,5 +1,5 @@
 title: "Kontrollstrukturen in Python: Fallunterscheidung mit der if-Anweisung"
-stage: alpha
+stage: draft
 timevalue: 0.75
 difficulty: 1
 requires: PythonBooleans, PythonIntegers
