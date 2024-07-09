@@ -1,42 +1,47 @@
 title: "List-Comprehensions in Python: Ausdrücke, die komplette Datenreihungen beschreiben"
 stage: alpha
-timevalue: 1.25
+timevalue: 1.0
 difficulty: 2
 ---
 
 [SECTION::goal::idea]
-Ich verstehe List-Comprehension in Python und kann sie in meinem Code richtig einsetzen.
+Ich kann Python-List-Comprehensions in meinem Code richtig einsetzen.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
-Lesen Sie erst diesen Artikel über
-[List-Comprehension in Python.](https://www.programiz.com/python-programming/list-comprehension)
-
+In dieser Aufgabe wenden wir die Techniken an, die in diesem Artikel über
+[List-Comprehension in Python.](https://www.programiz.com/python-programming/list-comprehension) 
+beschrieben sind. Überfliegen Sie den also bitte jetzt.
+(Bitte sagen Sie nie "execute an expression", wie es der Artikel tut:
+ Ausdrücke (expressions) werden ausgewertet (evaluated), nicht ausgeführt (executed).
+ Ausführen gehört zu Anweisungen (statements).
+ Bitte schreiben Sie ebenfalls niemals `condition == True`, wie es der Artikel tut,
+ denn das bedeutet bei booleschen Bedingungen das Gleiche wie `condition` allein.)
 
 [NOTICE]
-List-Comprehension könnte unter "Listenabstraktion" in manchen deutschen Quellen gefunden werden.
+List-Comprehension heißt auf Deutsch manchmal "Listenabstraktion";
+der Ausdruck ist aber fast nur im Bereich der Lehre gebräuchlich.
 [ENDNOTICE]
 
-Bearbeiten Sie danach folgende Anforderungen:
-
-[ER] Gegeben ist eine Liste von Zahlen. Schreiben Sie eine List-Comprehension,
-um alle ungeraden Zahlen aus der Liste zu filtern und sie in eine neue Liste zu speichern.
+[ER] Gegeben ist eine Liste von Zahlen. 
+Geben Sie den Wert einer List-Comprehension aus,
+die alle ungeraden Zahlen aus der Liste `numbers` filtert.
+Setzen Sie beide Anweisungen in Ihr Resultatprogramm; ebenso für die nachfolgenden Anweisungen.
+Dann können Sie das gesamte Resultatprogramm ausführen und bekommen die Ergebnisse zu sehen:
 
 ```python
 numbers = [42, 87, 13, 29, 65, 98, 7, 54, 33]
-# Ihre Lösung hier
+print("ungerade Zahlen:", [...])
 ```
 
 ---
 
 [ER] Gegeben ist eine Liste von Wörtern, die verschiedene Programmiersprachen repräsentieren.
-Schreiben Sie eine List-Comprehension,
-um die Länge jeder Programmiersprache in der Liste zu erhalten.
-Speichern Sie die Längen in einer neuen Liste.
+Geben Sie den Wert einer List-Comprehension aus, die die Länge jedes Wortes von `languages` ausdrückt.
 
 ```python
 languages = ["Python", "Java", "JavaScript", "C++", "Ruby"]
-# Ihre Lösung hier
+print("Wortlängen:", [...])
 ```
 
 ---
@@ -51,8 +56,7 @@ for word in words:
         short_words.append(word.upper())
 print(short_words)
 ```
-[ER] Schreiben Sie den obigen Code so um,
-dass er **mit** List-Comprehension das gleiche Ergebnis erzielt.
+[ER] Ersetzen Sie in Zeile 6 `short_words` durch eine List-Comprehension, die die Zeilen 2-5 gleichwertig ersetzt.
 
 ---
 
@@ -69,24 +73,26 @@ Verwenden Sie dazu normale Schleifen und Bedingungen.
 
 ---
 
-[EQ] Was ist Ihrer Meinung nach der Nutzen von List-Comprehensions bzw.
-würden Sie jede `for`-Schleife in Ihrem Code durch List-Comprehensions ersetzen, warum?
+[EQ] Welche for-Schleifen kann man nicht durch eine gleichwertige List-Comprehension ersetzen? Warum?
+
+[EQ] Welche for-Schleifen könnte man zwar, aber sollte man nicht 
+durch eine gleichwertige List-Comprehension ersetzen? Warum?
 
 [NOTICE]
-Comprehension können nicht nur für Listen benutzt werden,
-sondern für alle [TERMREF::Iterables in Python].
-Hierbei stellen die Klammern und die Ausgaben der Comprehensions den Hauptunterschied dar. 
+Comprehensions können nicht nur für Listen benutzt werden,
+sondern ganz analog ebenso für Mengen (set comprehension, etwa 
+`{ n for n in [5,5,1,2,3,4,5,3,3,5,5] if n % 2 != 0}`)
+und für Wörterbücher (dict comprehension, etwa dieses für ungerade Quadratzahlen:
+`{ n: n*n for n in range(10) if n % 2 != 0}`).
 [ENDNOTICE]
 
 [SECTION::submission::snippet]
-Erstellen Sie eine Abgabedatei mit dem Namen `Python-List-Comprehensions-Abgabe.py`.
-Kopieren Sie den Code jeder Aufgabe in diese Datei und
-fügen Sie Ihre Lösungen unter den jeweiligen Aufgaben hinzu.
+[INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Konzepte verstehen]
 Hier sollte der Bearbeiter den Inhalt des referenzierten Artikels verstanden haben.
-Lösungen können aus dem Artikel leicht abgeleitet werden und erfordern wenig bis gar kein Nachdenken.
+Lösungen können aus dem Artikel leicht abgeleitet werden und erfordern wenig Nachdenken.
 Daher sollten die Lösungen möglichst präzise formuliert werden.
 
 Bei den Aufgaben, in denen der Code umzuschreiben ist, ist die Lösung auf dem ersten Blick fast da,
