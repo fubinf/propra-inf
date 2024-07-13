@@ -40,8 +40,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Bestandscode
-
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->DM)
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->~~DM~~->LP)
 
 
 ### Debugging

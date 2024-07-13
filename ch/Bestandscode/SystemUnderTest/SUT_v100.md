@@ -1,6 +1,6 @@
 title: Einführung in das SUT v1.0.0
-stage: draft
-timevalue: 0
+stage: alpha
+timevalue: 1
 difficulty: 3
 explains: SUT
 ---
@@ -38,7 +38,7 @@ für Informatik"-GitHub Profil unter `propra-inf-testobjekt` abgelegt und ist
 ### Aufbau des SUT
 
 Lesen Sie die im Repository hinterlegte `README.md` Datei. Darin erhalten Sie einen Überblick über
-den Aufgabe des SUT.
+die Aufgabe des SUT.
 
 - [EQ] Welche Begriffe, die in der README.md aufgeführt sind, bereiten Ihnen Schwierigkeiten beim
   Verständnis?
@@ -63,8 +63,8 @@ Betrachten Sie die Nutzer unter `v1.0.0/data/users.json`.
 
 Der auf Python basierende Entwicklungscode ist unter `v1.0.0/app.py`.
 
-- [EQ] Welche Funktion verbirgt sich hinter dem [TERMREF::Decorator] `@app.route('/')`?
-- [EQ] Was können Sie sich unter dieser Zeile vorstellen?
+- [EQ] Welche Funktion verbirgt sich hinter dem [TERMREF::Dekorator] `@app.route('/')`?
+- [EQ] Was für eine Funktion sollte nach dieser Zeile folgen?
 
 ### Frontend Anteil
 
@@ -104,3 +104,28 @@ bereit sein, mit dieser Version zu arbeiten.
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
+
+[INSTRUCTOR::Hinweise]
+
+- [EREFQ::1] Drei Versionen v1.0.0, v1.1.0 und v3.0.0 mit Stand 13. Juli 2024
+- [EREFQ::2] Idealer Weise wird auf die einzelnen Sektionen der Versionsnummer eingegenagen:
+  Hauptversion.Unterversion.Patchversion-Ergänzung - Die Ergänzung ist hier kein Bestandteil.
+  Mit der Erhöhung der Hauptvesion sollte eine größere Änderung erwartet werden, als mit der
+  Erhöhung der Unterversion.
+- [EREFQ::3] - [EREFQ::4] Interessant für den Tutor, um eine kleimne Einschätzung der Erfahrungen
+  des Studenten zu erhalten.
+- [EREFQ::5] Erste Berührungspunkt mit dem Thema Useability und User Experience (UX). Der Student soll
+  beim Kennenlernen des SUT lediglich über den Aufbau reflektieren.
+- [EREFQ::6] Idealer Weise ja, da die wesentlichen Punkte beschrieben sind.
+- [EREFQ::7] Für Anfänger: ja, Fortgeschrittene: nein
+- [EREFQ::8] Die JSON verrät: Nutzer: Alice, Bob und Charlie. Das PW ist in der User Story 1 mit
+  'password' definiert (Beim initialen Start - Passwort könnte vom Studenten geändert werden. DB löschen
+  initialisiert die Nutzer neu.)
+- [EREFQ::9] Im Python-Framework Flask ist der Dekorator @app.route('/') eine Methode, um Routen für
+  die Webanwendung zu definieren. Der Eintrag / gibt das Stammverzeichnis der Anwendung an.
+- [EREFQ::10] Anschließend kommt das gewünschte Verhalten, nachdem diese Seite gezielt aufgerufen wurde.
+  Z.B. Darstellung der Login-Seite.
+- [EREFQ::11] Flask nutzt diese Standardkonvention um eine Trennung von Logik und Darstellung der
+  Anwendung zu ermöglichen. Hier kommen demnach HTML Dateien hinein.
+
+[ENDINSTRUCTOR]
