@@ -200,7 +200,7 @@ Shell-Syntax ist an vielen Stellen grauenhaft.
 [NOTICE]
 Falls Sie diese Shellfunktion in regelmäßigen Gebrauch nehmen wollen,
 sollten Sie den (reichlich naiven) regulären Ausdruck nachschärfen,
-sobald Sie genug über [PARTREF::RegExp] und [PARTREF::Python-import] wissen.
+sobald Sie genug über [PARTREF::RegExp] und [PARTREF::Python-Import] wissen.
 [ENDNOTICE]
 
 
