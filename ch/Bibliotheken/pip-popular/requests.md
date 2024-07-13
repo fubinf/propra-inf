@@ -1,20 +1,9 @@
 title: Python requests
-stage: draft
-timevalue: 0
+stage: alpha
+timevalue: 1.5
 difficulty: 3
-assumes: WebAPIs, pip
+assumes: HTTP, WebAPIs, pip
 ---
-
-TODO_2_ruhe:
-
-- Diese Aufgabe braucht Grundlagen aus dem Webkapitel über http und URLs, denn hier sollte
-  es nur um die Bibliothek gehen.
-- So lange es passende Grundlagenaufgaben nicht gibt, können wir diese Aufgabe nicht sinnvoll
-  in Betrieb nehmen.
-- Die Aufgaben und Fragen scheinen mir überwiegend gut.
-- Eine Ja/Nein-Frage wie "Überrascht Sie das Ergebnis?" ist aber nicht brauchbar;
-  wir wollen ja die Gedanken dahinter zu sehen bekommen.
-- INSTRUCTOR-Teil fehlt.
 
 [SECTION::goal::trial]
 
@@ -142,7 +131,7 @@ data = {'key': 'value'}
 response = requests.post(url, data=data)
 
 # Überprüfen des Statuscodes der Antwort
-if response.status_code == 200:
+if response.status_code == 201:
     # Erfolgreiche Anfrage, die Antwort anzeigen
     print(response.text)
 else:
@@ -153,9 +142,24 @@ else:
 - [ER] Erstellen Sie eine Python Datei mit einer POST Anfrage an die Schnittstelle:
   `https://petstore.swagger.io/v2/pet/{petId}`
 - [EQ] Welche petId antwortet mit einem Status Code 404 und 200, und warum?
-- [EQ] Wie können Sie einen Status Code `405 - Invalid` als Antwort erzeugen?
-- [ER] Erweitern Sie Ihre Anfrage um die Parameter `name`und `status` (beide String)
-- [EQ] Welchen Status konnten Sie als validen Wert identifizieren?
+- [EQ] Wie können Sie einen Status Code `415 - Unsupportes Media Type` als Antwort erzeugen?
+- [EQ] Wie kann ich mit dem zuvor gefundenen Problem den Status 415 beheben?
+
+[HINT::Womit teste ich?]
+Manche Fehler können nicht überall erzwungen (reprodfuiziert) werden. Daher werden beim Testen oftmals
+mehrere Möglichkeiten betrachten. Versuchen Sie den Code 415 nicht über Swagger zu erzwingen.
+[ENDHINT]
+
+- [EQ] Wie können Sie einen Status Code `405 - Method Not Allowed` als Antwort erzeugen?
+- [ER] Senden Sie jetzt einen erfolgreichen POST-Request an `https://petstore.swagger.io/v2/pet`.
+  
+[HINT::Payloadtyp]
+Sicherlich versuchen Sie ein JSON in Ihrer Payload mitzugeben, was zu einem Fehler führt. Sie haben
+dann zwei Möglichkeiten. 1. Sie überführen Ihre Payload in ein Pythond Dictionary, oder 2. Sie
+verwendet json=<Variable> anstatt data=<Variable> in Ihrem Request.
+[ENDHINT]
+
+- [EQ] Worin unterscheiden sich die beiden Schnittstellen aus [EREFR::2] und [EREFR::3]?
 
 Andere Schnittstellen wie PUT und DELETE funktionieren äquivalent zu POST.
 
@@ -169,22 +173,22 @@ andere sind eingeschränkt verwendbar. Für das folgende Beispiel verwenden wir 
 `https://reqres.in/api/login`.
 
 Machen Sie sich mit der `Basic Authentication` auf der offiziellen
-[Dokumentation](https://requests.readthedocs.io/en/latest/user/authentication/#basic-authentication).
+[Dokumentation](https://requests.readthedocs.io/en/latest/user/authentication/#basic-authentication)
+vertraut.
 
 - [ER] Implementieren Sie eine eingeschränkte Anfrage mit den Zugangsdaten `email=eve.holt@reqres.in`
-  und `password=password`.
-- [EQ] Was enthält der Response-Body?
+  und `password=password` und geben Sie das Ergebnis aus.
 - [EQ] Erläutern Sie, wie Sie mit diesem Ergebnis weiterarbeiten können? Gehen Sie insbesondere auf
   andere Anfragen ein.
 
-Ändern Sie das Passwort in `wrong_password` und wiederholen Sie die Anfrage.
+Löschen Sie die Passwortmitgabe und wiederholen Sie die Anfrage.
 
-- [EQ] Überrascht Sie das Ergebnis?
+- [EQ] Welche Antwort erhalten Sie?
 
 ### Abschluss
 
-Sie haben nur einen kleinen Teil dieses Moduls kennengelernt. Zahlreiche weitere Funktionen stellt
-das Request-Modul zur Verfügung, um mit Header Informationen, Zertifikate oder mit Fehlermeldungen
+Sie haben nur einen kleinen Teil dieses `requests`-Moduls kennengelernt. Zahlreiche weitere Funktionen
+stellt das Request-Modul zur Verfügung, um mit Header Informationen, Zertifikate oder mit Fehlermeldungen
 zu arbeiten. Stöbern Sie in der genannten Dokumention herum, um einen tieferen Einklick zu erhalten.
 
 [ENDSECTION]
@@ -195,3 +199,132 @@ zu arbeiten. Stöbern Sie in der genannten Dokumention herum, um einen tieferen 
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
+
+[INSTRUCTOR::Hinweise Tutor]
+
+- [EREFQ::1] Stand 13. Juli 2024: Version 2.32.3. Somit >= dieser Version.
+- [EREFR::1] Man nehme das GET-Beispiel und ändere die URL und den Statuscode in 200.
+- [EREFQ::2] Wenn alles klappt: 200. Ansonsten diverse Fehlermeldungscodes wie 404, wenn die URL/
+  der Endpunkt fehlerhaft ist, oder 'Fehler 200', wenn der Statuscode nciht angepasst wurde.
+- [EREFQ::3] Bei Code 200: ja und ja, da ein Get ohne Antwort nicht Rest-Konform ist.
+  Response sollte so aussehen:
+  `{"sold":4,"string":763,"Happy":2,"unavailable":1,"pending":16,"available":205,"not available":2,"peric":2}`
+  Dabei können die Zahlen im JSON bei jeden Request unterschiedlich ausfallen.
+- [EREFR::2] Man nehme das GET-Beispiel und passe die URL, den Statuscode und die Methode in POST an.
+- [EREFQ::4] die 1 sollte einen Code 200 bringen, da es vorhanden ist. Eine beliebig hohe ID einen Code 404,d a dieses Objekt
+  nicht gefunden wurde.
+- [EREFQ::5] Indem kein Wert in der URL mitgegeben wird. Der Code 415 zeigt, das Fehler in vielen
+  banalen Situationen stecken können und diese auch niocht alle Dokumentiert sind. Über die
+  Swagger - Petstore API Seite - kann dies nicht reproduziert werden, da Swagger selber diesen
+  Fall abfängt. Diese Situation kann nur über ein Script erzeugt werden.
+- [EREFQ::6] Indem ein Content Type im Code mitgegeben wird:
+
+```python
+# Header für die Anfrage
+headers = {
+    'Content-Type': 'application/json'
+}
+```
+
+- [EREFQ::7] Indem ein falscher Datentyp mitgegeben wird, z.B. ein String
+
+- [EREFR::3] Die entscheidene Anpassung ist die Mitgabe eines Payloads mit korrekten Data (im Swagger
+  dokumentiert). ZUsätzlich ist hier darauf zu achten, dass `json` anstatt `data` im Request verwendet
+  wird:
+
+```python
+import requests # Modul verwenden
+
+# URL der Ressource, die abgerufen werden soll
+url = 'https://petstore.swagger.io/v2/pet'
+
+# Header für die Anfrage
+headers = {
+    'Content-Type': 'application/json'
+}
+
+# Daten, die in der POST-Anfrage gesendet werden sollen (optional)
+# Beispiel-Daten, die im Body der POST-Anfrage gesendet werden
+data = {
+    "id": 100,
+    "category": {
+        "id": 0,
+        "name": "string"
+    },
+    "name": "doggie",
+    "photoUrls": [
+        "string"
+    ],
+    "tags": [
+        {
+            "id": 0,
+            "name": "string"
+        }
+    ],
+    "status": "available"
+}
+
+# Senden einer POST-Anfrage an die URL mit den angegebenen Daten
+response = requests.post(url, json=data, headers=headers)
+
+# Überprüfen des Statuscodes der Antwort
+if response.status_code == 200:
+    # Erfolgreiche Anfrage, die Antwort anzeigen
+    print(response.text)
+else:
+    # Fehler bei der Anfrage, den Statuscode anzeigen
+    print(f"Fehler: {response.status_code, response.text}")
+```
+
+- [EREFQ::8] [EREFR::2] benötigt einen Parameter in der URL, wobei [EREFR::3] keinen zusätzlichen
+  Parameter einfordert, dafür aber eine Payload im Body.
+
+- [EREFQ::9] Ja, eine PATCH-Anfrage ist besonders, weil sie im Gegensatz zu einer PUT-Anfrage nur
+  die angegebenen Änderungen an einer Ressource vornimmt, anstatt die Ressource vollständig zu ersetzen.
+
+- [EREFR::4] Das Ergebnis ist ein JSON mit einem Token. Rückgabe: `{'token': 'QpwL5tke4Pnpja7X4'}`
+
+Beispielimplentierung:
+
+```python
+import requests
+from requests.auth import HTTPBasicAuth
+
+# URL des Login-Endpunkts
+url = 'https://reqres.in/api/login'
+
+# Zugangsdaten
+email = 'eve.holt@reqres.in'
+password = 'password'
+
+# Header für die Anfrage (optional)
+headers = {
+    'Content-Type': 'application/json'
+}
+
+# Daten für die POST-Anfrage
+data = {
+    'email': email,
+    'password': password
+}
+
+# Senden der POST-Anfrage mit Basic Auth
+response = requests.post(url, json=data, headers=headers, auth=HTTPBasicAuth(email, password))
+
+# Überprüfen des Statuscodes der Antwort
+if response.status_code == 200:
+    # Erfolgreiche Anfrage, die Antwort anzeigen
+    print('Erfolgreich:', response.json())
+else:
+    # Fehler bei der Anfrage, den Statuscode anzeigen
+    print(f'Fehler: {response.status_code}, {response.text}')
+```
+
+- [EREFQ::10] Ein Token kann zeitbasiert gespeichert werden (Zeitbasiert, da es i.d.R. abläuft und erneut
+  abgefragt werden muss), um so sicher weitere Anfragen ohne erneute Logins durchzuführen. Das ermöglicht
+  einen sicheren Zugriff auf geschützte Ressourcen und Endpunkte, die sonst eine Authentifizierung
+  erfordern.
+
+- [EREFQ::11] Code 400 - Bad Request, da der erwartete Parameter `password` nicht angegebene wurde.
+
+[ENDINSTRUCTOR]
