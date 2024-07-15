@@ -48,7 +48,7 @@ Erläuterung:
   Statt "text" ginge auch "binary": Wie die Daten in der Datei interpretiert werden sollen.
 - `f.read()` liest den kompletten Inhalt der Datei und liefert ihn als String (bei Text)
   oder als `bytes` (bei Binärdaten). Wir bekommen also einen String.
-- Das `with` benutzt das File Handle als "Kontextmanager" und sorgt dafür, dass die Datei
+- Das `with` benutzt das File Handle als [TERMREF::Kontextmanager] und sorgt dafür, dass die Datei
   am Ende des Blocks garantiert wieder geschlossen wird, sodass die davon belegten Ressourcen
   im Betriebssystem wieder freigegeben werden. 
   Das ist bei länger laufenden Programmen wichtig, um ein Erschöpfen dieser Ressourcen zu verhindern

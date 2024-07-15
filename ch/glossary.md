@@ -168,8 +168,15 @@ Constraints dienen dazu, sicherzustellen, dass die Datenbankkonsistenz erhalten 
 bestimmte Regeln erzwingen.
 [ENDTERM]
 
+[TERM::context manager|Kontextmanager]
+Ein Objekt, das die Methoden `__enter__()` und `__exit__()` implementiert. Dies ermöglicht es, 
+das Objekt in `with`-Statements zu verwenden.
+
+[HREF::https://docs.python.org/3/glossary.html#term-context-manager]
+[ENDTERM]
+
 [TERM::CRUD|Create Read Update Delete]
-EIn Ausdruck der die grundlegenden Operationen bezeichnet, die auf Daten angewendet werden können:
+Ein Ausdruck der die grundlegenden Operationen bezeichnet, die auf Daten angewendet werden können:
 Erstellen, Lesen, Ändern, Löschen. Diese vier CRUD-Operationen bilden die grundlegenden Funktionen
 für die Interaktion mit Daten in den meisten Anwendungen. [TERMREF::Regressionstest]s beziehen sich
 auf dieses Schema zum Testen von Daten und Objekten, um die Zugverlässigkeit einer Anwendung
@@ -344,6 +351,18 @@ Bei Programmen wie `grep`, die Teile der Eingabe weglassen, leuchtet die Bezeich
 aber sie gilt auch für Programme wie `sort`, die die Eingabe nur umformen.
 [ENDTERM]
 
+[TERM::file descriptor]
+Beschreibt auf unixoiden Betriebssystemen eine Ressource, auf der Daten geschrieben und gelesen 
+werden können. Jeder Prozess hat dabei seine eigenen file descriptors. Ein file descriptor wird 
+durch eine natürliche Zahl dargestellt.
+
+Es gibt drei Standard-FDs (0: stdin, 1: stdout, 2: stderr), aber für jeden Prozess können 
+beliebig viele weitere FDs existieren, die verschiedene Datenströme beschreiben (Dateien, 
+Netzwerk Sockets etc.).
+
+[HREF::https://en.wikipedia.org/wiki/File_descriptor]
+[ENDTERM]
+
 ## G
 
 [TERM::Git]
@@ -381,7 +400,7 @@ an sich behandelt, weil die Links physisch auf die Datei auf die Festplatte zeig
 [ENDTERM]
 
 [TERM::Hashfunktion|kryptografische Hashfunktion]
-Funktion, die eine beliebig große Eingabedaten annimmt und einen Wert in einer fest definierten 
+Funktion, die beliebig große Eingabedaten annimmt und einen Wert in einer fest definierten 
 Größe ausgibt (genannt _hash_ oder _digest_). Für sie gelten folgende Eigenschaften:
 
 1. Die Eingabelänge kann beliebig lang sein.
