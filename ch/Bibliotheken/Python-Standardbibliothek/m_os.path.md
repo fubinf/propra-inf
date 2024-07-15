@@ -73,11 +73,11 @@ Falls das Verzeichnis symbolische Links enthält: `os.path` interpretiert korrek
 Links auf Verzeichnisse als Verzeichnis und Links auf Dateien als Datei.
 [ENDINSTRUCTOR]
 
-- [ER] Betrachten Sie für diese Aufgabe nur alle Dateien. Listen Sie auf
-  welche Datei am größten ist; welche zuletzt erstellt wurde; welche zuletzt geändert wurde;
-  welche Dateiendung am häufigsten vorkommt  
-  `print("biggest file:", ..., "\nlast created:", ..., "\nlast changed:", ..., "\nmost common file extension:", ...)`    
-  (eine elegante Lösung verwendet `min()`/`max()` und [PARTREF::Python-List-Comprehensions])
+- [ER] Betrachten Sie für diese Aufgabe nur alle Dateien. Listen Sie auf, welche Datei am größten 
+  ist, welche zuletzt erstellt wurde, welche zuletzt geändert wurde und welche Dateiendung am 
+  häufigsten vorkommt.  
+  `print("biggest file:", ..., "\nlast created:", ..., "\nlast changed:", ..., "\nmost common file extension:", ...)`  
+  (Eine elegante Lösung verwendet `min()`/`max()` und [PARTREF::Python-List-Comprehensions].)
 - [ER] Verwenden Sie [`os.getcwd()`](https://docs.python.org/3/library/os.html#os.getcwd), um 
   den Pfad zu ihrem aktuellen Arbeitsverzeichnis (im ProPra-Repo) zu erhalten.  
   Erstellen Sie mittels `os.path` einen relativen Pfad, der von ihrem Home-Verzeichnis zu ihrem Arbeitsverzeichnis 
@@ -109,6 +109,7 @@ kann der Pfad nicht weiter gekürzt werden.
 [ENDSECTION]
 
 [INSTRUCTOR::Eine Ausgabe als "Muster"]
+
 Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_os_path.py]
 
 Das Kommandoprotokoll hängt vom Inhalt des Home-Verzeichnisses ab und ist daher nur bedingt für 
