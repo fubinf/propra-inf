@@ -614,4 +614,8 @@ summary {}
     .stage-alpha {
         background-color: #333;
     }
+
+    .treeref {
+        background-color: #111;
+    }
 }
