@@ -33,7 +33,7 @@ We will modify these rules over time when others appear more useful.
 **Kapitel bitte in Reihenfolge des Inhaltsverzeichnisses, alles darunter in alphabetischer, Leerzeile pro Gruppe**
 
 ### Sprachen
-
+- ch/Sprachen/Python2/Python-list-comprehensions.md (HA->LP->HA->LP)
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
@@ -69,10 +69,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/Python1/PythonComments.md (Alrwasheda->LP->HA->LP->HA)
 - ch/Sprachen/Python1/PythonBooleans.md (Alrwasheda->LP->HA->LP->HA)
 - ch/Sprachen/Python1/PythonStrings.md (Alrwasheda->LP->HA->LP->HA)
-- ch/Sprachen/Python2/Python-import.md (Alrwasheda->P->A)
-
-- ch/Sprachen/Python2/Python-list-comprehensions.md (HA->LP->HA)  
-  Recht minimal, aber OK. Habe zahlreiche kleine Änderungen gemacht. Bitte noch eine Musterlösung zufügen.
+- ch/Sprachen/Python2/Python-import.md (Alrwasheda->LP->HA)
 
 
 ## Reviews to do for Ivan Condric

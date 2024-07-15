@@ -56,7 +56,8 @@ for word in words:
         short_words.append(word.upper())
 print(short_words)
 ```
-[ER] Ersetzen Sie in Zeile 6 `short_words` durch eine List-Comprehension, die die Zeilen 2-5 gleichwertig ersetzt.
+[ER] Ersetzen Sie in Zeile 6 `short_words` durch eine List-Comprehension,
+die die Zeilen 2-5 gleichwertig ersetzt.
 
 ---
 
@@ -73,10 +74,28 @@ Verwenden Sie dazu normale Schleifen und Bedingungen.
 
 ---
 
+Überlegen Sie:
+
 [EQ] Welche for-Schleifen kann man nicht durch eine gleichwertige List-Comprehension ersetzen? Warum?
 
 [EQ] Welche for-Schleifen könnte man zwar, aber sollte man nicht 
 durch eine gleichwertige List-Comprehension ersetzen? Warum?
+
+Dieser folgende kleine Artikel vermittelt Ihnen ein Gefühl darüber,
+[wann Listen-Comprehensions in Python nicht verwendet werden sollten](https://medium.com/@ivjot/when-not-to-use-list-comprehensions-in-python-ad3257a227b).
+
+Versuchen Sie hierbei anhand der Beispiele zu verstehen,
+dass List-Comprehensions nicht immer unbedingt die einzige optimale Lösungsvariante sein muss.
+Wie Sie im Artikel sehen werden,
+gibt es auch Szenarien, in denen solch eine Lösung doch nachteilig sein kann.
+Mitzunehmen ist die Notwendigkeit, sich ständig genug Gedanken zu machen,
+wenn Sie sich für eine bestimmte Lösung entscheiden. 
+
+[EQ] Im Artikel wurden "Zen of Python"-Prinzipien erwähnt, anders bekannt auch als "PEP 20". 
+Denken Sie für jedes der folgenden Prinzipien an einen Fall,
+in dem der Einsatz von List-Comprehensions das jeweilige Prinzip verletzt:  
+1. "Simple is better than complex."  
+2. "Readability counts."
 
 [NOTICE]
 Comprehensions können nicht nur für Listen benutzt werden,
@@ -86,21 +105,11 @@ und für Wörterbücher (dict comprehension, etwa dieses für ungerade Quadratza
 `{ n: n*n for n in range(10) if n % 2 != 0}`).
 [ENDNOTICE]
 
-[SECTION::submission::snippet]
+[SECTION::submission::snippet,information]
 [INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Konzepte verstehen]
-Hier sollte der Bearbeiter den Inhalt des referenzierten Artikels verstanden haben.
-Lösungen können aus dem Artikel leicht abgeleitet werden und erfordern wenig Nachdenken.
-Daher sollten die Lösungen möglichst präzise formuliert werden.
-
-Bei den Aufgaben, in denen der Code umzuschreiben ist, ist die Lösung auf dem ersten Blick fast da,
-wenn man die Beispiele vom Artikel gut betrachtet hat, weil hier die Logik auch recht einfach ist
-und der Fokus auf die im Rahmen dieser Aufgabe wichtigen Konzepte liegt.
-Aus diesen Gründen dürfte hier die Korrektur auch streng sein und nur die Lösungen akzeptiert werden,
-die die Anforderungen zum größten Teil erfüllen. 
-
-Die Meinungsfrage [EREFQ::1] kann verschiedene Überlegungen annehmen,
-solange sie sinnvoll auf den Einsatz von Comprehensions in Python ausgerichtet sind. 
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
