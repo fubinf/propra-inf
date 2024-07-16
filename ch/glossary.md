@@ -169,7 +169,7 @@ bestimmte Regeln erzwingen.
 [ENDTERM]
 
 [TERM::context manager|Kontextmanager]
-Ein Objekt, das die Methoden `__enter__()` und `__exit__()` implementiert. Dies ermöglicht es, 
+Ein Objekt, das die Methoden `__enter__()` und `__exit__()` implementiert. Diese ermöglichen es, 
 das Objekt in `with`-Statements zu verwenden.
 
 [HREF::https://docs.python.org/3/glossary.html#term-context-manager]

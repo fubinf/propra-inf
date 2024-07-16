@@ -1,5 +1,5 @@
 title: "tempfile: temporäre Dateien anlegen und verwenden"
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 2
 assumes: encoding_and_open, m_os.path
@@ -16,8 +16,8 @@ Ich kann temporäre Dateien und Verzeichnisse in Python anlegen und verwenden.
 Dateien lesen und schreiben gehört zum Programmieralltag. Manchmal wird aber eine Datei nur 
 zur Laufzeit des Programms benötigt und kann/muss nach Programmende wieder entfernt werden. Auch 
 bei großen Datenmengen, die die Größe des Arbeitsspeichers überschreiten, können temporäre Dateien 
-hilfreich sein, um Daten auf die Festplatte auszulagern. Hier gibt `tempfile` eine einfache 
-Möglichkeit, temporäre Dateien anzulegen und auch automatisch wieder zu löschen, sobald sie 
+hilfreich sein, um Daten auf die Festplatte auszulagern. Hier gibt das Modul `tempfile` eine 
+einfache Möglichkeit, temporäre Dateien anzulegen und auch automatisch wieder zu löschen, sobald sie 
 nicht mehr benötigt werden.
 
 [ENDSECTION]
@@ -33,7 +33,7 @@ nicht mehr benötigt werden.
 
 ### temporäre Verzeichnisse
 
-Um mehrere temporäre Dateien besser zu strukturieren, können temporäre Verzeichnisse angelegt 
+Um mehrere temporäre Dateien besser zu verwalten, können temporäre Verzeichnisse angelegt 
 werden. In diesen lassen sich nicht nur Dateien strukturiert ablegen, es können auch z.B. alle 
 Elemente im Ordner auf einmal bereinigt werden.
 
@@ -83,7 +83,7 @@ Bei Interesse können Sie hier weitere Hintergründe nachlesen:
 
 `tempfile` kann auch unbenannte Dateien erzeugen. Diese haben keinen Eintrag im Dateisystem sind 
 somit nur vom Programm, dass diese erstellt hat, sichtbar. Das Verfahren ist aber nur auf Posix 
-konformen System möglich, da hierfür `[TERMREF2::file descriptor::-en]` verwendet werden. Auf z.B. 
+konformen System möglich, da hierfür [TERMREF2::file descriptor::-en] verwendet werden. Auf z.B. 
 Windows ist die entsprechende Funktion nur ein Alias für die Erzeugung benannter temporärer Dateien.
 
 - [ER] Erstellen Sie eine unbenannte temporäre Datei. Geben Sie den Namen der Datei aus:  
@@ -124,6 +124,7 @@ vermieden.
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 

@@ -37,6 +37,7 @@ We will modify these rules over time when others appear more useful.
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
+- ch/Bibliotheken/Python-Standardbibliothek/m_tempfile.md (SW)
 - ch/Bibliotheken/pip-popular/requests.md (RR->DM->LP->RR->LP)
 
 
@@ -182,5 +183,3 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Sven Wegner
 
-- ch/Bibliotheken/Python-Standardbibliothek/m_os.path.md (Wegner->LP->SW)  
-  Musterlösung ergänzen (siehe TODO), meine Änderungen prüfen. Ist schon beta.
