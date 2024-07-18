@@ -50,8 +50,8 @@ Damit die Ping-Ausgabe gestoppt wird, nutzen Sie die Tastenkombination `STRG+C`.
 Lesen Sie die [ping(8) manpage](https://manpages.debian.org/bookworm/iputils-ping/ping.8.en.html). 
 Lesen Sie insbesondere die Synopsis, die **Description** und die Optionen **-c**, **-w**, **-i**.
 
-- [EC] Pingen Sie den Server genau 5 mal an, in einem Intervall von 2 Sekunden.
-- [EC] Pingen Sie den Server genau 10 Sekunden lang?
+- [EC] Pingen Sie den Zielserver genau 5 mal an, in einem Intervall von 2 Sekunden.
+- [EC] Pingen Sie den Zielserver genau 10 Sekunden lang an.
 
 `ping` gibt Ihnen nicht nur die Erreichbarkeit des Systems an. Schauen Sie sich die Ausgaben an,
 die `ping` gibt. 
