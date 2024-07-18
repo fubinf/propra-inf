@@ -3,6 +3,7 @@ stage: alpha
 timevalue: 1
 difficulty: 2
 assumes: apt
+
 ---
 
 [SECTION::goal::idea]
@@ -10,7 +11,7 @@ Ich verstehe Netzwerkgrundlagen, um DNS-Informationen eines Servers herauszufind
 [ENDSECTION]
 
 [SECTION::background::default]
-Mit DNS-Werkzeugen finden Sie Probleme mit der Namensauflösung und der Kommunikation zwischen 
+Mit DNS-Werkzeugen finden Sie Probleme mit der Namensauflösung und der Kommunikation zwischen
 Rechnern.
 [ENDSECTION]
 
@@ -19,61 +20,75 @@ Rechnern.
 Zielserver = `fu-berlin.de`
 </replacement>
 
-Angenommen Sie sind ein Netzwerkadministrator und Kolleg_innen erzählen Ihnen, dass sie keinen 
+Angenommen Sie sind ein Netzwerkadministrator und Kolleg_innen erzählen Ihnen, dass sie keinen
 Zugriff auf eine Ressource haben. Wir zeigen Ihnen hier Befehle, die zur Problemlösung
 helfen können.
 
-### [TERMREF::Ping]
+### Werkzeuge installieren
 
-Einer der ersten bekannten Befehle ist `ping`. Es gibt Ihnen Rückmeldung über die Erreichbarkeit 
+Bevor wir mit den Werkzeugen anfangen müssen wir sie uns herunterladen.
+
+- [EC] Aktualsieren Sie Ihr System.
+- [EC] Installieren Sie das Paket `dnsutils`.
+
+In diesem Paket sind alle folgenden Werkzeuge enthalten, die wir in dieser Aufgabe brauchen werden.
+
+### Anmerkung
+
+Sie werden hier 4 Werkzeuge kennenlernen: `ping`, `dig`, `nlookup` und `host`. Außer `ping`, geben
+alle Werkzeuge ähnliche Ausgaben. Es ist sinnvoll alle Werkzeuge einmal gesehen zu
+haben, da es Ihnen passieren könnte, dass man keine Applikationen auf dem System
+nachinstallieren darf.
+
+### Arbeiten mit [TERMREF::ping]
+
+Einer der ersten bekannten Befehle ist `ping`. `ping` gibt Ihnen Rückmeldung über die Erreichbarkeit
 eines Systems.
- 
-Lesen Sie die den [Beitrag](https://wiki.ubuntuusers.de/ping/) über `ping` von ubuntuusers.
-Lesen Sie insbesondere die **Benutzung** und die Optionen **-c**, **-w** und **-I**.
 
-- [EC] Pingen Sie den Server genau 5 mal an.
+Lesen Sie die [ping(8) manpage](https://manpages.debian.org/bookworm/iputils-ping/ping.8.en.html). 
+Lesen Sie insbesondere die Synopsis, die **Description** und die Optionen **-c**, **-w**, **-i**.
 
-`ping` gibt Ihnen nicht nur die Erreichbarkeit des Systems an. Schauen Sie sich die Ausgaben an, 
+- [EC] Pingen Sie den Server genau 5 mal an, in einem Intervall von 2 Sekunden.
+- [EC] Pingen Sie den Server genau 10 Sekunden lang?
+
+`ping` gibt Ihnen nicht nur die Erreichbarkeit des Systems an. Schauen Sie sich die Ausgaben an,
 die `ping` gibt.  
-Lesen Sie den Abschnitt **Optionen** des oberen [Beitrags](https://wiki.ubuntuusers.de/ping/).
 
-- [EQ] Welche Informationen werden Ihnen neben der Erreichbarkeit noch gezeigt?
+Lesen Sie den Absatz **TTL Details** der [ping(8) manpage](https://manpages.debian.org/bookworm/iputils-ping/ping.8.en.html).
 
+- [EQ] Erklären Sie den Begriff **ttl**.
 
-### [TERMREF::Dig]
+### Arbeiten mit [TERMREF::dig]
 
-`dig` wird primär genutzt, um die IP-Adresse eines Systems herauszufinden. Es hat mehr Funktionen, 
+`dig` wird primär genutzt, um die IP-Adresse eines Systems herauszufinden. Es hat mehr Funktionen,
 auf die wir unten näher eingehen werden.
 
-Lesen Sie die dig(1) [manpage](https://linux.die.net/man/1/dig).
-Lesen Sie insbesondere die **Description** und die **Simple Usage**.
+Lesen Sie die [dig(1) manpage](https://linux.die.net/man/1/dig).
+Lesen Sie insbesondere die **Description**, die **Simple Usage** und die Option **-t**.
 
 - [EC] Nutzen Sie `dig` um die IP des Zielservers herauszufinden.
-- [EC] Erklären Sie kurz die verschiedenen Abschnitte des Ergebnisses.
 
-Wie Sie im oberen Beitrag gelesen haben, können Sie mehrere dns query types eines Zielservers 
-herausfinden.
+`dig` kann mehrere IPs von Servern herausfinden.
 
-Lesen Sie aus dem 
-[Beitrag](https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/).  
+Lesen Sie aus dem [Beitrag](https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/) 
 über dig von nixcraft, die Liste der **DNS record types**.
 
-- [EC] Finden Sie den Mailserver des Zielservers heraus.
+- [EC] Finden Sie den Mailserver des Zielservers mit `dig` heraus.
 
+### Arbeiten mit nslookup
 
-### [TERMREF::Traceroute]
+Lesen Sie die [nslookup(1) manpage](https://linux.die.net/man/1/nslookup).
+Lesen Sie die **Synopsis**, die **Description** und die **Arguments**.
 
-`traceroute` zeigt den Pfad an, den Datenpakete von Ihrem Gerät zum Zielserver im Internet nehmen.
-Angenommen, Sie haben kein Zugriff auf eine Ressource. Durch den traceroute finden Sie heraus,
-ob das Problem an Ihrem lokalen Netz oder im Internet liegt.
+- [EC] Nutzen Sie `nslookup` um die IP des Zielservers herauszufinden.
+- [EC] Finden Sie den Mailserver des Zielservers mit `nslookup` heraus.
 
-Lesen Sie den [Beitrag](https://www.cyberciti.biz/faq/traceroute-tracepath-unix-linux-command/) 
-über traceroute von nixcraft.
-Lesen Sie insbesondere die **Benutzung** und den **Output**.
+### Arbeiten mit host
 
-- [EC] Finden Sie heraus, über welche Hops der Zielserver erreicht wird.
-- [EQ] Erklären Sie die einzelnen Spalten des Ergebnisses.
-- [EQ] Warum werden bei einigen der Hops drei Sterne angezeigt?
+Lesen Sie die [host(1) manpage](https://manpages.debian.org/bookworm/bind9-host/host.1.en.html).
+Lesen Sie insbesondere die **Synopsis** und die **Description**.
+
+- [EC] Nutzen Sie `host` um die IP und den Mailserver des Zielservers herauszufinden.
 
 [ENDSECTION]
 
@@ -82,7 +97,7 @@ Lesen Sie insbesondere die **Benutzung** und den **Output**.
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-
 [INSTRUCTOR::Erwartung]
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]

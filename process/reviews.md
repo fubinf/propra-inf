@@ -61,7 +61,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Werkzeuge
-
+- ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
 
@@ -76,11 +76,6 @@ We will modify these rules over time when others appear more useful.
 ## Reviews to do for Ivan Condric
 
 - ch/Werkzeuge/Benutzerverwaltung/ACL.md (Condric->LP->IC) siehe in der Datei
-
-- ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC)  
-
-  dig muss erst installiert werden. Wir sollten uns nicht auf eine "so kannste das installieren"-Meldung
-  a la Debian verlassen.  
 
   Den traceroute-Teil finde ich sehr anspruchsvoll. Wenn ich die Ähnlichkeiten und Unterschiede von
   `traceroute -T fu-berlin.de` und `traceroute fu-berlin.de` erklären sollte, würde ich ins
