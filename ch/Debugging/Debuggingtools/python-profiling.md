@@ -97,7 +97,7 @@ if __name__ == '__main__':
     main()
 ```
 
-[EQ] Erklären Sie kurz *was* ein Profiler ist und wozu er eingesetzt wird.
+[EQ] Erklären Sie kurz was ein Profiler ist und wozu er eingesetzt wird.
 [ER] Verwenden Sie einen geeigneten Python Profiler um den Flaschenhals im Skript zu entfernen.
 [ER] Passen Sie das Skript entsprechend an um den Flaschenhals zu entfernen.
 [EC] Geben Sie jeweils die Ausgabe des Profilers, vor und nach ihren Anpassungen am Skript, ab.
