@@ -39,7 +39,7 @@ Wechseln wir auf einen anderen Branch, wird der Pointer entsprechend umgesetzt u
 des Repositories auf dessen Zustand umgesetzt.
 
 Das klingt jetzt natürlich alles doch etwas komplizierter als gedacht aber spätestens, wenn Sie 
-gleich den Abschnitt im git Book lesen und die entsprechenden Grafiken sehen werden Sie 
+gleich den Abschnitt im git Book lesen und die entsprechenden Grafiken sehen, werden Sie 
 merken wie simpel diese ganze Vorgehensweise eigentlich ist und vor allem lernen Sie endlich was 
 eigentlich dieses ominöse HEAD bedeutet, was man immer mal wieder beim Arbeiten mit git zu 
 Gesicht bekommt.
@@ -53,7 +53,7 @@ Das ist ganz schön viel Stoff daher werden Sie sicherlich noch das ein oder and
 dieser Aufgabe nachschlagen müssen.
 
 Wenn Sie die Seite durchgelesen haben, öffnen Sie ein Terminal und navigieren Sie in ihr 
-Test-Repository was Sie in der zugehörigen Aufgabe [PARTREF::git-Zweitrepo] erstellt haben.
+Test-Repository welches Sie in der zugehörigen Aufgabe [PARTREF::git-Zweitrepo] erstellt haben.
 
 ### Einen neuen Branch erstellen
 
@@ -73,9 +73,9 @@ gilt: "Der Main-Branch muss funktionieren!" sprich, wenn man den Main branch klo
 dann sollte das einfach alles gehen. Wenn jetzt jeder einfach so Änderungen dort hineinpushen 
 kann, dann kann das unweigerlich dazuführen, dass mal aus Versehen Fehler gepusht werden.
 Damit das nicht passiert, gibt es auf git Servern wie Github und GitLab Werkzeuge um den 
-Main-Branch zu sperren, sodass nur durch sogenannte Pull-Requests Änderungen von anderen 
-Branches in den Main-Branch gemergt (integriert) werden können, nachdem Sie getestet und
-reviewt (gesichtet) wurden.
+Main-Branch zu sperren, sodass nur durch sogenannte [TERMREF2::Pull-Request::Pull-Requests], oft 
+auch mit PR abgekürzt. Änderungen von anderen Branches in den Main-Branch gemergt (integriert) 
+werden können, nachdem Sie getestet und reviewt (gesichtet) wurden.
 
 Zweiteres wird in ihrem Test-Repo auch (noch!) nicht der Fall sein, da Sie sehr wahrscheinlich 
 bis hierher nur alleine an einem Repo gearbeitet haben. Ist aber ganz oft der Fall, wenn man mit 
@@ -87,6 +87,8 @@ Das erspart allen Beteiligten viel Zeit und Schmerz.
 
 Der erste Schritt für beide Situationen ist aber natürlich jetzt erstmal einen neuen Branch zu 
 erstellen!
+
+Gehen wir dazu also zurück zu unserem ausgedachten, aber realistischen, Beispielszenario:
 
 Sie wollen ihrer modernen Applikation jetzt ein neues Feature hinzufügen, sagen wir ... 
 einen KI-Assistenten. Erstellen Sie also jetzt einen neuen Branch und benennen diesen 
@@ -122,10 +124,10 @@ vornehmen und commiten. Zur not kann man Commits auch zwischen Branches hin und 
 aber das ist eher nervig und lässt sich einfach vermeiden.
 
 Erstellen Sie jetzt eine neue Datei in ihrem aktiven AI-Assistant-Branch. Geben Sie dieser einen 
-sinnvollen namen z.B. `assistant.py` und ein paar Zeilen inhalt. Dann commiten Sie diese Datei auf
+sinnvollen Namen z.B. `assistant.py` und ein paar Zeilen Inhalt. Dann commiten Sie diese Datei auf
 ihren neuen Branch und schauen sich mal den `git log` mit Decorations an.
 
-[EC] Welche Kommandos haben Sie für diesen Teilabschnitt verwendet?
+[EC] Welche Kommandos haben Sie für diesen Teilabschnitt verwendet?  
 [EC] Wie sieht der Befehl und die Ausgabe von `git log` mit Decorations aus?
 
 ### Einpflegen bzw. kombinieren von Änderungen zwischen Branches
@@ -140,8 +142,8 @@ behandeln wir das in einer anderen Aufgabe, damit wir hier nicht komplett den Ra
 Also wollen wir jetzt die folgenden Schritte erledigen:
 
 1. Wir wechseln auf den Main-Branch und aktualisieren diesen mit `git pull`. (Sehr 
-   wahrscheinlich wird es keine neuen Änderungen geben, aber hier geht es um sogenannte "best 
-   practice")
+   wahrscheinlich wird es keine neuen Änderungen geben, aber hier geht es ja auch darum 
+   sogenannte "best practice" also "optimales Vorgehen" zu erlernen)
 2. Wir mergen den AI-Assistant-Branch in den Main-Branch.
 
 [EC] Welche Befehle haben Sie für diese beiden Schritte verwendet? Gab es evtl. Probleme dabei? 
@@ -157,12 +159,12 @@ vorgenommen hat.
 ### Merge-Konflikte
 
 Beim Arbeiten mit mehreren Branches und der Merge-Methode kann es immer wieder dazu kommen, dass 
-man sogenannte Merge-Konflikte (merge-conflicts) verursacht. Diese Zu verstehen ist zu Beginn 
-nicht trivial. Im Grunde geht es dabei aber nur darum, dass es zwei Änderungen an der gleichen 
-Datei gibt welche miteinander Konkurrieren, da sie wahrscheinlich den gleichen Bereich einer 
-Datei verändern sollen.
+man sogenannte Merge-Konflikte (merge-conflicts) verursacht. Diese zu verstehen ist als 
+git-Einsteiger überhaupt nicht trivial. Im Grunde geht es dabei aber nur darum, dass es zwei 
+Änderungen an der gleichen Datei gibt welche miteinander Konkurrieren, da sie wahrscheinlich den 
+gleichen Bereich, sprich die gleichen Zeilen, innerhalb einer Datei verändern sollen.
 
-In unserem Main-Branch des Testrepos befindet sich nun unsere `assitant.py`.
+In unserem Main-Branch des Testrepos befindet sich nun unsere `assitant.py` Datei.
 
 Diese nutzen wir jetzt, um gezielt einen merge-Konflikt zu erzeugen!
 
@@ -221,8 +223,10 @@ AI-Assistant-Branch.
 Der simpelste Weg ist jetzt einfach alles zu löschen, was wir nicht haben wollen, die Datei zu 
 speichern und dann wieder mit `git add` hinzuzufügen. 
 Der Merge-Konflikt wäre damit behoben. 
-Allerdings muss trotzdem noch einmal `git commit` ausgeführt werden, was einem auch von `git 
-status` mitgeteilt wird, wenn man es nach `git add` einmal aufruft.
+Allerdings muss natürlich trotzdem noch einmal `git commit` ausgeführt werden, was einem auch von 
+`git status` mitgeteilt wird, wenn man es nach `git add` einmal aufruft.
+Wer aufmerksam war, hat natürlich auch vorher schon gelesen was beim ursprünglichen Auftreten 
+des merge-Konflikts ausgegeben wurde "`fix conflicts and then commit the result.`".
 
 Und jetzt schauen wir uns noch ein letztes Mal den `git log` Graphen an und können jetzt sehr 
 schön sehen an welcher Stelle wir die beiden Branches zusammengeführt haben.
@@ -281,17 +285,6 @@ brauchen, können wir diese nach dem erfolgreichen Merge auch löschen.
 [INSTRUCTOR::Befehle prüfen und schauen ob das mentale Modell vom Branching und die Behebung von 
 Merge-Konflikten verstanden wurde]
 
-Prüfen Sie die abgegebenen Kommandoprotokolle und lassen Sie sich ggf. Probleme bzw. Hindernisse 
-der Studierenden erklären und wie diese überwunden wurden.
-
-[EREFC::1] `git branch ai-assistant` `git checkout ai-assistant`/`git checkout -b 
-ai-assistant`/`git switch -c 
-ai-assistant`    
-[EREFC::2] `git log --oneline --decorate --graph --all`    
-[EREFC::3] `git add assistant.py` `git commit -m "add assistant"`  
-[EREFC::4] `git switch main`/`git checkout main` `git merge`
-[EREFC::5] `git branch --merged`  
-[EREFC::6] `git branch -d branchname`  
-
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
