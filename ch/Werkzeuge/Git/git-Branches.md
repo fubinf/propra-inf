@@ -282,8 +282,7 @@ brauchen, können wir diese nach dem erfolgreichen Merge auch löschen.
 
 [ENDSECTION]
 
-[INSTRUCTOR::Befehle prüfen und schauen ob das mentale Modell vom Branching und die Behebung von 
-Merge-Konflikten verstanden wurde]
+[INSTRUCTOR::Befehle prüfen, und ob Branching und die Behebung von Merge-Conflicts verstanden wurde]
 
 [INCLUDE::ALT:]
 
