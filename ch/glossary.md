@@ -848,6 +848,17 @@ Diese Technik wird häufig für sichere Kommunikation, digitale Signaturen und
 Schlüsselaustauschmechanismen in der Informationssicherheit eingesetzt
 [ENDTERM]
 
+[TERM::Pull-Request|Merge-Request|PR|MR]
+Ein Pull-Request ist ein Feature vieler git-Server welches, Nutzer_innen ermöglicht einfach 
+Änderungsvorschläge zwischen zwei git-Branches zu vorzuschlagen, zu diskutieren und ggf. 
+Änderungen vorzunehmen, um die bestmögliche Integrierung der Änderungen in die Haupt-Codebase zu 
+gewährleisten. Im Pull-Request werden die Änderungen zwischen den Branches sowie eine Auflistung 
+der Commits angezeigt. 
+Weitere Informationen bietet [dieser GitHub-Artikel](https://docs.github.
+com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-
+requests/about-pull-requests).
+[ENDTERM]
+
 [TERM::PyCharm]
 Leistungsfähige IDE von JetBrains, in die viel Spezialwissen über das Python-Universum 
 eingebaut ist.
