@@ -62,6 +62,9 @@ We will modify these rules over time when others appear more useful.
 
 ### Werkzeuge
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP)
+- ch/Werkzeuge/Git/Git-Fehlerbehebung.md (Hüster->LP->SH->LP->SH->LP)
+- ch/Werkzeuge/Git/Git-Branches.md (Hüster->LP->SH->LP)
+- ch/Werkzeuge/Git/Git-Anpassen.md (Hüster)
 
 -------------------------------------------------------------------------------------------
 
@@ -101,9 +104,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Sven Hüster
-
-- ch/Werkzeuge/Git/Git-Fehlerbehebung.md (Hüster->LP->SH->LP->SH)
-- ch/Werkzeuge/Git/Git-Branches.md (Hüster->LP->SH)
 - ch/Werkzeuge/Git/Git-Rebase.md (Hüster)
 - ch/Sprachen/RegExp/log_sanitizer (Hüster->fertiggestellt-Prechelt->SH)
 - ...
