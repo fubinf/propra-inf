@@ -683,6 +683,13 @@ Ergebnis nur auf das zu testende Modul ankommt.
 
 ## N
 
+[TERM::Nameserver|Nameservers]
+Ein Nameserver hat die Aufgabe, Webadresse in IP-Adressen zu übersetzen. Diese Übersetzung ist 
+notwendig, weil Benutzer in der Regel leicht zu merkende Domainnamen (wie z.B. www.beispiel.de) 
+verwenden, während Computer Netzwerke IP-Adressen (wie z.B. 192.0.2.1) benötigen, um die 
+Kommunikation zu ermöglichen.
+[ENDTERM]
+
 [TERM::Negativtest|Negativszenario]
 Ist eine Art von Softwaretest, der darauf abzielt, sicherzustellen, dass ein System korrekt auf
 ungültige Eingaben oder unerwartete Bedingungen reagiert. Im Gegensatz zu Positivtests, die prüfen,
