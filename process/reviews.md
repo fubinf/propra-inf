@@ -65,6 +65,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Git/Git-Fehlerbehebung.md (Hüster->LP->SH->LP->SH->LP)
 - ch/Werkzeuge/Git/Git-Branches.md (Hüster->LP->SH->LP)
 - ch/Werkzeuge/Git/Git-Anpassen.md (Hüster)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
 
@@ -95,7 +96,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC)  
   Siehe Notizen in der Datei. Schwierig!
 
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC)
 
 
