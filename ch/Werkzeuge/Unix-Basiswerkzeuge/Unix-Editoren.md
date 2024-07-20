@@ -3,28 +3,9 @@ stage: alpha
 timevalue: 1.0
 difficulty: 2
 ---
-TODO_1_condric:
-
-- Zwei Editoren ausprobieren und vergleichen ist eine schöne Idee!
-- Nee, `editor.txt` liegt nicht in "diesem Verzeichnis". Ich bin auf einer Webseite.  
-  Wahrscheinlich ist am sinnvollsten, ein INCLUDE in triple dashes zu machen, oder?
-- Ich finde als Minimalprogramm sinnvoll, alles Folgende auszuprobieren:
-  Bewegen auf Zeilen, bewegen wortweise, einfügen, lösche Zeichen, lösche Wort, 
-  lösche Zeilenrest, Zeile löschen und zweimal woanders einfügen, Block von Zeilen löschen und woanders einfügen,
-  Suchen-und-Ersetzen, Save, Save as.
-- Damit die Leute vim zu schätzen wissen, sollte man auch eine Aufgabe stellen, die 
-  mit nano nicht geht, z.B. drei Blöcke a, b, c in drei Register füllen und dann mehrmals in
-  wilder Reihenfolge a, b, c, b, c, a einsetzen.
-- Angeben, wo man vimtutor findet.
-- Sind Sie sicher, dass irgendjemand dieses Kommandoprotokoll angucken will?
-  Ich glaube, dies ist eine Aufgabe, wo wir unseren Studis einfach vertrauen, dass sie
-  das Gewünschte getan haben.
-- Vielleicht fragt man nach den Kommandos für das Drei-Blöcke-Problem und fragt, wie man das
-  in nano letztlich löst (nämlich: erst alle a-, dann alle b-, dann alle c-Einfügungen machen, oder?).
-- Ich habe die Reflektionsaufgaben umformuliert.
-
+  
 [SECTION::goal::idea]
-Ich verstehe die Funkstionsweise von `nano` und `vim` in Linux
+Ich verstehe die Funkstionsweise von nano und vim in Linux.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -33,49 +14,109 @@ unter anderem vim oder nano zum Einsatz.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-Bearbeiten Sie die Datei `editor.txt`, mit den beiden unten genannten Editoren.  
-`editor.txt` befindet sich in diesem Verzeichnis.
 
-### Vim
+### Anmerkung
+Sie werden am Ende dieser Aufgabe nicht nach einem Kommandoprotokoll gefragt. Das 
+Kommandoprotokoll wäre für den Tutor schwer bis gar nicht lesbar. Machen Sie trotzdem alle 
+gefragten Schritte in dieser Aufgabe. 
 
-Werden Sie vertraut mit vim. Nutzen Sie als Hilfestellung diesen kurzen Beitrag 
-[Vim101](https://www.linuxfoundation.org/blog/blog/classic-sysadmin-vim-101-a-beginners-guide-to-vim).
-
-Lesen Sie insbesondere die Abschnitte **Editing Vim Style**, **Searching And Replacing**, 
-**Copying And Pasting** und **Saving And Quitting**
-
-- [EC] Suchen Sie nach `CPU`.
-- [EC] Ersetzen Sie es mit `ersetzt mit vim`.
-- [EC] Kopieren Sie den nächsten Text und fügen Sie diesen Ihrer Datei hinzu.
-
+### Erstellen einer Datei
 ```
-Dieser Text wurde mit Vim kopiert.
+[INCLUDE::editor_copy.txt]
 ```
+- [EC] Erstellen Sie eine neue Datei mit dem obigen Inhalt.
+- [EC] Duplizieren Sie die Datei, damit Sie eine nur mit `nano` editieren und die andere mit `vim`.
 
-- [EQ] Geben Sie an, wie Sie in die letzte Zeile des Dokuments kommen.
-- [EQ] Geben Sie an, wie Sie in die erste Zeile des Dokuments kommen.
-- [EC] Speichern und schließen Sie die Datei.
+### Arbeiten mit Nano
+
+Nutzen Sie für die nächsten Fragen immer die schnellste Möglichkeit, die Ihnen nano bietet.
+
+Lesen Sie Kapitel **2** des [nano Handbuchs](https://www.nano-editor.org/dist/latest/nano.html).
+
+- [EC] Öffnen Sie die gerade erstellte Datei mit nano.
+- [EC] Bewegen Sie sich mit den Pfeiltasten auf den Zeilen.
+- [EC] Kopieren Sie den nächsten Text. `Dieser Text wurde mit nano kopiert.`
+- [EC] Fügen Sie oben kopierten Text nach dem achten Wort der ersten Zeile ein.
+
+Lesen Sie Kapitel **3.3, 3.4** des [nano Handbuchs](https://www.nano-editor.org/dist/latest/nano.html).
+
+- [EC] Löschen Sie das erste Zeichen der zweiten Zeile. 
+- [EC] Löschen Sie das dritte Wort der dritten Zeile. 
+- [EC] Löschen Sie ab dem fünften Wort der dritten Zeile, den Rest der Zeile. 
+- [EC] Löschen Sie die vierte Zeile. 
+- [EC] Fügen Sie die gelöschte Zeile einmal am Anfang und einmal am Ende der Datei hinzu.
+- [EC] Löschen Sie die Zeilen 10-12 auf einmal.
+- [EC] Fügen Sie diese drei Zeilen am Ende der Datei hinzu.
+
+Lesen Sie Kapitel **3.6** des [nano Handbuchs](https://www.nano-editor.org/dist/latest/nano.html).
+
+- [EC] Suchen Sie nach `Lorem`.
+- [EC] Ersetzen Sie alle Wörter `ipsum` mit `ersetzt mit nano`.s
+- [EC] Speichern Sie die Datei.
+- [EC] Speichern Sie die Datei unter dem Namen `propranano.txt`.
+
+### Arbeiten mit Vim
 
 [NOTICE]
-Falls Sie sich noch mehr mit `vim` beschäftigen möchten, dann können sie mit dem `vimtutor` weiter 
-lernen.
+Falls Sie mit `vim` noch nicht gearbeitet haben, sollten Sie sich mit Vimtutor vertraut machen. 
+Vimtutor ist ein interaktives Tutorial, das Ihnen die grundlegenden Befehle und Funktionen von `Vim` 
+erklärt. Sie können es über die Befehlszeile mit dem Befehl `vimtutor` starten.
 [ENDNOTICE]
 
-### Nano
+Nutzen Sie für die nächsten Fragen immer die schnellste Möglichkeit, die Ihnen vim bietet.
 
-Machen Sie sich mit nano vertraut. Nutzen Sie als Hilfestellung [nano101](https://linuxize.com/post/how-to-use-nano-text-editor/).
-Lesen Sie insbesondere die Abschnitte **Editing Files** und **Saving and Exiting**.
+Lesen Sie Kapitel **02.1, 02.3, 02.7** des [vim Handbuchs](https://vimhelp.org/usr_02.txt.html).
 
-- [EC] Suchen Sie nach `cache`.
-- [EC] Ersetzen Sie es mit `ersetzt mit nano`
-- [EC] Kopieren Sie den unteren Text und fügen Sie diesen Ihrer Datei hinzu.
+- [EC] Öffnen Sie die gerade erstellte Datei mit vim.
+- [EC] Bewegen Sie sich mit **h,j,k,l** auf den Zeilen.
+- [EC] Bewegen Sie sich mit den Pfeiltasten auf den Zeilen.
+- [EC] Kopieren Sie den nächsten Text. `Dieser Text wurde mit vim kopiert.`
 
-```
-Dieser Text wurde mit Nano kopiert.
-```
+Lesen Sie Kapitel **03.1** des [vim Handbuchs](https://vimhelp.org/usr_03.txt.html).  
+Lesen Sie Kapitel **04.6** des [vim Handbuchs](https://vimhelp.org/usr_04.txt.html).
 
-- [EQ] Geben Sie an, wie Sie in die letzte Zeile des Dokuments kommen.
-- [EQ] Geben Sie an, wie Sie in die erste Zeile des Dokuments kommen.
+- [EC] Bewegen Sie sich wortweise in der ersten Zeile zum achten Wort.
+- [EC] Fügen Sie oben kopierten Text nach dem Wort ein.
+
+Lesen Sie Kapitel **02.4** des [vim Handbuchs](https://vimhelp.org/usr_02.txt.html).
+Lesen Sie Kapitel **03.2** des [vim Handbuchs](https://vimhelp.org/usr_03.txt.html).
+
+- [EC] Löschen Sie das erste Zeichen der zweiten Zeile. 
+- [EC] Löschen Sie das dritte Wort der dritten Zeile. 
+- [EC] Löschen Sie ab dem fünften Wort der dritten Zeile, den Rest der Zeile. 
+- [EC] Löschen Sie die vierte Zeile. 
+- [EC] Fügen Sie die gelöschte Zeile einmal am Anfang und einmal am Ende der Datei hinzu.
+- [EC] Löschen Sie die Zeilen 10-12 auf einmal.
+- [EC] Fügen Sie diese drei Zeilen am Ende der Datei hinzu.
+
+Lesen Sie Kapitel **03.8** des [vim Handbuchs](https://vimhelp.org/usr_03.txt.html).
+Lesen Sie Kapitel **10.2** des [vim Handbuchs](https://vimhelp.org/usr_10.txt.html).
+
+- [EC] Suchen Sie nach `Lorem`.
+- [EC] Ersetzen Sie alle Wörter `ipsum` mit `ersetzt mit vim`.
+
+Lesen Sie Kapitel **07.7** des [vim Handbuchs](https://vimhelp.org/usr_07.txt.html).
+
+- [EC] Speichern Sie die Datei.
+- [EC] Speichern Sie die Datei unter dem Namen `propravim.txt`.
+
+### Erweitertes Arbeiten mit Vim
+
+Vim kann Text in Registern speichern und auf diese mit Befehlen zugreifen.
+https://www.brianstorti.com/vim-registers/ 
+
+Lesen Sie das Kapitel **Basic Usage** aus diesem 
+[Onlinebeitrag](https://www.brianstorti.com/vim-registers/).
+
+Lesen Sie die Kapitel 1-4 von register aus der 
+[vim Dokumentation](https://vimhelp.org/change.txt.html#%7Bregister%7D)
+
+- [EC] Erstellen Sie eine neue Datei und fügen Sie oberen Text hinzu.
+- [EC] Speichern Sie die dritte Zeile in Register a.
+- [EC] Speichern Sie die vierte Zeile in Register b.
+- [EC] Speichern Sie die fünfte Zeile in Register c.
+- [EC] Fügen Sie am Ende des Textes zuerst die dritte Zeile, dann die vierte Zeile, dann die fünfte 
+   Zeile, dann wieder die vierte Zeile und zuguterletzt die fünfte Zeile.
 - [EC] Speichern und schließen Sie die Datei.
 
 ### Reflektion
@@ -90,7 +131,6 @@ Dieser Text wurde mit Nano kopiert.
 
 [SECTION::submission::reflection]
 
-[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
