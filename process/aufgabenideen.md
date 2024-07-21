@@ -213,7 +213,6 @@ Vermutlich sinnvoll als Lückentext, sodass sehr kleine und eingegrenzte Aufgabe
 ### Sprachen/Python2 (alrwasheda)
 
 Fortgeschrittenere Konstrukte:
-*args, **kwargs, 
 try/except, eigene Exceptions, realistische Ausnahmebehandlung (try except raise und das dann ganz woanders fangen),
 Typdeklarationen für Parameter und Resultate, Modul typing,
 Typdeklarationen für Attribute, fast alles aus
