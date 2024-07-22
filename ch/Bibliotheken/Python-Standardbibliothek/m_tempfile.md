@@ -24,7 +24,7 @@ nicht mehr benötigt werden.
 
 [SECTION::instructions::detailed]
 
-- [ER] Machen Sie sich mit der [Dokumentation von `tempfile`](https://docs.python.org/3/library/tempfile.html#tempfile.mkstemp)
+- [ER] Machen Sie sich mit der [Dokumentation von `tempfile`](https://docs.python.org/3/library/tempfile.html)
   vertraut.
 - [ER] Legen Sie die Datei `m_tempfile.py` an und benutzen Sie diese Datei für den Rest der 
   Aufgabe. 
