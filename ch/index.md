@@ -255,6 +255,11 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   von `sedrila`. Wenn ein `sedrila`-Aufruf abstürzt, ist ein Aktualisieren auf die neueste
   Version (mit `pipx upgrade`) meist die Lösung.
 - Beschreibung des Konzepts von Abgaben in die erste Aufgabe (CLI*) ergänzt. 
+- Aufgabe Werkzeuge/Benutzerverwaltung/[PARTREF::Gruppen] zugefügt.
+- **2024-07-22**: Aufgabe Sprachen/Python2/[PARTREF::Python-List-Comprehensions] zugefügt.  
+  Aufgaben Web/HTML/[PARTREF::HTMLErsteSchritte] und [PARTREF::HTMLMedien] zugefügt.  
+  Aufgabe Web/CSS/[PARTREF::CSSEinfuehrung] zugefügt.  
+  Aufgabe Debugging/Debuggingtools/[PARTREF::printfdebugging] zugefügt.  
 - ...
 
 
