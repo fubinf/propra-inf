@@ -38,7 +38,6 @@ We will modify these rules over time when others appear more useful.
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
 - ch/Bibliotheken/Python-Standardbibliothek/m_tempfile.md (SW)
-- ch/Bibliotheken/pip-popular/requests.md (RR->DM->LP->RR->LP)
 
 
 ### Bestandscode
@@ -125,6 +124,10 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Ronny Ruhe
+
+- ch/Bibliotheken/pip-popular/requests.md (RR->DM->LP->RR->LP)  
+  Nee, sorry, aber die Aufgabengruppe HTTP ist noch nicht brauchbar und auf der muss man
+  gezielt aufbauen. Da steht nur uralter, viel zu schwieriger Kram drin.
 
 - ch/Testen/API/ResponseApi.md (RR->CH->LP->RR)
 - ch/Testen/API/CRUDApi.md (RR->CH->LP->RR)
