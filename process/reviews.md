@@ -45,7 +45,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Debugging
-- ch/Debugging/Debuggingtools/python-profiling.md (Hüster)
+
 
 ### Testen
 
@@ -100,8 +100,11 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Sven Hüster
-- ch/Werkzeuge/Git/Git-Rebase.md (Hüster)
+- 
+- ch/Debugging/Debuggingtools/python-profiling.md (Hüster)  
+  Siehe in der Datei.
 - ch/Sprachen/RegExp/log_sanitizer (Hüster->fertiggestellt-Prechelt->SH)
+- ch/Werkzeuge/Git/Git-Rebase.md (Hüster)
 - ...
 
 
