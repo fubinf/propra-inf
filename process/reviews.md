@@ -55,9 +55,6 @@ We will modify these rules over time when others appear more useful.
 
 ### Web
 
-- ch/Web/HTML/HTMLMedien.md (DM)
-- ch/Web/CSS/CSSEinfuehrung.md (DM)
-
 
 ### Werkzeuge
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP)
@@ -110,6 +107,10 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Daniel Müllers
 
+- ch/Web/CSS/CSSEinfuehrung.md (DM->LP->DM)  
+  Ich finde a) dass der Theorieteil am Anfang reichlich lang ist, bis was Hübsches passiert, und
+  b) dass man gern etwas mehr Fun-Faktor haben könnte, z.B. mit supergroßem Titel.  
+  Ist aber jetzt schon mal beta.
 
 
 ## Reviews to do for Dominik Pietrak
