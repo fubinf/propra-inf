@@ -42,7 +42,7 @@ klare Richtlinien für die Entwicklung und das Testen geben.
 [TERM::Alias]
 Ein alternativer Name (meist im Sinne einer Abkürzung) für ein Kommando
 (meist mit Optionen und deshalb länger) in der [TERMREF::Shell].
-Weniger flexibel, aber in einfachen bequemer hinzuschreiben als eine
+Weniger flexibel, aber in einfachen Fällen bequemer hinzuschreiben als eine
 [TERMREF::Shellfunktion].
 [ENDTERM]
 
