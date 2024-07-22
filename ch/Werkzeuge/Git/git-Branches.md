@@ -73,7 +73,7 @@ gilt: "Der Main-Branch muss funktionieren!" sprich, wenn man den Main branch klo
 dann sollte das einfach alles gehen. Wenn jetzt jeder einfach so Änderungen dort hineinpushen 
 kann, dann kann das unweigerlich dazuführen, dass mal aus Versehen Fehler gepusht werden.
 Damit das nicht passiert, gibt es auf git Servern wie Github und GitLab Werkzeuge um den 
-Main-Branch zu sperren, sodass nur durch sogenannte [TERMREF2::Pull-Request::Pull-Requests], oft 
+Main-Branch zu sperren, sodass nur durch sogenannte [TERMREF2::Pull-Request::-s], oft 
 auch mit PR abgekürzt. Änderungen von anderen Branches in den Main-Branch gemergt (integriert) 
 werden können, nachdem Sie getestet und reviewt (gesichtet) wurden.
 
