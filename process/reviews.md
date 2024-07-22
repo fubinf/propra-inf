@@ -33,7 +33,7 @@ We will modify these rules over time when others appear more useful.
 **Kapitel bitte in Reihenfolge des Inhaltsverzeichnisses, alles darunter in alphabetischer, Leerzeile pro Gruppe**
 
 ### Sprachen
-- ch/Sprachen/Python2/Python-list-comprehensions.md (HA->LP->HA->LP)
+
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)

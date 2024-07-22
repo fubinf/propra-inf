@@ -1,5 +1,5 @@
 title: "List-Comprehensions in Python: Ausdrücke, die komplette Datenreihungen beschreiben"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 ---
@@ -14,7 +14,7 @@ In dieser Aufgabe wenden wir die Techniken an, die in diesem Artikel über
 beschrieben sind. Überfliegen Sie den also bitte jetzt.
 (Bitte sagen Sie nie "execute an expression", wie es der Artikel tut:
  Ausdrücke (expressions) werden ausgewertet (evaluated), nicht ausgeführt (executed).
- Ausführen gehört zu Anweisungen (statements).
+ Ausführen gehört hingegen zu Anweisungen (statements).
  Bitte schreiben Sie ebenfalls niemals `condition == True`, wie es der Artikel tut,
  denn das bedeutet bei booleschen Bedingungen das Gleiche wie `condition` allein.)
 
@@ -54,7 +54,7 @@ short_words = []
 for word in words:
     if len(word) < 5:
         short_words.append(word.upper())
-print(short_words)
+print("Short words:", short_words)
 ```
 [ER] Ersetzen Sie in Zeile 6 `short_words` durch eine List-Comprehension,
 die die Zeilen 2-5 gleichwertig ersetzt.
@@ -85,16 +85,16 @@ Dieser folgende kleine Artikel vermittelt Ihnen ein Gefühl darüber,
 [wann Listen-Comprehensions in Python nicht verwendet werden sollten](https://medium.com/@ivjot/when-not-to-use-list-comprehensions-in-python-ad3257a227b).
 
 Versuchen Sie hierbei anhand der Beispiele zu verstehen,
-dass List-Comprehensions nicht immer unbedingt die einzige optimale Lösungsvariante sein muss.
-Wie Sie im Artikel sehen werden,
+dass eine List-Comprehension nicht immer die beste Lösung ist.
+Wie Sie im Artikel sehen,
 gibt es auch Szenarien, in denen solch eine Lösung doch nachteilig sein kann.
 Mitzunehmen ist die Notwendigkeit, sich ständig genug Gedanken zu machen,
 wenn Sie sich für eine bestimmte Lösung entscheiden. 
 
 [EQ] Im Artikel wurden "Zen of Python"-Prinzipien erwähnt, anders bekannt auch als "PEP 20". 
-Denken Sie für jedes der folgenden Prinzipien an einen Fall,
+Beschreiben Sie für jedes der folgenden Prinzipien einen Fall,
 in dem der Einsatz von List-Comprehensions das jeweilige Prinzip verletzt:  
-1. "Simple is better than complex."  
+1. "Flat is better than nested."  
 2. "Readability counts."
 
 [NOTICE]
@@ -103,6 +103,8 @@ sondern ganz analog ebenso für Mengen (set comprehension, etwa
 `{ n for n in [5,5,1,2,3,4,5,3,3,5,5] if n % 2 != 0}`)
 und für Wörterbücher (dict comprehension, etwa dieses für ungerade Quadratzahlen:
 `{ n: n*n for n in range(10) if n % 2 != 0}`).
+
+Probieren Sie beide Ausdrücke aus und vollziehen Sie das Ergebnis nach.
 [ENDNOTICE]
 
 [SECTION::submission::snippet,information]
