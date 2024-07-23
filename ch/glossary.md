@@ -82,13 +82,22 @@ Eine ASCII-Tabelle finden Sie unter [HREF::https://www.asciitable.com/].
 [ENDTERM]
 
 [TERM::Auszeichnungssprache]
-Eine Auszeichnungssprache ist eine formale Sprache, die verwendet wird, um die Struktur und Darstellung von Texten in einem Dokument zu definieren. Sie besteht aus Markierungen (Tags oder Syntaxelementen), die den Text umgeben und so dessen Bedeutung und Formatierung festlegen. Auszeichnungssprachen werden häufig in der Dokumentverarbeitung, im Webdesign und in der Datenbeschreibung verwendet.
+Eine Auszeichnungssprache ist eine formale Sprache, die verwendet wird, 
+um die Struktur und Darstellung von Texten in einem Dokument zu definieren. 
+Sie besteht aus Markierungen, die den Text umgeben und so 
+dessen Bedeutung und Formatierung festlegen. 
+Auszeichnungssprachen werden häufig in der Dokumentverarbeitung, im Webdesign und in der Datenbeschreibung verwendet.
 
-Ein bekanntes Beispiel für eine Auszeichnungssprache ist [TERMREF::HTML], die zur Erstellung und Strukturierung von Inhalten im World Wide Web verwendet wird. HTML verwendet Tags, um verschiedene Elemente wie Überschriften, Absätze und Links zu kennzeichnen.
+Ein bekanntes Beispiel für eine Auszeichnungssprache ist [TERMREF::HTML], 
+die zur Erstellung und Strukturierung von Inhalten im World Wide Web verwendet wird. 
+HTML verwendet "Tags", um verschiedene Elemente wie Überschriften, Absätze und Links zu kennzeichnen.
 
-[TERMREF::Markdown] ist ein weiteres Beispiel für eine Auszeichnungssprache. Es wird oft in Texteditoren und auf Plattformen wie GitHub verwendet, um einfache Textformatierungen wie Überschriften, Listen und Links zu erstellen. Markdown zeichnet sich durch eine einfache und leicht lesbare Syntax aus.
+[TERMREF::Markdown] ist ein weiteres Beispiel für eine Auszeichnungssprache. 
+Es wird oft in Texteditoren und auf Plattformen wie GitHub verwendet, 
+um einfache Textformatierungen wie Überschriften, Listen und Links zu erstellen. 
+Markdown zeichnet sich durch eine einfache und leicht schreib- und lesbare Syntax aus.
 
-Weitere Informationen zu Auszeichnungssprachen: [HREF:https://de.wikipedia.org/wiki/Auszeichnungssprache]
+Weitere Informationen zu Auszeichnungssprachen: [HREF::https://de.wikipedia.org/wiki/Auszeichnungssprache]
 [ENDTERM]
 
 ## B
@@ -106,8 +115,8 @@ Richtig genau steht es in der Dokumentation von Bash.
 Eine agile Softwareentwicklungsmethode, die sich auf die Zusammenarbeit
 zwischen Entwicklern, Testern und nicht-technischen Stakeholdern konzentriert.
 In BDD werden Anforderungen
-in verständlichen, natürlichsprachlichen Szenarien formuliert (meist mittels "Gherkin"-Syntax),
-die dann mechanisch ist automatisierte Tests übersetzt werden.
+in verständlichen, semi-natürlichsprachlichen Szenarien formuliert,
+die dann mechanisch in automatisierte Tests übersetzt werden.
 
 [HREF::https://docs.robotframework.org/docs/testcase_styles/bdd#what-is-bdd]  
 [HREF::https://www.codecentric.de/wissens-hub/blog/givenwhenthen-and-example-tables-using-the-robot-framework]
@@ -432,28 +441,34 @@ z.B. `Content-Type:`, `Set-Cookie:`, `Cache-Control:`.
 [ENDTERM]
 
 [TERM::HTML|Hypertext Markup Language]
-HTML steht für Hypertext Markup Language. Es eine [TERMREF::Auszeichnungssprache], ähnlich wie [TERMREF::Markdown].
-Das Hyper in Hypertext bedeutet dabei, dass es sich eben nicht nur um einen normalen Text handelt, 
-sondern einen solchen, der um Verknüpfungen zu anderen Textstellen erweitert ist. 
-In HTML wird dieses Prinzip umgesetzt, indem spezielle Zeichenfolgen in den Text eingefügt werden. 
-Diese Markierungen ermöglichen nicht nur die angespochenen Verknüpfungen, sondern auch eine Strukturierung des Inhalts.
+HTML steht für Hypertext Markup Language; es ist eine [TERMREF::Auszeichnungssprache].
+In HTML wird dieses Prinzip umgesetzt, indem spezielle Zeichenfolgen ([TERMREF2::HTML-Tag::-s]) 
+in den Text eingefügt werden. 
+Diese Markierungen beschreiben eine Strukturierung des Inhalts, Hyperlinks und anderes mehr.
 
 [HREF::https://wiki.selfhtml.org/wiki/HTML/Tutorials/Entstehung_und_Entwicklung]
 [ENDTERM]
 
 [TERM::HTML-Attribut]
-Ein HTML-Attribut ist eine Eigenschaft eines [TERMREF2::HTML-Element::-s], die zusätzliche Informationen über dieses Element bereitstellt. Attribute werden innerhalb des Start-Tags eines HTML-Elements deklariert und bestehen aus einem Namen und einem Wert. Sie beeinflussen das Verhalten oder das Erscheinungsbild des Elements. Ein typisches Attribut besteht aus einem Namen, gefolgt von einem Gleichheitszeichen und einem Wert in Anführungszeichen.
+Ein HTML-Attribut ist eine Eigenschaft eines [TERMREF2::HTML-Element::-s], 
+die zusätzliche Informationen über dieses Element bereitstellt. 
+Attribute werden innerhalb des Start-Tags eines HTML-Elements deklariert und bestehen aus einem Namen und einem Wert. 
+Sie beeinflussen die Bedeutung oder das Erscheinungsbild des Elements. 
+Ein Attribut besteht aus einem Namen, gefolgt von einem Gleichheitszeichen und einem Wert in Anführungszeichen:
 
 ```html
 <a href="https://www.beispielseite.com" target="_blank">Besuche Beispielseite</a>
 ```
-In diesem Beispiel gibt das `href`-Attribut die URL an, zu der der Link führt, und das `target`-Attribut bestimmt, dass der Link in einem neuen Tab oder Fenster geöffnet wird.
+In diesem Beispiel gibt das `href`-Attribut die URL an, zu der der Link führt, 
+und das `target`-Attribut bestimmt, dass der Link in einem neuen Tab oder Fenster geöffnet wird.
 [ENDTERM]
 
 
 [TERM::HTML-Tag|HTML-Element]
-Eine Markierung in einem [TERMREF::HTML]-Dokument, die angibt wo bestimmte Teile eines Dokuments beginnen und enden. Ein solches Tag besteht am Beginn eines Dokumentteiles aus einem Namen, der in spitze Klammern eingeschlossen ist. Für das Ende fügt man vor dem Namen noch einen Schrägstrich hinzu. 
-Eines dieser Tags heißt z.B. `h1` und markiert die Haupt-Überschrift einer Seite:
+Eine Markierung in einem [TERMREF::HTML]-Dokument, die angibt, wo Teile eines Dokuments beginnen und enden. 
+Ein solches Tag besteht am Beginn eines Dokumentteiles aus einem Namen, der in spitze Klammern eingeschlossen ist. 
+Für das Ende steht wieder das gleiche Tag, jedoch mit einem Schrägstrich. 
+Z.B. markiert das Tag `h1` die Haupt-Überschrift einer Seite:
 
 ```html
 <h1>Erste Schritte in HTML</h1>

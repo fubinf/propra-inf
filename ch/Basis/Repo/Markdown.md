@@ -21,7 +21,8 @@ Dazu verwenden wir die schön simple Notation "Markdown".
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-[TERMREF::Markdown] ist eine Markup-Sprache, die einfach schreibbar und gut lesbar ist.
+[TERMREF::Markdown] ist eine Markup-Sprache, die (anders als [TERMREF::HTML]) 
+einfach schreibbar und gut lesbar ist.
 Man kann damit schnell und einfach strukturierte Texte schreiben. 
 Die Dateiendung für Markdown-Dateien ist `.md`.
 Lesen Sie diese
