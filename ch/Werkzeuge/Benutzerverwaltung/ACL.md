@@ -1,30 +1,9 @@
 title: Access Control Lists
 stage: alpha
-timevalue: 2
-difficulty: 3
+timevalue: 1.5
+difficulty: 2
 assumes: apt, Gruppen, sudo, Umgang-mit-Verzeichnissen
 ---
-TODO_1_condric
-
-- Das Geschäftsführer-Szenario ist ein guter Ansatz, wird aber noch zu wenig ausgenutzt.
-  Die Studis sollten hier weniger alle Einzelheiten von ACL-Manipulation ausprobieren
-  als vielmehr eine Vorstellung davon entwickeln, was die Momente sind, wo man ACLs benutzen
-  will und wann nicht.
-- Dafür sollte der erste Schritt sein, sich im Szenario klar zu werden, was das für eine
-  gruppenbasierte Lösung hieße (Spezialgruppe) und wo das seine Grenzen findet
-  (wenn zugleich `rwx` und `r-x` gefragt sind, `other` aber `---` haben soll.)
-- Dann, sich klar zu werden, dass das recht speziell ist, und man mit den normalen Unix-Rechten
-  schon ganz schön weit kommt, wenn man genügend viele Gruppen einrichtet.
-- ACLs sind in zwei Fällen sinnvoll: Obigem Fall, wo Gruppen nicht mehr reichen.
-  Und one-of-a-kind-Fälle, wo wirklich nur eine Datei/Verzeichnis genau dieses Rechtekonstrukt braucht.
-- Beim konkreten Bedienen sollten wir uns auf die wichtigsten Fälle beschränken:
-  Setzen, Zufügen, Auflisten, Löschen, Entfernen, rekursiv?
-- Und wenn man die dann je einmal ausprobiert hat, reicht es auch.
-- Hübsch wäre, wenn das Szenario immer mitläuft und die Aufgabe einen Anlass für jede Operation angibt.
-  Muss aber nicht unbedingt sein.
-- "Erstellen Sie den Ordner `/folder`"  
-  Echt? Im Rootverzeichnis? Das finde ich etwas wild.  
-  Wie wäre es mit `/tmp/folder`?
 
 [SECTION::goal::idea]
 
@@ -41,122 +20,107 @@ ACLs werden zusätzlich zu den Unix-Standardberechtigungen gesetzt.
 
 [SECTION::instructions::detailed]
 
-Stellen Sie sich vor Sie arbeiten in einer Firma mit zwei Geschäftsführern. Die Firma hat eine 
-Abteilung Rechnungswesen. Diese Abteilung hat ihren eigenen Ordner, wo sie ihre Daten ablegen. 
-Jetzt wollen die Geschäftsführer auch Zugriff auf einen bestimmten Ordner der Abteilung 
-Rechnungswesen bekommen, damit Sie da auch Dateien lesen und ablegen können. Mit den normalen 
-Unix-Rechten werden wir da schnell in Probleme geraten. [TERMREF::ACLs] lösen dieses Problem komfortabler. Wir 
-bringen Ihnen diese hier näher.
+Stellen Sie sich vor, Sie arbeiten in einer Firma mit zwei Geschäftsführern und einer Abteilung 
+Rechnungswesen. Die Geschäftsführer und die Abteilung Rechnungswesen haben im System jeweils ihre 
+eigene Rechtegruppe. Des Weiteren hat das Rechnungswesen einen Ordner, wo sie Rechnungen ablegen. 
+Auf diesen Ordner hat die Geschäftsführung keinen Zugriff, möchte diesen jetzt aber haben, da sie 
+auch Rechnungen in diesem Ordner ablegen möchten, um Umwege per Mail zu vermeiden.
+
+Es gibt eine Gruppe Rechnungswesen, die `rwx`-Rechte auf den Rechnungsordner hat. Des Weiteren hat 
+`other` die Rechte `---`. Die Geschäftsführer haben eine eigene Gruppe Geschäftsführer. Würde man 
+jetzt die Gruppe auf Geschäftsführer ändern, würde die Abteilung Rechnungswesen keinen Zugriff mehr 
+auf den Ordner haben. Hier helfen uns jetzt die ACLs.
+
+### ACL installieren
+
+- [EC] Aktualisieren Sie ihr System.
+- [EC] Installieren Sie das Paket `acl`.
 
 ### Testumgebung erstellen
 
-- [EC] Erstellen Sie zwei Nutzer `aclnutzer1` und `aclnutzer2`.
-- [EC] Erstellen Sie zwei Gruppen `aclgroup1` und `aclgroup2`.
-- [EC] Fügen Sie den Nutzer `aclnutzer1` zur Gruppe `aclgroup1` und `aclnutzer2` zur Gruppe `aclgroup2`.
+- [EC] Erstellen Sie die Nutzer `gf1`, `gf2`, `rw1`, `rw2`.
+- [EC] Erstellen Sie zwei Gruppen `geschaeftsfuerer` und `rechnungswesen`.
+- [EC] Fügen Sie die Nutzer `gf1`, `gf2` zur Gruppe `geschaeftsfuerer` und `rw1`, `rw2` zur Gruppe 
+   `rechnungswesen`.
 
 Erstellen Sie die nächsten Ordner und Dateien mit Ihrem persönlichen Nutzer, nicht mit `aclnutzer1` 
 oder `aclnutzer2`.
 
-- [EC] Erstellen Sie den Ordner `/folder`
-- [EC] Ändern Sie den Nutzer und die Gruppe des Ordners `/folder` zu ihrem persönlichen 
+- [EC] Erstellen Sie den Ordner `/tmp/rechnungen/`
+- [EC] Ändern Sie den Nutzer und die Gruppe des Ordners `/tmp/rechnungen` zu ihrem persönlichen 
     Nutzerkonto und die dazugehörige Grupppe.
-- [EC] Erstellen Sie den Ordner `/folder/subfolder1/`.
-- [EC] Erstellen Sie den Ordner `/folder/subfolder2/`.
-- [EC] Erstellen Sie die Dateien `folder_data1`, `folder_data2` in `folder`.
-- [EC] Erstellen Sie die Dateien `subfolder1_data1`, `subfolder1_data2` in `subfolder1`.
-- [EC] Erstellen Sie die Dateien `subfolder2_data1`, `subfolder2_data2` in `subfolder2`.
+- [EC] Erstellen Sie den Ordner `/tmp/rechnungen/2023/`.
+- [EC] Erstellen Sie den Ordner `/tmp/rechnungen/2024/`.
+- [EC] Erstellen Sie die Dateien `rechnung20230101`, `rechnung20230201` in `/tmp/rechnungen/2024/`.
+- [EC] Erstellen Sie die Dateien `rechnung20240101`, `rechnung20240201` in `/tmp/rechnungen/2023/`.
 - [EC] Ändern Sie die Rechte von den erstellten Ordnern, Subordnern und Dateien so ab, dass Ihr 
-    persönliches Nutzerkonto und die gleichnamige Gruppe Lese-, Schreib- und Ausführrechte hat.
+    persönliches Nutzerkonto und die gleichnamige Gruppe Lese-, Schreib- und Ausführrechte hat,
+    und das `other` keine Rechte haben.
 
-Die Nutzer `aclnutzer1` und `aclnutzer2` sollen erstmal keine Rechte auf die Daten haben.
+Die gerade erstellten Nutzer sollen erstmal keine Rechte auf die Daten haben.
 
 ### Überblick verschaffen
 
 Lesen Sie die [getfacl(1) manpage](https://linux.die.net/man/1/getfacl) bis einschließlich 
 **Permissions**.
 
-- [EC] Geben Sie die ACLs von `folder` aus.
-- [EC] Geben Sie die ACLs von `subfolder1` aus.
-- [EC] Geben Sie die ACLs von `subfolder2` aus.
-- [EC] Geben Sie die ACLs von `subfolder1_data1` aus. 
-- [EC] Geben Sie die ACLs von `subfolder2_data1` aus.
+- [EC] Geben Sie die ACLs von `/tmp/rechnungen/` aus.
 
 Sie haben gerade die normalen Unix-Rechte im [TERMREF::ACL] Format gesehen.  
-Setzen wir ein paar [TERMREF::ACLs].
+Setzen wir ein paar ACLs.
 
 ### ACLs setzen
 
 Lesen Sie die [setfacl(1) manpage](https://linux.die.net/man/1/setfacl) bis einschließlich 
-**Permissions**, die Optionen **-R, -b**, die **Examples** und die **ACL Entries**.
+**Permissions**, die Optionen **-m, -R, -b, -k**, die **Examples** und die **ACL Entries**.
 
-Im Nachfolgenden wird mit Schreibrechten Schreib- und Leserechte gemeint.
-
-- [EC] Geben Sie `aclnutzer1` und `aclnutzer2` Leserechte auf den Ordner `folder`.
-- [EC] Geben Sie `aclnutzer1` Schreibrechte auf den Ordner `subfolder1` mit einer ACL Änderung.
-- [EC] Geben Sie `aclnutzer2` Schreibrechte auf den Ordner `subfolder2` mit einer ACL Änderung.
-- [EC] Geben Sie `aclnutzer1` Schreibrechte auf die Datei `subfolder1_data1` mit einer ACL Änderung.
-- [EC] Geben Sie `aclnutzer2` Schreibrechte auf die Datei `subfolder2_data2` mit einer ACL Änderung.
-- [EC] Geben Sie die ACLs von `subfolder1`, `subfolder2`, `subdfolder1_data1`, `subdfolder1_data2`, 
-    `subdfolder2_data1` und `subdfolder2_data2` aus.
+- [EC] Ändern Sie die Gruppe zu `rechnungswesen` für den Ordner `/tmp/rechnungen/` und allen 
+   Subordnern und Rechnungen.
+- [EC] Fügen Sie per ACL die Gruppe `geschäftsführung` dem Ordner `/tmp/rechnungen/` mit den Rechten `r-x` hinzu.
+- [EC] Fügen Sie per ACL die Gruppe `geschäftsführung` dem Ordner `/tmp/rechnungen/2024` mit den Rechten `rwx` hinzu.
 
 ### Testen
 
-Wenn alles richtig verlaufen ist, dann sollten Sie jetzt mit den Nutzern in die jeweiligen Dateien schreiben können.
+- [EC] Geben Sie ACLs von `/tmp/rechnungen/` aus.
+- [EC] Geben Sie ACLs von `/tmp/rechnungen/2023` aus.
+- [EC] Geben Sie ACLs von `/tmp/rechnungen/2024` aus.
 
-- [EC] Schreiben Sie mit `aclnutzer1` "aclnutzer1 hat das geschrieben" in die Datei `subfolder1_data1`.
-- [EC] Schreiben Sie mit `aclnutzer2` "aclnutzer2 hat das geschrieben" in die Datei `subfolder2_data2`.
+Wenn alles richtig verlaufen ist, dann sollte die Geschäftsführung jetzt Zugriff auf die Rechnungen 
+aus 2024 haben, aber nicht aus 2023.
 
-### Default ACLs
+- [EC] Melden Sie sich als `gf1` an.
+- [EC] Erstellen Sie eine neue Rechnung `rechnung20240301` im Ordner `/tmp/rechnungen/2024/`.
+- [EC] Versuchen Sie die Rechnung `/tmp/rechnungen/2024/rechnung20240101` zu lesen.
+- [EC] Versuchen Sie den Ordner `/tmp/rechnungen/2023` mit dem Nutzer `gf1` zu öffnen.
 
-Sie haben vorhin einzeln alle Rechte gesetzt. Dies lässt sich komfortabler lösen, indem man 
-`default ACLs` setzt. Die `default ACLs` vererben die Rechte des Ordner auf alle darunter liegenden 
-Ordner und Daten, sofern man dies explizit angibt oder diese nach der ACL-Änderung neu erstellt 
-werden.
+Wie sie sehen fehlt der Geschäftsführung die Berechtigung um die Rechnungen aus 2023 zu lesen. 
+Das ist so gewollt. Aber die Geschäftsführung kann die Rechnungen aus 2024 nicht lesen. Das müssen 
+wir ändern.
 
-Wir werden die Rechte hier jetzt mit den Gruppen bearbeiten. Das gilt natürlich analog auch für 
-die Nutzer.
+- [EC] Melden Sie sich als `gf1` ab
 
-- [EC] Geben Sie `aclgroup1` Schreibrechte auf den Ordner `subfolder1` und den darunterliegenden Dateien.
-- [EC] Setzen Sie eine default-ACL für `aclgroup1` mit Schreibrechten auf den Ordner `subfolder1` 
-    und den darunterliegenden Dateien.
-- [EC] Geben Sie `aclgroup2` Schreibrechte auf den Ordner `subfolder2` und den darunterliegenden Dateien.
-- [EC] Setzen Sie eine default-ACL für `aclgroup2` mit Schreibrechten auf den Ordner `subfolder2` 
-    und den darunterliegenden Dateien.
-- [EC] Erstellen Sie mit Ihrem persönlichen Nutzer zwei Dateien `subfolder1_data3` und 
-    `subfolder2_data3` in den jeweiligen Ordnern.
-- [EC] Geben Sie die ACLs von `subfolder1`, `subfolder2`, `subdfolder1_data1`, `subdfolder1_data2`, 
-    `subdfolder1_data3`, `subdfolder2_data1`, `subdfolder2_data2` und `subdfolder2_data3` aus.
+### Rekursiv ACL setzen und testen
 
-Wie Sie sehen wurden bei den neu erstellten Dateien `subfolder1_data3` und `subfolder2_data3` 
-automatisch die Rechte für die jeweiligen Gruppen mit hinzugefügt.
+- [EC] Fügen Sie rekursiv per ACL die Gruppe `geschäftsführung` dem Ordner `/tmp/rechnungen/2024` 
+   mit den Rechten `rwx` hinzu.
+- [EC] Fügen Sie der Rechnung `/tmp/rechnungen/2024/rechnung20240101` den Text `gf1 hat das bearbeitet` hinzu.
+- [EC] Geben Sie ACLs von `/tmp/rechnungen/2024` aus.
 
-### Testen
-
-Wenn alles richtig verlaufen ist, dann sollten die nächsten Befehle alle erfolgreich sein.
-
-- [EC] Schreiben Sie mit `aclnutzer1` "aclnutzer1 hat das geschrieben" in die Datei `subfolder1_data3`.
-- [EC] Schreiben Sie mit `aclnutzer2` "aclnutzer2 hat das geschrieben" in die Datei `subfolder2_data3`.
-- [EC] Erstellen Sie mit `aclnutzer1` eine neue Datei namens `subfolder1_data4` in den Ordner 
-    `subfolder1`.
-- [EC] Erstellen Sie mit `aclnutzer2` eine neue Datei namens `subfolder2_data4` in den Ordner 
-    `subfolder2`.
-
-Versuchen wir jetzt mit den Nutzern in die Ordner zu schreiben, in denen die Nutzer keinen Zugriff 
-haben.  
-Die nächsten Befehle sollten fehlschlagen.
-
-- [EC] Erstellen Sie mit `aclnutzer1` eine neue Datei namens `subfolder2_data5` in den Ordner 
-    `subfolder2`.
-- [EC] Erstellen Sie mit `aclnutzer2` eine neue Datei namens `subfolder1_data5` in den Ordner 
-    `subfolder1`. 
+Somit hat jetzt die Geschäftsführung vollen Zugriff auf den Rechnungsordner 2024.
 
 ### Aufräumen
 
-- [EC] Entfernen Sie alle ACL-Einträge der Ordner `folder`, `subfolder1`, `subfolder2` und den 
-    jeweils darunterliegenden Dateien mit nur einem Befehl.
-- [EC] Nachdem Sie die Rechte entfernt haben, löschen Sie `folder`, `subfolder1`, `subfolder2` und die 
-    jeweils darunterliegenden Dateien
-- [EC] Löschen Sie die Nutzer `aclnutzer1`, `aclnutzer2` und die Gruppen `aclgroup1`, `aclgroup2`.
+Nachdem wir das jetzt alles getestet haben müssen wir auch wieder aufräumen.
+
+- [EC] Entfernen Sie alle ACL-Einträge der Ordner `/tmp/rechnungen/`, `/tmp/rechnungen/2023/`, 
+   `/tmp/rechnungen/2024/` und den jeweils darunterliegenden Dateien mit nur einem Befehl.
+
+### Löschen
+
+- [EC] Nachdem Sie die Rechte entfernt haben, löschen Sie `/tmp/rechnungen/`, `/tmp/rechnungen/2023/`, 
+   `/tmp/rechnungen/2024/` und die jeweils darunterliegenden Dateien.
+- [EC] Löschen Sie die Nutzer `gf1`, `gf2`, `rw1`, `rw2` und die Gruppen `geschaeftsfuerer`, 
+   `rechnungswesen`.
 
 [ENDSECTION]
 
@@ -168,4 +132,5 @@ Die nächsten Befehle sollten fehlschlagen.
 
 [INSTRUCTOR::Erwartung]
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
