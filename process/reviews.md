@@ -62,6 +62,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Git/Git-Branches.md (Hüster->LP->SH->LP)
 - ch/Werkzeuge/Git/Git-Anpassen.md (Hüster)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP)
+- ch/Werkzeuge/Benutzerverwaltung/ACL.md (Condric->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
 
@@ -74,8 +75,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Ivan Condric
-
-- ch/Werkzeuge/Benutzerverwaltung/ACL.md (Condric->LP->IC) siehe in der Datei
 
   Den traceroute-Teil finde ich sehr anspruchsvoll. Wenn ich die Ähnlichkeiten und Unterschiede von
   `traceroute -T fu-berlin.de` und `traceroute fu-berlin.de` erklären sollte, würde ich ins
@@ -93,7 +92,6 @@ We will modify these rules over time when others appear more useful.
   Siehe Notizen in der Datei. Schwierig!
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC)
-
 
 ## Reviews to do for Christian Hofmann
 
