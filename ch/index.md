@@ -356,6 +356,9 @@ Bitte laden Sie ihn sich hier herunter, packen Sie die ZIP-Datei aus und halten
 Sie den Baum in Ihrer IDE bereit.
 Er liegt als ZIP-Datei vor: [HREF::itree.zip].
 
+Es sollte klar sein, dass Sie nichts aus diesem Baum oder den sonstigen Lösungshinweisen
+an Teilnehmer_innen weitergeben.
+
 
 ## 4. Wie funktioniert der Einreichungsprozess genau?
 

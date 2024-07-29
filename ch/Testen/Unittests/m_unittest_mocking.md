@@ -143,7 +143,7 @@ from my_logs import read_log_file
 
 class TestReadLogFile(unittest.TestCase):
 
-    # Infos zum Dekorator patch:
+    # Infos zum Dekorierer-Patch:
     # - 'builtins.open': Dies gibt an, dass die eingebaute open-Funktion, die normalerweise für Dateioperationen verwendet wird, 
     # gemockt werden soll. builtins ist das Modul, das die eingebauten Funktionen in Python enthält.
     # - new_callable=mock_open: Der Parameter new_callable gibt an, welche Klasse oder Funktion verwendet werden soll, um das 

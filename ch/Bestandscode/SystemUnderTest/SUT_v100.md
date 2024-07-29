@@ -63,7 +63,7 @@ Betrachten Sie die Nutzer unter `v1.0.0/data/users.json`.
 
 Der auf Python basierende Entwicklungscode ist unter `v1.0.0/app.py`.
 
-- [EQ] Welche Funktion verbirgt sich hinter dem [TERMREF::Dekorator] `@app.route('/')`?
+- [EQ] Welche Funktion verbirgt sich hinter dem [TERMREF::Dekorierer] `@app.route('/')`?
 - [EQ] Was für eine Funktion sollte nach dieser Zeile folgen?
 
 ### Frontend Anteil
@@ -121,7 +121,7 @@ bereit sein, mit dieser Version zu arbeiten.
 - [EREFQ::8] Die JSON verrät: Nutzer: Alice, Bob und Charlie. Das PW ist in der User Story 1 mit
   'password' definiert (Beim initialen Start - Passwort könnte vom Studenten geändert werden. DB löschen
   initialisiert die Nutzer neu.)
-- [EREFQ::9] Im Python-Framework Flask ist der Dekorator @app.route('/') eine Methode, um Routen für
+- [EREFQ::9] Im Python-Framework Flask ist der Dekorierer @app.route('/') eine Methode, um Routen für
   die Webanwendung zu definieren. Der Eintrag / gibt das Stammverzeichnis der Anwendung an.
 - [EREFQ::10] Anschließend kommt das gewünschte Verhalten, nachdem diese Seite gezielt aufgerufen wurde.
   Z.B. Darstellung der Login-Seite.

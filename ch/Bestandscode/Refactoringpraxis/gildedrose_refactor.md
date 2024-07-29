@@ -153,7 +153,7 @@ Block**" bezeichnet.
 
 - Die oberste Bedingung ist recht sperrig zu lesen:
   `if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert": (...).`  
-  Benutzen Sie die [TERMREF::de-morganschen Regeln], um diesen Ausdruck umzuschreiben.
+  Benutzen Sie die [TERMREF2::de-morgansche Regeln::de-morganschen Regeln], um diesen Ausdruck umzuschreiben.
 - Nun wenden Sie noch den `in`-Operator an: aus `a == v1 or a == v2` wird `a in (v1, v2)`.
 - Der `if`-Ausdruck hat jetzt die Form `if not (...)` und wird von einem `else` gefolgt.
   Vertauschen Sie den Inhalt von `if` und `else` und negieren Sie den `if`-Ausdruck.

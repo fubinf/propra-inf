@@ -252,7 +252,7 @@ def test_user(user_setup_teardown):
     assert user.email == "testuser@example.com"
 ```
 
-- [EREFR::5] Ergänzt wurde der Dekorator-Paramter: `@pytest.fixture(scope="session")`
+- [EREFR::5] Ergänzt wurde der Dekorierer-Parameter: `@pytest.fixture(scope="session")`
 - [EREFR::6] Das Auslagern muss in dieser speziellen Datei geschehen und die Klasse `User` muss
   ebenfalls mitgenommen werden.
 

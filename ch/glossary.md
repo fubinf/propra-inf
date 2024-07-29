@@ -13,7 +13,7 @@ sowie ggf. auf Aufgaben, die weitere Erläuterungen dazu enthalten.
 Synonyme für die Identität eines (menschlichen oder nichtmenschlichen) Benutzers
 in einem Betriebssystem.
 Ein Account ist mit einem Zugangsschutz versehen (z.B. Passwort) und verfügt
-im System über gewisse Rechte (z.B. Zugriff auf gewisse Dateien.)
+im System über gewisse Rechte (z.B. Zugriff auf bestimmte Dateien.)
 
 Die Ausdrücke Benutzer, Nutzer oder User sind mehrdeutig und können auch die
 menschliche Benutzer_in meinen oder mitmeinen, nicht nur deren Account.
@@ -106,8 +106,8 @@ Weitere Informationen zu Auszeichnungssprachen: [HREF::https://de.wikipedia.org/
 Die meistbenutzte [TERMREF::Shell] auf Linux-Systemen.
 
 Kommandos zur Initialisierung der Shell stehen in der Datei `.bashrc` im HOME-Verzeichnis
-(das stimmt nur ungefähr, etwas genauer steht es in
-[HREF::https://linuxize.com/post/bashrc-vs-bash-profile/]).
+(das stimmt nur ungefähr, etwas genauer ist das in
+[HREF::https://linuxize.com/post/bashrc-vs-bash-profile/] beschrieben).
 Richtig genau steht es in der Dokumentation von Bash.
 [ENDTERM]
 
@@ -133,9 +133,14 @@ Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwickl
 [ENDTERM]
 
 [TERM::Branch|Zweig]
-Häufig eine parallel laufende Abzweigung des Hauptzweiges des git-Arbeitsverzeichnis.
-Unterscheidet sich technisch aber eigentlich nicht vom Hauptzweig.
-Die Abzweigung entsteht durch einen Verweis auf den aktuellsten Commit zum Zeitpunkt der Abzweigung.
+Bei git: Eine eigene Versionsgeschichte.
+Ein Zweig hat einen Namen und einen jüngsten Commit und durch dessen Vorgänger und Vorvorgänger
+eine eigene Versionshistorie. 
+Alle Zweige treffen sich, rückwärts gesehen, beim allerersten Commit.
+Vorwärts gesehen verzweigt sich die Versionsgeschichte an manchen Stellen und aus einem Zweig werden zwei.
+Allerdings ergibt das nicht zwingend einen Baum, denn Zweige können 
+durch 'merge'-Commits auch wieder zusammengeführt werden.
+Meist gibt man dabei den Namen des einen Zweiges auf. 
 [ENDTERM]
 
 [TERM::Breakpoint|Haltepunkt]
@@ -221,10 +226,10 @@ und die letzten drei geben sie für alle anderen Benutzer an (other, o).
 Genaueres siehe z.B. [HREF::https://wiki.ubuntuusers.de/Rechte/].
 [ENDTERM]
 
-[TERM::Decorator|Dekorator]
-Dies eine Funktion in einer Programmiersprache, die eine andere Funktion oder eine Klasse
+[TERM::Decorator|Dekorierer]
+Eine Funktion in einer Programmiersprache, die eine andere Funktion oder eine Klasse
 modifiziert oder erweitert. Es ermöglicht, das Verhalten einer Funktion oder Klasse zu ändern,
-ohne deren Code direkt zu ändern. Durch Dekoratoren können beispielsweise Funktionen mit
+ohne deren Code direkt zu ändern. Durch Dekorierer können beispielsweise Funktionen mit
 zusätzlicher Funktionalität versehen werden, wie das Hinzufügen von Logging oder das Implementieren
 von Sicherheitsüberprüfungen.
 [ENDTERM]
@@ -250,11 +255,11 @@ viele (aber nicht alle) Defekte verursachen immer oder manchmal ein [TERMREF::Ve
 Zur Korrektur eines Defekts wird in der Regel das Produkt (z.B. der Code) verändert.
 [ENDTERM]
 
-[TERM::de-morganschen Gesetze|de-morganschen Regeln]
-Die de-morganschen Regeln sind zwei grundlegende Regeln für logische Aussagen und gelten in 
+[TERM::de-morgansche Gesetze|de-morgansche Regeln]
+Die de-morganschen Gesetze sind zwei grundlegende Regeln für logische Aussagen und gelten in 
 allen Boolschen Algebren und sind bedeutsam in der Aussagenlogik und Mengenlehre.
 
-Sie lauten in der Logik:
+Sie lauten:
 `nicht (a und b) ist äquivalent zu ((nicht a) oder (nicht b))`, sowie
 `nicht (a oder b) ist äquivalent zu ((nicht a) und (nicht b))`.
 [ENDTERM]
@@ -300,9 +305,9 @@ DRY steht für "don't repeat yourself".
 Das Prinzip besagt, man solle Redundanz vermeiden oder zumindest reduzieren,
 also nicht gleiche Information (etwa bestimmte Strings) oder Anweisungen an mehreren Stellen
 im Programm haben.  
-DRY ist tendenziell eine sehr gute Idee, aber wie fast alles kann man es übertreiben
+DRY ist meist eine gute Idee, aber wie fast alles kann man es übertreiben
 und handelt sich dann mehr Probleme ein als man damit löst.   
-Das gegenteilige Prinzip wird [TERMREF::WET] genannt.
+Das gegenteilige Verhalten wird [TERMREF::WET] genannt und ist meist (aber nicht immer) eine schlechte Idee.
 
 [OAOO auf c2.com](https://wiki.c2.com/?OnceAndOnlyOnce)  
 [DRY auf c2.com](https://wiki.c2.com/?DontRepeatYourself)  
