@@ -15,7 +15,7 @@ in fremdem Code erfolgreich gefunden.
 
 Ein Grenzdefekt tritt auf, wenn die Daten an den Rändern (Grenzen) des Definitionsbereiches 
 nicht korrekt verarbeitet werden, also etwa die ersten oder letzten Elemente eines Datenbehälters.
-Ein Indexdefekt ([PARTREFTITLE::Indexierungsdefekte]) führt häufig zu einem Grenzdefekt.
+Ein Indexdefekt ([PARTREF::Indexierungsdefekte]) führt häufig zu einem Grenzdefekt.
 Er kann dazu führen, dass Code die ersten oder letzten paar Elemente gar nicht bearbeitet,
 also wenn der Index zu restriktiv ist.
 Er kann auch dazu führen, dass das Programm abstürzt, weil es über das Ende der Datenstruktur hinaus 
@@ -39,7 +39,7 @@ Wenn die Datei **nicht** mit der Zeile "###" endet, könnte die Schleife für im
 
 Man kann zu Grenzdefekten auch solche zählen, in denen der Code bei bestimmten Eingaben 
 in der Nähe des Anfangs oder Endes des gültigen Eingabebereichs schlecht oder gar nicht definiert ist.
-Das heißt, im Gegensatz zum vorherigen Beispiel und den Beispielen aus [PARTREFTITLE::Indexierungsdefekte], 
+Das heißt, im Gegensatz zum vorherigen Beispiel und den Beispielen aus [PARTREF::Indexierungsdefekte], 
 die dazu neigen, _alle_ Eingaben leicht falsch zu verarbeiten, sind dies Fälle, in denen der Code
 bei den meisten Eingaben gut funktioniert, aber bei einer kleinen Teilmenge versagt,
 wenn diese nahe der Grenze auftreten.

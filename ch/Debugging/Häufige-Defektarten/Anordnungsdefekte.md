@@ -13,7 +13,7 @@ habe einen solchen [TERMREF::Defekt] in fremdem Code erfolgreich gefunden.
 
 [WARNING]
 Der in dieser Aufgabe zu bearbeitende Code gehört zum Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Ein erster Code hierzu wird in der Aufgabe [PARTREFTITLE::Defekte-in-Ausdrücken] besprochen.
+Ein erster Code hierzu wird in der Aufgabe [PARTREF::Defekte-in-Ausdrücken] besprochen.
 Es ist nicht nötig diese Aufgabe vorher bearbeitet zu haben, da die beiden Probleme keinen Code teilen.
 Allerdings liefert die Bearbeitung der ersten Aufgabe etwas mehr Kontext über das ganze Programm.
 [ENDWARNING]
@@ -89,14 +89,14 @@ ein Fehler beim Kopieren und Einfügen oder einfach ein Fehler des Programmierer
 
 In dieser Aufgabe sollen Sie einen Code debuggen, der einen Lokalisierungsdefekt beinhaltet.
 Die Funktion beinhaltet einen weiteren Teil des Spiels "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)", 
-das in der Aufgabe [PARTREFTITLE::Defekte-in-Ausdrücken] eingeführt worden ist.
+das in der Aufgabe [PARTREF::Defekte-in-Ausdrücken] eingeführt worden ist.
 Sie prüft, ob er Gegenspieler Karten von einem bestimmten Rang besitzt.
 Wenn dem so ist, werden diese Karten in die Hand des Spielers transferiert.
 Wenn dies dazu führt, dass der Spieler vier Karten desselben Rangs auf der Hand hält, 
 werden diese Karten von der Hand des Spielers abgeworfen.
 
 [NOTICE]
-Falls Sie die Aufgabe [PARTREFTITLE::Defekte-in-Ausdrücken] nicht bearbeitet haben, ist hier eine kurze Erinnerung
+Falls Sie die Aufgabe [PARTREF::Defekte-in-Ausdrücken] nicht bearbeitet haben, ist hier eine kurze Erinnerung
 über die Datenstrukturen des Spiels "Go Fish", die auch in dieser Aufgabe benutzt werden:
 
 - Karten werden anhand ihres Rangs und ihrer Farbe identifiziert.  

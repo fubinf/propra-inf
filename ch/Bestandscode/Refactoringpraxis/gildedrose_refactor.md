@@ -285,7 +285,7 @@ Block**" bezeichnet.
 - Der Code wird kleinteilig geändert.
   "Kleinteilig" heißt hier nicht "wenig Text", sondern "wenig Struktur".
 - Vor jedem Commit sollen die Testfälle gestartet worden sein. 
-  Wenn die Testfälle aus [PARTREFTITLE::gildedrose_tests] nicht wie beschrieben reagieren, 
+  Wenn die Testfälle aus [PARTREF::gildedrose_tests] nicht wie beschrieben reagieren, 
   bitte zurückweisen.
 - Der resultierende Code müsste immer recht ähnlich aussehen, es ist also nicht mit viel 
   Streuung bei den Lösungen zu rechnen.

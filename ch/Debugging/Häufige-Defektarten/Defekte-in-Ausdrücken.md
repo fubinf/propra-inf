@@ -16,7 +16,7 @@ habe einen solchen [TERMREF::Defekt] in fremdem Code erfolgreich gefunden.
 
 Ausdrucksdefekte sind eine generalisierte Form von Variablendefekten.
 An und für sich ist eine Variable schon ein Ausdruck, aber Variablendefekte sind so geläufig, 
-dass man sie als eigene Klasse sehen kann und in der Aufgabe [PARTREFTITLE::Defekte-bei-Variablen] behandelt werden.
+dass man sie als eigene Klasse sehen kann und in der Aufgabe [PARTREF::Defekte-bei-Variablen] behandelt werden.
 Ausdrucksdefekte decken alle anderen Fälle ab, in denen Ausdrücke falsch benutzt werden.
 Die Ursache solcher Defekte liegt nicht daran, dass der Algorithmus falsch wäre, 
 sondern dass der Programmierer beim Nachdenken in diesem Moment nicht korrekt gearbeitet hat.
@@ -51,7 +51,7 @@ if a > 100:
 ```
 
 Hier passt der Code nicht zum Kommentar und ist wahrscheinlich falsch.
-Näheres zu Logikdefekten erfahren Sie in der Aufgabe [PARTREFTITLE::Logikdefekte].
+Näheres zu Logikdefekten erfahren Sie in der Aufgabe [PARTREF::Logikdefekte].
 
 Die logischen Operatoren `and` und `or` sind häufige Quellen von Defekten, 
 bei denen der falsche Operator in einem Ausdruck gewählt worden ist.
@@ -81,7 +81,7 @@ aber in jedem Fall muss er korrigiert werden.
 
 Im Folgenden sollen Sie einen Code debuggen, der einen Ausdrucksdefekt beinhaltet.
 Es handelt sich um einige Funktionen aus dem Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Zusammen mit den Funktionen aus [PARTREFTITLE::Anordnungsdefekte] und [PARTREFTITLE::Defekte-bei-Variablen] 
+Zusammen mit den Funktionen aus [PARTREF::Anordnungsdefekte] und [PARTREF::Defekte-bei-Variablen] 
 erhalten Sie die grundlegenden Funktionen des Spiels.
 In dieser Aufgabe geht es erstmal darum, die Funktionen zu untersuchen,
 mit denen man eine Karte aus einem Deck zieht und diese in seine Hand legt.

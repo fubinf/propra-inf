@@ -15,8 +15,8 @@ habe einen solchen Defekt in fremdem Code erfolgreich gefunden.
 
 [WARNING]
 Der in dieser Aufgabe zu bearbeitende Code gehört zum Spiel "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
-Der vorhergehende Code hierzu wird in den Aufgaben [PARTREFTITLE::Defekte-in-Ausdrücken] und 
-[PARTREFTITLE::Anordnungsdefekte] besprochen.
+Der vorhergehende Code hierzu wird in den Aufgaben [PARTREF::Defekte-in-Ausdrücken] und 
+[PARTREF::Anordnungsdefekte] besprochen.
 Wenn Sie den Code durch aufmerksames Lesen und händisches Durchgehen debuggen, 
 ist es nicht nötig, die ersten beiden Aufgaben bearbeitet zu haben. 
 Sollten Sie allerdings dem Defekt über Tools oder zusätzlichen Code auf die Schliche kommen wollen,
@@ -89,8 +89,8 @@ kann der Defekt auch darin liegen die beiden Funktionen zu vertauschen.
 Im Folgenden sollen Sie eine Funktion debuggen, in der ein Variablendefekt aufgetreten ist.
 Der Code spielt eine Runde des Spiels "[Go Fish](https://en.wikipedia.org/wiki/Go_Fish)".
 Er benutzt die korrigierten Funktionen `draw_card()` aus der Aufgabe 
-[PARTREFTITLE::Defekte-in-Ausdrücken] und 
-`check_card()` aus der Aufgabe [PARTREFTITLE::Anordnungsdefekte].
+[PARTREF::Defekte-in-Ausdrücken] und 
+`check_card()` aus der Aufgabe [PARTREF::Anordnungsdefekte].
 
 Eine Runde wird wie folgt durchgeführt: Es wird ein zufälliger Rang aus der Hand des Spielers ausgewählt und
 der Gegenspieler wird gefragt, ob er Karten dieses Rangs besitzt.
@@ -110,7 +110,7 @@ Um ein vollständiges Spiel zu spielen, wird der Code so lange fortgesetzt,
 bis beide Spieler keine Karten mehr auf der Hand haben.
 
 [NOTICE]
-Falls Sie die Aufgaben [PARTREFTITLE::Defekte-in-Ausdrücken] und [PARTREFTITLE::Anordnungsdefekte] nicht 
+Falls Sie die Aufgaben [PARTREF::Defekte-in-Ausdrücken] und [PARTREF::Anordnungsdefekte] nicht 
 bearbeitet haben, ist hier eine kurze Erinnerung über die Datenstrukturen des Spiels "Go Fish":
 
 - Karten werden anhand ihres Rangs und ihrer Farbe identifiziert.

@@ -11,7 +11,7 @@ difficulty: 3
 
 [SECTION::instructions::detailed]
 
-Sie haben in [PARTREFTITLE::SOLID_principle] eine erste Einschätzung zum Nutzen von SOLID in 
+Sie haben in [PARTREF::SOLID_principle] eine erste Einschätzung zum Nutzen von SOLID in 
 Python abgegeben haben und sich in den darauf folgenden Aufgaben mit jedem einzelnen der 
 Prinzipien auseinandergesetzt.
 

@@ -20,7 +20,7 @@ Anforderung genau zu erfüllen.
 Bei dieser Aufgabe ist sinnvoller, zuerst _alle_ Arbeitsschritte zu lesen.
 [ENDWARNING]
 
-- [ER] Setzen Sie Ihren in [PARTREFTITLE::refactor_movierental_planning] formulierten Plan 
+- [ER] Setzen Sie Ihren in [PARTREF::refactor_movierental_planning] formulierten Plan 
   in die Tat um.
   Dies beinhaltet die Refaktorierung _und_ die Implementierung der HTML-Ausgabe.
   Für die Abgabe müssen sie bereitstellen:

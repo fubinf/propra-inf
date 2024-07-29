@@ -53,7 +53,7 @@ In Sprachen, die Arrays von 0 an indizieren,
 kann der Code fälschlicherweise bei dem Element mit dem Index 1 (also dem zweiten Element) beginnen. 
 Solche Defekte werden oft als OBOE bezeichnet, 
 aber wir klassifizieren sie separat als Indexdefekt 
-siehe Aufgabe [PARTREFTITLE::Indexierungsdefekte].
+siehe Aufgabe [PARTREF::Indexierungsdefekte].
 
 
 ### Ihre Aufgabe

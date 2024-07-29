@@ -81,7 +81,7 @@ Als Nächstes versuchen wir `git bisect` an einem Beispiel-Repo einzusetzen.
 [NOTICE]
 Diese Aufgabe ist nur eine sehr zielstrebige Einführung in *eine* Funktion von git.
 Wenn Sie sich mehr mit dem Programm auseinandersetzen wollen, werden Sie in 
-[PARTREFTITLE::Git] fündig!
+[PARTREF::Git] fündig!
 [ENDNOTICE]
 
 [ENDSECTION]

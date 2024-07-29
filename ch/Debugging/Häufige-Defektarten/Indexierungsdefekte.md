@@ -36,7 +36,7 @@ indem man nämlich `i <= n` als Fortsetzungsbedingung benutzt und fälschlich ei
 mit `i == n` bekommt, der gar nicht funktioniert.
 
 Manchmal werden solche Defekte auch als Off-By-One-Error bezeichnet. 
-Was genau hinter solchen Defekten steckt, können Sie in der Aufgabe [PARTREFTITLE::Off-by-1-Defekte] 
+Was genau hinter solchen Defekten steckt, können Sie in der Aufgabe [PARTREF::Off-by-1-Defekte] 
 herausfinden.
 Allerdings können Indexdefekte auch deutlich größer sein als nur eine Verschiebung um 1,
 besonders wenn der Index Teil einer Berechnung ist.

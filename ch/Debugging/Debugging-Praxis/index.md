@@ -5,5 +5,5 @@ oder die [PARTREFMANUAL::Debugging-Denken::Denkweise] beim Debugging beleuchten,
 Praxisbeispiele.
 
 Wenn Sie sich noch etwas unsicher fühlen, wird Ihnen die Aufgabe 
-[PARTREFTITLE::einkaufsliste-defekt] 
+[PARTREF::einkaufsliste-defekt] 
 einen geleiteten Einstieg in die Praxis des Debuggings bieten.
