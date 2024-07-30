@@ -365,10 +365,10 @@ Bei Programmen wie `grep`, die Teile der Eingabe weglassen, leuchtet die Bezeich
 aber sie gilt auch für Programme wie `sort`, die die Eingabe nur umformen.
 [ENDTERM]
 
-[TERM::file descriptor]
+[TERM::Filedeskriptor|file descriptor]
 Beschreibt auf unixoiden Betriebssystemen eine Ressource, auf der Daten geschrieben und gelesen 
-werden können. Jeder Prozess hat dabei seine eigenen file descriptors. Ein file descriptor wird 
-durch eine natürliche Zahl dargestellt.
+werden können. Jeder Prozess hat seine eigenen Filedeskriptoren. 
+Ein Filedeskriptor (FD) wird durch eine natürliche Zahl dargestellt.
 
 Es gibt drei Standard-FDs (0: stdin, 1: stdout, 2: stderr), aber für jeden Prozess können 
 beliebig viele weitere FDs existieren, die verschiedene Datenströme beschreiben (Dateien, 
