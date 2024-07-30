@@ -76,6 +76,11 @@ wieviele Zeilen stehen dann in `/tmp/out` (BR 3.6)?
 Warum?
 Mit welcher kleinen Änderung des Kommandos kann man den gesamten Output erhalten?
 
+[NOTICE]
+Das Idiom `echo "Ich bin datei1" >datei1` ist sehr praktisch,
+um kleine Testdateien anzulegen.
+[ENDNOTICE]
+
 
 ### Flexibel 2: `&&`, `;`, `cd`, Subshells  
 
