@@ -59,6 +59,16 @@ Verstehen Sie die **Synopsis**, lesen Sie die **Description** und lesen Sie die 
   Bei den persönlichen Fragen lassen Sie die Felder leer.
 - [EQ] Charakterisieren Sie den Unterschied der Befehle `useradd` und `adduser`.
 
+[HINT::Eselsbrücke]
+Ein normaler Mensch würde immer 'adduser' sagen, nie 'useradd'.  
+Und so tut `adduser` auch eher das, was ein normaler Mensch erwarten würde:
+Einen Account "so wie üblich" anlegen.  
+`useradd` hingegen ist was für Techies, ein low-level Werkzeug, das keine
+"so wie üblich"-Regeln kennt.  
+(Ihre Antwort sollte ein paar _konkrete_ Unterschiede benennen, die sich hieraus ergeben.)
+[ENDHINT]
+
+
 ### Passwörter für Nutzer setzen
 
 Lesen Sie in den manpages von [useradd](https://linux.die.net/man/8/useradd) und 
