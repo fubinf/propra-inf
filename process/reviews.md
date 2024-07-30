@@ -62,7 +62,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Werkzeuge/Git/Git-Branches.md (Hüster->LP->SH->LP)
 - ch/Werkzeuge/Git/Git-Anpassen.md (Hüster)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP)
-- ch/Werkzeuge/Benutzerverwaltung/ACL.md (Condric->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
 
@@ -76,6 +75,23 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ivan Condric
 
+- ch/Werkzeuge/Benutzerverwaltung/Benutzerkonten.md (...->IC)  
+  INSTRUCTOR-Teil: Die Einleitung ergibt bei dieser Aufgabe keinen Sinn, oder?  
+  Wieso hat das Kommandoprotokoll so ein seltsames Layout? Bitte heilen.  
+  Das Layout für "Spalten von /etc/passwd" ist so gut wie unlesbar, bitte korrigieren.
+
+- ch/Werkzeuge/Benutzerverwaltung/ACL.md (Condric->LP->IC->LP->IC)  
+  Da waren jede Menge Fehler drin, z.B. Schreibvariationen bei den Namen und vergessene Benutzerwechsel.  
+  Außerdem war das Fallbeispiel für meinen Geschmack etwas zu beliebig:
+  Warum Schreibzugriff auf 2024 aber nicht auf 2023?
+  Außerdem sind solche konkreten Jahreszahlen von Veraltung bedroht.  
+  Ich habe viele Änderungen gemacht.  
+  Bitte führen Sie die Aufgabe einmal selbst durch, um die vermutlich verbleibenden Fehler zu tilgen.  
+  Fertigen Sie dabei ein echtes Kommandoprotokoll an und legen Sie das im itree.zip-Baum ab;
+  so ist das für Kommandoprotokoll-Aufgaben gedacht, denn dann weiß man, dass die Lösung
+  wirklich so geht.
+
+- ch/Werkzeuge/Netzwerk/??:  
   Den traceroute-Teil finde ich sehr anspruchsvoll. Wenn ich die Ähnlichkeiten und Unterschiede von
   `traceroute -T fu-berlin.de` und `traceroute fu-berlin.de` erklären sollte, würde ich ins
   Schleudern kommen. Oder warum im internen Netz manchmal bei fast jedem Hop ein Fehlschlag dabei ist.

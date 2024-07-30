@@ -1,63 +1,80 @@
-title: Access Control Lists
+title: Access Control Lists für Dateien
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: apt, Gruppen, sudo, Umgang-mit-Verzeichnissen
+assumes: apt, Gruppen, sudo, Shell-Grundlagen2, Umgang-mit-Verzeichnissen
 ---
 
 [SECTION::goal::idea]
 
-Ich verstehe ACLs und weiß wie ich diese ändern kann.
+Ich weiß, was ACLs sind und wie ich sie ändern kann.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-ACLs (Access Control Lists) sind Listen, die den Zugriff auf Ressourcen regeln. 
-ACLs werden zusätzlich zu den Unix-Standardberechtigungen gesetzt.
+ACLs (Access Control Lists) sind Listen, die den Zugriff auf Ressourcen regeln
+und dabei auch über mehr als einen Benutzer und mehr als eine Gruppe Erlaubnisse oder Sperren
+ausdrücken können. 
+ACLs werden bei Bedarf zusätzlich zu den Unix-Standardberechtigungen gesetzt.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
 Stellen Sie sich vor, Sie arbeiten in einer Firma mit zwei Geschäftsführern und einer Abteilung 
-Rechnungswesen. Die Geschäftsführer und die Abteilung Rechnungswesen haben im System jeweils ihre 
-eigene Rechtegruppe. Des Weiteren hat das Rechnungswesen einen Ordner, wo sie Rechnungen ablegen. 
-Auf diesen Ordner hat die Geschäftsführung keinen Zugriff, möchte diesen jetzt aber haben, da sie 
-auch Rechnungen in diesem Ordner ablegen möchten, um Umwege per Mail zu vermeiden.
+Rechnungswesen. 
+Die Geschäftsführer und die Abteilung Rechnungswesen haben im System jeweils ihre 
+eigene Rechtegruppe. 
+Des Weiteren hat das Rechnungswesen einen Ordner, wo sie Rechnungen ablegen. 
+Auf diesen Ordner hat die Geschäftsführung keinen Zugriff, möchte diesen (lesend) jetzt aber haben, 
+um sich bei Bedarf sofort über den aktuellen Stand informieren zu können. 
 
-Es gibt eine Gruppe Rechnungswesen, die `rwx`-Rechte auf den Rechnungsordner hat. Des Weiteren hat 
-`other` die Rechte `---`. Die Geschäftsführer haben eine eigene Gruppe Geschäftsführer. Würde man 
-jetzt die Gruppe auf Geschäftsführer ändern, würde die Abteilung Rechnungswesen keinen Zugriff mehr 
-auf den Ordner haben. Hier helfen uns jetzt die ACLs.
+Es gibt eine Gruppe Rechnungswesen, die `rwx`-Rechte auf den Rechnungsordner hat. 
+Des Weiteren hat `other` die Rechte `---`. 
+Die Geschäftsführer haben eine eigene Gruppe Geschäftsführer. 
+Würde man jetzt die Gruppe auf Geschäftsführer ändern, würde die Abteilung Rechnungswesen 
+keinen Zugriff mehr auf den Ordner haben.
+Eine zusätzliche Gruppe RechnungswesenUndGeschäftsführer hilft auch nicht,
+denn Schreibzugriff sollen und wollen die Geschäftsführer nicht bekommen -- wovon sich
+im Geschäftsleben alsbald Ausnahmen einstellen.
+
+Solch eine Situation, wo die normalen Unix-Dateirechte nicht flexibel genug sind,
+lässt sich mit ACLs lösen.
+
 
 ### ACL installieren
 
 - [EC] Aktualisieren Sie ihr System.
 - [EC] Installieren Sie das Paket `acl`.
 
+
 ### Testumgebung erstellen
 
 - [EC] Erstellen Sie die Nutzer `gf1`, `gf2`, `rw1`, `rw2`.
-- [EC] Erstellen Sie zwei Gruppen `geschaeftsfuerer` und `rechnungswesen`.
-- [EC] Fügen Sie die Nutzer `gf1`, `gf2` zur Gruppe `geschaeftsfuerer` und `rw1`, `rw2` zur Gruppe 
-   `rechnungswesen`.
+- [EC] Erstellen Sie zwei Gruppen `geschaeftsfuehrer` und `rechnungswesen`.
+- [EC] Fügen Sie die Nutzer `gf1`, `gf2` zur Gruppe `geschaeftsfuehrer` zu und 
+  `rewe1`, `rewe2` zur Gruppe `rechnungswesen`.
 
-Erstellen Sie die nächsten Ordner und Dateien mit Ihrem persönlichen Nutzer, nicht mit `aclnutzer1` 
-oder `aclnutzer2`.
+[HINT::Schwierig?]
+Sie haben sich doch vergewissert, dass Sie über das Vorwissen aus den
+als "Assumes" angegebenen Aufgaben verfügen?
+[ENDHINT]
 
-- [EC] Erstellen Sie den Ordner `/tmp/rechnungen/`
-- [EC] Ändern Sie den Nutzer und die Gruppe des Ordners `/tmp/rechnungen` zu ihrem persönlichen 
-    Nutzerkonto und die dazugehörige Grupppe.
-- [EC] Erstellen Sie den Ordner `/tmp/rechnungen/2023/`.
-- [EC] Erstellen Sie den Ordner `/tmp/rechnungen/2024/`.
-- [EC] Erstellen Sie die Dateien `rechnung20230101`, `rechnung20230201` in `/tmp/rechnungen/2024/`.
-- [EC] Erstellen Sie die Dateien `rechnung20240101`, `rechnung20240201` in `/tmp/rechnungen/2023/`.
+Erstellen Sie die nächsten Ordner und Dateien mit Ihrem persönlichen Nutzer.
+Der wird also deren Eigentümer.
+Eigentümer und Superuser können ACLs ändern.
+
+- [EC] Erstellen Sie die Ordner `/tmp/rechnungen/`, `/tmp/rechnungen/aktuell/`, `/tmp/rechnungen/neu/`.
+- [EC] Erstellen Sie in `/tmp/rechnungen/aktuell/` die Dateien `rechnung1`, `rechnung2`.
+  (Jede Datei in dieser Aufgabe sollte einen kurzen Text inklusive des Dateinamens enthalten.)
+- [EC] Erstellen Sie in `/tmp/rechnungen/neu/` die Dateien `rechnung17`, `rechnung18`.
 - [EC] Ändern Sie die Rechte von den erstellten Ordnern, Subordnern und Dateien so ab, dass Ihr 
-    persönliches Nutzerkonto und die gleichnamige Gruppe Lese-, Schreib- und Ausführrechte hat,
-    und das `other` keine Rechte haben.
+    persönliches Nutzerkonto und die gleichnamige Gruppe Lese-, Schreib- und Ausführrechte haben,
+    aber `other` keine Rechte haben.
 
-Die gerade erstellten Nutzer sollen erstmal keine Rechte auf die Daten haben.
+Die oben frisch erstellten Nutzer sollen erstmal keine Rechte auf die Daten haben.
+
 
 ### Überblick verschaffen
 
@@ -69,51 +86,60 @@ Lesen Sie die [getfacl(1) manpage](https://linux.die.net/man/1/getfacl) bis eins
 Sie haben gerade die normalen Unix-Rechte im [TERMREF::ACL] Format gesehen.  
 Setzen wir ein paar ACLs.
 
+
 ### ACLs setzen
 
 Lesen Sie die [setfacl(1) manpage](https://linux.die.net/man/1/setfacl) bis einschließlich 
 **Permissions**, die Optionen **-m, -R, -b, -k**, die **Examples** und die **ACL Entries**.
 
-- [EC] Ändern Sie die Gruppe zu `rechnungswesen` für den Ordner `/tmp/rechnungen/` und allen 
-   Subordnern und Rechnungen.
-- [EC] Fügen Sie per ACL die Gruppe `geschäftsführung` dem Ordner `/tmp/rechnungen/` mit den Rechten `r-x` hinzu.
-- [EC] Fügen Sie per ACL die Gruppe `geschäftsführung` dem Ordner `/tmp/rechnungen/2024` mit den Rechten `rwx` hinzu.
+- [EC] Ändern Sie die Gruppe zu `rechnungswesen` für den Ordner `/tmp/rechnungen/` und alle 
+   Unterordner und Dateien.
+- [EC] Fügen Sie per ACL die Gruppe `geschaeftsfuehrer` dem Ordner `/tmp/rechnungen/` 
+  mit den Rechten `r-x` hinzu.
+- [EC] Fügen Sie per ACL die Gruppe `geschaeftsfuehrer` dem Ordner `/tmp/rechnungen/neu` 
+  mit den Rechten `rwx` hinzu,
+  denn in diesem Verzeichnis soll die Geschäftsführung auch Schreibrechte haben.
+
 
 ### Testen
 
 - [EC] Geben Sie ACLs von `/tmp/rechnungen/` aus.
-- [EC] Geben Sie ACLs von `/tmp/rechnungen/2023` aus.
-- [EC] Geben Sie ACLs von `/tmp/rechnungen/2024` aus.
+- [EC] Geben Sie ACLs von `/tmp/rechnungen/aktuell` aus.
+- [EC] Geben Sie ACLs von `/tmp/rechnungen/neu` aus.
 
 Wenn alles richtig verlaufen ist, dann sollte die Geschäftsführung jetzt Zugriff auf die Rechnungen 
-aus 2024 haben, aber nicht aus 2023.
+in `neu` haben, aber nicht auf die in `aktuell`.
+Das probieren wir nun aus:
 
 - [EC] Melden Sie sich als `gf1` an.
-- [EC] Erstellen Sie eine neue Rechnung `rechnung20240301` im Ordner `/tmp/rechnungen/2024/`.
-- [EC] Versuchen Sie die Rechnung `/tmp/rechnungen/2024/rechnung20240101` zu lesen.
-- [EC] Versuchen Sie den Ordner `/tmp/rechnungen/2023` mit dem Nutzer `gf1` zu öffnen.
+- [EC] Erstellen Sie eine neue Rechnung `rechnung19` im Ordner `/tmp/rechnungen/neu/`.
+- [EC] Versuchen Sie die Rechnung `/tmp/rechnungen/neu/rechnung17` zu lesen.
+- [EC] Versuchen Sie den Ordner `/tmp/rechnungen/aktuell` zu öffnen.
 
-Wie sie sehen fehlt der Geschäftsführung die Berechtigung um die Rechnungen aus 2023 zu lesen. 
-Das ist so gewollt. Aber die Geschäftsführung kann die Rechnungen aus 2024 nicht lesen. Das müssen 
-wir ändern.
+Wie sie sehen, fehlt der Geschäftsführung die Berechtigung um die Rechnungen in `aktuell` zu lesen. 
+Das müssen wir noch ändern.
 
-- [EC] Melden Sie sich als `gf1` ab
 
 ### Rekursiv ACL setzen und testen
 
-- [EC] Fügen Sie rekursiv per ACL die Gruppe `geschäftsführung` dem Ordner `/tmp/rechnungen/2024` 
+- [EC] Melden Sie sich als `gf1` ab; Sie sind also wieder Sie selbst und können ACLs ändern.
+- [EC] Fügen Sie rekursiv per ACL die Gruppe `geschäftsführung` dem Ordner `/tmp/rechnungen/neu` 
    mit den Rechten `rwx` hinzu.
-- [EC] Fügen Sie der Rechnung `/tmp/rechnungen/2024/rechnung20240101` den Text `gf1 hat das bearbeitet` hinzu.
-- [EC] Geben Sie ACLs von `/tmp/rechnungen/2024` aus.
+- [EC] Melden Sie sich als `gf1` an.
+- [EC] Fügen Sie der Rechnung `/tmp/rechnungen/neu/rechnung17` den Text `von gf1 bearbeitet` hinzu.
+- [EC] Geben Sie ACLs von `/tmp/rechnungen/neu` aus.
 
-Somit hat jetzt die Geschäftsführung vollen Zugriff auf den Rechnungsordner 2024.
+Somit hat jetzt die Geschäftsführung vollen Zugriff auf `neu`.
+
 
 ### Aufräumen
 
-Nachdem wir das jetzt alles getestet haben müssen wir auch wieder aufräumen.
+Nachdem wir das jetzt alles getestet haben, üben wir noch das ACL-Aufräumen.
 
-- [EC] Entfernen Sie alle ACL-Einträge der Ordner `/tmp/rechnungen/`, `/tmp/rechnungen/2023/`, 
-   `/tmp/rechnungen/2024/` und den jeweils darunterliegenden Dateien mit nur einem Befehl.
+- [EC] Melden Sie sich als `gf1` ab.
+- [EC] Entfernen Sie alle ACL-Einträge der Ordner `/tmp/rechnungen/`, `/tmp/rechnungen/aktuell/`, 
+   `/tmp/rechnungen/aktuell/` und der jeweils darunterliegenden Dateien mit nur einem Befehl.
+
 
 ### Löschen
 
