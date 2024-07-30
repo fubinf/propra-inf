@@ -5,6 +5,35 @@ difficulty: 4
 assumes: m_unittest, mocking
 ---
 
+TODO_1_ruhe:
+
+Gute Aufgabe. Ich wünsche mir folgende Änderungen:
+
+- Bitte nicht `unittest` benutzen, sondern `pytest`.
+- Alle vier Teile passen gut in eine Datei `m_unittest_mocking.py`.
+  Wir sollten den flachen Datei-Namensraum nicht zu sehr verschmutzen.
+  Mit dieser Begründung schreiben wir deshalb auch `get_weather_data()`, `read_log_file()`, etc.,
+  für die Zwecke dieser Aufgabe einfach mit in diese Datei.
+- Mocking ist nicht unwichtig und diese Lösungen sind nicht sooo umfangreich oder schwer, deshalb:
+  Aufgabe bitte in mittel oder leicht verwandeln. 
+  Für mittel mindestens konkreten Lesehinweise auf `unittest.mock` angeben, plus
+  HINTs auf die jeweils hilfreichen Einzelteile.
+- Dann ist das eher 2.0 Stunden als 4.0, oder?
+- Background habe ich schon mal passend umgeschrieben.
+- Was mir allerdings noch fehlt ist eine Lese- und Reflektionsaufgabe zum Thema
+  "Wann sollte man mocken und wann lieber nicht?".
+  Die Gefahr, sich mit Mocking mehr Probleme einzuhandeln als man löst, ist sehr real.
+  Integrationstests haben Vorzüge, jedenfalls wenn Defekte (und somit Debugging) selten sind.
+  Bitte suchen Sie eine passende Quelle mit balancierter Meinung (Martin Fowler vielleicht?). 
+- Eigentlich ist das Thema Unit- vs. Integrationstests allemal wichtig genug für eine separate Aufgabe.  
+  Es ist aber schwierig zu verhindern, dass das eine nicht-praktische Aufgabe wird.  
+  Ideal wäre, wenn man reale Beispiele (positive und/oder negative) findet, die man 
+  erkunden und bewerten lässt. Das ist aber ziemlich anspruchsvoll.  
+  Man müsste wohl mit ein oder zwei realen Repos mit nichttrivialer Software arbeiten lassen
+  und käme vermutlich mindestens auf Stufe mittel raus.  
+  Also: Sehr aufwändig. Aber potentiell auch sehr toll.
+
+
 [SECTION::goal::idea]
 
 - Ich bin in der Lage, grundlegende Unittests in verschiedenen Anwendungsbereichen zu mocken.
@@ -12,9 +41,19 @@ assumes: m_unittest, mocking
 [ENDSECTION]
 [SECTION::background::default]
 
-Hier erhalten Sie die Gelegenheit Ihre Mocking Erfahrung auszuspielen. Dabei kommen API Mocks,
-Dateienmocks, SQL Mocks und Klassenmocks in den Vordergrund. Solche Mocks sind zeimlich oft anzufinden
-und daher als eine wichtige Grundlage im Umgang mit Unittests zu sehen.
+Unittests auf elementare Module sind kein Problem.
+Aber wenn ein Modul von vielen anderen Dingen abhängt, stellt sich die Frage, ob man die
+alle mittesten soll und will.
+
+Mocking ist ein Mechanismus, der das Nicht-Mittesten erlaubt, indem eine Abhängigkeit
+durch einen simplen Dummy ersetzt wird, der gerade genug kann für den aktuellen Testfall.
+Typische Fälle für solche Abhängigkeiten sind 
+externe Web-APIs, 
+Dateien mit bestimmten Eigenschaften,
+Datenbanksysteme
+oder irgendwelche eigenen Klassen, die für den Testzweck zu kompliziert zu konfigurieren sind,
+weil dazu noch viele weitere Objekte als Voraussetzung nötig wären, die selber wiederum... --
+und so weiter.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
