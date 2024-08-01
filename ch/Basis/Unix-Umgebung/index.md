@@ -1,5 +1,4 @@
 title: "Unix-Kommandozeilenumgebung (command-line interface, CLI) schaffen"
-minimum: 1
 ---
 Viele unserer Aufgaben werden sich auf der Kommandozeile in einer 
 [TERMREF::Unix-Shell] abspielen.
