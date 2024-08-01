@@ -241,10 +241,6 @@ abenteuerreiches Leben lang weiterbenutzen (und ergänzen).
 
 Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 
-- `sgrep`: Ein simples grep, das beliebige Trenner zulässt, anstatt immer nur '\n' als
-  Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
-  Default-Trenner ist '\n\n', sodass es ganze Absätze ausspuckt anstatt Zeilen.
-  Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
 - `diffenv`: Ein Skript, das die Verwaltung von Umgebungsvariablen in
   verschiedenen Umgebungen (Entwicklung, Test, Produktion usw.) erleichtert, indem es die Mengen
   von Umgebungsvariablen-Definitionen in zwei Dateien vergleicht.
@@ -253,6 +249,12 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
   Zeilen, die nicht die Form `A=b` oder `export A=b` haben, können wahlweise ignoriert, gezählt,
   oder als Fehler (mit exit status) gemeldet werden.
   Mehrfache Definitionen derselben Variablen werden als Warnung gemeldet.
+- `htmlprettify`: Liest ein HTML-Fragment von stdin und schreibt eine formatierte Fassung nach stdout.
+- `sgrep`: Ein simples grep, das beliebige Trenner zulässt, anstatt immer nur '\n' als
+  Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
+  Default-Trenner ist '\n\n', sodass es ganze Absätze ausspuckt anstatt Zeilen.
+  Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
+
 - `Code-Snippets`: Ein Tool, das es Entwicklern ermöglicht, Code-Snippets zu organisieren,
   zu suchen und wiederzuverwenden; Evt. gut geeignet um auch mlh als code-snippets aufzunehmen?
 
