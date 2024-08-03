@@ -44,7 +44,7 @@ requires:
 
 [ENDSECTION]
 
-[SECTION::submission::reflection/information/snippet/trace/program]
+[SECTION::submission::trace,program]
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
@@ -52,6 +52,6 @@ requires:
 
 [ENDSECTION]
 
-[INSTRUCTOR::]
+[INSTRUCTOR::So???]
 .
 [ENDINSTRUCTOR]
