@@ -53,9 +53,9 @@ Lesen Sie die **Description** der passwd(5) [manpage](https://linux.die.net/man/
 
 Betrachten Sie die adduser(8) [manpage](https://manpages.debian.org/bookworm/adduser/adduser.8.en.html).
 Verstehen Sie die **Synopsis**, lesen Sie die **Description** und lesen Sie die Abschnitte 
-**Add a normal user** und **Add a system user**. 
+**Add a normal user** und die Option **--disabled-password**. 
 
-- [EC] Erstellen Sie einen neuen Nutzer namens `user2` mit dem `adduser` Befehl.  
+- [EC] Erstellen Sie einen neuen Nutzer namens `user2` mit dem `adduser` Befehl und der Option `--disabled-password`. Das Passwort setzen wir im nächsten Schritt.  
   Bei den persönlichen Fragen lassen Sie die Felder leer.
 - [EQ] Charakterisieren Sie den Unterschied der Befehle `useradd` und `adduser`.
 
@@ -85,7 +85,7 @@ werden.
 Schauen Sie in der [usermod(8)](https://linux.die.net/man/8/usermod) manpage nach Optionen, wie 
 man Nutzer sperrt.
 Vorsicht: Ein Passwort sperren ist nicht das Gleiche wie das ganze Konto zu sperren,
-denn man könnte sich dann immer noch mit [PARTREF::SSH]-Keys anmelden.
+denn man könnte sich dann immer noch mit [PARTREF::SSH]-Keys anmelden. 
 
 - [EC] Sperren Sie die Nutzer `user1` und `user2`.
 
@@ -104,8 +104,6 @@ Verstehen Sie die **Synopsis**, lesen Sie die **Description** und den Abschnitt 
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Erwartung]
-[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
-[EREFC::6] Prüfen ob die Option für alle Dateien gesetzt ist.
+[INSTRUCTOR::Kommandoprotokoll]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
