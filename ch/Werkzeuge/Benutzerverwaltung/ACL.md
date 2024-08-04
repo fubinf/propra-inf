@@ -51,7 +51,7 @@ lässt sich mit ACLs lösen.
 
 ### Testumgebung erstellen
 
-- [EC] Erstellen Sie die Nutzer `gf1`, `gf2`, `rw1`, `rw2`.
+- [EC] Erstellen Sie die Nutzer `gf1`, `gf2`, `rewe1`, `rewe2`.
 - [EC] Erstellen Sie zwei Gruppen `geschaeftsfuehrer` und `rechnungswesen`.
 - [EC] Fügen Sie die Nutzer `gf1`, `gf2` zur Gruppe `geschaeftsfuehrer` zu und 
   `rewe1`, `rewe2` zur Gruppe `rechnungswesen`.
@@ -138,14 +138,14 @@ Nachdem wir das jetzt alles getestet haben, üben wir noch das ACL-Aufräumen.
 
 - [EC] Melden Sie sich als `gf1` ab.
 - [EC] Entfernen Sie alle ACL-Einträge der Ordner `/tmp/rechnungen/`, `/tmp/rechnungen/aktuell/`, 
-   `/tmp/rechnungen/aktuell/` und der jeweils darunterliegenden Dateien mit nur einem Befehl.
+   `/tmp/rechnungen/neu/` und der jeweils darunterliegenden Dateien mit nur einem Befehl.
 
 
 ### Löschen
 
-- [EC] Nachdem Sie die Rechte entfernt haben, löschen Sie `/tmp/rechnungen/`, `/tmp/rechnungen/2023/`, 
-   `/tmp/rechnungen/2024/` und die jeweils darunterliegenden Dateien.
-- [EC] Löschen Sie die Nutzer `gf1`, `gf2`, `rw1`, `rw2` und die Gruppen `geschaeftsfuerer`, 
+- [EC] Nachdem Sie die Rechte entfernt haben, löschen Sie `/tmp/rechnungen/`, `/tmp/rechnungen/aktuell/`, 
+   `/tmp/rechnungen/neu/` und die jeweils darunterliegenden Dateien mit nur einem Befehl.
+- [EC] Löschen Sie die Nutzer `gf1`, `gf2`, `rewe1`, `rewe2` und die Gruppen `geschaeftsfuehrer`, 
    `rechnungswesen`.
 
 [ENDSECTION]
@@ -157,6 +157,5 @@ Nachdem wir das jetzt alles getestet haben, üben wir noch das ACL-Aufräumen.
 [ENDSECTION]
 
 [INSTRUCTOR::Erwartung]
-[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
-[INCLUDE::ALT:]
+Beispiellösung siehe: [TREEREF::/Werkzeuge/Benutzerverwaltung/ACL_Kommandoprotokoll]
 [ENDINSTRUCTOR]
