@@ -83,7 +83,8 @@ In alphabetischer Reihenfolge der Dateinamen.
   verwandten Repos identifizieren kann.
 - ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)?
   Gehört es allgemein in sedrila eingebaut, selbst solche Graphen zu erzeugen?
-- Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
+- Defekt?: Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
+- `instructor --browse` für simplen Studi-Repo-Browser mit Markdown-Rendering.
 
 
 ### 2.4 Anträge an den Rechnerbetrieb
