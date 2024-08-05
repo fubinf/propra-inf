@@ -311,6 +311,9 @@ Alternative Shells.
   nach `fish` umschreiben. Reflektion darüber.
 - Zsh: Die Anpassbarkeit bestaunen. Evtl. [Oh my zsh](https://ohmyz.sh/) durchstöbern.
   Reflektion darüber.
+- Powershell: 1-4 Aufgaben zu den ganz anderen Konzepten dieser Shell. (Ggf. eigene Gruppe.
+  Geht nicht auf MacOS.)  
+  
 
 
 ## ch/Testen (ruhe)
