@@ -50,6 +50,8 @@ was man gerade erlebt hat.
 - [EQ] Gab es nach der Vorarbeit hier Probleme bei der Implementierung?
 - [EQ] Schauen Sie sich nochmal den Original-Code an.
   Glauben Sie, dass Sie Implementierung dort genauso einfach hätten machen können?
+  Wenn Sie sich nun ein sehr viel größeres Programmsystem vorstellen: 
+  Scheint Ihnen Refactoring-Arbeit eine sinnvolle Investition? 
 
 [ENDSECTION]
 [SECTION::submission::reflection]
