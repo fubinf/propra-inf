@@ -157,6 +157,11 @@ Assumes pandas
   (Namen der nötigen Konstrukte sind vorgegeben)
 - Dito ohne Namensvorgaben.
 
+### Bibliotheken/Posix (N.N.)
+
+- Aufgaben zum Kennenlernen des Unterschieds zwischen Posix-System und anderen unixoiden (sprich: Linux).
+
+
 
 ## ch/Sprachen
 
