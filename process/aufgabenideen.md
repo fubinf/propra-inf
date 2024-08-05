@@ -66,10 +66,11 @@ Guter Anlaufpunkt: <https://refactoring.guru/>
   - Rename
   - Pull Members Up/Push Members Down
   - Invert Boolean
-- Code Smells
-
+- Code Smells/SOLID:  
   Keine Debatte über Sinn und Unsinn von "Clean Code", aber ein Gefühl dafür geben, welcher
   Code problematisch sein kann.
+  Kleines oder mittelgroßes realexistierendes Beispiel, wo SRP oder LSP verletzt sind,
+  und so umstrukturiert werden soll, dass es erfüllt ist.
 
 - Regeln für "guten Code"
   - Effektive Nutzung von Comments
