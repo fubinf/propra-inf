@@ -14,16 +14,15 @@ machen kan.
 
 [SECTION::background::default]
 
-Git bringt neben der Standardkonfiguration noch hunderte Optionen mit, welche man sich nach 
-Belieben anpassen kann, manches spart Zeit, anderes Ärger und anderes ist wiederrum einfach nur 
-persönliche Präferenz. Außerdem helfen Aliase einem Befehle welche man oft verwendet abzukürzen 
-und machen einem so das Leben leichter. 
+Git ist stark anpassbar; es bringt hunderte Optionen für Konfiguration und Einstellungen mit.
+Manche machen die nötigen Git-Kommandos kürzer, andere vermeiden Ärger und Fehler,
+noch andere sind nur für spezielle Situationen relevant,
+manche sind weitgehend Geschmackssache.
 
 [WARNING]
-Diese Aufgabe erfordert nicht wirklich Vorkenntnisse, allerdings empfiehlt es sich, sie 
-erst im späteren Verlauf zu bearbeiten, da hier vor allem persönliche Präferenz gefragt ist. 
-wenn man also noch nicht viel mit git gearbeitet hat, dann lässt sich hier nicht viel von 
-ebendieser einbringen.
+Die Wahl von Einstellungen erfordert viele Entscheidungen.
+Wenn man keine Erfahrung mit git hat, fehlt für solche Entscheidungen oft die Grundlage.
+Bearbeiten Sie diese Aufgabe deshalb erst, wenn Sie eigene git-Erfahrung gesammelt haben.
 [ENDWARNING]
 
 [ENDSECTION]
