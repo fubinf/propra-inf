@@ -1,6 +1,6 @@
 title: Python requests
 stage: draft
-timevalue: 1.5
+timevalue: 0
 difficulty: 3
 assumes: HTTP, WebAPIs, pip
 ---
