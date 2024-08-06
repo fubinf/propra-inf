@@ -7,7 +7,7 @@ assumes: apt, Gruppen, sudo, Shell-Grundlagen2, Umgang-mit-Verzeichnissen
 
 [SECTION::goal::idea]
 
-Ich weiß, was ACLs sind und wie ich sie ändern kann.
+Kann Access-Control-Lists für Dateien und Verzeichnisse einrichten und interpretieren.
 
 [ENDSECTION]
 
