@@ -106,11 +106,12 @@ auch wenn Sie selbst vielleicht einen hellen einsetzen.
 ### Prompt persistieren
 
 Sollten Sie einen Prompt haben, mit dem Sie zufrieden sind, sorgen Sie dafür, dass er auch für neue
-Shell-Instanzen verwendet wird. Hierfür führen Sie folgende Befehle aus.
+Shell-Instanzen verwendet wird. Hierfür führen Sie folgende Befehle aus und setzen anstelle
+der drei Punkte analog den Rest Ihres Prompts ein.
 
 ```
-echo "" > ~/.bashrc
-echo "export PS1=\"\\[\\e...\"" > ~/.bashrc
+echo "" >> ~/.bashrc
+echo "export PS1=\"\\[\\e...\"" >> ~/.bashrc
 ```
 
 [WARNING]
@@ -120,7 +121,7 @@ Setzen Sie zunächst ein zusätzliches Backslash vor alle vorhandenen (also "\["
 zusätzlich um die Stringseparatoren von dem Wert für PS1 (also PS1=\"...\" statt PS1="").
 Anschließend Werden Anführungszeichen um den gesamten Teil gesetzt (also "export PS1=...").
 
-Sie können den zweiten Befehl ohne das abschließende `> ~/.bashrc` ausführen, um zu überprüfen, ob
+Sie können den zweiten Befehl ohne das abschließende `>> ~/.bashrc` ausführen, um zu überprüfen, ob
 Ihre Anpassung korrekt ist. Es sollte exakt derselbe Text ausgegeben werden, mit dem Sie ihren
 Prompt angepasst haben.
 [ENDWARNING]
