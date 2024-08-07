@@ -22,7 +22,11 @@ was man über die Standardbibliothek wissen muss.
 
 [SECTION::instructions::detailed]
 
-- [ER] Legen Sie die Datei `m_datetime.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. 
+### Vorbereitungen
+
+- Machen Sie sich mit der
+  [Dokumentation von `datetime`](https://docs.python.org/3/library/datetime.html) vertraut.
+- Legen Sie die Datei `m_datetime.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. 
   Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile getrennt.
 
 ### `import datetime as dt`
@@ -38,8 +42,8 @@ einen anderen Import überdeckt. Der Code wird dadurch schwerer lesbar.
 
 ### Zeit-Objekte anlegen und ausgeben
 
-- [ER] Finden Sie in der [Dokumentation von datetime](https://docs.python.org/3/library/datetime.html),
-  wie man die aktuelle lokale Zeit abfragt und geben diese mit `print("aktuelle Zeit:", ...)` aus.  
+- [ER] Finden Sie in der Dokumentation, wie man die aktuelle lokale Zeit abfragt und geben diese 
+  mit `print("aktuelle Zeit:", ...)` aus.  
   Falls Sie angesichts des Umfangs der Doku dabei verzweifeln:
   So etwas geht mit einer Web-Suche oft schneller. Allerdings muss man sich dann vor irreführenden 
   oder veralteten Antworten in Acht nehmen und sollte die Information in der aktuellen 

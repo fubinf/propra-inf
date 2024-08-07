@@ -29,12 +29,13 @@ mit Pfaden.
 
 [SECTION::instructions::detailed]
 
-- [ER] Verschaffen Sie sich einen Überblick über die
+### Vorbereitungen
+
+- Verschaffen Sie sich einen Überblick über die
   [Dokumentation von `os.path`](https://docs.python.org/3/library/os.path.html).
-- [ER] Legen Sie die Datei `m_os_path.py` an und benutzen Sie diese Datei für den Rest der 
+- Legen Sie die Datei `m_os_path.py` an und benutzen Sie diese Datei für den Rest der 
   Aufgabe. Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit 
   Leerzeile getrennt.
-
 
 ### Pfad zum Home-Verzeichnis
 

@@ -31,11 +31,12 @@ kryptografische Zwecke und zur Integritätsprüfung durch Generierung von
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-- [ER] Machen Sie sich mit der [Dokumentation](https://docs.python.org/3.11/library/hashlib.html)
-  von `hashlib` vertraut.
-- [ER] Legen Sie die Datei `m_hashlib.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. 
-  Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile getrennt.
+### Vorbereitungen
 
+- Machen Sie sich mit der
+  [Dokumentation von `hashlib`](https://docs.python.org/3.11/library/hashlib.html) vertraut.
+- Legen Sie die Datei `m_hashlib.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. 
+  Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile getrennt.
 
 ### Hashfunktionen Überblick
 

@@ -28,7 +28,11 @@ Bei Interesse lesen Sie eine [Einführung in das Thema Zufallsgeneratoren](https
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-- [ER] Legen Sie die Datei `m_random.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. 
+### Vorbereitungen
+
+- Machen Sie sich mit der
+  [Dokumentation von `random`](https://docs.python.org/3/library/random.html) vertraut.
+- Legen Sie die Datei `m_random.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. 
   Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile getrennt.
 
 ### Seed für Random festlegen
@@ -41,8 +45,7 @@ Wenn Sie keinen Seed angegeben, wird eine echte Zufallsvariable oder ein Timesta
 als Seed verwendet. 
 Sie erhalten also bei jeder Ausführung neue Zufallszahlen, was oft erwünscht ist.
 
-- [ER] Importieren Sie das Modul [`random`](https://docs.python.org/3/library/random.html) 
-  und legen Sie als Seed `propra` fest.
+- [ER] Importieren Sie das Modul `random` und legen Sie als Seed `propra` fest.
 
 ### Zufallszahlen erzeugen
 

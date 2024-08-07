@@ -24,18 +24,20 @@ dass einem im Alltag einiges an Zeit und Arbeit sparen kann.
 
 [SECTION::instructions::detailed]
 
-- [ER] Legen Sie die Datei `m_pprint.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. 
+### Vorbereitungen
+
+- Legen Sie die Datei `m_pprint.py` an und benutzen Sie diese Datei für den Rest der Aufgabe. 
   Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile 
   getrennt.
-- [ER] Kopieren Sie den folgenden Code-Block und speichern diesen in einer JSON-Datei im selben 
+- Kopieren Sie den folgenden Code-Block und speichern diesen in einer JSON-Datei im selben 
   Verzeichnis.  
 ```json
 [INCLUDE::m_pprint_input.json]
-```  
-- [ER] Importieren sie die Daten aus der JSON-Datei in ihrem Code mithilfe der `json`-Bibliothek.
+```
 
 ### Unterschied von `print()` und `pprint`
 
+- [ER] Importieren sie die Daten aus der JSON-Datei in ihrem Code mithilfe der `json`-Bibliothek.
 - [EQ] Geben Sie das Objekt `data` zuerst einmal mit `print()` aus (Die Ausgabe soll nicht ins 
   Kommandoprotokoll). Finden Sie, die Ausgabe ist sinnvoll lesbar?
 - [EQ] Beschreiben Sie, wie eine Funktion aussehen könnte, die mithilfe von `print()` eine besser 
