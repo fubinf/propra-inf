@@ -1,8 +1,8 @@
 title: "tempfile: temporäre Dateien anlegen und verwenden"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: encoding_and_open, m_os.path, Python-Context-Managers
+assumes: Python-Context-Managers, encoding_and_open, m_os.path
 ---
 
 [SECTION::goal::idea]
@@ -25,9 +25,11 @@ nicht mehr benötigt werden.
 
 [SECTION::instructions::detailed]
 
-- [ER] Machen Sie sich mit der [Dokumentation von `tempfile`](https://docs.python.org/3/library/tempfile.html)
-  vertraut.
-- [ER] Legen Sie die Datei `m_tempfile.py` an und benutzen Sie diese Datei für den Rest der 
+### Vorbereitungen
+
+- Machen Sie sich mit der
+  [Dokumentation von `tempfile`](https://docs.python.org/3/library/tempfile.html) vertraut.
+- Legen Sie die Datei `m_tempfile.py` an und benutzen Sie diese Datei für den Rest der 
   Aufgabe. 
   Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile 
   getrennt.

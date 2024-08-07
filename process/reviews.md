@@ -189,15 +189,3 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Sven Wegner
 
-- ch/Bibliotheken/Python-Standardbibliothek/m_tempfile.md (SW->LP->SW)  
-  A1 und A2 sollten keine solche Kennzeichnung haben (wie man schön in der Musterlösung sieht),
-  aber angesichts der Fehlergefahr beim Ändern können wir das jetzt von mir aus auch so lassen.  
-  Als TREEREF stand m_os_path.py da. Ist korrigiert. Auch sonst viele Kleinigkeiten, wie:  
-  Warum machen Sie Überschriften, die mit Kleinbuchstaben anfangen? Bitte nicht.  
-  Ich habe "assumes: Python-Context-Managers" ergänzt und einen entsprechenden Platzhalter angelegt.  
-  Die Aufgabe selbst ist prima. Schade finde ich lediglich, dass die Hauptfunktion
-  gar nicht richtig erfahren wird: Ein benannter Tempfile ist nach dem `with` wieder weg.
-  Das wäre noch ein weiteres `with` wert.  
-  Ob Sie das nun noch ergänzen möchten oder nicht, setzen Sie gern selbst den Zustand auf beta.
-  Ich habe ihn nur auf alpha gelassen, damit wir nicht ggf. eine publizierte Aufgabe ändern.  
-  Gute Leistung, ich bin zufrieden.
