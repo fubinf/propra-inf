@@ -4,11 +4,6 @@ timevalue: 1.0
 difficulty: 2
 ---
 
-TODO_1_müllers:
-
-- Bitte abstrakte Erklärungen vermeiden; wir sind im Praktikum, nicht in der Vorlesung.
-- 
-
 [SECTION::goal::experience]
 
 - Ich kann Unterschiede in der Interpretation eines Textdokuments und eines HTML-Dokuments durch einen Browser benennen.
