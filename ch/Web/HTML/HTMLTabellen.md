@@ -11,7 +11,10 @@ assumes: HTMLErsteSchritte, HTMLMedien
 [ENDSECTION]
 [SECTION::background::default]
 
-TODO_1_Muellers
+Tabellen sind eine Möglichkeit Text oder Daten in einer geordneten und übersichtlichen Art darzustellen. 
+Vom Tafelwerk in der Schule bis zur Bundesligatabelle findet man sie im Alltag quasi überall. 
+HTML bietet ebenfalls die Möglichkeit Tabellen zu erstellen. 
+Diese Aufgabe beschäftigt sich damit, Tabellen zu erstellen.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
@@ -19,7 +22,28 @@ TODO_1_Muellers
 TODO_1_Muellers
 
 - Quelle zum verstehen von Tabellen
-- Erstellen einer Webseite mit Tabellen für die Softwareschmiede
+
+
+[ER] Erstellen Sie eine Website `HTMLTabellen.html` mit passendem Menü und Überschrift. 
+Setzen sie die untenstehende Tabelle in HTML um.
+
+```text
+|-------------------------------------------------------|
+| Finanzen                                              |
+|--------|-------------|--------------|-----------------|
+| Jahr   | Umsatz      | Gewinn       | Ausgaben        |
+|--------|-------------|--------------|-----------------|
+| 2022   | 5,000,000 € | 1,200,000 €  | 3,800,000 €     |
+|        |-------------|--------------|                 |
+|        | Veränderung zum VJ: +20%   |                 |
+|--------|-------------|--------------|-----------------|
+| 2023   | 6,500,000 € | 1,500,000 €  | 4,000,000 €     |
+|        |-------------|--------------|                 |
+|        | Veränderung zum VJ: +30%   |                 |
+|--------|-------------|--------------|-----------------|
+| Mittel | 5,750,000 € | 1,350,000 €  | 3,900,000 €     |
+|--------|-------------|--------------|-----------------|
+```
 
 
 [ENDSECTION]
