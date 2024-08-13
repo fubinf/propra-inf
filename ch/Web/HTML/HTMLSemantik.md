@@ -1,12 +1,12 @@
 title: Semantik in HTML
-stage: draft
+stage: alpha
 timevalue: 0.75
 difficulty: 2
-assumes: HTMLErsteSchritte, HTMLMedien
+requires: HTMLErsteSchritte, HTMLMedien
 ---
 [SECTION::goal::experience]
 
-- Ich kann erklären, warum es sinnvoll ist semantisch bedeutsame HTML-Elemente zu verwenden
+- Ich kann erklären, warum es sinnvoll ist, semantisch bedeutsame HTML-Elemente zu verwenden
 - Ich kann die semantischen Elemente in HTML verwenden.
 
 [ENDSECTION]
@@ -21,13 +21,6 @@ Deshalb ist es wichtig, die Seitenstruktur einer Webseite nach semantischen Gesi
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-
-TODO_1_Muellers
-- Lesen von https://wiki.selfhtml.org/wiki/HTML/Tutorials/Element,_Tag_und_Attribut#Semantik_-_der_Inhalt_bestimmt_die_Struktur
-- Lesen von https://web.dev/learn/html/semantic-html
-
-- Überarbeiten von einer der erstellten Webseiten mit header, footer, main, nav, section.
-
 Lesen Sie zunächst den Artikel zu semantischen Tags in 
 [SelfHTML](https://wiki.selfhtml.org/wiki/HTML/Tutorials/Element,_Tag_und_Attribut#Semantik_-_der_Inhalt_bestimmt_die_Struktur). 
 Hier sehen Sie zwei Beispiele warum es wichtig ist passende HTML-Elemente einzusetzen. 
@@ -37,35 +30,37 @@ einer Seite die von den Entwicklern des Google Chrome Browsers gestellt wird,
 finden sich weitere Beispiele sowie ein Einblick wie der Browser die HTML-Elemente für einen barrierefreien Zugriff aufbereitet.
 Mit diesem Wissen wollen wir unsere bereits erstellen Seiten verbessern.
 
-[ER] Ergänzen Sie die Seiten `HTMLErsteSchritte.html` und `HTMLMedien.html` um die
- Elemente `<header>, <main>, <footer>`. Nutzen Sie <section> und <article> wo angemessen.
+[ER] Kopieren die Seiten `HTMLErsteSchritte.html` und `HTMLMedien.html`  nach `HTMLSemantik-ErsteSchritte.html` und `HTMLSemantik-Medien.html` und ergänzen Sie sie um die
+ Elemente `<header>, <main>, <footer>`. Nutzen Sie `<section>` und `<article>` wo angemessen.
 
 [ER] Erstellen Sie eine neue Website `HTMLSemantik.html`. 
-Kopieren Sie das Menü aus den vorherigen Webseiten. 
 Auf dieser neuen Website soll eine Reihe von Erwähnungen unserer Firma in den Medien Platz finden. 
 Nutzen Sie semantisch sinnvolle HTML-Elemente.
+Erstellen Sie ebenfalls Links zu den anderen beiden Dokumenten in Form eines Menüs.
 
-```text
+[FOLDOUT::Pressemeldungen]
+
 1. **"Softwareschmiede ProPy revolutioniert die Automatisierungsbranche"**  
    *"Mit ihrer Expertise in Python hat ProPy den Standard für Automatisierungslösungen neu definiert und Unternehmen geholfen, ihre Effizienz um 50% zu steigern."*  
-   *–**Technologie Heute***
+   -- Technologie Heute
 
 2. **"ProPy setzt neue Maßstäbe in der Datenanalyse"**  
    *"Die leistungsstarken Analyse-Tools von Softwareschmiede ProPy ermöglichen es Unternehmen, tiefe Einblicke in ihre Daten zu gewinnen und datengetriebene Entscheidungen schneller als je zuvor zu treffen."*  
-   *–**Data Insights Magazin** *
+   -- Data Insights Magazin
 
 3. **"ProPy beschleunigt den digitalen Wandel im Mittelstand"**  
    *"Dank der maßgeschneiderten Softwarelösungen von ProPy können mittelständische Unternehmen ihre digitalen Initiativen schneller umsetzen und ihre Wettbewerbsfähigkeit steigern."*  
-   *–**WirtschaftsWoche Digital** *
+   -- WirtschaftsWoche Digital
 
 4. **"Mit ProPy zum Erfolg: Startups setzen auf Python-Expertise"**  
    *"Immer mehr Startups vertrauen auf Softwareschmiede ProPy, um ihre innovativen Ideen in marktreife Produkte zu verwandeln – mit beeindruckenden Ergebnissen."*  
-   *–**Startup Weekly** *
+   -- Startup Weekly
 
 5. **"Softwareschmiede ProPy: Pionierarbeit im Bereich Künstliche Intelligenz"**  
    *"Durch ihre fortschrittlichen KI-Lösungen hat ProPy den Weg für eine neue Generation von intelligenten Anwendungen geebnet, die Unternehmen jeder Größe zugutekommen."*  
-   *–**AI Tech Journal** *
-```
+   -- AI Tech Journal
+[ENDFOLDOUT]
+
 
 [ENDSECTION]
 [SECTION::submission::program]
@@ -74,6 +69,8 @@ Nutzen Sie semantisch sinnvolle HTML-Elemente.
 
 [ENDSECTION]
 
-[INSTRUCTOR::TODO_1_Muellers]
-TBD
+[INSTRUCTOR::Musterlösung]
+
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]

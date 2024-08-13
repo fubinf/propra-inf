@@ -52,7 +52,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP)
 
 ### Web
-
+- ch/Web/HTML/HTMLSemantik.md (DM->LP)
 
 ### Werkzeuge
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP)
