@@ -45,7 +45,7 @@ Machen Sie sich an geeigneter Stelle (vielleicht in einer Datei "TODO.md"?) eine
 
 ### Überblick verschaffen
 
-Lesen und verstehen Sie PEP 8: [HREF:https://peps.python.org/pep-0008/]
+Lesen und verstehen Sie PEP 8: [HREF::https://peps.python.org/pep-0008/]
 
 Sie brauchen nicht jeden Satz und jedes Codebeispiel genau nachzuvollziehen,
 aber sie sollten mindestens folgendes erreichen:
