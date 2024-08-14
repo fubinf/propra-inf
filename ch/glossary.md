@@ -46,6 +46,27 @@ Weniger flexibel, aber in einfachen Fällen bequemer hinzuschreiben als eine
 [TERMREF::Shellfunktion].
 [ENDTERM]
 
+[TERM::API|Web-API|REST-API]
+Application Programming Interface: 
+Die Schnittstelle eines Objekts, einer Bibliothek, eines Plugin-Mechanismus oder eines Dienstes,
+über die andere Software (Klient) deren Operationen benutzen kann.
+
+Eigentlich stammt der Begriff aus der Welt der programmiersprachlichen Programmierung;
+dann gilt eine API immer für eine ganz bestimmte Programmiersprache,
+mit der der Klient auf die API zugreift.
+
+Heute ist mit API sehr oft eine Web-API gemeint, bei der ein Aufruf 
+an einen Dienst über das [TERMREF::Protokoll] [TERMREF::HTTP] erfolgt ("Web-API"),
+das von einer beliebigen Programmiersprache aus angesprochen wird.
+Die Daten werden in ebenfalls programmiersprachen-unabhängigen Formaten wie
+[TERMREF2::JSON::--Objekten] oder [TERMREF::XML] übergeben.
+Häufig wird dabei von einer REST API gesprochen (was eine bestimmte Form von Web-APIs meint),
+obwohl die fragliche API die REST-Bedingungen gar nicht einhält.
+
+[HREF::https://de.wikipedia.org/wiki/Programmierschnittstelle]  
+[HREF::https://de.wikipedia.org/wiki/Representational_State_Transfer] (REST API)
+[ENDTERM]
+
 [TERM::apt|apt-get|Debian-Paketmanager]
 Das Hilfsprogramm bei Debian (und von Debian abgeleiteten Systemen wie Ubuntu oder Mint),
 das die Paketinstallationen auf einem Debian-System durchführt und überwacht.
@@ -62,13 +83,6 @@ oder sei manuell installiert worden: dann bleibt es da.
 [TERM::Argument]
 Der konkrete Wert, den man an einen [TERMREF::Parameter] übergibt,
 z.B. in Form einer konkreten Variable.
-[ENDTERM]
-
-[TERM::API|Application Programming Interface]
-Eine Schnittstelle,
-die es verschiedenen Softwareanwendungen ermöglicht, miteinander zu kommunizieren und
-Daten auszutauschen. Sie definiert die Regeln und Protokolle, nach denen Programme
-miteinander interagieren können.
 [ENDTERM]
 
 [TERM::ASCII]
@@ -163,6 +177,12 @@ Eine Menge solcher Tests, die den Eingaberaum gut abdeckt, _charakterisiert_
 also das Verhalten der Software.
 Das ist enorm nützlich, wenn man anschließend mittels 
 [TERMREF::Refactoring] die Struktur der Software verbessern möchte.
+[ENDTERM]
+
+[TERM::CLI|Commandline Interface]
+Textbasierte Bedienschnittstelle ([TERMREF::TUI]), bei der der Software nacheinander Kommandos
+auf einer _Kommandozeile_ eingegeben werden.
+Häufigste Sorte solcher Kommandozeilen-Interpretierer sind [TERMREF2::Shell::-s].
 [ENDTERM]
 
 [TERM::Code Convention|Programming Style|Programmierstil]
@@ -406,6 +426,18 @@ Kurzerläuterung: [HREF::https://tldp.org/LDP/abs/html/globbingref.html]
 [TERM::Glossar]
 [Griechisch-lateinischer Ausdruck für](https://de.wikipedia.org/wiki/Glossar) Begriffsverzeichnis.
 [ENDTERM]
+
+[TERM::GUI|Graphical User Interface]
+Graphische Bedienschnittstelle, die mit Maus oder Fingern bedient wird.
+Gelegentlich auch als [WIMP](https://en.wikipedia.org/wiki/WIMP_(computing)) bezeichnet:
+Windows, Icons, Menus, Pointer.
+
+Gegensätze sind das [TERMREF::TUI]
+und hier insbesondere das [TERMREF::CLI].
+
+[HREF::https://en.wikipedia.org/wiki/Graphical_user_interface]
+[ENDTERM]
+
 
 ## H
 [TERM::Hardlink|Hardlinks]
@@ -983,7 +1015,7 @@ Ein Screenreader ist eine spezielle Software, die es Menschen mit Sehbehinderung
 
 [TERM::Serialisierung]
 Ein Mechanismus der sich auf den Prozess bezieht, bei dem Datenstrukturen in ein Format umgewandelt
-werden, das für die Speicherung oder Übertragung geeignet ist. Im Falle von JSON bedeutet dies,
+werden, das für die Speicherung oder Übertragung geeignet ist. Im Falle von [TERMREF::JSON] bedeutet dies,
 dass Datenstrukturen, wie zum Beispiel Objekte oder Arrays in einer Programmiersprache, in das
 JSON-Format umgewandelt werden. Während der Serialisierung werden die Daten in eine Zeichenkette
 konvertiert, die gemäß der JSON-Syntax strukturiert ist.
@@ -1126,6 +1158,15 @@ von Tests, Implementieren des Codes wird fortgesetzt, bis die gewünschte Funkti
 Traceroute ist ein Befehl, um den Pfad von Datenpaketen in einem Netzwerk zu verfolgen. Es zeigt 
 die einzelnen Hops und die Antwortzeit zum Hop entlang des Weges an.
 [ENDTERM]
+
+[TERM::TUI|Text-based User Interface]
+Terminal-basierte Bedienschnittstelle, die mit Tastatur und Cursor benutzt wird.  
+Wichtiger Spezialfall ist das [TERMREF::CLI].  
+Gegensatz ist das [TERMREF::GUI].
+
+[HREF::https://en.wikipedia.org/wiki/Text-based_user_interface]
+[ENDTERM]
+
 
 [TERM::Tutorial]
 Ein kurzer Lehrgang (in der Regel in Schriftform, eventuell als Video)
