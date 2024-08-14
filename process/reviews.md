@@ -48,7 +48,6 @@ We will modify these rules over time when others appear more useful.
 
 ### Testen
 
-- ch/Testen/Testframeworks/Robot.md (RR->LP; von Beta in Alpha, da kein Review stattgefunden hat)
 - ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP)
 
 ### Web
@@ -143,7 +142,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Betriebsumgebung/GitHubDeployment (RR->LP->RR)
 
 - ch/Testen/Testframeworks/index.md (RR->CH->LP->RR)
-- ch/Testen/Testframeworks/Robot.md (RR->CH->LP->RR)
+- ch/Testen/Testframeworks/Robot.md (RR->CH->LP->RR->LP->RR)
 
 - ch/Testen/Testgrundlagen/Testabgrenzung.md (RR->LP->RR)
 - ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (RR->LP->RR)
