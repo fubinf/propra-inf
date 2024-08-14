@@ -205,7 +205,7 @@ erhaltener Zeile und erwarteter Zeile mit deutlichen Markierungen und Nummern au
 anstatt nur zu sagen, dass es irgendwo im Output eine Abweichung gibt.
 [ENDHINT]
 
-- Zum Testen gehen Sie ins Verzeichnis `mlh` und benutzen `PYTHONPATH=. pytest tests/test_gitmeister.py`
+- Zum Testen gehen Sie ins Verzeichnis `mlh` und benutzen `pytest tests/test_gitmeister.py`
 
 [SECTION::submission::program]
 
