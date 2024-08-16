@@ -1,4 +1,4 @@
-title: "My Little Helpers: pseudonymize: filter for replacing person-identifiable data"
+title: "My Little Helpers: pseudonymize --- Filter for replacing person-identifiable data"
 stage: beta
 timevalue: 4.0
 difficulty: 3

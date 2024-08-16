@@ -1,4 +1,4 @@
-title: "My Little Helpers: gitac - git add+commit by file date"
+title: "My Little Helpers: gitac --- git add+commit by file date"
 stage: beta
 timevalue: 1.5
 difficulty: 3

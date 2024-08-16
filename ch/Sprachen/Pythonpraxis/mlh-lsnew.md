@@ -1,4 +1,4 @@
-title: "My Little Helpers: lsnew, list youngest files only"
+title: "My Little Helpers: lsnew --- List youngest files only"
 stage: beta
 timevalue: 1.5
 difficulty: 3

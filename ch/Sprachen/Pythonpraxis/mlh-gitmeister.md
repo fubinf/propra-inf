@@ -1,4 +1,4 @@
-title: "My Little Helpers: gitmeister: find top contributors"
+title: "My Little Helpers: gitmeister --- Find top contributors"
 stage: beta
 timevalue: 4.0
 difficulty: 3

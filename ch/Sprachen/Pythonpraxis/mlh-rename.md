@@ -1,4 +1,4 @@
-title: "My Little Helpers: rename - rename multiple files via a pattern"
+title: "My Little Helpers: rename --- Rename multiple files via a pattern"
 stage: beta
 timevalue: 1.5
 difficulty: 3

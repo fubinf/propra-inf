@@ -1,4 +1,4 @@
-title: Entwicklung eines eigenen Passwortgenerators
+title: "Passwortgenerator: Passwörter algorithmisch erzeugen" 
 stage: draft
 timevalue: 0
 difficulty: 3
