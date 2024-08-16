@@ -228,6 +228,22 @@ und man kann die Formatierung sehr schnell global über viele Dokumente hinweg a
 indem man Styles ändert, die in allen diesen Dokumenten benutzt werden.
 [ENDTERM]
 
+[TERM::CSV|comma-separated values|character-separated values]
+Ein einfaches und verbreitetes Dateiformat für tabellarische Daten 
+mit einer beliebigen, aber festen Zahl von Spalten.
+Jeder Datensatz belegt genau eine Zeile.
+Die erste Zeile kann (oder auch nicht) die Spaltennamen enthalten.
+Jedes Datenfeld ist vom nächsten durch ein Komma getrennt.
+Statt Kommas können auch andere Trenner benutzt werden, meist TAB ("tab-separated values", TSV),
+Semikolon oder senkrechter Strich (beides trotzdem meist bezeichnet als CSV).
+
+Wenn in den Datenfeldwerten Kommas vorkommen, können die betreffenden Datenfelder in
+Quotes eingeschlossen sein; da ist das Vorgehen aber uneinheitlich.
+
+[HREF::https://de.wikipedia.org/wiki/CSV_(Dateiformat)]
+[ENDTERM]
+
+
 ## D
 
 [TERM::Dateiberechtigungen|Rechte|Leserecht|Schreibrecht]
