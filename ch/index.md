@@ -259,7 +259,11 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-07-22**: Aufgabe Sprachen/Python2/[PARTREF::Python-List-Comprehensions] zugefügt.  
   Aufgaben Web/HTML/[PARTREF::HTMLErsteSchritte] und [PARTREF::HTMLMedien] zugefügt.  
   Aufgabe Web/CSS/[PARTREF::CSSEinfuehrung] zugefügt.  
-  Aufgabe Debugging/Debuggingtools/[PARTREF::printfdebugging] zugefügt.  
+  Aufgabe Debugging/Debuggingtools/[PARTREF::printfdebugging] zugefügt.
+- **2024-08-14**: Ab jetzt werden die Aufgaben mit **`sedrila 2.0`** freigegeben.
+  Falls es beim Abgeben der Aufgaben Probleme gibt, bitte die eigene sedrila-Installation mittels 
+  `pipx upgrade sedrila` aktualisieren.
+- **2024-08-16**: Aufgabe Sprachen/Pythonpraxis/[PARTREF::mlh-columnpercentage] zugefügt.
 - ...
 
 
