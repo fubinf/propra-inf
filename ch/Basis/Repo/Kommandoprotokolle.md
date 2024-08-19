@@ -2,13 +2,11 @@ title: Protokolle von Kommandos und Kommandoausgaben abgeben
 stage: beta
 timevalue: 0.5
 difficulty: 2
-explains: manpage
 requires: Shellprompt
 ---
 [SECTION::goal::trial]
 
-Ich kann das Unix-Kommando `script` anwenden, um Kommandoeingaben und -ausgaben 
-für eine Abgabe zu protokollieren
+Ich kann d.h. Kommandoeingaben und -ausgaben für eine Abgabe als Kommandoprotokolldatei bereitstellen.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -16,76 +14,45 @@ für eine Abgabe zu protokollieren
 Viele Aufgaben verlangen, dass Sie ein Protokoll von Geschehnissen in der Shell
 abgeben: Sie rufen ein paar Kommandos auf und die Abgabe enthält diese Kommandos plus
 deren jeweilige Ausgabe.
-
-Aber wie kommen diese Sachen in eine Abgabedatei?
-Copy/paste ist dafür nicht gut geeignet, denn dabei geht sämtliche Farbe verloren,
-so dass das Resultat für die Tutor_innen sehr unübersichtlich wird.
-
-In dieser Aufgabe lernen wir eine bessere Lösung kennen und probieren sie aus.
+Aber auch nur dies.
+"Verschmutzte" Abgaben bedeuten für die Tutor_innen hohen Mehraufwand und können zur
+Zurückweisung einer Abgabe führen.
+Deshalb üben wir hier das Anfertigen und die Kontrolle von Kommandoprotokollen.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-### `script` installieren
+### Kommandos ausführen
 
-- Rufen Sie `script --help` auf.
-- Wenn das Kommando nicht existiert, rufen sie `sudo apt install util-linux` auf,
-  um es zu installieren.
-
-
-### `script` ausprobieren
-
-- Rufen Sie `script` auf.
-  Es erscheint eine Meldung und es startet eine neue Shell.
-  Jetzt werden _alle_ Eingaben und Ausgaben in der Datei `typescript` protokolliert.
 - Geben Sie der Reihe nach folgende Kommandos ein (eins davon schlägt fehl; das ist erwünscht):
-    - `ls`
-    - `uptime`
-    - `whoami`
-    - `whoareyou`
-    - `uname -a`
-    - `cat /etc/os-release`
-    - `python -V; pip -V`
-    - `exit`
-- `exit` hat die neue Shell beendet und damit auch die Protokollierung.
-- Das Protokoll steht jetzt in der Datei `typescript`
-- Sehen Sie es sich mit `less typescript` an.
-  So ungefähr wird das Ergebnis auch für die Tutor_in aussehen.
-  (Verlassen mit 'q', Hilfe mit 'h'. `less` kann eine ganze Menge.)
-
-Es ist möglich, den Dateinamen als Argument zu übergeben, und es bietet sich an, das an die
-jeweilig bearbeitete Aufgabe anzupassen. Ein Aufruf von `script Kommandoprotokolle.txt` erzeugt
-beispielsweise eine Datei "Kommandoprotokolle.txt" statt "typescript".
+    1. `ls`
+    2. `uptime`
+    3. `whoami`
+    4. `whoareyou`
+    4. `uname -a`
+    5. `cat /etc/os-release`
+    6. `python -V; pip -V`
 
 
-### Taktik für spätere Aufgaben
+### In Datei verfrachten
 
-In den Aufgaben wird es später oft so sein, dass Sie zwischen den Kommandos A und B,
-die ins Kommandoprotokoll sollen, andere Kommandos brauchen, sei es i) zur Vorbereitung von B
-oder ii) weil Sie erst herausbekommen müssen, wie Kommando B überhaupt lautet, wenn es 
-nicht angegeben, sondern nur umschrieben ist.
-
-Es gibt grundsätzlich drei Arten, wie man damit umgehen kann:
-
-1. Eine zweite Shell geöffnet haben, in der man diese Hilfsschritte zuführt.
-   In der ersten Shell läuft währenddessen `script`, dort macht man nur A und B, sonst nichts.
-   Dies ist die Methode der Wahl.
-2. Sich erst einmal ohne laufendes `script` durcharbeiten und dann `script` erst starten,
-   wenn man weiß, wie A und B gehen. 
-   Das hilft allerdings nur im obigen Fall ii), nicht bei i).
-3. Es ist auch möglich, ohne neue Shell die Befehle einzeln nach und nach zu protokollieren.
-   Man ruft für jedes zu protokollierende Kommando einzeln `script -a -c 'mycmd myarg1'` auf
-   (siehe `script --help`).  
-   Leider wird dann im Protokoll jeder Kommandooutput von einer Start- und einer Endmeldung
-   umschlossen und die farbigen Shellprompts fehlen, so dass dieses Format für die 
-   Tutor_innen zu unübersichtlich ist und für das ProPra nicht in Frage kommt.
+- Markieren Sie mit der Maus alle Kommandos und deren Ausgabe,
+  also vom Beginn des Prompts vor dem `ls`-Kommando bis zum Ende der Ausgabe
+  des Doppelkommandos `python -V; pip -V`.
+- Kopieren Sie den markierten Block in die Zwischenablage.
+  Auf Windows in Microsoft Terminal geht das mit der Tastenkombination Ctrl-C (Strg-C).
+  Auf Mac OS ist es Command-C (Propeller-C).
+  Auf Linux hängt es vom verwendeten Terminal ab; nötigenfalls bitte in dessen Hilfe schauen.
+- Starten Sie einen Texteditor.
+- Fügen Sie die Zwischenablage-Inhalte dort ein (meist mit Ctrl-V/Strg-V bzw. Command-V/Propeller-V).
+  Die Farbe der Prompts geht dabei verloren, was den Text erheblich weniger übersichtlich macht.
 
 
-### Protokoll korrigieren
+### Bereinigen
 
 Sie haben hoffentlich bemerkt, dass `whoareyou` nicht funktioniert hat?
 Das Kommando gibt es nämlich gar nicht.
-Wir tun so, als sei dies eine versehentliche Fehleingabe gewesen.
+Wir tun jetzt so, als sei dies eine _versehentliche_ Fehleingabe gewesen.
 
 So etwas wollen wir im Protokoll nicht haben, sondern es entfernen, damit es das
 Verständnis des Protokolls nicht erschwert.
@@ -103,14 +70,8 @@ Verständnis des Protokolls nicht erschwert.
 - Schneiden Sie das Kommando `whoareyou` aus, samt des Shell-Prompts davor
   und der Fehlermeldung dahinter.
   Speichern Sie das Ergebnis und prüfen Sie es sorgfältig.
-  Nichts zu viel oder zu wenig gelöscht? Prima. Dann abgeben:
+  Nichts zu viel oder zu wenig gelöscht? Prima. Dann abgeben.
   
-[NOTICE]
-Seien Sie sich bewusst, dass die Dateien möglicherweise Symbole beinhalten werden, die Ihnen nicht vertraut
-sind. Diese dienen der Formatierung (also beispielsweise Farbe). 
-Entfernen Sie daher nicht pauschal alle diese Symbole!
-[ENDNOTICE]
-
 [NOTICE]
 Es ist auch möglich, einen anderen Texteditor als `nano` zu verwenden,
 falls Sie mit einem anderen besser vertraut sind.
@@ -119,48 +80,98 @@ Linux-System vorhanden.
 (Allerdings kann `nano` auch nicht viel; man setzt ihn meist nur für einfache Zwecke ein.)
 [ENDNOTICE]
 
+Allgemein gesprochen:
+
+- Werfen Sie mit dem Editor aus dem Protokoll alles raus, was dort nicht hineingehört.
+  Vertippt? Kommando ganz falsch ausgedacht? Vorher nötiges anderes Kommando vergessen?
+  Löschen Sie in allen diesen Fällen den falschen Block heraus, vom Beginn des Prompts vor dem Kommando
+  bis vor den Beginn des Prompts zum nächsten Kommando.
+- Bereinigen Sie auch, falls Sie zwei Kommandos in einer falschen (aber ebenfalls technisch möglichen) 
+  Reihenfolge durchgeführt haben: Block ausschneiden und an der richtigen Stelle wieder einsetzen.
+
+
+### Speichern
+
+- Speichern Sie schließlich die Datei als `*.prot` in Ihrem ProPra-Arbeitsverzeichnis ab.
+  Wenn die Aufgabe XYZ heißt, sollte die Datei also in der Regel `XYZ.prot` heißen,
+  falls nicht die Aufgabe ausnahmsweise etwas anderes festlegt.
+
+
+### Taktik für spätere Aufgaben
+
+In den Aufgaben wird es später oft so sein, dass Sie zwischen den Kommandos A und B,
+die ins Kommandoprotokoll sollen, andere Kommandos brauchen, sei es 
+i) zur Vorbereitung von B oder 
+ii) weil Sie erst herausbekommen müssen, wie Kommando B überhaupt lautet, wenn es 
+nicht angegeben, sondern nur umschrieben ist.
+
+Es gibt grundsätzlich drei Arten, wie man damit umgehen kann:
+
+1. Eine zweite Shell geöffnet haben, in der man die Hilfsschritte ausführt.
+   In der ersten Shell macht man nur die Kommandos, die ins Protokoll sollen.
+2. Sich erst einmal probehalber durch den ganzen Ablauf durcharbeiten und dann einen zweiten,
+   sauberen Durchlauf machen, wenn man weiß, wie alle Kommandos gehen.
+   Nur der zweite Durchlauf kommt ins Protokoll.
+3. Sich irgendwie durch den ganzen Ablauf durchkämpfen, egal wie viele Fehler und Umwegen man
+   unterwegs macht. Dann alles ins Protokoll übernehmen und alles sorgfältig bereinigen.
+
+Von diesen Ansätzen funktioniert Nummer 1 für Leute gut, die extrem konzentriert arbeiten können.
+Für die meisten wird der Ansatz Nummer 2 am einfachsten sein.
+Ansatz Nummer 3 ist nicht empfohlen, denn das Bereinigen erfordert meist viel zu viel Konzentration.
+
+Nicht ärgern, wenn man bei Ansatz 1 oder 2 trotzdem immer mal einen Fehler macht; das ist ganz normal.
+
 [ENDSECTION]
 [SECTION::submission::trace]
 
-Falls Sie keinen geeigneten Ausgabedateinamen beim Aufruf von `script` angegeben haben,
-nenennen Sie die Datei `typescript` in in eine Datei mit Endung `.txt` um.
-Der Zielname ist in unserem Fall also `Kommandoprotokolle.txt` und Sie rufen auf:
-`mv typescript Kommandoprotokolle.txt`.
+Sie sollten nun eine bereinigte Datei `Kommandoprotokolle.prot` erzeugt haben.
 Geben Sie diese Datei ab.
 
 Analog werden wir das künftig bei vielen Aufgaben machen.
 
 - Die sehen jeweils so aus, dass bei den Arbeitsschritten einige mit 
   [EC], [EC] usw. markiert sind.
+  (In unserer Aufgabe hier treten die Nummern im Abschnitt "Kommandos ausführen" an deren Stelle)
 - Genau diese Schritte sollen im abzugebenden Kommandoprotokoll stehen.
-- Vor dem ersten solchen Kommando rufen Sie also **selbständig** `script` auf
-  und nach dem letzten `exit`, dann benennen Sie die Ausgabedatei gegebenenfalls um.
-  (Eine Datei namens `typescript` sollte selbst nie eingecheckt werden.)
-- Oder Sie benutzen einzelne `script`-Aufrufe für jedes zu protokollierende Kommando.
-- Falls Sie unterwegs [TERMREF::Fehler] gemacht haben, benutzen Sie nun den Editor,
-  um diese Teile zu entfernen.
-- Wenn anhand der Arbeitsschritte zu erkennen ist, dass Sie zwischen den
-  markierten, ins Protokoll zu übernehmenden Arbeitsschritten weitere
-  Kommandos brauchen werden, empfiehlt es sich, in einem separaten Fenster eine zweite Shell zu
-  starten, in der Sie nur die Kommandos eingeben, die für das `typescript`
-  gedacht sind und sonst nichts.
+
+Ein falsches Kommandoprotokoll kann sehr verwirrend sein.
+Kontrollieren Sie deshalb vor dem Einchecken Ihr Protokoll bitte wie folgt:
+
+- Rufen Sie `sedrila viewer` auf.
+  Das startet einen Webserver.
+- Besuchen Sie nun `http://localhost:8080` in Ihrem Browser.
+  Sie erhalten ein Verzeichnislisting Ihres Arbeitsverzeichnisses.
+- Klicken Sie `Kommandoprotokolle.prot` an.
+  Das öffnet die Ansicht auf Ihr Protokoll, die Ihre Tutor_in benutzen wird.
+- Überzeugen Sie sich, dass die Kommandonummern mit denen der Aufgabe übereinstimmen.
+- Beenden Sie den Webserver in der Shell durch Eingabe von Ctrl-C (bzw. Strg-C bzw. Command-C).
+
+War noch etwas verkehrt? Dann bitte nochmals korrigieren und kontrollieren.
+Sie können den Webserver auch laufen lassen und nach der Korrektur die Ansicht im Webbrowser mit 
+'Refresh' (F5) aktualisieren.
 
 [ENDSECTION]
 
 [INSTRUCTOR::Sichtung und Prüfung von Kommandoprotokollen]
-Wir erwarten eine Datei, in der außer dem von `script` eingefügten Kopf und Fuß
-optisch gesehen nur genau das steht, was obige Kommandos erzeugen sollen.
-Faktisch sind vielleicht einige Backspaces etc. dabei, wenn welche eingegeben wurden,
-aber im Wesentlichen ist das Ergebnis mit `less` gut lesbar.
+Wir erwarten von Kommandoprotokollen folgendes:
 
-Wenn bei der Korrektur zu viel, zu wenig oder das Falsche weggeschnitten wurde,
-die Abgabe zurückweisen (und darauf hinweisen, dass es meist einfacher sein dürfte,
-nochmal von vorn anzufangen, als die kaputte Abgabe zu reparieren).
+1. Das Protokoll fängt in Zeile 1 mit einem Prompt an.
+2. Dieser Prompt ist gemäß [PARTREF::Shellprompt], wird korrekt erkannt und entsprechend gerendert.
+3. Bitte immer auf die Plausibilität dieser Prompts achten.
+   Insbesondere zeigt ein falscher Benutzername an, dass dieser Studi nicht wie
+   vorgesehen die Kommandosequenz selber durchgeturnt hat.
+   Solche Abgaben bitte immer zurückweisen.
+4. Die Nummerierung der Kommandos entspricht den [EREFC::1],[EREFC::2]-...-Markern aus der Aufgabe.
+   Wenn bei der händischen Korrektur zu viel, viel zu wenig oder das Falsche weggeschnitten wurde,
+   die Abgabe zurückweisen (und darauf hinweisen, dass es sehr oft einfacher sein dürfte,
+   nochmal von vorn anzufangen, als die kaputte Abgabe zu reparieren).
+5. Die Kommandos erfüllen den Zweck, der in der Aufgabe verfolgt wird, und zwar
+   sowohl den inhaltlichen Zweck (Wirkung des Kommandos) als auch den Lernzweck (wegen dem
+   bei manchen Aufgaben nicht jedes Kommando mit gleicher Wirkung akzeptabel ist).
 
-Es muss jeweils ein Prompt dastehen, 
-der den Anforderungen von [PARTREF::Shellprompt] genügt.
-Bitte immer auf die Plausibilität dieser Prompts achten.
-Insbesondere zeigt ein falscher Benutzername an, dass dieser Studi nicht wie
-vorgesehen die Kommandosequenz selber durchgeturnt hat.
-Solche Abgaben bitte immer zurückweisen.
+In dieser Aufgabe sollte das Ergebnis mit `sedrila viewer` sinngemäß wie folgt aussehen
+(Stand August 2024):
+
+[PROT::ALT:Kommandoprotokolle.prot]
+
 [ENDINSTRUCTOR]
