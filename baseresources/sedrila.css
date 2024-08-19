@@ -118,7 +118,7 @@ summary {}
 }
 
 .mainfull {
-  margin-left: 0px !important;
+  margin-left: 0 !important;
 }
 
 .header_in button {
@@ -141,7 +141,7 @@ summary {}
   background:#555;
   display:block;
   position:relative;
-  coursor:pointer;
+  cursor:pointer;
 }
 
 .toggle span::before,
@@ -525,7 +525,7 @@ summary {}
 }
 
 .vwr-promptidx {
-    background-color: yellow;
+    background-color: #ffc107;
     font-size: 200%;
     font-weight: bold;
 }
@@ -535,31 +535,31 @@ summary {}
 }
 
 .vwr-userhost {
-    color: red;
+    color: #dc3545;
 }
 
 .vwr-dir {
-    color: limegreen;
+    color: #28a745;
 }
 
 .vwr-time {
-    color: blue;
+    color: #007bff;
 }
 
 .vwr-num {
-    background-color: blue;
+    background-color: #007bff;
     color: white;
     font-weight: bold;
 }
 
 .vwr-cmd {
     color: black;
-    font-size: 100%; 
+    font-size: 110%; 
     font-weight: bold;
 }
 
 .vwr-output {
-    color: #550000;
+    color: #660000;
 }
 
 .vwr-dirlink {
