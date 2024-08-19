@@ -42,33 +42,40 @@ Er benutzt pro Promptausgabe _zwei_ Zeilen, um eine ungestörte Eingabe zu erlau
 
 Der Prompt hat folgende Elemente:
 
-- Benutzername und Hostname:  
+- `\u@\h`: Benutzername und Hostname:  
   Die sind wichtig zur Orientierung, sobald man im Bereich Systemadministration unterwegs ist.
-- Aktuelles Verzeichnis:  
+- `\w`: Aktuelles Verzeichnis:   
   Sehr oft wichtig, weil man das im normalen Leben oft ändert
   (im ProPra vergleichsweise selten).
-- Genaue Uhrzeit:  
+- `\t`: Genaue Uhrzeit:  
   Dadurch kann man bei langlaufenden Kommandos nachvollziehen, wie lange
   sie gedauert haben.
   Wenn die Ausgaben-Historie des Terminals lang genug ist, kann man damit Kommandos nachvollziehen,
   die z.B. vor gewissen Commits stattgefunden haben oder die zur Erzeugung einer bestimmten
   Datei geführt haben.
-- Kommandonummer:  
+- `\!`: Kommandonummer:  
   Eine fortlaufende Nummer.
   Die Shell kann mittels `history 30` die letzten z.B. 30 Kommandos anzeigen.
   Wenn man wissen will, welche Ausgabe eines davon gehabt hat, hilft die Kommandonummer im Prompt,
   die entsprechende Stelle in der Historie zügig wiederzufinden.
 
-Außerdem benutzt der Prompt vier verschiedene Farben.
+Außerdem benutzt der Prompt vier verschiedene Farben
+(gesteuert mittels der sogenannten ANSI-Sequenzen, die den Bärenanteil des Prompts ausmachen).
 Das hat den Effekt, dass er eine charakteristische visuelle Signatur hat, die man beim
 Rückwärtsrollen schnell und verlässlich entdeckt, sodass das Finden der einzelnen
 Abschnitte der Ausgabe wenig anstrengend ist.
 
 
-### Prompt selber bauen
+### Wer Lust hat: Prompt modifizieren
 
-Sie dürfen Ihren Prompt gern nach Geschmack umbauen, was die Elemente,
-ihre Reihenfolge und die Farbgestaltung angeht.
+Die Tutor_innen benutzen bei der Bewertung Ihrer Abgaben ein Hilfsprogramm,
+in das die obige Struktur von Prompts fest eingebaut ist.
+Es ist deshalb wichtig, dass Sie einen Prompt benutzen, der die obigen vier Elemente
+in dieser Reihenfolge enthält.
+
+Davon abgesehen dürfen Sie Ihren Prompt aber auch gern nach Geschmack verändern, 
+was die Farbgestaltung angeht.
+Sie können ggf. auch weitere Elemente am Anfang oder am Ende des Prompts zufügen.
 
 Dazu können Sie entweder in einer
 [kurzen](https://ss64.com/bash/syntax-prompt.html)
@@ -87,26 +94,16 @@ Das Thema ist leider ziemlich kompliziert.
 Versuchen Sie also besser kein Finetuning.
 [ENDWARNING]
 
-Sie können damit ruhig expermentieren und eigene Anpassungen vornehmen. Sollte etwas schiefgehen,
+Sie können damit ruhig experimentieren und eigene Anpassungen vornehmen. 
+Sollte etwas schiefgehen,
 können Sie Ihre Shell einfach schließen und wieder öffnen, um die Situation von davor zu haben.
 
-Falls Sie sich einen eigenen Prompt bauen, behalten Sie bitte mindestens folgende Elemente
-des obigen Vorschlags bei, um den Tutor_innen die Arbeit zu erleichtern:
-
-- Benutzername
-- aktuelles Verzeichnis
-- Uhrzeit (24h-Format, mit Sekunden)
-- Kommandonummer
-- mindestens zwei verschiedene Farben
-- mindestens einen auffällig massivfarbenen Block
-
-Der Prompt sollte ordentlich mit dunklem Bildschirmhintergrund funktionieren,
-auch wenn Sie selbst vielleicht einen hellen einsetzen.
 
 ### Prompt persistieren
 
-Sollten Sie einen Prompt haben, mit dem Sie zufrieden sind, sorgen Sie dafür, dass er auch für neue
-Shell-Instanzen verwendet wird. Hierfür führen Sie folgende Befehle aus und setzen anstelle
+Wenn Sie einen Prompt haben, mit dem Sie zufrieden sind, sorgen Sie dafür, dass er auch für neue
+Shell-Instanzen verwendet wird. 
+Hierfür führen Sie folgende Befehle aus und setzen anstelle
 der drei Punkte analog den Rest Ihres Prompts ein.
 
 ```
@@ -132,8 +129,7 @@ Falls noch nicht aktiv, aktivieren Sie den neuen Prompt durch Aufruf von `source
 [SECTION::submission::reflection]
 
 Geben Sie eine Markdown-Datei ab.
-Begründen Sie entweder, warum Sie sich gegen ein Umbauen des vorgegebenen Prompts entschieden haben,
-oder, wie ihr eigener Prompt aussieht und warum.
+Beschreiben Sie ganz kurz, was Sie warum am Prompt verändert haben oder warum nichts.
 
 [ENDSECTION]
 [SECTION::background::default]
