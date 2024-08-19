@@ -144,8 +144,8 @@ summary {}
   coursor:pointer;
 }
 
-.toggle span:before,
-.toggle span:after {
+.toggle span::before,
+.toggle span::after {
   content:'';
   position:absolute;
   left:0;
@@ -155,11 +155,11 @@ summary {}
   transition: all 0.3s ease-out;
 }
 
-.toggle span:before {
+.toggle span::before {
   top:-8px;
 }
 
-.toggle span:after {
+.toggle span::after {
   top:8px;
 }
 
@@ -167,14 +167,14 @@ summary {}
   background:transparent;
 }
 
-.toggle span.toggle:before {
+.toggle span.toggle::before {
   top:0;
   transform:rotate(-45deg);
   background:#4CAF50;
   
 }
 
-.toggle span.toggle:after {
+.toggle span.toggle::after {
   top:0;
   transform:rotate(45deg);
   background:#4CAF50;
@@ -510,6 +510,73 @@ summary {}
 .glossary-termref-suffix {
   vertical-align: sub;
   font-size: smaller;    
+}
+
+
+/********** viewer role: */
+
+.vwr-table {
+    white-space: pre;
+    font-family: monospace;
+}
+
+.vwr-pre {
+    white-space: pre;
+}
+
+.vwr-promptidx {
+    background-color: yellow;
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.vwr-front, .vwr-back {
+    color: grey;
+}
+
+.vwr-userhost {
+    color: red;
+}
+
+.vwr-dir {
+    color: limegreen;
+}
+
+.vwr-time {
+    color: blue;
+}
+
+.vwr-num {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+}
+
+.vwr-cmd {
+    color: black;
+    font-size: 100%; 
+    font-weight: bold;
+}
+
+.vwr-output {
+    color: #550000;
+}
+
+.vwr-dirlink {
+    color: #550000;
+}
+
+.vwr-filelink {
+    color: #550000;
+}
+
+.vwr-filelink-submission {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.vwr-tasklink {
+    font-style: oblique;
 }
 
 
