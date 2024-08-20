@@ -13,19 +13,38 @@ assumes: HTMLErsteSchritte, HTMLMedien
 
 Tabellen sind eine Möglichkeit Text oder Daten in einer geordneten und übersichtlichen Art darzustellen. 
 Vom Tafelwerk in der Schule bis zur Bundesligatabelle findet man sie im Alltag quasi überall. 
-HTML bietet ebenfalls die Möglichkeit Tabellen zu erstellen. 
+Deshalb beinhaltet natürlich auch HTML die Möglichkeit, Tabellen anzuzeigen.
 Diese Aufgabe beschäftigt sich damit, Tabellen zu erstellen.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-TODO_1_Muellers
-
-- Quelle zum verstehen von Tabellen
 
 
 [ER] Erstellen Sie eine Website `HTMLTabellen.html` mit passendem Menü und Überschrift. 
-Setzen sie die untenstehende Tabelle in HTML um.
+Tabellen benutzen das HTML-Element `<table>`.
+Erstellen Sie eine einfache Tabelle mit zwei Zeilen und drei Spalten, z.B.
+
+
+| Umsatz      | Gewinn       | Ausgaben        |
+|-------------|--------------|-----------------|
+| 5,000,000 € | 1,200,000 €  | 3,800,000 €     |
+
+Bei SelfHTML finden Sie unter 
+[Aufbau einer Tabelle](https://wiki.selfhtml.org/wiki/HTML/Tabellen/Aufbau_einer_Tabelle)
+einen Überblick, wie das funktioniert.
+
+[ER] Für lange Tabellen, die beim Ausdrucken über mehrere Zeilen gehen würden, 
+kann es sinnvoll sein, wenn sich die Überschriften oder auch Summen der Tabellen wiederholen,
+wenn man die Tabelle z.B. ausdrucken will. 
+Dazu kann die Tabelle in Kopf, Hauptteil und Fuß aufgeteilt werden: `<thead>`, `<tbody>` und `<tfoot>`. 
+Setzen Siedies für Ihre Tabelle um.
+
+[ER] Hin und wieder möchte man auch Tabellenzellen haben, die mehrere Spalten oder Zeilen überspannen. 
+Auch dafür gibt es mit den Attributen `colspan` und `rowspan` Lösungen.
+Ergänzen Sie Ihre Tabelle, sodass die untenstehende Tabelle abgebildet wird.
+Eine Erklärung dazu finden Sie in Abschnitt zwei des SelfHTML-Dokuments
+[Zellen verbinden](https://wiki.selfhtml.org/wiki/HTML/Tabellen/Zellen_verbinden#Zellen_verbinden).
 
 ```text
 |-------------------------------------------------------|
@@ -45,6 +64,16 @@ Setzen sie die untenstehende Tabelle in HTML um.
 |--------|-------------|--------------|-----------------|
 ```
 
+[HINT::Ich kann nicht erkennen, ob die Zellen verbunden sind]
+Fügen Sie im `table`-Element ein Attribut `border` mit dem Wert `1` ein. 
+Nun erhalten Sie einen Rahmen im Browser. 
+Das hilft Ihnen das Ausmaß der Tabellenzellen zu erkennen.
+
+
+Aber **Achtung**: Das `border`-Attribut ist im aktuellen HTML-Standart nicht mehr vorgesehen und
+sollte deshalb *ausschließlich* für Entwicklungszwecke verwendet werden!
+Um der Tabelle Rahmen und Styling zu geben, sollten Sie [PARTREF::CSS] verwenden.
+[ENDHINT] 
 
 [ENDSECTION]
 [SECTION::submission::program]
