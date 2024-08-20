@@ -219,9 +219,9 @@ als Python-Programm interpretieren.
   `sed 's/,/    /g' $DATA | head -3`:  
   Das `sed`-Kommando schreibt unsere Eingabedaten so um, dass nun vier Blanks als Feldtrenner verwendet werden.
   Wir wiederholen die Geschlechter-Abfrage und erwarten das gleiche Ergebnis wie oben:  
-- [EC] `sed 's/,/   /g' $DATA | python . columnpercentage gender`
+- [EC] `sed 's/,/    /g' $DATA | python . columnpercentage gender`
 - [EC] Jetzt prüfen wir die Rundungs-Automatik: Wir benutzen die Eingabedaten dreifach,
-  haben dann also über 200 Datensätze und erwarten folglich zwei Nachkommastellen:    
+  haben dann also über 200 Datensätze und erwarten folglich zwei Nachkommastellen:   
   `cat $DATA $DATA $DATA | python . columnpercentage gender`  
   (Der dadurch zweimal eingefügte Pseudo-Eintrag "gender" soll uns hier nicht stören.)
 - [EC] Nochmal Rundungs-Automatik, außerdem Spalte per Nummer angegeben 
@@ -249,7 +249,7 @@ Wenn die Lösung mehr als 50% länger ist oder keine Kommentare enthält
 oder kaum sprechende Namen enthält
 oder zu monolithisch ist, ist das einen Hinweis und in krassen Fällen eine Zurückweisung wert.
 
-Ansonsten halten wir uns für die Korrrektur an das Kommandoprotokoll, das ungefähr wie 
-[TREEREF::mlh-columnpercentage.txt] aussehen müsste.
+Ansonsten halten wir uns für die Korrrektur an das Kommandoprotokoll, das so aussehen müsste:
+[PROT::ALT:mlh-columnpercentage.prot]
 
 [ENDINSTRUCTOR]
