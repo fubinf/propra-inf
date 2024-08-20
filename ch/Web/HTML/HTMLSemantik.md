@@ -21,24 +21,27 @@ Deshalb ist es wichtig, die Seitenstruktur einer Webseite nach semantischen Gesi
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-Lesen Sie zunächst den Artikel zu semantischen Tags in 
-[SelfHTML](https://wiki.selfhtml.org/wiki/HTML/Tutorials/Element,_Tag_und_Attribut#Semantik_-_der_Inhalt_bestimmt_die_Struktur). 
-Hier sehen Sie zwei Beispiele warum es wichtig ist passende HTML-Elemente einzusetzen. 
-Ebenfalls sollten Sie sich über WAI-ARIA informieren.
-Bei [web.dev](https://web.dev/learn/html/semantic-html), 
-einer Seite die von den Entwicklern des Google Chrome Browsers gestellt wird, 
-finden sich weitere Beispiele sowie ein Einblick wie der Browser die HTML-Elemente für einen barrierefreien Zugriff aufbereitet.
-Mit diesem Wissen wollen wir unsere bereits erstellen Seiten verbessern.
+[ER] Kopieren die Seiten `HTMLErsteSchritte.html` und `HTMLMedien.html`  nach 
+`HTMLSemantik-ErsteSchritte.html` und `HTMLSemantik-Medien.html`.
+Ergänzen Sie sie um die Elemente `<header>, <main>, <footer>`;
+nutzen Sie `<section>` und `<article>` wo angemessen.  
+In Abschnitt 4 des SelfHTML-Tutorials über 
+[semantischen Markup](https://wiki.selfhtml.org/wiki/HTML/Tutorials/Element,_Tag_und_Attribut#Semantik_-_der_Inhalt_bestimmt_die_Struktur)
+und den dort verlinkten Detailseiten können Sie nachlesen, was das genau bedeutet und was der Zweck davon ist.
 
-[ER] Kopieren die Seiten `HTMLErsteSchritte.html` und `HTMLMedien.html`  nach `HTMLSemantik-ErsteSchritte.html` und `HTMLSemantik-Medien.html` und ergänzen Sie sie um die
- Elemente `<header>, <main>, <footer>`. Nutzen Sie `<section>` und `<article>` wo angemessen.
+[EQ] Brauchen Sie zum Erreichen dieses Zwecks irgendwo auch Angaben von "landmark roles"?
+Wo (dann bitte dort zufügen) oder warum nicht?  
+Falls Ihnen die obige Quelle zur Beantwortung nicht reicht:
+Auf [semantic-html](https://web.dev/learn/html/semantic-html)
+bei web.dev wird die Angelegenheit genauer erläutert.
 
-[ER] Erstellen Sie eine neue Website `HTMLSemantik.html`. 
-Auf dieser neuen Website soll eine Reihe von Erwähnungen unserer Firma in den Medien Platz finden. 
+[ER] Unsere Firma ist einige Male in den Medien erwähnt worden, siehe unten.
+Diese Erwähnungen wollen wir auf einer neuen Webseite präsentieren.
+Erstellen Sie eine neue Website `HTMLSemantik.html` mit diesen Erwähnungen.
 Nutzen Sie semantisch sinnvolle HTML-Elemente.
-Erstellen Sie ebenfalls Links zu den anderen beiden Dokumenten in Form eines Menüs.
+Erstellen Sie ferner oben oder unten Links zu den anderen beiden Dokumenten als kleines Menü.
 
-[FOLDOUT::Pressemeldungen]
+[FOLDOUT::Pressemeldungen über unsere Firma]
 
 1. **"Softwareschmiede ProPy revolutioniert die Automatisierungsbranche"**  
    *"Mit ihrer Expertise in Python hat ProPy den Standard für Automatisierungslösungen neu definiert und Unternehmen geholfen, ihre Effizienz um 50% zu steigern."*  
@@ -61,14 +64,12 @@ Erstellen Sie ebenfalls Links zu den anderen beiden Dokumenten in Form eines Men
    -- AI Tech Journal
 [ENDFOLDOUT]
 
-
 [ENDSECTION]
 [SECTION::submission::program]
 
 [INCLUDE::../../_include/Submission-Quellcode.md]
 
 [ENDSECTION]
-
 [INSTRUCTOR::Musterlösung]
 
 [INCLUDE::ALT:]
