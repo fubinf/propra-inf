@@ -2,12 +2,13 @@ title: Netzwerkgrundlagen mit DNS Werkzeugen
 stage: alpha
 timevalue: 1
 difficulty: 2
-assumes: apt
+assumes: apt, SSH
 
 ---
 
 [SECTION::goal::idea]
-Ich verstehe Netzwerkgrundlagen, um DNS-Informationen eines Servers herauszufinden.
+Ich kann die Erreichbarkeit eines Rechners prüfen und kann
+seine DNS-Informationen abrufen und ungefähr verstehen.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -24,26 +25,27 @@ Angenommen Sie sind ein Netzwerkadministrator und Kolleg_innen erzählen Ihnen, 
 Zugriff auf eine Ressource haben. Wir zeigen Ihnen hier Befehle, die zur Problemlösung
 beitragen können.
 
+
 ### Werkzeuge installieren
 
 Bevor wir mit den Werkzeugen anfangen müssen wir sie uns herunterladen.
 
-- [EC] Aktualsieren Sie Ihr System.
+- [EC] Aktualisieren Sie Ihr System.
 - [EC] Installieren Sie das Paket `dnsutils`.
 
-In diesem Paket sind alle folgenden Werkzeuge enthalten, die wir in dieser Aufgabe brauchen werden.
+In diesem Paket sind alle Werkzeuge enthalten, die wir in dieser Aufgabe brauchen werden.
 
-### Anmerkung
+[NOTICE]
+Sie werden hier 4 Werkzeuge kennenlernen.
+Drei davon, `dig`, `nlookup` und `host`, haben einen sehr ähnlichen Zweck, nämlich DNS-Abfragen. 
+Es ist trotzdem sinnvoll, alle drei ausprobiert zu haben, da es Ihnen passieren kann, 
+dass Ihnen nur eines davon zur Verfügung steht.
+[ENDNOTICE]
 
-Sie werden hier 4 Werkzeuge kennenlernen: `ping`, `dig`, `nlookup` und `host`. Außer `ping`, geben
-alle Werkzeuge ähnliche Ausgaben. Es ist sinnvoll alle Werkzeuge einmal gesehen zu
-haben, da es Ihnen passieren könnte, dass man keine Applikationen auf dem System
-nachinstallieren darf.
 
 ### Arbeiten mit [TERMREF::ping]
 
-Einer der ersten bekannten Befehle ist `ping`. `ping` gibt Ihnen Rückmeldung über die Erreichbarkeit
-eines Systems.
+`ping` gibt Ihnen Rückmeldung über die Erreichbarkeit eines Systems.
 
 Damit die Ping-Ausgabe gestoppt wird, nutzen Sie die Tastenkombination `STRG+C`.
 
@@ -56,9 +58,15 @@ Lesen Sie insbesondere die Synopsis, die **Description** und die Optionen **-c**
 `ping` gibt Ihnen nicht nur die Erreichbarkeit des Systems an. Schauen Sie sich die Ausgaben an,
 die `ping` gibt. 
 
-Lesen Sie den Absatz **TTL Details** der [ping(8) manpage](https://manpages.debian.org/bookworm/iputils-ping/ping.8.en.html).
+Lesen Sie den Absatz **TTL Details** der ping manpage.
 
-- [EQ] Erklären Sie den Begriff **ttl**.
+- [EQ] Unter welchen Umständen kann man einen korrekt funktionierenden Server,
+  der [PARTREF::SSH] anbietet, mit `ping` erreichen, aber nicht mit `ssh`?
+
+(Falls Sie Server finden möchten, die Sie anpingen dürfen und die "weit weg" sind,
+kann [meter.net](https://www.meter.net/tools/world-ping-test/) eine hilfreiche Quelle sein,
+z.B. die Seite [HREF::https://www.meter.net/test-server/102-vultr/].)
+
 
 ### Arbeiten mit [TERMREF::dig]
 

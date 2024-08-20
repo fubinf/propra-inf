@@ -40,7 +40,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Bestandscode
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->~~DM~~->LP)
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->LP)
 
 
 ### Debugging
@@ -53,7 +53,6 @@ We will modify these rules over time when others appear more useful.
 - ...
 
 ### Werkzeuge
-- ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP)
 - ch/Werkzeuge/Git/Git-Fehlerbehebung.md (Hüster->LP->SH->LP->SH->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP)
 
@@ -73,6 +72,7 @@ We will modify these rules over time when others appear more useful.
 
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC)  
   Siehe Notizen in der Datei. Schwierig!
+- ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP->IC)
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC)
 
@@ -99,7 +99,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ## Reviews to do for Sven Hüster
-- 
+
 - ch/Debugging/Debuggingtools/python-profiling.md (Hüster->LP->SH)  
   Siehe in der Datei.
 - ch/Sprachen/RegExp/log_sanitizer (Hüster->fertiggestellt-Prechelt->SH)
