@@ -216,7 +216,7 @@ als Python-Programm interpretieren.
   (Nicht wundern: es gibt in den Daten gar keine 5 verschiedenen)
 - [EC] Jetzt prüfen wir die Dateiformat-Automatik.
   Betrachten Sie  
-  `sed 's/,/   /g' $DATA | head -3`:  
+  `sed 's/,/    /g' $DATA | head -3`:  
   Das `sed`-Kommando schreibt unsere Eingabedaten so um, dass nun vier Blanks als Feldtrenner verwendet werden.
   Wir wiederholen die Geschlechter-Abfrage und erwarten das gleiche Ergebnis wie oben:  
 - [EC] `sed 's/,/   /g' $DATA | python . columnpercentage gender`
