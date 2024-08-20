@@ -46,6 +46,7 @@ body {
 
 code {
     background-color: #eee;
+    white-space: pre;
 }
 
 details {
