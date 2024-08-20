@@ -1025,6 +1025,16 @@ interagieren, ähnlich wie es ein menschlicher Bediener tun würde.
 
 ## S
 
+[TERM::Schlüsselwort|Keyword]
+Schlüsselwörter (Englisch: "keyword") nennt man reservierte Wörter oder Zeichenfolgen in Programmiersprachen.
+Sie sind Teil der Sprachsyntax und haben eine vordefinierte Bedeutung, die in der Sprachbeschreibung
+nachzulesen ist.
+Das steht im Gegensatz zu Namen ("identifier") in Programmen, deren Bedeutung sich nicht aus der Programmiersprache
+ergibt, sondern aus dem jeweiligen Programmtext.
+Schlüsselwörter können nicht als Namen für Variablen oder Funktionen oder 
+irgendwelche Elemente im Programm verwendet werden. 
+[ENDTERM]
+
 [TERM::Screenreader]
 Ein Screenreader ist eine spezielle Software, die es Menschen mit Sehbehinderungen oder Blindheit ermöglicht, auf die Inhalte eines Computerbildschirms zuzugreifen. Der Screenreader liest den Text auf dem Bildschirm mittels synthetischer Sprache vor und/oder konvertiert ihn in Brailleschrift, die dann auf einer angeschlossenen Braillezeile angezeigt wird.
 [ENDTERM]
@@ -1065,26 +1075,10 @@ und sich dann immer wieder aufrufen lässt.
 Fasst mehrere Kommandos zu einem zusammen, ggf. auch mit Schleifen oder Fallunterscheidungen.
 [ENDTERM]
 
-[TERM::Schlüsselwort|Keyword]
-Schlüsselwörter (Englisch: "keyword") nennt man reservierte Wörter oder Zeichenfolgen in Programmiersprachen.
-Sie sind Teil der Sprachsyntax und haben eine vordefinierte Bedeutung, die in der Sprachbeschreibung
-nachzulesen ist.
-Das steht im Gegensatz zu Namen ("identifier") in Programmen, deren Bedeutung sich nicht aus der Programmiersprache
-ergibt, sondern aus dem jeweiligen Programmtext.
-Schlüsselwörter können nicht als Namen für Variablen oder Funktionen oder 
-irgendwelche Elemente im Programm verwendet werden. 
-[ENDTERM]
-
 [TERM::SSH]
 Secure Shell (SSH) ist das meistgenutzte Protokoll, um sich auf entfernten Rechnern anzumelden. 
 Es ermöglicht eine sichere Remote-Verwaltung und den Datenaustausch über unsichere Netzwerke, 
 indem es Authentifizierung und Verschlüsselung verwendet.
-[ENDTERM]
-
-[TERM::Symlink|Symlinks]
-Symbolische Links sind Verknüpfungen auf Dateien oder Verzeichnisse, die an einem anderen Ort ist, 
-als die originale Datei. Sie bieten Flexibilität und ermöglichen es, auf Dateien oder 
-Verzeichnisse zuzugreifen, unabhängig von ihrem physischen Speicherort.
 [ENDTERM]
 
 [TERM::Statische analytische Qualitätssicherung]
@@ -1122,6 +1116,12 @@ Hierbei handelt es sich um ein Konzept in der Softwaretestung, das das System od
 bezeichnet, die gerade getestet wird. Es ist das Hauptziel des Testprozesses und wird auf mögliche
 Fehler, Schwachstellen oder Funktionsstörungen untersucht. Das SUT kann eine einzelne
 Softwareanwendung, ein Modul, eine Funktion oder sogar ein gesamtes System umfassen.
+[ENDTERM]
+
+[TERM::Symlink|Symlinks]
+Symbolische Links sind Verknüpfungen auf Dateien oder Verzeichnisse, die an einem anderen Ort ist, 
+als die originale Datei. Sie bieten Flexibilität und ermöglichen es, auf Dateien oder 
+Verzeichnisse zuzugreifen, unabhängig von ihrem physischen Speicherort.
 [ENDTERM]
 
 [TERM::Systemtest|System Test]
