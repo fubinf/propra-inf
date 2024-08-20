@@ -64,9 +64,6 @@ Verständnis des Protokolls nicht erschwert.
   Sie können alternativ auch ihre IDE benutzen, was einfacher sein dürfte.
   Allerdings ist es in vielen Notfällen hilfreich, `nano` bedienen zu können -- also
   vielleicht zumindest dieses eine Mal ausprobieren.
-- Wie Sie sehen, sieht das Protokoll plötzlich viel komplizierter aus.
-  Das liegt daran, dass Steuercodes jetzt sichtbar gemacht werden.
-  Die im Terminal von diesen Steuercodes bewirkte Farbigkeit ist hingegen verschwunden.
 - Schneiden Sie das Kommando `whoareyou` aus, samt des Shell-Prompts davor
   und der Fehlermeldung dahinter.
   Speichern Sie das Ergebnis und prüfen Sie es sorgfältig.
