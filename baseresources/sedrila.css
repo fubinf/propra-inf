@@ -522,6 +522,7 @@ summary {}
 
 .vwr-pre {
     white-space: pre;
+    tab-size: 8;
 }
 
 .vwr-promptidx {
