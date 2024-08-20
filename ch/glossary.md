@@ -1081,6 +1081,16 @@ Es ermöglicht eine sichere Remote-Verwaltung und den Datenaustausch über unsic
 indem es Authentifizierung und Verschlüsselung verwendet.
 [ENDTERM]
 
+[TERM::SQL Injection]
+Eine Angriffsmethode bei SQL Datenbanken, bei der durch geschickte Manipulation einer SQL Query 
+Befehle auf der Datenbank ausgeführt werden können. Um solche Injections zu verhindern, 
+sollten Vorkehrungen, wie die Bereinigung von User-Eingaben oder strikte Berechtigungsverwaltung,
+getroffen werden.
+
+[HREF::https://de.wikipedia.org/wiki/SQL-Injection]  
+[HREF::https://xkcd.com/327/]
+[ENDTERM]
+
 [TERM::Statische analytische Qualitätssicherung]
 Überprüfung von Softwareartefakten wie Code, Spezifikationen und Dokumentation,
 ohne dass die Software dabei ausgeführt wird.
@@ -1183,6 +1193,14 @@ Gegensatz ist das [TERMREF::GUI].
 [HREF::https://en.wikipedia.org/wiki/Text-based_user_interface]
 [ENDTERM]
 
+
+[TERM::Transaktion|transaction]
+Eine Bündelung von mehreren Aktionen auf einer Datenbank. Nur bei erfolgreicher Durchführung 
+aller Aktionen wird die Änderung auf die Datenbank geschrieben (Commit), andernfalls werden alle 
+Änderungen rückgängig gemacht (Rollback). So wird die Konsistenz der Datenbank sichergestellt.
+
+[HREF::https://www.datenbanken-verstehen.de/datenbank-grundlagen/dbms/datenbank-tansaktion/]
+[ENDTERM]
 
 [TERM::Tutorial]
 Ein kurzer Lehrgang (in der Regel in Schriftform, eventuell als Video)
