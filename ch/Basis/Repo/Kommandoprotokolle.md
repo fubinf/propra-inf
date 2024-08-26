@@ -140,7 +140,11 @@ Kontrollieren Sie deshalb vor dem Einchecken Ihr Protokoll bitte wie folgt:
   Sie erhalten ein Verzeichnislisting Ihres Arbeitsverzeichnisses.
 - Klicken Sie `Kommandoprotokolle.prot` an.
   Das öffnet die Ansicht auf Ihr Protokoll, die Ihre Tutor_in benutzen wird.
-- Überzeugen Sie sich, dass die Kommandonummern mit denen der Aufgabe übereinstimmen.
+- Die Ansicht sollte die Prompts in hübsch eingefärbt und durchnummeriert anzeigen.
+  Wenn nicht, ist das Format Ihres [PARTREF::Shellprompt]s nicht richtig;
+  dann bitte nochmal mit jener Aufgabe abgleichen.
+- Überzeugen Sie sich, dass die Kommandonummern mit denen der Aufgabe übereinstimmen;
+  insbesondere die letzte.
 - Beenden Sie den Webserver in der Shell durch Eingabe von Ctrl-C (bzw. Strg-C bzw. Command-C).
 
 War noch etwas verkehrt? Dann bitte nochmals korrigieren und kontrollieren.
