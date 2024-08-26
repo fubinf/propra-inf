@@ -101,12 +101,13 @@ Guter Anlaufpunkt: <https://refactoring.guru/>
 Hier liegen zahlreiche kleine Aufgaben, mit denen man einzelne oft benötigte Teile der 
 Python-Standardbibliothek ausprobiert.
 
-- itertools
-- functools
-- tempfile
+- itertools: eventuell eigenes kleines Modul zu funktionaler Programmierung in Python  
+  Idiome recherchieren, Vergleich zwischen Schleifen und Itertools, Betrachtung bzgl. 
+  Effizienz, Lesbarkeit und Python Idiomen (was ist eher Python-artig?)
+- functools: ähnlich wie oder in Verbindung mit itertools
 - glob
 - shutil
-- sqlite
+- abc
 - markup [DIFF::3]: Wahlaufgabe zum Bereich X="Structured Markup Processing Tools":
   Wählen Sie ein Modul aus dem Bereich X der Python-Standardbibliothek aus,
   das Sie noch nie benutzt haben.
@@ -125,8 +126,6 @@ Python-Standardbibliothek ausprobiert.
 - cryptoservice [DIFF::3]: Wahlaufgabe zum Bereich X="Cryptographic Services"
 - fileformat [DIFF::3]: Wahlaufgabe zum Bereich X="File Formats"
 - archives [DIFF::3]: Wahlaufgabe zum Bereich X="Data Compression and Archiving"
-
-Vermutlich ist das Dranschreiben von Profilen hier eine unsinnige Idee?
 
 ### Bibliotheken/chooselib (N.N.)
 
