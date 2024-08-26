@@ -119,7 +119,7 @@ Frage:
 [HINT::Inhalt von `sys.path`]
 Beschäftigen Sie sich hier mit zwei Lösungsansätzen:  
 Sie haben gelesen, dass `sys.path` auch die Pfade von `PYTHONPATH` beinhaltet.  
-1. `PYTHONPATH`: Sie könnten den Pfad zu der [TERMREF::Umgebeungsvariable] `PYTHONPATH` hinzufügen.
+1. `PYTHONPATH`: Sie könnten den Pfad zu der [TERMREF::Umgebungsvariable] `PYTHONPATH` hinzufügen.
 An welcher Stelle innerhalb von `sys.path` erscheinen die Pfade von `PYTHONPATH`?  
 2. `sys.path`: Alternativ können Sie den entsprechenden Pfad direkt zu `sys.path` hinzufügen.
 [ENDHINT]
