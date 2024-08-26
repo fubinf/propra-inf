@@ -264,7 +264,13 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   Falls es beim Abgeben der Aufgaben Probleme gibt, bitte die eigene sedrila-Installation mittels 
   `pipx upgrade sedrila` aktualisieren.
 - **2024-08-16**: Aufgabe Sprachen/Pythonpraxis/[PARTREF::mlh-columnpercentage] zugefügt.
-- **2024-08-26**: Aufgabe Werkzeuge/Git/[PARTREF::git-Fehlerbehebung] zugefügt.
+- **2024-08-26**: Aufgabe Werkzeuge/Git/[PARTREF::git-Fehlerbehebung] zugefügt.  
+  Neue Funktion `sedrila viewer`, siehe
+  [die Dokumentation](https://sedrila.readthedocs.io/en/latest/viewer/).
+  Dazu bitte auf Version 2.2.0 aktualisieren: `pipx upgrade sedrila`.  
+  Dadurch wird ein viel bequemeres Verfahren für Kommandoprotokolle möglich;
+  bitte nochmal die (entsprechend geänderte) Aufgabe [PARTREF::Kommandoprotokolle] lesen
+  und ab sofort einfach ohne weitere Umstände auf dieses Format wechseln.
 - ...
 
 
