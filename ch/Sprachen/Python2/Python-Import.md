@@ -5,7 +5,7 @@ difficulty: 3
 ---
 
 [SECTION::goal::idea]
-Ich weiß, wie ich externe Module in Python importieren kann, um sie in meinem Code zu verwenden.
+Ich kann in meinem Python-Programm Module strukturieren, importieren und nutzen.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -54,11 +54,6 @@ Worauf zeigt der erste Suchpfad in `sys.path`?
 [EQ] Sie öffnen Ihr Terminal und starten Python.  
 Was ist der erste Eintrag in `sys.path` in diesem Moment?
 Wie geht Python nun beim Importieren als Erstes vor?
-
-[NOTICE]
-Je nach Python-Version auf Ihrem System
-kann der Befehl zum Starten von Python entweder `python` oder `python3` heißen.
-[ENDNOTICE]
 
 [EQ] Betrachten Sie erneut die Verzeichnisstruktur in [EREFQ::1].
 Wir erstellen hier ein neues Modul namens `math.py` in `utils/`.
