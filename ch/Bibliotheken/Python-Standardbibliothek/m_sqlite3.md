@@ -1,5 +1,5 @@
 title: "sqlite3: lokales Datenbanksystem"
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 explains:
@@ -74,8 +74,8 @@ CREATE TABLE books (title TEXT, genre TEXT, already_read INTEGER)
 ```
 [ENDHINT]
 
-- [ER] Sie besitzen u.a. die folgenden Bücher: "Der Herr der Ringe" (Fantasy), "1984" (SciFi) und 
-  "The Art of Computer Programming" (Monografie). Die ersten beiden Bücher haben Sie bereits 
+- [ER] Sie besitzen u.a. die folgenden Bücher: "The Lord of The Rings" (Fantasy), "1984" (Fiction) 
+  und "The Art of Computer Programming" (Monograph). Die ersten beiden Bücher haben Sie bereits 
   gelesen. Tragen Sie alle drei Bücher entsprechend in die Tabelle `books` ein.
 
 [HINT::SQL-Befehl]
