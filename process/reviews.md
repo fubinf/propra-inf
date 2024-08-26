@@ -54,7 +54,6 @@ We will modify these rules over time when others appear more useful.
 - ...
 
 ### Werkzeuge
-- ch/Werkzeuge/Git/Git-Fehlerbehebung.md (Hüster->LP->SH->LP->SH->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
@@ -105,6 +104,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/RegExp/log_sanitizer (Hüster->fertiggestellt-Prechelt->SH)
 - ch/Werkzeuge/Git/Git-Anpassen.md (Hüster)
 - ch/Werkzeuge/Git/Git-Branches.md (Hüster->LP->SH->LP->SH)
+- ch/Werkzeuge/Git/Git-Fehlerbehebung.md (Hüster->LP->SH->LP->SH->LP->SH):
+  Musterlösung anpassen!
 - ch/Werkzeuge/Git/Git-Rebase.md (Hüster->LP->SH)
 - ...
 

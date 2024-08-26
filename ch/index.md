@@ -264,6 +264,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   Falls es beim Abgeben der Aufgaben Probleme gibt, bitte die eigene sedrila-Installation mittels 
   `pipx upgrade sedrila` aktualisieren.
 - **2024-08-16**: Aufgabe Sprachen/Pythonpraxis/[PARTREF::mlh-columnpercentage] zugefügt.
+- **2024-08-26**: Aufgabe Werkzeuge/Git/[PARTREF::git-Fehlerbehebung] zugefügt.
 - ...
 
 
