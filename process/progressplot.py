@@ -17,7 +17,7 @@ def plot_progress(df: pd.DataFrame, columns: list[str]):
     plt.axhline(y=300, color='darkblue', linestyle='dotted', linewidth=2, label='OK')
     plt.axhline(y=150, color='darkred', linestyle='dotted', linewidth=2, label='Failure')
     plt.plot(pd.to_datetime(['2024-01-01', '2024-04-01']), [0, 400], color='black', linestyle='dashed', linewidth=2)
-    plt.plot(pd.to_datetime(['2024-04-01', '2024-07-31']), [400, 400], color='black', linestyle='dashed', linewidth=2)
+    plt.plot(pd.to_datetime(['2024-04-01', '2025-03-31']), [400, 400], color='black', linestyle='dashed', linewidth=2)
     # ----- decoration:
     plt.xlabel('date')
     plt.ylabel('timevalue')
