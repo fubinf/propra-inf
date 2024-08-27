@@ -157,5 +157,5 @@ Nachdem wir das jetzt alles getestet haben, üben wir noch das ACL-Aufräumen.
 [ENDSECTION]
 
 [INSTRUCTOR::Erwartung]
-Beispiellösung siehe: [TREEREF::/Werkzeuge/Benutzerverwaltung/ACL_Kommandoprotokoll]
+[PROT::ALT:ACL.prot] 
 [ENDINSTRUCTOR]
