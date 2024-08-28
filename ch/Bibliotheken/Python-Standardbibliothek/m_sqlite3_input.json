@@ -1,0 +1,358 @@
+[{
+  "title": "Welcoming the Unwelcome",
+  "genre": "Self-Help"
+}, {
+  "title": "Pragmatic Thinking and Learning",
+  "genre": "Learning"
+}, {
+  "title": "Starry Messenger",
+  "genre": "Science"
+}, {
+  "title": "Grokking Algorithms",
+  "genre": "Programming"
+}, {
+  "title": "The Laws of Human Nature",
+  "genre": "Psychology"
+}, {
+  "title": "Homo Deus",
+  "genre": "Science"
+}, {
+  "title": "Sapiens",
+  "genre": "Science"
+}, {
+  "title": "The Wise Heart",
+  "genre": "Buddhism"
+}, {
+  "title": "Anger",
+  "genre": "Buddhism"
+}, {
+  "title": "Breath! You Are Alive",
+  "genre": "Buddhism"
+}, {
+  "title": "Enchridon",
+  "genre": "Philosophy"
+}, {
+  "title": "Up From Slavery",
+  "genre": "Biography"
+}, {
+  "title": "Zen Mind, Beginner's Mind",
+  "genre": "Buddhism"
+}, {
+  "title": "You Are Here",
+  "genre": "Buddhism"
+}, {
+  "title": "The Secrets of Power, Mastery, and Truth",
+  "genre": "Philosophy"
+}, {
+  "title": "Why Buddhism is True",
+  "genre": "Buddhism"
+}, {
+  "title": "Life is Disappointing",
+  "genre": "Self-Help"
+}, {
+  "title": "The Heart of the Buddha's Teaching",
+  "genre": "Buddhism"
+}, {
+  "title": "How to Raise Successful People",
+  "genre": "Parenting"
+}, {
+  "title": "The Clean Coder",
+  "genre": "Programming"
+}, {
+  "title": "The Daily Laws",
+  "genre": "Philosophy"
+}, {
+  "title": "A Man at Arms",
+  "genre": "Fiction"
+}, {
+  "title": "When Things Fall Apart",
+  "genre": "Self-Help"
+}, {
+  "title": "Hell Yeah or No",
+  "genre": "Self-Help"
+}, {
+  "title": "How to Live",
+  "genre": "Self-Help"
+}, {
+  "title": "The Pragmatic Programmer",
+  "genre": "Programming"
+}, {
+  "title": "Clean Code",
+  "genre": "Programming"
+}, {
+  "title": "Inner Engineering",
+  "genre": "Self-Help"
+}, {
+  "title": "The Choice",
+  "genre": "Self-Help"
+}, {
+  "title": "The Prophet",
+  "genre": "Philosophy"
+}, {
+  "title": "Emotional Intelligence 2.0",
+  "genre": "Self-Help"
+}, {
+  "title": "Tools of Titans",
+  "genre": "Productivity"
+}, {
+  "title": "JavaScript: The Definitive Guide",
+  "genre": "Programming"
+}, {
+  "title": "Walden and Civil Disobedience",
+  "genre": "Philosophy"
+}, {
+  "title": "White Fang",
+  "genre": "Fiction"
+}, {
+  "title": "Surely You're Joking, Mr. Feynman!",
+  "genre": "Autobiography"
+}, {
+  "title": "Peaceful Parent, Happy Siblings",
+  "genre": "Parenting"
+}, {
+  "title": "The Four Agreements",
+  "genre": "Self-Help"
+}, {
+  "title": "The Bhagavad Gita",
+  "genre": "Spiritual"
+}, {
+  "title": "Wherever You Go, There You Are",
+  "genre": "Self-Help"
+}, {
+  "title": "Walking",
+  "genre": "Philosophy"
+}, {
+  "title": "JavaScript: The Good Parts",
+  "genre": "Programming"
+}, {
+  "title": "How to Read a Book",
+  "genre": "Academic"
+}, {
+  "title": "Turning Pro",
+  "genre": "Self-Help"
+}, {
+  "title": "The War of Art",
+  "genre": "Self-Help"
+}, {
+  "title": "The Call of the Wild",
+  "genre": "Fiction"
+}, {
+  "title": "Peaceful Parent, Happy Kids",
+  "genre": "Parenting"
+}, {
+  "title": "The Warrior Ethos",
+  "genre": "Motivation"
+}, {
+  "title": "Discipline Equals Freedom",
+  "genre": "Self-Help"
+}, {
+  "title": "Stillness Is the Key",
+  "genre": "Self-Help"
+}, {
+  "title": "Ego Is the Enemy",
+  "genre": "Self-Help"
+}, {
+  "title": "The Obstacle Is the Way",
+  "genre": "Self-Help"
+}, {
+  "title": "Man's Search for Meaning",
+  "genre": "Psychology"
+}, {
+  "title": "The Diamond Age",
+  "genre": "Science Fiction"
+}, {
+  "title": "The Hobbit",
+  "genre": "Fantasy"
+}, {
+  "title": "Total Control",
+  "genre": "Motorcycling"
+}, {
+  "title": "A Wrinkle In Time",
+  "genre": "Fiction"
+}, {
+  "title": "Habit Stacking",
+  "genre": "Self-Help"
+}, {
+  "title": "Murder on the Orient Express",
+  "genre": "Mystery"
+}, {
+  "title": "Extreme Ownership",
+  "genre": "Leadership"
+}, {
+  "title": "Ghost Rider",
+  "genre": "Travel"
+}, {
+  "title": "The Virtues of War",
+  "genre": "Fiction"
+}, {
+  "title": "The Revenge of Analog",
+  "genre": null
+}, {
+  "title": "12 Rules for Life",
+  "genre": "Self-Help"
+}, {
+  "title": "Zen and the Art of Motorcycle Maintenance",
+  "genre": "Philosophy"
+}, {
+  "title": "The Road",
+  "genre": "Fiction"
+}, {
+  "title": "Proficient Motorcycling",
+  "genre": "Motorcycling"
+}, {
+  "title": "Traffic",
+  "genre": null
+}, {
+  "title": "The Power of Moments",
+  "genre": null
+}, {
+  "title": "The Five People You Meet in Heaven",
+  "genre": "Fiction"
+}, {
+  "title": "For One More Day",
+  "genre": "Fiction"
+}, {
+  "title": "Why Gender Matters",
+  "genre": "Parenting"
+}, {
+  "title": "The Collapse of Parenting",
+  "genre": "Parenting"
+}, {
+  "title": "Just Mercy",
+  "genre": "Autobiography"
+}, {
+  "title": "Gates of Fire",
+  "genre": "Fiction"
+}, {
+  "title": "Seveneves",
+  "genre": "Science Fiction"
+}, {
+  "title": "The Daily Stoic",
+  "genre": "Philosophy"
+}, {
+  "title": "Meditations: A New Translation",
+  "genre": "Philosophy"
+}, {
+  "title": "When Breath Becomes Air",
+  "genre": "Memoir"
+}, {
+  "title": "100 Deadly Skills",
+  "genre": null
+}, {
+  "title": "Beneath a Scarlet Sky",
+  "genre": "Fiction"
+}, {
+  "title": "So Good They Can't Ignore You",
+  "genre": null
+}, {
+  "title": "Be Prepared",
+  "genre": "Parenting"
+}, {
+  "title": "The Expectant Father",
+  "genre": "Parenting"
+}, {
+  "title": "Let Them Eat Dirt",
+  "genre": "Parenting"
+}, {
+  "title": "With the Old Breed",
+  "genre": "War"
+}, {
+  "title": "Bad Science",
+  "genre": null
+}, {
+  "title": "The 5 Love Languages",
+  "genre": null
+}, {
+  "title": "The 7 Habits of Highly Effective People",
+  "genre": null
+}, {
+  "title": "Ender's Game",
+  "genre": "Science Fiction"
+}, {
+  "title": "Resilience",
+  "genre": null
+}, {
+  "title": "Some We Love, Some We Hate, Some We Eat",
+  "genre": null
+}, {
+  "title": "The Power of Habit",
+  "genre": null
+}, {
+  "title": "The Circle",
+  "genre": "Fiction"
+}, {
+  "title": "Animal Farm",
+  "genre": "Fiction"
+}, {
+  "title": "The 4-Hour Work Week",
+  "genre": "Productivity"
+}, {
+  "title": "Spartan Up",
+  "genre": "Fitness"
+}, {
+  "title": "The Big Picture",
+  "genre": "Fitness"
+}, {
+  "title": "The Way of the SEAL",
+  "genre": null
+}, {
+  "title": "Foreign Enemies And Traitors",
+  "genre": "Fiction"
+}, {
+  "title": "Domestic Enemies: The Reconquista",
+  "genre": "Fiction"
+}, {
+  "title": "Enemies Foreign and Domestic",
+  "genre": null
+}, {
+  "title": "Service",
+  "genre": "Biography"
+}, {
+  "title": "American Sniper",
+  "genre": "Autobiography"
+}, {
+  "title": "Lone Survivor",
+  "genre": "War"
+}, {
+  "title": "Inside SEAL Team Six",
+  "genre": "Military"
+}, {
+  "title": "Navy SEAL Training: Self-Confidence ",
+  "genre": null
+}, {
+  "title": "A Dance with Dragons",
+  "genre": "Fantasy"
+}, {
+  "title": "A Feast for Crows",
+  "genre": "Fantasy"
+}, {
+  "title": "A Storm of Swords",
+  "genre": "Fantasy"
+}, {
+  "title": "A Clash of Kings",
+  "genre": "Fantasy"
+}, {
+  "title": "A Game of Thrones",
+  "genre": "Fantasy"
+}, {
+  "title": "Harry Potter and the Deathly Hallows",
+  "genre": "Fantasy"
+}, {
+  "title": "Harry Potter and the Half-Blood Prince",
+  "genre": "Fantasy"
+}, {
+  "title": "Harry Potter and the Order of the Phoenix",
+  "genre": "Fantasy"
+}, {
+  "title": "Harry Potter And The Goblet Of Fire",
+  "genre": "Fantasy"
+}, {
+  "title": "Harry Potter And The Prisoner Of Azkaban",
+  "genre": "Fantasy"
+}, {
+  "title": "Harry Potter and the Chamber of Secrets",
+  "genre": "Fantasy"
+}, {
+  "title": "Harry Potter and the Sorcerer's Stone",
+  "genre": "Fantasy"
+}]

@@ -115,12 +115,19 @@ noch nicht verfügbar.
 
 ### Datensätze importieren
 
-Sie haben nun diese Liste an Büchern gefunden und wollen sie ihrer Datenbank hinzufügen, mit dem 
-Vorhaben sie zukünftig lesen zu wollen:  
-[HREF::https://github.com/alexpeterhall/reading-list/blob/master/ReadingList.json]
+Sie haben eine Liste an Büchern in 
+[diesem Repository](https://github.com/alexpeterhall/reading-list/blob/master/ReadingList.json) 
+gefunden und wollen die Bücher ihrer Datenbank hinzufügen, mit dem Vorhaben sie zukünftig lesen 
+zu wollen. Die Datei haben Sie bereits bereinigt:
 
-- [ER] Speichern Sie die Datei und importieren Sie die Daten aus der Datei mithilfe der `json` 
-  Bibliothek.
+[FOLDOUT::JSON-Datei]
+```JSON
+[INCLUDE::m_sqlite3_input.json]
+```
+[ENDFOLDOUT]
+
+- [ER] Speichern Sie die Daten aus dem Foldout als JSON Datei und importieren Sie sie mithilfe 
+  der `json` Bibliothek.
 - [ER] Verwenden Sie eine geeignete Funktion des Cursors, um die Daten aus der JSON Datei in die 
   Tabelle `books` zu importieren.
 
