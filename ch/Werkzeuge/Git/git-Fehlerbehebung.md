@@ -83,7 +83,8 @@ Lesen Sie den Abschnitt "Unstaging a Staged File" und tun Sie dann dies:
   Dateien haben, z.B. "Ich bin add.md" und "Ich bin remove.md".
 - [EC] `git status` zeigt die zwei Zufügungen.
 - [EC] Entfernen Sie die Datei `remove.md` aus der Staging-Area.
-- [EC] `git show` zeigt für den Index nur noch `add.md`, wogegen `remove.md` nur noch "geändert" ist.
+- [EC] `git status` zeigt für den Index nur noch `add.md`, wogegen `remove.md` nicht mehr von 
+  git "getrackt" wird.
 - [EC] Erstellen Sie nun einen Commit für `add.md` mit einer sinnvollen Commit-Nachricht. 
 - [EC] Nun einen weiteren Commit für `remove.md`, ebenfalls mit einer sinnvollen Commit-Nachricht.
   (Achtung: dies ist nur _ein_ Schritt im Kommandoprotokoll.)
