@@ -1,5 +1,5 @@
 title: Access Control Lists für Dateien
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: apt, Gruppen, sudo, Shell-Grundlagen2, Umgang-mit-Verzeichnissen
@@ -156,6 +156,6 @@ Nachdem wir das jetzt alles getestet haben, üben wir noch das ACL-Aufräumen.
 
 [ENDSECTION]
 
-[INSTRUCTOR::Erwartung]
+[INSTRUCTOR::Kommandprotokoll]
 [PROT::ALT:ACL.prot] 
 [ENDINSTRUCTOR]

@@ -67,8 +67,6 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ivan Condric
 
-- ch/Werkzeuge/Benutzerverwaltung/ACL.md (Condric->LP->IC->LP->IC->LP->IC)  
-
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC)  
   Siehe Notizen in der Datei. Schwierig!
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP->IC)
