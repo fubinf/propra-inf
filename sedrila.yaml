@@ -195,8 +195,8 @@ chapters:
       - name: Betriebsumgebung
   - name: Debugging
     taskgroups:
-      - name: Debugging-Denken
       - name: Häufige-Defektarten
+      - name: Debugging-Denken
       - name: Debuggingtools
       - name: Debugging-Praxis
   - name: Bestandscode
