@@ -6,12 +6,9 @@ assumes: m_pytest, tdd, tdd_pp, m_testcoverage
 requires: GitHubDeployment
 ---
 
-- Aber bitte stellen Sie die Tests auf pytest um, sodass unittest nur der Vollständigkeit halber
-  eingeführt wird und nicht viel Gewicht bekommt, denn das würde irreführen.
-
 [SECTION::goal::idea]
 
-- Ich kann vorhandene Unittests in meiner Pipeline ausführen.
+- Ich kann vorhandene Unittests in meiner Pipeline mit Pytest ausführen.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -79,7 +76,7 @@ Jetzt wollen wir unsere Code Coverage automatisiert messen.
 - [EREFR::1] Die Reihenfolge sollte so aussehen:
 
 ```yaml
-name: System under Test
+name: System Under Test
 
 on:
   push:
@@ -143,13 +140,12 @@ jobs:
     - name: Create Coverage Report
       run: |
         cd v1.0.0
-        # coverage run -m unittest discover -s tests/unittests -p '*_tests.py'
         coverage run -m pytest tests/pytests/app_tests.py
         coverage report
 ```
 
 - [EREFR::4] Das kann folgendermaßen realisiert werden:
-- [EREFQ::3] Sollte so aussehen (Werte sind aber abhängig davon, welche Übungen zurvor durcheführt wurden)
+- [EREFQ::3] Sollte so aussehen (Werte sind aber abhängig davon, welche Übungen zuvor durchgeführt wurden)
 
 ```bash
   user = User.query.get(session['user_id'])
@@ -186,7 +182,7 @@ TOTAL                            160     55    66%
 Zusammengefasst sieht die workflow-Datei wie folgt aus:
 
 ```yaml
-name: System under Test
+name: System Under Test
 
 on:
   push:
@@ -226,7 +222,6 @@ jobs:
     - name: Create Coverage Report
       run: |
         cd v1.0.0
-        # coverage run -m pytest discover -s tests/unittests -p '*_tests.py'
         coverage run -m pytest tests/pytests/app_tests.py
         coverage report
         coverage xml -o coverage.xml

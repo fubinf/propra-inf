@@ -49,6 +49,7 @@ We will modify these rules over time when others appear more useful.
 
 ### Testen
 - ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP)
+  Kleinere Schönheitsanpassungen.
 
 ### Web
 - ...
@@ -156,7 +157,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP->RR)
 - ch/Testen/Unittests/m_testcoverage.md (RR->LP->RR)
 - ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
-- ch/Testen/Unittests/Github-Build2.md (RR->LP->RR)
 - ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
 - ch/Testen/Unittests/pytest103.md (Pietrak und RR->DM->LP->RR)
 - ch/Testen/Unittests/pytest201.md (RR->DM->LP->RR)
