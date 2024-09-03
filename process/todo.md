@@ -50,17 +50,24 @@ Verwendungsweise:
 
 In alphabetischer Reihenfolge der Dateinamen.
 
-- sedrila.css: Farben besser abstimmen. 
-  Evtl. Farbschema von creativecommons benutzen?
-  https://creativecommons.org/mission/downloads/ ganz unten.
-- Git101: Wie geht denn die Installation? Wo sind die Hyperlinks zu den URLs? 
+Einzelaufgaben:
+
+- `Git101`: Wie geht denn die Installation? Wo sind die Hyperlinks zu den URLs? 
   Was bedeutet Klonen?
-- Werkzeuge/Unix-Basiswerkzeuge: Wir brauchen eine Mininmaleinführung namens
+- `m_argparse`: Musterlösung machen; `argparsetest.py` umbenennen.
+- `Unix-Basiswerkzeuge`: Wir brauchen eine Mininmaleinführung namens
   `Shell-Grundlagen` als brauchbare Aufgabe.
+
+Sonderdateien:
+
 - `glossary.md`: Bitte jeder durchgehen und ergänzen:  
   Was fehlt an Begriffen zu eigenen Aufgaben?  
   Was fehlt an Verweisen zwischen existierenden Begriffen und Aufgaben?
+- `sedrila.css`: Farben besser abstimmen. 
+  Evtl. Farbschema von creativecommons benutzen?
+  https://creativecommons.org/mission/downloads/ ganz unten.
 - Aufgaben umbenennen: Häufige-Defektarten/*
+
 
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
