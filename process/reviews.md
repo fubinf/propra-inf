@@ -34,6 +34,7 @@ We will modify these rules over time when others appear more useful.
 
 ### Sprachen
 
+- ch/Sprachen/Python2/Python-Function-Arguments-Basic.md (HA->LP)
 - ch/Sprachen/Python2/Python-import.md (HA->LP->HA->LP)
 
 ### Bibliotheken
