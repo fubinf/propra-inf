@@ -1,5 +1,5 @@
 title: Importieren in Python
-stage: alpha
+stage: draft
 timevalue: 2
 difficulty: 3
 ---
