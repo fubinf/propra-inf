@@ -18,7 +18,8 @@ Ich glaube, diese Aufgabe sollten wir auflösen und verteilen:
   Dafür brauchen wir passende Glossareinträge und an den richtigen Stellen in den
   Kapiteln Debugging und Testen Verweise auf die.
   Bitte betätigen Sie sich in diese Richtung.
-
+- Sehen Sie vor diesem Hintergrund noch etwas, das praktisch ist und in diese Aufgabe passt?
+  Mir fällt nichts ein. Dann sollte die Aufgabe ganz weg.
 
 [SECTION::goal::trial]
 
