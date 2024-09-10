@@ -51,7 +51,6 @@ We will modify these rules over time when others appear more useful.
 - ...
 
 ### Werkzeuge
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
 
@@ -69,6 +68,7 @@ We will modify these rules over time when others appear more useful.
   Siehe Notizen in der Datei. Schwierig!
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP->IC)
 
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP->IC)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC)
 
 - ch/Werkzeuge/Netzwerk/traceroute.md: (kommt noch)  
