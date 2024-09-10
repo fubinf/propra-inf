@@ -1,12 +1,12 @@
 title: Tabellen in HTML
-stage: draft
-timevalue: 0.75
+stage: alpha
+timevalue: 1
 difficulty: 2
 assumes: HTMLErsteSchritte, HTMLMedien
 ---
 [SECTION::goal::experience]
 
-- Ich kann Tabellen in HTML verwenden.
+- Ich kann einfache und komplexere Tabellen in HTML konstruieren.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -23,12 +23,15 @@ Diese Aufgabe beschäftigt sich damit, Tabellen zu erstellen.
 
 [ER] Erstellen Sie eine Website `HTMLTabellen.html` mit passendem Menü und Überschrift. 
 Tabellen benutzen das HTML-Element `<table>`.
-Erstellen Sie eine einfache Tabelle mit zwei Zeilen und drei Spalten, z.B.
+Erstellen Sie eine einfache Tabelle mit zwei Zeilen und drei Spalten:
 
-
+```text
+|----------------------------------------------|
 | Umsatz      | Gewinn       | Ausgaben        |
 |-------------|--------------|-----------------|
 | 5,000,000 € | 1,200,000 €  | 3,800,000 €     |
+|----------------------------------------------|
+```
 
 Bei SelfHTML finden Sie unter 
 [Aufbau einer Tabelle](https://wiki.selfhtml.org/wiki/HTML/Tabellen/Aufbau_einer_Tabelle)
@@ -38,7 +41,7 @@ einen Überblick, wie das funktioniert.
 kann es sinnvoll sein, wenn sich die Überschriften oder auch Summen der Tabellen wiederholen,
 wenn man die Tabelle z.B. ausdrucken will. 
 Dazu kann die Tabelle in Kopf, Hauptteil und Fuß aufgeteilt werden: `<thead>`, `<tbody>` und `<tfoot>`. 
-Setzen Siedies für Ihre Tabelle um.
+Setzen Sie dies für Ihre Tabelle um.
 
 [ER] Hin und wieder möchte man auch Tabellenzellen haben, die mehrere Spalten oder Zeilen überspannen. 
 Auch dafür gibt es mit den Attributen `colspan` und `rowspan` Lösungen.
@@ -83,5 +86,6 @@ Um der Tabelle Rahmen und Styling zu geben, sollten Sie [PARTREF::CSS] verwenden
 [ENDSECTION]
 
 [INSTRUCTOR::Musterlösung]
-TODO_1_Muellers
+
+Eine Musterlösung findet sich in [TREEREF::/Web/HTML/HTMLTabellen.html].
 [ENDINSTRUCTOR]
