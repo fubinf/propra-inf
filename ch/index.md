@@ -271,6 +271,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   Dadurch wird ein viel bequemeres Verfahren für Kommandoprotokolle möglich;
   bitte nochmal die (entsprechend geänderte) Aufgabe [PARTREF::Kommandoprotokolle] lesen
   und ab sofort einfach ohne weitere Umstände auf dieses Format wechseln.
+- **2024-09-10**: Aufgabe Web/HTML/[PARTREF::HTMLTabellen] zugefügt.
 - ...
 
 
