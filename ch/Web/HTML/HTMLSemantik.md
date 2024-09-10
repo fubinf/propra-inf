@@ -1,6 +1,6 @@
 title: Semantik in HTML
-stage: alpha
-timevalue: 0.75
+stage: beta
+timevalue: 1
 difficulty: 2
 requires: HTMLErsteSchritte, HTMLMedien
 ---
