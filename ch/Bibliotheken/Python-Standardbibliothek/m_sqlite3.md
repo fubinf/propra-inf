@@ -15,19 +15,20 @@ Ich kenne die Funktionsweise von SQLite und kann dieses Datenbanksystem in Pytho
 
 [SECTION::background::default]
 
-Es gibt viele verschiedene Anbieter von Datenbanksystemen (z.B. mySQL, MS SQL, Oracle DB ...) die 
-jeweils unterschiedliche Eigenschaften mitbringen. Einen Datenbankserver aufzusetzen und 
-anschließend zu administrieren ist aber zeit- und ressourcenaufwändig. Für viele Projekte ist so 
-eine Infrastruktur auch gar nicht notwendig, z.B. wenn Daten nur lokal auf dem System vorliegen 
-müssen.
+Es gibt viele verschiedene Datenbanksysteme (z.B. mySQL, MS SQL, Oracle DB ...), die 
+unterschiedliche Eigenschaften mitbringen. 
+Einen Datenbankserver aufzusetzen und anschließend zu administrieren ist zeit- und ressourcenaufwändig. 
+Für viele Projekte ist so eine Infrastruktur aber gar nicht notwendig, z.B. wenn Daten nur 
+lokal auf dem System vorliegen müssen.
 
-Hier kommt SQLite ins Spiel, eine C-Bibliothek, die lokale und leichtgewichtige SQL Datenbanken 
-erzeugt und verwendet. Um diese Bibliothek auch in Python verwenden zu können, gibt es das Modul 
+Dann kann SQLite hilfreich sein: eine C-Bibliothek, die leichtgewichtig lokale SQL Datenbanken 
+erzeugt und verwendet. 
+Um diese Bibliothek in Python verwenden zu können, gibt es das Modul 
 [sqlite3](https://docs.python.org/3/library/sqlite3.html).
 
 [NOTICE]
 Diese Aufgabe beschäftigt sich hauptsächlich mit der Verwendung der SQLite-Bibliothek. 
-Kenntnisse in Datenbanksystemen und SQL werden hier nicht vorausgesetzt, aber auch nicht 
+Kenntnisse in Datenbanksystemen und SQL werden nicht vorausgesetzt, aber auch nicht 
 vermittelt. Sobald SQL-Queries gebraucht werden, werden diese als Hints bereitgestellt. Nutzen 
 Sie diese, wenn Sie keine SQL Kenntnisse haben oder eine Musterlösung zur Kontrolle benötigen.
 [ENDNOTICE]
@@ -38,8 +39,9 @@ Sie diese, wenn Sie keine SQL Kenntnisse haben oder eine Musterlösung zur Kontr
 
 ### Vorbereitungen
 
-- Machen Sie sich mit der
+- Machen Sie sich mit der Abschnittstruktur der
   [Dokumentation von `sqlite3`](https://docs.python.org/3/library/sqlite3.html) vertraut.
+  Entnehmen Sie dieser Dokumentation dann in jedem Schritt unten die entsprechende Information.
 - Legen Sie die Datei `m_sqlite3.py` an und benutzen Sie diese Datei für den Rest der 
   Aufgabe. 
   Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile 
@@ -54,8 +56,9 @@ Wenn die Daten nur zur Laufzeit benötigt werden und nicht persistent gespeicher
 kann auch eine temporäre Datenbank im Arbeitsspeicher erstellt werden, die nach Ende des 
 Programms gelöscht wird.
 
-- [ER] Initiieren Sie eine SQLite-Datenbank. Im Sinne der Aufgabe soll die Datenbank nur im 
-  Arbeitsspeicher vorliegen, damit bei wiederholter Ausführung immer dasselbe Ergebnis herauskommt.
+- [ER] Erzeugen Sie eine SQLite-Datenbank. 
+  Damit bei wiederholter Ausführung unseres Programms immer dasselbe Ergebnis herauskommt,
+  soll die Datenbank nur im Arbeitsspeicher vorliegen.
 - [ER] Um überhaupt Queries auf der Datenbank ausführen zu können, benötigen Sie einen 
   sogenannten Cursor. Erzeugen Sie so ein Objekt.
 
@@ -106,8 +109,8 @@ passenden Zeitpunkt hierfür zu wählen überlässt SQLite dem Programmierer. Le
 für mehr Informationen. 
 
 [NOTICE]
-Das im Abschnitt erwähnte `autocommit` Attribut existiert erst ab Python 3.12, ist für uns also 
-noch nicht verfügbar.
+Das im Abschnitt erwähnte `autocommit` Attribut existiert erst ab Python 3.12.
+In früheren Versionen ist es noch nicht verfügbar.
 [ENDNOTICE]
 
 - [ER] Sorgen Sie dafür, dass die Daten fest in die Datenbank geschrieben werden. Achten Sie 
