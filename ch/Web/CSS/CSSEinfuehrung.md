@@ -13,7 +13,7 @@ requires: HTMLErsteSchritte
 [ENDSECTION]
 [SECTION::background::default]
 
-[TERMREF::CSS] wird benutzt um [TERMREF2::HTML::--Dokumente] mit Layout und Design zu versehen. 
+[TERMREF::CSS] wird benutzt um [TERMREF2::HTML::HTML-Dokumente] mit Layout und Design zu versehen. 
 Diese Aufgabe beschäftigt sich damit, wie CSS in HTML zur Anwendung kommt und mit ersten Selektoren und Eigenschaften.
 
 [ENDSECTION]
@@ -93,13 +93,14 @@ Hierbei entfallen dann Selektor und geschweifte Klammern, denn der Bezug zum HTM
 
 ### Ausprobieren!
 
-Als Grundlage für das Experimentieren mit CSS soll das erstellte Dokument aus [PARTREF::HTMLErsteSchritte] verwendet werden.
+Als Grundlage für das Experimentieren mit CSS soll das erstellte Dokument aus [PARTREF::HTMLErsteSchritte] verwendet werden. 
+Erstellen Sie eine Kopie als `CSSEinfuehrung-index.html`.
 
 [ER] Zunächst soll die Hauptüberschrift auf der Seite zentriert werden. 
 Benutzen Sie dafür die CSS-Eigenschaft `text-align` mit dem Wert `center`. 
 Ändern Sie außerdem die Schriftfarbe zu einem Python-gerechten Blau. Verwenden Sie ein `style`-Attribut.
 
-[ER] Ändern Sie nun die Hintergrundfarbe der Webseite mittels eines externen Stylesheets. 
+[ER] Ändern Sie nun die Hintergrundfarbe der Webseite mittels eines externen Stylesheets `CSSEinfuehrung.css`. 
 Um den gesamten Inhalt der Website zu beinflussen, kann man das `body`-Element selektieren.
 
 [ER] Ändern Sie Schriftart, Schriftgröße und Schriftstärke für Absätze und Listen auf der Seite. 
