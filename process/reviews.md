@@ -47,8 +47,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Testen
-- ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP)
-  Kleinere Schönheitsanpassungen.
 
 ### Web
 - ...
@@ -138,7 +136,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/API/CRUDApi.md (RR->CH->LP->RR)
 - ch/Testen/API/RestApi.md (RR->CH->LP->RR)
 
-- ch/Testen/Betriebsumgebung/GitHubDeployment (RR->LP->RR)
+- ch/Testen/Betriebsumgebung/GitHubDeployment.md (RR->LP->RR)
+- ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP->RR)  
+  Bitte erst die requires-Voraussetzung GitHubDeployment fertig machen.
 
 - ch/Testen/Testframeworks/index.md (RR->CH->LP->RR)
 - ch/Testen/Testframeworks/Robot.md (RR->CH->LP->RR->LP->RR)
