@@ -138,6 +138,12 @@ instructors:
       z1MtW0LhLpq6XKpAc0pJociuahL2JiGXI5ifr3tCAQDW3PJA8JsoR+jZV19SXSvl
       wiYnMRzZ9E6brfoWxssDAw==
       =o7me
+  - nameish: Max Willert
+    email: max.willert@fu-berlin.de
+    gitaccount: willerma
+    webaccount: willerma
+    keyfingerprint: "-"
+    pubkey: "-"
   - nameish: Ronny
     email: ronnyruhe@icloud.com
     gitaccount: ronnyruhe
