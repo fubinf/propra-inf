@@ -1216,7 +1216,7 @@ um ihren Lernerfolg zu verbreitern.
 
 ## U
 
-[TERM::Umgebungsvariable|environment variable]
+[TERM::Umgebungsvariable|Umgebungsvariablen|environment variable]
 Ein Paar aus Name und Wert, das einem Prozess eines Unix-Betriebssystems zugeordnet ist
 und an von diesem Prozess aus gestartete Unterprozesse weitergegeben wird und deshalb zur
 Ausführungsumgebung beider Prozesse gezählt wird.

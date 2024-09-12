@@ -35,6 +35,7 @@ We will modify these rules over time when others appear more useful.
 ### Sprachen
 - ch/Sprachen/Python2/Python-Function-Arguments-Basic.md (HA->LP->HA->LP)
 - ch/Sprachen/Python2/Python-Function-Arguments-Advanced.md (HA->LP)
+- ch/Sprachen/Python2/Python-Context-Managers.md (HA->LP)
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
