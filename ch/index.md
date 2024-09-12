@@ -206,7 +206,7 @@ Wie Sie Genaueres herausfinden, lernen Sie im Basis-Kapitel.
 ## 3. Anmerkung zum Gendern
 
 <replacement id="genderregel">
-[Eigentlich](https://www.fu-berlin.de/sites/diversity/antidiskriminierung/sprache/gender/index.html#Regelung)
+[Eigentlich](https://www.fu-berlin.de/sites/diversity/antidiskriminierung/formen/sprache/gender/index.html)
 soll an der Freien Universität mit dem Genderstern gegendert werden:
 **Tutor*innen.**
 </replacement>
