@@ -27,7 +27,7 @@ then the `instructor` command during the course.
     - if the course will be served by an Apache webserver, adapt `htaccess_template`.  
       Then you can simply copy the entire generated tree (containing both the student
       version and the instructor version of the website) into a publicly visible directory.
-      The `htaccess_template` will result in an `.htacess` file that grants visibility of the
+      The `htaccess_template` will result in an `.htaccess` file that grants visibility of the
       instructor part to instructors only.  
       If you are using a different webserver, you need to solve this problem yourself.
 6. Perform `sedrila author --config my-sedrila.yaml --include_stage beta out`.
