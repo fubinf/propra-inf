@@ -1,4 +1,4 @@
-title: <code>with</code> und Kontextmanager in Python
+title: "'with' und Kontextmanager in Python"
 stage: alpha
 timevalue: 1.5
 difficulty: 2
@@ -19,27 +19,30 @@ Ein häufiges Problem tritt auf, wenn Ressourcen nicht ordnungsgemäß geschloss
 insbesondere im Falle von Fehlern. 
 
 Kontextmanager bieten eine elegante Lösung, 
-indem sie die automatische Verwaltung und korrekte Freigabe von Ressourcen übernehmen. 
-Besonders in Situationen, die Einrichtungs- und Aufräumphasen umfassen, 
-erleichtern Kontextmanager den gesamten Prozess und gewährleisten eine effiziente Kontrolle.
-
-Bei der Bearbeitung der Fragen in dieser Aufgabe können Ihnen 
-[*"Context Managers and Python's with Statement"*](https://realpython.com/python-with-statement/) 
-und 
-[*" Understanding "with" and Python's context managers "*](https://www.youtube.com/watch?v=i3iqByWM7ic&ab_channel=PythonandPandaswithReuvenLerner)
-(Video) unterstützen.
+indem sie die automatische Verwaltung und korrekte Freigabe von Ressourcen übernehmen.
 
 [ENDSECTION]
 
 [SECTION::instructions::loose]
 
+Nutzen Sie bei der Bearbeitung der Fragen in dieser Aufgabe insbesondere folgende Quellen: 
+[*"Context Managers and Python's with Statement"*](https://realpython.com/python-with-statement/) 
+und 
+[*" Understanding "with" and Python's context managers "*](https://www.youtube.com/watch?v=i3iqByWM7ic&ab_channel=PythonandPandaswithReuvenLerner)
+(Video).
+
+
+
 ### Das Problem kennenlernen
 
-[EQ] Was sind Beispiele von externen Resourcen, auf die innerhalb eines Programms zugegriffen wird?
+[EQ] Was sind zwei Beispiele von Arten externer Resourcen, auf die in vielen Python-Programmen zugegriffen wird?
 
 [EQ] Überlegen Sie: Warum müssen überhaupt die Resourcen geschlossen bzw. wieder freigemacht werden?
+Stellen Sie sich dabei eine Web-Anwendung vor, die viele Wochen lang läuft und Millionen von 
+Zugriffen abarbeitet.
 
 [EQ] Welche Probleme könnten bei folgenden Resourcen- bzw. Dateizugriffen auftreten?
+Denken Sie vor allem an Fehlerfälle:
 
 1. 
 ```python
