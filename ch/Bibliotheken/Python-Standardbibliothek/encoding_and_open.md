@@ -92,7 +92,7 @@ Erläuterung:
 - [ER] Geben Sie ein passendes Argument für `errors` an, um die bei diesem stumpfsinnigen Verfahren 
   unvermeidlichen Encodierungsfehler zu überstehen.
 - [ER] Geben Sie beim `print()` Dateiname und Encoding mit aus.
-- [EQ] Bestimmen Sie anhand der vernünftig aussehenden Ausgaben das Encoding zu jeder Datei.
+- [EQ] Bestimmen Sie anhand der Ausgaben das vernünftigste Encoding zu jeder Datei.
   Lesen Sie dazu grob auf Wikipedia nach, was es mit jedem der Encodings auf sich hat.
 
 
@@ -157,6 +157,7 @@ das dort als Bytestrom gelesene explizit dekodieren, umgefähr so:
 [ENDSECTION]
 
 [INSTRUCTOR::Die Encodings sollten stimmen]
+
 - Die Antwort für die Encodings sollte richtig sein (utf8, iso8859-1, cp500/EBCDIC-CP-BE, iso8859-9).
 - cp500 und EBCDIC-CP-BE sind ein- und dasselbe. 
   Wenn dazu keine Anmerkung in der Antwort steht, Studi darauf hinweisen, 
@@ -166,4 +167,5 @@ das dort als Bytestrom gelesene explizit dekodieren, umgefähr so:
   wenn man wie gewünscht auf Wikipedia nachgelesen hat und ist deshalb falsch.
 - Der Code sollte vernünftiges Python sein, mit Schleifen über die Behälter.
   Zusätzliche Abstraktionen sind nicht nötig.
-[ENDINSTRUCTOR]
+
+- [ENDINSTRUCTOR]
