@@ -1,5 +1,5 @@
 title: Formulare in HTML
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: HTMLErsteSchritte, HTMLMedien, HTMLSemantik, HTTP-Methoden
@@ -12,14 +12,15 @@ assumes: HTMLErsteSchritte, HTMLMedien, HTMLSemantik, HTTP-Methoden
 [ENDSECTION]
 [SECTION::background::default]
 
-Damit die Kommunikation im Web nicht nur einseitig ist, d.h. vom Webseitenersteller
-zum Betrachter, ist es unerlässlich eine Möglichkeit für den Benutzer zu haben,
-Eingaben zu machen und diese dann auch an den Webseitenersteller zu übermitteln.
-An dieser Stelle kommen Formulare ins Spiel.
+Damit die Kommunikation im Web nicht nur einseitig ist (Browser ruft Webseiten ab),
+brauchen wir eine Möglichkeit für den Benutzer,
+Eingaben zu machen und diese an den Webserver zu übermitteln.
+Dazu dienen HTML-Formulare.
 
-In dieser Aufgabe, sehen wir uns an, wie man ein einfaches Formular erstellt,
-dass verschiedene Eingabetypen verwendet. Für eine Auswertung des Formulars reicht allerdings
-reines HTML nicht mehr aus und daher betrachten wir diesen Aspekt in dieser Aufgabe nicht.
+In dieser Aufgabe, sehen wir uns nur an, wie man ein einfaches Formular _erstellt_,
+das Formulardaten an den Server _versendet_. 
+Für eine _Auswertung_ der Formulardaten braucht man eine jeweils passende Routine auf dem Webserver 
+und daher betrachten wir diesen Aspekt in dieser Aufgabe nicht.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
@@ -28,35 +29,35 @@ In dieser Aufgabe wollen wir die Website der Softwareschmiede ProPy erneut um ei
 Diesmal geht es darum, ein Bestellformular zu entwickeln, in der wir bereits möglichst viele Dinge abfragen möchten,
 um den Bestellvorgang so einfach wie möglich zu gestalten.
 
-[ER] Erstellen Sie eine neue Website HTMLFormulare.html mit HTML-Grundstruktur, einer passenden Überschrift und einem Menü. 
-Fügen Sie ein einfaches Formular hinzu, dass es erlaubt eine E-Mail-Adresse und einen Namen einzugeben.
+[ER] Erstellen Sie eine neue Webseite `HTMLFormulare.html` mit HTML-Grundstruktur, 
+einer passenden Überschrift und einem Menü. 
+Fügen Sie ein einfaches Formular hinzu, das es erlaubt, eine E-Mail-Adresse und einen Namen einzugeben.
 
 Sie benötigen dazu die HTML-Elemente `form`, `input`, `button`. 
 Wie diese zusammenspielen können Sie im Artikel 
 [Was ist ein Webformular?](https://wiki.selfhtml.org/wiki/Formulare/Was_ist_ein_Webformular%3F) in SelfHTML nachlesen.
 
-[ER] Wir wollen das Formular um eine Möglichkeit erweitern, eine Beschreibung für den Auftrag einzugeben. 
-Dazu braucht es eine Möglichkeit einen längeren Text einzugeben. 
-Diese liefert das `textarea`-Element. 
+[ER] Wir wollen das Formular um eine Möglichkeit erweitern, eine mehrere Zeilen lange Beschreibung 
+für den Auftrag einzugeben. 
+Das ermöglicht das `textarea`-Element. 
 Fügen Sie eine Beschriftung und das Eingabefeld hinzu. 
 Lesen Sie zum Element in [mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
 
 [ER] Um herauszufinden, um was für eine Art von Auftrag es sich handelt 
 (Neuentwicklung, Softwaretests, Debugging, Projektmanagement),
 möchten wir eine Auswahlliste zur Verfügung stellen, in der unser potentieller Kunde 
-die richtige Auftragsart auswählen kann. 
+die Auftragsart auswählen kann. 
 Lesen Sie [Abschnitt 3 auf der Seite Auswahllisten](https://wiki.selfhtml.org/wiki/Formulare/Auswahllisten) in SelfHTML.
 
 [ER] Der Benutzer sollte noch unseren Datenschutzbedinungen zustimmen. 
 Dazu werden für gewöhnlich eine Checkbox oder zwei Radiobuttons verwendet.
 Implementieren Sie beide Varianten.
-Lesen Sie Abschnitt 1 und 2 der in [EREFR::3] verlinkten Seite.
+Lesen Sie Abschnitt 1 und 2 der obigen Seite.
 
-[ER] Ist der Auftrag sonderlich eilig oder gibt es eine Deadline, so wäre es sicherlich sinnvoll dies auch zu erfahren.
-Fügen Sie ein Feld für Eingabe eines Fälligkeitsdatums hinzu. 
-Ergänzen Sie außerdem noch mindestens zwei weitere Eingabefelder, die verschiedene Werte verlangen.
+[ER] Fügen Sie ein Datumsfeld für Eingabe eines Fälligkeitsdatums hinzu.
+Ferner ein Feld für einen Datei-Upload eines Dokuments mit näheren Erläuterungen.
 Das `input`-Element kann für viele verschiedene Eingabetypen benutzt werden, abhängig vom `type`-Attribut.
-Eine Liste von validen Typen finden sie in [mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
+Eine Liste gültiger Typen finden sie in [mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
 
 
 [ENDSECTION]
@@ -67,7 +68,9 @@ Eine Liste von validen Typen finden sie in [mdn web docs](https://developer.mozi
 [ENDSECTION]
 [INSTRUCTOR::Musterlösung]
 
-Was das Formular absendet, kann z.B. über die Developer-Konsole des Browsers inspiziert werden.
+Was das Formular absendet, kann z.B. über die 
+[Developer-Konsole des Browsers](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools) 
+(zu öffnen mit F12) inspiziert werden.
 
 Eine Musterlösung findet sich in [TREEREF::/Web/HTML/HTMLFormulare.html].
 

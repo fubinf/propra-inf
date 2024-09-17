@@ -47,11 +47,12 @@ We will modify these rules over time when others appear more useful.
 
 ### Testen
 
+
 ### Web
-- ch/Web/HTML/HTMLTabellen.md (Müllers->LP)
-- ch/Web/HTML/HTMLFormulare.md (Müllers->LP)
+
 
 ### Werkzeuge
+
 
 -------------------------------------------------------------------------------------------
 
