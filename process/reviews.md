@@ -33,7 +33,6 @@ We will modify these rules over time when others appear more useful.
 **Kapitel bitte in Reihenfolge des Inhaltsverzeichnisses, alles darunter in alphabetischer, Leerzeile pro Gruppe**
 
 ### Sprachen
-- ch/Sprachen/Python2/Python-Function-Arguments-Basic.md (HA->LP->HA->LP)
 - ch/Sprachen/Python2/Python-Function-Arguments-Advanced.md (HA->LP)
 
 ### Bibliotheken

@@ -1,5 +1,5 @@
 title: Grundlegende Arten von Funktionsargumenten in Python
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 ---
@@ -20,31 +20,22 @@ Lesbarkeit und Wartbarkeit des Codes, insbesondere in komplexen oder langfristig
 Darüber hinaus erleichtert es den Umgang mit fremdem Code und 
 dessen Integration in Ihre eigenen Projekte.
 
+[ENDSECTION]
+
+[SECTION::instructions::loose]
+
 Für die Bearbeitung der Fragen in dieser Aufgabe kann Ihnen 
 [*"Function Parameters and Arguments in Python"*](https://www.pythondiscord.com/pages/guides/python-guides/parameters-and-arguments/) 
 gute Unterstützung bieten.
 
-[NOTICE]
+_Achtung:_ Die Formulierung dort ganz am Anfang "used just once" über Funktionsdefinitionen
+ist schlecht. `def` ist in Python ein Statement, die Funktionsdefinition wird also 
+im Normalfall nur einmal _ausgeführt_. Aber _benutzt_ wird sie natürlich bei jedem Aufruf.
+Wenn Sie lernen, solche Ungenauigkeiten zu entdecken, können Sie Ihr Denken enorm schärfen!
 
-Im ersten Abschnitt *"Function Parameters and Arguments in Python"* der Quelle ist die Erklärung 
-zum Einsatz von Funktionen in Python nicht vollständig und kann verwirrend sein. 
-Beispielsweise wird zur Laufzeit auf die Funktionsdefinition bei jedem Aufruf zugegriffen und 
-nicht nur einmalig. 
-Daher sollten Sie alle Informationen kritisch hinterfragen, nicht nur in dieser Quelle, 
-sondern in allen Quellen, die Sie nutzen. 
-Diese Gewohnheit hilft Ihnen, Ihr Wissen ständig zu vertiefen.
+_Achtung 2:_ In der Quelle kommt auch `**kwargs` vor. Das ist Thema in der Nachfolgeaufgabe
+[PARTREF::Python-Function-Arguments-Advanced].
 
-In einigen Teilen der Quelle werden Ihnen auch Konzepte wie `**kwargs` begegnen. 
-Keine Sorge! 
-Diese Themen werden in späteren Aufgaben zum Thema *"Argumente und Parameter in Python"* 
-ausführlich behandelt. <!-- Ref: Python-Function-Arguments-Advanced -->
-
-[ENDNOTICE]
-
-
-[ENDSECTION]
-
-[SECTION::instructions::loose]
 
 [EQ] Was ist der Unterschied zwischen einem Parameter und einem Argument in Python?
 
@@ -57,7 +48,8 @@ dies durch geeignete Beispiele in Python veranschaulichen.
 Gelten Argumente, die beim Funktionsaufruf an solche Parameter gebunden werden, 
 eher als Positions- oder Schlüsselwortargumente? Überlegen Sie.
 
-[EQ] Finden Sie die Fehler in folgenden Fällen. Geben Sie für jeden der Fehler eine mögliche Lösung an:
+[EQ] Finden Sie die Defekte in den folgenden Funktionsaufrufen. 
+Geben Sie jeweils einen reparierten Aufruf an:
 
 1. 
 ```python
@@ -89,13 +81,13 @@ Erstellen Sie drei Varianten der Funktionssignatur, wie unten beschrieben:
 
 - Variante 1: Die Funktion verwendet **nur Positionsargumente**.
 - Variante 2: Die Funktion verwendet **nur Schlüsselwortargumente**.
-- Variante 3: Der mathematische Operator ist ein **Schlüsselwortargument**, 
-während die beiden Eingabezahlen **Positionsargumente** sind.
+- Variante 3: Der mathematische Operator ist zwangsweise ein **Schlüsselwortargument**, 
+während die beiden Eingabezahlen zwangsweise **Positionsargumente** sind.
 
-Halten Sie solche Einschränkungen für sinnvoll?
+Welche Variante erscheint Ihnen am sinnvollsten? Warum?
 
-[EQ] Würden Sie für folgenden Funktionen irgendwelche der Argumentbeschränkungen einführen? 
-Begründen Sie.
+[EQ] Würden Sie für folgenden Funktionen irgendwelche Beschränkungen der Argumentübergabe einführen? 
+Begründen Sie. Bedenken Sie, wie gut oder schlecht man einem Argument seine Rolle ansehen kann.
 
 1. `aktualisiere_student_adresse(matrikelnummer, neues_land, neue_stadt, neue_plz, neue_strasse, neue_hausnummer)`
 2. `formattiere_text(text, uppercase=False, reverse=False, strip=False, replace=None)`

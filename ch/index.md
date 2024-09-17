@@ -272,6 +272,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   bitte nochmal die (entsprechend geänderte) Aufgabe [PARTREF::Kommandoprotokolle] lesen
   und ab sofort einfach ohne weitere Umstände auf dieses Format wechseln.
 - **2024-09-10**: Aufgaben Web/HTML/[PARTREF::HTMLTabellen] und [PARTREF::HTMLSemantik] zugefügt.
+- **2024-09-17**: Aufgabe Sprachen/Python2/[PARTREF::Python-Function-Arguments-Basic] zugefügt.
 - ...
 
 
