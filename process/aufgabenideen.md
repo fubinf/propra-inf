@@ -480,20 +480,17 @@ Speziellerer Kram:
   gegeben ist.
 - Auf Grundlagen beschränken; das ProPra ist kein Workshop für Spezialkenntnisse.  
 - Frontend und Backend gemeinsam behandeln; Informatiker_innen sollten einen Überblick haben.
-- Behandlung von folgenden Themen: HTML, CSS, Bootstrap(?), JavaScript,
+- Behandlung von folgenden Themen: HTML, CSS, ~~Bootstrap~~ Tailwind(?), JavaScript,
   evtl. TypeScript, Flask, Django, Vue(?), React(?).
 
 ### Strukturvorschlag (basierend auf dem Stand vor den Änderungen von Frau Atarim)
 
 1. HTML
-   - Was ist ein Tag? Was ist ein Attribut? Verschachtelung
-   - Einige Standard-Tags mit besonderer Relevanz, hauptsächlich div/span/a/img
-   - ggf. semantic Tags, die würde ich aber eigentlich nur bei Template/Slot später erwähnen
-   - Tabellen, Formulare
 2. CSS
    - Jeweils eine Aufgabe für: Basics, häufig benutzte Eigenschaften Box Model, Selectors, (Pseudo)Classes
    - Es gab auch noch Shorthands (border statt border-left/-right/-top/-bottom)
      und Margin/Border/Padding, weil das besondere Relevanz hat. -> Aufgabe Box Model.
+   - Medien-Abfragen, "responsive" Design
    - Fortgeschritten: Calculated Properties und Variablen, Grid und Flex
    - Optional: Verwenden von CSS Frameworks
 3. JS
