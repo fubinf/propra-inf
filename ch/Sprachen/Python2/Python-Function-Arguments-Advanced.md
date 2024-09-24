@@ -1,4 +1,4 @@
-title: "<code>*args</code> und <code>**kwargs</code>: Mechanismen für flexible Anzahl von Argumenten"
+title: "'*args' und '**kwargs': Mechanismen für flexible Anzahl von Argumenten"
 stage: alpha
 timevalue: 1.25
 difficulty: 2
@@ -7,24 +7,20 @@ requires: Python-Function-Arguments-Basic
 
 [SECTION::goal::idea]
 
-- Ich verstehe, wie `*args` und `**kwargs` in Python funktionieren und kann sie gezielt einsetzen, 
+Ich verstehe, wie `*args` und `**kwargs` in Python funktionieren und kann sie gezielt einsetzen, 
 um meinen Code flexibler und anpassungsfähiger zu gestalten.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Nicht immer ist die Anzahl der Argumente einer Funktion sofort ersichtlich. 
-Es gibt Situationen, in denen die genaue Argumentenanzahl erst zur Laufzeit bestimmt wird, 
-insbesondere beim Umgang mit externen Ressourcen kann das schwer erkennbar sein.
+Der Parameter `*args` bei einer Python-Funktion repräsentiert eine 
+beliebig große oder kleine Anzahl von Positionsargumenten.
+`**kwargs` repräsentiert eine beliebige Anzahl von Schlüsselwortargumenten.
+Diese beiden Mechanismen machen die Parametrisierung von Python-Funktionen ungeheuer flexibel.
 
-Durch den Einsatz von den speziellen Parametern `*args` und `**kwargs` 
-lässt sich die Flexibilität von Funktionen deutlich erhöhen. 
-Dies ist in vielen Szenarien hilfreich und ermöglicht es, die Logik im Code besser zu steuern.
-
-Mithilfe von [`*args` und `**kwargs` in Python](https://realpython.com/python-kwargs-and-args/)
-werden Sie durch die Bearbeitung dieser Aufgabe in der Lage sein, 
-Funktionen unabhängig von einer strikten Anzahl von Argumenten schreiben zu können.
+Zwar könnte man sich immer auch mit anderen Methoden der Argumentübergabe behelfen,
+aber mit `*args` und `**kwargs` werden die Lösungen ungleich einfacher und eleganter.
 
 [ENDSECTION]
 
@@ -32,26 +28,22 @@ Funktionen unabhängig von einer strikten Anzahl von Argumenten schreiben zu kö
 
 ### Positionsargumente und `*args`
 
-Könnten Sie sich vorstellen, die folgende Funktion so umzuschreiben, 
-dass sie mehr als 3 Zahlen als Argumente annimmt, bspw. 4, 5 oder sogar 100?
+Wie kann man die folgende Funktion so umschreiben, 
+dass sie eine beliebige Anzahl von Argumenten annimmt, beispielsweise 2 oder 4 oder 17 oder 1384?
 
 ```python
 def berechne_mittelwert(x, y, z):
     return (x + y + z) / 3
 ```
 
-Die logische Antwort lautet "Jein". 
+Offenbar kann man nicht die Liste der Positionsparameter entsprechend erweitern,
+wenn es keine Obergrenze gibt -- außerdem müsste man dann ja auch immer alle diese Parameter füllen,
+was offensichtlich nicht im Sinne der Anforderung ist.
+So geht es also schon mal nicht.
 
-Theoretisch könnten Sie einfach die Anzahl der Parameter in der Funktionsdefintion erweitern.
-Ob Sie aber die ganzen 100 Parameter schreiben wollen, 
-damit Sie beim Funktionsaufruf dafür 100 Werte übergeben, 
-ist eine Frage der Geduld, Zeit, Lesbarkeit und vor allem Wartbarkeit.
-
-Klar könnten Sie auch alle Zahlen erst in eine passende Datenstruktur, wie eine Liste, speichern,
-und dann die Funktion so anpassen, dass sie diese Liste annimmt. 
-Dafür müssten Sie aber erst auch diese Datenstruktur erstellen und mit den 100 Elementen befüllen.
-Keine leichte Aufgabe, wenn Sie nicht einmal wissen, welche Elemente diese Datenstruktur enthalten soll.
-
+Man könnten aber alle Argumente erst in eine passende Datenstruktur (eine Liste oder ein Tupel), speichern,
+und dann die Funktion so anpassen, dass sie diese Liste verarbeitet.
+Das funktioniert tadellos, ist aber wenig elegant.
 Genau hier kommt die Rolle von `*args`. 
 
 [ER] Schreiben Sie als Aufwärmung die obige Mittelwertsfunktion mithilfe von `*args` um, 
