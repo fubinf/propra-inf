@@ -97,7 +97,7 @@ summary {}
 }
 
 .sidebar {
-  height: 100%;
+  height: calc(100% - var(--header-height) - 20px);
   width: var(--sidebar-width);
   position: fixed;
   z-index: 1;
