@@ -33,7 +33,6 @@ We will modify these rules over time when others appear more useful.
 **Kapitel bitte in Reihenfolge des Inhaltsverzeichnisses, alles darunter in alphabetischer, Leerzeile pro Gruppe**
 
 ### Sprachen
-- ch/Sprachen/Python2/Python-Function-Arguments-Advanced.md (HA->LP)
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
@@ -62,6 +61,7 @@ We will modify these rules over time when others appear more useful.
 - Python1/ Inhalt wird am Ende ausgearbeitet.
 
 - ch/Sprachen/Python2/Python-Context-Managers.md (HA->LP->HA)
+- ch/Sprachen/Python2/Python-Function-Arguments-Advanced.md (HA->LP->HA)
 - ch/Sprachen/Python2/Python-import.md (HA->LP->HA->LP->HA)
 
 ## Reviews to do for Ivan Condric
