@@ -230,14 +230,22 @@ Die Datenbankdatei ist **nicht** Teil der Abgabe.
 [ENDSECTION]
 [INSTRUCTOR::Codedurchsicht]
 
-Den Code lesen und manuell auf Richtigkeit prüfen.
-Das Kommandoprotokoll zur Unterstützung heranziehen.
+Das Programm muss 4 Mal mit verschiedenen Parametern ausgeführt werden:
+
+- `python m_sqlite3 create` erstellt eine Datenbankdatei `m_sqlite3.db` im Ausführungsverzeichnis
+- `python m_sqlite3 query` fragt Daten aus der Datenbank ab
+- `python m_sqlite3 import` importiert Daten aus `m_sqlite3.json`
+- `python m_sqlite3 query` fragt die Daten nach dem Import erneut ab
+
+Ausgabe mit Kommandoprotokoll und Musterausgabe vergleichen. 
+Den Code lesen und grob auf Richtigkeit prüfen. 
 Klare Defekte und sehr ungünstige Konstruktionen zurückweisen.
 
-Prüfen Sie insbesondere die korrekte Verwendung von Placeholdern in A11.
+Prüfen Sie insbesondere die korrekte Verwendung von Placeholdern in A12 (Der SQL Befehl sollte 
+nicht durch Verknüpfung von Strings erstellt werden).
 
 Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_sqlite3.py]
 
-[INCLUDE::ALT:]
+[PROT::ALT:m_sqlite3.prot]
 
 [ENDINSTRUCTOR]
