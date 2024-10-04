@@ -1180,8 +1180,16 @@ implementiert, um den Test erfolgreich durchzuführen. Dieser iterative Prozess 
 von Tests, Implementieren des Codes wird fortgesetzt, bis die gewünschte Funktionalität erreicht ist.
 [ENDTERM]
 
+[TERM::Time-Based One-Time Password|TOTP]
+Dabei handelt es sich um ein zeitbasiertes, einmalig verwendbares Passwort, das oft in der
+Zwei-Faktor-Authentifizierung (2FA) verwendet wird. Bei TOTP generiert eine Anwendung wie Google
+Authenticator oder eine ähnliche App in regelmäßigen Intervallen (typischerweise 30 Sekunden) ein
+neues Passwort basierend auf einem geheimen Schlüssel und der aktuellen Zeit. Dieses Passwort wird
+dann für die Authentifizierung verwendet.
+[ENDTERM]
+
 [TERM::traceroute|Traceroute]
-Traceroute ist ein Befehl, um den Pfad von Datenpaketen in einem Netzwerk zu verfolgen. Es zeigt 
+Traceroute ist ein Befehl, um den Pfad von Datenpaketen in einem Netzwerk zu verfolgen. Es zeigt
 die einzelnen Hops und die Antwortzeit zum Hop entlang des Weges an.
 [ENDTERM]
 
