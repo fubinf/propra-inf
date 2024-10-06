@@ -47,7 +47,7 @@ We will modify these rules over time when others appear more useful.
 
 ### Testen
 - ch/Testen/Unittests/m_pytest_call (RR->LP)
-- ch/Testen/Unittests/m_pytest_testcoverage.md (RR->LP)
+- ch/Testen/Unittests/m_pytest_plugin_testcoverage.md (RR->LP)
 
 ### Web
 
