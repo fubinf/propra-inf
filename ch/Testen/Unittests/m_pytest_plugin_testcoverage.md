@@ -1,4 +1,4 @@
-title: "Pytest: Wie bringe ich Pytest dazu das auszuführen, was ich brauche?"
+title: "Pytest: Wieviele Testfälle muss ich noch erstellen?"
 stage: alpha
 timevalue: 1
 difficulty: 3
