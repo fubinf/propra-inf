@@ -61,6 +61,6 @@ was man gerade erlebt hat.
 [ENDSECTION]
 [INSTRUCTOR::Reflektion]
 
-[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
