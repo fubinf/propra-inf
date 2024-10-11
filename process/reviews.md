@@ -36,7 +36,6 @@ We will modify these rules over time when others appear more useful.
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
-- ch/Bibliotheken/Python-Standardbibliothek/m_sqlite3.md (SW->LP->SW->LP)
 
 ### Bestandscode
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->LP)

@@ -1,10 +1,8 @@
 title: "sqlite3: lokales Datenbanksystem"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
-explains:
 assumes: m_argparse, m_pprint, m_json2
-requires:
 ---
 
 [SECTION::goal::idea]
@@ -39,7 +37,7 @@ Sie diese, wenn Sie keine SQL Kenntnisse haben oder eine Musterlösung zur Kontr
 
 ### Vorbereitungen
 
-- Machen Sie sich mit der Abschnittsstruktur der
+- Machen Sie sich mit der _Abschnittsstruktur_ der
   [Dokumentation von `sqlite3`](https://docs.python.org/3/library/sqlite3.html) vertraut.
   Entnehmen Sie dieser Dokumentation dann in jedem Schritt unten die entsprechende Information.
 - Legen Sie die Datei `m_sqlite3.py` an und benutzen Sie diese Datei für den Rest der 
@@ -52,9 +50,8 @@ Sie diese, wenn Sie keine SQL Kenntnisse haben oder eine Musterlösung zur Kontr
   soll, steht zu Beginn jedes Aufgabenabschnittes).  
   Zur Verarbeitung von Argumenten eignet sich z.B. das Modul `argparse`.
 
-### Datenbankdatei anlegen
 
-***Dieser Abschnitt soll immer ausgeführt werden, unabhängig vom übergebenen Parameter.***  
+### `create`, `import`, `query`: Datenbankdatei anlegen/öffnen
 
 Anstatt aufwändig einen SQL-Server aufzusetzen, wird mit SQLite lediglich eine Datei im 
 angegebenen Pfad erzeugt, in der alle datenbankrelevanten Daten inklusive Inhalt aller Tabellen 
@@ -63,7 +60,8 @@ Wenn die Daten nur zur Laufzeit benötigt werden und nicht persistent gespeicher
 kann auch eine temporäre Datenbank im Arbeitsspeicher erstellt werden, die nach Ende des 
 Programms gelöscht wird.
 
-- [ER] Erzeugen Sie eine SQLite-Datenbank als Datei mit dem Namen `m_sqlite3.db`.
+- [ER] Erzeugen Sie eine SQLite-Datenbank als Datei mit dem Namen `m_sqlite3.db`
+  oder öffnen Sie die vorhandene.
 
 [NOTICE]
 Wenn Sie beim weiteren Bearbeiten ihre Datenbank versehentlich "kaputt machen" oder Sie sie einfach 
@@ -74,13 +72,15 @@ Programm wieder neu erstellen.
 - [ER] Um überhaupt Queries auf der Datenbank ausführen zu können, benötigen Sie einen 
   sogenannten Cursor. Erzeugen Sie so ein Objekt.
 
-### Tabellen erstellen und befüllen
 
-***Dieser Abschnitt soll bei Übergabe von `create` ausgeführt werden.***
+### `create`: Tabellen erstellen und befüllen
 
 Wir stellen uns folgendes Szenario vor: Sie schreiben ein kleines Programm, dass ihnen bei der 
-Verwaltung ihrer Büchersammlung helfen soll. Sie wollen darin festhalten, welche Bücher Sie 
-besitzen, zu welchem Genre sie gehören und ob Sie sie bereits gelesen haben.
+Verwaltung ihrer Büchersammlung helfen soll. 
+Sie wollen darin festhalten, 
+welche Bücher Sie besitzen (Buchtitel als String), 
+zu welchem Genre sie gehören (noch ein String) und 
+ob Sie sie bereits gelesen haben (Integer 0 oder 1).
 
 - [ER] Erstellen Sie die Tabelle `books`, die die geeigneten Spalten beinhaltet, um die oben 
   genannten Anforderungen abzubilden.  
@@ -89,7 +89,7 @@ besitzen, zu welchem Genre sie gehören und ob Sie sie bereits gelesen haben.
   bereits existieren könnte.  
   Zusätzlich soll der Buchtitel der Primärschlüssel der Tabelle sein, da es keinen Sinn ergibt, 
   dasselbe Buch mehrmals in der Tabelle zu haben (zur Einfachheit blenden wir aus, dass der 
-  Buchtitel eigentlich kein guter Primary Key ist, da man z.B. dasselbe Buch auch in verschiedenen 
+  Buchtitel eigentlich kein guter Primärschlüssel ist, da man z.B. dasselbe Buch auch in verschiedenen 
   Ausgaben besitzen kann. Eine ID, wie die ISBN, wäre besser geeignet).
 
 [HINT::SQL-Befehl]
@@ -118,24 +118,20 @@ INSERT OR IGNORE INTO books VALUES
 Obwohl Sie die Daten in der vorherigen Aufgabe eingefügt haben, sind Sie noch nicht in der 
 Datenbank gespeichert. Das liegt daran, dass die SQL-Befehle `INSERT`, `UPDATE`, `DELETE` und 
 `REPLACE` eine [TERMREF::Transaktion] in SQLite öffnen, in der die Änderungen an den Datensätzen 
-gesammelt werden, bis die Transaktion ausgeführt wird (commit). Einen passenden Zeitpunkt 
-hierfür zu wählen überlässt SQLite dem Programmierer. Lesen Sie 
-[diesen Abschnitt](https://docs.python.org/3/library/sqlite3.html#sqlite3-controlling-transactions)
+gesammelt werden, bis die Transaktion ausgeführt wird ("commit"). Einen passenden Zeitpunkt 
+hierfür zu wählen überlässt SQLite dem Programmierer. Lesen Sie Abschnitt
+[Transaction Control](https://docs.python.org/3/library/sqlite3.html#sqlite3-controlling-transactions)
 für mehr Informationen. 
 
 [NOTICE]
 Das im Abschnitt erwähnte `autocommit` Attribut existiert erst ab Python 3.12.
-In früheren Versionen ist es noch nicht verfügbar.
 [ENDNOTICE]
 
 - [ER] Sorgen Sie dafür, dass die Daten fest in die Datenbank geschrieben werden.  
-  **Achten Sie auch bei folgenden Aufgaben darauf, dass Transaktionen immer durchgeführt werden.**
-- [ER] Schließen Sie die Datenbankverbindung am Ende des Programms wieder. Das Schließen der 
-  Verbindung soll wieder **unabhängig vom übergebenen Parameter** stattfinden.
+  **Achten Sie auch bei folgenden Aufgaben darauf, dass Transaktionen immer festgeschrieben werden.**
 
-### Daten abfragen
 
-***Dieser Abschnitt soll bei Übergabe von `query` ausgeführt werden.***
+### `query`: Daten abfragen
 
 Hier möchten wir ein paar Datenbankabfragen erstellen, mit deren Hilfe Sie den Inhalt ihrer 
 aktuellen Datenbank überprüfen können.
@@ -177,9 +173,7 @@ ORDER BY COUNT(genre) DESC
   aus, um die Datenbank zu erstellen, und anschließend einmal mit `query`, um zu testen, ob die 
   Anlage und Befüllung korrekt funktioniert hat.
 
-### Datensätze importieren
-
-***Dieser Abschnitt soll bei Übergabe von `import` ausgeführt werden.***
+### `import`: Datensätze importieren
 
 Sie haben eine Liste an Büchern in 
 [diesem Repository](https://github.com/alexpeterhall/reading-list/blob/master/ReadingList.json) 
@@ -219,6 +213,12 @@ INSERT OR IGNORE INTO books VALUES (:title, :genre, 0)
 - [EC] Führen Sie nun Ihr Programm mit Parameter `import` und anschließend nochmal mit 
   `query` aus, um die Abfragen mit den neuen Daten zu sehen.
 
+
+### `create`, `import`, `query`: Datenbankdatei schließen
+
+- [ER] Schließen Sie die Datenbankverbindung am Ende des Programms wieder.
+
+
 [ENDSECTION]
 [SECTION::submission::trace,program]
 
@@ -226,23 +226,27 @@ INSERT OR IGNORE INTO books VALUES (:title, :genre, 0)
 [INCLUDE::/_include/Submission-Quellcode.md]
 
 Die Datenbankdatei ist **nicht** Teil der Abgabe.
+Löschen Sie sie oder tragen Sie sie in `.gitignore` ein; siehe Aufgabe [PARTREF::git-ignore].
 
 [ENDSECTION]
 [INSTRUCTOR::Codedurchsicht]
 
 Das Programm muss 4 Mal mit verschiedenen Parametern ausgeführt werden:
 
-- `python m_sqlite3 create` erstellt eine Datenbankdatei `m_sqlite3.db` im Ausführungsverzeichnis
-- `python m_sqlite3 query` fragt Daten aus der Datenbank ab
-- `python m_sqlite3 import` importiert Daten aus `m_sqlite3.json`
-- `python m_sqlite3 query` fragt die Daten nach dem Import erneut ab
+- `python m_sqlite3 create` erstellt eine Datenbankdatei `m_sqlite3.db` im Ausführungsverzeichnis.
+  Keine Ausgabe.
+- `python m_sqlite3 query` fragt Daten aus der Datenbank ab und zeigt sie an.
+- `python m_sqlite3 import` importiert Daten aus `m_sqlite3.json`. Keine Ausgabe.
+- `python m_sqlite3 query` fragt die erweiterten Daten nach dem Import erneut ab,
+  mit entsprechend geänderten Ausgaben.
 
-Ausgabe mit Kommandoprotokoll und Musterausgabe vergleichen. 
-Den Code lesen und grob auf Richtigkeit prüfen. 
+Ausgabe mit Kommandoprotokoll und Musterausgabe vergleichen.  
+Den Code lesen und grob auf Richtigkeit prüfen.  
 Klare Defekte und sehr ungünstige Konstruktionen zurückweisen.
 
-Prüfen Sie insbesondere die korrekte Verwendung von Placeholdern in A12 (Der SQL Befehl sollte 
-nicht durch Verknüpfung von Strings erstellt werden).
+Prüfen Sie insbesondere die korrekte Verwendung von Placeholdern in [EREFR::11]. 
+Der SQL Befehl darf nicht durch Verknüpfung von Strings erstellt werden, 
+weil das Zerbrechlichkeit und Sicherheitslücken verursacht.
 
 Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_sqlite3.py]
 
