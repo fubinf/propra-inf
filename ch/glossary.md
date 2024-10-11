@@ -80,6 +80,9 @@ z.B. B2 würde auch noch von einem anderen installierten Paket benötigt
 oder sei manuell installiert worden: dann bleibt es da.
 [ENDTERM]
 
+[TERM::Arbeitsbereich]
+[ENDTERM]
+
 [TERM::Argument]
 Der konkrete Wert, den man an einen [TERMREF::Parameter] übergibt,
 z.B. in Form einer konkreten Variable.
@@ -491,6 +494,9 @@ die durch ein Schlüsselwort eingeleitet werden,
 z.B. `Content-Type:`, `Set-Cookie:`, `Cache-Control:`.
 
 [HREF::https://de.wikipedia.org/wiki/Liste_der_HTTP-Headerfelder]
+[ENDTERM]
+
+[TERM::Hilfsbereich]
 [ENDTERM]
 
 [TERM::HTML|Hypertext Markup Language]
