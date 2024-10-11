@@ -45,7 +45,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Testen
-- ch/Testen/Unittests/m_pytest_call (RR->LP)
 - ch/Testen/Unittests/m_pytest_plugin_testcoverage.md (RR->LP)
 - ch/Testen/Unittests/m_pytest_plugin_linter_flake8.md (RR-LP)
 
@@ -155,6 +154,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/SUT/LokalesDeployment.md (RR->CH->LP->RR)
 
 - ch/Testen/Unittests/freezegun.md (RR->DM->HA->LP->RR->LP->RR)
+- ch/Testen/Unittests/m_pytest_call (RR->LP->RR)
 - ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP->RR)
 - ch/Testen/Unittests/m_testcoverage.md (RR->LP->RR)
 - ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)

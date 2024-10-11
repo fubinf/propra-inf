@@ -12,10 +12,9 @@ assumes: m_pytest
 [ENDSECTION]
 [SECTION::background::default]
 
-Pytest selbst führt eine Reihe von vorhandenen Testfällen aus. Viele Testfälle müssen aber nicht
-zeitgleich ausgeführt werden. Mit Pytest-Parametern kann man gezielt steuern, wie Tests ausgeführt
-werden, was besonders in großen Projekten nützlich ist. Dadurch schafft man eine bessere Übersicht,
-spart aber auch enorm Zeit.
+Pytest selbst führt normalerweise alle vorhandenen Testfälle aus. 
+Mit Pytest-Parametern kann man gezielt steuern, welche Tests ausgeführt werden, 
+was besonders in großen Projekten viel Zeit spart und die Übersicht verbessert.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
@@ -23,7 +22,7 @@ spart aber auch enorm Zeit.
 ### Testgrundlage beschaffen
 
 Bedienen wir uns zunächst einer frei zugänglichen Repository-Version von einer hilfreichen
-Python-Tool Sammlung. Klonen Sie folgendes Repository:
+Python-Tool Sammlung. Klonen Sie folgendes Repository in Ihren [TERMREF::Hilfsbereich]:
 
 ```shell
 git clone https://github.com/pytoolz/toolz.git --branch 1.0.0
@@ -49,10 +48,10 @@ Wenn sehr viele Testfälle im Spiel sind, könnten bestimmte Fehler auch Effekte
 haben. In diesem Fall möchte man den Test nach einem Fehler gar nicht erst weiter laufen lassen,
 sondern abbrechen.
 
-[EC] Wie brechen Sie einen Testlauf beim Auftreten `eines` Fehlers ab?
+[EC] Wie brechen Sie einen Testlauf beim Auftreten gleich des _ersten_ Fehlers ab?
 
 Manchmal kann ein Fehlschlag auch nur durch eine zeitliche Abhängigkeit auftreten, wie zum Beispiel
-beim Abfragen eines TOTP, der beim verwenden seine Gültigkeit verloren hat. In diesem Fall bietet es
+beim Abfragen eines TOTP, der beim Verwenden seine Gültigkeit verloren hat. In diesem Fall bietet es
 sich an einen Testfall erneut auszuführen.
 
 [EC] Wie wiederholen Sie einen fehlgeschlagenen Testfall?
