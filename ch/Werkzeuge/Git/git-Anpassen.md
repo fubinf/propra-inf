@@ -29,65 +29,83 @@ Bearbeiten Sie diese Aufgabe deshalb erst, wenn Sie eigene git-Erfahrung gesamme
 
 [SECTION::instructions::loose]
 
-### git Konfiguration
+Als Primärquellen für diese Aufgabe empfehlen wir sowohl die git Book Seite über die [git config]
+(https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_git_config) als auch über 
+[git Aliase](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases). Beide enthalten nützliche 
+Informationen zu den jeweiligen Anpassungsmöglichkeiten ihrer git-Installation. 
+Hauptziel der Aufgabe wird sein, ein paar besonders interessante Konfigurationsoptionen zu 
+entdecken, welche sich in ihrem git-Alltag als nützlich erweisen könnten. Außerdem werden Sie 
+diese Aufgabe hoffentlich als Inspiration nutzen, um ihre eigene git-Umgebung weiter anzupassen 
+und im Internet nach weiteren interessanten Konfigurationen und Aliasen zu suchen.
 
-Beginnen wir zuerst mit der git-Config. Diese erlaubt uns die gesetzten Standardwerte zu 
-überschreiben und nach unseren Wünschen anzupassen. Dies kann auf globaler Ebene, also für alle 
-Aufrufe im System, oder auf Repository-Ebene passieren.
+Bevor wir dazu kommen, werfen wir aber erstmal einen Blick auf unsere bestehende config. Das 
+machen wir ganz einfach mit dem Befehl `git config --global --list`.
 
-Für das Bearbeiten dieser Aufgabe werden wir die [Git Book Seite über Customizing Git](https://
-git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_git_config) zu Hilfe nehmen. Hier 
-finden Sie eine Übersicht und entsprechende Erklärungen zu vielen Interessanten git 
-Konfigurationseinstellungen. Einige, aus unserer Sicht, besonders wichtigen Einstellungen führen 
-wir hier auf. Im Kern geht es aber darum, dass Sie sich selber einen Eindruck darüber 
-verschaffen, was es für Anpassungsmöglichkeiten gibt und welche ihnen besonders nützlich 
-erscheinen. 
+[EQ] Beschreiben Sie die Funktion der einzelnen Argumente des oben genannten `git config` Befehls 
+und welche Ausgabe Sie in ihrem Terminal erhalten. 
+[EQ] Wann und wie haben wir diese Konfigurationseinstellungen gesetzt?
+[EQ] Kann man auch Repository-spezifische Einstellungen setzen? Wenn ja, wie macht man das?
 
-Schauen wir nun also die etwas wichtigeren Einstellungen an. 
-Leider ist die git book seite nicht besonders gut mit Links versehen deshalb referenzieren wir 
-hier einfach nur die jeweiligen Einstellungen, benutzen Sie ggf. einfach die Suchfunktion ihres 
-Browsers.
+Nun, da wir gesehen haben wie wir unsere git Konfiguration betrachten können, schauen wir uns 
+mal ein paar erweiterte Befehle an. 
 
-`core.autocrlf` erlaubt Git einem automatisch beim Pullen oder Pushen, Zeilenumbrüche an die Unix 
-bzw. Windows konvention anzupassen. Gerade wenn man also zwischen diesen Systemen viel hin und her 
-arbeitet, sollte man dieses Setting angeschaut haben.
 
-`core.editor` ermöglicht einem den Editor festzulegen, welchen git beim Benutzen bestimmter Befehle 
-(commit, rebase, etc.) öffnet.
+## Standardprogramme
 
-`core.excludesfile` nimmt einen Pfad zu einer globalen [PARTREF::git-ignore]-Datei entgegen. 
-Diese erlaubt automatisch bestimmte Dateien in *allen* Repos zu ignorieren. So bietet es sich 
-z.B. an auf macOS Systemen die `.DS_Store` Ordner, welche Eigenschaften, Thumbnails und andere 
-OS-spezifische Dinge enthält, automatisch zu ignorieren, da sie für unser Repo nicht interessant 
-sind und im Zweifel nur für unnötigen Datenmüll sorgen.
+Für einige Befehle fällt git auf andere Programme des Systems zurück. Häufig kann es dabei 
+passieren, dass dabei aber nicht die vom Nutzer präferierte Wahl getroffen wird. Git liefert uns 
+gleich mehrere Optionen zum dauerhaften Überschreiben der Standardauswahl. So lässt sich mit 
+`core.editor` der Standardeditor für z.B. Commit-Nachrichten oder Rebasing anpassen und mit 
+`diff.tool` kann man ein externes Programm zum Betrachten von diffs festlegen.
 
-Jetzt sind Sie gefragt. Lesen Sie die verlinkte Seite in Ruhe durch und recherchieren Sie im 
-Internet. Welche weiteren nützlichen git-Einstellungen gibt es noch? 
+[EQ] Welchen Standardeditor verwenden Sie im Terminal und warum?
+[EQ] Welche alternativen diff-Tools gibt es?
 
-[EC] Suchen Sie mindestens drei weitere git-Einstellungen und erklären Sie, warum gerade diese 
-für Sie Interessant sind.
+## Globale .gitignore-Datei
 
-### Git Aliases
+Auf Windows und macOS legt der Dateiexplorer gerne unsichtbare Dateien an, um bestimmte 
+Einstellungen zur Darstellung von Verzeichnissen festzulegen. Praktisch nie sind diese Dateien 
+für ein git-Repository relevant oder sollten in dieses Eingecheckt werden.
+Damit das nicht passiert bietet git den Befehl `core.excludesfile` an. Diese Option nimmt einen 
+Pfad zu einer globalen [PARTREF::git-ignore]-Datei entgegen und erlaubt automatisch bestimmte 
+Dateien in *allen* Repos zu ignorieren. 
 
-Ein weiteres sehr nützliches Boardmittel von git sind die sogenannten Aliase. Diese kennen Sie 
-vielleicht bereits aus dem Bash/Unix-Teil dieses Kurses. Wenn nicht, ist das aber auch nicht 
-schlimm, da wir alles nötige hier erklären und durchexerzieren werden.  
-Im Grunde sind Aliase einfach nur neue Namen für ausgewählte git Kommandos. Welche Kommandos und 
-welche Namen können wir dabei komplett frei wählen.  
-So ließe sich z.B. ein eigener git-Befehl erstellen, welcher `git commit -m "message"` auf `git 
-cm "message"` kürzt. Gerade für Befehle, welche man öfter benutzt, bietet es sich an eigene Aliase 
-anzulegen.  
-Auch hierfür gibt es wieder [eine Seite im git Book](https://git-scm.
-com/book/en/v2/Git-Basics-Git-Aliases) welche uns alles Wichtige nochmal gründlich erklärt.
-Als Erstes lesen Sie einmal diese Seite komplett bis zum Ende. Wenn ihnen dabei schon Aliase 
-auffallen die Sie für Nützlich halten, können Sie diese natürlich gerne schon auf ihrem eigenen 
-System einrichten.
+[EQ] Welche Dateien möchte man auf Windows und macOS *unbedingt* zur `core.
+excludesfile`-Einstellung hinzufügen?
 
-Sie haben es vielleicht schon geahnt, aber auch hier geht es wieder um eine kleine "Recherche". 
-Suchen Sie im Internet nach weiteren git Aliasen. 
+## Windows und die Zeilenumbrüche
 
-[EC] Suchen Sie mindestens drei weitere git-Aliase und erklären Sie, warum gerade diese 
-für Sie Interessant sind.
+Anders als Unix-Artige Systeme wie macOS oder Linux verwendet Windows noch 
+immer für Zeilenumbrüche die Sonderzeichen `\r\n` anstelle von nur `\n`. Arbeitet man nun 
+entweder allein oder mit anderen Menschen auf verschiedenen Systemen, kann es nach dem Speichern 
+im eigenen Editor leicht zu Problemen bzw. einfach unschönen Dateien kommen. Um dem Ganzen 
+abhilfe zu schaffen, bietet git mehrere Optionen für das Handling von Zeilenumbrüchen an.
+`core.autocrlf` und `core.eol`. Wenn wir also z.B. nie wieder Windows-Style Zeilenumbrüche haben 
+wollen, können wir die Einstellungen wie folgt setzen:
+
+```yaml
+core.autocrlf=input
+core.eol=lf
+```
+
+[EQ] Was tut `core.autocrlf` und warum setzen wir es auf `input`?
+[EQ] Was tut `core.eol` und warum setzen wir es auf `lf`?
+[EQ] Wie müssten die beiden Einstellungen aussehen, wenn wir ausschliesslich auf Windows-Systemen 
+arbeiten und dementsprechend `\r\n`-Zeilenenden haben wollen würden?
+
+## Aliase
+
+Wie weiter oben bei den Quellenangaben bereits erwähnt bietet auch git die Möglichkeit 
+sogenannte [TERMREF::Aliase::-e] anzulegen. 
+Ein nützliches Beispiel wollen wir uns nun anschauen:
+
+`alias.logll=log --pretty="%ad %<(10,trunc)%an %h %s" --date=format:%y%m%d`
+
+[EQ] Erklären sie was dieses Alias tut und probieren Sie es in ihrer eigenen git-Umgebung aus.
+
+## config-example 5
+
+
 
 [ENDSECTION]
 
