@@ -1102,6 +1102,14 @@ Es ermöglicht eine sichere Remote-Verwaltung und den Datenaustausch über unsic
 indem es Authentifizierung und Verschlüsselung verwendet.
 [ENDTERM]
 
+[TERM::SSH-Agenten]
+Ein SSH-Agent ist ein Programm, das deine SSH-Schlüssel verwaltet und sicher aufbewahrt. 
+Es ermöglicht dir, dich mit Servern zu verbinden, ohne bei jeder Verbindung das Passwort für den 
+Schlüssel erneut eingeben zu müssen. 
+Der Agent speichert den Schlüssel während einer Sitzung im Speicher und sorgt so für mehr Komfort 
+und Sicherheit.
+[ENDTERM]
+
 [TERM::SQL Injection]
 Eine Angriffsmethode bei SQL Datenbanken, bei der durch geschickte Manipulation einer SQL Query 
 Befehle auf der Datenbank ausgeführt werden können. Um solche Injections zu verhindern, 

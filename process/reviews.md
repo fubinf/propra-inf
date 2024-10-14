@@ -65,11 +65,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/Python2/Python-import.md (HA->LP->HA->LP->HA)
 
 ## Reviews to do for Ivan Condric
-
-- ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC)  
-  Siehe Notizen in der Datei. Schwierig!
-
-
+- ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC->LP)  
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP->IC)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC)
 

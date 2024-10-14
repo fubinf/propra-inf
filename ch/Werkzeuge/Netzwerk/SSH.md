@@ -5,41 +5,6 @@ difficulty: 2
 assumes: Shell-Grundlagen, apt, Manpages
 ---
 
-TODO_1_condric:
-
-- Wie bei git gilt auch hier, dass wir ein (korrektes, wenn auch vereinfachtes) mentales Modell vermitteln sollten.
-- Was symmetrische oder asymmetrische Verschlüsselung ist, dürfen wir voraussetzen
-  (nur jeweils Glossareintrag mit Verweis auf passende Quelle), ebenso kryptographische Hashfunktionen.
-- Aber was davon an welcher Stelle zum Zug kommt, um SSH abzusichern, sollten sich die Leute
-  hier erarbeiten; am besten in der Reihenfolge "erst machen, dann verstehen".
-- Im Prinzip leisten die Leseaufträge davon einiges, aber der Detailgrad passt nicht gut
-  zum Ziel. Siehe z.B. "Verifying host keys", wo die Konzepte vermischt sind mit sehr technischen
-  Einzelheiten. Wir müssen dafür sorgen, dass die Erkenntnis geleitet passiert und wir
-  nicht viel mehr Information anbieten als im jeweiligen Schritt nötig ist.
-  Wenn die manpage nichts Passendes hat, müssen wir was anderes finden und wenn das nicht klappt,
-  es selber erledigen. Müsste aber klappen, denn ssh besprechen auch Unis.
-- Das praktische Benutzen läuft parallel.
-- Ich sollte also nicht nur lernen: "So loggste dich ein und das ist _irgendwie_ sicher.",
-  sondern die Sicherheitseigenschaften (mich authentisieren, Rechner authentisieren, Verkehr
-  vertraulich halten) zerlegen und auf die technischen Einzelteile abbilden können
-  (Passwort, mein privater Schlüssel, mein öff. Schlüssel, Rechnerschlüssel, dessen Fingerprint,
-  symmetr. Sitzungsschlüssel, symmetr. Chipher, assymetr. Verfahren, Signaturverfahren;
-  alles nur grob) und das pro Schritt des Prozesses.
-- Es liegt für mich nicht auf der Hand, wie die Aufgabe dann aussieht...
-- Es liegt aber auf der Hand, dass sie deutlich umfangreicher wird und länger dauern darf.
-  Das ist aber eine Stelle, an der in er Praxis enormer Wissensmangel herrscht, der auch immer
-  wieder zu Sicherheitslücken führt, z.B. weil Server so konfiguriert sind, dass der Klient
-  sie beim Verbindungsaufbau auf uralte und wenig sichere Verfahren herunterhandeln kann.
-  Idealerweise würden unsere Leute solcher Sachverhalte gewahr (auch wenn Sie die Einzelheiten,
-  was gut und was zu alt ist, gar nicht kennen).
-- Was man auch verstehen sollte: Wo liegt und welchen Schutz hat mein Geheimmaterial?
-  Passwort nur im Kopf, beim (häufigen!) Eingeben wenig geschützt; 
-  privater Schlüssel in verschlüsselter und von Dateirechten geschützter Datei;
-  geladener privater Schlüssel (im ssh-Agent) im Hauptspeicher meines Rechners, auch im Standby.
-- Gut möglich, dass man einiges von diesem Pensum in eine zweite, fortgeschrittene Aufgabe
-  hochdrücken kann.
-- Anspruchsvoll!
-
 [SECTION::goal::trial]
 Ich kann mich mit SSH (Secure Shell) auf einem entfernten Rechner anmelden und habe mir
 ein Schlüsselpaar erstellt und den SSH-Agenten eingerichtet, um das wie ein Profi tun zu können.
@@ -58,52 +23,63 @@ mit dem man sich unbedingt gut auskennen muss.
 Zielserver = `andorra.imp.fu-berlin.de`
 </replacement>
 
-### Prüfen ob SSH installiert ist
+### Secure Shell installieren
 
-- [EC] Stellen Sie sicher, dass der `openssh-client` installiert ist:  
-      - `apt list --installed openssh-client`  
-   Ist der openssh-client nicht auf Ihrem System installiert, holen Sie das mit diesen zwei 
-   Befehlen nach:  
-      - `sudo apt update`  
-      - `sudo apt -y install openssh-client`  
+- [EC] Aktualisieren Sie Ihr System
+- [EC] Installieren Sie das Paket `openssh-client`
 
 [NOTICE]
 Stellen Sie sicher, dass Sie sich im Netz der Hochschule befinden, nötigenfalls über VPN. 
-Unter Umständen kann die Verbindung zum Zielserver sonst nicht hergestellt werden.
+Unter Umständen kann die Verbindung zum Zielserver nicht hergestellt werden.
+[ENDNOTICE]
+
+[NOTICE]
+Um SSH-Sitzungen zu beenden, geben Sie den Befehl `exit` ein.
 [ENDNOTICE]
 
 ### Per [TERMREF::SSH] auf einem entferntem Rechner anmelden
 
-Lesen Sie die kurze Beschreibung der ssh(1) [manpage](https://man.openbsd.org/ssh).
+Secure Shell oder auch Secure Socket Shell (SSH) ist ein sicheres Verfahren um sich mit Rechnern 
+zu verbinden.
+Damit die Verbindung sicher ist, brauchen wir Verfahren, die das absichern.
+Das erste Verfahren ist die [TERMREF::Symmetrische Verschlüsselung].
+Bei diesem Verfahren wird ein geheimer Schlüssel zwischen zwei Instanzen ausgetauscht, um die per 
+SSH gesendeten Daten zu ver- und entschlüsseln.
 
-- [EC] Verbinden Sie sich mit dem Zielserver per ssh.
+Lesen Sie ab dem Abschnitt **How Does SSH Work** bis einschließlich dem Abschnitt **Symmetric Encryption** von 
+[HREF::https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work].
+
+- [EC] Verbinden Sie sich per `ssh` mit dem Zielserver.
 
 Wenn Sie sich das erste Mal mit dem Zielserver verbinden, dann werden Sie nach der Authentizität 
-des entfernten Rechners gefragt.
+des entfernten Rechners gefragt. Hier wurden sogenannte `host_keys` zwischen beiden Instanzen ausgetauscht.
+Diese `host_keys` sind ein Teil der symmetrischen Verschlüsselung für SSH.
 
-Lesen Sie den Abschnitt **Verfying Host Keys** der ssh(1) 
-[manpage](https://man.openbsd.org/ssh#VERIFYING_HOST_KEYS).
+Lesen Sie den Abschnitt **Session Encryption Negotiation** von 
+[HREF::https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work].
+
+Lesen Sie den Abschnitt **SSH Host Fingerprint** bis einschließlich **Warnung bei geänderten Fingerprints**
+von [HREF::https://wiki.ubuntuusers.de/SSH/].
 
 - [EQ] Was wären mögliche Szenarien, wenn Ihnen das System meldet, dass sich der `host_key` des 
-   entfernten Rechners geändert hat. Nennen sie zwei Beispiele. 
+   entfernten Rechners geändert hat. Nennen sie zwei Beispiele.
 
-Es ist per SSH auch möglich direkt Befehle auf dem entfernten Rechner auszuführen und die Ausgabe 
-auf dem eigenen Terminal auszugeben.  
-
-Lesen Sie die kurze Beschreibung der ssh(1) [manpage](https://man.openbsd.org/ssh).
-
-- [EC] Geben Sie den Dateistrukturbaum von `/home/username/.ssh` vom Zielserver aus.
-
+- [EC] Schließen Sie ihre SSH-Sitzung.
 
 ### Per [TERMREF::Schlüsselpaar] auf einem entfernten Rechner anmelden
 
-Sie haben sich gerade mit Ihrem Passwort angemeldet. SSH bietet Ihnen die Möglichkeit, sich mit einem 
-Schlüsselpaar anzumelden.
+Sie haben sich vorhin mit Ihrem Passwort angemeldet. Das war eine symmetrische Verschlüsselung.
+Jetzt werden wir uns mit einem asymmetrischen Verfahren auf dem Zielserver anmelden.
+Dafür müssen wir und erstmal ein Schlüsselpaar erstellen, diesen mit einem Passwort schützen und 
+dann einen Teil des Schlüsselpaares auf den Server kopieren.
+
+Lesen Sie den Abschnitt **Asymmetric Encryption** von 
+[HREF::https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work].
 
 Lesen Sie die Optionen **-t**, **-b** und die **Description** der ssh-keygen(1) 
 [manpage](https://man.openbsd.org/ssh-keygen.1).
 
-- [EC] Erstellen Sie ein Schlüsselpaar mit dem Verschlüsselungstyp `ed25519`. 
+- [EC] Erstellen Sie ein Schlüsselpaar mit dem Verschlüsselungstyp `ed25519`, auf Ihrem lokalen Rechner. 
   Setzen Sie ein Passwort für das Schlüsselpaar, das Sie sonst nirgends benutzen, denn Sie werden
   mit diesem Schlüsselpaar nach einiger Zeit enorm vieles abgesichert haben.
 
@@ -113,7 +89,7 @@ kopieren wir auf den Zielserver, damit Sie sich damit anmelden können.
 
 Lesen Sie die ssh-copy-id(1) 
 [manpage](https://manpages.debian.org/testing/openssh-client/ssh-copy-id.1.en.html).  
-Verstehen Sie insbesondere das example am Ende. 
+Verstehen Sie insbesondere das **example** am Ende. 
 
 - [EC] Kopieren Sie Ihren öffentlichen Schlüssel auf den Zielserver.
 
@@ -122,7 +98,7 @@ Der öffentliche Schlüssel sollte jetzt auf dem Zielserver unter ihrem Nutzer g
 - [EC] Melden Sie sich auf dem Zielserver an. 
 - [EQ] Beschreiben Sie kurz was sich geändert hat.
 
-### Nutzen eines SSH-Agenten
+### Nutzen eines [TERMREF::SSH-Agenten]
 
 Stellen Sie sich vor, Sie sind ein Administrator in einer mittelständischen Firma. Sie 
 verwalten 100 virtuelle Maschinen. Auf jeder dieser Maschinen ist ihr öffentlicher SSH-Schlüssel 
@@ -130,9 +106,10 @@ hinterlegt. Für die Entschlüsselung haben Sie ein 25-stelliges zufällig gener
 gewählt. Jetzt müssen Sie jedes Mal Ihr langes kompliziertes Passwort neu eingeben, wenn Sie sich 
 auf einem der virtuellen Maschinen anmelden wollen. Um das zu umgehen und trotzdem die Sicherheit 
 der Schlüssel beizubehalten, gibt es den SSH-Agenten.
-  
+
 Lesen sie die Paragraphen am Anfang und am Ende der **Description** der ssh-agent(1) 
-[manpage](https://man.openbsd.org/ssh-agent.1).  
+[manpage](https://man.openbsd.org/ssh-agent.1).
+
 Lesen sie die 3 Paragraphen am Anfang der **Description** der ssh-add(1) 
 [manpage](https://man.openbsd.org/ssh-add.1).
 
@@ -141,7 +118,9 @@ Lesen sie die 3 Paragraphen am Anfang der **Description** der ssh-add(1)
 - [EC] Verbinden Sie sich mit dem Zielserver.
 - [EQ] Was hat sich geändert?  
 
-Es ist umständlich den SSH-Agenten jedes mal neu zu starten, wenn man sich angemeldet hat. 
+### Automatisieren
+
+Es ist umständlich den SSH-Agenten jedes mal neu zu starten, nachdem man sich angemeldet hat. 
 Deswegen erstellen wir uns einen Alias, der das für uns erledigt.
 
 Lesen Sie die **Syntax** und die **Dauerhafte Verwendung** des 
@@ -149,9 +128,8 @@ Lesen Sie die **Syntax** und die **Dauerhafte Verwendung** des
 
 - [EC] Erstellen Sie einen Alias `ssha`, welches den Agenten startet und Ihre Schlüssel in den Agenten 
    kopiert.
-- [EC] Fügen Sie den Alias Ihrer `.bashrc` hinzu. Somit ist Ihr Alias nach jeder Anmeldung verfügbar.
 
-Jetzt haben Sie schon eine schnellere Möglichkeit den SSH-Agenten zu starten.  
+Jetzt haben Sie eine schnelle Möglichkeit den SSH-Agenten zu starten.  
 Es gibt aber eine elegantere Lösung. Man lässt den Agenten beim Anmelden automatisch starten.
 
 Lesen Sie den Abschnitt **Bequem4** von [PARTREF::Shell-Grundlagen] 
