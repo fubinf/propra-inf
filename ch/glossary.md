@@ -98,6 +98,14 @@ In Code kann so z. B. der Buchstabe "A" auch durch seinen ASCII-Wert "65" darges
 Eine ASCII-Tabelle finden Sie unter [HREF::https://www.asciitable.com/].
 [ENDTERM]
 
+[TERM::Asymmetrische Verschlüsselung]
+Asymmetrische Verschlüsselung ist ein Verfahren, bei dem zwei verschiedene, aber miteinander 
+verbundene Schlüssel verwendet werden: ein öffentlicher Schlüssel zum Verschlüsseln von Daten und 
+ein privater Schlüssel zum Entschlüsseln. 
+Der öffentliche Schlüssel kann von jedem genutzt werden, während der private Schlüssel geheim bleibt. 
+Nur der Besitzer des privaten Schlüssels kann die verschlüsselten Daten wieder entschlüsseln.
+[ENDTERM]
+
 [TERM::Auszeichnungssprache]
 Eine Auszeichnungssprache ist eine formale Sprache, die verwendet wird, 
 um die Struktur und Darstellung von Texten in einem Dokument zu definieren. 
@@ -651,6 +659,13 @@ Ereignis, wenn bei einer [TERMREF::Hashfunktion] zwei unterschiedliche Eingaben 
 erzeugen.
 [ENDTERM]
 
+[TERM::Kryptographische Hashfunktionen]
+Kryptographische Hashfunktionen wandeln beliebige Daten in einen festen, einzigartigen "Fingerabdruck" 
+(Hash) um. 
+Sie sind schnell, geben bei gleicher Eingabe immer denselben Hash, und es ist nahezu unmöglich, aus 
+dem Hash die Originaldaten zurückzuberechnen oder zwei verschiedene Daten mit demselben Hash zu finden.
+[ENDTERM]
+
 ## L
 
 [TERM::Leistungstest|Performance Test]
@@ -1132,6 +1147,13 @@ Hierbei handelt es sich um ein Konzept in der Softwaretestung, das das System od
 bezeichnet, die gerade getestet wird. Es ist das Hauptziel des Testprozesses und wird auf mögliche
 Fehler, Schwachstellen oder Funktionsstörungen untersucht. Das SUT kann eine einzelne
 Softwareanwendung, ein Modul, eine Funktion oder sogar ein gesamtes System umfassen.
+[ENDTERM]
+
+[TERM::Symmetrische Verschlüsselung]
+Symmetrische Verschlüsselung ist ein Verfahren, bei dem der gleiche Schlüssel sowohl zum 
+Verschlüsseln als auch zum Entschlüsseln von Daten verwendet wird. 
+Sender und Empfänger müssen also denselben geheimen Schlüssel besitzen, um die verschlüsselten 
+Informationen sicher austauschen zu können.
 [ENDTERM]
 
 [TERM::Symlink|Symlinks]
