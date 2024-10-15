@@ -14,6 +14,8 @@ seine DNS-Informationen abrufen und grundlegend verstehen.
 [SECTION::background::default]
 Mit DNS-Werkzeugen finden Sie Probleme mit der Namensauflösung und der Kommunikation zwischen
 Rechnern.
+Sobald beim Umgang mit Rechnernetzen irgendwas nicht erreichbar ist oder zu sein scheint,
+ist das ein häufiger Arbeitsschritt.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -86,12 +88,11 @@ Lesen Sie die **Synopsis**, die **Description** und die **Arguments**.
 
 ### Arbeiten mit [TERMREF::dig]
 
-Lesen Sie die [dig(1) manpage](https://linux.die.net/man/1/dig).
+Sichten Sie die [dig(1) manpage](https://linux.die.net/man/1/dig) und lesen Sie insbesondere 
+die **Description**, die **Simple Usage** und die Option **-t**.
 
-Lesen Sie insbesondere die **Description**, die **Simple Usage** und die Option **-t**.
-
-Lesen Sie aus dem [Beitrag](https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/) 
-über dig von nixcraft, die Liste der **DNS record types**.
+Lesen Sie im [Beitrag über dig](https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/) 
+von nixcraft die **DNS record types** nach.
 
 - [EC] Nutzen Sie `dig` um die IP des Zielservers herauszufinden.
 - [EC] Finden Sie den Mailserver des Zielservers mit `dig` heraus.
@@ -102,11 +103,10 @@ Lesen Sie aus dem [Beitrag](https://www.cyberciti.biz/faq/linux-unix-dig-command
 
 ### Fortgeschrittenes Arbeiten mit [TERMREF::dig]
 
-`dig` wird primär genutzt, um die IP-Adresse eines Systems herauszufinden. `dig` ist jedoch ein 
-viel nützlicheres Netzwerktool. Einige Beispiele erläutern wir weiter unten.
+`dig` wird primär genutzt, um die IP-Adresse eines Systems herauszufinden, kann aber viel mehr:
 
 - [EC] Nutzen Sie `dig` um Informationen über den Google DNS-Server herauszufinden.
-    -   IP der Google DNS-Server: 8.8.8.8
+  Die IP der Google DNS-Server lautet 8.8.8.8.
 - [EC] Nutzen Sie den Google DNS-Server um die IP-Adresse des Zielservers herauszufinden.
 
 Angenommen Sie erreichen den Zielserver nicht. `dig` kann die [TERMREF::Nameserver] des Zielservers 

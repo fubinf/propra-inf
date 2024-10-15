@@ -52,7 +52,6 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Werkzeuge
-- ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
 
@@ -66,25 +65,20 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Ivan Condric
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC->LP)  
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP->IC)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC)
-
+- ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP->IC->LP->IC)
 - ch/Werkzeuge/Netzwerk/traceroute.md: (kommt noch)  
-
-  Nachfolgender Teil waren Kommentare von dnstools.md, ich habe mich aber entschieden für 
-  traceroute eine eigene Aufgabe zu schreiben.
-  
-  Den traceroute-Teil finde ich sehr anspruchsvoll. Wenn ich die Ähnlichkeiten und Unterschiede von
+  LP: "Den traceroute-Teil finde ich sehr anspruchsvoll. Wenn ich die Ähnlichkeiten und Unterschiede von
   `traceroute -T fu-berlin.de` und `traceroute fu-berlin.de` erklären sollte, würde ich ins
   Schleudern kommen. Oder warum im internen Netz manchmal bei fast jedem Hop ein Fehlschlag dabei ist.
-  Und beim nächsten Mal wieder keiner. oderoderoder.
-
+  Und beim nächsten Mal wieder keiner. oderoderoder.  
   Kriegen wir das besser eingehegt?  
-
   Beispielsweise hatte ich mich gefragt, ob eine Route zur Uni Luxemburg wohl über Frankreich
   oder Belgien führt, um dann erstaunt zu lernen, dass sie bevorzugt über Polen plus Tschechien führt
   und alternativ über Niederlande plus Belgien. Staun.  https://network.geant.org/gn4-3n/  
-  Nötigenfalls Schwierigkeit "mittel" nehmen und/oder traceroute abspalten.
+  Nötigenfalls Schwierigkeit "mittel" nehmen und/oder traceroute abspalten."
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP->IC)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC)
+
 
 
 ## Reviews to do for Christian Hofmann
