@@ -25,7 +25,18 @@ Bedienen wir uns zunächst einer frei zugänglichen Repository-Version von einer
 Python-Tool Sammlung. Klonen Sie folgendes Repository in Ihren [TERMREF::Hilfsbereich]:
 
 ```shell
-git clone https://github.com/pytoolz/toolz.git --branch 1.0.0
+git clone https://github.com/pytoolz/toolz.git --tag 1.0.0
+```
+
+Eine version 1.0.0 wird i.d.R. dann bereitgestellt, wenn diese Version auch aus Sicht der Entwickler
+stabil ist. Leider hilft uns eine stabile Version vorerst nicht weiter, weshalb wir ein klein wenig
+müssen. Um die Spannung nicht vorweg zu nehmen, wurde diese Manipulation verschleiert.
+
+Stellen Sie sicher, dass Sie sich im Repository `1.0.0` befinden. Bitte führen Sie folgenden Befehl aus.
+
+```shell
+encoded_command="c2VkICIyLDdkIiBiZW5jaC90ZXN0X3dvcmRjb3VudC5weSA+IGJlbmNoL3Rlc3Rfd29yZGNvdW50X3RtcCAmJiBtdiBiZW5jaC90ZXN0X3dvcmRjb3VudF90bXAgYmVuY2gvdGVzdF93b3JkY291bnQucHk="
+echo "$encoded_command" | base64 --decode | bash
 ```
 
 Sie wissen sicherlich bereits, dass wir mit `python -m pytest` oder einfach `pytest` alle
@@ -93,6 +104,15 @@ zu überspringen. Löschen Sie, falls noch vorhanden, die Skip-Anweisung.
 
 [ENDSECTION]
 [INSTRUCTOR::Kontrollhilfen]
+
+Das initiale Kommando zum Manipulieren des Repository beinhaltet folgenden Befehl:
+
+```shell
+sed "2,7d" bench/test_wordcount.py > bench/test_wordcount_tmp && mv bench/test_wordcount_tmp bench/test_wordcount.py
+```
+
+Dieser sorgt dafür, dass ein Download der `bench/shakespear.txt` nicht durchgeführt wird, was zu einem
+gewollten Fehler führen wird, wenn die Testfälle ausgeührt werden.
 
 Nach Ausführung von Pytest erhält man in der Clone-Version 1.0.0 folgende Ausgabe:
 
