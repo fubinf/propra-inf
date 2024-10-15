@@ -32,7 +32,8 @@ Eine version 1.0.0 wird i.d.R. dann bereitgestellt, wenn diese Version auch aus 
 stabil ist. Leider hilft uns eine stabile Version vorerst nicht weiter, weshalb wir ein klein wenig
 müssen. Um die Spannung nicht vorweg zu nehmen, wurde diese Manipulation verschleiert.
 
-Stellen Sie sicher, dass Sie sich im Repository `1.0.0` befinden. Bitte führen Sie folgenden Befehl aus.
+Stellen Sie sicher, dass Sie sich im geklonten Verzeichnis `1.0.0` befinden. Bitte führen Sie
+folgenden Befehl aus:
 
 ```shell
 encoded_command="c2VkICIyLDdkIiBiZW5jaC90ZXN0X3dvcmRjb3VudC5weSA+IGJlbmNoL3Rlc3Rfd29yZGNvdW50X3RtcCAmJiBtdiBiZW5jaC90ZXN0X3dvcmRjb3VudF90bXAgYmVuY2gvdGVzdF93b3JkY291bnQucHk="
