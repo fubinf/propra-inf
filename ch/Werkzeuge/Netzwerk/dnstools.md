@@ -8,7 +8,7 @@ assumes: apt, SSH
 
 [SECTION::goal::idea]
 Ich kann die Erreichbarkeit eines Rechners prüfen und kann
-seine DNS-Informationen abrufen und ungefähr verstehen.
+seine DNS-Informationen abrufen und grundlegend verstehen.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -37,7 +37,7 @@ In diesem Paket sind alle Werkzeuge enthalten, die wir in dieser Aufgabe brauche
 
 [NOTICE]
 Sie werden hier 4 Werkzeuge kennenlernen.
-Drei davon, `dig`, `nlookup` und `host`, haben einen sehr ähnlichen Zweck, nämlich DNS-Abfragen. 
+Drei davon sind `dig`, `nslookup` und `host`, haben einen sehr ähnlichen Zweck, nämlich DNS-Abfragen. 
 Es ist trotzdem sinnvoll, alle drei ausprobiert zu haben, da es Ihnen passieren kann, 
 dass Ihnen nur eines davon zur Verfügung steht.
 [ENDNOTICE]
