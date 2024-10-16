@@ -98,14 +98,6 @@ In Code kann so z. B. der Buchstabe "A" auch durch seinen ASCII-Wert "65" darges
 Eine ASCII-Tabelle finden Sie unter [HREF::https://www.asciitable.com/].
 [ENDTERM]
 
-[TERM::Asymmetrische Verschlüsselung]
-Asymmetrische Verschlüsselung ist ein Verfahren, bei dem zwei verschiedene, aber miteinander 
-verbundene Schlüssel verwendet werden: ein öffentlicher Schlüssel zum Verschlüsseln von Daten und 
-ein privater Schlüssel zum Entschlüsseln. 
-Der öffentliche Schlüssel kann von jedem genutzt werden, während der private Schlüssel geheim bleibt. 
-Nur der Besitzer des privaten Schlüssels kann die verschlüsselten Daten wieder entschlüsseln.
-[ENDTERM]
-
 [TERM::Auszeichnungssprache]
 Eine Auszeichnungssprache ist eine formale Sprache, die verwendet wird, 
 um die Struktur und Darstellung von Texten in einem Dokument zu definieren. 
