@@ -96,7 +96,7 @@ arbeiten und dementsprechend `\r\n`-Zeilenenden haben wollen würden?
 ## Aliase
 
 Wie weiter oben bei den Quellenangaben bereits erwähnt bietet auch git die Möglichkeit 
-sogenannte [TERMREF::Aliase::-e] anzulegen. 
+sogenannte [TERMREF2::Alias::-e] anzulegen.
 Ein nützliches Beispiel wollen wir uns nun anschauen:
 
 `alias.logll=log --pretty="%ad %<(10,trunc)%an %h %s" --date=format:%y%m%d`

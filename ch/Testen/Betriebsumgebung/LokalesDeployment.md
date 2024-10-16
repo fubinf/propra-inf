@@ -1,9 +1,9 @@
 title: Lokale Bereitstellung des System unter Test
-stage: draft
-timevalue: 0
+stage: alpha
+timevalue: 1
 difficulty: 1
-explains:
-assumes: venv, pip, Shell-Grundlagen, Git101
+explains: SUT
+assumes: venv, pip, Shell-Grundlagen, Git101, apt
 ---
 
 [SECTION::goal::idea]
@@ -44,9 +44,10 @@ Verschaffen Sie sich einen Überblick über den Entwicklungsstand, welchen Sie i
 
 Starten Sie ein eine neue Terminal Session. Wir wollen unser SUT gleich strukturiert ablegen.
 
-- [EC] Legen Sie dazu ein neues Verzeichnis an: `mkdir ~/ws/sut`.
-- [EC] Navigieren Sie anschließend in dieses Verzeichnis: `cd ~/ws/sut`.
-- [EC] Jetzt beschaffen wir uns den Quellcode mit `git clone https://github.com/fubinf/propra-inf-testobjekt.git`.
+- Legen Sie dazu ein neues Verzeichnis an: `mkdir ~/ws/sut`.
+- Navigieren Sie anschließend in dieses Verzeichnis: `cd ~/ws/sut`.
+- Jetzt beschaffen wir uns den Quellcode mit `git clone https://github.com/fubinf/propra-inf-testobjekt.git`.
+
 - [EQ] Wie heißt das erstellte Verzeichnis unter `~/ws/sut/`?
 
 [WARNING]
@@ -60,7 +61,7 @@ Bevor wir die Anwendung starten können, benötigen wir die für diese Webanwend
 Entwicklungsvorbedingungen. Da dieser Webauftritt ein Python Projekt ist, wird als aller erstes
 Python benötigt.
 
-- [EQ] Aktualisieren Sie, falls notwendig, auf Python Version 3.11
+- [EC] Aktualisieren Sie, falls notwendig, auf Python Version 3.11
 
 Wenn Sie mit mehreren Python Projekten arbeiten, werden Sie auch auf unterschiedliche Vorbedingen
 oder Abhängigkeiten treffen. Daher bietet es sich an diese Projekte in unterschiedlichen Umgebungen
@@ -87,8 +88,9 @@ Da das SUT aus unterschiedlichen Versionen besteht, müssen wir uns für eins en
 ihnen die Version in der jeweiligen Aufgabe nahegelegt).
 
 - [EC] Wechseln Sie in das vorgesehene Verzeichnis mit der angegebenen Versionsnummer (hier
-  exemplarisch v1.0.0) `cd v1.0.0`
-- [EC] Anschließend installieren Sie einmalig die hinterlegten Abhängigkeiten mit `pip install -r requirements.txt`
+  exemplarisch v1.0.0)
+- [EC] Anschließend installieren Sie einmalig die hinterlegten Abhängigkeiten über die Datei
+  `requirements.txt`
 
 [WARNING]
 Da Sie die Virtuelle Umgebung `sut` verwenden, sind die installierten Abhängigkeiten nur für diese
@@ -101,7 +103,7 @@ hat, wird beim folgenden Ausführen eine Fehlermeldung auftauchen.
 Jetzt haben wir alles, was wir zum Starten benötigen. Jedoch wir müssen unsere Anwendung noch zum
 Laufen bringen. Das realisieren wir mit dem folgenden Kommando:
 
-- [EC] Starten der Anwendung mit `python app.py`
+- [EC] Starten Sie die Anwendung mit Python, indem Sie die Hauptdatei aufrufen.
 
 [HINT::Datei nicht gefunden]
 Sollte die Datei nicht gefunden werden, müssen die den Pfad anpassen oder ins Verzeichnis der
@@ -125,9 +127,19 @@ drücken Sie die Tastenkombination `Control + C`, oder schließen das Terminalfe
 
 Um mit der Webanwednung zu interagieren zu können, benötigen Sie ein Browserfenster.
 
-- [EC] Rufen Sie im Browser die folgende Seite auf: `http://127.0.0.1:5000`
+- Rufen Sie im Browser die folgende Seite auf: `http://127.0.0.1:5000`
 
 Wenn Sie jetzt eine Webseite sehen, hat alles funktioniert.
+
+Natürlich werden Sie in die Versuchung kommen, Änderungen am Code vorzunehmen, indem Sie Anpassungen
+vornehmen, Dinge Löschen oder Hinzufügen.
+
+- [EQ] Welche Auswirkung hat eine Änderung auf das GitHub Repository?
+
+Win diesem Task geht es darum, das SUT lokal zu starten und eine Änderung nicht online zur Verfügung
+zu stellen. Doch ..
+
+- [EQ] Warum arbeiten wir lokal und nicht permanent mit eine online bereitgestellten Version?
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
@@ -136,8 +148,21 @@ Wenn Sie jetzt eine Webseite sehen, hat alles funktioniert.
 
 [INSTRUCTOR::heading]
 
+- [EREFQ::1] Versionen v1.0.0, v1.1.0 und v3.0.0, wobei v1.0.0 Code enthält.
 - [EREFQ::2] Nach diesen Schritten sollte das folgende Verzeichnis `propra-inf-testobjekt` unter
   `~/ws/sut/` gefunden worden sein.
-- [EREFQ::3] Hier soll kenntlich gemacht werden, dass die venv im Prompt angezeigt wird: **(sut)**
+- [EREFC::1] `apt install python3.11` könnte eine Lösung sein.
+- [EREFQ::3] Hier soll kenntlich gemacht werden, dass die venv im Prompt angezeigt wird. Wenn
+  der Hinweis befolgt wird, sollte folgendes erscheinen: **(sut)**
+- [EREFC::2] `cd v1.0.0`
+- [EREFC::3] `pip install -r requirements.txt`
+- [EREFC::4] `python3 app.py`
+- [EREFQ::4] Gar keine, da alle Änderungen lediglich lokal geschehen und GitHub gar nichts davon
+  mitbekommt, so fern man keine Commits pushed.
+- [EREFQ::5] Die wesentlichsten Vorteile sind:
+  - Schneller Zugriff auf ein laufendes SUT
+  - Debugging Möglichkeit
+  - Zum Testen immer ein SUT mit ein und dem selben Zustand (Testdaten)
+  - unabhängig und flexibel mit der Anwendung
 
 [ENDINSTRUCTOR]

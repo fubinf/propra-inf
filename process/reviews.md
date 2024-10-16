@@ -49,6 +49,8 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Unittests/m_pytest_plugin_testcoverage.md (RR->LP)
 - ch/Testen/Unittests/m_pytest_plugin_linter_flake8.md (RR-LP)
 
+- ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
+
 ### Web
 
 
