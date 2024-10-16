@@ -55,6 +55,7 @@ We will modify these rules over time when others appear more useful.
 
 
 ### Werkzeuge
+- ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC->LP)
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP->IC->LP->IC->LP)
 
 -------------------------------------------------------------------------------------------
@@ -68,7 +69,6 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/Python2/Python-import.md (HA->LP->HA->LP->HA)
 
 ## Reviews to do for Ivan Condric
-- ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC->LP)  
 - ch/Werkzeuge/Netzwerk/traceroute.md: (kommt noch)  
   LP: "Den traceroute-Teil finde ich sehr anspruchsvoll. Wenn ich die Ähnlichkeiten und Unterschiede von
   `traceroute -T fu-berlin.de` und `traceroute fu-berlin.de` erklären sollte, würde ich ins

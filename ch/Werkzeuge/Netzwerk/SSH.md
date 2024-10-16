@@ -93,7 +93,7 @@ Verstehen Sie insbesondere das **example** am Ende.
 
 - [EC] Kopieren Sie Ihren öffentlichen Schlüssel auf den Zielserver.
 
-Der öffentliche Schlüssel sollte jetzt auf dem Zielserver unter ihrem Nutzer gespeichert sein. 
+Ihr öffentlicher Schlüssel sollte jetzt auf dem Zielserver unter `~/.ssh/authorized_keys` gespeichert sein. 
 
 - [EC] Melden Sie sich auf dem Zielserver an. 
 - [EQ] Beschreiben Sie kurz was sich geändert hat.
@@ -146,8 +146,11 @@ Lesen Sie den Abschnitt **Bequem4** von [PARTREF::Shell-Grundlagen]
 
 [ENDSECTION]
 
-[INSTRUCTOR::Erwartung]
+[INSTRUCTOR::Kommandoprotokoll]
+[PROT::ALT:SSH.prot] 
+[ENDINSTRUCTOR]
 
-[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[INSTRUCTOR::Markdowndokument]
 
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
