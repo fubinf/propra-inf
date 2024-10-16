@@ -39,7 +39,7 @@ In diesem Paket sind alle Werkzeuge enthalten, die wir in dieser Aufgabe brauche
 
 [NOTICE]
 Sie werden hier 4 Werkzeuge kennenlernen.
-Drei davon sind `dig`, `nslookup` und `host`, haben einen sehr ähnlichen Zweck, nämlich DNS-Abfragen. 
+Drei davon sind `dig`, `nslookup` und `host`, haben einen sehr ähnlichen Zweck, nämlich [TERMREF2::DNS::--Abfragen]. 
 Es ist trotzdem sinnvoll, alle drei ausprobiert zu haben, da es Ihnen passieren kann, 
 dass Ihnen nur eines davon zur Verfügung steht.
 [ENDNOTICE]
@@ -47,7 +47,8 @@ dass Ihnen nur eines davon zur Verfügung steht.
 
 ### Arbeiten mit [TERMREF::ping]
 
-`ping` gibt Ihnen Rückmeldung über die Erreichbarkeit eines Systems.
+`ping` gibt Ihnen Rückmeldung über die Erreichbarkeit eines Systems. Es nutzt das 
+[TERMREF::Transportprotokoll] [TERMREF::ICMP].
 
 Damit die Ping-Ausgabe gestoppt wird, nutzen Sie die Tastenkombination `STRG+C`.
 
@@ -74,17 +75,17 @@ z.B. die Seite [HREF::https://www.meter.net/test-server/102-vultr/].)
 Lesen Sie die [host(1) manpage](https://manpages.debian.org/bookworm/bind9-host/host.1.en.html).
 Lesen Sie insbesondere die **Synopsis** und die **Description**.
 
-- [EC] Nutzen Sie `host` um die IP und den Mailserver des Zielservers herauszufinden.
+- [EC] Nutzen Sie `host` um die [TERMREF::IP-Adresse] und den Mailserver des Zielservers herauszufinden.
 
 ### Arbeiten mit nslookup
 
 Lesen Sie die [nslookup(1) manpage](https://linux.die.net/man/1/nslookup).
 Lesen Sie die **Synopsis**, die **Description** und die **Arguments**.
 
-- [EC] Nutzen Sie `nslookup` um die IP des Zielservers herauszufinden.
+- [EC] Nutzen Sie `nslookup` um die IP-Adresse des Zielservers herauszufinden.
 - [EC] Finden Sie den Mailserver des Zielservers mit `nslookup` heraus.
 - [EQ] Was sind die Unterschiede zwischen `host` und `nslookup`, im Hinblick auf die Ausgabe und 
-       der Nutzung beider Kommandos.
+       der Nutzung beider Kommandos?
 
 ### Arbeiten mit [TERMREF::dig]
 
@@ -94,35 +95,33 @@ die **Description**, die **Simple Usage** und die Option **-t**.
 Lesen Sie im [Beitrag über dig](https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/) 
 von nixcraft die **DNS record types** nach.
 
-- [EC] Nutzen Sie `dig` um die IP des Zielservers herauszufinden.
+- [EC] Nutzen Sie `dig` um die IP-Adresse des Zielservers herauszufinden.
 - [EC] Finden Sie den Mailserver des Zielservers mit `dig` heraus.
-- [EQ] Was sind die Unterschiede zwischen `dig` und `host`, im Hinblick auf die Ausgabe und 
-       der Nutzung beider Kommandos.
-- [EQ] Was sind die Unterschiede zwischen `dig` und `nslookup`, im Hinblick auf die Ausgabe und 
-       der Nutzung beider Kommandos.
+- [EQ] Vergleichen Sie das Kommando `dig` mit `host` und `nslookup`, im Hinblick auf die Ausgabe und 
+       der Nutzung beider Kommandos?
 
 ### Fortgeschrittenes Arbeiten mit [TERMREF::dig]
 
 `dig` wird primär genutzt, um die IP-Adresse eines Systems herauszufinden, kann aber viel mehr:
 
 - [EC] Nutzen Sie `dig` um Informationen über den Google DNS-Server herauszufinden.
-  Die IP der Google DNS-Server lautet 8.8.8.8.
+  Die IP-Adresse der Google DNS-Server lautet 8.8.8.8.
 - [EC] Nutzen Sie den Google DNS-Server um die IP-Adresse des Zielservers herauszufinden.
 
 Angenommen Sie erreichen den Zielserver nicht. `dig` kann die [TERMREF::Nameserver] des Zielservers 
 auflösen. Durch diese Nameserver können Sie dann nachververfolgen, wie der DNS-Name rekursiv aufgelöst wird.
 
-Wir fangen erstmal mit den root-Servern an, hier ist egal, welchen wir wählen.
+Wir fangen erstmal mit den [TERMREF2::Root-Nameserver::-n] an, hier ist egal, welchen wir wählen.
 
-- [EC] Lösen Sie mit einem root-Server die IP-Adresse des Zielservers auf: `dig <Zielserver> @a.root-servers.net`
+- [EC] Lösen Sie mit einem Root-Nameserver die IP-Adresse des Zielservers auf: `dig <Zielserver> @a.root-servers.net`
 
 Schauen Sie in der Authority Section nach einem weiteren Nameserver. Diese sind mit NS markiert.
 
-- [EC] Ersetzen Sie den root-Server aus obiger Aufgabe mit dem neuen Nameserver und führen Sie den Befehl aus.
+- [EC] Ersetzen Sie den Root-Nameserver aus obiger Aufgabe mit dem neuen Nameserver und führen Sie den Befehl aus.
 
-Wenn hier nur noch die IP des Zielservers angezeigt wird, dann sind Sie fertig, falls nicht:
+Wenn hier nur noch die IP-Adresse des Zielservers angezeigt wird, dann sind Sie fertig, falls nicht:
 
-- [EC] Wiederholen Sie den Prozess, bis Sie die IP des Zielservers herausgefunden haben.
+- [EC] Wiederholen Sie den Prozess, bis Sie die IP-Adresse des Zielservers herausgefunden haben.
 
 [ENDSECTION]
 
@@ -131,7 +130,11 @@ Wenn hier nur noch die IP des Zielservers angezeigt wird, dann sind Sie fertig, 
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Erwartung]
-[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[INSTRUCTOR::Kommandoprotokoll]
 [PROT::ALT:dnstools.prot] 
+[ENDINSTRUCTOR]
+
+[INSTRUCTOR::Markdowndokument]
+
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]

@@ -347,6 +347,13 @@ DNS-Servern, um Informationen über DNS-Datensätze wie IP-Adressen, Nameserver 
 DNS-Ressourceneinträge für eine bestimmte Domain zu erhalten.
 [ENDTERM]
 
+[TERM::DNS|Domain Name System]
+DNS (Domain Name System) ist ein Dienst, der Internetadressen in [TERMREF2::IP-Adresse::-n] umwandelt. 
+Es sorgt dafür, dass man statt einer Zahlenfolge (wie 192.168.0.1) einfach einen Domainnamen, wie 
+www.beispiel.de, eingeben können, um eine Webseite zu erreichen. Vereinfacht gesagt ist DNS ein 
+Telefonbuch fürs Internet.
+[ENDTERM]
+
 [TERM::DRY|DRY-Prinzip|Don't repeat yourself]
 DRY steht für "don't repeat yourself".
 Das Prinzip besagt, man solle Redundanz vermeiden oder zumindest reduzieren,
@@ -569,6 +576,16 @@ zunächst ausgeklammert wird.
 
 ## I
 
+[TERM::ICMP]
+ICMP (Internet Control Message Protocol) ist ein Netzwerkprotokoll, das für den Austausch von 
+Steuer- und Fehlermeldungen im Internet verwendet wird. 
+Es ermöglicht Geräten, Informationen über den Status von Verbindungen zu senden, z. B. wenn ein 
+Zielgerät nicht erreichbar ist oder ein Paket verloren gegangen ist. 
+ICMP wird häufig von Netzwerktools wie "ping" verwendet, um die Erreichbarkeit eines Hosts zu 
+überprüfen und die Netzwerkverbindung zu diagnostizieren. Es spielt eine wichtige Rolle bei der 
+Verwaltung und Fehlersuche in IP-Netzwerken.
+[ENDTERM]
+
 [TERM::IDE|Integrated Development Envrionment]
 Eine Kategorie komplexer interaktiver Softwarewerkzeuge.
 Eine IDE bietet eine große Zahl von Funktionen an, um Programmcode zu erzeugen,
@@ -611,6 +628,40 @@ Ein Issue Tracker erlaubt insbesondere
   sodass man schnell auf Teilmengen der Einträge zugreifen kann,
 - die Markierung eines Eintrags als "offen" (open, in Bearbeitung) oder "geschlossen" (closed) und
 - die Zuweisung zuständiger Personen für die Bearbeitung.
+[ENDTERM]
+
+[TERM::IP|Internet Protocol]
+IP (Internet Protocol) ist das grundlegende Protokoll, das dafür sorgt, dass Daten über das Internet 
+von einem Computer zum anderen gelangen. 
+Es teilt die Daten in kleine Pakete auf und sorgt dafür, dass sie den richtigen Weg durch 
+verschiedene Netzwerke finden, bis sie ihr Ziel erreichen. 
+Jedes Gerät im Internet hat eine eindeutige [TERMREF::IP-Adresse], die wie eine digitale Adresse funktioniert, 
+damit die Daten an den richtigen Ort gesendet werden.
+[ENDTERM]
+
+[TERM::IP-Adresse]
+Eine IP-Adresse ist eine eindeutige Zahlenfolge, die jedem Gerät im Internet zugewiesen wird. 
+Sie funktioniert wie eine digitale Adresse und hilft dabei, Daten an den richtigen Ort zu senden. 
+Es gibt zwei Versionen von IP-Adressen: [TERMREF::IPv4] (z. B. 192.168.0.1) und 
+[TERMREF::IPv6] (z. B. 2001:0db8:85a3::8a2e:0370:7334). 
+Sie ermöglichen es Computern, Smartphones und anderen Geräten, miteinander zu kommunizieren und 
+Informationen auszutauschen.
+[ENDTERM]
+
+[TERM::IPv4]
+IPv4 (Internet Protocol Version 4) wird für die Identifizierung von Geräten im Internet verwendet.
+Eine IPv4-Adresse besteht aus 32 Bit und wird in vier Zahlen dargestellt, die durch Punkte 
+getrennt sind (z. B. 192.168.1.1). 
+Diese Adressen helfen, Daten an den richtigen Ort zu senden. 
+IPv4 kann etwa 4,3 Milliarden Adressen bereitstellen.
+[ENDTERM]
+
+[TERM::IPv6]
+IPv6 (Internet Protocol Version 6) ist die neueste Version des Internetprotokolls, die entwickelt 
+wurde, um das Problem der begrenzten IP-Adressen von IPv4 zu lösen. 
+Eine IPv6-Adresse ist 128 Bit lang und wird meist in acht Gruppen von Hexadezimalzahlen dargestellt, 
+die durch Doppelpunkte getrennt sind (z. B. 2001:0db8:85a3:0000:0000:8a2e:0370:7334). 
+IPv6 stellt 2^128 (ungefähr 340 Sextillionen) Adressen bereit.
 [ENDTERM]
 
 [TERM::Iterables|Iterables in Python]
@@ -1037,6 +1088,15 @@ die der Client zuvor gesendet hat.
 Enthält den angeforderten Inhalt und/oder gibt Informationen darüber, ob die Anfrage erfolgreich war oder nicht.
 [ENDTERM]
 
+[TERM::Root-Nameserver]
+Root-Nameserver sind zentrale Server im [TERMREF::DNS], die Informationen über die 
+wichtigsten [TERMREF2::Top-Level-Domain::-s] (wie .com, .de oder .org) speichern. Sie stehen an der Spitze der 
+DNS-Hierarchie und helfen dabei, DNS-Anfragen zu bearbeiten. 
+Wenn ein DNS-Server die IP-Adresse einer Website nicht kennt, kann er einen Root-Nameserver 
+anfragen, um die Adresse des zuständigen Nameservers für die nächste Ebene zu erhalten. 
+Dieser Prozess ermöglicht es, die richtigen Webseiten im Internet zu finden.
+[ENDTERM]
+
 [TERM::RPA|Robotic Process Automation|Robotische Prozessautomatisierung]
 Die Anwendung von Software-Robotern oder "Bots", um menschliche Aufgaben in Geschäftsprozessen
 zu automatisieren. Diese Bots agieren in der Regel auf der Benutzeroberfläche von Anwendungen,
@@ -1181,6 +1241,16 @@ weil die GUI sich oft ändert.
 
 ## T
 
+[TERM::TCP]
+TCP (Transmission Control Protocol) ist ein verbindungsorientiertes Netzwerkprotokoll, das den 
+zuverlässigen Datenaustausch zwischen zwei Endgeräten über ein IP-Netzwerk gewährleistet. 
+Bevor Daten gesendet werden, baut TCP eine stabile Verbindung zwischen Sender und Empfänger auf. 
+Während der Übertragung teilt es die Daten in kleine Pakete auf, überprüft, ob diese korrekt 
+angekommen sind, und stellt sicher, dass sie in der richtigen Reihenfolge zusammengesetzt werden. 
+Geht ein Paket verloren oder wird beschädigt, fordert TCP dessen erneute Übertragung an. 
+So wird eine vollständige und fehlerfreie Datenübertragung sichergestellt.
+[ENDTERM]
+
 [TERM::Test]
 Das Ausprobieren von Software, um relevante Eigenschaften zu überprüfen;
 meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
@@ -1224,9 +1294,32 @@ neues Passwort basierend auf einem geheimen Schlüssel und der aktuellen Zeit. D
 dann für die Authentifizierung verwendet.
 [ENDTERM]
 
+[TERM::Top-Level-Domain]
+Top-Level-Domains (TLDs) sind die letzten Teile einer Internet-Domain, die nach dem letzten Punkt 
+in einer Webadresse erscheinen, wie z. B. .com, .org oder .de. 
+Sie werden in zwei Hauptkategorien unterteilt: generische TLDs (gTLDs), die allgemein verwendet 
+werden und keine speziellen Anforderungen haben, und länderspezifische TLDs (ccTLDs), die für 
+bestimmte Länder oder Regionen stehen (z. B. .fr für Frankreich oder .jp für Japan). 
+TLDs helfen, die Art und den Standort einer Website zu identifizieren und sind ein wichtiger 
+Bestandteil des Domain Name Systems (DNS).
+[ENDTERM]
+
 [TERM::traceroute|Traceroute]
 Traceroute ist ein Befehl, um den Pfad von Datenpaketen in einem Netzwerk zu verfolgen. Es zeigt
 die einzelnen Hops und die Antwortzeit zum Hop entlang des Weges an.
+[ENDTERM]
+
+[TERM::Transportprotokoll]
+Ein Transportprotokoll ist ein Kommunikationsprotokoll, das den sicheren und zuverlässigen 
+Austausch von Daten zwischen zwei Geräten in einem Netzwerk ermöglicht. 
+Es sorgt dafür, dass die Daten korrekt und in der richtigen Reihenfolge ankommen, und verwaltet 
+die Verbindungen zwischen den Geräten. Drei der bekanntesten Transportprotokolle sind [TERMREF::TCP] 
+(Transmission Control Protocol), das eine zuverlässige Verbindung mit Fehlerkorrektur bietet, 
+[TERMREF::UDP] (User Datagram Protocol), das schnellere, aber unzuverlässige Datenübertragungen 
+ermöglicht und [TERMREF::ICMP] (Internet Control Message Protocol), welches für den Austausch von 
+Steuer- und Fehlermeldungen im Internet verwendet wird.
+Transportprotokolle spielen eine entscheidende Rolle bei der Gewährleistung der Datenintegrität 
+und -effizienz im Internet.
 [ENDTERM]
 
 [TERM::TUI|Text-based User Interface]
@@ -1259,6 +1352,13 @@ um ihren Lernerfolg zu verbreitern.
 [ENDTERM]
 
 ## U
+
+[TERM::UDP]
+UDP (User Datagram Protocol) ist ein schnelles, verbindungsloses Netzwerkprotokoll, das Daten ohne 
+vorherige Verbindung zwischen Sender und Empfänger versendet. 
+Es bietet keine Fehlerkorrektur, das bedeutet, dass Pakete verloren gehen oder in falscher 
+Reihenfolge ankommen können, ohne dass sie neu gesendet werden.
+[ENDTERM]
 
 [TERM::Umgebungsvariable|Umgebungsvariablen|environment variable]
 Ein Paar aus Name und Wert, das einem Prozess eines Unix-Betriebssystems zugeordnet ist
