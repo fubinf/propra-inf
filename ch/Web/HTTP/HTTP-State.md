@@ -1,6 +1,6 @@
 title: Zustand in HTTP
 stage: draft
-timevalue: 1
+timevalue: 0
 difficulty: 2
 assumes: HTTP-Response
 ---

@@ -1,6 +1,6 @@
 title: HTTP-Statuscodes
 stage: draft
-timevalue: 0.75
+timevalue: 0
 difficulty: 1
 assumes: HTTP-Response
 ---

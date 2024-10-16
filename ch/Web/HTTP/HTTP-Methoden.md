@@ -1,6 +1,6 @@
 title: HTTP-Methoden
 stage: draft
-timevalue: 0.5
+timevalue: 0
 difficulty: 1
 assumes: HTTP-Request
 ---

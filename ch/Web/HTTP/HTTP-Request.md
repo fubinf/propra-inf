@@ -1,6 +1,6 @@
 title: HTTP-Request
 stage: draft
-timevalue: 1
+timevalue: 0
 difficulty: 1
 ---
 [SECTION::goal::idea]
