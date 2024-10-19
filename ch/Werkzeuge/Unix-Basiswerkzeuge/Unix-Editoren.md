@@ -1,6 +1,6 @@
 title: Editoren
 stage: alpha
-timevalue: 1.0
+timevalue: 1.5
 difficulty: 2
 ---
   
@@ -32,6 +32,11 @@ am Ende.
   mit dem obigen Inhalt.
   Editieren Sie jede nur mit dem entsprechenden Editor `nano` bzw. `vim`.
 
+### Nano installieren
+
+- [EC] Aktualisieren Sie Ihr System.
+- [EC] Installieren Sie das Paket `nano`.
+
 ### Arbeiten mit Nano
 
 Finden Sie für die nächsten Schritte immer die schnellste Möglichkeit, die Ihnen nano bietet,
@@ -41,11 +46,15 @@ Das ist jetzt beim Lernen natürlich vergleichsweise umständlich, aber es simul
 tun würde.
 
 Lesen Sie Kapitel **2** des [nano Handbuchs](https://www.nano-editor.org/dist/latest/nano.html).
+
+Machen Sie sich mit den Shorcuts von nano mit diesem 
+[cheatsheet](https://www.nano-editor.org/dist/latest/cheatsheet.html) vertraut.
+
 Probieren Sie außerdem `Ctrl`-Pfeiltasten aus sowie `Pos1` und `End` mit und ohne `Ctrl`.
 
 - [EC] Öffnen Sie die gerade erstellte Datei mit nano.
 - [EC] Bewegen Sie sich mit den Pfeiltasten auf den Zeilen.
-- [EC] Kopieren Sie den folgenden Text: `Dieser Text wurde mit nano kopiert.`
+- [EC] Kopieren Sie den Teil des Satzes aus der Datei aus der dritten Zeile: `Stet clita kasd gubergren`
 - [EC] Fügen Sie den kopierten Text nach dem achten Wort der ersten Zeile ein.
 
 Lesen Sie Kapitel **3.3, 3.4** des [nano Handbuchs](https://www.nano-editor.org/dist/latest/nano.html).
@@ -61,16 +70,22 @@ Lesen Sie Kapitel **3.3, 3.4** des [nano Handbuchs](https://www.nano-editor.org/
 Lesen Sie Kapitel **3.6** des [nano Handbuchs](https://www.nano-editor.org/dist/latest/nano.html).
 
 - [EC] Suchen Sie nach `Lorem`.
-- [EC] Ersetzen Sie alle Wörter `ipsum` mit `ersetzt mit nano`.s
+- [EC] Ersetzen Sie alle Wörter `ipsum` mit `ersetzt mit nano`.
 - [EC] Speichern Sie die Datei.
 - [EC] Speichern Sie die Datei unter dem Namen `Unix-Editoren-nano2.txt`.
+
+### Vim installieren
+
+- [EC] Aktualisieren Sie Ihr System
+- [EC] Installieren Sie das Paket `vim`.
 
 ### Arbeiten mit Vim
 
 [NOTICE]
 Falls Sie mit `vim` noch nicht gearbeitet haben, sollten Sie sich mit Vimtutor vertraut machen. 
 Vimtutor ist ein interaktives Tutorial, das Ihnen die grundlegenden Befehle und Funktionen von `Vim` 
-erklärt. Sie können es über die Befehlszeile mit dem Befehl `vimtutor` starten.
+erklärt. Sie starten es über die Befehlszeile mit dem Befehl `vimtutor`. Machen Sie die ersten 
+drei Lessons. Das sollte für den Anfang ausreichen. Machen Sie danach mit den Aufgaben weiter.
 [ENDNOTICE]
 
 Suchen Sie auch für `vim` immer nach einer Lösung mit möglichst wenigen Tastendrücken.
@@ -81,7 +96,7 @@ Lesen Sie Kapitel **02.1, 02.3, 02.7** des [vim Handbuchs](https://vimhelp.org/u
 - [EC] Öffnen Sie die gerade erstellte Datei mit vim.
 - [EC] Bewegen Sie sich mit **h,j,k,l** auf den Zeilen.
 - [EC] Bewegen Sie sich mit den Pfeiltasten auf den Zeilen.
-- [EC] Kopieren Sie den nächsten Text. `Dieser Text wurde mit vim kopiert.`
+- [EC] Kopieren Sie den Teil des Satzes aus der Datei aus der dritten Zeile: `Stet clita kasd gubergren`
 
 Lesen Sie Kapitel **03.1** des [vim Handbuchs](https://vimhelp.org/usr_03.txt.html).  
 Lesen Sie Kapitel **04.6** des [vim Handbuchs](https://vimhelp.org/usr_04.txt.html).
@@ -132,11 +147,18 @@ Lesen Sie die Kapitel 1-4 von register aus der
 
 ### Reflektion
 
-- [EQ] Was gefällt ihnen besonders gut an `vim`?
-- [EQ] Was gefällt ihnen besonders gut an `nano`?
-- [EQ] Was missfällt ihnen am meisten an `vim`? Was an `nano`?
+- [EQ] Was gefällt Ihnen besonders gut an `vim`?
+- [EQ] Was gefällt Ihnen besonders gut an `nano`?
+- [EQ] Was missfällt Ihnen am meisten an `vim`? Was an `nano`?
 - [EQ] Würde das vermutlich weiterhin so sein, wenn Sie den Editor täglich benutzen würden?
 - [EQ] Da man immer mal einen Textmode-Editor braucht: Welchen werden Sie lernen?
+
+[HINT::Schwierig?]
+Falls Ihnen nicht einfallen sollte, was Sie im Reflektionsteil schreiben sollen, sind hier einige 
+Webseiten.
+[Link1](https://www.reddit.com/r/learnprogramming/comments/xhghsg/i_dont_understand_why_anyone_would_use_nanovim/)
+[Link2](https://itsfoss.com/vim-vs-nano/)
+[ENDHINT]
 
 [ENDSECTION]
 

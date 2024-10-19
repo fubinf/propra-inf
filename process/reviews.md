@@ -57,6 +57,9 @@ We will modify these rules over time when others appear more useful.
 ### Werkzeuge
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC->LP)
 - ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP->IC->LP->IC->LP)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP->IC-LP)
+  Ich bin mir hier unsicher, was in den Instructor-Teil soll. Es gibt ja keine falschen 
+  Antworten für die Reflektion. 
 
 -------------------------------------------------------------------------------------------
 
@@ -69,6 +72,7 @@ We will modify these rules over time when others appear more useful.
 - ch/Sprachen/Python2/Python-import.md (HA->LP->HA->LP->HA)
 
 ## Reviews to do for Ivan Condric
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC)
 - ch/Werkzeuge/Netzwerk/traceroute.md: (kommt noch)  
   LP: "Den traceroute-Teil finde ich sehr anspruchsvoll. Wenn ich die Ähnlichkeiten und Unterschiede von
   `traceroute -T fu-berlin.de` und `traceroute fu-berlin.de` erklären sollte, würde ich ins
@@ -79,9 +83,6 @@ We will modify these rules over time when others appear more useful.
   oder Belgien führt, um dann erstaunt zu lernen, dass sie bevorzugt über Polen plus Tschechien führt
   und alternativ über Niederlande plus Belgien. Staun.  https://network.geant.org/gn4-3n/  
   Nötigenfalls Schwierigkeit "mittel" nehmen und/oder traceroute abspalten."
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP->IC)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC)
-
 
 
 ## Reviews to do for Christian Hofmann
