@@ -687,4 +687,10 @@ summary {}
     .treeref {
         background-color: #111;
     }
+
+    input[type=text] {
+        background-color: #000;
+        color: lightgray;
+        border: 1px solid;
+    }
 }
