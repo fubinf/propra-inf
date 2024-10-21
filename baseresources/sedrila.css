@@ -693,4 +693,33 @@ summary {}
         color: lightgray;
         border: 1px solid;
     }
+
+    .vwr-promptidx {
+        color: #000000;
+    }
+
+    .vwr-userhost {
+        color: #ff3d50;
+    }
+
+    .vwr-dir {
+        color: #36e35e;
+    }
+
+    .vwr-time {
+        color: #00a2ff;
+    }
+
+    .vwr-num {
+        background-color: #00a2ff;
+        color: black;
+    }
+
+    .vwr-cmd {
+        color: white;
+    }
+
+    .vwr-output {
+        color: #ffcccc;
+    }
 }
