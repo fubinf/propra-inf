@@ -1,5 +1,5 @@
 title: Eigenes System kennenlernen
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: apt
@@ -45,7 +45,7 @@ benutzen Sie sie jeweils.
 - [EC] Finden Sie heraus wie groß ihr `home`-Verzeichnis ist.
 - [EC] Finden Sie ihre IP-Adresse heraus.
 - Ein weiteres wichtiges Programm auf Linux ist `htop`. Es ist dem Taskmanager auf Windows ähnlich.
-- [EQ] Starten Sie htop und geben Sie an, welche Informationen `htop` Ihnen für jeden Prozess gibt.
+- [EQ] Starten Sie htop und geben Sie an, welche Informationen `htop` Ihnen für einen Prozess gibt.
 
 [HINT::Optionen]
 Beim Herausfinden der Größen der Verzeichnisse kann es nützlich sein, einige Ordner auszuschließen,
@@ -61,10 +61,12 @@ falls diese sehr viele Dateien enthalten, damit der Prozess nicht so lange dauer
 
 [ENDSECTION]
 
-[INSTRUCTOR::Erwartung]
+[INSTRUCTOR::Kommandoprotokoll]
 
-[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[PROT::ALT:Informationensammlung.prot]
+[ENDINSTRUCTOR]
+
+[INSTRUCTOR::Markdowndokument]
 
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
