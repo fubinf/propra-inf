@@ -2,9 +2,6 @@ title: "glob: Verzeichnisse mit Pattern durchsuchen"
 stage: draft
 timevalue: 1.0
 difficulty: 2
-explains:
-assumes:
-requires:
 ---
 
 [SECTION::goal::idea]
@@ -56,14 +53,15 @@ anders angegeben, ist hier immer das Verzeichnis `m_glob` gemeint.
 
 - [ER] Listen Sie alle Textdateien (`.txt`) im Verzeichnis auf.  
   `print("all txt files:", ...)`
-- [ER] Listen Sie alle Dateien im Verzeichnis auf, die mindestens eine Zahl beinhalten. 
-  Da `glob`nicht zwischen Datei und Verzeichnis unterscheidet, verwenden Sie anschließend `os.path.
-  isdir()`, um nur Dateien zu erhalten.  
+- [ER] Listen Sie alle Dateien im Verzeichnis auf, die mindestens eine Ziffer beinhalten. 
+  Da `glob` nicht zwischen Datei und Verzeichnis unterscheidet, verwenden Sie anschließend 
+  [`os.path.isfile()`](https://docs.python.org/3/library/os.path.html#os.path.isfile), um nur 
+  Dateien zu erhalten.  
   `print("all files with a number:", ...)`
 - [ER] Listen Sie alle Unterverzeichnisse im Verzeichnis auf.  
   `print("all directories:", ...)`
 - [ER] Listen Sie alle Dateien im Unterverzeichnis `9NQn` auf, die min. zwei aufeinanderfolgende 
-  Zahlen beinhalten.  
+  Ziffern beinhalten.  
   `print("all files in '9NQn' with two numbers:", ...)`
 - [ER] Listen Sie alle versteckten Dateien auf.  
   `print("all hidden files:", ...)`
@@ -76,20 +74,20 @@ Wenn Sie in Ihre Suche neben dem aktuellen Verzeichnis auch alle Unterverzeichni
 wollen, können Sie mithilfe des Parameters `recursive` rekursiv suchen.
 
 - [ER] Listen Sie rekursiv alle JSON Dateien auf, die ein `m` enthalten.  
-  `print("recusive: all json files with 'm':", ...)`
-- [ER] Listen Sie rekursiv alle Textdateien auf, die in einem Unterverzeichnis von `m_glob` 
-  liegen und nur mit einem Großbuchstaben beginnen. 
+  `print("recursive: all json files with 'm':", ...)`
+- [ER] Listen Sie rekursiv alle Textdateien auf, die in einem der Unterverzeichnisse von `m_glob` 
+  liegen und nicht mit einem Großbuchstaben beginnen. 
   Beziehen Sie auch versteckte Ordner mit ein.  
-  `print("all txt files in subdirs without uppercase letter:", ...)`
+  `print("recursive: all txt files in subdirs without uppercase first letter:", ...)`
 
 ### Ergebnis als Iterator
 
-<!-- TODO_2_Wegner Referenz zu Iterator Aufgabe -->
+<!-- TODO_2_Wegner Referenz zu Iterator Aufgabe hinzufügen -->
 
 Anstatt mit den Suchergebnissen in Form von Listen zu arbeiten, gibt `glob` auch die Möglichkeit,
 mit Iteratoren zu arbeiten.
 Bei Suchen in Verzeichnissen mit vielen Dateien hat das den Vorteil, dass nicht das gesamte 
-Ergebnis in eine Liste geschrieben wird, sondern immer nach Bedarf das nächste Element ermittelt 
+Ergebnis in eine Liste geschrieben wird, sondern immer bei Bedarf das nächste Element ermittelt 
 wird.
 
 - [ER] Suchen Sie rekursiv nach allen Textdateien und verwenden Sie einen Iterator. Geben Sie 
@@ -105,7 +103,8 @@ wird.
 Wenn man sich mit den wildcards von `glob` beschäftigt, kommt einem einiges vielleicht von 
 [PARTREFMANUAL::RegExp::regulären Ausdrücken] entfernt bekannt vor. 
 Man sollte aber im Hinterkopf behalten, dass diese beiden Werkzeuge unterschiedliche 
-Funktionsweisen haben, wobei reguläre Ausdrücke deutlich komplexere Patterns ermöglichen als `glob`.
+Funktionsweisen haben, wobei reguläre Ausdrücke deutlich komplexere Patterns ermöglichen als 
+`glob` und eher außerhalb von Pfadpattern verwendet werden.
 
 - [EQ] Überlegen Sie sich ein Pattern, das mithilfe von `glob` nicht darstellbar ist, und wofür 
   man womöglich eher einen regulären Ausdruck verwenden müsste.
@@ -126,8 +125,8 @@ Das Kommandoprotokoll zur Unterstützung heranziehen.
 Klare Defekte und sehr ungünstige Konstruktionen zurückweisen, z.B. wenn anstatt `glob` andere 
 Methoden, wie Textfilter verwendet werden.
 
-Sollten bei [EREFQ::1] Unklarheiten sein, z.B. wegen fehlender RegEx Kenntnisse, den 
-Studierenden kurz erklären, aber Aufgabe nicht zurückweisen.
+Sollten bei [EREFQ::1] Unstimmigkeiten sein, z.B. wegen fehlender RegEx Kenntnisse, den 
+Studierenden kurz erklären, aber Abgabe nicht zurückweisen.
 
 Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_glob.py]
 
