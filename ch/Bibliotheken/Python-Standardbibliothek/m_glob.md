@@ -1,5 +1,5 @@
 title: "glob: Verzeichnisse mit Pattern durchsuchen"
-stage: draft
+stage: alpha
 timevalue: 1.0
 difficulty: 2
 ---
@@ -107,7 +107,12 @@ Funktionsweisen haben, wobei reguläre Ausdrücke deutlich komplexere Patterns e
 `glob` und eher außerhalb von Pfadpattern verwendet werden.
 
 - [EQ] Überlegen Sie sich ein Pattern, das mithilfe von `glob` nicht darstellbar ist, und wofür 
-  man womöglich eher einen regulären Ausdruck verwenden müsste.
+  man womöglich eher einen regulären Ausdruck oder andere Methoden verwenden müsste.
+
+[HINT::Ich finde kein Pattern, dass in glob nicht darstellbar ist]
+Versuchen Sie mal, verschiedene Pattern in `glob` zu erstellen, die bestimmte Vorkommen von z.B. 
+Zeichen an beliebiger Stelle ausschließen.
+[ENDHINT]
 
 [ENDSECTION]
 
