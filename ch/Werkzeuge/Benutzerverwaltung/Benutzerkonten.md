@@ -105,5 +105,11 @@ Verstehen Sie die **Synopsis**, lesen Sie die **Description** und den Abschnitt 
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll]
+
+[PROT::ALT:Benutzerkonten.prot]
+[ENDINSTRUCTOR]
+
+[INSTRUCTOR::Markdowndokument]
+
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
