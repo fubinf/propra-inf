@@ -85,9 +85,12 @@ Lesen Sie die Abschnitte **Synopsis**, **Description** und **Remove a group** de
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Erwartung]
+[INSTRUCTOR::Kommandoprotokoll]
 
-[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[PROT::ALT:Gruppen.prot]
+[ENDINSTRUCTOR]
+
+[INSTRUCTOR::Markdowndokument]
+
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
