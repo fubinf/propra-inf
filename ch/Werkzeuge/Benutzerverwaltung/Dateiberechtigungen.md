@@ -2,7 +2,7 @@ title: Dateiberechtigungen
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: Manpages, Benutzerkonten, Umgang-mit-Verzeichnissen
+assumes: Manpages, Benutzerkonten, Umgang-mit-Verzeichnissen, sudo
 explains: Rechte
 ---
 
@@ -21,12 +21,12 @@ diesem einen, recht einfachen Mechanismus verblüffend viel bewerkstelligen.
 ### Dateiberechtigungen
 
 Lesen Sie den Eintrag [TERMREF::Dateiberechtigungen].
-Diese Berechtigungen geben also an, wer auf eine Datei oder einen Ordner zugreifen kann.
+Diese Berechtigungen geben an, wer auf eine Datei oder einen Ordner zugreifen kann.
 
 Lesen Sie [HREF::https://wiki.ubuntuusers.de/Rechte/] 
 bis einschließlich Abschnitt **Zugriffsrecht**.
 
-- [EC] Erstellen Sie eine Datei namens `Dateiberechtigungen1`.
+- [EC] Erstellen Sie eine Datei namens `dateiberechtigungen1`.
 
 Nachdem Sie die Datei erstellt haben, müssen wir erstmal herausfinden, wer Zugriff auf die Datei hat.
 
@@ -43,28 +43,34 @@ Besitzer nicht mehr in der Firma arbeitet.
 Lesen Sie die Abschnitte **Anwendung** und **Aufruf** von 
 [HREF::https://wiki.ubuntuusers.de/chmod/].
 
-- [EC] Ändern Sie die Zugriffsrechte der Datei `Dateiberechtigungen1` so, dass der Nutzer und die Gruppe 
+- [EC] Ändern Sie die Zugriffsrechte der Datei `dateiberechtigungen1` so, dass der Nutzer und die Gruppe 
    Lese-, Schreib- und Ausführrechte hat.
 
 Lesen Sie die Abschnitte **Syntax** und **Beispiele** von 
 [HREF::https://wiki.ubuntuusers.de/chown/].
 
-- [EC] Ändern Sie den Eigentümer von `Dateiberechtigungen1` zu `rechtenutzer`.
+- [EC] Ändern Sie den Eigentümer von `dateiberechtigungen1` zu `rechtenutzer`.
 
 Lesen Sie die Abschnitte **Syntax** und **Beispiel** von 
 [HREF::https://wiki.ubuntuusers.de/chgrp/].
 
-- [EC] Ändern Sie die Gruppe von `Dateiberechtigungen1` zu `rechtenutzer`.
+- [EC] Ändern Sie die Gruppe von `dateiberechtigungen1` zu `rechtenutzer`.
+- [EC] Geben Sie die Berechtigungen von `dateiberechtigungen1` mit `ls -l` aus. 
 - [EQ] Beschreiben Sie in Ihren Worten, was dieses Kommando macht: 
-   `chmod -R 0754 Dateiberechtigungsordner/ && sudo chown -R rechtenutzer:rechtenutzer Dateiberechtigungsordner/`?
-- [EC] Löschen Sie die Datei `Dateiberechtigungen1` und den Benutzer `rechtenutzer`.
+   `chmod -R 0754 dateiberechtigungsordner/ && sudo chown -R rechtenutzer:rechtenutzer dateiberechtigungsordner/`
+- [EC] Löschen Sie die Datei `dateiberechtigungen1` und den Benutzer `rechtenutzer`.
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Erwartung]
-[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[INSTRUCTOR::Kommandoprotokoll]
+
+[PROT::ALT:Dateiberechtigungen.prot]
+[ENDINSTRUCTOR]
+
+[INSTRUCTOR::Markdowndokument]
+
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
