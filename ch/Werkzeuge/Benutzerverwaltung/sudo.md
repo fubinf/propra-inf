@@ -27,7 +27,7 @@ Wir haben Sie gewarnt...
 Lesen Sie [HREF::https://wiki.ubuntuusers.de/sudo] bis zum (teilweise unsinnigen)
 Abschnitt **Installation**.
 
-- [EC] Versuchen Sie die Datei `/etc/shadow` anzuzeigen: `less /etc/shadow`.
+- [EC] Versuchen Sie die Datei `/etc/shadow` anzuzeigen: `cat /etc/shadow`.
 
 Sie können die Datei nicht lesen, weil Ihnen das [TERMREF::Leserecht] für die Datei fehlt. 
 
@@ -69,5 +69,6 @@ su(1) [manpage](https://manpages.debian.org/bookworm/util-linux/su.1.en.html).
 
 [INSTRUCTOR::Erwartung]
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
