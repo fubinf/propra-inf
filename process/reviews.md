@@ -62,6 +62,7 @@ We will modify these rules over time when others appear more useful.
   Ich bin mir hier unsicher, was in den Instructor-Teil soll. Es gibt ja keine falschen 
   Antworten für die Reflektion. 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC->LP)
+- ch/Werkzeuge/Netzwerk/rsync.md (IC->LP)
 
 -------------------------------------------------------------------------------------------
 
