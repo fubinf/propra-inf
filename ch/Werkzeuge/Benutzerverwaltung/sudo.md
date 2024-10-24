@@ -67,8 +67,7 @@ su(1) [manpage](https://manpages.debian.org/bookworm/util-linux/su.1.en.html).
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Erwartung]
-[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
+[INSTRUCTOR::Kommandoprotokoll]
 
-[INCLUDE::ALT:]
+[PROT::ALT:sudo.prot]
 [ENDINSTRUCTOR]
