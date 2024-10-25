@@ -237,7 +237,7 @@ String-Formatierung
 
 ### Sprachen/Pythonpraxis (prechelt)
 
-Eine Reihe von Aufgaben, in denen nach und nach die CLI-Anwendung
+1. Eine Reihe von Aufgaben, in denen nach und nach die CLI-Anwendung
 `mlh` ("my little helpers") programmiert wird.
 Diese bündelt eine Reihe kleiner Utilities und
 setzt argparse mit subcommands ein, um das zu strukturieren.
@@ -259,6 +259,34 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
   Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
   Default-Trenner ist '\n\n', sodass es ganze Absätze ausspuckt anstatt Zeilen.
   Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
+
+2. Eine Anwendung `linkcheck`, die einen Crawler realisiert, der die Verfügbarkeit
+von Teilen (HTML-Seiten, Bilder, JS-Dateien) in einem URL-Baum prüft und verschiedene
+fortgeschrittene Eigenschaften hat.
+Teilaufgaben:
+
+- `findlinks`: mit `bs4` die verschiedenen Sorten von Links auf einer Webseite extrahieren
+  und ggf. zu absoluten Links ergänzen. Guten HTML-Parser installieren.
+  Der Start-URL wird per Kommandozeilenparameter angegeben.
+- `ratelimit`: Links in `deque`-Warteschlange einstellen und nacheinander per `urllib3` abarbeiten.
+  Dabei ein ratelimit einhalten, das per default 4 Requests pro Sekunde beträgt, aber
+  per Option `--maxfreq` verändert werden kann.
+  Geht der Request (1) an einen URL "unterhalb" des Start-URLs, wird die HTML-Seite abgerufen
+  und Links darauf extrahiert, geht er (2) an eine andere Adresse auf demselben Server,
+  (3) an einen andereren Server, oder (4) liefert er eine andere Art von Datei als HTML,
+  passiert keine Weiterverfolgung.
+  In den Fällen (2) und (3) wird HEAD benutzt statt GET.
+  Der Statuscode wird registriert; Fehler werden ausgegeben.
+- `multiqueue`: Jeder Server bekommt eine eigene Warteschlange.
+  Wir betrachten jede Sekunde der Ausführung als einen Block, in dem jeder Server `maxfreq`
+  Requests bekommen darf. Ist eine Sekunde bei einem Server "voll", wechseln wir zum nächsten.
+  Gewartet wird nur (und zwar bis zum Ende der aktuellen Sekunde), wenn alle Server "voll" sind.
+- `monitoring`: Wir erzeugen eine fortlaufende Statusausgabe und eine Datei mit den Fehlern.
+- `async`: 
+- `mlh`: als Subkommando in `mlh` integrieren.
+
+
+Ferner evtl:
 
 - `Code-Snippets`: Ein Tool, das es Entwicklern ermöglicht, Code-Snippets zu organisieren,
   zu suchen und wiederzuverwenden; Evt. gut geeignet um auch mlh als code-snippets aufzunehmen?
