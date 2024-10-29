@@ -2,6 +2,7 @@ title: "glob, fnmatch: Verzeichnisse mit Pattern durchsuchen"
 stage: alpha
 timevalue: 1.0
 difficulty: 2
+assumes: m_os.path, Python-Iterators
 ---
 
 [SECTION::goal::idea]
@@ -14,7 +15,7 @@ Ich kann Dateipfade mit `*`-Mustern im Unix-Stil durchsuchen.
 
 Häufig möchte man bei Suchen im Verzeichnisbaum Vorkommen nach bestimmten "Mustern" (Pattern) 
 finden, z.B. "alle JPEG Bilder, die ein bestimmtes Datum im Namen haben". 
-Auf unixoiden Kommandozeilen stehen einem als Hilfsmittel dabei Spezialzeichen ("wildcard characters")
+Auf unixoiden Kommandozeilen stehen einem als Hilfsmittel dabei Spezialzeichen (wildcard characters)
 zur Verfügung, mit denen das häufig sehr einfach zu bewerkstelligen ist. 
 
 [ENDSECTION]
@@ -80,10 +81,8 @@ wollen, können Sie mithilfe des Parameters `recursive` rekursiv suchen.
 
 ### Ergebnis als Iterator
 
-<!-- TODO_2_Wegner Referenz zu Iterator Aufgabe hinzufügen -->
-
 Anstatt mit den Suchergebnissen in Form von Listen zu arbeiten, gibt `glob` auch die Möglichkeit,
-mit Iteratoren zu arbeiten.
+mit [PARTREFMANUAL::Python-Iterators::Iteratoren] zu arbeiten.
 Bei Suchen in Verzeichnissen mit vielen Dateien hat das den Vorteil, dass nicht das gesamte 
 Ergebnis in eine Liste geschrieben wird, sondern immer bei Bedarf das nächste Element ermittelt 
 wird.
@@ -108,8 +107,8 @@ Funktionsweisen haben, wobei reguläre Ausdrücke deutlich komplexere Patterns e
   man womöglich eher einen regulären Ausdruck oder andere Methoden verwenden müsste.
 
 [HINT::Ich finde kein Pattern, dass in glob nicht darstellbar ist]
-Versuchen Sie mal, verschiedene Pattern in `glob` zu erstellen, die bestimmte Vorkommen von z.B. 
-Zeichen an beliebiger Stelle ausschließen.
+Versuchen Sie mal, verschiedene Pattern in `glob` zu erstellen, die z.B. bestimmte Zeichen oder 
+Zeichenketten an beliebiger Stelle ausschließen.
 [ENDHINT]
 
 [ENDSECTION]
