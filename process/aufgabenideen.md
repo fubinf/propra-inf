@@ -127,24 +127,19 @@ Python-Standardbibliothek ausprobiert.
 - fileformat [DIFF::3]: Wahlaufgabe zum Bereich X="File Formats"
 - archives [DIFF::3]: Wahlaufgabe zum Bereich X="Data Compression and Archiving"
 
-### Bibliotheken/chooselib (N.N.)
+### Bibliotheken/pip-popular (N.N.)
 
-Bibliothek für bestimmten Zweck suchen und erlernen.
-Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
+- chardet (und charset-normalizer)
 
-- Wo findet man Bibliotheken? PyPI ("pei-pi-ei").
-  Stichwortsuche ausprobieren und sein blaues Wunder erleben ob der vielen Resultate.
-- Nach welchen Merkmalen wählt man eine Bibliothek aus?
-- Wie lernt man das Nötige für einen schmalen Anwendungsfall (Doku vs. stackoverflow)?
 
-### Bibliotheken/pandas (N.N.)
+#### Bibliotheken/pip-popular pandas (N.N.)
 
 - Pandas installieren, pandas101
 - Struktur der Doku verstehen
 - Theorie: Series, DataFrame, Index, MultiIndex: Zweck, Unterschiede, Gemeinsamkeiten.
 - Pandas-Cheatsheet: CSV-Tabelle einlesen, diverse Arten von Datenumstrukturieren ausprobieren
 
-### Bibliotheken/matplotlib (N.N.)
+#### Bibliotheken/pip-popular matplotlib (N.N.)
 
 Assumes pandas
 
@@ -156,6 +151,24 @@ Assumes pandas
 - einen komplexen Plot nachahmen, der visuell vorliegt und viele Konfig-Anpassungen braucht
   (Namen der nötigen Konstrukte sind vorgegeben)
 - Dito ohne Namensvorgaben.
+
+
+### Bibliotheken/chooselib (N.N.)
+
+Bibliothek für bestimmten Zweck suchen und erlernen.
+Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
+
+- Wo findet man Bibliotheken? PyPI ("pei-pi-ei").
+  Stichwortsuche ausprobieren und sein blaues Wunder erleben ob der vielen Resultate.
+- Nach welchen Merkmalen wählt man eine Bibliothek aus?
+  (Funktionsumfang, Qualität der Dokumentation, Popularität, Alter und Reife, 
+  kontinuierliche Pflege/Releases, Zustand Issuetracker, mag ich die Struktur der API?,
+  Geschwindigkeit u.a. nichtfunktionale Eigenschaften, geringe Codegröße/Aufgeblähtheit, 
+  bisherige Sicherheitslücken und guter Umgang damit, ...)
+- Wie entscheidet man über diese Merkmale? (Recherche nach Wissen anderer; Prototypen bauen)
+- 3 Fallstudien dazu
+- Grundkonzepte verstehen!
+- Wie lernt man das Nötige für einen schmalen Anwendungsfall (Doku vs. stackoverflow vs. ChatGPT)?
 
 ### Bibliotheken/Posix (N.N.)
 
