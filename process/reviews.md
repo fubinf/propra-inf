@@ -53,7 +53,9 @@ We will modify these rules over time when others appear more useful.
 - ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
 
 ### Web
-
+- ch/Web/CSS/CSSSelektorenKlassen.md (DM -> LP)
+Bitte gerne auch nochmal auf Anforderungsniveau prüfen, da bin ich mir unsicher, ob 2 noch passt.
+Die Aufgabe selbst ist wohl nicht schwer, aber das notwendige Verständnis dahinter doch relativ abstrakt.
 
 ### Werkzeuge
 - ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC->LP)
