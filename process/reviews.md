@@ -59,8 +59,6 @@ Bitte gerne auch nochmal auf Anforderungsniveau prüfen, da bin ich mir unsicher
 Die Aufgabe selbst ist wohl nicht schwer, aber das notwendige Verständnis dahinter doch relativ abstrakt.
 
 ### Werkzeuge
-- ch/Werkzeuge/Netzwerk/SSH.md (Condric->LP->IC->LP)
-- ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP->IC->LP->IC->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP->IC-LP)
   Ich bin mir hier unsicher, was in den Instructor-Teil soll. Es gibt ja keine falschen 
   Antworten für die Reflektion. 
@@ -88,6 +86,7 @@ Die Aufgabe selbst ist wohl nicht schwer, aber das notwendige Verständnis dahin
   oder Belgien führt, um dann erstaunt zu lernen, dass sie bevorzugt über Polen plus Tschechien führt
   und alternativ über Niederlande plus Belgien. Staun.  https://network.geant.org/gn4-3n/  
   Nötigenfalls Schwierigkeit "mittel" nehmen und/oder traceroute abspalten."
+- ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP->IC->LP->IC->LP->IC)
 
 
 ## Reviews to do for Christian Hofmann

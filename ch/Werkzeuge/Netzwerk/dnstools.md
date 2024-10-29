@@ -84,8 +84,6 @@ Lesen Sie die **Synopsis**, die **Description** und die **Arguments**.
 
 - [EC] Nutzen Sie `nslookup` um die IP-Adresse des Zielservers herauszufinden.
 - [EC] Finden Sie den Mailserver des Zielservers mit `nslookup` heraus.
-- [EQ] Was sind die Unterschiede zwischen `host` und `nslookup`, im Hinblick auf die Ausgabe und 
-       der Nutzung beider Kommandos?
 
 ### Arbeiten mit [TERMREF::dig]
 
@@ -97,8 +95,6 @@ von nixcraft die **DNS record types** nach.
 
 - [EC] Nutzen Sie `dig` um die IP-Adresse des Zielservers herauszufinden.
 - [EC] Finden Sie den Mailserver des Zielservers mit `dig` heraus.
-- [EQ] Vergleichen Sie das Kommando `dig` mit `host` und `nslookup`, im Hinblick auf die Ausgabe und 
-       der Nutzung beider Kommandos?
 
 ### Fortgeschrittenes Arbeiten mit [TERMREF::dig]
 
@@ -122,6 +118,8 @@ Schauen Sie in der Authority Section nach einem weiteren Nameserver. Diese sind 
 Wenn hier nur noch die IP-Adresse des Zielservers angezeigt wird, dann sind Sie fertig, falls nicht:
 
 - [EC] Wiederholen Sie den Prozess, bis Sie die IP-Adresse des Zielservers herausgefunden haben.
+- [EQ] Charakterisieren Sie grob den wichtigsten Unterschied zwischen `dig` und `host` oder `nslookup`
+  aus Aufrufersicht.
 
 [ENDSECTION]
 
