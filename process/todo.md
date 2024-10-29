@@ -94,7 +94,11 @@ Sonderdateien:
 - ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)?
   Gehört es allgemein in sedrila eingebaut, selbst solche Graphen zu erzeugen?
 - Defekt?: Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
-- `instructor --browse` für simplen Studi-Repo-Browser mit Markdown-Rendering.
+- `.htaccess` auch für Studis erzeugen. Beide sollten folgende Zeile enthalten  
+  `AddCharset utf-8 .html .css .js .txt`  
+  damit ein Crawler oder Browser korrekte Encodings erhält.
+  Browser lösen das selbst, aber bei Crawlern, die Vanilla-`requests` einsetzen (wie unserer!), 
+  schlägt dessen vom Standard vorgegebene ISO-8859-1-Annahme zu. 
 
 
 ### 2.4 Anträge an den Rechnerbetrieb
