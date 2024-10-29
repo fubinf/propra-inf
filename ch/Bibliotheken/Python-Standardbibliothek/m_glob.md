@@ -1,4 +1,4 @@
-title: "glob: Verzeichnisse mit Pattern durchsuchen"
+title: "glob, fnmatch: Verzeichnisse mit Pattern durchsuchen"
 stage: alpha
 timevalue: 1.0
 difficulty: 2
@@ -6,7 +6,7 @@ difficulty: 2
 
 [SECTION::goal::idea]
 
-Ich kann Dateipfade mit Unix-style Pfadpattern durchsuchen.
+Ich kann Dateipfade mit `*`-Mustern im Unix-Stil durchsuchen.
 
 [ENDSECTION]
 
@@ -14,25 +14,26 @@ Ich kann Dateipfade mit Unix-style Pfadpattern durchsuchen.
 
 Häufig möchte man bei Suchen im Verzeichnisbaum Vorkommen nach bestimmten "Mustern" (Pattern) 
 finden, z.B. "alle JPEG Bilder, die ein bestimmtes Datum im Namen haben". 
-Auf unixoiden Kommandozeilen stehen einem als Hilfsmittel dabei einige "Spezialzeichen", sog. 
-"wildcard characters" zur Verfügung. 
-Die damit erstellbaren Pattern werden "glob pattern" genannt. Diese Pattern können in Python 
-über das Modul `glob` verwendet werden.
-
-`glob` beschäftigt sich ausschließlich mit den Namen von Dateien und Verzeichnissen. Zum Lesen 
-und Schreiben von Dateien schauen Sie sich [PARTREF::encoding_and_open] an.
+Auf unixoiden Kommandozeilen stehen einem als Hilfsmittel dabei Spezialzeichen ("wildcard characters")
+zur Verfügung, mit denen das häufig sehr einfach zu bewerkstelligen ist. 
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+
+Dieser Mechanismus wird in der Unix-Shell "globbing" genannt. 
+In Python können Globbing-Ausdrücke über das Modul `glob` ausgewertet werden.
+`glob` beschäftigt sich ausschließlich mit den _Namen_ von Dateien und Verzeichnissen,
+nicht mit dem Lesen oder Schreiben von Dateien.
 
 ### Vorbereitungen
 
 - Machen Sie sich mit der 
   [Dokumentation von `glob`](https://docs.python.org/3/library/glob.html) vertraut, sodass Sie 
   sie für die Lösung der Aufgabe sinnvoll gebrauchen können. 
-  Für Details zu den verwendbaren wildcard characters schauen Sie auch einmal in den dort 
-  verlinkten [Eintrag zu `fnmatch`](https://docs.python.org/3/library/fnmatch.html).
+  Für Details zu den verwendbaren wildcard characters schauen Sie beim Modul
+  [`fnmatch`](https://docs.python.org/3/library/fnmatch.html), das von `glob` benutzt wird und diesen Teil der Funktionalität bei Bedarf 
+  auch separat bereitstellt.
 - Legen Sie die Datei `m_glob.py` an und benutzen Sie diese Datei für den Rest der 
   Aufgabe. 
   Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile 
@@ -42,14 +43,11 @@ und Schreiben von Dateien schauen Sie sich [PARTREF::encoding_and_open] an.
 
 ### Dateien im Verzeichnis suchen
 
-[NOTICE]
-Für alle Aufgaben gilt:  
-Verwenden Sie **nur** Operationen und Werkzeuge von `glob`. Alle Dateien auszulesen und 
-anschließend über andere Methoden zu filtern ist nicht zulässig.
-[ENDNOTICE]
+Für alle Aufgaben gilt: Verwenden Sie nur Operationen und Werkzeuge von `glob`,
+nicht andere Wege, um Dateien zu finden.
 
-Standardmäßig filtert `glob` alle Elemente, die im angegebenen Verzeichnis liegen. Wenn nicht 
-anders angegeben, ist hier immer das Verzeichnis `m_glob` gemeint.
+Bei relativen Pfaden betrachtet `glob` alle Elemente, die im aktuellen Verzeichnis liegen. 
+Wenn nicht anders angegeben, ist das in unserem Fall das Verzeichnis `m_glob`.
 
 - [ER] Listen Sie alle Textdateien (`.txt`) im Verzeichnis auf.  
   `print("all txt files:", ...)`
@@ -73,7 +71,7 @@ anders angegeben, ist hier immer das Verzeichnis `m_glob` gemeint.
 Wenn Sie in Ihre Suche neben dem aktuellen Verzeichnis auch alle Unterverzeichnisse einbeziehen 
 wollen, können Sie mithilfe des Parameters `recursive` rekursiv suchen.
 
-- [ER] Listen Sie rekursiv alle JSON Dateien auf, die ein `m` enthalten.  
+- [ER] Listen Sie rekursiv alle JSON-Dateien auf, deren Name ein `m` enthält.  
   `print("recursive: all json files with 'm':", ...)`
 - [ER] Listen Sie rekursiv alle Textdateien auf, die in einem der Unterverzeichnisse von `m_glob` 
   liegen und nicht mit einem Großbuchstaben beginnen. 
