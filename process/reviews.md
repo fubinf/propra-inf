@@ -30,7 +30,8 @@ We will modify these rules over time when others appear more useful.
 
 ## Reviews to do for Lutz Prechelt
 
-**Kapitel bitte in Reihenfolge des Inhaltsverzeichnisses, alles darunter in alphabetischer, Leerzeile pro Gruppe**
+**Ich reviewe pro Kapitel die Einträge von oben nach unten. 
+Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
 
