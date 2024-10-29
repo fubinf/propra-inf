@@ -50,6 +50,6 @@ TODO_2_Ruhe: https://www.testautomatisierung.org/lexikon/mutation-testing/
 
 [ENDSECTION]
 
-[INSTRUCTOR::]
+[INSTRUCTOR::(dummy)]
 .
 [ENDINSTRUCTOR]
