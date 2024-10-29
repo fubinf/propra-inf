@@ -1,5 +1,5 @@
 title: SSH
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: Shell-Grundlagen, apt, Manpages
@@ -61,17 +61,19 @@ Lesen Sie den Abschnitt **Session Encryption Negotiation** von
 Lesen Sie den Abschnitt **SSH Host Fingerprint** bis einschließlich **Warnung bei geänderten Fingerprints**
 von [HREF::https://wiki.ubuntuusers.de/SSH/].
 
-- [EQ] Was wären mögliche Szenarien, wenn Ihnen das System meldet, dass sich der `host_key` des 
-   entfernten Rechners geändert hat. Nennen sie zwei Beispiele.
+- [EQ] Was wären mögliche Gründe, wenn Ihnen das System meldet, dass sich der `host_key` des 
+   entfernten Rechners geändert hat? Nennen sie zwei Beispiele.
 
 - [EC] Schließen Sie ihre SSH-Sitzung.
 
 ### Per [TERMREF::Schlüsselpaar] auf einem entfernten Rechner anmelden
 
-Sie haben sich vorhin mit Ihrem Passwort angemeldet. Das war eine symmetrische Verschlüsselung.
-Jetzt werden wir uns mit einem asymmetrischen Verfahren auf dem Zielserver anmelden.
-Dafür müssen wir und erstmal ein Schlüsselpaar erstellen, diesen mit einem Passwort schützen und 
-dann einen Teil des Schlüsselpaares auf den Server kopieren.
+Sie haben sich vorhin mit Ihrem Passwort angemeldet. 
+Dabei wurde zum Übermitteln des Passworts an den Server eine symmetrische Verschlüsselung benutzt.
+Jetzt werden wir uns mit einem asymmetrischen Verfahren auf dem Zielserver anmelden,
+sodass der Server den privaten Schlüssel nie erfahren muss.
+Dafür müssen wir und erstmal ein Schlüsselpaar erstellen, dieses mit einem Passwort schützen und 
+dann den öffentlichen Schlüssel auf den Server kopieren.
 
 Lesen Sie den Abschnitt **Asymmetric Encryption** von 
 [HREF::https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work].
@@ -127,15 +129,9 @@ Lesen Sie die **Syntax** und die **Dauerhafte Verwendung** des
 [Beitrags](https://wiki.ubuntuusers.de/alias/) von ubuntuusers über `alias`.
 
 - [EC] Erstellen Sie einen Alias `ssha`, welches den Agenten startet und Ihre Schlüssel in den Agenten 
-   kopiert.
+  kopiert. Zeigen Sie ihn im Kommandoprotokoll vor, z.B. mit `grep`
 
 Jetzt haben Sie eine schnelle Möglichkeit den SSH-Agenten zu starten.  
-Es gibt aber eine elegantere Lösung. Man lässt den Agenten beim Anmelden automatisch starten.
-
-Lesen Sie den Abschnitt **Bequem4** von [PARTREF::Shell-Grundlagen] 
-
-- [EC] Modifizieren Sie Ihre `.bashrc` so, dass der SSH-Agent gestartet wird und Ihre Schlüssel 
-   hinzugefügt werden.
 
 [ENDSECTION]
 

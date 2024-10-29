@@ -275,6 +275,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-09-17**: Aufgaben Sprachen/Python2/[PARTREF::Python-Function-Arguments-Basic] und
   Web/HTML/[PARTREF::HTMLFormulare] zugefügt.
 - **2024-10-11**: Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_sqlite3] zugefügt.
+- **2024-10-29**: Aufgabe Werkzeuge/Netzwerk/[PARTREF::SSH] zugefügt.
 - ...
 
 
