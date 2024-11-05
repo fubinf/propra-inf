@@ -46,6 +46,15 @@ Verwendungsweise:
 
 ## 2. Korrekturbedarf am Bestand
 
+### 2.0 Kaputte Links
+
+Diese URLs sind verlinkt und funktionieren nicht oder nicht mehr.
+Sie brauchen Reparatur oder Ersatz:
+
+- https://about.gitlab.com/handbook/markdown-guide/
+- ...
+
+
 ### 2.1 Korrekturbedarf bei einzelnen Dateien
 
 In alphabetischer Reihenfolge der Dateinamen.
