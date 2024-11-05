@@ -111,17 +111,6 @@ Die Aufgabe selbst ist wohl nicht schwer, aber das notwendige Verständnis dahin
   Ist aber jetzt schon mal beta.
 
 
-## Reviews to do for Dominik Pietrak
-
-- ch/Bestandscode/Refactoring-Grundlagen/SOLID_principle.md (Pietrak->HA->DP->LP->DP)
-- ch/Bestandscode/Refactoring-Grundlagen/single_responsibility_prinzip.md (Pietrak->LP->DP)
-- ch/Bestandscode/Refactoring-Grundlagen/open_closed_prinzip.md (Pietrak->LP->DP)
-- ch/Bestandscode/Refactoring-Grundlagen/liskov_substitution_prinzip.md (Pietrak->LP->DP)
-- ch/Bestandscode/Refactoring-Grundlagen/interface_segregation_prinzip.md (Pietrak->LP->DP)
-- ch/Bestandscode/Refactoring-Grundlagen/dependency_inversion_prinzip.md (Pietrak->LP->DP)
-
-
-
 ## Reviews to do for Ronny Ruhe
 
 - ch/Bibliotheken/pip-popular/requests.md (RR->DM->LP->RR->LP)  
