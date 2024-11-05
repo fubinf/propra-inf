@@ -46,8 +46,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 
 ### Testen
-- ch/Testen/Unittests/m_pytest_call (RR->LP)
-- ch/Testen/Unittests/m_pytest_plugin_testcoverage.md (RR->LP)
 - ch/Testen/Unittests/m_pytest_plugin_linter_flake8.md (RR-LP)
 
 - ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
@@ -152,6 +150,7 @@ Die Aufgabe selbst ist wohl nicht schwer, aber das notwendige Verständnis dahin
 
 - ch/Testen/Unittests/freezegun.md (RR->DM->HA->LP->RR->LP->RR)
 - ch/Testen/Unittests/m_pytest_call (RR->LP->RR)
+- ch/Testen/Unittests/m_pytest_plugin_testcoverage.md (RR->LP->RR)
 - ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP->RR)
 - ch/Testen/Unittests/m_testcoverage.md (RR->LP->RR)
 - ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
