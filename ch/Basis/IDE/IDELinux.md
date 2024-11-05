@@ -64,6 +64,7 @@ Wir richten uns hier im Grunde nach der [https://www.jetbrains.com/help/pycharm/
   ```
     tar xzf pycharm-*.tar.gz -C <Zielverzeichnis>
   ```
+
 - Wechseln sie mittels `cd` in ihr Zielverzeichnis und anschließend mit `cd pycharm*/bin` in das
   Verzeichnis von PyCharm.
 - Führen Sie `sh pycharm.sh` aus. Das erste Ausführen führt weitere Installationsschritte aus.
