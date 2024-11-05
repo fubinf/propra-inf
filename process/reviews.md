@@ -36,7 +36,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Sprachen
 
 ### Bibliotheken
-- ch/Bibliotheken/Python-Standardbibliothek/m_glob.md (SW->LP->SW->LP)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
 
 ### Bestandscode

@@ -276,6 +276,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   Web/HTML/[PARTREF::HTMLFormulare] zugefügt.
 - **2024-10-11**: Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_sqlite3] zugefügt.
 - **2024-10-29**: Aufgabe Werkzeuge/Netzwerk/[PARTREF::SSH] zugefügt.
+- **2024-11-05**: Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_glob] zugefügt.
 - ...
 
 

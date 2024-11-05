@@ -1,5 +1,5 @@
 title: "glob, fnmatch: Verzeichnisse mit Pattern durchsuchen"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: m_os.path, Python-Iterators
@@ -16,8 +16,9 @@ Ich kann Dateipfade mit `*`-Mustern im Unix-Stil durchsuchen.
 Häufig möchte man bei Suchen im Verzeichnisbaum Vorkommen nach bestimmten "Mustern" (Pattern) 
 finden, z.B. "alle JPEG Bilder, die ein bestimmtes Datum im Namen haben". 
 Auf unixoiden Kommandozeilen stehen einem als Hilfsmittel dabei Spezialzeichen (wildcard characters)
-zur Verfügung, mit denen das häufig sehr einfach zu bewerkstelligen ist. 
+zur Verfügung, mit denen das häufig sehr einfach zu bewerkstelligen ist.
 
+Den gleichen Mechanismus gibt es auch in Python und den lernen wir hier zu benutzen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
