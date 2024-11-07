@@ -1,13 +1,14 @@
 title: HTTP
 ---
 Das HyperText Transfer Protocol (HTTP) ist insbesondere wegen der Verbreitung des World Wide Web
-ein sehr wichtiges Protokoll in der IT-Landschaft. Man trifft es heute überwiegend als "HTTPS" mit
-dem Suffix für "Secure" an, das eine verschlüsselte Übertragung ermöglicht.
+ein extrem wichtiges Protokoll in der IT-Landschaft. 
+Man begegnet ihm heute überwiegend in der Variante "HTTPS" (für "secure"), 
+d.h. mit verschlüsselter Übertragung.
 
-Aber auch außerhalb des Browsers findet es beispielsweise in REST-APIs oder WebDAV Verwendung.
+Man benutzt das Protokoll zwar meist nicht direkt, sondern Bibliotheken nehmen einem 
+die Einzelheiten ab, aber es ist wichtig, seinen (recht simplen) Aufbau zu verstehen,
+um es (oder die Bibliotheken) korrekt verwenden zu können.
 
-Wir werden uns hier mit den Möglichkeiten und Limitierungen von HTTP als Protokoll befassen,
-um einen sinnvollen Umgang damit zu ermöglichen. Dieses Kapitel ist primär zur Wissensvermittlung.
-Entsprechende Anwendungen kommen in aufbauenden Taskgruppen.
-
-Als eine gute Quelle eignet sich das [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP).
+Eine sehr gute Quelle für diesen Themenkreis ist beim 
+[Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP) (MDN)
+zu finden.
