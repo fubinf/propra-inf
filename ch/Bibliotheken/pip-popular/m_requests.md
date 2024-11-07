@@ -2,7 +2,7 @@ title: Python requests
 stage: draft
 timevalue: 1.0
 difficulty: 3
-assumes: HTTP, WebAPIs, pip, m_sys
+assumes: HTTP-GET, WebAPIs, pip, m_sys
 ---
 
 [SECTION::goal::trial]
