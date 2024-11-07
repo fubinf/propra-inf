@@ -1401,12 +1401,22 @@ Urgrundanalyse eine hochwirksame Methode zur Vorbeugung von Problemen.
 [ENDTERM]
 
 [TERM::URL|URI]
-Eine URL (Uniform Resource Locator) ist die Adresse einer Ressource im Internet, wie eine Webseite oder eine Datei. Sie besteht aus mehreren Teilen, darunter das Protokoll (z.B. "http" oder "https"), der Domainname (z.B. "www.beispiel.com") und möglicherweise ein Pfad zu einer spezifischen Seite oder Datei innerhalb der Website. URLs ermöglichen es Browsern, diese Ressourcen zu finden und abzurufen. Sie sind ein grundlegendes Element des World Wide Web und der Vernetzung von Online-Inhalten.
+Ein URL (Uniform Resource Locator) bzw. URI (Uniform Resource Identifier), wie es eigentlich offiziell
+(aber weniger gebräuchlich) heißt,
+ist die Adresse einer Ressource im Internet, etwa einer Webseite oder einer Datei. 
+Ein URL besteht aus mehreren Teilen, 
+darunter das Protokoll ("scheme", z.B. "http" oder "https"), 
+der Domainname (z.B. "www.example.org"), 
+möglicherweise ein Pfad zu einer spezifischen Seite oder Datei innerhalb der Website
+(z.B. "/some/path/to/file.html") und
+möglicherweise Anfrageparametern
+("query", z.B. "?a=1&b=user").
+URLs ermöglichen es [TERMREF::HTTP]-Klienten (z.B. Webbrowsern), Web-Ressourcen zu bezeichnen (zu "adressieren").
 [ENDTERM]
 
 [TERM::User Story|Userstory]
 Kurze, informelle Beschreibung einer Funktion aus der Perspektive eines Endbenutzers.
-Umfasst meist mindestens wer die Funktion nutzt, was getan werden soll und wozu es relevant ist.
+Umfasst meist mindestens, wer die Funktion nutzt, was getan werden soll und wozu es relevant ist.
 
 User Stories dienen als Kommunikationsmittel zwischen Entwicklern, Kunden und anderen Stakeholdern,
 um Anforderungen klar zu definieren und das Verständnis zu verbessern.
@@ -1425,7 +1435,7 @@ wird das Python-[TERMREF::Executable] des `venv` zuvorderst in den
 [TERMREF::PATH] geschrieben und benutzt dann die installierten Pakete des `venv`
 anstatt (oder anstatt nur) der global installierten.
 
-Der `venv`-Mechanismus erlaubt, für mehrere Python-Projekte, an denen man entwickelt,
+Der `venv`-Mechanismus erlaubt, für mehrere Python-Projekte, an denen man abwechselnd entwickelt,
 separate Mengen installierter Pakete zu haben und bei Bedarf auch unterschiedliche Versionen
 von Python selbst, sodass es insbesondere keine Probleme macht, falls verschiedene Projekte
 das gleiche Paket X in unterschiedlichen Versionen benötigen.
