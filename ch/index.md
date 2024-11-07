@@ -239,7 +239,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-05-17**: Aufgabengruppe Basis/[PARTREF::IDE] zugefügt. 
   Die hatten wir bei der Freigabe anfangs übersehen, sorry!
   _Durchführung bitte ggf. unbedingt nachholen!_
-- **2024-05-29**: Aufgabe Testen/Testgrundlagen[PARTREF::Fehler-Defekt-Versagen] zugefügt.
+- **2024-05-29**: Aufgabe Testen/Testgrundlagen/[PARTREF::Fehler-Defekt-Versagen] zugefügt.
 - Aufgaben Werkzeuge/Benutzerverwaltung/[PARTREF::sudo], [PARTREF::Benutzerkonten], [PARTREF::Dateiberechtigungen]
   zugefügt
 - **2024-06-03**: Aufgabe Werkzeuge/Paketmanager/[PARTREF::apt] zugefügt.
@@ -277,6 +277,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-10-11**: Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_sqlite3] zugefügt.
 - **2024-10-29**: Aufgabe Werkzeuge/Netzwerk/[PARTREF::SSH] zugefügt.
 - **2024-11-05**: Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_glob] zugefügt.
+- **2024-11-07**: Aufgabe Web/HTTP/[PARTREF::HTTP-GET] zugefügt.
 - ...
 
 
