@@ -91,6 +91,8 @@ Sonderdateien:
     - fehlende Querverweise zu anderen Glossareinträgen
     - fehlende Einträge für technische Bezeichner (z.B. Namen von Unix-Kommandos)
     - fehlende Verweise in Tasks auf solche und andere Glossareinträge.
+- Taskgruppe Python2 sollte Python heißen.
+
 
 ### 2.3 Korrekturbedarf an sedrila
 
@@ -98,6 +100,9 @@ Sonderdateien:
   verschwinden.
 - Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
   muss es eine Fehlermeldung geben, keinen toten Link.
+  Und wenn eine assumes-Abhängikeit nicht existiert oder sonst irgendein PARTREF
+  auf eine zwar existente aber nicht eingeschlossene Aufgabe, dann sollte ein Pseudolink
+  erscheinen, der mit "sorry, gibt es in dieser Fassung des ProPra leider nicht" dekoriert ist.
 - student.yaml ergänzen um `git_username` und `partner_git_username`, damit man die
   verwandten Repos identifizieren kann.
 - ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)?
@@ -107,7 +112,9 @@ Sonderdateien:
   `AddCharset utf-8 .html .css .js .txt`  
   damit ein Crawler oder Browser korrekte Encodings erhält.
   Browser lösen das selbst, aber bei Crawlern, die Vanilla-`requests` einsetzen (wie unserer!), 
-  schlägt dessen vom Standard vorgegebene ISO-8859-1-Annahme zu. 
+  schlägt dessen die vom Standard vorgegebene ISO-8859-1-Annahme zu. 
+- Das Wiederholen des Inhaltsverzeichnisses unten auf Taskgroup- und Kapitelseiten
+  ist nicht sinnvoll und stört das Kleinaussehen dieser Seiten. Entfernen.
 
 
 ### 2.4 Anträge an den Rechnerbetrieb
