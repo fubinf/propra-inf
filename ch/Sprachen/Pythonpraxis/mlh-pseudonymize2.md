@@ -1,5 +1,5 @@
 title: "My Little Helpers: pseudonymize --- Filter for replacing person-identifiable data, Teil 2"
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 3
 requires: mlh-pseudonymize, RegExp
