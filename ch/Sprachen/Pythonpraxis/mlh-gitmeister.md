@@ -214,7 +214,7 @@ anstatt nur zu sagen, dass es irgendwo im Output eine Abweichung gibt.
 [ENDSECTION]
 [INSTRUCTOR::Test prüfen, Entwurfsstil prüfen]
 
-Beispiellösung siehe [TREEREF::/mlh/mlh/subcmds/gitmeister.py] und [TREEREF::/mlh/tests/test_gitmeister.py].
+Beispiellösung siehe [TREEREF::mlh/mlh/subcmds/gitmeister.py] und [TREEREF::mlh/tests/test_gitmeister.py].
 
 - Enthält (oder holt sich) der Test die Testdaten?
 - Ruft er sinnvoll `mlh.subcmds.gitmeister.<somefunc>` auf? (Möglichst lieber nicht `execute()`)

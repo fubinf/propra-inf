@@ -188,7 +188,7 @@ Benutzen Sie diese Testdaten, stecken Sie sie in die Datei `mlh/tests/data/colum
 und geben Sie diese mit ab:
 [FOLDOUT::Testdaten]
 ```
-[INCLUDE::ALT:/../itree.zip/mlh/tests/data/columnpercentage-in.csv]
+[INCLUDE::ALT:/../itree.zip/Sprachen/Pythonpraxis/mlh/tests/data/columnpercentage-in.csv]
 ```
 [ENDFOLDOUT]
 Die Datei enthält 80 Datensätze.
@@ -242,7 +242,7 @@ als Python-Programm interpretieren.
 [ENDSECTION]
 [INSTRUCTOR::Okayer Programmierstil, richtiges Protokoll]
 
-Möglicher Quellcode siehe [TREEREF::/mlh/mlh/subcmds/columnpercentage.py].
+Möglicher Quellcode siehe [TREEREF::mlh/mlh/subcmds/columnpercentage.py].
 
 Wenn die Lösung mehr als 50% länger ist oder keine Kommentare enthält 
 (es gibt in der Logik ein paar nichttriviale Stellen)
@@ -250,6 +250,6 @@ oder kaum sprechende Namen enthält
 oder zu monolithisch ist, ist das einen Hinweis und in krassen Fällen eine Zurückweisung wert.
 
 Ansonsten halten wir uns für die Korrrektur an das Kommandoprotokoll, das so aussehen müsste:
-[PROT::ALT:mlh-columnpercentage.prot]
+[PROT::ALT:mlh/mlh-columnpercentage.prot]
 
 [ENDINSTRUCTOR]
