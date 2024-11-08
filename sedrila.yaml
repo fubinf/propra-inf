@@ -215,9 +215,9 @@ chapters:
     taskgroups:
       - name: Web-Grundlagen
       - name: HTML
+      - name: HTTP
       - name: CSS
       - name: JavaScript
-      - name: HTTP
   - name: Werkzeuge
     taskgroups:
       - name: Unix-Basiswerkzeuge
