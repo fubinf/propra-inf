@@ -278,7 +278,8 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-10-29**: Aufgabe Werkzeuge/Netzwerk/[PARTREF::SSH] zugefügt.
 - **2024-11-05**: Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_glob] zugefügt.
 - **2024-11-07**: Aufgabe Web/HTTP/[PARTREF::HTTP-GET] zugefügt.
-- **2024-11-08**: Aufgabe Bibliotheken/pip-popular/[PARTREF::beautifulsoup] zugefügt.
+- **2024-11-08**: Aufgaben Bibliotheken/pip-popular/[PARTREF::beautifulsoup]
+  und [PARTREF::m_requests] zugefügt.
 - ...
 
 
