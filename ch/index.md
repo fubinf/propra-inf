@@ -279,7 +279,8 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-11-05**: Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_glob] zugefügt.
 - **2024-11-07**: Aufgabe Web/HTTP/[PARTREF::HTTP-GET] zugefügt.
 - **2024-11-08**: Aufgaben Bibliotheken/pip-popular/[PARTREF::beautifulsoup]
-  und [PARTREF::m_requests] zugefügt.
+  und [PARTREF::m_requests] zugefügt.  
+  Aufgabe Sprachen/Pythonpraxis/[PARTREF::linkcheck-getlinks] zugefügt.
 - ...
 
 
