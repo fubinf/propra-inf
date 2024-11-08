@@ -2,7 +2,7 @@ title: "BeautifulSoup: Informationen aus HTML (oder XML) extrahieren"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-explains: bs4
+explains: 
 assumes: pip, HTMLErsteSchritte
 ---
 
@@ -146,6 +146,11 @@ Nun noch in `float` umwandeln und in `timevalues_total` aufsummieren.
 [ER] Schreiben Sie diese Schleife und geben Sie das Ergebnis aus:  
 `print("Their total timevalue: %.1f" % timevalues_total)`
 
+
+### Aufrufen
+
+[EC] Rufen Sie Ihr Programm einmal auf.
+
 Voilà, Sie können Web-Scraping!
 
 [ENDSECTION]
@@ -175,6 +180,6 @@ Im Quellcode bitte folgende Aspekte prüfen:
 - Zugriff auf timevalue-Schwesterknoten mit `.parent()`, dann `.find()`
 - Zugriff auf den eigentlichen timevalue per `.string` und nicht etwa aus dem `title`-Attribut
 
-Siehe [TREEREF::beautifulsoup.py].
+Musterlösung siehe [TREEREF::beautifulsoup.py].
 
 [ENDINSTRUCTOR]
