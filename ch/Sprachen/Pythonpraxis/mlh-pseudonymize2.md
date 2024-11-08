@@ -2,7 +2,7 @@ title: "My Little Helpers: pseudonymize --- Filter for replacing person-identifi
 stage: alpha
 timevalue: 2.0
 difficulty: 3
-requires: mlh-pseudonymize
+requires: mlh-pseudonymize, RegExp
 ---
 
 [SECTION::goal::product,experience]
@@ -55,7 +55,7 @@ Linetype frequency:
 [ER] Realisieren Sie diese Funktionalität und vergeben Sie für die Option einen passenden `help`-Text.
 
 [ER] Achtung, das benötigt für die eigentliche Ausgabe fast dieselbe Logik wie `--pseudonyms`.
-Schreiben Sie eine wiederverwendbare Routine dafür.
+Schreiben Sie eine wiederverwendbare Routine, die beides erledigen kann.
 
 
 ### `--nomatch mode`
@@ -126,12 +126,16 @@ Checken Sie auch `auth.log` und `auth.pseu` ein.
   Zusätzliche Klassen wie `port` oder `pid` (process ID) sind streng genommen ungünstig (weil
   dadurch unnötig wertvolle Information verloren geht), wir betrachten Sie hier aber als unschädlich.
 - `Linetype frequency:` Es sollte ungefähr 9 Linetypes geben, 
-  insbesondere den, der die Zusammenfassung `(Failed password for|Connection closed by)` enthält.    
+  insbesondere den, der die Zusammenfassung `(Failed password for|Connection closed by)` enthält.   
   Bei der muss zwischen username (z.B. `user`) und IP-Adresse (z.B. `host`) ein _optionales_
   `from` zugelassen werden, was eine Schwierigkeit bei der Programmierung darstellt.  
   Wenn jemand dort nicht etwas wie `(from )?` geschrieben hat, sondern etwas wie `.*`,
   die Lösung bitte mit Hinweis auf die obige Anmerkung 
   "Achtung: Dies ist nur ein kleiner Ausschnitt" zurückweisen, damit die Studis
   sich der Programmierschwierigkeit stellen müssen.
+  
+Das Ergebnis kann z.B. so aussehen:
+
+[PROT::ALT:mlh/mlh-pseudonymize2.prot]
 
 [ENDINSTRUCTOR]
