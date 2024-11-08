@@ -279,6 +279,6 @@ Am wertvollsten wäre es, kurz in den Quellcode zu schauen und ggf. auf augenfä
 sehr ungünstige Konstrukte hinzuweisen.
 Eine Musterlösung haben wir nicht für nur diese Aufgabe, sondern
 nur für alle `linkcheck`-Teile zusammen:  
-[TREEREF::linkcheck.py]  
-[TREEREF::test-linkcheck.py]  
+[TREEREF::linkcheck/linkcheck.py]  
+[TREEREF::linkcheck/test-linkcheck.py]  
 [ENDINSTRUCTOR]
