@@ -6,3 +6,5 @@
 - VSCode sollte ihnen vermutlich schon automatisch vorschlagen die Python-Extension zu 
   installieren. Sollte das nicht der Fall sein geben Sie in die Suche "Python" ein und
   installieren Sie die offizielle Erweiterung von Microsoft.
+- Drücken Sie F1 und geben Sie "interpreter" ein. Wählen Sie "Python: Select Interpreter" und
+  anschließend Ihren installierten Interpreter aus.

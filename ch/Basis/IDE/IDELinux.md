@@ -74,6 +74,17 @@ Wir richten uns hier im Grunde nach der
   aus und den darin enthaltenen Menüpunkt "Create Desktop Entry" (oder ähnliches).
   Ein Desktop-Eintrag im Linuxumfeld meint entgegen der Verwendung unter anderen Systemen einen Eintrag
   in der Liste der ausführbaren Anwendungen.
+- Öffnen Sie nun PyCharm. Klicken Sie in dem Willkommensfenster auf "Open" und navigieren Sie zu 
+  Ihrem Repository, um es zu öffnen.
+- Überprüfen Sie als letztes, ob der Interpreter korrekt eingerichtet ist. Schauen Sie dazu in 
+  ihrer IDE unten rechts nach:
+    - Steht dort die richtige Python-Version müssen Sie nichts weiter 
+      machen. 
+    - Steht dort `<no interpreter>` oder was anderes, klicken Sie darauf und wählen Sie:  
+      Add new interpreter → add local interpreter ...  
+      Wählen Sie nun System Interpreter. Wenn Sie mehrere Python-Versionen installiert haben, 
+      wählen Sie hier die korrekte aus und klicken Sie OK. Nun sollte unten rechts die korrekte 
+      Version stehen
 
 
 ### 2. Visual Studio Code
