@@ -126,7 +126,8 @@ Das kann zu Problemen führen:
 
 [INCLUDE::VSNoticeCodium.inc]
 
-- Gehen Sie auf [HREF::https://code.visualstudio.com/], laden Sie den Installer herunter und führen Sie ihn aus.
+- Gehen Sie auf [HREF::https://code.visualstudio.com/docs/?dv=win64user], laden Sie den 
+  Installer herunter und führen Sie die Installation durch.
 - Beim ersten Start von VS Code taucht unten rechts ein Fenster auf, welches vorschlägt, die WSL Extension zu
   installieren. Klicken Sie dort auf "install".  
   Falls kein Fenster erscheint, gehen Sie in der linken Leiste auf den Reiter "Extensions" und suchen nach WSL.

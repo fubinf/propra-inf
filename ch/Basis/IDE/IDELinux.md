@@ -53,7 +53,8 @@ es kommt nicht auf jeden Millimeter an.
 
 #### PyCharm Community Edition installieren und einrichten
 
-Wir richten uns hier im Grunde nach der [https://www.jetbrains.com/help/pycharm/installation-guide.html#standalone](offiziellen Anleitung).
+Wir richten uns hier im Grunde nach der
+[offiziellen Anleitung](https://www.jetbrains.com/help/pycharm/installation-guide.html#standalone).
 
 - Gehen Sie auf [HREF::https://www.jetbrains.com/pycharm/download/?section=linux], scrollen Sie 
   ein Stück nach unten, bis Sie den Download-Button für die PyCharm **Community Edition** sehen, und 
@@ -81,8 +82,8 @@ Wir richten uns hier im Grunde nach der [https://www.jetbrains.com/help/pycharm/
 
 [INCLUDE::VSNoticeCodium.inc]
 
-- Folgen Sie der [https://wiki.ubuntuusers.de/Visual_Studio_Code/](Anleitung auf UbuntuUsers)
-  zur Installation von VS Code oder VS Codium.
+- Folgen Sie der [Anleitung auf UbuntuUsers](https://wiki.ubuntuusers.de/Visual_Studio_Code/)
+  zur Installation von VS Code.
 [INCLUDE::VSSetup.inc]
 
 [ENDSECTION]
