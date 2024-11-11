@@ -80,6 +80,8 @@ es kommt nicht auf jeden Millimeter an.
 
 #### VS Code herunterladen und installieren
 
+[INCLUDE::VSNoticeCodium.inc]
+
 - Gehen Sie auf [HREF::https://code.visualstudio.com/docs/?dv=osx], laden Sie das zip Archiv 
   herunter und verschieben Sie nach dem Entpacken die "Visual Studio Code" App in ihren 
   Anwendungsordner. 

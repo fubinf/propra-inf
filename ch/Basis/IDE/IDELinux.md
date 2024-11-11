@@ -79,6 +79,7 @@ Wir richten uns hier im Grunde nach der [https://www.jetbrains.com/help/pycharm/
 
 #### VS Code herunterladen und installieren
 
+[INCLUDE::VSNoticeCodium.inc]
 
 - Folgen Sie der [https://wiki.ubuntuusers.de/Visual_Studio_Code/](Anleitung auf UbuntuUsers)
   zur Installation von VS Code oder VS Codium.

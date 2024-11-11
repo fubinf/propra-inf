@@ -10,6 +10,7 @@ requires: Unix-Umgebung
 Ich habe eine funktionierende IDE auf Windows und kann diese in Zusammenarbeit mit WSL verwenden.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 Auf Windows haben Sie die Wahl zwischen drei verschiedenen IDEs, mit denen sich dieser Kurs absolvieren lässt:
@@ -35,6 +36,7 @@ Auf Windows haben Sie die Wahl zwischen drei verschiedenen IDEs, mit denen sich 
 - Empfohlen, falls Sie VS Code bereits im Alltag nutzen und keine weitere IDE lernen möchten.
 
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
 Wenn Sie sich schon für eine IDE entschieden haben, brauchen Sie nur einen der drei Abschnitte zu bearbeiten.
@@ -122,6 +124,8 @@ Das kann zu Problemen führen:
 
 #### VS Code herunterladen und installieren
 
+[INCLUDE::VSNoticeCodium.inc]
+
 - Gehen Sie auf [HREF::https://code.visualstudio.com/], laden Sie den Installer herunter und führen Sie ihn aus.
 - Beim ersten Start von VS Code taucht unten rechts ein Fenster auf, welches vorschlägt, die WSL Extension zu
   installieren. Klicken Sie dort auf "install".  
@@ -147,6 +151,7 @@ Alle im ProPra benötigten Extensions werden von Microsoft bereitgestellt.
 - Wählen Sie "Yes, I trust the authors".
 
 [ENDSECTION]
+
 [SECTION::submission::information]
 
 Diesmal gibt es nichts einzuchecken.
@@ -157,6 +162,7 @@ Wenn Sie keinen Laptop benutzen, machen Sie einen aussagekräftigen Screenshot u
 den als `png`-Datei doch ein.
 
 [ENDSECTION]
+
 [INSTRUCTOR::Minimale Prüfung]
 
 Nur per kurzem Augenschein prüfen, ob die IDE im Sinne unserer Aufgaben eingerichtet ist.
