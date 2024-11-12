@@ -283,7 +283,8 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   Aufgaben Sprachen/Pythonpraxis/[PARTREF::linkcheck-getlinks] und
   [PARTREF::mlh-pseudonymize2] zugefügt.
 - **2024-11-11**: Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_sys] zugefügt.
-# **2024-11-12**: Aufgabe Sprachen/Pythonpraxis/[PARTREF::linkcheck-getlinks] zugefügt.
+- **2024-11-12**: Aufgaben Sprachen/Pythonpraxis/[PARTREF::linkcheck-testbase]
+  und [PARTREF::linkcheck-core] zugefügt.
 - ...
 
 
