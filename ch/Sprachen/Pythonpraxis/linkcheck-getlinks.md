@@ -105,7 +105,7 @@ und bauen Sie einen entsprechenden Aufruf ein, um aus der erhaltenen Bytesequenz
 einen String zu machen.
 <!-- time estimate: 30 min -->
 
-### Linkextraktion: `find_raw_links()`
+### Linkextraktion: `find_rawlinks()`
 
 [ER] Schreiben Sie `find_rawlinks(html: str) -> tuple[set[str], set[str], set[str]]`
 Diese Funktion untersucht den HTML-Text mit Hilfe der Bibliothek `beautifulsoup4` (`bs4`)
@@ -280,5 +280,5 @@ sehr ungünstige Konstrukte hinzuweisen.
 Eine Musterlösung haben wir nicht für nur diese Aufgabe, sondern
 nur für alle `linkcheck`-Teile zusammen:  
 [TREEREF::linkcheck/linkcheck.py]  
-[TREEREF::linkcheck/test-linkcheck.py]  
+[TREEREF::linkcheck/test_linkcheck.py]  
 [ENDINSTRUCTOR]
