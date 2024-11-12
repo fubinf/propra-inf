@@ -178,10 +178,11 @@ def url_serverpart(url: URL) -> URL:
     ...
 
 
-def url_without_fragment(url: URL) -> URL:
+def url_normalized(url: URL) -> URL:
     """
-    maps 'http://example.org:8080/path/page.html?arg=1&other=no#fragment'
-    to 'http://example.org:8080/path/page.html?arg=1&other=no'.
+    Get rid of fragments and dot/double-dot path parts in order to recognize more URLs as equivalent.
+    maps 'http://example.org:8080/path/./path2/path3/../page.html?arg=1&other=no#fragment'
+    to 'http://example.org:8080/path/path2/page.html?arg=1&other=no'.
     """
     ...
 ```
@@ -236,7 +237,8 @@ Von jedem Block werden nur die ersten 6 Links ausgegeben.
 Gibt es mehr als 6, so folgt eine Zeile der Form  
 `    ...   (153 overall)`  
 die die Gesamtzahl angibt.
-Ein ausgegebener URL soll niemals ein HTML-"Fragment" enthalten,
+Ein ausgegebener URL soll niemals ein HTML-"Fragment" enthalten
+und auch nicht die Pfadkomponenten `.` oder `..`,
 da dies für den Linkchecker nicht relevant ist und die Ausgabe unübersichtlicher machen würde.
 <!-- time estimate: 20 min -->
 
