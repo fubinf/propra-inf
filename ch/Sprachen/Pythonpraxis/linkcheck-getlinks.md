@@ -33,7 +33,7 @@ vorher bearbeitet zu haben.
 
 [SECTION::instructions::loose]
 
-### Programmrahmen
+### 1. Programmrahmen
 
 [ER] Legen Sie die Datei `linkcheck.py` an.
 Wir werden den ganzen Linkprüfer in dieser Datei implementieren, eine Zerlegung in getrennte Python-Module
@@ -80,7 +80,7 @@ noch keinen der anderen Modi und noch keine der Optionen.
 Die folgen in späteren Aufgaben.
 
 
-### Seitenabruf: `get_page()`
+### 2. Seitenabruf: `get_page()`
 
 [ER] Führen sie folgenden Alias ein: `URL = str`.
 Damit können wir nun als Typ `URL` notieren, was technisch genau das Gleiche ist wie `str`,
@@ -105,7 +105,7 @@ und bauen Sie einen entsprechenden Aufruf ein, um aus der erhaltenen Bytesequenz
 einen String zu machen.
 <!-- time estimate: 30 min -->
 
-### Linkextraktion: `find_rawlinks()`
+### 3. Linkextraktion: `find_rawlinks()`
 
 [ER] Schreiben Sie `find_rawlinks(html: str) -> tuple[set[str], set[str], set[str]]`
 Diese Funktion untersucht den HTML-Text mit Hilfe der Bibliothek `beautifulsoup4` (`bs4`)
@@ -131,7 +131,7 @@ jede der drei Gruppen getrennt ausweisen und müssen deren Unterschied also fest
 <!-- time estimate: 20 min -->
 
 
-### URL-Behandlung: `url_*()`, `abs_url()`
+### 4. URL-Behandlung: `url_*()`, `abs_url()`
 
 Die rohen Links aus dem HTML-Text müssen wir für einen Linkchecker zu kompletten URLs
 vervollständigen.
@@ -193,7 +193,7 @@ Stützen Sie sich deshalb so weit wie möglich auf die Funktion
 <!-- time estimate: 30 min -->
 
 
-### Tests
+### 5. Tests
 
 Wenn das Umbauen der URLs nicht korrekt funktioniert, sind das recht verwirrende Defekte.
 Deshalb sichern wir die obigen Hilfsoperationen nun mit Unittests ab:
@@ -209,7 +209,7 @@ Wenn es nötig scheint (sicherlich bei `abs_url()`), schreiben Sie mehr als zwei
 <!-- time estimate: 30 min -->
 
 
-### Ausgabeformat
+### 6. Ausgabeformat
 
 Das Ergebnis sieht dann z.B. so aus:
 

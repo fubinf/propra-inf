@@ -22,13 +22,13 @@ ungeheuer viel Arbeit und Verwirrung einsparen.
 
 [SECTION::instructions::loose]
 
-In der nächsten Aufgabe, TODO_1 linkcheck-core, werden wir den eigentlichen Linkprüfer bauen.
+In der nächsten Aufgabe, [PARTREF::linkcheck-core], werden wir den eigentlichen Linkprüfer bauen.
 Um beurteilen zu können, ob er richtig funktioniert, brauchen wir ein handliches kleines
 Beispiel, das alle seine Eigenschaften anspricht.
 
 Das bauen wir uns hier.
 
-### `linkcheck_server.py`, der Testserver
+### 1. `linkcheck_server.py`, der Testserver
 
 [ER] kopieren Sie den unten folgenden Programmcode in die Datei `linkcheck_server.py`.
 Er repräsentiert einen minimalen Webserver, der genau auf unsere Bedürfnisse zugeschnitten ist,
@@ -62,7 +62,7 @@ Dieser Webserver hat eine kleine Zahl von Seiten "im Bauch", sowohl HTML-Seiten 
 [INCLUDE::linkcheck_server.py]
 ```
 
-### Die Test-Website
+### 2. Die Test-Website
 
 [EQ] Wandern Sie im Browser die Website durch und notieren Sie alle URLs, die dort angesprochen werden.
 Notieren Sie zu jedem URL, ob er eine HTML-Seite bezeichnet oder etwas anderes
@@ -74,7 +74,7 @@ der Gehalt dessen sein, was der Linkprüfer später für den Testserver an Probl
 <!-- time estimate: 10 min -->
 
 
-### Systemtest für `getlinks`
+### 3. Systemtest für `getlinks`
 
 Ein Systemtest prüft das Verhalten eines Systems als Ganzes.
 In unserem Fall schauen wir dazu die Ausgaben des Linkprüfers an, wenn er den Testserver bearbeitet.
@@ -154,7 +154,7 @@ wird das Nachvollziehen recht einfach. Zeilennummer mit ausgeben!
 <!-- time estimate: 50 min -->
 
 
-### Systemtest für `ratelimit`
+### 4. Systemtest für `ratelimit`
 
 Für den eigentlichen Linkprüfer brauchen wir den fast gleichen Test noch einmal
 als `test_ratelimit()`, nur mit 
