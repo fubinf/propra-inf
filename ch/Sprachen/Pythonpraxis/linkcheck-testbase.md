@@ -3,8 +3,7 @@ stage: beta
 timevalue: 2.0
 difficulty: 3
 explains:
-assumes: linkcheck-getlinks
-requires:
+requires: linkcheck-getlinks
 ---
 
 [SECTION::goal::product]
