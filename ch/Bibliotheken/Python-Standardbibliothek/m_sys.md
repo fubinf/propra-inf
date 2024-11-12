@@ -90,7 +90,7 @@ abbrechen und an das Betriebssystem einen Statuscode (hier: 7; ein ordentliches 
 übermitteln.
 
 (Genauer gesagt erzeugt das die Ausnahme 
-[`SystemExit`](https://docs.python.org/3.11/library/exceptions.html#SystemExit).
+[`SystemExit`](https://docs.python.org/3/library/exceptions.html#SystemExit).
 Die kann man in einem größeren Programm an diversen Stellen abfangen, Aufräumarbeiten machen,
 und sie dann neu erzeugen, um so zu einem sauberen Abbruch zu kommen.)
 
