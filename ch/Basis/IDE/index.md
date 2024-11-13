@@ -8,8 +8,6 @@ Deshalb wählen wir in dieser Aufgabengruppe eine IDE aus, installieren sie,
 machen ein paar ganz grundlegende Schritte darin
 und überzeugen uns, dass wir damit Programme übersetzen und ausführen können.
 
-TODO_1_wegner: Alles hinter der IDE-Installation fehlt noch.
-
 [INSTRUCTOR::Unsere Ziele]
 Hier geht es uns um zwei Dinge:
 
