@@ -28,6 +28,15 @@ Sie nach einem ähnlichen Weg, diese umzusetzen.
 
 ### Dateien verwalten
 
+[HINT::Besonderheiten in VS Code]
+Gegenüber PyCharm werden geänderte Dateien in VS Code nicht automatisch gespeichert. 
+Denken Sie daher daran, gelegentlich Ihre Änderungen zu speichern (z.B. mit dem Shortcut `Strg+S`).
+
+VS Code hat alternativ zum klassischen Menü eine "Befehlszeile", um verschiedene Aktionen schnell 
+per Tastatur auszuführen. 
+Diese können Sie mit `F1` öffen und dort nach Befehlen suchen (z.B. `create: new file`).
+[ENDHINT]
+
 Der Grundstein jedes Softwareprojektes ist dessen Verzeichnisbaum. 
 Jede IDE bietet daher eine Ordneransicht und umfassenden Funktionen für dessen Verwaltung.
 
@@ -109,18 +118,7 @@ Für die Abgabe von Kommandoprotokollen muss Ihr Programm auch nochmal über das
 werden, damit die Ausgabe das entsprechende Format hat.
 [ENDNOTICE]
 
-<!-- 
-TODO_1_wegner: Weiterführende Verweise zu Git
-
-evtl eine Notiz zu Unterschieden zu VS Code, da könnte auch das unten stehende dazu
-
-- Drücken Sie die Taste F1 und tippen Sie den Befehl "create" ein.
-- Suchen Sie nach "Create: New File" (oder dem deutschen Äquivalent) und wählen Sie es aus. 
-Dadurch wird eine neue (zunächst noch temporäre) Datei angelegt, in der Sie editieren können.
-- Drücken Sie "Strg+S" / "Command+S", um die Datei zu speichern. Ein Fenster öffnet sich. 
-  Geben Sie einen passenden Dateinamen mit Endung ein und wählen Sie den Ablageort der Datei
-  in Ihrem Arbeitsbereich aus.
--->
+<!-- TODO_1_wegner: Weiterführende Verweise zu Git -->
 
 [ENDSECTION]
 
