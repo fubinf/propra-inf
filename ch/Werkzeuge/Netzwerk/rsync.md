@@ -32,22 +32,23 @@ Zielserver = `andorra.imp.fu-berlin.de`
 [INCLUDE::rsync_copy_data.sh]
 ```
 
-- [EC] Erstellen Sie eine Datei `rsync_copy_data.sh` auf Ihrem System mit obigem Inhalt von 
-  `rsync_copy_data.sh`.
-    - Das Skript erstellt einen neuen Ordner `rsync_copy_data` mit 20 Textdateien.  
-    - Prüfen Sie, ob der Unterordner `rsync_copy_data` und die Textdateien vorhanden sind.
+- [EC] Erstellen Sie eine Datei `rsync_copy_data.sh` auf Ihrem System mit obigem Inhalt.
+  Das Skript erstellt einen neuen Ordner `rsync_copy_data` mit 20 Textdateien.  
 - [EC] Führen Sie das Skript mit `bash rsync_copy_data.sh` aus.
+  Prüfen Sie, ob der Unterordner `rsync_copy_data` und die Textdateien vorhanden sind.
+
 
 ### Nutzen von rsync
 
-Es ist wichtig, stets auf die Struktur der Befehle zu achten, da sonst später doppelt so viel 
-Arbeit anfällt. Prüfen Sie daher in der nächsten Aufgabe beide Befehle sorgfältig.
+Man arbeitet mit `rsync` meistens auf ganzen (oftmals großen) Dateibäumen.
+Dadurch können schon kleine Tippfehler beim Kommando sehr unerfreuliche Auswirkungen haben,
+also bitte Vorsicht!
 
 - [EC] Erstellen Sie den Ordner `/tmp/rsync_destination`.
 - [EC] Führen Sie nacheinander beide Befehle aus  
     `rsync -a ~/rsync_copy_data /tmp/rsync_destination/`  
     `rsync -a ~/rsync_copy_data/ /tmp/rsync_destination/`  
-- [EQ] Was haben Sie beobachtet.
+- [EQ] Was ist der Unterschied im Verhalten der beiden Kommandos?
 
 [NOTICE]
 Merken Sie sich dieses Verhalten von rsync. Die meisten Kopier-Befehle (`cp`, `scp`, `rsync`...) 
@@ -57,7 +58,7 @@ nutzen diese Semantik.
 `rsync` bietet die Möglichkeit, Daten auf einen entfernten Pfad zu kopieren.
 
 Lesen Sie den Abschnitt **Usage** der 
-[rsync(1) manpage](https://manpages.debian.org/bookworm/rsync/rsync.1.en.html)
+[rsync(1) manpage](https://manpages.debian.org/stable/rsync/rsync.1.en.html)
 
 - [EC] Kopieren Sie die den Ordner `rsync_copy_data` von Ihrem System auf Ihren 
        home-Ordner des Zielservers.  
