@@ -47,9 +47,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
 
 ### Web
-- ch/Web/CSS/CSSSelektorenKlassen.md (DM -> LP)
-Bitte gerne auch nochmal auf Anforderungsniveau prüfen, da bin ich mir unsicher, ob 2 noch passt.
-Die Aufgabe selbst ist wohl nicht schwer, aber das notwendige Verständnis dahinter doch relativ abstrakt.
 
 ### Werkzeuge
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP->IC-LP)
@@ -105,6 +102,8 @@ Die Aufgabe selbst ist wohl nicht schwer, aber das notwendige Verständnis dahin
   Ich finde a) dass der Theorieteil am Anfang reichlich lang ist, bis was Hübsches passiert, und
   b) dass man gern etwas mehr Fun-Faktor haben könnte, z.B. mit supergroßem Titel.  
   Ist aber jetzt schon mal beta.
+- ch/Web/CSS/CSSSelektorenKlassen.md (DM->LP->DM)
+
 
 
 ## Reviews to do for Ronny Ruhe
