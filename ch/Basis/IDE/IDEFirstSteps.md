@@ -1,5 +1,5 @@
 title: "Erste Schritte in der IDE"
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 2
 requires: IDELinux, IDEWindows, IDEmacOS

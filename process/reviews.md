@@ -33,6 +33,9 @@ We will modify these rules over time when others appear more useful.
 **Ich reviewe pro Kapitel die Einträge von oben nach unten. 
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
+### Basis
+- ch/Basis/IDE/IDEFirstSteps.md (SW)
+
 ### Sprachen
 
 ### Bibliotheken
