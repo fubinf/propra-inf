@@ -7,7 +7,7 @@ requires: IDELinux, IDEWindows, IDEmacOS
 
 [SECTION::goal::idea]
 
-Ich kann Dateien über die IDE anlegen, bearbeiten und kenne ein paar grundlegende Funktionen.
+Ich kann über die IDE Dateien anlegen, bearbeiten und kenne ein paar grundlegende Funktionen.
 
 [ENDSECTION]
 
@@ -15,27 +15,31 @@ Ich kann Dateien über die IDE anlegen, bearbeiten und kenne ein paar grundlegen
 
 In der vorherigen Aufgabe haben Sie Ihre IDE (PyCharm oder VSCode) erfolgreich 
 installiert und eingerichtet. 
-Nun wollen wir die grundlegenden Schritte und Werkzeuge ihrer IDE kennenlernen, die Ihnen helfen 
-werden, die ProPra-Aufgaben zu lösen.
+Hier lernen Sie nun die grundlegenden Schritte und Features ihrer IDE kennen, um sich ein wenig 
+mit dem neuen Werkzeug vertraut zu machen. 
+Ziel ist es, dass sie in der Lage sind, die IDE sinnvoll zur Bearbeitung der ProPra-Aufgaben zu 
+verwenden.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
 Die Aufgabe ist möglichst allgemein formuliert, um unabhängig von Ihrer verwendeten IDE zu sein. 
-Sollte eine Anweisung nicht ganz mit dem übereinstimmen, was sie in Ihrer IDE vorfinden, suchen 
-Sie nach einem ähnlichen Weg, diese umzusetzen.
-
-### Dateien verwalten
+In der Regel sollte das kein Problem darstellen, da sich die grundlegenden Features zwischen 
+den IDEs ähneln. 
+Sollte aber eine Anweisung nicht ganz mit dem übereinstimmen, was sie in Ihrer IDE vorfinden, 
+suchen Sie einem ähnlichen Weg, diese umzusetzen.
 
 [HINT::Besonderheiten in VS Code]
 Gegenüber PyCharm werden geänderte Dateien in VS Code nicht automatisch gespeichert. 
 Denken Sie daher daran, gelegentlich Ihre Änderungen zu speichern (z.B. mit dem Shortcut `Strg+S`).
 
-VS Code hat alternativ zum klassischen Menü eine "Befehlszeile", um verschiedene Aktionen schnell 
+VS Code hat alternativ zu klassischen Menüs eine "Befehlszeile", um verschiedene Aktionen schnell 
 per Tastatur auszuführen. 
 Diese können Sie mit `F1` öffen und dort nach Befehlen suchen (z.B. `create: new file`).
 [ENDHINT]
+
+### Dateien verwalten
 
 Der Grundstein jedes Softwareprojektes ist dessen Verzeichnisbaum. 
 Jede IDE bietet daher eine Ordneransicht und umfassenden Funktionen für dessen Verwaltung.
@@ -44,9 +48,9 @@ Jede IDE bietet daher eine Ordneransicht und umfassenden Funktionen für dessen 
 - [ER] Legen Sie nun mithilfe der IDE im Hauptverzeichnis Ihres Repos eine neue Python Datei mit 
   dem Namen `IDEFirstSteps.py` an. Öffnen Sie anschließend die Datei.
 
-### Autovervollständigung, Informationen und Korrektur
+### Autovervollständigung, Korrektur und Informationen
 
-Nun schreiben wir etwas Python Code. Eine gute IDE gibt einen hierfür viele praktische 
+Nun schreiben wir etwas Python Code. Eine gute IDE gibt einem hierfür viele praktische 
 Hilfsmittel, wie Autovervollständigung, Anzeige und Korrektur von Syntax- und Rechtschreibfehlern, 
 und gibt einem auch Informationen über verwendete Module, sodass man nicht immer die 
 Dokumentation zurate ziehen muss.
@@ -62,81 +66,113 @@ Dokumentation zurate ziehen muss.
 ```python
 def get_permutations(string, i=0)
     res = []
-    k = 0
     if i = len(string):
-    res.append("".join(string))
+    res.append(string)
 
     for j in range(i, len(string)):
-         words=[c for c in string]
-         words[i], words[j] = word[j], words[i]
-         res.extend(get_permuations(words, i + 1)
+        chars = list(string)
+        chars[i], chars[j] = char[j], chars[i]
+        res.extend(get_permuations("".join(chars), i + 1)
     return res
 ```
 
-- [ER] Nachdem Sie alle Error Meldungen behoben haben, werden vermutlich noch immer gelb 
-  markierte Warnings angezeigt. 
-  Diese helfen einem dabei, eine saubere und ordentliche Codestruktur beizubehalten, sowie 
-  Python-Codierstandards (z.B. [TERMREF::PEP8]) einzuhalten.  
-  Entfernen Sie mithilfe der IDE alle diese Warnings.
-
-<!-- TODO_1_wegner: Aufgabe anpassen, da VS Code kein Formatting/Linting macht. Dafür ist die 
-Extension Pylint notwendig. Evtl. Aufgabe löschen und stattdessen auf Werkzeuge/Linter verweisen -->
-
 [NOTICE]
 Diese Korrekturhilfen können hauptsächlich bei Syntaxfehlern helfen, aber nicht bei Logikfehlern.
-Richtiges [PARTREF::Debugging] und [PARTREF::Testen] ersetzt dies also nicht.
+Richtiges [PARTREF::Debugging] und [PARTREF::Testen] ersetzen diese also nicht.
+[ENDNOTICE]
+
+[NOTICE]
+Neben Error Meldungen werden auch gelb markierte Warnings sowie grün markierte 
+Rechtschreib-/Grammatikfehler angezeigt. Diese weisen nicht auf Syntaxfehler hin, 
+helfen einem aber dabei, eine saubere und ordentliche Codestruktur beizubehalten, sowie 
+Python-Kodierstandards ([TERMREF::PEP8]) zu folgen. 
+Diese Werkzeuge werden [TERMREF::Linter] genannt.
+
+Um in VS Code ähnliche Funktionalitäten zu erhalten, müssen Sie ggf. vorher 
+[geeignete Extensions](https://code.visualstudio.com/docs/python/linting) installieren.
 [ENDNOTICE]
 
 - [ER] Nun rufen Sie die definierte Funktion mit dem String `FUB` auf und geben Sie das Ergebnis 
   mit `print()` aus. 
-  Machen Sie dabei von der Autovervollständigung gebrauch: Wenn Sie anfangen zu tippen, 
-  erscheint meistens ein kleines Drop-Down-Menü mit Codevorschlägen. 
+  Machen Sie dabei von der Autovervollständigung gebrauch:  
+  Wenn Sie anfangen zu tippen, erscheint meistens ein kleines Drop-Down-Menü mit Codevorschlägen. 
   Wählen Sie einen Vorschlag aus, um diesen im Code einzufügen.
 
 Die IDE kann auch Schnellauskunft zu Funktionen, Modulen etc. geben. Fahren Sie dafür mit der 
-Maus über eines der Wörter, worauf sich ein Fenster öffnet, in dem einige Informationen kompakt 
-aufgeführt werden.
+Maus über eines der Wörter oder drücken Sie `Strg+Q`, während sich der Textcursor im Wort 
+befindet. 
+Daraufhin öffnet sich ein Fenster, in dem kompakt einige Informationen über den Begriff aufgeführt 
+werden.
 
 - [ER] Testen Sie die Funktionen an ein paar Stellen. 
   Schauen Sie sich anschließend die Informationen zu `print()` an. 
   Entnehmen Sie diesen Informationen, wie Sie den standardmäßig am Ende angefügten Zeilenumbruch 
-  ändern können und ersetzen Sie das durch einen leeren String.
+  ändern können und ersetzen Sie ihn durch `\nHelloWorld\n`.
+- Ein weiteres nützliches Feature: Klicken Sie in dem Infofenster auf des Stift-Symbol (Jump to 
+  Source) oder drücken Sie `F4`, während sich der Textcursor in dem Begriff befindet. 
+  Damit gelangen Sie direkt an die Stelle im Code, an der das hervorgehobene Element definiert 
+  wird. 
+  Das ist zwar bei unserer aktuellen Aufgabe eher wenig hilfreich, aber je größer das 
+  Softwareprojekt wird, an dem man arbeitet, desto praktischer wird diese Funktion, um schneller 
+  durch den Code zu navigieren.
 
 ### Code ausführen
 
 Als letzten Schritt wollen Sie Ihren Code natürlich auch ausführen, was ebenfalls bequem über die 
 IDE geht. 
 Für größere Softwareprojekte lassen sich hier auch spezielle Startkonfigurationen 
-einrichten, wie [TERMREF2::virtual environment::-s] oder [TERMREF::Kommandozeilenparameter]. 
+einrichten, wie [TERMREF::Umgebungsvariablen] oder [TERMREF::Kommandozeilenparameter]. 
 Für unser kleines Testprogramm reicht aber die Standardkonfiguration.
 
-- Führen Sie Ihren Code über die IDE aus und schauen Sie, ob das Ergebnis, dass im integrierten
-  Terminal angezeigt wird, korrekt aussieht.
+- Führen Sie Ihren Code über die IDE aus, indem Sie den Start-Button klicken oder `Shift+F10` 
+  drücken.
+  Schauen Sie, ob das Ergebnis, dass im integrierten Terminal angezeigt wird, korrekt aussieht.
 
 [NOTICE]
 Für die Abgabe von Kommandoprotokollen muss Ihr Programm auch nochmal über das Terminal ausgeführt 
 werden, damit die Ausgabe das entsprechende Format hat.
 [ENDNOTICE]
 
-<!-- TODO_1_wegner: Weiterführende Verweise zu Git -->
+### weitere IDE Features
+
+Diese ersten Schritte sollten ihnen einen Einblick geben, welche Werkzeuge ihnen die IDE bietet. 
+Natürlich gibt es noch viele weitere Funktionen, die man als erfahrener Programmierer kennen 
+sollte. 
+Einige von denen werden auch in fortgeschrittenen ProPra-Aufgaben gezielt vorgestellt:
+
+<!-- TODO_3: weitere Aufgaben auflisten, die IDE Features behandeln -->
+
+- [PARTREFMANUAL::git-IDE::Arbeiten mit Git in der IDE]
+- [PARTREFMANUAL::IDE_debugging::Debugging in der IDE]
+- [PARTREFMANUAL::Linting-PyCharm::Linting in PyCharm]
+
+Natürlich können Sie sich auch jederzeit selbst über Features informieren. Die meisten IDE-Anbieter 
+stellen hierfür umfangreiche Dokus und Tutorials zur Verfügung:
+
+- PyCharm: [HREF::https://www.jetbrains.com/help/pycharm/getting-started.html]
+- VS Code: [HREF::https://code.visualstudio.com/docs]
 
 [ENDSECTION]
 
 [SECTION::submission::information]
 
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 
-[INSTRUCTOR::Ergebnis prüfen]
+[INSTRUCTOR::Abgabe prüfen]
 
-Es lässt sich natürlich kaum überprüfen, ob die Studierenden tatsächlich die IDE-Werkzeuge 
-verwendet haben, um die Aufgabe zu lösen. 
-Korrigieren Sie daher nur, ob der abgegebene Code keine der eingebauten Defekte und Warnings 
-enthält und sich ausführen lässt. 
+Es lässt sich kaum überprüfen, ob die Studierenden tatsächlich die IDE-Werkzeuge verwendet haben,
+um die Aufgabe zu lösen. 
+Korrigieren Sie daher, ob der abgegebene Code keine der eingebauten Defekte mehr enthält und das 
+korrekte Ergebnis ausgibt.
+
 Falls Sie den Verdacht haben, dass hier nicht mit den Werkzeugen gearbeitet wurde, geben Sie 
 hier einen entsprechenden Hinweis oder fragen Sie gezielt nach.
 
 Beispiellösung siehe [TREEREF::/Basis/IDE/IDEFirstSteps.py]
+
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
