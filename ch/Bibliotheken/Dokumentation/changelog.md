@@ -41,7 +41,7 @@ Arbeiten Sie [HREF::https://keepachangelog.com/de/1.0.0/] durch.
 
 [HINT::Ort des Django-Changelogs]
 GitHub: `docs/releases`  
-Gerendert: [HREF::https://django.readthedocs.io/en/stable/]
+Gerendert: [HREF::https://django.readthedocs.io/en/stable/releases/]
 [ENDHINT]
 
 ### Reflektion darüber
