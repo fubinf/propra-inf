@@ -2,7 +2,7 @@ title: "Objektmethoden in Python"
 stage: draft
 timevalue: 0.75
 difficulty: 2
-requires: Python-Objects-Classes-Intro, PythonFunctions
+requires: Python-OOP-Intro, PythonFunctions
 assumes: PythonStrings, PythonIntegers, PythonBooleans, PythonComments, PythonTypeConversion, PythonIf, PythonElifElse
 ---
 
@@ -16,7 +16,7 @@ assumes: PythonStrings, PythonIntegers, PythonBooleans, PythonComments, PythonTy
 
 Lesen Sie den folgenden kleinen
 [Artikel](https://www.w3schools.com/python/gloss_python_object_methods.asp).
-Sie haben in [PARTREF::Python-Objects-Classes-Intro] Objekte kennengelernt.
+Sie haben in [PARTREF::Python-OOP-Intro] Objekte kennengelernt.
 Sie haben auch gelernt, dass Objekte Attribute haben können und
 diese Attribute bei der Objekterstellung beliebig gesetzt werden können. 
 
@@ -104,7 +104,7 @@ Wie Sie wahrscheinlich gemerkt haben, muss dieses Attribut bei der Erstellung vo
 nicht als Parameter für den Konstruktor angegeben werden. Wie würde man solche Attribute nennen und
 wann sind sie hilfreich?
 
-[EQ] In [PARTREF::Python-Objects-Classes-Intro] haben Sie Klassenattibute kennengelernt.
+[EQ] In [PARTREF::Python-OOP-Intro] haben Sie Klassenattibute kennengelernt.
 Sie haben auch gelernt, wie sich Klassenattribute von Objektattributen unterscheiden.
 Kann man das Attribut `verfuegbar` auch als Klassenattribut definieren? Warum?
 
