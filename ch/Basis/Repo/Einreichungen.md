@@ -39,26 +39,30 @@ dass sich das automatisch verarbeiten lässt -- und das macht `sedrila` sich zun
 In der Zeiterfassungsaufgabe haben wir uns mit der Commit-Nachricht beschäftigt,
 hier soll es um den Commit-Inhalt gehen.
 
-Grundsätzlich liegt im Hauptverzeichnis Ihres Repos mindestens eine Datei pro
-Aufgabe, manchmal auch ein Verzeichnis mit mehreren Dateien, die zu derselben
-Aufgabe gehören.
+Grundsätzlich liegen Ihre Dateien fast immer in einem Pfad,
+der dem Pfad der Aufgabe im ProPra-Website-Inhaltsverzeichnis entspricht.
+Das Verzeichnis für die Aufgabe selbst kann man je nach Geschmack auch einsparen, 
+wenn alle abzugebenden Dateien Namen haben, die mit dem Aufgabennamen anfangen.
 
-Angenommen, es gibt eine (dort aber tatsächlich gar nicht geforderte) 
+Beispiel:
+Angenommen, es gäbe eine (dort aber tatsächlich gar nicht geforderte) 
 Markdown-Datei für die Aufgabe "Zeiterfassung"
 sowie zwei (hier ebenfalls tatsächlich gar nicht geforderte)
 Dateien `Script.py` und `Screenshot.png` für die aktuelle Aufgabe "Einreichungen", 
-dann sieht Ihr Arbeitsverzeichnis vielleicht so aus:
+dann sähe Ihr Arbeitsverzeichnis vielleicht so aus:
 
 ```
 Programmierpraktikum
 ├─README.md
-├─Zeiterfassung.md
-└─Einreichungen
-  ├─Script.py
-  └─Screenshot.png
+└─Basis
+  └─Repo
+    ├─Zeiterfassung.md
+    └─Einreichungen
+      ├─Script.py
+      └─Screenshot.png
 ```
 
-Kurz gesagt: Abgabedateien haben immer den Aufgabennamen als Basisname (die Suffixe wechseln)
+Die einzelnen Abgabedateien haben immer den Aufgabennamen als Basisname oder Namenspräfix
 oder sie liegen in einem Verzeichnis, das wie die Aufgabe heißt.
 
 Genauer gesagt, ist es so:
@@ -70,16 +74,14 @@ Wir verwenden im gesamten Programmierpraktikum folgende Dateinamens-Konventionen
 (bei einer Datei namens `hallo.xy` wird `hallo` _Basisname_ genannt und 
 `xy` heißt _Endung_ oder _Suffix_):
 
-- Die Datei-Basisnamen auf der oberen Verzeichnisebene heißen immer wie die jeweilige Aufgabe.
-- Verzeichnisname auf der oberen Verzeichnisebene ebenfalls.
 - Ein Verzeichnisname ist immer ohne Endung.
 - Die Dateiendungen in Verzeichnissen können alles Mögliche sein, je nach Aufgabe.
-- Die Dateiendungen auf der oberen Verzeichnisebene sind wie folgt:
+- Die Dateiendungen sind wie folgt:
     - Markdowndateien heißen `*.md`
     - Python-Quelltextdateien heißen `*.py`
     - Shellskripte heißen `*.sh`
     - Entsprechend auch für andere Programmiersprachen.
-    - Kommandoprotokolldateien heißen `*.txt`
+    - Kommandoprotokolldateien heißen `*.prot`
 
 
 ### Was gehört in welche Dateien?
@@ -121,13 +123,14 @@ sedrila student --submission
 
 Sie bekommen dann eine Liste mit Aufgaben, zu denen Sie Commits angelegt
 haben.
-Sie können darin auswählen (TODO_1 Wie?), welche Aufgaben zur Kontrolle vorgelegt werden
+Sie können darin auswählen, welche Aufgaben zur Kontrolle vorgelegt werden
 sollen. 
-Daraus wird eine Datei submission.yaml im richigen Format erzeugt.
+Daraus wird eine Datei `submission.yaml` im richigen Format erzeugt.
 Abschließend zeigt das Kommando an, wie es weitergeht: Email an eine Tutor_in.
 
-Da hier nichts weiter zu tun ist, Sie aber trotzdem Zeit gutgeschrieben haben
-wollen, können Sie ausnahmsweise einen Zeiterfassungscommit ohne Inhalt machen.
+Da bei der hiesigen Aufgabe nichts weiter zu tun ist, 
+Sie aber trotzdem Zeit gutgeschrieben bekommen sollen, 
+können Sie ausnahmsweise einen [PARTREFMANUAL::Zeiterfassung::Zeiterfassungscommit] ohne Inhalt machen.
 Hierfür verwendet man `git commit --allow-empty -m"..."`.
 
 Vergessen Sie nicht, Ihren Stand mittels `git push` verfügbar zu machen!
