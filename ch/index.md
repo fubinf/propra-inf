@@ -285,6 +285,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-11-11**: Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_sys] zugefügt.
 - **2024-11-12**: Aufgaben Sprachen/Pythonpraxis/[PARTREF::linkcheck-testbase]
   und [PARTREF::linkcheck-core] zugefügt.
+- **2024-11-22**: Aufgabe Sprachen/Pythonpraxis/[PARTREF::linkcheck-fullscreen] zugefügt.
 - ...
 
 
