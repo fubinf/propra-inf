@@ -22,14 +22,12 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
 
 ### Ein paar Empfehlungen
 
-- Wer sich noch als Programmieranfänger_in betrachtet, ist als erstes 
-  bei [PARTREF::Python1] (im Kapitel [PARTREF::Sprachen]) richtig.
-- Wer sich als Fortgeschrittene_r betrachtet, aber sich ein viel vollständigeres Rüstzeug
-  zulegen möchte, sollte bei [PARTREF::Python-Standardbibliothek] (im Kapitel [PARTREF::Bibliotheken]) starten
+- Wer seine Python-Kenntnisse ausbauen möchte,
+  sollte bei [PARTREFMANUAL::Python-Standardbibliothek::Bibliotheken/Python-Standardbibliothek] starten
   und eine passende Dosis von
-  [PARTREF::Python2] (aus Kapitel [PARTREF::Sprachen]) dazumixen.
+  [PARTREFMANUAL::Python2::Sprachen/Python2] dazumixen.
 - Wer noch nicht ziiiemlich gut mit git umgehen kann (und wer kann das schon!),
-  kann bei [PARTREF::Git] Schritt für Schritt eine recht große Schippe drauflegen
+  kann bei [PARTREFMANUAL::Git::Werkzeuge/Git] Schritt für Schritt eine recht große Schippe drauflegen
   und sich damit in die Riege bewunderter Technikbeherscher_innen vorarbeiten,
   denn selbst erfahrene Softwareentwickler_innen schwächeln auf diesem Sektor oft stark.  
   Besonders empfohlen!
@@ -40,10 +38,10 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
   Das Kapitel [PARTREF::Bestandscode] gehört auch in diese Kategorie.
 - Wer angesichts des Titels "Programmierpraktikum" ganze Programme (statt nur kleiner Schnipsel)
   schreiben und so ganzheitlich üben möchte,
-  findet passendes Material bei [PARTREF::Pythonpraxis].
+  findet passendes Material bei [PARTREFMANUAL::Pythonpraxis::Sprachen/Pythonpraxis].
 - Wer sich stark für Technologisches interessiert, fühlt sich hingegen im Kapitel 
   [PARTREF::Web] zuhause. Das ist ein gigantischer Themenkreis, deshalb gibt es hier
-  vor allem dessen Grundlagen, was ebenfalls wieder halbwegs langlebiges Wissen zu sein verspricht.
+  vor allem dessen _Grundlagen_, was ebenfalls wieder halbwegs langlebiges Wissen zu sein verspricht.
   (Fortgeschrittene Technologiesachen sind hingegen detailreich und zugleich furchtbar kurzlebig.
   Sie lohnen die Lerninvestition nur, wenn man genau das Gelernte alsbald intensiv benutzen möchte.)
 - Das Kapitel [PARTREF::Werkzeuge] ist ein recht bunter und ziemlich interessanter Kramladen.
