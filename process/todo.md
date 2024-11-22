@@ -96,8 +96,24 @@ Sonderdateien:
 
 ### 2.3 Korrekturbedarf an sedrila
 
-- Konsistenzcheck, dass beim Aktualisieren eines Kurses keine bisherigen Aufgaben
-  verschwinden.
+Bald:
+
+- `viewer`: Favicon liefern
+- `viewer`: Bei fehlenden Dateien sauber 404 liefern (derzeit: Exception)
+- `viewer`: Alle Dateien mit Bezug zu einer abgegebenen Aufgabe im ganzen Baum finden und
+  in einer separaten Liste anzeigen.
+- `student`: Taskliste gibt vollen Task-Pfad an und sortiert danach. Noch besser: Gleiche
+  Kapitel/Taskgroups nicht wiederholen, sondern nur einmalig in separater Zeile ausgeben.
+- `student`: `student.yaml` sollte die Kursgröße in Stunden deklarieren.
+  Dann kann die Aufgabentabelle Hurra schreien, wenn man fertig ist.
+- `instructor`: Dito: Tasks mit Ortsangabe auflisten.
+- `instructor`: Ungeprüfte Akzeptanz unterscheiden von geprüfter.
+- `author`: Wenn eine Aufgabe weggelassen wird, weil eine requires-Abhängigkeit soft fehlt,
+  sollte es eine Warnmeldung geben. Dass passiert bei `--stage beta`, wenn die Abhängigkeit 
+  eine niedrigere stage hat.
+- `author`: Das Wiederholen des Inhaltsverzeichnisses unten auf Taskgroup- und Kapitelseiten
+  ist nicht sinnvoll und stört das Kleinaussehen dieser Seiten. Entfernen.
+- Defekt?: Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
 - Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
   muss es eine Fehlermeldung geben, keinen toten Link.
   Und wenn eine assumes-Abhängikeit nicht existiert oder sonst irgendein PARTREF
@@ -105,16 +121,17 @@ Sonderdateien:
   erscheinen, der mit "sorry, gibt es in dieser Fassung des ProPra leider nicht" dekoriert ist.
 - student.yaml ergänzen um `git_username` und `partner_git_username`, damit man die
   verwandten Repos identifizieren kann.
+
+Gelegentlich:
+- Konsistenzcheck, dass beim Aktualisieren eines Kurses keine bisherigen Aufgaben
+  verschwinden.
 - ch/Testen/index.md: eingebundenes graphviz darstellen (Plugin nötig)?
   Gehört es allgemein in sedrila eingebaut, selbst solche Graphen zu erzeugen?
-- Defekt?: Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
 - `.htaccess` auch für Studis erzeugen. Beide sollten folgende Zeile enthalten  
   `AddCharset utf-8 .html .css .js .txt`  
   damit ein Crawler oder Browser korrekte Encodings erhält.
   Browser lösen das selbst, aber bei Crawlern, die Vanilla-`requests` einsetzen (wie unserer!), 
   schlägt dessen die vom Standard vorgegebene ISO-8859-1-Annahme zu. 
-- Das Wiederholen des Inhaltsverzeichnisses unten auf Taskgroup- und Kapitelseiten
-  ist nicht sinnvoll und stört das Kleinaussehen dieser Seiten. Entfernen.
 
 
 ### 2.4 Anträge an den Rechnerbetrieb
