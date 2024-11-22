@@ -1,41 +1,77 @@
-title: "Grundlagen objektorientierter Programmierung in Python"
-stage: draft
-timevalue: 0.1
+title: "Klassen und Objekte in Python: Modelle aus der realen Welt"
+stage: alpha
+timevalue: 1.0
 difficulty: 2
 ---
 
-[EQ] Was ist eine Klasse?
-<!-- Definieren Sie eine minimale Klasse *"Konto"* -->
-[EQ] Was ist ein Objekt und womit wird es beschrieben? 
-<!-- Erzeugen Sie 2 Objekte aus dieser Klasse -->
-[EQ] Was sind genau die Attribute eines Objekts?
+[SECTION::goal::idea]
 
-[EQ] Wofür werden die Methoden verwendet?
-<!-- Addieren Sie zu der Klassendefinition der Klasse *"Konto"* anhand des Diagramms die gegebenen Attribute und Methoden --> 
-[EQ] Was ist der Unterschied zwischen einem Objekt und einer Instanz?
-<!-- Hier vielleicht doch selbst den Unterschied erklären? -->
-[EQ] Was ist Kapslung?
-<!-- Welchen Sinn steht hinter Kapslung? Tun wir das, nur um die Konzepte von OOP zu respektieren?--> 
-[EQ] Was sind *"Getters"* und *"Setter"*?
-[EQ] Gegeben sei ein Attribut namens `age`Welcher der folgenden Benennungen von *"Setters"* bzw. *"Getter"* halten Sie für angemessen, warum?
-<!-- Verbinden Sie die definierten Attribute mit entsprechenden *"Getters"*- und *"Setters"*-Methoden.-->
-[EQ] Im Unterabschnitt *"Eigenschaften und Attribute"* wird dynamische Erzeugung von Attributen
-besprochen. Was ist Ihre Meinung zu diesem Ansatz und was sagt der Artikel über die Nachteile davon? 
+Ich kann reale Entitäten mit Klassen und Objekten modellieren.
 
-[EQ] Mit welcher sogenannten magischen Methode kann man alle Attribute 
-samt deren Werten eines Objekts sehen?
- 
-[EQ] Was ist der Unterschied zwischen einer *"Methode"* und einer *"Funktion"*?
+[ENDSECTION]
 
-[EQ] Was ist `self`? Ist der Name *"self"* fest?
 
-[EQ] Welchen Nachteil hat die Verwendung eines anderen Namens für `self`?
+[SECTION::background::default]
 
-[EQ] Definieren Sie in Python eine Klasse *"Rezept"* anhand 
-des Beispiels aus dem Unterabschnitt *"Objekte, Instanzen und Klassen"*.
-Verwenden Sie hierfür alle Informationen aus dem Text für die Attribute und die Methoden.
+In Python ermöglicht die objektorientierte Programmierung (OOP) das Abbilden realer Entitäten als Objekte.
+Klassen fungieren dabei als Vorlagen, die Objekte mit Attributen und Methoden definieren. 
+Die Eigenschaften dieser Objekte werden durch Attribute beschrieben, ihr Verhalten durch Methoden.
 
-[ER] Definieren Sie in Python eine Klasse *"Konto"* anhand 
-des Diagramms aus dem Unterabschnitt *"Objekte, Instanzen und Klassen"*
-Verwenden Sie hierfür alle Informationen aus dem Diagramm für die Attribute und die Methoden.
+Diese Aufgabe führt Sie in das Thema *"Objektorientierte Programmierung in Python"* ein. 
+Sie modellieren Beispiele aus der realen Welt und lernen, 
+wie sich solche Entitäten als Datenstrukturen abbilden lassen. Halten Sie es dabei einfach – 
+der Fokus liegt darauf, ein Verständnis dafür zu entwickeln, 
+wie man reale Objekte in Python als Klassen darstellt.
 
+[ENDSECTION]
+
+[SECTION::instructions::loose]
+
+[*"Object-Oriented Programming (OOP) in Python"*](https://realpython.com/python3-object-oriented-programming/)
+kann Ihnen bei der Bearbeitung helfen und einige der Konzepte erklären. 
+
+[ER] Erstellen Sie eine Klasse namens `Student`, die folgende Anforderungen erfüllt:  
+- Klassenattribut: `university` (Universität, Standardwert: "Universität Musterstadt").  
+- Instanzattribute: `name` (Name des Studenten), `age` (Alter) und `major` (Studienfach).  
+- Konstruktor: Der Konstruktor soll die Instanzattribute initialisieren.  
+- Instanzmethode: `introduce`, die einen String zurückgibt, z. B.:  
+*"Hi, ich heiße Lisa, bin 21 Jahre alt und studiere Informatik an der Universität Musterstadt."*
+
+Erstellen Sie mindestens zwei Objekte der Klasse `Student` und 
+lasse sie sich mit der Methode `introduce` vorstellen. 
+
+---
+
+[ER] Erstellen Sie eine Klasse namens `Car`, die folgende Anforderungen erfüllt:  
+- Klassenattribut: `wheels` (Anzahl der Räder, Standardwert: 4).  
+- Instanzattribute: `brand` (Marke), `model` (Modell) und `year` (Baujahr).  
+- Konstruktor: Der Konstruktor soll die Instanzattribute initialisieren.  
+- Instanzmethode: `get_description`, die einen String zurückgibt, z. B.: 
+*"Das Auto ist ein Tesla Model S aus dem Jahr 2022 und hat 4 Räder."*
+
+Erstellen Sie drei Autos mit verschiedenen Marken, 
+Modellen und Jahren und rufen Sie anschließend die Methode `get_description` für jedes Auto auf. 
+
+---
+
+[ER] Erstellen Sie eine Klasse namens `Book`, die folgende Anforderungen erfüllt:  
+- Klassenattribut: `library` (Bibliotheksname, Standardwert: "Stadtbibliothek").  
+- Instanzattribute: `title` (Titel), `author` (Autor) und `pages` (Anzahl der Seiten).  
+- Konstruktor: Der Konstruktor soll die Instanzattribute initialisieren.  
+- Instanzmethode: `summary`, die einen String zurückgibt, z. B.:  
+*"Das Buch 'Learn Python the Hard Way: A Very Simple Introduction to the Terrifyingly Beautiful 
+World of Computers and Code' von Zed Shaw hat 320 Seiten und gehört zur Stadtbibliothek."*
+
+Erstellen Sie drei Bücher mit unterschiedlichen Titeln, Autoren und Seitenzahlen und 
+rufen sie dann die Methode `summary` für jedes Buch auf.
+
+[ENDSECTION]
+
+[SECTION::submission::snippet]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[ENDSECTION]
+
+
+[INSTRUCTOR::Musterlösungen]
+[INCLUDE::ALT:]
+[ENDINSTRUCTOR]
