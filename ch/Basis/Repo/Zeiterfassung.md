@@ -112,7 +112,7 @@ Für diese Aufgabe verlangen wir einmalig einen Commit im korrekten Format:
 - 'h' ohne Leerzeichen 
 
 Wenn die Antwort der vierten Frage ja lautet, ist alles in Ordnung.  
-Dann bitte mit `sedrila student ...TODO_2` den Bericht auf Plausibilität prüfen.
+Dann bitte die Arbeitszeit-Listenausgabe von `sedrila student` auf Plausibilität prüfen.
 
 Lautet sie nein, dann bitte die Antworten zu Fragen 2 und 3 sichten und allen, die sich offenbar nicht ganz sicher sind,
 ermutigend zureden: Wir sind auf Ihrer Seite! Arbeitszeiterfassung hilft beim Lernen!  
