@@ -37,8 +37,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Basis/IDE/IDEFirstSteps.md (SW)
 
 ### Sprachen
-ch/Sprachen/Python2/Python-OOP-Intro.md (HA->LP)
-
+- ch/Sprachen/Python2/Python-OOP-Intro.md (HA->LP)
+- ch/Sprachen/Python2/Python-OOP-Methods.md (HA->LP)
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
 
