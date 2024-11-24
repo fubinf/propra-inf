@@ -304,6 +304,20 @@ Ferner evtl:
 - `Code-Snippets`: Ein Tool, das es Entwicklern ermöglicht, Code-Snippets zu organisieren,
   zu suchen und wiederzuverwenden; Evt. gut geeignet um auch mlh als code-snippets aufzunehmen?
 
+### Sprachen/Go (brandes)
+- Compiler installieren, IDE einrichten (GoLand bevorzugt)
+- Hello World und ein paar Wörter über Packages
+- Datentypen (casting und die meistbenutzten Typen)
+- Funktionen (u. a. naked returns)
+- `if` und `for`
+- evtl. weitere einfachere Konstrukte
+- Pointers (evtl. im Zusammenhang mit C), pass-by-value oder -by-reference
+- Interfaces
+- `go test`, `go build` und mehr zu Packages (Abhängigkeiten, `"go.mod"`)
+- `go install` vs `go get` (das zweite ist deprecated, nur als `go get -d` benutzen fürs Herunterladen)
+- Networking mit `"net/http"` (Begriffe "API", "HTTP" müssen vorausgesetzt werden)
+- Multiprocessing (goroutines, channels, `select`, Mutex)
+- Effective Go, 100 Go Mistakes usw (https://github.com/dariubs/GoBooks)
 
 ### Sprachen/C (N.N.)
 
