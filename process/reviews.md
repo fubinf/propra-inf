@@ -39,6 +39,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Sprachen
 - ch/Sprachen/Python2/Python-OOP-Intro.md (HA->LP)
 - ch/Sprachen/Python2/Python-OOP-Methods.md (HA->LP)
+- ch/Sprachen/Python2/Python-OOP-Inheritance.md (HA-LP)
+
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
 
