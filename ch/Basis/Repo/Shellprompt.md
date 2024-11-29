@@ -128,7 +128,7 @@ Falls noch nicht aktiv, aktivieren Sie den neuen Prompt durch Aufruf von `source
 [ENDSECTION]
 [SECTION::submission::reflection]
 
-Geben Sie eine Markdown-Datei ab.
+Geben Sie eine Markdown-Datei `Shellprompt.md` ab.
 Beschreiben Sie ganz kurz, was Sie warum am Prompt verändert haben oder warum nichts.
 
 [ENDSECTION]

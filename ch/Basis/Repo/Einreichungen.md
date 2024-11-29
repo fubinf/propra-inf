@@ -48,7 +48,7 @@ Beispiel:
 Angenommen, es gäbe eine (dort aber tatsächlich gar nicht geforderte) 
 Markdown-Datei für die Aufgabe "Zeiterfassung"
 sowie zwei (hier ebenfalls tatsächlich gar nicht geforderte)
-Dateien `Script.py` und `Screenshot.png` für die aktuelle Aufgabe "Einreichungen", 
+Dateien `Script.py` und `Bild.png` für die aktuelle Aufgabe "Einreichungen", 
 dann sähe Ihr Arbeitsverzeichnis vielleicht so aus:
 
 ```
@@ -58,12 +58,21 @@ Programmierpraktikum
   └─Repo
     ├─Zeiterfassung.md
     └─Einreichungen
-      ├─Script.py
-      └─Screenshot.png
+      ├─Bild.png
+      └─Script.py
+```
+Als flache Dateiliste und alphabetisch sortiert sieht das Gleiche also so aus:
+
+```
+Programmierpraktikum/Basis/Repo/Einreichungen/Bild.png
+Programmierpraktikum/Basis/Repo/Einreichungen/Script.py
+Programmierpraktikum/Basis/Repo/Zeiterfassung.md
+Programmierpraktikum/README.md
 ```
 
-Die einzelnen Abgabedateien haben immer den Aufgabennamen als Basisname oder Namenspräfix
+Die einzelnen Abgabedateien haben im Normalfall entweder den Aufgabennamen als Basisname oder Namenspräfix
 oder sie liegen in einem Verzeichnis, das wie die Aufgabe heißt.
+Hin und wieder gibt es Ausnahmen, die dann in der Aufgabe beschrieben sind.
 
 Genauer gesagt, ist es so:
 
@@ -74,7 +83,7 @@ Wir verwenden im gesamten Programmierpraktikum folgende Dateinamens-Konventionen
 (bei einer Datei namens `hallo.xy` wird `hallo` _Basisname_ genannt und 
 `xy` heißt _Endung_ oder _Suffix_):
 
-- Ein Verzeichnisname ist immer ohne Endung.
+- Ein Verzeichnisname hat in der Regel keine Endung.
 - Die Dateiendungen in Verzeichnissen können alles Mögliche sein, je nach Aufgabe.
 - Die Dateiendungen sind wie folgt:
     - Markdowndateien heißen `*.md`
@@ -105,7 +114,7 @@ Meistens ergibt es sich jedoch aus folgender Konvention:
 
 Prüfen Sie ihre Commits zu den vorherigen Aufgaben.
 
-- Benennen Sie falsch benannte Dateien um 
+- Benennen Sie ggf. falsch benannte Dateien um 
   und checken Sie sie (ohne Zeiterfassungs-Eintrag) erneut ein.
 - Holen Sie ggf. fehlende Commits nach.
 - Falls [PARTREFMANUAL::Zeiterfassung::Zeiterfassungs-Einträge] fehlen, holen Sie diese 

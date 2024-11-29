@@ -46,6 +46,7 @@ Deshalb üben wir hier das Anfertigen und die Kontrolle von Kommandoprotokollen.
 - Starten Sie einen Texteditor.
 - Fügen Sie die Zwischenablage-Inhalte dort ein (meist mit Ctrl-V/Strg-V bzw. Command-V/Propeller-V).
   Die Farbe der Prompts geht dabei verloren, was den Text erheblich weniger übersichtlich macht.
+- Speichern Sie die Datei als `Kommandoprotokolle.prot`.
 
 
 ### Bereinigen
@@ -57,7 +58,7 @@ Wir tun jetzt so, als sei dies eine _versehentliche_ Fehleingabe gewesen.
 So etwas wollen wir im Protokoll nicht haben, sondern es entfernen, damit es das
 Verständnis des Protokolls nicht erschwert.
 
-- Rufen Sie `nano typescript` auf.
+- Rufen Sie `nano Kommandoprotokolle.prot` auf.
   Nano ist ein einfacher Texteditor, der auf allen Linux-Systemen vorhanden ist.
   Die Bedienung ist in den unteren Zeilen erklärt. 
   (`^` steht für die Umschalttaste Ctrl-/Strg-, `M-` ("meta") steht für `Alt-`.)  
@@ -74,7 +75,7 @@ Es ist auch möglich, einen anderen Texteditor als `nano` zu verwenden,
 falls Sie mit einem anderen besser vertraut sind.
 `nano` hat aber zwei Vorteile: Er ist anfängertauglich und auf so ziemlich jedem
 Linux-System vorhanden.
-(Allerdings kann `nano` auch nicht viel; man setzt ihn meist nur für einfache Zwecke ein.)
+(Allerdings kann `nano` nicht viel; man setzt ihn meist nur für einfache Zwecke ein.)
 [ENDNOTICE]
 
 Allgemein gesprochen:
@@ -82,15 +83,14 @@ Allgemein gesprochen:
 - Werfen Sie mit dem Editor aus dem Protokoll alles raus, was dort nicht hineingehört.
   Vertippt? Kommando ganz falsch ausgedacht? Vorher nötiges anderes Kommando vergessen?
   Löschen Sie in allen diesen Fällen den falschen Block heraus, vom Beginn des Prompts vor dem Kommando
-  bis vor den Beginn des Prompts zum nächsten Kommando.
-- Bereinigen Sie auch, falls Sie zwei Kommandos in einer falschen (aber ebenfalls technisch möglichen) 
+  bis _direkt vor_ den Beginn des Prompts zum nächsten Kommando.
+- Bereinigen Sie auch, falls Sie zwei Kommandos in einer falschen (aber ebenfalls sinnvoll möglichen) 
   Reihenfolge durchgeführt haben: Block ausschneiden und an der richtigen Stelle wieder einsetzen.
 
 
 ### Speichern
 
-- Speichern Sie schließlich die Datei als `*.prot` in Ihrem ProPra-Arbeitsverzeichnis ab.
-  Wenn die Aufgabe XYZ heißt, sollte die Datei also in der Regel `XYZ.prot` heißen,
+- Wenn die Aufgabe XYZ heißt, sollte die Datei also in der Regel `XYZ.prot` heißen,
   falls nicht die Aufgabe ausnahmsweise etwas anderes festlegt.
 
 
@@ -106,11 +106,14 @@ Es gibt grundsätzlich drei Arten, wie man damit umgehen kann:
 
 1. Eine zweite Shell geöffnet haben, in der man die Hilfsschritte ausführt.
    In der ersten Shell macht man nur die Kommandos, die ins Protokoll sollen.
+   Klingt einfach, ist aber sehr schwierig durchzuhalten.
 2. Sich erst einmal probehalber durch den ganzen Ablauf durcharbeiten und dann einen zweiten,
    sauberen Durchlauf machen, wenn man weiß, wie alle Kommandos gehen.
    Nur der zweite Durchlauf kommt ins Protokoll.
+   Das macht im Prinzip Doppelarbeit, ist aber am Ende oft die einfachste und schnellste Methode.
 3. Sich irgendwie durch den ganzen Ablauf durchkämpfen, egal wie viele Fehler und Umwegen man
-   unterwegs macht. Dann alles ins Protokoll übernehmen und alles sorgfältig bereinigen.
+   unterwegs macht. Dann alles ins Protokoll übernehmen und sorgfältig bereinigen.
+   Das ist beim Durchführen am einfachsten, verlangt aber enorme Konzentration beim Bereinigen.
 
 Von diesen Ansätzen funktioniert Nummer 1 für Leute gut, die extrem konzentriert arbeiten können.
 Für die meisten wird der Ansatz Nummer 2 am einfachsten sein.
@@ -148,7 +151,7 @@ Kontrollieren Sie deshalb vor dem Einchecken Ihr Protokoll bitte wie folgt:
 - Beenden Sie den Webserver in der Shell durch Eingabe von Ctrl-C (bzw. Strg-C bzw. Command-C).
 
 War noch etwas verkehrt? Dann bitte nochmals korrigieren und kontrollieren.
-Sie können den Webserver auch laufen lassen und nach der Korrektur die Ansicht im Webbrowser mit 
+Sie können den Webserver auch weiterlaufen lassen und nach der Korrektur die Ansicht im Webbrowser mit 
 'Refresh' (F5) aktualisieren.
 
 [ENDSECTION]

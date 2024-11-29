@@ -82,7 +82,7 @@ manuell machen.
 [ENDSECTION]
 [SECTION::submission::reflection,snippet]
 
-Legen Sie die Markdown-Datei für diese Aufgabe an.  
+Legen Sie die Markdown-Datei `Zeiterfassung.md` an.  
 Tragen Sie die Antworten auf folgende Fragen ein:  
 
 - [EQ] Haben Sie jemals zuvor eine systematische Zeiterfassung gemacht?
