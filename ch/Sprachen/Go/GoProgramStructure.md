@@ -2,6 +2,8 @@ title: Programmstruktur
 stage: draft
 timevalue: 0.5
 difficulty: 1
+requires: GoIDE
+
 ---
 
 [SECTION::goal::idea]
@@ -16,7 +18,7 @@ In der ersten Aufgabe haben wir IDE für Go Entwicklung eingerichtet und unser e
 
 Quellcode von "Hello World!":
 ```go
-[INCLUDE::hello_world.go]
+[INCLUDE::snippets/hello_world.go]
 ```
 
 ### 1. `package`
@@ -53,8 +55,8 @@ Diese Funktion ist der Einstiegspunkt. Es darf nur eine `main()`Funktion geben, 
 [SECTION::submission::program]
 Schreiben Sie nun ein kleines Programm, das beim Ausführen eine zufällige ganze Zahl im Terminal ausgibt. Speichern Sie diese anschließend als `rand_int.go` und geben Sie diese Quellcodedatei ab. Sie dürfen als Ausgangspunkt das Beispiel von "Hello World" benutzen.
 
-[HINT::Eine passende Funktion könnte im Paket `math` liegen...]
-
+[HINT::Funktion]
+Eine passende Funktion könnte im Paket `math` liegen...
 [ENDSECTION]
 
 [INSTRUCTOR::Gedankengang prüfen]
@@ -66,6 +68,6 @@ Diese Aufgabe hat im Wesentlichen drei Schritte:
 
 Lösung:
 ```go
-[INCLUDE::ALT:rand_int.go]
+[INCLUDE::ALT:program_structure_abgabe.go]
 ```
 [ENDINSTRUCTOR]

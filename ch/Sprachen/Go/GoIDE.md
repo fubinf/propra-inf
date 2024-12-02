@@ -73,7 +73,7 @@ Eine neue Datei wird sehr ähnlich angelegt: Rechtsklick auf "projectName" -> "N
 
 
 ```go
-[INCLUDE::hello_world.go]
+[INCLUDE::snippets/hello_world.go]
 ```
 
 __VSCode:__ Öffnen Sie das Terminal und geben Sie `go run programm.go` ein. 
