@@ -60,7 +60,9 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
   Ich bin mir hier unsicher, was in den Instructor-Teil soll. Es gibt ja keine falschen 
   Antworten für die Reflektion. 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC->LP)
-- ch/Werkzeuge/Netzwerk/rsync.md (IC->LP)
+- ch/Werkzeuge/Netzwerk/dnstools.md (...->LP)
+- ch/Werkzeuge/Netzwerk/dig.md
+
 
 -------------------------------------------------------------------------------------------
 
@@ -73,18 +75,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/Python2/Python-import.md (HA->LP->HA->LP->HA)
 
 ## Reviews to do for Ivan Condric
-- ch/Werkzeuge/Netzwerk/traceroute.md: (kommt noch)  
-  LP: "Den traceroute-Teil finde ich sehr anspruchsvoll. Wenn ich die Ähnlichkeiten und Unterschiede von
-  `traceroute -T fu-berlin.de` und `traceroute fu-berlin.de` erklären sollte, würde ich ins
-  Schleudern kommen. Oder warum im internen Netz manchmal bei fast jedem Hop ein Fehlschlag dabei ist.
-  Und beim nächsten Mal wieder keiner. oderoderoder.  
-  Kriegen wir das besser eingehegt?  
-  Beispielsweise hatte ich mich gefragt, ob eine Route zur Uni Luxemburg wohl über Frankreich
-  oder Belgien führt, um dann erstaunt zu lernen, dass sie bevorzugt über Polen plus Tschechien führt
-  und alternativ über Niederlande plus Belgien. Staun.  https://network.geant.org/gn4-3n/  
-  Nötigenfalls Schwierigkeit "mittel" nehmen und/oder traceroute abspalten."
-- ch/Werkzeuge/Netzwerk/dnstools.md (Condric->LP->IC->LP->IC->LP->IC->LP->IC)
-
+- ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC)
 
 ## Reviews to do for Christian Hofmann
 
