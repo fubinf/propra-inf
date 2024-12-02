@@ -308,10 +308,10 @@ Ferner evtl:
 - Compiler installieren, IDE einrichten (GoLand bevorzugt)
 - Hello World und ein paar Wörter über Packages
 - Datentypen (casting und die meistbenutzten Typen)
+- Arrays, Slices, Maps
 - `if` und `for`, evtl. weitere einfachere Konstrukte
 - Funktionen (u. a. naked returns)
 - Pointers (evtl. im Zusammenhang mit C), pass-by-value oder -by-reference
-- Arrays, Slices, Maps
 - Interfaces
 - `go test`, `go build` und mehr zu Packages (Abhängigkeiten, `"go.mod"`)
 - `go install` vs `go get` (das zweite ist deprecated, nur als `go get -d` benutzen fürs Herunterladen)
