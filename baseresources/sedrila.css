@@ -572,9 +572,8 @@ summary {}
     color: #550000;
 }
 
-.vwr-filelink-submission {
-    font-size: 110%;
-    font-weight: bold;
+a:link.vwr-filelink-submission {
+    color: #bb0000;
 }
 
 .vwr-tasklink {
