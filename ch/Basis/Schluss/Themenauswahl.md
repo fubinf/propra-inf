@@ -22,6 +22,13 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
 
 ### Ein paar Empfehlungen
 
+- Mit der Unix-Kommandozeile wenig oder gar nicht vertraut ist, sollte als Erstes die Aufgaben von
+  [PARTREF::Unix-Basiswerkzeuge] durchsehen und ggf. absolvieren.
+  Von diesem Wissen macht das ProPra nämlich so häufig Gebrauch, dass diese Teile nicht jedes Mal
+  als `assumes`-Abhängigkeit angegeben sind.
+- Das Gleiche gilt für die Aufgaben 
+  [PARTREF::apt], [PARTREF::venv] und [PARTREF::pip] aus der Gruppe [PARTREF::Paketmanager].
+  Danach beginnt die Kür:
 - Wer seine Python-Kenntnisse ausbauen möchte,
   sollte bei [PARTREFMANUAL::Python-Standardbibliothek::Bibliotheken/Python-Standardbibliothek] starten
   und eine passende Dosis von
@@ -46,9 +53,8 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
   Sie lohnen die Lerninvestition nur, wenn man genau das Gelernte alsbald intensiv benutzen möchte.)
 - Das Kapitel [PARTREF::Werkzeuge] ist ein recht bunter und ziemlich interessanter Kramladen.
   Insbesondere kann man dort in den Aufgabengruppen
-  [PARTREF::Unix-Basiswerkzeuge], [PARTREF::Netzwerk] und [PARTREF::Benutzerverwaltung]
+  [PARTREF::Netzwerk], [PARTREF::Benutzerverwaltung] und [PARTREF::Unix-Diverses]
   so einiges über Unix lernen, was ebenfalls recht langlebiges Wissen darstellt.
-  Wer Unix fast gar nicht kennt, sollte unbedingt früh bei [PARTREF::Shell-Grundlagen] vorbeischauen.
 
 
 ### Selber Umsehen
