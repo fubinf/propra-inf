@@ -286,6 +286,10 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - **2024-11-12**: Aufgaben Sprachen/Pythonpraxis/[PARTREF::linkcheck-testbase]
   und [PARTREF::linkcheck-core] zugefügt.
 - **2024-11-22**: Aufgabe Sprachen/Pythonpraxis/[PARTREF::linkcheck-fullscreen] zugefügt.
+- **2024-12-03**: Aufgabengruppe [PARTREF::Unix-Basiswerkzeuge] und die Aufgaben 
+  [PARTREF::apt], [PARTREF::venv] und [PARTREF::pip] aus der Gruppe [PARTREF::Paketmanager]
+  werden wie die Teile des Kapitels [PARTREF::Basis] jetzt ohne Angabe von `assumes` 
+  als bekannt vorausgesetzt.
 - ...
 
 
