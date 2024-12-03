@@ -225,6 +225,7 @@ chapters:
       - name: Git
       - name: Netzwerk
       - name: Benutzerverwaltung
+      - name: Unix-Diverses
       - name: Linter
   - name: Feedback
     taskgroups:

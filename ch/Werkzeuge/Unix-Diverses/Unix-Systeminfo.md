@@ -63,7 +63,7 @@ falls diese sehr viele Dateien enthalten, damit der Prozess nicht so lange dauer
 
 [INSTRUCTOR::Kommandoprotokoll]
 
-[PROT::ALT:Informationensammlung.prot]
+[PROT::ALT:Unix-Systeminfo.prot]
 [ENDINSTRUCTOR]
 
 [INSTRUCTOR::Markdowndokument]
