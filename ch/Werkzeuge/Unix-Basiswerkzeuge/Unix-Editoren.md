@@ -1,5 +1,5 @@
 title: Editoren
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 ---
@@ -54,22 +54,23 @@ aliquam erat volutpat.
 
 ### Arbeiten mit Nano
 
-Finden Sie für die nächsten Schritte immer die schnellste Möglichkeit, die Ihnen nano bietet,
+Finden Sie für die nächsten Schritte immer die schnellste Möglichkeit, die Ihnen `nano` bietet,
 also die Bedienweise, die die wenigsten Tastendrücke erfordert (wobei bei Autorepeat jeder virtuelle
 Anschlag mitzählt).
-Das ist jetzt beim Lernen natürlich vergleichsweise umständlich, aber es simuliert, was eine Könner_in
-tun würde.
+Das ist jetzt beim Lernen natürlich sehr aufwändig, aber nur damit verstehen Sie, was eine Könner_in
+tun würde und was der Editor kann.
 
 Lesen Sie Kapitel **2** des [nano Handbuchs](https://www.nano-editor.org/dist/latest/nano.html).
 
-Machen Sie sich mit den Shorcuts von nano mit diesem 
+Machen Sie sich mit den Shorcuts von `nano` mit diesem 
 [cheatsheet](https://www.nano-editor.org/dist/latest/cheatsheet.html) vertraut.
 
-Probieren Sie außerdem `Ctrl`-Pfeiltasten aus sowie `Pos1` und `End` mit und ohne `Ctrl`.
 
-- [EC] Öffnen Sie die gerade erstellte Datei mit nano.
+- [EC] Öffnen Sie die gerade erstellte Datei mit `nano`.
 - [EC] Bewegen Sie sich mit den Pfeiltasten auf den Zeilen.
-- [EC] Kopieren Sie den Teil des Satzes aus der Datei aus der dritten Zeile: `Stet clita kasd gubergren`
+  Probieren Sie auch `Ctrl`-Pfeiltasten aus sowie `Pos1` und `End` mit und ohne `Ctrl`.
+
+- [EC] Kopieren Sie folgenden Teil aus der dritten Zeile in den Zwischenpuffer von `nano`: `Stet clita kasd gubergren`
 - [EC] Fügen Sie den kopierten Text nach dem achten Wort der ersten Zeile ein.
 
 Lesen Sie Kapitel **3.3, 3.4** des [nano Handbuchs](https://www.nano-editor.org/dist/latest/nano.html).
@@ -108,7 +109,7 @@ Es ist oft schwer zu entscheiden, ob es noch eine kürzere gibt; ziemlich kurz r
 
 Lesen Sie Kapitel **02.1, 02.3, 02.7** des [vim Handbuchs](https://vimhelp.org/usr_02.txt.html).
 
-- [EC] Öffnen Sie die gerade erstellte Datei mit vim.
+- [EC] Öffnen Sie die gerade erstellte Datei mit `vim`.
 - [EC] Bewegen Sie sich mit **h,j,k,l** auf den Zeilen.
 - [EC] Bewegen Sie sich mit den Pfeiltasten auf den Zeilen.
 - [EC] Kopieren Sie den Teil des Satzes aus der Datei aus der dritten Zeile: `Stet clita kasd gubergren`
@@ -143,7 +144,7 @@ Lesen Sie Kapitel **07.7** des [vim Handbuchs](https://vimhelp.org/usr_07.txt.ht
 
 ### Erweitertes Arbeiten mit Vim
 
-Vim kann Text in Registern speichern und auf diese mit Befehlen zugreifen.
+`vim` kann Text in Registern speichern und auf diese mit Befehlen zugreifen.
 https://www.brianstorti.com/vim-registers/ 
 
 Lesen Sie das Kapitel **Basic Usage** aus diesem 
@@ -168,11 +169,12 @@ Lesen Sie die Kapitel 1-4 von register aus der
 - [EQ] Würde das vermutlich weiterhin so sein, wenn Sie den Editor täglich benutzen würden?
 - [EQ] Da man immer mal einen Textmode-Editor braucht: Welchen werden Sie lernen?
 
-[HINT::Schwierig?]
-Falls Ihnen nicht einfallen sollte, was Sie im Reflektionsteil schreiben sollen, sind hier einige 
-Webseiten.
-[Link1](https://www.reddit.com/r/learnprogramming/comments/xhghsg/i_dont_understand_why_anyone_would_use_nanovim/)
-[Link2](https://itsfoss.com/vim-vs-nano/)
+[HINT::Reflektion fällt schwer?]
+Falls Ihnen nicht einfallen sollte, was Sie im Reflektionsteil schreiben sollen, sind hier ein paar 
+Anregungen:
+
+- [i dont understand why anyone would use nano/vim](https://www.reddit.com/r/learnprogramming/comments/xhghsg/i_dont_understand_why_anyone_would_use_nanovim/)
+- [Vim vs Nano: What Should You Choose?](https://itsfoss.com/vim-vs-nano/)
 [ENDHINT]
 
 [ENDSECTION]

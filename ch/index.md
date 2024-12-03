@@ -290,6 +290,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   [PARTREF::apt], [PARTREF::venv] und [PARTREF::pip] aus der Gruppe [PARTREF::Paketmanager]
   werden wie die Teile des Kapitels [PARTREF::Basis] jetzt ohne Angabe von `assumes` 
   als bekannt vorausgesetzt.
+- **2024-12-03**: Aufgabe Werkzeuge/Unix-Basiswerkzeuge/[PARTREF::Unix-Editoren] zugefügt.
 - ...
 
 

@@ -52,9 +52,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Web
 
 ### Werkzeuge
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Editoren.md (Condric->LP->IC->LP->IC-LP)
-  Ich bin mir hier unsicher, was in den Instructor-Teil soll. Es gibt ja keine falschen 
-  Antworten für die Reflektion. 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC->LP)
 - ch/Werkzeuge/Netzwerk/dnstools.md (...->LP)
 - ch/Werkzeuge/Netzwerk/dig.md
