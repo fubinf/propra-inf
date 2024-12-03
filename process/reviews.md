@@ -37,10 +37,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Basis/IDE/IDEFirstSteps.md (SW)
 
 ### Sprachen
-- ch/Sprachen/Python2/Python-OOP-Intro.md (HA->LP)
-- ch/Sprachen/Python2/Python-OOP-Methods.md (HA->LP)
-- ch/Sprachen/Python2/Python-OOP-Inheritance.md (HA-LP)
-- ch/Sprachen/Python2/Python-OOP-Praxis.md: (HA-LP)
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
@@ -70,6 +66,10 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 - Python1/ Inhalt wird am Ende ausgearbeitet.
 
+- ch/Sprachen/Python2/Python-OOP-Intro.md (HA->LP->HA)
+- ch/Sprachen/Python2/Python-OOP-Methods.md (HA->LP->HA)
+- ch/Sprachen/Python2/Python-OOP-Inheritance.md (HA-LP->HA)
+- ch/Sprachen/Python2/Python-OOP-Praxis.md: (HA-LP->HA)
 - ch/Sprachen/Python2/Python-Context-Managers.md (HA->LP->HA)
 - ch/Sprachen/Python2/Python-Function-Arguments-Advanced.md (HA->LP->HA)
 - ch/Sprachen/Python2/Python-import.md (HA->LP->HA->LP->HA)
