@@ -49,7 +49,7 @@ empfiehlt es sich, sich darin vor dieser Aufgabe ein Rüstzeug zuzulegen.
   berechnet den Median von `numlines` Zeilen, die von `sorted_lines_iterator` bereits in
   sortierter Reihenfolge bereitgestellt werden.
   Bei einer ungeraden Zahl von Zeilen ist das die mittlere Zeile,
-  bei einer geraden Zahl ist es die Zeile nach der Mittellücke. 
+  bei einer geraden Zahl ist es die Zeile nach der Mittellücke.  
 
 
 ### Tests zu Teil 1
@@ -116,9 +116,9 @@ wenn man mit Unterprozessen arbeitet.
 Folgende Testausgaben sind vermutlich hilfreich, jedenfalls wenn Sie sie nach `sys.stderr` schreiben:
 
 - in `random_lines_generator` summieren Sie die Länge der erzeugten Zeilen auf und
-  machen jeweils nach 200000 Ergebnissen eine Testausgabe der Form  
+  machen jeweils nach 200.000 Ergebnissen eine Testausgabe der Form  
   `line 200000: 24.6 MB total output`
-- in `median` machen Sie jeweils nach 200000 Ergebnissen eine Testausgabe der Form  
+- in `median` machen Sie jeweils nach 200.000 Ergebnissen eine Testausgabe der Form  
   `have read 200k lines`
 [ENDHINT]
 
@@ -136,6 +136,9 @@ def test_median(generator):
   `pytest -v m_subprocess2.py`.
 - [ER] Lesen Sie den obigen Hinweis und ergänzen Sie die Debuggingausgaben genau
   wie dort beschrieben, um die Kontrolle Ihres Ergebnisses zu erleichtern.
+  Ob Ihr Kommandoprotokoll diese Ausgaben nur für den Schlusszustand enthält oder
+  auch für die früheren Aufrufe, spielt keine Rolle.
+
 
 ### Voilá!
 
@@ -170,5 +173,12 @@ def test_median(generator):
 - Kontrollieren, dass im Quellcode alles mit rechten Dingen zugeht.
 - Loben, falls das Hauptprogramm einen Benutzungshinweis ausgibt, wenn die
   Argumente falsch verwendet werden.
+  
+Wenn man obige Punkte kontrolliert, sollte alles in Ordnung sein.
+Wer partout doch noch mal genauer hinschauen möchte, hier ist ein mögliches Kommandoprotokoll:
+
+[PROT::ALT:m_subprocess2.prot]
+
+Ein möglicher Quellcode findet sich in [TREEREF::m_subprocess2.py].
 
 [ENDINSTRUCTOR]
