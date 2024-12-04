@@ -2,7 +2,7 @@ title: Netzwerkgrundlagen mit DNS Werkzeugen
 stage: alpha
 timevalue: 0.5
 difficulty: 2
-assumes: apt, SSH
+assumes: SSH
 
 ---
 

@@ -3,7 +3,7 @@ stage: beta
 timevalue: 1.0
 difficulty: 2
 explains: HTTP-Statuscode
-assumes: apt, redirect
+assumes: redirect
 ---
 
 [SECTION::goal::idea,trial]

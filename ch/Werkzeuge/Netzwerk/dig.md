@@ -2,7 +2,7 @@ title: Arbeiten mit dig
 stage: alpha
 timevalue: 0.5
 difficulty: 3
-assumes: apt, dnstools
+assumes: dnstools
 ---
 
 [SECTION::goal::idea]

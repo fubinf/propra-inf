@@ -2,7 +2,6 @@ title: Eigenes System kennenlernen
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: apt
 ---
 
 [SECTION::goal::idea]

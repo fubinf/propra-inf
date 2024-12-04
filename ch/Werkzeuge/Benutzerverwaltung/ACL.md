@@ -2,7 +2,7 @@ title: Access Control Lists für Dateien
 stage: beta
 timevalue: 1.5
 difficulty: 2
-assumes: apt, Gruppen, sudo, Shell-Grundlagen2, Umgang-mit-Verzeichnissen
+assumes: Gruppen, sudo, Shell-Grundlagen2, Umgang-mit-Verzeichnissen
 ---
 
 [SECTION::goal::idea]
