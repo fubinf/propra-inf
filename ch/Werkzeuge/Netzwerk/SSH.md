@@ -81,6 +81,14 @@ Lesen Sie den Abschnitt **Asymmetric Encryption** von
 Lesen Sie die Optionen **-t**, **-b** und die **Description** der ssh-keygen(1) 
 [manpage](https://man.openbsd.org/ssh-keygen.1).
 
+Wir verwenden in diesem Beispiel den Verschlüsselungstyp ed25519, welcher hochsichere und relativ 
+kleine Schlüssel erstellt. ed25519 basiert auf elliptischen Kurven und bietet im Vergleich zu 
+klassischen Verfahren wie RSA eine kompaktere und effizientere Lösung bei ähnlichem 
+Sicherheitsniveau. Ein weiterer wichtiger Verschlüsselungstyp ist RSA mit einer Schlüssellänge von 
+4096 Bit (RSA4096). Dieser erstellt deutlich längere Schlüssel und ist aufgrund 
+seiner breiten Unterstützung und langjährigen Verwendung in vielen Systemen und Protokollen weit 
+verbreitet.
+
 - [EC] Erstellen Sie ein Schlüsselpaar mit dem Verschlüsselungstyp `ed25519`, auf Ihrem lokalen Rechner. 
   Setzen Sie ein Passwort für das Schlüsselpaar, das Sie sonst nirgends benutzen, denn Sie werden
   mit diesem Schlüsselpaar nach einiger Zeit enorm vieles abgesichert haben.
