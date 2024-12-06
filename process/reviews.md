@@ -73,6 +73,9 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ## Reviews to do for Ivan Condric
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC)
+- ch/Werkzeuge/Unix-Basiswerkzeuge/redirect.md
+- ch/Werkzeuge/Netzwerk/*
+- ch/Werkzeuge/Unix-Diverses/0x_cron.md
 
 ## Reviews to do for Christian Hofmann
 
