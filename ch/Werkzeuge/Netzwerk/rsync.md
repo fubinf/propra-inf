@@ -19,8 +19,8 @@ assumes: Umgang-mit-Verzeichnissen
 - [EC] Aktualisieren Sie Ihr System.
 - [EC] Installieren Sie das Paket `rsync`
 
-Lesen Sie die ersten vier Abschnitte bis einschließlich **Usage** und die Option **-a** der 
-[rsync(1) manpage](https://manpages.debian.org/bookworm/rsync/rsync.1.en.html)
+Lesen Sie bis einschließlich **Null Output or DryRun, and Verbose** des Beitrages
+[Rsync Cross Platform Tutorial](https://www.linode.com/docs/guides/rsync-cross-platform-tutorial/)
 
 <replacement id='rsync-targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
@@ -29,7 +29,22 @@ Zielserver = `andorra.imp.fu-berlin.de`
 ### Testdateien erstellen
 
 ```bash
-[INCLUDE::rsync_copy_data.sh]
+#!/bin/bash
+
+# Verzeichnis festlegen
+unterordner="$HOME/rsync_copy_data/"
+
+# Sicherstellen, dass der Unterordner existiert
+if [ ! -d "$unterordner" ]; then
+    mkdir -p "$unterordner"
+fi
+
+# 20 Dateien erstellen
+for i in {1..5}; do
+    echo "Inhalt der Datei $i" > "$unterordner/datei_$i"
+done
+
+echo "$i Dateien wurden im Unterordner erstellt: $unterordner"
 ```
 
 - [EC] Erstellen Sie eine Datei `rsync_copy_data.sh` auf Ihrem System mit obigem Inhalt.
@@ -75,10 +90,20 @@ wurden. Deswegen wird rsync gerne als Backup-Lösung genutzt, da es nur die ver�
 Zur Veranschaulichung ändern wir eine Datei aus den vorhin erstellten Dateien und kopieren Sie in 
 einen Ordner.
 
-- [EC] Kopieren Sie die Dateien aus dem Ordner `/home/username/rsync_copy_data` per rsync in den `/tmp/rsync_destination3` Ordner. 
-- [EC] Fügen Sie der Datei `/home/username/rsync_copy_data/datei_1` den Text `Ich wurde veraendert` hinzu.  
-- [EC] Kopieren Sie die Dateien aus dem Ordner `/home/username/rsync_copy_data` per rsync in den `/tmp/rsync_destination3` Ordner. 
-- [EC] Vergewissern Sie sich, dass die Datei `datei1` in den `/tmp/propra_sync` Ordner geändert wurde.
+- [EC] Kopieren Sie die Dateien aus dem Ordner `/home/username/rsync_copy_data` per rsync in den 
+       `/tmp/rsync_destination3` Ordner. 
+- [EC] Fügen Sie der Datei `/home/username/rsync_copy_data/datei_1` den Text `Ich wurde veraendert` 
+       hinzu.  
+- [EC] Kopieren Sie die Dateien aus dem Ordner `/home/username/rsync_copy_data` per rsync in den 
+       `/tmp/rsync_destination3` Ordner. 
+- [EC] Vergewissern Sie sich, dass die Datei `datei1` in den `/tmp/rsync_destination3` Ordner geändert wurde.
+
+### Reflektion
+
+- [EQ] Wie stellt rsync sicher, dass nur geänderte Dateien erneut kopiert werden?
+- [EQ] Welche Unterschiede gibt es zwischen der Verwendung von rsync und anderen Kopierbefehlen wie `cp`?
+- [EQ] Wie könnten Sie überprüfen, ob die Synchronisation tatsächlich alle Änderungen übernommen hat?
+
 
 [ENDSECTION]
 
