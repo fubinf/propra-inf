@@ -1,7 +1,8 @@
-title: Python IDE in Windows installieren
+title: C IDE in Windows installieren
 stage: draft
 timevalue: 0.5
 difficulty: 2
+requires: C_ToolchainWindowsWSL
 ---
 [SECTION::goal::idea]
 Ich habe eine funktionierende IDE auf Windows und kann diese in Zusammenarbeit
@@ -9,12 +10,14 @@ mit WSL verwenden.
 [ENDSECTION]
 
 [SECTION::background::default]
-Für C/C++ gibt es unzählige IDEs. Aus Einfachheit nutzen wir hier VSCode.
+Für C gibt es unzählige IDEs. Aus Einfachheit nutzen wir hier VSCode.
 Wenn sie diese schon nutzen, können Sie direkt mit der Installation der
 benötigten Extension fortfahren.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
+
+### Installieren von VSCode
 
 [INCLUDE::C_VSNoticeCodium.inc]
 
@@ -45,6 +48,11 @@ Microsoft bereitgestellt.
   navigieren Sie zu dem Verzeichnis ihres Repos. Dieses sollte unter
   `\home\<WSL-Benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
 - Wählen Sie "Yes, I trust the authors".
+
+### Einrichten des Build Skripts
+
+[INCLUDE::C_VSBuildScript.inc]
+
 [ENDSECTION]
 
 [SECTION::submission::information]

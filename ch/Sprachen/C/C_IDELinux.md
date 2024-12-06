@@ -2,6 +2,7 @@ title: C IDE in Linux installieren
 stage: draft
 timevalue: 0.5
 difficulty: 2
+requires: C_ToolchainLinuxApt
 ---
 [SECTION::goal::idea]
 Ich habe eine funktionierende IDE auf Linux.
@@ -14,6 +15,8 @@ benötigten Extension fortfahren.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
+
+### Installieren von VSCode
 
 [INCLUDE::C_VSNoticeCodium.inc]
 
@@ -29,6 +32,11 @@ Microsoft bereitgestellt.
 [ENDWARNING]
 
 [INCLUDE::C_VSSetup.inc]
+
+### Einrichten des Build Skripts
+
+[INCLUDE::C_VSBuildScript.inc]
+
 [ENDSECTION]
 
 [SECTION::submission::information]

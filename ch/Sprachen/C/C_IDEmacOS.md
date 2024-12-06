@@ -1,19 +1,22 @@
-title: Python IDE in macOS installieren
+title: C IDE in macOS installieren
 stage: draft
 timevalue: 0.5
 difficulty: 2
+requires: C_ToolchainMacOSBrew
 ---
 [SECTION::goal::idea]
 Ich habe eine funktionierende IDE auf macOS
 [ENDSECTION]
 
 [SECTION::background::default]
-Für C/ gibt es unzählige IDEs. Aus Einfachheit nutzen wir hier VSCode.
+Für C gibt es unzählige IDEs. Aus Einfachheit nutzen wir hier VSCode.
 Wenn sie diese schon nutzen, können Sie direkt mit der Installation der 
 benötigten Extension fortfahren.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
+
+### Installieren von VSCode
 
 [INCLUDE::C_VSNoticeCodium.inc]
 
@@ -29,6 +32,11 @@ Microsoft bereitgestellt.
 [ENDWARNING]
 
 [INCLUDE::C_VSSetup.inc]
+
+### Einrichten des Build Skripts
+
+[INCLUDE::C_VSBuildScript.inc]
+
 [ENDSECTION]
 
 [SECTION::submission::information]
