@@ -51,7 +51,7 @@ Nutzername bei der sudo-Gruppe in der Datei /etc/group aufgeführt sein.
     Wir werden in [PARTREF::Benutzerkonten] genauer auf die Benutzererstellung eingehen.)
 
 Lesen Sie den Glossareintrag [TERMREF::su] und lesen Sie die **Synopsis** und die **Description** der 
-su(1) [manpage](https://manpages.debian.org/bookworm/util-linux/su.1.en.html).
+su(1) [manpage](https://manpages.debian.org/stable/util-linux/su.1.en.html).
 
 - [EC] Melden Sie sich als `sudotest` an.
 - [EC] Versuchen Sie mit dem Nutzer sudotest die Datei `/etc/shadow` zu lesen.  

@@ -51,7 +51,7 @@ Lesen Sie die **Description** der passwd(5) [manpage](https://linux.die.net/man/
 - [EQ] Erklären Sie die einzelnen Spalten dieses Eintrags.
 - [EC] Überprüfen Sie ob der home-Ordner von `user1` vorhanden ist.
 
-Betrachten Sie die adduser(8) [manpage](https://manpages.debian.org/bookworm/adduser/adduser.8.en.html).
+Betrachten Sie die adduser(8) [manpage](https://manpages.debian.org/stable/adduser/adduser.8.en.html).
 Verstehen Sie die **Synopsis**, lesen Sie die **Description** und lesen Sie die Abschnitte 
 **Add a normal user** und die Option **--disabled-password**. 
 
@@ -72,7 +72,7 @@ Einen Account "so wie üblich" anlegen.
 ### Passwörter für Nutzer setzen
 
 Lesen Sie in den manpages von [useradd](https://linux.die.net/man/8/useradd) und 
-[adduser](https://manpages.debian.org/bookworm/adduser/adduser.8.en.html) nach, wie man ein 
+[adduser](https://manpages.debian.org/stable/adduser/adduser.8.en.html) nach, wie man ein 
 Passwort setzt.
 
 - [EC] Setzen Sie ein Passwort für beide oben erstellte Nutzer.
@@ -92,7 +92,7 @@ denn man könnte sich dann immer noch mit [PARTREF::SSH]-Keys anmelden.
 Nachdem die Nutzer gesperrt wurden und eine rechtlich konforme Zeitspanne vorbei ist, 
 müsssen Nutzer und Dateien des Nutzers auf dem System gelöscht werden.
 
-Betrachten Sie die [deluser(8)](https://manpages.debian.org/bookworm/adduser/deluser.8.en.html) manpage.
+Betrachten Sie die [deluser(8)](https://manpages.debian.org/stable/adduser/deluser.8.en.html) manpage.
 Verstehen Sie die **Synopsis**, lesen Sie die **Description** und den Abschnitt **Remove a user**.
 
 - [EC] Löschen Sie beide Nutzer und deren Homeverzeichnis von Ihrem System.

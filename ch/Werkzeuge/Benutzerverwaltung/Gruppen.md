@@ -25,7 +25,7 @@ Man braucht sie, wenn Dateien von mehreren aber nicht allen Benutzern zugreifbar
 Verstehen Sie die **Synopsis** (insbesondere die Punkte des Befehls `addgroup`) und lesen Sie die 
 **Description**, insbesondere die Abschnitte **Add a group** und 
 **Add an existing user to an existing group** der 
-[adduser(8) manpage](https://manpages.debian.org/bookworm/adduser/adduser.8.en.html) 
+[adduser(8) manpage](https://manpages.debian.org/stable/adduser/adduser.8.en.html) 
 (ja, das ist kein Irrtum).
 
 - [EC] Erstellen Sie eine neue Gruppe namens `propra`.
@@ -73,7 +73,7 @@ Lesen Sie die Abschnitte **Synopsis**, **Description** und die **Optionen** **-a
 Damit Ihr System nicht vollgemüllt wird, löschen wir noch die gerade erstellten Nutzer, Gruppen und Dateien.
 
 Lesen Sie die Abschnitte **Synopsis**, **Description** und **Remove a group** der 
-[deluser(8) manpage](https://manpages.debian.org/bookworm/adduser/deluser.8.en.html).
+[deluser(8) manpage](https://manpages.debian.org/stable/adduser/deluser.8.en.html).
 
 - [EC] Löschen Sie die erstellten Nutzer `nutzer1`, `nutzer2` und deren home-Verzeichnis.
 - [EC] Löschen Sie die erstellten Gruppen `propra` und `standard`.
