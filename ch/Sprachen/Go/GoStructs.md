@@ -2,7 +2,7 @@ title: Erweiterte Datentypen
 stage: draft
 timevalue: 1
 difficulty: 2
-requires: GoIDE, GoVariablesAndPrimitives, GoFunctions
+assumes: GoIDE, GoVariablesAndPrimitives, GoFunctions, GoCollections
 ---
 
 [SECTION::goal::idea]
@@ -172,10 +172,33 @@ fmt.Println(manager.Person.name)    // gibt der Name des Managers über "Person"
 
 Aus diesem Beispiel könnte man die Schlüssfolgerung ziehen, dass `Employee` und `Person` als Felder von `Manager` gespeichert werden. Das ist falsch.
 
-`Employee` und `Person` erlauben uns die Felder, die aus der entsprechenden Struktur eingebettet wurden, als eine Instanz dieser Struktur zu interpretieren. Dies trägt ebenfalls der Wiederverwendbarkeit bei.  
-### Methoden TODO_brandes: structs mit Methoden erklären
+`Employee` und `Person` erlauben uns die Felder, die aus der entsprechenden Struktur eingebettet wurden, als eine Instanz dieser Struktur zu interpretieren. Dies trägt ebenfalls der Wiederverwendbarkeit bei.
+
+### Methoden
+
+Go unterstützt keine Klassen und Vererbung und ist in dem Sinne keine objektorientierte Sprache. Was man stattdessen nutzen kann, sind __Methoden__ -
+Funktionen mit einem Empfänger-Argument (receiver argument). Dieser kann zwischen dem `func` Schlüsselwort und dem Funktionsnamen stehen:
+
+```go
+type Vector struct {
+    x, y float64
+}
+
+func (v Vector) abs() float64 {
+    return math.Sqrt(v.x*v.x + v.y*v.y)
+}
+
+...
+
+v := Vector{x: 3, y: 4}
+fmt.Println(v.abs())        // 5
+```
+
+`v` in der Funktionssignatur ist ähnlich wie `self` Schlüsselwort in Python.
 
 [SECTION::submission::snippet]
+### Aufgabe 1. Refactoring
+
 Go ist eine geeignete Sprache, um verschiedene Services zu implementieren (später werden wir von Microservices reden). Das sind kleine Akteure, die jeweils für eine Aufgabe zuständig sind. Wir (als Entwickler) wollen jederzeit sicher sein, dass unser Service nach wie vor funktioniert und seine Aufgaben erledigt. So sehen unsere Strukturen aus:
 ```go
 import "time"
@@ -211,6 +234,14 @@ type MonitoredService struct {
 [NOTICE]
 Es kann am Ende mehr Strukturen geben als am Anfang.
 [ENDNOTICE]
+
+### Aufgabe 2. Geometrie
+Stellen Sie folgende Figuren als Strukturen (structs) dar und implementieren Sie jeweils Methoden, die die Fläche und das Perimeter der Figur berechnen:
+
+* Kreis
+* Dreieck
+* Rechteck
+
 [ENDSECTION]
 
 - [EQ] In welchen Situationen kann die Struktureinbettung nützlich sein?
