@@ -307,16 +307,22 @@ Ferner evtl:
 ### Sprachen/Go (brandes)
 - Compiler installieren, IDE einrichten (GoLand bevorzugt)
 - Hello World und ein paar Wörter über Packages
-- Datentypen (casting und die meistbenutzten Typen)
-- Arrays, Slices, Maps
-- `if` und `for`, evtl. weitere einfachere Konstrukte
-- Funktionen (u. a. naked returns)
-- Pointers (evtl. im Zusammenhang mit C), pass-by-value oder -by-reference
-- Interfaces
+- Go für Python-Programmierer
+  * Datentypen (casting und die meistbenutzten Typen)
+  * Arrays, Slices, Maps
+  * `if` und `for`, evtl. weitere einfachere Konstrukte
+  * Funktionen (u. a. naked returns)
+  * Pointers (evtl. im Zusammenhang mit C), pass-by-value oder -by-reference
+  * Interfaces
 - `go test`, `go build` und mehr zu Packages (Abhängigkeiten, `"go.mod"`)
 - `go install` vs `go get` (das zweite ist deprecated, nur als `go get -d` benutzen fürs Herunterladen)
-- Networking mit `"net/http"` (Begriffe "API", "HTTP" müssen vorausgesetzt werden)
 - Multiprocessing (goroutines, channels, `select`, Mutex)
+  * n-body Simulation?
+  * Primzahlen bis n? (single- vs multithreaded, cpu/speicher trade-off)
+- sqlite Integration
+- Networking
+  * (CRUD API?/ http messenger?)
+  * file streaming über TCP
 - Effective Go, 100 Go Mistakes usw (https://github.com/dariubs/GoBooks)
 
 ### Sprachen/C (N.N.)
