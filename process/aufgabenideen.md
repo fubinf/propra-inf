@@ -316,13 +316,20 @@ Ferner evtl:
   * Interfaces
 - `go test`, `go build` und mehr zu Packages (Abhängigkeiten, `"go.mod"`)
 - `go install` vs `go get` (das zweite ist deprecated, nur als `go get -d` benutzen fürs Herunterladen)
+- File Management
+  * file organizer - Dateien nach Typen sortieren
+  * File system watcher? 
 - Multiprocessing (goroutines, channels, `select`, Mutex)
+  * publisher/subscriber System
   * n-body Simulation?
   * Primzahlen bis n? (single- vs multithreaded, cpu/speicher trade-off)
+  * job queue bzw. Task Scheduler?
 - sqlite Integration
 - Networking
   * (CRUD API?/ http messenger?)
   * file streaming über TCP
+  * Paket-Inspector (TCP/UDP Paket Monitoring)
+- generell - Go Standardbibliothek?
 - Effective Go, 100 Go Mistakes usw (https://github.com/dariubs/GoBooks)
 
 ### Sprachen/C (N.N.)
