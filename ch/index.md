@@ -291,6 +291,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   werden wie die Teile des Kapitels [PARTREF::Basis] jetzt ohne Angabe von `assumes` 
   als bekannt vorausgesetzt.
 - **2024-12-03**: Aufgabe Werkzeuge/Unix-Basiswerkzeuge/[PARTREF::Unix-Editoren] zugefügt.
+- **2024-12-10**: Aufgabe Basis/IDE/[PARTREF::IDEFirstSteps] zugefügt.
 - ...
 
 

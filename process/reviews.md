@@ -55,7 +55,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC->LP)
 - ch/Werkzeuge/Netzwerk/dnstools.md (...->LP)
 - ch/Werkzeuge/Netzwerk/dig.md
-- ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC)
+
 
 -------------------------------------------------------------------------------------------
 
@@ -71,11 +71,14 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/Python2/Python-Function-Arguments-Advanced.md (HA->LP->HA)
 - ch/Sprachen/Python2/Python-import.md (HA->LP->HA->LP->HA)
 
+
 ## Reviews to do for Ivan Condric
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/redirect.md
 - ch/Werkzeuge/Netzwerk/*
 - ch/Werkzeuge/Unix-Diverses/0x_cron.md
+- ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC)
+
 
 ## Reviews to do for Christian Hofmann
 
