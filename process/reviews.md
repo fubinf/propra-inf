@@ -33,9 +33,6 @@ We will modify these rules over time when others appear more useful.
 **Ich reviewe pro Kapitel die Einträge von oben nach unten. 
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
-### Basis
-- ch/Basis/IDE/IDEFirstSteps.md (SW)
-
 ### Sprachen
 
 ### Bibliotheken
@@ -52,7 +49,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Web
 
 ### Werkzeuge
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC->LP)
 - ch/Werkzeuge/Netzwerk/dnstools.md (...->LP)
 - ch/Werkzeuge/Netzwerk/dig.md
 
@@ -75,6 +71,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ## Reviews to do for Ivan Condric
 
 - ch/Werkzeuge/Unix-Basiswerkzeuge/redirect.md
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC->LP->IC)
 - ch/Werkzeuge/Netzwerk/*
 - ch/Werkzeuge/Unix-Diverses/0x_cron.md
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC)
