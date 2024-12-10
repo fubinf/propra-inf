@@ -9,28 +9,30 @@ Ich verstehe, wie der redirect-Operator (>) funktioniert und wie ich diesen anwe
 [ENDSECTION]
 
 [SECTION::background::default]
-Mit dem [TERMREF::redirect-Operator] werden die Ausgaben, die Sie von Ihren Befehlen bekommen in einen 
-anderen Befehl oder Datei umgeleitet.
+Mit dem [TERMREF::redirect-Operator] werden die Ausgaben, die Sie von Ihren Befehlen bekommen in 
+eine Datei umgeleitet.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-Der [TERMREF::redirect-Operator] (>) liest den Standardoutput und schreibt es in den darauffolgenden Befehl 
-oder Datei.  
+Der [TERMREF::redirect-Operator] (>) in der Shell sorgt dafür, dass die Standardausgaben
+des davorstehenden Kommandos in die dahinter angegebene Datei umgeleitet werden.  
 
-Lesen Sie den Abschnitt **"Umleiten der Ausgabe mit >"** des 
-[Beitrags](https://wiki.ubuntuusers.de/Shell/Umleitungen/) von ubuntuusers über Umleitungen.
+Lesen Sie den Abschnitt **"Umleiten der Ausgabe mit >"** von 
+[HREF::https://wiki.ubuntuusers.de/Shell/Umleitungen/].
+
 
 ### Funktionsweise des Operators
 
-Führen Sie die nächsten genannten Befehle aus und beschreiben Sie was jeweils passiert ist.
+Führen Sie die nächsten genannten Befehle aus und beschreiben Sie mithilfe der Dokumentation,
+was jeweils passiert ist.
 
-- [EQ] `ls -l /usr/bin > ls-output.txt`
-- [EQ] `> ls-output.txt`
-- [EQ] `ls -l /bin/usr > ls-output.txt`
-- [EQ] `ls -l /bin/usr &> ls-output.txt`
-- [EQ] `ls -l /usr/bin &> ls-output.txt`
-- [EQ] `ls -l /usr/bin >> ls-output.txt && ls -l /usr/sbin >> ls-output.txt`
+- [EQ] `ls -l /usr/bin > redirect.out`
+- [EQ] `> redirect.out`
+- [EQ] `ls -l /bin/usr > redirect.out`
+- [EQ] `ls -l /bin/usr &> redirect.out`
+- [EQ] `ls -l /usr/bin &> redirect.out`
+- [EQ] `ls -l /usr/bin >> redirect.out && ls -l /usr/sbin >> redirect.out`
 
 Neuere Distributionen von Linux würden den unteren Befehl verwerfen. Führen Sie den Befehl 
 sicherheitshalber nicht auf Ihrem System aus.  
