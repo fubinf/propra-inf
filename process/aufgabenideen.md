@@ -329,6 +329,7 @@ Ferner evtl:
   * (CRUD API?/ http messenger?)
   * file streaming über TCP
   * Paket-Inspector (TCP/UDP Paket Monitoring)
+- Dependency Injection und Decorator Patterns (wichtig im Kontext von Go)
 - generell - Go Standardbibliothek?
 - Effective Go, 100 Go Mistakes usw (https://github.com/dariubs/GoBooks)
 
