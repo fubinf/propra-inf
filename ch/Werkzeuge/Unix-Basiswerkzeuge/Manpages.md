@@ -6,11 +6,11 @@ explains: manpage
 ---
 
 [SECTION::goal::idea]
-Ich verstehe wie ich mir Infos aus Manpages holen kann, wenn ich nicht mehr weiter komme.
+Ich verstehe wie ich mir Infos aus Manpages holen kann und wann ich das vermutlich machen will.
 [ENDSECTION]
 
 [SECTION::background::default]
-Die Unix Manual Pages (meist abgekürzt Man Pages und oft geschrieben als Manpages) 
+Die Unix Manual Pages (also Handbuchseiten, meist abgekürzt Man Pages und oft geschrieben als Manpages) 
 sind ein mächtiges Hilfsmittel, um schnell _korrekte_ Informationen über Unix-Werkzeuge zu finden, 
 wenn man weiß, wo man suchen muss.
 [ENDSECTION]
@@ -58,7 +58,7 @@ den `PAGER` auf (siehe `man man`), meistens das Programm `less` (siehe `man less
 das Blättern und Stringsuche unterstützt.
 
 Für eine Stringsuche nutzt man das Zeichen `/` gefolgt von 
-dem Wort welches man sucht. Man muss auf die Groß- und Kleinschreibung achten, 
+dem Wort, welches man sucht. Man muss auf die Groß- und Kleinschreibung achten, 
 sonst findet man es unter Umständen nicht.
 
 
@@ -75,7 +75,7 @@ sonst findet man es unter Umständen nicht.
   sonst kann man unschöne Überraschungen erleben. 
 - Falls einem die Manpage-Anzeige im Terminal nicht zusagt, kann man Manpages auch online finden, 
   indem man `man <Kommando>` sucht.
-  Aber Vorsicht: Von einer Unix-Variante zur andern gibt es oft kleine Unterschiede bei 
+  Aber Vorsicht: Von einer Unix-Variante zur anderen gibt es oft kleine Unterschiede bei 
   vielen Kommandos.
 
 
