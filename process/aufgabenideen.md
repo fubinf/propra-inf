@@ -331,6 +331,11 @@ Ferner evtl:
   * Paket-Inspector (TCP/UDP Paket Monitoring)
 - Dependency Injection und Decorator Patterns (wichtig im Kontext von Go)
 - generell - Go Standardbibliothek?
+- COG: Cogs of Go (cli Anwendung ähnlich wie mlh)
+  * `pin` - Alias zu dem Verzeichnis erstellen, wo das Kommando aufgerufen wurde;
+  * `size` - Große von einer Datei bzw. einem Verzeichnis (Kombination von `du -sh` und `ls -l`);
+  * `color` - Nimmt einen Hex-Farbcode (z. B. #123456) an und zeigt diese Farbe im Terminal;
+  * `weather` - (vielleicht zu fortgeschritten) ip-address-geolocation-lookup + Wetterbericht für diesen Ort
 - Effective Go, 100 Go Mistakes usw (https://github.com/dariubs/GoBooks)
 
 ### Sprachen/C (N.N.)
