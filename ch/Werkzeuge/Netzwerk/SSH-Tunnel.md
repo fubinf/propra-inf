@@ -112,10 +112,14 @@ Verbinden Sie sich wenn möglich mit der sichereren Variante der beiden oben gen
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll]
+
 [PROT::ALT:SSH-Tunnel.prot] 
+
 [ENDINSTRUCTOR]
 
 
 [INSTRUCTOR::Markdowndokument]
+
 [INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
