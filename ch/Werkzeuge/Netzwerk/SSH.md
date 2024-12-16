@@ -2,7 +2,6 @@ title: SSH
 stage: beta
 timevalue: 1.5
 difficulty: 2
-assumes: Shell-Grundlagen, apt, Manpages
 ---
 
 [SECTION::goal::trial]
@@ -151,10 +150,13 @@ Jetzt haben Sie eine schnelle Möglichkeit den SSH-Agenten zu starten.
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll]
+
 [PROT::ALT:SSH.prot] 
+
 [ENDINSTRUCTOR]
 
 [INSTRUCTOR::Markdowndokument]
 
 [INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
