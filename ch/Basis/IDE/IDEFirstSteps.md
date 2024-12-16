@@ -141,7 +141,7 @@ Für größere Softwareprojekte lassen sich hier auch spezielle Startkonfigurati
 einrichten, wie [TERMREF::Umgebungsvariablen] oder [TERMREF::Kommandozeilenparameter]. 
 Für unser kleines Testprogramm reicht aber die Standardkonfiguration.
 
-- Führen Sie Ihren Code über die IDE aus, indem Sie den Start-Button in der Symbolleiste klicken oder
+- [EC] Führen Sie Ihren Code über die IDE aus, indem Sie den Start-Button in der Symbolleiste klicken oder
   `Shift+F10` drücken.
   Schauen Sie, ob das Ergebnis, das im integrierten Terminal angezeigt wird, korrekt aussieht.
 
