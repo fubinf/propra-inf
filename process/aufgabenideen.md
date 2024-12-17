@@ -105,8 +105,6 @@ Python-Standardbibliothek ausprobiert.
   Idiome recherchieren, Vergleich zwischen Schleifen und Itertools, Betrachtung bzgl. 
   Effizienz, Lesbarkeit und Python Idiomen (was ist eher Python-artig?)
 - functools: ähnlich wie oder in Verbindung mit itertools
-- glob
-- shutil
 - abc
 - markup [DIFF::3]: Wahlaufgabe zum Bereich X="Structured Markup Processing Tools":
   Wählen Sie ein Modul aus dem Bereich X der Python-Standardbibliothek aus,
