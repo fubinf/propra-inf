@@ -49,9 +49,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Web
 
 ### Werkzeuge
-- ch/Werkzeuge/Netzwerk/dnstools.md (...->LP)
-- ch/Werkzeuge/Netzwerk/dig.md
-- ch/Werkzeuge/Netzwerk/SSH-Tunnel.md (IC->LP)
 
 -------------------------------------------------------------------------------------------
 
@@ -75,6 +72,9 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Werkzeuge/Netzwerk/*
 - ch/Werkzeuge/Unix-Diverses/0x_cron.md
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC)
+- ch/Werkzeuge/Netzwerk/SSH-Tunnel.md (IC->LP->IC)
+- ch/Werkzeuge/Netzwerk/dnstools.md (...->LP)
+- ch/Werkzeuge/Netzwerk/dig.md (IC->LP->IC)
 
 
 ## Reviews to do for Christian Hofmann
