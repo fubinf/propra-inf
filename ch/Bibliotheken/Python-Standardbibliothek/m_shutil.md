@@ -7,8 +7,8 @@ assumes: m_os.path, m_subprocess, Dateiberechtigungen
 
 [SECTION::goal::idea]
 
-Ich kann Dateien und Verzeichnisse verschieben, kopieren und löschen und kenne die Unterschiede von 
-verschiedenen Kopiermethoden.
+Ich kann verschiedene Operationen für Dateien und Verzeichnisse verwenden und kenne deren 
+Unterschiede. Zusätzlich kann ich auch Archive erstellen und entpacken.
 
 [ENDSECTION]
 
@@ -37,11 +37,8 @@ Operationen an, die viele dieser Anforderungen erfüllt.
   Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile 
   getrennt.
 - Laden Sie [PARTREF::m_shutil.zip] herunter und entpacken Sie die Ordnerstruktur im selben 
-  Verzeichnis wie ihr Python Skript.
-
-Im entpackten ZIP Archiv befindet sich der Ordner `source`. In den folgenden 
-Aufgaben geht es größtenteils darum, die Elemente hieraus in einen neuen Ordner `destination` zu 
-kopieren/verschieben, jeweils mit anderen Anforderungen.
+  Verzeichnis wie ihr Python Skript (die Verschachtelung sollte folgendermaßen aussehen:  
+  `<Ihr Taskgroupordner>/m_shutil/sourcedir/...`).
 
 ### Dateien löschen
 
@@ -53,14 +50,17 @@ wiederherstellen.
 Achten Sie daher auf den Pfad, den sie beim Löschen angeben und überprüfen Sie ihn lieber zweimal.
 [ENDWARNING]
 
-Am Anfang wollen wir sicherstellen, dass ein leerer Ordner `destination` existiert, in den Sie 
-die Dateien bei jeder Ausführung Ihres Codes neu einfügen können.
+Am Anfang wollen wir sicherstellen, dass ein leeres Verzeichnis `destination` existiert, in den Sie 
+in den folgenden Aufgaben die Dateien bei jeder Ausführung Ihres Codes neu einfügen können.
 
-- [ER] Machen Sie am Anfang Ihres Programms eine Fallunterscheidung: Wenn der Ordner 
-  `m_shutil/destination` existiert, löschen Sie ihn mithilfe von `shutil` und legen Sie einen 
-  neuen mit `os.mkdir()` an. Falls nicht, erstellen Sie nur den Ordner.
+- [ER] Machen Sie am Anfang Ihres Programms eine Fallunterscheidung: Wenn das Verzeichnis
+  `m_shutil/destination` existiert, löschen Sie es mithilfe von `shutil` und legen Sie ein 
+  neues mit `os.mkdir()` an. Falls nicht, erstellen Sie nur den Ordner.
 
 ### Dateien kopieren und verschieben
+
+In den folgenden Aufgaben geht es größtenteils darum, die Elemente aus `sourcedir` in den neuen 
+Ordner `destination` zu kopieren/verschieben, jeweils mit anderen Anforderungen.
 
 - [EQ] Ihnen wird beim Durchstöbern der Dokumentation vermutlich aufgefallen sein, dass es vor allem 
   zum Kopieren von Dateien mehrere Funktionen gibt, die alle unterschiedliche Eigenschaften haben. 
@@ -70,16 +70,28 @@ die Dateien bei jeder Ausführung Ihres Codes neu einfügen können.
   Dateiberechtigungen kopiert werden.  
   Da `file1` ein ausführbares Bash-Skript ist, führen Sie es anschließend mithilfe von 
   `subprocess` aus.
+
+[HINT::`file1` ist nicht ausführbar]
+Abhängig von Ihrem Betriebssystem und Entpackungsprogramm kann es passiert sein, dass das 
+Executable Bit beim Entpacken verloren gegangen ist. 
+In dem Fall dürfen Sie es per Terminal für die Dateien `file1` und `dir/a` setzen:
+
+```bash
+chmod +x m_shutil/sourcedir/file1 m_shutil/sourcedir/dir/a
+```
+[ENDHINT]
+
 - [ER] Kopieren Sie nun *den Inhalt* von `file2`.
 - [ER] Sorgen Sie nun dafür, dass auch Ihre Kopie von`file2` ausführbar wird, indem Sie die 
-  Dateiberechtigungen von `file1` in `file2` kopieren. Führen Sie anschließend auch `file2` aus.
+  Dateiberechtigungen mithilfe von `shutil` von `file1` in `file2` kopieren. 
+  Führen Sie anschließend auch `file2` aus.
 - [ER] Kopieren Sie das Verzeichnis `dir` nach `destination`. Allerdings sollen beim Kopieren 
   nur Dateien, die keine Ziffer im Namen enthalten, kopiert werden. Die Dateien sollen dabei 
   möglichst alle Metadaten und Dateiberechtigungen beibehalten.
 - [ER] Verschieben Sie alle Dateien in `destination` nach `destination/dir`. Führen Sie 
   anschließen die Datei `a` aus.
 
-[HINT::Wir bekomme ich alle Dateien eines Verzeichnisses?]
+[HINT::Wir erhalte ich alle Dateien eines Verzeichnisses?]
 `os.listdir()`
 [ENDHINT]
 
@@ -87,10 +99,10 @@ die Dateien bei jeder Ausführung Ihres Codes neu einfügen können.
 
 `shutil` bietet auch grundlegende Funktionen zur Erstellung und Verwendung von Archiven. Archive 
 bieten neben der Möglichkeit, Verzeichnisbäume in Dateien zu verpacken, auch die Option diese zu 
-komprimieren, um Speicherplatz zu sparen. Dabei unterstützt das Modul verschiedene 
-Kompressionsalgorithmen
+komprimieren, um Speicherplatz zu sparen (oder Übertragungen zu beschleunigen). Python selbst 
+unterstützt bereits einige Komprimierungsverfahren.
 
-- [ER] Verpacken Sie alle Dateien in `destination/dir` in ein `.tar.xz` Archiv.
+- [ER] Verpacken Sie alle Dateien in `destination/dir` in ein `tar` Archiv mit lzma Komprimierung.
 - [ER] Entpacken Sie das ganze wieder in einem neuen Verzeichnis `destination/unpacked`.
        Führen Sie dort noch einmal die entpackte Datei `a` aus.
 
