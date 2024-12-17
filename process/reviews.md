@@ -36,19 +36,20 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Sprachen
 
 ### Bibliotheken
-- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
 
 ### Bestandscode
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->LP)
-
 
 ### Testen
-- ch/Testen/Unittests/m_pytest_plugin_linter_flake8.md (RR-LP)
-- ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
 
 ### Web
 
 ### Werkzeuge
+
+### (on hold)
+- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
+- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->LP)
+- ch/Testen/Unittests/m_pytest_plugin_linter_flake8.md (RR-LP)
+- ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
 
 -------------------------------------------------------------------------------------------
 
