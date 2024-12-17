@@ -125,6 +125,10 @@ Gelegentlich:
   damit ein Crawler oder Browser korrekte Encodings erhält.
   Browser lösen das selbst, aber bei Crawlern, die Vanilla-`requests` einsetzen (wie unserer!), 
   schlägt dessen die vom Standard vorgegebene ISO-8859-1-Annahme zu. 
+- Fügt man ein `explains:` bei der Index-Aufgabe einer Aufgabengruppe ein, hat das aktuell 
+  keine Auswirkung und im Glossar wird kein Link zu der Index-Aufgabe generiert. Bei einigen 
+  Glossareinträgen könnte es aber sinnvoll sein, dass unter `Explained by` ein Link zur 
+  zugehörigen Aufgabengruppe erzeugt wird, z.B. bei Debugging, Testen, Linter.
 
 
 ### 2.4 Anträge an den Rechnerbetrieb
