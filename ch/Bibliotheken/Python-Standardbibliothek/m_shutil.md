@@ -1,5 +1,5 @@
-title: "shutil: Dateioperationen"
-stage: draft
+title: "shutil: Operationen auf Dateien und Verzeichnissen"
+stage: alpha
 timevalue: 1.0
 difficulty: 2
 assumes: m_os.path, m_subprocess, Dateiberechtigungen
@@ -43,11 +43,11 @@ Operationen an, die viele dieser Anforderungen erfüllt.
 ### Dateien löschen
 
 [WARNING]
-Wie auch bei `rm -r` im Terminal gibt es beim Löschen keine Sicherheitsabfrage oder andere 
-Absicherungen: Gelöschte Dateien/Verzeichnisse lassen sich, wenn überhaupt, nur umständlich 
+Wie auch bei `rm` im Terminal gibt es beim Löschen keine Sicherheitsabfrage oder andere 
+Absicherungen. Gelöschte Dateien/Verzeichnisse lassen sich, wenn überhaupt, nur umständlich 
 wiederherstellen.
 
-Achten Sie daher auf den Pfad, den sie beim Löschen angeben und überprüfen Sie ihn lieber zweimal.
+Achten Sie daher besonders auf den Pfad, den sie beim Löschen angeben, um Datenverlust zu vermeiden!
 [ENDWARNING]
 
 Am Anfang wollen wir sicherstellen, dass ein leeres Verzeichnis `destination` existiert, in den Sie 
@@ -83,7 +83,7 @@ chmod +x m_shutil/sourcedir/file1 m_shutil/sourcedir/dir/a
 
 - [ER] Kopieren Sie nun *den Inhalt* von `file2`.
 - [ER] Sorgen Sie nun dafür, dass auch Ihre Kopie von`file2` ausführbar wird, indem Sie die 
-  Dateiberechtigungen mithilfe von `shutil` von `file1` in `file2` kopieren. 
+  Dateiberechtigungen mithilfe von `shutil` von `file1` in `file2` kopieren.  
   Führen Sie anschließend auch `file2` aus.
 - [ER] Kopieren Sie das Verzeichnis `dir` nach `destination`. Allerdings sollen beim Kopieren 
   nur Dateien, die keine Ziffer im Namen enthalten, kopiert werden. Die Dateien sollen dabei 
@@ -91,16 +91,18 @@ chmod +x m_shutil/sourcedir/file1 m_shutil/sourcedir/dir/a
 - [ER] Verschieben Sie alle Dateien in `destination` nach `destination/dir`. Führen Sie 
   anschließen die Datei `a` aus.
 
-[HINT::Wir erhalte ich alle Dateien eines Verzeichnisses?]
+[HINT::Wie erhalte ich alle Dateien eines Verzeichnisses?]
 `os.listdir()`
 [ENDHINT]
 
 ### Archive
 
-`shutil` bietet auch grundlegende Funktionen zur Erstellung und Verwendung von Archiven. Archive 
-bieten neben der Möglichkeit, Verzeichnisbäume in Dateien zu verpacken, auch die Option diese zu 
-komprimieren, um Speicherplatz zu sparen (oder Übertragungen zu beschleunigen). Python selbst 
-unterstützt bereits einige Komprimierungsverfahren.
+`shutil` bietet auch grundlegende Funktionen zur Erstellung und Verwendung von Archiven. 
+Archive bieten neben der Möglichkeit, Verzeichnisbäume in Dateien zu verpacken, auch die Option 
+diese zu komprimieren, um Speicherplatz zu sparen (oder Übertragungen zu beschleunigen). 
+Mehrere Bibliotheken für Kompressionsalgorithmen bieten hier unterschiedliche Eigenschaften zur 
+Kompressionrate und Geschwindigkeit. 
+Python selbst unterstützt einige der häufig verwendeten Kompressionsbibliotheken.
 
 - [ER] Verpacken Sie alle Dateien in `destination/dir` in ein `tar` Archiv mit lzma Komprimierung.
 - [ER] Entpacken Sie das ganze wieder in einem neuen Verzeichnis `destination/unpacked`.
