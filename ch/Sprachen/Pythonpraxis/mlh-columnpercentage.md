@@ -249,7 +249,7 @@ Wenn die Lösung mehr als 50% länger ist oder keine Kommentare enthält
 oder kaum sprechende Namen enthält
 oder zu monolithisch ist, ist das einen Hinweis und in krassen Fällen eine Zurückweisung wert.
 
-Ansonsten halten wir uns für die Korrrektur an das Kommandoprotokoll, das so aussehen müsste:
+Ansonsten halten wir uns für die Korrektur an das Kommandoprotokoll, das so aussehen müsste:
 [PROT::ALT:mlh/mlh-columnpercentage.prot]
 
 [ENDINSTRUCTOR]
