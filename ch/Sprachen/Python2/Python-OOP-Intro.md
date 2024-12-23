@@ -1,5 +1,5 @@
 title: "Klassen und Objekte in Python: Modelle aus der realen Welt"
-stage: alpha
+stage: draft
 timevalue: 1.0
 difficulty: 2
 ---

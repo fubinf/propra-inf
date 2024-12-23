@@ -1,5 +1,5 @@
 title: "Grundlagen von objektorientierter Programmierung in Python: Eine praktische Übung"
-stage: alpha
+stage: draft
 timevalue: 3
 difficulty: 3
 requires: Python-OOP-Intro, Python-OOP-Methods, Python-OOP-Inheritance

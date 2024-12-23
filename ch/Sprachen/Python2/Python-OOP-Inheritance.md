@@ -1,5 +1,5 @@
 title: "Klassenvererbung in Python: Grundlagen und Anwendung"
-stage: alpha
+stage: draft
 timevalue: 1.0
 difficulty: 2
 requires: Python-OOP-Intro

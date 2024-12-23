@@ -1,5 +1,5 @@
 title: "Klassen-, Instanz- und statische Methoden in Python"
-stage: alpha
+stage: draft
 timevalue: 1.5
 difficulty: 2
 requires: Python-OOP-Intro
