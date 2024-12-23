@@ -27,6 +27,28 @@ wie man reale Objekte in Python als Klassen darstellt.
 
 [SECTION::instructions::loose]
 
+[NOTICE]
+Im Bereich der objectorientierten Programmierung in Python treffen Sie auf mehrere Fälle,
+wo mehrere Begriffe dasselbe Konzept bezeichnen.
+Beispiele dafür sind:
+
+- Instanz ≠ Objekt:
+
+Objekt: In Python ist alles ein Objekt – darunter Zahlen, Listen, Funktionen etc.
+Ein Objekt ist im Allgemeinen eine Einheit, 
+die Daten (Attribute) und Verhalten (Methoden) haben kann.
+
+Instanz: Ein konkretes Objekt, das aus einer Klasse erstellt wurde (d.h. ein "Exemplar" der Klasse).
+
+Zusammengefasst ist jede Instanz ein Objekt, aber nicht jedes Objekt ist unbedingt eine Instanz.
+
+- Oberklasse = Superclass = Basisklasse = Elternklasse = Parentclass
+- Unterklasse = Subclass = childclass  
+
+Nicht nur im Thema von OOP, sondern auch in anderen Themenbereichen tritt solche Inkonsistenz auf.
+Seien Sie dabei vorsichtig und hinterfragen Sie ständig Begriffe, die Ihnen verwirrend erscheinen. 
+[ENDNOTICE]
+
 [*"Object-Oriented Programming (OOP) in Python"*](https://realpython.com/python3-object-oriented-programming/)
 kann Ihnen bei der Bearbeitung helfen und einige der Konzepte erklären. 
 
