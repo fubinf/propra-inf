@@ -113,7 +113,7 @@ Führen Sie zum Testen folgende Kommandos aus:
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
-[INSTRUCTOR::]
+[INSTRUCTOR::Hinweise für Tutor_innen]
 
 Eine plausible Aufteilung der Logik in verschiedene Funktionen ist sehr wünschenswert - 
 eine monolithische 200-zeilige Funktion ist inakzeptabel. 

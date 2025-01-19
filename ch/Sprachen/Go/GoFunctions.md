@@ -183,6 +183,7 @@ func printNumbers(xs ...int) {
 ### `defer`
 
 TODO_brandes: Aufgabe zu Funktionen (aber ohne Structs)
+
 [SECTION::submission::program]
 .
 [ENDSECTION]
