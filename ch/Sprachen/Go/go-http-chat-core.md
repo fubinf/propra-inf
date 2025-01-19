@@ -1,5 +1,5 @@
 title: "HTTP Chat"
-stage: draft
+stage: alpha
 timevalue: 4
 difficulty: 3
 ---
