@@ -9,14 +9,21 @@
     --difficulty4-color: #c00;     /* FU Berlin secondary color */
     --sidebar-width: 450px;
     --header-height: 70px;
+
+    color-scheme: light;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 
 /********** Links: */
 
+a,
 a:link {
-    color: var(--main-color);
-    filter: brightness(50%);
+    color: #4B5F11;
+    text-decoration: none;
 }
 
 a>code {
@@ -24,9 +31,9 @@ a>code {
     color: var(--main-color);
 }
 
-a:visited {
-    color: var(--main-color);
-    filter: brightness(40%);
+a:hover {
+    text-decoration: underline dotted;
+    color: #6a005f;
 }
 
 
@@ -34,19 +41,34 @@ a:visited {
 
 body {
     font-family: sans-serif;
-    margin: 1em 1.5em 1em 1.5em;
+    margin: 0;
     line-height: 1.4;
+    scrollbar-width: thin;
 }
 
 #preheader {
-  height: 1em;
-  margin-top: -1em;
-  background-color: white;
+    height: 1em;
+    margin-top: -1em;
+    background-color: white;
 }
+
+.codehilite {
+    margin: 16px 0;
+    border-radius: .5em;
+    overflow-x: auto;
+
+    & code {
+        padding: 0;
+        background-color: transparent;
+    }
+}
+
 
 code {
     background-color: #eee;
     white-space: pre;
+    padding: 0 .4em;
+    border-radius: 1px;
 }
 
 details {
@@ -63,18 +85,24 @@ details {
 footer {
     display: flex;
     margin-top: 2ex;
-    padding: 0.5em;
-    background-color: lightgrey;
+    padding: 0;
+    background-color: transparent;
     font-size: 80%;
+
+    &::before {
+        content: '✍️';
+        margin-right: .3em;
+        place-self: center;
+    }
 }
 
 h1,
 h2 {
-    font-family: serif;
     line-height: 1.0;
 }
 
-header, #preheader {
+header,
+#preheader {
     display: flex;
     margin-bottom: 2ex;
     padding: 1em 0.5em 0.5em 0.5em;
@@ -83,102 +111,145 @@ header, #preheader {
     position: fixed;
 }
 
+header {
+    height: var(--header-height);
+    padding: 0 1em;
+    margin-bottom: 16px;
+}
+
 li {
     padding: 0.15em 0;
 }
 
-summary {}
+pre {
+    margin-left: .3em;
+    padding-left: .3em;
+}
+
+summary {
+    cursor: pointer;
+}
 
 /********** sidebar */
 
-.header, #preheader {
-  width: 100%;
-  z-index: 1;
+.header,
+#preheader {
+    width: 100%;
+    z-index: 1;
 }
 
 .sidebar {
-  height: calc(100% - var(--header-height) - 20px);
-  width: var(--sidebar-width);
-  position: fixed;
-  z-index: 1;
-  top: var(--header-height);
-  left: 0;
-  overflow-x: hidden;
-  padding: 10px;
-  transition: all 0.3s ease-out;
-}
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - var(--header-height) - 20px);
+    width: calc(var(--sidebar-width) - 16px);
+    position: fixed;
+    z-index: 1;
+    top: var(--header-height);
+    left: 0;
+    overflow-x: hidden;
+    padding: 14px 0 14px 12px;
+    transition: all 0.3s ease-out;
+    margin-right: 16px;
+    box-shadow: 4px 0 6px -2px rgba(0, 0, 0, 0.2);
+    scrollbar-width: thin;
 
-.sidebarhide {
-  left: calc(-20px - var(--sidebar-width)) !important;
+    &.sidebarhide {
+        left: calc(-20px - var(--sidebar-width));
+    }
+
+    & div {
+        padding: 4px 0;
+
+        &:hover {
+            background-color: #f8f8f8;
+        }
+    }
 }
 
 .main {
-  margin-left: calc(10px + var(--sidebar-width));
-  padding-top: var(--header-height);
-  transition: all 0.3s ease-out;
+    margin-right: 16px;
+    margin-left: calc(10px + var(--sidebar-width));
+    padding-top: calc(var(--header-height) + 16px);
+    transition: all 0.3s ease-out;
 }
 
-.mainfull {
-  margin-left: 0 !important;
+.main.mainfull {
+    margin: 0 16px;
+}
+
+.header_in {
+    display: grid;
+    grid-template-columns: auto auto;
+    place-items: center;
+    gap: 8px;
 }
 
 .header_in button {
-  background:transparent;
-  border:none;
-  width:30px;
-  height:30px;
-  cursor:pointer;
-  outline:0;
+    background: transparent;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    outline: 0;
 }
 
 .header_in a {
-  text-decoration: none;
-  color: black;
+    text-decoration: none;
+    color: black;
+}
+
+.header_in a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.toggle span.toggle::before,
+.toggle span.toggle::after,
+.toggle span::before,
+.toggle span::after,
+.toggle span {
+    background: black;
 }
 
 .toggle span {
-  width:100%;
-  height:3px;
-  background:#555;
-  display:block;
-  position:relative;
-  cursor:pointer;
+    width: 100%;
+    height: 3px;
+    display: block;
+    position: relative;
+    cursor: pointer;
 }
 
 .toggle span::before,
 .toggle span::after {
-  content:'';
-  position:absolute;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#555;
-  transition: all 0.3s ease-out;
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease-out;
 }
 
 .toggle span::before {
-  top:-8px;
+    top: -8px;
 }
 
 .toggle span::after {
-  top:8px;
+    top: 8px;
 }
 
 .toggle span.toggle {
-  background:transparent;
+    background: transparent;
 }
 
 .toggle span.toggle::before {
-  top:0;
-  transform:rotate(-45deg);
-  background:#4CAF50;
-  
+    top: 0;
+    transform: rotate(-45deg);
 }
 
 .toggle span.toggle::after {
-  top:0;
-  transform:rotate(45deg);
-  background:#4CAF50;
+    top: 0;
+    transform: rotate(45deg);
 }
 
 
@@ -334,6 +405,8 @@ summary {}
 
 .section-subtypes {
     float: right;
+    display: flex;
+    gap: 4px;
 }
 
 .section-subtype {
@@ -374,7 +447,7 @@ summary {}
 .section-goal-trial {}
 
 .section-instructions {
-    border-left-width: 0.8em;
+    border-left-width: .3em;
     border-left-style: solid;
     padding-left: 0.8em;
     border-left-color: var(--instructions-border-color);
@@ -419,20 +492,19 @@ summary {}
     font-weight: bold;
 }
 
-
 .enumeration-ec::before,
 .enumeration-erefc::before {
-    content: "K";  /* "Kommando" */
+    content: '🖥️ K'; /* "Kommando" */
 }
 
 .enumeration-eq::before,
 .enumeration-erefq::before {
-    content: "F";  /* "Frage" */
+    content: '❔ F'; /* "Frage" */
 }
 
 .enumeration-er::before,
 .enumeration-erefr::before {
-    content: "A";  /* "Anforderung" */
+    content: '✏️ A'; /* "Anforderung" */
 }
 
 .enumeration-ec::after,
@@ -441,7 +513,24 @@ summary {}
     content: ":";
 }
 
+p:has(span.enumeration-ec),
+p:has(span.enumeration-eq),
+p:has(span.enumeration-er) {
+    margin-left: 3.5em;
+    text-indent: -3.1em;
+}
+
 /********** Specifics for Tasks: */
+
+#taskbody {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    & .blockmacro.blockmacro-notice {
+        margin: 0;
+    }
+}
 
 .assumes-requires-linkblock {
     margin-bottom: 2ex;
@@ -509,8 +598,8 @@ summary {}
 }
 
 .glossary-termref-suffix {
-  vertical-align: sub;
-  font-size: smaller;    
+    vertical-align: sub;
+    font-size: smaller;
 }
 
 
@@ -532,7 +621,8 @@ summary {}
     font-weight: bold;
 }
 
-.vwr-front, .vwr-back {
+.vwr-front,
+.vwr-back {
     color: grey;
 }
 
@@ -556,7 +646,7 @@ summary {}
 
 .vwr-cmd {
     color: black;
-    font-size: 110%; 
+    font-size: 110%;
     font-weight: bold;
 }
 
@@ -584,95 +674,174 @@ a:link.vwr-filelink-submission {
 /********** timer: */
 
 #timer {
-  float: right;
+    float: right;
 }
+
 #timer::before {
-  content: "⏲ ";
+    content: "⏲ ";
 }
+
 #timer .copy::before {
-  content: "🗐";
+    content: "🗐";
 }
+
 #timer .play::before {
-  content: "▶";
+    content: "▶";
 }
+
 #timer .pause::before {
-  content: "⏸";
+    content: "⏸";
 }
+
 #timer .stop::before {
-  content: "⏹";
+    content: "⏹";
 }
 
 
 /********** misc: */
 
-.breadcrumbs {
-}
+.breadcrumbs {}
 
 
 /********** Modifications for dark mode: */
 
 @media (prefers-color-scheme: dark) {
-    body, pre {
-        background-color: #222;
-        color: lightgray;
+    :root {
+        --background-color: #1f1f1f;
+        --on-background-color: #cacaca;
+        --background-dim-color: #2c2c2c;
+        --on-background-dim-color: #cacaca;
+
+        --on-main-color: black;
+        color-scheme: dark;
     }
 
-    .section-goal {
-        background-color: #ae8b0c;
-        color: lightgray;
+    body,
+    pre {
+        background-color: var(--background-color);
+        color: var(--on-background-color);
     }
 
-    .section-background {
-        background-color: #444;
-        color: lightgray;
-    }
-    
-    .section-submission {
-        background-color: #9c03;
-    }
-
+    a,
     a:link {
-        color: var(--main-color);
-        filter: brightness(80%);
+        color: #9fd400;
+        filter: unset;
+
+        &:hover {
+            text-decoration: underline dotted;
+            color: #EDABED;
+        }
     }
 
-    a:visited {
-        color: var(--main-color);
-        filter: brightness(50%);
-    }
-
-    #preheader {
-        background-color: #222;
-    }
-
-    header {
-        background-color: darkolivegreen;
-        color: lightgray;
-    }
-
-    .header_in a {
+    .header_in a:hover {
         text-decoration: none;
-        color: white !important;
+        color: var(--on-main-color);
     }
 
-    footer, code {
-        background-color: #000;
-        color: lightgray;
+    nav#sidebar {
+        background-color: #262626;
+        color: var(--on-background-color);
     }
 
-    .codehilite, .codehilite pre {
-        background: #000 !important;
-        background-color: #000 !important;
+    nav#sidebar div:hover {
+        background-color: var(--background-dim-color);
+    }
+
+    main .section {
+        --section-color: var(--level-color);
+        padding: 8px 12px;
+        border: none;
+        box-shadow: none;
+        border-left: 4px solid var(--section-color);
+        border-radius: 0;
+    }
+
+    .section.section-background {
+        background-color: var(--background-color);
+        --section-color: gray;
+    }
+
+    .section.section-goal {
+        background-color: var(--background-color);
+        margin: 0;
+        --section-color: #e5c914;
+    }
+
+    .section.section-instructions {
+        --section-color: var(--instructions-border-color);
+    }
+
+    .section.section-submission {
+        --section-color: #b89eff;
+        background-color: var(--background-color);
+    }
+
+    span.enumeration-er,
+    span.enumeration-ec,
+    span.enumeration-eq,
+    span.enumeration-erefc,
+    span.enumeration-erefq,
+    span.enumeration-erefc {
+        color: #B89EFF;
+    }
+
+    span.assumes-decoration,
+    span.requires-decoration {
+        color: var(--on-background-color);
+    }
+
+    code,
+    div.codehilite,
+    div.codehilite pre {
+        background-color: #181818;
     }
 
     .codehilitetable .linenos .normal:only-child {
         display: none;
     }
 
-    .section-goal,
-    .section-submission,
     .blockmacro {
-        box-shadow: 6px 6px 5px #000;
+        border: 1px solid rgb(var(--notice-color));
+        border-radius: .5em;
+        background-color: transparent;
+        padding: 0;
+        margin: 16px 0;
+        box-shadow: none;
+
+        &>strong {
+            display: flex;
+            align-items: center;
+            gap: 0.3em;
+            background-color: rgba(var(--notice-color), 0.15);
+            padding: 8px 14px;
+        }
+
+        & summary {
+            cursor: pointer;
+            background-color: rgba(var(--notice-color), 0.15);
+            padding: 8px 14px;
+
+            &:hover {
+                background-color: rgba(var(--notice-color), 0.25);
+            }
+        }
+
+        & p {
+            padding: 0.4em 0.9em;
+        }
+
+        &.blockmacro-foldout,
+        &.blockmacro-notice {
+            --notice-color: 68, 138, 255;
+        }
+
+        &.blockmacro-warning {
+            --notice-color: 255, 68, 68;
+        }
+
+        &.blockmacro-hint {
+            --notice-color: 0, 191, 165;
+        }
     }
 
     .stage-draft {
