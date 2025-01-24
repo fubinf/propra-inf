@@ -24,27 +24,27 @@ Lesen Sie die Beschreibung im obigen Teil, die **Examples** am Ende und die Opti
 
 Wir brauchen einen Ordner und Dateien, damit wir darauf die Links verknüpfen können.
 
-- [EC] Erstellen Sie einen Ordner `~/physical/`.
-- [EC] Erstellen Sie zwei Dateien namens `softdata` und `harddata` unter `~/physical/`, mit
+- [EC] Erstellen Sie einen Ordner `~/ws/tmp/physical/`.
+- [EC] Erstellen Sie zwei Dateien namens `softdata` und `harddata` unter `~/ws/tmp/physical/`, mit
   dem Dateiinhalt "Ich bin softdata" bzw. "Ich bin harddata".
 
 Nachdem wir den Ordner und die Dateien erstellt haben, brauchen wir Links auf den Dateien.
 
-- [EC] Erstellen Sie einen Ordner `~/links/`
-- [EC] Erstellen Sie einen [TERMREF::Symlink] `~/links/symlink1` auf `~/physical/softdata` mit 
-  Angabe des absoluten Pfades: `ln -s ~/physical/softdata ~/links/symlink1`
-- [EC] Erstellen Sie einen [TERMREF::Symlink] `~/links/symlink2` auf `~/physical/softdata` mit
-  Angabe eines relativen Pfades: `ln -s ../physical/softdata ~/links/symlink2`
-- [EC] Erstellen Sie einen [TERMREF::Hardlink] `~/links/hardlink` auf `~/physical/harddata` .
+- [EC] Erstellen Sie einen Ordner `~/ws/tmp/links/`
+- [EC] Erstellen Sie einen [TERMREF::Symlink] `~/ws/tmp/links/symlink1` auf `~/ws/tmp/physical/softdata` mit 
+  Angabe des absoluten Pfades: `ln -s ~/ws/tmp/physical/softdata ~/ws/tmp/links/symlink1`
+- [EC] Erstellen Sie einen [TERMREF::Symlink] `~/ws/tmp/links/symlink2` auf `~/ws/tmp/physical/softdata` mit
+  Angabe eines relativen Pfades: `ln -s ../physical/softdata ~/ws/tmp/links/symlink2`
+- [EC] Erstellen Sie einen [TERMREF::Hardlink] `~/ws/tmp/links/hardlink` auf `~/ws/tmp/physical/harddata` .
 
 Wir haben zwei Symlinks erstellt. Einmal mit einem relativen Pfad und mit einem expliziten Pfad.
 Des Weiteren haben wir einen Hardlink erstellt.
 
 ### Verstehen der Links
 
-- [EC] Geben Sie den Dateistrukturbaum von `~/physical` und von `~/links` mit der Option `-i` aus:
-  `ls -li ~/physical`  
-  `ls -li ~/links`
+- [EC] Geben Sie den Dateistrukturbaum von `~/ws/tmp/physical` und von `~/ws/tmp/links` mit der Option `-i` aus:
+  `ls -li ~/ws/tmp/physical`  
+  `ls -li ~/ws/tmp/links`
 
 Die Option -i zeigt die Inodes der jeweiligen Dateien an.  
 Am Anfang der Zeile der Ausgabe erscheinen Zahlen, die die Inodes repräsentieren.  
@@ -60,38 +60,40 @@ Links haben besondere Eigenschaften. Abhängig davon, ob die Links verschoben we
 werden, oder aber die Daten gelöscht werden. Verschieben Sie erstmal die Links und erklären Sie 
 was passiert. 
 
-- [EC] Verschieben Sie den Symlink `~/links/symlink1` nach `/tmp`.
+- [EC] Verschieben Sie den Symlink `~/ws/tmp/links/symlink1` nach `/tmp`.
 - [EQ] Funktioniert der Symlink `symlink1` noch? Wenn ja, warum? Wenn nein, warum nicht?
-- [EC] Verschieben Sie den Symlink `~/links/symlink2` nach `/tmp`.
+- [EC] Verschieben Sie den Symlink `~/ws/tmp/links/symlink2` nach `/tmp`.
 - [EQ] Funktioniert der Symlink `symlink2` noch? Wenn ja, warum? Wenn nein, warum nicht?
-- [EC] Verschieben Sie den Hardlink `~/links/hardlink` nach `/tmp`.
+- [EC] Verschieben Sie den Hardlink `~/ws/tmp/links/hardlink` nach `/tmp`.
 - [EQ] Funktioniert der Hardlink `hardlink` noch? Wenn ja, warum? Wenn nein, warum nicht?
-- [EC] Verschieben Sie die Links `symlink1`, `symlink2`, `hardlink` zurück nach `~/links`.
+- [EC] Verschieben Sie die Links `symlink1`, `symlink2`, `hardlink` zurück nach `~/ws/tmp/links`.
 
 ### Verschieben von Daten
 
 Sie haben gesehen, was mit den Links passiert, wenn diese verschoben werden.
 Jetzt verschieben Sie die Daten und erklären Sie was passiert.
 
-- [EC] Verschieben Sie die Datei `~/physical/softdata` nach `/tmp`.
+- [EC] Verschieben Sie die Datei `~/ws/tmp/physical/softdata` nach `/tmp`.
 - [EQ] Funktioniert der Symlink `symlink1` noch? Wenn ja, warum? Wenn nein, warum nicht?
-- [EC] Verschieben Sie die Datei `~/physical/harddata` nach `/tmp`.
+- [EC] Verschieben Sie die Datei `~/ws/tmp/physical/harddata` nach `/tmp`.
 - [EQ] Funktioniert der Hardlink `hardlink` noch? Wenn ja, warum? Wenn nein, warum nicht?
-- [EC] Schieben Sie die Dateien `sofdata`, `harddata` wieder zurück nach `~/physical`.
+- [EC] Schieben Sie die Dateien `sofdata`, `harddata` wieder zurück nach `~/ws/tmp/physical`.
 
 ### Löschen von Daten
 
 Zuguterletzt löschen wir die Daten. 
 
-- [EC] Löschen Sie die Datei `~/physical/softdata`.
-- [EQ] Funktionieren die Symlinks unter `~/links` noch? Wenn ja, warum? Wenn nein, warum nicht?
-- [EC] Löschen Sie die Datei `~/physical/harddata`.
+- [EC] Löschen Sie die Datei `~/ws/tmp/physical/softdata`.
+- [EQ] Funktionieren die Symlinks unter `~/ws/tmp/links` noch? Wenn ja, warum? Wenn nein, warum nicht?
+- [EC] Löschen Sie die Datei `~/ws/tmp/physical/harddata`.
 - [EQ] Funktioniert der Hardlink `hardlink` noch? Wenn ja, warum? Wenn nein, warum nicht?
 
 ### Reflektion
 
-- [EQ] Nennen Sie zwei Gründe, warum Symlinks sinnvoller sind.
-- [EQ] Nennen Sie zwei Beispiele, wo sich Hardlinks trotzdem lohnen könnten.
+- [EQ] Welche Art von Links würden Sie bei Desktopsymbolen nutzen? Begründen Sie.
+- [EQ] Welche Art von Links würden Sie nutzen, falls sie schneller auf einen Ordner zugreifen möchten, 
+der tief im Ordnerbaum des Systems ist? Begründen Sie.
+- [EQ] Welche Art von Links würden Sie bei Backups nutzen? Begründen Sie.
 
 ### Aufräumen
 
@@ -110,9 +112,11 @@ Zuguterletzt löschen wir die Daten.
 [INSTRUCTOR::Kommandoprotkoll]
 
 [PROT::ALT:Unix-Links.prot]
+
 [ENDINSTRUCTOR]
 
 [INSTRUCTOR::Markdowndokument]
 
 [INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
