@@ -310,8 +310,15 @@ erweitern.
 
 [INSTRUCTOR::Korrektheit, Entwurfsstruktur]
 
-Quellcode siehe [TREEREF::go_chat.go].
-TODO_Brandes: erweitern
+Quellcode siehe [TREEREF::go_chat/server/main.go].
 
+In erster Linie orientieren wir uns auf korrekte Funktionsweise.
+
+Den Code lesen, insbesondere Fehlerbehandlung. `if err != nil { panic(err) / return err }` reicht oft aus, aber 
+eigene Fehlermeldungen sind an manchen Stellen sehr vorteilhaft. Wir wollen das Bedenken sehen, "was tut mein Code, 
+wenn XYZ schiefgeht?"
+
+Modularität ist an dieser Stelle noch nicht gefragt: Sinnvolle Unterteilung von Funktionalität in einzelne Funktionen
+ist genug.
 
 [ENDINSTRUCTOR]
