@@ -166,10 +166,10 @@ htaccess_template: |
     AuthLDAPUrl "ldaps://ldap1.imp.fu-berlin.de ldap2.imp.fu-berlin.de ldap3.imp.fu-berlin.de/ou=People,ou=mi,dc=imp,dc=fu-berlin,dc=de?cn"
     Require ldap-user {userlist_quotes_spaces}
 student_yaml_attribute_prompts:
-    student_name: "Your full name (givenname familyname): ",
-    student_id: "Your student ID: ",
-    student_gituser: "Your git account name (git username): ",
-    partner_gituser: "Your partner's git account name (or empty if you work alone): ",
+  student_name: "Your full name [givenname familyname]: "
+  student_id: "Your student ID: "
+  student_gituser: "Your git account name [git username]: "
+  partner_gituser: "Your partner's git account name (or empty if you work alone): "
 allowed_attempts: "2 + 0.4/h"
 chapters:
   - name: Basis
