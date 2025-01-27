@@ -114,6 +114,10 @@ Zum Glück hat Go-Standardbibliothek alle nötigen Pakete bereits implementiert.
 Stelle einen Typen `User` definieren.
 - Erweitern Sie die `AuthMessage` um den öffentlichen Schlüssel (als Zeichenkette). Stellen Sie sicher, dass dieser 
 a) korrekt an den Server gesendet wird und b) korrekt von dem Server empfangen wird.
+- Stellen Sie sicher, dass ein Client den öffentlichen Schlüssel des Gesprächspartners rechtzeitig bekommt. Ein 
+passender Zeitpunkt dafür wäre gleich nach dem "Mit wem willst du schreiben?". Das muss ein neuer Endpunkt auf der 
+Serverseite sein. Das könnte hilfreich sein: 
+[Dynamische Routen](https://stackoverflow.com/questions/64408209/net-http-simple-dynamic-routes).  
 - Legen Sie eine Struktur an, die für E2EE zuständig ist. Diese könnte `EncryptionManager` heißen und soll die Namen 
 von Gesprächspartner_innen zusammen mit ihren öffentlichen Schlüsseln speichern. Außerdem soll hier das Ver- und 
 Entschlüsseln stattfinden. Von außen sichtbare Funktionen sind also:
