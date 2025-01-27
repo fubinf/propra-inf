@@ -234,7 +234,7 @@ Testing. Hier geht es wieder um zwei Traces.
 - [EC] (Server-Terminal Trace)
 - [EC] (Client-Terminal Trace)
 
-### 5. Einen Client finden
+### 6. Einen Client finden
 
 Wie findet die Nachricht von einem Client ihren Empfänger? Intuitiv hat man hier zwei Optionen:
 
