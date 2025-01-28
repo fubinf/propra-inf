@@ -16,7 +16,7 @@ TODO_1_alrwasheda
   dass kein richtiger Programmierer das so hinschreiben sollte, sondern immer
   `assert False and False` oder `assert not (False and False)`.
   Jedenfalls, wenn mindestens ein Literal beteiligt ist. `a == False` ist schlecht, `a == b` ist OK.
-- Hier steht: `difficulty: 2`. Alles in Python1 soll aber per Definition "sehr leicht" sein. 
+- Hier steht: `difficulty: 2`. Alles in Python0 soll aber per Definition "sehr leicht" sein. 
   Wenn Sie daran hier Zweifel haben, ist die Aufgabe noch nicht tauglich.
 
 [SECTION::goal::idea]

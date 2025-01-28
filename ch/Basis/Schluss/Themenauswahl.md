@@ -32,7 +32,7 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
 - Wer seine Python-Kenntnisse ausbauen möchte,
   sollte bei [PARTREFMANUAL::Python-Standardbibliothek::Bibliotheken/Python-Standardbibliothek] starten
   und eine passende Dosis von
-  [PARTREFMANUAL::Python2::Sprachen/Python2] dazumixen.
+  [PARTREFMANUAL::Python::Sprachen/Python] dazumixen.
 - Wer noch nicht ziiiemlich gut mit git umgehen kann (und wer kann das schon!),
   kann bei [PARTREFMANUAL::Git::Werkzeuge/Git] Schritt für Schritt eine recht große Schippe drauflegen
   und sich damit in die Riege bewunderter Technikbeherscher_innen vorarbeiten,

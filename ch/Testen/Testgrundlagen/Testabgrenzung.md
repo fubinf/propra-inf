@@ -2,7 +2,7 @@ title: Testabgrenzung zum Debugging
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: Python1, Debuggingtools
+assumes: Debuggingtools
 ---
 
 TODO_1_ruhe:

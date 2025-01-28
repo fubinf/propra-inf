@@ -30,7 +30,7 @@ Aufgabe Lint-PyCharm:
 - Die immer vorhandenen Linter-Meldungen in PyCharm erkunden: oben rechts im Editorfenster anklicken.
 - Die Leute in der JetBrains-Doku herausfinden lassen, was das alles enthält
   (bei Python mindestens die Ausgaben von flake8 und vom pypy-Typchecker; Querverweis (ohne assumes)
-  zur noch nicht existenten Aufgabe über Typdeklarationen machen, die Herr Alrwasheda in Python2 anlegen sollte)
+  zur noch nicht existenten Aufgabe über Typdeklarationen machen, die Herr Alrwasheda in Gruppe `Python` anlegen sollte)
 - Für mindestens eine Datei alle Meldungen bearbeiten und lösen
 - EQ: Reflektieren, wie mir das im Vergleich zum manuellen Aufruf von flake8 gefällt? Warum? (vermutlich sehr
   viel besser, denn es ist recht komfortabel).

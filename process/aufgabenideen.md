@@ -211,7 +211,7 @@ Basiskurs in "einfach", fortgeschrittenes Zeug in "mittel".
 Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall kennenlernt.
 
 
-### Sprachen/Python1 (alrwasheda)
+### Sprachen/Python0 (alrwasheda)
 
 Aufgaben mit DIFF1 als unvollkommene Starthilfe, überwiegend für Leute mit zu niedrigem Wissen.
 Wiederholung (manches ist aber auch neu!) der absoluten Essentials: 
@@ -226,7 +226,7 @@ import, etc.
 Vermutlich sinnvoll als Lückentext, sodass sehr kleine und eingegrenzte Aufgaben entstehen?
 
 
-### Sprachen/Python2 (alrwasheda)
+### Sprachen/Python (alrwasheda)
 
 Fortgeschrittenere Konstrukte:
 try/except, eigene Exceptions, realistische Ausnahmebehandlung (try except raise und das dann ganz woanders fangen),
@@ -242,7 +242,7 @@ etwas, das man dabei lernen und benutzen kann oder soll.
 Das ist aber nicht zielgenau, wenn die Aufgaben Spielraum bei der Entwurfsstruktur haben.
 
 Aufgabe(n) zu den Dunder-Methoden von Klassen (z. B. `__init__`, `__bool__`, `__add__`,...) als 
-Folgeaufgabe zu ch/Sprachen/Python2/PythonObjectsClassesIntro.md
+Folgeaufgabe zu ch/Sprachen/Python/PythonObjectsClassesIntro.md
 
 String-Formatierung
 

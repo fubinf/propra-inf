@@ -2,7 +2,7 @@ title: Freezegun - Zeitreise mittels Python-Tests
 stage: draft
 timevalue: 0
 difficulty: 2
-assumes: mocking, Python2
+assumes: mocking, Python
 ---
 
 [SECTION::goal::idea]

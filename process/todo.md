@@ -91,7 +91,6 @@ Sonderdateien:
     - fehlende Querverweise zu anderen Glossareinträgen
     - fehlende Einträge für technische Bezeichner (z.B. Namen von Unix-Kommandos)
     - fehlende Verweise in Tasks auf solche und andere Glossareinträge.
-- Taskgruppe Python2 sollte Python heißen.
 
 
 ### 2.3 Korrekturbedarf an sedrila
@@ -106,6 +105,7 @@ Bald:
 - `author`: Wenn eine Aufgabe weggelassen wird, weil eine requires-Abhängigkeit soft fehlt,
   sollte es eine Warnmeldung geben. Dass passiert bei `--stage beta`, wenn die Abhängigkeit 
   eine niedrigere stage hat.
+- `author`: ZIP-Dateien sollen kein automatisches Unterverzeichnis enthalten.
 - Defekt?: Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
 - Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
   muss es eine Fehlermeldung geben, keinen toten Link.

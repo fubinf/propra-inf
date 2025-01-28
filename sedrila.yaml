@@ -181,8 +181,8 @@ chapters:
       - name: Schluss
   - name: Sprachen
     taskgroups:
-      - name: Python1
-      - name: Python2
+      - name: Python0
+      - name: Python
       - name: Pythonpraxis
       - name: RegExp
       - name: SQL

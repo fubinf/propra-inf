@@ -58,15 +58,15 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ## Reviews to do for Hanen Alrwasheda
 
-- Python1/ Inhalt wird am Ende ausgearbeitet.
+- Python0/ Inhalt wird am Ende ausgearbeitet.
 
-- ch/Sprachen/Python2/Python-OOP-Intro.md (HA->LP->HA)
-- ch/Sprachen/Python2/Python-OOP-Methods.md (HA->LP->HA)
-- ch/Sprachen/Python2/Python-OOP-Inheritance.md (HA-LP->HA)
-- ch/Sprachen/Python2/Python-OOP-Praxis.md: (HA-LP->HA)
-- ch/Sprachen/Python2/Python-Context-Managers.md (HA->LP->HA)
-- ch/Sprachen/Python2/Python-Function-Arguments-Advanced.md (HA->LP->HA)
-- ch/Sprachen/Python2/Python-import.md (HA->LP->HA->LP->HA)
+- ch/Sprachen/Python/Python-OOP-Intro.md (HA->LP->HA)
+- ch/Sprachen/Python/Python-OOP-Methods.md (HA->LP->HA)
+- ch/Sprachen/Python/Python-OOP-Inheritance.md (HA-LP->HA)
+- ch/Sprachen/Python/Python-OOP-Praxis.md: (HA-LP->HA)
+- ch/Sprachen/Python/Python-Context-Managers.md (HA->LP->HA)
+- ch/Sprachen/Python/Python-Function-Arguments-Advanced.md (HA->LP->HA)
+- ch/Sprachen/Python/Python-import.md (HA->LP->HA->LP->HA)
 
 
 ## Reviews to do for Ivan Condric

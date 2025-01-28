@@ -17,8 +17,8 @@ TODO_1_alrwasheda
 - mutability sollte vmtl. _explizit_ ein Thema dieser Aufgabe sein?
 - Wie schon bei Booleans bin ich mit der Aufgabe wenig glücklich und sehe auch nicht,
   wie man es viel besser machen soll.
-- Vielleicht machen wir uns lieber erstmal an Python2 und kommen zu Python1 zurück, wenn 
-  wir aus Python2 klüger geworden sind?
+- Vielleicht machen wir uns lieber erstmal an Gruppe `Python` und kommen zu `Python0` zurück, wenn 
+  wir aus `Python` klüger geworden sind?
 
 [SECTION::goal::idea]
 
