@@ -114,8 +114,8 @@ Meistens ergibt es sich jedoch aus folgender Konvention:
 
 Prüfen Sie ihre Commits zu den vorherigen Aufgaben.
 
-- Benennen Sie ggf. falsch benannte Dateien um 
-  und checken Sie sie (ohne Zeiterfassungs-Eintrag) erneut ein.
+- Benennen Sie ggf. unpassend benannte Dateien um 
+  und checken Sie sie (_ohne_ Zeiterfassungs-Eintrag) erneut ein.
 - Holen Sie ggf. fehlende Commits nach.
 - Falls [PARTREFMANUAL::Zeiterfassung::Zeiterfassungs-Einträge] fehlen, holen Sie diese 
   mit geschätzten Zeiten ebenfalls nach.

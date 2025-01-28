@@ -47,8 +47,9 @@ Sie werden aufgefordert, folgende Daten anzugeben, die Sie zuvor bereithalten so
 - die URL der Homepage des ProPras
 - Ihren vollen Namen
 - Ihre Matrikelnummer
-- den vollen Namen Ihrer Paar-Partner_in (oder einen Querstrich, falls Sie allein arbeiten)
-- die Matrikelnummer Ihrer Paar-Partner_in (oder einen Querstrich, falls Sie allein arbeiten)
+- Ihren git-Benutzernamen (Accountnamen)
+- git-Benutzernamen (Accountnamen) Ihrer Paar-Partner_in 
+  (oder leer lassen, falls Sie allein arbeiten werden)
 
 Diese Daten werden in einer Datei namens `student.yaml` festgehalten.
 (Dort können Sie nötigenfalls mit einem Texteditor später auch Änderungen vornehmen
