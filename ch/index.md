@@ -246,7 +246,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - Aufgabe Bibliotheken/Dokumentation/[PARTREF::changelog2] zugefügt.
 - Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_os.path] zugefügt.
 - Aufgabe Debugging/Debugging-Denken/[PARTREF::Mathematician] zugefügt.
-- **2024-06-06**: Aufgabe Sprachen/Python2/[PARTREF::PEP8] zugefügt.
+- **2024-06-06**: Aufgabe Sprachen/Python/[PARTREF::PEP8] zugefügt.
 - Aufgabe Werkzeuge/Linter/[PARTREF::flake8] zugefügt.
 - **2024-06-10**: Aufgaben Bestandscode/Refactoringpraxis/[PARTREF::refactor_movierental_planning]
   und [PARTREF::refactor_movierental_implementation] zugefügt.
@@ -256,7 +256,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   Version (mit `pipx upgrade`) meist die Lösung.
 - Beschreibung des Konzepts von Abgaben in die erste Aufgabe (CLI*) ergänzt. 
 - Aufgabe Werkzeuge/Benutzerverwaltung/[PARTREF::Gruppen] zugefügt.
-- **2024-07-22**: Aufgabe Sprachen/Python2/[PARTREF::Python-List-Comprehensions] zugefügt.  
+- **2024-07-22**: Aufgabe Sprachen/Python/[PARTREF::Python-List-Comprehensions] zugefügt.  
   Aufgaben Web/HTML/[PARTREF::HTMLErsteSchritte] und [PARTREF::HTMLMedien] zugefügt.  
   Aufgabe Web/CSS/[PARTREF::CSSEinfuehrung] zugefügt.  
   Aufgabe Debugging/Debuggingtools/[PARTREF::printfdebugging] zugefügt.
@@ -272,7 +272,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   bitte nochmal die (entsprechend geänderte) Aufgabe [PARTREF::Kommandoprotokolle] lesen
   und ab sofort einfach ohne weitere Umstände auf dieses Format wechseln.
 - **2024-09-10**: Aufgaben Web/HTML/[PARTREF::HTMLTabellen] und [PARTREF::HTMLSemantik] zugefügt.
-- **2024-09-17**: Aufgaben Sprachen/Python2/[PARTREF::Python-Function-Arguments-Basic] und
+- **2024-09-17**: Aufgaben Sprachen/Python/[PARTREF::Python-Function-Arguments-Basic] und
   Web/HTML/[PARTREF::HTMLFormulare] zugefügt.
 - **2024-10-11**: Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_sqlite3] zugefügt.
 - **2024-10-29**: Aufgabe Werkzeuge/Netzwerk/[PARTREF::SSH] zugefügt.
@@ -292,6 +292,22 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   als bekannt vorausgesetzt.
 - **2024-12-03**: Aufgabe Werkzeuge/Unix-Basiswerkzeuge/[PARTREF::Unix-Editoren] zugefügt.
 - **2024-12-10**: Aufgabe Basis/IDE/[PARTREF::IDEFirstSteps] zugefügt.
+- **2025-01-28**:
+    - Aufgabengruppe Sprachen/Python2 umbenannt in Sprachen/[PARTREF::Python].  
+    - In Basis/Repo/[PARTREF::Einreichungen] die gewünschte Struktur des Dateibaums klarer beschrieben
+      (das ist sogar schon am 2024-11-29 passiert, war hier aber bisher nicht erwähnt).  
+      Dateibäume, die anders aussehen, bitte umbauen, denn sonst wird die Korrektur zu mühsam!  
+    - `student.yaml` muss ab sofort zusätzlich die Felder `student_gituser` und `partner_gituser` enthalten,
+      bestückt mit dem jeweiligen Accountnamen zum Git-Repo; siehe Basis/Repo/[PARTREF::SedrilaEinrichten]. 
+      Dieser Name dient den Tutor_innen als Bezeichner für die Teilnehmer_in.  
+    - Bitte wechseln Sie auf die neuste Version von `sedrila`, Version 2.5.
+    - Wer Aufgaben zu zweit erarbeitet, sollte bitte auch gemeinsam zeitgleich einreichen,
+      denn das senkt den Aufwand für die Überprüfung erheblich.
+    - Um das zu unterstützen, ist das per Email zu sendende Kommando jetzt ein anderes.
+      Sie bekommen es angezeigt, wenn Sie die oben erwähnte aktuell Version von `sedrila` benutzen.
+    - Auch Sie selbst können von der Unterstützung für Tutor_innen profitieren:
+      Der Viewer kann jetzt über mehrere Verzeichnisbäume (Ihren plus den Ihrer Partner_in) gleichzeitig
+      browsen und markiert Dateien, die zur Abgabe vorgesehen sind. Probieren Sie es aus.
 - ...
 
 
