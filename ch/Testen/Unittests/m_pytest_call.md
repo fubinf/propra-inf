@@ -12,8 +12,8 @@ assumes: m_pytest
 [ENDSECTION]
 [SECTION::background::default]
 
-Pytest selbst führt normalerweise alle vorhandenen Testfälle aus. 
-Mit Pytest-Parametern kann man gezielt steuern, welche Tests ausgeführt werden, 
+Pytest selbst führt normalerweise alle vorhandenen Testfälle aus.
+Mit Pytest-Parametern kann man gezielt steuern, welche Tests ausgeführt werden,
 was besonders in großen Projekten viel Zeit spart und die Übersicht verbessert.
 
 [ENDSECTION]
@@ -30,7 +30,8 @@ git clone https://github.com/pytoolz/toolz.git --tag 1.0.0
 
 Eine version 1.0.0 wird i.d.R. dann bereitgestellt, wenn diese Version auch aus Sicht der Entwickler
 stabil ist. Leider hilft uns eine stabile Version vorerst nicht weiter, weshalb wir ein klein wenig
-müssen. Um die Spannung nicht vorweg zu nehmen, wurde diese Manipulation verschleiert.
+Nachhelfen müssen, um ein Problem zu erzeugen. Um die Spannung nicht vorweg zu nehmen, wurde diese
+Manipulation verschleiert. Diese Art der Änderung nennt sich auch [TERMREF::Mutationstests].
 
 Stellen Sie sicher, dass Sie sich im geklonten Verzeichnis `1.0.0` befinden. Bitte führen Sie
 folgenden Befehl aus:
@@ -51,52 +52,53 @@ jeweilige Ergebnis.
 
 Wenn Sie Pytest ohne weitere Informationen ausführen, sollte Ihnen direkt etwas am Ergebnis
 aufgefallen sein. Sie haben einen Fehler als Antwort erhalten und diesen direkt gefixt - so glauben
-Sie es zumindesten. Um das zu überprüfen, wollen Sie den Test erneut laufen lassen, aber dieses Mal
-nur den zuvor fehlgeschlagenden Test.
+Sie es zumindest. Um das zu überprüfen, wollen Sie den Test erneut laufen lassen, aber dieses Mal
+nur den zuvor fehlgeschlagenen Test.
 
-[EC] Wie starten Sie Pytest nur für die fehlgeschlagene Datei?
+[ER] Starten Sie den Test nur auf die fehlgeschlagene Datei.
 
 Wenn sehr viele Testfälle im Spiel sind, könnten bestimmte Fehler auch Effekte auf andere Testfälle
 haben. In diesem Fall möchte man den Test nach einem Fehler gar nicht erst weiter laufen lassen,
 sondern abbrechen.
 
-[EC] Wie brechen Sie einen Testlauf beim Auftreten gleich des _ersten_ Fehlers ab?
+[ER] Lassen Sie den Testlauf beim Auftreten des _ersten_ Fehlers abbrechen.
 
 Manchmal kann ein Fehlschlag auch nur durch eine zeitliche Abhängigkeit auftreten, wie zum Beispiel
 beim Abfragen eines TOTP, der beim Verwenden seine Gültigkeit verloren hat. In diesem Fall bietet es
 sich an einen Testfall erneut auszuführen.
 
-[EC] Wie wiederholen Sie einen fehlgeschlagenen Testfall?
+[ER] Lassen Sie einen fehlgeschlagenen Testfall wiederholt durchführen.
 
 Es soll einfach nicht sein, der Testfall wird einfach nicht grün. Sie beschließen erst einmal auf Grund
 mangelnden Risikos diesen Testfalls zu überspringen, bis Sie sich mit gleichgesinnten austauschen
 können, um dieses Problem zu beheben.
 
-[EQ] Wie Skippen Sie den fehlgeschlagenden Testfall
+[ER] Skippen Sie den fehlgeschlagenen Testfall beim ausführen aller Tests.
 
 Natürlich dürfen wir diese leichtfertige Ignoranz nicht aus den Augen verlieren und sollten uns hin
 und wieder vergewissern, dass wir beim fixen unsere Anwendung auch voran kommen und die entsprechenden
 Testfälle wieder frei geben.
 
-[EC] Wie können wir einen Überblick über die geskippten Testfälle erhalten?
+[ER] Verschaffen Sie sich einen Überblick über die geskippten Testfälle.
 
 Sie haben weiterhin versucht dieses Problem zu beheben. Nach Ihrer Änderung hat sich der Test leider
 nicht zu einem Besseren bewegt. Bevor Sie weiter machen, wollen Sie jedoch noch einmal alle Tests
 mit detaillierteren Informationen ausführen, um zu prüfen, ob Ihre Codeanpassung keine Seiteneffekte
 beinhaltet.
 
-[EC] Wie starten Sie Pytest mit detaillierter Ausgabe?
+[ER] Starten Sie Pytest mit detaillierter Ausgabe.
 
 Toll, diese Übersicht bietet Ihnen dir Möglichkeit wiederum in die gezielte Ansteuerung eines
 Testfalls zu gehen.
 
-[EC] Wie starten Sie Pytest nur für den Testfall `test_complement`?
+[ER] Starten Sie Pytest nur für den Testfall `test_complement`.
 
 Nachdem Sie jetzt die Gelegenheit hatten über das Problem des Fehlschlags zu diskutieren, haben Sie
 sicherlich eine Lösung gefunden, alle Testfälle erfolgreich ausführen zu lassen, ohne einen Testfall
 zu überspringen. Löschen Sie, falls noch vorhanden, die Skip-Anweisung.
 
-[EQ] Was müssen Sie tun, um diesen Fehler zu beseitigen und wie sieht die einfache Pytest-Ausgabe aus?
+[ER] Beseitigen Sie den Fehler und führen Sie Pytest ohne weitere Parameter aus. Wie sieht die Ausgabe
+jetzt aus?
 
 [ENDSECTION]
 [SECTION::submission::trace]
@@ -113,14 +115,14 @@ sed "2,7d" bench/test_wordcount.py > bench/test_wordcount_tmp && mv bench/test_w
 ```
 
 Dieser sorgt dafür, dass ein Download der `bench/shakespear.txt` nicht durchgeführt wird, was zu einem
-gewollten Fehler führen wird, wenn die Testfälle ausgeührt werden.
+gewollten Fehler führen wird, wenn die Testfälle ausgeführt werden.
 
 Nach Ausführung von Pytest erhält man in der Clone-Version 1.0.0 folgende Ausgabe:
 
 ```shell
 ======================================= test session starts =======================================
 platform darwin -- Python 3.9.19, pytest-8.3.3, pluggy-1.5.0
-rootdir: /Users/ronnyruhe/Downloads/github/toolz
+rootdir: /Users/student/Downloads/github/toolz
 collected 204 items                                                                               
 
 bench/test_curry.py .                                                                       [  0%]
@@ -167,11 +169,11 @@ FAILED bench/test_wordcount.py::test_shakespeare - FileNotFoundError: [Errno 2] 
 
 Dabei nethält die Datei `bench/test_wordcount.py` einen Fehler.
 
-[EREFC::1] pytest bench/test_wordcount.py
+[EREFR::1] pytest bench/test_wordcount.py
 Der folgende Wert bezieht sich auf die Anzahl gefundener Fehler
-[EREFC::2] pytest --maxfail=1
-[EREFC::3] pytest --last-failed, pytest --first-failed
-[EREFQ::1] In der Datei `test_wordcount.py` folgendes ergänzen:
+[EREFR::2] pytest --maxfail=1
+[EREFR::3] pytest --last-failed, pytest --first-failed
+[EREFR::4] In der Datei `test_wordcount.py` folgendes ergänzen:
 
  - Zeile 3: `import pytest`
  - Zeile 15: `@pytest.mark.skip(reason="Unbekannter Fehler")`
@@ -179,16 +181,16 @@ Der folgende Wert bezieht sich auf die Anzahl gefundener Fehler
 Mit `pytest -m "not skip"` kann die Ausgabe ohne übersprungenen Test angezeigt werden. Ohne Parameter
 wird der Testfall mit `s` markiert und nicht ausgeführt.
 
-[EREFC::4] pytest -rs
-[EREFC::5] pytest -v
-[EREFC::6] pytest toolz/tests/test_serialization.py::test_complement
-[EREFQ::2] Erstellen einer Datei `shakespeare.txt` im Verzeichnis `bench\`.
+[EREFR::5] pytest -rs
+[EREFR::6] pytest -v
+[EREFR::7] pytest toolz/tests/test_serialization.py::test_complement
+[EREFR::8] Erstellen einer Datei `shakespeare.txt` im Verzeichnis `bench\`.
 Ausgabe sieht wie folgt aus:
 
 ```shell
 ==================================== test session starts ====================================
 platform darwin -- Python 3.9.19, pytest-8.3.3, pluggy-1.5.0
-rootdir: /Users/ronnyruhe/Downloads/github/toolz
+rootdir: /Users/student/Downloads/github/toolz
 plugins: cov-5.0.0
 collected 204 items                                                                         
 

@@ -42,7 +42,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Bestandscode
 
 ### Testen
-- ch/Testen/Unittests/m_pytest_mocking.md (RR->DM->HA->LP->RR->LP)
+- ch/Testen/Unittests/m_pytest_mocking.md (RR->DM->HA->LP->RR->LP) - mittelstarke Überarbeitung
+- ch/Testen/Unittests/m_pytest_call (RR->LP->RR-LP) - leichte Überarbeitung der Aufgabenstellung.
 
 ### Web
 - ch/Web/CSS/CSSBoxModel.md (DM->LP)
@@ -126,7 +127,6 @@ Fehlerfällen, Whitebox/Strukturtest.
 Einsatzfälle für Mocking: Fehlerfälle induzieren, schwergewichtige Kollaborateure loswerden.
 
 - ch/Testen/Unittests/freezegun.md (RR->DM->HA->LP->RR->LP->RR)
-- ch/Testen/Unittests/m_pytest_call (RR->LP->RR)
 - ch/Testen/Unittests/m_pytest_plugin_testcoverage.md (RR->LP->RR)
 - ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP->RR)
 - ch/Testen/Unittests/m_testcoverage.md (RR->LP->RR)

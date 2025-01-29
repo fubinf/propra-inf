@@ -813,6 +813,14 @@ auch mit verwendet, aber die Testeingaben so ausgewählt, dass es voraussichtlic
 Ergebnis nur auf das zu testende Modul ankommt.
 [ENDTERM]
 
+[TERM::Mutationstests|Mutation Testing]
+Mutationstests sind eine Technik zur Bewertung der Qualität von Softwaretests. Dabei werden
+absichtlich kleine Änderungen (Mutationen) am Quellcode vorgenommen, um zu prüfen, ob die
+vorhandenen Tests diese Änderungen erkennen und fehlschlagen. Ziel ist es, Schwächen in den Tests
+aufzudecken und sicherzustellen, dass sie robust genug sind, um Fehler im Code zu finden. Ein hoher
+Anteil an erkannten Mutationen deutet auf gute Tests hin.
+[ENDTERM]
+
 ## N
 
 [TERM::Nameserver|Nameservers]
