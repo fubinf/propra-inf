@@ -1,8 +1,8 @@
 title: Freezegun - Zeitreise mittels Python-Tests
-stage: draft
-timevalue: 0
+stage: alpha
+timevalue: 1
 difficulty: 2
-assumes: mocking, Python
+assumes: m_pytest_mocking, m_pytest
 ---
 
 [SECTION::goal::idea]
@@ -19,14 +19,16 @@ sei es das Auslösen eines Alarms im Kalender oder die regelmäßige Protokollie
 für effektive Tests ist es oft unpraktisch, sich auf die aktuelle Systemzeit zu verlassen. Hier
 kommt das Python-Paket "freezegun" ins Spiel.
 
+Freezegun ermöglicht es, die Zeit in Ihren Tests einzufrieren und zu manipulieren, sodass Sie
+zeitabhängige Logik zuverlässig testen können.
+
 [ENDSECTION]
 [SECTION::instructions::loose]
 
 ### Freezgun kennenlernen und vorbereiten
 
 Machen Sie sich mit der Freezegun [Dokumentation](https://pypi.org/project/freezegun/) vertraut und
-bearbeiten Sie folgende Schritte. Sie können zur Bearbietung der Aufgaben sowohl das Unittest-, als
-auch das Pytest-Framework verwenden.
+bearbeiten Sie folgende Schritte. Verwenden Sie zur Bearbeitung der Aufgaben das Pytest Framework.
 
 Installieren Sie Freezegun.
 
@@ -97,7 +99,7 @@ Was machen die folgenden Funktionsaufrufe?
 
 ### Unittests erstellen
 
-- [ER] Erstellen Sie Unittest, die folgendes abdecken:
+- [ER] Erstellen Sie Pytests, die folgendes abdecken:
 
 - **test_initial_warranty:** ob das Produkt unmittelbar nach dem Kauf eine Garantie hat. Der Test friert
   die Zeit auf ein Datum innerhalb der 12 Monate ein und erwartet, dass die Garantie aktiv ist.
@@ -113,12 +115,15 @@ Was machen die folgenden Funktionsaufrufe?
   auslöst. Der Test erwartet eine ValueError-Ausnahme mit der entsprechenden Nachricht.
 - **test_extended_warranty_expired_after_24_months:** ob die verlängerte Garantie nach 24 Monaten abläuft.
   Der Test erwartet, dass die Garantie zu diesem Zeitpunkt abgelaufen ist.
+- **test_product_expiry:** ob ein Produkt nach einer bestimmten Zeitspanne abgelaufen ist. Der Test
+  friert die Zeit auf ein Datum nach Ablauf der Zeitspanne ein und erwartet, dass das Produkt als
+  abgelaufen markiert wird.
 
 ### Testausführung
 
 - [EC] Lassen Sie Ihren Test laufen und präsentieren Sie das Testergebnis.
 
-### Abschluss
+### Reflektion
 
 - [EQ] Beschreiben Sie, welche Schwierigkeiten Sie mit der Erstellung der Unittests hatten.
 - [EQ] Welche Beispiele können Sie sich noch vorstellen, für die Freezegun nützlich ist?
@@ -141,80 +146,87 @@ Was machen die folgenden Funktionsaufrufe?
 - [EREFQ::3] Kauft das Objekt zum angegebenen Zeitpunkt
 - [EREFQ::4] Erweitert die Garantiezeit (falls möglich)
 - [EREFQ::5] Prüft aktuelle Garantiezeit
-- 
+
 - [EREFR::1]:
 
-Beispiel-unittests:
+Beispiel-unittests für Pytest:
 
 ```python
-import unittest
-from datetime import datetime
-from main import Product
+import pytest
+from datetime import datetime, timedelta
 from freezegun import freeze_time
+from main import Product
 
-class TestProduct(unittest.TestCase):
+@freeze_time("2024-01-01")
+def test_initial_warranty():
+    product = Product()
+    product.buy()
+    assert product.has_warranty()
 
-    @freeze_time("2024-01-01")
-    def test_initial_warranty(self):
-        product = Product()
-        product.buy()
-        self.assertTrue(product.has_warranty())
+@freeze_time("2025-01-01")
+def test_warranty_expired_after_12_months():
+    purchase_date = datetime(2024, 1, 1)
+    product = Product()
+    product.buy(purchase_date=purchase_date)
+    assert not product.has_warranty()
 
-    @freeze_time("2025-01-01")
-    def test_warranty_expired_after_12_months(self):
-        purchase_date = datetime(2024, 1, 1)
-        product = Product()
-        product.buy(purchase_date=purchase_date)
-        self.assertFalse(product.has_warranty())      
-    
-    @freeze_time("2024-01-31")
-    def test_extended_warranty_expandable_for_24_months_within_30_days(self):
-        purchase_date = datetime(2024, 1, 1)
-        product = Product()
-        product.buy(purchase_date=purchase_date)
+@freeze_time("2024-01-31")
+def test_extended_warranty_expandable_for_24_months_within_30_days():
+    purchase_date = datetime(2024, 1, 1)
+    product = Product()
+    product.buy(purchase_date=purchase_date)
+    product.extend_warranty()
+    assert product.has_warranty()
+
+@freeze_time("2024-02-01")
+def test_extended_warranty_not_expandable_for_24_months_after_31_days():
+    purchase_date = datetime(2024, 1, 1)
+    product = Product()
+    product.buy(purchase_date=purchase_date)
+    with pytest.raises(ValueError, match="Warranty extension can only be purchased within 1 month of the purchase date"):
         product.extend_warranty()
-        self.assertTrue(product.has_warranty())
 
-    @freeze_time("2024-02-01")
-    def test_extended_warranty_not_expandable_for_24_months_after_31_days(self):
-        purchase_date = datetime(2024, 1, 1)
-        product = Product()
-        product.buy(purchase_date=purchase_date)
-        with self.assertRaises(ValueError) as context:
-            product.extend_warranty()
-        self.assertEqual(str(context.exception), "Warranty extension can only be purchased within 1 month of the purchase date")
+@freeze_time("2024-01-31")
+def test_extended_warranty_twice():
+    purchase_date = datetime(2024, 1, 1)
+    product = Product()
+    product.buy(purchase_date=purchase_date)
+    product.extend_warranty()
+    with pytest.raises(ValueError, match="Warranty extension can only be expanded once"):
+        product.extend_warranty()
 
-    @freeze_time("2024-02-01")
-    def test_extended_warranty_twice(self):
-        purchase_date = datetime(2022, 1, 1)
-        product = Product()
-        product.buy(purchase_date=purchase_date)
-        with self.assertRaises(ValueError) as context:
-            product.extend_warranty()
-        self.assertEqual(str(context.exception), "Warranty extension can only be purchased within 1 month of the purchase date")
+@freeze_time("2026-01-02")
+def test_extended_warranty_expired_after_24_months():
+    purchase_date = datetime(2024, 1, 1)
+    product = Product()
+    product.buy(purchase_date=purchase_date)
+    with freeze_time("2024-01-02"):
+        product.extend_warranty()
+    assert not product.has_warranty()
 
-    @freeze_time("2026-01-02")
-    def test_extended_warranty_expired_after_24_months(self):
-        purchase_date = datetime(2024, 1, 1)
-        product = Product()
-        product.buy(purchase_date=purchase_date)
-        with freeze_time("2024-01-02"):
-            product.extend_warranty()
-        self.assertFalse(product.has_warranty())
+@freeze_time("2025-01-01")
+def test_product_expiry():
+    # Eine Ablaufüberprüfung
+    def is_product_expired(expiry_date):
+        return datetime.now() > expiry_date
 
-if __name__ == "__main__":
-    unittest.main()
-
+    expiry_date = datetime(2024, 1, 1)
+    assert is_product_expired(expiry_date)
 ```
 
-- [EREFC::2] Mindestens 6 positive Testfallausführungen vorhanden
+- [EREFC::2] Mindestens 7 positive Testfallausführungen vorhanden
 
 ```bash
-  ......
-----------------------------------------------------------------------
-Ran 6 tests in 0.021s
+(.venv) student@MBP test % pytest
+=================================== test session starts ====================================
+platform darwin -- Python 3.13.1, pytest-8.3.4, pluggy-1.5.0
+rootdir: /Users/student/test
+collected 7 items                                                                          
 
-OK
-````
+test_file.py .......                                                           [100%]
+
+==================================== 9 passed in 0.04s =====================================
+(.venv) student@MBP test % 
+```
 
 [ENDINSTRUCTOR]
