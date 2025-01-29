@@ -42,6 +42,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Bestandscode
 
 ### Testen
+- ch/Testen/Unittests/m_pytest_mocking.md (RR->DM->HA->LP->RR->LP)
 
 ### Web
 - ch/Web/CSS/CSSBoxModel.md (DM->LP)
@@ -129,7 +130,6 @@ Einsatzfälle für Mocking: Fehlerfälle induzieren, schwergewichtige Kollaborat
 - ch/Testen/Unittests/m_pytest_plugin_testcoverage.md (RR->LP->RR)
 - ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP->RR)
 - ch/Testen/Unittests/m_testcoverage.md (RR->LP->RR)
-- ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
 - ch/Testen/Unittests/pytest103.md (Pietrak und RR->DM->LP->RR)
 - ch/Testen/Unittests/pytest201.md (RR->DM->LP->RR)
 - ch/Testen/Unittests/pytest202.md (RR->Müller->LP->RR)
@@ -182,10 +182,10 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
   Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
   kann verzichtet werden. Bitte überprüfen.
   Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
-- ch/Testen/Unittests/m_unittest_mocking.md (RR->DM->HA->LP->RR) siehe Hinweise in der Datei
 - ch/Testen/Unittests/unittest203.md (RR->Müller->LP->RR)
 - ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (RR->LP->RR)
+- ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
 
 
 ## Reviews to do for Sven Wegner
