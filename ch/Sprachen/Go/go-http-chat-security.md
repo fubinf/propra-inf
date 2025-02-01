@@ -171,7 +171,7 @@ sich diese Daten schützen?
 
 [ENDSECTION]
 
-[SECTION::submission::trace,reflection]
+[SECTION::submission::trace,reflection,program]
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 

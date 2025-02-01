@@ -144,16 +144,16 @@ Starten Sie nun den Server und den Client. Melden Sie sich im Client an.
 Der Server darf keine Passwörter behalten, daher kreieren wir anhand von dem Benutzernamen und dem Passwort einen Token
 (beziehungsweise `Hash`).
 
-* generieren Sie einen Schlüssel (beispielsweise eine zufällige Zeichenkette mit 64 Zeichen) und legen Sie diesen in der 
-* Datei `.env` in dem `server` Modul ab (beispielsweise als `key=...`).
-* implementieren Sie nun eine Funktion, welche `username` und `password` als Parameter bekommt und ein Tupel 
+- generieren Sie einen Schlüssel (beispielsweise eine zufällige Zeichenkette mit 64 Zeichen) und legen Sie diesen in der 
+- Datei `.env` in dem `server` Modul ab (beispielsweise als `key=...`).
+- implementieren Sie nun eine Funktion, welche `username` und `password` als Parameter bekommt und ein Tupel 
 (`token`, `error`) ausgibt. Dies sind die einzelnen Schritte:
-  * den Schlüssel aus der Datei auslesen;
-  * die Parameter auf eine gewisse Art und Weise zu einer Zeichenkette zusammenfügen;
-  * einen Hash-Wert [erstellen](https://pkg.go.dev/crypto/hmac#New) und mithilfe dessen eine Bytefolge produzieren;
-  * diese Bytefolge als Base64 (`base64.URLEncoding`) kodieren und somit eine Zeichenkette kreieren, die unser 
-  Authentifizierungstoken wird.
-* packen Sie nun den Token in eine oben definierte `Message` ein und verschicken Sie diese als Response auf den Request.
+    * den Schlüssel aus der Datei auslesen;
+    * die Parameter auf eine gewisse Art und Weise zu einer Zeichenkette zusammenfügen;
+    * einen Hash-Wert [erstellen](https://pkg.go.dev/crypto/hmac#New) und mithilfe dessen eine Bytefolge produzieren;
+    * diese Bytefolge als Base64 (`base64.URLEncoding`) kodieren und somit eine Zeichenkette kreieren, die unser 
+    Authentifizierungstoken wird.
+- packen Sie nun den Token in eine oben definierte `Message` ein und verschicken Sie diese als Response auf den Request.
 Passen Sie den Handler im Client so an, dass der empfangene Token im Terminal angezeigt wird.
 
 [HINT::Wie soll das bitte funktionieren?]
@@ -302,7 +302,7 @@ Funktionalität prüfen:
 Im Wesentlichen - das war's! Wie am Anfang erwähnt, fühlen Sie sich frei die Funktionalität selber verbessern und 
 erweitern.
 
-[SECTION::submission::trace]
+[SECTION::submission::trace,program]
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
