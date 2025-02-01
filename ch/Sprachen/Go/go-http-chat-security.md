@@ -7,14 +7,14 @@ requires: go-http-chat-core
 
 [SECTION::goal::experience,idea]
 
-- Ich habe mich mit Verschlüsselung auseinandergesetzt (RSA und Diffie-Hellman Schlüsselaustausch).
+- Ich habe mich mit Verschlüsselung auseinandergesetzt (RSA und Diffie-Hellman-Schlüsselaustausch).
 - Ich habe Ende-zu-Ende-Verschlüsselung (E2EE, "end-to-end-encryption") implementiert.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Zurzeit ist der Chat nicht besonders vor möglichen man-in-the-middle Angriffen geschützt: Wir verschicken Passwörter im
+Zurzeit ist der Chat nicht besonders vor möglichen man-in-the-middle-Angriffen geschützt: Wir verschicken Passwörter im
 sowie alle Nachrichten als unverschlüsselten JSON-Text. In dieser Aufgabe implementieren Sie die oben angesprochenen
 Schutzmaßnahmen.
 
@@ -23,7 +23,7 @@ Schutzmaßnahmen.
 [SECTION::instructions::detailed]
 Die erste Schwachstelle ist das Anmeldeverfahren. Diese lässt sich durch ein Handshake und RSA-Verschlüsselung beheben.
 
-### Lösungsvorschlag:
+### Lösungsvorschlag
 
 - Client spricht den Server an, "ich möchte mich bitte anmelden. Schick mir deinen öffentlichen RSA Schlüssel".
 - Nach dem Empfang des Schlüssels wird dieser benutzt, um die Anmeldedaten (Benutzername und Passwort) zu 
@@ -141,7 +141,7 @@ Entschlüsseln stattfinden. Von außen sichtbare Funktionen sind also:
     * zu `Message` deserialisieren
    
     Passen Sie nun alle nötigen Stellen so an, dass die Nachrichten verschlüsselt transportiert werden. 
-    Eine technische Einshränkung ist es, dass wir nun explizit kommunizieren müssen, von wem die Nachricht kommt 
+    Eine technische Einschränkung ist es, dass wir nun explizit kommunizieren müssen, von wem die Nachricht kommt 
     (beispielsweise als ein Header-Feld) - ansonsten weiß der Empfänger nicht, welcher öffentliche Schlüssel benutzt 
     werden soll. 
     
@@ -151,14 +151,16 @@ Entschlüsseln stattfinden. Von außen sichtbare Funktionen sind also:
 Nun los mit Testen! Starten Sie den Server und zwei Clients, Alice und Bob. Schicken Sie ein paar Nachrichten und geben 
 Sie anschließend die Traces ab.
 
-[HINT::Wie können wir uns die Pakete anschauen?]
+[NOTICE]
 
-Dafür gibt es ein Tool - [Wireshark](https://www.wireshark.org/). Anhand des Tools können Sie alle Requests sehen, die Ihr Rechner sendet und 
-entgegennimmt und welche Daten sich jeweils in den Paketen befinden. Das Tool ist auch für das Testing von dieser 
-Aufgabe sehr gut geeignet: Versetzen Sie sich in die Angreifer-Rolle hinein und probieren Sie aus, die Nachrichten von 
-Bob zu Alice zu lesen.
+**Wie kann man sich die Pakete anschauen?**
 
-[ENDHINT]
+Dafür gibt es ein Tool - [Wireshark](https://www.wireshark.org/). Anhand des Tools können Sie alle Requests sehen, die
+Ihr Rechner sendet und entgegennimmt und welche Daten sich jeweils in den Paketen befinden. Das Tool ist auch für das 
+Testing von dieser Aufgabe sehr gut geeignet: Versetzen Sie sich in die Angreifer-Rolle hinein und probieren Sie aus, 
+die Nachrichten von Bob zu Alice zu lesen.
+
+[ENDNOTICE]
 
 - [EC] (Trace Server)
 - [EC] (Trace Alice)
@@ -172,6 +174,10 @@ sich diese Daten schützen?
 [SECTION::submission::trace,reflection]
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 

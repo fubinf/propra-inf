@@ -306,6 +306,8 @@ erweitern.
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
+[INCLUDE::/_include/Submission-Quellcode.md]
+
 [ENDSECTION]
 
 [INSTRUCTOR::Korrektheit, Entwurfsstruktur]
