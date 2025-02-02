@@ -35,6 +35,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Sprachen
 - ch/Sprachen/Go/go-http-chat-core.md (IB)
+- ch/Sprachen/Go/go-http-chat-security.md (IB)
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/m_shutil.md (SW)

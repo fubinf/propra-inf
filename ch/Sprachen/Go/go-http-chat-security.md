@@ -1,5 +1,5 @@
 title: "HTTP Chat - Schutz"
-stage: draft
+stage: alpha
 timevalue: 3
 difficulty: 3
 requires: go-http-chat-core
@@ -21,6 +21,7 @@ Schutzmaßnahmen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+
 Die erste Schwachstelle ist das Anmeldeverfahren. Diese lässt sich durch ein Handshake und RSA-Verschlüsselung beheben.
 
 ### Lösungsvorschlag
