@@ -1,6 +1,6 @@
-title: SeDriLa lauffähig machen für die Verwendung der Teilnehmer
+title: 'sedrila'-Werkzeug zur Kursunterstützung einrichten
 stage: beta
-timevalue: 0.25
+timevalue: 0.5
 difficulty: 2
 requires: Zeiterfassung
 ---
@@ -15,7 +15,7 @@ Das Programmierpraktikum basiert auf der Anwendung `sedrila`
 ([Dokumentation](https://sedrila.readthedocs.io/en/latest/)).
 sedrila dient Ihnen für zwei Zwecke:
 
-1. Einhaltung und halbautomatische Erstellung einer einheitlichen Beschreibungsdatei
+1. Halbautomatische Erstellung einer einheitlichen Beschreibungsdatei `submission.yaml`
    für jede Abgabe, damit Ihre Tutor\_innen weniger
    Verwaltungsaufwand bei den Bewertungen haben und Ihnen damit
    schneller Rückmeldung geben können.
@@ -29,10 +29,12 @@ Aufgaben bereits bearbeitet, aber noch nicht bewertet wurden.
 
 [SECTION::instructions::detailed]
 
-Zunächst müssen Sie SeDriLa installieren:
+Zunächst müssen Sie `sedrila` installieren, davor seine Infrastruktur 
+[`pipx`](https://pipx.pypa.io/) und
+[`gnupg`](https://gnupg.org):
 
 ```
-sudo apt install pipx
+sudo apt install pipx gnupg
 pipx install sedrila
 ```
 
@@ -44,22 +46,24 @@ sedrila student --init
 
 Sie werden aufgefordert, folgende Daten anzugeben, die Sie zuvor bereithalten sollten:
 
+<replacement id="SedrilaEinrichtenPromptlist">
 - die URL der Homepage des ProPras
 - Ihren vollen Namen
 - Ihre Matrikelnummer
 - Ihren git-Benutzernamen (Accountnamen)
 - git-Benutzernamen (Accountnamen) Ihrer Paar-Partner_in 
   (oder leer lassen, falls Sie allein arbeiten werden)
+</replacement>
 
 Diese Daten werden in einer Datei namens `student.yaml` festgehalten.
-(Dort können Sie nötigenfalls mit einem Texteditor später auch Änderungen vornehmen
-und in Git einchecken, wenn sich ausnahmsweise die Partner_in ändern sollte.
+(Dort können Sie nötigenfalls mit einem Texteditor auch später Änderungen vornehmen
+und in Git einchecken, wenn sich ausnahmsweise etwas ändern sollte.
 Keinesfalls ändern sollten Sie hingegen den URL, jedenfalls sobald Sie erstmalig eine Aufgabe
 erfolgreich bei der Tutor_in eingereicht haben, denn dadurch würde Ihr bis dahin angesammeltes
 Stundenkonto ungültig.)
 
 Sie sollten anschließend in der Lage sein, `sedrila student` auszuführen und
-bekommen dann eine Tabelle mit den bisher bearbeiteten Aufgaben zu sehen.
+können dann in der webapp eine Tabelle mit den bisher bearbeiteten Aufgaben sehen.
 Darin stehen zwei Sorten von Aufgaben:
 Erstens die, die Sie schon mal eingereicht haben.
 Zweitens die, für die Sie einen Commit, in dem Format gemacht haben,
