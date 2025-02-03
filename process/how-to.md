@@ -1,4 +1,4 @@
-# How to use the PropPra
+# How to use the ProPra
 
 The target audience of this part of the document is course leads of ProPra courses.
 These use the `author` command for building the course website,
@@ -21,7 +21,7 @@ then the `instructor` command during the course.
    for what the entries mean.
    For the moment, no changes are needed.
    For running an actual course later, make the following changes:
-    - you need to change `instructors` 
+    - you need to change `instructors`
     - you will want to change `title` and `name`
     - perhaps you want to remove some taskgroups; simply delete the respective line
     - if the course will be served by an Apache webserver, adapt `htaccess_template`.  
@@ -49,7 +49,7 @@ Once you understood those, read on below for some content aspects.
 ----------------------
 ----------------------
 
-# How to write tasks for a PropPra
+# How to write tasks for a ProPra
 
 The target audience of this part of the document is ProPra authors, not instructors and not students.
 
@@ -118,9 +118,9 @@ software engineering course, but some of them may do this earlier, later, or nev
 
 ## Learning to write ProPra tasks
 
-### 1. Learn Sedrila
+### 1. Learn `sedrila`
 
-First, learn about sedrila in the
+First, learn about `sedrila` in the
 [README.md](https://github.com/fubinf/sedrila/blob/main/README.md) and
 [authors.md](https://github.com/fubinf/sedrila/blob/main/doc/authors.md) parts of its documentation.
 
