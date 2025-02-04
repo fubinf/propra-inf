@@ -1,4 +1,4 @@
-title: 'sedrila'-Werkzeug zur Kursunterstützung einrichten
+title: "'sedrila'-Werkzeug zur Kursunterstützung einrichten"
 stage: beta
 timevalue: 0.5
 difficulty: 2
