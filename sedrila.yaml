@@ -184,6 +184,7 @@ chapters:
       - name: Python
       - name: Pythonpraxis
       - name: RegExp
+      - name: Go
       - name: SQL
   - name: Bibliotheken
     taskgroups: 
