@@ -14,13 +14,13 @@ Unterschiede. Zusätzlich kann ich auch Archive erstellen und entpacken.
 
 [SECTION::background::default]
 
-Neben Lesen und Schreiben von Dateiinhalten ist es auch häufig notwendig, die Dateien selbst zu 
+Neben Lesen und Schreiben von Dateiinhalten ist es häufig notwendig, komplette Dateien zu 
 verschieben, zu kopieren oder zu löschen.
 Solche Dateioperationen werden schnell komplex, wenn man beachten muss, welches Betriebs- 
 und Dateisystem verwendet wird, welche [TERMREF::Dateiberechtigungen] für eine Datei gesetzt sind 
 und welche zusätzlichen Metadaten womöglich noch an der Datei hängen. 
-Python bietet mit `shutil` eine plattformunabhängige und hoch abstrahierte Sammlung an 
-Operationen an, die viele dieser Anforderungen erfüllt.
+Python bietet mit `shutil` ("shell utilities") eine plattformunabhängige und hoch abstrahierte Sammlung
+von Operationen zu diesem Thema an.
 
 [ENDSECTION]
 
@@ -43,11 +43,10 @@ Operationen an, die viele dieser Anforderungen erfüllt.
 ### Dateien löschen
 
 [WARNING]
-Wie auch bei `rm` im Terminal gibt es beim Löschen keine Sicherheitsabfrage oder andere 
-Absicherungen. Gelöschte Dateien/Verzeichnisse lassen sich, wenn überhaupt, nur umständlich 
-wiederherstellen.
+Es gibt beim Löschen keine Sicherheitsabfrage und gelöschte Dateien/Verzeichnisse lassen sich, 
+wenn überhaupt, nur umständlich wiederherstellen.
 
-Achten Sie daher besonders auf den Pfad, den sie beim Löschen angeben, um Datenverlust zu vermeiden!
+Achten Sie daher sorgfältig darauf, den richtigen Pfad anzugeben!
 [ENDWARNING]
 
 Am Anfang wollen wir sicherstellen, dass ein leeres Verzeichnis `destination` existiert, in den Sie 
@@ -89,7 +88,7 @@ chmod +x m_shutil/sourcedir/file1 m_shutil/sourcedir/dir/a
   nur Dateien, die keine Ziffer im Namen enthalten, kopiert werden. Die Dateien sollen dabei 
   möglichst alle Metadaten und Dateiberechtigungen beibehalten.
 - [ER] Verschieben Sie alle Dateien in `destination` nach `destination/dir`. Führen Sie 
-  anschließen die Datei `a` aus.
+  anschließend die Datei `a` aus.
 
 [HINT::Wie erhalte ich alle Dateien eines Verzeichnisses?]
 `os.listdir()`

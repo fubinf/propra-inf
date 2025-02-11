@@ -38,7 +38,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/Go/go-http-chat-security.md (IB)
 
 ### Bibliotheken
-- ch/Bibliotheken/Python-Standardbibliothek/m_shutil.md (SW)
 
 ### Bestandscode
 
@@ -121,7 +120,6 @@ Die Teile heißen inzwischen teils ganz anders, mein Vorschlag ist nach ungefäh
 gedacht:
 
 ### Zuerst diese konsolidieren (Reihenfolge ist alphabetisch gemeint)
-
 Unittest-Frameworks: `unittest` (nur elementare Nutzung),
 `pytest` (und die wichtigsten Bells and Whistles), 
 evtl. auch kurz antippen: `nosetest`, `doctest`, `robot`.  
@@ -168,7 +166,6 @@ Typische Sorten von Tests: REST-APIs, Charakterisierungstests, ...
 - ch/Sprachen/SQL/SQLProject.md (RR->HA->LP->RR)
 
 ### vermutlich eher wegwerfen?
-
 Methodisches passt ins ProPra nur, wenn es in praktische Aufgaben gekleidet daherkommt.
 Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets vor.
 
@@ -191,3 +188,4 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
 
 ## Reviews to do for Sven Wegner
 
+- ch/Bibliotheken/Python-Standardbibliothek/m_shutil.md (SW)
