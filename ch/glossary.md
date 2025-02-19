@@ -423,6 +423,20 @@ Netzwerk Sockets etc.).
 [HREF::https://en.wikipedia.org/wiki/File_descriptor]
 [ENDTERM]
 
+[TERM::first-class citizen|first-class Objekt]
+In Programmiersprachen beschreibt man Objekte als first-class citizen, wenn sie die folgenden 
+Eigenschaften unterstützen:
+
+- Sie können als Parameter an Funktionen übergeben werden
+- Sie können als Ergebnis einer Funktion zurückgegeben werden
+- Sie können Variablen zugewiesen werden
+- Sie können auf Äquivalenz getestet werden
+
+In der Regel sind primäre Datentypen wie Integer, String oder Float first-class citizen. In einigen 
+Programmiersprachen, wie Python, erfüllen aber auch Funktionen diese Eigenschaften, wodurch 
+[TERMREF2::higher-order function::Funktionen höherer Ordnung] ermöglicht werden.
+[ENDTERM]
+
 ## G
 
 [TERM::Git]
@@ -504,6 +518,11 @@ z.B. `Content-Type:`, `Set-Cookie:`, `Cache-Control:`.
 [ENDTERM]
 
 [TERM::Hilfsbereich]
+[ENDTERM]
+
+[TERM::higher-order function|Funktion höherer Ordnung]
+Eine Funktion, die mindestens eine Funktion als Argument entgegennimmt oder wiederum eine 
+Funktion als Rückgabewert zurückgibt.
 [ENDTERM]
 
 [TERM::HTML|Hypertext Markup Language]
