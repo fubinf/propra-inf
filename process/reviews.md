@@ -34,8 +34,6 @@ We will modify these rules over time when others appear more useful.
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
-- ch/Sprachen/Go/go-http-chat-core.md (IB)
-- ch/Sprachen/Go/go-http-chat-security.md (IB)
 
 ### Bibliotheken
 

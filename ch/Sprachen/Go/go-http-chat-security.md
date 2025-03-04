@@ -1,5 +1,5 @@
 title: "HTTP Chat - Schutz"
-stage: alpha
+stage: draft
 timevalue: 3
 difficulty: 3
 requires: go-http-chat-core
