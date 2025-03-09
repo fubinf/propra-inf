@@ -168,7 +168,9 @@ verschiedene Zeichenketten zurückgibt:
 - `bool`;
 - alles andere soll zusammengefügt werden.
 
-[SECTION::submission::snippet]
+[SECTION::submission::information,snippet]
+
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 Geben Sie den Quellcode in einer `interfaces.go` Datei ab, welche mit `package interfaces` anfängt. Diese muss folgendes 
 beinhalten:
