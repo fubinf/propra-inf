@@ -1,11 +1,12 @@
-title: Grundlagen von Go
+title: Fortgeschrittene Programmierung in Go
 ---
-Diese Aufgabengruppe richtet sich an diejenigen, die sich gerne eine neue Programmiersprache aneignen wollen und einen sicheren Ausgangspunkt suchen.
+Diese Aufgabengruppe richtet sich an diejenigen, die mit Grundlagen in Go schon vertraut sind und eine neue 
+Herausforderung suchen.
 
-In den folgenden Aufgaben gehen wir detailliert und systematisch auf jede Nuance der Syntax ein. Dies könnte sich am Anfang seltsam und/oder langweilig anfühlen, daher: Fühlen Sie sich frei, zu experimentieren!
-
-Die Aufgaben wurden unter anderem von [A Tour of Go](https://go.dev/tour/list) inspiriert.
+Hier gehen wir auf Themen und Konzepte ein, die sowohl für Hobby-Projekte als auch für professionelle Entwicklung 
+relevant sein können.
 
 [INSTRUCTOR::Zielgruppe]
-Dies richtet sich an Menschen, die die Grundlagen von Programmieren bereits hinter sich haben, verfügen jedoch über keine Vorkenntnisse der Programmiersprache Go.
+Dies richtet sich an Menschen, die sich etwas Interessanteres suchen und motiviert sind, sich ein bisschen 
+selbstständiger mit den Aufgaben auseinanderzusetzen.
 [ENDINSTRUCTOR]
