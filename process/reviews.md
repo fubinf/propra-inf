@@ -34,6 +34,7 @@ We will modify these rules over time when others appear more useful.
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
+- ch/Sprachen/Go0/go-interfaces.md
 
 ### Bibliotheken
 

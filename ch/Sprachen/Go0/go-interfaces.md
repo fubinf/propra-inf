@@ -1,5 +1,5 @@
 title: Go Interfaces
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 requires: go-ide, go-variables-and-primitives, go-functions, go-structs
