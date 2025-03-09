@@ -2,7 +2,7 @@ title: Programmstruktur
 stage: draft
 timevalue: 0.5
 difficulty: 1
-requires: GoIDE
+requires: go-ide
 
 ---
 

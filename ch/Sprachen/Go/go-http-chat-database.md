@@ -73,14 +73,14 @@ Wir fangen mit dem Server an.
 1. Legen Sie unter `server` ein neues Verzeichnis `database` an mit einer `database.go` Datei und einem weiteren 
    Verzeichnis `model`. Definieren Sie Strukturen für `User`, `Login` und `Message`. `User` enthält Information über 
    Benutzer, `Login` - über Einloggen-Ereignisse und `Message` - über gesendete Nachrichten. Benutzen Sie dabei 
-   [gorm.Model](https://pkg.go.dev/gorm.io/gorm@v1.25.12#Model) und Struct Embedding (siehe [PARTREF::GoStructs]).
+   [gorm.Model](https://pkg.go.dev/gorm.io/gorm@v1.25.12#Model) und Struct Embedding (siehe [PARTREF::go-structs]).
 2. Deklarieren Sie in der Datei `database.go` eine Struktur `DB` und eine Funktion `Init() *DB`. Falls Sie schon
    einige Erfahrungen mit objektorientierter Programmierung gemacht haben, können Sie diese Funktion als Konstruktor 
    betrachten. [Hier](https://gorm.io/docs/) können Sie nachschlagen, wie man eine Datenbank einrichtet.  
 
 #### Einloggen statt registrieren
 
-1. Implementieren Sie eine simple [TERMREF::API], die mit `User` Tabelle interagiert. Das sind prinzipiell Methoden auf 
+1. Implementieren Sie eine simple API, die mit `User` Tabelle interagiert. Das sind prinzipiell Methoden auf 
    `DB`, wie beispielsweise `func (db *DB) InsertUser(user model.User) error` und 
    `func (db *DB) GetUserByName(name string) *model.User`. Sie dürfen selber entscheiden, welche Getter-Methoden Sie 
     brauchen.
@@ -94,5 +94,5 @@ Wir fangen mit dem Server an.
 
 #### Logging
 
-1. Implementieren Sie eine create/retrieve [TEMPREF::API] für `Login` Ereignis.
+1. Implementieren Sie eine create/retrieve API für `Login` Ereignis.
 [ENDSECTION]

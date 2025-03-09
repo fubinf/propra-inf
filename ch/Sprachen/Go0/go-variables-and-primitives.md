@@ -2,7 +2,7 @@ title: Variablen und primitive Datentypen
 stage: draft
 timevalue: 1
 difficulty: 1
-requires: GoIDE, GoProgramStructure
+requires: go-ide, go-program-structure
 ---
 
 [SECTION::goal::idea]

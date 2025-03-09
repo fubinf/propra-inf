@@ -2,7 +2,7 @@ title: Zeiger
 stage: draft
 timevalue: 1
 difficulty: 2
-requires: GoIDE, GoVariablesAndPrimitives, GoFunctions, GoStructs
+requires: go-ide, go-variables-and-primitives, go-functions, go-structs
 ---
 
 [SECTION::goal::idea]
