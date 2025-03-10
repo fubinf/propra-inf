@@ -51,6 +51,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Werkzeuge
 - ch/Werkzeuge/Unix-Basiswerkzeuge/redirect.md
+- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md
 
 ### (on hold)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
@@ -75,7 +76,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ## Reviews to do for Ivan Condric
 
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (Condric->LP->IC->LP->IC->LP->IC)
 - ch/Werkzeuge/Netzwerk/*
 - ch/Werkzeuge/Unix-Diverses/0x_cron.md
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC)
