@@ -221,7 +221,7 @@ list, dict, set, comprehensions,
 class, self, Vererbung, super(), Objekterzeugung, 
 with, open, 
 tuple unpacking,
-import, etc.
+import, packages, project structres, __init__.py
 
 Vermutlich sinnvoll als Lückentext, sodass sehr kleine und eingegrenzte Aufgaben entstehen?
 
