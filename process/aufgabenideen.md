@@ -215,13 +215,11 @@ Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall ke
 
 Aufgaben mit DIFF1 als unvollkommene Starthilfe, überwiegend für Leute mit zu niedrigem Wissen.
 Wiederholung (manches ist aber auch neu!) der absoluten Essentials: 
-if, for, break, continue, range, enumerate,
-def, return,
-list, dict, set, comprehensions, 
-class, self, Vererbung, super(), Objekterzeugung, 
-with, open, 
-tuple unpacking,
-import, packages, project structres, __init__.py
+Kontrollstrukturen: if, elif, else, for, while, etc.
+Keywords: def, return, break, continue, etc.
+Datenstrukturen: list, dict, set etc.
+OOP: class, self, Vererbung, super(), Objekterzeugung etc.
+Gemischtes: tuple unpacking, ...
 
 Vermutlich sinnvoll als Lückentext, sodass sehr kleine und eingegrenzte Aufgaben entstehen?
 
@@ -229,6 +227,8 @@ Vermutlich sinnvoll als Lückentext, sodass sehr kleine und eingegrenzte Aufgabe
 ### Sprachen/Python (alrwasheda)
 
 Fortgeschrittenere Konstrukte:
+Projektstruktur: import, packages, modules, __init__.py, etc.
+Context: with, open
 try/except, eigene Exceptions, realistische Ausnahmebehandlung (try except raise und das dann ganz woanders fangen),
 Typdeklarationen für Parameter und Resultate, Modul typing,
 Typdeklarationen für Attribute, fast alles aus
