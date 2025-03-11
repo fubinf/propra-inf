@@ -1,5 +1,5 @@
-title: Selektoren, Klassen und Pseudoklassen
-stage: alpha
+title: "CSS: Selektoren, Klassen und Pseudoklassen"
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: CSSEinfuehrung, HTMLSemantik
@@ -7,8 +7,8 @@ assumes: CSSEinfuehrung, HTMLSemantik
 
 [SECTION::goal::experience]
 
- - Ich kann die Priorität von verschiedenen CSS-Definitionen für das gleiche HTML-Element unterscheiden
- - Ich kann Klassen und Pseudoklassen sinnvoll einsetzen
+ - Ich kann Klassen und Pseudoklassen einsetzen
+ - Ich kann die Priorität verschiedener CSS-Definitionen für das gleiche HTML-Element unterscheiden
 
 [ENDSECTION]
 
@@ -44,8 +44,8 @@ Machen Sie sich dazu die Eigenschaften der CSS-Kaskade zu Nutzen.
 Was es damit auf sich hat, können sie z.B. in diesem interaktiven Blogbeitrag nachlesen: 
 [wattenberger.com: The CSS Cascade](https://2019.wattenberger.com/blog/css-cascade).
 
-Verwenden Sie zum Üben für jedes Quadrat nach dem ersten Quadrat eine andere Art, 
-die in der letzen Aufgabe verwendete Definition zu überschreiben.
+Verwenden Sie zum Üben für jedes der Quadrate 2, 3 und 4 eine andere Art, 
+die zuvor verwendete Definition zu überschreiben.
 
 
 [HINT::Welche Möglichkeiten kann ich nutzen?]
