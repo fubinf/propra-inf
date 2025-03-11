@@ -34,7 +34,6 @@ We will modify these rules over time when others appear more useful.
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
-- ch/Sprachen/Go0/go-interfaces.md
 
 ### Bibliotheken
 
@@ -69,6 +68,11 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/Python/Python-Context-Managers.md (HA->LP->HA)
 - ch/Sprachen/Python/Python-Function-Arguments-Advanced.md (HA->LP->HA)
 - ch/Sprachen/Python/Python-import.md (HA->LP->HA->LP->HA)
+
+
+## Reviews to do for Ihar Brandes
+ 
+- ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB)
 
 
 ## Reviews to do for Ivan Condric

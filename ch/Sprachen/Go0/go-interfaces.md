@@ -13,14 +13,13 @@ Ich verstehe, was Interfaces in Go sind, wie sie implementiert und angewendet we
 
 ### Was ist ein Interface?
 
-In Golang, ein Interface ist eine Menge an Funktionssignaturen. Ein Typ **implementiert** ein Interface, wenn dieser Typ
+In Golang ist ein Interface eine Menge an Funktionssignaturen. 
+Ein Typ **implementiert** ein Interface, wenn dieser Typ
 Methoden hat, die den vorausgesetzten Signaturen entsprechen.
 
-Anders gesehen ist ein Interface eine Art Vereinbarung: Ein Typ "entsperrt" eine neue Funktionalität, indem er ein 
-Interface implementiert.
-
 Alle Interfaces in Go sind **implizit**: Sobald die nötigen Methoden implementiert sind, ist auch das ganze Interface
-implementiert. Es wird kein `implements`-Schlüsselwort vorausgesetzt.
+implementiert. 
+Das Interface muss nicht namentlich erwähnt werden und es wird kein `implements`-Schlüsselwort vorausgesetzt.
 
 ### Beispiel
  
@@ -66,12 +65,12 @@ Meow!
 Woof!
 ```
 
-### Wichtigsten Interfaces
+### Wichtige Standard-Interfaces
 
 #### Stringer
 
-`Stringer` Interface sorgt dafür, dass ein Typ korrekt als `string` dargestellt wird. Das Interface verlangt nur eine
-`String() string` Methode.
+Das `Stringer`-Interface sorgt dafür, dass ein Typ korrekt als `string` dargestellt wird. 
+Das Interface verlangt nur eine Methode `String() string` .
 
 1. Definieren Sie eine Struktur `String` mit zwei Feldern: `value string` und `lastByteRead int`.
 2. Definieren Sie eine Konstruktor-Methode `NewString() *String`.
@@ -80,9 +79,11 @@ Woof!
 
 #### Reader
 
-`Reader` Interface besteht aus einer einzigen Methode: `Read(p []byte) (n int, err error)`. Diese muss den Inhalt in den
-bereitgestellten Puffer/Slice `p` auslesen und gibt zwei Werte zurück: Anzahl von den in diesem Aufruf von `Read`
-ausgelesenen Bytes und einen `error`, falls das Auslesen nicht weiter möglich ist.
+Das Interface `Reader` besteht aus einer einzigen Methode: `Read(p []byte) (n int, err error)`. 
+Diese muss den Inhalt in den
+bereitgestellten Puffer/Slice `p` auslesen und gibt zwei Werte zurück: 
+Die Anzahl der in diesem Aufruf von `Read` ausgelesenen Bytes und einen `error`, 
+falls das Auslesen nicht weiter möglich ist.
 
 Implementieren Sie nun dieses Interface!
 
@@ -110,11 +111,13 @@ Implementieren Sie auch das `Writer` Interface.
 
 #### Error
 
-`Error` Interface verlangt nur die `Error() string` Methode. Wie können wir das ausnutzen?
+Das Interface `Error` verlangt nur die `Error() string` Methode. Wie können wir das ausnutzen?
 
-Stellen Sie sich vor, Sie wollen eine Menge von verschiedenen `Error` Strukturen haben, die jeweils gewisse nützlichen 
-Daten beinhalten: Beispielsweise hat ein `HTTPError` ein `statusCode`, ein `FileError` einen `reason`, warum die 
-Operation fehlgeschlagen hat (Zugriff nicht gestattet / Datei existiert nicht / etc). Diesen Fehlerraum können wir 
+Stellen Sie sich vor, Sie wollen eine Menge von verschiedenen `Error`-Strukturen haben, die jeweils gewisse nützliche 
+Daten beinhalten: 
+Beispielsweise hat ein `HTTPError` einen `statusCode`, 
+ein `FileError` einen `reason`, warum die Operation fehlgeschlagen ist (Zugriff nicht gestattet / Datei existiert nicht / etc). 
+Diesen Fehlerraum können wir 
 mithilfe von `Error`-Interface abbilden.
 
 [WARNING]
