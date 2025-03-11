@@ -308,6 +308,14 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
     - Auch Sie selbst können von der Unterstützung für Tutor_innen profitieren:
       Der Viewer kann jetzt über mehrere Verzeichnisbäume (Ihren plus den Ihrer Partner_in) gleichzeitig
       browsen und markiert Dateien, die zur Abgabe vorgesehen sind. Probieren Sie es aus.
+- **2025-03-11**:
+    - Aufgaben Web/CSS/[PARTREF::CSSBoxModel] und Web/CSS/[PARTREF::CSSSelektoren] zugefügt.
+    - Aufgabe Werkzeuge/Unix-Basiswerkzeuge/[PARTREF::redirect] zugefügt.
+    - Bitte geben Sie keine Lösungen mit dem alten Format von Kommandoprotokollen 
+      (erzeugt mit dem `script`-Kommando) mehr ab, sondern lesen Sie das (viel einfachere) aktuelle nach:
+      [PARTREF::Kommandoprotokolle]
+    - Wegen des diversen Unmußes in dieser Null-Version des ProPra bekommen Sie 10% Rabatt:
+      Zum Absolvieren reichen 135 Stunden kumulierter Zeitwert der akzeptierten Aufgaben.
 - ...
 
 
