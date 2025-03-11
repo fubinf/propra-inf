@@ -45,7 +45,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Testen/Unittests/m_pytest_fixtures.md (RR->LP->RR->LP) - Ergänzungern und von Unit- in Pytest umgewandelt
 
 ### Web
-- ch/Web/CSS/CSSBoxModel.md (DM->LP)
 
 ### Werkzeuge
 - ch/Werkzeuge/Unix-Basiswerkzeuge/redirect.md
@@ -105,7 +104,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
   Ich finde a) dass der Theorieteil am Anfang reichlich lang ist, bis was Hübsches passiert, und
   b) dass man gern etwas mehr Fun-Faktor haben könnte, z.B. mit supergroßem Titel.  
   Ist aber jetzt schon mal beta.
-- ch/Web/CSS/CSSSelektorenKlassen.md (DM->LP->DM)
 
 
 
