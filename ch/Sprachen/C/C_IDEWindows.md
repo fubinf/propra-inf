@@ -10,12 +10,13 @@ mit WSL verwenden.
 [ENDSECTION]
 
 [SECTION::background::default]
-Für C gibt es unzählige IDEs. Aus Einfachheit nutzen wir hier VSCode.
+Für C gibt es unzählige IDEs.
+Aus Einfachheit nutzen wir hier VSCode.
 Wenn sie diese schon nutzen, können Sie direkt mit der Installation der
 benötigten Extension fortfahren.
 [ENDSECTION]
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
 ### Installieren von VSCode
 
@@ -27,14 +28,14 @@ benötigten Extension fortfahren.
   vorschlägt, die WSL Extension zu installieren. Klicken Sie dort auf
   "install".  
   Falls kein Fenster erscheint, gehen Sie in der linken Leiste auf den Reiter
-  "Extensions" und suchen nach WSL. Installieren Sie die offizielle von
-  Microsoft veröffentlichte Extension.
+  "Extensions" und suchen nach WSL.
+  Installieren Sie die offizielle von Microsoft veröffentlichte Extension.
 
 [WARNING]
 Es gibt viele verschiedene Extensions bei VS Code, die häufig gleiche oder
-ähnliche Namen haben. Installieren Sie wen möglich nur Extensions von
-vertrauenswürdigen Anbietern. Alle im ProPra benötigten Extensions werden von
-Microsoft bereitgestellt.
+ähnliche Namen haben.
+Installieren Sie wen möglich nur Extensions von vertrauenswürdigen Anbietern.
+Alle im ProPra benötigten Extensions werden von Microsoft bereitgestellt.
 [ENDWARNING]
 
 - Klicken Sie unten links auf den "Open Remote Connection" Button oder drücken
@@ -43,9 +44,10 @@ Microsoft bereitgestellt.
 - Gehen Sie links auf den Reiter "Extensions" und suchen und installieren Sie
   nun die von Microsoft veröffentlichte Extension "C/C++".
 - Sie sollten bereits ein git-Repository für ihre Aufgaben erstellt und in ein
-  Verzeichnis in ihrem WSL geklont haben. Um dieses nun in der IDE zu öffnen,
-  gehen Sie links auf den Reiter "Explorer", klicken Sie auf "Open Folder" und
-  navigieren Sie zu dem Verzeichnis ihres Repos. Dieses sollte unter
+  Verzeichnis in ihrem WSL geklont haben.
+  Um dieses nun in der IDE zu öffnen, gehen Sie links auf den Reiter
+  "Explorer", klicken Sie auf "Open Folder" und navigieren Sie zu dem
+  Verzeichnis ihres Repos. Dieses sollte unter
   `\home\<WSL-Benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
 - Wählen Sie "Yes, I trust the authors".
 
@@ -66,8 +68,8 @@ Ihrem/Ihrer Tutor_in.
 
 [INSTRUCTOR::Minimale Prüfung]
 Nur per kurzem Augenschein prüfen, ob die IDE im Sinne unserer Aufgaben
-eingerichtet ist. Ein Studi, der hier etwas verschlampt hat, wird es noch
-ausführlich bereuen.
+eingerichtet ist.
+Ein Studi, der hier etwas verschlampt hat, wird es noch ausführlich bereuen.
 
 Achten Sie darauf ob die C/C++ Extension installiert wurde und ob ein gültiger
 `gcc -v` Aufruf über das VSCode Terminal möglich ist. 

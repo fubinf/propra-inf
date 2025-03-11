@@ -7,7 +7,7 @@ difficulty: 2
 Ich habe sichergestellt, dass die GCC Werkzeugkette für C/C++ funktioniert.
 [ENDSECTION]
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 ### GCC Werkzeugkette prüfen
 
 Rufen Sie `gcc -v` auf, um die C-Compiler-Version zu prüfen. Wir brauchen

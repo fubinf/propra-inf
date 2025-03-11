@@ -7,14 +7,15 @@ difficulty: 2
 Ich habe sichergestellt, dass die GCC Werkzeugkette für C/C++ funktioniert.
 [ENDSECTION]
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 ### GCC Werkzeugkette installieren
 
 Installieren sie die GCC Werkzeugkette über Homebrew mittels
-`brew install gcc@14`. Sollte diese Version sich bei Ihnen nicht installieren
-lassen, so können Sie auch `gcc@13` bzw. `gcc@12`. Da wir mindestens Version 12
-benötigen, müssen Sie sich für einen anderen Rechner entscheiden, sollte auch
-`gcc@12` sich nicht installieren lassen
+`brew install gcc@14`.
+Sollte diese Version sich bei Ihnen nicht installieren lassen, so können Sie
+auch `gcc@13` bzw. `gcc@12` verwenden.
+Da wir mindestens Version 12 benötigen, müssen Sie sich für einen anderen
+Rechner entscheiden, sollte auch `gcc@12` sich nicht installieren lassen
 
 ### GCC Werkzeugkette prüfen
 
@@ -28,10 +29,12 @@ Sie die Befehle entsprechend an.
 [WARNING]
 Wenn künftig von die Befehle `gcc` oder `g++` ausgeführt werden
 sollen, so müssen Sie diese auf die von Ihnen hier installierte Version
-anpassen. Tun Sie dies nicht, so rufen Sie anstelle dessen den clang-Compiler
-von Apple auf (dieser wurde mit den Xcode Command Line Tools
-installiert welche von Homebrew benötigt werden). GCC und clang führen zwar
-zum selben Ziel, haben aber andere Kommandozeilenparameter und Warnungen.
+anpassen.
+Tun Sie dies nicht, so rufen Sie anstelle dessen den clang-Compiler
+von Apple auf (dieser wurde mit den Xcode Command Line Tools installiert welche
+von Homebrew benötigt werden).
+GCC und clang führen zwar zum selben Ziel, haben aber andere
+Kommandozeilenparameter und Warnungen.
 [ENDWARNING]
 
 [INCLUDE::C_CheckCompile.inc]

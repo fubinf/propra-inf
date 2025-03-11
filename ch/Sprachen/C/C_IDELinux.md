@@ -9,12 +9,13 @@ Ich habe eine funktionierende IDE auf Linux.
 [ENDSECTION]
 
 [SECTION::background::default]
-Für C gibt es unzählige IDEs. Aus Einfachheit nutzen wir hier VSCode.
+Für C gibt es unzählige IDEs.
+Aus Einfachheit nutzen wir hier VSCode.
 Wenn sie diese schon nutzen, können Sie direkt mit der Installation der
 benötigten Extension fortfahren.
 [ENDSECTION]
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
 ### Installieren von VSCode
 
@@ -26,9 +27,9 @@ benötigten Extension fortfahren.
 
 [WARNING]
 Es gibt viele verschiedene Extensions bei VS Code, die häufig gleiche oder
-ähnliche Namen haben. Installieren Sie wen möglich nur Extensions von
-vertrauenswürdigen Anbietern. Alle im ProPra benötigten Extensions werden von
-Microsoft bereitgestellt.
+ähnliche Namen haben.
+Installieren Sie wen möglich nur Extensions von vertrauenswürdigen Anbietern.
+Alle im ProPra benötigten Extensions werden von Microsoft bereitgestellt.
 [ENDWARNING]
 
 [INCLUDE::C_VSSetup.inc]

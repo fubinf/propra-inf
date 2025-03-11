@@ -9,5 +9,6 @@ int main() {
 ```
 
 Führen Sie anschließend die Befehle `gcc -o test test.c`, gefolgt von `./test`
-aus. Es sollte nun **GCC funktioniert soweit** auf der Kommandozeile
-ausgedruckt werden.
+aus.
+Es sollte nun **GCC funktioniert soweit** auf der Kommandozeile ausgedruckt
+werden.
