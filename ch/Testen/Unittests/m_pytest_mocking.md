@@ -1,8 +1,8 @@
-title: Pytest in Python - Mocking Anwendung
+title: "'unittest.mock': Ersetzen von Objekten für Testzwecke"
 stage: alpha
 timevalue: 3.0
 difficulty: 2
-assumes: m_pytest
+assumes: m_pytest, m_json1
 ---
 
 [SECTION::goal::idea]
@@ -21,23 +21,22 @@ Aber wenn ein Modul von vielen anderen Dingen abhängt, stellt sich die Frage, o
 alle mittesten soll und will.
 
 Mocking ist ein Mechanismus, der das Nicht-Mittesten erlaubt, indem eine Abhängigkeit
-durch einen simplen Dummy ersetzt wird, der gerade genug kann für den aktuellen Testfall.
+durch einen Stellvertreter ersetzt wird, der gerade genug kann für den aktuellen Testfall.
 Typische Fälle für solche Abhängigkeiten sind
-externe Web-APIs,
-Dateien mit bestimmten Eigenschaften,
-Datenbanksysteme
-oder irgendwelche eigenen Klassen, die für den Testzweck zu kompliziert zu konfigurieren sind,
-weil dazu noch viele weitere Objekte als Voraussetzung nötig wären, die selber wiederum... --
-und so weiter.
+    - Zugriffe auf externe Systeme (z.B. Web-APIs),
+    - Zugriffe auf Datenbanksysteme
+    - Aufrufe, die aus sonstigen Gründen sehr lange dauern,
+    - eigene Klassen, die für den Testzweck zu kompliziert zu konfigurieren sind, z.B.
+      weil dazu noch viele weitere Objekte als Voraussetzung nötig wären, die selber wiederum... -- 
+      und so weiter.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
 
 ### Vorbereitung
 
-- Installieren Sie `pytest` mittels `pip install pytest`.
-- Verschaffen Sie sich einen Überblick über die offizielle Dokumentation zu `unittest.mock`
-  [hier](https://docs.python.org/3/library/unittest.mock.html).
+Verschaffen Sie sich einen Überblick über die 
+[Dokumentation von `unittest.mock`](https://docs.python.org/3/library/unittest.mock.html).
 
 ### Aufgaben 
 
@@ -46,14 +45,19 @@ Zu jeder Aufgabe wird es eine kleine Funktion geben, die in einer Datei abzulege
 - Erstellen Sie die Datei `m_pytest_mocking.py`, um anschließend damit zu arbeiten.
 
 Ihre Aufgabe ist es, die externen Abhängigkeiten und Seiteneffekte zu Ihren Tests zu isolieren,
-damit Sie sich auf das Testen der eigentlichen Logik einer Funktionen und Methoden konzentrieren
+damit Sie sich auf das Testen der eigentlichen Logik Ihrer Funktionen und Methoden konzentrieren
 können.
 
-#### Aufgabe 1: Mocking einer externen API
+#### Aufgabe 1: Mocking einer Web-API
 
-- [ER] Schreiben Sie einen Pytest für die Funktion `get_weather_data()`, die sich in der Datei
-  `m_pytest_mocking.py` befinden soll und eine externe API aufruft. Mocken Sie den API-Aufruf, um
-  sicherzustellen, dass keine echten Netzwerkanfragen während des Tests gemacht werden.
+- [ER] Schreiben Sie einen Pytest für die Funktion `get_weather_data()` wie unten angegeben, die sich in der Datei
+  `m_pytest_mocking.py` befinden soll und eine Web-API aufruft.   
+  Mocken Sie den API-Aufruf `requests.get`, um
+  sicherzustellen, dass während des Tests keine echte Netzwerkanfrage gemacht wird, denn diese
+  dauert erstens relativ lange und könnte zweitens (wie in unserem Fall) fehlschlagen, wenn
+  der betreffende externe Server nicht antwortet -- wozu es viele Gründe geben kann.  
+  Der Test soll erwarten, dass die Antwort `{"temperature": 22, "weather": "sunny"}` lautet.
+  Er soll außerdem sicherstellen, dass wirklich der korrekte URL angefragt wurde.
 
 ```Python
 import requests
@@ -64,11 +68,13 @@ def get_weather_data(city):
     return response.json()
 ```
 
-[HINT::Mockobjekte ersetzen]
+[HINT::Mockobjekte einsetzen]
 Betrachten Sie den Bereich `patch` in der offiziellen Dokumentation.
-Wir können patch nutzen, um bestimmte Objekte oder Funktionen während der Ausführung eines Tests
-zu ersetzen (zu mocken). Dies ermöglicht es uns, das Verhalten von Abhängigkeiten zu kontrollieren
-und sicherzustellen, dass der Test isoliert und unabhängig von externen Faktoren bleibt.
+Wir können `patch` nutzen, um bestimmte Objekte oder Funktionen während der Ausführung eines Tests
+zu ersetzen (zu "mocken"). 
+Dies ermöglicht es uns, das Verhalten des ersetzten Teils genau so zu gestalten, wie es für unseren Test
+am günstigsten ist,
+und somit sicherzustellen, dass der Test isoliert und unabhängig von externen Faktoren bleibt.
 [ENDHINT]
 
 **Warum Mocking hier sinnvoll ist**: Netzwerkanfragen können langsam und unzuverlässig sein. Durch
@@ -79,7 +85,8 @@ Mocking können wir sicherstellen, dass unsere Tests schnell und zuverlässig si
 - [ER] Schreiben Sie einen Pytest für die Funktion `read_log_file()`, die sich in der Datei
   `m_pytest_mocking.py` befinden soll und eine Datei liest und verarbeitet. Mocken Sie die
   Dateioperationen, um zu verhindern, dass während der Tests echte Dateien gelesen oder geschrieben
-  werden.
+  werden.   
+  Der Test soll zwei Zeilen mit "ERROR" betrachten plus eine Zeile ohne.
 
 ```Python
 def read_log_file(file_path):
@@ -93,8 +100,8 @@ def read_log_file(file_path):
 
 [HINT::Dateioperationen]
 Betrachten Sie den Bereich `mock_open` in der offiziellen Dokumentation.
-Wir können mock_open nutzen, um die eingebaute open-Funktion zu mocken. Dies ermöglicht es uns,
-Dateizugriffe zu simulieren, ohne tatsächlich Dateien lesen oder schreiben zu müssen. mock_open ist
+Wir können `mock_open` nutzen, um die eingebaute open-Funktion zu mocken. Dies ermöglicht es uns,
+Dateizugriffe zu simulieren, ohne tatsächlich Dateien lesen oder schreiben zu müssen. `mock_open` ist
 besonders nützlich, um das Verhalten von Funktionen zu testen, die Dateien öffnen und lesen oder
 schreiben, ohne dass echte Dateien benötigt werden.
 [ENDHINT]
@@ -156,11 +163,12 @@ der Rückgabe von Ergebnissen für SQL-Abfragen.
 **Warum Mocking hier sinnvoll ist**: Datenbankoperationen können langsam und komplex sein. Durch
 Mocking können wir sicherstellen, dass unsere Tests schnell und zuverlässig sind.
 
-### Reflektion: "Wann sollte man wie mocken und wann lieber nicht"
+### Reflektion: "Wann sollte man wie mocken und wann lieber nicht?"
 
 #### Testdoubles: "Mocken ist nicht gleich mocken"
 
-Überfliegen Sie den Artikel von Martin Fowler [hier](https://martinfowler.com/articles/mocksArentStubs.html).
+Überfliegen Sie den 
+[Artikel von Martin Fowler zu "Mocking"](https://martinfowler.com/articles/mocksArentStubs.html).
 Lesen Sie den Bereich der Testdoubles.
 
 - [ER] Betrachten Sie die folgende Funktion `send_email_to_users(users, email_service)`, die sich in
@@ -176,11 +184,12 @@ def send_email_to_users(users, email_service):
 
 #### Vor- und Nachteile vom Mocking
 
-Nutzen Sie den folgenden Artikel von Robert C. Martin zum Thema ["When to Mock"](https://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html).
+Nutzen Sie den folgenden Artikel von Robert C. Martin (oft genannt "Uncle Bob") zum Thema 
+["When to Mock"](https://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html).
 
-- [EQ] Stimmen Sie den Aussagen von `Uncle Bob` zu? Welche Aussagen können Sie warum besonders unertstreichen?
-- [EQ] Fallen Ihnen weitere Argumente ein, wann Mocking weniger bis gar nicht sinnvoll ist und die
-  nicht im Artikel erwähnt wurden?
+- [EQ] Stimmen Sie den Aussagen von "Uncle Bob" zu? 
+  Welcher am meisten? Warum?
+  Welcher am wenigsten? Warum?
 
 [HINT::Überlegungshilfen]
 
