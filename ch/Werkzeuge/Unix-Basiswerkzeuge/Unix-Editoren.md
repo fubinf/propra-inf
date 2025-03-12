@@ -68,6 +68,7 @@ Machen Sie sich mit den Shorcuts von `nano` mit diesem
 
 - [EC] Öffnen Sie die gerade erstellte Datei mit `nano`.
 - [EC] Bewegen Sie sich mit den Pfeiltasten auf den Zeilen.
+  
   Probieren Sie auch `Ctrl`-Pfeiltasten aus sowie `Pos1` und `End` mit und ohne `Ctrl`.
 
 - [EC] Kopieren Sie folgenden Teil aus der dritten Zeile in den Zwischenpuffer von `nano`: `Stet clita kasd gubergren`
