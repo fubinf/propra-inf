@@ -2,6 +2,7 @@ title: "redirect und pipe: Ein- und Ausgaben umlenken"
 stage: beta
 timevalue: 1.0
 difficulty: 2
+mentions: tee, xargs
 ---
 
 [SECTION::goal::idea]
@@ -104,7 +105,8 @@ Pipes sind nützlich, wenn man aus einer langen Ausgabe filtern möchte.
 
 Mit dem oberen Befehl werden alle Dateien aus `/usr/bin`, die `grep` im Namen haben, angezeigt.
 
-Zwei weitere nennenswerte Befehle die mit Pipes genutzt werden, sind `xargs`und `tee`.
+Zwei weitere nennenswerte Befehle die mit Pipes genutzt werden, sind [TERMREF::xargs] und [TERMREF::tee].
+`xargs`und `tee`.
 
 Mit `xargs` wird ein Befehl auf den Standardinput angenwendet.
 
