@@ -1270,6 +1270,12 @@ Geht ein Paket verloren oder wird beschädigt, fordert TCP dessen erneute Übert
 So wird eine vollständige und fehlerfreie Datenübertragung sichergestellt.
 [ENDTERM]
 
+[TERM::tee]
+Der Unix-Befehl `tee` liest die Standardeingabe und schreibt sie sowohl in die Standardausgabe als 
+auch in eine oder mehrere Dateien. Er wird oft verwendet, um die Ausgabe eines Befehls zu speichern 
+und gleichzeitig anzuzeigen.
+[ENDTERM]
+
 [TERM::Test]
 Das Ausprobieren von Software, um relevante Eigenschaften zu überprüfen;
 meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
@@ -1498,6 +1504,12 @@ lesbarer und wartbarer zu machen.
 [ENDTERM]
 
 ## X
+
+[TERM::xargs]
+`xargs` nimmt die Standardeingabe (z.B. eine Liste von Dateinamen) und führt damit einen weiteren yBefehl 
+aus. Es ist nützlich, um lange Listen von Argumenten zu verarbeiten, die sonst die Befehlszeilenlänge 
+überschreiten würden.
+[ENDTERM]
 
 [TERM::XML]
 XML (eXtensible Markup Language) ist eine [TERMREF::Auszeichnungssprache] zur Darstellung
