@@ -86,7 +86,7 @@ existiert.
 ### Kombinierte Umleitung
 
 Um die gesamte Ausgabe eines Skripts oder Befehls in einer einzigen Datei zu protokollieren, wird 
-`2>&1` genutzt. Sie leitet den Standardfehlerstrom (2) in den Standardausgabestrom (1) um. Das 
+`2>&1` genutzt. Sie leitet `stderr` in `stdout` um. Das 
 bedeutet, dass sowohl normale Ausgaben als auch Fehlermeldungen in derselben Datei oder an denselben 
 Befehl gesendet werden. 
 Genauer gesagt, wird in das _aktuelle Ziel_ des Standausgabestroms umgeleitet.
@@ -97,8 +97,8 @@ Will man den gar nicht auf dem Terminal haben, muss man ihn also _zuvor_ umleite
 
 ### Pipes
 
-Der pipe-Operator(|) öffnet eine `pipeline` zwischen zwei Befehlen, wo kontinuierlich der Standardoutput (1)
-des ersten Befehls in den Standardinput (0) des nächsten Befehls weitergeleitet wird.
+Der pipe-Operator(|) öffnet eine `pipeline` zwischen zwei Befehlen, wo kontinuierlich `stdout`
+des ersten Befehls in `stdin` des nächsten Befehls weitergeleitet wird.
 Pipes sind nützlich, wenn man aus einer langen Ausgabe filtern möchte.
 
  - [EC] `ls -l /usr/bin | grep grep`
@@ -108,7 +108,7 @@ Mit dem oberen Befehl werden alle Dateien aus `/usr/bin`, die `grep` im Namen ha
 Zwei weitere nennenswerte Befehle die mit Pipes genutzt werden, sind [TERMREF::xargs] und [TERMREF::tee].
 `xargs`und `tee`.
 
-Mit `xargs` wird ein Befehl auf den Standardinput angenwendet.
+Mit `xargs` wird ein Befehl auf `stdin` angenwendet.
 
  - [EC] `ls ~/ | xargs wc -l`
 
@@ -117,8 +117,8 @@ In diesem Fall könnten wir das mit dem gleichwertigen Kommando `wc -l ~/*` auch
 aber wenn man links statt `ls` eine andere Logik hat, um die Dateinamen zu ermitteln, 
 geht das sofort nicht mehr.
 
-Mit `tee` wird die Standardausgabe eines Befehls dupliziert:
-Die eine Kopie geht wieder in die Standardausgabe, die andere in eine Datei:
+Mit `tee` wird `stdout` eines Befehls dupliziert:
+Die eine Kopie geht wieder in `stdout`, die andere in eine Datei:
 
 
  - [EC] `ls -l /tmp | tee redirect_tmp.txt`
