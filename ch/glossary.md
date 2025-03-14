@@ -346,6 +346,15 @@ www.beispiel.de, eingeben können, um eine Webseite zu erreichen. Vereinfacht ge
 Telefonbuch fürs Internet.
 [ENDTERM]
 
+[TERM::DNS-Record-Types]
+DNS-Record-Typen sind Einträge im Domain Name System (DNS), die Informationen über Domains und deren 
+zugehörige Ressourcen speichern. Jeder Record-Typ hat eine spezifische Funktion und speichert 
+unterschiedliche Arten von Daten. Zum Beispiel gibt der MX-Record den den Mailserver an, der für den 
+Empfang von E-Mails für eine Domain zuständig ist.
+Eine Übersicht aller [TERMREF::DNS-Record-Types] findet man auf 
+[nslookup.io](https://www.nslookup.io/learning/dns-record-types/).
+[ENDTERM]
+
 [TERM::DRY|DRY-Prinzip|Don't repeat yourself]
 DRY steht für "don't repeat yourself".
 Das Prinzip besagt, man solle Redundanz vermeiden oder zumindest reduzieren,
@@ -1173,6 +1182,16 @@ Eine Prozedur, die in der [TERMREF::Unix-Shell] einmal definiert wird,
 z.B. in [TERMREF::.bashrc] oder einem Shellskript,
 und sich dann immer wieder aufrufen lässt.
 Fasst mehrere Kommandos zu einem zusammen, ggf. auch mit Schleifen oder Fallunterscheidungen.
+[ENDTERM]
+
+[TERM::SOA|Start of Authority]
+Der SOA-Record (Start of Authority) ist ein essenzieller Ressourceneintrag im Domain Name System 
+(DNS), der die administrativen Parameter einer DNS-Zone definiert. Er dient als Kontrollzentrum 
+für die Zonenverwaltung und ist entscheidend für die korrekte Funktion des Zonentransfers, bei dem 
+DNS-Daten von einem primären zu sekundären Nameservern repliziert werden.
+Der SOA-Record enthält detaillierte Informationen wie den primären Nameserver (MNAME), die 
+E-Mail-Adresse des Zonenadministrators (RNAME) und eine Seriennummer (SERIAL), die bei jeder Zonenänderung 
+inkrementiert wird, um sekundäre Nameserver über Aktualisierungen zu informieren.
 [ENDTERM]
 
 [TERM::SSH]
