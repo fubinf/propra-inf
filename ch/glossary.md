@@ -1349,8 +1349,10 @@ Bestandteil des Domain Name Systems (DNS).
 [ENDTERM]
 
 [TERM::traceroute|Traceroute]
-Traceroute ist ein Befehl, um den Pfad von Datenpaketen in einem Netzwerk zu verfolgen. Es zeigt
-die einzelnen Hops und die Antwortzeit zum Hop entlang des Weges an.
+Der Unix-Befehl `traceroute` zeigt den Pfad an, den Datenpakete durch ein Netzwerk nehmen, um ein 
+Ziel zu erreichen. Es listet die einzelnen Hops (Zwischenstationen) auf, die die Pakete durchlaufen, 
+und misst die Antwortzeit zu jedem Hop. Dies ist nützlich, um Netzwerkprobleme zu diagnostizieren 
+oder die Route zu einem Server zu analysieren.
 [ENDTERM]
 
 [TERM::Transportprotokoll]
