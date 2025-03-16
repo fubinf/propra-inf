@@ -1,6 +1,6 @@
 title: Netzwerkgrundlagen mit DNS Werkzeugen
 stage: alpha
-timevalue: 0.5
+timevalue: 1.0
 difficulty: 2
 assumes: SSH
 
@@ -91,6 +91,28 @@ von nixcraft die **DNS record types** nach.
 ### Reflektion
 
 - [EQ] Charakterisieren Sie grob den wichtigsten Unterschied zwischen `dig` und `host` aus Aufrufersicht.
+
+### traceroute
+
+`[TERMREF::traceroute]` ist ein Befehl der den Netzwerkpfad von der Quelle zum Ziel angibt.
+
+Dieser Befehl ist nützlich, um nachvollziehen zu können, wo die Pakete hängen bleiben, falls das Ziel nicht erreicht werden kann.
+
+Lesen Sie die [traceroute(1) manpage](https://manpages.debian.org/bookworm/traceroute/traceroute.1.en.html). 
+Lesen Sie insbesondere die Synopsis, die **Description** und die Option **-I**.
+
+- [EC] Suchen Sie nach dem Pfad von Ihrem Rechner zum Zielserver mit `traceroute`.
+
+Falls der Pfad nicht komplett aufgelöst werden konnte, ist das in Ordnung.
+
+`traceroute` arbeitet im default-Modus mit UDP Paketen, die beim ersten Hop mit dem Port 33434 
+anfangen und bei jedem nächsten Hop inkrementiert wird. Falls bei einem Server die Ports geschlossen 
+sind, kann man sie sozusagen nicht erreichen.
+
+Dafür gibt es eine neuere Methode, indem man ICMP-Pakete für die Verfolgung nutzt.
+
+- [EC] Suchen Sie nach dem Pfad von Ihrem Rechner zum Zielserver mit ICMP-Paketen.
+
 
 [ENDSECTION]
 
