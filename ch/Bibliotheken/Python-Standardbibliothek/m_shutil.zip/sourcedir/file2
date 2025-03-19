@@ -1,3 +1,0 @@
-#! /bin/bash
-echo -e "\npermissions of $(basename $0):"
-ls -l $0

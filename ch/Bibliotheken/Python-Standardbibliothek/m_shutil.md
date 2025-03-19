@@ -5,6 +5,8 @@ difficulty: 2
 assumes: m_os.path, m_subprocess, Dateiberechtigungen
 ---
 
+<!-- TODO_3: assumes: m_os hinzufügen für os.chmod(), falls eine solche Aufgabe erstellt wird -->
+
 [SECTION::goal::idea]
 
 Ich kann verschiedene Operationen für Dateien und Verzeichnisse verwenden und kenne deren 
@@ -36,9 +38,28 @@ von Operationen zu diesem Thema an.
   Aufgabe. 
   Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile 
   getrennt.
-- Laden Sie [PARTREF::m_shutil.zip] herunter und entpacken Sie die Ordnerstruktur im selben 
-  Verzeichnis wie ihr Python Skript (die Verschachtelung sollte folgendermaßen aussehen:  
-  `<Ihr Taskgroupordner>/m_shutil/sourcedir/...`).
+- Laden Sie [PARTREF::m_shutil.zip] herunter und entpacken Sie die Ordnerstruktur in ihrem 
+  Hilfsbereich (die Verschachtelung sollte folgendermaßen aussehen: 
+  `<Ihr Hilfsbereich>/m_shutil/source/...`).
+- [ER] Die Dateien `file1` und `dir/a` sollen [TERMREF2::Executable::ausführbar] sein. Da diese 
+  [TERMREF::Dateiberechtigungen] durch git und Ver- und Entpacken verloren gehen können, setzen Sie 
+  als Erstes in Ihrem Skript das Executable Bit für beide Dateien mithilfe von 
+  [`os.chmod()`](https://docs.python.org/3/library/os.html#os.chmod).
+
+[HINT::Wie verwende ich `chmod()`?]
+`os.chmod()` überschreibt die Dateiberechtigungen, anstatt die gewünschte hinzuzufügen. 
+Daher müssen wir zuerst die bestehenden Berechtigungen auslesen und zusätzlich zum Executable 
+Bit an die Funktion übergeben:  
+```python
+os.chmod(..., os.stat(...).st_mode | stat.S_IEXEC)
+```
+[ENDHINT]
+
+[NOTICE]
+Um den Tutoren die Korrektur zu erleichtern, vermeiden Sie absolute Pfadangaben zu Ihrem 
+Hilfsverzeichnis und verwenden Sie stattdessen `os.path`, um dynamisch auf ihr Home-Verzeichnis 
+zu navigieren.
+[ENDNOTICE]
 
 ### Dateien löschen
 
@@ -58,7 +79,7 @@ in den folgenden Aufgaben die Dateien bei jeder Ausführung Ihres Codes neu einf
 
 ### Dateien kopieren und verschieben
 
-In den folgenden Aufgaben geht es größtenteils darum, die Elemente aus `sourcedir` in den neuen 
+In den folgenden Aufgaben geht es größtenteils darum, die Elemente aus `source` in den neuen 
 Ordner `destination` zu kopieren/verschieben, jeweils mit anderen Anforderungen.
 
 - [EQ] Ihnen wird beim Durchstöbern der Dokumentation vermutlich aufgefallen sein, dass es vor allem 
@@ -69,17 +90,6 @@ Ordner `destination` zu kopieren/verschieben, jeweils mit anderen Anforderungen.
   Dateiberechtigungen kopiert werden.  
   Da `file1` ein ausführbares Bash-Skript ist, führen Sie es anschließend mithilfe von 
   `subprocess` aus.
-
-[HINT::`file1` ist nicht ausführbar]
-Abhängig von Ihrem Betriebssystem und Entpackungsprogramm kann es passiert sein, dass das 
-Executable Bit beim Entpacken verloren gegangen ist. 
-In dem Fall dürfen Sie es per Terminal für die Dateien `file1` und `dir/a` setzen:
-
-```bash
-chmod +x m_shutil/sourcedir/file1 m_shutil/sourcedir/dir/a
-```
-[ENDHINT]
-
 - [ER] Kopieren Sie nun *den Inhalt* von `file2`.
 - [ER] Sorgen Sie nun dafür, dass auch Ihre Kopie von`file2` ausführbar wird, indem Sie die 
   Dateiberechtigungen mithilfe von `shutil` von `file1` in `file2` kopieren.  
