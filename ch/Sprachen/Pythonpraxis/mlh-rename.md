@@ -2,10 +2,9 @@ title: "My Little Helpers: rename --- Rename multiple files via a pattern"
 stage: beta
 timevalue: 1.5
 difficulty: 3
-assumes: m_pytest, m_tempfile, m_os.path
+assumes: m_pytest, m_tempfile, m_os.path, m_shutil
 requires: argparse_subcommand
 ---
-TODO_2 assumes: m_shutil
 
 [SECTION::goal::experience,product]
 
