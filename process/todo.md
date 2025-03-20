@@ -61,6 +61,7 @@ In alphabetischer Reihenfolge der Dateinamen.
 
 Einzelaufgaben:
 
+- `json1` --> `json`
 - `Git101`: Wie geht denn die Installation? Wo sind die Hyperlinks zu den URLs? 
   Was bedeutet Klonen?
 - `m_argparse`: Musterlösung machen; `argparsetest.py` umbenennen.
@@ -97,8 +98,9 @@ Sonderdateien:
 
 Bald:
 
-- `viewer`: Bei fehlenden Dateien sauber 404 liefern (derzeit: Exception)
-
+- `webapp`: Für `.prot` und `.md` Quell-Link ergänzen und bei `raw=` für `.prot` für
+  mimetype `text/plain` sorgen
+- `instructor`: ohne studentdir nicht akzeptieren
 - `student`: `student.yaml` sollte die Kursgröße in Stunden deklarieren.
   Dann kann die Aufgabentabelle Hurra schreien, wenn man fertig ist.
 - `instructor`: Ungeprüfte Akzeptanz unterscheiden von geprüfter.
