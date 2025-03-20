@@ -306,7 +306,8 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
     - Um das zu unterstützen, ist das per Email zu sendende Kommando jetzt ein anderes.
       Sie bekommen es angezeigt, wenn Sie die oben erwähnte aktuell Version von `sedrila` benutzen.
     - Auch Sie selbst können von der Unterstützung für Tutor_innen profitieren:
-      Der Viewer kann jetzt über mehrere Verzeichnisbäume (Ihren plus den Ihrer Partner_in) gleichzeitig
+      Der Viewer (jetzt per `sedrila student --op webapp`) 
+      kann jetzt über mehrere Verzeichnisbäume (Ihren plus den Ihrer Partner_in) gleichzeitig
       browsen und markiert Dateien, die zur Abgabe vorgesehen sind. Probieren Sie es aus.
 - **2025-03-11**:
     - Aufgaben Web/CSS/[PARTREF::CSSBoxModel] und Web/CSS/[PARTREF::CSSSelektoren] zugefügt.

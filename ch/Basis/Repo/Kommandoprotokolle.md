@@ -137,9 +137,9 @@ Analog werden wir das künftig bei vielen Aufgaben machen.
 Ein falsches Kommandoprotokoll kann sehr verwirrend sein.
 Kontrollieren Sie deshalb vor dem Einchecken Ihr Protokoll bitte wie folgt:
 
-- Rufen Sie `sedrila viewer` auf.
+- Rufen Sie `sedrila  student --op webapp` auf.
   Das startet einen Webserver.
-- Besuchen Sie nun `http://localhost:8080` in Ihrem Browser.
+- Besuchen Sie nun `http://localhost:8077` in Ihrem Browser.
   Sie erhalten ein Verzeichnislisting Ihres Arbeitsverzeichnisses.
 - Klicken Sie `Kommandoprotokolle.prot` an.
   Das öffnet die Ansicht auf Ihr Protokoll, die Ihre Tutor_in benutzen wird.
@@ -173,7 +173,7 @@ Wir erwarten von Kommandoprotokollen folgendes:
    sowohl den inhaltlichen Zweck (Wirkung des Kommandos) als auch den Lernzweck (wegen dem
    bei manchen Aufgaben nicht jedes Kommando mit gleicher Wirkung akzeptabel ist).
 
-In dieser Aufgabe sollte das Ergebnis mit `sedrila viewer` sinngemäß wie folgt aussehen
+In dieser Aufgabe sollte das Ergebnis mit `sedrila  instructor --op webapp` sinngemäß wie folgt aussehen
 (Stand August 2024):
 
 [PROT::ALT:Kommandoprotokolle.prot]
