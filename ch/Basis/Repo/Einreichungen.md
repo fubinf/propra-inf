@@ -152,8 +152,15 @@ Zeigen Sie nun Ihre bisherigen Ergebnisse bei der Tutor_in vor wie vom Kommando
 `sedrila student --submission` beschrieben.
 
 Die Email dient dabei nur zum Übermitteln der Zugangsdaten,
-für die Abnahme müssen Sie **stets persönlich hingehen**, 
-damit die Tutor_in Ihnen mündlich Rückmeldung geben kann oder Rückfragen stellen.
+für die Abnahme gelten die Verfahrensweisen, die die 
+Veranstalter_innen dafür bekannt gegeben haben.
+
+[WARNING]
+Bedenken Sie gegen Ende des Kurszeitraums, dass Sie vor Ihrer nächsten Abgabe zuerst
+die Rückmeldung zur vorherigen abwarten müssen.
+Achten Sie darauf, dass bis zum Schlusstermin genügend Luft bleibt, um auch Ihre letzte
+Abgabe sauber abwickeln zu können!
+[ENDWARNING]
 [ENDSECTION]
 
 [INSTRUCTOR::Nichts zu prüfen]
