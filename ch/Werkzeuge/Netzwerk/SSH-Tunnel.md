@@ -1,8 +1,8 @@
 title: SSH-Tunnel
 stage: alpha
-timevalue: 1.0
+timevalue: 0.5
 difficulty: 2
-assumes: SSH, rsync
+assumes: SSH
 ---
 [SECTION::goal::idea]
 
@@ -25,83 +25,33 @@ Zielserver = `andorra.imp.fu-berlin.de`
 </replacement>
 
 
-### Vorbereitungen
-
-- [ER] Erstellen Sie eine Datei `webserver.py` mit unterem Inhalt auf Ihrem Rechner.
-
-```python
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello():
-    return 'Hello Tunnel'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
-```
-
-- [ER] Stellen Sie sicher, dass sie [PARTREF::venv] eingerichtet haben.
-
-### Starten des Webservers und des Porttunnels
-
-Angenommen Sie haben in Ihrer Firma eine komplizierte Entwicklungsumgebung eingerichtet, die viel 
-Rechenkapazität benötigt. Sie wollen sich diese Entickwlungsumgebung auf Ihrem Notebook der Firma 
-einrichten, aber merken schnell, dass es nicht funktionieren wird. Sie lernen von SSH-Tunneln und 
-versuchen somit die Entwicklungsumgebung auf ihrem Rechner zum Laufen zu bekommen.
-
-Zur Veranschaulichung der Tunnel werden wir hier einen kleinen Webserver nutzen, der 
-"Hello Tunnel" anzeigt. 
-
-- [EC] Kopieren Sie das Skript `webserver.py` mit `rsync` auf den Zielserver.
-- [EC] Melden Sie sich auf dem Zielserver an.
-- [EC] Installieren Sie `Flask` mit pip in ihrer [TERMREF::venv] auf dem Zielserver.
+### Starten des Porttunnels
 
 Schauen Sie sich die [Beispiele](https://wiki.ubuntuusers.de/SSH/#SSH-Tunnel) von SSH-Tunneln von 
 ubuntuusers an.  
 Lesen Sie die Option **-L** der ssh(1) [manpage](https://man.openbsd.org/ssh).
 
-- [EC] Starten sie den Webserver auf dem Zielserver: `python webserver.py`.
+- [EC] Öffnen Sie einen Porttunnel auf Ihrem System mit Port 9007 und leiten Sie es auf localhost weiter.
 
-[NOTICE]
-Falls Sie WSL nutzen und Sie keine Möglichkeit haben graphische Programme zu starten beziehungsweise 
-nicht möchten, können Sie sich den textbasiereten Browser `lynx` installieren und nutzen.  
-Seiten werden mit diesem Kommando geöffnet: `lynx host:port`.  
-Den Browser wird mit `q` und dann mit `Enter` oder `y` geschlossen.
-[ENDNOTICE]
+[WARNING]
+Führen Sie den nächsten Befehl in einem Dateibaum mit ganz unwichtigen Daten. Mit dem Befehl öffnen 
+Sie den Port 9007 öffentlich sichtbar für das Internet. Also mit Vorsicht benutzen. 
+[ENDWARNING]
 
-- [EC] Öffnen Sie einen Porttunnel mit dem angegebenen Port aus dem `webserver.py`-Skript.
-- [EC] Öffnen Sie einen Browser auf Ihrem System, nicht dem Zielserver (!), und geben die Adresse 
-       aus dem Skript an.
+- [EC] Starten sie den Webserver auf dem Zielserver: `python -m http.server 9007`.
+- [EC] Öffnen Sie einen Browser auf Ihrem System, nicht dem Zielserver (!), und greifen Sie auf 
+    den localhost mit Port zu.
 
-Jetzt sollten oben links im Fenster 'Hello Tunnel' stehen.
+Eine Liste Ihrer Dateien sollte jetzt sichtbar sein.
 
+- [EC] Um die Funktionalität des Servers zu testen, laden Sie eine Datei runter.
 - [EC] Schließen Sie den Browser.
-- [EC] Schließen Sie die Verbindung.
-
-### X11 Weiterleitung
-
-Die X11 Weiterleitung ermöglicht es Ihnen grafische Programme von einem entfernten Rechner auf 
-ihrem Rechner anzeigen zu lassen.  
-Stellen Sie sich vor, Sie arbeiten an einem CAD-Modell und brauchen dafür wieder eine sehr hohe 
-Rechenleistung. Sie haben versucht das Modell auf ihrem Rechner zu starten, aber das Programm 
-stürzt jedes Mal ab.  
-Als Veranschaulichung nehmen wir hier den Browser `firefox`.
-
-Lesen Sie die Optionen **-Y** und **-X** der ssh(1) [manpage](https://man.openbsd.org/ssh).
-
-- [EQ] Erklären Sie den Unterschied der Optionen **-Y, -X**.
+- [EC] Schließen Sie den Python-Server auf dem Zielserver.
+- [EC] Schließen Sie die Verbindung zum Zielserver.
 
 [NOTICE]
-Verbinden Sie sich wenn möglich mit der sichereren Variante der beiden oben genannten Optionen.
+[EREFC::3] bis [EREFC::5] kommen nicht ins Kommandoprotokoll.
 [ENDNOTICE]
-
-- [EC] Verbinden Sie sich mit dem Zielserver mit aktivierter X11-Weiterleitung.
-- [EC] Starten Sie `firefox`.
-- [EC] Öffnen Sie `google.com`.
-- [EC] Schließen Sie `firefox`.
-- [EC] Schließen Sie die Verbdindung.
 
 [ENDSECTION]
 [SECTION::submission::trace]
