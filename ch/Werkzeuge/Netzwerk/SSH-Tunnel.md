@@ -67,19 +67,11 @@ Eine Liste Ihrer Dateien sollte jetzt sichtbar sein.
 [SECTION::submission::trace]
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll]
 
 [PROT::ALT:SSH-Tunnel.prot] 
-
-[ENDINSTRUCTOR]
-
-
-[INSTRUCTOR::Markdowndokument]
-
-[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
