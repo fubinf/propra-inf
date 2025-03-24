@@ -38,6 +38,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/Python/Python-Funktionale-Programmierung.md (SW)
 
 ### Bibliotheken
+- ch/Bibliotheken/Python-Standardbibliothek/m_shutil.md (SW)
 
 ### Bestandscode
 
@@ -189,5 +190,3 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
 
 
 ## Reviews to do for Sven Wegner
-
-- ch/Bibliotheken/Python-Standardbibliothek/m_shutil.md (SW)
