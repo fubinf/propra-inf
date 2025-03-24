@@ -2,7 +2,7 @@ title: Erweiterte Datentypen
 stage: draft
 timevalue: 1
 difficulty: 2
-assumes: go-ide, go-variables-and-primitives, go-functions, go-collections
+assumes: go-ide, go-functions, go-collections
 ---
 
 [SECTION::goal::idea]

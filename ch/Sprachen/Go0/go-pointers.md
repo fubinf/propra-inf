@@ -2,11 +2,11 @@ title: Zeiger
 stage: draft
 timevalue: 1
 difficulty: 2
-requires: go-ide, go-variables-and-primitives, go-functions, go-structs
+requires: go-ide, go-functions, go-structs
 ---
 
 [SECTION::goal::idea]
-Ich verstehe, was Zeiger sind und wo ich sie benutzen soll.
+Ich verstehe, was Zeiger in Go sind und wo ich sie benutzen soll.
 
 [ENDSECTION]
 

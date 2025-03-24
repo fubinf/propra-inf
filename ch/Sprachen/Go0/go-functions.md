@@ -2,7 +2,7 @@ title: Functionen
 stage: draft
 timevalue: 0.5
 difficulty: 1
-requires: go-ide, go-program-structure, go-variables-and-primitives
+requires: go-ide, go-program-structure
 ---
 
 [SECTION::goal::idea]

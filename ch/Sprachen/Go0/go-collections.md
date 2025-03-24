@@ -2,7 +2,7 @@ title: Arrays, Slices, Maps
 stage: draft
 timevalue: 1
 difficulty: 2
-requires: go-ide, go-program-structure, go-variables-and-primitives, go-functions
+requires: go-ide, go-program-structure, go-functions
 ---
 
 [SECTION::goal::idea]

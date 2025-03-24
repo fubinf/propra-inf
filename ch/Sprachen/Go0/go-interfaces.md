@@ -2,7 +2,7 @@ title: Go Interfaces
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-requires: go-ide, go-variables-and-primitives, go-functions, go-structs
+requires: go-ide, go-functions, go-structs
 assumes: go-type-casting
 ---
 
@@ -10,6 +10,8 @@ assumes: go-type-casting
 Ich verstehe, was Interfaces in Go sind, wie sie implementiert und angewendet werden.
 
 [ENDSECTION]
+
+[SECTION::instructions::detailed]
 
 ### Was ist ein Interface?
 
