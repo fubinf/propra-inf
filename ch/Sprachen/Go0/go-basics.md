@@ -20,7 +20,7 @@ Ich habe mich mit den Grundlagen von Go auseinandergesetzt und kann nun:
 Sie haben sich entschieden, eine neue Programmiersprache zu erlernen — Go. 
 Gute Wahl!
 
-Go wurde als ein pythonähnliche Alternative für Entwickler bei Google konzipiert, die C++ als zu komplex empfanden. 
+Go wurde als eine pythonähnliche Alternative für die Entwickler bei Google konzipiert, die C++ als zu komplex empfanden. 
 Daher sind die folgenden Merkmale entstanden:
 
 - Statische Typisierung und Laufzeiteffizienz (wie C/C++);
@@ -45,7 +45,7 @@ Ausführen besteht immer aus mindestens zwei Phasen — kompilieren und tatsäch
 Go bietet zwei Möglichkeiten an:
 
 1. `go run quellcode.go/executable` — Ihr Go-Programm wird automatisch kompiliert und gleich im Anschluss ausgeführt.
-    Das funktioniert nur für Quellcodedateien, die mit `package main` anfangen (siehe unten).
+    Das funktioniert nur für die Quellcodedateien, die mit der Zeile `package main` anfangen (siehe unten).
     Das Python-Äquivalent zu diesem Kommando ist `python3 quellcode.py`. 
 2. `go build -o binary quellcode.go` — aus `quellcode.go` wird eine Binärdatei erzeugt.
     Wenn `quellcode.go` mit `package main` beginnt, darf die Binärdatei ausgeführt werden.
@@ -60,19 +60,19 @@ Die Paket- und Modulverwaltung in Go ähnelt derjenigen in Python.
 
 - Modul
     - **Python:** eine Datei, die auf `.py` endet.
-    - **Go:** ein Verzeichnis mit der Datei `go.mod`, wo der Modulname, seine Abhängigkeiten und die Version deklariert 
+    - **Go:** ein Verzeichnis mit der Datei `go.mod`, wo der Modulname, die Abhängigkeiten und die Version deklariert 
       sind.
 - Paket
     - **Python:** ein Verzeichnis mit mehreren `.py`-Dateien und optional einer `__init__.py` Datei.
       Diese Datei wird bei dem Importieren ausgeführt.
-    - **Go:** ein Verzeichnis, wo alle Quellcodedateien mit `package verzeichnis_name` anfangen müssen.
+    - **Go:** ein Verzeichnis, wo alle Quellcodedateien mit der Zeile `package verzeichnis_name` anfangen müssen.
       Auf dieser Ebene wird Sichtbarkeit geregelt: Alle `lowercase` Deklarationen sind privat, alle `Capitalized` 
-      Deklarationen sind öffentlich und aus anderen Paketen sichtbar.
+      Deklarationen sind öffentlich (public/exported) und aus anderen Paketen sichtbar.
  
 Es gibt zwei Typen von Paketen: `main` und alle anderen.
 
 Das Hauptpaket ist immer das Paket `main`: das ausführbare Programm, wo die `main()` Funktion definiert wurde.
-Diese Struktur entspricht dem Einstiegspunkt wie z.B. `public static void main(String[] args)` in Java oder `int main()` in C. 
+Diese Struktur entspricht dem Einstiegspunkt wie beispielsweise `public static void main(String[] args)` in Java oder `int main()` in C. 
 
 Alle anderen Paketnamen interpretiert der Compiler als Bibliotheken — diese dürfen nicht mittels `go run` ausgeführt werden. 
 Pakete entsprechen der Verzeichnisstruktur eines Moduls: Gibt es in einem Modul `my_module` Verzeichnisse `src`, `utils`
@@ -81,7 +81,7 @@ und `test`, so beginnen die Quellcodedateien entsprechend mit den Zeilen `packag
 
 #### Wie werden Module/Pakete importiert?
 
-Hier gibt es wieder zwei mögliche Fälle:
+Hier gibt es zwei mögliche Fälle:
 
 1. Importieren von Paketen innerhalb eines Moduls: `import module_name/package_name`.
    Dabei müssen Sie aufpassen, dass Ihr Abhängigkeitsgraph azyklisch bleibt.
@@ -95,24 +95,24 @@ Hier gibt es wieder zwei mögliche Fälle:
 
 Ähnlich zu Python gibt es 4 wichtigste primitive Datentypen:
 
-* `int`: eine ganze Zahl mit Vorzeichen (signed)
-* `float64`: eine Gleitkommazahl
-* `string`: Zeichenkette
-* `bool`: Ein boolescher Wert, `true` oder `false`
+* `int`: eine ganze Zahl mit Vorzeichen (signed);
+* `float64`: eine Gleitkommazahl;
+* `string`: eine Zeichenkette;
+* `bool`: ein boolescher Wert, `true` oder `false`;
 
-und einen zusätzlichen `byte` (`uint8`): 8 Bits von Information (wichtig im Kontext von Dateioperationen oder 
-Netzwerken)
+und einen zusätzlichen `byte` (`uint8`): 8 Bits von Information (wichtig im Kontext von Dateioperationen oder Netzwerken).
 
 In Go wird manchmal zwischen Deklaration und Definition unterschieden. 
-Deklaration ist nichts anderes als Definition mit Default/Null-Werten: `0` für Zahlen, `""` für Zeichenketten, `false`
-für boolesche Werte.
+Deklaration ist nichts anderes als Definition mit Default/Null-Werten: `0` für Zahlen, `""` für Zeichenketten, `false` für boolesche Werte.
 
 ```go
 var name string             // deklarieren
 name = "gopher"             // definieren
 var name string = "gopher"  // beide Aktionen kombiniert
+
 name := "gopher"            // oder den konkreten Datentyp
 var name = "gopher"         // herleiten lassen
+
 width, height := 1920, 1080 // mehrere Variablen auf einmal
 ```
 
@@ -144,8 +144,8 @@ Komplexere Datentypen werden ohne Ausnahmen hergeleitet, daher ist die kurze Sch
 
 #### Konstanten
 
-Konstanten werden mithilfe vom Schlüsselwort `const` deklariert und müssen bei Deklaration auch definiert werden. 
-Sie dürfen außerdem nur primitive Datentypen beinhalten und müssen sich im globalen Kontext befinden (auf Datei-Ebene).
+Konstanten werden mithilfe vom Schlüsselwort `const` deklariert und müssen bei Deklaration definiert werden. 
+Sie dürfen außerdem nur primitive Datentypen beinhalten und müssen sich im Paketkontext befinden (auf Dateiebene).
 Üblicherweise werden Konstanten ganz oben in der Datei deklariert.
 Es gibt keine besonderen Namenskonventionen, daher gelten hier die gleichen Regeln wie bei normalen Variablen: 
 `camelCase` oder `PascalCase`, je nachdem ob die Konstante öffentlich sein muss.
@@ -381,8 +381,7 @@ stringValue = string(integerValue)
 integerValue := 42
 stringValue := fmt.Sprintf("%d", 42)
 ```
-[`fmt.Sprintf()`](https://pkg.go.dev/fmt#pkg-functions) ist eine Formatierungsfunktion, deren Syntax stark von `printf` 
-in C inspiriert wurde.
+[`fmt.Sprintf()`](https://pkg.go.dev/fmt#pkg-functions) ist eine Formatierungsfunktion, deren Syntax stark von `printf` in C inspiriert wurde.
 
 ### Programmierung
 
@@ -390,7 +389,7 @@ Nun ist es Zeit, die kennengelernten Konzepte in der Praxis einzusetzen.
 
 Sie bekommen ein Python-Programm, welches eine Liste von Noten erhält und diese validiert.
 Falls die Noten valide sind, wird der Durchschnitt für jede Person berechnet und als "sehr gut/gut/befriedigend/ausreichend" auf der Kommandozeile ausgegeben;
-ansonsten wird eine Warnung im Terminal ausgegeben und das Programm überspringt die ungültigen Daten.
+ansonsten wird eine Warnung ausgegeben und das Programm überspringt die ungültigen Daten.
 
 Ihre Aufgabe besteht darin, dieses Python-Programm in Go zu übersetzen 
 (das ist jedoch nicht notwendig; Sie dürfen das Programm auch nach der oben angegebenen Beschreibung implementieren).
