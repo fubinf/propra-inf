@@ -1,5 +1,5 @@
 title: Grundlagen von Go im Kontext von Python
-stage: draft
+stage: alpha
 timevalue: 2.5
 difficulty: 2
 requires: go-ide
