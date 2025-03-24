@@ -35,6 +35,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Sprachen
 - ch/Sprachen/Go0/go-basics.md
+- ch/Sprachen/Python/Python-Funktionale-Programmierung.md (SW)
 
 ### Bibliotheken
 

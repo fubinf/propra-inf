@@ -1,10 +1,8 @@
 title: "Funktionale Programmierung in Python"
-stage: draft
-timevalue: 1
+stage: alpha
+timevalue: 1.0
 difficulty: 2
-explains:
 assumes: Python-Iterators, m_pprint
-requires:
 ---
 
 [SECTION::goal::idea]
