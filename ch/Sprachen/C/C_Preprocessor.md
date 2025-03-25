@@ -208,6 +208,8 @@ TODO:
 
 [SECTION::submission::reflection,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
