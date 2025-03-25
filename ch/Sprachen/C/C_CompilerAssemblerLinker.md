@@ -1,11 +1,11 @@
 title: "C Compiler und Linker"
 stage: draft
-timevalue: 1.5
-difficulty: 3
+timevalue: 1
+difficulty: 2
 assumes: C_IDELinux, C_IDEmacOS, C_IDEWindows
 ---
 [SECTION::goal::idea]
-Ich verstehe was der Compiler, Assembler und Linker sind.
+Ich verstehe die Aufgaben des Compilers, Assemblers und Linkers.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -35,7 +35,7 @@ Legen Sie eine Datei `c_compiler_assembler_linker.c` mit folgendem Inhalt an:
 ```c
 #include <stdio.h>
 
-int main() {
+int main(void) {
   printf("C Compiler/Assembler/Linker\n");
 
   return 0;
@@ -59,6 +59,10 @@ neueren Macs).
   Rufen Sie nun `cat c_compiler_assembler_linker.s` auf.
   Das kleine Programm wurde von `gcc` in die angezeigten Assembly-Ausgabe
   kompiliert.
+
+Probieren Sie auch mal `-O0`, `-O1`, `-O2` order `-Os` aus.
+Beachten sie dabei, dass für die weiteren Aufgaben die Ausgabe mit `-O3`
+benötigt wird (am besten den Dateinamen für andere `-O` abändern).
 
 ### Der Assembler
 
@@ -126,7 +130,7 @@ Das Ergebnis ist identisch als würden Sie die Schritte händisch ausführen
 
 [ENDSECTION]
 
-[SECTION::submission::information]
+[SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
