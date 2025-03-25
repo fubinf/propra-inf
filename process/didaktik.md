@@ -25,9 +25,12 @@ Gute Lernaufgaben sollten:
 - Transfer auf neue Situationen fördern  
 
 #### Literatur:
-- Leisen, J. (2006). **Lernaufgaben und Leistungsaufgaben**.
+- Leisen, J. (2006). **Lernaufgaben und Leistungsaufgaben**. 
+  https://www.josefleisen.de/downloads/aufgabenkultur/01%20Aufgabenkultur%20im%20mathematisch-naturwissenschaftlichen%20MNU%202006.pdf
 - Leisen, J. (2010). **Lehr-Lern-Modell zur Kompetenzentwicklung**.
+  https://www.josefleisen.de/downloads/lehrenlernen/02%20Lernprozesse%20mithilfe%20von%20Lernaufgaben%20strukturieren%20-%20NiU%202010.pdf
 - Maier, U. (2014). **Lehr-Lern-Modelle in der Schule**. S. 112ff.
+  *Erhältlich über das Primo-Portal, ISBN: 3825238768*
 
 ## Formulieren von Kompetenzen bzw. Lernzielen oder intendierten Lernergebnissen.
 
@@ -82,9 +85,12 @@ Sind die gewünschten Lernergebnisse formuliert, geht es an die Planung der Reih
 Hier sollte man immer im Hinterkopf haben, was die Lernergebnisse sein sollen, und wie sie erreicht werden können.
 
 #### Literatur:
-- Weinert, F. E. (2002). **Definition des Kompetenzbegriffs**.
-- Hartig, J. (2006). **Kompetenzen und ihre Messung**.
+- Weinert, F. E. (2002). **Definition des Kompetenzbegriffs**. 
+  *Gedrucktes Exemplar in der Bibliothek*
+- Hartig, J. (2006). **Kompetenzen und ihre Messung**. 
+  https://www.dipf.de/de/forschung/publikationen/pdf-publikationen/dipf-informiert/dipf-informiert-nr.-10/@@download/file/dipf_informiert_nr10.pdf
 - Heinisch, H., & Romeike, R. (2012). **Vorgehensweise zur Kompetenzformulierung**.
+  https://books.google.de/books?id=H_NyIbpjg3gC&lpg=PA9&ots=23aiOkUZ-k&dq=kompetenzen%20outcome%20orientiert&lr&pg=PA9#v=onepage&q&f=false
 
 ## Operatoren
 Für die Wahl der geeigneten Operatoren sei einmal auf die SOLO-Taxonomie verwiesen.
@@ -133,8 +139,10 @@ Video von Claus Braband und Jacob Andersen, Universität Aarhus.
 
 #### Literatur:
 - Romeike, R. (2010). **Kompetenzstufen nach der SOLO-Taxonomie**.
+  https://books.google.de/books?id=jMR_KvRjJDAC&lpg=PA35&ots=9gmQBexWHg&dq=romeike%20output%20statt%20input&lr&pg=PA44#v=onepage&q&f=false
 - Biggs, J. (2003). **Structure of the Observed Learning Outcome (SOLO) Taxonomy**.
 - Gesellschaft für Informatik (2016). **Bildungsstandards für die Sekundarstufe II**.
+  https://informatikstandards.de/fileadmin/GI/Projekte/Informatikstandards/Dokumente/Bildungsstandards_SII.pdf
 
 ## Didaktische Methoden zum Aufgabenentwurf
 
@@ -221,5 +229,6 @@ Lehr-Lern-Modells nach Leisen.
 
 #### Literatur:
 - Hellmig, L., & Hempel, T. (2015). **BGAV - Benutzen, Analysieren, Gestalten, Verankern**.
+  https://dl.gi.de/items/cac1f812-8ea0-47e6-bdb5-1f95c3e669af
 - Leisen, J. (2010). **Lehr-Lern-Modell zur Aufgabenstrukturierung**.
-
+  https://www.josefleisen.de/downloads/lehrenlernen/02%20Lernprozesse%20mithilfe%20von%20Lernaufgaben%20strukturieren%20-%20NiU%202010.pdf
