@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 0.5
 difficulty: 3
 assumes: m_pytest
-requires: m_pytest_call
+requires: pytest_call
 ---
 
 [SECTION::goal::idea]
@@ -29,7 +29,7 @@ Suchen Sie [hier](https://docs.pytest.org/en/7.1.x/reference/plugin_list.html#pl
 Sie finden eine Reihe von Fehlern. Ihr Ziel soll es sein, die Ausgabe durch eine passende Exklusion
 in der Flake Konfiguration umzusetzen.
 
-Erstellen Sie dazu die Datei `.flake8` im Stammverzeichnis des Projektes aus [PARTREF::m_pytest_call]
+Erstellen Sie dazu die Datei `.flake8` im Stammverzeichnis des Projektes aus [PARTREF::pytest_call]
 und fügen Sie vorerst folgende Zeile ein:
 
 ```conf

@@ -2,7 +2,7 @@ title: "Gilded Rose: Festhalten der Funktionalität"
 stage: beta
 timevalue: 1.0
 difficulty: 3
-assumes: m_unittest, m_pytest_parametrize
+assumes: m_unittest, pytest_parametrize
 ---
 [SECTION::goal::experience]
 Ich kann mich für Code, den ich refaktorieren möchte, dagegen versichern,
@@ -45,7 +45,7 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
   bereinigen haben.)
 - Sie können mit dieser Testsuite weiterarbeiten, die `unittest` benutzt.
   Praktischer ist aber, Sie verwenden `pytest` mit tabellengesteuerten Tests,
-  wie aus Aufgabe [PARTREF::m_pytest_parametrize] bekannt.
+  wie aus Aufgabe [PARTREF::pytest_parametrize] bekannt.
   Wir empfehlen _dringend_, den Test jetzt diese Form umzuarbeiten.
   Gestalten Sie Test und Tabelle so, wie es zum Hinschreiben der Testfälle am praktischsten ist.
 - Arbeiten Sie nun die Anforderungen durch und schreiben Sie, wo nötig, jeweils

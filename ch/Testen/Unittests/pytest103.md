@@ -2,7 +2,7 @@ title: Pytest - Marks
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: m_pytest, m_pytest_fixtures
+assumes: m_pytest, pytest_fixtures
 ---
 
 [SECTION::goal::idea]

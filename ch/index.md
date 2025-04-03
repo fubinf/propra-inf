@@ -232,7 +232,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 - Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_hashlib] zugefügt
 - Aufgaben Testen/Unittests/[PARTREF::m_unittest] und [PARTREF::m_pytest] zugefügt
 - unreife Aufgaben coverage, mocking und unittest201,202,301 zurückgezogen
-- **2024-05-03**: Aufgabe Testen/Unittests/[PARTREF::m_pytest_parametrize] zugefügt
+- **2024-05-03**: Aufgabe Testen/Unittests/[PARTREF::pytest_parametrize] zugefügt
 - Aufgaben Bestandscode/Refactoringpraxis/[PARTREF::gildedrose_tests],
   [PARTREF::gildedrose_refactor], [PARTREF::gildedrose_implementation] und
   [PARTREF::gildedrose_reflexion] zugefügt.

@@ -2,7 +2,7 @@ title: Freezegun - Zeitreise mittels Python-Tests
 stage: alpha
 timevalue: 1
 difficulty: 2
-assumes: m_pytest_mocking, m_pytest
+assumes: pytest_mocking, m_pytest
 ---
 
 [SECTION::goal::idea]

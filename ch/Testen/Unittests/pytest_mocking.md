@@ -42,7 +42,7 @@ Verschaffen Sie sich einen Überblick über die
 
 Zu jeder Aufgabe wird es eine kleine Funktion geben, die in einer Datei abzulegen ist.
 
-- Erstellen Sie die Datei `m_pytest_mocking.py`, um anschließend damit zu arbeiten.
+- Erstellen Sie die Datei `pytest_mocking.py`, um anschließend damit zu arbeiten.
 
 Ihre Aufgabe ist es, die externen Abhängigkeiten und Seiteneffekte zu Ihren Tests zu isolieren,
 damit Sie sich auf das Testen der eigentlichen Logik Ihrer Funktionen und Methoden konzentrieren
@@ -51,7 +51,7 @@ können.
 #### Aufgabe 1: Mocking einer Web-API
 
 - [ER] Schreiben Sie einen Pytest für die Funktion `get_weather_data()` wie unten angegeben, die sich in der Datei
-  `m_pytest_mocking.py` befinden soll und eine Web-API aufruft.   
+  `pytest_mocking.py` befinden soll und eine Web-API aufruft.   
   Mocken Sie den API-Aufruf `requests.get`, um
   sicherzustellen, dass während des Tests keine echte Netzwerkanfrage gemacht wird, denn diese
   dauert erstens relativ lange und könnte zweitens (wie in unserem Fall) fehlschlagen, wenn
@@ -83,7 +83,7 @@ Mocking können wir sicherstellen, dass unsere Tests schnell und zuverlässig si
 #### Aufgabe 2: Mocking von Dateioperationen
 
 - [ER] Schreiben Sie einen Pytest für die Funktion `read_log_file()`, die sich in der Datei
-  `m_pytest_mocking.py` befinden soll und eine Datei liest und verarbeitet. Mocken Sie die
+  `pytest_mocking.py` befinden soll und eine Datei liest und verarbeitet. Mocken Sie die
   Dateioperationen, um zu verhindern, dass während der Tests echte Dateien gelesen oder geschrieben
   werden.   
   Der Test soll zwei Zeilen mit "ERROR" betrachten plus eine Zeile ohne.
@@ -112,7 +112,7 @@ Testdateien. Durch Mocking können wir diese Abhängigkeiten eliminieren.
 #### Aufgabe 3: Mocking von Klassenmethoden
 
 - [ER] Schreiben Sie einen Pytest für die Funktion `process_user_data()`, die sich in der Datei
-  `m_pytest_mocking.py` befinden soll und die von einer Klasse in Ihrem Projekt abhängt. Mocken Sie die
+  `pytest_mocking.py` befinden soll und die von einer Klasse in Ihrem Projekt abhängt. Mocken Sie die
   Abhängigkeit, um isolierte Tests durchzuführen.
 
 ```Python
@@ -134,7 +134,7 @@ konzentrieren.
 
 #### Aufgabe 4: Mocking von Datenbankoperationen
 
-- [ER] Schreiben Sie eine Funktion `get_user_age()`, die sich in der Datei `m_pytest_mocking.py`
+- [ER] Schreiben Sie eine Funktion `get_user_age()`, die sich in der Datei `pytest_mocking.py`
   befinden soll und die das Alter eines Benutzers aus einer SQL-Datenbank abruft. Schreiben Sie
   anschließend Unittests für diese Funktion, wobei die Datenbankverbindung und -abfragen gemockt
   werden, um keine echte Datenbank zu verwenden.
@@ -172,7 +172,7 @@ Mocking können wir sicherstellen, dass unsere Tests schnell und zuverlässig si
 Lesen Sie den Bereich der Testdoubles.
 
 - [ER] Betrachten Sie die folgende Funktion `send_email_to_users(users, email_service)`, die sich in
-  der Datei `m_pytest_mocking.py` befinden soll und entscheiden Sie, welche Art von Testdouble
+  der Datei `pytest_mocking.py` befinden soll und entscheiden Sie, welche Art von Testdouble
   (Dummy, Fake, Stub, Spy, Mock) am besten geeignet ist. Implementieren Sie die entsprechenden
   Testdoubles und schreiben Sie Pytests für diese Funktion.
 
@@ -225,10 +225,10 @@ Ihre Python-Dateien ein.
 ```Python
 import pytest
 from unittest.mock import patch
-from m_pytest_mocking import get_weather_data
+from pytest_mocking import get_weather_data
 
 def test_get_weather_data():
-  with patch('m_pytest_mocking.requests.get') as mock_get:
+  with patch('pytest_mocking.requests.get') as mock_get:
     # Beispielantwort für den Mock
     example_response = {"temperature": 22, "weather": "sunny"}
     mock_get.return_value.json.return_value = example_response
@@ -248,7 +248,7 @@ def test_get_weather_data():
 ```Python
 import pytest
 from unittest.mock import mock_open, patch
-from m_pytest_mocking import read_log_file
+from pytest_mocking import read_log_file
 
 def test_read_log_file():
   with patch('builtins.open', mock_open(read_data="ERROR at line 1\nOK at line 2\nERROR at line 3\n")) as mock_file:
@@ -267,10 +267,10 @@ def test_read_log_file():
 ```Python
 import pytest
 from unittest.mock import patch
-from m_pytest_mocking import process_user_data
+from pytest_mocking import process_user_data
 
 def test_process_user_data():
-  with patch('m_pytest_mocking.UserManager') as MockUserManager:
+  with patch('pytest_mocking.UserManager') as MockUserManager:
     mock_user_manager = MockUserManager.return_value
     mock_user_manager.get_user_data.return_value = {"name": "Mock User", "email": "mock@example.com"}
     
@@ -289,10 +289,10 @@ def test_process_user_data():
 ```Python
 import pytest
 from unittest.mock import MagicMock, patch
-from m_pytest_mocking import get_user_age
+from pytest_mocking import get_user_age
 
 def test_get_user_age():
-    with patch('m_pytest_mocking.sqlite3') as mock_sqlite:
+    with patch('pytest_mocking.sqlite3') as mock_sqlite:
         mock_cursor = MagicMock()
         mock_cursor.fetchone.return_value = [25]
         mock_sqlite.connect.return_value.cursor.return_value = mock_cursor
@@ -314,10 +314,10 @@ def test_get_user_age():
 ```Python
 import pytest
 from unittest.mock import MagicMock, patch
-from m_pytest_mocking import send_email_to_users
+from pytest_mocking import send_email_to_users
 
 def test_send_email_to_users_with_dummy():
-    with patch('m_pytest_mocking.print') as mock_print:
+    with patch('pytest_mocking.print') as mock_print:
         users = [
             {"email": "user1@example.com"},
             {"email": "user2@example.com"},
@@ -418,7 +418,7 @@ platform darwin -- Python 3.13.1, pytest-8.3.4, pluggy-1.5.0
 rootdir: /Users/student/propra-inf
 collected 9 items                                                          
 
-test_m_pytest_mocking.py .........                                           [100%]
+test_pytest_mocking.py .........                                           [100%]
 
 ============================ 9 passed in 0.05s =============================
 (.venv) student@MBP test % 

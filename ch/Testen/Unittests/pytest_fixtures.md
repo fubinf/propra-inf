@@ -124,7 +124,7 @@ Jedoch hat es auch Nachteile.
 
 [HINT::Testdaten anpassen]
 Spielen Sie ein wenig mit den Testdaten. Verwenden Sie auch negative / falsche Testdaten.
-`@pytest.parametrize` ist für diesen Zweck richtig und wird in [PARTREF::m_pytest_parametrize] behandelt.
+`@pytest.parametrize` ist für diesen Zweck richtig und wird in [PARTREF::pytest_parametrize] behandelt.
 [ENDHINT]
 
 - [EC] Führen Sie den Test aus und dokumentieren Sie das Ergebnis.

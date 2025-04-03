@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1
 difficulty: 3
 assumes: m_pytest
-requires: m_pytest_call
+requires: pytest_call
 ---
 
 [SECTION::goal::idea]
@@ -27,7 +27,7 @@ in der offiziellen Pytest Dokumentation beschrieben.
 [EC] Wie sieht der Kommandobefehl zum Ausführen einer Testabdeckungsanalyse für das Verzeichnis `bash`
 aus?
 
-[EC] Wie sieht die Testabdeckung des Verzeichnisses `toolz` aus [PARTREF::m_pytest_call] aus?
+[EC] Wie sieht die Testabdeckung des Verzeichnisses `toolz` aus [PARTREF::pytest_call] aus?
 
 [EC] Wie finden Sie heraus, welche Zeilen nicht abgedeckt sind?
 
