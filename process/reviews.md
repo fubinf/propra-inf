@@ -34,8 +34,9 @@ We will modify these rules over time when others appear more useful.
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
-- ch/Sprachen/Go0/go-basics.md
+- ch/Sprachen/Go0/go-basics-i.md (IB)
 - ch/Sprachen/Python/Python-Funktionale-Programmierung.md (SW)
+- ch/Sprachen/Go0/go-basics-ii.md (IB)
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/m_shutil.md (SW)

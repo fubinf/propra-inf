@@ -1,5 +1,5 @@
 title: Weitere Grundlagen von Go
-stage: draft
+stage: alpha
 timevalue: 3.5
 difficulty: 2
 assumes: go-basics-i
