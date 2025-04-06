@@ -73,7 +73,7 @@ Wir fangen mit dem Server an.
 1. Legen Sie unter `server` ein neues Verzeichnis `database` an mit einer `database.go` Datei und einem weiteren 
    Verzeichnis `model`. Definieren Sie Strukturen für `User`, `Login` und `Message`. `User` enthält Information über 
    Benutzer, `Login` - über Einloggen-Ereignisse und `Message` - über gesendete Nachrichten. Benutzen Sie dabei 
-   [gorm.Model](https://pkg.go.dev/gorm.io/gorm@v1.25.12#Model) und Struct Embedding (siehe [PARTREF::go-structs]).
+   [gorm.Model](https://pkg.go.dev/gorm.io/gorm@v1.25.12#Model) und Struct Embedding.
 2. Deklarieren Sie in der Datei `database.go` eine Struktur `DB` und eine Funktion `Init() *DB`. Falls Sie schon
    einige Erfahrungen mit objektorientierter Programmierung gemacht haben, können Sie diese Funktion als Konstruktor 
    betrachten. [Hier](https://gorm.io/docs/) können Sie nachschlagen, wie man eine Datenbank einrichtet.  

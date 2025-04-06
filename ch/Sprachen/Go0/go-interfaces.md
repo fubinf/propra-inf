@@ -2,8 +2,6 @@ title: Go Interfaces
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-requires: go-ide, go-functions, go-structs
-assumes: go-type-casting
 ---
 
 [SECTION::goal::idea,experience]
