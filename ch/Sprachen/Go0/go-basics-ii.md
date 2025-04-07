@@ -47,7 +47,7 @@ func main() {
 }
 ```
 
-Weitere Beispiele
+Weitere Beispiele:
 ```go
 // Rückgabetyp ist string
 func convertIntToString(i int) string {
@@ -81,39 +81,39 @@ func(x int, y int) {
 Eine weitere Möglichkeit, Werte aus der Funktion zurückzugeben, sind die benannten Rückgabewerte.
 
 ```go
-// Variablen i und err sind bereits mit entsprechenden Nullwerten initialisiert
+// Die Variablen i und err sind bereits mit entsprechenden Nullwerten initialisiert
 func namedReturn() (i int, err error) {
     i = 42
     err = nil
-    // hier werden alle Variablen automatisch zurückgegeben, die in der Funktionssignatur initialisiert wurden
+    // Hier werden alle Variablen automatisch zurückgegeben, die in der Funktionssignatur initialisiert wurden
     return
 }
 
 func namedReturn() (i int, err error) {
-// das ist auch valide 
-return 42, nil
+    // Das ist auch valide 
+    return 42, nil
 }
 
 func normalReturn() (int, error) {
-    // Variablen i und err müssen hier initialisiert werden
+    // Die Variablen i und err müssen hier initialisiert werden
     var (
         i   int   = 42
         err error = nil
     )
-    // und explizit zurückgegeben werden
+    // Und explizit zurückgegeben werden
     return i, err
 }
 ```
 
-Es empfiehlt sich, die benannten Rückgabewerte erst dann zu benutzen, wenn die Funktion genügend groß ist und/oder Dokumentation braucht.
-Einerseits tragen die Parameternamen in Rückgabesignatur zu der Lesbarkeit bei, andererseits können leere `return`-Anweisungen verwirrend wirken.
+Es empfiehlt sich, benannte Rückgabewerte erst dann zu benutzen, wenn die Funktion ausreichend groß ist und/oder Dokumentation benötigt.
+Einerseits tragen die Parameternamen in der Rückgabesignatur zur Lesbarkeit bei; andererseits können leere `return`-Anweisungen verwirrend wirken.
 
 [ENDFOLDOUT]
 
 [FOLDOUT::Variadische Funktionen]
 
-Funktionen in Go dürfen eine dynamische Anzahl von Parametern bekommen.
-Dafür gibt es eine besondere Schreibweise:
+Funktionen in Go können eine dynamische Anzahl von Parametern verarbeiten, was besonders nützlich ist, wenn die genaue Anzahl der Argumente zur Kompilierungszeit nicht bekannt ist. 
+Dafür gibt es eine spezielle Schreibweise, die als variadische Parameter bezeichnet wird:
 
 ```go
 func receiveInts(xs ...int) {
@@ -123,7 +123,7 @@ func receiveInts(xs ...int) {
 }
 ```
 
-Das ist äquivalent zu der Slice-Schreibweise:
+Das ist äquivalent zur Verwendung eines Slices als Parameter:
 ```go
 func receiveInts(xs []int) {
     for i, v := range xs {
@@ -134,7 +134,7 @@ func receiveInts(xs []int) {
 
 Für den Aufrufer gibt es jedoch einen Unterschied:
 ```go
-// variadisch
+// Variadisch
 receiveInts(0, 1, 4, 9, 16, 25, 36, 49, 64)
 
 // Slice
@@ -146,7 +146,7 @@ receiveInts([]int{0, 1, 4, 9, 16, 25, 36, 49, 64})
 
 [FOLDOUT::Funktionen höherer Ordnung]
 
-Eine Funktion darf eine andere Funktion als Parameter bekommen:
+Eine Funktion kann eine andere Funktion als Parameter erhalten, wodurch sie zu einer höheren Ordnungsfunktion wird:
 
 ```go
 func apply(
@@ -157,8 +157,8 @@ func apply(
 }
 ```
 
-Diese Funktion nimmt zwei Parameter an: Eine Zahl und eine Funktion, die ebenfalls eine Zahl übergeben bekommt und zurückgibt.
-`operation` ist der Name der Funktion und `func(int) int` ist ihre Signatur ("sie nimmt eine Zahl an und gibt eine Zahl zurück").
+Diese Funktion nimmt zwei Parameter an: eine Zahl und eine Funktion, die ebenfalls eine Zahl übergeben bekommt und zurückgibt. 
+`operation` ist der Name der Funktion, und `func(int) int` ist ihre Signatur ("sie nimmt eine Zahl an und gibt eine Zahl zurück").
 
 Der Aufruf könnte so aussehen:
 ```go
@@ -187,6 +187,8 @@ func main() {
 }
 ```
 
+Höhere Ordnungsfunktionen sind nützlich für die Erstellung flexibler und wiederverwendbarer Codebausteine.
+
 [ENDFOLDOUT]
 
 ### Strukturen (structs)
@@ -210,9 +212,10 @@ Alle Felder dieser Struktur sind großgeschrieben und deswegen öffentlich (publ
 
 ### Methoden
 
-Auch ohne Klassen gibt es **Methoden**. 
+Auch ohne Klassen gibt es **Methoden** in Go. 
 
-Methoden sind Funktionen, die einen zusätzlichen Parameter besitzen: den Empfänger (receiver).
+Methoden sind Funktionen, die einem Typ zugeordnet sind und einen zusätzlichen Parameter besitzen: den Empfänger (receiver). 
+Sie ermöglichen es, Verhalten zu Strukturen hinzuzufügen.
 
 ```go
 func (p Person) PrintName() {
@@ -224,14 +227,15 @@ Hier ist `(p Person)` der Empfänger: `p` ist der Name, über welchen die Method
 
 [NOTICE]
 
-Empfängertyp muss in dem gleichen Paket deklariert werden. Eine Methode auf `int` oder `string` ist daher nicht erlaubt.
+Der Empfängertyp muss im gleichen Paket deklariert werden. 
+Daher können Methoden nicht auf eingebauten Typen wie int oder string definiert werden.
 
 [ENDNOTICE]
 
 ### Struktureinbettung (struct embedding)
 
-Eins der Prinzipien von Go ist "Composition over Inheritance". 
-Struktureinbettung ist die Komposition von Datenstrukturen.
+Eines der Prinzipien von Go ist "Composition over Inheritance". 
+Struktureinbettung ermöglicht die Komposition von Datenstrukturen und fördert die Wiederverwendbarkeit des Codes.
 
 ```go
 type Student struct {
@@ -241,8 +245,8 @@ type Student struct {
 }
 ```
 
-In dem Beispiel übernimmt `Student` alle Felder von `Person`.
-Wenn wir auf die Felder von `Person` zugreifen wollen, gibt es mehrere Möglichkeiten — entweder direkt über den Namen eines Feldes anfragen oder zuerst über die eingebettete Struktur:
+In diesem Beispiel übernimmt Student alle Felder von Person. 
+Beim Zugriff auf die Felder von Person gibt es mehrere Möglichkeiten — entweder direkt über den Namen eines Feldes oder zuerst über die eingebettete Struktur:
 
 ```go
 mark := Student{
@@ -261,19 +265,19 @@ fmt.Println(mark.Age)        // 25
 fmt.Println(mark.Person)     // {Mark Mustermann 25}
 ```
 
-Dies erhöht Wiederverwendbarkeit des Quellcodes und Erweiterbarkeit der Funktionalität einer solchen Struktur: 
-In dem Beispiel oben kann `Student` alles, was eine `Person` kann.
+Dies erhöht die Wiederverwendbarkeit des Quellcodes und die Erweiterbarkeit der Funktionalität einer solchen Struktur. 
+Im obigen Beispiel kann ein Student alles tun, was eine Person kann:
 
 ```go
-// diese Ausdrücke sind äquivalent
+// Diese Ausdrücke sind äquivalent
 mark.Person.PrintName()
 mark.PrintName()
 ```
 
-
 ### Zeiger (pointers)
 
-Rudimentär gesehen ist ein Zeiger die Adresse eines Wertes.
+Zeiger sind ein grundlegendes Konzept in der Programmierung, das es ermöglicht, auf die Speicheradresse eines Wertes zuzugreifen. 
+Sie sind nützlich, um effizient mit großen Datenstrukturen zu arbeiten oder Werte durch Referenz anstatt durch Kopie zu übergeben.
 
 Zeiger in Go ähneln denjenigen in C oder C++ mit einem wichtigen Unterschied — sie sind sicherer zu benutzen.
 Sie unterstützen keine [Zeigerarithmetik](https://www.tutorialspoint.com/cprogramming/c_pointer_arithmetic.htm) und gehören zu einem konkreten Typ (`*T`, falls der Zeiger eine Variable von Typ `T` referenziert).
@@ -281,8 +285,8 @@ Sie unterstützen keine [Zeigerarithmetik](https://www.tutorialspoint.com/cprogr
 Ein Zeiger wird mithilfe von `&` Operator erstellt. 
 Semantisch kann dieser als "Adresse von" gelesen werden: `&x` — "Adresse von `x`".
 
-Die Umkehroperation heißt Dereferenzierung — ein Zeiger wird zum Wert "an der Adresse `x`" umgewandelt.
-Das passiert mithilfe von dem Operator `*`.
+Die Umkehroperation heißt Dereferenzierung — ein Zeiger wird in den Wert "an der Adresse `x`" umgewandelt.
+Dies geschieht mithilfe des Operators `*`, der sowohl zum Deklarieren eines Zeigertyps als auch zur Dereferenzierung verwendet wird.
 
 Beispiel:
 
@@ -294,27 +298,32 @@ box := &content             // *int
 fmt.Println(content)        // 42
 ```
 
+In diesem Beispiel zeigt `box` auf die Adresse von `content`. 
+Durch Dereferenzierung kann der Wert an dieser Adresse geändert werden.
+
+
+
 ### "Pass-by-value" und "Pass-by-reference"
 
 Wie werden Argumente in eine Funktion übergeben?
 
-Generell werden Argumente kopiert. 
+In Go werden alle Argumente an Funktionen standardmäßig per Wert übergeben, also kopiert. 
 Das gilt sowohl für primitive Datentypen als auch für Strukturen.
 
 Daraus ergeben sich folgende Nachteile:
 
-* eine Funktion darf keine Argumente verändern (manchmal ist das jedoch gewünscht);
-* jeder Funktionsaufruf kopiert alle Argumente — je größer die Argumente, desto inperformanter. 
+* eine Funktion kann die ursprünglichen Argumente nicht verändern (was manchmal gewünscht ist);
+* jeder Funktionsaufruf kopiert alle Argumente — je größer die Argumente, desto ineffizienter wird der Aufruf. 
 
-Lösung: Statt eine Struktur zu kopieren, übergeben wir einen Zeiger auf diese Struktur.
+Lösung: Statt eine Struktur zu kopieren, übergeben wir einen Zeiger auf diese Struktur, um per Referenz zu arbeiten.
 
 ```go
-// schlecht - jeder Aufruf braucht eine Kopie von "Person"
+// Schlecht - jeder Aufruf benötigt eine Kopie von "Person"
 func printAge(p Person) {
     fmt.Println(p.Age)
 }
 
-// gut - jeder Aufruf benutzt eine Referenz auf die Hauptstruktur
+// Gut - jeder Aufruf benutzt eine Referenz auf die Hauptstruktur
 func printAge(p *Person) {
     fmt.Println(p.Age)
 }
@@ -324,7 +333,7 @@ func printAge(p *Person) {
 
 Eigentlich müsste der zweite Aufruf `p` dereferenzieren: `fmt.Println((*p).Age)`.
 
-Das ist jedoch nicht nötig, da Go eine solche Umwandlung automatisch durchführt.
+Das ist jedoch nicht nötig, da Go eine solche Umwandlung automatisch durchführt und den Zugriff auf Felder von Zeigern vereinfacht.
 
 [ENDNOTICE]
 
@@ -334,13 +343,13 @@ Zu den Referenztypen gehören Slices und Maps.
 
 Zugrundeliegende Datenstruktur von Slices ist ein Array — eine Sammlung von Einträgen, wo alle Einträge zum gleichen Typ gehören und die Größe fest ist.
 
-Arrays per se werden sehr selten benutzt, deswegen lassen wir sie hier außer Acht.
+Arrays werden in Go selten direkt verwendet, daher konzentrieren wir uns auf Slices.
 
 ### Slice
 
 Slices bauen immer auf Arrays auf. Ein Slice ist eine "View" bzw. eine Sicht in das zugrundeliegende Array.
 
-Das ist die Laufzeit-Darstellung eines Slices (`go/src/runtime/slice.go`):
+Das ist die Laufzeitdarstellung eines Slices (`go/src/runtime/slice.go`):
 ```go
 type slice struct {
     array unsafe.Pointer
@@ -362,20 +371,18 @@ Slices können entweder eigenständig erstellt werden oder als eine Sicht in ein
 ```go
 sl := make([]int, 4)            // Typ und initiale Größe eines Slices
 
-// oder
-sl := []int{0, 1, 2, 3, 4}
+sl := []int{0, 1, 2, 3, 4}      // direkter Slice mit Werten
 
-// oder
-arr := [5]int{0, 1, 2, 3, 4}
+arr := [5]int{0, 1, 2, 3, 4}    // existierendes Array
 
-sl := arr[1:3]                  // erste Index ist inklusiv, zweite Index ist exklusiv
-fmt.Println(len(sl))            // length: 2
-fmt.Println(cap(sl))            // capacity: 4
+sl := arr[1:3]                  // der erste Index ist inklusiv, der zweite Index ist exklusiv
+fmt.Println(len(sl))            // Länge: 2
+fmt.Println(cap(sl))            // Kapazität: 4
 
 fmt.Println(sl)                 // [1 2]
 fmt.Println(sl[0])              // 1
 fmt.Println(sl[1])              // 2
-sl[0] = 8                       // wir verändern das Array arr!
+sl[0] = 8                       // das verändert das Array arr!
 fmt.Println(arr)                // [0 8 2 3 4]
 ```
 
@@ -383,27 +390,28 @@ Ein weiteres Beispiel:
 ```go
 arr := [5]int{0, 1, 2, 3, 4}
 
-sl := arr[:]                    // kreiert einen Slice, welcher das ganze ursprüngliche Array beinhaltet (len = 5, cap = 5)
-sl := arr[2:]                   // kreiert einen Slice von Index 2 und bis zum Ende des Arrays (len = 3, cap = 3)
-sl := arr[:3]                   // kreiert einen Slice von Anfang des Arrays bis zu der Index 3 (exklusiv) (len = 3, cap = 5)
-                                // da cap > len ist, können wir relativ billig neue Elemente hinzufügen
-sl = append(sl, 8)              // das überschreibt aber die "3" aus dem ursprünglichen Array!
+sl := arr[:]                    // kreiert einen Slice für das gesamte ursprüngliche Array (len = 5, cap = 5)
+sl := arr[2:]                   // kreiert einen Slice ab Index 2 bis zum Ende des Arrays (len = 3, cap = 3)
+sl := arr[:3]                   // kreiert einen Slice vom Anfang des Arrays bis zu Index 3 (exklusiv) (len = 3, cap = 5),
+                                // ermöglicht das Hinzufügen neuer Elemente aufgrund höherer Kapazität
+sl = append(sl, 8)              // überschreibt jedoch die "3" im ursprünglichen Array!
 ```
+
 ### Map
 
-Map ist eine Sammlung von Schlüssel-Wert-Paaren. 
+Ein Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre Schlüssel ermöglicht. 
 
 Ein Map wird mithilfe von `make()` Funktion erstellt:
 
 ```go
-m := make(map[string]int)       // "string" ist der Typ von Schlüsseln, "int" ist der Typ von Werten
+m := make(map[string]int)       // "string" ist der Typ der Schlüssel, "int" ist der Typ der Werte
 m["one"] = 1
-fmt.Println(m)                  // [one:1]
-fmt.Println(m["two"])           // 0, da 0 der Nullwert von "int" ist
+fmt.Println(m)                  // map[one:1]
+fmt.Println(m["two"])           // 0, da 0 der Nullwert von "int" ist, wenn kein solcher Schlüssel existiert
 fmt.Println(len(m))             // 1
 ```
 
-Um zu überprüfen, ob ein Schlüssel bereits da ist, gibt es die folgende Schreibweise:
+Um zu überprüfen, ob ein Schlüssel bereits vorhanden ist, verwenden Sie folgende Schreibweise:
 
 ```go
 mysteriousMap := make(map[string]int)
@@ -411,11 +419,11 @@ mysteriousMap := make(map[string]int)
 if value, isThere := mysteriousMap["key"]; isThere {
     // do something
 } else {
-    // "key" is not used in the map and the value should not be used
+    // "key" does not exist in the map and the value should not be used
 }
 ```
 
-Wir können ein Schlüssel-Wert-Paar explizit entfernen:
+Sie können ein Schlüssel-Wert-Paar explizit entfernen:
 
 ```go
 mysteriousMap := make(map[string]error)
@@ -427,7 +435,7 @@ if value, isThere := mysteriousMap["foo"]; isThere && value == nil {
 }
 ```
 
-Falls es keinen solchen Schlüssel gibt, macht `delete()` nichts.
+Falls es keinen solchen Schlüssel gibt, führt `delete()` keine Aktion aus.
 
 [WARNING]
 
@@ -438,7 +446,7 @@ var s []int                     // s == nil
 var m map[string]int            // m == nil
 ```
 
-Viel robuster ist es, Slices und Maps direkt während der Deklaration mithilfe von `make()` zu definieren:
+Es ist robuster, Slices und Maps direkt während der Deklaration mit `make()` zu initialisieren:
 
 ```go
 s := make([]int, 0)
@@ -449,7 +457,7 @@ m := make(map[string]int)
 
 ### Programmieren
 
-Implementieren Sie folgende Funktionen:
+Implementieren Sie die folgenden Funktionen:
 
 * [ER] `func AddElement(slice []int, element, at int)` — ein Element an einem Index `at` in einen Slice einfügen;
 * [ER] `func RemoveElement(slice []int, at int)` — ein Element an einem Index `at` entfernen und die Größe des Slices entsprechen anpassen.
