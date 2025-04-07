@@ -54,6 +54,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Werkzeuge/Netzwerk/dnstools.md (...->LP)
 - ch/Werkzeuge/Netzwerk/dig.md (IC->LP->IC->LP)
 - ch/Werkzeuge/Netzwerk/SSH-Tunnel.md (IC->LP->IC->LP)
+- ch/Werkzeuge/Netzwerk/X11-Weiterleitung.md (IC->LP)
+- ch/Werkzeuge/Netzwerk/SSH-Reversetunnel.md (IC->LP)
 
 ### (on hold)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
@@ -83,7 +85,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ## Reviews to do for Ivan Condric
 
-- ch/Werkzeuge/Netzwerk/SSH-Reversetunnel.md
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC)
 - ch/Werkzeuge/Unix-Diverses/0x_cron.md
 
