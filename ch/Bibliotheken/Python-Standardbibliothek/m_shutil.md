@@ -40,7 +40,7 @@ von Operationen zu diesem Thema an.
   getrennt.
 - Laden Sie [PARTREF::m_shutil.zip] herunter und entpacken Sie die Ordnerstruktur in ihrem 
   Hilfsbereich (die Verschachtelung sollte folgendermaßen aussehen: 
-  `<Ihr Hilfsbereich>/m_shutil/source/...`).
+  `<Ihr Hilfsbereich>/m_shutil/sourcedir/...`).
 - [ER] Die Dateien `file1` und `dir/a` sollen [TERMREF2::Executable::ausführbar] sein. Da diese 
   [TERMREF::Dateiberechtigungen] durch git und Ver- und Entpacken verloren gehen können, setzen Sie 
   als Erstes in Ihrem Skript das Executable Bit für beide Dateien mithilfe von 
@@ -79,7 +79,7 @@ in den folgenden Aufgaben die Dateien bei jeder Ausführung Ihres Codes neu einf
 
 ### Dateien kopieren und verschieben
 
-In den folgenden Aufgaben geht es größtenteils darum, die Elemente aus `source` in den neuen 
+In den folgenden Aufgaben geht es größtenteils darum, die Elemente aus `sourcedir` in den neuen 
 Ordner `destination` zu kopieren/verschieben, jeweils mit anderen Anforderungen.
 
 - [EQ] Ihnen wird beim Durchstöbern der Dokumentation vermutlich aufgefallen sein, dass es vor allem 

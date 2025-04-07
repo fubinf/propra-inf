@@ -1,0 +1,2 @@
+#! /bin/bash
+echo -e "\nthis is '$(basename $0)' in '$(dirname $0)'"
