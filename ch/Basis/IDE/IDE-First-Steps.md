@@ -2,7 +2,7 @@ title: Erste Schritte in der IDE
 stage: beta
 timevalue: 0.5
 difficulty: 2
-requires: IDELinux, IDEWindows, IDEmacOS
+assumes: IDE-Linux, IDE-Windows, IDE-macOS
 ---
 
 [SECTION::goal::idea]
@@ -47,7 +47,7 @@ Jede IDE bietet daher eine Ordneransicht und umfassenden Funktionen für dessen 
 
 - Blenden Sie in Ihrer IDE den Verzeichnisbaum über das Ordnersymbol links ein.
 - [ER] Legen Sie nun mithilfe der IDE im Hauptverzeichnis Ihres Repos eine neue Python Datei mit 
-  dem Namen `IDEFirstSteps.py` an. Öffnen Sie anschließend die Datei.
+  dem Namen `IDE-First-Steps.py` an. Öffnen Sie anschließend die Datei.
 
 Nun schreiben wir etwas Python Code. Eine gute IDE gibt einem hierfür viele praktische 
 Hilfsmittel, wie Autovervollständigung, Anzeige und Korrektur von Syntax- und Rechtschreibfehlern, 
@@ -199,7 +199,7 @@ hier einen entsprechenden Hinweis oder fragen Sie gezielt nach.
 Unsere Studierenden müssen die IDE nicht benutzen, aber Sie sollen sich ungefähr bewusst sein,
 was sie dann verpassen.
 
-Beispiellösung siehe [TREEREF::/Basis/IDE/IDEFirstSteps.py]
+Beispiellösung siehe [TREEREF::/Basis/IDE/IDE-First-Steps.py]
 
 [INCLUDE::ALT:]
 

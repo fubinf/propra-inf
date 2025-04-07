@@ -382,7 +382,7 @@ Das ProPra verwendet sehr oft Kommandoprotokolle, weil die für die Tutor_innen 
 Man kann einen zügigen A/B-Vergleich mit dem Soll-Protokoll machen und sehr viele Abweichungen
 von der richtigen Lösung schnell und leicht bemerken -- viel leichter als würde man Quellcode anschauen.
 
-Betrachten Sie Aufgabe [PARTREF::IDEFirstSteps].
+Betrachten Sie Aufgabe [PARTREF::IDE-First-Steps].
 Wenn jemand den folgenden Quellcode abgibt, wird das Kommandoprotokoll drastisch von der Musterlösung abweichen.
 Sollte man die Abgabe akzeptieren oder nicht?
 
