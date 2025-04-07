@@ -3,7 +3,7 @@ stage: beta
 timevalue: 0.5
 difficulty: 2
 assumes: Markdown
-requires: SedrilaEinrichten
+requires: Sedrila-einrichten
 ---
 [SECTION::goal::idea]
 
