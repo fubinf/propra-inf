@@ -1,4 +1,10 @@
 ---
+
+[WARNING]
+Dies ist nur eine Vorversion. <!-- TODO_1 -->
+Hier kann sich noch viel ändern!
+[ENDWARNING]
+
 Willkommen beim Programmierpraktikum (ProPra)!
 
 Auf dieser Seite ist erklärt, was das ProPra soll und wie es funktioniert.
@@ -326,7 +332,7 @@ Es sollte klar sein, dass Sie nichts aus diesem Baum oder den sonstigen Lösungs
 an Teilnehmer_innen weitergeben.
 
 
-## 4. Wie funktioniert der Einreichungsprozess genau?
+## 4. Wie funktioniert der Einreichungsprozess technisch?
 
 Das Funktionsprinzip von sedrila für die Verwaltung der gutgeschriebenen Arbeitsstunden
 der Studierenden ist folgendes:
@@ -351,5 +357,143 @@ ist im entsprechenden Abschnitt von
 [sedrila User Guide for Course Instructors](https://sedrila.readthedocs.io/en/latest/instructors/)
 beschrieben.
 Bitte sorgfältig durchlesen und bei den ersten Einreichungen wieder zur Hand nehmen.
+
+
+## 5. Wann ist eine Abgabe akzeptabel, wann ist sie zurückzuweisen?
+
+Wenn eine Aufgabe ungefähr richtig gelöst ist, die Lösung aber moderate Abweichungen vom Soll enthält,
+sollte ich sie dann akzeptieren oder zurückweisen?
+
+Es gibt zwei Grundideen, die dafür ausschlaggebend sind:
+
+1. Meistens geht es in einer Aufgabe vor allem um gewisse Ideen.
+   Wenn die erkennbar verstanden und im Grundsatz richtig angewendet sind, akzeptieren wir die Aufgabe,
+   selbst wenn die Detailabweichungen erheblich ausfallen.
+2. Manchmal geht es bei einer Aufgabe aber auch (oder sogar vor allem) um Präzision
+   (z.B. beim Nachlesen in Referenzdokumentation),
+   die ja in der Informatik oft wichtig ist.
+   Dann sind Abweichungen an den entsprechenden Stellen nicht akzeptabel und die Aufgabe wird zurückgewiesen.
+   Die Studierenden sollen lernen, wann und wo es auf hohe Genauigkeit ankommt.
+
+
+### 5.1 Beispiel: Abweichung im Kommandoprotokoll
+
+Das ProPra verwendet sehr oft Kommandoprotokolle, weil die für die Tutor_innen angenehm sind:
+Man kann einen zügigen A/B-Vergleich mit dem Soll-Protokoll machen und sehr viele Abweichungen
+von der richtigen Lösung schnell und leicht bemerken -- viel leichter als würde man Quellcode anschauen.
+
+Betrachten Sie Aufgabe [PARTREF::IDEFirstSteps].
+Wenn jemand den folgenden Quellcode abgibt, wird das Kommandoprotokoll drastisch von der Musterlösung abweichen.
+Sollte man die Abgabe akzeptieren oder nicht?
+
+```
+#a1
+
+#a2
+def get_permutations(string, i=0):
+    res = []
+    if i == len(string):
+        res.append(string)
+
+    for j in range(i, len(string)):
+        chars = list(string)
+        chars[i], chars[j] = chars[j], chars[i]
+        res.extend(get_permutations("".join(chars), i + 1))
+    return res
+
+#a3
+print(get_permutations("FUB"))
+
+#a4
+print(get_permutations("Hallö"))
+print("Aufgabe 4", end="\nHelloWorld\n")
+```
+
+Die richtige Überlegung hierzu lautet, die beiden Hauptanliegen der Arbeit sind erreicht:
+der Code wurde ausführbar gemacht und die Variante `print(..., end=...)` gefunden.
+Dass da jemand beim Aufgabenteil für `print` nicht genau hingesehen hat, ist bei _dieser_ Aufgabe nicht schlimm.
+Dass jemand einen zusätzlichen Aufruf von `get_permutations()` eingefügt hat, ist sogar erfreulich.
+Also ist die Antwort sinnvollerweise ja.
+
+Um das zu entscheiden, muss man in die Aufgabenstellung schauen; 
+Kommandoprotokoll und Musterlösung allein reichen nicht.
+
+
+### 5.2 Beispiel: Antwort trifft die Frage nur halb
+
+Betrachten Sie Aufgabe [PARTREF::CSSSelektoren], Frage F1.
+Was halten Sie von folgender Antwort?
+
+> Im realen Leben würde man nicht so unterschiedliche Selektoren mischen. 
+> Besser wäre es, allen Elementen zunächst eine gemeinsame Klasse zu geben und dann 
+> für spezifische Varianten zusätzliche Klassen oder Datenattribute. 
+> Alternativ kann man auch Pseudoklassen wie :nth-of-type() einsetzen, 
+> wenn die Reihenfolge der Elemente feststeht.
+
+Eine klare Antwort auf "Welche Selektor-Art" ist das nicht.
+Also zurückweisen?
+
+Dies ist wohl ein Fall von schlampigem Lesen.
+Die Erwähnung von `:nth-of-type()` zeigt aber eine so hohe Kompetenz im behandelten
+Thema an, dass man das meist eher durchgehen lassen sollte.
+Wann nicht? Wenn dies ein "Pappenheimer" ist, der/die häufig durch Schlamperei auffällt,
+ist es im Sinne des ProPra-Zwecks (nämlich: Wertvolle Kompetenzen aufbauen) besser, 
+strenger zu sein und die Abgabe zurückzuweisen.
+
+
+### 5.3 Beispiel: Reflektionsthema
+
+
+Betrachten Sie Aufgabe [PARTREF::PEP8], Frage F1 ("Konventionen, die ich mir angewöhnen will").
+Diese Antwort
+
+> _"Function annotations should use PEP 484 syntax."_
+> Ich lasse oft die Type Hints weg, obwohl sie das Verständnis des Codes erhöhen können. 
+> Mit Type Hints wird jedem verwender der Funktion direkt klar was gewollt ist.
+
+verfehlt das Thema der genannten Regel, denn darin geht es nur darum, wie Annotationen aussehen,
+_falls man welche macht_. Die Antwort redet davon, _dass_ man welche machen sollte.
+Obwohl das vom Verständnis der Regel her klar daneben ist, ist die Antwort im Sinne
+der Aufgabe akzeptabel, denn eine Reflektion über PEP8-Regeln ist passiert und zwar im Sinne
+einer stärkeren Orientierung an guter Praxis.
+
+Bei Frage F2 ("Regeln, die ich nicht sinnvoll finde"), gab es diese Antwort:
+
+> _"Use 4 spaces per indentation level."_
+> Während ich die Konsistenz in einem Projekt für wichtig halte, 
+> finde ich die absolute Vermeidung von Tabs unnötig. 
+> Viele Editoren unterstützen die Anzeige und Formatierung von Tabs gut, 
+> und Tabs bieten die Flexibilität, wie viele Leerzeichen tatsächlich visuell angezeigt werden.
+
+Die Antwort hebt nicht, wie in der Aufgabe gefordert, auf die Begründung der Regel ab.
+Allerdings enthält [PEP8](https://peps.python.org/pep-0008/) gar keine solche Begründung
+und so ist auch diese Antwort OK.
+
+
+
+## 6. Sonst noch was?
+
+Fast geschafft! Letzte Anmerkungen:
+
+- Die erste Abgabe sollte man immer sehr genau ansehen und gründliche Rückmeldung darüber geben,
+  was an zurückgewiesenen Sachen das Problem ist und wo Dinge nur gerade so akzeptabel sind.
+  Bei späteren Abgaben kann man dann bei Leuten, wo alles tiptopp war, sehr viel grober Draufschauen
+  und die Arbeitszeit denen widmen, die mehr Aufsicht oder mehr Rückmeldung brauchen.
+- Wenn absehbar ist, dass in dieser Einreichung wohl viele Aufgaben zurückgewiesen werden,
+  Kontrolle der restlichen Einreichung in der Regel abbrechen und hilfreiches Feedback geben.
+- Eventuell ist es hilfreich, sich beim zweiten Mal, dass man die Aufgabe X kontrolliert,
+  persönliche Notizen zu machen, worauf man vor allem achten will, damit man nicht
+  jedesmal wieder alle INSTRUCTOR-Hinweise ansehen muss.
+  Im Laufe der Zeit kann man dort alle gängigen Fehler sammeln, was zur Verbesserung der ProPra-Aufgaben
+  hilfreich sein kann.
+  Achtung, so eine Datei macht manche Studis vermutlich sehr neugierig.
+- Das ProPra verändert sich derzeit noch recht zügig.
+  Dadurch treten immer mal wieder Unstimmigkeiten auf, wo eine Stelle noch nicht nachvollzogen hat,
+  was an einer anderen verändert wurde -- oder sogar noch nie ganz gestimmt hat.  
+  Die Studierenden können in Aufgabengruppe [PARTREF::ProPra-Mängel] Zeitgutschriften dafür bekommen,
+  dass sie solche Mängel in Aufgaben finden.
+  Aber bei Mängeln, die direkt die Instructor-Tätigkeit betreffen, sollten wir schnell handeln.
+  Bitte melden Sie solche Mängel zügig bei der Dozent_in.
+- ...
 
 [ENDINSTRUCTOR]
