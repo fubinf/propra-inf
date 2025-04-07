@@ -2,7 +2,7 @@ title: SSH-Reversetunnel
 stage: alpha
 timevalue: 0.5
 difficulty: 3
-assumes: SSH, SSH-Tunnel
+assumes: SSH, SSH-Tunnel, X11-Weiterleitung
 ---
 [SECTION::goal::idea]
  - Ich verstehe SSH-Reversetunnel und weiß wie ich sie nutze.
@@ -10,7 +10,7 @@ assumes: SSH, SSH-Tunnel
 
 [SECTION::background::default]
 Genauso wie Sie sich die Umgebung von einem entfernten Rechner zu sich holen können, können Sie 
-auch Ihre Umgebung auf einen entfernten Rechner bringen.  
+auch Ihre Umgebung auf einen entfernten Rechner bringen.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
@@ -18,10 +18,6 @@ auch Ihre Umgebung auf einen entfernten Rechner bringen.
 <replacement id='targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
 </replacement>
-
-### Voraussetzungen
-
-- [ER] Stellen Sie sicher, dass auf Ihrem System `python3`, `pip` und `Flask` installiert sind.
 
 ### Reversetunnel
 
@@ -33,19 +29,23 @@ ubuntuusers an.
 Lesen Sie die Option **-R** der ssh(1) [manpage](https://man.openbsd.org/ssh).
 
 - [EC] Starten Sie den Webserver aus der Aufgabe [PARTREF::SSH-Tunnel] auf Ihrem Rechner.
-- [EC] Verbinden Sie sich per SSH auf den Zielserver mit aktiviertem Reversetunnel auf den Port 
-   aus dem Skript und mit aktivierter X11-Weiterleitung.
-- [EC] Öffnen Sie einen Browser Ihrer Wahl.
 
-Nachdem Sie erfolgreich `Hello Tunnel` im Browser gesehen haben, können Sie den Browser, den 
+Öffnen Sie jetzt ein neues Kommandofenster. Führen Sie den nächsten Befehl im neuen Fenster aus.
+
+- [EC] Verbinden Sie sich per SSH auf den Zielserver mit aktiviertem Reversetunnel auf den Port 
+   9007 und mit aktivierter X11-Weiterleitung.
+- [EC] Öffnen Sie einen Browser Ihrer Wahl auf dem Zielserver.
+
+Nachdem Sie erfolgreich Ihren Dateibaum im Browser gesehen haben, können Sie den Browser, den 
 Webserver und den Porttunnel wieder schließen.
+
+- [EC] Schließen Sie den Browser.
+- [EC] Schließen Sie die SSH-Verbindung.
 
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-[ENDSECTION]
 
-[INSTRUCTOR::Erwartung]
-[INCLUDE::/_include/Instructor-Auseinandersetzung.md]
-[ENDINSTRUCTOR]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+
+[ENDSECTION]
