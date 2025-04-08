@@ -100,7 +100,6 @@ Bald:
 
 - `webapp`: Für `.prot` und `.md` Quell-Link ergänzen und bei `raw=` für `.prot` für
   mimetype `text/plain` sorgen
-- `instructor`: ohne studentdir nicht akzeptieren
 - `student`: `student.yaml` sollte die Kursgröße in Stunden deklarieren.
   Dann kann die Aufgabentabelle Hurra schreien, wenn man fertig ist.
 - `instructor`: Ungeprüfte Akzeptanz unterscheiden von geprüfter.
@@ -116,13 +115,11 @@ Bald:
   Jedes Paar von ersetzten Pfadnamen (alt in gelb, neu in grün) und
   ersetzten Markdown-Zeilen (alt in gelb, neu in grün) wird ausgegeben.
 - Defekt?: Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
-- Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
+- Wenn bei `--include_stage beta` eine `required`-Abhängigkeit nicht existiert,
   muss es eine Fehlermeldung geben, keinen toten Link.
-  Und wenn eine assumes-Abhängikeit nicht existiert oder sonst irgendein PARTREF
+  Und wenn eine `assumes`-Abhängikeit nicht existiert oder sonst irgendein `PARTREF`
   auf eine zwar existente aber nicht eingeschlossene Aufgabe, dann sollte ein Pseudolink
   erscheinen, der mit "sorry, gibt es in dieser Fassung des ProPra leider nicht" dekoriert ist.
-- student.yaml ergänzen um `git_username` und `partner_git_username`, damit man die
-  verwandten Repos identifizieren kann.
 
 Gelegentlich:
 - Konsistenzcheck, dass beim Aktualisieren eines Kurses keine bisherigen Aufgaben
