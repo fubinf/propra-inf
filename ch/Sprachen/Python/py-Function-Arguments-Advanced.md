@@ -2,7 +2,7 @@ title: "'*args' und '**kwargs': Mechanismen für flexible Anzahl von Argumenten"
 stage: alpha
 timevalue: 1.25
 difficulty: 2
-requires: Python-Function-Arguments-Basic
+requires: py-Function-Arguments-Basic
 ---
 
 [SECTION::goal::idea]

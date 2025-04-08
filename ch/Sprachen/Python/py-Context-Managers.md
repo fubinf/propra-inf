@@ -126,8 +126,8 @@ hilft Ihnen, Ihr Wissen über den Umgang mit Umgebungsvariablen in Python aufzuf
 [ENDNOTICE]
 ### Benutzerdefinierte Kontextmanager: Generatorbasiert
 
-<!-- TODO_2: partref: Python-Generators -->
-<!-- TODO_2: partref: Python-Decorators -->
+<!-- TODO_2: partref: py-Generators -->
+<!-- TODO_2: partref: py-Decorators -->
 [ER] Formulieren Sie den obigen klassenbasierten Kontextmanager `UmgebungsVariablenPatch` als 
 generatorbasierten Kontextmanager `umgebungsvariablen_patch` um. 
 Stellen Sie sicher, dass der neue Kontextmanager die gleichen Funktionalitäten bietet, d.h., 

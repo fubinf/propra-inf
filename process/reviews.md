@@ -35,7 +35,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Sprachen
 - ch/Sprachen/Go0/go-basics-i.md (IB)
-- ch/Sprachen/Python/Python-Funktionale-Programmierung.md (SW)
+- ch/Sprachen/Python/py-Funktionale-Programmierung.md (SW)
 - ch/Sprachen/Go0/go-basics-ii.md (IB)
 
 ### Bibliotheken
@@ -69,13 +69,13 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 - Python0/ Inhalt wird am Ende ausgearbeitet.
 
-- ch/Sprachen/Python/Python-OOP-Intro.md (HA->LP->HA)
-- ch/Sprachen/Python/Python-OOP-Methods.md (HA->LP->HA)
-- ch/Sprachen/Python/Python-OOP-Inheritance.md (HA-LP->HA)
-- ch/Sprachen/Python/Python-OOP-Praxis.md: (HA-LP->HA)
-- ch/Sprachen/Python/Python-Context-Managers.md (HA->LP->HA)
-- ch/Sprachen/Python/Python-Function-Arguments-Advanced.md (HA->LP->HA)
-- ch/Sprachen/Python/Python-import.md (HA->LP->HA->LP->HA)
+- ch/Sprachen/Python/py-OOP-Intro.md (HA->LP->HA)
+- ch/Sprachen/Python/py-OOP-Methods.md (HA->LP->HA)
+- ch/Sprachen/Python/py-OOP-Inheritance.md (HA-LP->HA)
+- ch/Sprachen/Python/py-OOP-Praxis.md: (HA-LP->HA)
+- ch/Sprachen/Python/py-Context-Managers.md (HA->LP->HA)
+- ch/Sprachen/Python/py-Function-Arguments-Advanced.md (HA->LP->HA)
+- ch/Sprachen/Python/py-import.md (HA->LP->HA->LP->HA)
 
 
 ## Reviews to do for Ihar Brandes

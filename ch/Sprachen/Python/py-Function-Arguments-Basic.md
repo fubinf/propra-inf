@@ -34,7 +34,7 @@ im Normalfall nur einmal _ausgeführt_. Aber _benutzt_ wird sie natürlich bei j
 Wenn Sie lernen, solche Ungenauigkeiten zu entdecken, können Sie Ihr Denken enorm schärfen!
 
 _Achtung 2:_ In der Quelle kommt auch `**kwargs` vor. Das ist Thema in der Nachfolgeaufgabe
-[PARTREF::Python-Function-Arguments-Advanced].
+[PARTREF::py-Function-Arguments-Advanced].
 
 
 [EQ] Was ist der Unterschied zwischen einem Parameter und einem Argument in Python?
