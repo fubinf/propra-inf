@@ -174,7 +174,7 @@ darauf sein.
 
 Im Quellcode bitte folgende Aspekte prüfen: 
 
-- Suche nur im Inhaltsverzeichnis ´<nav>´
+- Suche nur im Inhaltsverzeichnis (tag ´nav´)
 - Abruf der difficulty-spans mit nur einem Statement
 - Dabei Filterung per Funktion und Suche auch nach 'very low', auch wenn es dazu keinen Treffer gibt
 - Zugriff auf timevalue-Schwesterknoten mit `.parent()`, dann `.find()`

@@ -81,8 +81,8 @@ Sonderdateien:
 
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
-- Tasks so benennen, wie es sich aus authors.md 1.13 ergibt:
-  https://sedrila.readthedocs.io/en/latest/authors/#113-naming-conventions  
+- Tasks so benennen, wie es sich aus authors.md 1.14 ergibt:
+  https://sedrila.readthedocs.io/en/latest/authors/#114-naming-conventions  
   Erwähnungen an anderen Stellen mit ändern!
 - Die Anwendung der Regeln für den Sprachgebrauch prüfen/nachziehen
   wie in `how-to.md` beschrieben.

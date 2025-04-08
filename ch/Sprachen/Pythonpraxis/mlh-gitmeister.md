@@ -68,7 +68,7 @@ und sogar die Liste der häufigsten Committer_innen ändert sich:
 In der Liste der Top 20 steigen zwei Leute auf höhere Ränge auf
 und eine dritte Person erscheint überhaupt erst.
 
-Solche Effekte gibt es in so gut wie jedem großen Repo und die können noch
+Solche Effekte gibt es in den meisten großen Repos und sie können noch
 weitaus drastischer ausfallen als hier bei Django.
 
 Dafür wollen wir uns ein Werkzeug bauen:  
@@ -128,14 +128,14 @@ Das heißt also:
 - Recherchieren Sie, welche populären Graphbibliotheken es für Python gibt.
 - Anforderungen: 
     - Muss Kantengewichte darstellen können (Commitanzahl)
-    - Braucht nicht für riesige Graphen geeignet zu sein, denn wir haben
+    - Braucht _nicht_ für riesige Graphen geeignet zu sein, denn wir haben
       ja maximal ein paar Tausend Kanten.
     - Muss Zusammenhangskomponenten berechnen können.
     - Sollte eine leichtverständliche Dokumentation haben,
-      denn wir wollen ja nicht eine ganze Woche damit zubringen,
+      denn wir wollen ja nicht erst eine Woche damit zubringen,
       die Benutzung zu lernen.
 - Wählen Sie eine Bibliothek aus, die Sie einsetzen würden (samt Begründung) und
-  öffnen Sie _dann_ (oder im Falle kompletter Verzweiflung) die nachfolgende Empfehlung.
+  öffnen Sie _erst dann_ (oder im Falle kompletter Verzweiflung) die nachfolgende Empfehlung.
 
 [FOLDOUT::Empfehlung einer geeigneten Graphbibliothek]
 Gut geeignet ist `networkx`:

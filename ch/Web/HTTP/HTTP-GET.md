@@ -176,8 +176,10 @@ Geben Sie auch die Datei `HTTP-GET-request.crlf` mit ab.
 
 Die Eingabedatei sieht z.B. aus wie
 [TREEREF::HTTP-GET-request.crlf].
-Dabei müssen die Zeilenenden unbedingt CR LF sein!
+Dabei MÜSSEN die Zeilenenden unbedingt CR LF sein!
 (LF funktioniert mit einem bestimmten Server vielleicht, mit anderen aber nicht.)
+
+Kontrolle mit `od -a HTTP-GET-request.crlf`.
 
 
 ### Kommandoprotokoll

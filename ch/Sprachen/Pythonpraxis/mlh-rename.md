@@ -52,11 +52,11 @@ Also bauen wir uns sowas für `mlh`, wo wir es hoffentlich leicht wiederfinden u
   `to_pattern` steht, und dann die Datei entsprechend umbenannt. 
 - Die Option `--re` bewirkt, dass `from_pattern` und `to_pattern` als reguläre Ausdrücke 
   interpretiert werden und das Umschreiben mittels `re.sub` passiert.
-- [ER] Dateinamen werden ignoriert, wenn sie von der Umbenennung nicht betroffen sind oder wenn
+- [ER] Dateinamen werden still ignoriert, wenn sie von der Umbenennung nicht betroffen sind oder wenn
   keine solche Datei existiert.
 - [ER] Wird eine Datei umbenannt, so gibt das Werkzeug eine Meldung folgender Form aus:  
   `pfad1/pfad2/alter_name -> pfad1/pfad2/neuer_name`.
-- Wer Lust hat, das zu programmieren,
+- Wer mag,
   sollte der Übersichtlichkeit halber den Teil `pfad1/pfad2/` auf der rechten Seite weglassen.
 
 
@@ -78,9 +78,8 @@ Also bauen wir uns sowas für `mlh`, wo wir es hoffentlich leicht wiederfinden u
   dass der Datums-Zeitstempel am Anfang in `2024-03-07` geändert wird. Die Uhrzeit bleibt.
 - Prüfen, dass es `2024-03-07_105133_myimg.jpg` gibt.
 - Prüfen, dass es `JPGlist` immer noch gibt.
-- Sicherstellen, dass das Python-Äquivalent von `mlh rename ja nein nonexisting.ja` 
-  funktioniert, wenn die Datei `nonexisting.ja` nicht existiert,
-  und keinen Unsinn macht.
+- Sicherstellen, dass `mlh rename ja nein nonexisting.ja` 
+  sinnvoll funktioniert, wenn die Datei `nonexisting.ja` nicht existiert.
 
 
 [HINT::Wie benennt man in Python sauber eine Datei um?]

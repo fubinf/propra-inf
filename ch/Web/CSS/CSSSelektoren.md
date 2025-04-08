@@ -22,7 +22,7 @@ Man kann!
 
 [SECTION::instructions::detailed]
 [ER] Als Übung soll eine eine Website mit vier Quadraten dienen. 
-Erstellen Sie also eine Webseite `CSSSelektorenKlassen.html` mit Grundgerüst und vier 
+Erstellen Sie also eine Webseite `CSSSelektoren.html` mit Grundgerüst und vier 
 `<div>`-Elementen. 
 Da `<div>`-Elemente fast keine eigene semantische Bedeutung haben, können sie an vielen Stellen eingesetzt werden. 
 Um sie voneinander zu unterscheiden, setzt man oft Klassen ein.
@@ -78,6 +78,6 @@ Ggf. müssen Sie hier mit der Wichtigkeit arbeiten.
 [ENDSECTION]
 [INSTRUCTOR::Musterlösung]
 
-Eine Musterlösung findet sich in [TREEREF::/Web/CSS/CSSSelektorenKlassen.html].
+Eine Musterlösung findet sich in [TREEREF::/Web/CSS/CSSSelektoren.html].
 
 [ENDINSTRUCTOR]

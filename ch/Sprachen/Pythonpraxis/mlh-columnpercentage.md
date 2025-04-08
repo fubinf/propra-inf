@@ -94,6 +94,7 @@ und kommt wie folgt zustande:
   gerundet, d.h. die Einserstelle wird weggerundet und es entstehen Jahrzehnt-Angaben.
 - Von diesen Jahrzehnt-Angaben wird eine Häufigkeitszählung gemacht.
 - Diese Häufigkeiten werden fallend sortiert und in Prozentwerte umgerechnet.
+  Bei gleichem Prozentwert wird zusätzlich nach dem Datenwert sortiert, ebenfalls fallend.
 - Davon werden die ersten 10 (Standardwert der Option `--numshow`) ausgegeben.
 - Die Prozentwerte werden wie folgt gerundet: Bis 20 Eingabedatenwerte auf ganze Prozent,
   bis 200 mit 1 Nachkommastelle, darüber 2 Nachkommastellen.
