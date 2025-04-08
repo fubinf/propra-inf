@@ -36,7 +36,7 @@ Orientieren Sie sich an den folgenden Fragen, um alle relevanten Dinge zu erwäh
 
 [NOTICE]
 Wenn Sie sich noch für weitere Möglichkeiten zum Umgang mit Defekten interessieren, kann Ihnen 
-die Aufgabe [PARTREF::Safety-Expert] einen Einstieg bieten.
+die Aufgabe [PARTREF::Denkweise-Safety-Expert] einen Einstieg bieten.
 [ENDNOTICE]
 [ENDSECTION]
 
