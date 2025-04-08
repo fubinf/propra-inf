@@ -3,7 +3,7 @@ stage: beta
 timevalue: 1.0
 difficulty: 2
 requires: Zeiterfassung
-assumes: RequiresAssumes,Schwierigkeitsstufen
+assumes: requires-assumes,Schwierigkeitsstufen
 ---
 [SECTION::goal::idea]
 
