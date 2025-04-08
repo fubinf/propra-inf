@@ -1,4 +1,4 @@
-title: printf-Debugging
+title: print-Debugging
 stage: beta
 timevalue: 1.5
 difficulty: 3
@@ -33,11 +33,11 @@ andere halten das für die meisten Fälle für Kinderkram und finden,
 man müsse einen Debugger benutzen (Team "Debugger").
 Diese Aufgabe hilft, zu klären, ob Sie eher zu Team "Debugger" oder zu Team "`print()`" gehören.
 
-Das Vorgehen beim printf-Debugging ist im Prinzip einfach:
+Das Vorgehen beim print-Debugging ist im Prinzip einfach:
 Sie setzen einen `print()`-Ausdruck an eine für Sie interessante Stelle, 
 definieren welche relevanten Informationen für Sie ausgegeben werden sollen,
 führen das Programm erneut aus und studieren die Ausgaben.
-Aus mehr Schritten besteht das printf-Debugging nicht.  
+Aus mehr Schritten besteht das print-Debugging nicht.  
 
 Lesen Sie Adam Gordon Bells Artikel 
 [Printf Debugging and Srinivasa Ramanujan](https://earthly.dev/blog/printf-debugging/)
