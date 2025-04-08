@@ -95,7 +95,7 @@ wenn der Kontext verlassen wird, unabhängig davon, ob eine Ausnahme aufgetreten
 Definieren Sie dafür die Klasse `UmgebungsVariablenPatch`:
 
 - Der Konstruktor (`__init__`) soll mehrere Umgebungsvariablen und deren neue Werte entgegennehmen können, 
-und zwar mithilfe von `**kwargs` ([PARTREF::Python-Function-Arguments-Advanced]). 
+und zwar mithilfe von `**kwargs` ([PARTREF::py-Function-Arguments-Advanced]). 
 Dies ermöglicht es, beliebig viele Umgebungsvariablen zu patchen.
 - Die Methode `__enter__` soll die aktuellen Werte der Umgebungsvariablen speichern und 
 die Umgebungsvariablen auf die neuen Werte setzen.

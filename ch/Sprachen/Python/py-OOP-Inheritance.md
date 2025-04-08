@@ -2,7 +2,7 @@ title: "Klassenvererbung in Python: Grundlagen und Anwendung"
 stage: draft
 timevalue: 1.0
 difficulty: 2
-requires: Python-OOP-Intro
+requires: py-OOP-Intro
 ---
 
 [SECTION::goal::idea]
@@ -23,10 +23,10 @@ wie wir sie auch in der realen Welt vorfinden. Daraus ergibt sich eine komplexe,
 aber strukturierte Architektur, die letztlich dazu beiträgt, 
 Systeme effizient und produktiv zu gestalten.
 
-In [PARTREF::Python-OOP-Intro] haben Sie gelernt, 
+In [PARTREF::py-OOP-Intro] haben Sie gelernt, 
 wie Sie solche Entitäten mit Hilfe einfacher Klassen und Objekte modellieren können. 
 In dieser Aufgabe vertiefen Sie dieses Wissen ein Stück weiter, 
-indem Sie die Klassen von [PARTREF::Python-OOP-Intro] um eine Vererbungsebene erweitern. 
+indem Sie die Klassen von [PARTREF::py-OOP-Intro] um eine Vererbungsebene erweitern. 
 So wird das Konzept der Vererbung anschaulich dargestellt und 
 die Modellierung um eine neue Ebene bereichert.
 

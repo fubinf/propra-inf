@@ -2,7 +2,7 @@ title: "tempfile: temporäre Dateien anlegen und verwenden"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: Python-Context-Managers, encoding_and_open, m_os.path
+assumes: py-Context-Managers, encoding_and_open, m_os.path
 ---
 
 [SECTION::goal::idea]

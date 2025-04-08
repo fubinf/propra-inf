@@ -2,7 +2,7 @@ title: "Funktionale Programmierung in Python"
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: Python-Iterators, m_pprint
+assumes: py-Iterators, m_pprint
 ---
 
 [SECTION::goal::idea]
@@ -201,7 +201,7 @@ Das Kommandoprotokoll zur Unterstützung heranziehen.
 Klare Defekte und Abgaben, die nicht die in der Aufgabe geforderten Werkzeuge verwenden,  
 zurückweisen.
 
-Beispiellösung siehe [TREEREF::/Sprachen/Python/Python-Funktionale-Programmierung.py]
+Beispiellösung siehe [TREEREF::/Sprachen/Python/py-Funktionale-Programmierung.py]
 
 [INCLUDE::ALT:]
 

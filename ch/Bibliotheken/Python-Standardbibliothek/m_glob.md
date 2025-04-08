@@ -2,7 +2,7 @@ title: "glob, fnmatch: Verzeichnisse mit Pattern durchsuchen"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: m_os.path, Python-Iterators
+assumes: m_os.path, py-Iterators
 ---
 
 [SECTION::goal::idea]
@@ -83,7 +83,7 @@ wollen, können Sie mithilfe des Parameters `recursive` rekursiv suchen.
 ### Ergebnis als Iterator
 
 Anstatt mit den Suchergebnissen in Form von Listen zu arbeiten, gibt `glob` auch die Möglichkeit,
-mit [PARTREFMANUAL::Python-Iterators::Iteratoren] zu arbeiten.
+mit [PARTREFMANUAL::py-Iterators::Iteratoren] zu arbeiten.
 Bei Suchen in Verzeichnissen mit vielen Dateien hat das den Vorteil, dass nicht das gesamte 
 Ergebnis in eine Liste geschrieben wird, sondern immer bei Bedarf das nächste Element ermittelt 
 wird.

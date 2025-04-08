@@ -2,7 +2,7 @@ title: "Klassen-, Instanz- und statische Methoden in Python"
 stage: draft
 timevalue: 1.5
 difficulty: 2
-requires: Python-OOP-Intro
+requires: py-OOP-Intro
 ---
 
 <!-- TODO_2_Alrwasheda: add ref to Python-Decoratores -->
@@ -17,7 +17,7 @@ requires: Python-OOP-Intro
 
 [SECTION::background::default]
 
-Im [PARTREF::Python-OOP-Intro] haben Sie gelernt, 
+Im [PARTREF::py-OOP-Intro] haben Sie gelernt, 
 wie man einfache Klassen definiert und Entitäten aus der realen Welt 
 mithilfe objektorientierter Programmierung modelliert. 
 In dieser Aufgabe werden Sie sich mit Methoden befassen, wo normalerweise der Kern von Klassen liegt.  

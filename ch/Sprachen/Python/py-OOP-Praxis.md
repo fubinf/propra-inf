@@ -2,7 +2,7 @@ title: "Grundlagen von objektorientierter Programmierung in Python: Eine praktis
 stage: draft
 timevalue: 3
 difficulty: 3
-requires: Python-OOP-Intro, Python-OOP-Methods, Python-OOP-Inheritance
+requires: py-OOP-Intro, py-OOP-Methods, py-OOP-Inheritance
 ---
 
 [SECTION::goal::product]
@@ -129,7 +129,7 @@ der zu prüfenden Aufgaben `tasks_to_review`, die ein Prüfer der Klasse `ProPra
 In einer abgelehnten Aufgabe sollte meistens kleinen Teil korrigiert bzw. optimiert werden, 
 vielleicht hat nur der Title der Aufgabe dem Prüfer nicht gefallen.
 Daher lässt diese Methode mithilfe vom übergebenen Schlüsselwort-Argument `**kwargs`
-(s.b. [PARTREF::Python-Function-Arguments-Advanced]) beliebige Änderungen der Attribute der 
+(s.b. [PARTREF::py-Function-Arguments-Advanced]) beliebige Änderungen der Attribute der 
 abgelehnten Aufgabe `rejected_task_instance` zu. 
 Gültige Attribute werden also entsprechend bei der Aufgabe aktualisiert.  
 Abschließend schickt der Author die Aufgabe mit der gemachten Korrektor zurück an denselben Prüfer,
