@@ -28,7 +28,7 @@ Wer kein Stümper sein will, muss sich damit auskennen.
 
 - Laden Sie die Datei [PARTREF::encoding.zip] herunter und packen Sie sie aus
   in das Verzeichnis `encoding` in Ihrem Arbeitsbereich.
-- [ER] Legen Sie ein Programm `encoding_and_open.py` an.
+- [ER] Legen Sie ein Programm `encoding-and-open.py` an.
 - [ER] Schreiben Sie folgenden Code und lassen Sie ihn laufen:
 
 ```

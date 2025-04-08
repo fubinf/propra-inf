@@ -32,7 +32,7 @@ Hier lernen wir also das nötige Grundwissen über Sortieren in Python.
 
 ### Startpunkt
 
-- [ER] Legen Sie die Datei `sorted_and_sort.py` an und fügen Sie Folgendes dort ein:
+- [ER] Legen Sie die Datei `sorted-and-sort.py` an und fügen Sie Folgendes dort ein:
  
 ```
 what = "Tupel von Alter, Gewicht, Körpergröße"
@@ -174,7 +174,7 @@ Wahrscheinlich nicht. So geht es ganz hübsch:
 [INSTRUCTOR::Korrektheit und Stil prüfen]
 
 So sieht der korrekte Output aus:
-[FOLDOUT::Output von `python sorted_and_sort.py`]
+[FOLDOUT::Output von `python sorted-and-sort.py`]
 ```
 Tupel von Alter, Gewicht, Körpergröße
 [(22, 69, 177), (22, 71, 172), (48, 72, 174), (38, 89, 179), (71, 59, 170)]

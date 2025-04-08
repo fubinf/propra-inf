@@ -3,7 +3,7 @@ stage: beta
 timevalue: 1.0
 difficulty: 2
 explains: Hashfunktion
-assumes: encoding_and_open
+assumes: encoding-and-open
 ---
 
 [SECTION::goal::idea]

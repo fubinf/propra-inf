@@ -2,7 +2,7 @@ title: "Passwortgenerator: Passwörter algorithmisch erzeugen"
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: m_random, m_json1, m_argparse, encoding_and_open
+assumes: m_random, m_json1, m_argparse, encoding-and-open
 ---
 
 TODO_1_ruhe:
@@ -18,7 +18,7 @@ TODO_1_ruhe:
   Ich finde, das Programm sollte die wichtigsten Sorten davon als Auswahltyp abbilden.
 - Und eine zufällige Länge scheint mir eine sehr seltsame Idee. Damit will niemand arbeiten.
 - Statt `secure` gibt es in der stdlib `secrets`.
-- Ein Verweis auf `encoding_and_open` ist auf dem Niveau dieser Aufgabe nicht mehr sinnvoll;
+- Ein Verweis auf `encoding-and-open` ist auf dem Niveau dieser Aufgabe nicht mehr sinnvoll;
   das ist mit dem assumes erledigt.
 - INSTRUCTOR-Teil fehlt.
 
@@ -66,7 +66,7 @@ andere Lösungen Ihnen gelegener kommen.
 - Speichern Sie generierte Passwörter (vorerst) unverschlüsselt und lokal in einer
   [PARTREFMANUAL::m_json1::JSON]-Datei.
   - Für die Arbeit mit einer Datei bietet sich die Built-In Funktion
-    [PARTREFMANUAL::encoding_and_open::open] an.
+    [PARTREFMANUAL::encoding-and-open::open] an.
 - Überlegen Sie sich sich Referenzierung, um das Passwort jederzeit zuordnen zu können.
 - Das Passwort soll nur mit einem **Masterpasswort** abrufbar sein, dass Sie (vorerst) fest in den Code
   codieren.

@@ -2,7 +2,7 @@ title: "subprocess: Unterprozesse starten und ihre Ausgaben lesen"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: encoding_and_open
+assumes: encoding-and-open
 ---
 
 [SECTION::goal::trial]
