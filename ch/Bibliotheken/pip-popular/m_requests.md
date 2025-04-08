@@ -2,7 +2,7 @@ title: "'requests': sehr einfach HTTP-Anfragen machen"
 stage: beta
 timevalue: 1.0
 difficulty: 3
-assumes: HTTP-GET, HTTP-POST, WebAPIs, pip, m_sys, m_json1
+assumes: HTTP-GET, HTTP-POST, pip, m_sys, m_json1
 ---
 
 [SECTION::goal::trial]

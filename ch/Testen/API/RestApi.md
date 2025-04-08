@@ -2,7 +2,7 @@ title: Rest API Test mit Python Request
 stage: draft
 timevalue: 0
 difficulty: 2
-assumes: WebAPIs, pip, m_requests
+assumes: pip, m_requests
 ---
 # Review
 - Fragen zur Restful API: Finde ich als Lernaufgabe nicht so schön. Beispiel bauen ist super. Vielleicht findest du ja eine Möglichkeit, die anderen Dinge da auch irgendwie einzubauen? Also du lässt z.B. den API-Endpunkt so bauen, dass all die erkannten Grundsätze und Regeln da auch angewandt werden müssen.
