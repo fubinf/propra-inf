@@ -3,7 +3,7 @@ title: Rückmeldungen von Ihnen an uns über das ProPra
 In diesem Kapitel geht es darum, dass wir (die ProPra-Autor_innen)
 von Ihnen lernen statt umgekehrt.
 
-Diese Aufgaben können erst nach einer Weile Arbeit am ProPra bearbeiten, 
+Diese Aufgaben können Sie erst nach einiger Arbeit am ProPra sinnvoll bearbeiten, 
 denn erst dann haben Sie genügend viele Aufgaben absolviert.
 
 **Vorbereitung dafür:**
