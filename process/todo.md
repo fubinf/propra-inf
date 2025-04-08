@@ -101,6 +101,8 @@ Bald:
 - `webapp`: Für `.prot` und `.md` Quell-Link ergänzen und bei `raw=` für `.prot` für
   mimetype `text/plain` sorgen
 - `instructor`: ohne studentdir nicht akzeptieren
+- `student`: Wechselt ins Top-Verzeichnis (wo `.git` liegt), bricht mit Hinweis auf `--init` ab,
+  falls dort kein `student.yaml` liegt.
 - `student`: `student.yaml` sollte die Kursgröße in Stunden deklarieren.
   Dann kann die Aufgabentabelle Hurra schreien, wenn man fertig ist.
 - `instructor`: Ungeprüfte Akzeptanz unterscheiden von geprüfter.
@@ -108,6 +110,11 @@ Bald:
   sollte es eine Warnmeldung geben. Dass passiert bei `--stage beta`, wenn die Abhängigkeit 
   eine niedrigere stage hat.
 - `author`: ZIP-Dateien sollen kein automatisches Unterverzeichnis enthalten.
+- `author`: `--rename name1 name2` benennt eine Task oder Taskgroup um:
+  Alle Dateien bzw. Verzeichnisse in `chapterdir`, `altdir`, `itreedir`, die im passenden Pfad
+  von `chapterdir` liegen, werden umbenannt, alle Auftreten in `assumes:`, `requires:`,
+  `PARTREF::`, `PARTREFTITLE::`, `PARTREFMANUAL::`. Letztere geben zusätzlich eine Warnung,
+  weil man sie oft nachbearbeiten muss.
 - Defekt?: Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
 - Wenn bei --include_stage beta eine required-Abhängigkeit nicht existiert,
   muss es eine Fehlermeldung geben, keinen toten Link.
