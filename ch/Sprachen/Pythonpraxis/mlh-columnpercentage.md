@@ -6,7 +6,7 @@ assumes: regex_einfuehrung, Shell-Grundlagen2
 requires: mlh-lsnew
 ---
 
-TODO_2: assume: py-typing
+TODO_2_prechelt: assume: py-typing
 
 [SECTION::goal::product]
 
