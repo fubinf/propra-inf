@@ -76,6 +76,20 @@ instructors:
       hF3ymu8+s6vDa3qAKdTi3cNQRSG6
       =25DT
       -----END PGP PUBLIC KEY BLOCK-----
+  - nameish: David Harwardt
+    email: davih05@zedat.fu-berlin.de
+    gitaccount: davih05
+    webaccount: davih05
+    keyfingerprint: ""
+    pubkey: |
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
+  - nameish: Mert Yaylaci
+    email: merty03@zedat.fu-berlin.de
+    gitaccount: merty03
+    webaccount: merty03
+    keyfingerprint: ""
+    pubkey: |
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
 htaccess_template: |
     AuthName "FU Berlin, FB Mathematik/Informatik"
     AuthType Basic
