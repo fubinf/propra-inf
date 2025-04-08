@@ -20,16 +20,6 @@ Unittests auf elementare Module sind kein Problem.
 Aber wenn ein Modul von vielen anderen Dingen abhängt, stellt sich die Frage, ob man die
 alle mittesten soll und will.
 
-Mocking ist ein Mechanismus, der das Nicht-Mittesten erlaubt, indem eine Abhängigkeit
-durch einen Stellvertreter ersetzt wird, der gerade genug kann für den aktuellen Testfall.
-Typische Fälle für solche Abhängigkeiten sind
-    - Zugriffe auf externe Systeme (z.B. Web-APIs),
-    - Zugriffe auf Datenbanksysteme
-    - Aufrufe, die aus sonstigen Gründen sehr lange dauern,
-    - eigene Klassen, die für den Testzweck zu kompliziert zu konfigurieren sind, z.B.
-      weil dazu noch viele weitere Objekte als Voraussetzung nötig wären, die selber wiederum... -- 
-      und so weiter.
-
 [ENDSECTION]
 [SECTION::instructions::loose]
 
@@ -40,26 +30,66 @@ Verschaffen Sie sich einen Überblick über die
 
 ### Aufgaben 
 
-Zu jeder Aufgabe wird es eine kleine Funktion geben, die in einer Datei abzulegen ist.
-
-- Erstellen Sie die Datei `pytest_mocking.py`, um anschließend damit zu arbeiten.
+Zu jeder Aufgabe wird es eine kleine Funktion geben, die jeweils in einer separaten Datei abzulegen
+ist: `mock_example_<lfd>.py`. Erinnern Sie sich bitte, wie die Konvention zu den Test-Dateien
+gestaltet ist und wenden Sie diese an.
 
 Ihre Aufgabe ist es, die externen Abhängigkeiten und Seiteneffekte zu Ihren Tests zu isolieren,
 damit Sie sich auf das Testen der eigentlichen Logik Ihrer Funktionen und Methoden konzentrieren
 können.
 
-#### Aufgabe 1: Mocking einer Web-API
+#### Abhängigkeitsbezogenes Mocking
 
-- [ER] Schreiben Sie einen Pytest für die Funktion `get_weather_data()` wie unten angegeben, die sich in der Datei
-  `pytest_mocking.py` befinden soll und eine Web-API aufruft.   
-  Mocken Sie den API-Aufruf `requests.get`, um
-  sicherzustellen, dass während des Tests keine echte Netzwerkanfrage gemacht wird, denn diese
-  dauert erstens relativ lange und könnte zweitens (wie in unserem Fall) fehlschlagen, wenn
-  der betreffende externe Server nicht antwortet -- wozu es viele Gründe geben kann.  
+Wir wollen, dass die zu testende Funktion ihre Abhängigkeiten (z. B. API- oder Datenbankzugriffe)
+nicht intern erzeugt, sondern als Argument erhält.
+Dadurch lässt sich das Verhalten gezielt im Test kontrollieren, ohne auf globale Patches zurückzugreifen.
+Diese Methode nennt sich [TERMREF::Dependency Injection].
+
+- [ER] Schreiben Sie einen Test für `process_user()`, die sich in der Datei `mock_example_1.py`
+  befindet, indem Sie ein manuell erstelltes Mock-Objekt als `user_service` einspeisen.
+  Der Test soll überprüfen, ob process_user() das Ergebnis korrekt verarbeitet und zurückgibt.
+  Verwenden Sie kein `patch()` oder `Mock()` aus pytest-mock oder unittest.mock, sondern schreiben
+  Sie ein eigenes Testobjekt.
+
+```Python
+# mock_example_1.py
+
+class UserService:
+    def fetch_user(self, user_id):
+        # Stelle Sie sich vor, dass hier ein echter API-Aufruf stattfinden würde
+        return {"id": user_id, "name": "Max Mustermann"}
+
+def process_user(user_id, user_service):
+    user = user_service.fetch_user(user_id)
+    return f"User: {user['name']} (ID: {user['id']})"
+```
+
+Falls man keinen sauberen Weg hat, ein Mock-Objekt einzuspeisen (z. B. weil die Abhängigkeit im
+Code hart kodiert ist), kann man als technischen Workaround `patch` oder `mock_open` verwenden.
+In den folgenden Aufgaben sehen Sie solche Szenarien.
+
+#### Mocking einer Web-API
+
+In dieser Aufgabe lernen Sie, wie man externe Abhängigkeiten wie Web-APIs im Test durch Mocking
+ersetzt.
+Der Fokus liegt darauf, den Einfluss externer Systeme – hier: eine [TERMREF::HTTP]-Anfrage an einen
+Wetterdienst – gezielt zu isolieren, um die Logik der Funktion zuverlässig und reproduzierbar zu
+testen.
+Dazu werden Sie den Netzwerkaufruf mit einem Mock-Objekt simulieren, ohne dass tatsächlich eine
+Verbindung zum Internet hergestellt wird.
+
+- [ER] Schreiben Sie einen Pytest für die Funktion `get_weather_data()` wie unten angegeben, die
+  sich in der Datei `mock_example_2.py` befinden soll und eine Web-API aufruft.
+  Mocken Sie den API-Aufruf `requests.get`, um sicherzustellen, dass während des Tests keine
+  echte Netzwerkanfrage gemacht wird, denn diese dauert erstens relativ lange und könnte zweitens
+  (wie in unserem Fall) fehlschlagen, wenn der betreffende externe Server nicht antwortet -- wozu
+  es viele Gründe geben kann.  
   Der Test soll erwarten, dass die Antwort `{"temperature": 22, "weather": "sunny"}` lautet.
   Er soll außerdem sicherstellen, dass wirklich der korrekte URL angefragt wurde.
 
 ```Python
+# mock_example_2.py
+
 import requests
 
 def get_weather_data(city):
@@ -80,15 +110,23 @@ und somit sicherzustellen, dass der Test isoliert und unabhängig von externen F
 **Warum Mocking hier sinnvoll ist**: Netzwerkanfragen können langsam und unzuverlässig sein. Durch
 Mocking können wir sicherstellen, dass unsere Tests schnell und zuverlässig sind.
 
-#### Aufgabe 2: Mocking von Dateioperationen
+#### Mocking von Dateioperationen
+
+In dieser Aufgabe geht es darum, Dateioperationen beim Testen gezielt zu isolieren.
+Der Zugriff auf das Dateisystem ist fehleranfällig, langsam und macht Tests oft unhandlich,
+weil echte Dateien erstellt oder bereitgestellt werden müssten.
+Stattdessen lernen Sie hier, wie man die eingebaute `open`-Funktion mit `mock_open` ersetzt,
+um gezielt das gewünschte Leseverhalten zu simulieren.
 
 - [ER] Schreiben Sie einen Pytest für die Funktion `read_log_file()`, die sich in der Datei
-  `pytest_mocking.py` befinden soll und eine Datei liest und verarbeitet. Mocken Sie die
+  `mock_example_3.py` befinden soll und eine Datei liest und verarbeitet. Mocken Sie die
   Dateioperationen, um zu verhindern, dass während der Tests echte Dateien gelesen oder geschrieben
-  werden.   
+  werden.
   Der Test soll zwei Zeilen mit "ERROR" betrachten plus eine Zeile ohne.
 
 ```Python
+# mock_example_3.py
+
 def read_log_file(file_path):
     count = 0
     with open(file_path, 'r') as file:
@@ -109,37 +147,69 @@ schreiben, ohne dass echte Dateien benötigt werden.
 **Warum Mocking hier sinnvoll ist**: Dateioperationen können langsam sein und erfordern spezielle
 Testdateien. Durch Mocking können wir diese Abhängigkeiten eliminieren.
 
-#### Aufgabe 3: Mocking von Klassenmethoden
+#### Mocking von Klassenmethoden
+
+In dieser Aufgabe untersuchen Sie zwei Varianten, wie man Methoden von Klassen testen kann –
+insbesondere sogenannte Klassenmethoden.
+Im ersten Fall wird durch sauberen Testentwurf ([TERMREF::Dependency Injection]) die externe Abhängigkeit
+explizit übergeben.
+Im zweiten Fall ist das nicht vorgesehen, weshalb `patch()` als technischer Workaround zum Einsatz
+kommt.
+Beide Varianten zeigen typische Wege auf, wie man Klassenmethoden in Pytest testen und isolieren kann.
+
+- [ER] Schreiben Sie einen Test für `process_user_data()` mit Dependency Injection, die sich in der
+  Datei `mock_example_4.1.py` befinden soll.
+  Erstellen Sie ein eigenes Mock-Objekt und übergeben Sie es der Funktion. (Vgl. [EREFR::1])
+  Verwenden Sie kein patch().
 
 - [ER] Schreiben Sie einen Pytest für die Funktion `process_user_data()`, die sich in der Datei
-  `pytest_mocking.py` befinden soll und die von einer Klasse in Ihrem Projekt abhängt. Mocken Sie die
-  Abhängigkeit, um isolierte Tests durchzuführen.
+  `mock_example_4.2.py` befinden soll und die von einer Klasse in Ihrem Projekt abhängt.
+  Mocken Sie diese Variabnte mit `patch()`.
 
 ```Python
+# mock_example_4.1.py
+
+class UserManager:
+    def __init__(self, backend):
+        self.backend = backend
+
+    @classmethod
+    def process_user_data(cls, user_id, backend):
+        instance = cls(backend)
+        return instance.backend.get_user_data(user_id)
+```
+
+```Python
+# mock_example_4_2.py
+
 class UserManager:
     def get_user_data(self, user_id):
-        # Stellen Sie sich vor, dass hier echte Netzwerkanfragen stattfinden
         return {"name": "Max Mustermann", "email": "max@example.com"}
 
-def process_user_data(user_id):
-    user_manager = UserManager()
-    user_data = user_manager.get_user_data(user_id)
-    # Stellen Sie sich vor, dass diese Daten hier weiter verarbeitet werden
-    return user_data
+    @classmethod
+    def process_user_data(cls, user_id):
+        instance = cls()
+        return instance.get_user_data(user_id)
 ```
 
 **Warum Mocking hier sinnvoll ist**: Die Klasse `UserManager` könnte komplexe Abhängigkeiten haben.
 Durch Mocking können wir diese Abhängigkeiten eliminieren und uns auf die Logik von `process_user_data`
 konzentrieren.
 
-#### Aufgabe 4: Mocking von Datenbankoperationen
+#### Mocking von Datenbankoperationen
 
-- [ER] Schreiben Sie eine Funktion `get_user_age()`, die sich in der Datei `pytest_mocking.py`
+In dieser Aufgabe lernen Sie, wie man Datenbankzugriffe beim Testen durch Mocking ersetzt.
+Der Zugriff auf echte Datenbanken bringt viele Herausforderungen mit sich – von der Performance
+über die Testdatenpflege bis hin zur Reproduzierbarkeit von Ergebnissen.
+
+- [ER] Schreiben Sie eine Funktion `get_user_age()`, die sich in der Datei `mock_example_5.py`
   befinden soll und die das Alter eines Benutzers aus einer SQL-Datenbank abruft. Schreiben Sie
   anschließend Unittests für diese Funktion, wobei die Datenbankverbindung und -abfragen gemockt
   werden, um keine echte Datenbank zu verwenden.
 
 ```Python
+# mock_example_5
+
 import sqlite3
 
 def get_user_age(user_id):
@@ -151,32 +221,61 @@ def get_user_age(user_id):
     return result[0] if result else None
 ```
 
-[HINT::Klasse]
-Betrachten Sie den Bereich `MagicMock` in der offiziellen Dokumentation.
-Wir können MagicMock nutzen, um ein Mock-Objekt zu erstellen, das sich wie ein echtes Objekt verhält und
-Methodenaufrufe sowie deren Rückgabewerte simulieren kann. MagicMock ist besonders nützlich, wenn
-wir komplexe Objekte oder Methoden mit mehreren Attributen und Methoden mocken müssen. In diesem
-Fall wird MagicMock verwendet, um das Verhalten des Datenbank-Cursors zu simulieren, einschließlich
-der Rückgabe von Ergebnissen für SQL-Abfragen.
-[ENDHINT]
+[NOTICE]
+Wir könnten ebenfalls MagicMock nutzen, um ein Mock-Objekt zu erstellen, das sich wie ein echtes
+Objekt verhält und Methodenaufrufe sowie deren Rückgabewerte simulieren kann. 
+MagicMock ist besonders nützlich, wenn wir komplexe Objekte oder Methoden mit mehreren Attributen
+und Methoden mocken müssen.
+In diesem Fall wird MagicMock verwendet, um das Verhalten des Datenbank-Cursors zu simulieren,
+einschließlich der Rückgabe von Ergebnissen für SQL-Abfragen.
+[ENDNOTICE]
 
 **Warum Mocking hier sinnvoll ist**: Datenbankoperationen können langsam und komplex sein. Durch
 Mocking können wir sicherstellen, dass unsere Tests schnell und zuverlässig sind.
+
+#### Fehlerzustände mit Mocking simulieren
+
+Fehler treten in der echten Welt auf – aber selten dann, wenn man es im Test braucht.
+Mocking erlaubt es uns, genau diese Situationen gezielt herbeizuführen, um zu überprüfen,
+ob unser Code robust reagiert (Fehlerbehandlung, Logging, Retry, Defaults etc.).
+
+- [ER] Schreiben Sie einen Test für `get_weather_data()`, bei dem `requests.get()` absichtlich eine
+  Ausnahme (`requests.exceptions.ConnectionError`) auslöst.
+  Testen Sie, ob `get_weather_data()` damit richtig umgeht und z. B. `None` oder eine passende
+  Fehlermeldung zurückgibt.
+  Verwenden Sie `patch()`, um den Fehler gezielt auszulösen.
+  Die getestete Funktion soll in `mock_example_7.py` liegen.
+
+```Python
+# mock_example_7.py
+
+import requests
+
+def get_weather_data(city):
+    url = f"https://example-weather-api.com/data?city={city}"
+    try:
+        response = requests.get(url)
+        return response.json()
+    except requests.exceptions.ConnectionError:
+        return None
+```
 
 ### Reflektion: "Wann sollte man wie mocken und wann lieber nicht?"
 
 #### Testdoubles: "Mocken ist nicht gleich mocken"
 
-Überfliegen Sie den 
+Überfliegen Sie den
 [Artikel von Martin Fowler zu "Mocking"](https://martinfowler.com/articles/mocksArentStubs.html).
 Lesen Sie den Bereich der Testdoubles.
 
 - [ER] Betrachten Sie die folgende Funktion `send_email_to_users(users, email_service)`, die sich in
-  der Datei `pytest_mocking.py` befinden soll und entscheiden Sie, welche Art von Testdouble
+  der Datei `mock_example_6.py` befinden soll und entscheiden Sie, welche Art von Testdouble
   (Dummy, Fake, Stub, Spy, Mock) am besten geeignet ist. Implementieren Sie die entsprechenden
   Testdoubles und schreiben Sie Pytests für diese Funktion.
 
 ```python
+# mock_example_6.py
+
 def send_email_to_users(users, email_service):
     for user in users:
         email_service.send_email(user['email'], "Welcome!", "Hello, welcome to our service!")
@@ -184,268 +283,31 @@ def send_email_to_users(users, email_service):
 
 #### Vor- und Nachteile vom Mocking
 
-Nutzen Sie den folgenden Artikel von Robert C. Martin (oft genannt "Uncle Bob") zum Thema 
+Nutzen Sie den folgenden Artikel von Robert C. Martin (oft genannt "Uncle Bob") zum Thema
 ["When to Mock"](https://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html).
 
-- [EQ] Stimmen Sie den Aussagen von "Uncle Bob" zu? 
+- [EQ] Stimmen Sie den Aussagen von "Uncle Bob" zu?
   Welcher am meisten? Warum?
   Welcher am wenigsten? Warum?
 
-[HINT::Überlegungshilfen]
+#### Abhängiges vs. manuelles Testen
 
-- **Wann Mocking sinnvoll ist**:
-  - Externe Schnittstellen: Wenn echte Integrationen zu langsam, unzuverlässig oder schwer einzurichten sind.
-  - Kritische Abhängigkeiten: Wenn andere Systemteile Fehlerquellen sind und den Fokus vom eigentlichen
-  Code ablenken würden.
-  - Wenn echte Implementierungen schwer (z. B. wegen Datenbanken oder Web-Services) oder unnötig
-  aufwendig zu verwenden sind.
-  - Um Tests gezielt nur auf einen Teil der Anwendung zu fokussieren und so „echte“ externe
-  Seiteneffekte auszuschließen.
-- **Wann Mocking weniger sinnvoll ist**:
-  - Übermäßiges Mocken: Zu viel Einsatz von Mocks kann zu künstlichen, schwer wartbaren Tests führen.
-  - Abgrenzung von Stubs und Mocks: Mocks werden nicht nur für Rückgabewerte genutzt, sondern auch,
-  um Aufrufe (z. B. Methodenaufrufe) zu überprüfen.
-  - Wenn die reale Implementierung effizient genug getestet werden kann (Mocking könnte hier mehr schaden als helfen).
+- [EQ] Reflektieren Sie: Was ist gegenüber dem Dependency Injection sauberer als bei patch()?
 
-[ENDHINT]
+- [EQ] Reflektieren Sie: Warum haben Sie sich für das entsprechende Testdouble aus Aufgabe [EREFR::6]
+  entschieden, und nicht für die anderen Möglichkeiten?
 
 [ENDSECTION]
 
 [SECTION::submission::program]
 
-Reichen Sie für jede der Aufgaben [EREFR::1], [EREFR::2], [EREFR::3] und [EREFR::4]
-Ihre Python-Dateien ein.
+Reichen Sie für jede der Aufgaben [EREFR::1], [EREFR::2], [EREFR::3], [EREFR::4], [EREFR::5],
+[EREFR::6] und [EREFR::7] eine Python-Dateien ein.
 
 [ENDSECTION]
 
-[INSTRUCTOR::Lösungsvorschläge]
+[INSTRUCTOR::Prüfhilfen]
 
-- [EREFR::1] Wetter-Mocking
-
-```Python
-import pytest
-from unittest.mock import patch
-from pytest_mocking import get_weather_data
-
-def test_get_weather_data():
-  with patch('pytest_mocking.requests.get') as mock_get:
-    # Beispielantwort für den Mock
-    example_response = {"temperature": 22, "weather": "sunny"}
-    mock_get.return_value.json.return_value = example_response
-    
-    # Aufruf der zu testenden Funktion
-    response = get_weather_data("Berlin")
-    
-    # Überprüfung der Rückgabe
-    assert response == example_response
-    
-    # Überprüfung, ob die richtige URL aufgerufen wurde
-    mock_get.assert_called_with("https://example-weather-api.com/data?city=Berlin")
-```
-
-- [EREFR::2] Datei Mocking
-
-```Python
-import pytest
-from unittest.mock import mock_open, patch
-from pytest_mocking import read_log_file
-
-def test_read_log_file():
-  with patch('builtins.open', mock_open(read_data="ERROR at line 1\nOK at line 2\nERROR at line 3\n")) as mock_file:
-    # Aufruf der zu testenden Funktion
-    result = read_log_file('dummy_log_file.txt')
-    
-    # Überprüfung der Rückgabe
-    assert result == 2
-    
-    # Überprüfung, ob die richtige Datei geöffnet wurde
-    mock_file.assert_called_with('dummy_log_file.txt', 'r')
-```
-
-- [EREFR::3] Objekt Mocking
-
-```Python
-import pytest
-from unittest.mock import patch
-from pytest_mocking import process_user_data
-
-def test_process_user_data():
-  with patch('pytest_mocking.UserManager') as MockUserManager:
-    mock_user_manager = MockUserManager.return_value
-    mock_user_manager.get_user_data.return_value = {"name": "Mock User", "email": "mock@example.com"}
-    
-    # Aufruf der zu testenden Funktion
-    result = process_user_data(123)
-    
-    # Überprüfung der Rückgabe
-    assert result == {"name": "Mock User", "email": "mock@example.com"}
-    
-    # Überprüfung, ob die richtige Methode aufgerufen wurde
-    mock_user_manager.get_user_data.assert_called_with(123)
-```
-
-- [EREFR::4] Datenbank Mocking
-
-```Python
-import pytest
-from unittest.mock import MagicMock, patch
-from pytest_mocking import get_user_age
-
-def test_get_user_age():
-    with patch('pytest_mocking.sqlite3') as mock_sqlite:
-        mock_cursor = MagicMock()
-        mock_cursor.fetchone.return_value = [25]
-        mock_sqlite.connect.return_value.cursor.return_value = mock_cursor
-        
-        # Aufruf der zu testenden Funktion
-        age = get_user_age(123)
-        
-        # Überprüfung der Rückgabe
-        assert age == 25
-        
-        # Überprüfung, ob die richtige SQL-Abfrage ausgeführt wurde
-        mock_cursor.execute.assert_called_with("SELECT age FROM users WHERE id = ?", (123,))
-```
-
-### Reflektionsteil
-
-- [EREFR::5] Dummy
-
-```Python
-import pytest
-from unittest.mock import MagicMock, patch
-from pytest_mocking import send_email_to_users
-
-def test_send_email_to_users_with_dummy():
-    with patch('pytest_mocking.print') as mock_print:
-        users = [
-            {"email": "user1@example.com"},
-            {"email": "user2@example.com"},
-            {"email": "user3@example.com"}
-        ]
-        
-        # Dummy-Implementierung des Email-Services
-        class DummyEmailService:
-            def send_email(self, email, subject, body):
-                print(f"Sending email to {email}: {body}")
-        
-        email_service = DummyEmailService()
-        
-        # Aufruf der zu testenden Funktion
-        send_email_to_users(users, email_service)
-        
-        # Überprüfung der Ausgaben
-        mock_print.assert_any_call("Sending email to user1@example.com: Hello, welcome to our service!")
-        mock_print.assert_any_call("Sending email to user2@example.com: Hello, welcome to our service!")
-        mock_print.assert_any_call("Sending email to user3@example.com: Hello, welcome to our service!")
-```
-
-- [EREFR::6] FAKE
-
-```Python
-def test_send_email_to_users_with_fake():
-    users = [{"email": "user1@example.com"}, {"email": "user2@example.com"}]
-    class FakeEmailService:
-        def __init__(self):
-            self.sent_emails = []
-        def send_email(self, email, subject, body):
-            self.sent_emails.append((email, subject, body))
-    email_service = FakeEmailService()
-    send_email_to_users(users, email_service)
-    assert len(email_service.sent_emails) == 2
-    assert email_service.sent_emails[0] == ("user1@example.com", "Welcome!", "Hello, welcome to our service!")
-    assert email_service.sent_emails[1] == ("user2@example.com", "Welcome!", "Hello, welcome to our service!")
-```
-
-- [EREFR::7] Stub
-
-```Python
-def test_send_email_to_users_with_stub():
-    users = [{"email": "user1@example.com"}, {"email": "user2@example.com"}]
-    class StubEmailService:
-        def send_email(self, email, subject, body):
-            return "Email sent"
-    email_service = StubEmailService()
-    send_email_to_users(users, email_service)
-    # Keine Assertion notwendig, da Stub-Objekte vorgefertigte Antworten liefern
-```
-
-- [EREFR::8] Spy
-
-```Python
-def test_send_email_to_users_with_spy():
-    users = [{"email": "user1@example.com"}, {"email": "user2@example.com"}]
-    class SpyEmailService:
-        def __init__(self):
-            self.sent_emails = []
-        def send_email(self, email, subject, body):
-            self.sent_emails.append((email, subject, body))
-    email_service = SpyEmailService()
-    send_email_to_users(users, email_service)
-    assert len(email_service.sent_emails) == 2
-    assert email_service.sent_emails[0] == ("user1@example.com", "Welcome!", "Hello, welcome to our service!")
-    assert email_service.sent_emails[1] == ("user2@example.com", "Welcome!", "Hello, welcome to our service!")
-```
-
-- [EREFR::9] Mock
-
-```Python
-def test_send_email_to_users_with_mock():
-    users = [{"email": "user1@example.com"}, {"email": "user2@example.com"}]
-    
-    class TestEmailService:
-        def __init__(self):
-            self.sent_emails = []
-        
-        def send_email(self, email, subject, body):
-            self.sent_emails.append((email, subject, body))
-    
-    email_service = TestEmailService()
-    send_email_to_users(users, email_service)
-    
-    assert len(email_service.sent_emails) == 2
-    assert email_service.sent_emails[0] == ("user1@example.com", "Welcome!", "Hello, welcome to our service!")
-    assert email_service.sent_emails[1] == ("user2@example.com", "Welcome!", "Hello, welcome to our service!")
-
-```
-
-Das Ergebnis alle Tests sollte so enden:
-
-```bash
-(.venv) student@MBP test % pytest
-=========================== test session starts ============================
-platform darwin -- Python 3.13.1, pytest-8.3.4, pluggy-1.5.0
-rootdir: /Users/student/propra-inf
-collected 9 items                                                          
-
-test_pytest_mocking.py .........                                           [100%]
-
-============================ 9 passed in 0.05s =============================
-(.venv) student@MBP test % 
-```
-
-- [EREFQ::1] Hier wäre es schön folgende Erkenntnisse heruaszulesen:
-
-Wann einsetzen?
-- Externe Schnittstellen: Immer dann, wenn echte Integrationen zu langsam, unzuverlässig oder schwer
-  einzurichten sind.
-- Kritische Abhängigkeiten: Wenn andere Systemteile Fehlerquellen sind und den Fokus vom eigentlichen
-  Code ablenken würden.
-- Wenn echte Implementierungen schwer (z. B. wegen Datenbanken oder Web-Services) oder unnötig
-  aufwendig zu verwenden sind.
-- Um Tests gezielt nur auf einen Teil der Anwendung zu fokussieren und so „echte“ externe
-  Seiteneffekte auszuschließen.
-
-Worauf achten?
-- Übermäßiges Mocken: Zu viel Einsatz von Mocks kann zu künstlichen, schwer wartbaren Tests führen.
-- Abgrenzung von Stubs und Mocks: Mocks werden nicht nur für Rückgabewerte genutzt, sondern auch, um
-  Aufrufe (z. B. Methodenaufrufe) zu überprüfen.
-- Wenn die reale Implementierung effizient genug getestet werden kann (Mocking könnte hier mehr
-  schaden als helfen).
-
-- [EREFQ::2] Die verschiedenen Testebenen sind ebenfalls wichtig: In Unit-Tests wird oft stärker auf
-  Mocks zurückgegriffen, während sie bei End-to-End-Tests eher unangebracht sind, da hier die Anwendung
-  in ihrer Gesamtheit aus Kundensicht geprüft wird. In Integrationstests werden die Abhängigkeiten
-  zwischen den einzelnen Komponenten geprüft, weshalb hier sehr stark mit Bedacht gemockt werden sollte.
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]

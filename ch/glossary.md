@@ -303,6 +303,13 @@ Sie lauten:
 `nicht (a oder b) ist äquivalent zu ((nicht a) und (nicht b))`.
 [ENDTERM]
 
+[TERM::Dependency Injection]
+Dependency Injection ist ein Entwurfsmuster, bei dem externe Abhängigkeiten explizit an ein Objekt
+oder eine Funktion übergeben werden – statt sie intern zu erstellen.
+Beim Testen ermöglicht das den Austausch dieser Abhängigkeiten durch kontrollierte Mocks, Dummies
+oder Stubs.
+[ENDTERM]
+
 [TERM::Deserialisierung]
 Ein Mechanismus, der sich auf den Prozess bezieht, bei dem die serialisierten Daten
 (s. [TERMREF::Serialisierung]) wieder in ihre ursprüngliche Form zurückkonvertiert werden. In Bezug
