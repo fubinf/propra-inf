@@ -32,14 +32,14 @@ Zielserver = `andorra.imp.fu-berlin.de`
 #!/bin/bash
 
 # Verzeichnis festlegen
-unterordner="$HOME/rsync_copy_data/"
+unterordner="$HOME/ws/tmp/rsync_copy_data/"
 
 # Sicherstellen, dass der Unterordner existiert
 if [ ! -d "$unterordner" ]; then
     mkdir -p "$unterordner"
 fi
 
-# 20 Dateien erstellen
+# 5 Dateien erstellen
 for i in {1..5}; do
     echo "Inhalt der Datei $i" > "$unterordner/datei_$i"
 done
@@ -48,7 +48,7 @@ echo "$i Dateien wurden im Unterordner erstellt: $unterordner"
 ```
 
 - [EC] Erstellen Sie eine Datei `rsync_copy_data.sh` auf Ihrem System mit obigem Inhalt.
-  Das Skript erstellt einen neuen Ordner `rsync_copy_data` mit 20 Textdateien.  
+  Das Skript erstellt einen neuen Ordner `rsync_copy_data` mit 5 Textdateien.  
 - [EC] Führen Sie das Skript mit `bash rsync_copy_data.sh` aus.
   Prüfen Sie, ob der Unterordner `rsync_copy_data` und die Textdateien vorhanden sind.
 
@@ -61,8 +61,8 @@ also bitte Vorsicht!
 
 - [EC] Erstellen Sie den Ordner `/tmp/rsync_destination`.
 - [EC] Führen Sie nacheinander beide Befehle aus  
-    `rsync -a ~/rsync_copy_data /tmp/rsync_destination/`  
-    `rsync -a ~/rsync_copy_data/ /tmp/rsync_destination/`  
+    `rsync -a ~/ws/tmp/rsync_copy_data /tmp/rsync_destination/`  
+    `rsync -a ~/ws/tmp/rsync_copy_data/ /tmp/rsync_destination/`  
 - [EQ] Was ist der Unterschied im Verhalten der beiden Kommandos?
 
 [NOTICE]
@@ -90,11 +90,11 @@ wurden. Deswegen wird rsync gerne als Backup-Lösung genutzt, da es nur die ver�
 Zur Veranschaulichung ändern wir eine Datei aus den vorhin erstellten Dateien und kopieren Sie in 
 einen Ordner.
 
-- [EC] Kopieren Sie die Dateien aus dem Ordner `/home/username/rsync_copy_data` per rsync in den 
+- [EC] Kopieren Sie die Dateien aus dem Ordner `~/ws/tmp/rsync_copy_data` per rsync in den 
        `/tmp/rsync_destination3` Ordner. 
-- [EC] Fügen Sie der Datei `/home/username/rsync_copy_data/datei_1` den Text `Ich wurde veraendert` 
+- [EC] Fügen Sie der Datei `~/ws/tmp/rsync_copy_data/datei_1` den Text `Ich wurde veraendert` 
        hinzu.  
-- [EC] Kopieren Sie die Dateien aus dem Ordner `/home/username/rsync_copy_data` per rsync in den 
+- [EC] Kopieren Sie die Dateien aus dem Ordner `~/ws/tmp/rsync_copy_data` per rsync in den 
        `/tmp/rsync_destination3` Ordner. 
 - [EC] Vergewissern Sie sich, dass die Datei `datei1` in den `/tmp/rsync_destination3` Ordner geändert wurde.
 
