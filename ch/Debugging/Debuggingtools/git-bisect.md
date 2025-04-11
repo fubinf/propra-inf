@@ -40,7 +40,7 @@ Deshalb ist der Test in vielen Fällen dann doch manuell.
 
 Beschäftigen Sie sich mit der Dokumentation von [`git bisect`](https://git-scm.com/docs/git-bisect).
 
-- Legen Sie das Dokument `gitbisect.md` an.
+- Legen Sie das Dokument `git-bisect.md` an.
 - Fügen Sie in diesem Dokument die Überschrift `Wie funktioniert git bisect?` ein.
 - [EQ] Beschreiben Sie den allgemeinen Ablauf von `git bisect`.
 - [EQ] Beschreiben Sie, wie man einen `git bisect`-Prozess startet.
@@ -63,7 +63,7 @@ Als Nächstes versuchen wir `git bisect` an einem Beispiel-Repo einzusetzen.
   - ein Python-Skript, `squares.py`, welches als Eingabe eine Zahl bekommt und diese quadriert
   - und ein Bash-Skript, `breakme.sh`, welches eine git-History für uns erstellt.
 - Wechseln Sie im Terminal in das Verzeichnis des Repos.
-- Fügen Sie in `gitbisect.md` eine weitere Überschrift ein, `Übung`.
+- Fügen Sie in `git-bisect.md` eine weitere Überschrift ein, `Übung`.
   Fügen Sie die folgenden Arbeitsschritte unter dieser Überschrift ein.
 - [EC] Vergewissern Sie sich, dass der Aufruf `python squares.py 2` das richtige Ergebnis liefert.
 - Führen Sie das Skript `breakme.sh` aus. 
