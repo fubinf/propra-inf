@@ -163,7 +163,7 @@ sollte.
 Einige von denen werden auch in fortgeschrittenen ProPra-Aufgaben gezielt vorgestellt:
 
 - [PARTREFMANUAL::git-IDE::Arbeiten mit Git in der IDE]
-- [PARTREFMANUAL::IDE_debugging::Debugging in der IDE]
+- [PARTREFMANUAL::IDE-Debugging::Debugging in der IDE]
 - [PARTREFMANUAL::Linting-PyCharm::Linting in PyCharm]
 <!-- TODO_3: weitere Aufgaben auflisten, die IDE Features behandeln -->
 

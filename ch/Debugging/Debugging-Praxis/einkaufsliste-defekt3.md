@@ -2,7 +2,7 @@ title: Debugging eines bedingungsabhängigen Versagens
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: IDE_debugging
+assumes: IDE-Debugging
 requires: einkaufsliste-defekt2
 ---
 [SECTION::goal::trial,product]

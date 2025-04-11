@@ -67,7 +67,7 @@ geschleust werden. Das verzögert den Start nach einer Änderung.
 [WARNING]
 Wenn Sie diese Frage nicht beantworten können, fehlt es Ihnen wohl an Erfahrung.
 Bearbeiten Sie dann zunächst Teil 2 dieser Aufgabe,
-erlernen Sie anschließend den Debugger (inbesondere das komfortable [PARTREF::IDE_debugging]),
+erlernen Sie anschließend den Debugger (inbesondere das komfortable [PARTREF::IDE-Debugging]),
 sammeln dann Erfahrung mit beiden Methoden (z. B. in [PARTREF::Pythonpraxis]) und 
 kommen Sie anschließend zur obigen Frage zurück.
 [ENDWARNING]

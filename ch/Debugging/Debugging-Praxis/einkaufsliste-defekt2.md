@@ -2,7 +2,7 @@ title: Debugging eines falschen Outputs
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: IDE_debugging
+assumes: IDE-Debugging
 requires: einkaufsliste-defekt
 ---
 [SECTION::goal::trial,product]
