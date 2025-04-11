@@ -33,7 +33,7 @@ Warum diese?
 
 [WARNING]
 In Abschnitt 13.6.3 wird von der "Program Data Base (PDB)" gesprochen.
-Verwechseln Sie diese nicht mit dem Python Debugger [PARTREF::pdb].
+Verwechseln Sie diese nicht mit dem Python Debugger [PARTREF::py-pdb].
 [ENDWARNING]
 
 [EQ] Sind Sie der Meinung, dass man diese Fehlerquellen absolut verhindern kann?

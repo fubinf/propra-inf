@@ -2,7 +2,7 @@ title: Debugging mittels IDE
 stage: beta
 timevalue: 1.0
 difficulty: 3
-assumes: pdb
+assumes: py-pdb
 ---
 [SECTION::goal::idea]
 
@@ -12,7 +12,7 @@ assumes: pdb
 [ENDSECTION]
 [SECTION::background::default]
 
-Für viele einfache Debugging-Fälle ist [PARTREF::pdb] die handlichste Lösung,
+Für viele einfache Debugging-Fälle ist [PARTREF::py-pdb] die handlichste Lösung,
 wenn man einen Debugger braucht.
 Aber wenn es komplizierter wird, kann eine IDE wesentlich mehr leisten.
 Das probieren wir hier aus.
@@ -27,7 +27,7 @@ Verwenden Sie für das Folgende
 
 ### Ausprobieren!
 
-Laden Sie das Programm aus der Aufgabe [PARTREF::pdb] in Ihre IDE
+Laden Sie das Programm aus der Aufgabe [PARTREF::py-pdb] in Ihre IDE
 und probieren Sie die folgenden Dinge damit aus, während die die Antworten zu 
 den folgenden Fragen recherchieren:
  
@@ -40,7 +40,7 @@ den folgenden Fragen recherchieren:
 - [EQ] Was sind Ihrer Einschätzung nach die 5 wichtigsten Funktionen des Debuggers?
   Erklären Sie kurz, was diese Funktionen genau machen.
 - [EQ] Als wie nützlich empfinden Sie den grafischen Debugger?
-  Was gefällt Ihnen gut (insbesondere im Vergleich zu [PARTREF::pdb]), was schlecht?
+  Was gefällt Ihnen gut (insbesondere im Vergleich zu [PARTREF::py-pdb]), was schlecht?
 
 [ENDSECTION]
 [SECTION::submission::information]
