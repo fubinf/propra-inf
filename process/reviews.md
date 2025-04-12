@@ -46,6 +46,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Testen
 - ch/Testen/Unittests/pytest_mocking_freezegun.md (RR->DM->HA->LP->RR->LP->RR->LP) - leichte Überarbeitung
 - ch/Testen/Unittests/pytest_fixtures.md (RR->LP->RR->LP) - Ergänzungern und von Unit- in Pytest umgewandelt
+- ch/Testen/Unittests/pytest_mocking.md (RR->DM->HA->LP->RR->LP->RR)
 
 ### Web
 
@@ -131,7 +132,6 @@ Fehlerfällen, Whitebox/Strukturtest.
 Einsatzfälle für Mocking: Fehlerfälle induzieren, schwergewichtige Kollaborateure loswerden.
 
 - ch/Testen/Unittests/pytest_call (RR->LP->RR->LP->RR)
-- ch/Testen/Unittests/pytest_mocking.md (RR->DM->HA->LP->RR->LP->RR)
 - ch/Testen/Unittests/pytest_plugin_testcoverage.md (RR->LP->RR)
 - ch/Testen/Unittests/testcoverage.md (RR->LP->RR)
 - ch/Testen/Unittests/pytest103.md (Pietrak und RR->DM->LP->RR)
