@@ -1,10 +1,4 @@
 ---
-
-[WARNING]
-Dies ist nur eine Vorversion. <!-- TODO_1_prechelt -->
-Hier kann sich noch viel ändern!
-[ENDWARNING]
-
 Willkommen beim Programmierpraktikum (ProPra)!
 
 Auf dieser Seite ist erklärt, was das ProPra soll und wie es funktioniert.
