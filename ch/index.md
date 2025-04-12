@@ -421,7 +421,7 @@ Kommandoprotokoll und Musterlösung allein reichen nicht.
 
 ### 5.2 Beispiel: Antwort trifft die Frage nur halb
 
-Betrachten Sie Aufgabe [PARTREF::CSSSelektoren], Frage F1.
+Betrachten Sie Aufgabe [PARTREF::css-Selektoren], Frage F1.
 Was halten Sie von folgender Antwort?
 
 > Im realen Leben würde man nicht so unterschiedliche Selektoren mischen. 

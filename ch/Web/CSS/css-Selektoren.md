@@ -2,7 +2,7 @@ title: "CSS: Selektoren, Klassen und Pseudoklassen"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: CSSEinfuehrung, html-Semantik
+assumes: css-Einführung, html-Semantik
 ---
 
 [SECTION::goal::experience]
@@ -78,6 +78,6 @@ Ggf. müssen Sie hier mit der Wichtigkeit arbeiten.
 [ENDSECTION]
 [INSTRUCTOR::Musterlösung]
 
-Eine Musterlösung findet sich in [TREEREF::/Web/CSS/CSSSelektoren.html].
+Eine Musterlösung findet sich in [TREEREF::/Web/CSS/css-Selektoren.html].
 
 [ENDINSTRUCTOR]

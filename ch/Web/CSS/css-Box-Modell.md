@@ -2,7 +2,7 @@ title: "CSS: Vorgaben für Abstände und Gesamtlayout"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: CSSSelektoren, html-Semantik
+assumes: css-Selektoren, html-Semantik
 ---
 
 [SECTION::goal::experience]
@@ -70,7 +70,7 @@ finden Sie eine grafische Darstellung des Box-Models.
 [ENDSECTION]
 [INSTRUCTOR::Musterlösung]
 
-Eine Musterlösung findet sich in [TREEREF::/Web/CSS/CSSBoxModel.html].
+Eine Musterlösung findet sich in [TREEREF::/Web/CSS/css-Box-Modell.html].
 
 [EREFQ::1] Die geforderten 33% Breite beziehen sich nur auf den Inhaltsbereich des Elements, 
 Breite von Rahmen (`border`), Innen- (`padding`) und Außenabstand (`margin`) bleiben unbeachtet. 
