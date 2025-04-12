@@ -2,7 +2,7 @@ title: "Gilded Rose(4): Wie war's? Worauf kommt es an?"
 stage: beta
 timevalue: 0.5
 difficulty: 3
-requires: gildedrose_implementation
+requires: refactor-GildedRose-erweitern
 ---
 [SECTION::goal::idea]
 
@@ -28,7 +28,7 @@ was man gerade erlebt hat.
   Wenn nein: Woran hat das wohl gelegen?
 
 
-### Zu [PARTREF::gildedrose_tests]:
+### Zu [PARTREF::refactor-GildedRose-Tests]:
 
 - [EQ] Empfinden Sie die Fokussierung auf Tests als wertvoll oder eher als lästig? Begründen Sie.
 - [EQ] Wie werden Sie zukünftig mit Tests umgehen?
@@ -38,14 +38,14 @@ was man gerade erlebt hat.
   Warum?
 
 
-### Zu [PARTREF::gildedrose_refactor]:
+### Zu [PARTREF::refactor-GildedRose-umstrukturieren]:
  
 - [EQ] Welche der Varianten 1 oder 2 erschien Ihnen sinnvoller? Warum?
 - [EQ] Ist Ihnen noch eine dritte Variante zur Refaktorierung eingefallen? 
   Wenn ja: Skizzieren Sie diese in einem kurzen Absatz.
 
 
-### Zu [PARTREF::gildedrose_implementation]
+### Zu [PARTREF::refactor-GildedRose-erweitern]
 
 - [EQ] Gab es nach der Vorarbeit hier Probleme bei der Implementierung?
 - [EQ] Schauen Sie sich nochmal den Original-Code an.

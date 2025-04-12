@@ -3,7 +3,7 @@ stage: beta
 timevalue: 3.0
 difficulty: 3
 assumes: Refactoring-Grundlagen
-requires: gildedrose_tests
+requires: refactor-GildedRose-Tests
 ---
 [SECTION::goal::experience]
 
@@ -36,7 +36,7 @@ Die Regeln des Programms sind bekannt und sind mittels Tests festgehalten.
 
 - Erstellen Sie die Ordner `gildedrose/variante1` und `gildedrose/variante2`.
 - Kopieren Sie die Dateien `gilded_rose.py` und `test_gilded_rose.py` aus 
-  [PARTREF::gildedrose_tests] in jeden dieser Ordner.
+  [PARTREF::refactor-GildedRose-Tests] in jeden dieser Ordner.
 - Machen Sie einen Commit mit diesen Dateien.
 
 
@@ -285,7 +285,7 @@ Block**" bezeichnet.
 - Der Code wird kleinteilig geändert.
   "Kleinteilig" heißt hier nicht "wenig Text", sondern "wenig Struktur".
 - Vor jedem Commit sollen die Testfälle gestartet worden sein. 
-  Wenn die Testfälle aus [PARTREF::gildedrose_tests] nicht wie beschrieben reagieren, 
+  Wenn die Testfälle aus [PARTREF::refactor-GildedRose-Tests] nicht wie beschrieben reagieren, 
   bitte zurückweisen.
 - Der resultierende Code müsste immer recht ähnlich aussehen, es ist also nicht mit viel 
   Streuung bei den Lösungen zu rechnen.

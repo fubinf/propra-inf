@@ -2,7 +2,7 @@ title: Movie Rental - Refaktorierung
 stage: beta
 timevalue: 4.0
 difficulty: 4
-requires: refactor_movierental_planning
+requires: refactor-Movierental-Planung
 ---
 
 [SECTION::goal::experience,trial]
@@ -20,7 +20,7 @@ Anforderung genau zu erfüllen.
 Bei dieser Aufgabe ist sinnvoller, zuerst _alle_ Arbeitsschritte zu lesen.
 [ENDWARNING]
 
-- [ER] Setzen Sie Ihren in [PARTREF::refactor_movierental_planning] formulierten Plan 
+- [ER] Setzen Sie Ihren in [PARTREF::refactor-Movierental-Planung] formulierten Plan 
   in die Tat um.
   Dies beinhaltet die Refaktorierung _und_ die Implementierung der HTML-Ausgabe.
   Für die Abgabe müssen sie bereitstellen:

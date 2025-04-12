@@ -2,7 +2,7 @@ title: "Gilded Rose(3): Implementierung der Kundenanforderung"
 stage: beta
 timevalue: 0.5
 difficulty: 3
-requires: gildedrose_refactor
+requires: refactor-GildedRose-umstrukturieren
 ---
 [SECTION::goal::experience]
 
@@ -11,8 +11,8 @@ Ich kann neue Funktionalität in Code einbauen, ohne die vorhandene Funktionalit
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-Nachdem Sie in [PARTREF::gildedrose_tests] schon ein ausführliches Testskript geschrieben 
-haben und in [PARTREF::gildedrose_refactor] den Code in zwei Varianten refaktoriert haben,
+Nachdem Sie in [PARTREF::refactor-GildedRose-Tests] schon ein ausführliches Testskript geschrieben 
+haben und in [PARTREF::refactor-GildedRose-umstrukturieren] den Code in zwei Varianten refaktoriert haben,
 müssen Sie jetzt in **beiden** Varianten die Funktionalität für die "Conjured items" 
 implementieren. 
 Zur Erinnerung ist hier noch einmal die [Requirements Specification](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/GildedRoseRequirements.md).  

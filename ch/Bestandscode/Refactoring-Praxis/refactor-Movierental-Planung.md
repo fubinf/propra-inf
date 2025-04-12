@@ -26,7 +26,7 @@ Die tatsächliche Lösung ist aber ganz Ihnen überlassen.
 [WARNING]
 In dieser Aufgabe formuliert die Aufgabenstellung nur Ziele, keine Schritte.
 Wenn Sie zuerst eine geführte Variante einer Refaktorierung bearbeiten möchten, werden Sie in 
-[PARTREF::gildedrose_tests] und dessen Folgeaufgaben fündig.
+[PARTREF::refactor-GildedRose-Tests] und dessen Folgeaufgaben fündig.
 [ENDWARNING]
 
 

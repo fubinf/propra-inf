@@ -183,7 +183,7 @@ chapters:
     taskgroups:
       - name: Entwurfsentscheidungen
       - name: Refactoring-Grundlagen
-      - name: Refactoringpraxis
+      - name: Refactoring-Praxis
       - name: SystemUnderTest
   - name: Web
     taskgroups:
