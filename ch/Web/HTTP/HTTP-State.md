@@ -2,7 +2,7 @@ title: Zustand in HTTP
 stage: draft
 timevalue: 0
 difficulty: 2
-assumes: HTTP-Response
+assumes: http-Response
 ---
 [SECTION::goal::trial]
 

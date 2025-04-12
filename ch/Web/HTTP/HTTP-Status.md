@@ -2,7 +2,7 @@ title: HTTP-Statuscodes
 stage: draft
 timevalue: 0
 difficulty: 1
-assumes: HTTP-Response
+assumes: http-Response
 ---
 [SECTION::goal::trial]
 

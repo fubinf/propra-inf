@@ -26,7 +26,7 @@ auf.
 Sie dürfen hierfür HTTP 1.0 annehmen. Weiterleitungen müssen Sie nicht folgen, sie sollten
 aber keinen "Bad Request"-Fehler als Antwort erhalten.
 
-Sie wundern sich womöglich über die Leerzeile am Ende. Die ist für einige [PARTREF::HTTP-Methoden]
+Sie wundern sich womöglich über die Leerzeile am Ende. Die ist für einige [PARTREF::http-Methoden]
 notwendig.
 
 [ENDSECTION]

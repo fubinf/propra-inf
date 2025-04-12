@@ -2,7 +2,7 @@ title: HTTP-Methoden
 stage: draft
 timevalue: 0
 difficulty: 1
-assumes: HTTP-Request
+assumes: http-Request
 ---
 [SECTION::goal::trial]
 
@@ -11,7 +11,7 @@ Ich kenne die verschiedenen Methoden von HTTP und verstehe die Unterschiede und 
 [ENDSECTION]
 [SECTION::background::default]
 
-Ihre Anfrage im [PARTREF::HTTP-Request] fing vermutlich mit "GET" an.
+Ihre Anfrage im [PARTREF::http-Request] fing vermutlich mit "GET" an.
 
 Dieses "GET" ist die gewählte HTTP-Methode der Anfrage gewesen und dient dazu, dem Server
 mitzuteilen, dass man den Inhalt einer Datei lesen möchte. Es gibt noch weitere mit verschieden

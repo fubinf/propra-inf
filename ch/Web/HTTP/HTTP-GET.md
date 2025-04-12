@@ -186,10 +186,10 @@ Kontrolle mit `od -a HTTP-GET-request.crlf`.
 
 Das Kommandoprotokoll kann im Detail natürlich sehr abweichen (vor allem bei Fehlversuchen), 
 sieht aber im einfachen Fall ungefähr so aus:
-[PROT::ALT:HTTP-GET.prot]
+[PROT::ALT:http-GET.prot]
 
 ### Fragen
 
-[INCLUDE::ALT:HTTP-GET.md]
+[INCLUDE::ALT:http-GET.md]
 
 [ENDINSTRUCTOR]
