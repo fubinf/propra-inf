@@ -2,7 +2,7 @@ title: Single Responsibility Prinzip
 stage: draft
 timevalue: 0.75
 difficulty: 3
-assumes: SOLID_principle
+assumes: Prinzip-SOLID
 ---
 
 [SECTION::goal::idea]

@@ -2,7 +2,7 @@ title: Open/Closed Prinzip
 stage: draft
 timevalue: 1
 difficulty: 3
-assumes: SOLID_principle, m_abc
+assumes: Prinzip-SOLID, m_abc
 ---
 
 [SECTION::goal::idea]

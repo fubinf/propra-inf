@@ -2,7 +2,7 @@ title: Interface Segregation Prinzip
 stage: draft
 timevalue: 1
 difficulty: 3
-assumes: SOLID_principle
+assumes: Prinzip-SOLID
 ---
 
 [SECTION::goal::idea]
