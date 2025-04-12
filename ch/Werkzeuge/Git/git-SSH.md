@@ -2,7 +2,7 @@ title: Git nutzen mit SSH
 stage: alpha
 timevalue: 0.1
 difficulty: 1
-requires: SSH
+requires: ssh
 ---
 
 [SECTION::goal::product]
@@ -24,7 +24,7 @@ zu authentifizieren. Wie das funktioniert, lernen wir hier.
 
 [SECTION::instructions::detailed]
 
-Wie wir unseren SSH-Schlüssel generieren und finden, haben wir bereits in [PARTREF::SSH] gelernt.
+Wie wir unseren SSH-Schlüssel generieren und finden, haben wir bereits in [PARTREF::ssh] gelernt.
 Daher überspringen wir diesen Schritt und gehen direkt ins Detail.
 
 Zunächst müssen wir unseren Schlüssel dem Git-Server hinzufügen. Das Verfahren ist zwar bei den 

@@ -2,7 +2,7 @@ title: SSH-Reversetunnel
 stage: alpha
 timevalue: 0.5
 difficulty: 3
-assumes: SSH, SSH-Tunnel, X11-Weiterleitung
+assumes: ssh, ssh-Tunnel, X11-Weiterleitung
 ---
 [SECTION::goal::idea]
  - Ich verstehe SSH-Reversetunnel und weiß wie ich sie nutze.
@@ -22,13 +22,13 @@ Zielserver = `andorra.imp.fu-berlin.de`
 ### Reversetunnel
 
 Angenomen Sie wollen testen, ob eine Datenbank, die auf Ihrem Rechner liegt, mit dem entfernten System funktioniert.  
-Zur Veranschaulichung nutzen wir hier den Webserver aus der [PARTREF::SSH-Tunnel]-Aufgabe.
+Zur Veranschaulichung nutzen wir hier den Webserver aus der [PARTREF::ssh-Tunnel]-Aufgabe.
 
 Schauen Sie sich die [Beispiele](https://wiki.ubuntuusers.de/SSH/#SSH-Tunnel) von SSH-Tunneln von 
 ubuntuusers an.  
 Lesen Sie die Option **-R** der ssh(1) [manpage](https://man.openbsd.org/ssh).
 
-- [EC] Starten Sie den Webserver aus der Aufgabe [PARTREF::SSH-Tunnel] auf Ihrem Rechner.
+- [EC] Starten Sie den Webserver aus der Aufgabe [PARTREF::ssh-Tunnel] auf Ihrem Rechner.
 
 Öffnen Sie jetzt ein neues Kommandofenster. Führen Sie den nächsten Befehl im neuen Fenster aus.
 

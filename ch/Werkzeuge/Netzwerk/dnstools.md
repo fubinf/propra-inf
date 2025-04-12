@@ -2,7 +2,7 @@ title: Netzwerkgrundlagen mit DNS Werkzeugen
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: SSH
+assumes: ssh
 
 ---
 
@@ -64,7 +64,7 @@ die `ping` gibt.
 Lesen Sie den Absatz **TTL Details** der ping manpage.
 
 - [EQ] Unter welchen Umständen kann man einen korrekt funktionierenden Server,
-  der [PARTREF::SSH] anbietet, mit `ping` erreichen, aber nicht mit `ssh`?
+  der [PARTREF::ssh] anbietet, mit `ping` erreichen, aber nicht mit `ssh`?
 
 (Falls Sie Server finden möchten, die Sie anpingen dürfen und die "weit weg" sind,
 kann [meter.net](https://www.meter.net/tools/world-ping-test/) eine hilfreiche Quelle sein,

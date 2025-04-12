@@ -2,7 +2,7 @@ title: X11-Weiterleitung
 stage: alpha
 timevalue: 0.5
 difficulty: 2
-assumes: SSH
+assumes: ssh
 ---
 
 [SECTION::goal::idea]

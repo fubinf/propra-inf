@@ -85,7 +85,7 @@ werden.
 Schauen Sie in der [usermod(8)](https://linux.die.net/man/8/usermod) manpage nach Optionen, wie 
 man Nutzer sperrt.
 Vorsicht: Ein Passwort sperren ist nicht das Gleiche wie das ganze Konto zu sperren,
-denn man könnte sich dann immer noch mit [PARTREF::SSH]-Keys anmelden. 
+denn man könnte sich dann immer noch mit [PARTREF::ssh]-Keys anmelden. 
 
 - [EC] Sperren Sie die Nutzer `user1` und `user2`.
 
