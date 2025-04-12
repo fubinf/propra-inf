@@ -2,7 +2,7 @@ title: Multimedia in HTML
 stage: beta
 timevalue: 0.75
 difficulty: 2
-requires: HTMLErsteSchritte
+requires: html-erste-Schritte
 ---
 [SECTION::goal::experience]
 

@@ -2,7 +2,7 @@ title: Semantik in HTML
 stage: beta
 timevalue: 1
 difficulty: 2
-requires: HTMLErsteSchritte, HTMLMedien
+requires: html-erste-Schritte, html-Medien
 ---
 [SECTION::goal::experience]
 

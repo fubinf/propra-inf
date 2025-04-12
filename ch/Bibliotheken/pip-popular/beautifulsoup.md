@@ -3,7 +3,7 @@ stage: beta
 timevalue: 1.0
 difficulty: 2
 explains: 
-assumes: pip, HTMLErsteSchritte
+assumes: pip, html-erste-Schritte
 ---
 
 [SECTION::goal::trial]

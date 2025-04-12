@@ -2,7 +2,7 @@ title: Einführung in CSS
 stage: beta
 timevalue: 1.0
 difficulty: 2
-requires: HTMLErsteSchritte
+requires: html-erste-Schritte
 ---
 
 [SECTION::goal::experience]
@@ -93,7 +93,7 @@ Hierbei entfallen dann Selektor und geschweifte Klammern, denn der Bezug zum HTM
 
 ### Ausprobieren!
 
-Als Grundlage für das Experimentieren mit CSS soll das erstellte Dokument aus [PARTREF::HTMLErsteSchritte] verwendet werden. 
+Als Grundlage für das Experimentieren mit CSS soll das erstellte Dokument aus [PARTREF::html-erste-Schritte] verwendet werden. 
 Erstellen Sie eine Kopie als `CSSEinfuehrung-index.html`.
 
 [ER] Zunächst soll die Hauptüberschrift auf der Seite zentriert werden. 

@@ -2,7 +2,7 @@ title: "CSS: Vorgaben für Abstände und Gesamtlayout"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: CSSSelektoren, HTMLSemantik
+assumes: CSSSelektoren, html-Semantik
 ---
 
 [SECTION::goal::experience]

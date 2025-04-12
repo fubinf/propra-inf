@@ -2,7 +2,7 @@ title: Tabellen in HTML
 stage: beta
 timevalue: 1
 difficulty: 2
-assumes: HTMLErsteSchritte, HTMLMedien
+assumes: html-erste-Schritte, html-Medien
 ---
 [SECTION::goal::experience]
 
@@ -91,5 +91,5 @@ Um der Tabelle Rahmen und Styling zu geben, sollten Sie [TERMREF::CSS] verwenden
 
 [INSTRUCTOR::Musterlösung]
 
-Eine Musterlösung findet sich in [TREEREF::/Web/HTML/HTMLTabellen.html].
+Eine Musterlösung findet sich in [TREEREF::/Web/HTML/html-Tabellen.html].
 [ENDINSTRUCTOR]

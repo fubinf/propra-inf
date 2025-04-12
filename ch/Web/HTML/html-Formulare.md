@@ -2,7 +2,7 @@ title: Formulare in HTML
 stage: beta
 timevalue: 1.5
 difficulty: 2
-assumes: HTMLErsteSchritte, HTMLMedien, HTMLSemantik, HTTP-Methoden
+assumes: html-erste-Schritte, html-Medien, html-Semantik, HTTP-Methoden
 ---
 [SECTION::goal::experience]
 
@@ -72,6 +72,6 @@ Was das Formular absendet, kann z.B. über die
 [Developer-Konsole des Browsers](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools) 
 (zu öffnen mit F12) inspiziert werden.
 
-Eine Musterlösung findet sich in [TREEREF::/Web/HTML/HTMLFormulare.html].
+Eine Musterlösung findet sich in [TREEREF::/Web/HTML/html-Formulare.html].
 
 [ENDINSTRUCTOR]

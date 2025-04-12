@@ -2,7 +2,7 @@ title: "CSS: Selektoren, Klassen und Pseudoklassen"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: CSSEinfuehrung, HTMLSemantik
+assumes: CSSEinfuehrung, html-Semantik
 ---
 
 [SECTION::goal::experience]
