@@ -37,6 +37,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/Go0/go-basics-i.md (IB)
 - ch/Sprachen/Python/py-Funktionale-Programmierung.md (SW)
 - ch/Sprachen/Go0/go-basics-ii.md (IB)
+- ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP)
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/m_shutil.md (SW)
@@ -82,8 +83,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 
 ## Reviews to do for Ihar Brandes
- 
-- ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB)
 
 
 ## Reviews to do for Ivan Condric
