@@ -2,17 +2,17 @@ title: "C Präprozessor"
 stage: draft
 timevalue: 1.5
 difficulty: 3
-assumes: C_CompilerAssemblerLinker
+assumes: c-compiler-assembler-linker
 ---
 [SECTION::goal::idea]
 Ich verstehe was der Präprozessor ist.
 [ENDSECTION]
 
 [SECTION::background::default]
-Wie in [PARTREF::C_CompilerAssemblerLinker] erwähnt dreht es sich hier gänzlich
+Wie in [PARTREF::c-compiler-assembler-linker] erwähnt dreht es sich hier gänzlich
 um den Präprozessor.
 
-Der C Präprozessor ist ein elementarer Bestandteil der C-Sprache, denn ohne den
+Der C Präprozessor ist ein elementarer Bestandteil der c-Sprache, denn ohne den
 Präprozessor wäre es doch recht mühsam, Programme zu entwickeln.
 Die Hauptaufgaben sind:
 
@@ -91,7 +91,7 @@ Ecke anklicken während Sie die `main.c` als aktiven Tab haben.
 Beschreiben Sie kurz, weshalb Sie bei einer der Varianten eine Fehler bekommen.
 
 [WARNING]
-Der C-Präprozessor ist nicht sonderlich intelligent was `#include` angeht, denn
+Der c-Präprozessor ist nicht sonderlich intelligent was `#include` angeht, denn
 wenn eine `#include`-Direktive eingelesen wird, so wird der gesamte Inhalt der
 angegebenen Datei stumpf an die Stelle der Direktive kopiert.
 Aus diesem Grund finden Sie häufig so genannte "Include-Guards" in
@@ -114,7 +114,7 @@ Konditionale Ersetzungen sind wichtig für Code, der für mehrere Plattformen
 bereitgestellt wird.
 Ein ebenso häufiger Einsatzzweck sind Optionen in Bibliotheken, welche mittels
 konditionaler Ersetzungen aktiviert bzw. deaktiviert werden können.
-Es stehen die Folgenden Direktiven zur Verfügung:
+Es stehen die folgenden Direktiven zur Verfügung:
 
 - `#ifdef` bzw. `#if defined()`: Diese Direktive öffnet einen konditionalen
   Ersetzungsblock.
@@ -130,7 +130,7 @@ Es stehen die Folgenden Direktiven zur Verfügung:
   Ersetzungsblock.
   Jede öffnende Direktive muss eine schließende Direktive besitzen.
 
-Es können auch die boolschen Operationen UND (`&&`), NICHT (`!`) sowie
+Es können auch die Boolschen Operationen UND (`&&`), NICHT (`!`) sowie
 ODER (`||`) in den Bedingungen verwendet werden.
 Der Test auf das vorhanden sein eines Symbols muss dabei stets mit `defined()`
 ausgeführt werden.

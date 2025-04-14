@@ -160,6 +160,7 @@ chapters:
       - name: Go
       - name: RegExp
       - name: SQL
+      - name: C
   - name: Bibliotheken
     taskgroups: 
       - name: Python-Standardbibliothek

@@ -1,17 +1,17 @@
-title: C IDE in Linux installieren
+title: C IDE in macOS installieren
 stage: draft
 timevalue: 0.5
 difficulty: 2
-requires: C_ToolchainLinuxApt
+requires: c-toolchain-macos-brew
 ---
 [SECTION::goal::idea]
-Ich habe eine funktionierende IDE auf Linux.
+Ich habe eine funktionierende IDE auf macOS
 [ENDSECTION]
 
 [SECTION::background::default]
 Für C gibt es unzählige IDEs.
 Aus Einfachheit nutzen wir hier VSCode.
-Wenn sie diese schon nutzen, können Sie direkt mit der Installation der
+Wenn sie diese schon nutzen, können Sie direkt mit der Installation der 
 benötigten Extension fortfahren.
 [ENDSECTION]
 
@@ -19,11 +19,11 @@ benötigten Extension fortfahren.
 
 ### Installieren von VSCode
 
-[INCLUDE::C_VSNoticeCodium.inc]
+[INCLUDE::c-vs-notice-codium.inc]
 
-- Folgen Sie der
-  [Anleitung auf UbuntuUsers](https://wiki.ubuntuusers.de/Visual_Studio_Code/)
-  zur Installation von VS Code.
+- Gehen Sie auf [HREF::https://code.visualstudio.com/docs/?dv=osx], laden Sie
+  das zip Archiv herunter und verschieben Sie nach dem Entpacken die
+  "Visual Studio Code" App in ihren Anwendungsordner.
 
 [WARNING]
 Es gibt viele verschiedene Extensions bei VS Code, die häufig gleiche oder
@@ -32,11 +32,11 @@ Installieren Sie wen möglich nur Extensions von vertrauenswürdigen Anbietern.
 Alle im ProPra benötigten Extensions werden von Microsoft bereitgestellt.
 [ENDWARNING]
 
-[INCLUDE::C_VSSetup.inc]
+[INCLUDE::c-vs-setup.inc]
 
 ### Einrichten des Build Skripts
 
-[INCLUDE::C_VSBuildScript.inc]
+[INCLUDE::c-vs-build-script.inc]
 
 [ENDSECTION]
 

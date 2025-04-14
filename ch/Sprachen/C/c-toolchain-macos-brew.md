@@ -19,7 +19,7 @@ Rechner entscheiden, sollte auch `gcc@12` sich nicht installieren lassen
 
 ### GCC Werkzeugkette prüfen
 
-Rufen Sie `gcc-14 -v` auf, um die C-Compiler-Version zu prüfen.
+Rufen Sie `gcc-14 -v` auf, um die c-Compiler-Version zu prüfen.
 
 Rufen Sie `g++-14 -v` auf, um die C++-Compiler-Version zu prüfen.
 
@@ -37,7 +37,7 @@ GCC und clang führen zwar zum selben Ziel, haben aber andere
 Kommandozeilenparameter und Warnungen.
 [ENDWARNING]
 
-[INCLUDE::C_CheckCompile.inc]
+[INCLUDE::c-check-compile.inc]
 
 [SECTION::submission::snippet]
 Die Abgabe besteht aus den Ausgaben der `gcc -v` und `g++ -v` Befehle, jeweils
@@ -46,5 +46,5 @@ in einer eigenen Datei.
 [ENDSECTION]
 
 [INSTRUCTOR::Warnhinweise]
-[INCLUDE::C_InstructorCheck.inc]
+[INCLUDE::c-instructor-check.inc]
 [ENDINSTRUCTOR]

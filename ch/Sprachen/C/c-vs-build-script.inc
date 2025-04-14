@@ -46,7 +46,7 @@
   Sofern nicht in den Aufgaben anders aufgeführt nutzen Sie diesen Weg um Ihre
   C Programme zu bauen und auszuführen.
 
-  In [PARTREF::C_CompilerAssemblerLinker] werden Sie den Compiler etwas näher
+  In [PARTREF::c-compiler-assembler-linker] werden Sie den Compiler etwas näher
   betrachten, allerdings ohne die Flaggen die hier verwendet wurden.
   Damit Sie dennoch wissen was die tun:
 

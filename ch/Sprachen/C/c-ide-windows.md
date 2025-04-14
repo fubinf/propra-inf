@@ -2,7 +2,7 @@ title: C IDE in Windows installieren
 stage: draft
 timevalue: 0.5
 difficulty: 2
-requires: C_ToolchainWindowsWSL
+requires: c-toolchain-windows-wsl
 ---
 [SECTION::goal::idea]
 Ich habe eine funktionierende IDE auf Windows und kann diese in Zusammenarbeit
@@ -20,7 +20,7 @@ benötigten Extension fortfahren.
 
 ### Installieren von VSCode
 
-[INCLUDE::C_VSNoticeCodium.inc]
+[INCLUDE::c-vs-notice-codium.inc]
 
 - Gehen Sie auf [HREF::https://code.visualstudio.com/docs/?dv=win64user],
   laden Sie den Installer herunter und führen Sie die Installation durch.
@@ -53,7 +53,7 @@ Alle im ProPra benötigten Extensions werden von Microsoft bereitgestellt.
 
 ### Einrichten des Build Skripts
 
-[INCLUDE::C_VSBuildScript.inc]
+[INCLUDE::c-vs-build-script.inc]
 
 [ENDSECTION]
 
