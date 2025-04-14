@@ -84,7 +84,7 @@ in binäre Maschinensprache führ Ihren Computer umgewandelt wird.
   so genannte Object-Datei, umgewandelt. Mit dem UNIX-Werkzeug `objdump` können
   Sie jede beliebige Object-Datei (oder auch ganze Programme) deassemblieren
   (`-D`).
-  Sie bekommen zwar kein c-Code mehr, aber das nächst beste, Assembly.
+  Sie bekommen zwar kein C-Code mehr, aber das nächst beste, Assembly.
 
 ### Der Linker
 

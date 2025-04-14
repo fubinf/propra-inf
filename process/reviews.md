@@ -38,6 +38,14 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/Python/py-Funktionale-Programmierung.md (SW)
 - ch/Sprachen/Go0/go-basics-ii.md (IB)
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP)
+- ch/Sprachen/C/c-ide-linux.md (KH)
+- ch/Sprachen/C/c-ide-macos.md (KH)
+- ch/Sprachen/C/c-ide-windows.md (KH)
+- ch/Sprachen/C/c-toolchain-linux-apt.md (KH)
+- ch/Sprachen/C/c-toolchain-macos.md (KH)
+- ch/Sprachen/C/c-toolchain-windows-wsl.md (KH)
+- ch/Sprachen/C/c-compiler-assembler-linker.md (KH)
+- ch/Sprachen/C/c-preprocessor.md (KH)
 
 ### Bibliotheken
 - ch/Bibliotheken/Python-Standardbibliothek/m_shutil.md (SW)

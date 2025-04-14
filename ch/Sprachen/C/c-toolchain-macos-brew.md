@@ -19,7 +19,7 @@ Rechner entscheiden, sollte auch `gcc@12` sich nicht installieren lassen
 
 ### GCC Werkzeugkette prüfen
 
-Rufen Sie `gcc-14 -v` auf, um die c-Compiler-Version zu prüfen.
+Rufen Sie `gcc-14 -v` auf, um die C-Compiler-Version zu prüfen.
 
 Rufen Sie `g++-14 -v` auf, um die C++-Compiler-Version zu prüfen.
 

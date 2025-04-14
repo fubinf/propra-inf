@@ -21,7 +21,7 @@
                 "-Wno-unused-function",
                 "-pedantic",
                 "-lc",
-                "${fileDirname}/**.c",
+                "${fileDirname}/${fileBasenameNoExtension}.c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
