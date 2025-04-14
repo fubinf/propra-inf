@@ -31,22 +31,7 @@ type Speaker interface {
 }
 ```
 
-Und ein paar Haustiere, die dieses Interface jeweils implementieren:
-
-```go
-type Dog struct {}
-
-func (d Dog) Speak() string {
-    return fmt.Sprintf("Woof!")
-}
-
-type Cat struct {}
-
-func (c Cat) Speak() string {
-    return fmt.Sprintf("Meow!")
-}
-```
-
+Und ein paar Haustiere: Strukturen `Cat` und `Dog`. 
 Dadurch, dass diese zwei Typen die `Speak()` Methode implementieren, werden sie automatisch zu `Speaker`n.
 
 ```go
@@ -65,6 +50,9 @@ Meow!
 Woof!
 ```
 
+[ER] Definieren Sie zwei Strukturen, `Cat` und `Dog`.
+Implementieren Sie für jede Struktur das Interface `Speaker`, sodass der Programmausschnitt oben die erwartete Ausgabe produziert.
+
 ### Wichtige Standard-Interfaces
 
 #### Stringer
@@ -72,7 +60,9 @@ Woof!
 Das `Stringer`-Interface sorgt dafür, dass ein Typ korrekt als `string` dargestellt wird. 
 Das Interface verlangt nur eine Methode `String() string` .
 
-1. Definieren Sie eine Struktur `String` mit zwei Feldern: `value string` und `lastByteRead int`.
+[ER] Implementieren Sie das Interface `Stringer`: 
+
+1. Definieren Sie eine Struktur `String` (nicht verwechseln mit dem eingebauten Datentyp `string`) mit zwei Feldern: `value string` und `lastByteRead int`.
 2. Definieren Sie eine Konstruktor-Methode `NewString() *String`.
 3. Implementieren Sie das `Stringer`-Interface, sodass Funktionen wie `fmt.Println()` nicht die ganze Struktur im 
    Terminal ausgeben, sondern nur das `value`.
@@ -80,12 +70,11 @@ Das Interface verlangt nur eine Methode `String() string` .
 #### Reader
 
 Das Interface `Reader` besteht aus einer einzigen Methode: `Read(p []byte) (n int, err error)`. 
-Diese muss den Inhalt in den
-bereitgestellten Puffer/Slice `p` auslesen und gibt zwei Werte zurück: 
+Diese muss den Inhalt in den bereitgestellten Puffer/Slice `p` auslesen und gibt zwei Werte zurück: 
 Die Anzahl der in diesem Aufruf von `Read` ausgelesenen Bytes und einen `error`, 
 falls das Auslesen nicht weiter möglich ist.
 
-Implementieren Sie nun dieses Interface!
+[ER] Implementieren Sie das Interface `Reader`:
 
 1. Implementieren Sie die `Read` Methode auf der `String` Struktur.
     - solange es etwas auszulesen gibt, wird dies ausgelesen;
@@ -102,7 +91,7 @@ Implementieren Sie nun dieses Interface!
 Schreiben in die Struktur und gibt die Anzahl von geschriebenen Bytes und den Fehler zurück, falls etwas schiefgegangen
 ist.
 
-Implementieren Sie auch das `Writer` Interface.
+[ER] Implementieren Sie auch das `Writer`-Interface.
 
 1. Implementieren Sie die `Write` Methode auf der `String` Struktur. Diese soll den übergebenen Puffer als `string` an
    die bereits vorhandene Zeichenkette (`value`) aufhängen.
@@ -127,13 +116,52 @@ Dieses Beispiel ist nur für Lernzwecke ausgedacht. Es darf kein echtes Szenario
 
 [ENDWARNING]
 
+[ER] Das Interface `Error` implementieren:
 
 1. Definieren Sie eine Struktur `HTTPError` mit einem Feld `statusCode int`.
-2. Implementieren Sie das `Error`-Interface.
+2. Implementieren Sie das `Error`-Interface. Der `statusCode` muss in der Fehlermeldung erwähnt werden.
 3. Definieren Sie eine Struktur `FileError` mit einem Feld `reason string`.
-4. Implementieren Sie das `Error`-Interface.
-5. Implementieren Sie eine Funktion `handleError(err error)`, die den unterliegenden Typ von dem `error` bestimmt und
-   je nach Typ unterschiedliche Meldungen im Terminal ausgibt.
+4. Implementieren Sie das `Error`-Interface. Der `reason` muss in der Fehlermeldung auch erwähnt werden.
+
+#### Interfaceeinbettung
+
+Genauso wie Strukturen dürfen Interfaces miteinander kombiniert werden.
+
+```go
+type Car interface {
+    Accelerate()
+    Decelerate()
+}
+
+type ElectricCar interface {
+    Car
+    Charge()
+}
+```
+
+Dementsprechend muss ein `ElectricCar` ebenfalls Methoden `Accelerate()` und `Decelerate()` implementieren.
+
+Beispiel: [ReadWriter](https://pkg.go.dev/io#ReadWriter)
+
+#### Leeres Interface
+
+Leeres Interface (`interface{}`) ist ein Interface, welches keine Methoden verlangt. Das bedeutet, dass alle Typen 
+dieses eine Interface automatisch implementieren. Das ist das Go-Äquivalent von `Object` in Java oder `void*` in C.
+
+So mächtig wie dieses Konstrukt auch ist, spielt es ein bisschen gegen die typ-sichere Natur von Go und impliziert mehr 
+Typ-Checks zur Laufzeit, was zum einen direkt die Leistungsfähigkeit beeinflusst (mehr zu tun für das Programm), und zum 
+anderen manche Compiler-Optimierungen unmöglich macht. 
+
+Falls Sie den Hinweis oben noch nicht aufgeklappt haben, machen Sie das. Auf diese Art und Weise können Sie zur Laufzeit
+bestimmen, was genau sich unter diesem `interface{}` versteckt, und entsprechend agieren.
+
+[ER] Schreiben Sie eine Funktion `HandleSomething(v interface{}) string`, die folgende Datentypen erkennt und jeweils
+verschiedene Zeichenketten zurückgibt:
+
+- `string`;
+- `int`;
+- `bool`;
+- für die anderen Typen dürfen Sie `fmt.Sprintf("%T\n", x)` zurückgeben (automatische Typerkennung).
 
 [HINT::switch...]
 
@@ -149,57 +177,42 @@ default: // do something
 
 [ENDHINT]
 
-#### Leeres Interface
-
-Leeres Interface (`interface{}`) ist ein Interface, welches keine Methoden verlangt. Das bedeutet, dass alle Typen 
-dieses eine Interface automatisch implementieren. Das ist das Go-Äquivalent von `Object` in Java oder `void*` in C.
-
-So mächtig wie dieses Konstrukt auch ist, spielt es ein bisschen gegen die typ-sichere Natur von Go und impliziert mehr 
-Typ-Checks zur Laufzeit, was zum einen direkt die Leistungsfähigkeit beeinflusst (mehr zu tun für das Programm), und zum 
-anderen manche Compiler-Optimierungen unmöglich macht. 
-
-Falls Sie den Hinweis oben noch nicht aufgeklappt haben, machen Sie das. Auf diese Art und Weise können Sie zur Laufzeit
-bestimmen, was genau sich unter diesem `interface{}` versteckt, und entsprechend agieren.
-
-- [EQ] Wo ist Ihrer Meinung nach das Nutzen von `interface{}` sinnvoll?
-
-Schreiben Sie eine Funktion `HandleSomething(v interface{}) string`, die folgende Datentypen erkennt und jeweils
-verschiedene Zeichenketten zurückgibt:
-
-- `string`;
-- `int`;
-- `bool`;
-- alles andere soll zusammengefügt werden.
-
-[SECTION::submission::information,snippet]
-
-[INCLUDE::/_include/Submission-Markdowndokument.md]
+[SECTION::submission::trace,program]
 
 Geben Sie den Quellcode in einer `interfaces.go` Datei ab, welche mit `package interfaces` anfängt. Diese muss folgendes 
 beinhalten:
 
 * `type String`
-* `NewString()`
-* `Read()`
-* `Write()`
-* `String()`
+* `NewString() *String`
+* `(s *String) Read(p []byte) (n int, err error)`
+* `(s *String) Write(p []byte) (n int, err error)`
+* `(s *String) String() string`
 * `type FileError` mit `Error()` 
 * `type HTTPError` mit `Error()`
-* `HandleError()`
 * `HandleSomething()`
+
+Fügen Sie den folgenden Codeausschnitt ihrem Programm hinzu und führen Sie das Programm aus.
+Falls Sie die Funktion `main` bereits benutzt haben, ersetzten Sie den Inhalt durch diesen aus dem Ausschnitt.
+Den folgenden Code dürfen Sie nicht ändern!
+
+```go
+[INCLUDE::snippets/go-interfaces-control-snippet.go]
+```
+
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+
+[INCLUDE::/_include/Submission-Quellcode.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Korrekturhinweise]
 
-Es gibt einen Satz von Unit-Tests [TREEREF::interfaces_test/interfaces_test.go]. Das setzt natürlich voraus, dass Sie Go 
-auf Ihrem System installiert haben.
-
-Kopieren Sie das ganze `interfaces_test` Verzeichnis auf Ihren Rechner und legen Sie die Abgabe unter 
-`interfaces_test/interfaces/interfaces.go` ab. Aus dem Root-Verzeichnis (`interfaces_test`) führen Sie nun `go test` 
-aus.
+1. Die Test-Methoden müssen in der abgegebenen Quellcode-Datei unverändert bleiben;
+2. Sanity-Check, ob die Funktionen in der Tat das tun, was sie tun sollen und nicht nur das abdecken, was getestet wird.
 
 Quellcode siehe unter [TREEREF::interfaces.go]
 
+Kommandoprotokoll:
+[PROT::ALT:go-interfaces.prot]
 
 [ENDINSTRUCTOR]
