@@ -1,6 +1,6 @@
 title: Go Interfaces
 stage: alpha
-timevalue: 1.5
+timevalue: 2.5
 difficulty: 2
 ---
 
