@@ -12,23 +12,23 @@ Ich kann Fixtures mit dem Pytest Framework anwenden.
 [ENDSECTION]
 [SECTION::background::default]
 
-Oftmals benötigen Sie zum Testen bestimmte Voraussetzungen, die erfüllt sein müssen.
-Fixtures sind ein zentrales Konzept in Pytest, das es ermöglicht, wiederverwendbare Setup- und
-Teardown-Code für Tests bereitzustellen. Sie sind auch hervorragend geeignet, um Testdaten für
-Unittests bereitzustellen.
-Hier lernen Sie, wie Sie Fixtures mit Pytest nutzen können.
+Oftmals benötigt ein Test, dass bestimmte Voraussetzungen hergestellt werden.
+Fixtures ("Halterungen" für den Test -- ein seltsamer Ausdruck) sind ein zentrales Konzept in Pytest, 
+das es ermöglicht, wiederverwendbaren Code zur Vor- und Nachbereitung (Setup und Teardown) von Tests 
+bereitzustellen. 
+Sie sind insbesondere geeignet, um Testdaten bereitzustellen.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-Nutzen Sie das [Pytest Fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
+Nutzen Sie das Feature 
+[Pytest Fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
 um die nachfolgenden Aufgaben zu lösen:
 
-### Einfache Fixture Daten bereitstellen
+### Einfache Fixture-Daten bereitstellen
 
-- Legen Sie die Datei `unittests/test_pytest_fixtures.py` an.
-
-Fügen Sie folgenden Test ein:
+[ER] Legen Sie die Datei `test_pytest_fixtures.py` an.
+Fügen Sie folgenden Test ein und ergänzen Sie die fehlende Fixture-Markierung:
 
 ```python
 def example_fixture():
@@ -38,14 +38,15 @@ def test_example(example_fixture):
     assert example_fixture == "Hello, World!"
 ```
 
-- [ER] Ergänzen Sie die fehlende Fixture-Markierung.
+`example_fixture` stellt also Testdaten bereit. 
+Jeder Test, der genau diese Daten gebrauchen kann, kann das Fixture bennennen und damit aufrufen.
 
-Mit dieser Methoden haben wir die Möglichkeit einfache Testdaten zur Verfügung zu stellen. Es kann
-aber auch gerne minimal komplexer werden.
+### Komplexere Fixture-Daten bereitstellen
 
-### Komplexere Fixture Daten bereitstellen
+Das gleiche Prinzip funktioniert natürlich auch mit komplexeren Datenstrukturen.
 
-- Legen Sie die Datei `unittests/test_pytest_fixtures2.py` an.
+[ER] Ergänzen Sie folgenden Testfall in die Datei und vervollständigen Sie ihn.
+Prüfen Sie in `test_user_data()` trivial, ob der Nutzername und die Email-Adresse korrekt sind.
 
 ```python
 class User:
@@ -54,83 +55,38 @@ class User:
         self.email = email
 
 @pytest.fixture
-def user_data():
+def user_data2():
     return User(username="testuser", email="testuser@example.com")
 
-def test_user_data():
+def test_user_data2():
    # Ergänzen Sie die fehlenden Asserts
-   
 ```
 
-- [ER] Prüfen Sie in `test_user_data()`, ob der Nutzername und die E-Mail Adresse übereinstimmen.
 
 ### Komplexe Testdaten mit mehreren Fixtures
 
-- Legen Sie die Datei `unittests/test_pytest_fixtures3.py` an.
+Ein Test kann auch mehr als eine Fixture benutzen.
+
+[ER] Ergänzen Sie die fehlenden Fixtures, damit das (unveränderte) `test_combined_data()` funktioniert.
 
 ```python
-
-class User:
-    def __init__(self, username, email):
-        self.username = username
-        self.email = email
 
 class Product:
     def __init__(self, name, price):
         self.name = name
         self.price = price
 
-@pytest.fixture
-def user_data():
-   pass
-
-@pytest.fixture
-def product_data():
-   pass
-
-def test_user_data(user_data):
-    assert len(user_data) == 3
-    assert user_data[0].username == "testuser1"
-    assert user_data[0].email == "testuser1@example.com"
-    assert user_data[1].username == "testuser2"
-    assert user_data[1].email == "testuser2@example.com"
-    assert user_data[2].username == "testuser3"
-    assert user_data[2].email == "testuser3@example.com"
-
-def test_product_data(product_data):
-    assert len(product_data) == 3
-    assert product_data[0].name == "Product1"
-    assert product_data[0].price == 10.99
-    assert product_data[1].name == "Product2"
-    assert product_data[1].price == 15.49
-    assert product_data[2].name == "Product3"
-    assert product_data[2].price == 7.99
-
-def test_combined_data(user_data, product_data):
-    assert len(user_data) == 3
-    assert len(product_data) == 3
-    assert user_data[0].username == "testuser1"
-    assert product_data[0].name == "Product1"
+def test_combined_data(user_data3, product_data3):
+    assert len(user_data3) == 3
+    assert len(product_data3) == 3
+    assert user_data3[0].username == "testuser1"
+    assert product_data3[0].name == "Product1"
 ```
 
-- [ER] Ergänzen Sie die fehlenden Testdaten in den Fixtures.
-
-Dieses Vorgehen ist ein sogenanntes Tabellengesteuerter Test, bei dem ein Testfall mehrfach mit
-unterschiedlichen Testdaten ausgeführt wird. Das hat Scharm, um die Testabdeckung zu erhöhen und um
-die eine oder andere Testmethodik anzuwenden (z.B. Äquivalenzklassentests, oder Tests von Randbedingungen)
-Jedoch hat es auch Nachteile.
-
-- [EQ] Welcher Nachteil hat dieses Vorgehen?
-
-[HINT::Testdaten anpassen]
-Spielen Sie ein wenig mit den Testdaten. Verwenden Sie auch negative / falsche Testdaten.
-`@pytest.parametrize` ist für diesen Zweck richtig und wird in [PARTREF::pytest_parametrize] behandelt.
+[HINT::Wie schaffe ich, dass das `len` funktioniert?]
+Beide Fixtures liefern eine Liste, nicht nur ein einzelnes Objekt.
 [ENDHINT]
 
-- [EC] Führen Sie den Test aus und dokumentieren Sie das Ergebnis.
-
-Mit Fixtures können nicht nur Testdaten bereitgestellt werden, sondern auch benötigte Objekte erzeugt
-und gelöscht werden.
 
 ### Vor- und Nachbedingung auf Testfallebene schaffen
 
@@ -149,7 +105,7 @@ class User:
 `user_setup_teardown` sowohl die Erstellung, als auch die Löschung des Nutzer umsetzt und
 `test_user` Nutzername und Passwort prüft
 
-[HINT::Umsetzungshilfe]
+[HINT::Wie macht man Setup und Teardown?]
 Ein Setup und Teardown in einem Fixture kann mit [yield](https://docs.pytest.org/en/stable/how-to/fixtures.html#yield-fixtures-recommended) realisiert werden.
 [ENDHINT]
 
