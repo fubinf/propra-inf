@@ -11,6 +11,9 @@ Sind Python oder Pip nicht installiert, so holen Sie dies mittels
 `sudo apt install python3 python3-pip python3-venv python-is-python3`
 nach und wiederholen Sie dann die obigen beiden Tests.
 
+Je nach Installationsweise liegen die Programme stattdessen oder zusätzlich als 
+`python3` und `pip3` statt `python` und `pip` vor.
+
 Sobald Sie im nächsten Abschnitt des Basiskapitels gelernt haben, wie das geht, 
 geben Sie die Ausgabe des folgenden Kommandos als Textdatei ab:
 `uname -a; cat /etc/os-release|grep PRETTY; python -V; pip -V`  

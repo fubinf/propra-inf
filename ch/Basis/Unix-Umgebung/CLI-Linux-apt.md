@@ -52,12 +52,6 @@ dass Python und Pip funktionieren.
         - Wie man konkret Bash installiert und dann aufruft
 
 [INCLUDE::CheckPython.inc]
-
-[NOTICE]
-Je nach gewählter Distribution liegen die Programme stattdessen oder zusätzlich als 
-`python3` und `pip3` statt `python` und `pip` vor.
-[ENDNOTICE]
-
 [INCLUDE::CdLsMvEtc.inc]
 
 [ENDSECTION]
