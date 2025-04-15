@@ -30,10 +30,13 @@ Wir geben immer die betreffende Aufgabe an und die investierte Arbeitszeit.
 Hier ist ein Beispiel:  
 `%Zeiterfassung 2.5h Commit-Format ausprobieren`
 
-Dabei ist `Zeiterfassung` der Name der aktuellen Aufgabe (laut Dateiname, 
+Das Ganze hat ein genau festgelegtes Format, das es von anderen Commit-Nachrichten unterscheidet.
+Das Prozentzeichen ist der Start dieses Formats.
+`Zeiterfassung` ist der Name der aktuellen Aufgabe (laut Dateiname, 
 siehe im Adressfeld des Browsers) und `2.5h` besagt, dass wir für die Arbeiten,
 die zu diesem Commit geführt haben, insgesamt zweieinhalb Stunden investiert haben.
 Für unsere Zwecke reicht eine Granularität von z.B. 15 Minuten, also 0.25h, 0.5h, 0.75h, 1h etc.
+Der Teil dahinter ist beliebig und kann auch leer sein.
 
 Mit diesen Daten kann uns später ein Skript eine Aufstellung machen, welche Aufgaben wie
 lange gedauert haben und wie sich das mit den Zeitwerten der Aufgaben vergleicht.
@@ -112,7 +115,7 @@ Für diese Aufgabe verlangen wir einmalig einen Commit im korrekten Format:
 - 'h' ohne Leerzeichen 
 
 Wenn die Antwort der vierten Frage ja lautet, ist alles in Ordnung.  
-Dann bitte die Arbeitszeit-Listenausgabe von `sedrila student` auf Plausibilität prüfen.
+Dann bitte die Arbeitszeit-Listenausgabe in der Webapp auf Plausibilität prüfen.
 
 Lautet sie nein, dann bitte die Antworten zu Fragen 2 und 3 sichten und allen, die sich offenbar nicht ganz sicher sind,
 ermutigend zureden: Wir sind auf Ihrer Seite! Arbeitszeiterfassung hilft beim Lernen!  
