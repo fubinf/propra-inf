@@ -80,14 +80,25 @@ instructors:
     email: davih05@zedat.fu-berlin.de
     gitaccount: davih05
     webaccount: davih05
-    keyfingerprint: "BA0BBC35D857F3D514F2F7F1C86F30558ECD281C"
+    keyfingerprint: "90998E944193517FFBFA6421C54E581C42143FAE"
     pubkey: |
       -----BEGIN PGP PUBLIC KEY BLOCK-----
+      mDMEZ/0xyRYJKwYBBAHaRw8BAQdAY81UMjm/9gGkQfX6ouKNp8HCRfizR2XcYuYx
+      9256Uz+0JGRhdmloMDUgPGRhdmloMDVAemVkYXQuZnUtYmVybGluLmRlPoiZBBMW
+      CgBBFiEEkJmOlEGTUX/7+mQhxU5YHEIUP64FAmf9MckCGwMFCQPCZwAFCwkIBwIC
+      IgIGFQoJCAsCBBYCAwECHgcCF4AACgkQxU5YHEIUP66zxwEA9aWZJBKkKBpXNWzW
+      1NJWMsKDOexHdr+IeyI2Qfoc0WEBAPyiVsahjAGORy1g5W9GI33VmKT+lXSNkWra
+      OgSULPQGuDgEZ/0xyRIKKwYBBAGXVQEFAQEHQDoN4Dr7nmXnMMYZrQSkxMNqR/l1
+      Ipb4KpHkTIyu0oxjAwEIB4h+BBgWCgAmFiEEkJmOlEGTUX/7+mQhxU5YHEIUP64F
+      Amf9MckCGwwFCQPCZwAACgkQxU5YHEIUP65RqAD/RJAnApW2b8lmy/OFyIB4Gs4W
+      EMZmkSf2ntEnqG8KlrQBAOcfOI+1glk+kHAzymd12AvRU2l0wrSycI3IjYMtQb4D
+      =50Ay
+      -----END PGP PUBLIC KEY BLOCK-----
   - nameish: Mert Yaylaci
     email: merty03@zedat.fu-berlin.de
     gitaccount: merty03
     webaccount: merty03
-    keyfingerprint: ""
+    keyfingerprint: "BA0BBC35D857F3D514F2F7F1C86F30558ECD281C"
     pubkey: |
       -----BEGIN PGP PUBLIC KEY BLOCK-----
       mQGNBGf4IpUBDAC6RgAb1kYDPf3fP5GX0Oxbf0+1/wK1AAwDtQmsfuZNx4kgihj6
