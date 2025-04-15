@@ -127,14 +127,26 @@ Nachdem Sie einige Commits zu vorherigen Aufgaben erstellt haben, können Sie
 in Ihrem Arbeitsverzeichnis folgenden Befehl ausführen:
 
 ```
-sedrila student --submission
+sedrila student
 ```
 
-Sie bekommen dann eine Liste mit Aufgaben, zu denen Sie Commits angelegt
-haben.
-Sie können darin auswählen, welche Aufgaben zur Kontrolle vorgelegt werden
-sollen. 
-Daraus wird eine Datei `submission.yaml` im richigen Format erzeugt.
+Das Kommando 'p' ("prepare") schreibt in die Datei `submission.yaml`
+die Liste einreichungsfähiger Aufgaben. Das sind die, zu denen Sie Commits angelegt
+haben, die das Format von [PARTREF::Zeiterfassung] einhalten.
+Mit 'w' ("webapp") können Sie im Webbrowser auswählen, welche davon eingereicht
+werden sollen (und welche vielleicht lieber noch nicht).
+
+Haben Sie das Format der Zeiterfassung nicht eingehalten, müssen Sie `submission.yaml` von Hand
+anlegen. Die Datei besteht aus Zeilen der Form  
+`taskname: CHECK`  
+also beispielsweise  
+```
+Zeiterfassung: CHECK
+Einreichungen: CHECK
+```
+Mit c ("commit") checken Sie die so entstandene `submission.yaml` mit der genau passenden
+Commit-Nachricht ein;
+mit p ("push") geben Sie diesen Commit frei.
 Abschließend zeigt das Kommando an, wie es weitergeht: Email an eine Tutor_in.
 
 Da bei der hiesigen Aufgabe nichts weiter zu tun ist, 
@@ -148,8 +160,8 @@ Vergessen Sie nicht, Ihren Stand mittels `git push` verfügbar zu machen!
 [SECTION::submission::snippet]
 Die Abgabe besteht entgegen dem üblichen Format diesmal nur aus dem leeren Commit.
 
-Zeigen Sie nun Ihre bisherigen Ergebnisse bei der Tutor_in vor wie vom Kommando
-`sedrila student --submission` beschrieben.
+Zeigen Sie nun Ihre bisherigen Ergebnisse bei der Tutor_in vor wie im Schritt 'push' von Kommando
+`sedrila student` beschrieben.
 
 Die Email dient dabei nur zum Übermitteln der Zugangsdaten,
 für die Abnahme gelten die Verfahrensweisen, die die 
