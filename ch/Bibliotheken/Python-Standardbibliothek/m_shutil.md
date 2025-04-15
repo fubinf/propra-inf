@@ -1,5 +1,5 @@
 title: "shutil: Operationen auf Dateien und Verzeichnissen"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: m_os.path, m_subprocess, Dateiberechtigungen

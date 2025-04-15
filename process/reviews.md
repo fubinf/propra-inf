@@ -48,9 +48,10 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/C/c-preprocessor.md (KH)
 
 ### Bibliotheken
-- ch/Bibliotheken/Python-Standardbibliothek/m_shutil.md (SW)
+
 
 ### Bestandscode
+
 
 ### Testen
 - ch/Testen/Unittests/pytest_mocking_freezegun.md (RR->DM->HA->LP->RR->LP->RR->LP) - leichte Überarbeitung
@@ -59,6 +60,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Testen/Unittests/pytest_call (RR->LP->RR->LP->RR->LP)
 
 ### Web
+
 
 ### Werkzeuge
 - ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (IC->LP)
