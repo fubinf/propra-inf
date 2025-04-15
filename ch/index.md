@@ -226,6 +226,10 @@ Leider ist das ProPra noch nicht fertig entwickelt.
 Deshalb liefern wir ca. wöchentlich Aufgaben nach.
 Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 
+- **2025-04-14**: Viel bessere Erklärungen bei [PARTREF::Zeiterfassung] und
+  [PARTREF::Einreichungen]. Die letztere war sogar falsch (nämlich: veraltet).
+- **2025-04-14**: Großen Defekt in `sedrila` bereinigt. Bitte Version 2.6.2 benutzen:
+  `pipx upgrade sedrila`
 - ...
 
 
