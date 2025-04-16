@@ -80,7 +80,7 @@ werden:
 from blackbox_functions import categorize_age
 ```
 
-[ENDSHINT]
+[ENDHINT]
 
 [HINT::Äquivalenzklassen]
 Äquivalenzklassen gruppieren Eingaben, die ähnliche Ergebnisse liefern sollten. Testen Sie jeweils
