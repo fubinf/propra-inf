@@ -162,7 +162,7 @@ Verzweifeln Sie nicht, wenn Ihr Test nicht vollständig grün wird. Das ist gewo
 
 [ENDSECTION]
 
-[SECTION::Kontrollergebnisse]
+[INSTRUCTOR::Kontrollergebnisse]
 
 ### Versteckte Implementierung der Funktionen
 
