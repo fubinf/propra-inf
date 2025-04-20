@@ -126,7 +126,7 @@ func receiveInts(xs ...int) {
 Das ist äquivalent zur Verwendung eines Slices als Parameter:
 ```go
 func receiveInts(xs []int) {
-    for i, v := range xs {
+    for index, value := range xs {
         ...
     }
 }
@@ -191,6 +191,28 @@ Höhere Ordnungsfunktionen sind nützlich für die Erstellung flexibler und wied
 
 [ENDFOLDOUT]
 
+#### Ausprobieren:
+- [ER] Implementieren Sie eine Funktion `divide(a, b float64) (result float64, err error)` — die erste Zahl durch die zweite dividieren.
+   Bei Erfolg ein Tupel `(result, nil)` zurückgeben; ansonsten `(0.0, fmt.Errorf("division by zero"))`.
+   Benutzen Sie hier benannte Rückgabewerte.
+- [ER] `reduce(operation func(int, int) int, xs ...int) int` — eine Funktion, die eine Funktion (`operation`) und eine beliebige Anzahl von Ganzzahlen als Parameter bekommt.
+   Der erste Parameter von `operation` ist eine Akku-Variable, der zweite — ein Element der Liste `xs`.
+   Mit `reduce(func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise die Summe von den Ganzzahlen berechnet werden.
+- [ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
+```go
+func testFunctions() {
+    fmt.Println(divide(5, 2))
+    fmt.Println(divide(5, 0))
+    fmt.Println(
+        reduce(
+            func(acc, arg int) int { return acc + arg * arg }, 
+            2, 3, 5, 7, 11, 13, 17, 19,
+        ),
+    )
+}
+```
+
+
 ### Strukturen (structs)
 
 Eine Struktur (struct) ist eine Zusammensetzung von primitiven Datentypen oder anderen Strukturen.
@@ -218,7 +240,7 @@ Methoden sind Funktionen, die einem Typ zugeordnet sind und einen zusätzlichen 
 Sie ermöglichen es, Verhalten zu Strukturen hinzuzufügen.
 
 ```go
-func (p Person) PrintName() {
+func (p Person) Print() {
     fmt.Println(p.FirstName, p.LastName)
 }
 ```
@@ -270,8 +292,29 @@ Im obigen Beispiel kann ein Student alles tun, was eine Person kann:
 
 ```go
 // Diese Ausdrücke sind äquivalent
-mark.Person.PrintName()
-mark.PrintName()
+mark.Person.Print()
+mark.Print()
+```
+
+#### Ausprobieren:
+- [ER] Definieren Sie eine neue Struktur: `Employee`. 
+       Diese soll alle Felder und Methoden einer `Person` übernehmen und ein neues Feld definieren: `Position`.
+- [ER] Implementieren Sie eine neue Methode `Print` auf `Employee`, die nicht nur den vollständigen Namen auf die Kommandozeile ausgibt, sondern auch die `Position`.
+- [ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
+```go
+func testStructs() {
+    e := Employee{
+        Person: Person{
+            FirstName: "Mark",
+            LastName: "Mustermann",
+            Age: 25,
+        },
+        Position: "Accountant",
+    }
+    
+    e.Print()
+    e.Person.Print()
+}
 ```
 
 ### Zeiger (pointers)
@@ -300,8 +343,6 @@ fmt.Println(content)        // 42
 
 In diesem Beispiel zeigt `box` auf die Adresse von `content`. 
 Durch Dereferenzierung kann der Wert an dieser Adresse geändert werden.
-
-
 
 ### "Pass-by-value" und "Pass-by-reference"
 
@@ -336,6 +377,27 @@ Eigentlich müsste der zweite Aufruf `p` dereferenzieren: `fmt.Println((*p).Age)
 Das ist jedoch nicht nötig, da Go eine solche Umwandlung automatisch durchführt und den Zugriff auf Felder von Zeigern vereinfacht.
 
 [ENDNOTICE]
+
+#### Ausprobieren:
+- [ER] Implementieren Sie eine Methode auf `Employee` — `Promote(newPosition string)`. 
+       Diese soll die ursprüngliche Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
+- [ER] Kopieren Sie die folgende Testfunktion in Ihre Datei um und rufen Sie sie ebenfalls aus der `main`-Funktion auf:
+```go
+func testMutation() {
+    e := Employee{
+        Person: Person{
+            FirstName: "Mark",
+            LastName: "Mustermann",
+            Age: 25,
+        },
+        Position: "Accountant",
+    }
+    
+    e.Print()
+    e.Promote("Senior Accountant")
+    e.Print()
+}
+```
 
 ### Referenztypen
 
@@ -465,6 +527,15 @@ Implementieren Sie die folgenden Funktionen:
 
 #### Mini-Projekt: Todo-App
 
+[NOTICE]
+
+Die früher implementierten Funktionen (`testFunctions()`, `testStructs()` und `testMutation()`) sollen weiterhin in der `main`-Funktion bleiben.
+
+Sie dürfen sie während der Entwicklung auskommentieren; passen Sie jedoch darauf, dass ihre Ausgaben in dem endgültigen Kommandoprotokoll landen.
+
+[ENDNOTICE]
+
+
 Hier implementieren Sie ein kleines Kommandozeilenprogramm, wo Notizen angelegt, als "erledigt" markiert und entfernt werden können.
 
 Legen Sie dafür zwei Typen an:
@@ -544,11 +615,13 @@ commands:
 
 [INCLUDE::/_include/Submission-Quellcode.md]
 
-Geben Sie Ihr Todo-Programm sowie die drei davor implementierten Funktionen (`AddElement`, `RemoveElement`, `AddElementIfNotThere`) in einer Datei ab. 
+Geben Sie Ihr Todo-Programm sowie alle davor implementierten Funktionen in einer Datei ab. 
 
 [ENDSECTION]
 
 [INSTRUCTOR::Hinweise]
+
+Korrektur von `testFunctions()`, `testStructs()` und `testMutation()` — die Funktionen müssen unverändert in dem abgegebenen Quellcode präsent sein.
 
 Korrektur von `AddElement`, `RemoveElement`: 
 Der Punkt ist, dass Studierende Slices erstellen und modifizieren können.
@@ -557,5 +630,7 @@ Korrektur von `AddElementIfNotThere`: das `delete()` muss benutzt werden.
 
 Korrektur von Todo-Manager: Muss funktionsfähig sein und ungefähr mit dem Kommandoprotokoll übereinstimmen.
 Schöne Formatierung ist in dem Fall nur ein "nice-to-have".
+
+[PROT::ALT:go-basics-ii.prot]
 
 [ENDINSTRUCTOR]
