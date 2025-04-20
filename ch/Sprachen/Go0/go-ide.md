@@ -1,5 +1,5 @@
 title: Einrichtung einer IDE für Go Entwicklung
-stage: draft
+stage: alpha
 timevalue: 1
 difficulty: 1
 ---

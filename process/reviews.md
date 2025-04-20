@@ -46,6 +46,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/C/c-toolchain-windows-wsl.md (KH)
 - ch/Sprachen/C/c-compiler-assembler-linker.md (KH)
 - ch/Sprachen/C/c-preprocessor.md (KH)
+- ch/Sprachen/Go0/go-ide.md (IB)
 
 ### Bibliotheken
 
