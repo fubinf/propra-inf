@@ -178,6 +178,9 @@ chapters:
       - name: pip-popular
       - name: Frameworks
       - name: Dokumentation
+  - name: Pandas
+    taskgroups:
+      - name: Pandas-Grundlagen
   - name: Testen
     taskgroups:
       - name: Testgrundlagen
