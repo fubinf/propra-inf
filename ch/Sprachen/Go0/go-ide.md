@@ -1,4 +1,4 @@
-title: Einrichtung einer IDE für Go Entwicklung
+title: Einrichtung einer IDE für Go
 stage: alpha
 timevalue: 1
 difficulty: 1
