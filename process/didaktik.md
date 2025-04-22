@@ -1,18 +1,18 @@
 # Didaktische Überlegungen zum ProPra
 
-## Lernaufgaben
+## 1 Lernaufgaben
 
 Joseph Leisen unterscheidet zwischen **Lernaufgaben** und **Leistungsaufgaben**.  
 Während Leistungsaufgaben der Überprüfung von Wissen und Kompetenzen dienen,  
 zielen Lernaufgaben auf den **Kompetenzzuwachs** ab.  
 
-### Definition nach Leisen  
+### 1.2 Definition nach Leisen  
 
 Eine Lernaufgabe ist eine Lernumgebung zur Kompetenzentwicklung,  
 die den Lernprozess durch gestufte Aufgabenstellungen und  
 passende Lernmaterialien steuert.
 
-### Merkmale guter Lernaufgaben  
+### 1.3 Merkmale guter Lernaufgaben  
 
 Gute Lernaufgaben sollten:  
 
@@ -24,7 +24,7 @@ Gute Lernaufgaben sollten:
 - Lernzuwachs sichtbar machen  
 - Transfer auf neue Situationen fördern  
 
-#### Literatur:
+#### 1.3.1 Literatur:
 - Leisen, J. (2006). **Lernaufgaben und Leistungsaufgaben**. 
   https://www.josefleisen.de/downloads/aufgabenkultur/01%20Aufgabenkultur%20im%20mathematisch-naturwissenschaftlichen%20MNU%202006.pdf
 - Leisen, J. (2010). **Lehr-Lern-Modell zur Kompetenzentwicklung**.
@@ -32,7 +32,7 @@ Gute Lernaufgaben sollten:
 - Maier, U. (2014). **Lehr-Lern-Modelle in der Schule**. S. 112ff.
   *Erhältlich über das Primo-Portal, ISBN: 3825238768*
 
-## Formulieren von Kompetenzen bzw. Lernzielen oder intendierten Lernergebnissen.
+## 2 Formulieren von Kompetenzen bzw. Lernzielen oder intendierten Lernergebnissen.
 
 Das Formulieren von angestrebten Lernergebnissen ist einer der wichtigsten
 Schritte des Verfassens von Aufgaben, auf gleich drei verschiedenen Ebenen:
@@ -49,7 +49,7 @@ dreistufigen Prozess zu folgen, bei dem zunächst die Inhalte herausgearbeitet w
 dann das intendierte Niveau des Lernprozesses ermittelt wird und schließlich Kontext gegeben wird.
 Zu jedem Schritt gibt es Leitfragen und ein erwartetes Ergebnis.
 
-### 1. Kompetenzzuwachs
+### 2.1. Kompetenzzuwachs
 Leitfragen:
  *  Zu welchem Lernzuwachs befähigt das Kapitel, die Taskgroup bzw. die Aufgabe?
  *  Was sollen die Studierenden mit dem Inhalt tun können?
@@ -58,7 +58,7 @@ Als Ergebnis sollte hier eine Liste mit mehreren Items entstehen,
 je nach Umfang von Kapitel, Taskgroup oder Aufgabe 
 (z.B. "Flexbox und Grid-Layout in Layout verwenden, wenn passend.")
 
-### 2. Niveau des Lernprozesses
+### 2.2. Niveau des Lernprozesses
 Im zweiten Schritt soll für jedes Item aus Schritt 1 das Niveau des Lernprozesses festgelegt werden.
 
 Leitfragen:
@@ -71,7 +71,7 @@ Als Ergebnis dieses Schritts sollte eine Auflistung der Items aus Schritt 1 ents
 die jeweils mit einem passenden Operator (vgl. Operatoren) versehen werden. 
 Das Lernergebnis wird in der Ich-Form formuliert. (z.B. "Ich vergleiche Flexbox und Grid-Layout").
 
-### 3. Objekt und Kontext
+### 2.3. Objekt und Kontext
 Leitfragen:
  * Wodurch konkretisieren sich Kompetenz und Kontext?
  * In welchem Zusammenhang sollen Studierende den aktiven Lernprozess ausführen?
@@ -85,7 +85,7 @@ verschiedenen Einsatzzwecken.")
 Sind die gewünschten Lernergebnisse formuliert, geht es an die Planung der Reihe bzw. Aufgabe. 
 Hier sollte man immer im Hinterkopf haben, was die Lernergebnisse sein sollen, und wie sie erreicht werden können.
 
-#### Literatur:
+#### 2.3.1 Literatur:
 - Weinert, F. E. (2002). **Definition des Kompetenzbegriffs**. 
   *Gedrucktes Exemplar in der Bibliothek*
 - Hartig, J. (2006). **Kompetenzen und ihre Messung**. 
@@ -93,7 +93,7 @@ Hier sollte man immer im Hinterkopf haben, was die Lernergebnisse sein sollen, u
 - Heinisch, H., & Romeike, R. (2012). **Vorgehensweise zur Kompetenzformulierung**.
   https://books.google.de/books?id=H_NyIbpjg3gC&lpg=PA9&ots=23aiOkUZ-k&dq=kompetenzen%20outcome%20orientiert&lr&pg=PA9#v=onepage&q&f=false
 
-## Operatoren
+## 3. Operatoren
 Für die Wahl der geeigneten Operatoren sei einmal auf die SOLO-Taxonomie verwiesen.
 SOLO steht für "Structure of the Observed Learning Outcome" und ist ein Modell, 
 dass die von Studierenden erworbenen Kompetenzen verschiedenen Komplexitätsstufen zuordnet.
@@ -145,11 +145,11 @@ Video von Claus Braband und Jacob Andersen, Universität Aarhus.
 - Gesellschaft für Informatik (2016). **Bildungsstandards für die Sekundarstufe II**.
   https://informatikstandards.de/fileadmin/GI/Projekte/Informatikstandards/Dokumente/Bildungsstandards_SII.pdf
 
-## Didaktische Methoden zum Aufgabenentwurf
+## 4 Didaktische Methoden zum Aufgabenentwurf
 
 Zwei verschiedene Varianten zum Aufbau der Aufgabe seien hier einmal vorgestellt:
 
-### Lehr-Lern-Modell für Lernaufgaben
+### 4.1 Lehr-Lern-Modell für Lernaufgaben
 
 Leisen verknüpft Lernaufgaben mit seinem Lehr-Lern-Modell, das sechs Schritte umfasst:  
 
@@ -188,7 +188,7 @@ Leisen verknüpft Lernaufgaben mit seinem Lehr-Lern-Modell, das sechs Schritte u
    Das kann z.B. in einer Reflexionsaufgabe erfolgen, oder indem man die Studierenden die Problemlösung zur 
    Selbstüberprüfung an weiteren ähnlichen oder auch verschiedenen Beispielen mit weniger Anleitung wiederholen lässt.
 
-###  Benutzen, Analysieren, Gestalten, Verankern 
+### 4.2 Benutzen, Analysieren, Gestalten, Verankern 
 Ein weiterer Ansatz für das Erstellen von Aufgaben im ProPra könnte die Methode 
 "BGAV - Benutzen, Analysieren, Gestalten, Verankern" von Lutz Hellmig und Tino Hempel sein. 
 Diese Methode greift auf, dass in der Informatik oft die Aneignung konzeptionellen Wissens 
