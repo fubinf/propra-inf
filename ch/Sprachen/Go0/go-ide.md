@@ -1,7 +1,7 @@
 title: Einrichtung einer IDE für Go
 stage: alpha
 timevalue: 1
-difficulty: 1
+difficulty: 2
 ---
 
 [SECTION::goal::product]
@@ -34,14 +34,18 @@ Auf Linux, Windows und MacOS haben Sie zwei IDEs zur Wahl:
 [SECTION::instructions::detailed]
 
 ### 1. Go Compiler
-* 
+
 * Go entwickelt sich zügig weiter (mit halbjährlichen Releases), deshalb benutzen wir nicht die apt-Version, 
   sondern holen uns die aktuelle:
 * Gehen Sie auf die offizielle Webseite [Install Go](https://go.dev/doc/install) 
   und klicken sie auf den "Download (1.xx.yy)"-Knopf.
 * Auf der nächsten Seite gibt es mehrere Optionen zum Herunterladen. Wählen Sie die Version für Ihr Betriebssystem:
     - Linux und WSL `go1.xx.y.linux-amd64.tar.gz`
-    - (Die Windows-Version `go1.xx.y.windows-amd64.msi` brauchen wir _nicht_.)
+    - (Die Windows-Version `go1.xx.y.windows-amd64.msi` brauchen wir _nicht_.
+      Ausnahme: Falls GoLand mit WSL Schwierigkeiten macht (sowas gibt es leider), kann man zusätzlich 
+      eine lokale Windows-Version von `go` installieren und einen Mischbetrieb in Kauf nehmen: 
+      Die IDE benutzt die Windows-Version,
+      manuell auf der Kommandozeile benutzen wir die Linux-Version.)
     - MacOS (Apple Silicon) `go1.xx.y.darwin-arm64.pkg`
     - MacOS (Intel) `go1.xx.y.darwin-amd64.pkg`
 * Linux und WSL:
@@ -77,18 +81,15 @@ Falls die Installation fehlschlägt, suchen Sie Hilfe auf [der offiziellen Seite
     - Windows 10/11: "Zu PATH hinzufügen" und nach der Installation PC neu starten.
 
 * Für Linux folgen Sie den Anweisungen auf [dieser Seite](https://code.visualstudio.com/docs/setup/linux). 
-
-* Go Extension
-Finden Sie links oben in VSCode das "Extensions"-Symbol und klicken Sie darauf. 
-Geben Sie "Go" in die Suchleiste ein und installieren Sie die Erweiterung 
-"Go for Visual Studio Code". 
+* Go Extension: Finden Sie links oben in VSCode das "Extensions"-Symbol und klicken Sie darauf. 
+  Geben Sie "Go" in die Suchleiste ein und installieren Sie die Erweiterung 
+  "Go for Visual Studio Code". 
 
 
 ### 3. Hello World!
 
 Erstellen Sie die Datei `programm.go` und kopieren Sie den unten angeführten Quellcode in diese Datei.
 
-<<<<<<< HEAD
 [FOLDOUT::Ein leeres Projekt in GoLand kreieren]
 
 * **WSL:** da sich Ihre Go-Installation im WSL-Universum befindet, ist das aus Sicht von Windows "Remote Development".
