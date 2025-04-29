@@ -143,7 +143,6 @@ gewählt ausdrücken, kommt aber in den meisten Gegenden halbwegs zurecht.
 Anstatt das Dekodieren des Encodings mit der Angabe `open(..., encoding=...)` Python zu überlassen,
 können wir es auch selber machen, indem wir die Datei im Binärmode öffnen und dann
 das dort als Bytestrom gelesene explizit dekodieren, umgefähr so:
-
 `content.decode(myencoding)`
 
 - [ER] Probieren Sie das aus, indem Sie ihr Programm entsprechend umbauen.
@@ -168,4 +167,4 @@ das dort als Bytestrom gelesene explizit dekodieren, umgefähr so:
 - Der Code sollte vernünftiges Python sein, mit Schleifen über die Behälter.
   Zusätzliche Abstraktionen sind nicht nötig.
 
-- [ENDINSTRUCTOR]
+[ENDINSTRUCTOR]
