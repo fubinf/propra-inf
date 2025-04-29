@@ -44,7 +44,7 @@ Soll das nicht der Fall sein, schlagen Sie in [PARTREF::go-ide] oder online nach
 Ausführen besteht immer aus mindestens zwei Phasen — kompilieren und tatsächlich ausführen.
 Go bietet zwei Möglichkeiten an:
 
-1. `go run quellcode.go/executable` — Ihr Go-Programm wird automatisch kompiliert und gleich im Anschluss ausgeführt.
+1. `go run quellcode.go` — Ihr Go-Programm wird automatisch kompiliert und gleich im Anschluss ausgeführt.
     Das funktioniert nur für die Quellcodedateien, die mit der Zeile `package main` anfangen (siehe unten).
     Das Python-Äquivalent zu diesem Kommando ist `python3 quellcode.py`. 
 2. `go build -o binary quellcode.go` — aus `quellcode.go` wird eine Binärdatei erzeugt.
@@ -61,23 +61,31 @@ Die Paket- und Modulverwaltung in Go ähnelt derjenigen in Python.
 - Modul
     - **Python:** eine Datei, die auf `.py` endet.
     - **Go:** ein Verzeichnis mit der Datei `go.mod`, wo der Modulname, die Abhängigkeiten und die Version deklariert 
-      sind.
+      sind. TODO_1: Man möchte ein Beispiel sehen, ein Link reicht.
 - Paket
     - **Python:** ein Verzeichnis mit mehreren `.py`-Dateien und optional einer `__init__.py` Datei.
-      Diese Datei wird bei dem Importieren ausgeführt.
-    - **Go:** ein Verzeichnis, wo alle Quellcodedateien mit der Zeile `package verzeichnis_name` anfangen müssen.
+      Diese Datei wird beim Importieren des Pakets ausgeführt.
+    - **Go:** ein Verzeichnis namens z.B. `xyz`, in dem alle Quellcodedateien mit der Zeile
+      `package xyz` anfangen müssen.
       Auf dieser Ebene wird Sichtbarkeit geregelt: Alle `lowercase` Deklarationen sind privat, alle `Capitalized` 
       Deklarationen sind öffentlich (public/exported) und aus anderen Paketen sichtbar.
- 
-Es gibt zwei Typen von Paketen: `main` und alle anderen.
+      Merkhilfe: Große Buchstaben geben große Sichtbarkeit.
 
-Das Hauptpaket ist immer das Paket `main`: das ausführbare Programm, wo die `main()` Funktion definiert wurde.
-Diese Struktur entspricht dem Einstiegspunkt wie beispielsweise `public static void main(String[] args)` in Java oder `int main()` in C. 
+Ein Paketname unterliegt Sonderregeln: `main`.
+Dieses Paket ist das Hauptpaket; darin liegt das ausführbare Programm.
+Einstiegspunkt ist immer die Funktion `main()`.
+Dies entspricht `public static void main(String[] args)` in Java oder 
+`int main()` in C. 
 
-Alle anderen Paketnamen interpretiert der Compiler als Bibliotheken — diese dürfen nicht mittels `go run` ausgeführt werden. 
+Alle anderen Paketnamen interpretiert der Compiler als Bibliotheken — diese können nicht 
+mittels `go run` ausgeführt werden. 
 Pakete entsprechen der Verzeichnisstruktur eines Moduls: Gibt es in einem Modul `my_module` Verzeichnisse `src`, `utils`
 und `test`, so beginnen die Quellcodedateien entsprechend mit den Zeilen `package src`, `package utils` oder 
 `package test`.
+
+TODO_1: Das ist also ganz anders als in Python? 
+Dort sind Module klein, Pakete größer, aber Pakete sind auch Module. 
+Hier sind Module größer und enthalten Pakete? Was ist jeweils deren Zweck? Erklären!
 
 #### Wie werden Module/Pakete importiert?
 
@@ -87,31 +95,34 @@ Hier gibt es zwei mögliche Fälle:
    Dabei müssen Sie aufpassen, dass Ihr Abhängigkeitsgraph azyklisch bleibt.
 2. Externe Module/Bibliotheken
     - in dem Root-Verzeichnis des Moduls `go get example.com/some/package` ausführen und dann in dem Quellcode 
-     importieren
+     importieren  TODO_1 verstehe ich nicht.
     - zuerst in dem Quellcode importieren und danach aus dem Root-Verzeichnis des Moduls `go get` ausführen. 
    So werden alle nötigen Bibliotheken automatisch heruntergeladen und installiert. 
+
+TODO_1: Das sollte man jetzt ausprobieren, sonst wird das hier zu trocken und zu viel Theorie.
 
 ### Variablen und primitive Datentypen
 
 Ähnlich zu Python gibt es 4 wichtigste primitive Datentypen:
 
-* `int`: eine ganze Zahl mit Vorzeichen (signed);
+* `int`: eine ganze Zahl mit Vorzeichen (signed);  TODO_1: Wie groß?
 * `float64`: eine Gleitkommazahl;
 * `string`: eine Zeichenkette;
 * `bool`: ein boolescher Wert, `true` oder `false`;
 
 und einen zusätzlichen `byte` (`uint8`): 8 Bits von Information (wichtig im Kontext von Dateioperationen oder Netzwerken).
+TODO_1: D.h. z.B. 16-bit Integers gibt es gar nicht? So klingt obiger Satz: "einen zusätzlichen".
 
 In Go wird manchmal zwischen Deklaration und Definition unterschieden. 
 Deklaration ist nichts anderes als Definition mit Default/Null-Werten: `0` für Zahlen, `""` für Zeichenketten, `false` für boolesche Werte.
 
 ```go
-var name string             // deklarieren
-name = "gopher"             // definieren
-var name string = "gopher"  // beide Aktionen kombiniert
+var myname string             // deklarieren
+myname = "gopher"             // definieren
+var myname string = "gopher"  // beide Aktionen kombiniert
 
-name := "gopher"            // oder den konkreten Datentyp
-var name = "gopher"         // herleiten lassen
+myname := "gopher"            // oder den konkreten Datentyp
+var myname = "gopher"         // herleiten lassen  TODO_1: sind diese beiden Formen gleichwertig?
 
 width, height := 1920, 1080 // mehrere Variablen auf einmal
 ```
@@ -131,7 +142,7 @@ truth := true                       var truth bool = true
 
 [FOLDOUT::Warum gibt es ein `float64`, aber kein `int64`?]
 
-Doch. Es gibt mehr Typen für Zahlen als oben angeführt sind. Hier ist die vollständige Liste:
+Es gibt mehr Typen für Zahlen als oben angeführt sind. Hier ist die vollständige Liste:
 
 * ganze Zahlen mit Vorzeichen: `int` , `int8` , `int16` , `int32` (`rune`) , `int64`;
 * ganze Zahlen ohne Vorzeichen: `int` , `uint8` (`byte`), `uint16` , `uint32` , `uint64` , `uintptr`;
@@ -141,21 +152,22 @@ Doch. Es gibt mehr Typen für Zahlen als oben angeführt sind. Hier ist die voll
 [ENDFOLDOUT]
 
 Komplexere Datentypen werden ohne Ausnahmen hergeleitet, daher ist die kurze Schreibweise im Go-Universum bevorzugt.
+TODO_1: Hergeleitet? Wie denn? Was denn? Wo denn?
 
 #### Konstanten
 
-Konstanten werden mithilfe vom Schlüsselwort `const` deklariert und müssen bei Deklaration definiert werden. 
+Konstanten werden mit dem Schlüsselwort `const` deklariert und müssen bei Deklaration definiert werden. 
 Sie dürfen außerdem nur primitive Datentypen beinhalten und müssen sich im Paketkontext befinden (auf Dateiebene).
 Üblicherweise werden Konstanten ganz oben in der Datei deklariert.
 Es gibt keine besonderen Namenskonventionen, daher gelten hier die gleichen Regeln wie bei normalen Variablen: 
 `camelCase` oder `PascalCase`, je nachdem ob die Konstante öffentlich sein muss.
+TODO_1: camelCase kannten wir bis hierher nicht; solche Konventionen sind aber wichtig.
 
 ```go
 const pi = 3.1415926
 const Pi float64 = 3.1415926
 
-// error: Missing value in the const declaration
-const pi float64
+const pi float64  // --> error: Missing value in the const declaration
 ```
 
 #### Als Block deklarieren
@@ -176,10 +188,10 @@ var (
 ```
 
 
-### Kontrollflussstrukturen (if/switch/for)
+### Kontrollstrukturen (if/switch/for)
 
-Kontrollflussstrukturen sind relativ ähnlich zu diesen in Python, mit dem einzigen Unterschied: In Go dürfen `if` und 
-`switch` eine**Capture Group** definieren. 
+Kontrollstrukturen sind relativ ähnlich zu denen in Python, mit dem Unterschied: 
+In Go dürfen `if` und `switch` eine **Capture Group** definieren. 
 Das ist eine oder mehrere Variablen, die nur in dem `if`/`switch` Block erreichbar sind. 
 
 ### if
@@ -200,13 +212,15 @@ if data, err := client.RequestData(); err != nil {
 } else {
     fmt.Println("received data", data)
 }
-
 ```
+TODO_1: Sieht aus wie "eine komplizierte Zeile statt zwei einfache Zeilen". Was ist da toll dran?
+Außerdem werden hier offenbar zwei Werte zurückgegeben: Kennen wir noch nicht. Ist das wie tuple in Python? 
 
 ### switch
 
 Es gibt zwei Alternativen von `switch` im Python-Universum: `if-elif-else`-Block oder `match-case`.
 `Switch` darf ebenfalls eine Capture Group besitzen.
+TODO_1: Verwirrend ausgedrückt. Was hat denn nun `switch` mit `match-case` zu tun? Lieber Python nicht erwähnen?
 
 ```go
 switch x := randomIntUnder10(); x {
@@ -218,9 +232,11 @@ default: fmt.Println("it's something different...")
 ```
 
 `if-elif-else`-Blöcke sind in der Regel flexibler.
+TODO_1: Bitte positiv ausdrücken: bei `switch` ist schneller zu erfassen, was da passiert.
 
 [FOLDOUT::Benutzen auf eigene Gefahr]
- 
+TODO_1: Ziemlich verwirrender Exkurs. Swift? Kotlin? Häh?? Lieber weglassen.
+
 Ein `if-else`-Block hat immer zwei Zweige — einen für `true` und einen für `false`. 
 Bei einem `switch`-Block sind das eigentlich nur zwei mögliche Fälle:
 
@@ -272,6 +288,7 @@ while True:
 ```
 
 #### Klassische C-Schleife
+TODO_1: Die ist für unsere Studis nicht klassisch, sondern unbekannt.
 ```go
 // Go
 for i := 0; i < 10; i++ {
@@ -315,6 +332,7 @@ for index, value := range someList {
     ...
 }
 ```
+TODO_1: Das ist verblüffend. Wieso taugt `range` für `index` ebenso wie für `index, value`? 
 
 ```python
 # Python
@@ -343,6 +361,7 @@ _T(v)_ konvertiert den Wert _v_ zum Typen _T_. Das gilt vor allem für Zahlen.
 
 [WARNING]
 Go erlaubt Über- oder Unterlauf, wenn beispielsweise `int64` zu `int8` umgewandelt wird.
+TODO_1: Was heißt das? Wirkung?
 
 Falls eine solche Operation absolut notwendig ist, denken Sie daran, den Erfolg Ihrer Typumwandlung zu überprüfen.
 
@@ -373,7 +392,7 @@ Eine umgekehrte Typumwandlung geschieht einfacher — es wird eine neue Zeichenk
 ```python
 # Python
 integerValue = 42
-stringValue = string(integerValue)
+stringValue = str(integerValue)
 ```
 
 ```go 

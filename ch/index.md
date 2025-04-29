@@ -230,6 +230,7 @@ Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
   [PARTREF::Einreichungen]. Die letztere war sogar falsch (nämlich: veraltet).
 - **2025-04-14**: Großen Defekt in `sedrila` bereinigt. Bitte Version 2.6.2 benutzen:
   `pipx upgrade sedrila`
+- **2025-04-15**: Neue Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_shutil] freigegeben. 
 - ...
 
 

@@ -106,14 +106,8 @@ Bald:
 - `author`: Wenn eine Aufgabe weggelassen wird, weil eine requires-Abhängigkeit soft fehlt,
   sollte es eine Warnmeldung geben. Dass passiert bei `--stage beta`, wenn die Abhängigkeit 
   eine niedrigere stage hat.
+- `author`: Tasks, die wegen ihrer stage fehlen, erscheinen trotzdem in assumes.
 - `author`: ZIP-Dateien sollen kein automatisches Unterverzeichnis enthalten.
-- `author`: `--rename name1 name2` benennt eine Task (Erweiterung: oder Taskgroup) um:
-  Alle Dateien bzw. Verzeichnisse in `chapterdir`, `altdir`, `itreedir`, die im passenden Pfad
-  von `chapterdir` liegen, werden umbenannt, alle Auftreten in `assumes:`, `requires:`,
-  `PARTREF::`, `PARTREFTITLE::`, `PARTREFMANUAL::`. Letztere geben zusätzlich eine Warnung,
-  weil man sie oft nachbearbeiten muss.
-  Jedes Paar von ersetzten Pfadnamen (alt in gelb, neu in grün) und
-  ersetzten Markdown-Zeilen (alt in gelb, neu in grün) wird ausgegeben.
 - Defekt?: Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
 - Wenn bei `--include_stage beta` eine `required`-Abhängigkeit nicht existiert,
   muss es eine Fehlermeldung geben, keinen toten Link.
@@ -164,3 +158,52 @@ Prüfpunkte:
 
 Das kann umfangreich werden und steht deshalb in einer separaten Datei namens
 [aufgabenideen.md](aufgabenideen.md).
+
+
+## 4. Weitere Anknüpfungspunkte / Quellen
+
+
+### 4.1 Initiative: Software Carpentry
+
+Software Carpentry will Softwareentwicklung lehren für Computational Scientists.
+Kursformat mit Lehrer.
+https://software-carpentry.org/lessons/
+
+Die haben 1998 begonnen und haben 2016 ganzheitlich Erfahrungen in einem Artikel dokumentiert:
+https://f1000research.com/articles/3-62/v2  
+Interessant sind z.B. Abschnitte 3 (Kursformat), 
+4.2 (live coding), 4.4 (open authoring), 4.8 (pair programming), 
+6 (collaborative lesson development),
+8.2 (too slow and too fast), 8.3 (Is it supposed to hurt this much?), 8.4 (text editors),
+8.5 (testing), 8.6 (watching vs. doing).
+
+2019 wurde aus diesen Erfahrungen das Buch "Teaching Tech Together"
+https://teachtogether.tech/en/index.html
+(siehe ferner die Liste "What to read instead" auf der Homepage).
+
+
+### 4.2 Buch: Software Design by Example
+
+Ein Buch mit Beispielen (in Python), die sich als Anregung für Aufgaben eignen könnten:
+https://third-bit.com/sdxpy/
+
+Der Artikel "Twelve quick tips for software design"
+https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009809
+gibt einfache _generelle_ Ratschläge, wie man ein Programm entwerfen sollte.
+
+
+### 4.3 Artikel: Ten simple rules for writing a technical book
+
+Hat ein paar Ratschläge, die auch für uns relevant sein könnten, insbesondere
+Rule 4 (Start with a learner persona) und Rule 5 (Differentiate yourself)
+
+https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011305
+
+
+## 4.4: Mentale Modelle aufzeichnen
+
+Man könnte draw.io vorgeben, damit die Studis zu manchen Aufgaben ein Diagramm
+abgeben und das den Instructors direkt in der webapp mit anzeigen.  
+https://www.drawio.com/  (Open Source, Desktop oder [online](https://app.diagrams.net/?src=about))  
+https://www.drawio.com/doc/faq/save-file-formats  
+https://machow2.com/best-free-alternatives-visio-mac/
