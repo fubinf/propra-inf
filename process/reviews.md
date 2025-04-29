@@ -35,7 +35,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Sprachen
 - ch/Sprachen/Python/py-Funktionale-Programmierung.md (SW)
-- ch/Sprachen/Go0/go-basics-ii.md (IB)
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP)
 - ch/Sprachen/C/c-ide-linux.md (KH)
 - ch/Sprachen/C/c-ide-macos.md (KH)
@@ -101,6 +100,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 - ch/Sprachen/Go0/go-ide.md (IB->LP->IB)
 - ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB)
+- ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB)
 
 
 ## Reviews to do for Ivan Condric
