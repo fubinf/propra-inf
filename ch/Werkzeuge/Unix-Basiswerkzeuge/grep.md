@@ -25,6 +25,8 @@ Textsuchen durchführen, sondern auch komplexe Filterungen und Analysen vornehme
 
 Wir erstellen schnell Beispieltexte und Dateien, um die Nutzung von `grep` praktisch zu demonstrieren.
 
+- [EC] Erstellen Sie einen Ordner `grep` in `~/ws/tmp/`.
+
 - [EC] Kopieren Sie den unteren Text im Ganzen und führen Sie es in der Kommandozeile aus.
 
 ```bash
@@ -57,6 +59,7 @@ echo "INFO: Modul A gestartet." >> logs/app.log
 echo "ERROR: Kritischer Fehler in Modul B." > logs/sys.log
 echo "WARN: Konfiguration veraltet." >> logs/sys.log
 ```
+- [EC] Wechseln Sie in den neu erstellten Ordner.
 
 ### Grundlagen
 
@@ -96,6 +99,10 @@ Lesen sie sich die Optionen `-A, -B, -l, -r` aus der
     zusätzlich die eine Zeile davor und die zwei Zeilen danach an.
 - [EC] Listen Sie nur die Namen der Dateien im Verzeichnis `logs` auf, die das Wort "ERROR" enthalten.
 
+### Aufräumen
+
+- [EC] Löschen Sie alle Dateien im Ordner `~/ws/tmp/grep`.
+- [EC] Löschen Sie den Ordner `~/ws/tmp/grep`.
 
 [ENDSECTION]
 
