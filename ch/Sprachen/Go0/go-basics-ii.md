@@ -31,13 +31,14 @@ und zum anderen mehr Kontrolle für die Entwickler_innen zur Verfügung stellt.
 Jede Funktion in Go besteht aus folgenden Teilen:
 
 * `func` Schlüsselwort;
-* Funktionsname (optional);
+* Funktionsname (optional!);
 * Runde Klammern für die Parameter: Parameter werden nacheinander als Paare `name type` aufgelistet;
 * Signatur der Rückgabe:
     * leer, wenn die Funktion nichts zurückgibt;
     * `T`, wenn die Funktion einen Wert von Typ `T` zurückgibt;
     * ein Tupel `(T1, T2, ..., Tn)`, falls die Funktion mehrere Werte auf einmal zurückgibt;
-* Funktionsdefinition beziehungsweise _-Body_ in geschweiften Klammern.
+      TODO_1: Hier benannte Rückgaben nicht zu erwähnen ist inkonsequent, oder?
+* Funktionsrumpf in geschweiften Klammern.
 
 Eine Funktion, die Sie bereits kennen, ist die `main`-Funktion:
 
@@ -110,6 +111,7 @@ Einerseits tragen die Parameternamen in der Rückgabesignatur zur Lesbarkeit bei
 
 [ENDFOLDOUT]
 
+
 [FOLDOUT::Variadische Funktionen]
 
 Funktionen in Go können eine dynamische Anzahl von Parametern verarbeiten, was besonders nützlich ist, wenn die genaue Anzahl der Argumente zur Kompilierungszeit nicht bekannt ist. 
@@ -132,6 +134,7 @@ func receiveInts(xs []int) {
 }
 ```
 
+
 Für den Aufrufer gibt es jedoch einen Unterschied:
 ```go
 // Variadisch
@@ -146,7 +149,7 @@ receiveInts([]int{0, 1, 4, 9, 16, 25, 36, 49, 64})
 
 [FOLDOUT::Funktionen höherer Ordnung]
 
-Eine Funktion kann eine andere Funktion als Parameter erhalten, wodurch sie zu einer höheren Ordnungsfunktion wird:
+Eine Funktion kann eine andere Funktion als Parameter erhalten, wodurch sie zu einer Funktion höherer Ordnung wird:
 
 ```go
 func apply(
@@ -187,17 +190,24 @@ func main() {
 }
 ```
 
-Höhere Ordnungsfunktionen sind nützlich für die Erstellung flexibler und wiederverwendbarer Codebausteine.
+Funktionen höherer Ordnung sind nützlich für die Erstellung flexibler und wiederverwendbarer Codebausteine.
 
 [ENDFOLDOUT]
 
-#### Ausprobieren:
-- [ER] Implementieren Sie eine Funktion `divide(a, b float64) (result float64, err error)` — die erste Zahl durch die zweite dividieren.
-   Bei Erfolg ein Tupel `(result, nil)` zurückgeben; ansonsten `(0.0, fmt.Errorf("division by zero"))`.
-   Benutzen Sie hier benannte Rückgabewerte.
-- [ER] `reduce(operation func(int, int) int, xs ...int) int` — eine Funktion, die eine Funktion (`operation`) und eine beliebige Anzahl von Ganzzahlen als Parameter bekommt.
-   Der erste Parameter von `operation` ist eine Akku-Variable, der zweite — ein Element der Liste `xs`.
-   Mit `reduce(func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise die Summe von den Ganzzahlen berechnet werden.
+
+#### Ausprobieren
+
+- [ER] Implementieren Sie eine Funktion `divide(a, b float64) (result float64, err error)`:
+  die erste Zahl durch die zweite dividieren.
+  Bei Erfolg ein Tupel `(result, nil)` zurückgeben; ansonsten `(0.0, fmt.Errorf("division by zero"))`.
+  Benutzen Sie hier benannte Rückgabewerte.
+- [ER] Bauen Sie `reduce(operation func(int, int) int, start int, xs ...int) int` — eine Funktion, die 
+  eine Funktion (`operation`) und eine beliebige Anzahl von Ganzzahlen als Parameter bekommt.
+  Sie wendet sukzessive `operation` auf die Ganzzahlen an:
+  Der erste Parameter von `operation` ist eine Akku-Variable (anfangs `start`, am Ende das Resultat), 
+  der zweite der Reihe nach jedes Element der Liste `xs`.
+  Mit `reduce(func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise 
+  die Summe der Ganzzahlen berechnet werden.
 - [ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
 ```go
 func testFunctions() {
@@ -232,6 +242,7 @@ Alle Felder dieser Struktur sind großgeschrieben und deswegen öffentlich (publ
 
 [ENDNOTICE]
 
+
 ### Methoden
 
 Auch ohne Klassen gibt es **Methoden** in Go. 
@@ -254,6 +265,7 @@ Daher können Methoden nicht auf eingebauten Typen wie int oder string definiert
 
 [ENDNOTICE]
 
+
 ### Struktureinbettung (struct embedding)
 
 Eines der Prinzipien von Go ist "Composition over Inheritance". 
@@ -268,7 +280,8 @@ type Student struct {
 ```
 
 In diesem Beispiel übernimmt Student alle Felder von Person. 
-Beim Zugriff auf die Felder von Person gibt es mehrere Möglichkeiten — entweder direkt über den Namen eines Feldes oder zuerst über die eingebettete Struktur:
+Beim Zugriff auf die Felder von Person gibt es mehrere Möglichkeiten — entweder direkt über den Namen eines Feldes oder
+zuerst über die eingebettete Struktur:
 
 ```go
 mark := Student{
@@ -296,10 +309,13 @@ mark.Person.Print()
 mark.Print()
 ```
 
-#### Ausprobieren:
+
+#### Ausprobieren
+
 - [ER] Definieren Sie eine neue Struktur: `Employee`. 
        Diese soll alle Felder und Methoden einer `Person` übernehmen und ein neues Feld definieren: `Position`.
-- [ER] Implementieren Sie eine neue Methode `Print` auf `Employee`, die nicht nur den vollständigen Namen auf die Kommandozeile ausgibt, sondern auch die `Position`.
+- [ER] Implementieren Sie eine neue Methode `Print` auf `Employee`, die nicht nur 
+  den vollständigen Namen auf die Kommandozeile ausgibt, sondern auch die `Position`.
 - [ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
 ```go
 func testStructs() {
@@ -317,19 +333,23 @@ func testStructs() {
 }
 ```
 
+
 ### Zeiger (pointers)
 
-Zeiger sind ein grundlegendes Konzept in der Programmierung, das es ermöglicht, auf die Speicheradresse eines Wertes zuzugreifen. 
+Zeiger sind ein grundlegendes Konzept in der Programmierung, das es ermöglicht, per Speicheradresse
+auf Daten zuzugreifen. 
 Sie sind nützlich, um effizient mit großen Datenstrukturen zu arbeiten oder Werte durch Referenz anstatt durch Kopie zu übergeben.
 
 Zeiger in Go ähneln denjenigen in C oder C++ mit einem wichtigen Unterschied — sie sind sicherer zu benutzen.
-Sie unterstützen keine [Zeigerarithmetik](https://www.tutorialspoint.com/cprogramming/c_pointer_arithmetic.htm) und gehören zu einem konkreten Typ (`*T`, falls der Zeiger eine Variable von Typ `T` referenziert).
+Sie unterstützen keine [Zeigerarithmetik](https://www.tutorialspoint.com/cprogramming/c_pointer_arithmetic.htm) und gehören zu einem konkreten Typ 
+(`*T`, falls der Zeiger eine Variable von Typ `T` referenziert).
 
-Ein Zeiger wird mithilfe von `&` Operator erstellt. 
-Semantisch kann dieser als "Adresse von" gelesen werden: `&x` — "Adresse von `x`".
+Ein Zeiger wird mithilfe des `&`-Operators erstellt. 
+Semantisch kann dieser als "Adresse von" gelesen werden: `&x` heißt "Adresse von `x`".
 
-Die Umkehroperation heißt Dereferenzierung — ein Zeiger wird in den Wert "an der Adresse `x`" umgewandelt.
-Dies geschieht mithilfe des Operators `*`, der sowohl zum Deklarieren eines Zeigertyps als auch zur Dereferenzierung verwendet wird.
+Die Umkehroperation heißt Dereferenzierung — ein Zeiger wird in den "Wert an der Adresse `x`" umgewandelt.
+Dies geschieht mithilfe des Operators `*`, der sowohl zum Deklarieren eines Zeigertyps als auch 
+zur Dereferenzierung verwendet wird.
 
 Beispiel:
 
@@ -344,16 +364,17 @@ fmt.Println(content)        // 42
 In diesem Beispiel zeigt `box` auf die Adresse von `content`. 
 Durch Dereferenzierung kann der Wert an dieser Adresse geändert werden.
 
+
 ### "Pass-by-value" und "Pass-by-reference"
 
 Wie werden Argumente in eine Funktion übergeben?
 
-In Go werden alle Argumente an Funktionen standardmäßig per Wert übergeben, also kopiert. 
+In Go werden alle Argumente an Funktionen per Wert übergeben, also kopiert. 
 Das gilt sowohl für primitive Datentypen als auch für Strukturen.
 
 Daraus ergeben sich folgende Nachteile:
 
-* eine Funktion kann die ursprünglichen Argumente nicht verändern (was manchmal gewünscht ist);
+* eine Funktion kann die ursprünglichen Argumente nicht verändern (was manchmal gewünscht wäre);
 * jeder Funktionsaufruf kopiert alle Argumente — je größer die Argumente, desto ineffizienter wird der Aufruf. 
 
 Lösung: Statt eine Struktur zu kopieren, übergeben wir einen Zeiger auf diese Struktur, um per Referenz zu arbeiten.
@@ -378,7 +399,9 @@ Das ist jedoch nicht nötig, da Go eine solche Umwandlung automatisch durchführ
 
 [ENDNOTICE]
 
-#### Ausprobieren:
+
+#### Ausprobieren
+
 - [ER] Implementieren Sie eine Methode auf `Employee` — `Promote(newPosition string)`. 
        Diese soll die ursprüngliche Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
 - [ER] Kopieren Sie die folgende Testfunktion in Ihre Datei um und rufen Sie sie ebenfalls aus der `main`-Funktion auf:
@@ -399,13 +422,16 @@ func testMutation() {
 }
 ```
 
+
 ### Referenztypen
 
 Zu den Referenztypen gehören Slices und Maps.
 
-Zugrundeliegende Datenstruktur von Slices ist ein Array — eine Sammlung von Einträgen, wo alle Einträge zum gleichen Typ gehören und die Größe fest ist.
+Zugrundeliegende Datenstruktur von Slices ist ein Array — eine Sammlung von Einträgen, 
+wo alle Einträge zum gleichen Typ gehören und die Größe fest ist.
 
 Arrays werden in Go selten direkt verwendet, daher konzentrieren wir uns auf Slices.
+
 
 ### Slice
 
@@ -422,9 +448,11 @@ type slice struct {
 
 * `array` — das zugrundeliegende Array beziehungsweise ein Verweis auf die Speicherstelle, wo sich das Array befindet;
 * `len` — die Anzahl von Elementen in dem Slice. 
-  Diese Zahl ist immer zwischen 0 und der Größe des zugrundeliegenden Arrays und kann mittels der eingebauten Funktion [`len()`](https://pkg.go.dev/builtin#len) ermittelt werden;
+  Diese Zahl ist immer zwischen 0 und der Größe des zugrundeliegenden Arrays und kann 
+  mittels der eingebauten Funktion [`len()`](https://pkg.go.dev/builtin#len) ermittelt werden;
 * `cap` — die Anzahl von Elementen, die der Slice maximal beinhalten kann (Capacity/Kapazität). 
-  Diese Zahl wird von der eingebauten Funktion [`cap()`](https://pkg.go.dev/builtin#cap) zurückgegeben und stellt die Anzahl von Zellen bis zum Ende des zugrundeliegenden Arrays dar.
+  Diese Zahl wird von der eingebauten Funktion [`cap()`](https://pkg.go.dev/builtin#cap) zurückgegeben und stellt die Anzahl von Zellen 
+  bis zum Ende des zugrundeliegenden Arrays dar.
 
 Ein oder mehrere Elemente in einen Slice einfügen: [append.](https://pkg.go.dev/builtin#append)
 
@@ -439,7 +467,7 @@ arr := [5]int{0, 1, 2, 3, 4}    // existierendes Array
 
 sl := arr[1:3]                  // der erste Index ist inklusiv, der zweite Index ist exklusiv
 fmt.Println(len(sl))            // Länge: 2
-fmt.Println(cap(sl))            // Kapazität: 4
+fmt.Println(cap(sl))            // Kapazität: 4, denn Element 0 des Arrays ist nicht für den Slice verfügbar
 
 fmt.Println(sl)                 // [1 2]
 fmt.Println(sl[0])              // 1
@@ -455,15 +483,16 @@ arr := [5]int{0, 1, 2, 3, 4}
 sl := arr[:]                    // kreiert einen Slice für das gesamte ursprüngliche Array (len = 5, cap = 5)
 sl := arr[2:]                   // kreiert einen Slice ab Index 2 bis zum Ende des Arrays (len = 3, cap = 3)
 sl := arr[:3]                   // kreiert einen Slice vom Anfang des Arrays bis zu Index 3 (exklusiv) (len = 3, cap = 5),
-                                // ermöglicht das Hinzufügen neuer Elemente aufgrund höherer Kapazität
-sl = append(sl, 8)              // überschreibt jedoch die "3" im ursprünglichen Array!
+                                // ermöglicht also das Hinzufügen zweier weiterer Elemente
+sl = append(sl, 8)              // überschreibt die "3" im ursprünglichen Array arr!
 ```
+
 
 ### Map
 
-Ein Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre Schlüssel ermöglicht. 
+Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre Schlüssel ermöglicht. 
 
-Ein Map wird mithilfe von `make()` Funktion erstellt:
+Eine Map wird ebenfalls mithilfe der Funktion `make()` erstellt:
 
 ```go
 m := make(map[string]int)       // "string" ist der Typ der Schlüssel, "int" ist der Typ der Werte
@@ -522,6 +551,7 @@ m := make(map[string]int)
 Implementieren Sie die folgenden Funktionen:
 
 * [ER] `func AddElement(slice []int, element, at int)` — ein Element an einem Index `at` in einen Slice einfügen;
+  das Element, das vorher an dieser Stelle stand und alle nachfolgenden rücken eine Position nach rechts;
 * [ER] `func RemoveElement(slice []int, at int)` — ein Element an einem Index `at` entfernen und die Größe des Slices entsprechen anpassen.
 * [ER] `func AddElementIfNotThere(m map[string]int, key string, value int)` — ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
 
@@ -531,7 +561,8 @@ Implementieren Sie die folgenden Funktionen:
 
 Die früher implementierten Funktionen (`testFunctions()`, `testStructs()` und `testMutation()`) sollen weiterhin in der `main`-Funktion bleiben.
 
-Sie dürfen sie während der Entwicklung auskommentieren; passen Sie jedoch darauf, dass ihre Ausgaben in dem endgültigen Kommandoprotokoll landen.
+Sie können während der weiteren Entwicklung die Aufrufe natürlich auskommentieren, aber achten Sie darauf, 
+dass die Ausgaben im endgültigen Kommandoprotokoll vorhanden sind.
 
 [ENDNOTICE]
 
