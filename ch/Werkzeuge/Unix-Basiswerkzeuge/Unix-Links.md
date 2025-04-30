@@ -1,5 +1,5 @@
 title: Links in Unix
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: Umgang-mit-Verzeichnissen
@@ -23,6 +23,7 @@ Lesen Sie die Beschreibung im obigen Teil, die **Examples** am Ende und die Opti
 [GNU Manual](https://www.gnu.org/software/coreutils/manual/html_node/ln-invocation.html) über Links.
 
 Wir brauchen einen Ordner und Dateien, damit wir darauf die Links verknüpfen können.
+Wir verwenden hierfür den [TERMREF::Hilfsbereich].
 
 - [EC] Erstellen Sie einen Ordner `~/ws/tmp/physical/`.
 - [EC] Erstellen Sie zwei Dateien namens `softdata` und `harddata` unter `~/ws/tmp/physical/`, mit
@@ -37,7 +38,7 @@ Nachdem wir den Ordner und die Dateien erstellt haben, brauchen wir Links auf de
   Angabe eines relativen Pfades: `ln -s ../physical/softdata ~/ws/tmp/links/symlink2`
 - [EC] Erstellen Sie einen [TERMREF::Hardlink] `~/ws/tmp/links/hardlink` auf `~/ws/tmp/physical/harddata` .
 
-Wir haben zwei Symlinks erstellt. Einmal mit einem relativen Pfad und mit einem expliziten Pfad.
+Wir haben zwei Symlinks erstellt, je einmal mit einem relativen und mit einem absoluten Pfad.
 Des Weiteren haben wir einen Hardlink erstellt.
 
 ### Verstehen der Links
@@ -109,14 +110,10 @@ der tief im Ordnerbaum des Systems ist? Begründen Sie.
 
 [ENDSECTION]
 
-[INSTRUCTOR::Kommandoprotkoll]
+[INSTRUCTOR::Kommandoprotokoll + Markdown]
 
 [PROT::ALT:Unix-Links.prot]
-
-[ENDINSTRUCTOR]
-
-[INSTRUCTOR::Markdowndokument]
-
+## Markdown-Antworten
 [INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]

@@ -63,12 +63,11 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 
 ### Werkzeuge
-- ch/Werkzeuge/Unix-Basiswerkzeuge/Unix-Links.md (IC->LP)
 - ch/Werkzeuge/Netzwerk/dnstools.md (...->LP)
 - ch/Werkzeuge/Netzwerk/dig.md (IC->LP->IC->LP)
-- ch/Werkzeuge/Netzwerk/SSH-Tunnel.md (IC->LP->IC->LP)
+- ch/Werkzeuge/Netzwerk/ssh-Tunnel.md (IC->LP->IC->LP)
 - ch/Werkzeuge/Netzwerk/X11-Weiterleitung.md (IC->LP)
-- ch/Werkzeuge/Netzwerk/SSH-Reversetunnel.md (IC->LP)
+- ch/Werkzeuge/Netzwerk/ssh-Reversetunnel.md (IC->LP)
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/grep.md (IC->LP)
 
