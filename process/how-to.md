@@ -234,38 +234,49 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
 
 ## Tech stuff
 
-### Arbeit mit dem `altdir` submodule
+### Development flow in general
 
-This part should in fact be in English, sorry. 
-Please ask your favorite AI for a translation if needed.
+- We are not using branches, all commits happen on `main` directly.
+  We are a closed group and trust each other to work carefully.
+- Integrate your local commits via 'rebase', not via 'merge'.
+- Our staging happens via the `stage:` attribute of each task.
+  Changing this attribute replaces the pull request workflow typical in other open source projects.
 
-- **Nach `git pull`** ist das submodule immer im Zustand **"detached HEAD"**,
-  weil im Ober-Repo eine bestimmte Commit-ID steht, und dieser Commit nun ausgecheckt wurde.
-  Das ist meist auch der jüngste Commit und identisch mit `origin/main`, aber das ist nicht garantiert.
-- Wenn man im submodule etwas ändern möchte (also meistens), muss man das
-  **bereinigen**: 
-    - `(cd altdir; git log)` sollte zeigen, dass `HEAD` und `origin/main` zusammenfallen
-    - `(cd altdir; git switch main; git pull)` bringt dann das lokale `main` auf diesen Stand.
-- Falls bei obiger Prüfung `HEAD` und `origin/main` _nicht_ zusammenfallen, hat jemand was verbockt.
-  Ich fand 2024-07-02 z.B. bei `HEAD` einen Zweig `origin/detached` vor, der `origin/main`
-  einen Commit weit vorauslief. Nach obiger Bereinigung fehlt also noch dieser Commit.
-  Er ließ sich ergänzen mit `(cd altdir; git reset --hard origin/detached)`; man hätte alternativ auch
-  `git cherry-pick <commit-id>` benutzen können -- vor `git reset --hard` sollte man gehörigen Respekt haben.
-- Bis zum nächsten `git pull` kann man jetzt im submodule **Commits machen**.
-- Wenn man das **Bereinigen vergessen** hat und hat schon lokale Änderungen gemacht, muss man die
-  zunächst beiseitelegen, damit sie beim `git switch` nicht pulverisiert werden:
-    - `(cd altdir; git add myfile.xyz ...; git stash push -m myfile.xyz -- myfile.xyz ...)`
-      (das `add` ist nur nötig, wenn `myfile.xyz` noch nicht versioniert wird.)
-    - Dann Bereinigung durchführen und Datei(en) mit `(cd altdir; git stash pop)` zurückholen.
-    - Wer solche lokalen Änderungen allen Warnungen von git zum Trotze schon committet hat:
-      Diese Commits gehen bei der Bereinigung verloren, weil sie ja an keinen richtigen Branch
-      anschließen. Lösung:
-      Commit-ID merken; Bereinigung normal durchführen; Commit mit `cherry-pick` zufügen;
-      Vorfall merken und git-Warnungen künftig ernster nehmen.
-- Im Hauptrepo bekommt man bei `git pull` nach Änderungen gern die Meldung
-  "fatal: cannot rebase with locally recorded submodule modifications".
-  Grund und Lösung sind beschrieben auf 
-  https://stackoverflow.com/questions/54215983/git-pull-error-fatal-cannot-rebase-with-locally-recorded-submodule-modificati
-  in der Antwort von Prechelt. Die Lösung ist meist:  
+### Working with the `altdir` submodule
+
+- **After `git pull`**, the submodule is always in the **"detached HEAD"** state,  
+  because the super-repo references a specific commit ID and that commit is now checked out.  
+  This is usually the most recent commit and identical to `origin/main`, but that is not guaranteed.
+- If you want to make changes in the submodule (which is often the case), 
+  you may need to **clean it up**:
+    - `(cd altdir; git log)` should show that `HEAD` and `origin/main` are aligned.
+    - `(cd altdir; git switch main; git pull)` then brings the local `main` branch to that state.
+- If in the check above `HEAD` and `origin/main` do _not_ match, someone messed up.  
+  On 2024-07-02, for example, I found a branch `origin/detached` at `HEAD`, 
+  which was one commit ahead of `origin/main`.  
+  After the cleanup described above, this commit was still missing.  
+  It could be restored with `(cd altdir; git reset --hard origin/detached)`; alternatively, you could use  
+  `git cherry-pick <commit-id>` — but you should treat `git reset --hard` with proper caution.
+- Until the next `git pull`, you can now **make commits** in the submodule.
+- If you **forgot to clean up** and have already made local changes, you must  
+  temporarily put them aside so they don't get wiped out during `git switch`:
+    - `(cd altdir; git add myfile.xyz ...; git stash push -m myfile.xyz -- myfile.xyz ...)`  
+      (`add` is only needed if `myfile.xyz` isn’t versioned yet.)
+    - Then perform the cleanup and restore the file(s) with `(cd altdir; git stash pop)`.
+    - If you committed such local changes despite all of git’s warnings:  
+      Those commits will be lost during cleanup because they’re not connected to a proper branch.  
+      Solution:  
+      Remember the commit ID; perform cleanup as usual; reapply the commit using `cherry-pick`;  
+      learn from this incident and take git's warnings more seriously next time.
+- In the main repo, after changes, you may get the message  
+  "fatal: cannot rebase with locally recorded submodule modifications" during `git pull`.  
+  The reason and solution are described at  
+  https://stackoverflow.com/questions/54215983/git-pull-error-fatal-cannot-rebase-with-locally-recorded-submodule-modificati  
+  in the answer by Prechelt. The solution is usually:  
   `git pull --rebase --no-recurse-submodules`  
   `git submodule update --recursive`
+- If you use a good IDE (such as PyCharm) for making your submodule changes,
+  it will usually do much of the above for you automatically and life is a lot simpler.
+  For keeping it simple, make sure you `pull` before you make changes, and
+  `commit` and `push` those changes ASAP.
+  The shorter your change episodes, the fewer git problems.
