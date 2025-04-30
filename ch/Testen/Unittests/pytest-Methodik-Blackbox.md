@@ -137,12 +137,20 @@ Die Funktion ist wie folgt spezifiziert:
         - 15.000–30.000 → 5% Rabatt
         - >30.000 → 10% Rabatt
 
+[HINT::Zu viel Tipperei?]
+Spätestens hier sollten Sie `@pytest.mark.parametrize` einsetzen, um weniger 
+Programmtext zu benötigen und den Test verständlicher zu machen.
+[ENDHINT]
+
 [EQ] Ist die Funktion korrekt implementiert?
 
-- [ER] Führen Sie alle Tests in einer Testdatei aus und dokumentieren Sie die Ergebnisse.
-- [EQ] Welche Schwäche können Blackbox-Tests haben?
-- [EQ] Ist es stets sinnvoll, alle 3 kennengelernten Testmethoden auf jede erstellte Funktion
-  anzuwenden?
+### Schluss
+
+[EC] Führen Sie alle Tests in einer Testdatei aus und dokumentieren Sie die Ergebnisse.
+
+[EQ] Welche Schwäche können Blackbox-Tests haben?
+
+[EQ] Ist es stets sinnvoll, alle 3 kennengelernten Testmethoden anzuwenden?
 
 [ENDSECTION]
 
@@ -153,9 +161,190 @@ Die Funktion ist wie folgt spezifiziert:
 
 [ENDSECTION]
 
-[INSTRUCTOR::Kontrollergebnisse]
+[INSTRUCTOR::Markdown ansehen plus grobe Sichtung des Codes]
 
-### Versteckte Implementierung der Funktionen
+### Testergebnisse und Markdown
+
+[EREFQ::1], [EREFQ::2], [EREFQ::3], [EREFQ::4], [EREFC::1]:
+Die ersten drei Funktionen sind korrekt, die vierte enthält einen Defekt.
+Der sollte dementsprechend im Kommandoprotokoll sichtbar sein.
+
+[EREFQ::5] Falls es Logikpfade gibt, deren Existenz man der Spezifikation nicht ansieht,
+kann es leicht passieren, dass es keinen Testfall gibt, der sie durchläuft.
+Bei unseren einfachen Funktionen passiert das nicht, in komplizierteren Fällen kommt es aber häufig vor.  
+Falls es keine klare Spezifikation gibt, kann man die Methode gar nicht richtig anwenden.
+
+[EREFQ::6] Alle drei Methoden anzuwenden führt zu tendenziell redundanten Testfällen und ist 
+in den meisten Fällen übertrieben.
+
+
+### Testfälle
+
+[EREFR::1] Die Funktion `categorize_age` sollte korrekt getestet werden und die Äquivalenzklassen
+abdecken:
+
+- Gültige Eingaben z.B.: 5, 15, 30, 70 (es sollen "typische" Werte sein, keine extremen)
+- Ungültige Eingaben z.B.: -5, 130 (oder auch nur eines von beiden, da das als _eine_ Äquivalenzklasse beschrieben ist.
+  Zwei Fälle zu testen ist aber sinnvoller.)
+
+```Python
+def test_categorize_age():
+    # Testfälle für gültige Alterskategorien
+    assert categorize_age(10) == "Child"
+    assert categorize_age(17) == "Teenager"
+    assert categorize_age(30) == "Adult"
+    assert categorize_age(70) == "Senior"
+    
+    # Testfälle für ungültige Alterswerte
+    assert categorize_age(-5) == "Invalid"
+    assert categorize_age(130) == "Invalid"
+```
+
+[EREFR::2] Die Funktion `calculate_tax` sollte die Randwerte korrekt behandeln:
+
+- Eingaben: 10.000, 10.001, 50.000, 50.001, 100.000, 100.001 (Es würde auch ein Cent über der Grenze
+  reichen statt einer ganzen Währungseinheit.)
+
+```Python
+def test_calculate_tax():
+    # Testfälle für verschiedene Einkommensbereiche
+    assert calculate_tax(5000) == 0.0  # Keine Steuer
+    assert calculate_tax(15000) == 500.0  # 10% von 5000
+    assert calculate_tax(60000) == 6000.0  # 10% von 40000 + 20% von 10000
+    # assert calculate_tax(120000) == 16000.0  # 10% von 40000 + 20% von 50000 + 30% von 20000
+```
+
+[EREFR::3] Die Funktion `determine_loan_eligibility` sollte alle laut der Spezifikation relevant verschiedenen
+Kombinationen von Randwerten umsetzen -- und zur Sicherheit auch die übrigen 
+Kombinationen, also alle kritischen Kombinationen von 
+`age` (17, 18), 
+`income` (19.999, 20.000) und
+`credit_score` (699, 700).
+
+```Python
+def test_determine_loan_eligibility():
+    # Testfälle für verschiedene Kombinationen von Alter, Einkommen und Kredit-Score
+    assert not determine_loan_eligibility(17, 19999, 699)  # Alter < 18
+    assert not determine_loan_eligibility(17, 20000, 699)  # Alter < 18
+    assert not determine_loan_eligibility(17, 19999, 700)  # Alter < 18
+    assert not determine_loan_eligibility(17, 20000, 700)  # Alter < 18
+    assert not determine_loan_eligibility(18, 19999, 699)  # Einkommen < 20000
+    assert not determine_loan_eligibility(18, 19999, 700)  # Einkommen < 20000
+    assert not determine_loan_eligibility(18, 20000, 699)  # Kredit-Score < 700
+    assert determine_loan_eligibility(18, 20000, 700)  # Alle Bedingungen erfüllt
+```
+
+[EREFR::4] Hier wird ein Test in der Kategorie Randwertanalyse fehlschlagen. Das soll zeigen, dass
+die Anwendung eines Testverfahrens mit bestandenen Testfällen keine Garantie dafür ist, dass die
+Funktion fehlerfrei ist.
+
+```Python
+import pytest
+
+@pytest.mark.parametrize("alter, unfaelle, risikoberuf, verdienst, erwartet", [
+    # Äquivalenzklassen
+    (30, 0, False, 20000, 500 * 0.95),             # normale Klasse mit mittlerem Einkommen
+    (17, 0, False, 20000, (500 + 200) * 0.95),     # ungültige Altersklasse (<18)
+    (70, 1, True, 10000, 500 + 200 + 150 + 300),   # hohe Unfallanzahl + Risikoberuf ohne Rabatt
+    (22, 3, True, 40000, round((500 + 100 + 400 + 300) * 0.90, 2)),  # hoher Verdienst, viele Unfälle
+
+    # Randwertanalyse
+    (18, 0, False, 15000, round((500 + 100) * 0.95, 2)),    # untere Grenze 18
+    (25, 0, False, 30000, round((500 + 100) * 0.95, 2)),    # obere Grenze 25
+    (26, 0, False, 30000, round(500 * 0.95, 2)),            # direkt nach 25
+    (65, 0, False, 15000, round(500 * 0.95, 2)),            # obere Grenze 65
+    (66, 0, False, 15000, round((500 + 200) * 0.95, 2)),    # direkt nach 65
+    (0, 0, False, 0, 500 + 200),                            # Minimum aller Eingaben
+
+    # Entscheidungstabelle
+    # Fall: kein Unfall, kein Risiko, mittlerer Verdienst
+    (40, 0, False, 25000, round(500 * 0.95, 2)),
+
+    # Fall: 1 Unfall, Risikoberuf, hoher Verdienst
+    (40, 1, True, 35000, round((500 + 150 + 300) * 0.90, 2)),
+
+    # Fall: 2 Unfälle, kein Risikoberuf, niedriges Einkommen
+    (40, 2, False, 10000, 500 + 150),
+
+    # Fall: 3 Unfälle, Risikoberuf, mittleres Einkommen
+    (40, 3, True, 20000, round((500 + 400 + 300) * 0.95, 2)),
+
+])
+def test_berechne_versicherungsbeitrag(alter, unfaelle, risikoberuf, verdienst, erwartet):
+    assert berechne_versicherungsbeitrag(alter, unfaelle, risikoberuf, verdienst) == pytest.approx(erwartet)
+
+# Optional aller toll
+def test_negative_eingaben():
+    with pytest.raises(ValueError):
+        berechne_versicherungsbeitrag(-1, 0, False, 20000)
+    with pytest.raises(ValueError):
+        berechne_versicherungsbeitrag(30, -2, False, 20000)
+    with pytest.raises(ValueError):
+        berechne_versicherungsbeitrag(30, 1, False, -1000)
+```
+
+[EREFC::1] Die Tests sollten alle bis auf [EREFR::4] erfolgreich durchlaufen.
+
+```sh
+pytest test_blackbox_functions.py
+================================================================================== test session starts ==================================================================================
+platform darwin -- Python 3.9.21, pytest-8.3.5, pluggy-1.5.0
+rootdir: /propra-inf/ch/Testen/Unittests
+plugins: drop-dup-tests-1.0.0, rerunfailures-15.0, timeout-2.3.1, httpbin-2.1.0, cov-6.1.1, xdist-3.6.1
+collected 18 items                                                                                                                                                                      
+
+test_blackbox_functions.py .......F..........                                                                                                                                     [100%]
+
+======================================================================================= FAILURES ========================================================================================
+______________________________________________________________ test_berechne_versicherungsbeitrag[18-0-False-15000-570.0] _______________________________________________________________
+
+alter = 18, unfaelle = 0, risikoberuf = False, verdienst = 15000, erwartet = 570.0
+
+    @pytest.mark.parametrize("alter, unfaelle, risikoberuf, verdienst, erwartet", [
+        # Äquivalenzklassen
+        (30, 0, False, 20000, 500 * 0.95),             # normale Klasse mit mittlerem Einkommen
+        (17, 0, False, 20000, (500 + 200) * 0.95),     # ungültige Altersklasse (<18)
+        (70, 1, True, 10000, 500 + 200 + 150 + 300),   # hohe Unfallanzahl + Risikoberuf ohne Rabatt
+        (22, 3, True, 40000, round((500 + 100 + 400 + 300) * 0.90, 2)),  # hoher Verdienst, viele Unfälle
+    
+        # Randwertanalyse
+        (18, 0, False, 15000, round((500 + 100) * 0.95, 2)),    # untere Grenze 18
+        (25, 0, False, 30000, round((500 + 100) * 0.95, 2)),    # obere Grenze 25
+        (26, 0, False, 30000, round(500 * 0.95, 2)),            # direkt nach 25
+        (65, 0, False, 15000, round(500 * 0.95, 2)),            # obere Grenze 65
+        (66, 0, False, 15000, round((500 + 200) * 0.95, 2)),    # direkt nach 65
+        (0, 0, False, 0, 500 + 200),                            # Minimum aller Eingaben
+    
+        # Entscheidungstabelle
+        # Fall: kein Unfall, kein Risiko, mittlerer Verdienst
+        (40, 0, False, 25000, round(500 * 0.95, 2)),
+    
+        # Fall: 1 Unfall, Risikoberuf, hoher Verdienst
+        (40, 1, True, 35000, round((500 + 150 + 300) * 0.90, 2)),
+    
+        # Fall: 2 Unfälle, kein Risikoberuf, niedriges Einkommen
+        (40, 2, False, 10000, 500 + 150),
+    
+        # Fall: 3 Unfälle, Risikoberuf, mittleres Einkommen
+        (40, 3, True, 20000, round((500 + 400 + 300) * 0.95, 2)),
+    
+    ])
+    def test_berechne_versicherungsbeitrag(alter, unfaelle, risikoberuf, verdienst, erwartet):
+>       assert berechne_versicherungsbeitrag(alter, unfaelle, risikoberuf, verdienst) == pytest.approx(erwartet)
+E       assert 475.0 == 570.0 ± 5.7e-04
+E         
+E         comparison failed
+E         Obtained: 475.0
+E         Expected: 570.0 ± 5.7e-04
+
+test_blackbox_functions.py:59: AssertionError
+================================================================================ short test summary info ================================================================================
+FAILED test_blackbox_functions.py::test_berechne_versicherungsbeitrag[18-0-False-15000-570.0] - assert 475.0 == 570.0 ± 5.7e-04
+============================================================================= 1 failed, 17 passed in 0.06s ==============================================================================
+```
+
+
+### `blackbox.py`
 
 Die folgenden Funktionen sind in der Datei `blackbox.py` implementiert und können
 importiert werden.
@@ -228,203 +417,5 @@ def berechne_versicherungsbeitrag(alter: int, unfaelle: int, risikoberuf: bool, 
 
     return round(beitrag, 2)
 ```
-
-[ENDSECTION]
-
-[INSTRUCTOR::Prüfhilfen]
-
-[EREFR::1] Die Funktion `categorize_age` sollte korrekt getestet werden und die Äquivalenzklassen
-abdecken:
-
-- Gültige Eingaben z.B.: 5, 15, 30, 70
-- Ungültige Eingaben z.B.: -5, 130 (oder auch nur eines davon, da das als eine Äquivalenzklasse beschrieben ist.
-  Zwei Fälle zu testen ist aber sinnvoller.)
-
-```Python
-def test_categorize_age():
-    # Testfälle für gültige Alterskategorien
-    assert categorize_age(10) == "Child"
-    assert categorize_age(17) == "Teenager"
-    assert categorize_age(30) == "Adult"
-    assert categorize_age(70) == "Senior"
-    
-    # Testfälle für ungültige Alterswerte
-    assert categorize_age(-5) == "Invalid"
-    assert categorize_age(130) == "Invalid"
-```
-
-[EREFR::2] Die Funktion `calculate_tax` sollte die Randwerte korrekt behandeln:
-
-- Eingaben: 10.000, 10.001, 50.000, 50.001, 100.000, 100.001
-
-```Python
-def test_calculate_tax():
-    # Testfälle für verschiedene Einkommensbereiche
-    assert calculate_tax(5000) == 0.0  # Keine Steuer
-    assert calculate_tax(15000) == 500.0  # 10% von 5000
-    assert calculate_tax(60000) == 6000.0  # 10% von 40000 + 20% von 10000
-    # assert calculate_tax(120000) == 16000.0  # 10% von 40000 + 20% von 50000 + 30% von 20000
-```
-
-[EREFR::3] Die Funktion `determine_loan_eligibility` sollte alle Kombinationen aus der
-Entscheidungstabelle korrekt umsetzen:
-
-- Getestet werden sollten die Kombinationen von `age` (<18, >=18), `income` (<20.000, >=20.000) und
-  `credit_score` (<700, >=700).
-
-```Python
-def test_determine_loan_eligibility():
-    # Testfälle für verschiedene Kombinationen von Alter, Einkommen und Kredit-Score
-    assert not determine_loan_eligibility(17, 25000, 750)  # Alter < 18
-    assert not determine_loan_eligibility(25, 15000, 800)  # Einkommen < 20000
-    assert not determine_loan_eligibility(30, 30000, 650)  # Kredit-Score < 700
-    assert determine_loan_eligibility(30, 30000, 750)  # Alle Bedingungen erfüllt
-```
-
-[EREFR::4] Hier wird ein Test in der Kategorie Randwertanalyse fehlschlagen. Das soll zeigen, dass
-die Anwendung eines Testverfahrens mit bestandenen Testfällen keine Garantie dafür ist, dass die
-Funktion fehlerfrei ist.
-
-```Python
-import pytest
-
-@pytest.mark.parametrize("alter, unfaelle, risikoberuf, verdienst, erwartet", [
-    # Äquivalenzklassen
-    (30, 0, False, 20000, 500 * 0.95),             # normale Klasse mit mittlerem Einkommen
-    (17, 0, False, 20000, (500 + 200) * 0.95),     # ungültige Altersklasse (<18)
-    (70, 1, True, 10000, 500 + 200 + 150 + 300),   # hohe Unfallanzahl + Risikoberuf ohne Rabatt
-    (22, 3, True, 40000, round((500 + 100 + 400 + 300) * 0.90, 2)),  # hoher Verdienst, viele Unfälle
-
-    # Randwertanalyse
-    (18, 0, False, 15000, round((500 + 100) * 0.95, 2)),    # untere Grenze 18
-    (25, 0, False, 30000, round((500 + 100) * 0.95, 2)),    # obere Grenze 25
-    (26, 0, False, 30000, round(500 * 0.95, 2)),            # direkt nach 25
-    (65, 0, False, 15000, round(500 * 0.95, 2)),            # obere Grenze 65
-    (66, 0, False, 15000, round((500 + 200) * 0.95, 2)),    # direkt nach 65
-    (0, 0, False, 0, 500 + 200),                            # Minimum aller Eingaben
-
-    # Entscheidungstabelle
-    # Fall: kein Unfall, kein Risiko, mittlerer Verdienst
-    (40, 0, False, 25000, round(500 * 0.95, 2)),
-
-    # Fall: 1 Unfall, Risikoberuf, hoher Verdienst
-    (40, 1, True, 35000, round((500 + 150 + 300) * 0.90, 2)),
-
-    # Fall: 2 Unfälle, kein Risikoberuf, niedriges Einkommen
-    (40, 2, False, 10000, 500 + 150),
-
-    # Fall: 3 Unfälle, Risikoberuf, mittleres Einkommen
-    (40, 3, True, 20000, round((500 + 400 + 300) * 0.95, 2)),
-
-])
-def test_berechne_versicherungsbeitrag(alter, unfaelle, risikoberuf, verdienst, erwartet):
-    assert berechne_versicherungsbeitrag(alter, unfaelle, risikoberuf, verdienst) == pytest.approx(erwartet)
-
-# Optional aller toll
-def test_negative_eingaben():
-    with pytest.raises(ValueError):
-        berechne_versicherungsbeitrag(-1, 0, False, 20000)
-    with pytest.raises(ValueError):
-        berechne_versicherungsbeitrag(30, -2, False, 20000)
-    with pytest.raises(ValueError):
-        berechne_versicherungsbeitrag(30, 1, False, -1000)
-```
-
-[EREFR::5] Die Tests sollten alle bis auf [EREFR::4] erfolgreich durchlaufen.
-
-```sh
-pytest test_blackbox_functions.py
-================================================================================== test session starts ==================================================================================
-platform darwin -- Python 3.9.21, pytest-8.3.5, pluggy-1.5.0
-rootdir: /propra-inf/ch/Testen/Unittests
-plugins: drop-dup-tests-1.0.0, rerunfailures-15.0, timeout-2.3.1, httpbin-2.1.0, cov-6.1.1, xdist-3.6.1
-collected 18 items                                                                                                                                                                      
-
-test_blackbox_functions.py .......F..........                                                                                                                                     [100%]
-
-======================================================================================= FAILURES ========================================================================================
-______________________________________________________________ test_berechne_versicherungsbeitrag[18-0-False-15000-570.0] _______________________________________________________________
-
-alter = 18, unfaelle = 0, risikoberuf = False, verdienst = 15000, erwartet = 570.0
-
-    @pytest.mark.parametrize("alter, unfaelle, risikoberuf, verdienst, erwartet", [
-        # Äquivalenzklassen
-        (30, 0, False, 20000, 500 * 0.95),             # normale Klasse mit mittlerem Einkommen
-        (17, 0, False, 20000, (500 + 200) * 0.95),     # ungültige Altersklasse (<18)
-        (70, 1, True, 10000, 500 + 200 + 150 + 300),   # hohe Unfallanzahl + Risikoberuf ohne Rabatt
-        (22, 3, True, 40000, round((500 + 100 + 400 + 300) * 0.90, 2)),  # hoher Verdienst, viele Unfälle
-    
-        # Randwertanalyse
-        (18, 0, False, 15000, round((500 + 100) * 0.95, 2)),    # untere Grenze 18
-        (25, 0, False, 30000, round((500 + 100) * 0.95, 2)),    # obere Grenze 25
-        (26, 0, False, 30000, round(500 * 0.95, 2)),            # direkt nach 25
-        (65, 0, False, 15000, round(500 * 0.95, 2)),            # obere Grenze 65
-        (66, 0, False, 15000, round((500 + 200) * 0.95, 2)),    # direkt nach 65
-        (0, 0, False, 0, 500 + 200),                            # Minimum aller Eingaben
-    
-        # Entscheidungstabelle
-        # Fall: kein Unfall, kein Risiko, mittlerer Verdienst
-        (40, 0, False, 25000, round(500 * 0.95, 2)),
-    
-        # Fall: 1 Unfall, Risikoberuf, hoher Verdienst
-        (40, 1, True, 35000, round((500 + 150 + 300) * 0.90, 2)),
-    
-        # Fall: 2 Unfälle, kein Risikoberuf, niedriges Einkommen
-        (40, 2, False, 10000, 500 + 150),
-    
-        # Fall: 3 Unfälle, Risikoberuf, mittleres Einkommen
-        (40, 3, True, 20000, round((500 + 400 + 300) * 0.95, 2)),
-    
-    ])
-    def test_berechne_versicherungsbeitrag(alter, unfaelle, risikoberuf, verdienst, erwartet):
->       assert berechne_versicherungsbeitrag(alter, unfaelle, risikoberuf, verdienst) == pytest.approx(erwartet)
-E       assert 475.0 == 570.0 ± 5.7e-04
-E         
-E         comparison failed
-E         Obtained: 475.0
-E         Expected: 570.0 ± 5.7e-04
-
-test_blackbox_functions.py:59: AssertionError
-================================================================================ short test summary info ================================================================================
-FAILED test_blackbox_functions.py::test_berechne_versicherungsbeitrag[18-0-False-15000-570.0] - assert 475.0 == 570.0 ± 5.7e-04
-============================================================================= 1 failed, 17 passed in 0.06s ==============================================================================
-```
-
-...existing code...
-
-[EREFQ::1]
-
-- Blackbox-Tests konzentrieren sich auf die Funktionalität aus Sicht des Benutzers, ohne die interne
-  Implementierung zu berücksichtigen.
-  Dadurch können sie unabhängig von der Codebasis durchgeführt werden.
-- Sie sind besonders nützlich, um sicherzustellen, dass die Software die Anforderungen erfüllt, da
-  sie auf Spezifikationen basieren.
-- Änderungen in der internen Implementierung erfordern keine Anpassung der Tests, solange die
-  Spezifikationen unverändert bleiben.
-- Sie fördern die Modularität, da sie die Tests auf die Schnittstellen beschränken.
-
-[EREFQ::2]
-
-- Es besteht die Gefahr, dass nicht alle möglichen Szenarien abgedeckt werden, da die interne
-  Logik unbekannt ist.
-- Fehler in der Implementierung, die keine Auswirkungen auf die Schnittstelle haben, können
-  unentdeckt bleiben.
-- Die Erstellung von Testfällen kann schwierig sein, wenn die Spezifikationen unklar oder
-  unvollständig sind.
-- Blackbox-Tests können ineffizient sein, wenn sie ohne Kenntnis der internen Logik redundante oder
-  irrelevante Tests enthalten.
-
-[EREFQ::3]
-
-- Nein, es ist nicht immer sinnvoll, alle 3 Testmethoden (Äquivalenzklassen, Randwertanalyse,
-  Entscheidungstabellen) auf jede Funktion anzuwenden.
-- Die Wahl der Testmethoden sollte von der Komplexität und der Bedeutung der Funktion abhängen:
-  - Für einfache Funktionen mit klaren Eingaben und Ausgaben reichen oft Äquivalenzklassen oder
-    Randwertanalysen aus.
-  - Für komplexe Funktionen mit vielen Eingabekombinationen sind Entscheidungstabellen sinnvoll.
-- Das Anwenden aller 3 Methoden auf jede Funktion kann zu unnötigem Aufwand führen, ohne einen
-  proportionalen Nutzen zu bieten.
-- Stattdessen sollte der Fokus auf einer sinnvollen Kombination von Methoden liegen, die die
-  wichtigsten Szenarien abdeckt.
 
 [ENDINSTRUCTOR]
