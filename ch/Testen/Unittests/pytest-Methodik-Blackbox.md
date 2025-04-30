@@ -157,11 +157,11 @@ Die Funktion ist wie folgt spezifiziert:
 
 ### Versteckte Implementierung der Funktionen
 
-Die folgenden Funktionen sind in der Datei `blackbox_functions.py` implementiert und können
-importiert werden. Der Code ist für den Studenten nicht sichtbar.
+Die folgenden Funktionen sind in der Datei `blackbox.py` implementiert und können
+importiert werden.
 
 ```python
-# filepath: blackbox_functions.py
+# filepath: blackbox.py
 
 def categorize_age(age: int) -> str:
     if age < 0 or age > 120:
