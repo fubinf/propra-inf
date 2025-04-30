@@ -1,5 +1,5 @@
-title: "Blackbox-Testing: Testmethodik und Anwendung mit pytest"
-stage: draft
+title: "Blackbox-Testing: Methodik und Anwendung mit pytest"
+stage: beta
 timevalue: 2.0
 difficulty: 3
 assumes: m_pytest, pytest_parametrize
@@ -7,40 +7,46 @@ assumes: m_pytest, pytest_parametrize
 
 [SECTION::goal::idea]
 
-- Ich kann die Grundlagen der Testmethodik erklären.
+- Ich verstehe die Idee von Blackbox-Testing.
 - Ich kann Blackbox-Tests mit pytest schreiben und ausführen.
-- Ich kann verschiedene Blackbox-Testmethoden anwenden, um Software zu validieren.
 
 [ENDSECTION]
 [SECTION::background::default]
 
+Ein Hauptproblem beim Testen ist die Frage nach den Testfällen:
+Welche Eingaben sollte ich überhaupt verwenden.
+
+Das kann man "nach Gefühl" entscheiden, was wenig professionell ist.
+Oder man hat Methoden, um Testfälle systematisch auszuwählen oder zu konstruieren.
+Eine solche lernen wir hier.
+
+[ENDSECTION]
+[SECTION::instructions::detailed]
+
 ### Einführung in die Testmethodik
 
-Die Testmethodik ist ein zentraler Bestandteil der Softwareentwicklung.
-Sie beschreibt systematische Ansätze, um sicherzustellen, dass Software korrekt funktioniert und
-den Anforderungen entspricht. Es gibt zwei Hauptarten von Tests:
+Es gibt zwei hauptsächliche Perspektiven, wie man Testfälle herleiten kann:
 
 - **Blackbox-Tests**: Testen die Funktionalität eines Systems basierend auf den Spezifikationen,
   ohne die interne Implementierung zu kennen.
 - **Whitebox-Tests**: Testen die interne Struktur und Logik des Codes.
 
-Blackbox-Tests sind besonders nützlich, um sicherzustellen, dass ein System aus Sicht des Benutzers
+Blackbox-Tests sind besonders nützlich, um sicherzustellen, dass ein System _aus Sicht des Benutzers_
 korrekt funktioniert.
 Sie basieren auf Eingaben und erwarteten Ausgaben und ignorieren die interne Implementierung.
 
-Typische Blackbox-Testmethoden:
+Typische Blackbox-Methoden zur Herleitung von Testfällen:
 
-- **Äquivalenzklassen**: Gruppieren von Eingaben, die ähnliche Ergebnisse liefern sollten.
-- **Randwertanalyse**: Testen von Eingaben an den Grenzen der Äquivalenzklassen.
-- **Entscheidungstabellen**: Systematisches Testen von Kombinationen von Eingaben und deren erwarteten Ausgaben.
-
-[ENDSECTION]
-
-[SECTION::instructions::detailed]
+- **Äquivalenzklassen**: 
+  Gruppieren von Eingaben, die laut Spezifikation den gleichen Kriterien für das Ergebnis genügen.
+  Man wählt einen "typischen" Testfall aus jeder Äquivalenzklasse.
+- **Randwertanalyse**: Testen von Eingaben an den Rändern der Äquivalenzklassen.
+- **Eckwerttest**: ggf. das Testen von Eingaben an den Rändern der Äquivalenzklassen dort, 
+  wo mehrere solche Ränder aufeinandertreffen ("corner cases").
 
 ### Vorbereitung
 
-- Legen Sie die Datei `Blackbox_functions.py` mit folgenden Inhalt an:
+- Legen Sie die Datei `blackbox.py` mit folgendem Inhalt an:
 
 ```Python
 import base64
@@ -52,19 +58,17 @@ CgpkZWYgY2F0ZWdvcml6ZV9hZ2UoYWdlOiBpbnQpIC0+IHN0cjoKICAgIGlmIGFnZSA8IDAgb3IgYWdl
 exec(base64.b64decode(encoded_code).decode("utf-8"))
 ```
 
-Diese ist unsere Testbasis. Da wir uns im Blackbox-Testverfahren befinden, kennen wir den Aufbau
-unsere Funktionen nicht. 
+Da wir uns im Blackbox-Testmodus befinden, _wollen_ wir den inneren Aufbau der zu testenden
+Funktionen nicht kennen.
+Obige Datei definiert mehrere Funktionen, verschleiert deren Text jedoch durch die `base64`-Kodierung.
+Die Spezifikation der jeweils zu testenden Funktion wird unten dann erklärt.
 
-- Installieren Sie `pytest`, falls noch nicht geschehen:  
-
-```shell
-pip install pytest
-```
 
 ### Äquivalenzklassen testen
 
-- [ER] Schreiben Sie eine pytest-Testfunktion, die die Funktion `categorize_age(age: int) -> str`
-  mit Äquivalenzklassen testet. Diese Funktion gibt die folgenden Alterskategorie zurück:
+[ER] Schreiben Sie in `test_blackbox.py` eine pytest-Testfunktion `test_catagorize_age()`, 
+die die Funktion `categorize_age(age: int) -> str`
+mit Äquivalenzklassen testet. `categorize_age()` soll die folgenden Alterskategorien zurückgeben:
 
   - `"Child"` für Alter zwischen 0 und 12 (einschließlich).
   - `"Teenager"` für Alter zwischen 13 und 19 (einschließlich).
@@ -72,63 +76,55 @@ pip install pytest
   - `"Senior"` für Alter ab 65.
   - `"Invalid"` für negative Werte oder Werte über 120.
 
-[HINT::Funktionsnutzung]
-Die Funktion ist im codierten Code implementiert und kann importiert über `Blackbox_functions.py`
-werden:
-
+[HINT::Wie komme ich an `categorize_age()` dran?]
 ```python
-from blackbox_functions import categorize_age
+import blackbox as bb
+
+bb.categorize_age(33)
 ```
-
 [ENDHINT]
 
-[HINT::Äquivalenzklassen]
-Äquivalenzklassen gruppieren Eingaben, die ähnliche Ergebnisse liefern sollten. Testen Sie jeweils
-einen Repräsentanten aus jeder Klasse.
-[ENDHINT]
+[EQ] Ist die Funktion korrekt implementiert?
 
-### Randwertanalyse
 
-- [ER] Schreiben Sie eine pytest-Testfunktion, die die Funktion `calculate_tax(income: float) -> float`
-  mit Randwerten testet. Testen Sie die Funktion , die folgende Regeln anwendet:
+### Testfälle per Randwertanalyse
 
-  - Einkommen <= 10.000: Keine Steuer.
-  - Einkommen zwischen 10.001 und 50.000: 10% Steuer auf den Betrag über 10.000.
-  - Einkommen zwischen 50.001 und 100.000: 20% Steuer auf den Betrag über 50.000 plus die Steuer aus der vorherigen Kategorie.
-  - Einkommen > 100.000: 30% Steuer auf den Betrag über 100.000 plus die Steuer aus den vorherigen Kategorien.
+[ER] Schreiben Sie eine Testfunktion, die die Funktion 
+`calculate_tax(income: float) -> float`
+mit Randwerten testet. Die Funktion ist wie folgt spezifiziert:
 
-[HINT::Randwertanalyse]
-Randwerte sind die Extrempunkte von Äquivalenzklassen. Testen Sie Werte direkt an den Grenzen und knapp darüber/darunter.
-[ENDHINT]
+  - `income` <= 10.000: Keine Steuer.
+  - `income` über 10.000, bis 50.000: 10% Steuer auf den Betrag über 10.000.
+  - `income` über 50.000, bis 100.000: 20% Steuer auf den Betrag über 50.000 plus die Steuer aus der vorherigen Kategorie.
+  - `income` über 100.000: 30% Steuer auf den Betrag über 100.000 plus die Steuer aus den vorherigen Kategorien.
 
----
+[EQ] Ist die Funktion korrekt implementiert?
 
-### Entscheidungstabellen
 
-- [ER] Schreiben Sie eine pytest-Testfunktion, die die Funktion
-  `determine_loan_eligibility(age: int, income: float, credit_score: int) -> bool` mit einer
-  Entscheidungstabelle testet. Testen Sie die Funktion, die folgende Regeln anwendet:
+### Eckwerttest: Randwert-Kombinationen
+
+[ER] Schreiben Sie eine Testfunktion, die die Funktion
+`determine_loan_eligibility(age: int, income: float, credit_score: int) -> bool`
+mit geeigneten Kombinationen von Randwerten testet. Die Funktion ist wie folgt spezifiziert:
 
   - Alter < 18: Kein Kredit, unabhängig von Einkommen oder Kredit-Score.
   - Alter >= 18 und Einkommen < 20.000: Kein Kredit, unabhängig vom Kredit-Score.
   - Alter >= 18, Einkommen >= 20.000 und Kredit-Score >= 700: Kredit wird gewährt.
   - Alter >= 18, Einkommen >= 20.000 und Kredit-Score < 700: Kein Kredit.
 
-[HINT::Entscheidungstabellen]
-Entscheidungstabellen helfen, alle möglichen Kombinationen von Eingaben und deren erwarteten
-Ausgaben systematisch zu testen.
-[ENDHINT]
+[EQ] Ist die Funktion korrekt implementiert?
 
-### Auf Nummer Sicher gehen?
 
-Wir könnten jetzt jedesmal alle 3 Methoden auf unsere Funktionen anwenden, um die Testabdeckung
-unseres Codes zu erhöhen und so das Risiko eines Fehlers zu minimieren. Finden wir im folgenden heraus,
-wie sinnvoll das ist.
+### Alles zusammen?
 
-- [ER] Schreiben Sie eine Testfunktion, die die Funktion 
-  `berechne_versicherungsbeitrag_buggy(alter: int, unfaelle: int, risikoberuf: bool, jahresverdienst: float) -> float`
-  mit allen 3 kennengelernten Black-Box-testmethoden abdeckt. Testen Sie die Funktion , die
-  folgende Regeln anwendet:
+Wir könnten jetzt jedesmal alle 3 Methoden auf unsere Funktionen anwenden, um die Gründlichkeit
+der Tests zu erhöhen und so das Risiko eines unerkannten Defekts zu minimieren. 
+Finden wir im folgenden heraus, wie sinnvoll das ist.
+
+[ER] Schreiben Sie eine Testfunktion, die die Funktion 
+`berechne_versicherungsbeitrag_buggy(alter: int, unfaelle: int, risikoberuf: bool, jahresverdienst: float) -> float`
+mit allen 3 kennengelernten Black-Box-Testentwurfsmethoden prüft. 
+Die Funktion ist wie folgt spezifiziert:
 
     - Basisbeitrag: 500€
     - Zuschläge:
@@ -141,15 +137,10 @@ wie sinnvoll das ist.
         - 15.000–30.000 → 5% Rabatt
         - >30.000 → 10% Rabatt
 
-[HINT::Fehler]
-Verzweifeln Sie nicht, wenn Ihr Test nicht vollständig grün wird. Das ist gewollt.
-[ENDHINT]
-
-### Integration der Blackbox-Tests
+[EQ] Ist die Funktion korrekt implementiert?
 
 - [ER] Führen Sie alle Tests in einer Testdatei aus und dokumentieren Sie die Ergebnisse.
-- [EQ] Welche Vorteile haben Blackbox-Tests im Vergleich zu Whitebox-Tests?
-- [EQ] Welche Herausforderungen und Gefahren können bei der Anwendung von Blackbox-Tests auftreten?
+- [EQ] Welche Schwäche können Blackbox-Tests haben?
 - [EQ] Ist es stets sinnvoll, alle 3 kennengelernten Testmethoden auf jede erstellte Funktion
   anzuwenden?
 
@@ -245,8 +236,9 @@ def berechne_versicherungsbeitrag(alter: int, unfaelle: int, risikoberuf: bool, 
 [EREFR::1] Die Funktion `categorize_age` sollte korrekt getestet werden und die Äquivalenzklassen
 abdecken:
 
-- Gültige Eingaben: 5, 15, 30, 70
-- Ungültige Eingaben: -5, 130
+- Gültige Eingaben z.B.: 5, 15, 30, 70
+- Ungültige Eingaben z.B.: -5, 130 (oder auch nur eines davon, da das als eine Äquivalenzklasse beschrieben ist.
+  Zwei Fälle zu testen ist aber sinnvoller.)
 
 ```Python
 def test_categorize_age():
