@@ -82,12 +82,13 @@ Als [TERMREF::first-class citizen] können Funktionen wie Variablen gehandhabt w
 als Parameter sowie auch als Rückgabewert von anderen Funktionen fungieren 
 ([TERMREF::Funktion höherer Ordnung]). 
 
-- [ER] Verwenden Sie die `sort()`-Funktion, um die unten stehende Liste zu sortieren. Die Liste 
-  soll allerdings nicht alphabetisch, sondern nach Länge der Wörter sortiert werden. Übergeben Sie 
-  daher eine entsprechende Lambda-Funktion an das `key` Argument.  
+- [ER] Verwenden Sie die `sorted()`-Funktion, um die unten stehende Liste zu sortieren. Die Liste 
+  soll zwar alphabetisch sortiert werden, allerdings so, als wäre das Wort rückwärts geschrieben. 
+  Die Liste selbst soll aber dabei nicht verändert werden. 
+  Übergeben Sie daher eine entsprechende Lambda-Funktion an das `key` Argument von `sorted()`.  
 ```python
 fruits = ['apple', 'banana', 'blueberry', 'orange', 'peach', 'pear']
-print("\nsorted by length:", ...)
+print("\nsorted by last letter:", ...)
 ```
 - [ER] Definieren Sie die Funktion `add_prefix(prefix: str)`, die eine Funktion zurückgibt, 
   die ein Präfix an den übergebenen String anfügt. Testen Sie Ihre Funktion folgendermaßen:  
