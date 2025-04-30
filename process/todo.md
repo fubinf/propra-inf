@@ -81,6 +81,9 @@ Sonderdateien:
 
 ### 2.2 Korrekturbedarf an größeren Strukturen
 
+- Auf richtige Verwendung von "Hilfsbereich" (im Gegensatz zum Arbeitsbereich, siehe 
+  Aufgabe `Git101`) prüfen+herstellen (Positivbeispiel: Unix-Links):
+  ...
 - Tasks so benennen, wie es sich aus authors.md 1.14 ergibt:
   https://sedrila.readthedocs.io/en/latest/authors/#114-naming-conventions  
   Erwähnungen an anderen Stellen mit ändern!
