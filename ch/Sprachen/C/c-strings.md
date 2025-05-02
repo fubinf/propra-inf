@@ -1,11 +1,12 @@
-title: "C Qualifizierer"
+title: "C Strings"
 stage: draft
 timevalue: 1
 difficulty: 3
 assumes: c-compiler-assembler-linker, c-preprocessor
 ---
 [SECTION::goal::idea]
-Ich verstehe die Qualifizierer und kann diese Anwenden.
+Ich verstehe den Aufbau von C-Strings sowie den Unterschied zwischen C-Strings
+und C-Character-Arrays.
 [ENDSECTION]
 
 [SECTION::background::default]

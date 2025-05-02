@@ -1,11 +1,11 @@
-title: "C Qualifizierer"
+title: "C Variadic"
 stage: draft
 timevalue: 1
 difficulty: 3
 assumes: c-compiler-assembler-linker, c-preprocessor
 ---
 [SECTION::goal::idea]
-Ich verstehe die Qualifizierer und kann diese Anwenden.
+Ich verstehe was Variadic Funktionen sind.
 [ENDSECTION]
 
 [SECTION::background::default]

@@ -1,4 +1,4 @@
-title: "C Präprozessor"
+title: "C Speicherklassen"
 stage: draft
 timevalue: 1
 difficulty: 3
