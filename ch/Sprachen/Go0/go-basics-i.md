@@ -2,7 +2,6 @@ title: Grundlagen von Go im Kontext von Python
 stage: alpha
 timevalue: 2.5
 difficulty: 2
-requires: go-ide
 ---
 
 [SECTION::goal::idea,experience]
@@ -39,7 +38,7 @@ die besonders in der Entwicklung von Programmierwerkzeugen (Docker/Kubernetes) u
 Stellen Sie sicher, dass Sie eine gültige Go-Installation auf Ihrem Rechner haben. 
 Tippen Sie `go version` in die Kommandozeile:
 Die Ausgabe soll wie `go version go1.xx.yy ...` aussehen. 
-Soll das nicht der Fall sein, schlagen Sie in [PARTREF::go-ide] oder online nach, wie Go installiert werden soll.
+Soll das nicht der Fall sein, schlagen Sie auf [der offiziellen Webseite](https://go.dev/doc/install) nach, wie Go installiert werden soll.
 
 Ausführen besteht immer aus mindestens zwei Phasen — kompilieren und tatsächlich ausführen.
 Go bietet zwei Möglichkeiten an:
@@ -56,20 +55,27 @@ Go bietet zwei Möglichkeiten an:
 Alle Quellcodedateien müssen einem **Paket** zugeordnet sein.
 Dieses wird am Anfang der Datei in der Zeile `package {xyz}` angegeben, wobei `{xyz}` der Name Ihres Pakets ist.
 
-Die Paket- und Modulverwaltung in Go ähnelt derjenigen in Python.
+- **Modul:** ein Verzeichnis mit der Datei `go.mod`, wo der Modulname, die Abhängigkeiten und die Version deklariert 
+  sind. 
+  Unter [Anatomy of go.mod](https://encore.cloud/guide/go.mod) können Sie sich ein Beispiel anschauen.
+- **Paket:** ein Verzeichnis namens z.B. `xyz`, in dem alle Quellcodedateien mit der Zeile
+  `package xyz` anfangen müssen.
+  Auf dieser Ebene wird Sichtbarkeit geregelt: Alle `lowercase` Deklarationen sind privat, alle `Capitalized` 
+  Deklarationen sind öffentlich (public/exported) und aus anderen Paketen sichtbar.
+  Merkhilfe: Große Buchstaben geben große Sichtbarkeit.
 
-- Modul
-    - **Python:** eine Datei, die auf `.py` endet.
-    - **Go:** ein Verzeichnis mit der Datei `go.mod`, wo der Modulname, die Abhängigkeiten und die Version deklariert 
-      sind. TODO_1: Man möchte ein Beispiel sehen, ein Link reicht.
-- Paket
-    - **Python:** ein Verzeichnis mit mehreren `.py`-Dateien und optional einer `__init__.py` Datei.
-      Diese Datei wird beim Importieren des Pakets ausgeführt.
-    - **Go:** ein Verzeichnis namens z.B. `xyz`, in dem alle Quellcodedateien mit der Zeile
-      `package xyz` anfangen müssen.
-      Auf dieser Ebene wird Sichtbarkeit geregelt: Alle `lowercase` Deklarationen sind privat, alle `Capitalized` 
-      Deklarationen sind öffentlich (public/exported) und aus anderen Paketen sichtbar.
-      Merkhilfe: Große Buchstaben geben große Sichtbarkeit.
+[NOTICE]
+
+Falls Sie Ihr Modul veröffentlichen möchten, **muss** der Modulname mit der URL übereinstimmen, wo sich das Modul befindet.
+
+**Beispiel:**
+
+- Sie legen ein Repo namens `my_awesome_golang_module` auf [Github](https://github.com) an,
+  welches dann über `https://github.com/username/my_awesome_golang_module` erreichbar ist.
+- Sollte das Repo ein Modul sein, so muss die `my_awesome_golang_module/go.mod`-Datei mit der folgenden Zeile anfangen: 
+  `module github.com/username/my_awesome_golang_module`
+
+[ENDNOTICE]
 
 Ein Paketname unterliegt Sonderregeln: `main`.
 Dieses Paket ist das Hauptpaket; darin liegt das ausführbare Programm.
@@ -80,38 +86,107 @@ Dies entspricht `public static void main(String[] args)` in Java oder
 Alle anderen Paketnamen interpretiert der Compiler als Bibliotheken — diese können nicht 
 mittels `go run` ausgeführt werden. 
 Pakete entsprechen der Verzeichnisstruktur eines Moduls: Gibt es in einem Modul `my_module` Verzeichnisse `src`, `utils`
-und `test`, so beginnen die Quellcodedateien entsprechend mit den Zeilen `package src`, `package utils` oder 
+und `test`, so beginnen die Quellcodedateien in den Verzeichnissen entsprechend mit den Zeilen `package src`, `package utils` oder 
 `package test`.
 
-TODO_1: Das ist also ganz anders als in Python? 
-Dort sind Module klein, Pakete größer, aber Pakete sind auch Module. 
-Hier sind Module größer und enthalten Pakete? Was ist jeweils deren Zweck? Erklären!
+#### Was ist der Zweck?
+
+**Module** dienen der Versionierung und Nachverfolgung externer Abhängigkeiten eines Projekts.
+Explizite Versionierung stellt sicher, dass Builds reproduzierbar sind.
+
+**Pakete** dienen dazu, Quellcode zu organisieren. Darunter:
+
+  - Zusammengehörige Funktionen/Typen gruppieren
+  - Sichtbarkeit kontrollieren
+  - Wiederverwendbarkeit erleichtern
+
+Meistens wird Ihr Projekt ein einziges Modul sein, welches mehrere Pakete enthält.
 
 #### Wie werden Module/Pakete importiert?
+
+Die Syntax einer Import-Anweisung:
+
+```go
+import (optionales Alias) "Modulname"
+```
+
+Beispiel:
+
+```go
+import rl "github.com/gen2brain/raylib-go/raylib"
+```
 
 Hier gibt es zwei mögliche Fälle:
 
 1. Importieren von Paketen innerhalb eines Moduls: `import module_name/package_name`.
    Dabei müssen Sie aufpassen, dass Ihr Abhängigkeitsgraph azyklisch bleibt.
-2. Externe Module/Bibliotheken
-    - in dem Root-Verzeichnis des Moduls `go get example.com/some/package` ausführen und dann in dem Quellcode 
-     importieren  TODO_1 verstehe ich nicht.
-    - zuerst in dem Quellcode importieren und danach aus dem Root-Verzeichnis des Moduls `go get` ausführen. 
-   So werden alle nötigen Bibliotheken automatisch heruntergeladen und installiert. 
+2. Externe Module/Bibliotheken — beispielsweise ein Modul importieren, welches sich unter `github.com/username/module_name` befindet.
+    - in dem Root-Verzeichnis des Moduls `go get github.com/username/module_name` ausführen und dann im Quellcode 
+     importieren.
+    - zuerst im Quellcode importieren (`import github.com/username/module_name`) und danach aus dem Root-Verzeichnis des Moduls `go get` ausführen. 
+   So werden alle nötigen Bibliotheken automatisch heruntergeladen.
 
-TODO_1: Das sollte man jetzt ausprobieren, sonst wird das hier zu trocken und zu viel Theorie.
+### Ausprobieren
+
+[ER] Legen Sie ein öffentliches Github-Repo an. 
+Den Modulnamen dürfen Sie beliebig wählen.
+
+[ER] Das Repo muss zwei Dateien beinhalten: `go.mod` und `main.go`. 
+Bei der Datei `go.mod` dürfen Sie die obige Bemerkung durchspielen.
+Die Datei `main.go` soll folgendermaßen aussehen:
+
+```go
+package %replace_with_your_module_name%
+
+import "fmt"
+
+func HiFromRemote() {
+    fmt.Println("Hi from remote module!")
+}
+```
+
+[ER] Kreieren Sie nun ein lokales Projekt/Modul. Dieses darf beliebig heißen.
+
+[ER] Legen Sie eine Datei `go.mod` an, und deklarieren Sie dort den Modulnamen.
+
+[ER] Legen Sie eine weitere Datei `main.go` an und kopieren Sie den folgenden Quellcodeabschnitt in diese Datei:
+
+```go
+import m %"replace_with github.com/your_username/your_module"%
+
+func main() {
+    m.HiFromRemote()
+}
+```
+
+Die Ausgabe müsste "Hi from remote module!" sein.
 
 ### Variablen und primitive Datentypen
 
+Es existieren folgende Namenskonventionen:
+- standardmäßig sind alle Variablen/Funktionen in `camelCase` definiert;
+- falls eine Variable/Funktion öffentlich sein muss, so wird `PascalCase` benutzt.
+
 Ähnlich zu Python gibt es 4 wichtigste primitive Datentypen:
 
-* `int`: eine ganze Zahl mit Vorzeichen (signed);  TODO_1: Wie groß?
-* `float64`: eine Gleitkommazahl;
-* `string`: eine Zeichenkette;
-* `bool`: ein boolescher Wert, `true` oder `false`;
+* `int`: eine ganze Zahl mit Vorzeichen (signed).
+  Die Größe eines `int` passt sich automatisch an die Systemarchitektur an:
+    - 32 Bit (4 Bytes) auf 32-Bit-Systemen
+    - 64 Bit (8 Bytes) auf 64-Bit-Systemen
+* `float64`: eine Gleitkommazahl
+* `string`: eine Zeichenkette
+* `bool`: ein boolescher Wert, `true` oder `false`
 
-und einen zusätzlichen `byte` (`uint8`): 8 Bits von Information (wichtig im Kontext von Dateioperationen oder Netzwerken).
-TODO_1: D.h. z.B. 16-bit Integers gibt es gar nicht? So klingt obiger Satz: "einen zusätzlichen".
+[FOLDOUT::Warum gibt es ein `float64`, aber kein `int64`?]
+
+Doch, gibt es. Hier ist die vollständige Liste:
+
+* ganze Zahlen mit Vorzeichen: `int` , `int8` , `int16` , `int32` (`rune`) , `int64`;
+* ganze Zahlen ohne Vorzeichen: `int` , `uint8` (`byte`), `uint16` , `uint32` , `uint64` , `uintptr`;
+* Gleitkommazahlen: `float32` `float64`;
+* Komplexe Zahlen: `complex64` `complex128`.
+
+[ENDFOLDOUT]
 
 In Go wird manchmal zwischen Deklaration und Definition unterschieden. 
 Deklaration ist nichts anderes als Definition mit Default/Null-Werten: `0` für Zahlen, `""` für Zeichenketten, `false` für boolesche Werte.
@@ -122,7 +197,7 @@ myname = "gopher"             // definieren
 var myname string = "gopher"  // beide Aktionen kombiniert
 
 myname := "gopher"            // oder den konkreten Datentyp
-var myname = "gopher"         // herleiten lassen  TODO_1: sind diese beiden Formen gleichwertig?
+var myname = "gopher"         // herleiten lassen. Beide Formen sind gleichwertig
 
 width, height := 1920, 1080 // mehrere Variablen auf einmal
 ```
@@ -140,28 +215,12 @@ truth := true                       var truth bool = true
 
 [ENDNOTICE]
 
-[FOLDOUT::Warum gibt es ein `float64`, aber kein `int64`?]
-
-Es gibt mehr Typen für Zahlen als oben angeführt sind. Hier ist die vollständige Liste:
-
-* ganze Zahlen mit Vorzeichen: `int` , `int8` , `int16` , `int32` (`rune`) , `int64`;
-* ganze Zahlen ohne Vorzeichen: `int` , `uint8` (`byte`), `uint16` , `uint32` , `uint64` , `uintptr`;
-* Gleitkommazahlen: `float32` `float64`;
-* Komplexe Zahlen: `complex64` `complex128`.
-
-[ENDFOLDOUT]
-
-Komplexere Datentypen werden ohne Ausnahmen hergeleitet, daher ist die kurze Schreibweise im Go-Universum bevorzugt.
-TODO_1: Hergeleitet? Wie denn? Was denn? Wo denn?
-
 #### Konstanten
 
 Konstanten werden mit dem Schlüsselwort `const` deklariert und müssen bei Deklaration definiert werden. 
 Sie dürfen außerdem nur primitive Datentypen beinhalten und müssen sich im Paketkontext befinden (auf Dateiebene).
 Üblicherweise werden Konstanten ganz oben in der Datei deklariert.
-Es gibt keine besonderen Namenskonventionen, daher gelten hier die gleichen Regeln wie bei normalen Variablen: 
-`camelCase` oder `PascalCase`, je nachdem ob die Konstante öffentlich sein muss.
-TODO_1: camelCase kannten wir bis hierher nicht; solche Konventionen sind aber wichtig.
+`SCREAMING_SNAKE_CASE` gilt in Golang als nicht idiomatisch und wird in der [offiziellen Go-Stilkonvention](https://google.github.io/styleguide/go/guide) nicht empfohlen.
 
 ```go
 const pi = 3.1415926
@@ -187,18 +246,23 @@ var (
 )
 ```
 
-
 ### Kontrollstrukturen (if/switch/for)
 
 Kontrollstrukturen sind relativ ähnlich zu denen in Python, mit dem Unterschied: 
-In Go dürfen `if` und `switch` eine **Capture Group** definieren. 
-Das ist eine oder mehrere Variablen, die nur in dem `if`/`switch` Block erreichbar sind. 
+In Go dürfen `if` und `switch` eine **Initialisierungsanweisung** besitzen. 
+Alle Variablen, die in der Initialisierungsanweisung definiert wurden, sind nur in dem `if`/`switch` Block erreichbar.
+
+**Nachteil:** Der Ausdruck scheint auf den ersten Blick etwas komplizierter.
+
+**Vorteil:** Begrenzung des Geltungsbereichs (Scoping). 
+Was in der Initialisierungsanweisung definiert wurde, darf nur in dem entsprechenden Ausdruck benutzt werden.
 
 ### if
 
-Allgemeines Muster (`else`-Zweig und Capture Group sind optional):
+Allgemeines Muster (`else`-Zweig und die Initialisierungsanweisung sind optional):
+
 ```go
-if capture_group; condition {
+if initialisation; condition {
 
 } else {
 
@@ -207,20 +271,18 @@ if capture_group; condition {
 
 Beispiel:
 ```go
+// diese Funktion gibt zwei Werte zurück - ähnlich wie Funktionen in Python,
+// können Funktionen in Go ein "tuple" zurückgeben
 if data, err := client.RequestData(); err != nil {
     fmt.Println("received an error", err)
 } else {
     fmt.Println("received data", data)
 }
 ```
-TODO_1: Sieht aus wie "eine komplizierte Zeile statt zwei einfache Zeilen". Was ist da toll dran?
-Außerdem werden hier offenbar zwei Werte zurückgegeben: Kennen wir noch nicht. Ist das wie tuple in Python? 
 
 ### switch
 
-Es gibt zwei Alternativen von `switch` im Python-Universum: `if-elif-else`-Block oder `match-case`.
-`Switch` darf ebenfalls eine Capture Group besitzen.
-TODO_1: Verwirrend ausgedrückt. Was hat denn nun `switch` mit `match-case` zu tun? Lieber Python nicht erwähnen?
+`switch` darf ebenfalls eine Initialisierungsanweisung besitzen:
 
 ```go
 switch x := randomIntUnder10(); x {
@@ -231,49 +293,14 @@ default: fmt.Println("it's something different...")
 }
 ```
 
-`if-elif-else`-Blöcke sind in der Regel flexibler.
-TODO_1: Bitte positiv ausdrücken: bei `switch` ist schneller zu erfassen, was da passiert.
-
-[FOLDOUT::Benutzen auf eigene Gefahr]
-TODO_1: Ziemlich verwirrender Exkurs. Swift? Kotlin? Häh?? Lieber weglassen.
-
-Ein `if-else`-Block hat immer zwei Zweige — einen für `true` und einen für `false`. 
-Bei einem `switch`-Block sind das eigentlich nur zwei mögliche Fälle:
-
-```go
-switch bool_value {
-case true: ...
-case false: ...
-}
-```
-
-Könnte man die Bedingung invertieren? Eigentlich schon:
-
-```go
-switch true {
-case 0 < x && x < 20: ...
-case 20 <= x && x < 40: ...
-case 40 <= x && x < 60: ...
-}
-```
-
-Das ist eine kürzere Form von einem klassischen `if-elif-else`-Block.
-Sie ist besonders vorteilhaft in Programmiersprachen, wo `switch`-Blöcke Werte zurückgeben dürfen (beispielsweise Swift 
-oder Kotlin):
-```swift
-let message = switch true {
-case age < 0: "you haven't been born yet"
-case age >= 18: "you're an adult!"
-default: "you're probably going to school"
-}
-```
-[ENDFOLDOUT]
+`if-elif-else`-Blöcke sind in der Regel flexibler; bei `switch` ist jedoch schneller zu erfassen, was da passiert.
 
 ### for
 
 Hier ist eine kurze Übersicht von for-Schleifen im Vergleich zu Python:
 
 #### Endlosschleife
+
 ```go
 // Go
 for {
@@ -287,8 +314,8 @@ while True:
     ...
 ```
 
-#### Klassische C-Schleife
-TODO_1: Die ist für unsere Studis nicht klassisch, sondern unbekannt.
+#### Eine C-artige-Schleife
+
 ```go
 // Go
 for i := 0; i < 10; i++ {
@@ -312,6 +339,7 @@ while i < 10:
 ```
 
 #### Iteration über Indizes einer Liste
+
 ```go
 // Go
 for index := range someList {
@@ -326,6 +354,7 @@ for index in range(len(someList)):
 ```
 
 #### Iteration über Indizes und Werte einer Liste
+
 ```go
 // Go
 for index, value := range someList {
@@ -360,10 +389,19 @@ Generell lässt sich diese Prozedur in Go sowie in Python folgendermaßen beschr
 _T(v)_ konvertiert den Wert _v_ zum Typen _T_. Das gilt vor allem für Zahlen.
 
 [WARNING]
-Go erlaubt Über- oder Unterlauf, wenn beispielsweise `int64` zu `int8` umgewandelt wird.
-TODO_1: Was heißt das? Wirkung?
 
-Falls eine solche Operation absolut notwendig ist, denken Sie daran, den Erfolg Ihrer Typumwandlung zu überprüfen.
+Das Problem: 
+
+8 Bits können viel weniger Zahlen darstellen als 64 Bits.
+
+Falls ein `int64`-Wert zu einem `int8`-Wert umgewandelt wird, werden Zahlen aus dem Wertebereich von `int64` auf diese von `int8` abgebildet.
+Dabei ist nicht garantiert, dass es am Ende dieselbe Zahl ist, und Go schmeißt keinen Fehler.
+Das führt dazu, dass solche subtilen Über- oder Unterlauf-bezogenen Defekte doch in Ihrem Programm auftauchen können.  
+
+Die Lösung:
+
+1. Warum wird überhaupt ein Zahlentyp zu einem kleineren Zahlentyp umgewandelt? Ist das nötig?
+2. Falls ja — denken Sie daran, den Erfolg Ihrer Typumwandlung zu überprüfen.
 
 [ENDWARNING]
 
@@ -440,9 +478,9 @@ Viel Erfolg!
 
 1. [ER] Legen Sie ein Verzeichnis `grade_converter` an und führen Sie darin `go mod init grade_converter` aus. 
    So initialisieren Sie ein Modul.
-   Legen Sie außerdem eine Datei `main.go` an, die mit `package main` anfängt und die Funktion `func main() {}` beinhaltet — das ist der Einstiegspunkt Ihres Programms.
+   Legen Sie außerdem eine Datei `main.go` an, die mit `package main` anfängt und die Funktion `main()` beinhaltet.
 2. [ER] In `grade_converter`, erstellen Sie zwei weitere Verzeichnisse: `validator` und `converter`. 
-   Kreieren Sie in den Verzeichnissen entsprechend zwei Dateien — `validator.go` und `converter.go` (die Dateien dürfen beliebig heißen, solange sie unter den richtigen Verzeichnissen sind).
+   Kreieren Sie in den Verzeichnissen entsprechend zwei Dateien — `validator.go` und `converter.go`.
    Die Dateien müssen jeweils mit `package validator` und `package converter` anfangen.
 3. [ER] `validator.go`-Vorlage:
 ```go
