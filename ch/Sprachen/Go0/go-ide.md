@@ -106,6 +106,8 @@ Um das Projekt umzubenennen, Rechtsklick auf "awesomeProject" -> "Rename".
 
 Eine neue Datei wird sehr ähnlich angelegt: Rechtsklick auf "projectName" -> "New" -> "Go File".
 
+[ENDFOLDOUT]
+
 ```go
 [INCLUDE::snippets/hello_world.go]
 ```
