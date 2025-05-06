@@ -36,7 +36,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Sprachen
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP)
 - ch/Sprachen/C/c-preprocessor.md (KH)
-
+- ch/Sprachen/SQL/SQLView.md
+- ch/Sprachen/SQL/SQLBenutzerverwaltung.md
 
 ### Bibliotheken
 

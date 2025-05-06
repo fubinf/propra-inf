@@ -101,6 +101,12 @@ Anschließend führen Sie folgende Schritte aus:
 
 [ENDSECTION]
 
+
+[INSTRUCTOR::Abgabe prüfen]
+[INCLUDE::ALT:]
+[ENDINSTRUCTOR]
+
+
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Musterlösungen (SQL)
