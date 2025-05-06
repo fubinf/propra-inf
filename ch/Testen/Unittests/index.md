@@ -86,4 +86,4 @@ graph TD
 - **unittest_fixtures.md**: Verwendung von Fixtures mit dem Standard-Testframework `unittest`.
 - **pytest202.md**: TDD mit pytest im Pair Programming.
 - **pytest103.md**: Verwendung von Marks in pytest zur Organisation von Tests.
-- **pytest_methodik_blackboxtestverfahren.md**: Einführung in Blackbox-Testing mit pytest, einschließlich der Testmethoden Äquivalenzklassen, Randwertanalyse und Entscheidungstabellen.
+- **pytest_methodik_blackboxtestverfahren.md**: Einführung in Blackbox-Testing mit pytest, einschließlich der Testmethoden Äquivalenzklassen, Randwertanalyse und Eckwertanalysen.
