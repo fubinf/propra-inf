@@ -36,12 +36,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Sprachen
 - ch/Sprachen/Python/py-Funktionale-Programmierung.md (SW)
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP)
-- ch/Sprachen/C/c-ide-linux.md (KH)
-- ch/Sprachen/C/c-ide-macos.md (KH)
-- ch/Sprachen/C/c-ide-windows.md (KH)
-- ch/Sprachen/C/c-toolchain-linux-apt.md (KH)
-- ch/Sprachen/C/c-toolchain-macos.md (KH)
-- ch/Sprachen/C/c-toolchain-windows-wsl.md (KH)
 - ch/Sprachen/C/c-compiler-assembler-linker.md (KH)
 - ch/Sprachen/C/c-preprocessor.md (KH)
 - ch/Sprachen/Go0/go-ide.md (IB)
@@ -69,7 +63,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/grep.md (IC->LP)
 
-## Pandas
 
 ### (on hold)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
@@ -107,6 +100,15 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ## Reviews to do for Christian Hofmann
 
+
+## Reviews to do for Kilian Hofmann
+
+- ch/Sprachen/C/c-ide-linux.md (KH->LP->KH)
+- ch/Sprachen/C/c-ide-macos.md (KH->LP->KH)
+- ch/Sprachen/C/c-ide-windows.md (KH->LP->KH)
+- ch/Sprachen/C/c-toolchain-linux-apt.md (KH->LP->KH)
+- ch/Sprachen/C/c-toolchain-macos.md (KH->LP->KH)
+- ch/Sprachen/C/c-toolchain-windows-wsl.md (KH->LP->KH)
 
 
 ## Reviews to do for Sven Hüster
