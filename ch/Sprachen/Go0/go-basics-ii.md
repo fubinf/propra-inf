@@ -37,7 +37,7 @@ Jede Funktion in Go besteht aus folgenden Teilen:
     * leer, wenn die Funktion nichts zurückgibt;
     * `T`, wenn die Funktion einen Wert von Typ `T` zurückgibt;
     * ein Tupel `(T1, T2, ..., Tn)`, falls die Funktion mehrere Werte auf einmal zurückgibt;
-      TODO_1: Hier benannte Rückgaben nicht zu erwähnen ist inkonsequent, oder?
+    * oder ein benanntes Tupel `(t1 T1, t2 T2, ..., tn Tn)`, falls die Rückgabewerte direkt in der Funktionssignatur deklariert werden sollen;
 * Funktionsrumpf in geschweiften Klammern.
 
 Eine Funktion, die Sie bereits kennen, ist die `main`-Funktion:
@@ -77,12 +77,14 @@ func(x int, y int) {
 }(4, 5)
 ```
 
-[FOLDOUT::Benannte Rückgabewerte]
+#### Benannte Rückgabewerte
 
 Eine weitere Möglichkeit, Werte aus der Funktion zurückzugeben, sind die benannten Rückgabewerte.
 
+Benannte Rückgabewerte sind immer mit den Standard-/Default-Werten initialisiert.
+
 ```go
-// Die Variablen i und err sind bereits mit entsprechenden Nullwerten initialisiert
+// Die Variablen i und err sind bereits mit (0, nil) initialisiert
 func namedReturn() (i int, err error) {
     i = 42
     err = nil
@@ -109,10 +111,7 @@ func normalReturn() (int, error) {
 Es empfiehlt sich, benannte Rückgabewerte erst dann zu benutzen, wenn die Funktion ausreichend groß ist und/oder Dokumentation benötigt.
 Einerseits tragen die Parameternamen in der Rückgabesignatur zur Lesbarkeit bei; andererseits können leere `return`-Anweisungen verwirrend wirken.
 
-[ENDFOLDOUT]
-
-
-[FOLDOUT::Variadische Funktionen]
+#### Variadische Funktionen
 
 Funktionen in Go können eine dynamische Anzahl von Parametern verarbeiten, was besonders nützlich ist, wenn die genaue Anzahl der Argumente zur Kompilierungszeit nicht bekannt ist. 
 Dafür gibt es eine spezielle Schreibweise, die als variadische Parameter bezeichnet wird:
@@ -134,7 +133,6 @@ func receiveInts(xs []int) {
 }
 ```
 
-
 Für den Aufrufer gibt es jedoch einen Unterschied:
 ```go
 // Variadisch
@@ -144,10 +142,8 @@ receiveInts(0, 1, 4, 9, 16, 25, 36, 49, 64)
 receiveInts([]int{0, 1, 4, 9, 16, 25, 36, 49, 64})
 
 ```
- 
-[ENDFOLDOUT]
 
-[FOLDOUT::Funktionen höherer Ordnung]
+#### Funktionen höherer Ordnung
 
 Eine Funktion kann eine andere Funktion als Parameter erhalten, wodurch sie zu einer Funktion höherer Ordnung wird:
 
@@ -192,21 +188,18 @@ func main() {
 
 Funktionen höherer Ordnung sind nützlich für die Erstellung flexibler und wiederverwendbarer Codebausteine.
 
-[ENDFOLDOUT]
-
-
 #### Ausprobieren
 
 - [ER] Implementieren Sie eine Funktion `divide(a, b float64) (result float64, err error)`:
   die erste Zahl durch die zweite dividieren.
   Bei Erfolg ein Tupel `(result, nil)` zurückgeben; ansonsten `(0.0, fmt.Errorf("division by zero"))`.
   Benutzen Sie hier benannte Rückgabewerte.
-- [ER] Bauen Sie `reduce(operation func(int, int) int, start int, xs ...int) int` — eine Funktion, die 
+- [ER] Bauen Sie `reduce(initialValue int, operation func(int, int) int, xs ...int) int` — eine Funktion, die 
   eine Funktion (`operation`) und eine beliebige Anzahl von Ganzzahlen als Parameter bekommt.
   Sie wendet sukzessive `operation` auf die Ganzzahlen an:
   Der erste Parameter von `operation` ist eine Akku-Variable (anfangs `start`, am Ende das Resultat), 
   der zweite der Reihe nach jedes Element der Liste `xs`.
-  Mit `reduce(func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise 
+  Mit `reduce(0, func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise 
   die Summe der Ganzzahlen berechnet werden.
 - [ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
 ```go
@@ -215,6 +208,7 @@ func testFunctions() {
     fmt.Println(divide(5, 0))
     fmt.Println(
         reduce(
+            0,
             func(acc, arg int) int { return acc + arg * arg }, 
             2, 3, 5, 7, 11, 13, 17, 19,
         ),
@@ -422,20 +416,43 @@ func testMutation() {
 }
 ```
 
+### Referenz- und Werttypen
 
-### Referenztypen
+Mit _Referenztypen_ werden in der Regel die Typen gemeint, welche sich wie ein Zeiger (Pointer) verhalten.
+Das bedeutet unter anderem:
 
-Zu den Referenztypen gehören Slices und Maps.
+- deren Standardwert ist `nil`
+- sie enthalten intern Zeiger auf Daten
+- "pass-by-reference"-Verhalten
 
-Zugrundeliegende Datenstruktur von Slices ist ein Array — eine Sammlung von Einträgen, 
-wo alle Einträge zum gleichen Typ gehören und die Größe fest ist.
+_Werttypen_ sind anders: Sie stellen wirklich die Werte dar, sie sind **die Daten selbst**.
+Primitive Datentypen (Zahlen, boolesche Werte und Zeichenketten) sind Werttypen.
 
-Arrays werden in Go selten direkt verwendet, daher konzentrieren wir uns auf Slices.
+Alle Werttypen teilen sich folgende Eigenschaften:
 
+- deren Standardwert ist nicht `nil`
+- "pass-by-value"-Verhalten — beim Zuweisen oder Übergeben als Parameter wird eine Kopie erstellt
+- Vergleichbarkeit — zwei Variablen von einem Werttyp dürfen mittels `==` sinnvoll verglichen werden
+
+Nun betrachten wir Arrays, Slices und Maps detaillierter aus der Perspektive von Wert- und Referenztypen.
+
+### Array
+
+Ein Array ist ein Werttyp, der eine Sammlung von Einträgen darstellt, wo alle Einträge zum gleichen Typ gehören und die Größe fest ist.
+
+```go
+var arr [5]int                      // arr == [0 0 0 0 0]
+anotherArr := arr                   // eine Kopie wurde erstellt
+anoterArr[0] = 42
+fmt.Println(arr, anotherArr)        // [0 0 0 0 0] [42 0 0 0 0]
+```
+
+Reine Arrays werden in Go relativ selten verwendet, daher konzentrieren wir uns auf Slices.
 
 ### Slice
 
-Slices bauen immer auf Arrays auf. Ein Slice ist eine "View" bzw. eine Sicht in das zugrundeliegende Array.
+Slices bauen immer auf Arrays auf. 
+Ein Slice ist eine "View" bzw. eine Sicht in das zugrundeliegende Array, und ist somit ein Referenztyp.
 
 Das ist die Laufzeitdarstellung eines Slices (`go/src/runtime/slice.go`):
 ```go
@@ -487,12 +504,21 @@ sl := arr[:3]                   // kreiert einen Slice vom Anfang des Arrays bis
 sl = append(sl, 8)              // überschreibt die "3" im ursprünglichen Array arr!
 ```
 
+[NOTICE]
+
+Wie bereits erwähnt, können Slices mithilfe von der Funktion `make([]T, initialSize)` kreiert werden. 
+Das zugrundeliegende Array wird dann automatisch erstellt und hat exakt die Größe von `initialSize`.
+
+Ein solcher Slice verhält sich im Wesentlichen wie ein dynamisches Array: 
+Sobald es versucht wird, zu einem vollen Slice der Größe _n_ ein anderes Element hinzuzufügen, wird ein neues Array der Größe _2n_ allokiert.
+
+[ENDNOTICE]
 
 ### Map
 
 Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre Schlüssel ermöglicht. 
 
-Eine Map wird ebenfalls mithilfe der Funktion `make()` erstellt:
+Eine Map ist ein Referenztyp und wird ebenfalls mithilfe der Funktion `make()` erstellt:
 
 ```go
 m := make(map[string]int)       // "string" ist der Typ der Schlüssel, "int" ist der Typ der Werte
@@ -502,7 +528,7 @@ fmt.Println(m["two"])           // 0, da 0 der Nullwert von "int" ist, wenn kein
 fmt.Println(len(m))             // 1
 ```
 
-Um zu überprüfen, ob ein Schlüssel bereits vorhanden ist, verwenden Sie folgende Schreibweise:
+Um zu überprüfen, ob ein Schlüssel bereits vorhanden ist, wird die folgende Schreibweise verwendet:
 
 ```go
 mysteriousMap := make(map[string]int)
@@ -514,15 +540,15 @@ if value, isThere := mysteriousMap["key"]; isThere {
 }
 ```
 
-Sie können ein Schlüssel-Wert-Paar explizit entfernen:
+Ein Schlüssel-Wert-Paar kann explizit entfernt werden:
 
 ```go
-mysteriousMap := make(map[string]error)
+studentAges := make(map[string]int)
 
-mysteriousMap["foo"] = nil
+studentAges["Max"] = 23 
 
-if value, isThere := mysteriousMap["foo"]; isThere && value == nil {
-    delete(mysteriousMap, "foo")
+if value, isThere := studentAges["Max"]; isThere {
+    delete(studentAges, "Max")
 }
 ```
 
@@ -555,89 +581,6 @@ Implementieren Sie die folgenden Funktionen:
 * [ER] `func RemoveElement(slice []int, at int)` — ein Element an einem Index `at` entfernen und die Größe des Slices entsprechen anpassen.
 * [ER] `func AddElementIfNotThere(m map[string]int, key string, value int)` — ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
 
-#### Mini-Projekt: Todo-App
-
-[NOTICE]
-
-Die früher implementierten Funktionen (`testFunctions()`, `testStructs()` und `testMutation()`) sollen weiterhin in der `main`-Funktion bleiben.
-
-Sie können während der weiteren Entwicklung die Aufrufe natürlich auskommentieren, aber achten Sie darauf, 
-dass die Ausgaben im endgültigen Kommandoprotokoll vorhanden sind.
-
-[ENDNOTICE]
-
-
-Hier implementieren Sie ein kleines Kommandozeilenprogramm, wo Notizen angelegt, als "erledigt" markiert und entfernt werden können.
-
-Legen Sie dafür zwei Typen an:
-
-```go
-type Todo struct {
-	msg    string
-	isDone bool
-}
-
-type TodoManager struct {
-	tasks []*Todo
-}
-```
-
-Sie dürfen außerdem folgende Funktionen benutzen:
-
-```go
-// eine Zeile aus dem Terminal auslesen
-func getLine() string {
-	reader := bufio.NewReader(os.Stdin)
-	inputRaw, err := reader.ReadString('\n')
-	if err != nil {
-		panic(err)
-	}
-
-	return strings.TrimSpace(inputRaw)
-}
-
-// formatiert die Zeichenkette: strike-through (durchgestrichen)
-func strikethrough(msg string) string {
-    return fmt.Sprintf("\x1b[9m%s\x1b[0m", msg)
-}
-```
-
-Als ein Ausgangspunkt dürfen Sie folgende Methodensignaturen nehmen:
-```go
-func (tdm *TodoManager) Add(t *Todo)
-func (tdm *TodoManager) ListTodos()
-func (tdm *TodoManager) MarkAsDone(atIndex int)
-func (tdm *TodoManager) RemoveClosedTodos()
-```
-
-Folgende Funktionalität muss Ihr Programm unterstützen:
-
-```
-commands:
-  - '-n todo_message' to add a new one
-  - '-d todo_index' to mark a todo as 'done'
-  - '-rm' to remove all todos marked as 'done'
-  - 'q' to quit the program
-```
-
-- [ER] Implementieren Sie nun das Programm.
-       Sie dürfen dabei die drei Funktionen benutzen, die Sie oben definiert haben.
-
-### Testen
-
-[EC] starten Sie das Programm mittels `go run todo.go` und führen Sie folgende Aktionen durch:
-
-- Hilfe ausgeben lassen: "-h";
-- Todo hinzufügen: "-n feed the dog";
-- Todo hinzufügen: "-n feed the cat";
-- Todo hinzufügen: "-n go get groceries";
-- "-rm";
-- Das erste Todo als erledigt markieren: "-d 1";
-- "-rm";
-- Die restlichen Todos als erledigt markieren: "-d 2", "-d 1";
-- "-rm";
-- "-q".
-
 [ENDSECTION]
 
 [SECTION::submission::trace,program]
@@ -645,8 +588,6 @@ commands:
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [INCLUDE::/_include/Submission-Quellcode.md]
-
-Geben Sie Ihr Todo-Programm sowie alle davor implementierten Funktionen in einer Datei ab. 
 
 [ENDSECTION]
 
@@ -657,10 +598,7 @@ Korrektur von `testFunctions()`, `testStructs()` und `testMutation()` — die Fu
 Korrektur von `AddElement`, `RemoveElement`: 
 Der Punkt ist, dass Studierende Slices erstellen und modifizieren können.
 
-Korrektur von `AddElementIfNotThere`: das `delete()` muss benutzt werden.
-
-Korrektur von Todo-Manager: Muss funktionsfähig sein und ungefähr mit dem Kommandoprotokoll übereinstimmen.
-Schöne Formatierung ist in dem Fall nur ein "nice-to-have".
+Korrektur von `AddElementIfNotThere`: `delete()` muss benutzt werden.
 
 [PROT::ALT:go-basics-ii.prot]
 
