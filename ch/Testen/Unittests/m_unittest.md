@@ -18,7 +18,7 @@ in seiner Standardbibliothek. Das sollten wir natürlich kennen!
 [SECTION::instructions::detailed]
 
 `unittest` ist das von Python mitgelieferte Testframework.
-Nutzen Sie die [`unittest`-Dokumentation](https://docs.python.org/3.10/library/unittest.html)
+Nutzen Sie die [`unittest`-Dokumentation](https://docs.python.org/3/library/unittest.html)
 um die nachfolgenden Aufgaben zu lösen:
 
 ### Ein erfolgreicher Test

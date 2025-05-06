@@ -40,7 +40,7 @@ Betrachten Sie die bereits erstellten Unittests unter
     - e) `test_reset_password()`
 
 `unittest`-Doku:
-[unittest - Unit testing framework](https://docs.python.org/3.10/library/unittest.html)
+[unittest - Unit testing framework](https://docs.python.org/3/library/unittest.html)
 
 [ENDSECTION]
 
