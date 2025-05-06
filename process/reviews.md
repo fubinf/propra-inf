@@ -35,9 +35,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Sprachen
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP)
-- ch/Sprachen/C/c-compiler-assembler-linker.md (KH)
 - ch/Sprachen/C/c-preprocessor.md (KH)
-- ch/Sprachen/Go0/go-ide.md (IB)
+
 
 ### Bibliotheken
 
@@ -108,6 +107,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/C/c-toolchain-linux-apt.md (KH->LP->KH)
 - ch/Sprachen/C/c-toolchain-macos.md (KH->LP->KH)
 - ch/Sprachen/C/c-toolchain-windows-wsl.md (KH->LP->KH)
+- ch/Sprachen/C/c-compiler-assembler-linker.md (KH)
 
 
 ## Reviews to do for Sven Hüster

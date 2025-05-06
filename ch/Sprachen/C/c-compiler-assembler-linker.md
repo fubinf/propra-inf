@@ -1,5 +1,5 @@
 title: "C Compiler und Linker"
-stage: draft
+stage: alpha
 timevalue: 1
 difficulty: 2
 assumes: c-ide-linux, c-ide-macos, c-ide-windows
@@ -88,8 +88,8 @@ in binäre Maschinensprache führ Ihren Computer umgewandelt wird.
 
 ### Der Linker
 
-Damit aus der Object-Datei, ober bei größeren Programmen mehreren
-Object-Dateien, nun ein ausführbares Programm wird, wird der Linker eingesetzt.
+Damit aus der Object-Datei (oder bei größeren Programmen den zahlreichen
+Object-Dateien), nun ein ausführbares Programm wird, wird der Linker eingesetzt.
 Der Linker nimmt alle angegebenen Object-Dateien, zusätzlich angegeben
 Systembibliotheken (`-lxxx` Flagge, mit xxx dem Namen der Library, z.b.
 `-lssl` für die openSSL Kryptographiebibliothek) und fügt diese
