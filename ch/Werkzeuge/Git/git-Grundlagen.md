@@ -8,7 +8,7 @@ requires: git-Zweitrepo
 ---
 
 [SECTION::goal::experience]
-Ich lerne wie die Grundfunktionen von git funktionieren und bekomme ein gefestigtes Verständnis 
+Ich lerne, wie die Grundfunktionen von git funktionieren, und bekomme ein gefestigtes Verständnis 
 von deren mentalem Modell.
 [ENDSECTION]
 
@@ -22,25 +22,27 @@ abzugeben. Jetzt geht es darum, das gelernte zu vertiefen und das Wissen um die 
 
 [SECTION::instructions::detailed]
 
-In dieser Aufgabe werden wir so richtig tief in die interna von git einsteigen. Wie verwaltet 
-git Dateien und Commits? Wie können wir diese vergleichen und uns einen überblick verschaffen 
-was zu Lebzeiten eines Projektes eigentlich so passiert.
+In dieser Aufgabe werden wir so richtig tief in die Interna von git einsteigen. Wie verwaltet 
+git Dateien und Commits? Wie können wir diese vergleichen und uns einen Überblick darüber 
+verschaffen, was während der Entwicklung eines Projektes geschieht?
 
-Damit wir aber nicht einfach nur dröge die Befehle herunter rattern werden wir das ganze anhand 
-eines kleinen Beispiel-"Programms" abarbeiten. Hierzu schreiben wir ein paar Zeilen für einen 
+Damit wir die Befehle nicht einfach nur herunter rattern, arbeiten wir die Inhalte anhand eines 
+kleinen Beispielprogramms durch. Hierzu schreiben wir ein paar Zeilen für einen 
 hypothetischen Taschenrechner.
 
-Wir gehen davon aus, das Sie bereits [PARTREF::git-Zweitrepo] erledigt und entsprechend ein 
-neues und sauberes Repo bereit haben in welchem Sie sich ungehindert auslassen können.
+Wir gehen davon aus, dass Sie bereits die Aufgabe [PARTREF::git-Zweitrepo] erledigt und 
+entsprechend ein neues und sauberes Repo bereit haben, in welchem Sie sich ungehindert auslassen 
+können.
 
-Falls Sie diese Aufgabe übersprungen haben legen Sie einfach ein neues Verzeichnis außerhalb 
-ihres ProPra-Repos und führen Sie den `git init` Befehl aus. Da wir in dieser ausgabe nicht `git 
-push` oder `git pull` brauchen werden brauchen Sie auch kein neues Repo bei GitLab o.Ä. git Servern 
-anlegen.
+Falls Sie diese Aufgabe übersprungen haben, legen Sie einfach ein neues Verzeichnis außerhalb 
+ihres ProPra-Repos und führen Sie den `git init` Befehl aus. Da wir in dieser Aufgabe weder `git 
+push` noch `git pull` benötigen, müssen Sie auch kein neues Repository auf GitLab oder ähnlichen 
+Git-Servern anlegen.
 
-Was tut git init? Um das zu verstehen haben wir einen nützlichen Hilfsbefehl. Nämlich `git help`.
+
+Was tut git init? Um das zu verstehen, haben wir einen nützlichen Hilfsbefehl. Nämlich `git help`.
 Dieser gibt uns ausführliche Dokumentation zu praktisch jedem git-Befehl, Begriff oder Konzept aus.
-Führen wir nur `git help` aus erhalten wir eine kurz liste an gängigen git-Befehlen, dann eine 
+Führen wir nur `git help` aus erhalten wir eine kurz Liste an gängigen git-Befehlen, dann eine 
 längere mit noch mehr Befehlen und ganz unten steht noch ein weiterer nützlicher Hinweis.
 
 ```
@@ -49,11 +51,11 @@ concept guides. See 'git help <command>' or 'git help <concept>'
 to read about a specific subcommand or concept.
 ```
 
-Wir wollen jetzt lernen was git init tut. Führen Sie also den `git help` Befehl für `git init` 
+Wir wollen jetzt lernen, was git init tut. Führen Sie also den `git help` Befehl für `git init` 
 aus und beantworten Sie: 
 
 [EQ] Was macht der Befehl `git init`? Referenzieren Sie hierbei die git Hilfe und vor allem die 
-Teile die Sie verstehen.
+Teile, die Sie verstehen.
 
 [NOTICE]
 Zu Beginn wird sehr vieles in der git-Hilfe deutlich ihren Kenntnisstand übersteigen und 
@@ -66,7 +68,7 @@ com/docs) nachschlagen.
 [ENDNOTICE]
 
 In der Dokumentation zu `git init` werden ihnen sicherlich der `.git` Ordner sowie die "Objekte" 
-aufgefallen sein. Damit wir verstehen, wozu diese da sind lesen wir den Abschnitt [Creating a Git 
+aufgefallen sein. Damit wir verstehen, wozu diese da sind, lesen wir den Abschnitt [Creating a Git 
 repository](https://git-scm.com/docs/gitcore-tutorial) im `gitcore-tutorial`.
 
 [EQ] Was befindet sich im verzeichnis `objects`?
@@ -79,7 +81,7 @@ befindet. Jetzt wollen wir den aktuellen Zustand unseres Repos betrachten. Dafü
 Befehlt `git status`. Dieser zeigt uns Informationen darüber an, welche Dateien git sieht, 
 beobachtet und ob es Veränderungen zum letzten Commit gibt. Führen Sie `git status` jetzt aus 
 werden Sie feststellen, dass die Ausgabe praktisch leer ist. Damit wir ein bisschen an echten Daten 
-herumspielen können brauchen wir also erstmal überhaupt ebensolche in unserem Repository. 
+herumspielen können, brauchen wir also erstmal überhaupt ebensolche in unserem Repository. 
 Beginnen wir also mit unserem fiktiven Grundgerüst, der Funktionsdefinition:
 
 ```python
@@ -104,12 +106,12 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-Hier sehen wir jetzt einige Neue informationen. Zum einen bekommen wir noch immer "No commits 
+Hier sehen wir jetzt einige neue Informationen. Zum einen bekommen wir noch immer "No commits 
 yet" angezeigt. Was ja auch stimmt, denn wir haben lediglich eine neue Datei angelegt. Zumindest 
 scheint git aber *irgendwas* über diese Datei zu wissen, denn sie wird als "Untracked file" 
 angegeben.
 
-Aber weiß git auch was sich in dieser Datei befindet? Die letzte Zeile gibt uns einen kleinen 
+Aber weiß git auch, was sich in dieser Datei befindet? Die letzte Zeile gibt uns einen kleinen 
 Hinweis. Git erfasst bzw. beobachtet nämlich erst den Inhalt, wenn wir die Datei mit `git add` zum 
 *Tracken* markieren.
 
@@ -125,15 +127,15 @@ Dazu ein paar Verständnisfragen:
 [EQ] Welche git-Objekte gibt es und was speichern Sie?
 [EQ] Wo speichert git die Metadaten über eine Datei und wo die Inhalte?
 [EQ] Speichert git erst beim Commiten Änderungen an einer Datei, oder schon vorher?
-[EQ] Wenn man Änderungen an einer Datei vornimmt, nachdem Sie dem git Index hinzugefügt wurde, muss 
-man diese Änderungen wieder dem Index hinzufügen damit Sie im Commit landen?
+[EQ] Wenn man Änderungen an einer Datei vornimmt, nachdem sie dem git Index hinzugefügt wurde, muss 
+man diese Änderungen wieder dem Index hinzufügen, damit Sie im Commit landen?
 
 [NOTICE]
 Wir erinnern uns an dieser Stelle nochmal an [PARTREF::git-Funktionsweise] wo wir ja bereits 
 festgestellt haben, dass git immer Snapshots speichert. Die Blob-Objekte sind nämlich genau das.
 [ENDNOTICE]
 
-Wir sollten jetzt ein Verständnis dafür haben, was der git-Index ist, was Objekte sind, welche 
+Wir sollten jetzt Verständnis dafür haben, was der git-Index ist, was Objekte sind, welche 
 Objekttypen es gibt und was passiert, wenn wir mit `git add` eine Datei zum Index hinzufügen.
 
 Jetzt schauen wir uns einen neuen sehr nützlichen Befehl an, nämlich `git diff`.
@@ -167,7 +169,7 @@ EXAMPLES
 ```
 
 Das sieht doch schon um einiges Verständlicher aus. Aktuell interessiert uns nur Beispiel 1.
-Führen wir es doch mal aus und gucken was passiert.
+Führen wir es doch mal aus und gucken, was passiert.
 
 [EQ] Was gibt `git diff` jetzt aus und warum? 
 
@@ -200,11 +202,11 @@ Changes not staged for commit:
 	modified:   calculator.py
 ```
 
-Wir können jetzt also folgendes feststellen: 
+Wir können jetzt also Folgendes feststellen: 
 
 1. Wir haben noch immer keine Commits erzeugt.
 2. Wir haben Änderungen/Neue Dateien zum Commiten vorgemerkt.
-3. Wir haben weitere Änderungen an dieser neuen Datei vorgenommen seitdem wir Sie zum Commiten 
+3. Wir haben weitere Änderungen an dieser neuen Datei vorgenommen, seitdem wir Sie zum Commiten 
    vorgemerkt haben.
 4. Git gibt uns hilfreiche Tips für Befehle welche wir evtl. gebrauchen könnten. 
 
@@ -248,7 +250,7 @@ def multipliziere(a, b):
 ```
 
 Ohne diese Änderungen dem Index hinzuzufügen, können wir jetzt wieder einen näheren Blick auf 
-`git diff` werfen um zu verstehen welche verschiedenen Optionen uns im Alltag nützlich werden 
+`git diff` werfen um zu verstehen, welche verschiedenen Optionen uns im Alltag nützlich werden 
 können. 
 
 Schauen Sie sich also wieder die Beispiele in der `git diff` Dokumentation und probieren Sie 
@@ -278,7 +280,7 @@ index 0000000..140f45f
 
 [ENDHINT]
 
-Jetzt wo wir unsere Multiplikation vollständig implementiert haben wollen wir wieder den 
+Jetzt, wo wir unsere Multiplikation vollständig implementiert haben, wollen wir wieder den 
 aktuellen Zustand festhalten. Fügen Sie die verbleibenden Änderungen dem Index hinzu und erstellen 
 Sie wieder einen Commit mit sinnvoller Nachricht. 
 
@@ -288,9 +290,9 @@ Schauen wir uns zuletzt noch ein weiteres nützliches Werkzeug etwas genauer an,
 
 `git log` ist praktisch unser Git-Tagebuch. Hier werden alle Commits festgehalten. Das ist 
 insofern nützlich, als es uns ermöglicht, die Commit-Historie durchzusehen. So können wir 
-beispielsweise nachvollziehen, was bestimmte Commits verändert haben, und deren jeweiligen 
-Hash-Namen ermitteln. Mit diesen Hash-Namen können wir dann entweder den gesamten Working Tree oder 
-einzelne Dateien auf den Zustand eines bestimmten Commits zurücksetzen.
+nachvollziehen, was Commits verändert haben, und ihre Hash-Namen ermitteln. Mit diesen 
+Hash-Namen können wir dann entweder den gesamten Working Tree oder einzelne Dateien auf den 
+Zustand eines bestimmten Commits zurücksetzen.
 
 Wenn wir jetzt einfach nur `git log` ohne irgendwelchen weiteren Argumente aufrufen, sieht 
 unsere Ausgabe ungefähr so aus:
@@ -326,20 +328,20 @@ Zum einen gibt es `--oneline` damit wird schlichtweg ein Commit auf eine einzeln
 reduziert. Dies kann vor allem bei ganz viel Historie hilfreich sein.
 
 Zum anderen gibt es `-p`, dadurch wird für jeden Commit ein sogenannter patch text erzeugt. Einfach 
-gesagt für jeden commit ein diff auf alle files. Streng genommen gibt es ein paar unterschiede zu 
+gesagt für jeden Commit ein diff auf alle files. Streng genommen gibt es ein paar unterschiede zu 
 `git diff`, welche das genau sind, können sie in der `git log` Doku nachlesen. Für unsere Zwecke 
-sind die beiden Befehle in diesem fall aber vorerst mehr oder weniger synonym.
+sind die beiden Befehle in diesem Fall aber vorerst mehr oder weniger synonym.
 
-Manchmal ist es hilfreich sich alle Commits anzeigen zu lassen, in denen eine bestimmte Datei 
+Manchmal ist es hilfreich, sich alle Commits anzeigen zu lassen, in denen eine bestimmte Datei 
 verändert wird. Dazu kann man einfach an seinen `git log` Befehl den vollständigen Dateipfad 
 anhängen. So kann man sich z.b. mit `git log -p path/to/file` alle Veränderungen der Datei 
 `file` im Verzeichnis `path/to` anschauen.
 
-In größeren Repos ist es öfter nützlich mithilfe des Datums Commits zu suchen, dazu stellt `git 
+In größeren Repos ist es öfter nützlich, mithilfe des Datums Commits zu suchen, dazu stellt `git 
 log` einige Befehle bereit, am häufigsten genutzt werden sicherlich `--until <date>, --before 
 <date>` oder `--since <date>, --after <date>` welche mehr oder weniger selbsterklärend sind. 
 
-Außerdem praktisch ist das suchen nach einem bestimmten Autor. Dafür gibt es `git log 
+Außerdem praktisch ist das Suchen nach einem bestimmten Autor. Dafür gibt es `git log 
 --author="Jane Doe"` oer `git log --author=Jane` womit man entweder den gesamten oder nur einen 
 Teilstring matcht.
 
