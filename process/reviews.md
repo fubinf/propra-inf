@@ -70,7 +70,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Werkzeuge/Unix-Basiswerkzeuge/grep.md (IC->LP)
 
 ## Pandas
-- ch/Pandas/Pandas-Grundlagen/pd-introduction.md (JS)
 
 ### (on hold)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
@@ -204,6 +203,11 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
 - ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (RR->LP->RR)
 - ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
+
+
+## Reviews to do for Jarmin Saka
+
+- ch/!!!/Pandas-Grundlagen/pd-introduction.md (JS->LP->JS)
 
 
 ## Reviews to do for Sven Wegner
