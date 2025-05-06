@@ -122,14 +122,14 @@ Hier gibt es zwei mögliche Fälle:
    Dabei müssen Sie aufpassen, dass Ihr Abhängigkeitsgraph azyklisch bleibt.
 2. Externe Module/Bibliotheken — beispielsweise ein Modul importieren, welches sich unter `github.com/username/module_name` befindet.
     - in dem Root-Verzeichnis des Moduls `go get github.com/username/module_name` ausführen und dann im Quellcode 
-     importieren.
-    - zuerst im Quellcode importieren (`import github.com/username/module_name`) und danach aus dem Root-Verzeichnis des Moduls `go get` ausführen. 
+     importieren;
+    - **oder** zuerst im Quellcode importieren (`import "github.com/username/module_name"`) und danach aus dem Root-Verzeichnis des Moduls `go get` ausführen. 
    So werden alle nötigen Bibliotheken automatisch heruntergeladen.
 
 ### Ausprobieren
 
 [ER] Legen Sie ein öffentliches Github-Repo an. 
-Den Modulnamen dürfen Sie beliebig wählen.
+Den Modulnamen dürfen Sie beliebig wählen (um unerwartete Fehler zu vermeiden, benutzen Sie im Modulnamen keine Sonderzeichen).
 
 [ER] Das Repo muss zwei Dateien beinhalten: `go.mod` und `main.go`. 
 Bei der Datei `go.mod` dürfen Sie die obige Bemerkung durchspielen.
@@ -152,12 +152,20 @@ func HiFromRemote() {
 [ER] Legen Sie eine weitere Datei `main.go` an und kopieren Sie den folgenden Quellcodeabschnitt in diese Datei:
 
 ```go
+package main
+
 import m %"replace_with github.com/your_username/your_module"%
 
 func main() {
     m.HiFromRemote()
 }
 ```
+
+Und jetzt im Root-Verzeichnis des lokalen Moduls folgende Befehle ausführen:
+
+[EC] `go get`
+
+[EC] `go run main.go`
 
 Die Ausgabe müsste "Hi from remote module!" sein.
 
@@ -192,14 +200,26 @@ In Go wird manchmal zwischen Deklaration und Definition unterschieden.
 Deklaration ist nichts anderes als Definition mit Default/Null-Werten: `0` für Zahlen, `""` für Zeichenketten, `false` für boolesche Werte.
 
 ```go
-var myname string             // deklarieren
-myname = "gopher"             // definieren
-var myname string = "gopher"  // beide Aktionen kombiniert
+var myname string               // deklarieren
+myname = "gopher"               // definieren
+var myname string = "gopher"    // beide Aktionen kombiniert
 
-myname := "gopher"            // oder den konkreten Datentyp
-var myname = "gopher"         // herleiten lassen. Beide Formen sind gleichwertig
+myname := "gopher"              // oder den konkreten Datentyp
+var myname = "gopher"           // herleiten lassen. Beide Formen sind gleichwertig
 
-width, height := 1920, 1080 // mehrere Variablen auf einmal
+width, height := 1920, 1080     // mehrere Variablen auf einmal
+```
+
+In Go haben alle Variablen, deren Typ ein Interface ist, den Standardwert `nil`.
+Später lernen Sie genauer von Interfaces, aber eins ist bereits hier erwähnenswert: das Interface `error`.
+
+Dadurch, dass `error` ein Interface ist, werden alle Werte vom Typ `error` standardmäßig mit `nil` initialisiert.
+
+Dies erklärt zahlreiche Zeilen `if err != nil { ... }` in dieser sowie den weiteren Aufgaben.
+
+```go
+var err error                       // err == nil
+err = fmt.Errorf("some error")      // err != nil
 ```
 
 [NOTICE]
@@ -360,8 +380,7 @@ for index in range(len(someList)):
 for index, value := range someList {
     ...
 }
-```
-TODO_1: Das ist verblüffend. Wieso taugt `range` für `index` ebenso wie für `index, value`? 
+``` 
 
 ```python
 # Python
@@ -555,5 +574,7 @@ Folgende Aspekte sind bei der Korrektur wichtig:
    `Validate`-Funktionen sollten eine informative Nachricht in dem Fehler zurückgeben.
 
 Ansonsten ist dies eine Lernaufgabe. 
-Der Punkt ist, dass die Studierenden die oben vorgestellten Konzepte im Zusammenhang miteinander benutzen.
+Der Punkt ist, dass Studierende die oben vorgestellten Konzepte im Zusammenhang miteinander benutzen.
+
+[PROT::ALT:go-basics-i.prot]
 [ENDINSTRUCTOR]
