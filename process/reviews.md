@@ -61,7 +61,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Werkzeuge/Netzwerk/ssh-Reversetunnel.md (IC->LP)
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/grep.md (IC->LP)
-
+- ch/Werkzeuge/Git/git-Grundlagen.md (SH->LP)
 
 ### (on hold)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
