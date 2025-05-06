@@ -20,7 +20,7 @@ Zur Analyse von Zeitdifferenzen kommt in dieser Aufgabe auch die SQL-Funktion `j
 
 [ENDSECTION]
 
-[SECTION::examples::default]
+### Beispiele
 
 ### Beispiel für INSERT
 ```sql
@@ -40,7 +40,7 @@ JOIN sessions s ON u.id = s.user_id;
 -- Beispiel: Differenz in Tagen zwischen zwei Daten
 SELECT julianday('2024-04-30') - julianday('2024-03-25'); -- ergibt 36.0
 ```
-[ENDSECTION]
+<!-- end Beispiele -->
 
 [SECTION::instructions::detailed]
 
@@ -159,4 +159,4 @@ Reflexion / Diskussion
 - Trennung von Rollen (Admin, normaler Nutzer).
 - Verwendung eines Frameworks (z. B. Django), um diese Datenbankstruktur mit Logik und Benutzeroberfläche zu kombinieren.
 
-[ENDSECTION]
+[ENDINSTRUCTOR]

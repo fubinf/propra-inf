@@ -19,7 +19,7 @@ Views (`CREATE VIEW`) erlauben es, komplexe oder häufig genutzte Abfragen einma
 
 [ENDSECTION]
 
-[SECTION::examples::default]
+### Beispiele
 
 ### Beispiel für UPDATE:
 ```sql
@@ -38,7 +38,7 @@ SELECT id, username, email
   WHERE is_active = 0;
 ```
 
-[ENDSECTION]
+<!-- end Beispiele -->
 
 [SECTION::instructions::detailed]
 
