@@ -1,4 +1,4 @@
-title: git-102
+title: git-Grundlagen
 stage: draft
 timevalue: 2
 difficulty: 3
@@ -8,7 +8,6 @@ requires: git-Zweitrepo
 ---
 
 [SECTION::goal::experience]
-
 Ich lerne wie die Grundfunktionen von git funktionieren und bekomme ein gefestigtes Verständnis 
 von deren mentalem Modell.
 [ENDSECTION]
@@ -67,18 +66,21 @@ com/docs) nachschlagen.
 [ENDNOTICE]
 
 In der Dokumentation zu `git init` werden ihnen sicherlich der `.git` Ordner sowie die "Objekte" 
-aufgefallen sein. Damit wir verstehen wozu diese da sind lesen wir den Abschnitt [Creating a Git 
+aufgefallen sein. Damit wir verstehen, wozu diese da sind lesen wir den Abschnitt [Creating a Git 
 repository](https://git-scm.com/docs/gitcore-tutorial) im `gitcore-tutorial`.
 
+[EQ] Was befindet sich im verzeichnis `objects`?
+[EQ] Wie werden git-Objekte referenziert? 
 [EQ] Wie heisst der default Branch von git? Kann ich diesen umbenennen und brauche ich ihn 
 überhaupt?
-[EQ] Wodurch werden git-Objekte referenziert? 
 
 Nun haben wir also ein neues und sauberes git Repo und haben verstanden, was sich bis dato darin 
-befindet. Wenn wir jetzt `git status` ausführen, werden wir schlicht "No commits yet" angezeigt 
-bekommen. Damit wir ein bisschen an echten Daten herumspielen können brauchen wir also erstmal 
-überhaupt ebensolche in unserem Repository. Beginnen wir also mit unserem fiktiven Grundgerüst, der 
-Funktionsdefinition:
+befindet. Jetzt wollen wir den aktuellen Zustand unseres Repos betrachten. Dafür gibt es den 
+Befehlt `git status`. Dieser zeigt uns Informationen darüber an, welche Dateien git sieht, 
+beobachtet und ob es Veränderungen zum letzten Commit gibt. Führen Sie `git status` jetzt aus 
+werden Sie feststellen, dass die Ausgabe praktisch leer ist. Damit wir ein bisschen an echten Daten 
+herumspielen können brauchen wir also erstmal überhaupt ebensolche in unserem Repository. 
+Beginnen wir also mit unserem fiktiven Grundgerüst, der Funktionsdefinition:
 
 ```python
 # Ein einfacher Rechner
@@ -87,8 +89,8 @@ def addiere(a, b):
 
 ```
 
-Erstellen Sie die Datei `calculator.py` mit dem obigen Inhalt.
-Führen sie doch mal `git status` aus. 
+Erstellen Sie die Datei `calculator.py` mit dem obigen Inhalt und schauen Sie sich nochmal den 
+Status an.
 
 ```
 On branch master
@@ -108,8 +110,8 @@ scheint git aber *irgendwas* über diese Datei zu wissen, denn sie wird als "Unt
 angegeben.
 
 Aber weiß git auch was sich in dieser Datei befindet? Die letzte Zeile gibt uns einen kleinen 
-Hinweis. Git erfasst nämlich erst den Inhalt, wenn wir die Datei mit `git add` zum *Tracken* 
-markieren.
+Hinweis. Git erfasst bzw. beobachtet nämlich erst den Inhalt, wenn wir die Datei mit `git add` zum 
+*Tracken* markieren.
 
 Fügen Sie also jetzt die Datei der Staging-Area hinzu und prüfen Sie wieder den Status.
 Welche Veränderung stellen Sie fest?
@@ -118,22 +120,30 @@ Soweit die Praxis, jetzt wieder ein bisschen Theorie.
 Lesen Sie den Artikel [What really happens when I do git add.](https://medium.com/@raffs.
 os/what-really-happens-when-i-do-git-add-8af29c1ec903)
 
-Wir sollten jetzt ein Verständnis dafür haben, was der git-Index ist, was Objekte sind, welche 
-Objekttypen es gibt und was passiert, wenn wir mit `git add` eine Datei zum Index hinzufügen.
 Dazu ein paar Verständnisfragen:
 
-[EQ] Speichert git erst beim Commiten Änderungen an einer Datei, oder schon vorher?
+[EQ] Welche git-Objekte gibt es und was speichern Sie?
 [EQ] Wo speichert git die Metadaten über eine Datei und wo die Inhalte?
+[EQ] Speichert git erst beim Commiten Änderungen an einer Datei, oder schon vorher?
+[EQ] Wenn man Änderungen an einer Datei vornimmt, nachdem Sie dem git Index hinzugefügt wurde, muss 
+man diese Änderungen wieder dem Index hinzufügen damit Sie im Commit landen?
+
+[NOTICE]
+Wir erinnern uns an dieser Stelle nochmal an [PARTREF::git-Funktionsweise] wo wir ja bereits 
+festgestellt haben, dass git immer Snapshots speichert. Die Blob-Objekte sind nämlich genau das.
+[ENDNOTICE]
+
+Wir sollten jetzt ein Verständnis dafür haben, was der git-Index ist, was Objekte sind, welche 
+Objekttypen es gibt und was passiert, wenn wir mit `git add` eine Datei zum Index hinzufügen.
 
 Jetzt schauen wir uns einen neuen sehr nützlichen Befehl an, nämlich `git diff`.
-Was tut `git diff`? Rufen Sie doch nochmal die Dokumentation zum Befehl auf.
+Und was tut der? Rufen Sie doch nochmal die Dokumentation zum Befehl auf.
 
 Das ist richtig viel Stoff!
 Das meiste davon interessiert uns aber gar nicht.
 
-Es gibt jedoch einen Abschnitt, den wir uns mal ansehen sollten. Nämlich die *Examples*. Diese 
-befinden sich ganz am Ende der Dokumentation. Darin sehen wir, direkt zu Beginn, folgende paar 
-Beispiele:
+Es gibt jedoch einen Abschnitt, den wir uns mal ansehen sollten. Nämlich die *EXAMPLES*. Diese 
+befinden sich ganz am Ende der Dokumentation. Darin sehen wir, direkt zu Beginn, folgende Beispiele:
 
 ```
 EXAMPLES
@@ -159,8 +169,7 @@ EXAMPLES
 Das sieht doch schon um einiges Verständlicher aus. Aktuell interessiert uns nur Beispiel 1.
 Führen wir es doch mal aus und gucken was passiert.
 
-[EQ] Was gibt `git diff` jetzt und warum aus? (nichts, weil wir working tree und index 
-vergleichen und es keine veränderungen gibt)
+[EQ] Was gibt `git diff` jetzt aus und warum? 
 
 Erweitern wir nun unsere Additionsfunktion:
 
@@ -199,19 +208,16 @@ Wir können jetzt also folgendes feststellen:
    vorgemerkt haben.
 4. Git gibt uns hilfreiche Tips für Befehle welche wir evtl. gebrauchen könnten. 
 
-[EQ] Welche Befehle sind das und was tun sie?
+[EQ] Welche Befehle sind das und was tun sie? (Wenn Sie einen Befehl nicht kennen, denken Sie an 
+`git help`)
 
 Fügen Sie die Änderungen an der datei `calculator.py` ebenfalls der Staging-Area hinzu.
 
-[EQ] könnten wir jetzt nochmal zum vorherigen Status der Datei zurückkehren? (es kommt drauf an, 
-es gibt evtl. wege mit git fsck, aber grundsätzlich sollte man davon ausgehen, dass alles was 
-nicht commitet wurde weg ist, wenn es mit einem weitern git add in der staging area 
-überschrieben wird)
+[EQ] könnten wir jetzt nochmal zum vorherigen Status der Datei zurückkehren? 
 
 Als Letztes schnüren Sie alles zu einem neuen Commit mit einer sinnvollen Commit-Nachricht.
 
-[EQ] Was passiert nun im Hintergrund? (git sammelt alle referenzen zu den blobs und schnürt ein 
-neues commit-Objekt)
+[EQ] Was passiert nun im Hintergrund?
 
 Erweitern wir wieder unseren Taschenrechner, diesmal mit einer Funktionsdefinition für eine 
 Multiplikationsfunktion:
@@ -260,9 +266,7 @@ Zusatzfrage:
 ausgabe?
 
 [HINT::Ich stehe auf dem Schlauch, wo soll ich das denn finden?]
-Die Ausgabe von `git diff` gibt ihnen einen entscheidenden Hinweis.
-
-z.B.:
+Die Ausgabe von `git diff` gibt ihnen einen Hinweis:
 
 ```diff 
 diff --git a/ch/Werkzeuge/Git/git-102.md b/ch/Werkzeuge/Git/git-102.md
@@ -275,8 +279,10 @@ index 0000000..140f45f
 [ENDHINT]
 
 Jetzt wo wir unsere Multiplikation vollständig implementiert haben wollen wir wieder den 
-aktuellen Zustand festhalten. Fügen sie die verbleibenden Änderungen dem Index hinzu und erstellen 
+aktuellen Zustand festhalten. Fügen Sie die verbleibenden Änderungen dem Index hinzu und erstellen 
 Sie wieder einen Commit mit sinnvoller Nachricht. 
+
+Damit sind wir an dieser Stelle mit dem Großteil der Aufgabe fertig. 
 
 Schauen wir uns zuletzt noch ein weiteres nützliches Werkzeug etwas genauer an, `git log`.
 
@@ -314,28 +320,40 @@ Wir sehen:
 Aber man kann `git log` noch erweitern. Wenn Sie möchten, schauen Sie ruhig mal in die 
 Dokumentation. Dort werden Sie sicherlich *eine Menge* an Optionen finden.
 
-Zu Beginn gibt es aber lediglich ein paar wenige Optionen die wir Ihnen mit an die Hand geben. 
+Zu Beginn gibt es jedoch trotzdem ein paar Optionen, die wir Ihnen mit an die Hand geben möchten.
 
 Zum einen gibt es `--oneline` damit wird schlichtweg ein Commit auf eine einzelne Zeile 
 reduziert. Dies kann vor allem bei ganz viel Historie hilfreich sein.
-
-# datei logs
 
 Zum anderen gibt es `-p`, dadurch wird für jeden Commit ein sogenannter patch text erzeugt. Einfach 
 gesagt für jeden commit ein diff auf alle files. Streng genommen gibt es ein paar unterschiede zu 
 `git diff`, welche das genau sind, können sie in der `git log` Doku nachlesen. Für unsere Zwecke 
 sind die beiden Befehle in diesem fall aber vorerst mehr oder weniger synonym.
 
-[EQ] Gibt es weitere sinnvolle optionen? Recherchieren Sie!
+Manchmal ist es hilfreich sich alle Commits anzeigen zu lassen, in denen eine bestimmte Datei 
+verändert wird. Dazu kann man einfach an seinen `git log` Befehl den vollständigen Dateipfad 
+anhängen. So kann man sich z.b. mit `git log -p path/to/file` alle Veränderungen der Datei 
+`file` im Verzeichnis `path/to` anschauen.
+
+In größeren Repos ist es öfter nützlich mithilfe des Datums Commits zu suchen, dazu stellt `git 
+log` einige Befehle bereit, am häufigsten genutzt werden sicherlich `--until <date>, --before 
+<date>` oder `--since <date>, --after <date>` welche mehr oder weniger selbsterklärend sind. 
+
+Außerdem praktisch ist das suchen nach einem bestimmten Autor. Dafür gibt es `git log 
+--author="Jane Doe"` oer `git log --author=Jane` womit man entweder den gesamten oder nur einen 
+Teilstring matcht.
 
 [ENDSECTION]
 
 [SECTION::submission::trace]
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::wir prüfen das protokoll und die abgaben der teilnehmer auf verständnis]
-.
+
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
