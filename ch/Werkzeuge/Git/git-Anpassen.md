@@ -41,10 +41,10 @@ und im Internet nach weiteren interessanten Konfigurationen und Aliasen zu suche
 Bevor wir dazu kommen, werfen wir aber erstmal einen Blick auf unsere bestehende config. Das 
 machen wir ganz einfach mit dem Befehl `git config --global --list`.
 
-[EQ] Beschreiben Sie die Funktion der einzelnen Argumente des oben genannten `git config` Befehls 
+- [EQ] Beschreiben Sie die Funktion der einzelnen Argumente des oben genannten `git config` Befehls 
 und welche Ausgabe Sie in ihrem Terminal erhalten. 
-[EQ] Wann und wie haben wir diese Konfigurationseinstellungen gesetzt?
-[EQ] Kann man auch Repository-spezifische Einstellungen setzen? Wenn ja, wie macht man das?
+- [EQ] Wann und wie haben wir diese Konfigurationseinstellungen gesetzt?
+- [EQ] Kann man auch Repository-spezifische Einstellungen setzen? Wenn ja, wie macht man das?
 
 Nun, da wir gesehen haben wie wir unsere git Konfiguration betrachten können, schauen wir uns 
 mal ein paar erweiterte Befehle an. 
@@ -58,8 +58,8 @@ gleich mehrere Optionen zum dauerhaften Überschreiben der Standardauswahl. So l
 `core.editor` der Standardeditor für z.B. Commit-Nachrichten oder Rebasing anpassen und mit 
 `diff.tool` kann man ein externes Programm zum Betrachten von diffs festlegen.
 
-[EQ] Welchen Standardeditor verwenden Sie im Terminal und warum?
-[EQ] Welche alternativen diff-Tools gibt es?
+- [EQ] Welchen Standardeditor verwenden Sie im Terminal und warum?
+- [EQ] Welche alternativen diff-Tools gibt es?
 
 ## Globale .gitignore-Datei
 
@@ -70,7 +70,7 @@ Damit das nicht passiert bietet git den Befehl `core.excludesfile` an. Diese Opt
 Pfad zu einer globalen [PARTREF::git-ignore]-Datei entgegen und erlaubt automatisch bestimmte 
 Dateien in *allen* Repos zu ignorieren. 
 
-[EQ] Welche Dateien möchte man auf Windows und macOS *unbedingt* zur `core.
+- [EQ] Welche Dateien möchte man auf Windows und macOS *unbedingt* zur `core.
 excludesfile`-Einstellung hinzufügen?
 
 ## Windows und die Zeilenumbrüche
@@ -88,9 +88,9 @@ core.autocrlf=input
 core.eol=lf
 ```
 
-[EQ] Was tut `core.autocrlf` und warum setzen wir es auf `input`?
-[EQ] Was tut `core.eol` und warum setzen wir es auf `lf`?
-[EQ] Wie müssten die beiden Einstellungen aussehen, wenn wir ausschliesslich auf Windows-Systemen 
+- [EQ] Was tut `core.autocrlf` und warum setzen wir es auf `input`?
+- [EQ] Was tut `core.eol` und warum setzen wir es auf `lf`?
+- [EQ] Wie müssten die beiden Einstellungen aussehen, wenn wir ausschliesslich auf Windows-Systemen 
 arbeiten und dementsprechend `\r\n`-Zeilenenden haben wollen würden?
 
 ## Aliase
@@ -101,7 +101,7 @@ Ein nützliches Beispiel wollen wir uns nun anschauen:
 
 `alias.logll=log --pretty="%ad %<(10,trunc)%an %h %s" --date=format:%y%m%d`
 
-[EQ] Erklären sie was dieses Alias tut und probieren Sie es in ihrer eigenen git-Umgebung aus.
+- [EQ] Erklären sie was dieses Alias tut und probieren Sie es in ihrer eigenen git-Umgebung aus.
 
 ## config-example 5
 
