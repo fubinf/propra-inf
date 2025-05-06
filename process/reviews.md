@@ -34,7 +34,6 @@ We will modify these rules over time when others appear more useful.
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
-- ch/Sprachen/Python/py-Funktionale-Programmierung.md (SW)
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP)
 - ch/Sprachen/C/c-compiler-assembler-linker.md (KH)
 - ch/Sprachen/C/c-preprocessor.md (KH)
@@ -213,3 +212,5 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
 
 
 ## Reviews to do for Sven Wegner
+
+- ch/Sprachen/Python/py-Funktionale-Programmierung.md (SW->LP->SW)

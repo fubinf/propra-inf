@@ -17,15 +17,14 @@ und kann sie verwenden, um meine Codequalität zu verbessern.
 Python ist eine Multi-Paradigmen-Sprache, das heißt neben prozeduralen und objektorientierten 
 Programmierparadigmen beherrscht Python auch einige Möglichkeiten, um funktionale Programme zu 
 schreiben.
-Auch wenn funktionale Programmierung nicht zwingend notwendig ist, um gute Programme zu 
-schreiben, kann es von Vorteil sein, die Grundlagen zu kennen, um z.B. an passenden 
-Stellen "eleganteren" Code zu schreiben. 
+Mit funktionaler Programmierung ist es einfacher, korrekten Code zu schreiben und auch einfacher,
+diesen Code zu testen.
 Daher schauen wir uns hier ein paar der Werkzeuge und Built-in Funktionen an, um Python-Code im 
 funktionalen Programmierstil zu schreiben.
 
 [NOTICE]
 Auch wenn Python diese und weitere Werkzeuge unterstützt, bleibt es vorwiegend eine 
-imperative Sprache. Ziel der Aufgabe ist es als nicht, rein funktionale Programme zu schreiben 
+imperative Sprache. Ziel der Aufgabe ist es also nicht, rein funktionale Programme zu schreiben 
 (Schleifen und Variablenzuweisungen sind hier also weiter erlaubt).
 [ENDNOTICE]
 
@@ -42,12 +41,12 @@ womöglich, was funktionale Programmierung überhaupt ist und wozu es gut sein s
 
 - [EQ] Lesen Sie die Einleitung vom 
   [Artikel über funktionale Programmierung in Python](https://docs.python.org/3/howto/functional.html). 
-  Nennen und beschreiben Sie kurz einige der Vorteile von funktionaler Programmierung, die im 
-  Artikel genannt werden.
+  Nennen und beschreiben Sie kurz die zwei aus Ihrer Sicht wichtigsten Vorteile von funktionaler Programmierung, 
+  die im Artikel genannt werden.
 
 Überfliegen Sie anschließend auch den Rest des Artikels. 
 Die einzelnen Abschnitte enthalten Erklärungen zu den in den folgenden Aufgaben behandelten 
-Werkzeugen und können Ihnen bei der Bearbeitung der Aufgaben nützlich sein.
+Werkzeugen und helfen zur Bearbeitung der Aufgaben.
 
 ### Lambda-Funktionen
 
@@ -55,20 +54,19 @@ Funktionen sind, wie der Name schon sagt, die Basis funktionaler Programmierspra
 Typischerweise unterteilt man in funktionaler Programmierung ein Problem in kleinere 
 Teilprobleme und löst diese unabhängig in eigenen Funktionen, die sich meist wiederum in 
 Funktionen unterteilen (Teile-und-Herrsche-Verfahren, divide and conquer). 
-Als Ergebnis erhält man eine umfangreiche Sammlung an Funktionen, die man auch in anderen 
-Projekten einfach wiederverwenden kann.
+Als Ergebnis erhält man eine umfangreiche Sammlung an Funktionen, die man immer mal auch in anderen 
+Projekten wiederverwenden kann.
 
 Nicht immer will man aber eine Funktion global definieren, z.B. wenn es nicht sinnvoll ist, sie 
 außerhalb des Kontexts wiederzuverwenden oder die Definition länger ist, als der Code, den sie 
 ausführen soll.
 Für den Fall kann man Lambda-Funktionen (auch genannt anonyme Funktionen) definieren. 
-Das sind kleine, einzeilige Funktionen, die simple Probleme lösen können.
-Dafür sind sie allerdings in ihrer Komplexität eingeschränkt und können keine 
-mehrzeiligen Anweisungen beinhalten.
+Das sind kleine Funktionen, die nur aus einem einzigen Ausdruck bestehen dürfen,
+und also keine Anweisungen wie z.B. Zuweisung, `if`-Anweisung oder Schleife benutzen können.
 
-Ob man Lambda-Funktionen verwenden sollte, ist meistens eine Stilfrage: richtig eingesetzt können 
+Ob man Lambda-Funktionen verwenden sollte, ist eine Stilfrage: richtig eingesetzt können 
 sie den Code übersichtlicher gestalten, aber auch den gegenteiligen Effekt haben, z.B. wenn man 
-versucht, zu viel innerhalb einer Zeile unterzubringen.
+versucht, zu viel darin unterzubringen.
 
 - [ER] Schreiben Sie eine Lambda-Funktion, die berechnet, ob sich eine Zahl ganzzahlig durch 
   eine andere teilen lässt. Testen Sie die Funktion folgendermaßen:  
