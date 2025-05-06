@@ -54,7 +54,7 @@ to read about a specific subcommand or concept.
 Wir wollen jetzt lernen, was git init tut. Führen Sie also den `git help` Befehl für `git init` 
 aus und beantworten Sie: 
 
-[EQ] Was macht der Befehl `git init`? Referenzieren Sie hierbei die git Hilfe und vor allem die 
+- [EQ] Was macht der Befehl `git init`? Referenzieren Sie hierbei die git Hilfe und vor allem die 
 Teile, die Sie verstehen.
 
 [NOTICE]
@@ -71,10 +71,10 @@ In der Dokumentation zu `git init` werden ihnen sicherlich der `.git` Ordner sow
 aufgefallen sein. Damit wir verstehen, wozu diese da sind, lesen wir den Abschnitt [Creating a Git 
 repository](https://git-scm.com/docs/gitcore-tutorial) im `gitcore-tutorial`.
 
-[EQ] Was befindet sich im verzeichnis `objects`?
-[EQ] Wie werden git-Objekte referenziert? 
-[EQ] Wie heisst der default Branch von git? Kann ich diesen umbenennen und brauche ich ihn 
-überhaupt?
+- [EQ] Was befindet sich im verzeichnis `objects`?  
+- [EQ] Wie werden git-Objekte referenziert?  
+- [EQ] Wie heisst der default Branch von git? Kann ich diesen umbenennen und brauche ich ihn 
+überhaupt?  
 
 Nun haben wir also ein neues und sauberes git Repo und haben verstanden, was sich bis dato darin 
 befindet. Jetzt wollen wir den aktuellen Zustand unseres Repos betrachten. Dafür gibt es den 
@@ -124,11 +124,11 @@ os/what-really-happens-when-i-do-git-add-8af29c1ec903)
 
 Dazu ein paar Verständnisfragen:
 
-[EQ] Welche git-Objekte gibt es und was speichern Sie?
-[EQ] Wo speichert git die Metadaten über eine Datei und wo die Inhalte?
-[EQ] Speichert git erst beim Commiten Änderungen an einer Datei, oder schon vorher?
-[EQ] Wenn man Änderungen an einer Datei vornimmt, nachdem sie dem git Index hinzugefügt wurde, muss 
-man diese Änderungen wieder dem Index hinzufügen, damit Sie im Commit landen?
+- [EQ] Welche git-Objekte gibt es und was speichern Sie?  
+- [EQ] Wo speichert git die Metadaten über eine Datei und wo die Inhalte?  
+- [EQ] Speichert git erst beim Commiten Änderungen an einer Datei, oder schon vorher?  
+- [EQ] Wenn man Änderungen an einer Datei vornimmt, nachdem sie dem git Index hinzugefügt wurde, muss 
+man diese Änderungen wieder dem Index hinzufügen, damit Sie im Commit landen?  
 
 [NOTICE]
 Wir erinnern uns an dieser Stelle nochmal an [PARTREF::git-Funktionsweise] wo wir ja bereits 
@@ -171,7 +171,7 @@ EXAMPLES
 Das sieht doch schon um einiges Verständlicher aus. Aktuell interessiert uns nur Beispiel 1.
 Führen wir es doch mal aus und gucken, was passiert.
 
-[EQ] Was gibt `git diff` jetzt aus und warum? 
+- [EQ] Was gibt `git diff` jetzt aus und warum?   
 
 Erweitern wir nun unsere Additionsfunktion:
 
@@ -210,16 +210,16 @@ Wir können jetzt also Folgendes feststellen:
    vorgemerkt haben.
 4. Git gibt uns hilfreiche Tips für Befehle welche wir evtl. gebrauchen könnten. 
 
-[EQ] Welche Befehle sind das und was tun sie? (Wenn Sie einen Befehl nicht kennen, denken Sie an 
+- [EQ] Welche Befehle sind das und was tun sie? (Wenn Sie einen Befehl nicht kennen, denken Sie an 
 `git help`)
 
 Fügen Sie die Änderungen an der datei `calculator.py` ebenfalls der Staging-Area hinzu.
 
-[EQ] könnten wir jetzt nochmal zum vorherigen Status der Datei zurückkehren? 
+- [EQ] könnten wir jetzt nochmal zum vorherigen Status der Datei zurückkehren? 
 
 Als Letztes schnüren Sie alles zu einem neuen Commit mit einer sinnvollen Commit-Nachricht.
 
-[EQ] Was passiert nun im Hintergrund?
+- [EQ] Was passiert nun im Hintergrund?
 
 Erweitern wir wieder unseren Taschenrechner, diesmal mit einer Funktionsdefinition für eine 
 Multiplikationsfunktion:
@@ -256,15 +256,13 @@ können.
 Schauen Sie sich also wieder die Beispiele in der `git diff` Dokumentation und probieren Sie 
 folgende Szenarios durch:
 
-[EC] Vergleichen Sie den aktuellen Zustand der Datei mit den bereits vorgemerkten Änderungen. 
-(`git diff`)
-[EC] Vergleichen Sie die vorgemerkten Änderungen mit dem letzten Commit-Zustand. (`git diff 
---cached`)
-[EC] Vergleichen Sie den aktuellen mit dem letzten Commit-Zustand. (`git diff HEAD`)
+- [EC] Vergleichen Sie den aktuellen Zustand der Datei mit den bereits vorgemerkten Änderungen.  
+- [EC] Vergleichen Sie die vorgemerkten Änderungen mit dem letzten Commit-Zustand.  
+- [EC] Vergleichen Sie den aktuellen mit dem letzten Commit-Zustand.  
 
 Zusatzfrage:
 
-[EQ] Git speichert ja eigentlich nur Snapshots der Dateien, wie erzeugt es dann also die diff 
+- [EQ] Git speichert ja eigentlich nur Snapshots der Dateien, wie erzeugt es dann also die diff 
 ausgabe?
 
 [HINT::Ich stehe auf dem Schlauch, wo soll ich das denn finden?]
