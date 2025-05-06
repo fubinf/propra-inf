@@ -87,6 +87,9 @@ Sonderdateien:
 - Tasks so benennen, wie es sich aus authors.md 1.14 ergibt:
   https://sedrila.readthedocs.io/en/latest/authors/#114-naming-conventions  
   Erwähnungen an anderen Stellen mit ändern!
+- `[SECTION::background::default]` ändern in `[SECTION::motivation::default]`,
+  denn so wollen wir es mittlerweile ausschließlich verwenden. 
+  Makro anpassen, Doku anpassen, alle Exemplare prüfen.
 - Die Anwendung der Regeln für den Sprachgebrauch prüfen/nachziehen
   wie in `how-to.md` beschrieben.
 - Das Glossar durchsehen:
