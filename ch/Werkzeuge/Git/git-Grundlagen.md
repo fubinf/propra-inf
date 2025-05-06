@@ -1,5 +1,5 @@
 title: git-Grundlagen
-stage: draft
+stage: alpha
 timevalue: 2
 difficulty: 3
 explains:
