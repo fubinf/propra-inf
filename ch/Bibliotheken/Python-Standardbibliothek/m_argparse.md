@@ -57,7 +57,7 @@ Bauen Sie nun einen `ArgumentParser`, der folgende Kommandosyntax verarbeiten ka
 (was auch immer das bedeuten soll; das soll uns hier egal sein)
 wobei die flags auch als `-c`, `-m` oder `--depth` oder `-d`, `-b` abgekürzt werden können.  
 `configfile` hat den Standardwert `argparse.config`,
-`N` hat den Standardwert `1`.  
+`N` ist eine Zahl mit Standardwert `1`.  
 `file...` ist eine Liste von 1 oder mehr Dateinamen.
 
 [ENDSECTION]
