@@ -23,13 +23,13 @@ um die nachfolgenden Aufgaben zu lösen:
 
 ### Ein erfolgreicher Test
 
-- Legen Sie die Datei `unittests/test_unittest.py` an.
+- Legen Sie die Datei `test_unittest.py` an.
 - [ER] Schreiben Sie darin einen Test `test_addition`, der sicherstellt, dass `1+1` gleich `2` ist.
   Bilden Sie die Struktur der Testklasse wie in "Basic example" beschrieben.
-- Lassen Sie den Teil mit `__name__ == '__main__` weg, diese Struktur wird nicht benötigt.
+- Lassen Sie den Teil mit `__name__ == '__main__'` weg, diese Struktur wird nicht benötigt.
 - [EC] Lassen Sie den Test laufen wie bei "Command-Line Interface" beschrieben.
 - [EQ] Was bedeutet vermutlich der Punkt in der ersten Zeile der Ausgabe?
-- [EC] Machen Sie einen Commit von `unittests/test_unittest.py`.  
+- [EC] Machen Sie einen Commit von `test_unittest.py`.  
   `git -P show HEAD`
 
 
@@ -44,14 +44,14 @@ um die nachfolgenden Aufgaben zu lösen:
 - Verstehen Sie sorgfältig die gesamte Ausgabe. 
   Sie fällt bei realer Software (wo es eine Verschachtelung von Aufrufen des Anwendungscodes gibt)
   um einiges komplizierter aus und beschreibt recht präzise den Fehlerort und das Symptom.
-- [EC] Machen Sie einen Commit von `unittests/test_unittest.py`.  
+- [EC] Machen Sie einen Commit von `test_unittest.py`.  
   `git -P show HEAD`
 - `test_sqrt` wird ja stets fehlschlagen, was die Ausgabe verwirrend macht.
   Schauen Sie das Inhaltsverzeichnis der Dokumentation nach diesem Thema durch.
   Markieren Sie den Test mit dem passenden Dekorierer von `unittest` als hoffnungslosen Fall.
 - [EC] Lassen Sie beide Tests laufen.
 - [EQ] Was bedeutet offenbar die Änderung in der ersten Zeile der Ausgabe?
-- [EC] Machen Sie einen Commit von `unittests/test_unittest.py`.  
+- [EC] Machen Sie einen Commit von `test_unittest.py`.  
   `git -P show HEAD`
 
 
@@ -70,6 +70,8 @@ um die nachfolgenden Aufgaben zu lösen:
   in dessen Dokumentation angekündigte Exception erzeugt.
   Wählen Sie einen beschreibenden Namen für den Test.
 - [EC] Lassen Sie alle drei Tests laufen.
+- [EC] Machen Sie einen Commit von `test_unittest.py`.  
+  `git -P show HEAD`
 
 [ENDSECTION]
 [SECTION::submission::trace]
@@ -81,7 +83,7 @@ um die nachfolgenden Aufgaben zu lösen:
 [ENDSECTION]
 [INSTRUCTOR::Kommandoprotokoll und Markdown prüfen]
 
-- Ausführung 1: Aufruf mit `python -m unittest unittests/test_unittest.py`, nicht implizit.
+- Ausführung 1: Aufruf mit `python -m unittest test_unittest.py`, nicht implizit.
 - Commit 1: Aufruf `unittest.main()` sollte nicht dabei sein.
 - Commit 2: Sinnvoller Klassenname ist z.B. `TestArithmetic` oder etwas Ähnliches.
 - Markdown: Die Ausgaben bedeuten: `.`:Erfolgreicher Testfall. `F`:failure. `x`:expected failure.
