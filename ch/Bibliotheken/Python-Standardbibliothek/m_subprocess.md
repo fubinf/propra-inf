@@ -37,7 +37,7 @@ interaktive bash-Shells gerade laufen.
 
 Das kann man (wenn auch nicht ganz zuverlässig) mit dem Kommando `ps aux` herausbekommen.
 `ps` listet auf Unix-Systemen Prozesse auf; jede Ausgabezeile beschreibt einen Prozess.
-Alle Ausgabezeilen von `ps aux`, die auf " -bash" enden, zeigen eine interaktive
+Ausgabezeilen von `ps aux`, die auf "bash" enden, zeigen (meist) eine interaktive
 bash-Shell an.
 
 - [EC] Probieren Sie `ps aux` aus.
@@ -58,7 +58,7 @@ bash-Shell an.
   Wir brauchen `args`, `stdout` und `shell`.
 - Nun haben wir in `out` die Ausgabe des Kommandos.
 - [ER] Die lesen wir nun zeilenweise durch,
-  suchen darin alle Zeilen, für die gilt `endswith(b" -bash")`, und zählen sie.
+  suchen darin alle Zeilen, für die gilt `endswith(b"bash")`, und zählen sie.
 - [ER] Das Ergebnis geben wir mit `print` aus. 
 
 Das war's schon!
@@ -115,6 +115,6 @@ das kann man z.B. für die Aufgabe [PARTREF::mlh-gitac] gebrauchen.
 [ENDSECTION]
 
 [INSTRUCTOR::Kurzer Blick auf das Programm]
-Das kann die Abfrage entweder als `line.endswith(b" -bash")` formulieren
+Das kann die Abfrage entweder als `line.endswith(b"bash")` formulieren
 oder die Ausgabe zunächst dekodieren und dann mit Strings weiterarbeiten.
 [ENDINSTRUCTOR]
