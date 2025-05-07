@@ -7,4 +7,6 @@
   korrekt angezeigt wird.
 - **2025-04-30**: Neue Aufgabe Werkzeuge/Unix-Basiswerkzeuge/[PARTREF::Unix-Links] freigegeben.  
   Neue Aufgabe Testen/Unittests/[PARTREF::pytest-Methodik-Blackbox] freigegeben.  
+- **2025-05-07**: Detailkorrekturen an Aufgaben [PARTREF::m_argparse], [PARTREF::m_unittest],
+  [PARTREF::m_json1], [PARTREF::m_subprocess]
 - ...
