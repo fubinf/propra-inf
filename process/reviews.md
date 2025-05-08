@@ -38,6 +38,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/C/c-preprocessor.md (KH)
 - ch/Sprachen/SQL/SQLView.md
 - ch/Sprachen/SQL/SQLBenutzerverwaltung.md
+- ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB->LP)
+- ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB->LP)
 
 ### Bibliotheken
 
@@ -87,8 +89,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ## Reviews to do for Ihar Brandes
 
 - ch/Sprachen/Go0/go-ide.md (IB->LP->IB)
-- ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB)
-- ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB)
 
 
 ## Reviews to do for Ivan Condric
