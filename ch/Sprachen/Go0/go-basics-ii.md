@@ -2,6 +2,7 @@ title: Weitere Grundlagen von Go
 stage: alpha
 timevalue: 3.5
 difficulty: 2
+explains: Slice (Golang)
 assumes: go-basics-i
 ---
 
@@ -49,6 +50,7 @@ func main() {
 ```
 
 Weitere Beispiele:
+
 ```go
 // Rückgabetyp ist string
 func convertIntToString(i int) string {
@@ -76,6 +78,7 @@ func(x int, y int) {
     return x * y
 }(4, 5)
 ```
+
 
 #### Benannte Rückgabewerte
 
@@ -111,6 +114,7 @@ func normalReturn() (int, error) {
 Es empfiehlt sich, benannte Rückgabewerte erst dann zu benutzen, wenn die Funktion ausreichend groß ist und/oder Dokumentation benötigt.
 Einerseits tragen die Parameternamen in der Rückgabesignatur zur Lesbarkeit bei; andererseits können leere `return`-Anweisungen verwirrend wirken.
 
+
 #### Variadische Funktionen
 
 Funktionen in Go können eine dynamische Anzahl von Parametern verarbeiten, was besonders nützlich ist, wenn die genaue Anzahl der Argumente zur Kompilierungszeit nicht bekannt ist. 
@@ -124,7 +128,8 @@ func receiveInts(xs ...int) {
 }
 ```
 
-Das ist äquivalent zur Verwendung eines Slices als Parameter:
+Das ist äquivalent zur Verwendung eines Slice als Parameter:
+
 ```go
 func receiveInts(xs []int) {
     for index, value := range xs {
@@ -134,6 +139,7 @@ func receiveInts(xs []int) {
 ```
 
 Für den Aufrufer gibt es jedoch einen Unterschied:
+
 ```go
 // Variadisch
 receiveInts(0, 1, 4, 9, 16, 25, 36, 49, 64)
@@ -142,6 +148,7 @@ receiveInts(0, 1, 4, 9, 16, 25, 36, 49, 64)
 receiveInts([]int{0, 1, 4, 9, 16, 25, 36, 49, 64})
 
 ```
+
 
 #### Funktionen höherer Ordnung
 
@@ -160,6 +167,7 @@ Diese Funktion nimmt zwei Parameter an: eine Zahl und eine Funktion, die ebenfal
 `operation` ist der Name der Funktion, und `func(int) int` ist ihre Signatur ("sie nimmt eine Zahl an und gibt eine Zahl zurück").
 
 Der Aufruf könnte so aussehen:
+
 ```go
 func square(i int) int {
     return i * i
@@ -172,6 +180,7 @@ func main() {
 ```
 
 oder mit einer anonymen Funktion:
+
 ```go
 func main() {
     squared := apply(4, func(i int) int { return i * i })
@@ -179,6 +188,7 @@ func main() {
 ```
 
 Oder man könnte die Funktion zuerst in einer Variable speichern (das ist zwar möglich, aber eher unkonventionell):
+
 ```go
 func main() {
     square := func(i int) int { return i * i }
@@ -187,6 +197,7 @@ func main() {
 ```
 
 Funktionen höherer Ordnung sind nützlich für die Erstellung flexibler und wiederverwendbarer Codebausteine.
+
 
 #### Ausprobieren
 
@@ -202,6 +213,7 @@ Funktionen höherer Ordnung sind nützlich für die Erstellung flexibler und wie
   Mit `reduce(0, func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise 
   die Summe der Ganzzahlen berechnet werden.
 - [ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
+
 ```go
 func testFunctions() {
     fmt.Println(divide(5, 2))
@@ -311,6 +323,7 @@ mark.Print()
 - [ER] Implementieren Sie eine neue Methode `Print` auf `Employee`, die nicht nur 
   den vollständigen Namen auf die Kommandozeile ausgibt, sondern auch die `Position`.
 - [ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
+
 ```go
 func testStructs() {
     e := Employee{
@@ -399,6 +412,7 @@ Das ist jedoch nicht nötig, da Go eine solche Umwandlung automatisch durchführ
 - [ER] Implementieren Sie eine Methode auf `Employee` — `Promote(newPosition string)`. 
        Diese soll die ursprüngliche Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
 - [ER] Kopieren Sie die folgende Testfunktion in Ihre Datei um und rufen Sie sie ebenfalls aus der `main`-Funktion auf:
+
 ```go
 func testMutation() {
     e := Employee{
@@ -415,6 +429,7 @@ func testMutation() {
     e.Print()
 }
 ```
+
 
 ### Referenz- und Werttypen
 
@@ -436,6 +451,7 @@ Alle Werttypen teilen sich folgende Eigenschaften:
 
 Nun betrachten wir Arrays, Slices und Maps detaillierter aus der Perspektive von Wert- und Referenztypen.
 
+
 ### Array
 
 Ein Array ist ein Werttyp, der eine Sammlung von Einträgen darstellt, wo alle Einträge zum gleichen Typ gehören und die Größe fest ist.
@@ -449,12 +465,14 @@ fmt.Println(arr, anotherArr)        // [0 0 0 0 0] [42 0 0 0 0]
 
 Reine Arrays werden in Go relativ selten verwendet, daher konzentrieren wir uns auf Slices.
 
+
 ### Slice
 
 Slices bauen immer auf Arrays auf. 
-Ein Slice ist eine "View" bzw. eine Sicht in das zugrundeliegende Array, und ist somit ein Referenztyp.
+Ein [TERMREF::Slice (Golang)] ist eine "View" bzw. eine Sicht in das zugrundeliegende Array, und ist somit ein Referenztyp.
 
-Das ist die Laufzeitdarstellung eines Slices (`go/src/runtime/slice.go`):
+Das ist die Laufzeitdarstellung eines Slice (`go/src/runtime/slice.go`):
+
 ```go
 type slice struct {
     array unsafe.Pointer
@@ -476,7 +494,7 @@ Ein oder mehrere Elemente in einen Slice einfügen: [append.](https://pkg.go.dev
 Slices können entweder eigenständig erstellt werden oder als eine Sicht in ein existierendes Array:
 
 ```go
-sl := make([]int, 4)            // Typ und initiale Größe eines Slices
+sl := make([]int, 4)            // Typ und initiale Größe eines Slice
 
 sl := []int{0, 1, 2, 3, 4}      // direkter Slice mit Werten
 
@@ -494,6 +512,7 @@ fmt.Println(arr)                // [0 8 2 3 4]
 ```
 
 Ein weiteres Beispiel:
+
 ```go
 arr := [5]int{0, 1, 2, 3, 4}
 
@@ -513,6 +532,7 @@ Ein solcher Slice verhält sich im Wesentlichen wie ein dynamisches Array:
 Sobald es versucht wird, zu einem vollen Slice der Größe _n_ ein anderes Element hinzuzufügen, wird ein neues Array der Größe _2n_ allokiert.
 
 [ENDNOTICE]
+
 
 ### Map
 
@@ -572,13 +592,14 @@ m := make(map[string]int)
 
 [ENDWARNING]
 
+
 ### Programmieren
 
 Implementieren Sie die folgenden Funktionen:
 
 * [ER] `func AddElement(slice []int, element, at int)` — ein Element an einem Index `at` in einen Slice einfügen;
   das Element, das vorher an dieser Stelle stand und alle nachfolgenden rücken eine Position nach rechts;
-* [ER] `func RemoveElement(slice []int, at int)` — ein Element an einem Index `at` entfernen und die Größe des Slices entsprechen anpassen.
+* [ER] `func RemoveElement(slice []int, at int)` — ein Element an einem Index `at` entfernen und die Größe des Slice entsprechen anpassen.
 * [ER] `func AddElementIfNotThere(m map[string]int, key string, value int)` — ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
 
 [ENDSECTION]
