@@ -49,9 +49,10 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Testen
 - ch/Testen/Unittests/python-Methodik-Whitebox.md (RR->LP)
-- ch/Testen/Unittests/pytest_mocking_freezegun.md (RR->DM->HA->LP->RR->LP->RR->LP) - leichte Überarbeitung
+- ch/Testen/Unittests/pytest_call (RR->LP->RR->LP->RR->LP) Als Vorbedingung für die Coverage Aufgaben.
+
 - ch/Testen/Unittests/pytest_mocking.md (RR->DM->HA->LP->RR->LP->RR->LP)
-- ch/Testen/Unittests/pytest_call (RR->LP->RR->LP->RR->LP)
+- ch/Testen/Unittests/pytest_mocking_freezegun.md (RR->DM->HA->LP->RR->LP->RR->LP) - leichte Überarbeitung
 
 ### Web
 
@@ -133,7 +134,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
   Ist aber jetzt schon mal beta.
 
 
-
 ## Reviews to do for Ronny Ruhe
 
 Ich schlage (nur aus dem Gedächtnis, das kann also teilweise unpassend sein)
@@ -148,9 +148,12 @@ Außerdem Methodik des Testfallentwurfs für Modultests mit Äquivalenzklassen, 
 Fehlerfällen, Whitebox/Strukturtest.  
 Einsatzfälle für Mocking: Fehlerfälle induzieren, schwergewichtige Kollaborateure loswerden.
 
+- ch/Testen/Unittests/testcoverage.md (RR->LP->RR) Thematik ggf. in pytest_plugin_testcoverage.md
+  aufnehmen
+- ch/Testen/Unittests/pytest_plugin_testcoverage.md (RR->LP->RR) Auf die Testmethoden und pytest_call
+  beziehen und weiterführen
+
 - ch/Testen/Unittests/pytest_fixtures.md (RR->LP->RR->LP->RR)
-- ch/Testen/Unittests/pytest_plugin_testcoverage.md (RR->LP->RR)
-- ch/Testen/Unittests/testcoverage.md (RR->LP->RR)
 - ch/Testen/Unittests/pytest103.md (Pietrak und RR->DM->LP->RR)
 - ch/Testen/Unittests/pytest201.md (RR->DM->LP->RR)
 - ch/Testen/Unittests/pytest202.md (RR->Müller->LP->RR)
