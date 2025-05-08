@@ -210,7 +210,7 @@ Den folgenden Code dürfen Sie nicht ändern!
 1. Die Test-Methoden müssen in der abgegebenen Quellcode-Datei unverändert bleiben;
 2. Sanity-Check, ob die Funktionen in der Tat das tun, was sie tun sollen und nicht nur das abdecken, was getestet wird.
 
-Quellcode siehe unter [TREEREF::interfaces.go]
+Quellcode siehe unter [TREEREF::go-interfaces.go]
 
 Kommandoprotokoll:
 [PROT::ALT:go-interfaces.prot]
