@@ -1191,6 +1191,16 @@ und sich dann immer wieder aufrufen lässt.
 Fasst mehrere Kommandos zu einem zusammen, ggf. auch mit Schleifen oder Fallunterscheidungen.
 [ENDTERM]
 
+[TERM::Slice (Golang)]
+Ein Slice in Go ist eine dynamische Datenstruktur, die eine veränderbare Sequenz von Elementen gleichen Typs repräsentiert. 
+Ein Slice besteht intern aus einem Zeiger auf ein zugrunde liegendes Array, einer Länge und einer Kapazität.
+Grundsätzlich ist ein Slice eine "View" in das zugrunde liegende Array, welche dieses verändern darf.
+Slices ermöglichen effizienten Zugriff auf Teilbereiche von Arrays und dienen als grundlegendes Werkzeug für die Verarbeitung von Datensammlungen in Go-Programmen. 
+Sie werden mit der Notation `[]T` deklariert, wobei `T` den Elementtyp darstellt.
+
+[HREF::https://go.dev/blog/slices-intro]
+[ENDTERM]
+
 [TERM::SOA|Start of Authority]
 Der SOA-Record (Start of Authority) ist ein essenzieller Ressourceneintrag im Domain Name System 
 (DNS), der die administrativen Parameter einer DNS-Zone definiert. Er dient als Kontrollzentrum 
