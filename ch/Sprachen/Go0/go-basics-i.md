@@ -1,6 +1,6 @@
 title: Grundlagen von Go im Kontext von Python
 stage: alpha
-timevalue: 2.5
+timevalue: 3.5
 difficulty: 2
 ---
 
@@ -50,6 +50,7 @@ Go bietet zwei Möglichkeiten an:
     Wenn `quellcode.go` mit `package main` beginnt, darf die Binärdatei ausgeführt werden.
    Dies geschieht mithilfe von `./binary`.
 
+
 ### Package/import
 
 Alle Quellcodedateien müssen einem **Paket** zugeordnet sein.
@@ -89,6 +90,7 @@ Pakete entsprechen der Verzeichnisstruktur eines Moduls: Gibt es in einem Modul 
 und `test`, so beginnen die Quellcodedateien in den Verzeichnissen entsprechend mit den Zeilen `package src`, `package utils` oder 
 `package test`.
 
+
 #### Was ist der Zweck?
 
 **Module** dienen der Versionierung und Nachverfolgung externer Abhängigkeiten eines Projekts.
@@ -101,6 +103,7 @@ Explizite Versionierung stellt sicher, dass Builds reproduzierbar sind.
   - Wiederverwendbarkeit erleichtern
 
 Meistens wird Ihr Projekt ein einziges Modul sein, welches mehrere Pakete enthält.
+
 
 #### Wie werden Module/Pakete importiert?
 
@@ -125,6 +128,7 @@ Hier gibt es zwei mögliche Fälle:
      importieren;
     - **oder** zuerst im Quellcode importieren (`import "github.com/username/module_name"`) und danach aus dem Root-Verzeichnis des Moduls `go get` ausführen. 
    So werden alle nötigen Bibliotheken automatisch heruntergeladen.
+
 
 ### Ausprobieren
 
@@ -168,6 +172,7 @@ Und jetzt im Root-Verzeichnis des lokalen Moduls folgende Befehle ausführen:
 [EC] `go run main.go`
 
 Die Ausgabe müsste "Hi from remote module!" sein.
+
 
 ### Variablen und primitive Datentypen
 
@@ -225,6 +230,7 @@ err = fmt.Errorf("some error")      // err != nil
 [NOTICE]
 
 Falls es sich um primitive Datentypen handelt, werden nur `int`, `float64` `string` und `bool` hergeleitet:
+
 ```go
 // kurze Schreibweise               // volle Schreibweise
 number := 42                        var number int = 42
@@ -234,6 +240,7 @@ truth := true                       var truth bool = true
 ```
 
 [ENDNOTICE]
+
 
 #### Konstanten
 
@@ -248,6 +255,7 @@ const Pi float64 = 3.1415926
 
 const pi float64  // --> error: Missing value in the const declaration
 ```
+
 
 #### Als Block deklarieren
 
@@ -266,6 +274,7 @@ var (
 )
 ```
 
+
 ### Kontrollstrukturen (if/switch/for)
 
 Kontrollstrukturen sind relativ ähnlich zu denen in Python, mit dem Unterschied: 
@@ -276,6 +285,7 @@ Alle Variablen, die in der Initialisierungsanweisung definiert wurden, sind nur 
 
 **Vorteil:** Begrenzung des Geltungsbereichs (Scoping). 
 Was in der Initialisierungsanweisung definiert wurde, darf nur in dem entsprechenden Ausdruck benutzt werden.
+
 
 ### if
 
@@ -290,6 +300,7 @@ if initialisation; condition {
 ```
 
 Beispiel:
+
 ```go
 // diese Funktion gibt zwei Werte zurück - ähnlich wie Funktionen in Python,
 // können Funktionen in Go ein "tuple" zurückgeben
@@ -299,6 +310,7 @@ if data, err := client.RequestData(); err != nil {
     fmt.Println("received data", data)
 }
 ```
+
 
 ### switch
 
@@ -315,9 +327,11 @@ default: fmt.Println("it's something different...")
 
 `if-elif-else`-Blöcke sind in der Regel flexibler; bei `switch` ist jedoch schneller zu erfassen, was da passiert.
 
+
 ### for
 
 Hier ist eine kurze Übersicht von for-Schleifen im Vergleich zu Python:
+
 
 #### Endlosschleife
 
@@ -334,7 +348,8 @@ while True:
     ...
 ```
 
-#### Eine C-artige-Schleife
+
+#### Eine C-artige Schleife
 
 ```go
 // Go
@@ -358,62 +373,115 @@ while i < 10:
     i += 1
 ```
 
-#### Iteration über Indizes einer Liste
+
+#### Das Schlüsselwort `range`
+
+Für Iterationen über Listen und Maps wird das Schlüsselwort `range` benutzt:
+
+```go
+for ... := range list/dict { ... }
+```
+
+Dieser Ausdruck erkennt automatisch, wie viele Rückgabewerte erwartet werden, und verhält sich unterschiedlich:
+
+- ein Rückgabewert: `range` gibt Index (bei Listen) oder Schlüssel (bei Maps) zurück;
+- zwei Rückgabewerte: `range` gibt Index und Wert (bei Listen) oder Schlüssel und Wert (bei Maps) zurück.
+
+
+#### Iteration über eine Liste
 
 ```go
 // Go
+
+// nur Indizes
 for index := range someList {
     ...
 }
-```
 
-```python
-# Python
-for index in range(len(someList)):
-    ...
-```
-
-#### Iteration über Indizes und Werte einer Liste
-
-```go
-// Go
+// Indizes und Werte
 for index, value := range someList {
     ...
 }
-``` 
 
-```python
-# Python
-for index, value in enumerate(someList):
-    ...
-```
-
-#### Iteration über Schlüssel-Wert-Paare eines Wörterbuchs (einer Hashtabelle)
-```go
-// Go
-for key, value := range someHashMap {
+// nur Werte — Index explizit ignorieren 
+for _, value := range someList {
     ...
 }
 ```
 
 ```python
 # Python
-for key, value in someHashMap.items():
+
+# nur Indizes
+for index in range(len(someList)):
+    ...
+
+# Indizes und Werte
+for index, value in enumerate(someList):
+    ...
+
+# nur Werte
+for value in someList:
     ...
 ```
+
+
+#### Iteration über eine Map (eine Hashtabelle/ein Wörterbuch)
+
+```go
+// Go
+
+// nur Schlüssel
+for key := range someHashMap {
+    ...
+}
+
+// Schlüssel und Werte
+for key, value := range someHashMap {
+    ...
+}
+
+// nur Werte — Schlüssel explizit ignorieren
+for _, value := range someHashMap {
+    ...
+}
+```
+
+```python
+# Python
+
+# nur Schlüssel
+for key in some_dict:
+    ...
+
+# Schlüssel und Werte
+for key, value in some_dict.items():
+    ...
+
+# nur Werte
+for value in some_dict.values():
+    ...
+```
+
 
 ### Typumwandlung
 
 Generell lässt sich diese Prozedur in Go sowie in Python folgendermaßen beschreiben: 
-_T(v)_ konvertiert den Wert _v_ zum Typen _T_. Das gilt vor allem für Zahlen.
+_T(v)_ konvertiert den Wert _v_ zum Typen _T_. Das gilt vor allem für Zahlen:
+
+```go
+var x int8 = 42
+y := int64(x)               // kein Problem
+
+var x int64 = 42
+y := int8(x)                // kann ein Problem werden
+```
 
 [WARNING]
 
-Das Problem: 
+Das Problem: 8 Bits können viel weniger Zahlen darstellen als 64 Bits.
 
-8 Bits können viel weniger Zahlen darstellen als 64 Bits.
-
-Falls ein `int64`-Wert zu einem `int8`-Wert umgewandelt wird, werden Zahlen aus dem Wertebereich von `int64` auf diese von `int8` abgebildet.
+Wenn ein `int64`-Wert zu einem `int8`-Wert umgewandelt wird, werden Zahlen aus dem Wertebereich von `int64` auf diese von `int8` abgebildet.
 Dabei ist nicht garantiert, dass es am Ende dieselbe Zahl ist, und Go schmeißt keinen Fehler.
 Das führt dazu, dass solche subtilen Über- oder Unterlauf-bezogenen Defekte doch in Ihrem Programm auftauchen können.  
 
@@ -426,6 +494,7 @@ Die Lösung:
 
 Eine Typumwandlung von einer Zeichenkette zu einer Zahl ist immer kniffelig und kann sowohl in Go als auch in Python 
 fehlschlagen.
+
 ```go
 // Go
 stringValue := "42"
@@ -436,6 +505,7 @@ if err != nil {
 ```
 
 Python-Äquivalent:
+
 ```python
 # Python
 stringValue = "42"
@@ -446,6 +516,7 @@ except ValueError as e:
 ```
 
 Eine umgekehrte Typumwandlung geschieht einfacher — es wird eine neue Zeichenkette erstellt:
+
 ```python
 # Python
 integerValue = 42
@@ -458,6 +529,7 @@ integerValue := 42
 stringValue := fmt.Sprintf("%d", 42)
 ```
 [`fmt.Sprintf()`](https://pkg.go.dev/fmt#pkg-functions) ist eine Formatierungsfunktion, deren Syntax stark von `printf` in C inspiriert wurde.
+
 
 ### Programmierung
 
@@ -502,19 +574,23 @@ Viel Erfolg!
    Kreieren Sie in den Verzeichnissen entsprechend zwei Dateien — `validator.go` und `converter.go`.
    Die Dateien müssen jeweils mit `package validator` und `package converter` anfangen.
 3. [ER] `validator.go`-Vorlage:
+
 ```go
 [INCLUDE::snippets/go-basics-validator.go]
 ```
 4. [ER] `converter.go`-Vorlage:
+
 ```go
 [INCLUDE::snippets/go-basics-converter.go]
 ```
 5. [ER] `grade_converter.py` als Referenz
+
 ```python
 [INCLUDE::snippets/go-basics-grades.py]
 ```
 6. [ER] Kopieren Sie die `fake_csv` Zeichenkette als Konstante in Ihr Go-Programm und implementieren Sie die gewünschte Funktionalität. 
    `fake_csv` muss gleich bleiben.
+
 
 ### Testen
 
