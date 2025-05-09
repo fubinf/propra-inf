@@ -193,6 +193,13 @@ Yaml-Datei seinen Dienst ausnimmt.
 
 - [ER] Erstellen Sie eine Flake8-Lintingüberprüfung.
 
+Da wir lediglich Informationen über unsere Codequalität haben wollen und kein wirkliches
+[TERMREF::Gate] - uns fehlen dazu definierte Code-Vorgaben - wollen wir diesen Schritt
+unabhängig des Ergebnisses auf _bestanden_ setzen.
+
+- [ER] Probieren Sie aus, wie sie die Option `continue-on-error: true` für das Liniting verwenden
+  können.
+
 ### Reflektion
 
 - [EQ] Wie empfanden Sie die Ergänzung des flake8-task?
