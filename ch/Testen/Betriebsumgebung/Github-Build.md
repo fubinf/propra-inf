@@ -33,7 +33,7 @@ Den lernen wir hier kennen.
 Wir schauen uns an, wie man automatisierte Tests mit GitHub Action so bereitstellen kann,
 dass sie bei jedem neuen `git push` von allein starten und Rückmeldung geben.
 
-Für [TERMREF::Unit Test:-s] ist das einfach. Wir betrachten hier den komplizierteren Fall und
+Für [TERMREF::Unit Test] ist das einfach. Wir betrachten hier den komplizierteren Fall und
 starten unsere Webanwendung, damit man Ende-zu-Ende-Tests über den Webserver
 machen kann; diese Tests rufen wir hier aber noch gar nicht auf, sondern ergänzen sie
 später in der Aufgabe [PARTREF::Github-Build2].

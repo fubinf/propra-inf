@@ -54,7 +54,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Testen/Unittests/pytest_mocking.md (RR->DM->HA->LP->RR->LP->RR->LP)
 - ch/Testen/Unittests/pytest_mocking_freezegun.md (RR->DM->HA->LP->RR->LP->RR->LP) - leichte Überarbeitung
 
-- ch/Testen/Betriebsumgebung/GitHub-Build.md (RR->LP->RR)
+- ch/Testen/Betriebsumgebung/GitHub-Build.md (RR->LP->RR->LP)
+- ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP->RR->LP)
 
 ### Web
 
@@ -180,8 +181,6 @@ Typische Sorten von Tests: REST-APIs, Charakterisierungstests, ...
 ### Welle 3 oder sobald nötig
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->LP)
 - ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
-- ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP->RR)  
-  Bitte erst die requires-Voraussetzung GitHub-Build fertig machen.
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
 - ch/Sprachen/SQL/SQLBasic.md (RR->HA->LP->RR)  
   Bitte verfrachten Sie den allgemeinen Teil von Background ins Glossar.

@@ -88,6 +88,13 @@ Der konkrete Wert, den man an einen [TERMREF::Parameter] übergibt,
 z.B. in Form einer konkreten Variable.
 [ENDTERM]
 
+[TERM::Artefakt|Artifact]
+Dabei handelt es sich um eine Datei oder eine Sammlung von Dateien,
+die während eines Workflows erstellt werden und die für spätere Schritte oder für die Analyse nach
+der Ausführung des Workflows verwendet werden können. Beispiele sind: Build-Ausgaben (Binärdateien
+oder sogar vollständige [TERMREF::Release]-Versionen), Testberichte oder auch Dokumentationen
+[ENDTERM]
+
 [TERM::ASCII]
 Der American Standard Code for Information Interchange, kurz ASCII, ist ein 
 Zeichenkodierungsstandard, der Zahlen den Buchstaben des englischen Alphabets, Satzzeichen und 
@@ -479,7 +486,7 @@ Das heute mit weitem Abstand verbreitetste
 [Versionsverwaltungssystem](https://de.wikipedia.org/wiki/Versionsverwaltung).
 [ENDTERM]
 
-[TERM::GitHub|github|github.com]
+[TERM::GitHub|github|Github|github.com]
 GitHub ([HREF::https://github.com]) ist ein Dienst, der Zusammenarbeitsfunktionen bereitstellt, 
 mit denen Teams ihre Arbeit auf Basis von [TERMREF::Git] organisieren können.
 Für öffentliche Repositories ist GitHub seit jeher gratis.
@@ -1120,6 +1127,13 @@ dass früher funktionierende Teile einer Software nach einer Änderung weiterhin
 funktionieren und somit unerwünschte Seiteneffekte schnellstmöglich erkannt werden.
 [ENDTERM]
 
+[TERM::Release]
+In der Softwareentwicklung bezieht sich der Begriff Release auf die Veröffentlichung einer
+bestimmten Version einer Softwareanwendung oder eines Softwareprodukts. Dabei ist ein Release stets
+eindeutig zu kennzeichnen. Das wird mir einer Release-[TERMREF::Versionsnummer] durchgeführt.
+Aber auch Releasebezeichner wie Alpha, Beta oder Stable-Version sind gängige praxis.
+[ENDTERM]
+
 [TERM::REPL]
 REPL steht für eine "Read-Eval-Print-Loop", also das wiederholte Ausführung vom Auslesen einer
 Eingabe des Benutzers, der Auswertung dieser Eingabe und dem Ausgeben des Ergebnisses.  
@@ -1543,6 +1557,14 @@ Anforderungen erfüllt worden sind.
 Falsches Verhalten eines Programms relativ zur
 Spezifikation, der Anforderung oder den Erwartungen.
 Ist ein Symptom eines [TERMREF2::Defekt::-s].
+[ENDTERM]
+
+[TERM::Versionsnummer|Versionierung]
+Versionsnummern folgen in der Regel einem bestimmten Schema, das je nach den Anforderungen des
+Projekts und den Praktiken des Entwicklungsteams variieren kann. Ein gängiges und weit
+verbreitetes Schema ist das MAJOR.MINOR.PATCH-Schema. Gemeinsam haben aber alle, dass sie
+Entwicklern und Benutzern ermöglichen, den Entwicklungsstand und die Stabilität einer
+Softwareanwendung aufgrund ihrer Eindeutigkleit schnell erkennen.
 [ENDTERM]
 
 [TERM::Validierung]

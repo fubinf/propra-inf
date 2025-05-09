@@ -1,6 +1,6 @@
 title: GitHub Action - Unittests in der Pipeline
 stage: alpha
-timevalue: 1.0
+timevalue: 1.5
 difficulty: 3
 assumes: m_pytest, tdd, tdd_pp, testcoverage
 requires: Github-Build
@@ -19,232 +19,106 @@ werden und eine Rückmeldung geben. Hier schauen wir uns an, wie es grundlegend
 funktioniert.
 
 [ENDSECTION]
-[SECTION::instructions::detailed]
+[SECTION::instructions::loose]
 
 ### Stage einbinden
 
 Wir haben in unserer Übung [PARTREF::Github-Build] einen Workflow erstellt, der jetzt
-um einen Unittest erweitert werden soll. Dieser Unittest soll vor dem Starten der Anwendung
-ausgeführt werden und sicherstellen, dass die folgenden Schritte nicht ausgeführt werden,
-wenn diese Phase fehlschlägt.
+um eine Unittestausführung erweitert werden soll.
+Dieser Unittest soll vor dem Starten der Anwendung ausgeführt werden und sicherstellen, dass die
+folgenden Schritte nicht ausgeführt werden, wenn diese Phase fehlschlägt.
 Fügen Sie dazu folgenden Abschnitt in die `sut.yaml` ein:
 
 ```yaml
+# filepath: .github/workflows/sut.yaml
     - name: Run Unittest
       run: |
         cd v1.0.0
-        python tests/pytests/app_tests.py
-      continue-on-error: true
+        python -m pytest tests/pytests/app_test.py
 ```
 
 - [ER] Wie sieht Ihre `sut.yaml` aus?
 - [EQ] Welchen Status hat Ihre Pipeline nach Ihrem Commit?
 
+[HINT::Pipeline-Status]
+
+1. Gehen Sie in Ihrem GitHub-Repository auf den Tab "Actions".
+2. Wählen Sie den entsprechenden Workflow aus.
+3. Klicken Sie auf den letzten Durchlauf, um die Logs und den Status der einzelnen Schritte einzusehen.
+[ENDHINT]
+
+### Fehlerstatus betrachten
+
 Wir wollen im folgenden einen Fehlerstatus betrachten.
-Ändern Sie dazu den zuvor eingefügten Abschnitt um in:
 
-```yaml
-    - name: Run Unittest
-      run: |
-        cd v1.0.0
-        python tests/pytests/app_tests2.py
-      continue-on-error: true
-```
-
-- [EQ] Welche Fehlermeldung erscheint im Durchlauf `Run Pytests` und wie kann das Problem behoben
+- [EQ] Welche Fehlermeldung erscheint im Durchlauf `Run Unittest` und wie kann das Problem behoben
   werden?
-- [ER] Beseitigen Sie selbstständig das Problem durch Korrigieren der `sut.yaml` Datei.
 
-Jetzt wollen wir unsere Code Coverage automatisiert messen.
+Beseitigen Sie selbstständig ggf. weitere Probleme.
 
-- [ER] Ergänzen Sie selbstständig einen Step zur automatisierten Analyse der aktuellen Code Coverage mit
-  Hilfe von `coverage`.
+- [EQ] Welche Dateien haben Sie wie angepasst?
+
+[HINT::Fehleranalyse]
+Wenn die Pipeline fehlschlägt, klicken Sie auf den entsprechenden Workflow-Durchlauf in GitHub Actions.
+Dort können Sie die Logs der einzelnen Schritte einsehen.
+Suchen Sie nach Fehlermeldungen oder Hinweisen, die auf das Problem hinweisen,
+z. B. fehlende Dateien, falsche Pfade oder Syntaxfehler.
+[ENDHINT]
+
+[HINT::Pfad]
+Werfen Sie einen Blick in das Repository; betrachten Sie insbesondere die Testdatei.
+[ENDHINT]
+
+### Code Coverage automatisieren
+
+Jetzt wollen wir unsere Code Coverage automatisiert messen, um Entwicklern vermitteln zu können,
+wie viel ihres Codes durch Tests abgedeckt ist und Bereiche, die möglicherweise nicht
+ausreichend getestet wurden, zu identifiziert.
+
+- [ER] Ergänzen Sie selbstständig einen Step zur automatisierten Analyse der aktuellen Code Coverage
+  mit Hilfe von `coverage`.
+
+[NOTICE]
+Die Dokumentation zum Tool finden Sie [hier](https://coverage.readthedocs.io/en/7.8.0/).
+Alternativ gibt es auch für Python Pytest das Paket `pytest-cov`, dass Sie in einer anderen Übung
+kennenlernen werden.
+[ENDNOTICE]
+
+[HINT::Abhängigkeit]
+Das Paket `coverage` muss entweder in der Pipeline installiert werden,
+oder aber in die `requirements.txt` eingetragen sein, damit die Installation über die Pipeline
+realisiert wird. Empfohlen wird Letzteres.
+[ENDHINT]
+
+[HINT::Missing download info for actions/upload-artifact...]
+Recherchieren Sie nach der aktuellsten Version von `upload-artifact`.
+[ENDHINT]
+
 - [EQ] Wie sieht der `coverage` Testabdeckungsreport aus?
-- [ER] Ergänzen Sie ein
+
+### Artefakte bereitstellen
+
+Oftmals ist es nützlich ein Ergebnis zu sichern, oder es auch weiterleiten zu können.
+Daher wollen wir im folgenden ein [TERMREF::Artefakt] erstellen, dass uns das ermöglicht.
+
+- [ER] Ergänzen Sie einen neuen Step, um den Coverage-Report als
   [Artefakt](https://docs.github.com/de/actions/using-workflows/storing-workflow-data-as-artifacts#configuring-a-custom-artifact-retention-period)
-  in einem neuen Step, so dass das Ergebnis aus der Pipeline herunter geladen werden kann.
+  bereitzustellen.
+
+- [EQ] Beschreiben Sie in Stichpunkten, wie Sie das [TERMREF::Artefakt] aus der Pipeline
+  herunterladen können?
+
+- [EQ] Geben Sie die URL zu ihrem Fork-Repository an.
 
 [ENDSECTION]
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
-[INSTRUCTOR::Lösungshilfe]
 
-- [EREFR::1] Die Reihenfolge sollte so aussehen:
+[INSTRUCTOR::Prüfhilfen]
 
-```yaml
-name: System Under Test
-
-on:
-  push:
-    branches: [ "main" ]
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      # Nr. 1: 
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-
-      # Nr. 2:
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3"
-
-      # Nr. 3:
-    - name: Install dependencies
-      run: |
-        cd v1.0.0
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      # Nr. 4:
-    - name: Run Pytest
-      run: |
-        cd v1.0.0
-        python tests/pytests/app_tests.py
-      
-      # Nr. 5:
-    - name: Start Flask Application
-      run: |
-        cd v1.0.0
-        python app.py &
-        echo $! > flask_pid.txt
-
-      # Nr. 6:
-    - name: Stop Flask Application
-      run: |
-        pid=$(cat v1.0.0/flask_pid.txt)
-        kill $pid
-```
-
-- [EREFQ::1] Status `Success`
-- [EREFQ::2] `python: can't open file <path>` wird im build-stage angezeigt.
-- [EREFR::2] die `2` aus dem Dateinamen entfernen, oder Commit rückgängig machen. 
-- [EREFR::3] Beispiel - zu beachten:
-  - Es muss `coverage` installiert werden - entweder über die Pipeline, besser aber, da
-  `requirements.txt` ausgeführt wird, mittels Eintrag `coverage`in die `requirements.txt`.
-  - Standardmäßig sucht `coverage` nach Testdateien mit der Struktur `test_*.py`. Da wir im Repo
-  aber Testdateien mit der Struktur `*_tests.py` haben, muss das entweder im Befehl mitgegeben werden
-  (siehe vorletzte Zeile), oder in einer `.coveragerc` mit `pattern = *_tests.py` definiert werden.
-
-```yaml
-    - name: Create Coverage Report
-      run: |
-        cd v1.0.0
-        coverage run -m pytest tests/pytests/app_tests.py
-        coverage report
-```
-
-- [EREFR::4] Das kann folgendermaßen realisiert werden:
-- [EREFQ::3] Sollte so aussehen (Werte sind aber abhängig davon, welche Übungen zuvor durchgeführt wurden)
-
-```bash
-  user = User.query.get(session['user_id'])
-.
-----------------------------------------------------------------------
-Ran 8 tests in 0.877s
-
-OK
-Benutzer erstellt.
-User Stories erstellt.
-Name                           Stmts   Miss  Cover
---------------------------------------------------
-app.py                           104     41    48%
-config.py                          2      0   100%
-models.py                         14      1    93%
-tests/pytests/app_tests.py        40      0   100%
---------------------------------------------------
-TOTAL                            160     55    66%
-```
-
-- [EREFR::5] Besonderheit:
-  - Es muss noch eine Datei erstellt werden. Das kann im Step `Create Coverage report` mit
-  `coverage xml -o coverage.xml` geschehen.
-  Dann folgenden Step einfügen:
-  
-```yaml
-    - name: Upload Coverage Report
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: v1.0.0/coverage.xml
-```
-
-Zusammengefasst sieht die workflow-Datei wie folgt aus:
-
-```yaml
-name: System Under Test
-
-on:
-  push:
-    branches: [ "main" ]
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      # Nr. 1: 
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-
-      # Nr. 2:
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3"
-
-      # Nr. 3:
-    - name: Install dependencies
-      run: |
-        cd v1.0.0
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      # Nr. 4:
-    - name: Run Pytests
-      run: |
-        cd v1.0.0
-        python tests/pytests/app_tests.py
-      
-      # Nr. 5:
-    - name: Create Coverage Report
-      run: |
-        cd v1.0.0
-        coverage run -m pytest tests/pytests/app_tests.py
-        coverage report
-        coverage xml -o coverage.xml
-        
-      # Nr. 6: Upload Coverage Report
-    - name: Upload Coverage Report
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: v1.0.0/coverage.xml
-      
-      # Nr. 7:
-    - name: Start Flask Application
-      run: |
-        cd v1.0.0
-        python app.py &
-        echo $! > flask_pid.txt
-
-      # Nr. 8:
-    - name: Stop Flask Application
-      run: |
-        pid=$(cat v1.0.0/flask_pid.txt)
-        kill $pid
-```
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
