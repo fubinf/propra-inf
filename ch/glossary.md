@@ -182,6 +182,12 @@ Das ist enorm nützlich, wenn man anschließend mittels
 [TERMREF::Refactoring] die Struktur der Software verbessern möchte.
 [ENDTERM]
 
+[TERM::CI/CD]
+Steht für Continuous Integration (CI) und Continuous Deployment (CD) oder Continuous Delivery (CD),
+und es handelt sich um eine Reihe von Praktiken und Prinzipien in der Softwareentwicklung,
+die darauf abzielen, den Entwicklungsprozess zu automatisieren und zu optimieren.
+[ENDTERM]
+
 [TERM::CLI|Commandline Interface]
 Textbasierte Bedienschnittstelle ([TERMREF::TUI]), bei der der Software nacheinander Kommandos
 auf einer _Kommandozeile_ eingegeben werden.
@@ -245,7 +251,6 @@ Quotes eingeschlossen sein; da ist das Vorgehen aber uneinheitlich.
 
 [HREF::https://de.wikipedia.org/wiki/CSV_(Dateiformat)]
 [ENDTERM]
-
 
 ## D
 
@@ -453,7 +458,21 @@ Programmiersprachen, wie Python, erfüllen aber auch Funktionen diese Eigenschaf
 [TERMREF2::higher-order function::Funktionen höherer Ordnung] ermöglicht werden.
 [ENDTERM]
 
+[TERM::Flask]
+Flask ist ein leichtgewichtiges und flexibles Web-Framework für Python, das es Entwicklern
+ermöglicht, schnell und einfach Webanwendungen zu erstellen. Es folgt dem WSGI
+(Web Server Gateway Interface) Standard und bietet eine einfache API, die es ermöglicht, Routen,
+Templates und Formulare zu definieren.
+[ENDTERM]
+
 ## G
+
+[TERM::Gate|Gatekkeeper]
+Der Begriff bezeichnet eine Kontroll- oder Entscheidungsstelle, die den Fortschritt eines
+Softwareentwicklungsprozesses an bestimmten Punkten überprüft und steuert.
+Gates werden häufig in [TERMREF::CI/CD]-Pipelines eingesetzt, um sicherzustellen, dass bestimmte
+Kriterien erfüllt sind, bevor der Code in die nächste Phase des Entwicklungszyklus übergeht.
+[ENDTERM]
 
 [TERM::Git]
 Das heute mit weitem Abstand verbreitetste 
