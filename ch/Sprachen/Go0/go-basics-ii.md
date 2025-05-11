@@ -79,6 +79,24 @@ func(x int, y int) {
 }(4, 5)
 ```
 
+### `defer`
+
+`defer` markiert einen Funktionsaufruf als "aufgeschoben" (deferred) — ein solcher Aufruf wird erst dann ausgeführt, wenn die umgebende Funktion beendet wird.
+
+```go
+func main() {
+    defer fmt.Println("first line")
+    fmt.Println("second line")
+}
+```
+
+Ausgabe:
+
+```
+second line
+first line
+```
+
 
 #### Benannte Rückgabewerte
 
