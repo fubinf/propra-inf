@@ -43,6 +43,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Bibliotheken
 
+- ch/Bibliotheken/Pandas-Grundlagen/pd-introduction.md (JS->LP->JS->LP)
+
 
 ### Bestandscode
 
@@ -212,8 +214,6 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
 
 
 ## Reviews to do for Jarmin Saka
-
-- ch/!!!/Pandas-Grundlagen/pd-introduction.md (JS->LP->JS)
 
 
 ## Reviews to do for Sven Wegner

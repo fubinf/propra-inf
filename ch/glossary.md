@@ -277,6 +277,16 @@ und die letzten drei geben sie für alle anderen Benutzer an (other, o).
 Genaueres siehe z.B. [HREF::https://wiki.ubuntuusers.de/Rechte/].
 [ENDTERM]
 
+[TERM::Datensatz|Datensätze]
+Ein Datensatz ist eine Gruppe von inhaltlich zusammenhängenden Datenfeldern mit einer logischen Struktur.
+[ENDTERM]
+
+[TERM::Datenstruktur|Datenstrukturen]
+In der Informatik und Softwaretechnik ist eine Datenstruktur ein Objekt, welches zur Speicherung und Organisation von Daten dient.
+
+[HREF::https://de.wikipedia.org/wiki/Datenstruktur]
+[ENDTERM]
+
 [TERM::Decorator|Dekorierer]
 Eine Funktion in einer Programmiersprache, die eine andere Funktion oder eine Klasse
 modifiziert oder erweitert. Es ermöglicht, das Verhalten einer Funktion oder Klasse zu ändern,
@@ -847,6 +857,11 @@ Der Median ist ein statistisches Maß, das in der Mitte einer sortierten Liste v
 Wenn eine Liste von Zahlen nach Größe sortiert ist, ist der Median der Wert, der genau in der Mitte
 der Liste liegt. Das bedeutet, dass die Hälfte der Zahlen in der Liste größer als der Median ist
 und die andere Hälfte kleiner ist.
+[ENDTERM]
+
+[TERM::Metadaten]
+Metadaten sind Daten über Daten. Sie beschreiben Eigenschaften oder Merkmale über Daten.
+Metadaten können z.B. sein aus welcher Quelle eine Information stammt oder eine Erläuterung einer Information.
 [ENDTERM]
 
 [TERM::Modul|Module]
