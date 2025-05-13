@@ -1,5 +1,5 @@
 title: Benutzerverwaltung mit SQL
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 assumes: SQLBasic, SQLSelect, SQLView
