@@ -105,7 +105,7 @@ Python-Standardbibliothek ausprobiert.
   Idiome recherchieren, Vergleich zwischen Schleifen und Itertools, Betrachtung bzgl. 
   Effizienz, Lesbarkeit und Python Idiomen (was ist eher Python-artig?)
 - functools: ähnlich wie oder in Verbindung mit itertools
-- abc
+- abc: Teil der stdlib, aber noch unklar, ob es thematisch eher zu stlib oder Python gehört
 - markup [DIFF::3]: Wahlaufgabe zum Bereich X="Structured Markup Processing Tools":
   Wählen Sie ein Modul aus dem Bereich X der Python-Standardbibliothek aus,
   das Sie noch nie benutzt haben.
@@ -124,6 +124,27 @@ Python-Standardbibliothek ausprobiert.
 - cryptoservice [DIFF::3]: Wahlaufgabe zum Bereich X="Cryptographic Services"
 - fileformat [DIFF::3]: Wahlaufgabe zum Bereich X="File Formats"
 - archives [DIFF::3]: Wahlaufgabe zum Bereich X="Data Compression and Archiving"
+
+zu klären:
+
+- os: sehr umfangreich, eventuell nur einzelne Teile?
+- logging
+- re: gehört vmtl eher zum Kapitel RegExp
+- time: sollte das nochmal separat von datetime betrachtet werden oder mit in die Aufgabe 
+  integriert werden?
+- sys
+- collections
+- math
+- copy
+- typing
+- threading/multiprocessing
+- warnings
+- io
+- uuid
+- socket
+- traceback
+- base64
+- operator
 
 ### Bibliotheken/pip-popular (N.N.)
 
