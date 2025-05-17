@@ -30,7 +30,7 @@ if (timer && filename != "glossary") {
     controls.play.style.display = play ? "none" : "inline";
   }
   function showTime() {
-    const quarters = Math.max(time / (60 * 60 * 1000), 1);
+    const quarters = Math.ceil(Math.max(time / (15 * 60 * 1000), 1));
     const mins = (quarters % 4) * 25;
     controls.time.textContent = "%" + filename + " " + Math.floor(quarters / 4) + (mins ? ("." + mins) : "") + "h ";
     controls.copy.style.display = "inline";
@@ -54,6 +54,9 @@ if (timer && filename != "glossary") {
     playPause(false, true);
   }
   controls.stop.onclick = () => {
+    if (controls.pause.style.display == "inline") {
+      time += new Date() - start;
+    }
     showTime();
     time = 0;
     playPause(false);
