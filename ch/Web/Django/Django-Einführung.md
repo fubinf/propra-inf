@@ -120,11 +120,8 @@ blog.jetbrains.com
 [SECTION::instructions::detailed]
 
 - [EQ] Django-Grundprinzip und Architektur: Was ist Django, und welches Architekturmodell (Stichwort MTV) verwendet es? Beschreiben Sie die drei Komponenten Model, Template und View in Django und wie sie zusammenwirken. (Vergleichen Sie dabei auch kurz, wie sich dieses Modell vom klassischen MVC unterscheidet.)
-
 - [ER] Django-Version prüfen: Wie können Sie ermitteln, welche Django-Version auf Ihrem System installiert ist? Nennen Sie den entsprechenden Befehl und geben Sie beispielhaft das Ergebnis/Format der Ausgabe an.
-
 - [ER] Installation mit pip: Sie möchten Django installieren. Welchen Befehl verwenden Sie dazu in einer Kommandozeile unter Windows? Wie lautet der entsprechende Befehl unter Linux/macOS? (Erläutern Sie kurz, warum sich diese unterscheiden können.)
-
 - [ER] Neues Projekt erstellen: Sie starten ein neues Django-Projekt namens “mysite”. Wie lautet der django-admin Befehl, um ein solches Projekt anzulegen? In welchem Verzeichnis wird das Projekt standardmäßig erstellt, wenn Sie keinen Zielpfad angeben?
 - [EQ] Projektstruktur untersuchen: Welche Dateien und Ordner werden angelegt, wenn Sie django-admin startproject mysite ausführen? Nennen Sie mindestens zwei der wichtigsten generierten Dateien/Verzeichnisse und erläutern Sie deren Zweck.
 - [EQ] MVC vs. MVT: Worin besteht der Unterschied zwischen dem MVC-Architekturmuster und Djangos MVT-Muster? (Hinweis: Betrachten Sie insbesondere die Rolle des “Controllers” bzw. dessen Entsprechung in Django.)

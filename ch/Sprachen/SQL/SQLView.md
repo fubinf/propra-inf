@@ -17,9 +17,6 @@ Datenbanken enthalten oft Informationen, die sich im Laufe der Zeit ändern – 
 
 Views (`CREATE VIEW`) erlauben es, komplexe oder häufig genutzte Abfragen einmalig zu definieren und anschließend wie Tabellen zu verwenden. Views können auch Daten aus mehreren Tabellen zusammenfassen.
 
-[ENDSECTION]
-
-### Beispiele
 
 ### Beispiel für UPDATE:
 ```sql
@@ -39,6 +36,7 @@ SELECT id, username, email
 ```
 
 <!-- end Beispiele -->
+[ENDSECTION]
 
 [SECTION::instructions::detailed]
 
@@ -94,7 +92,7 @@ Anschließend führen Sie folgende Schritte aus:
 
 [ENDSECTION]
 
-[SECTION::submission::snippet]
+[SECTION::submission::information,program]
 
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]

@@ -18,9 +18,6 @@ Viele Webanwendungen verfügen über eine Benutzerverwaltung mit Nutzertabellen 
 Zur Analyse von Zeitdifferenzen kommt in dieser Aufgabe auch die SQL-Funktion `julianday()` zum Einsatz. Diese Funktion wandelt ein Datum in einen Gleitkommawert um, der die Anzahl der Tage seit dem 24. November 4714 v. Chr. angibt. Damit lassen sich Zeitspannen zwischen zwei Daten berechnen.
 
 
-[ENDSECTION]
-
-### Beispiele
 
 ### Beispiel für INSERT
 ```sql
@@ -41,6 +38,7 @@ JOIN sessions s ON u.id = s.user_id;
 SELECT julianday('2024-04-30') - julianday('2024-03-25'); -- ergibt 36.0
 ```
 <!-- end Beispiele -->
+[ENDSECTION]
 
 [SECTION::instructions::detailed]
 
@@ -91,7 +89,7 @@ Was könnten mögliche nächste Schritte sein, wenn man dieses SQL-Modell in ein
 
 [ENDSECTION]
 
-[SECTION::submission::snippet]
+[SECTION::submission::information,program]
 
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
