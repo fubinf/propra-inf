@@ -368,6 +368,16 @@ DNS-Servern, um Informationen über DNS-Datensätze wie IP-Adressen, Nameserver 
 DNS-Ressourceneinträge für eine bestimmte Domain zu erhalten.
 [ENDTERM]
 
+[TERM::Django]
+Django ist ein in Python geschriebenes Webframework zur schnellen Entwicklung von sicheren und wartbaren Webanwendungen. Mit Django lassen sich **moderne Webanwendungen** effizient umsetzen, ohne grundlegende Funktionen wie Formularverarbeitung, Datenbankzugriff oder Authentifizierung selbst schreiben zu müssen. Django folgt dem **MTV-Muster** (Model-Template-View), das dem bekannten MVC-Prinzip ähnelt, aber speziell auf die Webentwicklung mit Python abgestimmt ist.
+Das Framework bringt viele Komponenten direkt mit, darunter ein **ORM**, ein **Admin-Interface**, ein **Routing-System** und eine **Vorlagen-Engine**. Django legt außerdem großen Wert auf **Sicherheit** und folgt dem Prinzip **Don't Repeat Yourself (DRY)** zur Vermeidung von redundanter Logik.
+Typische Einsatzbereiche sind **Content-Management-Systeme**, **soziale Plattformen** oder **API-Backends**.
+Gute Quellen für Django:
+- [Offizielle Dokumentation](https://docs.djangoproject.com/)
+- [Django Girls Tutorial](https://tutorial.djangogirls.org/)
+- [MDN – Django lernen](https://developer.mozilla.org/de/docs/Learn/Server-side/Django)
+[ENDTERM]
+
 [TERM::DNS|Domain Name System]
 DNS (Domain Name System) ist ein Dienst, der Internetadressen in [TERMREF2::IP-Adresse::-n] umwandelt. 
 Es sorgt dafür, dass man statt einer Zahlenfolge (wie 192.168.0.1) einfach einen Domainnamen, wie 
