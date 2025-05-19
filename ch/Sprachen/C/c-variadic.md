@@ -9,11 +9,11 @@ Ich verstehe was Variadic Funktionen sind.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO
+TODO KHOFMANN: Variadic motivation
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-TODO
+TODO KHOFMANN: Variadic instructions
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
@@ -23,5 +23,5 @@ TODO
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
-TODO
+TODO KHOFMANN: Variadic altdir
 [ENDINSTRUCTOR]

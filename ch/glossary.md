@@ -95,6 +95,18 @@ der Ausführung des Workflows verwendet werden können. Beispiele sind: Build-Au
 oder sogar vollständige [TERMREF::Release]-Versionen), Testberichte oder auch Dokumentationen
 [ENDTERM]
 
+[TERM::Assemblersprache|Assembly]
+Eine Assemblersprache ist eine menschenlesbare Variante der
+[TERMREF::Maschinensprache].
+Assemblersprachen haben kaum Abstraktion.
+[ENDTERM]
+
+[TERM::Assemblierer|Assembler]
+Der Assembliere ist ein Programm, welches in [TERMREF::Assemblersprache]
+verfassten Quellcode in [TERMREF::Maschinensprache] übersetzt.
+Oftmals gehen [TERMREF::Übersetzer] und Assemblierer Hand in Hand.
+[ENDTERM]
+
 [TERM::ASCII]
 Der American Standard Code for Information Interchange, kurz ASCII, ist ein 
 Zeichenkodierungsstandard, der Zahlen den Buchstaben des englischen Alphabets, Satzzeichen und 
@@ -154,6 +166,16 @@ dazu bestimmt, von anderen Programmen oder anderen Bibliotheken benutzt zu werde
 Bibliotheken erlauben es, Programme weitgehend aus vorhandenen Bausteinen zusammenzusetzen
 und nur noch wenig Code selbst schreiben zu müssen.
 Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwicklung.
+[ENDTERM]
+
+[TERM::Binder|Linker]
+Der Binder ist ein Programm, welches aus mehreren [TERMREF::Objekt-Dateien]
+eine ausführbare Datei erzeugt.
+Konkret findet sich dies bei [TERMREF::Bibliothek]en, deren Bestandteile
+mittels des Binders in ein Programm eingebunden wird.
+Ebenso ist der Binder daran beteiligt aus mehreren Quellcode-Dateien ein
+fertiges Programm zu binden, die Quellcode-Dateien werden jeweils einzeln
+übersetzt und abschließend zusammengebunden.
 [ENDTERM]
 
 [TERM::Branch|Zweig]
@@ -875,8 +897,8 @@ von komplexen HTML-Tags oder Formatierungsbefehlen.
 
 [TERM::Maschinensprache|Maschinencode]
 Eine Maschinensprache ist die, von einem Prozessor direkt ausführbare,
-Anweisungsreihenfolge. Jede Anweisung an den Prozessor ist hier als eine
-Bytereihenfolge codiert.  
+Anweisungsreihenfolge.
+Jede Anweisung an den Prozessor ist hier als eine Bytereihenfolge codiert.  
 Maschinensprachen sind von Prozessorarchitektur zu Prozessorarchitektur
 verschieden.
 [ENDTERM]
@@ -946,6 +968,13 @@ Handhabung von Fehlern oder ungültigen Daten.
 
 [TERM::OAOO|Once and only once]
 Siehe [TERMREF::DRY].
+[ENDTERM]
+
+[TERM::Objekt-Datei|Object-File]
+Eine Objekt-Datei ist eine Datei welche Prozessoranweisungen in 
+[TERMREF::Maschinensprache] enthält, selbst allerdings nicht ausführbar ist.
+Objekt-Dateien werden von [TERMREF::Übersetzer]n und [TERMREF::Assemblierer]
+erzeugt und von [TERMREF::Binder]n weiterverarbeitet.
 [ENDTERM]
 
 [TERM::OpenAPI|Swagger]
@@ -1667,6 +1696,7 @@ Prozessorarchitekturen (und somit Maschinensprache) auszuführen,
 ohne dabei das Programm erneut zu übersetzen.  
 Ein sehr bekanntes Beispiel ist hier Java (die Hoschsprache), welches als
 Java-Bytecode (die Zwischensprache) mittels der JVM (Quasi-Interpreter)
-ausgeführt wird. Hierbei muss nur die JVM in der, für die gewünschten
-Prozessorarchitektur, Maschinensprache vorhanden sein.
+ausgeführt wird.
+Hierbei muss nur die JVM in der, für die gewünschten Prozessorarchitektur,
+Maschinensprache vorhanden sein.
 [ENDTERM]

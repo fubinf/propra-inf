@@ -10,11 +10,11 @@ und C-Character-Arrays.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO
+TODO KHOFMANN: Strings motivation
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-TODO
+TODO KHOFMANN: Strings instructions
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
@@ -24,5 +24,5 @@ TODO
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
-TODO
+TODO KHOFMANN: Strings altdir
 [ENDINSTRUCTOR]

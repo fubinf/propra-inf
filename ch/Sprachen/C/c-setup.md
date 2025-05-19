@@ -68,7 +68,7 @@ empfohlen.
   ```
 - Wechseln sie mittels `cd` in ihr Zielverzeichnis und anschließend mit
   `cd clion*/bin` in das Verzeichnis von CLion.
-- Führen Sie `sh clion.sh` aus.
+- Führen Sie `./clion` aus.
   Das erste Ausführen führt weitere Installationsschritte aus.
   Folgen Sie entsprechenden Schritten anschließend.
   Die Non-Commercial Lizenz genügt.

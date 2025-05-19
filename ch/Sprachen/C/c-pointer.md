@@ -9,11 +9,11 @@ Ich verstehe was ein Pointer ist und kann diese anwenden.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO
+TODO KHOFMANN: Pointer motivation
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-TODO
+TODO KHOFMANN: Pointer instructions
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
@@ -23,5 +23,5 @@ TODO
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
-TODO
+TODO KHOFMANN: Pointer altdir
 [ENDINSTRUCTOR]

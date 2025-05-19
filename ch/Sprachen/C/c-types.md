@@ -9,11 +9,11 @@ Ich verstehe das Typsystem der C-Sprache.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO
+TODO KHOFMANN: Types motivation
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-TODO
+TODO KHOFMANN: Types instructions
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
@@ -23,5 +23,5 @@ TODO
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
-TODO
+TODO KHOFMANN: Types altdir
 [ENDINSTRUCTOR]

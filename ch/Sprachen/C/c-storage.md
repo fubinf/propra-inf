@@ -9,11 +9,11 @@ Ich verstehe die Speicherklassen und kann diese anwenden.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO
+TODO KHOFMANN: Storage motivation
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-TODO
+TODO KHOFMANN: Storage instructions
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
@@ -23,5 +23,5 @@ TODO
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
-TODO
+TODO KHOFMANN: Storage altdir
 [ENDINSTRUCTOR]

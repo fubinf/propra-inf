@@ -211,7 +211,7 @@ argc für Argument-Count genannt) und die Liste der Konsolenparameter im zweiten
 Parameter (stets Typ `char**`, d.h. ein Pointer auf C-Strings
 [PARTREF::c-strings], meist `argv` für Argument-Vector genannt).
 
-TODO: Kontrollstruktur
+TODO KHOFMANN: Kontrollstruktur
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
@@ -220,6 +220,6 @@ TODO: Kontrollstruktur
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Abgabe prüfen]
-TODO
+[INSTRUCTOR::Abgbe prüfen]
+TODO KHOFMANN: Syntax altdir
 [ENDINSTRUCTOR]
