@@ -1,5 +1,5 @@
 title: Entwicklungsumgebung einrichten
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 2
 ---
@@ -10,7 +10,8 @@ Ich habe eine funktionierende IDE.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO: Setup-Motivation
+Sie haben die Wahl zwischen CLion (empfohlen) und VSCode als IDE.
+Die Werkzeugkette ist in allen Fällen die GNU Compiler Collection (GCC).
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
