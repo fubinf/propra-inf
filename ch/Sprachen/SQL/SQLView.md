@@ -1,5 +1,5 @@
 title: SQL Datenpflege und Sichten
-stage: alpha
+stage: draft
 timevalue: 1.5
 difficulty: 2
 assumes: SQLBasic, SQLSelect

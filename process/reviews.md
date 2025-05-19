@@ -36,8 +36,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Sprachen
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP)
 - ch/Sprachen/C/c-preprocessor.md (KH)
-- ch/Sprachen/SQL/SQLView.md
-- ch/Sprachen/SQL/SQLBenutzerverwaltung.md
+- ch/Sprachen/SQL/SQLBenutzerverwaltung.md (YL->LP)
 - ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB->LP)
 - ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB->LP)
 
@@ -80,7 +79,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 -------------------------------------------------------------------------------------------
 
-## Reviews to do for Hanen Alrwasheda
+## Rework to do for Hanen Alrwasheda
 
 - Python0/ Inhalt wird am Ende ausgearbeitet.
 
@@ -93,21 +92,21 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/Python/py-import.md (HA->LP->HA->LP->HA)
 
 
-## Reviews to do for Ihar Brandes
+## Rework to do for Ihar Brandes
 
 - ch/Sprachen/Go0/go-ide.md (IB->LP->IB)
 
 
-## Reviews to do for Ivan Condric
+## Rework to do for Ivan Condric
 
 - ch/Werkzeuge/Unix-Diverses/0x_cron.md
 
 
 
-## Reviews to do for Christian Hofmann
+## Rework to do for Christian Hofmann
 
 
-## Reviews to do for Kilian Hofmann
+## Rework to do for Kilian Hofmann
 
 - ch/Sprachen/C/c-ide-linux.md (KH->LP->KH)
 - ch/Sprachen/C/c-ide-macos.md (KH->LP->KH)
@@ -118,7 +117,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/C/c-compiler-assembler-linker.md (KH)
 
 
-## Reviews to do for Sven Hüster
+## Rework to do for Sven Hüster
 
 - ch/Debugging/Debuggingtools/python-profiling.md (Hüster->LP->SH)  
   Siehe in der Datei.
@@ -131,7 +130,12 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ...
 
 
-## Reviews to do for Daniel Müllers
+## Rework to do for Yixiang Li
+
+- ch/Sprachen/SQL/SQLView.md (YL->LP)
+
+
+## Rework to do for Daniel Müllers
 
 - ch/Web/CSS/CSSEinfuehrung.md (Müllers->LP->DM)  
   Ich finde a) dass der Theorieteil am Anfang reichlich lang ist, bis was Hübsches passiert, und
@@ -139,7 +143,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
   Ist aber jetzt schon mal beta.
 
 
-## Reviews to do for Ronny Ruhe
+## Rework to do for Ronny Ruhe
 
 Ich schlage (nur aus dem Gedächtnis, das kann also teilweise unpassend sein)
 seeehr grob folgende Vorgehensweise und Arbeitsreihenfolge vor.
@@ -213,9 +217,9 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
 - ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
 
 
-## Reviews to do for Jarmin Saka
+## Rework to do for Jarmin Saka
 
 
-## Reviews to do for Sven Wegner
+## Rework to do for Sven Wegner
 
 - ch/Sprachen/Python/py-Funktionale-Programmierung.md (SW->LP->SW)
