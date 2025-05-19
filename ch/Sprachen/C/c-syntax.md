@@ -210,6 +210,8 @@ die Anzahl der Konsolenparameter im ersten Parameter (stets Typ `int`, meist
 argc für Argument-Count genannt) und die Liste der Konsolenparameter im zweiten
 Parameter (stets Typ `char**`, d.h. ein Pointer auf C-Strings
 [PARTREF::c-strings], meist `argv` für Argument-Vector genannt).
+
+TODO: Kontrollstruktur
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]

@@ -587,6 +587,13 @@ Eine Funktion, die mindestens eine Funktion als Argument entgegennimmt oder wied
 Funktion als Rückgabewert zurückgibt.
 [ENDTERM]
 
+[TERM::Hochsprache|höhere Programmiersprache]
+Eine Hochsprache ist eine Programmiersprache welche einen hohen Grad der
+Abstraktion aufweisen.  
+Eine Hochsprache ist nicht direkt ausführbar sondern erfordert einen
+[TERMREF::Übersetzer] oder [TERMREF::Interpreter].
+[ENDTERM]
+
 [TERM::HTML|Hypertext Markup Language]
 HTML steht für Hypertext Markup Language; es ist eine [TERMREF::Auszeichnungssprache].
 In HTML wird dieses Prinzip umgesetzt, indem spezielle Zeichenfolgen ([TERMREF2::HTML-Tag::-s]) 
@@ -864,6 +871,14 @@ das Kommando `help` zeigt eine Kurzinformation dazu.
 Ist eine [TERMREF::Auszeichnungssprache], die verwendet wird, um Text mit einer einfachen Syntax zu formatieren.
 Sie wurde entwickelt, um das Schreiben von Texten für das Web zu erleichtern, ohne die Notwendigkeit
 von komplexen HTML-Tags oder Formatierungsbefehlen.
+[ENDTERM]
+
+[TERM::Maschinensprache|Maschinencode]
+Eine Maschinensprache ist die, von einem Prozessor direkt ausführbare,
+Anweisungsreihenfolge. Jede Anweisung an den Prozessor ist hier als eine
+Bytereihenfolge codiert.  
+Maschinensprachen sind von Prozessorarchitektur zu Prozessorarchitektur
+verschieden.
 [ENDTERM]
 
 [TERM::Median]
@@ -1478,6 +1493,13 @@ um ihren Lernerfolg zu verbreitern.
 
 ## U
 
+[TERM::Übersetzer|Compiler]
+Ein Übersetzer ist ein Programm, welches Quellcode einer Sprache in eine andere
+Sprache übersetzt.  
+Zielsprachen können die [TERMREF::Maschinensprache] sein, eine
+[TERMREF::Zwischensprache] oder eine andere [TERMREF::Hochsprache] sein.
+[ENDTERM]
+
 [TERM::UDP]
 UDP (User Datagram Protocol) ist ein schnelles, verbindungsloses Netzwerkprotokoll, das Daten ohne 
 vorherige Verbindung zwischen Sender und Empfänger versendet. 
@@ -1611,6 +1633,12 @@ ist es in Einzelfällen sehr wohl eine gute Variante, um Code
 lesbarer und wartbarer zu machen.
 [ENDTERM]
 
+[TERM::Werkzeugkette|Toolchain]
+Eine Sammlung an Programmen und Skripten zur Erzeugung eines Produktes.
+Beispiele: GCC, Clang, MSVC, aber auch [TERMREF::IDE]s können Bestandteil einer
+Werkzeugkette sein.
+[ENDTERM]
+
 ## X
 
 [TERM::xargs]
@@ -1629,3 +1657,16 @@ beschränkt und kann in einer Vielzahl von Anwendungen und Kontexten eingesetzt 
 
 ## Y
 ## Z
+
+[TERM::Zwischensprache]
+Eine Zwischensprache ist eine, der [TERMREF::Machinensprache] nähere,
+Sprache.  
+Zwischensprachen werden häufig eingesetzt, um ein Programm in einer
+[TERMREF::Hochsprache] zu verfassen und auf mehreren unterschieldlichen
+Prozessorarchitekturen (und somit Maschinensprache) auszuführen,
+ohne dabei das Programm erneut zu übersetzen.  
+Ein sehr bekanntes Beispiel ist hier Java (die Hoschsprache), welches als
+Java-Bytecode (die Zwischensprache) mittels der JVM (Quasi-Interpreter)
+ausgeführt wird. Hierbei muss nur die JVM in der, für die gewünschten
+Prozessorarchitektur, Maschinensprache vorhanden sein.
+[ENDTERM]

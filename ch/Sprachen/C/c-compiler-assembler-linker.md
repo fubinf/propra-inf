@@ -2,7 +2,7 @@ title: "C Compiler und Linker"
 stage: alpha
 timevalue: 1
 difficulty: 2
-assumes: c-ide-linux, c-ide-macos, c-ide-windows
+assumes: c-setup
 ---
 [SECTION::goal::idea]
 Ich verstehe die Aufgaben des Compilers, Assemblers und Linkers.

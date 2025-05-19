@@ -38,6 +38,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/SQL/SQLBenutzerverwaltung.md (YL->LP)
 - ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB->LP)
 - ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB->LP)
+- - ch/Sprachen/C/c-setup.md (KH)
 
 ### Bibliotheken
 
@@ -108,12 +109,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ## Rework to do for Kilian Hofmann
 
-- ch/Sprachen/C/c-ide-linux.md (KH->LP->KH)
-- ch/Sprachen/C/c-ide-macos.md (KH->LP->KH)
-- ch/Sprachen/C/c-ide-windows.md (KH->LP->KH)
-- ch/Sprachen/C/c-toolchain-linux-apt.md (KH->LP->KH)
-- ch/Sprachen/C/c-toolchain-macos.md (KH->LP->KH)
-- ch/Sprachen/C/c-toolchain-windows-wsl.md (KH->LP->KH)
 - ch/Sprachen/C/c-compiler-assembler-linker.md (KH)
 
 
