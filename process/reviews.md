@@ -34,7 +34,6 @@ We will modify these rules over time when others appear more useful.
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
-- ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP)
 - ch/Sprachen/C/c-preprocessor.md (KH)
 - ch/Sprachen/SQL/SQLBenutzerverwaltung.md (YL->LP)
 - ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB->LP)
@@ -95,6 +94,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ## Rework to do for Ihar Brandes
 
 - ch/Sprachen/Go0/go-ide.md (IB->LP->IB)
+- ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB)
 
 
 ## Rework to do for Ivan Condric
@@ -132,7 +132,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ## Rework to do for Yixiang Li
 
-- ch/Sprachen/SQL/SQLView.md (YL->LP)
+- ch/Sprachen/SQL/SQLView.md (YL->LP->YL)
 
 
 ## Rework to do for Daniel Müllers

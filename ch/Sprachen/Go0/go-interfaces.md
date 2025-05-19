@@ -21,6 +21,7 @@ Alle Interfaces in Go sind **implizit**: Sobald die nötigen Methoden implementi
 implementiert. 
 Das Interface muss nicht namentlich erwähnt werden und es wird kein `implements`-Schlüsselwort vorausgesetzt.
 
+
 ### Beispiel
  
 Wir definieren hier ein Interface `Speaker`, der aus einer Methode besteht: `Speak() string`:
@@ -31,8 +32,9 @@ type Speaker interface {
 }
 ```
 
-Und ein paar Haustiere: Strukturen `Cat` und `Dog`. 
-Dadurch, dass diese zwei Typen die `Speak()` Methode implementieren, werden sie automatisch zu `Speaker`n.
+Und nun ein paar Haustiere: Strukturen `Cat` und `Dog`. 
+Diese zwei Typen sollen die `Speak()` Methode implementieren und werden dadurch automatisch zu `Speaker`n.
+Dann ist anschließend folgendes möglich:
 
 ```go
 speakers := []Speaker{Cat{}, Dog{}}
@@ -53,30 +55,34 @@ Woof!
 [ER] Definieren Sie zwei Strukturen, `Cat` und `Dog`.
 Implementieren Sie für jede Struktur das Interface `Speaker`, sodass der Programmausschnitt oben die erwartete Ausgabe produziert.
 
+
 ### Wichtige Standard-Interfaces
 
 #### Stringer
 
-Das `Stringer`-Interface sorgt dafür, dass ein Typ korrekt als `string` dargestellt wird. 
+Das eingebaute `Stringer`-Interface sorgt dafür, dass ein Typ korrekt als `string` dargestellt wird. 
 Das Interface verlangt nur eine Methode `String() string` .
 
-[ER] Implementieren Sie das Interface `Stringer`: 
+[ER] Implementieren Sie das Interface `Stringer` für einen neuen Typ `MyString`: 
 
-1. Definieren Sie eine Struktur `String` (nicht verwechseln mit dem eingebauten Datentyp `string`) mit zwei Feldern: `value string` und `lastByteRead int`.
-2. Definieren Sie eine Konstruktor-Methode `NewString() *String`.
+1. Definieren Sie eine Struktur `MyString` (nicht zu verwechseln mit dem eingebauten Datentyp `string`) 
+   mit zwei Feldern: `value string` und `lastByteRead int`.
+2. Definieren Sie eine Konstruktor-Methode `NewString() *MyString`.
 3. Implementieren Sie das `Stringer`-Interface, sodass Funktionen wie `fmt.Println()` nicht die ganze Struktur im 
    Terminal ausgeben, sondern nur das `value`.
 
+
 #### Reader
 
-Das Interface `Reader` besteht aus einer einzigen Methode: `Read(p []byte) (n int, err error)`. 
-Diese muss den Inhalt in den bereitgestellten Puffer/Slice `p` auslesen und gibt zwei Werte zurück: 
+Das eingebaute Interface `Reader` besteht aus einer einzigen Methode: `Read(p []byte) (n int, err error)`. 
+Diese muss den Inhalt des implementierenden Objekts in den bereitgestellten Puffer/Slice `p` auslesen 
+und gibt zwei Werte zurück: 
 Die Anzahl der in diesem Aufruf von `Read` ausgelesenen Bytes und einen `error`, 
 falls das Auslesen nicht weiter möglich ist.
 
-[ER] Implementieren Sie das Interface `Reader`:
+[ER] Implementieren Sie das Interface `Reader` für `MyString`:
 
-1. Implementieren Sie die `Read` Methode auf der `String` Struktur.
+1. Implementieren Sie die `Read` Methode auf der `MyString` Struktur.
     - solange es etwas auszulesen gibt, wird dies ausgelesen;
     - sobald das Ende erreicht wurde, ein `0, error` Paar zurückgeben.
 2. Testen Sie Ihre Implementierung mittels des klassischen gepufferten Auslesens:
@@ -93,10 +99,11 @@ ist.
 
 [ER] Implementieren Sie auch das `Writer`-Interface.
 
-1. Implementieren Sie die `Write` Methode auf der `String` Struktur. Diese soll den übergebenen Puffer als `string` an
+1. Implementieren Sie die `Write` Methode auf der `MyString` Struktur. Diese soll den übergebenen Puffer als `string` an
    die bereits vorhandene Zeichenkette (`value`) aufhängen.
-2. Testen Sie Ihre Implementierung, indem Sie einen `String` kreieren und eine beliebige Nachricht über `Write` Methode
-   in diesen `String` schreiben.
+2. Testen Sie Ihre Implementierung, indem Sie einen `MyString` erzeugen und eine beliebige Nachricht per `Write`
+   in diesen `MyString` schreiben.
+
 
 #### Error
 
@@ -106,8 +113,7 @@ Stellen Sie sich vor, Sie wollen eine Menge von verschiedenen `Error`-Strukturen
 Daten beinhalten: 
 Beispielsweise hat ein `HTTPError` einen `statusCode`, 
 ein `FileError` einen `reason`, warum die Operation fehlgeschlagen ist (Zugriff nicht gestattet / Datei existiert nicht / etc). 
-Diesen Fehlerraum können wir 
-mithilfe von `Error`-Interface abbilden.
+Dieses Spektrum können wir mithilfe des `Error`-Interfaces abbilden.
 
 [WARNING]
 
@@ -116,12 +122,13 @@ Dieses Beispiel ist nur für Lernzwecke ausgedacht. Es darf kein echtes Szenario
 
 [ENDWARNING]
 
-[ER] Das Interface `Error` implementieren:
+[ER] Das Interface `Error` zweimal implementieren:
 
 1. Definieren Sie eine Struktur `HTTPError` mit einem Feld `statusCode int`.
 2. Implementieren Sie das `Error`-Interface. Der `statusCode` muss in der Fehlermeldung erwähnt werden.
 3. Definieren Sie eine Struktur `FileError` mit einem Feld `reason string`.
-4. Implementieren Sie das `Error`-Interface. Der `reason` muss in der Fehlermeldung auch erwähnt werden.
+4. Implementieren Sie das `Error`-Interface. Der `reason` muss in der Fehlermeldung erwähnt werden.
+
 
 #### Interfaceeinbettung
 
@@ -143,10 +150,11 @@ Dementsprechend muss ein `ElectricCar` ebenfalls Methoden `Accelerate()` und `De
 
 Beispiel: [ReadWriter](https://pkg.go.dev/io#ReadWriter)
 
+
 #### Leeres Interface
 
 Leeres Interface (`interface{}`) ist ein Interface, welches keine Methoden verlangt. Das bedeutet, dass alle Typen 
-dieses eine Interface automatisch implementieren. Das ist das Go-Äquivalent von `Object` in Java oder `void*` in C.
+dieses Interface automatisch implementieren. Das ist das Go-Äquivalent von `Object` in Java oder `void*` in C.
 
 So mächtig wie dieses Konstrukt auch ist, spielt es ein bisschen gegen die typ-sichere Natur von Go und impliziert mehr 
 Typ-Checks zur Laufzeit, was zum einen direkt die Leistungsfähigkeit beeinflusst (mehr zu tun für das Programm), und zum 
