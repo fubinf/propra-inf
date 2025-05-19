@@ -24,12 +24,12 @@ Wer mit großen Datenmengen arbeitet – etwa in der Forschung, bei Umfragen ode
 Pandas ist dafür designt, mit tabellarischen Daten umzugehen, d.h. Daten, die zeilen- und spaltenweise aufgelistet sind. Im Normalfall sind diese Zeilen und Spalten auch benannt oder nummeriert, damit man die Daten versteht. 
 Es gibt eine Vielzahl von Quellen, aus denen man [TERMREF::Datensätze] kriegen kann. Eine davon ist [GovData](https://govdata.de), eine Sammlung von Datensätzen, veröffentlicht von staatlichen Institutionen.
 
-- [EC] Bevor Sie sich mit Pandas beschäftigen, ist es sinnvoll, so einen Datensatz mal gesehen und verstanden zu haben. Laden Sie dazu die [TERMREF::CSV]-Datei der [Erststimmen der Bundestagswahl 2025 - Berlin](https://www.govdata.de/suche/daten/bundestagswahl-2025-in-berlin-nach-wahlbezirken-endgultiges-ergebnis) runter.
+- Bevor Sie sich mit Pandas beschäftigen, ist es sinnvoll, so einen Datensatz mal gesehen und verstanden zu haben. Laden Sie dazu die [TERMREF::CSV]-Datei der [Erststimmen der Bundestagswahl 2025 - Berlin](https://www.govdata.de/suche/daten/bundestagswahl-2025-in-berlin-nach-wahlbezirken-endgultiges-ergebnis) runter.
 
 Hier drin befinden sich die Wahlergebnisse aller Wahlbezirke in Berlin in der Bundestagswahl 2025.
 Damit könnte man also viele interessante Fragen beantworten, wie z.B. welcher Wahlbezirk die meisten Stimmen für eine bestimmte Partei gegeben hat, in welchem Bezirk es die meisten ungültigen Stimmen gab oder sogar Unterschiede im Wahlverhalten zwischen West- und Ost-Berlin.
 
-- [EC] Sehen Sie sich die Daten an. Öffnen Sie dazu die CSV-Datei mithilfe eines Online-Viewers (z.B. [becsv.com](https://www.becsv.com/csv-viewer.php)) oder einem entsprechenden Programm (z.B. Excel oder OpenOffice Calc).
+- Sehen Sie sich die Daten an. Öffnen Sie dazu die CSV-Datei mithilfe eines Online-Viewers (z.B. [becsv.com](https://www.becsv.com/csv-viewer.php)) oder einem entsprechenden Programm (z.B. Excel oder OpenOffice Calc).
 
 [NOTICE]
 [TERMREF::CSV]-Dateien (comma-seperated values) trennen ihre Spalteneinträge standardmäßig durch ein Komma (`,`). In dieser Datei wird dafür jedoch ein Semikolon (`;`) verwendet. Sollte Ihr Programm zum Betrachten der CSV-Datei die Tabelle nicht korrekt anzeigen, müssen Sie den richtigen Seperator (`;`) manuell angeben oder nutzen Sie den oben angegebenen Online-Viewer.
@@ -52,8 +52,8 @@ Nicht immer reicht der Name einer Spalte aus, um zu verstehen, was genau hier ge
 
 Die Antworten zu diesen Fragen waren noch relativ einfach selbst auszulesen, doch mit größer werdenden Datensätzen und komplexeren Fragen wird das immer aufwendiger. Deshalb möchten wir Pandas benutzen, um mit den Daten zu arbeiten.
 
-- [EC] Installieren Sie `pandas` mittels [PARTREF::pip].
-- [EC] Nach Konvention wird `pandas` mit dem Alias `pd` abgekürzt. Der Import in einer Python-Umgebung sieht standardmäßig also wie folgt aus: `import pandas as pd`.
+- Installieren Sie `pandas` mittels [PARTREF::pip].
+- Nach Konvention wird `pandas` mit dem Alias `pd` abgekürzt. Der Import in einer Python-Umgebung sieht standardmäßig also wie folgt aus: `import pandas as pd`.
 
 ### Datensatz mit Pandas einlesen
 
@@ -66,7 +66,7 @@ Um externe Datensätze mit Pandas einzulesen, stellt Pandas Methoden zur Verfüg
 In die [Dokumentation von Pandas](https://pandas.pydata.org/docs/dev/index.html) zu schauen und sie zu durchsuchen, kann oft sehr hilfreich sein, um Konzepte, Methoden oder Eigenschaften besser zu verstehen.
 [ENDNOTICE]
 
-- [EC] Laden Sie wie folgt den Datensatz über die Erststimmen in Ihre Python-Umgebung: `erststimmen_datensatz = pd.read_csv("Pfad/zu/der/Datei.csv", sep=';')`. Der ganze Datensatz befindet sich nun in der Variable `erststimmen_datensatz`.
+- Laden Sie wie folgt den Datensatz über die Erststimmen in Ihre Python-Umgebung: `erststimmen_datensatz = pd.read_csv("Pfad/zu/der/Datei.csv", sep=';')`. Der ganze Datensatz befindet sich nun in der Variable `erststimmen_datensatz`.
 
 
 
@@ -82,13 +82,13 @@ Die genauen Eigenschaften und Funktionsweisen dieser Datenstrukturen lernen Sie 
 - [EQ] Lassen Sie sich die Variable `erststimmen_datensatz` ausgeben. Wie viele Zeilen und Spalten hat das Objekt?
 - [EQ] Ist `erststimmen_datensatz` ein DataFrame oder eine Series? Wieso?
 
-
+[ENDSECTION]
 [SECTION::submission::information]
 
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
-[INSTRUCTOR::Codedurchsicht]
+[INSTRUCTOR::Tabellarischer Aufbau]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
