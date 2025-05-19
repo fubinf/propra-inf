@@ -8,7 +8,7 @@ Da Sie dabei über den Zweck der Aufgaben reflektieren und solches Reflektieren 
 sind auch diese Rückmeldungen als ProPra-Aufgaben strukturiert,
 für die es eine Arbeitszeitgutschrift gibt.
 
-**Achtung:** Wir bessern bis zu einmal wöchentlich Aufgaben gemäß solcher Rückmeldungen
+**Achtung:** Wir bessern ca. wöchentlich Aufgaben gemäß solcher Rückmeldungen
 nach und veröffentlichen einen aktualisierten Stand. 
 Danach sind die behobenen Punkte für weitere Rückmeldungen nicht mehr gültig!
 Bleiben Sie also auf Ihren Notizen nicht zu lange sitzen, sondern wenn Sie genug
