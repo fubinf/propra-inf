@@ -131,7 +131,7 @@ Dann erst geht es bitte hier weiter:
   Haben Sie keinen solchen Code erhalten, rufen Sie einen Shortlink auf, um das zu erleben,
   z.B. [HREF::http://tinyurl.com/myalias]; bei denen ist Umlenken der Job.
 - Bei 400 war der Request in der Eingabdatei nicht wohlgeformt.  
-  Korrigieren Sie das und versuchen Sie erneut (Haben sie CRLF benutzt?)
+  Korrigieren Sie das und versuchen Sie erneut (Haben Sie CRLF benutzt?)
 - Bei 403 ist vermutlich ein Login nötig; das lösen wir hier nicht.  
   Rufen Sie ersatzweise irgendeine andere Webseite ab, nichts vom ProPra.
 - Bei 404 ist die Adresse der Ressource in der Eingabedatei falsch.  

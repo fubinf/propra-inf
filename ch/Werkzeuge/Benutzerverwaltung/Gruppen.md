@@ -56,7 +56,7 @@ Lesen Sie die Abschnitte **Synopsis**, **Description** und die **Optionen** **-a
 [usermod(8) manpage](https://linux.die.net/man/8/usermod)
 
 - [EC] Wechseln Sie zu `nutzer1`.
-- [EC] Erstellen sie eine Datei `datei2` mit dem Inhalt "ich bin datei2".
+- [EC] Erstellen Sie eine Datei `datei2` mit dem Inhalt "ich bin datei2".
 - [EQ] Welche Berechtigungen hat die Datei? Welchen Nutzer und welche Gruppe hat die Datei?
 - [EC] Wechseln Sie zurück zu Ihrem persönlichen Nutzer.
 - [EC] Erstellen Sie eine neue Gruppe namens `standard`. 

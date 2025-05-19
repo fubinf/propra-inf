@@ -51,7 +51,7 @@ Heute bieten wir unsere Leistung in ganz Europa an.
 
 * [ER] Im ersten Schritt möchten wir uns damit vertraut machen, wie der Browser mit einer HTML-Datei 
   im Unterschied zu einer Textdatei umgeht und unsere Arbeitsdatei für diese Aufgabe vorbereiten.
-    - Kopieren sie den Text in einen Texteditor Ihrer Wahl und speichern Sie ihn als `HTMLErsteSchritte.txt` ab.
+    - Kopieren Sie den Text in einen Texteditor Ihrer Wahl und speichern Sie ihn als `HTMLErsteSchritte.txt` ab.
       Öffnen Sie die Textdatei in Ihrem Browser.  
     - Kopieren Sie `HTMLErsteSchritte.txt` nach `HTMLErsteSchritte.html` und öffnen Sie diese Datei im Browser.  
 * [EQ] Welche Änderungen haben sich ergeben? Beschreiben Sie, was Sie beobachten können.  

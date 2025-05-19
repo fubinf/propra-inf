@@ -64,7 +64,7 @@ Schreiben Sie nun ein paar zugehörige Unittests direkt mit in die gleiche Datei
 - [ER] `def test_median4():`  
   stellt sicher, dass der Median von 4 Zufallszeilen mit `"72f436"` beginnt
   und mit `"d68c77\n"` endet.
-- [EC] Zeigen sie einen erfolgreichen Lauf von 
+- [EC] Zeigen Sie einen erfolgreichen Lauf von 
   `pytest -v m_subprocess2.py`.
 
 
@@ -75,8 +75,8 @@ Schreiben Sie nun ein paar zugehörige Unittests direkt mit in die gleiche Datei
   Argument 2 ist eine ganze Zahl `n`.  
   Bei "local" gibt das Programm das Ergebnis von `median(n, sorted_lines_generator_python(n))` aus.  
   Bei "print" gibt es die Ergebnisse von `random_lines_generator(n)` aus.
-- [EC] Zeigen sie `python m_subprocess2.py print 4`.
-- [EC] Zeigen sie `python m_subprocess2.py local 4`.
+- [EC] Zeigen Sie `python m_subprocess2.py print 4`.
+- [EC] Zeigen Sie `python m_subprocess2.py local 4`.
 
 
 ### Speicherbeschränkung
@@ -85,7 +85,7 @@ Nun kommen wir zum Thema.
 Damit wir nicht Ewigkeiten warten müssen, bis der Speicher eines modernen Rechners wirklich
 ganz gefüllt ist, machen wir uns eine Speicherbeschränkung auf 512 Megabyte künstlich.
 
-- [EC] Zeigen sie `python m_subprocess2.py local 5000000`.
+- [EC] Zeigen Sie `python m_subprocess2.py local 5000000`.
 - Lesen Sie sich das bash-Kommando `ulimit` an.
 - [EC] Zeigen Sie ein Kommando, das mittels `ulimit` den virtuellen Speicher auf
   512.000 Kilobytes beschränkt und dann `python m_subprocess2.py local 5000000` aufruft.  
@@ -132,7 +132,7 @@ def test_median(generator):
 ```  
 -  Das soll dieselbe bisherige Testlogik mit den angegebenen zwei verschiedenen Iteratoren ausführen,
   wobei jede der Varianten separat fehlschlagen kann und selbständig berichtet wird.
-- [EC] Zeigen sie einen erfolgreichen Lauf von 
+- [EC] Zeigen Sie einen erfolgreichen Lauf von 
   `pytest -v m_subprocess2.py`.
 - [ER] Lesen Sie den obigen Hinweis und ergänzen Sie die Debuggingausgaben genau
   wie dort beschrieben, um die Kontrolle Ihres Ergebnisses zu erleichtern.

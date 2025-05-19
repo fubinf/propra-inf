@@ -58,7 +58,7 @@ Recherchieren Sie im Netz:
 
 ### JSON-Objekt erstellen
 
-Jetzt sind sie gefragt. Sie sollen im Folgenden anhand der gegebenen Informationen ein eigenes
+Jetzt sind Sie gefragt. Sie sollen im Folgenden anhand der gegebenen Informationen ein eigenes
 JSON-Objekt erstellen.
 
 - [ER] Erstellen Sie ein JSON-Objekt mit dem Namen `m_json_books.json` anhand der folgenden Vorgabe.

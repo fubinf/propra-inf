@@ -16,7 +16,7 @@ laufen soll.
 [SECTION::instructions::loose]
 Lesen Sie sich diesen [Beitrag](https://wiki.ubuntuusers.de/Cron/) zu cron durch.
 
-- [EC] Erstellen sie einen cron-Eintrag, womit das System am 13. jeden Monat um 04.50 Uhr aktualisiert wird.
+- [EC] Erstellen Sie einen cron-Eintrag, womit das System am 13. jeden Monat um 04.50 Uhr aktualisiert wird.
 [ENDSECTION]
 
 [SECTION::submission::trace]

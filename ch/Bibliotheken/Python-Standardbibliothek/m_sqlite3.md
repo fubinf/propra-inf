@@ -136,7 +136,7 @@ Das im Abschnitt erwähnte `autocommit` Attribut existiert erst ab Python 3.12.
 Hier möchten wir ein paar Datenbankabfragen erstellen, mit deren Hilfe Sie den Inhalt ihrer 
 aktuellen Datenbank überprüfen können.
 
-- [ER] Fragen Sie aus der Datenbank die Anzahl der Einträge ab, die sie in die Tabelle `books` 
+- [ER] Fragen Sie aus der Datenbank die Anzahl der Einträge ab, die Sie in die Tabelle `books` 
   importiert haben.  
   `print("number of entries in 'books':", ...)`
 

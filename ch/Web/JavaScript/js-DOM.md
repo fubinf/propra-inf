@@ -22,7 +22,7 @@ Um Elemente zu bearbeiten, muss man sie zunächst einmal finden. Dafür gibt es 
 
 Einige Elemente sind auch direkt verfügbar, beispielsweise `document.body`.
 
-[EQ] Es gibt noch weitere Möglichkeiten, Elemente zu finden. Nennen sie drei und geben Sie beispiele
+[EQ] Es gibt noch weitere Möglichkeiten, Elemente zu finden. Nennen Sie drei und geben Sie Beispiele
 für die jeweilige Verwendung.
 
 Wenn Sie nun ein Element gefunden haben, wollen wir dies auch verändern. Man kann den Inhalt eines

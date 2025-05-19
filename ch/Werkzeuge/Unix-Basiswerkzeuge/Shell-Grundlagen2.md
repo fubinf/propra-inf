@@ -68,7 +68,7 @@ cat /tmp/out
 Zitieren Sie 1-2 Sätze (mit Quellenangabe) aus einer auf dieser Seite bereits erwähnten
 Referenzdokumentation als Beleg für Ihre Behauptung.
 
-[EQ] Wie lautet zweite `grep`-Kommando, wenn man es so erweitert, 
+[EQ] Wie lautet das zweite `grep`-Kommando, wenn man es so erweitert, 
 dass auch die Fehlermeldung umgelenkt wird und dann in `/tmp/err` landet?
 
 [EQ] Angenommen, Sie machen anschließend noch `grep _name student.yaml > /tmp/out`,
@@ -115,7 +115,7 @@ Man kann einen Job auch von vornherein zu einem Hintergrundjob machen, indem man
 `&` an das Kommando anhängt. 
 Das ist beispielsweise für Webserver nützlich, die man während der Entwicklung braucht
 und die dann Protokollausgaben direkt in die laufende Shell schreiben können.
-Probieren sie diese drei
+Probieren Sie diese drei
 
 ```
 (sleep 5; echo "5 Sekunden")&

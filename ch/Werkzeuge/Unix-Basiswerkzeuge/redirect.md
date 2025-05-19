@@ -80,7 +80,7 @@ was semantisch identisch zu `>` ist.
 Falls man Fehlermeldungen gar nicht erst anzeigen möchte, können diese auf `/dev/null` umgeleitet werden.
 Die Datei /dev/null kann von jedem Benutzer beschrieben werden, aber es können keine Daten aus ihr 
 gelesen werden, da diese nirgendwo gespeichert werden.
-Dies hier ist wieder in Skripten nützlich. Zum Beispiel, wenn nach einm Ordner gesucht wird, der nicht 
+Dies hier ist wieder in Skripten nützlich. Zum Beispiel, wenn nach einem Ordner gesucht wird, der nicht 
 existiert.
 
 ### Kombinierte Umleitung

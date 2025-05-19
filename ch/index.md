@@ -338,7 +338,7 @@ der Studierenden ist folgendes:
   (oder Aufgabeneinreichungen zurückweisen, was ebenfalls gesichert gespeichert werden muss),
   digital signiert.
   Studierende können also zwar solche Commits löschen, indem sie entsprechende Teile des Repos
-  wegschneiden, aber sie können weder die vorhandenen Gutschriften verändern noch selbst welche 
+  wegschneiden, aber Sie können weder die vorhandenen Gutschriften verändern noch selbst welche 
   zufügen -- genauer gesagt entdeckt sedrila solche Fälle und ignoriert diese Einträge.
 - Der öffentliche Schlüssel jeder Tutor_in wird im Webauftritt des ProPra vermerkt.
 - Beim Aufruf des Skripts gibt man diesen Webauftritt an und

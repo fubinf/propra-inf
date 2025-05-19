@@ -82,7 +82,7 @@ Die folgen in späteren Aufgaben.
 
 ### 2. Seitenabruf: `get_page()`
 
-[ER] Führen sie folgenden Alias ein: `URL = str`.
+[ER] Führen Sie folgenden Alias ein: `URL = str`.
 Damit können wir nun als Typ `URL` notieren, was technisch genau das Gleiche ist wie `str`,
 semantisch aber bedeuten soll, dass der fragliche Wert ein kompletter gültiger URL ist,
 im Gegensatz zu potenziell anderen Arten von Strings.

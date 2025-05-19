@@ -167,7 +167,7 @@ pprint.pprint(..., sort_dicts=False)
 ### Funktional vs. imperativ
 
 - [EQ] Schauen Sie sich die letzte Aufgabe an. Überlegen Sie sich, wie Sie das Problem auf 
-  "klassischem Wege" imperativ lösen würden (es genügt den Code zu beschreiben, sie brauchen ihn 
+  "klassischem Wege" imperativ lösen würden (es genügt den Code zu beschreiben, Sie brauchen ihn 
   nicht abzugeben). 
   Vergleichen Sie die beiden Lösungen und geben Sie ihre Meinung dazu, welchen Lösungsansatz Sie 
   "besser" finden und warum.

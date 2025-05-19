@@ -112,7 +112,7 @@ erstellen und die Strategien in Methoden festhalten.
 Diesen Ansatz könnte man nennen "Alles löschen und besser neu implementieren" (Radikalansatz).
 Er funktioniert für dieses kleine Beispiel ganz gut.
 
-Nun stellen Sie sich vor, sie hätten nicht 4 Fälle, sondern 140.  
+Nun stellen Sie sich vor, Sie hätten nicht 4 Fälle, sondern 140.  
 Und jeder davon hätte nicht 3 Zeilen Logik, sondern 300 bis 1000.  
 Und diese Logik wäre ähnlich verwickelt wie hier.  
 Und morgen wollen Ihre Kolleg_innen an vier dieser Fälle _inhaltliche_ Änderungen machen.

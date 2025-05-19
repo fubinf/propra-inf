@@ -61,7 +61,7 @@ es kommt nicht auf jeden Millimeter an.
 - Öffnen Sie PyCharm und klicken Sie auf Customize und dann unten auf "All Settings..."
 - Klicken Sie in der Linken Seitenleiste auf "Python Interpreter" und prüfen Sie dann die 
   verfügbaren Versionen im Python Interpreter Dropdown.
-- Sollte ihre Version fehlen klicken sie auf "Add Interpreter" -> "Add Local Interpreter..."
+- Sollte ihre Version fehlen, klicken sie auf "Add Interpreter" -> "Add Local Interpreter..."
 - Im geöffneten Fenster wählen Sie links "System Interpreter" und klicken Sie dann auf die den 
   Button mit den drei Punkten rechts neben dem "Interpreter"-Dropdown.
 - Ein neues Fenster sollte sich öffnen. Navigieren Sie in diesem zu `/opt/homebrew/bin/python3`. 

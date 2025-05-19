@@ -76,7 +76,7 @@ Already up-to-date.
 
 Die Aufgabe für diesen Teilabschnitt besteht darin, Homebrew zu installieren, und zu überprüfen, dass
 diese Installation korrekt abgeschlossen wurde. Dazu reicht die Ausgabe von `brew --version`.
-Die installation für Homebrew ist essenziell für die Bearbeitung späterer Aufgaben. Gehen Sie
+Die Installation für Homebrew ist essenziell für die Bearbeitung späterer Aufgaben. Gehen Sie
 daher sicher, dass das Programm korrekt installiert wurde und sich weitere Pakete installieren
 und updaten lassen.
 

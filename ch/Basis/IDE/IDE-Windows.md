@@ -16,7 +16,7 @@ Ich habe eine funktionierende IDE auf Windows und kann diese in Zusammenarbeit m
 Auf Windows haben Sie die Wahl zwischen drei verschiedenen IDEs, mit denen sich dieser Kurs absolvieren lässt:
 
 ### 1. PyCharm Professional  
-- Empfohlene Variante, da sie hier nativ mit der WSL arbeiten können. 
+- Empfohlene Variante, da Sie hier nativ mit WSL arbeiten können. 
 - Allerdings müssen Sie vorher bei JetBrains das "Product Pack for Students" beantragen, um die Version kostenlos
   verwenden zu können. Dies sollte im Regelfall über ihre Universitäts-E-Mail-Adresse möglich sein.
 - Empfohlen.
@@ -102,7 +102,7 @@ Das kann zu Problemen führen:
   (**Keine** neuere Version wie 3.12).
 - Starten Sie den Installer.
 - setzen Sie das Häkchen bei "Add python.exe to PATH", um Python auch über die CMD/PowerShell ansprechen zu können.
-- Die Standard-Installation ist ausreichend, sie können aber auch auf "Customize install" klicken und folgende
+- Die Standard-Installation ist ausreichend, Sie können aber auch auf "Customize install" klicken und folgende
   Änderungen vornehmen:
     * "tcl/tk und IDLE" und "py launcher" werden nicht benötigt und können abgewählt werden.
 

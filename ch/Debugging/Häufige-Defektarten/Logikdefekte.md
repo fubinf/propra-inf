@@ -164,7 +164,7 @@ Welche Zuteilungen sind hier noch möglich?
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Logikdefekte.py` korrigieren.
-- Machen sie einen Commit `Logikdefekte.py corrected`, der nur genau diese modifizierte Datei enthält.
+- Machen Sie einen Commit `Logikdefekte.py corrected`, der nur genau diese modifizierte Datei enthält.
 - [EC] `git -P show HEAD`
 
 [ENDSECTION]

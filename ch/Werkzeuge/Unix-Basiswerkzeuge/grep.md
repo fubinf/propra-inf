@@ -77,7 +77,7 @@ noch die Option `-i`.
 Dieser Abschnitt erklärt wichtige Optionen von `grep`, wie das Zählen von Treffern, das Anzeigen von 
 Zeilennummern und das Filtern von Ergebnissen.
 
-Lesen sie sich die Optionen `-c, -n, -v, -w` aus der 
+Lesen Sie sich die Optionen `-c, -n, -v, -w` aus der 
 [grep(1) manpage](https://man7.org/linux/man-pages/man1/grep.1.html) durch.
 
 - [EC] Zeigen Sie alle Zeilen aus `data2.txt` an, die das Wort "wichtig" nicht enthalten.
@@ -90,7 +90,7 @@ Lesen sie sich die Optionen `-c, -n, -v, -w` aus der
 
 Hier werden fortgeschrittene Funktionen von `grep` behandelt, wie das rekursive Durchsuchen von Verzeichnissen und das Anzeigen von Kontextzeilen.
 
-Lesen sie sich die Optionen `-A, -B, -l, -r` aus der 
+Lesen Sie sich die Optionen `-A, -B, -l, -r` aus der 
 [grep(1) manpage](https://man7.org/linux/man-pages/man1/grep.1.html) durch.
 
 - [EC] Finden Sie alle Zeilen in allen Dateien im Verzeichnis `logs` (und eventuellen Unterverzeichnissen), 

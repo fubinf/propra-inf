@@ -48,7 +48,7 @@ Machen Sie sich an geeigneter Stelle (vielleicht in einer Datei "TODO.md"?) eine
 Lesen und verstehen Sie PEP 8: [HREF::https://peps.python.org/pep-0008/]
 
 Sie brauchen nicht jeden Satz und jedes Codebeispiel genau nachzuvollziehen,
-aber sie sollten mindestens folgendes erreichen:
+aber Sie sollten mindestens folgendes erreichen:
 
 - Sie haben einen Überblick über die Themenkreise, die in PEP 8 behandelt werden
   und eine ungefähre Vorstellung über die Vorgaben in jedem Themenkreis.

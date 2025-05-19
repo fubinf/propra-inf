@@ -116,7 +116,7 @@ Das probieren wir nun aus:
 - [EC] Versuchen Sie die Rechnung `/tmp/rechnungen/neu/rechnung17` zu lesen.
 - [EC] Versuchen Sie den Ordner `/tmp/rechnungen/aktuell` zu öffnen.
 
-Wie sie sehen, fehlt der Geschäftsführung die Berechtigung um die Rechnungen in `aktuell` zu lesen. 
+Wie Sie sehen, fehlt der Geschäftsführung die Berechtigung um die Rechnungen in `aktuell` zu lesen. 
 Das müssen wir noch ändern.
 
 

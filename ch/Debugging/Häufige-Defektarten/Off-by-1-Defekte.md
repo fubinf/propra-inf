@@ -71,7 +71,7 @@ Ihre Aufgabe liegt jetzt darin herauszufinden, wo der Defekt liegt und wie man i
 ```
 
 - Legen Sie den obigen Python-Code unter dem Namen `Off-by-1-Defekte.py` in Ihrem Arbeitsverzeichnis ab.
-- Machen sie einen Commit `Off-by-1-Defekte.py`, der nur genau diese neue Datei enthält.
+- Machen Sie einen Commit `Off-by-1-Defekte.py`, der nur genau diese neue Datei enthält.
 - Suchen Sie nun den Defekt. Hier sind einige Vorschläge für das Vorgehen:
 
     1. Bestimmen Sie den Zweck des Codes bis Zeile 47.  
@@ -110,7 +110,7 @@ Der letzte Tag im Schaltjahr: `daynumber = 366`, `isleapyear = True`.
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Off-by-1-Defekte.py` korrigieren.
-- Machen sie einen Commit `Off-by-1-Defekte.py corrected`, der nur genau diese Defektkorrektur enthält.
+- Machen Sie einen Commit `Off-by-1-Defekte.py corrected`, der nur genau diese Defektkorrektur enthält.
 - [EC] `git -P show HEAD`
 
 [ENDSECTION]

@@ -116,7 +116,7 @@ Für das `echo "export PS1"` stehen wir vor einem klassischen Problem in der Sof
 Strings in Strings. Das übliche Vorgehen wird auch hier verwendet:
 Setzen Sie zunächst ein zusätzliches Backslash vor alle vorhandenen (also "\[" wird "\\[") und
 zusätzlich um die Stringseparatoren von dem Wert für PS1 (also PS1=\"...\" statt PS1="").
-Anschließend Werden Anführungszeichen um den gesamten Teil gesetzt (also "export PS1=...").
+Anschließend werden Anführungszeichen um den gesamten Teil gesetzt (also "export PS1=...").
 
 Sie können den zweiten Befehl ohne das abschließende `>> ~/.bashrc` ausführen, um zu überprüfen, ob
 Ihre Anpassung korrekt ist. Es sollte exakt derselbe Text ausgegeben werden, mit dem Sie ihren

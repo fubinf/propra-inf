@@ -113,7 +113,7 @@ aus.
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
-Zeigen Sie zusätzlich ihrem Tutor, dass sie das `venv` in ihrer IDE eingerichtet haben.  
+Zeigen Sie zusätzlich ihrem Tutor, dass Sie das `venv` in ihrer IDE eingerichtet haben.  
 Wenn Sie keinen Laptop benutzen, machen Sie einen Screenshot von der Einstellung in ihrer IDE, in dem klar erkennbar
 ist, dass ihr `venv` eingerichtet ist.
 

@@ -92,7 +92,7 @@ Zuguterletzt löschen wir die Daten.
 ### Reflektion
 
 - [EQ] Welche Art von Links würden Sie bei Desktopsymbolen nutzen? Begründen Sie.
-- [EQ] Welche Art von Links würden Sie nutzen, falls sie schneller auf einen Ordner zugreifen möchten, 
+- [EQ] Welche Art von Links würden Sie nutzen, falls Sie schneller auf einen Ordner zugreifen möchten, 
 der tief im Ordnerbaum des Systems ist? Begründen Sie.
 - [EQ] Welche Art von Links würden Sie bei Backups nutzen? Begründen Sie.
 

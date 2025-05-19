@@ -61,7 +61,7 @@ Lesen Sie den Abschnitt **SSH Host Fingerprint** bis einschließlich **Warnung b
 von [HREF::https://wiki.ubuntuusers.de/SSH/].
 
 - [EQ] Was wären mögliche Gründe, wenn Ihnen das System meldet, dass sich der `host_key` des 
-   entfernten Rechners geändert hat? Nennen sie zwei Beispiele.
+   entfernten Rechners geändert hat? Nennen Sie zwei Beispiele.
 
 - [EC] Schließen Sie ihre SSH-Sitzung.
 
@@ -116,10 +116,10 @@ gewählt. Jetzt müssen Sie jedes Mal Ihr langes kompliziertes Passwort neu eing
 auf einem der virtuellen Maschinen anmelden wollen. Um das zu umgehen und trotzdem die Sicherheit 
 der Schlüssel beizubehalten, gibt es den SSH-Agenten.
 
-Lesen sie die Paragraphen am Anfang und am Ende der **Description** der ssh-agent(1) 
+Lesen Sie die Paragraphen am Anfang und am Ende der **Description** der ssh-agent(1) 
 [manpage](https://man.openbsd.org/ssh-agent.1).
 
-Lesen sie die 3 Paragraphen am Anfang der **Description** der ssh-add(1) 
+Lesen Sie die 3 Paragraphen am Anfang der **Description** der ssh-add(1) 
 [manpage](https://man.openbsd.org/ssh-add.1).
 
 - [EC] Starten Sie den SSH-Agenten.

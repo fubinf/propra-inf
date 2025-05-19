@@ -44,7 +44,7 @@ dass einem im Alltag einiges an Zeit und Arbeit sparen kann.
   lesbare Ausgabe erzeugt. (nur beschreiben, nicht implementieren). Welche Herausforderungen 
   könnten dabei auftreten?
 - [ER] Finden Sie in der [Dokumentation von pprint](https://docs.python.org/3/library/pprint.html) 
-  eine Funktion, mit der sie `data` lesbar formatiert ausgeben können. Rufen Sie sie auf:  
+  eine Funktion, mit der Sie `data` lesbar formatiert ausgeben können. Rufen Sie sie auf:  
 ```python
 print("pretty print:")
 ...

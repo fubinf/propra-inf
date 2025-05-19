@@ -47,7 +47,7 @@ Unixsystem auch wirklich installiert.
 - [EC] Wechseln Sie zurück in ihr `home`-Verzeichnis und erstellen Sie einen neuen Ordner namens `mydir2`. 
   Verschieben Sie alle Dateien (auch wenn da mehrere wären) aus `mydir` in den Ordner `mydir2`.
 - [EC] Löschen Sie den Ordner `mydir`.
-- [EC] Löschen sie den Ordner `mydir2`.
+- [EC] Löschen Sie den Ordner `mydir2`.
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]

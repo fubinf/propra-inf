@@ -3,7 +3,7 @@
 An dieser Stelle und in diesem Format taucht normalerweise bei jeder Aufgabe
 die Beschreibung auf, worin die jeweilige "Abgabe" besteht.
 
-Die Abgabe ist das, was sie bei der Tutor_in zur Durchsicht vorlegen, 
+Die Abgabe ist das, was Sie bei der Tutor_in zur Durchsicht vorlegen, 
 um die Arbeitszeit für die jeweilige Aufgabe gutgeschrieben zu bekommen.
 Dafür gibt es mehrere weitgehend standardisierte Formate, 
 die aber erst in späteren Aufgaben hier im Basiskapitel besprochen werden.

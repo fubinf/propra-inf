@@ -136,7 +136,7 @@ data2 = [MyTuple(t) for t in data]
   Wir diese Funktion als Methode in einer Klasse definiert, ist der Operator für
   Objekte dieser Klasse überladen
 - Der Funktionsname für "kleiner" lautet `__lt__` ("less than").
-- [ER] Schreiben sie nun also in `MyTuple` `__lt__(self, other)` im oben beschriebenen Sinn.
+- [ER] Schreiben Sie nun also in `MyTuple` `__lt__(self, other)` im oben beschriebenen Sinn.
 - Listen haben eine Methode `sort()`, die die Liste am Platze sortiert, also _ohne_ dabei eine
   Kopie anzulegen wie bei der globalen Funktion `sorted()`.
 - [ER] Sortieren Sie damit `data2` am Platze (also ohne Zuweisung).

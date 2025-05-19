@@ -38,7 +38,7 @@ Das bauen wir uns jetzt.
 - Beim Commit wird der Zeitstempel entsprechend der 
   mtime der jüngsten Datei gesetzt.
 - Auch diese Aufgabe lässt sehr gut komplett mit der Standardbibliothek lösen;
-  sie brauchen keine zusätzlichen Pakete.
+  Sie brauchen keine zusätzlichen Pakete.
 
 
 ### Aufräumen

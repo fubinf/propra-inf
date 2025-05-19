@@ -163,7 +163,7 @@ hand = {"2": ["hearts", "spades"],
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Defekte-in-Ausdrücken.py` korrigieren.
-- Machen sie einen Commit `Defekte-in-Ausdrücken.py corrected`, der nur genau diese modifizierte Datei 
+- Machen Sie einen Commit `Defekte-in-Ausdrücken.py corrected`, der nur genau diese modifizierte Datei 
   enthält.
 - [EC] `git -P show HEAD`
 

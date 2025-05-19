@@ -23,7 +23,7 @@ Bei dieser Aufgabe ist sinnvoller, zuerst _alle_ Arbeitsschritte zu lesen.
 - [ER] Setzen Sie Ihren in [PARTREF::refactor-Movierental-Planung] formulierten Plan 
   in die Tat um.
   Dies beinhaltet die Refaktorierung _und_ die Implementierung der HTML-Ausgabe.
-  Für die Abgabe müssen sie bereitstellen:
+  Für die Abgabe müssen Sie bereitstellen:
     - Quellcode
     - Tests
     - Dokumentation des Codes

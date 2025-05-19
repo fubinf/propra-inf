@@ -50,7 +50,7 @@ Dazu lesen wir zuerst
 bis _vor_ den Abschnitt "Unstaging a Staged File" 
 und bearbeiten dann die nachfolgenden Aufgabenteile.
 
-[EC] Erstellen sie eine minimale neue Datei namens `amend.md` und fügen sie diese mit `git add` und 
+[EC] Erstellen Sie eine minimale neue Datei namens `amend.md` und fügen sie diese mit `git add` und 
 `git commit` einem neuen Commit hinzu.
 (Minimal heißt z.B. nur eine Zeile wie "Ich bin amend.md.". 
 So ähnlich ist das in dieser Aufgabe oft sinnvoll.)
@@ -139,7 +139,7 @@ uncommited in die Datei geschrieben worden sein.
 
 - Ändern Sie den Inhalt von `restore.md` nochmals und committen Sie ihn.
   Es gibt nun also zwei Commits mit `restore.md`: einen brauchbaren ersten und einen falschen zweiten.
-- Nutzen sie nun `git log` und die manpage für `git restore` (`man git-restore` bzw. `git help restore`),
+- Nutzen Sie nun `git log` und die manpage für `git restore` (`man git-restore` bzw. `git help restore`),
   um herauszufinden, wie Sie mit `git restore` auf den Zustand des ersten Commits kommen.
 - [EC] Führen Sie ein entsprechendes Kommando aus.
 

@@ -27,7 +27,7 @@ verwenden.
 Die Aufgabe ist möglichst allgemein formuliert, um unabhängig von Ihrer verwendeten IDE zu sein. 
 In der Regel sollte das kein Problem darstellen, da sich die grundlegenden Features zwischen 
 den IDEs ähneln. 
-Sollte aber eine Anweisung nicht ganz mit dem übereinstimmen, was sie in Ihrer IDE vorfinden, 
+Sollte aber eine Anweisung nicht ganz mit dem übereinstimmen, was Sie in Ihrer IDE vorfinden, 
 suchen Sie einem ähnlichen Weg, diese umzusetzen.
 
 [HINT::Besonderheiten in VS Code]
@@ -36,7 +36,7 @@ Denken Sie daher daran, gelegentlich Ihre Änderungen zu speichern (z.B. mit dem
 
 VS Code hat alternativ zu klassischen Menüs eine "Befehlszeile", um verschiedene Aktionen schnell 
 per Tastatur auszuführen. 
-Diese können Sie mit `F1` öffen und dort nach Befehlen suchen (z.B. `create: new file`).
+Diese können Sie mit `F1` öffnen und dort nach Befehlen suchen (z.B. `create: new file`).
 [ENDHINT]
 
 

@@ -57,7 +57,7 @@ Lesen Sie Abschnitt 1 und 2 der obigen Seite.
 [ER] Fügen Sie ein Datumsfeld für Eingabe eines Fälligkeitsdatums hinzu.
 Ferner ein Feld für einen Datei-Upload eines Dokuments mit näheren Erläuterungen.
 Das `input`-Element kann für viele verschiedene Eingabetypen benutzt werden, abhängig vom `type`-Attribut.
-Eine Liste gültiger Typen finden sie in [mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
+Eine Liste gültiger Typen finden Sie in [mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
 
 
 [ENDSECTION]

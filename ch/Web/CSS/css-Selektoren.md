@@ -41,7 +41,7 @@ also nach sowas wie height, width, background color, frame, border usw.
 
 [ER] Im nächsten Schritt möchten wir, dass jedes Quadrat in einer anderen Farbe erscheint. 
 Machen Sie sich dazu die Eigenschaften der CSS-Kaskade zu Nutzen. 
-Was es damit auf sich hat, können sie z.B. in diesem interaktiven Blogbeitrag nachlesen: 
+Was es damit auf sich hat, können Sie z.B. in diesem interaktiven Blogbeitrag nachlesen: 
 [wattenberger.com: The CSS Cascade](https://2019.wattenberger.com/blog/css-cascade).
 
 Verwenden Sie zum Üben für jedes der Quadrate 2, 3 und 4 eine andere Art, 

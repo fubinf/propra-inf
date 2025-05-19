@@ -69,7 +69,7 @@ Als Nächstes versuchen wir `git bisect` an einem Beispiel-Repo einzusetzen.
 - Führen Sie das Skript `breakme.sh` aus. 
 - [EC] Vergewissern Sie sich, dass der Aufruf `python squares.py 2` jetzt nicht mehr funktioniert.
 - [EC] Starten Sie den `git bisect`-Prozess.
-- [EC] Wählen Sie als "good commit" den Hash `312c137` aus (das ist der Commit bevor sie 
+- [EC] Wählen Sie als "good commit" den Hash `312c137` aus (das ist der Commit bevor Sie 
   `breakme.sh` benutzt haben).
 - [EC] Wählen Sie als "bad commit" `HEAD` aus.
 - [EC] Führen Sie den `git bisect`-Prozess automatisiert aus.

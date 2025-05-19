@@ -38,11 +38,11 @@ Das Formulieren von angestrebten Lernergebnissen ist einer der wichtigsten
 Schritte des Verfassens von Aufgaben, auf gleich drei verschiedenen Ebenen:
 
 1. Informieren der Studierenden über das von ihnen in der Aufgabe erwartet wird
-    und was sie von der Aufgabe erwarten können.
+   und was sie von der Aufgabe erwarten können.
 2. Informieren der Tutoren, was die Erwartungen an die Studierenden beim
-    Bearbeiten der Aufgabe sind.
+   Bearbeiten der Aufgabe sind.
 3. Anforderungen an die Aufgabe, die die durch die Aufgabenstellung dafür
-    Sorge zu tragen hat, die intendierten Lernergebnisse auch zu erreichen.
+   Sorge zu tragen hat, die intendierten Lernergebnisse auch zu erreichen.
 
 Ein Vorschlag, die Lernziele bzw. zu erreichenden Kompetenzen zu entwickeln ist einem
 dreistufigen Prozess zu folgen, bei dem zunächst die Inhalte herausgearbeitet werden,

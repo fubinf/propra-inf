@@ -94,7 +94,7 @@ Tragen Sie die Antworten auf folgende Fragen ein:
 - [EQ] Haben Sie Scheu davor, dass Ihre Tutor_innen diese Zeiten einsehen können? 
   Warum, wenn die doch dafür da sind, Ihnen Lernhilfe und Rückmeldung zu geben?
 - [EQ] Werden Sie im ProPra die beschriebene Arbeitszeiterfassung machen?
-  Falls ja: Was vermuten Sie, wie oft sie vergessen werden, das Eintragsformat einzuhalten?
+  Falls ja: Was vermuten Sie, wie oft Sie vergessen werden, das Eintragsformat einzuhalten?
 
 Machen Sie einen Commit im obigen Format mit Ihrer tatsächlichen Arbeitszeit.
 

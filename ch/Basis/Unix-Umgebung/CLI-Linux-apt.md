@@ -19,7 +19,7 @@ die mit `sudo` beginnen, nicht ausführen.
 Soweit dies Kommandos zur Installation von Linux-Paketen sind (`sudo apt install ...`),
 wird das meistens nichts ausmachen, weil die betreffenden Pakete dort schon installiert sind.  
 Die übrigen solchen Aufgaben kann man auf einem Poolrechner nicht bearbeiten;
-sie müssen sich eine neue aussuchen.
+Sie müssen sich eine neue aussuchen.
 [ENDNOTICE]
 
 [ENDSECTION]

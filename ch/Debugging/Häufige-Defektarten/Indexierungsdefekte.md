@@ -102,7 +102,7 @@ Führen Sie die Funktion mit den folgenden Eingaben aus:
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Indexierungsdefekte.py` korrigieren.
-- Machen sie einen Commit `Indexierungsdefekte corrected`, der nur genau diese modifizierte Datei enthält.
+- Machen Sie einen Commit `Indexierungsdefekte corrected`, der nur genau diese modifizierte Datei enthält.
 - [EC] `git -P show HEAD`
 
 [ENDSECTION]
