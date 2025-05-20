@@ -53,15 +53,15 @@ Im Falle von `gcc` ist das die [TERMREF::Assemblersprache] der jeweiligen
 Rechnerarchitektur (amd64 für die meisten Windows/Linux PCs, aarch64 für die
 neueren Macs).
 
-- [EC] Rufen Sie mit
-  `gcc -O3 -S c-compiler-assembler-linker.c -o c-compiler-assembler-linker.s`
-  den Compiler auf.
-  Der Parameter `-O3` sorgt hier für die höchste Stufe der Optimierung (einfach
-  damit wir nicht eine ellenlangen Ausgabe in Assemblersprache erhalten) und
-  `-S` dafür, dass `gcc` nur den Übersetzungs-Schritt ausführt und nicht weiter
-  macht.  
-  Rufen Sie nun `cat c-compiler-assembler-linker.s` auf.
-  Das kleine Programm wurde von `gcc` in die angezeigten Form in
+[EC] Rufen Sie mit
+`gcc -O3 -S c-compiler-assembler-linker.c -o c-compiler-assembler-linker.s`
+den Compiler auf.
+Der Parameter `-O3` sorgt hier für die höchste Stufe der Optimierung (einfach
+damit wir nicht eine ellenlangen Ausgabe in Assemblersprache erhalten) und
+`-S` dafür, dass `gcc` nur den Übersetzungs-Schritt ausführt und nicht weiter
+macht.  
+Rufen Sie nun `cat c-compiler-assembler-linker.s` auf.
+Das kleine Programm wurde von `gcc` in die angezeigten Form in
   Assemblersprache übersetzt.
 
 TODO KHOFMANN: - Adjust to have more depth
@@ -79,19 +79,19 @@ Abhilfe schafft der Assemblierer, mit dessen Hilfe die Ausgabe in
 Assemblersprache in binäre Maschinensprache führ Ihren Prozessor umgewandelt
 wird.
 
-- [EC] Rufen Sie mit
-  `gcc -c c-compiler-assembler-linker.s -o c-compiler-assembler-linker.o`
-  den Übersetzer auf.
-  Der Parameter `-c` sorgt dafür, dass `gcc` je nach Art der Eingabe-Datei
-  übersetzt und assembliert oder nur assembliert.
-  Da Sie als Eingabe eine Datei in Assemblersprache übergeben haben wird hier
-  demnach nur assembliert.  
-  Rufen Sie nun `objdump -D c-compiler-assembler-linker.o` auf.
-  Die Eingabe in Assemblersprache wurde in das angezeigte binäre Format, eine
-  so genannte Objekt-Datei, umgewandelt. Mit dem UNIX-Werkzeug `objdump` können
-  Sie jede beliebige Objekt-Datei (oder auch ganze Programme) deassemblieren
-  (`-D`).
-  Sie bekommen zwar kein C-Code mehr, aber das nächst beste, Assemblersprache.
+[EC] Rufen Sie mit
+`gcc -c c-compiler-assembler-linker.s -o c-compiler-assembler-linker.o`
+den Übersetzer auf.
+Der Parameter `-c` sorgt dafür, dass `gcc` je nach Art der Eingabe-Datei
+übersetzt und assembliert oder nur assembliert.
+Da Sie als Eingabe eine Datei in Assemblersprache übergeben haben wird hier
+demnach nur assembliert.  
+Rufen Sie nun `objdump -D c-compiler-assembler-linker.o` auf.
+Die Eingabe in Assemblersprache wurde in das angezeigte binäre Format, eine
+so genannte Objekt-Datei, umgewandelt. Mit dem UNIX-Werkzeug `objdump` können
+Sie jede beliebige Objekt-Datei (oder auch ganze Programme) deassemblieren
+(`-D`).
+Sie bekommen zwar kein C-Code mehr, aber das nächst beste, Assemblersprache.
 
 ### Der Binder
 
@@ -107,16 +107,16 @@ unter Windows) werden nicht eingefügt, für diese wird lediglich ein Verweis in
 das Program eingearbeitet damit das Betriebssystem diese Bibliothek später
 laden kann.
 
-- [EC] Rufen Sie mit
-  `gcc c-compiler-assembler-linker.o -o c-compiler-assembler-linker.out`
-  den Übersetzer auf.
-  Ohne zusätzliche Angaben führt `gcc` stets alle Schritte auf, die für einen
-  Eingabe zu einem ausführbaren Programm führt.
-  Da wir eine Objekt-Datei als Eingabe haben wird nur der Binder-Schritt
-  ausgeführt.  
-  Rufen Sie nun `objdump -D c-compiler-assembler-linker.out` auf.
-  Sie sehen dass die Ausgabe wesentlich länger ist als noch in [EREFC::2].
-  Der zusätzliche Code wurde vom Binder hinzugefügt und macht Ihr Programm erst
+[EC] Rufen Sie mit
+`gcc c-compiler-assembler-linker.o -o c-compiler-assembler-linker.out`
+den Übersetzer auf.
+Ohne zusätzliche Angaben führt `gcc` stets alle Schritte auf, die für einen
+Eingabe zu einem ausführbaren Programm führt.
+Da wir eine Objekt-Datei als Eingabe haben wird nur der Binder-Schritt
+ausgeführt.  
+Rufen Sie nun `objdump -D c-compiler-assembler-linker.out` auf.
+Sie sehen dass die Ausgabe wesentlich länger ist als noch in [EREFC::2].
+Der zusätzliche Code wurde vom Binder hinzugefügt und macht Ihr Programm erst
   ausführbar.
 
 ### Alles zusammen
@@ -126,15 +126,15 @@ Sofern Sie `gcc` nicht mit dem `-S`, `-E` oder `-c` Parameter aufrufen, macht
 `gcc` alle Schritte nacheinander für Sie.
 Das Ergebnis ist identisch als würden Sie die Schritte händisch ausführen
 
-- [EC] Rufen Sie mit
-  `gcc -O3 c-compiler-assembler-linker.c -o c-compiler-assembler-linker-dir.out`
-  den Übersetzer auf.  
-  Rufen Sie nun
-  `diff c-compiler-assembler-linker.out c-compiler-assembler-linker-dir.out`
-  auf.
-  Wenn `diff` ihnen meldet die Dateien seien verschieden, prüfen Sie
-  ob auch alle Befehle so wie hier geschrieben ausgeführt werden.
-  `diff` wird eine leere Ausgabe erzeugen wenn beide Dateien identisch sind.
+[EC] Rufen Sie mit
+`gcc -O3 c-compiler-assembler-linker.c -o c-compiler-assembler-linker-dir.out`
+den Übersetzer auf.  
+Rufen Sie nun
+`diff c-compiler-assembler-linker.out c-compiler-assembler-linker-dir.out`
+auf.
+Wenn `diff` ihnen meldet die Dateien seien verschieden, prüfen Sie
+ob auch alle Befehle so wie hier geschrieben ausgeführt werden.
+`diff` wird eine leere Ausgabe erzeugen wenn beide Dateien identisch sind.
 
 [ENDSECTION]
 
