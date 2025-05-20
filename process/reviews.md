@@ -49,7 +49,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 
 ### Testen
-- ch/Testen/Unittests/python-Methodik-Whitebox.md (RR->LP)
 - ch/Testen/Unittests/pytest_call (RR->LP->RR->LP->RR->LP) Als Vorbedingung für die Coverage Aufgaben.
 
 - ch/Testen/Unittests/pytest_mocking.md (RR->DM->HA->LP->RR->LP->RR->LP)
@@ -152,7 +151,8 @@ Außerdem Methodik des Testfallentwurfs für Modultests mit Äquivalenzklassen, 
 Fehlerfällen, Whitebox/Strukturtest.  
 Einsatzfälle für Mocking: Fehlerfälle induzieren, schwergewichtige Kollaborateure loswerden.
 
-- ch/Testen/Unittests/testcoverage.md (RR->LP->RR) Thematik ggf. in pytest_plugin_testcoverage.md
+- ch/Testen/Unittests/pytest-Methodik-Whitebox.md (RR->LP->RR)
+- ch/Testen/Unittests/testcoverage.md (RR->LP->RR) Streichen, relevante Reste pytest_plugin_testcoverage.md
   aufnehmen
 - ch/Testen/Unittests/pytest_plugin_testcoverage.md (RR->LP->RR) Auf die Testmethoden und pytest_call
   beziehen und weiterführen
