@@ -1,6 +1,6 @@
 title: "C Compiler und Linker"
 stage: draft
-timevalue: 1
+timevalue: 0.75
 difficulty: 2
 assumes: c-setup
 ---
@@ -34,6 +34,8 @@ Der Präprozessor wird Ihnen in [PARTREF::c-preprocessor] näher gebracht.
 [SECTION::instructions::detailed]
 Für die unten aufgeführten Demonstrationen wird folgendes kleines Programm
 verwendet.
+Da Sie direkt mit der Werkzeugkette arbeiten kann diese Aufgabe nicht mit
+CLion bearbeitet werden.
 Legen Sie eine Datei `c-compiler-assembler-linker.c` mit folgendem Inhalt an:
 ```c
 #include <stdio.h>
@@ -56,19 +58,19 @@ neueren Macs).
 [EC] Rufen Sie mit
 `gcc -O3 -S c-compiler-assembler-linker.c -o c-compiler-assembler-linker.s`
 den Compiler auf.
-Der Parameter `-O3` sorgt hier für die höchste Stufe der Optimierung (einfach
-damit wir nicht eine ellenlangen Ausgabe in Assemblersprache erhalten) und
-`-S` dafür, dass `gcc` nur den Übersetzungs-Schritt ausführt und nicht weiter
-macht.  
+Der Kommandozeilenparameter `-O3` sorgt hier für die höchste Stufe der
+Optimierung (einfach damit wir nicht eine ellenlangen Ausgabe in
+Assemblersprache erhalten) und `-S` dafür, dass `gcc` nur den
+Übersetzungs-Schritt ausführt und nicht weiter macht.  
 Rufen Sie nun `cat c-compiler-assembler-linker.s` auf.
 Das kleine Programm wurde von `gcc` in die angezeigten Form in
-  Assemblersprache übersetzt.
+Assemblersprache übersetzt.
 
-TODO KHOFMANN: - Adjust to have more depth
-
-Probieren Sie auch mal `-O0`, `-O1`, `-O2` order `-Os` aus.
-Beachten sie dabei, dass für die weiteren Aufgaben die Ausgabe mit `-O3`
-benötigt wird (am besten den Dateinamen für andere `-O` abändern).
+[EQ] GCC hat mehrere Optimierungsstufen zur Auswahl (`-O`
+Kommandozeilenparameter).
+Machen Sie sich mit den Stufen
+[hier](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html) vertraut.
+Erläutern Sie kurz, wann Sie welche Stufe verwenden würden.
 
 ### Der Assemblierer
 
@@ -82,8 +84,8 @@ wird.
 [EC] Rufen Sie mit
 `gcc -c c-compiler-assembler-linker.s -o c-compiler-assembler-linker.o`
 den Übersetzer auf.
-Der Parameter `-c` sorgt dafür, dass `gcc` je nach Art der Eingabe-Datei
-übersetzt und assembliert oder nur assembliert.
+Der Kommandozeilenparameter `-c` sorgt dafür, dass `gcc` je nach Art der
+Eingabe-Datei übersetzt und assembliert oder nur assembliert.
 Da Sie als Eingabe eine Datei in Assemblersprache übergeben haben wird hier
 demnach nur assembliert.  
 Rufen Sie nun `objdump -D c-compiler-assembler-linker.o` auf.
@@ -99,9 +101,9 @@ Damit aus der Objekt-Datei (oder bei größeren Programmen den zahlreichen
 Objekt-Dateien), nun ein ausführbares Programm wird, wird der Binder
 eingesetzt.
 Der Binder nimmt alle angegebenen ObjeKt-Dateien, zusätzlich angegeben
-[TERMREF::Bibliothek]en (`-lxxx` Parameter, mit xxx dem Namen der Bibliothek,
-z.b. `-lssl` für die openSSL Kryptographiebibliothek) und fügt diese
-zu einer Datei zusammen.
+[TERMREF::Bibliothek]en (`-lxxx` Kommandozeilenparameter, mit xxx dem Namen der
+Bibliothek, z.b. `-lssl` für die openSSL Kryptographiebibliothek) und fügt
+diese zu einer Datei zusammen.
 Dynamisch verlinkte Bibliotheken (.so unter Linux, .dylib unter macOS und .DLL
 unter Windows) werden nicht eingefügt, für diese wird lediglich ein Verweis in
 das Program eingearbeitet damit das Betriebssystem diese Bibliothek später
@@ -122,8 +124,8 @@ Der zusätzliche Code wurde vom Binder hinzugefügt und macht Ihr Programm erst
 ### Alles zusammen
 
 Sie müssen natürlich nicht immer all diese Schritte händisch ausführen.
-Sofern Sie `gcc` nicht mit dem `-S`, `-E` oder `-c` Parameter aufrufen, macht
-`gcc` alle Schritte nacheinander für Sie.
+Sofern Sie `gcc` nicht mit dem `-S`, `-E` oder `-c` Kommandozeilenparameter
+aufrufen, macht `gcc` alle Schritte nacheinander für Sie.
 Das Ergebnis ist identisch als würden Sie die Schritte händisch ausführen
 
 [EC] Rufen Sie mit
