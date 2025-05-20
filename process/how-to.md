@@ -56,7 +56,7 @@ The target audience of this part of the document is ProPra authors, not instruct
 ## Principles
 
 During the development of propra-inf, we have discovered the following principles
-for its structure and have attempted to obey them throughout:
+for its structure and attempt to obey them throughout:
 
 - **SeDriLa template:** 
   We use [sedrila](https://github.com/fubinf/sedrila) and follow its conventions
@@ -64,15 +64,18 @@ for its structure and have attempted to obey them throughout:
 - **regular structure:**
   All tasks are arranged into a simple chapter/taskgroup/task hierarchy.
   All tasks follow the same simple goal/background/instructions/submission section structure.
+  There are [naming conventions](https://sedrila.readthedocs.io/en/latest/authors/#114-naming-conventions).
 - **motivation focus:**
   Landing pages of chapters and taskgroups, goal sections of tasks
   greet students with a very short text that explains why they might be interested in this
   material.
 - **all audiences:**
   We have tasks at different levels of difficulty.
-  Most are aimed at "average" students, but others cater for stronger ones or very weak ones.
+  Most are aimed at "average" students, but others cater for stronger ones or (rarely) very weak ones.
 - **fine granularity:**
   Our tasks are small, most in the 1.0...1.5 hour range (smaller if needed), with a 4 hours maximum.
+- **independent tasks**:
+  We strive to avoid strong dependencies between tasks, so students can pick what they want as much as possible.
 - **heavy cross referencing:**
   Our tasks cross-reference each other a lot to show their interconnectedness and to support
   the fine granularity. 
@@ -238,8 +241,9 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
 
 - We are not using branches, all commits happen on `main` directly.
   We are a closed group and trust each other to work carefully.
-- Integrate your local commits via 'rebase', not via 'merge'.
-- Our staging happens via the `stage:` attribute of each task.
+- Integrate your local commits via 'git pull --rebase', not via 'merge'.
+- Our staging happens via the `stage:` attribute of each task (see 
+  ["YAML top matter"](https://sedrila.readthedocs.io/en/latest/authors/#15-task-files-yaml-top-matter)).
   Changing this attribute replaces the pull request workflow typical in other open source projects.
 
 ### Working with the `altdir` submodule
