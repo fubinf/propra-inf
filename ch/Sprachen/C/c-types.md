@@ -5,7 +5,7 @@ difficulty: 3
 assumes: c-compiler-assembler-linker, c-preprocessor
 ---
 [SECTION::goal::idea]
-Ich verstehe das Typsystem der C-Sprache.
+Ich verstehe das C Typsystem.
 [ENDSECTION]
 
 [SECTION::background::default]

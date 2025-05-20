@@ -15,8 +15,7 @@ Der Themenblock wird Ihnen folgende Themen näher bringen:
 - Höhere Datenstrukturen
 
 Die Anfänge des Themenblocks sind etwas trocken, geschuldet dem, im Vergleich
-zu Python, doch eher benutzerunfreundlichem Aussehen und Verhalten der
-C-Sprache.
+zu Python, doch eher benutzerunfreundlichem Aussehen und Verhalten von C.
 
 [INSTRUCTOR::Zielgruppe]
 Ausgelegt für Studenten mit grundlegenden Programmierkenntnissen, welche sich

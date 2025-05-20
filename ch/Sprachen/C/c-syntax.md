@@ -5,18 +5,17 @@ difficulty: 3
 assumes: c-compiler-assembler-linker, c-preprocessor
 ---
 [SECTION::goal::idea]
-Ich verstehe den Syntax der C-Sprache.
+Ich verstehe den C Syntax.
 [ENDSECTION]
 
 [SECTION::background::default]
 Pythons Syntax ist Ihnen sicherlich bekannt.
 Er ist nicht immer geradlinig, aber dennoch gut und flüssig lesbar.
-In der C-Sprache ist das leider nicht so.
+In C ist das leider nicht so.
 Der Syntax is klobig und alt.
 Er zeigt eine störrische, unflexible Seite der Welt der Programmiersprachen,
 aber auch eine Beständigkeit die seines gleichen sucht.
-Ja, der Syntax, und auch die C-Sprache selbst, hat viele weite Sprachen
-inspiriert.
+Ja, der Syntax, und auch C selbst, hat viele weitere Sprachen inspiriert.
 
 Der Task wird Sie mit dem Syntax vertraute machen, und wenn Sie den Syntax
 ersteinmal beherrschen, dann werden viele C-ähnliche Sprachen wesentlich
@@ -40,16 +39,14 @@ Die folgende Liste zeigt um was sich dieser Task dreht.
 Wie Ihnen in den anderen C-Tasks sicherlich schon aufgefallen, endet jede Zeile
 die nicht einen Code-Block öffnet order schließt (`{}`) bzw. ein
 Präprozessor-Makro ist mit einem `;`.
-Der `;` dient in der C-Sprache als Zeilenterminator und ist zwingend
-erforderlich.
+Der `;` dient in C als Zeilenterminator und ist zwingend erforderlich.
 Achten Sie also stets darauf das Zeichen zu setzen, sonst bekommen Sie einige
-Fehlermeldungen bei der Kompilation (darüber gibt es unzählige Witze).
+Fehlermeldungen bei der Übersetzung (darüber gibt es unzählige Witze).
 
 ### Variablendefinition
 Jedes gute Programm benötige Variablen.
-In der C-Sprache müssen Sie allerdings etwas mehr schreiben um eine solche zu
-bekommen, denn die C-Sprache möchte sehr genau wissen was diese Variable denn
-auch ist.
+In C müssen Sie allerdings etwas mehr schreiben um eine solche zu bekommen,
+denn C möchte sehr genau wissen was diese Variable denn auch ist.
 
 Der Grundaufbau ist folgender:
 ```c
@@ -97,9 +94,9 @@ Weite Informationen finden Sie
 #### Allgemein
 Nur Variablen wäre langweilig, denn ur mit Funktionen kann Ihr Programm auch
 wirklich etwas machen.
-In der C-Sprache gibt es hier etwas wichtiges zu beachten: Die Reihenfolge
-in der Sie Funktionen (und auch Variablen) in Ihren Dateien schreiben bestimmt
-wo Sie diese verwenden können.
+In C gibt es hier etwas wichtiges zu beachten: Die Reihenfolge in der Sie
+Funktionen (und auch Variablen) in Ihren Dateien schreiben bestimmt wo Sie
+diese verwenden können.
 Sie können Funktionen nämlich nur ab der Zeile verwenden, in der die Funktion
 deklariert wurde.
 Wichtig hier ist: Die Funktion muss zu diesem Zeitpunkt noch nicht definiert
@@ -135,7 +132,7 @@ Dabei gilt:
   gelten die selben Regeln.
 - Die Parameterliste ist eine kommagetrennte Liste bestehend aus
   Variablendefinitionen.
-  Da die C-Sprache keine Default-Werte für Parameter bzw. optionale
+  Da C keine Default-Werte für Parameter bzw. optionale
   Parameter (ausgenommen Variadic [PARTREF::c-variadic]) entfällt hierbei
   die Initialisation.
 - `void` ist ein Sondertyp, er steht für keine Rückgabe wenn `void` als
@@ -220,6 +217,6 @@ TODO KHOFMANN: Kontrollstruktur
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Abgbe prüfen]
+[INSTRUCTOR::Abgabe prüfen]
 TODO KHOFMANN: Syntax altdir
 [ENDINSTRUCTOR]

@@ -4,6 +4,9 @@ timevalue: 1
 difficulty: 3
 assumes: c-compiler-assembler-linker
 ---
+FIXME KHOFMANN: Ganze Aufgabe muss geprüft werden ob bzw. wie man die mit CLion
+lösen kann
+
 [SECTION::goal::idea]
 Ich verstehe wichtigsten Präprozessor-Direktiven und kann diese anwenden.
 [ENDSECTION]
@@ -12,7 +15,7 @@ Ich verstehe wichtigsten Präprozessor-Direktiven und kann diese anwenden.
 Wie in [PARTREF::c-compiler-assembler-linker] erwähnt dreht es sich hier
 gänzlich um den Präprozessor.
 
-Der C Präprozessor ist ein elementarer Bestandteil der C-Sprache, denn ohne den
+Der C Präprozessor ist ein elementarer Bestandteil von C, denn ohne den
 Präprozessor wäre es doch recht mühsam, Programme zu entwickeln.
 Die Hauptaufgaben sind:
 
@@ -92,7 +95,7 @@ int main(void) {
 ```
 Vervollständigen Sie die `#include`-Direktive (...) einmal mit `<>`, `""` um
 `print.h` einzubinden.
-Kompilieren Sie das Program indem Sie das grüne Dreieck in der rechten oberen
+Bauen Sie das Program indem Sie das grüne Dreieck in der rechten oberen
 Ecke anklicken während Sie die `main-includes.c` als aktiven Tab haben.
 Beschreiben Sie kurz, weshalb Sie bei einer der Varianten eine Fehler bekommen.
 
@@ -202,7 +205,7 @@ void print(const char *string) {
 }
 ```
 
-[EC] Kompilieren Sie mit dem Befehl `gcc -DXXX main-conditional.c lib.c`.
+[EC] Bauen Sie mit dem Befehl `gcc -DXXX main-conditional.c lib.c`.
 Der `-D` Kommandozeilenparameter erlaubt es Präprozessorsymbole außerhalb von
 Dateien zu spezifizieren.
 Ersetzen Sie XXX mit einem der in [EREFR::1] geforderten Symbole.
@@ -210,8 +213,8 @@ Es können beliebig viel `-DXXX` gesetzt werden.
 Führen Sie anschließend das Program aus.
 Wiederhohlen Sie obiges so oft bis alle drei Blöcke jeweils einmal ausgeführt
 wurden.
-Verändern Sie keine der Dateien zwischen den Kompilierungen, nutzen Sie nur den
-`-D` Kommandozeilenparameter.
+Verändern Sie keine der Dateien, nutzen Sie nur den `-D`
+Kommandozeilenparameter.
 
 ### Makros
 Es gibt zwei Arten an Makros, Objekt-Makros und Funktions-Markos.  
@@ -221,8 +224,8 @@ Funktions-Makros hingegen sind Makros, denen Parameter übergeben werden können
 
 Genau wie bei der `#include`-Direktive handelt es sich bei Makros um stumpfe
 Testersetzungen.
-Ihre Makros müssen demnach zwingend gültiger C-Code sein, sonst schlägt der
-Kompilier-Schritt fehl.
+Ihre Makros müssen demnach zwingend gültiger C-Code sein, sonst schlägt das
+Bauen fehl.
 
 Ein Makro wird definiert mittels der `#define`-Direktive.
 Falls notwendig, z.B. wenn Sie ein Makro nur für einen Teilabschnitt Ihres
@@ -290,7 +293,7 @@ Ternary-Operator bestehend aus `?` und `:` :
 `BEDINGUNG ? WERT_WENN_WAHR : WERT_WENN_FALSCH`.
 [ENDNOTICE]
 
-[EC] Kompilieren Sie das Program indem Sie das grüne Dreieck in der rechten
+[EC] Bauen Sie das Program indem Sie das grüne Dreieck in der rechten
 oberen Ecke anklicken während Sie die `main-makros.c` als aktiven Tab haben.
 [ENDSECTION]
 

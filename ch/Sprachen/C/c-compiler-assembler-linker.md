@@ -23,8 +23,8 @@ Interpreter während der Laufzeit gelesen und umgewandelt, sonder muss vorher
 "gebaut" werden.
 In diesem Bauschritt werden vier Unterschritte ausgeführt:
 
-- Der C Präprozessor
-- Der C [TERMREF::Übersetzer]
+- Der C-Präprozessor
+- Der C-[TERMREF::Übersetzer]
 - Der [TERMREF::Assemblierer]
 - Der [TERMREF::Binder]
 
