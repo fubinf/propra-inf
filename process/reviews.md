@@ -51,6 +51,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Bibliotheken/Pandas-Grundlagen/Pandas-Einführung.md (JS->LP->JS->LP)
 - ch/Bibliotheken/Pandas-Grundlagen/Pandas-Datenstrukturen.md (JS->LP)
 
+
 ### Bestandscode
 
 
@@ -217,6 +218,8 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
 
 
 ## Rework to do for Jarmin Saka
+
+- ch/Bibliotheken/Pandas-Grundlagen/pd-introduction.md (JS->LP->JS->LP)
 
 
 ## Rework to do for Sven Wegner
