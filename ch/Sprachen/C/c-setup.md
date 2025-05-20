@@ -106,7 +106,7 @@ empfohlen.
 ```text
 -DCMAKE_C_FLAGS="-fdiagnostics-color=always -O0 -g3 -Wall -Wextra -Wstrict-prototypes -Wconversion -Wdouble-promotion -Wno-unused-parameter -Wno-unused-function -pedantic" -DCMAKE_CXX_FLAGS="-fdiagnostics-color=always -O0 -g3 -Wall -Wextra -Wstrict-prototypes -Wconversion -Wdouble-promotion -Wno-unused-parameter -Wno-unused-function -pedantic"
 ```
-  Eine Erläuterung der Parameter ist weiter unten aufgeführt.  
+  Eine Erläuterung der Kommandozeilenparameter ist weiter unten aufgeführt.  
   Lassen Sie alle anderen Felder unberührt.
 [ENDFOLDOUT]
 
@@ -159,7 +159,7 @@ empfohlen.
 ```text
 -DCMAKE_C_FLAGS="-fdiagnostics-color=always -O0 -g3 -Wall -Wextra -Wstrict-prototypes -Wconversion -Wdouble-promotion -Wno-unused-parameter -Wno-unused-function -pedantic" -DCMAKE_CXX_FLAGS="-fdiagnostics-color=always -O0 -g3 -Wall -Wextra -Wstrict-prototypes -Wconversion -Wdouble-promotion -Wno-unused-parameter -Wno-unused-function -pedantic"
 ```
-  Eine Erläuterung der Parameter ist weiter unten aufgeführt.  
+  Eine Erläuterung der Kommandozeilenparameter ist weiter unten aufgeführt.  
   Lassen Sie alle anderen Felder unberührt.
 [ENDFOLDOUT]
 
@@ -212,7 +212,7 @@ empfohlen.
 ```text
 -DCMAKE_C_FLAGS="-fdiagnostics-color=always -O0 -g3 -Wall -Wextra -Wstrict-prototypes -Wconversion -Wdouble-promotion -Wno-unused-parameter -Wno-unused-function -pedantic" -DCMAKE_CXX_FLAGS="-fdiagnostics-color=always -O0 -g3 -Wall -Wextra -Wstrict-prototypes -Wconversion -Wdouble-promotion -Wno-unused-parameter -Wno-unused-function -pedantic"
 ```
-  Eine Erläuterung der Parameter ist weiter unten aufgeführt.  
+  Eine Erläuterung der Kommandozeilenparameter ist weiter unten aufgeführt.  
   Lassen Sie alle anderen Felder unberührt.
 [ENDFOLDOUT]
 
