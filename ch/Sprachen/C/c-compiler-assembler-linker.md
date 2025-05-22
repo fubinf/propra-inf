@@ -1,5 +1,5 @@
-title: "C Compiler und Linker"
-stage: draft
+title: "C Übersetzer, Assemblierer, Binder"
+stage: alpha
 timevalue: 0.75
 difficulty: 2
 assumes: c-setup
@@ -10,8 +10,21 @@ und des [TERMREF::Binder]s.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO KHOFMANN: Rewrite to motivation
+C entstand, als Computer noch Schränke waren und die Rechenleistung ein Zehntel
+Ihres Smartphones betrug.
+Damit performante Anwendungen entstehen konnten und man sich nicht durch
+Bücher, an in [TERMREF::Assemblersprache] geschriebenem Code, wälzen musste,
+wurden Übersetzer, Assemblierer und Binder entwickelt.
 
+Diese Aufgabe macht Sie mit den grundlegenden Aufgaben dieser drei Programme
+vertraut.
+
+Ein etwas tiefer Einblick in den Aufbau des GCC C-Übersetzers können Sie
+[hier](https://en.wikibooks.org/wiki/GNU_C_Compiler_Internals/GNU_C_Compiler_Architecture)
+erlangen.
+[ENDSECTION]
+
+[SECTION::instructions::detailed]
 Bis jetzt haben Sie vorwiegend in Python gearbeitet.
 Python ist eine interpretierte Sprache, wenn Sie ihr Programm ausführen liest
 der Python-Interpreter dieses Zeile für Zeile durch, wandelt das geschrieben
@@ -24,14 +37,12 @@ Interpreter während der Laufzeit gelesen und umgewandelt, sonder muss vorher
 In diesem Bauschritt werden vier Unterschritte ausgeführt:
 
 - Der C-Präprozessor
-- Der C-[TERMREF::Übersetzer]
-- Der [TERMREF::Assemblierer]
-- Der [TERMREF::Binder]
+- Der C-Übersetzer
+- Der Assemblierer
+- Der Binder
 
 Der Präprozessor wird Ihnen in [PARTREF::c-preprocessor] näher gebracht.
-[ENDSECTION]
 
-[SECTION::instructions::detailed]
 Für die unten aufgeführten Demonstrationen wird folgendes kleines Programm
 verwendet.
 Da Sie direkt mit der Werkzeugkette arbeiten kann diese Aufgabe nicht mit
@@ -51,8 +62,8 @@ int main(void) {
 
 Aufgabe des Übersetzers ist es, den von Ihnen geschriebenen Code in eine
 andere Form umzuwandeln.
-Im Falle von `gcc` ist das die [TERMREF::Assemblersprache] der jeweiligen
-Rechnerarchitektur (amd64 für die meisten Windows/Linux PCs, aarch64 für die
+Im Falle der GCC ist das die Assemblersprache der jeweiligen
+Prozessorarchitektur (amd64 für die meisten Windows/Linux PCs, aarch64 für die
 neueren Macs).
 
 [EC] Rufen Sie mit
@@ -63,13 +74,13 @@ Optimierung (einfach damit wir nicht eine ellenlangen Ausgabe in
 Assemblersprache erhalten) und `-S` dafür, dass `gcc` nur den
 Übersetzungs-Schritt ausführt und nicht weiter macht.  
 Rufen Sie nun `cat c-compiler-assembler-linker.s` auf.
-Das kleine Programm wurde von `gcc` in die angezeigten Form in
+Das kleine Programm wurde von `gcc` in die angezeigten Fo`m in
 Assemblersprache übersetzt.
 
-[EQ] GCC hat mehrere Optimierungsstufen zur Auswahl (`-O`
+[EQ] `gcc` hat mehrere Optimierungsstufen zur Auswahl (`-O`
 Kommandozeilenparameter).
-Machen Sie sich mit den Stufen
-[hier](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html) vertraut.
+Machen Sie sich mit den [
+Stufen](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html) vertraut.
 Erläutern Sie kurz, wann Sie welche Stufe verwenden würden.
 
 ### Der Assemblierer

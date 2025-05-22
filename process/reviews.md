@@ -38,7 +38,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/SQL/SQLBenutzerverwaltung.md (YL->LP)
 - ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB->LP)
 - ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB->LP)
-- - ch/Sprachen/C/c-setup.md (KH)
+- ch/Sprachen/C/c-setup.md (KH)
+- ch/Sprachen/C/c-compiler-assembler-linker.md (KH -> LP)
 
 ### Bibliotheken
 
@@ -107,8 +108,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 
 ## Rework to do for Kilian Hofmann
-
-- ch/Sprachen/C/c-compiler-assembler-linker.md (KH)
 
 
 ## Rework to do for Sven Hüster
