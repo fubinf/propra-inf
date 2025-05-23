@@ -2,7 +2,7 @@ title: SQL Datenbankprojekt
 stage: beta
 timevalue: 2
 difficulty: 4
-assumes: SQLBasic, SQLSelect, SQLJoin
+assumes: SQL-create, SQL-select, SQL-join
 ---
 
 [SECTION::goal::product]
