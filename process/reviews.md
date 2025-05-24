@@ -35,7 +35,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Sprachen
 - ch/Sprachen/C/c-preprocessor.md (KH)
-- ch/Sprachen/SQL/SQLBenutzerverwaltung.md (YL->LP)
+- ch/Sprachen/SQL/SQL-view.md (YL->LP->YL->LP)
 - ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB->LP)
 - ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB->LP)
 - ch/Sprachen/C/c-setup.md (KH)
@@ -125,7 +125,11 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ## Rework to do for Yixiang Li
 
-- ch/Sprachen/SQL/SQLView.md (YL->LP->YL)
+- ch/Sprachen/SQL/SQL-user-admin.md (YL->LP)
+- ch/Sprachen/SQL/SQL-create.md (YL)
+- ch/Sprachen/SQL/SQL-join.md (YL)
+- ch/Sprachen/SQL/SQL-project.md (YL)
+- ch/Sprachen/SQL/SQL-select.md (YL)
 
 
 ## Rework to do for Daniel Müllers
