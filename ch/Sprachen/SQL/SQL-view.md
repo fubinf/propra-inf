@@ -12,21 +12,34 @@ Ich kann bestehende Daten mit `UPDATE` verändern, einfache SQL-Views (`CREATE V
 [ENDSECTION]
 
 [SECTION::background::default]
+In Datenbanken ändern sich Informationen regelmäßig – zum Beispiel der Nutzerstatus oder das letzte Login-Datum. Mit dem SQL-Befehl `UPDATE` lassen sich solche Änderungen gezielt und effizient vornehmen, ohne die Datensätze neu anzulegen.
 
+Für wiederkehrende oder komplexe Abfragen bietet SQL die Möglichkeit, sogenannte Sichten (`Views`) mit `CREATE VIEW` zu definieren. Diese stellen gespeicherte Abfragen dar und können wie Tabellen verwendet werden, etwa zur Darstellung aktiver Nutzer oder zur Zusammenfassung von Bestelldaten.
+
+In dieser Aufgabe üben Sie die Datenpflege mit `UPDATE` sowie die Nutzung einfacher SQL-Views.
+
+[ENDSECTION]
+
+[SECTION::instructions::detailed]
+### Infrastrukturhinweis
+
+Für diese Aufgabe empfehlen wir die Arbeit mit dem `sqlite3`-Kommandozeilen-Client, der in der Python-Standardbibliothek enthalten ist. Dies ermöglicht Ihnen, Befehle lokal auszuführen, Ergebnisse zu speichern und die Arbeit mit einer eigenen Infrastruktur zu üben – wie sie auch in größeren Projekten üblich ist.
+
+Alternativ können Sie [SQLite Online](https://sqliteonline.com/) verwenden, um SQL-Befehle ohne lokale Einrichtung auszuprobieren. Beachten Sie jedoch, dass dabei keine Kommandohistorie gespeichert werden kann.
+
+### UPDATE
 Datenbanken enthalten oft Informationen, die sich im Laufe der Zeit ändern – z. B. den Status eines Nutzers oder eine Korrektur bei Tippfehlern. Damit solche Änderungen effizient vorgenommen werden können, bietet SQL den Befehl `UPDATE`.
-
-Views (`CREATE VIEW`) erlauben es, komplexe oder häufig genutzte Abfragen einmalig zu definieren und anschließend wie Tabellen zu verwenden. Views können auch Daten aus mehreren Tabellen zusammenfassen.
-
-
-### Beispiel für UPDATE:
+#### Beispiel für UPDATE
 ```sql
 -- Setze is_active auf FALSE für alle Nutzer, die seit über 6 Monaten nicht eingeloggt waren
 UPDATE users
   SET is_active = 0
   WHERE last_login < DATE('now', '-6 months');
 ```
+### VIEW
+Views (`CREATE VIEW`) erlauben es, komplexe oder häufig genutzte Abfragen einmalig zu definieren und anschließend wie Tabellen zu verwenden. Views können auch Daten aus mehreren Tabellen zusammenfassen.
 
-### Beispiel für VIEW:
+#### Beispiel für VIEW
 ```sql
 -- Erstelle eine Sicht für alle inaktiven Nutzer
 CREATE VIEW inactive_users AS
@@ -34,15 +47,21 @@ SELECT id, username, email
   FROM users
   WHERE is_active = 0;
 ```
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen.
+
+- [UPDATE](https://sqlite.org/lang_update.html)
+- [CREATE VIEW](https://sqlite.org/lang_createview.html)
+[ENDNOTICE]
 
 <!-- end Beispiele -->
-[ENDSECTION]
 
-[SECTION::instructions::detailed]
-
-Verwenden Sie SQLite Online und legen Sie zunächst folgende Tabelle an:
+### Führen Sie den folgenden SQL-Code aus
 
 ```sql
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS orders;
+
 CREATE TABLE users (
   id INTEGER PRIMARY KEY,
   username TEXT,
@@ -73,6 +92,22 @@ INSERT INTO orders (user_id, amount, order_date) VALUES
 ```
 
 Anschließend führen Sie folgende Schritte aus:
+[HINT::Hilfreiche Dokumentation zu A1–A9]
+### 💡 Hinweis (für Aufgaben A1–A9)  
+Die Grundlagen zu `UPDATE`, `DATE('now')`, `CREATE VIEW`, `JOIN`, `GROUP BY`, `SUM` und `DROP VIEW` finden Sie in der offiziellen SQLite-Dokumentation:  
+
+- [SQLite Dokumentation Übersicht](https://sqlite.org/docs.html)  
+
+### ⭐ Konkrete Funktionen
+
+- [UPDATE](https://sqlite.org/lang_update.html)
+- [Datum und Zeitfunktionen (`DATE('now')`)](https://sqlite.org/lang_datefunc.html)
+- [CREATE VIEW](https://sqlite.org/lang_createview.html)
+- [GROUP BY und Aggregatfunktionen (`SUM`)](https://sqlite.org/lang_aggfunc.html)
+- [DROP VIEW](https://sqlite.org/lang_dropview.html)  
+
+Für jede Teilaufgabe bitte gezielt diese Seiten nachschlagen.
+[ENDHINT]
 
 ### Update
 - [ER] Ändern Sie bei Benutzer `carol` den Status `is_active` auf `1`.
@@ -87,12 +122,9 @@ Anschließend führen Sie folgende Schritte aus:
 - [ER] Zeigen Sie den Inhalt aller drei Views (`active_users`, `recent_users_fixed`, `user_order_summary`) an.
 - [ER] Löschen Sie alle drei Views wieder.
 
-### Diskussion
-- [EQ] Diskutieren Sie Vor- und Nachteile von Views in großen Datenbanken, mögliche Performance-Probleme und wann es sinnvoll ist, statt einer View eine reguläre Abfrage zu verwenden.
-
 [ENDSECTION]
 
-[SECTION::submission::information,program]
+[SECTION::submission::program]
 
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
@@ -165,28 +197,5 @@ DROP VIEW IF EXISTS recent_users;
 DROP VIEW IF EXISTS user_order_summary;
 ```
 
-Reflexion / Diskussion
-[EQ] 
-### Vorteile von Views:
-
-Wiederverwendbarkeit komplexer Abfragen.
-
-Erhöhte Lesbarkeit und Wartbarkeit.
-
-Zugriffsbeschränkung durch abstrahierte Sicht auf sensible Daten.
-
-### Nachteile / Herausforderungen:
-
-Potenzielle Performanceprobleme bei komplexen oder verschachtelten Views.
-
-Änderungen an Tabellen können Views ungültig machen.
-
-Eingeschränkte Flexibilität bei stark dynamischen Anwendungsfällen.
-
-### Wann lieber keine View?
-
-Für einmalige oder hochgradig dynamische Queries besser Ad-hoc.
-
-Alternativen wie Stored Procedures sind bei komplexer Logik vorzuziehen.
 
 [ENDINSTRUCTOR]
