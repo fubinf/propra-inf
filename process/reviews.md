@@ -40,6 +40,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB->LP)
 - ch/Sprachen/C/c-setup.md (KH)
 - ch/Sprachen/C/c-compiler-assembler-linker.md (KH -> LP)
+- ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB->LP)
 
 ### Bibliotheken
 
@@ -95,7 +96,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ## Rework to do for Ihar Brandes
 
 - ch/Sprachen/Go0/go-ide.md (IB->LP->IB)
-- ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB)
 
 
 ## Rework to do for Ivan Condric
