@@ -567,29 +567,34 @@ Viel Erfolg!
 
 [ENDNOTICE]
 
-1. [ER] Legen Sie ein Verzeichnis `grade_converter` an und führen Sie darin `go mod init grade_converter` aus. 
-   So initialisieren Sie ein Modul.
-   Legen Sie außerdem eine Datei `main.go` an, die mit `package main` anfängt und die Funktion `main()` beinhaltet.
-2. [ER] In `grade_converter`, erstellen Sie zwei weitere Verzeichnisse: `validator` und `converter`. 
-   Kreieren Sie in den Verzeichnissen entsprechend zwei Dateien — `validator.go` und `converter.go`.
-   Die Dateien müssen jeweils mit `package validator` und `package converter` anfangen.
-3. [ER] `validator.go`-Vorlage:
+[ER] Legen Sie ein Verzeichnis `grade_converter` an und führen Sie darin `go mod init grade_converter` aus. 
+So initialisieren Sie ein Modul.
+Legen Sie außerdem eine Datei `main.go` an, die mit `package main` anfängt und die Funktion `main()` beinhaltet.
+
+[ER] In `grade_converter`, erstellen Sie zwei weitere Verzeichnisse: `validator` und `converter`. 
+Kreieren Sie in den Verzeichnissen entsprechend zwei Dateien — `validator.go` und `converter.go`.
+Die Dateien müssen jeweils mit `package validator` und `package converter` anfangen.
+
+[ER] `validator.go`-Vorlage:
 
 ```go
 [INCLUDE::snippets/go-basics-validator.go]
 ```
-4. [ER] `converter.go`-Vorlage:
+
+[ER] `converter.go`-Vorlage:
 
 ```go
 [INCLUDE::snippets/go-basics-converter.go]
 ```
-5. [ER] `grade_converter.py` als Referenz
+
+[ER] `grade_converter.py` als Referenz
 
 ```python
 [INCLUDE::snippets/go-basics-grades.py]
 ```
-6. [ER] Kopieren Sie die `fake_csv` Zeichenkette als Konstante in Ihr Go-Programm und implementieren Sie die gewünschte Funktionalität. 
-   `fake_csv` muss gleich bleiben.
+
+[ER] Kopieren Sie die `fake_csv` Zeichenkette als Konstante in Ihr Go-Programm und implementieren Sie die gewünschte Funktionalität. 
+`fake_csv` muss gleich bleiben.
 
 
 ### Testen

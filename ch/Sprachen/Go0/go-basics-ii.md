@@ -219,18 +219,20 @@ Funktionen höherer Ordnung sind nützlich für die Erstellung flexibler und wie
 
 #### Ausprobieren
 
-- [ER] Implementieren Sie eine Funktion `divide(a, b float64) (result float64, err error)`:
-  die erste Zahl durch die zweite dividieren.
-  Bei Erfolg ein Tupel `(result, nil)` zurückgeben; ansonsten `(0.0, fmt.Errorf("division by zero"))`.
-  Benutzen Sie hier benannte Rückgabewerte.
-- [ER] Bauen Sie `reduce(initialValue int, operation func(int, int) int, xs ...int) int` — eine Funktion, die 
-  eine Funktion (`operation`) und eine beliebige Anzahl von Ganzzahlen als Parameter bekommt.
-  Sie wendet sukzessive `operation` auf die Ganzzahlen an:
-  Der erste Parameter von `operation` ist eine Akku-Variable (anfangs `start`, am Ende das Resultat), 
-  der zweite der Reihe nach jedes Element der Liste `xs`.
-  Mit `reduce(0, func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise 
-  die Summe der Ganzzahlen berechnet werden.
-- [ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
+[ER] Implementieren Sie eine Funktion `divide(a, b float64) (result float64, err error)`:
+diese muss die erste Zahl durch die zweite dividieren.
+Bei Erfolg gibt sie ein Tupel `(result, nil)` zurück; ansonsten `(0.0, fmt.Errorf("division by zero"))`.
+Benutzen Sie hier benannte Rückgabewerte.
+
+[ER] Implementieren Sie `reduce(initialValue int, operation func(int, int) int, xs ...int) int` — eine Funktion, die 
+eine Funktion (`operation`) und eine beliebige Anzahl von Ganzzahlen als Parameter bekommt.
+Sie wendet sukzessive `operation` auf die Ganzzahlen an:
+Der erste Parameter von `operation` ist eine Akku-Variable (anfangs `start`, am Ende das Resultat), 
+der zweite der Reihe nach jedes Element der Liste `xs`.
+Mit `reduce(0, func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise 
+die Summe der Ganzzahlen berechnet werden.
+
+[ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
 
 ```go
 func testFunctions() {
@@ -336,11 +338,13 @@ mark.Print()
 
 #### Ausprobieren
 
-- [ER] Definieren Sie eine neue Struktur: `Employee`. 
-       Diese soll alle Felder und Methoden einer `Person` übernehmen und ein neues Feld definieren: `Position`.
-- [ER] Implementieren Sie eine neue Methode `Print` auf `Employee`, die nicht nur 
-  den vollständigen Namen auf die Kommandozeile ausgibt, sondern auch die `Position`.
-- [ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
+[ER] Definieren Sie eine neue Struktur: `Employee`. 
+Diese soll alle Felder und Methoden einer `Person` übernehmen und ein neues Feld definieren: `Position`.
+
+[ER] Implementieren Sie eine neue Methode `Print` auf `Employee`, die nicht nur 
+den vollständigen Namen auf die Kommandozeile ausgibt, sondern auch die `Position`.
+
+[ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
 
 ```go
 func testStructs() {
@@ -427,9 +431,10 @@ Das ist jedoch nicht nötig, da Go eine solche Umwandlung automatisch durchführ
 
 #### Ausprobieren
 
-- [ER] Implementieren Sie eine Methode auf `Employee` — `Promote(newPosition string)`. 
-       Diese soll die ursprüngliche Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
-- [ER] Kopieren Sie die folgende Testfunktion in Ihre Datei um und rufen Sie sie ebenfalls aus der `main`-Funktion auf:
+[ER] Implementieren Sie eine Methode auf `Employee` — `Promote(newPosition string)`. 
+Diese soll die ursprüngliche Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
+
+[ER] Kopieren Sie die folgende Testfunktion in Ihre Datei um und rufen Sie sie ebenfalls aus der `main`-Funktion auf:
 
 ```go
 func testMutation() {
@@ -615,10 +620,12 @@ m := make(map[string]int)
 
 Implementieren Sie die folgenden Funktionen:
 
-* [ER] `func AddElement(slice []int, element, at int)` — ein Element an einem Index `at` in einen Slice einfügen;
-  das Element, das vorher an dieser Stelle stand und alle nachfolgenden rücken eine Position nach rechts;
-* [ER] `func RemoveElement(slice []int, at int)` — ein Element an einem Index `at` entfernen und die Größe des Slice entsprechen anpassen.
-* [ER] `func AddElementIfNotThere(m map[string]int, key string, value int)` — ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
+[ER] `func AddElement(slice []int, element, at int)` — ein Element an einem Index `at` in einen Slice einfügen;
+das Element, das vorher an dieser Stelle stand und alle nachfolgenden rücken eine Position nach rechts.
+
+[ER] `func RemoveElement(slice []int, at int)` — ein Element an einem Index `at` entfernen und die Größe des Slice entsprechen anpassen.
+
+[ER] `func AddElementIfNotThere(m map[string]int, key string, value int)` — ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
 
 [ENDSECTION]
 
