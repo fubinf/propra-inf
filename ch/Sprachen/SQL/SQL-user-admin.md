@@ -2,7 +2,7 @@ title: Benutzerverwaltung mit SQL
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: SQL-create, SQL-select, SQL-view
+assumes: SQL-basics, SQL-select, SQL-view
 ---
 
 [SECTION::goal::product]

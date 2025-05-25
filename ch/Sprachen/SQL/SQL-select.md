@@ -2,7 +2,7 @@ title: SQL Select anwenden
 stage: alpha
 timevalue: 2
 difficulty: 2
-assumes: SQL-create
+assumes: SQL-basics
 ---
 
 [SECTION::goal::experience]
@@ -21,7 +21,7 @@ Das Abfragen einer kleinen gesamten Tabelle kann gelegentlich ausreichen, um das
 
 ### Grundlage unsere Abfrage
 
-Zuerst schaffen wir uns unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQL-create] bekannte
+Zuerst schaffen wir uns unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQL-basics] bekannte
 Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgende Tabelle, mit
 der wir in dieser Aufgabe arbeiten wollen.
 
@@ -79,7 +79,7 @@ der wir in dieser Aufgabe arbeiten wollen.
 
 [HINT::Query]
 Es wurden nur die Datensätze zur Verfügung gestellt, die Anfrage zum Erstellen und zum Einfügen der
-Daten übernehmen Sie, dabei hilft Ihnen [PARTREF::SQL-create].
+Daten übernehmen Sie, dabei hilft Ihnen [PARTREF::SQL-basics].
 [ENDHINT]
 
 ### SELECT Anfragen
@@ -93,7 +93,7 @@ Starten wir leicht durch. Erinnern Sie sich zurück, wie sie Daten aus einer Tab
 - [EC] Lassen Sie sich die gesamte Tabelle zurückgeben.
 - [EC] Lassen Sie sich nur die `owner_id` zurückgeben.
 
-Aus dem Bereich `Tabelleneintrag löschen` der Aufgabe [PARTREF::SQL-create] haben sie das Löschen
+Aus dem Bereich `Tabelleneintrag löschen` der Aufgabe [PARTREF::SQL-basics] haben sie das Löschen
 einzelner Zeilen einer Tabelle kennengelernt, die Sie mithilfe von `WHERE` gezielt identifiziert
 haben. `SELECT` kann auch diese Bedingungsvariable verwenden und somit Ergebnisse filtern.
 

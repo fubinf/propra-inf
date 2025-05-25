@@ -3,24 +3,6 @@ stage: draft
 timevalue: 1.0
 difficulty: 1
 ---
-TODO_1_ruhe  Stichworte für Gespräch mit Lutz Prechelt:
-- Annahmen über Vorwissen machen; hinschreiben
-- Quellen für Erwerb von Vorwissen angeben
-- Text knapp halten
-- Konzepteinführungen ins Glossar verlagern
-- Background falls möglich ans Glossar delegieren
-- Notationen wie `<tablename>` explizit einführen
-- Sowas aber möglichst an externe Quelle delegieren und noch besser überhaupt vermeiden.
-- Für difficulty 1 sehr viel mehr erklären, was da passiert.
-- Für difficulty 2 viel mehr erklären, was da passiert.
-- Zu diesem Thema passt eher difficulty 2.
-- "Ich kann eine Tabelle und deren Inhalt anlegen"  
-  Inhalt?
-  Um das Konzept und den Begriff Schema kommen wir bei SQL nicht herum; wir sind an der Uni.
-  Auch hier wieder: Nicht selber machen, sondern externe Quelle suchen.
-- Wir haben die Regel, dass die Autoren eine Aufgabe selber machen.
-  Das haben Sie nicht getan, sonst wäre ihnen aufgefallen, dass man von https://sqliteonline.com/
-  nicht gut ein Kommandoprotokoll machen kann.
 [SECTION::goal::idea]
 
 Ich kann eine Tabelle und deren Inhalt anlegen, bearbeiten und löschen.

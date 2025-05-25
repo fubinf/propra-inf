@@ -2,7 +2,7 @@ title: SQL Datenpflege und Sichten
 stage: draft
 timevalue: 1.5
 difficulty: 2
-assumes: SQL-create, SQL-select
+assumes: SQL-basics, SQL-select
 ---
 
 [SECTION::goal::product]
