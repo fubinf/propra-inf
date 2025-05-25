@@ -1,11 +1,13 @@
 title: Go Interfaces
 stage: alpha
-timevalue: 2.5
+timevalue: 3.5
 difficulty: 2
+assumes: go-basics-i, go-basics-ii
 ---
 
 [SECTION::goal::idea,experience]
-Ich verstehe, was Interfaces in Go sind, wie sie implementiert und angewendet werden.
+
+Ich verstehe, was Interfaces in Go sind, welchem Zweck sie dienen, wie sie implementiert und angewendet werden.
 
 [ENDSECTION]
 
@@ -71,11 +73,15 @@ Das Interface verlangt nur eine Methode `String() string` .
 3. Implementieren Sie das `Stringer`-Interface, sodass Funktionen wie `fmt.Println()` nicht die ganze Struktur im 
    Terminal ausgeben, sondern nur das `value`.
 
+Ein weiteres Beispiel können Sie sich hier anschauen: [A Tour Of Go](https://go.dev/tour/methods/17).
+
+Die [Dokumentation](https://pkg.go.dev/fmt#Stringer) kann ebenfalls hilfreich sein.
+
 
 #### Reader
 
 Das eingebaute Interface `Reader` besteht aus einer einzigen Methode: `Read(p []byte) (n int, err error)`. 
-Diese muss den Inhalt des implementierenden Objekts in den bereitgestellten Puffer/Slice `p` auslesen 
+Diese muss den Inhalt der implementierenden Struktur in den bereitgestellten Puffer/Slice `p` auslesen 
 und gibt zwei Werte zurück: 
 Die Anzahl der in diesem Aufruf von `Read` ausgelesenen Bytes und einen `error`, 
 falls das Auslesen nicht weiter möglich ist.
@@ -84,17 +90,21 @@ falls das Auslesen nicht weiter möglich ist.
 
 1. Implementieren Sie die `Read` Methode auf der `MyString` Struktur.
     - solange es etwas auszulesen gibt, wird dies ausgelesen;
-    - sobald das Ende erreicht wurde, ein `0, error` Paar zurückgeben.
+    - sobald das Ende erreicht wurde, ein `(n, fmt.Errorf("EOF"))` Paar zurückgeben.
 2. Testen Sie Ihre Implementierung mittels des klassischen gepufferten Auslesens:
     - einen Puffer definieren (beispielsweise der Größe 4);
     - in einer Endlosschleife die `Read(buf)` Methode aufrufen und nach jeder Iteration den Inhalt im Terminal ausgeben,
-      bis ein `error` auftaucht oder keine Bytes mehr ausgelesen werden.
+      bis ein `error` auftaucht.
+
+Ein Referenzbeispiel: [A Tour Of Go](https://go.dev/tour/methods/21).
+
+Die [Dokumentation](https://pkg.go.dev/io#Reader) von `io.Reader` könnte für die Implementierung von `Read()` nützlich sein. 
 
 
 #### Writer
 
-`Writer` Interface besteht ebenfalls aus einer Methode: `Write(p []byte) (n int, err error)`. Diese ermöglicht das
-Schreiben in die Struktur und gibt die Anzahl von geschriebenen Bytes und den Fehler zurück, falls etwas schiefgegangen
+Das Interface `Writer` besteht ebenfalls aus einer Methode: `Write(p []byte) (n int, err error)`. Diese ermöglicht das
+Schreiben aus dem Slice `p` in die Struktur und gibt die Anzahl von den geschriebenen Bytes und den Fehler zurück, falls etwas schiefgegangen
 ist.
 
 [ER] Implementieren Sie auch das `Writer`-Interface.
@@ -103,6 +113,22 @@ ist.
    die bereits vorhandene Zeichenkette (`value`) aufhängen.
 2. Testen Sie Ihre Implementierung, indem Sie einen `MyString` erzeugen und eine beliebige Nachricht per `Write`
    in diesen `MyString` schreiben.
+
+`io.Writer`: [Dokumentation](https://pkg.go.dev/io#Writer)
+
+[NOTICE]
+
+**Was ist der Zweck?**
+
+Die Implementierung der `Reader`- und `Writer`-Methoden mag auf den ersten Blick wie eine reine Übungsaufgabe wirken — in der Tat legt sie aber das Fundament für fortgeschrittene Go-Programmierung.
+
+In späteren Aufgaben werden Sie intensiv mit Dateisystem und Netzwerkkommunikation arbeiten, wo die `Reader`- und `Writer`-Interfaces eine zentrale Rolle spielen. 
+Durch die Erstellung eigener `Reader`-`Writer`-Strukturen erwerben Sie zwei entscheidende Fähigkeiten:
+
+- ein deutlich besseres Verständnis von der I/O-Methoden der Standardbibliothek, da Sie deren zugrundeliegende Mechanismen selbst implementiert haben;
+- Sie können I/O-Operationen eleganter abstrahieren — das führt zu kompakterem Code und erhöht gleichzeitig die Lesbarkeit Ihrer Programme.
+   
+[ENDNOTICE]
 
 
 #### Error
@@ -117,8 +143,8 @@ Dieses Spektrum können wir mithilfe des `Error`-Interfaces abbilden.
 
 [WARNING]
 
-Dieses Beispiel ist nur für Lernzwecke ausgedacht. Es darf kein echtes Szenario geben, wo `FileError`s neben 
-`HTTPError`s behandelt werden sollen.
+Dieses Beispiel ist nur für Lernzwecke ausgedacht. 
+Es darf kein echtes Szenario geben, wo `FileError`s neben `HTTPError`s behandelt werden sollen.
 
 [ENDWARNING]
 
@@ -129,8 +155,13 @@ Dieses Beispiel ist nur für Lernzwecke ausgedacht. Es darf kein echtes Szenario
 3. Definieren Sie eine Struktur `FileError` mit einem Feld `reason string`.
 4. Implementieren Sie das `Error`-Interface. Der `reason` muss in der Fehlermeldung erwähnt werden.
 
+Referenzen:
 
-#### Interfaceeinbettung
+- Ein Beispiel in [A Tour Of Go](https://go.dev/tour/methods/19)
+- Eine ausführlichere Erklärung, was ein `error` ist und wie er benutzt wird: [Exercism](https://exercism.org/tracks/go/concepts/errors)
+
+
+### Interfaceeinbettung
 
 Genauso wie Strukturen dürfen Interfaces miteinander kombiniert werden.
 
@@ -148,64 +179,72 @@ type ElectricCar interface {
 
 Dementsprechend muss ein `ElectricCar` ebenfalls Methoden `Accelerate()` und `Decelerate()` implementieren.
 
-Beispiel: [ReadWriter](https://pkg.go.dev/io#ReadWriter)
+[Hier](https://eli.thegreenplace.net/2020/embedding-in-go-part-2-interfaces-in-interfaces/) finden Sie ein paar weitere Beispiele.
 
 
-#### Leeres Interface
+### Das leere Interface
 
-Leeres Interface (`interface{}`) ist ein Interface, welches keine Methoden verlangt. Das bedeutet, dass alle Typen 
-dieses Interface automatisch implementieren. Das ist das Go-Äquivalent von `Object` in Java oder `void*` in C.
+Was ist, wenn der Typ einer Variable erst zur Laufzeit bestimmt werden kann?
+An dieser Stelle kommt das leere Interface ins Spiel.
 
-So mächtig wie dieses Konstrukt auch ist, spielt es ein bisschen gegen die typ-sichere Natur von Go und impliziert mehr 
-Typ-Checks zur Laufzeit, was zum einen direkt die Leistungsfähigkeit beeinflusst (mehr zu tun für das Programm), und zum 
-anderen manche Compiler-Optimierungen unmöglich macht. 
-
-Falls Sie den Hinweis oben noch nicht aufgeklappt haben, machen Sie das. Auf diese Art und Weise können Sie zur Laufzeit
-bestimmen, was genau sich unter diesem `interface{}` versteckt, und entsprechend agieren.
-
-[ER] Schreiben Sie eine Funktion `HandleSomething(v interface{}) string`, die folgende Datentypen erkennt und jeweils
-verschiedene Zeichenketten zurückgibt:
-
-- `string`;
-- `int`;
-- `bool`;
-- für die anderen Typen dürfen Sie `fmt.Sprintf("%T\n", x)` zurückgeben (automatische Typerkennung).
-
-[HINT::switch...]
-
-Den unterliegenden Typ können Sie aus einem Interface mithilfe von dynamischem Casting bestimmen:
+Schauen Sie sich folgende Funktion an:
 
 ```go
-switch e := err.(type) {
-case A: // do stuff with A
-case B: // do stuff with B
-default: // do something
+func HandleSomething(v interface{}) {
+    switch v := v.(type) {
+    case int: fmt.Println("it's an int", v)
+    case bool: fmt.Println("it's a bool", v)
+    case string: fmt.Println("it's a string", v)
+    default: fmt.Printf("it's a %T\n", v)         // %T gibt den automatisch bestimmten Typ von 'v' aus
+    }
 }
 ```
 
-[ENDHINT]
+Diese Funktion erhält einen Parameter vom Typ `interface{}` und bestimmt in einem [Type Switch](https://go.dev/doc/effective_go#type_switch) dynamisch den konkreten Typ. 
+Aber warum funktioniert das überhaupt?
+
+Das leere Interface definiert keine Methoden-Anforderungen. 
+Da jeder Typ in Go automatisch Null Methoden erfüllt, wird dieses Interface von jedem Typ implementiert. 
+Das ist Gos Antwort auf `Object` in Java oder `void*` in C.
+
+Das leere Interface: [A Tour Of Go](https://go.dev/tour/methods/14).
+
+[ER] Informieren Sie sich über Type Switch und Type Assertion: [Effective Go](https://go.dev/doc/effective_go#interface_conversions).
+
+[ER] Implementieren Sie eine Funktion `HandleSpeaker(s Speaker)`.
+Diese soll einen Parameter vom Typ `Speaker` annehmen und mithilfe von Type Switch oder Type Assertion erkennen, ob der `Speaker` ein `Cat` oder ein `Dog` ist.
+Je nachdem, was für ein `Speaker` erkannt wurde, soll die Funktion eine informative Meldung auf die Kommandozeile ausgeben.
 
 [SECTION::submission::trace,program]
 
-Geben Sie den Quellcode in einer `interfaces.go` Datei ab, welche mit `package interfaces` anfängt. Diese muss folgendes 
-beinhalten:
+Geben Sie den Quellcode in einer ausführbaren Datei `interfaces.go` ab. 
+Diese muss folgendes beinhalten:
 
-* `type String`
-* `NewString() *String`
-* `(s *String) Read(p []byte) (n int, err error)`
-* `(s *String) Write(p []byte) (n int, err error)`
-* `(s *String) String() string`
-* `type FileError` mit `Error()` 
-* `type HTTPError` mit `Error()`
-* `HandleSomething()`
+* `type Speaker interface`
+* `type Cat struct`
+    * `(c Cat) Speak() string`
+* `type Dog struct`
+    * `(d Dog) Speak() string`
+* `type MyString struct`
+* `NewString() *MyString`
+* `(s *MyString) Read(p []byte) (n int, err error)`
+* `(s *MyString) Write(p []byte) (n int, err error)`
+* `(s *MyString) String() string`
+* `type FileError struct` 
+    * `(e FileError) Error() string`
+* `type HTTPError struct` mit `Error()`
+    * `(e HTTPError) Error() string`
+* `HandleSpeaker()`
 
-Fügen Sie den folgenden Codeausschnitt ihrem Programm hinzu und führen Sie das Programm aus.
+[ER] Fügen Sie den folgenden Codeausschnitt ihrem Programm hinzu.
 Falls Sie die Funktion `main` bereits benutzt haben, ersetzten Sie den Inhalt durch diesen aus dem Ausschnitt.
 Den folgenden Code dürfen Sie nicht ändern!
 
 ```go
 [INCLUDE::snippets/go-interfaces-control-snippet.go]
 ```
+
+[EC] `go run interfaces.go`
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
@@ -220,7 +259,6 @@ Den folgenden Code dürfen Sie nicht ändern!
 
 Quellcode siehe unter [TREEREF::go-interfaces.go]
 
-Kommandoprotokoll:
-[PROT::ALT:go-interfaces.prot]
+Kommandoprotokoll: [PROT::ALT:go-interfaces.prot]
 
 [ENDINSTRUCTOR]

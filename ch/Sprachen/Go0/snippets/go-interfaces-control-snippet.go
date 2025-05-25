@@ -1,8 +1,17 @@
 func main() {
+    testCatsAndDogs()
     testReadWrite()
     testStringer()
     testError()
-    testSomething()
+    testSpeaker()
+}
+
+func testCatsAndDogs() {
+    speakers := []Speaker{Cat{}, Dog{}}
+
+    for _, speaker := range speakers {
+        fmt.Println(speaker.Speak())
+    }
 }
 
 func testReadWrite() {
@@ -37,14 +46,16 @@ func testError() {
     fmt.Printf("every error got a unique message: %v\n", len(messages) == len(errors))
 }
 
-func testSomething() {
-    values := []interface{}{42, "hi there", true, fmt.Errorf("I am a custom error"), nil}
+type Cow struct{}
 
-    messages := make(map[string]bool)
+func (c Cow) Speak() string {
+    return "Moo!"
+}
 
-    for _, err := range values {
-        messages[HandleSomething(err)] = true
+func testSpeaker() {
+    speakers := []Speaker{Cat{}, Dog{}, Cow{}}
+
+    for _, err := range speakers {
+        HandleSpeaker(err)
     }
-
-    fmt.Printf("every value got a unique message: %v\n", len(messages) == len(values))
 }
