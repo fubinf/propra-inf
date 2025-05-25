@@ -234,7 +234,7 @@ Diese muss folgendes beinhalten:
     * `(e FileError) Error() string`
 * `type HTTPError struct` mit `Error()`
     * `(e HTTPError) Error() string`
-* `HandleSpeaker()`
+* `HandleSpeaker(s Speaker)`
 
 [ER] Fügen Sie den folgenden Codeausschnitt ihrem Programm hinzu.
 Falls Sie die Funktion `main` bereits benutzt haben, ersetzten Sie den Inhalt durch diesen aus dem Ausschnitt.
