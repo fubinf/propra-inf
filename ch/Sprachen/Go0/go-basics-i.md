@@ -314,7 +314,30 @@ if data, err := client.RequestData(); err != nil {
 
 ### switch
 
-`switch` darf ebenfalls eine Initialisierungsanweisung besitzen:
+Ein Switch prüft den Wert einer Variable und führt je nach Wert verschiedene Code-Blöcke aus.
+
+**Aufbau:**
+
+* `switch` + Variable;
+* `case` + Wert: Code der ausgeführt wird;
+* (optional) `default`: wird ausgeführt, wenn kein `case` passt.
+
+In dem Beispiel wird die `note` von oben nach unten geprüft.
+Beim ersten passenden `case` wird der Code ausgeführt und der Switch beendet (automatisches `break`):
+
+```go
+switch note {
+case 1: fmt.Println("sehr gut")
+case 2: fmt.Println("gut")
+case 3: fmt.Println("befriedigend")
+case 4: fmt.Println("ausreichend")
+case 5: fmt.Println("mangelhaft")
+case 6: fmt.Println("ungenügend")
+default: fmt.Println("is it a note?..")
+}
+```
+
+Ein Switch darf ebenfalls eine Initialisierungsanweisung besitzen:
 
 ```go
 switch x := randomIntUnder10(); x {
@@ -462,6 +485,29 @@ for key, value in some_dict.items():
 for value in some_dict.values():
     ...
 ```
+
+### Rückgabewerte ignorieren
+
+In Go müssen alle Variablen benutzt werden, sonst gibt es einen Kompilierungsfehler.
+Falls eine Variable nirgendwo im Programm benutzt wird, muss sie explizit ignoriert werden.
+Das geschieht mittels einer Zuweisung des Wertes **dem leeren Bezeichner** (blank identifier):
+
+```go
+// Die Funktion gibt ein Paar 'width, height' zurück
+// 'height' wird nicht benutzt und muss explizit ignoriert werden
+w, _ := getWidthAndHeight()
+```
+
+Dieses Konstrukt haben Sie bereits vor ein paar Minuten kennengelernt — jedoch in `for`-Schleifen:
+
+```go
+for _, value := range someList {
+    ...
+}
+```
+
+Der leere Bezeichner hat noch weitere Anwendungen.
+Falls Sie mehr zum Thema wissen wollen: [Effective Go](https://go.dev/doc/effective_go#blank).
 
 
 ### Typumwandlung
