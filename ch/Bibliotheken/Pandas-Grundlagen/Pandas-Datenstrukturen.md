@@ -1,4 +1,4 @@
-title: Datenstrukturen und Indizes in Pandas
+title: Pandas Datenstrukturen
 stage: alpha
 timevalue: 1
 difficulty: 2
@@ -7,14 +7,14 @@ assumes: Pandas-Einführung
 
 [SECTION::goal::idea]
 
-Ich kann Series aus Listen erstellen.
-Ich kann DataFrames aus Dictionaries erstellen.
+Ich kann Series und DataFrames erstellen.
+
 Ich verstehe was ein Index ist, wie ich ihn ändern kann und wie ich mithilfe des Indexes auf spezifische Elemente aus einem DataFrame oder einer Series zugreife.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Um gekonnt mit Daten in Pandas umzugehen, muss man wissen wie die Pandas-Datenstrukturen aufgebaut sind und auch wie man auf einzelne Datenpunkte zugreifen kann.
+Daten und Datensätze können nicht nur aus externen Dateien kommen. Oft möchte man auch eigene Daten, die in Variablen im Code gespeichert sind verwenden. Dazu sollte man verstehen wie die Pandas-Datenstrukturen aufgebaut sind, wie man sie selber erstellen und befüllen kann und auch wie man auf die Daten innerhalb zugreift.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
@@ -23,7 +23,7 @@ In der Pandas-Einführung haben Sie bereits tabellarische Daten kennengelernt un
 
 ### pd.Series
 
-Eine Series enthält 1-dimensionale Daten. Sie ist in der Hinsicht also sehr ähnlich zu einem Array, besitzt aber noch ein paar mehr Eigenschaften wie Sie nach und nach lernen werden. Sie können tatsächlich auch aus einem Array eine Series erstellen. 
+Eine Series enthält 1-dimensionale Daten. Sie ist in der Hinsicht also sehr ähnlich zu einem Array, besitzt aber noch ein paar mehr Eigenschaften wie Sie nach und nach lernen werden. Sie können tatsächlich auch aus einem Array direkt eine Series erstellen.
 
 - Erstellen Sie die Series `buecher_namen_series` mit folgendem Code:
 ```python
@@ -31,10 +31,7 @@ buecher_namen_array = ["Harry Potter und der Stein der Weisen", "Der kleine Prin
 buecher_namen_series = pd.Series(buecher_namen_array)
 print(buecher_namen_series)
 ```
-
-[NOTICE]
-Um zu verstehen, wie man eine `pd.Series` erstellt und was ihre Eingabeparameter sind können Sie sich die [Dokumentation von Pandas zu Series](https://pandas.pydata.org/docs/dev/reference/api/pandas.Series.html) anschauen.
-[ENDNOTICE]
+- [EQ] Schauen Sie sich die [Dokumentation von Pandas zu Series](https://pandas.pydata.org/docs/dev/reference/api/pandas.Series.html) an. Welche von den Parametern aus der Dokumentation haben wir bei der Erstellung der Series übergeben? Was für einen Effekt hatten die übergebenen Parameter?
 
 Betrachten Sie den Output. Links neben den Büchernamen sollten Sie jeweils eine Nummer sehen (0,1,...). Das ist der standardmäßige [TERMREF::Index] für eine Series. Genauso wie bei einem herkömmlichen Array (`array[Index]`) kann der Index bei einer Series genutzt werden, um auf bestimmte Elemente innerhalb der Datenstruktur zuzugreifen. Er ist quasi wie eine Adresse um einen Datenpunkt wiederzufinden.
 
@@ -51,22 +48,21 @@ buecher_namen_series = pd.Series(buecher_namen_array,
 
 - [ER] Wählen Sie das Buch "Die unendliche Geschichte" mithilfe des neuen Index aus.
 
-- [EQ] Welche Vorteile hat es einen eigenen Index verwenden zu können gegenüber dem Standard-Index (0,1,2,3,...)?
-
-[HINT::Anregungen]
-Stellen Sie sich vor, Sie arbeiten in einem Bücherladen. Würden Sie es bevorzugen Ihre Bücher anhand der ISBN zu suchen oder daran der wievielte Eintrag dieses Buch in Ihrer Liste war? 
-Und was ist, wenn Sie eine zweite Datenquelle für Bücher anschließen wollen?
-[ENDHINT]
-
 - Erstellen Sie wie folgt eine zweite Series `buecher_preis_series`:
 ```python
-buecher_preis_series = pd.Series([12.99, 5.99, 5.9],
-    index=["3-522-20202-3", "3-551-32011-X", "3-7920-0024-5"]
-)
+buecher_preis_dict = {
+    "3-522-20202-3": 12.99,
+    "3-551-32011-X": 5.99,
+    "3-7920-0024-5": 5.90
+}
+buecher_preis_series = pd.Series(buecher_preis_dict)
 print(buecher_preis_series)
 ```
+Diesmal haben Sie kein Array, sondern ein Dictionary übergeben. Wie Sie in der [Dokumentation von Pandas](https://pandas.pydata.org/docs/dev/reference/api/pandas.Series.html) sehen ist dies auch ein valider Eingabe-Typ für den Parameter: `array-like, Iterable, dict, or scalar value`. 
 
-Wenn Sie nun zu einem Buch den Namen und den Preis haben wollen können Sie die Daten anhand der ISBN aus beiden Series holen:
+Nicht nur das, während wir bei einem einfachen Array den Index selber hätten angeben müssen, werden hier die Keys des Dictionary als Index interpretiert.
+
+Wenn Sie nun zu einem Buch den Namen und den Preis wollen können Sie die Daten anhand der ISBN aus beiden Series holen:
 ```python
 isbn = "3-522-20202-3"
 print(buecher_namen_series[isbn])
@@ -106,17 +102,16 @@ Während Sie bei einer Series mit `series[zeilen_index]` auf ein einzelnes Eleme
 
 [NOTICE]
 In Pandas wird der Zeilenindex als `index` bezeichnet und der Spaltenindex als `columns`.
-Mit `dataframe.index` kriegen Sie alle Zeilenindizes und mit `dataframe.columns` alle Spaltenindizes.
+Mit `dataframe.index` kriegen Sie die Zeilenindizes und mit `dataframe.columns` die Spaltenindizes.
 [ENDNOTICE]
 
 - [ER] Wählen Sie mithilfe des Spaltenindex die Kostenspalte des DataFrames `buecher_df` aus.
 
-Bei diesen Spalten handelt es sich um Series-Objekte. Das kann man z.B. mit der `type()`-Funktion herausfinden. Eine Spalte eines DataFrames kann man sich also als eine Series vorstellen. Jede Operation die man auf Series machen kann, kann man also auch auf Spalten machen.
+Bei diesen Spalten handelt es sich um Series-Objekte. Das kann man z.B. mit der `type()`-Funktion herausfinden. Eine Spalte eines DataFrames kann man sich also als eine Series vorstellen. Jede Operation, die man auf Series machen kann, kann man also auch auf Spalten machen.
 
 - [EQ] Wenn `dataframe[spalten_index]` eine Series zurückgibt und `series[zeilen_index]` ein Element einer Series zurückgibt: Wie können Sie dann mit Hilfe des `spalten_index` und `zeilen_index` ein einzelnes Element aus einem `dataframe` zurückgeben?
 
-- [ER] Wählen Sie den Buchnamen "Die unendliche Geschichte" aus dem dataframe `buecher_df` aus indem Sie zuerst die Spalte und dann die Zeile auswählen.
-
+- [ER] Wählen Sie den Buchnamen "Die unendliche Geschichte" aus dem DataFrame `buecher_df` aus indem Sie zuerst die Spalte und dann die Zeile auswählen.
 
 [ENDSECTION]
 [SECTION::submission::information]

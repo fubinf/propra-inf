@@ -44,8 +44,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Bibliotheken
 
-- ch/Bibliotheken/Pandas-Grundlagen/pd-introduction.md (JS->LP->JS->LP)
-- ch/Bibliotheken/Pandas-Grundlagen/pd-datastructures.md (JS->LP)
+- ch/Bibliotheken/Pandas-Grundlagen/Pandas-Einführung.md (JS->LP->JS->LP)
+- ch/Bibliotheken/Pandas-Grundlagen/Pandas-Datenstrukturen.md (JS->LP)
 
 ### Bestandscode
 
