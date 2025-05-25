@@ -1,8 +1,7 @@
-title: Einführung in Pandas
+title: Einführung in tabellarische Daten und Pandas
 stage: alpha
 timevalue: 0.5
 difficulty: 2
-assumes: pip
 ---
 
 [SECTION::goal::idea]
@@ -37,12 +36,12 @@ Damit könnte man also viele interessante Fragen beantworten, wie z.B. welcher W
 
 Sie sollten nun eine Tabelle sehen, in der jede Zeile Daten zu einem Wahlbezirk angibt und jede Spalte eine Eigenschaft der Wahlbezirke enthält. Jeder Datensatz, mit dem Sie in Pandas arbeiten werden, wird so eine oder eine ähnliche tabellarische Struktur haben.
 
-Mithilfe der Tabelle beantworten sie folgende Fragen:
+Mithilfe dieser Tabelle beantworten sie folgende Fragen:
 
 - [EQ] Was für Informationen werden in der Spalte "SPD" gespeichert?
 - [EQ] Was ist die höchste Bezirksnummer, die ein Wahlbezirk hat?
 - [EQ] Wie viele Wahlberechtigte gab es für den Wahlbezirk mit der Adresse "01W100"?
-- [EQ] Könnten Sie mithilfe dieser CSV-Datei Aussagen darüber treffen, was mit den Zweitstimmen gewählt wurde?
+- [EQ] Gibt es Wahlbezirke die in der Spalte "Stimmart" andere Werte außer "Erststimme" haben? Falls ja, nennen Sie diese anderen Werte.
 
 [NOTICE]
 Nicht immer reicht der Name einer Spalte aus, um zu verstehen, was genau hier gerade für Daten stehen. Auf der Seite auf der Sie die CSV-Datei runtergeladen haben können Sie außerdem ein PDF mit [TERMREF::Metadaten] ansehen. Dies kann Helfen den Datensatz besser zu verstehen.
@@ -52,7 +51,7 @@ Nicht immer reicht der Name einer Spalte aus, um zu verstehen, was genau hier ge
 
 Die Antworten zu diesen Fragen waren noch relativ einfach selbst auszulesen, doch mit größer werdenden Datensätzen und komplexeren Fragen wird das immer aufwendiger. Deshalb möchten wir Pandas benutzen, um mit den Daten zu arbeiten.
 
-- Installieren Sie `pandas` mittels [PARTREF::pip].
+- Installieren Sie `pandas` mittels [TERMREF::pip]: `pip install pandas`
 - Nach Konvention wird `pandas` mit dem Alias `pd` abgekürzt. Der Import in einer Python-Umgebung sieht standardmäßig also wie folgt aus: `import pandas as pd`.
 
 ### Datensatz mit Pandas einlesen
@@ -60,15 +59,19 @@ Die Antworten zu diesen Fragen waren noch relativ einfach selbst auszulesen, doc
 Nun haben Sie bereits all die Werkzeuge, die Pandas Ihnen bietet, in Ihrer Python-Umgebung zur Verfügung, aber noch keine Daten.
 Um externe Datensätze mit Pandas einzulesen, stellt Pandas Methoden zur Verfügung, sie alle haben die Form `read_<filetype>()`. In diesem Fall ist es also die Methode `read_csv()`, um CSV-Dateien einzulesen.
 
-- [EQ] Welche Argumente müssen `read_csv()` übergeben werden? Nennen Sie keine optionalen Argumente.
+[EQ] Welche Argumente müssen `read_csv()` übergeben werden? Nennen Sie keine optionalen Argumente.
+In die Dokumentation von Pandas zu schauen und sie zu durchsuchen, kann oft sehr hilfreich sein, um Konzepte, Methoden oder Eigenschaften besser zu verstehen: [Dokumentation zu read_csv()](https://pandas.pydata.org/docs/dev/reference/api/pandas.read_csv.html#pandas.read_csv)
 
-[NOTICE]
-In die [Dokumentation von Pandas](https://pandas.pydata.org/docs/dev/index.html) zu schauen und sie zu durchsuchen, kann oft sehr hilfreich sein, um Konzepte, Methoden oder Eigenschaften besser zu verstehen.
-[ENDNOTICE]
+- Laden Sie wie folgt den Datensatz über die Erststimmen in Ihre Python-Umgebung: `erststimmen_datensatz = pd.read_csv(<Parameter>)`. Geben Sie hierfür, in den Parametern, den Pfad zu ihrer Datei und den Seperator `;` an.
+Der ganze Datensatz befindet sich nun in der Variable `erststimmen_datensatz`.
 
-- Laden Sie wie folgt den Datensatz über die Erststimmen in Ihre Python-Umgebung: `erststimmen_datensatz = pd.read_csv("Pfad/zu/der/Datei.csv", sep=';')`. Der ganze Datensatz befindet sich nun in der Variable `erststimmen_datensatz`.
+[HINT::read_csv()-Argumente]
+Der Dateipfad wird in `filepath_or_buffer` angegeben, der Seperator in `sep`.
+[ENDHINT]
 
-
+[HINT::read_csv()-Argumente II]
+`erststimmen_datensatz = pd.read_csv("Pfad/zu/der/Datei.csv", sep=';')`
+[ENDHINT]
 
 ### Pandas Datenstrukturen
 

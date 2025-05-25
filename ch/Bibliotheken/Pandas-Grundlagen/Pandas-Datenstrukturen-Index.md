@@ -2,7 +2,7 @@ title: Datenstrukturen und Indizes in Pandas
 stage: alpha
 timevalue: 1
 difficulty: 2
-assumes: pd-introduction
+assumes: Pandas-Einführung
 ---
 
 [SECTION::goal::idea]
