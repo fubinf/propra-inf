@@ -1,6 +1,6 @@
 title: SQL Grundlagenbefehle
 stage: draft
-timevalue: 1.0
+timevalue: 2
 difficulty: 1
 ---
 [SECTION::goal::idea]
@@ -51,6 +51,7 @@ CREATE TABLE <tablename>;
 [NOTICE]
 Ein beliebter Fehler im Umgang mit SQL ist das Weglassen des
 notwendigen Semikolons am Ende.
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [CREATE TABLE](https://sqlite.org/lang_createtable.html)
 [ENDNOTICE]
 
 Eine leere Tabelle gibt erst einmal nicht viel Spielraum für einen guten Nutzen, daher sollte eine
@@ -70,7 +71,7 @@ CREATE TABLE <tablename> (
 
 Es gibt zahlreiche Datentypen, zwei der wichtigsten sind `INT(size)` und `TEXT`.
 
-- [EC] Erstellen Sie eine neue Tabelle mit dem Namen "dogs" und den Spalten DogID (INT), DogName (Text),
+- [ER] Erstellen Sie eine neue Tabelle mit dem Namen "dogs" und den Spalten DogID (INT), DogName (Text),
   Gender (Char) und Owner (Text).
 
 #### Tabelle bearbeiten
@@ -92,10 +93,13 @@ Je nachdem was man machen möchte, folgt hinter dem Tabellennamen, aber vor dem 
 ALTER TABLE <table_name>
 DROP COLUMN <column_name>;
 ```
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [ALTER TABLE](https://sqlite.org/lang_altertable.html)
+[ENDNOTICE]
 
-- [EC] Ändern Sie die Tabellennamen so um, dass sie nur noch kleingeschrieben sind.
-- [EC] Fügen Sie eine neue Spalte ein, die das Alter des Hundes speichern soll.
-- [EC] Löschen Sie die Spalte `Owner`.
+- [ER] Ändern Sie die Tabellennamen so um, dass sie nur noch kleingeschrieben sind.
+- [ER] Fügen Sie eine neue Spalte ein, die das Alter des Hundes speichern soll.
+- [ER] Löschen Sie die Spalte `Owner`.
 
 #### Tabelle löschen
 
@@ -112,6 +116,8 @@ DROP TABLE <table_name>;
 Tabelleninhalte können Abhängigkeiten oder Regeln ("[TERMREF::Constraint]") haben, die das Löschen
 einer Tabelle ohne weiteren EIngriff verhindern. Dies ist hier nicht der Fall, weshalb der Befehl
 alle Inhalte und die Tabelle selbst löscht.
+
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [DROP TABLE](https://sqlite.org/lang_droptable.html)
 [ENDNOTICE]
 
 #### Tabelle mit Constraints erstellen
@@ -122,6 +128,10 @@ Einschränkungen können sein:
 - Sicherstellen, dass ein Wert immer gesetzt wird und nicht `NULL` sein kann - `NOT NULL`
 - Dass ein bestimmter Wert nur einmal vorkommen darf, z.B. eine ID - `UNIQUE`
 - Standardwert, falls kein Wert mitgegeben wurde - `DEFAULT`
+
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [Constraints](https://www.tutorialspoint.com/sqlite/sqlite_constraints.htm)
+[ENDNOTICE]
 
 Um eine Tabelle mit contrains anzulegen, gehen Sie wie folgt vor:
 
@@ -134,8 +144,8 @@ CREATE TABLE <tabel_name> (
 );
 ```
 
-- [EC] Erstellen Sie die Tabelle aus [EREFC::1] und ergänzen Sie sinnvolle constraints.
-- [EC] Stellen Sie sicher, dass `dogID` sowohl einzigartig, als auch nicht NULL ist.
+- [ER] Erstellen Sie die Tabelle aus [EREFC::1] und ergänzen Sie sinnvolle constraints.
+- [ER] Stellen Sie sicher, dass `dogID` sowohl einzigartig, als auch nicht NULL ist.
 
 #### Tabelle befüllen
 
@@ -147,13 +157,16 @@ Um einen Eintrag in einer Tabelle zu erzeugen, hilft Ihnen die folgende Query:
 INSERT INTO TABLE <tabel_name> (<column_1>, <column_2>, ...)
 VALUE (<value_1>, <value_2>, ...);
 ```
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [INSERT](https://sqlite.org/lang_insert.html)
+[ENDNOTICE]
 
 [HINT::Anzahl]
 Achten Sie dabei auf die gleiche Anzahl von Spalten und Werten, als auch auf den korrekten Datentyp
 zu der entsprechenden Spalte.
 [ENDHINT]
 
-- [EC] Legen Sie 5 Hunde an.
+- [ER] Legen Sie 5 Hunde an.
 
 #### Tabelle auslesen
 
@@ -163,13 +176,15 @@ wir wissen, welche Einträge unsere Tabelle für uns bereithält.
 ```sql
 SELECT <column_1>, <column_2>, ... FROM <tabel_name>;
 ```
-
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [SELECT](https://sqlite.org/lang_select.html)
+[ENDNOTICE]
 hilft uns dabei, das Ziel zu erreichen. Ein Asterisk (*) ist noch komfortabler, wenn es sich um eine
 übersichtliche Tabelle handelt, die für eine Abfrage nicht zu viel Kosten erzeugt. Damit können Sie
 anstelle der Tabellennamen alle Spalten auflisten lassen.
 
-- [EC] Geben Sie lediglich die `dogID`'s zurück.
-- [EC] Lassen Sie sich mit Asterisk die gesamte Tabelle zurückgeben.
+- [ER] Geben Sie lediglich die `dogID`'s zurück.
+- [ER] Lassen Sie sich mit Asterisk die gesamte Tabelle zurückgeben.
 
 #### Tabelleneintrag löschen
 
@@ -183,9 +198,12 @@ eingesetzt werden:
 ```sql
 DELETE FROM <table_name> WHERE <condition>;
 ```
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [DELETE](https://sqlite.org/lang_delete.html)
+[ENDNOTICE]
 
-- [EC] Löschen Sie den Eintrag mit der ID 1.
-- [EC] Löschen Sie alle Zeilen, bis auf eine beliebige, in einem Befehl.
+- [ER] Löschen Sie den Eintrag mit der ID 1.
+- [ER] Löschen Sie alle Zeilen, bis auf eine beliebige, in einem Befehl.
 
 [WARNING]
 Die Query ohne eine Bedingung löscht den gesamten Inhalt einer Tabelle.
