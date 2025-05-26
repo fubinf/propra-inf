@@ -149,16 +149,21 @@ Sie können außerdem die offizielle SQLite-Dokumentation lesen: [Join](https://
 Verwenden Sie für die Abfrage ein `INNER JOIN`. Verwenden sie wenn nötig eine Gruppierung oder auch eine
 Aggregatsfunktion.
 
-- [ER] Fragen Sie den Namen des Kurses ab, den jeder Student belegt.
-- [ER] Fragen Sie die Anzahl der Studenten in jedem Kurs ab.
-- [ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben.
+[ER] Fragen Sie den Namen des Kurses ab, den jeder Student belegt.
+
+[ER] Fragen Sie die Anzahl der Studenten in jedem Kurs ab.
+
+[ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben.
 
 Vergleichen Sie diese Ergebnisse mit:
 
-- [ER] einem `LEFT JOIN`.
-- [ER] einem `RIGHT JOIN`.
-- [ER] einem `FULL JOIN`.
-- [EQ] Sehen Sie den Bedarf der `LEFT`, `RIGHT` und `FULL` JOINS, oder können Sie sich vorstellen, lediglich mit dem `INNER JOIN` auszukommen?
+[ER] einem `LEFT JOIN`.
+
+[ER] einem `RIGHT JOIN`.
+
+[ER] einem `FULL JOIN`.
+
+[EQ] Sehen Sie den Bedarf der `LEFT`, `RIGHT` und `FULL` JOINS, oder können Sie sich vorstellen, lediglich mit dem `INNER JOIN` auszukommen?
 
 [ENDSECTION]
 

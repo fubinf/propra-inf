@@ -71,7 +71,7 @@ CREATE TABLE <tablename> (
 
 Es gibt zahlreiche Datentypen, zwei der wichtigsten sind `INT(size)` und `TEXT`.
 
-- [ER] Erstellen Sie eine neue Tabelle mit dem Namen "dogs" und den Spalten DogID (INT), DogName (Text),
+[ER] Erstellen Sie eine neue Tabelle mit dem Namen "dogs" und den Spalten DogID (INT), DogName (Text),
   Gender (Char) und Owner (Text).
 
 #### Tabelle bearbeiten
@@ -97,9 +97,11 @@ DROP COLUMN <column_name>;
 Sie können außerdem die offizielle SQLite-Dokumentation lesen: [ALTER TABLE](https://sqlite.org/lang_altertable.html)
 [ENDNOTICE]
 
-- [ER] Ändern Sie die Tabellennamen so um, dass sie nur noch kleingeschrieben sind.
-- [ER] Fügen Sie eine neue Spalte ein, die das Alter des Hundes speichern soll.
-- [ER] Löschen Sie die Spalte `Owner`.
+[ER] Ändern Sie die Tabellennamen so um, dass sie nur noch kleingeschrieben sind.
+
+[ER] Fügen Sie eine neue Spalte ein, die das Alter des Hundes speichern soll.
+
+[ER] Löschen Sie die Spalte `Owner`.
 
 #### Tabelle löschen
 
@@ -144,8 +146,9 @@ CREATE TABLE <tabel_name> (
 );
 ```
 
-- [ER] Erstellen Sie die Tabelle aus [EREFC::1] und ergänzen Sie sinnvolle constraints.
-- [ER] Stellen Sie sicher, dass `dogID` sowohl einzigartig, als auch nicht NULL ist.
+[ER] Erstellen Sie die Tabelle aus [EREFC::1] und ergänzen Sie sinnvolle constraints.
+
+[ER] Stellen Sie sicher, dass `dogID` sowohl einzigartig, als auch nicht NULL ist.
 
 #### Tabelle befüllen
 
@@ -166,7 +169,7 @@ Achten Sie dabei auf die gleiche Anzahl von Spalten und Werten, als auch auf den
 zu der entsprechenden Spalte.
 [ENDHINT]
 
-- [ER] Legen Sie 5 Hunde an.
+[ER] Legen Sie 5 Hunde an.
 
 #### Tabelle auslesen
 
@@ -183,8 +186,9 @@ hilft uns dabei, das Ziel zu erreichen. Ein Asterisk (*) ist noch komfortabler, 
 übersichtliche Tabelle handelt, die für eine Abfrage nicht zu viel Kosten erzeugt. Damit können Sie
 anstelle der Tabellennamen alle Spalten auflisten lassen.
 
-- [ER] Geben Sie lediglich die `dogID`'s zurück.
-- [ER] Lassen Sie sich mit Asterisk die gesamte Tabelle zurückgeben.
+[ER] Geben Sie lediglich die `dogID`'s zurück.
+
+[ER] Lassen Sie sich mit Asterisk die gesamte Tabelle zurückgeben.
 
 #### Tabelleneintrag löschen
 
@@ -202,8 +206,9 @@ DELETE FROM <table_name> WHERE <condition>;
 Sie können außerdem die offizielle SQLite-Dokumentation lesen: [DELETE](https://sqlite.org/lang_delete.html)
 [ENDNOTICE]
 
-- [ER] Löschen Sie den Eintrag mit der ID 1.
-- [ER] Löschen Sie alle Zeilen, bis auf eine beliebige, in einem Befehl.
+[ER] Löschen Sie den Eintrag mit der ID 1.
+
+[ER] Löschen Sie alle Zeilen, bis auf eine beliebige, in einem Befehl.
 
 [WARNING]
 Die Query ohne eine Bedingung löscht den gesamten Inhalt einer Tabelle.

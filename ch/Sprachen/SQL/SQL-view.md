@@ -110,17 +110,24 @@ Für jede Teilaufgabe bitte gezielt diese Seiten nachschlagen.
 [ENDHINT]
 
 ### Update
-- [ER] Ändern Sie bei Benutzer `carol` den Status `is_active` auf `1`.
-- [ER] Aktualisieren Sie das Feld `last_login` von `alice` auf das heutige Datum.
-- [ER] Ändern Sie die E-Mail-Adresse von `bob` zu `bob@newmail.com`.
-- [ER] Erhöhen Sie alle `amount`-Werte in `orders` um 10%.
+[ER] Ändern Sie bei Benutzer `carol` den Status `is_active` auf `1`.
+
+[ER] Aktualisieren Sie das Feld `last_login` von `alice` auf das heutige Datum.
+
+[ER] Ändern Sie die E-Mail-Adresse von `bob` zu `bob@newmail.com`.
+
+[ER] Erhöhen Sie alle `amount`-Werte in `orders` um 10%.
 
 ### View
-- [ER] Erstellen Sie eine View `active_users`, die alle aktiven Nutzer (`is_active = 1`) enthält.
-- [ER] Erstellen Sie eine View `recent_users_fixed`, die alle Nutzer mit `last_login` nach dem Stichtag `'2024-04-01'` enthält.
-- [ER] Erstellen Sie eine View `user_order_summary`, die jeden Nutzernamen mit der Summe (`SUM`) seiner `amount` aus `orders` anzeigt.
-- [ER] Zeigen Sie den Inhalt aller drei Views (`active_users`, `recent_users_fixed`, `user_order_summary`) an.
-- [ER] Löschen Sie alle drei Views wieder.
+[ER] Erstellen Sie eine View `active_users`, die alle aktiven Nutzer (`is_active = 1`) enthält.
+
+[ER] Erstellen Sie eine View `recent_users_fixed`, die alle Nutzer mit `last_login` nach dem Stichtag `'2024-04-01'` enthält.
+
+[ER] Erstellen Sie eine View `user_order_summary`, die jeden Nutzernamen mit der Summe (`SUM`) seiner `amount` aus `orders` anzeigt.
+
+[ER] Zeigen Sie den Inhalt aller drei Views (`active_users`, `recent_users_fixed`, `user_order_summary`) an.
+
+[ER] Löschen Sie alle drei Views wieder.
 
 [ENDSECTION]
 

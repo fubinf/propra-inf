@@ -96,15 +96,21 @@ INSERT INTO sessions (user_id, created_at) VALUES
 
 **Datenpflege und Analyse für Benutzerverwaltung**
 
-- [ER] Fügen Sie einen neuen Benutzer mit Ihrem Namen hinzu, aktiv und mit heutigem Login.
-- [ER] Aktualisieren Sie `last_login` von `alice` auf `2024-04-25`.
-- [ER] Löschen Sie alle inaktiven Benutzer, die vor dem 1.1.2024 zuletzt eingeloggt waren.
-- [ER] Zeigen Sie mit einem JOIN alle Benutzernamen und ihre Sitzungsdaten.
-- [ER] Ermitteln Sie für jeden Nutzer die Anzahl seiner Logins (Tabelle `sessions`).
-- [ER] Zeigen Sie alle Nutzer, die nach dem 2024-03-31 nicht mehr eingeloggt waren (keine sessions ab diesem Datum).
-- [ER] Zeigen Sie für jeden Nutzer die Differenz in Tagen zwischen dem Stichtag 2024-04-30 und dem Feld last_login.
+[ER] Fügen Sie einen neuen Benutzer mit Ihrem Namen hinzu, aktiv und mit heutigem Login.
 
-- [EQ] Welche Vorteile bietet es, Nutzerdaten und Sitzungsdaten in getrennten Tabellen zu speichern?  
+[ER] Aktualisieren Sie `last_login` von `alice` auf `2024-04-25`.
+
+[ER] Löschen Sie alle inaktiven Benutzer, die vor dem 1.1.2024 zuletzt eingeloggt waren.
+
+[ER] Zeigen Sie mit einem JOIN alle Benutzernamen und ihre Sitzungsdaten.
+
+[ER] Ermitteln Sie für jeden Nutzer die Anzahl seiner Logins (Tabelle `sessions`).
+
+[ER] Zeigen Sie alle Nutzer, die nach dem 2024-03-31 nicht mehr eingeloggt waren (keine sessions ab diesem Datum).
+
+[ER] Zeigen Sie für jeden Nutzer die Differenz in Tagen zwischen dem Stichtag 2024-04-30 und dem Feld last_login.
+
+[EQ] Welche Vorteile bietet es, Nutzerdaten und Sitzungsdaten in getrennten Tabellen zu speichern?  
 Was könnten mögliche nächste Schritte sein, wenn man dieses SQL-Modell in eine echte Webanwendung übertragen möchte?
 
 [ENDSECTION]
