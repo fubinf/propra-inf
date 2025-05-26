@@ -2,7 +2,7 @@ title: Pandas Datenstrukturen
 stage: alpha
 timevalue: 1
 difficulty: 2
-assumes: Pandas-Einführung
+requires: Pandas-Einführung
 ---
 
 [SECTION::goal::idea]
@@ -58,7 +58,7 @@ buecher_preis_dict = {
 buecher_preis_series = pd.Series(buecher_preis_dict)
 print(buecher_preis_series)
 ```
-Diesmal haben Sie kein Array, sondern ein Dictionary übergeben. Wie Sie in der [Dokumentation von Pandas](https://pandas.pydata.org/docs/dev/reference/api/pandas.Series.html) sehen ist dies auch ein valider Eingabe-Typ für den Parameter: `array-like, Iterable, dict, or scalar value`. 
+Diesmal haben Sie kein Array, sondern ein [TERMREF::Dictionary] übergeben. Wie Sie in der [Dokumentation von Pandas](https://pandas.pydata.org/docs/dev/reference/api/pandas.Series.html) sehen ist dies auch ein valider Eingabe-Typ für den Parameter: `array-like, Iterable, dict, or scalar value`. 
 
 Nicht nur das, während wir bei einem einfachen Array den Index selber hätten angeben müssen, werden hier die Keys des Dictionary als Index interpretiert.
 
