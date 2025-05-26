@@ -2,7 +2,7 @@ title: Benutzerverwaltung mit SQL
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: SQL-basics, SQL-select, SQL-view
+assumes: SQL-basics, SQL-select, SQL-join, SQL-view
 ---
 
 [SECTION::goal::product]
@@ -19,32 +19,46 @@ Zur Analyse von Zeitdifferenzen kommt in dieser Aufgabe auch die SQL-Funktion `j
 
 
 
-### Beispiel für INSERT
+
+<!-- end Beispiele -->
+[ENDSECTION]
+
+[SECTION::instructions::detailed]
+### Infrastrukturhinweis
+
+Für diese Aufgabe empfehlen wir die Arbeit mit dem `sqlite3`-Kommandozeilen-Client, der in der Python-Standardbibliothek enthalten ist. Dies ermöglicht Ihnen, Befehle lokal auszuführen, Ergebnisse zu speichern und die Arbeit mit einer eigenen Infrastruktur zu üben – wie sie auch in größeren Projekten üblich ist.
+
+Alternativ können Sie [SQLite Online](https://sqliteonline.com/) verwenden, um SQL-Befehle ohne lokale Einrichtung auszuprobieren. Beachten Sie jedoch, dass dabei keine Kommandohistorie gespeichert werden kann.
+### Einige nützliche Beispiele
+#### INSERT
 ```sql
 INSERT INTO users (username, password_hash, email, is_active)
 VALUES ('newuser', 'hashedpw123', 'newuser@example.com', 1);
 ```
 
-### Beispiel für JOIN:
+#### JOIN
 ```sql
 SELECT u.username, s.created_at
 FROM users u
 JOIN sessions s ON u.id = s.user_id;
 ```
 
-### Beispiel für Julianday:
+#### Julianday
 ```sql
 -- Beispiel: Differenz in Tagen zwischen zwei Daten
 SELECT julianday('2024-04-30') - julianday('2024-03-25'); -- ergibt 36.0
 ```
-<!-- end Beispiele -->
-[ENDSECTION]
 
-[SECTION::instructions::detailed]
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [Date And Time Functions](https://www.sqlite.org/lang_datefunc.html)
+[ENDNOTICE]
 
-Verwenden Sie SQLite Online und erstellen Sie zunächst folgende Tabellen:
+### Führen Sie den folgenden SQL-Code aus
 
 ```sql
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS sessions;
+
 CREATE TABLE users (
   id INTEGER PRIMARY KEY,
   username TEXT,
@@ -73,6 +87,12 @@ INSERT INTO sessions (user_id, created_at) VALUES
 (3, '2024-03-15'),
 (4, '2024-02-20');
 ```
+[HINT::Hilfreiche Dokumentation zu A1–A9]
+### 💡 Hinweis (für Aufgaben A1–A9)  
+[PARTREF::SQL-basics], [PARTREF::SQL-join], [PARTREF::SQL-select], [PARTREF::SQL-view] kann Ihnen hier helfen.
+### ⭐ Konkrete Funktionen
+- [Datum und Zeitfunktionen](https://sqlite.org/lang_datefunc.html)
+[ENDHINT]
 
 **Datenpflege und Analyse für Benutzerverwaltung**
 

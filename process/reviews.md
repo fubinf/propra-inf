@@ -42,6 +42,9 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/C/c-compiler-assembler-linker.md (KH -> LP)
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB->LP)
 - ch/Sprachen/SQL/SQL-basics.md (YL->LP)
+- ch/Sprachen/SQL/SQL-select.md (YL->LP)
+- ch/Sprachen/SQL/SQL-join.md (YL->LP)
+- ch/Sprachen/SQL/SQL-user-admin.md (YL->LP)
 
 ### Bibliotheken
 
@@ -126,10 +129,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ## Rework to do for Yixiang Li
 
-- ch/Sprachen/SQL/SQL-user-admin.md (YL->LP)
-- ch/Sprachen/SQL/SQL-join.md (YL)
+
 - ch/Sprachen/SQL/SQL-project.md (YL)
-- ch/Sprachen/SQL/SQL-select.md (YL)
 
 
 ## Rework to do for Daniel Müllers

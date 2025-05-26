@@ -1,6 +1,6 @@
 title: SQL Select anwenden
 stage: alpha
-timevalue: 2
+timevalue: 2.5
 difficulty: 2
 assumes: SQL-basics
 ---
@@ -25,7 +25,7 @@ Zuerst schaffen wir uns unsere Grundlage. Wir verwenden wieder die aus [PARTREF:
 Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgende Tabelle, mit
 der wir in dieser Aufgabe arbeiten wollen.
 
-- [EC] Erstellen Sie die Tabelle `dogs` mit den Spalten `name`, `breed`, `age`, `gender`, `color`,
+- [ER] Erstellen Sie die Tabelle `dogs` mit den Spalten `name`, `breed`, `age`, `gender`, `color`,
   `birthdate`, `owner_id` und den folgenden Einträgen. Nehmen Sie die Spalte `id INTEGER PRIMARY KEY`
   mit in die Tabelle auf.
 
@@ -90,33 +90,33 @@ Jetzt spielen wir mit den Daten herum und lassen uns spezielle Werte ausgeben.
 
 Starten wir leicht durch. Erinnern Sie sich zurück, wie sie Daten aus einer Tabelle abgefragt haben.
 
-- [EC] Lassen Sie sich die gesamte Tabelle zurückgeben.
-- [EC] Lassen Sie sich nur die `owner_id` zurückgeben.
+- [ER] Lassen Sie sich die gesamte Tabelle zurückgeben.
+- [ER] Lassen Sie sich nur die `owner_id` zurückgeben.
 
 Aus dem Bereich `Tabelleneintrag löschen` der Aufgabe [PARTREF::SQL-basics] haben sie das Löschen
 einzelner Zeilen einer Tabelle kennengelernt, die Sie mithilfe von `WHERE` gezielt identifiziert
 haben. `SELECT` kann auch diese Bedingungsvariable verwenden und somit Ergebnisse filtern.
 
-- [EC] Fragen Sie alle Hundenamen ab, die `8` Jahre alt sind.
-- [EC] Jetzt wollen Sie sich alle Hunde ausgeben, die `Bear` genannt werden.
+- [ER] Fragen Sie alle Hundenamen ab, die `8` Jahre alt sind.
+- [ER] Jetzt wollen Sie sich alle Hunde ausgeben, die `Bear` genannt werden.
 
 Zusätzlich können wir mit `LIMIT <int>` auch nur eine bestimmte Anzahl an Werten zurückgeben lassen, oder
 vergleichbare Werte mit `<`, `>` einschränken.
 
-- [EC] Geben Sie die ersten zwei Treffer aller weiblichen Hunde zurück.
-- [EC] Geben Sie alle Besitzer-IDs zurück, die zwischen 10 (ausschließlich) und 20 (einschließlich) liegen.
+- [ER] Geben Sie die ersten zwei Treffer aller weiblichen Hunde zurück.
+- [ER] Geben Sie alle Besitzer-IDs zurück, die zwischen 10 (ausschließlich) und 20 (einschließlich) liegen.
 
 Und zu guter letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren.
 
-- [EC] Listen Sie alle Hunde auf, die 4 Jahre alt und männlich sind.
-- [EC] Listen Sie alle Hunde auf, die `Golden Retriever`, jünger als `8` und `männlich` sind.
+- [ER] Listen Sie alle Hunde auf, die 4 Jahre alt und männlich sind.
+- [ER] Listen Sie alle Hunde auf, die `Golden Retriever`, jünger als `8` und `männlich` sind.
 
 #### Unterabfragen
 
 Wenn wir einen Treffer haben, wollen wir dieses Ergebnis oftmals weiterverwenden. Unter anderem auch
 in einer weiteren SQL Abfrage. Das klappt auch sehr gut mit SQL: So haben wir eine Abfrage in einer anderen Abfrage.
 
-- [EC] Erstellen Sie eine Abfrage, die die Besitzer-ID des Hundes mit dem Namen `Charlie` zurückgibt. Verwenden Sie diese Abfrage als Bedinung für eine weitere Abfrage nach dem Namen des Hundes,
+- [ER] Erstellen Sie eine Abfrage, die die Besitzer-ID des Hundes mit dem Namen `Charlie` zurückgibt. Verwenden Sie diese Abfrage als Bedinung für eine weitere Abfrage nach dem Namen des Hundes,
   dessen `id` mit dem Wert aus der Abfrage belegt ist.
 
 [HINT::Allgemeine Syntax]
@@ -144,8 +144,7 @@ oder auch eine gesamte Abfrage:
 ```sql
 SELECT * FROM <table_name> AS result;
 ```
-
-- [EC] Vergeben Sie für die erste Abfragen aus Aufgabe [EREFC::9] einen Alias und verwenden Sie
+- [ER] Vergeben Sie für die erste Abfragen aus Aufgabe [EREFC::9] einen Alias und verwenden Sie
   den Alias in der zweiten Abfrage.
 
 #### Aggregatsfunktionen
@@ -163,9 +162,13 @@ FROM dogs;
 Der Stern (*) wird verwendet, um anzugeben, dass die Aggregatfunktion auf alle Zeilen oder Datensätze
 in der Tabelle angewendet werden soll, ohne spezifische Bedingungen anzugeben.
 
-- [EC] Berechnen Sie die Anzahl der Einträge.
-- [EC] Berechnen Sie die Summe aller Altersangaben.
-- [EC] Berechnen Sie den Durchschnitt der Besitzer-IDs.
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [Aggregate Functions (COUNT, SUM, AVG, MIN, MAX)](https://sqlite.org/lang_aggfunc.html)
+[ENDNOTICE]
+
+- [ER] Berechnen Sie die Anzahl der Einträge.
+- [ER] Berechnen Sie die Summe aller Altersangaben.
+- [ER] Berechnen Sie den Durchschnitt der Besitzer-IDs.
 
 #### Gruppieren
 
@@ -173,8 +176,12 @@ Gruppierungen in SQL ermöglichen es, Daten basierend auf bestimmten Kriterien z
 statistische Informationen wie Summen, Durchschnitte, Anzahlen usw. für jede Gruppe zu berechnen.
 Dazu verwendet man am Ende einer Abfrage das Schlüsselwort `GROUP BY`.
 
-- [EC] Gruppieren Sie alle Hunderassen
-- [EC] Gruppieren Sie: Die Anzahl der Hunde pro Besitzer
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [ORDER BY](https://sqlite.org/lang_select.html#resultset)
+[ENDNOTICE]
+
+- [ER] Gruppieren Sie alle Hunderassen
+- [ER] Gruppieren Sie: Die Anzahl der Hunde pro Besitzer
 
 Mit dem Schlüsselwort `HAVING` können Sie weitere Bedingungen nach einer Gruppierung festlegen.
 
@@ -184,8 +191,11 @@ FROM <table_name>
 GROUP BY <column>
 HAVING COUNT(*) > <int>;
 ```
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [HAVING](https://sqlite.org/lang_select.html#resultset)
+[ENDNOTICE]
 
-- [EC] Gruppieren Sie: Die Anzahl der Hunde pro Besitzer, mit mehr als gleich 2 Hunde pro Besitzer.
+- [ER] Gruppieren Sie: Die Anzahl der Hunde pro Besitzer, mit mehr als gleich 2 Hunde pro Besitzer.
 
 #### Sortieren
 
@@ -197,10 +207,13 @@ SELECT <column_1>, <column_2>, ...
 FROM <table_name>
 ORDER BY <column_1> [ASC | DESC], <column_2> [ASC | DESC], ...;
 ```
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [ORDER BY](https://sqlite.org/lang_select.html#the_order_by_clause)
+[ENDNOTICE]
 
-- [EC] Geben Sie die Namen und das Alter aller Hunde aus der Tabelle "dogs" zurück, sortiert nach
+- [ER] Geben Sie die Namen und das Alter aller Hunde aus der Tabelle "dogs" zurück, sortiert nach
   dem Alter in absteigender Reihenfolge.
-- [EC] Sortieren Sie die Hunde zuerst nach dem Alter in absteigender Reihenfolge und dann innerhalb desselben Alters nach der Rasse in aufsteigender Reihenfolge.
+- [ER] Sortieren Sie die Hunde zuerst nach dem Alter in absteigender Reihenfolge und dann innerhalb desselben Alters nach der Rasse in aufsteigender Reihenfolge.
 
 #### Dublikate
 
@@ -212,9 +225,12 @@ sorgt dafür, dass Duplikate aus den Ergebnissen entfernt und nur eindeutige Wer
 SELECT DISTINCT <column_1>, <column_2>, ...
 FROM <table_name>;
 ```
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [DISTINCT](https://sqlite.org/lang_select.html#removal_of_duplicate_rows_distinct_processing_)
+[ENDNOTICE]
 
-- [EC] Entfernen Sie alle doppelten Hundenamen und zählen Sie die Anzahl der übrig gebliebenen Hunde.
-- [EC] Entfernen Sie alle doppelten Rassen und lassen Sie sich nur die Rassen zurückgeben.
+- [ER] Entfernen Sie alle doppelten Hundenamen und zählen Sie die Anzahl der übrig gebliebenen Hunde.
+- [ER] Entfernen Sie alle doppelten Rassen und lassen Sie sich nur die Rassen zurückgeben.
 
 [ENDSECTION]
 

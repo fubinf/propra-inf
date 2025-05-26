@@ -46,9 +46,7 @@ werden können. Zu den gängigsten `JOIN`-Typen gehören `INNER JOIN`, `LEFT JOI
 Jeder dieser `JOIN`-Typen hat seine eigenen Eigenschaften und Anwendungsfälle, die es ermöglichen,
 Daten effektiv und genau zu kombinieren, um die gewünschten Ergebnisse zu erhalten.
 
-Angenommen, Sie besitzen zwei Tabellen:
-
-#### `INNER JOIN`
+#### INNER JOIN
 
 Ein `INNER JOIN` gibt nur die Datensätze zurück, die in beiden Tabellen übereinstimmen, basierend auf
 einem gemeinsamen Wert in beiden Tabellen.
@@ -59,7 +57,7 @@ FROM <table1>
 INNER JOIN <table2> ON <table1.column> = <table2.column>;
 ```
 
-#### `LEFT JOIN`
+#### LEFT JOIN
 
 Ein `LEFT JOIN` gibt alle Datensätze aus der linken Tabelle und die übereinstimmenden Datensätze aus
 der rechten Tabelle zurück. Wenn keine Übereinstimmung gefunden wird, werden `NULL`-Werte für die
@@ -71,7 +69,7 @@ FROM <table1>
 LEFT JOIN <table2> ON <table1.column> = <table2.column>;
 ```
 
-#### `RIGHT JOIN`
+#### RIGHT JOIN
 
 Ein `RIGHT JOIN` gibt alle Datensätze aus der rechten Tabelle und die übereinstimmenden Datensätze aus
 der linken Tabelle zurück. Wenn keine Übereinstimmung gefunden wird, werden `NULL`-Werte für die Spalten
@@ -83,7 +81,7 @@ FROM <table1>
 RIGHT JOIN <table2> ON <table1.column> = <table2.column>;
 ```
 
-#### `FULL JOIN`
+#### FULL JOIN
 
 Ein `FULL JOIN` gibt alle Datensätze aus beiden Tabellen zurück. Wenn es keine Übereinstimmung gibt,
 werden `NULL`-Werte für die fehlenden Spalten zurückgegeben.
@@ -144,20 +142,22 @@ INSERT INTO courses (name, teacher, semester) VALUES
 ('Music', 'Prof. Adams', 1),
 ('Physical Education', 'Coach Taylor', 2);
 ```
+[NOTICE]
+Sie können außerdem die offizielle SQLite-Dokumentation lesen: [Join](https://www.sqlite.org/syntax/join-clause.html)
+[ENDNOTICE]
 
 Verwenden Sie für die Abfrage ein `INNER JOIN`. Verwenden sie wenn nötig eine Gruppierung oder auch eine
 Aggregatsfunktion.
 
-- [EC] Fragen Sie den Namen des Kurses ab, den jeder Student belegt.
-- [EC] Fragen Sie die Anzahl der Studenten in jedem Kurs ab.
-- [EC] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben.
+- [ER] Fragen Sie den Namen des Kurses ab, den jeder Student belegt.
+- [ER] Fragen Sie die Anzahl der Studenten in jedem Kurs ab.
+- [ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben.
 
 Vergleichen Sie diese Ergebnisse mit:
 
-- [EC] einem `LEFT JOIN`.
-- [EC] einem `RIGHT JOIN`.
-- [EC] einem `FULL JOIN`.
-
+- [ER] einem `LEFT JOIN`.
+- [ER] einem `RIGHT JOIN`.
+- [ER] einem `FULL JOIN`.
 - [EQ] Sehen Sie den Bedarf der `LEFT`, `RIGHT` und `FULL` JOINS, oder können Sie sich vorstellen, lediglich mit dem `INNER JOIN` auszukommen?
 
 [ENDSECTION]
