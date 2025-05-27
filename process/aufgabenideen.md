@@ -291,6 +291,7 @@ Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
   Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
   Default-Trenner ist '\n\n', sodass es ganze Absätze ausspuckt anstatt Zeilen.
   Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
+- `pythonfraction`: https://third-bit.com/2025/05/18/two-thirds-of-a-language/
 
 2. Eine Anwendung `linkcheck`, die einen Crawler realisiert, der die Verfügbarkeit
 von Teilen (HTML-Seiten, Bilder, JS-Dateien) in einem URL-Baum prüft und verschiedene
