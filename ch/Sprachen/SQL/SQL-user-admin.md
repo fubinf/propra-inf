@@ -123,10 +123,6 @@ Was könnten mögliche nächste Schritte sein, wenn man dieses SQL-Modell in ein
 [ENDSECTION]
 
 
-[INSTRUCTOR::Abgabe prüfen]
-[INCLUDE::ALT:]
-[ENDINSTRUCTOR]
-
 [INSTRUCTOR::Kontrollergebnisse]
 ```sql
 

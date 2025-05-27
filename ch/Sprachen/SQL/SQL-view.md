@@ -139,11 +139,6 @@ Für jede Teilaufgabe bitte gezielt diese Seiten nachschlagen.
 [ENDSECTION]
 
 
-[INSTRUCTOR::Abgabe prüfen]
-[INCLUDE::ALT:]
-[ENDINSTRUCTOR]
-
-
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Musterlösungen (SQL)
