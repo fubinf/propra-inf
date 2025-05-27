@@ -62,28 +62,12 @@ Indirekt lassen sich auch Zeilen und Spalten aus `.info()` ablesen, ein anderer 
 
 [EQ] Schauen Sie in die [Dokumentation zu DataFrames](https://pandas.pydata.org/docs/dev/reference/frame.html#attributes-and-underlying-data) und finden Sie heraus in welchem Attribut die Zeileneinträge gespeichert werden.
 
-[NOTICE]
-[ENDNOTICE]
+[ENDSECTION]
 
-[WARNING]
-[ENDWARNING]
-
-[HINT::VisibleTitle]
-[ENDHINT]
-
-[FOLDOUT::VisibleTitle]
-[ENDFOLDOUT]
+[SECTION::submission::information]
 
 [ENDSECTION]
 
-[SECTION::submission::reflection/information/snippet/trace/program]
-
-[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::/_include/Submission-Quellcode.md]
-[INCLUDE::/_include/Submission-Markdowndokument.md]
-
-[ENDSECTION]
-
-[INSTRUCTOR::]
+[INSTRUCTOR::Korrektur]
 .
 [ENDINSTRUCTOR]
