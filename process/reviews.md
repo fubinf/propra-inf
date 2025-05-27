@@ -34,7 +34,6 @@ We will modify these rules over time when others appear more useful.
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
-- ch/Sprachen/C/c-preprocessor.md (KH)
 - ch/Sprachen/SQL/SQL-view.md (YL->LP->YL->LP)
 - ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB->LP)
 - ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB->LP)
@@ -113,6 +112,8 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 
 ## Rework to do for Kilian Hofmann
+
+- ch/Sprachen/C/c-preprocessor.md (KH->LP->KH)
 
 
 ## Rework to do for Sven Hüster
