@@ -2,7 +2,7 @@ title: Zusammenführen von Tabellen mittels JOIN
 stage: beta
 timevalue: 1.5
 difficulty: 2
-assumes: SQL-basics, SQL-select
+assumes: sql-basics, sql-select
 ---
 
 [SECTION::goal::product]
@@ -94,7 +94,7 @@ FULL JOIN <table2> ON <table1.column> = <table2.column>;
 
 ### Praktischer Anteil
 
-Jetzt erst schaffen wir uns wieder unsere Grundlage. Wir verwenden wieder die aus [PARTREF::SQL-basics]
+Jetzt erst schaffen wir uns wieder unsere Grundlage. Wir verwenden wieder die aus [PARTREF::sql-basics]
 bekannte Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgenden Tabellen, mit der wir in dieser Aufgabe arbeiten wollen.
 
 **Tabelle 1:**

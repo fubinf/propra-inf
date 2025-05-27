@@ -2,7 +2,7 @@ title: Benutzerverwaltung mit SQL
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: SQL-basics, SQL-select, SQL-join, SQL-view
+assumes: sql-basics, sql-select, sql-join, sql-view
 ---
 
 [SECTION::goal::product]
@@ -89,7 +89,7 @@ INSERT INTO sessions (user_id, created_at) VALUES
 ```
 [HINT::Hilfreiche Dokumentation zu A1–A9]
 ### 💡 Hinweis (für Aufgaben A1–A9)  
-[PARTREF::SQL-basics], [PARTREF::SQL-join], [PARTREF::SQL-select], [PARTREF::SQL-view] kann Ihnen hier helfen.
+[PARTREF::sql-basics], [PARTREF::sql-join], [PARTREF::sql-select], [PARTREF::sql-view] kann Ihnen hier helfen.
 ### ⭐ Konkrete Funktionen
 - [Datum und Zeitfunktionen](https://sqlite.org/lang_datefunc.html)
 [ENDHINT]
