@@ -7,23 +7,21 @@ assumes: sql-basics, sql-select
 
 [SECTION::goal::product]
 
-Ich kann bestehende Daten mit `UPDATE` verändern, einfache SQL-Views (`CREATE VIEW`) zur Wiederverwendung von Abfragen erstellen und Views nutzen, um zusammengefasste Informationen aus mehreren Tabellen darzustellen.
+- Ich kann bestehende Daten verändern (`UPDATE`).
+- Ich verstehe, wozu SQL-Views dienen und kann Views erzeugen (`CREATE VIEW`).
 
 [ENDSECTION]
 
 [SECTION::background::default]
-In Datenbanken ändern sich Informationen regelmäßig – zum Beispiel der Nutzerstatus oder das letzte Login-Datum. Mit dem SQL-Befehl `UPDATE` lassen sich solche Änderungen gezielt und effizient vornehmen, ohne die Datensätze neu anzulegen.
-
-Für wiederkehrende oder komplexe Abfragen bietet SQL die Möglichkeit, sogenannte Sichten (`Views`) mit `CREATE VIEW` zu definieren. Diese stellen gespeicherte Abfragen dar und können wie Tabellen verwendet werden, etwa zur Darstellung aktiver Nutzer oder zur Zusammenfassung von Bestelldaten.
-
-In dieser Aufgabe üben Sie die Datenpflege mit `UPDATE` sowie die Nutzung einfacher SQL-Views.
-
+Views erfüllen einen ähnlichen Zweck wie Funktionen in Programmiersprachen:
+- Sie fassen Anweisungen zusammen, die man dann gebündelt wiederverwenden kann.
+- Sie erlauben es, die Lösung komplexer Aufgaben durch Zwischenstufen verständlicher zu machen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 ### Infrastrukturhinweis
 
-Für diese Aufgabe empfehlen wir die Arbeit mit dem `sqlite3`-Kommandozeilen-Client, der in der Python-Standardbibliothek enthalten ist. Dies ermöglicht Ihnen, Befehle lokal auszuführen, Ergebnisse zu speichern und die Arbeit mit einer eigenen Infrastruktur zu üben – wie sie auch in größeren Projekten üblich ist.
+<!-- TODO_3 Python 3.12: allow using sqlite3 command line client instead of SQLite Online -->
 
 Alternativ können Sie [SQLite Online](https://sqliteonline.com/) verwenden, um SQL-Befehle ohne lokale Einrichtung auszuprobieren. Beachten Sie jedoch, dass dabei keine Kommandohistorie gespeichert werden kann.
 
