@@ -825,6 +825,19 @@ dem Hash die Originaldaten zurückzuberechnen oder zwei verschiedene Daten mit d
 
 ## L
 
+[TERM::Lazy Evaluation]
+Ein Verfahren von Programmiersprachen, bei dem ein Ausdruck erst dann ausgewertet wird, wenn er 
+benötigt wird. Diese 
+Vorgehensweise kann sowohl die Laufzeit als auch die Speicherauslastung verringern, da unnötige 
+Auswertungen erspart werden und berechnete Werte nicht im Speicher gehalten werden müssen, 
+sondern erst bei Bedarf generiert werden.
+
+In Python findet Lazy Evaluation beispielsweise in Verbindung mit 
+[PARTREFMANUAL::py-Iterators::Iteratoren] statt.
+[ENDTERM]
+
+## L
+
 [TERM::Leistungstest|Performance Test]
 Ein Test, der prüft, ob ein Programm schnell genug arbeitet und genügend große Datenmengen
 verkraften kann.
