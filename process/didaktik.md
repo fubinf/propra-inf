@@ -37,11 +37,11 @@ Gute Lernaufgaben sollten:
 Das Formulieren von angestrebten Lernergebnissen ist einer der wichtigsten
 Schritte des Verfassens von Aufgaben, auf gleich drei verschiedenen Ebenen:
 
-1. Informieren der Studierenden über das von ihnen in der Aufgabe erwartet wird
+1. Informieren der Studierenden, was von ihnen in der Aufgabe erwartet wird
    und was sie von der Aufgabe erwarten können.
 2. Informieren der Tutoren, was die Erwartungen an die Studierenden beim
    Bearbeiten der Aufgabe sind.
-3. Anforderungen an die Aufgabe, die die durch die Aufgabenstellung dafür
+3. Anforderungen an die Aufgabe, die durch die Aufgabenstellung dafür
    Sorge zu tragen hat, die intendierten Lernergebnisse auch zu erreichen.
 
 Ein Vorschlag, die Lernziele bzw. zu erreichenden Kompetenzen zu entwickeln ist einem
@@ -69,7 +69,7 @@ Leitfragen:
 
 Als Ergebnis dieses Schritts sollte eine Auflistung der Items aus Schritt 1 entstehen, 
 die jeweils mit einem passenden Operator (vgl. Operatoren) versehen werden. 
-Das Lernergebnis wird in der Ich-Form formuliert. (z.B. "`Ich vergleiche Flexbox und Grid-Layout"').
+Das Lernergebnis wird in der Ich-Form formuliert. (z.B. "Ich vergleiche Flexbox und Grid-Layout").
 
 ### 3. Objekt und Kontext
 Leitfragen:
@@ -79,7 +79,8 @@ Leitfragen:
 
 Als Ergebnis wird die Definition der angestrebten Kompetenz nun noch um den 
 Zusammenhang zwischen Kontext und angestrebtem Lernzuwachs ergänzt. 
-(z.B. "`Ich vergleiche die Vor- und Nachteile von Flexbox und Grid-Layout in CSS bei verschiedenen Einsatzzwecken."')
+(z.B. "Ich vergleiche die Vor- und Nachteile von Flexbox und Grid-Layout in CSS bei 
+verschiedenen Einsatzzwecken.")
 
 Sind die gewünschten Lernergebnisse formuliert, geht es an die Planung der Reihe bzw. Aufgabe. 
 Hier sollte man immer im Hinterkopf haben, was die Lernergebnisse sein sollen, und wie sie erreicht werden können.
@@ -95,7 +96,7 @@ Hier sollte man immer im Hinterkopf haben, was die Lernergebnisse sein sollen, u
 ## Operatoren
 Für die Wahl der geeigneten Operatoren sei einmal auf die SOLO-Taxonomie verwiesen.
 SOLO steht für "Structure of the Observed Learning Outcome" und ist ein Modell, 
-dass von die von Studierenden erworbenen Kompetenzen verschiedenen Komplexitätsstufen zuordnet.
+dass die von Studierenden erworbenen Kompetenzen verschiedenen Komplexitätsstufen zuordnet.
 
 Die SOLO-Taxonomie definiert die folgenden fünf Komplexitätsstufen:
 1. **Pre-structural (Prästrukturell)**:  
