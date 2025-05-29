@@ -1,24 +1,16 @@
 title: Grundlagen von C
 ---
-Sie haben sich gefragt, mit was ein Betriebssystem, ein Mikroprozessor oder
-weshalb viele Programmiersprachen ähnlich aussehen?
-Dann sind Sie hier richtig.
-Die Aufgabengruppe führt Sie schrittweise in die Programmiersprache C ein.
+C ist die Sprache, in der große Teile der heutigen Systemsoftware geschrieben sind,
+insbesondere bei Unix und Linux.
+Das ist ein guter Grund, sich damit auseinanderzusetzen.
 
-Der Themenblock wird Ihnen folgende Themen näher bringen:
+C ist auch die maschinennahste weithin gebräuchliche Sprache:
+Man bekommt es mit Zeigern und einzelnen Speicherzellen zu tun und muss
+dynamisch angeforderten Speicher selbst im Programm verwalten, was das Programmieren
+sehr viel fehleranfälliger macht als von z.B. Python gewohnt.
 
-- Bauen von C Anwendungen (vom Code zum Produkt)
-- C Syntax
-- Elementare C Datentypen inklusive C Strings
-- Speicherbehandlung, sowohl Stack (statisch) als auch Heap (dynamisch)
-- Zeiger
-- Höhere Datenstrukturen
+C-Syntax ist Vorbild der Syntax diverser anderer Sprachen wie 
+C#, Groovy, Java, JavaScript, Kotlin, PHP und anderen.
 
-Die Anfänge des Themenblocks sind etwas trocken, geschuldet dem, im Vergleich
-zu Python, doch eher benutzerunfreundlichem Aussehen und Verhalten von C.
-
-[INSTRUCTOR::Zielgruppe]
-Ausgelegt für Studenten mit grundlegenden Programmierkenntnissen, welche sich
-die Sprache C aneignen wollen.
-Vorkenntnisse in C sind nicht vonnöten.
-[ENDINSTRUCTOR]
+Vorkenntnisse in C sind zwar nicht vonnöten, aber wer nicht in Python sicher programmieren kann
+und dessen Grundkonzepte gut verstanden hat, wird hier stellenweise sehr gefordert sein.
