@@ -816,13 +816,6 @@ Ereignis, wenn bei einer [TERMREF::Hashfunktion] zwei unterschiedliche Eingaben 
 erzeugen.
 [ENDTERM]
 
-[TERM::Kryptographische Hashfunktionen]
-Kryptographische Hashfunktionen wandeln beliebige Daten in einen festen, einzigartigen "Fingerabdruck" 
-(Hash) um. 
-Sie sind schnell, geben bei gleicher Eingabe immer denselben Hash, und es ist nahezu unmöglich, aus 
-dem Hash die Originaldaten zurückzuberechnen oder zwei verschiedene Daten mit demselben Hash zu finden.
-[ENDTERM]
-
 ## L
 
 [TERM::Lazy Evaluation]
@@ -835,8 +828,6 @@ sondern erst bei Bedarf generiert werden.
 In Python findet Lazy Evaluation beispielsweise in Verbindung mit 
 [PARTREFMANUAL::py-Iterators::Iteratoren] statt.
 [ENDTERM]
-
-## L
 
 [TERM::Leistungstest|Performance Test]
 Ein Test, der prüft, ob ein Programm schnell genug arbeitet und genügend große Datenmengen
