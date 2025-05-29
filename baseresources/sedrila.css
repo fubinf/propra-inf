@@ -793,7 +793,7 @@ a:link.vwr-filelink-submission {
     code,
     div.codehilite,
     div.codehilite pre {
-        background-color: #181818;
+        background-color: #161616;
     }
 
     .codehilitetable .linenos .normal:only-child {
@@ -842,6 +842,12 @@ a:link.vwr-filelink-submission {
         &.blockmacro-hint {
             --notice-color: 0, 191, 165;
         }
+        &.blockmacro-instructor {
+            --notice-color: 255, 153, 0;
+            background-color: #f903;
+            padding: 0.4em 0.9em;
+            margin: 0.4em 0 0.8em 0;
+        }
     }
 
     .stage-draft {
@@ -853,7 +859,7 @@ a:link.vwr-filelink-submission {
     }
 
     .treeref {
-        background-color: #111;
+        background-color: #161616;
     }
 
     input[type=text] {
