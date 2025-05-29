@@ -248,10 +248,10 @@ das Objekt in `with`-Statements zu verwenden.
 [ENDTERM]
 
 [TERM::CRUD|Create Read Update Delete]
-Ein Ausdruck der die grundlegenden Operationen bezeichnet, die auf Daten angewendet werden können:
+Ein Ausdruck, der die grundlegenden Operationen bezeichnet, die auf Daten angewendet werden können:
 Erstellen, Lesen, Ändern, Löschen. Diese vier CRUD-Operationen bilden die grundlegenden Funktionen
 für die Interaktion mit Daten in den meisten Anwendungen. [TERMREF::Regressionstest]s beziehen sich
-auf dieses Schema zum Testen von Daten und Objekten, um die Zugverlässigkeit einer Anwendung
+auf dieses Schema zum Testen von Daten und Objekten, um die Zuverlässigkeit einer Anwendung
 sicherzustellen.
 [ENDTERM]
 
@@ -340,7 +340,7 @@ Zur Korrektur eines Defekts wird in der Regel das Produkt (z.B. der Code) verän
 
 [TERM::de-morgansche Gesetze|de-morgansche Regeln]
 Die de-morganschen Gesetze sind zwei grundlegende Regeln für logische Aussagen und gelten in 
-allen Boolschen Algebren und sind bedeutsam in der Aussagenlogik und Mengenlehre.
+allen booleschen Algebren und sind bedeutsam in der Aussagenlogik und Mengenlehre.
 
 Sie lauten:
 `nicht (a und b) ist äquivalent zu ((nicht a) oder (nicht b))`, sowie
@@ -410,7 +410,7 @@ Telefonbuch fürs Internet.
 [TERM::DNS-Record-Types]
 DNS-Record-Typen sind Einträge im Domain Name System (DNS), die Informationen über Domains und deren 
 zugehörige Ressourcen speichern. Jeder Record-Typ hat eine spezifische Funktion und speichert 
-unterschiedliche Arten von Daten. Zum Beispiel gibt der MX-Record den den Mailserver an, der für den 
+unterschiedliche Arten von Daten. Zum Beispiel gibt der MX-Record den Mailserver an, der für den 
 Empfang von E-Mails für eine Domain zuständig ist.
 Eine Übersicht aller [TERMREF::DNS-Record-Types] findet man auf 
 [nslookup.io](https://www.nslookup.io/learning/dns-record-types/).
@@ -422,7 +422,7 @@ Das Prinzip besagt, man solle Redundanz vermeiden oder zumindest reduzieren,
 also nicht gleiche Information (etwa bestimmte Strings) oder Anweisungen an mehreren Stellen
 im Programm haben.  
 DRY ist meist eine gute Idee, aber wie fast alles kann man es übertreiben
-und handelt sich dann mehr Probleme ein als man damit löst.   
+und handelt sich dann mehr Probleme ein als man damit löst. 
 Das gegenteilige Verhalten wird [TERMREF::WET] genannt und ist meist (aber nicht immer) eine schlechte Idee.
 
 [OAOO auf c2.com](https://wiki.c2.com/?OnceAndOnlyOnce)  
@@ -431,7 +431,7 @@ Das gegenteilige Verhalten wird [TERMREF::WET] genannt und ist meist (aber nicht
 [ENDTERM]
 
 [TERM::DSL|Domänenspezifische Sprache]
-Eine speziell auf eine bestimmten Anwendungsbereich ("Domäne") zugeschnittene Sprache.
+Eine speziell auf einen bestimmten Anwendungsbereich ("Domäne") zugeschnittene Sprache.
 Im Gegensatz zu allgemeinen Programmiersprachen, die
 für eine Vielzahl von Anwendungen geeignet sind, ist eine DSL darauf ausgerichtet, spezifische
 Aufgaben oder Anforderungen in einem begrenzten Kontext besonders elegant zu adressieren.
@@ -552,7 +552,7 @@ Kurzerläuterung: [HREF::https://tldp.org/LDP/abs/html/globbingref.html]
 [ENDTERM]
 
 [TERM::GUI|Graphical User Interface]
-Graphische Bedienschnittstelle, die mit Maus oder Fingern bedient wird.
+Grafische Bedienschnittstelle, die mit Maus oder Fingern bedient wird.
 Gelegentlich auch als [WIMP](https://en.wikipedia.org/wiki/WIMP_(computing)) bezeichnet:
 Windows, Icons, Menus, Pointer.
 
@@ -612,7 +612,7 @@ Funktion als Rückgabewert zurückgibt.
 [TERM::Hochsprache|höhere Programmiersprache]
 Eine Hochsprache ist eine Programmiersprache welche einen hohen Grad der
 Abstraktion aufweisen.  
-Eine Hochsprache ist nicht direkt ausführbar sondern erfordert einen
+Eine Hochsprache ist nicht direkt ausführbar, sondern erfordert einen
 [TERMREF::Übersetzer] oder [TERMREF::Interpreter].
 [ENDTERM]
 
@@ -688,7 +688,7 @@ ICMP wird häufig von Netzwerktools wie "ping" verwendet, um die Erreichbarkeit 
 Verwaltung und Fehlersuche in IP-Netzwerken.
 [ENDTERM]
 
-[TERM::IDE|Integrated Development Envrionment]
+[TERM::IDE|Integrated Development Environment]
 Eine Kategorie komplexer interaktiver Softwarewerkzeuge.
 Eine IDE bietet eine große Zahl von Funktionen an, um Programmcode zu erzeugen,
 zu erkunden, zu modifizieren und damit zusammenhängende Operationen zu starten,
@@ -1006,7 +1006,7 @@ Für Windows-Befehle ist es meistens die Option `/h`, die diese Hilfe anbietet.
 [TERM::Pair Programming|Paarprogrammierung]
 Eine agile Entwicklungsmethode, bei der zwei Entwickler gemeinsam an derselben Aufgabe arbeiten.
 Gelungene Paarprogrammierung ist ein kontinuierlicher Dialog über Ideen, Vorschläge, Erkenntnisse
-und Tätigkeiten, bei dem die Partner beim Denken ständig eng beeinander bleiben ("togetherness")
+und Tätigkeiten, bei dem die Partner beim Denken ständig eng beieinander bleiben ("togetherness")
 und deshalb schneller gute Ideen produzieren können und Denkfehler schneller und verlässlicher
 aufdecken und lösen.
 
@@ -1087,7 +1087,7 @@ Vorfalls und Nachbereitungen, die solche Vorfälle verhindern sollen.
 
 [TERM::Prompt]
 Eine Textzeichenfolge, die in der Kommandozeile angezeigt wird, um den
-Benutzer zur Eingabe eines Befehles aufzufordern. Sie enthält oft Informationen wie den
+Benutzer zur Eingabe eines Befehls aufzufordern. Sie enthält oft Informationen wie den
 Benutzernamen, den Hostnamen, den aktuellen Pfad und möglicherweise andere relevante Informationen.
 
 Beispiel: `student1@computer1 /my/dir/path/to/my/workdir 12:24:01  515`
@@ -1114,7 +1114,7 @@ man davon aus, dass die Daten nicht verändert wurden, da es sehr unwahrscheinli
 unterschiedliche Dateien denselben Hash haben.
 [ENDTERM]
 
-[TERM::Public-Key-Kryptographie|Assymetrische Kryptographie|Schlüsselpaar]
+[TERM::Public-Key-Kryptographie|Asymmetrische Kryptographie|Schlüsselpaar]
 Asymmetrische Kryptographie, auch als Public-Key-Kryptographie bekannt, ist ein 
 Verschlüsselungsverfahren, bei dem zwei unterschiedliche Schlüssel verwendet 
 werden: ein öffentlicher Schlüssel zur Verschlüsselung von Daten und ein privater 
@@ -1212,10 +1212,10 @@ Aber auch Releasebezeichner wie Alpha, Beta oder Stable-Version sind gängige pr
 [ENDTERM]
 
 [TERM::REPL]
-REPL steht für eine "Read-Eval-Print-Loop", also das wiederholte Ausführung vom Auslesen einer
+REPL steht für eine "Read-Eval-Print-Loop", also die wiederholte Ausführung vom Auslesen einer
 Eingabe des Benutzers, der Auswertung dieser Eingabe und dem Ausgeben des Ergebnisses.  
 Wenn Sie `python` ohne weitere Argumente ausführen, landen Sie beispielsweise in einer solchen REPL
-und können dort nach belieben Code ausführen.
+und können dort nach Belieben Code ausführen.
 [ENDTERM]
 
 [TERM::Request|Anfrage]
@@ -1266,7 +1266,7 @@ Ein Screenreader ist eine spezielle Software, die es Menschen mit Sehbehinderung
 [ENDTERM]
 
 [TERM::Serialisierung]
-Ein Mechanismus der sich auf den Prozess bezieht, bei dem Datenstrukturen in ein Format umgewandelt
+Ein Mechanismus, der sich auf den Prozess bezieht, bei dem Datenstrukturen in ein Format umgewandelt
 werden, das für die Speicherung oder Übertragung geeignet ist. Im Falle von [TERMREF::JSON] bedeutet dies,
 dass Datenstrukturen, wie zum Beispiel Objekte oder Arrays in einer Programmiersprache, in das
 JSON-Format umgewandelt werden. Während der Serialisierung werden die Daten in eine Zeichenkette
@@ -1432,13 +1432,13 @@ Eine Testiteration bezieht sich auf einen Zyklus oder eine Runde von Testaktivit
 durchgeführt werden, um bestimmte Aspekte einer Software zu überprüfen oder zu testen. Während
 einer Testiteration wird ein Testfall mit einem festen Satz an Testdaten ausgeführt. Dieser
 Testfall wird oftmals n-Mal ausgeführt, jedoch mit unterschiedlichen Werten ausgeführt. Das erhöht
-die Testabdeckung mit minimalen Testerstellungsaufwand.
+die Testabdeckung mit minimalem Testerstellungsaufwand.
 [ENDTERM]
 
 [TERM::Testsammlung|Testsuite]
 bezeichnet eine Sammlung von Testfällen, die dazu dienen, verschiedene Aspekte einer Softwareanwendung
 zu testen, indem unterschiedliche Funktionen oder Eigenschaften der Software getestet werden. Diese
-Sammlungen enhalten i.d.R. mehrere Testfälle und werden chronoilogisch durchgeführt.
+Sammlungen enthalten i.d.R. mehrere Testfälle und werden chronologisch durchgeführt.
 [ENDTERM]
 
 [TERM::Testszenario]
@@ -1568,7 +1568,7 @@ aber häufig spart man sich die Mühe dieser Unterscheidung einfach.
 [ENDTERM]
 
 [TERM::Urgrund|root cause|Urgrundanalyse|root cause analysis|Grundursachen-Analyse]
-Eine Urgrund-Analyse (Grundursachen-Analyse, root cause analysis) geht so:
+Eine Urgrundanalyse (Grundursachen-Analyse, root cause analysis) geht so:
 Ausgehend von einem Problem, z.B. einem [TERMREF::Versagen], stellt man die Frage
 "Warum ist das passiert?".
 Für die Antwort(en) stellt man die Frage erneut und immer so weiter.
@@ -1630,7 +1630,7 @@ das gleiche Paket X in unterschiedlichen Versionen benötigen.
 [ENDTERM]
 
 [TERM::Verifizierung|verifizieren]
-Verifizierung oder Verifikation (von lateinisch veritas ‚Wahrheit' und facere ‚machen') ist
+Verifizierung oder Verifikation (von lateinisch veritas "Wahrheit" und facere "machen") ist
 die Bestätigung durch Bereitstellung eines objektiven Nachweises, dass festgelegte
 Anforderungen erfüllt worden sind.
 
@@ -1692,13 +1692,13 @@ beschränkt und kann in einer Vielzahl von Anwendungen und Kontexten eingesetzt 
 ## Z
 
 [TERM::Zwischensprache]
-Eine Zwischensprache ist eine, der [TERMREF::Machinensprache] nähere,
+Eine Zwischensprache ist eine, der [TERMREF::Maschinensprache] nähere,
 Sprache.  
 Zwischensprachen werden häufig eingesetzt, um ein Programm in einer
 [TERMREF::Hochsprache] zu verfassen und auf mehreren unterschieldlichen
 Prozessorarchitekturen (und somit Maschinensprache) auszuführen,
 ohne dabei das Programm erneut zu übersetzen.  
-Ein sehr bekanntes Beispiel ist hier Java (die Hoschsprache), welches als
+Ein sehr bekanntes Beispiel ist hier Java (die Hochsprache), welches als
 Java-Bytecode (die Zwischensprache) mittels der JVM (Quasi-Interpreter)
 ausgeführt wird.
 Hierbei muss nur die JVM in der, für die gewünschten Prozessorarchitektur,
