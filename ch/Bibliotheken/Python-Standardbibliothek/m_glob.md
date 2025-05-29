@@ -23,7 +23,7 @@ Den gleichen Mechanismus gibt es auch in Python und den lernen wir hier zu benut
 
 [SECTION::instructions::detailed]
 
-Dieser Mechanismus wird in der Unix-Shell "globbing" genannt. 
+Dieser Mechanismus wird in der Unix-Shell [TERMREF::Globbing] genannt. 
 In Python können Globbing-Ausdrücke über das Modul `glob` ausgewertet werden.
 `glob` beschäftigt sich ausschließlich mit den _Namen_ von Dateien und Verzeichnissen,
 nicht mit dem Lesen oder Schreiben von Dateien.
