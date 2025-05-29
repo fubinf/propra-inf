@@ -32,6 +32,14 @@ Verwendungsweise:
 - Ziel ist, sich in der IDE jederzeit schnell einen _hochwertigen_ Überblick verschaffen
   zu können, was alles zu tun ist, und das zu benutzen, damit 1er-Änderungen immer zügig
   erledigt werden. Fühlt sich gut an.
+- Wenn man ein neues Feature der gegebenen Sprache, Bibliothek, Werkzeug etc. in einer Aufgabe
+  eigentlich gern einbauen würde, aber noch nicht benutzen kann,
+  weil das Feature beim aktuellen Betriebssystemstand gemäß der Festlegung in 
+  `Basis/Unix-Umgebung/index.md` noch nicht verfügbar ist, bitte einen Kommentar einfügen,
+  der beschreibt, was zur gegebenen Zeit künftig geändert werden könnte oder sollte.
+  Diese "gegebene Zeit" wird durch die Versionsnummer des fraglichen Pakets beschrieben und
+  das Ganze ist ein Stufe-3 TODO-Kommentar, z.B. so:  
+  `<!-- TODO_3 Python 3.12: allow using sqlite3 command line client instead of SQLite Online -->`
 
 ### 1.2 Namenskonventionen
 
