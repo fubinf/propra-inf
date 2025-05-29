@@ -1,15 +1,23 @@
 title: Structured Query Language (SQL)
-stage: draft
 ---
-Sobald die Daten, mit denen man arbeitet, zu groß werden (was auch immer "groß" in diesem 
-Kontext bedeutet), gut organisiert sein müssen oder häufig Zugriff, vielleicht von verschiedenen 
-Akteuren, auf die Daten nötig ist, kann es sich lohnen, eine Datenbank zu benutzen.
-Die geläufigste Form, Datenbankabfragen zu machen, ist die in den 1970ern entwickelte Structured 
-Query Language, kurz SQL, und sie gehört zu den wichtigsten und etabliertesten Technologien der 
-letzten Jahrzehnte.
+Sobald man bei der Verwaltung von Daten die ACID-Eigenschaften braucht,
+ist fast immer ein relationales Datenbank-Managementsystem (RDBMS) das Mittel der Wahl.
 
-In dieser Aufgabengruppe geht es unter anderem darum, die Grundbegriffe von SQL zu verstehen und 
-anwenden zu können. 
-<!--- Vielleicht eher für Werkzeuge gedacht: 
-In fortgeschritteneren Aufgaben geht es auch darum den Unterschied zwischen verschiedenen 
-SQL-Datenbankverwaltungssystem zu verstehen, sowie um den Unterschied zwischen SQL und NoSQL. -->
+ACID steht für _atomic, consistent, isolated, durable_ und bedeutet grob gesagt,
+dass die Daten auch nach Programmende dauerhaft ("persistent", _durable_) gespeichert sein sollen,
+dass Gruppen von Änderungen an den Daten ganz abgearbeitet werden müssen oder gar nicht (_atomic_),
+dass das RDBMS gewisse (in einem Datenbankschema beschriebene) Eigenschaften der Daten und 
+Beziehungen zwischen ihnen auch dann sicherstellen soll, 
+wenn der Programmcode falsch ist und diese Eigenschaften verletzten würde (_consistent_) und
+dass sogar mehrere Programme gleichzeitig Änderungen am selben Datenbestand machen können,
+ohne das die obigen Eigenschaften verletzt werden (_isolated_).
+
+SQL ist die Sprache, in der man in der Regel die Operationen ausdrückt, die ein RDBMS auf den
+Daten vornehmen soll: Schema definieren, Daten zufügen, löschen, ändern, finden.
+
+SQL gehört zu den Dauerbrennern unter den Programmiersprachen: 
+es ist schon seit den 1970er Jahren für seinen Zweck führend.
+
+SQL ist eine deklarative Sprache. Man beschreibt also, was getan werden soll, aber nicht
+die Art und Weise, wie das passiert.
+Das erlaubt dem RDBMS mehr Optimierungen, als bei einer prozeduralen Sprache möglich wäre.
