@@ -1,6 +1,6 @@
 title: "Funktionale Programmierung in Python"
 stage: alpha
-timevalue: 1.0
+timevalue: 1.5
 difficulty: 2
 assumes: py-Iterators, m_pprint
 ---
@@ -34,19 +34,24 @@ imperative Sprache. Ziel der Aufgabe ist es also nicht, rein funktionale Program
 
 ### Warum funktionale Programmierung?
 
-Diejenigen, die das Modul funktionale Programmierung bereits gehört haben, sollten bereits etwas 
+Diejenigen, die das Modul "Funktionale Programmierung" bereits besucht haben, sollten schon etwas 
 mit dem Begriff anfangen können. 
 Wer aber bisher nur mit imperativer Programmierung in Berührung gekommen ist, fragt sich 
 womöglich, was funktionale Programmierung überhaupt ist und wozu es gut sein soll.
 
-- [EQ] Lesen Sie die Einleitung vom 
-  [Artikel über funktionale Programmierung in Python](https://docs.python.org/3/howto/functional.html). 
-  Nennen und beschreiben Sie kurz die zwei aus Ihrer Sicht wichtigsten Vorteile von funktionaler Programmierung, 
-  die im Artikel genannt werden.
+[EQ] Lesen Sie die Einleitung vom 
+[Artikel über funktionale Programmierung in Python](https://docs.python.org/3/howto/functional.html). 
+Nennen und beschreiben Sie kurz die zwei aus Ihrer Sicht wichtigsten Vorteile von funktionaler 
+Programmierung, die im Artikel genannt werden.
 
 Überfliegen Sie anschließend auch den Rest des Artikels. 
-Die einzelnen Abschnitte enthalten Erklärungen zu den in den folgenden Aufgaben behandelten 
-Werkzeugen und helfen zur Bearbeitung der Aufgaben.
+Die einzelnen Abschnitte enthalten Erklärungen zu den hier behandelten und geforderten 
+Werkzeugen und helfen Ihnen bei der Bearbeitung der Aufgaben.
+
+### Vorbereitung
+
+Legen Sie die Datei `py-Funktionale-Programmierung.py` an und fügen Sie hier Ihre Lösungen für 
+die folgenden Programmieraufgaben ein.
 
 ### Lambda-Funktionen
 
@@ -61,40 +66,45 @@ Nicht immer will man aber eine Funktion global definieren, z.B. wenn es nicht si
 außerhalb des Kontexts wiederzuverwenden oder die Definition länger ist, als der Code, den sie 
 ausführen soll.
 Für den Fall kann man Lambda-Funktionen (auch genannt anonyme Funktionen) definieren. 
-Das sind kleine Funktionen, die nur aus einem einzigen Ausdruck bestehen dürfen,
-und also keine Anweisungen wie z.B. Zuweisung, `if`-Anweisung oder Schleife benutzen können.
+Das sind kleine Funktionen, die nur aus einem einzigen Ausdruck bestehen dürfen, also keine 
+Anweisungen wie z.B. Zuweisung, `if`-Anweisung oder Schleifen benutzen können.
 
 Ob man Lambda-Funktionen verwenden sollte, ist eine Stilfrage: richtig eingesetzt können 
 sie den Code übersichtlicher gestalten, aber auch den gegenteiligen Effekt haben, z.B. wenn man 
 versucht, zu viel darin unterzubringen.
 
-- [ER] Schreiben Sie eine Lambda-Funktion, die berechnet, ob sich eine Zahl ganzzahlig durch 
-  eine andere teilen lässt. Testen Sie die Funktion folgendermaßen:  
-```python
-divisible = lambda ...: ...
-print("is 10 divisible by 2?", divisible(10, 2))
-print("is 10 divisible by 3?", divisible(10, 3))
-```
+Als [TERMREF::first-class citizen] können Funktionen wie Variablen gehandhabt werden, und so als 
+Parameter, sowie auch als Rückgabewert von anderen Funktionen fungieren 
+([TERMREF::Funktion höherer Ordnung]).
 
-Als [TERMREF::first-class citizen] können Funktionen wie Variablen gehandhabt werden, und so auch
-als Parameter sowie auch als Rückgabewert von anderen Funktionen fungieren 
-([TERMREF::Funktion höherer Ordnung]). 
-
-- [ER] Verwenden Sie die `sorted()`-Funktion, um die unten stehende Liste zu sortieren. Die Liste 
-  soll zwar alphabetisch sortiert werden, allerdings so, als wäre das Wort rückwärts geschrieben. 
-  Die Liste selbst soll aber dabei nicht verändert werden. 
-  Übergeben Sie daher eine entsprechende Lambda-Funktion an das `key` Argument von `sorted()`.  
+[ER] Verwenden Sie die `sorted()`-Funktion, um die unten stehende Liste zu sortieren. 
+Die Liste soll zwar alphabetisch sortiert werden, allerdings so, als wäre das Wort rückwärts 
+geschrieben. 
+Die Elemente der Liste selbst sollen dabei allerdings nicht verändert werden, sondern lediglich 
+ein anderer "Schlüssel" für die Sortierung verwendet werden. 
+Übergeben Sie daher eine entsprechende Lambda-Funktion an das `key` Argument von `sorted()`, die 
+diesen Schlüssel aus dem Wort generiert.  
 ```python
 fruits = ['apple', 'banana', 'blueberry', 'orange', 'peach', 'pear']
-print("\nsorted by last letter:", ...)
+print("sorted by last letters:", ...)
 ```
-- [ER] Definieren Sie die Funktion `add_prefix(prefix: str)`, die eine Funktion zurückgibt, 
-  die ein Präfix an den übergebenen String anfügt. Testen Sie Ihre Funktion folgendermaßen:  
+
+[HINT::sortierte Liste zur Kontrolle]
+`['banana', 'orange', 'apple', 'peach', 'pear', 'blueberry']`
+[ENDHINT]
+
+[ER] Schreiben Sie eine Funktion `choose_operator(word)`. 
+Diese soll anhand des gegebenen Wortes entscheiden, um welche Art von mathematischem Operator es 
+sich handelt und entsprechend eine Funktion zurückgeben, die diese Operation durchführt. 
+Es genügt, wenn die Funktion die vier Grundrechenarten unterscheiden kann und sie sollte 
+mindestens die englische Schreibweise erkennen (1 **plus** 2, 4 **divided by** 2 etc.). 
+Wird kein Operator erkannt, soll die zurückgegebene Funktion immer `None` zurückgeben. 
+Testen Sie die Funktion folgendermaßen:  
 ```python
-greeting = add_prefix("\nHallo ")
-farewell = add_prefix("Auf Wiedersehen ")
-print(greeting("Welt"))
-print(farewell("Welt"))
+print("\n8 times 3 =", choose_operator("times")(8, 3))
+print("10 minus 4 =", choose_operator("minus")(10, 4))
+print("15 divided by 3 =", choose_operator("divided by")(15, 3))
+print("9 plus 7 =", choose_operator("plus")(9, 7))
 ```
 
 ### Generatoren
@@ -104,16 +114,29 @@ Sie enthalten allerdings ein bestimmtes Schlüsselwort: `yield`.
 Das ermöglicht es, die Funktion wie einen Iterator zu verwenden: wird `next()` auf den Generator 
 ausgeführt, wird die Funktion bis zum nächsten `yield` Keyword ausgeführt und der damit verbundene 
 Wert zurückgegeben. 
+Die Funktion wird anschließend nicht beendet, sondern bleibt weiter im Speicher, sodass sie beim 
+nächsten Aufruf von `next()` an der gleichen Stelle fortfährt, bis erneut `yield` aufgerufen wird 
+oder sie terminiert. 
 So lässt sich ein Iterator schnell und einfach wie eine Funktion definieren.
 
-- [ER] Definieren Sie einen Generator `generate_substrings(input: str, delimiter: str)`. 
-  Dieser soll einen String entgegennehmen und in jeder Iteration den nächsten Substring bis zum 
-  nächsten Trennzeichen (delimiter) zurückgeben. 
-  Rufen Sie anschließend Ihren Generator folgendermaßen auf:  
+Bei Bedarf lesen Sie nochmal den 
+[Abschnitt zu Generatoren](https://docs.python.org/3/howto/functional.html#generators) im 
+How-To-Artikel.
+
+[ER] Definieren Sie einen Generator `generate_substrings(text: str, delimiter: str)`. 
+Dieser soll einen String entgegennehmen und in jeder Iteration den nächsten Substring bis zum 
+nächsten Trennzeichen (delimiter) zurückgeben. 
+Rufen Sie anschließend Ihren Generator folgendermaßen auf:  
 ```python
 gen = generate_substrings("Generatoren sind sehr praktisch.", " ")
 print("\nfirst three words:", list([next(gen) for _ in range(3)]))
 ```
+
+Eine weitere praktische Alternative zur Erstellung eigener Iteratoren sind **Generator 
+Expressions**. 
+Diese funktionieren genauso wie [PARTREFMANUAL::py-List-Comprehensions::List Comprehensions], 
+aber mit dem Unterschied, dass sie keine Liste, sondern einen Iterator erzeugen. 
+Syntaktisch unterscheiden sie sich nur durch ihre Klammern (`()` statt `[]`).
 
 ### Built-in Functions
 
@@ -122,55 +145,116 @@ Programmierung und lassen sich teils auch in rein funktionalen Sprachen wiederfi
 Zu diesen Funktionen gehören:  
 `map()`, `filter()`, `zip()`, `sorted()`, `any()`, `all()` und `enumerate()`.
 
-Jede der folgenden Aufgaben soll mithilfe mindestens einer der genannten Funktionen gelöst werden. 
-Zusätzlich kann es durchaus hilfreich sein, auch Lambda-Ausdrücke oder Generatoren zu verwenden. 
-Sie können auch Lösungen aus den vorherigen Teilaufgaben wiederverwenden.
+Die folgenden Aufgaben lassen sich mithilfe mindestens einer der genannten Funktionen lösen. 
+Geben Sie das Ergebnis, sofern sinnvoll, als Iterator zurück. 
+Zusätzlich kann es durchaus hilfreich sein, auch Lambda-Ausdrücke oder Generatoren zu verwenden, 
+sowie Ihre Lösungen aus den vorherigen Teilaufgaben wiederzuverwenden.
 
-- [ER] Filtern Sie die gegebene Liste `numbers`, sodass alle Zahlen übrig bleiben, die durch einen 
-  gegebenen Wert teilbar sind.  
+[HINT::Wie gebe ich Iteratoren in der Kommandozeile aus?]
+Iteratoren geben bei Ausgabe mit `print()` nur einen String, z.B. `<map object at 0x7f1029289420>` 
+zurück.
+Das liegt daran, dass der Iterator selbst keine Werte enthält.
+Um die Ergebnisse auszugeben, muss der Iterator zuerst ausgewertet und die Werte in eine 
+andere Datenstruktur geschrieben werden, z.B. mit `list()`.
+[ENDHINT]
+
+[ER] Filtern Sie die gegebene Liste `numbers`, sodass alle Zahlen übrig bleiben, die durch einen 
+gegebenen Wert teilbar sind.  
 ```python
 numbers = list(range(10))
 print("\ndivisible by 2", ...)
 print("divisible by 7", ...)
 ```
-- [ER] Schreiben Sie eine Funktion `first_word_with_letter(text: str, letter: str)`, die das erste 
-  Wort in `text` zurückgibt, das den gegebenen Buchstaben enthält, sowie die Position des Wortes im 
-  Text.  
-```python
-res = first_word_with_letter("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.", "y")
-print("\nthe first word with the letter 'y' is '", res[0], "' at position", res[1]) 
-```
-- [ER] Sie haben die folgende Liste von Produkten sowie die Preise in Euro. Schreiben Sie eine 
-  Funktion `convert_currency(products: list, rate: float)`, die ein Iterable mit allen Produkten 
-  und den umgerechneten Preisen zurückgibt.
-  Testen Sie anschließend die Funktion folgendermaßen:
-```python
-some_products = [
-    {"product": "Laptop", "price": 999.00},
-    {"product": "Smartphone", "price": 599.59},
-    {"product": "Tablet", "price": 299.95},
-    {"product": "Monitor", "price": 199.99}
-]
 
-products_in_dollar = convert_currency(some_products, 1.04)
-p = next(products_in_dollar)
-print("\nThe", p.get("product"), "costs", p.get("price"), "USD")
-```
-- [ER] Nehmen Sie die folgenden Rabatte (in Prozent): `[30, 25, 50, 10]` 
-  Wenden Sie sie in der gegebenen Reihenfolge auf die Produkte der vorherigen Aufgabe an. 
-  Geben Sie anschließend alle Produkte aus, die weniger als 500€ kosten.
+[ER] Sie wollen aus einem Text alle Wörter erhalten, die ein gegebenes Kriterium erfüllen, sowie 
+deren Position im Text. 
+Schreiben Sie dafür die Funktion `positions_of_matching_words(text, condition)`.
+Zurückgegeben werden soll eine Liste mit Tupeln, bestehend aus Wort und Position.
+Übergeben Sie an die Funktion den u.s. Text, sowie eine Funktion, die prüft, ob ein Wort den 
+Buchstaben `y` enthält.    
 ```python
-print("\ndiscounted products cheaper than 500€:")
-pprint.pprint(..., sort_dicts=False)
+t = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore."
+res = positions_of_matching_words(t, ...)
+print("\nposition of all words with letter 'y':", ...)
 ```
+
+[ER] Aus einem Datensatz haben Sie eine Reihe von Produkten sowie deren Preise in Euro jeweils als 
+Liste importiert. 
+Als Ergebnis möchten Sie die einzelnen Produkte als Dictionary darstellen, jeweils mit den 
+Schlüsseln `product` und `price`. 
+Fassen Sie Produkte und Preise jeweils zu Tupeln zusammen. 
+Verwenden Sie dann das Zwischenergebnis, um aus den Tupeln jeweils Dictionaries zu erstellen.  
+```python
+prod = ["Laptop", "Smartphone", "Tablet", "Monitor"]
+some_products = ...
+prices = [999.00, 599.59, 299.95, 199.99]
+print("\nproducts with prices")
+pprint.pp(some_products)
+```
+
+[HINT::Produkte als Dictionary zur Kontrolle]
+```python
+[{'product': 'Laptop', 'price': 999.0},
+ {'product': 'Smartphone', 'price': 599.59},
+ {'product': 'Tablet', 'price': 299.95},
+ {'product': 'Monitor', 'price': 199.99}]
+```
+[ENDHINT]
+
+[ER] Sie wollen nun eine Funktion `convert_currency(products, rate)` schreiben, 
+die anhand eines Wechselkurses die Preise der Produkte in eine andere Währung umrechnet. 
+Zurück soll ein Iterator gegeben werden, der die Produkte mit den umgerechneten Preisen zurückgibt. 
+Testen Sie anschließend Ihre Funktion folgendermaßen:  
+```python
+products_in_usd = convert_currency(some_products, 1.13)
+p = next(products_in_dollar)
+print("\nThe", p["product"], "costs", p["price"], "USD")
+```
+
+[ER] Sie haben nun eine weitere Liste `stock = (4, 0, 1, 7)`, die angibt, wie viele Produkte 
+Sie jeweils noch auf Lager haben. 
+Schreiben Sie eine Funktion `add_attributes(products, key, values)`, die zu einem Produkt ein neues 
+Attribut hinzufügt, also Schlüssel und Wert ins Dictionary einfügt.  
+Fügen Sie anschließend `stock` mithilfe der Funktion in ihre Produkte aus vorheriger Aufgabe ein. 
+Prüfen Sie schließlich Ihre neue Produktliste, ob manche Produkte nicht mehr auf Lager sind und 
+geben Sie das erste Produkt aus, das out-of-stock ist.  
+```python
+print("product not in stock:", ...)
+```
+
+[HINT::Wie füge ich in einem Lambda Ausdruck ein Eintrag zu einem Dictionary hinzu?]
+Normaler verwendet man `dict[key] = value` um Elemente in ein Dictionary hinzuzufügen. 
+Lambda Funktionen unterstützen allerdings keine Zuweisungen, daher können Sie
+
+- statt einer Lambda-Funktion eine separate Funktion definieren
+- den `**`-Operator verwenden, um ein Dictionary zu "entpacken" (`**dict`) und dann das 
+  Key-Value-Paar hinzufügen.
+[ENDHINT]
+
+### Programmlauf für die Abgabe
+
+[EC] Führen Sie das gesamte so erzeugte Programm `py_Funktionale_Programmierung.py` einmal aus.
 
 ### Funktional vs. imperativ
 
-- [EQ] Schauen Sie sich die letzte Aufgabe an. Überlegen Sie sich, wie Sie das Problem auf 
-  "klassischem Wege" imperativ lösen würden (es genügt den Code zu beschreiben, Sie brauchen ihn 
-  nicht abzugeben). 
-  Vergleichen Sie die beiden Lösungen und geben Sie ihre Meinung dazu, welchen Lösungsansatz Sie 
-  "besser" finden und warum.
+Schauen Sie sich die letzte Aufgabe noch einmal an. 
+Schreiben Sie zum Vergleich die Funktion noch einmal ohne die Verwendung von Built-in Funktionen 
+und Iteratoren (diese müssen Sie nicht mit abgeben).
+
+[EQ] Vergleichen Sie die beiden Lösungen. 
+Welche Variante empfinden Sie als besser lesbar?  
+Stellen Sie sich vor (oder probieren Sie es aus), sie übergeben an die beiden Funktion mehrere 
+Millionen Produkte. Denken Sie, dass die Funktionen sich unterschiedlich verhalten und wenn ja, 
+inwiefern?  
+Wie schätzen Sie die beiden Funktionen hinsichtlich ihrer Laufzeit und Speichernutzung ein und 
+wie lässt sich ggf. dadurch der Unterschied erklären?
+
+[HINT::Worin unterscheiden sich die beiden Ansätze?]
+Schauen Sie sich in 
+[folgendem Artikel](https://labex.io/tutorials/python-how-to-implement-lazy-evaluation-in-a-python-iterator-397687#implementing-lazy-iterators-in-python) 
+die Bedeutung von [TERMREF::Lazy Evaluation] noch einmal an, und wie dies mit Iteratoren 
+zusammenhängt.
+[ENDHINT]
 
 ### Weiterführende Aufgaben
 
