@@ -16,7 +16,7 @@ Grundvoraussetzung hierfür ist Windows 10 (Version 2004 oder höher) oder Windo
 [ENDSECTION]
 [SECTION::goal::product]
 
-- Ich habe ein Debian Linux mittels Windows WSL installiert und gestartet,
+- Ich habe Debian Linux mittels Windows WSL installiert und gestartet,
   das als Grundlage vieler Aufgaben dient.
 - Ich habe mich überzeugt, dass Python darauf funktioniert.
 
@@ -40,7 +40,7 @@ Sollten Sie sich bewusst sein, dass es bei einigen Aufgaben leichte Änderungen 
 gibt und Sie selbständig die Lösung zu diesen Problemen finden können, ist die Wahl der
 Distribution Ihnen vollständig selbst überlassen.
 Der Unterschied zwischen Debian und Ubuntu ist dabei nur sehr gering,
-der zwischen Debian und noch anderen Distribution aber für manche Aufgaben sehr erheblich.
+der zwischen Debian und manchen anderen Distributionen aber für manche Aufgaben sehr erheblich.
 
 
 ### Shell aufrufen

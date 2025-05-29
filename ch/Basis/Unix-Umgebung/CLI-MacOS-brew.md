@@ -110,7 +110,7 @@ Wie man die installiert, wird angezeigt, wenn man versucht,
 das Python-Paket zu installieren.
 [ENDNOTICE]
 
-War die Installation erfolgreich können wir nun die installierte Python-version prüfen.
+War die Installation erfolgreich können wir nun die installierte Python-Version prüfen.
 
 [INCLUDE::CheckPython.inc]
 [INCLUDE::CdLsMvEtc.inc]
@@ -128,6 +128,6 @@ $ brew version
 Homebrew 4.2.7
 ```
 
-Prüfen Sie, dass mindestens Python-Version 3.11 installiert worden ist.
+Prüfen Sie, dass mindestens Python 3.11 installiert worden ist.
 
 [ENDINSTRUCTOR]

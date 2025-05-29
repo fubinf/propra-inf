@@ -8,7 +8,7 @@ difficulty: 2
 Wir gehen im Verlauf des Programmierpraktikums von einem Standard-Debian-Linux als Umgebung aus.
 Sie können auch etwas anderes benutzen, müssen dann die Unterschiede aber aus eigener
 Kraft überbrücken.
-Ubuntu-Linux und Mint sind sehr ähnlich zu Debian (und sind kein Problem),
+Ubuntu-Linux und Mint sind sehr ähnlich zu Debian (und sind so gut wie kein Problem),
 aber Arch, Fedora, Suse und diverse andere sind erheblich verschieden.
 
 [NOTICE]
