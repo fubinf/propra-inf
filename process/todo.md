@@ -95,9 +95,6 @@ Sonderdateien:
 - Tasks so benennen, wie es sich aus authors.md 1.14 ergibt:
   https://sedrila.readthedocs.io/en/latest/authors/#114-naming-conventions  
   Erwähnungen an anderen Stellen mit ändern!
-- `[SECTION::background::default]` ändern in `[SECTION::motivation::default]`,
-  denn so wollen wir es mittlerweile ausschließlich verwenden. 
-  Makro anpassen, Doku anpassen, alle Exemplare prüfen.
 - Die Anwendung der Regeln für den Sprachgebrauch prüfen/nachziehen
   wie in `how-to.md` beschrieben.
 - Das Glossar durchsehen:
@@ -107,6 +104,12 @@ Sonderdateien:
     - fehlende Einträge für technische Bezeichner (z.B. Namen von Unix-Kommandos)
     - fehlende Verweise in Tasks auf solche und andere Glossareinträge.
 
+Vielleicht:
+ 
+- `[SECTION::background::default]` ändern in `[SECTION::motivation::default]`,
+  denn so wollen wir es mittlerweile ausschließlich verwenden. 
+  Makro anpassen, Doku anpassen, alle Exemplare prüfen. 
+
 
 ### 2.3 Korrekturbedarf an sedrila
 
@@ -114,13 +117,11 @@ Bald:
 
 - `webapp`: Für `.prot` und `.md` Quell-Link ergänzen und bei `raw=` für `.prot` für
   mimetype `text/plain` sorgen
-- `student`: `student.yaml` sollte die Kursgröße in Stunden deklarieren.
-  Dann kann die Aufgabentabelle Hurra schreien, wenn man fertig ist.
 - `instructor`: Ungeprüfte Akzeptanz unterscheiden von geprüfter.
 - `author`: Wenn eine Aufgabe weggelassen wird, weil eine requires-Abhängigkeit soft fehlt,
   sollte es eine Warnmeldung geben. Dass passiert bei `--stage beta`, wenn die Abhängigkeit 
   eine niedrigere stage hat.
-- `author`: Tasks, die wegen ihrer stage fehlen, erscheinen trotzdem in assumes.
+- `author`: Tasks, die wegen ihrer stage fehlen, erscheinen derzeit fälschlich trotzdem in assumes.
 - `author`: ZIP-Dateien sollen kein automatisches Unterverzeichnis enthalten.
 - Defekt?: Aufgaben mit fehlendem `stage`-Eintrag, werden nicht in `done` gezählt?
 - Wenn bei `--include_stage beta` eine `required`-Abhängigkeit nicht existiert,
@@ -128,6 +129,16 @@ Bald:
   Und wenn eine `assumes`-Abhängikeit nicht existiert oder sonst irgendein `PARTREF`
   auf eine zwar existente aber nicht eingeschlossene Aufgabe, dann sollte ein Pseudolink
   erscheinen, der mit "sorry, gibt es in dieser Fassung des ProPra leider nicht" dekoriert ist.
+- `author` (Glossar): Zu einem `explains`-Eintrag in einer Task den passenden leeren Eintrag im 
+  Glossar automatisch erzeugen.
+  Dafür muss a) das Glossar in alphabetische Sortierung gezwungen werden (Fehlermeldung bei Verletzung) und
+  b) bei `explains` erlaubt sein, Backquotes um einen Eintrag zu machen (die dann übernommen, aber beim
+  Sortieren ignoriert werden).
+- `author` (Glossar): Einträge in sedrila aufsammeln und vorverarbeiten, um das Markdown zu erzeugen,
+  das dann gerendert wird. Dabei kann man: a) bei Mehrfacheinträgen A, B einen separaten Eintrag
+  für B mit Querverweis zufügen und b) Sortierung herstellen.
+- `student`: `student.yaml` sollte die Kursgröße in Stunden deklarieren.
+  Dann kann die Aufgabentabelle Hurra schreien, wenn man fertig ist.
 
 Gelegentlich:
 - Konsistenzcheck, dass beim Aktualisieren eines Kurses keine bisherigen Aufgaben
