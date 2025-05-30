@@ -18,7 +18,7 @@ mit dem man sich unbedingt gut auskennen muss.
 
 [SECTION::instructions::detailed]
 
-<replacement id='SSH-targetserver'>
+<replacement id='ssh-targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
 </replacement>
 

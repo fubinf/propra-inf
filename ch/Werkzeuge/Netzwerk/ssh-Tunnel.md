@@ -5,22 +5,20 @@ difficulty: 3
 assumes: ssh
 ---
 [SECTION::goal::idea]
-
- - Ich verstehe SSH-Porttunnel und weiß wie ich sie nutze.
-
+Ich verstehe SSH-Porttunnel und weiß wie ich sie nutze.
 [ENDSECTION]
 
 [SECTION::background::default]
-
-OpenSSH bietet eine mächtige Weiterleitungsfunktion, die den Verkehr an einem Quellport durch 
-einen SSH-Prozess tunnelt (und verschlüsselt) und ihn dann an einen Port auf einem Zielhost 
-weiterleitet. Dieser Mechanismus ist als Port Tunnelling oder Port Forwarding bekannt.
+Mit einem Porttunnel kann man einen Netzwerkport eines entfernten Rechners so aussehen lassen
+(und nutzen) als wäre er ein lokaler Port. 
+Die Daten laufen dabei durch eine verschlüsselte Tunnelverbindung.
+Damit lassen sich zahllose Problemstellungen lösen, die mit nichtöffentlichen Netzresourcen zu tun haben.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-<replacement id='targetserver'>
+<replacement id='ssh-Tunnel-targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
 </replacement>
 

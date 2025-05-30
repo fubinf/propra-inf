@@ -15,7 +15,7 @@ auch Ihre Umgebung auf einen entfernten Rechner bringen.
 
 [SECTION::instructions::loose]
 
-<replacement id='targetserver'>
+<replacement id='ssh-Reverse-Tunnel-targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
 </replacement>
 

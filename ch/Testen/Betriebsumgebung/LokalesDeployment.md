@@ -33,7 +33,7 @@ Natürlich können Sie auch jederzeit explorativ das SUT erkunden, verbessern od
 Ihnen merkwürdige Verhaltensmuster an der Software auffallen, können Sie ebenfalls die Gelegenheit
 nutzen dies in GitHub als Issue kenntlich zu machen und so an der Entwicklung teilnehmen.
 
-<replacement id=SUTCopyRepoLink>
+<replacement id="LokalesDeployment-SUTCopyRepoLink">
 Verschaffen Sie sich einen Überblick über den Entwicklungsstand, welchen Sie im
 [GitHub Repository](https://github.com/fubinf/propra-inf-testobjekt) finden.
 </replacement>

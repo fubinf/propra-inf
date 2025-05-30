@@ -46,7 +46,7 @@ sedrila student --init
 
 Sie werden aufgefordert, folgende Daten anzugeben, die Sie zuvor bereithalten sollten:
 
-<replacement id="SedrilaEinrichtenPromptlist">
+<replacement id="Sedrila-einrichten-Promptlist">
 - die URL der Homepage des ProPras
 - Ihren vollen Namen
 - Ihre Matrikelnummer

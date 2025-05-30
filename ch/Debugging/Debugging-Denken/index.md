@@ -13,7 +13,7 @@ Das tun wir hier.
 
 
 Sie benötigen dazu das Buch _Debugging by Thinking_ von Robert C. Metzger.
-<replacement id="mindset_howtoget_metzgerbook">Sie finden es 
+<replacement id="Debugging-Denken-howtogetmetzgerbook">Sie finden es 
 (nur aus dem FU-Netz oder mit VPN-Verbindung) elektronisch in der Unibibliothek.</replacement>
 Darin wird in je einem Kapitel die Denkweise je einer literarischen Figure beschrieben
 (z.B. [PARTREFMANUAL::Denkweise-Sherlock-Holmes::Sherlock Holmes])

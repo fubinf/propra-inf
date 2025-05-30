@@ -20,7 +20,7 @@ WSL auf Ihrem System auszuführen.
 
 [SECTION::instructions::detailed]
 
-<replacement id='targetserver'>
+<replacement id='X11-Weiterleitung-targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
 </replacement>
 
