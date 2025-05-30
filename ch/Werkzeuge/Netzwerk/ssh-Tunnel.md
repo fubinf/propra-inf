@@ -73,8 +73,12 @@ Kopieren Sie beide Teile des Kommandoprotokolls zusammen in eine Kommandoprotoko
 
 [ENDSECTION]
 
-[INSTRUCTOR::Kommandoprotokoll]
+[INSTRUCTOR::Kommandoprotokoll+Markdowndokument]
 
+### Kommandoprotokoll
 [PROT::ALT:ssh-Tunnel.prot] 
+
+### Markdowndokument
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
