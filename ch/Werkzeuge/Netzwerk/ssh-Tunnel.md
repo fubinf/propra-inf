@@ -1,5 +1,5 @@
 title: SSH-Tunnel
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 3
 assumes: ssh
@@ -25,46 +25,51 @@ Zielserver = `andorra.imp.fu-berlin.de`
 
 ### Starten des Porttunnels
 
-Lesen Sie den Paragraphen SSH-Tunnel des [SSH-Beitrags](https://wiki.ubuntuusers.de/SSH) von 
-ubuntuusers durch.
+Verstehen Sie den 
+[Abschnitt "SSH-Tunnel" des SSH-Beitrags](https://wiki.ubuntuusers.de/SSH) 
+von ubuntuusers.
+Verstehen Sie die Option `-L` in der [ssh(1) manpage](https://man.openbsd.org/ssh).
 
-Lesen Sie die Option **-L** der [ssh(1) manpage](https://man.openbsd.org/ssh).
+[EC] Auf Ihrem Rechner (`localhost`): Öffnen Sie einen Porttunnel vom Port 9007 des Zielservers 
+zu Port 9009 von `localhost`.
+Bitte nicht wundern, POSIX-konform gibt es keine Bestätigung, dass der Porttunnel geöffnet wurde.
+Wenn die SSH-Verbindung erfolgreich war, wurde auch der Porttunnel aufgebaut.
+Beide Systeme sind jetzt also mit einem verschlüsselten Tunnel verbunden.
 
-- [EC] Öffnen Sie einen Porttunnel vom Zielserver auf Port 9007 und leiten Sie es auf localhost weiter.
+[EQ] Die Frage, welcher Port bei `-L` der lokale und welcher der entfernte ist, kann leicht verwirren,
+zumal das Tunneln auch andersherum funktioniert, wenn die schon vorhandene Netzressource 
+mit geöffnetem Port nicht auf der fernen, sondern auf der lokalen Seite liegt (Rückwärtstunnel: `-R`,
+siehe Aufgabe [PARTREF::ssh-Reverse-Tunnel]).
+Denken Sie sich eine Eselsbrücke für beide Fälle aus, die auch den jeweiligen Namen der Option erklärt, 
+und beschreiben Sie sie.
 
-Nicht wundern, POSIX-konform gibt es keine Bestätigung, dass der Porttunnel geöffnet wurde.
-
-Solange die SSH-Verbindung erfolgreich war, wurde auch der Porttunnel aufgebaut.
-
-Beide Systeme sind jetzt mit einem verschlüsselten Tunnel auf `Port 9007` verbunden.
-
-Jetzt holen wir uns veranschaulicht mit einem kleinen Befehl die Arbeitsumgebung vom Zielserver auf 
-unser System.
+Jetzt holen wir uns (veranschaulicht mit einem kleinen Webserver) die Arbeitsumgebung des Zielservers
+auf unser lokales System.
 
 [WARNING]
-Führen Sie den nächsten Befehl in einem Dateibaum mit ganz unwichtigen Daten. Mit dem Befehl öffnen 
-Sie den Port 9007 öffentlich sichtbar für das Internet. Also mit Vorsicht benutzen. 
+Führen Sie den nächsten Befehl in einem Dateibaum aus,
+der nur unwichtige Daten enthält, die problemlos öffentlich werden dürfen,
+denn der Befehl öffnet den Port 9007 des Zielservers u.U. öffentlich sichtbar für das gesamte Internet.
 [ENDWARNING]
 
-- [EC] Starten sie den Webserver auf dem Zielserver: `python -m http.server 9007`.
-- [EC] Öffnen Sie einen Browser auf Ihrem System, nicht dem Zielserver (!), und greifen Sie auf 
-    localhost mit Port 9007 zu.
+- Auf dem Zielserver: Starten sie den Webserver `python -m http.server 9007`.
+- Auf Ihrem Rechner: Öffnen Sie einen Browser und greifen Sie auf localhost mit Port 9009 zu.
 
-Eine Liste Ihrer Dateien sollte jetzt sichtbar sein.
+Eine Dateien-Liste Ihres Verzeichnisses auf dem Zielserver(!) sollte jetzt im Browser
+Ihres eigenen Rechners sichtbar sein, durch den Tunnel herbeigeschleust.
 
-- [EC] Um die Funktionalität des Servers zu testen, laden Sie eine Datei runter.
-- [EC] Schließen Sie den Browser.
-- [EC] Schließen Sie den Python-Server auf dem Zielserver.
-- [EC] Schließen Sie die Verbindung zum Zielserver.
+- Auf Ihrem Rechner: Um die Funktionalität des Servers zu testen, laden Sie eine Datei runter.
+- Auf Ihrem Rechner: Schließen Sie den Browser.
+- Auf dem Zielserver: Schließen Sie den Python-Server.
+- Auf Ihrem Rechner: Schließen Sie die Tunnelverbindung zum Zielserver.
 
-[NOTICE]
-[EREFC::3] bis [EREFC::5] kommen nicht ins Kommandoprotokoll.
-[ENDNOTICE]
+Kopieren Sie beide Teile des Kommandoprotokolls zusammen in eine Kommandoprotokolldatei.
 
 [ENDSECTION]
 [SECTION::submission::trace]
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
