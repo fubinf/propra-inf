@@ -34,7 +34,6 @@ We will modify these rules over time when others appear more useful.
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
-- ch/Sprachen/SQL/SQL-view.md (YL->LP->YL->LP)
 - ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB->LP)
 - ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB->LP)
 - ch/Sprachen/C/c-setup.md (KH)
@@ -67,9 +66,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 
 ### Werkzeuge
-- ch/Werkzeuge/Netzwerk/dnstools.md (...->LP)
-- ch/Werkzeuge/Netzwerk/dig.md (IC->LP->IC->LP)
-- ch/Werkzeuge/Netzwerk/ssh-Tunnel.md (IC->LP->IC->LP)
 - ch/Werkzeuge/Netzwerk/X11-Weiterleitung.md (IC->LP)
 - ch/Werkzeuge/Netzwerk/ssh-Reversetunnel.md (IC->LP)
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC->LP)

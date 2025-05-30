@@ -9,4 +9,7 @@
   Neue Aufgabe Testen/Unittests/[PARTREF::pytest-Methodik-Blackbox] freigegeben.  
 - **2025-05-07**: Detailkorrekturen an Aufgaben [PARTREF::m_argparse], [PARTREF::m_unittest],
   [PARTREF::m_json1], [PARTREF::m_subprocess]
+- **2025-05-30**: Neue Aufgaben Werkzeuge/Netzwerk/[PARTREF:dnstools], [PARTREF:dig] 
+  und [PARTREF:ssh-Tunnel] freigegeben.
+  Neue Aufgabe Sprachen/Pythonpraxis/[PARTREF:mlh-pythonfraction] freigegeben. 
 - ...
