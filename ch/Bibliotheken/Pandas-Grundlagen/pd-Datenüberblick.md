@@ -2,7 +2,7 @@ title: Überblick über Daten
 stage: draft
 timevalue: 0.5
 difficulty: 2
-requires: Pandas-Einführung, Pandas-Datenstrukturen
+requires: pd-Einführung, pd-Datenstrukturen
 ---
 
 [SECTION::goal::idea]
@@ -21,7 +21,7 @@ Ein DataFrame enthält oft eine Menge an Informationen. Gerade wenn man noch nic
 
 [SECTION::instructions::loose]
 
-[EC] Laden Sie zunächst den [Datensatz der Erststimmen Bundestagswahl 2025](https://www.govdata.de/suche/daten/bundestagswahl-2025-in-berlin-nach-wahlbezirken-endgultiges-ergebnis) wie in [PARTREF::Pandas-Einführung] beschrieben in ihre Python-Umgebung:
+[EC] Laden Sie zunächst den [Datensatz der Erststimmen Bundestagswahl 2025](https://www.govdata.de/suche/daten/bundestagswahl-2025-in-berlin-nach-wahlbezirken-endgultiges-ergebnis) wie in [PARTREF::pd-Einführung] beschrieben in ihre Python-Umgebung:
 ```python
 import pandas as pd
 erststimmen_df = pd.read_csv("Pfad/zur/Berlin_BT25_W1.csv", sep=';')
