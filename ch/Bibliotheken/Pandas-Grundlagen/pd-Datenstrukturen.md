@@ -2,7 +2,7 @@ title: Pandas Datenstrukturen
 stage: alpha
 timevalue: 1
 difficulty: 2
-requires: pd-Einführung
+assumes: pd-Einführung
 ---
 
 [SECTION::goal::idea]
