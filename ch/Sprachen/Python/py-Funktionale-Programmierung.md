@@ -140,8 +140,9 @@ Syntaktisch unterscheiden sie sich nur durch ihre Klammern (`()` statt `[]`).
 
 ### Built-in Functions
 
-Einige der Built-in Funktionen von Python haben einen näheren Bezug zu funktionaler 
-Programmierung und lassen sich teils auch in rein funktionalen Sprachen wiederfinden. 
+Einige der [Built-in Funktionen](https://docs.python.org/3/howto/functional.html#built-in-functions) 
+von Python haben einen näheren Bezug zu funktionaler Programmierung und lassen sich teils auch 
+in rein funktionalen Sprachen wiederfinden. 
 Zu diesen Funktionen gehören:  
 `map()`, `filter()`, `zip()`, `sorted()`, `any()`, `all()` und `enumerate()`.
 
