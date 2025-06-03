@@ -602,6 +602,8 @@ z.B. `Content-Type:`, `Set-Cookie:`, `Cache-Control:`.
 [ENDTERM]
 
 [TERM::Hilfsbereich]
+Ein Verzeichnisbaum für Zwecke des ProPra, der außerhalb des Arbeitsbereichs liegt,
+der nach git eingecheckt wird.
 [ENDTERM]
 
 [TERM::higher-order function|Funktion höherer Ordnung]
@@ -610,10 +612,11 @@ Funktion als Rückgabewert zurückgibt.
 [ENDTERM]
 
 [TERM::Hochsprache|höhere Programmiersprache]
-Eine Hochsprache ist eine Programmiersprache welche einen hohen Grad der
-Abstraktion aufweisen.  
-Eine Hochsprache ist nicht direkt ausführbar, sondern erfordert einen
-[TERMREF::Übersetzer] oder [TERMREF::Interpreter].
+Eine Hochsprache ist eine Programmiersprache, welche einen hohen Grad der
+Abstraktion aufweist, d.h. Konstrukte, die weit entfernt sind von dem, was die CPU des Rechners
+unmittelbar ausführen könnte.  
+Eine Hochsprache ist deshalb nicht direkt ausführbar, sondern erfordert einen
+[TERMREF::Übersetzer] oder [TERMREF::Interpretierer].
 [ENDTERM]
 
 [TERM::HTML|Hypertext Markup Language]
@@ -716,7 +719,7 @@ das Quellcode in einer bestimmten Programmiersprache analysiert (insbesondere au
 Syntax und erlaubte Semantik) und ausführt.
 
 Bei Python spricht man oft vom Interpretierer, obwohl das nicht ganz stimmt,
-denn Python wird auch bei der Standardimplementation CPython 
+denn Python wird bei der Standardimplementation CPython 
 von einem Python-Compiler in Bytecode übersetzt und erst der
 wird dann interpretiert.
 
