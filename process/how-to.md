@@ -359,6 +359,8 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
 - Always respond to such topics.
 - Once a task has reached review, finishing it and getting it published should usually take
   priority over work on other tasks, so that we produce value for the students earlier.
+- Once a task has reached review, make sure you mention the issue number (e.g. `#5`)
+  in commit messages for that task so that the issue provides direct access to those commmits.
 
 
 ### 2.4.3 Task text layout conventions
