@@ -5,7 +5,7 @@ difficulty: 2
 assumes: sql-basics, sql-select
 ---
 
-[SECTION::goal::product]
+[SECTION::goal::idea,experience]
 
 - Ich kann bestehende Daten verändern (`UPDATE`).
 - Ich verstehe, wozu SQL-Views dienen und kann Views erzeugen (`CREATE VIEW`).
@@ -23,11 +23,10 @@ Views erfüllen einen ähnlichen Zweck wie Funktionen in Programmiersprachen:
 
 <!-- TODO_3 Python 3.12: allow using sqlite3 command line client instead of SQLite Online -->
 
-Alternativ können Sie [SQLite Online](https://sqliteonline.com/) verwenden, um SQL-Befehle ohne lokale Einrichtung auszuprobieren. Beachten Sie jedoch, dass dabei keine Kommandohistorie gespeichert werden kann.
+Sie können [SQLite Online](https://sqliteonline.com/) verwenden, um SQL-Befehle ohne lokale Einrichtung auszuprobieren.
 
 ### UPDATE
 Datenbanken enthalten oft Informationen, die sich im Laufe der Zeit ändern – z. B. den Status eines Nutzers oder eine Korrektur bei Tippfehlern. Damit solche Änderungen effizient vorgenommen werden können, bietet SQL den Befehl `UPDATE`.
-#### Beispiel für UPDATE
 ```sql
 -- Setze is_active auf FALSE für alle Nutzer, die seit über 6 Monaten nicht eingeloggt waren
 UPDATE users
@@ -37,7 +36,6 @@ UPDATE users
 ### VIEW
 Views (`CREATE VIEW`) erlauben es, komplexe oder häufig genutzte Abfragen einmalig zu definieren und anschließend wie Tabellen zu verwenden. Views können auch Daten aus mehreren Tabellen zusammenfassen.
 
-#### Beispiel für VIEW
 ```sql
 -- Erstelle eine Sicht für alle inaktiven Nutzer
 CREATE VIEW inactive_users AS
@@ -46,7 +44,7 @@ SELECT id, username, email
   WHERE is_active = 0;
 ```
 [NOTICE]
-Sie können außerdem die offizielle SQLite-Dokumentation lesen.
+Um sich mit den Befehlen `UPDATE` und `CREATE VIEW` vertraut zu machen, können Sie die offizielle SQLite-Dokumentation lesen. Dort finden Sie Beispiele und eine vollständige Beschreibung der jeweiligen Optionen.
 
 - [UPDATE](https://sqlite.org/lang_update.html)
 - [CREATE VIEW](https://sqlite.org/lang_createview.html)
@@ -54,7 +52,8 @@ Sie können außerdem die offizielle SQLite-Dokumentation lesen.
 
 <!-- end Beispiele -->
 
-### Führen Sie den folgenden SQL-Code aus
+### Aufgaben
+Die folgenden SQL-Befehle erzeugen eine einfache Ausgangsdatenbank, auf der Sie die Aufgaben bearbeiten können:
 
 ```sql
 DROP TABLE IF EXISTS users;
@@ -132,7 +131,6 @@ Für jede Teilaufgabe bitte gezielt diese Seiten nachschlagen.
 [SECTION::submission::program]
 
 [INCLUDE::/_include/Submission-Quellcode.md]
-[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
