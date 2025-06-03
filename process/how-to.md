@@ -296,7 +296,39 @@ The instructor section
 - will include a concrete command protocol for all `[EC]` items
 - will (if there are `[ER]` items) either include an example solution source code
   via an `[INCLUDE::ALT:sourcefile.xyz]` (embedded in triple backquotes for formatting)
-  or point to it via `[TREEREF::/Chapter/Group/File]` etc.
+  or point to it via `[TREEREF::/Chapter/Group/File]`
+
+
+
+### 2.4.1 Development flow in general
+
+- We are not using branches, all commits happen on `main` directly.
+  We are a closed group and trust each other to work carefully.
+- Integrate your local commits via 'git pull --rebase', not via 'merge'.
+  Call `git config pull.rebase true` once to make this the default.
+- Our staging happens via the `stage:` attribute of each task (see 
+  ["YAML top matter"](https://sedrila.readthedocs.io/en/latest/authors/#15-task-files-yaml-top-matter)).
+  Changing this attribute replaces the pull request workflow typical in other open source projects.
+- Tasks should be set to `stage: beta` only after a positive review by Lutz Prechelt.
+  To start a review, create an issue named `MyChapter/MyTaskgroup/MyTask` and assign it to `prechelt`.  
+
+
+### 2.4.2 Task review flow
+
+- If the reviewing takes more than one round, Lutz Prechelt will unassign himself from the issue each time
+  he hands back the task to you.
+  Remember to assign him again once your rework is done or nothing will happen. 
+- When submitting a task, consider whether you should mention special properties, design consideration, etc.
+  If so, place them in the issue description. 
+  Otherwise, just put "nothing special" there.
+- In the review dialog, each partner may introduce identifiers `T1`, `T2`, etc. for giving
+  arbitrary review "topics" a name within the review.
+  Refer to these when you respond and introduce additional ones (just keep counting) as needed.
+  (`T3` is often a better identifier than `F3`/`A4`/`K5` from the task text, because the latter are
+  not stable when steps are added or removed.)
+- Always respond to such topics.
+- Once a task has reached review, finishing it and getting it published should usually take
+  priority over work on other tasks, so that we produce value for the students earlier.
 
 
 
