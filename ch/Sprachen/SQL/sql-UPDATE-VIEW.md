@@ -23,26 +23,25 @@ Views erfüllen einen ähnlichen Zweck wie Funktionen in Programmiersprachen:
 
 <!-- TODO_3 Python 3.12: allow using sqlite3 command line client instead of SQLite Online -->
 
-Sie können [SQLite Online](https://sqliteonline.com/) verwenden, um SQL-Befehle ohne lokale Einrichtung auszuprobieren.
+Sie können in diesen Aufgaben [SQLite Online](https://sqliteonline.com/) verwenden.
 
 ### UPDATE
 Datenbanken enthalten oft Informationen, die sich im Laufe der Zeit ändern – z. B. den Status eines Nutzers oder eine Korrektur bei Tippfehlern. Damit solche Änderungen effizient vorgenommen werden können, bietet SQL den Befehl `UPDATE`.
 ```sql
--- Setze is_active auf FALSE für alle Nutzer, die seit über 6 Monaten nicht eingeloggt waren
-UPDATE users
-  SET is_active = 0
-  WHERE last_login < DATE('now', '-6 months');
+UPDATE <table_name>
+SET <column_name> = <new_value>
+WHERE <condition_column> = <condition_value>;
 ```
+
 ### VIEW
 Views (`CREATE VIEW`) erlauben es, komplexe oder häufig genutzte Abfragen einmalig zu definieren und anschließend wie Tabellen zu verwenden. Views können auch Daten aus mehreren Tabellen zusammenfassen.
-
 ```sql
--- Erstelle eine Sicht für alle inaktiven Nutzer
-CREATE VIEW inactive_users AS
-SELECT id, username, email
-  FROM users
-  WHERE is_active = 0;
+CREATE VIEW <view_name> AS
+SELECT <columns>
+FROM <base_table>
+WHERE <condition>;
 ```
+
 [NOTICE]
 Um sich mit den Befehlen `UPDATE` und `CREATE VIEW` vertraut zu machen, können Sie die offizielle SQLite-Dokumentation lesen. Dort finden Sie Beispiele und eine vollständige Beschreibung der jeweiligen Optionen.
 
@@ -52,7 +51,7 @@ Um sich mit den Befehlen `UPDATE` und `CREATE VIEW` vertraut zu machen, können 
 
 <!-- end Beispiele -->
 
-### Aufgaben
+### Vorbereitung
 Die folgenden SQL-Befehle erzeugen eine einfache Ausgangsdatenbank, auf der Sie die Aufgaben bearbeiten können:
 
 ```sql
@@ -88,43 +87,57 @@ INSERT INTO orders (user_id, amount, order_date) VALUES
 (4, 200.00, '2024-02-20');
 ```
 
-Anschließend führen Sie folgende Schritte aus:
-[HINT::Hilfreiche Dokumentation zu A1–A9]
-### 💡 Hinweis (für Aufgaben A1–A9)  
-Die Grundlagen zu `UPDATE`, `DATE('now')`, `CREATE VIEW`, `JOIN`, `GROUP BY`, `SUM` und `DROP VIEW` finden Sie in der offiziellen SQLite-Dokumentation:  
-
-- [SQLite Dokumentation Übersicht](https://sqlite.org/docs.html)  
-
-### ⭐ Konkrete Funktionen
-
-- [UPDATE](https://sqlite.org/lang_update.html)
-- [Datum und Zeitfunktionen (`DATE('now')`)](https://sqlite.org/lang_datefunc.html)
-- [CREATE VIEW](https://sqlite.org/lang_createview.html)
-- [GROUP BY und Aggregatfunktionen (`SUM`)](https://sqlite.org/lang_aggfunc.html)
-- [DROP VIEW](https://sqlite.org/lang_dropview.html)  
-
-Für jede Teilaufgabe bitte gezielt diese Seiten nachschlagen.
-[ENDHINT]
-
-### Update
+### UPDATE
 [ER] Ändern Sie bei Benutzer `carol` den Status `is_active` auf `1`.
-
-[ER] Aktualisieren Sie das Feld `last_login` von `alice` auf das heutige Datum.
 
 [ER] Ändern Sie die E-Mail-Adresse von `bob` zu `bob@newmail.com`.
 
 [ER] Erhöhen Sie alle `amount`-Werte in `orders` um 10%.
 
-### View
+[HINT::UPDATE Beispiel]
+```sql
+-- Setze is_active auf FALSE für alle Nutzer, die seit über 6 Monaten nicht eingeloggt waren
+UPDATE users
+SET is_active = 0
+WHERE last_login < DATE('now', '-6 months');
+```
+[ENDHINT]
+
+### VIEW
 [ER] Erstellen Sie eine View `active_users`, die alle aktiven Nutzer (`is_active = 1`) enthält.
 
 [ER] Erstellen Sie eine View `recent_users_fixed`, die alle Nutzer mit `last_login` nach dem Stichtag `'2024-04-01'` enthält.
 
-[ER] Erstellen Sie eine View `user_order_summary`, die jeden Nutzernamen mit der Summe (`SUM`) seiner `amount` aus `orders` anzeigt.
+[HINT::CREATE VIEW Beispiel]
+```sql
+-- Erstelle eine Sicht für alle inaktiven Nutzer
+CREATE VIEW inactive_users AS
+SELECT id, username, email
+FROM users
+WHERE is_active = 0;
+```
+[ENDHINT]
+
+[ER] Erstellen Sie eine View total_order_amount, die die Gesamtsumme aller amount-Werte aus der Tabelle orders enthält.
+
+[HINT::SUM Beispiel]
+```sql
+SELECT SUM(amount)
+FROM orders;
+```
+Sehen Sie auch [PARTREF::sql-select]
+[ENDHINT]
 
 [ER] Zeigen Sie den Inhalt aller drei Views (`active_users`, `recent_users_fixed`, `user_order_summary`) an.
 
 [ER] Löschen Sie alle drei Views wieder.
+
+[HINT::DROP Syntax]
+```sql
+DROP VIEW <table_name>;
+```
+Sehen Sie auch [PARTREF::sql-basics]
+[ENDHINT]
 
 [ENDSECTION]
 
@@ -146,50 +159,42 @@ SET is_active = 1
 WHERE username = 'carol';
 SELECT * FROM users WHERE username = 'carol';
 
--- 2. Aktualisieren Sie das Feld `last_login` von `alice` auf das heutige Datum
-UPDATE users
-SET last_login = DATE('now')
-WHERE username = 'alice';
-SELECT * FROM users WHERE username = 'alice';
-
--- 3. Ändern Sie die E-Mail-Adresse von `bob` zu `bob@newmail.com`
+-- 2. Ändern Sie die E-Mail-Adresse von `bob` zu `bob@newmail.com`
 UPDATE users
 SET email = 'bob@newmail.com'
 WHERE username = 'bob';
 SELECT * FROM users WHERE username = 'bob';
 
 
--- 4. Erhöhen Sie alle `amount`-Werte in `orders` um 10%
+-- 3. Erhöhen Sie alle `amount`-Werte in `orders` um 10%
 UPDATE orders
 SET amount = amount * 1.1;
 SELECT * FROM orders;
 
--- 5. Erstellen Sie eine View `active_users`
+-- 4. Erstellen Sie eine View `active_users`
 CREATE VIEW active_users AS
 SELECT * FROM users
 WHERE is_active = 1;
 SELECT * FROM active_users;
 
--- 6. View `recent_users_fixed` für Logins nach '2024-04-01'
+-- 5. View `recent_users_fixed` für Logins nach '2024-04-01'
 CREATE VIEW recent_users_fixed AS
 SELECT * FROM users
 WHERE last_login >= '2024-04-01';
 SELECT * FROM recent_users_fixed;
 
--- 7. View `user_order_summary` mit SUM der Beträge pro Nutzer
-CREATE VIEW user_order_summary AS
-SELECT u.username, SUM(o.amount) AS total_amount
-FROM users u
-JOIN orders o ON u.id = o.user_id
-GROUP BY u.username;
-SELECT * FROM user_order_summary;
+-- 6. Erstellen Sie eine View `total_order_amount` mit der Summe aller Beträge aus `orders`
+CREATE VIEW total_order_amount AS
+SELECT SUM(amount) AS total_amount
+FROM orders;
+SELECT * FROM total_order_amount;
 
--- 8. Anzeigen der Views
+-- 7. Anzeigen der Views
 SELECT * FROM active_users;
 SELECT * FROM recent_users_fixed;
 SELECT * FROM user_order_summary;
 
--- 9. Löschen der Views
+-- 8. Löschen der Views
 DROP VIEW IF EXISTS active_users;
 DROP VIEW IF EXISTS recent_users;
 DROP VIEW IF EXISTS user_order_summary;
