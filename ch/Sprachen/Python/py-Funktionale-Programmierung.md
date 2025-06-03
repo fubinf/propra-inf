@@ -1,7 +1,7 @@
 title: "Funktionale Programmierung in Python"
 stage: alpha
 timevalue: 1.5
-difficulty: 2
+difficulty: 3
 assumes: py-Iterators, m_pprint
 ---
 
@@ -15,7 +15,7 @@ und kann sie verwenden, um meine Codequalität zu verbessern.
 [SECTION::background::default]
 
 Python ist eine Multi-Paradigmen-Sprache, das heißt neben prozeduralen und objektorientierten 
-Programmierparadigmen beherrscht Python auch einige Möglichkeiten, um funktionale Programme zu 
+Programmierparadigmen bietet Python auch Möglichkeiten, um funktionale Programme zu 
 schreiben.
 Mit funktionaler Programmierung ist es einfacher, korrekten Code zu schreiben und auch einfacher,
 diesen Code zu testen.
@@ -24,8 +24,10 @@ funktionalen Programmierstil zu schreiben.
 
 [NOTICE]
 Auch wenn Python diese und weitere Werkzeuge unterstützt, bleibt es vorwiegend eine 
-imperative Sprache. Ziel der Aufgabe ist es also nicht, rein funktionale Programme zu schreiben 
-(Schleifen und Variablenzuweisungen sind hier also weiter erlaubt).
+imperative Sprache. Ziel der Aufgabe ist es nicht, _rein_ funktionale Programme zu schreiben, 
+sondern Schleifen und Variablenzuweisungen bleiben weiter erlaubt und sinnvoll.
+Die funktionale Programmierung wird z.B. auf Ebene von Unterprogramm-Schnittstellen
+angewandt, aber nicht unbedingt _innerhalb_ eines Unterprogramms. 
 [ENDNOTICE]
 
 [ENDSECTION]
@@ -34,12 +36,11 @@ imperative Sprache. Ziel der Aufgabe ist es also nicht, rein funktionale Program
 
 ### Warum funktionale Programmierung?
 
-Diejenigen, die das Modul "Funktionale Programmierung" bereits besucht haben, sollten schon etwas 
-mit dem Begriff anfangen können. 
-Wer aber bisher nur mit imperativer Programmierung in Berührung gekommen ist, fragt sich 
-womöglich, was funktionale Programmierung überhaupt ist und wozu es gut sein soll.
+Wer bisher nur mit imperativer Programmierung in Berührung gekommen ist (prozedural und/oder
+objektorientiert), fragt sich vielleicht, 
+was funktionale Programmierung überhaupt ist und wozu sie gut sein soll.
 
-[EQ] Lesen Sie die Einleitung vom 
+[EQ] Lesen Sie die Einleitung von diesem 
 [Artikel über funktionale Programmierung in Python](https://docs.python.org/3/howto/functional.html). 
 Nennen und beschreiben Sie kurz die zwei aus Ihrer Sicht wichtigsten Vorteile von funktionaler 
 Programmierung, die im Artikel genannt werden.
@@ -48,10 +49,12 @@ Programmierung, die im Artikel genannt werden.
 Die einzelnen Abschnitte enthalten Erklärungen zu den hier behandelten und geforderten 
 Werkzeugen und helfen Ihnen bei der Bearbeitung der Aufgaben.
 
+
 ### Vorbereitung
 
-Legen Sie die Datei `py-Funktionale-Programmierung.py` an und fügen Sie hier Ihre Lösungen für 
+Legen Sie die Datei `py-Funktionale-Programmierung.py` an und fügen Sie dort Ihre Lösungen für 
 die folgenden Programmieraufgaben ein.
+
 
 ### Lambda-Funktionen
 
@@ -95,7 +98,7 @@ print("sorted by last letters:", ...)
 
 [ER] Schreiben Sie eine Funktion `choose_operator(word)`. 
 Diese soll anhand des gegebenen Wortes entscheiden, um welche Art von mathematischem Operator es 
-sich handelt und entsprechend eine Funktion zurückgeben, die diese Operation durchführt. 
+sich handelt und entsprechend eine Lambda-Funktion zurückgeben, die diese Operation durchführt. 
 Es genügt, wenn die Funktion die vier Grundrechenarten unterscheiden kann und sie sollte 
 mindestens die englische Schreibweise erkennen (1 **plus** 2, 4 **divided by** 2 etc.). 
 Wird kein Operator erkannt, soll die zurückgegebene Funktion immer `None` zurückgeben. 
@@ -106,6 +109,16 @@ print("10 minus 4 =", choose_operator("minus")(10, 4))
 print("15 divided by 3 =", choose_operator("divided by")(15, 3))
 print("9 plus 7 =", choose_operator("plus")(9, 7))
 ```
+
+[NOTICE]
+Im wirklichen Leben würde man anstatt solcher einfachen Lambda-Funktionen sinnvollerweise
+lieber die Standardfunktionen aus dem Modul `operator` der Standardbibliothek nehmen,
+denn die Standardbibliothek bietet ausgereifte Implementierungen, die auch seltene Fälle
+korrekt mit abdecken.  
+Für die Grundrechenarten macht das vielleicht keinen Unterschied, aber in anderen Fällen
+früher als man denkt.
+[ENDNOTICE]
+
 
 ### Generatoren
 
@@ -132,17 +145,28 @@ gen = generate_substrings("Generatoren sind sehr praktisch.", " ")
 print("\nfirst three words:", list([next(gen) for _ in range(3)]))
 ```
 
+[HINT::Was benötige ich dafür?]
+
+[ENDHINT]
+
+
+
 Eine weitere praktische Alternative zur Erstellung eigener Iteratoren sind **Generator 
 Expressions**. 
 Diese funktionieren genauso wie [PARTREFMANUAL::py-List-Comprehensions::List Comprehensions], 
-aber mit dem Unterschied, dass sie keine Liste, sondern einen Iterator erzeugen. 
+aber mit dem Unterschied, dass sie keine Liste, sondern einen Generator erzeugen. 
 Syntaktisch unterscheiden sie sich nur durch ihre Klammern (`()` statt `[]`).
+Wenn man das Ergebnis nur der Reihe nach mit einer Schleife weiterverarbeitet und
+die Zahl der Elemente groß ist, spart das viel Speicherplatz ein und 
+obwohl sich alles wie die Arbeit mit Listen anfühlt, kann man sogar
+Datenmengen verarbeiten, die gar nicht in den Speicher passen würden.
 
-### Built-in Functions
+
+### `map()`, `filter()` und ihre Kolleginnen
 
 Einige der [Built-in Funktionen](https://docs.python.org/3/howto/functional.html#built-in-functions) 
-von Python haben einen näheren Bezug zu funktionaler Programmierung und lassen sich teils auch 
-in rein funktionalen Sprachen wiederfinden. 
+von Python haben einen engen Bezug zu funktionaler Programmierung.
+Viele finden sich ähnlich auch in rein funktionalen Sprachen wieder. 
 Zu diesen Funktionen gehören:  
 `map()`, `filter()`, `zip()`, `sorted()`, `any()`, `all()` und `enumerate()`.
 
@@ -151,8 +175,9 @@ Geben Sie das Ergebnis, sofern sinnvoll, als Iterator zurück.
 Zusätzlich kann es durchaus hilfreich sein, auch Lambda-Ausdrücke oder Generatoren zu verwenden, 
 sowie Ihre Lösungen aus den vorherigen Teilaufgaben wiederzuverwenden.
 
-[HINT::Wie gebe ich Iteratoren in der Kommandozeile aus?]
-Iteratoren geben bei Ausgabe mit `print()` nur einen String, z.B. `<map object at 0x7f1029289420>` 
+[HINT::Wie gebe ich das Ergebnis eines Iterators in der Kommandozeile aus?]
+Iteratoren geben bei Ausgabe mit `print()` nur einen String von z.B. der Form
+`<map object at 0x7f1029289420>` 
 zurück.
 Das liegt daran, dass der Iterator selbst keine Werte enthält.
 Um die Ergebnisse auszugeben, muss der Iterator zuerst ausgewertet und die Werte in eine 
@@ -167,6 +192,11 @@ print("\ndivisible by 2", ...)
 print("divisible by 7", ...)
 ```
 
+[HINT::Was benötige ich dafür?]
+TODO_1
+[ENDHINT]
+
+
 [ER] Sie wollen aus einem Text alle Wörter erhalten, die ein gegebenes Kriterium erfüllen, sowie 
 deren Position im Text. 
 Schreiben Sie dafür die Funktion `positions_of_matching_words(text, condition)`.
@@ -178,6 +208,11 @@ t = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy ei
 res = positions_of_matching_words(t, ...)
 print("\nposition of all words with letter 'y':", ...)
 ```
+
+[HINT::Was benötige ich dafür?]
+TODO_1
+[ENDHINT]
+
 
 [ER] Aus einem Datensatz haben Sie eine Reihe von Produkten sowie deren Preise in Euro jeweils als 
 Liste importiert. 
@@ -193,13 +228,17 @@ print("\nproducts with prices")
 pprint.pp(some_products)
 ```
 
-[HINT::Produkte als Dictionary zur Kontrolle]
+[HINT::So soll das Ergebnis aussehen]
 ```python
 [{'product': 'Laptop', 'price': 999.0},
  {'product': 'Smartphone', 'price': 599.59},
  {'product': 'Tablet', 'price': 299.95},
  {'product': 'Monitor', 'price': 199.99}]
 ```
+[ENDHINT]
+
+[HINT::Was benötige ich dafür?]
+TODO_1
 [ENDHINT]
 
 [ER] Sie wollen nun eine Funktion `convert_currency(products, rate)` schreiben, 
@@ -212,19 +251,24 @@ p = next(products_in_dollar)
 print("\nThe", p["product"], "costs", p["price"], "USD")
 ```
 
+[HINT::Was benötige ich dafür?]
+TODO_1
+[ENDHINT]
+
 [ER] Sie haben nun eine weitere Liste `stock = (4, 0, 1, 7)`, die angibt, wie viele Produkte 
 Sie jeweils noch auf Lager haben. 
 Schreiben Sie eine Funktion `add_attributes(products, key, values)`, die zu einem Produkt ein neues 
 Attribut hinzufügt, also Schlüssel und Wert ins Dictionary einfügt.  
 Fügen Sie anschließend `stock` mithilfe der Funktion in ihre Produkte aus vorheriger Aufgabe ein. 
 Prüfen Sie schließlich Ihre neue Produktliste, ob manche Produkte nicht mehr auf Lager sind und 
-geben Sie das erste Produkt aus, das out-of-stock ist.  
+geben Sie das erste solche Produkt aus.  
 ```python
 print("product not in stock:", ...)
 ```
 
-[HINT::Wie füge ich in einem Lambda Ausdruck ein Eintrag zu einem Dictionary hinzu?]
-Normaler verwendet man `dict[key] = value` um Elemente in ein Dictionary hinzuzufügen. 
+[HINT::Was benötige ich dafür?]
+TODO_1 ?
+Normalerweise verwendet man `dict[key] = value` um Elemente in ein Dictionary hinzuzufügen. 
 Lambda Funktionen unterstützen allerdings keine Zuweisungen, daher können Sie
 
 - statt einer Lambda-Funktion eine separate Funktion definieren
@@ -232,15 +276,17 @@ Lambda Funktionen unterstützen allerdings keine Zuweisungen, daher können Sie
   Key-Value-Paar hinzufügen.
 [ENDHINT]
 
+
 ### Programmlauf für die Abgabe
 
 [EC] Führen Sie das gesamte so erzeugte Programm `py_Funktionale_Programmierung.py` einmal aus.
+
 
 ### Funktional vs. imperativ
 
 Schauen Sie sich die letzte Aufgabe noch einmal an. 
 Schreiben Sie zum Vergleich die Funktion noch einmal ohne die Verwendung von Built-in Funktionen 
-und Iteratoren (diese müssen Sie nicht mit abgeben).
+und Iteratoren (diese Fassung müssen Sie nicht mit abgeben, können es aber).
 
 [EQ] Vergleichen Sie die beiden Lösungen. 
 Welche Variante empfinden Sie als besser lesbar?  
@@ -256,6 +302,7 @@ Schauen Sie sich in
 die Bedeutung von [TERMREF::Lazy Evaluation] noch einmal an, und wie dies mit Iteratoren 
 zusammenhängt.
 [ENDHINT]
+
 
 ### Weiterführende Aufgaben
 
