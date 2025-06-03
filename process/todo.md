@@ -78,6 +78,8 @@ Einzelaufgaben:
 
 Sonderdateien:
 
+- `process/how-to.md`: TODO_1_prechelt: Review-Vorgehen mit Issues beschreiben, aus `reviews.md` löschen.
+  Für einzelne Rework-Aufträge Issues anlegen und `reviews.md` entsprechend zurückbauen.
 - `glossary.md`: Bitte jeder durchgehen und ergänzen:  
   Was fehlt an Begriffen zu eigenen Aufgaben?  
   Was fehlt an Verweisen zwischen existierenden Begriffen und Aufgaben?
