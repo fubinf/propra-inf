@@ -340,7 +340,8 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
   ["YAML top matter"](https://sedrila.readthedocs.io/en/latest/authors/#15-task-files-yaml-top-matter)).
   Changing this attribute replaces the pull request workflow typical in other open source projects.
 - Tasks should be set to `stage: beta` only after a positive review by Lutz Prechelt.
-  To start a review, create an issue named `MyChapter/MyTaskgroup/MyTask` and assign it to `prechelt`.  
+  To start a review, assign `stage: alpha`, 
+  create an issue named `MyChapter/MyTaskgroup/MyTask` and assign it to `prechelt`.  
 
 
 ### 2.4.2 Task review flow
@@ -361,6 +362,8 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
   priority over work on other tasks, so that we produce value for the students earlier.
 - Once a task has reached review, make sure you mention the issue number (e.g. `#5`)
   in commit messages for that task so that the issue provides direct access to those commmits.
+- If you rename a task, make sure to change the issue name.  
+  If you rename a task group, make sure to change all respective issue names.
 
 
 ### 2.4.3 Task text layout conventions
