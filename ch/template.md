@@ -8,18 +8,17 @@ requires:
 ---
 
 [SECTION::goal::product/idea/experience/trial]
-
 Lernziele (in Ich-Perspektive)
-
 [ENDSECTION]
+
 
 [SECTION::background::default]
-
 Motivation der Aufgabe
-
 [ENDSECTION]
 
+
 [SECTION::instructions::detailed/loose/tricky]
+
 
 ### Aufgaben
 
@@ -28,6 +27,7 @@ Motivation der Aufgabe
 [EQ] Frage
 
 [ER] Anforderung
+
 
 ### Links
 
@@ -42,6 +42,7 @@ Motivation der Aufgabe
 [TERMREF::Term] Link zu Glossareintrag
 
 [TERMREF2::Term::Term Text] mit eigenem Text
+
 
 ### Blockmakros
 
@@ -60,25 +61,18 @@ Aufgabenhinweis/Hilfestellung
 [FOLDOUT::VisibleTitle]
 eingeklappter Text, z.B. für längeren Sourcecode
 [ENDFOLDOUT]
-
 [ENDSECTION]
 
-[SECTION::submission::reflection/information/snippet/trace/program]
 
+[SECTION::submission::reflection/information/snippet/trace/program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::]
-
-Hinweise and Tutoren zur Aufgabenkorrektur
-
+Hinweise an die Tutoren zur Aufgabenkorrektur
 [INCLUDE::ALT]
-
 [TREEREF::Pfad/zu/Musterlösung]
-
 [PROT::Pfad/zu/Kommandoprotokoll]
-
 [ENDINSTRUCTOR]

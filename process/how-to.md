@@ -331,44 +331,28 @@ The instructor section
   priority over work on other tasks, so that we produce value for the students earlier.
 
 
+### 2.4.3 Task text layout conventions
 
-Zur Vermeidung inkonsistenter Sprache sollten wir einheitliche Begriffe für gleiche oder im
-Kontext äquivalente Begriffe verwenden.
-TODO_3: In dieser Hinsicht (einheitliche Sprache und Begrifflichkeiten) gibt es noch viel zu tun.
+- Line length: Restrict lines to 100 characters, prefer 80 where easily possible.
+  Start each sentence on a new line.
+  These two rules make the `diff` for later changes much more readable.
+- Empty lines: Place two empty lines before each SECTION and before each heading.  
+  Place one empty line before each blockmacro start line and after each blockmacro end line,
+  but none after the start line (unless needed to repair a broken itemized list) 
+  or before the end line. See `ch/template_md`.
+- Put hyperlinks on a separate line.
 
-- "Anwendung" statt Programm/Software oder auch Paket (wo sinnvoll)
-- "Verzeichnis" statt Ordner
-- "Defekt" in der Verwendung von Softwaretechnik, insbesondere in Abgrenzung zu "Fehler"
-- "beispielsweise" statt "z.B." in Fließtext
-
-Bei der Einführung neuer Begriffe verwenden wir erstmals Anführungszeichen. Wollen wir sie
-anschließend betont verwenden, machen wir sie *italic*. Bei der Einführung von deutschen
-Fachbegriffen erwähnen wir die korrekte englische Vokabel in Klammern.
-
-Die Verwendung von Blocktext ist für Code oder Codeteile oder technische Bezeichner gedacht.
-
-Wir kürzen "Repository" mit "Repo" ab. Wir schreiben "Git", wenn wir die Software in einer
-Art benennen, die kein Kommando ist. In Kommandos schreiben wir "git".
-
-Wir vermeiden die Pluralisierung englischer Wörter, die auf y enden.
-Generell beugen wir Fremdwörter nach deutscher Rechtschreibung.
-
-Wenn wir uns auf einen Teil der Universität beziehen, nennen wir sie beim vollen Namen
-und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe änderbar zu machen.
+`[SECTION::instructions::...]`
+- uses `###` subheadings for explaining task structure and supporting skimming
+- puts each `[EQ]`, `[ER]`, `[EC]` in a separate paragraph (or sometimes list item)
+- puts subsequent short preparatory steps (that do not need a `[EQ]`, `[ER]`, `[EC]` marker)
+  into unnumbered list items
+- prefers medium-long paragraphs otherwise
 
 
-## Tech stuff
+### 2.4.4 Working with the `altdir` submodule
 
-### Development flow in general
-
-- We are not using branches, all commits happen on `main` directly.
-  We are a closed group and trust each other to work carefully.
-- Integrate your local commits via 'git pull --rebase', not via 'merge'.
-- Our staging happens via the `stage:` attribute of each task (see 
-  ["YAML top matter"](https://sedrila.readthedocs.io/en/latest/authors/#15-task-files-yaml-top-matter)).
-  Changing this attribute replaces the pull request workflow typical in other open source projects.
-
-### Working with the `altdir` submodule
+Unfortunately, working with submodules in git is a bit tricky.
 
 - **After `git pull`**, the submodule is always in the **"detached HEAD"** state,  
   because the super-repo references a specific commit ID and that commit is now checked out.  
@@ -406,3 +390,31 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
   For keeping it simple, make sure you `pull` before you make changes, and
   `commit` and `push` those changes ASAP.
   The shorter your change episodes, the fewer git problems.
+
+
+## 2.5 Language use (in German because we use German)
+
+Zur Vermeidung inkonsistenter Sprache sollten wir einheitliche Begriffe für gleiche oder im
+Kontext äquivalente Begriffe verwenden.
+TODO_3: In dieser Hinsicht (einheitliche Sprache und Begrifflichkeiten) gibt es noch viel zu tun.
+
+- "Anwendung" statt Programm/Software oder auch Paket (wo sinnvoll)
+- "Verzeichnis" statt Ordner
+- "Defekt" in der Verwendung von Softwaretechnik, insbesondere in Abgrenzung zu "Fehler"
+- "beispielsweise" statt "z.B." in Fließtext
+
+Bei der Einführung neuer Begriffe verwenden wir erstmals Anführungszeichen. Wollen wir sie
+anschließend betont verwenden, machen wir sie *italic*. Bei der Einführung von deutschen
+Fachbegriffen erwähnen wir die korrekte englische Vokabel in Klammern.
+
+Die Verwendung von Blocktext ist für Code oder Codeteile oder technische Bezeichner gedacht.
+
+Wir kürzen "Repository" mit "Repo" ab. Wir schreiben "Git", wenn wir die Software in einer
+Art benennen, die kein Kommando ist. In Kommandos schreiben wir "git".
+
+Wir vermeiden die Pluralisierung englischer Wörter, die auf y enden.
+Generell beugen wir Fremdwörter nach deutscher Rechtschreibung,
+aber bevorzugen deutsche Begriffe, soweit die zumindest einigermaßen geläufig sind.
+
+Wenn wir uns auf einen Teil der Universität beziehen, nennen wir sie beim vollen Namen
+und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe änderbar zu machen.
