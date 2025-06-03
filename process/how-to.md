@@ -1,7 +1,7 @@
-# How to use the ProPra
+# 1. For course teachers: How to use the ProPra
 
 The target audience of this part of the document is course leads of ProPra courses.
-These use the `author` command for building the course website,
+These use `sedrila`'s `author` command for building the course website,
 then the `instructor` command during the course.
 
 1. Make sure you have a platform with an up-to-date Python (you need not know Python yourself).
@@ -49,11 +49,11 @@ Once you understood those, read on below for some content aspects.
 ----------------------
 ----------------------
 
-# How to write tasks for a ProPra
+# 2. For course authors: How to write tasks for a ProPra
 
 The target audience of this part of the document is ProPra authors, not instructors and not students.
 
-## Principles
+## 2.1 Principles
 
 During the development of propra-inf, we have discovered the following principles
 for its structure and attempt to obey them throughout:
@@ -99,7 +99,7 @@ because they find them interesting and relevant, find the tasks are fun to do,
 and can observe their progress well. 
 
 
-## Specific assumptions
+## 2.2 Prior knowledge we assume students to have
 
 We assume the students taking the propra-inf to have the following knowledge and skills:
 - Boolean logic
@@ -107,35 +107,33 @@ We assume the students taking the propra-inf to have the following knowledge and
   - procedural programming with variables and state and common control flow constructs:
     if-then-else, for, while
   - programming with parameterized subroutines
-  - object-oriented programming with classes, methods, inheritance
+  - basic object-oriented programming: classes, methods, inheritance
   - functional programming style
-- Corresponding syntax, semantics and handling of Python,
-  including basic use of lists, dictionaries, a small subset of `builtins`, and 
+- Corresponding syntax, semantics, and handling of Python,
+  including basic use of lists, dictionaries, a small subset of `builtins`, but 
   hardly anything from the standard library.
-- A second-semester course on algorithms and data structures
 
-We do _not_ assume a good understanding of software design, especially modularization.
-In parallel to this course, the students ought to take a big (9 ECTS) introductory
-software engineering course, but some of them may do this earlier, later, or never (non-CS majors).
+We do _not_ assume a good understanding of algorithms, data structures, 
+or software design, especially modularization, at least for tasks at difficulty level 2 (easy).
 
 
-## Learning to write ProPra tasks
+## 2.3 Learning to write ProPra task content
 
-### 1. Learn `sedrila`
+### 2.3.1 Learn `sedrila`
 
 First, learn about `sedrila` in the
 [README.md](https://github.com/fubinf/sedrila/blob/main/README.md) and
 [authors.md](https://github.com/fubinf/sedrila/blob/main/doc/authors.md) parts of its documentation.
 
 
-### 2. Use the task file template
+### 2.3.2 Use the task file template
 
 When you start a new task description file, 
 copy [ch/template.md](../ch/template.md) 
 and use it as a template to have a clean up-to-date starting point.
 
 
-### 3. Design for difficulty level
+### 2.3.3 Design for difficulty level
 
 Writing a task works differently for different levels of task difficulty.  
 
@@ -158,7 +156,7 @@ so make sure a level-3 task leans more towards level-2 than towards level-4.
 See macro `[HINT]` below.
 
 
-### 4. The role of motivation
+### 2.3.4 The role of motivation
 
 Given the huge freedom we give students and the superficial manner in which we
 check their solutions, the ProPra's success depends massively on the students'
@@ -172,7 +170,7 @@ Therefore,
   [12 Prinzipien zur Motivation Lernender](https://link.springer.com/chapter/10.1007/978-3-658-26990-6_1)
 
 
-### 5. Strive to re-use known didactic methods
+### 2.3.5 Strive to re-use known didactic methods
 
 When designing a set of tasks, many difficult didactic decisions must be made:
 What to cover at all? In which depth? In which order?
@@ -188,7 +186,7 @@ in schools) here:
 [Liste der Unterrichtsmethoden (Wikipedia)](https://de.wikipedia.org/wiki/Liste_der_Unterrichtsmethoden)
 
 
-### 6. Work steps towards a task description 
+### 2.3.6 Work steps towards a task description 
 
 Suggested procedure:
 
