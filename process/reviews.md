@@ -39,14 +39,10 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/C/c-setup.md (KH)
 - ch/Sprachen/C/c-compiler-assembler-linker.md (KH -> LP)
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB->LP)
-- ch/Sprachen/SQL/SQL-basics.md (YL->LP)
-- ch/Sprachen/SQL/SQL-select.md (YL->LP)
-- ch/Sprachen/SQL/SQL-join.md (YL->LP)
-- ch/Sprachen/SQL/SQL-user-admin.md (YL->LP)
+
 
 ### Bibliotheken
 
-- ch/Bibliotheken/Pandas-Grundlagen/pd-Einführung.md (JS->LP->JS->LP)
 - ch/Bibliotheken/Pandas-Grundlagen/pd-Datenstrukturen.md (JS->LP)
 - ch/Bibliotheken/Pandas-Grundlagen/pd-Datenüberblick.md (JS->LP)
 
