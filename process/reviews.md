@@ -1,32 +1,8 @@
 # Reviewing process
 
-## Rules
-
-We will modify these rules over time when others appear more useful. 
-
-- When an author finds a task as far developed as they can sensibly do,
-  they put it in `stage: alpha` and send it into review.
-- A task goes through one or possibly two stages of review:
-  - Normal case: Hand it to Lutz Prechelt (who will finish it or hand it back to you with feedback).
-  - If you are afraid your task may not be ready for this, hand it to Christian Hofmann first.
-  - Tasks come into review with `stage: alpha` and leave with `alpha` or `beta`, or `draft`.
-    `beta` is assigned by Lutz Prechelt only.
-  - In special cases, send your task into review by anybody else as needed.
-- Authors assign a task to a reviewer by writing a line of the following form
-  in the reviewer's section below:  
-  `ch/chaptername/taskgroupname/taskname.md (authorname)`
-- Reviewers make simple changes themselves and defer complex changes to the author.
-  They should leave simple changes to the author as well if they believe the author
-  will learn from making them.
-- Reviewers may add long feedback in the task file 
-  (a paragraph or itemized list starting with a TODO_1_someauthor marker)
-  or shorter feedback in reviews.md
-  or write feedback in the Discord if they believe everybody should see it.
-- Reviewers then move the review task assignment line to the section (in `review.md`)
-  of the next person that needs to consider the given task (author or reviewer) or
-  delete it if the task has arrived in `beta` and needs no further change or check.
-
--------------------------------------------------------------------------------------------
+See process description in how-to.md.
+These are the remainders of the previous process.
+Do not add new entries here.
 
 ## Reviews to do for Lutz Prechelt
 
@@ -41,13 +17,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB->LP)
 
 
-### Bibliotheken
-
-
-
-### Bestandscode
-
-
 ### Testen
 - ch/Testen/Unittests/pytest_call (RR->LP->RR->LP->RR->LP) Als Vorbedingung für die Coverage Aufgaben.
 
@@ -56,8 +25,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 - ch/Testen/Betriebsumgebung/GitHub-Build.md (RR->LP->RR->LP)
 - ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP->RR->LP)
-
-### Web
 
 
 ### Werkzeuge
@@ -99,10 +66,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Werkzeuge/Unix-Diverses/0x_cron.md
 
 
-
-## Rework to do for Christian Hofmann
-
-
 ## Rework to do for Kilian Hofmann
 
 - ch/Sprachen/C/c-preprocessor.md (KH->LP->KH)
@@ -122,7 +85,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 
 ## Rework to do for Yixiang Li
-
 
 - ch/Sprachen/SQL/SQL-project.md (YL)
 
@@ -208,13 +170,3 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
 - ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
 - ch/Sprachen/Pythonpraxis/Passwortgenerator.md (RR->LP->RR)
 - ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
-
-
-## Rework to do for Jarmin Saka
-
-- ch/Bibliotheken/Pandas-Grundlagen/pd-introduction.md (JS->LP->JS->LP)
-
-
-## Rework to do for Sven Wegner
-
-- ch/Sprachen/Python/py-Funktionale-Programmierung.md (SW->LP->SW)
