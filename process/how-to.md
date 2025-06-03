@@ -299,6 +299,36 @@ The instructor section
   or point to it via `[TREEREF::/Chapter/Group/File]`
 
 
+### 2.3.12 Language use (in German because we use German)
+
+Zur Vermeidung inkonsistenter Sprache sollten wir einheitliche Begriffe für gleiche oder im
+Kontext äquivalente Begriffe verwenden.
+TODO_3: In dieser Hinsicht (einheitliche Sprache und Begrifflichkeiten) gibt es noch viel zu tun.
+
+- "Anwendung" statt Programm/Software oder auch Paket (wo sinnvoll)
+- "Verzeichnis" statt Ordner
+- "Defekt" in der Verwendung von Softwaretechnik, insbesondere in Abgrenzung zu "Fehler"
+- "beispielsweise" statt "z.B." in Fließtext
+
+Bei der Einführung neuer Begriffe verwenden wir erstmals Anführungszeichen. Wollen wir sie
+anschließend betont verwenden, machen wir sie *italic*. Bei der Einführung von deutschen
+Fachbegriffen erwähnen wir die korrekte englische Vokabel in Klammern.
+
+Die Verwendung von Blocktext ist für Code oder Codeteile oder technische Bezeichner gedacht.
+
+Wir kürzen "Repository" mit "Repo" ab. Wir schreiben "Git", wenn wir die Software in einer
+Art benennen, die kein Kommando ist. In Kommandos schreiben wir "git".
+
+Wir vermeiden die Pluralisierung englischer Wörter, die auf y enden.
+Generell beugen wir Fremdwörter nach deutscher Rechtschreibung,
+aber bevorzugen deutsche Begriffe, soweit die zumindest einigermaßen geläufig sind.
+
+Wenn wir uns auf einen Teil der Universität beziehen, nennen wir sie beim vollen Namen
+und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe änderbar zu machen.
+
+
+## 2.4 Technical development process
+
 
 ### 2.4.1 Development flow in general
 
@@ -391,30 +421,3 @@ Unfortunately, working with submodules in git is a bit tricky.
   `commit` and `push` those changes ASAP.
   The shorter your change episodes, the fewer git problems.
 
-
-## 2.5 Language use (in German because we use German)
-
-Zur Vermeidung inkonsistenter Sprache sollten wir einheitliche Begriffe für gleiche oder im
-Kontext äquivalente Begriffe verwenden.
-TODO_3: In dieser Hinsicht (einheitliche Sprache und Begrifflichkeiten) gibt es noch viel zu tun.
-
-- "Anwendung" statt Programm/Software oder auch Paket (wo sinnvoll)
-- "Verzeichnis" statt Ordner
-- "Defekt" in der Verwendung von Softwaretechnik, insbesondere in Abgrenzung zu "Fehler"
-- "beispielsweise" statt "z.B." in Fließtext
-
-Bei der Einführung neuer Begriffe verwenden wir erstmals Anführungszeichen. Wollen wir sie
-anschließend betont verwenden, machen wir sie *italic*. Bei der Einführung von deutschen
-Fachbegriffen erwähnen wir die korrekte englische Vokabel in Klammern.
-
-Die Verwendung von Blocktext ist für Code oder Codeteile oder technische Bezeichner gedacht.
-
-Wir kürzen "Repository" mit "Repo" ab. Wir schreiben "Git", wenn wir die Software in einer
-Art benennen, die kein Kommando ist. In Kommandos schreiben wir "git".
-
-Wir vermeiden die Pluralisierung englischer Wörter, die auf y enden.
-Generell beugen wir Fremdwörter nach deutscher Rechtschreibung,
-aber bevorzugen deutsche Begriffe, soweit die zumindest einigermaßen geläufig sind.
-
-Wenn wir uns auf einen Teil der Universität beziehen, nennen wir sie beim vollen Namen
-und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe änderbar zu machen.
