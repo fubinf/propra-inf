@@ -206,7 +206,99 @@ Suggested procedure:
    and for appropriateness of the instructions given the difficulty.
 
 
-## Language use (in German because we use German)
+### 2.3.7 `[SECTION::goal::...]`
+
+The goal section
+
+- is always rather short
+- usually formulates one goal or two, not many
+- aims at giving a quick idea what can be learned in this task to help students select tasks
+
+
+### 2.3.8 `[SECTION::background::default]`
+
+The background section
+
+- is the only one that can be missing (but is usually present)
+- should typically be short
+- is _not_ used for providing background information that is part of the technical content
+- is used only for _motivation_: Why or how it can be useful to have learned what can be learned here. 
+
+
+### 2.3.9 `[SECTION::instructions::type]`
+
+The instruction section
+
+- is the main part of the task
+- can be rather long
+- Instructions of type `detailed` at difficulty 2 (easy) 
+  carefully guide students through detailed, separate steps,
+  that require understanding but little inventing (Bloom taxonomy level 3: apply),
+  and use `[HINT]`s to help with the remaining inventing.
+  The task should be easy for an average student working on it concentratedly.
+  If there are many `[HINT]`s, students who'd prefer a more difficult task can make it
+  more difficult for them by ignoring all the `[HINT]`s. 
+  Therefore, turning some understanding step into an inventive step and providing a `[HINT]` for it
+  can be a useful task design technique.
+- Instructions of type `loose` at difficulty 3 (medium) 
+  require much larger invention steps (Bloom taxonomy levels 4+5)
+  but provide `[HINT]`s to make the task feasible for many more people.
+  For difficult topics, difficulty 3 tasks sometimes use `detailed` instructions.
+- Instructions of type `loose` or `tricky` at difficulty 4 (difficult) 
+  require still larger invention steps and much more self-steered
+  work for the understanding parts as well (Bloom taxonomy levels 4+5).
+  They provide few `[HINT]`s (for `tricky`) or none.
+- At any difficulty level, the instructions can and should provide `[EQ]` reflection questions where
+  students make up their minds what they think are advantages/disadvantages of something,
+  what they like/dislike (and why) etc. (Bloom taxonomy level 6).
+  (At difficulty 2, we will accept almost any response, 
+  at levels 3+4, the responses should be sensible.)
+
+For the authors, tasks at difficulty 2 (easy) are much more work and also harder to get right 
+than those at difficulties 3 or 4.
+However, the majority of our tasks needs to have difficulty 2 in order to address the majority
+of our audience adequately.
+
+
+### 2.3.10 [SECTION::submission::subtype1,subtype2]
+
+The submission section
+
+- usually contains only calls to one or more of the boilerplate blocks  
+  ´[INCLUDE::/_include/Submission-Kommandoprotokoll.md]` (if `[EC]` is present anywhere in the task)  
+  `[INCLUDE::/_include/Submission-Quellcode.md]` (if `[ER]` is present)  
+  `[INCLUDE::/_include/Submission-Markdowndokument.md]` (if `[EQ]` is present)  
+  in a suitable order
+- sometimes contains additional text, e.g. about what is or is not to be considered part of the source code
+  or from what perspective to answer the `[EQ]` questions
+- describes the character of the task via the submission subtypes:
+    - `reflection`: There are `[EQ]` reflection questions
+    - `information`: There are `[EQ]` fact-finding questions
+    - `snippet`: The source code is to be viewed as a piecemeal collection of snippets 
+       or there are `[EQ]` questions to be answered with a bit of source code
+    - `program`: The source code is an entire program, largely written by the student
+    - `trace`: There are `[EC]` command instructions
+- The idea of having these subtypes is that they help designing the task if you decide
+  on the subtypes _before_ deciding on the details of the task.
+
+
+### 2.3.11 [SECTION::instructor::GistOfPriorities]
+
+The instructor section
+
+- will announce in its title what the instructors should consider most important
+  (usually: what indicates whether the student has learned the main teachings of the task)
+- will reflect that priority in the order of information in the section body:
+  important stuff first!
+- will use terms "must" and "should" for indicating reasons for rejecting a task
+  vs. points for mere feedback comments from the instructor to the student
+- will include concrete example answers for all `[EQ]` questions (with discussion if needed)
+- will include a concrete command protocol for all `[EC]` items
+- will (if there are `[ER]` items) either include an example solution source code
+  via an `[INCLUDE::ALT:sourcefile.xyz]` (embedded in triple backquotes for formatting)
+  or point to it via `[TREEREF::/Chapter/Group/File]` etc.
+
+
 
 Zur Vermeidung inkonsistenter Sprache sollten wir einheitliche Begriffe für gleiche oder im
 Kontext äquivalente Begriffe verwenden.
