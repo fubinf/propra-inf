@@ -145,6 +145,14 @@ gen = generate_substrings("Generatoren sind sehr praktisch.", " ")
 print("\nfirst three words:", list([next(gen) for _ in range(3)]))
 ```
 
+[NOTICE]
+Um Strings bei einem Delimiter aufzuspalten, verwendet man i.d.R. die 
+[`split()`](https://docs.python.org/3/library/stdtypes.html#str.split) Funktion vom String-Datentyp.
+Diese arbeitet jedoch nicht mit Iteratoren und würde daher das Konzept eines Generators, 
+jedes Element einzeln auf Abruf zu generieren, umgehen.
+__Verzichten__ Sie hier daher auf die Verwendung der Funktion.
+[ENDNOTICE]
+
 [HINT::Was benötige ich dafür?]
 
 [ENDHINT]
