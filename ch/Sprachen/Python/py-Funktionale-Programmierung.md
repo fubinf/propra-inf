@@ -154,10 +154,11 @@ __Verzichten__ Sie hier daher auf die Verwendung der Funktion.
 [ENDNOTICE]
 
 [HINT::Was benötige ich dafür?]
-
+Schreiben Sie einen einfachen Algorithmus, der in dem String nach dem Delimiter sucht und die 
+einzelnen gefundenen Strings "wirft".
+Wenn Sie bereits Erfahrung mit regulären Ausdrücken in Python haben, können Sie auch 
+[PARTREFMANUAL::m_re::re.finditer()] verwenden.
 [ENDHINT]
-
-
 
 Eine weitere praktische Alternative zur Erstellung eigener Iteratoren sind **Generator 
 Expressions**. 
@@ -201,7 +202,10 @@ print("divisible by 7", ...)
 ```
 
 [HINT::Was benötige ich dafür?]
-TODO_1
+Filtern von Iterables funktioniert mithilfe von 
+[`filter()`](https://docs.python.org/3/library/functions.html#filter).
+Als Filter-Kriterium lässt sich eine Funktion übergeben, die ein Objekt entgegennimmt und einen 
+Boolean zurückgibt. 
 [ENDHINT]
 
 
@@ -218,7 +222,10 @@ print("\nposition of all words with letter 'y':", ...)
 ```
 
 [HINT::Was benötige ich dafür?]
-TODO_1
+Um, wie in funktionalen Sprachen üblich, ohne Schleifen auszukommen, aber trotzdem alle Elemente 
+wie mit einer Zählvariable zu nummerieren, ist 
+[`enumerate()](https://docs.python.org/3/library/functions.html#enumerate)` geeignet.
+Außerdem könnte ihnen die Lösung von einer der vorherigen Aufgaben behilflich sein.
 [ENDHINT]
 
 
@@ -246,7 +253,10 @@ pprint.pp(some_products)
 [ENDHINT]
 
 [HINT::Was benötige ich dafür?]
-TODO_1
+Mithilfe von [`zip()`](https://docs.python.org/3/library/functions.html#zip) lassen sich zwei 
+oder mehr Iterables paarweise in Tupel verpacken (also `[1,2,3], [a,b,c] --> [(1,a),(2,b),(3,c)]`).
+Anschließend können sie jedes dieser Tupel in ein Dictionary verwandeln.
+Da Sie die Produkte noch mehrmals benötigen, müssen Sie sie als Liste abspeichern.
 [ENDHINT]
 
 [ER] Sie wollen nun eine Funktion `convert_currency(products, rate)` schreiben, 
@@ -260,7 +270,10 @@ print("\nThe", p["product"], "costs", p["price"], "USD")
 ```
 
 [HINT::Was benötige ich dafür?]
-TODO_1
+Mit [`map()`](https://docs.python.org/3/library/functions.html#map) lässt sich eine gegebene 
+Funktion auf alle Elemente eines Iterables anwenden.
+Die gegebene (Lambda-)Funktion kann so definiert werden, dass sie unser Produkt mit 
+umgerechneten Preis zurückgibt.
 [ENDHINT]
 
 [ER] Sie haben nun eine weitere Liste `stock = (4, 0, 1, 7)`, die angibt, wie viele Produkte 
@@ -275,13 +288,20 @@ print("product not in stock:", ...)
 ```
 
 [HINT::Was benötige ich dafür?]
-TODO_1 ?
-Normalerweise verwendet man `dict[key] = value` um Elemente in ein Dictionary hinzuzufügen. 
-Lambda Funktionen unterstützen allerdings keine Zuweisungen, daher können Sie
+Hier sind mehrere Schritte notwendig:
 
-- statt einer Lambda-Funktion eine separate Funktion definieren
-- den `**`-Operator verwenden, um ein Dictionary zu "entpacken" (`**dict`) und dann das 
+Zuerst ordnet man jedes Produkt mit seinem neuen Attribut __paarweise zusammen__.
+
+Dann muss auf jedes Produkt __eine Funktion angewandt__ werden, die das neue Schlüssel-Wert-Paar 
+hinzufügt.
+Normalerweise verwendet man `dict[key] = value` um Elemente in ein Dictionary hinzuzufügen. 
+Lambda Funktionen unterstützen allerdings keine Zuweisungen, daher können Sie stattdessen:
+
+- statt einer Lambda-Funktion eine separate Funktion definieren oder
+- den `**`-Operator verwenden, um ein Dictionary zu "entpacken" (`**dict`) und anschließend das 
   Key-Value-Paar hinzufügen.
+
+Anschließend kann das Ergebnis wieder entsprechend __gefiltert__ werden.
 [ENDHINT]
 
 
@@ -325,16 +345,13 @@ bieten, um noch effizienter funktionale Programme zu schreiben:
 
 [ENDSECTION]
 
-[SECTION::submission::information,trace,program]
-
+[SECTION::submission::reflection,information,snippet,trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Antworten prüfen und Codedurchsicht]
-
 Code lesen und manuell grob auf Richtigkeit prüfen.
 Das Kommandoprotokoll zur Unterstützung heranziehen.
 Klare Defekte und Abgaben, die nicht die in der Aufgabe geforderten Werkzeuge verwenden,  
@@ -343,5 +360,4 @@ zurückweisen.
 Beispiellösung siehe [TREEREF::/Sprachen/Python/py-Funktionale-Programmierung.py]
 
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
