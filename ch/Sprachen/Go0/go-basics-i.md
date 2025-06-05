@@ -177,6 +177,7 @@ Die Ausgabe müsste "Hi from remote module!" sein.
 ### Variablen und primitive Datentypen
 
 Es existieren folgende Namenskonventionen:
+
 - standardmäßig sind alle Variablen/Funktionen in `camelCase` definiert;
 - falls eine Variable/Funktion öffentlich sein muss, so wird `PascalCase` benutzt.
 
@@ -192,17 +193,22 @@ Es existieren folgende Namenskonventionen:
 
 [FOLDOUT::Warum gibt es ein `float64`, aber kein `int64`?]
 
-Doch, gibt es. Hier ist die vollständige Liste:
+Doch, gibt es. Hier ist die vollständige Liste der elementaren Typen:
 
 * ganze Zahlen mit Vorzeichen: `int` , `int8` , `int16` , `int32` (`rune`) , `int64`;
 * ganze Zahlen ohne Vorzeichen: `int` , `uint8` (`byte`), `uint16` , `uint32` , `uint64` , `uintptr`;
 * Gleitkommazahlen: `float32` `float64`;
 * Komplexe Zahlen: `complex64` `complex128`.
 
+Der Name `rune` rührt daher, dass ein `int32` jedes 
+[Unicode-Zeichen](https://en.wikipedia.org/wiki/Unicode) 
+darstellen kann.
 [ENDFOLDOUT]
 
 In Go wird manchmal zwischen Deklaration und Definition unterschieden. 
-Deklaration ist nichts anderes als Definition mit Default/Null-Werten: `0` für Zahlen, `""` für Zeichenketten, `false` für boolesche Werte.
+Deklaration ist nichts anderes als Definition ohne Initialisierungswert.
+Die Variable bekommt dann einen Default-Wert: 
+`0` für Zahlen, `""` für Zeichenketten, `false` für boolesche Werte.
 
 ```go
 var myname string               // deklarieren
@@ -582,13 +588,14 @@ stringValue := fmt.Sprintf("%d", 42)
 Nun ist es Zeit, die kennengelernten Konzepte in der Praxis einzusetzen.
 
 Sie bekommen ein Python-Programm, welches eine Liste von Noten erhält und diese validiert.
-Falls die Noten valide sind, wird der Durchschnitt für jede Person berechnet und als "sehr gut/gut/befriedigend/ausreichend" auf der Kommandozeile ausgegeben;
+Falls die Noten valide sind, wird der Durchschnitt für jede Person berechnet und 
+als "sehr gut/gut/befriedigend/ausreichend" auf der Kommandozeile ausgegeben;
 ansonsten wird eine Warnung ausgegeben und das Programm überspringt die ungültigen Daten.
 
 Ihre Aufgabe besteht darin, dieses Python-Programm in Go zu übersetzen 
-(das ist jedoch nicht notwendig; Sie dürfen das Programm auch nach der oben angegebenen Beschreibung implementieren).
+(oder es nach der oben angegebenen Beschreibung freihändig in Go zu implementieren).
 
-Das Go-Programm wird aus 3 Paketen bestehen:
+Das Go-Programm soll aus 3 Paketen bestehen:
 
 - `validator` - dort werden Sie zwei vordefinierte Funktionen implementieren müssen;
 - `converter` - dort werden Sie ebenso zwei vordefinierte Funktionen implementieren müssen;
@@ -617,9 +624,9 @@ Viel Erfolg!
 So initialisieren Sie ein Modul.
 Legen Sie außerdem eine Datei `main.go` an, die mit `package main` anfängt und die Funktion `main()` beinhaltet.
 
-[ER] In `grade_converter`, erstellen Sie zwei weitere Verzeichnisse: `validator` und `converter`. 
-Kreieren Sie in den Verzeichnissen entsprechend zwei Dateien — `validator.go` und `converter.go`.
-Die Dateien müssen jeweils mit `package validator` und `package converter` anfangen.
+[ER] Erstellen Sie zwei weitere Verzeichnisse: `grade_converter/validator` und `grade_converter/converter`. 
+Legen Sie in den Verzeichnissen entsprechend zwei Dateien an: `validator.go` und `converter.go`.
+Die Dateien müssen jeweils mit `package validator` bzw. `package converter` anfangen.
 
 [ER] `validator.go`-Vorlage:
 
@@ -644,6 +651,8 @@ Die Dateien müssen jeweils mit `package validator` und `package converter` anfa
 
 
 ### Testen
+
+Testen Sie Ihr Programm und korrigieren Sie es, bis es korrekt funktioniert.
 
 [EC] Führen Sie Ihr Programm mittels `go run grade_converter.go` aus.
 
@@ -694,11 +703,12 @@ Dies ist zwar keine valide Go-Quellcodedatei an sich, aber so ist die Abgabe vie
 
 Folgende Aspekte sind bei der Korrektur wichtig:
 
-1. Funktionalität — das Programm tut, was es soll;
+1. Funktionalität — das Programm tut, was es soll (siehe Kommandoprotokoll unten);
 2. Struktur — die drei Pakete müssen vorhanden sein und benutzt werden, 
    das erkennt man an Zeilen `import` und `package` in jeweiligen Bereichen der abgegebenen Datei `grade_converter.go`.
 3. Fehlerbehandlung muss nicht alles abdecken, aber sie muss da sein.
    `Validate`-Funktionen sollten eine informative Nachricht in dem Fehler zurückgeben.
+   Deren genaues Format ist nicht vorgeschrieben.
 
 Ansonsten ist dies eine Lernaufgabe. 
 Der Punkt ist, dass Studierende die oben vorgestellten Konzepte im Zusammenhang miteinander benutzen.
