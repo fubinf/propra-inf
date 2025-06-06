@@ -1,5 +1,5 @@
 title: "Funktionale Programmierung in Python"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 assumes: py-Iterators, m_pprint
@@ -224,7 +224,7 @@ print("\nposition of all words with letter 'y':", ...)
 [HINT::Was benötige ich dafür?]
 Um, wie in funktionalen Sprachen üblich, ohne Schleifen auszukommen, aber trotzdem alle Elemente 
 wie mit einer Zählvariable zu nummerieren, ist 
-[`enumerate()](https://docs.python.org/3/library/functions.html#enumerate)` geeignet.
+[`enumerate()`](https://docs.python.org/3/library/functions.html#enumerate) geeignet.
 Außerdem könnte ihnen die Lösung von einer der vorherigen Aufgaben behilflich sein.
 [ENDHINT]
 
@@ -256,7 +256,7 @@ pprint.pp(some_products)
 Mithilfe von [`zip()`](https://docs.python.org/3/library/functions.html#zip) lassen sich zwei 
 oder mehr Iterables paarweise in Tupel verpacken (also `[1,2,3], [a,b,c] --> [(1,a),(2,b),(3,c)]`).
 Anschließend können sie jedes dieser Tupel in ein Dictionary verwandeln.
-Da Sie die Produkte noch mehrmals benötigen, müssen Sie sie als Liste abspeichern.
+Da Sie die Produkte noch mehrmals benötigen, speichern Sie sie in einer Liste.
 [ENDHINT]
 
 [ER] Sie wollen nun eine Funktion `convert_currency(products, rate)` schreiben, 
@@ -272,8 +272,8 @@ print("\nThe", p["product"], "costs", p["price"], "USD")
 [HINT::Was benötige ich dafür?]
 Mit [`map()`](https://docs.python.org/3/library/functions.html#map) lässt sich eine gegebene 
 Funktion auf alle Elemente eines Iterables anwenden.
-Die gegebene (Lambda-)Funktion kann so definiert werden, dass sie unser Produkt mit 
-umgerechneten Preis zurückgibt.
+Die gegebene (Lambda-)Funktion kann so definiert werden, dass sie das Produkt mit umgerechneten 
+Preis zurückgibt.
 [ENDHINT]
 
 [ER] Sie haben nun eine weitere Liste `stock = (4, 0, 1, 7)`, die angibt, wie viele Produkte 
@@ -354,7 +354,7 @@ bieten, um noch effizienter funktionale Programme zu schreiben:
 [INSTRUCTOR::Antworten prüfen und Codedurchsicht]
 Code lesen und manuell grob auf Richtigkeit prüfen.
 Das Kommandoprotokoll zur Unterstützung heranziehen.
-Klare Defekte und Abgaben, die nicht die in der Aufgabe geforderten Werkzeuge verwenden,  
+Klare Defekte und Abgaben, die nicht die in der Aufgabe geforderten Werkzeuge verwenden, 
 zurückweisen.
 
 Beispiellösung siehe [TREEREF::/Sprachen/Python/py-Funktionale-Programmierung.py]
