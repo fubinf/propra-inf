@@ -7,38 +7,44 @@ assumes: go-basics-i
 ---
 
 [SECTION::goal::idea,experience]
-
 Ich habe mich mit den weiteren Konzepten von Go auseinandergesetzt und kann nun:
 
 - Funktionen definieren;
-- komplexere Datenstrukturen kreieren;
+- komplexere Datenstrukturen definieren;
 - Zeiger und Referenztypen effektiv benutzen;
-
 [ENDSECTION]
 
 [SECTION::background::default]
-
 In dieser Aufgabe lernen Sie weitere wichtige Konstrukte in der Programmiersprache Go. 
-Zusammen mit [PARTREF::go-basics-i] ergibt dies eine solide Grundlage, mithilfe deren Sie interessantere/komplexere Programme implementieren können.
-Insbesondere geht es in dieser Aufgabe um das Zusammenspiel von Funktionen und Zeiger, welches zum einen zu der Laufzeiteffizienz der Programmiersprache beiträgt 
-und zum anderen mehr Kontrolle für die Entwickler_innen zur Verfügung stellt.
-
+Zusammen mit [PARTREF::go-basics-i] ergibt dies eine solide Grundlage, 
+mithilfe derer Sie komplexere Programme implementieren können.
+Insbesondere geht es in dieser Aufgabe um das Zusammenspiel von Funktionen und Zeigern, 
+welches zu der hohen Laufzeiteffizienz der Programmiersprache beiträgt. 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+Wie im Teil 1 gilt weiter:
+Dokumentation zur Programmiersprache finden Sie in der
+[Go Spec](https://go.dev/ref/spec)
+für definitive (Referenz-)Information und im
+[Go User Manual](https://go.dev/doc/),
+wenn Sie eher Anleitungscharakter suchen.
+
 
 ### Funktionen
 
-Jede Funktion in Go besteht aus folgenden Teilen:
+Eine Funktionsdefinition in Go besteht aus folgenden Teilen:
 
 * `func` Schlüsselwort;
 * Funktionsname (optional!);
-* Runde Klammern für die Parameter: Parameter werden nacheinander als Paare `name type` aufgelistet;
+* Runde Klammern für die Parameterliste. 
+  Die Parameter werden nacheinander als Paare `name type` aufgelistet;
 * Signatur der Rückgabe:
-    * leer, wenn die Funktion nichts zurückgibt;
+    * leer, wenn die Funktion nichts zurückgibt (Prozedur);
     * `T`, wenn die Funktion einen Wert von Typ `T` zurückgibt;
     * ein Tupel `(T1, T2, ..., Tn)`, falls die Funktion mehrere Werte auf einmal zurückgibt;
-    * oder ein benanntes Tupel `(t1 T1, t2 T2, ..., tn Tn)`, falls die Rückgabewerte direkt in der Funktionssignatur deklariert werden sollen;
+    * oder ein benanntes Tupel `(t1 T1, t2 T2, ..., tn Tn)`, falls die Rückgabewerte direkt 
+      in der Funktionssignatur deklariert werden sollen;
 * Funktionsrumpf in geschweiften Klammern.
 
 Eine Funktion, die Sie bereits kennen, ist die `main`-Funktion:
@@ -67,16 +73,18 @@ func constructFullName(firstName string, lastName string) string {
     return fmt.Sprintf("%v %v", firstName, lastName)
 }
 
-// mehrere Parameter (verkürzt)
+// mehrere Parameter mit gleichem Typ (verkürzt)
 func constructFullName(firstName, lastName string) string {
     return fmt.Sprintf("%v %v", firstName, lastName)
 }
 
-// anonyme/"lambda" Funktion, 
-// die in-place definiert ist und mit zwei Zahlen aufgerufen wird
+// anonyme Funktion ("lambda" Funktion), 
+// die beim Aufruf definiert ist und mit zwei Zahlen aufgerufen wird
 func(x int, y int) {
     return x * y
 }(4, 5)
+
+// benannte Tupel als Resultat kommen unten
 ```
 
 ### `defer`
@@ -98,23 +106,22 @@ first line
 ```
 
 
-#### Benannte Rückgabewerte
+### Benannte Rückgabewerte
 
 Eine weitere Möglichkeit, Werte aus der Funktion zurückzugeben, sind die benannten Rückgabewerte.
 
 Benannte Rückgabewerte sind immer mit den Standard-/Default-Werten initialisiert.
 
 ```go
-// Die Variablen i und err sind bereits mit (0, nil) initialisiert
 func namedReturn() (i int, err error) {
+    // Die Variablen i und err sind mit (0, nil) initialisiert
     i = 42
-    err = nil
-    // Hier werden alle Variablen automatisch zurückgegeben, die in der Funktionssignatur initialisiert wurden
+    // Hier werden i und err automatisch zurückgegeben:
     return
 }
 
 func namedReturn() (i int, err error) {
-    // Das ist auch valide 
+    // Explizite Returnwerte gehen trotz der Deklaration:
     return 42, nil
 }
 
@@ -129,13 +136,14 @@ func normalReturn() (int, error) {
 }
 ```
 
-Es empfiehlt sich, benannte Rückgabewerte erst dann zu benutzen, wenn die Funktion ausreichend groß ist und/oder Dokumentation benötigt.
-Einerseits tragen die Parameternamen in der Rückgabesignatur zur Lesbarkeit bei; andererseits können leere `return`-Anweisungen verwirrend wirken.
+Es empfiehlt sich, benannte Rückgabewerte nur zu benutzen, wenn die Funktion komplex ist. 
+Einerseits tragen die Parameternamen in der Rückgabesignatur zwar zur Lesbarkeit bei; 
+andererseits können leere `return`-Anweisungen verwirren und verletzten das Prinzip der Lokalität.
 
 
-#### Variadische Funktionen
+### Variadische Funktionen
 
-Funktionen in Go können eine dynamische Anzahl von Parametern verarbeiten, was besonders nützlich ist, wenn die genaue Anzahl der Argumente zur Kompilierungszeit nicht bekannt ist. 
+Funktionen in Go können eine variable Anzahl von Parametern verarbeiten. 
 Dafür gibt es eine spezielle Schreibweise, die als variadische Parameter bezeichnet wird:
 
 ```go
@@ -146,7 +154,7 @@ func receiveInts(xs ...int) {
 }
 ```
 
-Das ist äquivalent zur Verwendung eines Slice als Parameter:
+Das ist für den Funktionsrumpf äquivalent zur Verwendung eines Slice als Parameter:
 
 ```go
 func receiveInts(xs []int) {
@@ -159,18 +167,18 @@ func receiveInts(xs []int) {
 Für den Aufrufer gibt es jedoch einen Unterschied:
 
 ```go
-// Variadisch
+// variadisch
 receiveInts(0, 1, 4, 9, 16, 25, 36, 49, 64)
 
-// Slice
+// mit Slice
 receiveInts([]int{0, 1, 4, 9, 16, 25, 36, 49, 64})
-
 ```
 
 
-#### Funktionen höherer Ordnung
+### Funktionen höherer Ordnung
 
-Eine Funktion kann eine andere Funktion als Parameter erhalten, wodurch sie zu einer Funktion höherer Ordnung wird:
+Eine Funktion kann eine andere Funktion als Parameter erhalten, 
+wodurch sie zu einer Funktion höherer Ordnung wird:
 
 ```go
 func apply(
@@ -181,8 +189,10 @@ func apply(
 }
 ```
 
-Diese Funktion nimmt zwei Parameter an: eine Zahl und eine Funktion, die ebenfalls eine Zahl übergeben bekommt und zurückgibt. 
-`operation` ist der Name der Funktion, und `func(int) int` ist ihre Signatur ("sie nimmt eine Zahl an und gibt eine Zahl zurück").
+Diese Funktion nimmt zwei Parameter an: 
+ein `int` und eine Funktion, die ein `int` übergeben bekommt und ein `int` zurückgibt. 
+`operation` ist der Name der Funktion, und 
+`func(int) int` ist ihre Signatur.
 
 Der Aufruf könnte so aussehen:
 
@@ -217,8 +227,6 @@ func main() {
 Funktionen höherer Ordnung sind nützlich für die Erstellung flexibler und wiederverwendbarer Codebausteine.
 
 
-#### Ausprobieren
-
 [ER] Implementieren Sie eine Funktion `divide(a, b float64) (result float64, err error)`:
 diese muss die erste Zahl durch die zweite dividieren.
 Bei Erfolg gibt sie ein Tupel `(result, nil)` zurück; ansonsten `(0.0, fmt.Errorf("division by zero"))`.
@@ -227,7 +235,8 @@ Benutzen Sie hier benannte Rückgabewerte.
 [ER] Implementieren Sie `reduce(initialValue int, operation func(int, int) int, xs ...int) int` — eine Funktion, die 
 eine Funktion (`operation`) und eine beliebige Anzahl von Ganzzahlen als Parameter bekommt.
 Sie wendet sukzessive `operation` auf die Ganzzahlen an:
-Der erste Parameter von `operation` ist eine Akku-Variable (anfangs `start`, am Ende das Resultat), 
+Der erste Parameter von `operation` ist eine Akku-Variable 
+(anfangs `initialValue`, danach immer das vorherige Resultat), 
 der zweite der Reihe nach jedes Element der Liste `xs`.
 Mit `reduce(0, func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise 
 die Summe der Ganzzahlen berechnet werden.
@@ -273,7 +282,8 @@ Alle Felder dieser Struktur sind großgeschrieben und deswegen öffentlich (publ
 
 Auch ohne Klassen gibt es **Methoden** in Go. 
 
-Methoden sind Funktionen, die einem Typ zugeordnet sind und einen zusätzlichen Parameter besitzen: den Empfänger (receiver). 
+Methoden sind Funktionen, die einem Typ zugeordnet sind und einen bestimmten ersten Parameter besitzen: 
+den Empfänger (receiver). 
 Sie ermöglichen es, Verhalten zu Strukturen hinzuzufügen.
 
 ```go
@@ -284,12 +294,8 @@ func (p Person) Print() {
 
 Hier ist `(p Person)` der Empfänger: `p` ist der Name, über welchen die Methode auf die Struktur selbst zugreifen kann.
 
-[NOTICE]
-
 Der Empfängertyp muss im gleichen Paket deklariert werden. 
 Daher können Methoden nicht auf eingebauten Typen wie int oder string definiert werden.
-
-[ENDNOTICE]
 
 
 ### Struktureinbettung (struct embedding)
@@ -336,8 +342,6 @@ mark.Print()
 ```
 
 
-#### Ausprobieren
-
 [ER] Definieren Sie eine neue Struktur: `Employee`. 
 Diese soll alle Felder und Methoden einer `Person` übernehmen und ein neues Feld definieren: `Position`.
 
@@ -367,10 +371,13 @@ func testStructs() {
 
 Zeiger sind ein grundlegendes Konzept in der Programmierung, das es ermöglicht, per Speicheradresse
 auf Daten zuzugreifen. 
-Sie sind nützlich, um effizient mit großen Datenstrukturen zu arbeiten oder Werte durch Referenz anstatt durch Kopie zu übergeben.
+Sie sind nützlich, um effizient mit großen Datenstrukturen zu arbeiten oder 
+Werte durch Referenz anstatt durch Kopie zu übergeben.
 
 Zeiger in Go ähneln denjenigen in C oder C++ mit einem wichtigen Unterschied — sie sind sicherer zu benutzen.
-Sie unterstützen keine [Zeigerarithmetik](https://www.tutorialspoint.com/cprogramming/c_pointer_arithmetic.htm) und gehören zu einem konkreten Typ 
+Sie unterstützen keine 
+[Zeigerarithmetik](https://www.tutorialspoint.com/cprogramming/c_pointer_arithmetic.htm) 
+und gehören immer zu einem konkreten Typ 
 (`*T`, falls der Zeiger eine Variable von Typ `T` referenziert).
 
 Ein Zeiger wird mithilfe des `&`-Operators erstellt. 
@@ -391,7 +398,7 @@ fmt.Println(content)        // 42
 ```
 
 In diesem Beispiel zeigt `box` auf die Adresse von `content`. 
-Durch Dereferenzierung kann der Wert an dieser Adresse geändert werden.
+Durch Dereferenzierung kann der Wert an dieser Adresse gelesen oder geändert werden.
 
 
 ### "Pass-by-value" und "Pass-by-reference"
@@ -420,19 +427,12 @@ func printAge(p *Person) {
 }
 ```
 
-[NOTICE]
+Eigentlich müsste der zweite Aufruf `p` dereferenzieren: `fmt.Println((*p).Age)`, aber
+Go führt diese Umwandlung automatisch durch und vereinfacht damit den Zugriff auf Felder von Zeigern.
 
-Eigentlich müsste der zweite Aufruf `p` dereferenzieren: `fmt.Println((*p).Age)`.
-
-Das ist jedoch nicht nötig, da Go eine solche Umwandlung automatisch durchführt und den Zugriff auf Felder von Zeigern vereinfacht.
-
-[ENDNOTICE]
-
-
-#### Ausprobieren
-
-[ER] Implementieren Sie eine Methode auf `Employee` — `Promote(newPosition string)`. 
-Diese soll die ursprüngliche Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
+[ER] Implementieren Sie eine Methode `Promote` auf `Employee`, die ein Argument `newPosition string`
+erwartet.
+Sie soll die Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
 
 [ER] Kopieren Sie die folgende Testfunktion in Ihre Datei um und rufen Sie sie ebenfalls aus der `main`-Funktion auf:
 
@@ -456,28 +456,29 @@ func testMutation() {
 
 ### Referenz- und Werttypen
 
-Mit _Referenztypen_ werden in der Regel die Typen gemeint, welche sich wie ein Zeiger (Pointer) verhalten.
+Mit _Referenztypen_ sind in der Regel die Typen gemeint, die sich wie ein Zeiger (Pointer) verhalten.
 Das bedeutet unter anderem:
 
-- deren Standardwert ist `nil`
+- der Standardwert ist `nil`
 - sie enthalten intern Zeiger auf Daten
-- "pass-by-reference"-Verhalten
+- sie bewirken "pass-by-reference"-Verhalten
 
 _Werttypen_ sind anders: Sie stellen wirklich die Werte dar, sie sind **die Daten selbst**.
 Primitive Datentypen (Zahlen, boolesche Werte und Zeichenketten) sind Werttypen.
 
 Alle Werttypen teilen sich folgende Eigenschaften:
 
-- deren Standardwert ist nicht `nil`
-- "pass-by-value"-Verhalten — beim Zuweisen oder Übergeben als Parameter wird eine Kopie erstellt
-- Vergleichbarkeit — zwei Variablen von einem Werttyp dürfen mittels `==` sinnvoll verglichen werden
+- der Standardwert ist nicht `nil`
+- sie bewirken "pass-by-value"-Verhalten: beim Zuweisen oder Übergeben als Parameter wird eine Kopie erstellt
+- Vergleichbarkeit: zwei Variablen von einem Werttyp dürfen mittels `==` sinnvoll verglichen werden
 
 Nun betrachten wir Arrays, Slices und Maps detaillierter aus der Perspektive von Wert- und Referenztypen.
 
 
 ### Array
 
-Ein Array ist ein Werttyp, der eine Sammlung von Einträgen darstellt, wo alle Einträge zum gleichen Typ gehören und die Größe fest ist.
+Ein Array ist ein Werttyp, der eine Sammlung von Einträgen darstellt, 
+wo alle Einträge zum gleichen Typ gehören und die Größe (Anzahl von Einträgen) fest ist.
 
 ```go
 var arr [5]int                      // arr == [0 0 0 0 0]
@@ -492,9 +493,11 @@ Reine Arrays werden in Go relativ selten verwendet, daher konzentrieren wir uns 
 ### Slice
 
 Slices bauen immer auf Arrays auf. 
-Ein [TERMREF::Slice (Golang)] ist eine "View" bzw. eine Sicht in das zugrundeliegende Array, und ist somit ein Referenztyp.
+Ein [TERMREF::Slice (Golang)] ist eine "View" bzw. eine Sicht in das zugrundeliegende Array
+und ist ein Referenztyp.
 
-Das ist die Laufzeitdarstellung eines Slice (`go/src/runtime/slice.go`):
+Die Laufzeitdarstellung eines Slice (definiert in `go/src/runtime/slice.go`) 
+sieht intern wie folgt aus:
 
 ```go
 type slice struct {
@@ -504,15 +507,20 @@ type slice struct {
 }
 ```
 
-* `array` — das zugrundeliegende Array beziehungsweise ein Verweis auf die Speicherstelle, wo sich das Array befindet;
-* `len` — die Anzahl von Elementen in dem Slice. 
+* `array`: das zugrundeliegende Array beziehungsweise ein Verweis auf die Speicherstelle, wo sich das Array befindet;
+* `len`: die Anzahl von Elementen in dem Slice. 
   Diese Zahl ist immer zwischen 0 und der Größe des zugrundeliegenden Arrays und kann 
-  mittels der eingebauten Funktion [`len()`](https://pkg.go.dev/builtin#len) ermittelt werden;
-* `cap` — die Anzahl von Elementen, die der Slice maximal beinhalten kann (Capacity/Kapazität). 
-  Diese Zahl wird von der eingebauten Funktion [`cap()`](https://pkg.go.dev/builtin#cap) zurückgegeben und stellt die Anzahl von Zellen 
+  mittels der eingebauten Funktion 
+  [`len()`](https://pkg.go.dev/builtin#len)
+  ermittelt werden;
+* `cap`: die Anzahl von Elementen, die der Slice maximal beinhalten kann ("Capacity", Kapazität). 
+  Diese Zahl wird von der eingebauten Funktion 
+  [`cap()`](https://pkg.go.dev/builtin#cap)
+  zurückgegeben und stellt die Anzahl von Zellen 
   bis zum Ende des zugrundeliegenden Arrays dar.
 
-Ein oder mehrere Elemente in einen Slice einfügen: [append.](https://pkg.go.dev/builtin#append)
+Ein oder mehrere Elemente in einen Slice einfügen: 
+[append](https://pkg.go.dev/builtin#append).
 
 Slices können entweder eigenständig erstellt werden oder als eine Sicht in ein existierendes Array:
 
@@ -546,15 +554,12 @@ sl := arr[:3]                   // kreiert einen Slice vom Anfang des Arrays bis
 sl = append(sl, 8)              // überschreibt die "3" im ursprünglichen Array arr!
 ```
 
-[NOTICE]
-
-Wie bereits erwähnt, können Slices mithilfe von der Funktion `make([]T, initialSize)` kreiert werden. 
+Wie bereits erwähnt, können Slices mithilfe der Funktion `make([]T, initialSize)` kreiert werden. 
 Das zugrundeliegende Array wird dann automatisch erstellt und hat exakt die Größe von `initialSize`.
 
 Ein solcher Slice verhält sich im Wesentlichen wie ein dynamisches Array: 
-Sobald es versucht wird, zu einem vollen Slice der Größe _n_ ein anderes Element hinzuzufügen, wird ein neues Array der Größe _2n_ allokiert.
-
-[ENDNOTICE]
+Sobald versucht wird, zum vollen Slice der Größe `initialSize` ein anderes Element hinzuzufügen, 
+wird ein neues Array doppelten Größe allokiert.
 
 
 ### Map
@@ -598,54 +603,52 @@ if value, isThere := studentAges["Max"]; isThere {
 Falls es keinen solchen Schlüssel gibt, führt `delete()` keine Aktion aus.
 
 [WARNING]
-
-Variablen von allen Referenztypen werden mit `nil` initialisiert:
+Variablen aller Referenztypen werden mit `nil` initialisiert:
 
 ```go
 var s []int                     // s == nil
 var m map[string]int            // m == nil
 ```
 
+Das führt leicht zu Schwierigkeiten.
 Es ist robuster, Slices und Maps direkt während der Deklaration mit `make()` zu initialisieren:
 
 ```go
 s := make([]int, 0)
 m := make(map[string]int)
 ```
-
 [ENDWARNING]
 
 
-### Programmieren
+### Selber programmieren
 
 Implementieren Sie die folgenden Funktionen:
 
-[ER] `func AddElement(slice []int, element, at int)` — ein Element an einem Index `at` in einen Slice einfügen;
-das Element, das vorher an dieser Stelle stand und alle nachfolgenden rücken eine Position nach rechts.
+[ER] `func AddElement(slice []int, element, at int)`: 
+ein Element an einem Index `at` in einen Slice einfügen;
+das Element, das vorher an dieser Stelle stand, und alle nachfolgenden rücken eine Position nach rechts.
 
-[ER] `func RemoveElement(slice []int, at int)` — ein Element an einem Index `at` entfernen und die Größe des Slice entsprechen anpassen.
+[ER] `func RemoveElement(slice []int, at int)`: 
+ein Element an einem Index `at` entfernen und die Größe des Slice entsprechend anpassen.
 
-[ER] `func AddElementIfNotThere(m map[string]int, key string, value int)` — ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
-
+[ER] `func AddElementIfNotThere(m map[string]int, key string, value int)`:
+ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
 [ENDSECTION]
 
 [SECTION::submission::trace,program]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Hinweise]
-
-Korrektur von `testFunctions()`, `testStructs()` und `testMutation()` — die Funktionen müssen unverändert in dem abgegebenen Quellcode präsent sein.
+Korrektur von `testFunctions()`, `testStructs()` und `testMutation()`:
+die Funktionen sollten unverändert in dem abgegebenen Quellcode präsent sein, 
+damit das Kommandoprotokoll nicht verfälscht wird.
 
 Korrektur von `AddElement`, `RemoveElement`: 
-Der Punkt ist, dass Studierende Slices erstellen und modifizieren können.
+Der Zweck ist, dass Studierende Slices erstellen und modifizieren können.
 
 Korrektur von `AddElementIfNotThere`: `delete()` muss benutzt werden.
 
 [PROT::ALT:go-basics-ii.prot]
-
 [ENDINSTRUCTOR]
