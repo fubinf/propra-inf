@@ -16,5 +16,11 @@ IT-Landschaft besonders beliebt:
 * DevOps-Werkzeuge (Docker, Kubernetes, Terraform)
 * Netzwerkprogrammierung (eigene Netzwerkprotokolle, direkte Benutzung von TCP/UDP, VPNs und Proxies)
 
-Diese Aufgabengruppe soll Ihnen dabei helfen, Go kennenzulernen und selbst zu entscheiden, ob diese Programmiersprache 
-das richtige Werkzeug für Ihre zukünftigen Projekte ist.
+Diese Aufgabengruppe soll Ihnen dabei helfen, Go kennenzulernen und selbst zu entscheiden, 
+in welchen Fällen diese Programmiersprache ein gutes Werkzeug für Ihre zukünftigen Projekte ist.
+
+Go-Dokumentation:
+
+- Tutorial und diverse Anleitungen: [Go User Manual](https://go.dev/doc/)
+- Standardbibliothek: [Go Stdlib](https://pkg.go.dev/std)
+- Sprachdefinition: [Go Spec](https://go.dev/ref/spec)
