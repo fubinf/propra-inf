@@ -50,8 +50,16 @@ Go bietet zwei Möglichkeiten an:
     Wenn `quellcode.go` mit `package main` beginnt, darf die Binärdatei ausgeführt werden.
    Dies geschieht mithilfe von `./binary`.
 
+Dokumentation zu diesen Kommandos bekommen Sie mit `go help`.
+
 
 ### Package/import
+
+Dokumentation zur Programmiersprache finden Sie in der
+[Go Spec](https://go.dev/ref/spec)
+für definitive (Referenz-)Information und im
+[Go User Manual](https://go.dev/doc/),
+wenn Sie eher Anleitungscharakter suchen.
 
 Alle Quellcodedateien müssen einem **Paket** zugeordnet sein.
 Dieses wird am Anfang der Datei in der Zeile `package {xyz}` angegeben, wobei `{xyz}` der Name Ihres Pakets ist.
