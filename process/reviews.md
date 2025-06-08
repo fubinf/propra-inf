@@ -10,8 +10,6 @@ Do not add new entries here.
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
-- ch/Sprachen/Go0/go-basics-i.md (IB->LP->IB->LP)
-- ch/Sprachen/Go0/go-basics-ii.md (IB->LP->IB->LP)
 - ch/Sprachen/C/c-setup.md (KH)
 - ch/Sprachen/C/c-compiler-assembler-linker.md (KH -> LP)
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB->LP)
