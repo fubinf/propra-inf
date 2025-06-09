@@ -1,5 +1,5 @@
 title: SQL Datenpflege und Sichten
-stage: draft
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: sql-basics, sql-select
@@ -19,13 +19,9 @@ Views erfüllen einen ähnlichen Zweck wie Funktionen in Programmiersprachen:
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-### Infrastrukturhinweis
-
-<!-- TODO_3 Python 3.12: allow using sqlite3 command line client instead of SQLite Online -->
-
-Sie können in diesen Aufgaben [SQLite Online](https://sqliteonline.com/) verwenden.
 
 ### UPDATE
+
 Datenbanken enthalten oft Informationen, die sich im Laufe der Zeit ändern – z. B. den Status eines Nutzers oder eine Korrektur bei Tippfehlern. Damit solche Änderungen effizient vorgenommen werden können, bietet SQL den Befehl `UPDATE`.
 ```sql
 UPDATE <table_name>
@@ -34,7 +30,9 @@ WHERE <condition_column> = <condition_value>;
 ```
 
 ### VIEW
-Views (`CREATE VIEW`) erlauben es, komplexe oder häufig genutzte Abfragen einmalig zu definieren und anschließend wie Tabellen zu verwenden. Views können auch Daten aus mehreren Tabellen zusammenfassen.
+
+Views (`CREATE VIEW`) erlauben es, komplexe oder häufig genutzte Abfragen einmalig zu definieren und anschließend wie Tabellen zu verwenden. 
+Views können auch Daten aus mehreren Tabellen zusammenfassen.
 ```sql
 CREATE VIEW <view_name> AS
 SELECT <columns>
@@ -43,16 +41,22 @@ WHERE <condition>;
 ```
 
 [NOTICE]
-Um sich mit den Befehlen `UPDATE` und `CREATE VIEW` vertraut zu machen, können Sie die offizielle SQLite-Dokumentation lesen. Dort finden Sie Beispiele und eine vollständige Beschreibung der jeweiligen Optionen.
+Um sich mit den Befehlen `UPDATE` und `CREATE VIEW` vertraut zu machen, können Sie die offizielle SQLite-Dokumentation lesen. 
+Dort finden Sie Beispiele und eine vollständige Beschreibung der jeweiligen Optionen:
 
 - [UPDATE](https://sqlite.org/lang_update.html)
 - [CREATE VIEW](https://sqlite.org/lang_createview.html)
 [ENDNOTICE]
 
-<!-- end Beispiele -->
 
 ### Vorbereitung
-Die folgenden SQL-Befehle erzeugen eine einfache Ausgangsdatenbank, auf der Sie die Aufgaben bearbeiten können:
+
+Die folgenden SQL-Befehle erzeugen eine einfache Ausgangsdatenbank, auf der Sie die Aufgaben bearbeiten können.
+Führen Sie sie (und auch die nachfolgenden Aufgaben) z.B. im Browser mit 
+[SQLite Online](https://sqliteonline.com/) 
+aus.
+<!-- TODO_3 Python 3.12: also mention using sqlite3 command line client instead of SQLite Online -->
+
 
 ```sql
 DROP TABLE IF EXISTS users;
@@ -88,13 +92,14 @@ INSERT INTO orders (user_id, amount, order_date) VALUES
 ```
 
 ### UPDATE
+
 [ER] Ändern Sie bei Benutzer `carol` den Status `is_active` auf `1`.
 
 [ER] Ändern Sie die E-Mail-Adresse von `bob` zu `bob@newmail.com`.
 
 [ER] Erhöhen Sie alle `amount`-Werte in `orders` um 10%.
 
-[HINT::UPDATE Beispiel]
+[HINT::Ich bekomme überhaupt keinen UPDATE-Befehl hin]
 ```sql
 -- Setze is_active auf FALSE für alle Nutzer, die seit über 6 Monaten nicht eingeloggt waren
 UPDATE users
@@ -106,9 +111,10 @@ WHERE last_login < DATE('now', '-6 months');
 ### VIEW
 [ER] Erstellen Sie eine View `active_users`, die alle aktiven Nutzer (`is_active = 1`) enthält.
 
-[ER] Erstellen Sie eine View `recent_users_fixed`, die alle Nutzer mit `last_login` nach dem Stichtag `'2024-04-01'` enthält.
+[ER] Erstellen Sie eine View `recent_users_fixed`, 
+die alle Nutzer mit `last_login` nach dem Stichtag `'2024-04-01'` enthält.
 
-[HINT::CREATE VIEW Beispiel]
+[HINT::Ich bekomme überhaupt keinen CREATE-VIEW-Befehl hin]
 ```sql
 -- Erstelle eine Sicht für alle inaktiven Nutzer
 CREATE VIEW inactive_users AS
@@ -118,7 +124,8 @@ WHERE is_active = 0;
 ```
 [ENDHINT]
 
-[ER] Erstellen Sie eine View total_order_amount, die die Gesamtsumme aller amount-Werte aus der Tabelle orders enthält.
+[ER] Erstellen Sie eine View `total_order_amount`, 
+die die Gesamtsumme aller `amount`-Werte aus der Tabelle `orders` enthält.
 
 [HINT::SUM Beispiel]
 ```sql
@@ -132,19 +139,17 @@ Sehen Sie auch [PARTREF::sql-select]
 
 [ER] Löschen Sie alle drei Views wieder.
 
-[HINT::DROP Syntax]
+[HINT::Wie geht das Löschen?]
 ```sql
 DROP VIEW <table_name>;
 ```
-Sehen Sie auch [PARTREF::sql-basics]
+Siehe auch [PARTREF::sql-basics].
 [ENDHINT]
 
 [ENDSECTION]
 
 [SECTION::submission::program]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 
@@ -164,7 +169,6 @@ UPDATE users
 SET email = 'bob@newmail.com'
 WHERE username = 'bob';
 SELECT * FROM users WHERE username = 'bob';
-
 
 -- 3. Erhöhen Sie alle `amount`-Werte in `orders` um 10%
 UPDATE orders
@@ -199,6 +203,5 @@ DROP VIEW IF EXISTS active_users;
 DROP VIEW IF EXISTS recent_users;
 DROP VIEW IF EXISTS user_order_summary;
 ```
-
 
 [ENDINSTRUCTOR]
