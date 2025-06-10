@@ -12,5 +12,8 @@
 - **2025-05-30**: Neue Aufgaben Werkzeuge/Netzwerk/[PARTREF::dnstools], [PARTREF::dig] 
   und [PARTREF::ssh-Tunnel] freigegeben.
   Neue Aufgabe Sprachen/Pythonpraxis/[PARTREF::mlh-pythonfraction] freigegeben. 
-- **2025-06-07**: Neue Aufgabe Sprachen/Python/[PARTREF::py-Funktionale-Programmierung] freigegeben. 
+- **2025-06-07**: Neue Aufgabe Sprachen/Python/[PARTREF::py-Funktionale-Programmierung] freigegeben.
+- **2025-06-10**: Aufgabe Werkzeuge/Netzwerk/[PARTREF::ssh] um Schritt [EREFC::7] erweitert.
+  Schon erarbeitete Lösungen bleiben natürlich trotzdem gültig.  
+  Neue Aufgabe Werkzeuge/Netzwerk/[PARTREF::git-SSH] freigegeben.
 - ...
