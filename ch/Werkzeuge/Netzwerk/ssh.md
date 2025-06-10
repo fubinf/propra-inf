@@ -17,19 +17,20 @@ mit dem man sich unbedingt gut auskennen muss.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-
 <replacement id='ssh-targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
 </replacement>
 
+
 ### Secure Shell installieren
 
-- [EC] Aktualisieren Sie Ihr System
-- [EC] Installieren Sie das Paket `openssh-client`
+[EC] Aktualisieren Sie Ihr System
+
+[EC] Installieren Sie das Paket `openssh-client`
 
 [NOTICE]
 Stellen Sie sicher, dass Sie sich im Netz der Hochschule befinden, nötigenfalls über VPN. 
-Unter Umständen kann die Verbindung zum Zielserver nicht hergestellt werden.
+Unter Umständen kann die Verbindung zum Zielserver sonst nicht hergestellt werden.
 [ENDNOTICE]
 
 [NOTICE]
@@ -48,7 +49,7 @@ SSH gesendeten Daten zu ver- und entschlüsseln.
 Lesen Sie ab dem Abschnitt **How Does SSH Work** bis einschließlich dem Abschnitt **Symmetric Encryption** von 
 [HREF::https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work].
 
-- [EC] Verbinden Sie sich per `ssh` mit dem Zielserver.
+[EC] Verbinden Sie sich per `ssh` mit dem Zielserver.
 
 Wenn Sie sich das erste Mal mit dem Zielserver verbinden, dann werden Sie nach der Authentizität 
 des entfernten Rechners gefragt. Hier wurden sogenannte `host_keys` zwischen beiden Instanzen ausgetauscht.
@@ -60,10 +61,11 @@ Lesen Sie den Abschnitt **Session Encryption Negotiation** von
 Lesen Sie den Abschnitt **SSH Host Fingerprint** bis einschließlich **Warnung bei geänderten Fingerprints**
 von [HREF::https://wiki.ubuntuusers.de/SSH/].
 
-- [EQ] Was wären mögliche Gründe, wenn Ihnen das System meldet, dass sich der `host_key` des 
-   entfernten Rechners geändert hat? Nennen Sie zwei Beispiele.
+[EQ] Was wären mögliche Gründe, wenn Ihnen das System meldet, dass sich der `host_key` des 
+entfernten Rechners geändert hat? Nennen Sie zwei Beispiele.
 
-- [EC] Schließen Sie ihre SSH-Sitzung.
+[EC] Schließen Sie ihre SSH-Sitzung.
+
 
 ### Per [TERMREF::Schlüsselpaar] auf einem entfernten Rechner anmelden
 
@@ -88,9 +90,9 @@ Sicherheitsniveau. Ein weiterer wichtiger Verschlüsselungstyp ist RSA mit einer
 seiner breiten Unterstützung und langjährigen Verwendung in vielen Systemen und Protokollen weit 
 verbreitet.
 
-- [EC] Erstellen Sie ein Schlüsselpaar mit dem Verschlüsselungstyp `ed25519`, auf Ihrem lokalen Rechner. 
-  Setzen Sie ein Passwort für das Schlüsselpaar, das Sie sonst nirgends benutzen, denn Sie werden
-  mit diesem Schlüsselpaar nach einiger Zeit enorm vieles abgesichert haben.
+[EC] Erstellen Sie ein Schlüsselpaar mit dem Verschlüsselungstyp `ed25519`, auf Ihrem lokalen Rechner. 
+Setzen Sie ein Passwort für das Schlüsselpaar, das Sie sonst nirgends benutzen, denn Sie werden
+mit diesem Schlüsselpaar nach einiger Zeit enorm vieles abgesichert haben.
 
 Es sollten nun zwei neue Dateien unter `~/.ssh/` vorhanden sein. `ed25519` ist Ihr privater Schlüssel 
 und sollte von Ihnen gut aufbewahrt werden. `ed25519.pub` ist Ihr öffentlicher Schlüssel. Diesen 
@@ -100,12 +102,19 @@ Lesen Sie die ssh-copy-id(1)
 [manpage](https://manpages.debian.org/testing/openssh-client/ssh-copy-id.1.en.html).  
 Verstehen Sie insbesondere das **example** am Ende. 
 
-- [EC] Kopieren Sie Ihren öffentlichen Schlüssel auf den Zielserver.
+[EC] Kopieren Sie Ihren öffentlichen Schlüssel auf den Zielserver.
+
+[EC] Geben Sie ihn zusätzlich mit `cat` auf das Terminal aus.
+Von hier aus könnten Sie ihn nun mit Copy/Paste mit der Maus für andere Zwecke in z.B.
+Textfenster auf Webseiten kopieren, was beispielsweise zum Konfigurieren eines git-Servers nötig ist
+(und was wir in Aufgabe [PARTREF::git-SSH] benutzen werden).
 
 Ihr öffentlicher Schlüssel sollte jetzt auf dem Zielserver unter `~/.ssh/authorized_keys` gespeichert sein. 
 
-- [EC] Melden Sie sich auf dem Zielserver an. 
-- [EQ] Beschreiben Sie kurz was sich geändert hat.
+[EC] Melden Sie sich auf dem Zielserver an. 
+
+[EQ] Beschreiben Sie kurz, was sich geändert hat.
+
 
 ### Nutzen eines [TERMREF::SSH-Agenten]
 
@@ -116,47 +125,43 @@ gewählt. Jetzt müssen Sie jedes Mal Ihr langes kompliziertes Passwort neu eing
 auf einem der virtuellen Maschinen anmelden wollen. Um das zu umgehen und trotzdem die Sicherheit 
 der Schlüssel beizubehalten, gibt es den SSH-Agenten.
 
-Lesen Sie die Paragraphen am Anfang und am Ende der **Description** der ssh-agent(1) 
-[manpage](https://man.openbsd.org/ssh-agent.1).
+Lesen Sie die Absätze am Anfang und am Ende der **Description** der 
+[Manpage von ssh-agent(1)](https://man.openbsd.org/ssh-agent.1).
 
-Lesen Sie die 3 Paragraphen am Anfang der **Description** der ssh-add(1) 
-[manpage](https://man.openbsd.org/ssh-add.1).
+Lesen Sie die 3 Absätze am Anfang der **Description** der
+[Manpage von ssh-add(1)](https://man.openbsd.org/ssh-add.1).
 
-- [EC] Starten Sie den SSH-Agenten.
-- [EC] Fügen Sie Ihren Schlüssel dem Agenten hinzu.  
-- [EC] Verbinden Sie sich mit dem Zielserver.
-- [EQ] Was hat sich geändert?  
+[EC] Starten Sie den SSH-Agenten.
+
+[EC] Fügen Sie Ihren Schlüssel dem Agenten hinzu.  
+
+[EC] Verbinden Sie sich mit dem Zielserver.
+
+[EQ] Was hat sich geändert?  
+
 
 ### Automatisieren
 
-Es ist umständlich den SSH-Agenten jedes mal neu zu starten, nachdem man sich angemeldet hat. 
+Es ist umständlich den SSH-Agenten jedesmal neu zu starten, nachdem man sich angemeldet hat. 
 Deswegen erstellen wir uns einen Alias, der das für uns erledigt.
 
-Lesen Sie die **Syntax** und die **Dauerhafte Verwendung** des 
-[Beitrags](https://wiki.ubuntuusers.de/alias/) von ubuntuusers über `alias`.
+Lesen Sie die **Syntax** und die **Dauerhafte Verwendung** im
+[Beitrag über `alias`](https://wiki.ubuntuusers.de/alias/) auf ubuntuusers.
 
-- [EC] Erstellen Sie einen Alias `ssha`, welches den Agenten startet und Ihre Schlüssel in den Agenten 
-  kopiert. Zeigen Sie ihn im Kommandoprotokoll vor, z.B. mit `grep`
+[EC] Erstellen Sie einen Alias `ssha`, welches den Agenten startet und Ihre Schlüssel in den Agenten 
+kopiert. Zeigen Sie ihn im Kommandoprotokoll vor, z.B. mit `grep`.
 
 Jetzt haben Sie eine schnelle Möglichkeit den SSH-Agenten zu starten.  
-
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
-[INSTRUCTOR::Kommandoprotokoll]
-
+[INSTRUCTOR::Kommandoprotokoll und Markdowndokument]
 [PROT::ALT:ssh.prot] 
 
-[ENDINSTRUCTOR]
-
-[INSTRUCTOR::Markdowndokument]
-
+### Markdown-Antworten
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
