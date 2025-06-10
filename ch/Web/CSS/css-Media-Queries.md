@@ -1,5 +1,5 @@
 title: "CSS: Selektoren, Klassen und Pseudoklassen"
-stage: beta
+stage: alpha
 timevalue: 1.0
 difficulty: 2
 assumes: css-Einführung
