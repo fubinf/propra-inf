@@ -1,69 +1,79 @@
-title: Git nutzen mit SSH
-stage: alpha
-timevalue: 0.1
-difficulty: 1
+title: Git per SSH nutzen 
+stage: beta
+timevalue: 0.5
+difficulty: 2
 requires: ssh
 ---
 
 [SECTION::goal::product]
-
 Ich lerne, wie ich mich mithilfe von SSH mit dem Git-Server authentifiziere und die Remote-URL 
 meines Git-Repositories so ändere, dass beim Pushen und Pullen Git anstelle von HTTPS verwendet 
 wird.
-
 [ENDSECTION]
 
 [SECTION::background::default]
-
-Im Laufe des ProPra sollte man bereits einige Male seine Abgaben mit Git gepusht haben und dabei 
-festgestellt haben, dass es ziemlich nervig ist, jedes Mal sein Passwort neu eingeben zu müssen.
-Glücklicherweise gibt es mit SSH eine Möglichkeit, sich sicher und dauerhaft mit dem Git-Server 
-zu authentifizieren. Wie das funktioniert, lernen wir hier.
-
+Im Laufe des ProPra sollten Sie bereits einige Male Ihre Abgaben mit Git gepusht haben.
+Vermutlich fanden Sie es ziemlich nervig, jedes Mal das Passwort neu eingeben zu müssen?
+Aber niemand, der sich auskennt, macht das so:
+Glücklicherweise gibt es mit SSH eine Möglichkeit, sich auch ohne wiederholte Passworteingabe
+sicher beim Git-Server zu authentifizieren. Wie das funktioniert, lernen wir hier.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+Git kann denselben ssh-Schlüssel benutzen, den Sie bei [PARTREF::ssh] angelegt haben.
 
-Wie wir unseren SSH-Schlüssel generieren und finden, haben wir bereits in [PARTREF::ssh] gelernt.
-Daher überspringen wir diesen Schritt und gehen direkt ins Detail.
+Wir haben zwei Schritte zu tun:
 
-Zunächst müssen wir unseren Schlüssel dem Git-Server hinzufügen. Das Verfahren ist zwar bei den 
-meisten Anbietern ähnlich, unterscheidet sich jedoch in Details.
+1. Den eigenen Public-Key auf dem Git-Server hinterlegen.
+2. Lokal in unserem git-Repo den `git remote`-URL vom aktuellen `https`-URL
+   auf den passenden `ssh`-URL umstellen.
+   Der Remote-URL beschreibt, mit welchem Git-Server git bei Kommandos wie
+   `push` und `pull` Kontakt aufnimmt.
 
-In unserem ProPra arbeiten wir mit GitLab. Die Schritte, wie man den SSH-Key zum GitLab-Account 
-hinzufügt, finden Sie [in der GitLab Dokumentation](https://docs.gitlab.com/ee/user/ssh.html#
-add-an-ssh-key-to-your-gitlab-account).
+Das Verfahren ist vor allem für Schritt 1 bei jedem Typ Git-Server leicht verschieden. 
+Lesen Sie nach, wie es jeweils geht:
 
-Für andere Anbieter wie GitHub lohnt sich bei Bedarf ebenfalls ein Blick in die jeweilige 
-Dokumentation.
+- [bei GitLab](https://docs.gitlab.com/ee/user/ssh.html#add-an-ssh-key-to-your-gitlab-account)
+- [bei GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
-- [EC] Fügen Sie Ihren öffentlichen SSH-Key zu Ihrem FU-GitLab-Account hinzu und testen Sie, ob 
-Sie sich erfolgreich mit dem FU-GitLab Server verbinden können.
 
-Anschließend müssen wir die Remote-URL des lokalen Git-Repositories aktualisieren, da diese 
-derzeit noch versucht, sich per HTTPS zu authentifizieren. Dazu ersetzen wir die bestehende 
-Remote-URL durch die Git-URL, die in der Projektansicht von GitLab angegeben ist.
+### Schritt 1
 
-- [EC] Ersetzen Sie mit dem entsprechenden Git-Befehl die HTTPS remote-URL Ihres lokalen 
-Repositories 
-durch die richtige Git-URL.
-- [EC] Testen Sie, ob die Remote-URL korrekt gesetzt und die Verbindung nun über SSH hergestellt 
-wird.
+Hinterlegen Sie nun Ihren Schlüssel auf den Server.
+Quälen Sie sich nicht lange mit dem `clip`-Kommando, sondern benutzen Sie lieber einfach 
+Copy/Paste mit Maus und Tastatur.
+
+[EC] [Prüfen Sie die Verbindung](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
+
+
+### Schritt 2
+
+Lesen Sie in der 
+[Hilfe von `git remote`](https://git-scm.com/docs/git-remote)
+nach wie man
+
+- vorhandene Remote-URLs anzeigt
+- zusätzliche remote-URLs zufügt
+- existierende remote-URLs ersetzt
+
+[EC] Zeigen Sie Ihren aktuellen https-Remote-URl an.
+
+[EC] Holen Sie sich den ssh-URL vom Git-Server und überschreiben Sie damit den existierenden
+https-Remote-URL in Ihrem lokalen Repo.
+
+[EC] Probieren Sie aus, ob die neue Verbindungsart funktioniert.
+(Wenn Sie die obigen Erklärungen verstanden haben, ist klar, welche zwei möglichen Kommandos 
+dafür infrage kommen.)
 
 Wenn alle vorherigen Schritte korrekt ausgeführt wurden, sollten Sie jetzt in der Lage sein, 
 Änderungen in Ihrem ProPra-Repo zu pushen und zu pullen, ohne jedes Mal Ihr Account-Passwort 
 eingeben zu müssen.
-
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Markdowndokument]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
