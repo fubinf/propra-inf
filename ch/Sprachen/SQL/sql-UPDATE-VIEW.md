@@ -154,54 +154,6 @@ Siehe auch [PARTREF::sql-basics].
 
 
 [INSTRUCTOR::Kontrollergebnisse]
-
-### Musterlösungen (SQL)
-
-```sql
--- 1. Ändern Sie bei Benutzer `carol` den Status `is_active` auf `1`
-UPDATE users
-SET is_active = 1
-WHERE username = 'carol';
-SELECT * FROM users WHERE username = 'carol';
-
--- 2. Ändern Sie die E-Mail-Adresse von `bob` zu `bob@newmail.com`
-UPDATE users
-SET email = 'bob@newmail.com'
-WHERE username = 'bob';
-SELECT * FROM users WHERE username = 'bob';
-
--- 3. Erhöhen Sie alle `amount`-Werte in `orders` um 10%
-UPDATE orders
-SET amount = amount * 1.1;
-SELECT * FROM orders;
-
--- 4. Erstellen Sie eine View `active_users`
-CREATE VIEW active_users AS
-SELECT * FROM users
-WHERE is_active = 1;
-SELECT * FROM active_users;
-
--- 5. View `recent_users_fixed` für Logins nach '2024-04-01'
-CREATE VIEW recent_users_fixed AS
-SELECT * FROM users
-WHERE last_login >= '2024-04-01';
-SELECT * FROM recent_users_fixed;
-
--- 6. Erstellen Sie eine View `total_order_amount` mit der Summe aller Beträge aus `orders`
-CREATE VIEW total_order_amount AS
-SELECT SUM(amount) AS total_amount
-FROM orders;
-SELECT * FROM total_order_amount;
-
--- 7. Anzeigen der Views
-SELECT * FROM active_users;
-SELECT * FROM recent_users_fixed;
-SELECT * FROM user_order_summary;
-
--- 8. Löschen der Views
-DROP VIEW IF EXISTS active_users;
-DROP VIEW IF EXISTS recent_users;
-DROP VIEW IF EXISTS user_order_summary;
-```
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
