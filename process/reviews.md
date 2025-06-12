@@ -10,7 +10,6 @@ Do not add new entries here.
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
 ### Sprachen
-- ch/Sprachen/C/c-compiler-assembler-linker.md (KH -> LP)
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB->LP)
 
 
@@ -29,7 +28,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Werkzeuge/Netzwerk/ssh-Reversetunnel.md (IC->LP)
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/grep.md (IC->LP)
-- ch/Werkzeuge/Git/git-Grundlagen.md (SH->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/find.md (IC->LP)
 
 ### (on hold)
