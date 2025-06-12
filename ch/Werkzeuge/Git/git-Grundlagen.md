@@ -8,27 +8,24 @@ requires: git-Zweitrepo
 ---
 
 [SECTION::goal::experience]
-Ich lerne, wie die Grundfunktionen von git funktionieren, und bekomme ein gefestigtes Verständnis 
-von deren mentalem Modell.
+Ich lerne, wie die Grundfunktionen von Git funktionieren, und festigte mein mentales Modell von Git.
 [ENDSECTION]
 
 [SECTION::background::default]
-
 In [PARTREF::Git101] haben wir gerade so das Nötigste gelernt, um unsere Aufgaben im ProPra 
 abzugeben. Jetzt geht es darum, das gelernte zu vertiefen und das Wissen um die Befehle und 
 [PARTREF::git-Funktionsweise] zu festigen.
-
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-
-In dieser Aufgabe werden wir so richtig tief in die Interna von git einsteigen. Wie verwaltet 
-git Dateien und Commits? Wie können wir diese vergleichen und uns einen Überblick darüber 
+In dieser Aufgabe werden wir so richtig tief in die Interna von Git einsteigen. 
+Wie verwaltet git Dateien und Commits? 
+Wie können wir diese vergleichen und uns einen Überblick darüber 
 verschaffen, was während der Entwicklung eines Projektes geschieht?
 
 Damit wir die Befehle nicht einfach nur herunter rattern, arbeiten wir die Inhalte anhand eines 
-kleinen Beispielprogramms durch. Hierzu schreiben wir ein paar Zeilen für einen 
-hypothetischen Taschenrechner.
+kleinen Beispielprogramms durch. 
+Hierzu schreiben wir ein paar Zeilen für einen hypothetischen Taschenrechner.
 
 Wir gehen davon aus, dass Sie bereits die Aufgabe [PARTREF::git-Zweitrepo] erledigt und 
 entsprechend ein neues und sauberes Repo bereit haben, in welchem Sie sich ungehindert auslassen 
@@ -40,9 +37,9 @@ push` noch `git pull` benötigen, müssen Sie auch kein neues Repository auf Git
 Git-Servern anlegen.
 
 
-Was tut git init? Um das zu verstehen, haben wir einen nützlichen Hilfsbefehl. Nämlich `git help`.
+Was tut git init? Um das zu verstehen, haben wir einen nützlichen Hilfsbefehl: `git help`.
 Dieser gibt uns ausführliche Dokumentation zu praktisch jedem git-Befehl, Begriff oder Konzept aus.
-Führen wir nur `git help` aus erhalten wir eine kurz Liste an gängigen git-Befehlen, dann eine 
+Führen wir `git help` aus erhalten wir eine kurze Liste an gängigen git-Befehlen, dann eine 
 längere mit noch mehr Befehlen und ganz unten steht noch ein weiterer nützlicher Hinweis.
 
 ```
@@ -51,39 +48,44 @@ concept guides. See 'git help <command>' or 'git help <concept>'
 to read about a specific subcommand or concept.
 ```
 
-Wir wollen jetzt lernen, was git init tut. Führen Sie also den `git help` Befehl für `git init` 
+Wir wollen jetzt lernen, was `git init` tut. Führen Sie also den `git help` Befehl für `git init` 
 aus und beantworten Sie: 
 
-[EQ] Was macht der Befehl `git init`? Referenzieren Sie hierbei die git Hilfe und vor allem die 
-Teile, die Sie verstehen.
+[EQ] Was macht der Befehl `git init`? 
+Referenzieren Sie hierbei die Git-Hilfe und vor allem die Teile, die Sie verstehen.
 
 [NOTICE]
-Zu Beginn wird sehr vieles in der git-Hilfe deutlich ihren Kenntnisstand übersteigen und 
-vielleicht etwas überwältigend wirken. Aber wie so oft, hilft es erst einmal alles auszublenden, 
-was für die aktuelle Aufgabe irrelevant ist. Nach und nach werden Sie genug Wissen akquirieren, um 
-auch kompliziertere Erklärungen zu verstehen.
+Zu Beginn wird vieles in der git-Hilfe ihren Kenntnisstand übersteigen und kann überwältigend wirken. 
+Es hilft dann, alles auszublenden, was für die aktuelle Aufgabe irrelevant ist. 
+Nach und nach werden Sie Wissen ansammeln und können dann auch kompliziertere Erklärungen verstehen.
 
-Die gleichen Inhalte lassen sich übrigens auch im Browser in der [git Referenz](https://git-scm.
-com/docs) nachschlagen.
+Die gleichen Inhalte lassen sich übrigens auch im Browser in der 
+[git Referenz](https://git-scm.com/docs) 
+nachschlagen.
 [ENDNOTICE]
 
-In der Dokumentation zu `git init` werden ihnen sicherlich der `.git` Ordner sowie die "Objekte" 
-aufgefallen sein. Damit wir verstehen, wozu diese da sind, lesen wir den Abschnitt [Creating a Git 
-repository](https://git-scm.com/docs/gitcore-tutorial) im `gitcore-tutorial`.
+In der Dokumentation zu `git init` werden ihnen vielleicht der `.git` Ordner sowie die "Objekte" 
+aufgefallen sein. 
+Um deren Zweck zu verstehen, lesen wir den Abschnitt 
+[Creating a Git repository](https://git-scm.com/docs/gitcore-tutorial) 
+im `gitcore-tutorial`.
 
-[EQ] Was befindet sich im verzeichnis `objects`?  
+[EQ] Was befindet sich im Verzeichnis `objects`?  
 
-[EQ] Wie werden git-Objekte referenziert?  
+[EQ] Wie werden Git-Objekte referenziert?  
 
-[EQ] Wie heisst der default Branch von git? Kann ich diesen umbenennen und brauche ich ihn 
-überhaupt?  
+[EQ] Wie heisst der default Branch?
+Kann ich diesen umbenennen und brauche ich ihn überhaupt?  
 
 Nun haben wir also ein neues und sauberes git Repo und haben verstanden, was sich bis dato darin 
-befindet. Jetzt wollen wir den aktuellen Zustand unseres Repos betrachten. Dafür gibt es den 
-Befehlt `git status`. Dieser zeigt uns Informationen darüber an, welche Dateien git sieht, 
-beobachtet und ob es Veränderungen zum letzten Commit gibt. Führen Sie `git status` jetzt aus 
-werden Sie feststellen, dass die Ausgabe praktisch leer ist. Damit wir ein bisschen an echten Daten 
-herumspielen können, brauchen wir also erstmal überhaupt ebensolche in unserem Repository. 
+befindet. 
+Jetzt wollen wir den aktuellen Zustand unseres Repos betrachten. 
+Dafür gibt es den Befehlt `git status`. 
+Dieser zeigt uns Informationen darüber an, welche Dateien git sieht, 
+beobachtet und ob es Veränderungen zum letzten Commit gibt. 
+Führen Sie `git status` jetzt aus, werden Sie feststellen, dass das Repo fast leer ist:
+Es gibt einen Zweig ("branch"), aber keine Commits. 
+Damit wir ein bisschen mit Daten hantieren können, brauchen wir also erstmal welche in unserem Repository. 
 Beginnen wir also mit unserem fiktiven Grundgerüst, der Funktionsdefinition:
 
 ```python
@@ -108,25 +110,27 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-Hier sehen wir jetzt einige neue Informationen. Zum einen bekommen wir noch immer "No commits 
-yet" angezeigt. Was ja auch stimmt, denn wir haben lediglich eine neue Datei angelegt. Zumindest 
-scheint git aber *irgendwas* über diese Datei zu wissen, denn sie wird als "Untracked file" 
+Hier sehen wir jetzt einige neue Informationen. 
+Zum einen bekommen wir noch immer "No commits yet" angezeigt. 
+Was ja auch stimmt, denn wir haben lediglich eine neue Datei angelegt. 
+Zumindest scheint git aber *irgendwas* über diese Datei zu wissen, denn sie wird als "Untracked file" 
 angegeben.
 
-Aber weiß git auch, was sich in dieser Datei befindet? Die letzte Zeile gibt uns einen kleinen 
-Hinweis. Git erfasst bzw. beobachtet nämlich erst den Inhalt, wenn wir die Datei mit `git add` zum 
-*Tracken* markieren.
+Aber weiß git auch, was sich in dieser Datei befindet? 
+Die letzte Zeile gibt uns einen kleinen Hinweis. 
+Git betrachtet den Inhalt einer Datei erst, wenn wir die Datei mit `git add` zum 
+Verfolgen ("Tracken") markieren.
 
 Fügen Sie also jetzt die Datei der Staging-Area hinzu und prüfen Sie wieder den Status.
 Welche Veränderung stellen Sie fest?
 
 Soweit die Praxis, jetzt wieder ein bisschen Theorie.
-Lesen Sie den Artikel [What really happens when I do git add.](https://medium.com/@raffs.
-os/what-really-happens-when-i-do-git-add-8af29c1ec903)
+Lesen Sie den Artikel 
+[What really happens when I do git add](https://medium.com/@raffs.os/what-really-happens-when-i-do-git-add-8af29c1ec903).
 
 Dazu ein paar Verständnisfragen:
 
-[EQ] Welche git-Objekte gibt es und was speichern Sie?  
+[EQ] Welche Sorten von git-Objekten gibt es und was speichern die?  
 
 [EQ] Wo speichert git die Metadaten über eine Datei und wo die Inhalte?  
 
@@ -136,8 +140,9 @@ Dazu ein paar Verständnisfragen:
 man diese Änderungen wieder dem Index hinzufügen, damit Sie im Commit landen?  
 
 [NOTICE]
-Wir erinnern uns an dieser Stelle nochmal an [PARTREF::git-Funktionsweise] wo wir ja bereits 
-festgestellt haben, dass git immer Snapshots speichert. Die Blob-Objekte sind nämlich genau das.
+Wir erinnern uns an dieser Stelle nochmal an [PARTREF::git-Funktionsweise], wo wir ja bereits 
+festgestellt haben, dass git immer Snapshots speichert. 
+Die Blob-Objekte sind nämlich genau das.
 [ENDNOTICE]
 
 Wir sollten jetzt Verständnis dafür haben, was der git-Index ist, was Objekte sind, welche 
@@ -173,7 +178,7 @@ EXAMPLES
                 resolve textual conflicts so far.
 ```
 
-Das sieht doch schon um einiges Verständlicher aus. Aktuell interessiert uns nur Beispiel 1.
+Das sieht doch schon um einiges verständlicher aus. Aktuell interessiert uns nur Beispiel 1.
 Führen wir es doch mal aus und gucken, was passiert.
 
 [EQ] Was gibt `git diff` jetzt aus und warum?   
@@ -349,18 +354,13 @@ log` einige Befehle bereit, am häufigsten genutzt werden sicherlich `--until <d
 Außerdem praktisch ist das Suchen nach einem bestimmten Autor. Dafür gibt es `git log 
 --author="Jane Doe"` oer `git log --author=Jane` womit man entweder den gesamten oder nur einen 
 Teilstring matcht.
-
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::wir prüfen das protokoll und die abgaben der teilnehmer auf verständnis]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
