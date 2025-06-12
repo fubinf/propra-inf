@@ -421,8 +421,9 @@ Unfortunately, working with submodules in git is a bit tricky.
   `git pull --rebase --no-recurse-submodules`  
   `git submodule update --recursive`
 - If you use a good IDE (such as PyCharm) for making your submodule changes,
-  it will usually do much of the above for you automatically and life is a lot simpler.
-  For keeping it simple, make sure you `pull` before you make changes, and
-  `commit` and `push` those changes ASAP.
+  it will usually do much of the above for you automatically and life is a lot simpler.  
+  For keeping it simple, make sure you `pull` before you make changes, in particular _just_ before
+  you commit a submodule hash to the main project.  
+  Then `commit` and `push` those changes ASAP.
   The shorter your change episodes, the fewer git problems.
 
