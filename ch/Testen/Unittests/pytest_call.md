@@ -7,7 +7,8 @@ assumes: m_pytest, pip
 
 [SECTION::goal::idea]
 
-- Ich kann nützliche Pytest Parameter verwenden, um effektiver meine Tests auszuführen.
+Ich kann beim Aufruf von `pytest` nützliche Parameter verwenden, 
+um schnell nur die relevanten Tests auszuführen.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -21,53 +22,53 @@ was besonders in großen Projekten viel Zeit spart und die Übersicht verbessert
 
 ### Testgrundlage beschaffen
 
-Bedienen wir uns zunächst einer frei zugänglichen Repository-Version von einer hilfreichen
-Python-Tool-Sammlung.
+Beschaffen wir uns zunächst eine Version der bekannten `requests`-Bibliothek`.
 Klonen Sie folgendes Repository in Ihren [TERMREF::Hilfsbereich]:
 
 ```shell
 git clone git@github.com:psf/requests.git --tag v2.32.2
 ```
 
-### Tests ausführen - Teil 1
+TODO_1_ruhe: Abhängigkeiten installieren.
 
-Sie wissen sicherlich bereits, dass wir mit `python -m pytest` oder einfach `pytest` alle
+
+### Testsuite ausprobieren, Einlesen in die Dokumentation
+
+Sie wissen, dass Sie mit `python -m pytest` oder einfach `pytest` alle
 existierenden Pytest-Testfälle ausführen können.
 Manchmal möchte man diese Ausführung erweitern, aber auch einschränken.
-Wie wir das umsetzen können, lesen Sie bitte auf der offiziellen
-[Pytest-Seite](https://docs.pytest.org/en/6.2.x/usage.html) nach.
-Anschließend - gerne auch parallel dazu - erstellen Sie folgende Befehle und dokumentieren das
-jeweilige Ergebnis.
+Lesen Sie in der Hilfeausgabe von `pytest --help` im Abschnitt "general"
+grob über diese Möglichkeiten nach.
 
-Sollten Sie direkt schon einmal `pytest` ausgeführt haben, wird Ihnen mit hoher Wahrscheinlichkeit
-der Testlauf nicht so gefallen.
-Das Modul `requests` besitzt einige Abhängigkeiten, die ebenfalls installiert werden müssen.
-Installieren Sie die Abhängigkeiten. Sollten Sie eine Auffrischung benötigen, besuchen Sie die Übung
-[PARTREF::pip].
+Genaueres findet man dann in der offiziellen
+[Pytest-Dokumentation](https://docs.pytest.org/en/latest) 
+mittels Volltextsuche nach dem Optionsnamen (z.B. "--lf").
+Machen Sie diesen Schritt am besten parallel zum Lösen der jeweiligen Aufgaben unten.
 
-Wenn Sie Pytest anschließend erneut ohne weitere Informationen ausführen, sollte Ihnen direkt etwas
-am Ergebnis aufgefallen sein.
-Diesen Zustand werden wir im Folgenden manipulieren, dann wieder mit viel Gewissenhaftigkeit und
-Fleiß herstellen.
+TODO_1_ruhe: Erfolgreichen Testlauf machen zur Orientierung.
 
-#### Testgrundlage schaffen
 
-Eine neue Version x.y.z wird in der Regel dann bereitgestellt, wenn diese Version auch aus Sicht der
-Entwickler stabil ist.
-Leider hilft uns eine stabile Version vorerst nicht weiter, weshalb wir ein klein wenig
-nachhelfen müssen, um ein Problem zu erzeugen.
-Um die Spannung nicht vorwegzunehmen, wurde diese Manipulation verschleiert.
-Diese Art der Änderung nennt sich auch [TERMREF::Mutationstests].
+### Für Fehlschläge sorgen
 
-Stellen Sie sicher, dass Sie sich im geklonten Unterverzeichnis `v2.32.2` des Verzeichnisses `requests`
-befinden.
-Bitte führen Sie folgenden Befehl aus:
+Für unsere Zwecke in dieser Aufgabe brauchen wir eine Testsuite, die fehlschlägt.
+Das tut die in unserem geklonten Repo jedoch nicht.
+Deshalb bauen wir nun gezielt ein Versagen ein.
+Damit wir (wie im wirklichen Leben) nicht schon im Voraus wissen, was das Problem ist,
+verschleiert die Aufgabe das benutzte Kommando durch eine einfache Kodierung.
+Bitte führen Sie also folgendes Kommando aus, ohne es zuvor zu analysieren.
+(Das kann man hier im ProPra ausnahmsweise tun, weil man den Autoren des ProPra vertraut.
+In einem realen Fall wäre es bei so einer Verschleierung angezeigt, zunächst zu klären, 
+was das Kommando tut, denn es könnten ja ungute Zwecke sein.) 
 
 ```shell
+cd v2.32.2
 echo "bXYgcmVxdWlyZW1lbnRzLWRldi50eHQgcmVxdWlyZW1lbnQtZGV2ZWxvcC50eHQ=" | base64 --decode | bash
 ```
 
-### Tests ausführen - Teil 2
+
+### Tests auf verschiedene Weisen ausführen
+
+TODO_1_ruhe: Fehlschlagenden Testlauf machen als Ausgangspunkt der Aufgaben.
 
 Ab jetzt sieht die Testausführung aus Teil 1 etwas anders aus, was von uns auch gewollt ist.
 
@@ -76,20 +77,22 @@ so glauben Sie es zumindest.
 Um das zu überprüfen, wollen Sie den Test erneut laufen lassen, aber dieses Mal die zuvor
 fehlgeschlagene Testdatei.
 
-[ER] Starten Sie den Test nur auf die fehlgeschlagenen Dateien.
+[ER] Lesen Sie in der Dokumentation nach, wie das geht, und 
+starten Sie den Test nur auf die fehlgeschlagenen Dateien.
+(Ähnlich in den folgenden Schritten: Bitte jedesmal in der Dokumentation die passende Option suchen.)
 
-Wenn sehr viele Testfälle im Spiel sind, könnten bestimmte Fehler auch Effekte auf andere Testfälle
-haben.
-In diesem Fall möchte man den Test nach einem Fehler gar nicht erst weiterlaufen lassen, sondern
-abbrechen.
+Wenn viele Testfälle im Spiel sind, führt ein einzelner Defekt oft gleich zu _zahlreichen_ Versagen,
+was recht verwirrend sein kann.
+In diesem Fall möchte man den Test nach dem ersten Versagen oft lieber abbrechen,
+um sich der Analyse dieses ersten Problems zu widmen.
 
 [ER] Lassen Sie den Testlauf beim Auftreten des _ersten_ Fehlers abbrechen.
 
-Manchmal kann ein Fehlschlag auch nur durch eine zeitliche Abhängigkeit auftreten, wie zum Beispiel
-beim Abfragen eines [TERMREF::TOTP], der beim Verwenden seine Gültigkeit verloren hat. In diesem
-Fall bietet es sich an, einen Testfall erneut auszuführen.
+Nach einer Korrektur, die den Defekt potenziell bereinigt hat, interessiert uns als erstes,
+ob die zuvor fehlschlagenden Testfälle (bei uns gerade nur einer) nun erfolgreich durchlaufen.
 
-[ER] Lassen Sie nur den letzten fehlgeschlagenen Testfall wiederholt durchführen.
+[ER] Lassen Sie nur den letzten fehlgeschlagenen Testfall wieder durchführen
+(und zwar ohne vorherige Korrektur, er wird also wiederum fehlschlagen).
 
 Klappt einfach nicht. Na gut, vergeuden wir nicht viel Zeit, prüfen wir weiter, indem wir uns einen
 kleinen Checkpoint beim ersten fehlgeschlagenen Testfall setzen, der uns Zeit erspart, um weiter

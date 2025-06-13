@@ -14,18 +14,14 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 
 ### Testen
-- ch/Testen/Unittests/pytest_call (RR->LP->RR->LP->RR->LP) Als Vorbedingung für die Coverage Aufgaben.
-
 - ch/Testen/Unittests/pytest_mocking.md (RR->DM->HA->LP->RR->LP->RR->LP)
 - ch/Testen/Unittests/pytest_mocking_freezegun.md (RR->DM->HA->LP->RR->LP->RR->LP) - leichte Überarbeitung
-
 - ch/Testen/Betriebsumgebung/GitHub-Build.md (RR->LP->RR->LP)
 - ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP->RR->LP)
 
 
 ### Werkzeuge
 - ch/Werkzeuge/Netzwerk/X11-Weiterleitung.md (IC->LP)
-- ch/Werkzeuge/Netzwerk/ssh-Reversetunnel.md (IC->LP)
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/grep.md (IC->LP)
 - ch/Werkzeuge/Unix-Basiswerkzeuge/find.md (IC->LP)
