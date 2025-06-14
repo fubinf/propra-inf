@@ -14,6 +14,7 @@ assumes: sql-basics, sql-select
 
 [SECTION::background::default]
 Views erfüllen einen ähnlichen Zweck wie Funktionen in Programmiersprachen:
+
 - Sie fassen Anweisungen zusammen, die man dann gebündelt wiederverwenden kann.
 - Sie erlauben es, die Lösung komplexer Aufgaben durch Zwischenstufen verständlicher zu machen.
 [ENDSECTION]
