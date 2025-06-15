@@ -2,7 +2,7 @@ title: Benutzerverwaltung mit SQL
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: sql-basics, sql-select, sql-JOIN, sql-UPDATE-VIEW
+assumes: sql-basics, sql-SELECT, sql-JOIN, sql-UPDATE-VIEW
 ---
 
 [SECTION::goal::product]
@@ -89,7 +89,7 @@ INSERT INTO sessions (user_id, created_at) VALUES
 ```
 [HINT::Hilfreiche Dokumentation zu A1–A9]
 ### 💡 Hinweis (für Aufgaben A1–A9)  
-[PARTREF::sql-basics], [PARTREF::sql-JOIN], [PARTREF::sql-select], [PARTREF::sql-UPDATE-VIEW] kann Ihnen hier helfen.
+[PARTREF::sql-basics], [PARTREF::sql-JOIN], [PARTREF::sql-SELECT], [PARTREF::sql-UPDATE-VIEW] kann Ihnen hier helfen.
 ### ⭐ Konkrete Funktionen
 - [Datum und Zeitfunktionen](https://sqlite.org/lang_datefunc.html)
 [ENDHINT]

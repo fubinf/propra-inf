@@ -2,7 +2,7 @@ title: Zusammenführen von Tabellen mittels JOIN
 stage: draft
 timevalue: 1.5
 difficulty: 2
-assumes: sql-basics, sql-select
+assumes: sql-basics, sql-SELECT
 ---
 
 [SECTION::goal::idea,experience]

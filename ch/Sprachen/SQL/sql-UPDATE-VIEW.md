@@ -2,7 +2,7 @@ title: SQL Datenpflege und Sichten
 stage: beta
 timevalue: 1.5
 difficulty: 2
-assumes: sql-basics, sql-select
+assumes: sql-basics, sql-SELECT
 ---
 
 [SECTION::goal::idea,experience]
@@ -133,7 +133,7 @@ die die Gesamtsumme aller `amount`-Werte aus der Tabelle `orders` enthält.
 SELECT SUM(amount)
 FROM orders;
 ```
-Sehen Sie auch [PARTREF::sql-select]
+Sehen Sie auch [PARTREF::sql-SELECT]
 [ENDHINT]
 
 [ER] Zeigen Sie den Inhalt aller drei Views (`active_users`, `recent_users_fixed`, `user_order_summary`) an.
