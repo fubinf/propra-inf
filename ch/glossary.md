@@ -1314,6 +1314,12 @@ Sie werden mit der Notation `[]T` deklariert, wobei `T` den Elementtyp darstellt
 [HREF::https://go.dev/blog/slices-intro]
 [ENDTERM]
 
+[TERM::Slicing (Python)]
+Slicing bezeichnet in Python das Auswählen eines Teilbereichs (Subsequenz) aus Sequenztypen wie Listen, Strings oder Tupeln. Die Syntax ist `seq[start:stop:step]`, wobei start (inklusive) der Startindex, stop (exklusiv) der Endindex und step die Schrittweite ist. Alle drei Parameter sind optional. Negative Indizes zählen vom Ende der Sequenz rückwärts.
+
+[HREF::https://www.geeksforgeeks.org/python/python-list-slicing/]
+[ENDTERM]
+
 [TERM::SOA|Start of Authority]
 Der SOA-Record (Start of Authority) ist ein essenzieller Ressourceneintrag im Domain Name System 
 (DNS), der die administrativen Parameter einer DNS-Zone definiert. Er dient als Kontrollzentrum 
