@@ -12,6 +12,7 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Sprachen
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB->LP)
 - ch/Sprachen/SQL/sql-basics.md (YL -> LP)
+- ch/Sprachen/SQL/sql-SELECT.md (YL -> LP)
 - ch/Sprachen/SQL/sql-JOIN.md (YL -> LP)
 
 
@@ -78,7 +79,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 
 ## Rework to do for Yixiang Li
-- ch/Sprachen/SQL/sql-select.md (YL)
 - ch/Sprachen/SQL/sql-user-admin.md (YL)
 - ch/Sprachen/SQL/SQL-project.md (YL)
 
