@@ -2,32 +2,31 @@ title: grep - print lines that match patterns
 stage: alpha
 timevalue: 1.0
 difficulty: 2
+assumes: Umgang-mit-Verzeichnissen
 ---
 
 [SECTION::goal::idea]
-
-Ich verstehe wie grep funktioniert und weiß wie ich mir Informationen aus Text oder Datei filtere.
-
+Ich kann mit `grep` einzelne Zeilen aus Textdaten herausfiltern.
 [ENDSECTION]
 
 [SECTION::background::default]
-
-Das Kommando `grep` sucht Textdateien nach bestimmten Mustern durch. Es erlaubt, Zeilen zu finden, 
-die einem regulären Ausdruck entsprechen, und ist besonders nützlich, um schnell relevante 
-Informationen aus großen Datenmengen zu extrahieren. Mit `grep` kann man nicht nur einfache 
-Textsuchen durchführen, sondern auch komplexe Filterungen und Analysen vornehmen.
-
+`grep` durchsucht Textdateien zeilenweise nach bestimmten Mustern. 
+Es ist ein simples, aber verblüffend nützliches Werkzeug, das in Unix-Umgebungen für
+enorm viele Zwecke eingesetzt wird, sowohl in Shell-Skripten als auch interaktiv auf der Kommandozeile.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
 ### Vorbereitungen
 
-Wir erstellen schnell Beispieltexte und Dateien, um die Nutzung von `grep` praktisch zu demonstrieren.
+Wir erzeugen uns als erstes Beispieldateien, um damit `grep` zu erproben.
 
-- [EC] Erstellen Sie einen Ordner `grep` in `~/ws/tmp/`.
+[EC] Erstellen Sie einen Ordner `grep` in Ihrem [TERMREF::Hilfsbereich].
 
-- [EC] Kopieren Sie den unteren Text im Ganzen und führen Sie es in der Kommandozeile aus.
+[EC] Wechseln Sie in diesem Ordner.
+
+[EC] Führen Sie die nachfolgenden Kommandos in der Kommandozeile aus.
+  (Das geht mit einem einzigen Copy/Paste-Schritt.)
 
 ```bash
 # Datei 1: data1.txt
@@ -59,18 +58,19 @@ echo "INFO: Modul A gestartet." >> logs/app.log
 echo "ERROR: Kritischer Fehler in Modul B." > logs/sys.log
 echo "WARN: Konfiguration veraltet." >> logs/sys.log
 ```
-- [EC] Wechseln Sie in den neu erstellten Ordner.
+
 
 ### Grundlagen
 
 Wir frischen nochmal schnell die Nutzungsweise von `grep` auf.
 
-Nutzen Sie hier zur Hilfe die help Seite von `grep`: `grep --help`, schauen Sie sich insbesondere 
-noch die Option `-i`.
+Nutzen Sie hier zur Hilfe die Hilfe-Ausgabe: `grep --help`.
+Schauen Sie sich insbesondere die Option `-i` an.
 
 - [EC] Finden Sie alle Zeilen in `data1.txt`, die das Wort "Zeile" enthalten.
 - [EC] Finden Sie alle Zeilen in `data1.txt` und `data2.txt`, die das Wort "Text" enthalten.
 - [EC] Finden Sie alle Zeilen in `data1.txt`, die "beispiel" enthalten, egal ob groß oder klein geschrieben.
+
 
 ### Nützliche Optionen
 
@@ -86,6 +86,7 @@ Lesen Sie sich die Optionen `-c, -n, -v, -w` aus der
 - [EC] Zählen Sie, wie viele Zeilen in `config.log` das Wort "INFO" enthalten.
 - [EC] Finden Sie die Zeilen in `data2.txt`, die genau das Wort "wichtig" enthalten.
 
+
 ### Fortgeschrittene Techniken
 
 Hier werden fortgeschrittene Funktionen von `grep` behandelt, wie das rekursive Durchsuchen von Verzeichnissen und das Anzeigen von Kontextzeilen.
@@ -99,21 +100,16 @@ Lesen Sie sich die Optionen `-A, -B, -l, -r` aus der
     zusätzlich die eine Zeile davor und die zwei Zeilen danach an.
 - [EC] Listen Sie nur die Namen der Dateien im Verzeichnis `logs` auf, die das Wort "ERROR" enthalten.
 
+
 ### Aufräumen
 
-- [EC] Löschen Sie alle Dateien im Ordner `~/ws/tmp/grep`.
-- [EC] Löschen Sie den Ordner `~/ws/tmp/grep`.
-
+Wenn Sie möchten, können Sie jetzt den Ordner `grep` wieder löschen.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll]
-
 [PROT::ALT:grep.prot]
-
 [ENDINSTRUCTOR]
