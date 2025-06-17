@@ -25,13 +25,15 @@ Lesen Sie die Beschreibung im obigen Teil, die **Examples** am Ende und die Opti
 Wir brauchen einen Ordner und Dateien, damit wir darauf die Links verknüpfen können.
 Wir verwenden hierfür den [TERMREF::Hilfsbereich].
 
-- [EC] Erstellen Sie einen Ordner `~/ws/tmp/physical/`.
+- [EC] Erstellen Sie einen Ordner  `physical` in Ihrem [TERMREF::Hilfsbereich].
+  Wir gehen im Folgenden davon aus, dass der `~/ws/tmp/physical/` heißt.
 - [EC] Erstellen Sie zwei Dateien namens `softdata` und `harddata` unter `~/ws/tmp/physical/`, mit
   dem Dateiinhalt "Ich bin softdata" bzw. "Ich bin harddata".
 
 Nachdem wir den Ordner und die Dateien erstellt haben, brauchen wir Links auf den Dateien.
 
-- [EC] Erstellen Sie einen Ordner `~/ws/tmp/links/`
+- [EC] Erstellen Sie einen Ordner  `links` in Ihrem [TERMREF::Hilfsbereich].
+  Wir gehen im Folgenden davon aus, dass der `~/ws/tmp/links/` heißt.
 - [EC] Erstellen Sie einen [TERMREF::Symlink] `~/ws/tmp/links/symlink1` auf `~/ws/tmp/physical/softdata` mit 
   Angabe des absoluten Pfades: `ln -s ~/ws/tmp/physical/softdata ~/ws/tmp/links/symlink1`
 - [EC] Erstellen Sie einen [TERMREF::Symlink] `~/ws/tmp/links/symlink2` auf `~/ws/tmp/physical/softdata` mit
