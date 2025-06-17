@@ -30,7 +30,7 @@ aber so korrekt und so genau ausfällt, wie es nur geht.
 
 [SECTION::instructions::loose]
 
-Die Bash-Referenzdokumentation finden Sie auf
+Die Bash-Referenzdokumentation ("BR") finden Sie auf
 [HREF::https://www.gnu.org/software/bash/manual/html_node/index.html].
 Lassen Sie am besten dieses Inhaltsverzeichnis immer geöffnet und öffnen Sie gewünschte
 Abschnitt immer in einem separaten Tab.
