@@ -114,7 +114,7 @@ Damit aus der Objekt-Datei (oder bei größeren Programmen den zahlreichen
 Objekt-Dateien), nun ein ausführbares Programm wird, wird der Binder
 eingesetzt.
 Der Binder nimmt alle angegebenen Objekt-Dateien, plus alle zusätzlich angegebenen
-[TERMREFLONG::Bibliothek::-en] (`-lxxx` Kommandozeilenparameter, mit xxx dem Namen der
+[TERMREF2::Bibliothek::-en] (`-lxxx` Kommandozeilenparameter, mit xxx dem Namen der
 Bibliothek, z.b. `-lssl` für die openSSL-Kryptographiebibliothek) und fügt
 diese zu einer ausführbaren Datei zusammen.
 Dynamisch verlinkte Bibliotheken (.so unter Linux, .dylib unter macOS und .DLL
