@@ -11,9 +11,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### Sprachen
 - ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB->LP)
-- ch/Sprachen/SQL/sql-basics.md (YL -> LP)
-- ch/Sprachen/SQL/sql-SELECT.md (YL -> LP)
-- ch/Sprachen/SQL/sql-JOIN.md (YL -> LP)
 
 
 ### Testen
@@ -26,8 +23,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 ### Werkzeuge
 - ch/Werkzeuge/Netzwerk/X11-Weiterleitung.md (IC->LP)
 - ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC->LP)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/grep.md (IC->LP)
-- ch/Werkzeuge/Unix-Basiswerkzeuge/find.md (IC->LP)
 
 ### (on hold)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
