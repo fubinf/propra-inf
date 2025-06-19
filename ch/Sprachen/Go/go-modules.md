@@ -195,5 +195,4 @@ Folgende Aspekte sind bei der Korrektur wichtig:
 Ansonsten ist dies eine Lernaufgabe.
 Der Punkt ist, dass Studierende die oben vorgestellten Konzepte im Zusammenhang miteinander benutzen.
 
-[PROT::ALT:go-basics-i.prot]
 [ENDINSTRUCTOR]
