@@ -2,7 +2,7 @@ title: Go Interfaces
 stage: alpha
 timevalue: 3.5
 difficulty: 2
-assumes: go-basics-i, go-basics-ii
+assumes: go-basics1, go-basics2, go-basics3
 ---
 
 [SECTION::goal::idea,experience]
