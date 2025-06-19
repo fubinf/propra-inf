@@ -3,23 +3,21 @@ stage: alpha
 timevalue: 3.5
 difficulty: 2
 explains: Slice (Golang)
-assumes: go-basics-i
+assumes: go-basics1
 ---
 
 [SECTION::goal::idea,experience]
 Ich habe mich mit den weiteren Konzepten von Go auseinandergesetzt und kann nun:
 
 - Funktionen definieren;
-- komplexere Datenstrukturen definieren;
 - Zeiger und Referenztypen effektiv benutzen;
 [ENDSECTION]
 
 [SECTION::background::default]
 In dieser Aufgabe lernen Sie weitere wichtige Konstrukte in der Programmiersprache Go. 
-Zusammen mit [PARTREF::go-basics-i] ergibt dies eine solide Grundlage, 
+Zusammen mit [PARTREF::go-basics1] ergibt dies eine solide Grundlage, 
 mithilfe derer Sie komplexere Programme implementieren können.
-Insbesondere geht es in dieser Aufgabe um das Zusammenspiel von Funktionen und Zeigern, 
-welches zu der hohen Laufzeiteffizienz der Programmiersprache beiträgt. 
+Insbesondere geht es in dieser Aufgabe um Funktionen, Zeiger und die Unterscheidung zwischen Wert- und Referenztypen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -84,95 +82,31 @@ func(x int, y int) {
     return x * y
 }(4, 5)
 
-// benannte Tupel als Resultat kommen unten
-```
-
-### `defer`
-
-`defer` markiert einen Funktionsaufruf als "aufgeschoben" (deferred) — ein solcher Aufruf wird erst dann ausgeführt, wenn die umgebende Funktion beendet wird.
-
-```go
-func main() {
-    defer fmt.Println("first line")
-    fmt.Println("second line")
+// benannte Tupel als Resultat
+func namedReturnValues() (answer int, label string) {
+    answer = 42
+    label = "hello world"
+    // hier würde ein leeres `return` auch automatisch alle Werte zurückgeben,
+    // die in der Funktionssignatur als Rückgabewerte deklariert wurden
+    return answer, label 
 }
 ```
 
-Ausgabe:
 
-```
-second line
-first line
-```
+### Benannte Rückgabewerte und variadische Funktionen
 
+Informieren Sie sich nun selbstständig über einige weitere funktionsbezogene Konzepte:
 
-### Benannte Rückgabewerte
+- [Benannte Rückgabewerte](https://go.dev/tour/basics/7)
+- [Variadische Funktionen](https://gobyexample.com/variadic-functions)
 
-Eine weitere Möglichkeit, Werte aus der Funktion zurückzugeben, sind die benannten Rückgabewerte.
+[EQ] Mit welchen Werten werden benannte Rückgabewerte initialisiert?
 
-Benannte Rückgabewerte sind immer mit den Standard-/Default-Werten initialisiert.
+[EQ] Wann ist es Ihrer Meinung nach sinnvoll, benannte Rückgabewerte zu benutzen?
 
-```go
-func namedReturn() (i int, err error) {
-    // Die Variablen i und err sind mit (0, nil) initialisiert
-    i = 42
-    // Hier werden i und err automatisch zurückgegeben:
-    return
-}
+[EQ] Was ist der Unterschied zwischen einer variadischen Funktion und einer Funktion, die eine Sammlung (einen [TERMREF::Slice (Golang)]) von Parametern bekommt?
 
-func namedReturn() (i int, err error) {
-    // Explizite Returnwerte gehen trotz der Deklaration:
-    return 42, nil
-}
-
-func normalReturn() (int, error) {
-    // Die Variablen i und err müssen hier initialisiert werden
-    var (
-        i   int   = 42
-        err error = nil
-    )
-    // Und explizit zurückgegeben werden
-    return i, err
-}
-```
-
-Es empfiehlt sich, benannte Rückgabewerte nur zu benutzen, wenn die Funktion komplex ist. 
-Einerseits tragen die Parameternamen in der Rückgabesignatur zwar zur Lesbarkeit bei; 
-andererseits können leere `return`-Anweisungen verwirren und verletzten das Prinzip der Lokalität.
-
-
-### Variadische Funktionen
-
-Funktionen in Go können eine variable Anzahl von Parametern verarbeiten. 
-Dafür gibt es eine spezielle Schreibweise, die als variadische Parameter bezeichnet wird:
-
-```go
-func receiveInts(xs ...int) {
-    for i, v := range xs {
-        ...
-    }
-}
-```
-
-Das ist für den Funktionsrumpf äquivalent zur Verwendung eines Slice als Parameter:
-
-```go
-func receiveInts(xs []int) {
-    for index, value := range xs {
-        ...
-    }
-}
-```
-
-Für den Aufrufer gibt es jedoch einen Unterschied:
-
-```go
-// variadisch
-receiveInts(0, 1, 4, 9, 16, 25, 36, 49, 64)
-
-// mit Slice
-receiveInts([]int{0, 1, 4, 9, 16, 25, 36, 49, 64})
-```
+[EQ] Welche Vor- beziehungsweise Nachteile einer Schreibweise gegenüber der anderen fallen Ihnen ein?
 
 
 ### Funktionen höherer Ordnung
@@ -203,23 +137,6 @@ func square(i int) int {
 
 func main() {
     ...
-    squared := apply(4, square)
-}
-```
-
-oder mit einer anonymen Funktion:
-
-```go
-func main() {
-    squared := apply(4, func(i int) int { return i * i })
-}
-```
-
-Oder man könnte die Funktion zuerst in einer Variable speichern (das ist zwar möglich, aber eher unkonventionell):
-
-```go
-func main() {
-    square := func(i int) int { return i * i }
     squared := apply(4, square)
 }
 ```
@@ -258,115 +175,6 @@ func testFunctions() {
 ```
 
 
-### Strukturen (structs)
-
-Eine Struktur (struct) ist eine Zusammensetzung von primitiven Datentypen oder anderen Strukturen.
-Da es in Go keine Klassen gibt, werden für die Kapselung Strukturen benutzt:
-
-```go
-type Person struct {
-    FirstName string
-    LastName  string
-    Age       int
-}
-```
-
-[NOTICE]
-
-Alle Felder dieser Struktur sind großgeschrieben und deswegen öffentlich (public/exported).
-
-[ENDNOTICE]
-
-
-### Methoden
-
-Auch ohne Klassen gibt es **Methoden** in Go. 
-
-Methoden sind Funktionen, die einem Typ zugeordnet sind und einen bestimmten ersten Parameter besitzen: 
-den Empfänger (receiver). 
-Sie ermöglichen es, Verhalten zu Strukturen hinzuzufügen.
-
-```go
-func (p Person) Print() {
-    fmt.Println(p.FirstName, p.LastName)
-}
-```
-
-Hier ist `(p Person)` der Empfänger: `p` ist der Name, über welchen die Methode auf die Struktur selbst zugreifen kann.
-
-Der Empfängertyp muss im gleichen Paket deklariert werden. 
-Daher können Methoden nicht auf eingebauten Typen wie int oder string definiert werden.
-
-
-### Struktureinbettung (struct embedding)
-
-Eines der Prinzipien von Go ist "Composition over Inheritance". 
-Struktureinbettung ermöglicht die Komposition von Datenstrukturen und fördert die Wiederverwendbarkeit des Codes.
-
-```go
-type Student struct {
-    Person
-    University string
-    Major      string 
-}
-```
-
-In diesem Beispiel übernimmt Student alle Felder von Person. 
-Beim Zugriff auf die Felder von Person gibt es mehrere Möglichkeiten — entweder direkt über den Namen eines Feldes oder
-zuerst über die eingebettete Struktur:
-
-```go
-mark := Student{
-    Person: Person{
-        FirstName: "Mark",
-        LastName:  "Mustermann",
-        Age:       25,
-    },
-    University: "FU Berlin",
-    Major:      "Computer Science",
-}
-
-fmt.Println(mark.Major)      // Computer Science
-fmt.Println(mark.Person.Age) // 25
-fmt.Println(mark.Age)        // 25
-fmt.Println(mark.Person)     // {Mark Mustermann 25}
-```
-
-Dies erhöht die Wiederverwendbarkeit des Quellcodes und die Erweiterbarkeit der Funktionalität einer solchen Struktur. 
-Im obigen Beispiel kann ein Student alles tun, was eine Person kann:
-
-```go
-// Diese Ausdrücke sind äquivalent
-mark.Person.Print()
-mark.Print()
-```
-
-
-[ER] Definieren Sie eine neue Struktur: `Employee`. 
-Diese soll alle Felder und Methoden einer `Person` übernehmen und ein neues Feld definieren: `Position`.
-
-[ER] Implementieren Sie eine neue Methode `Print` auf `Employee`, die nicht nur 
-den vollständigen Namen auf die Kommandozeile ausgibt, sondern auch die `Position`.
-
-[ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
-
-```go
-func testStructs() {
-    e := Employee{
-        Person: Person{
-            FirstName: "Mark",
-            LastName: "Mustermann",
-            Age: 25,
-        },
-        Position: "Accountant",
-    }
-    
-    e.Print()
-    e.Person.Print()
-}
-```
-
-
 ### Zeiger (pointers)
 
 Zeiger sind ein grundlegendes Konzept in der Programmierung, das es ermöglicht, per Speicheradresse
@@ -380,6 +188,7 @@ Sie unterstützen keine
 und gehören immer zu einem konkreten Typ 
 (`*T`, falls der Zeiger eine Variable von Typ `T` referenziert).
 
+Der Nullwert aller Zeiger ist `nil`.
 Ein Zeiger wird mithilfe des `&`-Operators erstellt. 
 Semantisch kann dieser als "Adresse von" gelesen werden: `&x` heißt "Adresse von `x`".
 
@@ -403,55 +212,17 @@ Durch Dereferenzierung kann der Wert an dieser Adresse gelesen oder geändert we
 
 ### "Pass-by-value" und "Pass-by-reference"
 
-Wie werden Argumente in eine Funktion übergeben?
+Schauen Sie sich 
+[diesen Artikel](https://www.educative.io/answers/pass-by-value-vs-pass-by-reference) 
+an.
+Auch wenn das Beispiel dort in C++ ist, sollten Sie das richtige Gefühl für das Thema bekommen.
 
-In Go werden alle Argumente an Funktionen per Wert übergeben, also kopiert. 
-Das gilt sowohl für primitive Datentypen als auch für Strukturen.
+Schauen Sie sich außerdem
+[dieses Beispiel](https://kuree.gitbooks.io/the-go-programming-language-report/content/26/text.html) 
+an. 
+Hier geht es um Go.
 
-Daraus ergeben sich folgende Nachteile:
-
-* eine Funktion kann die ursprünglichen Argumente nicht verändern (was manchmal gewünscht wäre);
-* jeder Funktionsaufruf kopiert alle Argumente — je größer die Argumente, desto ineffizienter wird der Aufruf. 
-
-Lösung: Statt eine Struktur zu kopieren, übergeben wir einen Zeiger auf diese Struktur, um per Referenz zu arbeiten.
-
-```go
-// Schlecht - jeder Aufruf benötigt eine Kopie von "Person"
-func printAge(p Person) {
-    fmt.Println(p.Age)
-}
-
-// Gut - jeder Aufruf benutzt eine Referenz auf die Hauptstruktur
-func printAge(p *Person) {
-    fmt.Println(p.Age)
-}
-```
-
-Eigentlich müsste der zweite Aufruf `p` dereferenzieren: `fmt.Println((*p).Age)`, aber
-Go führt diese Umwandlung automatisch durch und vereinfacht damit den Zugriff auf Felder von Zeigern.
-
-[ER] Implementieren Sie eine Methode `Promote` auf `Employee`, die ein Argument `newPosition string`
-erwartet.
-Sie soll die Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
-
-[ER] Kopieren Sie die folgende Testfunktion in Ihre Datei um und rufen Sie sie ebenfalls aus der `main`-Funktion auf:
-
-```go
-func testMutation() {
-    e := Employee{
-        Person: Person{
-            FirstName: "Mark",
-            LastName: "Mustermann",
-            Age: 25,
-        },
-        Position: "Accountant",
-    }
-    
-    e.Print()
-    e.Promote("Senior Accountant")
-    e.Print()
-}
-```
+Es gibt jedoch Datentypen, die sich wie Zeiger verhalten — solche Datentypen heißen _Referenztypen_. 
 
 
 ### Referenz- und Werttypen
@@ -459,7 +230,7 @@ func testMutation() {
 Mit _Referenztypen_ sind in der Regel die Typen gemeint, die sich wie ein Zeiger (Pointer) verhalten.
 Das bedeutet unter anderem:
 
-- der Standardwert ist `nil`
+- der Nullwert ist `nil`
 - sie enthalten intern Zeiger auf Daten
 - sie bewirken "pass-by-reference"-Verhalten
 
@@ -468,7 +239,7 @@ Primitive Datentypen (Zahlen, boolesche Werte und Zeichenketten) sind Werttypen.
 
 Alle Werttypen teilen sich folgende Eigenschaften:
 
-- der Standardwert ist nicht `nil`
+- der Nullwert ist nicht `nil`
 - sie bewirken "pass-by-value"-Verhalten: beim Zuweisen oder Übergeben als Parameter wird eine Kopie erstellt
 - Vergleichbarkeit: zwei Variablen von einem Werttyp dürfen mittels `==` sinnvoll verglichen werden
 
@@ -633,6 +404,53 @@ ein Element an einem Index `at` entfernen und die Größe des Slice entsprechend
 
 [ER] `func AddElementIfNotThere(m map[string]int, key string, value int)`:
 ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
+Ansonsten keine Aktion.
+
+[EC] Fügen Sie die folgenden Testfunktionen Ihrem Programm bei und rufen Sie sie aus der `main`-Funktion auf:
+
+```go
+func testSlicesAndMaps() {
+    fmt.Println("testing AddElement...")
+    s := []int{1, 2, 3}
+    for i := 0; i < len(s)+1; i++ {
+        sc := make([]int, len(s))
+        copy(sc, s)
+        fmt.Println(AddElement(sc, 4, i))
+    }
+
+    fmt.Println("testing RemoveElement...")
+    for i := 0; i < len(s)+1; i++ {
+        sc := make([]int, len(s))
+        copy(sc, s)
+        fmt.Println(RemoveElement(sc, i))
+    }
+
+    fmt.Println("Testing AddElementIfNotThere...")
+
+    m := make(map[string]int)
+    m["hi"] = 42
+
+    fmt.Println(AddElementIfNotThere(m, "hi", 420))
+    fmt.Println(AddElementIfNotThere(m, "there", 420))
+}
+
+func testDivideAndReduce() {
+    fmt.Println(divide(5, 2))
+    fmt.Println(divide(5, 0))
+    fmt.Println(
+        reduce(
+            0,
+            func(acc, arg int) int { return acc + arg*arg },
+            2, 3, 5, 7, 11, 13, 17, 19,
+        ),
+    )
+}
+
+func main() {
+    testDivideAndReduce()
+    testSlicesAndMaps()
+}
+```
 [ENDSECTION]
 
 [SECTION::submission::trace,program]
@@ -641,14 +459,25 @@ ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurd
 [ENDSECTION]
 
 [INSTRUCTOR::Hinweise]
-Korrektur von `testFunctions()`, `testStructs()` und `testMutation()`:
+Korrektur von `testDivideAndReduce` und `testSlicesAndMaps`:
 die Funktionen sollten unverändert in dem abgegebenen Quellcode präsent sein, 
 damit das Kommandoprotokoll nicht verfälscht wird.
 
 Korrektur von `AddElement`, `RemoveElement`: 
 Der Zweck ist, dass Studierende Slices erstellen und modifizieren können.
 
-Korrektur von `AddElementIfNotThere`: `delete()` muss benutzt werden.
+Korrektur von `AddElementIfNotThere`:
+Der Zweck ist, dass Studierende überprüfen können, ob der Wert da ist.
+Hier ist wichtig zu verstehen, wie man einen Nullwert von einem tatsächlich vorhandenen 
+Wert unterscheiden kann — nämlich mit der Schreibweise 
+`if value, isThere := studentAges["Max"]; isThere { }`.
 
-[PROT::ALT:go-basics-ii.prot]
+**Kommandoprotokoll**
+[PROT::ALT:go-basics2.prot]
+
+**Lösungen**
+
+[INCLUDE::ALT:]
+
+Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go0/go-basics2.go]
 [ENDINSTRUCTOR]
