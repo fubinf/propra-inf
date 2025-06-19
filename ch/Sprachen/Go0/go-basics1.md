@@ -201,6 +201,24 @@ while True:
 [ENDFOLDOUT]
 
 
+#### Eine pythonartige Schleife
+
+```go
+// Go
+for i := range 5 {      // i aus der Menge {0, 1, 2, 3, 4}
+    ...    
+}
+```
+
+[FOLDOUT::Python-Äquivalent]
+```python
+# Python
+for i in range(5):
+    ...
+```
+[ENDFOLDOUT]
+
+
 #### Eine C-artige Schleife
 
 ```go
@@ -230,7 +248,8 @@ while i < 10:
 
 #### Das Schlüsselwort `range`
 
-Für Iterationen über Listen und Maps wird das Schlüsselwort `range` benutzt:
+Für Iterationen über Zeichenketten, Listen, Maps und Kanäle (lernen Sie später kennen) 
+wird das Schlüsselwort `range` benutzt:
 
 ```go
 for ... := range list/dict { ... }
@@ -446,8 +465,9 @@ Die komplette Liste finden Sie in der Dokumentation vom Paket `fmt`:
 
 Spezifikation:
 
-- Eine ganze Zahl _n_ von der Kommandozeile auslesen und mittels `strconv.ParseInt(input, 10, 64)` zu `int64` umwandeln
-- In einer `for`-Schleife alle ganzen Zahlen von 1 bis n (inklusive) durchgehen und jeweils
+- Das Programm soll eine ganze Zahl _n_ von der Kommandozeile auslesen, mittels 
+  `strconv.ParseInt(input, 10, 64)` zu `int64` umwandeln und
+- in einer `for`-Schleife alle ganzen Zahlen von 1 bis _n_ (inklusive) durchgehen und jeweils
     - "fizz" ausgeben, wenn die Zahl durch 3 teilbar ist
     - "buzz" ausgeben, wenn die Zahl durch 5 teilbar ist
     - "fizzbuzz" ausgeben, wenn die Zahl sowohl durch 3 als auch durch 5 teilbar ist
@@ -473,11 +493,13 @@ In dieser Aufgabe dürfen Sie den zweiten Wert (`error`) explizit ignorieren.
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
-[INSTRUCTOR::]
+[INSTRUCTOR::Hinweise]
 **Kommandoprotokoll**
 [PROT::ALT:go-basics1.prot]
 
 **Lösungen**
 
 [INCLUDE::ALT:]
+
+Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go0/go-basics1.go]
 [ENDINSTRUCTOR]
