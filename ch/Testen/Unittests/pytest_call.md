@@ -29,7 +29,8 @@ Klonen Sie folgendes Repository in Ihren [TERMREF::Hilfsbereich]:
 git clone git@github.com:psf/requests.git --tag v2.32.2
 ```
 
-Wir wollen jedoch dieses Paket nicht als Entwickler in einer eigenen Anwendung verwenden, sondern die vorhandene Testsammlung kennenlernen.
+Wir wollen jedoch dieses Paket nicht als Entwickler in einer eigenen Anwendung verwenden, sondern
+die vorhandene Testsammlung kennenlernen.
 Um das machen zu können, müssen wir noch die Abhängigkeiten installieren.
 Das Projekt wird glücklicher Weise mit einer `requirements.txt` bereitgestellt.
 Diese Datei erlaubt es uns die Abhängigkeiten mit einem Kommando zu installieren.
@@ -40,18 +41,22 @@ pip install -r requirements-dev.txt
 ```
 
 [HINT::Installationsprpoblem]
-Achten Sie darauf, dass Sie sich im Verzeichnis `requests -tagv2.32.2` befinden oder den Pfad der `requirements-dev.txt` Datei anpassen.
+Achten Sie darauf, dass Sie sich im Verzeichnis `requests -tagv2.32.2` befinden oder den Pfad der
+`requirements-dev.txt` Datei anpassen.
 Ich empfehle Ersteres.
 [ENDHINT]
 
 [INFO]
-Sicherlich ist Ihnen aufgefallen, dass zuvor `requirements.txt` und später `requirements-dev.txt` erwähnt wurde.
+Sicherlich ist Ihnen aufgefallen, dass zuvor `requirements.txt` und später `requirements-dev.txt`
+erwähnt wurde.
 Hier eine kurze Erklärung:
 
-`requirements.txt` enthält die grundlegenden Abhängigkeiten, die benötigt werden, damit das Python-Projekt läuft.
+`requirements.txt` enthält die grundlegenden Abhängigkeiten, die benötigt werden, damit das
+Python-Projekt läuft.
 Diese Datei wird meist für die Installation im Produktivbetrieb verwendet.
 
-`requirements-dev.txt` enthält zusätzliche Abhängigkeiten, die speziell für die Entwicklung und das Testen des Projekts benötigt werden,
+`requirements-dev.txt` enthält zusätzliche Abhängigkeiten, die speziell für die Entwicklung und das
+Testen des Projekts benötigt werden,
 z.B. Test-Frameworks, Linter oder Build-Tools.
 Sie baut oft auf `requirements.txt` auf und erweitert diese um Entwicklungs-Tools.
 
@@ -107,12 +112,16 @@ Was sehen wir hier:
 
 - pytest hat insgesamt 608 Tests gefunden und ausgeführt.
 - Die Punkte (.) stehen für erfolgreich bestandene Tests.
-- Ein x markiert übersprungene (skipped) Tests, meist wegen fehlender Voraussetzungen oder bestimmter Einstellungen.
+- Ein x markiert übersprungene (skipped) Tests, meist wegen fehlender Voraussetzungen oder
+  bestimmter Einstellungen.
 - Ein s steht für einen Test, der explizit als "skipped" markiert wurde.
-- Es gab einen Fehler mit dem Test-Server (httpbin): [SSL: TLSV1_ALERT_UNKNOWN_CA], aber pytest hat versucht, diesen Fehler zu ignorieren, damit der Rest der Tests weiterlaufen kann.
-- Am Ende siehst du noch eine Warnungs-Zusammenfassung (warnings summary), die auf eventuelle Probleme oder veraltete Funktionen hinweist.
+- Es gab einen Fehler mit dem Test-Server (httpbin): [SSL: TLSV1_ALERT_UNKNOWN_CA], aber pytest hat
+  versucht, diesen Fehler zu ignorieren, damit der Rest der Tests weiterlaufen kann.
+- Am Ende siehst du noch eine Warnungs-Zusammenfassung (warnings summary), die auf eventuelle
+  Probleme oder veraltete Funktionen hinweist.
 
-Kurz: Die meisten Tests wurden erfolgreich ausgeführt, einige wurden übersprungen oder haben Warnungen erzeugt, aber es gab keine großen Fehler, die den Testlauf komplett gestoppt hätten.
+Kurz: Die meisten Tests wurden erfolgreich ausgeführt, einige wurden übersprungen oder haben
+Warnungen erzeugt, aber es gab keine großen Fehler, die den Testlauf komplett gestoppt hätten.
 
 ### Für Fehlschläge sorgen
 
@@ -163,14 +172,18 @@ tests/test_utils.py ..s.........................................................
 ================================================================================ FAILURES ================================================================================
 ```
 
-Neben den bekannten erfolgreichen und übersprungenen Testfällen, kamen drei weitere Fehlschläge - markiert durch ein F - hinzu.
+Neben den bekannten erfolgreichen und übersprungenen Testfällen, kamen drei weitere
+Fehlschläge - markiert durch ein F - hinzu.
 
 Ab jetzt sieht die Testausführung aus Teil 1 etwas anders aus, was von uns auch gewollt ist.
 
-Stellen Sie sich als Entwickler vor, dass Sie den Testfehlschlag durch eine Codeanpassung vermeindlich gefixt haben.
+Stellen Sie sich als Entwickler vor, dass Sie den Testfehlschlag durch eine Codeanpassung
+vermeindlich gefixt haben.
 Angenommen, Die Testsammlung läuft mit `pytest` einige Minuten lang bis zum Ende.
-Sie wollen jedoch nur erfahren, ob alle Testfälle in der zuvor fehlgeschlagenen Testdatei erfolgreich durchlaufen und nicht jedesmal lange auf das Ergebnis warten.
-Um das zu überprüfen, wollen Sie den Test erneut laufen lassen, aber dieses Mal nur die zuvor fehlgeschlagene Testdatei.
+Sie wollen jedoch nur erfahren, ob alle Testfälle in der zuvor fehlgeschlagenen Testdatei erfolgreich
+durchlaufen und nicht jedesmal lange auf das Ergebnis warten.
+Um das zu überprüfen, wollen Sie den Test erneut laufen lassen, aber dieses Mal nur die zuvor
+fehlgeschlagene Testdatei.
 
 [ER] Lesen Sie in der Dokumentation nach, wie das geht, und 
 starten Sie den Test nur auf die fehlgeschlagenen Dateien.
@@ -231,16 +244,19 @@ zu überspringen. Löschen Sie, falls noch vorhanden, die Skip-Anweisung.
 jetzt aus?
 
 [HINT::Weg zur Lösung des Porblems]
-Betrachten Sie die am Ende einer einfachen `pytest` Ausführung ausgegebenen Informationen. (Letzten 3 Zeilen)
+Betrachten Sie die am Ende einer einfachen `pytest` Ausführung ausgegebenen Informationen.
+(Letzten 3 Zeilen)
 [ENDHINT]
 
 ### Reflektion
 
-Jetzt, wo Sie einige Kommandos kennengelernt und ausgeführt haben, konnten Sie unteschiedliche Ergebnisse und Ausgaben sehen.
+Jetzt, wo Sie einige Kommandos kennengelernt und ausgeführt haben, konnten Sie unteschiedliche
+Ergebnisse und Ausgaben sehen.
 
 [EQ] Welches Kommando war aus Ihrer Sicht das am effektivsten, um die eigentliche
 Problematik zu erkennen.
-[EQ] Wären Sie so oder so ähnlich auch vorgegangen oder wären Ihnen alternative Ausgaben oder Schritte lieber gewesen?
+[EQ] Wären Sie so oder so ähnlich auch vorgegangen oder wären Ihnen alternative Ausgaben oder
+Schritte lieber gewesen?
 
 [ENDSECTION]
 [SECTION::submission::trace]

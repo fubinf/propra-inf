@@ -7,10 +7,10 @@ assumes: m_pytest, m_json1
 
 [SECTION::goal::idea]
 
-- Ich kann grundlegende Unittests in verschiedenen Anwendungsbereichen mocken.
-- Ich kann beschreiben, was "Mocks" sind und wie sie in pytest Anwendung finden.
-- Ich kann "Mocks" von anderen Testmethoden abgrenzen.
-- Ich kann begründen, wann die Anwendung von "Mocks" sinnvoll ist.
+Ich kann grundlegende Unittests in verschiedenen Anwendungsbereichen mocken.
+Ich kann beschreiben, was "Mocks" sind und wie sie in pytest Anwendung finden.
+Ich kann "Mocks" von anderen Testmethoden abgrenzen.
+Ich kann begründen, wann die Anwendung von "Mocks" sinnvoll ist.
 
 [ENDSECTION]
 
