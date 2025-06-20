@@ -46,7 +46,7 @@ Achten Sie darauf, dass Sie sich im Verzeichnis `requests -tagv2.32.2` befinden 
 Ich empfehle Ersteres.
 [ENDHINT]
 
-[INFO]
+[NOTICE]
 Sicherlich ist Ihnen aufgefallen, dass zuvor `requirements.txt` und später `requirements-dev.txt`
 erwähnt wurde.
 Hier eine kurze Erklärung:
@@ -60,7 +60,7 @@ Testen des Projekts benötigt werden,
 z.B. Test-Frameworks, Linter oder Build-Tools.
 Sie baut oft auf `requirements.txt` auf und erweitert diese um Entwicklungs-Tools.
 
-[ENDINFO]
+[ENDNOTICE]
 
 ### Testsuite ausprobieren, Einlesen in die Dokumentation
 
