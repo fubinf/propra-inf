@@ -223,7 +223,7 @@ in der `beautifulsoup` Ihnen die Links zurückgegeben hat.
 
 ### 8. Ausgaben unterwegs
 
-Jedes Mal, wenn `check_one_round()` einen URL abgerufen hat, gibt es eine Zeile Text aus,
+Jedes Mal, wenn `check_one_block()` einen URL abgerufen hat, gibt es eine Zeile Text aus,
 um ein grobes Verfolgen des Fortschritts zu erlauben.
 
 Diese Ausgaben sollen so aussehen (erfundenes Beispiel):
