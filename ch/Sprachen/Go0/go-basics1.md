@@ -13,18 +13,20 @@ Ich habe mich mit den Grundlagen von Go auseinandergesetzt und kann nun:
 [ENDSECTION]
 
 [SECTION::background::default]
-Sie haben sich entschieden, eine neue Programmiersprache zu erlernen — Go. 
+Sie haben sich entschieden, eine neue Programmiersprache zu erlernen — Go.
 Gute Wahl!
 
-Go wurde als eine pythonähnliche Alternative für die Entwickler bei Google konzipiert, die C++ als zu komplex empfanden. 
+Go wurde als eine pythonähnliche Alternative für die Entwickler bei Google konzipiert,
+die C++ als zu komplex empfanden.
 Daher sind die folgenden Merkmale entstanden:
 
 - Statische Typisierung und Laufzeiteffizienz (wie C/C++);
 - Lesbarkeit und Benutzerfreundlichkeit (wie Python);
 - ein leistungsfähiges Nebenläufigkeits- und Parallelitätsmodell.
 
-Insgesamt ergibt das eine flexible und ziemlich effiziente Programmiersprache, 
-die besonders in der Entwicklung von Programmierwerkzeugen (Docker/Kubernetes) und Web-Backends beliebt geworden ist.
+Insgesamt ergibt das eine flexible und ziemlich effiziente Programmiersprache,
+die besonders in der Entwicklung von Programmierwerkzeugen (Docker/Kubernetes)
+und Web-Backends beliebt geworden ist.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -37,23 +39,25 @@ wenn Sie eher Anleitungscharakter suchen.
 
 ### Ein Go-Programm ausführen
 
-Stellen Sie sicher, dass Sie eine gültige Go-Installation auf Ihrem Rechner haben. 
+Stellen Sie sicher, dass Sie eine gültige Go-Installation auf Ihrem Rechner haben.
 Tippen Sie `go version` in die Kommandozeile:
-Die Ausgabe soll wie `go version go1.xx.yy ...` aussehen. 
-Soll das nicht der Fall sein, schlagen Sie auf 
-[der offiziellen Webseite](https://go.dev/doc/install) 
+Die Ausgabe soll wie `go version go1.xx.yy ...` aussehen.
+Soll das nicht der Fall sein, schlagen Sie auf
+[der offiziellen Webseite](https://go.dev/doc/install)
 nach, wie Go installiert werden soll.
 
 Ausführen besteht immer aus mindestens zwei Phasen — kompilieren und tatsächlich ausführen.
 Go bietet zwei Möglichkeiten an:
 
-1. `go run quellcode.go` — Ihr Go-Programm wird automatisch kompiliert und gleich im Anschluss ausgeführt.
-    Das funktioniert nur für die Quellcodedateien, die mit der Zeile `package main` anfangen (siehe unten).
-    Das Python-Äquivalent zu diesem Kommando ist `python3 quellcode.py`. 
+1. `go run quellcode.go` — Ihr Go-Programm wird automatisch kompiliert und gleich im Anschluss
+   ausgeführt.
+   Das funktioniert nur für die Quellcodedateien, die mit der Zeile `package main` anfangen (siehe
+   unten).
+   Das Python-Äquivalent zu diesem Kommando ist `python3 quellcode.py`.
 2. `go build -o binary quellcode.go` — aus `quellcode.go` wird eine Binärdatei erzeugt.
-    Wenn `quellcode.go` mit `package main` beginnt, darf die Binärdatei ausgeführt werden.
-    Dies geschieht mithilfe von `./binary`.
-    Der Einstiegspunkt ist immer die Funktion `func main() {}`.
+   Wenn `quellcode.go` mit `package main` beginnt, darf die Binärdatei ausgeführt werden.
+   Dies geschieht mithilfe von `./binary`.
+   Der Einstiegspunkt ist immer die Funktion `func main() {}`.
 
 Dokumentation zu diesen Kommandos bekommen Sie mit `go help`.
 
@@ -68,12 +72,13 @@ Es existieren folgende Namenskonventionen:
 Nun lesen Sie bitte die folgenden Punkte selbst nach und beantworten Sie die Fragen.
 
 **[Variablen](https://go.dev/tour/basics/8)**,
-**[Variablen mit Initialisierung](https://go.dev/tour/basics/9)** und
+**[Variablen mit Initialisierung](https://go.dev/tour/basics/9)** 
+und
 **[kurze Variablendeklarationen](https://go.dev/tour/basics/10)**
 
 [EQ] Wo kann eine Variable mit `:=` initialisiert werden?
 
-**[Primitive Datentypen](https://go.dev/tour/basics/11)**, 
+**[Primitive Datentypen](https://go.dev/tour/basics/11)**,
 **[Nullwerte](https://go.dev/tour/basics/12)**,
 **[Typinferenz](https://go.dev/tour/basics/14)** und
 **[Konstanten](https://go.dev/tour/basics/15)**
@@ -88,7 +93,7 @@ var answer int32 = x
 [EQ] Was ist der Unterschied zwischen den zwei Definitionen?
 
 ```go
-const Pi1         = 3.14
+const Pi1 = 3.14
 const Pi2 float64 = 3.14
 ```
 
@@ -101,26 +106,29 @@ var x float32 = Pi2
 ```
 [ENDHINT]
 
-
 [NOTICE]
-Konstanten sind im Go-Universum normale Variablen, deshalb gelten für sie die gleichen Namenskonventionen.
+Konstanten sind im Go-Universum normale Variablen, deshalb gelten für sie die gleichen
+Namenskonventionen.
 
-Im Gegensatz zu C oder Java gilt `SCREAMING_SNAKE_CASE` in Golang als nicht idiomatisch und wird in der 
-[offiziellen Go-Stilkonvention](https://google.github.io/styleguide/go/guide) 
+Im Gegensatz zu C oder Java gilt `SCREAMING_SNAKE_CASE` in Golang als nicht idiomatisch und wird in
+der
+[offiziellen Go-Stilkonvention](https://google.github.io/styleguide/go/guide)
 nicht empfohlen.
 [ENDNOTICE]
 
 
 ### Kontrollstrukturen (if/switch/for)
 
-Kontrollstrukturen sind relativ ähnlich zu denen in Python, mit dem Unterschied: 
-In Go dürfen `if` und `switch` eine **Initialisierungsanweisung** besitzen. 
-Alle Variablen, die in der Initialisierungsanweisung definiert wurden, sind nur in dem `if`/`switch` Block erreichbar.
+Kontrollstrukturen sind relativ ähnlich zu denen in Python, mit dem Unterschied:
+In Go dürfen `if` und `switch` eine **Initialisierungsanweisung** besitzen.
+Alle Variablen, die in der Initialisierungsanweisung definiert wurden, sind nur in dem `if`/`switch`
+Block erreichbar.
 
 **Nachteil:** Der Ausdruck scheint auf den ersten Blick etwas komplizierter.
 
-**Vorteil:** Begrenzung des Geltungsbereichs (Scoping). 
-Was in der Initialisierungsanweisung definiert wurde, darf nur in dem entsprechenden Ausdruck benutzt werden.
+**Vorteil:** Begrenzung des Geltungsbereichs (Scoping).
+Was in der Initialisierungsanweisung definiert wurde, darf nur in dem entsprechenden Ausdruck
+benutzt werden.
 
 
 ### if
@@ -151,10 +159,11 @@ if data, err := client.RequestData(); err != nil {
 In dem obigen Beispiel wird `err != nil` überprüft. Warum?
 
 Viele Funktionen in Go können einen `error` zurückgeben — einfach als zusätzlichen Rückgabewert.
-Der Nullwert vom Typ `error` ist `nil`: 
-Ein solcher Check ist die Überprüfung, ob die anderen Rückgabewerte valide sind und benutzt werden dürfen. 
+Der Nullwert vom Typ `error` ist `nil`:
+Ein solcher Check ist die Überprüfung, ob die anderen Rückgabewerte valide sind und benutzt werden
+dürfen.
 
-Falls etwas fehlgeschlagen ist, gibt es einen `error`; ansonsten ist `err == nil`. 
+Falls etwas fehlgeschlagen ist, gibt es einen `error`; ansonsten ist `err == nil`.
 [ENDNOTICE]
 
 
@@ -175,8 +184,10 @@ Lesen Sie selbstständig nach, wie ein Switch benutzt werden kann:
 - [switch true](https://go.dev/tour/flowcontrol/11)
 
 [NOTICE]
-`if-elif-else`-Blöcke sind in der Regel flexibler; bei `switch` ist jedoch schneller zu erfassen, was da passiert.
+`if-elif-else`-Blöcke sind in der Regel flexibler; bei `switch` ist jedoch schneller zu erfassen,
+was da passiert.
 [ENDNOTICE]
+
 
 ### for
 
@@ -206,7 +217,7 @@ while True:
 ```go
 // Go
 for i := range 5 {      // i aus der Menge {0, 1, 2, 3, 4}
-    ...    
+    ...
 }
 ```
 
@@ -224,14 +235,14 @@ for i in range(5):
 ```go
 // Go
 for i := 0; i < 10; i++ {
-    ...
+...
 }
 
 // oder
 i := 0
 for i < 10 {
-    ...
-    i++
+...
+i++
 }
 ```
 
@@ -248,17 +259,20 @@ while i < 10:
 
 #### Das Schlüsselwort `range`
 
-Für Iterationen über Zeichenketten, Listen, Maps und Kanäle (lernen Sie später kennen) 
+Für Iterationen über Zeichenketten, Listen, Maps und Kanäle (lernen Sie später kennen)
 wird das Schlüsselwort `range` benutzt:
 
 ```go
 for ... := range list/dict { ... }
 ```
 
-Dieser Ausdruck erkennt automatisch, wie viele Rückgabewerte erwartet werden, und verhält sich unterschiedlich:
+Dieser Ausdruck erkennt automatisch, wie viele Rückgabewerte erwartet werden, und verhält sich
+unterschiedlich:
 
 - ein Rückgabewert: `range` gibt Index (bei Listen) oder Schlüssel (bei Maps) zurück;
-- zwei Rückgabewerte: `range` gibt Index und Wert (bei Listen) oder Schlüssel und Wert (bei Maps) zurück.
+- zwei Rückgabewerte: `range` gibt Index und Wert (bei Listen) oder Schlüssel und Wert (bei Maps)
+  zurück.
+
 
 #### Iteration über eine Liste
 
@@ -361,29 +375,31 @@ for _, value := range someList {
 ```
 
 Der leere Bezeichner hat noch weitere Anwendungen.
-Falls Sie mehr zum Thema wissen wollen: 
-[Effective Go](https://go.dev/doc/effective_go#blank).
+Falls Sie mehr zum Thema wissen wollen:
+[Effective Go: Blank Identifier](https://go.dev/doc/effective_go#blank).
 
 
 ### Typumwandlung
 
-Generell lässt sich diese Prozedur in Go sowie in Python folgendermaßen beschreiben: 
+Generell lässt sich diese Prozedur in Go sowie in Python folgendermaßen beschreiben:
 _T(v)_ konvertiert den Wert _v_ zum Typen _T_. Das gilt vor allem für Zahlen:
 
 ```go
 var x int8 = 42
-y := int64(x)               // kein Problem
+y := int64(x) // kein Problem
 
 var x int64 = 420
-y := int8(x)                // kann ein Problem werden; y ist -92
+y := int8(x) // kann ein Problem werden; y ist -92
 ```
 
 [WARNING]
 Das Problem: 8 Bits können viel weniger Zahlen darstellen als 64 Bits.
 
-Wenn ein `int64`-Wert zu einem `int8`-Wert umgewandelt wird, werden Zahlen aus dem Wertebereich von `int64` auf diese von `int8` abgebildet.
+Wenn ein `int64`-Wert zu einem `int8`-Wert umgewandelt wird, werden Zahlen aus dem Wertebereich von
+`int64` auf diese von `int8` abgebildet.
 Dabei ist nicht garantiert, dass es am Ende dieselbe Zahl ist, und Go schmeißt keinen Fehler.
-Das führt dazu, dass solche subtilen Über- oder Unterlauf-bezogenen Defekte doch in Ihrem Programm auftauchen können.
+Das führt dazu, dass solche subtilen Über- oder Unterlauf-bezogenen Defekte doch in Ihrem Programm
+auftauchen können.
 
 Das ist bei dem obigen Beispiel passiert:
 
@@ -396,13 +412,13 @@ Das ist bei dem obigen Beispiel passiert:
     => 01011100 
     => 2^6 + 2^4 + 2^3 + 2^2 = 92 (-92, da negativ)
 
-Grundwissen zur Darstellung von negativen Zahlen: 
-[Rechnerarchitektur, Folien von Prof. Dr.-Ing. Jochen Schiller](https://ftp.mi.fu-berlin.de/pub/schiller/inverted/CA/TI%20II%20CH02%20Data%20Arithmetic.pdf) 
+[Grundwissen zur Darstellung von negativen Zahlen: Rechnerarchitektur, Folien von Prof. Dr.-Ing. 
+Jochen Schiller](https://ftp.mi.fu-berlin.de/pub/schiller/inverted/CA/TI%20II%20CH02%20Data%20Arithmetic.pdf)
 (ab Folie 21).
 [ENDWARNING]
 
-Eine Typumwandlung von einer Zeichenkette zu einer Zahl ist immer kniffelig und kann sowohl in Go als auch in Python 
-fehlschlagen.
+Eine Typumwandlung von einer Zeichenkette zu einer Zahl ist immer kniffelig und kann sowohl in Go
+als auch in Python fehlschlagen.
 
 ```go
 // Go
@@ -440,14 +456,17 @@ stringValue = str(integerValue)
 ```
 [ENDFOLDOUT]
 
-`fmt.Sprintf()` ist eine Formatierungsfunktion, deren Syntax stark von `printf` in C inspiriert wurde.
-Sie bekommt eine Formatierungszeichenkette mit Platzhaltern und eine beliebige Anzahl von Werten, 
-die anstatt der Platzhalter angezeigt werden, und gibt eine formatierte Zeichenkette zurück. 
+`fmt.Sprintf()` ist eine Formatierungsfunktion, deren Syntax stark von `printf` in C inspiriert
+wurde.
+Sie bekommt eine Formatierungszeichenkette mit Platzhaltern und eine beliebige Anzahl von Werten,
+die anstatt der Platzhalter angezeigt werden, und gibt eine formatierte Zeichenkette zurück.
 
-`%v` ist ein universeller Platzhalter (steht für `value`), um den Wert einer Variable ausgeben zu lassen.
+`%v` ist ein universeller Platzhalter (steht für `value`), um den Wert einer Variable ausgeben zu
+lassen.
 Der Datentyp wird dann automatisch erkennt.
 
 [FOLDOUT::Die anderen relativ oft benutzten Platzhalter]
+
 - `%d` — eine Ganzzahl
 - `%s` — eine Zeichenkette
 - `%b` — eine Ganzzahl in Binärdarstellung
@@ -455,8 +474,8 @@ Der Datentyp wird dann automatisch erkennt.
 - `%f` — eine Fließkommazahl
 - `%T` — der Typ einer Variable
 
-Die komplette Liste finden Sie in der Dokumentation vom Paket `fmt`: 
-[Link](https://pkg.go.dev/fmt#pkg-overview).
+Die komplette Liste finden Sie in der
+[Dokumentation von fmt: Package Overview](https://pkg.go.dev/fmt#pkg-overview).
 [ENDFOLDOUT]
 
 ### Programmieren
@@ -465,7 +484,7 @@ Die komplette Liste finden Sie in der Dokumentation vom Paket `fmt`:
 
 Spezifikation:
 
-- Das Programm soll eine ganze Zahl _n_ von der Kommandozeile auslesen, mittels 
+- Das Programm soll eine ganze Zahl _n_ von der Kommandozeile auslesen, mittels
   `strconv.ParseInt(input, 10, 64)` zu `int64` umwandeln und
 - in einer `for`-Schleife alle ganzen Zahlen von 1 bis _n_ (inklusive) durchgehen und jeweils
     - "fizz" ausgeben, wenn die Zahl durch 3 teilbar ist
@@ -485,7 +504,7 @@ Diese Vorlage dürfen Sie als Ausgangspunkt benutzen:
 In dieser Aufgabe dürfen Sie den zweiten Wert (`error`) explizit ignorieren.
 [ENDNOTICE]
 
-[EC] Führen Sie das Programm aus (`go run go-basics1.go`) und geben Sie 20 ein.
+[EC] Führen Sie das Programm mittels `go run go-basics1.go` aus und geben Sie 20 ein.
 [ENDSECTION]
 
 [SECTION::submission::information,trace]
