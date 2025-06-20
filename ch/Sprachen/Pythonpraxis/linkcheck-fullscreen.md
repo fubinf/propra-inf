@@ -6,13 +6,10 @@ requires: linkcheck-core
 ---
 
 [SECTION::goal::product]
-
 Ich statte den Linkprüfer mit einer viel informativeren Anzeige aus. 
-
 [ENDSECTION]
 
 [SECTION::background::default]
-
 Leider bekommt man unterwegs derzeit beim Linkprüfer keinen guten Überblick:
 Wie viele URLshaben wir schon geprüft? Wie viele stehen derzeit noch aus? 
 Wie viele Probleme haben wir schon entdeckt?
@@ -20,7 +17,6 @@ Wie viele Probleme haben wir schon entdeckt?
 Und selbst, wenn man kontinuierlich zuschaut, kann man die gefundenen Probleme nur
 schwer verstehen, weil sie optisch dauernd wegspringen.
 Das geht mit ein wenig Aufwand viel besser!
-
 [ENDSECTION]
 
 [SECTION::instructions::loose]
@@ -82,7 +78,10 @@ sonst in der Standardfarbe.
   Diese und alle nachfolgenden Angaben ergeben nur für die Zeile `Totals` einen Sinn.
 - Spalte `time` zeigt, wie lange der Linkprüfer schon läuft (in Minuten und Sekunden).
 - Spalte `queues` ist die aktuelle Anzahl von Warteschlangen.
-  Bei uns ist das immer `1`, aber in der nächsten Aufgabe wird sich das ändern.
+  Bei Aufruf mit `--mode ratelimit` 
+  (also auf dem Entwicklungsstand von Aufgabe [PARTREF::linkcheck-core]) ist das immer `1`, aber 
+  bei Aufruf mit `--mode multiqueue` 
+  (also auf dem Entwicklungsstand von Aufgabe [PARTREF::linkcheck-multiqueue]) kommen auch höhere Werte vor.
 - Spalte `maxfreq` gibt die erlaubte Abrufgeschwindigkeit an wie auf der Kommandozeile vorgegeben.
 <!-- time estimate: 10 min -->
 
@@ -273,22 +272,27 @@ Schätzen Sie nun, wieviele Requests die Prüfung brauchen wird und wie lange si
 Inwiefern hat der Output Sie überrascht? 
 Was haben Sie Neues gelernt? 
 <!-- time estimate: 30 min -->
-
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Plausibilität prüfen]
 
 - Sieht der Output der selbstgewählten Website plausibel aus?
-- Sieht die `Display`-Klasse im Quellcode plausibel aus?
+- Sieht die `Display`-Klasse im Quellcode gemessen an obiger Vorlage plausibel aus?
 
 Dann geben wir uns schon zufrieden.
- 
+
+Wer genauer prüfen möchte, zieht den Quellcode in
+[TREEREF::linkcheck/linkcheck.py]
+heran (der allerdings mehrere linkcheck-Aufgaben zugleich abdeckt)
+und vergleicht mit dem nachfolgenden Kommandoprotokoll.
+Der Vergleich geht aber natürlich nur konzeptuell, weil ja jeder eine
+andere Website prüft. 
+Das Wichtigste ist die Zeile "Totals" und dass sie zu den Headern passt:
+[PROT::ALT:linkcheck/linkcheck-fullscreen.prot]
 [ENDINSTRUCTOR]
