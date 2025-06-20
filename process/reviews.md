@@ -9,10 +9,6 @@ Do not add new entries here.
 **Ich reviewe pro Kapitel die Einträge von oben nach unten. 
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
-### Sprachen
-- ch/Sprachen/Go0/go-interfaces.md (IB->LP->IB->LP->IB->LP)
-
-
 ### Testen
 - ch/Testen/Unittests/pytest_mocking.md (RR->DM->HA->LP->RR->LP->RR->LP)
 - ch/Testen/Unittests/pytest_mocking_freezegun.md (RR->DM->HA->LP->RR->LP->RR->LP) - leichte Überarbeitung
