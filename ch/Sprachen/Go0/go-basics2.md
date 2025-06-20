@@ -14,10 +14,11 @@ Ich habe mich mit den weiteren Konzepten von Go auseinandergesetzt und kann nun:
 [ENDSECTION]
 
 [SECTION::background::default]
-In dieser Aufgabe lernen Sie weitere wichtige Konstrukte in der Programmiersprache Go. 
-Zusammen mit [PARTREF::go-basics1] ergibt dies eine solide Grundlage, 
+In dieser Aufgabe lernen Sie weitere wichtige Konstrukte in der Programmiersprache Go.
+Zusammen mit [PARTREF::go-basics1] und [PARTREF::go-basics3] ergibt dies eine solide Grundlage,
 mithilfe derer Sie komplexere Programme implementieren können.
-Insbesondere geht es in dieser Aufgabe um Funktionen, Zeiger und die Unterscheidung zwischen Wert- und Referenztypen.
+Insbesondere geht es in dieser Aufgabe um Funktionen, Zeiger und die Unterscheidung zwischen
+Wert- und Referenztypen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -35,13 +36,13 @@ Eine Funktionsdefinition in Go besteht aus folgenden Teilen:
 
 * `func` Schlüsselwort;
 * Funktionsname (optional!);
-* Runde Klammern für die Parameterliste. 
+* Runde Klammern für die Parameterliste.
   Die Parameter werden nacheinander als Paare `name type` aufgelistet;
 * Signatur der Rückgabe:
     * leer, wenn die Funktion nichts zurückgibt (Prozedur);
     * `T`, wenn die Funktion einen Wert von Typ `T` zurückgibt;
     * ein Tupel `(T1, T2, ..., Tn)`, falls die Funktion mehrere Werte auf einmal zurückgibt;
-    * oder ein benanntes Tupel `(t1 T1, t2 T2, ..., tn Tn)`, falls die Rückgabewerte direkt 
+    * oder ein benanntes Tupel `(t1 T1, t2 T2, ..., tn Tn)`, falls die Rückgabewerte direkt
       in der Funktionssignatur deklariert werden sollen;
 * Funktionsrumpf in geschweiften Klammern.
 
@@ -78,7 +79,7 @@ func constructFullName(firstName, lastName string) string {
 
 // anonyme Funktion ("lambda" Funktion), 
 // die beim Aufruf definiert ist und mit zwei Zahlen aufgerufen wird
-func(x int, y int) {
+func (x int, y int) {
     return x * y
 }(4, 5)
 
@@ -104,29 +105,30 @@ Informieren Sie sich nun selbstständig über einige weitere funktionsbezogene K
 
 [EQ] Wann ist es Ihrer Meinung nach sinnvoll, benannte Rückgabewerte zu benutzen?
 
-[EQ] Was ist der Unterschied zwischen einer variadischen Funktion und einer Funktion, die eine Sammlung (einen [TERMREF::Slice (Golang)]) von Parametern bekommt?
+[EQ] Was ist der Unterschied zwischen einer variadischen Funktion und einer Funktion,
+die eine Sammlung (einen [TERMREF::Slice (Golang)]) von Parametern bekommt?
 
-[EQ] Welche Vor- beziehungsweise Nachteile einer Schreibweise gegenüber der anderen fallen Ihnen ein?
+[EQ] Welche Vor- beziehungsweise Nachteile einer Schreibweise gegenüber der anderen fallen Ihnen
+ein?
 
 
 ### Funktionen höherer Ordnung
 
-Eine Funktion kann eine andere Funktion als Parameter erhalten, 
+Eine Funktion kann eine andere Funktion als Parameter erhalten,
 wodurch sie zu einer Funktion höherer Ordnung wird:
 
 ```go
 func apply(
-    arg int, 
-    operation func(int) int,
+    arg int,
+    operation func (int) int,
 ) int {
     return operation(arg)
 }
 ```
 
-Diese Funktion nimmt zwei Parameter an: 
-ein `int` und eine Funktion, die ein `int` übergeben bekommt und ein `int` zurückgibt. 
-`operation` ist der Name der Funktion, und 
-`func(int) int` ist ihre Signatur.
+Diese Funktion nimmt zwei Parameter an:
+ein `int` und eine Funktion, die ein `int` übergeben bekommt und ein `int` zurückgibt.
+`operation` ist der Name der Funktion, und `func(int) int` ist ihre Signatur.
 
 Der Aufruf könnte so aussehen:
 
@@ -141,24 +143,27 @@ func main() {
 }
 ```
 
-Funktionen höherer Ordnung sind nützlich für die Erstellung flexibler und wiederverwendbarer Codebausteine.
-
+Funktionen höherer Ordnung sind nützlich für die Erstellung flexibler und wiederverwendbarer
+Codebausteine.
 
 [ER] Implementieren Sie eine Funktion `divide(a, b float64) (result float64, err error)`:
 diese muss die erste Zahl durch die zweite dividieren.
-Bei Erfolg gibt sie ein Tupel `(result, nil)` zurück; ansonsten `(0.0, fmt.Errorf("division by zero"))`.
+Bei Erfolg gibt sie ein Tupel `(result, nil)` zurück; ansonsten
+`(0.0, fmt.Errorf("division by zero"))`.
 Benutzen Sie hier benannte Rückgabewerte.
 
-[ER] Implementieren Sie `reduce(initialValue int, operation func(int, int) int, xs ...int) int` — eine Funktion, die 
-eine Funktion (`operation`) und eine beliebige Anzahl von Ganzzahlen als Parameter bekommt.
+[ER] Implementieren Sie `reduce(initialValue int, operation func(int, int) int, xs ...int) int` —
+eine Funktion, die eine Funktion (`operation`) und eine beliebige Anzahl von Ganzzahlen 
+als Parameter bekommt.
 Sie wendet sukzessive `operation` auf die Ganzzahlen an:
-Der erste Parameter von `operation` ist eine Akku-Variable 
-(anfangs `initialValue`, danach immer das vorherige Resultat), 
+Der erste Parameter von `operation` ist eine Akku-Variable
+(anfangs `initialValue`, danach immer das vorherige Resultat),
 der zweite der Reihe nach jedes Element der Liste `xs`.
-Mit `reduce(0, func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise 
+Mit `reduce(0, func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise
 die Summe der Ganzzahlen berechnet werden.
 
-[ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`-Funktion auf:
+[ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`
+-Funktion auf:
 
 ```go
 func testFunctions() {
@@ -167,7 +172,7 @@ func testFunctions() {
     fmt.Println(
         reduce(
             0,
-            func(acc, arg int) int { return acc + arg * arg }, 
+            func (acc, arg int) int { return acc + arg * arg },
             2, 3, 5, 7, 11, 13, 17, 19,
         ),
     )
@@ -178,22 +183,24 @@ func testFunctions() {
 ### Zeiger (pointers)
 
 Zeiger sind ein grundlegendes Konzept in der Programmierung, das es ermöglicht, per Speicheradresse
-auf Daten zuzugreifen. 
-Sie sind nützlich, um effizient mit großen Datenstrukturen zu arbeiten oder 
+auf Daten zuzugreifen.
+Sie sind nützlich, um effizient mit großen Datenstrukturen zu arbeiten oder
 Werte durch Referenz anstatt durch Kopie zu übergeben.
 
-Zeiger in Go ähneln denjenigen in C oder C++ mit einem wichtigen Unterschied — sie sind sicherer zu benutzen.
-Sie unterstützen keine 
-[Zeigerarithmetik](https://www.tutorialspoint.com/cprogramming/c_pointer_arithmetic.htm) 
-und gehören immer zu einem konkreten Typ 
+Zeiger in Go ähneln denjenigen in C oder C++ mit einem wichtigen Unterschied — sie sind sicherer zu
+benutzen.
+Sie unterstützen keine
+[Zeigerarithmetik](https://www.tutorialspoint.com/cprogramming/c_pointer_arithmetic.htm)
+und gehören immer zu einem konkreten Typ
 (`*T`, falls der Zeiger eine Variable von Typ `T` referenziert).
 
 Der Nullwert aller Zeiger ist `nil`.
-Ein Zeiger wird mithilfe des `&`-Operators erstellt. 
+Ein Zeiger wird mithilfe des `&`-Operators erstellt.
 Semantisch kann dieser als "Adresse von" gelesen werden: `&x` heißt "Adresse von `x`".
 
-Die Umkehroperation heißt Dereferenzierung — ein Zeiger wird in den "Wert an der Adresse `x`" umgewandelt.
-Dies geschieht mithilfe des Operators `*`, der sowohl zum Deklarieren eines Zeigertyps als auch 
+Die Umkehroperation heißt Dereferenzierung — ein Zeiger wird in den "Wert an der Adresse `x`"
+umgewandelt.
+Dies geschieht mithilfe des Operators `*`, der sowohl zum Deklarieren eines Zeigertyps als auch
 zur Dereferenzierung verwendet wird.
 
 Beispiel:
@@ -206,33 +213,34 @@ box := &content             // *int
 fmt.Println(content)        // 42
 ```
 
-In diesem Beispiel zeigt `box` auf die Adresse von `content`. 
+In diesem Beispiel zeigt `box` auf die Adresse von `content`.
 Durch Dereferenzierung kann der Wert an dieser Adresse gelesen oder geändert werden.
 
 
 ### "Pass-by-value" und "Pass-by-reference"
 
-Schauen Sie sich 
-[diesen Artikel](https://www.educative.io/answers/pass-by-value-vs-pass-by-reference) 
-an.
-Auch wenn das Beispiel dort in C++ ist, sollten Sie das richtige Gefühl für das Thema bekommen.
+Schauen Sie sich diesen Artikel an:
+[Pass-by-value vs. Pass-by-reference](https://www.educative.io/answers/pass-by-value-vs-pass-by-reference).
+Obwohl das Beispiel dort in C++ ist, sollten Sie das richtige Gefühl für das Thema bekommen.
 
-Schauen Sie sich außerdem
-[dieses Beispiel](https://kuree.gitbooks.io/the-go-programming-language-report/content/26/text.html) 
-an. 
+Schauen Sie sich außerdem diesen Beitrag an:
+[The Go Programming Language Report: Pass by value or Pass by reference](
+https://kuree.gitbooks.io/the-go-programming-language-report/content/26/text.html).
 Hier geht es um Go.
 
-Es gibt jedoch Datentypen, die sich wie Zeiger verhalten — solche Datentypen heißen _Referenztypen_. 
+Auch wenn Go alle Werte per Wert übergibt, gibt es Datentypen, die das `pass-by-reference`-Verhalten
+zeigen — solche Datentypen heißen _Referenztypen_. 
 
 
 ### Referenz- und Werttypen
 
-Mit _Referenztypen_ sind in der Regel die Typen gemeint, die sich wie ein Zeiger (Pointer) verhalten.
+Mit _Referenztypen_ sind in der Regel die Typen gemeint, die sich wie ein Zeiger (Pointer)
+verhalten.
 Das bedeutet unter anderem:
 
 - der Nullwert ist `nil`
 - sie enthalten intern Zeiger auf Daten
-- sie bewirken "pass-by-reference"-Verhalten
+- sie zeigen "pass-by-reference"-Verhalten
 
 _Werttypen_ sind anders: Sie stellen wirklich die Werte dar, sie sind **die Daten selbst**.
 Primitive Datentypen (Zahlen, boolesche Werte und Zeichenketten) sind Werttypen.
@@ -240,15 +248,17 @@ Primitive Datentypen (Zahlen, boolesche Werte und Zeichenketten) sind Werttypen.
 Alle Werttypen teilen sich folgende Eigenschaften:
 
 - der Nullwert ist nicht `nil`
-- sie bewirken "pass-by-value"-Verhalten: beim Zuweisen oder Übergeben als Parameter wird eine Kopie erstellt
+- sie zeigen "pass-by-value"-Verhalten: beim Zuweisen oder Übergeben als Parameter wird eine Kopie
+  erstellt
 - Vergleichbarkeit: zwei Variablen von einem Werttyp dürfen mittels `==` sinnvoll verglichen werden
 
-Nun betrachten wir Arrays, Slices und Maps detaillierter aus der Perspektive von Wert- und Referenztypen.
+Nun betrachten wir Arrays, Slices und Maps detaillierter aus der Perspektive von Wert- und
+Referenztypen.
 
 
 ### Array
 
-Ein Array ist ein Werttyp, der eine Sammlung von Einträgen darstellt, 
+Ein Array ist ein Werttyp, der eine Sammlung von Einträgen darstellt,
 wo alle Einträge zum gleichen Typ gehören und die Größe (Anzahl von Einträgen) fest ist.
 
 ```go
@@ -263,11 +273,11 @@ Reine Arrays werden in Go relativ selten verwendet, daher konzentrieren wir uns 
 
 ### Slice
 
-Slices bauen immer auf Arrays auf. 
+Slices bauen immer auf Arrays auf.
 Ein [TERMREF::Slice (Golang)] ist eine "View" bzw. eine Sicht in das zugrundeliegende Array
 und ist ein Referenztyp.
 
-Die Laufzeitdarstellung eines Slice (definiert in `go/src/runtime/slice.go`) 
+Die Laufzeitdarstellung eines Slice (definiert in `go/src/runtime/slice.go`)
 sieht intern wie folgt aus:
 
 ```go
@@ -278,22 +288,25 @@ type slice struct {
 }
 ```
 
-* `array`: das zugrundeliegende Array beziehungsweise ein Verweis auf die Speicherstelle, wo sich das Array befindet;
-* `len`: die Anzahl von Elementen in dem Slice. 
-  Diese Zahl ist immer zwischen 0 und der Größe des zugrundeliegenden Arrays und kann 
-  mittels der eingebauten Funktion 
+* `array`: das zugrundeliegende Array beziehungsweise ein Verweis auf die Speicherstelle, wo sich
+  das Array befindet;
+* `len`: die Anzahl von Elementen in dem Slice.
+  Diese Zahl ist immer zwischen 0 und der Größe des zugrundeliegenden Arrays und kann
+  mittels der eingebauten Funktion
   [`len()`](https://pkg.go.dev/builtin#len)
   ermittelt werden;
-* `cap`: die Anzahl von Elementen, die der Slice maximal beinhalten kann ("Capacity", Kapazität). 
-  Diese Zahl wird von der eingebauten Funktion 
+* `cap`: die Anzahl von Elementen, die der Slice maximal beinhalten kann ("Capacity", Kapazität).
+  Diese Zahl wird von der eingebauten Funktion
   [`cap()`](https://pkg.go.dev/builtin#cap)
-  zurückgegeben und stellt die Anzahl von Zellen 
+  zurückgegeben und stellt die Anzahl von Zellen
   bis zum Ende des zugrundeliegenden Arrays dar.
 
-Ein oder mehrere Elemente in einen Slice einfügen: 
-[append](https://pkg.go.dev/builtin#append).
+Informieren Sie sich über diese zwei Funktionen:
 
-Slices können entweder eigenständig erstellt werden oder als eine Sicht in ein existierendes Array:
+- [append](https://pkg.go.dev/builtin#append)
+- [copy](https://pkg.go.dev/builtin#copy)
+
+Slices können entweder eigenständig instanziiert werden oder als eine Sicht in ein existierendes Array:
 
 ```go
 sl := make([]int, 4)            // Typ und initiale Größe eines Slice
@@ -325,17 +338,28 @@ sl := arr[:3]                   // kreiert einen Slice vom Anfang des Arrays bis
 sl = append(sl, 8)              // überschreibt die "3" im ursprünglichen Array arr!
 ```
 
-Wie bereits erwähnt, können Slices mithilfe der Funktion `make([]T, initialSize)` kreiert werden. 
-Das zugrundeliegende Array wird dann automatisch erstellt und hat exakt die Größe von `initialSize`.
+Wie bereits erwähnt, können Slices mithilfe der Funktion `make([]T, initialSize)` kreiert werden.
+Das zugrundeliegende Array wird dann automatisch erstellt und hat die Größe von `initialSize`.
 
-Ein solcher Slice verhält sich im Wesentlichen wie ein dynamisches Array: 
-Sobald versucht wird, zum vollen Slice der Größe `initialSize` ein anderes Element hinzuzufügen, 
-wird ein neues Array doppelten Größe allokiert.
+Ein solcher Slice verhält sich im Wesentlichen wie ein dynamisches Array:
+Sobald es versucht wird, zum vollen Slice ein anderes Element hinzuzufügen,
+wird ein neues Array doppelter Größe allokiert.
 
+Lesen Sie nun diesen Artikel aufmerksam durch:
+[Go by Example: Slices](https://gobyexample.com/slices).
+
+[EQ] Welche Aspekte von Slices würden Sie als fehleranfällig bezeichnen?
+
+[FOLDOUT::weitere Quellen]
+[The Go Blog: Go Slices — usage and internals](https://go.dev/blog/slices-intro)
+
+[Effective Go: Slices](https://go.dev/doc/effective_go#slices)
+[ENDFOLDOUT]
 
 ### Map
 
-Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre Schlüssel ermöglicht. 
+Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre
+Schlüssel ermöglicht.
 
 Eine Map ist ein Referenztyp und wird ebenfalls mithilfe der Funktion `make()` erstellt:
 
@@ -364,7 +388,7 @@ Ein Schlüssel-Wert-Paar kann explizit entfernt werden:
 ```go
 studentAges := make(map[string]int)
 
-studentAges["Max"] = 23 
+studentAges["Max"] = 23
 
 if value, isThere := studentAges["Max"]; isThere {
     delete(studentAges, "Max")
@@ -395,18 +419,21 @@ m := make(map[string]int)
 
 Implementieren Sie die folgenden Funktionen:
 
-[ER] `func AddElement(slice []int, element, at int)`: 
+[ER] `func AddElement(slice []int, element, at int)`:
 ein Element an einem Index `at` in einen Slice einfügen;
-das Element, das vorher an dieser Stelle stand, und alle nachfolgenden rücken eine Position nach rechts.
+das Element, das vorher an dieser Stelle stand, und alle nachfolgenden rücken eine Position nach
+rechts.
 
-[ER] `func RemoveElement(slice []int, at int)`: 
+[ER] `func RemoveElement(slice []int, at int)`:
 ein Element an einem Index `at` entfernen und die Größe des Slice entsprechend anpassen.
+Alle nachfolgenden Elemente rücken eine Position nach links.
 
 [ER] `func AddElementIfNotThere(m map[string]int, key string, value int)`:
 ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
 Ansonsten keine Aktion.
 
-[EC] Fügen Sie die folgenden Testfunktionen Ihrem Programm bei und rufen Sie sie aus der `main`-Funktion auf:
+[ER] Fügen Sie die folgenden Testfunktionen Ihrem Programm bei und rufen Sie sie aus der `main`
+-Funktion auf:
 
 ```go
 func testSlicesAndMaps() {
@@ -451,6 +478,9 @@ func main() {
     testSlicesAndMaps()
 }
 ```
+
+[EC] Führen Sie das Programm mittels `go run go-basics2.go` aus
+und geben Sie die Ausgabe in Ihrem Kommandoprotokoll ab.
 [ENDSECTION]
 
 [SECTION::submission::trace,program]
@@ -460,16 +490,16 @@ func main() {
 
 [INSTRUCTOR::Hinweise]
 Korrektur von `testDivideAndReduce` und `testSlicesAndMaps`:
-die Funktionen sollten unverändert in dem abgegebenen Quellcode präsent sein, 
+die Funktionen sollten unverändert in dem abgegebenen Quellcode präsent sein,
 damit das Kommandoprotokoll nicht verfälscht wird.
 
-Korrektur von `AddElement`, `RemoveElement`: 
+Korrektur von `AddElement`, `RemoveElement`:
 Der Zweck ist, dass Studierende Slices erstellen und modifizieren können.
 
 Korrektur von `AddElementIfNotThere`:
 Der Zweck ist, dass Studierende überprüfen können, ob der Wert da ist.
-Hier ist wichtig zu verstehen, wie man einen Nullwert von einem tatsächlich vorhandenen 
-Wert unterscheiden kann — nämlich mit der Schreibweise 
+Hier ist wichtig zu verstehen, wie man einen Nullwert von einem tatsächlich vorhandenen
+Wert unterscheiden kann — nämlich mit der Schreibweise
 `if value, isThere := studentAges["Max"]; isThere { }`.
 
 **Kommandoprotokoll**
