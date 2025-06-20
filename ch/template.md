@@ -72,7 +72,7 @@ eingeklappter Text, z.B. für längeren Sourcecode
 
 [INSTRUCTOR::]
 Hinweise an die Tutoren zur Aufgabenkorrektur
-[INCLUDE::ALT]
+[INCLUDE::ALT:]
 [TREEREF::Pfad/zu/Musterlösung]
 [PROT::Pfad/zu/Kommandoprotokoll]
 [ENDINSTRUCTOR]
