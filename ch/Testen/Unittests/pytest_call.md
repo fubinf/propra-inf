@@ -29,8 +29,33 @@ Klonen Sie folgendes Repository in Ihren [TERMREF::Hilfsbereich]:
 git clone git@github.com:psf/requests.git --tag v2.32.2
 ```
 
-TODO_1_ruhe: Abhängigkeiten installieren.
+Wir wollen jedoch dieses Paket nicht als Entwickler in einer eigenen Anwendung verwenden, sondern die vorhandene Testsammlung kennenlernen.
+Um das machen zu können, müssen wir noch die Abhängigkeiten installieren.
+Das Projekt wird glücklicher Weise mit einer `requirements.txt` bereitgestellt.
+Diese Datei erlaubt es uns die Abhängigkeiten mit einem Kommando zu installieren.
+Führen Sie folgendes Kommando dazu aus:
 
+```shell
+pip install -r requirements-dev.txt
+```
+
+[HINT::Installationsprpoblem]
+Achten Sie darauf, dass Sie sich im Verzeichnis `requests -tagv2.32.2` befinden oder den Pfad der `requirements-dev.txt` Datei anpassen.
+Ich empfehle Ersteres.
+[ENDHINT]
+
+[INFO]
+Sicherlich ist Ihnen aufgefallen, dass zuvor `requirements.txt` und später `requirements-dev.txt` erwähnt wurde.
+Hier eine kurze Erklärung:
+
+`requirements.txt` enthält die grundlegenden Abhängigkeiten, die benötigt werden, damit das Python-Projekt läuft.
+Diese Datei wird meist für die Installation im Produktivbetrieb verwendet.
+
+`requirements-dev.txt` enthält zusätzliche Abhängigkeiten, die speziell für die Entwicklung und das Testen des Projekts benötigt werden,
+z.B. Test-Frameworks, Linter oder Build-Tools.
+Sie baut oft auf `requirements.txt` auf und erweitert diese um Entwicklungs-Tools.
+
+[ENDINFO]
 
 ### Testsuite ausprobieren, Einlesen in die Dokumentation
 
@@ -45,8 +70,49 @@ Genaueres findet man dann in der offiziellen
 mittels Volltextsuche nach dem Optionsnamen (z.B. "--lf").
 Machen Sie diesen Schritt am besten parallel zum Lösen der jeweiligen Aufgaben unten.
 
-TODO_1_ruhe: Erfolgreichen Testlauf machen zur Orientierung.
+Zunächst lassen Sie die vorhanden Tests durchlaufen und schauen sich das Ergebnis an.
+Führen Sie mittel dem Kommando `pytest` die Tests aus.
 
+Im folgenden nehmen wir an, dass der Test wie gewollt durchgelaufen ist.
+Demnach sollten Sie folgendes sehen:
+
+```shell
+======================================================== test session starts ========================================================
+platform darwin -- Python 3.13.1, pytest-8.3.5, pluggy-1.5.0
+rootdir: /requets -tagv2.32.2
+configfile: pyproject.toml
+testpaths: tests
+plugins: httpbin-2.1.0, cov-6.1.1
+collected 608 items                                                                                                                 
+
+tests/test_adapters.py .                                                                                                      [  0%]
+tests/test_help.py ...                                                                                                        [  0%]
+tests/test_hooks.py ...                                                                                                       [  1%]
+tests/test_lowlevel.py ....................                                                                                   [  4%]
+tests/test_packages.py ...                                                                                                    [  4%]
+tests/test_requests.py ...................................................................................................... [ 21%]
+.................spytest-httpbin server hit an exception serving request: [SSL: TLSV1_ALERT_UNKNOWN_CA] tlsv1 alert unknown ca (_ssl.c:1018)
+attempting to ignore so the rest of the tests can run
+........................................................................................................... [ 42%]
+.....x..................................................................................................                      [ 59%]
+tests/test_structures.py ....................                                                                                 [ 62%]
+tests/test_testserver.py ......s....                                                                                          [ 64%]
+tests/test_utils.py ..s...................................................................................................... [ 81%]
+..............................................................................................sssssssssss.....s               [100%]
+
+========================================================= warnings summary ==========================================================
+```
+
+Was sehen wir hier:
+
+- pytest hat insgesamt 608 Tests gefunden und ausgeführt.
+- Die Punkte (.) stehen für erfolgreich bestandene Tests.
+- Ein x markiert übersprungene (skipped) Tests, meist wegen fehlender Voraussetzungen oder bestimmter Einstellungen.
+- Ein s steht für einen Test, der explizit als "skipped" markiert wurde.
+- Es gab einen Fehler mit dem Test-Server (httpbin): [SSL: TLSV1_ALERT_UNKNOWN_CA], aber pytest hat versucht, diesen Fehler zu ignorieren, damit der Rest der Tests weiterlaufen kann.
+- Am Ende siehst du noch eine Warnungs-Zusammenfassung (warnings summary), die auf eventuelle Probleme oder veraltete Funktionen hinweist.
+
+Kurz: Die meisten Tests wurden erfolgreich ausgeführt, einige wurden übersprungen oder haben Warnungen erzeugt, aber es gab keine großen Fehler, die den Testlauf komplett gestoppt hätten.
 
 ### Für Fehlschläge sorgen
 
@@ -65,17 +131,46 @@ cd v2.32.2
 echo "bXYgcmVxdWlyZW1lbnRzLWRldi50eHQgcmVxdWlyZW1lbnQtZGV2ZWxvcC50eHQ=" | base64 --decode | bash
 ```
 
-
 ### Tests auf verschiedene Weisen ausführen
 
-TODO_1_ruhe: Fehlschlagenden Testlauf machen als Ausgangspunkt der Aufgaben.
+Verwenden Sie erneut den Befehl `pytest`, um die selben Tests auszuführen.
+Dieses Mal werden Ihnen aber fehlschläge aufgelistet.
+
+```shell
+========================================================================== test session starts ===========================================================================
+platform darwin -- Python 3.13.1, pytest-8.3.5, pluggy-1.5.0
+rootdir: /requets -tagv2.32.2
+configfile: pyproject.toml
+testpaths: tests
+plugins: httpbin-2.1.0, cov-6.1.1
+collected 608 items                                                                                                                                                      
+
+tests/test_adapters.py .                                                                                                                                           [  0%]
+tests/test_help.py ...                                                                                                                                             [  0%]
+tests/test_hooks.py ...                                                                                                                                            [  1%]
+tests/test_lowlevel.py ....................                                                                                                                        [  4%]
+tests/test_packages.py ...                                                                                                                                         [  4%]
+tests/test_requests.py ............................................................................................F..F.F.....................spytest-httpbin server hit an exception serving request: [SSL: TLSV1_ALERT_UNKNOWN_CA] tlsv1 alert unknown ca (_ssl.c:1018)
+attempting to ignore so the rest of the tests can run
+................... [ 27%]
+.............................................................................................x.................................................................... [ 54%]
+..............................                                                                                                                                     [ 59%]
+tests/test_structures.py ....................                                                                                                                      [ 62%]
+tests/test_testserver.py ......s....                                                                                                                               [ 64%]
+tests/test_utils.py ..s........................................................................................................................................... [ 87%]
+.........................................................sssssssssss.....s                                                                                         [100%]
+
+================================================================================ FAILURES ================================================================================
+```
+
+Neben den bekannten erfolgreichen und übersprungenen Testfällen, kamen drei weitere Fehlschläge - markiert durch ein F - hinzu.
 
 Ab jetzt sieht die Testausführung aus Teil 1 etwas anders aus, was von uns auch gewollt ist.
 
-Sie, als Entwickler, haben einen Testfehlschlag als Antwort erhalten, diesen aber direkt gefixt -
-so glauben Sie es zumindest.
-Um das zu überprüfen, wollen Sie den Test erneut laufen lassen, aber dieses Mal die zuvor
-fehlgeschlagene Testdatei.
+Stellen Sie sich als Entwickler vor, dass Sie den Testfehlschlag durch eine Codeanpassung vermeindlich gefixt haben.
+Angenommen, Die Testsammlung läuft mit `pytest` einige Minuten lang bis zum Ende.
+Sie wollen jedoch nur erfahren, ob alle Testfälle in der zuvor fehlgeschlagenen Testdatei erfolgreich durchlaufen und nicht jedesmal lange auf das Ergebnis warten.
+Um das zu überprüfen, wollen Sie den Test erneut laufen lassen, aber dieses Mal nur die zuvor fehlgeschlagene Testdatei.
 
 [ER] Lesen Sie in der Dokumentation nach, wie das geht, und 
 starten Sie den Test nur auf die fehlgeschlagenen Dateien.
@@ -134,6 +229,18 @@ zu überspringen. Löschen Sie, falls noch vorhanden, die Skip-Anweisung.
 
 [ER] Beseitigen Sie den Fehler und führen Sie Pytest ohne weitere Parameter aus. Wie sieht die Ausgabe
 jetzt aus?
+
+[HINT::Weg zur Lösung des Porblems]
+Betrachten Sie die am Ende einer einfachen `pytest` Ausführung ausgegebenen Informationen. (Letzten 3 Zeilen)
+[ENDHINT]
+
+### Reflektion
+
+Jetzt, wo Sie einige Kommandos kennengelernt und ausgeführt haben, konnten Sie unteschiedliche Ergebnisse und Ausgaben sehen.
+
+[EQ] Welches Kommando war aus Ihrer Sicht das am effektivsten, um die eigentliche
+Problematik zu erkennen.
+[EQ] Wären Sie so oder so ähnlich auch vorgegangen oder wären Ihnen alternative Ausgaben oder Schritte lieber gewesen?
 
 [ENDSECTION]
 [SECTION::submission::trace]
