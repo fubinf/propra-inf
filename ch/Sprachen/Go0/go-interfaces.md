@@ -1,5 +1,5 @@
 title: Go Interfaces
-stage: alpha
+stage: beta
 timevalue: 3.5
 difficulty: 2
 assumes: go-basics1, go-basics2, go-basics3

@@ -1,4 +1,5 @@
 title: Grundlagen von Go
+stage: alpha
 ---
 
 Diese Aufgabengruppe richtet sich an diejenigen, die sich gerne eine neue Programmiersprache aneignen wollen und einen
