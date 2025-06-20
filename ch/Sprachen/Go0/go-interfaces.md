@@ -13,12 +13,12 @@ Ich verstehe, was Interfaces in Go sind, welchem Zweck sie dienen, wie sie imple
 
 ### Was ist ein Interface?
 
-In Golang ist ein Interface eine Menge an Funktionssignaturen. 
+In Golang ist ein Interface eine Menge an Funktionssignaturen.
 Ein Typ **implementiert** ein Interface, wenn dieser Typ
 Methoden hat, die den vorausgesetzten Signaturen entsprechen.
 
-Alle Interfaces in Go sind **implizit**: Sobald die nötigen Methoden implementiert sind, ist auch das ganze Interface
-implementiert. 
+Alle Interfaces in Go sind **implizit**: Sobald die nötigen Methoden implementiert sind, 
+ist auch das ganze Interface implementiert. 
 Das Interface muss nicht namentlich erwähnt werden und es wird kein `implements`-Schlüsselwort vorausgesetzt.
 
 
@@ -32,7 +32,7 @@ type Speaker interface {
 }
 ```
 
-Und nun ein paar Haustiere: Strukturen `Cat` und `Dog`. 
+Und nun ein paar Haustiere: Strukturen `Cat` und `Dog`.
 Diese zwei Typen sollen die `Speak()` Methode implementieren und werden dadurch automatisch zu `Speaker`n.
 Dann ist anschließend folgendes möglich:
 
@@ -53,7 +53,8 @@ Woof!
 ```
 
 [ER] Definieren Sie zwei Strukturen, `Cat` und `Dog`.
-Implementieren Sie für jede Struktur das Interface `Speaker`, sodass der Programmausschnitt oben die erwartete Ausgabe produziert.
+Implementieren Sie für jede Struktur das Interface `Speaker`,
+sodass der Programmausschnitt oben die erwartete Ausgabe produziert.
 
 
 ### Wichtige Standard-Interfaces
@@ -61,15 +62,15 @@ Implementieren Sie für jede Struktur das Interface `Speaker`, sodass der Progra
 #### Stringer
 
 Das eingebaute `Stringer`-Interface sorgt dafür, dass ein Typ korrekt als `string` dargestellt wird. 
-Das Interface verlangt nur eine Methode `String() string` .
+Das Interface verlangt nur eine Methode `String() string`.
 
 [ER] Implementieren Sie das Interface `Stringer` für einen neuen Typ `MyString`: 
 
 1. Definieren Sie eine Struktur `MyString` (nicht zu verwechseln mit dem eingebauten Datentyp `string`) 
    mit zwei Feldern: `value string` und `lastByteRead int`.
 2. Definieren Sie eine Konstruktor-Methode `NewString() *MyString`.
-3. Implementieren Sie das `Stringer`-Interface, sodass Funktionen wie `fmt.Println()` nicht die ganze Struktur im 
-   Terminal ausgeben, sondern nur das `value`.
+3. Implementieren Sie das `Stringer`-Interface, sodass Funktionen wie `fmt.Println()` 
+   nicht die ganze Struktur im Terminal ausgeben, sondern nur das `value`.
 
 Ein weiteres Beispiel können Sie sich hier anschauen: 
 [A Tour Of Go: Stringers](https://go.dev/tour/methods/17).
@@ -94,10 +95,11 @@ falls das Auslesen nicht weiter möglich ist.
     - sobald das Ende erreicht wurde, ein Paar `(n, fmt.Errorf("EOF"))` zurückgeben.
 2. Testen Sie Ihre Implementierung mittels des klassischen gepufferten Auslesens:
     - einen Puffer definieren (beispielsweise der Größe 4);
-    - in einer Endlosschleife die `Read(buf)` Methode aufrufen und nach jeder Iteration den Inhalt im Terminal ausgeben,
-      bis ein `error` auftaucht.
+    - in einer Endlosschleife die `Read(buf)` Methode aufrufen und nach jeder Iteration
+      den Inhalt im Terminal ausgeben, bis ein `error` auftaucht.
 
-Ein Referenzbeispiel: [A Tour Of Go: Readers](https://go.dev/tour/methods/21).
+Ein Referenzbeispiel: 
+[A Tour Of Go: Readers](https://go.dev/tour/methods/21).
 
 Die 
 [Dokumentation von `io.Reader`](https://pkg.go.dev/io#Reader) 
@@ -114,36 +116,38 @@ gibt die Anzahl von den geschriebenen Bytes und den Fehler zurück, falls etwas 
 
 1. Implementieren Sie die `Write` Methode auf der `MyString` Struktur. 
    Diese soll den übergebenen Puffer als `string` an die bereits vorhandene Zeichenkette (`value`) anhängen.
-2. Testen Sie Ihre Implementierung, indem Sie einen `MyString` erzeugen und eine beliebige Nachricht per `Write`
-   in diesen `MyString` schreiben.
+2. Testen Sie Ihre Implementierung, indem Sie einen `MyString` erzeugen und eine beliebige Nachricht 
+   per `Write` in diesen `MyString` schreiben.
 
-`io.Writer`: [Dokumentation](https://pkg.go.dev/io#Writer)
+`io.Writer`: 
+[Dokumentation](https://pkg.go.dev/io#Writer)
 
 [NOTICE]
 **Was ist der Zweck?**
 
-Die Implementierung der `Reader`- und `Writer`-Methoden mag auf den ersten Blick wie eine reine 
+Die Implementierung der `Reader`- und `Writer`-Methoden mag auf den ersten Blick wie eine reine
 Übungsaufgabe wirken — in der Tat legt sie aber das Fundament für fortgeschrittene Go-Programmierung.
 
-In späteren Aufgaben werden Sie intensiv mit Dateisystem und Netzwerkkommunikation arbeiten, 
-wo die `Reader`- und `Writer`-Interfaces eine zentrale Rolle spielen. 
+In späteren Aufgaben werden Sie intensiv mit Dateisystem und Netzwerkkommunikation arbeiten,
+wo die `Reader`- und `Writer`-Interfaces eine zentrale Rolle spielen.
 Durch die Erstellung eigener `Reader`/`Writer`-Strukturen erwerben Sie zwei entscheidende Fähigkeiten:
 
-- ein deutlich besseres Verständnis von der I/O-Methoden der Standardbibliothek, 
+- ein deutlich besseres Verständnis von der I/O-Methoden der Standardbibliothek,
   da Sie deren zugrundeliegende Mechanismen selbst implementiert haben;
-- Sie können I/O-Operationen eleganter abstrahieren und das führt zu kompakterem Code und 
+- Sie können I/O-Operationen eleganter abstrahieren und das führt zu kompakterem Code und
   erhöht gleichzeitig die Lesbarkeit Ihrer Programme.
 [ENDNOTICE]
 
 
 #### Error
 
-Das Interface `Error` verlangt nur die `Error() string` Methode. Wie können wir das ausnutzen?
+Das Interface `Error` verlangt nur die `Error() string` Methode.
+Wie können wir das ausnutzen?
 
-Stellen Sie sich vor, Sie wollen eine Menge von verschiedenen `Error`-Strukturen haben, die jeweils gewisse nützliche 
-Daten beinhalten: 
-Beispielsweise hat ein `HTTPError` einen `statusCode`, 
-ein `FileError` einen `reason`, warum die Operation fehlgeschlagen ist (Zugriff nicht gestattet / Datei existiert nicht / etc). 
+Stellen Sie sich vor, Sie wollen eine Menge von verschiedenen `Error`-Strukturen haben, 
+die jeweils gewisse nützliche Daten beinhalten: Beispielsweise hat ein `HTTPError` einen `statusCode`, 
+ein `FileError` einen `reason`, warum die Operation fehlgeschlagen ist 
+(Zugriff nicht gestattet / Datei existiert nicht / etc). 
 Dieses Spektrum können wir mithilfe des `Error`-Interfaces abbilden.
 
 [WARNING]
@@ -154,13 +158,16 @@ Es darf kein echtes Szenario geben, wo `FileError`s neben `HTTPError`s behandelt
 [ER] Das Interface `Error` zweimal implementieren:
 
 1. Definieren Sie eine Struktur `HTTPError` mit einem Feld `statusCode int`.
-2. Implementieren Sie das `Error`-Interface. Der `statusCode` muss in der Fehlermeldung erwähnt werden.
+2. Implementieren Sie das `Error`-Interface. 
+   Der `statusCode` muss in der Fehlermeldung erwähnt werden.
 3. Definieren Sie eine Struktur `FileError` mit einem Feld `reason string`.
-4. Implementieren Sie das `Error`-Interface. Der `reason` muss in der Fehlermeldung erwähnt werden.
+4. Implementieren Sie das `Error`-Interface. 
+   Der `reason` muss in der Fehlermeldung erwähnt werden.
 
 Referenzen:
 
-- Ein Beispiel in [A Tour Of Go: Errors](https://go.dev/tour/methods/19)
+- Ein Beispiel in 
+  [A Tour Of Go: Errors](https://go.dev/tour/methods/19)
 - Eine ausführlichere Erklärung, was ein `error` ist und wie er benutzt wird: 
   [Exercism.org: Errors](https://exercism.org/tracks/go/concepts/errors)
 
@@ -217,16 +224,31 @@ Das ist die Go-Lösung für die Rolle, die `Object` in Java oder `void*` in C ha
 
 [A Tour Of Go: The empty interface](https://go.dev/tour/methods/14).
 
-[ER] Informieren Sie sich über Type Switch und Type Assertion: 
+Informieren Sie sich über Type Switch und Type Assertion:
 [Effective Go: Interface conversions](https://go.dev/doc/effective_go#interface_conversions).
 
 [ER] Implementieren Sie eine Funktion `HandleSpeaker(s Speaker)`.
-Diese soll einen Parameter vom Typ `Speaker` annehmen und mithilfe von Type Switch oder Type Assertion erkennen, 
+Diese soll einen Parameter vom Typ `Speaker` annehmen und mithilfe von Type Switch oder Type Assertion erkennen,
 ob der `Speaker` ein `Cat` oder ein `Dog` ist.
-Je nachdem, was für ein `Speaker` erkannt wurde, soll die Funktion eine informative Meldung auf die Kommandozeile ausgeben.
+Je nachdem, was für ein `Speaker` erkannt wurde,
+soll die Funktion eine informative Meldung auf die Kommandozeile ausgeben.
+
+[ER] Fügen Sie den folgenden Codeausschnitt ihrem Programm hinzu.
+Falls Sie die Funktion `main` bereits benutzt haben, ersetzten Sie den Inhalt durch diesen aus dem Ausschnitt.
+Den folgenden Code dürfen Sie nicht ändern!
+
+```go
+[INCLUDE::snippets/go-interfaces-control-snippet.go]
+```
+
+[EC] Führen Sie einmal den Befehl `go run interfaces.go` aus und 
+geben Sie die Ausgabe in Ihrem Kommandoprotokoll ab.
+[ENDSECTION]
 
 [SECTION::submission::trace,program]
-Geben Sie den Quellcode in einer ausführbaren Datei `interfaces.go` ab. 
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+
+Geben Sie den Quellcode in einer ausführbaren Datei `interfaces.go` ab.
 Diese muss folgendes beinhalten:
 
 * `type Speaker interface`
@@ -239,24 +261,11 @@ Diese muss folgendes beinhalten:
 * `(s *MyString) Read(p []byte) (n int, err error)`
 * `(s *MyString) Write(p []byte) (n int, err error)`
 * `(s *MyString) String() string`
-* `type FileError struct` 
+* `type FileError struct`
     * `(e FileError) Error() string`
 * `type HTTPError struct` mit `Error()`
     * `(e HTTPError) Error() string`
 * `HandleSpeaker(s Speaker)`
-
-[ER] Fügen Sie den folgenden Codeausschnitt ihrem Programm hinzu.
-Falls Sie die Funktion `main` bereits benutzt haben, ersetzten Sie den Inhalt durch diesen aus dem Ausschnitt.
-Den folgenden Code dürfen Sie nicht ändern!
-
-```go
-[INCLUDE::snippets/go-interfaces-control-snippet.go]
-```
-
-[EC] `go run interfaces.go`
-
-[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Korrekturhinweise]
