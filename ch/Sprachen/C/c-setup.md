@@ -5,6 +5,7 @@ difficulty: 2
 assumes: git-ignore
 ---
 [SECTION::goal::product]
+
 - Ich habe sichergestellt, dass die GCC-[TERMREF::Werkzeugkette] für C/C++
   funktioniert.
 - Ich habe eine funktionierende IDE.
