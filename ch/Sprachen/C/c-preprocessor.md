@@ -23,20 +23,43 @@ Die Hauptaufgaben sind:
 - Konditionale Ersetzungen
 - Makros
 
-Zu beachten ist: Der Präprozessor ist Teil der Übersetzung Ihres Programmes.
+All jenes dient dazu, Sie als Entwickler zu unterstützen, repetitive Aufgaben
+zu erleichtern und Code-Sharing zu ermöglichen.
+[ENDSECTION]
+
+[SECTION::instructions::detailed]
+Der Präprozessor ist Teil der Übersetzung Ihres Programmes.
 Die Funktionsweise des Präprozessors ist vergleichbar einer Textersetzung,
 was im Umkehrschluss bedeutet, dass Sie nach dem Präprozessor-Schritt keine
 Anzeichen der von Ihnen eingeführten Makroname, `#includes` oder Konditionalen
 mehr finden können.
 
-Dieser Task deckt mit Nichten die gesamten Eigenschaften des C-Präprozessors
+Diese Aufgabe deckt mit Nichten die gesamten Eigenschaften des C-Präprozessors
 ab, es wird ich auf die wichtigsten und am häufigsten genutzten konzentriert.
-Für all jene die mehr über die Fähigkeiten wissen wollen,
-[hier](https://gcc.gnu.org/onlinedocs/cpp/) findet sich das Handbuch des GCC
+Für all jene die mehr über die Fähigkeiten wissen wollen, findet
+[hier](https://gcc.gnu.org/onlinedocs/cpp/) das Handbuch des GCC
 C-Präprozessors.
-[ENDSECTION]
 
-[SECTION::instructions::detailed]
+[NOTICE]
+Da CLion davon ausgeht nur einen Einstiegspunkt in einem Projekt zu haben,
+müssen Sie für diese Aufgabe ein CLion-Projekt **für jede Teilaufgabe**
+anlegen.
+Damit Sie weiterhin den Überblick behalten, empfiehlt es sich, folgende
+Verzeichnisstruktur zu nutzen:
+
+```
+Programmierpraktikum
+├─README.md
+└─Sprachen
+  └─C
+    └─c-preprocessor
+      ├─includes
+      │ └─ ... Die Dateien des Projekts
+      ├─conditionals
+      │ └─ ... Die Dateien des Projekts
+```
+[ENDNOTICE]
+
 ### Einbinden von Header-Dateien
 #### Was sind Header-Dateien
 
@@ -68,13 +91,14 @@ Diese List ist standardmäßig leer und wird mit dem `-i` Kommandozeilenparamete
 befüllt.
 Als letztes wird in den selben Verzeichnissen wie mit `<>` gesucht.
 
-[EQ] Legen Sie folgende Dateien mit dem aufgeführten Inhalt an:
+Legen Sie das Projekt `includes` an.  
+Fügen Sie folgende Dateien hinzu.
 
-  - print.h
+  - `print.h`
 ```c
 void print(const char *string);
 ```
-  - print.c
+  - `print.c`
 ```c
 #include <stdio.h>
 
@@ -83,7 +107,7 @@ void print(const char *string) {
 }
 ```
 
-Legen Sie eine Datei `main-includes.c` mit folgendem Inhalt an.
+Überschreiben Sie den Inhalt der `main.c` Datei mit folgendem.
 ```c
 #include ...
 
@@ -93,11 +117,13 @@ int main(void) {
   return 0;
 }
 ```
+
 Vervollständigen Sie die `#include`-Direktive (...) einmal mit `<>`, `""` um
 `print.h` einzubinden.
-Bauen Sie das Program indem Sie das grüne Dreieck in der rechten oberen
-Ecke anklicken während Sie die `main-includes.c` als aktiven Tab haben.
-Beschreiben Sie kurz, weshalb Sie bei einer der Varianten eine Fehler bekommen.
+Bauen und führen Sie das Programm aus.
+
+[EQ] Beschreiben Sie kurz, weshalb Sie bei einer der Varianten eine Fehler
+bekommen.
 
 [WARNING]
 Der C Präprozessor ist nicht sonderlich intelligent was `#include` angeht, denn
@@ -155,9 +181,10 @@ Die Allgemeine Form:
 #endif
 ```
 
-[ER] Legen Sie folgende Dateien mit dem aufgeführten Inhalt an:
+Legen Sie das Projekt `includes` an.
+Fügen Sie folgende Dateien hinzu.
 
-  - lib.h
+  - `lib.h`
 ```c
 #ifndef LIB_H
 #define LIB_H
@@ -166,12 +193,13 @@ void print(const char *string);
 
 #endif
 ```
-  - lib.c
+  - `lib.c`
 ```c
 #include <stdio.h>
 
 ```
-  - main-conditional.c
+
+Überschreiben Sie den Inhalt der `main.c` Datei mit folgendem.
 ```c
 #include "lib.h"
 
@@ -182,7 +210,8 @@ int main(void) {
 }
 ```
 
-Vervollständigen Sie `lib.c` so, dass Sie drei konditionale Blöcke erhalten.
+[ER] Vervollständigen Sie `lib.c` so, dass Sie drei konditionale Blöcke
+erhalten.
 Ein Block soll aktiv sein wenn das Symbol `LOG` definiert ist und folgenden
 Inhalt haben:
 ```c
@@ -205,14 +234,22 @@ void print(const char *string) {
 }
 ```
 
-[EC] Bauen Sie mit dem Befehl `gcc -DXXX main-conditional.c lib.c`.
+Wählen Sie bei den Nachfolgenden Schritten gemäß Ihrer IDE
+
+[FOLDOUT::CLion]
+[ENDFOLDOUT]
+
+[FOLDOUT::VSCode]
+Bauen Sie mit dem Befehl `gcc -DXXX main-conditional.c lib.c`.
 Der `-D` Kommandozeilenparameter erlaubt es Präprozessorsymbole außerhalb von
 Dateien zu spezifizieren.
 Ersetzen Sie XXX mit einem der in [EREFR::1] geforderten Symbole.
 Es können beliebig viel `-DXXX` gesetzt werden.
-Führen Sie anschließend das Program aus.
+[ENDFOLDOUT]
+
+[EC] Führen Sie das Program aus.
 Wiederhohlen Sie obiges so oft bis alle drei Blöcke jeweils einmal ausgeführt
-wurden.
+wurden.  
 Verändern Sie keine der Dateien, nutzen Sie nur den `-D`
 Kommandozeilenparameter.
 
@@ -257,9 +294,9 @@ Die Allgemeine Form sowie Bespiele:
 #undef PI
 ```
 
-[ER] Legen Sie folgende Dateien mit dem aufgeführten Inhalt an:
-
-  - main-makros.c
+[ER]
+Legen Sie das Projekt `macros` an.
+Überschreiben Sie den Inhalt der `main.c` Datei mit folgendem.
 ```c
 #include <stdio.h>
 
@@ -293,8 +330,7 @@ Ternary-Operator bestehend aus `?` und `:` :
 `BEDINGUNG ? WERT_WENN_WAHR : WERT_WENN_FALSCH`.
 [ENDNOTICE]
 
-[EC] Bauen Sie das Program indem Sie das grüne Dreieck in der rechten
-oberen Ecke anklicken während Sie die `main-makros.c` als aktiven Tab haben.
+[EC] Bauen udn führen Sie das Programm aus.
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]

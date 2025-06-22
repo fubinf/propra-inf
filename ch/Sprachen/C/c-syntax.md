@@ -17,11 +17,11 @@ Er zeigt eine störrische, unflexible Seite der Welt der Programmiersprachen,
 aber auch eine Beständigkeit die seines gleichen sucht.
 Ja, der Syntax, und auch C selbst, hat viele weitere Sprachen inspiriert.
 
-Der Task wird Sie mit dem Syntax vertraute machen, und wenn Sie den Syntax
+Die Aufgabe wird Sie mit dem Syntax vertraute machen, und wenn Sie den Syntax
 ersteinmal beherrschen, dann werden viele C-ähnliche Sprachen wesentlich
 einfacher zu benutzen sein.
 
-Die folgende Liste zeigt um was sich dieser Task dreht.
+Die folgende Liste zeigt um was sich diese Aufgabe dreht.
 
 - Variablendefinitionen
 - Funktionen

@@ -5,8 +5,8 @@ difficulty: 2
 assumes: c-setup
 ---
 [SECTION::goal::idea]
-Ich verstehe die Aufgaben des [TERMREF::Übersetzer]s, [TERMREF::Assemblierer]s
-und des [TERMREF::Binder]s.
+Ich verstehe die Aufgaben des [TERMREF2::Übersetzer::-s],
+[TERMREF2::Assemblierer::-s] und des [TERMREF2::Binder::-s].
 [ENDSECTION]
 
 [SECTION::background::default]
