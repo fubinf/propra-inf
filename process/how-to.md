@@ -60,7 +60,7 @@ for its structure and attempt to obey them throughout:
 
 - **SeDriLa template:** 
   We use [sedrila](https://github.com/fubinf/sedrila) and follow its conventions
-  (as described in [doc/authors.md](https://github.com/fubinf/sedrila/blob/main/doc/authors.md)).
+  (as described in [docs/authors.md](https://github.com/fubinf/sedrila/blob/main/docs/authors.md)).
 - **regular structure:**
   All tasks are arranged into a simple chapter/taskgroup/task hierarchy.
   All tasks follow the same simple goal/background/instructions/submission section structure.
@@ -123,7 +123,7 @@ or software design, especially modularization, at least for tasks at difficulty 
 
 First, learn about `sedrila` in the
 [README.md](https://github.com/fubinf/sedrila/blob/main/README.md) and
-[authors.md](https://github.com/fubinf/sedrila/blob/main/doc/authors.md) parts of its documentation.
+[authors.md](https://github.com/fubinf/sedrila/blob/main/docs/authors.md) parts of its documentation.
 
 
 ### 2.3.2 Use the task file template
