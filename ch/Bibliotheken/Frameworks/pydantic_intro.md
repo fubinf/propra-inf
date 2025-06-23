@@ -1,9 +1,8 @@
-title: Pydantic model
+title: Pydantic Intro
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-explains: Framework
-assumes: m_json2
+assumes: m_json2, py-OOP-Inheritance
 ---
 
 
