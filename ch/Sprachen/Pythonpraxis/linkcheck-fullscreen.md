@@ -216,6 +216,8 @@ class Display:
         """Output the complete per-request line."""
         ...
 ```
+Dabei sollte jedes Paar von Aufrufen `report_url()` plus `report_url_outcome()` insgesamt
+nur _eine_ Zeile Output erzeugen, nicht zwei.
 <!-- time estimate: 90 min -->
 
 
@@ -223,9 +225,9 @@ class Display:
 
 [ER] Fügen Sie entsprechende Aufrufe in die Programmlogik des Linkprüfers
 neu oder als Ersatz für die bisherigen ein.
-Damit man nicht überall mehrere Objekte übergeben muss,
+Damit man nicht so oft mehrere Objekte übergeben muss,
 gestatten wir uns, das `Display`-Objekt zum Attribut des `State`-Objekts zu machen.
-Das ist konzeptuell nicht optimal, aber pragmatisch sinnvoll.
+Das ist konzeptuell nicht optimal, kann man aber pragmatisch angemessen finden.
 <!-- time estimate: 20 min -->
 
 

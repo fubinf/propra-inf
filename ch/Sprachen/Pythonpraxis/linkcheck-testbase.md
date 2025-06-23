@@ -92,7 +92,7 @@ der es prüfen soll, wird es bei der Entwicklung verwirrend.
 Deshalb bauen wir unseren Systemtest jetzt erstmal für ein System, von dem wir schon wissen,
 dass es funktioniert: `linkcheck --mode getlinks`.
 
-[ER] Ergänzen Sie in `test_linkcheck.py` die Funktion `test_getlinks` und programmieren Sie
+[ER] Ergänzen Sie in `test_linkcheck.py` die Funktion `test_getlinks()` und programmieren Sie
 darin wie folgt:
 
 - Starten Sie `linkcheck_server.main(8031)` mittels 

@@ -298,24 +298,9 @@ von Teilen (HTML-Seiten, Bilder, JS-Dateien) in einem URL-Baum prüft und versch
 fortgeschrittene Eigenschaften hat.
 Teilaufgaben:
 
-- `findlinks`: mit `bs4` die verschiedenen Sorten von Links auf einer Webseite extrahieren
-  und ggf. zu absoluten Links ergänzen. Guten HTML-Parser installieren.
-  Der Start-URL wird per Kommandozeilenparameter angegeben.
-- `ratelimit`: Links in `deque`-Warteschlange einstellen und nacheinander per `urllib3` abarbeiten.
-  Dabei ein ratelimit einhalten, das per default 4 Requests pro Sekunde beträgt, aber
-  per Option `--maxfreq` verändert werden kann.
-  Geht der Request (1) an einen URL "unterhalb" des Start-URLs, wird die HTML-Seite abgerufen
-  und Links darauf extrahiert, geht er (2) an eine andere Adresse auf demselben Server,
-  (3) an einen andereren Server, oder (4) liefert er eine andere Art von Datei als HTML,
-  passiert keine Weiterverfolgung.
-  In den Fällen (2) und (3) wird HEAD benutzt statt GET.
-  Der Statuscode wird registriert; Fehler werden ausgegeben.
-- `multiqueue`: Jeder Server bekommt eine eigene Warteschlange.
-  Wir betrachten jede Sekunde der Ausführung als einen Block, in dem jeder Server `maxfreq`
-  Requests bekommen darf. Ist eine Sekunde bei einem Server "voll", wechseln wir zum nächsten.
-  Gewartet wird nur (und zwar bis zum Ende der aktuellen Sekunde), wenn alle Server "voll" sind.
-- `monitoring`: Wir erzeugen eine fortlaufende Statusausgabe und eine Datei mit den Fehlern.
-- `async`: 
+- Tasks `linkcheck-getlinks`, `linkcheck-core`, `linkcheck-fullscreen`,
+  `linkcheck-multiqueue` und `linkcheck-async` sind erledigt.
+- `heuristics`: implementiere die Optionen `-H`, `-Q`, `-S`, 
 - `mlh`: als Subkommando in `mlh` integrieren.
 
 
@@ -358,7 +343,7 @@ Ferner evtl:
   * `weather` - (vielleicht zu fortgeschritten) ip-address-geolocation-lookup + Wetterbericht für diesen Ort
 - Effective Go, 100 Go Mistakes usw (https://github.com/dariubs/GoBooks)
 
-### Sprachen/C (N.N.)
+### Sprachen/C (khofmann)
 
 Kleiner Ausflug in die C-Programmierung, insbes. Zeiger, manuelle Speicherverwaltung.
 
