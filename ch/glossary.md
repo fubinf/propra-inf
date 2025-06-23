@@ -117,6 +117,9 @@ In Code kann so z. B. der Buchstabe "A" auch durch seinen ASCII-Wert "65" darges
 Eine ASCII-Tabelle finden Sie unter [HREF::https://www.asciitable.com/].
 [ENDTERM]
 
+[TERM::async|await]
+[ENDTERM]
+
 [TERM::Auszeichnungssprache]
 Eine Auszeichnungssprache ist eine formale Sprache, die verwendet wird, 
 um die Struktur und Darstellung von Texten in einem Dokument zu definieren. 
