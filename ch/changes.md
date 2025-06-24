@@ -16,7 +16,7 @@
 - **2025-06-10**: Aufgabe Werkzeuge/Netzwerk/[PARTREF::ssh] um Schritt [EREFC::7] erweitert.
   Schon erarbeitete Lösungen bleiben natürlich trotzdem gültig.  
   Neue Aufgabe Werkzeuge/Netzwerk/[PARTREF::git-SSH] freigegeben.
-- **2025-06-23**: Neue Aufgaben Sprachen/Pythonpraxis/[PARTREF::linkcheck-multiqueue],
+- **2025-06-24**: Neue Aufgaben Sprachen/Pythonpraxis/[PARTREF::linkcheck-multiqueue],
   [PARTREF::linkcheck-async] und
   [PARTREF::linkcheck-heuristics] freigegeben.
 - ...
