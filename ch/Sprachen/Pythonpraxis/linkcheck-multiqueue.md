@@ -19,6 +19,7 @@ Das tun wir in dieser Aufgabe.
 
 
 [SECTION::instructions::loose]
+Wir arbeiten weiter an der Datei `linkcheck.py`.
 
 Wir wollen, dass `State.maxfreq` für jeden Server in unserer `State.queue` separat gilt,
 nicht für die ganze Warteschlange auf einmal.

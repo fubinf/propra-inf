@@ -20,6 +20,7 @@ Das geht mit ein wenig Aufwand viel besser!
 [ENDSECTION]
 
 [SECTION::instructions::loose]
+Wir arbeiten weiter an der Datei `linkcheck.py`.
 
 ### 1. Zielzustand für unterwegs
 
@@ -274,6 +275,8 @@ Schätzen Sie nun, wieviele Requests die Prüfung brauchen wird und wie lange si
 Inwiefern hat der Output Sie überrascht? 
 Was haben Sie Neues gelernt? 
 <!-- time estimate: 30 min -->
+
+[EQ] Unter welchem Commit-Hash ist der aktuelle Stand von `linkcheck.py` zu finden?
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]

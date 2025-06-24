@@ -200,6 +200,8 @@ Beobachten Sie diese beim Ablauf.
 Wie viele Male so schnell war die neue Version wirklich?
 Wie erklären Sie sich die Abweichung?
 <!-- time estimate: 20 min -->
+
+[EQ] Unter welchem Commit-Hash ist der aktuelle Stand von `linkcheck.py` zu finden?
 [ENDSECTION]
 
 

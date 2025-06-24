@@ -205,7 +205,7 @@ Und zwar:
 
 - Wird `multiprocessing` korrekt eingesetzt, um den Server zu erzeugen?
 - Wird er im `finally` mit `.terminate()` wieder gestoppt?
-- Wird die `getlinks`-Funktionalität korrekt als stinknormale Python-Funktion aufgerufen und nicht etwa mit `system()`
+- Wird die `getlinks`-Funktionalität korrekt als stinknormale Python-Funktion aufgerufen und nicht etwa mit `system()`?
 - Wird `capsys` richtig eingesetzt? 
 - Wird richtig mit der Sollausgabe verglichen?
 
