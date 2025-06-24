@@ -1,5 +1,5 @@
 title: "linkcheck mit mehreren Warteschlangen" 
-stage: draft
+stage: beta
 timevalue: 1.0
 difficulty: 3
 requires: linkcheck-fullscreen
@@ -40,6 +40,7 @@ sondern einmal für jeden Server.
 Schreiben Sie eine Hilfsoperation `State.servers()`, 
 um diese äußere Schleife mit Werten zu versorgen.
 Bedenken Sie, dass die Liste der Server sich unterwegs ändern kann.
+<!-- time estimate: 40 min -->
 
 Das war schon alles für diese potenziell gewaltige Verbesserung!
 
