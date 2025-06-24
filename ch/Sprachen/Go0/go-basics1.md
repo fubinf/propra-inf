@@ -1,4 +1,4 @@
-title: Grundlagen von Go im Kontext von Python
+title: "Grundlagen von Go (erklärt anhand von Python)"
 stage: alpha
 timevalue: 2.5
 difficulty: 2
@@ -29,6 +29,8 @@ die besonders in der Entwicklung von Programmierwerkzeugen (Docker/Kubernetes)
 und Web-Backends beliebt geworden ist.
 [ENDSECTION]
 
+[TOC]
+
 [SECTION::instructions::detailed]
 Dokumentation zur Programmiersprache finden Sie in der
 [Go Spec](https://go.dev/ref/spec)
@@ -43,8 +45,8 @@ Stellen Sie sicher, dass Sie eine gültige Go-Installation auf Ihrem Rechner hab
 Tippen Sie `go version` in die Kommandozeile:
 Die Ausgabe soll wie `go version go1.xx.yy ...` aussehen.
 Soll das nicht der Fall sein, schlagen Sie auf
-[der offiziellen Webseite](https://go.dev/doc/install)
-nach, wie Go installiert werden soll.
+der offiziellen Webseite nach, 
+[wie Go installiert werden soll](https://go.dev/doc/install).
 
 Ausführen besteht immer aus mindestens zwei Phasen — kompilieren und tatsächlich ausführen.
 Go bietet zwei Möglichkeiten an:
@@ -61,29 +63,41 @@ Go bietet zwei Möglichkeiten an:
 
 Dokumentation zu diesen Kommandos bekommen Sie mit `go help`.
 
+<!-- TODO_1_brandes: Hello-World laufen lassen -->
+
+Jetzt tanken wir Grundwissen und schreiben dann damit unser erstes Programm.
+Wer mag, kann gern schon mal unten schauen, was für eine Aufgabe da kommt,
+darüber nachdenken, was man dafür braucht, und dann beim Durcharbeiten der Theoriesachen
+immer gleich den jeweiligen Teil hinschreiben.
+
+Das Umgekehrte machen Sie aber bitte nicht: Loshacken und nur das Minimum lesen, 
+was dafür unverzichtbar scheint.
+Denn dann verpassen Sie viele der wichtigen und interessanten Eigenschaften von Go,
+das nämlich seinen ganz eigenen Touch als Programmiersprache hat und diverse Eigenschaften mitbringt,
+die schrullig wirken können, tatsächlich aber ziemlich schlau und praktisch sind.
+
 
 ### Variablen und primitive Datentypen
 
 Es existieren folgende Namenskonventionen:
 
 - standardmäßig sind alle Variablen/Funktionen in `camelCase` definiert;
-- falls eine Variable/Funktion öffentlich sein muss, so wird `PascalCase` benutzt.
+- falls eine Variable/Funktion öffentlich sein soll, wird `PascalCase` benutzt.
 
-Nun lesen Sie bitte die folgenden Punkte selbst nach und beantworten Sie die Fragen.
+Nun lesen Sie bitte die folgenden Punkte selbst nach und beantworten Sie dann die Fragen:
 
-**[Variablen](https://go.dev/tour/basics/8)**,
-**[Variablen mit Initialisierung](https://go.dev/tour/basics/9)** 
-und
-**[kurze Variablendeklarationen](https://go.dev/tour/basics/10)**
+- [Variablen](https://go.dev/tour/basics/8)
+- [Variablen mit Initialisierung](https://go.dev/tour/basics/9) 
+- [kurze Variablendeklarationen](https://go.dev/tour/basics/10)
 
 [EQ] Wo kann eine Variable mit `:=` initialisiert werden?
 
-**[Primitive Datentypen](https://go.dev/tour/basics/11)**,
-**[Nullwerte](https://go.dev/tour/basics/12)**,
-**[Typinferenz](https://go.dev/tour/basics/14)** und
-**[Konstanten](https://go.dev/tour/basics/15)**
+- [Primitive Datentypen](https://go.dev/tour/basics/11)
+- [Nullwerte](https://go.dev/tour/basics/12)
+- [Typinferenz](https://go.dev/tour/basics/14)
+- [Konstanten](https://go.dev/tour/basics/15)
 
-[EQ] Was ist der Fehler im folgenden Codeabschnitt?
+[EQ] Mit diesem Hintergrundwissen: Was ist der Fehler im folgenden Codeabschnitt?
 
 ```go
 x := 42
@@ -124,7 +138,8 @@ In Go dürfen `if` und `switch` eine **Initialisierungsanweisung** besitzen.
 Alle Variablen, die in der Initialisierungsanweisung definiert wurden, sind nur in dem `if`/`switch`
 Block erreichbar.
 
-**Nachteil:** Der Ausdruck scheint auf den ersten Blick etwas komplizierter.
+**Nachteil:** Der Ausdruck wird komplizierter und die
+Schreibweise ist zum Lesen gewöhnungsbedürftig.
 
 **Vorteil:** Begrenzung des Geltungsbereichs (Scoping).
 Was in der Initialisierungsanweisung definiert wurde, darf nur in dem entsprechenden Ausdruck
@@ -366,7 +381,7 @@ Das geschieht mittels einer Zuweisung des Wertes **dem leeren Bezeichner** (blan
 w, _ := getWidthAndHeight()
 ```
 
-Dieses Konstrukt haben Sie bereits vor ein paar Minuten kennengelernt — jedoch in `for`-Schleifen:
+Dieses Konstrukt haben Sie bereits oben kennengelernt, für `for`-Schleifen:
 
 ```go
 for _, value := range someList {
@@ -374,8 +389,7 @@ for _, value := range someList {
 }
 ```
 
-Der leere Bezeichner hat noch weitere Anwendungen.
-Falls Sie mehr zum Thema wissen wollen:
+Der leere Bezeichner hat noch weitere Anwendungen:
 [Effective Go: Blank Identifier](https://go.dev/doc/effective_go#blank).
 
 
