@@ -99,6 +99,10 @@ oder sogar vollständige [TERMREF::Release]-Versionen), Testberichte oder auch D
 Eine Assemblersprache ist eine menschenlesbare Variante der
 [TERMREF::Maschinensprache].
 Assemblersprachen haben kaum Abstraktion.
+Dadurch sind Assemblersprachen, genau wie Maschinensprachen, von
+Prozessorarchitektur zu Prozessorarchitektur verschieden.
+Programme in Assemblersprache können daher nicht ohne Veränderungen
+auf eine andere Prozessorarchitektur portiert werden.
 [ENDTERM]
 
 [TERM::Assemblierer|Assembler]
@@ -174,7 +178,7 @@ Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwickl
 [TERM::Binder|Linker]
 Der Binder ist ein Programm, welches aus mehreren [TERMREF::Objekt-Dateien]
 eine ausführbare Datei erzeugt.
-Konkret findet sich dies bei [TERMREF::Bibliothek]en, deren Bestandteile
+Konkret findet sich dies bei [TERMREF2::Bibliothek::-en], deren Bestandteile
 mittels des Binders in ein Programm eingebunden wird.
 Ebenso ist der Binder daran beteiligt aus mehreren Quellcode-Dateien ein
 fertiges Programm zu binden, die Quellcode-Dateien werden jeweils einzeln
@@ -980,11 +984,18 @@ Handhabung von Fehlern oder ungültigen Daten.
 Siehe [TERMREF::DRY].
 [ENDTERM]
 
+[TERM::Objekt-Code|Object-Code]
+Als Objekt-Code wird Code in [TERMREF::Maschinensprache] bezeichnet, welcher
+in [TERMREF2::Objekt-Datei::-en] enthalten ist.
+[ENDTERM]
+
 [TERM::Objekt-Datei|Object-File]
-Eine Objekt-Datei ist eine Datei welche Prozessoranweisungen in 
+Eine Objekt-Datei ist eine Datei, welche Prozessoranweisungen in 
 [TERMREF::Maschinensprache] enthält, selbst allerdings nicht ausführbar ist.
-Objekt-Dateien werden von [TERMREF::Übersetzer]n und [TERMREF::Assemblierer]
-erzeugt und von [TERMREF::Binder]n weiterverarbeitet.
+Objekt-Dateien werden von [TERMREF2::Übersetzer::-n] und
+[TERMREF::Assemblierer] erzeugt und von [TERMREF2::Binder::-n]
+weiterverarbeitet.
+Dazu beinhalten Objekt-Dateien zusätzliche Metadaten.
 [ENDTERM]
 
 [TERM::OpenAPI|Swagger]
@@ -1541,7 +1552,7 @@ um ihren Lernerfolg zu verbreitern.
 [TERM::Übersetzer|Compiler]
 Ein Übersetzer ist ein Programm, welches Quellcode einer Sprache in eine andere
 Sprache übersetzt.  
-Zielsprachen können die [TERMREF::Maschinensprache] sein, eine
+Zielsprachen können die [TERMREF::Maschinensprache], eine
 [TERMREF::Zwischensprache] oder eine andere [TERMREF::Hochsprache] sein.
 [ENDTERM]
 

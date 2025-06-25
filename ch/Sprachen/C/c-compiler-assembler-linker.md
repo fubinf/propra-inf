@@ -11,8 +11,8 @@ Ich verstehe die Aufgaben des [TERMREF2::Übersetzer::-s],
 
 [SECTION::background::default]
 C entstand, als Computer noch Schränke waren und ihre Rechenleistung winzig.
-Damit man größere Anwendungen in einer Hochsprache und in mehreren Einzelteilen bauen konnte,
-wurden Übersetzer, Assemblierer und Binder entwickelt.
+Damit man größere Anwendungen in einer Hochsprache und in mehreren Einzelteilen
+bauen konnte, wurden Übersetzer, Assemblierer und Binder entwickelt.
 
 Diese Aufgabe macht Sie mit den grundlegenden Aufgaben dieser drei Programme
 vertraut.
@@ -27,20 +27,23 @@ nachlesen.
 
 [SECTION::instructions::detailed]
 Python ist eine interpretierte Sprache: 
-Wenn Sie ihr Programm ausführen, wandelt der Python-Interpretierer den Quellcode
-in einen pythonspezifischen Zwischencode ("Bytecode") um und arbeitet diesen dann
-Schritt für Schritt ab.
-Der Interpretierer liegt dabei in Maschinensprache vor, Ihr eigenes Programm nicht.
+Wenn Sie ihr Programm ausführen, wandelt der Python-Interpretierer den
+Quellcode in einen pythonspezifischen Zwischencode ("Bytecode") um und arbeitet
+diesen dann Schritt für Schritt ab.
+Der Interpretierer liegt dabei in Maschinensprache vor, Ihr eigenes Programm
+nicht.
 
 C ist hingegen eine kompilierte Sprache.
 Das bedeutet, der Quellcode Ihres Programms wird
 vor der Ausführung "gebaut", d.h. in Maschinensprache umgewandelt.
 In diesem Bauschritt werden vier Unterschritte ausgeführt:
 
-- Der C-Präprozessor, der den C-Quellcode in anderen (meist: ergänzten) C-Quellcode umschreibt.
+- Der C-Präprozessor, der den C-Quellcode in anderen (meist: ergänzten)
+  C-Quellcode umschreibt.
 - Der C-Übersetzer, der C-Quellcode in Assembler-Quellcode übersetzt.
 - Der Assemblierer, der Assembler-Quellcode in Maschinencode übersetzt.
-- Der Binder, der mehrere Teile Maschinencode zu einem ausführbaren Programm ("executable") zusammenfügt.
+- Der Binder, der mehrere Teile Maschinencode zu einem ausführbaren Programm
+  ("executable") zusammenfügt.
 
 Der Präprozessor wird Ihnen in [PARTREF::c-preprocessor] näher gebracht,
 hier ignorieren wir diesen Schritt.
@@ -72,16 +75,25 @@ neueren Macs).
 `gcc -O3 -S c-compiler-assembler-linker.c -o c-compiler-assembler-linker.s`
 den Compiler auf.
 Der Kommandozeilenparameter `-O3` sorgt hier für die höchste Stufe der
-Optimierung (um den Assemblercode kurz zu halten) und `-S` dafür, dass `gcc` nur den
-Übersetzungs-Schritt ausführt und nicht weiter macht.  
+Optimierung (um den Assemblercode kurz zu halten) und `-S` dafür, dass `gcc`
+nur den Übersetzungs-Schritt ausführt und nicht weiter macht.  
 Rufen Sie nun `cat c-compiler-assembler-linker.s` auf:
 In diesen Assemblercode hat `gcc` unser kleines C-Programm übersetzt.
 
-[EQ] `gcc` hat mehrere Optimierungsstufen zur Auswahl (Kommandozeilenparameter `-O`).
+[EQ] `gcc` hat mehrere Optimierungsstufen zur Auswahl
+(Kommandozeilenparameter `-O`).
 Machen Sie sich mit den 
-[Stufen](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html) 
+[Stufen](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
 vertraut.
-Erläutern Sie kurz, wann Sie welche Stufe verwenden würden.
+Wählen Sie für die folgenden Anwendungsfälle eine Optimierungsstufe aus
+und erläutern Sie Ihre Wahl kurz:
+
+- Ausgabe eines Code-Generators (z.B. [yacc](https://www.gnu.org/software/bison/))
+- Desktopanwendungen
+- Firmware von Mikrocontrollern
+- Betriebssystemkern
+- Echtzeitsysteme
+- Das ProPra
 
 
 ### Der Assemblierer
@@ -107,20 +119,20 @@ Sie jede beliebige Objekt-Datei (oder auch ganze Programme) deassemblieren
 (`-D`).
 Sie bekommen zwar kein C-Code mehr, aber das nächst beste, Assemblersprache.
 
-
 ### Der Binder
 
 Damit aus der Objekt-Datei (oder bei größeren Programmen den zahlreichen
 Objekt-Dateien), nun ein ausführbares Programm wird, wird der Binder
 eingesetzt.
-Der Binder nimmt alle angegebenen Objekt-Dateien, plus alle zusätzlich angegebenen
-[TERMREF2::Bibliothek::-en] (`-lxxx` Kommandozeilenparameter, mit xxx dem Namen der
-Bibliothek, z.b. `-lssl` für die openSSL-Kryptographiebibliothek) und fügt
-diese zu einer ausführbaren Datei zusammen.
-Dynamisch verlinkte Bibliotheken (.so unter Linux, .dylib unter macOS und .DLL
-unter Windows) werden nicht eingefügt, für diese wird lediglich ein Verweis in
-das Program eingearbeitet damit das Betriebssystem diese Bibliothek beim Programmstart
-laden kann.
+Der Binder nimmt alle angegebenen Objekt-Dateien, plus alle zusätzlich
+angegebenen [TERMREF2::Bibliothek::-en] (`-lxxx` Kommandozeilenparameter,
+mit xxx dem Namen der Bibliothek, z.b. `-lssl` für die
+openSSL-Kryptographiebibliothek) und fügt diese zu einer ausführbaren Datei
+zusammen.
+Dynamisch eingebundene Bibliotheken (.so unter Linux, .dylib unter macOS und
+.DLL unter Windows) werden nicht eingefügt, für diese wird lediglich ein
+Verweis in das Program eingearbeitet damit das Betriebssystem diese Bibliothek
+beim Programmstart laden kann.
 
 [EC] Rufen Sie
 `gcc c-compiler-assembler-linker.o -o c-compiler-assembler-linker.out`
@@ -131,8 +143,8 @@ Da wir eine Objekt-Datei als Eingabe haben wird nur der Binder-Schritt
 ausgeführt.  
 Rufen Sie nun `objdump -D c-compiler-assembler-linker.out` auf.
 Sie sehen, dass die Ausgabe wesentlich länger ist als noch in [EREFC::2].
-Der zusätzliche Code wurde vom Binder hinzugefügt und macht Ihr Programm erst ausführbar.
-
+Der zusätzliche Code wurde vom Binder hinzugefügt und macht Ihr Programm erst
+ausführbar.
 
 ### Alles zusammen
 
@@ -154,7 +166,7 @@ ob Sie alle Befehle wie geschrieben ausgeführt haben.
 
 [SECTION::submission::trace]
 Sie brauchen in dieser Aufgabe keinen Code abzugeben.
-Generell sollten Sie in der Regel Objektdateien (`*.o`) und 
+Generell sollten Sie in der Regel Objekt-Dateien (`*.o`) und 
 Executables (`*.out`, häufiger ganz ohne Suffix) nicht in Git einchecken!
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
