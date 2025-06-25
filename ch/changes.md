@@ -19,4 +19,7 @@
 - **2025-06-24**: Neue Aufgaben Sprachen/Pythonpraxis/[PARTREF::linkcheck-multiqueue],
   [PARTREF::linkcheck-async] und
   [PARTREF::linkcheck-heuristics] freigegeben.
+- **2025-06-25**: Die Aufgabe [PARTREF::git-bisect] war total kaputt, weil der Autor des dort
+  verwendeten externen Repos es inzwischen mit ganz anderen Inhalten überschrieben hat.
+  Wir haben die Aufgabe repariert und dabei stark umstrukturiert.
 - ...
