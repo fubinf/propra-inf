@@ -12,8 +12,11 @@ assumes: git-ignore
 [ENDSECTION]
 
 [SECTION::background::default]
+Wir brauchen für unsere Aufgaben die **GNU Compiler Collection (GCC)** in einer passenden Version,
+sonst geht hier nichts (oder jedenfalls oft nicht wie geplant).
+
+Und wer auf eine gute IDE verzichtet, verschenkt viel hilfreiche Unterstützung.
 Sie haben die Wahl zwischen CLion (empfohlen) und VSCode als IDE.
-Die Werkzeugkette ist in allen Fällen die GNU Compiler Collection (GCC).
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -100,8 +103,8 @@ eingebauten Funktionen hat.
 
 [FOLDOUT::Windows CLion]
 
-- Installieren Sie mittels `sudo apt install cmake` das CMake Werkzeug.
-  CLion benötigt dies, um Ihr Projekt zu bauen.
+- Installieren Sie mittels `sudo apt install cmake` (also im eingeschachtelten Linux) das CMake-Werkzeug.
+  CLion benötigt dies später, um Ihr Projekt zu bauen.
 - Gehen Sie auf
   [HREF::https://www.jetbrains.com/clion/download/#section=windows].
 [INCLUDE::snippets/c-syntax-clion-install-non-linux.inc]
