@@ -1,3 +1,6 @@
+<!-- Einrichtung der Build-Profile -->
+<!-- Sorgt dafür das man einfach bauen kann ohne versehentlich eine -->
+<!-- andere Konfiguration mit anderen Parametern zu wählen -->
 - Als Letztes werden einige Kommandozeilenparameter gesetzt, welche dafür
   sorgen, mehr und bessere Warnungen beim Bauen zu bekommen.  
   Navigieren Sie in den "Settings" zu "Build, Execution, Deployment", dort

@@ -26,8 +26,10 @@ Sie haben die Wahl zwischen CLion (empfohlen) und VSCode als IDE.
 Wählen Sie entsprechend ihrer Platform.
 
 [FOLDOUT::Linux (APT) oder Windows (WSL)]
-Installieren Sie mittels `sudo apt install build-essential` die GCC-
-Werkzeugkette.
+
+- Installieren Sie mittels `sudo apt install build-essential` die GCC-
+  Werkzeugkette.
+- Installieren Sie mittels `sudo apt install gdb` den Debugger.
 
 Falls Sie keine Administratorrechte besitzen, prüfen Sie ob die GCC-
 Werkzeugkette bereits installiert ist, oder wenden Sie sich an die zuständigen
@@ -87,18 +89,18 @@ eingebauten Funktionen hat.
   "Create Desktop Entry" (oder ähnliches).
   Ein Desktop-Eintrag meint im Linuxumfeld (entgegen der Verwendung unter
   anderen Systemen) einen Eintrag in der Liste der ausführbaren Anwendungen.
-[INCLUDE::snippets/c-syntax-clion-toolchain.inc]
+[INCLUDE::snippets/c-setup-clion-toolchain.inc]
   Tragen Sie bei "C Compiler" "gcc" und bei "C++ Compiler" "g++" ein.  
   Setzen Sie "CMake" auf "Bundled", falls das nicht der Fall ist.  
   Tragen Sie bei "Debugger" "gdb" ein.  
-[INCLUDE::snippets/c-syntax-clion-options.inc]
+[INCLUDE::snippets/c-setup-clion-options.inc]
 [ENDFOLDOUT]
 
 [FOLDOUT::Linux VSCode]
 
 - Falls Sie VSCode noch nicht installiert haben, tun Sie dies gemäß
   [PARTREF::IDE-Linux].
-[INCLUDE::snippets/c-syntax-vscode.inc]
+[INCLUDE::snippets/c-setup-vscode.inc]
 [ENDFOLDOUT]
 
 [FOLDOUT::Windows CLion]
@@ -107,19 +109,39 @@ eingebauten Funktionen hat.
   CLion benötigt dies später, um Ihr Projekt zu bauen.
 - Gehen Sie auf
   [HREF::https://www.jetbrains.com/clion/download/#section=windows].
-[INCLUDE::snippets/c-syntax-clion-install-non-linux.inc]
-[INCLUDE::snippets/c-syntax-clion-toolchain.inc]
+[INCLUDE::snippets/c-setup-clion-install-non-linux.inc]
+
+[NOTICE]
+Der Installationsassistent bietet Ihnen während der Installation folgende
+Optionen an:
+
+- **Create Desktop Shortcut**: Fügt eine Verknüpfung auf dem Schreibtisch hinzu.
+- **Update PATH Variable**: Erlaubt es Ihnen CLion aus der Windows
+  Kommandozeile zu starten.  
+  Wird für das ProPra nicht benötigt, macht aber auch nichts kaputt.
+- **Update Context Menu**: Wenn Sie dies aktivieren bietet Ihnen Windows
+  im Kontextmenü (rechtsklick) eines Verzeichnisses die Möglichkeit an,
+  dieses als CLion Projekt zu öffnen.
+  Das kann recht nützlich sein bei vielen Projekten da man so schnell
+  eins öffnen kann.
+- **Create Associations**: Wenn Sie nur CLion als Editor/IDE für C/C++
+  verwenden ist es ratsam, alle zu aktivieren.
+  Mit dieser Option weisen Sie den genannten Dateitypen CLion als
+  Standardprogramm zu.
+[ENDNOTICE]
+
+[INCLUDE::snippets/c-setup-clion-toolchain.inc]
   Tragen Sie bei "C Compiler" "gcc" und bei "C++ Compiler" "g++" ein.  
   Setzen Sie "CMake" auf "WSL CMake", falls es nicht der Fall ist.  
   Setzen Sie "Debugger" auf "WSL GDB", falls es nicht der Fall ist.  
-[INCLUDE::snippets/c-syntax-clion-options.inc]
+[INCLUDE::snippets/c-setup-clion-options.inc]
 [ENDFOLDOUT]
 
 [FOLDOUT::Windows VSCode]
 
 - Falls Sie VSCode noch nicht installiert haben, tun Sie dies gemäß
   [PARTREF::IDE-Windows].
-[INCLUDE::snippets/c-syntax-vscode.inc]
+[INCLUDE::snippets/c-setup-vscode.inc]
 [ENDFOLDOUT]
 
 [FOLDOUT::macOS CLion]
@@ -127,19 +149,19 @@ eingebauten Funktionen hat.
 - Gehen Sie auf [HREF::https://www.jetbrains.com/clion/download/#section=mac],
   und laden Sie die passende .dmg für ihren Mac (Intel/Apple Silicon)
   herunter.
-[INCLUDE::snippets/c-syntax-clion-install-non-linux.inc]
-[INCLUDE::snippets/c-syntax-clion-toolchain.inc]
+[INCLUDE::snippets/c-setup-clion-install-non-linux.inc]
+[INCLUDE::snippets/c-setup-clion-toolchain.inc]
   Tragen Sie bei "C Compiler" "gcc-12" und bei "C++ Compiler" "g++-12" ein.  
   Setzen Sie "CMake" auf "Bundled CMake" falls es nicht der Fall ist.  
   Setzen Sie "Debugger" auf "Bundled LLDB" falls es nicht der Fall ist.  
-[INCLUDE::snippets/c-syntax-clion-options.inc]
+[INCLUDE::snippets/c-setup-clion-options.inc]
 [ENDFOLDOUT]
 
 [FOLDOUT::macOS VSCode]
 
 - Falls Sie VSCode noch nicht installiert haben, tun Sie dies gemäß
   [PARTREF::IDE-macOS].
-[INCLUDE::snippets/c-syntax-vscode.inc]
+[INCLUDE::snippets/c-setup-vscode.inc]
 [ENDFOLDOUT]
 
 
@@ -175,7 +197,8 @@ cmake-build-*/
 - Jede Aufgabe muss in einem eigenen Verzeichnis liegen.
 - Legen sie im Hauptverzeichnis des ProPra ein neues Unterverzeichnis
   `.vscode` an.
-- Legen Sie darin eine Datei `task.json` an mit folgendem Inhalt:  
+- Legen Sie darin eine Datei `task.json` an mit folgendem Inhalt (achten Sie
+  bei macOS darauf, `gcc` korrekt durch Ihren `gcc` Befehl zu ersetzen):  
 ```json
 {
     "tasks": [
