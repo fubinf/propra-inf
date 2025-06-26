@@ -76,8 +76,9 @@ neueren Macs).
 den Compiler auf.
 Der Kommandozeilenparameter `-O3` sorgt hier für die höchste Stufe der
 Optimierung (um den Assemblercode kurz zu halten) und `-S` dafür, dass `gcc`
-nur den Übersetzungs-Schritt ausführt und nicht weiter macht.  
-Rufen Sie nun `cat c-compiler-assembler-linker.s` auf:
+nur den Übersetzungs-Schritt ausführt und nicht weiter macht.
+
+[EC] Rufen Sie nun `cat c-compiler-assembler-linker.s` auf:
 In diesen Assemblercode hat `gcc` unser kleines C-Programm übersetzt.
 
 [EQ] `gcc` hat mehrere Optimierungsstufen zur Auswahl
