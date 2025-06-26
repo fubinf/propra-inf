@@ -1,12 +1,12 @@
 title: "C-Übersetzer, -Assemblierer, Binder"
-stage: alpha
+stage: beta
 timevalue: 0.75
 difficulty: 2
 assumes: c-setup
 ---
 [SECTION::goal::idea]
-Ich verstehe die Aufgaben des [TERMREF2::Übersetzer::-s],
-[TERMREF2::Assemblierer::-s] und des [TERMREF2::Binder::-s].
+Ich verstehe die Aufgaben des [TERMREF2::Übersetzer::-s] ("Compiler"),
+[TERMREF2::Assemblierer::-s] ("Assembler") und des [TERMREF2::Binder::-s] ("Linker").
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -30,7 +30,7 @@ Python ist eine interpretierte Sprache:
 Wenn Sie ihr Programm ausführen, wandelt der Python-Interpretierer den
 Quellcode in einen pythonspezifischen Zwischencode ("Bytecode") um und arbeitet
 diesen dann Schritt für Schritt ab.
-Der Interpretierer liegt dabei in Maschinensprache vor, Ihr eigenes Programm
+Der Interpretierer liegt dabei in [TERMREF::Maschinensprache] vor, Ihr eigenes Programm
 nicht.
 
 C ist hingegen eine kompilierte Sprache.
@@ -83,7 +83,7 @@ In diesen Assemblercode hat `gcc` unser kleines C-Programm übersetzt.
 [EQ] `gcc` hat mehrere Optimierungsstufen zur Auswahl
 (Kommandozeilenparameter `-O`).
 Machen Sie sich mit den 
-[Stufen](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
+[verschiedenen Stufen](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
 vertraut.
 Wählen Sie für die folgenden Anwendungsfälle eine Optimierungsstufe aus
 und erläutern Sie Ihre Wahl kurz:
@@ -111,13 +111,15 @@ auf.
 Der Kommandozeilenparameter `-c` sorgt dafür, dass `gcc` je nach Art der
 Eingabe-Datei übersetzt und assembliert oder nur assembliert.
 Da Sie als Eingabe eine Datei in Assemblersprache übergeben haben, 
-wird hier nur assembliert.  
-Rufen Sie nun `objdump -D c-compiler-assembler-linker.o` auf.
+wird hier nur assembliert.
+
+[EC] Rufen Sie nun `objdump -D c-compiler-assembler-linker.o` auf.
 Die Eingabe in Assemblersprache wurde in das angezeigte binäre Format, eine
-so genannte Objekt-Datei, umgewandelt. Mit dem UNIX-Werkzeug `objdump` können
+sogenannte Objekt-Datei, umgewandelt. Mit dem UNIX-Werkzeug `objdump` können
 Sie jede beliebige Objekt-Datei (oder auch ganze Programme) deassemblieren
 (`-D`).
-Sie bekommen zwar kein C-Code mehr, aber das nächst beste, Assemblersprache.
+Sie bekommen zwar keinen C-Code mehr, aber das nächstbeste: Assemblersprache.
+
 
 ### Der Binder
 
@@ -140,8 +142,9 @@ auf.
 Ohne zusätzliche Angaben führt `gcc` stets alle Schritte aus, die für eine
 Eingabe zu einem ausführbaren Programm führen.
 Da wir eine Objekt-Datei als Eingabe haben wird nur der Binder-Schritt
-ausgeführt.  
-Rufen Sie nun `objdump -D c-compiler-assembler-linker.out` auf.
+ausgeführt.
+
+[EC] Rufen Sie nun `objdump -D c-compiler-assembler-linker.out` auf.
 Sie sehen, dass die Ausgabe wesentlich länger ist als noch in [EREFC::2].
 Der zusätzliche Code wurde vom Binder hinzugefügt und macht Ihr Programm erst
 ausführbar.
@@ -156,10 +159,10 @@ Das Ergebnis ist das Gleiche, als würden Sie die Schritte separat ausführen.
 [EC] Rufen Sie mit
 `gcc -O3 c-compiler-assembler-linker.c -o c-compiler-assembler-linker-direkt.out`
 den Übersetzer auf.  
-Rufen Sie nun
-`diff c-compiler-assembler-linker.out c-compiler-assembler-linker-direkt.out`
-auf.
-Wenn `diff` ihnen meldet die Dateien seien verschieden, prüfen Sie,
+
+[EC] Prüfen Sie nun, ob die Ergebnisse übereinstimmen:
+`diff c-compiler-assembler-linker.out c-compiler-assembler-linker-direkt.out`  
+Wenn `diff` ihnen meldet, die Dateien seien verschieden, prüfen Sie,
 ob Sie alle Befehle wie geschrieben ausgeführt haben.
 `diff` erzeugt eine leere Ausgabe, wenn beide Dateien gleich sind.
 [ENDSECTION]
