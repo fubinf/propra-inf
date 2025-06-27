@@ -22,8 +22,6 @@ graph TD
     pytest_plugin_testcoverage["pytest_plugin_testcoverage.md"]
     pytest_plugin_linter_flake8["pytest_plugin_linter_flake8.md"]
     pytest_benchmark["pytest_benchmark.md"]
-    unittestPasswortgenerator["unittestPasswortgenerator.md"]
-    pytestPasswortgenerator["pytestPasswortgenerator.md"]
     unittest201["unittest201.md"]
     unittest203["unittest203.md"]
     tdd["tdd.md"]
