@@ -27,4 +27,8 @@
   [PARTREF::Programmierpraxis].  
   Darin finden Sie jetzt diese Aufgaben übersichtlicher in zwei separaten Aufgabengruppen wieder:
   [PARTREF::Python-mlh] und [PARTREF::Python-linkcheck].
+- **2025-06-27**: Bitte verwenden Sie für alle künftigen Aufgaben das mehrstufige Verzeichnislayout,
+  wie es (seit längerem, aber bislang nicht verbindlich) in Aufgabe 
+  Basis/Repo/[PARTREF::Einreichungen] beschrieben ist.
+  Das ist sowohl für Sie als auch für die Tutoren weitaus übersichtlicher.
 - ...
