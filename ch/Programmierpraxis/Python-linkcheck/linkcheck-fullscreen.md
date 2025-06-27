@@ -299,5 +299,5 @@ und vergleicht mit dem nachfolgenden Kommandoprotokoll.
 Der Vergleich geht aber natürlich nur konzeptuell, weil ja jeder eine
 andere Website prüft. 
 Das Wichtigste ist die Zeile "Totals" und dass sie zu den Headern passt:
-[PROT::ALT:linkcheck/linkcheck-fullscreen.prot]
+[PROT::ALT:linkcheck-fullscreen.prot]
 [ENDINSTRUCTOR]

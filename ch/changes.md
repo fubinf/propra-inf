@@ -22,7 +22,7 @@
 - **2025-06-25**: Die Aufgabe [PARTREF::git-bisect] war total kaputt, weil der Autor des dort
   verwendeten externen Repos es inzwischen mit ganz anderen Inhalten überschrieben hat.
   Wir haben die Aufgabe repariert und dabei stark umstrukturiert.
-- **2025-06-27**: Die Aufgabengruppe [PARTREF::Pythonpraxis] war sehr unübersichtlich.
+- **2025-06-27**: Die bisherige Aufgabengruppe `Pythonpraxis` war sehr unübersichtlich.
   Wir haben für solche kleinen Projekte, von denen es darin zwei gab, ein eigenes Kapitel angelegt:
   [PARTREF::Programmierpraxis].  
   Darin finden Sie jetzt diese Aufgaben übersichtlicher in zwei separaten Aufgabengruppen wieder:

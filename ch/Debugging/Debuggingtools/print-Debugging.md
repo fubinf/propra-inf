@@ -68,7 +68,8 @@ geschleust werden. Das verzögert den Start nach einer Änderung.
 Wenn Sie diese Frage nicht beantworten können, fehlt es Ihnen wohl an Erfahrung.
 Bearbeiten Sie dann zunächst Teil 2 dieser Aufgabe,
 erlernen Sie anschließend den Debugger (inbesondere das komfortable [PARTREF::IDE-Debugging]),
-sammeln dann Erfahrung mit beiden Methoden (z. B. in [PARTREF::Pythonpraxis]) und 
+sammeln dann Erfahrung mit beiden Methoden 
+(z. B. in [PARTREF::Python-mlh] oder [PARTREF::Python-linkcheck]) und 
 kommen Sie anschließend zur obigen Frage zurück.
 [ENDWARNING]
 

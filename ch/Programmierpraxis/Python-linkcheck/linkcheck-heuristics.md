@@ -156,6 +156,6 @@ Hier müsste die Zahl von GET-Requests nun größer sein.
 [ENDSECTION]
 
 [INSTRUCTOR::Wenig streng prüfen]
-[INCLUDE::ALT:linkcheck/linkcheck-heuristics.md]
+[INCLUDE::ALT:linkcheck-heuristics.md]
 [TREEREF::linkcheck/linkcheck.py]
 [ENDINSTRUCTOR]

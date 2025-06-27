@@ -69,12 +69,12 @@ Wie erklären Sie sich die Abweichung?
 Wenn die bisherigen linkcheck-Aufgaben OK waren, relaxen wir hier bei der Kontrolle
 und erwarten, dass auch hier alles glattgeht.
 ### Markdown
-[INCLUDE::ALT:linkcheck/linkcheck-multiqueue.md]
+[INCLUDE::ALT:linkcheck-multiqueue.md]
 
 ### Quellcode (gültig zugleich für mehrere der linkcheck-Aufgaben) 
 siehe [TREEREF::linkcheck/linkcheck.py]
 
 ### Kommandoprotokoll
 (aber das gilt nur als Beispiel; die Probleme müssen natürlich alle nicht mehr aktuell sein)
-[PROT::ALT:linkcheck/linkcheck-multiqueue.prot]
+[PROT::ALT:linkcheck-multiqueue.prot]
 [ENDINSTRUCTOR]

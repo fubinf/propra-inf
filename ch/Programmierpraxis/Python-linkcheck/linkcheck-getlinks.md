@@ -275,7 +275,7 @@ seinihr Verhalten reflektiert.
 
 Modulo zwischenzeitlicher Änderungen sollte das Kommandoprotokoll _ungefähr_ so aussehen;
 es reicht, nach ggf. _offensichtlichen_ Fehlern zu suchen:
-[PROT::ALT:linkcheck/linkcheck-getlinks.prot]
+[PROT::ALT:linkcheck-getlinks.prot]
 
 Am wertvollsten wäre es, kurz in den Quellcode zu schauen und ggf. auf augenfällig 
 sehr ungünstige Konstrukte hinzuweisen.

@@ -3,7 +3,7 @@ stage: beta
 timevalue: 1.5
 difficulty: 2
 explains: PEP8
-assumes: Pythonpraxis
+assumes: Python-mlh
 ---
 
 [SECTION::goal::idea]
@@ -32,7 +32,7 @@ Diese Aufgabe ergibt erst Sinn, wenn Sie genügend Python-Programmiererfahrung h
 Aber wie viel ist "genug"? Schwer zu sagen!
 
 Wenn Sie beispielsweise schon zwei bis drei der größeren Aufgaben der Gruppe
-[PARTREF::Pythonpraxis] gemacht haben, sollte das reichen.
+[PARTREF::Python-mlh] gemacht haben (oder irgendetwas anderes größeres), sollte das reichen.
 Und wenn nicht? Hmm.
 
 Wenn Sie nicht sicher sind, kann folgendes Vorgehen helfen:

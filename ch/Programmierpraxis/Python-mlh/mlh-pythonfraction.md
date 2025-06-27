@@ -167,7 +167,7 @@ weil sowohl das Programm angewachsen als auch die Grundmenge geschrumpft ist.
 
 Kurz kontrollieren, dass das Kommandoprotokoll _ungefähr_ aussieht wie vorgesehen:
 
-[PROT::ALT:mlh/mlh-pythonfraction.prot]
+[PROT::ALT:mlh-pythonfraction.prot]
 
 Studi bitte ausbuhen (aber die Abgabe nicht zurückweisen), wenn die Reihenfolge der
 Zeilen im langen Bericht zufällig aussieht 
@@ -182,9 +182,9 @@ Ein möglicher Quellcode steht in
 und sieht so aus:
 
 ```python
-[INCLUDE::ALT:/../itree.zip/Sprachen/Pythonpraxis/mlh/mlh/subcmds/pythonfraction.py]
+[INCLUDE::ALT:/../itree.zip/Programmierpraxis/Python-mlh/mlh/mlh/subcmds/pythonfraction.py]
 ```
 
-[INCLUDE::ALT:mlh/mlh-pythonfraction.md]
+[INCLUDE::ALT:mlh-pythonfraction.md]
 
 [ENDINSTRUCTOR]

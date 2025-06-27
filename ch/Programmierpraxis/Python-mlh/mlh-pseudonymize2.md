@@ -136,6 +136,6 @@ Checken Sie auch `auth.log` und `auth.pseu` ein.
   
 Das Ergebnis kann z.B. so aussehen:
 
-[PROT::ALT:mlh/mlh-pseudonymize2.prot]
+[PROT::ALT:mlh-pseudonymize2.prot]
 
 [ENDINSTRUCTOR]
