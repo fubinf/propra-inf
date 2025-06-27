@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	// "Hello, World"-Teil hier
 	scanner := bufio.NewScanner(os.Stdin)
 
 	fmt.Printf("Upper limit for fizzbuzz (Enter to proceed): ")

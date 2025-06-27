@@ -63,7 +63,14 @@ Go bietet zwei Möglichkeiten an:
 
 Dokumentation zu diesen Kommandos bekommen Sie mit `go help`.
 
-<!-- TODO_1_brandes: Hello-World laufen lassen -->
+[ER] Legen Sie eine Datei namens `go-basics1.go` an und kopieren Sie den Quellcodeabschnitt in 
+diese Datei:
+
+```go
+[INCLUDE::snippets/hello_world.go]
+```
+
+[EC] Führen Sie nun das Programm mittels `go run go-basics1.go` aus.
 
 Jetzt tanken wir Grundwissen und schreiben dann damit unser erstes Programm.
 Wer mag, kann gern schon mal unten schauen, was für eine Aufgabe da kommt,
@@ -82,7 +89,10 @@ die schrullig wirken können, tatsächlich aber ziemlich schlau und praktisch si
 Es existieren folgende Namenskonventionen:
 
 - standardmäßig sind alle Variablen/Funktionen in `camelCase` definiert;
-- falls eine Variable/Funktion öffentlich sein soll, wird `PascalCase` benutzt.
+- falls eine Variable/Funktion öffentlich sein soll, wird `PascalCase` benutzt;
+- ebenso für Konstanten — `SCREAMING_SNAKE_CASE` gilt in Go als nicht idiomatisch und wird in der
+  [offiziellen Go-Stilkonvention](https://google.github.io/styleguide/go/guide)
+  nicht empfohlen.
 
 Nun lesen Sie bitte die folgenden Punkte selbst nach und beantworten Sie dann die Fragen:
 
@@ -104,31 +114,13 @@ x := 42
 var answer int32 = x
 ```
 
-[EQ] Was ist der Unterschied zwischen den zwei Definitionen?
+[HINT::Was ist der Typ von `x`?]
+Der automatisch hergeleitete Typ für alle Ganzzahlen ist `int`, folglich ist `x` von Typ `int`.
 
-```go
-const Pi1 = 3.14
-const Pi2 float64 = 3.14
-```
-
-[HINT::Typeinschränkung]
-Was passiert bei den folgenden Zuweisungen?
-
-```go
-var x float32 = Pi1
-var x float32 = Pi2
-```
+[HINT::Was ist der Typ von `answer`?]
+Der Typ von `answer` haben wir in dem Beispiel explizit angegeben — `int32`.
 [ENDHINT]
-
-[NOTICE]
-Konstanten sind im Go-Universum normale Variablen, deshalb gelten für sie die gleichen
-Namenskonventionen.
-
-Im Gegensatz zu C oder Java gilt `SCREAMING_SNAKE_CASE` in Golang als nicht idiomatisch und wird in
-der
-[offiziellen Go-Stilkonvention](https://google.github.io/styleguide/go/guide)
-nicht empfohlen.
-[ENDNOTICE]
+[ENDHINT]
 
 
 ### Kontrollstrukturen (if/switch/for)
