@@ -267,49 +267,8 @@ Folgeaufgabe zu ch/Sprachen/Python/PythonObjectsClassesIntro.md
 
 String-Formatierung
 
-### Sprachen/Pythonpraxis (prechelt)
-
-1. Eine Reihe von Aufgaben, in denen nach und nach die CLI-Anwendung
-`mlh` ("my little helpers") programmiert wird.
-Diese bündelt eine Reihe kleiner Utilities und
-setzt argparse mit subcommands ein, um das zu strukturieren.
-Diese Anwendung können die TN nach dem ProPra mitnehmen und ein langes und
-abenteuerreiches Leben lang weiterbenutzen (und ergänzen).
-
-Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
-
-- `diffenv`: Ein Skript, das die Verwaltung von Umgebungsvariablen in
-  verschiedenen Umgebungen (Entwicklung, Test, Produktion usw.) erleichtert, indem es die Mengen
-  von Umgebungsvariablen-Definitionen in zwei Dateien vergleicht.
-  Es ignoriert also im Gegensatz zu normalem `diff ` sowohl die Werte dieser Variablen 
-  als auch die Reihenfolge ihrer Definition.
-  Zeilen, die nicht die Form `A=b` oder `export A=b` haben, können wahlweise ignoriert, gezählt,
-  oder als Fehler (mit exit status) gemeldet werden.
-  Mehrfache Definitionen derselben Variablen werden als Warnung gemeldet.
-- `htmlprettify`: Liest ein HTML-Fragment von stdin und schreibt eine formatierte Fassung nach stdout.
-- `sgrep`: Ein simples grep, das beliebige Trenner zulässt, anstatt immer nur '\n' als
-  Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
-  Default-Trenner ist '\n\n', sodass es ganze Absätze ausspuckt anstatt Zeilen.
-  Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
-- `pythonfraction`: https://third-bit.com/2025/05/18/two-thirds-of-a-language/
-
-2. Eine Anwendung `linkcheck`, die einen Crawler realisiert, der die Verfügbarkeit
-von Teilen (HTML-Seiten, Bilder, JS-Dateien) in einem URL-Baum prüft und verschiedene
-fortgeschrittene Eigenschaften hat.
-Teilaufgaben:
-
-- Tasks `linkcheck-getlinks`, `linkcheck-core`, `linkcheck-fullscreen`,
-  `linkcheck-multiqueue` und `linkcheck-async` sind erledigt.
-- `heuristics`: implementiere die Optionen `-H`, `-Q`, `-S`, 
-- `mlh`: als Subkommando in `mlh` integrieren.
-
-
-Ferner evtl:
-
-- `Code-Snippets`: Ein Tool, das es Entwicklern ermöglicht, Code-Snippets zu organisieren,
-  zu suchen und wiederzuverwenden; Evt. gut geeignet um auch mlh als code-snippets aufzunehmen?
-
 ### Sprachen/Go (brandes)
+
 - Compiler installieren, IDE einrichten (GoLand bevorzugt)
 - Hello World und ein paar Wörter über Packages
 - Go für Python-Programmierer
@@ -343,6 +302,7 @@ Ferner evtl:
   * `weather` - (vielleicht zu fortgeschritten) ip-address-geolocation-lookup + Wetterbericht für diesen Ort
 - Effective Go, 100 Go Mistakes usw (https://github.com/dariubs/GoBooks)
 
+
 ### Sprachen/C (khofmann)
 
 Kleiner Ausflug in die C-Programmierung, insbes. Zeiger, manuelle Speicherverwaltung.
@@ -364,13 +324,6 @@ Kleiner Ausflug in die C-Programmierung, insbes. Zeiger, manuelle Speicherverwal
   enorm viel beschleunigt wird? Der Rest des Codes bleibt in Python.
   Man schreibt sich also eine ganz kleine Bibliothek für einen Spezialalgorithmus in C 
   und bindet sie an.
-
-
-### Sprachen/SQL (ruhe)
-
-Ein paar Aufgaben zu mittelkomplexen Abfragen (mit etwas Verschacheltung)
-und mittelkomplexen Updates.  
-Assumes: sqlite
 
 
 ### Sprachen/DSLs (N.N.)
@@ -597,6 +550,34 @@ Speziellerer Kram:
    - Struktur des Frameworks der Wahl präsentieren und zeigen, wie es das gelernte umsetzt.
 4. Backend mit Python
   - Flask, Django?
+
+
+## ch/Programmierpraxis
+
+### Programmierpraxis/Python-mlh (prechelt)
+
+Weitere Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
+
+- `diffenv`: Ein Skript, das die Verwaltung von Umgebungsvariablen in
+  verschiedenen Umgebungen (Entwicklung, Test, Produktion usw.) erleichtert, indem es die Mengen
+  von Umgebungsvariablen-Definitionen in zwei Dateien vergleicht.
+  Es ignoriert also im Gegensatz zu normalem `diff ` sowohl die Werte dieser Variablen 
+  als auch die Reihenfolge ihrer Definition.
+  Zeilen, die nicht die Form `A=b` oder `export A=b` haben, können wahlweise ignoriert, gezählt,
+  oder als Fehler (mit exit status) gemeldet werden.
+  Mehrfache Definitionen derselben Variablen werden als Warnung gemeldet.
+- `htmlprettify`: Liest ein HTML-Fragment von stdin und schreibt eine formatierte Fassung nach stdout.
+- `sgrep`: Ein simples grep, das beliebige Trenner zulässt, anstatt immer nur '\n' als
+  Trenner zu betrachten. Liest ggf. zunächst die ganze Datei in den Speicher.
+  Default-Trenner ist '\n\n', sodass es ganze Absätze ausspuckt anstatt Zeilen.
+  Trenner ist eine regexp. `--color` markiert den Trefferstring rot.
+
+
+### Programmierpraxis/Python-linkcheck (prechelt)
+
+Weitere Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
+
+- `linkcheck-mlh`: als Subkommando in `mlh` integrieren.
 
 
 # Aufgabenideen ohne Heimat
