@@ -166,7 +166,6 @@ chapters:
     taskgroups:
       - name: Python0
       - name: Python
-      - name: Pythonpraxis
       - name: Go0
       - name: Go
       - name: RegExp
