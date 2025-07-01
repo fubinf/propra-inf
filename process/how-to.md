@@ -365,6 +365,20 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
 - If you rename a task, make sure to change the issue name.  
   If you rename a task group, make sure to change all respective issue names.
 
+Modifying published tasks:
+
+- Sometimes we recognize that some extension to an existing task (already in use by students)
+  would be useful, so we can build on it in a later (new) task.
+  We allow ourselves to make such additions, with care. Process:
+- If you work with a fork anyway, make the necessary change(s) on a separate branch and
+  create a GitHub Pull Request.
+- If not (which is the normal case in our team), describe the change in an issue, 
+  either as a block of Markdown text plus coordindates where to include it, 
+  or (only if block-of-text does not work for this case) as a diff 
+  for a locally modified file you have not yet checked in.
+- In both cases, reviewing by prechelt, describing the change on the homepage (`changes.md`),
+  and publishing the modified task should then be done on a single day.
+
 
 ### 2.4.3 Task text layout conventions
 
