@@ -31,4 +31,5 @@
   wie es (seit längerem, aber bislang nicht verbindlich) in Aufgabe 
   Basis/Repo/[PARTREF::Einreichungen] beschrieben ist.
   Das ist sowohl für Sie als auch für die Tutoren weitaus übersichtlicher.
+- **2025-07-01**: Hinweise auf Hilfe-Quellen ergänzt in Aufgabe [PARTREF::git-Funktionsweise].
 - ...

@@ -28,6 +28,7 @@ weiter.
 Das dortige Wissen wird zwar erst für spätere Aufgaben relevant, ergänzt die Grundideen
 aber gut um zugehörige praktische Aspekte.
 
+
 ### Reflektieren
 
 - [EQ] Fassen Sie die fünf Hauptpunkte in eigenen Worten in je einem Satz zusammen.
@@ -38,11 +39,29 @@ aber gut um zugehörige praktische Aspekte.
 - [EQ] In welchen drei Punkten lässt sich der Git workflow einfach zusammenfassen?
 
 
+### Hilfe finden
+
+Es gibt viele git-Kommandos und sehr viele Arten, diese zu benutzen.
+Niemand hat das alles im Kopf.  
+
+- Sucht man nach dem Namen eines Kommandos, hilft `git help`.  
+- Ist einem zum Kommando `xyz` eine Option entfallen oder unbekannt,
+  geht es mit `git help xyz` weiter (oder gleichwertig: `man git-xyz`).  
+- Einen (eher selten nützlichen) Überblick und Verweise auf (schon eher nützliche) andere 
+  lokale Informationsquellen) liefert `man git`.
+- Wenn man ausführlicher nachlesen will, ist meist die Webseite besser:
+  [HREF::https://git-scm.com/doc]
+
+Es ist völlig normal, anfangs nicht alles zu verstehen, was auf einer solchen Hilfeseite steht.
+Je häufiger Sie git verwenden und je mehr Aufgaben Sie im ProPra mit git erledigen, desto mehr
+werden Sie auch von den Hilfeseiten verstehen.
+
+Bis dahin: Konzentrieren Sie sich auf das, was für Sie gerade relevant ist und was Sie bereits
+verstehen.
 [ENDSECTION]
+
 [SECTION::submission::reflection]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Die 5 Ideen liefern alle Antworten]
