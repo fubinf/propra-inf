@@ -1,5 +1,5 @@
 title: Entwicklungsumgebung einrichten
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 assumes: git-ignore
@@ -44,7 +44,7 @@ Installieren sie die GCC Werkzeugkette über Homebrew mittels
 `brew install gcc@12`.  <!-- TODO 3 Debian 13 ggf. Version anpassen -->
 
 [WARNING]
-Wenn künftig von die Befehle `gcc` oder `g++` ausgeführt werden
+Wenn künftig die Befehle `gcc` oder `g++` ausgeführt werden
 sollen, so müssen Sie diese auf die von Ihnen hier installierte Version
 anpassen.
 Dafür genügt es einfach `gcc-12` bzw. `g++-12` anstelle von `gcc` bzw. `g++`
@@ -66,6 +66,14 @@ Wir empfehlen die JetBrains IDE (CLion), weil sie die leistungsfähigeren
 eingebauten Funktionen hat.
 
 #### IDE Installation und Einrichtung
+
+[WARNING]
+Die nachfolgenden Beschreibungen sind grob gehalten, damit sie nicht durch kleine
+Änderungen der Hersteller gleich ungültig werden.
+Bei _großen_ Änderungen der Hersteller (sodass die Installation anders funktioniert als von unserer
+Anleitung angenommen) geben Sie uns bitte über die Aufgabe 
+[PARTREF::propra-sonstige-Mängel-an-Aufgaben] Bescheid.
+[ENDWARNING]
 
 [FOLDOUT::Linux CLion]
 
@@ -173,7 +181,7 @@ Optionen an:
   "C-Executable" aus, als Sprachstandard "C17".  
   Geben Sie dem Projekt den Namen der Aufgabe, CLion legt dann ein
   entsprechendes Verzeichnis an.
-- Erweitern Sie Ihre `.gitignore` um folgenden Eintrag  
+- Erweitern Sie Ihre `.gitignore`-Datei um folgenden Eintrag  
 ```
 # CMake
 cmake-build-*/
