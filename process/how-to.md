@@ -365,7 +365,25 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
 - If you rename a task, make sure to change the issue name.  
   If you rename a task group, make sure to change all respective issue names.
 
-Modifying published tasks:
+
+#### 2.4.2.1 Two modes of reviewing
+
+In the interest of rapid reviewing progress, the reviewer will use two different reviewing modes
+as follows:
+
+- Upon starting each review, decide quickly whether this task is presumably ready for
+  final editing and release.
+- If yes, enter "thorough" review mode:  
+  Make all those final changes that are quick to make;
+  leave larger final changes to the author (in particular adjustments to the `altdir` parts);
+  release the task if possible.
+- If not, enter "helpful" review mode and just provide enough feedback (without investing too much
+  work, producing long waittimes) that the author can make substantial progress:
+  explaining a handful of major issues to be repaired is enough, no matter how much or how little else
+  there may be in the task that will have to be changed.
+
+
+#### 2.4.2.2 Modifying published tasks
 
 - Sometimes we recognize that some extension to an existing task (already in use by students)
   would be useful, so we can build on it in a later (new) task.
