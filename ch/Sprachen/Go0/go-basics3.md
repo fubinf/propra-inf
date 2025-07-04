@@ -299,7 +299,7 @@ Lassen Sie sich nicht vom Begriff `basics` täuschen — Übergabe per Wert/Zeig
 Methoden und Slices sind keineswegs triviale Themen. 
 `basics` bedeutet nur, dass dieses Wissen in den weiteren Aufgaben vorausgesetzt wird.
 
-Im `basics`-Kapitel bleibt für Sie nur noch der letzte Schliff — [PARTREF::go-interfaces].
+Im `basics`-Kapitel fehlt nur noch der letzte Schliff — [PARTREF::go-interfaces].
 Interfaces sind ein weiteres Konzept, das in Go anders funktioniert als in beispielsweise Java.
 Also: Viel Erfolg!
 

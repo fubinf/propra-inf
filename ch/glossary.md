@@ -1686,7 +1686,7 @@ Versionsnummern folgen in der Regel einem bestimmten Schema, das je nach den Anf
 Projekts und den Praktiken des Entwicklungsteams variieren kann. Ein gängiges und weit
 verbreitetes Schema ist das MAJOR.MINOR.PATCH-Schema. Gemeinsam haben aber alle, dass sie
 Entwicklern und Benutzern ermöglichen, den Entwicklungsstand und die Stabilität einer
-Softwareanwendung aufgrund ihrer Eindeutigkleit schnell erkennen.
+Softwareanwendung aufgrund ihrer Eindeutigkeit schnell erkennen.
 [ENDTERM]
 
 [TERM::Validierung]
