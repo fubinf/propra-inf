@@ -1,12 +1,8 @@
 title: Module und Pakete in Go
 stage: draft
-timevalue: 2
+timevalue: 3
 difficulty: 2
 ---
-
-https://go.dev/blog/using-go-modules
-https://go.dev/blog/publishing-go-modules
-https://go.dev/blog/v2-go-modules
 
 [SECTION::goal::idea,experience]
 Ich weiß, wie Module in Go verwaltet, veröffentlicht und versioniert werden.
@@ -42,17 +38,16 @@ Dokumentation zu den in der Aufgabe relevanten Kommandos bekommen Sie mit:
 - und generell `go help _command_`.
 
 
-### Package/import
+### Paket
 
 Alle Quellcodedateien müssen einem **Paket** zugeordnet sein.
 Dieses wird am Anfang der Datei in der Zeile `package {xyz}` angegeben, wobei
 `{xyz}` der Name Ihres Pakets ist.
 
+Stichpunktartig:
 
-#### Paket
-
-- ein Verzeichnis namens z.B. `xyz`, in dem alle Quellcodedateien mit der Zeile
-  `package xyz` anfangen müssen.
+- ein Paket ist ein Verzeichnis namens z.B. `xyz`, in dem alle Quellcodedateien
+  mit der Zeile `package xyz` anfangen müssen.
 - auf dieser Ebene wird Sichtbarkeit geregelt: Alle `lowercase` Deklarationen
   sind privat, alle `Capitalized` Deklarationen sind öffentlich (public/exported)
   und aus anderen Paketen sichtbar.
@@ -72,7 +67,7 @@ in den Verzeichnissen entsprechend mit den Zeilen `package src`, `package utils`
 oder `package test`.
 
 
-#### Modul
+### Modul
 
 Eine übergeordnete Struktur, die mehrere Pakete beinhalten kann.
 Ein Modul darf Abhängigkeiten von anderen Modulen haben und selber als Abhängigkeit
@@ -103,7 +98,7 @@ Falls Sie Ihr Modul veröffentlichen möchten, **muss** der Modulname mit der UR
 [ENDNOTICE]
 
 
-#### Was ist der Zweck?
+### Was ist der Zweck?
 
 **Module** dienen Versionierung und Nachverfolgung externer Abhängigkeiten eines Projekts.
 Explizite Versionierung stellt sicher, dass Builds reproduzierbar sind.
@@ -117,7 +112,7 @@ Explizite Versionierung stellt sicher, dass Builds reproduzierbar sind.
 Meistens wird Ihr Projekt ein einziges Modul sein, welches mehrere Pakete enthält.
 
 
-#### Wie werden Module/Pakete importiert?
+### Wie werden Module/Pakete importiert?
 
 Die Syntax einer Import-Anweisung:
 
@@ -201,6 +196,22 @@ Und jetzt im Root-Verzeichnis des lokalen Moduls folgende Befehle ausführen:
 Die Ausgabe müsste "Hi from remote module!" sein.
 
 
+#### Nützliche Kommandos
+
+Erklären Sie jeweils, was die folgenden Befehle tun.
+
+Fangen Sie Ihre Suche mit der Dokumentation an: `go help <command>`.
+Falls das nicht ausreicht, dürfen Sie alle verfügbaren Quellen benutzen.
+
+[EQ] `go mod tidy`
+
+[EQ] `go mod download`
+
+[EQ] `go mod vendor`
+
+[EQ] `go mod edit -replace`
+
+
 ### Versionierung
 
 Bibliotheken in Go unterliegen den Regeln
@@ -242,6 +253,16 @@ Lesen Sie nun diesen Eintrag über
 - wie ein git-Tag gelöscht wird;
 - wie ein git-Tag auf Remote gepusht wird.
 
+[WARNING]
+Falls Sie merken, dass `go get` nicht die richtige Version Ihres Moduls
+herunterlädt, kann das am Proxyserver liegen.
+
+Um das auszuschließen, setzen Sie die `GOPROXY` Umgebungsvariable auf `direct`.
+Führen Sie den Befehl im Terminal aus:
+
+    export GOPROXY=direct
+[ENDWARNING]
+
 [ER] Taggen Sie den letzten Commit in Ihrem `your_module_name` mit `v1.0.0`
 und pushen Sie den git-Tag auf Remote.
 Dadurch wird der Stand des Repos als v1.0.0 Version "versiegelt".
@@ -270,11 +291,6 @@ benutzt werden und die Ausgabe folgendermaßen aussieht:
     Hi from remote module v2!    
 
 [EC] `go run go-modules.go`
-
-
-### GOPROXY, GOPRIVATE
-
-TODO_Brandes
 [ENDSECTION]
 
 [SECTION::submission::trace,program]
