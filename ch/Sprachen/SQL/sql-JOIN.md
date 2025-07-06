@@ -60,9 +60,9 @@ erhalten die rechten Spalten `NULL`:
 
 ```sql
 SELECT mycol
-FROM mytable1
-LEFT JOIN mytable2
-  ON mytable1.column1 = mytable2.column1;
+FROM lefttable
+LEFT JOIN righttable
+  ON lefttable.column1 = righttable.column1;
 ```
 
 ### RIGHT JOIN
@@ -73,9 +73,9 @@ erhalten die linken Spalten `NULL`:
 
 ```sql
 SELECT mycol
-FROM mytable1
-RIGHT JOIN mytable2
-  ON mytable1.column1 = mytable2.column1;
+FROM lefttable
+RIGHT JOIN righttable
+  ON lefttable.column1 = righttable.column1;
 ```
 
 ### FULL JOIN
@@ -98,12 +98,16 @@ Weitere Details zu `JOIN` finden Sie in der W3schools: [Join-Clause](https://www
 SQLite unterstützt keine `RIGHT JOIN` oder `FULL JOIN`. Ein `RIGHT JOIN` ist nichts anderes als ein LEFT JOIN, wenn man die Tabellen vertauscht:
 ```sql
 -- LEFT JOIN
-SELECT mycol FROM mytable1
-LEFT JOIN mytable2 ON mytable1.id = mytable2.id;
+SELECT mycol 
+FROM lefttable
+LEFT JOIN righttable 
+  ON lefttable.id = righttable.id;
 
 -- RIGHT JOIN Simulation 
-SELECT mycol FROM mytable2
-LEFT JOIN mytable1 ON mytable1.id = mytable2.id;
+SELECT mycol 
+FROM righttable
+LEFT JOIN lefttable 
+  ON lefttable.id = righttable.id;
 ```
 Mit `UNION` lassen sich solche Abfragen jedoch simulieren, indem man zwei `LEFT JOINs` kombiniert. Ein `UNION` verbindet die Ergebnisse zweier `SELECT`-Abfragen und entfernt dabei doppelte Zeilen:
 ```sql
