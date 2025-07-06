@@ -31,12 +31,6 @@ Diese Aufgabe orientiert sich im Wesentlichen an diesen Einträgen auf
 - [Publishing Go Modules](https://go.dev/blog/publishing-go-modules)
 - [Go Modules: v2 and Beyond](https://go.dev/blog/v2-go-modules)
 
-Dokumentation zu den in der Aufgabe relevanten Kommandos bekommen Sie mit:
-
-- `go help mod`
-- `go help get`
-- und generell `go help _command_`.
-
 
 ### Paket
 
@@ -138,12 +132,6 @@ Hier gibt es zwei mögliche Fälle:
       und danach aus dem Root-Verzeichnis des Moduls `go get` ausführen.
       So werden alle nötigen Bibliotheken automatisch heruntergeladen.
 
-[NOTICE]
-Ein weiterer nützlicher Befehl ist `go mod tidy`.
-Er schaut sich Ihr Projekt und die Datei `go.mod` an und entfernt die
-unbenutzten Module.
-[ENDNOTICE]
-
 [ER] Legen Sie ein öffentliches Github-Repo an.
 Den Modulnamen dürfen Sie beliebig wählen (um unerwartete Fehler zu vermeiden,
 benutzen Sie im Modulnamen keine Sonderzeichen).
@@ -153,7 +141,7 @@ Am Anfang beinhaltet `go.mod` nur den Modulnamen und die Go-Version
 (beispielsweise `go 1.23`).
 Die Datei `go.mod` kann auf zwei verschiedene Arten angelegt werden:
 
-- entweder mittels des Kommandos `go mod init your_module_name`;
+- entweder mittels des Kommandos `go mod init github.com/your_username/your_module_name`;
 - oder manuell im Root-Verzeichnis (siehe Beispiel
   [Anatomy of go.mod](https://encore.cloud/guide/go.mod)
   ).
@@ -165,10 +153,12 @@ package your_module_name
 
 import "fmt"
 
-func HiFromRemote() {
+func PrintFromRemote() {
     fmt.Println("Hi from remote module!")
 }
 ```
+
+[ER] Pushen Sie anschließend die Änderungen auf Remote.
 
 [ER] Kreieren Sie nun ein lokales Projekt/Modul. Dieses darf beliebig heißen.
 
@@ -230,6 +220,17 @@ Die Unterverzeichnisse sind selbst vollständige Module und besitzen jeweils
 eine Datei `go.mod`, wo der Modulname als `github.com/your_username/your_module_name/v2`
 beziehungsweise `.../v3` angegeben wird.
 
+[NOTICE]
+Major-Versionen höher als 1 müssen in dem Import-Pfad angegeben werden!
+
+Um beispielsweise dritte Major-Version einer Bibliothek zu benutzen, muss die 
+Import-URL mit `v3` enden:
+
+```go
+import m3 "github.com/username/library/v3"
+```
+[ENDNOTICE]
+
 Folgende Schritte finden statt, wenn ein Modul importiert wird (Version `v2` als Beispiel):
 
 1. Das git-Repo unter der Import-URL finden;
@@ -265,38 +266,58 @@ Führen Sie den Befehl im Terminal aus:
 
 [ER] Taggen Sie den letzten Commit in Ihrem `your_module_name` mit `v1.0.0`
 und pushen Sie den git-Tag auf Remote.
+
 Dadurch wird der Stand des Repos als v1.0.0 Version "versiegelt".
 Alle Nutzer des Moduls, die das Modul mittels
 `import "github.com/your_username/your_module_name"` importieren, erhalten
 genau den Repo-Stand, der mit `v1.0.0` getaggt wurde.
-Diese Version können Sie mit dem Kommando
-`go get github.com/your_username/your_module_name@v1.0.0`
-oder `go get github.com/your_username/your_module_name@latest`
-herunterladen.
+
+[ER] Laden Sie diese Version mittels 
+`go get github.com/your_username/your_module_name@v1.0.0` herunter.
 
 [ER] Kreieren Sie die nächste Major-Version: `v2`.
 Legen Sie ein Verzeichnis `your_module_name/v2` an und kopieren Sie die
 Inhalte des Moduls (`go.mod` und `main.go`) in dieses Verzeichnis um.
 
+[ER] Passen Sie den Modulnamen in der Datei `v2/go.mod` an:
+Nun ist es `github.com/your_username/your_module_name/v2`.
+
 [ER] Ändern Sie die Ausgabe der Funktion `PrintFromRemote`:
-Nun soll es `Hi from remote module v2!` sein.
+In dieser Version soll es `Hi from remote module v2!` sein.
 
 [ER] Committen Sie die Änderungen und taggen Sie den Commit mit `v2.0.0`
-(nicht zu vergessen das auf Remote zu pushen!).
+(nicht zu vergessen auf Remote zu pushen!).
 
-[ER] Passen Sie Ihr lokales Projekt so an, dass beide Versionen nebeneinander
-benutzt werden und die Ausgabe folgendermaßen aussieht:
+[ER] Ersetzen Sie den Inhalt von `go-modules.go` durch den Quellcode unten.
+Passen Sie die `import`s entsprechend an.
 
-    Hi from remote module!
-    Hi from remote module v2!    
+```go
+package main
+
+import m1 "github.com/your_username/your_module_name"
+import m2 "github.com/your_username/your_module_name/v2"
+
+func main() {
+    m1.PrintFromRemote()
+    m2.PrintFromRemote()
+}
+```
+
+[EC] `go get`
 
 [EC] `go run go-modules.go`
 [ENDSECTION]
 
-[SECTION::submission::trace,program]
-[INCLUDE::/_include/Submission-Quellcode.md]
+[SECTION::submission::information,trace]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Hinweise]
+**Kommandoprotokoll**
+[PROT::ALT:go-modules.prot]
+
+**Lösungen**
+
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
