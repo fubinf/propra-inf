@@ -1,27 +1,24 @@
-title: SQL Select anwenden
+title: SQL SELECT anwenden
 stage: alpha
-timevalue: 3
+timevalue: 3.5
 difficulty: 2
 assumes: sql-basics
 ---
 
 [SECTION::goal::idea,experience]
-
-Ich kann komplexere `SELECT`-Anweisungen schreiben und die Ergebnisse ausgeben lassen.
-
+Ich kann komplexere `SELECT`-Anweisungen schreiben, filtern und zusammenfassen sowie Teilergebnisse für Unterabfragen und Aliase verwenden.
 [ENDSECTION]
 
 [SECTION::background::default]
-
 Das Abfragen einer kleinen gesamten Tabelle kann gelegentlich ausreichen, um das gewünschte Ergebnis manuell zu überprüfen. Wenn jedoch das Ergebnis für eine neue Funktion benötigt wird und weiterverarbeitet werden soll, sind präzisere Abfrageangaben erforderlich, um entweder ein bestimmtes Ergebnis oder alle Ergebnisse zurückzugeben.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### Vorbereitung
+### Weißt du noch, wie man eine Tabelle erstellt? `CREATE, INSERT`
 
-Zuerst schaffen wir uns unsere Grundlage. Wir verwenden wieder die aus [PARTREF::sql-basics] bekannte
+Wir verwenden wieder die aus [PARTREF::sql-basics] bekannte
 Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgende Tabelle, mit
 der wir in dieser Aufgabe arbeiten wollen.
 
@@ -44,11 +41,11 @@ der wir in dieser Aufgabe arbeiten wollen.
 ('Zoe', 'Shih Tzu', 7, 'Female', 'White and Brown', '2015-12-03', 11),
 ```
 
-[HINT::Query]
-Nutzen Sie [PARTREF::sql-basics] als Vorlage für das Erstellen und Einfügen der Daten.
+[HINT::Tabelle erstellen]
+Nutzen Sie [PARTREF::sql-basics] als Hilfe für das Erstellen und Einfügen der Daten.
 [ENDHINT]
 
-### SELECT-Abfragen und Filterung
+### SELECT-Abfragen und Filterung: `SELECT, FROM, WHERE, LIMIT, AND, OR`
 
 Jetzt spielen wir mit den Daten herum und lassen uns spezielle Werte ausgeben. 
 
@@ -60,18 +57,15 @@ Starten wir leicht durch. Erinnern Sie sich zurück, wie sie Daten aus einer Tab
 
 [HINT::Benötigte Syntax]
 ```sql
-SELECT <col> 
-FROM <table>;
+SELECT mycol FROM mytable;
 ```
 [ENDHINT]
 
-Aus dem Bereich `Tabelleneintrag löschen` der Aufgabe [PARTREF::sql-basics] haben sie das Löschen
+Aus dem Bereich `Datensätze löschen` der Aufgabe [PARTREF::sql-basics] haben sie das Löschen
 einzelner Zeilen einer Tabelle kennengelernt, die Sie mithilfe von `WHERE` gezielt identifiziert
 haben. `SELECT` kann auch diese Bedingungsvariable verwenden und somit Ergebnisse filtern.
 ```sql
-SELECT <col> 
-FROM <table>;
-WHERE <condition>
+SELECT mycol FROM mytable WHERE mycondition;
 ```
 
 [ER] Fragen Sie alle Hundenamen ab, die `8` Jahre alt sind.
@@ -80,19 +74,14 @@ WHERE <condition>
 
 Zusätzlich können wir mit `LIMIT <int>` auch nur eine bestimmte Anzahl an Werten zurückgeben lassen, oder vergleichbare Werte mit `<`, `>` einschränken.
 ```sql
-SELECT <col> 
-FROM <table>;
-WHERE <condition>
-LIMIT <number>
+SELECT mycol FROM mytable WHERE mycondition LIMIT mynumber;
 ```
 
 [ER] Geben Sie die ersten zwei Treffer aller weiblichen Hunde zurück.
 
 Und zu guter letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren.
 ```sql
-SELECT <col> 
-FROM <table>;
-WHERE <condition1> AND <condition2>
+SELECT mycol FROM mytable WHERE mycondition1 AND mycondition2;
 ```
 [ER] Geben Sie alle Besitzer-IDs zurück, die zwischen 10 (ausschließlich) und 20 (einschließlich) liegen.
 [HINT::Vergleichsoperatoren]
@@ -105,64 +94,59 @@ WHERE id > 10 AND id <= 20;
 
 [ER] Listen Sie alle Hunde auf, die `Golden Retriever`, jünger als `8` und `männlich` sind.
 
-### Unterabfragen
+### Unterabfragen: `IN`
 
 Wenn wir einen Treffer haben, wollen wir dieses Ergebnis oftmals weiterverwenden. Unter anderem auch
-in einer weiteren SQL Abfrage. Das klappt auch sehr gut mit SQL: So haben wir eine Abfrage in einer anderen Abfrage.
-
+in einer weiteren SQL Abfrage. Das klappt auch sehr gut mit SQL: So haben wir eine Abfrage in einer anderen Abfrage. 
+Die `IN` Klausel hilft dabei, zu prüfen, ob ein Wert innerhalb einer bestimmten Liste oder Ergebnismenge vorkommt. Man kann mit IN (...) also z.B. sagen: "Gib mir alle Zeilen, deren Wert in einer bestimmten Menge enthalten ist". Diese Menge kann explizit angegeben oder – wie hier – durch eine Unterabfrage bestimmt werden:
+```sql
+SELECT out_col FROM out_table WHERE match_column IN (
+  SELECT match_column FROM in_table WHERE mycondition);
+```
 [ER] Erstellen Sie eine Abfrage, die die `owner_id` des Hundes mit `name = 'Charlie'` zurückgibt. Verwenden Sie diese ID in einer weiteren Abfrage, um den Namen des Hundes mit dieser ID abzufragen.
 
-[HINT::Allgemeine Syntax]
-```sql
-SELECT <col1>, <col2> 
-FROM <table> 
-WHERE <col> IN (
-  SELECT <col> 
-  FROM <table> 
-  WHERE <condition>
-);
-```
-[ENDHINT]
-
-### Aliases
+### Aliases: `AS`
 
 Aliases werden in SQL verwendet, um Spaltennamen oder Ergebnisse von Abfragen umbenennen zu können.
 Sie sind besonders nützlich, um die Lesbarkeit von Abfragen zu verbessern und komplexe Abfragen
 besser zu verstehen. Verwenden wird dafür das Schlüsselwort `AS`.
 
 ```sql
-SELECT <col1> AS <alias1>, <col2> AS <alias2>, ...
-FROM <table>;
+SELECT mycol1 AS myalias1, mycol2 AS myalias2, ...
+FROM mytable;
 ```
 
-oder auch eine gesamte Abfrage:
+oder auch eine gesamte Abfrage(Tabelle):
 
 ```sql
 SELECT * 
-FROM <table_name> AS result;
+FROM mytable AS myresult;
 ```
-[ER] Vergeben Sie für die erste Abfragen aus Aufgabe [EREFR::10] einen Alias.
+[ER] Vergeben Sie für die erste Abfragen(`owner_id`) aus Aufgabe [EREFR::10] einen Alias.
 
-### Aggregatsfunktionen
+### Aggregatsfunktionen: `COUNT, SUM, AVG, MIN, MAX`
 
 Aggregatfunktionen ermöglichen es, statistische Informationen über Daten zu erhalten, wie z.B. die
-Anzahl der Zeilen (COUNT), die Summe von Werten (SUM), den Durchschnitt (AVG), das Minimum (MIN)
-oder das Maximum (MAX). Diese Funktionen sind nützlich, um Zusammenfassungen über Daten zu erhalten
+Anzahl der Zeilen `COUNT`, die Summe von Werten `SUM`, den Durchschnitt `AVG`, das Minimum `MIN`
+oder das Maximum `MAX`. Diese Funktionen sind nützlich, um Zusammenfassungen über Daten zu erhalten
 und um Analysen durchzuführen. Dabei geht man wie folgt vor:
 
 ```sql
-SELECT <Aggregate function>(*)
-FROM dogs;
+SELECT my_Aggregate_function>(*)
+FROM mytable;
 ```
 
 Der Stern (*) wird verwendet, um anzugeben, dass die Aggregatfunktion auf alle Zeilen oder Datensätze
 in der Tabelle angewendet werden soll, ohne spezifische Bedingungen anzugeben. 
 ```sql
-SELECT COUNT(*) FROM <table>;
-SELECT SUM(<col>) FROM <table>;
-SELECT AVG(<col>) FROM <table>;
+SELECT COUNT(*) FROM mytable;
+SELECT SUM(mycol) FROM mytable;
+SELECT AVG(mycol) FROM mytable;
+SELECT MIN(mycolumn) FROM mytable;
+SELECT MAX(mycolumn) FROM mytable;
 ```
-Für weitere Funktionen siehe: [Aggregate Functions (COUNT, SUM, AVG, MIN, MAX)](https://sqlite.org/lang_aggfunc.html)
+<!--Siehe auch: 
+[Aggregate Functions (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`)](https://www.w3schools.com/sql/sql_aggregate_functions.asp) bei w3schools.-->
 
 [ER] Berechnen Sie die Anzahl der Einträge.
 
@@ -170,58 +154,61 @@ Für weitere Funktionen siehe: [Aggregate Functions (COUNT, SUM, AVG, MIN, MAX)]
 
 [ER] Berechnen Sie den Durchschnitt der `owner_id`.
 
-### Gruppieren und Filtern
+[ER] Bestimmen Sie das minimale Alter aller Hunde.
+
+[ER] Bestimmen Sie das maximale Alter aller Hunde.
+
+### Gruppieren und Filtern: `GROUP BY, HAVING`
 
 Gruppierungen in SQL ermöglichen es, Daten basierend auf bestimmten Kriterien zusammenzufassen und
 statistische Informationen wie Summen, Durchschnitte, Anzahlen usw. für jede Gruppe zu berechnen.
-Dazu verwendet man am Ende einer Abfrage das Schlüsselwort `GROUP BY`. Weitere Infos: [ORDER BY](https://sqlite.org/lang_select.html#resultset)
+Dazu verwendet man am Ende einer Abfrage das Schlüsselwort `GROUP BY`. 
+<!--Weitere Infos: [`GROUP BY`](https://www.w3schools.com/sql/sql_groupby.asp)-->
 
 ```sql
-SELECT <col>, COUNT(*)
-FROM <table>
-GROUP BY <col>;
+SELECT mycol, COUNT(*) FROM mytable
+GROUP BY mycol;
 ```
 
 [ER] Gruppieren Sie nach `breed`.
 
 [ER] Gruppieren Sie: Anzahl der Hunde pro `owner_id`.
 
-Mit dem Schlüsselwort `HAVING` können Sie weitere Bedingungen nach einer Gruppierung festlegen. Weitere Infos: [HAVING](https://sqlite.org/lang_select.html#resultset)
+Mit dem Schlüsselwort `HAVING` können Sie weitere Bedingungen nach einer Gruppierung festlegen. <!--Weitere Infos: [`HAVING`](https://www.w3schools.com/sql/sql_having.asp)-->
 
 ```sql
-SELECT <col>, COUNT(*)
-FROM <table>
-GROUP BY <col>
-HAVING COUNT(*) > <int>;
+SELECT mycol, COUNT(*) FROM mytable
+GROUP BY mycol HAVING COUNT(*) > myvalue;
 ```
 
 [ER] Wie viele `owner_id` haben mindestens 2 Hunde? (Nutzen Sie `HAVING`.)
 
-### Sortieren
+### Sortieren: `ORDER BY, ASC, DESC`
 
 In SQL können Sie die `ORDER BY`-Klausel verwenden, um die Ergebnisse einer Abfrage basierend auf den
-Werten einer oder mehrerer Spalten zu sortieren. Weitere Infos: [ORDER BY](https://sqlite.org/lang_select.html#the_order_by_clause)
+Werten einer oder mehrerer Spalten zu sortieren. Dabei steht `ASC` für aufsteigende Sortierung (von klein nach groß) und `DESC` für absteigende Sortierung (von groß nach klein).
+<!-- Weitere Infos: [`ORDER BY`](https://www.w3schools.com/sql/sql_orderby.asp)-->
 
 ```sql
-SELECT <col1>, <col2>, ...
-FROM <table>
-ORDER BY <col1> [ASC | DESC], <col2> [ASC | DESC], ...;
+SELECT mycol1, mycol2, ...
+FROM mytable
+ORDER BY mycol1 [ASC | DESC], mycol2 [ASC | DESC], ...;
 ```
 
 [ER] Geben Sie `name` und `age` aller Hunde zurück, sortiert nach `age` absteigend.
 
 [ER] Sortieren Sie zuerst nach `age` absteigend, dann nach `breed` aufsteigend.
 
-### Duplikate entfernen
+### Duplikate entfernen: `DISTINCT`
 
 Manchmal kann es überraschend sein, wenn man trotz gut gezielter Einschränkung mehr als ein Ergebnis zurückbekommt. Um das zu vermeiden, kann man eindeutige Werte verwenden (z.B. eine ID), die das
 Objekt der Begierde beschreibt. Jedoch muss man diesen eindeutigen Wert kennen. Die `DISTINCT`-Klausel
 sorgt dafür, dass Duplikate aus den Ergebnissen entfernt und nur eindeutige Werte zurückgegeben werden.
-Siehe auch: [DISTINCT](https://sqlite.org/lang_select.html#removal_of_duplicate_rows_distinct_processing_)
+<!--Siehe auch: [DISTINCT](https://www.w3schools.com/sql/sql_distinct.asp)-->
 
 ```sql
-SELECT DISTINCT <col1>, <col2>, ...
-FROM <table>;
+SELECT DISTINCT mycol1, mycol2, ...
+FROM mytable;
 ```
 
 [ER] Entfernen Sie doppelte `name`-Werte und zählen Sie die eindeutigen Hunde.
