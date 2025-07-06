@@ -1,23 +1,17 @@
 title: Zusammenführen von Tabellen mittels JOIN
 stage: draft
-timevalue: 1.5
+timevalue: 2
 difficulty: 2
 assumes: sql-basics, sql-SELECT
 ---
 
 [SECTION::goal::idea,experience]
-
-- Ich kann mehrere Tabellen in einer Abfrage verbinden und kenne die Eigenschaften der unterschiedlichen Verbindungen.
-
+Ich kann mehrere Tabellen in einer Abfrage verbinden und kenne die Eigenschaften der unterschiedlichen Verbindungen.
 [ENDSECTION]
 
 [SECTION::background::default]
-
 In einem Datenbankprojekt werden meist mehrere Tabellen verwendet, die unterschiedliche Informationsbereiche abbilden.
-
-- Um Wiederholungen und Inkonsistenzen zu vermeiden, werden Tabellen über Referenzen miteinander verknüpft.
-- `JOIN`-Operationen dienen dazu, relevante Daten aus diesen Tabellen zu kombinieren.
-
+Um Wiederholungen und Inkonsistenzen zu vermeiden, werden Tabellen über Referenzen miteinander verknüpft. `JOIN`-Operationen dienen dazu, relevante Daten aus diesen Tabellen zu kombinieren.
 
 [ENDSECTION]
 
@@ -31,9 +25,9 @@ abzurufen, ist das Kreuzprodukt mittels kommaseparierter Listen:
 
 ```sql
 SELECT *
-FROM table1, table2, table3
-WHERE table1.id = table2.t1_id
-  AND table2.id = table3.t2_id;
+FROM mytable1, mytable2, mytable3
+WHERE mytable1.id = mytable2.t1_id
+  AND mytable2.id = mytable3.t2_id;
 ```
 
 Jedoch können solche Abfragen sehr komplex und ineffizient werden, insbesondere wenn große Datenmengen
@@ -52,10 +46,10 @@ Ein `INNER JOIN` gibt nur die Datensätze zurück, die in beiden Tabellen übere
 einem gemeinsamen Wert in beiden Tabellen.
 
 ```sql
-SELECT <columns>
-FROM <table1>
-INNER JOIN <table2>
-  ON <table1.column> = <table2.column>;
+SELECT mycol
+FROM mytable1
+INNER JOIN mytable2
+  ON mytable1.column1 = mytable2.column1;
 ```
 
 ### LEFT JOIN
@@ -65,10 +59,10 @@ Ein `LEFT JOIN` gibt alle Datensätze aus der linken Tabelle zurück und ergänz
 erhalten die rechten Spalten `NULL`:
 
 ```sql
-SELECT <columns>
-FROM <table1>
-LEFT JOIN <table2>
-  ON <table1.column> = <table2.column>;
+SELECT mycol
+FROM mytable1
+LEFT JOIN mytable2
+  ON mytable1.column1 = mytable2.column1;
 ```
 
 ### RIGHT JOIN
@@ -78,10 +72,10 @@ Ein `RIGHT JOIN` gibt alle Datensätze aus der rechten Tabelle zurück und ergä
 erhalten die linken Spalten `NULL`:
 
 ```sql
-SELECT <columns>
-FROM <table1>
-RIGHT JOIN <table2>
-  ON <table1.column> = <table2.column>;
+SELECT mycol
+FROM mytable1
+RIGHT JOIN mytable2
+  ON mytable1.column1 = mytable2.column1;
 ```
 
 ### FULL JOIN
@@ -90,23 +84,44 @@ Ein `FULL JOIN` kombiniert beide Tabellen vollständig. Dort, wo es keine Übere
 erhalten die fehlenden Seiten `NULL`:
 
 ```sql
-SELECT <columns>
-FROM <table1>
-FULL JOIN <table2>
-  ON <table1.column> = <table2.column>;
+SELECT mycol
+FROM mytable1
+FULL JOIN mytable2
+  ON mytable1.column1 = mytable2.column1;
 ```
-[NOTICE] Weitere Details zu `JOIN` finden Sie in der offiziellen SQLite-Dokumentation: [Join-Clause](https://www.sqlite.org/syntax/join-clause.html) [ENDNOTICE]
 
-### Vorbereitung
+[NOTICE] 
+Weitere Details zu `JOIN` finden Sie in der W3schools: [Join-Clause](https://www.w3schools.com/sql/sql_join.asp) in Abschnitt "Different Types of SQL JOINs"
+[ENDNOTICE]
+
+### UNION
+SQLite unterstützt keine `RIGHT JOIN` oder `FULL JOIN`. Ein `RIGHT JOIN` ist nichts anderes als ein LEFT JOIN, wenn man die Tabellen vertauscht:
+```sql
+-- LEFT JOIN
+SELECT mycol FROM mytable1
+LEFT JOIN mytable2 ON mytable1.id = mytable2.id;
+
+-- RIGHT JOIN Simulation 
+SELECT mycol FROM mytable2
+LEFT JOIN mytable1 ON mytable1.id = mytable2.id;
+```
+Mit `UNION` lassen sich solche Abfragen jedoch simulieren, indem man zwei `LEFT JOINs` kombiniert. Ein `UNION` verbindet die Ergebnisse zweier `SELECT`-Abfragen und entfernt dabei doppelte Zeilen:
+```sql
+SELECT mycol FROM mytable1
+LEFT JOIN mytable2 ON mytable1.id = mytable2.id
+UNION
+SELECT mycol FROM mytable2
+LEFT JOIN mytable1 ON mytable1.id = mytable2.id;
+```
+So entsteht eine vollständige Kombination aus beiden Tabellen – ähnlich einem `FULL JOIN`.
+Wenn man alle Zeilen inklusive Duplikate erhalten möchte, kann man stattdessen `UNION ALL` verwenden.
+
+### Es ist an der Zeit zu prüfen, ob du JOINs beherrschst!
 
 Wir verwenden wieder die aus [PARTREF::sql-basics]
 bekannte Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgenden Tabellen, mit der wir in dieser Aufgabe arbeiten wollen.
-[NOTICE]
 
-Hinweis: SQLite unterstützt nur `INNER JOIN` und `LEFT JOIN` direkt. `RIGHT JOIN` und `FULL JOIN` können durch geeignete Kombinationen aus `LEFT JOIN` und `UNION` simuliert werden.
-[ENDNOTICE]
-
-**Tabelle 1:**
+**Tabelle students:**
 ```sql
 DROP TABLE IF EXISTS students;
 CREATE TABLE students (
@@ -129,7 +144,7 @@ INSERT INTO students (name, age, course_id) VALUES
 ('Jessica', 20, 3);
 ```
 
-**Tabelle 2:**
+**Tabelle courses:**
 ```sql
 DROP TABLE IF EXISTS courses;
 CREATE TABLE courses (
@@ -152,75 +167,65 @@ INSERT INTO courses (name, teacher, semester) VALUES
 ('Physical Education', 'Coach Taylor', 2);
 ```
 
-### Übungen
-
 [ER] Fragen Sie den Namen des Kurses ab, den jeder Student belegt.
 
 [HINT::Wie kann ich zwei Tabellen verknüpfen?]
 ```sql
--- Zeige Titel und Autorname durch INNER JOIN
-SELECT books.title, authors.name  
-FROM books  
+-- Ein Beispiel, zeige Titel und Autorname durch INNER JOIN
+SELECT books.title, authors.name FROM books  
 INNER JOIN authors ON books.author_id = authors.id;
 ```
 [ENDHINT]
 
 [ER] Fragen Sie die Anzahl der Studenten in jedem Kurs ab.
-[HINT::Ich brauche Hilfe mit GROUP BY und COUNT]
+[HINT::Ich brauche Hilfe mit `GROUP BY` und `COUNT`]
 ```sql
--- Zähle Artikel pro Kategorie
-SELECT categories.name, COUNT(items.id)  
-FROM items  
+-- Ein Beispiel, zähle Artikel pro Kategorie
+SELECT categories.name, COUNT(items.id) FROM items  
 INNER JOIN categories ON items.category_id = categories.id  
 GROUP BY categories.name;
 ```
 [ENDHINT]
 
-[ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben.
+[ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben. (mit `INNER JOIN`)
 
-[HINT::Wie verwende ich HAVING mit COUNT?]
+[HINT::Wie verwende ich `HAVING` und `GROUP BY` mit `COUNT`?]
 ```sql
--- Nur Abteilungen mit mehr als 5 Mitarbeiter
-SELECT departments.name, COUNT(employees.id)  
-FROM employees  
+-- Ein Beispiel, Nur Abteilungen mit mehr als 5 Mitarbeiter
+SELECT departments.name, COUNT(employees.id) FROM employees  
 INNER JOIN departments ON employees.dept_id = departments.id  
 GROUP BY departments.name  
 HAVING COUNT(employees.id) > 5;
 ```
 [ENDHINT]
 
-Vergleichen Sie diese Ergebnisse mit:
+[ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben. (mit `LEFT JOIN`)
 
-[ER] einem `LEFT JOIN`.
+[ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben. (mit `RIGHT JOIN` – simuliert)
 
-[ER] einem `RIGHT JOIN`.
+[ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben. (mit `FULL JOIN` – simuliert)
+
 [NOTICE]
-
-SQLite unterstützt `RIGHT JOIN` und `FULL JOIN` nicht direkt – man kann sie jedoch mit `LEFT JOIN` und `UNION` simulieren.
+SQLite unterstützt nur `INNER JOIN` und `LEFT JOIN` direkt. `RIGHT JOIN` und `FULL JOIN` können durch geeignete Kombinationen aus `LEFT JOIN` und `UNION` simuliert werden.
 [ENDNOTICE]
-
-[ER] einem `FULL JOIN`.
 
 [HINT::Wie vergleiche ich JOIN-Arten an einem Beispiel?]
 
 ```sql
+-- Beispiele
 -- LEFT JOIN: Alle Kunden, auch ohne Bestellung
-SELECT customers.name, orders.date  
-FROM customers  
+SELECT customers.name, orders.date FROM customers  
 LEFT JOIN orders ON customers.id = orders.customer_id;
 
 -- RIGHT JOIN (simuliert): Alle Bestellungen, auch ohne zugeordnete Kunden
-SELECT customers.name, orders.date  
-FROM orders  
+SELECT customers.name, orders.date FROM orders  
 LEFT JOIN customers ON orders.customer_id = customers.id;
 
 -- FULL JOIN (simuliert): Alle Kunden und Bestellungen, auch ohne Verbindung
-SELECT customers.name, orders.date  
-FROM customers  
+SELECT customers.name, orders.date FROM customers  
 LEFT JOIN orders ON customers.id = orders.customer_id  
 UNION  
-SELECT customers.name, orders.date  
-FROM orders  
+SELECT customers.name, orders.date FROM orders  
 LEFT JOIN customers ON orders.customer_id = customers.id;
 ```
 [ENDHINT]
