@@ -33,4 +33,6 @@
   Das ist sowohl für Sie als auch für die Tutoren weitaus übersichtlicher.
 - **2025-07-01**: Hinweise auf Hilfe-Quellen ergänzt in Aufgabe [PARTREF::git-Funktionsweise].
 - **2025-07-02**: Aufgabe [PARTREF::propra-sonstige-Mängel-an-Aufgaben] zugefügt.
+- **2025-07-07**: Das [PARTREFMANUAL::glossary::Begriffsverzeichnis] enthält jetzt
+  eine vollständige Stichwortliste zu Beginn.
 - ...
