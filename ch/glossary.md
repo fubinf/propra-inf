@@ -7,6 +7,8 @@ insbesondere solche, die für mehr als eine Aufgabe relevant sind.
 Die Erläuterungen verweisen zurück auf die Aufgaben, in denen sie erwähnt werden,
 sowie ggf. auf Aufgaben, die weitere Erläuterungen dazu enthalten.
 
+[TOC] 
+
 ## A
 
 [TERM::Account|Konto|Benutzeraccount|Benutzerkonto|Useraccount|Benutzer|User|Nutzer]
@@ -140,7 +142,7 @@ Es wird oft in Texteditoren und auf Plattformen wie GitHub verwendet,
 um einfache Textformatierungen wie Überschriften, Listen und Links zu erstellen. 
 Markdown zeichnet sich durch eine einfache und leicht schreib- und lesbare Syntax aus.
 
-Weitere Informationen zu Auszeichnungssprachen: [HREF::https://de.wikipedia.org/wiki/Auszeichnungssprache]
+Weitere Informationen: [HREF::https://de.wikipedia.org/wiki/Auszeichnungssprache]
 [ENDTERM]
 
 ## B
@@ -159,7 +161,7 @@ Eine agile Softwareentwicklungsmethode, die sich auf die Zusammenarbeit
 zwischen Entwicklern, Testern und nicht-technischen Stakeholdern konzentriert.
 In BDD werden Anforderungen
 in verständlichen, semi-natürlichsprachlichen Szenarien formuliert,
-die dann mechanisch in automatisierte Tests übersetzt werden.
+die dann mithilfe handgeschriebener Adapter als automatisierte Tests ausgeführt werden.
 
 [HREF::https://docs.robotframework.org/docs/testcase_styles/bdd#what-is-bdd]  
 [HREF::https://www.codecentric.de/wissens-hub/blog/givenwhenthen-and-example-tables-using-the-robot-framework]
