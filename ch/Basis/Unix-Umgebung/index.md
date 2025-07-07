@@ -23,4 +23,11 @@ ist insbesondere auf Servern führend.
 **Wir tun hier immer so, als wären wir auf Linux, genauer: auf GNU/Linux Debian 12 "Bookworm"**
 (oder ggf. einer späteren Version von Debian).
 Wer ein anderes Linux benutzt und 
-mehr noch Mac-Benutzer_innen müssen sich hier und da auf Abweichungen gefasst machen.  
+mehr noch Mac-Benutzer_innen müssen sich hier und da auf Abweichungen gefasst machen.
+
+[NOTICE]
+Wer schon eine funktionierende Unix-Umgebung (mit Python in einer genügend jungen Version) 
+zur Verfügung hat, sich damit ordentlich auskennt und 
+sich über die Implikationen der oben fettgedruckten Bemerkung im Klaren ist,
+darf diese Aufgabe gern auch überspringen.
+[ENDNOTICE]
