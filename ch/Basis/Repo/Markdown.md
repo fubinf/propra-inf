@@ -5,22 +5,24 @@ difficulty: 2
 ---
 
 [SECTION::goal::idea]
-
 Ich kann in Markdown Überschriften, Listen, Codeblöcke, Blockzitate
 und Hyperlinks ausdrücken
-
 [ENDSECTION]
-[SECTION::background::default]
 
+[SECTION::background::default]
 Sie werden im gesamten ProPra neben Kommandoeingaben bzw. Kommandoausgaben 
 auch an vielen Stellen selbst Texte schreiben, um etwas zu erklären 
 oder über ein Thema zu reflektieren.
 
 Dazu verwenden wir die schön simple Notation "Markdown".
 
+[NOTICE]
+Wer Markdown schon kennt (halbwegs gut reicht), 
+darf diese Aufgabe auch gern überspringen.
+[ENDNOTICE]
 [ENDSECTION]
-[SECTION::instructions::loose]
 
+[SECTION::instructions::loose]
 [TERMREF::Markdown] ist eine Markup-Sprache, die (anders als [TERMREF::HTML]) 
 einfach schreibbar und gut lesbar ist.
 Man kann damit schnell und einfach strukturierte Texte schreiben. 
@@ -124,15 +126,13 @@ Man kann auch Bilder einfügen, Tabellen schreiben,
 per [TERMREF::CSS] das Aussehen der Markdown-Dateien ändern
 und noch vieles mehr; 
 siehe die oben genannten Quellen.
-
 [ENDSECTION]
-[SECTION::submission::program]
 
+[SECTION::submission::program]
 Geben Sie das Dokument `Markdown.md` mit den im Text unter [EREFQ::1], [EREFQ::2], ...
 geforderten Markdown-Formatierungen ab.
 Geben Sie die Marker mit an.
 
 Dort, wo keine expliziten Texte gefordert sind, dürfen Sie diese frei wählen. 
-Aber halten Sie diese kurz, es geht um die Formatierungen!
-
+Aber halten Sie diese kurz, es geht uns um die Formatierungen!
 [ENDSECTION]
