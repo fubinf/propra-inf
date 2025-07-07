@@ -97,6 +97,16 @@ der Ausführung des Workflows verwendet werden können. Beispiele sind: Build-Au
 oder sogar vollständige [TERMREF::Release]-Versionen), Testberichte oder auch Dokumentationen
 [ENDTERM]
 
+[TERM::ASCII]
+Der American Standard Code for Information Interchange, kurz ASCII, ist ein 
+Zeichenkodierungsstandard, der Zahlen den Buchstaben des englischen Alphabets, Satzzeichen und 
+Steuerzeichen zuordnet, um sie in Computern und anderen elektronischen Geräten darzustellen.
+Die Kodierung definiert 128 Zeichen, bestehend aus 33 nicht druckbaren und 95 druckbaren 
+Leerzeichen, beginnend mit dem Leerzeichen.  
+In Code kann so z. B. der Buchstabe "A" auch durch seinen ASCII-Wert "65" dargestellt werden.
+Eine ASCII-Tabelle finden Sie unter [HREF::https://www.asciitable.com/].
+[ENDTERM]
+
 [TERM::Assemblersprache|Assembly]
 Eine Assemblersprache ist eine menschenlesbare Variante der
 [TERMREF::Maschinensprache].
@@ -111,16 +121,6 @@ auf eine andere Prozessorarchitektur portiert werden.
 Der Assembliere ist ein Programm, welches in [TERMREF::Assemblersprache]
 verfassten Quellcode in [TERMREF::Maschinensprache] übersetzt.
 Oftmals gehen [TERMREF::Übersetzer] und Assemblierer Hand in Hand.
-[ENDTERM]
-
-[TERM::ASCII]
-Der American Standard Code for Information Interchange, kurz ASCII, ist ein 
-Zeichenkodierungsstandard, der Zahlen den Buchstaben des englischen Alphabets, Satzzeichen und 
-Steuerzeichen zuordnet, um sie in Computern und anderen elektronischen Geräten darzustellen.
-Die Kodierung definiert 128 Zeichen, bestehend aus 33 nicht druckbaren und 95 druckbaren 
-Leerzeichen, beginnend mit dem Leerzeichen.  
-In Code kann so z. B. der Buchstabe "A" auch durch seinen ASCII-Wert "65" dargestellt werden.
-Eine ASCII-Tabelle finden Sie unter [HREF::https://www.asciitable.com/].
 [ENDTERM]
 
 [TERM::async|await]
@@ -238,6 +238,13 @@ in formaler und struktureller Hinsicht gestaltet sein soll –
 unabhängig davon, „was“ das Programm leisten soll.
 [ENDTERM]
 
+[TERM::Compiler|Übersetzer]
+Ein Übersetzer ist ein Programm, welches Quellcode einer Sprache in eine andere
+Sprache übersetzt.  
+Zielsprachen können die [TERMREF::Maschinensprache], eine
+[TERMREF::Zwischensprache] oder eine andere [TERMREF::Hochsprache] sein.
+[ENDTERM]
+
 [TERM::Conditional Breakpoint|Bedingter Haltepunkt]
 Ein [TERMREF::Breakpoint], der erst ausgelöst wird, wenn eine vorgegebene Bedingung erfüllt ist.
 [ENDTERM]
@@ -318,6 +325,15 @@ In der Informatik und Softwaretechnik ist eine Datenstruktur ein Objekt, welches
 [HREF::https://de.wikipedia.org/wiki/Datenstruktur]
 [ENDTERM]
 
+[TERM::de-morgansche Gesetze|de-morgansche Regeln]
+Die de-morganschen Gesetze sind zwei grundlegende Regeln für logische Aussagen und gelten in 
+allen booleschen Algebren und sind bedeutsam in der Aussagenlogik und Mengenlehre.
+
+Sie lauten:
+`nicht (a und b) ist äquivalent zu ((nicht a) oder (nicht b))`, sowie
+`nicht (a oder b) ist äquivalent zu ((nicht a) und (nicht b))`.
+[ENDTERM]
+
 [TERM::Decorator|Dekorierer]
 Eine Funktion in einer Programmiersprache, die eine andere Funktion oder eine Klasse
 modifiziert oder erweitert. Es ermöglicht, das Verhalten einer Funktion oder Klasse zu ändern,
@@ -345,15 +361,6 @@ konkrete und oft nirgends aufgeschriebene Erwartung.
 Ein Defekt ist eine mögliche Folge eines menschlichen [TERMREF2::Fehler::-s] beim Programmieren;
 viele (aber nicht alle) Defekte verursachen immer oder manchmal ein [TERMREF::Versagen].
 Zur Korrektur eines Defekts wird in der Regel das Produkt (z.B. der Code) verändert.
-[ENDTERM]
-
-[TERM::de-morgansche Gesetze|de-morgansche Regeln]
-Die de-morganschen Gesetze sind zwei grundlegende Regeln für logische Aussagen und gelten in 
-allen booleschen Algebren und sind bedeutsam in der Aussagenlogik und Mengenlehre.
-
-Sie lauten:
-`nicht (a und b) ist äquivalent zu ((nicht a) oder (nicht b))`, sowie
-`nicht (a oder b) ist äquivalent zu ((nicht a) und (nicht b))`.
 [ENDTERM]
 
 [TERM::Dependency Injection]
@@ -483,13 +490,6 @@ oder inkonsistenten Zustand gerät. Das kann dazu führen, dass das System unerw
 produziert oder nicht ordnungsgemäß funktioniert.
 [ENDTERM]
 
-[TERM::Filter]
-In Unix werden Programme, die von Standardeingabe (stdin) lesen und nach Standardausgabe (stdout)
-schreiben, Filter genannt.
-Bei Programmen wie `grep`, die Teile der Eingabe weglassen, leuchtet die Bezeichnung ein,
-aber sie gilt auch für Programme wie `sort`, die die Eingabe nur umformen.
-[ENDTERM]
-
 [TERM::Filedeskriptor|file descriptor]
 Beschreibt auf unixoiden Betriebssystemen eine Ressource, auf der Daten geschrieben und gelesen 
 werden können. Jeder Prozess hat seine eigenen Filedeskriptoren. 
@@ -500,6 +500,13 @@ beliebig viele weitere FDs existieren, die verschiedene Datenströme beschreiben
 Netzwerk Sockets etc.).
 
 [HREF::https://en.wikipedia.org/wiki/File_descriptor]
+[ENDTERM]
+
+[TERM::Filter]
+In Unix werden Programme, die von Standardeingabe (stdin) lesen und nach Standardausgabe (stdout)
+schreiben, Filter genannt.
+Bei Programmen wie `grep`, die Teile der Eingabe weglassen, leuchtet die Bezeichnung ein,
+aber sie gilt auch für Programme wie `sort`, die die Eingabe nur umformen.
 [ENDTERM]
 
 [TERM::first-class citizen|first-class Objekt]
@@ -610,14 +617,14 @@ z.B. `Content-Type:`, `Set-Cookie:`, `Cache-Control:`.
 [HREF::https://de.wikipedia.org/wiki/Liste_der_HTTP-Headerfelder]
 [ENDTERM]
 
-[TERM::Hilfsbereich]
-Ein Verzeichnisbaum für Zwecke des ProPra, der außerhalb des Arbeitsbereichs liegt,
-der nach git eingecheckt wird.
-[ENDTERM]
-
 [TERM::higher-order function|Funktion höherer Ordnung]
 Eine Funktion, die mindestens eine Funktion als Argument entgegennimmt oder wiederum eine 
 Funktion als Rückgabewert zurückgibt.
+[ENDTERM]
+
+[TERM::Hilfsbereich]
+Ein Verzeichnisbaum für Zwecke des ProPra, der außerhalb des Arbeitsbereichs liegt,
+der nach git eingecheckt wird.
 [ENDTERM]
 
 [TERM::Hochsprache|höhere Programmiersprache]
@@ -735,19 +742,6 @@ wird dann interpretiert.
 [HREF::https://devguide.python.org/internals/]
 [ENDTERM]
 
-[TERM::Issue Tracker|Bug Tracker|Defect Tracker|Defektdatenbank]
-Ein Programm zur Koordination der Arbeit an bekannten (aber anfangs noch nicht bereinigten
-und meist auch noch nicht lokalisierten) Defekten oder sonstigen Verbesserungswünschen (feature requests)
-einer Software.
-
-Ein Issue Tracker erlaubt insbesondere
-
-- die Klassifikation der Einträge nach diversen verschiedenen Kriterien,
-  sodass man schnell auf Teilmengen der Einträge zugreifen kann,
-- die Markierung eines Eintrags als "offen" (open, in Bearbeitung) oder "geschlossen" (closed) und
-- die Zuweisung zuständiger Personen für die Bearbeitung.
-[ENDTERM]
-
 [TERM::IP|Internet Protocol]
 IP (Internet Protocol) ist das grundlegende Protokoll, das dafür sorgt, dass Daten über das Internet 
 von einem Computer zum anderen gelangen. 
@@ -782,6 +776,19 @@ die durch Doppelpunkte getrennt sind (z. B. 2001:0db8:85a3:0000:0000:8a2e:0370:7
 IPv6 stellt 2^128 (ungefähr 340 Sextillionen) Adressen bereit.
 [ENDTERM]
 
+[TERM::Issue Tracker|Bug Tracker|Defect Tracker|Defektdatenbank]
+Ein Programm zur Koordination der Arbeit an bekannten (aber anfangs noch nicht bereinigten
+und meist auch noch nicht lokalisierten) Defekten oder sonstigen Verbesserungswünschen (feature requests)
+einer Software.
+
+Ein Issue Tracker erlaubt insbesondere
+
+- die Klassifikation der Einträge nach diversen verschiedenen Kriterien,
+  sodass man schnell auf Teilmengen der Einträge zugreifen kann,
+- die Markierung eines Eintrags als "offen" (open, in Bearbeitung) oder "geschlossen" (closed) und
+- die Zuweisung zuständiger Personen für die Bearbeitung.
+[ENDTERM]
+
 [TERM::Iterables|Iterables in Python]
 Iterables in Python sind Objekte, die eine Sequenz von Elementen bereitstellen,
 über die iteriert werden kann,
@@ -809,12 +816,6 @@ und sehr verbreitet für den Datenaustausch zwischen Anwendungen.
 
 ## K
 
-[TERM::Kommandozeilenparameter]
-Ein [TERMREF::Parameter] für ein ausführbares Programm, das per
-[TERMREF::Shell]-Kommando aufgerufen wird,
-oder für ein eingebautes Shell-Kommando
-[ENDTERM]
-
 [TERM::KDT|Keyword-Driven Testing|Schlüsselwortgetriebenes Testen]
 Eine Testautomatisierungsmethode, bei der Tests mithilfe von Schlüsselwörtern oder
 Aktionen beschrieben werden, die von einem Testframework interpretiert und ausgeführt werden.
@@ -826,6 +827,12 @@ Aktionen beschrieben werden, die von einem Testframework interpretiert und ausge
 [TERM::Kollision]
 Ereignis, wenn bei einer [TERMREF::Hashfunktion] zwei unterschiedliche Eingaben den gleichen Hash 
 erzeugen.
+[ENDTERM]
+
+[TERM::Kommandozeilenparameter]
+Ein [TERMREF::Parameter] für ein ausführbares Programm, das per
+[TERMREF::Shell]-Kommando aufgerufen wird,
+oder für ein eingebautes Shell-Kommando
 [ENDTERM]
 
 ## L
@@ -1346,20 +1353,6 @@ E-Mail-Adresse des Zonenadministrators (RNAME) und eine Seriennummer (SERIAL), d
 inkrementiert wird, um sekundäre Nameserver über Aktualisierungen zu informieren.
 [ENDTERM]
 
-[TERM::SSH]
-Secure Shell (SSH) ist das meistgenutzte Protokoll, um sich auf entfernten Rechnern anzumelden. 
-Es ermöglicht eine sichere Remote-Verwaltung und den Datenaustausch über unsichere Netzwerke, 
-indem es Authentifizierung und Verschlüsselung verwendet.
-[ENDTERM]
-
-[TERM::SSH-Agenten]
-Ein SSH-Agent ist ein Programm, das deine SSH-Schlüssel verwaltet und sicher aufbewahrt. 
-Es ermöglicht dir, dich mit Servern zu verbinden, ohne bei jeder Verbindung das Passwort für den 
-Schlüssel erneut eingeben zu müssen. 
-Der Agent speichert den Schlüssel während einer Sitzung im Speicher und sorgt so für mehr Komfort 
-und Sicherheit.
-[ENDTERM]
-
 [TERM::SQL Injection]
 Eine Angriffsmethode bei SQL Datenbanken, bei der durch geschickte Manipulation einer SQL Query 
 Befehle auf der Datenbank ausgeführt werden können. Um solche Injections zu verhindern, 
@@ -1368,6 +1361,20 @@ getroffen werden.
 
 [HREF::https://de.wikipedia.org/wiki/SQL-Injection]  
 [HREF::https://xkcd.com/327/]
+[ENDTERM]
+
+[TERM::SSH]
+Secure Shell (SSH) ist das meistgenutzte Protokoll, um sich auf entfernten Rechnern anzumelden. 
+Es ermöglicht eine sichere Remote-Verwaltung und den Datenaustausch über unsichere Netzwerke, 
+indem es Authentifizierung und Verschlüsselung verwendet.
+[ENDTERM]
+
+[TERM::SSH-Agent]
+Ein SSH-Agent ist ein Programm, das deine SSH-Schlüssel verwaltet und sicher aufbewahrt. 
+Es ermöglicht dir, dich mit Servern zu verbinden, ohne bei jeder Verbindung das Passwort für den 
+Schlüssel erneut eingeben zu müssen. 
+Der Agent speichert den Schlüssel während einer Sitzung im Speicher und sorgt so für mehr Komfort 
+und Sicherheit.
 [ENDTERM]
 
 [TERM::Staging-Area|git-Index]
@@ -1422,17 +1429,17 @@ Fehler, Schwachstellen oder Funktionsstörungen untersucht. Das SUT kann eine ei
 Softwareanwendung, ein Modul, eine Funktion oder sogar ein gesamtes System umfassen.
 [ENDTERM]
 
+[TERM::Symlink|symbolischer Link]
+Symbolische Links sind Verknüpfungen auf Dateien oder Verzeichnisse, die an einem anderen Ort ist, 
+als die originale Datei. Sie bieten Flexibilität und ermöglichen es, auf Dateien oder 
+Verzeichnisse zuzugreifen, unabhängig von ihrem physischen Speicherort.
+[ENDTERM]
+
 [TERM::Symmetrische Verschlüsselung]
 Symmetrische Verschlüsselung ist ein Verfahren, bei dem der gleiche Schlüssel sowohl zum 
 Verschlüsseln als auch zum Entschlüsseln von Daten verwendet wird. 
 Sender und Empfänger müssen also denselben geheimen Schlüssel besitzen, um die verschlüsselten 
 Informationen sicher austauschen zu können.
-[ENDTERM]
-
-[TERM::Symlink|Symlinks]
-Symbolische Links sind Verknüpfungen auf Dateien oder Verzeichnisse, die an einem anderen Ort ist, 
-als die originale Datei. Sie bieten Flexibilität und ermöglichen es, auf Dateien oder 
-Verzeichnisse zuzugreifen, unabhängig von ihrem physischen Speicherort.
 [ENDTERM]
 
 [TERM::Systemtest|System Test]
@@ -1454,6 +1461,14 @@ Während der Übertragung teilt es die Daten in kleine Pakete auf, überprüft, 
 angekommen sind, und stellt sicher, dass sie in der richtigen Reihenfolge zusammengesetzt werden. 
 Geht ein Paket verloren oder wird beschädigt, fordert TCP dessen erneute Übertragung an. 
 So wird eine vollständige und fehlerfreie Datenübertragung sichergestellt.
+[ENDTERM]
+
+[TERM::TDD|Test-Driven Development|Test-Driven Design|Testgetriebener Entwicklung]
+Eine Softwareentwicklungsmethode, bei der [TERMREF2::Test::-s] vor der eigentlichen Implementierung
+des Codes geschrieben werden. Der Prozess beginnt mit dem Schreiben eines Tests, der das
+erwartete Verhalten der Funktionalität beschreibt. Dann wird der minimal notwendige Code
+implementiert, um den Test erfolgreich durchzuführen. Dieser iterative Prozess von Schreiben
+von Tests, Implementieren des Codes wird fortgesetzt, bis die gewünschte Funktionalität erreicht ist.
 [ENDTERM]
 
 [TERM::tee]
@@ -1489,14 +1504,6 @@ ausgeführt werden müssen, um das gewünschte Ergebnis zu erzielen, sowie die e
 oder Verhaltensweisen der Software.
 [ENDTERM]
 
-[TERM::TDD|Test-Driven Development|Test-Driven Design|Testgetriebener Entwicklung]
-Eine Softwareentwicklungsmethode, bei der [TERMREF2::Test::-s] vor der eigentlichen Implementierung
-des Codes geschrieben werden. Der Prozess beginnt mit dem Schreiben eines Tests, der das
-erwartete Verhalten der Funktionalität beschreibt. Dann wird der minimal notwendige Code
-implementiert, um den Test erfolgreich durchzuführen. Dieser iterative Prozess von Schreiben
-von Tests, Implementieren des Codes wird fortgesetzt, bis die gewünschte Funktionalität erreicht ist.
-[ENDTERM]
-
 [TERM::Time-Based One-Time Password|TOTP]
 Dabei handelt es sich um ein zeitbasiertes, einmalig verwendbares Passwort, das oft in der
 Zwei-Faktor-Authentifizierung (2FA) verwendet wird. Bei TOTP generiert eine Anwendung wie Google
@@ -1522,6 +1529,14 @@ und misst die Antwortzeit zu jedem Hop. Dies ist nützlich, um Netzwerkprobleme 
 oder die Route zu einem Server zu analysieren.
 [ENDTERM]
 
+[TERM::Transaktion|transaction]
+Eine Bündelung von mehreren Aktionen auf einer Datenbank. Nur bei erfolgreicher Durchführung 
+aller Aktionen wird die Änderung auf die Datenbank geschrieben (Commit), andernfalls werden alle 
+Änderungen rückgängig gemacht (Rollback). So wird die Konsistenz der Datenbank sichergestellt.
+
+[HREF::https://www.datenbanken-verstehen.de/datenbank-grundlagen/dbms/datenbank-tansaktion/]
+[ENDTERM]
+
 [TERM::Transportprotokoll]
 Ein Transportprotokoll ist ein Kommunikationsprotokoll, das den sicheren und zuverlässigen 
 Austausch von Daten zwischen zwei Geräten in einem Netzwerk ermöglicht. 
@@ -1543,15 +1558,6 @@ Gegensatz ist das [TERMREF::GUI].
 [HREF::https://en.wikipedia.org/wiki/Text-based_user_interface]
 [ENDTERM]
 
-
-[TERM::Transaktion|transaction]
-Eine Bündelung von mehreren Aktionen auf einer Datenbank. Nur bei erfolgreicher Durchführung 
-aller Aktionen wird die Änderung auf die Datenbank geschrieben (Commit), andernfalls werden alle 
-Änderungen rückgängig gemacht (Rollback). So wird die Konsistenz der Datenbank sichergestellt.
-
-[HREF::https://www.datenbanken-verstehen.de/datenbank-grundlagen/dbms/datenbank-tansaktion/]
-[ENDTERM]
-
 [TERM::Tutorial]
 Ein kurzer Lehrgang (in der Regel in Schriftform, eventuell als Video)
 zum Erlernen der Grundzüge eines klar abgegrenzten Themenbereichs,
@@ -1565,13 +1571,6 @@ um ihren Lernerfolg zu verbreitern.
 [ENDTERM]
 
 ## U
-
-[TERM::Übersetzer|Compiler]
-Ein Übersetzer ist ein Programm, welches Quellcode einer Sprache in eine andere
-Sprache übersetzt.  
-Zielsprachen können die [TERMREF::Maschinensprache], eine
-[TERMREF::Zwischensprache] oder eine andere [TERMREF::Hochsprache] sein.
-[ENDTERM]
 
 [TERM::UDP]
 UDP (User Datagram Protocol) ist ein schnelles, verbindungsloses Netzwerkprotokoll, das Daten ohne 
@@ -1653,6 +1652,12 @@ Oft werden begleitend [TERMREF::Akzeptanzkriterien] definiert.
 
 ## V
 
+[TERM::Validierung]
+Bestätigung durch Überprüfung, dass ein Arbeitsergebnis den Bedürfnissen eines Stakeholders entspricht.
+
+[HREF::https://glossary.istqb.org/de_DE/term/validierung-1]
+[ENDTERM]
+
 [TERM::venv|virtualenv|virtual environment]
 Virtuelle Python-Umgebung:
 Ein Dateibaum, der konzeptuell eine eigene Installation von Python enthält
@@ -1691,25 +1696,19 @@ Entwicklern und Benutzern ermöglichen, den Entwicklungsstand und die Stabilitä
 Softwareanwendung aufgrund ihrer Eindeutigkeit schnell erkennen.
 [ENDTERM]
 
-[TERM::Validierung]
-Bestätigung durch Überprüfung, dass ein Arbeitsergebnis den Bedürfnissen eines Stakeholders entspricht.
-
-[HREF::https://glossary.istqb.org/de_DE/term/validierung-1]
-[ENDTERM]
-
 ## W
+
+[TERM::Werkzeugkette|Toolchain]
+Eine Sammlung an Programmen und Skripten zur Erzeugung eines Produktes.
+Beispiele: GCC, Clang, MSVC, aber auch [TERMREF::IDE]s können Bestandteil einer
+Werkzeugkette sein.
+[ENDTERM]
 
 [TERM::WET|Write every time|Write everything twice]
 Das Gegenteil zu [TERMREF::DRY].  
 Während WET nicht als allgemein zu verfolgendes Prinzip gilt, 
 ist es in Einzelfällen sehr wohl eine gute Variante, um Code 
 lesbarer und wartbarer zu machen.
-[ENDTERM]
-
-[TERM::Werkzeugkette|Toolchain]
-Eine Sammlung an Programmen und Skripten zur Erzeugung eines Produktes.
-Beispiele: GCC, Clang, MSVC, aber auch [TERMREF::IDE]s können Bestandteil einer
-Werkzeugkette sein.
 [ENDTERM]
 
 ## X

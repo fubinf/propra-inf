@@ -116,7 +116,7 @@ Ihr öffentlicher Schlüssel sollte jetzt auf dem Zielserver unter `~/.ssh/autho
 [EQ] Beschreiben Sie kurz, was sich geändert hat.
 
 
-### Nutzen eines [TERMREF::SSH-Agenten]
+### Nutzen eines [TERMREF2::SSH-Agent::-en]
 
 Stellen Sie sich vor, Sie sind ein Administrator in einer mittelständischen Firma. Sie 
 verwalten 100 virtuelle Maschinen. Auf jeder dieser Maschinen ist ihr öffentlicher SSH-Schlüssel 
