@@ -40,6 +40,7 @@ werden können. Zu den gängigsten `JOIN`-Typen gehören `INNER JOIN`, `LEFT JOI
 Jeder dieser `JOIN`-Typen hat seine eigenen Eigenschaften und Anwendungsfälle, die es ermöglichen,
 Daten effektiv und genau zu kombinieren, um die gewünschten Ergebnisse zu erhalten.
 
+
 ### INNER JOIN
 
 Ein `INNER JOIN` gibt nur die Datensätze zurück, die in beiden Tabellen übereinstimmen, basierend auf
@@ -49,8 +50,9 @@ einem gemeinsamen Wert in beiden Tabellen.
 SELECT mycol
 FROM mytable1
 INNER JOIN mytable2
-  ON mytable1.column1 = mytable2.column1;
+  ON mytable1.column1 = mytable2.column4;
 ```
+
 
 ### LEFT JOIN
 
@@ -62,8 +64,9 @@ erhalten die rechten Spalten `NULL`:
 SELECT mycol
 FROM lefttable
 LEFT JOIN righttable
-  ON lefttable.column1 = righttable.column1;
+  ON lefttable.column1 = righttable.column5;
 ```
+
 
 ### RIGHT JOIN
 
@@ -75,8 +78,9 @@ erhalten die linken Spalten `NULL`:
 SELECT mycol
 FROM lefttable
 RIGHT JOIN righttable
-  ON lefttable.column1 = righttable.column1;
+  ON lefttable.column1 = righttable.column6;
 ```
+
 
 ### FULL JOIN
 
@@ -87,29 +91,35 @@ erhalten die fehlenden Seiten `NULL`:
 SELECT mycol
 FROM mytable1
 FULL JOIN mytable2
-  ON mytable1.column1 = mytable2.column1;
+  ON mytable1.column3 = mytable2.column7;
 ```
 
 [NOTICE] 
 Weitere Details zu `JOIN` finden Sie in der W3schools: [Join-Clause](https://www.w3schools.com/sql/sql_join.asp) in Abschnitt "Different Types of SQL JOINs"
 [ENDNOTICE]
 
+
 ### UNION
-SQLite unterstützt keine `RIGHT JOIN` oder `FULL JOIN`. Ein `RIGHT JOIN` ist nichts anderes als ein LEFT JOIN, wenn man die Tabellen vertauscht:
+
+SQLite unterstützt keine `RIGHT JOIN` oder `FULL JOIN`. 
+Ein `RIGHT JOIN` ist nichts anderes als ein `LEFT JOIN`, wenn man die Tabellen vertauscht:
 ```sql
 -- LEFT JOIN
 SELECT mycol 
 FROM lefttable
 LEFT JOIN righttable 
-  ON lefttable.id = righttable.id;
+  ON lefttable.id = righttable.fk;
 
 -- RIGHT JOIN Simulation 
 SELECT mycol 
 FROM righttable
 LEFT JOIN lefttable 
-  ON lefttable.id = righttable.id;
+  ON lefttable.id = righttable.fk;
 ```
-Mit `UNION` lassen sich solche Abfragen jedoch simulieren, indem man zwei `LEFT JOINs` kombiniert. Ein `UNION` verbindet die Ergebnisse zweier `SELECT`-Abfragen und entfernt dabei doppelte Zeilen:
+(`fk` steht für "foreign key", also Fremdschlüssel: ein Schlüssel in einer anderen Tabelle).
+
+Mit `UNION` lässt sich `FULL JOIN` simulieren, indem man zwei `LEFT JOINs` kombiniert. 
+Ein `UNION` verbindet die Ergebnisse zweier `SELECT`-Abfragen und entfernt dabei doppelte Zeilen:
 ```sql
 SELECT mycol FROM mytable1
 LEFT JOIN mytable2 ON mytable1.id = mytable2.id
@@ -118,12 +128,14 @@ SELECT mycol FROM mytable2
 LEFT JOIN mytable1 ON mytable1.id = mytable2.id;
 ```
 So entsteht eine vollständige Kombination aus beiden Tabellen – ähnlich einem `FULL JOIN`.
-Wenn man alle Zeilen inklusive Duplikate erhalten möchte, kann man stattdessen `UNION ALL` verwenden.
+Wenn man alle Zeilen inklusive Duplikate erhalten möchte, kann man `UNION ALL` verwenden.
+
 
 ### Es ist an der Zeit zu prüfen, ob du JOINs beherrschst!
 
 Wir verwenden wieder die aus [PARTREF::sql-basics]
-bekannte Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgenden Tabellen, mit der wir in dieser Aufgabe arbeiten wollen.
+bekannte Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. 
+Dazu erstellen Sie im ersten Schritt die folgenden Tabellen, mit der wir in dieser Aufgabe arbeiten wollen.
 
 **Tabelle students:**
 ```sql
@@ -173,12 +185,20 @@ INSERT INTO courses (name, teacher, semester) VALUES
 
 [ER] Fragen Sie den Namen des Kurses ab, den jeder Student belegt.
 
-[HINT::Wie kann ich zwei Tabellen verknüpfen?]
-```sql
--- Ein Beispiel, zeige Titel und Autorname durch INNER JOIN
-SELECT books.title, authors.name FROM books  
-INNER JOIN authors ON books.author_id = authors.id;
-```
+[NOTICE]
+Diese Aufgabe nimmt an, dass die Werte von `courses.id` von 1 an laufend vergeben werden.
+Das ist zwar gängig, wird aber von SQL nicht garantiert, sondern ist RDBMS-abhängig.
+Eine solche Annahme ist also riskant und deshalb schlechter Stil.
+[ENDNOTICE]
+
+[HINT::Welche JOIN-Art sollte ich benutzen?]
+Wenn man weiß, dass immer passende Datensätze auf beiden Seiten existieren werden,
+ist die JOIN-Art egal, denn es kommt bei jeder das Gleiche raus.
+Wissen wir das hier? Ja.
+
+Wenn man es nicht weiß, ist hier INNER JOIN richtig,
+denn Ausgaben mit fehlendem `student` oder fehlendem `course` wollen wir nicht.
+Diese Überlegung ist häufig die relevante und deshalb ist INNER JOIN häufig die richtige Sorte.
 [ENDHINT]
 
 [ER] Fragen Sie die Anzahl der Studenten in jedem Kurs ab.
