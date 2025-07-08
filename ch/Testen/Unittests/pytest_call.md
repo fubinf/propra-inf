@@ -1,8 +1,8 @@
 title: "Pytest: Wie bringe ich Pytest dazu das auszuführen, was ich brauche?"
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 2
-assumes: m_pytest, pip
+assumes: m_pytest, pip, venv, Umgang-mit-Verzeichnissen
 ---
 
 [SECTION::goal::idea]
@@ -13,8 +13,9 @@ um schnell nur die relevanten Tests auszuführen.
 [ENDSECTION]
 [SECTION::background::default]
 
-Pytest selbst führt normalerweise alle vorhandenen Testfälle aus.
-Mit Pytest-Parametern kann man gezielt steuern, welche Tests ausgeführt werden,
+Pytest führt normalerweise alle vorhandenen Testfälle aus.
+Das kann lange dauern und/oder zu unübersichtlich langen Ausgaben führen.
+Mit Pytest-Parametern kann man flexibel steuern, welche Teilmenge von Tests ausgeführt wird,
 was besonders in großen Projekten viel Zeit spart und die Übersicht verbessert.
 
 [ENDSECTION]
@@ -22,73 +23,62 @@ was besonders in großen Projekten viel Zeit spart und die Übersicht verbessert
 
 ### Testgrundlage beschaffen
 
-Beschaffen wir uns zunächst eine Version der bekannten `requests`-Bibliothek`.
-Klonen Sie folgendes Repository in Ihren [TERMREF::Hilfsbereich]:
+Legen Sie in Ihrem [TERMREF::Hilfsbereich] ein `venv` an (das wir nur für diese eine Aufgabe brauchen)
+und aktivieren Sie es.
+
+Beschaffen Sie den Projektbaum, an dem wir hier üben wollen.
+Klonen Sie folgendes Repository in Ihren [TERMREF::Hilfsbereich] und wechseln Sie zur Version 2.32.2,
+auf der unsere Aufgabe hoffentlilch wie geplant funktioniert:
 
 ```shell
-git clone git@github.com:psf/requests.git --tag v2.32.2
+git clone git@github.com:psf/requests.git
+cd requests
+git checkout v2.32.2
 ```
 
-Wir wollen jedoch dieses Paket nicht als Entwickler in einer eigenen Anwendung verwenden, sondern
-die vorhandene Testsammlung kennenlernen.
-Um das machen zu können, müssen wir noch die Abhängigkeiten installieren.
-Das Projekt wird glücklicher Weise mit einer `requirements.txt` bereitgestellt.
-Diese Datei erlaubt es uns die Abhängigkeiten mit einem Kommando zu installieren.
-Führen Sie folgendes Kommando dazu aus:
+Wir sind nun also im Arbeitsverzeichnis des Repos.
+Alle weiteren Schritte finden dort statt.
+Installieren Sie als Erstes die Abhängigkeiten von `requests` in Ihr `venv`
+und zwar in der Fassung für Entwicklung (die z.B. `pytest` mit einschließt):
 
 ```shell
 pip install -r requirements-dev.txt
 ```
 
-[HINT::Installationsprpoblem]
-Achten Sie darauf, dass Sie sich im Verzeichnis `requests -tagv2.32.2` befinden oder den Pfad der
-`requirements-dev.txt` Datei anpassen.
-Ich empfehle Ersteres.
-[ENDHINT]
-
-[NOTICE]
-Sicherlich ist Ihnen aufgefallen, dass zuvor `requirements.txt` und später `requirements-dev.txt`
-erwähnt wurde.
-Hier eine kurze Erklärung:
-
-`requirements.txt` enthält die grundlegenden Abhängigkeiten, die benötigt werden, damit das
-Python-Projekt läuft.
-Diese Datei wird meist für die Installation im Produktivbetrieb verwendet.
-
-`requirements-dev.txt` enthält zusätzliche Abhängigkeiten, die speziell für die Entwicklung und das
-Testen des Projekts benötigt werden,
-z.B. Test-Frameworks, Linter oder Build-Tools.
-Sie baut oft auf `requirements.txt` auf und erweitert diese um Entwicklungs-Tools.
-
-[ENDNOTICE]
 
 ### Testsuite ausprobieren, Einlesen in die Dokumentation
 
 Sie wissen, dass Sie mit `python -m pytest` oder einfach `pytest` alle
 existierenden Pytest-Testfälle ausführen können.
-Manchmal möchte man diese Ausführung erweitern, aber auch einschränken.
+Oft möchte man diese Ausführung aber einschränken (und weniger Testfälle laufen lassen)
+oder die Betriebsweise modifizieren.
 Lesen Sie in der Hilfeausgabe von `pytest --help` im Abschnitt "general"
 grob über diese Möglichkeiten nach.
 
-Genaueres findet man dann in der offiziellen
+Genaueres zu jeder Option finden Sie bei Bedarf in der offiziellen
 [Pytest-Dokumentation](https://docs.pytest.org/en/latest) 
-mittels Volltextsuche nach dem Optionsnamen (z.B. "--lf").
-Machen Sie diesen Schritt am besten parallel zum Lösen der jeweiligen Aufgaben unten.
+z.B. auf den Seiten
+[How to invoke...](https://docs.pytest.org/en/stable/how-to/usage.html)
+oder
+[How to re-run...](https://docs.pytest.org/en/stable/how-to/cache.html).
+Lesen Sie am besten parallel zum Lösen der jeweiligen Aufgaben nach.
+Kennt man sich nach einer Weile halbwegs aus, reicht einem aber `pytest --help` recht oft.
 
-Zunächst lassen Sie die vorhanden Tests durchlaufen und schauen sich das Ergebnis an.
-Führen Sie mittel dem Kommando `pytest` die Tests aus.
+Zunächst lassen wir alle vorhandenen Tests durchlaufen und schauen uns das Ergebnis an:
+```shell
+pytest
+```
 
-Im folgenden nehmen wir an, dass der Test wie gewollt durchgelaufen ist.
-Demnach sollten Sie folgendes sehen:
+Wenn alles wie gewollt durchgelaufen ist, sollten Sie _ungefähr_ so etwas sehen
+(`[...]` markiert Auslassungen gegenüber der vollen Ausgabe):
 
 ```shell
 ======================================================== test session starts ========================================================
-platform darwin -- Python 3.13.1, pytest-8.3.5, pluggy-1.5.0
-rootdir: /requets -tagv2.32.2
+[...]
 configfile: pyproject.toml
 testpaths: tests
 plugins: httpbin-2.1.0, cov-6.1.1
-collected 608 items                                                                                                                 
+collected 606 items                                                                                                                 
 
 tests/test_adapters.py .                                                                                                      [  0%]
 tests/test_help.py ...                                                                                                        [  0%]
@@ -106,22 +96,27 @@ tests/test_utils.py ..s.........................................................
 ..............................................................................................sssssssssss.....s               [100%]
 
 ========================================================= warnings summary ==========================================================
+[...]
+==================================== 590 passed, 15 skipped, 1 xfailed, 18 warnings in 82.55s (0:01:22) =============================
 ```
 
-Was sehen wir hier:
+Was sehen wir hier? Bitte vollziehen Sie jeden der folgenden Punkte nach: 
 
-- pytest hat insgesamt 608 Tests gefunden und ausgeführt.
+- pytest hat insgesamt 606 Tests gefunden und ausgeführt.
 - Die Punkte (.) stehen für erfolgreich bestandene Tests.
-- Ein x markiert übersprungene (skipped) Tests, meist wegen fehlender Voraussetzungen oder
-  bestimmter Einstellungen.
-- Ein s steht für einen Test, der explizit als "skipped" markiert wurde.
-- Es gab einen Fehler mit dem Test-Server (httpbin): [SSL: TLSV1_ALERT_UNKNOWN_CA], aber pytest hat
-  versucht, diesen Fehler zu ignorieren, damit der Rest der Tests weiterlaufen kann.
-- Am Ende siehst du noch eine Warnungs-Zusammenfassung (warnings summary), die auf eventuelle
+- Ein x markiert fehlgeschlagene Tests, die in der Testsuite markiert sind als
+  "wir wissen, dass dieser Test fehlschlagen wird" (expected to fail: "xfail")
+- Ein s steht für einen Test, der nicht ausgeführt wurde, weil er explizit als 
+  "zu überspringen" ("skipped") markiert ist.
+- Es gab Versagen des intern verwendeten Test-Servers (httpbin), 
+  aber die Testsuite hat dies vor `pytest` versteckt, damit der Rest der Tests weiterlaufen kann.
+- Hätte es Testversagen gegeben, würde nun der ausführliche Bericht darüber folgen.
+- Danach folgt eine Warnungs-Zusammenfassung (warnings summary), die auf eventuelle
   Probleme oder veraltete Funktionen hinweist.
+- Ganz am Ende kommt die Zusammenfassung des Testergebnisses.
+  Ein Eintrag "failed" ist nicht dabei (der wäre rot), die Testsuite ist also 
+  ohne Testversagen durchgelaufen.
 
-Kurz: Die meisten Tests wurden erfolgreich ausgeführt, einige wurden übersprungen oder haben
-Warnungen erzeugt, aber es gab keine großen Fehler, die den Testlauf komplett gestoppt hätten.
 
 ### Für Fehlschläge sorgen
 
@@ -130,143 +125,201 @@ Das tut die in unserem geklonten Repo jedoch nicht.
 Deshalb bauen wir nun gezielt ein Versagen ein.
 Damit wir (wie im wirklichen Leben) nicht schon im Voraus wissen, was das Problem ist,
 verschleiert die Aufgabe das benutzte Kommando durch eine einfache Kodierung.
-Bitte führen Sie also folgendes Kommando aus, ohne es zuvor zu analysieren.
+Bitte führen Sie also folgendes Kommando einfach aus, ohne es zuvor zu analysieren.
 (Das kann man hier im ProPra ausnahmsweise tun, weil man den Autoren des ProPra vertraut.
 In einem realen Fall wäre es bei so einer Verschleierung angezeigt, zunächst zu klären, 
 was das Kommando tut, denn es könnten ja ungute Zwecke sein.) 
 
 ```shell
-cd v2.32.2
 echo "bXYgcmVxdWlyZW1lbnRzLWRldi50eHQgcmVxdWlyZW1lbnQtZGV2ZWxvcC50eHQ=" | base64 --decode | bash
 ```
 
-### Tests auf verschiedene Weisen ausführen
+### Gedachter Anwendungsfall
 
-Verwenden Sie erneut den Befehl `pytest`, um die selben Tests auszuführen.
-Dieses Mal werden Ihnen aber fehlschläge aufgelistet.
+Verwenden Sie erneut den Befehl `pytest`, um dieselben Tests auszuführen.
+Dieses Mal gibt es Fehlschläge:
 
 ```shell
-========================================================================== test session starts ===========================================================================
-platform darwin -- Python 3.13.1, pytest-8.3.5, pluggy-1.5.0
-rootdir: /requets -tagv2.32.2
-configfile: pyproject.toml
-testpaths: tests
-plugins: httpbin-2.1.0, cov-6.1.1
-collected 608 items                                                                                                                                                      
-
-tests/test_adapters.py .                                                                                                                                           [  0%]
-tests/test_help.py ...                                                                                                                                             [  0%]
-tests/test_hooks.py ...                                                                                                                                            [  1%]
+========================================================================== test session starts =============================================================
+[...]
 tests/test_lowlevel.py ....................                                                                                                                        [  4%]
 tests/test_packages.py ...                                                                                                                                         [  4%]
 tests/test_requests.py ............................................................................................F..F.F.....................spytest-httpbin server hit an exception serving request: [SSL: TLSV1_ALERT_UNKNOWN_CA] tlsv1 alert unknown ca (_ssl.c:1018)
 attempting to ignore so the rest of the tests can run
-................... [ 27%]
-.............................................................................................x.................................................................... [ 54%]
-..............................                                                                                                                                     [ 59%]
-tests/test_structures.py ....................                                                                                                                      [ 62%]
-tests/test_testserver.py ......s....                                                                                                                               [ 64%]
-tests/test_utils.py ..s........................................................................................................................................... [ 87%]
-.........................................................sssssssssss.....s                                                                                         [100%]
-
-================================================================================ FAILURES ================================================================================
+[...]
+FAILED tests/test_requests.py::TestRequests::test_POSTBIN_GET_POST_FILES - FileNotFoundError: [Errno 2] No such file or directory: 'requirements-dev.txt'
+FAILED tests/test_requests.py::TestRequests::test_POSTBIN_GET_POST_FILES_WITH_DATA - FileNotFoundError: [Errno 2] No such file or directory: 'requirements-dev.txt'
+FAILED tests/test_requests.py::TestRequests::test_conflicting_post_params - FileNotFoundError: [Errno 2] No such file or directory: 'requirements-dev.txt'
+======================================= 3 failed, 587 passed, 15 skipped, 1 xfailed, 18 warnings in 82.53s (0:01:22) =======================================
 ```
 
-Neben den bekannten erfolgreichen und übersprungenen Testfällen, kamen drei weitere
-Fehlschläge - markiert durch ein F - hinzu.
+Stellen Sie sich vor, Sie hätten eine Codeanpassung gemacht, von der Sie hoffen, dass sie
+mindestens eines der Versagen löst, wollen aber nicht auf den Durchlauf der ganzen Testsuite warten,
+weil Sie nicht erwarten, durch Ihre Korrektur "ganz woanders" etwas kaputt gemacht zu haben.
 
-Ab jetzt sieht die Testausführung aus Teil 1 etwas anders aus, was von uns auch gewollt ist.
 
-Stellen Sie sich als Entwickler vor, dass Sie den Testfehlschlag durch eine Codeanpassung
-vermeindlich gefixt haben.
-Angenommen, Die Testsammlung läuft mit `pytest` einige Minuten lang bis zum Ende.
-Sie wollen jedoch nur erfahren, ob alle Testfälle in der zuvor fehlgeschlagenen Testdatei erfolgreich
-durchlaufen und nicht jedesmal lange auf das Ergebnis warten.
+### Teilmengen von Tests ausführen
+
+Sie wollen deshalb nur wissen, welche Testfälle in der (einzigen) zuvor fehlschlagenden Testdatei 
+jetzt erfolgreich durchlaufen.
 Um das zu überprüfen, wollen Sie den Test erneut laufen lassen, aber dieses Mal nur die zuvor
 fehlgeschlagene Testdatei.
 
 [ER] Lesen Sie in der Dokumentation nach, wie das geht, und 
-starten Sie den Test nur auf die fehlgeschlagenen Dateien.
+starten Sie den Test nur für die Datei, die die drei Versagen hervorgebracht hatte.
 (Ähnlich in den folgenden Schritten: Bitte jedesmal in der Dokumentation die passende Option suchen.)
+
+In unserer Übung gibt es natürlich _doch_ wieder drei Versagen, weil wir ja gar keine Korrektur
+gemacht haben. Aber diesmal ging der Test schon deutlich schneller!
 
 Wenn viele Testfälle im Spiel sind, führt ein einzelner Defekt oft gleich zu _zahlreichen_ Versagen,
 was recht verwirrend sein kann.
-In diesem Fall möchte man den Test nach dem ersten Versagen oft lieber abbrechen,
-um sich der Analyse dieses ersten Problems zu widmen.
+In diesem Fall möchte man eventuell den Test lieber schon nach dem ersten Versagen abbrechen,
+um sich in Ruhe der Analyse dieses ersten Problems zu widmen.
 
 [ER] Lassen Sie den Testlauf beim Auftreten des _ersten_ Fehlers abbrechen.
 
-Nach einer Korrektur, die den Defekt potenziell bereinigt hat, interessiert uns als erstes,
-ob die zuvor fehlschlagenden Testfälle (bei uns gerade nur einer) nun erfolgreich durchlaufen.
+[EQ] Welchen Nachteil kann es (je nach Testsuite) haben, nur das erste Versagen zu sehen?
 
-[ER] Lassen Sie nur den letzten fehlgeschlagenen Testfall wieder durchführen
-(und zwar ohne vorherige Korrektur, er wird also wiederum fehlschlagen).
+Obiges Verfahren reduziert zwar den Output, dauert aber bei der Testausführung eventuell
+trotzdem noch recht lange, denn das erste Versagen kann ja sehr spät passieren.
+Das kann man vermeiden, indem man nur die Testfälle nochmal ausführt, die zuletzt fehlgeschlagen waren.
 
-Klappt einfach nicht. Na gut, vergeuden wir nicht viel Zeit, prüfen wir weiter, indem wir uns einen
-kleinen Checkpoint beim ersten fehlgeschlagenen Testfall setzen, der uns Zeit erspart, um weiter
-zu testen.
+[ER] Lassen Sie mittels der passenden Option nur die zuvor fehlgeschlagenen Testfälle wieder durchführen.
 
-[ER] Verwenden Sie Pytest mit einem Flag, das beim nächsten Lauf nach dem fehlgeschlagenen Test startet.
+Whoa, das geht jetzt schön schnell!
+Genau deshalb ist dies eine sehr gern eingesetzte Form des Aufrufs während einer Debugging-Phase.
 
-Gut, den ersten Fehlschlag kennen wir. Den wollen wir jetzt ignorieren und den Testlauf weiter durchführen.
+Wenn viele Testfälle fehlschlagen, wird der Output von `pytest` schnell überwältigend lang.
+Deshalb wäre es hilfreich, wenn man sich von einem Versagen zum nächsten hangeln könnte,
+um also bei jedem Testlauf nur (maximal) ein Versagen zu sehen.
 
-[ER] Lassen Sie den Testlauf direkt nach dem Fehlschlag weiterlaufen.
+Genau dies zu erreichen, geht mit den Bordmitteln von `pytest` nicht, aber eine gute
+Annäherung, bei der man maximal zwei Versagen pro Lauf sieht.
+Lesen Sie die (nicht toll beschriebenen) Optionen `--stepwise` und `--stepwise-skip` nach.
+Probieren Sie sie so lange aus, bis Sie die beste Annäherung an obiges Ideal herausgefunden haben.
 
-Es soll einfach nicht sein, der Testdurchlauf wird einfach nicht problemlos grün. Sie beschließen
-erst einmal aufgrund mangelnden Risikos, diesen Testfall zu überspringen, bis Sie sich mit
-Gleichgesinnten austauschen können, um dieses Problem zu beheben.
+[NOTICE]
+Das führt am Ende zu vier Testläufen mit den Versagen 1, 1+2, 2+3, 3.  
+Damit das ganze nicht zu lange dauert, geben Sie zusätzlich jeweils die Datei mit an wie bei
+Schritt [EREFR::1].  
+Sie dürfen gern auch die Kurznamen `--sw` und `--sw-skip` benutzen.  
+Wenn Sie sich verfranst haben, brauchen Sie zum Rücksetzen in einen wohldefinierten Zustand
+entweder `--sw-reset` oder einen Lauf ganz ohne `--sw`-Option.
+[ENDNOTICE]
 
-[ER] Skippen Sie alle fehlgeschlagenen Testfälle beim Ausführen aller Tests.
+[ER] Zeigen Sie die Kommandos für diese vier Testläufe.
 
-Natürlich dürfen wir diese leichtfertige Ignoranz nicht aus den Augen verlieren und sollten uns hin
-und wieder vergewissern, dass wir beim Beheben unserer Anwendung auch vorankommen und die entsprechenden
-Testfälle wieder freigeben.
 
-[ER] Verschaffen Sie sich einen Überblick über die geskippten Testfälle.
+### Tests vorübergehend deaktivieren
 
-Sie haben weiterhin versucht, dieses Problem zu beheben. Nach Ihrer Änderung hat sich der Test leider
-nicht zu einem Besseren bewegt. Bevor Sie weitermachen, wollen Sie jedoch noch einmal alle Tests
-mit detaillierteren Informationen ausführen, um zu prüfen, ob Ihre Codeanpassung keine Seiteneffekte
-beinhaltet.
+In unserem Fall haben alle drei Versagen den gleichen Grund und der ist sehr einfach zu
+verstehen. 
+Aber angenommen, das wäre nicht so, sondern Sie geben das Debugging irgendwann entnervt auf:
+Dann wäre von jetzt an die Testsuite nie mehr erfolgreich, was es schwer macht, 
+andere, neue Versagen zu bemerken.
 
-[ER] Starten Sie Pytest mit detaillierter Ausgabe.
+Deshalb deaktiviert man solche Testfälle in diesem Moment häufig für eine (hoffentlich!) begrenzte
+Zeit, bis man sich ihnen mit frischer Energie wieder widmen kann.
 
-Toll, diese Übersicht bietet Ihnen die Möglichkeit, wiederum in die gezielte Ansteuerung eines
-Testfalls zu gehen.
+Lesen Sie die Verwendung von `@pytest.mark.skip` nach.
+Ändern Sie den Quellcode der Testsuite und deaktivieren Sie damit die drei fehlschlagenden Testfälle.
+Geben Sie als Grund etwas Informatives an, z.B. den Kern der vom Test erhaltenen Fehlermeldung. 
 
-[ER] Starten Sie Pytest nur für den Testfall `test_update`.
+[EC] `git diff`
 
-Nachdem Sie jetzt die Gelegenheit hatten, über das Problem des Fehlschlags zu diskutieren, haben Sie
-sicherlich eine Lösung gefunden, alle Testfälle erfolgreich ausführen zu lassen, ohne einen Testfall
-zu überspringen. Löschen Sie, falls noch vorhanden, die Skip-Anweisung.
+Im wahren Leben ist die Kunst bei der Verwendung von `@pytest.mark.skip`
+(oder seinem Vetter `@pytest.mark.xfail`), sich nach nicht allzulanger Zeit
+erneut auf die Suche zu machen und diese Testprobleme sauber zu lösen.
+Manchmal ist der richtige Weg, die entsprechenden Testfälle einfach zu löschen,
+meistens sollte man sie aber reparieren.
 
-[ER] Beseitigen Sie den Fehler und führen Sie Pytest ohne weitere Parameter aus. Wie sieht die Ausgabe
-jetzt aus?
+Lassen Sie die Tests mit verkürzter Ausgabe (`-q`, `--quiet`) nochmal laufen:  
+`pytest -q tests/test_requests.py`  
+und überzeugen Sie sich, dass die drei Versagen verschwunden sind.
+Sie müssten jetzt etwas mit  
+`324 passed, 4 skipped, 1 xfailed`  
+als Ergebnis bekommen.
 
-[HINT::Weg zur Lösung des Porblems]
-Betrachten Sie die am Ende einer einfachen `pytest` Ausführung ausgegebenen Informationen.
-(Letzten 3 Zeilen)
-[ENDHINT]
+
+### Überblick über Testsuite gewinnen
+
+Stellen wir uns vor, ein Neuzugang in unserem Team bekommt die Aufgabe,
+diese drei Versagen zu lösen und die deaktivierten Testfälle wieder zu aktivieren. 
+Er oder sie hat keine Ahnung, wie die Testsuite aufgebaut ist.
+
+Um eine unbekannte Testsuite kennenzulernen, kann man sie mit `-v` (für "verbose", also "geschwätzig")
+oder sogar `-vv` ausführen, um mehr Information zu erhalten.
+(Der Handlichkeit halber beschränken wir uns hier wieder auf die eine relevante Testdatei.)
+
+Außerdem kann man mit `-r` (für "report") einen Extrabericht über bestimmte Sorten von
+Testfällen erhalten, z.B. mit `-r s` über deaktivierte ("skipped") Testfälle.
+
+[ER] Spielen Sie Neuzugang und verschaffen Sie sich mit beiden Optionen zusammen einen Überblick 
+über die Testsuite.
+
+Dabei lernen Sie beispielsweise, welche Testfälle es überhaupt gibt (Namen) und welche davon
+besonders lange dauern.
+Die Zusammenfassung der geskippten Fälle gibt einen Überblick über die Gründe:
+bei uns z.B. dreimal der Gleiche.
+
+
+### Eine maßgeschneiderte Gruppe von Testfällen bilden
+
+Entfernen Sie die drei oben zugefügten `@pytest.mark.skip`
+und geben Sie den betreffenden Tests stattdessen eine passende Bezeichnung,
+z.B. `@pytest.mark.fixme`.
+Dabei ist `fixme` ein weitgehend frei zu wählender Name;
+man kann mit solchen Markierungen beliebige Gruppen von Testfällen bilden
+(z.B. für besonders langsame Testfälle, um die dann manchmal auszuschließen).
+
+Wir haben nun eine Gruppe genau für unseren Debugging-Zweck.
+Lesen Sie nach, wie man mit `-m` (für "marked") die Testausführung auf solche Gruppen 
+beschränken kann.
+
+
+### Die Versagen lösen
+
+Jetzt machen wir uns ernsthaft an die Arbeit mit dem Debugging der Versagensfälle.
+
+[ER] Starten Sie Pytest nur für die `fixme`-Testfälle.
+
+Hui! Das ging flott! So eine Testfallgruppe ist ein super Arbeitsmittel.
+
+[ER] Diagnostizieren Sie nun das Problem, benennen Sie die betroffene Datei wieder passend
+zurück um und starten Sie `pytest` nochmals in der gleichen Weise.
+
+Nun sollten alle drei Tests erfolgreich gewesen sein.
+Aber haben wir vielleicht dabei einen anderen Test kaputtgemacht?
+
+[ER] Starten Sie nochmals die gesamte Testsuite und überzeugen Sie sich,
+dass jetzt alle Testfälle erfolgreich sind.
+
 
 ### Reflektion
 
-Jetzt, wo Sie einige Kommandos kennengelernt und ausgeführt haben, konnten Sie unteschiedliche
-Ergebnisse und Ausgaben sehen.
+Versetzen Sie sich gedanklich nochmals an den Punkt, wo der Ablauf der gesamten Testsuite
+_erstmals_ zu den drei Versagen geführt hat.
+Sie starten als Nächstes also eine Debugging-Episode.
 
-[EQ] Welches Kommando war aus Ihrer Sicht das am effektivsten, um die eigentliche
-Problematik zu erkennen.
-[EQ] Wären Sie so oder so ähnlich auch vorgegangen oder wären Ihnen alternative Ausgaben oder
-Schritte lieber gewesen?
+[EQ] Arbeiten Sie zum Debugging direkt mit dem Output des Komplett-Laufs oder 
+beschaffen Sie sich mit einem zweiten Lauf zuvor einen kürzeren Output? Warum? 
+Falls zweiter Lauf: Welches Kommando setzen Sie ein?
 
+[EQ] Welche Option von `pytest` finden Sie allgemein besonders clever? Warum?
 [ENDSECTION]
+
 [SECTION::submission::trace]
+[INCLUDE::/_include/Submission-Quellcode.md]
+Gefragt ist also überwiegend _nicht_ ein Kommandoprotokoll, sondern nur ein Shellskript `pytest_call.sh`
+mit den Kommandos darin.
+Notieren Sie darin vor jedem Kommando als Kommentar dessen Nummer.
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Prüfhilfen]
+[INSTRUCTOR::Nur auf korrekte Optionen prüfen]
 
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

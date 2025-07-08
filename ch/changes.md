@@ -35,4 +35,5 @@
 - **2025-07-02**: Aufgabe [PARTREF::propra-sonstige-Mängel-an-Aufgaben] zugefügt.
 - **2025-07-07**: Das [PARTREFMANUAL::glossary::Begriffsverzeichnis] enthält jetzt
   eine vollständige Stichwortliste zu Beginn.
+- **2025-07-08**: Aufgabe [PARTREF::pytest_call] zugefügt.
 - ...
