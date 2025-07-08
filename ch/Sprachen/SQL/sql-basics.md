@@ -1,6 +1,6 @@
 title: SQL Grundlagenbefehle
 stage: beta
-timevalue: 2
+timevalue: 1.5
 difficulty: 2
 ---
 [SECTION::goal::idea,experience]
@@ -53,6 +53,7 @@ Welche andere Tabelle dabei gemeint ist, steht im "Datenbankschema";
 ebenso, welchen Datentyp jedes Attribut hat.
 Alle Arbeit mit einem rDBMS beginnt damit, ein solches Schema zu definieren.
 Die einfachsten Sorten von Schema-Einträgen behandelt diese Aufgabe.
+<!-- time estimate: 15 min -->
 
 
 ### Unser DBMS zum Üben
@@ -122,6 +123,7 @@ Deshalb benutzen wir dessen Dokumentation hier als Referenz:
 - `DogName` (TEXT)
 - `Gender` (TEXT)
 - `Age` (INT)
+<!-- time estimate: 15 min -->
 
 
 ### Schema einer Tabelle bearbeiten: `ALTER TABLE`
@@ -160,6 +162,7 @@ Wie gesagt werden dabei alle Daten und die Struktur unwiederbringlich entfernt.
 [ENDNOTICE]
 
 [ER] Löschen Sie die Tabelle `dogs`.
+<!-- time estimate: 15 min -->
 
 
 ### Constraints verwenden: `NOT NULL` und Kollegen
@@ -187,6 +190,7 @@ Dann bitte hier nochmal in anderer Form nachlesen:
 
 [ER] Erstellen Sie die Tabelle `dogs` mit den gleichen Spalten nochmal neu, aber so,
 dass `DogID` ein `PRIMARY KEY` wird und `DogName` stets `NOT NULL` ist.
+<!-- time estimate: 10 min -->
 
 
 ### Daten einfügen: `INSERT INTO`
@@ -208,6 +212,7 @@ Alle nicht angegebenen Spalten werden `NULL` bzw. bekommen den jeweiligen `DEFAU
 
 [ER] Fügen Sie fünf beliebig erdachte Hunde-Datensätze in `dogs` ein.
 Jeder Hund sollte ein anderes Alter haben.
+<!-- time estimate: 15 min -->
 
 
 ### Daten auslesen: `SELECT...FROM...WHERE`
@@ -227,7 +232,7 @@ bei w3schools.
 Statt einer Liste von Spalten kann man auch `*` angeben: Dies gibt alle Attribute zurück.
 Überhaupt ist `SELECT` ein sehr reichhaltiges Kommando
 (siehe [die Dokumentation von `SELECT`](https://sqlite.org/lang_select.html)).
-Wir schauen das in der Aufgabe [PARTREF::sql-SELECT] genauer an.
+Wir schauen das in der Aufgabe [PARTREF::sql-SELECT] später genauer an.
 
 [ER] Geben Sie für alle Hunde nur `DogName` und `Age` aus.
 Dazu kann man den `WHERE`-Teil einfach komplett weglassen.
@@ -237,6 +242,7 @@ Dazu kann man den `WHERE`-Teil einfach komplett weglassen.
 [ER] Geben Sie für die zwei ältesten Hunde nur `DogName` und `Age` aus.
 (Bestimmen Sie das nötige Alter für die Bedingung von Hand und tragen Sie es fest
 in die Bedingung ein.)
+<!-- time estimate: 10 min -->
 
 
 ### Datensätze löschen: `DELETE FROM`
@@ -256,6 +262,7 @@ Ohne `WHERE` werden alle Zeilen gelöscht!
 [ER] Löschen Sie den Datensatz mit `DogID = 1`.
 
 [ER] Entfernen Sie alle bis auf einen (von Ihnen festzulegenden) Datensatz in einem einzigen Befehl.
+<!-- time estimate: 10 min -->
 [ENDSECTION]
 
 [SECTION::submission::program]
