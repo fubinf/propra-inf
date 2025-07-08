@@ -1,5 +1,5 @@
-title: "Grundlagen von Go (erklärt anhand von Python)"
-stage: alpha
+title: "Grundlagen von Go (erklärt aus Sicht von Python)"
+stage: beta
 timevalue: 2.5
 difficulty: 2
 ---
@@ -22,7 +22,7 @@ Daher sind die folgenden Merkmale entstanden:
 
 - Statische Typisierung und Laufzeiteffizienz (wie C/C++);
 - Lesbarkeit und Benutzerfreundlichkeit (wie Python);
-- ein leistungsfähiges Nebenläufigkeits- und Parallelitätsmodell.
+- ein leistungsfähiges Nebenläufigkeits- und Parallelitätsmodell (besser als C/C++ und Python).
 
 Insgesamt ergibt das eine flexible und ziemlich effiziente Programmiersprache,
 die besonders in der Entwicklung von Programmierwerkzeugen (Docker/Kubernetes)
