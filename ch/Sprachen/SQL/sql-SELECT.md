@@ -16,7 +16,7 @@ Das Abfragen einer kleinen gesamten Tabelle kann gelegentlich ausreichen, um das
 
 [SECTION::instructions::detailed]
 
-### Weißt du noch, wie man eine Tabelle erstellt? `CREATE, INSERT`
+### Tabelle erstellen: `CREATE, INSERT`
 
 Wir verwenden wieder die aus [PARTREF::sql-basics] bekannte
 Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. Dazu erstellen Sie im ersten Schritt die folgende Tabelle, mit
@@ -41,45 +41,36 @@ der wir in dieser Aufgabe arbeiten wollen.
 ('Zoe', 'Shih Tzu', 7, 'Female', 'White and Brown', '2015-12-03', 11),
 ```
 
-[HINT::Tabelle erstellen]
-Nutzen Sie [PARTREF::sql-basics] als Hilfe für das Erstellen und Einfügen der Daten.
-[ENDHINT]
 
 ### SELECT-Abfragen und Filterung: `SELECT, FROM, WHERE, LIMIT, AND, OR`
 
-Jetzt spielen wir mit den Daten herum und lassen uns spezielle Werte ausgeben. 
-
-Starten wir leicht durch. Erinnern Sie sich zurück, wie sie Daten aus einer Tabelle abgefragt haben.
+Jetzt hantieren wir mit den Daten und lassen uns spezielle Werte ausgeben. 
+Erinnern Sie sich, wie sie Daten aus einer Tabelle abgefragt haben.
 
 [ER] Geben Sie die gesamte Tabelle zurück.
 
-[ER] Geben Sie nur die Spalte `owner_id` zurück.
-
-[HINT::Benötigte Syntax]
-```sql
-SELECT mycol FROM mytable;
-```
-[ENDHINT]
+[ER] Geben Sie nur die Namen aller Hunde zurück.
 
 Aus dem Bereich `Datensätze löschen` der Aufgabe [PARTREF::sql-basics] haben sie das Löschen
 einzelner Zeilen einer Tabelle kennengelernt, die Sie mithilfe von `WHERE` gezielt identifiziert
-haben. `SELECT` kann auch diese Bedingungsvariable verwenden und somit Ergebnisse filtern.
+haben. 
+Auch `SELECT` kann solche Bedingungen verwenden und damit Ergebnisse filtern.
 ```sql
 SELECT mycol FROM mytable WHERE mycondition;
 ```
 
-[ER] Fragen Sie alle Hundenamen ab, die `8` Jahre alt sind.
+[ER] Fragen Sie alle Namen ab von Hunden, die `8` Jahre alt sind.
 
-[ER] Fragen Sie alle Hunde ab, die `Luna` genannt werden.
+[ER] Fragen Sie alle kompletten Datensätze ab von Hunden, die `Luna` genannt werden.
 
-Zusätzlich können wir mit `LIMIT <int>` auch nur eine bestimmte Anzahl an Werten zurückgeben lassen, oder vergleichbare Werte mit `<`, `>` einschränken.
+Zusätzlich können wir mit `LIMIT <int>` auch nur eine maximale Anzahl an Werten zurückgeben lassen, oder vergleichbare Werte mit `<`, `>` einschränken.
 ```sql
 SELECT mycol FROM mytable WHERE mycondition LIMIT mynumber;
 ```
 
 [ER] Geben Sie die ersten zwei Treffer aller weiblichen Hunde zurück.
 
-Und zu guter letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren.
+Und zu guter Letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren.
 ```sql
 SELECT mycol FROM mytable WHERE mycondition1 AND mycondition2;
 ```
@@ -94,21 +85,30 @@ WHERE id > 10 AND id <= 20;
 
 [ER] Listen Sie alle Hunde auf, die `Golden Retriever`, jünger als `8` und `männlich` sind.
 
+
 ### Unterabfragen: `IN`
 
-Wenn wir einen Treffer haben, wollen wir dieses Ergebnis oftmals weiterverwenden. Unter anderem auch
-in einer weiteren SQL Abfrage. Das klappt auch sehr gut mit SQL: So haben wir eine Abfrage in einer anderen Abfrage. 
-Die `IN` Klausel hilft dabei, zu prüfen, ob ein Wert innerhalb einer bestimmten Liste oder Ergebnismenge vorkommt. Man kann mit IN (...) also z.B. sagen: "Gib mir alle Zeilen, deren Wert in einer bestimmten Menge enthalten ist". Diese Menge kann explizit angegeben oder – wie hier – durch eine Unterabfrage bestimmt werden:
+Wenn wir einen Treffer haben, wollen wir dieses Ergebnis oftmals in einer weiteren Abfrage weiterverwenden.
+In Python würde man das Ergebnis dafür einer Variablen zuweisen.
+In SQL ist hingegen gängig, beide Abfragen in eine zu verschachteln.
+Das wird leider schnell grässlich kompliziert zu lesen, gibt aber dem RDBMS besonders viele Chancen,
+die Abfrage zu optimieren.
+
+Ein gängiger Fall dafür ist die `IN` Klausel.
+Die prüft, ob ein Wert innerhalb einer bestimmten Liste oder Ergebnismenge vorkommt. 
+Diese Menge kann explizit angegeben werden oder durch eine Unterabfrage bestimmt sein:
 ```sql
 SELECT out_col FROM out_table WHERE match_column IN (
   SELECT match_column FROM in_table WHERE mycondition);
 ```
-[ER] Erstellen Sie eine Abfrage, die die `owner_id` des Hundes mit `name = 'Charlie'` zurückgibt. Verwenden Sie diese ID in einer weiteren Abfrage, um den Namen des Hundes mit dieser ID abzufragen.
+[ER] Erstellen Sie eine Abfrage, die die `owner_id` des Hundes mit `name = 'Charlie'` zurückgibt. 
+Verwenden Sie diese ID in einer weiteren Abfrage, um den Namen aller Hunde dieses Halters abzufragen.
+
 
 ### Aliases: `AS`
 
 Aliases werden in SQL verwendet, um Spaltennamen oder Ergebnisse von Abfragen umbenennen zu können.
-Sie sind besonders nützlich, um die Lesbarkeit von Abfragen zu verbessern und komplexe Abfragen
+Das ist oft nützlich, um die Lesbarkeit von Abfragen zu verbessern und komplexe Abfragen
 besser zu verstehen. Verwenden wird dafür das Schlüsselwort `AS`.
 
 ```sql
@@ -122,7 +122,8 @@ oder auch eine gesamte Abfrage(Tabelle):
 SELECT * 
 FROM mytable AS myresult;
 ```
-[ER] Vergeben Sie für die erste Abfragen(`owner_id`) aus Aufgabe [EREFR::10] einen Alias.
+[ER] Vergeben Sie für die erste Abfrage (`owner_id`) aus Aufgabe [EREFR::10] einen Alias.
+
 
 ### Aggregatsfunktionen: `COUNT, SUM, AVG, MIN, MAX`
 
@@ -158,6 +159,7 @@ SELECT MAX(mycolumn) FROM mytable;
 
 [ER] Bestimmen Sie das maximale Alter aller Hunde.
 
+
 ### Gruppieren und Filtern: `GROUP BY, HAVING`
 
 Gruppierungen in SQL ermöglichen es, Daten basierend auf bestimmten Kriterien zusammenzufassen und
@@ -174,7 +176,8 @@ GROUP BY mycol;
 
 [ER] Gruppieren Sie: Anzahl der Hunde pro `owner_id`.
 
-Mit dem Schlüsselwort `HAVING` können Sie weitere Bedingungen nach einer Gruppierung festlegen. <!--Weitere Infos: [`HAVING`](https://www.w3schools.com/sql/sql_having.asp)-->
+Mit dem Schlüsselwort `HAVING` können Sie weitere Bedingungen nach einer Gruppierung festlegen. 
+<!--Weitere Infos: [`HAVING`](https://www.w3schools.com/sql/sql_having.asp)-->
 
 ```sql
 SELECT mycol, COUNT(*) FROM mytable
@@ -183,10 +186,13 @@ GROUP BY mycol HAVING COUNT(*) > myvalue;
 
 [ER] Wie viele `owner_id` haben mindestens 2 Hunde? (Nutzen Sie `HAVING`.)
 
+
 ### Sortieren: `ORDER BY, ASC, DESC`
 
 In SQL können Sie die `ORDER BY`-Klausel verwenden, um die Ergebnisse einer Abfrage basierend auf den
-Werten einer oder mehrerer Spalten zu sortieren. Dabei steht `ASC` für aufsteigende Sortierung (von klein nach groß) und `DESC` für absteigende Sortierung (von groß nach klein).
+Werten einer oder mehrerer Spalten zu sortieren. 
+Dabei steht `ASC` für "ascending" (aufsteigende Sortierung von klein nach groß) 
+und `DESC` für "descending" (absteigende Sortierung von groß nach klein).
 <!-- Weitere Infos: [`ORDER BY`](https://www.w3schools.com/sql/sql_orderby.asp)-->
 
 ```sql
@@ -199,9 +205,11 @@ ORDER BY mycol1 [ASC | DESC], mycol2 [ASC | DESC], ...;
 
 [ER] Sortieren Sie zuerst nach `age` absteigend, dann nach `breed` aufsteigend.
 
+
 ### Duplikate entfernen: `DISTINCT`
 
-Manchmal kann es überraschend sein, wenn man trotz gut gezielter Einschränkung mehr als ein Ergebnis zurückbekommt. Um das zu vermeiden, kann man eindeutige Werte verwenden (z.B. eine ID), die das
+Manchmal kann es überraschend sein, wenn man trotz gut gezielter Einschränkung mehr als ein Ergebnis zurückbekommt. 
+Um das zu vermeiden, kann man eindeutige Werte verwenden (z.B. eine ID), die das
 Objekt der Begierde beschreibt. Jedoch muss man diesen eindeutigen Wert kennen. Die `DISTINCT`-Klausel
 sorgt dafür, dass Duplikate aus den Ergebnissen entfernt und nur eindeutige Werte zurückgegeben werden.
 <!--Siehe auch: [DISTINCT](https://www.w3schools.com/sql/sql_distinct.asp)-->
