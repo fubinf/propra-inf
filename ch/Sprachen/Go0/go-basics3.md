@@ -6,17 +6,19 @@ assumes: go-basics1, go-basics2
 ---
 
 [SECTION::goal::idea,experience]
-Ich kann komplexere Datenstrukturen in Go definieren.
+Ich kann komplexere Datentypen in Go definieren.
 [ENDSECTION]
 
 [SECTION::background::default]
-Je größer Ihre Projekte werden, desto mehr Struktur und Organisation braucht Ihr Quellcode.
+Je größer Ihre Projekte werden, desto mehr Struktur und Organisation braucht
+Ihr Quellcode.
 Go ist keine objektorientierte Programmiersprache: Im Gegensatz zu Java oder Python
 gibt es keine Klassen, Objekte oder Vererbung.
-Stattdessen wird in Go mit __Strukturen__ (structs) gearbeitet — mit zusammengesetzten Datentypen.
+Stattdessen wird in Go mit __Strukturen__ (structs) gearbeitet —
+mit zusammengesetzten Datentypen.
 
-In dieser Aufgabe handelt es sich um Strukturen, Methoden, Struktureinbettung und das Zusammenspiel 
-von dem pass-by-value-Verhalten, Zeigern und Strukturen.
+In dieser Aufgabe handelt es sich um Strukturen, Methoden, Struktureinbettung
+und das Zusammenspiel von dem pass-by-value-Verhalten, Zeigern und Strukturen.
 [ENDSECTION]
 
 [TOC]
@@ -32,7 +34,8 @@ wenn Sie eher Anleitungscharakter suchen.
 
 ### Definition
 
-Eine Struktur (struct) ist eine Zusammensetzung von primitiven Datentypen oder anderen Strukturen.
+Eine Struktur (struct) ist eine Zusammensetzung von primitiven Datentypen oder
+anderen Strukturen.
 
 Strukturen bestehen aus _Feldern_, die jeweils einen Namen und einen festen Typ haben:
 
@@ -61,7 +64,8 @@ p.FirstName = "Eric"
 ```
 
 [NOTICE]
-Alle Felder dieser Struktur sind großgeschrieben und deswegen öffentlich (public/exported).
+Alle Felder dieser Struktur sind großgeschrieben und deswegen öffentlich
+(public/exported).
 [ENDNOTICE]
 
 
@@ -69,8 +73,8 @@ Alle Felder dieser Struktur sind großgeschrieben und deswegen öffentlich (publ
 
 Auch ohne Klassen gibt es **Methoden** in Go.
 
-Methoden sind Funktionen, die einem Typ zugeordnet sind und einen bestimmten ersten Parameter
-besitzen: den Empfänger (receiver).
+Methoden sind Funktionen, die einem Typ zugeordnet sind und einen bestimmten
+ersten Parameter besitzen: den Empfänger (receiver).
 Sie ermöglichen es, Verhalten zu Strukturen hinzuzufügen.
 
 ```go
@@ -79,8 +83,8 @@ func (p Person) Print() {
 }
 ```
 
-Hier ist `(p Person)` der Empfänger: `p` ist der Name, über welchen die Methode auf die Struktur
-selbst zugreifen kann.
+Hier ist `(p Person)` der Empfänger: `p` ist der Name, über welchen die Methode
+auf die Struktur selbst zugreifen kann.
 
 [ER] Definieren Sie eine Struktur `Circle`, die ein Feld `radius float64` besitzt.
 
@@ -90,16 +94,11 @@ selbst zugreifen kann.
 - `Area() float64` — Fläche berechnen;
 - benutzen Sie `math.Pi` für Kreiszahl Pi.
 
-[ER] Fügen Sie die Testfunktion Ihrem Programm bei und rufen Sie diese aus der `main`-Funktion auf.
+[ER] Fügen Sie die Testfunktion Ihrem Programm bei:
 
 ```go
-func testMethods() {
-    c := Circle{10}
-    fmt.Println("area: ", c.Area())
-    fmt.Println("circumference: ", c.Circumference())
-}
+[INCLUDE::snippets/go-basics3-control-snippet-methods.go]
 ```
-
 
 ### Struktureinbettung (struct embedding)
 
@@ -108,37 +107,25 @@ Lesen Sie diesen
 .
 
 [ER] Definieren Sie eine Struktur `Employee`.
-Diese soll alle Felder und Methoden einer `Person` übernehmen und ein neues Feld definieren:
-`Position string`.
+Diese soll alle Felder und Methoden einer `Person` übernehmen und ein neues
+Feld definieren: `Position string`.
 
-[ER] Implementieren Sie eine neue Methode `Print` auf `Person`, die den vollständigen Namen und
-das Alter auf die Kommandozeile ausgibt.
+[ER] Implementieren Sie eine neue Methode `Print` auf `Person`, die den
+vollständigen Namen und das Alter auf die Kommandozeile ausgibt.
 
-[ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`
--Funktion auf:
+[ER] Fügen Sie die Testfunktion Ihrem Programm bei:
 
 ```go
-func testStructs() {
-    e := Employee{
-        Person: Person{
-            FirstName: "Mark",
-            LastName: "Mustermann",
-            Age: 25,
-        },
-        Position: "Accountant",
-    }
-    
-    e.Print()
-    e.Person.Print()
-}
+[INCLUDE::snippets/go-basics3-control-snippet-structs.go]
 ```
 
 [NOTICE]
-Da `Person` in `Employee` eingebettet wurde, können Sie auf alle Felder und Methoden von `Person` 
-explizit über `e.Person.` zugreifen.
+Da `Person` in `Employee` eingebettet wurde, können Sie auf alle Felder und
+Methoden von `Person` explizit über `e.Person.` zugreifen.
 [ENDNOTICE]
 
-[EQ] Stellen Sie sich vor, dass es eine neue Methode `Print` auf `Employee` definiert wurde.
+[EQ] Stellen Sie sich vor, dass es eine neue Methode `Print` auf `Employee`
+definiert wurde.
 Wie ändert sich die Ausgabe von der Testfunktion?
 
 [HINT::Verdeckung (Shadowing)]
@@ -152,7 +139,7 @@ In dem Fall verhalten sich Methoden sehr ähnlich wie Felder.
 
 ### Anonyme Strukturen
 
-Lesen Sie die folgende 
+Lesen Sie die folgende
 [Erklärung, was anonyme Strukturen sind](https://blog.boot.dev/golang/anonymous-structs-golang/)
 .
 
@@ -163,38 +150,38 @@ Lesen Sie die folgende
 
 Die leere Struktur stellt einen Typ dar, dessen Größe 0 Byte beträgt.
 
-Dieses Konstrukt wird in den Situationen benutzt, wo Ab- oder Anwesenheit eines Wertes wichtiger ist, 
-als der Wert selbst.
+Dieses Konstrukt wird in den Situationen benutzt, wo Ab- oder Anwesenheit
+eines Wertes wichtiger ist als der Wert selbst.
 
 ```go
 type emptyStruct struct{}
 es := emptyStruct{}
 
-// anonyme Schreibweise
+// "anonyme" Schreibweise
 es := struct{}{}
 ```
 
 [FOLDOUT::0 Bytes groß? Wie?]
-Der Trick ist, dass alle Instanzen von der leeren Struktur sich eine von dem Compiler festgelegte
-Speicheradresse teilen — `zerobase`.
+Der Trick ist, dass alle Instanzen von der leeren Struktur sich eine von dem
+Compiler festgelegte Speicheradresse teilen — `zerobase`.
 
-Go Compiler erkennt, dass so eine Struktur keine Felder besitzt und dementsprechend keinen 
-Speicherplatz braucht, und spart sich das Allokieren.
+Go Compiler erkennt, dass so eine Struktur keine Felder besitzt und
+dementsprechend keinen Speicherplatz braucht, und spart sich das Allokieren.
 
-Quellen für Nachlesen (könnte auch dann von Interesse sein, wenn Sie noch relativ frisch im 
-Go-Universum sind):
+Quellen für Nachlesen (könnte auch dann von Interesse sein, wenn Sie noch
+relativ frisch im Go-Universum sind):
 
 - [Dave Cheney: The empty struct](https://dave.cheney.net/2014/03/25/the-empty-struct)
 - [Decrypt Go: empty struct](https://dev.to/huizhou92/decrypt-go-empty-struct-5i4)
 [ENDFOLDOUT]
 
-[ER] Implementieren Sie eine Funktion namens `testEmptyStruct`, welche 3 Instanzen von der leeren 
-Struktur erzeugt und deren Adressen auf die Kommandozeile ausgibt.
+[ER] Implementieren Sie eine Funktion namens `testEmptyStruct`, welche 3 Instanzen
+von der leeren Struktur erzeugt und deren Adressen auf die Kommandozeile ausgibt.
 Was fällt Ihnen auf?
 
 [HINT::Die Adresse einer Variable ausgeben lassen]
-Benutzen Sie die Funktion `fmt.Printf` mit dem `%p` Platzhalter — `p` steht für "Pointer" und sorgt
-dafür, dass es tatsächlich die Speicheradresse angezeigt wird.
+Benutzen Sie die Funktion `fmt.Printf` mit dem `%p` Platzhalter — `p` steht für
+"Pointer" und sorgt dafür, dass es tatsächlich die Speicheradresse angezeigt wird.
 
 [HINT::Die Adresse einer Variable ermitteln]
 Das _Referenzieren_ ermöglicht uns der Operator `&`.
@@ -206,13 +193,14 @@ Das _Referenzieren_ ermöglicht uns der Operator `&`.
 
 ### "Pass-by-value" und "Pass-by-reference"
 
-In [PARTREF::go-basics2] haben Sie bereits gelernt, dass Funktionsargumente beim Übergeben 
-immer kopiert werden.
+In [PARTREF::go-basics2] haben Sie bereits gelernt, dass Funktionsargumente
+beim Übergeben immer kopiert werden.
 
 Daraus ergeben sich folgende Nachteile:
 
-* eine Funktion kann die ursprünglichen Argumente nicht verändern (was manchmal gewünscht wäre);
-* jeder Funktionsaufruf kopiert alle Argumente — ineffizient für große Strukturen.
+- eine Funktion kann die ursprünglichen Argumente nicht verändern (was manchmal
+  gewünscht wäre);
+- jeder Funktionsaufruf kopiert alle Argumente — ineffizient für große Strukturen.
 
 ```go
 // Option 1
@@ -225,13 +213,13 @@ func processPerson(p *Person) {
     ...
 }
 ```
-Schauen Sie sich diesen
+Schauen Sie sich diese
 [pass-by-value vs pass-by-reference Benchmark](https://blog.boot.dev/golang/pointers-faster-than-values/)
 an.
 
-[EQ] Was wäre ein guter Grund, Option 2 (übergabe per Zeiger) gegenüber 
-     Option 1 (übergabe per Wert) zu bevorzugen? 
-     Was wäre ein nicht so guter Grund?
+[EQ] Was wäre ein guter Grund, Option 2 (übergabe per Zeiger) gegenüber
+Option 1 (übergabe per Wert) zu bevorzugen?
+Was wäre ein nicht so guter Grund?
 
 [HINT::Hilfsfragen]
 
@@ -250,58 +238,56 @@ Eine etwas längere Antwort finden Sie in dem Artikel:
 [NOTICE]
 **Automatisches Dereferenzieren**
 
-Unabhängig davon, ob es sich um eine Struktur oder um einen Zeiger auf eine Struktur handelt, 
-darf man auf die Felder mit der `.`-Syntax zugreifen:
+Unabhängig davon, ob es sich um eine Struktur oder um einen Zeiger auf eine
+Struktur handelt, darf man auf die Felder mit der `.`-Syntax zugreifen:
 
 ```go
 p := Person{}
 pptr := &Person{}
 
-fmt.Println(p.Age)          // 0
-fmt.Println(pptr.Age)       // 0
-fmt.Println((*pptr).Age)    // explizit (aber unnötig)
+fmt.Println(p.Age) // 0
+fmt.Println(pptr.Age) // 0
+fmt.Println((*pptr).Age) // explizit (aber unnötig)
 ```
 [ENDNOTICE]
 
-[ER] Implementieren Sie eine Methode `Promote` auf `Employee`, die ein Argument `newPosition string`
-erwartet.
+[ER] Implementieren Sie eine Methode `Promote` auf `Employee`, die ein Argument
+`newPosition string` erwartet.
 Sie soll die Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
 
-[ER] Kopieren Sie die folgende Testfunktion in Ihre Datei um und rufen Sie sie ebenfalls aus der
-`main`-Funktion auf:
+[ER] Fügen Sie die Testfunktion in Ihre Datei ein:
 
 ```go
-func testMutation() {
-    e := Employee{
-        Person: Person{
-            FirstName: "Mark",
-            LastName: "Mustermann",
-            Age: 25,
-        },
-        Position: "Accountant",
-    }
-    
-    e.Print()
-    e.Promote("Senior Accountant")
-    e.Print()
+[INCLUDE::snippets/go-basics3-control-snippet-mutation.go]
+```
+
+[ER] Stellen Sie sicher, dass Ihre `main`-Funktion genauso aussieht:
+
+```go
+func main() {
+    testMethods()
+    testStructs()
+    testEmptyStruct()
+    testMutation()
 }
 ```
 
 [EC] Führen Sie nun das Programm mittels `go run` aus.
 
-Glückwunsch!
+[FOLDOUT::Glückwunsch!]
+Wenn Sie es zum Ende des dritten Teils von `go-basics` geschafft haben,
+können Sie sich sicher sein, dass Sie ein fundiertes Verständnis für die
+wichtigsten Konzepte der Programmiersprache Go entwickelt haben.
 
-Wenn Sie es zum Ende des dritten Teils von `go-basics` geschafft haben, 
-können Sie sich sicher sein, dass Sie ein fundiertes Verständnis für die wichtigsten 
-Konzepte der Programmiersprache Go entwickelt haben.
-
-Lassen Sie sich nicht vom Begriff `basics` täuschen — Übergabe per Wert/Zeiger, Struktureinbettung,
-Methoden und Slices sind keineswegs triviale Themen. 
+Lassen Sie sich nicht vom Begriff `basics` täuschen — Übergabe per Wert/Zeiger,
+Struktureinbettung, Methoden und Slices sind keineswegs triviale Themen.
 `basics` bedeutet nur, dass dieses Wissen in den weiteren Aufgaben vorausgesetzt wird.
 
 Im `basics`-Kapitel fehlt nur noch der letzte Schliff — [PARTREF::go-interfaces].
-Interfaces sind ein weiteres Konzept, das in Go anders funktioniert als in beispielsweise Java.
+Interfaces sind ein weiteres Konzept, das in Go anders funktioniert als in
+beispielsweise Java.
 Also: Viel Erfolg!
+[ENDFOLDOUT]
 
 [SECTION::submission::information,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
@@ -311,6 +297,10 @@ Also: Viel Erfolg!
 
 [INSTRUCTOR::Hinweise]
 
+- `testEmptyStruct` — die Speicheradresse im abgegebenen Kommandoprotokoll muss
+  nicht mit dieser in der Musterlösung übereinstimmen.
+  Der Punkt ist, dass es dreimal dieselbe Adresse ist.
+
 **Kommandoprotokoll**
 [PROT::ALT:go-basics3.prot]
 
@@ -319,5 +309,4 @@ Also: Viel Erfolg!
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go0/go-basics3.go]
-
 [ENDINSTRUCTOR]

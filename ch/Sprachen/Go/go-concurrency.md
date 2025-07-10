@@ -2,7 +2,6 @@ title: Nebenläufigkeit und Parallelität in Go
 stage: draft
 timevalue: 3
 difficulty: 3
-assumes: go-basics1, go-basics2, go-basics3
 ---
 
 [SECTION::goal::idea,experience]
