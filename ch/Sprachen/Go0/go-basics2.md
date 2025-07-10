@@ -162,21 +162,10 @@ der zweite der Reihe nach jedes Element der Liste `xs`.
 Mit `reduce(0, func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise
 die Summe der Ganzzahlen berechnet werden.
 
-[ER] Fügen Sie die folgende Funktion in Ihre Quellcodedatei ein und rufen Sie diese aus der `main`
--Funktion auf:
+[ER] Fügen Sie die Testfunktion Ihrem Programm bei:
 
 ```go
-func testFunctions() {
-    fmt.Println(divide(5, 2))
-    fmt.Println(divide(5, 0))
-    fmt.Println(
-        reduce(
-            0,
-            func (acc, arg int) int { return acc + arg * arg },
-            2, 3, 5, 7, 11, 13, 17, 19,
-        ),
-    )
-}
+[INCLUDE::snippets/go-basics2-control-snippet-functions.go]
 ```
 
 
@@ -356,6 +345,24 @@ Lesen Sie nun diesen Artikel aufmerksam durch:
 [Effective Go: Slices](https://go.dev/doc/effective_go#slices)
 [ENDFOLDOUT]
 
+### Selber programmieren
+
+Implementieren Sie die folgenden Funktionen:
+
+[ER] `func AddElement(slice []int, element, at int)`:
+ein Element an einem Index `at` in einen Slice einfügen;
+das Element, das vorher an dieser Stelle stand, und alle nachfolgenden rücken eine Position nach
+rechts.
+
+[ER] `func RemoveElement(slice []int, at int)`:
+ein Element an einem Index `at` entfernen und die Größe des Slice entsprechend anpassen.
+Alle nachfolgenden Elemente rücken eine Position nach links.
+
+[ER] Fügen Sie die Testfunktion Ihrem Programm bei:
+```go
+[INCLUDE::snippets/go-basics2-control-snippet-slices.go]
+```
+
 ### Map
 
 Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre
@@ -414,29 +421,25 @@ m := make(map[string]int)
 ```
 [ENDWARNING]
 
-
-### Selber programmieren
-
-Implementieren Sie die folgenden Funktionen:
-
-[ER] `func AddElement(slice []int, element, at int)`:
-ein Element an einem Index `at` in einen Slice einfügen;
-das Element, das vorher an dieser Stelle stand, und alle nachfolgenden rücken eine Position nach
-rechts.
-
-[ER] `func RemoveElement(slice []int, at int)`:
-ein Element an einem Index `at` entfernen und die Größe des Slice entsprechend anpassen.
-Alle nachfolgenden Elemente rücken eine Position nach links.
-
-[ER] `func AddElementIfNotThere(m map[string]int, key string, value int)`:
+[ER] Implementieren Sie eine Funktion 
+`func AddElementIfNotThere(m map[string]int, key string, value int)`:
 ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
 Ansonsten keine Aktion.
 
-[ER] Fügen Sie die folgenden Testfunktionen Ihrem Programm bei und rufen Sie sie aus der `main`
--Funktion auf:
+[ER] Fügen Sie die Testfunktion Ihrem Programm bei:
 
 ```go
-[INCLUDE::snippets/go-basics2-control-snippet.go]
+[INCLUDE::snippets/go-basics2-control-snippet-maps.go]
+```
+
+[ER] Für ein korrektes Kommandoprotokoll muss Ihre `main`-Funktion folgendermaßen aussehen:
+
+```go
+func main() {
+    testFunctions()
+    testSlices()
+    testMaps()
+}
 ```
 
 [EC] Führen Sie das Programm mittels `go run go-basics2.go` aus
