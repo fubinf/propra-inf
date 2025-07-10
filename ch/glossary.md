@@ -509,6 +509,26 @@ Bei Programmen wie `grep`, die Teile der Eingabe weglassen, leuchtet die Bezeich
 aber sie gilt auch für Programme wie `sort`, die die Eingabe nur umformen.
 [ENDTERM]
 
+[TERM::Firewall]
+Eine **Firewall** ist ein Sicherheitsmechanismus, der den Netzwerkverkehr überwacht und filtert, 
+um einen Computer oder ein Netzwerk vor unbefugtem Zugriff und schädlichen Daten zu schützen. 
+Sie fungiert als digitale Barriere zwischen einem vertrauenswürdigen internen Netzwerk 
+(z.B. deinem Heimnetzwerk) und einem externen, weniger vertrauenswürdigen Netzwerk 
+(z.B. dem Internet).
+
+Firewalls arbeiten nach vordefinierten Regeln, die festlegen, welcher Datenverkehr zugelassen (erlaubt)
+ und welcher blockiert (verweigert) werden soll. 
+ Diese Regeln können auf verschiedenen Kriterien basieren, wie z.B. IP-Adressen, Portnummern, Protokollen 
+ oder sogar dem Inhalt der Datenpakete.
+
+Es gibt verschiedene Arten von Firewalls:
+
+* **Software-Firewalls:** Diese sind auf einzelnen Geräten (wie deinem PC oder Laptop) installiert und 
+    schützen dieses spezifische Gerät.
+* **Hardware-Firewalls:** Dies sind eigenständige Geräte (oft in Routern integriert), die ein ganzes 
+    Netzwerk schützen und typischerweise in Unternehmen oder größeren Netzwerken eingesetzt werden.
+[ENDTERM]
+
 [TERM::first-class citizen|first-class Objekt]
 In Programmiersprachen beschreibt man Objekte als first-class citizen, wenn sie die folgenden 
 Eigenschaften unterstützen:
@@ -985,6 +1005,27 @@ Ist eine Art von Softwaretest, der darauf abzielt, sicherzustellen, dass ein Sys
 ungültige Eingaben oder unerwartete Bedingungen reagiert. Im Gegensatz zu Positivtests, die prüfen,
 ob das System die erwarteten Ergebnisse auf gültige Eingaben liefert, testen Negativtests die
 Handhabung von Fehlern oder ungültigen Daten.
+[ENDTERM]
+
+[TERM::Netzwerkport]
+Ein Netzwerkport ist ein virtueller, logischer Punkt, an dem Netzwerkverbindungen beginnen und enden. 
+Stell dir das wie einen nummerierten Dock in einem geschäftigen Seehafen vor. 
+So wie verschiedene Schiffe an bestimmten Docks ankommen, um bestimmte Arten von Fracht zu laden oder zu entladen, 
+kommen Netzwerkdaten an bestimmten Ports an, um von bestimmten Anwendungen oder Diensten verarbeitet zu werden.
+
+Wenn dein Computer Daten über ein Netzwerk sendet oder empfängt, verwendet er sowohl eine IP-Adresse, 
+um das richtige Gerät zu finden, als auch eine Portnummer, um die richtige Anwendung auf diesem Gerät zu finden.
+
+Es gibt 65536 Ports, die in drei Hauptkategorien unterteilt sind:
+
+* **System Ports (0-1023):** Diese sind für gängige, weit verbreitete Dienste und Anwendungen reserviert. 
+    Zum Beispiel verwenden Webbrowser typischerweise Port **80** für HTTP und Port **443** für HTTPS.
+    Diese Ports sollten nicht genutzt werden, aber können mit Adminrechten geändert werden.
+* **User Ports (1024-49151):** Diese können von Unternehmen oder Organisationen für ihre 
+    spezifischen Anwendungen registriert werden. Diese sind frei nutzbar.
+* **Dynamic Ports (49152-65535):** Diese werden oft von Client-Programmen verwendet, 
+    wenn sie eine Verbindung zu einem Dienst herstellen, oder von Anwendungen, die einen temporären 
+    Port benötigen.
 [ENDTERM]
 
 ## O
