@@ -21,6 +21,8 @@ Insbesondere geht es in dieser Aufgabe um Funktionen, Zeiger und die Unterscheid
 Wert- und Referenztypen.
 [ENDSECTION]
 
+[TOC]
+
 [SECTION::instructions::detailed]
 Wie im Teil 1 gilt weiter:
 Dokumentation zur Programmiersprache finden Sie in der
@@ -94,7 +96,7 @@ func namedReturnValues() (answer int, label string) {
 ```
 
 
-### Benannte Rückgabewerte und variadische Funktionen
+#### Benannte Rückgabewerte und variadische Funktionen
 
 Informieren Sie sich nun selbstständig über einige weitere funktionsbezogene Konzepte:
 
@@ -112,7 +114,7 @@ die eine Sammlung (einen [TERMREF::Slice (Golang)]) von Parametern bekommt?
 ein?
 
 
-### Funktionen höherer Ordnung
+#### Funktionen höherer Ordnung
 
 Eine Funktion kann eine andere Funktion als Parameter erhalten,
 wodurch sie zu einer Funktion höherer Ordnung wird:
@@ -245,7 +247,7 @@ Nun betrachten wir Arrays, Slices und Maps detaillierter aus der Perspektive von
 Referenztypen.
 
 
-### Array
+#### Array
 
 Ein Array ist ein Werttyp, der eine Sammlung von Einträgen darstellt,
 wo alle Einträge zum gleichen Typ gehören und die Größe (Anzahl von Einträgen) fest ist.
@@ -260,7 +262,7 @@ fmt.Println(arr, anotherArr)        // [0 0 0 0 0] [42 0 0 0 0]
 Reine Arrays werden in Go relativ selten verwendet, daher konzentrieren wir uns auf Slices.
 
 
-### Slice
+#### Slice
 
 Slices bauen immer auf Arrays auf.
 Ein [TERMREF::Slice (Golang)] ist eine "View" bzw. eine Sicht in das zugrundeliegende Array
@@ -345,8 +347,6 @@ Lesen Sie nun diesen Artikel aufmerksam durch:
 [Effective Go: Slices](https://go.dev/doc/effective_go#slices)
 [ENDFOLDOUT]
 
-### Selber programmieren
-
 Implementieren Sie die folgenden Funktionen:
 
 [ER] `func AddElement(slice []int, element, at int)`:
@@ -363,7 +363,8 @@ Alle nachfolgenden Elemente rücken eine Position nach links.
 [INCLUDE::snippets/go-basics2-control-snippet-slices.go]
 ```
 
-### Map
+
+#### Map
 
 Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre
 Schlüssel ermöglicht.
