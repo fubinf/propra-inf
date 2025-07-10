@@ -1028,6 +1028,27 @@ Es gibt 65536 Ports, die in drei Hauptkategorien unterteilt sind:
     Port benötigen.
 [ENDTERM]
 
+[TERM::Netzwerkport]
+Ein Netzwerkport ist ein virtueller, logischer Punkt, an dem Netzwerkverbindungen beginnen und enden. 
+Stell dir das wie einen nummerierten Dock in einem geschäftigen Seehafen vor. 
+So wie verschiedene Schiffe an bestimmten Docks ankommen, um bestimmte Arten von Fracht zu laden oder zu entladen, 
+kommen Netzwerkdaten an bestimmten Ports an, um von bestimmten Anwendungen oder Diensten verarbeitet zu werden.
+
+Wenn dein Computer Daten über ein Netzwerk sendet oder empfängt, verwendet er sowohl eine IP-Adresse, 
+um das richtige Gerät zu finden, als auch eine Portnummer, um die richtige Anwendung auf diesem Gerät zu finden.
+
+Es gibt 65536 Ports, die in drei Hauptkategorien unterteilt sind:
+
+* **System Ports (0-1023):** Diese sind für gängige, weit verbreitete Dienste und Anwendungen reserviert. 
+    Zum Beispiel verwenden Webbrowser typischerweise Port **80** für HTTP und Port **443** für HTTPS.
+    Diese Ports sollten nicht genutzt werden, aber können mit Adminrechten geändert werden.
+* **User Ports (1024-49151):** Diese können von Unternehmen oder Organisationen für ihre 
+    spezifischen Anwendungen registriert werden. Diese sind frei nutzbar.
+* **Dynamic Ports (49152-65535):** Diese werden oft von Client-Programmen verwendet, 
+    wenn sie eine Verbindung zu einem Dienst herstellen, oder von Anwendungen, die einen temporären 
+    Port benötigen.
+[ENDTERM]
+
 ## O
 
 [TERM::OAOO|Once and only once]
