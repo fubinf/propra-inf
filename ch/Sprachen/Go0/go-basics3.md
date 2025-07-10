@@ -1,5 +1,5 @@
 title: Weitere Grundlagen von Go — Strukturen
-stage: draft
+stage: alpha
 timevalue: 3
 difficulty: 2
 assumes: go-basics1, go-basics2
