@@ -7,30 +7,24 @@ assumes: html-Formulare
 
 [SECTION::goal::idea]
 
-Ich kann JavaScript-Code in HTML einbinden und kenne den Unterschied zwischen interner und externer Einbindung.
-
-Ich kann einfache JavaScript-Elemente wie Variablen, Funktionen und Kontrollstrukturen anwenden.
-
-Ich kann grundlegende DOM-Methoden wie benutzen, um Webseiten dynamisch zu verändern.
-
+- Ich kann JavaScript-Code in HTML einbinden und kann einfache JavaScript-Sprachelemente anwenden.
+- Ich kann grundlegende DOM-Methoden benutzen, um Webseiten dynamisch zu verändern.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-
-Wer Webseiten interaktiv gestalten will – etwa in der Webentwicklung, bei internen Tools oder interaktiven Lerninhalten – muss zunächst verstehen, wie JavaScript und das DOM (Document Object Model) zusammenwirken.
-Diese Aufgabe vermittelt die Grundlagen des JavaScript-Codes, zeigt typische Elemente wie Variablen, Funktionen und Schleifen und führt Schritt für Schritt in die DOM-Manipulation ein.
-Dabei lernen die Teilnehmenden nicht nur, wie man JavaScript in HTML einbindet, sondern auch, wie man mit einfachen Mitteln Inhalte auf Webseiten dynamisch verändert – die Basis für moderne, interaktive Webanwendungen.
-
+Mit HTML und CSS kann man Webseiten gestalten, die ansprechend aussehen, 
+aber sie bleiben (weitgehend) passive Dokumente.
+Mit JavaScript kann man sie zum Leben erwecken und ihnen Programmfunktionalität zufügen.
 [ENDSECTION]
 
 
 [SECTION::instructions::loose]
 
-
 ### Syntax verstehen
 
-Die JavaScript-Syntax ist relativ leichtgewichtig und ähnelt Sprachen wie C, Java oder Python in manchen Aspekten.
+Die JavaScript-Syntax ist relativ leichtgewichtig und ähnelt ansonsten Sprachen der C-Familie wie 
+C, C#, C+, Java, Objective C oder Swift: viele geschweifte Klammern.
 
 Ein Beispiel:
 
@@ -51,12 +45,21 @@ function begruessung(person, jahre) {
 // Ausgabe in der Konsole
 console.log(begruessung(name, alter));
 ```
+Die Klammern um die `if`-Bedingung sind nötig, weil es kein `then`-Schlüsselwort gibt.
+Die Folge von Anweisungen in einem `{ }`-Klammerpaar heißt "Block".
+Obige Funktion hat also drei Blöcke.
+
 
 ### Variablen
 
-Variablen definiert man in JavaScript mit `let`, `const` und `var`.
-Dabei nutzt man const für Variablen, die konstant sind und nicht verändert werden dürfen. Im anderen Falle nutzt man let.
-var wird dabei nur von alten Browsern unterstützt und sollte vermieden werden.
+Variablen definiert man in JavaScript mit `let`, `const` oder `var`.
+Dabei nutzt man `const` für Variablen, die nicht verändert werden dürfen. 
+Im anderen Falle nutzt man `let`.
+`var` ist ein älteres Sprachkonstrukt. 
+Es ähnelt `let`, aber die Variable ist damit in der ganzen Funktion sichtbar,
+nicht nur in dem Block, in dem sie deklariert ist, wie bei `let`.
+Kleinere Sichtbarkeit führt zu verständlicherem Code, 
+deshalb benutzt man `var` in modernem JavaScript nur noch selten.
 
 ```
 let x = 5;        // veränderbar
