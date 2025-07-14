@@ -133,6 +133,10 @@ bearbeitet haben, ist hier eine kurze Erinnerung über die Datenstrukturen des S
 [INCLUDE::Defekte-bei-Variablen.py]
 ```
 
+- Speichern Sie diesen Code als `Defekte-bei-Variablen.py`
+- [EC] `git add Defekte-bei-Variablen.py`
+- [EC] `git commit -m"Defekte-bei-Variablen.py Basisversion"`
+
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 1. Es ist eine gute Idee, von unten nach oben vorzugehen:  
@@ -185,23 +189,20 @@ deck = [("4", "hearts"), ("4", "spades")]
 Das Programm befindet sich genau vor Zeile 88 und wird als Nächstes die `while`-Schleife iterieren.
 Wird das Programm ordnungsgemäß beendet?
 [ENDHINT]
+[ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Defekte-bei-Variablen.py` korrigieren.
-- Machen Sie einen Commit `Defekte-bei-Variablen.py corrected`, der nur genau diese modifizierte Datei enthält.
+- [EC] `git add Defekte-bei-Variablen.py`
+- [EC] `git commit -m"Defekte-bei-Variablen.py Defektkorrektur"`
 - [EC] `git -P show HEAD`
 
 [ENDSECTION]
 
 [SECTION::submission::snippet]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Nur die Defektkorrektur bitte]
-
 [INCLUDE::/_include/Instructor-nur-Defektkorrektur.md]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

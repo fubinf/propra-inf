@@ -75,6 +75,10 @@ und das zweite Element ist ein leerer String.
 [INCLUDE::Indexierungsdefekte.py]
 ```
 
+- Speichern Sie diesen Code als `Indexierungsdefekte.py`
+- [EC] `git add Indexierungsdefekte.py`
+- [EC] `git commit -m"Indexierungsdefekte.py Basisversion"`
+
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 1. Betrachten Sie die Variable `flag`.
@@ -102,7 +106,8 @@ Führen Sie die Funktion mit den folgenden Eingaben aus:
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Indexierungsdefekte.py` korrigieren.
-- Machen Sie einen Commit `Indexierungsdefekte corrected`, der nur genau diese modifizierte Datei enthält.
+- [EC] `git add Indexierungsdefekte.py`
+- [EC] `git commit -m"Indexierungsdefekte.py Defektkorrektur"`
 - [EC] `git -P show HEAD`
 
 [ENDSECTION]

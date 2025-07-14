@@ -57,6 +57,10 @@ Die Funktion muss nur mit nichtnegativen ganzen Zahlen richtig funktionieren.
 [INCLUDE::Wertebereichsdefekte.py]
 ```
 
+- Speichern Sie diesen Code als `Wertebereichsdefekte.py`
+- [EC] `git add Wertebereichsdefekte.py`
+- [EC] `git commit -m"Wertebereichsdefekte.py Basisversion"`
+
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 1. Der Hauptteil des Algorithmus startet in Zeile 13.  
@@ -84,21 +88,17 @@ Setzen Sie `number` auf 2, 3, 4, 5 und 6.
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Wertebereichsdefekte.py` korrigieren.
-- Machen Sie einen Commit `Wertebereichsdefekte.py corrected`, der nur genau diese Modifikation enthält.
+- [EC] `git add Wertebereichsdefekte.py`
+- [EC] `git commit -m"Wertebereichsdefekte.py Defektkorrektur"`
 - [EC] `git -P show HEAD`
 
 [ENDSECTION]
 
 [SECTION::submission::snippet]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Nur die Defektkorrektur bitte]
-
 [INCLUDE::/_include/Instructor-nur-Defektkorrektur.md]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

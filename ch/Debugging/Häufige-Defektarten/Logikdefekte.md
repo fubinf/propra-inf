@@ -129,6 +129,10 @@ ein Defekt auftreten, durch den eine Person doppelt beschenkt wird:
 [INCLUDE::Logikdefekte.py]
 ```
 
+- Speichern Sie diesen Code als `Logikdefekte.py`
+- [EC] `git add Logikdefekte.py`
+- [EC] `git commit -m"Logikdefekte.py Basisversion"`
+
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 1. Es werden zwei Listen (`input_list` und `receivers_list`) und ein Dictionary (`return_dict`) 
@@ -164,18 +168,16 @@ Welche Zuteilungen sind hier noch möglich?
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Logikdefekte.py` korrigieren.
-- Machen Sie einen Commit `Logikdefekte.py corrected`, der nur genau diese modifizierte Datei enthält.
+- [EC] `git add Logikdefekte.py`
+- [EC] `git commit -m"Logikdefekte.py Defektkorrektur"`
 - [EC] `git -P show HEAD`
 
 [ENDSECTION]
+
 [SECTION::submission::snippet]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Lösungsansatz]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

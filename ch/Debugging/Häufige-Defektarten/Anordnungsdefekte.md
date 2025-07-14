@@ -128,6 +128,10 @@ Die Funktion `check_card()` nimmt vier Parameter:
 [INCLUDE::Anordnungsdefekte.py]
 ```
 
+- Speichern Sie diesen Code als `Anordnungsdefekte.py`
+- [EC] `git add Anordnungsdefekte.py`
+- [EC] `git commit -m"Anordnungsdefekte.py Basisversion"`
+
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 1. Besitzt der Code implizierte `else`-Ausdrücke?  
@@ -193,21 +197,16 @@ opponent_hand = {"2": ["clubs", "spades"]}
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Anordnungsdefekte.py` korrigieren.
-- Machen Sie einen Commit `Anordnungsdefekte.py corrected`, der nur genau diese modifizierte Datei enthält.
+- [EC] `git add Anordnungsdefekte.py`
+- [EC] `git commit -m"Anordnungsdefekte.py Defektkorrektur"`
 - [EC] `git -P show HEAD`
-
 [ENDSECTION]
 
 [SECTION::submission::snippet]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Nur die Defektkorrektur bitte]
-
 [INCLUDE::/_include/Instructor-nur-Defektkorrektur.md]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

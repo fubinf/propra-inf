@@ -110,7 +110,10 @@ wenn keine Karte des gegebenen Rangs existiert, dann existiert dieser Rang nicht
 [INCLUDE::Defekte-in-Ausdrücken.py]
 ```
 
-Übernehmen Sie diesen Code nach `Defekte-in-Ausdrücken.py`.
+- Speichern Sie diesen Code als `Defekte-in-Ausdrücken.py`
+- [EC] `git add Defekte-in-Ausdrücken.py`
+- [EC] `git commit -m"Defekte-in-Ausdrücken.py Basisversion"`
+
 Hier sind einige Vorschläge, um an den Code heranzutreten:
 
 1. `deck` und `player_hand` sind im obigen Code nicht definiert.  
@@ -163,8 +166,8 @@ hand = {"2": ["hearts", "spades"],
 [ENDHINT]
 
 - Defekt gefunden? Prima. Dann jetzt bitte in `Defekte-in-Ausdrücken.py` korrigieren.
-- Machen Sie einen Commit `Defekte-in-Ausdrücken.py corrected`, der nur genau diese modifizierte Datei 
-  enthält.
+- [EC] `git add Defekte-in-Ausdrücken.py`
+- [EC] `git commit -m"Defekte-in-Ausdrücken.py Defektkorrektur"`
 - [EC] `git -P show HEAD`
 
 [ENDSECTION]
