@@ -36,4 +36,6 @@
 - **2025-07-07**: Das [PARTREFMANUAL::glossary::Begriffsverzeichnis] enthält jetzt
   eine vollständige Stichwortliste zu Beginn.
 - **2025-07-08**: Aufgabe Testen/Unittests/[PARTREF::pytest_call] zugefügt.
+- **2025-07-14**: In allen 7 Aufgaben in Debugging/Häufige-Defektarten die Anleitung für den
+  Defektbereinigungs-Commit klarer gemacht, um den Tutoren die Arbeit zu erleichtern.
 - ...
