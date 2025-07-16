@@ -28,7 +28,7 @@ erststimmen_df = pd.read_csv("Pfad/zur/Berlin_BT25_W1.csv", sep=';')
 ### Inhalt gezielt betrachten
 
 Bis jetzt haben Sie Einblicke in die Daten selbst nur bekommen, indem Sie zum Beispiel mit 
-`print(erststimmen_df)` das ganze `DataFrame` ausgegeben haben. 
+`print(erststimmen_df)` den ganzen `DataFrame` ausgegeben haben. 
 Doch es gibt elegantere Lösungen, um sich Einträge eines `DataFrame` gezielt anzugucken. 
 Schauen Sie in die Dokumentation zu 
 [DataFrame.head()](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.head.html) und 
@@ -57,6 +57,14 @@ Funktion.
 Welcher Wahlbezirk kommt hinaus, wenn Sie den `random_state=42` und `n=1` verwenden? 
 Nennen Sie die Adresse.
 
+[EQ] Wieso kann man mit `sample()` eventuell informativere Einblicke in die Datensätze kriegen 
+als mit `head()` und `tail()`?
+
+[HINT::Mehr Informationen durch `sample()`]
+Betrachten Sie die Spalte "Adresse" in `erststimmen_df.head()`.
+Hätte es sich für Sie allein aus diesen Werten erschlossen, 
+dass "06B3F" ein gültiger Wert für eine Adresse ist?
+[ENDHINT]
 
 ### Metadaten des `DataFrame`
 
@@ -76,12 +84,12 @@ Der Datentyp der Daten, die in einer Series gespeichert werden, wird als `dtype`
 [Dokumentation](https://pandas.pydata.org/docs/dev/reference/api/pandas.Series.dtype.html#pandas.Series.dtype) 
 [ENDNOTICE]
 
-[EQ] Was ist der *Rückgabewert* von `.info()`?
+[EQ] Was ist der *Rückgabewert* von `info()`?
 
 [EQ] Welche Spalte hat die wenigsten Einträge?
 
-Auch wenn `.info()` eine gute Übersicht an Informationen bietet, liegen diese nur zur Ansicht vor.
-Wenn man mit den Informationen weiterarbeiten möchte, ist `.info()` ungeeignet, aber natürlich
+Auch wenn `info()` eine gute Übersicht an Informationen bietet, liegen diese nur zur Ansicht vor.
+Wenn man mit den Informationen weiterarbeiten möchte, ist `info()` ungeeignet, aber natürlich
 gibt es Alternativen. 
 Zum Beispiel kann man mit dem Attribut `erststimmen_df.shape` 
 die Zeilen- und Spaltenanzahl eines `DataFrame` ermitteln.
@@ -91,17 +99,32 @@ die Zeilen- und Spaltenanzahl eines `DataFrame` ermitteln.
 und finden Sie heraus, in welchem Attribut die Zeileneinträge gespeichert werden.
 
 
-### Ausblick
+### Statistische Metadaten
 
-Mit `.info()` haben Sie einen guten Überblick über das DataFrame, seine Spalten und anderen
+Mit `info()` haben Sie einen guten Überblick über den `DataFrame`, seine Spalten und andere
 [TERMREF::Metadaten]. 
 Zusammen mit `head()`, `tail()` und `sample()` können Sie sich bereits
 einen guten Eindruck auch über einen großen `DataFrame` verschaffen.
 
-Zur Vollständigkeit sei hier noch die Methode `describe()` erwähnt. Ähnlich wie `.info()` liefert
-sie Informationen über das DataFrame -- die Daten sind dabei aber statistischer Natur. Sie können
-damit also Sachen wie den Durchschnitt, das Minimum, das Maximum und weitere Informationen über die
-Spalten schnell überblicken.
+Zur Vollständigkeit sei hier aber noch die Methode `describe()` aufgeführt. 
+Ähnlich wie `info()` liefert sie Informationen über den `DataFrame` -- die Daten sind 
+dabei aber statistischer Natur.
+
+[EQ] Schauen Sie sich die 
+[Dokumentation zu describe()](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.describe.html#pandas.DataFrame.describe) 
+an und benutzen Sie `describe()` auf dem `erststimmen_df`. 
+Zu welcher Art von Spalten werden hier Daten aufgeführt? 
+Und wieso nicht zu den anderen Spalten?
+
+[EQ] Was ist die maximale Anzahl an Stimmen, die die SPD in einem Wahlbezirk bekommen hat?
+
+[EQ] Was ist die minimale Anzahl an Stimmen, die die CDU in einem Wahlbezirk bekommen hat?
+
+[EQ] Wie viele Stimmen hat die FDP im Durchschnitt bekommen?
+
+Mit `describe()` lassen sich, wie Sie sehen, viele statistische Metadaten schnell präsentieren.
+Neben dem Minimum, Maximum und Durchschnitt gibt es noch weitere interessante Metriken, 
+die Sie in späteren Aufgaben kennenlernen werden.
 
 <!-- TODO_2_Saka: Auf Aufgabe verweisen, in der man in die analytischen Methoden eingeführt wird -->
 [ENDSECTION]
