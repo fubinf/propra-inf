@@ -1,5 +1,5 @@
 title: "Zugriff auf Teilbereiche"
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 assumes: pd-Datenstrukturen
@@ -165,12 +165,10 @@ Mit `.loc[]` können Sie also sehr flexibel Bereiche des ganzen DataFrames auf G
 ansprechen. Mit `.at[]` lässt sich das nur auf einzelnen Feldern machen. 
 
 [NOTICE]
-Da stellt sich die Frage: Wieso oder wann sollte man `.at[]` einsetzen, wenn man auch `.loc[]` für
-einzelne Felder benutzen kann? Die Implementierung von `.at[]` sorgt dafür, dass es wesentlich
-optimierter auf einzelne Felder zugreifen kann als `.loc[]`. Das kann bei großen für spürbar
-schnellere Durchläufe sorgen. Wer also Wert auf seine Performance legt, sollte `.at[]` auch an
-Stellen benutzen, wo nur einzelne Feldzugriffe gemacht werden.
+Wieso sollte man `.at[]` einsetzen, wenn man auch `.loc[]` für einzelne Felder benutzen kann? 
+Weil `.at[]` schneller ist; es kann bei großen `DataFrames` für spürbar schnelleren Gesamtablauf sorgen.
 [ENDNOTICE]
+
 
 ### Zugriff auf Bereiche (per Position)
 
