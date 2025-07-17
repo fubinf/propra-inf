@@ -1,5 +1,5 @@
 title: Überblick über Daten
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 assumes: pd-Datenstrukturen
