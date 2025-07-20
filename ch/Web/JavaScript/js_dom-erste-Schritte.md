@@ -69,7 +69,15 @@ var z = 15;       // alt, besser vermeiden
 
 ### Datentypen
 
-In JavaScript gibt es grundlegend 8 verschiedene Datentypen. Diese Datentypen sehen wie folgt aus:
+In JavaScript gibt es neun grundlegende Datentypen.
+Einige davon sind primitiv: `string`, `number`, `bigint`, `boolean`, `null`, `undefined`, `symbol`.
+Andere sind Objekte, z. B. Arrays oder eigene Datenstrukturen.
+
+Der Datentyp `symbol` dient dazu, einzigartige und unveränderliche Bezeichner zu erzeugen.
+Jeder Aufruf von Symbol() erzeugt ein neues, eindeutiges Symbol, auch wenn man denselben Beschreibungstext verwendet.
+Symbole werden häufig als Schlüssel für Objekt-Eigenschaften verwendet, insbesondere wenn diese nicht kollidieren sollen.
+
+Ein Beispiel:
 
 ```
 let name = "Anna";          // String
@@ -80,18 +88,33 @@ let nothing = null;         // Null
 let notDefined;             // Undefined
 let person = { name: "Anna", age: 25 };  // Objekt
 let numbers = [1, 2, 3];    // Array
-```
 
+const sym1 = Symbol("id");  // Symbol
+const sym2 = Symbol("id");  // Symbol
+
+console.log(sym1 === sym2); // false – sie sind eindeutig!
+
+// Verwendung als Schlüssel:
+
+const user = {
+  name: "Anna",
+  [Symbol("id")]: 123
+};
+
+console.log(Object.keys(user)); // ["name"] – das Symbol erscheint hier nicht
+```
+Symbol-Eigenschaften sind nicht aufzählbar (z. B. in for...in) und bleiben z. B. bei JSON.stringify() unsichtbar.
 Eine ausführlichere Dokumentation findest du [hier](https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Data_structures).
 
-[EQ] Recherchiere den Unterschied zwischen `undefined` und `null` in JavaScript. Warum sind Beide notwendig oder sind sie es überhaupt?
+[EQ] Recherchiere den Unterschied zwischen `undefined` und `null` in JavaScript. Warum sind Beide notwendig?
 
 
 ### Funktionen
 
 
 Eine Funktion zu definieren in JavaScript ist sehr ähnlich wie in Python.
-In JavaScript kann man eine Funktion auf verschiedene Arten definieren. Die klassische Methode sieht dabei so aus:
+In JavaScript kann man eine Funktion auf verschiedene Arten definieren. 
+Die klassische Methode sieht dabei so aus:
 
 ```
 function greet(name) {
@@ -106,11 +129,14 @@ const sagHallo = (name) => {
   console.log("Hallo, " + name + "!");
 };
 ```
+Beide Varianten sind üblich. Arrow Functions sind besonders bei kurzen Funktionen oder Callbacks beliebt.
+Anders als in Python muss in JavaScript der Rückgabewert bei `return` explizit angegeben werden (sofern gewünscht).
+In der Pfeilschreibweise ist ein `return` bei einzeiligen Ausdrücken auch implizit möglich.
 
 ### Kontrollstrukturen
 
-Die `if` und `else` Anweisungen sind sehr ähnlich wie in anderen Programmiersprachen.
-Dazu kommt das Schleifen wie die `for` und `while` Schleifen sehr ähnlich sind wie in Python.
+JavaScript verwendet bekannte Kontrollstrukturen wie `if`, `else`, `for`, `while`.
+Diese ähneln den Konstrukten in Python, aber die Klammern `{}` sind Pflicht.
 
 Hier ist ein Beispiel dazu:
 
@@ -132,7 +158,8 @@ while (x < 10) {
 
 ### Vergleiche
 
-Die Vergleichsoperatoren in JavaScript sind alle allgegenwärtig wie bei den anderen Programmiersprachen. Jedoch gibt es kleine Feinheiten, die man beachten, bzw. lernen sollte.
+Die Vergleichsoperatoren in JavaScript sind alle allgegenwärtig wie bei den anderen Programmiersprachen. 
+Jedoch gibt es kleine Feinheiten, die man beachten, bzw. lernen sollte.
 
 ```
 | Operator | Bedeutung                  | Beispiel       | Ergebnis |
@@ -157,7 +184,7 @@ Lose Vergleiche (`==`, `!=`) führen Typumwandlungen durch. Strikte Vergleiche (
 
 Grundsätzlich gibt es zwei verschiedene Varianten, wie JavaScript in HTML eingebunden werden kann.
 
-1. **Innerhalb von HTML-Tags**: Dabei schreibt man den JavaScript Code, mit dem `<script>` Tag,  direkt innerhalb in der `HTML` datei:
+1. **Innerhalb des HTML-Tags**: Dabei schreibt man den JavaScript Code, mit dem `<script>` Tag,  direkt innerhalb in der `HTML` datei:
 
 ```
 <!DOCTYPE html>
@@ -176,7 +203,8 @@ Grundsätzlich gibt es zwei verschiedene Varianten, wie JavaScript in HTML einge
 </html>
 ```
 
-2. **Als externe Datei**: Dabei verlagert man den JavaScript Code in eine externe Datei, für gewöhnlich mit der Endung `.js`. In dieser Datei wird dann der gesamte JavaScript Code geschrieben und dann in das HTML-Dokument eingefügt:
+2. **Als externe Datei**: Dabei verlagert man den JavaScript Code in eine externe Datei, für gewöhnlich mit der Endung `.js`. 
+In dieser Datei wird dann der gesamte JavaScript Code geschrieben und dann in das HTML-Dokument eingefügt:
 
 ```
 <!DOCTYPE html>
@@ -192,7 +220,63 @@ Grundsätzlich gibt es zwei verschiedene Varianten, wie JavaScript in HTML einge
 </html>
 ```
 
-Vorteil hierbei ist, dass derselbe JavaScript-Code für mehrere HTML-Dokumente verwendet werden kann. Außerdem ist es empfehlenswert für größere Projekte oder wenn du den Code trennen willst.
+Vorteil hierbei ist, dass derselbe JavaScript-Code für mehrere HTML-Dokumente verwendet werden kann. 
+Außerdem ist es empfehlenswert für größere Projekte oder wenn man den Code trennen will.
+
+
+### DOM-Zugriff: Die wichtigsten Bausteine
+
+Damit JavaScript mit der HTML-Seite „sprechen“ kann, braucht es Zugriff auf einzelne Elemente.
+Dieser Zugriff läuft über das sogenannte DOM (Document Object Model). 
+Hier sind die wichtigsten Bausteine:
+
+`id`:
+Jedes HTML-Element kann eine eindeutige Kennung (`id`) bekommen.
+Diese dient dazu, das Element später in JavaScript wiederzufinden.
+
+```
+<input id="nameInput" type="text">
+// Kann in JS mit getElementById("nameInput") gefunden werden
+```
+
+`document`:
+Das globale Objekt `document` steht für das gesamte HTML-Dokument.
+Über `document` kannst du auf Elemente zugreifen, Inhalte ändern oder neue Elemente hinzufügen.
+
+```
+console.log(document.title); // zeigt den <title>-Text im Kopfbereich an
+```
+
+`getElementById(...)`:
+Mit dieser Methode findest du ein einzelnes HTML-Element anhand seiner `id`.
+
+```
+const eingabe = document.getElementById("nameInput");
+```
+
+`value`:
+Liest den aktuellen Inhalt eines Eingabefelds (z. B. `<input>` oder `<textarea>`) aus.
+
+```
+let name = document.getElementById("nameInput").value;
+```
+
+`innerHTML`:
+Ändert oder liest den HTML-Inhalt eines Elements, also auch mit Tags oder Formatierung.
+
+```
+document.getElementById("willkommen").innerHTML =
+  "Willkommen, " + name + "!";
+```
+
+`addEventListener(...)`:
+Damit lässt sich auf Ereignisse wie Klicks, Tastatureingaben oder Mausbewegungen reagieren.
+
+```
+document.getElementById("buttonId").addEventListener("click", function () {
+  alert("Button wurde geklickt!");
+});
+```
 
 
 ### Selber machen!
