@@ -196,6 +196,7 @@ chapters:
       - name: Entwurfsentscheidungen
       - name: Refactoring-Grundlagen
       - name: Refactoring-Praxis
+      - name: Festpreisprojekt
       - name: SystemUnderTest
   - name: Web
     taskgroups:
