@@ -39,4 +39,5 @@
 - **2025-07-14**: In allen 7 Aufgaben in Debugging/Häufige-Defektarten die Anleitung für den
   Defektbereinigungs-Commit klarer gemacht, um den Tutoren die Arbeit zu erleichtern.
 - **2025-07-17**: Aufgabe Bibliotheken/Pandas-Grundlagen/[PARTREF::pd-Datenüberblick] zugefügt.
+- **2025-07-20**: Aufgabengruppe Bestandscode/[PARTREF::Festpreisprojekt] zugefügt.
 - ...
