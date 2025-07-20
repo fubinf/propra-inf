@@ -102,7 +102,7 @@ Weitere Details zu `JOIN` finden Sie in der W3schools: [Join-Clause](https://www
 ### UNION
 
 SQLite unterstützt keine `RIGHT JOIN` oder `FULL JOIN`. 
-Ein `RIGHT JOIN` ist nichts anderes als ein `LEFT JOIN`, wenn man die Tabellen vertauscht:
+Ein `RIGHT JOIN` ist nichts anderes als ein `LEFT JOIN`, wenn Sie die Tabellen vertauschen:
 ```sql
 -- LEFT JOIN
 SELECT mycol 
@@ -118,7 +118,7 @@ LEFT JOIN lefttable
 ```
 (`fk` steht für "foreign key", also Fremdschlüssel: ein Schlüssel in einer anderen Tabelle).
 
-Mit `UNION` lässt sich `FULL JOIN` simulieren, indem man zwei `LEFT JOINs` kombiniert. 
+Mit `UNION` lässt sich `FULL JOIN` simulieren, indem Sie zwei `LEFT JOINs` kombinieren. 
 Ein `UNION` verbindet die Ergebnisse zweier `SELECT`-Abfragen und entfernt dabei doppelte Zeilen:
 ```sql
 SELECT mycol FROM mytable1
@@ -128,14 +128,14 @@ SELECT mycol FROM mytable2
 LEFT JOIN mytable1 ON mytable1.id = mytable2.id;
 ```
 So entsteht eine vollständige Kombination aus beiden Tabellen – ähnlich einem `FULL JOIN`.
-Wenn man alle Zeilen inklusive Duplikate erhalten möchte, kann man `UNION ALL` verwenden.
+Wenn Sie alle Zeilen inklusive Duplikate erhalten möchten, können Sie `UNION ALL` verwenden.
 
 
-### Es ist an der Zeit zu prüfen, ob du JOINs beherrschst!
+### Es ist an der Zeit zu prüfen, ob Sie JOINs beherrschen!
 
-Wir verwenden wieder die aus [PARTREF::sql-basics]
+Verwenden Sie wieder die aus [PARTREF::sql-basics]
 bekannte Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. 
-Dazu erstellen Sie im ersten Schritt die folgenden Tabellen, mit der wir in dieser Aufgabe arbeiten wollen.
+Dazu erstellen Sie im ersten Schritt die folgenden Tabellen, mit denen Sie in dieser Aufgabe arbeiten werden.
 
 **Tabelle students:**
 ```sql
@@ -192,12 +192,12 @@ Eine solche Annahme ist also riskant und deshalb schlechter Stil.
 [ENDNOTICE]
 
 [HINT::Welche JOIN-Art sollte ich benutzen?]
-Wenn man weiß, dass immer passende Datensätze auf beiden Seiten existieren werden,
+Wenn Sie wissen, dass immer passende Datensätze auf beiden Seiten existieren werden,
 ist die JOIN-Art egal, denn es kommt bei jeder das Gleiche raus.
-Wissen wir das hier? Ja.
+Ist Ihnen das hier bekannt? Ja.
 
-Wenn man es nicht weiß, ist hier INNER JOIN richtig,
-denn Ausgaben mit fehlendem `student` oder fehlendem `course` wollen wir nicht.
+Wenn Sie das nicht wissen, ist hier INNER JOIN die richtige Wahl,
+denn Ausgaben mit fehlendem `student` oder fehlendem `course` möchten Sie nicht erhalten.
 Diese Überlegung ist häufig die relevante und deshalb ist INNER JOIN häufig die richtige Sorte.
 [ENDHINT]
 
