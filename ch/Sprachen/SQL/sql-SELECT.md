@@ -38,6 +38,9 @@ der wir in dieser Aufgabe arbeiten wollen.
 ('Molly', 'Yorkshire Terrier', 5, 'Female', 'Black and Tan', '2017-11-12', 9),
 ('Duke', 'Doberman Pinscher', 4, 'Male', 'Black and Rust', '2018-04-30', 10),
 ('Zoe', 'Shih Tzu', 7, 'Female', 'White and Brown', '2015-12-03', 11),
+('Goldix', 'Golden Retriever', 6, 'Female', 'Golden', '2017-01-01', 12)
+('Goldiy', 'Golden Retriever', 16, 'male', 'Golden', '2007-01-01', 12)
+
 ```
 <!-- time estimate: 15 min -->
 
@@ -67,7 +70,7 @@ Zusätzlich können wir mit `LIMIT <int>` – häufig in Kombination mit `OFFSET
 SELECT mycol FROM mytable WHERE mycondition LIMIT mynumber OFFSET myoffset;
 ```
 
-[ER] Geben Sie **ab dem dritten Treffer** drei weitere weibliche Hunde zurück (verwenden Sie `LIMIT` und `OFFSET`).
+[ER] Geben Sie ab dem dritten Treffer drei weitere weibliche Hunde zurück (verwenden Sie `LIMIT` und `OFFSET`).
 
 Und zu guter Letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren.
 ```sql
@@ -83,6 +86,10 @@ WHERE id > 10 AND id <= 20;
 [ER] Listen Sie alle Hunde auf, die 4 Jahre alt und männlich sind.
 
 [ER] Listen Sie alle Hunde auf, die `Golden Retriever`, jünger als `8` und `männlich` sind.
+
+[ER] Geben Sie maximal drei Namen aller weiblichen Hunde zurück, die jünger als 5 Jahre alt sind (verwenden Sie `LIMIT`).
+
+[ER] Geben Sie maximal zwei Hunde aus, die älter als 4 Jahre und eine goldene Fellfarbe haben.
 <!-- time estimate: 30 min -->
 
 
@@ -103,6 +110,8 @@ SELECT out_col FROM out_table WHERE match_column IN (
 [ER] Erstellen Sie eine Abfrage, die die `owner_id` des Hundes mit `name = 'Charlie'` zurückgibt. 
 Verwenden Sie diese ID in einer weiteren Abfrage, um den Namen aller Hunde dieses Halters abzufragen.
 
+[ER] Geben Sie die Namen aller Hunde zurück, deren Besitzer-IDs auch Hunde namens `Buddy` oder `Luna` haben.
+
 Ein weiterer Weg, verschachtelte Abfragen lesbarer zu gestalten, ist die Verwendung einer **Common Table Expression (CTE)** per `WITH`-Klausel. Damit lassen sich Zwischenergebnisse benennen und danach wie eigenständige Tabellen verwenden:
 
 ```sql
@@ -112,9 +121,12 @@ WITH mysubquery AS (
 SELECT mycol2 FROM mytable
 WHERE mykey IN (SELECT mykey FROM mysubquery);
 ```
-<!-- time estimate: 20 min -->
 
 [ER] Verwenden Sie eine `WITH`-Klausel, um zunächst alle `owner_id` der Hunde mit `breed = 'Golden Retriever'` zu ermitteln und anschließend die Namen aller Hunde dieser Besitzer auszugeben.
+
+[ER] Verwenden Sie eine `WITH`-Klausel, um alle Besitzer-IDs von Hunden mit dem Farbattribut `'Golden'` zu bestimmen. 
+Listen Sie dann alle Hunde auf, die von diesen Besitzern sind und jünger als 5 Jahre.
+<!-- time estimate: 30 min -->
 
 
 ### Aliases: `AS`
@@ -134,7 +146,11 @@ SELECT *
 FROM mytable AS myresult;
 ```
 [ER] Vergeben Sie für die erste Abfrage (`owner_id`) aus Aufgabe [EREFR::10] einen Alias.
-<!-- time estimate: 10 min -->
+
+[ER] Geben Sie die Namen (`name`) und Farben (`color`) aller Hunde zurück, wobei Sie für beide Spalten aussagekräftige Aliase vergeben, z.&nbsp;B. `Hundename`, `Fellfarbe`.
+
+[ER] Schreiben Sie eine Abfrage, die die ganze Tabelle `dogs` als `hundeinfo` referenziert und daraus alle Hunde mit Alter ≥ 5 zurückgibt.
+<!-- time estimate: 15 min -->
 
 
 [ENDSECTION]
