@@ -1,5 +1,5 @@
 title: SQL SELECT anwenden
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 assumes: sql-basics
@@ -38,9 +38,8 @@ der wir in dieser Aufgabe arbeiten wollen.
 ('Molly', 'Yorkshire Terrier', 5, 'Female', 'Black and Tan', '2017-11-12', 9),
 ('Duke', 'Doberman Pinscher', 4, 'Male', 'Black and Rust', '2018-04-30', 10),
 ('Zoe', 'Shih Tzu', 7, 'Female', 'White and Brown', '2015-12-03', 11),
-('Goldix', 'Golden Retriever', 6, 'Female', 'Golden', '2017-01-01', 12)
-('Goldiy', 'Golden Retriever', 16, 'male', 'Golden', '2007-01-01', 12)
-
+('Goldix', 'Golden Retriever', 6, 'Female', 'Golden', '2017-01-01', 12),
+('Goldiy', 'Golden Retriever', 16, 'male', 'Golden', '2007-01-01', 12);
 ```
 <!-- time estimate: 15 min -->
 
@@ -65,14 +64,15 @@ SELECT mycol FROM mytable WHERE mycondition;
 
 [ER] Fragen Sie alle kompletten Datensätze ab von Hunden, die `Luna` genannt werden.
 
-Zusätzlich können wir mit `LIMIT <int>` – häufig in Kombination mit `OFFSET <skip>` – das Ergebnis **paginieren**, also nur einen definierten Ausschnitt (z.&nbsp;B. Seite 1 mit 3 Einträgen) der Treffermenge zurückgeben. Numerische Vergleichsoperatoren wie `<` oder `>` grenzen Werte ebenfalls ein.
+Zusätzlich können wir mit `LIMIT <int>` – häufig in Kombination mit `OFFSET <skip>` – das Ergebnis **paginieren**, also nur einen definierten Ausschnitt (z.&nbsp;B. Seite 1 mit 3 Einträgen) der Treffermenge zurückgeben. Numerische Vergleichsoperatoren wie `<` oder `>` grenzen Werte ebenfalls ein. Weitere Infos: [`LIMIT`,`OFFSET`](https://www.sqltutorial.org/sql-limit/)
+
 ```sql
 SELECT mycol FROM mytable WHERE mycondition LIMIT mynumber OFFSET myoffset;
 ```
 
 [ER] Geben Sie ab dem dritten Treffer drei weitere weibliche Hunde zurück (verwenden Sie `LIMIT` und `OFFSET`).
 
-Und zu guter Letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren.
+Und zu guter Letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren. Weitere Infos: [`AND`](https://www.sqltutorial.org/sql-and/), [`OR`](https://www.sqltutorial.org/sql-or/)
 ```sql
 SELECT mycol FROM mytable WHERE mycondition1 AND mycondition2;
 ```
@@ -97,8 +97,7 @@ WHERE id > 10 AND id <= 20;
 Wenn wir einen Treffer haben, wollen wir dieses Ergebnis oftmals in einer weiteren Abfrage weiterverwenden.
 In Python würde man das Ergebnis dafür einer Variablen zuweisen.
 In SQL ist hingegen gängig, beide Abfragen in eine zu verschachteln.
-Das wird leider schnell grässlich kompliziert zu lesen, gibt aber dem RDBMS besonders viele Chancen,
-die Abfrage zu optimieren.
+Das wird leider schnell grässlich kompliziert zu lesen, gibt aber dem RDBMS besonders viele Chancen, die Abfrage zu optimieren.
 
 Ein gängiger Fall dafür ist die `IN` Klausel.
 Die prüft, ob ein Wert innerhalb einer bestimmten Liste oder Ergebnismenge vorkommt. 
@@ -107,13 +106,14 @@ Diese Menge kann explizit angegeben werden oder durch eine Unterabfrage bestimmt
 SELECT out_col FROM out_table WHERE match_column IN (
   SELECT match_column FROM in_table WHERE mycondition);
 ```
+Weitere Infos: [`IN`](https://mode.com/sql-tutorial/sql-in-operator)
+
 [ER] Erstellen Sie eine Abfrage, die die `owner_id` des Hundes mit `name = 'Charlie'` zurückgibt. 
 Verwenden Sie diese ID in einer weiteren Abfrage, um den Namen aller Hunde dieses Halters abzufragen.
 
 [ER] Geben Sie die Namen aller Hunde zurück, deren Besitzer-IDs auch Hunde namens `Buddy` oder `Luna` haben.
 
 Ein weiterer Weg, verschachtelte Abfragen lesbarer zu gestalten, ist die Verwendung einer **Common Table Expression (CTE)** per `WITH`-Klausel. Damit lassen sich Zwischenergebnisse benennen und danach wie eigenständige Tabellen verwenden:
-
 ```sql
 WITH mysubquery AS (
   SELECT mykey FROM mytable WHERE mycol = 'myvalue'
@@ -121,6 +121,8 @@ WITH mysubquery AS (
 SELECT mycol2 FROM mytable
 WHERE mykey IN (SELECT mykey FROM mysubquery);
 ```
+Weitere Infos: [`WITH`](https://www.geeksforgeeks.org/sql/sql-with-clause/
+)
 
 [ER] Verwenden Sie eine `WITH`-Klausel, um zunächst alle `owner_id` der Hunde mit `breed = 'Golden Retriever'` zu ermitteln und anschließend die Namen aller Hunde dieser Besitzer auszugeben.
 
@@ -133,7 +135,7 @@ Listen Sie dann alle Hunde auf, die von diesen Besitzern sind und jünger als 5 
 Aliases werden in SQL verwendet, um Spaltennamen oder Ergebnisse von Abfragen umbenennen zu können.
 Das ist oft nützlich, um die Lesbarkeit von Abfragen zu verbessern und komplexe Abfragen
 besser zu verstehen. Verwenden wird dafür das Schlüsselwort `AS`.
-
+Weitere Infos: [`AS`](https://www.sqltutorial.org/sql-alias/)
 ```sql
 SELECT mycol1 AS myalias1, mycol2 AS myalias2, ...
 FROM mytable;

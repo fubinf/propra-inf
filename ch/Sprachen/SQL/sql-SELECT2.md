@@ -1,6 +1,6 @@
 title: SQL SELECT anwenden 2
-stage: draft
-timevalue: 2
+stage: alpha
+timevalue: 2.5
 difficulty: 2
 assumes: sql-basics, sql-SELECT
 ---
@@ -35,7 +35,10 @@ Wir verwenden wieder die aus [PARTREF::sql-SELECT] bekannte Seite [SQLite Online
 ('Molly', 'Yorkshire Terrier', 5, 'Female', 'Black and Tan', '2017-11-12', 9),
 ('Duke', 'Doberman Pinscher', 4, 'Male', 'Black and Rust', '2018-04-30', 10),
 ('Zoe', 'Shih Tzu', 7, 'Female', 'White and Brown', '2015-12-03', 11),
+('Goldix', 'Golden Retriever', 6, 'Female', 'Golden', '2017-01-01', 12),
+('Goldiy', 'Golden Retriever', 16, 'male', 'Golden', '2007-01-01', 12);
 ```
+<!-- time estimate: 10 min -->
 
 Aggregatfunktionen ermöglichen es, statistische Informationen über Daten zu erhalten, wie z.B. die
 Anzahl der Zeilen `COUNT`, die Summe von Werten `SUM`, den Durchschnitt `AVG`, das Minimum `MIN`
@@ -67,7 +70,13 @@ Siehe auch: [Aggregate Functions (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`)](https://
 [ER] Bestimmen Sie das minimale Alter aller Hunde.
 
 [ER] Bestimmen Sie das maximale Alter aller Hunde.
-<!-- time estimate: 20 min -->
+
+[ER] Berechnen Sie das durchschnittliche Alter aller weiblichen Hunde.
+
+[ER] Berechnen Sie die Summe der Altersangaben aller Hunde der Rasse `Golden Retriever`.
+
+[ER] Ermitteln Sie die Anzahl aller männlichen Hunde.
+<!-- time estimate: 30 min -->
 
 
 ### Gruppieren und Filtern: `GROUP BY, HAVING`
@@ -84,6 +93,8 @@ GROUP BY mycol;
 
 [ER] Gruppieren Sie: Anzahl der Hunde pro `owner_id`.
 
+[ER] Geben Sie für jedes Geschlecht (`gender`) das durchschnittliche Alter der Hunde aus.
+
 Mit dem Schlüsselwort `HAVING` können Sie weitere Bedingungen nach einer Gruppierung festlegen. Weitere Infos: [`HAVING`](https://www.w3schools.com/sql/sql_having.asp)
 
 ```sql
@@ -92,7 +103,9 @@ GROUP BY mycol HAVING COUNT(*) > myvalue;
 ```
 
 [ER] Wie viele `owner_id` haben mindestens 2 Hunde? (Nutzen Sie `HAVING`.)
-<!-- time estimate: 15 min -->
+
+[ER] Welche Rassen (`breed`) haben mindestens 3 Hunde? (Nutzen Sie `HAVING`.)
+<!-- time estimate: 30 min -->
 
 
 ### Sortieren: `ORDER BY, ASC, DESC`
@@ -127,6 +140,76 @@ FROM mytable;
 [ER] Zählen Sie die Anzahl der eindeutigen Farben (`color`).
 
 [ER] Geben Sie alle eindeutigen `breed`-Werte zurück.
+<!-- time estimate: 15 min -->
+
+
+### Mustersuche: `LIKE`, `%`, `_`
+Die `LIKE`-Klausel erlaubt das Vergleichen von Zeichenketten anhand von Platzhaltern. 
+Das Prozentzeichen (`%`) steht für **beliebig viele** Zeichen, der Unterstrich (`_`) für **genau ein** Zeichen.
+
+Typische Musterbeispiele:
+
+* `'A%'` → beginnt mit A (beliebige Fortsetzung)
+* `'%er'` → endet auf „er“
+* `'%Retriev%'` → enthält „Retriev“ irgendwo in der Mitte
+* `'B____'` → beginnt mit B und hat genau 4 weitere Zeichen (insgesamt 5)
+* `'_%a%'` → zweites Zeichen ist a (erstes beliebig), Rest beliebig
+
+Weitere Infos: [`LIKE`](https://www.w3schools.com/sql/sql_like.asp)
+
+[ER] Geben Sie alle Datensätze zurück, deren `name` mit `B` beginnt.
+
+[ER] Geben Sie alle Datensätze zurück, deren `breed` das Wort `Retriever` enthält.
+<!-- time estimate: 20 min -->
+
+
+### NULL-Werte prüfen: `IS NULL`, `IS NOT NULL`
+NULL steht für „kein Wert vorhanden“.  Dabei ist zu beachten:
+NULL ist **keine** leere Zeichenkette (`''`) und auch nicht die Zahl `0`. 
+Vergleiche wie `= NULL` oder `<> NULL` funktionieren nicht – das Ergebnis ist *UNKNOWN* (drittes 
+Wahrheits-Resultat in der SQL-Dreivaluelogik). Darum braucht man die Operatoren `IS NULL` und `IS NOT NULL`. 
+Ausdrucke und Berechnungen mit NULL propagieren das NULL weiter (z. B. `age + NULL` ergibt NULL). Möchte man 
+NULL-Werte durch Standardwerte ersetzen, nutzt man z. B. `COALESCE(mycol,'unbekannt')`.
+Weitere Infos: [`IS NULL`](https://www.w3schools.com/sql/sql_null_values.asp)
+
+```sql
+-- Zeilen ohne Wert in mycol
+SELECT *
+FROM mytable
+WHERE mycol IS NULL;
+
+-- Zeilen, bei denen mycol einen Wert besitzt
+SELECT *
+FROM mytable
+WHERE mycol IS NOT NULL;
+```
+
+[ER] Fügen Sie den Hund `('Shadow', 'Mixed', 2, 'Male', NULL, '2022-06-06', 13)` in die Tabelle ein (`INSERT`).
+
+[ER] Geben Sie alle Hunde zurück, deren `color` NULL ist.
+
+[ER] Zählen Sie, wie viele Hunde keinen Eintrag bei `color` besitzen.
+<!-- time estimate: 15 min -->
+
+
+### Zeichenkettenfunktionen: `UPPER`, `LOWER`, `LENGTH`
+SQL stellt einfache String-Funktionen bereit, um Texte zu transformieren oder zu analysieren.
+
+* `UPPER(text)`  – wandelt den Text in Großbuchstaben um.
+* `LOWER(text)`  – wandelt den Text in Kleinbuchstaben um.
+* `LENGTH(text)` – liefert die Zeichenanzahl.
+
+Weitere Infos: [`string`](https://www.sqltutorial.org/sql-string-functions/)
+
+```sql
+SELECT UPPER(name)  FROM mytable;      -- Großschreibung
+SELECT LOWER(name)  FROM mytable;      -- Kleinschreibung
+SELECT LENGTH(name) FROM mytable;      -- Zeichenanzahl
+```
+
+[ER] Geben Sie alle Hunderassen (`breed`) in Großbuchstaben aus.
+
+[ER] Geben Sie den Namen jedes Hundes sowie die Länge des Namens als `Namenslaenge` aus.
 <!-- time estimate: 15 min -->
 
 [ENDSECTION]
