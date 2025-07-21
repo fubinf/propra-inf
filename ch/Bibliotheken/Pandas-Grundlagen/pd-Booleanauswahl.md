@@ -4,7 +4,7 @@ timevalue: 1
 difficulty: 2
 explains:
 assumes:
-requires: pd-Teilbereiche
+requires: pd-Datenselektion
 ---
 
 [SECTION::goal::idea]

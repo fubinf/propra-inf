@@ -1,4 +1,4 @@
-title: "Zugriff auf Teilbereiche"
+title: "Gezielte Datenselektion"
 stage: alpha
 timevalue: 1.5
 difficulty: 2
@@ -9,7 +9,7 @@ explains: Slicing (Python)
 
 [SECTION::goal::idea]
 
-Ich kann gezielt Teilbereiche eines DataFrames auswählen.
+Ich kann gezielt Teilbereiche eines `DataFrame` auswählen.
 
 Ich verstehe, was Slices sind und wie ihre Notation aussieht.
 
@@ -18,7 +18,8 @@ Ich verstehe, was Slices sind und wie ihre Notation aussieht.
 [SECTION::background::default]
 
 In der Praxis führt man selten Analysen oder Transformationen auf allen Daten eines Datensatzes
-durch. Oft möchte man nur Teilbereiche auswählen, bearbeiten oder analysieren. 
+durch. 
+Oft möchte man nur Teilbereiche auswählen, bearbeiten oder analysieren. 
 Hierzu bietet Pandas verschiedene Methoden an.
 
 [ENDSECTION]
@@ -34,13 +35,14 @@ import pandas as pd
 erststimmen_df = pd.read_csv("Pfad/zur/Berlin_BT25_W1.csv", sep=';')
 ```
 
-### Spaltenzugriff
+### Spaltenzugriff (`dataframe[[spaltenindex, spaltenindex]]`)
 
-Stellen Sie sich vor, Sie wollen die Stimmen für die CDU mit der Anzahl der gültigen Stimmen in
-jedem Wahlbezirk vergleichen. In diesem Fall interessieren sie sich für zwei oder drei der 41 Spalten. 
+Stellen Sie sich vor, Sie wollen die Stimmen für die CDU mit der Anzahl der gültigen Stimmen 
+in jedem Wahlbezirk vergleichen. 
+In diesem Fall interessieren sie sich für zwei oder drei der 41 Spalten. 
 Es wäre sehr praktisch, wenn man diese Spalten exakt auswählen könnte.
 
-Um auf eine Spalte aus einem DataFrame zuzugreifen, haben Sie bereits gelernt, dass Sie per Label
+Um auf eine Spalte aus einem `DataFrame` zuzugreifen, haben Sie bereits gelernt, dass Sie per Label
 der Spalten (also per Index) darauf zugreifen können: `dataframe["spaltenname"]`.
 Hierbei nutzen Sie den Index-Operator `[]`.
 Sie können aber auch eine Liste an Spaltennamen an diesen Operator übergeben, 
@@ -62,28 +64,41 @@ Dieser Syntax wird jedoch beim sauberen Programmieren vermieden.
 - Können Sie auf diese Weise auch mehrere Spalten ansprechen?
 
 - Was passiert, wenn eine Spalte einen Namen hat, der die gleiche Schreibweise hat wie ein Attribut
-oder eine Methode des DataFrames, zum Beispiel eine Spalte mit dem Namen "columns"?
+oder eine Methode des `DataFrame`, zum Beispiel eine Spalte mit dem Namen "columns"?
 
 [ENDHINT]
 
-### Zeilenzugriff und Slicing
+### Zeilenzugriff und Slicing (`dataframe[zeilenindex:zeilenindex]`)
 
-Mit dem gleichen Index-Operator `[]` auf einem DataFrame lassen sich statt Spalten auch Zeilen
-auswählen. Das geht aber nur mit sogenanntem [TERMREF::Slicing (Python)].
+Mit dem gleichen Index-Operator `[]` auf einem `DataFrame` lassen sich statt Spalten auch Zeilen
+auswählen.
+Das geht aber nur mit sogenanntem [TERMREF::Slicing (Python)].
 
 Mit Slicing kann man durch die Angabe von Startindex, Endindex und einer Schrittlänge einen
 bestimmten Bereich auf Sequenz-Datenstrukturen auswählen: `dataframe[start:end:step]`
-Sie haben Slicing eventuell schon im Kontext von Python-Listen gesehen, wie zum Beispiel: `liste[0:5]`
-oder `liste[::2]`. Das erste Beispiel hätte hier alle Elemente von Index 0 bis Index 5 ausgewählt,
+Sie haben Slicing eventuell schon im Kontext von Python-Listen gesehen, wie zum Beispiel: 
+`liste[0:5]` oder `liste[::2]`.
+Das erste Beispiel hätte hier alle Elemente von Index 0 bis Index 5 ausgewählt,
 das zweite Beispiel hätte jedes zweite Element ausgewählt.
 
-Dieses Slicing können wir auch auf Pandas-Datenstrukturen anwenden. Wenn Sie dies bei DataFrames tun
-(statt wie bisher Spalten), werden die Zeilen des DataFrames ausgewählt:
+Wenden Sie dieses Slicing jedoch auf ein DataFrame an, dann werden nicht wie erwartet die Spalten,
+sondern die Zeilen angesprochen.
+Während bei Listen Slicing und Indexing immer dieselbe (einzige) Dimension betroffen ist,
+unterscheidet Pandas bei einem `DataFrame` also je nach Zugriffsmethode zwischen Zeilen und Spalten.
+Dieses Verhalten kann anfangs verwirrend sein – behalten Sie daher im Hinterkopf:
+
+- `dataframe[index_a]` wird auf den Spalten angewendet
+
+- `dataframe[[index_a,index_b]]` wird auf den Spalten angewendet
+
+- `dataframe[index_a:index_b]` wird auf den Zeilen angewendet
+
 
 [EC] Wählen Sie die Zeilen von Index 0 bis Index 10 des `erststimmen_df` aus.
 
-[EQ] Enthält `0:n`, auf ein DataFrame angewendet, das Element mit dem Index `n` oder geht es nur bis
-`n-1`? Sie können dazu das Ergebnis der vorherigen Aufgabe betrachten.
+[EQ] Enthält `0:n`, auf ein `DataFrame` angewendet, das Element mit dem Index `n` 
+oder geht es nur bis `n-1`?
+Sie können dazu das Ergebnis der vorherigen Aufgabe betrachten.
 
 [EC] Wählen Sie jede dritte Zeile der ersten 50 Zeilen aus, angefangen bei 0.
 
@@ -91,9 +106,9 @@ Dieses Slicing können wir auch auf Pandas-Datenstrukturen anwenden. Wenn Sie di
 betreiben?
 
 
-### Kombinieren von Zeilen- und Spaltenzugriff
+### Kombinieren von Zeilen- und Spaltenzugriff (`dataframe[index][index]`)
 
-Nun handelt es sich bei einem DataFrame um eine zwei-dimensionale Datenstruktur, bei der man
+Nun handelt es sich bei einem `DataFrame` um eine zwei-dimensionale Datenstruktur, bei der man
 eventuell einen Teilbereich von Zeilen und einen Teilbereich von Spalten auswählen möchte.
 
 [EQ] In [PARTREF::pd-Datenstrukturen] haben Sie hierzu bereits die Schreibweise 
@@ -103,10 +118,10 @@ Wieso funktioniert das nicht genauso für eine Liste an Spaltenindizes, zum Beis
 
 [HINT::Wann Spaltenindex und wann Zeilenindex?]
 
-Auf einem DataFrame spricht man mit der Schreibweise `data[index]` die Spalten des DataFrames an.
-Auf einer Series spricht man mit der Schreibweise `data[index]` die Zeilen des DataFrames an.
+Auf einem `DataFrame` spricht man mit der Schreibweise `data[index]` die Spalten des `DataFrame` an.
+Auf einer `Series` spricht man mit der Schreibweise `data[index]` die Zeilen des `DataFrame` an.
 
-Dadurch, dass `dataframe[spaltenindex]` eine Series zurückgibt, kann man auf dieser die Zeilen
+Dadurch, dass `dataframe[spaltenindex]` eine `Series` zurückgibt, kann man auf dieser die Zeilen
 ansprechen `dataframe[spaltenindex][zeilenindex]`.
 
 Was ist der Rückgabetyp von `dataframe[[spaltenindex1, spaltenindex2, ...]]`?
@@ -119,30 +134,39 @@ es mit Hilfe von Slicing funktioniert.
 [EC] Formulieren Sie ihr Ergebnis aus der vorherigen Aufgabe so um, dass zuerst die Zeile ausgewählt
 wird und dann die Spalten.
 
-### Zugriff auf einzelne Felder
+### Zugriff auf einzelne Felder (`at()`)
 
 `dataframe[spaltenindex][zeilenindex]` ist also nur eine Verkettung von Befehlen, die uns zum
 richtigen Feld führt. 
-Etwas eleganter ist die [.at[zeilenindex, spaltenindex]](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.at.html)-Eigenschaft eines DataFrames. 
-Mit ihr kann man direkt auf ein *einzelnes* Feld zugreifen, indem man den Zeilenindex und dann den
+Etwas eleganter ist das 
+[at[zeilenindex, spaltenindex]](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.at.html)
+-Attribut eines `DataFrame`. 
+Mit diesem kann man direkt auf ein *einzelnes* Feld zugreifen, indem man den Zeilenindex und dann den
 Spaltenindex angibt.
 
-[EC] Geben Sie mit `.at[]` den Wert von CDU in der ersten Zeile des `erststimmen_df` aus.
+Wie Sie sehen ist `at()` keine herkömmliche Methode, sondern ein Attribut. 
+`dataframe.at` ist nur ein Objekt, auf diesem kann man dann wiederum Indexierung anwenden.
+<!-- TODO_3_Saka: Python Klassen-Attribute als assumes-->
 
-### Zugriff auf Bereiche
+
+[EC] Geben Sie mit `at()` den Wert von CDU in der ersten Zeile des `erststimmen_df` aus.
+
+### Zugriff auf Bereiche (`loc()`)
 
 Nun möchte man oft nicht nur ein Feld betrachten, sondern ein oder mehrere Zeilen bzw. Teilbereiche
-dieser Zeilen. Hierfür gibt es die [.loc[zeilenbereiche, spaltenbereiche]](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.loc.html)-Eigenschaft
-die sehr flexibel ist für die Auswahl von Teilbereichen.
-Sie ist sehr ähnlich zu `.at[]` doch kann man ganze Bereiche angeben. 
+dieser Zeilen. 
+Hierfür gibt es das 
+[loc[zeilenbereiche, spaltenbereiche]](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.loc.html)
+-Attribut, das sehr flexibel ist für die Auswahl von Teilbereichen.
+Es ist ähnlich zu `at()` ein Attribut, doch kann man auf diesem ganze Bereiche per Index ansprechen. 
 
 Bereiche können Sie zum Beispiel mit Listen angeben: 
 `dataframe.loc[[zeilindex1, zeilenindex2], [spaltenindex1, spaltenindex2]]`
 
-[EC] Schauen Sie in die Dokumentation von `.loc[]` und machen Sie sich mit den Parametern vertraut.
-Geben Sie den Wert von CDU in der ersten Zeile des `erststimmen_df` mithilfe von `.loc[]` aus.
+[EC] Schauen Sie in die Dokumentation von `loc()` und machen Sie sich mit den Parametern vertraut.
+Geben Sie den Wert von CDU in der ersten Zeile des `erststimmen_df` mithilfe von `loc()` aus.
 
-[EC] Geben Sie mithilfe von `.loc[]` den Wert von CDU sowie die gültigen Stimmen in der ersten und
+[EC] Geben Sie mithilfe von `loc()` den Wert von CDU sowie die gültigen Stimmen in der ersten und
 dritten Zeile aus.
 
 Bereiche kann man neben Listen hier auch mit Slicing angeben.
@@ -153,50 +177,54 @@ Bereiche kann man neben Listen hier auch mit Slicing angeben.
 
 [EQ] Welchen Bereich gibt `erststimmen_df.loc[:]` zurück?
 
-[EC] Slicing lässt sich nicht nur auf numerische Indizes anwenden. Geben Sie mithilfe von `.loc` 
-und dem `:`-Operator die ersten 5 Zeilen zurück mit den Spalten von "Adresse" bis "Wahlbezirk".
+[EC] Slicing lässt sich nicht nur auf numerische Indizes anwenden. 
+Geben Sie mithilfe von `loc()` und dem `:`-Operator die ersten 5 Zeilen zurück mit den Spalten von
+"Adresse" bis "Wahlbezirk".
 
-[EQ] Wie bereits erwähnt lassen sich per Slicing auch Schrittgrößen angeben. Was tut der folgende
-Befehl: `erststimmen_df.loc[0:49:10]`
+[EQ] Wie bereits erwähnt lassen sich per Slicing auch Schrittgrößen angeben. 
+Was tut der folgende Befehl: `erststimmen_df.loc[0:49:10]`
 
 [EQ] Was könnte dieser Ausdruck aussagen `erststimmen_df.loc[::10, "Adresse":"Bezirksnummer"]`
 
-Mit `.loc[]` können Sie also sehr flexibel Bereiche des ganzen DataFrames auf Grundlage der Indizes
-ansprechen. Mit `.at[]` lässt sich das nur auf einzelnen Feldern machen. 
+Mit `loc()` können Sie also sehr flexibel Bereiche des ganzen `DataFrame` auf Grundlage der Indizes
+ansprechen. 
+Mit `at()` lässt sich das nur auf einzelnen Feldern machen. 
 
 [NOTICE]
-Wieso sollte man `.at[]` einsetzen, wenn man auch `.loc[]` für einzelne Felder benutzen kann? 
-Weil `.at[]` schneller ist; es kann bei großen `DataFrames` für spürbar schnelleren Gesamtablauf sorgen.
+Wieso sollte man `at()` einsetzen, wenn man auch `loc()` für einzelne Felder benutzen kann? 
+Weil `at()` schneller ist; es kann bei großen `DataFrames` für spürbar 
+schnelleren Gesamtablauf sorgen.
 [ENDNOTICE]
 
 
-### Zugriff auf Bereiche (per Position)
+### Zugriff per Position (`iat()` und `iloc`)
 
-`.at[]` und `.loc[]` arbeiten mit den Indizes des DataFrames. Beide besitzen auch ein Gegenstück, mit
-dem man rein per Position und nicht per Index arbeiten kann: 
-[.iat[]](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.iat.html) 
-und [.iloc[]](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.iloc.html).
+`at()` und `loc()` arbeiten mit den Indizes des `DataFrame`. 
+Beide besitzen auch ein Gegenstück, mit dem man rein per Position und nicht per Index arbeiten kann: 
+[iat()](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.iat.html) 
+und 
+[iloc()](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.iloc.html).
 
 Aus `.at[zeilenindex, spaltenindex]` wird also `.iat[zeilenposition, spaltenposition]` und ebenso
-mit `.loc[]` und `.iloc[]`.
+mit `loc()` und `iloc()`.
 
 In unserem Beispiel des `erststimmen_df` sind der Zeilenindex und die Zeilenposition zwar gleich,
 aber das müsste nicht sein, wie man auch am Spaltenindex und der Spaltenposition sieht.
 
-[EC] Formulieren Sie den Befehl `erststimmen_df.at[0,"Adresse"]` in einen `.iat[]`-Befehl um.
+[EC] Formulieren Sie den Befehl `erststimmen_df.at[0,"Adresse"]` in einen `iat()`-Befehl um.
 Überlegen Sie sich hierzu, welche Spaltenposition "Adresse" hat.
 
 [EC] Formulieren Sie den Befehl `erststimmen_df.loc[10:50,"Stimmart":"Wahlbezirk"]` in einen 
-`.iloc[]`-Befehl um. 
+`iloc()`-Befehl um. 
 
 [NOTICE]
-`.loc[]` und `.iloc[]` unterscheiden sich, wie bereits erwähnt, 
+`loc()` und `iloc()` unterscheiden sich, wie bereits erwähnt, 
 in der Zugriffsart (Index und Position), doch es gibt einen weiteren wichtigen Unterschied:
 
-`0:9` wird bei `.loc[]` inklusiv behandelt, `0..9` sind die erhaltenen Einträge.
+`0:9` wird bei `loc()` inklusiv behandelt, `0..9` sind die erhaltenen Einträge.
 Das Ende `9` wird also mit einbezogen.
 
-`0:9` wird bei `.iloc[]` exklusiv behandelt, `0..8` sind die erhaltenen Einträge.
+`0:9` wird bei `iloc()` exklusiv behandelt, `0..8` sind die erhaltenen Einträge.
 Das Ende `9` wird nicht mit einbezogen.
 [ENDNOTICE]
 
@@ -226,9 +254,15 @@ Wenn man per Position auswählen möchte:
 
 
 Letztendlich gibt es keine festen Regeln, welche dieser Arten der Datenauswahl man benutzen sollte.
-Empfehlenswert ist es, standardmäßig mit `.loc[]` zu arbeiten, für positionsbasierte Fälle `.iloc[]` und
-für Fälle, in denen man stets auf ein einzelnes Feld zugreifen möchte, `.at[]` bzw. `.iat[]` zu
-verwenden.
+Empfehlenswert ist es, standardmäßig mit `loc()` zu arbeiten, für positionsbasierte Fälle `iloc()` 
+und für Fälle, in denen man stets auf ein einzelnes Feld zugreifen möchte, `at()` bzw. `iat()` zu
+verwenden. 
+
+Beim Bearbeiten von Datenbereichen gibt es weitere Best Practices die hilfreich sein können.
+Schauen Sie sich hierzu die Aufgabe zu Copy und Views in Pandas an.
+
+<!-- TODO_2_Saka: Auf Aufgabe verweisen zu Copy und Views -->
+
 [ENDSECTION]
 
 [SECTION::submission::information]
