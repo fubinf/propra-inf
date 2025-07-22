@@ -1,5 +1,5 @@
 title: Zusammenführen von Tabellen mittels JOIN
-stage: draft
+stage: alpha
 timevalue: 2
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2
@@ -11,7 +11,8 @@ Ich kann mehrere Tabellen in einer Abfrage verbinden und kenne die Eigenschaften
 
 [SECTION::background::default]
 In einem Datenbankprojekt werden meist mehrere Tabellen verwendet, die unterschiedliche Informationsbereiche abbilden.
-Um Wiederholungen und Inkonsistenzen zu vermeiden, werden Tabellen über Referenzen miteinander verknüpft. `JOIN`-Operationen dienen dazu, relevante Daten aus diesen Tabellen zu kombinieren.
+Um Wiederholungen und Inkonsistenzen zu vermeiden, werden Tabellen über Referenzen miteinander verknüpft.
+`JOIN`-Operationen dienen dazu, relevante Daten aus diesen Tabellen zu kombinieren.
 
 [ENDSECTION]
 
@@ -38,21 +39,60 @@ miteinander verknüpft werden.
 Es gibt verschiedene `JOIN`-Verfahren, die je nach Tabellenstruktur und Abfrageziel sinnvoll eingesetzt
 werden können. Zu den gängigsten `JOIN`-Typen gehören `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN` und `FULL JOIN`.
 Jeder dieser `JOIN`-Typen hat seine eigenen Eigenschaften und Anwendungsfälle, die es ermöglichen,
-Daten effektiv und genau zu kombinieren, um die gewünschten Ergebnisse zu erhalten.
+Daten effektiv und genau zu kombinieren, um die gewünschten Ergebnisse zu erhalten. Weitere Infos: [`JOIN`](https://mode.com/sql-tutorial/sql-joins)
 
+<!-- time estimate: 20 min -->
 
 ### INNER JOIN
 
 Ein `INNER JOIN` gibt nur die Datensätze zurück, die in beiden Tabellen übereinstimmen, basierend auf
-einem gemeinsamen Wert in beiden Tabellen.
+einem gemeinsamen Wert in beiden Tabellen. Weitere Infos: [`INNER JOIN`](https://mode.com/sql-tutorial/sql-inner-join)
 
+Die `ON`-Klausel bestimmt, unter welchen Bedingungen zwei Tabellenzeilen als passend gelten. Ohne `ON` (oder bei einem Fehler) entsteht ein **kartesisches Produkt**, das alle möglichen Kombinationen liefert – langsam und meist nutzlos. Deshalb ist `ON t1.col = t2.col` der **zentrale Bestandteil** eines JOINs, um sinnvolle und korrekte Ergebnisse zu erhalten.
+Weitere Infos: [`ON`](https://mode.com/sql-tutorial/sql-joins-where-vs-on
+)
 ```sql
 SELECT mycol
 FROM mytable1
 INNER JOIN mytable2
   ON mytable1.column1 = mytable2.column4;
 ```
+Verwenden Sie wieder die aus [PARTREF::sql-basics]
+bekannte Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. 
 
+**Tabelle students:**
+```sql
+('Alice', 22, 1),
+('Bob', 20, 2),
+('Charlie', 25, 1),
+('David', 23, 3),
+('Emma', 21, 2),
+('Frank', 24, 3),
+('Grace', 22, 1),
+('Hannah', 19, 2),
+('Ian', 26, 1),
+('Jessica', 20, 3);
+```
+
+**Tabelle courses:**
+```sql
+('Mathematics', 'Dr. Smith', 1),
+('Computer Science', 'Prof. Johnson', 2),
+('Literature', 'Dr. Brown', 1),
+('History', 'Prof. Davis', 2),
+('Physics', 'Dr. Wilson', 1),
+('Biology', 'Prof. Martinez', 2),
+('Chemistry', 'Dr. Lee', 1),
+('Art', 'Prof. Clark', 2),
+('Music', 'Prof. Adams', 1),
+('Physical Education', 'Coach Taylor', 2);
+```
+[ER] Dazu erstellen Sie im ersten Schritt die folgenden Tabellen, mit denen Sie in dieser Aufgabe arbeiten werden.
+
+[ER] Schreiben Sie eine Abfrage, die mithilfe von `INNER JOIN` den Namen jedes Studenten zusammen mit dem Namen des belegten Kurses anzeigt.
+
+[ER] Schreiben Sie eine Abfrage, die mithilfe von `INNER JOIN` alle Studenten auflistet, die von `Dr. Smith` unterrichtet werden.
+<!-- time estimate: 25 min -->
 
 ### LEFT JOIN
 
@@ -66,7 +106,12 @@ FROM lefttable
 LEFT JOIN righttable
   ON lefttable.column1 = righttable.column5;
 ```
+Weitere Infos: [`LEFT JOIN`](https://mode.com/sql-tutorial/sql-left-join)
 
+[ER] Schreiben Sie eine Abfrage, die mithilfe von `LEFT JOIN` alle Kurse zeigt, auch wenn kein Student eingeschrieben ist. Geben Sie Kursname und Studentenname (oder `NULL`) aus.
+
+[ER] Schreiben Sie eine Abfrage, die mithilfe von `LEFT JOIN` zu jedem Kurs die zugehörige Lehrkraft und den Namen eines eingeschriebenen Studenten (oder `NULL`) anzeigt.
+<!-- time estimate: 15 min -->
 
 ### RIGHT JOIN
 
@@ -80,6 +125,7 @@ FROM lefttable
 RIGHT JOIN righttable
   ON lefttable.column1 = righttable.column6;
 ```
+Weitere Infos: [`RIGHT JOIN`](https://mode.com/sql-tutorial/sql-right-join)
 
 
 ### FULL JOIN
@@ -93,10 +139,7 @@ FROM mytable1
 FULL JOIN mytable2
   ON mytable1.column3 = mytable2.column7;
 ```
-
-[NOTICE] 
-Weitere Details zu `JOIN` finden Sie in der W3schools: [Join-Clause](https://www.w3schools.com/sql/sql_join.asp) in Abschnitt "Different Types of SQL JOINs"
-[ENDNOTICE]
+Weitere Infos: [`FULL JOIN`](https://www.w3schools.com/sql/sql_join_full.asp)
 
 
 ### UNION
@@ -117,6 +160,7 @@ LEFT JOIN lefttable
   ON lefttable.id = righttable.fk;
 ```
 (`fk` steht für "foreign key", also Fremdschlüssel: ein Schlüssel in einer anderen Tabelle).
+Weitere Infos: [`UNION`](https://mode.com/sql-tutorial/sql-union)
 
 Mit `UNION` lässt sich `FULL JOIN` simulieren, indem Sie zwei `LEFT JOINs` kombinieren. 
 Ein `UNION` verbindet die Ergebnisse zweier `SELECT`-Abfragen und entfernt dabei doppelte Zeilen:
@@ -129,132 +173,32 @@ LEFT JOIN mytable1 ON mytable1.id = mytable2.id;
 ```
 So entsteht eine vollständige Kombination aus beiden Tabellen – ähnlich einem `FULL JOIN`.
 Wenn Sie alle Zeilen inklusive Duplikate erhalten möchten, können Sie `UNION ALL` verwenden.
+Weitere Infos: [`UNION ALL`](https://www.w3schools.com/sql/sql_union.asp)
 
+[ER] Schreiben Sie eine Abfrage, die mithilfe von `UNION` die Namen aller Studenten und Lehrkräfte (Spalte `name` aus `students` und `teacher` aus `courses`) untereinander in einer einzigen Spalte ausgibt.
 
-### Es ist an der Zeit zu prüfen, ob Sie JOINs beherrschen!
+[ER] Schreiben Sie eine Abfrage, die mithilfe von `UNION` alle eindeutigen Kurs-IDs aus den Tabellen `students` (Spalte `course_id`) und `courses` (Spalte `id`) kombiniert.
 
-Verwenden Sie wieder die aus [PARTREF::sql-basics]
-bekannte Seite [SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. 
-Dazu erstellen Sie im ersten Schritt die folgenden Tabellen, mit denen Sie in dieser Aufgabe arbeiten werden.
+[ER] Schreiben Sie eine Abfrage, die mithilfe von `UNION ALL` die Namen aller Studenten und Lehrkräfte untereinander in einer Spalte ausgibt, wobei Duplikate erhalten bleiben.
 
-**Tabelle students:**
-```sql
-DROP TABLE IF EXISTS students;
-CREATE TABLE students (
-  id INTEGER PRIMARY KEY,
-  name TEXT,
-  age INTEGER,
-  course_id INTEGER
-);
-
-INSERT INTO students (name, age, course_id) VALUES
-('Alice', 22, 1),
-('Bob', 20, 2),
-('Charlie', 25, 1),
-('David', 23, 3),
-('Emma', 21, 2),
-('Frank', 24, 3),
-('Grace', 22, 1),
-('Hannah', 19, 2),
-('Ian', 26, 1),
-('Jessica', 20, 3);
-```
-
-**Tabelle courses:**
-```sql
-DROP TABLE IF EXISTS courses;
-CREATE TABLE courses (
-  id INTEGER PRIMARY KEY,
-  name TEXT,
-  teacher TEXT,
-  semester INTEGER
-);
-
-INSERT INTO courses (name, teacher, semester) VALUES
-('Mathematics', 'Dr. Smith', 1),
-('Computer Science', 'Prof. Johnson', 2),
-('Literature', 'Dr. Brown', 1),
-('History', 'Prof. Davis', 2),
-('Physics', 'Dr. Wilson', 1),
-('Biology', 'Prof. Martinez', 2),
-('Chemistry', 'Dr. Lee', 1),
-('Art', 'Prof. Clark', 2),
-('Music', 'Prof. Adams', 1),
-('Physical Education', 'Coach Taylor', 2);
-```
-
-[ER] Fragen Sie den Namen des Kurses ab, den jeder Student belegt.
-
-[NOTICE]
-Diese Aufgabe nimmt an, dass die Werte von `courses.id` von 1 an laufend vergeben werden.
-Das ist zwar gängig, wird aber von SQL nicht garantiert, sondern ist RDBMS-abhängig.
-Eine solche Annahme ist also riskant und deshalb schlechter Stil.
-[ENDNOTICE]
-
-[HINT::Welche JOIN-Art sollte ich benutzen?]
-Wenn Sie wissen, dass immer passende Datensätze auf beiden Seiten existieren werden,
-ist die JOIN-Art egal, denn es kommt bei jeder das Gleiche raus.
-Ist Ihnen das hier bekannt? Ja.
-
-Wenn Sie das nicht wissen, ist hier INNER JOIN die richtige Wahl,
-denn Ausgaben mit fehlendem `student` oder fehlendem `course` möchten Sie nicht erhalten.
-Diese Überlegung ist häufig die relevante und deshalb ist INNER JOIN häufig die richtige Sorte.
-[ENDHINT]
-
-[ER] Fragen Sie die Anzahl der Studenten in jedem Kurs ab.
-[HINT::Ich brauche Hilfe mit `GROUP BY` und `COUNT`]
-```sql
--- Ein Beispiel, zähle Artikel pro Kategorie
-SELECT categories.name, COUNT(items.id) FROM items  
-INNER JOIN categories ON items.category_id = categories.id  
-GROUP BY categories.name;
-```
-[ENDHINT]
-
-[ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben. (mit `INNER JOIN`)
-
-[HINT::Wie verwende ich `HAVING` und `GROUP BY` mit `COUNT`?]
-```sql
--- Ein Beispiel, Nur Abteilungen mit mehr als 5 Mitarbeiter
-SELECT departments.name, COUNT(employees.id) FROM employees  
-INNER JOIN departments ON employees.dept_id = departments.id  
-GROUP BY departments.name  
-HAVING COUNT(employees.id) > 5;
-```
-[ENDHINT]
-
-[ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben. (mit `LEFT JOIN`)
-
-[ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben. (mit `RIGHT JOIN` – simuliert)
-
-[ER] Fragen Sie alle Kurse ab, die mehr als 3 Studenten haben. (mit `FULL JOIN` – simuliert)
+[ER] Schreiben Sie eine Abfrage, die mithilfe von `UNION ALL` alle Altersangaben der Studenten (`age`) mit den Semesterangaben der Kurse (`semester`) in einer Spalte kombiniert.
+<!-- time estimate: 30 min -->
 
 [NOTICE]
 SQLite unterstützt nur `INNER JOIN` und `LEFT JOIN` direkt. `RIGHT JOIN` und `FULL JOIN` können durch geeignete Kombinationen aus `LEFT JOIN` und `UNION` simuliert werden.
 [ENDNOTICE]
 
-[HINT::Wie vergleiche ich JOIN-Arten an einem Beispiel?]
+[ER] Schreiben Sie eine Abfrage, die mithilfe eines `RIGHT JOIN` (simuliert) alle Kurse gemeinsam mit den Namen eventuell eingeschriebener Studenten anzeigt; Studenten ohne Kurs sollen ausgeblendet werden, Kurse ohne Studenten jedoch erscheinen.
 
-```sql
--- Beispiele
--- LEFT JOIN: Alle Kunden, auch ohne Bestellung
-SELECT customers.name, orders.date FROM customers  
-LEFT JOIN orders ON customers.id = orders.customer_id;
+[ER] Schreiben Sie eine Abfrage, die mithilfe eines `RIGHT JOIN` (simuliert) alle Kurse des ersten Semesters (`semester = 1`) zusammen mit zugehörigen Studenten (oder `NULL`) ausgibt.
 
--- RIGHT JOIN (simuliert): Alle Bestellungen, auch ohne zugeordnete Kunden
-SELECT customers.name, orders.date FROM orders  
-LEFT JOIN customers ON orders.customer_id = customers.id;
+[ER] Schreiben Sie eine Abfrage, die mithilfe eines `FULL JOIN` (simuliert) sowohl alle Studenten als auch alle Kurse anzeigt, selbst wenn keine Zuordnung besteht.
 
--- FULL JOIN (simuliert): Alle Kunden und Bestellungen, auch ohne Verbindung
-SELECT customers.name, orders.date FROM customers  
-LEFT JOIN orders ON customers.id = orders.customer_id  
-UNION  
-SELECT customers.name, orders.date FROM orders  
-LEFT JOIN customers ON orders.customer_id = customers.id;
-```
-[ENDHINT]
+[ER] Schreiben Sie eine Abfrage, die mithilfe eines `FULL JOIN` (simuliert) eine Liste aller Kombinationen aus Studentennamen und Lehrkräften liefert, selbst wenn keine Verbindung vorhanden ist.
+<!-- time estimate: 20 min -->
 
 [EQ] Sehen Sie den Bedarf der `LEFT`, `RIGHT` und `FULL` JOINS, oder können Sie sich vorstellen, lediglich mit dem `INNER JOIN` auszukommen?
+<!-- time estimate: 10 min -->
 
 [ENDSECTION]
 
