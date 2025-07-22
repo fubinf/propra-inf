@@ -1,7 +1,7 @@
 title: SQL Datenbankprojekt
-stage: beta
+stage: draft
 timevalue: 2
-difficulty: 4
+difficulty: 3
 assumes: sql-basics, sql-SELECT, sql-JOIN
 ---
 
