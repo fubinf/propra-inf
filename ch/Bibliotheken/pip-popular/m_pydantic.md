@@ -1,8 +1,8 @@
-title: Pydantic Intro
+title: Pydantic
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: m_json2, py-OOP-Inheritance
+assumes: m_json2, m_datetime, m_dataclasses, py-OOP-Inheritance
 ---
 
 
@@ -21,9 +21,9 @@ Sie sind nützlich, enthalten aber keine eingebaute Validierung, keine automatis
 und keine Unterstützung für JSON-Parsing.
 
 Pydantic erweitert dieses Konzept: Es erlaubt das Erstellen von Klassen, die auf strengen Typen
-basieren. Die Felder werden validiert, automatisch konvertiert (z. B. Datumstrings zu `datetime`), und
-lassen sich einfach von und zu JSON konvertieren.
-Besonders in Webframeworks wie FastAPI ist Pydantic das Rückgrat für Datenvalidierung.
+basieren. Die Felder werden validiert, automatisch konvertiert (beispielsweise Datumstrings
+zu `datetime`) und lassen sich einfach von und zu JSON konvertieren.
+Besonders in Webframeworks, wie FastAPI ist Pydantic das Rückgrat für Datenvalidierung.
 [ENDSECTION]
 
 
@@ -31,17 +31,7 @@ Besonders in Webframeworks wie FastAPI ist Pydantic das Rückgrat für Datenvali
 
 ### Model mit `dataclass`
 
-Das Modul
-[dataclasses](https://docs.python.org/3/library/dataclasses.html)
-der Python Standardbibliothek beinhaltet den Decorator `@dataclass`.
-Lesen Sie in der Dokumentation nach, wie dieser Decorator eingesetzt werden kann und welche
-Funktionalität er hinzufügt.
-
-[EQ] Auf welchen Objekten kann der `@dataclass` Decorator verwendet werden?
-
-[EQ] Was wird dem Objekt durch den Decorator hinzugefügt?
-
-Gegeben sei das folgende JSON Objekt
+Gegeben sei das folgende JSON Objekt:
 
 ```json
 {
@@ -52,93 +42,116 @@ Gegeben sei das folgende JSON Objekt
 }
 ```
 
-Erstellen Sie eine eigene dataclass `GradeEntry` und erzeugen Sie zwei Exemplare `a` und `b` von `GradeEntry`.
+[ER] Erstellen Sie eine eigene Datenklasse `GradeEntry` mit dem `@dataclass` Decorator aus dem Modul
+[dataclasses](https://docs.python.org/3/library/dataclasses.html)
+mit den Attribute `name: str`, `course: str`, `grade: float` und `date: datetime`.
+Erzeugen Sie zwei Exemplare `a` und `b` von `GradeEntry`.
+Geben Sie die beiden Exemplare mit `print()` aus.
 
-[ER] Nutzen Sie die `print()` Funktion um diese beiden Exemplare auf die Konsole zu drucken.
-
-[ER] Geben Sie auch das Ergebnis des Vergleichsoperators `==` aus, wenn sie Objekt
+[ER] Geben Sie auch das Ergebnis des Vergleichsoperators `==` aus, wenn Sie Objekt
 `a` mit `a` und `a` mit `b` vergleichen.
 
 Bei der Ausgabe auf der Konsole sehen Sie, dass als Ergebnis kein gültiger
 JSON-String ausgegeben wird.
 
-Nutzen Sie das built-in `__dict__` Attribut Ihrer `GradeEntry` Klasse,
-um daraus ein `dict` zu erzeugen.
+Im Modul `dataclasses` gibt es die Funktion
+[`asdict()`](https://docs.python.org/3/library/dataclasses.html#dataclasses.asdict).
+Importieren Sie diese mit `from dataclasses import asdict` in Ihre Datei.
 
-[ER] Geben Sie das `__dict__`-Attribut eines Ihrer Exemplare aus.
+[ER] Erzeugen Sie mit `asdict()` aus Ihrem Exemplar `a` einen `dict`, speichern Sie
+diesen in `a_dict` und geben Sie `a_dict` aus.
 
-Wie Sie sehen, ist das Ergebnis immer noch kein gültiger JSON-String.
+Wie Sie sehen, ist `a_dict` immer noch kein gültiger JSON-String.
 
-Nutzen sie die `dumps` Funktion aus dem
-[json Modul](https://docs.python.org/3/library/json.html), 
-um `__dict__` zu serialisieren
-und speichern Sie das Ergebnis in einer neuen Variable.
+[ER] Importieren Sie `dumps()` aus dem
+[json Modul](https://docs.python.org/3/library/json.html),
+um `a_dict` zu serialisieren, speichern Sie das Ergebnis in der neuen Variable `a_json`
+und geben Sie es aus.
 
 [HINT::TypeError: Object of type datetime is not JSON serializable]
-Übergeben sie beim `dumps`-Aufruf ein Argument `default=str`.
-Dann wird die Funktion `str` zur Wandlung benutzt, wenn ein `TypeError` geworfen wird,
+Übergeben Sie beim `dumps()`-Aufruf ein Argument `default=str`.
+Dann wird `str()` zur Wandlung benutzt, wenn ein `TypeError` geworfen wird,
 was bei `datetime`-Attributen der Fall ist; siehe die
 [Dokumentation von `dumps`](https://docs.python.org/3/library/json.html#json.dumps).
 [ENDHINT]
 
-Nutzen Sie die `loads` Funktion aus dem
+Dadurch erhalten Sie in `a_json` nun einen gültigen JSON-String.
+
+[ER]  Importieren Sie `loads()` aus dem
 [json Modul](https://docs.python.org/3/library/json.html),
 um Ihren JSON-String in ein Python-`dict` zu laden.
-Erzeugen Sie aus diesem `dict` wieder eine neue Instanz Ihrer `GradeEntry`-Klasse.
+Erzeugen Sie aus diesem `dict` wieder ein neues Exemplar `a_parsed` Ihrer Klasse `GradeEntry`.
+Geben Sie `a_parsed` und den Datentyp von `a_parsed.date` aus.
 
-[ER] Geben Sie die neuen Exemplare aus.
+[HINT::Datentyp eines Objekts prüfen]
+Wenn Sie den Datentyp von einem Objekt prüfen möchten können Sie `type()`
+in Python verwenden.
+[ENDHINT]
 
-[EQ] Wird das Datum automatisch als `datetime`-Objekt geparst?
-
-Wie Sie merken, ist das Serialisieren eines Objekts in einen JSON-String und das 
+Wie Sie merken, ist das Serialisieren eines Objekts in einen JSON-String und das
 Deserialisieren (Parsen) eines JSON-Strings in ein Python-Objekt
 auf diese Weise nicht trivial.
 Außerdem müssen Sie sich beim Parsen selbst, um die richtigen Typen kümmern.
+In `a_parsed` ist `date` kein `datetime` sondern vom Datentyp `str`.
 
 
 ### Model mit `Pydantic`
 
-Pydantic ist ein Framework, das das Serialisieren und das Parsen und Validieren übernimmt.
+Pydantic ist eine Bibliothek, die das Serialisieren, Parsen und Validieren übernimmt
+und dabei auch die richtigen Datentypen erzeugt.
 
-[ER] Lesen Sie die 
+[ER] Installiere Sie die Pydantic Bibliothek mit `pip install pydantic`
+auf Ihrem System und lesen Sie die
 [Pydantic Dokumentation](https://docs.pydantic.dev/latest/concepts/models/)
 bis einschließlich zum Abschnitt "Data conversion".
 
-Erstellen Sie eine neue Klasse `GradeEntry2`, die von Pydantics `BaseModel` erbt
+[ER] Erstellen Sie eine neue Klasse `GradeEntry2`, die von Pydantics `BaseModel` erbt
 und wieder das oben gegebene JSON-Schema abbildet.
-Erzeugen Sie ein neues Exemplar der Klasse `GradeEntry2`.
 
-[ER] Serialisieren Sie dieses Exemplar zu einem JSON-String, speichern Sie diesen String
-in einer neuen Variable und geben Sie ihn auf der Konsole aus.
+[ER] Erzeugen Sie ein neues Exemplar `c` der Klasse `GradeEntry2`.
+
+[ER] Serialisieren Sie `c` zu einem JSON-String, speichern Sie diesen String
+in der neuen Variable `c_json` und geben Sie ihn auf der Konsole aus.
 
 [HINT::Pydantic Model zu JSON-String serialisieren]
-Nutzen Sie dafür die `model_dump_json()`-Funktion, die jede Klasse hat, die von `BaseModel` erbt.
+Nutzen Sie dafür `model_dump_json()`, die jede Klasse hat, die von `BaseModel` erbt;
+siehe die
+[Pydantic Dokumentation für `model_dump_json()`](https://docs.pydantic.dev/latest/concepts/serialization/#modelmodel_dump_json).
 [ENDHINT]
 
-Laden Sie den String nun in ein neues Exemplar von `GradeEntry2`. 
+[ER] Erzeugen Sie ein neues `GradeEntry2`-Exemplar `c_parsed`. Laden Sie diesmal aber die Daten
+aus `c_json`.
 
-[HINT::JSON String zu Pydantic Model parsen]
-Nutzen Sie dafür `GradeEntry2.model_validate_json()`, das Sie von `BaseModel` geerbt haben.
+[HINT::JSON-String zu Pydantic Model parsen]
+Nutzen Sie dafür `GradeEntry2.model_validate_json()`, das Sie von `BaseModel` geerbt haben;
+siehe die
+[Pydantic Dokumentation für `model_validate_json()`](https://docs.pydantic.dev/latest/concepts/models/#validating-data).
 [ENDHINT]
 
----
+[ER] Geben Sie `c_parsed` und geben Sie den Datentyp von `c_parsed.date` aus.
 
-[EQ] Beschreiben Sie kurz, wann es sinnvoller ist, Pydantic zu benutzen, als `@dataclass`
-aus der Python Standardbibliothek.
+Wie Sie erkennen können ist `c_parsed` wieder ein `GradeEntry2`-Exemplar und
+`date` ist auch korrekt vom Datentyp `datetime` ohne, dass Sie das erneut manuell
+angeben mussten.
 
 [EC] Führen Sie Ihr Programm einmal aus.
-(Jede Aufgabe [EREFR::1], [EREFR::2], ... fügte ein neues `print()` Statement hinzu.)
 [ENDSECTION]
 
 
-[SECTION::submission::trace]
+[SECTION::submission::trace,reflection]
+
+Beschreiben Sie kurz, wann es sinnvoller ist, Pydantic zu benutzen, als `@dataclass`
+aus der Python Standardbibliothek.
+
+[INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::???]
-Hinweise an die Tutoren zur Aufgabenkorrektur
-INCLUDE::ALT:
-TREEREF::Pfad/zu/Musterlösung
-PROT::Pfad/zu/Kommandoprotokoll
+[INSTRUCTOR::Codedurchsicht]
+
+[INCLUDE::ALT:]
+
+Beispiellösung siehe [TREEREF::/Bibliotheken/pip-popular/m_pydantic.py]
+
 [ENDINSTRUCTOR]
