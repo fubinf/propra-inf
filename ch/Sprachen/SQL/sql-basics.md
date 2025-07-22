@@ -7,6 +7,7 @@ difficulty: 2
 Ich kann Tabellen anlegen, Spalten einfügen, umbenennen und löschen sowie Datensätze einfügen, abfragen und entfernen.
 [ENDSECTION]
 
+
 [SECTION::background::default]
 SQL (Structured Query Language) ist eine standardisierte Programmiersprache, die für das Verwalten
 und Abfragen von relationalen Datenbanken (DB) verwendet wird. 
@@ -15,6 +16,7 @@ Mit SQL können Benutzer Datenbanken erstellen, verwalten, abfragen und aktualis
 "SQL" spricht man Englisch entweder wie "Ess-Que-Ell" oder wie "sequel" aus. 
 Das geht auch für Deutsch, aber "S-Q-L" ist natürlich auch in Ordnung.
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -195,7 +197,7 @@ dass `DogID` ein `PRIMARY KEY` wird und `DogName` stets `NOT NULL` ist.
 
 ### Daten einfügen: `INSERT INTO`
 
-Ist das Schema einer Tabelle festgelegt, kann man Daten einfüllen, und zwar so.
+Ist das Schema einer Tabelle festgelegt, kann man Daten einfüllen, und zwar so:
 
 ```sql
 INSERT INTO mytable (mycolumn1, mycolumn2, ...)
@@ -264,6 +266,7 @@ Ohne `WHERE` werden alle Zeilen gelöscht!
 [ER] Entfernen Sie alle bis auf einen (von Ihnen festzulegenden) Datensatz in einem einzigen Befehl.
 <!-- time estimate: 10 min -->
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
