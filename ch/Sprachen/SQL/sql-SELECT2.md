@@ -145,7 +145,8 @@ FROM mytable;
 
 ### Mustersuche: `LIKE`, `%`, `_`
 Die `LIKE`-Klausel erlaubt das Vergleichen von Zeichenketten anhand von Platzhaltern. 
-Das Prozentzeichen (`%`) steht für **beliebig viele** Zeichen, der Unterstrich (`_`) für **genau ein** Zeichen.
+Das Prozentzeichen (`%`) steht für **beliebig viele** Zeichen, der Unterstrich (`_`) für **genau ein** Zeichen. Weitere Infos: [`LIKE`](https://www.w3schools.com/sql/sql_like.asp)
+
 
 Typische Musterbeispiele:
 
@@ -155,7 +156,12 @@ Typische Musterbeispiele:
 * `'B____'` → beginnt mit B und hat genau 4 weitere Zeichen (insgesamt 5)
 * `'_%a%'` → zweites Zeichen ist a (erstes beliebig), Rest beliebig
 
-Weitere Infos: [`LIKE`](https://www.w3schools.com/sql/sql_like.asp)
+```sql
+SELECT mycol1, mycol2
+FROM mytable
+WHERE mycol LIKE 'abc%';  -- findet alle Zeilen, bei denen mycol mit 'abc' beginnt
+```
+
 
 [ER] Geben Sie alle Datensätze zurück, deren `name` mit `B` beginnt.
 
