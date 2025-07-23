@@ -6,23 +6,20 @@ assumes: pd-Einführung
 ---
 
 [SECTION::goal::idea]
-
 Ich kann `Series` und `DataFrames` erstellen.
 
-Ich verstehe, was ein Index ist, wie ich ihn ändern kann und wie ich mithilfe des Indexes auf
+Ich verstehe, was ein Index ist, wie ich ihn ändern kann und wie ich mithilfe der Indexwerte auf
 spezifische Elemente aus einem `DataFrame` oder einer `Series` zugreife.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+[SECTION::background::default]
 Daten und Datensätze können nicht nur aus externen Dateien kommen. 
 Oft möchte man auch eigene Daten, die in Variablen im Code gespeichert sind, verwenden. 
-Dazu sollte man verstehen, wie die Pandas-Datenstrukturen aufgebaut sind 
-und wie man sie selber erstellen, befüllen und auf die Daten zugreifen kann.
-
+Um mit diesen Daten und Daten in Pandas-Objekten komptetent hantieren zu können, 
+ist es wichtig, ein gutes mentales Modell der Daten zu haben.
 [ENDSECTION]
-[SECTION::instructions::loose]
 
+[SECTION::instructions::loose]
 In der Pandas-Einführung haben Sie bereits tabellarische Daten kennengelernt und dass diese in
 Pandas durch `Series` und `DataFrame` dargestellt werden.
 
@@ -39,7 +36,7 @@ buecher_namen_array = ["Harry Potter und der Stein der Weisen", "Der kleine Prin
 buecher_namen_series = pd.Series(buecher_namen_array)
 print(buecher_namen_series)
 ```
-- [EQ] Schauen Sie sich die 
+[EQ] Schauen Sie sich die 
 [Dokumentation von Pandas zu Series](https://pandas.pydata.org/docs/dev/reference/api/pandas.Series.html) 
 an.
 Welche von den Parametern aus der Dokumentation haben wir bei der Erstellung der `Series` übergeben?
@@ -48,28 +45,29 @@ Was für einen Effekt hatten die übergebenen Parameter?
 Betrachten Sie den Output. 
 Links neben den Büchernamen sollten Sie jeweils eine Nummer sehen (0, 1, ...). 
 Das ist der standardmäßige [TERMREF::Index] für eine `Series`. 
-Genauso wie bei einem herkömmlichen Array (`array[Index]`) kann der Index bei einer `Series` 
+Genauso wie bei einem herkömmlichen Array (`array[Indexwert]`) kann der Index bei einer `Series` 
 genutzt werden, um auf bestimmte Elemente innerhalb der Datenstruktur zuzugreifen. 
-Er ist quasi wie eine Adresse, um einen Datenpunkt wiederzufinden.
+Ein Indexwert ist quasi wie eine Adresse, um einen Datenpunkt wiederzufinden.
 
-- [ER] Wählen Sie das dritte Element aus der `Series` aus, indem Sie den Index benutzen. 
-Der Syntax ist wie bei einem Array: `series[Index]`
+[ER] Wählen Sie das dritte Element aus der `Series` aus, indem Sie den richtigen Indexwert benutzen. 
+Der Syntax ist wie bei einem Array: `series[Indexwert]`
 
 Bisher sieht man keine großen Unterschiede zu einem herkömmlichen Array. 
-Doch ein Vorteil von `Series` ist, dass der Index bei `Series`-Objekten keine Integer sein muss. 
+Doch ein Vorteil von `Series` ist, dass die Indexwerte bei `Series`-Objekten keine Integer sein
+müssen, auch wenn das standardmäßig der Fall ist.
 Es können beliebige Datentypen und beliebige Werte sein 
 und nicht nur eine starre Aufzählung 0, 1, 2, ...:
 
-- Überschreiben Sie `buecher_namen_series` mit dem folgenden neuen Index:
+Überschreiben Sie `buecher_namen_series` mit dem folgenden neuen Index:
 ```python
 buecher_namen_series = pd.Series(buecher_namen_array, 
     index=["3-551-32011-X", "3-7920-0024-5", "3-522-20202-3"] # ISBN der Bücher
 )
 ```
 
-- [ER] Wählen Sie das Buch "Die unendliche Geschichte" mithilfe des neuen Index aus.
+[ER] Wählen Sie das Buch "Die unendliche Geschichte" mithilfe des neuen Indexwert aus.
 
-- Erstellen Sie wie folgt eine zweite `Series` namens `buecher_preis_series`:
+Erstellen Sie wie folgt eine zweite `Series` namens `buecher_preis_series`:
 ```python
 buecher_preis_dict = {
     "3-522-20202-3": 12.99,
@@ -89,7 +87,7 @@ Nicht nur das:
 Während wir bei einem einfachen Array den Index selber hätten angeben müssen, 
 werden hier die Keys des Dictionary als Index interpretiert.
 
-- [ER] Erstellen Sie nun ein eigenes Dictionary, das zu jedem Buch eine beliebige Bewertung (1-10)
+[ER] Erstellen Sie nun ein eigenes Dictionary, das zu jedem Buch eine beliebige Bewertung (1-10)
 speichert. 
 Nutzen Sie dieses Dictionary, um Ihre eigene `Series` namens `buecher_bewertung_series` zu erstellen.
 
@@ -104,12 +102,13 @@ print(buecher_bewertung_series[isbn])
 
 ### pd.DataFrame
 
-Bis jetzt haben Sie drei `Series` zu dem gleichen Thema erstellt. 
+Bis jetzt haben Sie drei `Series` zu dem gleichen Thema erstellt, wobei die Indexwerte angeben,
+welche Informationen zusammengehören.
 Es wäre praktisch, wenn man diese Daten aber nicht aus jeder einzelnen `Series` abfragen muss,
-sondern eine Art 2-dimensionale Datenstruktur hat, wo alle Informationen liegen. 
+sondern eine Art Tabelle (2-dimensionale Datenstruktur) hat, wo alle Informationen liegen. 
 An dieser Stelle kann ein `DataFrame` weiterhelfen.
 
-- Zuerst erstellen Sie ein Dictionary, in dem Sie alle `Series` (und ihre Namen) auflisten. 
+Zuerst erstellen Sie ein Dictionary, in dem Sie alle `Series` (und ihre Namen) auflisten. 
 Dieses übergeben wir dann an den `pd.DataFrame`-Konstruktor.
 ```python
 buecher_dict = {
@@ -138,45 +137,44 @@ nachlesen können.
 Die Erstellung aus einem Dictionary ist aber eine sehr gängige.
 [ENDNOTICE]
 
-- [EQ] Was für einen Vorteil hat der benutzerdefinierte Index bei der Erstellung dieses `DataFrame`
-geboten?
+[EQ] Welchen Vorteil kann der benutzerdefinierte Index bei der Erstellung eines `DataFrame`
+bieten?
 
 Nun haben Sie ein `DataFrame` erstellt, bei dem jede Spalte eine der `Series` darstellt.
 So eine zwei-dimensionale Datenstruktur benötigt dementsprechend auch zwei Indizes: 
 einen für die Spalten und einen für die Zeilen.
-Während Sie bei einer `Series` mit `series[zeilen_index]` auf ein einzelnes Element zugreifen konnten,
-können Sie bei einem `DataFrame` mit `dataframe[spalten_index]` auf eine ganze Spalte des `DataFrame`
-zugreifen.
+Während Sie bei einer `Series` mit `series[zeilen_index_wert]` auf ein einzelnes Element zugreifen konnten,
+können Sie bei einem `DataFrame` mit `dataframe[spalten_index_wert]` auf eine ganze Spalte des
+`DataFrame` zugreifen.
 
 [NOTICE]
 In Pandas wird der Zeilenindex eines `DataFrame` als `index` bezeichnet 
 und der Spaltenindex als `columns`.
-Mit `dataframe.index` kriegen Sie die Zeilenindizes und mit `dataframe.columns` die Spaltenindizes.
+Mit `dataframe.index` kriegen Sie die Indexwerte des Zeilenindex und mit `dataframe.columns` die Indexwerte des Spaltenindex.
 [ENDNOTICE]
 
-- [ER] Wählen Sie mithilfe des Spaltenindex die Kostenspalte von `buecher_df` aus.
+[ER] Wählen Sie mithilfe des Spaltenindex die Kostenspalte von `buecher_df` aus.
 
 Bei diesen Spalten handelt es sich um `Series`-Objekte. 
 Das kann man z. B. mit der Methode `type()` herausfinden. 
 Eine Spalte eines `DataFrame` kann man sich also als eine `Series` vorstellen. 
 Jede Operation, die man auf `Series` machen kann, kann man also auch auf Spalten machen.
 
-- [EQ] Wenn `dataframe[spalten_index]` eine `Series` ist und `series[zeilen_index]` ein Element
-einer `Series` zurückgibt: 
-Wie können Sie dann mit Hilfe des `spalten_index` und `zeilen_index` ein
+[EQ] Wenn `dataframe[spalten_index_wert]` eine `Series` ist und `series[zeilen_index_wert]` ein
+Element einer `Series` zurückgibt: 
+Wie können Sie dann mit Hilfe des `spalten_index_wert` und `zeilen_index_wert` ein
 einzelnes Element aus einem `dataframe` zurückgeben? 
 Erstellen Sie keine Hilfsvariablen.
 
-- [ER] Wählen Sie den Buchnamen "Die unendliche Geschichte" mit Hilfe des Spalten- und Zeilenindex
+[ER] Wählen Sie den Buchnamen "Die unendliche Geschichte" mit Hilfe des Spalten- und Zeilenindex
 aus dem `buecher_df` aus.
-
 [ENDSECTION]
-[SECTION::submission::information]
 
+[SECTION::submission::information]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
+
 [INSTRUCTOR::Verstehen die Studierenden mit Indizes umzugehen]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]

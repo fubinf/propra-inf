@@ -739,7 +739,13 @@ Dies gilt umso mehr, je größer die Codebasis wird.
 [ENDTERM]
 
 [TERM::Index]
-Ein Index ist eine numerische oder symbolische Kennzeichnung, die verwendet wird, um gezielt auf ein Element innerhalb einer geordneten Datenstruktur zuzugreifen. Er kommt in vielen Kontexten vor – etwa bei Arrays, Listen, Zeichenketten oder Datenbanken – und dient dazu, Daten schnell und effizient zu lokalisieren oder zu referenzieren. In vielen Programmiersprachen beginnt ein numerischer Index bei 0 (nullbasiert).
+Ein Index ist eine numerische oder symbolische Kennzeichnung, die verwendet wird, 
+um gezielt auf ein Element innerhalb einer geordneten Datenstruktur zuzugreifen. 
+Er kommt in vielen Kontexten vor – etwa bei Arrays, Listen, Zeichenketten oder Datenbanken – 
+und dient dazu, Daten schnell und effizient zu lokalisieren oder zu referenzieren. 
+In vielen Programmiersprachen beginnt ein numerischer Index bei 0 (nullbasiert).
+Index beschreibt sowohl einen einzelnen Indexwert, 
+als auch das Aggregat aller Indexwerte einer Datenstruktur.
 [ENDTERM]
 
 [TERM::Integrationstest|Integration Test]
