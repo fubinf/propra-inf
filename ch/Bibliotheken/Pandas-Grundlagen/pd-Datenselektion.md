@@ -45,7 +45,7 @@ Hierbei nutzen Sie den Index-Operator `[]`.
 Sie können aber auch eine Liste an Spaltennamen an diesen Operator übergeben, 
 für die Spalten, die Sie auswählen möchten: `dataframe[["spaltenname 1", "spaltenname 2"]]`
 
-[EC] Wählen Sie den Wahlbezirk, die gültigen Stimmen und die Stimmen der CDU mit
+[ER] Wählen Sie den Wahlbezirk, die gültigen Stimmen und die Stimmen der CDU mit
 dieser Methode aus und geben Sie sie aus.
 
 [EQ] Eine andere Schreibweise für `dataframe["spaltenname"]` ist der Syntax `dataframe.spaltenname`.
@@ -85,13 +85,13 @@ Dieses Verhalten kann anfangs verwirrend sein; bitte behalten Sie folgendes im K
 - `dataframe[[index_a,index_b]]` wählt mehrere Spalten aus
 - `dataframe[index_a:index_b]` wählt einen Bereich von Zeilen aus
 
-[EC] Wählen Sie die Zeilen von Index 0 bis Index 10 des `erststimmen_df` aus.
+[ER] Wählen Sie die Zeilen von Index 0 bis Index 10 des `erststimmen_df` aus.
 
 [EQ] Enthält `0:n`, auf ein `DataFrame` angewendet, das Element mit dem Index `n` 
 oder geht es nur bis `n-1`?
 Sie können dazu das Ergebnis der vorherigen Aufgabe betrachten.
 
-[EC] Wählen Sie jede dritte Zeile der ersten 50 Zeilen aus, angefangen bei 0.
+[ER] Wählen Sie jede dritte Zeile der ersten 50 Zeilen aus, angefangen bei 0.
 
 [EQ] Was passiert, wenn sie versuchen, statt der Zeilenindizes Slicing auf den Spaltenindizes zu
 betreiben?
@@ -117,17 +117,17 @@ ansprechen `dataframe[spaltenindex][zeilenindex]`.
 Was ist der Rückgabetyp von `dataframe[[spaltenindex1, spaltenindex2, ...]]`?
 [ENDHINT]
 
-[EC] Formulieren Sie das Beispiel `erststimmen_df[["Wahlbezirk", "Gültige Stimmen"]][5]` so um, dass
+[ER] Formulieren Sie das Beispiel `erststimmen_df[["Wahlbezirk", "Gültige Stimmen"]][5]` so um, dass
 es mit Hilfe von Slicing funktioniert.
 
-[EC] Formulieren Sie ihr Ergebnis aus der vorherigen Aufgabe so um, dass zuerst die Zeile ausgewählt
+[ER] Formulieren Sie ihr Ergebnis aus der vorherigen Aufgabe so um, dass zuerst die Zeile ausgewählt
 wird und dann die Spalten.
 
 
 ### Zugriff auf einzelne Felder: `at[]`
 
-`dataframe[spaltenindex][zeilenindex]` ist also nur eine Verkettung von Befehlen, die uns zum
-richtigen Feld führt. 
+`dataframe[spaltenindex][zeilenindex]` ist also nur eine Verkettung von Ausdrücken, die uns zum
+richtigen Feld führt.
 Etwas eleganter ist die Notation
 [`at[zeilenindex, spaltenindex]`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.at.html).
 Damit kann man direkt auf ein *einzelnes* Feld zugreifen, indem man den Zeilenindex und dann den
@@ -138,7 +138,7 @@ Wie Sie an den eckigen Klammern sehen, ist `at` keine Methode, sondern ein Attri
 <!-- TODO_3_Saka: Python Klassen-Attribute als assumes-->
 
 
-[EC] Geben Sie mit `at` den Wert von CDU in der ersten Zeile des `erststimmen_df` aus.
+[ER] Geben Sie mit `at` den Wert von CDU in der ersten Zeile des `erststimmen_df` aus.
 
 
 ### Zugriff auf Bereiche: `loc[]`
@@ -152,10 +152,10 @@ die den gleichen technischen Kniff anwendet wie `at` und sehr flexibel ist für 
 Bereiche können Sie zum Beispiel mit Listen angeben: 
 `dataframe.loc[[zeilindex1, zeilenindex2], [spaltenindex1, spaltenindex2]]`
 
-[EC] Schauen Sie in die Dokumentation von `loc` und machen Sie sich mit den Parametern vertraut.
+[ER] Schauen Sie in die Dokumentation von `loc` und machen Sie sich mit den Parametern vertraut.
 Geben Sie den Wert von CDU in der ersten Zeile des `erststimmen_df` mithilfe von `loc` aus.
 
-[EC] Geben Sie mithilfe von `loc` den Wert von CDU sowie die gültigen Stimmen in der ersten und
+[ER] Geben Sie mithilfe von `loc` den Wert von CDU sowie die gültigen Stimmen in der ersten und
 dritten Zeile aus.
 
 Bereiche kann man neben Listen hier auch mit Slicing angeben.
@@ -166,12 +166,12 @@ Bereiche kann man neben Listen hier auch mit Slicing angeben.
 
 [EQ] Welchen Bereich gibt `erststimmen_df.loc[:]` zurück?
 
-[EC] Slicing lässt sich nicht nur auf numerische Indizes anwenden. 
+[ER] Slicing lässt sich nicht nur auf numerische Indizes anwenden. 
 Geben Sie mithilfe von `loc` und dem `:`-Operator die ersten 5 Zeilen zurück mit den Spalten von
 "Adresse" bis "Wahlbezirk".
 
 [EQ] Wie bereits erwähnt lassen sich per Slicing auch Schrittgrößen angeben. 
-Was tut der folgende Befehl: `erststimmen_df.loc[0:49:10]`
+Was tut der folgende Ausdruck: `erststimmen_df.loc[0:49:10]`
 
 [EQ] Was bedeutet `erststimmen_df.loc[::10, "Adresse":"Bezirksnummer"]`
 
@@ -201,10 +201,10 @@ In unserem Beispiel des `erststimmen_df` sind der Zeilenindex und die Zeilenposi
 aber das gilt nur, weil dieser `DataFrame` keinen eigenen Zeilenindex hat (was allerdings häufig vorkommt).
 Die Spalten hingegen haben fast immer einen Index, nämlich individuelle Spaltennamen.
 
-[EC] Formulieren Sie `erststimmen_df.at[0,"Adresse"]` zu `iat` um.
+[ER] Formulieren Sie `erststimmen_df.at[0,"Adresse"]` zu `iat` um.
 Überlegen Sie sich hierzu, welche Spaltenposition "Adresse" hat.
 
-[EC] Formulieren Sie `erststimmen_df.loc[10:50,"Stimmart":"Wahlbezirk"]` zu `iloc` um. 
+[ER] Formulieren Sie `erststimmen_df.loc[10:50,"Stimmart":"Wahlbezirk"]` zu `iloc` um. 
 
 [NOTICE]
 `loc[]` und `iloc[]` unterscheiden sich, wie bereits erwähnt, 
