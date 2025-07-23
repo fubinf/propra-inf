@@ -37,7 +37,7 @@ buecher_namen_series = pd.Series(buecher_namen_array)
 print(buecher_namen_series)
 ```
 [EQ] Schauen Sie sich die 
-[Dokumentation von Pandas zu Series](https://pandas.pydata.org/docs/dev/reference/api/pandas.Series.html) 
+[Dokumentation von Pandas zu Series](https://pandas.pydata.org/docs/reference/api/pandas.Series.html) 
 an.
 Welche von den Parametern aus der Dokumentation haben wir bei der Erstellung der `Series` übergeben?
 Was für einen Effekt hatten die übergebenen Parameter?
@@ -79,7 +79,7 @@ print(buecher_preis_series)
 ```
 Diesmal haben Sie kein Array, sondern ein [TERMREF::Dictionary] übergeben. 
 Wie Sie in der 
-[Dokumentation von Pandas](https://pandas.pydata.org/docs/dev/reference/api/pandas.Series.html)
+[Dokumentation von Pandas](https://pandas.pydata.org/docs/reference/api/pandas.Series.html)
 sehen ist dies auch ein valider Eingabe-Typ für den Parameter: 
 `array-like, Iterable, dict, or scalar value`. 
 
@@ -132,7 +132,7 @@ Der Output dürfte wie folgt aussehen:
 [NOTICE]
 Es gibt noch weitere Arten, wie man mit einer `Series` ein `DataFrame` erstellen könnte, 
 die Sie in den
-[Beispielen der Dokumentation zu DataFrames](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.html)
+[Beispielen der Dokumentation zu DataFrames](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html)
 nachlesen können. 
 Die Erstellung aus einem Dictionary ist aber eine sehr gängige.
 [ENDNOTICE]

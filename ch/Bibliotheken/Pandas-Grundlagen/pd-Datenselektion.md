@@ -129,7 +129,7 @@ wird und dann die Spalten.
 `dataframe[spaltenindex][zeilenindex]` ist also nur eine Verkettung von Befehlen, die uns zum
 richtigen Feld führt. 
 Etwas eleganter ist die Notation
-[`at[zeilenindex, spaltenindex]`](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.at.html).
+[`at[zeilenindex, spaltenindex]`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.at.html).
 Damit kann man direkt auf ein *einzelnes* Feld zugreifen, indem man den Zeilenindex und dann den
 Spaltenindex angibt.
 
@@ -146,7 +146,7 @@ Wie Sie an den eckigen Klammern sehen, ist `at` keine Methode, sondern ein Attri
 Nun möchte man oft nicht nur ein Feld betrachten, sondern ein oder mehrere Zeilen bzw. Teilbereiche
 dieser Zeilen. 
 Hierfür gibt es die Notation
-[loc[zeilenbereiche, spaltenbereiche]](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.loc.html),
+[loc[zeilenbereiche, spaltenbereiche]](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html),
 die den gleichen technischen Kniff anwendet wie `at` und sehr flexibel ist für die Auswahl von Teilbereichen.
 
 Bereiche können Sie zum Beispiel mit Listen angeben: 
@@ -190,9 +190,9 @@ schnelleren Gesamtablauf sorgen.
 
 `at` und `loc` arbeiten mit den Indizes des `DataFrame`. 
 Beide besitzen auch ein Gegenstück, mit dem man rein per Position und nicht per Index arbeiten kann: 
-[iat](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.iat.html) 
+[iat](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iat.html) 
 und 
-[iloc](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.iloc.html).
+[iloc](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html).
 
 Aus `at[zeilenindex, spaltenindex]` wird also `iat[zeilenposition, spaltenposition]` und ebenso
 mit `loc` und `iloc`.

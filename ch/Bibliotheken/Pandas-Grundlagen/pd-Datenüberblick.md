@@ -31,8 +31,8 @@ Bis jetzt haben Sie Einblicke in die Daten selbst nur bekommen, indem Sie zum Be
 `print(erststimmen_df)` den ganzen `DataFrame` ausgegeben haben. 
 Doch es gibt elegantere Lösungen, um sich Einträge eines `DataFrame` gezielt anzugucken. 
 Schauen Sie in die Dokumentation zu 
-[DataFrame.head()](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.head.html) und 
-[DataFrame.tail()](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.tail.html) 
+[DataFrame.head()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) und 
+[DataFrame.tail()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.tail.html) 
 und bearbeiten Sie die folgenden Aufgaben:
 
 [EQ] Beschreiben Sie, was die Methoden `head(n)` und `tail(n)` machen.
@@ -69,7 +69,7 @@ dass "06B3F" ein gültiger Wert für eine Adresse ist?
 ### Metadaten des `DataFrame`
 
 Eine andere Art, ein `DataFrame` zu verstehen, ist, mithilfe von 
-[DataFrame.info()](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.info.html) 
+[DataFrame.info()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html) 
 eine Übersicht an Informationen zu
 bekommen.
 
@@ -81,7 +81,7 @@ Beantworten Sie mithilfe von `erststimmen_df.info()` folgende Fragen:
 
 [NOTICE]
 Der Datentyp der Daten, die in einer Series gespeichert werden, wird als `dtype` bezeichnet. Siehe
-[Dokumentation](https://pandas.pydata.org/docs/dev/reference/api/pandas.Series.dtype.html#pandas.Series.dtype) 
+[Dokumentation](https://pandas.pydata.org/docs/reference/api/pandas.Series.dtype.html#pandas.Series.dtype) 
 [ENDNOTICE]
 
 [EQ] Was ist der *Rückgabewert* von `info()`?
@@ -95,7 +95,7 @@ Zum Beispiel kann man mit dem Attribut `erststimmen_df.shape`
 die Zeilen- und Spaltenanzahl eines `DataFrame` ermitteln.
 
 [EQ] Schauen Sie in die 
-[Dokumentation zu DataFrame-Attributen](https://pandas.pydata.org/docs/dev/reference/frame.html#attributes-and-underlying-data)
+[Dokumentation zu DataFrame-Attributen](https://pandas.pydata.org/docs/reference/frame.html#attributes-and-underlying-data)
 und finden Sie heraus, in welchem Attribut die Zeileneinträge gespeichert werden.
 
 
@@ -111,7 +111,7 @@ Zur Vollständigkeit sei hier aber noch die Methode `describe()` aufgeführt.
 dabei aber statistischer Natur.
 
 [EQ] Schauen Sie sich die 
-[Dokumentation zu describe()](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.describe.html#pandas.DataFrame.describe) 
+[Dokumentation zu describe()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html#pandas.DataFrame.describe) 
 an und benutzen Sie `describe()` auf dem `erststimmen_df`. 
 Zu welcher Art von Spalten werden hier Daten aufgeführt? 
 Und wieso nicht zu den anderen Spalten?

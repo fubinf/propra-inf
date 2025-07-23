@@ -95,7 +95,7 @@ In diesem Fall nutzen wir also die Methode `read_csv()`, um CSV-Dateien einzules
 [EQ] Welche Argumente müssen `read_csv()` übergeben werden? Nennen Sie keine optionalen Argumente.
 Der definitive Ort, um Konzepte, Methoden oder Eigenschaften von Pandas zu verstehen,
 ist die (umfangreiche) Dokumentation von Pandas: 
-[Dokumentation zu read_csv()](https://pandas.pydata.org/docs/dev/reference/api/pandas.read_csv.html#pandas.read_csv)
+[Dokumentation zu read_csv()](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html#pandas.read_csv)
 
 Laden Sie wie folgt den Datensatz über die Erststimmen in Ihre Python-Umgebung: 
 `erststimmen_datensatz = pd.read_csv(<Parameter>)`. 
