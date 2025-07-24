@@ -1,5 +1,5 @@
-title: Pandas Datenstrukturen
-stage: alpha
+title: "Die wichtigsten Pandas-Datenstrukturen: Series, DataFrame"
+stage: beta
 timevalue: 1
 difficulty: 2
 assumes: pd-Einführung
@@ -8,15 +8,14 @@ assumes: pd-Einführung
 [SECTION::goal::idea]
 Ich kann `Series` und `DataFrames` erstellen.
 
-Ich verstehe, was ein Index ist, wie ich ihn ändern kann und wie ich mithilfe der Indexwerte auf
-spezifische Elemente aus einem `DataFrame` oder einer `Series` zugreife.
+Ich verstehe, was ein Index ist, und wie ich darüber auf
+Elemente aus einem `DataFrame` oder einer `Series` zugreife.
 [ENDSECTION]
 
 [SECTION::background::default]
-Daten und Datensätze können nicht nur aus externen Dateien kommen. 
-Oft möchte man auch eigene Daten, die in Variablen im Code gespeichert sind, verwenden. 
-Um mit diesen Daten und Daten in Pandas-Objekten komptetent hantieren zu können, 
-ist es wichtig, ein gutes mentales Modell der Daten zu haben.
+Pandas ist an einigen Stellen wenig konsistent und deshalb recht verwirrend,
+wenn man kein klares mentales Modell davon hat, was da vor sich geht.
+Dieses mentale Modell beginnen wir hier aufzubauen.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
@@ -155,14 +154,12 @@ Mit `dataframe.index` kriegen Sie die Indexwerte des Zeilenindex und mit `datafr
 
 [ER] Wählen Sie mithilfe des Spaltenindex die Kostenspalte von `buecher_df` aus.
 
-Bei diesen Spalten handelt es sich um `Series`-Objekte. 
-Das kann man z. B. mit der Methode `type()` herausfinden. 
-Eine Spalte eines `DataFrame` kann man sich also als eine `Series` vorstellen. 
+Bei diesen Spalten handelt es sich um `Series`-Objekte: `type(buecher_df["Buchname"]) == Series`. 
 Jede Operation, die man auf `Series` machen kann, kann man also auch auf Spalten machen.
 
 [EQ] Wenn `dataframe[spalten_index_wert]` eine `Series` ist und `series[zeilen_index_wert]` ein
 Element einer `Series` zurückgibt: 
-Wie können Sie dann mit Hilfe des `spalten_index_wert` und `zeilen_index_wert` ein
+Wie können Sie dann mithilfe des `spalten_index_wert` und `zeilen_index_wert` ein
 einzelnes Element aus einem `dataframe` zurückgeben? 
 Erstellen Sie keine Hilfsvariablen.
 
@@ -175,6 +172,6 @@ aus dem `buecher_df` aus.
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Verstehen die Studierenden mit Indizes umzugehen]
+[INSTRUCTOR::Verstehen die Studierenden mit Indizes umzugehen?]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
