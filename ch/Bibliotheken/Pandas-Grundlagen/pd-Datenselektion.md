@@ -1,5 +1,5 @@
-title: "Gezielte Datenselektion"
-stage: alpha
+title: "Auswahl von Datensatz-Teilen in Pandas"
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: pd-Datenstrukturen

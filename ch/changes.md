@@ -40,4 +40,5 @@
   Defektbereinigungs-Commit klarer gemacht, um den Tutoren die Arbeit zu erleichtern.
 - **2025-07-17**: Aufgabe Bibliotheken/Pandas-Grundlagen/[PARTREF::pd-Datenüberblick] zugefügt.
 - **2025-07-20**: Aufgabengruppe Bestandscode/[PARTREF::Festpreisprojekt] zugefügt.
+- **2025-07-24**: Aufgabe Bibliotheken/Pandas-Grundlagen/[PARTREF::pd-Datenselektion] zugefügt.
 - ...
