@@ -44,7 +44,7 @@ was wird dem Objekt durch den Decorator hinzugefügt?
 
 [ER] Erzeugen Sie drei Exemplare von `Book` und speichern Sie sie in `shelf: list[Book]`.
 
-[ER] Greifen Sie auf eines der Bücher in `shelf` zu und drucken sie den Titel auf der Konsole aus.
+[ER] Geben Sie den Titel von einem `Book` in `shelf` aus.
 
 [NOTICE]
 Ein großer Vorteil von `dataclasses` gegenüber z. B. Dictionaries ist die klare Attributstruktur:
@@ -64,19 +64,20 @@ Parameter `order` übergeben.
 Dadurch werden der Klasse Funktionen ergänzt, die die Vergleichsoperatoren
 `<`, `<=`, `>`, `>=` und `==` implementieren.
 
-[ER] Ergänzen Sie den Parameter `order=True` und sortieren Sie `shelf` mit der
-Python `sort()` Funktion, die auf der Liste `shelf` verfügbar ist.
-Drucken Sie nur eine Liste der `title` in `shelf` auf die Konsole. Lassen Sie dann die
-Liste mit `shelf.sort()` sortieren und drucken sie erneut alle `title` aus.
+[ER] Ergänzen Sie den Parameter `order=True` und sortieren Sie `shelf` mit
+[`sort()`](https://docs.python.org/3/library/stdtypes.html#list.sort).
+Geben Sie als Erstes nur die `title` der unsortierten Liste `shelf` aus.
+Lassen Sie dann die Liste mit `shelf.sort()` sortieren und drucken sie erneut alle `title` aus.
 
 Wenn Sie `order=True` angeben, wird die Vergleichslogik automatisch erzeugt
-(in der Reihenfolge der Attributdefinition).  
-Das bedeutet: `sorted()` verwendet zuerst `title`, dann (falls gleich) `authors`, dann `year` usw.  
+(in der Reihenfolge der Attributsdefinition).  
+Das bedeutet: `sort()` verwendet zuerst `title`, dann (falls gleich) `authors`, dann `year` usw.  
 Wenn Sie die Reihenfolge der Attribute ändern, ändern Sie auch die Sortierlogik.
 
-[ER] Greifen Sie auf ein Buch in `shelf` zu und ändern Sie zur Laufzeit das `year` Attribut.
+[ER] Ändern Sie zur Laufzeit `year` von einem Buch in `shelf`.
+Dazu können Sie dem Attribut einen neuen Wert zuweisen, wie bei Variablen.
 Geben Sie die Attribute `title` und `year` jeweils einmal vor und einmal nach der
-Änderung auf der Konsole aus.
+Änderung aus.
 
 Wie Sie sehen, ist es möglich Attribute zu verändern.
 In manchen Fällen sollen Daten aber nicht mehr veränderbar sein beispielsweise in Archivkopien.  
@@ -85,23 +86,21 @@ Es ist also nach dem erzeugen eines Exemplars nicht mehr möglich Attribute zu v
 
 [ER] Erstelle eine zweite `dataclass` `ArchiveBook` mit denselben Attribute,
 aber setzten Sie den Parameter `frozen=True`.
-Erzeugen Sie ein Exemplar von `ArchiveBook` und speichern Sie dieses in der Variable `archive_book`.
+Weisen Sie der neuen Variable `archive_book` ein Exemplar `ArchiveBook` zu.
 
-[ER] Versuchen Sie, das Attribut `year` von `archive_book` zu ändern.
+[ER] Versuchen Sie, `archive_book.year` zu ändern.
 Fangen Sie die Ausnahme mit `try/except` auf und geben Sie die Fehlermeldung aus.
 
-Einem Attribut in der `Book` `dataclass` kann auch ein Standardwert zugewiesen werden.
-Dafür können Sie einem Attribut mit dem `=` einen Wert zuordnen.
+Einem Attribut in `Book` kann auch ein Standardwert zugewiesen werden.
+Dafür können Sie einem Attribut direkt in der Klasse mit `=` einen Wert zuordnen.
 
 [ER] Ergänzen Sie in der Klasse `Book` das Attribut `language` vom Datentyp `str`
 und weisen Sie den Standardwert `en` zu.
 
-[ER] Erzeugen Sie ein neues Exemplar von `Book` und setzen sie dort die Sprache auf `"de"`.
+[ER] Erzeugen Sie ein neues Exemplar `Book` und setzen sie dort die Sprache auf `"de"`.
 Geben Sie die Attribute `title` und `langauge` von diesem Buch auf der Konsole aus.
 
-Allerdings hat dieses Modul auch Nachteile.
-
-[ER] Erzeugen Sie eine neues Exemplar von `Book` und speichern Sie es in der Variable `invalid_year`.
+[ER] Erzeugen Sie eine neues Exemplar `Book` in der variable `invalid_year`.
 Setzten Sie bei `invalid_year` das Attribut `year` auf `year='Neunzehnhundertvierundachtzig'`.
 Geben Sie `invalid_year` auf der Konsole aus.
 
@@ -110,12 +109,6 @@ Das liegt daran, das `dataclass` die Attribute nicht zur Laufzeit validiert.
 
 [EC] Führen Sie ihr Programm einmal aus.
 
-[ENDSECTION]
-
-
-[SECTION::submission::trace]
-[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 
