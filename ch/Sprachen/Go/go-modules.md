@@ -23,7 +23,7 @@ Darum geht es in dieser Aufgabe.
 [TOC]
 
 [SECTION::instructions::detailed]
-Diese Aufgabe orientiert sich im Wesentlichen an diesen Einträgen auf
+Diese Aufgabe orientiert sich im Wesentlichen an diesen Beiträgen auf
 [go.dev/blog](https://go.dev/blog/)
 :
 
@@ -213,9 +213,9 @@ Bibliotheken in Go unterliegen den Regeln
 Während der Entwicklung (v0) und beim ersten stabilen Release (v1) befindet sich
 der Quellcode im Root-Verzeichnis des Moduls.
 
+**Wichtig:**
 Soll es v2, v3 oder höhere Versionen geben, so muss der Quellcode in Verzeichnissen
-`your_module_name/v2` und `your_module_name/v3` liegen — so lassen sich
-Namenskonflikte vermeiden.
+`your_module_name/v2` und `your_module_name/v3` liegen.
 Die Unterverzeichnisse sind selbst vollständige Module und besitzen jeweils
 eine Datei `go.mod`, wo der Modulname als `github.com/your_username/your_module_name/v2`
 beziehungsweise `.../v3` angegeben wird.
@@ -264,13 +264,13 @@ Führen Sie den Befehl im Terminal aus:
     export GOPROXY=direct
 [ENDWARNING]
 
-[ER] Taggen Sie den letzten Commit in Ihrem `your_module_name` mit `v1.0.0`
+[ER] Taggen Sie den letzten Commit in `your_module_name` mit `v1.0.0`
 und pushen Sie den git-Tag auf Remote.
 
 Dadurch wird der Stand des Repos als v1.0.0 Version "versiegelt".
 Alle Nutzer des Moduls, die das Modul mittels
 `import "github.com/your_username/your_module_name"` importieren, erhalten
-genau den Repo-Stand, der mit `v1.0.0` getaggt wurde.
+genau den Repo-Stand, der nun mit `v1.0.0` getaggt wurde.
 
 [ER] Laden Sie diese Version mittels 
 `go get github.com/your_username/your_module_name@v1.0.0` herunter.
