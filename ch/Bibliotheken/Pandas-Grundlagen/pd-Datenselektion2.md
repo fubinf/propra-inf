@@ -1,6 +1,6 @@
 title: "Selektion mit logischen Ausdrücken"
-stage: draft
-timevalue: 1
+stage: alpha
+timevalue: 1.5
 difficulty: 2
 explains:
 assumes:
@@ -10,12 +10,13 @@ requires: pd-Datenselektion
 [SECTION::goal::idea]
 Ich kann logische Ausdrücke im korrekten Pandas-Syntax schreiben.
 
-Ich kann Pandas-Daten mithilfe von logischen Ausdrücken filtern.
+Ich kann Pandas-Daten mithilfe von logischen Ausdrücken filtern und sortieren.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-Daten konkret anzusprechen heißt auch nur die Daten rauszufiltern, die bestimmte Bedingungen erfüllen. 
+Daten konkret anzusprechen heißt auch nur die Daten rauszufiltern, 
+die bestimmte Bedingungen erfüllen. 
 Mit logischen Ausdrücken hat man vielseitige Möglichkeiten dies zu tuen.
 [ENDSECTION]
 
@@ -42,11 +43,11 @@ kann man auch genau so logische Ausdrücke auf eine Series anwenden (`series < v
 Tuen Sie dies für die Spalte "Die Linke" im `erststimmen_df` und beschreiben Sie 
 was zurückgegeben wird.
 
-[EC] Formulieren Sie auf die gleiche Weise einen Befehl, für alle Wahlbezirke in denen die Linke über 20 Stimmen hat.
+[ER] Formulieren Sie auf die gleiche Weise einen Befehl, für alle Wahlbezirke in denen die Linke über 20 Stimmen hat.
 
-[EC] Formulieren Sie auf die gleiche Weise einen Befehl, für alle Wahlbezirke in denen die Linke genau 27 Stimmen hat.
+[ER] Formulieren Sie auf die gleiche Weise einen Befehl, für alle Wahlbezirke in denen die Linke genau 27 Stimmen hat.
 
-[EC] Sie können auch direkt zwei Spalten miteinander vergleichen. 
+[ER] Sie können auch direkt zwei Spalten miteinander vergleichen. 
 Formulieren Sie auf die gleiche Weise einen Befehl, für alle Wahlbezirke
 in denen die Linke mehr Stimmen hat als die CDU.
 
@@ -60,10 +61,10 @@ Wenn Sie auf diese Weise Ausdrücke mit `&` oder `|` verknüpfen, ist es wichtig
 dass Sie diese einklammern, damit die Operator-Priorität klar ist: `(ausdruck) & (ausdruck)`
 [ENDNOTICE]
 
-[EC] Formulieren Sie auf die gleiche Weise einen Befehl, 
+[ER] Formulieren Sie auf die gleiche Weise einen Befehl, 
 für alle Wahlbezirke in denen die Linke eine zweistellige Stimmenzahl hatte.
 
-[EC] Durch Verkettung können Sie auch Bedingungen auf verschiedene Spalten miteinander verbinden.
+[ER] Durch Verkettung können Sie auch Bedingungen auf verschiedene Spalten miteinander verbinden.
 Formulieren Sie einen Ausdruck für alle Wahlbezirke in denen die Linke mehr als 50 Stimmen hatte,
 es aber nur weniger als 250 Gültige Stimmen gab.
 
@@ -82,11 +83,11 @@ behalten wird, und jeder Eintrag der False ist rausgefiltert wird.
 Ein typischer Ausdruck könnte zum Beispiel sein: 
 `dataframe[ dataframe["Spaltenname"] > 42 ]`
 
-[EC] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen der Bezirksname *nicht* "Mitte" ist.
+[ER] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen der Bezirksname *nicht* "Mitte" ist.
 
-[EC] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen die Linke mehr Stimmen geholt hat als die CDU, aber weniger als SPD.
+[ER] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen die Linke mehr Stimmen geholt hat als die CDU, aber weniger als SPD.
 
-[EC] Formulieren Sie den gleichen Audruck aus der vorherigen Aufgabe 
+[ER] Formulieren Sie den gleichen Audruck aus der vorherigen Aufgabe 
 unter reiner Verwendung von `loc()` und Boolean-Ausdrücken.
 Bei `loc()` können Sie die Boolean-Series ebenfalls als Eingabe bei der Indexierung verwenden.
 
@@ -102,7 +103,7 @@ Pandas bietet mit `query()` eine alternative Schreibweise, bei der Sie Bedingung
 Ein beispielhafter Query-Filter könnte so aussehen:
 `dataframe.query("columnname < y")`
 
-[EC] Schauen Sie sich die 
+[ER] Schauen Sie sich die 
 [Dokumentation zu query()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query) 
 an und setzen Sie [EREFC::6] mit Hilfe der `query()`-Funktion um.
 
@@ -117,24 +118,39 @@ Strings hingegen können mit `'` umklammert werden:
 `dataframe.query("columnname == 'Beispielstring'")`
 [ENDNOTICE]
 
-[EC] Setzen Sie [EREFC::7] mit Hilfe der `query()`-Funktion um.
+[ER] Setzen Sie [EREFC::7] mit Hilfe der `query()`-Funktion um.
 
 
 ### `filter()`
 
 Die Methode `filter()` funktioniert etwas anders. 
 Sie filtert auf den Spalten oder Zeilen eines DataFrames anhand des Namens der Spalten oder Zeilen.
-Sie ist damit also sehr ähnlich zu den Funktionen zur Auswahl von Teilbereichen wie z.B. `loc()`. 
-Sie kann aber noch mehr z.B. jede Spalte auswählen, deren Namen einen bestimmten Regulären Ausdruck erfüllt.
+Sie ist damit also sehr ähnlich zu den Funktionen zur Auswahl von Teilbereichen wie z.B. `loc()`.
+Sie kann aber noch mehr z.B. jede Spalte auswählen, 
+deren Namen einen bestimmten Regulären Ausdruck erfüllt.
 
-[EC] Schauen Sie sich die 
+[ER] Schauen Sie sich die 
 [Dokumentation zu filter()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.filter.html) 
 an. 
 Wählen Sie mit Hilfe des `like`-Parameters alle _Zeilen_ aus, die eine 1 enthalten.
 
-[EC] Wählen Sie mit der Methode `filter()` alle _Spalten_ aus, die in irgendeiner Weise das
+[ER] Wählen Sie mit der Methode `filter()` alle _Spalten_ aus, die in irgendeiner Weise das
 Wort "Bezirk" enthalten. 
 Der Reguläre Ausdruck dafür lautet wie folgt: "(?i)bezirk"
+
+### `sort_values()`
+
+Auch noch ganz hilfreich wäre es, DataFrames nach bestimmten Zeilen oder Spalten ordnen zu können.
+Dafür gibt es die Methode `sort_values()`.
+
+[ER] Schauen Sie in die 
+[Dokumentation zu `sort_values()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html)
+und sortieren Sie `erststimmen_df` absteigend nach den Bezirksnamen.
+
+[ER] Verbinden Sie nun das Gelernte. 
+Sortieren Sie `erststimmen_df` absteigend nach den Stimmen für die SPD.
+Filtern Sie diese Auswahl, sodass Sie alle Einträge ausgeben in denen die CDU mehr Stimmen hat
+als die SPD.
 
 [ENDSECTION]
 
@@ -144,5 +160,6 @@ Der Reguläre Ausdruck dafür lautet wie folgt: "(?i)bezirk"
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Hinweise an die Tutoren zur Aufgabenkorrektur]
+[INSTRUCTOR::Antworten im Großen und Ganzen korrekt?]
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
