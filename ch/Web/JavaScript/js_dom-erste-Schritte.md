@@ -2,7 +2,8 @@ title: Erste Schritte in JavaScript und DOM
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: html-Formulare 
+assumes: TODO-html-id-und-eigenschaften
+requires: html-Formulare 
 ---
 
 [SECTION::goal::idea]
@@ -80,17 +81,17 @@ Symbole werden häufig als Schlüssel für Objekt-Eigenschaften verwendet, insbe
 Ein Beispiel:
 
 ```
-let name = "Anna";          // String
-let age = 25;               // Number
-let x = 999999999999999	    //Bigint;
-let isHappy = true;         // Boolean
-let nothing = null;         // Null
-let notDefined;             // Undefined
-let person = { name: "Anna", age: 25 };  // Objekt
-let numbers = [1, 2, 3];    // Array
+let name = "Anna";          // string
+let age = 25;               // number
+let x = 999999999999999	    // bigint;
+let isHappy = true;         // boolean
+let nothing = null;         // null
+let notDefined;             // undefined
+let person = { name: "Anna", age: 25 };  // objekt
+let numbers = [1, 2, 3];    // array
 
-const sym1 = Symbol("id");  // Symbol
-const sym2 = Symbol("id");  // Symbol
+const sym1 = Symbol("id");  // symbol
+const sym2 = Symbol("id");  // symbol
 
 console.log(sym1 === sym2); // false – sie sind eindeutig!
 
@@ -101,17 +102,17 @@ const user = {
   [Symbol("id")]: 123
 };
 
-console.log(Object.keys(user)); // ["name"] – das Symbol erscheint hier nicht
+console.log(Object.keys(user)); // ["name"] – das symbol erscheint hier nicht
 ```
 Symbol-Eigenschaften sind nicht aufzählbar (z. B. in for...in) und bleiben z. B. bei JSON.stringify() unsichtbar.
-Eine ausführlichere Dokumentation findest du [hier](https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Data_structures).
+Eine ausführlichere Dokumentation findest du in der [MDN-Dokumentation zu JavaScript-Datenstrukturen](https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Data_structures).
 
-[EQ] Recherchiere den Unterschied zwischen `undefined` und `null` in JavaScript. Warum sind Beide notwendig?
+[EQ] Recherchiere den Unterschied zwischen `undefined` und `null` in JavaScript. Warum sind Beide notwendig? Einen guten Einstieg findest du in der [MDN-Webdokumentation zu null vs undefined](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/null#null_vs_undefined).
 
 
 ### Funktionen
 
-
+**1. klassische Methode:**
 Eine Funktion zu definieren in JavaScript ist sehr ähnlich wie in Python.
 In JavaScript kann man eine Funktion auf verschiedene Arten definieren. 
 Die klassische Methode sieht dabei so aus:
@@ -122,16 +123,49 @@ function greet(name) {
 }
 ```
 
-Alternativ kann man auch eine sogenannte Arrow Function verwenden, die besonders bei kürzeren Funktionen beliebt ist:
+**2. Anonyme Funktionen:**
+
+Auch anonyme Funktionen sind in JavaScript möglich.
+In Python kennt man etwas Ähnliches unter dem Namen `lambda-Funktion`, z. B.:
+
+```python
+#Python:
+say_hello = lambda name: print(f"Hallo, {name}!")
+```
+
+```JavaScript
+//JavaScript:
+setTimeout(function () {
+  console.log("Zeit ist um!");
+}, 1000);
+```
+
+Während man in Python z. B. `lambda` nutzt, verwendet JavaScript hier das Schlüsselwort function.
+Der Unterschied: JavaScript-Anonyme Funktionen können mehrere Zeilen enthalten, während Python-Lambdas einen einzelnen Ausdruck zulassen.
+
+**3. Arrow Funktionen:**
+
+JavaScript bietet außerdem eine kürzere Schreibweise für Funktionen, die Arrow Function:
 
 ```
-const sagHallo = (name) => {
-  console.log("Hallo, " + name + "!");
+const addShort = (a, b) => a + b;
+```
+Arrow Functions unterscheiden sich von klassischen Funktionen in zwei wichtigen Punkten:
+
+Umgang mit `this`:
+Arrow Functions übernehmen `this` nicht selbst, sondern aus dem umgebenden Kontext.
+Das ist z. B. in Klassen oder Event-Handlern wichtig.
+
+Verhalten von return:
+Wenn eine Arrow Function nur einen Ausdruck enthält, kann man das `return` weglassen der Ausdruck wird dann automatisch zurückgegeben
+Bei Funktionen mit geschweiften Klammern `{ ... }` muss `return` explizit angegeben werden:
+
+```
+const square = x => {
+  return x * x; // explizit
 };
 ```
-Beide Varianten sind üblich. Arrow Functions sind besonders bei kurzen Funktionen oder Callbacks beliebt.
-Anders als in Python muss in JavaScript der Rückgabewert bei `return` explizit angegeben werden (sofern gewünscht).
-In der Pfeilschreibweise ist ein `return` bei einzeiligen Ausdrücken auch implizit möglich.
+Eine ausführlichere Erklärung findest du in der [MDN-Webdokumentation zu Arrow Functions](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Functions/Arrow_functions#unterschiede_zu_traditionellen_funktionen).
 
 ### Kontrollstrukturen
 
@@ -227,7 +261,7 @@ Außerdem ist es empfehlenswert für größere Projekte oder wenn man den Code t
 ### DOM-Zugriff: Die wichtigsten Bausteine
 
 Damit JavaScript mit der HTML-Seite „sprechen“ kann, braucht es Zugriff auf einzelne Elemente.
-Dieser Zugriff läuft über das sogenannte DOM (Document Object Model). 
+Dieser Zugriff läuft über das sogenannte [DOM (Document Object Model)](https://developer.mozilla.org/de/docs/Web/API/Document_Object_Model), das die HTML-Struktur als Baum abbildet und per JavaScript veränderbar macht.
 Hier sind die wichtigsten Bausteine:
 
 `id`:
@@ -286,9 +320,9 @@ Nun wollen wir das erlernte wissen auch einsetzen. Dazu nutzen wir unsere Lösun
 
 - [ER] Füge ein Eingabefeld und einen Button unter der Hauptüberschrift ein. Nach Eingabe eines Namens und einem Klick auf den Button soll sich der  Willkommenssatz darunter in „Willkommen bei der Softwareschmiede ProPy, [Name]!“ ändern. Nutze: `getElementById`, `value`,  `innerHTML` und `addEventListener`. Schreibe den JavaScript Code innerhalb des HTML-Dokuments mit dem `<script>` Tag.
 
-- [ER] Ergänze nun einen kleinen Besucherzähler mittels einer externen JavaScript Datei `jsEinfuehrung.js`. Dabei soll per Button bei jedem Klick der Zähler erhöht werden. Zeige auch die letzte Besucherzahl wenn man die Seite neu lädt per `localStorage`. Nutze außerdem noch `textContent`.
+- [ER] Setze die gleiche Funktionalität nun mit ausgelagerter JavaScript-Datei um. Der HTML-Code bleibt unverändert, aber der JavaScript-Code soll in eine separate Datei namens `jsEinfuehrung.js` ausgelagert werden.
 
-- [EQ] Erkläre den Unterschied zwischen `innerHTML` und `textContent` in JavaScript. Gib je ein Beispiel, in dem `innerHTML` sinnvoll ist, und eines, in dem `textContent` die bessere Wahl ist. Wann sollte man `innerHTML` vermeiden und warum?
+- [EQ] Untersuche den Unterschied zwischen innerHTML und textContent in JavaScript. Erkläre, wofür man die beiden Eigenschaften verwendet, und wann welche besser geeignet ist. Gib je ein Beispiel, in dem innerHTML sinnvoll ist, und eines, in dem textContent vorzuziehen ist. Erkläre auch, warum man innerHTML in manchen Fällen vermeiden sollte. Eine gute Einführung zu beiden Eigenschaften findest du in der MDN-Webdokumentation zu [innerHTML](https://developer.mozilla.org/de/docs/Web/API/Element/innerHTML) und [textContent](https://developer.mozilla.org/de/docs/Web/API/Node/textContent).
 
 
 [ENDSECTION]
