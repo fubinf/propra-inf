@@ -1,0 +1,248 @@
+title: Django Grundlagen und Installation
+stage: alpha
+timevalue: 2.0
+difficulty: 1
+---
+
+[SECTION::goal::idea,experience]
+Ich verstehe die Grundkonzepte von Django, kann Django installieren und kenne die 
+MTV-Architektur sowie die wichtigsten Anwendungsszenarien.
+[ENDSECTION]
+
+[SECTION::background::default]
+Webentwicklung mit reinem Python ist möglich, aber mühsam: Man muss HTTP-Requests parsen, 
+HTML generieren, Datenbanken anbinden und Sicherheitslücken vermeiden. 
+Web-Frameworks wie Django nehmen einem diese Arbeit ab und bieten bewährte Lösungen 
+für wiederkehrende Aufgaben.
+[ENDSECTION]
+
+[SECTION::instructions::detailed]
+
+### Was ist Django?
+
+Django ist ein in Python geschriebenes Open-Source-Web-Framework, das die schnelle 
+Entwicklung von vollständigen Webanwendungen ermöglicht. 
+Mit Django können Python-Entwickler mit wenig Code professionelle Websites erstellen, 
+die alle wichtigen Funktionen einer modernen Webanwendung bieten.
+
+Django folgt der Philosophie **"Don't Repeat Yourself" (DRY)** und bietet viele 
+eingebaute Funktionen, die Entwicklern helfen, sich auf die Geschäftslogik zu konzentrieren, 
+anstatt Grundfunktionen neu zu implementieren.
+
+Weitere Informationen finden Sie in der offiziellen Dokumentation: 
+[Django Overview](https://docs.djangoproject.com/en/stable/intro/overview/)
+
+[ER] Recherchieren Sie die aktuelle stabile Version von Django und notieren Sie diese.
+
+[ER] Nennen Sie drei große Websites, die Django verwenden. 
+Nutzen Sie dafür die Django-Website oder andere Quellen.
+<!-- time estimate: 15 min -->
+
+### Django-Philosophie und Kernprinzipien
+
+Django basiert auf mehreren wichtigen Designprinzipien:
+
+**DRY (Don't Repeat Yourself)**: Vermeidung von Code-Duplikation durch Wiederverwendung 
+von Komponenten wie Templates, Modellen und Views.
+
+**Convention over Configuration**: Django bietet sinnvolle Standardkonfigurationen 
+(z.B. automatisch generierte Admin-Oberfläche), um Entscheidungsaufwand zu reduzieren.
+
+**Rapid Development**: Schnelle Entwicklung von Prototypen bis hin zu produktionsreifen 
+Anwendungen.
+
+Mehr Details zu Django's Design-Philosophie: 
+[Django Design Philosophy](https://docs.djangoproject.com/en/stable/misc/design-philosophies/)
+
+[ER] Erklären Sie in eigenen Worten, was "Convention over Configuration" bedeutet 
+und geben Sie ein Beispiel aus Django.
+<!-- time estimate: 10 min -->
+
+### MTV-Architektur vs. MVC
+
+Django verwendet das **MTV (Model-Template-View)**-Muster, eine Variante des bekannten 
+**MVC (Model-View-Controller)**-Musters:
+
+**Model**: Verwaltet Daten und Geschäftslogik, kommuniziert mit der Datenbank.
+
+**Template**: Zuständig für die Darstellung, generiert HTML-Ausgabe.
+
+**View**: Fungiert als Controller, verarbeitet Requests und koordiniert Model und Template.
+
+**Ablauf in Django**:
+1. URL-Request wird an entsprechende View weitergeleitet (`urls.py`)
+2. View verarbeitet Request und ruft Model-Daten ab
+3. View übergibt Daten an Template
+4. Template rendert HTML und sendet Response zurück
+
+Vergleichen Sie mit der traditionellen MVC-Architektur: 
+[MVC vs MTV](https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/)
+
+[ER] Erstellen Sie eine Tabelle, die MVC und MTV gegenüberstellt und die Unterschiede 
+in der Rollenverteilung erklärt.
+<!-- time estimate: 20 min -->
+
+### Django's eingebaute Funktionen
+
+Django bietet zahlreiche eingebaute Features:
+
+| Funktion | Beschreibung |
+|----------|--------------|
+| **Admin Backend** | Automatisch generierte Verwaltungsoberfläche |
+| **ORM** | Object-Relational Mapping für Datenbankoperationen |
+| **Formular-Handling** | Eingebaute Validierung und CSRF-Schutz |
+| **Benutzer-Authentifizierung** | Login, Registrierung, Rechteverwaltung |
+| **URL-Routing** | Flexible URL-Zuordnung mit Regex-Unterstützung |
+| **Caching** | Unterstützung für Memcached, Redis etc. |
+
+Detaillierte Übersicht der Features: 
+[Django Features](https://www.djangoproject.com/start/overview/)
+
+[ER] Wählen Sie drei der genannten Funktionen aus und recherchieren Sie jeweils 
+ein konkretes Anwendungsbeispiel.
+<!-- time estimate: 15 min -->
+
+### Anwendungsszenarien für Django
+
+**Geeignet für Django**:
+- Content Management Systeme (CMS)
+- Social Media Plattformen
+- E-Commerce Websites
+- API-Backends (mit Django REST Framework)
+- Datengetriebene Webanwendungen
+
+**Weniger geeignet**:
+- Hochperformante Echtzeitsysteme
+- Sehr leichtgewichtige Microservices
+- Anwendungen mit extremen Performance-Anforderungen
+
+**Django vs. andere Frameworks**:
+- **Flask**: Leichtgewichtiger, mehr Flexibilität, weniger eingebaute Features
+- **FastAPI**: Fokus auf APIs, asynchrone Unterstützung, moderne Python-Features
+- **Ruby on Rails**: Ähnliche Philosophie, aber in Ruby
+
+[ER] Bewerten Sie, ob Django für folgende Projekte geeignet wäre und begründen Sie:
+1. Ein Online-Shop mit 10.000 Produkten
+2. Eine Chat-Anwendung mit Echtzeit-Messaging
+3. Ein Blog mit 50 Artikeln
+4. Eine REST-API für eine Mobile App
+<!-- time estimate: 20 min -->
+
+### Django Installation
+
+Bevor Sie Django installieren können, muss Python auf Ihrem System verfügbar sein. 
+Django unterstützt Python 3.8 oder höher.
+
+**Installation mit pip**:
+```bash
+pip install Django
+```
+
+**Spezifische Version installieren**:
+```bash
+pip install Django==4.2.7
+```
+
+**Installation mit Paketmanager (Linux)**:
+```bash
+# Ubuntu/Debian
+sudo apt-get install python3-django
+
+# CentOS/RHEL
+sudo yum install python3-django
+```
+
+Installationsanleitung: 
+[Django Installation Guide](https://docs.djangoproject.com/en/stable/topics/install/)
+
+[ER] Installieren Sie Django auf Ihrem System und dokumentieren Sie die verwendeten Befehle.
+
+[ER] Überprüfen Sie die Installation mit folgendem Python-Code und notieren Sie die Ausgabe:
+```python
+import django
+print(django.get_version())
+```
+<!-- time estimate: 15 min -->
+
+### Entwicklungsumgebung einrichten
+
+**Empfohlene Entwicklungstools**:
+- **VS Code** mit Python-Extension
+- **PyCharm** (Community oder Professional)
+- **Sublime Text** mit Python-Paketen
+
+**Virtuelle Umgebung erstellen** (empfohlen):
+```bash
+python -m venv django_env
+source django_env/bin/activate  # Linux/Mac
+django_env\Scripts\activate     # Windows
+pip install Django
+```
+
+**Erstes Django-Projekt erstellen**:
+```bash
+django-admin startproject meinprojekt
+cd meinprojekt
+python manage.py runserver
+```
+
+Nach dem Start sollte unter `http://127.0.0.1:8000/` die Django-Willkommensseite erscheinen.
+
+[ER] Erstellen Sie ein Django-Projekt namens `testprojekt` und starten Sie den 
+Entwicklungsserver. Machen Sie einen Screenshot der Willkommensseite.
+
+[ER] Erkunden Sie die Projektstruktur und listen Sie alle erstellten Dateien und 
+Ordner mit einer kurzen Beschreibung ihrer Funktion auf.
+<!-- time estimate: 25 min -->
+
+### Django-Projektstruktur verstehen
+
+Ein neues Django-Projekt hat folgende Struktur:
+```
+meinprojekt/
+    manage.py
+    meinprojekt/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+        asgi.py
+```
+
+**Wichtige Dateien**:
+- `manage.py`: Kommandozeilen-Tool für Projektverwaltung
+- `settings.py`: Konfigurationsdatei des Projekts
+- `urls.py`: URL-Routing-Konfiguration
+- `wsgi.py`/`asgi.py`: Deployment-Konfiguration für Webserver
+
+Mehr zur Projektstruktur: 
+[Django Project Structure](https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project)
+
+[ER] Öffnen Sie die `settings.py` Ihres Testprojekts und identifizieren Sie 
+fünf wichtige Konfigurationsoptionen. Erklären Sie deren Zweck.
+<!-- time estimate: 15 min -->
+[ENDSECTION]
+
+[SECTION::submission::program]
+[INCLUDE::/_include/Submission-Quellcode.md]
+Reichen Sie Ihre Installationsbefehle, Screenshots und Projektdateien ein.
+
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+Dokumentieren Sie Ihre Antworten zu den Recherche- und Analyseaufgaben.
+[ENDSECTION]
+
+[INSTRUCTOR::Lösungshinweise]
+Die Studierenden sollten:
+- Django erfolgreich installiert haben
+- Die MTV-Architektur verstehen
+- Ein funktionsfähiges Django-Projekt erstellt haben
+- Die Grundlagen der Django-Philosophie erklären können
+- Anwendungsszenarien bewerten können
+
+Typische Stolpersteine:
+- Python-Version-Kompatibilität
+- Virtuelle Umgebungen nicht verwendet
+- Firewall-Probleme beim Entwicklungsserver
+
+[INCLUDE::ALT:]
+[ENDINSTRUCTOR]
