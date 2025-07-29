@@ -169,7 +169,7 @@ def addiere(a, b):
 
 ```
 
-[EQ] Führen Sie noch einmal `git diff aus`. Was stellen Sie jetzt fest?
+[EQ] Führen Sie noch einmal `git diff` aus. Was stellen Sie jetzt fest?
 
 [EQ] Git speichert nur Snapshots der Dateien, wie erzeugt es denn die `git diff` Ausgabe?
 
@@ -177,7 +177,10 @@ Als wir das letzte bzw. erste Mal `git status` ausgeführt haben, gab es keine w
 Informationen zurück.
 Führen Sie den Befehl noch einmal aus und lesen Sie gründlich die Ausgabe.
 
-[EQ] Was hat sich seitdem verändert?
+[EQ] Was hat sich seitdem an der `git status`-Ausgabe verändert?
+
+[EQ] Wie kann man mit `git status` die spezifischen Änderungen anzeigen lassen, 
+die mit einem `git commit` festgeschrieben werden würden? 
 
 `git status` sollte ihnen jetzt außerdem einige Befehle zum Verwalten der Dateien im Index anbieten.
 
