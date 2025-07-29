@@ -241,8 +241,8 @@ Damit sind wir an dieser Stelle mit dem Großteil der Aufgabe fertig.
 
 ### Git-Historie
 
-Nicht selten wollen wir in Git aber nicht nur neue Änderungen hinzufügen und uns quasi Vorwärts 
-bewegen, sondern oft auch in die Vergangenheit schauen.
+Nicht selten wollen wir in Git aber nicht nur neue Änderungen hinzufügen und uns ausschließlich 
+Vorwärts bewegen, sondern oft auch in die Vergangenheit schauen.
 Vielleicht, um einen alten Zustand zu betrachten und ggf. auch wiederherzustellen oder einfach nur 
 um zu prüfen, was wir aktuell für Commits im Repository haben.
 
@@ -279,28 +279,28 @@ Wir sehen:
 3. Das Datum `Date:   Tue Apr 29 15:31:51 2025 +0200`
 4. Die Commit-Nachricht: `implemented addition`
 
-Aber man kann `git log` noch erweitern. Wenn Sie möchten, schauen Sie ruhig mal in die 
-Dokumentation. 
-Dort werden Sie sicherlich *eine Menge* an Optionen finden, von denen Sie viele aktuell 
-vermutlich nicht brauchen werden.
+Aber man kann `git log` noch erweitern bzw. anpassen. 
+Schauen Sie ruhig mal in die Dokumentation. 
+Dort werden Sie sicherlich *eine Menge* an Optionen finden, 
+von denen Sie viele aktuell vermutlich nicht brauchen werden.
 
 Zu Beginn gibt es jedoch trotzdem ein paar Optionen, die wir Ihnen mit an die Hand geben möchten.
 
-Zum einen gibt es `--oneline` damit wird schlichtweg ein Commit auf eine einzelne Zeile 
-reduziert. 
+Zum einen gibt es `--oneline`, damit wird schlichtweg ein Commit auf eine einzelne Zeile reduziert. 
 Dies kann vor allem bei ganz viel Historie hilfreich sein.
 
 Zum anderen gibt es `-p`, dadurch wird für jeden Commit ein sogenannter patch text erzeugt. 
 Einfach gesagt für jeden Commit ein diff auf alle files. 
 Streng genommen gibt es ein paar unterschiede zu `git diff`, welche das genau sind, können sie 
 in der `git log` Doku nachlesen. 
-Für unsere Zwecke sind die beiden Befehle in diesem Fall aber vorerst mehr oder weniger synonym.
+Für unsere Zwecke sind die beiden Befehle in diesem Fall aber vorerst mehr oder weniger identisch.
 
 Manchmal ist es hilfreich, sich alle Commits anzeigen zu lassen, in denen eine bestimmte Datei 
 verändert wird. 
-Dazu kann man einfach an seinen `git log` Befehl den vollständigen Dateipfad anhängen. 
-So kann man sich z.b. mit `git log -p path/to/file` alle Veränderungen der Datei 
-`file` im Verzeichnis `path/to` anschauen.
+Dazu kann man einfach an seinen `git log`-Befehl den relativen Dateipfad anhängen.
+
+[EQ] Wie würde der `git log`-Befehl aussehen um alle Commits und deren Änderungen an unserer 
+`calculator.py`-Datei anzuzeigen?
 
 In größeren Repos ist es öfter nützlich, mithilfe des Datums Commits zu suchen, dazu stellt `git 
 log` einige Befehle bereit. 
@@ -311,6 +311,9 @@ Außerdem praktisch ist das Suchen nach einem bestimmten Autor.
 Dafür gibt es `git log --author="Jane Doe"` oer `git log --author=Jane` womit man entweder den 
 gesamten oder nur einen Teilstring matcht. 
 Das ist vor allem Hilfreich, wenn man mit mehreren Personen am gleichen Repository arbeitet.
+
+Mit der Zeit werden Sie noch weitere nützliche `git log` Optionen kennenlernen und diese immer 
+weiter ihren eigenen Bedürfnissen anpassen.
 [ENDSECTION]
 
 [SECTION::submission::trace]
