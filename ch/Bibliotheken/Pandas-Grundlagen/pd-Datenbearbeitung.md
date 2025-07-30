@@ -10,7 +10,7 @@ requires: pd-Datenselektion
 [SECTION::goal::idea]
 Ich verstehe, wie man Daten in Pandas korrekt bearbeitet.
 
-Ich kenne den Unterschied zwischen Views und Copies und weiß sauber damit zu arbeiten.
+Ich kenne den Unterschied zwischen `View` und `Copy` und weiß sauber damit zu arbeiten.
 [ENDSECTION]
 
 
@@ -70,7 +70,7 @@ subset2.loc[:, "Wahlbezirk"] = -1
 
 [EQ] Beide Beispiele nehmen eine Teilmenge des originalen `DataFrame` und bearbeiten diese.
 Übernehmen Sie diese beiden Beispiele und betrachten Sie `ertstimmen_df`.
-Bei welcher Teilmenge handelt es sich um eine wahre Kopie und bei welchem um eine View?
+Bei welcher Teilmenge handelt es sich um eine wahre Kopie und bei welchem um eine `View`?
 
 Mit großer Wahrscheinlichkeit ist es für Sie nicht gerade ersichtlich wieso sich die beiden
 Beispiele unterschiedlich verhalten.
@@ -79,13 +79,13 @@ Und tatsächlich lässt sich das auch schwer vorraussagen.
 [ER] Wenn Sie sicher gehen wollen, dass ein neues `DataFrame` erstellt wird, können Sie die Methode 
 [`copy()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.copy.html#pandas.DataFrame.copy) 
 verwenden.
-Ändern Sie das Beispiel, welches zuvor eine View war, mit dieser Methode so ab, 
+Ändern Sie das Beispiel, welches zuvor eine `View` war, mit dieser Methode so ab, 
 dass das originale `DataFrame` nicht mitbearbeitet wird.
 
 [EQ] In der Dokumentation von `copy()`, werden `Shallow Copy` und `Deep Copy` erwähnt.
 Erklären Sie den Unterschied zwischen diesen beiden Arten einer `Copy`.
 
-[EQ] Wieso denken Sie gibt es überhaupt Views in Pandas, 
+[EQ] Wieso denken Sie gibt es überhaupt `View`s in Pandas, 
 wenn es zu so einem unvorhersehbaren Verhalten mit Nebeneffekten führt?
 
 # `SettingWithCopyWarning`
@@ -93,7 +93,7 @@ wenn es zu so einem unvorhersehbaren Verhalten mit Nebeneffekten führt?
 Nun wäre es allerdings recht aufwending, bei jeder Operation ein `copy()` ranzuhängen,
 nur um sicher zu gehen, dass keine Nebeneffekte entstehen.
 Hier soll die `SettingWithCopyWarning` Abhilfe schaffen. 
-Es ist eine Warnung von Pandas, dass eine Zuweisung auf einem potenziellen View gemacht wurde –
+Es ist eine Warnung von Pandas, dass eine Zuweisung auf einem potenziellen `View` gemacht wurde –
 wodurch nicht klar ist, ob das Original verändert wird oder nicht.
 
 Wenn Sie eine solche Warnung bekommen, sollten Sie Ihre Ausdrücke dementsprechend umformulieren bzw.
@@ -143,6 +143,6 @@ Sie signalisiert potenziell fehleranfällige Operationen.
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Copy und View verstanden?]
-Hinweise an die Tutoren zur Aufgabenkorrektur
+[INSTRUCTOR::`Copy` und `View` verstanden?]
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]

@@ -105,7 +105,7 @@ Ein beispielhafter Query-Filter könnte so aussehen:
 
 [ER] Schauen Sie sich die 
 [Dokumentation zu query()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query) 
-an und setzen Sie [EREFC::6] mit Hilfe der `query()`-Funktion um.
+an und setzen Sie [EREFR::6] mit Hilfe der `query()`-Funktion um.
 
 [NOTICE]
 Wenn der Spaltenname für `query()` Sonderzeichen oder Leerzeichen enthält, muss der Spaltenname mit
@@ -118,7 +118,7 @@ Strings hingegen können mit `'` umklammert werden:
 `dataframe.query("columnname == 'Beispielstring'")`
 [ENDNOTICE]
 
-[ER] Setzen Sie [EREFC::7] mit Hilfe der `query()`-Funktion um.
+[ER] Setzen Sie [EREFR::7] mit Hilfe der `query()`-Funktion um.
 
 
 ### `filter()`
