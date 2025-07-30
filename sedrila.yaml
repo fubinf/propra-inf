@@ -178,6 +178,7 @@ chapters:
       - name: Frameworks
       - name: Dokumentation
       - name: Pandas-Grundlagen
+      - name: Matplotlib-Grundlagen
   - name: Testen
     taskgroups:
       - name: Testgrundlagen
