@@ -1,5 +1,5 @@
 title: SQL BETWEEN, SELECT INTO, CREATE DATABASE, Datumsfunktionen, NULL-Funktionen, TRUNCATE, INDEX
-stage: draft
+stage: alpha
 timevalue: 2.5
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2
@@ -7,7 +7,7 @@ assumes: sql-basics, sql-SELECT, sql-SELECT2
 
 [SECTION::goal::idea,experience]
 
-- Ich kann mit `BETWEEN` Wertebereiche abfragen und Daten mit `CREATE TABLE AS SELECT` kopieren.
+- Ich kann Wertebereiche abfragen und Daten aus bestehenden Abfragen in neue Tabellen übernehmen.
 - Ich verstehe Datumsfunktionen und kann NULL-Werte behandeln.
 - Ich kann Tabellen leeren und Indizes verwalten.
 [ENDSECTION]
@@ -34,7 +34,6 @@ Erstellen Sie zunächst eine neue Tabelle für diese Aufgabe.
 `name TEXT`, `url TEXT`, `alexa INTEGER`, `country TEXT` und fügen Sie folgende Daten ein:
 
 ```sql
-INSERT INTO websites (id, name, url, alexa, country) VALUES
 (1, 'Google', 'https://www.google.com/', 1, 'USA'),
 (2, 'Taobao', 'https://www.taobao.com/', 13, 'CN'),
 (3, 'Runoob', 'http://www.runoob.com/', 5000, 'USA'),
@@ -47,12 +46,12 @@ Der `BETWEEN`-Operator ermöglicht es, Datensätze auszuwählen, deren Werte in 
 bestimmten Bereich liegen. Die Syntax lautet:
 
 ```sql
-SELECT spalte1, spalte2, ...
-FROM tabellenname
-WHERE spalte BETWEEN wert1 AND wert2;
+SELECT mycol1, mycol2, ...
+FROM mytable
+WHERE mycol BETWEEN myvalue1 AND myvalue2;
 ```
 
-[EQ] `BETWEEN` schließt in SQLite beide Grenzwerte ein. Das bedeutet, 
+`BETWEEN` schließt in SQLite beide Grenzwerte ein. Das bedeutet, 
 `WHERE alter BETWEEN 18 AND 65` findet sowohl 18-Jährige als auch 65-Jährige.
 
 Weitere Infos: 
@@ -85,7 +84,6 @@ Erstellen Sie eine neue Tabelle für Datumsoperationen:
 `site_id INTEGER`, `count INTEGER`, `date TEXT` und fügen Sie folgende Daten ein:
 
 ```sql
-INSERT INTO access_log (aid, site_id, count, date) VALUES
 (1, 1, 45, '2016-05-10'),
 (2, 3, 100, '2016-05-13'),
 (3, 1, 230, '2016-05-14'),
@@ -122,23 +120,42 @@ Verwenden Sie `ROUND()`, um auf ganze Tage zu runden.
 SQLite speichert Daten als TEXT, REAL oder INTEGER. Für Datumsoperationen konvertiert es 
 automatisch zwischen verschiedenen Formaten. Das Format 'YYYY-MM-DD' wird empfohlen.
 [ENDNOTICE]
-<!-- time estimate: 30 min -->
+<!-- time estimate: 25 min -->
 
 
-### Daten kopieren: `CREATE TABLE AS SELECT`
+### Daten kopieren: `SELECT INTO`
 
-SQLite unterstützt `SELECT INTO` nicht direkt, aber wir können ähnliche Funktionalität 
-mit `CREATE TABLE AS SELECT` erreichen:
+`SELECT INTO` ist eine SQL-Konstruktion, die es ermöglicht, Daten aus einer 
+bestehenden Tabelle in eine neue Tabelle zu kopieren. Die allgemeine Syntax 
+lautet:
 
 ```sql
-CREATE TABLE neue_tabelle AS
-SELECT spalte1, spalte2, ...
-FROM alte_tabelle
-WHERE bedingung;
+SELECT mycol1, mycol2, ...
+INTO mynewtable
+FROM myoldtable
+WHERE mycondition;
 ```
 
-Weitere Infos: 
-[`CREATE TABLE AS`](https://www.sqltutorial.org/sql-create-table/)
+Diese Anweisung erstellt automatisch eine neue Tabelle mit dem Namen `mynewtable` 
+und kopiert die ausgewählten Spalten und Zeilen aus `myoldtable` hinein. Die 
+Struktur der neuen Tabelle wird dabei automatisch von den ausgewählten Spalten 
+abgeleitet. Weitere Infos: 
+[`SELECT INTO`](https://www.w3schools.com/sql/sql_select_into.asp)
+
+
+**Wichtiger Hinweis:** SQLite unterstützt `SELECT INTO` nicht direkt. In SQLite 
+wird stattdessen `CREATE TABLE AS SELECT` verwendet, um ähnliche Funktionalität 
+zu erreichen:
+
+```sql
+CREATE TABLE mynewtable AS
+SELECT mycol1, mycol2, ...
+FROM myoldtable
+WHERE mycondition;
+```
+
+Die Syntax ist einfach und intuitiv, da sie die vertraute `SELECT`-Anweisung 
+um die `INTO`-Klausel erweitert, die das Ziel für die kopierten Daten angibt.
 
 [ER] Erstellen Sie eine neue Tabelle `websites_backup`, die alle Daten aus `websites` enthält.
 
@@ -147,7 +164,13 @@ Weitere Infos:
 [ER] Kopieren Sie alle Zugriffe mit mehr als 100 Zugriffen in eine neue Tabelle `high_traffic`.
 
 [NOTICE]
-In anderen Datenbanksystemen wie SQL Server würde man `SELECT INTO` verwenden. 
+`SELECT INTO` wird hauptsächlich in anderen Datenbanksystemen wie Microsoft SQL 
+Server, MySQL oder PostgreSQL verwendet und ist besonders nützlich für:
+
+- Schnelle Kopien von Tabellendaten für Backup-Zwecke
+- Erstellung von Arbeits- oder Testtabellen
+- Datenarchivierung mit spezifischen Filterkriterien
+
 In MySQL nutzt man `INSERT INTO ... SELECT` für ähnliche Zwecke.
 [ENDNOTICE]
 <!-- time estimate: 20 min -->
@@ -162,12 +185,12 @@ SQLite bietet verschiedene Funktionen zum Umgang mit NULL-Werten:
 - `NULLIF(wert1, wert2)` – gibt NULL zurück, wenn beide Werte gleich sind
 
 ```sql
-SELECT COALESCE(spalte, 'Standard') FROM tabelle;
-SELECT IFNULL(spalte, 0) FROM tabelle;
+SELECT COALESCE(mycol, 'Standard') FROM mytable;
+SELECT IFNULL(mycol, 0) FROM mytable;
 ```
 
 Weitere Infos: 
-[`Null Functions`](https://www.w3schools.com/sql/sql_isnull.asp)
+[`NULL Functions`](https://www.w3schools.com/sql/sql_isnull.asp)
 
 [ER] Fügen Sie einen Website-Eintrag mit NULL-Werten hinzu: 
 `INSERT INTO websites (id, name, url, alexa, country) VALUES (8, 'Test', NULL, NULL, 'DE');`
@@ -178,7 +201,7 @@ Weitere Infos:
 
 [ER] Verwenden Sie `NULLIF`, um alle `alexa`-Werte von 0 in NULL umzuwandeln.
 
-[EQ] Diese NULL-Funktionen sind besonders nützlich bei Berechnungen und Berichten, 
+Diese NULL-Funktionen sind besonders nützlich bei Berechnungen und Berichten, 
 da sie verhindern, dass NULL-Werte zu unerwarteten Ergebnissen führen.
 <!-- time estimate: 20 min -->
 
@@ -190,21 +213,18 @@ existiert nicht direkt, aber wir können das Konzept verstehen.
 
 In anderen Datenbanksystemen:
 ```sql
-CREATE DATABASE meine_datenbank;
+CREATE DATABASE mydatabase;
 ```
 
-[ER] Recherchieren Sie in der 
-[SQLite-Dokumentation](https://www.w3schools.com/sql/sql_create_db.asp), 
+[EQ] Recherchieren Sie in der 
+[SQLite-Dokumentation](https://www.sqlite.org/quickstart.html?), 
 wie man eine neue SQLite-Datenbankdatei erstellt.
-
-[ER] Notieren Sie den Unterschied zwischen SQLite und anderen Datenbanksystemen 
-bezüglich der Datenbankerstellung.
 
 [NOTICE]
 SQLite erstellt automatisch eine Datenbankdatei, wenn sie nicht existiert. 
 In anderen Systemen wie MySQL oder PostgreSQL verwendet man `CREATE DATABASE`.
 [ENDNOTICE]
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 
 ### Tabellen leeren: `TRUNCATE TABLE` und Alternativen
@@ -212,18 +232,18 @@ In anderen Systemen wie MySQL oder PostgreSQL verwendet man `CREATE DATABASE`.
 SQLite unterstützt `TRUNCATE TABLE` nicht direkt. Stattdessen verwendet man:
 
 ```sql
-DELETE FROM tabellenname;
+DELETE FROM mytable;
 -- oder für bessere Performance bei großen Tabellen:
-DROP TABLE IF EXISTS tabellenname;
-CREATE TABLE tabellenname (...);
+DROP TABLE IF EXISTS mytable;
+CREATE TABLE mytable (...);
 ```
 
 In anderen Datenbanksystemen:
 ```sql  
-TRUNCATE TABLE tabellenname;
+TRUNCATE TABLE mytable;
 ```
 
-[ER] Leeren Sie die Tabelle `access_log` mit `DELETE FROM access_log;`
+[ER] Leeren Sie die Tabelle `access_log`.
 
 [ER] Erstellen Sie die Tabelle `access_log` mit den ursprünglichen Daten neu 
 und vergleichen Sie visuell, wie schnell die verschiedenen Methoden sind.
@@ -240,9 +260,10 @@ und die Tabellendefinition behält, aber alle Daten entfernt.
 Indizes beschleunigen Abfragen, benötigen aber zusätzlichen Speicherplatz:
 
 ```sql
-CREATE INDEX indexname ON tabellenname (spaltenname);
-CREATE UNIQUE INDEX indexname ON tabellenname (spaltenname);
-DROP INDEX indexname;
+CREATE INDEX myindex ON mytable (mycol);
+-- eindeutigen Index mit UNIQUE
+CREATE UNIQUE INDEX myindex ON mytable (mycol);
+DROP INDEX myindex;
 ```
 
 Weitere Infos: 
@@ -250,15 +271,7 @@ Weitere Infos:
 
 [ER] Erstellen Sie einen Index auf der `alexa`-Spalte der `websites`-Tabelle:
 
-```sql
-CREATE INDEX idx_alexa ON websites (alexa);
-```
-
 [ER] Erstellen Sie einen eindeutigen Index auf der `name`-Spalte:
-
-```sql
-CREATE UNIQUE INDEX idx_name ON websites (name);
-```
 
 [ER] Testen Sie die Abfragelogik: Führen Sie `SELECT * FROM websites WHERE alexa = 1` 
 aus und beobachten Sie, dass die Abfrage korrekt funktioniert.
@@ -268,12 +281,12 @@ aus und beobachten Sie, dass die Abfrage korrekt funktioniert.
 [ER] Verwenden Sie die Abfrage `SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = 'websites';` 
 um zu sehen, welche Indizes noch existieren.
 
-[HINT::Index-Performance]
+[NOTICE]
 Bei kleinen Tabellen ist der Performance-Unterschied kaum messbar. 
 Indizes zeigen ihre Vorteile erst bei größeren Datenmengen (> 1000 Zeilen).
-[ENDHINT]
+[ENDNOTICE]
 
-[EQ] Ein Index ist wie ein Inhaltsverzeichnis in einem Buch: 
+Ein Index ist wie ein Inhaltsverzeichnis in einem Buch: 
 Er hilft dabei, bestimmte Informationen schneller zu finden, 
 ohne die gesamte Tabelle durchsuchen zu müssen.
 <!-- time estimate: 25 min -->
