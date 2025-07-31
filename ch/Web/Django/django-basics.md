@@ -1,7 +1,7 @@
 title: Django Grundlagen und Installation
 stage: alpha
 timevalue: 2.0
-difficulty: 1
+difficulty: 2
 ---
 
 [SECTION::goal::idea,experience]
@@ -28,13 +28,10 @@ die alle wichtigen Funktionen einer modernen Webanwendung bieten.
 Django folgt der Philosophie **"Don't Repeat Yourself" (DRY)** und bietet viele 
 eingebaute Funktionen, die Entwicklern helfen, sich auf die Geschäftslogik zu konzentrieren, 
 anstatt Grundfunktionen neu zu implementieren.
-
 Weitere Informationen finden Sie in der offiziellen Dokumentation: 
 [Django Overview](https://docs.djangoproject.com/en/stable/intro/overview/)
 
-[ER] Recherchieren Sie die aktuelle stabile Version von Django und notieren Sie diese.
-
-[ER] Nennen Sie drei große Websites, die Django verwenden. 
+[EQ] Nennen Sie drei große Websites, die Django verwenden. 
 Nutzen Sie dafür die Django-Website oder andere Quellen.
 <!-- time estimate: 15 min -->
 
@@ -54,8 +51,7 @@ Anwendungen.
 Mehr Details zu Django's Design-Philosophie: 
 [Django Design Philosophy](https://docs.djangoproject.com/en/stable/misc/design-philosophies/)
 
-[ER] Erklären Sie in eigenen Worten, was "Convention over Configuration" bedeutet 
-und geben Sie ein Beispiel aus Django.
+[EQ] Erklären Sie in eigenen Worten, was "Convention over Configuration" bedeutet.
 <!-- time estimate: 10 min -->
 
 ### MTV-Architektur vs. MVC
@@ -70,17 +66,15 @@ Django verwendet das **MTV (Model-Template-View)**-Muster, eine Variante des bek
 **View**: Fungiert als Controller, verarbeitet Requests und koordiniert Model und Template.
 
 **Ablauf in Django**:
-1. URL-Request wird an entsprechende View weitergeleitet (`urls.py`)
-2. View verarbeitet Request und ruft Model-Daten ab
-3. View übergibt Daten an Template
-4. Template rendert HTML und sendet Response zurück
+
+- URL-Request wird an entsprechende View weitergeleitet (`urls.py`)
+- View verarbeitet Request und ruft Model-Daten ab
+- View übergibt Daten an Template
+- Template rendert HTML und sendet Response zurück
 
 Vergleichen Sie mit der traditionellen MVC-Architektur: 
 [MVC vs MTV](https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/)
 
-[ER] Erstellen Sie eine Tabelle, die MVC und MTV gegenüberstellt und die Unterschiede 
-in der Rollenverteilung erklärt.
-<!-- time estimate: 20 min -->
 
 ### Django's eingebaute Funktionen
 
@@ -98,13 +92,14 @@ Django bietet zahlreiche eingebaute Features:
 Detaillierte Übersicht der Features: 
 [Django Features](https://www.djangoproject.com/start/overview/)
 
-[ER] Wählen Sie drei der genannten Funktionen aus und recherchieren Sie jeweils 
+[EQ] Recherchieren Sie für **Admin Backend**, **ORM**, **Formular-Handling** jeweils 
 ein konkretes Anwendungsbeispiel.
-<!-- time estimate: 15 min -->
+<!-- time estimate: 25 min -->
 
 ### Anwendungsszenarien für Django
 
 **Geeignet für Django**:
+
 - Content Management Systeme (CMS)
 - Social Media Plattformen
 - E-Commerce Websites
@@ -112,16 +107,19 @@ ein konkretes Anwendungsbeispiel.
 - Datengetriebene Webanwendungen
 
 **Weniger geeignet**:
+
 - Hochperformante Echtzeitsysteme
 - Sehr leichtgewichtige Microservices
 - Anwendungen mit extremen Performance-Anforderungen
 
 **Django vs. andere Frameworks**:
+
 - **Flask**: Leichtgewichtiger, mehr Flexibilität, weniger eingebaute Features
 - **FastAPI**: Fokus auf APIs, asynchrone Unterstützung, moderne Python-Features
 - **Ruby on Rails**: Ähnliche Philosophie, aber in Ruby
 
-[ER] Bewerten Sie, ob Django für folgende Projekte geeignet wäre und begründen Sie:
+[EQ] Bewerten Sie, ob Django für folgende Projekte geeignet wäre und begründen Sie:
+
 1. Ein Online-Shop mit 10.000 Produkten
 2. Eine Chat-Anwendung mit Echtzeit-Messaging
 3. Ein Blog mit 50 Artikeln
@@ -138,7 +136,7 @@ Django unterstützt Python 3.8 oder höher.
 pip install Django
 ```
 
-**Spezifische Version installieren**:
+**Spezifische Version installieren (hier z.B. 4.2.7)**:
 ```bash
 pip install Django==4.2.7
 ```
@@ -152,8 +150,8 @@ sudo apt-get install python3-django
 sudo yum install python3-django
 ```
 
-Installationsanleitung: 
-[Django Installation Guide](https://docs.djangoproject.com/en/stable/topics/install/)
+weitere Installationsanleitung: 
+[Django Installation Guide](https://www.w3schools.com/django/django_install_django.php)
 
 [ER] Installieren Sie Django auf Ihrem System und dokumentieren Sie die verwendeten Befehle.
 
@@ -162,11 +160,12 @@ Installationsanleitung:
 import django
 print(django.get_version())
 ```
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Entwicklungsumgebung einrichten
 
 **Empfohlene Entwicklungstools**:
+
 - **VS Code** mit Python-Extension
 - **PyCharm** (Community oder Professional)
 - **Sublime Text** mit Python-Paketen
@@ -186,14 +185,24 @@ cd meinprojekt
 python manage.py runserver
 ```
 
-Nach dem Start sollte unter `http://127.0.0.1:8000/` die Django-Willkommensseite erscheinen.
+**Häufige Probleme beim Starten des Servers**:
+
+**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
+```bash
+python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
+```
+
+**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
+```bash
+python manage.py runserver 8080  # Server auf einem alternativen Port starten
+```
+
+Nach dem Start sollte unter `http://127.0.0.1:8000/` oder `http://127.0.0.1:8080/` die Django-Willkommensseite erscheinen.
 
 [ER] Erstellen Sie ein Django-Projekt namens `testprojekt` und starten Sie den 
-Entwicklungsserver. Machen Sie einen Screenshot der Willkommensseite.
+Entwicklungsserver. 
 
-[ER] Erkunden Sie die Projektstruktur und listen Sie alle erstellten Dateien und 
-Ordner mit einer kurzen Beschreibung ihrer Funktion auf.
-<!-- time estimate: 25 min -->
+<!-- time estimate: 15 min -->
 
 ### Django-Projektstruktur verstehen
 
@@ -210,6 +219,7 @@ meinprojekt/
 ```
 
 **Wichtige Dateien**:
+
 - `manage.py`: Kommandozeilen-Tool für Projektverwaltung
 - `settings.py`: Konfigurationsdatei des Projekts
 - `urls.py`: URL-Routing-Konfiguration
@@ -218,21 +228,22 @@ meinprojekt/
 Mehr zur Projektstruktur: 
 [Django Project Structure](https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project)
 
-[ER] Öffnen Sie die `settings.py` Ihres Testprojekts und identifizieren Sie 
-fünf wichtige Konfigurationsoptionen. Erklären Sie deren Zweck.
+[ER] Erkunden Sie die Projektstruktur und listen Sie alle erstellten Dateien und 
+Ordner.
 <!-- time estimate: 15 min -->
 [ENDSECTION]
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
-Reichen Sie Ihre Installationsbefehle, Screenshots und Projektdateien ein.
+Reichen Sie Ihre Installationsbefehle und Projektdateien ein.
 
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 Dokumentieren Sie Ihre Antworten zu den Recherche- und Analyseaufgaben.
 [ENDSECTION]
 
-[INSTRUCTOR::Lösungshinweise]
+[INSTRUCTOR::Kontrollergebnisse]
 Die Studierenden sollten:
+
 - Django erfolgreich installiert haben
 - Die MTV-Architektur verstehen
 - Ein funktionsfähiges Django-Projekt erstellt haben
@@ -240,6 +251,7 @@ Die Studierenden sollten:
 - Anwendungsszenarien bewerten können
 
 Typische Stolpersteine:
+
 - Python-Version-Kompatibilität
 - Virtuelle Umgebungen nicht verwendet
 - Firewall-Probleme beim Entwicklungsserver

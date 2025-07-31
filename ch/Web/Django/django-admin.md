@@ -1,5 +1,5 @@
 title: Django django-admin Kommandozeilen-Tool
-stage: alpha
+stage: draft
 timevalue: 2.0
 difficulty: 2
 assumes: django-basics, django-project

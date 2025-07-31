@@ -1,5 +1,5 @@
 title: Django Erstes Projekt erstellen und konfigurieren
-stage: alpha
+stage: draft
 timevalue: 2.5
 difficulty: 2
 assumes: django-basics
