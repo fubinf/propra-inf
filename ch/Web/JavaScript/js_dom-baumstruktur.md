@@ -24,8 +24,8 @@ Dieses Kapitel zeigt, wie man gezielt mit der Seitenstruktur (DOM) arbeitet und 
 ### Der DOM als Baumstruktur
 
 Jede HTML-Seite wird vom Browser intern als Baumstruktur dargestellt. 
-Die Wurzel ist das `document`, darunter folgen `html`, `head`, `body`, und so weiter. 
-Jeder Tag ist ein Knoten im Baum.
+Die Wurzel ist dabei das `document`, darunter folgen `html`, `head`, `body`, und so weiter. 
+Jeder Tag ist ein Knoten im DOM-Baum.
 Beispiel:
 
 ```
@@ -50,7 +50,7 @@ console.log(absatz.children);   // gibt [<strong>] aus
 
 Einige Elemente sind auch direkt verfügbar, beispielsweise `document.body`.
 
-[EQ] Es gibt noch weitere Möglichkeiten, Elemente zu finden. Nennen Sie drei und geben Sie Beispiele
+[EQ] Es gibt noch weitere Möglichkeiten, Elemente zu finden. Nennen drei und geben ein Beispiele
 für die jeweilige Verwendung.
 
 ### DOM gezielt verändern
@@ -67,7 +67,7 @@ li.textContent = "Neuer Eintrag";
 const liste = document.getElementById("meineListe");
 liste.appendChild(li);
 ```
-Praktisch für dynamische Listen
+Diese Methode eignet sich sehr gut für dynamische Listen.
 
 `.remove()` – Elemente löschen:
 
@@ -77,9 +77,9 @@ Damit kannst du einen DOM-Knoten entfernen:
 const hinweis = document.getElementById("hinweisText");
 hinweis.remove();
 ```
-Das betroffene Element verschwindet vollständig von der Seite.
+Das betroffene Element verschwindet dabei vollständig von der Seite.
 
-[ER] Erweitere die bestehende HTML-Seite aus `Erste Schritte in JavaScript und DOM` im Bereich "Unsere Leistungen" zu einer interaktiven Liste: Füge ein Eingabefeld und einen Button hinzu, mit dem man neue Leistungen hinzufügen kann. Der Text im Eingabefeld soll als neuer `<li>` zur Liste unter "Unsere Leistungen" hinzugefügt werden. Jeder Listenpunkt, der hinzugefügt wurde, soll einen kleinen "Entfernen"-Button erhalten, mit dem man den jeweiligen Punkt löschen kann.
+[ER] Erweitere die bestehende HTML-Seite aus `Erste Schritte in JavaScript und DOM` im Bereich "Unsere Leistungen" zu einer interaktiven Liste: Füge ein Eingabefeld und einen Button hinzu, mit dem man neue Leistungen hinzufügen kann. Der Text im Eingabefeld soll als neuer `<li>` zur Liste unter "Unsere Leistungen" hinzugefügt werden. Jeder Listenpunkt, der hinzugefügt wurde, soll einen kleinen "Entfernen"-Button erhalten, mit dem man den jeweiligen Listenpunkt wieder löschen kann.
 
 [HINT::Verschachtelte_Liste]
 Die vorhandene HTML-Struktur enthält untergeordnete Listen (z. B. Bibliotheken innerhalb von "Programme nach Ihren Wünschen").

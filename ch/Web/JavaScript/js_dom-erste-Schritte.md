@@ -1,6 +1,6 @@
 title: Erste Schritte in JavaScript und DOM
 stage: alpha
-timevalue: 1.0
+timevalue: 1.5
 difficulty: 2
 <!-- assumes: TODO-html-id-und-eigenschaften -->
 requires: html-Formulare 
