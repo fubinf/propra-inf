@@ -1,6 +1,6 @@
 title: "Aufbereitung von Datensätzen"
-stage: draft
-timevalue: 1.0
+stage: alpha
+timevalue: 1.25
 difficulty: 2
 explains:
 assumes:
@@ -31,7 +31,7 @@ Wer auf dieser Seite rumstöbert wird wahrscheinlich schnell überfordert sein m
 Daten und den teilweise kryptischen Bezeichnungen.
 Wir beschäftigen uns hier mit den
 [historischen Daten der Dahlem-Dorf Wetterstation](https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/monthly/kl/historical/monatswerte_KL_00400_18890101_20241231_hist.zip)
-von 1719 bis Ende 2024!
+von 1719 bis Ende 2024.
 
 Erstellen Sie einen Ordner `wetter-dahlem` im [TERMREF::Hilfsbereich],
 laden Sie die Daten herunter und extrahieren Sie diese in den erstellen Ordner.
@@ -51,9 +51,10 @@ die `STATIONS_ID` gibt an um welche Station es sich handelt und
 
 [EQ] Die anderen Spalten (`QN_4 ... MX_RS`) haben eher kryptische Namen und daher ist nicht direkt
 klar um was für Messungen es sich hier handelt.
-Finden Sie mit Hilfe der [TERMREF:Metadaten] (die anderen Dateien und 
+Finden Sie mit Hilfe der [TERMREF::Metadaten] (die anderen Dateien und 
 [hier](https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/monthly/kl/BESCHREIBUNG_obsgermany-climate-monthly-kl_de.pdf)) 
-heraus, was in diesen Spalten gespeichert wird (Parameterbeschreibung).
+heraus, was in diesen Spalten gespeichert wird.
+Geben Sie für `MO_N`, `MO_TT`, `MO_FK` und `MO_RR` an, was in diesen gespeichert ist.
 
 [NOTICE]
 Die Spalte `eor` wird nicht erklärt, es handelt sich hierbei um einen Indikator um das Zeilende
@@ -67,7 +68,7 @@ Sie wissen nun also das es sich hierbei um regelmäßige Messungen der genannten
 Außerdem komisch, wie viele Werte in den ersten Jahren der Messungen `-999` als Wert haben.
 Wofür steht hier `-999` wahrscheinlich?
 
-[EQ] Können Sie Ihre Vermutung mit Hilfe der Metadaten bestätigen? Wenn ja mit welchen?
+[EQ] Können Sie Ihre Vermutung mit Hilfe der Metadaten bestätigen? Falls ja mit welcher Datei?
 
 # Spalten bearbeiten
 
@@ -86,7 +87,7 @@ Eine sinnvolle Benennung für das Mittel der Minimum-Lufttemperatur in Celsius w
 [ENDNOTICE]
 
 [ER] Die Spalte `eor` ist für uns nicht relevant. 
-Entfernen Sie diese aus dem `wetter_df` mithilfe von `loc`.
+Entfernen Sie diese aus dem `wetter_df` mithilfe von `iloc()` oder `loc()`.
 
 [ER] Es gibt auch Methoden die extra für diese Zwecke gedacht sind.
 Entfernen Sie `STATIONS_ID` mit der Methode 
@@ -109,5 +110,5 @@ In der nächsten Aufgabe lernen Sie, das DataFrame richtig zu bereinigen.
 [ENDSECTION]
 
 [INSTRUCTOR::Kann sich in den Datensatz einarbeiten]
-Hinweise an die Tutoren zur Aufgabenkorrektur
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]

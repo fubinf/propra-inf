@@ -24,7 +24,7 @@ qualitativ gute Grundlage an Daten, können auch keine guten Analysen gemacht we
 
 Fahren Sie mit dem aufbereiteten `wetter_df` aus der vorherigen Aufgabe fort.
 
-Zur [TERMREF::Datenbereinigung] gehören verschiedene Verfahren zum Entfernen und Korrigieren 
+Zur Datenbereinigung gehören verschiedene Verfahren zum Entfernen und Korrigieren 
 von Daten.
 Die Fehler können beispielsweise aus falschen, veralteten, redundanten, inkonsistenten oder falsch
 formatierten Daten bestehen.
