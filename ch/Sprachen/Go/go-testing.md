@@ -80,6 +80,8 @@ func TestSomeFunction(t *testing.T) {
 - `t.FailNow()`
 - `t.Fatal()`
 
+[Link zur Dokumentation](https://pkg.go.dev/testing)
+
 
 #### Run() und Parallel()
 
