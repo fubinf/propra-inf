@@ -1,16 +1,16 @@
 title: "Bereinigen von Daten"
-stage: draft
-timevalue: 0.1
-difficulty: 2
+stage: alpha
+timevalue: 1.25
+difficulty: 3
 explains:
 assumes:
 requires: pd-Datenaufbereitung
 ---
 
-[SECTION::goal::product]
+[SECTION::goal::experience]
 Ich kenne die Verfahren zur Bereinigung von Daten.
 
-Ich mit falschen Datentypen und `NaN`-Werten in Pandas umgehen.
+Ich kann mit falschen Datentypen und `NaN`-Werten in Pandas umgehen.
 [ENDSECTION]
 
 
@@ -60,7 +60,7 @@ Begründen Sie.
 Bis jetzt haben wir gekonnt ignoriert, dass `pandas` auf der mathematischen Bibliothek `numpy`
 aufbaut.
 Doch das wird im Folgenden für Datentypen, aber auch für fehlende Werte sehr hilfreich sein.
-`numpy` stellt für uns einen Platzhalter für fehlende Werte bereit: `np.nan`
+`numpy` stellt für uns einen Platzhalter ("Not a Number") für fehlende Werte bereit: `np.nan`
 
 Importieren Sie `numpy` mit `import numpy as np` 
 
@@ -76,8 +76,14 @@ Oder nimmt man in Kauf, unvollständige Daten zu haben, für mehr Informationen 
 Füllt man eventuell die fehlenden Werte mit Durchschnitten oder den vorherigen Werten?
 
 Dies und viele andere Abwägungen werden Ihnen in der Data Science immer wieder begegnen - 
-eine allgemeingültige Antwort gibt es auf diese Fragen nicht und muss je nach einzelfall abgewogen
-werden. Wir werden in diesem Fall erst einmal alle Daten behalten. 
+eine allgemeingültige Antwort gibt es auf diese Fragen nicht und muss je nach Einzelfall abgewogen
+werden.
+
+Wir werden in diesem Fall, alle Zeilen mit `NaN`-Werten entfernen.
+
+[ER] Auch dafür bietet Pandas eine Methode:
+[`dropna()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna)
+Geben Sie explizit die `axis` und `how` Parameter an.
 
 ### Datums-Werte
 
@@ -124,12 +130,11 @@ Sie können duplizierte Einträge, falls vorhanden mit
 entfernen sodass, nur eine der beiden Einträge übrig bleibt.
 [ENDNOTICE]
 
-
 [SECTION::submission::reflection]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Antworten im Großen und Ganzen korrekt?]
-
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
