@@ -1,4 +1,4 @@
-title: Weitere Grundlagen von Go
+title: "Go-Grundlagen: Funktionen, Zeiger, Referenztypen vs. Werttypen"
 stage: alpha
 timevalue: 3.5
 difficulty: 2
@@ -45,7 +45,7 @@ Eine Funktionsdefinition in Go besteht aus folgenden Teilen:
     * `T`, wenn die Funktion einen Wert von Typ `T` zurückgibt;
     * ein Tupel `(T1, T2, ..., Tn)`, falls die Funktion mehrere Werte auf einmal zurückgibt;
     * oder ein benanntes Tupel `(t1 T1, t2 T2, ..., tn Tn)`, falls die Rückgabewerte direkt
-      in der Funktionssignatur deklariert werden sollen;
+      in der Funktionssignatur deklariert werden sollen (Erklärung folgt);
 * Funktionsrumpf in geschweiften Klammern.
 
 Eine Funktion, die Sie bereits kennen, ist die `main`-Funktion:
@@ -56,7 +56,7 @@ func main() {
 }
 ```
 
-Weitere Beispiele:
+Die folgenden Beispiele erklären die oben unterschiedenen Fälle:
 
 ```go
 // Rückgabetyp ist string
@@ -98,7 +98,7 @@ func namedReturnValues() (answer int, label string) {
 
 #### Benannte Rückgabewerte und variadische Funktionen
 
-Informieren Sie sich nun selbstständig über einige weitere funktionsbezogene Konzepte:
+Nutzen Sie diese Quellen, um die nachfolgenden Fragen zu beantworten:
 
 - [Benannte Rückgabewerte](https://go.dev/tour/basics/7)
 - [Variadische Funktionen](https://gobyexample.com/variadic-functions)
@@ -106,11 +106,12 @@ Informieren Sie sich nun selbstständig über einige weitere funktionsbezogene K
 [EQ] Mit welchen Werten werden benannte Rückgabewerte initialisiert?
 
 [EQ] Wann ist es Ihrer Meinung nach sinnvoll, benannte Rückgabewerte zu benutzen?
+(Dies ist keine technische Frage, sondern eine Stilfrage.)
 
 [EQ] Was ist der Unterschied zwischen einer variadischen Funktion und einer Funktion,
-die eine Sammlung (einen [TERMREF::Slice (Golang)]) von Parametern bekommt?
+die einen [TERMREF::Slice (Golang)] von Parametern bekommt?
 
-[EQ] Welche Vor- beziehungsweise Nachteile einer Schreibweise gegenüber der anderen fallen Ihnen
+[EQ] Welche Vor- oder Nachteile einer Schreibweise gegenüber der anderen fallen Ihnen
 ein?
 
 
@@ -130,7 +131,8 @@ func apply(
 
 Diese Funktion nimmt zwei Parameter an:
 ein `int` und eine Funktion, die ein `int` übergeben bekommt und ein `int` zurückgibt.
-`operation` ist der Name der Funktion, und `func(int) int` ist ihre Signatur.
+`operation` ist der Name der Funktion, und `func(int) int` ist ihr Typ,
+zusammen bildet das die Signatur.
 
 Der Aufruf könnte so aussehen:
 
@@ -155,7 +157,7 @@ Bei Erfolg gibt sie ein Tupel `(result, nil)` zurück; ansonsten
 Benutzen Sie hier benannte Rückgabewerte.
 
 [ER] Implementieren Sie `reduce(initialValue int, operation func(int, int) int, xs ...int) int` —
-eine Funktion, die eine Funktion (`operation`) und eine beliebige Anzahl von Ganzzahlen 
+eine Funktion, die eine Funktion `operation` und eine beliebige Anzahl von Ganzzahlen 
 als Parameter bekommt.
 Sie wendet sukzessive `operation` auf die Ganzzahlen an:
 Der erste Parameter von `operation` ist eine Akku-Variable
@@ -164,7 +166,7 @@ der zweite der Reihe nach jedes Element der Liste `xs`.
 Mit `reduce(0, func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise
 die Summe der Ganzzahlen berechnet werden.
 
-[ER] Fügen Sie die Testfunktion Ihrem Programm bei:
+[ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
 ```go
 [INCLUDE::snippets/go-basics2-control-snippet-functions.go]
@@ -187,9 +189,10 @@ und gehören immer zu einem konkreten Typ
 
 Der Nullwert aller Zeiger ist `nil`.
 Ein Zeiger wird mithilfe des `&`-Operators erstellt.
-Semantisch kann dieser als "Adresse von" gelesen werden: `&x` heißt "Adresse von `x`".
+Semantisch kann dieser als "Adresse von" gelesen werden: `&x` heißt also "Adresse von `x`"
+und liefert einen Zeiger, der auf `x` zeigt.
 
-Die Umkehroperation heißt Dereferenzierung — ein Zeiger wird in den "Wert an der Adresse `x`"
+Die Umkehroperation heißt Dereferenzierung — ein Zeiger wird in den "Wert an der Adresse von `x`"
 umgewandelt.
 Dies geschieht mithilfe des Operators `*`, der sowohl zum Deklarieren eines Zeigertyps als auch
 zur Dereferenzierung verwendet wird.
@@ -247,7 +250,7 @@ Nun betrachten wir Arrays, Slices und Maps detaillierter aus der Perspektive von
 Referenztypen.
 
 
-#### Array
+#### Array (Werttyp)
 
 Ein Array ist ein Werttyp, der eine Sammlung von Einträgen darstellt,
 wo alle Einträge zum gleichen Typ gehören und die Größe (Anzahl von Einträgen) fest ist.
@@ -255,14 +258,14 @@ wo alle Einträge zum gleichen Typ gehören und die Größe (Anzahl von Einträg
 ```go
 var arr [5]int                      // arr == [0 0 0 0 0]
 anotherArr := arr                   // eine Kopie wurde erstellt
-anoterArr[0] = 42
+anotherArr[0] = 42
 fmt.Println(arr, anotherArr)        // [0 0 0 0 0] [42 0 0 0 0]
 ```
 
 Reine Arrays werden in Go relativ selten verwendet, daher konzentrieren wir uns auf Slices.
 
 
-#### Slice
+#### Slice (Referenztyp)
 
 Slices bauen immer auf Arrays auf.
 Ein [TERMREF::Slice (Golang)] ist eine "View" bzw. eine Sicht in das zugrundeliegende Array
@@ -292,7 +295,7 @@ type slice struct {
   zurückgegeben und stellt die Anzahl von Zellen
   bis zum Ende des zugrundeliegenden Arrays dar.
 
-Informieren Sie sich über diese zwei Funktionen:
+Informieren Sie sich über diese zwei Funktionen für Slices:
 
 - [append](https://pkg.go.dev/builtin#append)
 - [copy](https://pkg.go.dev/builtin#copy)
@@ -304,17 +307,17 @@ sl := make([]int, 4)            // Typ und initiale Größe eines Slice
 
 sl := []int{0, 1, 2, 3, 4}      // direkter Slice mit Werten
 
-arr := [5]int{0, 1, 2, 3, 4}    // existierendes Array
+arr := [5]int{7, 9, 11, 13, 14}    // mit Werten initialisiertes Array der Länge 5
 
-sl := arr[1:3]                  // der erste Index ist inklusiv, der zweite Index ist exklusiv
+sl := arr[1:3]                  // slice mit Werten {9, 11} (denn der zweite Index ist exklusiv)
 fmt.Println(len(sl))            // Länge: 2
 fmt.Println(cap(sl))            // Kapazität: 4, denn Element 0 des Arrays ist nicht für den Slice verfügbar
 
-fmt.Println(sl)                 // [1 2]
-fmt.Println(sl[0])              // 1
-fmt.Println(sl[1])              // 2
+fmt.Println(sl)                 // [9 11]
+fmt.Println(sl[0])              // 9
+fmt.Println(sl[1])              // 11
 sl[0] = 8                       // das verändert das Array arr!
-fmt.Println(arr)                // [0 8 2 3 4]
+fmt.Println(arr)                // [7 8 11 13 14]
 ```
 
 Ein weiteres Beispiel:
@@ -333,8 +336,8 @@ Wie bereits erwähnt, können Slices mithilfe der Funktion `make([]T, initialSiz
 Das zugrundeliegende Array wird dann automatisch erstellt und hat die Größe von `initialSize`.
 
 Ein solcher Slice verhält sich im Wesentlichen wie ein dynamisches Array:
-Sobald es versucht wird, zum vollen Slice ein anderes Element hinzuzufügen,
-wird ein neues Array doppelter Größe allokiert.
+Sobald versucht wird, zum vollen Slice ein weiteres Element hinzuzufügen,
+wird ein neues Array doppelter Größe allokiert (und damit gelingt der Versuch).
 
 Lesen Sie nun diesen Artikel aufmerksam durch:
 [Go by Example: Slices](https://gobyexample.com/slices).
@@ -358,13 +361,13 @@ rechts.
 ein Element an einem Index `at` entfernen und die Größe des Slice entsprechend anpassen.
 Alle nachfolgenden Elemente rücken eine Position nach links.
 
-[ER] Fügen Sie die Testfunktion Ihrem Programm bei:
+[ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 ```go
 [INCLUDE::snippets/go-basics2-control-snippet-slices.go]
 ```
 
 
-#### Map
+#### Map (Referenztyp)
 
 Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre
 Schlüssel ermöglicht.
@@ -379,7 +382,8 @@ fmt.Println(m["two"])           // 0, da 0 der Nullwert von "int" ist, wenn kein
 fmt.Println(len(m))             // 1
 ```
 
-Um zu überprüfen, ob ein Schlüssel bereits vorhanden ist, wird die folgende Schreibweise verwendet:
+Für die Fallunterscheidung, ob ein Schlüssel bereits vorhanden ist oder nicht,
+dient folgendes Idiom:
 
 ```go
 mysteriousMap := make(map[string]int)
@@ -405,6 +409,30 @@ if value, isThere := studentAges["Max"]; isThere {
 
 Falls es keinen solchen Schlüssel gibt, führt `delete()` keine Aktion aus.
 
+[ER] Implementieren Sie eine Funktion 
+`func AddElementIfNotThere(m map[string]int, key string, value int)`:
+ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
+Ansonsten keine Aktion.
+
+[ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
+
+```go
+[INCLUDE::snippets/go-basics2-control-snippet-maps.go]
+```
+
+[ER] Für ein korrektes Kommandoprotokoll muss Ihre `main`-Funktion folgendermaßen aussehen;
+bitte ebenfalls zufügen:
+
+```go
+func main() {
+    testFunctions()
+    testSlices()
+    testMaps()
+}
+```
+
+[EC] Führen Sie das Programm mittels `go run go-basics2.go` aus.
+
 [WARNING]
 Variablen aller Referenztypen werden mit `nil` initialisiert:
 
@@ -422,29 +450,6 @@ m := make(map[string]int)
 ```
 [ENDWARNING]
 
-[ER] Implementieren Sie eine Funktion 
-`func AddElementIfNotThere(m map[string]int, key string, value int)`:
-ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
-Ansonsten keine Aktion.
-
-[ER] Fügen Sie die Testfunktion Ihrem Programm bei:
-
-```go
-[INCLUDE::snippets/go-basics2-control-snippet-maps.go]
-```
-
-[ER] Für ein korrektes Kommandoprotokoll muss Ihre `main`-Funktion folgendermaßen aussehen:
-
-```go
-func main() {
-    testFunctions()
-    testSlices()
-    testMaps()
-}
-```
-
-[EC] Führen Sie das Programm mittels `go run go-basics2.go` aus
-und geben Sie die Ausgabe in Ihrem Kommandoprotokoll ab.
 [ENDSECTION]
 
 [SECTION::submission::trace,program]
@@ -453,11 +458,11 @@ und geben Sie die Ausgabe in Ihrem Kommandoprotokoll ab.
 [ENDSECTION]
 
 [INSTRUCTOR::Hinweise]
-Korrektur von `testDivideAndReduce` und `testSlicesAndMaps`:
-die Funktionen sollten unverändert in dem abgegebenen Quellcode präsent sein,
+`testDivideAndReduce` und `testSlicesAndMaps`:
+diese beiden Funktionen sollten unverändert in dem abgegebenen Quellcode präsent sein,
 damit das Kommandoprotokoll nicht verfälscht wird.
 
-Korrektur von `AddElement`, `RemoveElement`:
+`AddElement`, `RemoveElement`:
 Der Zweck ist, dass Studierende Slices erstellen und modifizieren können.
 
 Korrektur von `AddElementIfNotThere`:
