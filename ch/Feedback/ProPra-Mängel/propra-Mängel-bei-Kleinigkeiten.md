@@ -5,20 +5,17 @@ difficulty: 2
 ---
 
 [SECTION::goal::idea]
-
 Ich habe zwölf Stellen identifiziert und beschrieben, 
 wo auf ProPra-Webseiten Einzelheiten nicht in Ordnung sind.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+[SECTION::background::default]
 Beim Programmieren kommt es auf fast jede Kleinigkeit an.
 Wer einen Blick dafür entwickelt, unstimmige Kleinigkeiten zu bemerken,
 kommt sehr viel schneller voran.
-
 [ENDSECTION]
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 Gesucht sind mindestens 12 Stellen (in mindestens 6 verschiedenen Aufgaben), 
 bei denen in der Aufgabenbeschreibung ein Detail nicht korrekt ist, z.B.
 
@@ -75,15 +72,25 @@ Optionale Kommas und zulässige alternative Schreibweisen zählen nicht.
 Fehler aus einer früheren Woche, die inzwischen korrigiert sind, zählen nicht mehr.
 [ENDWARNING]
 
+Defekte Links sind manchmal deutlich anspruchsvoller als die anderen Sorten von Problem:
+Hier müssen Sie einen Ersatz-URL suchen.
+In den meisten Fällen findet man den auf [HREF::https://archive.org]. Simpel!
+Aber was, wenn nicht?
+
+Dann suchen Sie bitte eine ganz andere Webseite, die den in der Aufgabe verfolgten Zweck
+erreicht. In diesem Fall sind nicht selten auch Änderungen am umgebenden Text nötig
+(z.B. bei der Beschreibung, welcher _Teil_ der Webseite zu lesen ist.)
+Geben Sie diese dann mit an.
+**Solche Fälle zählen dreifach.**  
+Notieren Sie dann "- Richtig (dreifach!):", um uns daran zu erinnern.
 [ENDSECTION]
+
 [SECTION::submission::reflection]
-
 Geben Sie Ihr Markdown-Dokument ab.
-
 [ENDSECTION]
+
 [INSTRUCTOR::Nur zwei pro Aufgabe!]
 
 - Alle URLs prüfen, ob jeder nur höchstens zweimal vorkommt.
 - Zufällige drei der Fehler nachprüfen, ob sie wirklich (noch) existieren.
-
 [ENDINSTRUCTOR]
