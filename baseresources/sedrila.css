@@ -27,8 +27,8 @@ a:link {
 }
 
 a>code {
-    background-color: rgba(255, 255, 255, 0.25);
-    color: var(--main-color);
+    color: var(#3b8e1e);
+    text-decoration: underline;
 }
 
 a:hover {
@@ -743,6 +743,10 @@ a:link.vwr-filelink-submission {
             text-decoration: underline dotted;
             color: #EDABED;
         }
+    }
+
+    a>code {
+        color: var(--main-color)
     }
 
     .header_in a:hover {
