@@ -187,6 +187,22 @@ fertiges Programm zu binden, die Quellcode-Dateien werden jeweils einzeln
 übersetzt und abschließend zusammengebunden.
 [ENDTERM]
 
+[TERM::Blob (git)]
+
+Ein Blob (Binary Large Object) ist einer von mehreren Objekttypen in Git und stellt den Inhalt 
+einer Datei in einem bestimmten Zustand dar.
+
+Blobs speichern reine Dateiinhalte – ohne Dateinamen, Metadaten oder Verzeichnisstruktur.
+Jeder Blob ist durch einen Hash-Wert eindeutig identifizierbar.
+
+Beim Ausführen von git add wird ein neuer Blob erzeugt (sofern sich der Inhalt geändert hat) und 
+in der Objektdatenbank von Git gespeichert. 
+Commits referenzieren über sogenannte Tree-Objekte auf diese Blobs.
+
+Wichtig: Git speichert nicht die Änderungen, sondern jeweils den vollständigen Inhalt 
+([TERMREF::Snapshot (git)]) jeder Datei in einem Blob.
+[ENDTERM]
+
 [TERM::Branch|Zweig]
 Bei git: Eine eigene Versionsgeschichte.
 Ein Zweig hat einen Namen und einen jüngsten Commit und durch dessen Vorgänger und Vorvorgänger
@@ -1388,6 +1404,19 @@ Sie werden mit der Notation `[]T` deklariert, wobei `T` den Elementtyp darstellt
 Slicing bezeichnet in Python das Auswählen eines Teilbereichs (Subsequenz) aus Sequenztypen wie Listen, Strings oder Tupeln. Die Syntax ist `seq[start:stop:step]`, wobei start (inklusive) der Startindex, stop (exklusiv) der Endindex und step die Schrittweite ist. Alle drei Parameter sind optional. Negative Indizes zählen vom Ende der Sequenz rückwärts.
 
 [HREF::https://www.geeksforgeeks.org/python/python-list-slicing/]
+[ENDTERM]
+
+[TERM::Snapshot (git)]
+
+Ein Snapshot ist das mentale Modell dafür, wie Git Inhalte speichert: 
+anstatt nur Änderungen (Deltas) zu speichern, legt Git vollständige Abbilder aller getrackten 
+Dateien zum Zeitpunkt eines Commits ab.
+
+Diese Abbilder bestehen aus Verweisen auf [TERMREF::Blob]-Objekte, die in einem Tree-Objekt 
+organisiert sind.
+
+Ein Commit ist also nicht einfach nur eine Änderung, sondern eine vollständige Momentaufnahme 
+des Projekts in diesem Zustand.
 [ENDTERM]
 
 [TERM::SOA|Start of Authority]
