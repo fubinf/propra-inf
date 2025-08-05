@@ -1,4 +1,4 @@
-title: "CSS: Selektoren, Klassen und Pseudoklassen"
+title: "CSS: Media Queries"
 stage: alpha
 timevalue: 1.0
 difficulty: 2
