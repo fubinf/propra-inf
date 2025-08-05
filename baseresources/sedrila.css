@@ -23,16 +23,11 @@ html {
 a,
 a:link {
     color: #4B5F11;
-    text-decoration: none;
-}
-
-a>code {
-    text-decoration: underline;
 }
 
 a:hover {
-    text-decoration: underline dotted;
-    color: #6a005f;
+  color: #6d8820; /* light green tint */
+  text-decoration: none;
 }
 
 
@@ -735,17 +730,13 @@ a:link.vwr-filelink-submission {
 
     a,
     a:link {
-        color: #9fd400;
+        color: var(--main-color);
         filter: unset;
 
         &:hover {
-            text-decoration: underline dotted;
-            color: #EDABED;
+            color: #cfe882;
+            text-decoration: none;
         }
-    }
-
-    a>code {
-        color: var(--main-color)
     }
 
     .header_in a:hover {
