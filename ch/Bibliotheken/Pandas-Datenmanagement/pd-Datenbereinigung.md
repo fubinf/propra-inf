@@ -105,6 +105,10 @@ Der `format`-Parameter spielt für die Konvertierung eine entscheidende Rolle.
 Die beiden Datumsspalten, in ihrer numerischen Form hätte man auf größer/ kleiner als ein bestimmtes
 Datum prüfen können?
 
+[ER] Greifen Sie auf die Monatswerte der `MESS_DATUM_BEGINN`-Spalte zu.
+Schauen Sie sich dafür den richtigen `Accessor` der `Series` genauer an:
+[Series#Accessors](https://pandas.pydata.org/docs/reference/series.html#accessors)
+
 [HINT::Datumsangaben]
 Datum-Daten liegen oft in vielen verschiedenen Formen und Varianten vor, oft auch als String.
 Auf diese beiden Datumsspalten lassen sich vielleicht Vergleiche und Operationen durchführen,
