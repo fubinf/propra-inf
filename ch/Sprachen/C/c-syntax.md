@@ -1,8 +1,8 @@
 title: "C Syntax"
 stage: draft
-timevalue: 1
-difficulty: 3
-assumes: c-compiler-assembler-linker, c-preprocessor
+timevalue: 0.5
+difficulty: 2
+assumes: c-preprocessor-include
 ---
 [SECTION::goal::idea]
 Ich verstehe den C Syntax.
@@ -26,6 +26,7 @@ Die folgende Liste zeigt um was sich diese Aufgabe dreht.
 - Variablendefinitionen
 - Funktionen
     - Einstiegspunkt des Programms
+TODO KHOFMANN: Split here for time management
 - Kontrollstrukturen
     - If-Else
     - Switch
@@ -42,6 +43,7 @@ Präprozessor-Makro ist mit einem `;`.
 Der `;` dient in C als Zeilenterminator und ist zwingend erforderlich.
 Achten Sie also stets darauf das Zeichen zu setzen, sonst bekommen Sie einige
 Fehlermeldungen bei der Übersetzung (darüber gibt es unzählige Witze).
+
 
 ### Variablendefinition
 Jedes gute Programm benötige Variablen.
@@ -87,36 +89,41 @@ einer Variable anpassen müssen, so müssen Sie nicht erst alles auseinander
 friemeln.
 [ENDNOTICE]
 
-Weite Informationen finden Sie
-[hier](https://en.cppreference.com/w/c/language/declarations).
+[Weitere Beispiele](https://en.cppreference.com/w/c/language/declarations)
+an Variablendeklarationen im angegebenen Link.
+
 
 ### Funktionen
+
+
 #### Allgemein
-Nur Variablen wäre langweilig, denn ur mit Funktionen kann Ihr Programm auch
-wirklich etwas machen.
-In C gibt es hier etwas wichtiges zu beachten: Die Reihenfolge in der Sie
-Funktionen (und auch Variablen) in Ihren Dateien schreiben bestimmt wo Sie
+Nur Variablen wäre langweilig, daher gibt es auch Funktionen.
+Denn nur mit Funktionen kann Ihr Programm auch wirklich etwas machen, einfach drauf los Anweisungen
+schreiben wie in Python geht in C nicht.
+Zusätzlich wichtig zu beachten: Die Reihenfolge in der Sie
+Funktionen (und auch Variablen) in Ihren Dateien schreiben bestimmt, wo Sie
 diese verwenden können.
 Sie können Funktionen nämlich nur ab der Zeile verwenden, in der die Funktion
 deklariert wurde.
-Wichtig hier ist: Die Funktion muss zu diesem Zeitpunkt noch nicht definiert
-sein, die Definition kann separat von der Deklaration erfolgen.
-Diesen Fakt finden Sie überall, so deklarieren Bibliotheken etwa ihre
-Funktionen in der Header-Datei (welche Sie wiederum in Ihrem Programm mittels
-`#include` einbinden), die Definition hingegen in einer Implementierungs-Datei
-(`.c`).
+Um das ganze noch komplizierter zu machen, muss die Funktion zu diesem Zeitpunkt aber nicht
+definiert sein, die Definition kann separat von der Deklaration erfolgen.
+Allerdings muss die Funktion irgendwann schon definiert sein, der Übersetzer wird Sie
+dieser Notwendigkeit durch entsprechende Fehlermeldungen unterrichten.  
+Deklaration un Definition müssen nicht in der selben Date stehen.
+Oftmals ist die Deklaration in einer Header-Datei, welche in der Implementierungsdatei die
+die deklarierte Funktion definiert und mittels `#include` eingebunden wurde, zu finden.
 
-Der Grundaufbau ist folgender:
+Der Grundaufbau einer Funktion ist folgender:
 ```c
-// Deklaration:
+// Reine Deklaration:
 // Rückgabewert Deklarator(Parameterliste);
 // Bsp.:
 const int size(void);
 extern volatile void writeToDevice(char* data, int size);
 
-// Deklaration:
+// Reine Definition:
 // Rückgabewert Deklarator(Parameterliste) {
-// Funktionskörper
+//   Funktionskörper
 // }
 // Bsp.:
 const int size(void) {
@@ -124,6 +131,17 @@ const int size(void) {
 }
 extern volatile void writeToDevice(char* data, int size) {
   // Funktion schreibt Anzahl size Bytes von data in ein Gerät
+}
+
+// Definition mit impliziter Deklaration:
+// Rückgabewert Deklarator(Parameterliste) {
+//   Funktionskörper
+// }
+// Unterschied zur reinen Definition ist eine fehlende vorhergegangene reine Deklaration
+int main(void) {
+  // Programm
+
+  return 0;
 }
 ```
 Dabei gilt:
@@ -141,6 +159,7 @@ Dabei gilt:
 - Eine leere Parameterliste `int size()` bedeutet **nicht**, dass diese
   Funktion keine Parameter übergeben bekommen kann (das wäre `void`), sondern
   dass eine nicht spezifizierte Menge an Parametern übergeben wird.
+  Leider können Sie auf diese Parameter nicht zugreifen, da keine Deklarationen derer existiert.
 ```c
   void a() {
     // Mache was
@@ -173,7 +192,7 @@ machen und mit einem Fehler abbrechen.
 Wenn Sie eine Funktion in mehreren Implementierungs-Dateien nutzen wollen,
 deklarieren Sie diese in einer Header-Datei und definieren Sie diese in einer
 entsprechenden Implementierungsdatei.
-Fortan können Sie die Header-Datei einbinden für die gewollte Funktion.
+Fortan können Sie die Header-Datei einbinden und müssen die Deklaration nicht erneut schreiben.
 
 Wenn Sie eine Funktion nur in einer Implementierungs-Datei benötigen, so müssen
 Sie keine Header-Datei dafür anlegen.
@@ -183,9 +202,12 @@ Verwendung stets nach der Definition erfolgen, so können Sie eine Deklaration
 weiter oberhalb in der Datei (meist am Dateianfang gebündelt) einführen.
 [ENDNOTICE]
 
-Weitere Information finden Sie 
-[hier](https://en.cppreference.com/w/c/language/function_declaration) sowie
-[hier](https://en.cppreference.com/w/c/language/function_definition).
+Weiteres zu
+[Deklarationen](https://en.cppreference.com/w/c/language/function_declaration)
+sowie
+[Definitionen](https://en.cppreference.com/w/c/language/function_definition)
+in den Links.
+
 
 #### Einstiegspunkt des Programms
 Anders als in Python muss Ihr C-Programm mindestens eine Funktion besitzen, um
@@ -204,11 +226,11 @@ int main(int argc, char** argv) {
 ```
 Die Variante mit Möglichkeit Konsolenparameter zu nutzen übergibt Ihnen
 die Anzahl der Konsolenparameter im ersten Parameter (stets Typ `int`, meist
-argc für Argument-Count genannt) und die Liste der Konsolenparameter im zweiten
+`argc` für Argument-Count genannt) und die Liste der Konsolenparameter im zweiten
 Parameter (stets Typ `char**`, d.h. ein Pointer auf C-Strings
 [PARTREF::c-strings], meist `argv` für Argument-Vector genannt).
 
-TODO KHOFMANN: Kontrollstruktur
+TODO KHOFMANN: Aufgaben für Variablen/Funktionen
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]

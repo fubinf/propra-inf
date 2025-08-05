@@ -2,7 +2,7 @@ title: "C Qualifizierer"
 stage: draft
 timevalue: 1
 difficulty: 3
-assumes: c-compiler-assembler-linker, c-preprocessor
+assumes: c-syntax
 ---
 [SECTION::goal::idea]
 Ich verstehe die Qualifizierer und kann diese Anwenden.

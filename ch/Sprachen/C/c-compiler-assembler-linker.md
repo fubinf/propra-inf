@@ -45,8 +45,9 @@ In diesem Bauschritt werden vier Unterschritte ausgeführt:
 - Der Binder, der mehrere Teile Maschinencode zu einem ausführbaren Programm
   ("executable") zusammenfügt.
 
-Der Präprozessor wird Ihnen in [PARTREF::c-preprocessor] näher gebracht,
-hier ignorieren wir diesen Schritt.
+Der Präprozessor wird Ihnen in [PARTREF::c-preprocessor-include],
+[PARTREF::c-preprocessor-conditional] und [PARTREF::c-preprocessor-macros] näher gebracht, hier
+ignorieren wir diesen Schritt.
 
 Für die unten aufgeführten Demonstrationen wird folgendes kleines Programm
 verwendet.
