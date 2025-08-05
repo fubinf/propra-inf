@@ -14,3 +14,4 @@ Danach sind die behobenen Punkte für weitere Rückmeldungen nicht mehr gültig!
 Bleiben Sie also auf Ihren Notizen nicht zu lange sitzen, sondern wenn Sie genug
 für eine hiesige Aufgabe beisammen haben, schreiben Sie es prompt auf und
 reichen Sie es ein.
+<!-- TODO 2: Umstellen auf Pull-Requests (mit replacement für Forks) -->
