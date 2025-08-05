@@ -1,4 +1,4 @@
-title: "dataclasses: Daten Modelle erstellen"
+title: "dataclasses: Reine Datenklassen bequem erstellen"
 stage: alpha
 timevalue: 0.75
 difficulty: 2
@@ -14,12 +14,10 @@ Ich kann Datenmodelle in Datenklassen modellieren und verwenden.
 
 
 [SECTION::background::default]
-In Python können Datenklassen verwendet werden, um strukturierte Daten zu modellieren,
-also Objekte mit bestimmten Attributen.
-
-Auf diese Weise lässt sich ein konkretes Interface für beispielsweise Elemente
-einer Liste definieren.
-Etwas Vergleichbares lässt sich beispielsweise in `C` mit einem `struct` erzeugen.
+Nicht jede Klasse braucht Methoden.
+Dieses Modul "schenkt" uns für reine Datenklassen auf sehr bequeme Weise
+einen leistungsfähigen Konstruktor (und noch ein paar Funktionalitäten)
+und führt zu einer angenehm eleganten Schreibweise.
 [ENDSECTION]
 
 
@@ -42,7 +40,9 @@ was wird dem Objekt durch den Decorator hinzugefügt?
 [ER] Definieren Sie eine `dataclass` `Book` mit den Attributen
 `title: str`, `authors: list[str]`, `year: int`, `isbn: str`.
 
-[ER] Erzeugen Sie drei Exemplare von `Book` und speichern Sie sie in `shelf: list[Book]`.
+[ER] Erzeugen Sie drei Exemplare von `Book` für die (echten) Bücher
+"Learning Python", "Head First Python" und "Python Crash Course".
+Speichern Sie sie in `shelf: list[Book]`.
 
 [ER] Geben Sie den Titel von einem `Book` in `shelf` aus.
 
@@ -80,13 +80,13 @@ Geben Sie die Attribute `title` und `year` jeweils einmal vor und einmal nach de
 Änderung aus.
 
 Wie Sie sehen, ist es möglich Attribute zu verändern.
-In manchen Fällen sollen Daten aber nicht mehr veränderbar sein beispielsweise in Archivkopien.  
+In manchen Fällen sollen Daten aber nicht mehr veränderbar sein beispielsweise in Archivkopien.
 Mit `frozen=True` wird eine `dataclass` unveränderlich.
-Es ist also nach dem erzeugen eines Exemplars nicht mehr möglich Attribute zu verändern.
+Es ist also nach dem Erzeugen eines Exemplars nicht mehr möglich Attribute zu verändern.
 
-[ER] Erstelle eine zweite `dataclass` `ArchiveBook` mit denselben Attribute,
+[ER] Erstellen Sie eine zweite `dataclass` namens `ArchiveBook` mit denselben Attributen,
 aber setzten Sie den Parameter `frozen=True`.
-Weisen Sie der neuen Variable `archive_book` ein Exemplar `ArchiveBook` zu.
+Weisen Sie `archive_book` ein Exemplar von `ArchiveBook` zu.
 
 [ER] Versuchen Sie, `archive_book.year` zu ändern.
 Fangen Sie die Ausnahme mit `try/except` auf und geben Sie die Fehlermeldung aus.
@@ -95,25 +95,25 @@ Einem Attribut in `Book` kann auch ein Standardwert zugewiesen werden.
 Dafür können Sie einem Attribut direkt in der Klasse mit `=` einen Wert zuordnen.
 
 [ER] Ergänzen Sie in der Klasse `Book` das Attribut `language` vom Datentyp `str`
-und weisen Sie den Standardwert `en` zu.
+und weisen Sie ihm den Standardwert `"en"` zu.
 
 [ER] Erzeugen Sie ein neues Exemplar `Book` und setzen sie dort die Sprache auf `"de"`.
-Geben Sie die Attribute `title` und `langauge` von diesem Buch auf der Konsole aus.
+Geben Sie die Attribute `title` und `language` dieses Buches auf der Konsole aus.
 
-[ER] Erzeugen Sie eine neues Exemplar `Book` in der variable `invalid_year`.
-Setzten Sie bei `invalid_year` das Attribut `year` auf `year='Neunzehnhundertvierundachtzig'`.
+[ER] Erzeugen Sie ein neues Exemplar `Book` in der Variablen `invalid_year`.
+Setzten Sie `invalid_year.year='Neunzehnhundertvierundachtzig'`.
 Geben Sie `invalid_year` auf der Konsole aus.
 
-Wie Sie sehen, wird kein Fehler geworfen obwohl `year` kein `int` ist sondern ein `str`.
-Das liegt daran, das `dataclass` die Attribute nicht zur Laufzeit validiert.
+Wie Sie sehen, wird keine Ausnahme erzeugt, obwohl `year` kein `int` ist, sondern ein `str`.
+Das liegt daran, dass weder Python noch `dataclass` die Attribute validieren.
 
 [EC] Führen Sie ihr Programm einmal aus.
 
+[EQ] Beschreiben Sie einen konkreten Zweck und Fall, für den Sie künftig `dataclass` einsetzen werden. 
 [ENDSECTION]
 
 
 [SECTION::submission::trace,reflection]
-In welchen Szenarien würden Sie künftig dataclasses einsetzen?
 
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
