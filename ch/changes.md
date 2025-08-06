@@ -43,4 +43,8 @@
 - **2025-07-24**: Aufgaben Bibliotheken/Pandas-Grundlagen/[PARTREF::pd-Datenstrukturen] und
   [PARTREF::pd-Datenselektion] zugefügt.  
   Aufgaben Sprachen/SQL/[PARTREF::sql-SELECT] und [PARTREF::sql-SELECT2] zugefügt.
+- **2025-08-06**: Aufgabe Werkzeuge/Netzwerk/[PARTREF::ssh-Tunnel] durch eine stark erweiterte
+  neue Fassung ersetzt. Die zählt jetzt 1.0h anstatt nur 0.5h. 
+  Wer die Aufgabe bereits erfolgreich eingereicht hatte, bekommt die halbe Stunde geschenkt.
+  Alle anderen machen (ggf.) die neue Aufgabe. (SSH ist so cool, das man das tun sollte!)
 - ...
