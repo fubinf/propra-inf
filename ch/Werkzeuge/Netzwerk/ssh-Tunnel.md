@@ -161,5 +161,5 @@ Störungen immer wieder frisch aufbauen.)
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll]
-[PROT::ALT:ssh-Tunnel-und-Ports.prot]
+[PROT::ALT:ssh-Tunnel.prot]
 [ENDINSTRUCTOR]
