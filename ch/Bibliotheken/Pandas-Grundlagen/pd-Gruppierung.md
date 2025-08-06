@@ -137,7 +137,7 @@ Index zu konvertieren?
 
 ### Gruppieren mit Bedingungen
 
-Ähnlich wie bei [TASKREF::pd-Datenselektion2], kann man auch bei `groupby()` nicht nur Spalten
+Ähnlich wie bei [PARTREF::pd-Datenselektion2], kann man auch bei `groupby()` nicht nur Spalten
 angeben, sondern auch logische Ausdrücke:
 ```python
 grouped = df.groupby(df['Punkte'] >= 50) # Beispiel
@@ -151,12 +151,11 @@ als die Linke.
 [ENDSECTION]
 
 
-[SECTION::submission::reflection/information/snippet/trace/program]
+[SECTION::submission::reflection]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::]
+[INSTRUCTOR::`groupby()` und `agg()` im Wesentlichen verstanden]
 Hinweise an die Tutoren zur Aufgabenkorrektur
-[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
