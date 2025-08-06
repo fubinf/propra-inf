@@ -1,5 +1,5 @@
 title: "ssh-Tunnel und Ports"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 3
 explains: Netzwerkport, Firewall
@@ -8,7 +8,7 @@ assumes: ssh
 
 [SECTION::goal::idea]
 
-- Ich verstehe was SSH-Tunnel sind. 
+- Ich verstehe, was SSH-Tunnel sind. 
 - Ich verstehe die IP-Konzepte dahinter. 
 - Ich weiß wie ich SSH-Tunnel verwenden kann.
 [ENDSECTION]
@@ -18,7 +18,7 @@ assumes: ssh
 Mit einem Porttunnel kann man einen Netzwerkport eines entfernten Rechners so aussehen lassen
 (und nutzen) als wäre er ein lokaler Port. 
 Die Daten laufen dabei durch eine verschlüsselte Tunnelverbindung.
-Damit lassen sich zahllose Problemstellungen lösen, die mit nichtöffentlichen Netzresourcen zu tun haben.
+Damit lassen sich zahllose Problemstellungen lösen, die mit nicht-öffentlichen Netzresourcen zu tun haben.
 Umgekehrt geht es aber auch: Eine lokale Netzwerkressource auf einem fernen Rechner wie eine
 _dort_ lokale aussehen lassen.
 Das ist der umgekehrte Tunnel ("reverse tunnel") für den Export.
@@ -35,30 +35,31 @@ Zielserver = `andorra.imp.fu-berlin.de`
 
 Ein [TERMREF::Netzwerkport] ist ein logischer Zugangspunkt auf einem Computer.
 Er wird durch eine Nummer identifiziert und weist Netzwerkdaten der richtigen Anwendung zu. 
-Es gibt 65536 Ports, die in bekannte Ports , registrierte Ports und 
+Es gibt 65536 Ports, die in die Bereiche privilegierte Ports, registrierte Ports und 
 dynamische/private Ports unterteilt sind.
 
-Eine [TERMREF::Firewall] überwacht den Netzwerkverkehr, indem es alle Pakete auf allen Ports analysiert
+Eine [TERMREF::Firewall] überwacht den Netzwerkverkehr, indem sie alle Pakete auf allen Ports analysiert
 und dann entscheidet was verworfen oder weitergeleitet wird.
 Somit wird ein Netzwerk oder auch ein Rechner vor unerwünschten Zugriffen und schädlichen Daten geschützt.
 
 SSH nutzt den System-Port 22 für Verbindungen. 
 
-### Verständnis von SSH-Tunnel
+### Verständnis von SSH-Tunneln
 
 Mit einem Porttunnel können Sie einen Netzwerkport eines entfernten Rechners so aussehen lassen, 
 als wäre er ein lokaler Port. Das nennt man einen Tunnel aufbauen. Hierbei können die Portnummer der 
 entfernten und lokalen Seite verschieden sein.
 
-Schauen Sie sich die Option `-L` von der [ssh(1) manpage](https://man.openbsd.org/ssh) an.
+Schauen Sie sich auf der 
+[ssh(1) manpage](https://man.openbsd.org/ssh) 
+die Option `-L` an.
+Verwirrende Beschreibung!
 
-Verwirrend, nicht wahr?
-
-Als bessere Veranschaulichung schauen Sie dieses 
-[Bild](https://iximiuz.com/ssh-tunnels/ssh-tunnels-2000-opt.png) an und verstehen es.
-
-Lesen und verstehen Sie passend zu dem Bild den Abschnitt **Local Port Forwarding** der dazugehörigen 
-[Seite](https://iximiuz.com/en/posts/ssh-tunnels/).
+Verstehen Sie stattdessen diese 
+[grafische Erklärung von SSH-Tunneln](https://iximiuz.com/ssh-tunnels/ssh-tunnels-2000-opt.png)
+und den entsprechenden Abschnitt 
+[Local Port Forwarding](https://iximiuz.com/en/posts/ssh-tunnels/) 
+der dazugehörigen Seite.
 
 [NOTICE]
 **Eselsbrücke**
@@ -68,20 +69,26 @@ Der Optionsname gibt an, wo der neue Port angelegt wird:
 - L lokal
 - R remote
 
-Dann folgt der neue Port, dann kommt der Hostname, der auf der anderen Seite ausgewertet wird 
+Dann folgt der neue Port, dann kommt der Hostname, der auf der _anderen_ Seite ausgewertet wird 
 (also bei -L remote und bei -R lokal), dann der zugehörige schon existierende Port. 
 Wenn also als Host `localhost` dasteht, bezeichnet das für -L den Remotesever und für -R den lokalen Rechner.
+
+Insgesamt ist das Format also
+
+- `-L newlocalport:remotehostname:existingremoteport`
+- `-R newremoteport:localhostname:existinglocalport`
 [ENDNOTICE]
 
-Schauen Sie sich nochmal die Option `-L` von der [ssh(1) manpage](https://man.openbsd.org/ssh) an.
+Schauen Sie sich nun nochmals die Beschreibung der Option `-L` auf der [ssh(1) manpage](https://man.openbsd.org/ssh) an.
 
-Jetzt sollten Sie verstehen, was hier gemeint ist. 
-Meistens fehlt das Hintergrundwissen, um eine `manpage` zu verstehen. 
-In selten Fällen liegt es an der Formulierung der `manpage`.
+Diesmal sollten Sie verstehen können, was hier gemeint ist (jedenfalls für den hier
+besprochenen port-basierten Aufruf). 
+Meistens fehlt das Hintergrundwissen, wenn man eine `manpage` nicht versteht; 
+in seltenen Fällen (wie hier) liegt es aber auch an der Formulierung der `manpage` selbst.
 
 ### SSH-Tunnel aufbauen
 
-[EC] Auf Ihrem Rechner (`localhost`): Öffnen Sie einen Porttunnel vom Port 9007 des Zielservers 
+[EC] Auf Ihrem Rechner (`localhost`): Öffnen Sie einen Porttunnel vom Port 9007 des Zielservers (siehe oben)
 zu Port 9009 von `localhost`.
 
 Bitte nicht wundern, POSIX-konform gibt es keine Bestätigung, dass der Porttunnel geöffnet wurde.
@@ -93,8 +100,8 @@ auf unser lokales System.
 
 [WARNING]
 Führen Sie den nächsten Befehl in einem Dateibaum aus,
-der _nur unwichtige Daten_ enthält, die problemlos öffentlich werden dürfen.
-Der Befehl öffnet den Port 9007 des Zielservers u.U. öffentlich sichtbar für das gesamte Internet.
+der _nur unwichtige Daten_ enthält, die problemlos öffentlich werden dürfen, denn
+der Befehl öffnet den Port 9007 des Zielservers u.U. öffentlich sichtbar für das gesamte Internet.
 [ENDWARNING]
 
 [EC] Auf dem Zielserver: Starten sie den Webserver `python -m http.server 9007`.
@@ -105,42 +112,32 @@ Der Befehl öffnet den Port 9007 des Zielservers u.U. öffentlich sichtbar für 
 - Auf dem Zielserver: Schließen Sie den Webserver.
 - Auf dem Zielserver: Schließen Sie die SSH-Verbindung.
 
-[NOTICE]
-**Eselsbrücke**
-
-Der Optionsname gibt an, wo der neue Port angelegt wird: 
-
-- L lokal
-- R remote
-[ENDNOTICE]
 
 ### Reverse-Tunnel aufbauen
 
-Schauen Sie dieses
-[Bild](https://iximiuz.com/ssh-tunnels/ssh-tunnels-2000-opt.png) nochmal an.
+Jetzt machen wir das gleiche Spiel umgekehrt: 
+Wir exportieren einen lokalen Webserver nach Remote.
 
-Lesen und verstehen Sie passend zu dem Bild den Abschnitt **Remote Port Forwarding** der dazugehörigen 
-[Seite](https://iximiuz.com/en/posts/ssh-tunnels/).
+Betrachten Sie nochmals die
+[grafische Erklärung von SSH-Tunneln](https://iximiuz.com/ssh-tunnels/ssh-tunnels-2000-opt.png)
+und nun den Abschnitt 
+[Remote Port Forwarding](https://iximiuz.com/en/posts/ssh-tunnels/) 
+der dazugehörigen Seite.
 
 Schauen Sie sich diesmal die Option `-R` von der [ssh(1) manpage](https://man.openbsd.org/ssh) an.
 
-[WARNING]
-Führen Sie den nächsten Befehl in einem Dateibaum aus,
-der _nur unwichtige Daten_ enthält, die problemlos öffentlich werden dürfen.
-Der Befehl öffnet den Port 9007 Ihres Rechners u.U. öffentlich sichtbar für das gesamte Internet.
-[ENDWARNING]
-
 [EC] Auf Ihrem Rechner: Starten sie den Webserver `python -m http.server 9007`.
+Für das Arbeitsverzeichnis gilt die gleiche Warnung wie oben.
 
 [EC] Auf Ihrem Rechner: Öffnen Sie einen Porttunnel vom Port 9007 Ihres Rechners 
 zu Port 10007 auf `localhost` des Zielservers.
 
 [NOTICE]
-Falls der Port 10007 belegt ist, nehmen Sie einen anderen Port aus dem 10000er Bereich.
+Falls der Port 10007 belegt ist, nehmen Sie einen anderen Port aus dem 10000er-Bereich.
 [ENDNOTICE]
 
-Lesen und verstehen Sie den Abschnitt **Download files or webpage using curl** von der 
-[Seite](https://itsfoss.com/download-files-from-linux-terminal/#download-files-or-webpage-using-curl)
+Verstehen Sie auf folgender Seite den Abschnitt 
+[Download files or webpage using curl](https://itsfoss.com/download-files-from-linux-terminal/#download-files-or-webpage-using-curl).
 
 [EC] Auf dem Zielserver: Laden Sie eine Datei aus Ihrem Dateibaum mit `curl` herunter.
 
@@ -148,7 +145,14 @@ Lesen und verstehen Sie den Abschnitt **Download files or webpage using curl** v
 - Auf Ihrem Rechner: Schließen Sie den Webserver.
 
 Kopieren Sie alle Teile des Kommandoprotokolls zusammen in eine Kommandoprotokolldatei.
+Haben Sie daran gedacht, auf dem Zielserver das gleiche Format des Shell-Prompts einzustellen
+wie in ihrem ProPra-Arbeitsverzeichnis?
+Sonst klappt die Anzeige des Kommandoprotokolls in der sedrila-Webapp nicht und Ihr_e Tutor_in
+guckt unglücklich bis grimmig.
 
+Fazit: SSH-Tunnel sind eine Art Schweizer Messer für viele Problemstellungen im Bereich Netzdienste.
+(Allerdings braucht man für eine dauerhafte Nutzung weitere Mechanismen, die den Tunnel nach
+Störungen immer wieder frisch aufbauen.)
 [ENDSECTION]
 
 
