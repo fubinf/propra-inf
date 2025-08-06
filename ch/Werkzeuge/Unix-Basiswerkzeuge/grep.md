@@ -111,9 +111,6 @@ von `-P` nicht benötigt werden.
 Lesen und verstehen Sie die Abschnitte **What's a quantifier?** und **Pattern collections** von dem 
 [Guide to regular expressions](https://coderpad.io/blog/development/the-complete-guide-to-regular-expressions-regex/).
 
-Nehmen Sie an, sie haben nur eine englische Tastatur und wollen nach 'Großschreibung' suchen. 
-Dann könnten Sie auf das genaue Zeichen 'ß' verzichten und eine etwas weniger genaue Suche benutzen.
-
 Nehmen Sie an, Sie haben ein Problem mit einem Service auf einem Ihrer Server.
 Sie haben herausgefunden, dass Ihre Mitarbeiter auf dem Server bestimmte Funktionen ein- und ausschalten 
 können, obwohl sie dachten, dass die Mitarbeiter diese Berechtigung des Ein- und Ausschaltens nicht haben.
