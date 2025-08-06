@@ -35,7 +35,8 @@ weshalb diese nicht funktionieren würde.
 
 [HINT::vorhandene Verfahren]
 Das Stichwort hierzu ist "Session". Es gibt Informationen zu "HTTP Sessions", die häufig nicht dem
-entsprechen, was hier helfen würde. Besser ist, im Kontext einer Programmiersprache zu recherchieren.
+entsprechen, was hier helfen würde. Besser ist, 
+im Kontext einer Programmiersprache zu recherchieren.
 Die Programmiersprache PHP beispielsweise liefert Unterstützung dafür in der Standardbibliothek.
 
 Auch die explizite Spezifizierung davon, dass es sich um eine "Server-side Session" handelt, ist

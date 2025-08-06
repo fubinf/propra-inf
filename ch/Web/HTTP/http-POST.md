@@ -118,7 +118,7 @@ Dateiinhalt hier...
 Eine detaillierte Erklärung der 
 [Content-Types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)
 
-[ER] Erstellen Sie eine Datei `HTTP-POST-form.crlf` mit einer POST-Anfrage, 
+[EC] Erstellen Sie eine Datei `HTTP-POST-form.crlf` mit einer POST-Anfrage, 
 die folgende Formulardaten an `httpbin.org` (Port 80) zum Pfad `/post` sendet::
 
 - username: "testuser"
@@ -139,7 +139,7 @@ eine Leerzeile steht. Die Content-Length muss exakt der Anzahl Bytes im Body
 entsprechen (inklusive der CRLF-Zeichen im Body).
 [ENDNOTICE]
 
-[ER] Testen Sie Ihre POST-Anfrage mit einem öffentlichen Test-Service:
+[EC] Testen Sie Ihre POST-Anfrage mit einem öffentlichen Test-Service:
 Senden Sie die Anfrage an `httpbin.org` (Port 80) an den Pfad `/post`.
 Dieser Service gibt die empfangenen Daten zur Kontrolle zurück.
 
@@ -164,7 +164,7 @@ curl -X POST https://httpbin.org/post \
   -d '{"myname": "Max", "myage": 25}'
 ```
 
-[ER] Verwenden Sie `curl`, um eine POST-Anfrage mit JSON-Daten zu senden:
+[EC] Verwenden Sie `curl`, um eine POST-Anfrage mit JSON-Daten zu senden:
 ```json
 {
   "myaction": "register",
@@ -195,8 +195,9 @@ Zusätzlich lesen Sie über
  - Formular wurde korrekt übermittelt und verarbeitet
  - Zugriff verweigert, da keine gültige Anmeldung vorliegt
  - Gesendete Daten sind fehlerhaft oder unvollständig
- - Daten sind formal korrekt, verletzen aber eine fachliche Regel (z. B. Benutzername existiert bereits)
-  - Neue Ressource (z. B. Benutzerkonto) erfolgreich angelegt
+ - Daten sind formal korrekt, verletzen aber eine fachliche Regel 
+ (z. B. Benutzername existiert bereits)
+ - Neue Ressource (z. B. Benutzerkonto) erfolgreich angelegt
 
 <!-- time estimate: 10 min -->
 
@@ -213,8 +214,10 @@ HTML-Formulare verwenden standardmäßig POST für die Datenübertragung:
 </form>
 ```
 
-[ER] Erstellen Sie eine Datei `registration-form.html` mit folgendem HTML-Code und testen Sie das Formular, indem Sie es im Browser öffnen, ausfüllen und absenden. Die Antwort von 
-`httpbin` zeigt die übermittelten Daten im Feld form. Reichen Sie die von httpbin zurückgegebene Formularausgabe ein.
+[EC] Erstellen Sie eine Datei `registration-form.html` mit folgendem HTML-Code 
+und testen Sie das Formular, indem Sie es im Browser öffnen, ausfüllen und absenden. 
+Die Antwort von `httpbin` zeigt die übermittelten Daten im Feld form. 
+Reichen Sie die von httpbin zurückgegebene Formularausgabe ein.
 
 ```html
 <!DOCTYPE html> 
@@ -287,7 +290,8 @@ Das HTML-Formular sollte vollständig und funktional sein.
 
 ### Fragen
 
-Die Antworten sollten zeigen, dass die Studierenden die praktischen Unterschiede zwischen GET und POST verstehen, insbesondere bezüglich Sicherheit, Caching und Datenübertragung.
+Die Antworten sollten zeigen, dass die Studierenden die praktischen Unterschiede 
+zwischen GET und POST verstehen, insbesondere bezüglich Sicherheit, Caching und Datenübertragung.
 
 [INCLUDE::ALT:http-POST.md]
 
