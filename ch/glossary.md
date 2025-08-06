@@ -529,17 +529,19 @@ aber sie gilt auch für Programme wie `sort`, die die Eingabe nur umformen.
 Eine **Firewall** ist ein Sicherheitsmechanismus, der den Netzwerkverkehr überwacht und filtert, 
 um einen Computer oder ein Netzwerk vor unbefugtem Zugriff und schädlichen Daten zu schützen. 
 Sie fungiert als digitale Barriere zwischen einem vertrauenswürdigen internen Netzwerk 
-(z.B. deinem Heimnetzwerk) und einem externen, weniger vertrauenswürdigen Netzwerk 
-(z.B. dem Internet).
+(z.B. einem Heim- oder Firmennetzwerk) und einem externen, weniger vertrauenswürdigen Netzwerk 
+(meist dem restlichen Internet).
 
 Firewalls arbeiten nach vordefinierten Regeln, die festlegen, welcher Datenverkehr zugelassen (erlaubt)
 und welcher blockiert (verweigert) werden soll. 
-Diese Regeln können auf verschiedenen Kriterien basieren, wie z.B. IP-Adressen, Portnummern, Protokollen 
-oder sogar dem Inhalt der Datenpakete.
+Diese Regeln können auf verschiedenen Kriterien basieren:
+fast immer Portnummern und Protokolle,
+oft IP-Adressen oder Domainnamen,
+und teilweise sogar dem Inhalt der Datenpakete.
 
-Es gibt verschiedene Arten von Firewalls:
+Zu unterscheiden sind dabei
 
-* **Software-Firewalls:** Diese sind auf einzelnen Geräten (wie deinem PC oder Laptop) installiert und 
+* **Software-Firewalls:** Diese sind auf einzelnen Geräten (wie einem PC oder Laptop) installiert und 
     schützen dieses spezifische Gerät.
 * **Hardware-Firewalls:** Dies sind eigenständige Geräte (oft in Routern integriert), die ein ganzes 
     Netzwerk schützen und typischerweise in Unternehmen oder größeren Netzwerken eingesetzt werden.
