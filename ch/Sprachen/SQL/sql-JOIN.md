@@ -6,12 +6,15 @@ assumes: sql-basics, sql-SELECT, sql-SELECT2
 ---
 
 [SECTION::goal::idea,experience]
-Ich kann mehrere Tabellen in einer Abfrage verbinden und kenne die Eigenschaften der unterschiedlichen Verbindungen.
+Ich kann mehrere Tabellen in einer Abfrage verbinden 
+und kenne die Eigenschaften der unterschiedlichen Verbindungen.
 [ENDSECTION]
 
 [SECTION::background::default]
-In einem Datenbankprojekt werden meist mehrere Tabellen verwendet, die unterschiedliche Informationsbereiche abbilden.
-Um Wiederholungen und Inkonsistenzen zu vermeiden, werden Tabellen über Referenzen miteinander verknüpft.
+In einem Datenbankprojekt werden meist mehrere Tabellen verwendet, 
+die unterschiedliche Informationsbereiche abbilden.
+Um Wiederholungen und Inkonsistenzen zu vermeiden, 
+werden Tabellen über Referenzen miteinander verknüpft.
 `JOIN`-Operationen dienen dazu, relevante Daten aus diesen Tabellen zu kombinieren.
 
 [ENDSECTION]

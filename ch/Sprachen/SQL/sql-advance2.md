@@ -219,7 +219,8 @@ die Anzahl der Websites anzeigt. Verwenden Sie dafür `GROUP BY` und `COUNT(*)`.
 die den durchschnittlichen `alexa`-Wert pro Land anzeigt.
 
 [HINT::Aggregation-Functionen und `GROUP BY`]
-Bitte beziehen Sie sich auf die Verwendung der `COUNT`, `AVG` und `GROUP BY` in [PARTREF::sql-SELECT2]
+Bitte beziehen Sie sich auf die Verwendung der `COUNT`, `AVG` 
+und `GROUP BY` in [PARTREF::sql-SELECT2]
 [ENDHINT]
 <!-- time estimate: 25 min -->
 [ENDSECTION]

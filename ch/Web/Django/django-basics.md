@@ -197,7 +197,8 @@ python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
 python manage.py runserver 8080  # Server auf einem alternativen Port starten
 ```
 
-Nach dem Start sollte unter `http://127.0.0.1:8000/` oder `http://127.0.0.1:8080/` die Django-Willkommensseite erscheinen.
+Nach dem Start sollte unter `http://127.0.0.1:8000/` 
+oder `http://127.0.0.1:8080/` die Django-Willkommensseite erscheinen.
 
 [ER] Erstellen Sie ein Django-Projekt namens `testprojekt` und starten Sie den 
 Entwicklungsserver. 
@@ -225,8 +226,8 @@ meinprojekt/
 - `urls.py`: URL-Routing-Konfiguration
 - `wsgi.py`/`asgi.py`: Deployment-Konfiguration für Webserver
 
-Mehr zur Projektstruktur: 
-[Django Project Structure](https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project)
+Mehr zur 
+[Project Structure](https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project)
 
 [ER] Erkunden Sie die Projektstruktur und listen Sie alle erstellten Dateien und 
 Ordner.

@@ -278,7 +278,8 @@ aus und beobachten Sie, dass die Abfrage korrekt funktioniert.
 
 [ER] Löschen Sie den `idx_alexa`-Index wieder: `DROP INDEX idx_alexa;`
 
-[ER] Verwenden Sie die Abfrage `SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = 'websites';` 
+[ER] Verwenden Sie die Abfrage 
+`SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = 'websites';` 
 um zu sehen, welche Indizes noch existieren.
 
 [NOTICE]
