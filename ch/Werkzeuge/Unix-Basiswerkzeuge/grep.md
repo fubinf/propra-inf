@@ -17,93 +17,125 @@ enorm viele Zwecke eingesetzt wird, sowohl in Shell-Skripten als auch interaktiv
 
 [SECTION::instructions::detailed]
 
-### Vorbereitungen
+### Vorbereitung
 
-Wir erzeugen uns als erstes Beispieldateien, um damit `grep` zu erproben.
+Wir laden uns als erstes Beispieldateien herunter, um damit `grep` zu erproben.
 
-[EC] Erstellen Sie einen Ordner `grep` in Ihrem [TERMREF::Hilfsbereich].
+- Laden Sie diese `.tar.gz` von diesem Repo herunter: 
+    `wget https://github.com/fubinf/propra-inf/raw/c014aecc92be517d83d7c2ed5142b8a5000af832/ch/Werkzeuge/Unix-Basiswerkzeuge/propra_etc.tar.xz`.
+- Entpacken Sie es in Ihrem [TERMREF::Hilfsbereich]: 
+    `tar xf propra_etc.tar.xz -C ~/ws/tmp/grep/`.
+- Wechseln Sie in diesen Ordner.
 
-[EC] Wechseln Sie in diesem Ordner.
+### `grep` nutzen
 
-[EC] Führen Sie die nachfolgenden Kommandos in der Kommandozeile aus.
-  (Das geht mit einem einzigen Copy/Paste-Schritt.)
+Lesen und verstehen Sie die **Synopsis** und die Optionen `-c, -i, -n, -v, -w` aus der 
+[grep(1) manpage](https://man7.org/linux/man-pages/man1/grep.1.html).
 
-```bash
-# Datei 1: data1.txt
-echo "Dies ist die erste Zeile." > data1.txt
-echo "Hier steht ein Beispieltext." >> data1.txt
-echo "Beispiel für Grossschreibung." >> data1.txt
-echo "Noch eine Zeile mit Text." >> data1.txt
-echo "Die letzte Zeile steht hier." >> data1.txt
+Fangen wir mit dem einfachsten Nutzen von grep an.
+Somit finden Sie immer genau die Zeichenfolge, die sie `grep` übergeben haben.
+Das ist nützlich für einfache Suchen, bei denen Sie genau wissen, nach welchem Wort suchen.
 
-# Datei 2: data2.txt
-echo "Eine wichtige Information." > data2.txt
-echo "Ein anderer Text, der wichtig ist." >> data2.txt
-echo "Warnung: Fehler gefunden!" >> data2.txt
-echo "Information ohne Bedeutung." >> data2.txt
-echo "wichtig auch am Zeilenanfang" >> data2.txt
+Nehmen Sie an, Sie haben ihren Paketmanager falsch konfiguriert. Also schauen Sie in die `config`-Datei.
+Angenommen die Datei ist unübersichtlich, dann kann Ihnen `grep` bei der Fehlersuche helfen.
+Veranschaulicht machen wir das auf die gerade heruntergeladenen Beispieldaten.
 
-# Datei 3: config.log (simuliert eine Log-Datei)
-echo "2023-09-18 10:00:00 INFO: Systemstart" > config.log
-echo "2023-09-18 10:01:15 WARN: Niedriger Speicherplatz" >> config.log
-echo "2023-09-18 10:05:30 INFO: Benutzer 'admin' angemeldet" >> config.log
-echo "2023-09-18 10:10:00 ERROR: Datenbankverbindung fehlgeschlagen" >> config.log
-echo "2023-09-18 10:10:05 INFO: Erneuter Verbindungsversuch..." >> config.log
-echo "2023-09-18 10:11:00 ERROR: Verbindung immer noch fehlgeschlagen" >> config.log
+[EC] Finden Sie alle Zeilen in `apt/apt.conf.d/50appstream`, die die Zeichenfolge **component** enthalten.
 
-# Ein Unterverzeichnis mit weiteren Logs erstellen
-mkdir logs
-echo "DEBUG: Initialisiere Modul A." > logs/app.log
-echo "INFO: Modul A gestartet." >> logs/app.log
-echo "ERROR: Kritischer Fehler in Modul B." > logs/sys.log
-echo "WARN: Konfiguration veraltet." >> logs/sys.log
-```
+Sie sehen, dass Ihnen nur Zeilen gezeigt werden, die kommentiert sind, weil grep nach dem kleingeschrieben 
+**component** gesucht hat. Wir wollen aber auch **Component** oder **COMPONENT** in dieser Datei finden, 
+um zu wissen, was wir editieren müssen.
 
+[EC] Finden Sie alle Zeilen in `apt/apt.conf.d/50appstream`, die **component** enthalten, unabhängig der Groß- und Kleinschreibung.
 
-### Grundlagen
+Standardmäßig sucht `grep` das Wort in einem Text egal ob es alleinstehend oder innerhalb eines Wortes ist.
 
-Wir frischen nochmal schnell die Nutzungsweise von `grep` auf.
+[EC] Finden Sie die Zeilen in `apt/apt.conf.d/50appstream`, die genau das Wort **components** enthalten 
+    und alleinstehend sind.
 
-Nutzen Sie hier zur Hilfe die Hilfe-Ausgabe: `grep --help`.
-Schauen Sie sich insbesondere die Option `-i` an.
+Analog dazu wollen Sie auch die Zeilennummern wissen, um abschätzen zu können, wann die Meldungen 
+in der Logdatei berichtet wurden, falls die Logdatei keine Daten und Zeiten angeben.
 
-- [EC] Finden Sie alle Zeilen in `data1.txt`, die das Wort "Zeile" enthalten.
-- [EC] Finden Sie alle Zeilen in `data1.txt` und `data2.txt`, die das Wort "Text" enthalten.
-- [EC] Finden Sie alle Zeilen in `data1.txt`, die "beispiel" enthalten, egal ob groß oder klein geschrieben.
-
-
-### Nützliche Optionen
-
-Dieser Abschnitt erklärt wichtige Optionen von `grep`, wie das Zählen von Treffern, das Anzeigen von 
-Zeilennummern und das Filtern von Ergebnissen.
-
-Lesen Sie sich die Optionen `-c, -n, -v, -w` aus der 
-[grep(1) manpage](https://man7.org/linux/man-pages/man1/grep.1.html) durch.
-
-- [EC] Zeigen Sie alle Zeilen aus `data2.txt` an, die das Wort "wichtig" nicht enthalten.
-- [EC] Finden Sie alle Zeilen in `config.log`, die "ERROR" enthalten, und zeigen Sie die jeweilige 
+[EC] Finden Sie alle Zeilen in `apt/apt.conf.d/50appstream`, die **component** enthalten, und zeigen Sie die jeweilige 
     Zeilennummer mit an.
-- [EC] Zählen Sie, wie viele Zeilen in `config.log` das Wort "INFO" enthalten.
-- [EC] Finden Sie die Zeilen in `data2.txt`, die genau das Wort "wichtig" enthalten.
 
+Jetzt wissen Sie welche Zeilen das Wort `component` enthalten. 
+Manchmal ist es hilfreich zu wissen, wie oft ein Wort in der Datei aufgetreten ist, 
+um abschätzen zu können, wie gut etwas funktioniert.
 
-### Fortgeschrittene Techniken
+[EC] Zählen Sie, wie viele Zeilen in `apt/apt.conf.d/50appstream` das Wort **component** enthalten.
 
-Hier werden fortgeschrittene Funktionen von `grep` behandelt, wie das rekursive Durchsuchen von Verzeichnissen und das Anzeigen von Kontextzeilen.
+Nehmen Sie an, Sie haben ein Log, welches in diesem Fall 1000 Zeilen lang ist. Sie haben nach 
+`ERROR` gesucht und finden heraus, dass die meisten Zeilen das Wort enthalten. 
+Das ist wieder unübersichtlich und Sie können die wichtigen Informationen zwischen den Error-Zeilen 
+schwer herausfinden. Deswegen möchten Sie wissen, wie die Datei ohne die Error-Zeilen aussehen.
 
-Lesen Sie sich die Optionen `-A, -B, -l, -r` aus der 
-[grep(1) manpage](https://man7.org/linux/man-pages/man1/grep.1.html) durch.
+[EC] Zeigen Sie alle Zeilen aus `xdg/libkleopatrarc` an, die das Wort **name** nicht enthalten, egal ob 
+    groß- oder kleingeschrieben. Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 
-- [EC] Finden Sie alle Zeilen in allen Dateien im Verzeichnis `logs` (und eventuellen Unterverzeichnissen), 
-    die das Wort "Modul" enthalten.
-- [EC] Finden Sie die Zeile in `config.log`, die "Datenbankverbindung" enthält, und zeigen Sie 
-    zusätzlich die eine Zeile davor und die zwei Zeilen danach an.
-- [EC] Listen Sie nur die Namen der Dateien im Verzeichnis `logs` auf, die das Wort "ERROR" enthalten.
+Lesen und verstehen Sie die Optionen `-A, -B, -r` aus der 
+[grep(1) manpage](https://man7.org/linux/man-pages/man1/grep.1.html).
+
+Angenommen Sie haben ein Problem mit einer Ihrer Webseiten. Auf der Webseite wird Ihnen der Fehler 
+`ERROR_CODE_DB_CONN_FAILED` angezeigt. 
+Ihnen ist bewusst in welchem Ordner Sie nach dem Fehler suchen können, wollen aber nicht jede Datei 
+extra mit `grep` durchsuchen.
+Als Veranschaulichung nutzen wir die nächsten Aufgabe dafür.
+
+[EC] Finden Sie alle Zeilen in allen Dateien im Verzeichnis (und eventuellen Unterverzeichnissen), 
+    die das Wort **timeout** enthalten, egal ob es groß- oder kleingeschrieben ist.
+    Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
+
+Sie haben gefunden in welchem Log der Fehler berichtet wird. Jetzt wollen Sie wissen, was davor und 
+danach passiert.
+
+[EC] Finden Sie die Zeile in `postfix/master.cf`, die **timeout** enthält, und zeigen Sie 
+    zusätzlich zehn Zeilen davor und fünf Zeilen danach.
+
+### `grep` mit regulären Ausdrücken
+
+`grep` versteht reguläre Ausdrücke. Es hat drei verschiedene Modi.
+
+- **Ohne Optionen (basic grep):** Jeder Buchstabe wird als normales Zeichen behandelt. 
+    Das Sternchen `*` ist hier kein Wildcard-Symbol, sondern muss mit einem Backslash 
+    (`\*`) als solches gekennzeichnet werden.
+- **Mit der Option `-E` (extended grep):** Quantoren wie `*`, `+`, `?` und `|` werden direkt als 
+    reguläre Ausdrücke erkannt, ohne dass ein Backslash nötig ist.
+- **Mit der Option `-P` (Perl grep):** Mit dieser Option stehen Ihnen zusätzliche Möglichkeiten für 
+    reguläre Ausdrücke zur Verfügung, wie z.B. Lookahead und Lookbehind.
+
+In den nächsten Aufgaben nutzen wir für `grep` die Option `-P`. 
+Für Skripte könnte es sich lohnen, eine einfachere Option zu wählen, wenn die erweiterten Funktionen 
+von `-P` nicht benötigt werden.
+
+Lesen und verstehen Sie die Abschnitte **What's a quantifier?** und **Pattern collections** von dem 
+[Guide to regular expressions](https://coderpad.io/blog/development/the-complete-guide-to-regular-expressions-regex/).
+
+Nehmen Sie an, sie haben nur eine englische Tastatur und wollen nach 'Großschreibung' suchen. 
+Dann könnten Sie auf das genaue Zeichen 'ß' verzichten und eine etwas weniger genaue Suche benutzen.
+
+Nehmen Sie an, Sie haben ein Problem mit einem Service auf einem Ihrer Server.
+Sie haben herausgefunden, dass Ihre Mitarbeiter auf dem Server bestimmte Funktionen ein- und ausschalten 
+können, obwohl sie dachten, dass die Mitarbeiter diese Berechtigung des Ein- und Ausschaltens nicht haben.
+Jetzt suchen Sie im Log nach den Zeitpunkten wo die Funktionen ein- oder ausgeschaltet wurden, damit Sie 
+die Berechtigungen der Funktionen nochmal prüfen können.
+
+[EC] Finden Sie die Zeichenfolgen **enable** und **disable** in allen Dateien, unabhängig der Groß- und Kleinschreibung.
+    Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
+
+Nach einem Serverausfall möchten Sie herausfinden, wann der verursachende Fehler aufgetreten ist. 
+Sie durchsuchen das Log gezielt nach Zeitangaben, um die Einträge rund um den Zeitpunkt des Ausfalls 
+zu finden. 
+So können Sie schnell erkennen, welche Aktionen oder Fehlermeldungen direkt davor oder danach passiert 
+sind und die Ursache eingrenzen.
+
+[EC] Finden Sie alle Zeilen in allen Dateien die Zeitangaben in diesem Format haben: **hh:mm:ss**.
 
 
 ### Aufräumen
 
 Wenn Sie möchten, können Sie jetzt den Ordner `grep` wieder löschen.
+
 [ENDSECTION]
 
 [SECTION::submission::trace]
