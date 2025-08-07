@@ -49,15 +49,16 @@ gewünschten Ergebnisse zu erhalten. Weitere Infos:
 
 <!-- time estimate: 20 min -->
 
-### INNER JOIN - Übereinstimmende Datensätze
+### INNER JOIN: Übereinstimmende Datensätze
 
-Ein `INNER JOIN` gibt nur die Datensätze zurück, die in beiden Tabellen übereinstimmen, 
-basierend auf einem gemeinsamen Wert in beiden Tabellen. Weitere Infos: 
+Ein `INNER JOIN` gibt nur Datensätze zurück, für die bestimmte Merkmale in beiden Tabellen übereinstimmen. 
+Jeder resultierende Datensatz enthält dann alle Attribute beider seiner Teile.
+Weitere Infos: 
 [`INNER JOIN`](https://mode.com/sql-tutorial/sql-inner-join)
 
 Die `ON`-Klausel bestimmt, unter welchen Bedingungen zwei Tabellenzeilen als passend gelten. 
 Ohne `ON` (oder bei einem Fehler) entsteht ein **kartesisches Produkt**, das alle möglichen 
-Kombinationen liefert – langsam und meist nutzlos. Deshalb ist `ON t1.col = t2.col` der 
+Kombinationen liefert –- langsam und meist nutzlos. Deshalb ist `ON t1.col = t2.col` der 
 **zentrale Bestandteil** eines JOINs, um sinnvolle und korrekte Ergebnisse zu erhalten.
 Weitere Infos: 
 [`ON`](https://mode.com/sql-tutorial/sql-joins-where-vs-on)
@@ -110,10 +111,10 @@ zusammen mit dem Namen des belegten Kurses anzeigt.
 die von `Dr. Smith` unterrichtet werden.
 <!-- time estimate: 25 min -->
 
-### LEFT JOIN - Alle linken Datensätze
+### LEFT JOIN: Alle ergänzten linken Datensätze
 
 Ein `LEFT JOIN` gibt alle Datensätze aus der linken Tabelle zurück und ergänzt sie um
-übereinstimmende Datensätze aus der rechten Tabelle. Fehlt eine Übereinstimmung,
+"passende" Datensätze aus der rechten Tabelle. Gibt es keine solchen,
 erhalten die rechten Spalten `NULL`:
 
 ```sql
@@ -126,14 +127,16 @@ LEFT JOIN righttable
 Weitere Infos: 
 [`LEFT JOIN`](https://mode.com/sql-tutorial/sql-left-join)
 
-[ER] Schreiben Sie eine Abfrage, die mithilfe von `LEFT JOIN` alle Kurse zeigt, auch 
-wenn kein Student eingeschrieben ist. Geben Sie Kursname und Studentenname (oder `NULL`) aus.
+[ER] Schreiben Sie eine Abfrage, die mithilfe von `LEFT JOIN` alle Kurs-Student-Paare zeigt, 
+und die einen Eintrag für einen Kurs auch dann erzeugt,  
+wenn dort gar kein Student eingeschrieben ist. 
+Geben Sie Kursname und Studentenname (oder `NULL`) aus.
 
 [ER] Schreiben Sie eine Abfrage, die mithilfe von `LEFT JOIN` zu jedem Kurs die zugehörige 
 Lehrkraft und den Namen eines eingeschriebenen Studenten (oder `NULL`) anzeigt.
 <!-- time estimate: 15 min -->
 
-### RIGHT JOIN - Alle rechten Datensätze
+### RIGHT JOIN: Alle ergänzten rechten Datensätze
 
 Ein `RIGHT JOIN` gibt alle Datensätze aus der rechten Tabelle zurück und ergänzt sie um
 übereinstimmende Datensätze aus der linken Tabelle. Fehlt eine Übereinstimmung,
@@ -149,7 +152,7 @@ RIGHT JOIN righttable
 Weitere Infos: 
 [`RIGHT JOIN`](https://mode.com/sql-tutorial/sql-right-join)
 
-### FULL JOIN - Alle Datensätze beider Tabellen
+### FULL JOIN: Alle Datensätze beider Tabellen
 
 Ein `FULL JOIN` kombiniert beide Tabellen vollständig. Dort, wo es keine Übereinstimmung gibt,
 erhalten die fehlenden Seiten `NULL`:
@@ -164,31 +167,33 @@ FULL JOIN mytable2
 Weitere Infos: 
 [`FULL JOIN`](https://www.w3schools.com/sql/sql_join_full.asp)
 
-### UNION - Verbindungssimulation in SQLite
+### Pseudo-RIGHT-JOIN in SQLite mittels LEFT JOIN
 
-SQLite unterstützt keine `RIGHT JOIN` oder `FULL JOIN`. 
-Ein `RIGHT JOIN` ist nichts anderes als ein `LEFT JOIN`, wenn Sie die Tabellen vertauschen:
+SQLite unterstützt (im Gegensatz zu "erwachsenen" RDBMS) keine `RIGHT JOIN` oder `FULL JOIN`. 
+Aber ein `RIGHT JOIN` ist nichts anderes als ein `LEFT JOIN`, wenn Sie die beiden Tabellen vertauschen:
 
 ```sql
--- LEFT JOIN
+-- LEFT JOIN:
 SELECT mycol 
 FROM lefttable
 LEFT JOIN righttable 
   ON lefttable.id = righttable.fk;
 
--- RIGHT JOIN Simulation 
+-- RIGHT-JOIN-Simulation: 
 SELECT mycol 
 FROM righttable
 LEFT JOIN lefttable 
   ON lefttable.id = righttable.fk;
 ```
+(`fk` steht für "foreign key", auf Deutsch "Fremdschlüssel": ein Schlüssel in einer anderen Tabelle).
 
-(`fk` steht für "foreign key", also Fremdschlüssel: ein Schlüssel in einer anderen Tabelle).
-Weitere Infos: 
-[`UNION`](https://mode.com/sql-tutorial/sql-union)
+
+### Pseudo-FULL-JOIN in SQLite mittels UNION
 
 Mit `UNION` lässt sich `FULL JOIN` simulieren, indem Sie zwei `LEFT JOINs` kombinieren. 
 Ein `UNION` verbindet die Ergebnisse zweier `SELECT`-Abfragen und entfernt dabei doppelte Zeilen:
+Weitere Infos: 
+[`UNION`](https://mode.com/sql-tutorial/sql-union)
 
 ```sql
 SELECT mycol FROM mytable1
@@ -217,10 +222,6 @@ und Lehrkräfte untereinander in einer Spalte ausgibt, wobei Duplikate erhalten 
 Studenten (`age`) mit den Semesterangaben der Kurse (`semester`) in einer Spalte kombiniert.
 <!-- time estimate: 30 min -->
 
-[NOTICE]
-SQLite unterstützt nur `INNER JOIN` und `LEFT JOIN` direkt. `RIGHT JOIN` und `FULL JOIN` 
-können durch geeignete Kombinationen aus `LEFT JOIN` und `UNION` simuliert werden.
-[ENDNOTICE]
 
 [ER] Schreiben Sie eine Abfrage, die mithilfe eines `RIGHT JOIN` (simuliert) alle Kurse 
 gemeinsam mit den Namen eventuell eingeschriebener Studenten anzeigt; Studenten ohne Kurs 
