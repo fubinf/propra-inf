@@ -1,4 +1,5 @@
 title: Fortgeschrittene Programmierung in Go
+stage: alpha
 ---
 Diese Aufgabengruppe richtet sich an diejenigen, die mit Grundlagen in Go schon vertraut sind und eine neue 
 Herausforderung suchen.

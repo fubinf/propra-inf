@@ -1,4 +1,5 @@
 title: Grundkenntnisse fürs Programmieren
+stage: draft
 ---
 Nichts ist frustrierender, als vor Aufgaben zu stehen und nicht zu wissen, 
 wie überhaupt die Programmiersprache funktioniert.

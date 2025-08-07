@@ -1,5 +1,5 @@
 title: Grundlagen von C
-stage: draft
+stage: alpha
 ---
 C ist die Sprache, in der große Teile der heutigen Systemsoftware geschrieben sind,
 insbesondere bei Unix und Linux.
