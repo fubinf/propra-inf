@@ -49,7 +49,7 @@ Jeder dieser `JOIN`-Typen hat seine eigenen Eigenschaften und
 Anwendungsfälle, die es ermöglichen, Daten effektiv und genau zu kombinieren, um die 
 gewünschten Ergebnisse zu erhalten.
 
-(optional) Lesen Sie zunächst die grundlegende Erklärung zu 
+(Optional) Lesen Sie zunächst die grundlegende Erklärung zu 
 [`JOIN`](https://mode.com/sql-tutorial/sql-joins) 
 für weitere Details und Beispiele.
 
@@ -60,7 +60,7 @@ für weitere Details und Beispiele.
 Ein `INNER JOIN` gibt nur Datensätze zurück, für die bestimmte Merkmale in beiden Tabellen übereinstimmen. 
 Jeder resultierende Datensatz enthält dann alle Attribute beider seiner Teile.
 
-(optional) Weitere Syntax-Details und praktische Beispiele finden Sie unter 
+(Optional) Weitere Syntax-Details und praktische Beispiele finden Sie unter 
 [`INNER JOIN`](https://mode.com/sql-tutorial/sql-inner-join).
 
 Die `ON`-Klausel bestimmt, unter welchen Bedingungen zwei Tabellenzeilen als passend gelten. 
@@ -69,7 +69,7 @@ Kombinationen liefert –- langsam und meist nutzlos.
 Deshalb ist `ON t1.col = t2.col` der **zentrale Bestandteil** eines JOINs, 
 um sinnvolle und korrekte Ergebnisse zu erhalten.
 
-(optional) Für eine ausführliche Diskussion der ON-Klausel siehe 
+(Optional) Für eine ausführliche Diskussion der ON-Klausel siehe 
 [`ON`](https://mode.com/sql-tutorial/sql-joins-where-vs-on).
 
 ```sql
@@ -133,7 +133,7 @@ LEFT JOIN righttable
   ON lefttable.column1 = righttable.column5;
 ```
 
-(optional) Umfassende Beispiele und Anwendungsfälle zu 
+(Optional) Umfassende Beispiele und Anwendungsfälle zu 
 [`LEFT JOIN`](https://mode.com/sql-tutorial/sql-left-join).
 
 [ER] Schreiben Sie eine Abfrage, die mithilfe von `LEFT JOIN` alle Kurs-Student-Paare zeigt, 
@@ -158,7 +158,7 @@ RIGHT JOIN righttable
   ON lefttable.column1 = righttable.column6;
 ```
 
-(optional) Detaillierte Erläuterungen zu 
+(Optional) Detaillierte Erläuterungen zu 
 [`RIGHT JOIN`](https://mode.com/sql-tutorial/sql-right-join) 
 mit praktischen Anwendungsbeispielen.
 
@@ -174,7 +174,7 @@ FULL JOIN mytable2
   ON mytable1.column3 = mytable2.column7;
 ```
 
-(optional) Mehr Details zu 
+(Optional) Mehr Details zu 
 [`FULL JOIN`](https://www.w3schools.com/sql/sql_join_full.asp).
 
 ### Pseudo-RIGHT-JOIN in SQLite mittels LEFT JOIN
@@ -212,7 +212,7 @@ des ersten Semesters (`semester = 1`) zusammen mit zugehörigen Studenten (oder 
 Mit `UNION` lässt sich `FULL JOIN` simulieren, indem Sie zwei `LEFT JOINs` kombinieren. 
 Ein `UNION` verbindet die Ergebnisse zweier `SELECT`-Abfragen und entfernt dabei doppelte Zeilen:
 
-(optional) Erweiterte UNION-Techniken unter 
+(Optional) Erweiterte Informationen unter 
 [`UNION`](https://mode.com/sql-tutorial/sql-union).
 
 ```sql
@@ -226,7 +226,7 @@ LEFT JOIN mytable1 ON mytable1.id = mytable2.id;
 So entsteht eine vollständige Kombination aus beiden Tabellen – ähnlich einem `FULL JOIN`.
 Wenn Sie alle Zeilen inklusive Duplikate erhalten möchten, können Sie `UNION ALL` verwenden.
 
-(optional) Unterschiede zwischen UNION und UNION ALL bei 
+(Optional) Unterschiede zwischen UNION und UNION ALL bei 
 [`UNION ALL`](https://www.w3schools.com/sql/sql_union_all.asp).
 
 [ER] Schreiben Sie eine Abfrage, die mithilfe von `UNION` die Spalten

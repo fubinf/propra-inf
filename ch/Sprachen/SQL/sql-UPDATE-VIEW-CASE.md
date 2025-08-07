@@ -14,11 +14,11 @@ assumes: sql-basics, sql-SELECT, sql-SELECT2
 
 
 [SECTION::background::default]
-Daten in einer Datenbank sind selten statisch. Oft müssen bestehende Datensätze 
-korrigiert oder aktualisiert werden. Gleichzeitig möchte man häufig komplexe 
-Abfragen vereinfachen oder bestimmte Datenansichten für verschiedene Benutzer 
-bereitstellen. Dafür bietet SQL die `UPDATE`-Anweisung zur Datenänderung und 
-Views zur Erstellung virtueller Tabellen.
+Daten in einer Datenbank sind selten statisch. 
+Oft müssen bestehende Datensätze korrigiert oder aktualisiert werden. 
+Gleichzeitig möchte man häufig komplexe Abfragen vereinfachen oder bestimmte Datenansichten für verschiedene Benutzer bereitstellen. 
+Dafür bietet SQL die `UPDATE`-Anweisung zur Datenänderung 
+und Views zur Erstellung virtueller Tabellen.
 [ENDSECTION]
 
 
@@ -59,7 +59,7 @@ SET mycol1 = myvalue1, mycol2 = myvalue2, ...
 WHERE mycondition;
 ```
 
-Weitere Infos: 
+(Optional) Ausführliche UPDATE-Syntax und Beispiele unter 
 [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp)
 
 [NOTICE]
@@ -103,7 +103,8 @@ löschen und neu erstellen.
 
 Views (Sichten) sind virtuelle Tabellen, die auf SQL-Abfragen basieren. 
 Sie speichern keine eigenen Daten, sondern zeigen immer die aktuellen Daten 
-der zugrundeliegenden Tabellen an. Views ermöglichen es, komplexe Abfragen zu 
+der zugrundeliegenden Tabellen an. 
+Views ermöglichen es, komplexe Abfragen zu 
 vereinfachen und wiederkehrende Datenansichten zu standardisieren.
 
 ```sql
@@ -113,7 +114,7 @@ FROM mytable
 WHERE mycondition;
 ```
 
-Weitere Infos: 
+(Optional) Erweiterte View-Konzepte bei
 [`CREATE VIEW`](https://www.sqltutorial.org/sql-views/)
 
 [ER] Erstellen Sie eine View `usa_websites`, die nur Websites aus den USA anzeigt.
@@ -133,7 +134,7 @@ View-Definition, nicht die zugrundeliegenden Tabellendaten.
 DROP VIEW IF EXISTS myview;
 ```
 
-Weitere Infos: 
+(Optional) Weitere Details zum Löschen von Views unter
 [`DROP VIEW`](https://www.sqltutorial.org/sql-drop-view/)
 
 [ER] Löschen Sie die View `usa_websites`.
@@ -146,7 +147,8 @@ Weitere Infos:
 ### Views mit komplexeren Abfragen und Aliase: `CASE, AS, WHEN, THEN, ELSE, END` 
 
 Views können auch komplexere SELECT-Anweisungen enthalten, einschließlich 
-berechneter Spalten und Aliase. Dies macht sie besonders nützlich für die 
+berechneter Spalten und Aliase. 
+Dies macht sie besonders nützlich für die 
 Bereitstellung benutzerfreundlicher Datenansichten. 
 
 ```sql
@@ -166,6 +168,8 @@ CASE
   ELSE 'Standard'
 END AS mycategory
 ```
+(Optional) Weitere Infos: 
+[`CASE`](https://www.w3schools.com/sql/sql_case.asp)
 
 [ER] Erstellen Sie eine View `website_info`, die folgende Spalten enthält:
 

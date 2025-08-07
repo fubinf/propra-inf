@@ -54,7 +54,7 @@ WHERE mycol BETWEEN myvalue1 AND myvalue2;
 `BETWEEN` schließt in SQLite beide Grenzwerte ein. Das bedeutet, 
 `WHERE alter BETWEEN 18 AND 65` findet sowohl 18-Jährige als auch 65-Jährige.
 
-Weitere Infos: 
+(Optional) Erweiterte Informationen unter
 [`BETWEEN`](https://www.sqltutorial.org/sql-between/)
 
 [ER] Wählen Sie alle Websites aus, deren `alexa`-Wert zwischen 1 und 20 liegt.
@@ -71,7 +71,8 @@ Wählen Sie alle Websites aus, deren `name` alphabetisch zwischen 'A' und 'H' li
 
 [NOTICE]
 Der `BETWEEN`-Operator verhält sich in verschiedenen Datenbanksystemen unterschiedlich 
-bezüglich der Einschließung der Grenzwerte. In SQLite sind beide Grenzwerte eingeschlossen.
+bezüglich der Einschließung der Grenzwerte. 
+In SQLite sind beide Grenzwerte eingeschlossen.
 [ENDNOTICE]
 <!-- time estimate: 25 min -->
 
@@ -102,7 +103,7 @@ SQLite bietet verschiedene Datumsfunktionen. Die wichtigsten sind:
 - `DATE(datumsstring)` – extrahiert Datumsteil aus einem Datetime-String
 - `JULIANDAY(datum1) - JULIANDAY(datum2)` – Differenz in Tagen zwischen zwei Daten
 
-Weitere Infos: 
+(Optional) Umfassende Übersicht aller Datumsfunktionen bei
 [`Date Functions`](https://www.sqltutorial.org/sql-date-functions/)
 
 [ER] Wählen Sie alle Zugriffe aus, deren `date` zwischen '2016-05-10' und '2016-05-14' liegt.
@@ -118,7 +119,8 @@ Verwenden Sie `ROUND()`, um auf ganze Tage zu runden.
 
 [NOTICE]
 SQLite speichert Daten als TEXT, REAL oder INTEGER. Für Datumsoperationen konvertiert es 
-automatisch zwischen verschiedenen Formaten. Das Format 'YYYY-MM-DD' wird empfohlen.
+automatisch zwischen verschiedenen Formaten. 
+Das Format 'YYYY-MM-DD' wird empfohlen.
 [ENDNOTICE]
 <!-- time estimate: 25 min -->
 
@@ -126,8 +128,8 @@ automatisch zwischen verschiedenen Formaten. Das Format 'YYYY-MM-DD' wird empfoh
 ### Daten kopieren: `SELECT INTO`
 
 `SELECT INTO` ist eine SQL-Konstruktion, die es ermöglicht, Daten aus einer 
-bestehenden Tabelle in eine neue Tabelle zu kopieren. Die allgemeine Syntax 
-lautet:
+bestehenden Tabelle in eine neue Tabelle zu kopieren. 
+Die allgemeine Syntax lautet:
 
 ```sql
 SELECT mycol1, mycol2, ...
@@ -139,7 +141,9 @@ WHERE mycondition;
 Diese Anweisung erstellt automatisch eine neue Tabelle mit dem Namen `mynewtable` 
 und kopiert die ausgewählten Spalten und Zeilen aus `myoldtable` hinein. Die 
 Struktur der neuen Tabelle wird dabei automatisch von den ausgewählten Spalten 
-abgeleitet. Weitere Infos: 
+abgeleitet. 
+
+(Optional) Weitere Details unter
 [`SELECT INTO`](https://www.w3schools.com/sql/sql_select_into.asp)
 
 
@@ -189,7 +193,7 @@ SELECT COALESCE(mycol, 'Standard') FROM mytable;
 SELECT IFNULL(mycol, 0) FROM mytable;
 ```
 
-Weitere Infos: 
+(Optional) Vertiefende Informationen unter
 [`NULL Functions`](https://www.w3schools.com/sql/sql_isnull.asp)
 
 [ER] Fügen Sie einen Website-Eintrag mit NULL-Werten hinzu: 
@@ -266,7 +270,7 @@ CREATE UNIQUE INDEX myindex ON mytable (mycol);
 DROP INDEX myindex;
 ```
 
-Weitere Infos: 
+(Optional) Erweiterte Index-Konzepte unter 
 [`Indexes`](https://www.w3schools.com/sql/sql_create_index.asp)
 
 [ER] Erstellen Sie einen Index auf der `alexa`-Spalte der `websites`-Tabelle:
