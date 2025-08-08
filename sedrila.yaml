@@ -166,11 +166,11 @@ chapters:
     taskgroups:
       - name: Python0
       - name: Python
+      - name: C
       - name: Go0
       - name: Go
       - name: RegExp
       - name: SQL
-      - name: C
   - name: Bibliotheken
     taskgroups: 
       - name: Python-Standardbibliothek
