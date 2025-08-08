@@ -63,6 +63,7 @@ Pakete können natürlich auch explizit deinstalliert werden. Es gibt zwei versc
 
 [ENDSECTION]
 
-[INSTRUCTOR::Auf die Optionen achten]
+[INSTRUCTOR::Kommandoprotokoll + Markdown]
+[PROT::ALT:apt.prot]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
