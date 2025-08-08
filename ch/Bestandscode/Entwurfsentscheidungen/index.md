@@ -1,4 +1,5 @@
 title: "Entwurfsentscheidungen"
+stage: draft
 ---
 Beim Refaktorieren von Code ist es lohnenswert sich an bestimmte Grundprinzipien zu halten.
 Nur ist es in Abhängigkeit von Sprache und Umfang des Programms nicht trivial zu sagen, welche 

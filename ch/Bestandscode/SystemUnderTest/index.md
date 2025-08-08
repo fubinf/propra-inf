@@ -1,4 +1,5 @@
 title: Arbeiten mit dem System Under Test
+stage: draft
 ---
 In der Praxis könnte das [TERMREF::SUT] beispielsweise eine Webanwendung, eine mobile App, ein
 Datenbankmanagementsystem oder ein beliebiges Softwareprodukt sein, das entwickelt wurde und nun
