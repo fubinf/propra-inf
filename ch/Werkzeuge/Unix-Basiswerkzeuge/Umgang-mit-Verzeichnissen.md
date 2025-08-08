@@ -51,8 +51,11 @@ Unixsystem auch wirklich installiert.
 
 [EC] Benennen Sie die Datei `myfile1` im `mydir`-Ordner nach `myfile2` um.
 
-[EC] Wechseln Sie zurück in ihr `home`-Verzeichnis und erstellen Sie einen neuen Ordner namens `mydir2`. 
-  Verschieben Sie alle Dateien (auch wenn da mehrere wären) aus `mydir` in den Ordner `mydir2`.
+[EC] Wechseln Sie zurück in ihr `home`-Verzeichnis.
+
+[EC] Erstellen Sie einen neuen Ordner namens `mydir2`. 
+
+[EC] Verschieben Sie alle Dateien (auch wenn da mehrere wären) aus `mydir` in den Ordner `mydir2`.
 
 [EC] Löschen Sie den Ordner `mydir`.
 
@@ -61,3 +64,7 @@ Unixsystem auch wirklich installiert.
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
+
+[INSTRUCTOR::Kommandoprotokoll]
+[PROT::ALT:Umgang-mit-Verzeichnissen.prot]
+[ENDINSTRUCTOR]
