@@ -1,6 +1,6 @@
 title: Zusammenführen von Tabellen mittels JOIN
-stage: alpha
-timevalue: 2
+stage: beta
+timevalue: 2.0
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2
 ---
@@ -10,14 +10,15 @@ Ich kann mehrere Tabellen in einer Abfrage verbinden
 und kenne die Eigenschaften der unterschiedlichen Verbindungen.
 [ENDSECTION]
 
+
 [SECTION::background::default]
 In einem Datenbankprojekt werden meist mehrere Tabellen verwendet, 
 die unterschiedliche Informationsbereiche abbilden.
 Um Wiederholungen und Inkonsistenzen zu vermeiden, 
 werden Tabellen über Referenzen miteinander verknüpft.
 `JOIN`-Operationen dienen dazu, relevante Daten aus diesen Tabellen zu kombinieren.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -255,17 +256,15 @@ vorhanden ist.
 [EQ] Sehen Sie den Bedarf der `LEFT`, `RIGHT` und `FULL` JOINS, oder können Sie sich 
 vorstellen, lediglich mit dem `INNER JOIN` auszukommen?
 <!-- time estimate: 10 min -->
-
 [ENDSECTION]
+
 
 [SECTION::submission::program,reflection]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
+
 
 [INSTRUCTOR::Kontrollergebnisse]
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
