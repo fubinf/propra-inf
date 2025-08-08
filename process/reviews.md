@@ -15,15 +15,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 - ch/Testen/Betriebsumgebung/GitHub-Build.md (RR->LP->RR->LP)
 - ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP->RR->LP)
 
-
-### Werkzeuge
-- ch/Werkzeuge/Netzwerk/X11-Weiterleitung.md (IC->LP)
-- ch/Werkzeuge/Netzwerk/rsync.md (IC->LP->IC->LP)
-
-### Sprachen
-- ch/Sprachen/SQL/sql-SELECT.md (YL -> LP)
-- ch/Sprachen/SQL/sql-JOIN.md (YL -> LP)
-
 ### (on hold)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
 - ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->LP)
