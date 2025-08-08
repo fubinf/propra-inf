@@ -42,6 +42,7 @@ folgende Daten ein:
 (4, 'Weibo', 'http://weibo.com/', 20, 'CN'),
 (5, 'Facebook', 'https://www.facebook.com/', 3, 'USA')
 ```
+Verwenden Sie die aus [PARTREF::sql-basics] bekannte Methode zur Tabellenerstellung.
 <!-- time estimate: 10 min -->
 
 

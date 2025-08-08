@@ -41,6 +41,7 @@ Erstellen Sie zunächst eine neue Tabelle für diese Aufgabe.
 (5, 'Facebook', 'https://www.facebook.com/', 3, 'USA'),
 (7, 'Stackoverflow', 'http://stackoverflow.com/', 0, 'IND');
 ```
+Verwenden Sie die aus [PARTREF::sql-basics] bekannte Methode zur Tabellenerstellung.
 
 Der `BETWEEN`-Operator ermöglicht es, Datensätze auszuwählen, deren Werte in einem 
 bestimmten Bereich liegen. Die Syntax lautet:

@@ -30,7 +30,8 @@ der wir in dieser Aufgabe arbeiten wollen.
 
 [ER] Erstellen Sie die Tabelle `dogs` mit den Spalten `name`, `breed`, `age`, `gender`, `color`,
   `birthdate`, `owner_id` und den folgenden Einträgen. Nehmen Sie die Spalte `id INTEGER PRIMARY KEY`
-  mit in die Tabelle auf.
+  mit in die Tabelle auf. 
+  Verwenden Sie die aus [PARTREF::sql-basics] bekannte Methode zur Tabellenerstellung.
 
 ```sql
 ('Buddy', 'Labrador Retriever', 3, 'Male', 'Golden', '2019-05-10', 1),
