@@ -32,7 +32,7 @@ Arten von Anfragen. Die beiden wichtigsten sind:
 - **GET**: Zum Abrufen von Ressourcen vom Server (schon gelernt in [PARTREF::http-GET])
 - **POST**: Zum Senden von Daten an den Server zur Verarbeitung
 
-Lesen Sie zunächst die grundlegende Erklärung zu 
+(Optional) Lesen Sie zunächst die grundlegende Erklärung zu 
 [HTTP-Methoden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
 
 [EQ] Welche weiteren HTTP-Methoden gibt es neben GET und POST, und wofür werden 
@@ -115,7 +115,7 @@ Dateiinhalt hier...
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 ```
 
-Eine detaillierte Erklärung der 
+(Optional) Eine detaillierte Erklärung der 
 [Content-Types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)
 
 [EC] Erstellen Sie eine Datei `HTTP-POST-form.crlf` mit einer POST-Anfrage, 
@@ -135,7 +135,8 @@ Genau wie bei GET können wir POST-Anfragen manuell mit `netcat` testen.
 
 [NOTICE]
 Achten Sie darauf, dass alle Zeilen mit CRLF enden und zwischen Header und Body 
-eine Leerzeile steht. Die Content-Length muss exakt der Anzahl Bytes im Body 
+eine Leerzeile steht. 
+Die Content-Length muss exakt der Anzahl Bytes im Body 
 entsprechen (inklusive der CRLF-Zeichen im Body).
 [ENDNOTICE]
 
@@ -187,7 +188,7 @@ Statuscodes haben oft andere Bedeutungen:
 - **401 Unauthorized**: Authentifizierung erforderlich
 - **422 Unprocessable Entity**: Daten syntaktisch korrekt, aber semantisch ungültig
 
-Zusätzlich lesen Sie über 
+(Optional) Zusätzlich lesen Sie über 
 [HTTP-Statuscodes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
 [EQ] Welcher der oben genannten fünf Statuscodes wäre in folgenden Situationen jeweils angemessen?
@@ -255,7 +256,7 @@ Cross-Site Request Forgery Angriffe können POST-Anfragen missbrauchen.
 **Input-Validierung:**
 Alle POST-Daten müssen serverseitig validiert werden.
 
-Lesen Sie mehr über 
+(Optional) Lesen Sie mehr über 
 [Web-Sicherheit](https://developer.mozilla.org/en-US/docs/Web/Security)
 
 [EQ] Warum reicht es nicht aus, dass POST-Daten nicht in der URL stehen, 

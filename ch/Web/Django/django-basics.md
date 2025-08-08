@@ -28,7 +28,8 @@ die alle wichtigen Funktionen einer modernen Webanwendung bieten.
 Django folgt der Philosophie **"Don't Repeat Yourself" (DRY)** und bietet viele 
 eingebaute Funktionen, die Entwicklern helfen, sich auf die Geschäftslogik zu konzentrieren, 
 anstatt Grundfunktionen neu zu implementieren.
-Weitere Informationen finden Sie in der offiziellen Dokumentation: 
+
+(Optional) Weitere Informationen finden Sie in der offiziellen Dokumentation: 
 [Django Overview](https://docs.djangoproject.com/en/stable/intro/overview/)
 
 [EQ] Nennen Sie drei große Websites, die Django verwenden. 
@@ -48,7 +49,7 @@ von Komponenten wie Templates, Modellen und Views.
 **Rapid Development**: Schnelle Entwicklung von Prototypen bis hin zu produktionsreifen 
 Anwendungen.
 
-Mehr Details zu Django's Design-Philosophie: 
+(Optional) Mehr Details zu Django's Design-Philosophie: 
 [Django Design Philosophy](https://docs.djangoproject.com/en/stable/misc/design-philosophies/)
 
 [EQ] Erklären Sie in eigenen Worten, was "Convention over Configuration" bedeutet.
@@ -72,7 +73,7 @@ Django verwendet das **MTV (Model-Template-View)**-Muster, eine Variante des bek
 - View übergibt Daten an Template
 - Template rendert HTML und sendet Response zurück
 
-Vergleichen Sie mit der traditionellen MVC-Architektur: 
+(Optional) Vergleichen Sie mit der traditionellen MVC-Architektur: 
 [MVC vs MTV](https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/)
 
 
@@ -89,7 +90,7 @@ Django bietet zahlreiche eingebaute Features:
 | **URL-Routing** | Flexible URL-Zuordnung mit Regex-Unterstützung |
 | **Caching** | Unterstützung für Memcached, Redis etc. |
 
-Detaillierte Übersicht der Features: 
+(Optional) Detaillierte Übersicht der Features: 
 [Django Features](https://www.djangoproject.com/start/overview/)
 
 [EQ] Recherchieren Sie für **Admin Backend**, **ORM**, **Formular-Handling** jeweils 
@@ -126,7 +127,14 @@ ein konkretes Anwendungsbeispiel.
 4. Eine REST-API für eine Mobile App
 <!-- time estimate: 20 min -->
 
-### Django Installation
+
+### Entwicklungsumgebung einrichten und  Django Installation
+
+**Empfohlene Entwicklungstools**:
+
+- **VS Code** mit Python-Extension
+- **PyCharm** (Community oder Professional)
+- **Sublime Text** mit Python-Paketen
 
 Bevor Sie Django installieren können, muss Python auf Ihrem System verfügbar sein. 
 Django unterstützt Python 3.8 oder höher.
@@ -136,9 +144,9 @@ Django unterstützt Python 3.8 oder höher.
 pip install Django
 ```
 
-**Spezifische Version installieren (hier z.B. 4.2.7)**:
+**Spezifische Version installieren (hier z.B. 5.2.5)**:
 ```bash
-pip install Django==4.2.7
+pip install Django==5.2.5
 ```
 
 **Installation mit Paketmanager (Linux)**:
@@ -150,31 +158,17 @@ sudo apt-get install python3-django
 sudo yum install python3-django
 ```
 
-weitere Installationsanleitung: 
+(Optional) Weitere Installationsanleitung: 
 [Django Installation Guide](https://www.w3schools.com/django/django_install_django.php)
-
-[ER] Installieren Sie Django auf Ihrem System und dokumentieren Sie die verwendeten Befehle.
-
-[ER] Überprüfen Sie die Installation mit folgendem Python-Code und notieren Sie die Ausgabe:
-```python
-import django
-print(django.get_version())
-```
-<!-- time estimate: 20 min -->
-
-### Entwicklungsumgebung einrichten
-
-**Empfohlene Entwicklungstools**:
-
-- **VS Code** mit Python-Extension
-- **PyCharm** (Community oder Professional)
-- **Sublime Text** mit Python-Paketen
 
 **Virtuelle Umgebung erstellen** (empfohlen):
 ```bash
 python -m venv django_env
+python3 -m venv django_env      # python3 unter Linux ist manchmal notwendig
+
 source django_env/bin/activate  # Linux/Mac
 django_env\Scripts\activate     # Windows
+
 pip install Django
 ```
 
@@ -200,23 +194,29 @@ python manage.py runserver 8080  # Server auf einem alternativen Port starten
 Nach dem Start sollte unter `http://127.0.0.1:8000/` 
 oder `http://127.0.0.1:8080/` die Django-Willkommensseite erscheinen.
 
-[ER] Erstellen Sie ein Django-Projekt namens `testprojekt` und starten Sie den 
+[EC] Installieren Sie Django in einer virtuellen Umgebung mit Name `django_lern_env` auf Ihrem System und dokumentieren Sie die verwendeten Befehle.
+
+[EC] Überprüfen Sie die Installation mit folgendem Befehl und notieren Sie die Ausgabe:
+```bash
+python -m django --version
+```
+[EC] Erstellen Sie ein Django-Projekt namens `testprojekt` und starten Sie den 
 Entwicklungsserver. 
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 30 min -->
 
 ### Django-Projektstruktur verstehen
 
 Ein neues Django-Projekt hat folgende Struktur:
 ```
 meinprojekt/
-    manage.py
-    meinprojekt/
-        __init__.py
-        settings.py
-        urls.py
-        wsgi.py
-        asgi.py
+├── manage.py                   # Django-Kommandozeilen-Tool
+└── testprojekt/                # Projekt-Konfigurationsordner
+    ├── __init__.py             # Python-Paket-Marker (leer)
+    ├── settings.py             # Zentrale Projektkonfiguration
+    ├── urls.py                 # Haupt-URL-Routing
+    ├── wsgi.py                 # WSGI-Deployment-Konfiguration
+    └── asgi.py                 # ASGI-Konfiguration für async/WebSockets
 ```
 
 **Wichtige Dateien**:
@@ -226,17 +226,23 @@ meinprojekt/
 - `urls.py`: URL-Routing-Konfiguration
 - `wsgi.py`/`asgi.py`: Deployment-Konfiguration für Webserver
 
-Mehr zur 
+(Optional) Mehr zur 
 [Project Structure](https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project)
 
-[ER] Erkunden Sie die Projektstruktur und listen Sie alle erstellten Dateien und 
-Ordner.
+[EC] Erkunden Sie die Projektstruktur und listen Sie alle erstellten Dateien und 
+Ordner. Benutzen Sie dazu den `tree`-Befehl oder ähnliche Tools:
+```bash
+sudo apt update
+sudo apt install tree
+tree meinprojekt
+```
+
 <!-- time estimate: 15 min -->
 [ENDSECTION]
 
 [SECTION::submission::program]
-[INCLUDE::/_include/Submission-Quellcode.md]
-Reichen Sie Ihre Installationsbefehle und Projektdateien ein.
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+Reichen Sie Ihre Installationsbefehle und Projektstruktur ein.
 
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 Dokumentieren Sie Ihre Antworten zu den Recherche- und Analyseaufgaben.
@@ -257,5 +263,10 @@ Typische Stolpersteine:
 - Virtuelle Umgebungen nicht verwendet
 - Firewall-Probleme beim Entwicklungsserver
 
-[INCLUDE::ALT:]
+### Fragen
+[INCLUDE::ALT:django-basics.md]
+
+### Kommandoprotokoll
+[PROT::ALT:django-basics.prot]
+
 [ENDINSTRUCTOR]

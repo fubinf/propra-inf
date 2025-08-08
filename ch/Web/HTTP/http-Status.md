@@ -33,7 +33,7 @@ HTTP-Statuscodes sind dreistellige Zahlen, die in fünf Kategorien unterteilt si
 
 **5xx**: Server Error - The server failed to fulfill an apparently valid request
 
-Mehr Details zu HTTP-Statuscodes finden Sie in der
+(Optional) Mehr Details zu HTTP-Statuscodes finden Sie in der
 [MDN-Dokumentation zu HTTP-Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 sowie in der 
 [offiziellen IANA Status Code Registry](https://www.iana.org/assignments/http-status-codes).
@@ -101,7 +101,7 @@ Diese Codes fordern den Client auf, weitere Schritte zu unternehmen:
 - `305 Use Proxy`: Deprecated aus Sicherheitsgründen
 - `306 unused`: Nicht mehr verwendet, nur reserviert
 
-Ausführliche Informationen zu Redirects finden Sie in der
+(Optional) Ausführliche Informationen zu Redirects finden Sie in der
 [MDN-Dokumentation zu Redirects](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections).
 
 [EQ] Erklären Sie den Unterschied zwischen `301 Moved Permanently` und `308 Permanent Redirect`.
@@ -184,7 +184,7 @@ Diese Codes zeigen Probleme auf der Serverseite an:
 - `510 Not Extended`: Server benötigt Erweiterungen für die Anfrage
 - `511 Network Authentication Required`: Netzwerk-Authentifizierung erforderlich
 
-Weitere Informationen zu Server-Fehlern finden Sie in der
+(Optional) Weitere Informationen zu Server-Fehlern finden Sie in der
 [HTTP-Fehlerbehandlung Dokumentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses).
 
 [EQ] Ein Webserver ist aufgrund von Wartungsarbeiten temporär nicht verfügbar.
@@ -207,7 +207,7 @@ Wird heute ironisch für ungültige Anfragen oder als Erkennungszeichen verwende
 `451 Unavailable For Legal Reasons`: Eingeführt 2015, 
 benannt nach Ray Bradburys "Fahrenheit 451", für rechtlich blockierte Inhalte.
 
-Weitere ungewöhnliche HTTP-Statuscodes sind in der
+(Optional) Weitere ungewöhnliche HTTP-Statuscodes sind in der
 [Complete List of HTTP Status Codes](https://httpstatuses.com/) dokumentiert.
 
 ### Praktische Anwendung und Diagnose
