@@ -74,7 +74,7 @@ der Gehalt dessen sein, was der Linkprüfer später für den Testserver an Probl
 <!-- time estimate: 10 min -->
 
 
-### 3. Systemtest für `getlinks`
+### 3. Systemtest für `getlinks`: `test_linkcheck.py`
 
 Ein Systemtest prüft das Verhalten eines Systems als Ganzes.
 In unserem Fall schauen wir dazu die Ausgaben des Linkprüfers an, wenn er den Testserver bearbeitet.
@@ -92,8 +92,8 @@ der es prüfen soll, wird es bei der Entwicklung verwirrend.
 Deshalb bauen wir unseren Systemtest jetzt erstmal für ein System, von dem wir schon wissen,
 dass es funktioniert: `linkcheck --mode getlinks`.
 
-[ER] Ergänzen Sie in `test_linkcheck.py` die Funktion `test_getlinks()` und programmieren Sie
-darin wie folgt:
+[ER] Legen Sie in `test_linkcheck.py` die Funktion `test_getlinks()` an und 
+programmieren Sie darin wie folgt:
 
 - Starten Sie `linkcheck_server.main(8031)` mittels 
   [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html).
@@ -212,5 +212,5 @@ Und zwar:
 Mögliche Lösung siehe 
 [TREEREF::linkcheck/linkcheck_server.py] und
 [TREEREF::linkcheck/test_linkcheck.py].
-
+<!-- TODO_2: Kommandoprotokoll für linkcheck-testbase zufügen -->
 [ENDINSTRUCTOR]
