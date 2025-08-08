@@ -1,5 +1,4 @@
 title: Structured Query Language (SQL)
-stage: alpha
 ---
 Sobald man bei der Verwaltung von Daten die ACID-Eigenschaften braucht,
 ist fast immer ein **relationales Datenbank-Managementsystem (RDBMS)** das Mittel der Wahl.

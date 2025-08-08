@@ -47,4 +47,7 @@
   neue Fassung ersetzt. Die zählt jetzt 1.0h anstatt nur 0.5h. 
   Wer die Aufgabe bereits erfolgreich eingereicht hatte, bekommt die halbe Stunde geschenkt.
   Alle anderen machen (ggf.) die neue Aufgabe. (SSH ist so cool, das man das tun sollte!)
+- **2025-08-08**: Aufgaben Sprachen/SQL/[PARTREF::sql-basics], 
+  [PARTREF::sql-SELECT], [PARTREF::sql-SELECT2], [PARTREF::sql-JOIN] freigegeben
+  (und weitere 2 folgen demnächst).
 - ...
