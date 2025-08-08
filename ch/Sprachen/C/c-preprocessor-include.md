@@ -130,11 +130,11 @@ Fügen Sie folgende Dateien hinzu:
 `car.h`
 ```c
 struct car {
-  const char* manufacturer;
-  const char* model;
+  const char *manufacturer;
+  const char *model;
 };
 
-void printCar(const struct car* car);
+void printCar(const struct car *car);
 ```
 
 `car.c`
@@ -143,7 +143,7 @@ void printCar(const struct car* car);
 
 #include "car.h"
 
-void printCar(const struct car* car) {
+void printCar(const struct car *car) {
   printf("Model %s wir von %s hergestellt.\n", car->model, car->manufacturer);
 }
 ```
@@ -152,14 +152,14 @@ void printCar(const struct car* car) {
 ```c
 #include "car.h"
 
-struct car makeOpel(const char* model);
+struct car makeOpel(const char *model);
 ```
 
 `opel.c`
 ```c
 #include "opel.h"
 
-struct car makeOpel(const char* model) {
+struct car makeOpel(const char *model) {
   return (struct car){ .manufacturer = "Opel", .model = model };
 }
 ```
@@ -219,7 +219,7 @@ void print(int string) {
 ```
 
 Sie sollten nun in der `print.h` eine andere Funktionsdeklaration wie in der `print.c` haben,
-einmal mit `const char* string` und einmal mit `int string`.
+einmal mit `const char *string` und einmal mit `int string`.
 
 [EQ] Erläutern Sie kurz, was Sie vom Übersetzer erwarten, dass dieser tut.
 
