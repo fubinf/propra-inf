@@ -51,4 +51,6 @@
   [PARTREF::sql-SELECT], [PARTREF::sql-SELECT2], [PARTREF::sql-JOIN] zugefügt
   (und weitere 2 in dieser Gruppe folgen demnächst).
 - **2025-08-08**: Aufgabe Programmierpraxis/Python-mlh/[PARTREF::mlh-linkcheck] zugefügt.
+- **2025-08-08**: Fehlende Aufgabengruppen-Beschreibungen ergänzt für
+  Programmierpraxis/[PARTREF::Python-mlh] und [PARTREF::Python-linkcheck].
 - ...
