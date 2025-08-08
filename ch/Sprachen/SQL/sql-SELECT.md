@@ -76,7 +76,9 @@ SELECT mycol FROM mytable WHERE mycondition;
 Zusätzlich können wir mit `LIMIT <int>` (häufig in Kombination mit `OFFSET <skip>`) das Ergebnis **paginieren**, 
 also nur einen definierten Ausschnitt (z.&nbsp;B. Seite 1 mit 3 Einträgen) der Treffermenge zurückgeben. 
 Numerische Vergleichsoperatoren wie `<` oder `>` grenzen Werte ebenfalls ein. 
-Weitere Infos: [`LIMIT`,`OFFSET`](https://www.sqltutorial.org/sql-limit/)
+
+(Optional) Detaillierte Erläuterungen zu 
+[`LIMIT`,`OFFSET`](https://www.sqltutorial.org/sql-limit/)
 
 ```sql
 SELECT mycol FROM mytable WHERE mycondition LIMIT mynumber OFFSET myoffset;
@@ -85,7 +87,9 @@ SELECT mycol FROM mytable WHERE mycondition LIMIT mynumber OFFSET myoffset;
 [ER] Geben Sie ab dem dritten Treffer drei weitere weibliche Hunde zurück (verwenden Sie `LIMIT` und `OFFSET`).
 
 Und zu guter Letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren. 
-Weitere Infos: [`AND`](https://www.sqltutorial.org/sql-and/), [`OR`](https://www.sqltutorial.org/sql-or/)
+
+(Optional) Vertiefende Informationen zu 
+[`AND`](https://www.sqltutorial.org/sql-and/), [`OR`](https://www.sqltutorial.org/sql-or/)
 ```sql
 SELECT mycol FROM mytable WHERE mycondition1 AND mycondition2;
 ```
@@ -123,7 +127,8 @@ Diese Menge kann explizit angegeben werden oder durch eine Unterabfrage bestimmt
 SELECT out_col FROM out_table WHERE match_column IN (
   SELECT match_column FROM in_table WHERE mycondition);
 ```
-Weitere Infos: [`IN`](https://mode.com/sql-tutorial/sql-in-operator)
+(Optional) Umfassende Dokumentation zum 
+[`IN`](https://mode.com/sql-tutorial/sql-in-operator)-Operator
 
 [ER] Erstellen Sie eine Abfrage, die die `owner_id` des Hundes mit `name = 'Charlie'` zurückgibt. 
 Verwenden Sie diese Abfrage als Teil einer weiteren Abfrage, um den Namen aller Hunde dieses Halters abzufragen.
@@ -140,7 +145,8 @@ WITH mysubquery AS (
 SELECT mycol2 FROM mytable
 WHERE mykey IN (SELECT mykey FROM mysubquery);
 ```
-Weitere Infos: [`WITH`](https://www.geeksforgeeks.org/sql/sql-with-clause/)
+(Optional) Ausführliche Beschreibung der 
+[`WITH`](https://www.geeksforgeeks.org/sql/sql-with-clause/)-Klausel
 
 [ER] Verwenden Sie eine `WITH`-Klausel, um zunächst alle `owner_id` der Hunde mit 
 `breed = 'Golden Retriever'` zu ermitteln und anschließend die Namen aller Hunde dieser Besitzer auszugeben.
@@ -156,7 +162,9 @@ Aliases werden in SQL verwendet, um Spalten umzubenennen oder ganze Abfragen zu 
 Das ist oft nützlich, um die Lesbarkeit von Abfragen zu verbessern und komplexe Abfragen
 besser zu verstehen. 
 Man vergibt Aliase mit dem Schlüsselwort `AS`.
-Weitere Infos: [`AS`](https://www.sqltutorial.org/sql-alias/)
+
+(Optional) Weiterführende Ressourcen zu 
+[`AS`](https://www.sqltutorial.org/sql-alias/)
 ```sql
 SELECT mycol1 AS myalias1, mycol2 AS myalias2, ...
 FROM mytable;

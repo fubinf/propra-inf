@@ -50,8 +50,8 @@ SELECT AVG(mycol) FROM mytable;
 SELECT MIN(mycolumn) FROM mytable;
 SELECT MAX(mycolumn) FROM mytable;
 ```
-Siehe auch: 
-[Aggregate Functions (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`)](https://www.sqltutorial.org/sql-aggregate-functions/) 
+(Optional) Umfassende Übersicht zu
+[Aggregate Functions (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`)](https://www.sqltutorial.org/sql-aggregate-functions/)
 bei sqltutorial.
 
 [ER] Berechnen Sie die Anzahl der Einträge.
@@ -78,7 +78,7 @@ Gruppierungen in SQL ermöglichen es, Daten basierend auf bestimmten Kriterien z
 statistische Informationen wie Summen, Durchschnitte, Anzahlen usw. für jede Gruppe zu berechnen.
 Dazu verwendet man am Ende einer Abfrage das Schlüsselwort `GROUP BY`. 
 
-Weitere Infos: 
+(Optional) Detaillierte Dokumentation zu
 [`GROUP BY`](https://www.w3schools.com/sql/sql_groupby.asp)
 
 ```sql
@@ -94,7 +94,7 @@ GROUP BY mycol;
 
 Mit dem Schlüsselwort `HAVING` können Sie weitere Bedingungen nach einer Gruppierung festlegen. 
 
-Weitere Infos: 
+(Optional) Vertiefende Erklärungen zu
 [`HAVING`](https://www.w3schools.com/sql/sql_having.asp)
 
 ```sql
@@ -115,7 +115,7 @@ Werten einer oder mehrerer Spalten zu sortieren.
 Dabei steht `ASC` für "ascending" (aufsteigende Sortierung von klein nach groß) 
 und `DESC` für "descending" (absteigende Sortierung von groß nach klein). 
 
-Weitere Infos: 
+(Optional) Ausführliche Anleitung zu
 [`ORDER BY`](https://mode.com/sql-tutorial/sql-order-by)
 
 ```sql
@@ -135,7 +135,8 @@ ORDER BY mycol1 [ASC | DESC], mycol2 [ASC | DESC], ...;
 Manchmal bekommt man trotz gut gezielter Einschränkung mehr als ein Ergebnis. 
 Die `DISTINCT`-Klausel sorgt dafür, dass Duplikate aus den Ergebnissen entfernt und 
 nur eindeutige Werte zurückgegeben werden. 
-Siehe auch: 
+
+(Optional) Weiterführende Informationen zu
 [`DISTINCT`](https://www.w3schools.com/sql/sql_distinct.asp)
 
 ```sql
@@ -154,7 +155,7 @@ FROM mytable;
 Die `LIKE`-Klausel erlaubt das Vergleichen von Zeichenketten anhand von Platzhaltern. 
 Das Prozentzeichen (`%`) steht für **beliebig viele** Zeichen, der Unterstrich (`_`) für **genau ein** Zeichen. 
 
-Weitere Infos: 
+(Optional) Praktische Beispiele zu
 [`LIKE`](https://www.w3schools.com/sql/sql_like.asp)
 
 
@@ -189,7 +190,7 @@ Darum braucht man die Operatoren `IS NULL` und `IS NOT NULL`.
 Ausdrücke und Berechnungen mit `NULL` propagieren das `NULL` weiter (z. B. `age + NULL` ergibt `NULL`). 
 Möchte man `NULL`-Werte durch normale Werte ersetzen, nutzt man z. B. `COALESCE(mycol,'unbekannt')`.
 
-Weitere Infos: 
+(Optional) Grundlegende Konzepte zu
 [`IS NULL`](https://www.w3schools.com/sql/sql_null_values.asp)
 
 ```sql
@@ -220,7 +221,7 @@ SQL stellt einfache String-Funktionen bereit, um Texte zu transformieren oder zu
 * `LOWER(text)`  – wandelt den Text in Kleinbuchstaben um.
 * `LENGTH(text)` – liefert die Zeichenanzahl.
 
-Weitere Infos: 
+(Optional) Vollständige Referenz zu
 [`string`](https://www.sqltutorial.org/sql-string-functions/)
 
 ```sql
