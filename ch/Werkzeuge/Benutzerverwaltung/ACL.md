@@ -45,15 +45,18 @@ lässt sich mit ACLs lösen.
 
 ### ACL installieren
 
-- [EC] Aktualisieren Sie ihr System.
-- [EC] Installieren Sie das Paket `acl`.
+[EC] Aktualisieren Sie ihr System.
+
+[EC] Installieren Sie das Paket `acl`.
 
 
 ### Testumgebung erstellen
 
-- [EC] Erstellen Sie die Nutzer `gf1`, `gf2`, `rewe1`, `rewe2`.
-- [EC] Erstellen Sie zwei Gruppen `geschaeftsfuehrer` und `rechnungswesen`.
-- [EC] Fügen Sie die Nutzer `gf1`, `gf2` zur Gruppe `geschaeftsfuehrer` zu und 
+[EC] Erstellen Sie die Nutzer `gf1`, `gf2`, `rewe1`, `rewe2`.
+
+[EC] Erstellen Sie zwei Gruppen `geschaeftsfuehrer` und `rechnungswesen`.
+
+[EC] Fügen Sie die Nutzer `gf1`, `gf2` zur Gruppe `geschaeftsfuehrer` zu und 
   `rewe1`, `rewe2` zur Gruppe `rechnungswesen`.
 
 [HINT::Schwierig?]
@@ -65,11 +68,14 @@ Erstellen Sie die nächsten Ordner und Dateien mit Ihrem persönlichen Nutzer.
 Der wird also deren Eigentümer.
 Eigentümer und Superuser können ACLs ändern.
 
-- [EC] Erstellen Sie die Ordner `/tmp/rechnungen/`, `/tmp/rechnungen/aktuell/`, `/tmp/rechnungen/neu/`.
-- [EC] Erstellen Sie in `/tmp/rechnungen/aktuell/` die Dateien `rechnung1`, `rechnung2`.
+[EC] Erstellen Sie die Ordner `/tmp/rechnungen/`, `/tmp/rechnungen/aktuell/`, `/tmp/rechnungen/neu/`.
+
+[EC] Erstellen Sie in `/tmp/rechnungen/aktuell/` die Dateien `rechnung1`, `rechnung2`.
   (Jede Datei in dieser Aufgabe sollte einen kurzen Text inklusive des Dateinamens enthalten.)
-- [EC] Erstellen Sie in `/tmp/rechnungen/neu/` die Dateien `rechnung17`, `rechnung18`.
-- [EC] Ändern Sie die Rechte von den erstellten Ordnern, Subordnern und Dateien so ab, dass Ihr 
+
+[EC] Erstellen Sie in `/tmp/rechnungen/neu/` die Dateien `rechnung17`, `rechnung18`.
+
+[EC] Ändern Sie die Rechte von den erstellten Ordnern, Subordnern und Dateien so ab, dass Ihr 
     persönliches Nutzerkonto und die gleichnamige Gruppe Lese-, Schreib- und Ausführrechte haben,
     aber `other` keine Rechte haben.
 
@@ -81,7 +87,7 @@ Die oben frisch erstellten Nutzer sollen erstmal keine Rechte auf die Daten habe
 Lesen Sie die [getfacl(1) manpage](https://linux.die.net/man/1/getfacl) bis einschließlich 
 **Permissions**.
 
-- [EC] Geben Sie die ACLs von `/tmp/rechnungen/` aus.
+[EC] Geben Sie die ACLs von `/tmp/rechnungen/` aus.
 
 Sie haben gerade die normalen Unix-Rechte im [TERMREF::ACL] Format gesehen.  
 Setzen wir ein paar ACLs.
@@ -92,29 +98,36 @@ Setzen wir ein paar ACLs.
 Lesen Sie die [setfacl(1) manpage](https://linux.die.net/man/1/setfacl) bis einschließlich 
 **Permissions**, die Optionen **-m, -R, -b, -k**, die **Examples** und die **ACL Entries**.
 
-- [EC] Ändern Sie die Gruppe zu `rechnungswesen` für den Ordner `/tmp/rechnungen/` und alle 
+[EC] Ändern Sie die Gruppe zu `rechnungswesen` für den Ordner `/tmp/rechnungen/` und alle 
    Unterordner und Dateien.
-- [EC] Fügen Sie per ACL die Gruppe `geschaeftsfuehrer` dem Ordner `/tmp/rechnungen/` 
+
+[EC] Fügen Sie per ACL die Gruppe `geschaeftsfuehrer` dem Ordner `/tmp/rechnungen/` 
   mit den Rechten `r-x` hinzu.
-- [EC] Fügen Sie per ACL die Gruppe `geschaeftsfuehrer` dem Ordner `/tmp/rechnungen/neu` 
+
+[EC] Fügen Sie per ACL die Gruppe `geschaeftsfuehrer` dem Ordner `/tmp/rechnungen/neu` 
   mit den Rechten `rwx` hinzu,
   denn in diesem Verzeichnis soll die Geschäftsführung auch Schreibrechte haben.
 
 
 ### Testen
 
-- [EC] Geben Sie ACLs von `/tmp/rechnungen/` aus.
-- [EC] Geben Sie ACLs von `/tmp/rechnungen/aktuell` aus.
-- [EC] Geben Sie ACLs von `/tmp/rechnungen/neu` aus.
+[EC] Geben Sie ACLs von `/tmp/rechnungen/` aus.
+
+[EC] Geben Sie ACLs von `/tmp/rechnungen/aktuell` aus.
+
+[EC] Geben Sie ACLs von `/tmp/rechnungen/neu` aus.
 
 Wenn alles richtig verlaufen ist, dann sollte die Geschäftsführung jetzt Zugriff auf die Rechnungen 
 in `neu` haben, aber nicht auf die in `aktuell`.
 Das probieren wir nun aus:
 
-- [EC] Melden Sie sich als `gf1` an.
-- [EC] Erstellen Sie eine neue Rechnung `rechnung19` im Ordner `/tmp/rechnungen/neu/`.
-- [EC] Versuchen Sie die Rechnung `/tmp/rechnungen/neu/rechnung17` zu lesen.
-- [EC] Versuchen Sie den Ordner `/tmp/rechnungen/aktuell` zu öffnen.
+[EC] Melden Sie sich als `gf1` an.
+
+[EC] Erstellen Sie eine neue Rechnung `rechnung19` im Ordner `/tmp/rechnungen/neu/`.
+
+[EC] Versuchen Sie die Rechnung `/tmp/rechnungen/neu/rechnung17` zu lesen.
+
+[EC] Versuchen Sie den Ordner `/tmp/rechnungen/aktuell` zu öffnen.
 
 Wie Sie sehen, fehlt der Geschäftsführung die Berechtigung um die Rechnungen in `aktuell` zu lesen. 
 Das müssen wir noch ändern.
@@ -122,12 +135,16 @@ Das müssen wir noch ändern.
 
 ### Rekursiv ACL setzen und testen
 
-- [EC] Melden Sie sich als `gf1` ab; Sie sind also wieder Sie selbst und können ACLs ändern.
-- [EC] Fügen Sie rekursiv per ACL die Gruppe `geschäftsführung` dem Ordner `/tmp/rechnungen/neu` 
+[EC] Melden Sie sich als `gf1` ab; Sie sind also wieder Sie selbst und können ACLs ändern.
+
+[EC] Fügen Sie rekursiv per ACL die Gruppe `geschäftsführung` dem Ordner `/tmp/rechnungen/neu` 
    mit den Rechten `rwx` hinzu.
-- [EC] Melden Sie sich als `gf1` an.
-- [EC] Fügen Sie der Rechnung `/tmp/rechnungen/neu/rechnung17` den Text `von gf1 bearbeitet` hinzu.
-- [EC] Geben Sie ACLs von `/tmp/rechnungen/neu` aus.
+
+[EC] Melden Sie sich als `gf1` an.
+
+[EC] Fügen Sie der Rechnung `/tmp/rechnungen/neu/rechnung17` den Text `von gf1 bearbeitet` hinzu.
+
+[EC] Geben Sie ACLs von `/tmp/rechnungen/neu` aus.
 
 Somit hat jetzt die Geschäftsführung vollen Zugriff auf `neu`.
 
@@ -136,16 +153,18 @@ Somit hat jetzt die Geschäftsführung vollen Zugriff auf `neu`.
 
 Nachdem wir das jetzt alles getestet haben, üben wir noch das ACL-Aufräumen.
 
-- [EC] Melden Sie sich als `gf1` ab.
-- [EC] Entfernen Sie alle ACL-Einträge der Ordner `/tmp/rechnungen/`, `/tmp/rechnungen/aktuell/`, 
+[EC] Melden Sie sich als `gf1` ab.
+
+[EC] Entfernen Sie alle ACL-Einträge der Ordner `/tmp/rechnungen/`, `/tmp/rechnungen/aktuell/`, 
    `/tmp/rechnungen/neu/` und der jeweils darunterliegenden Dateien mit nur einem Befehl.
 
 
 ### Löschen
 
-- [EC] Nachdem Sie die Rechte entfernt haben, löschen Sie `/tmp/rechnungen/`, `/tmp/rechnungen/aktuell/`, 
+[EC] Nachdem Sie die Rechte entfernt haben, löschen Sie `/tmp/rechnungen/`, `/tmp/rechnungen/aktuell/`, 
    `/tmp/rechnungen/neu/` und die jeweils darunterliegenden Dateien mit nur einem Befehl.
-- [EC] Löschen Sie die Nutzer `gf1`, `gf2`, `rewe1`, `rewe2` und die Gruppen `geschaeftsfuehrer`, 
+
+[EC] Löschen Sie die Nutzer `gf1`, `gf2`, `rewe1`, `rewe2` und die Gruppen `geschaeftsfuehrer`, 
    `rechnungswesen`.
 
 [ENDSECTION]

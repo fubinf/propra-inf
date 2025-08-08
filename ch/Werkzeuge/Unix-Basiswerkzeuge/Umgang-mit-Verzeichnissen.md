@@ -37,17 +37,26 @@ Unixsystem auch wirklich installiert.
 
 ### Ausprobieren!
 
-- [EC] Listen Sie die Dateien in Ihrem `home`-Ordner.
-- [EC] Geben Sie Ihre Dateien aus Ihrem `home`-Ordner in einer Listenansicht aus.
-- [EC] Erstellen Sie nun einen Ordner namens `mydir`.
-- [EC] Wechseln Sie in das oben erstellte Verzeichnis.
-- [EC] Erstellen Sie in dem Verzeichnis eine leere Datei namens `myfile1`.
-- [EC] Kopieren Sie die Datei `myfile1` ins `home`-Verzeichnis
-- [EC] Benennen Sie die Datei `myfile1` im `mydir`-Ordner nach `myfile2` um.
-- [EC] Wechseln Sie zurück in ihr `home`-Verzeichnis und erstellen Sie einen neuen Ordner namens `mydir2`. 
+[EC] Listen Sie die Dateien in Ihrem `home`-Ordner.
+
+[EC] Geben Sie Ihre Dateien aus Ihrem `home`-Ordner in einer Listenansicht aus.
+
+[EC] Erstellen Sie nun einen Ordner namens `mydir`.
+
+[EC] Wechseln Sie in das oben erstellte Verzeichnis.
+
+[EC] Erstellen Sie in dem Verzeichnis eine leere Datei namens `myfile1`.
+
+[EC] Kopieren Sie die Datei `myfile1` ins `home`-Verzeichnis
+
+[EC] Benennen Sie die Datei `myfile1` im `mydir`-Ordner nach `myfile2` um.
+
+[EC] Wechseln Sie zurück in ihr `home`-Verzeichnis und erstellen Sie einen neuen Ordner namens `mydir2`. 
   Verschieben Sie alle Dateien (auch wenn da mehrere wären) aus `mydir` in den Ordner `mydir2`.
-- [EC] Löschen Sie den Ordner `mydir`.
-- [EC] Löschen Sie den Ordner `mydir2`.
+
+[EC] Löschen Sie den Ordner `mydir`.
+
+[EC] Löschen Sie den Ordner `mydir2`.
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]

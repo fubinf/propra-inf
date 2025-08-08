@@ -25,7 +25,7 @@ insbesondere die Kapitel **Pakete verwalten** und **Suchen/Durchsuchen**.
 Insbesondere zum Schutz vor Sicherheitslücken sollte man die installierten Pakete
 auch auf einem anscheinend gut funktionierenden Systeme regelmäßig aktualisieren.
 
-- [EC] Aktualisieren Sie ihr System.
+[EC] Aktualisieren Sie ihr System.
 
 
 ### Pakete suchen, installieren, auflisten
@@ -33,23 +33,26 @@ auch auf einem anscheinend gut funktionierenden Systeme regelmäßig aktualisier
 In dieser Aufgabe nehmen wir als Beispiel den `midnight commander`. 
 Das ist ein textbasierter, halbgrafischer Dateimanager -- ziemlich praktisch.
 
-- [EC] Suchen Sie mit `apt` nach dem Begriff `midnight commander`.
-- [EC] Geben Sie die Paketinformationen des Paketes von `midnight commander` aus.
-- [EC] Installieren Sie das Paket.
-- [EC] Geben Sie die Liste aller installierten(!) Pakete aus, deren Namen mit `m` beginnen.
+[EC] Suchen Sie mit `apt` nach dem Begriff `midnight commander`.
 
+[EC] Geben Sie die Paketinformationen des Paketes von `midnight commander` aus.
+
+[EC] Installieren Sie das Paket.
+
+[EC] Geben Sie die Liste aller installierten(!) Pakete aus, deren Namen mit `m` beginnen.
 
 ### Pakete deinstallieren
 
 Bei einer Aktualisierung ihres Systems werden die alten Pakete nicht gelöscht, sondern bleiben auf ihrem System liegen.
 
-- [EC] Finden und verstehen Sie im Beitrag das Kommando, um nicht mehr benötigte 
+[EC] Finden und verstehen Sie im Beitrag das Kommando, um nicht mehr benötigte 
   Pakete von Ihrem System zu löschen und probieren Sie es aus.
 
 Pakete können natürlich auch explizit deinstalliert werden. Es gibt zwei verschiedene Kommandos dafür.
 
-- [EQ] Erklären Sie den Unterschied zwischen `apt remove` und `apt purge`.
-- [EQ] In welcher Situation ist `apt remove` sinnvoller?
+[EQ] Erklären Sie den Unterschied zwischen `apt remove` und `apt purge`.
+
+[EQ] In welcher Situation ist `apt remove` sinnvoller?
 
 [ENDSECTION]
 

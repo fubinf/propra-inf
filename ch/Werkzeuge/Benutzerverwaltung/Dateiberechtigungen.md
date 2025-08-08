@@ -26,39 +26,43 @@ Diese Berechtigungen geben an, wer auf eine Datei oder einen Ordner zugreifen ka
 Lesen Sie [HREF::https://wiki.ubuntuusers.de/Rechte/] 
 bis einschließlich Abschnitt **Zugriffsrecht**.
 
-- [EC] Erstellen Sie eine Datei namens `dateiberechtigungen1`.
+[EC] Erstellen Sie eine Datei namens `dateiberechtigungen1`.
 
 Nachdem Sie die Datei erstellt haben, müssen wir erstmal herausfinden, wer Zugriff auf die Datei hat.
 
-- [EC] Geben Sie die Berechtigungen nur dieser einen Datei mit `ls -l` aus. 
-- [EQ] Geben Sie in eigenen Worten an, welche Berechtigungen die Datei hat: Wer darf was?.
+[EC] Geben Sie die Berechtigungen nur dieser einen Datei mit `ls -l` aus. 
+
+[EQ] Geben Sie in eigenen Worten an, welche Berechtigungen die Datei hat: Wer darf was?.
 
 Ein Mitarbeiter teilt Ihnen mit, dass er Zugriff auf eine Datei auf dem Server braucht. Nach einer 
 Diskussion, entscheiden Sie und der Mitarbeiter, dass der Mitarbeiter die vollen Zugriffsrechte 
 bekommt, genauso wie der Besitzer und der Gruppenbesitzer der Datei wird, weil der ursprüngliche 
 Besitzer nicht mehr in der Firma arbeitet. 
 
-- [EC] Erstellen Sie einen neuen Nutzer namens `rechtenutzer`.
+[EC] Erstellen Sie einen neuen Nutzer namens `rechtenutzer`.
 
 Lesen Sie die Abschnitte **Anwendung** und **Aufruf** von 
 [HREF::https://wiki.ubuntuusers.de/chmod/].
 
-- [EC] Ändern Sie die Zugriffsrechte der Datei `dateiberechtigungen1` so, dass der Nutzer und die Gruppe 
+[EC] Ändern Sie die Zugriffsrechte der Datei `dateiberechtigungen1` so, dass der Nutzer und die Gruppe 
    Lese-, Schreib- und Ausführrechte hat.
 
 Lesen Sie die Abschnitte **Syntax** und **Beispiele** von 
 [HREF::https://wiki.ubuntuusers.de/chown/].
 
-- [EC] Ändern Sie den Eigentümer von `dateiberechtigungen1` zu `rechtenutzer`.
+[EC] Ändern Sie den Eigentümer von `dateiberechtigungen1` zu `rechtenutzer`.
 
 Lesen Sie die Abschnitte **Syntax** und **Beispiel** von 
 [HREF::https://wiki.ubuntuusers.de/chgrp/].
 
-- [EC] Ändern Sie die Gruppe von `dateiberechtigungen1` zu `rechtenutzer`.
-- [EC] Geben Sie die Berechtigungen von `dateiberechtigungen1` mit `ls -l` aus. 
-- [EQ] Beschreiben Sie in Ihren Worten, was dieses Kommando macht: 
+[EC] Ändern Sie die Gruppe von `dateiberechtigungen1` zu `rechtenutzer`.
+
+[EC] Geben Sie die Berechtigungen von `dateiberechtigungen1` mit `ls -l` aus. 
+
+[EQ] Beschreiben Sie in Ihren Worten, was dieses Kommando macht: 
    `chmod -R 0754 dateiberechtigungsordner/ && sudo chown -R rechtenutzer:rechtenutzer dateiberechtigungsordner/`
-- [EC] Löschen Sie die Datei `dateiberechtigungen1` und den Benutzer `rechtenutzer`.
+
+[EC] Löschen Sie die Datei `dateiberechtigungen1` und den Benutzer `rechtenutzer`.
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]

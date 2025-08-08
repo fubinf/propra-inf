@@ -41,21 +41,21 @@ Als Veranschaulichung nehmen wir hier die `x11-apps`.
 
 Lesen Sie die Optionen **-Y** und **-X** der ssh(1) [manpage](https://man.openbsd.org/ssh).
 
-- [EQ] Erklären Sie den Unterschied der Optionen **-Y, -X**.
+[EQ] Erklären Sie den Unterschied der Optionen **-Y, -X**.
 
 [NOTICE]
 Verbinden Sie sich wenn möglich mit der sichereren Variante der beiden oben genannten Optionen.
 [ENDNOTICE]
 
-- [EC] Verbinden Sie sich mit dem Zielserver mit aktivierter X11-Weiterleitung.
+[EC] Verbinden Sie sich mit dem Zielserver mit aktivierter X11-Weiterleitung.
 
 Wenn keine Fehlermeldung kam und Sie sich erfolgreich auf dem Zielserver anmelden konnten, dann 
 sollte die X11-Weiterleitung aktiv sein. Probieren wir es aus.
 
 `xclock` ist ein Programm aus dem `x11-apps`-Paket. Es zeigt eine einfache Uhr an.
 
-- [EC] Starten Sie `xclock`.
-- [EC] Schließen Sie das Programm.
+[EC] Starten Sie `xclock`.
+[EC] Schließen Sie das Programm.
 
 Sie haben gerade erfolgreich ein grafisches Programm von einem entfernten Rechner auf Ihrem System 
 geöffnet.

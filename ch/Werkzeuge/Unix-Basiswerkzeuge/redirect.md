@@ -39,8 +39,9 @@ Dazu dienen Redirections und Pipelines.
 Input-Umleitungen werden eher selten genutzt, man sollte sie trotzdem einmal gesehen haben.
 Bei der Input-Umleitung wird der Inhalt einer Datei als Input des Befehls genutzt.
 
-- [EC] `wc -l /etc/passwd`
-- [EC] `wc -l < /etc/passwd`
+[EC] `wc -l /etc/passwd`
+
+[EC] `wc -l < /etc/passwd`
 
 Beide Befehle zählen die Zeilen ("lines") von `/etc/passwd`. 
 Der erste Befehl gibt nach der Ausgabe noch den Dateinamen aus, der zweite nicht,
@@ -54,15 +55,19 @@ Es gibt zwei Varianten der Output-Umleitung:
 
 Bei `>` wird die Datei überschrieben.
 
-- [EC] `echo "Hallo Welt!" > redirect_hallo.txt`
-- [EC] `cat redirect_hallo.txt`
-- [EC] `echo "Das ist neu" > redirect_hallo.txt`
-- [EC] `cat redirect_hallo.txt`
+[EC] `echo "Hallo Welt!" > redirect_hallo.txt`
+
+[EC] `cat redirect_hallo.txt`
+
+[EC] `echo "Das ist neu" > redirect_hallo.txt`
+
+[EC] `cat redirect_hallo.txt`
 
 Bei `>>´ wird der Output an die Datei angehängt:
 
-- [EC] `echo "Hallo Welt!" >> redirect_hallo.txt`
-- [EC] `cat redirect_hallo.txt`
+[EC] `echo "Hallo Welt!" >> redirect_hallo.txt`
+
+[EC] `cat redirect_hallo.txt`
 
 
 ### `stderr`-Umleitung
@@ -71,8 +76,9 @@ Standardmäßig werden Fehlermeldungen auf dem Bildschirm angezeigt, was bei kom
 automatisierten Prozessen unpraktisch sein kann. Mit der Fehlerumleitung `2>` werden Fehlermeldungen 
 in eine separate Datei umgeleitet. 
 
- - [EC] `ls /nicht_existent 2> redirect_fehler.txt`
- - [EC] `cat redirect_fehler.txt`
+[EC] `ls /nicht_existent 2> redirect_fehler.txt`
+
+[EC] `cat redirect_fehler.txt`
 
 Mit `2>` werden Fehlermeldungen in eine Datei weitergeleitet. Analog würde `1>` den Output weiterleiten, 
 was semantisch identisch zu `>` ist.
@@ -92,8 +98,9 @@ Befehl gesendet werden.
 Genauer gesagt, wird in das _aktuelle Ziel_ des Standausgabestroms umgeleitet.
 Will man den gar nicht auf dem Terminal haben, muss man ihn also _zuvor_ umleiten:
 
- - [EC] `ls /tmp /nicht_existent > redirect_ausgabe_und_fehler.txt 2>&1`
- - [EC] `cat redirect_ausgabe_und_fehler.txt`
+[EC] `ls /tmp /nicht_existent > redirect_ausgabe_und_fehler.txt 2>&1`
+
+[EC] `cat redirect_ausgabe_und_fehler.txt`
 
 ### Pipes
 
@@ -101,7 +108,7 @@ Der pipe-Operator(|) öffnet eine `pipeline` zwischen zwei Befehlen, wo kontinui
 des ersten Befehls in `stdin` des nächsten Befehls weitergeleitet wird.
 Pipes sind nützlich, wenn man aus einer langen Ausgabe filtern möchte.
 
- - [EC] `ls -l /usr/bin | grep grep`
+[EC] `ls -l /usr/bin | grep grep`
 
 Mit dem oberen Befehl werden alle Dateien aus `/usr/bin`, die `grep` im Namen haben, angezeigt.
 
@@ -110,7 +117,7 @@ Zwei weitere nennenswerte Befehle die mit Pipes genutzt werden, sind [TERMREF::x
 
 Mit `xargs` wird ein Befehl auf `stdin` angenwendet.
 
- - [EC] `ls ~/ | xargs wc -l`
+[EC] `ls ~/ | xargs wc -l`
 
 Der Befehl zählt die Zeilen aller Dateien im home-Ordner. 
 In diesem Fall könnten wir das mit dem gleichwertigen Kommando `wc -l ~/*` auch einfacher hinbekommen, 
@@ -120,8 +127,7 @@ geht das sofort nicht mehr.
 Mit `tee` wird `stdout` eines Befehls dupliziert:
 Die eine Kopie geht wieder in `stdout`, die andere in eine Datei:
 
-
- - [EC] `ls -l /tmp | tee redirect_tmp.txt`
+[EC] `ls -l /tmp | tee redirect_tmp.txt`
 
 Mit diesen Kenntnissen über Redirect-Operatoren und Pipes können Sie die Eingabe und Ausgabe von 
 Befehlen in Unix effizient steuern und komplexe Aufgaben automatisieren.

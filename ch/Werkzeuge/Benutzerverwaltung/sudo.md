@@ -27,11 +27,11 @@ Wir haben Sie gewarnt...
 Lesen Sie [HREF::https://wiki.ubuntuusers.de/sudo] bis zum (teilweise unsinnigen)
 Abschnitt **Installation**.
 
-- [EC] Versuchen Sie die Datei `/etc/shadow` anzuzeigen: `cat /etc/shadow`.
+[EC] Versuchen Sie die Datei `/etc/shadow` anzuzeigen: `cat /etc/shadow`.
 
 Sie können die Datei nicht lesen, weil Ihnen das [TERMREF::Leserecht] für die Datei fehlt. 
 
-- [EC] Setzen Sie nun ein sudo vor Ihren Befehl aus der Aufgabe [EREFC::1].
+[EC] Setzen Sie nun ein sudo vor Ihren Befehl aus der Aufgabe [EREFC::1].
 
 Durch sudo haben sie zeitweise Administratorrechte für Ihren Nutzer bekommen. 
 Das Administratorkonto, auf Unix genannt "root" (also "Wurzel"), hat alle denkbaren
@@ -41,25 +41,28 @@ Dadurch haben Sie die Möglichkeit bekommen, die Datei zu lesen.
 Damit Sie `sudo` nutzen können, müssen Sie in der Gruppe `sudo` sein. Um das zu prüfen, muss Ihr 
 Nutzername bei der sudo-Gruppe in der Datei /etc/group aufgeführt sein.
 
-- [EC] Suchen Sie in der Datei `/etc/group` nach der sudo Gruppe und Ihrem Nutzernamen:
+[EC] Suchen Sie in der Datei `/etc/group` nach der sudo Gruppe und Ihrem Nutzernamen:
   `grep sudo /etc/group`.
 
 ### Neuen Nutzer erstellen und sudo-Rechte verteilen
 
-- [EC] Erstellen Sie nun einen neuen Benutzer `sudotest`:  
+[EC] Erstellen Sie nun einen neuen Benutzer `sudotest`:  
     `sudo adduser sudotest`. (Lassen Sie bei allen Fragen die Felder leer.  
     Wir werden in [PARTREF::Benutzerkonten] genauer auf die Benutzererstellung eingehen.)
 
 Lesen Sie den Glossareintrag [TERMREF::su] und lesen Sie die **Synopsis** und die **Description** der 
 su(1) [manpage](https://manpages.debian.org/stable/util-linux/su.1.en.html).
 
-- [EC] Melden Sie sich als `sudotest` an.
-- [EC] Versuchen Sie mit dem Nutzer sudotest die Datei `/etc/shadow` zu lesen.  
+[EC] Melden Sie sich als `sudotest` an.
+
+[EC] Versuchen Sie mit dem Nutzer sudotest die Datei `/etc/shadow` zu lesen.  
   Sie können die Datei wieder nicht lesen, selbst wenn Sie `sudo` vor den Befehl setzen.  
   Der Nutzer `sudotest` ist nämlich noch nicht in der Gruppe `sudo`. Lassen Sie uns das erledigen.  
-- [EC] Wechseln Sie zurück zu Ihrem normalen Nutzer und fügen Sie `sudotest` der Gruppe `sudo` hinzu:  
+
+[EC] Wechseln Sie zurück zu Ihrem normalen Nutzer und fügen Sie `sudotest` der Gruppe `sudo` hinzu:  
   `usermod -aG sudo sudotest` (Wir werden auf Gruppen genauer in [PARTREF::Gruppen] eingehen.)
-- [EC] Prüfen Sie, ob `sudotest` die Datei `/etc/shadow` lesen kann.
+
+[EC] Prüfen Sie, ob `sudotest` die Datei `/etc/shadow` lesen kann.
 
 [ENDSECTION]
 

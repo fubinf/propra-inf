@@ -43,21 +43,24 @@ Wir probieren hier beide aus.
 Verstehen Sie die **Synopsis**, lesen Sie die **Description**, und die Optionen **-g, -N, -U** der 
 useradd(8) [manpage](https://linux.die.net/man/8/useradd).
 
-- [EC] Erstellen Sie einen neuen Nutzer namens `user1` mit dem Befehl `useradd`.
+[EC] Erstellen Sie einen neuen Nutzer namens `user1` mit dem Befehl `useradd`.
 
 Lesen Sie die **Description** der passwd(5) [manpage](https://linux.die.net/man/5/passwd).
 
-- [EC] Holen Sie nur den Eintrag von user1 aus der Benutzerkontendatei: `grep user1 /etc/passwd`
-- [EQ] Erklären Sie die einzelnen Spalten dieses Eintrags.
-- [EC] Überprüfen Sie ob der home-Ordner von `user1` vorhanden ist.
+[EC] Holen Sie nur den Eintrag von user1 aus der Benutzerkontendatei: `grep user1 /etc/passwd`
+
+[EQ] Erklären Sie die einzelnen Spalten dieses Eintrags.
+
+[EC] Überprüfen Sie ob der home-Ordner von `user1` vorhanden ist.
 
 Betrachten Sie die adduser(8) [manpage](https://manpages.debian.org/stable/adduser/adduser.8.en.html).
 Verstehen Sie die **Synopsis**, lesen Sie die **Description** und lesen Sie die Abschnitte 
 **Add a normal user** und die Option **--disabled-password**. 
 
-- [EC] Erstellen Sie einen neuen Nutzer namens `user2` mit dem `adduser` Befehl und der Option `--disabled-password`. Das Passwort setzen wir im nächsten Schritt.  
+[EC] Erstellen Sie einen neuen Nutzer namens `user2` mit dem `adduser` Befehl und der Option `--disabled-password`. Das Passwort setzen wir im nächsten Schritt.  
   Bei den persönlichen Fragen lassen Sie die Felder leer.
-- [EQ] Charakterisieren Sie den Unterschied der Befehle `useradd` und `adduser`.
+
+[EQ] Charakterisieren Sie den Unterschied der Befehle `useradd` und `adduser`.
 
 [HINT::Eselsbrücke]
 Ein normaler Mensch würde immer 'adduser' sagen, nie 'useradd'.  
@@ -75,7 +78,7 @@ Lesen Sie in den manpages von [useradd](https://linux.die.net/man/8/useradd) und
 [adduser](https://manpages.debian.org/stable/adduser/adduser.8.en.html) nach, wie man ein 
 Passwort setzt.
 
-- [EC] Setzen Sie ein Passwort für beide oben erstellte Nutzer.
+[EC] Setzen Sie ein Passwort für beide oben erstellte Nutzer.
 
 ### Ändern der Rechte für Nutzer
 
@@ -87,7 +90,7 @@ man Nutzer sperrt.
 Vorsicht: Ein Passwort sperren ist nicht das Gleiche wie das ganze Konto zu sperren,
 denn man könnte sich dann immer noch mit [PARTREF::ssh]-Keys anmelden. 
 
-- [EC] Sperren Sie die Nutzer `user1` und `user2`.
+[EC] Sperren Sie die Nutzer `user1` und `user2`.
 
 Nachdem die Nutzer gesperrt wurden und eine rechtlich konforme Zeitspanne vorbei ist, 
 müsssen Nutzer und Dateien des Nutzers auf dem System gelöscht werden.
@@ -95,7 +98,7 @@ müsssen Nutzer und Dateien des Nutzers auf dem System gelöscht werden.
 Betrachten Sie die [deluser(8)](https://manpages.debian.org/stable/adduser/deluser.8.en.html) manpage.
 Verstehen Sie die **Synopsis**, lesen Sie die **Description** und den Abschnitt **Remove a user**.
 
-- [EC] Löschen Sie beide Nutzer und deren Homeverzeichnis von Ihrem System.
+[EC] Löschen Sie beide Nutzer und deren Homeverzeichnis von Ihrem System.
 
 [ENDSECTION]
 
