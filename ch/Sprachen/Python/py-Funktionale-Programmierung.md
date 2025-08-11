@@ -17,8 +17,8 @@ und kann sie verwenden, um meine Codequalität zu verbessern.
 Python ist eine Multi-Paradigmen-Sprache, das heißt neben prozeduralen und objektorientierten 
 Programmierparadigmen bietet Python auch Möglichkeiten, um funktionale Programme zu 
 schreiben.
-Mit funktionaler Programmierung ist es einfacher, korrekten Code zu schreiben und auch einfacher,
-diesen Code zu testen.
+Mit [TERMREF2::Funktionale Programmierung::funktionaler Programmierung] ist es einfacher, korrekten 
+Code zu schreiben und auch einfacher, diesen Code zu testen.
 Daher schauen wir uns hier ein paar der Werkzeuge und Built-in Funktionen an, um Python-Code im 
 funktionalen Programmierstil zu schreiben.
 

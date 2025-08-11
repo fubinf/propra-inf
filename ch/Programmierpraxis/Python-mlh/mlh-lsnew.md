@@ -62,7 +62,8 @@ $ python mlh lsnew --age 1h * mlh/* mlh/*/* nonsense
 - Effizienz ist nicht besonders beachtenswert.
   Der teuerste Schritt ist die Abfrage des Änderungsdatums.
   Solange Sie das nur einmal pro Dateiname machen, ist Ihr Programm effizient genug.
-- Ein ungefähr funktionaler Programmierstil eignet sich deshalb gut.
+- Ein ungefähr [TERMREF2::Funktionale Programmierung::funktionaler Programmierstil] eignet sich 
+  deshalb gut.
 - Organisieren Sie Ihre Implementierung so, dass jedes Unterprogramm nicht mehr als 20 Zeilen
   umfasst und die Funktion jedes Unterprogramms klar und verständlich ist.
 

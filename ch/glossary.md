@@ -568,6 +568,14 @@ ermöglicht, schnell und einfach Webanwendungen zu erstellen. Es folgt dem WSGI
 Templates und Formulare zu definieren.
 [ENDTERM]
 
+[TERM::Funktionale Programmierung]
+Ein Programmierparadigma, bei dem die Verwendung von Funktionen im Mittelpunkt steht.
+Anstelle von in imperativen Sprachen typischen Abfolgen von Befehlen, Schleifen und 
+Variablenzuweisungen werden Funktionsverkettungen und Rekursionen verwendet.
+Vorteile sind unter anderem eine bessere Modularität, Wiederverwendbarkeit sowie Vermeidung von 
+Seiteneffekten.
+[ENDTERM]
+
 ## G
 
 [TERM::Gate|Gatekkeeper]
