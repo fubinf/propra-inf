@@ -3,30 +3,21 @@ stage: alpha
 timevalue: 1.0
 difficulty: 2
 assumes: m_json2, m_datetime, m_dataclasses, py-OOP-Inheritance
----
 
+---
 
 [SECTION::goal::idea]
 
 - Ich verstehe den Zweck und die Anwendung von Pydantic in Python-Projekten und kann einfache
   Datenmodelle erstellen und verwenden.
 - Ich kann den Unterschied zu Datenklassen zu erklären und geeignete Einsatzgebiete erkennen.
-[ENDSECTION]
-
+  [ENDSECTION]
 
 [SECTION::background::default]
-In Python können Datenklassen verwendet werden, um strukturierte Daten zu modellieren,
-also Objekte mit bestimmten Attributen.
-Sie sind nützlich, enthalten aber keine eingebaute Validierung, keine automatische
-Typkonvertierung und bieten keine automatische JSON De-/Serialisierung.
-
-Pydantic erweitert dieses Konzept: Es erlaubt das Erstellen von Klassen,
-die auf strengen Typen basieren.
-Die Attribute werden validiert, automatisch konvertiert (beispielsweise Datumstrings
-zu `datetime`) und lassen sich einfach von und zu JSON konvertieren.
-Besonders in Webframeworks, wie FastAPI ist Pydantic das Rückgrat für Datenvalidierung.
+Pydantic macht die Arbeit mit strukturierten Daten in Python deutlich einfacher.
+Es prüft automatisch die Datentypen, konvertiert Werte und sorgt dafür, dass Daten
+zuverlässig von und zu JSON verarbeitet werden können.
 [ENDSECTION]
-
 
 [SECTION::instructions::detailed]
 
@@ -45,38 +36,36 @@ Gegeben sei das folgende JSON Objekt:
 
 [ER] Erstellen Sie eine eigene Datenklasse `GradeEntry` mit dem `@dataclasses.dataclass`-Decorator
 mit den Attributen `name: str`, `course: str`, `grade: float` und `date: datetime`.
-Erzeugen Sie zwei `GradeEntry`-Exemplare `a` und `b`.
-Geben Sie beide mit `print()` aus.
-
-[ER] Geben Sie auch das Ergebnis des Vergleichsoperators `==` aus, wenn Sie Exemplar
-`a` mit `a` und `a` mit `b` vergleichen.
+Erzeugen Sie ein `GradeEntry`-Exemplare `a`.
+Geben Sie es mit `print()` aus.
 
 Bei der Ausgabe auf der Konsole sehen Sie, dass als Ergebnis kein gültiger
 JSON-String ausgegeben wird.
 
 Im Modul `dataclasses` gibt es die Funktion
 [`asdict()`](https://docs.python.org/3/library/dataclasses.html#dataclasses.asdict).
-Importieren Sie diese mit `from dataclasses import asdict` in Ihre Datei.
+Importieren Sie `dataclasses`, um diese Funktion nutzen zu können.
 
-[ER] Erzeugen Sie mit `asdict()` aus `a` einen `dict`, speichern Sie diesen in `a_dict`
-und geben Sie `a_dict` aus.
+[ER] Erzeugen Sie mit `dataclasses.asdict(a)` aus `a` einen `dict`, speichern Sie
+diesen in `a_dict` und geben Sie `a_dict` aus.
 
 Wie Sie sehen, ist `a_dict` immer noch kein gültiger JSON-String.
 
-[ER] Importieren Sie `dumps()` aus dem
-[json Modul](https://docs.python.org/3/library/json.html),
-um `a_dict` zu serialisieren, speichern Sie das Ergebnis in `a_json` und geben Sie es aus.
+[ER] Importieren Sie das
+[`json` Modul](https://docs.python.org/3/library/json.html),
+um `a_dict` mit `json.dumps()` zu serialisieren, speichern Sie das Ergebnis in
+`a_json` und geben Sie es aus.
 
 [HINT::TypeError: Object of type datetime is not JSON serializable]
-Übergeben Sie beim `dumps()`-Aufruf ein Argument `default=str`.
+Übergeben Sie beim `json.dumps()`-Aufruf ein Argument `default=str`.
 Dann wird `str()` zur Wandlung benutzt, wenn ein `TypeError` geworfen wird,
 was bei `datetime`-Attributen der Fall ist; siehe die
-[Dokumentation von `dumps`](https://docs.python.org/3/library/json.html#json.dumps).
+[Dokumentation von `json.dumps()`](https://docs.python.org/3/library/json.html#json.dumps).
 [ENDHINT]
 
 Dadurch erhalten Sie in `a_json` nun einen gültigen JSON-String.
 
-[ER]  Importieren Sie `loads()` aus dem
+[ER] Importieren Sie `json.loads()` aus dem
 [json Modul](https://docs.python.org/3/library/json.html),
 um Ihren JSON-String in ein Python-`dict` zu laden.
 Erzeugen Sie aus diesem `dict` wieder ein neues Exemplar `a_parsed` Ihrer Klasse `GradeEntry`.
@@ -87,7 +76,6 @@ Deserialisieren (Parsen) eines JSON-Strings in ein Python-Objekt
 auf diese Weise nicht trivial.
 Außerdem müssen Sie sich beim Parsen selbst um die richtigen Typen kümmern.
 In `a_parsed` ist `date` kein `datetime` mehr, sondern ein `str`.
-
 
 ### Model mit `Pydantic`
 
@@ -102,7 +90,7 @@ bis einschließlich zum Abschnitt "Data conversion".
 [ER] Erstellen Sie eine neue Klasse `GradeEntry2`, die von Pydantics `BaseModel` erbt
 und wieder das oben gegebene JSON-Schema abbildet.
 
-[ER] Erzeugen Sie ein neues Exemplar `c` von `GradeEntry2`.
+[ER] Erzeugen Sie ein neues `GradeEntry2`-Exemplar `c`.
 
 [ER] Serialisieren Sie `c` zu einem JSON-String, speichern Sie diesen String
 in der neuen Variable `c_json` und geben Sie ihn auf der Konsole aus.
@@ -132,7 +120,6 @@ Wie Sie erkennen können ist `c_parsed` wieder ein `GradeEntry2`-Exemplar und
 [EQ] Wann ist es sinnvoller, Pydantic zu benutzen, als `dataclasses.dataclass`
 aus der Python Standardbibliothek?
 [ENDSECTION]
-
 
 [SECTION::submission::trace,reflection]
 [INCLUDE::/_include/Submission-Quellcode.md]
