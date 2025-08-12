@@ -5,13 +5,12 @@ difficulty: 2
 explains:
 assumes:
 requires:
----
 
+---
 
 [SECTION::goal::idea]
 Ich kann Datenmodelle in Datenklassen modellieren und verwenden.
 [ENDSECTION]
-
 
 [SECTION::background::default]
 Nicht jede Klasse braucht Methoden.
@@ -20,7 +19,6 @@ einen leistungsfähigen Konstruktor (und noch ein paar Funktionalitäten)
 und führt zu einer angenehm eleganten Schreibweise.
 [ENDSECTION]
 
-
 [SECTION::instructions::detailed]
 
 ### Vorbereitung
@@ -28,14 +26,16 @@ und führt zu einer angenehm eleganten Schreibweise.
 Das Modul
 [dataclasses](https://docs.python.org/3/library/dataclasses.html)
 der Python Standardbibliothek beinhaltet den Decorator `@dataclass`.
-Lesen Sie in der Dokumentation im Abschnitt
-[`@dataclasses.dataclass`](https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass)
-nach, wie dieser Decorator eingesetzt werden kann und welche Funktionalität er hinzufügt.
+Lesen Sie in der Dokumentation den Abschnitt
+[`@dataclasses.dataclass`](https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass) und achten Sie besonders darauf:
+
+- Auf welche Objekte der Decorator angewendet werden kann?
+- Wie der Decorator eingesetzt werden kann (Syntax und mögliche Parameter)?
 
 ### Aufgaben
 
-[EQ] Auf welchen Objekten kann der `@dataclass` Decorator verwendet werden und
-was wird dem Objekt durch den Decorator hinzugefügt?
+[EQ] Welche Methoden werden automatisch erzeugt, wenn eine Klasse mit
+`@dataclass(order=True)` dekoriert wird?
 
 [ER] Definieren Sie eine `dataclass` `Book` mit den Attributen
 `title: str`, `authors: list[str]`, `year: int`, `isbn: str`.
@@ -51,9 +51,9 @@ Ein großer Vorteil von `dataclasses` gegenüber z. B. Dictionaries ist die kl
 
 - Sie können mit der Punktnotation (`book.title`) direkt auf Felder zugreifen.
 - Sie sehen bereits beim Schreiben (dank IDE Autovervollständigung),
-welche Attribute verfügbar sind.
+  welche Attribute verfügbar sind.
 - Bei einem Dictionary dagegen (`book["title"]`) gibt es keine Autovervollständigung,
-keine statische Prüfung, und Tippfehler fallen oft erst zur Laufzeit auf.
+  keine statische Prüfung, und Tippfehler fallen oft erst zur Laufzeit auf.
 
 Diese Vorteile machen `dataclasses` besonders nützlich für strukturierte Daten,
 die innerhalb des eigenen Codes verwendet werden.
@@ -74,7 +74,8 @@ Wenn Sie `order=True` angeben, wird die Vergleichslogik automatisch erzeugt
 Das bedeutet: `sort()` verwendet zuerst `title`, dann (falls gleich) `authors`, dann `year` usw.  
 Wenn Sie die Reihenfolge der Attribute ändern, ändern Sie auch die Sortierlogik.
 
-[ER] Ändern Sie zur Laufzeit `year` von einem Buch in `shelf`.
+[ER] Ändern Sie zur Laufzeit `year` von "Head First Python", das nach dem Sortieren
+an erster Stelle in `shelf` steht.
 Dazu können Sie dem Attribut einen neuen Wert zuweisen, wie bei Variablen.
 Geben Sie die Attribute `title` und `year` jeweils einmal vor und einmal nach der
 Änderung aus.
@@ -86,7 +87,7 @@ Es ist also nach dem Erzeugen eines Exemplars nicht mehr möglich Attribute zu v
 
 [ER] Erstellen Sie eine zweite `dataclass` namens `ArchiveBook` mit denselben Attributen,
 aber setzten Sie den Parameter `frozen=True`.
-Weisen Sie `archive_book` ein Exemplar von `ArchiveBook` zu.
+Weisen Sie `archive_book` ein `ArchiveBook` von "Head First Python" zu.
 
 [ER] Versuchen Sie, `archive_book.year` zu ändern.
 Fangen Sie die Ausnahme mit `try/except` auf und geben Sie die Fehlermeldung aus.
@@ -100,8 +101,8 @@ und weisen Sie ihm den Standardwert `"en"` zu.
 [ER] Erzeugen Sie ein neues Exemplar `Book` und setzen sie dort die Sprache auf `"de"`.
 Geben Sie die Attribute `title` und `language` dieses Buches auf der Konsole aus.
 
-[ER] Erzeugen Sie ein neues Exemplar `Book` in der Variablen `invalid_year`.
-Setzten Sie `invalid_year.year='Neunzehnhundertvierundachtzig'`.
+[ER] Erzeugen Sie ein neues `Book` "Head First Python" in der Variablen `invalid_year`.
+Setzten Sie `invalid_year.year='Zweitausendsechzehn'`.
 Geben Sie `invalid_year` auf der Konsole aus.
 
 Wie Sie sehen, wird keine Ausnahme erzeugt, obwohl `year` kein `int` ist, sondern ein `str`.
@@ -109,9 +110,9 @@ Das liegt daran, dass weder Python noch `dataclass` die Attribute validieren.
 
 [EC] Führen Sie ihr Programm einmal aus.
 
-[EQ] Beschreiben Sie einen konkreten Zweck und Fall, für den Sie künftig `dataclass` einsetzen werden. 
+[EQ] Beschreiben Sie einen konkreten Zweck und Fall, für den Sie künftig `dataclass`
+anstatt `dict` einsetzen werden und warum.
 [ENDSECTION]
-
 
 [SECTION::submission::trace,reflection]
 
@@ -119,7 +120,6 @@ Das liegt daran, dass weder Python noch `dataclass` die Attribute validieren.
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
-
 
 [INSTRUCTOR::Codedurchsicht]
 
