@@ -9,37 +9,42 @@ requires: Unix-Umgebung
 Ich habe eine funktionierende IDE auf Windows und kann diese in Zusammenarbeit mit WSL verwenden.
 [ENDSECTION]
 
+
 [SECTION::background::default]
-Auf Windows haben Sie die Wahl zwischen drei verschiedenen IDEs, mit denen sich dieser Kurs 
-absolvieren lässt:
+Auf Windows haben Sie die Wahl zwischen zwei IDEs, mit denen sich dieser Kurs absolvieren lässt:
 
 
-### 1. PyCharm Professional
+### 1. PyCharm mit kostenloser Studierenden-Lizenz
 
-- Empfohlene Variante, da Sie hier nativ mit WSL arbeiten können. 
-- Allerdings müssen Sie vorher bei JetBrains das "Product Pack for Students" beantragen, um die 
-  Version kostenlos verwenden zu können.
+- **Empfohlene Variante**, da der Kurs vorrangig auf PyCharm aufgebaut ist.
+- Die professionellen Features erlauben natives Arbeiten mit dem WSL.
+- Allerdings müssen Sie vorher, um diese Features verwenden zu können, bei JetBrains das 
+  "Student Pack" beantragen.
   Dies sollte im Regelfall über ihre Universitäts-E-Mail-Adresse möglich sein.
-- Empfohlen.
+
+[FOLDOUT::PyCharm ohne Lizenz]
+
+- Falls Sie Probleme bei der Aktivierung des Student Packs haben, kann PyCharm auch kostenlos mit 
+  eingeschränkten Features genutzt werden.
+- Allerdings wird die Arbeit am ProPra ohne nativen WSL-Support sehr umständlich.
+- Daher können wir die Verwendung der kostenlosen Version **nicht uneingeschränkt empfehlen** 
+  und sie sollte nur dann verwendet werden, wenn weder die Pro-Lizenz noch VS Code für Sie 
+  infrage kommen.
+- Lesen Sie, bevor Sie die Variante wählen, das Foldout am Ende der PyCharm-Installation.
+
+[ENDFOLDOUT]
 
 
-### 2. PyCharm Community Edition
-
-- Diese Version ist kostenlos, arbeitet aber nicht mit dem WSL zusammen, weshalb zusätzlich eine 
-  Python-Installation auf Windows vorhanden sein muss.
-- Die Verwaltung und die Arbeit mit beiden Python-Environments kann auf Dauer aufwendig und vor 
-  allem für Anfänger verwirrend werden.
-- Nur Empfohlen, wenn Sie Probleme bei der Aktivierung der PyCharm-Pro-Lizenz haben.
-
-
-### 3. Visual Studio Code
+### 2. Visual Studio Code
 
 - Arbeitet problemlos mit dem WSL zusammen und ist daher eine mögliche Alternative zu PyCharm. 
 - Da der Kurs jedoch vorrangig auf PyCharm aufgebaut ist, können vor allem bei fortgeschrittenen 
   Themen benötigte IDE-Features anders funktionieren.
-  Hier müssen Sie ggf. selbst nach alternativen Wegen suchen; der Unterschied betrifft aber nur 
-  wenige Aufgaben.
+  Hier müssen Sie ggf. selbst nach alternativen Wegen suchen.
+  Der Unterschied betrifft aber nur wenige Aufgaben.
 - Empfohlen, falls Sie VS Code bereits im Alltag nutzen und keine weitere IDE lernen möchten.
+
+[INCLUDE::PyCharmCommunityNotice.inc]
 [ENDSECTION]
 
 
@@ -53,13 +58,13 @@ Die Anleitung ist nicht detailgenau; bitte entscheiden Sie den Rest nach bestem 
 es kommt nicht auf jeden Millimeter an.
 
 
-### 1. PyCharm Professional
+### 1. PyCharm mit kostenloser Studierenden-Lizenz
 
 
-#### Beantragen des "Product Pack for Students"
+#### Beantragen des "Student Pack"
 
-Sollten Sie bereits einen JetBrains-Account haben und eine gültige Lizenz für dieses Paket 
-besitzen, können Sie diesen Schritt überspringen.
+Sollten Sie bereits einen JetBrains-Account und eine gültige Lizenz für dieses Paket besitzen, 
+können Sie diesen Schritt überspringen.
 
 - Beantragen Sie die Pro-Lizenz auf [HREF::https://www.jetbrains.com/shop/eform/students].
 - Füllen Sie das Formular entsprechend aus. Verwenden Sie ihre **Universitäts-E-Mail-Adresse** 
@@ -71,13 +76,15 @@ besitzen, können Sie diesen Schritt überspringen.
   ihre Lizenz mit ihrem JetBrains-Account, bzw. legen Sie einen neuen Account an.
 
 
-#### PyCharm Professional installieren und einrichten
+#### PyCharm installieren und einrichten
 
-- Gehen Sie auf [HREF::https://www.jetbrains.com/pycharm/download/?section=windows].
-- laden Sie die Professional Edition herunter und führen Sie den Installer aus.
+- Laden Sie PyCharm von der 
+  [JetBrains Webseite](https://www.jetbrains.com/pycharm/download/?section=windows) herunter und 
+  führen Sie den Installer aus.
 - Öffnen Sie PyCharm und melden Sie sich im Willkommensfenster mit ihrem JetBrains-Account an.
-  Wenn Sie für die Pro-Lizenz bereits freigeschaltet wurden, wird die Lizenz automatisch importiert.
-  Falls nicht, wählen Sie vorerst die Free Trial aus.
+  Wenn Sie bereits für das Student Pack freigeschaltet wurden, wird die Lizenz automatisch 
+  importiert.
+  Falls nicht, fahren Sie vorübergehend mit der 30-Tage Testversion fort.
 - Sie sollten bereits ein git-Repository für ihre Aufgaben erstellt und in ein Verzeichnis in 
   ihrem WSL geklont haben.
   Um dieses nun in der IDE zu öffnen, gehen Sie auf "Open Project" und navigieren Sie zu dem 
@@ -91,28 +98,18 @@ besitzen, können Sie diesen Schritt überspringen.
   Im Drop-Down-Menü rechts sollte der WSL-Python Interpreter `/usr/bin/python3` ausgewählt sein.
   Falls das schon von allein passiert ist: prima.
 
-
-### 2. PyCharm Community Edition
-
-[WARNING]
-In PyCharm Community wird ihr Code immer mit der Windows-Version von Python ausgeführt.
-Für ihre Abgabe muss ihr Code aber **immer einmal über das WSL ausgeführt werden!**
-Die Windows-Python-Version unterscheidet sich teilweise von der im WSL installierten Version. 
-
-Das kann zu Problemen führen:
-
-- Es gibt kleine Unterschiede zwischen Python auf Linux und Python auf Windows,
-  insbesondere beim Format von Dateinamen und Pfaden.
-- Wenn Sie zusätzliche Python-Pakete installieren (was für viele Aufgaben nötig sein wird), 
-  müssen Sie dies immer in beiden Umgebungen vornehmen, was ebenso lästig wie fehleranfällig ist.  
-  Lesen Sie zur Information vorab den Warnhinweis in der Aufgabe [PARTREF::venv].
-[ENDWARNING]
+[FOLDOUT::PyCharm ohne Lizenz]
+Wenn Sie PyCharm ohne Student Pack Lizenz verwenden wollen/müssen, dann müssen Sie noch auf 
+folgende Punkte achten bzw. von den o.g. Punkten abweichen:
 
 #### Python auf Windows installieren
 
-- Gehen Sie auf [HREF::https://www.python.org/downloads/]
-- scrollen Sie nach unten und laden Sie aktuellste Version von Python 3.11.x herunter
-  (**Keine** neuere Version wie 3.12).
+Sie benötigen eine Installation von Python unter Windows und müssen diese eigenhändig verwalten.
+Achten Sie darauf, dieselbe Version zu installieren, die auch bei Ihnen im WSL installiert ist, 
+um Versionskonflikte zu vermeiden (prüfen Sie ggf. die Version im WSL nach mit `python -V`).
+
+- Gehen Sie auf [HREF::https://www.python.org/downloads/] und suchen Sie nach der benötigten 
+  Version.
 - Starten Sie den Installer.
 - setzen Sie das Häkchen bei "Add python.exe to PATH", um Python auch über die CMD/PowerShell 
   ansprechen zu können.
@@ -120,25 +117,30 @@ Das kann zu Problemen führen:
   klicken und folgende Änderungen vornehmen:
     * "tcl/tk und IDLE" und "py launcher" werden nicht benötigt und können abgewählt werden.
 
-#### PyCharm Community Edition installieren und einrichten
 
-- Gehen Sie auf [HREF::https://www.jetbrains.com/pycharm/download/?section=windows]
-- Der Download für die Community Edition ist weiter unten auf der Seite.
-  Laden Sie die Community Edition herunter und führen Sie den Installer aus.
-  Anschließend öffnen Sie PyCharm.
-- Sie sollten bereits ein git-Repository für ihre Aufgaben erstellt und in ein Verzeichnis in 
-  ihrem WSL geklont haben.
-  Um dieses nun in der IDE zu öffnen, gehen Sie auf "Open Project" und navigieren Sie zu dem 
-  Verzeichnis ihres Repos.
-  Dieses sollte unter `\\wsl$\Debian\home\<WSL-Benutzername>\<Pfad zu ihrem Repo>` zu finden sein.
-- Um ihren Code mit dem auf Windows installierten Python-Interpreter auszuführen, gehen Sie 
-  unten rechts auf:  
+#### PyCharm einrichten
+
+Bei der Einrichtung des Interpreters muss anstelle des WSLs der auf Windows installierte 
+Python-Installer gewählt werden.
+
+- Gehen Sie unten rechts auf:  
   <no interpreter\> → Add New Interpreter → Add Local Interpreter
 - Wählen Sie links "System Interpreter" aus.
   Im Drop-Down-Menu kann nun die Windows-Python-Installation ausgewählt werden.
 
 
-### 3. Visual Studio Code
+#### Weitere Punkte
+
+- Sie müssen Ihren Code für ihre Abgaben immer min. einmal separat im WSL ausführen.
+- Bei betriebssystemspezifischen Unterschieden (z.B. Pfadangaben, Dateiformatierungen oder 
+  andere Verhaltensweisen von Python) müssen Sie u.U. selbst geeignete Lösungen finden.
+- Wenn Sie zusätzliche Python-Pakete installieren, müssen Sie dies immer in beiden Umgebungen 
+  vornehmen (für mehr Informationen lesen Sie den Warnhinweis in der Aufgabe [PARTREF::venv]).
+
+[ENDFOLDOUT]
+
+
+### 2. Visual Studio Code
 
 
 #### VS Code herunterladen und installieren
@@ -190,9 +192,12 @@ den als `png`-Datei doch ein.
 Nur per kurzem Augenschein prüfen, ob die IDE im Sinne unserer Aufgaben eingerichtet ist.
 Ein Studi, der hier etwas verschlampt hat, wird es noch ausführlich bereuen.
 
-Achten Sie auf die korrekte Python-Version (sowohl in PyCharm als auch in VS Code im 
-Anwendungsfenster unten rechts erkennbar), denn daraus resultierende Abweichungen könnten subtil 
-ausfallen.  
-Bei PyCharm Pro sollte "WSL" mit beim Interpreter aufgeführt sein.  
+Achten Sie auf die korrekte Python-Version (sowohl in PyCharm als auch in VS Code unten rechts 
+erkennbar), denn daraus resultierende Abweichungen könnten subtil ausfallen.
+
+Bei PyCharm sollte "WSL" mit beim Interpreter aufgeführt sein (außer bei der kostenlosen Version).  
 Bei VS Code sollte unten links "WSL Debian" als Remote Connection sichtbar sein.
+
+Wer die kostenlose Version von PyCharm verwendet sollte sich über die Eigenheiten bewusst sein 
+(siehe Foldout "PyCharm ohne Lizenz").
 [ENDINSTRUCTOR]
