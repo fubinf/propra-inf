@@ -15,7 +15,7 @@ Auf Linux haben Sie die Wahl zwischen zwei verschiedenen IDEs, mit denen sich di
 absolvieren lässt:
 
 
-### 1. PyCharm Community Edition
+### 1. PyCharm
 
 - Der Kurs ist vorrangig auf PyCharm aufgebaut, von daher werden Sie hier die wenigsten 
   Reibungspunkte verspüren.
@@ -29,11 +29,14 @@ absolvieren lässt:
 - Empfohlen für Teilnehmer_innen, die VS Code bereits im Alltag nutzen und keine weitere IDE lernen 
   möchten.
 
+[INCLUDE::PyCharmCommunityNotice.inc]
+
 [NOTICE]
-Anders als auf Windows wird unter Linux nicht die PyCharm Professional Edition für die 
-komfortabelste Arbeitsumgebung benötigt, daher verzichten wir hier, im Gegensatz zur 
-Windows-Installation, auf die Schritte zum Anfordern der Studierenden-Lizenz und behandeln nur 
-das Einrichten der Community Edition.
+Auf Linux reicht die kostenlose Version von PyCharm für diesen Kurs aus.
+Als Studierende_r der FU haben Sie aber auch optional die Möglichkeit, eine "Student Pack" 
+Lizenz zu erhalten, um auf professionelle Features zugreifen zu können.
+Bei Interesse schauen Sie in der Aufgabe [PARTREF::IDE-Windows] den Abschnitt zur Beantragung 
+der Lizenz an.
 [ENDNOTICE]
 [ENDSECTION]
 
@@ -48,19 +51,17 @@ Die Anleitung ist nicht detailgenau; bitte entscheiden Sie den Rest nach bestem 
 es kommt nicht auf jeden Millimeter an.
 
 
-### 1. PyCharm Community Edition
+### 1. PyCharm
 
-
-#### PyCharm Community Edition installieren und einrichten
+#### PyCharm installieren und einrichten
 
 Wir richten uns hier im Grunde nach der
 [offiziellen Anleitung](https://www.jetbrains.com/help/pycharm/installation-guide.html#standalone).
 
-- Gehen Sie auf [HREF::https://www.jetbrains.com/pycharm/download/?section=linux], scrollen Sie 
-  ein Stück nach unten, bis Sie den Download-Button für die PyCharm **Community Edition** sehen, und 
-  laden Sie die passende .tar.gz für ihre CPU (x86/arm, im Zweifel ersteres) herunter.
+- Gehen Sie auf [HREF::https://www.jetbrains.com/pycharm/download/?section=linux] und laden Sie 
+  die passende .tar.gz für ihre CPU (x86/arm, im Zweifel ersteres) herunter.
 - Diese runtergeladene Datei muss entpackt werden. Auf Systemen, auf denen Sie entsprechende Rechte
-  (ggf. mit `sudo` haben) nach `/opt/` andernfalls nach `~` (Ihr Home-Verzeichnis).
+  (ggf. mit `sudo`) haben nach `/opt/` andernfalls nach `~` (Ihr Home-Verzeichnis).
   
   ```
     tar xzf pycharm-*.tar.gz -C <Zielverzeichnis>
