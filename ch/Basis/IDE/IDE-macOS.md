@@ -5,15 +5,13 @@ difficulty: 2
 requires: Unix-Umgebung
 ---
 
-
 [SECTION::goal::idea]
 Ich habe eine funktionierende IDE auf macOS
 [ENDSECTION]
 
 
 [SECTION::background::default]
-Auf macOS haben Sie die Wahl zwischen zwei verschiedenen IDEs, mit denen sich dieser Kurs 
-absolvieren lässt:
+Auf macOS haben Sie die Wahl zwischen zwei IDEs, mit denen sich dieser Kurs absolvieren lässt:
 
 
 ### 1. PyCharm
@@ -22,10 +20,12 @@ absolvieren lässt:
   Reibungspunkte verspüren.
 - Empfohlen für alle Teilnehmer_innen.
 
+
 ### 2. Visual Studio Code
 
 - Da der Kurs jedoch vorrangig auf PyCharm aufgebaut ist, können vor allem bei fortgeschrittenen
-  Themen benötigte IDE-Features anders funktionieren. Hier müssen Sie ggf. selbst nach alternativen Wegen suchen.
+  Themen benötigte IDE-Features anders funktionieren. Hier müssen Sie ggf. selbst nach 
+  alternativen Wegen suchen.
 - Empfohlen für Teilnehmer_innen, die VS Code bereits im Alltag nutzen und keine weitere IDE lernen 
   möchten.
 
@@ -42,10 +42,10 @@ der Lizenz an.
 
 
 [SECTION::instructions::detailed]
-Wenn Sie sich schon für eine IDE entschieden haben, 
-brauchen Sie nur einen der beiden Abschnitte zu bearbeiten.
-Wenn Sie noch unsicher sind, lesen Sie vielleicht in alle Abschnitte rein, 
-was da für die Installation auf Sie zukommt. 
+Wenn Sie sich schon für eine IDE entschieden haben, brauchen Sie nur einen der beiden Abschnitte 
+zu bearbeiten.
+Wenn Sie noch unsicher sind, lesen Sie vorher in alle Abschnitte rein, um zu sehen, was da für 
+die Installation auf Sie zukommt. 
 
 Die Anleitung ist nicht detailgenau; bitte entscheiden Sie den Rest nach bestem Ermessen,
 es kommt nicht auf jeden Millimeter an.
@@ -100,6 +100,7 @@ Sie einen aussagekräftigen Screenshot und zeigen Sie diesen Ihrem/Ihrer Tutor_i
 [ENDSECTION]
 
 [INSTRUCTOR::IDE angucken]
-Lassen Sie sich von den Studierenden die vollständig aufgesetzte IDE zeigen. Achten Sie vor 
-allem auf die korrekte Python-Version.
+Lassen Sie sich von den Studierenden die vollständig aufgesetzte IDE zeigen.
+Achten Sie vor allem auf die korrekte Python-Version (sowohl in PyCharm als auch in VS Code unten 
+rechts erkennbar).
 [ENDINSTRUCTOR]

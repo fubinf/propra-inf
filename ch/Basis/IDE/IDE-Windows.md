@@ -6,7 +6,8 @@ requires: Unix-Umgebung
 ---
 
 [SECTION::goal::idea]
-Ich habe eine funktionierende IDE auf Windows und kann diese in Zusammenarbeit mit WSL verwenden.
+Ich habe eine funktionierende IDE auf Windows und kann diese in Zusammenarbeit mit dem WSL 
+verwenden.
 [ENDSECTION]
 
 
@@ -16,22 +17,21 @@ Auf Windows haben Sie die Wahl zwischen zwei IDEs, mit denen sich dieser Kurs ab
 
 ### 1. PyCharm mit kostenloser Studierenden-Lizenz
 
-- **Empfohlene Variante**, da der Kurs vorrangig auf PyCharm aufgebaut ist.
-- Die professionellen Features erlauben natives Arbeiten mit dem WSL.
-- Allerdings müssen Sie vorher, um diese Features verwenden zu können, bei JetBrains das 
+- Empfohlene Variante, da der Kurs vorrangig auf PyCharm aufgebaut ist.
+- Ermöglicht natives Arbeiten mit dem WSL.
+- Allerdings müssen Sie, um dieses Feature kostenlos verwenden zu können, bei JetBrains das 
   "Student Pack" beantragen.
   Dies sollte im Regelfall über ihre Universitäts-E-Mail-Adresse möglich sein.
 
 [FOLDOUT::PyCharm ohne Lizenz]
+Falls Sie Probleme bei der Aktivierung des Student Packs haben, kann PyCharm auch kostenlos mit 
+eingeschränkten Features genutzt werden.
+Allerdings wird die Arbeit am ProPra ohne nativen WSL-Support sehr umständlich.
+Daher können wir die Verwendung der kostenlosen Version **nicht uneingeschränkt empfehlen** 
+und sie sollte nur dann verwendet werden, wenn weder die Pro-Lizenz noch VS Code für Sie 
+infrage kommen.
 
-- Falls Sie Probleme bei der Aktivierung des Student Packs haben, kann PyCharm auch kostenlos mit 
-  eingeschränkten Features genutzt werden.
-- Allerdings wird die Arbeit am ProPra ohne nativen WSL-Support sehr umständlich.
-- Daher können wir die Verwendung der kostenlosen Version **nicht uneingeschränkt empfehlen** 
-  und sie sollte nur dann verwendet werden, wenn weder die Pro-Lizenz noch VS Code für Sie 
-  infrage kommen.
-- Lesen Sie, bevor Sie die Variante wählen, das Foldout am Ende der PyCharm-Installation.
-
+Lesen Sie, bevor Sie die Variante wählen, das Foldout am Ende der PyCharm-Installation.
 [ENDFOLDOUT]
 
 
@@ -49,7 +49,7 @@ Auf Windows haben Sie die Wahl zwischen zwei IDEs, mit denen sich dieser Kurs ab
 
 
 [SECTION::instructions::detailed]
-Wenn Sie sich schon für eine IDE entschieden haben, brauchen Sie nur einen der drei Abschnitte 
+Wenn Sie sich schon für eine IDE entschieden haben, brauchen Sie nur einen der beiden Abschnitte 
 zu bearbeiten.
 Wenn Sie noch unsicher sind, lesen Sie vorher in alle Abschnitte rein, um zu sehen, was da für 
 die Installation auf Sie zukommt. 
@@ -180,20 +180,18 @@ Alle im ProPra benötigten Extensions werden von Microsoft bereitgestellt.
 
 
 [SECTION::submission::information]
-Diesmal gibt es nichts einzuchecken.
-Zeigen Sie zur Prüfung einfach Ihren Laptopbildschirm mit gestarteter IDE
-mit erkennbarer Python-Version und geöffnetem ProPra.
+Zeigen Sie Ihrem/Ihrer Tutor_in Ihre eingerichtete PyCharm IDE oder VSCode mit Ihrem geöffneten 
+ProPra.
 
-Wenn Sie keinen Laptop benutzen, machen Sie einen aussagekräftigen Screenshot und checken Sie 
-den als `png`-Datei doch ein.
+Sollten Sie Ihre Entwicklungsumgebung an einem stationären Desktop eingerichtet haben, erstellen 
+Sie einen aussagekräftigen Screenshot und zeigen Sie diesen Ihrem/Ihrer Tutor_in.
 [ENDSECTION]
 
-[INSTRUCTOR::Minimale Prüfung]
-Nur per kurzem Augenschein prüfen, ob die IDE im Sinne unserer Aufgaben eingerichtet ist.
-Ein Studi, der hier etwas verschlampt hat, wird es noch ausführlich bereuen.
-
-Achten Sie auf die korrekte Python-Version (sowohl in PyCharm als auch in VS Code unten rechts 
-erkennbar), denn daraus resultierende Abweichungen könnten subtil ausfallen.
+[INSTRUCTOR::IDE angucken]
+Lassen Sie sich von den Studierenden die vollständig aufgesetzte IDE zeigen.
+Achten Sie vor allem auf die korrekte Python-Version (sowohl in PyCharm als auch in VS Code unten 
+rechts 
+erkennbar).
 
 Bei PyCharm sollte "WSL" mit beim Interpreter aufgeführt sein (außer bei der kostenlosen Version).  
 Bei VS Code sollte unten links "WSL Debian" als Remote Connection sichtbar sein.
