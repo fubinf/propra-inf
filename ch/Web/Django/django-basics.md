@@ -133,7 +133,7 @@ ein konkretes Anwendungsbeispiel.
 **Empfohlene Entwicklungstools**:
 
 - **VS Code** mit Python-Extension
-- **PyCharm** (Community oder Professional)
+- **PyCharm**
 - **Sublime Text** mit Python-Paketen
 
 Bevor Sie Django installieren können, muss Python auf Ihrem System verfügbar sein. 

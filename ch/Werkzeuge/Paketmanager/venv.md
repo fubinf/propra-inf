@@ -90,9 +90,10 @@ aus.
 [HREF::https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html].
 
 [WARNING]
-Falls Sie PyCharm Community Edition unter Windows benutzen, müssen Sie noch ein zweites `venv` einrichten, damit Sie
-ihren Code auch über die IDE in Windows ausführen können. Dieses zweite `venv` sollte in einem geeigneten Ordner
-außerhalb des WSL liegen (z.B. `C:\User\<Benutzername>\venv`), um die beiden Environments besser auseinanderhalten zu
+Falls Sie PyCharm ohne Lizenz unter Windows benutzen, müssen Sie noch ein zweites `venv` 
+einrichten, damit Sie ihren Code auch über die IDE in Windows ausführen können.
+Dieses zweite `venv` sollte in einem geeigneten Ordner außerhalb des WSL liegen (z.B. 
+`C:\User\<Benutzername>\venv`), um die beiden Environments besser auseinanderhalten zu
 können.
 
 Damit sich beide Interpreter gleich verhalten, müssen neue Pakete **immer in beiden `venv` installiert werden**.
