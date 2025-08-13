@@ -7,23 +7,23 @@ requires: Unix-Umgebung
 
 
 [SECTION::goal::idea]
-
 Ich habe eine funktionierende IDE auf Linux.
-
 [ENDSECTION]
 
 [SECTION::background::default]
-
 Auf Linux haben Sie die Wahl zwischen zwei verschiedenen IDEs, mit denen sich dieser Kurs 
 absolvieren lässt:
 
 
-### 1. PyCharm Community Edition  
+### 1. PyCharm Community Edition
+
 - Der Kurs ist vorrangig auf PyCharm aufgebaut, von daher werden Sie hier die wenigsten 
   Reibungspunkte verspüren.
 - Empfohlen für alle Teilnehmer_innen.
 
-### 2. Visual Studio Code  
+
+### 2. Visual Studio Code
+
 - Da der Kurs jedoch vorrangig auf PyCharm aufgebaut ist, können vor allem bei fortgeschrittenen
   Themen benötigte IDE-Features anders funktionieren. Hier müssen Sie ggf. selbst nach alternativen Wegen suchen.
 - Empfohlen für Teilnehmer_innen, die VS Code bereits im Alltag nutzen und keine weitere IDE lernen 
@@ -35,11 +35,10 @@ komfortabelste Arbeitsumgebung benötigt, daher verzichten wir hier, im Gegensat
 Windows-Installation, auf die Schritte zum Anfordern der Studierenden-Lizenz und behandeln nur 
 das Einrichten der Community Edition.
 [ENDNOTICE]
-
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 Wenn Sie sich schon für eine IDE entschieden haben, 
 brauchen Sie nur einen der beiden Abschnitte zu bearbeiten.
 Wenn Sie noch unsicher sind, lesen Sie vielleicht in alle Abschnitte rein, 
@@ -50,6 +49,7 @@ es kommt nicht auf jeden Millimeter an.
 
 
 ### 1. PyCharm Community Edition
+
 
 #### PyCharm Community Edition installieren und einrichten
 
@@ -89,6 +89,7 @@ Wir richten uns hier im Grunde nach der
 
 ### 2. Visual Studio Code
 
+
 #### VS Code herunterladen und installieren
 
 [INCLUDE::VSNoticeCodium.inc]
@@ -96,22 +97,19 @@ Wir richten uns hier im Grunde nach der
 - Folgen Sie der [Anleitung auf UbuntuUsers](https://wiki.ubuntuusers.de/Visual_Studio_Code/)
   zur Installation von VS Code.
 [INCLUDE::VSSetup.inc]
-
 [ENDSECTION]
 
-[SECTION::submission::information]
 
+[SECTION::submission::information]
 Zeigen Sie Ihrem/Ihrer Tutor_in Ihre eingerichtete PyCharm IDE oder VSCode mit Ihrem geöffneten 
 ProPra.
 
 Sollten Sie Ihre Entwicklungsumgebung an einem stationären Desktop eingerichtet haben, erstellen 
 Sie einen aussagekräftigen Screenshot und zeigen Sie diesen Ihrem/Ihrer Tutor_in.
-
 [ENDSECTION]
 
+
 [INSTRUCTOR::IDE angucken]
-
-Lassen Sie sich von den Studierenden die vollständig aufgesetzte IDE zeigen. Achten Sie vor 
-allem auf die korrekte Python-Version.
-
+Lassen Sie sich von den Studierenden die vollständig aufgesetzte IDE zeigen.
+Achten Sie vor allem auf die korrekte Python-Version.
 [ENDINSTRUCTOR]
