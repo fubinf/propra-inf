@@ -53,4 +53,8 @@
 - **2025-08-08**: Aufgabe Programmierpraxis/Python-mlh/[PARTREF::mlh-linkcheck] zugefügt.
 - **2025-08-08**: Fehlende Aufgabengruppen-Beschreibungen ergänzt für
   Programmierpraxis/[PARTREF::Python-mlh] und [PARTREF::Python-linkcheck].
+- **2025-08-14**: Formulierungen für die Repo-Freigabe in Basis/Repo/[PARTREF::Git101] klarer
+  gemacht: Sie müssen Ihr Repo für _alle_ in 'instructors' eingetragenen Personen freigeben,
+  sonst funktionieren die Verwaltungsprozesse nicht und Sie können z.B. am Ende keine Leistungspunkte
+  bekommen.
 - ...
