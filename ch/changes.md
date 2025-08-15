@@ -57,4 +57,5 @@
   gemacht: Sie müssen Ihr Repo für _alle_ in 'instructors' eingetragenen Personen freigeben,
   sonst funktionieren die Verwaltungsprozesse nicht und Sie können z.B. am Ende keine Leistungspunkte
   bekommen.
+- **2025-08-15**: Aufgabe Bibliothek/Python-Standardbibliothek/[PARTREF::m_dataclasses] zugefügt.
 - ...

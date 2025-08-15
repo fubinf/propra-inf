@@ -1,11 +1,10 @@
 title: "dataclasses: Reine Datenklassen bequem erstellen"
-stage: alpha
+stage: beta
 timevalue: 0.75
 difficulty: 2
 explains:
 assumes:
 requires:
-
 ---
 
 [SECTION::goal::idea]
