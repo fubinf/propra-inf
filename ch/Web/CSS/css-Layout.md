@@ -9,17 +9,18 @@ assumes: css-Selektoren, css-Box-Modell
 
  - Ich kann Flexbox, Gridlayout, und Floats verwenden.
  - Ich kann ihre Unterschiede und Einsatzzwecke beschreiben.
-
 [ENDSECTION]
+
+
 [SECTION::background::default]
-
 Flexbox und Grid sind zwei verschiedene Systeme, die CSS bietet, 
-um das die Anordnung der Elemente einer Webseite festzulegen.
-Sie können auch miteinander und weiteren Layoutmethoden kombiniert werden.
-Alle Methoden haben ihren Platz und ihren eigenen Einsatzzweck.
+um die Anordnung der Elemente einer Webseite festzulegen.
+Sie können auch miteinander und mit weiteren Layoutmethoden kombiniert werden.
+Alle diese Methoden haben ihren Platz und ihren eigenen Einsatzzweck.
 [ENDSECTION]
-[SECTION::instructions::detailed]
 
+
+[SECTION::instructions::detailed]
 In dieser Aufgabe schauen wir uns verschiedene Layoutmethoden anhand einer Beispielseite an. 
 Übernehmen Sie die gegebene Beispielseite als `css-Layout.html`.
 
@@ -115,9 +116,11 @@ und so viele Zeilen wie nötig in Anspruch nehmen.
 Für Layouts die Seite in eine Richtung, also horizontal oder vertikal, aufteilen sollen,
 eignet sich Flexbox ganz besonders. 
 Implementieren Sie das beschriebene Layout mittels Flexbox.
-Eine Übersicht über Flexbox erhalten Sie z.B. bei [CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
+Eine Übersicht über Flexbox erhalten Sie z.B. bei 
+[CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
+Nehmen Sie sich zum Lesen genug Zeit, Flexbox ist ein anspruchsvolles Konzept.
 
-[ER] Sollen Objekte in zwei Dimensionen angeordnet werden, dann empfiehlt es sich das Gridlayout zu verwenden.
+[ER] Sollen Objekte in _zwei_ Dimensionen angeordnet werden, dann empfiehlt es sich das Gridlayout zu verwenden.
 Auch hierfür gibt es bei CSS-Tricks einen kompakten 
 [CSS Grid Layout Guide](https://css-tricks.com/snippets/css/complete-guide-grid/).
 Verwenden sie Grid Layout, um mittels vier Boxen ein `P` (wie ProPy) auf einem farbigen Hintergrund darzustellen.
@@ -128,18 +131,16 @@ Definieren Sie die Gridlines im Elternelement.
 Definieren Sie für die Kindelemente zwischen welchen Gridlines sie sich befinden sollen.
 [ENDHINT]
 
-[EQ] Fassen Sie in Stichworten zusammen, wofür die drei vorgestellen Layoutmethoden gedacht sind
-und benennen Sie mögliche Anwendungsbereiche auf einer realen Website.
-
-
+[EQ] Fassen Sie in Stichworten zusammen, wofür die drei vorgestellen Layoutmethoden gedacht sind.
+Nennen Sie für jede zwei mögliche Anwendungsbereiche für eine gedachte realistische Website.
 [ENDSECTION]
+
+
 [SECTION::submission::reflection,program]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
-[INSTRUCTOR::Visuelle Prüfung]
 
+
+[INSTRUCTOR::Visuelle Prüfung genügt]
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
