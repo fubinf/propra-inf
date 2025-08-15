@@ -2,7 +2,7 @@ title: grep - print lines that match patterns
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: Umgang-mit-Verzeichnissen
+assumes: Umgang-mit-Verzeichnissen, redirect
 ---
 
 [SECTION::goal::idea]
