@@ -6,21 +6,20 @@ assumes: m_unittest, pip
 ---
 
 [SECTION::goal::idea]
-
 Ich kann Unittests mit dem Profi-Python-Testframework `pytest` schreiben und ausführen.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+
+[SECTION::background::default]
 Für die meisten ernsthaften Anwendungen ist `pytest` das Testframework der Wahl:
 Es ist zugleich wesentlich leistungsfähiger als `unittest` und trotzdem handlicher zu benutzen;
 eine selten günstige Kombination!
 
 Mit seinen Hunderten von Erweiterungen kann `pytest` auch sehr spezielle Anforderungen abdecken.
-
 [ENDSECTION]
-[SECTION::instructions::detailed]
 
+
+[SECTION::instructions::detailed]
 Arbeiten Sie sich mittels der 
 [Dokumentation von pytest](https://docs.pytest.org) 
 und bei Bedarf weiteren Quellen mittels
@@ -93,12 +92,16 @@ def test_failure2(self):
 - [EQ] Vergleichen Sie die Ausgaben der beiden Kommandos.
   Was ist Ihr Eindruck?
   Fallen Ihnen noch wichtige Gründe ein, `unittest` zu benutzen?
-
 [ENDSECTION]
-[SECTION::submission::trace]
 
+
+[SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
+
+
+[INSTRUCTOR::TODO_2]
+
+[ENDINSTRUCTOR]
