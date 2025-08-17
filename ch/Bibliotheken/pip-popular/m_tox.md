@@ -1,8 +1,8 @@
 title: "'tox': automatisierte Tests in virtuellen Umgebungen"
-stage: draft
+stage: alpha
 timevalue: 1.5
-difficulty: 3
-assumes: pip, venv, m_pytest, pytest-Methodik-Blackbox
+difficulty: 2
+assumes: pip, venv, m_pytest
 ---
 
 [SECTION::goal::trial]
@@ -77,6 +77,8 @@ def test_divide_by_zero():
 
 ### Grundlegende tox-Konfiguration
 
+Wir starten mit der wichtigsten Datei, ohne die Tox gar nicht erst funktioniert.
+
 [ER] Erstellen Sie eine `tox.ini` Datei im Projektordner mit folgendem Grundgerüst:
 
 ```ini
@@ -94,6 +96,8 @@ commands = pytest test_calculator.py -v
 
 ### Tox-Umgebungen erkunden
 
+Natürlich gibt es nicht nur stumpf den `tox`-Befehl.
+
 [ER] Führen Sie folgende Kommandos aus und beschreiben Sie die Ausgabe:
 
 - `tox -l` (oder `tox --list`)
@@ -103,6 +107,8 @@ commands = pytest test_calculator.py -v
 [EQ] Was ist der Unterschied zwischen den ersten beiden Kommandos?
 
 ### Abhängigkeiten hinzufügen
+
+Ein Projekt kann bekanntlich viele Abhängigkeiten haben, deren es sich bedient. Tox hilft auch hier.
 
 [ER] Erstellen Sie eine `requirements.txt` Datei:
 
@@ -128,7 +134,6 @@ commands = pytest test_calculator.py -v
 import requests
 
 def test_requests_available():
-    """Test that requests is available in the environment."""
     response = requests.get('https://httpbin.org/get')
     assert response.status_code == 200
     assert 'headers' in response.json()
@@ -138,6 +143,8 @@ def test_requests_available():
 - [EQ] Wie verhält sich tox, wenn Sie jetzt `tox` ohne `-r` ausführen? Warum?
 
 ### Mehrere Testkommandos
+
+Und Tox kann auch als Automatisierungtool verwendet werden, um verschiedene _Schritte_ auszuführen.
 
 [ER] Erweitern Sie Ihre `tox.ini` um mehrere Kommandos:
 
@@ -154,6 +161,10 @@ commands =
 - [EQ] Was zeigen die zusätzlichen Kommandos? Warum könnte das nützlich sein?
 
 ### Spezielle Umgebungen definieren
+
+Kommen wir zu weiteren tollen _Features_, die Tox uns mitgibt.
+Wir können Tox nicht nur für [TERMREF::Dynamische analytische Qualitätssicherung] verwenden,
+[TERMREF::Statische analytische Qualitätssicherung].
 
 [ER] Fügen Sie spezielle Umgebungen zu Ihrer `tox.ini` hinzu:
 
@@ -182,6 +193,10 @@ commands = python -c "print('Dokumentation würde hier erstellt werden')"
 
 ### Fehlerbehandlung erkunden
 
+Bisher lief doch alles gut?
+Was aber, wenn es nicht immer so gut läuft?
+Schauen wir uns einmal einen Fehlschalg an.
+
 [ER] Fügen Sie absichtlich einen Fehler in `calculator.py` ein (z.B. Syntaxfehler) und führen Sie `tox` aus.
 
 - [EQ] Wie verhält sich tox bei Fehlern? Bricht es alle Umgebungen ab oder nur die betroffene?
@@ -191,12 +206,17 @@ commands = python -c "print('Dokumentation würde hier erstellt werden')"
 
 ### Konfiguration verstehen
 
+Nicht alle _Schritte_ sind trivial in die Datei einzutragen. Manchmal bedarf es auch etwas mehr.
+
 [ER] Experimentieren Sie mit verschiedenen Konfigurationsoptionen in der `tox.ini`:
 
 ```ini
 [testenv]
 deps = -r{toxinidir}/requirements.txt
 changedir = {toxworkdir}
+allowlist_externals = 
+    pwd
+    ls
 commands = 
     python --version
     pwd
@@ -206,8 +226,12 @@ commands =
 
 - [EQ] Was bewirkt `changedir = {toxworkdir}`? 
 - [EQ] Warum müssen Sie jetzt `{toxinidir}/test_calculator.py` statt nur `test_calculator.py` verwenden?
+- [EQ] Wozu dient `allowlist_externals` und warum ist es nötig?
 
 ### Umgebungsvariablen und Vererbung
+
+Wir können uns auch ein wenig tiefer ins System schreiben, um zum Beispiel bestimmte Konfiguratiopnen,
+die über Systemvariablen ausgelesen werden, zu setzen, oder Pfade zu setzen.
 
 [ER] Erstellen Sie eine erweiterte Konfiguration:
 
@@ -235,9 +259,10 @@ commands = pytest test_calculator.py --cov=calculator --cov-report=term-missing
 
 ### Parallele Ausführung
 
-[ER] Installieren Sie `tox-parallel`: `pip install tox[parallel]`
-[ER] Führen Sie `tox -p` aus und beobachten Sie das Verhalten.
+Manchmal haben wir für aufwendige Test weniog Zeit, vor allem, wenn es viele Testumgebungen gibt.
+Dann können wir das mit genügen Rechenpower auch parallel laufen lassen.
 
+- [ER] Führen Sie `tox -p/ tox --parallel` aus und beobachten Sie das Verhalten.
 - [EQ] Was ist der Unterschied zur normalen Ausführung? Welche Vor- und Nachteile sehen Sie?
 
 ### Projekt-Integration
@@ -282,25 +307,6 @@ commands =
 
 [INSTRUCTOR::Erste Schritte mit tox]
 
-Die Studenten sollen verstehen:
-- Wie tox virtuelle Umgebungen automatisch verwaltet
-- Den Unterschied zwischen lokalen und tox-Umgebungen
-- Grundlegende tox.ini Konfiguration
-- Abhängigkeitsverwaltung mit tox
-- Spezielle Umgebungen für verschiedene Zwecke
-
-Typische Fallstricke:
-- Python-Versionen nicht installiert → skip ist normal
-- Pfad-Probleme bei changedir
-- Verwirrung über lokale vs. tox-Abhängigkeiten
-
-Mögliche Beispiel-Ausgaben:
-
-[EREFQ::1] Bei `tox -l` sollten die konfigurierten Umgebungen aufgelistet werden:
-py39, py310, py311, lint, docs, coverage
-
-[EREFQ::2] Tox stoppt nur die betroffene Umgebung bei Fehlern, andere laufen weiter
-
-[EREFQ::3] `{[testenv]deps}` erbt die Abhängigkeiten der Basis-Umgebung
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
