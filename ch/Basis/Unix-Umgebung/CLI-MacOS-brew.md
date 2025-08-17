@@ -112,11 +112,11 @@ das Python-Paket zu installieren.
 
 War die Installation erfolgreich können wir nun die installierte Python-Version prüfen.
 
-[INCLUDE::CheckPython.inc]
-[INCLUDE::CdLsMvEtc.inc]
+[INCLUDE::include/CheckPython.inc]
+[INCLUDE::include/CdLsMvEtc.inc]
 
 [ENDSECTION]
-[INCLUDE::Abgabe.inc]
+[INCLUDE::include/Abgabe.inc]
 [INSTRUCTOR::Warnhinweise]
 
 [INCLUDE::InstructorCheckLinux.inc]

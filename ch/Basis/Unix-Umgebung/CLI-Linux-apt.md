@@ -51,11 +51,11 @@ dass Python und Pip funktionieren.
         - Wie man darauf Pakete installiert (anstatt mit `apt-get` oder `apt` wie auf Debian)
         - Wie man konkret Bash installiert und dann aufruft
 
-[INCLUDE::CheckPython.inc]
-[INCLUDE::CdLsMvEtc.inc]
+[INCLUDE::include/CheckPython.inc]
+[INCLUDE::include/CdLsMvEtc.inc]
 
 [ENDSECTION]
-[INCLUDE::Abgabe.inc]
+[INCLUDE::include/Abgabe.inc]
 [INSTRUCTOR::Warnhinweise]
 
 [INCLUDE::InstructorCheckLinux.inc]

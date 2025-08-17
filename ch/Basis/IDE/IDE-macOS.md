@@ -29,7 +29,7 @@ Auf macOS haben Sie die Wahl zwischen zwei IDEs, mit denen sich dieser Kurs abso
 - Empfohlen für Teilnehmer_innen, die VS Code bereits im Alltag nutzen und keine weitere IDE lernen 
   möchten.
 
-[INCLUDE::PyCharmCommunityNotice.inc]
+[INCLUDE::include/PyCharmCommunityNotice.inc]
 
 [NOTICE]
 Auf macOS reicht die kostenlose Version von PyCharm für diesen Kurs aus.
@@ -82,12 +82,12 @@ es kommt nicht auf jeden Millimeter an.
 
 #### VS Code herunterladen und installieren
 
-[INCLUDE::VSNoticeCodium.inc]
+[INCLUDE::include/VSNoticeCodium.inc]
 
 - Gehen Sie auf [HREF::https://code.visualstudio.com/docs/?dv=osx], laden Sie das zip Archiv 
   herunter und verschieben Sie nach dem Entpacken die "Visual Studio Code" App in ihren 
   Anwendungsordner. 
-[INCLUDE::VSSetup.inc]
+[INCLUDE::include/VSSetup.inc]
 [ENDSECTION]
 
 

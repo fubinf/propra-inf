@@ -69,11 +69,11 @@ ist immer die Linux-Shell gemeint, nie die Windows-Kommandozeile mit
 `cmd.exe` oder der Powershell.
 [ENDWARNING]
 
-[INCLUDE::CheckPython.inc]
-[INCLUDE::CdLsMvEtc.inc]
+[INCLUDE::include/CheckPython.inc]
+[INCLUDE::include/CdLsMvEtc.inc]
 
 [ENDSECTION]
-[INCLUDE::Abgabe.inc] 
+[INCLUDE::include/Abgabe.inc] 
 [INSTRUCTOR::Warnhinweise]
 
 Zum Prüfen dient `cat /etc/os-release; python -V; pip -V`. 

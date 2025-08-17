@@ -29,7 +29,7 @@ Auf Linux haben Sie die Wahl zwischen zwei IDEs, mit denen sich dieser Kurs abso
 - Empfohlen für Teilnehmer_innen, die VS Code bereits im Alltag nutzen und keine weitere IDE lernen 
   möchten.
 
-[INCLUDE::PyCharmCommunityNotice.inc]
+[INCLUDE::include/PyCharmCommunityNotice.inc]
 
 [NOTICE]
 Auf Linux reicht die kostenlose Version von PyCharm für diesen Kurs aus.
@@ -94,11 +94,11 @@ Wir richten uns hier im Grunde nach der
 
 #### VS Code herunterladen und installieren
 
-[INCLUDE::VSNoticeCodium.inc]
+[INCLUDE::include/VSNoticeCodium.inc]
 
 - Folgen Sie der [Anleitung auf UbuntuUsers](https://wiki.ubuntuusers.de/Visual_Studio_Code/)
   zur Installation von VS Code.
-[INCLUDE::VSSetup.inc]
+[INCLUDE::include/VSSetup.inc]
 [ENDSECTION]
 
 

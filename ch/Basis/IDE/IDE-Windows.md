@@ -44,7 +44,7 @@ Lesen Sie, bevor Sie die Variante wählen, das Foldout am Ende der PyCharm-Insta
   Der Unterschied betrifft aber nur wenige Aufgaben.
 - Empfohlen, falls Sie VS Code bereits im Alltag nutzen und keine weitere IDE lernen möchten.
 
-[INCLUDE::PyCharmCommunityNotice.inc]
+[INCLUDE::include/PyCharmCommunityNotice.inc]
 [ENDSECTION]
 
 
@@ -145,7 +145,7 @@ Python-Installer gewählt werden.
 
 #### VS Code herunterladen und installieren
 
-[INCLUDE::VSNoticeCodium.inc]
+[INCLUDE::include/VSNoticeCodium.inc]
 
 - Gehen Sie auf [HREF::https://code.visualstudio.com/docs/?dv=win64user], laden Sie den 
   Installer herunter und führen Sie die Installation durch.
