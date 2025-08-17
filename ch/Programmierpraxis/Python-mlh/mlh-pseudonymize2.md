@@ -86,7 +86,7 @@ Folgendes ist ein Stück einer Logdatei des Authentisierungssystems einer
 Debian-Installation (übertragen Sie diese Daten in die Datei `mlh/inputs/auth.log`):
 
 ```
-[INCLUDE::mlh-pseudonymize2-auth.log]
+[INCLUDE::include/mlh-pseudonymize2-auth.log]
 ```
 
 - Legen Sie eine leere Datei `mlh/config/auth.pseu` an.

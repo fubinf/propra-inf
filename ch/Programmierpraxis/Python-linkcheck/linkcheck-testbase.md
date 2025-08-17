@@ -59,7 +59,7 @@ Dieser Webserver hat eine kleine Zahl von Seiten "im Bauch", sowohl HTML-Seiten 
 <!-- time estimate: 50 min -->
 
 ```python
-[INCLUDE::linkcheck_server.py]
+[INCLUDE::include/linkcheck_server.py]
 ```
 
 ### 2. Die Test-Website

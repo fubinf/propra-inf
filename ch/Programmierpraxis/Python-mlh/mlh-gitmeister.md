@@ -29,7 +29,7 @@ Dessen Ausgabe sieht z.B. so aus (bitte nicht erschrecken: über 3000 Zeilen):
 
 [FOLDOUT::`git shortlog -se` für Django (Stand 2024-04)`]
 ```
-[INCLUDE::mlh-gitmeister-django.shortlog]
+[INCLUDE::include/mlh-gitmeister-django.shortlog]
 ```
 [ENDFOLDOUT]
 
