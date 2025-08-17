@@ -67,7 +67,7 @@ Dokumentation zu diesen Kommandos bekommen Sie mit `go help`.
 diese Datei:
 
 ```go
-[INCLUDE::snippets/hello_world.go]
+[INCLUDE::include/hello_world.go]
 ```
 
 [EC] Führen Sie nun das Programm mittels `go run go-basics1.go` aus.
@@ -501,7 +501,7 @@ Spezifikation:
 Diese Vorlage dürfen Sie als Ausgangspunkt benutzen:
 
 ```go
-[INCLUDE::snippets/go-basics1.go]
+[INCLUDE::include/go-basics1.go]
 ```
 
 [NOTICE]

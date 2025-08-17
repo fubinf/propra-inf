@@ -169,7 +169,7 @@ die Summe der Ganzzahlen berechnet werden.
 [ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
 ```go
-[INCLUDE::snippets/go-basics2-control-snippet-functions.go]
+[INCLUDE::include/go-basics2-control-snippet-functions.go]
 ```
 
 
@@ -363,7 +363,7 @@ Alle nachfolgenden Elemente rücken eine Position nach links.
 
 [ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 ```go
-[INCLUDE::snippets/go-basics2-control-snippet-slices.go]
+[INCLUDE::include/go-basics2-control-snippet-slices.go]
 ```
 
 
@@ -417,7 +417,7 @@ Ansonsten keine Aktion.
 [ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
 ```go
-[INCLUDE::snippets/go-basics2-control-snippet-maps.go]
+[INCLUDE::include/go-basics2-control-snippet-maps.go]
 ```
 
 [ER] Für ein korrektes Kommandoprotokoll muss Ihre `main`-Funktion folgendermaßen aussehen;

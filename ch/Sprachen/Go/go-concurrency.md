@@ -450,7 +450,7 @@ func sendOnClosed() {
 Welche Zeile enthält den Fehler und wie muss diese Zeile aussehen, damit das Programm wieder funktioniert?
 
 ```go
-[INCLUDE::snippets/go-concurrency-broken-example.go]
+[INCLUDE::include/go-concurrency-broken-example.go]
 ```
 
 [FOLDOUT::Wie funktioniert der Go-Scheduler?]

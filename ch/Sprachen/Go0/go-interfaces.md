@@ -238,7 +238,7 @@ Falls Sie die Funktion `main` bereits benutzt haben, ersetzten Sie den Inhalt du
 Den folgenden Code dürfen Sie nicht ändern!
 
 ```go
-[INCLUDE::snippets/go-interfaces-control-snippet.go]
+[INCLUDE::include/go-interfaces-control-snippet.go]
 ```
 
 [EC] Führen Sie einmal den Befehl `go run interfaces.go` aus und 

@@ -109,7 +109,7 @@ Eine neue Datei wird sehr ähnlich angelegt: Rechtsklick auf "projectName" -> "N
 [ENDFOLDOUT]
 
 ```go
-[INCLUDE::snippets/hello_world.go]
+[INCLUDE::include/hello_world.go]
 ```
 
 **VSCode oder Kommandozeile:** Öffnen Sie das Terminal und geben Sie `go run programm.go` ein. 

@@ -97,7 +97,7 @@ auf die Struktur selbst zugreifen kann.
 [ER] Fügen Sie die Testfunktion Ihrem Programm bei:
 
 ```go
-[INCLUDE::snippets/go-basics3-control-snippet-methods.go]
+[INCLUDE::include/go-basics3-control-snippet-methods.go]
 ```
 
 ### Struktureinbettung (struct embedding)
@@ -116,7 +116,7 @@ vollständigen Namen und das Alter auf die Kommandozeile ausgibt.
 [ER] Fügen Sie die Testfunktion Ihrem Programm bei:
 
 ```go
-[INCLUDE::snippets/go-basics3-control-snippet-structs.go]
+[INCLUDE::include/go-basics3-control-snippet-structs.go]
 ```
 
 [NOTICE]
@@ -258,7 +258,7 @@ Sie soll die Struktur modifizieren und das Feld `Position` auf den neuen Wert se
 [ER] Fügen Sie die Testfunktion in Ihre Datei ein:
 
 ```go
-[INCLUDE::snippets/go-basics3-control-snippet-mutation.go]
+[INCLUDE::include/go-basics3-control-snippet-mutation.go]
 ```
 
 [ER] Stellen Sie sicher, dass Ihre `main`-Funktion genauso aussieht:

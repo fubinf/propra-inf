@@ -146,7 +146,7 @@ einer `name:case`-Map) und mittels von `t.Run()` zu organisieren, sodass die
 Ausgabe im Terminal klar und verständlich ist.
 
 ```go
-[INCLUDE::snippets/go-testing-tdt-snippet.go]
+[INCLUDE::include/go-testing-tdt-snippet.go]
 ```
 
 [EC] Führen Sie den Test mit `go test -v` aus.
@@ -213,7 +213,7 @@ Lesen Sie diese
 Die Testfunktion soll `FuzzTrimSpaces` heißen. 
 
 ```go
-[INCLUDE::snippets/go-testing-fuzzing-snippet.go]
+[INCLUDE::include/go-testing-fuzzing-snippet.go]
 ```
 
 [HINT::Eigenschaften]
