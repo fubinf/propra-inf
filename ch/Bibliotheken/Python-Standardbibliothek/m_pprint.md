@@ -32,7 +32,7 @@ dass einem im Alltag einiges an Zeit und Arbeit sparen kann.
 - Kopieren Sie den folgenden Code-Block und speichern diesen in einer JSON-Datei im selben 
   Verzeichnis.  
 ```json
-[INCLUDE::m_pprint_input.json]
+[INCLUDE::include/m_pprint_input.json]
 ```
 
 ### Unterschied von `print()` und `pprint`
