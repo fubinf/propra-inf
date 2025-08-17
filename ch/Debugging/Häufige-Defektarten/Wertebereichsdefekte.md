@@ -54,7 +54,7 @@ Die Funktion muss nur mit nichtnegativen ganzen Zahlen richtig funktionieren.
 
 
 ```python
-[INCLUDE::Wertebereichsdefekte.py]
+[INCLUDE::include/Wertebereichsdefekte.py]
 ```
 
 - Speichern Sie diesen Code als `Wertebereichsdefekte.py`

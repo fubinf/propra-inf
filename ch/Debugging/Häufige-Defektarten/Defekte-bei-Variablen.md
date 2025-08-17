@@ -130,7 +130,7 @@ bearbeitet haben, ist hier eine kurze Erinnerung über die Datenstrukturen des S
 [ENDNOTICE]
 
 ```python
-[INCLUDE::Defekte-bei-Variablen.py]
+[INCLUDE::include/Defekte-bei-Variablen.py]
 ```
 
 - Speichern Sie diesen Code als `Defekte-bei-Variablen.py`

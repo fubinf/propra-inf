@@ -67,7 +67,7 @@ Wenn die Zahl außerhalb des gültigen Bereichs liegt, soll die Funktion einen `
 Ihre Aufgabe liegt jetzt darin herauszufinden, wo der Defekt liegt und wie man ihn beheben kann.
 
 ```python
-[INCLUDE::Off-by-1-Defekte.py]
+[INCLUDE::include/Off-by-1-Defekte.py]
 ```
 
 - Speichern Sie diesen Code als `Off-by-1-Defekte.py`

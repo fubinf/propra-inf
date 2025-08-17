@@ -23,7 +23,7 @@ Programmabsturz zu analysieren und zu beheben.
 
 [FOLDOUT::Gewünschter Output zur Eingabe `0,0,4`]
 ```console
-[INCLUDE::einkaufsliste-output-korrekt.inc]
+[INCLUDE::include/einkaufsliste-output-korrekt.inc]
 ```
 [ENDFOLDOUT]
 

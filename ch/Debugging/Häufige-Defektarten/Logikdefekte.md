@@ -126,7 +126,7 @@ Im folgenden Python-Code kann in einigen Iterationen bei der Handhabung dieses F
 ein Defekt auftreten, durch den eine Person doppelt beschenkt wird:
 
 ```python
-[INCLUDE::Logikdefekte.py]
+[INCLUDE::include/Logikdefekte.py]
 ```
 
 - Speichern Sie diesen Code als `Logikdefekte.py`

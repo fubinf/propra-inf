@@ -125,7 +125,7 @@ Die Funktion `check_card()` nimmt vier Parameter:
 - die Hand des Gegenspielers.
 
 ```python
-[INCLUDE::Anordnungsdefekte.py]
+[INCLUDE::include/Anordnungsdefekte.py]
 ```
 
 - Speichern Sie diesen Code als `Anordnungsdefekte.py`
