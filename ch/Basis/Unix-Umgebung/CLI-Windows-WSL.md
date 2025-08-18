@@ -75,16 +75,10 @@ ist immer die Linux-Shell gemeint, nie die Windows-Kommandozeile mit
 [ENDSECTION]
 [INCLUDE::include/Abgabe.inc] 
 [INSTRUCTOR::Warnhinweise]
+[INCLUDE::include/InstructorCheckLinux.inc]
 
 Zum Prüfen dient `cat /etc/os-release; python -V; pip -V`. 
 Der Output davon findet sich im Kommandoprotokoll von [PARTREF::Kommandoprotokolle].
-Wer etwas anderes als ein aktuelles Debian installiert hat, sollte bestätigen, 
-sich einigermaßen sicher mit Linux auszukennen. 
-Ubuntu ist weitgehend unproblematisch,
-aber wer z.B. Arch, Fedora oder Suse installiert hat braucht genügend Kenntnisse.
-
-Im Zweifelsfall dringend zu Debian raten, **die Studis ansonsten aber gewähren lassen;
-bei uns darf jede_r seine schlechten Erfahrungen selbst machen**.
 
 Standardmäßig wird WSL 2 installiert.
 Sollte jemand irgendwie WSL 1 installiert haben, kann es bei manchen (wenigen) Aufgaben zu Problemen kommen.
@@ -94,5 +88,4 @@ durchführen, dabei ist `<distro name>` der Name der Distribution, der unter `ws
 Sollten mehrere Distributionen installiert worden sein, kann mit 
 `wsl --setdefault <distro name>`
 die standardmäßig ausgewählte Distribution geändert werden.
-
 [ENDINSTRUCTOR]
