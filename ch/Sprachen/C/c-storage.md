@@ -2,7 +2,7 @@ title: "C Speicherklassen"
 stage: draft
 timevalue: 1
 difficulty: 3
-assumes: c-syntax
+assumes: c-types
 ---
 [SECTION::goal::idea]
 Ich verstehe die Speicherklassen und kann diese anwenden.

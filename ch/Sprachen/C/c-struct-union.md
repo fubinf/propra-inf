@@ -1,19 +1,19 @@
-title: "C Qualifizierer"
+title: "C Struct und Union"
 stage: draft
 timevalue: 1
 difficulty: 3
 assumes: c-syntax-variables-functions, c-types
 ---
 [SECTION::goal::idea]
-Ich verstehe die Qualifizierer und kann diese Anwenden.
+Ich verstehe was ein `struct` und `union` Typ ist.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO KHOFMANN: Qualifier motivation
+TODO KHOFMANN: Struct/Union motivation
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-TODO KHOFMANN: Qualifier instructions
+TODO KHOFMANN: Struct/Union instructions
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
@@ -23,5 +23,5 @@ TODO KHOFMANN: Qualifier instructions
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
-TODO KHOFMANN: Qualifier altdir
+TODO KHOFMANN: Struct/Union altdir
 [ENDINSTRUCTOR]

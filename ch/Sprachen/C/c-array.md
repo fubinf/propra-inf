@@ -1,20 +1,19 @@
-title: "C Strings"
+title: "C Arrays"
 stage: draft
 timevalue: 1
 difficulty: 3
-assumes: c-syntax
+assumes: c-pointer, c-types
 ---
 [SECTION::goal::idea]
-Ich verstehe den Aufbau von C-Strings sowie den Unterschied zwischen C-Strings
-und C-Character-Arrays.
+Ich verstehe den Aufbau von C-Arrays.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO KHOFMANN: Strings motivation
+TODO KHOFMANN: Arrays motivation
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-TODO KHOFMANN: Strings instructions
+TODO KHOFMANN: Arrays instructions
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
@@ -24,5 +23,5 @@ TODO KHOFMANN: Strings instructions
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
-TODO KHOFMANN: Strings altdir
+TODO KHOFMANN: Arrays altdir
 [ENDINSTRUCTOR]

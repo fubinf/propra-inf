@@ -1,19 +1,20 @@
-title: "C Qualifizierer"
+title: "C Strings"
 stage: draft
 timevalue: 1
 difficulty: 3
-assumes: c-syntax-variables-functions, c-types
+assumes: c-array
 ---
 [SECTION::goal::idea]
-Ich verstehe die Qualifizierer und kann diese Anwenden.
+Ich verstehe den Aufbau von C-Strings sowie den Unterschied zwischen C-Strings
+und C-Character-Arrays.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO KHOFMANN: Qualifier motivation
+TODO KHOFMANN: Strings motivation
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-TODO KHOFMANN: Qualifier instructions
+TODO KHOFMANN: Strings instructions
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
@@ -23,5 +24,5 @@ TODO KHOFMANN: Qualifier instructions
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
-TODO KHOFMANN: Qualifier altdir
+TODO KHOFMANN: Strings altdir
 [ENDINSTRUCTOR]

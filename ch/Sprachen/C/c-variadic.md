@@ -2,7 +2,7 @@ title: "C Variadic"
 stage: draft
 timevalue: 1
 difficulty: 3
-assumes: c-syntax
+assumes: c-syntax-variables-functions, c-syntax-flow-control
 ---
 [SECTION::goal::idea]
 Ich verstehe was Variadic Funktionen sind.

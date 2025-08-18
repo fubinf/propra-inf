@@ -21,6 +21,7 @@ Sie haben die Wahl zwischen CLion (empfohlen) und VSCode als IDE.
 
 [SECTION::instructions::detailed]
 
+
 ### GCC Werkzeugkette
 
 Wählen Sie entsprechend ihrer Platform.
@@ -57,6 +58,7 @@ aber andere Kommandozeilenparameter und Warnungen.
 [ENDWARNING]
 [ENDFOLDOUT]
 
+
 ### IDE
 
 Wie bei den meisten Sprachen haben Sie die Wahl zwischen verschiedenen IDEs
@@ -64,6 +66,7 @@ und wir beschreiben die Installation für VS Code und die passende JetBrains
 IDE.
 Wir empfehlen die JetBrains IDE (CLion), weil sie die leistungsfähigeren
 eingebauten Funktionen hat.
+
 
 #### IDE Installation und Einrichtung
 

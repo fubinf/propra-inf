@@ -2,7 +2,7 @@ title: "C Pointer"
 stage: draft
 timevalue: 1
 difficulty: 3
-assumes: c-syntax
+assumes: c-types
 ---
 [SECTION::goal::idea]
 Ich verstehe was ein Pointer ist und kann diese anwenden.

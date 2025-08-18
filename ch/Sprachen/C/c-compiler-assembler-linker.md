@@ -64,6 +64,7 @@ int main(void) {
 }
 ```
 
+
 ### Der Übersetzer
 
 Aufgabe des Übersetzers ist es, den von Ihnen geschriebenen Code in eine
@@ -150,6 +151,7 @@ ausgeführt.
 Sie sehen, dass die Ausgabe wesentlich länger ist als noch in [EREFC::2].
 Der zusätzliche Code wurde vom Binder hinzugefügt und macht Ihr Programm erst
 ausführbar.
+
 
 ### Alles zusammen
 

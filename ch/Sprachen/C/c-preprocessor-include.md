@@ -223,7 +223,7 @@ einmal mit `const char *string` und einmal mit `int string`.
 
 [EQ] Erläutern Sie kurz, was Sie vom Übersetzer erwarten, dass dieser tut.
 
-[EC] Bauen und führen Sie das Programm nun aus
+[EC] Bauen und führen Sie das Programm aus.
 
 [ER] Fügen Sie das notwendige `#include` in die `print.c` ein.
 

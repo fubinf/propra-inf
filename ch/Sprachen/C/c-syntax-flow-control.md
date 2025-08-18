@@ -1,19 +1,19 @@
-title: "C Qualifizierer"
+title: "C Syntax: Kontrollstrukturen"
 stage: draft
 timevalue: 1
 difficulty: 3
 assumes: c-syntax-variables-functions, c-types
 ---
 [SECTION::goal::idea]
-Ich verstehe die Qualifizierer und kann diese Anwenden.
+Ich verstehe den Syntax der Kontrollstrukturen (`if - else`, Schleifen, etc.) in C.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO KHOFMANN: Qualifier motivation
+TODO KHOFMANN: Flow Control motivation
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-TODO KHOFMANN: Qualifier instructions
+TODO KHOFMANN: Flow Control instructions
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
@@ -23,5 +23,5 @@ TODO KHOFMANN: Qualifier instructions
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
-TODO KHOFMANN: Qualifier altdir
+TODO KHOFMANN: Flow Control altdir
 [ENDINSTRUCTOR]
