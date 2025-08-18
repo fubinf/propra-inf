@@ -97,18 +97,18 @@ Anleitung angenommen) geben Sie uns bitte über die Aufgabe
   "Create Desktop Entry" (oder ähnliches).
   Ein Desktop-Eintrag meint im Linuxumfeld (entgegen der Verwendung unter
   anderen Systemen) einen Eintrag in der Liste der ausführbaren Anwendungen.
-[INCLUDE::include/c-setup-clion-toolchain.inc]
+[INCLUDE::include/c-setup-clion-toolchain.md]
   Tragen Sie bei "C Compiler" "gcc" und bei "C++ Compiler" "g++" ein.  
   Setzen Sie "CMake" auf "Bundled", falls das nicht der Fall ist.  
   Tragen Sie bei "Debugger" "gdb" ein.  
-[INCLUDE::include/c-setup-clion-options.inc]
+[INCLUDE::include/c-setup-clion-options.md]
 [ENDFOLDOUT]
 
 [FOLDOUT::Linux VSCode]
 
 - Falls Sie VSCode noch nicht installiert haben, tun Sie dies gemäß
   [PARTREF::IDE-Linux].
-[INCLUDE::include/c-setup-vscode.inc]
+[INCLUDE::include/c-setup-vscode.md]
 [ENDFOLDOUT]
 
 [FOLDOUT::Windows CLion]
@@ -117,7 +117,7 @@ Anleitung angenommen) geben Sie uns bitte über die Aufgabe
   CLion benötigt dies später, um Ihr Projekt zu bauen.
 - Gehen Sie auf
   [HREF::https://www.jetbrains.com/clion/download/#section=windows].
-[INCLUDE::include/c-setup-clion-install-non-linux.inc]
+[INCLUDE::include/c-setup-clion-install-non-linux.md]
 
 [NOTICE]
 Der Installationsassistent bietet Ihnen während der Installation folgende
@@ -138,18 +138,18 @@ Optionen an:
   Standardprogramm zu.
 [ENDNOTICE]
 
-[INCLUDE::include/c-setup-clion-toolchain.inc]
+[INCLUDE::include/c-setup-clion-toolchain.md]
   Tragen Sie bei "C Compiler" "gcc" und bei "C++ Compiler" "g++" ein.  
   Setzen Sie "CMake" auf "WSL CMake", falls es nicht der Fall ist.  
   Setzen Sie "Debugger" auf "WSL GDB", falls es nicht der Fall ist.  
-[INCLUDE::include/c-setup-clion-options.inc]
+[INCLUDE::include/c-setup-clion-options.md]
 [ENDFOLDOUT]
 
 [FOLDOUT::Windows VSCode]
 
 - Falls Sie VSCode noch nicht installiert haben, tun Sie dies gemäß
   [PARTREF::IDE-Windows].
-[INCLUDE::include/c-setup-vscode.inc]
+[INCLUDE::include/c-setup-vscode.md]
 [ENDFOLDOUT]
 
 [FOLDOUT::macOS CLion]
@@ -157,19 +157,19 @@ Optionen an:
 - Gehen Sie auf [HREF::https://www.jetbrains.com/clion/download/#section=mac],
   und laden Sie die passende .dmg für ihren Mac (Intel/Apple Silicon)
   herunter.
-[INCLUDE::include/c-setup-clion-install-non-linux.inc]
-[INCLUDE::include/c-setup-clion-toolchain.inc]
+[INCLUDE::include/c-setup-clion-install-non-linux.md]
+[INCLUDE::include/c-setup-clion-toolchain.md]
   Tragen Sie bei "C Compiler" "gcc-12" und bei "C++ Compiler" "g++-12" ein.  
   Setzen Sie "CMake" auf "Bundled CMake" falls es nicht der Fall ist.  
   Setzen Sie "Debugger" auf "Bundled LLDB" falls es nicht der Fall ist.  
-[INCLUDE::include/c-setup-clion-options.inc]
+[INCLUDE::include/c-setup-clion-options.md]
 [ENDFOLDOUT]
 
 [FOLDOUT::macOS VSCode]
 
 - Falls Sie VSCode noch nicht installiert haben, tun Sie dies gemäß
   [PARTREF::IDE-macOS].
-[INCLUDE::include/c-setup-vscode.inc]
+[INCLUDE::include/c-setup-vscode.md]
 [ENDFOLDOUT]
 
 
