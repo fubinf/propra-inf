@@ -21,8 +21,8 @@ enorm viele Zwecke eingesetzt wird, sowohl in Shell-Skripten als auch interaktiv
 
 Wir laden uns als erstes Beispieldateien herunter, um damit `grep` zu erproben.
 
-- Laden Sie diese `.tar.xz` von diesem Repo herunter: 
-    `wget https://github.com/fubinf/propra-inf/raw/c014aecc92be517d83d7c2ed5142b8a5000af832/ch/Werkzeuge/Unix-Basiswerkzeuge/propra_etc.tar.xz`.
+- Laden Sie die `.tar.xz` vom Repo herunter: 
+    `wget https://github.com/fubinf/propra-inf/raw/refs/heads/main/ch/Werkzeuge/Unix-Basiswerkzeuge/include/propra_etc.tar.xz`.
 - Entpacken Sie es in Ihrem [TERMREF::Hilfsbereich]: 
     `tar xf propra_etc.tar.xz -C ~/ws/tmp/grep/`.
 - Wechseln Sie in den entpackten Ordner.

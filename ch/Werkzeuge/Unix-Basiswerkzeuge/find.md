@@ -20,8 +20,8 @@ und die so gefundenen Dateien zu bearbeiten oder (meistens) ihre Pfadnamen auszu
 
 Wir laden uns als erstes Beispieldateien herunter, um damit `find` zu erproben.
 
-- Laden Sie diese `.tar.xz` von diesem Repo herunter: 
-    `wget https://github.com/fubinf/propra-inf/raw/c014aecc92be517d83d7c2ed5142b8a5000af832/ch/Werkzeuge/Unix-Basiswerkzeuge/propra_etc.tar.xz`.
+- Laden Sie die `.tar.xz` vom Repo herunter: 
+    `wget https://github.com/fubinf/propra-inf/raw/refs/heads/main/ch/Werkzeuge/Unix-Basiswerkzeuge/include/propra_etc.tar.xz`.
 - Entpacken Sie es in Ihrem [TERMREF::Hilfsbereich]: 
     `tar xf propra_etc.tar.xz -C ~/ws/tmp/find/`.
 - Wechseln Sie in den entpackten Ordner.
