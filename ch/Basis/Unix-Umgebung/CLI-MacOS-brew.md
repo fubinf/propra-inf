@@ -119,7 +119,7 @@ War die Installation erfolgreich können wir nun die installierte Python-Version
 [INCLUDE::include/Abgabe.inc]
 [INSTRUCTOR::Warnhinweise]
 
-[INCLUDE::InstructorCheckLinux.inc]
+[INCLUDE::include/InstructorCheckLinux.inc]
 
 Die Ausgabe für `brew --version` sieht ungefähr wie folgt aus:
 

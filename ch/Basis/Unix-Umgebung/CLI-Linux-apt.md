@@ -58,6 +58,6 @@ dass Python und Pip funktionieren.
 [INCLUDE::include/Abgabe.inc]
 [INSTRUCTOR::Warnhinweise]
 
-[INCLUDE::InstructorCheckLinux.inc]
+[INCLUDE::include/InstructorCheckLinux.inc]
 
 [ENDINSTRUCTOR]
