@@ -4,7 +4,7 @@ timevalue: 1.25
 difficulty: 2
 explains:
 assumes:
-requires:
+requires: pd-Gruppierung
 ---
 
 [SECTION::goal::idea]
