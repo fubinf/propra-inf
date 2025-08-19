@@ -195,12 +195,12 @@ einer Datei in einem bestimmten Zustand dar.
 Blobs speichern reine Dateiinhalte – ohne Dateinamen, Metadaten oder Verzeichnisstruktur.
 Jeder Blob ist durch einen Hash-Wert eindeutig identifizierbar.
 
-Beim Ausführen von git add wird ein neuer Blob erzeugt (sofern sich der Inhalt geändert hat) und 
+Beim Ausführen von `git add` wird ein neuer Blob erzeugt (sofern sich der Inhalt geändert hat) und 
 in der Objektdatenbank von Git gespeichert. 
 Commits referenzieren über sogenannte Tree-Objekte auf diese Blobs.
 
-Wichtig: Git speichert nicht die Änderungen, sondern jeweils den vollständigen Inhalt 
-([TERMREF::Snapshot (git)]) jeder Datei in einem Blob.
+Wichtig: Git speichert nicht die Veränderungen zwischen zwei Versionen, sondern immer den 
+vollständigen Inhalt ([TERMREF::Snapshot (git)]) einer Datei in einem Blob.
 [ENDTERM]
 
 [TERM::Branch|Zweig]
