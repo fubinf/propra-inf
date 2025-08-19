@@ -47,6 +47,25 @@ Deren komplexität übersteigt aber massiv unseren aktuellen Kenntnisstand wesha
 weiter darauf eingehen werden.
 [ENDHINT]
 
+Schauen wir jetzt mit `ls` in unser Verzeichnis fällt uns auf, dass uns gar nichts auffällt...
+Wir haben ja immernoch ein leeres Verzeichnis.
+Aber warum ist das so?
+Wenn `git init` ausgeführt wird, wird ein neuer unsichtbarer Ordner angelegt, `.git`.
+Führen wir `ls -a` aus, sehen wir auch diesen.
+Dieser `.git` Ordner wird auch *Repository Directory* genannt. 
+Darin speichert git alle Informationen über unser Repository. 
+Dabei geht es nicht nur um Meta-Informationen, sondern auch um **alle** Daten, die über die 
+Lebenszeit unseres Repositories mithilfe von git getrackt werden.
+Was bedeutet getrackt? Git interessiert sich nur für Dateien, die wir ihm explizit angeben. 
+Alle anderen Dateien kann es zwar sehen, wird deren Inhalt aber nicht ohne Aufforderung 
+speichern oder anderweitig verfolgen.
+Wie genau das funktioniert und was gespeichert wird, lernen wir im weiteren Verlauf der Aufgabe.
+
+Genauso wie es ein *Repository Directory* gibt, so gibt es auch ein *Working Directory* (dt. 
+Arbeitsverzeichnis), manchmal auch *Working Tree* genannt. 
+Warum *Working **tree** *? Weil git Verzeichnisse grundsätzlich als Baumstrukturen aufzeichnet.
+
+Jetzt geht es aber erstmal zurück zu unserer Aufgabe.
 In [PARTREF::git-Funktionsweise] haben Sie schon einmal den Befehl `git help` kennengelernt. 
 Diesen wollen wir jetzt wieder nutzen um zu lernen wozu `git init` genutzt wird.
 
@@ -59,22 +78,22 @@ Um deren Zweck zu verstehen, lesen wir den Abschnitt
 [Creating a Git repository](https://git-scm.com/docs/gitcore-tutorial) 
 im `gitcore-tutorial`.
 
-[EQ] Was befindet sich im Verzeichnis `objects`?  
+[EQ] Was wird im Verzeichnis `.git/objects` abgelegt?  
 
 [EQ] Wie werden Git-Objekte referenziert?  
 
 [EQ] Wie heisst der default Branch?
 Kann ich diesen umbenennen und brauche ich ihn überhaupt?  
 
-Nun haben wir also ein neues und sauberes git Repo und haben verstanden, was sich bis dato darin 
-befindet. 
+Nun haben wir also ein neues und sauberes git Repo und haben verstanden, 
+was sich bis dato darin befindet. 
 Als Nächstes wollen wir herausfinden, 
 wie wir den aktuellen Zustand unseres Repos betrachten können. 
 Dafür gibt es den Befehl `git status`. 
 Dieser zeigt uns Informationen darüber an, welche Dateien git sieht, 
 beobachtet und ob es Veränderungen zum letzten Commit gibt. 
 Führen Sie `git status` jetzt aus, werden Sie feststellen, dass das Repo fast leer ist:
-Es gibt einen Zweig ("branch"), aber keine Commits. 
+Es gibt einen Zweig ("branch"), aber keine Commits darauf. 
 Damit wir ein bisschen mit Daten hantieren können, brauchen wir also erstmal welche in unserem Repository. 
 Beginnen wir also mit unserem fiktiven Grundgerüst, der Funktionsdefinition:
 
@@ -85,8 +104,8 @@ def addiere(a, b):
     
 ```
 
-Erstellen Sie die Datei `calculator.py` mit dem obigen Inhalt und schauen Sie sich nochmal den 
-Status an.
+Erstellen Sie die Datei `calculator.py` mit dem obigen Inhalt und schauen Sie sich nochmal 
+den Status an.
 
 Hier sehen wir jetzt einige neue Informationen. 
 Zum einen bekommen wir noch immer "No commits yet" angezeigt. 
@@ -96,28 +115,39 @@ angegeben.
 
 Aber weiß git auch, was sich in dieser Datei befindet? 
 Die letzte Zeile des git-Status gibt uns einen kleinen Hinweis. 
-Git betrachtet den Inhalt einer Datei erst, wenn wir die Datei mit `git add` zum 
-Verfolgen ("Tracken") markieren.
 
-#### Git und die Staging-Area
+Wir erinnern uns: Vorhin haben wir gelernt, dass git zwar alle Dateien im Arbeitsverzeichnis 
+sehen kann, sich aber grundsätzlich erst nach Aufforderung um Sie kümmert?
+Erst wenn wir `git add` benutzen, sagen wir git, welche Dateien es verfolgen/tracken soll.
+Genau das machen wir jetzt.
 
-Die staging Area, auch Index genannt, ist ein Kernelement der git-Arbeitsweise und bezeichnet eine
-Art Zwischenablage.
-Sie kommt ständig zum Einsatz, nämlich immer dann, wenn wir dem Repository neue Dateien 
+#### Git-Index
+
+Der git-Index, auch Staging-Area genannt, ist ein Kernelement der git-Arbeitsweise und versteht 
+sich quasi als eine Art Zwischenablage.
+Er kommt ständig zum Einsatz, nämlich immer dann, wenn wir dem Repository neue Dateien 
 hinzufügen, bestehende Dateien ändern oder bereits vorhandene Dateien löschen wollen.
 
 Wie weiter oben bereits angemerkt, verwenden wir dafür den Befehl `git add`.
 
-Man kann sich die staging area als Pufferzone zwischen dem Arbeitsverzeichnis und dem Repository
+Man kann sich die Staging-Area als Pufferzone zwischen dem Arbeitsverzeichnis und dem Repository
 vorstellen:
 Erst wenn ein neuer git-Commit erstellt wird, werden alle im Index vorgemerkten Dateien dauerhaft in
-einem Commit-Objekt gespeichert. 
-Wichtig ist dabei, sich noch einmal vor Augen zu führen, dass git nicht nur Änderungen 
-speichert, sondern vollständige Abbilder der ausgewählten veränderten Dateien.
-Einen Commit kann man sich also immer auch wie eine Momentaufnahme, also einen 
-[TERMREF::Snapshot (git)] (dt. Schnappschuss), vorstellen.
+einem neuen Commit-Objekt gespeichert. 
+Hierbei werden vor allem nicht nur Änderungen an Dateien gesichert, sondern immer vollständige 
+Abbilder.
+Einen Commit kann man sich also wie eine Momentaufnahme, also einen [TERMREF::Snapshot (git)] 
+(dt. Schnappschuss), vorstellen.
+Bestehende unveränderte Dateien werden einfach vom vorherigen Commit übernommen (mithilfe einer 
+Referenz). 
+So spart git Rechenaufwand und Speicherplatz. 
 
-Die Staging-Area erlaubt uns auch, wie so oft in git, Änderungen im Arbeitsverzeichnis 
+In [PARTREF::git-Funktionsweise] haben wir es bereits gesehen, aber wer sich dazu einen 
+Auffrischer abholen möchte, kann sich nochmal die Grafiken im Teil 
+[What is Git?](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F) 
+des Pro Git Books anschauen.
+
+Die Staging-Area erlaubt uns auch, wie so vieles in git, Änderungen im Arbeitsverzeichnis 
 rückgängig zu machen, indem wir den Zustand der Datei auf den der Staging-Area zurücksetzen. 
 Daher bietet es sich an, öfter mal Dateien zu sinnvollen Zeitpunkten der Staging-Area 
 hinzuzufügen, damit man ggf. auf den dabei gesicherten Zustand zurückgreifen kann.
@@ -126,8 +156,8 @@ Trotzdem sollte man das Ganze nicht als "Backup" sehen, denn wirklich langfristi
 unsere Änderungen erst nach dem Hinzufügen zu einem Commit.
 
 [NOTICE]
-Als Backup sollte man ein git-Repository sowieso nie betrachten, höchstens wenn wir 
-unseren lokalen Zustand auch auf einen entfernten Server gepusht haben. 
+Übrigens: als Backup sollte man ein git-Repository sowieso nie betrachten. 
+Höchstens, wenn wir unseren lokalen Zustand auch auf einen entfernten Server gepusht haben. 
 Allerdings können wir, nachdem wir einen Commit erstellt haben, jederzeit zu dessen erfassten 
 Zustand zurückkehren. 
 Wer mehr darüber lernen möchte, findet später im Abschnitt [PARTREF::git-Fehlerbehebung] mehr 
@@ -136,53 +166,120 @@ praktisches Wissen.
 
 Fügen Sie also jetzt die Datei `calculator.py` der [TERMREF::Staging-Area] hinzu und prüfen Sie 
 wieder den Status.
-Welche Veränderungen stellen Sie fest?
 
-Was die Staging-Area ist und wozu sie benutzt wird haben Sie gelernt, allerdings hilft es, zum 
-Festigen des Verständnisses auch die technische Funktionsweise zumindest einmal betrachtet zu haben.
-Lesen Sie dafür den Artikel 
-[What really happens when I do git add](https://medium.com/@raffs.os/what-really-happens-when-i-do-git-add-8af29c1ec903).
+[EQ] Welche Veränderungen stellen Sie fest?
 
-Dazu ein paar Verständnisfragen:
+Inzwischen sollten wir ein recht gutes Verständnis haben, was die Staging-Area/Index, Working 
+Directory und Repository Directory sind. 
+Außerdem sollten wir wissen, wie man Dateien zum Index hinzufügt.
 
-[EQ] Welche Sorten von git-Objekten gibt es und was speichern die?  
+Als nächstes, möchten wir wieder ein bisschen in den theoretischeren Teil eintauchen.
+Schauen Sie dazu das Video [Git from the inside out](https://www.youtube.com/watch?v=fCtZWGhQBvo).
+Zunächst nur bis 16:08 (Einschließlich des Abschnittes "Each Commit has a Parent").
 
-[EQ] Wo speichert git die Metadaten über eine Datei und wo die Inhalte?  
+Das Video gibt es auch in Textform, was vielleicht zum späteren Referenzieren hilfreich sein kann: 
+[Git from the inside out](https://maryrosecook.com/blog/post/git-from-the-inside-out).
+Wir schauen das Video ca. bis zum Textabschnitt "Check out a commit".
 
-[EQ] Zu welchem Zeitpunkt speichert git welche Daten? Als Zeitpunkt versteht sich hierbei die 
-Ausführung eines bestimmten Befehls.
+In diesem Video werden einige sehr grundlegende Konzepte aufgegriffen. 
+Hierzu ein paar Fragen, die Sie beantworten können sollten, bevor Sie mit der Aufgabe fortfahren:
 
-[EQ] Wenn man Änderungen an einer Datei vornimmt, obwohl Sie bereits dem git Index hinzugefügt 
-wurde, muss man diese Änderungen wieder dem Index hinzufügen, damit Sie im Commit landen?
+[EQ] Wie speichert Git eine Datei, wenn `git add` ausgeführt wird? (blob object, mit hash name, 
+eindeutig referenzierbar)
 
-Wir sollten jetzt Verständnis dafür haben, was der git-Index ist, was Objekte sind, welche 
-Objekttypen es gibt und was passiert, wenn wir mit `git add` eine Datei zum Index hinzufügen.
-Außerdem haben wir noch einmal `git help` genutzt, um schnell herauszufinden, was ein Befehl tut 
-und wie man ihn benutzt.
+[EQ] Wenn wir mit `git add` weitere Änderungen an einer Datei zum Index hinzufügen, bevor wir 
+bestehende Änderungen im Index commiten, was passiert mit dem bestehenden blob-Objekt?
 
-Um wieder einmal den Kreis zu unseren mentalen Modellen zu schließen, sollten wir jetzt 
-verstanden haben, dass beim Benutzen von `git add` vollständige Abbilder bzw. Versionen (Blobs) der 
-referenzierten Dateien angelegt und diese dann mit `git commit` zu einem Schnappschuss bzw.
-Commit-Objekt mit entsprechenden Zeigern auf diese Blobs geschnürt werden.
+[EQ] Was speichert git, wenn wir einen neuen Commit erstellen? (commit object mit referenz auf 
+tree und subtrees)
 
+[EQ] Kann es zwei identische Commit-Objekte geben? (nein, meta informationen wie Autor und 
+Zeitstempel verhindern das)
+
+[EQ] Commit, Working Directory und Index können vermeintlich auf die gleichen Daten zeigen. 
+Allerdings können nur je zwei der genannten wirklich auf die gleichen Daten zeigen, welche sind 
+das? (Commit und Index)
+
+### Dateien im Index anschauen
+
+Bevor wir weiter machen, ein kurzer exkurs.
+Git gibt uns einige Befehle an die Hand, welche uns erlauben die Tatsächlich gespeicherten 
+Dateien im Repository-Verzeichnis anzuschauen. 
+Diese sind `git ls-files`, `git ls-tree` und `git show`.
+Wer mit dem Terminal etwas vertraut ist, erkennt ls natürlich sofort wieder.
+`git show` ist ein recht universell einsetzbares tool welches uns erlaubt alle möglichen git 
+Dateien/Objekte mithilfe ihrer Hash-Referenzen zu betrachten.
+Da wir noch keinen Commit erstellt haben, bringt uns `ls-tree` noch nicht viel - 
+Wir erinnern uns: Trees werden erst zum Commit-Zeitpunkt erstellt.
+Allerdings können Sie `git ls-files` und `git show` schon ausprobieren.
+
+[EC] Finden Sie den Hash ihres blob-Objektes der `calculator.py` und schauen Sie sich dessen 
+inhalt an.
+
+[NOTICE]
+`git ls-files` gibt Standardmäßig nur den Dateinamen des gespeicherten Blob-Objektes aus, nicht 
+dessen Hash. Um das zu bewerkstelligen fehlt noch ein Argument. Denken Sie an `git help`.
+[ENDNOTICE]
+
+Warum ist das nützlich? Es gibt seltene Fälle wo es hiflreich sein kann noch einmal den Inhalt 
+eines Blobs anschauen zu können. Nämlich genau dann wenn man mit `git add` bereits bestehende 
+Dateien neu zum Index hinzugefügt hat *ohne* dass man vorher den Zustand in einem Commit 
+festgehalten hat.
+`git show` erlaubt uns den Inhalt des vorherigen blobs noch einmal anzuschauen.
+Damit wir den blob dafür finden können, brauchen wir allerdings noch einen weiteren Befehl, `git fsck`. 
+
+Um besser verstehen zu können, was der Befehl tut verändern wir unsere Funktionsdefinition wie folgt:
+
+```python
+# Ein einfacher Rechner
+
+def addiere(a, c):
+    
+```
+
+Dann fügen wir Sie wieder mit `git add` dem Index hinzu.
+
+In unserem Beispielprogramm sind die Auswirkungen marginal, man könnte einfach `(a, c)` wieder 
+zu `(a, b)` ändern und alles wäre beim Alten.
+Allerdings kommt es in der echten Welt gelegentlich zu gröberen Schnitzern bei größeren Änderungen,
+da kann es Hilfreich sein, wenn man den vorherigen Status nochmal ansehen kann.
+Wenn man jetzt `git fsck` ausführt, erhält man einige interessante Informationen.
+
+Zum einen sagt uns `fsck`, dass `HEAD` auf einen `unborn branch (master)` zeigt.
+Das ist kurios, aber nicht besonders schlimm. Wir haben schlicht noch keine Commits auf dem Branch.
+Im späteren Verlauf der Aufgabe wird sich das ändern. 
+Führen Sie dann ruhig nochmal `git fsck` aus und schauen Sie sich die Veränderungen in der 
+Ausgabe an.
+Für uns interessant sind jetzt aber die sogenannten `dangling blobs`. 
+Überlegen Sie doch mal kurz was das bedeuten könnte. 
+In git ist *dangling blob* nichts anderes als ein blob-Objekt ohne zugehörige Datei-Referenz.
+Sprich, git weiß nicht, zu welcher Datei der blob gehört. 
+Das passiert fast immer dann, wenn wir, wie in unserem Fall, mehrere Male die gleiche Datei mit 
+`git add` zum Index hinzufügen. 
+Es gibt zwar noch andere Fälle in denen *dangling blobs* entstehen können, diese sind für uns 
+aber gerade unwichtig.
+
+[EC] Wie schauen Sie sich den inhalt des *dangling blob* Objektes an?
+
+Wenn Sie das geschafft haben, können Sie die Funktionsdefinition wieder auf den vorherigen 
+Zustand zurücksetzen. Wie sie das machen, ist ihnen überlassen.
 
 ### Veränderung feststellen
 
-Schauen wir uns einen neuen sehr nützlichen Befehl an, nämlich `git diff`.
+Als nächstes, schauen wir uns einen weiteren nützlichen Befehl an, nämlich `git diff`.
 Und was tut der? Rufen Sie doch nochmal die Dokumentation zum Befehl auf.
 
 Das ist richtig viel Stoff!
 Das meiste davon interessiert uns aber noch gar nicht.
 
-Trotzdem gibt es nützliche Informationen in der Hilfeseite. 
-Schauen Sie doch mal in den Abschnitt *EXAMPLES*.
+Trotzdem gibt es nützliche Informationen in der Hilfeseite, im Abschnitt *EXAMPLES*.
 
 Mit unserem bisherigen Wissen aus der Aufgabe sollten wir auch schon einigermaßen verstehen 
-können was im ersten Beispielblock passiert. 
+können was im ersten Beispiel (1) passiert. 
 
-[EQ] Führen Sie `git diff` aus. Was stellen Sie fest?
+[EQ] Führen Sie `git diff` aus. Was stellen Sie fest? Warum ist das so?
 
-Erweitern wir nun unsere Additionsfunktion:
+Danach erweitern wir die Funktion um folgenden Inhalt:
 
 ```python
 # Ein einfacher Rechner
@@ -192,19 +289,20 @@ def addiere(a, b):
 
 ```
 
-[EQ] Führen Sie noch einmal `git diff` aus. Was ist jetzt anders?
+[EQ] Führen Sie noch einmal `git diff` aus. Was hat sich verändert?
 
 [EQ] Git speichert nur vollständige Abbilder der Dateien, wie erzeugt es denn die `git diff` 
 Ausgabe?
 
-Als wir das letzte bzw. erste Mal `git status` ausgeführt haben, gab es keine wirklich nützlichen 
-Informationen zurück.
+Jetzt wo wir einige Änderungen vorgenommen haben, wollen wir wieder mal einen Blick auf `git 
+status` werfen.
 Führen Sie den Befehl noch einmal aus und lesen Sie gründlich die Ausgabe.
 
 [EQ] Was hat sich seitdem an der `git status`-Ausgabe verändert?
 
 [EQ] Wie kann man mit `git status` die spezifischen Änderungen anzeigen lassen, 
-die mit einem `git commit` festgeschrieben werden würden? 
+die mit einem `git commit` festgehalten werden würden? 
+Wie kann man außerdem die Veränderungen zwischen Working-Directory und Staging-Area anzeigen?
 
 Außerdem sollte ihnen `git status` jetzt einige Befehle zum Verwalten der Dateien im Index anbieten.
 
@@ -215,7 +313,16 @@ Fügen Sie die Änderungen an der datei `calculator.py` ebenfalls der Staging-Ar
 Erinnern Sie sich daran, was wir im vorherigen Abschnitt über git-Objekte gelernt haben und 
 wie `git add` funktioniert.
 
-[EQ] Könnten Sie jetzt nochmal zum vorherigen Zustand der Datei zurückkehren? 
+Jetzt landen wir in einer interessanten Situation. Wir haben jetzt ein neues Blob-Objekt für 
+calculator.py erstellt. Mit `git ls-files -s` können wir jetzt den Hash dieses neuen Objekts sehen.
+Wenn wir aber `tree .git/objects` ausführen, sehen wir, dass sich dort drei Ordner befinden, die 
+jeweils ein Objekt beinhalten. 
+Wir überlegen also: Wie oft haben wir `git add` bisher ausgeführt? Richtig, dreimal.
+Wenn wir jetzt nochmal `git fsck` ausführen sehen wir auch zwei *dangling blobs*.
+Was können wir daraus schließen? Es existieren für alle Ausführungen von `git add` jeweils die 
+Blob-Objekte, aber git interessiert sich nur noch für das aktuellste Objekt, denn nur dessen 
+Wert bekommen wir mit `ls-files` zurückgegeben.
+
 
 Erstellen Sie jetzt ihren ersten Commit mit einer passenden Commit-Nachricht.
 
@@ -262,7 +369,7 @@ def multipliziere(a, b):
 Jetzt können wir wieder einen näheren Blick auf `git diff` werfen um zu verstehen, 
 welche verschiedenen Optionen uns im Alltag nützlich werden können. 
 
-Schauen Sie sich also wieder die Beispiele in der `git diff` Dokumentation und probieren Sie 
+Schauen Sie sich jetzt Beispiele (3-4) in der `git diff` Dokumentation und probieren Sie 
 folgende Szenarios durch:
 
 [EC] Vergleichen Sie den aktuellen Zustand der Datei mit den bereits vorgemerkten Änderungen.
@@ -271,7 +378,7 @@ folgende Szenarios durch:
 
 [EC] Vergleichen Sie den aktuellen mit dem letzten Commit-Zustand.
 
-Jetzt, wo wir unsere Multiplikation vollständig implementiert haben, wollen wir wieder den 
+Jetzt, wo wir die Multiplikationsfunktion vollständig implementiert haben, wollen wir wieder den 
 aktuellen Zustand festhalten. 
 Fügen Sie die verbleibenden Änderungen dem Index hinzu und erstellen Sie wieder einen Commit mit 
 sinnvoller Nachricht. 
