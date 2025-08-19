@@ -1,5 +1,5 @@
 title: "Einführung in Matplotlib"
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 2
 ---
@@ -11,8 +11,8 @@ Daten plotte.
 
 
 [SECTION::background::default]
-Matplotlib ist die Grundbibliothek für Visualisierungen in Python. 
-Sie verwandelt Daten in Grafiken und wird in vielen wissenschaftlichen Publikationen genutzt. 
+Matplotlib ist eine der bekanntesten Bibliotheken für Visualisierungen in Python. 
+Sie verwandelt Daten in Grafiken und wird auch in vielen wissenschaftlichen Publikationen genutzt. 
 Um zu verstehen wie Grafiken in Matplotlib dargestellt werden, 
 muss man die zugrundeliegende Struktur, die `Figure`, verstehen.
 [ENDSECTION]
@@ -24,11 +24,11 @@ muss man die zugrundeliegende Struktur, die `Figure`, verstehen.
 Um Matplotlib in Python zu nutzen, müssen Sie diese erst installieren und in Ihre Python-Umgebung importieren.
 
 - Installieren Sie `matplotlib` mittels [TERMREF::pip]: `pip install matplotlib`
-- Oft werden Sie `pyplot`-Funktionen von `matplotlib` benutzen, da diese viele der Funktionen zum Anzeigen der Viualisierung beinhaltet. 
+- Sie werden `matplotlib` üblicherweise über die `pyplot`-Funktionen benutzen.
 Importieren Sie diese wie folgt: `import matplotlib.pyplot as plt`
 
 ### `Figure`
-Das wohl wichtigste Element in Matplotlib ist die `Figure`.
+Das wohl grundlegendste Element in Matplotlib ist die `Figure`.
 Man kann sie sich als Leinwand vorstellen, auf der die Grafiken, z.B. ein Diagramm mit Linien oder
 Punkten, "aufgemalt" werden.
 
@@ -36,12 +36,12 @@ Punkten, "aufgemalt" werden.
 ```python
 import matplotlib.pyplot as plt
 
-fig = plt.figure()
+fig = plt.figure() # Erzeuge die Figure
 
 plt.show()
 ```
 
-Wie Sie sehen, erscheint nur ein weißes Fenster. 
+Es sollte lediglich ein leeres Fenster zu sehen sein.
 Auch wenn Sie nun eine `Figure` erstellt haben und sie auch mit `plt.show()` anzeigen lassen, 
 so beinhaltet die `Figure` noch keine Sachen die sie anzeigen soll.
 
@@ -92,6 +92,8 @@ ax.plot(x, x**2, label='quadratisch')
 # Show
 plt.show()
 ```
+
+Das Beispiel visualisiert eine quadratische Funktion.
 
 [ER] Erstellen Sie auf die gleiche Weise eine lineare Funktion für die Werte von `x`.
 
