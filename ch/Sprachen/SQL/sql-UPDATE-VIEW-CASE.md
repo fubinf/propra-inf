@@ -1,5 +1,5 @@
 title: SQL UPDATE, VIEW und CASE Operationen
-stage: alpha
+stage: beta
 timevalue: 2.5
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2
@@ -70,10 +70,9 @@ Ohne `WHERE` werden **alle** Datensätze in der Tabelle geändert.
 
 [ER] Ändern Sie den `alexa`-Wert von 'Runoob' auf 4689.
 
-[ER] Aktualisieren Sie für 'Facebook' sowohl den `alexa`-Wert auf 2 als auch 
-das `country` auf 'Global'.
+[ER] Aktualisieren Sie für 'Facebook' in einem Schritt `alexa` auf 2 und `country` auf 'Global'.
 
-[ER] Setzen Sie für alle Websites aus 'CN' das `country` auf 'China'.
+[ER] Setzen Sie für alle Websites aus 'CN' den Wert für `country` auf 'China'.
 
 [EQ] Warum ist die `WHERE`-Klausel bei UPDATE-Anweisungen so wichtig?
 
@@ -179,12 +178,10 @@ END AS mycategory
 - `popularity_rank` (Alias für `alexa`)
 - `region` (Alias für `country`)
 
-[ER] Erstellen Sie eine View `website_categories`, die Websites nach 
-Alexa-Ranking kategorisiert:
+[ER] Erstellen Sie eine View `website_categories`, in der eine Spalte `category` wie folgt zugefügt ist:
 
 - Websites mit alexa ≤ 10: 'Top Tier'
 - Websites mit alexa > 10: 'Standard'
-
 
 <!-- time estimate: 35 min -->
 
@@ -200,8 +197,8 @@ automatisch diese Änderungen wider.
 [ER] Fragen Sie die View `top_websites` erneut ab und beobachten Sie, 
 wie sich die Änderung automatisch in der View widerspiegelt.
 
-[ER] Überprüfen Sie auch die View `website_categories` und beachten Sie, 
-wie sich die Kategorisierung von Google geändert hat.
+[ER] Überprüfen Sie auch die View `website_categories` und prüfen Sie, 
+ob sich die Kategorisierung von Google geändert hat.
 <!-- time estimate: 15 min -->
 
 ### Praktische Anwendung: Datenanalyse mit Views
@@ -223,9 +220,8 @@ die Anzahl der Websites anzeigt. Verwenden Sie dafür `GROUP BY` und `COUNT(*)`.
 [ER] Erweitern Sie die View `website_summary` um eine zusätzliche Spalte,
 die den durchschnittlichen `alexa`-Wert pro Land anzeigt.
 
-[HINT::Aggregation-Functionen und `GROUP BY`]
-Bitte beziehen Sie sich auf die Verwendung der `COUNT`, `AVG` 
-und `GROUP BY` in [PARTREF::sql-SELECT2]
+[HINT::Aggregierfunktionen und `GROUP BY`]
+Siehe die Verwendung von `COUNT`, `AVG` und `GROUP BY` in [PARTREF::sql-SELECT2]
 [ENDHINT]
 <!-- time estimate: 25 min -->
 [ENDSECTION]

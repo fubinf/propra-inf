@@ -61,4 +61,5 @@
 - **2025-08-19**: Geänderten externen Pfad in Aufgabe 
   Bestandscode/Refactoring-Praxis/[PARTREF::refactor-GildedRose-Tests] angepasst.  
   Aufgabe Bibliotheken/pip-popular/[PARTREF::m_pydantic] zugefügt.
+  Aufgabe Sprachen/SQL/[PARTREF::sql-UPDATE-VIEW-CASE] zugefügt.
 - ...
