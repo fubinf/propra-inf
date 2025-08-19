@@ -58,4 +58,6 @@
   sonst funktionieren die Verwaltungsprozesse nicht und Sie können z.B. am Ende keine Leistungspunkte
   bekommen.
 - **2025-08-15**: Aufgabe Bibliothek/Python-Standardbibliothek/[PARTREF::m_dataclasses] zugefügt.
+- **2025-08-19**: Geänderten externen Pfad in Aufgabe 
+  Bestandscode/Refactoring-Praxis/[PARTREF::refactor-GildedRose-Tests] angepasst.
 - ...

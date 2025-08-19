@@ -33,16 +33,14 @@ In dieser Aufgabe machen wir die erste, nachfolgende bauen darauf auf.
   in die Datei `gildedrose/gilded_rose.py` in Ihrem ProPra-Verzeichnis.
 - Testbasis beschaffen:
   Kopieren Sie (einfach per Copy/Paste) den Quellcode von 
-  [`test_gilded_rose.py`](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/python/test_gilded_rose.py)
-  in die Datei `gildedrose/test_gilded_rose.py` in Ihrem ProPra-Verzeichnis.
+  [`test_gilded_rose.py`](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/python/tests/test_gilded_rose.py)
+  in die Datei `gildedrose/tests/test_gilded_rose.py` in Ihrem ProPra-Verzeichnis.
 - Machen Sie einen Commit mit den beiden Dateien `gildedrose/*`.
 - [ER] `test_gilded_rose.py` enthält genau einen Test.
   Führen Sie die Datei aus: Der Test schlägt fehl.
   Lesen, verstehen und reparieren Sie den Test.
 - Machen Sie einen Commit mit der reparierten Datei `test_gilded_rose.py`.
 - [EC] `git -P show HEAD`
-  (Achtung: Starten Sie `script` in einer zusätzlichen zweiten Shell, sonst werden Sie viel zu
-  bereinigen haben.)
 - Sie können mit dieser Testsuite weiterarbeiten, die `unittest` benutzt.
   Praktischer ist aber, Sie verwenden `pytest` mit tabellengesteuerten Tests,
   wie aus Aufgabe [PARTREF::pytest_parametrize] bekannt.
