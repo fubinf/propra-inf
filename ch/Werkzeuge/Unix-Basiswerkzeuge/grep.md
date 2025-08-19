@@ -4,6 +4,7 @@ timevalue: 1.0
 difficulty: 2
 assumes: Umgang-mit-Verzeichnissen, redirect
 ---
+<!-- TODO_3: Verweis auf Regexp-Aufgabe zufügen -->
 
 [SECTION::goal::idea]
 Ich kann mit `grep` einzelne Zeilen aus Textdaten herausfiltern.
@@ -40,7 +41,8 @@ Nehmen Sie an, Sie haben ihren Paketmanager falsch konfiguriert. Also schauen Si
 Angenommen die Datei ist unübersichtlich, dann kann Ihnen `grep` bei der Fehlersuche helfen.
 Veranschaulicht machen wir das auf die gerade heruntergeladenen Beispieldaten.
 
-[EC] Finden Sie alle Zeilen in `apt/apt.conf.d/50appstream`, die die Zeichenfolge **component** enthalten.
+[EC] Finden Sie alle Zeilen in `apt/apt.conf.d/50appstream` (das ist eine Konfigurationsdatei 
+für das `apt`-Kommando), die die Zeichenfolge **component** enthalten.
 
 Sie sehen, dass Ihnen nur Zeilen gezeigt werden, die kommentiert sind, weil grep nach dem kleingeschrieben 
 **component** gesucht hat. Wir wollen aber auch **Component** oder **COMPONENT** in dieser Datei finden, 
@@ -48,30 +50,34 @@ um zu wissen, was wir editieren müssen.
 
 [EC] Finden Sie alle Zeilen in `apt/apt.conf.d/50appstream`, die **component** enthalten, unabhängig der Groß- und Kleinschreibung.
 
-Standardmäßig sucht `grep` das Wort in einem Text egal ob es alleinstehend oder innerhalb eines Wortes ist.
+Damit bekommen wir natürlich alle vorherigen Treffer, aber auch neue.
+Standardmäßig sucht `grep` die angegebene Zeichenkette in einer Datei, egal wo sie auftritt.
+Bei kurzen Zeichenketten führt das häufig zu vielen unerwünschten Treffern,
+wenn wir ein Wort suchen, dessen Buchstabenfolge in vielen anderen Wörtern enthalten ist.
 
-[EC] Finden Sie die Zeilen in `apt/apt.conf.d/50appstream`, die genau das Wort **components** enthalten 
-    und alleinstehend sind.
+[EC] Finden Sie die Zeilen in `apt/apt.conf.d/50appstream`, die genau das _Wort_ **component** enthalten
+und machen Sie sich klar, welche Treffer jetzt fehlen. 
 
-Analog dazu wollen Sie auch die Zeilennummern wissen, um abschätzen zu können, wann die Meldungen 
-in der Logdatei berichtet wurden, falls die Logdatei keine Daten und Zeiten angeben.
+Wir können ferner auch die Zeilennummern der Treffer mit anzeigen, um z.B. abschätzen zu können, 
+wie weit die Treffer auseinanderliegen.
 
-[EC] Finden Sie alle Zeilen in `apt/apt.conf.d/50appstream`, die **component** enthalten, und zeigen Sie die jeweilige 
-    Zeilennummer mit an.
+[EC] Finden Sie alle Zeilen in `apt/apt.conf.d/50appstream`, die **component** enthalten, und 
+zeigen Sie die jeweilige Zeilennummer mit an.
 
-Jetzt wissen Sie welche Zeilen das Wort `component` enthalten. 
-Manchmal ist es hilfreich zu wissen, wie oft ein Wort in der Datei aufgetreten ist, 
+Jetzt wissen wir, _welche_ Zeilen `component` enthalten. 
+Manchmal ist es hilfreich zu wissen, _wie oft_ ein Suchstring in der Datei aufgetreten ist, 
 um abschätzen zu können, wie gut etwas funktioniert.
 
 [EC] Zählen Sie, wie viele Zeilen in `apt/apt.conf.d/50appstream` das Wort **component** enthalten.
 
-Nehmen Sie an, Sie haben ein Log, welches in diesem Fall 1000 Zeilen lang ist. Sie haben nach 
-`ERROR` gesucht und finden heraus, dass die meisten Zeilen das Wort enthalten. 
-Das ist wieder unübersichtlich und Sie können die wichtigen Informationen zwischen den Error-Zeilen 
-schwer herausfinden. Deswegen möchten Sie wissen, wie die Datei ohne die Error-Zeilen aussehen.
+Manchmal ist man an den Zeilen interessiert, die _keine_ Treffer enthalten.
+Z.B. könnte eine zehntausende Zeilen lange Log-Datei fast nur ERROR-Meldungen enthalten 
+und wir interessieren uns für die (wenigen) Zeilen _anderer_ Art, 
+eben gerade, weil wir _nicht_ wissen, wie diese aussehen.
 
 [EC] Zeigen Sie alle Zeilen aus `xdg/libkleopatrarc` an, die das Wort **name** nicht enthalten, egal ob 
-    groß- oder kleingeschrieben. Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
+groß- oder kleingeschrieben. 
+Kürzen Sie die Ausgabe für das Kommandoprotokoll auf die ersten 10 Zeilen (`head -10`).
 
 Lesen und verstehen Sie die Optionen `-A, -B, -r` aus der 
 [grep(1) manpage](https://man7.org/linux/man-pages/man1/grep.1.html).
