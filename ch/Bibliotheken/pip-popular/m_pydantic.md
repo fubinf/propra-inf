@@ -1,5 +1,5 @@
 title: Pydantic
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: m_json2, m_datetime, m_dataclasses, py-OOP-Inheritance
@@ -13,11 +13,13 @@ assumes: m_json2, m_datetime, m_dataclasses, py-OOP-Inheritance
 - Ich kann den Unterschied zu Datenklassen zu erklären und geeignete Einsatzgebiete erkennen.
   [ENDSECTION]
 
+
 [SECTION::background::default]
 Pydantic macht die Arbeit mit strukturierten Daten in Python deutlich einfacher.
 Es prüft automatisch die Datentypen, konvertiert Werte und sorgt dafür, dass Daten
 zuverlässig von und zu JSON verarbeitet werden können.
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -82,7 +84,7 @@ In `a_parsed` ist `date` kein `datetime` mehr, sondern ein `str`.
 Pydantic ist eine Bibliothek, die das Serialisieren, Parsen und Validieren übernimmt
 und dabei auch die richtigen Datentypen erzeugt.
 
-[ER] Installiere Sie die Pydantic Bibliothek mit `pip install pydantic`
+Installieren Sie die Pydantic Bibliothek mit `pip install pydantic`
 auf Ihrem System und lesen Sie die
 [Pydantic Dokumentation](https://docs.pydantic.dev/latest/concepts/models/)
 bis einschließlich zum Abschnitt "Data conversion".
@@ -121,16 +123,19 @@ Wie Sie erkennen können ist `c_parsed` wieder ein `GradeEntry2`-Exemplar und
 aus der Python Standardbibliothek?
 [ENDSECTION]
 
+
 [SECTION::submission::trace,reflection]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Codedurchsicht]
 
+[INSTRUCTOR::Codedurchsicht]
 [INCLUDE::ALT:]
 
-Beispiellösung siehe [TREEREF::/Bibliotheken/pip-popular/m_pydantic.py]
-
+Beispiellösung (siehe auch [TREEREF::/Bibliotheken/pip-popular/m_pydantic.py]):
+```py
+[INCLUDE::ALT:/../itree.zip/Bibliotheken/pip-popular/m_pydantic.py]
+```
 [ENDINSTRUCTOR]
