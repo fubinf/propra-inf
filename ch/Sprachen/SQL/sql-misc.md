@@ -55,6 +55,7 @@ WHERE mycol BETWEEN myvalue1 AND myvalue2;
 `BETWEEN` schließt in SQLite beide Grenzwerte ein. Das bedeutet, 
 `WHERE alter BETWEEN 18 AND 65` findet sowohl 18-Jährige als auch 65-Jährige.
 
+
 (Optional) Erweiterte Informationen unter
 [`BETWEEN`](https://www.sqltutorial.org/sql-between/)
 
@@ -70,11 +71,6 @@ deren `country` nicht 'USA' oder 'IND' ist.
 [ER] Verwenden Sie `BETWEEN` mit Textvergleichen: 
 Wählen Sie alle Websites aus, deren `name` alphabetisch zwischen 'A' und 'H' liegt.
 
-[NOTICE]
-Der `BETWEEN`-Operator verhält sich in verschiedenen Datenbanksystemen unterschiedlich 
-bezüglich der Einschließung der Grenzwerte. 
-In SQLite sind beide Grenzwerte eingeschlossen.
-[ENDNOTICE]
 <!-- time estimate: 25 min -->
 
 
@@ -148,9 +144,9 @@ abgeleitet.
 [`SELECT INTO`](https://www.w3schools.com/sql/sql_select_into.asp)
 
 
-**Wichtiger Hinweis:** SQLite unterstützt `SELECT INTO` nicht direkt. In SQLite 
-wird stattdessen `CREATE TABLE AS SELECT` verwendet, um ähnliche Funktionalität 
-zu erreichen:
+**Wichtiger Hinweis:** SQLite unterstützt `SELECT INTO` nicht direkt. 
+In SQLite wird stattdessen das (auch auf vielen, aber nicht allen anderen RDBMS gängige) Konstrukt
+`CREATE TABLE AS SELECT` verwendet, um das Ziel zu erreichen:
 
 ```sql
 CREATE TABLE mynewtable AS
@@ -169,14 +165,11 @@ um die `INTO`-Klausel erweitert, die das Ziel für die kopierten Daten angibt.
 [ER] Kopieren Sie alle Zugriffe mit mehr als 100 Zugriffen in eine neue Tabelle `high_traffic`.
 
 [NOTICE]
-`SELECT INTO` wird hauptsächlich in anderen Datenbanksystemen wie Microsoft SQL 
-Server, MySQL oder PostgreSQL verwendet und ist besonders nützlich für:
+`SELECT INTO` bzw. `CREATE TABLE AS SELECT` sind nützlich für:
 
 - Schnelle Kopien von Tabellendaten für Backup-Zwecke
 - Erstellung von Arbeits- oder Testtabellen
 - Datenarchivierung mit spezifischen Filterkriterien
-
-In MySQL nutzt man `INSERT INTO ... SELECT` für ähnliche Zwecke.
 [ENDNOTICE]
 <!-- time estimate: 20 min -->
 
@@ -186,8 +179,8 @@ In MySQL nutzt man `INSERT INTO ... SELECT` für ähnliche Zwecke.
 SQLite bietet verschiedene Funktionen zum Umgang mit NULL-Werten:
 
 - `COALESCE(wert1, wert2, ...)` – gibt den ersten Nicht-NULL-Wert zurück
-- `IFNULL(wert, ersatz)` – ersetzt NULL durch einen anderen Wert (SQLite-spezifisch)
 - `NULLIF(wert1, wert2)` – gibt NULL zurück, wenn beide Werte gleich sind
+- `IFNULL(wert, ersatz)` – ersetzt NULL durch einen anderen Wert (nur in SQLite und MySQL/MariaDB)
 
 ```sql
 SELECT COALESCE(mycol, 'Standard') FROM mytable;
@@ -200,14 +193,14 @@ SELECT IFNULL(mycol, 0) FROM mytable;
 [ER] Fügen Sie einen Website-Eintrag mit NULL-Werten hinzu: 
 `INSERT INTO websites (id, name, url, alexa, country) VALUES (8, 'Test', NULL, NULL, 'DE');`
 
-[ER] Verwenden Sie `COALESCE`, um NULL-Werte in der `url`-Spalte durch 'Keine URL' zu ersetzen.
+[ER] Verwenden Sie `COALESCE`, um NULL-Werte in der `url`-Spalte durch den String 'Keine URL' zu ersetzen.
 
-[ER] Nutzen Sie `IFNULL`, um NULL-Werte in der `alexa`-Spalte durch 0 zu ersetzen.
+[ER] Nutzen Sie `IFNULL`, um NULL-Werte in der `alexa`-Spalte durch 99999 zu ersetzen.
 
-[ER] Verwenden Sie `NULLIF`, um alle `alexa`-Werte von 0 in NULL umzuwandeln.
+[ER] Verwenden Sie `NULLIF`, um alle `alexa`-Werte von 99999 in NULL umzuwandeln.
 
-Diese NULL-Funktionen sind besonders nützlich bei Berechnungen und Berichten, 
-da sie verhindern, dass NULL-Werte zu unerwarteten Ergebnissen führen.
+Diese NULL-Funktionen sind sehr oft nützlich bei Berechnungen und Berichten, 
+um zu verhindern, dass NULL-Werte zu unerwünschten Ergebnissen führen.
 <!-- time estimate: 20 min -->
 
 
@@ -227,18 +220,19 @@ wie man eine neue SQLite-Datenbankdatei erstellt.
 
 [NOTICE]
 SQLite erstellt automatisch eine Datenbankdatei, wenn sie nicht existiert. 
-In anderen Systemen wie MySQL oder PostgreSQL verwendet man `CREATE DATABASE`.
+In größeren Systemen wie MySQL oder PostgreSQL verwendet man `CREATE DATABASE`.
 [ENDNOTICE]
 <!-- time estimate: 10 min -->
 
 
 ### Tabellen leeren: `TRUNCATE TABLE` und Alternativen
 
+`TRUNCATE TABLE` löscht in einem Schritt sämtliche Datensätze aus einer Tabelle.
 SQLite unterstützt `TRUNCATE TABLE` nicht direkt. Stattdessen verwendet man:
 
 ```sql
-DELETE FROM mytable;
--- oder für bessere Performance bei großen Tabellen:
+DELETE FROM mytable;  -- das löscht aber jeden Datensatz einzeln, was lange dauern kann
+-- oder:
 DROP TABLE IF EXISTS mytable;
 CREATE TABLE mytable (...);
 ```
