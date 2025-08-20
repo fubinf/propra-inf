@@ -120,8 +120,8 @@ eine monolithische 200-zeilige Funktion ist inakzeptabel.
 Wir orientieren uns in erster Linie auf die Korrektheit der Funktionalität. 
 Das Kommandoprotokoll sollte sich im Großen und Ganzen dem Beispiel ähneln:
 
-[PROT::ALT:cog/cog-pin.prot]
+[PROT::ALT:cog-pin.prot]
 
-Quellcode siehe [TREEREF::cog/pin/pin.go].
+Quellcode siehe [TREEREF::pin/pin.go].
 
 [ENDINSTRUCTOR]

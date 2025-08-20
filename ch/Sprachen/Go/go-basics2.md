@@ -478,5 +478,5 @@ Wert unterscheiden kann — nämlich mit der Schreibweise
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go0/go-basics2.go]
+Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-basics2.go]
 [ENDINSTRUCTOR]

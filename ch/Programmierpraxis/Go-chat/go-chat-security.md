@@ -2,7 +2,7 @@ title: "HTTP Chat - Schutz"
 stage: draft
 timevalue: 3
 difficulty: 3
-requires: go-http-chat-core
+requires: go-chat-core
 ---
 
 [SECTION::goal::experience,idea]
@@ -184,9 +184,9 @@ sich diese Daten schützen?
 
 [INSTRUCTOR::Korrektheit, Codestruktur, Fehlerbehandlung]
 
-Quellcode siehe [TREEREF::go_chat/client/encmgr/encryption_manager.go].
+Quellcode siehe [TREEREF::client/encmgr/encryption_manager.go].
 
-Korrektheit: Was schon in `go-http-chat-core` funktioniert hat, muss weiterhin funktionieren.
+Korrektheit: Was in [PARTREF::go-chat-core] bereits funktioniert hat, muss weiterhin funktionieren.
 
 Codestruktur: Wir erwarten eine sinnvolle Kapselung von Funktionalität (beispielsweise in `ConnectionManager` oder 
 `EncryptionManager`).

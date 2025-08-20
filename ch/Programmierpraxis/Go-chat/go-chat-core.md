@@ -312,7 +312,7 @@ erweitern.
 
 [INSTRUCTOR::Korrektheit, Entwurfsstruktur]
 
-Quellcode siehe [TREEREF::go_chat/server/main.go].
+Quellcode siehe [TREEREF::server/main.go].
 
 In erster Linie orientieren wir uns auf korrekte Funktionsweise.
 

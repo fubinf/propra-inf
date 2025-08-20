@@ -526,5 +526,5 @@ In dieser Aufgabe dürfen Sie den zweiten Wert (`error`) explizit ignorieren.
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go0/go-basics1.go]
+Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-basics1.go]
 [ENDINSTRUCTOR]

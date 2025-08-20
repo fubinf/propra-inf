@@ -2,7 +2,7 @@ title: "HTTP Chat - Persistierung"
 stage: draft
 timevalue: 4
 difficulty: 3
-requires: go-http-chat-core
+requires: go-chat-core
 ---
 
 [SECTION::goal::experience,product]
@@ -14,7 +14,7 @@ konnte.
 
 [SECTION::background::default]
 
-Der HTTP-Chat, den Sie in [PARTREF::go-http-chat-core] implementiert haben, ist aktuell nur noch Laufzeit-Chat - alle 
+Der HTTP-Chat, den Sie in [PARTREF::go-chat-core] implementiert haben, ist aktuell nur noch Laufzeit-Chat - alle 
 Ereignisse "leben" nur im Arbeitsspeicher. Sobald der Prozess beendet ist, gehen die Daten verloren. Das wollen wir in 
 dieser Aufgabe verbessern.
 
@@ -44,7 +44,7 @@ In dieser Aufgabe implementieren Sie eine lokale Datenbank für den Client und e
 
 - Server
     * Benutzernamen und Auth Tokens (1) beziehungsweise Passwörter (2) von den Clients (kommt darauf an, ob Sie die 
-[PARTREF::go-http-chat-security] Aufgabe bereits abgeschlossen haben);
+[PARTREF::go-chat-security] Aufgabe bereits abgeschlossen haben);
     * Einloggen-Ereignisse;
     * Wer mit wem kommuniziert hat.
 - Client

@@ -308,5 +308,5 @@ Also: Viel Erfolg!
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go0/go-basics3.go]
+Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-basics3.go]
 [ENDINSTRUCTOR]
