@@ -114,6 +114,8 @@ die einen [TERMREF::Slice (Golang)] von Parametern bekommt?
 [EQ] Welche Vor- oder Nachteile einer Schreibweise gegenüber der anderen fallen Ihnen
 ein?
 
+<!-- time estimate: 20 min -->
+
 
 #### Funktionen höherer Ordnung
 
@@ -171,6 +173,8 @@ die Summe der Ganzzahlen berechnet werden.
 ```go
 [INCLUDE::include/go-basics2-control-snippet-functions.go]
 ```
+
+<!-- time estimate: 30 min -->
 
 
 ### Zeiger (pointers)
@@ -295,6 +299,22 @@ type slice struct {
   zurückgegeben und stellt die Anzahl von Zellen
   bis zum Ende des zugrundeliegenden Arrays dar.
 
+[FOLDOUT::Was ist `unsafe.Pointer`?]
+`unsafe.Pointer` ist ein Zeiger ohne Typ — ähnlich wie `void*` in C.
+
+Solche Zeiger werden beispielsweise in Low-Level-Systemprogrammierung benutzt,
+wo direkter Speicherzugriff (ohne Einschränkungen des Typsystems) von Vorteil ist.
+
+Momentan müssen Sie sich keine Gedanken darüber machen: Einmal davon gehört
+zu haben reicht völlig aus.
+
+Wenn Sie doch mehr zum Thema wissen wollen, schauen Sie sich die
+[Dokumentation](https://pkg.go.dev/unsafe#Pointer)
+und den Artikel
+[Exploring ‘unsafe’ Features in Go 1.20: A Hands-On Demo](https://medium.com/@bradford_hamilton/exploring-unsafe-features-in-go-1-20-a-hands-on-demo-7149ba82e6e1)
+an.
+[ENDFOLDOUT]
+
 Informieren Sie sich über diese zwei Funktionen für Slices:
 
 - [append](https://pkg.go.dev/builtin#append)
@@ -304,7 +324,6 @@ Slices können entweder eigenständig instanziiert werden oder als eine Sicht in
 
 ```go
 sl := make([]int, 4)            // Typ und initiale Größe eines Slice
-
 sl := []int{0, 1, 2, 3, 4}      // direkter Slice mit Werten
 
 arr := [5]int{7, 9, 11, 13, 14}    // mit Werten initialisiertes Array der Länge 5
@@ -332,6 +351,19 @@ sl := arr[:3]                   // kreiert einen Slice vom Anfang des Arrays bis
 sl = append(sl, 8)              // überschreibt die "3" im ursprünglichen Array arr!
 ```
 
+[EQ] Schauen Sie sich den folgenden Quellcodeabschnitt an.
+Was befindet sich am Ende in Variablen `arr`, `sl1` und `sl2`?
+Was ist das zugrundeliegende Array von `sl1` und `sl2`?
+
+```go
+arr := [6]int{10, 20, 30, 40, 50, 60}
+sl1 := arr[1:4]
+sl2 := sl1[:cap(sl1)]  // Achtung: cap(sl1) != len(sl1)
+sl2[3] = 99
+```
+
+<!-- time estimate: 10 min -->
+
 Wie bereits erwähnt, können Slices mithilfe der Funktion `make([]T, initialSize)` kreiert werden.
 Das zugrundeliegende Array wird dann automatisch erstellt und hat die Größe von `initialSize`.
 
@@ -341,13 +373,63 @@ wird ein neues Array doppelter Größe allokiert (und damit gelingt der Versuch)
 
 Lesen Sie nun diesen Artikel aufmerksam durch:
 [Go by Example: Slices](https://gobyexample.com/slices).
+(Ganz unten gibt es noch ein Kästchen, wo das vorgestellte Programm ausgeführt wird. 
+Leicht zu übersehen!)
 
 [EQ] Welche Aspekte von Slices würden Sie als fehleranfällig bezeichnen?
+(Nutzen Sie die Hinweise unten gerne als Inspiration.)
 
-[FOLDOUT::weitere Quellen]
+[HINT::Beispiel 1]
+```go
+arr := [5]int{4, 8, 6, 0, -1}
+slice1 := arr[1:4]
+slice2 := arr[1:4]
+slice1[0] = 999
+fmt.Println(slice2) // ???
+```
+
+Sehen Sie hier ein Problem?
+Welches?
+[ENDHINT]
+
+[HINT::Beispiel 2]
+```go
+// Option 1
+func processData(data []byte) []byte {
+    // processing...
+    return data[100:110]
+}
+
+// Option 2
+func processData(data []byte) []byte {
+    result := make([]byte, 10)
+    // processing...
+    copy(result, data[100:110])
+    return result
+}
+```
+
+In welcher der zwei Optionen kann der Garbage Collector den Slice `data` aufräumen, 
+wenn die Funktion `processData` beendet wird? 
+
+Wozu führt das, wenn `data` sehr groß ist?
+[ENDHINT]
+
+[HINT::Beispiel 3]
+```go
+func modifySlice(s []int) {
+    s[0] = 999
+    s = append(s, 42)
+}
+```
+
+Beeinflusst die Zuweisung `s = append(s, 42)` wirklich den ursprünglichen Slice?
+[ENDHINT]
+
+Um ein besseres Verständnis zu schaffen, was Slices eigentlich sind, 
+lesen Sie nun diesen Artikel (es gibt Bilder!):
 [The Go Blog: Go Slices — usage and internals](https://go.dev/blog/slices-intro)
-
-[Effective Go: Slices](https://go.dev/doc/effective_go#slices)
+. 
 [ENDFOLDOUT]
 
 Implementieren Sie die folgenden Funktionen:
@@ -365,6 +447,8 @@ Alle nachfolgenden Elemente rücken eine Position nach links.
 ```go
 [INCLUDE::include/go-basics2-control-snippet-slices.go]
 ```
+
+<!-- time estimate: 40 min -->
 
 
 #### Map (Referenztyp)
@@ -407,6 +491,20 @@ if value, isThere := studentAges["Max"]; isThere {
 }
 ```
 
+[WARNING]
+Die Konvention hier ist genau das Gegenteil von `err != nil`.
+
+Der zweite Rückgabewert eines Funktionsaufrufs `val, err := someFunction()`
+ist gesetzt, wenn der Aufruf fehlgeschlagen ist.
+
+Beim Lesezugriff auf Maps hingegen ist der zweite Rückgabewert gesetzt, wenn alles 
+glattgelaufen ist und der Schlüssel tatsächlich in der Map existiert.
+
+Konventionell wird der zweite Rückgabewert beim Map-Zugriff `ok` genannt.
+Wir empfehlen jedoch das Paar `value, isThere` für Maps: Selbst wenn einem die Feinheiten 
+mal entfallen, kann eine aussagekräftige Benennung der Variablen den Tag retten.
+[ENDWARNING]
+
 Falls es keinen solchen Schlüssel gibt, führt `delete()` keine Aktion aus.
 
 [ER] Implementieren Sie eine Funktion 
@@ -433,6 +531,8 @@ func main() {
 
 [EC] Führen Sie das Programm mittels `go run go-basics2.go` aus.
 
+<!-- time estimate: 10 min -->
+
 [WARNING]
 Variablen aller Referenztypen werden mit `nil` initialisiert:
 
@@ -449,7 +549,6 @@ s := make([]int, 0)
 m := make(map[string]int)
 ```
 [ENDWARNING]
-
 [ENDSECTION]
 
 [SECTION::submission::trace,program]
