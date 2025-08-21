@@ -94,7 +94,7 @@ auf die Struktur selbst zugreifen kann.
 - `Area() float64` — Fläche berechnen;
 - benutzen Sie `math.Pi` für Kreiszahl Pi.
 
-[ER] Fügen Sie die Testfunktion Ihrem Programm bei:
+[ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
 ```go
 [INCLUDE::include/go-basics3-control-snippet-methods.go]
@@ -113,7 +113,7 @@ Feld definieren: `Position string`.
 [ER] Implementieren Sie eine neue Methode `Print` auf `Person`, die den
 vollständigen Namen und das Alter auf die Kommandozeile ausgibt.
 
-[ER] Fügen Sie die Testfunktion Ihrem Programm bei:
+[ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
 ```go
 [INCLUDE::include/go-basics3-control-snippet-structs.go]
@@ -255,7 +255,7 @@ fmt.Println((*pptr).Age) // explizit (aber unnötig)
 `newPosition string` erwartet.
 Sie soll die Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
 
-[ER] Fügen Sie die Testfunktion in Ihre Datei ein:
+[ER] Fügen Sie folgende Testfunktion in Ihre Datei ein:
 
 ```go
 [INCLUDE::include/go-basics3-control-snippet-mutation.go]
