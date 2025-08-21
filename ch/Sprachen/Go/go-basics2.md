@@ -434,14 +434,16 @@ lesen Sie nun diesen Artikel (es gibt Bilder!):
 
 Implementieren Sie die folgenden Funktionen:
 
-[ER] `func AddElement(slice []int, element, at int)`:
+[ER] `func AddElement(slice []int, element, at int) []int`:
 ein Element an einem Index `at` in einen Slice einfügen;
 das Element, das vorher an dieser Stelle stand, und alle nachfolgenden rücken eine Position nach
 rechts.
+Die Funktion gibt den neuen Slice zurück.
 
-[ER] `func RemoveElement(slice []int, at int)`:
+[ER] `func RemoveElement(slice []int, at int) []int`:
 ein Element an einem Index `at` entfernen und die Größe des Slice entsprechend anpassen.
 Alle nachfolgenden Elemente rücken eine Position nach links.
+Die Funktion gibt den neuen Slice zurück.
 
 [ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 ```go
