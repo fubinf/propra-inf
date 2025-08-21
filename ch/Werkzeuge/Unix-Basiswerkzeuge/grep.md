@@ -3,6 +3,7 @@ stage: alpha
 timevalue: 1.0
 difficulty: 2
 assumes: Umgang-mit-Verzeichnissen, redirect
+requires: Dateibaum-beschaffen
 ---
 <!-- TODO_3: Verweis auf Regexp-Aufgabe zufügen -->
 
@@ -18,24 +19,16 @@ enorm viele Zwecke eingesetzt wird, sowohl in Shell-Skripten als auch interaktiv
 
 [SECTION::instructions::detailed]
 
-### Vorbereitung
-
-Wir laden uns als erstes Beispieldateien herunter, um damit `grep` zu erproben.
-
-- Laden Sie die `.tar.xz` vom Repo herunter: 
-    `wget https://github.com/fubinf/propra-inf/raw/refs/heads/main/ch/Werkzeuge/Unix-Basiswerkzeuge/include/propra_etc.tar.xz`.
-- Entpacken Sie es in Ihrem [TERMREF::Hilfsbereich]: 
-    `tar xf propra_etc.tar.xz -C ~/ws/tmp/grep/`.
-- Wechseln Sie in den entpackten Ordner.
+[EC] Wechseln Sie in den Ordner Ihres [TERMREF2::Hilfsbereich::-s], wo der Dateibaum entpackt wurde.
 
 ### `grep` nutzen
 
-Lesen und verstehen Sie die **Synopsis** und die Optionen `-c, -i, -n, -v, -w` aus der 
+Lesen und verstehen Sie die **Synopsis** und die Optionen `-c, -i, -n, -v, -w, -r` aus der 
 [grep(1) manpage](https://man7.org/linux/man-pages/man1/grep.1.html).
 
 Fangen wir mit dem einfachsten Nutzen von grep an.
 Somit finden Sie immer genau die Zeichenfolge, die sie `grep` übergeben haben.
-Das ist nützlich für einfache Suchen, bei denen Sie genau wissen, nach welchem Wort suchen.
+Das ist nützlich für einfache Suchen, bei denen Sie genau wissen, nach welcher Zeichenfolge Sie suchen.
 
 Nehmen Sie an, Sie haben ihren Paketmanager falsch konfiguriert. Also schauen Sie in die `config`-Datei.
 Angenommen die Datei ist unübersichtlich, dann kann Ihnen `grep` bei der Fehlersuche helfen.
@@ -55,7 +48,7 @@ Standardmäßig sucht `grep` die angegebene Zeichenkette in einer Datei, egal wo
 Bei kurzen Zeichenketten führt das häufig zu vielen unerwünschten Treffern,
 wenn wir ein Wort suchen, dessen Buchstabenfolge in vielen anderen Wörtern enthalten ist.
 
-[EC] Finden Sie die Zeilen in `apt/apt.conf.d/50appstream`, die genau das _Wort_ **component** enthalten
+[EC] Finden Sie die Zeilen in `apt/apt.conf.d/50appstream`, die genau das _Wort_ **COMPONENT** enthalten
 und machen Sie sich klar, welche Treffer jetzt fehlen. 
 
 Wir können ferner auch die Zeilennummern der Treffer mit anzeigen, um z.B. abschätzen zu können, 
@@ -68,76 +61,56 @@ Jetzt wissen wir, _welche_ Zeilen `component` enthalten.
 Manchmal ist es hilfreich zu wissen, _wie oft_ ein Suchstring in der Datei aufgetreten ist, 
 um abschätzen zu können, wie gut etwas funktioniert.
 
-[EC] Zählen Sie, wie viele Zeilen in `apt/apt.conf.d/50appstream` das Wort **component** enthalten.
+[EC] Zählen Sie, wie viele Zeilen in `apt/apt.conf.d/50appstream` **component** enthalten.
 
 Manchmal ist man an den Zeilen interessiert, die _keine_ Treffer enthalten.
 Z.B. könnte eine zehntausende Zeilen lange Log-Datei fast nur ERROR-Meldungen enthalten 
 und wir interessieren uns für die (wenigen) Zeilen _anderer_ Art, 
 eben gerade, weil wir _nicht_ wissen, wie diese aussehen.
 
-[EC] Zeigen Sie alle Zeilen aus `xdg/libkleopatrarc` an, die das Wort **name** nicht enthalten, egal ob 
-groß- oder kleingeschrieben. 
+[EC] Geben Sie alle Zeilen aus der Datei `nfs.conf` aus, die keine Kommentare enthalten. 
+(Ein Kommentar beginnt hier mit einer Raute `#`)
 Kürzen Sie die Ausgabe für das Kommandoprotokoll auf die ersten 10 Zeilen (`head -10`).
 
-Lesen und verstehen Sie die Optionen `-A, -B, -r` aus der 
-[grep(1) manpage](https://man7.org/linux/man-pages/man1/grep.1.html).
-
-Angenommen Sie haben ein Problem mit einer Ihrer Webseiten. Auf der Webseite wird Ihnen der Fehler 
-`ERROR_CODE_DB_CONN_FAILED` angezeigt. 
-Ihnen ist bewusst in welchem Ordner Sie nach dem Fehler suchen können, wollen aber nicht jede Datei 
-extra mit `grep` durchsuchen.
-Als Veranschaulichung nutzen wir die nächsten Aufgabe dafür.
+Sie möchten prüfen, ob irgendwo noch der alte Hostname eingetragen ist. Da der /etc-Baum viele 
+Unterordner mit Konfigurationsdateien enthält (z. B. für Netzwerk, Dienste oder Anwendungen), wäre es 
+mühsam, jede Datei manuell zu öffnen. Mit einer rekursiven Suche nach `hostname` finden Sie sofort alle 
+Stellen, an denen `hostname` möglicherweise eingestellt werden könnte.
 
 [EC] Finden Sie alle Zeilen in allen Dateien im Verzeichnis (und eventuellen Unterverzeichnissen), 
-    die das Wort **timeout** enthalten, egal ob es groß- oder kleingeschrieben ist.
-    Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
+die das Wort **hostname** enthalten, egal ob es groß- oder kleingeschrieben ist.
+Kürzen Sie die Ausgabe für das Kommandoprotokoll auf die ersten 10 Zeilen (`head -10`).
 
-Sie haben gefunden in welchem Log der Fehler berichtet wird. Jetzt wollen Sie wissen, was davor und 
-danach passiert.
-
-[EC] Finden Sie die Zeile in `postfix/master.cf`, die **timeout** enthält, und zeigen Sie 
-    zusätzlich zehn Zeilen davor und fünf Zeilen danach.
 
 ### `grep` mit regulären Ausdrücken
 
-`grep` versteht reguläre Ausdrücke. Es hat drei verschiedene Modi.
+`grep` versteht reguläre Ausdrücke und bietet dafür drei gebräuchliche Modi:
 
-- **Ohne Optionen (basic grep):** Jeder Buchstabe wird als normales Zeichen behandelt. 
-    Das Sternchen `*` ist hier kein Wildcard-Symbol, sondern muss mit einem Backslash 
-    (`\*`) als solches gekennzeichnet werden.
-- **Mit der Option `-E` (extended grep):** Quantoren wie `*`, `+`, `?` und `|` werden direkt als 
-    reguläre Ausdrücke erkannt, ohne dass ein Backslash nötig ist.
-- **Mit der Option `-P` (Perl grep):** Mit dieser Option stehen Ihnen zusätzliche Möglichkeiten für 
-    reguläre Ausdrücke zur Verfügung, wie z.B. Lookahead und Lookbehind.
+- **Ohne Optionen (Basic, GNU BRE):** Viele Metazeichen (z. B. `()`, `{}`, `+`, `?`, `|`) gelten 
+nicht als Sonderzeichen und müssen mit einem Backslash `\` escaped werden.
+- **Mit `-E` (Extended, GNU ERE):** Aktiviert erweiterte reguläre Ausdrücke. Quantoren und 
+Gruppierungen (`*`, `+`, `?`, `|`, `()`, …) verhalten sich wie in den meisten Regex-Dialekten, ein 
+Backslash ist dafür meist nicht nötig.
+- **Mit `-P` (Perl/PCRE):** Schaltet Perl-kompatible reguläre Ausdrücke (PCRE) ein. 
+Diese Syntax ist am mächtigsten und entspricht weitgehend den regulären Ausdrücken in Python.
 
-In den nächsten Aufgaben nutzen wir für `grep` die Option `-P`. 
-Für Skripte könnte es sich lohnen, eine einfachere Option zu wählen, wenn die erweiterten Funktionen 
-von `-P` nicht benötigt werden.
+Für die nächsten Aufgaben verwenden wir `grep -P`, 
+weil die PCRE-Syntax der Python-RegEx-Notation sehr nahekommt. 
+Für portable Shell-Skripte könnte `-E` die bessere Wahl sein, 
+solange keine speziellen PCRE-Features benötigt werden.
 
-Lesen und verstehen Sie die Abschnitte **What's a quantifier?** und **Pattern collections** von dem 
+Lesen und verstehen Sie den Abschnitt **What's a quantifier?** und schauen Sie sich insbesondere 
+den `|` Quantifizierer an, von dem 
 [Guide to regular expressions](https://coderpad.io/blog/development/the-complete-guide-to-regular-expressions-regex/).
 
-Nehmen Sie an, Sie haben ein Problem mit einem Service auf einem Ihrer Server.
-Sie haben herausgefunden, dass Ihre Mitarbeiter auf dem Server bestimmte Funktionen ein- und ausschalten 
-können, obwohl sie dachten, dass die Mitarbeiter diese Berechtigung des Ein- und Ausschaltens nicht haben.
-Jetzt suchen Sie im Log nach den Zeitpunkten wo die Funktionen ein- oder ausgeschaltet wurden, damit Sie 
-die Berechtigungen der Funktionen nochmal prüfen können.
+Manchmal möchte man nach zwei Wörtern gleichzeitig suchen – zum Beispiel **default** und **0**.
+Ohne reguläre Ausdrücke müsste man für jedes Wort einzeln greppen und anschließend die Ergebnisse 
+mühsam miteinander vergleichen.
+Mit regulären Ausdrücken lässt sich das deutlich einfacher lösen.
 
-[EC] Finden Sie die Zeichenfolgen **enable** und **disable** in allen Dateien, unabhängig der Groß- und Kleinschreibung.
-    Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
+[EC] Finden Sie die Wörter **enable** und **disable** in allen Dateien, unabhängig der Groß- und Kleinschreibung.
+Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 
-Nach einem Serverausfall möchten Sie herausfinden, wann der verursachende Fehler aufgetreten ist. 
-Sie durchsuchen das Log gezielt nach Zeitangaben, um die Einträge rund um den Zeitpunkt des Ausfalls 
-zu finden. 
-So können Sie schnell erkennen, welche Aktionen oder Fehlermeldungen direkt davor oder danach passiert 
-sind und die Ursache eingrenzen.
-
-[EC] Finden Sie alle Zeilen in allen Dateien die Zeitangaben in diesem Format haben: **hh:mm:ss**.
-
-
-### Aufräumen
-
-Wenn Sie möchten, können Sie jetzt den Ordner `grep` wieder löschen.
 
 [ENDSECTION]
 
