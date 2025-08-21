@@ -448,6 +448,15 @@ Eine Übersicht aller [TERMREF::DNS-Record-Types] findet man auf
 [nslookup.io](https://www.nslookup.io/learning/dns-record-types/).
 [ENDTERM]
 
+[TERM::Download unter WSL]
+Wenn Sie unter Windows Dateien herunterladen, stehen diese zunächst nicht direkt in Ihrer 
+Unix-Umgebung zur Verfügung.
+In WSL werden jedoch Ihre Windows-Festplatten standardmäßig unter dem Pfad /mnt/ eingebunden.
+Haben Sie die Datei beispielsweise im Windows-Ordner `Downloads` gespeichert, 
+können Sie sie mit folgendem Befehl in Ihr Home-Verzeichnis der WSL-Umgebung kopieren:
+`cp /mnt/c/Users/<username>/Downloads/<DATEI> /home/<username>/`
+[ENDTERM]
+
 [TERM::DRY|DRY-Prinzip|Don't repeat yourself]
 DRY steht für "don't repeat yourself".
 Das Prinzip besagt, man solle Redundanz vermeiden oder zumindest reduzieren,
