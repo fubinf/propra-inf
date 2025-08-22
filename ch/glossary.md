@@ -1313,6 +1313,23 @@ dass früher funktionierende Teile einer Software nach einer Änderung weiterhin
 funktionieren und somit unerwünschte Seiteneffekte schnellstmöglich erkannt werden.
 [ENDTERM]
 
+[TERM::Regulärer Ausdruck|regular expression|regex|regexp]
+Eine Notation für Prädikate:
+Ein regulärer Ausdruck (engl. "regular expression", oft abgekürzt als "regex" oder "regexp")
+beschreibt eine Kategorie von Zeichenketten und wird meistens zur Suche benutzt, also
+für eine Prüfung, ob (oder wo) er auf eine gegebene Zeichenkette zutrifft (oder eben nicht).  
+Beispiel: Der reguläre Ausdruck `Anwendung(en|sfall|sfälle)?` trifft auf
+genau vier Zeichenketten zu, nämlich 
+"Anwendung", "Anwendungen", "Anwendungsfall" und "Anwendungsfälle".  
+Reguläre Ausdrücke können auch unendlich große Kategorien von Zeichenketten beschreiben:  
+`A.*\.txt` trifft alle Dateinamen, die mit "A" beginnen und den Suffix ".txt" haben,
+trifft aber auch auf viele Zeichenketten zu, die keine Dateinamen sind -- inbesondere 
+auf Pfadnamen mit Verzeichnistrennern darin.  
+Es gibt Dutzende von Sprachkontrukte für reguläre Ausdrücke.
+Reguläre Ausdrücke sind ungeheuer nützlich für sehr viele Zwecke und man sollte sich 
+unbedingt gut mit ihnen auskennen.
+[ENDTERM]
+
 [TERM::Release]
 In der Softwareentwicklung bezieht sich der Begriff Release auf die Veröffentlichung einer
 bestimmten Version einer Softwareanwendung oder eines Softwareprodukts. Dabei ist ein Release stets
