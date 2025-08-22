@@ -4,8 +4,6 @@ timevalue: 1.0
 difficulty: 2
 ---
 
-TODO_1_alrwasheda
-
 - Ich habe auch hier (wie bei Booleans) das Gefühl, dass bei diesem Stoff unser didaktisches Konzept ungeeignet ist.
   Die Konsequenz daraus? Unklar. Lassen wir also mangels einer besseren Idee die Aufgabe stehen.
 - Dito die Bemerkung zu difficulty 1 vs 2.
