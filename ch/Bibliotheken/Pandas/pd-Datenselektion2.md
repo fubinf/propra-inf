@@ -36,20 +36,38 @@ in welchen Wahlbezirken die Linke weniger als 10 Stimmen bekommen hat.
 Für einen einzelnen Wert, wie z.B. einen Integer, sollte Ihnen schon dieser Ausdruck bekannt sein: 
 `x < 10`.
 
-[EQ] Obwohl eine Series mehrere Elemente enthält, 
-kann man auch genau so logische Ausdrücke auf eine Series anwenden (`series < value`). 
+[EQ] Obwohl eine `Series` mehrere Elemente enthält, 
+kann man auch genau so logische Ausdrücke auf eine `Series` anwenden (`series < value`). 
 Tun Sie dies für die Spalte "Die Linke" im `erststimmen_df` und beschreiben Sie,
 was zurückgegeben wird.
 
 [ER] Formulieren Sie auf die gleiche Weise eine Abfrage aller Wahlbezirke,
 in denen Die Linke über 20 Stimmen hat.
+Geben Sie zusätzlich die Anzahl an Zeilen mit ab, für die diese Bedingung erfüllt ist.
+
+[NOTICE]
+Sie können die Anzahl an `True`-Werten in einer `Series` mit `sum()` erhalten:
+`booleanseries.sum()`
+
+Um für Ihre Abfragen zu überprüfen wie viele Zeilen die Bedingung erfüllen, können Sie
+wie folgt vorgehen:
+`print((series > value).sum())`
+
+Geben Sie die Ausgabe dann z.B. als Kommentar im Code mit ab:
+```python
+series > value
+# Zeilen, die Bedingung erfüllen: 42
+```
+[ENDNOTICE]
 
 [ER] Formulieren Sie auf die gleiche Weise eine Abfrage aller Wahlbezirke,
 in denen Die Linke genau 27 Stimmen hat.
+Geben Sie zusätzlich die Anzahl an Zeilen mit ab, für die diese Bedingung erfüllt ist.
 
 [ER] Sie können auch direkt zwei Spalten miteinander vergleichen. 
 Formulieren Sie auf die gleiche Weise eine Abfrage aller Wahlbezirke,
 in denen die Linke mehr Stimmen hat als die CDU.
+Geben Sie zusätzlich die Anzahl an Zeilen mit ab, für die diese Bedingung erfüllt ist.
 
 ### Verkettung
 
@@ -66,25 +84,33 @@ meist einzuklammern:
 
 [ER] Formulieren Sie auf die gleiche Weise eine Abfrage aller Wahlbezirke, 
 in denen die Linke eine zweistellige Stimmenzahl hatte.
+Geben Sie zusätzlich die Anzahl an Zeilen mit ab, für die diese Bedingung erfüllt ist.
 
 [ER] Durch Verkettung können Sie auch Bedingungen auf verschiedene Spalten miteinander verbinden.
 Formulieren Sie eine Abfrage aller Wahlbezirke, in denen die Linke mehr als 50 Stimmen hatte,
 es aber weniger als 250 Gültige Stimmen gab.
+Geben Sie zusätzlich die Anzahl an Zeilen mit ab, für die diese Bedingung erfüllt ist.
 
-### Boolean-Series als Filter benutzen
+### Boolean-Series als Filter benutzen (Boolean-Indexing)
 
 Bis jetzt haben Sie lediglich `Series` mit Booleans als Inhalt erstellt. 
-Das bringt jedoch nicht viel, wenn man die vollständigen Einträge haben will, 
+Das bringt jedoch nicht viel, wenn man die vollständigen Zeilen haben will, 
 bei denen die Bedingung wahr ist.
 Doch diese Boolean-Series werden im Folgenden der Schlüssel zum eigentlichen Filtern sein, 
 denn Sie können als Eingabe benutzt werden, um ganze Zeilen auszuwählen:
 
 `dataframe[booleanseries]` gibt ein DataFrame zurück mit all denjenigen Zeilen von `dataframe`, 
-für die der entsprechende Eintrag von `booleanseries` True ist.
+für die die entsprechende Zeile von `booleanseries` True ist.
 Die übrigen werden ausgefiltert, also weggelassen.
 
 Ein typischer Ausdruck könnte zum Beispiel sein: 
 `dataframe[dataframe["Spaltenname"] > 42]`
+
+[NOTICE]
+Wie man eine `Series` als Filter benutzt wird auch in der
+[Dokumentation zu Boolean-Indexing](https://pandas.pydata.org/docs/user_guide/10min.html#boolean-indexing)
+veranschaulicht.
+[ENDNOTICE]
 
 [ER] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen der Bezirksname nicht "Mitte" ist.
 
@@ -124,6 +150,12 @@ Strings hingegen können mit `'` umklammert werden:
 
 [ER] Setzen Sie [EREFR::7] mit Hilfe der `query()`-Funktion um.
 
+[EQ] Wie Sie merken, ist es eher eine Stilfrage, ob man `query()` verwendet
+oder beim herkömmlichen Boolean-Indexing bleibt.
+Lesen Sie diesen 
+[Blog-Artikel zu den Vor- und Nachteilen von `query()`](https://faun.pub/querying-in-pandas-easy-fast-efficient-eec7538766a1).
+Zu welcher Variante neigen Sie und warum?
+Begründen Sie.
 
 ### `filter()`
 <!-- TODO_3: Verweis auf Regexp-Aufgabe zufügen -->
@@ -154,7 +186,7 @@ und sortieren Sie `erststimmen_df` absteigend nach den Bezirksnamen.
 
 [ER] Verbinden Sie nun das Gelernte. 
 Sortieren Sie `erststimmen_df` absteigend nach den Stimmen für die SPD.
-Filtern Sie diese Auswahl, sodass Sie alle Einträge ausgeben in denen die CDU mehr Stimmen hat
+Filtern Sie diese Auswahl, sodass Sie alle Zeilen ausgeben in denen die CDU mehr Stimmen hat
 als die SPD.
 [ENDSECTION]
 
