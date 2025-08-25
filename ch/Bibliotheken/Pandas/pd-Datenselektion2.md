@@ -1,37 +1,35 @@
-title: "Selektion mit logischen Ausdrücken"
+title: "pandas: Selektion mit logischen Ausdrücken"
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-explains:
-assumes:
 requires: pd-Datenselektion
 ---
 
 [SECTION::goal::idea]
-Ich kann logische Ausdrücke im korrekten Pandas-Syntax schreiben.
+Ich kann logische Ausdrücke in der passenden Pandas-Syntax schreiben.
 
 Ich kann Pandas-Daten mithilfe von logischen Ausdrücken filtern und sortieren.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-Daten konkret anzusprechen heißt auch nur die Daten rauszufiltern, 
-die bestimmte Bedingungen erfüllen. 
-Mit logischen Ausdrücken hat man vielseitige Möglichkeiten dies zu tuen.
+Meist selektiert man Daten nicht per fester Position, sondern aufgrund
+logischer Bedingungen. 
+Pandas ist auch in dieser Hinsicht sehr ausdrucksstark.
 [ENDSECTION]
 
 
 [SECTION::instructions::detailed]
 
-- Laden Sie zunächst den 
+- Laden Sie zunächst erneut den 
 [Datensatz der Erststimmen Bundestagswahl 2025](https://www.govdata.de/suche/daten/bundestagswahl-2025-in-berlin-nach-wahlbezirken-endgultiges-ergebnis)
-wie in [PARTREF::pd-Einführung] beschrieben in Ihre Python-Umgebung:
+wie in [PARTREF::pd-Einführung] beschrieben:
 ```python
 import pandas as pd
 erststimmen_df = pd.read_csv("Pfad/zur/Berlin_BT25_W1.csv", sep=';')
 ```
 
-### Logische Ausdrücke auf Series
+### Logische Ausdrücke auf `Series`
 
 Stellen Sie sich vor Sie möchten wissen, 
 in welchen Wahlbezirken die Linke weniger als 10 Stimmen bekommen hat. 
@@ -40,52 +38,58 @@ Für einen einzelnen Wert, wie z.B. einen Integer, sollte Ihnen schon dieser Aus
 
 [EQ] Obwohl eine Series mehrere Elemente enthält, 
 kann man auch genau so logische Ausdrücke auf eine Series anwenden (`series < value`). 
-Tuen Sie dies für die Spalte "Die Linke" im `erststimmen_df` und beschreiben Sie 
+Tun Sie dies für die Spalte "Die Linke" im `erststimmen_df` und beschreiben Sie,
 was zurückgegeben wird.
 
-[ER] Formulieren Sie auf die gleiche Weise einen Befehl, für alle Wahlbezirke in denen die Linke über 20 Stimmen hat.
+[ER] Formulieren Sie auf die gleiche Weise eine Abfrage aller Wahlbezirke,
+in denen Die Linke über 20 Stimmen hat.
 
-[ER] Formulieren Sie auf die gleiche Weise einen Befehl, für alle Wahlbezirke in denen die Linke genau 27 Stimmen hat.
+[ER] Formulieren Sie auf die gleiche Weise eine Abfrage aller Wahlbezirke,
+in denen Die Linke genau 27 Stimmen hat.
 
 [ER] Sie können auch direkt zwei Spalten miteinander vergleichen. 
-Formulieren Sie auf die gleiche Weise einen Befehl, für alle Wahlbezirke
+Formulieren Sie auf die gleiche Weise eine Abfrage aller Wahlbezirke,
 in denen die Linke mehr Stimmen hat als die CDU.
 
 ### Verkettung
 
-Logische Ausdrücke lassen sich auch mit `&` (und) und `|` (oder) verknüpfen. 
-Gemeinsam mit dem Verneinungs-Operator `~` können Sie nun alle logischen Ausdrücke darstellen.
+Logische Ausdrücke lassen sich auch mit `&` (und) oder `|` (oder) verknüpfen. 
+Zusammen mit dem Verneinungs-Operator `~` und Klammern können Sie alle logischen Ausdrücke darstellen.
 
 [NOTICE]
-Wenn Sie auf diese Weise Ausdrücke mit `&` oder `|` verknüpfen, ist es wichtig, 
-dass Sie diese einklammern, damit die Operator-Priorität klar ist: `(ausdruck) & (ausdruck)`
+Selbst wenn Sie sich mit dem Vorrang (Prioritäten) der Operatoren perfekt auskennen,
+tun es andere, die Ihren Code lesen wollen, nicht unbedingt.
+Deshalb ist es eine sinnvolle Angewohnheit, Terme, die man mit obigen Operatoren verknüpft,
+meist einzuklammern:
+`(ausdruck1) & ~(ausdruck2)`
 [ENDNOTICE]
 
-[ER] Formulieren Sie auf die gleiche Weise einen Befehl, 
-für alle Wahlbezirke in denen die Linke eine zweistellige Stimmenzahl hatte.
+[ER] Formulieren Sie auf die gleiche Weise eine Abfrage aller Wahlbezirke, 
+in denen die Linke eine zweistellige Stimmenzahl hatte.
 
 [ER] Durch Verkettung können Sie auch Bedingungen auf verschiedene Spalten miteinander verbinden.
-Formulieren Sie einen Ausdruck für alle Wahlbezirke in denen die Linke mehr als 50 Stimmen hatte,
-es aber nur weniger als 250 Gültige Stimmen gab.
+Formulieren Sie eine Abfrage aller Wahlbezirke, in denen die Linke mehr als 50 Stimmen hatte,
+es aber weniger als 250 Gültige Stimmen gab.
 
 ### Boolean-Series als Filter benutzen
 
-Bis jetzt haben Sie lediglich Series mit Booleans als Inhalt erstellt. 
+Bis jetzt haben Sie lediglich `Series` mit Booleans als Inhalt erstellt. 
 Das bringt jedoch nicht viel, wenn man die vollständigen Einträge haben will, 
 bei denen die Bedingung wahr ist.
 Doch diese Boolean-Series werden im Folgenden der Schlüssel zum eigentlichen Filtern sein, 
-denn Sie können als Eingabe benutzt werden, um richtig zu filtern:
+denn Sie können als Eingabe benutzt werden, um ganze Zeilen auszuwählen:
 
-`dataframe[ boolean-series ]` gibt ein DataFrame zurück, 
-wobei jeder Eintrag der True in der Boolean-Series ist, 
-behalten wird, und jeder Eintrag der False ist rausgefiltert wird.
+`dataframe[booleanseries]` gibt ein DataFrame zurück mit all denjenigen Zeilen von `dataframe`, 
+für die der entsprechende Eintrag von `booleanseries` True ist.
+Die übrigen werden ausgefiltert, also weggelassen.
 
 Ein typischer Ausdruck könnte zum Beispiel sein: 
-`dataframe[ dataframe["Spaltenname"] > 42 ]`
+`dataframe[dataframe["Spaltenname"] > 42]`
 
-[ER] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen der Bezirksname *nicht* "Mitte" ist.
+[ER] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen der Bezirksname nicht "Mitte" ist.
 
-[ER] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen die Linke mehr Stimmen geholt hat als die CDU, aber weniger als SPD.
+[ER] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen die Linke mehr Stimmen bekommen hat als die CDU, 
+aber weniger als SPD.
 
 [ER] Formulieren Sie den gleichen Audruck aus der vorherigen Aufgabe 
 unter reiner Verwendung von `loc()` und Boolean-Ausdrücken.
@@ -94,11 +98,11 @@ Bei `loc()` können Sie die Boolean-Series ebenfalls als Eingabe bei der Indexie
 
 ### `query()`
 
-Manche Filterbedingungen lassen sich in diesem klassischen Pandas-Syntax nur schwer lesen, 
+Manche Filterbedingungen lassen sich in dieser Ausdrucksweise nur schwer lesen, 
 vor allem wenn sie lang oder verschachtelt sind.
 Hier können andere Filter-Methoden Abhilfe schaffen, wie zum Beispiel `query()`. 
 Pandas bietet mit `query()` eine alternative Schreibweise, bei der Sie Bedingungen als Zeichenkette
-übergeben – ähnlich wie bei SQL.
+übergeben, etwas ähnlich wie SQL.
 
 Ein beispielhafter Query-Filter könnte so aussehen:
 `dataframe.query("columnname < y")`
@@ -152,7 +156,6 @@ und sortieren Sie `erststimmen_df` absteigend nach den Bezirksnamen.
 Sortieren Sie `erststimmen_df` absteigend nach den Stimmen für die SPD.
 Filtern Sie diese Auswahl, sodass Sie alle Einträge ausgeben in denen die CDU mehr Stimmen hat
 als die SPD.
-
 [ENDSECTION]
 
 
@@ -160,6 +163,7 @@ als die SPD.
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Antworten im Großen und Ganzen korrekt?]
 [INCLUDE::ALT:]
