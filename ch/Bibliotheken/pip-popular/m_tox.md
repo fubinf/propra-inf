@@ -32,9 +32,9 @@ Benutzen Sie bei Bedarf die [Dokumentation von `tox`](https://tox.wiki/).
 
 ### Installation und Vorbereitung
 
-- [ER] Installieren Sie `tox` mittels [PARTREF::pip].
-- [ER] Erstellen Sie einen neuen Ordner `tox_example` und wechseln Sie in diesen.
-- [ER] Erstellen Sie eine einfache Python-Datei `calculator.py` mit folgenden Funktionen:
+- Installieren Sie `tox` mittels [PARTREF::pip].
+- Erstellen Sie einen neuen Ordner `tox_example` und wechseln Sie in diesen.
+- Erstellen Sie eine einfache Python-Datei `calculator.py` mit folgenden Funktionen:
 
 ```python
 def add(a, b):
@@ -52,7 +52,7 @@ def divide(a, b):
     return a / b
 ```
 
-- [ER] Erstellen Sie eine Testdatei `test_calculator.py` mit pytest-Tests für diese Funktionen:
+Erstellen Sie eine Testdatei `test_calculator.py` mit pytest-Tests für diese Funktionen:
 
 ```python
 import pytest
@@ -79,7 +79,7 @@ def test_divide_by_zero():
 
 Wir starten mit der wichtigsten Datei, ohne die Tox gar nicht erst funktioniert.
 
-[ER] Erstellen Sie eine `tox.ini` Datei im Projektordner mit folgendem Grundgerüst:
+Erstellen Sie eine `tox.ini` Datei im Projektordner mit folgendem Grundgerüst:
 
 ```ini
 [tox]
@@ -90,15 +90,33 @@ deps = pytest
 commands = pytest test_calculator.py -v
 ```
 
-- [ER] Führen Sie `tox` aus und beobachten Sie, was passiert.
-- [EQ] Welche Umgebungen werden erstellt? Was passiert, wenn eine Python-Version nicht installiert ist?
-- [EQ] Wo befinden sich die erstellten virtuellen Umgebungen und wie heißen sie?
+Führen Sie `tox` aus und beobachten Sie, was passiert.
+
+- [EQ] Untersuchen Sie die Ausgabe: Für welche Python-Versionen werden Umgebungen erstellt und welche werden übersprungen? Was bedeutet "SKIP" und ist das ein Fehler?
+- [EQ] Erkunden Sie das Dateisystem: In welchem Verzeichnis erstellt tox die virtuellen Umgebungen? Wie ist die Ordnerstruktur aufgebaut?
 
 ### Tox-Umgebungen erkunden
 
+[NOTICE]
+Wenn Sie Debian Nutzer sind, werden Sie sicherlich keine mehrere Python Version
+installiert haben - es sei denn, sie `Pyenv` oder [PARTREF::apt]/ `apt-get` verwenden.
+Sie können sich daher entweder im Selbststudium mit mit diesen Tools beschäftigen,
+oder diese Aufgabe überspringen.
+
+Eine passende Aufgabe zu `pyenv` wird es zeitnah geben.
+
+Für vollständige Tests können Sie im Schnellmodus zusätzliche Python-Versionen installieren:
+
+- **Ubuntu/Debian**: `sudo apt install python3.9 python3.10 python3.11`
+- **macOS**: Homebrew (`brew install python@3.9`) oder pyenv
+- **Alle Systeme**: pyenv für Versionsverwaltung
+
+Die Aufgabe funktioniert auch mit nur einer Python-Version.
+[ENDNOTICE]
+
 Natürlich gibt es nicht nur stumpf den `tox`-Befehl.
 
-[ER] Führen Sie folgende Kommandos aus und beschreiben Sie die Ausgabe:
+Führen Sie folgende Kommandos aus und beschreiben Sie die Ausgabe:
 
 - `tox -l` (oder `tox --list`)
 - `tox -e py39` (nur eine bestimmte Umgebung)
@@ -110,14 +128,14 @@ Natürlich gibt es nicht nur stumpf den `tox`-Befehl.
 
 Ein Projekt kann bekanntlich viele Abhängigkeiten haben, deren es sich bedient. Tox hilft auch hier.
 
-[ER] Erstellen Sie eine `requirements.txt` Datei:
+Erstellen Sie eine `requirements.txt` Datei:
 
-```
+```sh
 pytest>=6.0
 requests>=2.25.0
 ```
 
-[ER] Erweitern Sie die `tox.ini` um diese Abhängigkeiten:
+Erweitern Sie die `tox.ini` um diese Abhängigkeiten:
 
 ```ini
 [tox]
@@ -128,7 +146,7 @@ deps = -r{toxinidir}/requirements.txt
 commands = pytest test_calculator.py -v
 ```
 
-[ER] Erstellen Sie einen neuen Test in `test_calculator.py`, der das `requests` Paket verwendet:
+Erstellen Sie einen neuen Test in `test_calculator.py`, der das `requests` Paket verwendet:
 
 ```python
 import requests
@@ -139,14 +157,15 @@ def test_requests_available():
     assert 'headers' in response.json()
 ```
 
-- [ER] Führen Sie `tox -r` aus, um die Umgebungen mit den neuen Abhängigkeiten neu zu erstellen.
+Führen Sie `tox -r` aus, um die Umgebungen mit den neuen Abhängigkeiten neu zu erstellen.
+
 - [EQ] Wie verhält sich tox, wenn Sie jetzt `tox` ohne `-r` ausführen? Warum?
 
 ### Mehrere Testkommandos
 
-Und Tox kann auch als Automatisierungtool verwendet werden, um verschiedene _Schritte_ auszuführen.
+Und Tox kann auch als Automatisierungstool verwendet werden, um verschiedene _Schritte_ auszuführen.
 
-[ER] Erweitern Sie Ihre `tox.ini` um mehrere Kommandos:
+Erweitern Sie Ihre `tox.ini` um mehrere Kommandos:
 
 ```ini
 [testenv]
@@ -157,7 +176,8 @@ commands =
     pytest test_calculator.py -v --tb=short
 ```
 
-- [ER] Führen Sie tox aus und analysieren Sie die Ausgabe.
+Führen Sie tox aus und analysieren Sie die Ausgabe.
+
 - [EQ] Was zeigen die zusätzlichen Kommandos? Warum könnte das nützlich sein?
 
 ### Spezielle Umgebungen definieren
@@ -166,7 +186,7 @@ Kommen wir zu weiteren tollen _Features_, die Tox uns mitgibt.
 Wir können Tox nicht nur für [TERMREF::Dynamische analytische Qualitätssicherung] verwenden,
 [TERMREF::Statische analytische Qualitätssicherung].
 
-[ER] Fügen Sie spezielle Umgebungen zu Ihrer `tox.ini` hinzu:
+Fügen Sie spezielle Umgebungen zu Ihrer `tox.ini` hinzu:
 
 ```ini
 [tox]
@@ -187,8 +207,10 @@ deps =
 commands = python -c "print('Dokumentation würde hier erstellt werden')"
 ```
 
-- [ER] Führen Sie `tox -e lint` aus. Was passiert?
-- [ER] Installieren Sie `flake8` in Ihrer lokalen Umgebung und führen Sie `tox -e lint` erneut aus.
+Führen Sie `tox -e lint` aus. Was passiert?
+
+Installieren Sie `flake8` in Ihrer lokalen Umgebung und führen Sie `tox -e lint` erneut aus.
+
 - [EQ] Müssen Sie flake8 lokal installieren, damit es in der tox-Umgebung funktioniert? Erklären Sie!
 
 ### Fehlerbehandlung erkunden
@@ -197,18 +219,18 @@ Bisher lief doch alles gut?
 Was aber, wenn es nicht immer so gut läuft?
 Schauen wir uns einmal einen Fehlschalg an.
 
-[ER] Fügen Sie absichtlich einen Fehler in `calculator.py` ein (z.B. Syntaxfehler) und führen Sie `tox` aus.
+Fügen Sie absichtlich einen Fehler in `calculator.py` ein (z.B. Syntaxfehler) und führen Sie `tox` aus.
 
 - [EQ] Wie verhält sich tox bei Fehlern? Bricht es alle Umgebungen ab oder nur die betroffene?
 - [EQ] Wo finden Sie detaillierte Fehlermeldungen?
 
-[ER] Korrigieren Sie den Fehler wieder.
+Korrigieren Sie den Fehler wieder.
 
 ### Konfiguration verstehen
 
 Nicht alle _Schritte_ sind trivial in die Datei einzutragen. Manchmal bedarf es auch etwas mehr.
 
-[ER] Experimentieren Sie mit verschiedenen Konfigurationsoptionen in der `tox.ini`:
+Experimentieren Sie mit verschiedenen Konfigurationsoptionen in der `tox.ini`:
 
 ```ini
 [testenv]
@@ -224,7 +246,7 @@ commands =
     pytest {toxinidir}/test_calculator.py -v
 ```
 
-- [EQ] Was bewirkt `changedir = {toxworkdir}`? 
+- [EQ] Was bewirkt `changedir = {toxworkdir}`?
 - [EQ] Warum müssen Sie jetzt `{toxinidir}/test_calculator.py` statt nur `test_calculator.py` verwenden?
 - [EQ] Wozu dient `allowlist_externals` und warum ist es nötig?
 
@@ -233,7 +255,7 @@ commands =
 Wir können uns auch ein wenig tiefer ins System schreiben, um zum Beispiel bestimmte Konfiguratiopnen,
 die über Systemvariablen ausgelesen werden, zu setzen, oder Pfade zu setzen.
 
-[ER] Erstellen Sie eine erweiterte Konfiguration:
+Erstellen Sie eine erweiterte Konfiguration:
 
 ```ini
 [tox]
@@ -253,7 +275,8 @@ deps =
 commands = pytest test_calculator.py --cov=calculator --cov-report=term-missing
 ```
 
-- [ER] Führen Sie `tox -e coverage` aus.
+Führen Sie `tox -e coverage` aus.
+
 - [EQ] Was bewirkt `{[testenv]deps}` in der coverage-Umgebung?
 - [EQ] Welche Coverage-Informationen erhalten Sie?
 
@@ -262,12 +285,13 @@ commands = pytest test_calculator.py --cov=calculator --cov-report=term-missing
 Manchmal haben wir für aufwendige Test weniog Zeit, vor allem, wenn es viele Testumgebungen gibt.
 Dann können wir das mit genügen Rechenpower auch parallel laufen lassen.
 
-- [ER] Führen Sie `tox -p/ tox --parallel` aus und beobachten Sie das Verhalten.
+Führen Sie `tox -p/ tox --parallel` aus und beobachten Sie das Verhalten.
+
 - [EQ] Was ist der Unterschied zur normalen Ausführung? Welche Vor- und Nachteile sehen Sie?
 
 ### Projekt-Integration
 
-[ER] Erstellen Sie eine `setup.py` oder `pyproject.toml` für Ihr Testprojekt:
+Erstellen Sie eine `setup.py` oder `pyproject.toml` für Ihr Testprojekt:
 
 **setup.py** Variante:
 ```python
@@ -284,7 +308,7 @@ setup(
 )
 ```
 
-[ER] Anpassung der `tox.ini` für die Installation des eigenen Pakets:
+Anpassung der `tox.ini` für die Installation des eigenen Pakets:
 
 ```ini
 [testenv]
