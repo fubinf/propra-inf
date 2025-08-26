@@ -1284,6 +1284,15 @@ Netzwerkverbindungen oder Programme, was die Integration in komplexe Datenverarb
 Analyseworkflows erleichtert. 
 [ENDTERM]
 
+[TERM::Repository-Verzeichnis]
+Engl. Repository-Directory, bezeichnet das von git erstellte unsichtbare `.git` 
+Verzeichnis in einem Repository. 
+Dieses Verzeichnis speichert alle Informationen über ein Repository. 
+D.h. sowohl *alle* Versionen der Dateien im Repo als auch alle Metainformationen wie z.B. 
+Commits oder Branch- und Tagnamen. 
+Die Arbeitskopien eines Repos liegen außerhalb des Repository-Verzeichnisses und werden als 
+[TERMREF::Arbeitsverzeichnis] bzw. Working-Directory bezeichnet.
+
 [TERM::Refactoring|Refaktorisierung]
 Eine Veränderung der Struktur einer Software, die das Verhalten der
 Software unverändert lässt. Dient zur Pflege der Struktur.
