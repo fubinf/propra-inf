@@ -65,19 +65,22 @@ und machen Sie sich klar, welche Treffer jetzt fehlen.
 Wir können ferner auch die Zeilennummern der Treffer mit anzeigen, um z.B. abschätzen zu können, 
 wie weit die Treffer auseinanderliegen.
 
-[EC] Finden Sie nochmal die Zeilen in `apt/apt.conf.d/50appstream`, die `component` enthalten, und 
-zeigen Sie diesmal die jeweilige Zeilennummer mit an.
+[EC] Finden Sie alle Zeilen in der Datei `pam.d/lightdm` die `pam` enthalten, und 
+zeigen Sie die jeweilige Zeilennummer mit an.
 
-Jetzt wissen wir, _welche_ Zeilen `component` enthalten. 
+Jetzt wissen wir, _welche_ Zeilen `pam` enthalten. 
 
 
 ### Treffer zählen
 
 Manchmal ist es hilfreich zu wissen, _wie oft_ ein Suchstring in der Datei aufgetreten ist, 
 um zum Beispiel aus vielen Dateien mit Suchtreffern auszuwählen, welche davon wir näher ansehen sollten.
+Dieses Beispiel ist sehr generisch, im Normalfall würde man nach etwas spezifischerem suchen.
 
-[EC] Zählen Sie, wie viele Zeilen in `apt/apt.conf.d/50appstream` `component` enthalten.
-
+[EC] Zählen Sie rekursiv, wie oft das Wort (!) `network` in allen Dateien im Ordner `apparmor.d`  vorkommt.
+Fügen Sie für das Kommandoprotokoll mit einer [TERMREF::Pipe] eine numerisch absteigende Sortierung hinzu: 
+`sort -nr -k2 -t: | head -10`.
+Die Ausgabe wäre ohne die [TERMREF::Pipe] sehr unübersichtlich. 
 
 ### Invers-Suche
 
