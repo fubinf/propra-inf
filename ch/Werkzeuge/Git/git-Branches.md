@@ -93,7 +93,7 @@ ref: refs/heads/master
 ```
 
 Was sehen wir hier? 
-Einen Verweis auf ein Unterverzeichnis vom [PARTREF::Repository-Verzeichnis].
+Einen Verweis auf ein Unterverzeichnis vom [TERMREF::Repository-Verzeichnis].
 Auch darauf werfen wir mal einen näheren Blick.
 
 ```terminaloutput
