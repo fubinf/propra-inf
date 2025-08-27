@@ -71,14 +71,15 @@ ganz einfach mit der Punktnotation zugreifen.)
 [ER] `sys.modules`: Verzeichnis der bislang geladenen Module (Name, Modul).
 Geben Sie die Schlüssel aus: `list(sys.modules.keys())`.
 
-[EQ] Schlagen Sie in der Python-Dokumentation eines davon nach, das Sie bislang nicht kannten,
+[EQ] Schlagen Sie in der Python-Dokumentation eines der geladenen Module nach, das Sie bislang nicht kannten,
 und erläutern Sie seinen Zweck in einem Satz.
-(Nicht wundern: Viele dieser Module werden in der Doku gar nicht besprochen.)
+(Nicht wundern: Viele dieser Module werden in der Doku gar nicht besprochen.
+Wählen Sie dann ein anderes.)
 
 [ER] `sys.path`: Liste der Pfade, in denen Module gesucht werden.
 Geben Sie die Liste aus.
 
-[EQ] Welcher dieser Pfade ist der Ort der Module, die Sie mit `pip` zusätzlich installiert haben?
+[EQ] Welcher der `sys.path`-Einträge ist der Ort der Module, die Sie mit `pip` zusätzlich installiert haben?
 
 Von diesen Systemparameterm gibt es noch viele andere.
 
