@@ -2,7 +2,6 @@ title: "pyenv: Python-Versionsverwaltung leicht gemacht"
 stage: draft
 timevalue: 1.5
 difficulty: 2
-explains: pyenv
 ---
 
 [SECTION::goal::product]
