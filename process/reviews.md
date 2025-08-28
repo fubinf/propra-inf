@@ -136,6 +136,4 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
 - Hmm, die Gruppe "Testgrundlagen" wird immer leerer.  
   Ist aber auch logisch: Das ist alles Theorie, passt also nicht von allein ins ProPra.
   Sondern nur, wenn man gute Reflektionsaufgaben findet oder einen empirischen "Forschungsteil" konstruiert.
-- ch/Testen/Unittests/unittest203.md (RR->Müller->LP->RR)
 - ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
-- ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
