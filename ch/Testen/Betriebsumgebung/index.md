@@ -15,8 +15,7 @@ von Betriebsumgebung für das Testen:
 - Staging- oder Qualitätssicherungsumgebung, wo man versucht, die endgültige Betriebsumgebung
   ("Produktionsumgebung") ziemlich genau zu duplizieren.
 
-Für unser einfaches SUT (siehe die Einführung unter [PARTREF::SystemUnderTest])
-ist das noch nicht sehr kompliziert.
+Für unser einfaches SUT ist das noch nicht sehr kompliziert.
 Zudem fallen die Fälle 1 und 3 weitgehend zusammen.
 
 Dennoch gibt es dazu einiges zu lernen und das ist der Zweck dieser Aufgabengruppe.

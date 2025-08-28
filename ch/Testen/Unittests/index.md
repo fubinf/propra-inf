@@ -54,7 +54,6 @@ graph TD
     pytest_mutation_testing --> m_pytest
     unittest102 --> m_unittest
     unittest_fixtures --> m_unittest
-    pytest202 --> pytest201
     pytest103 --> m_pytest
     pytest_methodik_blackboxtestverfahren --> m_pytest
     pytest_methodik_blackboxtestverfahren --> pytest_parametrize

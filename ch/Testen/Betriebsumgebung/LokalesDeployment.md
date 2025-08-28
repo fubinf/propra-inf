@@ -1,5 +1,5 @@
 title: Lokale Bereitstellung des System unter Test
-stage: alpha
+stage: draft
 timevalue: 1
 difficulty: 1
 explains: SUT

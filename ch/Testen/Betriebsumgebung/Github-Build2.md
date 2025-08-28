@@ -1,5 +1,5 @@
 title: GitHub Action - Unittests in der Pipeline
-stage: alpha
+stage: draft
 timevalue: 1.5
 difficulty: 3
 assumes: m_pytest, tdd, tdd_pp, testcoverage

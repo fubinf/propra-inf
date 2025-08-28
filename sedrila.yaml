@@ -197,7 +197,6 @@ chapters:
       - name: Refactoring-Grundlagen
       - name: Refactoring-Praxis
       - name: Festpreisprojekt
-      - name: SystemUnderTest
   - name: Web
     taskgroups:
       - name: Web-Grundlagen

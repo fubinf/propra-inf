@@ -1,9 +1,9 @@
 title: GitHub Action - CI/CD Pipeline
-stage: alpha
+stage: draft
 timevalue: 2
 difficulty: 2
 explains: Pipeline, SUT, Github, CI/CD, Flask
-assumes: flake8, SUT_v100, git-Branches
+assumes: flake8, git-Branches
 ---
 
 [SECTION::goal::idea]

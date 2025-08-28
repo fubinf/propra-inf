@@ -17,7 +17,6 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
 
 ### (on hold)
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->LP)
 - ch/Testen/Unittests/pytest_plugin_linter_flake8.md (RR-LP)
 - ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
 
@@ -99,7 +98,6 @@ Einsatzfälle für Mocking: Fehlerfälle induzieren, schwergewichtige Kollaborat
 
 - ch/Testen/Unittests/pytest_fixtures.md (RR->LP->RR->LP->RR)
 - ch/Testen/Unittests/pytest103.md (Pietrak und RR->DM->LP->RR)
-- ch/Testen/Unittests/pytest201.md (RR->DM->LP->RR)
 - ch/Testen/Unittests/pytest202.md (RR->Müller->LP->RR)
 - ch/Testen/Unittests/tdd.md (RR->DM->LP->RR)
 - ch/Testen/Unittests/tdd_pp.md (RR->LP->RR)
@@ -120,7 +118,6 @@ Typische Sorten von Tests: REST-APIs, Charakterisierungstests, ...
   siehe in der Datei
 
 ### Welle 3 oder sobald nötig
-- ch/Bestandscode/SystemUnderTest/SUT_v100.md (RR->LP)
 - ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
 - ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
 - ch/Sprachen/SQL/SQLBasic.md (RR->HA->LP->RR)  

@@ -3,7 +3,7 @@ stage: draft
 timevalue: 0
 difficulty: 3
 assumes: m_pytest, pytest_fixtures, mocking
-requires: LokalesDeployment, pytest201
+requires: LokalesDeployment
 ---
 
 [SECTION::goal::idea]
@@ -49,7 +49,7 @@ um die Leistung ihres Codes zu optimieren.
 ### Praktische Anwendung am Bestandscode
 
 Verwenden Sie das SUT, wie in der Aufgabe [PARTREF::LokalesDeployment] beschrieben. Nutzen Sie ferner
-die in Aufgabe [PARTREF::pytest201] erstellten Testfälle, um die Fixture anzuwenden.
+die in Aufgabe TODO erstellten Testfälle, um die Fixture anzuwenden.
 
 Lassen Sie alle Testfälle **9-fach** durchlaufen und bilden Sie den [TERMREF::Median] jedes Testfalls.
 
