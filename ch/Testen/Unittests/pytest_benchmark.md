@@ -2,7 +2,7 @@ title: Pytest in Python - Anwenden des Benchmark Fixtures
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: m_pytest, pytest_fixtures, mocking
+assumes: m_pytest, pytest_fixtures
 requires: LokalesDeployment
 ---
 

@@ -21,7 +21,6 @@ graph TD
     pytest_call["pytest_call.md"]
     pytest_plugin_testcoverage["pytest_plugin_testcoverage.md"]
     pytest_plugin_linter_flake8["pytest_plugin_linter_flake8.md"]
-    pytest_benchmark["pytest_benchmark.md"]
     tdd["tdd.md"]
     tdd_pp["tdd_pp.md"]
     testcoverage["testcoverage.md"]
@@ -36,7 +35,6 @@ graph TD
     pytest_call --> m_pytest
     pytest_plugin_testcoverage --> pytest_call
     pytest_plugin_linter_flake8 --> pytest_call
-    pytest_benchmark --> unittest201
     unittestPasswortgenerator --> m_pytest
     pytestPasswortgenerator --> m_pytest
     unittest201 --> m_unittest
@@ -61,7 +59,6 @@ graph TD
 - **pytest_call.md**: Behandelt die Steuerung der Testausführung mit `pytest`.
 - **pytest_plugin_testcoverage.md**: Zeigt, wie man mit `pytest-cov` die Testabdeckung analysiert.
 - **pytest_plugin_linter_flake8.md**: Behandelt die Integration von Flake8 in `pytest`.
-- **pytest_benchmark.md**: Führt in die Benchmarking-Funktionalität von `pytest` ein.
 - **unittestPasswortgenerator.md**: Zeigt, wie man Unittests für eine Passwortgenerator-Anwendung erstellt.
 - **pytestPasswortgenerator.md**: Zeigt, wie man Pytests für eine Passwortgenerator-Anwendung erstellt.
 - **tdd.md**: Einführung in Test-Driven Development (TDD).
