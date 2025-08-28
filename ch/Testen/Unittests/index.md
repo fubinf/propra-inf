@@ -22,17 +22,12 @@ graph TD
     pytest_plugin_testcoverage["pytest_plugin_testcoverage.md"]
     pytest_plugin_linter_flake8["pytest_plugin_linter_flake8.md"]
     pytest_benchmark["pytest_benchmark.md"]
-    unittest201["unittest201.md"]
-    unittest203["unittest203.md"]
     tdd["tdd.md"]
     tdd_pp["tdd_pp.md"]
     testcoverage["testcoverage.md"]
     pytest_mocking_freezegun["pytest_mocking_freezegun.md"]
     pytest_mutation_testing["pytest_mutation_testing.md"]
-    unittest102["unittest102.md"]
     unittest_fixtures["unittest_fixtures.md"]
-    pytest202["pytest202.md"]
-    pytest103["pytest103.md"]
     pytest_methodik_blackboxtestverfahren["pytest_methodik_blackboxtestverfahren.md"]
 
     m_pytest --> m_unittest
@@ -54,7 +49,6 @@ graph TD
     pytest_mutation_testing --> m_pytest
     unittest102 --> m_unittest
     unittest_fixtures --> m_unittest
-    pytest103 --> m_pytest
     pytest_methodik_blackboxtestverfahren --> m_pytest
     pytest_methodik_blackboxtestverfahren --> pytest_parametrize
 ```
@@ -72,15 +66,10 @@ graph TD
 - **pytest_benchmark.md**: Führt in die Benchmarking-Funktionalität von `pytest` ein.
 - **unittestPasswortgenerator.md**: Zeigt, wie man Unittests für eine Passwortgenerator-Anwendung erstellt.
 - **pytestPasswortgenerator.md**: Zeigt, wie man Pytests für eine Passwortgenerator-Anwendung erstellt.
-- **unittest201.md**: Erweiterung von `m_unittest.md` mit praktischen Beispielen.
-- **unittest203.md**: Erweiterung von `unittest201.md` mit Fokus auf TDD im Pair Programming.
 - **tdd.md**: Einführung in Test-Driven Development (TDD).
 - **tdd_pp.md**: Anwendung von TDD im Pair Programming.
 - **testcoverage.md**: Behandelt die Analyse der Testabdeckung mit `pytest`.
 - **pytest_mocking_freezegun.md**: Zeigt, wie man mit Freezegun zeitabhängige Tests erstellt.
 - **pytest_mutation_testing.md**: Einführung in Mutation Testing mit pytest.
-- **unittest102.md**: Grundlagen von Unittests mit Flask-Testing.
 - **unittest_fixtures.md**: Verwendung von Fixtures mit dem Standard-Testframework `unittest`.
-- **pytest202.md**: TDD mit pytest im Pair Programming.
-- **pytest103.md**: Verwendung von Marks in pytest zur Organisation von Tests.
 - **pytest_methodik_blackboxtestverfahren.md**: Einführung in Blackbox-Testing mit pytest, einschließlich der Testmethoden Äquivalenzklassen, Randwertanalyse und Eckwertanalysen.

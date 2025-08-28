@@ -97,8 +97,6 @@ Einsatzfälle für Mocking: Fehlerfälle induzieren, schwergewichtige Kollaborat
   beziehen und weiterführen
 
 - ch/Testen/Unittests/pytest_fixtures.md (RR->LP->RR->LP->RR)
-- ch/Testen/Unittests/pytest103.md (Pietrak und RR->DM->LP->RR)
-- ch/Testen/Unittests/pytest202.md (RR->Müller->LP->RR)
 - ch/Testen/Unittests/tdd.md (RR->DM->LP->RR)
 - ch/Testen/Unittests/tdd_pp.md (RR->LP->RR)
 
@@ -138,11 +136,6 @@ Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets v
 - Hmm, die Gruppe "Testgrundlagen" wird immer leerer.  
   Ist aber auch logisch: Das ist alles Theorie, passt also nicht von allein ins ProPra.
   Sondern nur, wenn man gute Reflektionsaufgaben findet oder einen empirischen "Forschungsteil" konstruiert.
-- ch/Testen/Unittests/unittest102.md (RR->DM->HA->RR)
-- ch/Testen/Unittests/unittest201.md (RR->DM->HA->LP->RR):
-  Hier habe ich vor allem die Abgabe anders fromuliert. Auf Matrikelnummer im Namen der Abgabedatei
-  kann verzichtet werden. Bitte überprüfen.
-  Schwierigkeit und timevalue habe ich auch entsprechend erhöht.
 - ch/Testen/Unittests/unittest203.md (RR->Müller->LP->RR)
 - ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
 - ch/Testen/Unittests/mocking.md (Pietrak und RR->DM->HA->LP->RR)
