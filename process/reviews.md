@@ -9,17 +9,6 @@ Do not add new entries here.
 **Ich reviewe pro Kapitel die Einträge von oben nach unten. 
 Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge entscheiden.**
 
-### Testen
-- ch/Testen/Unittests/pytest_mocking.md (RR->DM->HA->LP->RR->LP->RR->LP)
-- ch/Testen/Unittests/pytest_mocking_freezegun.md (RR->DM->HA->LP->RR->LP->RR->LP) - leichte Überarbeitung
-- ch/Testen/Betriebsumgebung/GitHub-Build.md (RR->LP->RR->LP)
-- ch/Testen/Betriebsumgebung/Github-Build2.md (RR->LP->RR->LP)
-
-### (on hold)
-- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
-- ch/Testen/Unittests/pytest_plugin_linter_flake8.md (RR-LP)
-- ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
-
 -------------------------------------------------------------------------------------------
 
 ## Rework to do for Hanen Alrwasheda
@@ -74,66 +63,3 @@ Bitte also neues unten anhängen oder ggf. selbst sinnvolle andere Reihenfolge e
   Ich finde a) dass der Theorieteil am Anfang reichlich lang ist, bis was Hübsches passiert, und
   b) dass man gern etwas mehr Fun-Faktor haben könnte, z.B. mit supergroßem Titel.  
   Ist aber jetzt schon mal beta.
-
-
-## Rework to do for Ronny Ruhe
-
-Ich schlage (nur aus dem Gedächtnis, das kann also teilweise unpassend sein)
-seeehr grob folgende Vorgehensweise und Arbeitsreihenfolge vor.
-Die Teile heißen inzwischen teils ganz anders, mein Vorschlag ist nach ungefähren Themenkreisen
-gedacht:
-
-### Zuerst diese konsolidieren (Reihenfolge ist alphabetisch gemeint)
-Unittest-Frameworks: `unittest` (nur elementare Nutzung),
-`pytest` (und die wichtigsten Bells and Whistles).  
-Außerdem Methodik des Testfallentwurfs für Modultests mit Äquivalenzklassen, Randfällen,
-Fehlerfällen, Whitebox/Strukturtest.  
-Einsatzfälle für Mocking: Fehlerfälle induzieren, schwergewichtige Kollaborateure loswerden.
-
-- ch/Testen/Unittests/pytest-Methodik-Whitebox.md (RR->LP->RR)
-- ch/Testen/Unittests/testcoverage.md (RR->LP->RR) Streichen, relevante Reste pytest_plugin_testcoverage.md
-  aufnehmen
-- ch/Testen/Unittests/pytest_plugin_testcoverage.md (RR->LP->RR) Auf die Testmethoden und pytest_call
-  beziehen und weiterführen
-
-- ch/Testen/Unittests/pytest_fixtures.md (RR->LP->RR->LP->RR)
-- ch/Testen/Unittests/tdd.md (RR->DM->LP->RR)
-- ch/Testen/Unittests/tdd_pp.md (RR->LP->RR)
-
-### Welle 2
-Weitere Unittest-Frameworks kurz antippen: `nosetest`, `doctest`, `robot`.  
-Weitere nette pytest-Plugins.  
-Typische Sorten von Tests: REST-APIs, Charakterisierungstests, ...
-
-- ch/Testen/Testframeworks/index.md (RR->CH->LP->RR)
-- ch/Testen/Testframeworks/Robot.md (RR->CH->LP->RR->LP->RR)
-- ch/Testen/Unittests/pytest_benchmark.md (RR->DM)
-- ch/Testen/Unittests/pytest_plugin_linter_flake8.md (RR-LP)
-- ch/Testen/API/ResponseApi.md (RR->CH->LP->RR)
-- ch/Testen/API/CRUDApi.md (RR->CH->LP->RR)
-- ch/Testen/API/RestApi.md (RR->CH->LP->RR)
-- ch/Werkzeuge/Linter/black.md (Ruhe->HA->CH->LP->RR)  
-  siehe in der Datei
-
-### Welle 3 oder sobald nötig
-- ch/Testen/Betriebsumgebung/LokalesDeployment.md (RR -> LP) Grundlage für weitere Task
-- ch/Bibliotheken/Python-Standardbibliothek/jsonPerformance.md (RR->CH->LP)
-- ch/Sprachen/SQL/SQLBasic.md (RR->HA->LP->RR)  
-  Bitte verfrachten Sie den allgemeinen Teil von Background ins Glossar.
-  Ein Eintrag für SQL, einer für DBMS/RDBMS, die aufeinander verweisen.
-  Es bleibt nur der Hinweis auf SQlite in der Aufgabe stehen.
-- ch/Sprachen/SQL/SQLSelect.md (RR->HA->LP->RR)
-- ch/Sprachen/SQL/SQLJoin.md (RR->HA->LP->RR)
-- ch/Sprachen/SQL/SQLProject.md (RR->HA->LP->RR)
-
-### vermutlich eher wegwerfen?
-Methodisches passt ins ProPra nur, wenn es in praktische Aufgaben gekleidet daherkommt.
-Von `unittest` behandeln wir nur die Grundlagen und ziehen dann `pytest` stets vor.
-
-- ch/Testen/Testgrundlagen/Testabgrenzung.md (RR->LP->RR)
-- ch/Testen/Testgrundlagen/Testcases-Testsuites-Testplans.md (RR->LP->RR)
-- ch/Testen/Testgrundlagen/Testpyramide.md (RR->LP->RR)
-- Hmm, die Gruppe "Testgrundlagen" wird immer leerer.  
-  Ist aber auch logisch: Das ist alles Theorie, passt also nicht von allein ins ProPra.
-  Sondern nur, wenn man gute Reflektionsaufgaben findet oder einen empirischen "Forschungsteil" konstruiert.
-- ch/Testen/Unittests/m_unittest_fixtures.md (RR->LP->RR)
