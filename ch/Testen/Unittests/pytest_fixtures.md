@@ -1,6 +1,6 @@
 title: Fixtures mit dem Pytest Framework
-stage: alpha
-timevalue: 3
+stage: draft
+timevalue: 0
 difficulty: 3
 assumes: m_pytest
 ---
