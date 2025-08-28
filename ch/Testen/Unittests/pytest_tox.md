@@ -1,6 +1,6 @@
 title: "Pytest und tox: professionelles Test-Management"
 stage: draft
-timevalue: 2.0
+timevalue: 0
 difficulty: 4
 assumes: m_pytest, pytest_parametrize, pytest_plugin_testcoverage, m_tox
 ---
