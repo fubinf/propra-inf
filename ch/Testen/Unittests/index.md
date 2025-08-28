@@ -27,7 +27,6 @@ graph TD
     testcoverage["testcoverage.md"]
     pytest_mocking_freezegun["pytest_mocking_freezegun.md"]
     pytest_mutation_testing["pytest_mutation_testing.md"]
-    unittest_fixtures["unittest_fixtures.md"]
     pytest_methodik_blackboxtestverfahren["pytest_methodik_blackboxtestverfahren.md"]
 
     m_pytest --> m_unittest
@@ -48,7 +47,6 @@ graph TD
     pytest_mocking_freezegun --> pytest_mocking
     pytest_mutation_testing --> m_pytest
     unittest102 --> m_unittest
-    unittest_fixtures --> m_unittest
     pytest_methodik_blackboxtestverfahren --> m_pytest
     pytest_methodik_blackboxtestverfahren --> pytest_parametrize
 ```
@@ -71,5 +69,4 @@ graph TD
 - **testcoverage.md**: Behandelt die Analyse der Testabdeckung mit `pytest`.
 - **pytest_mocking_freezegun.md**: Zeigt, wie man mit Freezegun zeitabhängige Tests erstellt.
 - **pytest_mutation_testing.md**: Einführung in Mutation Testing mit pytest.
-- **unittest_fixtures.md**: Verwendung von Fixtures mit dem Standard-Testframework `unittest`.
 - **pytest_methodik_blackboxtestverfahren.md**: Einführung in Blackbox-Testing mit pytest, einschließlich der Testmethoden Äquivalenzklassen, Randwertanalyse und Eckwertanalysen.
