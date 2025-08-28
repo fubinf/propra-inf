@@ -1,6 +1,6 @@
 title: Performance von JSON-Objekte
-stage: alpha
-timevalue: 1.5
+stage: draft
+timevalue: 0
 difficulty: 2
 explains: JSON
 assumes: m_json2
