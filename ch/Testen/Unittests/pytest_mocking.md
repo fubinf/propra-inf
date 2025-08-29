@@ -1,8 +1,8 @@
 title: "'unittest.mock': Ersetzen von Objekten für Testzwecke"
 stage: alpha
 timevalue: 3.0
-difficulty: 2
-assumes: m_pytest, m_json1
+difficulty: 3
+assumes: m_pytest
 ---
 
 [SECTION::goal::idea]
@@ -208,7 +208,7 @@ Der Zugriff auf echte Datenbanken bringt viele Herausforderungen mit sich – vo
   werden, um keine echte Datenbank zu verwenden.
 
 ```Python
-# mock_example_5
+# mock_example_5.py
 
 import sqlite3
 
@@ -303,6 +303,8 @@ Nutzen Sie den folgenden Artikel von Robert C. Martin (oft genannt "Uncle Bob") 
 
 Reichen Sie für jede der Aufgaben [EREFR::1], [EREFR::2], [EREFR::3], [EREFR::4], [EREFR::5],
 [EREFR::6] und [EREFR::7] eine Python-Dateien ein.
+
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 
