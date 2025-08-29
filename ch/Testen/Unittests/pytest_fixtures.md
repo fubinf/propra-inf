@@ -1,6 +1,6 @@
 title: Fixtures mit dem Pytest Framework
-stage: draft
-timevalue: 0
+stage: alpha
+timevalue: 2.5
 difficulty: 3
 assumes: m_pytest
 ---
@@ -31,6 +31,9 @@ um die nachfolgenden Aufgaben zu lösen:
 Fügen Sie folgenden Test ein und ergänzen Sie die fehlende Fixture-Markierung:
 
 ```python
+import pytest
+
+@pytest.fixture
 def example_fixture():
     return "Hello, World!"
 
@@ -49,17 +52,21 @@ Das gleiche Prinzip funktioniert natürlich auch mit komplexeren Datenstrukturen
 Prüfen Sie in `test_user_data()` trivial, ob der Nutzername und die Email-Adresse korrekt sind.
 
 ```python
+import pytest
+
 class User:
     def __init__(self, username, email):
         self.username = username
         self.email = email
 
 @pytest.fixture
-def user_data2():
+def user_data():
     return User(username="testuser", email="testuser@example.com")
 
-def test_user_data2():
-   # Ergänzen Sie die fehlenden Asserts
+def test_user_data(user_data):
+    # Ergänzen Sie die fehlenden Asserts
+    assert user_data.username == "testuser"
+    assert user_data.email == "testuser@example.com"
 ```
 
 
@@ -70,11 +77,20 @@ Ein Test kann auch mehr als eine Fixture benutzen.
 [ER] Ergänzen Sie die fehlenden Fixtures, damit das (unveränderte) `test_combined_data()` funktioniert.
 
 ```python
+import pytest
 
 class Product:
     def __init__(self, name, price):
         self.name = name
         self.price = price
+
+@pytest.fixture
+def user_data3():
+    return [User(f"testuser{i}", f"testuser{i}@example.com") for i in range(1, 4)]
+
+@pytest.fixture
+def product_data3():
+    return [Product(f"Product{i}", i * 10.0) for i in range(1, 4)]
 
 def test_combined_data(user_data3, product_data3):
     assert len(user_data3) == 3
@@ -95,6 +111,8 @@ Beide Fixtures liefern eine Liste, nicht nur ein einzelnes Objekt.
 Verwenden Sie die folgende Klasseninitialisierung, um ...
 
 ```python
+import pytest
+
 class User:
     def __init__(self, username, email):
         self.username = username
@@ -144,8 +162,15 @@ Sie [hier](https://docs.pytest.org/en/stable/reference/fixtures.html#built-in-fi
 Betrachten Sie die folgende Funktion:
 
 ```python
+import pytest
+
 def greet(name):
     print(f"Hello, {name}!")
+
+def test_greet_output(capsys):
+    greet("World")
+    captured = capsys.readouterr()
+    assert captured.out == "Hello, World!\n"
 ```
 
 - [ER] Erstellen Sie einen Test, der die Ausgabe von `stdout` mit `capsys` abfängt und überprüft, ob die Begrüßung korrekt ist.
@@ -159,9 +184,17 @@ Weitere Informationen zur Verwendung von `capsys` finden Sie in der [Pytest-Doku
 Betrachten Sie die folgende Funktion:
 
 ```python
+import pytest
+
 def write_to_file(file_path, content):
     with open(file_path, 'w') as f:
         f.write(content)
+
+def test_write_to_file(tmpdir):
+    file_path = tmpdir.join("test.txt")
+    content = "Hello, pytest!"
+    write_to_file(str(file_path), content)
+    assert file_path.read() == content
 ```
 
 - [ER] Erstellen Sie einen Test, der ein temporäres Verzeichnis mit `tmpdir` verwendet, um eine Datei zu erstellen und deren Inhalt zu überprüfen.
@@ -175,10 +208,16 @@ Weitere Informationen zur Verwendung von `tmpdir` finden Sie in der [Pytest-Doku
 Betrachten Sie die folgende Funktion:
 
 ```python
+import pytest
 import os
 
 def get_current_directory():
     return os.getcwd()
+
+def test_get_current_directory(monkeypatch):
+    test_dir = "/test/directory"
+    monkeypatch.setattr(os, "getcwd", lambda: test_dir)
+    assert get_current_directory() == test_dir
 ```
 
 - [ER] Erstellen Sie einen Test, der die Funktion `get_current_directory` mit `monkeypatch` patcht und überprüft, ob das aktuelle Verzeichnis korrekt zurückgegeben wird.
@@ -249,9 +288,17 @@ Weitere Informationen zur Verwendung von `autouse` in Fixtures finden Sie in der
 Betrachten Sie die folgende Funktion:
 
 ```python
+import pytest
+
 def write_to_file(file_path, content):
     with open(file_path, 'w') as f:
         f.write(content)
+
+def test_write_to_file_tmp_path(tmp_path):
+    file_path = tmp_path / "test.txt"
+    content = "Hello, tmp_path!"
+    write_to_file(file_path, content)
+    assert file_path.read_text() == content
 ```
 
 - [ER] Erstellen Sie einen Test, der ein temporäres Verzeichnis mit `tmp_path` verwendet, um eine Datei zu erstellen und deren Inhalt zu überprüfen.
@@ -265,10 +312,16 @@ Weitere Informationen zur Verwendung von `tmp_path` finden Sie in der [Pytest-Do
 Betrachten Sie die folgende Funktion:
 
 ```python
+import pytest
 import logging
 
 def log_message(message):
     logging.info(message)
+
+def test_log_message(caplog):
+    with caplog.at_level(logging.INFO):
+        log_message("Test message")
+    assert "Test message" in caplog.text
 ```
 
 - [ER] Erstellen Sie einen Test, der die Log-Ausgabe mit `caplog` abfängt und überprüft, ob die Nachricht korrekt geloggt wurde.
@@ -291,199 +344,8 @@ Sie haben eine kleine Übersicht über nützliche Fixtures kennengelernt.
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
-[ENDSECTION]
-[INSTRUCTOR::Kommandoprotokoll prüfen]
+[INSTRUCTOR::Prüfhilfen]
 
-- [EREFR::1]: Hier fehlt lediglich der Decorator `@pytest.fixture` über `example_fixture()`
-- [EREFR::2]: Ein Test könnte so aussehen:
-
-```python
-def test_user_data(user_data):
-    assert user_data.username == "testuser"
-    assert user_data.email == "testuser@example.com"
-```
-
-- [EREFR::3]: Es sollten folgende Daten vorhanden sein, damit der Test erfolgreich abgeschlossen wird:
-
-```python
-@pytest.fixture
-def user_data():
-    users = [
-        User(username="testuser1", email="testuser1@example.com"),
-        User(username="testuser2", email="testuser2@example.com"),
-        User(username="testuser3", email="testuser3@example.com")
-    ]
-    return users
-
-@pytest.fixture
-def product_data():
-    products = [
-        Product(name="Product1", price=10.99),
-        Product(name="Product2", price=15.49),
-        Product(name="Product3", price=7.99)
-    ]
-    return products
-```
-
-- [EREFQ::1] `@pytest.fixture` ist für den Zweck tabellengesteuerter Tests nicht der beste Mechanismus,
-  weil dann alle Eingabedatensätze in nur einem Test benutzt werden müssen und wenn einer davon
-  fehlschlägt, sieht man nicht, was beim Rest passiert.
-
-- [EREFC::1] Konsolenauszug:
-
-```bash
-================================================================== test session starts ==================================================================
-platform darwin -- Python 3.9.6, pytest-8.2.1, pluggy-1.5.0
-rootdir: <removed_by_author>
-collected 3 items                                                                                                                                       
-
-test_main.py ...                                                                                                                                  [100%]
-
-=================================================================== 3 passed in 0.01s ===================================================================
-```
-
-- [EREFR::4] Eine mögliche Lösung könnte so aussehen - Wichtigster Punkt (yield im Fixture zu verwenden)
-
-```python
-@pytest.fixture
-def user_setup_teardown():
-    print("\nSetup: Benutzer wird erstellt")
-    user = User(username="testuser", email="testuser@example.com")
-    yield user
-    print("\nTeardown: Benutzer wird gelöscht")
-    del user
-
-def test_user(user_setup_teardown):
-    user = user_setup_teardown
-    assert user.username == "testuser"
-    assert user.email == "testuser@example.com"
-```
-
-- [EREFR::5] Ergänzt wurde der Dekorierer-Parameter: `@pytest.fixture(scope="session")`
-- [EREFR::6] Das Auslagern muss in dieser speziellen Datei geschehen und die Klasse `User` muss
-  ebenfalls mitgenommen werden.
-
-- [EREFR::7] Eine mögliche Umsetzung:
-
-```python
-def test_cache(cache):
-    value = cache.get("example_key", None)
-    if value is None:
-        cache.set("example_key", "example_value")
-    assert cache.get("example_key", None) == "example_value"
-```
-
-- [EREFQ::2] Nein, die Funktion kann korrekt sein, denn die Funktion speichert Daten nur innerhalb
-  von Python und nicht im Browser. Um hier diesen Wert zur Verfügung zu stellen, müsste man ein
-  Framework wie Flask, Django oder ähnlichem verwendet. (Automatisiert dann über eine Testautomatisierungs-
-  lösung wie Selenium oder mittels JS auslesen)
-
-- [EREFR::8] Beispiel-unittests für eingebaute Fixtures:
-
-```python
-import pytest
-
-def greet(name):
-    print(f"Hello, {name}!")
-
-def test_capsys(capsys):
-    greet("World")
-    captured = capsys.readouterr()
-    assert captured.out == "Hello, World!\n"
-
-def write_to_file(file_path, content):
-    with open(file_path, 'w') as f:
-        f.write(content)
-
-def test_tmpdir(tmpdir):
-    temp_file = tmpdir.join("temp_file.txt")
-    write_to_file(temp_file, "Hello, World!")
-    assert temp_file.read() == "Hello, World!"
-
-import os
-
-def get_current_directory():
-    return os.getcwd()
-
-def test_monkeypatch(monkeypatch):
-    monkeypatch.setattr(os, "getcwd", lambda: "/tmp")
-    assert get_current_directory() == "/tmp"
-```
-
-- [EREFC::2] Konsolenauszug:
-
-```bash
-================================================================== test session starts ==================================================================
-platform darwin -- Python 3.9.6, pytest-8.2.1, pluggy-1.5.0
-rootdir: <removed_by_author>
-collected 3 items                                                                                                                                       
-
-test_pytest_built_in_fixtures.py ...                                                                                                              [100%]
-
-=================================================================== 3 passed in 0.01s ===================================================================
-```
-
-- [EREFR::9] Beispiel-unittests für erweiterte und eingebaute Fixtures:
-
-```python
-import pytest
-import logging
-
-class Database:
-    def connect(self):
-        print("Connecting to database")
-    def disconnect(self):
-        print("Disconnecting from database")
-
-@pytest.fixture
-def db():
-    db = Database()
-    db.connect()
-    yield db
-    db.disconnect()
-
-def test_db_connection(db):
-    assert db is not None
-
-@pytest.fixture(autouse=True)
-def setup_teardown():
-    print("Setup")
-    yield
-    print("Teardown")
-
-def test_example():
-    assert True
-
-def write_to_file(file_path, content):
-    with open(file_path, 'w') as f:
-        f.write(content)
-
-def test_tmp_path(tmp_path):
-    temp_file = tmp_path / "temp_file.txt"
-    write_to_file(temp_file, "Hello, World!")
-    assert temp_file.read_text() == "Hello, World!"
-
-def log_message(message):
-    logging.info(message)
-
-def test_caplog(caplog):
-    log_message("Test message")
-    assert "Test message" in caplog.text
-```
-
-- [EREFC::3] Konsolenauszug:
-
-```bash
-================================================================== test session starts ==================================================================
-platform darwin -- Python 3.9.6, pytest-8.2.1, pluggy-1.5.0
-rootdir: <removed_by_author>
-collected 5 items                                                                                                                                       
-
-test_pytest_yield_fixture.py .                                                                                                                     [ 20%]
-test_pytest_autouse_fixture.py .                                                                                                                   [ 40%]
-test_pytest_more_built_in_fixtures.py ...                                                                                                          [100%]
-
-=================================================================== 5 passed in 0.02s ===================================================================
-```
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
