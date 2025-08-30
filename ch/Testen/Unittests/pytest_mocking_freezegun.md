@@ -1,7 +1,7 @@
 title: Freezegun - Zeitreise mittels Python-Tests
 stage: alpha
-timevalue: 1
-difficulty: 2
+timevalue: 2
+difficulty: 3
 assumes: pytest_mocking, m_pytest
 ---
 
@@ -15,8 +15,10 @@ Risiken die Verwendung birgt.
 [SECTION::background::default]
 
 Angenommen, Sie arbeiten an einem Projekt, in dem zeitgesteuerte Abläufe eine zentrale Rolle spielen,
-sei es das Auslösen eines Alarms im Kalender oder die regelmäßige Protokollierung von Daten. Doch
-für effektive Tests ist es oft unpraktisch, sich auf die aktuelle Systemzeit zu verlassen. Hier
+sei es das Auslösen eines Alarms im Kalender oder die regelmäßige Protokollierung von Daten.
+Doch
+für effektive Tests ist es oft unpraktisch, sich auf die aktuelle Systemzeit zu verlassen.
+Hier
 kommt das Python-Paket "freezegun" ins Spiel.
 
 Freezegun ermöglicht es, die Zeit in Ihren Tests einzufrieren und zu manipulieren, sodass Sie
@@ -28,7 +30,8 @@ zeitabhängige Logik zuverlässig testen können.
 ### Freezgun kennenlernen und vorbereiten
 
 Machen Sie sich mit der Freezegun [Dokumentation](https://pypi.org/project/freezegun/) vertraut und
-bearbeiten Sie folgende Schritte. Verwenden Sie zur Bearbeitung der Aufgaben das Pytest Framework.
+bearbeiten Sie folgende Schritte.
+Verwenden Sie zur Bearbeitung der Aufgaben das Pytest Framework.
 
 Installieren Sie Freezegun.
 
@@ -36,9 +39,11 @@ Installieren Sie Freezegun.
 
 ### Codebasis verstehen
 
+Um das wesentliche Verständnis von Freezegun zu vermitteln, bedienen wir uns einer einfachen
+Codebasis.
 Betrachten Sie den folgenden Code.
 
-```Python
+```python
 from datetime import datetime, timedelta
 
 class Product:
@@ -91,15 +96,16 @@ class Product:
 
 Was machen die folgenden Funktionsaufrufe?
 
-- [EQ] Product()
-- [EQ] Product().buy()
-- [EQ] Product().buy(purchase_date=datetime(2023, 12, 1))
-- [EQ] Product().buy().extend_warranty()
-- [EQ] Product().buy().has_warranty()
+- [EQ] `Product()`
+- [EQ] `Product().buy()`
+- [EQ] `Product().buy(purchase_date=datetime(2023, 12, 1))`
+- [EQ] Ein Produkt kaufen und dann die Garantie erweitern: Erstellen Sie Code für diese Operationen
+- [EQ] Ein Produkt kaufen und dann prüfen, ob Garantie vorhanden: Erstellen Sie Code für diese Operationen
 
 ### Unittests erstellen
 
-- [ER] Erstellen Sie Pytests, die folgendes abdecken:
+- [ER] Erstellen Sie zunächst eine Datei `product.py` mit dem obigen `Product`-Code.
+- [ER] Erstellen Sie eine Testdatei `test_product_freezegun.py` mit Pytests, die folgendes abdecken:
 
 - **test_initial_warranty:** ob das Produkt unmittelbar nach dem Kauf eine Garantie hat. Der Test friert
   die Zeit auf ein Datum innerhalb der 12 Monate ein und erwartet, dass die Garantie aktiv ist.
@@ -115,8 +121,8 @@ Was machen die folgenden Funktionsaufrufe?
   auslöst. Der Test erwartet eine ValueError-Ausnahme mit der entsprechenden Nachricht.
 - **test_extended_warranty_expired_after_24_months:** ob die verlängerte Garantie nach 24 Monaten abläuft.
   Der Test erwartet, dass die Garantie zu diesem Zeitpunkt abgelaufen ist.
-- **test_product_expiry:** ob ein Produkt nach einer bestimmten Zeitspanne abgelaufen ist. Der Test
-  friert die Zeit auf ein Datum nach Ablauf der Zeitspanne ein und erwartet, dass das Produkt als
+- **test_product_expiry:** ob ein Produkt nach einer bestimmten Zeitspanne abgelaufen ist.
+  Der Test friert die Zeit auf ein Datum nach Ablauf der Zeitspanne ein und erwartet, dass das Produkt als
   abgelaufen markiert wird.
 
 ### Testausführung
@@ -138,95 +144,8 @@ Was machen die folgenden Funktionsaufrufe?
 
 [ENDSECTION]
 
-[INSTRUCTOR::Kommandoprotokoll und Markdown prüfen]
+[INSTRUCTOR::Prüfhilfen]
 
-- [EREFC::1] Version sollte > 1.5.1 sein
-- [EREFQ::1] Packt ein Produkt in den Warenkorb / Erstellt ein (Produkt)-Objekt
-- [EREFQ::2] Kauft das Objekt zum aktuellen Zeitpunkt
-- [EREFQ::3] Kauft das Objekt zum angegebenen Zeitpunkt
-- [EREFQ::4] Erweitert die Garantiezeit (falls möglich)
-- [EREFQ::5] Prüft aktuelle Garantiezeit
-
-- [EREFR::1]:
-
-Beispiel-unittests für Pytest:
-
-```python
-import pytest
-from datetime import datetime, timedelta
-from freezegun import freeze_time
-from main import Product
-
-@freeze_time("2024-01-01")
-def test_initial_warranty():
-    product = Product()
-    product.buy()
-    assert product.has_warranty()
-
-@freeze_time("2025-01-01")
-def test_warranty_expired_after_12_months():
-    purchase_date = datetime(2024, 1, 1)
-    product = Product()
-    product.buy(purchase_date=purchase_date)
-    assert not product.has_warranty()
-
-@freeze_time("2024-01-31")
-def test_extended_warranty_expandable_for_24_months_within_30_days():
-    purchase_date = datetime(2024, 1, 1)
-    product = Product()
-    product.buy(purchase_date=purchase_date)
-    product.extend_warranty()
-    assert product.has_warranty()
-
-@freeze_time("2024-02-01")
-def test_extended_warranty_not_expandable_for_24_months_after_31_days():
-    purchase_date = datetime(2024, 1, 1)
-    product = Product()
-    product.buy(purchase_date=purchase_date)
-    with pytest.raises(ValueError, match="Warranty extension can only be purchased within 1 month of the purchase date"):
-        product.extend_warranty()
-
-@freeze_time("2024-01-31")
-def test_extended_warranty_twice():
-    purchase_date = datetime(2024, 1, 1)
-    product = Product()
-    product.buy(purchase_date=purchase_date)
-    product.extend_warranty()
-    with pytest.raises(ValueError, match="Warranty extension can only be expanded once"):
-        product.extend_warranty()
-
-@freeze_time("2026-01-02")
-def test_extended_warranty_expired_after_24_months():
-    purchase_date = datetime(2024, 1, 1)
-    product = Product()
-    product.buy(purchase_date=purchase_date)
-    with freeze_time("2024-01-02"):
-        product.extend_warranty()
-    assert not product.has_warranty()
-
-@freeze_time("2025-01-01")
-def test_product_expiry():
-    # Eine Ablaufüberprüfung
-    def is_product_expired(expiry_date):
-        return datetime.now() > expiry_date
-
-    expiry_date = datetime(2024, 1, 1)
-    assert is_product_expired(expiry_date)
-```
-
-- [EREFC::2] Mindestens 7 positive Testfallausführungen vorhanden
-
-```bash
-(.venv) student@MBP test % pytest
-=================================== test session starts ====================================
-platform darwin -- Python 3.13.1, pytest-8.3.4, pluggy-1.5.0
-rootdir: /Users/student/test
-collected 7 items                                                                          
-
-test_file.py .......                                                           [100%]
-
-==================================== 9 passed in 0.04s =====================================
-(.venv) student@MBP test % 
-```
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
