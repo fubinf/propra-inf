@@ -1,6 +1,6 @@
 title: SQL BETWEEN, SELECT INTO, CREATE DATABASE, Datumsfunktionen, NULL-Funktionen, TRUNCATE, INDEX
 stage: alpha
-timevalue: 2
+timevalue: 2.0
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2
 ---

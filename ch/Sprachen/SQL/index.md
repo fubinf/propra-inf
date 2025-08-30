@@ -56,7 +56,12 @@ Die SQL-Aufgaben in diesem Kapitel bauen systematisch aufeinander auf:
   - `CASE`-Anweisungen für bedingte Logik
 - **[sql-misc](sql-misc.html)**: Spezielle Funktionen und Optimierung
   - `BETWEEN`, `SELECT INTO`, Datumsfunktionen
-  - NULL-Behandlung, `TRUNCATE`, Indizes
+  - NULL-Behandlung, `TRUNCATE`
+- **[sql-INDEX](sql-INDEX.html)**: Performance-Optimierung durch Indizes
+  - `CREATE INDEX`, `DROP INDEX`, `UNIQUE INDEX`
+  - Performance-Messung mit und ohne Indizes
+  - Einfache, eindeutige und mehrspaltige Indizes
+  - Praktische Überlegungen zur Index-Strategie
 
 ## Praktische Lernhilfen
 
