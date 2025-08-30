@@ -1,6 +1,6 @@
 title: SQL BETWEEN, SELECT INTO, CREATE DATABASE, Datumsfunktionen, NULL-Funktionen, TRUNCATE, INDEX
 stage: alpha
-timevalue: 2.5
+timevalue: 2
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2
 ---
@@ -39,7 +39,9 @@ Erstellen Sie zunächst eine neue Tabelle für diese Aufgabe.
 (3, 'Runoob', 'http://www.runoob.com/', 5000, 'USA'),
 (4, 'Weibo', 'http://weibo.com/', 20, 'CN'),
 (5, 'Facebook', 'https://www.facebook.com/', 3, 'USA'),
-(7, 'Stackoverflow', 'http://stackoverflow.com/', 0, 'IND');
+(7, 'Stackoverflow', 'http://stackoverflow.com/', 0, 'IND'),
+(8, 'Spiegel Online', 'https://www.spiegel.de/', NULL, 'DE'),
+(9, 'Heise Online', 'https://www.heise.de/', 99999, 'DE');
 ```
 Verwenden Sie die aus [PARTREF::sql-basics] bekannte Methode zur Tabellenerstellung.
 
@@ -251,45 +253,8 @@ und vergleichen Sie visuell, wie schnell die verschiedenen Methoden sind.
 `TRUNCATE` ist in anderen DBMS schneller als `DELETE`, da es keine Transaktionslogs schreibt 
 und die Tabellendefinition behält, aber alle Daten entfernt.
 [ENDNOTICE]
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
-
-### Indizes verwalten: `CREATE INDEX`, `DROP INDEX`
-
-Indizes beschleunigen Abfragen, benötigen aber zusätzlichen Speicherplatz:
-
-```sql
-CREATE INDEX myindex ON mytable (mycol);
--- eindeutigen Index mit UNIQUE
-CREATE UNIQUE INDEX myindex ON mytable (mycol);
-DROP INDEX myindex;
-```
-
-(Optional) Erweiterte Index-Konzepte unter 
-[`Indexes`](https://www.w3schools.com/sql/sql_create_index.asp)
-
-[ER] Erstellen Sie einen Index auf der `alexa`-Spalte der `websites`-Tabelle:
-
-[ER] Erstellen Sie einen eindeutigen Index auf der `name`-Spalte:
-
-[ER] Testen Sie die Abfragelogik: Führen Sie `SELECT * FROM websites WHERE alexa = 1` 
-aus und beobachten Sie, dass die Abfrage korrekt funktioniert.
-
-[ER] Löschen Sie den `idx_alexa`-Index wieder: `DROP INDEX idx_alexa;`
-
-[ER] Verwenden Sie die Abfrage 
-`SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = 'websites';` 
-um zu sehen, welche Indizes noch existieren.
-
-[NOTICE]
-Bei kleinen Tabellen ist der Performance-Unterschied kaum messbar. 
-Indizes zeigen ihre Vorteile erst bei größeren Datenmengen (> 1000 Zeilen).
-[ENDNOTICE]
-
-Ein Index ist wie ein Inhaltsverzeichnis in einem Buch: 
-Er hilft dabei, bestimmte Informationen schneller zu finden, 
-ohne die gesamte Tabelle durchsuchen zu müssen.
-<!-- time estimate: 25 min -->
 [ENDSECTION]
 
 
