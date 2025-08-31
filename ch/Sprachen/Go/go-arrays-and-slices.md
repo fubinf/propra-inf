@@ -1,9 +1,9 @@
 title: "Go-Grundlagen: Arrays and Slices"
 stage: alpha
-timevalue: 3.5
+timevalue: 1.5
 difficulty: 2
 explains: Slice (Golang)
-assumes: go-basics
+assumes: go-basics, go-pointers, go-reference-and-value-types
 ---
 
 [SECTION::goal::idea,experience]
@@ -11,14 +11,14 @@ Ich habe Arrays und Slices in Go kennengelernt.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO
+Ob bei Zeichenkettenmanipulationen, HTTP-Anfragen oder Ein- und Ausgabeoperationen — 
+an Slices führt kein Weg vorbei.
+
+Sie sind zugleich eine der Stellen, an denen Go deutliche Leistungsgewinne erzielt:
+Statt Arrays zu kopieren, werden diese bei Bedarf mehrfach referenziert — als Slices.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-
-Zur Erinnerung: [PARTREFMANUAL::go-reference-and-value-types::hier] finden Sie eine 
-Erklärung, was Referenz- und Werttypen sind.
-
 
 #### Array (Werttyp)
 
@@ -189,7 +189,7 @@ func modifySlice(s []int) {
 }
 ```
 
-Beeinflusst die Zuweisung `s = append(s, 42)` wirklich den ursprünglichen Slice?
+Beeinflusst die Zuweisung `s = append(s, 42)` den ursprünglichen Slice?
 [ENDHINT]
 
 Um ein besseres Verständnis zu schaffen, was Slices eigentlich sind,
