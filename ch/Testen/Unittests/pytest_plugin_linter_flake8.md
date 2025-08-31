@@ -2,8 +2,7 @@ title: "Pytest: Code-Qualität mit Flake8-Plugin prüfen"
 stage: alpha
 timevalue: 1.0
 difficulty: 1
-assumes: m_pytest, flake8
-requires: pytest_call
+assumes: m_pytest, flake8, pytest_call
 ---
 
 [SECTION::goal::idea]
@@ -32,8 +31,10 @@ Das bedeutet, dass neben Ihren funktionalen Tests auch automatisch die Code-Qual
 - [EC] Führen Sie `pip show pytest-flake8` aus und notieren Sie die installierte Version.
 
 [HINT::Flake8 bereits installiert?]
+
 Falls Sie [PARTREF::flake8] bereits bearbeitet haben, ist Flake8 bereits installiert.
 Das Plugin nutzt die gleiche Flake8-Installation.
+
 [ENDHINT]
 
 ### Testprojekt mit Code-Qualitätsproblemen erstellen
@@ -86,7 +87,9 @@ def test_calculator():
 - [EC] Dokumentieren Sie alle Flake8-Warnungen, die angezeigt werden.
 
 [HINT::Keine Warnungen?]
+
 Falls keine Warnungen angezeigt werden, führen Sie `pytest --flake8 --cache-clear` aus.
+
 [ENDHINT]
 
 ### Pytest-spezifische Flake8-Konfiguration
@@ -131,7 +134,9 @@ def long_function_with_many_parameters(parameter_one, parameter_two, parameter_t
 - [ER] Erstellen Sie eine finale `.flake8`-Konfiguration, die für pytest-Workflows optimiert ist.
 
 [HINT::Weiterführende Aufgaben]
+
 Für tiefere Flake8-Kenntnisse und erweiterte Konfiguration siehe [PARTREF::flake8].
+
 [ENDHINT]
 
 [ENDSECTION]
