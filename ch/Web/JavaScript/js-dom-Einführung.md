@@ -50,6 +50,13 @@ Die Klammern um die `if`-Bedingung sind nötig, weil es kein `then`-Schlüsselwo
 Die Folge von Anweisungen in einem `{ }`-Klammerpaar heißt "Block".
 Obige Funktion hat also drei Blöcke.
 
+[NOTICE]
+Mit `console.log(...)` kannst du Text oder Werte in der Browser-Konsole ausgeben (vergleichbar mit print() in Python).
+Drücke dafür im Browser die Taste `F12` und öffne den Tab `Konsole`.
+Falls das nicht funktioniert, kannst du einfach einen Rechtsklick machen, „Element untersuchen“ auswählen und anschließend den Tab Konsole öffnen.
+Im Beispiel wird also eine Zeichenkette (`"Lisa"`) und eine Zahl (`22`) ausgegeben. 
+[ENDNOTICE]
+
 
 ### Variablen
 
@@ -166,6 +173,8 @@ const square = x => {
 };
 ```
 Eine ausführlichere Erklärung findest du in der [MDN-Webdokumentation zu Arrow Functions](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Functions/Arrow_functions#unterschiede_zu_traditionellen_funktionen).
+
+[EQ] In welchen Fällen ist es sinnvoll, anonyme Funktionen statt klassischer Funktionen zu nutzen?
 
 ### Kontrollstrukturen
 
