@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1
 difficulty: 2
 explains: Slice (Golang)
-assumes: go-basics, go-pointers, go-reference-and-value-types
+assumes: go-basics, go-pointers, go-functions
 ---
 
 [SECTION::goal::idea,experience]

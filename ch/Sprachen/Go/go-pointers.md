@@ -127,8 +127,42 @@ func main() {
 
 <!-- time estimate: 20 min -->
 
-Es gibt aber Datentypen, die das "pass-by-reference"-Verhalten zeigen — weiter geht's in 
-[PARTREF::go-reference-and-value-types].
+### Referenztypen
+
+Mit _Referenztypen_ sind in der Regel die Typen gemeint, die sich wie ein Zeiger (Pointer)
+verhalten.
+Das bedeutet unter anderem:
+
+- der Nullwert ist `nil`
+- sie enthalten intern Zeiger auf Daten
+- sie zeigen "pass-by-reference"-Verhalten
+
+Zu den Referenztypen gehören unter anderem Maps, Slices und Zeiger.
+
+[EQ] Welche Beispiele für Referenztypen aus Python fallen Ihnen ein?
+
+
+### Werttypen
+
+_Werttypen_ sind anders: Sie stellen wirklich die Werte dar, sie sind **die Daten selbst**.
+Primitive Datentypen (Zahlen, boolesche Werte und Zeichenketten) sind Werttypen.
+
+Alle Werttypen teilen sich folgende Eigenschaften:
+
+- der Nullwert ist nicht `nil`
+- sie zeigen "pass-by-value"-Verhalten: beim Zuweisen oder Übergeben als Parameter wird eine Kopie
+  erstellt
+- Vergleichbarkeit: zwei Variablen von einem Werttyp dürfen mittels `==` sinnvoll verglichen werden
+
+[EQ] Welche Beispiele für Werttypen aus Python fallen Ihnen ein?
+
+[EQ] Welche Nachteile oder Programmierfehler können Sie sich beim Benutzen von
+Referenztypen vorstellen?
+
+Damit sind Sie nun gut vorbereitet für die nächsten Themen:
+
+- [PARTREF::go-arrays-and-slices]
+- [PARTREF::go-maps]
 [ENDSECTION]
 
 
