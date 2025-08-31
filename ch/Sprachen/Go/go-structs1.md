@@ -2,7 +2,7 @@ title: Weitere Grundlagen von Go — Strukturen (Teil 1)
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: go-basics
+assumes: go-basics, go-functions
 ---
 
 [SECTION::goal::idea,experience]
