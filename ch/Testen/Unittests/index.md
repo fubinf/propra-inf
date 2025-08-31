@@ -21,49 +21,57 @@ graph TD
     pytest_call["pytest_call.md"]
     pytest_plugin_testcoverage["pytest_plugin_testcoverage.md"]
     pytest_plugin_linter_flake8["pytest_plugin_linter_flake8.md"]
+    pytest_aaa["pytest_aaa.md"]
+    pytest_benchmark["pytest_benchmark.md"]
+    pytest_tox["pytest_tox.md"]
     tdd["tdd.md"]
     tdd_pp["tdd_pp.md"]
     testcoverage["testcoverage.md"]
     pytest_mocking_freezegun["pytest_mocking_freezegun.md"]
     pytest_mutation_testing["pytest_mutation_testing.md"]
-    pytest_methodik_blackboxtestverfahren["pytest_methodik_blackboxtestverfahren.md"]
+    pytest_methodik_blackbox["pytest-Methodik-Blackbox.md"]
+    pytest_methodik_whitebox["pytest-Methodik-Whitebox.md"]
+    flake8["flake8.md"]
 
-    m_pytest --> m_unittest
-    pytest_parametrize --> m_pytest
-    pytest_mocking --> m_pytest
-    pytest_fixtures --> m_pytest
-    pytest_call --> m_pytest
-    pytest_plugin_testcoverage --> pytest_call
-    pytest_plugin_linter_flake8 --> pytest_call
-    unittestPasswortgenerator --> m_pytest
-    pytestPasswortgenerator --> m_pytest
-    unittest201 --> m_unittest
-    unittest203 --> unittest201
-    tdd --> m_pytest
-    tdd_pp --> tdd
-    testcoverage --> m_unittest
-    pytest_mocking_freezegun --> pytest_mocking
-    pytest_mutation_testing --> m_pytest
-    unittest102 --> m_unittest
-    pytest_methodik_blackboxtestverfahren --> m_pytest
-    pytest_methodik_blackboxtestverfahren --> pytest_parametrize
+    m_unittest --> m_pytest
+    m_unittest --> testcoverage
+    m_pytest --> pytest_parametrize
+    m_pytest --> pytest_mocking
+    m_pytest --> pytest_fixtures
+    m_pytest --> pytest_call
+    m_pytest --> pytest_aaa
+    m_pytest --> pytest_benchmark
+    m_pytest --> pytest_tox
+    m_pytest --> tdd
+    m_pytest --> pytest_mutation_testing
+    m_pytest --> pytest_methodik_blackbox
+    m_pytest --> pytest_methodik_whitebox
+    m_pytest --> pytest_plugin_linter_flake8
+    pytest_call --> pytest_plugin_testcoverage
+    pytest_call --> pytest_plugin_linter_flake8
+    flake8 --> pytest_plugin_linter_flake8
+    pytest_mocking --> pytest_mocking_freezegun
+    pytest_parametrize --> pytest_methodik_blackbox
+    tdd --> tdd_pp
 ```
 
 ### Erklärung
 
-- **m_unittest.md**: Basis für Unittests mit dem Standard-Testframework von Python.
-- **m_pytest.md**: Erweitert die Grundlagen von `m_unittest.md` und führt in das leistungsfähigere `pytest`-Framework ein.
-- **pytest_parametrize.md**: Baut auf `m_pytest.md` auf und zeigt, wie man tabellengesteuerte Tests mit `pytest` gestaltet.
-- **pytest_mocking.md**: Setzt `m_pytest.md` voraus und behandelt das Mocking von Abhängigkeiten in Tests.
-- **pytest_fixtures.md**: Zeigt, wie man mit `pytest` Fixtures für Setup und Teardown verwendet.
-- **pytest_call.md**: Behandelt die Steuerung der Testausführung mit `pytest`.
-- **pytest_plugin_testcoverage.md**: Zeigt, wie man mit `pytest-cov` die Testabdeckung analysiert.
-- **pytest_plugin_linter_flake8.md**: Behandelt die Integration von Flake8 in `pytest`.
-- **unittestPasswortgenerator.md**: Zeigt, wie man Unittests für eine Passwortgenerator-Anwendung erstellt.
-- **pytestPasswortgenerator.md**: Zeigt, wie man Pytests für eine Passwortgenerator-Anwendung erstellt.
-- **tdd.md**: Einführung in Test-Driven Development (TDD).
-- **tdd_pp.md**: Anwendung von TDD im Pair Programming.
-- **testcoverage.md**: Behandelt die Analyse der Testabdeckung mit `pytest`.
-- **pytest_mocking_freezegun.md**: Zeigt, wie man mit Freezegun zeitabhängige Tests erstellt.
-- **pytest_mutation_testing.md**: Einführung in Mutation Testing mit pytest.
-- **pytest_methodik_blackboxtestverfahren.md**: Einführung in Blackbox-Testing mit pytest, einschließlich der Testmethoden Äquivalenzklassen, Randwertanalyse und Eckwertanalysen.
+- **m_unittest.md**: Basis für Unittests mit dem Standard-Testframework von Python. Grundlage für `m_pytest.md` und `testcoverage.md`.
+- **m_pytest.md**: Erweitert die Grundlagen von `m_unittest.md` und führt in das leistungsfähigere `pytest`-Framework ein. Grundlage für alle weiteren pytest-Themen.
+- **pytest_parametrize.md**: Baut auf `m_pytest.md` auf und zeigt, wie man tabellengesteuerte Tests mit `pytest` gestaltet. Grundlage für `pytest-Methodik-Blackbox.md`.
+- **pytest_mocking.md**: Setzt `m_pytest.md` voraus und behandelt das Mocking von Abhängigkeiten in Tests. Grundlage für `pytest_mocking_freezegun.md`.
+- **pytest_fixtures.md**: Zeigt, wie man mit `pytest` Fixtures für Setup und Teardown verwendet. Setzt `m_pytest.md` voraus.
+- **pytest_call.md**: Behandelt die Steuerung der Testausführung mit `pytest`. Setzt `m_pytest.md` voraus und ist Grundlage für Plugin-Themen.
+- **pytest_aaa.md**: Einführung in das Arrange-Act-Assert-Pattern für pytest. Setzt `m_pytest.md` voraus.
+- **pytest_benchmark.md**: Performance-Testing und Benchmarking mit pytest-benchmark. Setzt `m_pytest.md` voraus.
+- **pytest_tox.md**: Testen in verschiedenen Python-Umgebungen mit tox und pytest. Setzt `m_pytest.md` voraus.
+- **pytest_plugin_testcoverage.md**: Zeigt, wie man mit `pytest-cov` die Testabdeckung analysiert. Setzt `pytest_call.md` voraus.
+- **pytest_plugin_linter_flake8.md**: Behandelt die Integration von Flake8 in `pytest` für Code-Qualitätsprüfungen. Setzt `m_pytest.md`, `pytest_call.md` und `flake8.md` voraus.
+- **tdd.md**: Einführung in Test-Driven Development (TDD). Setzt `m_pytest.md` voraus und ist Grundlage für `tdd_pp.md`.
+- **tdd_pp.md**: Anwendung von TDD im Pair Programming. Setzt `tdd.md` voraus.
+- **testcoverage.md**: Behandelt die Analyse der Testabdeckung mit verschiedenen Tools. Setzt `m_unittest.md` voraus.
+- **pytest_mocking_freezegun.md**: Zeigt, wie man mit Freezegun zeitabhängige Tests erstellt. Setzt `pytest_mocking.md` voraus.
+- **pytest_mutation_testing.md**: Einführung in Mutation Testing mit pytest. Setzt `m_pytest.md` voraus.
+- **pytest-Methodik-Blackbox.md**: Einführung in Blackbox-Testing mit pytest, einschließlich Äquivalenzklassen und Randwertanalyse. Setzt `m_pytest.md` und `pytest_parametrize.md` voraus.
+- **pytest-Methodik-Whitebox.md**: Einführung in Whitebox-Testing-Methoden mit pytest. Setzt `m_pytest.md` voraus.
