@@ -1,9 +1,9 @@
 title: "Go-Grundlagen: Maps"
 stage: alpha
-timevalue: 3.5
+timevalue: 1
 difficulty: 2
 explains: Slice (Golang)
-assumes: go-basics
+assumes: go-basics, go-pointers, go-reference-and-value-types
 ---
 
 [SECTION::goal::idea,experience]
@@ -11,14 +11,15 @@ Ich habe Maps in Go kennengelernt.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO
+Maps gehören zu den mächtigsten Datentypen in Go.
+
+Sie ermöglichen es, Daten schnell über Schlüssel zu speichern und wiederzufinden — 
+wie ein eingebautes Nachschlagewerk. 
+Ob Zählungen, Zuordnungen oder schnelle Suchen: Maps bieten eine elegante und effiziente 
+Lösung für viele Alltagsprobleme in der Programmierung.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-
-Zur Erinnerung: [PARTREFMANUAL::go-reference-and-value-types::hier] finden Sie eine
-Erklärung, was Referenz- und Werttypen sind.
-
 
 #### Map (Referenztyp)
 
