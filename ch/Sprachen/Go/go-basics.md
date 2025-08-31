@@ -63,14 +63,14 @@ Go bietet zwei Möglichkeiten an:
 
 Dokumentation zu diesen Kommandos bekommen Sie mit `go help`.
 
-[ER] Legen Sie eine Datei namens `go-basics1.go` an und kopieren Sie den Quellcodeabschnitt in 
+[ER] Legen Sie eine Datei namens `go-basics.go` an und kopieren Sie den Quellcodeabschnitt in 
 diese Datei:
 
 ```go
 [INCLUDE::include/hello_world.go]
 ```
 
-[EC] Führen Sie nun das Programm mittels `go run go-basics1.go` aus.
+[EC] Führen Sie nun das Programm mittels `go run go-basics.go` aus.
 
 Jetzt tanken wir Grundwissen und schreiben dann damit unser erstes Programm.
 Wer mag, kann gern schon mal unten schauen, was für eine Aufgabe da kommt,
@@ -501,7 +501,7 @@ Spezifikation:
 Diese Vorlage dürfen Sie als Ausgangspunkt benutzen:
 
 ```go
-[INCLUDE::include/go-basics1.go]
+[INCLUDE::include/go-basics.go]
 ```
 
 [NOTICE]
@@ -510,7 +510,7 @@ Diese Vorlage dürfen Sie als Ausgangspunkt benutzen:
 In dieser Aufgabe dürfen Sie den zweiten Wert (`error`) explizit ignorieren.
 [ENDNOTICE]
 
-[EC] Führen Sie das Programm mittels `go run go-basics1.go` aus und geben Sie 20 ein.
+[EC] Führen Sie das Programm mittels `go run go-basics.go` aus und geben Sie 20 ein.
 [ENDSECTION]
 
 [SECTION::submission::information,trace]
@@ -520,11 +520,11 @@ In dieser Aufgabe dürfen Sie den zweiten Wert (`error`) explizit ignorieren.
 
 [INSTRUCTOR::Hinweise]
 **Kommandoprotokoll**
-[PROT::ALT:go-basics1.prot]
+[PROT::ALT:go-basics.prot]
 
 **Lösungen**
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-basics1.go]
+Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-basics.go]
 [ENDINSTRUCTOR]
