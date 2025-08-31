@@ -2,7 +2,7 @@ title: Go Interfaces
 stage: beta
 timevalue: 3.5
 difficulty: 2
-assumes: go-basics1, go-basics2, go-basics3
+assumes: go-basics
 ---
 
 [SECTION::goal::idea,experience]
