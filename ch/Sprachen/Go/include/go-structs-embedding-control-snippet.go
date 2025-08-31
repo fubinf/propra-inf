@@ -1,4 +1,4 @@
-func testStructs() {
+func testEmbedding() {
     e := Employee{
         Person: Person{
             FirstName: "Mark",
