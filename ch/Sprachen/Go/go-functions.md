@@ -1,6 +1,6 @@
 title: "Go-Grundlagen: Funktionen"
 stage: alpha
-timevalue: 3.5
+timevalue: 1.5
 difficulty: 2
 explains: Slice (Golang)
 assumes: go-basics
@@ -12,7 +12,12 @@ Funktionen definieren.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO
+Ein essenzieller Baustein jeder modernen Programmiersprache sind Funktionen —
+ausgelagerte Stückchen der Funktionalität, die Wiederverwendbarkeit und Lesbarkeit
+des Codes erhöhen.
+
+In Go sind Funktionen [TERMREF::first-class citizen] und verfügen sogar über einige 
+Go-spezifische Besonderheiten, die Sie in dieser Aufgabe kennenlernen werden.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
