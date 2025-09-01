@@ -12,39 +12,40 @@ Ich lerne, wie die Grundfunktionen von git funktionieren, und festigte mein ment
 
 [SECTION::background::default]
 In [PARTREF::Git101] haben wir gerade so das Nötigste gelernt, um unsere Aufgaben im ProPra 
-abzugeben. Jetzt geht es darum, das gelernte zu vertiefen und das Wissen um die Befehle und 
+abzugeben. 
+Jetzt geht es darum, das Gelernte zu vertiefen und das Wissen um die Befehle und 
 [PARTREF::git-Funktionsweise] zu festigen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-In dieser Aufgabe werden wir so richtig tief in die Interna von git einsteigen. 
+In dieser Aufgabe werden wir vertieft in die Interna von git einsteigen:
 Wie verwaltet git Dateien und Commits? 
 Wie können wir diese vergleichen und uns einen Überblick darüber 
 verschaffen, was während der Entwicklung eines Projektes geschieht?
  
-Die Aufgabe wird, wie der Name schon vermuten lässt, die Grundlage für unser Verständnis 
-von git festlegen. Denn ohne zu verstehen, was ein Objekt, Blob, Snapshot oder essenzielle Begriffe 
-wie der Index, die Staging Area sind, braucht man gar nicht erst weiterzumachen.
-Je mehr sie über git lernen, umso mehr werden Sie Rückschlüsse auf die in dieser Aufgabe 
-gesehenen Begriffe und Konzepte ziehen können.
-Das Erlernen und Verstehen neuer git-Befehle wird ihnen auch deutlich leichter fallen, wenn Sie 
-diese Grundlagen verstanden haben.
+Um die git-Kommandos zu beherrschen, muss man diverse Konzepte verstehen:
+Objekt, Blob, Snapshot, Index, Staging Area und ein paar mehr.
+Nur mit diesem Wissen kann man ein mentales Modell von git bilden,
+das zu echtem _Verständnis_ der git-Befehle und ihrer Wirkung führt.
+Erst damit kann man sich in Situationen außerhalb des kleinen git-Einmaleins
+(pull, add, commit, push; und zwar bitte ohne Merge-Konflikte) sicher fühlen
+und wissen, was jeweils zu tun ist.
 
-Damit wir die Befehle nicht einfach nur herunterrattern, arbeiten wir die Inhalte anhand eines 
-kleinen Beispielprogramms durch. 
-Hierzu schreiben wir ein paar Zeilen für einen hypothetischen Taschenrechner.
+Wir arbeiten die Inhalte anhand eines winzig kleinen Beispielprojekts durch: 
+Wenige Zeilen Code für ein supersimples Taschenrechner-Programm.
 
-Anders als bei den meisten Aufgaben werden Sie für diese ein ganz neues Repo erstellen. 
+Anders als bei den meisten Aufgaben brauchen wir diesmal ein ganz neues Repo. 
 Das dient in erster Linie dazu, dass Sie weiteres Verständnis darüber aufbauen was in diesem 
 Schritt passiert und einmal die Repo-Erstellung selber durchturnen als wie üblich von Tools wie 
 Gitlab und Co. abgenommen zu bekommen. 
 Dafür erstellen Sie ein neues Verzeichnis **außerhalb ihrer bestehenden ProPra-Repositories**, 
 navigieren mit ihrer Kommandozeile dort hinein und führen den Befehl `git init` aus. 
 
-[HINT::Kann ich kein neues Repository in meinen bestehenden erstellen?]
+[HINT::Kann ich ein neues Repository in meinem bestehenden erstellen?]
 Jein. Git bietet die Möglichkeit des Einbindens weiterer Repos mithilfe sogenannter Submodules an. 
-Deren komplexität übersteigt aber massiv unseren aktuellen Kenntnisstand weshalb wir hier nicht 
-weiter darauf eingehen werden.
+Submodules sind auch bei kompetenten Git-Nutzer_innen berüchtigt dafür, wie kompliziert
+das Leben dann wird; also gehen wir diesen Weg hier lieber nicht,
+sondern trennen unser Übungs-Repo vom ProPra-Repo.
 [ENDHINT]
 
 Schauen wir jetzt mit `ls` in unser Verzeichnis fällt uns auf, dass uns gar nichts auffällt...
