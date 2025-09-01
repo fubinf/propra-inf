@@ -2,7 +2,7 @@ title: DOM erkunden und erste Interaktionen
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: js_dom-erste-Schritte
+assumes: js-dom-Einführung
 requires: html-Formulare
 ---
 
