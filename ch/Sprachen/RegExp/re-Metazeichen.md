@@ -1,5 +1,5 @@
 title: "Reguläre Ausdrücke und Metazeichen"
-stage: draft
+stage: alpha
 timevalue: 1.25
 difficulty: 2
 explains: Regulärer Ausdruck
@@ -39,7 +39,7 @@ Dort arbeitet Max Mustermann, erreichbar unter max.mustermann@example.com.
 
 Heute ist der 25.08.2025, ein Montag.
 Um 09:30 Uhr fährt die nächste U-Bahn.
-Telefonnummern sind manchmal wichtig: 030 1234567 oder 089-987654.
+Telefonnummern sind manchmal wichtig: 030 1234567 oder 089-9876545.
 
 Manche Passwörter enthalten Buchstaben und Zahlen gemischt, etwa abc123.
 Achten Sie auch auf verschiedene Schreibweisen: HALLO, Hallo oder hallo.
@@ -94,13 +94,13 @@ Wie lautet der Regex, um trotzdem nach genau einem `\` suchen?
 ### Vordefinierte Zeichenklassen
 
 Nicht nur kann man mit `\` Metazeichen als normales Symbol verwenden, in einigen Fällen kann man
-damit auch normale Symbole als Metazeichen benutzen wie z.B. `n` das mit `\`, also `\n` das
+damit auch normalen Symbole eine neue Funktion geben wie z.B. `n` das mit `\`, also `\n` das
 Metazeichen für den Zeilenumbruch ist.
 
 Es gibt sogenannte Zeichenklassen, die bestimmte Arten von Zeichen matchen wie z.B. `\d` 
 die alle Ziffern matched.
 
-[ER] Matchen Sie Zeichenketten, die zwei Zahlen nebeneinander haben.
+[ER] Matchen Sie Zeichenketten, die zwei Ziffern nebeneinander haben.
 
 Andere Zeichenklassen sind:
 - `\w`: Alphanumerische Zeichen also Text oder Ziffern
@@ -111,13 +111,17 @@ Andere Zeichenklassen sind:
 Diese Zeichenklassen lassen sich mit entsprechendem Großbuchstaben (`\w` zu `\W` usw.) negieren.
 Sie matchen damit also alle Zeichen die nicht zu dieser Zeichenklasse gehören.
 
-[ER] Matchen Sie genau zweistellige Zahlen. ("12", "34 56" aber nicht "3456")
+[ER] Matchen Sie genau zweistellige Zahlen. ("12", " 34d" aber nicht "1234")
 
 [ER] Matchen Sie alle Uhrzeiten ("01:23", "12:33").
 
 [NOTICE]
 Ungültige Uhrzeiten wie "25:69" müssen Sie erst einmal nicht herausfiltern.
 [ENDNOTICE]
+
+[ER] Der Text enthält zwei Telefonnummern.
+Überlegen Sie sich wie Sie beide Telefonnummern mit einem Regulären Ausdruck vollständig matchen
+können, ohne andere Textteile zu matchen.
 
 ### Start- und Ende von Zeilen
 
@@ -135,4 +139,5 @@ Zwei weitere Metazeichen sind `^` (Anfang der Zeile/Text) und `$` (Ende der Zeil
 [ENDSECTION]
 
 [INSTRUCTOR::Aufgaben im Großen und Ganzen korrekt?]
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
