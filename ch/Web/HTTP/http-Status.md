@@ -2,7 +2,7 @@ title: HTTP-Statuscodes verstehen und klassifizieren
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: http-GET
+assumes: http-GET, http-POST
 ---
 
 [SECTION::goal::idea]

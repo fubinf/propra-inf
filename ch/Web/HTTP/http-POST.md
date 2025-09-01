@@ -1,6 +1,6 @@
 title: "HTTP POST: Daten an Server übermitteln (request body, forms)"
 stage: alpha
-timevalue: 2
+timevalue: 1.5
 difficulty: 2
 assumes: http-GET
 ---
@@ -43,6 +43,13 @@ sie typischerweise verwendet?
 
 POST unterscheidet sich in mehreren wichtigen Aspekten von GET:
 
+**Semantik (der wichtigste Unterschied):**
+
+- GET: Ist wirkungsfrei (idempotent) - verändert den Server-Zustand nicht
+- POST: Verändert den Zustand auf dem Server - kann Daten erstellen, ändern oder löschen
+
+Dies ist der fundamentalste Unterschied zwischen GET und POST. GET wird zum Abrufen von Informationen verwendet, während POST zum Senden von Daten zur Verarbeitung dient.
+
 **Datenübertragung:**
 
 - GET: Parameter werden in der URL übertragen (`/search?query=beispiel&page=1`)
@@ -63,11 +70,15 @@ POST unterscheidet sich in mehreren wichtigen Aspekten von GET:
 - GET: Wird von Browsern gecacht und kann problemlos wiederholt werden
 - POST: Wird nicht gecacht; Browser warnen vor Wiederholung
 
+[EQ] Erklären Sie den semantischen Unterschied zwischen GET und POST anhand von ein konkretem Beispiel aus dem Alltag. 
+Beschreiben Sie, warum die gewählte HTTP-Methode semantisch korrekt ist und was passieren würde, 
+wenn man die falsche Methode verwenden würde.
+
 [EQ] Lesen Sie mehr über 
 [POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)
 Warum ist POST "nicht idempotent" im Gegensatz zu GET? 
 Geben Sie ein praktisches Beispiel an.
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Aufbau einer POST-Anfrage
 
@@ -86,6 +97,22 @@ Die wichtigsten Header bei POST:
 
 - `Content-Type`: Gibt das Format der übertragenen Daten an
 - `Content-Length`: Gibt die Länge des Request Body in Bytes an
+
+[EC] Erstellen Sie eine Datei `HTTP-POST-form.crlf` mit einer POST-Anfrage, 
+die folgende Formulardaten an `httpbin.org` (Port 80) zum Pfad `/post` sendet::
+
+- username: "testuser"
+- password: "geheim123"
+- remember: "on"
+
+Verwenden Sie `application/x-www-form-urlencoded` als Content-Type und 
+vergessen Sie nicht die korrekte Content-Length.
+
+[NOTICE]
+Sie können zuerst die Content-Length mit: `echo -n "username=abc&password=123&remember=on" | wc -c` berechnen.
+[ENDNOTICE]
+
+<!-- time estimate: 10 min -->
 
 ### Content-Type Varianten
 
@@ -118,16 +145,17 @@ Dateiinhalt hier...
 (Optional) Eine detaillierte Erklärung der 
 [Content-Types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)
 
-[EC] Erstellen Sie eine Datei `HTTP-POST-form.crlf` mit einer POST-Anfrage, 
-die folgende Formulardaten an `httpbin.org` (Port 80) zum Pfad `/post` sendet::
+[EQ] Recherchieren Sie, wann man die verschiedenen Content-Type-Varianten verwendet. 
+Welche Vor- und Nachteile hat jede Variante? Wann würden Sie `application/json` 
+statt `application/x-www-form-urlencoded` verwenden?
 
-- username: "testuser"
-- password: "geheim123"
-- remember: "on"
+[NOTICE]
+Für Ihre Recherche können Sie folgende Ressourcen nutzen:
+[MDN: Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type), 
+[JSON vs Form Data](https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data)
+[ENDNOTICE]
 
-Verwenden Sie `application/x-www-form-urlencoded` als Content-Type und 
-vergessen Sie nicht die korrekte Content-Length.
-<!-- time estimate: 30 min -->
+<!-- time estimate: 15 min -->
 
 ### POST-Anfrage mit netcat testen
 
@@ -147,60 +175,21 @@ Dieser Service gibt die empfangenen Daten zur Kontrolle zurück.
 Führen Sie aus: `nc httpbin.org 80 <HTTP-POST-form.crlf`
 <!-- time estimate: 10 min -->
 
-### POST mit curl
+### POST mit JSON-Daten
 
-Für praktische Zwecke ist `curl` oft einfacher als das manuelle Erstellen 
-von HTTP-Anfragen:
+Lassen Sie uns das gleiche Beispiel wie oben verwenden, aber diesmal mit JSON-Format:
 
-```bash
-curl -X POST https://httpbin.org/post \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "myfield1=myvalue1&myfield2=myvalue2"
-```
+[EC] Erstellen Sie eine Datei `HTTP-POST-json.crlf` mit einer POST-Anfrage, 
+die die gleichen Daten wie oben an `httpbin.org` (Port 80) zum Pfad `/post` sendet, 
+aber im JSON-Format:
 
-Für JSON-Daten:
-```bash
-curl -X POST https://httpbin.org/post \
-  -H "Content-Type: application/json" \
-  -d '{"myname": "Max", "myage": 25}'
-```
+- username: "testuser"
+- password: "geheim123"
+- remember: true
 
-[EC] Verwenden Sie `curl`, um eine POST-Anfrage mit JSON-Daten zu senden:
-```json
-{
-  "myaction": "register",
-  "myuser": {
-    "myname": "Anna Schmidt",
-    "myemail": "anna@example.com"
-  }
-}
-```
-<!-- time estimate: 20 min -->
-
-### POST-Response analysieren
-
-POST-Antworten folgen dem gleichen Format wie GET-Antworten, aber die 
-Statuscodes haben oft andere Bedeutungen:
-
-- **200 OK**: Anfrage erfolgreich verarbeitet
-- **201 Created**: Neue Ressource wurde erstellt
-- **400 Bad Request**: Ungültige Daten gesendet
-- **401 Unauthorized**: Authentifizierung erforderlich
-- **422 Unprocessable Entity**: Daten syntaktisch korrekt, aber semantisch ungültig
-
-(Optional) Zusätzlich lesen Sie über 
-[HTTP-Statuscodes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
-
-[EQ] Welcher der oben genannten fünf Statuscodes wäre in folgenden Situationen jeweils angemessen?
-
- - Formular wurde korrekt übermittelt und verarbeitet
- - Zugriff verweigert, da keine gültige Anmeldung vorliegt
- - Gesendete Daten sind fehlerhaft oder unvollständig
- - Daten sind formal korrekt, verletzen aber eine fachliche Regel 
- (z. B. Benutzername existiert bereits)
- - Neue Ressource (z. B. Benutzerkonto) erfolgreich angelegt
-
+Verwenden Sie `application/json` als Content-Type und achten Sie auf die korrekte JSON-Syntax.
 <!-- time estimate: 10 min -->
+
 
 ### HTML-Formulare und POST
 
@@ -298,7 +287,7 @@ zwischen GET und POST verstehen, insbesondere bezüglich Sicherheit, Caching und
 
 ### Kommandoprotokoll
 
-Sollte sowohl netcat- als auch curl-Befehle enthalten und die entsprechenden Responses zeigen.
+Sollte netcat-Befehle enthalten und die entsprechenden Responses zeigen.
 [PROT::ALT:http-POST.prot]
 
 [ENDINSTRUCTOR]
