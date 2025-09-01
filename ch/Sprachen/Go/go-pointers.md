@@ -66,11 +66,11 @@ an.
 
 [EQ] Schreiben Sie eine Funktion `inc`, die einen Zeiger `*int` übergeben bekommt und
 die Zahl um eins inkrementiert. 
-Geben Sie den Code in Ihrer Markdown-Datei.
+Geben Sie den Code in Ihrer Markdown-Datei ab.
 
 [EQ] Was passiert, wenn die Funktion `nil` als Parameter bekommt?
 
-<!-- time estimate: 5 min -->
+<!-- time estimate: 10 min -->
 
 
 ### "Pass-by-value" und "Pass-by-reference"
@@ -88,7 +88,7 @@ func change(x int) {
 func main() {
 	a := 0
 	change(a)
-	fmt.Println(a) // Gibt 42 aus — a wurde NICHT verändert
+	fmt.Println(a) // Gibt 0 aus — a wurde NICHT verändert
 }
 ```
 
@@ -101,14 +101,19 @@ func main() {
     a := 0
     changePointer(&a)
     fmt.Println(a) // Gibt 42 aus — a wurde verändert
-    }
+}
 ```
 
-[EQ] Beschreiben Sie mit eigenen Worten, warum `a` im ersten Beispiel nicht verändert wurde, 
-im zweiten Beispiel aber schon.
+[EQ] Beschreiben Sie mit eigenen Worten, warum `a` im ersten Beispiel nicht verändert 
+wurde, im zweiten Beispiel aber schon.
 
-[EQ] Warum wird Go als "pass-by-value"-Sprache betrachtet, auch wenn Zeiger als Funktionsparameter 
-übergeben werden?
+[EQ] Warum wird Go als "pass-by-value"-Sprache betrachtet, auch wenn Zeiger als 
+Funktionsparameter übergeben werden?
+
+[HINT::Was ist denn ein Zeiger?]
+Ein Zeiger ist eine Speicheradresse. 
+Zeigt eine Kopie eines Zeigers auf dieselbe Adresse?
+[ENDHINT]
 
 [EQ] Was wird im folgenden Beispiel auf die Kommandozeile ausgegeben?
 Warum?
@@ -127,6 +132,7 @@ func main() {
 
 <!-- time estimate: 20 min -->
 
+
 ### Referenztypen
 
 Mit _Referenztypen_ sind in der Regel die Typen gemeint, die sich wie ein Zeiger (Pointer)
@@ -140,6 +146,8 @@ Das bedeutet unter anderem:
 Zu den Referenztypen gehören unter anderem Maps, Slices und Zeiger.
 
 [EQ] Welche Beispiele für Referenztypen aus Python fallen Ihnen ein?
+
+<!-- time estimate: 5 min -->
 
 
 ### Werttypen
@@ -159,21 +167,14 @@ Alle Werttypen teilen sich folgende Eigenschaften:
 [EQ] Welche Nachteile oder Programmierfehler können Sie sich beim Benutzen von
 Referenztypen vorstellen?
 
-Damit sind Sie nun gut vorbereitet für die nächsten Themen:
-
-- [PARTREF::go-arrays-and-slices]
-- [PARTREF::go-maps]
+<!-- time estimate: 10 min -->
 [ENDSECTION]
 
 
-[SECTION::submission::trace,program]
-[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-[INCLUDE::/_include/Submission-Quellcode.md]
+[SECTION::submission::information]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Hinweise]
-
-**Lösungen**
-
+[INSTRUCTOR::Lösungen]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
