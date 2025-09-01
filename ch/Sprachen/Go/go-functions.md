@@ -159,16 +159,20 @@ der zweite der Reihe nach jedes Element der Liste `xs`.
 Mit `reduce(0, func(acc, arg int) int { return acc + arg }, 1, 2, 3, 4)` kann beispielsweise
 die Summe der Ganzzahlen berechnet werden.
 
-[ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
+[ER] Fügen Sie folgende Testfunktion Ihrem Programm bei und rufen Sie sie aus der 
+`main`-Funktion auf:
 
 ```go
 [INCLUDE::include/go-functions-control-snippet.go]
 ```
 
+[EC] Führen Sie das Programm mittels `go run` aus.
+
 <!-- time estimate: 30 min -->
 [ENDSECTION]
 
-[SECTION::submission::trace,program]
+[SECTION::submission::information,trace,program]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
