@@ -2,7 +2,7 @@ title: Funktionen, Eventhandling und Interaktion
 stage: draft
 timevalue: 1.25
 difficulty: 2
-assumes: js_dom-baumstruktur
+assumes: js-DOM-Baumstruktur
 
 ---
 

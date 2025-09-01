@@ -3,8 +3,8 @@ stage: alpha
 timevalue: 1.5
 difficulty: 2
 requires: html-Formulare 
+# assumes: TODO-html-id-und-eigenschaften
 ---
-<!-- assumes: TODO-html-id-und-eigenschaften -->
 
 [SECTION::goal::idea]
 
@@ -25,7 +25,7 @@ Mit JavaScript kann man sie zum Leben erwecken und ihnen Programmfunktionalität
 ### Syntax verstehen
 
 Die JavaScript-Syntax ist knapp gehalten und ähnelt den Sprachen der C-Familie wie 
-C, C#, C+, Java, Objective C oder Swift: viele geschweifte Klammern.
+C, C#, C++, Java, Objective C oder Swift: viele geschweifte Klammern.
 
 Ein Beispiel:
 
@@ -102,24 +102,21 @@ let notDefined;             // undefined
 let person = { name: "Anna", age: 25 };  // objekt
 let numbers = [1, 2, 3];    // array
 
-const sym1 = Symbol("id");  // symbol
-const sym2 = Symbol("id");  // symbol
-
-console.log(sym1 === sym2); // false – sie sind eindeutig!
-
-// Verwendung als Schlüssel:
-
-const user = {
-  name: "Anna",
-  [Symbol("id")]: 123
-};
-
-console.log(Object.keys(user)); // ["name"] – das symbol erscheint hier nicht
 ```
-Symbol-Eigenschaften sind nicht aufzählbar (z. B. in for...in) und bleiben z. B. bei JSON.stringify() unsichtbar.
-Eine ausführlichere Dokumentation findest du in der [MDN-Dokumentation zu JavaScript-Datenstrukturen](https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Data_structures).
 
 [EQ] Recherchiere den Unterschied zwischen `undefined` und `null` in JavaScript. Warum sind Beide notwendig? Einen guten Einstieg findest du in der [MDN-Webdokumentation zu null vs undefined](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/null#null_vs_undefined).
+
+#### Kurz zu JSON
+
+`JSON` („JavaScript Object Notation“) ist ein textbasiertes Datenformat, 
+das sehr ähnlich zu JavaScript-Objekten aussieht und sich auch an Python-Dicts/Listen anlehnt.
+
+Beispiel (`JSON` in JavaScript):  
+`{"name": "Anna", "alter": 25, "hobbys": ["Joggen", "Lesen"]}`  
+
+In Python wäre das sehr ähnlich:  
+`{"name": "Anna", "alter": 25, "hobbys": ["Joggen", "Lesen"]}`
+
 
 
 ### Funktionen
@@ -163,11 +160,6 @@ JavaScript bietet außerdem eine kürzere Schreibweise für Funktionen, die Arro
 ```
 const addShort = (a, b) => a + b;
 ```
-Arrow Functions unterscheiden sich von klassischen Funktionen in zwei wichtigen Punkten:
-
-Umgang mit `this`:
-Arrow Functions übernehmen `this` nicht selbst, sondern aus dem umgebenden Kontext.
-Das ist z. B. in Klassen oder Event-Handlern wichtig.
 
 Verhalten von `return`:
 Wenn eine Arrow Function nur einen Ausdruck enthält, kann man das `return` weglassen;
@@ -182,6 +174,43 @@ const square = x => {
 Eine ausführlichere Erklärung findest du in der [MDN-Webdokumentation zu Arrow Functions](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Functions/Arrow_functions#unterschiede_zu_traditionellen_funktionen).
 
 [EQ] In welchen Fällen ist es sinnvoll, anonyme Funktionen statt klassischer Funktionen zu nutzen?
+
+#### Umgang mit `this`:
+In JavaScript ist `this` das, was in Python `self` genannt wird, aber:  
+
+- In Python ist `self` einfach ein benannter Parameter (reine Konvention).
+- In JavaScript ist `this` ein Schlüsselwort, das vom Kontext des Aufrufs abhängt.
+
+Beispiel in einem Objekt:  
+
+```
+const person = {
+  name: "Anna",
+  greet: function() {
+    console.log("Hallo, ich bin " + this.name);
+  }
+};
+
+person.greet();
+// Ausgabe: Hallo, ich bin Anna
+```
+Hier zeigt `this` auf das Objekt person, weil die Funktion als Methode aufgerufen wird.
+Ruft man dieselbe Funktion ohne Objektbezug auf, verliert `this` den Zusammenhang.
+
+Besonderheit bei Arrow Functions:
+Arrow Functions binden kein eigenes `this`, sondern übernehmen den Wert von `this` aus dem umgebenden Kontext:
+
+```
+let person = {
+  name: "Anna",
+  greet: () => {
+    console.log("Hallo, ich bin " + this.name);
+  }
+};
+
+person.greet();
+// Ausgabe: Hallo, ich bin undefined
+```
 
 ### Kontrollstrukturen
 
@@ -218,6 +247,10 @@ Jedoch gibt es bei der Semantik Feinheiten, die man wissen muss.
 | !=       | Ungleich (lose)            | '5' != 5       | false    |
 | ===      | Gleich (streng, Typ+Wert)  | '5' === 5      | false    |
 | !==      | Ungleich (streng)          | '5' !== 5      | true     |
+| <        | Kleiner als                | 3 < 5          | true     |
+| >        | Größer als                 | 10 > 7         | true     |
+| <=       | Kleiner oder gleich        | 3 <= 3         | true     |
+| >=       | Größer oder gleich         | '5' >= 5       | true     |
 ```
 
 [EQ] Erkläre in eigenen Worten, warum es in JavaScript sowohl `==` als auch `===` gibt. Gib Beispiele, in denen der Unterschied relevant wird und entscheide: Sollte man `==` überhaupt noch verwenden?
@@ -235,7 +268,7 @@ Nutze `console.log()`, um deine Funktion zu testen.
 
 ### JavaScript in HTML Einbinden
 
-Grundsätzlich gibt es zwei verschiedene Varianten, wie JavaScript in HTML eingebunden werden kann.
+Grundsätzlich gibt es zwei verschiedene Varianten, wie JavaScript in `HTML` eingebunden werden kann.
 
 1. **Innerhalb des HTML-Tags**: 
 Dabei schreibt man den JavaScript Code mit dem `<script>` Tag direkt innerhalb in der `HTML`-Datei:
@@ -259,7 +292,7 @@ Dabei schreibt man den JavaScript Code mit dem `<script>` Tag direkt innerhalb i
 
 2. **Als externe Datei**: 
 Dabei verlagert man den JavaScript-Code in eine separate Datei, für gewöhnlich mit der Endung `.js`. 
-Diese Datei wird dann in das HTML-Dokument eingefügt:
+Diese Datei wird dann in das `HTML`-Dokument eingefügt:
 
 ```
 <!DOCTYPE html>
@@ -275,7 +308,7 @@ Diese Datei wird dann in das HTML-Dokument eingefügt:
 </html>
 ```
 
-Vorteil hierbei ist, dass derselbe JavaScript-Code für mehrere HTML-Dokumente verwendet werden kann
+Vorteil hierbei ist, dass derselbe JavaScript-Code für mehrere `HTML`-Dokumente verwendet werden kann
 und dann vom Browser nicht auf jeder Seite neu geladen werden muss.
 Außerdem ist es empfehlenswert für größere Projekte oder wenn man den Code trennen will.
 Ein `<script>`-Tag kann nur entweder Code oder `src=` enthalten, nicht beides.
@@ -288,8 +321,8 @@ Dieser Zugriff läuft über das sogenannte [DOM (Document Object Model)](https:/
 das die HTML-Struktur als Baum abbildet und per JavaScript veränderbar macht.
 Hier sind die wichtigsten Bausteine:
 
-`id`:
-Jedes HTML-Element kann eine eindeutige(!) Kennung (`id`) bekommen.
+`id`:  
+Jedes HTML-Element kann eine eindeutige(!) Kennung (`id`) bekommen.  
 Diese dient dazu, das Element in JavaScript direkt anzusprechen:
 
 ```
@@ -297,24 +330,24 @@ Diese dient dazu, das Element in JavaScript direkt anzusprechen:
 // Kann in JS mit getElementById("nameInput") gefunden werden
 ```
 
-`document`:
-Das globale Objekt `document` steht für das gesamte HTML-Dokument.
+`document`:  
+Das globale Objekt `document` steht für das gesamte HTML-Dokument.  
 Über `document` kann man auf Elemente zugreifen, Inhalte ändern oder neue Elemente hinzufügen:  
 `console.log(document.title); // zeigt den <title>-Text im Kopfbereich an`
 
-`getElementById(...)`:
+`getElementById(...)`:  
 Findet ein einzelnes HTML-Element anhand seiner `id`:  
 `const eingabe = document.getElementById("nameInput");`
 
-`value`:
+`value`:  
 Liest den aktuellen Inhalt eines Eingabefelds (z. B. `<input>` oder `<textarea>`) aus:  
 `let name = document.getElementById("nameInput").value;`
 
-`innerHTML`:
+`innerHTML`:  
 Ändert oder liest den HTML-Inhalt eines Elements, also auch mit Tags oder Formatierung:  
 `document.getElementById("willkommen").innerHTML = "Willkommen, " + name + "!";`
 
-`addEventListener(...)`:
+`addEventListener(...)`:  
 Damit lässt sich auf Ereignisse wie Klicks, Tastatureingaben oder Mausbewegungen reagieren:
 
 ```
