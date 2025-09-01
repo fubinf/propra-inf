@@ -29,7 +29,9 @@ HTTP-Statuscodes sind dreistellige Zahlen, die in fünf Kategorien unterteilt si
 
 **3xx**: Redirection - Further action must be taken in order to complete the request
 
-**4xx**: Client Error - The request contains bad syntax or cannot be fulfilled
+**4xx**: Client Error - The request contains bad syntax or cannot be fulfilled. 
+Der entscheidende Punkt ist, dass den Server keine Verantwortung trifft. 
+Nur der Client kann das Problem lösen.
 
 **5xx**: Server Error - The server failed to fulfill an apparently valid request
 
@@ -46,11 +48,15 @@ Diese Codes signalisieren, dass der Server die Anfrage erhalten hat und sie weit
 
 - `100 Continue`: Der Client soll mit seiner Anfrage fortfahren
 - `101 Switching Protocols`: Der Server wechselt zu einem anderen Protokoll
-- `102 Processing (WebDAV)`: Server verarbeitet die Anfrage, aber keine Antwort verfügbar
-- `103 Early Hints`: Ermöglicht Preloading von Ressourcen während der Serververarbeitung
 
 [EQ] In welchen Situationen würde ein Server den Statuscode `100 Continue` senden?
 Beschreiben Sie ein typisches Szenario und erklären Sie, warum dieser Code nützlich ist.
+
+[NOTICE]
+Lesen Sie die 
+[100 Continue](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/100) 
+für detaillierte Informationen zu diesem Statuscode.
+[ENDNOTICE]
 
 <!-- time estimate: 10 min -->
 
@@ -65,17 +71,16 @@ Diese Codes zeigen an, dass die Anfrage erfolgreich verarbeitet wurde:
 - `202 Accepted`: Anfrage akzeptiert, aber noch nicht vollständig verarbeitet
 - `204 No Content`: Erfolgreiche Verarbeitung, aber keine Inhalte zurückgegeben
 
-**Spezielle Erfolgscodes:**
-
-- `203 Non-Authoritative Information`: Erfolg, aber Metadaten von Drittquelle
-- `205 Reset Content`: Client soll das sendende Dokument zurücksetzen
-- `206 Partial Content`: Partielle Inhalte bei Range-Anfragen
-- `207 Multi-Status (WebDAV)`: Multiple Statuscodes für verschiedene Ressourcen
-- `208 Already Reported (WebDAV)`: Vermeidet doppelte Auflistung in Collections
-- `226 IM Used (HTTP Delta encoding)`: Antwort repräsentiert angewendete Instanzmanipulationen
-
 [EQ] Welcher Unterschied besteht zwischen den Statuscodes `200 OK` und `204 No Content`?
 Wann würde man jeden der beiden verwenden? Geben Sie konkrete Beispiele.
+
+[NOTICE]
+Vergleichen Sie die 
+[200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) 
+und 
+[204 No Content](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204) 
+für die Unterschiede.
+[ENDNOTICE]
 
 <!-- time estimate: 10 min -->
 
@@ -96,16 +101,28 @@ Diese Codes fordern den Client auf, weitere Schritte zu unternehmen:
 - `307 Temporary Redirect`: Wie 302, aber HTTP-Methode darf nicht geändert werden
 - `308 Permanent Redirect`: Wie 301, aber HTTP-Methode darf nicht geändert werden
 
-**Veraltete Codes:**
+[EQ] Erklären Sie die subtilen Unterschiede zwischen `301 Moved Permanently`, 
+`302 Found` und `303 See Other`. Warum ist diese Unterscheidung in der Praxis wichtig?
 
-- `305 Use Proxy`: Deprecated aus Sicherheitsgründen
-- `306 unused`: Nicht mehr verwendet, nur reserviert
-
-(Optional) Ausführliche Informationen zu Redirects finden Sie in der
-[MDN-Dokumentation zu Redirects](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections).
+[NOTICE]
+Lesen Sie die 
+[301 Moved Permanently](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301), 
+[302 Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302) 
+und 
+[303 See Other](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/303) 
+für die Unterschiede.
+[ENDNOTICE]
 
 [EQ] Erklären Sie den Unterschied zwischen `301 Moved Permanently` und `308 Permanent Redirect`.
 Warum wurden die neuen 307/308-Codes eingeführt?
+
+[NOTICE]
+Lesen Sie die 
+[301 Moved Permanently](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301) 
+und 
+[308 Permanent Redirect](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/308) 
+für die Unterschiede.
+[ENDNOTICE]
 
 <!-- time estimate: 10 min -->
 
@@ -121,45 +138,39 @@ Diese Codes zeigen Fehler in der Client-Anfrage an:
 - `404 Not Found`: Angeforderte Ressource existiert nicht
 - `405 Method Not Allowed`: HTTP-Methode für diese Ressource nicht erlaubt
 
-**Authentifizierung und Autorisierung:**
+**Weitere wichtige Client-Fehler:**
 
-- `407 Proxy Authentication Required`: Proxy-Authentifizierung nötig
 - `408 Request Timeout`: Server-Timeout bei inaktiver Verbindung
 - `409 Conflict`: Request konfligiert mit aktuellem Server-Status
-- `410 Gone`: Ressource dauerhaft entfernt (stärker als 404)
+- `429 Too Many Requests`: Rate Limiting aktiv
 
-**Anfrage-spezifische Fehler:**
-
-- `411 Length Required`: Content-Length Header fehlt
-- `412 Precondition Failed`: Vorbedingungen nicht erfüllt
-- `413 Payload Too Large`: Request-Body zu groß
-- `414 URI Too Long`: Request-URI zu lang
-- `415 Unsupported Media Type`: Medienformat nicht unterstützt
-- `416 Range Not Satisfiable`: Angeforderte Range ungültig
-- `417 Expectation Failed`: Expect-Header kann nicht erfüllt werden
-
-**Spezielle und moderne Codes:**
+**Spezielle Codes:**
 
 - `418 I'm a teapot`: RFC 2324 Aprilscherz (HTCPCP)
-- `421 Misdirected Request`: Request an falschen Server gerichtet
-- `422 Unprocessable Entity (WebDAV)`: Syntaktisch korrekt, aber semantisch fehlerhaft
-- `423 Locked (WebDAV)`: Ressource gesperrt
-- `424 Failed Dependency (WebDAV)`: Abhängige Anfrage fehlgeschlagen
-- `425 Too Early`: Server riskiert keine Replay-Attacke
-- `426 Upgrade Required`: Protokoll-Upgrade erforderlich
-- `428 Precondition Required`: Bedingte Anfrage erforderlich
-- `429 Too Many Requests`: Rate Limiting aktiv
-- `431 Request Header Fields Too Large`: Header-Felder zu groß
 - `451 Unavailable For Legal Reasons`: Rechtlich blockiert
-
-**Experimentelle Codes:**
-
-- `402 Payment Required`: Reserviert für zukünftige Zahlungssysteme
 
 [EQ] Sie entwickeln eine Web-API und ein Client sendet einen POST-Request an einen Endpunkt,
 der nur GET-Requests akzeptiert. Welchen Statuscode sollten Sie zurückgeben?
 
-[EQ] Ein Client überschreitet das Rate Limit Ihrer API. Welcher Statuscode ist angemessen?
+[NOTICE]
+Konsultieren Sie die 
+[405 Method Not Allowed](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405) 
+für die korrekte Verwendung dieses Statuscodes.
+[ENDNOTICE]
+
+[EQ] Ein Client überschreitet das Rate Limit (Anfrage-Limit) Ihrer API. Welcher Statuscode ist angemessen?
+
+
+
+[NOTICE]
+**Rate Limiting** ist eine Technik, bei der die Anzahl der Anfragen pro Zeiteinheit 
+(beispielsweise maximal 100 Anfragen pro Minute) begrenzt wird, um Server vor Überlastung zu schützen 
+und faire Nutzung zu gewährleisten.
+
+Lesen Sie die 
+[429 Too Many Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) 
+für Informationen zu Rate Limiting.
+[ENDNOTICE]
 
 <!-- time estimate: 10 min -->
 
@@ -174,21 +185,15 @@ Diese Codes zeigen Probleme auf der Serverseite an:
 - `502 Bad Gateway`: Gateway/Proxy erhielt ungültige Antwort vom Upstream-Server
 - `503 Service Unavailable`: Server temporär nicht verfügbar (Wartung/Überlastung)
 - `504 Gateway Timeout`: Gateway/Proxy-Timeout beim Upstream-Server
-- `505 HTTP Version Not Supported`: HTTP-Version nicht unterstützt
 
-**Erweiterte Server-Fehler:**
-
-- `506 Variant Also Negotiates`: Serverkonfigurationsfehler bei Content Negotiation
-- `507 Insufficient Storage (WebDAV)`: Nicht genug Speicherplatz
-- `508 Loop Detected (WebDAV)`: Endlosschleife bei Anfrageverarbeitung
-- `510 Not Extended`: Server benötigt Erweiterungen für die Anfrage
-- `511 Network Authentication Required`: Netzwerk-Authentifizierung erforderlich
-
-(Optional) Weitere Informationen zu Server-Fehlern finden Sie in der
-[HTTP-Fehlerbehandlung Dokumentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses).
-
-[EQ] Ein Webserver ist aufgrund von Wartungsarbeiten temporär nicht verfügbar.
+[EQ] Ein Webserver ist aufgrund eines Festplattendefekts nicht verfügbar.
 Welchen Statuscode sollte er zurückgeben?
+
+[NOTICE]
+Konsultieren Sie die 
+[503 Service Unavailable](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503) 
+für die korrekte Verwendung bei Wartungsarbeiten.
+[ENDNOTICE]
 
 <!-- time estimate: 10 min -->
 
@@ -207,9 +212,6 @@ Wird heute ironisch für ungültige Anfragen oder als Erkennungszeichen verwende
 `451 Unavailable For Legal Reasons`: Eingeführt 2015, 
 benannt nach Ray Bradburys "Fahrenheit 451", für rechtlich blockierte Inhalte.
 
-(Optional) Weitere ungewöhnliche HTTP-Statuscodes sind in der
-[Complete List of HTTP Status Codes](https://httpstatuses.com/) dokumentiert.
-
 ### Praktische Anwendung und Diagnose
 
 [EQ] Stellen Sie sich vor, Sie betreiben einen Online-Video-Streaming-Dienst.
@@ -220,7 +222,8 @@ und begründen Sie Ihre Entscheidung. Verfügbare Statuscodes:
 
  - **a)** Ein Benutzer ruft erfolgreich die Startseite der Plattform auf.
  - **b)** Während einer Live-Übertragung antwortet der Upstream-Streaming-Server 
-nicht mehr rechtzeitig, weil er überlastet ist.
+(der ursprüngliche Server, von dem der Inhalt kommt) nicht mehr rechtzeitig, 
+weil er überlastet ist.
  - **c)** Beim Abspielen einer Episode tritt auf dem Server 
 ein unerwarteter Fehler in der Videotranscodierung auf.
  - **d)** Ein Benutzer ruft die Seite einer Serie auf, 
@@ -229,6 +232,11 @@ die vor Monaten aus dem Angebot entfernt wurde.
 vorübergehend auf eine andere URL, die später wieder zurückgesetzt wird.
  - **f)** Eine beliebte Serie wurde dauerhaft auf eine neue URL verschoben, 
 und alle zukünftigen Aufrufe sollen auf diese neue Adresse verweisen.
+
+[NOTICE]
+Für diese praktische Übung können Sie die [HTTP Status Codes Referenz](https://httpstatuses.com/) 
+als Nachschlagewerk verwenden, um die korrekten Statuscodes zu identifizieren.
+[ENDNOTICE]
 
 <!-- time estimate: 10 min -->
 
