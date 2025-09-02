@@ -23,11 +23,14 @@ Inhaltsverzeichnis funktionieren und gezielten Zugriff auf bestimmte Daten ermö
 
 ### Was sind Indizes und warum sind sie wichtig?
 
-Ein Index ist eine Datenstruktur, die das schnelle Auffinden von Datensätzen 
-in einer Tabelle ermöglicht.
+Ein Index (engl. 'index'; Plural Indices oder Indizes, engl. 'indexes' oder selten 'indices') 
+ist eine Datenstruktur, die das schnelle Auffinden von Datensätzen 
+in einer Tabelle ermöglicht, indem sie eine sortierte Ordnung dieser Datensätze angibt.
+Braucht man mehrere verschiedene Sortierungen der gleichen Tabelle, legt man 
+einfach mehrere Indizes an.
 Ohne Index muss die Datenbank jeden einzelnen Datensatz durchsuchen 
-(sogenannter "Full Table Scan"), um die gewünschten Ergebnisse zu finden.
-Mit einem Index kann die Datenbank direkt zu den relevanten Datensätzen springen.
+("Full Table Scan"), um die gewünschten Ergebnisse zu finden.
+Mit einem Index kann die Datenbank schnell zu den relevanten Datensätzen springen.
 
 **Vorteile von Indizes:**
 
@@ -38,15 +41,15 @@ Mit einem Index kann die Datenbank direkt zu den relevanten Datensätzen springe
 **Nachteile von Indizes:**
 
 - Zusätzlicher Speicherplatz erforderlich
-- Langsamere `INSERT`, `UPDATE` und `DELETE`-Operationen
-- Wartungsaufwand für die Datenbank
+- Langsamere `INSERT`, `UPDATE` und `DELETE`-Operationen,
+  weil nicht nur die Tabelle, sondern auch alle ihre Indices aktualisiert werden müssen.
 
 (Optional) Für eine grundlegende Einführung lesen Sie:
 [`SQL CREATE INDEX`](https://www.w3schools.com/sql/sql_create_index.asp)
 
 <!-- time estimate: 15 min -->
 
-### Index-Syntax in SQL
+### `CREATE INDEX`
 
 Die grundlegende Syntax zum Erstellen von Indizes:
 
@@ -74,14 +77,16 @@ SQLite verwendet die oben gezeigte Syntax.
 ### Praktische Performance-Messung vorbereiten
 
 Um die Auswirkungen von Indizes wirklich zu verstehen, werden wir eine Tabelle 
-mit einer großen Anzahl von Datensätzen erstellen und die Abfragezeiten messen.
+mit vielen Datensätzen erstellen und Abfragezeiten mit und ohne Index messen.
 
-Wir verwenden die [SQLite Online](https://sqliteonline.com) Website, um SQL Abfragen zu erstellen. 
+Wir verwenden wieder die 
+[SQLite Online](https://sqliteonline.com)-Website, 
+um SQL-Abfragen zu erstellen. 
 
 [ER] Erstellen Sie eine Tabelle `performance_test` mit drei Spalten: eine `id`-Spalte vom Typ 
-INTEGER als Primärschlüssel, eine `random_number`-Spalte vom Typ INTEGER für Zufallszahlen, 
-und eine `category`-Spalte vom Typ TEXT für Kategoriewerte. Verwenden Sie dabei die aus 
-[PARTREF::sql-basics] bekannten CREATE TABLE-Befehle.
+`INTEGER` als Primärschlüssel, eine `random_number`-Spalte vom Typ `INTEGER` für Zufallszahlen, 
+und eine `category`-Spalte vom Typ `TEXT` für Kategoriewerte. Verwenden Sie dabei die aus 
+[PARTREF::sql-basics] bekannten `CREATE TABLE`-Befehle.
 
 [ER] Fügen Sie 1 Million Zufallsdatensätze ein. 
 Verwenden Sie dazu folgende Anweisung:
@@ -104,11 +109,12 @@ FROM (
   SELECT x FROM numbers
 );
 ```
-
+(Der hintere Teil geht in z.B. Postgres viel einfacher: `generate_series(1, 1000000)`)
 <!-- time estimate: 10 min -->
+
 ### Index-Verwaltung und -Übersicht
 
-Die Verwaltung von Indizes ist ebenfalls sehr wichtig. 
+Die Verwaltung von Indizes ist ebenfalls wichtig. 
 Normalerweise können wir diese Syntax verwenden:
 
 ```sql
@@ -120,7 +126,8 @@ WHERE type = 'index' AND tbl_name = 'mytable';
 DROP INDEX myindex_name;
 ```
 
-[ER] Erstellen und zeigen Sie den Index `idx_category` der Tabelle `performance_test` an.
+[ER] Erstellen Sie den Index `idx_category` zur Tabelle `performance_test` und
+fragen Sie seinen `name` ab.
 
 [ER] Löschen Sie den Index `idx_category`.
 
