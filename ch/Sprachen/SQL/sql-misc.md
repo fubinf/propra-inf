@@ -1,6 +1,6 @@
 title: SQL BETWEEN, SELECT INTO, CREATE DATABASE, Datumsfunktionen, NULL-Funktionen, TRUNCATE, INDEX
-stage: alpha
-timevalue: 2.0
+stage: beta
+timevalue: 1.5
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2
 ---
@@ -73,7 +73,7 @@ deren `country` nicht 'USA' oder 'IND' ist.
 [ER] Verwenden Sie `BETWEEN` mit Textvergleichen: 
 Wählen Sie alle Websites aus, deren `name` alphabetisch zwischen 'A' und 'H' liegt.
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 15 min -->
 
 
 ### Datumsfunktionen: `DATE`, `DATETIME`, Datumsvergleiche
@@ -97,10 +97,10 @@ Erstellen Sie eine neue Tabelle für Datumsoperationen:
 
 SQLite bietet verschiedene Datumsfunktionen. Die wichtigsten sind:
 
-- `DATE('now')` – aktuelles Datum im Format YYYY-MM-DD
-- `DATETIME('now')` – aktuelles Datum mit Uhrzeit im Format YYYY-MM-DD HH:MM:SS  
-- `DATE(datumsstring)` – extrahiert Datumsteil aus einem Datetime-String
-- `JULIANDAY(datum1) - JULIANDAY(datum2)` – Differenz in Tagen zwischen zwei Daten
+- `DATE('now')`: aktuelles Datum im Format YYYY-MM-DD
+- `DATETIME('now')`: aktuelles Datum mit Uhrzeit im Format YYYY-MM-DD HH:MM:SS  
+- `DATE(datumsstring)`: extrahiert Datumsteil aus einem Datetime-String
+- `JULIANDAY(datum1) - JULIANDAY(datum2)`: Differenz in Tagen zwischen zwei Daten
 
 (Optional) Umfassende Übersicht aller Datumsfunktionen bei
 [`Date Functions`](https://www.sqltutorial.org/sql-date-functions/)
@@ -121,13 +121,13 @@ SQLite speichert Daten als TEXT, REAL oder INTEGER. Für Datumsoperationen konve
 automatisch zwischen verschiedenen Formaten. 
 Das Format 'YYYY-MM-DD' wird empfohlen.
 [ENDNOTICE]
-<!-- time estimate: 25 min -->
+<!-- time estimate: 15 min -->
 
 
 ### Daten kopieren: `SELECT INTO`
 
-`SELECT INTO` ist eine SQL-Konstruktion, die es ermöglicht, Daten aus einer 
-bestehenden Tabelle in eine neue Tabelle zu kopieren. 
+`SELECT INTO` ist eine SQL-Konstruktion, die es ermöglicht, das Ergebnis einer 
+Abfrage in einer neuen Tabelle aufzufangen. 
 Die allgemeine Syntax lautet:
 
 ```sql
@@ -147,7 +147,7 @@ abgeleitet.
 
 
 **Wichtiger Hinweis:** SQLite unterstützt `SELECT INTO` nicht direkt. 
-In SQLite wird stattdessen das (auch auf vielen, aber nicht allen anderen RDBMS gängige) Konstrukt
+In SQLite wird stattdessen das (auch auf vielen, aber nicht allen anderen RDBMS mögliche) Konstrukt
 `CREATE TABLE AS SELECT` verwendet, um das Ziel zu erreichen:
 
 ```sql
@@ -173,16 +173,16 @@ um die `INTO`-Klausel erweitert, die das Ziel für die kopierten Daten angibt.
 - Erstellung von Arbeits- oder Testtabellen
 - Datenarchivierung mit spezifischen Filterkriterien
 [ENDNOTICE]
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
 
 ### NULL-Funktionen: `COALESCE`, `IFNULL`, `NULLIF`
 
 SQLite bietet verschiedene Funktionen zum Umgang mit NULL-Werten:
 
-- `COALESCE(wert1, wert2, ...)` – gibt den ersten Nicht-NULL-Wert zurück
-- `NULLIF(wert1, wert2)` – gibt NULL zurück, wenn beide Werte gleich sind
-- `IFNULL(wert, ersatz)` – ersetzt NULL durch einen anderen Wert (nur in SQLite und MySQL/MariaDB)
+- `COALESCE(wert1, wert2, ...)`: gibt den ersten Nicht-NULL-Wert zurück
+- `NULLIF(wert1, wert2)`: gibt NULL zurück, wenn beide Werte gleich sind
+- `IFNULL(wert, ersatz)`: ersetzt NULL durch einen anderen Wert (nur in SQLite und MySQL/MariaDB)
 
 ```sql
 SELECT COALESCE(mycol, 'Standard') FROM mytable;
@@ -203,14 +203,13 @@ SELECT IFNULL(mycol, 0) FROM mytable;
 
 Diese NULL-Funktionen sind sehr oft nützlich bei Berechnungen und Berichten, 
 um zu verhindern, dass NULL-Werte zu unerwünschten Ergebnissen führen.
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
 
 ### Datenbank-Konzepte: `CREATE DATABASE`
 
-In SQLite werden Datenbanken als Dateien erstellt. Der Befehl `CREATE DATABASE` 
-existiert nicht direkt, aber wir können das Konzept verstehen.
-
+In SQLite werden Datenbanken als Dateien erstellt. 
+Der Befehl `CREATE DATABASE` existiert nicht als solcher. 
 In anderen Datenbanksystemen:
 ```sql
 CREATE DATABASE mydatabase;
@@ -221,7 +220,8 @@ CREATE DATABASE mydatabase;
 wie man eine neue SQLite-Datenbankdatei erstellt.
 
 [NOTICE]
-SQLite erstellt automatisch eine Datenbankdatei, wenn sie nicht existiert. 
+SQLite erstellt automatisch eine Datenbankdatei, wenn sie nicht existiert, arbeitet aber zu
+jedem Zeitpunkt mit nur einer Datenbank.
 In größeren Systemen wie MySQL oder PostgreSQL verwendet man `CREATE DATABASE`.
 [ENDNOTICE]
 <!-- time estimate: 10 min -->
@@ -253,7 +253,7 @@ und vergleichen Sie visuell, wie schnell die verschiedenen Methoden sind.
 `TRUNCATE` ist in anderen DBMS schneller als `DELETE`, da es keine Transaktionslogs schreibt 
 und die Tabellendefinition behält, aber alle Daten entfernt.
 [ENDNOTICE]
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
 [ENDSECTION]
 
