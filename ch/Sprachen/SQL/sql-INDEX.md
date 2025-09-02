@@ -44,7 +44,7 @@ Mit einem Index kann die Datenbank schnell zu den relevanten Datensätzen spring
 - Langsamere `INSERT`, `UPDATE` und `DELETE`-Operationen,
   weil nicht nur die Tabelle, sondern auch alle ihre Indices aktualisiert werden müssen.
 
-(Optional) Zur Vertiefung: Weitere Erklärungen finden Sie hier::
+(Optional) Zur Vertiefung: Weitere Erklärungen finden Sie hier:
 [`SQL CREATE INDEX`](https://www.w3schools.com/sql/sql_create_index.asp)
 
 <!-- time estimate: 5 min -->
