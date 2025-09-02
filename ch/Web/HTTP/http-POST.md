@@ -68,11 +68,7 @@ aus dem Alltag, das sowohl GET als auch POST enthält.
 Beschreiben Sie, warum die HTTP-Methode für den jeweiligen Zweck semantisch korrekt ist und 
 was passieren würde, wenn man die falsche Methode verwendete.
 
-[EQ] Lesen Sie mehr über 
-[POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)
-Warum ist POST "nicht idempotent" im Gegensatz zu GET? 
-Geben Sie ein praktisches Beispiel an.
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 ### Aufbau einer POST-Anfrage
 
@@ -101,7 +97,7 @@ die folgende Formulardaten an `httpbin.org` (Port 80) zum Pfad `/post` sendet::
 
 Verwenden Sie `application/x-www-form-urlencoded` als Content-Type und 
 vergessen Sie nicht die korrekte Content-Length.
-<!-- time estimate: 10 min -->
+<!-- time estimate: 20 min -->
 
 ### Content-Type Varianten
 
@@ -143,7 +139,7 @@ statt `application/x-www-form-urlencoded` verwenden?
 [JSON vs Form Data](https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data)
 [ENDHINT]
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### POST-Anfrage mit netcat testen
 
@@ -169,11 +165,7 @@ Lassen Sie uns das gleiche Beispiel wie oben verwenden, aber diesmal mit JSON-Fo
 
 [EC] Erstellen Sie eine Datei `HTTP-POST-json.crlf` mit einer POST-Anfrage, 
 die die gleichen Daten wie oben an `httpbin.org` (Port 80) zum Pfad `/post` sendet, 
-aber im JSON-Format:
-
-- username: "testuser"
-- password: "geheim123"
-- remember: true
+aber im JSON-Format.
 
 Verwenden Sie `application/json` als Content-Type und achten Sie auf die korrekte JSON-Syntax.
 <!-- time estimate: 10 min -->
@@ -218,26 +210,6 @@ Reichen Sie die von httpbin zurückgegebene Formularausgabe ein.
 </html>
 
 ```
-<!-- time estimate: 10 min -->
-
-### Sicherheitsaspekte bei POST
-
-Obwohl POST sicherer als GET ist, gibt es wichtige Sicherheitsüberlegungen:
-
-**HTTPS verwenden:**
-POST-Daten sind nur bei HTTPS verschlüsselt. Bei HTTP sind sie im Klartext übertragbar.
-
-**CSRF-Schutz:**
-Cross-Site Request Forgery Angriffe können POST-Anfragen missbrauchen.
-
-**Input-Validierung:**
-Alle POST-Daten müssen serverseitig validiert werden.
-
-(Optional) Lesen Sie mehr über 
-[Web-Sicherheit](https://developer.mozilla.org/en-US/docs/Web/Security)
-
-[EQ] Warum reicht es nicht aus, dass POST-Daten nicht in der URL stehen, 
-um sie als "sicher" zu betrachten?
 <!-- time estimate: 10 min -->
 
 [ENDSECTION]
