@@ -8,16 +8,18 @@ requires: pd-Datenselektion
 [SECTION::goal::idea]
 Ich verstehe, wie man Daten in Pandas korrekt verändert.
 
-Ich verstehe, welches Verhalten man von Pandas in Hinblick auf die Kopien (`Copy`) und Sichten
-(`View`) erwarten würde und wie Pandas von diesem mentalen Modell abweichen.
+Ich verstehe, wie Pandas beim Thema "Kopien (`Copy`) und Sichten (`View`)" abweicht
+von dem, was ein sinnvolles mentales Modell erwarten ließe.
 [ENDSECTION]
 
 [SECTION::background::default]
-Pandas-Methoden weisen ein sehr unintuitives Verhalten auf, wenn man Daten ändert,
+Pandas-Methoden weisen ein oft verblüffendes Verhalten auf, wenn man Daten ändert,
 denn beim vorherigen Selektieren bekommt man manchmal eine _Sicht_ auf den darunter liegenden
-Dataframe und manchmal eine _Kopie_ der jeweiligen Teile des Dataframes.
-Wenn man den Dataframe ändern wollte, wird der zweite Fall also ein Fehlschlag. 
-Diese Aufgabe lehrt das nötige Verständnis, um Daten erfolgreich zu bearbeiten.
+Dataframe (über die man Daten im Dataframe ändern kann) und manchmal 
+eine _Kopie_ der jeweiligen Teile des Dataframes (sodass eine Änderung nur die Kopie
+betrifft und verpufft, wenn man eigentlich den ursprünglichen Dataframe ändern wollte).
+
+Diese Aufgabe lehrt das nötige Verständnis, um Daten _erfolgreich_ zu bearbeiten.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
@@ -50,8 +52,8 @@ Bei einer Liste ist das Auswählen und Schreiben ähnlich:
 `liste[3] = "Neuer Wert"`
 Jede dieser Selektionen (`loc()`, Indexierung, etc.) kann man sich als eine Art "Fenster" 
 (Sicht, `View`) auf den `DataFrame` selbst vorstellen.
-Wenn Sie so einer Sicht Daten zuweisen, dann werden die Daten vom originalen
-`DataFrame` selbst überschrieben.
+Wenn Sie so einer Sicht Daten zuweisen, dann werden die Daten im originalen
+`DataFrame` überschrieben.
 
 #### Subsets
 
@@ -70,28 +72,28 @@ subset[0] = 999
 Wenn also was in `subset` geändert wird, wird es auch in `df` geändert.
 [ENDHINT]
 
-[ER] Trotzdem möchte man als Programmierer die Möglichkeit haben, explizit Kopien eines `DataFrame`
-zu erstellen.
-Dazu können Sie die Methode
-[`copy()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.copy.html#pandas.DataFrame.copy) 
-verwenden.
+[ER] Trotzdem möchte man als Programmierer die Möglichkeit haben, explizit Kopien von
+relevanten Teilen eines `DataFrame` zu erstellen.
+Dazu gibt es die Methode
+[`copy()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.copy.html#pandas.DataFrame.copy).
 Ändern Sie das vorherige Beispiel so ab, dass `subset` eine echte Kopie von `df` ist.
 
 #### Verkettete Indexierung
 
 Wenn jede Selektion eine Sicht ist, dann sollte man auch Verkettungen schreiben können, wie:
 `df["Spalte B"][df["Spalte A"] == 1] = 99`
-Denn letztendlich wird die Sicht auf die Daten einfach nur immer weiter eingeschränkt.
+Dabei wird die Sicht auf die Daten in jedem Schritt weiter eingeschränkt.
 
 [EQ] Warum würde dieser Ausdruck nicht `df` bearbeiten, wenn jede Selektion eine Kopie zurückgibt
 statt einer Sicht?
 
 ### Reales Verhalten von Pandas
 
-Doch tatsächlich weicht Pandas von diesem Ideal, jede Selektion sei eine Sicht auf Daten, ab.
-Und das ist der Kernpunkt für die meisten Verwirrungen, die im Umgang mit Pandas entstehen.
-Pandas garantieren nämlich nicht, dass jede Selektion eine Sicht ist:
-Manchmal, und leider auch sehr unvorhersehbar, _können_ Kopien zurückgegeben werden statt Sichten (`Views`).
+Doch tatsächlich weicht Pandas von diesem Ideal ab, bei dem jede Selektion eine Sicht auf Daten ist.
+Das ist die Ursache für die meisten Verwirrungen, die im Umgang mit Pandas entstehen.
+Pandas garantiert nämlich nicht, dass jede Selektion eine Sicht ist:
+Manchmal (und bei manchen Ausdrücken sogar _unvorhersehbar_) werden Kopien zurückgegeben 
+anstatt Sichten (`Views`).
 
 ```python
 subset1 = erststimmen_df[erststimmen_df["Bezirksname"] == "Mitte"]
