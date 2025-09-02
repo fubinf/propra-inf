@@ -1,9 +1,10 @@
 title: X11-Weiterleitung
-stage: alpha
-timevalue: 0.5
+stage: draft
+timevalue: 0.1
 difficulty: 2
 assumes: ssh
 ---
+<!-- TODO_3: X11-Weiterleitung hält Winterschlaf bis mind. 2027. Siehe https://github.com/fubinf/propra-inf/issues/50 -->
 
 [SECTION::goal::idea]
 
