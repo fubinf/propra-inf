@@ -8,25 +8,21 @@ requires: html-Medien
 
 - Ich kann erklären, was ein HTML-Attribut ist
 - Ich kann HTML-Attribute implementieren
-
 [ENDSECTION]
+
+
 [SECTION::background::default]
-
-In der Einführung haben wir uns verschiedene HTML-Elemente angesehen.
-Um Elemente zu konfigurieren oder ihr Verhalten auf verschiedene Art und Weisen anzupassen,
-können ihnen Attribute zugewiesen werden, um die gewünschten Kriterien zu erfüllen.
-
-In dieser Aufgabe sehen wir uns die Funktionsweise von solchen Attributen 
-und ein paar allgemeinen Beispielen an.
-
+Um HTML-Elemente verschieden zu konfigurieren,
+können ihnen Attribute zugewiesen werden -- eine entscheidende Ergänzung für fast alles,
+was man später mit CSS oder JavaScript tun möchte.
 [ENDSECTION]
+
+
 [SECTION::instructions::detailed]
-
-Ein HTML-Attribut hat in der Regel einen Namen und einen Wert. 
-In einem HTML-Element werden Sie im öffnenden Tag nach dem Tag-Namen platziert:
+Ein HTML-Attribut hat einen Namen und (meistens) einen Wert. 
+In einem HTML-Element werden Attribute im öffnenden Tag hinter dem Tag-Namen platziert:
 `<tag attribut="wert">`
-Ihre Reihenfolge ist dabei egal.
-
+Die Reihenfolge der Attribute ist bedeutungslos.
 
 [EQ] In der Aufgabe zu Medien haben wir uns bereits verschiedene Elemente und ihre Attribute angesehen.
 Welches Attribut haben wir jeweils für die Elemente `<a>` und `<img>` verwendet? 
@@ -39,7 +35,7 @@ Einige Attribute sind universal einsetzbar.
 Soll ein Element z.B. eindeutig identifiziert werden, so kann es mit dem Attribut `id` versehen werden. 
 Der Wert muss innerhalb des Dokuments eindeutig sein.
 Dieser kann dann z.B. von Links referenziert werden, sodass der Browser an die Stelle springt.
-Auch [TERMREF::CSS] und [TERMREF::JavaScript] machen sich dieses Attribut - sowie das `class`-Attribut - zu Nutzen.
+Auch [TERMREF::CSS] und [TERMREF::JavaScript] machen sich dieses Attribut (sowie das `class`-Attribut) zu Nutzen.
 
 [ER] Versehen Sie das Video auf der Medienseite mit einer ID. 
 Erstellen Sie einen Link zum Beginn der Seite, der auf das Video referenziert.
