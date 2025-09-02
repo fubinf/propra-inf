@@ -62,4 +62,5 @@
   Bestandscode/Refactoring-Praxis/[PARTREF::refactor-GildedRose-Tests] angepasst.  
   Aufgabe Bibliotheken/pip-popular/[PARTREF::m_pydantic] zugefügt.
   Aufgabe Sprachen/SQL/[PARTREF::sql-UPDATE-VIEW-CASE] zugefügt.
+- **2025-09-02**: Aufgabe Web/HTTP/[PARTREF::http-Status] zugefügt.
 - ...
