@@ -1,6 +1,6 @@
 title: HTTP Zustandslosigkeit und Cookies
 stage: alpha
-timevalue: 1.5
+timevalue: 1.0
 difficulty: 2
 assumes: http-GET
 ---
@@ -49,7 +49,7 @@ Ohne Zustand fehlt dem Server bei Anfrage 2 die Information, ob jemand angemelde
 Falls noch Fragen offen sind, hilft diese Ressource weiter:
 [HTTP als zustandsloses Protokoll](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview)
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 ### Warum ist HTTP zustandslos designed?
 
@@ -121,7 +121,7 @@ Cookie: session_id=abc123
 (Optional) Detaillierte Informationen zu Cookie-Mechanismen unter:
 [Using HTTP Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
 
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
 ### Sessions und Sitzungsverwaltung
 
@@ -186,7 +186,7 @@ und begründen Sie Ihre Entscheidung.
 als auch temporäre Warenkorbdaten nur für die aktuelle Browsersitzung. 
 Wie würden die entsprechenden `Set-Cookie` Header aussehen?
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 
 [ENDSECTION]
