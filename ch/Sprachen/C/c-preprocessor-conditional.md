@@ -5,44 +5,42 @@ difficulty: 2
 assumes: c-compiler-assembler-linker
 ---
 [SECTION::goal::idea]
-Ich verstehe die `#if` und Geschwister Präprozessor-Direktiven und kann diese anwenden.
+Ich verstehe die `#if`-Präprozessor-Direktiven und kann diese anwenden.
 [ENDSECTION]
 
+
 [SECTION::background::default]
-Zusammen mit [PARTREF::c-preprocessor-include] und [PARTREF::c-preprocessor-macros] werden Sie sich
-mit dem C-Präprozessors vertraut machen.
+Wenn Programmcode je nach Betriebssystem oder je nach CPU ein wenig anders arbeiten muss,
+dann muss man die entsprechenden Unterscheidungen nicht zur Laufzeit machen,
+sondern weiß schon beim Übersetzen, welcher Fall benötigt wird.
 
-Spätestens wenn Sie mit C-Code arbeiten, der auf mehreren Betriebssystemen oder
-Prozessorarchitekturen läuft, kommen Konditionale in Spiel.
-Mithilfe dieser können Sie während des Bauvorgangs beeinflussen, ob ein Codesegment während der
-Übersetzung betrachtet wird oder nicht.
-
-Wissbegierige können sich zusätzliche Informationen aus dem
-[Kapitel über Konditionale des GCC Präprozessor Handbuches](https://gcc.gnu.org/onlinedocs/cpp/Conditionals.html)
-entnehmen.
+Mit `#if` und `#ifdef` im Präprozessor können wir passende Codeteile auswählen
+und nur diese übersetzen. Der Code wird dadurch kleiner und schneller.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+Hier stehen bei Bedarf die Einzelheiten:
+[GCC cpp Handbook: "conditionals"](https://gcc.gnu.org/onlinedocs/cpp/Conditionals.html)
+
 Im ProPra selbst werden sie Konditionale recht selten verwenden müssen.
 In der freien Wildbahn hingegen werden Sie doch sehr schnell sehr wichtig.
 
 Die gängigsten Anwendungsfälle für Konditionale sind:
 
 - Sie schreiben ein Programm, das mehrere Kryptografiebibliotheken (openSSL, Mbed TLS, etc.)
-  unterstützen kann. Während des Bauens kann entschieden werde, welche der Bibliotheken verwendet
+  unterstützen kann. Während des Bauens kann entschieden werden, welche der Bibliotheken verwendet
   werden soll.
-  Das ermöglicht es Nutzern Ihrer Bibliothek die Wahl der Kryptografiebibliothek auf deren
+  Das ermöglicht es Nutzern Ihrer Bibliothek, die Wahl der Kryptografiebibliothek auf deren
   Bedürfnisse anzupassen.
 - Sie schreiben ein Programm welches auf macOS, Linux und Windows laufen soll.
-  Code, welcher sich unterscheidet, wird nur dann Betrachtet, wenn die Kondition, hier eine Prüfung
-  auf das Ziel-Betriebssystems, wahr ist.
-  Andernfalls wird der Code ignoriert.
-  Für diesen sehr häufig auftretende Fall stellen alle gängigen Übersetzer vordefinierte Makros
+  Code, der nur für System X gilt, wird nur eingeschlossen, wenn wir 
+  gerade die Version für X übersetzen.
+  Für diesen sehr häufigen Fall stellen alle gängigen C-Übersetzer vordefinierte Makros
   bereit.
-- Ein Programm kann zusätzliche Debugging-Ausgaben erhalten, welche optional hinzugefügt werden
-  sollen.
-- Sie schreiben eine Programm, welches die Implementierung gewisser Funktionen anpasst, je nachdem
-  welche Features eine Abhängigkeit bereitstellt.
+- Ein Programm kann zusätzliche Debugging-Funktionen erhalten, welche zur Übersetzungezeit
+  optional hinzugefügt oder weggelassen werden sollen.
+- Sie schreiben ein Programm, welches die Implementierung gewisser Funktionen anpasst, je nachdem
+  welche Features eine benutzte Bibliothek bereitstellt.
   Ein geläufiger Nutzer dessen ist die C++-Standardbibliothek.
 
 Die für diese Funktionalität verantwortlichen Direktiven sind:
@@ -54,7 +52,7 @@ Die für diese Funktionalität verantwortlichen Direktiven sind:
   als zusätzliche Fälle genutzt werden. Dabei darf `#else` höchstens einmal, als letztes, verwendet
   werden.
 
-Zusätzliche gibt es einen Sonderoperator, `defined`. Dieser Operator ist wichtig, da er auf das
+Zusätzlich gibt es einen Sonderoperator, `defined`. Dieser Operator ist wichtig, da er auf das
 Vorhandensein eines Makros prüft und *nicht* auf den Wert des Makros.
 
 Die Allgemeine Form ist wie folgt:
@@ -117,19 +115,19 @@ int main(void) {
 
 [ER] Vervollständigen Sie `lib.c` so, dass Sie drei konditionale Blöcke erhalten.
 
-Ein Block soll aktiv sein wenn das Symbol `LOG` definiert ist und folgenden Inhalt haben:
+Ein Block soll aktiv sein, wenn das Symbol `LOG` definiert ist, und folgenden Inhalt haben:
 ```c
 void print(const char *string) {
   printf("\e[0;32mLOG: %s\e[0m\n", string);
 }
 ```
-Ein Block soll aktiv sein wenn das Symbol `ERROR` definiert ist und folgenden Inhalt haben:
+Ein Block soll aktiv sein, wenn das Symbol `ERROR` definiert ist, und folgenden Inhalt haben:
 ```c
 void print(const char *string) {
   printf("\e[0;31m%sERROR: \e[0m\n", string);
 }
 ```
-Ein Block soll aktiv sein wenn das Symbol `WARN` und das Symbol `BOLD` definiert sind und folgenden
+Ein Block soll aktiv sein, wenn das Symbol `WARN` und das Symbol `BOLD` definiert sind, und folgenden
 Inhalt haben:
 ```c
 void print(const char *string) {
@@ -137,7 +135,7 @@ void print(const char *string) {
 }
 ```
 
-Wählen Sie bei den Nachfolgenden Schritten gemäß Ihrer IDE.
+Wählen Sie bei den nachfolgenden Schritten gemäß Ihrer IDE.
 
 [FOLDOUT::CLion]
 Öffnen Sie die `CMakeLists.txt`.
@@ -166,13 +164,14 @@ Es soll der `ERROR` Block ausgeführt werden.
 
 [EC] Führen Sie das Program aus.
 Es soll der `WARN` Block ausgeführt werden.
-
 [ENDSECTION]
+
 
 [SECTION::submission::trace,program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Abgabe prüfen]
 [INCLUDE::ALT:]
