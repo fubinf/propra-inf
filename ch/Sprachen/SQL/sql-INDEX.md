@@ -44,10 +44,10 @@ Mit einem Index kann die Datenbank schnell zu den relevanten Datensätzen spring
 - Langsamere `INSERT`, `UPDATE` und `DELETE`-Operationen,
   weil nicht nur die Tabelle, sondern auch alle ihre Indices aktualisiert werden müssen.
 
-(Optional) Für eine grundlegende Einführung lesen Sie:
+(Optional) Zur Vertiefung: Weitere Erklärungen finden Sie hier::
 [`SQL CREATE INDEX`](https://www.w3schools.com/sql/sql_create_index.asp)
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 5 min -->
 
 ### `CREATE INDEX`
 
@@ -69,10 +69,10 @@ Die Syntax für Indizes kann zwischen verschiedenen Datenbanksystemen variieren.
 SQLite verwendet die oben gezeigte Syntax.
 [ENDNOTICE]
 
-(Optional) Detaillierte Informationen zu Index-Strategien unter
+(Optional) Neugierig geworden? Dann lesen Sie hier weiter:
 [`SQL Index`](https://www.tutorialspoint.com/sql/sql-indexes.htm)
 
-<!-- time estimate: 10 min -->
+<!-- time estimate: 5 min -->
 
 ### Praktische Performance-Messung vorbereiten
 
@@ -135,21 +135,14 @@ fragen Sie seinen `name` ab.
 
 ### Performance-Messung
 
-Verwenden Sie zum Messen der Abfragezeit die folgende Methode:
+Verwenden Sie zum Messen der Abfragezeit die folgende Methode. 
+
+**Wichtig**: Sie müssen zuerst die Tabelle `performance_test` mit den 
+1 Million Datensätzen erstellt haben (siehe oben), 
+bevor Sie diese Zeitmessung durchführen können. 
+Nach dem Erstellen der Tabelle können Sie optional einen Index anlegen.
 
 ```sql
--------------------------------------------------
--- ① Tabelle erstellen (hier CREATE TABLE ...)
--------------------------------------------------
--------------------------------------------------
--- ② Daten einfügen (hier INSERT INTO ...)
--------------------------------------------------
--------------------------------------------------
--- ③ Index erstellen (optional, hier CREATE INDEX ...)
--------------------------------------------------
--------------------------------------------------
--- ④ Zeitmessung für eine Abfrage
--------------------------------------------------
 
 -- Tabelle für Zeitmessung (falls noch nicht existiert)
 DROP TABLE IF EXISTS timing;
@@ -167,12 +160,16 @@ SELECT 'dummy', julianday('now')
 FROM (
   -------------------------------------------------
   -- 👇 Hier die Abfrage einsetzen, die gemessen werden soll
-  -- Beispiel: Zähle alle Zeilen mit random_number zwischen 100000 und 200000
+  -- Beispiel: Zähle alle Zeilen mit random_number zwischen 42 und 1024
   SELECT COUNT(*) 
-  FROM performance_test 
-  WHERE random_number BETWEEN 100000 AND 200000
+  FROM mytable 
+  WHERE mynumber BETWEEN 42 AND 1024
   -------------------------------------------------
 ) AS q;
+
+-- Sie können den Index auch innerhalb oder außerhalb des Zeitmessung platzieren, 
+-- um die zum Erstellen des Index erforderliche Zeit zu testen (hier innerhalb)
+CREATE INDEX myindex_name ON mytable (mycolumn);
 
 -- Endzeit aufzeichnen
 INSERT INTO timing VALUES ('stop', julianday('now'));
@@ -201,7 +198,10 @@ daher können Sie dennoch den durch Indizes erzielten Leistungsgewinn deutlich e
 
 [ER] Wiederholen Sie die gleichen Abfragen von [EREFR::5] und [EREFR::6] und messen Sie die Ausführungszeit.
 
-<!-- time estimate: 10 min -->
+[ER] Messen Sie die Zeit, die für das Erstellen des Index auf der `random_number`-Spalte benötigt wird. Verwenden Sie dabei die gleiche Zeitmessungsmethode wie bei den Abfragen. 
+Notieren Sie sich diese Index-Erstellungszeit, da Sie sie später für die Analyse in [EREFQ::2] benötigen werden.
+
+<!-- time estimate: 20 min -->
 
 ### Verschiedene Index-Typen testen
 
@@ -214,7 +214,6 @@ gleich 'A' zu finden. Messen Sie die Ausführungszeit ohne den mehrspaltigen Ind
 [ER] Löschen Sie den mehrspaltigen Index und führen Sie die gleiche Abfrage erneut aus. 
 Messen Sie die Ausführungszeit.
 
-[ER] Löschen Sie alle erstellten Indizes.
 
 
 <!-- time estimate: 20 min -->
@@ -222,11 +221,12 @@ Messen Sie die Ausführungszeit.
 
 ### Praktische Überlegungen zu Indizes
 
-[EQ] Wann sollten Sie einen Index erstellen und wann nicht?
-
 [EQ] Dokumentieren Sie Ihre Messergebnisse: Wie groß war der Unterschied 
 zwischen den Abfragezeiten mit und ohne Index? 
-Welche Faktoren könnten die Performance-Unterschiede beeinflussen?
+Welche Faktoren könnten die Performance-Unterschiede beeinflussen? 
+
+[EQ] Beachten Sie dabei auch die Index-Erstellungszeit aus [EREFR::9] und überlegen Sie, 
+wann sollten Sie einen Index erstellen und wann nicht?
 
 <!-- time estimate: 25 min -->
 
