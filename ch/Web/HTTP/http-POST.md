@@ -6,21 +6,19 @@ assumes: http-GET
 ---
 
 [SECTION::goal::idea,experience]
-
 Ich verstehe Aufbau und Bedeutung einer POST-Anfrage und -Antwort in HTTP und kann 
 die Unterschiede zu GET-Anfragen erklären.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Während GET-Anfragen hauptsächlich zum Abrufen von Daten verwendet werden, benötigen 
 moderne Webanwendungen auch die Möglichkeit, Daten an Server zu senden. 
 Bei der Benutzerregistrierung, dem Hochladen von Dateien oder der Übermittlung 
 von Formulardaten ist die POST-Methode das zentrale Werkzeug für die 
 Datenübertragung im Web.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -36,7 +34,7 @@ Arten von Anfragen. Die beiden wichtigsten sind:
 [HTTP-Methoden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
 
 [EQ] Welche weiteren HTTP-Methoden gibt es neben GET und POST, und wofür werden 
-sie typischerweise verwendet?
+sie typischerweise verwendet (stichwortartige Antwort reicht)?
 <!-- time estimate: 15 min -->
 
 ### POST vs. GET: Die wichtigsten Unterschiede
@@ -45,34 +43,30 @@ POST unterscheidet sich in mehreren wichtigen Aspekten von GET:
 
 **Semantik (der wichtigste Unterschied):**
 
-- GET: Ist wirkungsfrei (idempotent) - verändert den Server-Zustand nicht
-- POST: Verändert den Zustand auf dem Server - kann Daten erstellen, ändern oder löschen
+- GET: Ist wirkungsfrei (idempotent), verändert also den Server-Zustand nicht.
+- POST: Verändert den Zustand auf dem Server; es kann Daten erstellen, ändern oder löschen.
 
-Dies ist der fundamentalste Unterschied zwischen GET und POST. GET wird zum Abrufen von Informationen verwendet, während POST zum Senden von Daten zur Verarbeitung dient.
+GET wird also zum Abrufen von Informationen verwendet, während POST zum Senden von Daten zur Verarbeitung dient.
 
 **Datenübertragung:**
 
-- GET: Parameter werden in der URL übertragen (`/search?query=beispiel&page=1`)
-- POST: Daten werden im Request Body übertragen (nicht sichtbar in der URL)
-
-**Sicherheit:**
-
-- GET: Parameter sind in URL, Browser-Historie und Server-Logs sichtbar
-- POST: Daten sind nicht in der URL sichtbar (aber trotzdem nicht automatisch verschlüsselt!)
-
-**Datenmenge:**
-
-- GET: Begrenzt durch maximale URL-Länge (ca. 2048 Zeichen)
-- POST: Praktisch unbegrenzte Datenmenge möglich
+- GET: Parameter werden in der URL übertragen (`/search?query=beispiel&page=1`),
+  sind also in der Browser-Historie und in Server-Logs sichtbar.
+  Die Datenmenge ist begrenzt durch die maximale URL-Länge von faktisch ca. 2048 Zeichen.
+- POST: Daten werden im Request Body übertragen und sind nicht sichtbar in der URL.
+  Die übertragbare Datenmenge ist nicht beschränkt. 
 
 **Caching und Wiederholung:**
 
-- GET: Wird von Browsern gecacht und kann problemlos wiederholt werden
-- POST: Wird nicht gecacht; Browser warnen vor Wiederholung
+- GET: Der Request kann wegen der Wirkungsfreiheit problemlos wiederholt werden.
+  Das Resultat wird von Browsern gecacht.
+- POST: Da der Request eine Wirkung hat, bedeuten zwei gleiche Requests eventuell etwas anderes
+  als nur einer. Caching ist deshalb nicht möglich und Browser warnen vor einer Wiederholung.
 
-[EQ] Erklären Sie den semantischen Unterschied zwischen GET und POST anhand von ein konkretem Beispiel aus dem Alltag. 
-Beschreiben Sie, warum die gewählte HTTP-Methode semantisch korrekt ist und was passieren würde, 
-wenn man die falsche Methode verwenden würde.
+[EQ] Erklären Sie den semantischen Unterschied zwischen GET und POST anhand eines konkreten Szenarios 
+aus dem Alltag, das sowohl GET als auch POST enthält.
+Beschreiben Sie, warum die HTTP-Methode für den jeweiligen Zweck semantisch korrekt ist und 
+was passieren würde, wenn man die falsche Methode verwendete.
 
 [EQ] Lesen Sie mehr über 
 [POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)
@@ -107,11 +101,6 @@ die folgende Formulardaten an `httpbin.org` (Port 80) zum Pfad `/post` sendet::
 
 Verwenden Sie `application/x-www-form-urlencoded` als Content-Type und 
 vergessen Sie nicht die korrekte Content-Length.
-
-[NOTICE]
-Sie können zuerst die Content-Length mit: `echo -n "username=abc&password=123&remember=on" | wc -c` berechnen.
-[ENDNOTICE]
-
 <!-- time estimate: 10 min -->
 
 ### Content-Type Varianten
@@ -149,11 +138,10 @@ Dateiinhalt hier...
 Welche Vor- und Nachteile hat jede Variante? Wann würden Sie `application/json` 
 statt `application/x-www-form-urlencoded` verwenden?
 
-[NOTICE]
-Für Ihre Recherche können Sie folgende Ressourcen nutzen:
-[MDN: Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type), 
+[HINT::Wo finde ich im Netz dazu eine gute Diskussion?]
+[MDN: Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)   
 [JSON vs Form Data](https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data)
-[ENDNOTICE]
+[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
@@ -161,12 +149,12 @@ Für Ihre Recherche können Sie folgende Ressourcen nutzen:
 
 Genau wie bei GET können wir POST-Anfragen manuell mit `netcat` testen.
 
-[NOTICE]
+[HINT::Meine Anfrage funktioniert nicht!]
 Achten Sie darauf, dass alle Zeilen mit CRLF enden und zwischen Header und Body 
 eine Leerzeile steht. 
 Die Content-Length muss exakt der Anzahl Bytes im Body 
 entsprechen (inklusive der CRLF-Zeichen im Body).
-[ENDNOTICE]
+[ENDHINT]
 
 [EC] Testen Sie Ihre POST-Anfrage mit einem öffentlichen Test-Service:
 Senden Sie die Anfrage an `httpbin.org` (Port 80) an den Pfad `/post`.
