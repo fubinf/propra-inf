@@ -7,14 +7,15 @@ assumes: http-GET
 
 [SECTION::goal::idea]
 Ich verstehe das Konzept der Zustandslosigkeit in HTTP und kann erklären, 
-wie Cookies und Sessions verwendet werden, um zustandsbehaftetes Verhalten zu implementieren.
+Sessions realisiert werden, um trotzdem zustandsbehaftetes Verhalten zu erlauben.
 [ENDSECTION]
 
 [SECTION::background::default]
 HTTP ist von Natur aus ein zustandsloses Protokoll, das bedeutet, 
-dass jede Anfrage unabhängig behandelt wird. 
-Diese Eigenschaft bringt sowohl Vorteile als auch Herausforderungen mit sich, 
-die in der modernen Webentwicklung durch verschiedene Mechanismen wie Cookies gelöst werden.
+dass jede Anfrage unabhängig behandelt wird und nichts von ggf. vorangegangenen Anfragen weiß. 
+Das ist zwar für die Server effizient (weil sie keinen Zustand speichern müssen),
+bildet aber für viele Anwendungen keine ausreichende Grundlage.
+Wie also bekommt man mittels HTTP Sitzungen mit Zustand hin?
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -31,31 +32,19 @@ Jede Nachricht ist dann mit vorherigen oder nachfolgenden Nachrichten verbunden.
 
 **Zustandsbehaftete Kommunikation:**
 
-Person A: "Hallo, wie geht es dir?"
-
-Person B: "Mir geht es gut, danke."
-
-Person A: "Wie heißt du denn?"
-
-Person B: "Ich heiße Bob."
-
-Hier ist jede Nachricht vom Kontext der vorherigen abhängig. Person B antwortet basierend auf dem, 
-was Person A zuvor gefragt hat.
+Mensch: "Hallo, ich bin user123. Mein Passwort ist pw567."  
+Server: "Herzlich willkommen."  
+Mensch: "Was ist in meinem Warenkorb?"
+Server: "Artikel A, B und C."
 
 **Zustandslose Kommunikation:**
 
-Jede Nachricht wird unabhängig behandelt, als wäre es das erste Mal, dass sich die Personen begegnen:
+Mensch: "Hallo, ich bin user123. Mein Passwort ist pw567."  
+Server: "Herzlich willkommen."  
+Mensch: "Was ist in meinem Warenkorb?"
+Server: "Welcher Warenkorb?"
 
-Person A: "Wie heißt du?"
-
-Person B: "Bob" (ohne Bezug auf vorherige Nachrichten)
-
-Person A: "Wie geht es dir?"
-
-Person B: "Gut" (ohne zu wissen, dass bereits eine Unterhaltung stattgefunden hat)
-
-Bei zustandsloser Kommunikation muss jede Nachricht alle notwendigen Informationen enthalten, 
-um verstanden zu werden.
+Ohne Zustand fehlt dem Server bei Anfrage 2 die Information, ob jemand angemeldet ist, oder wer.
 
 (Optional) Zur Vertiefung lesen Sie bitte:
 [HTTP als zustandsloses Protokoll](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#http-is-stateless-but-not-sessionless)
@@ -67,8 +56,6 @@ um verstanden zu werden.
 HTTP wurde bewusst als zustandsloses Protokoll entworfen, 
 da dies verschiedene Vorteile gegenüber zustandsbehafteten Protokollen bietet:
 
-**Vorteile der Zustandslosigkeit:**
-
 - **Einfachheit**: Zustandslose Protokolle sind einfacher zu implementieren und zu warten, 
   da keine Informationen zwischen Anfragen gespeichert werden müssen
 - **Skalierbarkeit**: Keine Synchronisation zwischen Clients und Servern erforderlich; 
@@ -76,19 +63,16 @@ da dies verschiedene Vorteile gegenüber zustandsbehafteten Protokollen bietet:
 - **Zuverlässigkeit**: Unabhängigkeit von vorherigen Nachrichten macht das System robuster 
   gegen Ausfälle und Unterbrechungen
 
-**Nachteile der Zustandslosigkeit:**
-
-- **Fehlender Kontext**: Jede Anfrage muss alle notwendigen Informationen enthalten 
-  (Authentifizierung, Einstellungen, Session-Daten)
-- **Fehlende Personalisierung**: Keine Anpassung basierend auf Benutzerverhalten möglich, 
-  da der Server keine Erinnerung an vorherige Interaktionen hat
-
-[EQ] Die Zustandslosigkeit von HTTP ermöglicht bessere **Skalierbarkeit** 
-in verschiedenen Anwendungsszenarien.
-Recherchieren Sie und nennen Sie drei konkrete Beispiele aus der Praxis, 
-wo die Zustandslosigkeit von HTTP entscheidend für die Skalierbarkeit großer Webanwendungen ist.
+[EQ] Recherchieren Sie und erklären Sie für folgende Anwendungsfälle,
+wie die Zustandslosigkeit von HTTP entscheidend für die Skalierbarkeit ist:
+Content Delivery Networks (CDNs); Lastverteilung (load balancing) bei eCommerce-Anbietern.
 
 <!-- time estimate: 15 min -->
+
+Na gut, aber aus Anwendungssicht braucht man oft einen Zustand.
+Wie funktioniert das?
+
+
 
 ### Wie funktionieren Cookies?
 
