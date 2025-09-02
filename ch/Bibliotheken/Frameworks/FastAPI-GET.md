@@ -3,15 +3,15 @@ stage: alpha
 timevalue: 1.5
 difficulty: 2
 explains:
-assumes: http-GET
+assumes: http-GET, http-State
 requires: m_pydantic
 ---
 
-
 [SECTION::goal::idea]
-Ich kann eine mit mehreren GET-Endpunkten mit dem FastAPI Framework erstellen.
+Ich kann eine API mit mehreren GET-Endpunkten mit dem FastAPI Framework erstellen.
 Ich kann diese Endpunkte über die [TERMREF::Swagger]-UI und über den Browser ausprobieren.
 [ENDSECTION]
+
 
 [SECTION::background::default]
 FastAPI ist ein Python-Webframework, um eine [TERMREF::REST-API] zu entwickeln.
@@ -28,21 +28,17 @@ und validiert durch Pydantic die Ein- und Ausgaben.
 Erstellen Sie die Datei `FastAPI-GET.py`.
 Schreiben Sie den Quellcode, den Sie im Verlauf dieser Aufgabe erzeugen, in diese Datei.
 
-[ER] Installieren Sie FastAPI mit `pip`.
-_Beachten Sie auch die Anführungszeichen, damit es in allen Terminals funktioniert._
+[ER] Installieren Sie FastAPI : `pip install "fastapi[standard]"`
 
-```sh
-pip install "fastapi[standard]"
-```
-
-
-### Eine eigene REST-API erstellen
 
 In einer REST-API greifen Clients über die HTTP-Methoden auf Ressourcen zu,
-die durch eindeutige Pfade (Endpunkte) identifiziert werden.
-Wichtig ist, dass jede Anfrage zustandslos ist.
-Der Server speichert keine Informationen über vorherige Anfragen.
-In jeder Anfrage müssen alle Daten mitgesendet werden, die zur Bearbeitung notwendig sind.
+die durch eindeutige Pfade ("Endpunkte") identifiziert werden.
+Die API ist zustandslos; 
+der API-Server speichert _als solcher_ keine Informationen über vorherige Anfragen.
+Natürlich kann aber die benutzerseitige Logik innerhalb der API Dinge dauerhaft speichern
+und wieder abrufen.
+
+### "Hello, World!" und die Swagger UI
 
 [ER] Lesen Sie in der
 [FastAPI Dokumentation die ersten Schritte](https://fastapi.tiangolo.com/tutorial/first-steps/)
@@ -59,21 +55,18 @@ fastapi dev FastAPI-GET.py
 ```
 
 Wenn das Kommando erfolgreich war, wird in Ihrer Kommandozeile ein Link angezeigt,
-mit welchem Sie den Server erreichen:
-[HREF::http://127.0.0.1:8000].
-Wenn Sie diese Seite in Ihrem Browser aufrufen, sehen Sie die "Hello World"
-Antwort.
+mit welchem Sie den Server erreichen: `http://127.0.0.1:8000`.
+Wenn Sie diese Seite in Ihrem Browser aufrufen, sehen Sie die "Hello World"-Antwort.
 
 FastAPI erzeugt automatisch eine interaktive Dokumentation Ihrer API.
 Sie erreichen diese
 [Swagger UI](https://github.com/swagger-api/swagger-ui)
-unter:
-[HREF::http://127.0.0.1:8000/docs].
+unter `http://127.0.0.1:8000/docs`.
 
 [NOTICE]
 Im _ProPra_ wird immer nur mit der "Swagger UI" gearbeitet.
 Lesen Sie in der
-[FastAPI Dokumentation für weitere Details zur automatische Dokumentation](https://fastapi.tiangolo.com/features/#automatic-docs).
+[FastAPI-Dokumentation zur automatischen Dokumentation](https://fastapi.tiangolo.com/features/#automatic-docs).
 [ENDNOTICE]
 
 [ER] Öffnen Sie die automatisch generierte Dokumentation.
@@ -85,7 +78,7 @@ Aus `def root()` wird `Root`.
 
 Nach dem Erproben wird im Abschnitt "Curl" angezeigt, wie die Anfrage aussah,
 die zu dem Endpunkt gesendet wurde.
-Sie sehen außerdem die Antwort des Server und den HTTP-Statuscode.
+Sie sehen außerdem die Antwort des Servers und den HTTP-Statuscode.
 
 Dort steht jetzt der Code `200` und als Antwort:
 
@@ -96,30 +89,31 @@ Dort steht jetzt der Code `200` und als Antwort:
 ```
 
 Darunter sehen Sie welche möglichen Antworten gesendet werden können.
-Dabei wird immer die Kombination `Code`, Beschreibung und wenn vorhanden das
+Dabei wird immer die Kombination `Code`, Beschreibung und (wenn vorhanden) das
 `Schema` der Antwort angegeben.
+
+
+### Antwort-Schema
 
 Beim Endpunkt wurde nicht spezifiziert, was das Antwortschema ist.
 Daher wird dort standardmäßig `"string"` angezeigt.
-Die einfachste Form dieses Schema zu ergänzen, ist es in der Funktionssignatur einen
-Rückgabetyp anzugeben.
+Die einfachste Art, dieses Schema zu ergänzen, ist ein Rückgabetyp in der Funktionssignatur.
 
 [ER] Ergänzen Sie daher `def read_root() -> dict[str, str]`.
 
-Wenn Sie die Datei speichern, sehen Sie, dass das Programm automatisch neugestartet wird.
+Wenn Sie die Datei speichern, sehen Sie, dass das Programm automatisch neu gestartet wird.
 Diese Funktion kennen Sie möglicherweise schon aus einem anderen Framework als `Hot Reload`.
-Sie müssen Ihr Browserfenster dennoch neu laden, da nur der Server automatisch
-neugestartet wird.
+Sie müssen nur noch Ihr Browserfenster auffrischen.
 
 Sie sehen, dass nun nicht mehr `"string"` als Antwort gesendet wird.
 
 [WARNING]
-Das Antwortschema wird von FastAPI nicht automatisch überprüft.
-Als noch kein Antwortschema angegeben war, gab es keinen Fehler.
-Dann ist nur die Dokumentation falsch, aber nicht das Programm.
-In der OpenAPI-Dokumentation wird das Schema lediglich beschrieben, allerdings nicht durchgesetzt.
-Besonders bei öffentlichen API ist es allerdings von hoher Bedeutung das Antwortschema
-möglichst genau anzugeben, damit andere Entwickler wissen, was sie erwarten können.
+Das Antwortschema wird von FastAPI _nicht_ automatisch überprüft.
+Als eben noch kein Antwortschema angegeben war, gab es keinen Fehler;
+dann ist die Dokumentation falsch, aber nicht unbedingt das Programm.
+In der OpenAPI-Dokumentation wird das Schema also zwar beschrieben, aber diese Beschreibung
+wird nicht durchgesetzt.
+Besonders bei öffentlichen APIs ist wichtig, das Antwortschema möglichst genau anzugeben.
 [ENDWARNING]
 
 Allerdings ist auch `dict[str, str]` noch ungenau.
@@ -135,30 +129,34 @@ Geben Sie in dieser Funktion vorerst ein `Greetings`-Exemplar mit `hello="World"
 
 [ER] Probieren Sie diesen Endpunkt aus.
 In der Dokumentation sehen Sie nun als Schema, dass JSON zurückgegeben wird
-und es genau einen `hello` Schlüssel gibt.
+und es genau einen Schlüssel `hello` gibt.
+
+
+### Parameter
 
 Der Endpunkt wird im folgenden so erweitert, dass ein Parameter mit einem Namen
 übergeben werden kann.
 Dieser Parameter soll in der `Query` der URL mit angegeben werden können.
 Die Query sind Schlüssel-Wert-Paare hinter dem `?` in einer URL.
-In der Regel sind das optionale Werte, dass ist aber nur Konvention.
+In der Regel sind das _optionale_ Werte, das ist aber nur eine Konvention.
 Sie können diese Parameter auch in Endpunkten erzwingen.
 
 [ER] Lesen Sie in der FastAPI Dokumentation den Abschnitt
 [Query Parameter](https://fastapi.tiangolo.com/tutorial/query-params/).
 Ergänzen Sie dann in `hello()` das Argument `name`.
-Geben Sie vorerst keinen Datentyp.
+Geben Sie ihm vorerst keinen Datentyp.
 
 Wenn Sie nun die Dokumentation neu laden, sehen Sie, dass der Endpunkt `/hello`
 einen Parameter erwartet vom Typ `any`.
 
-[ER] Ergänzen Sie deswegen in `hello(name)`, den Datentyp `str` und weisen Sie
+[ER] Ergänzen Sie in `hello(name)`, den Datentyp `str` und weisen Sie
 dem Argument in der Funktion direkt den Standartwert `"World"` zu.
 Geben Sie `name` im `Greetings`-Exemplar zurück.
 
 [ER] Probieren Sie den Endpunkt erneut aus und probieren Sie ihn mit Ihrem Namen aus.
 
----
+
+### Selber Endpunkte bauen
 
 [ER] Kopieren Sie nun Ihre Klasse `GradeEntry2` aus der `m_pydantic` Aufgabe und
 fügen Sie sie als `GradeEntry` hier ein.
@@ -200,12 +198,13 @@ Pfad `/students/{name}`.
 Dieser soll die Liste aller `GradeEntry` dieser Person zurückgeben.
 
 [ER] Erstellen Sie analog dazu den GET-Endpunkt `read_grades_of_course` mit dem
-Pfad `/courses/{name}` der die Liste alle `GradeEntry` in dem Kurs zurückgibt.
+Pfad `/courses/{name}`, der die Liste aller `GradeEntry`-Einträge für den Kurs zurückgibt.
 
----
+
+### Endpunkte aufrufen
 
 Zum Abschluss der Aufgabe werden nun die einzelnen Endpunkte jeweils einmal
-Aufgerufen und in einem Kommandoprotokoll erfasst.
+aufgerufen und in einem Kommandoprotokoll erfasst.
 
 [ER] Beenden Sie Ihre Server. Dazu können Sie in der Konsole, in der der Server
 läuft <kbd>Strg</kbd>+<kbd>c</kbd> eingeben.
@@ -227,7 +226,6 @@ mit Ihrem Namen aus.
 
 [EC] Probieren Sie den Endpunk `/course/{name}` jeweils einmal aus mit dem Namen
 `Math` und `Physics` aus.
-
 [ENDSECTION]
 
 
@@ -241,7 +239,6 @@ mit Ihrem Namen aus.
 [INCLUDE::ALT:FastAPI-GET.md]
 
 ### Kommandoprotokoll
-
 [PROT::ALT:FastAPI-GET.prot]
 
 Musterlösung siehe [TREEREF::/Bibliotheken/Frameworks/FastAPI-GET.py]
