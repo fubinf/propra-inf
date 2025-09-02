@@ -97,12 +97,7 @@ Darum kümmern wir uns aber erst in [PARTREF::einkaufsliste-defekt2].
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Inhalte der Abgabe]
-Der Weg zum Ziel der Aufgabe ist sehr geradlinig beschrieben, alle Abgaben sollten in etwa die 
-gleichen Inhalte haben.
-
-Der geforderte Fix findet in nur einer Funktion statt.
-
-Die vom Studi zurückgegebene Ausgabe entspricht _nicht_ der Beispielausgabe aus dem obigen Hinweis.
-Hierfür fehlt noch ein Fix aus der Aufgabe [PARTREF::einkaufsliste-defekt2].
+[INSTRUCTOR::Musterlösung]
+[INCLUDE::ALT:]
+[PROT::ALT:einkaufsliste-defekt.prot]
 [ENDINSTRUCTOR]
