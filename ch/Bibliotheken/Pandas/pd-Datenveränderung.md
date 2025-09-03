@@ -1,6 +1,6 @@
 title: "pandas: Daten ändern"
 stage: alpha
-timevalue: 1.5
+timevalue: 1.75
 difficulty: 2
 requires: pd-Datenselektion
 ---
@@ -12,15 +12,17 @@ Ich verstehe, wie Pandas beim Thema "Kopien (`Copy`) und Sichten (`View`)" abwei
 von dem, was ein sinnvolles mentales Modell erwarten ließe.
 [ENDSECTION]
 
+
 [SECTION::background::default]
 Pandas-Methoden weisen ein oft verblüffendes Verhalten auf, wenn man Daten ändert,
-denn beim vorherigen Selektieren bekommt man manchmal eine _Sicht_ auf den darunter liegenden
+denn beim vorherigen Selektieren bekommt man manchmal eine _Sicht_ auf den darunterliegenden
 Dataframe (über die man Daten im Dataframe ändern kann) und manchmal 
 eine _Kopie_ der jeweiligen Teile des Dataframes (sodass eine Änderung nur die Kopie
 betrifft und verpufft, wenn man eigentlich den ursprünglichen Dataframe ändern wollte).
 
 Diese Aufgabe lehrt das nötige Verständnis, um Daten _erfolgreich_ zu bearbeiten.
 [ENDSECTION]
+
 
 [SECTION::instructions::loose]
 Laden Sie zunächst den 
@@ -32,45 +34,147 @@ import pandas as pd
 erststimmen_df = pd.read_csv("Pfad/zur/Berlin_BT25_W1.csv", sep=';')
 ```
 
-### Daten bearbeiten
+Um Daten in einer zusammengesetzten Datenstruktur gezielt zu bearbeiten, muss man die Daten
+Selektieren (wie in den vorherigen Aufgaben gelernt) und ihnen dann einen Wert zuweisen.
+Wie das Bearbeiten aussehen kann, sieht man auch gut an z.B. Python-Listen:
+```python
+original_list = [1, 2, 3]
+original_list[0] = 999 # Selektion ([0]) wird Wert zugewiesen (= 999)
+```
 
-Das Ändern eines Dataframes scheint zunächst einfach:
-
-`erststimmen_df.loc[0,"Bezirksname"] = "Bearbeitet"`
-
-Wie bei einer herkömmlichen Liste können wir hier den Bereich, den wir bearbeiten wollen 
-per Index selektieren und überschreiben.
-Wenn Sie nun `erststimmen_df` betrachten, sehen Sie die Änderung im ersten Eintrag.
+Im Prinzip funktioniert das Bearbeiten in Pandas auch so:
+```python
+erststimmen_df.loc[0,"Bezirksname"] = "Bearbeitet"  
+# Selektion (.loc[0,"Bezirksname"]) wird Wert zugewiesen (= "Bearbeitet")
+```
 
 [ER] Setzen Sie mithilfe von `loc()` die ganze Spalte "Stimmart" überall auf "Bearbeitet".
 
-[ER] Ändern Sie mithilfe von Indexierung (`erststimmen_df[...]`) die ganze Spalte "Stimmart" auf "Bearbeitet2".
+Pandas Verhalten ist jedoch nicht in allen Hinsichten wie man es von klassischen
+Python-Datenstrukturen erwarten würde.
+Diese Aufgabe vermittelt deshalb das Verständnis für das Verhalten von Pandas und die "Best
+Practices" die sich daraus ergeben.
 
-### Mentales Modell
+Bevor Sie sich mit Pandas spezifisch beschäftigen, müssen Sie zwei fundamentale Konzepte verstehen,
+die in Pandas allgegenwärtig sind: `View` und `Copy`
 
-Bei einer Liste ist das Auswählen und Schreiben ähnlich:
-`liste[3] = "Neuer Wert"`
-Jede dieser Selektionen (`loc()`, Indexierung, etc.) kann man sich als eine Art "Fenster" 
-(Sicht, `View`) auf den `DataFrame` selbst vorstellen.
-Wenn Sie so einer Sicht Daten zuweisen, dann werden die Daten im originalen
-`DataFrame` überschrieben.
+### Was ist eine Kopie (`Copy`)?
 
-#### Subsets
+Eine Kopie erstellt eine unabhängige Reproduktion der Daten.
+Wenn Sie z.B. ein Dokument fotokopieren und dann auf der Kopie herumkritzeln, bleibt das
+Originaldokument unverändert.
 
-[EQ] Wenn jede Selektion eine Sicht auf den `DataFrame` ist, würde man erwarten, dass folgender Code
-`df` bearbeitet?
+Technisch gesehen: 
+Eine Kopie reserviert neuen Speicherplatz und füllt ihn mit den duplizierten Daten. 
+Änderungen an der Kopie bleiben lokal und wirken sich nicht auf die Originaldaten aus.
+
+### Was ist eine Sicht (`View`)?
+
+Eine Sicht ist eine Möglichkeit, auf einen Teil der Originaldaten zu verweisen, ohne diese zu kopieren.
+Stellen Sie sich vor, Sie legen eine Lupe auf ein Dokument.
+Was Sie sehen, ist nicht getrennt, sondern ein Teil des Originals.
+Wenn Sie unter der Lupe nun etwas kritzeln, verändert sich nicht nur das, was Sie sehen, sondern
+auch das Originaldokument.
+
+In technischen Begriffen:
+Eine Sicht ist eine Referenz auf die Originaldaten (bzw. einen Teil der Originaldaten) im Speicher. 
+Wenn Sie eine Sicht ändern, ändern Sie direkt die Originaldaten.
+
+### Die Python-Art
+
+Python arbeitet standardmäßig mit Objektreferenzen statt mit Kopien.
+Wenn Sie z.B. eine Selektion von einer Python-Liste nehmen, dann können Sie damit rechnen, dass
+diese eine `View` ist und keine `Copy`:
+```python
+original_list = [1, 2, 3]
+view_reference = original_list[0]  # Dies ist eine View, keine Kopie
+view_reference = 999
+print(original_list)  # Ausgabe: [999, 1, 3] Das Original wurde verändert!
+```
+
+Da diese Selektionen Sichten sind, schlagen Änderungen an der Selektion auf das Originalobjekt
+durch.
+
+### Die Pandas-Art
+
+Doch Pandas weicht von diesem Ideal ab, bei dem jede Selektion eine Sicht auf Daten ist.
+Das ist die Ursache für die meisten Verwirrungen, die im Umgang mit Pandas entstehen.
+Pandas garantiert nämlich nicht, dass jede Selektion eine Sicht ist:
+Manchmal (und bei manchen Ausdrücken sogar _unvorhersehbar_) werden Kopien zurückgegeben 
+anstatt Sichten (`Views`).
+
+[EQ] Lesen Sie die Abschnitte 
+[Returning a view versus a copy](https://pandas.pydata.org/docs/user_guide/indexing.html#returning-a-view-versus-a-copy) 
+und 
+[Why does assignment fail when using chained indexing?](https://pandas.pydata.org/docs/user_guide/indexing.html#why-does-assignment-fail-when-using-chained-indexing)
+und zitieren Sie die Textstelle, in der darüber gesprochen wird, ob `View` oder `Copy` zurückgegeben
+werden.
+
+Dieses Verhalten, unzuverlässig `View` oder `Copy` zurückzugeben, führt nicht selten zu
+fehleranfälligem Code, wenn man nicht weiß, wie man damit umgehen soll.
+
+### Chained Indexing / Chained Assignment
+
+[NOTICE]
+Informationen zu den folgenden Aufgaben finden Sie in diesem Abschnitt der Dokumentation:
+[Why does assignment fail when using chained indexing](https://pandas.pydata.org/docs/user_guide/indexing.html#why-does-assignment-fail-when-using-chained-indexing)
+und 
+[Chained Assignment - Copy-On-Write](https://pandas.pydata.org/docs/user_guide/copy_on_write.html#chained-assignment)
+[ENDNOTICE]
+
+[EQ] Erklären Sie, was "Chained Indexing" ist.
+
+```python
+erststimmen_df[erststimmen_df["Bezirksname"] == "Mitte"]["Bezirksnummer"] = -1
+
+erststimmen_df.iloc[:50].loc[:, "Wahlbezirk"] = -1
+```
+
+Beide Beispiele verwenden "Chained Indexing" und versuchen, auf dieser Basis Werte an das 
+originale `erststimmen_df` zuzuweisen.
+Probieren Sie diese Beispiele aus und betrachten Sie `erststimmen_df`.
+
+[EQ] Wahrscheinlich hat nur eins oder gar keins der beiden Beispiele das `erststimmen_df`
+verändert.
+Erklären Sie anhand des ersten Ausdrucks das Problem von "Chained Indexing".
+
+[NOTICE]
+Solche ungewünschten Schreibweisen wie "Chained Indexing" werden oftmals (aber auch nicht immer)
+mithilfe der `SettingWithCoypWarning` von Pandas in der Konsole sichtbar gemacht.
+Die Warnung dient also als Indikator, dass Sie Codeschnipsel nicht sauber formuliert haben.
+[ENDNOTICE]
+
+[EQ] Lesen Sie die
+[Dokumentation](https://pandas.pydata.org/docs/user_guide/indexing.html#evaluation-order-matters).
+Wie sollte man "Chained Indexing" Fälle sauber umformulieren?
+
+[HINT::Sauberes Umformulieren]
+Suchen Sie in der Dokumentation nach folgendem Abschnitt:
+"The following is the recommended access method using .loc for multiple items (using mask) and a single item using a fixed index"
+[ENDHINT]
+
+[ER] `erststimmen_df["Bezirksname"][0] = "Mitte Neu"` formulieren Sie diesen Ausdruck sauber um,
+sodass Sie in der Konsole keine `SettingWithCopyWarning` kriegen.
+
+[ER] `erststimmen_df[erststimmen_df["Bezirksname"] == "Mitte"]["Bezirksnummer"] = 999` formulieren
+Sie auch diesen Ausdruck sauber um, sodass er keine `SettingWithCopyWarning` wirft.
+
+### Subsets
 
 ```python
 df = pd.DataFrame({"a": [1, 2, 3], "b": [4, 5, 6]})
 subset = df["a"]
 subset[0] = 999
 ```
+Hier wäre die Erwartung, dass `subset` eine View ist und sich Änderungen direkt auf `df` auswirken. 
 
-[HINT::`subset` eigenständiger `DataFrame`?]
-`subset` speichert nur die Sicht auf `df` und sollte nach unserem Verständnis kein eigenständiger
-`DataFrame` sein.
-Wenn also was in `subset` geändert wird, wird es auch in `df` geändert.
-[ENDHINT]
+[EQ] Nun haben wir bereits geklärt, dass wir uns nicht darauf verlassen können, von Pandas eine
+`View` zu bekommen.
+Formulieren Sie, welches Problem auftritt, wenn wir (unvorhersehbar) eine `Copy` statt einer `View`
+bekommen.
+
+[EQ] Zeigen Sie, wieso dieses Beispiel eigentlich nur eine Abwandlung vom 
+"Chained Assignment"-Problem ist.
 
 [ER] Trotzdem möchte man als Programmierer die Möglichkeit haben, explizit Kopien von
 relevanten Teilen eines `DataFrame` zu erstellen.
@@ -78,99 +182,46 @@ Dazu gibt es die Methode
 [`copy()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.copy.html#pandas.DataFrame.copy).
 Ändern Sie das vorherige Beispiel so ab, dass `subset` eine echte Kopie von `df` ist.
 
-#### Verkettete Indexierung
+### Best Practices
 
-Wenn jede Selektion eine Sicht ist, dann sollte man auch Verkettungen schreiben können, wie:
-`df["Spalte B"][df["Spalte A"] == 1] = 99`
-Dabei wird die Sicht auf die Daten in jedem Schritt weiter eingeschränkt.
-
-[EQ] Warum würde dieser Ausdruck nicht `df` bearbeiten, wenn jede Selektion eine Kopie zurückgibt
-statt einer Sicht?
-
-### Reales Verhalten von Pandas
-
-Doch tatsächlich weicht Pandas von diesem Ideal ab, bei dem jede Selektion eine Sicht auf Daten ist.
-Das ist die Ursache für die meisten Verwirrungen, die im Umgang mit Pandas entstehen.
-Pandas garantiert nämlich nicht, dass jede Selektion eine Sicht ist:
-Manchmal (und bei manchen Ausdrücken sogar _unvorhersehbar_) werden Kopien zurückgegeben 
-anstatt Sichten (`Views`).
-
-```python
-subset1 = erststimmen_df[erststimmen_df["Bezirksname"] == "Mitte"]
-subset1["Bezirksnummer"] = -1
-
-subset2 = erststimmen_df.iloc[:50]
-subset2.loc[:, "Wahlbezirk"] = -1
-``` 
-
-[EQ] Beide Beispiele nehmen eine Teilmenge des originalen `DataFrame` und bearbeiten diese.
-Übernehmen Sie diese beiden Beispiele und betrachten Sie `ertstimmen_df`.
-Bei welcher Teilmenge handelt es sich um eine Kopie und bei welcher um eine Sicht?
-
-[NOTICE]
-Änderungen auf der Kopie werden im originalen `DataFrame` nicht übernommen,
-Änderungen auf der Sicht schon.
-[ENDNOTICE]
-
-[ER] Ändern Sie das Beispiel, welches zuvor eine `View` war, mit `copy()` so ab, 
-dass der originale `DataFrame` nicht mitbearbeitet wird.
-
-[EQ] Lesen Sie sich die Dokumentation zu 
-[Returning a view vs copy](https://pandas.pydata.org/docs/user_guide/indexing.html#returning-a-view-versus-a-copy)
-und 
-[Why does assignment fail when using chained indexing](https://pandas.pydata.org/docs/user_guide/indexing.html#why-does-assignment-fail-when-using-chained-indexing)
-durch und erklären Sie, welche Probleme es mit "Chained Indexing" (verketteter Indexierung) gibt.
-
-[NOTICE]
-Solche ungewünschten Schreibweisen wie "Chained Indexing", die zu nicht vorhersehbarem Verhalten
-führen, werden oftmals mithilfe der `SettingWithCoypWarning` von Pandas in der Konsole sichtbar
-gemacht.
-[ENDNOTICE]
-
-Schauen Sie in die Dokumentation, um herauszufinden, wie sie "Chained Indexing" sauber umformulieren
-können und bearbeiten Sie folgende Aufgaben.
-
-[ER] `erststimmen_df["Bezirksname"][0] = "Mitte Neu"` formulieren Sie diesen Ausdruck so um, dass
-Sie in der Konsole keine `SettingWithCopyWarning` kriegen.
-
-[ER] `erststimmen_df[erststimmen_df["Bezirksname"] == "Mitte"]["Bezirksnummer"] = 999` formulieren
-Sie auch diesen Ausdruck um, sodass er keine `SettingWithCopyWarning` wirft.
-
-# Copy-On-Write
-
-Seit Pandas 2.0 gibt es ein neues Verhalten, das man einstellen kann, 
-welches viele der oben genannten Probleme lösen soll: Copy-on-Write (CoW).
-
-Das bedeutet: Wenn Sie eine Teilmenge (z. B. per `df["col"]` oder `df.loc[...]`) auswählen, wird
-jedes Mal eine Kopie gemacht.
-Intern wird das Ganze zwar noch optimiert, aber für Sie als Programmierer heißt das, dass jede
-Operation eine Kopie statt einer Sicht zurückgibt.
-Somit ist jedenfalls ein deterministisches Verhalten möglich, es weicht aber stark vom mentalen
-Modell ab.
-Außerdem müssen Sie ein `DataFrame` beim Kopieren nicht mehr explizit mit `copy()` kopieren, aus
-leserlichen Gründen ist dies ggf. trotzdem sinnvoll.
-
-[ER] Schauen Sie in die 
-[Dokumentation zu Copy-On-Write](https://pandas.pydata.org/docs/user_guide/copy_on_write.html#migrating-to-copy-on-write). 
-Aktivieren Sie Copy-On-Write.
-Falls Sie alles richtig gemacht haben, sollte weder `subset1` noch `subset2` das 
-`erststimmen_df` verändern.
-
-```python
-subset1 = erststimmen_df[erststimmen_df["Bezirksname"] == "Mitte"]
-subset1["Bezirksnummer"] = -1
-
-subset2 = erststimmen_df.iloc[:50]
-subset2.loc[:, "Wahlbezirk"] = -1
-``` 
-
-# Takeaways: So bearbeiten Sie Daten korrekt mit Pandas
-
-- Besser `loc()` oder `iloc()` verwenden, um verkettete Indexierung wie `df[][] = ...`, zu vermeiden.
+- Benutzen Sie `loc()` oder `iloc()` für direkte Änderungen am Original:
+  `df.loc[df["A"] > 1, "B"] = 10`
+- Vermeiden Sie Chained Indexing (`df[][] = ...`)
 - Verwenden Sie `copy()` explizit, wenn Sie sicher sein wollen, eine unabhängige Kopie zu erhalten.
 - Achten Sie auf die `SettingWithCopyWarning`. 
   Sie signalisiert potenziell fehleranfällige Operationen.
 - Mit aktiviertem Copy-on-Write (CoW) bleiben Originaldaten bei Bearbeitungen sicher unangetastet.
+
+[ER] Korrigieren Sie folgenden Code-Ausschnitt, der Chained Indexing verwendet, 
+indem Sie die Best Practices anwenden:
+
+```python
+erststimmen_df[erststimmen_df["Wählende"] > 500][erststimmen_df["Gültige Stimmen"] > 400]["SPD"] = -999
+```
+
+### Copy On Write (zukünftiges Pandas-Verhalten)
+
+Es gibt einen Modus in Pandas, der ab Version `3.0` auch der Standard sein wird:
+[Copy On Write](https://pandas.pydata.org/docs/development/copy_on_write.html)
+
+Aus unserer Python-Welt sind wir gewöhnt, immer eine `View` zu bekommen.
+Pandas hat bis jetzt unvorhersehbar manchmal eine `View` und manchmal eine `Copy` zurückgegeben.
+Mit "Copy on Write" soll sich das ändern: Jede Selektion gibt eine `Copy` zurück.
+
+[NOTICE]
+Unter der Haube von "Copy on Write" wird nicht wirklich jedes Mal eine Kopie gemacht aus 
+Effizienzgründen.
+Es garantiert aber, dass sich die Selektionen wie Kopien verhalten, weshalb das für uns
+Programmierer erstmal uninteressant ist.
+[ENDNOTICE]
+
+[ER] Aktivieren Sie "Copy on Write" im Code.
+
+[EQ] Ändert sich damit was an den genannten Best Practices?
+Begründen Sie.
+
+[EQ] Testen Sie beide Beispiele aus dem "Chained Indexing"-Abschnitt mit aktiviertem "Copy On Write".
+Beschreiben Sie, ob und wie sich das Verhalten ändert.
 [ENDSECTION]
 
 
