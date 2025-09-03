@@ -1,6 +1,6 @@
 title: SQL-Indizes für Performance-Optimierung
 stage: alpha
-timevalue: 2.0
+timevalue: 1.5
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2, sql-misc
 ---
@@ -47,11 +47,10 @@ Mit einem Index kann die Datenbank schnell zu den relevanten Datensätzen spring
 (Optional) Zur Vertiefung: Weitere Erklärungen finden Sie hier:
 [`SQL CREATE INDEX`](https://www.w3schools.com/sql/sql_create_index.asp)
 
-<!-- time estimate: 5 min -->
 
-### `CREATE INDEX`
+### Index anlegen: `CREATE INDEX`
 
-Die grundlegende Syntax zum Erstellen von Indizes:
+Die grundlegende Syntax zum Erstellen von Indizes bei SQlite:
 
 ```sql
 -- Einfacher Index (Duplikate erlaubt)
@@ -63,20 +62,19 @@ CREATE UNIQUE INDEX myindex_name ON mytable (mycolumn);
 -- Mehrspaltiger Index
 CREATE INDEX myindex_name ON mytable (mycolumn1, mycolumn2);
 ```
-
-[NOTICE]
-Die Syntax für Indizes kann zwischen verschiedenen Datenbanksystemen variieren.
-SQLite verwendet die oben gezeigte Syntax.
-[ENDNOTICE]
+Im letzten Fall ist die Sortierung zuerst nach Spalte `mycolumn1`,
+bei Gleichheit dann nach `mycolumn2`.
 
 (Optional) Neugierig geworden? Dann lesen Sie hier weiter:
 [`SQL Index`](https://www.tutorialspoint.com/sql/sql-indexes.htm)
 
-<!-- time estimate: 5 min -->
+<!-- time estimate: 10 min -->
+
 
 ### Praktische Performance-Messung vorbereiten
 
-Um die Auswirkungen von Indizes wirklich zu verstehen, werden wir eine Tabelle 
+Die Auswirkungen von Indizes sind oftmals imposant.
+Um das wirklich zu verstehen, werden wir eine Tabelle 
 mit vielen Datensätzen erstellen und Abfragezeiten mit und ohne Index messen.
 
 Wir verwenden wieder die 
@@ -110,15 +108,12 @@ FROM (
 );
 ```
 (Der hintere Teil geht in z.B. Postgres viel einfacher: `generate_series(1, 1000000)`)
-<!-- time estimate: 10 min -->
 
-### Index-Verwaltung und -Übersicht
 
-Die Verwaltung von Indizes ist ebenfalls wichtig. 
-Normalerweise können wir diese Syntax verwenden:
+### Indices auflisten oder löschen
 
 ```sql
--- Alle Indizes einer Tabelle anzeigen
+-- Alle Indizes einer Tabelle anzeigen (SQlite-spezifisch)
 SELECT name FROM sqlite_master 
 WHERE type = 'index' AND tbl_name = 'mytable';
 
@@ -135,115 +130,95 @@ fragen Sie seinen `name` ab.
 
 ### Performance-Messung
 
-Verwenden Sie zum Messen der Abfragezeit die folgende Methode. 
-
-**Wichtig**: Sie müssen zuerst die Tabelle `performance_test` mit den 
-1 Million Datensätzen erstellt haben (siehe oben), 
-bevor Sie diese Zeitmessung durchführen können. 
-Nach dem Erstellen der Tabelle können Sie optional einen Index anlegen.
+Verwenden Sie zum Messen der Abfragezeit die folgenden SQL-Schnipsel.
+Löschen Sie vor dem Start alle Datensätze der Tabelle `performance_test` wieder,
+denn wir wollen das Einfügen auch mit messen.
 
 ```sql
 
--- Tabelle für Zeitmessung (falls noch nicht existiert)
+-- Schritt 0: Tabelle für Zeitmessung anlegen (nur einmalig)
 DROP TABLE IF EXISTS timing;
 CREATE TABLE timing (
   label TEXT,
   ts REAL
 );
 
--- Startzeit aufzeichnen
+-- Schritt 1: Startzeit aufzeichnen
 INSERT INTO timing VALUES ('start', julianday('now'));
 
--- Abfrage ausführen (Ergebnis wird NICHT angezeigt, sondern nur zur Zeitmessung genutzt)
+-- Schritt 2: Abfrage ausführen (Ergebnis wird NICHT angezeigt, sondern nur zur Zeitmessung genutzt)
 INSERT INTO timing
 SELECT 'dummy', julianday('now') 
 FROM (
   -------------------------------------------------
   -- 👇 Hier die Abfrage einsetzen, die gemessen werden soll
-  -- Beispiel: Zähle alle Zeilen mit random_number zwischen 42 und 1024
-  SELECT COUNT(*) 
-  FROM mytable 
-  WHERE mynumber BETWEEN 42 AND 1024
   -------------------------------------------------
 ) AS q;
 
--- Sie können den Index auch innerhalb oder außerhalb des Zeitmessung platzieren, 
--- um die zum Erstellen des Index erforderliche Zeit zu testen (hier innerhalb)
+-- Schritt 2A: Tabelle befüllen 
+   -- (siehe oben)
+    
+-- Schritt 2B: normale Abfrage
+  -- Beispiel-Anfrage: Zähle alle Zeilen mit random_number zwischen 42 und 1024.
+  -- Wer Lust hat, experimentiert hiermit weiter herum.
+  SELECT COUNT(*) 
+  FROM mytable 
+  WHERE mynumber BETWEEN 42 AND 1024
+
+-- Schritt 2C: Index anlegen
 CREATE INDEX myindex_name ON mytable (mycolumn);
 
--- Endzeit aufzeichnen
+-- Schritt 2D: normale Abfrage, jetzt mit Index (also schneller)
+   -- genau wie 2B
+
+-- Schritt 3: Endzeit aufzeichnen
 INSERT INTO timing VALUES ('stop', julianday('now'));
 
--- Differenz berechnen (in Sekunden) und ausgeben
+-- Schritt 4: Differenz berechnen (in Sekunden) und ausgeben
 SELECT (stop.ts - start.ts) * 86400 AS elapsed_seconds
 FROM timing start, timing stop
 WHERE start.label='start' AND stop.label='stop';
 ```
 
-[NOTICE]
-Sie können den Befehl verwenden, um die Ausführungszeit von Abfragen direkt zu messen. 
-Obwohl das Erstellen von Indizes länger dauern kann, wird die Indexerstellungszeit nicht in die Abfrageausführungszeit einbezogen, 
-daher können Sie dennoch den durch Indizes erzielten Leistungsgewinn deutlich erkennen.
-[ENDNOTICE]
+Verwenden Sie obige Teile, um der Reihe nach die Zeiten zu messen für:
 
-[ER] Führen Sie eine Abfrage aus, die alle Datensätze mit `random_number` zwischen 500000 und 600000 auswählt, und messen Sie die Ausführungszeit dieser Abfrage.
+- [EQ] Das Befüllen der Tabelle (0, 1, 2-mit-2A, 3, 4)
+- [EQ] Die Abfrage ohne Index (1, 2-mit-2B, 3, 4)
+- [EQ] Das Anlegen des Index (1, 2-mit-2C, 3, 4)
+- [EQ] Die Abfrage mit Index (1, 2-mit-2D, 3, 4)
+- [EQ] Eine Abfrage, die die Anzahl der Datensätze mit `random_number` zwischen 500000 und 600000 zählt. 
 
-[ER] Führen Sie eine weitere Abfrage aus, die die Anzahl aller Datensätze mit `random_number` größer als 800000 zählt, und messen Sie die Ausführungszeit dieser Abfrage.
+<!-- time estimate: 30 min -->
 
-<!-- time estimate: 25 min -->
-
-### Index erstellen und Performance vergleichen
-
-[ER] Erstellen Sie einen Index auf der `random_number`-Spalte.
-
-[ER] Wiederholen Sie die gleichen Abfragen von [EREFR::5] und [EREFR::6] und messen Sie die Ausführungszeit.
-
-[ER] Messen Sie die Zeit, die für das Erstellen des Index auf der `random_number`-Spalte benötigt wird. Verwenden Sie dabei die gleiche Zeitmessungsmethode wie bei den Abfragen. 
-Notieren Sie sich diese Index-Erstellungszeit, da Sie sie später für die Analyse in [EREFQ::2] benötigen werden.
-
-<!-- time estimate: 20 min -->
-
-### Verschiedene Index-Typen testen
+### Mehrspaltigen Index messen
 
 [ER] Erstellen Sie einen mehrspaltigen Index auf `random_number` und `category`.
 
 [ER] Führen Sie eine Abfrage aus, die beide Spalten `random_number` und `category` verwendet, 
-um Datensätze mit `random_number` zwischen 100000 und 200000 und `category` 
-gleich 'A' zu finden. Messen Sie die Ausführungszeit ohne den mehrspaltigen Index.
+um Datensätze mit `random_number` zwischen 100000 und 200000 und `category` gleich 'A' zu finden. 
 
-[ER] Löschen Sie den mehrspaltigen Index und führen Sie die gleiche Abfrage erneut aus. 
-Messen Sie die Ausführungszeit.
+[EQ] Messen Sie die Ausführungszeit mit mehrspaltigem Index.
 
+[ER] Löschen Sie den mehrspaltigen Index und führen Sie die gleiche Abfrage erneut aus.
 
+[EQ] Messen Sie die Ausführungszeit ohne den mehrspaltigen Index.
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
 
 ### Praktische Überlegungen zu Indizes
 
-[EQ] Dokumentieren Sie Ihre Messergebnisse: Wie groß war der Unterschied 
-zwischen den Abfragezeiten mit und ohne Index? 
+[EQ] Diskutieren Sie Ihre Messergebnisse: 
+Wie groß war der Unterschied zwischen den Abfragezeiten mit und ohne Index? 
 Welche Faktoren könnten die Performance-Unterschiede beeinflussen? 
+Wie viele Anfragen müssen Sie machen, um das Anlegen des Index zu amortisieren?
 
-[EQ] Beachten Sie dabei auch die Index-Erstellungszeit aus [EREFR::9] und überlegen Sie, 
-wann sollten Sie einen Index erstellen und wann nicht?
-
-<!-- time estimate: 25 min -->
-
-
+<!-- time estimate: 15 min -->
 
 [ENDSECTION]
 
 [SECTION::submission::program,reflection]
 [INCLUDE::/_include/Submission-Quellcode.md]
-
-Zusätzlich erstellen Sie ein Markdown-Dokument mit Ihren Performance-Messungen:
-
-- Zeiten für das Einfügen der 1.000.000 Datensätze
-- Abfragezeiten vor der Index-Erstellung
-- Abfragezeiten nach der Index-Erstellung  
-- Ihre Schlussfolgerungen zum Nutzen von Indizes
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
