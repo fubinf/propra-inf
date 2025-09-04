@@ -19,7 +19,7 @@ Sie helfen dabei, bestimmte Muster in Texten zu finden, zu extrahieren oder zu e
 
 
 [SECTION::instructions::detailed]
-Ein [TERMREF::Regulärer Ausdruck] ist eine Zeichenkette, die eine Menge verschiedener Zeichenketten beschreibt. 
+Ein [TERMREF::Regulärer Ausdruck] ist eine Zeichenkette, die eine Menge verschiedener Zeichenketten beschreibt.
 Statt nur nach einem exakten Text zu suchen, kann man damit Muster festlegen ("pattern matching"), 
 zum Beispiel "eine Zahl mit genau fünf Stellen" oder "ein Wort, das mit A beginnt".
 
@@ -47,7 +47,6 @@ Achten Sie auch auf verschiedene Schreibweisen: HALLO, Hallo oder hallo.
 Am Ende dieses Textes steht das Wort Welt!
 ```
 
-
 ### Fester Text
 
 Die einfachste Art von Muster ist die Suche nach einem festen Text.
@@ -56,13 +55,13 @@ Wenn dieser keine Sonderzeichen enthält, können Sie als regulären Ausdruck di
 [EQ] Suchen Sie mittels Regex nach dem Wort "Hallo" im Text.
 Wie viele Treffer finden Sie?
 
-
 ### Beliebiges Zeichen: `.`
 
 Warum stand oben "Wenn dieser keine Sonderzeichen enthält"?
 Weil manche Sonderzeichen so genannte "Meta-Zeichen" sind,
 die nicht für sich selbst stehen, sondern andere Bedeutungen haben.
 Erst die Metazeichen stellen die Mächtigkeit von regulären Ausdrücken her.
+<!--TODO: Erwähnen wie andere Quellen darüber reden-->
 
 Erstes Beispiel: Der Punkt (`.`).
 Dieser steht in einem regulären Ausdruck für ein beliebiges Zeichen mit Ausnahme des
@@ -79,13 +78,13 @@ Dies ist die erste wichtige Lektion:
 Reguläre Ausdrücke sind tückisch (und dementsprechend schwierig korrekt hinzubekommen),
 weil man sich darunter oft etwas anderes vorstellt, als sie tatsächlich bedeuten.  
 Mit genug Übung wird dieses Problem zwar kleiner, aber auch ausgefuchste Regexp-Expert_innen
-können einen komplizierten Ausdruck selten auf Anhieb richtig hinschreiben
+können einen komplizierten Ausdruck selten auf Anhieb richtig hinschreiben.
 [ENDWARNING]
 
-[ER] Formulieren Sie einen Regex der sowohl "Test" als auch "Text" trifft.
+[EQ] Formulieren Sie einen Regex der sowohl "Test" als auch "Text" trifft.
+Geben Sie reguläre Ausdrücke immer in Backticks (\`) an.
 
 [EQ] Was beschreibt folgender Regex: `e...m`
-
 
 ### Escape-Zeichen: `\`
 
@@ -94,52 +93,66 @@ Zeichen haben.
 `.` ist nun reserviert, um ein beliebiges Zeichen zu finden, 
 doch wie sucht man nach nur genau einem Punkt?
 
-Die Lösung ist der `\`-Operator.
-Mit ihm lassen sich Metazeichen als normale Zeichen behandeln (und normale können mit ihm eine zweite
-Bedeutung haben, z.B. steht `\n` für ein Zeilenwechsel-Zeichen, "line terminator").
+Die Lösung ist das `\`-Metazeichen.
+Mit ihm lassen sich Metazeichen als gewöhnliche Zeichen behandeln 
+(und Gewöhnliche können mit ihm eine zweite Bedeutung haben, z.B. steht `\n` für ein
+Zeilenwechsel-Zeichen, "line terminator").
 Um also nach genau einem Punkt zu suchen, können wir `\.` verwenden.
 Diese Regel gilt für alle Metazeichen.
 
-[ER] Wie lautet der Regex, um alle Punkte zu finden, die unmittelbar vor einem Zeilenwechsel stehen?
-
 [NOTICE]
-Der Zeilenumbruch wird mit dem Zeichen `\n` dargestellt.
+Als "gewöhnliche Zeichen" bezeichnen wir Zeichen, die für sich selbst stehen/sich selbst bedeuten.
+Die 
+[Python-Dokumentation (re)](https://docs.python.org/3/library/re.html#regular-expression-syntax)
+bezeichnet Sie als "ordinary characters", während die 
+[Wikipedia-Seite](https://en.wikipedia.org/wiki/Regular_expression)
+sie als "regular character" oder "literal character" bzw. auf Deutsch "Zeichenliterale" bezeichnet.
 [ENDNOTICE]
 
-[ER] `\` ist also auch ein Metazeichen, welches seine normale Bedeutung verliert. 
-Wie lautet der Regex, um trotzdem nach genau einem `\` suchen?
+[EQ] Neben dem Zeilenwechsel `\n` gibt es weitere Steuerzeichen (nicht druckbare Zeichen).
+Nennen Sie sechs weitere Steuerzeichen, die in regulären Ausdrücken mit einem Backslash `\` gefolgt von einem Buchstaben dargestellt werden können. 
+Nutzen Sie dafür diese Website:
+[HREF::https://www.regular-expressions.info/nonprint.html]
 
+[EQ] Matchen (bzw. treffen) Sie Zeichenketten, an denen ein Punkt direkt von einem
+Zeilenumbruch gefolgt wird.
+Geben Sie dafür einen Regex ab.
+Gebene Sie reguläre Ausdrücke immer in \` umschlossen ab.
+
+[EQ] `\` ist also auch ein Metazeichen, welches seine gewöhnliche Bedeutung verliert. 
+Wie lautet der Regex, um trotzdem nach genau einem `\` suchen?
 
 ### Vordefinierte Zeichenklassen: `\d`, `\w`, `\s`, etc.
 
-Nicht nur kann man mit `\` Metazeichen als normale Zeichen verwenden, in einigen Fällen kann man
-damit auch normalen Symbole eine neue Funktion geben wie z.B. `n` das mit `\`, also `\n` das
-Metazeichen für den Zeilenumbruch ist.
-
+Nicht nur kann man mit `\` Metazeichen als gewöhnliche Zeichen verwenden, in einigen Fällen kann man
+damit auch gewöhnlichen Zeichen eine neue Funktion geben wie Sie an z.B. `\n` gesehen haben.
+Doch nicht nur für Steuerzeichen ist `\` nützlich.
 Es gibt sogenannte Zeichenklassen, die bestimmte Arten von Zeichen matchen wie z.B. `\d` 
-die alle Ziffern matched.
+die alle Ziffern trifft.
 
-[ER] Matchen Sie Zeichenketten, die zwei Ziffern nebeneinander haben.
+[EQ] Matchen Sie Zeichenketten, die zwei Ziffern nebeneinander haben.
 
 Andere Zeichenklassen sind:
+
 - `\w`: Alphanumerische Zeichen also Text oder Ziffern
+
 - `\s`: Leerraum (Leerzeichen, Tab, Zeilenumbruch)
 
-[ER] Matchen Sie Zeichenketten, die 2 alphanumerische Zeichen enthalten gefolgt von einem Leerraum.
+[EQ] Matchen Sie Zeichenketten, die 2 alphanumerische Zeichen enthalten, gefolgt von einem Leerraum.
 
 Diese Zeichenklassen lassen sich mit entsprechendem Großbuchstaben (`\w` zu `\W` usw.) negieren.
 Sie matchen dann alle Zeichen, die _nicht_ zu dieser Zeichenklasse gehören.
 
-[ER] Matchen Sie genau zweistellige Zahlen. ("12", " 34d" aber nicht "1234")
+[EQ] Matchen Sie zwei Ziffern gefolgt von einem Zeichen das keine Ziffer ist.
 
-[ER] Matchen Sie alle Uhrzeiten ("01:23", "17:49").
+[EQ] Matchen Sie alle Uhrzeiten ("01:23", "17:49").
 
 [NOTICE]
 Ungültige Uhrzeiten wie "25:69" dürfen Sie dabei mit erwischen.
 Wie man das vermeidet, lernen wir später noch.
 [ENDNOTICE]
 
-[ER] Der Text enthält zwei Telefonnummern.
+[EQ] Der Text enthält zwei Telefonnummern.
 Überlegen Sie sich wie Sie beide Telefonnummern mit einem Regulären Ausdruck vollständig matchen
 können, ohne andere Textteile zu matchen. 
 (Ihr Ausdruck kann aber nicht _beliebige_ Telefonnummern finden. Auch dies lernen wir später.)
@@ -149,14 +162,13 @@ können, ohne andere Textteile zu matchen.
 
 Zwei weitere Metazeichen sind `^` (Anfang der Zeile/Text) und `$` (Ende der Zeile/Text).
 
-[ER] Matchen Sie jeden Zeilenanfang der mit "A" beginnt.
+[EQ] Matchen Sie jedes "A", aber nur wenn es am Zeilenanfang steht.
 
-[ER] Matchen Sie jedes Zeilenende das auf einem Ausrufezeichen endet.
+[EQ] Matchen Sie jedes "!", aber nur wenn es am Zeilenende steht.
 [ENDSECTION]
 
 
 [SECTION::submission::reflection]
-[INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
