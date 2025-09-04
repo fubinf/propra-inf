@@ -213,6 +213,10 @@ Wie groß war der Unterschied zwischen den Abfragezeiten mit und ohne Index?
 Welche Faktoren könnten die Performance-Unterschiede beeinflussen? 
 Wie viele Anfragen müssen Sie machen, um das Anlegen des Index zu amortisieren?
 
+[HINT::Indexnutzung]
+Nennen Sie als Einflussfaktoren mindestens Datenmenge, Selektivität und Abfragebedingungen – nicht die Hardware.
+[ENDHINT]
+
 <!-- time estimate: 15 min -->
 
 [ENDSECTION]
