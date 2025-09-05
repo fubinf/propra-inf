@@ -1,9 +1,7 @@
-title: "Daten gruppieren"
+title: "pandas: Daten gruppieren"
 stage: draft
 timevalue: 2
 difficulty: 2
-explains:
-assumes:
 requires: pd-Datenselektion2
 ---
 
@@ -18,7 +16,7 @@ Ich kann mit hierarchischen Indizes umgehen.
 
 [SECTION::background::default]
 Datenpunkte haben oft Gemeinsamkeiten bzw. Unterschiede nach denen man die Daten aufteilen möchte.
-Wie das geht
+Diese Aufgabe behandelt wie das geht und was man mit den gruppierten Daten machen kann.
 [ENDSECTION]
 
 
@@ -48,17 +46,17 @@ Begründen Sie.
 
 ### Gruppieren mit `groupby()`
 
-Kategorische Daten kann man sich quasi als Gruppen vorstellen.
+Kategorische Daten kann man sich als Gruppen vorstellen.
 Oft kann es interessant sein zu sehen, in welchen anderen Eigenschaften sich diese Gruppen
 unterscheiden.
-Wenn Sie z. B. zwischen `männlich` und `weiblich` unterscheiden, kann es interessant sein sich
-anzugucken, wie die durchschnittliche Lebensdauer sich zwischen diesen beiden Gruppen verhält.
+Wenn Sie z.B. zwischen `männlich` und `weiblich` unterscheiden, kann es interessant sein sich
+anzugucken, wie die durchschnittliche Lebensdauer in diesen beiden Gruppen ist.
 Die Methode
 [`groupby()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html)
 ist ideal, um solche kategorischen Daten zu gruppieren.
 
 [ER] Schauen Sie sich die Dokumenation zu `groupby()` an und gruppieren Sie `erststimmen_df`
-nach den Bezirksnamen in `bezirks_gruppierung`.
+nach den Bezirksnamen in die Variable `bezirks_gruppierung`.
 
 [EQ] Was für einen Datentyp ist `bezirks_gruppierung`?
 
@@ -73,7 +71,7 @@ Informationen über die Gruppen wir gerne hätten.
 
 Im gleichen Stil lassen sich auch andere Funktionen wie z.b. `min()` oder `mean()` anwenden.
 Und noch viel besser zum Betrachten der Daten: 
-Wenden Sie einfach ein anonyme Funktion wie `apply(lambda x: x)` auf `bezirks_gruppierung` an,
+Wenden Sie eine anonyme Funktion wie `apply(lambda x: x)` auf `bezirks_gruppierung` an,
 um die Daten in Ihrer rohen Form betrachten zu können. 
 Mit Funktionen weiß `pandas` also Bescheid, welche Informationen Sie über die Gruppen haben wollen.
 <!-- TODO_2_Saka: Verweis auf apply Aufgabe -->
@@ -82,40 +80,44 @@ Mit Funktionen weiß `pandas` also Bescheid, welche Informationen Sie über die 
 durchschnittliche Anzahl gültiger Stimmen.
 
 [ER] `groupby()` lässt aber nicht nur auf eine kategorische Variable filtern. 
-Gruppieren Sie `erststimmen_df` nach "Bezirksname" und "Wahlbezirksart".
+Gruppieren Sie `erststimmen_df` nach "Bezirksname" und "Wahlbezirksart" und
+betrachten Sie das Ergebnis mit `apply(lambda x: x)`.
+Speichern Sie diesen in die Variable `wahlart_df`.
 
 Wenn Sie das Ergebnis betrachten, fällt Ihnen bestimmt der eigenartige Index auf, für die Zeilen.
-Dadurch, dass Sie nun mehrer Gruppierungskriterien angegeben haben, brauchen wir Gruppierungen in
-Gruppen.
+Dadurch, dass Sie nun mehrer Gruppierungskriterien angegeben haben, brauchen wir Gruppen in
+den Gruppen.
 Der Index hat jetzt quasi mehrere _Level_ und wird auch hierarchischer Index oder
 [MultiIndex](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.html#pandas.MultiIndex)
-genannt.
-So lassen sich z. B. feingranulare Analysen durchführen, z. B. wie sich Wahlergebnisse je nach
+genannt mit "Bezirksname" auf dem einen Level und "Wahlbezirksart" auf dem anderen.
+So lassen sich auch feingranulare Analysen durchführen, z. B. wie sich Wahlergebnisse je nach
 Bezirk und Wahlform unterscheiden.
 
-[EC] Wie können Sie im Code überprüfen, ob es sich beim Index um einen MultIndex oder einen
-"normalen" Index handelt?
+[EQ] Wie können Sie im Code überprüfen, ob es sich beim Index eines `DataFrame` 
+um einen MultIndex oder einen "normalen" Index handelt?
 
-[EC] Wenn Sie auf ein bestimmtes Level zugreifen möchten, dann geben Sie nun statt `loc[IndexWert]`
+[ER] Wenn Sie auf ein bestimmtes Level zugreifen möchten, dann geben Sie nun statt `loc[IndexWert]`
 das Level mit an in einem Tupel `loc[(Level1Wert, Level2Wert)]`.
-Geben Sie den Wert für `Friedrichshain-Kreuzberg` auf dem ersten Level und `O` auf dem zweiten Level
-aus.
+Geben Sie den Wert für `Friedrichshain-Kreuzberg` auf dem ersten Level und `W` auf dem zweiten Level
+aus (von `wahlart_df`).
 
-[EC] Konvertieren Sie den MultiIndex mittels 
+[ER] Konvertieren Sie den MultiIndex mittels 
 [`reset_index()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reset_index.html)
 zu einem einfachen Index.
 
 ### `agg()`
 
-[EQ] Schauen Sie sich die Dokumentation zu 
+[ER] Schauen Sie sich die Dokumentation zu 
 [`agg()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.groupby.DataFrameGroupBy.agg.html)
 an und formulieren Sie `bezirks_gruppierung.max()` so um, dass es `agg()` nutzt.
 
-[EC] Mit `agg()` lassen sich die Gruppierungen noch flexibler nutzen.
-Sie können z. B. mehrere Funktionen gleichzeitig auf die Gruppen anwenden.
+[ER] Mit `agg()` lassen sich die Gruppierungen noch flexibler nutzen.
+Sie können auch mehrere Funktionen gleichzeitig auf die Gruppen anwenden.
 Wenden Sie sowohl `min()` als auch `max()` mit `agg()` an.
 
-[EQ] Das `agg()` sehr flexibel ist, sieht man auch daran, dass man Dictionaries übergeben kann,
+Nun handelt es sich bei den Spalten um einen `MultiIndex`.
+
+Das `agg()` sehr flexibel ist, sieht man auch daran, dass man Dictionaries übergeben kann,
 um noch gezielter Informationen zu bekommen.
 
 ```python
@@ -128,11 +130,11 @@ partei_stats = erststimmen_df.groupby('Bezirksname').agg({
 })
 ```
 
-[EC] Gruppieren Sie nach "Bezirkname" und "OstWest". Aggreggieren Sie die Summe der
-Summe der Stimmen für die AfD, das Maximum für die Grünen, sowie die durchschnittliche Anzahl an 
-ungültigen Stimmen.
+[ER] Gruppieren Sie nach "Bezirksname" und "OstWest". 
+Aggreggieren Sie die Summe der Stimmen für die AfD, das Maximum für die Grünen, 
+sowie die durchschnittliche Anzahl an ungültigen Stimmen.
 
-[EQ] Können Sie `reset_index()` auch nutzen, um den Spalteindex von Multiindex zu einem einfachen
+[EQ] Können Sie `reset_index()` auch nutzen, um den Spaltenindex von Multiindex zu einem einfachen
 Index zu konvertieren?
 
 ### Gruppieren mit Bedingungen
@@ -143,7 +145,7 @@ angeben, sondern auch logische Ausdrücke:
 grouped = df.groupby(df['Punkte'] >= 50) # Beispiel
 ```
 
-[EC] Gruppieren Sie `erststimmen_df` nach Einträgen, bei denen die AfD mehr Stimmen hatte 
+[ER] Gruppieren Sie `erststimmen_df` nach Einträgen, bei denen die AfD mehr Stimmen hatte 
 als die Linke.
 
 [EQ] Beschreiben Sie den Zeilenindex.
@@ -157,5 +159,5 @@ als die Linke.
 [ENDSECTION]
 
 [INSTRUCTOR::`groupby()` und `agg()` im Wesentlichen verstanden]
-Hinweise an die Tutoren zur Aufgabenkorrektur
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
