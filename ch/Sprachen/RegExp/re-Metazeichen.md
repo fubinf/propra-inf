@@ -61,7 +61,6 @@ Warum stand oben "Wenn dieser keine Sonderzeichen enthält"?
 Weil manche Sonderzeichen so genannte "Meta-Zeichen" sind,
 die nicht für sich selbst stehen, sondern andere Bedeutungen haben.
 Erst die Metazeichen stellen die Mächtigkeit von regulären Ausdrücken her.
-<!--TODO: Erwähnen wie andere Quellen darüber reden-->
 
 Erstes Beispiel: Der Punkt (`.`).
 Dieser steht in einem regulären Ausdruck für ein beliebiges Zeichen mit Ausnahme des
