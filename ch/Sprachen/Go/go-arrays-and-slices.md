@@ -65,22 +65,6 @@ type slice struct {
   zurückgegeben und stellt die Anzahl von Zellen
   bis zum Ende des zugrundeliegenden Arrays dar.
 
-[FOLDOUT::Was ist `unsafe.Pointer`?]
-`unsafe.Pointer` ist ein Zeiger ohne Typ — ähnlich wie `void*` in C.
-
-Solche Zeiger werden beispielsweise in Low-Level-Systemprogrammierung benutzt,
-wo direkter Speicherzugriff (ohne Einschränkungen des Typsystems) von Vorteil ist.
-
-Momentan müssen Sie sich keine Gedanken darüber machen: Einmal davon gehört
-zu haben reicht völlig aus.
-
-Wenn Sie doch mehr zum Thema wissen wollen, schauen Sie sich die
-[Dokumentation](https://pkg.go.dev/unsafe#Pointer)
-und den Artikel
-[Exploring ‘unsafe’ Features in Go 1.20: A Hands-On Demo](https://medium.com/@bradford_hamilton/exploring-unsafe-features-in-go-1-20-a-hands-on-demo-7149ba82e6e1)
-an.
-[ENDFOLDOUT]
-
 Informieren Sie sich über diese zwei Funktionen für Slices:
 
 - [append](https://pkg.go.dev/builtin#append)

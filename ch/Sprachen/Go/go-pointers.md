@@ -1,6 +1,6 @@
 title: "Go-Grundlagen: Zeiger"
 stage: alpha
-timevalue: 1
+timevalue: 2
 difficulty: 2
 explains: Slice (Golang)
 assumes: go-basics, go-functions
@@ -12,9 +12,10 @@ Zeiger effektiv benutzen.
 [ENDSECTION]
 
 [SECTION::background::default]
-Zeiger in Go ermöglichen es, direkt mit Speicher zu arbeiten — effizienter und flexibler. 
-Mithilfe von Zeigern lassen sich Werte über Funktionen hinweg ändern, Daten sparen 
-und komplexe Strukturen wie Listen oder Bäume bauen.
+Zeiger sind ein grundlegendes Konzept in der Programmierung, das es ermöglicht, per Speicheradresse
+auf Daten zuzugreifen.
+Sie sind nützlich, um effizient mit großen Datenstrukturen zu arbeiten oder
+Werte durch Referenz anstatt durch Kopie zu übergeben.
 
 Wer Zeiger versteht, schreibt nicht nur besseren Go-Code, sondern versteht auch besser, 
 wie Programme "unter der Haube" funktionieren.
@@ -23,19 +24,25 @@ wie Programme "unter der Haube" funktionieren.
 [SECTION::instructions::detailed]
 
 
-### Zeiger (pointers)
+### Was ist denn ein Zeiger?
 
-Zeiger sind ein grundlegendes Konzept in der Programmierung, das es ermöglicht, per Speicheradresse
-auf Daten zuzugreifen.
-Sie sind nützlich, um effizient mit großen Datenstrukturen zu arbeiten oder
-Werte durch Referenz anstatt durch Kopie zu übergeben.
+Ein Zeiger ist **eine Variable, die Speicheradresse einer anderen Variable enthält.**
 
-Zeiger in Go ähneln denjenigen in C oder C++ mit einem wichtigen Unterschied — sie sind sicherer zu
-benutzen.
+In C oder C++ sind Zeiger ziemlich low-level und geben dem Programmierer viel mehr Macht:
+Ein Zeiger ist bloß eine Zahl — die Speicheradresse.
+Wie man mit dieser Zahl umgeht, ist einem überlassen.
+
+Im Gegensatz zu solchen "gefährlichen" Zeigern sind Go-Zeiger etwas restriktiver.
 Sie unterstützen keine
 [Zeigerarithmetik](https://www.tutorialspoint.com/cprogramming/c_pointer_arithmetic.htm)
 und gehören immer zu einem konkreten Typ
 (`*T`, falls der Zeiger eine Variable von Typ `T` referenziert).
+
+(In C sind Zeiger auch typisiert, allerdings wird dieser Typ durch eine Umwandlung 
+in `void*` oft umgangen.)
+
+
+### Wie funktionieren Zeiger in Go?
 
 Der Nullwert aller Zeiger ist `nil`.
 Ein Zeiger wird mithilfe des `&`-Operators erstellt.
@@ -107,14 +114,6 @@ func main() {
 [EQ] Beschreiben Sie mit eigenen Worten, warum `a` im ersten Beispiel nicht verändert 
 wurde, im zweiten Beispiel aber schon.
 
-[EQ] Warum wird Go als "pass-by-value"-Sprache betrachtet, auch wenn Zeiger als 
-Funktionsparameter übergeben werden?
-
-[HINT::Was ist denn ein Zeiger?]
-Ein Zeiger ist eine Speicheradresse. 
-Zeigt eine Kopie eines Zeigers auf dieselbe Adresse?
-[ENDHINT]
-
 [EQ] Was wird im folgenden Beispiel auf die Kommandozeile ausgegeben?
 Warum?
 
@@ -168,13 +167,96 @@ Alle Werttypen teilen sich folgende Eigenschaften:
 Referenztypen vorstellen?
 
 <!-- time estimate: 10 min -->
+
+
+### Bonus: 'unsafe'
+
+Am Anfang der Aufgabe haben Sie gelernt, dass Zeiger in Go keine Zeigerarithmetik 
+unterstützen.
+Das ist nicht 100% korrekt, da es das Paket `unsafe` gibt, welches solche "gefährlichen"
+low-level Operationen ermöglicht, wie beispielsweise _Zeigerarithmetik_.
+
+In diesem Teil lernen Sie noch zwei Datentypen kennen und spielen selbst mit
+den low-level Zeigern.
+
+Der erste Typ ist `uintptr` — das ist ein Integer-Typ, der groß genug ist, um 
+Bit-Muster aller Zeiger darstellen zu können.
+Prinzipiell ist es nur eine ganze Zahl — kann also addiert und subtrahiert werden.
+
+Der zweite Typ ist `unsafe.Pointer` — er konvertiert einen typisierten Go-Zeiger 
+zu einem beliebigen/generischen.
+`unsafe.Pointer` ist eine Art Brücke zwischen gewöhnlichen langweiligen Go-Zeigern 
+und `uintptr`-Zahlen mit Speicheradressen.
+
+Das Lesen von 
+[Dokumentation von `unsafe.Pointer`](https://pkg.go.dev/unsafe#Pointer)
+ist zwar nicht notwendig, aber sehr empfohlen.
+
+Lesen Sie nun folgende Abschnitte aus dem Artikel
+[Exploring ‘unsafe’ Features in Go 1.20: A Hands-On Demo](https://medium.com/@bradford_hamilton/exploring-unsafe-features-in-go-1-20-a-hands-on-demo-7149ba82e6e1)
+:
+
+- **Background: The Role of ‘Unsafe’ in Go** (Kommentar, warum das Paket nur sehr 
+  vorsichtig zu benutzen ist)
+- **Some Notes on unsafe.Pointer and uintptr** (Konvertierung zwischen `*T`, `uintptr` 
+  und `unsafe.Pointer`)
+
+[ER] Schreiben Sie eine Funktion `getAddressDifference()`, welche:
+
+- zwei `byte`-Variablen nacheinander deklariert;
+- ihre Speicheradressen übereinander auf die Kommandozeile ausgibt. 
+  **Wichtig:** Rufen Sie direkt nach der Deklaration `fmt.Println(&a)` und `fmt.Println(&b)` 
+  auf — dies zwingt den Compiler den Variablen `a` und `b` feste und sichere Adressen 
+  zu vergeben.
+  Ohne feste Adressen würde alles Weitere keinen Sinn mehr ergeben, da Go-Compiler unter 
+  der Haube extrem viel (weg-)optimiert;
+- die Speicheradressen zu `uintptr` konvertiert und die Differenz `addrB - addrA`
+  auf die Kommandozeile ausgibt.
+
+[EQ] Basierend auf der Differenz der Adressen, was können Sie über die Position 
+der Variablen im Speicher sagen?
+
+[ER] Schreiben Sie eine Funktion `manipulate()`, welche:
+
+- zwei `byte`-Variablen nacheinander deklariert;
+- ihre Speicheradressen übereinander auf die Kommandozeile ausgibt (ebenfalls 
+  als `fmt.Println(&a)`);
+- anhand der Adresse von `a` die Adresse von `b` bestimmt (muss ja gleich die 
+  nächste Speicherzelle sein?), diese zu einem Go-Zeiger konvertiert (`*byte`) und
+  den Wert von `b` auf 42 setzt;
+- anschließend beide Variablen (`a` und `b`) auf die Kommandozeile ausgibt.
+
+[EC] Rufen Sie die Funktionen `getAddressDifference()` und `manipulate()` aus der
+`main`-Funktion auf und führen Sie Ihr Programm mittels `go run` aus.
+
+[FOLDOUT::Compileroptimierungen: ein Fass ohne Boden]
+Probieren Sie nun die Zeilen `fmt.Println(&a)` und `fmt.Println(&b)` auszukommentieren.
+
+Tut die Funktion immer noch, was sie tun soll?
+
+Das liegt an einer Reihe von möglichen Optimierungen:
+
+- Inlining von Operationen;
+- Umordnen von Operationen;
+- Wo die Variable allokiert wird — Stack vs. Heap;
+- "escaping" — dynamisches Verschieben zwischen Stack und Heap;
+- und vieles weitere.
+[ENDFOLDOUT]
 [ENDSECTION]
 
-
-[SECTION::submission::information]
+[SECTION::submission::information,snippet,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Lösungen]
+**Kommandoprotokoll**
+[PROT::ALT:go-pointers.prot]
+
+**Lösungen**
+
 [INCLUDE::ALT:]
+
+Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-pointers.go]
 [ENDINSTRUCTOR]
