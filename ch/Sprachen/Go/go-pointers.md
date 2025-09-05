@@ -201,15 +201,21 @@ Lesen Sie nun folgende Abschnitte aus dem Artikel
 - **Some Notes on unsafe.Pointer and uintptr** (Konvertierung zwischen `*T`, `uintptr` 
   und `unsafe.Pointer`)
 
+[WARNING]
+**Wichtig für die folgenden Funktionen `getAddressDifference` und `manipulate`:** 
+
+Rufen Sie direkt nach der Deklaration von `a` und `b` entsprechend 
+`fmt.Println(&a)` und `fmt.Println(&b)` auf — dies zwingt den Compiler den Variablen 
+`a` und `b` feste und sichere Adressen zu vergeben.
+
+Ohne feste Adressen würde alles Weitere keinen Sinn mehr ergeben, da Go-Compiler unter
+der Haube extrem viel (weg-)optimiert.
+[ENDWARNING]
+
 [ER] Schreiben Sie eine Funktion `getAddressDifference()`, welche:
 
 - zwei `byte`-Variablen nacheinander deklariert;
-- ihre Speicheradressen übereinander auf die Kommandozeile ausgibt. 
-  **Wichtig:** Rufen Sie direkt nach der Deklaration `fmt.Println(&a)` und `fmt.Println(&b)` 
-  auf — dies zwingt den Compiler den Variablen `a` und `b` feste und sichere Adressen 
-  zu vergeben.
-  Ohne feste Adressen würde alles Weitere keinen Sinn mehr ergeben, da Go-Compiler unter 
-  der Haube extrem viel (weg-)optimiert;
+- ihre Speicheradressen übereinander auf die Kommandozeile ausgibt (die Warnung oben);
 - die Speicheradressen zu `uintptr` konvertiert und die Differenz `addrB - addrA`
   auf die Kommandozeile ausgibt.
 
@@ -219,9 +225,8 @@ der Variablen im Speicher sagen?
 [ER] Schreiben Sie eine Funktion `manipulate()`, welche:
 
 - zwei `byte`-Variablen nacheinander deklariert;
-- ihre Speicheradressen übereinander auf die Kommandozeile ausgibt (ebenfalls 
-  als `fmt.Println(&a)`);
-- anhand der Adresse von `a` die Adresse von `b` bestimmt (muss ja gleich die 
+- ihre Speicheradressen übereinander auf die Kommandozeile ausgibt (die Warnung oben);
+- anhand der Adresse von `a` die Adresse von `b` bestimmt (muss ja gleich die
   nächste Speicherzelle sein?), diese zu einem Go-Zeiger konvertiert (`*byte`) und
   den Wert von `b` auf 42 setzt;
 - anschließend beide Variablen (`a` und `b`) auf die Kommandozeile ausgibt.
@@ -239,7 +244,8 @@ Das liegt an einer Reihe von möglichen Optimierungen:
 - Inlining von Operationen;
 - Umordnen von Operationen;
 - Wo die Variable allokiert wird — Stack vs. Heap;
-- "escaping" — dynamisches Verschieben zwischen Stack und Heap;
+- "escaping" — dynamisches Verschieben zwischen Stack und Heap
+  (das kann man sich mittels `go build -gcflags "-m" main.go` anschauen);
 - und vieles weitere.
 [ENDFOLDOUT]
 [ENDSECTION]
