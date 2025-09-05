@@ -2,8 +2,6 @@ title: "Aufbereitung von Datensätzen"
 stage: alpha
 timevalue: 1.25
 difficulty: 2
-explains:
-assumes:
 requires: pd-Gruppierung
 ---
 
@@ -40,17 +38,17 @@ laden Sie die Daten herunter und extrahieren Sie diese in den erstellen Ordner.
 Ähnlich wie bei `read_csv()` gibt es hierfür eine Funktion
 [`read_table()`](https://pandas.pydata.org/docs/reference/api/pandas.read_table.html#pandas.read_table).
 
-# Datensatz verstehen
+# Datensatz verstehen (Metadaten)
 
 Betrachten Sie den `DataFrame`.
 Die ersten 3 Spalten sind wahrscheinlich recht verständlich, 
 die `STATIONS_ID` gibt an um welche Station es sich handelt und
-`MESS_DATUM_BEGINN` und `MESS_DATUM_ENDE`  geben den Zeitraum der Messung an.
+`MESS_DATUM_BEGINN` und `MESS_DATUM_ENDE` geben den Zeitraum der Messung an.
 
 [EQ] Wie lang ist der Messzeitraum pro Eintrag?
 
 [EQ] Die anderen Spalten (`QN_4 ... MX_RS`) haben eher kryptische Namen und daher ist nicht direkt
-klar um was für Messungen es sich hier handelt.
+klar, um was für Messungen es sich hier handelt.
 Finden Sie mit Hilfe der [TERMREF::Metadaten] (die anderen Dateien und 
 [hier](https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/monthly/kl/BESCHREIBUNG_obsgermany-climate-monthly-kl_de.pdf)) 
 heraus, was in diesen Spalten gespeichert wird.
@@ -72,19 +70,19 @@ Wofür steht hier `-999` wahrscheinlich?
 
 # Spalten bearbeiten
 
-[ER] Dass die Metadaten Auskunft über die Spaltennamen geben ist ja erstmal schön und gut.
+[ER] Dass die Metadaten Auskunft über die Spaltennamen geben, ist erstmal schön und gut.
 Beim Arbeiten mit diesen Daten, ist es allerdings müßig jedes Mal nachzuschlagen wofür "QN_4"
 überhaupt steht. 
-Erstellen Sie deshalb ein `Dictionary` mit das die Spaltennamen  (`QN_4 ... MX_RS`) 
+Erstellen Sie deshalb ein `Dictionary`, das die Spaltennamen  (`QN_4 ... MX_RS`) 
 auf aussagekräftige Namen mapped.
-
-[ER] Benennen mithilfe des `Dictionary` die Spalten um.
-Nutzen Sie hierfür die Methode
-[`rename()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html#pandas.DataFrame.rename).
 
 [NOTICE]
 Eine sinnvolle Benennung für das Mittel der Minimum-Lufttemperatur in Celsius wäre z.B. "Lufttemp_Min_C".
 [ENDNOTICE]
+
+[ER] Benennen mithilfe des `Dictionary` die Spalten um.
+Nutzen Sie hierfür die Methode
+[`rename()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html#pandas.DataFrame.rename).
 
 [ER] Die Spalte `eor` ist für uns nicht relevant. 
 Entfernen Sie diese aus dem `wetter_df` mithilfe von `iloc()` oder `loc()`.
@@ -98,9 +96,9 @@ aus dem `wetter_df`.
 Begründen Sie.
 
 Nun haben Sie den Datensatz kennengelernt und mithilfe der Metadaten verstanden.
-Sie haben außerdem angefangen das DataFrame zu formattieren, indem Sie Spalten lesbar umbenannt
+Sie haben außerdem angefangen das `DataFrame` zu formattieren, indem Sie Spalten lesbar umbenannt
 haben und für uns irrelevante Spalten gedropped haben.
-In der nächsten Aufgabe lernen Sie, das DataFrame richtig zu bereinigen.
+In [PARTREF::pd-Datenbereinigung] lernen Sie, die Daten des `DataFrame` richtig zu bereinigen.
 [ENDSECTION]
 
 
@@ -108,6 +106,7 @@ In der nächsten Aufgabe lernen Sie, das DataFrame richtig zu bereinigen.
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Kann sich in den Datensatz einarbeiten]
 [INCLUDE::ALT:]
