@@ -234,6 +234,8 @@ der Variablen im Speicher sagen?
 [EC] Rufen Sie die Funktionen `getAddressDifference()` und `manipulate()` aus der
 `main`-Funktion auf und führen Sie Ihr Programm mittels `go run` aus.
 
+<!-- time estimate: 30 min -->
+
 [FOLDOUT::Compileroptimierungen: ein Fass ohne Boden]
 Probieren Sie nun die Zeilen `fmt.Println(&a)` und `fmt.Println(&b)` auszukommentieren.
 
