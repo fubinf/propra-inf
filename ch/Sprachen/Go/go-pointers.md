@@ -169,7 +169,7 @@ Referenztypen vorstellen?
 <!-- time estimate: 10 min -->
 
 
-### Bonus: 'unsafe'
+### 'unsafe'
 
 Am Anfang der Aufgabe haben Sie gelernt, dass Zeiger in Go keine Zeigerarithmetik 
 unterstützen.
