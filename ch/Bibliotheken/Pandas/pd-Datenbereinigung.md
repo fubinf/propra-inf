@@ -21,8 +21,7 @@ qualitativ gute Grundlage an Daten, können auch keine guten Analysen gemacht we
 
 
 [SECTION::instructions::loose]
-
-Fahren Sie mit dem aufbereiteten `wetter_df` aus der vorherigen Aufgabe fort.
+Fahren Sie mit dem aufbereiteten `wetter_df` aus [PARTREF::pd-Datenaufbereitung] fort.
 
 Zur Datenbereinigung gehören verschiedene Verfahren zum Entfernen und Korrigieren 
 von Daten.
