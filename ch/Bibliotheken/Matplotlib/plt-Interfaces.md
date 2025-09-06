@@ -2,8 +2,6 @@ title: "Implizites vs. Explizites Interface"
 stage: draft
 timevalue: 1
 difficulty: 2
-explains:
-assumes:
 requires: plt-AxesAxis
 ---
 
@@ -14,16 +12,14 @@ wie ich beide benutze.
 
 
 [SECTION::background::default]
-In `matplotlib` kann man auf zwei verschiedene Weisen etwas plotten.
+In Matplotlib kann man auf zwei verschiedene Weisen etwas plotten.
 Wenn man dies nicht weiß oder nicht ausreichend kennt, kann das sehr verwirrend sein, 
 da man auf unterschiedlichen Wegen zum Ergebnis kommen kann.
 [ENDSECTION]
 
 
 [SECTION::instructions::loose]
-
 In der letzten Aufgabe haben Sie bereits einen Weg kennengelernt, Daten zu plotten:
-
 ```python
 import matplotlib.pyplot as plt
 
@@ -39,14 +35,14 @@ plt.show()
 ```
 
 Dabei haben Sie zuerst eine sogenannte Figure, eine Art "Leinwand", erstellt
-und dann mit `subplots()` eine Achse (Axes) hinzugefügt. 
+und dann mit `subplots()` eine Achse (`Axes`) hinzugefügt. 
 Darauf konnten Sie zeichnen.
-Dieser Weg wird oft als "explizit" oder objekt-orientiert bezeichnet, weil Sie die Elemente 
+Dieser Weg wird oft als "explizit" oder objektorientiert bezeichnet, weil Sie die Elemente 
 (`Figure`, `Axes`) selbst erzeugen, benennen und direkt darauf zugreifen.
 
-Es gibt aber eine zweite Möglichkeit, wie man in matplotlib etwas zeichnen kann.
-Dieser Weg wird als implizit bzw. funktione, weil man keine eigenen Objekte erstellt, 
-sondern matplotlib intern automatisch eine Grafik erzeugt und verwendet.
+Es gibt aber eine zweite Möglichkeit, wie man in Matplotlib etwas zeichnen kann.
+Dieser Weg wird als implizit bzw. funktional beschrieben, weil man keine eigenen Objekte erstellt, 
+sondern Matplotlib intern automatisch eine Grafik erzeugt und verwendet.
 Das obrige Beispiel könnte man dann auf implizite Weise so umsetzen:
 
 ```python
@@ -71,26 +67,33 @@ wenn man z. B. mehrere Diagramme auf einer Seite haben will.
 Begründen Sie.
 
 ```python
+fig, ax = plt.subplots()
+
 x = np.random.rand(100)
 y = np.random.rand(100)
 colors = np.random.rand(100)
 
-plt.scatter(x, y)
-plt.title("Zufällige Punkte")
+ax.scatter(x, y, c=colors)
+ax.set_title("Zufällige Punkte")
 
 plt.show()
 ```
 
 [EQ] Auch wenn Sie sich auf Dauer für eine Schreibweise entscheiden werden, 
-begegnet Ihnen die jeweils andere bei z.B. Recherche nach Problemen die Sie haben.
+begegnet Ihnen die jeweils andere bei z.B. Recherche nach Problemen, die Sie haben.
 Schauen Sie sich 
 [diese Frage zu `matplotlib` auf Stackoverflow](https://stackoverflow.com/questions/28269157/plotting-in-a-non-blocking-way-with-matplotlib)
-an. Sie müssen den Code der Frage nicht vollständig verstehen, sie sollen nur bewerten, ob es
+an. 
+Sie müssen den Code der Frage nicht vollständig verstehen, sie sollen nur bewerten, ob es
 sich dabei um das explizite oder implizite Interface handelt.
 
-[ER] Wandeln Sie das obrige Beispiel in die andere Variante um.
+[ER] Wandeln Sie das Beispiel aus [EREFQ::1] in die andere Variante um.
+Sie können die 
+[Dokumentation](https://matplotlib.org/stable/users/explain/figure/api_interfaces.html)
+als Referenz nutzen.
 
 [ER] Wandeln Sie den folgenden Code in die explizite Variante um.
+Beachten Sie, dass es sich hier um mehrere `Axes` handelt.
 
 ```python
 import matplotlib.pyplot as plt
@@ -107,15 +110,15 @@ plt.subplot(1, 2, 2)
 plt.plot(x, y2)
 plt.title("Umgekehrt")
 
-# <-- Frage 2 
+# <-- Frage 3
 
 plt.show()
 ```
 
-[EQ] Wie Sie sehen kann man auch mehrere `Figure` und `Axes` in der impliziten Schreibweise haben. 
-Für "Quadrate" gibt es nun eine `Figure` und für "Umgekehrt" auch.
+[EQ] Wie Sie sehen, kann man auch mehrere `Figure` und `Axes` in der impliziten Schreibweise haben. 
+Für "Quadrate" gibt es nun eine `Axes` und für "Umgekehrt" auch.
 Könnten Sie in der impliziten Schreibweise auf die "Quadrate" Objekte zugreifen, nachdem Sie bereits
-eine neue `Figure` erstellt haben? (siehe Anmerkung im Code)
+eine neue `Axes` erstellt haben? (siehe Anmerkung im Code)
 
 [ER] Wandeln Sie den folgenden Code in eine implizite Schreibweise um.
 
@@ -137,7 +140,7 @@ plt.show()
 
 ### Vermischung
 
-Das wirklich Verwirrende beginnt, wenn diese beiden Arten die Objekte anzusprechen vermischt werden.
+Das wirklich Verwirrende beginnt, wenn diese beiden Arten, die Objekte anzusprechen, vermischt werden.
 Das passiert oft bei Neulingen, die verständlicherweise an impliziten und expliziten Beispielen
 lernen und dies dann vermischen.
 
@@ -153,11 +156,17 @@ plt.plot([1, 2, 3], [4, 5, 6])
 fig, ax = plt.subplots()
 ax.plot([1, 2, 3], [6, 5, 4])
 
+# <-- Frage 5
+
 plt.title("Was passiert hier?")
 plt.show()
 ```
 
-[EC] Ändern Sie das Beispiel ab, sodass es explizit und nur eine `Figure` benutzt.
+[EQ] Angenommen, Sie würden an dieser Stelle ein weiteres mal `plt.plot([1, 2, 3], [4, 5, 6])`
+anwenden.
+Wie viele `Figure` gäbe es dann?
+
+[ER] Ändern Sie das Beispiel ab, sodass es explizit und nur eine `Figure` benutzt.
 
 ### Best Practice
 
@@ -176,5 +185,7 @@ da an dieser die Funktionsweise von Matplotlib um einiges deutlicher wird.
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Unterschied zwischen Implizit und Explizit verstanden?]
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
