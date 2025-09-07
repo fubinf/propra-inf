@@ -161,5 +161,6 @@ func main() {
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-structs1.go]
+Musterlösung der Programmieraufgabe als ausführbare Datei hier: 
+[TREEREF::/Sprachen/Go/go-structs1.go].
 [ENDINSTRUCTOR]
