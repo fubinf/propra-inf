@@ -1,6 +1,6 @@
 title: Weitere Grundlagen von Go — Strukturen (Teil 1)
 stage: alpha
-timevalue: 1.5
+timevalue: 1
 difficulty: 2
 assumes: go-basics, go-functions
 ---
@@ -91,7 +91,7 @@ auf die Struktur selbst zugreifen kann.
 [INCLUDE::include/go-structs-methods-control-snippet.go]
 ```
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
 
 ### Struktureinbettung (struct embedding)
@@ -136,13 +136,14 @@ In dem Fall verhalten sich Methoden sehr ähnlich wie Felder.
 ```go
 func main() {
     testMethods()
-    testStructs()
+    testEmbedding()
 }
 ```
 
 [EC] Führen Sie nun das Programm mittels `go run` aus.
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
+[ENDSECTION]
 
 
 [SECTION::submission::information,trace,program]

@@ -190,5 +190,6 @@ damit das Kommandoprotokoll nicht verfälscht wird.
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-functions.go]
+Musterlösung der Programmieraufgabe als ausführbare Datei hier:
+[TREEREF::/Sprachen/Go/go-functions.go].
 [ENDINSTRUCTOR]

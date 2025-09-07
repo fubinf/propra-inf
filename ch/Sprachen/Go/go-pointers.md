@@ -242,5 +242,6 @@ der Variablen im Speicher sagen?
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-pointers.go]
+Musterlösung der Programmieraufgabe als ausführbare Datei hier:
+[TREEREF::/Sprachen/Go/go-pointers.go].
 [ENDINSTRUCTOR]

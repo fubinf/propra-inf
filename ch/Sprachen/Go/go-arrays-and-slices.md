@@ -308,5 +308,6 @@ Der Zweck ist, dass Studierende Slices erstellen und modifizieren können.
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe als ausführbare Datei hier: [TREEREF::/Sprachen/Go/go-slices.go].
+Musterlösung der Programmieraufgabe als ausführbare Datei hier: 
+[TREEREF::/Sprachen/Go/go-slices.go].
 [ENDINSTRUCTOR]
