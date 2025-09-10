@@ -3,8 +3,14 @@ stage: beta
 timevalue: 0.5
 difficulty: 2
 ---
-[SECTION::background::default]
 
+[SECTION::goal::product]
+Ich habe sichergestellt, dass ich eine Bash-Shell starten kann und
+dass Python und Pip funktionieren.
+[ENDSECTION]
+
+
+[SECTION::background::default]
 Wir gehen im Verlauf des Programmierpraktikums von einem Standard-Debian-Linux als Umgebung aus.
 Sie können auch etwas anderes benutzen, müssen dann die Unterschiede aber aus eigener
 Kraft überbrücken.
@@ -21,14 +27,9 @@ wird das meistens nichts ausmachen, weil die betreffenden Pakete dort schon inst
 Die übrigen solchen Aufgaben kann man auf einem Poolrechner nicht bearbeiten;
 Sie müssen sich eine neue aussuchen.
 [ENDNOTICE]
-
 [ENDSECTION]
-[SECTION::goal::product]
 
-Ich habe sichergestellt, dass ich eine Bash-Shell starten kann und
-dass Python und Pip funktionieren.
 
-[ENDSECTION]
 [SECTION::instructions::loose]
 
 ### Bash-Shell sicherstellen
@@ -53,11 +54,11 @@ dass Python und Pip funktionieren.
 
 [INCLUDE::include/CheckPython.inc]
 [INCLUDE::include/CdLsMvEtc.inc]
-
 [ENDSECTION]
+
+
 [INCLUDE::include/Abgabe.inc]
+
 [INSTRUCTOR::Warnhinweise]
-
 [INCLUDE::include/InstructorCheckLinux.inc]
-
 [ENDINSTRUCTOR]

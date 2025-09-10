@@ -3,8 +3,14 @@ stage: beta
 timevalue: 1.5
 difficulty: 2
 ---
-[SECTION::background::default]
 
+[SECTION::goal::product]
+Ich habe sichergestellt, dass ich eine Bash-Shell starten kann und
+dass Homebrew, Python und Pip funktionieren.
+[ENDSECTION]
+
+
+[SECTION::background::default]
 Wir gehen im Verlauf des Programmierpraktikums von einem Standard-Debian-Linux als Umgebung aus.
 Mac OS ist zwar ein Unix-System und dadurch Linux in vielem ähnlich, es gibt aber auch viele relevante
 Unterschiede.
@@ -12,15 +18,11 @@ Deshalb brauchen wir für manche Aufgaben eine Kompatibilitätsschicht, die dies
 
 Wir wählen dafür _Homebrew_, das es erlaubt, viele der unter Debian Linux verfügbaren Pakete
 in gleicher oder ähnlicher Version unter Mac OS X zu installieren.
-
 [ENDSECTION]
-[SECTION::goal::product]
 
-Ich habe sichergestellt, dass ich eine Bash-Shell starten kann und
-dass Homebrew, Python und Pip funktionieren.
 
-[ENDSECTION]
 [SECTION::instructions::loose]
+
 
 ### Bash-Shell sicherstellen
 
@@ -114,11 +116,12 @@ War die Installation erfolgreich können wir nun die installierte Python-Version
 
 [INCLUDE::include/CheckPython.inc]
 [INCLUDE::include/CdLsMvEtc.inc]
-
 [ENDSECTION]
-[INCLUDE::include/Abgabe.inc]
-[INSTRUCTOR::Warnhinweise]
 
+
+[INCLUDE::include/Abgabe.inc]
+
+[INSTRUCTOR::Warnhinweise]
 [INCLUDE::include/InstructorCheckLinux.inc]
 
 Die Ausgabe für `brew --version` sieht ungefähr wie folgt aus:
@@ -129,5 +132,4 @@ Homebrew 4.2.7
 ```
 
 Prüfen Sie, dass mindestens Python 3.11 installiert worden ist.
-
 [ENDINSTRUCTOR]

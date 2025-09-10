@@ -3,8 +3,16 @@ stage: beta
 timevalue: 1.5
 difficulty: 2
 ---
-[SECTION::background::default]
 
+[SECTION::goal::product]
+Ich habe Debian Linux mittels Windows WSL installiert und gestartet, das als Grundlage vieler 
+Aufgaben dient.
+
+Ich habe mich überzeugt, dass Python darauf funktioniert.
+[ENDSECTION]
+
+
+[SECTION::background::default]
 Wir gehen im Verlauf des Programmierpraktikums von der Verfügbarkeit einer Linux-Umgebung aus.
 Sollten Sie Windows verwenden, ist es für die meisten Aufgaben notwendig, eine derartige Umgebung
 zunächst einzurichten.
@@ -12,16 +20,11 @@ zunächst einzurichten.
 Der modernste und effektivste Weg hierfür ist es, Linux über
 WSL (Windows Subsystem for Linux) direkt in ein laufendes Windows-System hineinzuinstallieren.
 Grundvoraussetzung hierfür ist Windows 10 (Version 2004 oder höher) oder Windows 11.
-
 [ENDSECTION]
-[SECTION::goal::product]
 
-- Ich habe Debian Linux mittels Windows WSL installiert und gestartet,
-  das als Grundlage vieler Aufgaben dient.
-- Ich habe mich überzeugt, dass Python darauf funktioniert.
 
-[ENDSECTION]
 [SECTION::instructions::loose]
+
 
 ### WSL installieren
 
@@ -68,15 +71,15 @@ Wenn künftig von "Shell" oder "Kommandozeile" die Rede ist,
 ist immer die Linux-Shell gemeint, nie die Windows-Kommandozeile mit
 `cmd.exe` oder der Powershell.
 [ENDWARNING]
-
 [INCLUDE::include/CheckPython.inc]
 [INCLUDE::include/CdLsMvEtc.inc]
-
 [ENDSECTION]
+
+
 [INCLUDE::include/Abgabe.inc] 
+
 [INSTRUCTOR::Warnhinweise]
 [INCLUDE::include/InstructorCheckLinux.inc]
-
 Zum Prüfen dient `cat /etc/os-release; python -V; pip -V`. 
 Der Output davon findet sich im Kommandoprotokoll von [PARTREF::Kommandoprotokolle].
 
