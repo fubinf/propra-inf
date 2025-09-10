@@ -136,3 +136,9 @@ Geben Sie die Marker mit an.
 Dort, wo keine expliziten Texte gefordert sind, dürfen Sie diese frei wählen. 
 Aber halten Sie diese kurz, es geht uns um die Formatierungen!
 [ENDSECTION]
+
+[INSTRUCTOR::Markdown prüfen]
+Die abgegebene Markdown Datei sollte in irgendeiner Weise die folgenden Abschnitte enthalten:
+
+[INCLUDE::ALT:]
+[ENDINSTRUCTOR]
