@@ -9,6 +9,7 @@ Ich kann in Markdown Überschriften, Listen, Codeblöcke, Blockzitate
 und Hyperlinks ausdrücken
 [ENDSECTION]
 
+
 [SECTION::background::default]
 Sie werden im gesamten ProPra neben Kommandoeingaben bzw. Kommandoausgaben 
 auch an vielen Stellen selbst Texte schreiben, um etwas zu erklären 
@@ -21,6 +22,7 @@ Wer Markdown schon kennt (halbwegs gut reicht),
 darf diese Aufgabe auch gern überspringen.
 [ENDNOTICE]
 [ENDSECTION]
+
 
 [SECTION::instructions::loose]
 [TERMREF::Markdown] ist eine Markup-Sprache, die (anders als [TERMREF::HTML]) 
@@ -36,16 +38,17 @@ Dafür gibt es in den gängigen Editoren Plugins, die direkt die "hübsche" Vers
 Damit Sie direkt sehen können, wie der von Ihnen geschriebene Markup-Text aussieht, 
 können Sie gerne einen Online-Editor wie [StackEdit.io](https://stackedit.io/) verwenden.
 
-- [EQ] Erstellen Sie die Datei `Markdown.md` und machen Sie einen Commit mit dieser Datei.
+[EQ] Erstellen Sie die Datei `Markdown.md` und machen Sie einen Commit mit dieser Datei.
 
 
 ### Welche Formatierungmöglichkeiten gibt es in Markdown?
+
 
 #### Text Decoration
 
 Text kann **fett** oder *kursiv* sein.
 
-- [EQ] Schreiben Sie in der Datei Text wie den obigen.
+[EQ] Schreiben Sie in der Datei Text wie den obigen.
 
 
 #### Überschriften
@@ -53,7 +56,7 @@ Text kann **fett** oder *kursiv* sein.
 Bis zu diesem Zeitpunkt wurden hier in diesem Dokument (das ursprünglich ebenfalls in Markdown geschrieben ist)
 vier Überschriftenebenen benutzt.
 
-- [EQ] Erstellen Sie ein Layout mit fünf Überschrift-Ebenen.
+[EQ] Erstellen Sie ein Layout mit fünf Überschrift-Ebenen.
 
 
 #### Listen
@@ -96,7 +99,7 @@ Eine besonders wichtige Variante ist
 [GitHub-Markdown](https://docs.github.com/en/get-started/writing-on-github)
 [ENDWARNING]
 
-- [EQ] Erstellen Sie eine verschachtelte Auflistung.
+[EQ] Erstellen Sie eine verschachtelte Auflistung.
 
 
 #### Code-Blöcke
@@ -109,7 +112,7 @@ import antigravity
 antigravity.fly()
 ```
 
-- [EQ] Erstellen Sie einen Codeblock, der die Syntax von `bash` erwartet.
+[EQ] Erstellen Sie einen Codeblock, der die Syntax von `bash` erwartet.
 
 
 #### Blockzitate
@@ -127,6 +130,7 @@ per [TERMREF::CSS] das Aussehen der Markdown-Dateien ändern
 und noch vieles mehr; 
 siehe die oben genannten Quellen.
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 Geben Sie das Dokument `Markdown.md` mit den im Text unter [EREFQ::1], [EREFQ::2], ...
