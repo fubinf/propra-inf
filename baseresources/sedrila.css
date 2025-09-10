@@ -750,6 +750,10 @@ a:link.vwr-filelink-submission {
         }
     }
 
+    .header_in a {
+        color: var(--on-main-color);
+    }
+
     .header_in a:hover {
         text-decoration: none;
         color: var(--on-main-color);
