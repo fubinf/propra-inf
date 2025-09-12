@@ -2,7 +2,6 @@ title: "Go-Grundlagen: Maps"
 stage: alpha
 timevalue: 1
 difficulty: 2
-explains: Slice (Golang)
 assumes: go-basics, go-pointers, go-functions
 ---
 
@@ -21,43 +20,44 @@ Lösung für viele Alltagsprobleme in der Programmierung.
 
 [SECTION::instructions::detailed]
 
-#### Map (Referenztyp)
+### Map (Referenztyp)
 
 Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre
 Schlüssel ermöglicht.
 
-Eine Map ist ein Referenztyp und wird ebenfalls mithilfe der Funktion `make()` erstellt:
+Eine Map ist ein Referenztyp.
 
-```go
-m := make(map[string]int)       // "string" ist der Typ der Schlüssel, "int" ist der Typ der Werte
-m["one"] = 1
-fmt.Println(m)                  // map[one:1]
-fmt.Println(m["two"])           // 0, da 0 der Nullwert von "int" ist, wenn kein solcher Schlüssel existiert
-fmt.Println(len(m))             // 1
+Maps können als "map literals" erstellt werden 
+(`string` ist der Typ der Schlüssel, `int` ist der Typ der Werte):
+```go 
+m := map[string]int{"a": 1, "b": 2, "c": 3}
 ```
 
-Für die Fallunterscheidung, ob ein Schlüssel bereits vorhanden ist oder nicht,
-dient folgendes Idiom:
-
+Maps können auch mithilfe von Funktion `make` kreiert werden:
 ```go
-mysteriousMap := make(map[string]int)
-
-if value, isThere := mysteriousMap["key"]; isThere {
-    // do something
-} else {
-    // "key" does not exist in the map and the value should not be used
-}
+m := make(map[string]int)
 ```
 
-Ein Schlüssel-Wert-Paar kann explizit entfernt werden:
+[NOTICE]
+Genuso wie bei Slices, gibt `len(m)` die Länge einer Map zurück.
+[ENDNOTICE]
 
+
+### Lesen
+
+Es gibt zwei Arten von Lesezugriffen auf Maps:
+
+- `value := m[key]` gibt entweder den Wert für den Schlüssel `key` zurück — oder, 
+  falls der Schlüssel nicht vorhanden ist, den Nullwert des entsprechenden Typs 
+  (beispielsweise `""` für `string`, `0` für `int` usw.);
+- `value, ok := m[key]`. 
+  Dieses Idiom erlaubt die Unterscheidung, ob ein Schlüssel in der Map enthalten ist oder nicht.
+  Ist der Schlüssel vorhanden, ist `ok` gleich `true`; andernfalls ist `ok` gleich `false`.
+
+Ein typisches Muster für Lesezugriffe ist:
 ```go
-studentAges := make(map[string]int)
-
-studentAges["Max"] = 23
-
-if value, isThere := studentAges["Max"]; isThere {
-    delete(studentAges, "Max")
+if value, ok := m[key]; ok {
+    // use value
 }
 ```
 
@@ -71,16 +71,85 @@ Beim Lesezugriff auf Maps hingegen ist der zweite Rückgabewert gesetzt, wenn al
 glattgelaufen ist und der Schlüssel tatsächlich in der Map existiert.
 
 Konventionell wird der zweite Rückgabewert beim Map-Zugriff `ok` genannt.
-Wir empfehlen jedoch das Paar `value, isThere` für Maps: Selbst wenn einem die Feinheiten
-mal entfallen, kann eine aussagekräftige Benennung der Variablen den Tag retten.
+Falls Sie ein `ok` nicht aussagekräftig finden, ersetzen Sie es durch ein `isThere` —
+"value is there" liest sich natürlicher und kann den Tag retten, wenn einem die
+Feinheiten mal entfallen.
 [ENDWARNING]
 
-Falls es keinen solchen Schlüssel gibt, führt `delete()` keine Aktion aus.
 
-[ER] Implementieren Sie eine Funktion
-`func AddElementIfNotThere(m map[string]int, key string, value int)`:
-ein Schlüssel-Wert-Paar einfügen, falls der Schlüssel noch nicht benutzt wurde.
-Ansonsten keine Aktion.
+### Schreiben
+
+Schreibzugriffe auf Maps sind unkompliziert:
+
+```go
+m[key] = value
+```
+
+Existiert der Schlüssel `key` bereits, wird der zugehörige Wert überschrieben.
+Andernfalls wird ein neues Schlüssel-Wert-Paar `key:value` angelegt.
+
+Mit der eingebauten Funktion 
+[`delete`](https://pkg.go.dev/builtin#delete)
+lässt sich ein Schlüssel-Wert-Paar entfernen.
+Falls der angegebene Schlüssel nicht existiert, hat der Aufruf keine Wirkung:
+
+```go
+delete(someMap, someKey)
+```
+
+[NOTICE]
+Man kann eine Map **deklarieren** und erst später **initialisieren**.
+```go
+var m map[string]int        // Deklaration
+...
+m = make(map[string]int)    // Initialisierung
+```
+
+Ein Schreibzugriff vor der Initialisierung führt jedoch zu einem Laufzeitfehler (Programmabsturz):
+```go
+m["foo"] = 42               // panic: assignment to entry in nil map
+```
+
+Deshalb raten wir davon ab, Maps nur mit `var m map[string]int` zu deklarieren, 
+ohne sie direkt zu initialisieren.
+
+Ein Lesezugriff hingegen funktioniert auch ohne vorherige Initialisierung – was leicht zu 
+Missverständnissen führen kann:
+```go
+fmt.Println(m == nil)       // true
+fmt.Println(m["foo"])       // 0
+```
+
+Die idiomatische und empfohlene Art, eine Map in Go zu initialisieren, ist:
+
+```go
+m := make(map[string]int)
+```
+
+Diese Schreibweise ist im Go-Universum klar, verständlich und weit verbreitet.
+[ENDNOTICE]
+
+[ER] Implementieren Sie eine Funktion `checkAnagram(w1, w2 string) bool`, die zwei Wörter als 
+Argumente erhält und entscheidet, ob sie ein Anagramm-Paar bilden.
+
+Algorithmus:
+
+1. **Zählen der Buchstaben im ersten Wort:**
+   Die Häufigkeiten der Buchstaben werden in einer Map `map[rune]int` gespeichert:
+    - `for i, r := range someString` iteriert über alle Zeichen eines Strings.
+    - `i` ist der Index, `r` ist der Buchstabe in Form eines `rune`-Werts (ein Alias für `int32`).
+    - Beim Iterieren über Strings in Go erhält man standardmäßig `rune`-Werte (Unicode-Codepoints).
+
+2. **Verarbeiten des zweiten Wortes:** 
+   Auch das zweite Wort wird Buchstabe für Buchstabe durchlaufen:
+    - ist ein Buchstabe **nicht** in der Map vorhanden -> sofort `false` zurückgeben.
+    - ist er vorhanden — den Zähler um 1 verringern.
+      Wenn der Zähler dabei auf 0 sinkt, wird der Buchstabe aus der Map entfernt (`delete`).
+
+3. Falls die Map am Ende leer ist, sind die Wörter ein Anagramm-Paar.
+
+
+### Programmieren
 
 [ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
@@ -97,26 +166,9 @@ func main() {
 }
 ```
 
-[EC] Führen Sie das Programm mittels `go run go-maps.go` aus.
+[EC] Führen Sie das Programm mittels `go run` aus.
 
-<!-- time estimate: 10 min -->
-
-[WARNING]
-Variablen aller Referenztypen werden mit `nil` initialisiert:
-
-```go
-var s []int                     // s == nil
-var m map[string]int            // m == nil
-```
-
-Das führt leicht zu Schwierigkeiten.
-Es ist robuster, Slices und Maps direkt während der Deklaration mit `make()` zu initialisieren:
-
-```go
-s := make([]int, 0)
-m := make(map[string]int)
-```
-[ENDWARNING]
+<!-- time estimate: 30 min -->
 [ENDSECTION]
 
 [SECTION::submission::trace,program]
@@ -129,14 +181,13 @@ m := make(map[string]int)
 diese Funktion sollte unverändert in dem abgegebenen Quellcode präsent sein,
 damit das Kommandoprotokoll nicht verfälscht wird.
 
-Korrektur von `AddElementIfNotThere`:
-Der Zweck ist, dass Studierende überprüfen können, ob der Wert da ist.
-Hier ist wichtig zu verstehen, wie man einen Nullwert von einem tatsächlich vorhandenen
-Wert unterscheiden kann — nämlich mit der Schreibweise
-`if value, isThere := studentAges["Max"]; isThere { }`.
-
 **Kommandoprotokoll**
 [PROT::ALT:go-maps.prot]
 
-Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-maps.go]
+
+Musterlösung der Programmieraufgabe: 
+[INCLUDE::ALT:]
+
+Oder als ausführbare Datei hier:
+[TREEREF::/Sprachen/Go/go-maps.go].
 [ENDINSTRUCTOR]

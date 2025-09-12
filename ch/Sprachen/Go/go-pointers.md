@@ -2,7 +2,6 @@ title: "Go-Grundlagen: Zeiger"
 stage: alpha
 timevalue: 2
 difficulty: 2
-explains: Slice (Golang)
 assumes: go-basics, go-functions, go-structs1
 ---
 

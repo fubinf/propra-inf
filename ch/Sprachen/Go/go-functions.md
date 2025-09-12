@@ -2,7 +2,6 @@ title: "Go-Grundlagen: Funktionen"
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-explains: Slice (Golang)
 assumes: go-basics
 ---
 
