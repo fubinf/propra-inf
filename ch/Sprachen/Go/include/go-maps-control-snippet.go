@@ -1,9 +1,45 @@
 func testMaps() {
-    fmt.Println("Testing AddElementIfNotThere...")
+	fmt.Println("testing positive cases...")
+	positives := []struct {
+		w1, w2 string
+		result bool
+	}{
+		{"listen", "silent", true},
+		{"anagram", "nagaram", true},
+		{"rat", "tar", true},
+		{"evil", "vile", true},
+		{"aabbcc", "abcabc", true},
+		{"", "", true},
+	}
 
-    m := make(map[string]int)
-    m["hi"] = 42
+	for _, v := range positives {
+		if checkAnagram(v.w1, v.w2) != v.result {
+			fmt.Printf("%s %s %v failed\n", v.w1, v.w2, v.result)
+			return
+		}
+	}
 
-    fmt.Println(AddElementIfNotThere(m, "hi", 420))
-    fmt.Println(AddElementIfNotThere(m, "there", 420))
+	fmt.Println("all positive cases passed!")
+
+	fmt.Println("testing negative cases...")
+	negatives := []struct {
+		w1, w2 string
+		result bool
+	}{
+		{"hello", "world", false},
+		{"abcd", "abc", false},
+		{"test", "ttew", false},
+		{"abc", "abcc", false},
+		{"abc", "def", false},
+		{"go", "goo", false},
+	}
+
+	for _, v := range negatives {
+		if checkAnagram(v.w1, v.w2) != v.result {
+			fmt.Printf("%s %s %v failed\n", v.w1, v.w2, v.result)
+			return
+		}
+	}
+
+	fmt.Println("all negative cases passed!")
 }
