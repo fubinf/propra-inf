@@ -97,7 +97,7 @@ Falls der angegebene Schlüssel nicht existiert, hat der Aufruf keine Wirkung:
 delete(someMap, someKey)
 ```
 
-[NOTICE]
+[WARNING]
 Man kann eine Map **deklarieren** und erst später **initialisieren**.
 ```go
 var m map[string]int        // Deklaration
@@ -127,7 +127,10 @@ m := make(map[string]int)
 ```
 
 Diese Schreibweise ist im Go-Universum klar, verständlich und weit verbreitet.
-[ENDNOTICE]
+[ENDWARNING]
+
+
+### Programmieren
 
 [ER] Implementieren Sie eine Funktion `checkAnagram(w1, w2 string) bool`, die zwei Wörter als 
 Argumente erhält und entscheidet, ob sie ein Anagramm-Paar bilden.
@@ -147,9 +150,6 @@ Algorithmus:
       Wenn der Zähler dabei auf 0 sinkt, wird der Buchstabe aus der Map entfernt (`delete`).
 
 3. Falls die Map am Ende leer ist, sind die Wörter ein Anagramm-Paar.
-
-
-### Programmieren
 
 [ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
