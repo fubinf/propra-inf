@@ -109,6 +109,15 @@ Ihr Gedankengang:
   denen aus dem Header übereinstimmen.
   Die Namen der Felder spielen dabei keine Rolle.
 
+<!-- time estimate: 15 min -->
+
+[NOTICE]
+Um ein besseres Verständnis zu schaffen, was Slices eigentlich sind,
+lesen Sie nun diesen Artikel (es gibt Bilder!):
+[The Go Blog: Go Slices — usage and internals](https://go.dev/blog/slices-intro)
+.
+[ENDNOTICE]
+
 [ER] Schauen Sie sich die folgenden zwei Beispiele ganz genau an und denken Sie mit.
 Versuchen Sie zunächst selbst nachzuvollziehen, was in jeder Zeile passiert, 
 bevor Sie die Kommentare lesen.
@@ -140,7 +149,7 @@ sl := arr[:3]                       // kreiert einen Slice vom Anfang des Arrays
 sl = append(sl, 8)                  // überschreibt die "3" im ursprünglichen Array arr!
 ```
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
 Informieren Sie sich über diese zwei Funktionen für Slices:
 
@@ -150,7 +159,7 @@ Informieren Sie sich über diese zwei Funktionen für Slices:
 [ER] Nun schauen Sie sich die Funktion `append` ganz genau an,
 indem Sie einen Slice erstellen und mehrmals eine Zahl hinzufügen.
 
-1. Schreiben Sie sich eine kleine Funktion `printData(s []int)`, welche alle wichtigen
+1. Schreiben Sie eine kleine Funktion `printData(s []int)`, welche alle wichtigen
    Daten aus dem Slice-Header auf die Kommandozeile ausgeben soll: die Länge des Slice,
    die Kapazität und den Zeiger auf das zugrundeliegende Array.
    Ganz bequem haben Sie kurz davor drei kleine Funktionen implementiert, die genau 
@@ -189,7 +198,7 @@ sl2 := sl1[:cap(sl1)]  // Achtung: cap(sl1) != len(sl1)
 sl2[3] = 99
 ```
 
-<!-- time estimate: 10 min -->
+<!-- time estimate: 20 min -->
 
 Lesen Sie nun diesen Artikel aufmerksam durch:
 [Go by Example: Slices](https://gobyexample.com/slices).
@@ -246,10 +255,7 @@ func modifySlice(s []int) {
 Beeinflusst die Zuweisung `s = append(s, 42)` den ursprünglichen Slice?
 [ENDHINT]
 
-Um ein besseres Verständnis zu schaffen, was Slices eigentlich sind,
-lesen Sie nun diesen Artikel (es gibt Bilder!):
-[The Go Blog: Go Slices — usage and internals](https://go.dev/blog/slices-intro)
-.
+<!-- time estimate: 15 min -->
 
 Implementieren Sie die folgenden Funktionen:
 
@@ -279,9 +285,9 @@ func main() {
 }
 ```
 
-[EC] Führen Sie das Programm mittels `go run go-slices.go` aus.
+[EC] Führen Sie das Programm mittels `go run` aus.
 
-<!-- time estimate: 40 min -->
+<!-- time estimate: 15 min -->
 [ENDSECTION]
 
 [SECTION::submission::information,trace,program]
