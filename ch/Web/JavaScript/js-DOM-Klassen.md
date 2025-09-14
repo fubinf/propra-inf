@@ -2,7 +2,7 @@ title: Klassen und Prototypen – Strukturierte Logik in JavaScript
 stage: draft
 timevalue: 1
 difficulty: 2
-requires: js-DOM-Einfürung
+requires: js-DOM-Einführung
 ---
 
 [SECTION::goal::idea]
