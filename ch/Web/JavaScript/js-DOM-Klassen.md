@@ -6,17 +6,18 @@ requires: js-DOM-Einführung
 ---
 
 [SECTION::goal::idea]
-- Ich kann in JavaScript eigene Klassen definieren und Instanzen davon erstellen.
-- Ich kann Methoden und Vererbung einsetzen, um wiederverwendbare Strukturen aufzubauen.
-- Ich verstehe den Zusammenhang zwischen Klassen und Prototypen in JavaScript.
-- Ich kann Gemeinsamkeiten und Unterschiede zu Python-Klassen benennen.
+
+- Ich kann in JavaScript eigene Klassen definieren und Instanzen davon erstellen.  
+- Ich kann Methoden und Vererbung einsetzen, um wiederverwendbare Strukturen aufzubauen.  
+- Ich verstehe den Zusammenhang zwischen Klassen und Prototypen in JavaScript.  
+- Ich kann Gemeinsamkeiten und Unterschiede zu Python-Klassen benennen.  
 [ENDSECTION]
 
 
 [SECTION::background::default]
-Mit Klassen können wir Code strukturieren, wiederverwenden und leichter verstehen.
-Statt verstreute Funktionen und Daten getrennt zu behandeln, bündeln wir beides in klaren Bausteinen.
-So lassen sich auch größere Programme übersichtlich aufbauen.
+Mit Klassen können wir Code strukturieren, wiederverwenden und leichter verstehen.  
+Statt verstreute Funktionen und Daten getrennt zu behandeln, bündeln wir beides in klaren Bausteinen.  
+So lassen sich auch größere Programme übersichtlich aufbauen.  
 [ENDSECTION]
 
 
