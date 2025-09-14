@@ -2,7 +2,7 @@ title: Weitere Grundlagen von Go — Strukturen (Teil 2)
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: go-basics, go-functions, go-pointers
+assumes: go-basics, go-functions, go-pointers, go-structs1
 ---
 
 [SECTION::goal::idea,experience]
@@ -16,6 +16,7 @@ In dieser Aufgabe handelt es sich um anonyme Strukturen, die leere Struktur und
 das Zusammenspiel von dem pass-by-value-Verhalten, Zeigern und Strukturen.
 [ENDSECTION]
 
+[TOC]
 
 [SECTION::instructions::detailed]
 
@@ -59,8 +60,8 @@ Compiler festgelegte Speicheradresse teilen — `zerobase`.
 Go Compiler erkennt, dass so eine Struktur keine Felder besitzt und
 dementsprechend keinen Speicherplatz braucht, und spart sich das Allokieren.
 
-Quellen für Nachlesen (könnte auch dann von Interesse sein, wenn Sie noch
-relativ frisch im Go-Universum sind):
+Falls Sie mehr zum Thema wissen wollen (könnte auch dann von Interesse sein, wenn 
+Sie noch relativ frisch im Go-Universum sind):
 
 - [Dave Cheney: The empty struct](https://dave.cheney.net/2014/03/25/the-empty-struct)
 - [Decrypt Go: empty struct](https://dev.to/huizhou92/decrypt-go-empty-struct-5i4)
@@ -144,9 +145,16 @@ fmt.Println((*pptr).Age) // explizit (aber unnötig)
 ```
 [ENDNOTICE]
 
-[ER] Implementieren Sie eine Methode `Promote` auf `Employee`, die ein Argument
+[ER] Übernehmen Sie die Strukturen `Person` und `Employee` aus [PARTREF::go-structs1]. 
+Implementieren Sie eine Methode `Promote` auf `Employee`, die ein Argument
 `newPosition string` erwartet.
 Sie soll die Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
+
+[ER] Implementieren Sie außerdem eine Methode `(e Employee) Print()`, die die Struktur 
+im folgenden Format darstellt:
+```go
+fmt.Printf("%v %v, %v (%v)\n", e.FirstName, e.LastName, e.Age, e.Position)
+```
 
 [ER] Fügen Sie folgende Testfunktion in Ihre Datei ein:
 
@@ -168,6 +176,122 @@ func main() {
 <!-- time estimate: 20 min -->
 
 
+### Speicherlayout (Alignment und Padding)
+
+Es gibt Situationen, wo Reihenfolge der Felder einer Struktur tatsächlich einen Unterschied macht.
+
+Ein wichtiger Begriff, den Sie nun kennenlernen müssen, ist _Alignment_.
+Lesen Sie zunächst den
+[Abschnitt: Type Alignment Guarantees in Go](https://go101.org/article/memory-layout.html)
+.
+
+[HINT::Zusammenfassung]
+Um eine effiziente Datenverarbeitung durch die CPU zu gewährleisten, müssen sich alle Werte eines
+Typs auf Speicheradressen befinden, die ein Vielfaches einer bestimmten Zahl _N_ sind.
+
+Diese Zahl _N_ bezeichnet man als _Alignment_ dieses Typs.
+
+Mit anderen Worten: Alle Speicheradressen, an denen Werte dieses Typs gespeichert werden,
+müssen durch das Alignment teilbar sein.
+[ENDHINT]
+
+Betrachten Sie das folgende "Speicherstück", wo die Zahlen in der unteren Reihe
+"Speicheradressen" sind.
+Hier sind 16 Bytes dargestellt.
+
+    ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┬────┬────┬────┬────┐
+    │   │   │   │   │   │   │   │   │   │   │    │    │    │    │    │    │
+    ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼────┼────┼────┼────┼────┼────┤
+    │ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 10 │ 11 │ 12 │ 13 │ 14 │ 15 │
+    └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴────┴────┴────┴────┴────┴────┘
+
+Für die Aufgabe konzentrieren wir uns auf zwei primitiven Datentypen:
+
+- `bool` — 1 Byte groß, Alignment 1
+- `int32` — 4 Byte groß, Alignment 4
+
+[EQ] Laut den spezifizierten Alignments, welche Speicherzellen dürfen einen `bool`-Wert
+adressieren?
+Einen `int32`-Wert?
+
+Jetzt probieren Sie ein paar Anordnungen aus, um ein Bauchgefühl zu entwickeln,
+wie Speicherplatz tatsächlich benutzt wird.
+
+Belegen Sie den Speicher von links nach rechts mit den Feldern der jeweiligen Struktur:
+das erste Feld kommt zuerst, dann das zweite und so weiter.
+
+Die Antwort soll folgendermaßen aussehen: `a[0-3]b[4]c[5-12]`, wo die Zahlen in
+eckigen Klammern den Start- und den Endindex beinhalten (beide inklusive).
+
+[EQ]
+```go
+type A struct {
+    a bool
+    b int32
+    c bool
+    d int32
+}
+```
+[EQ]
+```go
+type B struct {
+    a bool
+    b bool
+    c int32
+    d int32
+}
+```
+[EQ]
+```go
+type C struct {
+    a bool
+    b int32
+    c int32
+    d bool
+}
+```
+[EQ]
+```go
+type D struct {
+    a int32
+    b int32
+    c bool
+    d bool
+}
+```
+
+[EQ] Was ist die minimal erforderliche Größe, um diese vier Felder (zwei `bool` und zwei `int32`)
+speichern zu können?
+
+Überprüfen Sie nun Ihre Größeneinschätzung mithilfe von der Funktion `unsafe.Sizeof()`.
+Stimmt das Ergebnis mit Ihrer Einschätzung überein?
+
+[FOLDOUT::Die Strukturen selbst besitzen auch ein Alignment!]
+Wahrscheinlich haben Sie angenommen, dass die kleinstmögliche Struktur 10 Bytes groß ist.
+
+Die Funktion `unsafe.Sizeof()` gibt jedoch für die Struktur `D` eine Größe von 12 Bytes an.
+
+Warum?
+
+Wie bereits erwähnt: Strukturen besitzen ebenfalls ein Alignment.
+In der Regel entspricht dieses dem größten Alignment ihrer Felder — in diesem Fall 4.
+
+Stellen Sie sich nun ein Array `[2]D` vor, in dem zwei Strukturen `D` direkt nebeneinander
+im Speicher liegen.
+Da `D` ein Alignment von 4 hat, darf jede Instanz nur an Adressen beginnen, die ein Vielfaches
+von 4 sind: also 0, 4, 8, 12, 16, 20, ...
+
+Wenn die erste Struktur die Speicherzellen 0 bis 9 belegt, darf die zweite erst
+bei Adresse 12 beginnen.
+Die Speicherzellen 10 und 11 bleiben dabei ungenutzt, gehören aber logisch zur ersten
+Struktur — und werden deshalb von `unsafe.Sizeof()` mitgezählt.
+
+Diese beiden zusätzlichen Bytes nennt man _Padding_.
+[ENDFOLDOUT]
+
+<!-- time estimate: 30 min -->
+[ENDSECTION]
+
 [SECTION::submission::information,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
@@ -187,5 +311,7 @@ func main() {
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-structs2.go]
+Musterlösung der Programmieraufgabe als ausführbare Datei siehe hier: 
+[TREEREF::/Sprachen/Go/go-structs2.go]
+.
 [ENDINSTRUCTOR]
