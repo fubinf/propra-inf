@@ -61,32 +61,71 @@ Die wichtigsten Befehle:
 - `makemigrations` - Erstellt Datenbankmigrationen
 - `migrate` - Führt Datenbankmigrationen aus
 
-[ER] Führen Sie `django-admin` ohne Parameter aus und notieren Sie sich drei weitere Befehle mit deren Zweck.
+[ER] Führen Sie `django-admin` ohne Parameter aus.
+
 <!-- time estimate: 10 min -->
 
 ### Erstes Django-Projekt erstellen
 
-Erstellen Sie ein neues Django-Projekt mit dem Namen "HelloWorld":
+Sie können Ihr erstes Django-Projekt mit `startproject` erstellen:
 
+**Erstes Django-Projekt erstellen**:
 ```bash
-django-admin startproject HelloWorld
+django-admin startproject meinprojekt
+cd meinprojekt
+python manage.py runserver
 ```
 
-[ER] Erstellen Sie das Projekt und wechseln Sie in das Projektverzeichnis.
+**Häufige Probleme beim Starten des Servers**:
 
-[ER] Untersuchen Sie die erstellte Verzeichnisstruktur mit `tree` oder `ls -la` und dokumentieren Sie diese.
+**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
+```bash
+python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
+```
 
-Die Struktur sollte so aussehen:
+**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
+```bash
+python manage.py runserver 8080  # Server auf einem alternativen Port starten
 ```
-HelloWorld/                  # Projekt-Wurzelverzeichnis
-├── manage.py               # Django-Verwaltungsskript
-└── HelloWorld/             # Projektkonfiguration
-    ├── __init__.py         # Python-Paket-Markierung
-    ├── settings.py         # Projekteinstellungen
-    ├── urls.py            # URL-Konfiguration
-    ├── asgi.py            # ASGI-Konfiguration (asynchron)
-    └── wsgi.py            # WSGI-Konfiguration (synchron)
+
+Nach dem Start sollte unter `http://127.0.0.1:8000/` 
+oder `http://127.0.0.1:8080/` die Django-Willkommensseite erscheinen.
+
+[EC] Erstellen Sie ein Django-Projekt namens `testprojekt` und starten Sie den 
+Entwicklungsserver. 
+
+### Django-Projektstruktur verstehen
+
+Ein neues Django-Projekt hat folgende Struktur:
 ```
+meinprojekt/
+├── manage.py                   # Django-Kommandozeilen-Tool
+└── testprojekt/                # Projekt-Konfigurationsordner
+    ├── __init__.py             # Python-Paket-Marker (leer)
+    ├── settings.py             # Zentrale Projektkonfiguration
+    ├── urls.py                 # Haupt-URL-Routing
+    ├── wsgi.py                 # WSGI-Deployment-Konfiguration
+    └── asgi.py                 # ASGI-Konfiguration für async/WebSockets
+```
+
+**Wichtige Dateien**:
+
+- `manage.py`: Kommandozeilen-Tool für Projektverwaltung
+- `settings.py`: Konfigurationsdatei des Projekts
+- `urls.py`: URL-Routing-Konfiguration
+- `wsgi.py`/`asgi.py`: Deployment-Konfiguration für Webserver
+
+(Optional) Mehr zur 
+[Project Structure](https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project)
+
+[EC] Erkunden Sie die Projektstruktur und listen Sie alle erstellten Dateien und 
+Ordner. Benutzen Sie dazu den `tree`-Befehl oder ähnliche Tools:
+```bash
+sudo apt update
+sudo apt install tree
+tree meinprojekt
+```
+
 <!-- time estimate: 15 min -->
 
 ### Wichtige Konfigurationsdateien verstehen
