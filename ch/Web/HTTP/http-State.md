@@ -67,6 +67,7 @@ da dies verschiedene Vorteile gegenüber zustandsbehafteten Protokollen bietet:
 [EQ] Recherchieren Sie und erklären Sie für folgende Anwendungsfälle,
 wie die Zustandslosigkeit von HTTP entscheidend für die Skalierbarkeit ist:
 Content Delivery Networks (CDNs); Lastverteilung (load balancing) bei eCommerce-Anbietern.
+<!-- EQ1 -->
 
 <!-- time estimate: 15 min -->
 
@@ -131,7 +132,10 @@ Optional: Wer es genauer wissen möchte, findet detaillierte Informationen zu Co
 
 ### Sessions und Sitzungsverwaltung
 
-Sessions sind temporäre Speicherbereiche, die auf dem Server für jeden Benutzer erstellt werden. 
+Sessions sind temporäre Speicherbereiche, die auf dem Server für jeden Benutzer erstellt werden.  
+Genau genommen speichert der Server nicht „die Session selbst“, sondern nur die zugehörigen Daten, 
+die durch die Session-ID referenziert werden. Alternativ könnte man auch Mechanismen wie 
+`localStorage` nutzen, um clientseitig Daten zu halten.  
 Sessions enthalten Informationen über die Benutzeraktivität und den aktuellen Zustand.
 
 Cookies und Sessions arbeiten zusammen:
@@ -147,6 +151,12 @@ entsprechend personalisierte Antworten senden.
 
 [EQ] Erklären Sie den Unterschied zwischen Cookies und Sessions. 
 Warum werden beide Mechanismen oft zusammen verwendet?
+<!-- EQ2 -->
+
+[NOTICE]
+Der Server speichert nicht „die Session selbst“, sondern nur die dazugehörigen Daten, 
+die durch die Session-ID referenziert werden. 
+[ENDNOTICE]
 
 <!-- time estimate: 10 min -->
 
@@ -160,6 +170,19 @@ Cookies werden im Wesentlichen für drei Zwecke eingesetzt:
 - **Tracking**: Dem Benutzer ein Pseudonym (eine Zufallszahl) zuweisen, um dem man ihn oder sie später
   wiedererkennen kann, um im Laufe der Zeit ein Benutzungsprofil zu bilden, das z.B. zum
   Zuschneiden von Werbung nützlich ist.
+
+**Wichtige Cookie-Attribute (für Sicherheit und Praxis)**
+
+Cookies besitzen Attribute, die ihr Verhalten und ihre Lebensdauer steuern:
+
+- **Expires**: Ablaufdatum eines Cookies (z. B. `Expires=Thu, 31 Oct 2025 07:28:00 GMT`).  
+- **Max-Age**: Lebensdauer in Sekunden, Alternative zu `Expires` (z. B. `Max-Age=2592000` für 30 Tage).  
+- **HttpOnly**: Verhindert den Zugriff auf Cookies durch JavaScript (Schutz vor XSS-Angriffen).  
+- **Secure**: Cookie wird nur über HTTPS übertragen.  
+- **SameSite**: Schutz gegen CSRF-Angriffe. Mögliche Werte:  
+  - `Strict` – Cookie wird nur für Anfragen von derselben Site gesendet.  
+  - `Lax` – Cookie wird für Top-Level-Navigationen gesendet (Standard).  
+  - `None` – Cookie wird auch bei Cross-Site-Requests gesendet (nur mit `Secure` erlaubt).  
 
 Darüber hinaus spielt die Lebensdauer der Cookies eine Rolle:
 
@@ -193,10 +216,18 @@ da diese nicht bei jeder Anfrage übertragen werden müssen und größere Datenm
 Erklären Sie, welche dieser Funktionen am besten durch Cookies, 
 Sessions-mittels-Cookies oder alternative Speichermechanismen umgesetzt werden sollten 
 und begründen Sie Ihre Entscheidung.
+<!-- EQ3 -->
 
 [EQ] Eine Website möchte sowohl Login-Informationen für 30 Tage speichern 
 als auch temporäre Daten zur Sortier-Ordnung einer Tabelle `table1` nur für die aktuelle Browsersitzung. 
-Wie würden die entsprechenden `Set-Cookie` Header aussehen?
+Wie würden die entsprechenden `Set-Cookie` Header aussehen? 
+
+[NOTICE]
+Achten Sie auf die Lebensdauer (z. B. `Max-Age`) und sicherheitsrelevante Cookie-Attribute 
+(`HttpOnly`, `Secure`, `SameSite`).
+[ENDNOTICE]
+
+<!-- EQ4 -->
 
 <!-- time estimate: 20 min -->
 
@@ -212,7 +243,8 @@ Die Studierenden sollen ein grundlegendes Verständnis für HTTP-Zustandslosigke
 und verstehen, wie Cookies und Sessions diese Limitation überwinden. 
 Wichtige Konzepte sind die Vor-/Nachteile der Zustandslosigkeit, 
 der Unterschied zwischen Cookies und Sessions.
-
+Die Studierenden sollen auch ein Grundverständnis für 
+sicherheitsrelevante Cookie-Attribute (HttpOnly, Secure, SameSite) entwickeln.
 [INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
