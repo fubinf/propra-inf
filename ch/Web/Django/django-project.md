@@ -27,22 +27,22 @@ In dieser Aufgabe erstellen wir unser erstes Django-Projekt namens "HelloWorld" 
 
 ### Voraussetzungen und Installation
 
-Für diese Aufgabe verwenden wir Python 3.9+ und Django 4.2+.
-Prüfen Sie zunächst Ihre installierten Versionen:
+Bitte lesen Sie zunächst [PARTREF::django-basics] und folgen Sie den dort beschriebenen 
+Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren. 
+Damit verfügen Sie über eine saubere Arbeitsumgebung für die folgenden Aufgaben.  
+
+Während dieses Prozesses können unter anderem folgende Befehle hilfreich sein:
 
 ```bash
-python3 -V
-python3 -m django --version
+python3 -m venv django_env        # Virtuelle Umgebung erstellen
+source django_env/bin/activate    # Virtuelle Umgebung aktivieren (Linux/Mac)
+django_env\Scripts\activate       # Virtuelle Umgebung aktivieren (Windows)
+pip install django                # Django in der virtuellen Umgebung installieren
+python -m django --version        # Installierte Django-Version prüfen
 ```
+[EC] Dokumentieren Sie, dass Sie Django erfolgreich in einer virtuellen Umgebung
+installiert haben, indem Sie die Ausgabe von python -m django --version angeben.
 
-Falls Django noch nicht installiert ist:
-```bash
-pip install django
-```
-
-Siehe auch: [Django Installation Guide](https://docs.djangoproject.com/en/4.2/intro/install/)
-
-[ER] Führen Sie die Versionsprüfung durch und dokumentieren Sie Ihre Python- und Django-Versionen.
 <!-- time estimate: 5 min -->
 
 ### Django-Verwaltungswerkzeug
@@ -350,22 +350,14 @@ Reichen Sie folgende Dateien ein:
 
 [ENDSECTION]
 
-[INSTRUCTOR::Erwartete Ergebnisse]
+[INSTRUCTOR::Kontrollergebnisse]
 
-Die Studierenden sollten:
-- Ein funktionierendes Django-Projekt "HelloWorld" erstellt haben
-- Mindestens 5 verschiedene View-Funktionen implementiert haben
-- URL-Routing mit und ohne Parameter verstehen
-- HTML-Responses erstellen können
-- Die Projektstruktur vollständig dokumentiert haben
-- Screenshots aller funktionierenden Seiten eingereicht haben
+### Fragen
+[INCLUDE::ALT:django-project.md]
 
-Häufige Fehler:
-- Import-Statement `from . import views` vergessen
-- Trailing Slashes in URL-Patterns vergessen/hinzugefügt
-- Falsche Einrückung in Python-Code
-- Parameter-Namen in URL und View stimmen nicht überein
-- Server läuft nicht oder falsche URL aufgerufen
+### Kommandoprotokoll
+[PROT::ALT:django-project.prot]
+
 
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
