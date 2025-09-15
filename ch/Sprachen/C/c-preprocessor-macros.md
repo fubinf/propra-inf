@@ -13,7 +13,7 @@ Zusammen mit [PARTREF::c-preprocessor-include] und [PARTREF::c-preprocessor-cond
 sich mit dem C-Präprozessors vertraut machen.
 
 Makros sind das wohl mächtigste Feature des C-Präprozessors.
-Es können Konstanten definiert werden, oft genutzte Prüfung, z.B. `isEven`, gänzlich ohne
+Es können Konstanten definiert werden, oft genutzte Prüfungen (z.B. `isEven`) gänzlich ohne
 den Overhead eines Funktionsaufrufs realisiert werden oder sogar einfache Polymorphismen abgebildet
 werden
 (z.B. [Win32 API A vs. W](https://medium.com/@boutnaru/windows-win32-api-working-with-strings-d2a2dabb85c8)).
@@ -24,18 +24,18 @@ entnehmen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-Es gibt zwei Arten an Makros, Objekt-Makros und Funktions-Markos.  
-Objekt-Makros sind solche, die einen Makro-Symbol durch einen Wert ersetzen, z.B. Konstanten die
-Sie verwenden wollen.  
-Funktions-Makros hingegen sind Makros, denen Parameter übergeben werden können.
+Es gibt zwei Arten von Makros, Objekt-Makros und Funktions-Markos.
+Objekt-Makros ersetzen ein Makro-Symbol durch einen festen Wert, meist eine Konstante;
+es könnte aber auch ein fester Funktionsaufruf oder etwas noch größeres sein.  
+Funktions-Makros sind Makros, denen Parameter übergeben werden können.
 
 Genau wie bei der `#include`-Direktive handelt es sich bei Makros um stumpfe Textersetzungen.
-Ihre Makros müssen demnach zwingend gültiger C-Code sein, sonst schlägt das Bauen fehl.
+Danach muss sich zwingend gültiger C-Code ergeben, sonst schlägt das Bauen fehl.
 
 Ein Makro wird definiert mittels der `#define`-Direktive.
 Falls notwendig, z.B. wenn Sie ein Makro nur für einen Teilabschnitt Ihres
-Codes definiere wollen, können Makros mittels der `#undef`-Direktive zurück
-genommen werden.
+Codes definieren wollen, können Makros mittels der `#undef`-Direktive zurück
+genommen werden, das ist aber eher wenig gebräuchlich.
 
 Aus Konvention werden Makro-Bezeichner in Großbuchstaben geschrieben.
 
@@ -49,8 +49,8 @@ Die Allgemeine Form sowie Bespiele:
 
 // Funktions-Makro
 // Da Makros als Textersetzung behandelt werden ist es ratsam den Makroterm
-// in Klammern zu schreiben, damit verhindern Sie das die Operatorreihenfolge
-// des Ausdrucks in welchem das Makro verwendet wird beeinflusst wird.
+// in Klammern zu schreiben, damit verhindern Sie, dass die Operatorreihenfolge
+// des Ausdrucks, in dem der Makro-Aufruf steht, verfälscht wird.
 // Form: Name sowie Parameter müssen gültige C-Bezeichner sein,
 // Ersetzungsterm ein gültiger C-Ausdruck. Wenn Ihr Makro mehr als eine Zeile
 // benötigt, so können Sie mittels \ am Zeilenende gefolgt von einem
@@ -102,7 +102,7 @@ Vollständig ausgeschrieben sieht ein Ternary wie folgt aus:
 `BEDINGUNG ? WERT_WENN_WAHR : WERT_WENN_FALSCH`.
 [ENDNOTICE]
 
-[EC] Bauen udn führen Sie das Programm aus.
+[EC] Bauen und führen Sie das Programm aus.
 [ENDSECTION]
 
 [SECTION::submission::trace,program]
