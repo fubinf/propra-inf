@@ -19,7 +19,6 @@ Motivation der Aufgabe
 
 [SECTION::instructions::detailed/loose/tricky]
 
-
 ### Aufgaben
 
 [EC] Kommando
@@ -33,11 +32,10 @@ Motivation der Aufgabe
 
 [HREF::url] Link
 
-[Text](url) mit eigenem Text
+[Text](url) 
+Link mit eigenem Text (auf separate Zeile platzieren)
 
 [PARTREF::Partname] Link zu Aufgabe, Aufgabengruppe, Kapitel oder Zip-Datei
-
-[PARTREFMANUAL::Partname::Link Text] mit eigenem Text
 
 [TERMREF::Term] Link zu Glossareintrag
 
@@ -47,15 +45,16 @@ Motivation der Aufgabe
 ### Blockmakros
 
 [NOTICE]
-Anmerkung
+Anmerkung, sparsam benutzen
 [ENDNOTICE]
 
 [WARNING]
-Warnung
+Warnung, sparsam benutzen
 [ENDWARNING]
 
 [HINT::VisibleTitle]
-Aufgabenhinweis/Hilfestellung
+aufklappbare Hilfestellung; zur Verbreiterung der Aufgabentauglichkeit benutzen:
+Bei "mittel" Schwieriges hiermit erleichtern, bei "einfach" sehr Einfaches hierin verstecken.
 [ENDHINT]
 
 [FOLDOUT::VisibleTitle]
@@ -69,6 +68,7 @@ eingeklappter Text, z.B. für längeren Sourcecode
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::]
 Hinweise an die Tutoren zur Aufgabenkorrektur
