@@ -141,7 +141,8 @@ Algorithmus:
    Die Häufigkeiten der Buchstaben werden in einer Map `map[rune]int` gespeichert:
     - `for i, r := range someString` iteriert über alle Zeichen eines Strings.
     - `i` ist der Index, `r` ist der Buchstabe in Form eines `rune`-Werts (ein Alias für `int32`).
-    - Beim Iterieren über Strings in Go erhält man standardmäßig `rune`-Werte (Unicode-Codepoints).
+    - Beim Iterieren über Strings in Go erhält man standardmäßig `rune`-Werte 
+      ([TERMREF::Unicode]-Codepoints).
 
 2. **Verarbeiten des zweiten Wortes:** 
    Auch das zweite Wort wird Buchstabe für Buchstabe durchlaufen:

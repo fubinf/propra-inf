@@ -99,8 +99,7 @@ Erläuterung:
 ### Erläuterung
 
 - **UTF-8** ist inzwischen in weiten Teilen der Welt das vorherrschende Encoding,
-  denn es kann [Unicode](https://en.wikipedia.org/wiki/Unicode)
-  komplett darstellen.
+  denn es kann [TERMREF::Unicode] komplett darstellen.
   In Ostasien und auf Windows findet man auch UTF-16. 
 - Die diversen **ISO-8859**-Encodings waren in den 1990er Jahren vorherrschend
   und sind seither allmählich auf dem Rückzug, begegnen einem aber noch häufig,
