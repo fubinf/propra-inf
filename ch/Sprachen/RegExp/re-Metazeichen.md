@@ -1,5 +1,5 @@
 title: "Reguläre Ausdrücke und Metazeichen"
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 2
 explains: Regulärer Ausdruck
@@ -55,6 +55,7 @@ Wenn dieser keine Sonderzeichen enthält, können Sie als regulären Ausdruck di
 [EQ] Suchen Sie mittels Regex nach dem Wort "Hallo" im Text.
 Wie viele Treffer finden Sie?
 
+
 ### Beliebiges Zeichen: `.`
 
 Warum stand oben "Wenn dieser keine Sonderzeichen enthält"?
@@ -85,17 +86,18 @@ Geben Sie reguläre Ausdrücke immer in Backticks (\`) an.
 
 [EQ] Was beschreibt folgender Regex: `e...m`
 
+
 ### Escape-Zeichen: `\`
 
 Ein Problem tut sich bei Metazeichen direkt auf: Man kann nicht mehrere Bedeutungen für ein
 Zeichen haben. 
-`.` ist nun reserviert, um ein beliebiges Zeichen zu finden, 
-doch wie sucht man nach nur genau einem Punkt?
+`.` ist nun reserviert, um ein beliebiges Zeichen zu finden;
+doch wie sucht man nach _nur_ genau einem Punkt?
 
 Die Lösung ist das `\`-Metazeichen.
-Mit ihm lassen sich Metazeichen als gewöhnliche Zeichen behandeln 
-(und Gewöhnliche können mit ihm eine zweite Bedeutung haben, z.B. steht `\n` für ein
-Zeilenwechsel-Zeichen, "line terminator").
+Mit ihm als Präfix lassen sich Metazeichen wieder in gewöhnliche Zeichen zurückverwandeln 
+(und gewöhnliche können mit ihm eine zweite Bedeutung haben, z.B. steht `\n` für ein
+Zeilenwechsel-Zeichen, "line terminator").  
 Um also nach genau einem Punkt zu suchen, können wir `\.` verwenden.
 Diese Regel gilt für alle Metazeichen.
 
@@ -109,7 +111,8 @@ sie als "regular character" oder "literal character" bzw. auf Deutsch "Zeichenli
 [ENDNOTICE]
 
 [EQ] Neben dem Zeilenwechsel `\n` gibt es weitere Steuerzeichen (nicht druckbare Zeichen).
-Nennen Sie sechs weitere Steuerzeichen, die in regulären Ausdrücken mit einem Backslash `\` gefolgt von einem Buchstaben dargestellt werden können. 
+Nennen Sie sechs weitere Steuerzeichen, die in regulären Ausdrücken mit 
+einem Backslash `\` gefolgt von einem Buchstaben dargestellt werden können. 
 Nutzen Sie dafür diese Website:
 [HREF::https://www.regular-expressions.info/nonprint.html]
 
@@ -121,21 +124,36 @@ Gebene Sie reguläre Ausdrücke immer in \` umschlossen ab.
 [EQ] `\` ist also auch ein Metazeichen, welches seine gewöhnliche Bedeutung verliert. 
 Wie lautet der Regex, um trotzdem nach genau einem `\` suchen?
 
+
 ### Vordefinierte Zeichenklassen: `\d`, `\w`, `\s`, etc.
 
 Nicht nur kann man mit `\` Metazeichen als gewöhnliche Zeichen verwenden, in einigen Fällen kann man
-damit auch gewöhnlichen Zeichen eine neue Funktion geben wie Sie an z.B. `\n` gesehen haben.
+damit auch gewöhnlichen Zeichen eine neue Funktion geben (wie z.B. bei `\n`).
 Doch nicht nur für Steuerzeichen ist `\` nützlich.
-Es gibt sogenannte Zeichenklassen, die bestimmte Arten von Zeichen matchen wie z.B. `\d` 
-die alle Ziffern trifft.
+Es gibt sogenannte _Zeichenklassen_, die auf alle Exemplare einer ganzen Kategorie von Zeichen 
+matchen wie z.B. `\d` (Mnemonik: "digits"), was alle Ziffern trifft: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
 
 [EQ] Matchen Sie Zeichenketten, die zwei Ziffern nebeneinander haben.
 
 Andere Zeichenklassen sind:
 
 - `\w`: Alphanumerische Zeichen also Text oder Ziffern
-
+  (und oft [noch ein paar](https://www.regular-expressions.info/shorthand.html))
 - `\s`: Leerraum (Leerzeichen, Tab, Zeilenumbruch)
+
+[WARNING]
+Die obige Bemerkung "noch ein paar" zeigt nur die Spitze eines Eisbergs.
+
+Meist hat man es nur mit recht eingeschränktem Text zu tun, der z.B. nur lateinische Schrift enthält.
+Ist das nicht der Fall, sondern kommen größere Teile von 
+[TERMREF::Unicode] zum Einsatz, kann man mit regulären Ausdrücken sein blaues Wunder erleben,
+weil die Zeichenklassen viele Zeichen umfassen, von denen man noch nie gehört hat.
+Oft kommt dann gerade deshalb bei einem naiv hingeschriebenen regulären Ausdruck
+das gewünschte Verhalten heraus.
+
+Falls jedoch nicht, wird es kompliziert und unübersichtlich.
+Wir sparen diese Problematik hier aus; sie sprengt den Rahmen des ProPra.
+[ENDWARNING]
 
 [EQ] Matchen Sie Zeichenketten, die 2 alphanumerische Zeichen enthalten, gefolgt von einem Leerraum.
 
@@ -145,11 +163,8 @@ Sie matchen dann alle Zeichen, die _nicht_ zu dieser Zeichenklasse gehören.
 [EQ] Matchen Sie zwei Ziffern gefolgt von einem Zeichen das keine Ziffer ist.
 
 [EQ] Matchen Sie alle Uhrzeiten ("01:23", "17:49").
-
-[NOTICE]
 Ungültige Uhrzeiten wie "25:69" dürfen Sie dabei mit erwischen.
 Wie man das vermeidet, lernen wir später noch.
-[ENDNOTICE]
 
 [EQ] Der Text enthält zwei Telefonnummern.
 Überlegen Sie sich wie Sie beide Telefonnummern mit einem Regulären Ausdruck vollständig matchen
@@ -161,9 +176,9 @@ können, ohne andere Textteile zu matchen.
 
 Zwei weitere Metazeichen sind `^` (Anfang der Zeile/Text) und `$` (Ende der Zeile/Text).
 
-[EQ] Matchen Sie jedes "A", aber nur wenn es am Zeilenanfang steht.
+[EQ] Matchen Sie jedes "A", das am Zeilenanfang steht.
 
-[EQ] Matchen Sie jedes "!", aber nur wenn es am Zeilenende steht.
+[EQ] Matchen Sie jedes "!", das am Zeilenende steht.
 [ENDSECTION]
 
 
