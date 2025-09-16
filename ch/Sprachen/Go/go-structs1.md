@@ -1,23 +1,20 @@
-title: Weitere Grundlagen von Go — Strukturen (Teil 1)
-stage: alpha
+title: "Grundlagen von Go: Strukturen (Teil 1)"
+stage: beta
 timevalue: 1
 difficulty: 2
 assumes: go-basics, go-functions
 ---
 
 [SECTION::goal::idea,experience]
-Ich kann komplexere Datentypen in Go definieren.
+Ich kann zusammengesetzte Datentypen in Go definieren.
 [ENDSECTION]
 
-[SECTION::background::default]
-Je größer Ihre Projekte werden, desto mehr Struktur und Organisation braucht
-Ihr Quellcode.
-Go ist keine objektorientierte Programmiersprache: Im Gegensatz zu Java oder Python
-gibt es keine Klassen, Objekte oder Vererbung.
-Stattdessen wird in Go mit __Strukturen__ (structs) gearbeitet —
-mit zusammengesetzten Datentypen.
 
-In dieser Aufgabe handelt es sich um Strukturen, Methoden und Struktureinbettung.
+[SECTION::background::default]
+Go ist keine objektorientierte Programmiersprache: Es gibt keine Vererbung.
+Sehr wohl gibt es aber so etwas wie Klassen und Methoden, allerdings sind die Bezeichnungen
+und die Notation anders:
+In Go wird mit __Strukturen__ (structs) gearbeitet, also mit zusammengesetzten Datentypen.
 [ENDSECTION]
 
 
@@ -55,18 +52,19 @@ p.FirstName = "Eric"
 ```
 
 [NOTICE]
-Alle Felder dieser Struktur sind großgeschrieben und deswegen öffentlich
-(public/exported).
+Alle Felder dieser Struktur haben Namen, die mit Großbuchstaben beginnen.
+Solche Felder sind öffentlich (public/exported).
+
+Felder mit Kleinbuchstaben sind hingegen privat, also nur in den Methoden zugreifbar.
 [ENDNOTICE]
 
 
 ### Methoden
 
-Auch ohne Klassen gibt es **Methoden** in Go.
-
-Methoden sind Funktionen, die einem Typ zugeordnet sind und einen bestimmten
-ersten Parameter besitzen: den Empfänger (receiver).
-Sie ermöglichen es, Verhalten zu Strukturen hinzuzufügen.
+Methoden sind Funktionen, die einem Typ zugeordnet sind;
+meist (aber nicht immer) einem `struct`-Typ.
+Ihre Deklaration erfolgt nicht im `struct`, sondern außerhalb.
+Die Syntax ist eine erweiterte Form der Syntax für Funktionen:
 
 ```go
 func (p Person) Print() {
@@ -74,8 +72,11 @@ func (p Person) Print() {
 }
 ```
 
-Hier ist `(p Person)` der Empfänger: `p` ist der Name, über welchen die Methode
-auf die Struktur selbst zugreifen kann.
+Hier ist `(p Person)` der sogenannte Empfänger (receiver) und
+`p` ist der Name, über welchen die Methode auf die Struktur zugreifen kann.
+In Python lautet dieser Name konventionellerweise stets `self`, 
+in Go wird meist der Anfangsbuchstabe des Typnamens benutzt
+(oder ein anderer, sehr kurzer Name, der sich an den Typnamen anlehnt).
 
 [ER] Definieren Sie eine Struktur `Circle`, die ein Feld `radius float64` besitzt.
 
@@ -83,7 +84,7 @@ auf die Struktur selbst zugreifen kann.
 
 - `Circumference() float64` — Kreisumfang berechnen;
 - `Area() float64` — Fläche berechnen;
-- benutzen Sie `math.Pi` für Kreiszahl Pi.
+- benutzen Sie `math.Pi` für die Kreiszahl Pi.
 
 [ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
@@ -96,9 +97,9 @@ auf die Struktur selbst zugreifen kann.
 
 ### Struktureinbettung (struct embedding)
 
-Lesen Sie diesen
+Holen Sie sich aus diesem
 [Artikel über Struktureinbettung](https://eli.thegreenplace.net/2020/embedding-in-go-part-1-structs-in-structs/)
-.
+das Wissen, um die nachfolgenden Implementierungsschritte zu lösen.
 
 [ER] Definieren Sie eine Struktur `Employee`.
 Diese soll alle Felder und Methoden einer `Person` übernehmen und ein neues
@@ -118,20 +119,18 @@ Da `Person` in `Employee` eingebettet wurde, können Sie auf alle Felder und
 Methoden von `Person` explizit über `e.Person.` zugreifen.
 [ENDNOTICE]
 
-[EQ] Stellen Sie sich vor, dass es eine neue Methode `Print` auf `Employee`
+[EQ] Stellen Sie sich vor, dass eine neue Methode `Print` auf `Employee`
 definiert wurde.
-Wie ändert sich die Ausgabe von der Testfunktion?
+Wie ändert sich die Ausgabe der Testfunktion?
 
-[HINT::Verdeckung (Shadowing)]
+[HINT::Ich bin verwirrt]
 Lesen Sie den Abschnitt "Shadowing of embedded fields" in dem
-[Artikel über Struktureinbettung](https://eli.thegreenplace.net/2020/embedding-in-go-part-1-structs-in-structs/)
-.
-
-In dem Fall verhalten sich Methoden sehr ähnlich wie Felder.
+[Artikel über Struktureinbettung](https://eli.thegreenplace.net/2020/embedding-in-go-part-1-structs-in-structs/).  
+Das gilt für Methoden ganz ähnlich wie für Felder.
 [ENDHINT]
 
 
-[ER] Stellen Sie sicher, dass Ihre `main`-Funktion genauso aussieht:
+[ER] Stellen Sie sicher, dass Ihre `main`-Funktion genau so aussieht:
 
 ```go
 func main() {
