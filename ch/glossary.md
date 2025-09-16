@@ -1714,6 +1714,31 @@ und anzeigen mittels `echo`
 (Beispiel: `echo $HOME`).
 [ENDTERM]
 
+[TERM::Unicode|UTF-8|UTF-16|UCS-2]
+[Unicode](https://de.wikipedia.org/wiki/Unicode) ist der umfassendste Zeichensatz,
+der auf Computern zur Verfügung steht, 
+mit über 100.000 definierten Zeichen (und Platz für über eine Million Zeichen),
+die über 100 verschiedene Schriften (Alphabete etc.) abdecken (inklusive Lateinisch, Chinesisch, Kyrillisch,
+diverse Lautschriften u.v.a.m.), 
+aber auch viele andere Zeichenvorräte wie Emoji oder Dominosteine.
+Unicode wird kontinuierlich ergänzt.
+
+Moderne Programmiersprachen und Bibliotheken verarbeiten Unicode ohne Probleme,
+aber die Eingabe- und Ausgabefähigkeiten (Tastaturtreiber, Fonts) halten nicht unbedingt voll mit.
+
+Vorsicht geboten ist auch bei regulären Ausdrücken, denn es gibt (beispielsweise) in Unicode
+weitaus mehr verschiedene Zeichen für einen Wortzwischenraum als nur das gewohnte Leerzeichen.
+Derartige Ausweitungen sind mit Unicode an vielen Stellen relevant und sich hierüber gut
+auszukennen, ist nicht einfach.
+
+Unicode ist nicht zu verwechseln mit den _Enkodierungen_, die zur Darstellung von
+Unicode-Zeichen im Rechner (auf Basis von Bytes) verwendet werden, wie
+[UTF-8](https://de.wikipedia.org/wiki/UTF-8), 
+[UTF-16](https://de.wikipedia.org/wiki/UTF-16), 
+oder dessen subtil weniger leistungsfähigen Vetter
+[UCS-2](https://de.wikipedia.org/wiki/Universal_Coded_Character_Set).
+[ENDTERM]
+
 [TERM::Unix|POSIX]
 Eine große und lose Familie von Betriebssystemen, die auf unterschiedlichen Betriebssystemkernen aufbauen,
 aber viele Grundkonzepte gemeinsam haben.
