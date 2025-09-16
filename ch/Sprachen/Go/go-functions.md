@@ -1,35 +1,36 @@
 title: "Go-Grundlagen: Funktionen"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: go-basics
 ---
 
 [SECTION::goal::idea,experience]
-Ich habe mich mit den weiteren Konzepten von Go auseinandergesetzt und kann nun 
-Funktionen definieren.
+Ich habe mich mit weiteren Konzepten von Go auseinandergesetzt und kann nun 
+Funktionen und Prozeduren definieren.
 [ENDSECTION]
 
+
 [SECTION::background::default]
-Ein essenzieller Baustein jeder modernen Programmiersprache sind Funktionen —
+Ein essenzieller Baustein jeder modernen Programmiersprache sind Unterprogramme —
 ausgelagerte Stückchen der Funktionalität, die Wiederverwendbarkeit und Lesbarkeit
 des Codes erhöhen.
 
-In Go sind Funktionen [TERMREF::first-class citizen] und verfügen sogar über einige 
-Go-spezifische Besonderheiten, die Sie in dieser Aufgabe kennenlernen werden.
+In Go heißen Unterprogramme "Funktionen" und sind [TERMREF2::first-class citizen::-s].
+Sie haben einige Go-spezifische Besonderheiten, die Sie in dieser Aufgabe kennenlernen werden.
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 
 ### Allgemein
 
 Eine Funktionsdefinition in Go besteht aus folgenden Teilen:
 
 * `func` Schlüsselwort;
-* Funktionsname (optional!);
+* optional(!) ein Funktionsname;
 * Runde Klammern für die Parameterliste.
-  Die Parameter werden nacheinander als Paare `name type` aufgelistet;
+  Die Parameter werden darin nacheinander als Paare `name type` aufgelistet;
 * Signatur der Rückgabe:
     * leer, wenn die Funktion nichts zurückgibt (Prozedur);
     * `T`, wenn die Funktion einen Wert von Typ `T` zurückgibt;
@@ -54,7 +55,7 @@ func convertIntToString(i int) string {
     return fmt.Sprintf("%v", i)
 }
 
-// zwei Rückgabewerte - ein int und ein error, müssen geklammert werden
+// zwei Rückgabewerte (hier ein int und ein error) müssen geklammert werden
 func convertStringToInt(s string) (int, error) {
     return strconv.ParseInt(s, 10, 64)
 }
@@ -64,13 +65,13 @@ func constructFullName(firstName string, lastName string) string {
     return fmt.Sprintf("%v %v", firstName, lastName)
 }
 
-// mehrere Parameter mit gleichem Typ (verkürzt)
+// mehrere Parameter mit gleichem Typ (verkürzte Notation)
 func constructFullName(firstName, lastName string) string {
     return fmt.Sprintf("%v %v", firstName, lastName)
 }
 
-// anonyme Funktion ("lambda" Funktion), 
-// die beim Aufruf definiert ist und mit zwei Zahlen aufgerufen wird
+// anonyme Funktion ("lambda"-Funktion), 
+// die direkt in ihrem Aufruf definiert ist und mit zwei Zahlen aufgerufen wird
 func (x int, y int) {
     return x * y
 }(4, 5)
@@ -88,7 +89,7 @@ func namedReturnValues() (answer int, label string) {
 
 ### Benannte Rückgabewerte und variadische Funktionen
 
-Nutzen Sie diese Quellen, um die nachfolgenden Fragen zu beantworten:
+Nutzen Sie folgende Quellen, um die nachfolgenden Fragen zu beantworten:
 
 - [Benannte Rückgabewerte](https://go.dev/tour/basics/7)
 - [Variadische Funktionen](https://gobyexample.com/variadic-functions)
