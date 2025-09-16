@@ -11,7 +11,7 @@ Ich kenne häufige mögliche Fallstricke, über die ich beim Entwickeln mit Java
 [ENDSECTION]
 [SECTION::background::default]
 
-In der Aufgabe [PARTREF::js-Syntax] ging es darum, welche Dinge sich JavaScript mit vielen anderen
+In der Aufgabe vorherigen ging es darum, welche Dinge sich JavaScript mit vielen anderen
 Sprachen teilt. Hier geht es darum, auf Unterschiede einzugehen, denn genau diese können einem auf
 die Füße Fallen, wenn man mit Vorwissen aus anderen Sprachen ankommt.
 
