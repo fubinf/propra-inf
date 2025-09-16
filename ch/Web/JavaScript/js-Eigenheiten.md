@@ -2,7 +2,7 @@ title: Eigenheiten von JavaScript
 stage: draft
 timevalue: 1
 difficulty: 2
-assumes: js-Syntax
+assumes: 
 ---
 [SECTION::goal::idea]
 
