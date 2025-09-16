@@ -24,12 +24,14 @@ Leider ist in Unix für Accounts die mehrdeutige Bezeichnung 'user' üblich.
 [Zum Gebrauch der Wörter Nutzer/Benutzer/Anwender(in)](https://german.stackexchange.com/a/47502). 
 [ENDTERM]
 
+
 [TERM::ACL|ACLs]
 Access Control Lists (ACLs) in Linux bieten eine erweiterte Möglichkeit, Berechtigungen für 
 Dateien und Verzeichnisse zu verwalten. Im Gegensatz zum traditionellen Unix-Berechtigungssystem, 
 das Berechtigungen für Besitzer, Gruppe und andere Benutzer definiert, ermöglichen ACLs die 
 Zuweisung granularer Berechtigungen für einzelne Benutzer oder Gruppen.
 [ENDTERM]
+
 
 [TERM::Akzeptanzkriterien|acceptance criteria]
 Spezifische, überprüfbare Bedingungen, die definieren,
@@ -41,12 +43,14 @@ Akzeptanzkriterien dienen dazu, Missverständnisse zu vermeiden, indem sie
 klare Richtlinien für die Entwicklung und das Testen geben.
 [ENDTERM]
 
+
 [TERM::Alias]
 Ein alternativer Name (meist im Sinne einer Abkürzung) für ein Kommando
 (meist mit Optionen und deshalb länger) in der [TERMREF::Shell].
 Weniger flexibel, aber in einfachen Fällen bequemer hinzuschreiben als eine
 [TERMREF::Shellfunktion].
 [ENDTERM]
+
 
 [TERM::API|Web-API|REST-API]
 Application Programming Interface: 
@@ -69,6 +73,7 @@ obwohl die fragliche API die REST-Bedingungen gar nicht einhält.
 [HREF::https://de.wikipedia.org/wiki/Representational_State_Transfer] (REST API)
 [ENDTERM]
 
+
 [TERM::apt|apt-get|Debian-Paketmanager]
 Das Hilfsprogramm bei Debian (und von Debian abgeleiteten Systemen wie Ubuntu oder Mint),
 das die Paketinstallationen auf einem Debian-System durchführt und überwacht.
@@ -82,13 +87,16 @@ z.B. B2 würde auch noch von einem anderen installierten Paket benötigt
 oder sei manuell installiert worden: dann bleibt es da.
 [ENDTERM]
 
+
 [TERM::Arbeitsbereich]
 [ENDTERM]
+
 
 [TERM::Argument]
 Der konkrete Wert, den man an einen [TERMREF::Parameter] übergibt,
 z.B. in Form einer konkreten Variable.
 [ENDTERM]
+
 
 [TERM::Artefakt|Artifact]
 Dabei handelt es sich um eine Datei oder eine Sammlung von Dateien,
@@ -96,6 +104,7 @@ die während eines Workflows erstellt werden und die für spätere Schritte oder
 der Ausführung des Workflows verwendet werden können. Beispiele sind: Build-Ausgaben (Binärdateien
 oder sogar vollständige [TERMREF::Release]-Versionen), Testberichte oder auch Dokumentationen
 [ENDTERM]
+
 
 [TERM::ASCII]
 Der American Standard Code for Information Interchange, kurz ASCII, ist ein 
@@ -107,6 +116,7 @@ In Code kann so z. B. der Buchstabe "A" auch durch seinen ASCII-Wert "65" darges
 Eine ASCII-Tabelle finden Sie unter [HREF::https://www.asciitable.com/].
 [ENDTERM]
 
+
 [TERM::Assemblersprache|Assembly]
 Eine Assemblersprache ist eine menschenlesbare Variante der
 [TERMREF::Maschinensprache].
@@ -117,14 +127,17 @@ Programme in Assemblersprache können daher nicht ohne Veränderungen
 auf eine andere Prozessorarchitektur portiert werden.
 [ENDTERM]
 
+
 [TERM::Assemblierer|Assembler]
 Der Assembliere ist ein Programm, welches in [TERMREF::Assemblersprache]
 verfassten Quellcode in [TERMREF::Maschinensprache] übersetzt.
 Oftmals gehen [TERMREF::Übersetzer] und Assemblierer Hand in Hand.
 [ENDTERM]
 
+
 [TERM::async|await]
 [ENDTERM]
+
 
 [TERM::Auszeichnungssprache]
 Eine Auszeichnungssprache ist eine formale Sprache, die verwendet wird, 
@@ -156,6 +169,7 @@ Kommandos zur Initialisierung der Shell stehen in der Datei `.bashrc` im HOME-Ve
 Richtig genau steht es in der Dokumentation von Bash.
 [ENDTERM]
 
+
 [TERM::BDD|Behavior Driven Development]
 Eine agile Softwareentwicklungsmethode, die sich auf die Zusammenarbeit
 zwischen Entwicklern, Testern und nicht-technischen Stakeholdern konzentriert.
@@ -167,6 +181,7 @@ die dann mithilfe handgeschriebener Adapter als automatisierte Tests ausgeführt
 [HREF::https://www.codecentric.de/wissens-hub/blog/givenwhenthen-and-example-tables-using-the-robot-framework]
 [ENDTERM]
 
+
 [TERM::Bibliothek|Library]
 Eine Sammlung von Programmelementen (z.B. Klassen, Funktionen, Datentypen, Module, Pakete)
 ohne Hauptprogramm; 
@@ -177,6 +192,7 @@ und nur noch wenig Code selbst schreiben zu müssen.
 Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwicklung.
 [ENDTERM]
 
+
 [TERM::Binder|Linker]
 Der Binder ist ein Programm, welches aus mehreren [TERMREF::Objekt-Dateien]
 eine ausführbare Datei erzeugt.
@@ -186,6 +202,7 @@ Ebenso ist der Binder daran beteiligt aus mehreren Quellcode-Dateien ein
 fertiges Programm zu binden, die Quellcode-Dateien werden jeweils einzeln
 übersetzt und abschließend zusammengebunden.
 [ENDTERM]
+
 
 [TERM::Blob (git)]
 
@@ -203,6 +220,7 @@ Wichtig: Git speichert nicht die Veränderungen zwischen zwei Versionen, sondern
 vollständigen Inhalt ([TERMREF::Snapshot (git)]) einer Datei in einem Blob.
 [ENDTERM]
 
+
 [TERM::Branch|Zweig]
 Bei git: Eine eigene Versionsgeschichte.
 Ein Zweig hat einen Namen und einen jüngsten Commit und durch dessen Vorgänger und Vorvorgänger
@@ -213,6 +231,7 @@ Allerdings ergibt das nicht zwingend einen Baum, denn Zweige können
 durch 'merge'-Commits auch wieder zusammengeführt werden.
 Meist gibt man dabei den Namen des einen Zweiges auf. 
 [ENDTERM]
+
 
 [TERM::Breakpoint|Haltepunkt]
 Ein Breakpoint bezeichnet beim Debugging von Computerprogrammen eine besonders markierte Stelle 
@@ -236,11 +255,13 @@ Das ist enorm nützlich, wenn man anschließend mittels
 [TERMREF::Refactoring] die Struktur der Software verbessern möchte.
 [ENDTERM]
 
+
 [TERM::CI/CD]
 Steht für Continuous Integration (CI) und Continuous Deployment (CD) oder Continuous Delivery (CD),
 und es handelt sich um eine Reihe von Praktiken und Prinzipien in der Softwareentwicklung,
 die darauf abzielen, den Entwicklungsprozess zu automatisieren und zu optimieren.
 [ENDTERM]
+
 
 [TERM::CLI|Commandline Interface]
 Textbasierte Bedienschnittstelle ([TERMREF::TUI]), bei der der Software nacheinander Kommandos
@@ -248,11 +269,13 @@ auf einer _Kommandozeile_ eingegeben werden.
 Häufigste Sorte solcher Kommandozeilen-Interpretierer sind [TERMREF2::Shell::-s].
 [ENDTERM]
 
+
 [TERM::Code Convention|Programming Style|Programmierstil]
 Ein Programmierstil und die Vorgaben dazu regeln, „wie“ ein Programm, d. h. sein Quellcode,
 in formaler und struktureller Hinsicht gestaltet sein soll –
 unabhängig davon, „was“ das Programm leisten soll.
 [ENDTERM]
+
 
 [TERM::Compiler|Übersetzer]
 Ein Übersetzer ist ein Programm, welches Quellcode einer Sprache in eine andere
@@ -261,9 +284,11 @@ Zielsprachen können die [TERMREF::Maschinensprache], eine
 [TERMREF::Zwischensprache] oder eine andere [TERMREF::Hochsprache] sein.
 [ENDTERM]
 
+
 [TERM::Conditional Breakpoint|Bedingter Haltepunkt]
 Ein [TERMREF::Breakpoint], der erst ausgelöst wird, wenn eine vorgegebene Bedingung erfüllt ist.
 [ENDTERM]
+
 
 [TERM::Constraint]
 In Bezug auf Datenbanken bezieht sich ein "Constraint" auf eine Regel oder Bedingung, die auf eine
@@ -272,12 +297,14 @@ Constraints dienen dazu, sicherzustellen, dass die Datenbankkonsistenz erhalten 
 bestimmte Regeln erzwingen.
 [ENDTERM]
 
+
 [TERM::context manager|Kontextmanager]
 Ein Objekt, das die Methoden `__enter__()` und `__exit__()` implementiert. Diese ermöglichen es, 
 das Objekt in `with`-Statements zu verwenden.
 
 [HREF::https://docs.python.org/3/glossary.html#term-context-manager]
 [ENDTERM]
+
 
 [TERM::CRUD|Create Read Update Delete]
 Ein Ausdruck, der die grundlegenden Operationen bezeichnet, die auf Daten angewendet werden können:
@@ -286,6 +313,7 @@ für die Interaktion mit Daten in den meisten Anwendungen. [TERMREF::Regressions
 auf dieses Schema zum Testen von Daten und Objekten, um die Zuverlässigkeit einer Anwendung
 sicherzustellen.
 [ENDTERM]
+
 
 [TERM::CSS|Cascading Style Sheets]
 Eine deklarative Sprache, in der man ausdrücken kann, wie [TERMREF::HTML]-Seiten formatiert 
@@ -297,6 +325,7 @@ und die Formatierung (ausgedrückt in CSS) relativ gut voneinander getrennt
 und man kann die Formatierung sehr schnell global über viele Dokumente hinweg anpassen,
 indem man Styles ändert, die in allen diesen Dokumenten benutzt werden.
 [ENDTERM]
+
 
 [TERM::CSV|comma-separated values|character-separated values]
 Ein einfaches und verbreitetes Dateiformat für tabellarische Daten 
@@ -331,15 +360,18 @@ und die letzten drei geben sie für alle anderen Benutzer an (other, o).
 Genaueres siehe z.B. [HREF::https://wiki.ubuntuusers.de/Rechte/].
 [ENDTERM]
 
+
 [TERM::Datensatz|Datensätze]
 Ein Datensatz ist eine Gruppe von inhaltlich zusammenhängenden Datenfeldern mit einer logischen Struktur.
 [ENDTERM]
+
 
 [TERM::Datenstruktur|Datenstrukturen]
 In der Informatik und Softwaretechnik ist eine Datenstruktur ein Objekt, welches zur Speicherung und Organisation von Daten dient.
 
 [HREF::https://de.wikipedia.org/wiki/Datenstruktur]
 [ENDTERM]
+
 
 [TERM::de-morgansche Gesetze|de-morgansche Regeln]
 Die de-morganschen Gesetze sind zwei grundlegende Regeln für logische Aussagen und gelten in 
@@ -350,6 +382,7 @@ Sie lauten:
 `nicht (a oder b) ist äquivalent zu ((nicht a) und (nicht b))`.
 [ENDTERM]
 
+
 [TERM::Decorator|Dekorierer]
 Eine Funktion in einer Programmiersprache, die eine andere Funktion oder eine Klasse
 modifiziert oder erweitert. Es ermöglicht, das Verhalten einer Funktion oder Klasse zu ändern,
@@ -358,15 +391,18 @@ zusätzlicher Funktionalität versehen werden, wie das Hinzufügen von Logging o
 von Sicherheitsüberprüfungen.
 [ENDTERM]
 
+
 [TERM::Deduktion|deduktive Methode|deduktiver Schluss]
 Der Prozess des Ziehens logisch zwingender Schlussfolgerungen.
 Mittels Deduktion können aus Theorien Aussagen über Einzelfälle gewonnen werden.
 [ENDTERM]
 
+
 [TERM::Default|Defaultwert|Default-Argument]
 Ein [TERMREF::Argument] zur Übergabe an einen [TERMREF::Parameter],
 das implizit benutzt wird, wenn man nicht explizit ein Argument übergibt.
 [ENDTERM]
+
 
 [TERM::Defekt|Defect|Fault|Bug]
 Eine strukturelle Eigenschaft des Produkts (meistens des Codes, aber es könnte auch z.B. eine
@@ -379,12 +415,14 @@ viele (aber nicht alle) Defekte verursachen immer oder manchmal ein [TERMREF::Ve
 Zur Korrektur eines Defekts wird in der Regel das Produkt (z.B. der Code) verändert.
 [ENDTERM]
 
+
 [TERM::Dependency Injection]
 Dependency Injection ist ein Entwurfsmuster, bei dem externe Abhängigkeiten explizit an ein Objekt
 oder eine Funktion übergeben werden – statt sie intern zu erstellen.
 Beim Testen ermöglicht das den Austausch dieser Abhängigkeiten durch kontrollierte Mocks, Dummies
 oder Stubs.
 [ENDTERM]
+
 
 [TERM::Deserialisierung]
 Ein Mechanismus, der sich auf den Prozess bezieht, bei dem die serialisierten Daten
@@ -394,6 +432,7 @@ Programmiersprache zurücktransformiert wird. Auf diese Weise können die Daten 
 oder der Speicherung wieder von einer Anwendung gelesen und verwendet werden.
 [ENDTERM]
 
+
 [TERM::Design Pattern|Verhaltensmuster]
 Design Patterns sind typische Lösungen für wiederkehrende Probleme im Softwareentwurf, ähnlich 
 vorgefertigten Bauplänen. Sie dienen als allgemeine Konzepte zur Lösung spezifischer Probleme 
@@ -401,6 +440,7 @@ und ermöglichen Anpassungen an die Bedürfnisse deines eigenen Programms.
 Es wird zwischen Erzeugungsmustern (Creational Patterns), Strukturmustern (Structural Patterns) 
 und Verhaltensmustern (Behavioral Patterns) unterschieden.
 [ENDTERM]
+
 
 [TERM::Dictionary|dict|Wörterbuch|Map]
 Hierbei handelt es sich um eine Datenstruktur, die Werte einer Menge (genannt "Schlüssel"/"Keys")
@@ -415,12 +455,14 @@ Werte beliebiger Natur (beispielsweise Listen).
 Zur Verwendung siehe [die Python-Dokumentation zu Dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries).
 [ENDTERM]
 
+
 [TERM::dig|Dig]
 Dig, kurz für "Domain Information Groper", ist ein Befehlszeilenwerkzeug, das in Unix-basierten 
 Betriebssystemen verwendet wird, um DNS-Abfragen durchzuführen. Es ermöglicht das Abfragen von 
 DNS-Servern, um Informationen über DNS-Datensätze wie IP-Adressen, Nameserver und andere 
 DNS-Ressourceneinträge für eine bestimmte Domain zu erhalten.
 [ENDTERM]
+
 
 [TERM::Django]
 Django ist ein in Python geschriebenes Webframework zur schnellen Entwicklung von sicheren und wartbaren Webanwendungen. Mit Django lassen sich **moderne Webanwendungen** effizient umsetzen, ohne grundlegende Funktionen wie Formularverarbeitung, Datenbankzugriff oder Authentifizierung selbst schreiben zu müssen. Django folgt dem **MTV-Muster** (Model-Template-View), das dem bekannten MVC-Prinzip ähnelt, aber speziell auf die Webentwicklung mit Python abgestimmt ist.
@@ -432,12 +474,14 @@ Gute Quellen für Django:
 - [MDN – Django lernen](https://developer.mozilla.org/de/docs/Learn/Server-side/Django)
 [ENDTERM]
 
+
 [TERM::DNS|Domain Name System]
 DNS (Domain Name System) ist ein Dienst, der Internetadressen in [TERMREF2::IP-Adresse::-n] umwandelt. 
 Es sorgt dafür, dass man statt einer Zahlenfolge (wie 192.168.0.1) einfach einen Domainnamen, wie 
 www.beispiel.de, eingeben können, um eine Webseite zu erreichen. Vereinfacht gesagt ist DNS ein 
 Telefonbuch fürs Internet.
 [ENDTERM]
+
 
 [TERM::DNS-Record-Types]
 DNS-Record-Typen sind Einträge im Domain Name System (DNS), die Informationen über Domains und deren 
@@ -448,6 +492,7 @@ Eine Übersicht aller [TERMREF::DNS-Record-Types] findet man auf
 [nslookup.io](https://www.nslookup.io/learning/dns-record-types/).
 [ENDTERM]
 
+
 [TERM::Download unter WSL]
 Wenn Sie unter Windows Dateien herunterladen, stehen diese zunächst nicht direkt in Ihrer 
 Unix-Umgebung zur Verfügung.
@@ -456,6 +501,7 @@ Haben Sie die Datei beispielsweise im Windows-Ordner `Downloads` gespeichert,
 können Sie sie mit folgendem Befehl in Ihr Home-Verzeichnis der WSL-Umgebung kopieren:
 `cp /mnt/c/Users/<username>/Downloads/<DATEI> /home/<username>/`
 [ENDTERM]
+
 
 [TERM::DRY|DRY-Prinzip|Don't repeat yourself]
 DRY steht für "don't repeat yourself".
@@ -471,12 +517,14 @@ Das gegenteilige Verhalten wird [TERMREF::WET] genannt und ist meist (aber nicht
 [TwiceAndOnlyTwice](https://wiki.c2.com/?TwiceAndOnlyTwice)
 [ENDTERM]
 
+
 [TERM::DSL|Domänenspezifische Sprache]
 Eine speziell auf einen bestimmten Anwendungsbereich ("Domäne") zugeschnittene Sprache.
 Im Gegensatz zu allgemeinen Programmiersprachen, die
 für eine Vielzahl von Anwendungen geeignet sind, ist eine DSL darauf ausgerichtet, spezifische
 Aufgaben oder Anforderungen in einem begrenzten Kontext besonders elegant zu adressieren.
 [ENDTERM]
+
 
 [TERM::Dynamische analytische Qualitätssicherung]
 Die Überprüfung der Softwarequalität durch das Testen der Software.
@@ -491,6 +539,7 @@ Die Art und Weise, wie eine Nachricht oder ein Zeichenvorrat als Folge von Bits 
 
 [HREF::https://de.wikipedia.org/wiki/Zeichenkodierung]
 [ENDTERM]
+
 
 [TERM::Executable|ausführbare Datei]
 Eine Datei, deren "executable"-Bit gesetzt ist (mit dem Kommando `chmod`)
@@ -509,11 +558,13 @@ Weitere Unterscheidungen:
   - Versehen: oder es anders machen wollte (blunder)
 [ENDTERM]
 
+
 [TERM::Fehlerzustand|invalid state]
 Ein Fehlerzustand tritt auf, wenn das System aufgrund eines Fehlers in einen nicht beabsichtigten
 oder inkonsistenten Zustand gerät. Das kann dazu führen, dass das System unerwartete Ergebnisse
 produziert oder nicht ordnungsgemäß funktioniert.
 [ENDTERM]
+
 
 [TERM::Filedeskriptor|file descriptor]
 Beschreibt auf unixoiden Betriebssystemen eine Ressource, auf der Daten geschrieben und gelesen 
@@ -527,12 +578,14 @@ Netzwerk Sockets etc.).
 [HREF::https://en.wikipedia.org/wiki/File_descriptor]
 [ENDTERM]
 
+
 [TERM::Filter]
 In Unix werden Programme, die von Standardeingabe (stdin) lesen und nach Standardausgabe (stdout)
 schreiben, Filter genannt.
 Bei Programmen wie `grep`, die Teile der Eingabe weglassen, leuchtet die Bezeichnung ein,
 aber sie gilt auch für Programme wie `sort`, die die Eingabe nur umformen.
 [ENDTERM]
+
 
 [TERM::Firewall]
 Eine **Firewall** ist ein Sicherheitsmechanismus, der den Netzwerkverkehr überwacht und filtert, 
@@ -556,6 +609,7 @@ Zu unterscheiden sind dabei
     Netzwerk schützen und typischerweise in Unternehmen oder größeren Netzwerken eingesetzt werden.
 [ENDTERM]
 
+
 [TERM::first-class citizen|first-class Objekt]
 In Programmiersprachen beschreibt man Objekte als first-class citizen, wenn sie die folgenden 
 Eigenschaften unterstützen:
@@ -570,12 +624,14 @@ Programmiersprachen, wie Python, erfüllen aber auch Funktionen diese Eigenschaf
 [TERMREF2::higher-order function::Funktionen höherer Ordnung] ermöglicht werden.
 [ENDTERM]
 
+
 [TERM::Flask]
 Flask ist ein leichtgewichtiges und flexibles Web-Framework für Python, das es Entwicklern
 ermöglicht, schnell und einfach Webanwendungen zu erstellen. Es folgt dem WSGI
 (Web Server Gateway Interface) Standard und bietet eine einfache API, die es ermöglicht, Routen,
 Templates und Formulare zu definieren.
 [ENDTERM]
+
 
 [TERM::Funktionale Programmierung]
 Ein Programmierparadigma, bei dem die Verwendung von Funktionen im Mittelpunkt steht.
@@ -594,10 +650,12 @@ Gates werden häufig in [TERMREF::CI/CD]-Pipelines eingesetzt, um sicherzustelle
 Kriterien erfüllt sind, bevor der Code in die nächste Phase des Entwicklungszyklus übergeht.
 [ENDTERM]
 
+
 [TERM::Git]
 Das heute mit weitem Abstand verbreitetste 
 [Versionsverwaltungssystem](https://de.wikipedia.org/wiki/Versionsverwaltung).
 [ENDTERM]
+
 
 [TERM::GitHub|github|Github|github.com]
 GitHub ([HREF::https://github.com]) ist ein Dienst, der Zusammenarbeitsfunktionen bereitstellt, 
@@ -606,6 +664,7 @@ Für öffentliche Repositories ist GitHub seit jeher gratis.
 Für private (d.h. nur einer festen Gruppe von Personen zugängliche) Repositories gilt das
 seit einigen Jahren bis zu gewissen Grenzen ebenfalls.
 [ENDTERM]
+
 
 [TERM::Globbing]
 Die Expansion von Dateinamensmustern in eine Liste von Dateinamen.
@@ -618,9 +677,11 @@ Globbing ist insbesondere in allen gängigen [TERMREF2::Shell::-s] implementiert
 Kurzerläuterung: [HREF::https://tldp.org/LDP/abs/html/globbingref.html]
 [ENDTERM]
 
+
 [TERM::Glossar]
 [Griechisch-lateinischer Ausdruck für](https://de.wikipedia.org/wiki/Glossar) Begriffsverzeichnis.
 [ENDTERM]
+
 
 [TERM::GUI|Graphical User Interface]
 Grafische Bedienschnittstelle, die mit Maus oder Fingern bedient wird.
@@ -639,6 +700,7 @@ und hier insbesondere das [TERMREF::CLI].
 Hardlinks sind Einträge auf eine Datei im Dateisystem. Hardlinks werden im System, wie die Datei 
 an sich behandelt, weil die Links physisch auf die Datei auf die Festplatte zeigt.
 [ENDTERM]
+
 
 [TERM::Hashfunktion|kryptografische Hashfunktion]
 Funktion, die beliebig große Eingabedaten annimmt und einen Wert in einer fest definierten 
@@ -659,6 +721,7 @@ Für kryptografische Hashfunktionen gelten zusätzlich folgende Eigenschaften:
 7. Die Ausgabe der Hashfunktion ist pseudozufällig (statistisch nicht vorhersehbar).
 [ENDTERM]
 
+
 [TERM::Header|Header-Metadaten|HTTP-Header]
 Ein Abschnitt, der am Anfang eines Dokuments, einer Nachricht oder einer
 Datei steht und meist Metadaten, also Informationen über den Inhalt oder den Kontext bereitstellt.
@@ -672,15 +735,18 @@ z.B. `Content-Type:`, `Set-Cookie:`, `Cache-Control:`.
 [HREF::https://de.wikipedia.org/wiki/Liste_der_HTTP-Headerfelder]
 [ENDTERM]
 
+
 [TERM::higher-order function|Funktion höherer Ordnung]
 Eine Funktion, die mindestens eine Funktion als Argument entgegennimmt oder wiederum eine 
 Funktion als Rückgabewert zurückgibt.
 [ENDTERM]
 
+
 [TERM::Hilfsbereich]
 Ein Verzeichnisbaum für Zwecke des ProPra, der außerhalb des Arbeitsbereichs liegt,
 der nach git eingecheckt wird.
 [ENDTERM]
+
 
 [TERM::Hochsprache|höhere Programmiersprache]
 Eine Hochsprache ist eine Programmiersprache, welche einen hohen Grad der
@@ -690,6 +756,7 @@ Eine Hochsprache ist deshalb nicht direkt ausführbar, sondern erfordert einen
 [TERMREF::Übersetzer] oder [TERMREF::Interpretierer].
 [ENDTERM]
 
+
 [TERM::HTML|Hypertext Markup Language]
 HTML steht für Hypertext Markup Language; es ist eine [TERMREF::Auszeichnungssprache].
 In HTML wird dieses Prinzip umgesetzt, indem spezielle Zeichenfolgen ([TERMREF2::HTML-Tag::-s]) 
@@ -698,6 +765,7 @@ Diese Markierungen beschreiben eine Strukturierung des Inhalts, Hyperlinks und a
 
 [HREF::https://wiki.selfhtml.org/wiki/HTML/Tutorials/Entstehung_und_Entwicklung]
 [ENDTERM]
+
 
 [TERM::HTML-Attribut]
 Ein HTML-Attribut ist eine Eigenschaft eines [TERMREF2::HTML-Element::-s], 
@@ -727,11 +795,13 @@ Z.B. markiert das Tag `h1` die Haupt-Überschrift einer Seite:
 Das Anfangs-Tag, der Inhalt dazwischen und das Ende-Tag bilden zusammen ein HTML-Element.
 [ENDTERM]
 
+
 [TERM::HTTP|Hypertext Transfer Protocol]
 Ein [TERMREF::Protokoll], das für die Übertragung von Daten im World Wide Web verwendet wird.
 Ermöglicht die Kommunikation zwischen Client-Anwendungen (wie Webbrowsern) und Servern,
 auf denen statische Ressourcen (wie Bilder) oder Anwendungen gehostet werden.
 [ENDTERM]
+
 
 [TERM::HTTP-Statuscode]
 Ein HTTP-Statuscode ist eine dreistellige numerische Kennung, die von einem Webserver an den Client
@@ -739,6 +809,7 @@ gesendet wird, um den Status einer HTTP-Anfrage zu kennzeichnen. Diese Statuscod
 Anfrage erfolgreich war, eine Weiterleitung erforderlich ist, ein Fehler aufgetreten ist oder andere
 Informationen über den Status der Anfrage liefern.
 [ENDTERM]
+
 
 [TERM::Hypothese]
 Eine Hypothese im wissenschaftlichen Sinne ist eine auf dem Stand der Wissenschaft gegründete
@@ -762,6 +833,7 @@ ICMP wird häufig von Netzwerktools wie "ping" verwendet, um die Erreichbarkeit 
 Verwaltung und Fehlersuche in IP-Netzwerken.
 [ENDTERM]
 
+
 [TERM::IDE|Integrated Development Environment]
 Eine Kategorie komplexer interaktiver Softwarewerkzeuge.
 Eine IDE bietet eine große Zahl von Funktionen an, um Programmcode zu erzeugen,
@@ -773,6 +845,7 @@ manuellen Kombination anderer Werkzeuge.
 Dies gilt umso mehr, je größer die Codebasis wird.
 [ENDTERM]
 
+
 [TERM::Index]
 Ein Index ist eine numerische oder symbolische Kennzeichnung, die verwendet wird, 
 um gezielt auf ein Element innerhalb einer geordneten Datenstruktur zuzugreifen. 
@@ -783,12 +856,14 @@ Index beschreibt sowohl einen einzelnen Indexwert,
 als auch das Aggregat aller Indexwerte einer Datenstruktur.
 [ENDTERM]
 
+
 [TERM::Integrationstest|Integration Test]
 Ein Test, der im Gegensatz zum [TERMREF::Modultest] das korrekte Zusammenspiel mehrerer
 (evtl. sehr vieler) Module oder Komponenten prüfen will,
 dafür aber im Gegensatz zum [TERMREF::Systemtest] programmatische Schnittstellen benutzt,
 nicht solche für menschliche Benutzer_innen.
 [ENDTERM]
+
 
 [TERM::Interpreter|Interpretierer]
 Ein Interpretierer (engl. "interpreter"), insbesondere der Python-Interpreter, ist ein Programm, 
@@ -803,6 +878,7 @@ wird dann interpretiert.
 [HREF::https://devguide.python.org/internals/]
 [ENDTERM]
 
+
 [TERM::IP|Internet Protocol]
 IP (Internet Protocol) ist das grundlegende Protokoll, das dafür sorgt, dass Daten über das Internet 
 von einem Computer zum anderen gelangen. 
@@ -811,6 +887,7 @@ verschiedene Netzwerke finden, bis sie ihr Ziel erreichen.
 Jedes Gerät im Internet hat eine eindeutige [TERMREF::IP-Adresse], die wie eine digitale Adresse funktioniert, 
 damit die Daten an den richtigen Ort gesendet werden.
 [ENDTERM]
+
 
 [TERM::IP-Adresse]
 Eine IP-Adresse ist eine eindeutige Zahlenfolge, die jedem Gerät im Internet zugewiesen wird. 
@@ -821,6 +898,7 @@ Sie ermöglichen es Computern, Smartphones und anderen Geräten, miteinander zu 
 Informationen auszutauschen.
 [ENDTERM]
 
+
 [TERM::IPv4]
 IPv4 (Internet Protocol Version 4) wird für die Identifizierung von Geräten im Internet verwendet.
 Eine IPv4-Adresse besteht aus 32 Bit und wird in vier Zahlen dargestellt, die durch Punkte 
@@ -829,6 +907,7 @@ Diese Adressen helfen, Daten an den richtigen Ort zu senden.
 IPv4 kann etwa 4,3 Milliarden Adressen bereitstellen.
 [ENDTERM]
 
+
 [TERM::IPv6]
 IPv6 (Internet Protocol Version 6) ist die neueste Version des Internetprotokolls, die entwickelt 
 wurde, um das Problem der begrenzten IP-Adressen von IPv4 zu lösen. 
@@ -836,6 +915,7 @@ Eine IPv6-Adresse ist 128 Bit lang und wird meist in acht Gruppen von Hexadezima
 die durch Doppelpunkte getrennt sind (z. B. 2001:0db8:85a3:0000:0000:8a2e:0370:7334). 
 IPv6 stellt 2^128 (ungefähr 340 Sextillionen) Adressen bereit.
 [ENDTERM]
+
 
 [TERM::Issue Tracker|Bug Tracker|Defect Tracker|Defektdatenbank]
 Ein Programm zur Koordination der Arbeit an bekannten (aber anfangs noch nicht bereinigten
@@ -849,6 +929,7 @@ Ein Issue Tracker erlaubt insbesondere
 - die Markierung eines Eintrags als "offen" (open, in Bearbeitung) oder "geschlossen" (closed) und
 - die Zuweisung zuständiger Personen für die Bearbeitung.
 [ENDTERM]
+
 
 [TERM::Iterables|Iterables in Python]
 Iterables in Python sind Objekte, die eine Sequenz von Elementen bereitstellen,
@@ -868,6 +949,7 @@ Wird seit einigen Jahren auch außerhalb des Browsers verwendet, insbesondere au
 Serverseite von Webanwendungen ("backend").
 [ENDTERM]
 
+
 [TERM::JSON|JavaScript Object Notation]
 Leichtgewichtiges Datenaustauschformat.
 Ursprünglich eine kleine Teilmenge der Programmiersprache [TERMREF::JavaScript],
@@ -885,10 +967,12 @@ Aktionen beschrieben werden, die von einem Testframework interpretiert und ausge
 [HREF::https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#test-templates]
 [ENDTERM]
 
+
 [TERM::Kollision]
 Ereignis, wenn bei einer [TERMREF::Hashfunktion] zwei unterschiedliche Eingaben den gleichen Hash 
 erzeugen.
 [ENDTERM]
+
 
 [TERM::Kommandozeilenparameter]
 Ein [TERMREF::Parameter] für ein ausführbares Programm, das per
@@ -909,10 +993,12 @@ In Python findet Lazy Evaluation beispielsweise in Verbindung mit
 [PARTREFMANUAL::py-Iterators::Iteratoren] statt.
 [ENDTERM]
 
+
 [TERM::Leistungstest|Performance Test]
 Ein Test, der prüft, ob ein Programm schnell genug arbeitet und genügend große Datenmengen
 verkraften kann.
 [ENDTERM]
+
 
 [TERM::Linter|Codeprüfer|Stilprüfer]
 Linting ist die automatisierte statische Analyse von Programmcode, 
@@ -928,12 +1014,14 @@ Linter stellen also Know-How und Detailaufmerksamkeit bereit, die die Entwickler
 dadurch nicht mehr immer selbst aufbringen müssen.
 [ENDTERM]
 
+
 [TERM::Linux|GNU/Linux]
 Eine Familie von Open-Source-Betriebssystem-Distributionen, die auf dem Linux-Betriebssystemkern aufbauen
 sowie auf einem umfangreichen Universum von Softwarepaketen.
 
 [HREF::https://de.wikipedia.org/wiki/Linux]
 [ENDTERM]
+
 
 [TERM::Logfile|Logdatei]
 Eine Textdatei (selten auch Binärdatei), in der Logdatensätze stehen,
@@ -962,6 +1050,7 @@ darauf, dass sich dieser in Zukunft ändern wird. Wann das sein wird, ist unklar
 Mit der Option `init.defaultBranch` lässt sich der Standardname permanent ändern.
 [ENDTERM]
 
+
 [TERM::manpage|manpages]
 Eine Manpage ("manual page", Handbuch-Seite) gibt es zu (fast) jedem Unix-Kommando.
 Man findet die für das Kommando `xy` mittels `man xy`.
@@ -973,11 +1062,13 @@ Fest in die Shell eingebaute Kommandos haben keine eigene Manpage;
 das Kommando `help` zeigt eine Kurzinformation dazu.
 [ENDTERM]
 
+
 [TERM::Markdown]
 Ist eine [TERMREF::Auszeichnungssprache], die verwendet wird, um Text mit einer einfachen Syntax zu formatieren.
 Sie wurde entwickelt, um das Schreiben von Texten für das Web zu erleichtern, ohne die Notwendigkeit
 von komplexen HTML-Tags oder Formatierungsbefehlen.
 [ENDTERM]
+
 
 [TERM::Maschinensprache|Maschinencode]
 Eine Maschinensprache ist die, von einem Prozessor direkt ausführbare,
@@ -987,6 +1078,7 @@ Maschinensprachen sind von Prozessorarchitektur zu Prozessorarchitektur
 verschieden.
 [ENDTERM]
 
+
 [TERM::Median]
 Der Median ist ein statistisches Maß, das in der Mitte einer sortierten Liste von Zahlen liegt.
 Wenn eine Liste von Zahlen nach Größe sortiert ist, ist der Median der Wert, der genau in der Mitte
@@ -994,10 +1086,12 @@ der Liste liegt. Das bedeutet, dass die Hälfte der Zahlen in der Liste größer
 und die andere Hälfte kleiner ist.
 [ENDTERM]
 
+
 [TERM::Metadaten]
 Metadaten sind Daten über Daten. Sie beschreiben Eigenschaften oder Merkmale über Daten.
 Metadaten können z.B. sein aus welcher Quelle eine Information stammt oder eine Erläuterung einer Information.
 [ENDTERM]
+
 
 [TERM::Modul|Module]
 "Modul" ist in der Softwaretechnik ein abstraktes Konzept.
@@ -1015,6 +1109,7 @@ Ziele bei der Gestaltung von Modulen sind meistens Abstraktion und oft Wiederver
 [HREF::https://docs.python.org/3/tutorial/modules.html]
 [ENDTERM]
 
+
 [TERM::Modultest|Unit Test]
 Ein Test, der das korrekte Funktionieren eines bestimmten Moduls prüfen soll.
 Dabei wird entweder nur dieses eine Modul ausgeführt (weil es keine weiteren davon benötigten
@@ -1023,6 +1118,7 @@ oder es wird zwar der ganze darunter hängende Teilgraph von benötigten Modulen
 auch mit verwendet, aber die Testeingaben so ausgewählt, dass es voraussichtlich für das
 Ergebnis nur auf das zu testende Modul ankommt.
 [ENDTERM]
+
 
 [TERM::Mutationstests|Mutation Testing]
 Mutationstests sind eine Technik zur Bewertung der Qualität von Softwaretests. Dabei werden
@@ -1041,12 +1137,14 @@ verwenden, während Computer Netzwerke IP-Adressen (wie z.B. 192.0.2.1) benötig
 Kommunikation zu ermöglichen.
 [ENDTERM]
 
+
 [TERM::Negativtest|Negativszenario]
 Ist eine Art von Softwaretest, der darauf abzielt, sicherzustellen, dass ein System korrekt auf
 ungültige Eingaben oder unerwartete Bedingungen reagiert. Im Gegensatz zu Positivtests, die prüfen,
 ob das System die erwarteten Ergebnisse auf gültige Eingaben liefert, testen Negativtests die
 Handhabung von Fehlern oder ungültigen Daten.
 [ENDTERM]
+
 
 [TERM::Netzwerkport]
 Ein Netzwerkport ist ein virtueller, logischer Punkt, an dem Netzwerkverbindungen beginnen und enden. 
@@ -1076,10 +1174,12 @@ Es gibt 65536 Ports, die in drei Hauptkategorien unterteilt sind:
 Siehe [TERMREF::DRY].
 [ENDTERM]
 
+
 [TERM::Objekt-Code|Object-Code]
 Als Objekt-Code wird Code in [TERMREF::Maschinensprache] bezeichnet, welcher
 in [TERMREF2::Objekt-Datei::-en] enthalten ist.
 [ENDTERM]
+
 
 [TERM::Objekt-Datei|Object-File]
 Eine Objekt-Datei ist eine Datei, welche Prozessoranweisungen in 
@@ -1090,6 +1190,7 @@ weiterverarbeitet.
 Dazu beinhalten Objekt-Dateien zusätzliche Metadaten.
 [ENDTERM]
 
+
 [TERM::OpenAPI|Swagger]
 Ein Standard, der die Dokumentation
 von RESTful APIs (Representational State Transfer) erleichtert.
@@ -1097,6 +1198,7 @@ Maschinenlesbare Beschreibung einer API, die Entwicklern ermöglicht, schnell
 zu verstehen, welche Ressourcen verfügbar sind, welche
 Parameter erwartet werden und welche Antworten zurückgegeben werden können.
 [ENDTERM]
+
 
 [TERM::Optionen|Option]
 In Linux beziehen sich die Optionen zu Befehlen auf zusätzliche Parameter oder 
@@ -1125,12 +1227,14 @@ In der Lehre ist es als motivierende und lernförderliche Verfahrensweise für v
 Zwecke bekannt und als wirksam nachgewiesen.
 [ENDTERM]
 
+
 [TERM::Parameter]
 Ein Platzhalter für ein [TERMREF::Argument], das man an etwas Parametrisiertes übergeben kann.
 Funktionen und Methoden haben in Python sehr oft ein oder mehrere Parameter.
 In manchen Sprachen können auch andere Dinge parametrisiert sein, z.B. Klassen,
 Makros, Module oder Pakete.
 [ENDTERM]
+
 
 [TERM::PATH]
 Eine [TERMREF::Umgebungsvariable], die eine Liste von Verzeichnispfaden enthält,
@@ -1139,6 +1243,7 @@ Wenn für ein Kommando auf der [TERMREF::Kommandozeile] ein
 [TERMREF::Executable] benötigt wird, wird es in jedem dieser Verzeichnisse gesucht.
 Beispiel: `PATH=/bin:/usr/bin:~/bin`
 [ENDTERM]
+
 
 [TERM::Payload|HTTP-Body]
 Der Teil einer Nachricht (insbesondere: einer API-Antwort),
@@ -1150,6 +1255,7 @@ Der Rumpf kann z.B. JSON-, XML-, JPG-, PDF-, Text- oder beliebige Binärdaten en
 Der Header `Content-Type:` gibt an, als was der Rumpf interpretiert werden soll.
 [ENDTERM]
 
+
 [TERM::PEP8|PEP 8|Python Enhancement Proposal 8]
 Ist der offizielle Style-Guide für Python-Code. Sie wurde von Guido van Rossum, dem Schöpfer von
 Python, sowie anderen führenden Entwicklern der Python-Community entwickelt. PEP 8 definiert eine
@@ -1159,11 +1265,13 @@ verbessern und eine konsistente und einheitliche Codebasis zu fördern.
 Dokumentation: [HREF::https://peps.python.org/pep-0008/]
 [ENDTERM]
 
+
 [TERM::ping|Ping]
 Ping ist ein Befehl, um die Erreichbarkeit einer anderen Ressource im Netzwerk zu überprüfen. Es 
 sendet kleine Pakete an das Ziel und erwartet eine Antwort der Ressource. Die Antwortzeit und 
 eventuelle Paketverluste werden gemessen, um die Netzwerkverbindung zu bewerten.
 [ENDTERM]
+
 
 [TERM::pip]
 "Package installer for Python":
@@ -1173,12 +1281,14 @@ Server ("package index", meist wird pypi.org benutzt) lädt und installiert.
 Dokumentation: [HREF::https://pip.pypa.io/en/stable/getting-started/]
 [ENDTERM]
 
+
 [TERM::Pipeline]
 Das ist eine Abfolge von automatisierten Schritten oder Prozessen, die in einem
 Workflow ausgeführt werden, um bestimmte Aufgaben oder Abläufe zu erledigen. Sie ermöglicht
 die Automatisierung von komplexen Abläufen, indem sie verschiedene Schritte wie Builds, Tests,
 Bereitstellungen und mehr integriert.
 [ENDTERM]
+
 
 [TERM::Pipes|Pipe]
 Pipes dienen dazu, die Ausgabe einer Anwendung direkt als Eingabe für eine andere zu verwenden, 
@@ -1187,12 +1297,14 @@ Linux werden Pipes durch das vertikale Strichzeichen (|) dargestellt und ermögl
 Kommunikation zwischen verschiedenen Befehlen in der Kommandozeile.
 [ENDTERM]
 
+
 [TERM::Post Mortem|Post-Mortem-Analyse]
 Eine Analyse, die nach Ende des zu analysierenden Ereignisses durchgeführt wird.
 Dadurch lassen sich Vorfälle untersuchen, dokumentieren und zu Lernzwecken festhalten.
 Sie hat keine feste Form, enthält aber in der Regel die Gründe für den Vorfall, die Lösung des 
 Vorfalls und Nachbereitungen, die solche Vorfälle verhindern sollen.
 [ENDTERM]
+
 
 [TERM::Prompt]
 Eine Textzeichenfolge, die in der Kommandozeile angezeigt wird, um den
@@ -1201,6 +1313,7 @@ Benutzernamen, den Hostnamen, den aktuellen Pfad und möglicherweise andere rele
 
 Beispiel: `student1@computer1 /my/dir/path/to/my/workdir 12:24:01  515`
 [ENDTERM]
+
 
 [TERM::Protokoll|Protocol]
 Spezifikation einer Verfahrensweise.
@@ -1213,6 +1326,7 @@ Es gibt zahlreiche Kommunikationsprotokolle.
 Hier im ProPra ist meist nur [TERMREF::HTTP] von Interesse.
 [ENDTERM]
 
+
 [TERM::Prüfsumme|Checksum]
 Ergebnis einer (kryptografischen) [TERMREF::Hashfunktion], die auf Daten, z.B. in Form einer Datei, 
 angewendet wurde.
@@ -1222,6 +1336,7 @@ Prüfsummen helfen dabei, die Integrität von Daten sicherzustellen. Hierfür wi
 man davon aus, dass die Daten nicht verändert wurden, da es sehr unwahrscheinlich ist, dass zwei
 unterschiedliche Dateien denselben Hash haben.
 [ENDTERM]
+
 
 [TERM::Public-Key-Kryptographie|Asymmetrische Kryptographie|Schlüsselpaar]
 Asymmetrische Kryptographie, auch als Public-Key-Kryptographie bekannt, ist ein 
@@ -1235,6 +1350,7 @@ Diese Technik wird häufig für sichere Kommunikation, digitale Signaturen und
 Schlüsselaustauschmechanismen in der Informationssicherheit eingesetzt
 [ENDTERM]
 
+
 [TERM::Pull-Request|Merge-Request|PR|MR]
 Ein Pull-Request ist ein Feature vieler git-Server welches, Nutzer_innen ermöglicht einfach 
 Änderungsvorschläge zwischen zwei git-Branches zu vorzuschlagen, zu diskutieren und ggf. 
@@ -1245,6 +1361,7 @@ Weitere Informationen bietet [dieser GitHub-Artikel](https://docs.github.
 com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-
 requests/about-pull-requests).
 [ENDTERM]
+
 
 [TERM::PyCharm]
 Leistungsfähige IDE von JetBrains, in die viel Spezialwissen über das Python-Universum 
@@ -1276,6 +1393,7 @@ Dieses Funktionsprinzip ist bekannt als Kontrollumkehr (inversion of control)
 oder Hollywood-Prinzip: _"Don't call us, we'll call you"_.
 [ENDTERM]
 
+
 [TERM::redirect-Operator]
 Die Verwendung des Operators kann die Ausgabe von Befehlen in Dateien umleiten, um Daten zu 
 speichern oder zu protokollieren, sowie Eingabedaten aus Dateien lesen. Darüber hinaus ermöglicht 
@@ -1283,6 +1401,7 @@ der Redirect-Operator die Weiterleitung von Ausgaben an verschiedene Ziele wie a
 Netzwerkverbindungen oder Programme, was die Integration in komplexe Datenverarbeitungs- und 
 Analyseworkflows erleichtert. 
 [ENDTERM]
+
 
 [TERM::Refactoring|Refaktorisierung]
 Eine Veränderung der Struktur einer Software, die das Verhalten der
@@ -1307,11 +1426,13 @@ aus denen sich alle Refactorings zusammensetzen lassen:
 [HREF::https://refactoring.com/].
 [ENDTERM]
 
+
 [TERM::Regressionstest]
 Ein Regressionstest ist ein Typ von Softwaretest, der durchgeführt wird, um sicherzustellen,
 dass früher funktionierende Teile einer Software nach einer Änderung weiterhin wie erwartet
 funktionieren und somit unerwünschte Seiteneffekte schnellstmöglich erkannt werden.
 [ENDTERM]
+
 
 [TERM::Regulärer Ausdruck|regular expression|regex|regexp]
 Eine Notation für Prädikate:
@@ -1330,6 +1451,7 @@ Reguläre Ausdrücke sind ungeheuer nützlich für sehr viele Zwecke und man sol
 unbedingt gut mit ihnen auskennen.
 [ENDTERM]
 
+
 [TERM::Release]
 In der Softwareentwicklung bezieht sich der Begriff Release auf die Veröffentlichung einer
 bestimmten Version einer Softwareanwendung oder eines Softwareprodukts. Dabei ist ein Release stets
@@ -1337,12 +1459,14 @@ eindeutig zu kennzeichnen. Das wird mir einer Release-[TERMREF::Versionsnummer] 
 Aber auch Releasebezeichner wie Alpha, Beta oder Stable-Version sind gängige praxis.
 [ENDTERM]
 
+
 [TERM::REPL]
 REPL steht für eine "Read-Eval-Print-Loop", also die wiederholte Ausführung vom Auslesen einer
 Eingabe des Benutzers, der Auswertung dieser Eingabe und dem Ausgeben des Ergebnisses.  
 Wenn Sie `python` ohne weitere Argumente ausführen, landen Sie beispielsweise in einer solchen REPL
 und können dort nach Belieben Code ausführen.
 [ENDTERM]
+
 
 [TERM::Repository-Verzeichnis]
 Engl. Repository-Directory, bezeichnet das von git erstellte unsichtbare `.git` 
@@ -1354,6 +1478,7 @@ Die Arbeitskopien eines Repos liegen außerhalb des Repository-Verzeichnisses un
 [TERMREF::Arbeitsverzeichnis] bzw. Working-Directory bezeichnet.
 [ENDTERM]
 
+
 [TERM::Request|Anfrage]
 Nachricht, die im Rahmen eines [TERMREF2::Protokoll::-s] ein Client an einen Server sendet,
 um Daten anzufordern oder eine Operation auszulösen.
@@ -1362,12 +1487,14 @@ Bei [TERMREF::HTTP] wird ein Request an eine spezifische _Ressource_ auf dem Ser
 die durch einen URI/[TERMREF::URL] identifiziert wird.
 [ENDTERM]
 
+
 [TERM::Response|Antwort]
 Die Daten, die im Rahmen eines [TERMREF2::Protokoll::-s]
 ein Server an einen Client zurücksendet, als Reaktion auf eine [TERMREF::Anfrage],
 die der Client zuvor gesendet hat.
 Enthält den angeforderten Inhalt und/oder gibt Informationen darüber, ob die Anfrage erfolgreich war oder nicht.
 [ENDTERM]
+
 
 [TERM::Root-Nameserver]
 Root-Nameserver sind zentrale Server im [TERMREF::DNS], die Informationen über die 
@@ -1377,6 +1504,7 @@ Wenn ein DNS-Server die IP-Adresse einer Website nicht kennt, kann er einen Root
 anfragen, um die Adresse des zuständigen Nameservers für die nächste Ebene zu erhalten. 
 Dieser Prozess ermöglicht es, die richtigen Webseiten im Internet zu finden.
 [ENDTERM]
+
 
 [TERM::RPA|Robotic Process Automation|Robotische Prozessautomatisierung]
 Die Anwendung von Software-Robotern oder "Bots", um menschliche Aufgaben in Geschäftsprozessen
@@ -1397,9 +1525,11 @@ Schlüsselwörter können nicht als Namen für Variablen oder Funktionen oder
 irgendwelche Elemente im Programm verwendet werden. 
 [ENDTERM]
 
+
 [TERM::Screenreader]
 Ein Screenreader ist eine spezielle Software, die es Menschen mit Sehbehinderungen oder Blindheit ermöglicht, auf die Inhalte eines Computerbildschirms zuzugreifen. Der Screenreader liest den Text auf dem Bildschirm mittels synthetischer Sprache vor und/oder konvertiert ihn in Brailleschrift, die dann auf einer angeschlossenen Braillezeile angezeigt wird.
 [ENDTERM]
+
 
 [TERM::Serialisierung]
 Ein Mechanismus, der sich auf den Prozess bezieht, bei dem Datenstrukturen in ein Format umgewandelt
@@ -1408,6 +1538,7 @@ dass Datenstrukturen, wie zum Beispiel Objekte oder Arrays in einer Programmiers
 JSON-Format umgewandelt werden. Während der Serialisierung werden die Daten in eine Zeichenkette
 konvertiert, die gemäß der JSON-Syntax strukturiert ist.
 [ENDTERM]
+
 
 [TERM::Shebang|Shebang-Zeile]
 Ein Mechanismus auf Unix-Systemen, der aus einer Datei, die Programmcode für eine interpretierte
@@ -1422,6 +1553,7 @@ für alle Sprachen anwendbar, bei denen ein `#` am Zeilenanfang einen Kommentar 
 oder die erste Zeile gesondert behandelt wird.
 [ENDTERM]
 
+
 [TERM::Shell|Unix-Shell|Linux-Shell|Kommandozeile]
 Übliche Bezeichnung für die Kommandozeilen-Interpretierer auf [TERMREF2::Unix::--] oder [TERMREF2::Linux::--Systemen],
 weil diese aus Sicht einer Benutzer_in wie eine "Schale" den Kern des Betriebssystems umhüllen.
@@ -1430,12 +1562,14 @@ weil diese aus Sicht einer Benutzer_in wie eine "Schale" den Kern des Betriebssy
 [HREF::https://de.wikipedia.org/wiki/Unix-Shell]
 [ENDTERM]
 
+
 [TERM::Shellfunktion|Shellprozedur]
 Eine Prozedur, die in der [TERMREF::Unix-Shell] einmal definiert wird,
 z.B. in [TERMREF::.bashrc] oder einem Shellskript,
 und sich dann immer wieder aufrufen lässt.
 Fasst mehrere Kommandos zu einem zusammen, ggf. auch mit Schleifen oder Fallunterscheidungen.
 [ENDTERM]
+
 
 [TERM::Slice (Golang)]
 Ein Slice in Go ist eine dynamische Datenstruktur, die eine veränderbare Sequenz von Elementen gleichen Typs repräsentiert. 
@@ -1447,11 +1581,13 @@ Sie werden mit der Notation `[]T` deklariert, wobei `T` den Elementtyp darstellt
 [HREF::https://go.dev/blog/slices-intro]
 [ENDTERM]
 
+
 [TERM::Slicing (Python)]
 Slicing bezeichnet in Python das Auswählen eines Teilbereichs (Subsequenz) aus Sequenztypen wie Listen, Strings oder Tupeln. Die Syntax ist `seq[start:stop:step]`, wobei start (inklusive) der Startindex, stop (exklusiv) der Endindex und step die Schrittweite ist. Alle drei Parameter sind optional. Negative Indizes zählen vom Ende der Sequenz rückwärts.
 
 [HREF::https://www.geeksforgeeks.org/python/python-list-slicing/]
 [ENDTERM]
+
 
 [TERM::Snapshot (git)]
 
@@ -1466,6 +1602,7 @@ Ein Commit ist also nicht einfach nur eine Änderung, sondern eine vollständige
 des Projekts in diesem Zustand.
 [ENDTERM]
 
+
 [TERM::SOA|Start of Authority]
 Der SOA-Record (Start of Authority) ist ein essenzieller Ressourceneintrag im Domain Name System 
 (DNS), der die administrativen Parameter einer DNS-Zone definiert. Er dient als Kontrollzentrum 
@@ -1475,6 +1612,7 @@ Der SOA-Record enthält detaillierte Informationen wie den primären Nameserver 
 E-Mail-Adresse des Zonenadministrators (RNAME) und eine Seriennummer (SERIAL), die bei jeder Zonenänderung 
 inkrementiert wird, um sekundäre Nameserver über Aktualisierungen zu informieren.
 [ENDTERM]
+
 
 [TERM::SQL Injection]
 Eine Angriffsmethode bei SQL Datenbanken, bei der durch geschickte Manipulation einer SQL Query 
@@ -1486,11 +1624,13 @@ getroffen werden.
 [HREF::https://xkcd.com/327/]
 [ENDTERM]
 
+
 [TERM::SSH]
 Secure Shell (SSH) ist das meistgenutzte Protokoll, um sich auf entfernten Rechnern anzumelden. 
 Es ermöglicht eine sichere Remote-Verwaltung und den Datenaustausch über unsichere Netzwerke, 
 indem es Authentifizierung und Verschlüsselung verwendet.
 [ENDTERM]
+
 
 [TERM::SSH-Agent]
 Ein SSH-Agent ist ein Programm, das deine SSH-Schlüssel verwaltet und sicher aufbewahrt. 
@@ -1499,6 +1639,7 @@ Schlüssel erneut eingeben zu müssen.
 Der Agent speichert den Schlüssel während einer Sitzung im Speicher und sorgt so für mehr Komfort 
 und Sicherheit.
 [ENDTERM]
+
 
 [TERM::Staging-Area|git-Index]
 Die Staging Area, auch Index genannt, bezeichnet in git einen Zwischenspeicher, in dem neue Dateien,
@@ -1515,6 +1656,7 @@ vollständiges Abbild (Snapshot) einer Datei anlegt.
 Nachträgliche Änderungen an bestehenden Commits sind nicht ohne Weiteres möglich.
 [ENDTERM]
 
+
 [TERM::Statische analytische Qualitätssicherung]
 Überprüfung von Softwareartefakten wie Code, Spezifikationen und Dokumentation,
 ohne dass die Software dabei ausgeführt wird.
@@ -1526,11 +1668,13 @@ Findet für Code im Vergleich zu Tests manche Sorten von Problem leichter, ander
 sodass sich beide Verfahrensweisen gut ergänzen.
 [ENDTERM]
 
+
 [TERM::Strategy Pattern|Strategie-Muster]
 Das Strategy Pattern ist ein [TERMREF::Verhaltensmuster], das es ermöglicht, eine Familie von 
 Algorithmen zu definieren, jeden von ihnen in eine separate Klasse zu setzen und ihre Objekte 
 austauschbar zu machen.
 [ENDTERM]
+
 
 [TERM::su]
 `su` steht für "Substitute User" und ist ein Befehl in Linux-Systemen, der es einem 
@@ -1540,10 +1684,12 @@ wechselt `su` vollständig zur Identität des anderen Benutzers und startet eine
 Die dadurch veränderten Rechte bleiben aktiv, bis man die Shell beendet.
 [ENDTERM]
 
+
 [TERM::sudo]
 `sudo` ist ein Befehl in Linux-Systemen, der es autorisierten Benutzern ermöglicht, 
 vorübergehend erhöhte Rechte zu erhalten, um administrative Aufgaben auszuführen.
 [ENDTERM]
+
 
 [TERM::SUT|System Under Test]
 Hierbei handelt es sich um ein Konzept in der Softwaretestung, das das System oder die Komponente
@@ -1552,11 +1698,13 @@ Fehler, Schwachstellen oder Funktionsstörungen untersucht. Das SUT kann eine ei
 Softwareanwendung, ein Modul, eine Funktion oder sogar ein gesamtes System umfassen.
 [ENDTERM]
 
+
 [TERM::Symlink|symbolischer Link]
 Symbolische Links sind Verknüpfungen auf Dateien oder Verzeichnisse, die an einem anderen Ort ist, 
 als die originale Datei. Sie bieten Flexibilität und ermöglichen es, auf Dateien oder 
 Verzeichnisse zuzugreifen, unabhängig von ihrem physischen Speicherort.
 [ENDTERM]
+
 
 [TERM::Symmetrische Verschlüsselung]
 Symmetrische Verschlüsselung ist ein Verfahren, bei dem der gleiche Schlüssel sowohl zum 
@@ -1564,6 +1712,7 @@ Verschlüsseln als auch zum Entschlüsseln von Daten verwendet wird.
 Sender und Empfänger müssen also denselben geheimen Schlüssel besitzen, um die verschlüsselten 
 Informationen sicher austauschen zu können.
 [ENDTERM]
+
 
 [TERM::Systemtest|System Test]
 Ein Test des Gesamtsystems unter Verwendung von dessen natürlichen Schnittstellen,
@@ -1586,6 +1735,7 @@ Geht ein Paket verloren oder wird beschädigt, fordert TCP dessen erneute Übert
 So wird eine vollständige und fehlerfreie Datenübertragung sichergestellt.
 [ENDTERM]
 
+
 [TERM::TDD|Test-Driven Development|Test-Driven Design|Testgetriebener Entwicklung]
 Eine Softwareentwicklungsmethode, bei der [TERMREF2::Test::-s] vor der eigentlichen Implementierung
 des Codes geschrieben werden. Der Prozess beginnt mit dem Schreiben eines Tests, der das
@@ -1594,16 +1744,19 @@ implementiert, um den Test erfolgreich durchzuführen. Dieser iterative Prozess 
 von Tests, Implementieren des Codes wird fortgesetzt, bis die gewünschte Funktionalität erreicht ist.
 [ENDTERM]
 
+
 [TERM::tee]
 Der Unix-Befehl `tee` liest die Standardeingabe und schreibt sie sowohl in die Standardausgabe als 
 auch in eine oder mehrere Dateien. Er wird oft verwendet, um die Ausgabe eines Befehls zu speichern 
 und gleichzeitig anzuzeigen.
 [ENDTERM]
 
+
 [TERM::Test]
 Das Ausprobieren von Software, um relevante Eigenschaften zu überprüfen;
 meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
 [ENDTERM]
+
 
 [TERM::Testiteration]
 Eine Testiteration bezieht sich auf einen Zyklus oder eine Runde von Testaktivitäten, die
@@ -1613,11 +1766,13 @@ Testfall wird oftmals n-Mal ausgeführt, jedoch mit unterschiedlichen Werten aus
 die Testabdeckung mit minimalem Testerstellungsaufwand.
 [ENDTERM]
 
+
 [TERM::Testsammlung|Testsuite]
 bezeichnet eine Sammlung von Testfällen, die dazu dienen, verschiedene Aspekte einer Softwareanwendung
 zu testen, indem unterschiedliche Funktionen oder Eigenschaften der Software getestet werden. Diese
 Sammlungen enthalten i.d.R. mehrere Testfälle und werden chronologisch durchgeführt.
 [ENDTERM]
+
 
 [TERM::Testszenario]
 Hierbei handel es sich um eine detaillierte Beschreibung eines spezifischen Testfalls oder einer
@@ -1627,6 +1782,7 @@ ausgeführt werden müssen, um das gewünschte Ergebnis zu erzielen, sowie die e
 oder Verhaltensweisen der Software.
 [ENDTERM]
 
+
 [TERM::Time-Based One-Time Password|TOTP]
 Dabei handelt es sich um ein zeitbasiertes, einmalig verwendbares Passwort, das oft in der
 Zwei-Faktor-Authentifizierung (2FA) verwendet wird. Bei TOTP generiert eine Anwendung wie Google
@@ -1634,6 +1790,7 @@ Authenticator oder eine ähnliche App in regelmäßigen Intervallen (typischerwe
 neues Passwort basierend auf einem geheimen Schlüssel und der aktuellen Zeit. Dieses Passwort wird
 dann für die Authentifizierung verwendet.
 [ENDTERM]
+
 
 [TERM::Top-Level-Domain]
 Top-Level-Domains (TLDs) sind die letzten Teile einer Internet-Domain, die nach dem letzten Punkt 
@@ -1645,12 +1802,14 @@ TLDs helfen, die Art und den Standort einer Website zu identifizieren und sind e
 Bestandteil des Domain Name Systems (DNS).
 [ENDTERM]
 
+
 [TERM::traceroute|Traceroute]
 Der Unix-Befehl `traceroute` zeigt den Pfad an, den Datenpakete durch ein Netzwerk nehmen, um ein 
 Ziel zu erreichen. Es listet die einzelnen Hops (Zwischenstationen) auf, die die Pakete durchlaufen, 
 und misst die Antwortzeit zu jedem Hop. Dies ist nützlich, um Netzwerkprobleme zu diagnostizieren 
 oder die Route zu einem Server zu analysieren.
 [ENDTERM]
+
 
 [TERM::Transaktion|transaction]
 Eine Bündelung von mehreren Aktionen auf einer Datenbank. Nur bei erfolgreicher Durchführung 
@@ -1659,6 +1818,7 @@ aller Aktionen wird die Änderung auf die Datenbank geschrieben (Commit), andern
 
 [HREF::https://www.datenbanken-verstehen.de/datenbank-grundlagen/dbms/datenbank-tansaktion/]
 [ENDTERM]
+
 
 [TERM::Transportprotokoll]
 Ein Transportprotokoll ist ein Kommunikationsprotokoll, das den sicheren und zuverlässigen 
@@ -1673,6 +1833,7 @@ Transportprotokolle spielen eine entscheidende Rolle bei der Gewährleistung der
 und -effizienz im Internet.
 [ENDTERM]
 
+
 [TERM::TUI|Text-based User Interface]
 Terminal-basierte Bedienschnittstelle, die mit Tastatur und Cursor benutzt wird.  
 Wichtiger Spezialfall ist das [TERMREF::CLI].  
@@ -1680,6 +1841,7 @@ Gegensatz ist das [TERMREF::GUI].
 
 [HREF::https://en.wikipedia.org/wiki/Text-based_user_interface]
 [ENDTERM]
+
 
 [TERM::Tutorial]
 Ein kurzer Lehrgang (in der Regel in Schriftform, eventuell als Video)
@@ -1702,6 +1864,7 @@ Es bietet keine Fehlerkorrektur, das bedeutet, dass Pakete verloren gehen oder i
 Reihenfolge ankommen können, ohne dass sie neu gesendet werden.
 [ENDTERM]
 
+
 [TERM::Umgebungsvariable|Umgebungsvariablen|environment variable]
 Ein Paar aus Name und Wert, das einem Prozess eines Unix-Betriebssystems zugeordnet ist
 und an von diesem Prozess aus gestartete Unterprozesse weitergegeben wird und deshalb zur
@@ -1713,6 +1876,7 @@ indem man das Kommando `export` benutzt
 und anzeigen mittels `echo`
 (Beispiel: `echo $HOME`).
 [ENDTERM]
+
 
 [TERM::Unicode|UTF-8|UTF-16|UCS-2]
 [Unicode](https://de.wikipedia.org/wiki/Unicode) ist der umfassendste Zeichensatz,
@@ -1739,6 +1903,7 @@ oder dessen subtil weniger leistungsfähigen Vetter
 [UCS-2](https://de.wikipedia.org/wiki/Universal_Coded_Character_Set).
 [ENDTERM]
 
+
 [TERM::Unix|POSIX]
 Eine große und lose Familie von Betriebssystemen, die auf unterschiedlichen Betriebssystemkernen aufbauen,
 aber viele Grundkonzepte gemeinsam haben.
@@ -1753,6 +1918,7 @@ aber häufig spart man sich die Mühe dieser Unterscheidung einfach.
 [HREF::https://de.wikipedia.org/wiki/POSIX]  
 [HREF::https://de.wikipedia.org/wiki/Unix]
 [ENDTERM]
+
 
 [TERM::Urgrund|root cause|Urgrundanalyse|root cause analysis|Grundursachen-Analyse]
 Eine Urgrundanalyse (Grundursachen-Analyse, root cause analysis) geht so:
@@ -1775,6 +1941,7 @@ Wenn man dann diesen Faktor tatsächlich passend verändert, ist
 Urgrundanalyse eine hochwirksame Methode zur Vorbeugung von Problemen.
 [ENDTERM]
 
+
 [TERM::URL|URI]
 Ein URL (Uniform Resource Locator) bzw. URI (Uniform Resource Identifier), wie es eigentlich offiziell
 (aber weniger gebräuchlich) heißt,
@@ -1788,6 +1955,7 @@ möglicherweise Anfrageparametern
 ("query", z.B. "?a=1&b=user").
 URLs ermöglichen es [TERMREF::HTTP]-Klienten (z.B. Webbrowsern), Web-Ressourcen zu bezeichnen (zu "adressieren").
 [ENDTERM]
+
 
 [TERM::User Story|Userstory]
 Kurze, informelle Beschreibung einer Funktion aus der Perspektive eines Endbenutzers.
@@ -1806,6 +1974,7 @@ Bestätigung durch Überprüfung, dass ein Arbeitsergebnis den Bedürfnissen ein
 [HREF::https://glossary.istqb.org/de_DE/term/validierung-1]
 [ENDTERM]
 
+
 [TERM::venv|virtualenv|virtual environment]
 Virtuelle Python-Umgebung:
 Ein Dateibaum, der konzeptuell eine eigene Installation von Python enthält
@@ -1822,6 +1991,7 @@ von Python selbst, sodass es insbesondere keine Probleme macht, falls verschiede
 das gleiche Paket X in unterschiedlichen Versionen benötigen.
 [ENDTERM]
 
+
 [TERM::Verifizierung|verifizieren]
 Verifizierung oder Verifikation (von lateinisch veritas "Wahrheit" und facere "machen") ist
 die Bestätigung durch Bereitstellung eines objektiven Nachweises, dass festgelegte
@@ -1830,11 +2000,13 @@ Anforderungen erfüllt worden sind.
 [HREF::https://glossary.istqb.org/de_DE/term/verifizierung]  TODO_2_ruhe/prechelt: AchduliebeGüte!
 [ENDTERM]
 
+
 [TERM::Versagen|Failure|Symptom]
 Falsches Verhalten eines Programms relativ zur
 Spezifikation, der Anforderung oder den Erwartungen.
 Ist ein Symptom eines [TERMREF2::Defekt::-s].
 [ENDTERM]
+
 
 [TERM::Versionsnummer|Versionierung]
 Versionsnummern folgen in der Regel einem bestimmten Schema, das je nach den Anforderungen des
@@ -1852,6 +2024,7 @@ Beispiele: GCC, Clang, MSVC, aber auch [TERMREF::IDE]s können Bestandteil einer
 Werkzeugkette sein.
 [ENDTERM]
 
+
 [TERM::WET|Write every time|Write everything twice]
 Das Gegenteil zu [TERMREF::DRY].  
 Während WET nicht als allgemein zu verfolgendes Prinzip gilt, 
@@ -1866,6 +2039,7 @@ lesbarer und wartbarer zu machen.
 aus. Es ist nützlich, um lange Listen von Argumenten zu verarbeiten, die sonst die Befehlszeilenlänge 
 überschreiten würden.
 [ENDTERM]
+
 
 [TERM::XML]
 XML (eXtensible Markup Language) ist eine [TERMREF::Auszeichnungssprache] zur Darstellung
