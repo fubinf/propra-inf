@@ -55,7 +55,8 @@ p.FirstName = "Eric"
 Alle Felder dieser Struktur haben Namen, die mit Großbuchstaben beginnen.
 Solche Felder sind öffentlich (public/exported).
 
-Felder mit Kleinbuchstaben sind hingegen privat, also nur in den Methoden zugreifbar.
+Felder mit Kleinbuchstaben sind hingegen privat, also nur im selben Paket zugreifbar.
+<!-- TODO_Brandes: go-modules referenzieren, sobald die Aufgabe in beta ist -->
 [ENDNOTICE]
 
 
