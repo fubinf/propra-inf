@@ -10,9 +10,7 @@ Ich habe Maps in Go kennengelernt.
 [ENDSECTION]
 
 [SECTION::background::default]
-Maps gehören zu den mächtigsten Datentypen in Go.
-
-Sie ermöglichen es, Daten schnell über Schlüssel zu speichern und wiederzufinden — 
+Maps ermöglichen es, Daten schnell über Schlüssel zu speichern und wiederzufinden — 
 wie ein eingebautes Nachschlagewerk. 
 Ob Zählungen, Zuordnungen oder schnelle Suchen: Maps bieten eine elegante und effiziente 
 Lösung für viele Alltagsprobleme in der Programmierung.
