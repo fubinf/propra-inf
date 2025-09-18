@@ -1,4 +1,4 @@
-title: Weitere Grundlagen von Go — Strukturen (Teil 2)
+title: "Grundlagen von Go: Strukturen (Teil 2)"
 stage: alpha
 timevalue: 1.5
 difficulty: 2
@@ -13,7 +13,7 @@ Ich kann komplexere Datentypen in Go definieren.
 In [PARTREF::go-structs1] haben sie bereits Strukturen kennengelernt.
 
 In dieser Aufgabe handelt es sich um anonyme Strukturen, die leere Struktur und 
-das Zusammenspiel von dem pass-by-value-Verhalten, Zeigern und Strukturen.
+Strategien zur Kontrolle des Speicherverbrauchs (im Kontext von Speicherlayout).
 [ENDSECTION]
 
 [TOC]
@@ -23,15 +23,15 @@ das Zusammenspiel von dem pass-by-value-Verhalten, Zeigern und Strukturen.
 
 ### Anonyme Strukturen
 
-Lesen Sie die folgende
-[Erklärung, was anonyme Strukturen sind](https://blog.boot.dev/golang/anonymous-structs-golang/)
-.
+Lesen Sie den Artikel
+[What Are Golang's Anonymous Structs?](https://blog.boot.dev/golang/anonymous-structs-golang/),
+um zu erfahren, was anonyme Strukturen sind.
 
 [EQ] Welche Anwendungen von anonymen Strukturen erwähnt der Autor?
 
 [EQ] Wie würden Sie einen Slice mit drei anonymen Strukturen instanziieren, die nur
-die Felder `price`, `language` und `author` besitzen? 
-Geben Sie den Codeabschnitt in Ihrer Markdown-Datei.
+die Felder `price`, `language` und `author` besitzen?
+Geben Sie den Codeabschnitt in Ihrer Markdown-Datei ab.
 
 (Die konkreten Werte für die drei Felder dürfen Sie ausdenken.)
 
@@ -60,7 +60,7 @@ Compiler festgelegte Speicheradresse teilen — `zerobase`.
 Go Compiler erkennt, dass so eine Struktur keine Felder besitzt und
 dementsprechend keinen Speicherplatz braucht, und spart sich das Allokieren.
 
-Falls Sie mehr zum Thema wissen wollen (könnte auch dann von Interesse sein, wenn 
+Falls Sie mehr zum Thema wissen wollen (könnte auch dann von Interesse sein, wenn
 Sie noch relativ frisch im Go-Universum sind):
 
 - [Dave Cheney: The empty struct](https://dave.cheney.net/2014/03/25/the-empty-struct)
@@ -71,11 +71,11 @@ Sie noch relativ frisch im Go-Universum sind):
 von der leeren Struktur erzeugt und deren Adressen auf die Kommandozeile ausgibt.
 Was fällt Ihnen auf?
 
-[HINT::Die Adresse einer Variable ausgeben lassen]
+[HINT::Ich weiß nicht, wie ich die Adresse einer Variable ausgeben kann]
 Benutzen Sie die Funktion `fmt.Printf` mit dem `%p` Platzhalter — `p` steht für
 "Pointer" und sorgt dafür, dass es tatsächlich die Speicheradresse angezeigt wird.
 
-[HINT::Die Adresse einer Variable ermitteln]
+[HINT::Ich weiß nicht, wie ich die Adresse einer Variable ermitteln kann]
 Das _Referenzieren_ ermöglicht uns der Operator `&`.
 
 `&variable` gibt die Adresse der Variable zurück.
@@ -107,26 +107,20 @@ func processPerson(p *Person) {
     ...
 }
 ```
+
 Schauen Sie sich diese
 [pass-by-value vs pass-by-reference Benchmark](https://blog.boot.dev/golang/pointers-faster-than-values/)
-an.
+an, um die folgende Frage zu beantworten.
 
 [EQ] Was wäre ein guter Grund, Option 2 (übergabe per Zeiger) gegenüber
 Option 1 (übergabe per Wert) zu bevorzugen?
 Was wäre ein nicht so guter Grund?
 
-[HINT::Hilfsfragen]
-
-- Muss die Funktion etwas an Person ändern?
-- Wie groß ist die Struktur `Person`?
-[ENDHINT]
-
 [FOLDOUT::Gibt es einen Punkt, ab dem die Laufzeiteffizienz deutlich beeinflusst wird?]
 Kurze Antwort — ja, wenn die Struktur größer als 10MB ist.
 
 Eine etwas längere Antwort finden Sie in dem Artikel:
-[Go Benchmarks: Does Pass by Pointer Really Make a Difference?](https://dev.to/anubhav023/go-benchmarks-does-pass-by-pointer-really-make-a-difference-1540)
-.
+[Go Benchmarks: Does Pass by Pointer Really Make a Difference?](https://dev.to/anubhav023/go-benchmarks-does-pass-by-pointer-really-make-a-difference-1540).
 [ENDFOLDOUT]
 
 [NOTICE]
@@ -145,12 +139,12 @@ fmt.Println((*pptr).Age) // explizit (aber unnötig)
 ```
 [ENDNOTICE]
 
-[ER] Übernehmen Sie die Strukturen `Person` und `Employee` aus [PARTREF::go-structs1]. 
+[ER] Übernehmen Sie die Strukturen `Person` und `Employee` aus [PARTREF::go-structs1].
 Implementieren Sie eine Methode `Promote` auf `Employee`, die ein Argument
 `newPosition string` erwartet.
 Sie soll die Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
 
-[ER] Implementieren Sie außerdem eine Methode `(e Employee) Print()`, die die Struktur 
+[ER] Implementieren Sie außerdem eine Methode `(e Employee) Print()`, die die Struktur
 im folgenden Format darstellt:
 ```go
 fmt.Printf("%v %v, %v (%v)\n", e.FirstName, e.LastName, e.Age, e.Position)
@@ -162,7 +156,7 @@ fmt.Printf("%v %v, %v (%v)\n", e.FirstName, e.LastName, e.Age, e.Position)
 [INCLUDE::include/go-structs-mutation-control-snippet.go]
 ```
 
-[ER] Stellen Sie sicher, dass Ihre `main`-Funktion genauso aussieht:
+[ER] Stellen Sie sicher, dass Ihre `main`-Funktion genau so aussieht:
 
 ```go
 func main() {
@@ -178,18 +172,21 @@ func main() {
 
 ### Speicherlayout (Alignment und Padding)
 
-Es gibt Situationen, wo Reihenfolge der Felder einer Struktur tatsächlich einen Unterschied macht.
+Es gibt Situationen, in denen die Reihenfolge der Felder innerhalb einer Struktur
+tatsächlich einen Unterschied macht.
 
-Ein wichtiger Begriff, den Sie nun kennenlernen müssen, ist _Alignment_.
-Lesen Sie zunächst den
-[Abschnitt: Type Alignment Guarantees in Go](https://go101.org/article/memory-layout.html)
-.
+Ein wichtiger Begriff, den Sie an dieser Stelle kennenlernen sollten, ist das sogenannte
+_Alignment_.
 
-[HINT::Zusammenfassung]
-Um eine effiziente Datenverarbeitung durch die CPU zu gewährleisten, müssen sich alle Werte eines
-Typs auf Speicheradressen befinden, die ein Vielfaches einer bestimmten Zahl _N_ sind.
+Lesen Sie dazu den Abschnitt "Type Alignment Guarantees in Go" aus dem Artikel
+[go101: Memory Layouts](https://go101.org/article/memory-layout.html),
+um ein besseres Verständnis dafür zu bekommen, was genau mit Alignment gemeint ist.
 
-Diese Zahl _N_ bezeichnet man als _Alignment_ dieses Typs.
+[HINT::Ich finde den Abschnitt zu technisch]
+Um eine effiziente Datenverarbeitung durch die CPU zu gewährleisten, müssen alle Werte eines
+Typs auf Speicheradressen liegen, die ein Vielfaches einer bestimmten Zahl _N_ sind.
+
+Diese Zahl _N_ bezeichnet man als das _Alignment_ des jeweiligen Typs.
 
 Mit anderen Worten: Alle Speicheradressen, an denen Werte dieses Typs gespeichert werden,
 müssen durch das Alignment teilbar sein.
@@ -311,7 +308,7 @@ Diese beiden zusätzlichen Bytes nennt man _Padding_.
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe als ausführbare Datei siehe hier: 
+Musterlösung der Programmieraufgabe als ausführbare Datei siehe hier:
 [TREEREF::/Sprachen/Go/go-structs2.go]
 .
 [ENDINSTRUCTOR]
