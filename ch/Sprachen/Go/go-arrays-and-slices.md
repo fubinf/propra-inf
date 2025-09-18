@@ -114,8 +114,7 @@ Ihr Gedankengang:
 [NOTICE]
 Um ein besseres Verständnis zu schaffen, was Slices eigentlich sind,
 lesen Sie nun diesen Artikel (es gibt Bilder!):
-[The Go Blog: Go Slices — usage and internals](https://go.dev/blog/slices-intro)
-.
+[The Go Blog: Go Slices — usage and internals](https://go.dev/blog/slices-intro).
 [ENDNOTICE]
 
 [ER] Schauen Sie sich die folgenden zwei Beispiele ganz genau an und denken Sie mit.

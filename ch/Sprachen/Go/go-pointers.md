@@ -192,8 +192,7 @@ Das Lesen von
 ist zwar nicht notwendig, aber sehr empfohlen.
 
 Lesen Sie nun folgende Abschnitte aus dem Artikel
-[Exploring ‘unsafe’ Features in Go 1.20: A Hands-On Demo](https://medium.com/@bradford_hamilton/exploring-unsafe-features-in-go-1-20-a-hands-on-demo-7149ba82e6e1)
-:
+[Exploring ‘unsafe’ Features in Go 1.20: A Hands-On Demo](https://medium.com/@bradford_hamilton/exploring-unsafe-features-in-go-1-20-a-hands-on-demo-7149ba82e6e1):
 
 - **Background: The Role of ‘Unsafe’ in Go** (Kommentar, warum das Paket nur sehr 
   vorsichtig zu benutzen ist)
