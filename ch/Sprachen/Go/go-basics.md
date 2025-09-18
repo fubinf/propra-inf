@@ -84,6 +84,26 @@ das nämlich seinen ganz eigenen Touch als Programmiersprache hat und diverse Ei
 die schrullig wirken können, tatsächlich aber ziemlich schlau und praktisch sind.
 
 
+### Kommentare
+
+In Go gibt es zwei Arten von Kommentaren: einzeilige und mehrzeilige.
+
+Ein **einzeiliger Kommentar** beginnt mit `//`:
+
+```go
+// Das ist ein einzeiliger Kommentar
+```
+
+Ein mehrzeiliger Kommentar beginnt mit `/*` und endet mit `*/`.
+Alles dazwischen wird vom Compiler ignoriert:
+
+```go
+/*
+Das ist ein
+mehrzeiliger Kommentar
+*/
+```
+
 ### Variablen und primitive Datentypen
 
 Es existieren folgende Namenskonventionen:
