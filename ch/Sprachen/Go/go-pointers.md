@@ -1,4 +1,4 @@
-title: "Go-Grundlagen: Zeiger"
+title: "Grundlagen von Go: Zeiger"
 stage: alpha
 timevalue: 2
 difficulty: 2

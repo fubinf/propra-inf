@@ -1,4 +1,4 @@
-title: "Go-Grundlagen: Arrays and Slices"
+title: "Grundlagen von Go: Arrays and Slices"
 stage: alpha
 timevalue: 2.5
 difficulty: 2

@@ -1,4 +1,4 @@
-title: "Go-Grundlagen: Funktionen"
+title: "Grundlagen von Go: Funktionen"
 stage: beta
 timevalue: 1.5
 difficulty: 2

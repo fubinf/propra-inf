@@ -1,4 +1,4 @@
-title: "Go-Grundlagen: Maps"
+title: "Grundlagen von Go: Maps"
 stage: alpha
 timevalue: 1
 difficulty: 2
