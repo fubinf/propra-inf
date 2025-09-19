@@ -199,7 +199,6 @@ chapters:
       - name: Festpreisprojekt
   - name: Web
     taskgroups:
-      - name: Web-Grundlagen
       - name: HTML
       - name: HTTP
       - name: CSS
