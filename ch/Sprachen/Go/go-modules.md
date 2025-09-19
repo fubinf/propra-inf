@@ -1,7 +1,8 @@
 title: Module und Pakete in Go
-stage: draft
+stage: alpha
 timevalue: 3
 difficulty: 2
+assumes: go-basics
 ---
 
 [SECTION::goal::idea,experience]
@@ -10,13 +11,12 @@ Ich weiß, wie Module in Go verwaltet, veröffentlicht und versioniert werden.
 
 [SECTION::background::default]
 Manchmal reicht die Standardbibliothek nicht aus — dann greifen Programmierer
-auf externe Bibliotheken.
-Manchmal wollen die Programmierer selbst ein gewisses Stück der Funktionalität
-in anderen Projekten wiederverwenden.
-Dann bietet es sich an, ein Modul anzulegen, das in zukünftigen Projekten
-importiert wird.
+auf externe Bibliotheken zurück.
+Manchmal wollen sie bestimmte Funktionalität in anderen Projekten wiederverwenden.
+In solchen Fällen bietet es sich an, ein eigenes __Modul__ zu erstellen,
+das in zukünftigen Projekten importiert werden kann.
 
-Doch wie werden Bibliotheken (beziehungsweise _Module_) öffentlich gemacht?
+Doch wie werden Bibliotheken — beziehungsweise __Module__ — öffentlich zugänglich gemacht?
 Darum geht es in dieser Aufgabe.
 [ENDSECTION]
 
@@ -24,13 +24,11 @@ Darum geht es in dieser Aufgabe.
 
 [SECTION::instructions::detailed]
 Diese Aufgabe orientiert sich im Wesentlichen an diesen Beiträgen auf
-[go.dev/blog](https://go.dev/blog/)
-:
+[go.dev/blog](https://go.dev/blog/):
 
 - [Using Go Modules](https://go.dev/blog/using-go-modules)
 - [Publishing Go Modules](https://go.dev/blog/publishing-go-modules)
 - [Go Modules: v2 and Beyond](https://go.dev/blog/v2-go-modules)
-
 
 ### Paket
 
@@ -78,22 +76,7 @@ importiert werden.
   Wenn Sie etwas schnell ausprobieren möchten, dürfen Sie alles unter `package main`
   schreiben und mit `go run` ausführen.
 
-[NOTICE]
-Falls Sie Ihr Modul veröffentlichen möchten, **muss** der Modulname mit der URL
-übereinstimmen, wo sich das Modul befindet.
-
-**Beispiel:**
-
-- Sie legen ein Repo namens `my_awesome_golang_module` auf [Github](https://github.com) an,
-  welches dann über `https://github.com/username/my_awesome_golang_module`
-  erreichbar ist.
-- Sollte das Repo ein Modul sein, so muss die `my_awesome_golang_module/go.mod`-Datei
-  mit der folgenden Zeile anfangen: `module github.com/username/my_awesome_golang_module`
-[ENDNOTICE]
-
-
-### Was ist der Zweck?
-
+[FOLDOUT::Wozu das Ganze?]
 **Module** dienen Versionierung und Nachverfolgung externer Abhängigkeiten eines Projekts.
 Explizite Versionierung stellt sicher, dass Builds reproduzierbar sind.
 
@@ -104,6 +87,7 @@ Explizite Versionierung stellt sicher, dass Builds reproduzierbar sind.
 - Wiederverwendbarkeit erleichtern
 
 Meistens wird Ihr Projekt ein einziges Modul sein, welches mehrere Pakete enthält.
+[ENDFOLDOUT]
 
 
 ### Wie werden Module/Pakete importiert?
@@ -124,13 +108,58 @@ Hier gibt es zwei mögliche Fälle:
 
 1. Importieren von Paketen innerhalb eines Moduls: `import module_name/package_name`.
    Dabei müssen Sie aufpassen, dass Ihr Abhängigkeitsgraph azyklisch bleibt.
-2. Externe Module/Bibliotheken — beispielsweise ein Modul importieren, welches
+2. Importieren von externen Modulen — beispielsweise von einem Modul, welches
    sich unter `github.com/username/module_name` befindet.
     - in dem Root-Verzeichnis des Moduls `go get github.com/username/module_name`
       ausführen und dann im Quellcode importieren;
     - **oder** zuerst im Quellcode importieren (`import "github.com/username/module_name"`)
       und danach aus dem Root-Verzeichnis des Moduls `go get` ausführen.
       So werden alle nötigen Bibliotheken automatisch heruntergeladen.
+
+#### Ein Beispiel
+
+So könnte ein Projekt aussehen:
+
+    my_module/
+    ├── go.mod
+    ├── main.go
+    ├── package_1/
+    │   ├── a.go
+    │   └── b.go
+    └── package_2/
+        ├── c.go
+        └── d.go
+
+`go.mod` deklariert ein Modul, `main.go` ist der Einstiegspunkt, und die Verzeichnisse
+`package_1` und `package_2` sind Pakete.
+
+`a.go` und `b.go` beginnen mit der Zeile `package package_1`,
+`c.go` und `d.go` beginnen mit der Zeile `package package_2`.
+
+Soll eine Funktion `Foo` aus `package_2` in `a.go` benutzt werden, so lautet der Import
+`import my_module/package_2`.
+Die Funktion selbst ist dann über `package_2.Foo()` zugreifbar.
+
+[NOTICE]
+Hieße die Funktion `foo`, hätte das nicht funktioniert, da kleingeschriebene
+Deklarationen in einem Paket privat sind.
+[ENDNOTICE]
+
+
+### Wie werden Module veröffentlicht?
+
+Falls Sie Ihr Modul veröffentlichen möchten, **muss** der Modulname mit der URL
+übereinstimmen, wo sich das Modul befindet.
+
+**Beispiel:**
+
+- Sie legen ein Repo namens `my_awesome_golang_module` auf [Github](https://github.com) an,
+  welches dann über `https://github.com/username/my_awesome_golang_module`
+  erreichbar ist.
+- Sollte das Repo ein Modul sein, so muss die `my_awesome_golang_module/go.mod`-Datei
+  mit der folgenden Zeile anfangen: `module github.com/username/my_awesome_golang_module`.
+
+Das probieren Sie nun selber aus.
 
 [ER] Legen Sie ein öffentliches Github-Repo an.
 Den Modulnamen dürfen Sie beliebig wählen (um unerwartete Fehler zu vermeiden,
@@ -143,8 +172,7 @@ Die Datei `go.mod` kann auf zwei verschiedene Arten angelegt werden:
 
 - entweder mittels des Kommandos `go mod init github.com/your_username/your_module_name`;
 - oder manuell im Root-Verzeichnis (siehe Beispiel
-  [Anatomy of go.mod](https://encore.cloud/guide/go.mod)
-  ).
+  [Anatomy of go.mod](https://encore.cloud/guide/go.mod)).
 
 Die Datei `main.go` soll folgendermaßen aussehen:
 
@@ -158,14 +186,15 @@ func PrintFromRemote() {
 }
 ```
 
-[ER] Pushen Sie anschließend die Änderungen auf Remote.
+[ER] Committen und pushen Sie anschließend die Änderungen auf Remote.
 
-[ER] Kreieren Sie nun ein lokales Projekt/Modul. Dieses darf beliebig heißen.
+[ER] Legen Sie ein lokales Projekt/Modul an.
+Dieses darf beliebig heißen.
 
 [ER] Legen Sie eine Datei `go.mod` an (entweder per `go mod init` oder manuell).
 
 [ER] Legen Sie eine weitere Datei `go-modules.go` an und kopieren Sie den folgenden
-Quellcodeabschnitt in diese Datei:
+Quellcodeabschnitt in diese Datei (ersetzen Sie den Import-Pfad durch den richtigen):
 
 ```go
 package main
@@ -185,8 +214,23 @@ Und jetzt im Root-Verzeichnis des lokalen Moduls folgende Befehle ausführen:
 
 Die Ausgabe müsste "Hi from remote module!" sein.
 
+[WARNING]
+Wir empfehlen, die Umgebungsvariable `GOPROXY` auf `direct` zu setzen.
+Führen Sie dazu folgenden Befehl im Terminal aus:
 
-#### Nützliche Kommandos
+    export GOPROXY=direct
+
+Dadurch lassen sich Caching-Probleme vermeiden, etwa in Fällen wie:
+_"Ich habe xyz gepusht, aber im lokalen Projekt ist die Änderung nicht sichtbar."_
+
+Wenn Sie im Verlauf der Aufgabe der Endruck haben, dass etwas nicht stimmt,
+sollte `export GOPROXY=direct` Ihr erster Debugging-Schritt sein.
+[ENDWARNING]
+
+<!-- time estimate: 30 min -->
+
+
+### Nützliche Kommandos
 
 Erklären Sie jeweils, was die folgenden Befehle tun.
 
@@ -201,14 +245,18 @@ Falls das nicht ausreicht, dürfen Sie alle verfügbaren Quellen benutzen.
 
 [EQ] `go mod edit -replace`
 
+<!-- time estimate: 20 min -->
+
 
 ### Versionierung
 
-Bibliotheken in Go unterliegen den Regeln
-[semantischer Versionierung](https://semver.org/)
+Bibliotheken in Go unterliegen den Regeln semantischer Versionierung
 — Versionsnummer entsprechen dem Schema `vMAJOR.MINOR.PATCH`.
 
-[EQ] Wodurch unterscheiden sich Major-, Minor- und Patch-Versionen?
+[EQ] Finden Sie in dem Artikel [Semantic Versioning 2.0.0](https://semver.org/) eine Antwort
+auf die Frage: Wodurch unterscheiden sich Major-, Minor- und Patch-Versionen?
+
+<!-- time estimate: 5 min -->
 
 Während der Entwicklung (v0) und beim ersten stabilen Release (v1) befindet sich
 der Quellcode im Root-Verzeichnis des Moduls.
@@ -223,56 +271,44 @@ beziehungsweise `.../v3` angegeben wird.
 [NOTICE]
 Major-Versionen höher als 1 müssen in dem Import-Pfad angegeben werden!
 
-Um beispielsweise dritte Major-Version einer Bibliothek zu benutzen, muss die 
-Import-URL mit `v3` enden:
-
 ```go
 import m3 "github.com/username/library/v3"
 ```
 [ENDNOTICE]
 
-Folgende Schritte finden statt, wenn ein Modul importiert wird (Version `v2` als Beispiel):
+Importieren eines Moduls besteht aus folgenden Schritten (Version `v2` als Beispiel):
 
 1. Das git-Repo unter der Import-URL finden;
 2. Major-Version aus der URL auslesen:
     - falls diese mit beispielsweise `v2` endet, so ist die Major-Version `2`;
     - wird keine `v2`-Endung gefunden, so ist die Major-Version `1`;
-3. Das Repo nach einem git-Tag (Versionstag) mit der größten stabilen Version durchsuchen,
-   die immer noch der Major-Version entspricht (`v2.x.x`):
-    - der Versionstag wurde gefunden — die spezifizierte Version herunterladen;
-    - kein passender Versionstag wurde gefunden — agiere nach der Verzeichnisstruktur
-      — die Version unter `/v2` wird heruntergeladen und mit einer
-      [Pseudoversionsnummer](https://go.dev/doc/modules/version-numbers#pseudo-version-number)
-      bezeichnet.
-      Diese Pseudoversionsnummer wird in `go.mod` des importierenden Moduls gespeichert.
+3. Das Repo nach einem Git-Tag (Versionstag) mit der Major-Version `v2` durchsuchen.
+   Gibt es mehrere Minor-Versionen, so wird die größte benutzt;
+4. Falls der Versionstag gefunden wurde, wird die spezifizierte Version heruntergeladen;
+   ansonsten wird die Version aus dem Verzeichnis `/v2` heruntergeladen und mit einer
+   [Pseudoversionsnummer](https://go.dev/doc/modules/version-numbers#pseudo-version-number)
+   versehen.
+   Diese Pseudoversionsnummer wird in `go.mod` des importierenden Moduls gespeichert;
+5. Gibt es keinen passenden Git-Tag und kein passendes Verzeichnis,
+   dann schlägt das Importieren fehl.
 
-Lesen Sie nun diesen Eintrag über
-[git-Tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
-. Was Sie davon lernen sollen:
+[ER] Finden Sie nun in diesem Eintrag über
+[Git-Tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+Informationen darüber, wie:
 
-- wie ein git-Tag kreiert wird;
-- wie ein git-Tag gelöscht wird;
-- wie ein git-Tag auf Remote gepusht wird.
-
-[WARNING]
-Falls Sie merken, dass `go get` nicht die richtige Version Ihres Moduls
-herunterlädt, kann das am Proxyserver liegen.
-
-Um das auszuschließen, setzen Sie die `GOPROXY` Umgebungsvariable auf `direct`.
-Führen Sie den Befehl im Terminal aus:
-
-    export GOPROXY=direct
-[ENDWARNING]
+- ein Git-Tag erstellt wird;
+- ein Git-Tag gelöscht wird;
+- ein Git-Tag auf ein Remote-Repo gepusht wird.
 
 [ER] Taggen Sie den letzten Commit in `your_module_name` mit `v1.0.0`
-und pushen Sie den git-Tag auf Remote.
+und pushen Sie den Git-Tag auf Remote.
 
 Dadurch wird der Stand des Repos als v1.0.0 Version "versiegelt".
 Alle Nutzer des Moduls, die das Modul mittels
 `import "github.com/your_username/your_module_name"` importieren, erhalten
 genau den Repo-Stand, der nun mit `v1.0.0` getaggt wurde.
 
-[ER] Laden Sie diese Version mittels 
+[ER] Laden Sie diese Version mittels
 `go get github.com/your_username/your_module_name@v1.0.0` herunter.
 
 [ER] Kreieren Sie die nächste Major-Version: `v2`.
@@ -306,6 +342,8 @@ func main() {
 [EC] `go get`
 
 [EC] `go run go-modules.go`
+
+<!-- time estimate: 40 min -->
 [ENDSECTION]
 
 [SECTION::submission::information,trace]
