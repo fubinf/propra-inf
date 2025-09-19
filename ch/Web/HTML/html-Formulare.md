@@ -2,7 +2,7 @@ title: Formulare in HTML
 stage: beta
 timevalue: 1.5
 difficulty: 2
-assumes: html-erste-Schritte, html-Medien, html-Semantik, http-Methoden
+assumes: html-erste-Schritte, html-Medien, html-Semantik, http-POST
 ---
 [SECTION::goal::experience]
 
