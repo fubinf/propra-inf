@@ -199,8 +199,8 @@ chapters:
       - name: Festpreisprojekt
   - name: Web
     taskgroups:
-      - name: HTML
       - name: HTTP
+      - name: HTML
       - name: CSS
       - name: JavaScript
       - name: Django
