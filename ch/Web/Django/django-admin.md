@@ -1,6 +1,6 @@
 title: Django django-admin Kommandozeilen-Tool
-stage: draft
-timevalue: 2.0
+stage: alpha
+timevalue: 1.5
 difficulty: 2
 assumes: django-basics, django-project
 ---
@@ -22,19 +22,12 @@ Schnittstelle für alle wichtigen Projektverwaltungsaufgaben bereit.
 
 ### Django Installation und erste Schritte
 
-Bevor wir mit `django-admin` arbeiten können, müssen wir Django installieren.
-Django ist ein Python-Web-Framework, das über `pip` installiert werden kann.
+Bitte lesen Sie zunächst [PARTREF::django-basics] und folgen Sie den dort beschriebenen 
+Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren. 
+Damit verfügen Sie über eine saubere Arbeitsumgebung für die folgenden Aufgaben.  
 
-```bash
-pip install django
-```
-
-Nach der Installation steht das `django-admin` Kommando zur Verfügung.
-Weitere Informationen zur Installation finden Sie in der 
-[Django Dokumentation](https://docs.djangoproject.com/en/stable/intro/install/).
-
-[ER] Installieren Sie Django über `pip` und überprüfen Sie die Installation 
-mit `django-admin --version`.
+[EC] Überprüfen Sie die Installation mit `django-admin --version`.
+<!-- EC1 -->
 
 ### Verfügbare Kommandos anzeigen: `help`
 
@@ -78,14 +71,9 @@ Available subcommands:
     ...
 ```
 
-Weitere Informationen zu allen verfügbaren Kommandos finden Sie in der 
+Optional: weitere Informationen zu allen verfügbaren Kommandos finden Sie in der 
 [Django Management Commands Dokumentation](https://docs.djangoproject.com/en/stable/ref/django-admin/).
 
-[ER] Führen Sie `django-admin help` aus und dokumentieren Sie fünf verschiedene 
-verfügbare Kommandos mit einer kurzen Beschreibung ihrer Funktion.
-
-[ER] Verwenden Sie `django-admin help startproject`, um detaillierte Informationen 
-über das `startproject` Kommando zu erhalten.
 <!-- time estimate: 15 min -->
 
 ### Neues Django-Projekt erstellen: `startproject`
@@ -97,53 +85,15 @@ das die grundlegende Projektstruktur erstellt.
 django-admin startproject projektname
 ```
 
-Dies erstellt ein Verzeichnis mit folgender Struktur:
+Erstellen Sie ein Projekt namens **meinprojekt**, indem Sie zunächst [PARTREF::django-project] 
+lesen und den dort beschriebenen Schritten folgen, 
+um in einer virtuellen Umgebung erfolgreich ein neues Django-Projekt anzulegen.  
 
-```
-projektname/
-    manage.py
-    projektname/
-        __init__.py
-        settings.py
-        urls.py
-        wsgi.py
-        asgi.py
-```
-
-Die wichtigsten Dateien sind:
-
-- `manage.py`: Projektmanagement-Skript für lokale Kommandos
-- `settings.py`: Zentrale Konfigurationsdatei des Projekts
-- `urls.py`: URL-Routing-Konfiguration
-- `wsgi.py`: WSGI-Anwendungsentry-Point für Production-Server
-
-Weitere Informationen zur Projektstruktur finden Sie in der 
-[Django Tutorial Dokumentation](https://docs.djangoproject.com/en/stable/intro/tutorial01/).
-
-[ER] Erstellen Sie ein neues Django-Projekt namens `meinshop` mit 
+[EC] Erstellen Sie ein neues Django-Projekt namens `meinshop` mit 
 `django-admin startproject`.
+<!-- EC2 -->
 
-[ER] Navigieren Sie in das Projektverzeichnis und listen Sie alle erstellten Dateien auf.
-Beschreiben Sie kurz den Zweck von `manage.py`, `settings.py` und `urls.py`.
-
-### Projektstruktur mit Optionen anpassen
-
-Das `startproject` Kommando bietet verschiedene Optionen zur Anpassung:
-
-```bash
-# Projekt in spezifischem Verzeichnis erstellen
-django-admin startproject projektname zielverzeichnis
-
-# Mit benutzerdefinierten Datei-Extensions
-django-admin startproject --extension=py,txt projektname
-
-# Mit Template-URL
-django-admin startproject --template=URL projektname
-```
-
-[ER] Erstellen Sie ein Projekt `testprojekt` in einem spezifischen Verzeichnis 
-`/tmp/django_test` (oder einem entsprechenden Verzeichnis auf Ihrem System).
-<!-- time estimate: 20 min -->
+<!-- time estimate: 5 min -->
 
 ### Django-Anwendung erstellen: `startapp`
 
@@ -181,14 +131,14 @@ Die wichtigsten Dateien sind:
 - `admin.py`: Konfiguration für das Admin-Interface
 - `migrations/`: Datenbankmigrationen
 
-Weitere Details zu Django-Apps finden Sie in der 
+Optional: weitere Details zu Django-Apps finden Sie in der 
 [App-Dokumentation](https://docs.djangoproject.com/en/stable/ref/applications/).
 
-[ER] Wechseln Sie in Ihr `meinshop` Projektverzeichnis und erstellen Sie eine App 
+[EC] Wechseln Sie in Ihr `meinshop` Projektverzeichnis und erstellen Sie eine App 
 namens `produkte`.
+<!-- time estimate: 5 min -->
 
-[ER] Erstellen Sie eine weitere App namens `benutzer` und dokumentieren Sie 
-die Unterschiede in der Verzeichnisstruktur zwischen Projekt und App.
+<!-- EC3 -->
 
 ### Entwicklungsserver starten: `runserver`
 
@@ -218,11 +168,6 @@ Der Entwicklungsserver ist nur für die Entwicklung gedacht und sollte
 niemals in einer Produktionsumgebung verwendet werden.
 [ENDNOTICE]
 
-[ER] Starten Sie den Entwicklungsserver für Ihr `meinshop` Projekt und 
-öffnen Sie die Standard-Django-Willkommensseite im Browser.
-
-[ER] Starten Sie den Server auf Port 8080 und testen Sie den Zugriff.
-<!-- time estimate: 15 min -->
 
 ### Projektkonfiguration überprüfen: `check`
 
@@ -247,13 +192,19 @@ python manage.py check --tag=security    # nur Sicherheits-Checks
 python manage.py check --tag=urls        # nur URL-Checks
 ```
 
-Weitere Informationen zu System-Checks finden Sie in der 
+Optional: weitere Informationen zu System-Checks finden Sie in der 
 [System Check Dokumentation](https://docs.djangoproject.com/en/stable/topics/checks/).
 
-[ER] Führen Sie `python manage.py check` in Ihrem Projekt aus und 
+[EC] Führen Sie `python manage.py check` in Ihrem Projekt aus und 
 dokumentieren Sie das Ergebnis.
 
-[ER] Führen Sie einen Security-Check mit `python manage.py check --tag=security` durch.
+<!-- EC4 -->
+
+[EC] Führen Sie einen Security-Check mit `python manage.py check --tag=security` durch.
+
+<!-- EC5 -->
+
+<!-- time estimate: 15 min -->
 
 ### Datenbankmigrationen: `makemigrations` und `migrate`
 
@@ -279,16 +230,28 @@ python manage.py migrate --fake          # Migration als angewendet markieren
 python manage.py migrate --fake-initial  # nur bei existierenden Tabellen
 ```
 
-Weitere Informationen zu Migrationen finden Sie in der 
+Optional: weitere Informationen zu Migrationen finden Sie in der 
 [Migrations-Dokumentation](https://docs.djangoproject.com/en/stable/topics/migrations/).
 
-[ER] Führen Sie die initialen Migrationen für Ihr Projekt aus mit 
+[EC] Führen Sie die initialen Migrationen für Ihr Projekt aus mit 
 `python manage.py migrate`.
 
-[ER] Überprüfen Sie den Status der Migrationen mit 
+<!-- EC6 -->
+
+
+[EC] Überprüfen Sie den Status der Migrationen mit 
 `python manage.py showmigrations`.
 
+<!-- EC7 -->
+
+<!-- time estimate: 10 min -->
+
 ### Superuser erstellen: `createsuperuser`
+
+**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
+```bash
+python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
+```
 
 Für den Zugang zum Django-Admin-Interface benötigen Sie einen Superuser:
 
@@ -308,9 +271,12 @@ Alternativ können Sie Parameter direkt übergeben:
 python manage.py createsuperuser --username=admin --email=admin@example.com
 ```
 
-[ER] Erstellen Sie einen Superuser für Ihr Projekt und loggen Sie sich 
+[EC] Erstellen Sie einen Superuser für Ihr Projekt und loggen Sie sich 
 in das Admin-Interface unter `/admin/` ein.
-<!-- time estimate: 20 min -->
+
+<!-- time estimate: 5 min -->
+
+<!-- EC8 -->
 
 ### Django Shell: `shell`
 
@@ -340,16 +306,20 @@ python manage.py shell --interface=ipython  # IPython verwenden
 python manage.py shell --interface=bpython  # BPython verwenden
 ```
 
-Weitere Informationen zur Django Shell finden Sie in der 
+Optional: weitere Informationen zur Django Shell finden Sie in der 
 [Shell Dokumentation](https://docs.djangoproject.com/en/stable/ref/django-admin/#shell).
 
-[ER] Öffnen Sie die Django Shell und führen Sie folgende Befehle aus:
+[EC] Öffnen Sie die Django Shell und führen Sie folgende Befehle aus:
+
+<!-- EC9 -->
 
 ```python
 from django.conf import settings
 print(settings.DEBUG)
 print(settings.DATABASES)
 ```
+
+<!-- time estimate: 10 min -->
 
 ### Tests ausführen: `test`
 
@@ -369,10 +339,10 @@ python manage.py test --keepdb                  # Test-Datenbank behalten
 python manage.py test --parallel                # Parallele Ausführung
 ```
 
-Weitere Informationen zum Testen finden Sie in der 
-[Testing-Dokumentation](https://docs.djangoproject.com/en/stable/topics/testing/).
+[EC] Führen Sie `python manage.py test` aus und dokumentieren Sie das Ergebnis.
 
-[ER] Führen Sie `python manage.py test` aus und dokumentieren Sie das Ergebnis.
+
+<!-- EC10 -->
 
 ### Statische Dateien sammeln: `collectstatic`
 
@@ -391,16 +361,19 @@ python manage.py collectstatic --dry-run        # Testlauf ohne Änderungen
 ```
 
 [NOTICE]
-Dieses Kommando funktioniert nur, wenn `STATIC_ROOT` in den Einstellungen konfiguriert ist.
+Dieses Kommando funktioniert nur, wenn in Ihrer settings.py die Einstellung STATIC_ROOT gesetzt ist,
+z. B.:
+```py
+STATIC_ROOT = BASE_DIR / "staticfiles"
+```
+Dadurch werden alle statischen Dateien beim Befehl collectstatic in das Verzeichnis staticfiles/ kopiert.
 [ENDNOTICE]
 
-[ER] Konfigurieren Sie `STATIC_ROOT` in Ihrer `settings.py` 
-(z.B. `STATIC_ROOT = BASE_DIR / 'staticfiles'`) und führen Sie 
-`collectstatic` aus (auch wenn noch keine statischen Dateien vorhanden sind).
+<!-- time estimate: 10 min -->
 
 ### Weitere nützliche Kommandos
 
-#### Datenbankshell: `dbshell`
+**Datenbankshell: `dbshell`**
 
 Direkter Zugang zur Datenbank-Shell:
 
@@ -408,67 +381,36 @@ Direkter Zugang zur Datenbank-Shell:
 python manage.py dbshell
 ```
 
-#### Daten exportieren/importieren: `dumpdata` und `loaddata`
+**Daten exportieren/importieren: `dumpdata` und `loaddata`**
 
 ```bash
 python manage.py dumpdata > backup.json         # Daten exportieren
 python manage.py loaddata backup.json           # Daten importieren
 ```
 
-#### Datenbank zurücksetzen: `flush`
+**Datenbank zurücksetzen: `flush`**
 
 ```bash
 python manage.py flush                           # Alle Daten löschen
 ```
 
-[ER] Testen Sie `python manage.py dbshell` um die Datenbankverbindung zu überprüfen.
+[EC] Testen Sie `python manage.py flush`, um das Zurücksetzen der Datenbank zu überprüfen.
+<!-- EC11 -->
 
-### Kommando-Übersicht und Dokumentation
+<!-- time estimate: 5 min -->
 
-[ER] Erstellen Sie eine Übersichtstabelle der wichtigsten `django-admin` Kommandos 
-mit folgenden Spalten:
 
-- **Kommando**
-- **Zweck**  
-- **Beispiel**
-- **Wann verwendet**
-
-Füllen Sie die Tabelle mit mindestens 10 verschiedenen Kommandos aus dieser Aufgabe.
-<!-- time estimate: 30 min -->
 [ENDSECTION]
 
 [SECTION::submission::program]
-[INCLUDE::/_include/Submission-Quellcode.md]
 
-Reichen Sie zusätzlich ein Markdown-Dokument ein, das Ihre Erfahrungen 
-und Beobachtungen bei der Verwendung der verschiedenen `django-admin` Kommandos dokumentiert.
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
-[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
-[INCLUDE::ALT:]
 
-Die Studierenden sollten:
+### Kommandoprotokoll
+[PROT::ALT:django-admin.prot]
 
-- Ein funktionsfähiges Django-Projekt erstellt haben
-- Die wichtigsten `django-admin` Kommandos praktisch angewendet haben  
-- Den Unterschied zwischen Projekt und App verstehen
-- Grundlegende Django-Konzepte wie Migrationen und Admin-Interface kennengelernt haben
-- Eine strukturierte Dokumentation ihrer Arbeit erstellt haben
-
-Häufige Probleme:
-
-- Django nicht korrekt installiert
-- Verwechslung von `django-admin` und `manage.py`
-- Fehlende Konfiguration für `collectstatic`
-- Probleme beim Erstellen des Superusers
-- Missverständnisse bezüglich der Projekt- versus App-Struktur
-
-Bewertungskriterien:
-
-- Vollständige Ausführung aller Aufgaben
-- Korrekte Verwendung der Kommandos
-- Verständnis der Django-Projektstruktur
-- Qualität der Dokumentation
 [ENDINSTRUCTOR]
