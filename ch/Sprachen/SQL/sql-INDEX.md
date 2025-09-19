@@ -1,5 +1,5 @@
 title: SQL-Indizes für Performance-Optimierung
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2, sql-misc
@@ -213,8 +213,9 @@ Wie groß war der Unterschied zwischen den Abfragezeiten mit und ohne Index?
 Welche Faktoren könnten die Performance-Unterschiede beeinflussen? 
 Wie viele Anfragen müssen Sie machen, um das Anlegen des Index zu amortisieren?
 
-[HINT::Indexnutzung]
-Nennen Sie als Einflussfaktoren mindestens Datenmenge, Selektivität und Abfragebedingungen – nicht die Hardware.
+[HINT::Welche Faktoren kommen infrage?]
+Besprechen Sie als Einflussfaktoren mindestens Datenmenge, Selektivität und Abfragebedingungen,
+aber _nicht_ die Hardware.
 [ENDHINT]
 
 <!-- time estimate: 15 min -->
