@@ -80,6 +80,9 @@ In technischen Begriffen:
 Eine Sicht ist eine Referenz auf die Originaldaten (bzw. einen Teil der Originaldaten) im Speicher. 
 Wenn Sie eine Sicht ändern, ändern Sie direkt die Originaldaten.
 
+<img src="pd-viewvscopy.png" style="width: 50%;"></img>
+
+
 ### Die Python-Art
 
 Python arbeitet standardmäßig mit Objektreferenzen statt mit Kopien.
