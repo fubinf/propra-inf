@@ -1,6 +1,6 @@
 title: Django django-admin Kommandozeilen-Tool
 stage: alpha
-timevalue: 1.5
+timevalue: 1.25
 difficulty: 2
 assumes: django-basics, django-project
 ---
@@ -74,7 +74,7 @@ Available subcommands:
 Optional: weitere Informationen zu allen verfügbaren Kommandos finden Sie in der 
 [Django Management Commands Dokumentation](https://docs.djangoproject.com/en/stable/ref/django-admin/).
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 ### Neues Django-Projekt erstellen: `startproject`
 
