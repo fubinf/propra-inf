@@ -1,6 +1,6 @@
 title: Django Modelle und ORM
 stage: draft
-timevalue: 2.5
+timevalue: 2.25
 difficulty: 2
 assumes: django-project
 ---
@@ -56,7 +56,7 @@ Zur Vertiefung: Weitere Erklärungen finden Sie hier:
 
 [EQ] Erklären Sie in eigenen Worten, was ORM bedeutet und welche Hauptvorteile es bietet.  
 <!-- EQ1 -->  
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 ### Django-App für Modelle erstellen
 
@@ -128,7 +128,7 @@ Neugierig geworden? Dann lesen Sie hier weiter:
 
 [EQ] Was bewirkt der Parameter `auto_now_add=True` bei einem `DateTimeField`?  
 <!-- EQ2 -->  
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 ### Datenbankmigrationen erstellen und anwenden
 
@@ -162,7 +162,6 @@ cat mymodels/migrations/0001_initial.py
 
 [EQ] Welche Datei wurde durch `makemigrations` erstellt und was enthält sie?  
 <!-- EQ3 -->  
-<!-- time estimate: 15 min -->
 
 ### Django Shell für Datenbankoperationen
 
@@ -174,6 +173,7 @@ Die Django Shell ermöglicht interaktive Datenbankoperationen:
 python manage.py shell
 ```
 <!-- EC5 -->
+<!-- time estimate: 10 min -->
 
 ### Daten erstellen (CREATE)
 
@@ -207,7 +207,7 @@ print("Studenten erstellt!")
 
 [EQ] Was ist der Unterschied zwischen `Student()` + `save()` und `Student.objects.create()`?  
 <!-- EQ4 -->  
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 ### Daten abfragen (READ)
 
@@ -253,7 +253,7 @@ Hier gibt es ein kompaktes Tutorial zum Thema:
 
 [EQ] Was passiert, wenn `get()` kein Objekt oder mehrere Objekte findet?  
 <!-- EQ5 -->  
-<!-- time estimate: 25 min -->
+<!-- time estimate: 15 min -->
 
 ### Daten aktualisieren (UPDATE)
 
@@ -279,7 +279,7 @@ for s in updated_students:
 
 [EQ] Was ist der Unterschied zwischen `save()` und `update()` bei der Datenaktualisierung?  
 <!-- EQ6 -->  
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 ### Daten löschen (DELETE)
 
@@ -346,7 +346,7 @@ python manage.py migrate
 python manage.py showmigrations mymodels
 ```
 <!-- EC10 -->  
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 ### View für Datenbankoperationen erstellen
 
@@ -480,7 +480,7 @@ def student_list(request):
 [EQ] Wie können Sie die Filteroptionen in der URL anpassen, um spezifische Ergebnisse zu erhalten?  
 (Beispiel: `/students/?min_age=20&max_age=25&name=Tom`)  
 <!-- EQ9 -->  
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 [ENDSECTION]
 
