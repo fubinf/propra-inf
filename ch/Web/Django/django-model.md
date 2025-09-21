@@ -1,8 +1,8 @@
 title: Django Modelle und ORM
-stage: draft
+stage: alpha
 timevalue: 2.25
 difficulty: 2
-assumes: django-project
+assumes: django-basics, django-project, django-admin
 ---
 
 [SECTION::goal::idea,experience]
@@ -149,7 +149,7 @@ python manage.py migrate
 <!-- EC3 -->
 
 [NOTICE]
-Django erstellt automatisch eine `id`-Spalte als Primärschlüssel,  
+Django erstellt automatisch eine `id`-Spalte als Primärschlüssel, 
 auch wenn Sie keinen explizit definieren.
 [ENDNOTICE]
 
@@ -305,7 +305,7 @@ exit()
 <!-- EC9 -->
 
 [WARNING]
-`delete()` löscht Daten permanent ohne Rückfrage!  
+`delete()` löscht Daten permanent ohne Rückfrage!
 Seien Sie besonders vorsichtig mit `objects.all().delete()`.  
 [ENDWARNING]
 
