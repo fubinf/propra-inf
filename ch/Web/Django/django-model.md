@@ -16,9 +16,9 @@ assumes: django-project
 
 [SECTION::background::default]
 
-Django bietet ein mächtiges Object-Relational Mapping (ORM) System, das es ermöglicht, 
-mit Datenbanken zu arbeiten, ohne direkt SQL schreiben zu müssen. 
-Das ORM fungiert als Brücke zwischen Python-Objekten und Datenbankstrukturen und 
+Django bietet ein mächtiges Object-Relational Mapping (ORM) System, das es ermöglicht,  
+mit Datenbanken zu arbeiten, ohne direkt SQL schreiben zu müssen.  
+Das ORM fungiert als Brücke zwischen Python-Objekten und Datenbankstrukturen und  
 unterstützt verschiedene Datenbanksysteme wie SQLite, PostgreSQL, MySQL und Oracle.
 
 In dieser Aufgabe lernen wir, wie man Modelle definiert und grundlegende Datenbankoperationen durchführt.
@@ -29,7 +29,7 @@ In dieser Aufgabe lernen wir, wie man Modelle definiert und grundlegende Datenba
 
 ### Was ist Django ORM?
 
-Object-Relational Mapping (ORM) ist eine Technik, die es ermöglicht, 
+Object-Relational Mapping (ORM) ist eine Technik, die es ermöglicht,  
 zwischen objektorientierten Programmiersprachen und relationalen Datenbanken zu übersetzen.
 
 **Vorteile von ORM:**
@@ -59,6 +59,13 @@ Zur Vertiefung: Weitere Erklärungen finden Sie hier:
 <!-- time estimate: 15 min -->
 
 ### Django-App für Modelle erstellen
+
+Bitte lesen Sie zunächst [PARTREF::django-basics] und folgen Sie den dort beschriebenen 
+Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren. 
+
+Erstellen Sie ein Projekt namens **meinprojekt**, indem Sie zunächst [PARTREF::django-project] 
+lesen und den dort beschriebenen Schritten folgen, 
+um in einer virtuellen Umgebung erfolgreich ein neues Django-Projekt anzulegen.  
 
 Django-Modelle müssen in einer App definiert werden.  
 Erstellen Sie eine neue App für unsere Datenbankexperimente:
@@ -107,6 +114,7 @@ class Student(models.Model):
 <!-- ER2 -->
 
 **Wichtige Feldtypen:**
+
 - `CharField(max_length=n)` - Textfeld mit maximaler Länge
 - `IntegerField()` - Ganzzahlen
 - `EmailField()` - E-Mail-Adressen (mit Validierung)
@@ -140,9 +148,9 @@ python manage.py migrate
 ```
 <!-- EC3 -->
 
-[NOTICE]  
+[NOTICE]
 Django erstellt automatisch eine `id`-Spalte als Primärschlüssel,  
-auch wenn Sie keinen explizit definieren.  
+auch wenn Sie keinen explizit definieren.
 [ENDNOTICE]
 
 [EC] Überprüfen Sie die erstellte Migrationsdatei:
@@ -195,7 +203,7 @@ student3 = Student.objects.create(
 
 print("Studenten erstellt!")
 ```
-<!-- ER3 -->
+<!-- EC6 -->
 
 [EQ] Was ist der Unterschied zwischen `Student()` + `save()` und `Student.objects.create()`?  
 <!-- EQ4 -->  
@@ -230,9 +238,10 @@ print("Anzahl Studenten:", count)
 sorted_students = Student.objects.order_by('age')
 print("Nach Alter sortiert:", sorted_students)
 ```
-<!-- ER4 -->
+<!-- EC7 -->
 
 **Wichtige QuerySet-Methoden:**
+
 - `all()` - Alle Objekte
 - `get()` - Ein spezifisches Objekt (wirft Fehler wenn nicht eindeutig)
 - `filter()` - Objekte nach Bedingungen filtern
@@ -266,7 +275,7 @@ updated_students = Student.objects.all()
 for s in updated_students:
     print(f"{s.name}: {s.age} Jahre")
 ```
-<!-- ER5 -->
+<!-- EC8 -->
 
 [EQ] Was ist der Unterschied zwischen `save()` und `update()` bei der Datenaktualisierung?  
 <!-- EQ6 -->  
@@ -289,21 +298,16 @@ print("Studenten mit Alter 25 gelöscht")
 # Verbleibende Studenten anzeigen
 remaining = Student.objects.all()
 print("Verbleibende Studenten:", remaining)
-```
-<!-- ER6 -->
 
-[WARNING]  
+# beenden
+exit()
+```
+<!-- EC9 -->
+
+[WARNING]
 `delete()` löscht Daten permanent ohne Rückfrage!  
 Seien Sie besonders vorsichtig mit `objects.all().delete()`.  
 [ENDWARNING]
-
-[EC] Verlassen Sie die Django Shell:
-
-```python
-exit()
-```
-<!-- EC6 -->  
-<!-- time estimate: 15 min -->
 
 ### Erweiterte Modellfelder
 
@@ -324,9 +328,10 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.name} ({self.age})"
 ```
-<!-- ER7 -->
+<!-- ER3 -->
 
 **Neue Feldtypen:**
+
 - `auto_now=True` - Automatisch bei jeder Änderung aktualisieren
 - `BooleanField()` - True/False-Werte
 - `DecimalField()` - Dezimalzahlen mit fester Präzision
@@ -338,8 +343,9 @@ class Student(models.Model):
 ```bash
 python manage.py makemigrations mymodels
 python manage.py migrate
+python manage.py showmigrations mymodels
 ```
-<!-- EC7 -->  
+<!-- EC10 -->  
 <!-- time estimate: 20 min -->
 
 ### View für Datenbankoperationen erstellen
@@ -383,7 +389,7 @@ def add_sample_data(request):
     
     return HttpResponse("Beispieldaten hinzugefügt! <a href='/students/'>Zur Liste</a>")
 ```
-<!-- ER8 -->
+<!-- ER4 -->
 
 [ER] Erstellen Sie `mymodels/urls.py`:
 
@@ -396,32 +402,46 @@ urlpatterns = [
     path('add-sample/', views.add_sample_data, name='add_sample'),
 ]
 ```
-<!-- ER9 -->
+<!-- ER5 -->
 
 [ER] Aktualisieren Sie die Haupt-`urls.py`:
 
 ```python
+from django.contrib import admin
 from django.urls import path, include
-from . import views
 
 urlpatterns = [
-    path('hello/', views.hello, name='hello'),
-    path('welcome/', views.welcome, name='welcome'),
-    path('about/', views.about, name='about'),
-    path('greet/<str:name>/', views.greet, name='greet'),
-    path('hello-html/', views.hello_html, name='hello_html'),
+    path('admin/', admin.site.urls),
     path('students/', include('mymodels.urls')),
 ]
 ```
-<!-- ER10 -->
+<!-- ER6 -->
 
-[EC] Testen Sie die neuen URLs:  
+**Django-Server starten**:
+```bash
+cd meinprojekt
+python manage.py runserver
+```
+
+**Häufige Probleme beim Starten des Servers**:
+
+**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
+```bash
+python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
+```
+
+**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
+```bash
+python manage.py runserver 8080  # Server auf einem alternativen Port starten
+```
+
+[EQ] Testen Sie die neuen URLs:  
 - `http://127.0.0.1:8000/students/add-sample/` - Beispieldaten hinzufügen  
 - `http://127.0.0.1:8000/students/` - Studentenliste anzeigen  
-<!-- EC8 -->
+<!-- EQ7 -->
 
 [EQ] Was bewirkt die Methode `get_or_create()` und warum ist sie nützlich?  
-<!-- EQ7 -->  
+<!-- EQ8 -->  
 <!-- time estimate: 25 min -->
 
 ### Datenbankabfragen mit Lookup-Feldern
@@ -455,11 +475,11 @@ def student_list(request):
     
     return HttpResponse(html)
 ```
-<!-- ER11 -->
+<!-- ER7 -->
 
 [EQ] Wie können Sie die Filteroptionen in der URL anpassen, um spezifische Ergebnisse zu erhalten?  
 (Beispiel: `/students/?min_age=20&max_age=25&name=Tom`)  
-<!-- EQ8 -->  
+<!-- EQ9 -->  
 <!-- time estimate: 20 min -->
 
 [ENDSECTION]
@@ -481,4 +501,3 @@ def student_list(request):
 [PROT::ALT:django-model.prot]
 
 [ENDINSTRUCTOR]
-```
