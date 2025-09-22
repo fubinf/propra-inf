@@ -1,6 +1,6 @@
 title: Django Template System - Trennung von Daten und Darstellung
-stage: draft
-timevalue: 2.0
+stage: alpha
+timevalue: 2
 difficulty: 2
 assumes: django-basics, django-project, django-admin
 ---
@@ -141,6 +141,7 @@ urlpatterns = [
 Was wird anstelle von `{{ greeting }}` angezeigt und warum? 
 Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
 <!-- EQ1 -->
+<!-- time estimate: 20 min -->
 
 ### Template-Variablen und Context
 
@@ -187,6 +188,8 @@ Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
 Wenn Sie mehr über Template-Variablen erfahren möchten:
 [Django Template Variables](https://docs.djangoproject.com/en/4.2/topics/templates/#variables)
 
+<!-- time estimate: 10 min -->
+
 ### Template-Tags: Bedingte Darstellung
 
 Template-Tags verwenden geschweifte Klammern mit Prozentzeichen `{% %}` für Logik.
@@ -220,6 +223,8 @@ Template-Tags verwenden geschweifte Klammern mit Prozentzeichen `{% %}` für Log
 Ändern Sie in der View `is_logged_in` auf `False`. Was passiert mit der Anzeige?
 Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
 <!-- EQ3 -->
+
+<!-- time estimate: 10 min -->
 
 ### Template-Tags: Schleifen
 
@@ -283,6 +288,7 @@ Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
 
 Mehr Details zu Template-Tags finden Sie hier:
 [Django Template Tags](https://docs.djangoproject.com/en/4.2/topics/templates/#tags)
+<!-- time estimate: 15 min -->
 
 ### Template-Vererbung: Base Template
 
@@ -383,6 +389,7 @@ urlpatterns = [
 Was ist der Vorteil der Template-Vererbung gegenüber der Wiederholung von HTML-Code?
 Wenn Sie Port 8080 verwenden, ändern Sie die Links bitte entsprechend.
 <!-- EQ5 -->
+<!-- time estimate: 20 min -->
 
 ### Statische Dateien einbinden
 
@@ -514,6 +521,7 @@ STATICFILES_DIRS = [
 
 Falls noch Fragen offen sind, hilft diese Ressource weiter:
 [Django Static Files](https://docs.djangoproject.com/en/4.2/howto/static-files/)
+<!-- time estimate: 10 min -->
 
 ### Template-Filter verwenden
 
@@ -590,6 +598,8 @@ urlpatterns = [
 Hier gibt es ein kompaktes Tutorial zum Thema:
 [Django Template Filters](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#built-in-filter-reference)
 
+<!-- time estimate: 10 min -->
+
 ### Template-Navigation erstellen
 
 [ER] Erweitern Sie `templates/base.html` um Navigation:
@@ -635,6 +645,8 @@ Vergleichen Sie die visuellen Unterschiede zwischen den Seiten und erklären Sie
 der `{% url %}` Tags gegenüber fest programmierten Links.
 Wenn Sie Port 8080 verwenden, ändern Sie die Links bitte entsprechend.
 <!-- EQ6 -->
+
+<!-- time estimate: 20 min -->
 
 [ENDSECTION]
 
