@@ -1,71 +1,77 @@
-title: Django Templates - Grundlagen und Syntax
+title: Django Template System - Trennung von Daten und Darstellung
 stage: draft
 timevalue: 2.0
 difficulty: 2
-assumes: django-admin
+assumes: django-basics, django-project, django-admin
 ---
 
 [SECTION::goal::idea,experience]
-Ich kann Django-Templates erstellen und verwenden, um die Trennung von Geschäftslogik und 
-Präsentationsschicht zu implementieren. Ich beherrsche Template-Variablen, -Tags, -Filter 
-und grundlegende Kontrollstrukturen.
+
+- Ich verstehe das Model-View-Template (MVT) Muster in Django und die Vorteile der Trennung von Geschäftslogik und Darstellung.
+- Ich kann Django-Templates erstellen und mit Template-Variablen arbeiten.
+- Ich kann Template-Tags für bedingte Darstellung und Schleifen verwenden.
+- Ich kann Template-Vererbung einsetzen, um wiederverwendbare HTML-Strukturen zu erstellen.
+- Ich kann statische Dateien in Templates einbinden und konfigurieren.
+
 [ENDSECTION]
 
 [SECTION::background::default]
-Bisher haben wir in Django-Views direkt HTML-Code mit `HttpResponse` zurückgegeben.
-Das vermischt jedoch Geschäftslogik mit der Darstellung und widerspricht dem MVT-Prinzip 
-(Model-View-Template) von Django.
-Templates ermöglichen eine saubere Trennung: Python-Code verarbeitet die Daten,
-Templates kümmern sich um die HTML-Ausgabe.
+
+Das Django Template System ist eine zentrale Komponente für die Trennung von Geschäftslogik und Darstellung. 
+Während Views die Datenverarbeitung übernehmen, sind Templates ausschließlich für die Präsentation der Daten zuständig. 
+Dies folgt dem Model-View-Template (MVT) Architekturmuster und ermöglicht eine saubere Codestruktur, 
+bessere Wartbarkeit und die Zusammenarbeit zwischen Entwicklern und Designern.
+
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### Template-System verstehen
+### Django-Projekt vorbereiten
 
-Das Django-Template-System ist eine Kernkomponente, die es ermöglicht, 
-dynamische HTML-Seiten durch einfache Tags und Variablen zu generieren.
-Templates sind Textdateien (meist HTML), die spezielle Django-Syntax enthalten:
+Bitte lesen Sie zunächst [PARTREF::django-basics] und folgen Sie den dort beschriebenen 
+Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren.
 
-- **Variablen**: `{{ variable }}` - zeigen Daten aus Views an
-- **Tags**: `{% tag %}` - steuern Template-Logik (Schleifen, Bedingungen)
-- **Filter**: `{{ variable|filter }}` - modifizieren Variablen vor der Ausgabe
-- **Kommentare**: `{# kommentar #}` - werden nicht gerendert
+Erstellen Sie ein Projekt namens **meinprojekt**, indem Sie zunächst [PARTREF::django-project] 
+lesen und den dort beschriebenen Schritten folgen, 
+um in einer virtuellen Umgebung erfolgreich ein neues Django-Projekt anzulegen.
 
-Weitere Informationen zum Template-System:
-[Django Templates Documentation](https://docs.djangoproject.com/en/stable/topics/templates/)
-
-### Template-Verzeichnis und erstes Template
-
-[ER] Erstellen Sie in Ihrem Django-Projekt (aus [PARTREF::django-admin]) 
-ein Verzeichnis `templates` im Hauptprojektverzeichnis (auf derselben Ebene wie `manage.py`).
-
-[ER] Erstellen Sie in `templates/` eine Datei `hello.html` mit folgendem Inhalt:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Django Template Test</title>
-</head>
-<body>
-    <h1>{{ greeting }}</h1>
-    <p>Willkommen bei Django Templates!</p>
-</body>
-</html>
+**Django-Server starten**:
+```bash
+cd meinprojekt
+python manage.py runserver
 ```
 
-### Template-Konfiguration in settings.py
+**Häufige Probleme beim Starten des Servers**:
 
-[ER] Öffnen Sie `settings.py` und modifizieren Sie die `TEMPLATES`-Konfiguration.
-Ändern Sie die `DIRS`-Liste zu `[BASE_DIR / "templates"]`:
+**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
+```bash
+python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
+```
+
+**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
+```bash
+python manage.py runserver 8080  # Server auf einem alternativen Port starten
+```
+
+[EC] Stellen Sie sicher, dass Ihr Django-Projekt läuft und zeigen Sie die erfolgreiche 
+Server-Anzeige mit `python manage.py runserver` und dann beenden Sie den Server beispielsweise 
+mit `Strg + C` (unter macOS ebenfalls `control + C`).
+<!-- EC1 -->
+<!-- time estimate: 5 min -->
+
+### Template-Verzeichnis konfigurieren
+
+Django Templates werden in speziellen Verzeichnissen gespeichert. 
+Zunächst müssen wir die Template-Konfiguration in den Projekteinstellungen anpassen.
+
+[ER] Erstellen Sie ein `templates`-Verzeichnis im Hauptprojektordner 
+und öffnen Sie `meinprojekt/settings.py` und modifizieren Sie die `TEMPLATES`-Konfiguration:
 
 ```python
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # Diese Zeile ändern
+        'DIRS': [BASE_DIR / "templates"],  # Hier anpassen
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,440 +84,574 @@ TEMPLATES = [
     },
 ]
 ```
+<!-- ER1 -->
 
-### View mit Template-Rendering erstellen
+### Erstes Template erstellen
 
-[ER] Erstellen Sie in `views.py` eine neue View-Funktion `hello_template`:
+Templates sind HTML-Dateien mit spezieller Django-Syntax für dynamische Inhalte.
+
+[ER] Erstellen Sie die Datei `templates/hello.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Template Demo</title>
+</head>
+<body>
+    <h1>{{ greeting }}</h1>
+    <p>Willkommen bei Django Templates!</p>
+</body>
+</html>
+```
+<!-- ER2 -->
+
+Die doppelten geschweiften Klammern `{{ greeting }}` sind Template-Variablen, 
+die von der View mit Daten gefüllt werden.
+
+[ER] Erstellen Sie eine neue View-Funktion in `meinprojekt/views.py`:
 
 ```python
 from django.shortcuts import render
 
 def hello_template(request):
     context = {
-        'greeting': 'Hallo aus dem Template!'
+        'greeting': 'Hallo Django Templates!'
     }
     return render(request, 'hello.html', context)
 ```
+<!-- ER3 -->
 
-[EQ] Die `render()`-Funktion nimmt drei Parameter: das Request-Objekt, 
-den Template-Namen und ein Context-Dictionary. Der Context übergibt Daten an das Template.
-
-[ER] Fügen Sie in `urls.py` eine URL-Route für die neue View hinzu:
+[ER] Fügen Sie die neue Route in `meinprojekt/urls.py` hinzu:
 
 ```python
+from django.contrib import admin
 from django.urls import path
 from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', views.hello_template, name='hello_template'),
+    path('hello-template/', views.hello_template, name='hello_template'),
 ]
 ```
+<!-- ER4 -->
 
-[ER] Starten Sie den Entwicklungsserver und besuchen Sie `http://127.0.0.1:8000/hello/`.
-Dokumentieren Sie das Ergebnis.
-<!-- time estimate: 30 min -->
+[EQ] Testen Sie die URL `http://127.0.0.1:8000/hello-template/` im Browser. 
+Was wird anstelle von `{{ greeting }}` angezeigt und warum? 
+Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
+<!-- EQ1 -->
 
-### Template-Variablen und Datentypen
+### Template-Variablen und Context
 
-Templates können verschiedene Python-Datentypen verarbeiten:
+Der `context`-Dictionary übergibt Daten von der View an das Template.
 
-#### Einfache Variablen verwenden
-
-[ER] Erweitern Sie die `hello_template`-View um weitere Variablen:
+[ER] Erweitern Sie die View `hello_template` um mehr Variablen:
 
 ```python
 def hello_template(request):
     context = {
-        'greeting': 'Hallo aus dem Template!',
-        'username': 'Django-Nutzer',
+        'greeting': 'Hallo Django Templates!',
+        'user_name': 'Anna',
         'current_year': 2024,
-        'is_authenticated': True
+        'is_logged_in': True
     }
     return render(request, 'hello.html', context)
 ```
+<!-- ER5 -->
 
-[ER] Modifizieren Sie `hello.html`, um alle Variablen anzuzeigen:
+[ER] Erweitern Sie `templates/hello.html` um die neuen Variablen:
 
 ```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Template Demo</title>
+</head>
 <body>
     <h1>{{ greeting }}</h1>
-    <p>Benutzer: {{ username }}</p>
+    <p>Willkommen {{ user_name }}!</p>
     <p>Jahr: {{ current_year }}</p>
-    <p>Angemeldet: {{ is_authenticated }}</p>
-</body>
-```
-
-#### Listen in Templates verwenden
-
-[ER] Erstellen Sie eine neue View `list_demo` mit einer Liste:
-
-```python
-def list_demo(request):
-    context = {
-        'fruits': ['Apfel', 'Banane', 'Orange', 'Traube'],
-        'numbers': [1, 2, 3, 4, 5]
-    }
-    return render(request, 'list_demo.html', context)
-```
-
-[ER] Erstellen Sie `templates/list_demo.html`:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Listen Demo</title>
-</head>
-<body>
-    <h2>Komplette Liste:</h2>
-    <p>{{ fruits }}</p>
-    
-    <h2>Erstes Element:</h2>
-    <p>{{ fruits.0 }}</p>
-    
-    <h2>Drittes Element:</h2>
-    <p>{{ fruits.2 }}</p>
+    <p>Angemeldet: {{ is_logged_in }}</p>
 </body>
 </html>
 ```
+<!-- ER6 -->
 
-#### Dictionaries in Templates verarbeiten
+[EQ] Aktualisieren Sie die Seite `http://127.0.0.1:8000/hello-template/` im Browser. 
+Welche neuen Informationen werden jetzt angezeigt? Listen Sie alle sichtbaren Template-Variablen auf.
+Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
+<!-- EQ2 -->
 
-[ER] Erstellen Sie eine View `dict_demo`:
+Wenn Sie mehr über Template-Variablen erfahren möchten:
+[Django Template Variables](https://docs.djangoproject.com/en/4.2/topics/templates/#variables)
 
-```python
-def dict_demo(request):
-    context = {
-        'person': {
-            'name': 'Max Mustermann',
-            'age': 30,
-            'city': 'Berlin'
-        }
-    }
-    return render(request, 'dict_demo.html', context)
-```
+### Template-Tags: Bedingte Darstellung
 
-[ER] Erstellen Sie `templates/dict_demo.html`:
+Template-Tags verwenden geschweifte Klammern mit Prozentzeichen `{% %}` für Logik.
+
+[ER] Erweitern Sie `templates/hello.html` um bedingte Darstellung:
 
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-    <meta charset="utf-8">
-    <title>Dictionary Demo</title>
+    <meta charset="UTF-8">
+    <title>Django Template Demo</title>
 </head>
 <body>
-    <h2>Person-Informationen:</h2>
-    <p>Komplettes Dictionary: {{ person }}</p>
-    <p>Name: {{ person.name }}</p>
-    <p>Alter: {{ person.age }}</p>
-    <p>Stadt: {{ person.city }}</p>
-</body>
-</html>
-```
-
-[ER] Fügen Sie entsprechende URL-Routen für beide neuen Views hinzu.
-<!-- time estimate: 25 min -->
-
-### Template-Filter verwenden
-
-Filter modifizieren Variablen vor der Ausgabe. Syntax: `{{ variable|filter:parameter }}`
-
-Weitere Informationen zu Filtern:
-[Django Template Filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-filter-reference)
-
-[ER] Erstellen Sie eine View `filter_demo`:
-
-```python
-import datetime
-
-def filter_demo(request):
-    context = {
-        'text': 'Django Template Filter',
-        'long_text': 'Dies ist ein sehr langer Text, der gekürzt werden soll.',
-        'number': 1024,
-        'empty_value': '',
-        'file_size': 2048576,
-        'current_date': datetime.datetime.now()
-    }
-    return render(request, 'filter_demo.html', context)
-```
-
-[ER] Erstellen Sie `templates/filter_demo.html` mit verschiedenen Filtern:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Filter Demo</title>
-</head>
-<body>
-    <h2>Text-Filter:</h2>
-    <p>Original: {{ text }}</p>
-    <p>Kleinbuchstaben: {{ text|lower }}</p>
-    <p>Großbuchstaben: {{ text|upper }}</p>
-    <p>Länge: {{ text|length }}</p>
+    <h1>{{ greeting }}</h1>
     
-    <h2>Truncate-Filter:</h2>
-    <p>Gekürzt (10 Zeichen): {{ long_text|truncatechars:10 }}</p>
-    
-    <h2>Default-Filter:</h2>
-    <p>Leerer Wert: {{ empty_value|default:"Kein Wert vorhanden" }}</p>
-    
-    <h2>Dateigröße-Filter:</h2>
-    <p>Dateigröße: {{ file_size|filesizeformat }}</p>
-    
-    <h2>Datums-Filter:</h2>
-    <p>Aktuelles Datum: {{ current_date|date:"d.m.Y" }}</p>
-    <p>Mit Uhrzeit: {{ current_date|date:"d.m.Y H:i:s" }}</p>
-</body>
-</html>
-```
-
-[ER] Fügen Sie die URL-Route für die neue View hinzu und testen Sie die Filter-Ausgabe.
-<!-- time estimate: 20 min -->
-
-### Kontrollstrukturen: if/else-Tags
-
-[ER] Erstellen Sie eine View `control_demo`:
-
-```python
-def control_demo(request):
-    context = {
-        'score': 85,
-        'is_logged_in': True,
-        'user_role': 'admin',
-        'items': ['Item 1', 'Item 2', 'Item 3'],
-        'empty_list': []
-    }
-    return render(request, 'control_demo.html', context)
-```
-
-[ER] Erstellen Sie `templates/control_demo.html` mit if/else-Logik:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Kontrollstrukturen Demo</title>
-</head>
-<body>
-    <h2>If/Else-Beispiele:</h2>
-    
-    {% if score >= 90 %}
-        <p>Ausgezeichnet! ({{ score }} Punkte)</p>
-    {% elif score >= 70 %}
-        <p>Gut gemacht! ({{ score }} Punkte)</p>
-    {% else %}
-        <p>Mehr Übung nötig. ({{ score }} Punkte)</p>
-    {% endif %}
-    
-    <h2>Logische Operatoren:</h2>
-    {% if is_logged_in and user_role == 'admin' %}
-        <p>Willkommen, Administrator!</p>
-    {% elif is_logged_in %}
-        <p>Willkommen, Benutzer!</p>
+    {% if is_logged_in %}
+        <p>Willkommen zurück, {{ user_name }}!</p>
+        <p>Sie sind erfolgreich angemeldet.</p>
     {% else %}
         <p>Bitte melden Sie sich an.</p>
     {% endif %}
     
-    <h2>Listen-Check:</h2>
-    {% if items %}
-        <p>Es gibt {{ items|length }} Elemente in der Liste.</p>
-    {% else %}
-        <p>Die Liste ist leer.</p>
-    {% endif %}
+    <p>Jahr: {{ current_year }}</p>
 </body>
 </html>
 ```
+<!-- ER7 -->
 
-### Schleifen: for-Tag verwenden
+[EQ] Aktualisieren Sie die Seite `http://127.0.0.1:8000/hello-template/` im Browser. 
+Ändern Sie in der View `is_logged_in` auf `False`. Was passiert mit der Anzeige?
+Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
+<!-- EQ3 -->
 
-[ER] Erweitern Sie `control_demo.html` um for-Schleifen:
+### Template-Tags: Schleifen
 
-```html
-<h2>For-Schleifen:</h2>
+Listen und andere Sammlungen können mit `{% for %}` durchlaufen werden.
 
-<h3>Einfache Liste:</h3>
-<ul>
-{% for item in items %}
-    <li>{{ item }}</li>
-{% endfor %}
-</ul>
-
-<h3>Mit Schleifenvariablen:</h3>
-<ol>
-{% for item in items %}
-    <li>
-        Element {{ forloop.counter }}: {{ item }}
-        {% if forloop.first %} (Erstes Element){% endif %}
-        {% if forloop.last %} (Letztes Element){% endif %}
-    </li>
-{% endfor %}
-</ol>
-
-<h3>Leere Liste behandeln:</h3>
-{% for item in empty_list %}
-    <p>{{ item }}</p>
-{% empty %}
-    <p>Keine Elemente vorhanden.</p>
-{% endfor %}
-```
-
-[ER] Erweitern Sie die `control_demo`-View um Dictionary-Iteration:
+[ER] Erweitern Sie die View um eine Liste:
 
 ```python
-def control_demo(request):
+def hello_template(request):
     context = {
-        'score': 85,
+        'greeting': 'Hallo Django Templates!',
+        'user_name': 'Anna',
+        'current_year': 2024,
         'is_logged_in': True,
-        'user_role': 'admin',
-        'items': ['Item 1', 'Item 2', 'Item 3'],
-        'empty_list': [],
-        'person_data': {
-            'name': 'Anna Schmidt',
-            'email': 'anna@example.com',
-            'phone': '0123-456789'
-        }
+        'hobbies': ['Programmieren', 'Lesen', 'Sport', 'Musik']
     }
-    return render(request, 'control_demo.html', context)
+    return render(request, 'hello.html', context)
 ```
+<!-- ER8 -->
 
-[ER] Fügen Sie Dictionary-Iteration zu `control_demo.html` hinzu:
+[ER] Erweitern Sie das Template um die Hobby-Liste:
 
 ```html
-<h3>Dictionary durchlaufen:</h3>
-<dl>
-{% for key, value in person_data.items %}
-    <dt>{{ key }}</dt>
-    <dd>{{ value }}</dd>
-{% endfor %}
-</dl>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Template Demo</title>
+</head>
+<body>
+    <h1>{{ greeting }}</h1>
+    
+    {% if is_logged_in %}
+        <p>Willkommen zurück, {{ user_name }}!</p>
+        
+        <h2>Ihre Hobbies:</h2>
+        <ul>
+        {% for hobby in hobbies %}
+            <li>{{ hobby }}</li>
+        {% empty %}
+            <li>Keine Hobbies angegeben</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Bitte melden Sie sich an.</p>
+    {% endif %}
+    
+    <p>Jahr: {{ current_year }}</p>
+</body>
+</html>
 ```
-<!-- time estimate: 25 min -->
+<!-- ER9 -->
 
-### Safe-Filter und HTML-Ausgabe
+Das `{% empty %}` Tag zeigt alternative Inhalte, wenn die Liste leer ist.
 
-[NOTICE]
-Der `safe`-Filter sollte nur bei vertrauenswürdigen Daten verwendet werden,
-da er die automatische HTML-Escape-Funktion von Django umgeht.
-[ENDNOTICE]
+[EQ] Aktualisieren Sie die Seite `http://127.0.0.1:8000/hello-template/` im Browser. 
+Ändern Sie dann in der View die `hobbies`-Liste zu einer leeren Liste `[]`. 
+Was wird angezeigt und welcher Django-Tag ist dafür verantwortlich?
+Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
+<!-- EQ4 -->
 
-[ER] Erstellen Sie eine View `safe_demo`:
+Mehr Details zu Template-Tags finden Sie hier:
+[Django Template Tags](https://docs.djangoproject.com/en/4.2/topics/templates/#tags)
+
+### Template-Vererbung: Base Template
+
+Template-Vererbung vermeidet Code-Duplikation durch wiederverwendbare HTML-Strukturen.
+
+[ER] Erstellen Sie `templates/base.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Django Template System{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        header { background: #333; color: white; padding: 10px; margin-bottom: 20px; }
+        footer { margin-top: 40px; text-align: center; color: #666; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Django Template Demo</h1>
+    </header>
+    
+    <main>
+        {% block content %}
+        <!-- Hier wird der Inhalt der Child-Templates eingefügt -->
+        {% endblock %}
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Django Template System</p>
+    </footer>
+</body>
+</html>
+```
+<!-- ER10 -->
+
+[ER] Erstellen Sie `templates/welcome.html` mit Template-Vererbung:
+
+```html
+{% extends "base.html" %}
+
+{% block title %}Willkommen - Django Templates{% endblock %}
+
+{% block content %}
+    <h2>{{ greeting }}</h2>
+    
+    {% if is_logged_in %}
+        <div style="border: 1px solid green; padding: 15px; background: #f0f8f0;">
+            <p>Willkommen zurück, <strong>{{ user_name }}</strong>!</p>
+            
+            <h3>Ihre Hobbies:</h3>
+            <ul>
+            {% for hobby in hobbies %}
+                <li>{{ hobby }}</li>
+            {% empty %}
+                <li>Keine Hobbies angegeben</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <div style="border: 1px solid red; padding: 15px; background: #f8f0f0;">
+            <p>Bitte melden Sie sich an.</p>
+        </div>
+    {% endif %}
+{% endblock %}
+```
+<!-- ER11 -->
+
+[ER] Erstellen Sie eine neue View für das Welcome-Template:
 
 ```python
-def safe_demo(request):
+def welcome(request):
     context = {
-        'html_content': '<strong>Fetter Text</strong> und <em>kursiver Text</em>',
-        'link_html': '<a href="https://www.djangoproject.com">Django Website</a>'
+        'greeting': 'Willkommen auf unserer Seite!',
+        'user_name': 'Maria',
+        'current_year': 2024,
+        'is_logged_in': True,
+        'hobbies': ['Fotografie', 'Reisen', 'Kochen']
     }
-    return render(request, 'safe_demo.html', context)
+    return render(request, 'welcome.html', context)
 ```
+<!-- ER12 -->
 
-[ER] Erstellen Sie `templates/safe_demo.html`:
+[ER] Fügen Sie die Route in `urls.py`hinzu:
+
+```python
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('hello-template/', views.hello_template, name='hello_template'),
+    path('welcome/', views.welcome, name='welcome'),
+]
+```
+<!-- ER13 -->
+
+[EQ] Testen Sie beide URLs: `http://127.0.0.1:8000/hello-template/` und `http://127.0.0.1:8000/welcome/`. 
+Was ist der Vorteil der Template-Vererbung gegenüber der Wiederholung von HTML-Code?
+Wenn Sie Port 8080 verwenden, ändern Sie die Links bitte entsprechend.
+<!-- EQ5 -->
+
+### Statische Dateien einbinden
+
+Statische Dateien wie CSS, JavaScript und Bilder werden über das `{% static %}` Tag eingebunden.
+
+[EC] Erstellen Sie Verzeichnisse für statische Dateien im Hauptprojektordner:
+```bash
+cd meinprojekt
+mkdir -p static/css static/js static/images
+```
+<!-- EC2 -->
+
+[ER] Erstellen Sie `static/css/style.css`:
+
+```css
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+.hobby-list {
+    background: #e8f4fd;
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 4px solid #2196F3;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+}
+```
+<!-- ER14 -->
+
+[ER] Aktualisieren Sie `settings.py` für statische Dateien:
+
+```python
+# Am Ende der Datei hinzufügen
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+```
+<!-- ER15 -->
+
+[ER] Aktualisieren Sie `templates/base.html` mit statischen Dateien:
 
 ```html
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-    <meta charset="utf-8">
-    <title>Safe Filter Demo</title>
+    <meta charset="UTF-8">
+    <title>{% block title %}Django Template System{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h2>HTML-Ausgabe Vergleich:</h2>
-    
-    <h3>Ohne safe-Filter (escaped):</h3>
-    <p>{{ html_content }}</p>
-    
-    <h3>Mit safe-Filter (unescaped):</h3>
-    <p>{{ html_content|safe }}</p>
-    
-    <h3>Link-Beispiel:</h3>
-    <p>Escaped: {{ link_html }}</p>
-    <p>Safe: {{ link_html|safe }}</p>
+    <div class="container">
+        <header>
+            <h1>Django Template Demo</h1>
+        </header>
+        
+        <main>
+            {% block content %}
+            <!-- Hier wird der Inhalt der Child-Templates eingefügt -->
+            {% endblock %}
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 Django Template System</p>
+        </footer>
+    </div>
 </body>
 </html>
 ```
+<!-- ER16 -->
 
-### Template-Kommentare verwenden
-
-[ER] Erstellen Sie ein Template `templates/comments_demo.html`, das verschiedene Kommentar-Arten zeigt:
+[ER] Aktualisieren Sie `templates/welcome.html` mit CSS-Klassen:
 
 ```html
+{% extends "base.html" %}
+
+{% block title %}Willkommen - Django Templates{% endblock %}
+
+{% block content %}
+    <h2>{{ greeting }}</h2>
+    
+    {% if is_logged_in %}
+        <div class="hobby-list">
+            <p>Willkommen zurück, <strong>{{ user_name }}</strong>!</p>
+            
+            <h3>Ihre Hobbies:</h3>
+            <ul>
+            {% for hobby in hobbies %}
+                <li>{{ hobby }}</li>
+            {% empty %}
+                <li>Keine Hobbies angegeben</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <div style="border: 1px solid red; padding: 15px; background: #f8f0f0;">
+            <p>Bitte melden Sie sich an.</p>
+        </div>
+    {% endif %}
+{% endblock %}
+```
+<!-- ER17 -->
+
+Falls noch Fragen offen sind, hilft diese Ressource weiter:
+[Django Static Files](https://docs.djangoproject.com/en/4.2/howto/static-files/)
+
+### Template-Filter verwenden
+
+Template-Filter modifizieren Variablenwerte bei der Anzeige.
+
+[ER] Erstellen Sie eine neue View mit verschiedenen Datentypen:
+
+```python
+from datetime import datetime
+
+def filter_demo(request):
+    context = {
+        'current_year': 2024,
+        'long_text': 'Dies ist ein sehr langer Text, der demonstriert, wie Template-Filter funktionieren.',
+        'user_name': 'anna müller',
+        'price': 29.99,
+        'creation_date': datetime.now(),
+        'description': '<p>Dies ist <strong>HTML-Text</strong> mit Tags.</p>'
+    }
+    return render(request, 'filter_demo.html', context)
+```
+<!-- ER18 -->
+
+[ER] Erstellen Sie `templates/filter_demo.html`:
+
+```html
+{% extends "base.html" %}
+
+{% block title %}Template-Filter Demo{% endblock %}
+
+{% block content %}
+    <h2>Template-Filter Demonstration</h2>
+    
+    <div class="hobby-list">
+        <h3>String-Filter:</h3>
+        <p>Original: {{ user_name }}</p>
+        <p>Großbuchstaben: {{ user_name|upper }}</p>
+        <p>Titel-Format: {{ user_name|title }}</p>
+        <p>Erstes Zeichen: {{ user_name|first }}</p>
+        
+        <h3>Text-Filter:</h3>
+        <p>Gekürzt (30 Zeichen): {{ long_text|truncatechars:30 }}</p>
+        <p>Gekürzt (5 Wörter): {{ long_text|truncatewords:5 }}</p>
+        
+        <h3>Zahlen-Filter:</h3>
+        <p>Preis: {{ price|floatformat:2 }}€</p>
+        
+        <h3>Datum-Filter:</h3>
+        <p>Datum formatiert: {{ creation_date|date:"d.m.Y H:i" }}</p>
+        
+        <h3>HTML-Filter:</h3>
+        <p>Escaped: {{ description }}</p>
+        <p>Safe HTML: {{ description|safe }}</p>
+        
+        <h3>Standard-Werte:</h3>
+        <p>Leer oder Standardwert: {{ empty_var|default:"Kein Wert vorhanden" }}</p>
+    </div>
+{% endblock %}
+```
+<!-- ER19 -->
+
+[ER] Fügen Sie die Route in `urls.py` hinzu:
+
+```python
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('hello-template/', views.hello_template, name='hello_template'),
+    path('welcome/', views.welcome, name='welcome'),
+    path('filter-demo/', views.filter_demo, name='filter_demo'),
+]
+```
+<!-- ER20 -->
+
+Hier gibt es ein kompaktes Tutorial zum Thema:
+[Django Template Filters](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#built-in-filter-reference)
+
+### Template-Navigation erstellen
+
+[ER] Erweitern Sie `templates/base.html` um Navigation:
+
+```html
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-    <meta charset="utf-8">
-    <title>Kommentare Demo</title>
+    <meta charset="UTF-8">
+    <title>{% block title %}Django Template System{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h2>Kommentare in Templates:</h2>
-    
-    <p>Hier ist ein normaler Text.</p>
-    
-    {# Dies ist ein Kommentar, der nicht gerendert wird #}
-    
-    <p>Dieser Text wird angezeigt.</p>
-    
-    {# 
-    Mehrzeiliger Kommentar
-    wird ebenfalls ignoriert
-    #}
-    
-    <p>Ende der Kommentare-Demo.</p>
+    <div class="container">
+        <header>
+            <h1>Django Template Demo</h1>
+            <nav style="margin-top: 15px;">
+                <a href="{% url 'hello_template' %}" style="color: white; margin-right: 15px;">Hello Template</a>
+                <a href="{% url 'welcome' %}" style="color: white; margin-right: 15px;">Welcome</a>
+                <a href="{% url 'filter_demo' %}" style="color: white;">Filter Demo</a>
+            </nav>
+        </header>
+        
+        <main>
+            {% block content %}
+            <!-- Hier wird der Inhalt der Child-Templates eingefügt -->
+            {% endblock %}
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 Django Template System</p>
+        </footer>
+    </div>
 </body>
 </html>
 ```
+<!-- ER21 -->
 
-[ER] Erstellen Sie eine entsprechende View `comments_demo` und fügen Sie alle neuen URL-Routen 
-zu `urls.py` hinzu. Testen Sie alle Views.
-<!-- time estimate: 15 min -->
-
-### Include-Tag für Template-Fragmente
-
-[ER] Erstellen Sie ein Template-Fragment `templates/navigation.html`:
-
-```html
-<nav>
-    <ul>
-        <li><a href="/hello/">Home</a></li>
-        <li><a href="/list/">Listen</a></li>
-        <li><a href="/control/">Kontrolle</a></li>
-    </ul>
-</nav>
-```
-
-[ER] Erweitern Sie eines Ihrer bestehenden Templates um das Include-Tag:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Include Demo</title>
-</head>
-<body>
-    {% include "navigation.html" %}
-    
-    <h1>Hauptinhalt der Seite</h1>
-    <p>Hier ist der eigentliche Inhalt...</p>
-</body>
-</html>
-```
-
-[ER] Testen Sie die Include-Funktionalität und dokumentieren Sie das Ergebnis.
-<!-- time estimate: 10 min -->
+[EQ] Testen Sie alle drei Seiten über die Navigation: `http://127.0.0.1:8000/hello-template/`, 
+`http://127.0.0.1:8000/welcome/` und `http://127.0.0.1:8000/filter-demo/`. 
+Vergleichen Sie die visuellen Unterschiede zwischen den Seiten und erklären Sie den Vorteil 
+der `{% url %}` Tags gegenüber fest programmierten Links.
+Wenn Sie Port 8080 verwenden, ändern Sie die Links bitte entsprechend.
+<!-- EQ6 -->
 
 [ENDSECTION]
 
-[SECTION::submission::program]
+[SECTION::submission::information]
+
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
-[INCLUDE::ALT:]
+
+### Fragen und Python-Dateien
+[INCLUDE::ALT:django-template.md]
+
+### Kommandoprotokoll
+[PROT::ALT:django-template.prot]
+
 [ENDINSTRUCTOR]
