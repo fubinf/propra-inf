@@ -52,6 +52,16 @@ Weniger flexibel, aber in einfachen Fällen bequemer hinzuschreiben als eine
 [ENDTERM]
 
 
+[TERM::Anonyme Funktion|Lambda-Funktion]
+Eine anonyme Funktion ist eine Funktionsdefinition, die nicht an einen Bezeichner gebunden ist.
+Anonyme Funktionen werden häufig als Argumente an Funktionen höherer Ordnung übergeben.
+[HREF::https://de.wikipedia.org/wiki/Anonyme_Funktion]
+
+Eine anonyme Funktion in Python folgt dem Muster: `lambda arguments : expression`.
+Eine anonyme Funktion, die eine Zahl potenziert könnte somit wie folgt aussehen: `lambda x : x**2`
+[ENDTERM]
+
+
 [TERM::API|Web-API|REST-API]
 Application Programming Interface: 
 Die Schnittstelle eines Objekts, einer Bibliothek, eines Plugin-Mechanismus oder eines Dienstes,
