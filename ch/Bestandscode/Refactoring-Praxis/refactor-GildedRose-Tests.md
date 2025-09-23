@@ -110,4 +110,13 @@ zufügen sollte, um weniger hoffnungsvoll zu agieren?
   bitte ermahnen: Das würde einem im wirklichen Leben schnell über den Kopf wachsen.
   Für Charakterisierungstests sind Testtabellen die Methode der Wahl.
 
+Beispiellösung siehe [TREEREF::/Bestandscode/Refactoring-Praxis/gildedrose]
+
+### Fragen
+
+[INCLUDE::ALT:]
+
+### Kommandoprotokoll
+
+[PROT::ALT:refactor-GildedRose-Tests.prot]
 [ENDINSTRUCTOR]
