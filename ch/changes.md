@@ -65,5 +65,5 @@
 - **2025-09-02**: Aufgaben Web/HTTP/[PARTREF::http-Status] und
   Sprachen/SQL/[PARTREF::sql-misc] zugefügt.
 - **2025-09-23**: Aufgaben Sprachen/SQL/[PARTREF::sql-INDEX] 
-  und Web/HTTP/[PARTREF::http-State] zugefügt.
+  und Web/HTTP/[PARTREF::http-POST] und [PARTREF::http-State] zugefügt.
 - ...
