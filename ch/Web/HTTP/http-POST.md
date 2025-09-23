@@ -1,5 +1,5 @@
 title: "HTTP POST: Daten an Server übermitteln (request body, forms)"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: http-GET
@@ -37,6 +37,7 @@ Arten von Anfragen. Die beiden wichtigsten sind:
 sie typischerweise verwendet (stichwortartige Antwort reicht)?
 <!-- time estimate: 15 min -->
 
+
 ### POST vs. GET: Die wichtigsten Unterschiede
 
 POST unterscheidet sich in mehreren wichtigen Aspekten von GET:
@@ -67,8 +68,8 @@ GET wird also zum Abrufen von Informationen verwendet, während POST zum Senden 
 aus dem Alltag, das sowohl GET als auch POST enthält.
 Beschreiben Sie, warum die HTTP-Methode für den jeweiligen Zweck semantisch korrekt ist und 
 was passieren würde, wenn man die falsche Methode verwendete.
-
 <!-- time estimate: 15 min -->
+
 
 ### Aufbau einer POST-Anfrage
 
@@ -88,7 +89,7 @@ Die wichtigsten Header bei POST:
 - `Content-Type`: Gibt das Format der übertragenen Daten an
 - `Content-Length`: Gibt die Länge des Request Body in Bytes an
 
-[EC] Erstellen Sie eine Datei `HTTP-POST-form.crlf` mit einer POST-Anfrage, 
+[ER] Erstellen Sie eine Datei `http-POST-form.crlf` mit einer POST-Anfrage, 
 die folgende Formulardaten an `httpbin.org` (Port 80) zum Pfad `/post` sendet::
 
 - username: "testuser"
@@ -97,9 +98,10 @@ die folgende Formulardaten an `httpbin.org` (Port 80) zum Pfad `/post` sendet::
 
 Verwenden Sie `application/x-www-form-urlencoded` als Content-Type und 
 vergessen Sie nicht die korrekte Content-Length.
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
-### Content-Type Varianten
+
+### Varianten beim `Content-Type`
 
 POST-Anfragen können verschiedene Datenformate übertragen:
 
@@ -138,12 +140,18 @@ statt `application/x-www-form-urlencoded` verwenden?
 [MDN: Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)   
 [JSON vs Form Data](https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data)
 [ENDHINT]
+<!-- time estimate: 15 min -->
 
-<!-- time estimate: 20 min -->
 
 ### POST-Anfrage mit netcat testen
 
 Genau wie bei GET können wir POST-Anfragen manuell mit `netcat` testen.
+
+[EC] Testen Sie Ihre POST-Anfrage mit einem öffentlichen Test-Service:
+Senden Sie die Anfrage an `httpbin.org` (Port 80) an den Pfad `/post`.
+Dieser Service gibt die empfangenen Daten zur Kontrolle zurück.
+Führen Sie aus: `nc httpbin.org 80 <http-POST-form.crlf`
+<!-- time estimate: 10 min -->
 
 [HINT::Meine Anfrage funktioniert nicht!]
 Achten Sie darauf, dass alle Zeilen mit CRLF enden und zwischen Header und Body 
@@ -152,22 +160,17 @@ Die Content-Length muss exakt der Anzahl Bytes im Body
 entsprechen (inklusive der CRLF-Zeichen im Body).
 [ENDHINT]
 
-[EC] Testen Sie Ihre POST-Anfrage mit einem öffentlichen Test-Service:
-Senden Sie die Anfrage an `httpbin.org` (Port 80) an den Pfad `/post`.
-Dieser Service gibt die empfangenen Daten zur Kontrolle zurück.
-
-Führen Sie aus: `nc httpbin.org 80 <HTTP-POST-form.crlf`
-<!-- time estimate: 10 min -->
 
 ### POST mit JSON-Daten
 
 Lassen Sie uns das gleiche Beispiel wie oben verwenden, aber diesmal mit JSON-Format:
 
-[EC] Erstellen Sie eine Datei `HTTP-POST-json.crlf` mit einer POST-Anfrage, 
+[ER] Erstellen Sie eine Datei `http-POST-json.crlf` mit einer POST-Anfrage, 
 die die gleichen Daten wie oben an `httpbin.org` (Port 80) zum Pfad `/post` sendet, 
 aber im JSON-Format.
-
 Verwenden Sie `application/json` als Content-Type und achten Sie auf die korrekte JSON-Syntax.
+
+[EC] Führen Sie aus: `nc httpbin.org 80 <http-POST-json.crlf`
 <!-- time estimate: 10 min -->
 
 
@@ -184,10 +187,10 @@ HTML-Formulare verwenden standardmäßig POST für die Datenübertragung:
 </form>
 ```
 
-[EC] Erstellen Sie eine Datei `registration-form.html` mit folgendem HTML-Code 
+[ER] Erstellen Sie eine Datei `http-POST-registration-form.html` mit folgendem HTML-Code 
 und testen Sie das Formular, indem Sie es im Browser öffnen, ausfüllen und absenden. 
 Die Antwort von `httpbin` zeigt die übermittelten Daten im Feld form. 
-Reichen Sie die von httpbin zurückgegebene Formularausgabe ein.
+Reichen Sie die von httpbin zurückgegebene Formularausgabe als `http-POST-registration-form-result.html` ein.
 
 ```html
 <!DOCTYPE html> 
@@ -208,40 +211,28 @@ Reichen Sie die von httpbin zurückgegebene Formularausgabe ein.
   </form>
 </body>
 </html>
-
 ```
 <!-- time estimate: 10 min -->
-
 [ENDSECTION]
+
 
 [SECTION::submission::information,snippet,trace]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-Geben Sie auch die Dateien `HTTP-POST-form.crlf` und `registration-form.html` mit ab.
-
 [ENDSECTION]
+
 
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Eingabedateien
 
-Die POST-Anfrage sollte etwa so aussehen:
+Die POST-Anfrage `http-POST-form.crlf` sollte etwa so aussehen (mit CR LF als Zeilentrenner):
 ```
-POST /post HTTP/1.1
-Host: httpbin.org
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 48
-
-username=testuser&password=geheim123&remember=on
+[INCLUDE::ALT:http-POST-form.txt]
 ```
-
-Das HTML-Formular sollte vollständig und funktional sein.
 
 ### Fragen
-
-Die Antworten sollten zeigen, dass die Studierenden die praktischen Unterschiede 
-zwischen GET und POST verstehen, insbesondere bezüglich Sicherheit, Caching und Datenübertragung.
 
 [INCLUDE::ALT:http-POST.md]
 
