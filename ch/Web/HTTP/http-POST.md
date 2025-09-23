@@ -35,6 +35,7 @@ Arten von Anfragen. Die beiden wichtigsten sind:
 
 [EQ] Welche weiteren HTTP-Methoden gibt es neben GET und POST, und wofür werden 
 sie typischerweise verwendet (stichwortartige Antwort reicht)?
+<!-- EQ1 -->
 <!-- time estimate: 15 min -->
 
 
@@ -68,6 +69,7 @@ GET wird also zum Abrufen von Informationen verwendet, während POST zum Senden 
 aus dem Alltag, das sowohl GET als auch POST enthält.
 Beschreiben Sie, warum die HTTP-Methode für den jeweiligen Zweck semantisch korrekt ist und 
 was passieren würde, wenn man die falsche Methode verwendete.
+<!-- EQ2 -->
 <!-- time estimate: 15 min -->
 
 
@@ -98,6 +100,7 @@ die folgende Formulardaten an `httpbin.org` (Port 80) zum Pfad `/post` sendet::
 
 Verwenden Sie `application/x-www-form-urlencoded` als Content-Type und 
 vergessen Sie nicht die korrekte Content-Length.
+<!-- ER1 -->
 <!-- time estimate: 15 min -->
 
 
@@ -135,6 +138,7 @@ Dateiinhalt hier...
 [EQ] Recherchieren Sie, wann man die verschiedenen Content-Type-Varianten verwendet. 
 Welche Vor- und Nachteile hat jede Variante? Wann würden Sie `application/json` 
 statt `application/x-www-form-urlencoded` verwenden?
+<!-- EQ3 -->
 
 [HINT::Wo finde ich im Netz dazu eine gute Diskussion?]
 [MDN: Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)   
@@ -151,6 +155,7 @@ Genau wie bei GET können wir POST-Anfragen manuell mit `netcat` testen.
 Senden Sie die Anfrage an `httpbin.org` (Port 80) an den Pfad `/post`.
 Dieser Service gibt die empfangenen Daten zur Kontrolle zurück.
 Führen Sie aus: `nc httpbin.org 80 <http-POST-form.crlf`
+<!-- EC1 -->
 <!-- time estimate: 10 min -->
 
 [HINT::Meine Anfrage funktioniert nicht!]
@@ -169,8 +174,10 @@ Lassen Sie uns das gleiche Beispiel wie oben verwenden, aber diesmal mit JSON-Fo
 die die gleichen Daten wie oben an `httpbin.org` (Port 80) zum Pfad `/post` sendet, 
 aber im JSON-Format.
 Verwenden Sie `application/json` als Content-Type und achten Sie auf die korrekte JSON-Syntax.
+<!-- ER2 -->
 
 [EC] Führen Sie aus: `nc httpbin.org 80 <http-POST-json.crlf`
+<!-- EC2 -->
 <!-- time estimate: 10 min -->
 
 
@@ -212,6 +219,7 @@ Reichen Sie die von httpbin zurückgegebene Formularausgabe als `http-POST-regis
 </body>
 </html>
 ```
+<!-- ER3 -->
 <!-- time estimate: 10 min -->
 [ENDSECTION]
 
