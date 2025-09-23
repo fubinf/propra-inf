@@ -65,9 +65,7 @@ ist hier nicht so klar, wo man mit der Suche nach dem [TERMREF::Defekt] anfangen
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Inhalt der Abgabe]
-Der Weg zum Ziel der Aufgabe ist sehr geradlinig beschrieben, alle Abgaben sollten in etwa die 
-gleichen Inhalte haben.
-
-Der geforderte Fix findet in nur einer Funktion statt.
+[INSTRUCTOR::Musterlösung]
+[INCLUDE::ALT:]
+[PROT::ALT:einkaufsliste-defekt2.prot]
 [ENDINSTRUCTOR]
