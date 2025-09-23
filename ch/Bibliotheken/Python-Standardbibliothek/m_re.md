@@ -3,7 +3,7 @@ stage: draft
 timevalue: 0
 difficulty: 2
 explains:
-assumes:
+assumes: re-Gruppen
 requires:
 ---
 

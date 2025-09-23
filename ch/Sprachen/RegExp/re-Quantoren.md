@@ -2,7 +2,7 @@ title: "Anzahl Wiederholungen in Regulären Ausdrücken"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-requires: re-Metazeichen
+assumes: re-Metazeichen
 ---
 
 [SECTION::goal::idea]

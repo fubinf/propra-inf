@@ -2,7 +2,7 @@ title: "Gruppen"
 stage: draft
 timevalue: 1.0
 difficulty: 2
-requires: re-Quantoren
+assumes: re-Quantoren
 ---
 
 [SECTION::goal::idea]
