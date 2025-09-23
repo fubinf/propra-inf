@@ -1,5 +1,5 @@
 title: HTTP Zustandslosigkeit und Cookies
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: http-GET
@@ -10,6 +10,7 @@ Ich verstehe das Konzept der Zustandslosigkeit in HTTP und kann erklären,
 Sessions realisiert werden, um trotzdem zustandsbehaftetes Verhalten zu erlauben.
 [ENDSECTION]
 
+
 [SECTION::background::default]
 HTTP ist von Natur aus ein zustandsloses Protokoll, das bedeutet, 
 dass jede Anfrage unabhängig behandelt wird und nichts von ggf. vorangegangenen Anfragen weiß. 
@@ -17,6 +18,7 @@ Das ist zwar für die Server effizient (weil sie keinen Zustand speichern müsse
 bildet aber für viele Anwendungen keine ausreichende Grundlage.
 Wie also bekommt man mittels HTTP Sitzungen mit Zustand hin?
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -49,10 +51,10 @@ Jede Anfrage steht dann also völlig für sich und man kann viele Dinge nicht si
 
 Wer es genauer wissen möchte:
 [HTTP als zustandsloses Protokoll](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview)
-
 <!-- time estimate: 10 min -->
 
-### Warum ist HTTP zustandslos designed?
+
+### Warum ist HTTP als zustandslos entworfen?
 
 HTTP wurde bewusst als zustandsloses Protokoll entworfen, 
 da dies verschiedene Vorteile gegenüber zustandsbehafteten Protokollen bietet:
@@ -67,8 +69,8 @@ da dies verschiedene Vorteile gegenüber zustandsbehafteten Protokollen bietet:
 [EQ] Recherchieren Sie und erklären Sie für folgende Anwendungsfälle,
 wie die Zustandslosigkeit von HTTP entscheidend für die Skalierbarkeit ist:
 Content Delivery Networks (CDNs); Lastverteilung (load balancing) bei eCommerce-Anbietern.
+(Je ein Aspekt genügt, aber Ihre Antworten müssen richtig sein.)
 <!-- EQ1 -->
-
 <!-- time estimate: 15 min -->
 
 Na gut, aber aus Anwendungssicht _braucht_ man oft einen Zustand.
@@ -127,8 +129,8 @@ Cookie: session_id=abc123
 
 Optional: Wer es genauer wissen möchte, findet detaillierte Informationen zu Cookie-Mechanismen unter
 [Using HTTP Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
-
 <!-- time estimate: 15 min -->
+
 
 ### Sessions und Sitzungsverwaltung
 
@@ -157,8 +159,8 @@ Warum werden beide Mechanismen oft zusammen verwendet?
 Der Server speichert nicht „die Session selbst“, sondern nur die dazugehörigen Daten, 
 die durch die Session-ID referenziert werden. 
 [ENDNOTICE]
-
 <!-- time estimate: 10 min -->
+
 
 ### Hauptverwendungszwecke und Lebensdauer von Cookies
 
@@ -197,12 +199,15 @@ Set-Cookie: user_pref=dark_mode; Expires=Thu, 31 Oct 2025 07:28:00 GMT
 Set-Cookie: temp_data=value123
 ```
 
+Siehe auch die 
+[Doku zum `Set-Cookie`-Header bei mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie).
+
 Achtung, Verwirrung: Eine Session-ID wird meist _nicht_ in einem Session-Cookie gespeichert, 
 sondern eher in einem permanenten, damit die serverseitige Sitzung auch nach Neustart des Browsers
 (neue Klienten-Sitzung)
 weiter existieren kann.
 
-Moderne Webanwendungen nutzen zudem alternative Speichermechanismen 
+Moderne Webanwendungen nutzen neben Cookies auch alternative Speichermechanismen 
 wie `localStorage` und `sessionStorage` für clientseitige Datenspeicherung, 
 da diese nicht bei jeder Anfrage übertragen werden müssen und größere Datenmengen speichern können.
 
@@ -220,23 +225,29 @@ und begründen Sie Ihre Entscheidung.
 
 [EQ] Eine Website möchte sowohl Login-Informationen für 30 Tage speichern 
 als auch temporäre Daten zur Sortier-Ordnung einer Tabelle `table1` nur für die aktuelle Browsersitzung. 
-Wie würden die entsprechenden `Set-Cookie` Header aussehen? 
+Wie würden die entsprechenden `Set-Cookie` Header aussehen, wenn das Cookie vor Ausspionieren 
+geschützt sein soll? 
 
-[NOTICE]
-Achten Sie auf die Lebensdauer (z. B. `Max-Age`) und sicherheitsrelevante Cookie-Attribute 
-(`HttpOnly`, `Secure`, `SameSite`).
-[ENDNOTICE]
+[HINT::Was heißt Ausspionieren?]
+Ausspionieren könnte per JavaScript im Browser passieren,
+durch unverschlüsselte HTTP-Datenübertragung, 
+oder durch Mitsenden an einen anderen Server als den, von dem das Cookie stammt. 
+Für jeden dieser Aspekte gibt es eine Option, um das zu unterbinden.
+
+[HINT::Welche Optionen sind das?]
+`HttpOnly`; `Secure`; `SameSite` 
+[ENDHINT]
+[ENDHINT]
 
 <!-- EQ4 -->
-
 <!-- time estimate: 20 min -->
-
-
 [ENDSECTION]
+
 
 [SECTION::submission::information]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Kontrollergebnisse]
 Die Studierenden sollen ein grundlegendes Verständnis für HTTP-Zustandslosigkeit entwickeln 

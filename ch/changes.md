@@ -64,6 +64,6 @@
   Aufgabe Sprachen/SQL/[PARTREF::sql-UPDATE-VIEW-CASE] zugefügt.
 - **2025-09-02**: Aufgaben Web/HTTP/[PARTREF::http-Status] und
   Sprachen/SQL/[PARTREF::sql-misc] zugefügt.
-- **2025-09-19**: Aufgabe Sprachen/SQL/[PARTREF::sql-INDEX] zugefügt.
-
+- **2025-09-23**: Aufgaben Sprachen/SQL/[PARTREF::sql-INDEX] 
+  und Web/HTTP/[PARTREF::http-State] zugefügt.
 - ...
