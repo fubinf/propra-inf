@@ -256,7 +256,7 @@ wird hier die Verarbeitung der Befehle angehalten.
 Ein [TERMREF2::Modultest::Modul-] oder [TERMREF::Integrationstest],
 der aber nicht überprüft, ob das Verhalten korrekt ist,
 sondern nur, ob es "wie bisher" ist.
-Das beim Erstellen des Tests aktuell Verhalten der Software wird dabei
+Das beim Erstellen des Tests aktuelle Verhalten der Software wird dabei
 als korrekt angenommen und mit dem Test festgeschrieben.
 
 Eine Menge solcher Tests, die den Eingaberaum gut abdeckt, _charakterisiert_
