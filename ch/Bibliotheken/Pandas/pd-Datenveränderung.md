@@ -1,5 +1,5 @@
 title: "pandas: Daten ändern"
-stage: alpha
+stage: beta
 timevalue: 1.75
 difficulty: 2
 requires: pd-Datenselektion
@@ -119,7 +119,7 @@ fehleranfälligem Code, wenn man nicht weiß, wie man damit umgehen soll.
 ### Chained Indexing / Chained Assignment
 
 [NOTICE]
-Informationen zu den folgenden Aufgaben finden Sie in diesem Abschnitt der Dokumentation:
+Informationen zu den folgenden Aufgaben finden Sie in der Pandas-Dokumentation unter
 [Why does assignment fail when using chained indexing](https://pandas.pydata.org/docs/user_guide/indexing.html#why-does-assignment-fail-when-using-chained-indexing)
 und 
 [Chained Assignment - Copy-On-Write](https://pandas.pydata.org/docs/user_guide/copy_on_write.html#chained-assignment)
@@ -143,17 +143,18 @@ Erklären Sie anhand des ersten Ausdrucks das Problem von "Chained Indexing".
 
 [NOTICE]
 Solche ungewünschten Schreibweisen wie "Chained Indexing" werden oftmals (aber auch nicht immer)
-mithilfe der `SettingWithCoypWarning` von Pandas in der Konsole sichtbar gemacht.
+mithilfe der `SettingWithCopyWarning` von Pandas in der Konsole sichtbar gemacht.
 Die Warnung dient also als Indikator, dass Sie Codeschnipsel nicht sauber formuliert haben.
 [ENDNOTICE]
 
 [EQ] Lesen Sie die
 [Dokumentation](https://pandas.pydata.org/docs/user_guide/indexing.html#evaluation-order-matters).
-Wie sollte man "Chained Indexing" Fälle sauber umformulieren?
+Wie sollte man Fälle von "Chained Indexing" sauber umformulieren?
 
 [HINT::Sauberes Umformulieren]
 Suchen Sie in der Dokumentation nach folgendem Abschnitt:
-"The following is the recommended access method using .loc for multiple items (using mask) and a single item using a fixed index"
+"The following is the recommended access method using `.loc` for multiple items (using `mask`) and 
+a single item using a fixed index:".
 [ENDHINT]
 
 [ER] `erststimmen_df["Bezirksname"][0] = "Mitte Neu"` formulieren Sie diesen Ausdruck sauber um,
@@ -169,15 +170,15 @@ df = pd.DataFrame({"a": [1, 2, 3], "b": [4, 5, 6]})
 subset = df["a"]
 subset[0] = 999
 ```
-Hier wäre die Erwartung, dass `subset` eine View ist und sich Änderungen direkt auf `df` auswirken. 
+Hier wäre die Erwartung, dass `subset` eine View ist, und sich Änderungen direkt auf `df` auswirken. 
 
 [EQ] Nun haben wir bereits geklärt, dass wir uns nicht darauf verlassen können, von Pandas eine
 `View` zu bekommen.
 Formulieren Sie, welches Problem auftritt, wenn wir (unvorhersehbar) eine `Copy` statt einer `View`
 bekommen.
 
-[EQ] Zeigen Sie, wieso dieses Beispiel eigentlich nur eine Abwandlung vom 
-"Chained Assignment"-Problem ist.
+[EQ] Erklären Sie, inwiefern dieses Beispiel eigentlich ein Exemplar des
+"Chained Assignment"-Problems ist.
 
 [ER] Trotzdem möchte man als Programmierer die Möglichkeit haben, explizit Kopien von
 relevanten Teilen eines `DataFrame` zu erstellen.
@@ -202,9 +203,10 @@ indem Sie die Best Practices anwenden:
 erststimmen_df[erststimmen_df["Wählende"] > 500][erststimmen_df["Gültige Stimmen"] > 400]["SPD"] = -999
 ```
 
-### Copy On Write (zukünftiges Pandas-Verhalten)
+### Copy On Write (Pandas-Verhalten ab Version 3.0 oder auf Verlangen)
 
-Es gibt einen Modus in Pandas, der ab Version `3.0` auch der Standard sein wird:
+<!-- TODO_3: Copy-on-write: Wenn Pandas 3.0 erschienen ist, nächsten Satz anpassen: -->
+Es gibt einen Modus in Pandas, der ab Version `3.0` (erscheint Ende 2025) auch der Standard sein wird:
 [Copy On Write](https://pandas.pydata.org/docs/development/copy_on_write.html)
 
 Aus unserer Python-Welt sind wir gewöhnt, immer eine `View` zu bekommen.
@@ -214,8 +216,9 @@ Mit "Copy on Write" soll sich das ändern: Jede Selektion gibt eine `Copy` zurü
 [NOTICE]
 Unter der Haube von "Copy on Write" wird nicht wirklich jedes Mal eine Kopie gemacht aus 
 Effizienzgründen.
-Es garantiert aber, dass sich die Selektionen wie Kopien verhalten, weshalb das für uns
-Programmierer erstmal uninteressant ist.
+Es garantiert aber, dass sich die Selektionen wie Kopien verhalten, weshalb der Unterschied für uns
+Pandas-Anfänger erstmal uninteressant ist. 
+Er wird wichtig, wenn man mit großen Datenmengen arbeitet.
 [ENDNOTICE]
 
 [ER] Aktivieren Sie "Copy on Write" im Code.
@@ -225,6 +228,12 @@ Begründen Sie.
 
 [EQ] Testen Sie beide Beispiele aus dem "Chained Indexing"-Abschnitt mit aktiviertem "Copy On Write".
 Beschreiben Sie, ob und wie sich das Verhalten ändert.
+
+[WARNING]
+Um Pandas-Code korrekt zu verstehen, muss man vielen Fällen also den Status der
+"Copy on Write"-Einstellung klären.
+Auch viele Jahre nach dem Erscheinen von Pandas 3.0 wird es noch viel Code auf Basis von
+Pandas 1 (1.5.3 erschien Januar 2023) und Pandas 2 (2.3.3 erschien September 2025) geben!
 [ENDSECTION]
 
 
