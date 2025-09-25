@@ -1,40 +1,37 @@
 title: "FastAPI-CRUD"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 explains:
-assumes: m_datetime, http-Status
+assumes: m_datetime, http-POST, http-Status
 requires: FastAPI-GET
 ---
 
 
 [SECTION::goal::trial]
-Ich kann mit FastAPI eine [TERMREF::REST-API] entwickeln, die Endpunkte für das Erstellen,
-Lesen, Aktualisieren und Löschen von Daten bereitstellt.
+Ich kann mit FastAPI eine [TERMREF::REST-API] mit CRUD-Endpunkten bereitstellen:
+Erstellen, Lesen, Aktualisieren und Löschen von Daten.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-In vielen Webanwendungen werden Daten über standardisierte HTTP-Endpunkte verwaltet.
-Mit FastAPI ist es simple möglich, die [TERMREF::CRUD]-Funktionalität umzusetzen.
+In vielen Webanwendungen werden Daten über standardisierte HTTP-Operationen verwaltet.
+Mit FastAPI ist es nur wenig Aufwand, die [TERMREF::CRUD]-Funktionalität in diesem Stil umzusetzen.
 [ENDSECTION]
 
 
 [SECTION::instructions::detailed]
 
-
 ### Vorbereitung
 
-Erstellen Sie die Datei `FastAPI-CRUD.py`.
-Schreiben Sie den Quellcode, den Sie im Verlauf dieser Aufgabe erzeugen, in diese Datei.
-Kopieren Sie den Quellcode aus der Aufgabe [PARTREF::FastAPI-GET] in die neue Datei.
+Kopieren Sie als Startpunkt den Quellcode aus der Aufgabe [PARTREF::FastAPI-GET] in `FastAPI-CRUD.py`.
 
 
-### C - Create
+### `C`: Create
 
-In einer REST-API wird ein POST-Anfrage gesendet, um eine neue Ressource zu erstellen.
-Die HTTP-Methode auf die ein Endpunkt reagiert, kann im Dekorator angegeben werden.
-Bei einer GET-Anfrage wird die Funktion mit `@app.get("/pfad")` dokoriert.
+In einer REST-API wird eine POST-Anfrage gesendet, um eine neue Ressource zu erstellen.
+Die HTTP-Methode, auf die ein Endpunkt reagiert, kann im Dekorator angegeben werden.
+Bei einer GET-Anfrage wird die Funktion mit `@app.get("/pfad")` dekoriert.
 Dies funktioniert für andere HTTP-Methoden analog.
 Für eine POST-Anfrage kann dementsprechend `@app.post("/pfad")` genutzt werden.
 
@@ -42,42 +39,34 @@ Für eine POST-Anfrage kann dementsprechend `@app.post("/pfad")` genutzt werden.
 Schreiben Sie in der Funktion vorerst `pass`, damit Sie das Programm ausführen können
 und öffnen Sie diesen Endpunkt in der interaktiven Dokumentation.
 
-Sie sehen, dass der neue Endpunkt, bei Erfolg, mit Code `200` antwortet.
-Auf eine POST-Anfrage wird in der Regel nicht `200` geantwortet,
-sondern `201` mit der Bedeutung `Created`.
-
-[NOTICE]
-Dass auf eine POST-Anfrage nicht `200`, sondern `201` geantwortet wird, ist nichts
-technisch erforderlich.
-Es gibt allerdings 
-[standardisierten HTTP-Statuscodes](https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Status)
-an die Sie sich beim Entwurf einer eigenen API halten sollten.
-[ENDNOTICE]
+Sie sehen, dass der neue Endpunkt bei Erfolg mit Code `200` antwortet.
+Auf eine POST-Anfrage wird [PARTREFMANUAL::http-Status::wie sie wissen]
+in der Regel aber nicht `200` geantwortet,
+sondern `201`, mit der Bedeutung `Created`.
 
 [ER] Lesen Sie in der
 [FastAPI Dokumentation](https://fastapi.tiangolo.com/tutorial/response-status-code/),
 wie Sie mit Code `201` antworten können und ergänzen Sie dementsprechend Ihren Endpunkt.
 
-Es ist üblich, dass auf eine POST-Anfrage bei Erfolg das vollständige Objekt, das
+Es ist üblich, dass bei einer POST-Anfrage bei Erfolg das vollständige Objekt, das
 erstellt wurde, zurückgesendet wird.
 Dadurch können Missverständnisse darüber, wie die Objekte auf dem Server gespeichert wurden,
-verhindert werden.
+vermindert werden.
 
 [ER] Ergänzen Sie als Rückgabetyp `GradeEntry`, damit in der Dokumentation das
 korrekte Schema angezeigt wird.
 
-In einer POST-Anfrage ist es weiterhin möglich, Daten im
-[Body](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages#anatomy_of_an_http_message)
-der Anfrage zu senden.
 
-[ER] Ergänzen Sie dazu in `create_grade_entry()` das Argument `data: GradeEntry`
+
+[ER] In einer POST-Anfrage sendet man in der Regel Daten im Rumpf der Anfrage mit.
+Ergänzen Sie in `create_grade_entry()` das Argument `data: GradeEntry`
 und schauen Sie sich den Endpunkt erneut in der Dokumentation an.
 
 Sie sehen nun, dass ein "Request Body" erwartet wird und durch welches Schema sich
 dieser auszeichnet.
 Anders als bei einem GET-Endpunkt wird das Argument `data` nicht in der _Query_,
 sondern im _Body_ erwartet.
-Durch die Datenvalidierung durch _Pydantic_ ist es nicht möglich falsche Datentypen anzugeben.
+Durch die Datenvalidierung durch _Pydantic_ ist es nicht möglich, falsche Datentypen anzugeben.
 
 [ER] Ergänzen Sie nun die Logik, die `data` in die Liste `fake_db` hinzufügt.
 
@@ -85,15 +74,13 @@ Wenn Sie nun einen Test-Eintrag hinzufügen, können Sie sowohl mehrfach
 den gleichen Eintrag erstellen, als auch `date` selbst festlegen.
 Häufig ist es nicht erwünscht, dass beim Erstellen alle Parameter vom Client festgelegt
 werden.
-So soll `date` das Datum sein, an welchem der Eintrag erstellt wurde.
-Dieses Datum kann lediglich sicher auf dem Server und nicht vom Client gesetzt werden
+So soll `date` verlässlich das Datum sein, an welchem der Eintrag erstellt wurde.
 
 [ER] Es ist folglich notwendig, dass ein anderes Schema für die Daten, die im Endpunkt
 übergeben werden können, erstellt wird.
 Erstellen Sie eine neue Klasse `GradeEntryCreate(BaseModel)` und ergänzen Sie die
 Attribute `name: str`, `course: str` und `grade: float`.
-
-[ER] Ändern Sie den Datentyp von `data` zu `GradeEntryCreate`.
+Ändern Sie den Datentyp von `data` zu `GradeEntryCreate`.
 
 [ER] Passen Sie nun die Logik des Endpunktes so an, dass die folgenden Kriterien erfüllt werden:
 
@@ -109,7 +96,8 @@ ob der neue Eintrag erstellt wurde.
 Versuchen Sie danach den bereits erstellten Eintrag erneut anzulegen.
 
 Sie sehen, dass beim erneuten Hinzufügen nun der Code `500` zurückgeben wird.
-Dies ist zu ungenau, da dieser Fehler nicht unbekannt sondern bewusst auftritt
+Dies ist falsch, da die betreffende Ausnahme ja nicht aus Versehen,
+sondern gewollt erzeugt wurde.
 
 [ER] Lesen Sie in der FastAPI Dokumentation nach, wie Sie
 [eigene Fehlercodes senden](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
@@ -117,14 +105,14 @@ können.
 Ändern Sie entsprechend, dass dort der Code `409` geantwortet wird.
 
 
-### R - Read
+### `R`: Read
 
 Die Endpunkte, mit denen die Daten gelesen werden können, wurden bereits in der
 vorherigen Aufgabe erstellt.
 Daher ist hier nichts weiter zu tun.
 
 
-### U - Update
+### `U`: Update
 
 `PUT` und `PATCH` sind die beiden HTTP-Methoden, um Einträge zu aktualisieren.
 Bei einer PUT-Anfrage muss der vollständige Eintrag gesendet werden.
@@ -156,7 +144,7 @@ und deswegen vom Server unterschieden werden können.
 [ENDNOTICE]
 
 
-### D - Delete
+### `D`: Delete
 
 Zuletzt fehlt ein Endpunkt, um Einträge wieder löschen zu können.
 Dafür kann die HTTP-Methode DELETE genutzt werden.
