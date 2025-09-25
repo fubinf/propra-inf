@@ -11,27 +11,30 @@ assumes: js-DOM-Baumstruktur
 - Ich kann Event-Handler in eigene Funktionen auslagern und so den Code modularisieren.
 - Ich kann Eingaben verarbeiten und an andere Stellen im DOM weitergeben.
 - Ich kann bewusst zwischen `value`, `textContent` und `innerHTML` wählen und Fehler vermeiden.
-- Ich kann das Eventobjekt nutzen, um kontextabhängige Informationen im Event-Handler zu verwenden.
-- Ich verstehe Parameterübergabe bei Funktionen und kann Wiederverwendung planen.
+- Ich kann das Eventobjekt nutzen, um im Event-Handler Kontextinformationen zu verwenden.
+- Ich verstehe die Parameterübergabe bei Funktionen.
 [ENDSECTION]
 
+
 [SECTION::background::default]
-Benutzereingaben, Klicks oder Änderungen lösen Ereignisse aus, aber nicht jede Reaktion darauf ist sinnvoll gestaltet.
-Damit Interaktionen nachvollziehbar, wiederverwendbar und stabil bleiben, müssen Funktionen gezielt formuliert und Event-Handler klar strukturiert sein.
-Das Zusammenspiel aus Eingabe, Verarbeitung und DOM-Änderung steht dabei im Mittelpunkt.
+Benutzereingaben, Klicks oder Änderungen lösen Ereignisse aus, aber wenn man nicht aufpasst,
+hat man bei deren Verarbeitung im Nu ein furchtbares Durcheinander im Code angerichtet.
+Was ist in diesem Umfeld sinnvolle Modularität?
 [ENDSECTION]
+
 
 [SECTION::instructions::loose]
 
 ### Event-Handler besser strukturieren
 
-Event-Handler sind Funktionen, die auf eine Benutzeraktion reagieren, zum Beispiel auf einen Klick oder eine Tastatureingabe.
+Event-Handler sind Funktionen, die auf eine Benutzeraktion reagieren, 
+zum Beispiel auf einen Klick oder eine Tastatureingabe.
 In den bisherigen Beispielen haben wir diese Logik direkt in den `addEventListener` geschrieben.
-Das funktioniert, wird aber schnell unübersichtlich, wenn der Code umfangreicher wird oder man dasselbe Verhalten an mehreren Stellen braucht.
+Das wird schnell unübersichtlich, sobald der Code umfangreicher wird oder 
+man dasselbe Verhalten an mehreren Stellen braucht.
 
-Statt denselben Code zu kopieren oder lange anonyme Funktionen zu schreiben, ist es besser eine benannte Funktion anzulegen und sie im Event-Listener zu referenzieren.
-
-Wir können Event-Logik in eigene Funktionen auslagern, nicht nur aus Stilgründen, sondern auch für Wiederverwendbarkeit und Übersicht:
+Statt denselben Code zu kopieren oder lange anonyme Funktionen zu schreiben, ist es besser,
+eine benannte Funktion anzulegen und als Event-Listener zu benutzen:
 ```
 function begruesseNutzer() {
   const name = document.getElementById("nameInput").value;
@@ -41,14 +44,16 @@ function begruesseNutzer() {
 
 document.getElementById("sendenBtn").addEventListener("click", begruesseNutzer);
 ```
-[NOTICE]
-Vorteil: Die Begrüßung ist nun an zentraler Stelle definiert und kann auch an anderen Stellen im Code verwendet werden.
-[ENDNOTICE]
+Die Begrüßung ist nun an zentraler Stelle definiert und kann an mehreren Stellen im Code verwendet werden.
 
-[ER] Ändere deinen bisherigen Code so um, dass der Begrüßungstext nicht mehr direkt im `addEventListener`, sondern in einer eigenen Funktion steht.
+[ER] Ändere deinen bisherigen Code so um, dass der Begrüßungstext nicht mehr direkt im `addEventListener`, 
+sondern in einer eigenen Funktion steht.
+
 
 ### Vertiefung: `value`, `textContent`, `innerHTML` im Einsatz
-Wenn wir Inhalte im DOM ändern oder auslesen wollen, müssen wir unterscheiden, mit welcher Art von Element wir arbeiten – ein Textfeld, ein Absatz oder ein Bereich mit HTML-Auszeichnung. 
+
+Wenn wir Inhalte im DOM ändern oder auslesen wollen, müssen wir unterscheiden, 
+mit welcher Art von Element wir arbeiten – ein Textfeld, ein Absatz oder ein Bereich mit HTML-Auszeichnung. 
 Hier kommen die drei Zugriffsarten `value`, `textContent` und `innerHTML` ins Spiel.
 Schon kleine Fehler bei der Auswahl führen zu unerwartetem Verhalten, z. B. sichtbaren HTML-Tags oder leeren Ausgaben.
 Wir wissen: `value` ist für Eingabefelder, `textContent` für reinen Text, `innerHTML` für HTML-Strukturen.
