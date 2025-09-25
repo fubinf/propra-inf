@@ -6,8 +6,7 @@ assumes: go-basics, go-functions, go-structs1
 ---
 
 [SECTION::goal::idea,experience]
-Ich habe mich mit den weiteren Konzepten von Go auseinandergesetzt und kann nun
-Zeiger effektiv benutzen.
+Ich verstehe, was Zeiger in Go sind und kann sie effektiv benutzen.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -23,22 +22,22 @@ wie Programme "unter der Haube" funktionieren.
 [SECTION::instructions::detailed]
 
 
-### Was ist denn ein Zeiger?
+### Was ist ein Zeiger?
 
-Ein Zeiger ist **eine Variable, die Speicheradresse einer anderen Variable enthält.**
+Ein Zeiger ist **ein Ausdruck, der die Speicheradresse eines Objekts repräsentiert.**
 
 In C oder C++ sind Zeiger ziemlich low-level und geben dem Programmierer viel mehr Macht:
-Ein Zeiger ist bloß eine Zahl — die Speicheradresse.
-Wie man mit dieser Zahl umgeht, ist einem überlassen.
+Ein Zeiger ist bloß eine Zahl — eine Speicheradresse.
+Was man damit anfängt, ist einem überlassen, was ungeheure Möglichkeiten für Defekte eröffnet,
+die sehr subtil sein können.
 
-Im Gegensatz zu solchen "gefährlichen" Zeigern sind Go-Zeiger etwas restriktiver.
+Im Gegensatz zu den "gefährlichen" Zeigern in C sind Go-Zeiger restriktiver.
 Sie unterstützen keine
 [Zeigerarithmetik](https://www.tutorialspoint.com/cprogramming/c_pointer_arithmetic.htm)
 und gehören immer zu einem konkreten Typ
 (`*T`, falls der Zeiger eine Variable von Typ `T` referenziert).
-
-(In C sind Zeiger auch typisiert, allerdings wird dieser Typ durch eine Umwandlung 
-in `void*` oft umgangen.)
+In C sind Zeiger ebenfalls typisiert, allerdings kann man einen Zeiger in jeden anderen Typ
+umdeuten und das wird auch tatsächlich häufig genutzt.
 
 
 ### Wie funktionieren Zeiger in Go?
@@ -48,8 +47,8 @@ Ein Zeiger wird mithilfe des `&`-Operators erstellt.
 Semantisch kann dieser als "Adresse von" gelesen werden: `&x` heißt also "Adresse von `x`"
 und liefert einen Zeiger, der auf `x` zeigt.
 
-Die Umkehroperation heißt Dereferenzierung — ein Zeiger wird in den "Wert an der Adresse von `x`"
-umgewandelt.
+Die Umkehroperation heißt _Dereferenzierung_: 
+aus dem Zeiger wird der "Wert an der Adresse" ermittelt.
 Dies geschieht mithilfe des Operators `*`, der sowohl zum Deklarieren eines Zeigertyps als auch
 zur Dereferenzierung verwendet wird.
 
@@ -66,11 +65,11 @@ fmt.Println(content)        // 42
 In diesem Beispiel zeigt `box` auf die Adresse von `content`.
 Durch Dereferenzierung kann der Wert an dieser Adresse gelesen oder geändert werden.
 
-[ER] Schauen Sie sich 
-[Zeiger auf "A Tour of Go"](https://go.dev/tour/moretypes/1)
-an.
+Schauen Sie sich das
+[Thema 'Zeiger' in "A Tour of Go"](https://go.dev/tour/moretypes/1)
+an und vollziehen Sie das Beispielprogramm nach (selber Änderungen machen!).
 
-[EQ] Schreiben Sie eine Funktion `inc`, die einen Zeiger `*int` übergeben bekommt und
+[ER] Schreiben Sie eine Funktion `inc`, die einen Zeiger `*int` übergeben bekommt und
 die Zahl um eins inkrementiert. 
 Geben Sie den Code in Ihrer Markdown-Datei ab.
 
@@ -83,7 +82,7 @@ Geben Sie den Code in Ihrer Markdown-Datei ab.
 
 Schauen Sie sich diesen Artikel an:
 [Pass-by-value vs. Pass-by-reference](https://www.educative.io/answers/pass-by-value-vs-pass-by-reference).
-Obwohl das Beispiel dort in C++ ist, sollten Sie das richtige Gefühl für das Thema bekommen.
+Obwohl das Beispiel dort in C++ ist, sollten Sie damit ein Verständnis für das Thema bekommen.
 
 Betrachten Sie diese zwei Codeabschnitte:
 ```go
@@ -184,12 +183,12 @@ Prinzipiell ist es nur eine ganze Zahl — kann also addiert und subtrahiert wer
 
 Der zweite Typ ist `unsafe.Pointer` — er konvertiert einen typisierten Go-Zeiger 
 zu einem beliebigen/generischen.
-`unsafe.Pointer` ist eine Art Brücke zwischen gewöhnlichen langweiligen Go-Zeigern 
+`unsafe.Pointer` ist eine Art Brücke zwischen gewöhnlichen Go-Zeigern 
 und `uintptr`-Zahlen mit Speicheradressen.
 
 Das Lesen von 
 [Dokumentation von `unsafe.Pointer`](https://pkg.go.dev/unsafe#Pointer)
-ist zwar nicht notwendig, aber sehr empfohlen.
+ist für diese Aufgabe nicht notwendig, aber sehr empfohlen.
 
 Lesen Sie nun folgende Abschnitte aus dem Artikel
 [Exploring ‘unsafe’ Features in Go 1.20: A Hands-On Demo](https://medium.com/@bradford_hamilton/exploring-unsafe-features-in-go-1-20-a-hands-on-demo-7149ba82e6e1):
@@ -205,7 +204,7 @@ Lesen Sie nun folgende Abschnitte aus dem Artikel
 
 - eine Variable `v Vector` deklariert;
 - die Speicheradressen von `v.x` und `v.y` zu `uintptr` konvertiert;
-- `addrX` und `addrY` übereinander auf die Kommandozeile ausgibt (benutzen Sie das 
+- Diese als `addrX` und `addrY` übereinander auf die Kommandozeile ausgibt (benutzen Sie das 
   Format `"addrX: %x\n"` beziehungsweise `"addrY: %x\n"`);
 - Die Differenz `addrY - addrX` ebenfalls auf die Kommandozeile ausgibt.
 
