@@ -172,11 +172,6 @@ subset[0] = 999
 ```
 Hier wäre die Erwartung, dass `subset` eine View ist, und sich Änderungen direkt auf `df` auswirken. 
 
-[EQ] Nun haben wir bereits geklärt, dass wir uns nicht darauf verlassen können, von Pandas eine
-`View` zu bekommen.
-Formulieren Sie, welches Problem auftritt, wenn wir (unvorhersehbar) eine `Copy` statt einer `View`
-bekommen.
-
 [EQ] Erklären Sie, inwiefern dieses Beispiel eigentlich ein Exemplar des
 "Chained Assignment"-Problems ist.
 
