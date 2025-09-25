@@ -1,5 +1,5 @@
 title: "FastAPI-CRUD"
-stage: beta
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 explains:
