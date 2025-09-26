@@ -1,7 +1,7 @@
 title: "Gruppen"
-stage: alpha
+stage: beta
 timevalue: 1.0
-difficulty: 3
+difficulty: 2
 assumes: re-Quantoren
 ---
 
@@ -14,17 +14,15 @@ Muster zu beschreiben.
 [SECTION::background::default]
 Um das volle Potenzial von regulären Ausdrücken nutzen zu können, sind Gruppen wichtig, um
 komplexere Sacheverhalte darstellen zu können.
+Man kann damit ganze reguläre Ausdrücke wiederholen oder optional machen anstatt nur einzelne Zeichen.
 [ENDSECTION]
 
 
 [SECTION::instructions::loose]
-Quantoren eignen sich nicht nur gut, um einzelne Zeichen eine bestimmte
-Anzahl an Malen zu wiederholen.
-Sie können damit auch ganze Gruppen an Zeichen wiederholen.
-Diese Gruppen werden in Klammern `()` angegeben.
-Letztendlich enthalten die Klammern nur einen weiteren regulären Ausdruck,
-das praktische ist jedoch, dass Sie diese z. B. nutzen können, um Sie mit Quantoren zu wiederholen:
-`(HA)+` sucht nach Zeichenketten, die `HA` mindestens 1-mal wiederholt.
+Gruppen werden durch Klammern `()` angegeben.
+Ein Klammerpaar enthält einen weiteren regulären Ausdruck.
+Ein Quantor hinter einer schließenden Klammer bezieht sich auf den ganzen Ausdruck:
+`(HA)+` sucht nach Zeichenketten, die `HA` ein- oder mehrmals wiederholen.
 
 [EQ] Treffen Sie "Banana" mit mindestens zwei "na". 
 ("Banana", "Banananana" aber nicht "Ba" oder "Bana")
@@ -40,6 +38,7 @@ Gültige Uhrzeiten im Format HH:MM sind zum Beispiel 00:00 und 12:59, ungültige
 Auch Daten wie 31.12.2025 und 01.01.1999 sind korrekt, während 32.13.2025 und 00.00.0000 ausgeschlossen werden müssen.  
 Bei den E-Mail-Adressen gelten user.name-123@example.com und info@domain.de als gültig, nicht jedoch falsch@domain,com.
 ```
+<!-- time estimate: 10 min -->
 
 
 ### Alternativen `|`
@@ -47,15 +46,19 @@ Bei den E-Mail-Adressen gelten user.name-123@example.com und info@domain.de als 
 Es gibt oft mehrere Möglichkeiten, wie ein Text aufgebaut sein kann. Mit dem 
 [Alternator (oder)](https://www.regular-expressions.info/alternation.html)
 `|` kann man eine Auswahl zwischen mehreren Mustern treffen.
+Ohne Gruppen und Quantoren bezieht sich ein `|` auf alles links und alles rechts davon,
+was oft zu viel ist.
+Der Operator ist deshalb meist nur mit Gruppen nützlich.  
+[Einzelheiten zu `|`](https://www.regular-expressions.info/alternation.html) (meist reicht der erste Abschnitt).
 
 [EQ] Treffen Sie entweder "Hund" oder "Katze".
 
-[EQ] Treffen Sie Dateinamen mit Endung ".png" oder ".jpeg" findet.
-Der Dateiname selbst sollte nur aus alphanumerischen Zeichen bestehen und ist beliebig lang.
-Dafür können Sie eine Gruppe in Kombination mit dem `|` verwenden.
+[EQ] Treffen Sie Dateinamen mit Endung ".png" oder ".jpeg".
+Der Dateiname selbst sollte nur aus alphanumerischen Zeichen bestehen und darf beliebig lang sein.
+<!-- time estimate: 10 min -->
 
 
-### Benutzerdefinierte Zeichenklassen
+### Benutzerdefinierte Zeichenklassen: `[ ]`
 
 Sie kennen bereits `\d`, `\w`, `\s`.
 Benutzerdefinierte Zeichenklassen funktionieren ähnlich, aber Sie
@@ -70,30 +73,72 @@ Eine andere Schreibweise für diese Klasse wäre `[0123456789]`
 
 [EQ] Treffen Sie 5 Kleinbuchstaben hintereinander.
 
-[EQ] Schreiben Sie eine Zeichenklasse, die alle kleingeschriebenen Vokale (samt "ä","ö","ü") trifft.
+[EQ] Schreiben Sie eine Zeichenklasse, die alle kleingeschriebenen deutschen Vokale (samt "ä","ö","ü") trifft.
 
-Sie können außerdem eine Gruppe negieren, `[^0-9]` wäre äquivalent zu `\D`.
+[WARNING]
+In [TERMREF::Unicode] gibt es noch massenhaft andere Vokale.
+Nehmen Sie sich vor naiv selbst geschriebenen regulären Ausdrücken in acht,
+wenn Ihre Daten vielfältig sein könnten!
+Meist sind die eingebauten Zeichenklassen wie `\w` schlauer als selbst Hingeschriebenes.
+[ENDWARNING]
 
-[EQ] Schreiben Sie eine Zeichenklasse, die keine Großbuchstaben des Alphabets trifft.
+Sie können außerdem eine Gruppe negieren, `[^0-9]` entspricht im Wesentlichen `\D`.
+
+Wenn man scharf nachdenkt, werfen diese Sonderbedeutungen von `^` und `-` Fragen auf.
+Wie schreibt man z.B. eine Zeichenklasse, die auf ein `-` zutrifft??  
+Diese Fragen werden auf der Seite
+[Zeichenklassen bei regular-expressions.info](https://www.regular-expressions.info/charclass.html)
+in Abschnitten 1 bis 3 geklärt.
+
+[EQ] Schreiben Sie eine Zeichenklasse, die keine Großbuchstaben des deutschen Alphabets trifft.
 
 [EQ] Sie haben in [PARTREF::re-Metazeichen] bereits einen regulären Ausdruck geschrieben, um eine
 Uhrzeit (z. B. "12:59") zu matchen.
 Allerdings waren in dieser Lösung ungültige Uhrzeiten wie "25:01" oder "12:69" möglich.
-Überlegen Sie sich, wie Sie mithilfe von Zeichenklassen einen regulären Ausdruck schreiben können, der nur
-gültige Uhrzeiten in dem Format trifft.
+Überlegen Sie sich, wie Sie mit Zeichenklassen und Alternation einen regulären Ausdruck schreiben können, 
+der nur gültige Uhrzeiten in diesem Format trifft.
 
 [EQ] Schreiben Sie einen regulären Ausdruck, der ein Datum im Format `DD.MM.YYYY` erkennt, unter folgenden Bedingungen:     
 - `DD`: Tag von 01 bis 31       
 - `MM`: Monat von 01 bis 12       
-- `YYYY`: vierstellige Jahreszahl        
+- `YYYY`: vierstellige Jahreszahl von 1000 bis 9999
 Einzelne Monatsgrenzen, wie z. B. dass der Februar 28 Tage hat, müssen Sie nicht beachten.
 
-[EQ] Schreiben Sie einen regulären Ausdruck, der gültige E-Mail-Adressen trifft.    
-Die Anforderungen für eine gültige E-Mail-Adresse sind:      
+[EQ] Schreiben Sie einen regulären Ausdruck, der gültige E-Mail-Adressen trifft.  
+Die Anforderungen für eine gültige E-Mail-Adresse sind:
 - Eine E-Mail-Adresse muss genau ein "@" enthalten.     
 - Vor dem "@" dürfen Buchstaben (Groß- und Kleinbuchstaben), Ziffern, Punkte (.), Unterstriche (_) und Bindestriche (-) stehen.          
 - Nach dem "@" kommt der Domain-Name, bestehend aus Buchstaben, Ziffern oder Bindestrichen.         
 - Die Domain endet mit einem Punkt und einer Top-Level-Domain (z. B. ".com", ".de"), die nur Buchstaben enthält und mindestens 2 Zeichen lang ist.   
+
+[WARNING]
+Auch dies ist wieder recht naiv. 
+Die echten Emailadressen-Regeln sind leider _weitaus_ komplizierter:
+[HREF::https://en.wikipedia.org/wiki/Email_address].
+[ENDWARNING]
+<!-- time estimate: 30 min -->
+
+
+### Rückwärtsreferenzen: `\1` etc.
+
+Angenommen, wir suchen einen allgemeinen und knappen regulären Ausdruck, der die ersten beiden Zeilen
+des folgenden Textblocks trifft, aber nicht die dritte:
+```
+Berlin: Die Berliner Regeln für den Verkauf von Quarkbällchen sind erquickend.
+Brandenburg: Die Brandenburger Regeln für den Verkauf von Quarkbällchen sind erquickend.
+Berlin: Die Brandenburger Regeln für den Verkauf von Quarkbällchen sind erquickend.
+```
+Der Ausdruck muss also sicherstellen, dass die Teiltreffer 1 und 2 gleich sind.
+Wenn wir beide Male `(Berlin|Brandenburg)` hinschreiben, ist das nicht gewährleistet.
+Kann man sowas ausdrücken?
+Ja, man kann. Die Erklärung steht auf
+[Rückwärtsreferenzen bei regular-expressions.info](https://www.regular-expressions.info/backref.html)
+im ersten Abschnitt.
+
+[EQ] Schreiben Sie den gesuchten Ausdruck in möglichst knapper Form. 
+Er muss der Art nach nur für Berlin und Brandenburg funktionieren, nicht auch für z.B.
+Hessen oder Niedersachsen
+<!-- time estimate: 10 min -->
 [ENDSECTION]
 
 
