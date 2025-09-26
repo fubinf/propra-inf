@@ -10,6 +10,7 @@ assumes: go-basics, go-pointers, go-functions, go-structs1
 Ich habe Arrays und Slices in Go kennengelernt.
 [ENDSECTION]
 
+
 [SECTION::background::default]
 Ob bei Zeichenkettenmanipulationen, HTTP-Anfragen oder Ein- und Ausgabeoperationen — 
 an Slices führt kein Weg vorbei.
@@ -17,6 +18,7 @@ an Slices führt kein Weg vorbei.
 Sie sind zugleich eine der Stellen, an denen Go deutliche Leistungsgewinne erzielt:
 Statt Arrays zu kopieren, werden diese bei Bedarf mehrfach referenziert — als Slices.
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -111,15 +113,13 @@ Ihr Gedankengang:
 
 <!-- time estimate: 15 min -->
 
-[NOTICE]
 Um ein besseres Verständnis zu schaffen, was Slices eigentlich sind,
 lesen Sie nun diesen Artikel (es gibt Bilder!):
 [The Go Blog: Go Slices — usage and internals](https://go.dev/blog/slices-intro).
-[ENDNOTICE]
 
-[ER] Schauen Sie sich die folgenden zwei Beispiele ganz genau an und denken Sie mit.
+[ER] Schauen Sie sich die folgenden zwei Beispiele _genau_ an; denken Sie mit.
 Versuchen Sie zunächst selbst nachzuvollziehen, was in jeder Zeile passiert, 
-bevor Sie die Kommentare lesen.
+_bevor_ Sie die Kommentare lesen.
 
 ```go
 // Beispiel 1:
@@ -155,7 +155,7 @@ Informieren Sie sich über diese zwei Funktionen für Slices:
 - [append](https://pkg.go.dev/builtin#append)
 - [copy](https://pkg.go.dev/builtin#copy)
 
-[ER] Nun schauen Sie sich die Funktion `append` ganz genau an,
+[ER] Verstehen Sie die Funktion `append` genauer,
 indem Sie einen Slice erstellen und mehrmals eine Zahl hinzufügen.
 
 1. Schreiben Sie eine kleine Funktion `printData(s []int)`, welche alle wichtigen
@@ -169,22 +169,20 @@ indem Sie einen Slice erstellen und mehrmals eine Zahl hinzufügen.
    Danach fügen Sie 10 Zahlen nacheinander in den Slice ein und rufen Sie nach jedem Einfügen
    `printData(s)` auf.
 
-[EQ] Wann wird ein neues Array kreiert?
+[EQ] Wann wird ein neues Array angelegt?
 Wie groß ist das neue Array?
 Kennen Sie eine Datenstruktur mit ähnlicher Funktionsweise?
 
-[HINT::Woher weiß ich, dass ein neues Array kreiert wurde?]
+[HINT::Woher weiß ich, dass ein neues Array erzeugt wurde?]
 Das erkennen Sie an der Speicheradresse, die die Funktion `myPtr(s []int)` ausliest.
 
-Gleiche Speicheradresse — gleiches Array.
+Gleiche Speicheradresse, gleiches Array.
 Eine neue Adresse signalisiert, dass ein neues Array angelegt wurde.
 [ENDHINT]
 
-[HINT::Datenstrukturen...]
-Eine derartige Datenstruktur ist in Informatik als 
+Eine derartige Datenstruktur ist in der Informatik als 
 [dynamisches Array](https://en.wikipedia.org/wiki/Dynamic_array) 
 bekannt.
-[ENDHINT]
 
 [EQ] Schauen Sie sich den folgenden Quellcodeabschnitt an.
 Was befindet sich am Ende in Variablen `arr`, `sl1` und `sl2`?
@@ -199,7 +197,7 @@ sl2[3] = 99
 
 <!-- time estimate: 20 min -->
 
-Lesen Sie nun diesen Artikel aufmerksam durch:
+Lesen Sie diesen Artikel aufmerksam durch:
 [Go by Example: Slices](https://gobyexample.com/slices).
 (Ganz unten gibt es noch ein Kästchen, wo das vorgestellte Programm ausgeführt wird.
 Leicht zu übersehen!)
@@ -207,7 +205,7 @@ Leicht zu übersehen!)
 [EQ] Welche Aspekte von Slices würden Sie als fehleranfällig bezeichnen?
 (Nutzen Sie die Hinweise unten gerne als Inspiration.)
 
-[HINT::Beispiel 1]
+[HINT::Problematisches Beispiel 1]
 ```go
 arr := [5]int{4, 8, 6, 0, -1}
 slice1 := arr[1:4]
@@ -220,7 +218,7 @@ Sehen Sie hier ein Problem?
 Welches?
 [ENDHINT]
 
-[HINT::Beispiel 2]
+[HINT::Problematisches Beispiel 2]
 ```go
 // Option 1
 func processData(data []byte) []byte {
@@ -243,7 +241,7 @@ wenn die Funktion `processData` beendet wird?
 Wozu führt das, wenn `data` sehr groß ist?
 [ENDHINT]
 
-[HINT::Beispiel 3]
+[HINT::Problematisches Beispiel 3]
 ```go
 func modifySlice(s []int) {
     s[0] = 999
@@ -289,11 +287,13 @@ func main() {
 <!-- time estimate: 15 min -->
 [ENDSECTION]
 
+
 [SECTION::submission::information,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Hinweise]
 `testAppend`:
