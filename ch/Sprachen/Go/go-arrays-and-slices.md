@@ -125,8 +125,6 @@ sl := arr[:3]                       // kreiert einen Slice vom Anfang des Arrays
 sl = append(sl, 8)                  // überschreibt die "13" im ursprünglichen Array arr!
 ```
 
-<!-- time estimate: 10 min -->
-
 [NOTICE]
 Es gibt eine andere Schreibweise, die die Kapazität eines Slice beschränkt: `s[start:end:max]`.
 `max` ist die obere Grenze (lies: exklusiv) von Indizes, die vom Slice angefasst werden dürfen.
@@ -145,7 +143,7 @@ fmt.Println(sl)                     // [7 9 8]
 sl[0] = 42
 fmt.Println(arr)                    // [42 9 11 13 14] 
 ```
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
 [EQ] Schauen Sie sich den folgenden Quellcodeabschnitt an.
 Was befindet sich am Ende in Variablen `arr`, `sl1` und `sl2`?
@@ -165,10 +163,10 @@ Lesen Sie diesen Artikel aufmerksam durch:
 (Ganz unten gibt es noch ein Kästchen, wo das vorgestellte Programm ausgeführt wird.
 Leicht zu übersehen!)
 
-[EQ] Schauen Sie sich die Quellcodeabschnitte unten an, identifizieren Sie jeweils 
-Probleme und schlagen Sie eine Lösung vor.
+[EQ] Schauen Sie sich die untenstehenden Quellcodeabschnitte und das jeweils 
+erwartete Verhalten an, und schlagen Sie eine Lösung vor.
 
-__Problematisches Beispiel 1:__
+__Problematisches Beispiel 1:__ `slice2` muss gleich bleiben!
 
 ```go
 arr := [5]int{4, 8, 6, 0, -1}
@@ -178,7 +176,7 @@ slice1 = append(slice1, 42)
 fmt.Println(slice2) // ???
 ```
 
-__Problematisches Beispiel 2:__
+__Problematisches Beispiel 2:__ `slice2` muss hier ebenso gleich bleiben!
 
 ```go
 arr := [5]int{4, 8, 6, 0, -1}
@@ -188,7 +186,7 @@ slice1[0] = 999
 fmt.Println(slice2) // ???
 ```
 
-__Problematisches Beispiel 3:__
+__Problematisches Beispiel 3:__ die Funktion muss den Slice modifizieren!
 
 ```go
 func modifySlice(s []int) {
