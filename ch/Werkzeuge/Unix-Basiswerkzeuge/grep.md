@@ -62,48 +62,66 @@ und machen Sie sich klar, welche Treffer jetzt fehlen.
 
 ### Zeilennummern 
 
-Wir können ferner auch die Zeilennummern der Treffer mit anzeigen, um z.B. abschätzen zu können, 
-wie weit die Treffer auseinanderliegen.
+Wir können die Zeilennummern der Treffer anzeigen, um beispielsweise abzuschätzen, 
+wie weit die Treffer auseinanderliegen und sie beim Bearbeiten der Datei schneller wiederzufinden. 
+Besonders bei längeren Dateien oder mehreren Treffern liefert dies wertvolle Hinweise darauf, 
+ob ein Treffer isoliert steht oder Teil eines zusammenhängenden Blocks ist.
 
-[EC] Finden Sie alle Zeilen in der Datei `pam.d/lightdm` die `pam` enthalten, und 
-zeigen Sie die jeweilige Zeilennummer mit an.
+Ein gutes Beispiel dafür ist die Datei `services`.  
+Sie ist ein Nachschlagewerk für Netzwerkdienste und enthält die Zuordnung von Service-Namen 
+zu Portnummern und Protokollen. Die Datei kann Tausende Zeilen umfassen, und Dienste wie `ftp` 
+oder `smtp` tauchen mehrfach auf, teils als Standardport, teils als Varianten.
 
-Jetzt wissen wir, _welche_ Zeilen `pam` enthalten. 
+[EC] Finden Sie alle Zeilen in der Datei `services`, die `ftp` enthalten, und zeigen Sie die 
+jeweilige Zeilennummer an.  
+
+
+### Rekursive Suche im Dateibaum
+
+Der Ordner `logrotate.d/` enthält Konfigurationsdateien für die Logrotation einzelner 
+Dienste, z. B. Apache, Nginx, Syslog oder Fail2ban. Jede Datei legt fest, wann und wie oft 
+Logs archiviert oder gelöscht werden.  
+
+Ein typisches Stichwort ist `weekly`. Es gibt in vielen Dateien Blöcke von Zeilen, die 
+definieren, dass die Logs eines Dienstes wöchentlich rotiert werden. Manche Dateien enthalten 
+nur wenige Zeilen, andere mehrere Einträge hintereinander.  
+
+[EC] Suchen Sie im Verzeichnis `logrotate.d/` nach Zeilen, die das Wort `weekly` enthalten. 
 
 
 ### Treffer zählen
 
-Manchmal ist es hilfreich zu wissen, _wie oft_ ein Suchstring in der Datei aufgetreten ist, 
-um zum Beispiel aus vielen Dateien mit Suchtreffern auszuwählen, welche davon wir näher ansehen sollten.
-Dieses Beispiel ist sehr generisch, im Normalfall würde man nach etwas spezifischerem suchen.
+Im Ordner `cron.d/` befinden sich Cron-Tabellen für verschiedene Dienste und Aufgaben.  
+Jede Datei definiert, wann bestimmte Programme automatisch ausgeführt werden, und unter welchem 
+Benutzer sie laufen.  
 
-[EC] Zählen Sie rekursiv, wie oft das Wort (!) `network` in allen Dateien im Ordner `apparmor.d`  vorkommt.
-Fügen Sie für das Kommandoprotokoll mit einer [TERMREF::Pipe] eine numerisch absteigende Sortierung hinzu: 
-`sort -nr -k2 -t: | head -10`.
-Die Ausgabe wäre ohne die [TERMREF::Pipe] sehr unübersichtlich. 
+Ein typisches Suchwort ist `root`, da viele systemweite Aufgaben unter diesem Benutzer laufen.  
+Mit der Zählung der Treffer lässt sich erkennen, welche Cron-Jobs von `root` verwaltet werden 
+und welche Dateien besonders viele Einträge enthalten. 
+
+[EC] Zählen Sie rekursiv, wie oft das Wort `root` in allen Dateien im Ordner `cron.d/` 
+vorkommt. 
+
 
 ### Invers-Suche
 
-Manchmal ist man an den Zeilen interessiert, die _keine_ Treffer enthalten.
-Z.B. könnte eine zehntausende Zeilen lange Log-Datei fast nur ERROR-Meldungen enthalten 
-und wir interessieren uns für die (wenigen) Zeilen _anderer_ Art, 
-eben gerade, weil wir _nicht_ wissen, wie diese aussehen.
+Manchmal ist man an den Zeilen interessiert, die _keine_ Treffer enthalten. Das ist besonders 
+hilfreich, wenn eine Datei sehr viele kommentierte Zeilen enthält und wir nur die wenigen aktiven 
+Einträge sehen wollen.  
 
-[EC] Geben Sie alle Zeilen aus der Datei `nfs.conf` aus, die _keine_ Kommentare enthalten. 
-(Ein Kommentar beginnt hier mit einer Raute `#`)
-Kürzen Sie die Ausgabe für das Kommandoprotokoll auf die ersten 10 Zeilen (`head -10`).
+Ein gutes Beispiel dafür ist die Datei `fail2ban.conf`. Sie befindet sich unter `fail2ban/` 
+und steuert globale Einstellungen für den Fail2ban-Dienst, der Server vor zu vielen 
+Fehlanmeldungen schützt. Fail2ban überwacht typischerweise Log-Dateien und sperrt automatisch 
+IP-Adressen, die sich zu oft vergeblich anmelden.  
 
+Die Datei ist fast vollständig mit Kommentaren versehen, die erklären, wie man Fail2ban 
+konfigurieren kann. Nur wenige Zeilen sind tatsächlich aktiv und definieren wichtige Optionen, 
+wie zum Beispiel das Logging.  
 
-### Suche im ganzen Dateibaum
+Mit einer Invers-Suche lassen sich genau diese aktiven Zeilen leicht herausfiltern.  
 
-Angenommen, Sie möchten prüfen, ob irgendwo noch ein alter Hostname eingetragen ist. Da der /etc-Baum viele 
-Unterordner mit Konfigurationsdateien enthält (z. B. für Netzwerk, Dienste oder Anwendungen), wäre es 
-mühsam, jeden zu durchsuchenden Pfad auf der Kommandozeile anzugeben.
-Mit einer rekursiven Suche geht es viel besser:
-
-[EC] Finden Sie alle Zeilen in allen Dateien im Verzeichnis (und eventuellen Unterverzeichnissen), 
-die das Wort(!) `hostname` enthalten, egal ob es groß- oder kleingeschrieben ist.
-Kürzen Sie die Ausgabe für das Kommandoprotokoll auf die ersten 10 Zeilen (`head -10`).
+[EC] Geben Sie alle Zeilen aus der Datei `fail2ban/fail2ban.conf` aus, die _keine_ Kommentare 
+enthalten.
 
 
 ### `grep` mit regulären Ausdrücken
