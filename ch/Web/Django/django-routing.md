@@ -2,7 +2,7 @@ title: Django URL-Routing und Pfadkonfiguration
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: django-project
+assumes: django-basics, django-project, django-admin, django-views, http-GET, http-POST
 ---
 
 [SECTION::goal::idea,experience]
@@ -69,7 +69,7 @@ urlpatterns = [
 ]
 ```
 
-**Weitere Informationen zum URL-System:**
+Optional: Weitere Informationen zum URL-System:
 [Django URL dispatcher](https://docs.djangoproject.com/en/4.2/topics/http/urls/)
 
 [EQ] Erklären Sie in eigenen Worten: Was ist URL-Routing und warum ist es in Webentwicklung wichtig?
@@ -171,7 +171,7 @@ def artikel_datum(request, jahr, monat):
     return HttpResponse(f"Artikel aus {monat}/{jahr}")
 ```
 
-Wenn noch Fragen offen sind, hilft diese Ressource weiter:
+Optional: Wenn noch Fragen offen sind, hilft diese Ressource weiter:
 [URL patterns mit regulären Ausdrücken](https://docs.djangoproject.com/en/4.2/ref/urls/#django.urls.re_path)
 
 [ER] Erweitern Sie `blog/urls.py` um URL-Patterns mit benannten Gruppen:
@@ -285,7 +285,7 @@ def meine_view(request):
 <a href="{% url 'artikel_detail' artikel_id=123 %}">Artikel lesen</a>
 ```
 
-Zur Vertiefung: Weitere Erklärungen finden Sie hier:
+Optional: Weitere Erklärungen finden Sie hier:
 [URL names und reverse resolution](https://docs.djangoproject.com/en/4.2/topics/http/urls/#reverse-resolution-of-urls)
 
 [ER] Erweitern Sie `blog/views.py` um eine View mit Reverse Resolution:

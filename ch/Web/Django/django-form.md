@@ -2,7 +2,7 @@ title: Django Formularbehandlung
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: django-basics, django-project, django-admin, django-template, http-GET, http-POST
+assumes: django-basics, django-project, django-admin, django-views, django-routing, django-template, django-model, http-GET, http-POST
 ---
 
 [SECTION::goal::idea,experience]
@@ -65,7 +65,7 @@ Es gibt zwei Hauptmethoden für das Senden von Formulardaten:
 - **GET-Methode**: Daten werden in der URL übertragen (sichtbar und begrenzt)
 - **POST-Methode**: Daten werden im Request-Body übertragen (unsichtbar und unbegrenzt)
 
-Zur Vertiefung: Weitere Erklärungen finden Sie hier:
+Optional: Weitere Erklärungen finden Sie hier:
 [HTTP-Methoden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
 
 ### GET-Methode implementieren

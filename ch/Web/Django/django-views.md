@@ -2,7 +2,7 @@ title: Django Views
 stage: alpha
 timevalue: 2
 difficulty: 2
-assumes: django-basics
+assumes: django-basics, django-project, django-admin, http-GET, http-POST
 ---
 
 [SECTION::goal::idea,experience]
@@ -67,7 +67,7 @@ def my_view(request):
 Das Request-Objekt enthält alle Informationen über die HTTP-Anfrage. 
 Die wichtigsten Attribute sind:
 
-Zur Vertiefung: Weitere Erklärungen finden Sie hier:
+Optional: Weitere Erklärungen finden Sie hier:
 [Django Request Objects](https://docs.djangoproject.com/en/stable/ref/request-response/)
 
 <!-- time estimate: 10 min -->

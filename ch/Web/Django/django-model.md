@@ -2,7 +2,7 @@ title: Django Modelle und ORM
 stage: alpha
 timevalue: 2.25
 difficulty: 2
-assumes: django-basics, django-project, django-admin
+assumes: django-basics, django-project, django-admin, django-views, django-routing, http-GET, http-POST
 ---
 
 [SECTION::goal::idea,experience]
@@ -51,7 +51,7 @@ zwischen objektorientierten Programmiersprachen und relationalen Datenbanken zu 
 - Klassenattribut ↔ Tabellenspalte
 - Klasseninstanz ↔ Tabellenzeile
 
-Zur Vertiefung: Weitere Erklärungen finden Sie hier:
+Optional: Weitere Erklärungen finden Sie hier:
 [Django Models](https://docs.djangoproject.com/en/4.2/topics/db/models/)
 
 [EQ] Erklären Sie in eigenen Worten, was ORM bedeutet und welche Hauptvorteile es bietet.  
@@ -123,7 +123,7 @@ class Student(models.Model):
 
 Die `__str__`-Methode definiert, wie das Objekt als String dargestellt wird.
 
-Neugierig geworden? Dann lesen Sie hier weiter:
+Optional: Neugierig geworden? Dann lesen Sie hier weiter:
 [Model field reference](https://docs.djangoproject.com/en/4.2/ref/models/fields/)
 
 [EQ] Was bewirkt der Parameter `auto_now_add=True` bei einem `DateTimeField`?  
@@ -248,7 +248,7 @@ print("Nach Alter sortiert:", sorted_students)
 - `count()` - Anzahl der Objekte
 - `order_by()` - Sortierung
 
-Hier gibt es ein kompaktes Tutorial zum Thema:
+Optional: Hier gibt es ein kompaktes Tutorial zum Thema:
 [Making queries](https://docs.djangoproject.com/en/4.2/topics/db/queries/)
 
 [EQ] Was passiert, wenn `get()` kein Objekt oder mehrere Objekte findet?  

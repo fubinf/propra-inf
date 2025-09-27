@@ -29,7 +29,7 @@ Django folgt der Philosophie **"Don't Repeat Yourself" (DRY)** und bietet viele
 eingebaute Funktionen, die Entwicklern helfen, sich auf die Geschäftslogik zu konzentrieren, 
 anstatt Grundfunktionen neu zu implementieren.
 
-(Optional) Weitere Informationen finden Sie in der offiziellen Dokumentation: 
+Optional: Weitere Informationen finden Sie in der offiziellen Dokumentation: 
 [Django Overview](https://docs.djangoproject.com/en/stable/intro/overview/)
 
 [EQ] Nennen Sie drei große Websites, die Django verwenden. 
@@ -49,7 +49,7 @@ von Komponenten wie Templates, Modellen und Views.
 **Rapid Development**: Schnelle Entwicklung von Prototypen bis hin zu produktionsreifen 
 Anwendungen.
 
-(Optional) Mehr Details zu Django's Design-Philosophie: 
+Optional: Mehr Details zu Django's Design-Philosophie: 
 [Django Design Philosophy](https://docs.djangoproject.com/en/stable/misc/design-philosophies/)
 
 [EQ] Erklären Sie in eigenen Worten, was "Convention over Configuration" bedeutet.
@@ -73,7 +73,7 @@ Django verwendet das **MTV (Model-Template-View)**-Muster, eine Variante des bek
 - View übergibt Daten an Template
 - Template rendert HTML und sendet Response zurück
 
-(Optional) Vergleichen Sie mit der traditionellen MVC-Architektur: 
+Optional: Vergleichen Sie mit der traditionellen MVC-Architektur: 
 [MVC vs MTV](https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/)
 
 
@@ -90,7 +90,7 @@ Django bietet zahlreiche eingebaute Features:
 | **URL-Routing** | Flexible URL-Zuordnung mit Regex-Unterstützung |
 | **Caching** | Unterstützung für Memcached, Redis etc. |
 
-(Optional) Detaillierte Übersicht der Features: 
+Optional: Detaillierte Übersicht der Features: 
 [Django Features](https://www.djangoproject.com/start/overview/)
 
 [EQ] Recherchieren Sie für **Admin Backend**, **ORM**, **Formular-Handling** jeweils 
@@ -158,7 +158,7 @@ sudo apt-get install python3-django
 sudo yum install python3-django
 ```
 
-(Optional) Weitere Installationsanleitung: 
+Optional: Weitere Installationsanleitung: 
 [Django Installation Guide](https://www.w3schools.com/django/django_install_django.php)
 
 **Virtuelle Umgebung erstellen** (empfohlen):

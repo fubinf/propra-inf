@@ -2,7 +2,7 @@ title: Django Template System - Trennung von Daten und Darstellung
 stage: alpha
 timevalue: 2
 difficulty: 2
-assumes: django-basics, django-project, django-admin
+assumes: django-basics, django-project, django-admin, django-views, django-routing, http-GET, http-POST
 ---
 
 [SECTION::goal::idea,experience]
@@ -185,7 +185,7 @@ Welche neuen Informationen werden jetzt angezeigt? Listen Sie alle sichtbaren Te
 Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
 <!-- EQ2 -->
 
-Wenn Sie mehr über Template-Variablen erfahren möchten:
+Optional: Wenn Sie mehr über Template-Variablen erfahren möchten:
 [Django Template Variables](https://docs.djangoproject.com/en/4.2/topics/templates/#variables)
 
 <!-- time estimate: 10 min -->
@@ -286,7 +286,7 @@ Was wird angezeigt und welcher Django-Tag ist dafür verantwortlich?
 Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
 <!-- EQ4 -->
 
-Mehr Details zu Template-Tags finden Sie hier:
+Optional: Mehr Details zu Template-Tags finden Sie hier:
 [Django Template Tags](https://docs.djangoproject.com/en/4.2/topics/templates/#tags)
 <!-- time estimate: 15 min -->
 
@@ -519,7 +519,7 @@ STATICFILES_DIRS = [
 ```
 <!-- ER17 -->
 
-Falls noch Fragen offen sind, hilft diese Ressource weiter:
+Optional: Falls noch Fragen offen sind, hilft diese Ressource weiter:
 [Django Static Files](https://docs.djangoproject.com/en/4.2/howto/static-files/)
 <!-- time estimate: 10 min -->
 
@@ -595,7 +595,7 @@ urlpatterns = [
 ```
 <!-- ER20 -->
 
-Hier gibt es ein kompaktes Tutorial zum Thema:
+Optional: Hier gibt es ein kompaktes Tutorial zum Thema:
 [Django Template Filters](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#built-in-filter-reference)
 
 <!-- time estimate: 10 min -->
