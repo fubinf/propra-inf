@@ -35,7 +35,7 @@ Die Hauptvorteile von curl:
 - **Präzision**: Vollständige Kontrolle über Request-Headers, Methoden und Daten
 - **Plattformunabhängigkeit**: Funktioniert auf Linux, macOS und Windows
 
-(Optional) Für eine grundlegende Einführung lesen Sie bitte:
+Optional: Für eine grundlegende Einführung lesen Sie bitte:
 [curl Tutorial Basics](https://curl.se/docs/tutorial.html)
 
 ### Grundlegende Syntax und erste Schritte
@@ -64,7 +64,7 @@ Die wichtigsten Optionen für Request-Kontrolle:
 - `-H "Header: Value"`: Fügt Custom-Headers hinzu
 - `-G`: Konvertiert POST-Daten zu GET-Parametern
 
-(Optional) Für detaillierte HTTP-Methoden-Referenz siehe:
+Optional: Für detaillierte HTTP-Methoden-Referenz siehe:
 [HTTP Methods with curl](https://everything.curl.dev/http/index.html)
 
 [EC] Führen Sie einen POST-Request mit Formulardaten `myname=Student` und `myage=25` aus:  
@@ -102,7 +102,7 @@ Für erweiterte HTTP-Kommunikation sind Headers und Authentifizierung essentiell
 - `-I`: Nur Response-Headers abrufen (HEAD-Request)
 - `-L`: Automatisches Folgen von Redirects
 
-(Optional) Weitere Authentifizierungsmethoden unter:
+Optional: Weitere Authentifizierungsmethoden unter:
 [Authentication with curl](https://everything.curl.dev/http/auth)
 
 [EC] Rufen Sie nur die HTTP-Headers einer Webseite `https://httpbin.org/status/200` ab.
