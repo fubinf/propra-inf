@@ -32,6 +32,8 @@ var arr [5]int                      // arr == [0 0 0 0 0]
 anotherArr := arr                   // eine Kopie wurde erstellt
 anotherArr[0] = 42
 fmt.Println(arr, anotherArr)        // [0 0 0 0 0] [42 0 0 0 0]
+arr = [5]int{7, 8, 9, 10, 11}       // die Länge kann manuell angegeben werden
+arr = [...]int{7, 8, 9, 10, 11}     // oder automatisch ermittelt werden
 ```
 
 [NOTICE]
@@ -85,6 +87,18 @@ sl := []int{0, 1, 2, 3, 4}          // direkter Slice mit Werten
 arr := [5]int{7, 9, 11, 13, 14}     // mit Werten initialisiertes Array der Länge 5
 sl := arr[1:3]                      // slice mit Werten {9, 11} (denn der zweite Index ist exklusiv)
 ```
+
+[NOTICE]
+Der Nullwert eines Slice besteht nur aus dem direkten Teil (dem Header):
+
+```go
+var s []int
+```
+
+Hier ist `s` eine Struktur mit Feldern `array`, `len` und `cap`.
+Alle Felder sind mit entsprechenden Nullwerten initialisiert: `array` ist `nil`,
+`len` und `cap` sind `0`.
+[ENDNOTICE]
 
 Um ein besseres Verständnis zu schaffen, was Slices eigentlich sind,
 lesen Sie nun diesen Artikel (es gibt Bilder!):
