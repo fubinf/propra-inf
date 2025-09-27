@@ -1,6 +1,6 @@
 title: Django URL-Routing und Pfadkonfiguration
-stage: draft
-timevalue: 2.5
+stage: alpha
+timevalue: 1.5
 difficulty: 2
 assumes: django-project
 ---
@@ -74,6 +74,7 @@ urlpatterns = [
 
 [EQ] Erklären Sie in eigenen Worten: Was ist URL-Routing und warum ist es in Webentwicklung wichtig?
 <!-- EQ1 -->
+<!-- time estimate: 10 min -->
 
 ### URL-Patterns mit Parametern: Reguläre Ausdrücke
 
@@ -94,11 +95,11 @@ urlpatterns = [
 ]
 ```
 
-[ER] Erstellen Sie eine neue Django-App namens `blog` in Ihrem Projekt:
+[EC] Erstellen Sie eine neue Django-App namens `blog` in Ihrem Projekt:
 ```bash
 python manage.py startapp blog
 ```
-<!-- ER1 -->
+<!-- EC1 -->
 
 [ER] Erstellen Sie in `blog/views.py` folgende View-Funktionen:
 
@@ -114,7 +115,8 @@ def artikel_detail(request, artikel_id):
 def kategorie(request, kategorie_name):
     return HttpResponse(f"Artikel in Kategorie: {kategorie_name}")
 ```
-<!-- ER2 -->
+<!-- ER1 -->
+<!-- time estimate: 10 min -->
 
 ### Unbenannte Gruppen in regulären Ausdrücken
 
@@ -138,7 +140,7 @@ def artikel_jahr(request, jahr):
 def artikel_datum(request, jahr, monat):
     return HttpResponse(f"Artikel aus {monat}/{jahr}")
 ```
-<!-- ER3 -->
+<!-- ER2 -->
 
 [ER] Erstellen Sie `blog/urls.py` und konfigurieren Sie URL-Patterns mit unbenannten Gruppen:
 
@@ -151,7 +153,7 @@ urlpatterns = [
     re_path(r'^artikel/([0-9]{4})/([0-9]{2})/$', views.artikel_datum),
 ]
 ```
-<!-- ER4 -->
+<!-- ER3 -->
 
 ### Benannte Gruppen in regulären Ausdrücken
 
@@ -182,11 +184,12 @@ urlpatterns = [
     re_path(r'^kategorie/(?P<kategorie_name>[a-zA-Z]+)/$', views.kategorie),
 ]
 ```
-<!-- ER5 -->
+<!-- ER4 -->
 
 [EQ] Was ist der Unterschied zwischen benannten und unbenannten Gruppen in Django URL-Patterns? 
 Welche Vor- und Nachteile haben sie jeweils?
 <!-- EQ2 -->
+<!-- time estimate: 20 min -->
 
 ### URL-Konfiguration aufteilen: `include()`
 
@@ -211,17 +214,22 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
 ]
 ```
-<!-- ER6 -->
+<!-- ER5 -->
 
 [EC] Testen Sie die URL-Struktur, indem Sie verschiedene URLs aufrufen:
 ```bash
 curl http://127.0.0.1:8000/blog/
 ```
-<!-- EC1 -->
+Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
+<!-- EC2 -->
 
-[ER] Erstellen Sie eine zweite App namens `portfolio` und implementieren Sie ähnliche URL-Patterns:
-<!-- ER7 -->
+[EC] Erstellen Sie eine zweite App namens `portfolio` mit
+```bash
+$ python manage.py startapp portfolio
+```
+<!-- EC3 -->
 
+[ER] Implementieren Sie ähnliche URL-Patterns:
 ```python
 # portfolio/views.py
 from django.http import HttpResponse
@@ -243,6 +251,7 @@ urlpatterns = [
     re_path(r'^projekt/(?P<projekt_id>[0-9]+)/$', views.projekt),
 ]
 ```
+<!-- ER6 -->
 
 [ER] Erweitern Sie die Haupt-`urls.py` um die Portfolio-App:
 
@@ -253,7 +262,7 @@ urlpatterns = [
     path('portfolio/', include('portfolio.urls')),
 ]
 ```
-<!-- ER8 -->
+<!-- ER7 -->
 
 ### Reverse Resolution: URL-Namen verwenden
 
@@ -306,8 +315,10 @@ urlpatterns = [
 <!-- ER10 -->
 
 [EQ] Testen Sie `http://127.0.0.1:8000/blog/weiterleitung/` im Browser. 
+Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
 Beschreiben Sie, was passiert und warum dies nützlich für die Webentwicklung ist.
 <!-- EQ3 -->
+<!-- time estimate: 25 min -->
 
 ### Namespaces: URL-Namen organisieren
 
@@ -363,9 +374,12 @@ def weiterleitung(request):
 - In Templates: `{% url 'blog:index' %}`
 - Mit Parametern: `reverse('blog:artikel_detail', kwargs={'artikel_id': 123})`
 
-[EQ] Erklären Sie, warum Namespaces in größeren Django-Projekten wichtig sind. 
+[EQ] Testen Sie `http://127.0.0.1:8000/blog/weiterleitung/` im Browser nach der Namespace-Implementierung.
+Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
+Erklären Sie, warum Namespaces in größeren Django-Projekten wichtig sind. 
 Geben Sie ein konkretes Beispiel für einen möglichen Namenskonflikt an.
 <!-- EQ4 -->
+<!-- time estimate: 15 min -->
 
 ### Integration und Testing
 
@@ -416,6 +430,7 @@ TEMPLATES = [
 ```bash
 curl http://127.0.0.1:8000/blog/artikel/2024/03/
 ```
+Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
 <!-- EC2 -->
 
 [EQ] Welche URL-Pattern würde am besten zu folgenden Anforderungen passen:
@@ -425,6 +440,7 @@ curl http://127.0.0.1:8000/blog/artikel/2024/03/
 
 Geben Sie für jeden Fall das passende Django URL-Pattern an.
 <!-- EQ5 -->
+<!-- time estimate: 15 min -->
 
 [ENDSECTION]
 
