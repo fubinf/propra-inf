@@ -22,29 +22,55 @@ Statt Arrays zu kopieren, werden diese bei Bedarf mehrfach referenziert — als 
 
 [SECTION::instructions::detailed]
 
-#### Array
+### Array
 
 Ein Array ist ein _Einblocktyp_, der eine Sammlung von Einträgen darstellt,
 wo alle Einträge zum gleichen Typ gehören und die Größe (Anzahl von Einträgen) fest ist.
 
+In Go wird eine __nullbasierte Nummerierung__ verwendet: Das erste Element
+eines Arrays oder Slices hat den Index `0`, das zweite den Index `1` und so weiter. 
+
+Schauen Sie sich das 
+[Thema 'Arrays' in "A Tour of Go"](https://go.dev/tour/moretypes/6)
+an und beantworten Sie die Fragen unten:
+
+[EQ] Wie wird ein `int`-Array der Länge 5 __deklariert__?
+
+[EQ] Wie wird ein `int`-Array der Länge 5 __definiert__ (also mit Werten befüllt)?
+
+[EQ] Wie greift man per Index auf ein bestimmtes Element eines Arrays zu?
+
+[EQ] Kann man in einer Variable vom Typ `[5]int` ein Array wie `{7, 8, 9, 10}` speichern?
+_Begründen Sie Ihre Antwort._
+
+[EQ] Was ist der Nullwert eines Arrays?
+
+[EQ] Was passiert, wenn man ein bestehendes Array einer anderen Variable zuweist?
+Entstehen dadurch zwei eigenständige Arrays oder eine gemeinsame Referenz?
+
+[HINT::Ich weiß nicht, wie ich das überprüfen kann]
+Fügen Sie nach Zeile 12 im A-Tour-of-Go-Beispiel folgende Zeile ein:
+
+    primes2 := primes
+
+Ändern Sie anschließend etwas an `primes`.
+
+Wenn diese Änderung sich nicht in `primes2` widerspiegelt, handelt es sich um zwei eigenständige 
+Arrays.
+[ENDHINT]
+
+[FOLDOUT::Die Anzahl der Elemente kann automatisch abgeleitet werden]
+Dazu verwendet man die folgende Schreibweise:
+
 ```go
-var arr [5]int                      // arr == [0 0 0 0 0]
-anotherArr := arr                   // eine Kopie wurde erstellt
-anotherArr[0] = 42
-fmt.Println(arr, anotherArr)        // [0 0 0 0 0] [42 0 0 0 0]
-arr = [5]int{7, 8, 9, 10, 11}       // die Länge kann manuell angegeben werden
-arr = [...]int{7, 8, 9, 10, 11}     // oder automatisch ermittelt werden
+a := [...]int{0, 1, 2, 4, 5}
 ```
 
-[NOTICE]
-Die Größe des Arrays ist in seinem Typ festgelegt: `[5]int` und `[4]int` sind 
-zwei verschiedene Datentypen.
-[ENDNOTICE]
+Der Compiler ermittelt die Anzahl der Elemente automatisch anhand der Initialisierung,
+sodass keine manuelle Größenangabe erforderlich ist.
+[ENDFOLDOUT]
 
-Reine Arrays werden in Go relativ selten verwendet, daher konzentrieren wir uns auf Slices.
-
-
-#### Slice
+### Slice
 
 Slices bauen immer auf Arrays auf.
 Ein [TERMREF::Slice (Golang)] ist eine "View" bzw. eine Sicht in das zugrundeliegende Array
