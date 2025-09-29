@@ -36,7 +36,7 @@ numbers = [2,5,3,6,1,2,0,33,10]
 element-basiert vor.
 Greifen Sie also direkt auf die Elemente der Liste auf, 
 ohne mit `range()` zu arbeiten. 
-- Welche Variante gefällt Ihnen? Eignet sich eine bestimmer Variante 
+- Welche Variante gefällt Ihnen? Eignet sich eine bestimme Variante 
 für alle möglichen Fälle?
 
 [ER] 
@@ -69,6 +69,29 @@ Wenn die IP-Adresse `10.0.0.1` ist, soll das Programm ausgeben:
 Sie eventuell Typumwandlung durchführen müssen.
 
 [ENDHINT]
+
+[ER]
+
+Schreiben Sie ein Programm, 
+das einen Text bekommt (als String) und für bestimmte Wörter Emojis ersetzt. 
+Sie haben ein Dictionary, das bestimmte Wörter ihren passenden Emojis zuordnet.
+
+```python
+emoji_dict = {
+    "glücklich": "😄",
+    "Katze": "🐱",
+    "Hund": "🐶",
+    "Liebe": "❤️",
+    "Sonne": "☀️"
+}
+```
+
+Beispiel:
+Input:
+"Ich bin heute so glücklich und sehe die Sonne"
+Output:
+"Ich bin heute so 😄 und sehe die ☀️"
+
 
 [ENDSECTION]
 
