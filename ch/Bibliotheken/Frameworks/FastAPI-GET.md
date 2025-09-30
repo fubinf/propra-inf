@@ -42,7 +42,7 @@ und wieder abrufen.
 
 [ER] Lesen Sie in der
 [FastAPI Dokumentation die ersten Schritte](https://fastapi.tiangolo.com/tutorial/first-steps/)
-und erstellen Sie den "Hello World" Endpunkt mit dem Pfad `/`, wie es in dort beschrieben ist.
+und erstellen Sie den "Hello World" Endpunkt mit dem Pfad `/`, wie es dort beschrieben ist.
 
 Mit FastAPI wird ebenfalls ein eigenes Kommando `fastapi` installiert.
 Dieses kann genutzt werden, um sowohl während der Entwicklung als auch der Veröffentlichung,
@@ -209,23 +209,20 @@ aufgerufen und in einem Kommandoprotokoll erfasst.
 [ER] Beenden Sie Ihre Server. Dazu können Sie in der Konsole, in der der Server
 läuft <kbd>Strg</kbd>+<kbd>c</kbd> eingeben.
 
-[EC] Starten Sie den Server mit `fastapi dev FastAPI-GET.py` und öffnen Sie
-die automatische Dokumentation in ihrem Browser.
+[EC] Starten Sie den Server mit `fastapi dev FastAPI-GET.py`.
+Rufen Sie nun nacheinander die Endpunkte jeweils einmal auf:
 
-[EC] Probieren Sie den Endpunkt `/` genau einmal aus.
+- `/`
+- `/hello`
+- `/hello?name=Test`
+- `/grades`
+- `/students`
+- `/courses`
+- `/student/Alice`
+- `/student/Bob`
+- `/course/Math`
+- `/course/Physics`
 
-[EC] Probieren Sie den Endpunkt `/hello` genau einmal ohne Parameter und einmal
-mit Ihrem Namen aus.
-
-[EC] Probieren Sie den `/grades` Endpunkt einmal aus.
-
-[EC] Probieren Sie den Endpunkt `/students` und `/courses` jeweils einmal aus.
-
-[EC] Probieren Sie den Endpunkt `/student/{name}` jeweils einmal aus mit dem Namen
-`Alice` und `Bob` aus.
-
-[EC] Probieren Sie den Endpunk `/course/{name}` jeweils einmal aus mit dem Namen
-`Math` und `Physics` aus.
 [ENDSECTION]
 
 
@@ -241,5 +238,9 @@ mit Ihrem Namen aus.
 ### Kommandoprotokoll
 [PROT::ALT:FastAPI-GET.prot]
 
-Musterlösung siehe [TREEREF::/Bibliotheken/Frameworks/FastAPI-GET.py]
+Musterlösung siehe [TREEREF::FastAPI-GET.py]
+
+```py
+[INCLUDE::ITREE:FastAPI-GET.py]
+```
 [ENDINSTRUCTOR]
