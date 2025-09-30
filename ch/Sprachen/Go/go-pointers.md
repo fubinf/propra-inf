@@ -76,42 +76,38 @@ um die Frage zu beantworten, was _Einblocktypen_ und _Mehrblocktypen_ sind.
 Go ist eine _Pass-by-Value_-Programmiersprache — das bedeutet, dass Funktionsargumente 
 stets kopiert werden.
 
-Bei den _Einblocktypen_ ist dieses Verhalten leicht nachvollziehbar: Der gesamte Speicherblock 
+Bei den _Einblocktypen_ ist dieses Verhalten leicht nachvollziehbar: Der (einzige) Speicherblock 
 wird vollständig kopiert.
 
-Bei den _Mehrblocktypen_ hingegen wird nur der __direkte Teil__ (direct part) kopiert — die 
-zugrunde liegenden Speicherbereiche bleiben unangetastet.
+Bei den _Mehrblocktypen_ hingegen wird nur der direkte Teil (_direct part_) kopiert;
+die _underlying parts_ gibt es hingegen weiterhin nur einmal und sie werden zwischen 
+dem Original des Werts und der Kopie geteilt. 
+Wenn man an diesen Daten etwas ändert, scheinen sich also sowohl das Original
+als auch die Kopie zu ändern.
 [ENDNOTICE]
 
 
 ### Mehr Beispiele
 
-[EQ] Beschreiben Sie mit eigenen Worten, warum `a` im ersten Beispiel nicht verändert
-wurde, im zweiten Beispiel aber schon.
+[EQ] Beschreiben Sie mit eigenen Worten, warum `a` im folgenden Beispiel nicht verändert wird,
+`b` aber sehr wohl.
 
 ```go
-// Beispiel 1
 func change(x int) {
 	x = 42
 }
 
-func main() {
-	a := 0
-	change(a)
-	fmt.Println(a)
-}
-```
-
-```go
-// Beispiel 2
 func changePointer(x *int) {
     *x = 42
 }
 
 func main() {
-    a := 0
-    changePointer(&a)
-    fmt.Println(a)
+	a := 0
+	b := 0
+	change(a)
+    changePointer(&b)
+	fmt.Println(a)
+	fmt.Println(b)
 }
 ```
 
@@ -132,7 +128,7 @@ func main() {
 ```
 
 <!-- time estimate: 20 min -->
-<!-- TODO_Brandes: add a teaser about unsafe if/when the task 'unsafe' is ready --> 
+<!-- TODO_2_Brandes: add a teaser about unsafe when task 'go-unsafe' is ready --> 
 [ENDSECTION]
 
 [SECTION::submission::information,snippet]
