@@ -18,41 +18,35 @@ Lösung für viele Alltagsprobleme in der Programmierung.
 
 [SECTION::instructions::detailed]
 
-### Map (Referenztyp)
+### Map (Mehrblocktyp)
 
 Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre
-Schlüssel ermöglicht.
+Schlüssel ermöglicht. Maps haben einen Mehrblocktyp.
 
-Eine Map ist ein Referenztyp.
-
-Maps können als "map literals" erstellt werden 
-(`string` ist der Typ der Schlüssel, `int` ist der Typ der Werte):
+Maps können als "map literals" erstellt und gleich initialisiert werden 
+(`string` ist der Typ der Schlüssel, `int` ist der Typ der Werte)
+oder man legt sie leer mit `make` an:
 ```go 
 m := map[string]int{"a": 1, "b": 2, "c": 3}
+m2 := make(map[string]int)
 ```
 
-Maps können auch mithilfe von Funktion `make` kreiert werden:
-```go
-m := make(map[string]int)
-```
-
-[NOTICE]
-Genuso wie bei Slices, gibt `len(m)` die Länge einer Map zurück.
-[ENDNOTICE]
+Wie bei Slices gibt `len(m)` die aktuelle Anzahl von Einträgen einer Map zurück.
 
 
 ### Lesen
 
-Es gibt zwei Arten von Lesezugriffen auf Maps:
+Es gibt zwei Arten des Lesezugriffs auf eine Map:
 
-- `value := m[key]` gibt entweder den Wert für den Schlüssel `key` zurück — oder, 
-  falls der Schlüssel nicht vorhanden ist, den Nullwert des entsprechenden Typs 
-  (beispielsweise `""` für `string`, `0` für `int` usw.);
+- `value := m[key]` gibt den Wert für den Schlüssel `key` zurück. 
+  Falls der Schlüssel nicht vorhanden ist, liefert es den Nullwert des entsprechenden Typs 
+  (beispielsweise `""` für `string`, `0` für `int` usw.).
+  Einem solchen Nullwert sieht man also nicht an, ob er so eingetragen ist oder es keinen Eintrag gibt.
 - `value, ok := m[key]`. 
   Dieses Idiom erlaubt die Unterscheidung, ob ein Schlüssel in der Map enthalten ist oder nicht.
   Ist der Schlüssel vorhanden, ist `ok` gleich `true`; andernfalls ist `ok` gleich `false`.
 
-Ein typisches Muster für Lesezugriffe ist:
+Ein typisches Idiom für Lesezugriffe ist:
 ```go
 if value, ok := m[key]; ok {
     // use value
@@ -60,18 +54,13 @@ if value, ok := m[key]; ok {
 ```
 
 [WARNING]
-Die Konvention hier ist genau das Gegenteil von `err != nil`.
+Die Konvention hier ist genau das _Gegenteil_ von `err != nil`.
 
 Der zweite Rückgabewert eines Funktionsaufrufs `val, err := someFunction()`
 ist gesetzt, wenn der Aufruf fehlgeschlagen ist.
-
 Beim Lesezugriff auf Maps hingegen ist der zweite Rückgabewert gesetzt, wenn alles
-glattgelaufen ist und der Schlüssel tatsächlich in der Map existiert.
-
-Konventionell wird der zweite Rückgabewert beim Map-Zugriff `ok` genannt.
-Falls Sie ein `ok` nicht aussagekräftig finden, ersetzen Sie es durch ein `isThere` —
-"value is there" liest sich natürlicher und kann den Tag retten, wenn einem die
-Feinheiten mal entfallen.
+_glattgelaufen_ ist und der Schlüssel tatsächlich in der Map existiert.
+Üblicherweise wird der zweite Rückgabewert beim Map-Zugriff `ok` genannt.
 [ENDWARNING]
 
 
@@ -97,34 +86,23 @@ delete(someMap, someKey)
 
 [WARNING]
 Man kann eine Map **deklarieren** und erst später **initialisieren**.
+Das ist aber keine gute Idee, aus folgendem Grund:
 ```go
 var m map[string]int        // Deklaration
-...
-m = make(map[string]int)    // Initialisierung
-```
-
-Ein Schreibzugriff vor der Initialisierung führt jedoch zu einem Laufzeitfehler (Programmabsturz):
-```go
-m["foo"] = 42               // panic: assignment to entry in nil map
-```
-
-Deshalb raten wir davon ab, Maps nur mit `var m map[string]int` zu deklarieren, 
-ohne sie direkt zu initialisieren.
-
-Ein Lesezugriff hingegen funktioniert auch ohne vorherige Initialisierung – was leicht zu 
-Missverständnissen führen kann:
-```go
 fmt.Println(m == nil)       // true
 fmt.Println(m["foo"])       // 0
+m["foo"] = 42               // panic: assignment to entry in nil map
+m = make(map[string]int)    // Initialisierung
 ```
+Wie erwartet führt ein Schreibzugriff vor der Initialisierung zu einem Laufzeitfehler 
+(also Programmabsturz), _aber Lesezugriffe funktionieren schon!
+Das kann enorme Verwirrung stiften.
 
-Die idiomatische und empfohlene Art, eine Map in Go zu initialisieren, ist:
+Die idiomatische und empfohlene Art, eine Map einzuführen, lautet:
 
 ```go
 m := make(map[string]int)
 ```
-
-Diese Schreibweise ist im Go-Universum klar, verständlich und weit verbreitet.
 [ENDWARNING]
 
 
