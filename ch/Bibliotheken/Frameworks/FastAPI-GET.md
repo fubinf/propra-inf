@@ -1,8 +1,7 @@
 title: "FastAPI-GET"
-stage: alpha
-timevalue: 1.5
+stage: beta
+timevalue: 1.0
 difficulty: 2
-explains:
 assumes: http-GET, http-State
 requires: m_pydantic
 ---
@@ -43,6 +42,7 @@ und wieder abrufen.
 [ER] Lesen Sie in der
 [FastAPI Dokumentation die ersten Schritte](https://fastapi.tiangolo.com/tutorial/first-steps/)
 und erstellen Sie den "Hello World" Endpunkt mit dem Pfad `/`, wie es dort beschrieben ist.
+<!-- time estimate: 15 min -->
 
 Mit FastAPI wird ebenfalls ein eigenes Kommando `fastapi` installiert.
 Dieses kann genutzt werden, um sowohl während der Entwicklung als auch der Veröffentlichung,
@@ -106,6 +106,7 @@ Diese Funktion kennen Sie möglicherweise schon aus einem anderen Framework als 
 Sie müssen nur noch Ihr Browserfenster auffrischen.
 
 Sie sehen, dass nun nicht mehr `"string"` als Antwort gesendet wird.
+<!-- time estimate: 15 min -->
 
 [WARNING]
 Das Antwortschema wird von FastAPI _nicht_ automatisch überprüft.
@@ -130,6 +131,7 @@ Geben Sie in dieser Funktion vorerst ein `Greetings`-Exemplar mit `hello="World"
 [ER] Probieren Sie diesen Endpunkt aus.
 In der Dokumentation sehen Sie nun als Schema, dass JSON zurückgegeben wird
 und es genau einen Schlüssel `hello` gibt.
+<!-- time estimate: 15 min -->
 
 
 ### Parameter
@@ -199,6 +201,7 @@ Dieser soll die Liste aller `GradeEntry` dieser Person zurückgeben.
 
 [ER] Erstellen Sie analog dazu den GET-Endpunkt `read_grades_of_course` mit dem
 Pfad `/courses/{name}`, der die Liste aller `GradeEntry`-Einträge für den Kurs zurückgibt.
+<!-- time estimate: 15 min -->
 
 
 ### Endpunkte aufrufen

@@ -69,4 +69,5 @@
 - **2025-09-24**: Aufgabe Bibliotheken/Pandas/[PARTREF::pd-Datenveränderung] zugefügt. 
 - **2025-09-26**: Aufgabe Sprachen/RegExp/[PARTREF::re-Gruppen] zugefügt.
   Zwei andere in dieser Gruppe gibt es ohne Ankündigung schon länger. Na, sowas.
+- **2025-09-30**: Aufgabe/Bibliotheken/Frameworks/[PARTREF::FastAPI-GET] zugefügt.
 - ...
