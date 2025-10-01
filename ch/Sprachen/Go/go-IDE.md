@@ -5,14 +5,11 @@ difficulty: 2
 ---
 
 [SECTION::goal::product]
-
 Eine funktionierende IDE, wo ich Go-Quellcode editieren und ausführen kann.
-
 [ENDSECTION]
 
 [SECTION::background::default]
 Auf Linux, Windows und MacOS haben Sie zwei IDEs zur Wahl:
-
 
 ### 1. GoLand (proprietär, JetBrains)
 
@@ -22,7 +19,6 @@ Auf Linux, Windows und MacOS haben Sie zwei IDEs zur Wahl:
   Intellij IDEA, Android Studio, CLion oder PyCharm hat;
 - Bevorzugt, da diese IDE viele Werkzeuge und Konfigurationsmöglichkeiten anbietet. 
   Unsere Aufgaben sind bevorzugt für GoLand konzipiert.
-
 
 ### 2. Visual Studio Code  
 
@@ -121,15 +117,12 @@ Später können Sie das Programm über Tastenkürzel `Ctrl`+`R` (MacOS) oder `Ct
 
 Die Ausgabe müsste `Hello World!` lauten.
 
+Das war's! Nun sind Sie bereit, Ihre eigenen Programme in Go zu schreiben.
 [ENDSECTION]
 
-Das war's! Nun sind Sie bereit, Ihre eigenen Programme in Go zu schreiben.
-
 [SECTION::submission::information]
-
 Zeigen Sie Ihrem/Ihrer Tutor_in Ihre eingerichtete GoLand IDE oder VSCode mit Ihrem geöffneten ProPra.
 
 Sollten Sie Ihre Entwicklungsumgebung an einem stationären Desktop eingerichtet haben, erstellen Sie 
 einen aussagekräftigen Screenshot und zeigen Sie diesen Ihrem/Ihrer Tutor_in.
-
 [ENDSECTION]
