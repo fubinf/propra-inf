@@ -187,9 +187,6 @@ Die __Länge__ eines Slice ist die Anzahl von Elementen in dem Slice.
 Die __Kapazität__ eines Slice ist die Anzahl von "Speicherzellen" von Anfang des Slice 
 bis zum Ende des zugrundeliegenden Arrays.
 
-`cap(s) = 0` bedeutet, dass beim Hinzufügen eines weiteren Elements ein neues 
-zugrundeliegendes Array für den Slice `s` neu allokiert wird.
-
 [NOTICE]
 Der Nullwert aller Slices ist `nil`.
 
