@@ -39,9 +39,9 @@ den Eindruck von Gleichzeitigkeit zu erwecken.
 
 Eine Goroutine ist ein leichtgewichtiger ("grüner") Thread.
 Solche Goroutinen sind bezüglich der Laufzeiteffizienz extrem billig: 
-Millionen von Goroutinen können nebeneinander verwaltet werden.
+Millionen von Goroutinen können nebeneinander ausgeführt werden.
 
-Eine neue Goroutine wird mithilfe von dem Schlüsselwort `go` erzeugt.
+Eine neue Goroutine wird mit dem Schlüsselwort `go` erzeugt.
 Diese braucht keine besondere Verwaltung — sie wird automatisch von dem 
 Scheduler zum Laufen gebracht und automatisch aufgeräumt, sobald die darin 
 laufende Funktion ihre Aufgabe beendet hat.
@@ -60,7 +60,7 @@ ein `for {}` völlig aus.
 
 <!-- time estimate: 5 min -->
 
-Für manche Programmierer_innen kann das ein bisschen umständlich scheinen — 
+Für manche kann das ein bisschen umständlich scheinen — 
 immer zuerst eine neue Funktion definieren zu müssen.
 Zum Glück ist das nicht nötig, denn Go erlaubt das Wort `go` auch für 
 "lambda"-Funktionen.
@@ -103,7 +103,7 @@ Diskutieren Sie:
 
 [INCLUDE::ALT:]
 
-Musterlösung der Programmieraufgabe als ausführbare Datei hier:
+Musterlösung der Programmieraufgabe als ausführbare Datei siehe hier:
 [TREEREF::/Sprachen/Go/go-goroutines.go].
 [ENDINSTRUCTOR]
 
