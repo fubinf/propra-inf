@@ -23,6 +23,33 @@ Statt Arrays zu kopieren, werden diese bei Bedarf mehrfach referenziert — als 
 
 [SECTION::instructions::detailed]
 
+### Zwei Kategorien von Typen
+
+In Go gibt es zwei Kategorien von Typen: _Einblocktypen_ und _Mehrblocktypen_.
+Ein gutes Verständnis ihrer Eigenschaften sowie ihres Verhaltens als Funktionsparameter 
+ist für das weitere Programmieren in Go unerlässlich.
+
+[EQ] Benutzen Sie den Abschnitt "Two Categories of Go Types" im
+[Artikel go101: Value Parts](https://go101.org/article/value-part.html)
+um die Frage zu beantworten, was _Einblocktypen_ und _Mehrblocktypen_ sind.
+
+[NOTICE]
+Go ist eine _Pass-by-Value_-Programmiersprache — das bedeutet, dass Funktionsargumente
+stets kopiert werden.
+
+Bei den _Einblocktypen_ ist dieses Verhalten leicht nachvollziehbar: Der (einzige) Speicherblock
+wird vollständig kopiert.
+
+Bei den _Mehrblocktypen_ hingegen wird nur der direkte Teil (_direct part_) kopiert;
+die _underlying parts_ gibt es hingegen weiterhin nur einmal und sie werden zwischen
+dem Original des Werts und der Kopie geteilt.
+Wenn man an diesen Daten etwas ändert, scheinen sich also sowohl das Original
+als auch die Kopie zu ändern.
+[ENDNOTICE]
+
+<!-- time estimate: 10 min -->
+
+
 ### Array
 
 Ein Array ist ein _Einblocktyp_, der eine Sammlung von Einträgen darstellt,
