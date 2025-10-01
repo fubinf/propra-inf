@@ -23,7 +23,7 @@ Lösung für viele Alltagsprobleme in der Programmierung.
 [HINT::Ich weiß nicht, was ein Mehrblocktyp ist]
 In Go lassen sich alle Typen in zwei Kategorien unterteilen: _Einblocktypen_ und _Mehrblocktypen_.
 
-Ein Auffrischer dazu finden Sie am Anfang der Aufgabe [PARTREF::go-arrays-and-slices].
+Einen Auffrischer dazu finden Sie am Anfang der Aufgabe [PARTREF::go-arrays-and-slices].
 [ENDHINT]
 
 Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre
