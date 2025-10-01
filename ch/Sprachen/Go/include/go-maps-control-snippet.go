@@ -1,3 +1,9 @@
+func testPopulateMap() {
+	m := make(map[int]int)
+	populateMap(m)
+	fmt.Println(m)
+}
+
 func testMaps() {
 	fmt.Println("testing positive cases...")
 	positives := []struct {

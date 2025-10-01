@@ -2,7 +2,7 @@ title: "Grundlagen von Go: Maps"
 stage: alpha
 timevalue: 1
 difficulty: 2
-assumes: go-basics, go-pointers, go-functions
+assumes: go-basics, go-pointers, go-functions, go-arrays-and-slices
 ---
 
 [SECTION::goal::idea,experience]
@@ -20,8 +20,15 @@ Lösung für viele Alltagsprobleme in der Programmierung.
 
 ### Map (Mehrblocktyp)
 
+[HINT::Ich weiß nicht, was ein Mehrblocktyp ist]
+In Go lassen sich alle Typen in zwei Kategorien unterteilen: _Einblocktypen_ und _Mehrblocktypen_.
+
+Ein Auffrischer dazu finden Sie am Anfang der Aufgabe [PARTREF::go-arrays-and-slices].
+[ENDHINT]
+
 Eine Map ist eine Sammlung von Schlüssel-Wert-Paaren, die effizienten Zugriff auf Daten über ihre
-Schlüssel ermöglicht. Maps haben einen Mehrblocktyp.
+Schlüssel ermöglicht. 
+Maps haben einen Mehrblocktyp.
 
 Maps können als "map literals" erstellt und gleich initialisiert werden 
 (`string` ist der Typ der Schlüssel, `int` ist der Typ der Werte)
@@ -108,6 +115,11 @@ m := make(map[string]int)
 
 ### Programmieren
 
+[ER] Implementieren Sie eine Funktion `populateMap(m map[int]int)`, die die übergebene Map
+mit den Paaren `0:0`, `1:1` bis `4:4` befüllt.
+Beachten Sie dabei, dass eine Map ein _Mehrblocktyp_ ist und wie solche Typen beim 
+Übergeben an Funktionen behandelt werden.
+
 [ER] Implementieren Sie eine Funktion `checkAnagram(w1, w2 string) bool`, die zwei Wörter als 
 Argumente erhält und entscheidet, ob sie ein Anagramm-Paar bilden.
 
@@ -139,6 +151,7 @@ bitte ebenfalls zufügen:
 
 ```go
 func main() {
+    testPopulateMap()
     testMaps()
 }
 ```
@@ -161,10 +174,9 @@ damit das Kommandoprotokoll nicht verfälscht wird.
 **Kommandoprotokoll**
 [PROT::ALT:go-maps.prot]
 
-
-Musterlösung der Programmieraufgabe: 
+**Lösungen**
 [INCLUDE::ALT:]
 
-Oder als ausführbare Datei hier:
+Musterlösung der Programmieraufgabe als ausführbare Datei siehe hier:
 [TREEREF::/Sprachen/Go/go-maps.go].
 [ENDINSTRUCTOR]
