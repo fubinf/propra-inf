@@ -1,6 +1,6 @@
 title: "Grundlagen von Go: Arrays and Slices"
-stage: alpha
-timevalue: 2.5
+stage: beta
+timevalue: 2
 difficulty: 2
 explains: Slice (Golang)
 assumes: go-basics, go-pointers, go-functions, go-structs1
