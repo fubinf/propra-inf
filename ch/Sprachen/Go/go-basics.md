@@ -2,6 +2,7 @@ title: "Grundlagen von Go (erklärt aus Sicht von Python)"
 stage: beta
 timevalue: 2.5
 difficulty: 2
+assumes: go-IDE
 ---
 
 [SECTION::goal::idea,experience]

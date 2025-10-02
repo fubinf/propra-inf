@@ -1,11 +1,11 @@
 title: Einrichtung einer IDE für Go
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 2
 ---
 
 [SECTION::goal::product]
-Eine funktionierende IDE, wo ich Go-Quellcode editieren und ausführen kann.
+Eine funktionierende IDE, mit der ich Go-Quellcode editieren und ausführen kann.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -43,15 +43,15 @@ Auf Linux, Windows und MacOS haben Sie zwei IDEs zur Wahl:
       eine lokale Windows-Version von `go` installieren und einen Mischbetrieb in Kauf nehmen: 
       Die IDE benutzt die Windows-Version,
       manuell auf der Kommandozeile benutzen wir die Linux-Version.)
-    - MacOS (Apple Silicon) `go1.xx.y.darwin-arm64.pkg`
-    - MacOS (Intel) `go1.xx.y.darwin-amd64.pkg`
-* Linux und WSL:
+    - MacOS `go1.xx.y.darwin-arm64.pkg` (für Apple-Prozessoren) oder 
+      `go1.xx.y.darwin-amd64.pkg` (für Intel-Prozessoren)
+* Dann auf Linux oder WSL:
     - Terminal öffnen und dorthin navigieren, wo die heruntergeladene Datei liegt (beispielsweise `cd Downloads`)
     - Falls eine Version schon installiert wurde, diese löschen, um Versionierungsprobleme zu vermeiden:
       `sudo rm -rf /usr/local/go`
     - `sudo tar -C /usr/local -xzf go1.xx.y.linux-amd64.tar.gz`
     - `.bashrc` öffnen und die Zeile `export PATH=$PATH:/usr/local/go/bin` hinzufügen
-* MacOS:
+* bzw. dann auf MacOS:
     - Nachdem das Herunterladen abgeschlossen ist, öffnen Sie diese Datei. 
       Das ist ein Installationsprogramm.
 
@@ -65,8 +65,9 @@ Falls die Installation fehlschlägt, suchen Sie Hilfe auf [der offiziellen Seite
 
 #### a) GoLand
 
-* Falls noch nicht vorhanden, eine [Studentenlizenz bei JetBrains beantragen](https://www.jetbrains.com/community/education/#students);
-* [Die Installationsdatei](https://www.jetbrains.com/go/) für Ihr Betriebssystem herunterladen;
+* Falls noch nicht vorhanden, eine Studentenlizenz bei JetBrains beantragen
+  wie in der Aufgabengruppe [PARTREFMANUAL::IDE::Basis/IDE] beschrieben.
+* [Die Installationsdatei](https://www.jetbrains.com/go/) für Ihr Betriebssystem herunterladen.
 * Diese Datei öffnen, IDE installieren und aktivieren, indem Sie sich in der IDE mit Ihrem JetBrains-Konto einloggen
   ([Installationsanweisungen](https://www.jetbrains.com/help/go/installation-guide.html));
 * GOROOT Variable setzen (GoLand -> Settings -> Go -> GOROOT -> Ihre aktuelle Installation wählen).
@@ -86,6 +87,9 @@ Falls die Installation fehlschlägt, suchen Sie Hilfe auf [der offiziellen Seite
 
 ### 3. Hello World!
 
+Die Bedienung hat im Detail Unterschiede zur Python-IDE, funktioniert im Wesentlichen aber
+so, wie in [PARTREF::IDE-First-Steps] gesehen.
+
 Erstellen Sie die Datei `programm.go` und kopieren Sie den unten angeführten Quellcode in diese Datei.
 
 [FOLDOUT::Ein leeres Projekt in GoLand kreieren]
@@ -95,7 +99,8 @@ Erstellen Sie die Datei `programm.go` und kopieren Sie den unten angeführten Qu
     2. Wählen Sie Ihre WSL-Instanz.
     3. Wählen Sie unter "Project directory", wo sich Ihr neues Projekt befinden soll.
 
-* **Linux/MacOS:** "New Project -> Ort auswählen -> Create". "Add sample code" darf eingecheckt bleiben. 
+* **Linux/MacOS:** "New Project -> Ort auswählen -> Create". 
+  Dabei darf "Add sample code" angewählt bleiben. 
 
 Wenn man ein leeres Projekt in GoLand kreiert, wird dieses mit den Dateien
 `go.mod` und `main.go` unter dem Namen "awesomeProject" erstellt. 
@@ -123,6 +128,6 @@ Das war's! Nun sind Sie bereit, Ihre eigenen Programme in Go zu schreiben.
 [SECTION::submission::information]
 Zeigen Sie Ihrem/Ihrer Tutor_in Ihre eingerichtete GoLand IDE oder VSCode mit Ihrem geöffneten ProPra.
 
-Sollten Sie Ihre Entwicklungsumgebung an einem stationären Desktop eingerichtet haben, erstellen Sie 
+Sollten Sie Ihre Entwicklungsumgebung an einem stationären Rechner eingerichtet haben, erstellen Sie 
 einen aussagekräftigen Screenshot und zeigen Sie diesen Ihrem/Ihrer Tutor_in.
 [ENDSECTION]
