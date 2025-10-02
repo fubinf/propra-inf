@@ -108,6 +108,7 @@ Array und ist ein _Mehrblocktyp_.
 Es gibt drei Möglichkeiten, einen Slice zu kreieren:
 
 - als ein _Slice-Literal_;
+- durch Deklaration;
 - durch _Slicing_;
 - mittels der eingebauten Funktion `make`.
 
@@ -127,6 +128,20 @@ an.
 Benutzen Sie die Literal-Schreibweise.
 
 <!-- time estimate: 5 min -->
+
+
+#### Deklaration
+
+Der Nullwert eines Slices ist ebenfalls ein gültiger Slice — allerdings ohne das
+zugrundeliegende Array:
+
+```go
+var s []int
+fmt.Println(s)          // []
+fmt.Println(s == nil)   // true
+s = append(s, 42)
+fmt.Println(s)          // [42]
+```
 
 
 #### Slicing
@@ -187,15 +202,6 @@ Die __Länge__ eines Slice ist die Anzahl von Elementen in dem Slice.
 Die __Kapazität__ eines Slice ist die Anzahl von "Speicherzellen" von Anfang des Slice 
 bis zum Ende des zugrundeliegenden Arrays.
 
-[NOTICE]
-Der Nullwert aller Slices ist `nil`.
-
-Genauer gesagt, es wird nur der direkte Teil — der Header — erstellt.
-Der Zeiger auf das zugrundeliegende Array ist jedoch `nil`, da es keins gibt.
-
-Die Funktionen `len()` und `cap()` geben für einen `nil`-Slice `0` zurück.
-[ENDNOTICE]
-
 Lesen Sie den 
 [Abschnitt 'Slice Internals'](https://go.dev/blog/slices-intro#slice-internals)
 im Artikel "Go Slices: usage and internals" und vollziehen Sie nach, was der Zusammenhang 
@@ -243,7 +249,8 @@ s2 := s[:0]
 <!-- time estimate: 15 min -->
 
 [NOTICE]
-Es gibt eine besondere Schreibweise, mit der sich die Kapazität eines Slice explizit 
+Es gibt eine besondere Schreibweise, mit der sich die Kapazität eines Slice 
+explizit begrenzen lässt:
 
 ```go
 s[start:end:max]
