@@ -1,5 +1,5 @@
 title: "Grundlagen von Go: Zeiger"
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 assumes: go-basics, go-functions
@@ -106,7 +106,7 @@ func main() {
 }
 ```
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 <!-- TODO_2_Brandes: add a teaser about unsafe when task 'go-unsafe' is ready --> 
 [ENDSECTION]
 
