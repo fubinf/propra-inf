@@ -1,5 +1,5 @@
 title: "Grundlagen von Go: Maps"
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 2
 assumes: go-basics, go-pointers, go-functions, go-arrays-and-slices
@@ -9,12 +9,14 @@ assumes: go-basics, go-pointers, go-functions, go-arrays-and-slices
 Ich habe Maps in Go kennengelernt.
 [ENDSECTION]
 
+
 [SECTION::background::default]
 Maps ermöglichen es, Daten schnell über Schlüssel zu speichern und wiederzufinden — 
 wie ein eingebautes Nachschlagewerk. 
 Ob Zählungen, Zuordnungen oder schnelle Suchen: Maps bieten eine elegante und effiziente 
 Lösung für viele Alltagsprobleme in der Programmierung.
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -111,6 +113,7 @@ Die idiomatische und empfohlene Art, eine Map einzuführen, lautet:
 m := make(map[string]int)
 ```
 [ENDWARNING]
+<!-- time estimate: 15 min -->
 
 
 ### Programmieren
@@ -161,10 +164,12 @@ func main() {
 <!-- time estimate: 30 min -->
 [ENDSECTION]
 
+
 [SECTION::submission::trace,program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Hinweise]
 `testMaps`:
