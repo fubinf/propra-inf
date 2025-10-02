@@ -85,29 +85,33 @@ Wo stehen die?
 
 ### Rekursive Suche im Dateibaum
 
-Der Ordner `logrotate.d/` enthält Konfigurationsdateien für die Logrotation einzelner 
-Dienste, z. B. Apache, Nginx, Syslog oder Fail2ban. Jede Datei legt fest, wann und wie oft 
-Logs archiviert oder gelöscht werden.  
+Sie arbeiten an einem Linux-System und möchten verstehen, welche Paketquellen
+aktuell für APT konfiguriert sind. In `/etc/apt/` liegen alle Konfigurationen,
+wichtig sind besonders die Dateien `sources.list` und die Fragmente in
+`sources.list.d/`.  
 
-Ein typisches Stichwort ist `weekly`. Es gibt in vielen Dateien Blöcke von Zeilen, die 
-definieren, dass die Logs eines Dienstes wöchentlich rotiert werden. Manche Dateien enthalten 
-nur wenige Zeilen, andere mehrere Einträge hintereinander.  
+Sie sollen überprüfen, ob ein bestimmtes Repository korrekt eingetragen wurde oder 
+ob eine Quelle doppelt vorhanden ist. Dazu möchten Sie alle Dateien durchsehen, 
+die `deb` enthalten, ohne jede Datei einzeln öffnen zu müssen.
 
-[EC] Suchen Sie im Verzeichnis `logrotate.d/` nach Zeilen, die das Wort `weekly` enthalten. 
+Die Dateien sind über mehrere Ebenen verteilt: manche direkt in `/etc/apt/`, andere
+in Unterordnern wie `sources.list.d/`. Mit einer rekursiven Suche können Sie alle
+Vorkommen gleichzeitig auflisten, ohne jeden Ordner manuell öffnen zu müssen.
+
+[EC] Suchen Sie rekursiv in `/etc/apt/` nach allen Zeilen, die das Wort `deb`
+enthalten. Zeigen Sie Dateiname und Zeilennummer an.
 
 
 ### Treffer zählen
 
-Im Ordner `cron.d/` befinden sich Cron-Tabellen für verschiedene Dienste und Aufgaben.  
-Jede Datei definiert, wann bestimmte Programme automatisch ausgeführt werden, und unter welchem 
-Benutzer sie laufen.  
+Nachdem Sie alle Zeilen mit `deb` in `/etc/apt/` gefunden haben, möchten Sie nun
+wissen, wie viele Einträge insgesamt vorhanden sind. Dies hilft, die Anzahl der
+aktivierten Repositories oder doppelten Einträge schnell zu erfassen, ohne jede
+Datei manuell zu prüfen.  
 
-Ein typisches Suchwort ist `root`, da viele systemweite Aufgaben unter diesem Benutzer laufen.  
-Mit der Zählung der Treffer lässt sich erkennen, welche Cron-Jobs von `root` verwaltet werden 
-und welche Dateien besonders viele Einträge enthalten. 
-
-[EC] Zählen Sie rekursiv, wie oft das Wort `root` in allen Dateien im Ordner `cron.d/` 
-vorkommt. 
+[EC] Zählen Sie rekursiv, wie oft das Wort `deb` in allen Dateien unter `/etc/apt/`
+vorkommt. Sortieren und kürzen Sie für das Kommandoprotokoll die Ausgabe mit 
+`sort -nr -k2 -t: | head -10`.
 
 
 ### Invers-Suche
@@ -181,6 +185,7 @@ Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Kommandoprotokoll]
+[INSTRUCTOR::Kommandoprotokoll + Markdowndokument]
 [PROT::ALT:grep.prot]
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
