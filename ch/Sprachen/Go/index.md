@@ -1,5 +1,5 @@
 title: Grundlagen von Go
-stage: alpha
+stage: beta
 ---
 
 Go ist eine moderne und an Einfachheit orientierte Programmiersprache, 

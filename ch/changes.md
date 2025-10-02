@@ -70,4 +70,6 @@
 - **2025-09-26**: Aufgabe Sprachen/RegExp/[PARTREF::re-Gruppen] zugefügt.
   Zwei andere in dieser Gruppe gibt es ohne Ankündigung schon länger. Na, sowas.
 - **2025-09-30**: Aufgabe/Bibliotheken/Frameworks/[PARTREF::FastAPI-GET] zugefügt.
+- **2025-10-02**: Aufgabengruppe Sprachen/[PARTREF::Go] freigegeben,
+  mit 8 Aufgaben im Gesamtumfang von 13 Stunden.
 - ...
