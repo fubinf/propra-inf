@@ -99,15 +99,17 @@ Erstellen Sie die Datei `programm.go` und kopieren Sie den unten angeführten Qu
     2. Wählen Sie Ihre WSL-Instanz.
     3. Wählen Sie unter "Project directory", wo sich Ihr neues Projekt befinden soll.
 
-* **Linux/MacOS:** "New Project -> Ort auswählen -> Create". 
-  Dabei darf "Add sample code" angewählt bleiben. 
+* **Linux/MacOS:** "New Project -> Ort auswählen -> Create".
 
-Wenn man ein leeres Projekt in GoLand kreiert, wird dieses mit den Dateien
-`go.mod` und `main.go` unter dem Namen "awesomeProject" erstellt. 
-Diese Dateien dürfen Sie löschen. 
-Um das Projekt umzubenennen, Rechtsklick auf "awesomeProject" -> "Rename". 
+Es wird immer eine Datei `go.mod` erstellt — diese dürfen Sie ignorieren. 
 
-Eine neue Datei wird sehr ähnlich angelegt: Rechtsklick auf "projectName" -> "New" -> "Go File".
+Die Option "Add sample code" würde zusätzlich eine Datei `main.go` mit einem 
+Beispiel-Programm anlegen — das brauchen Sie für diese Aufgabe nicht.
+
+Eine neue Datei wird folgendermaßen angelegt:
+
+- über Rechtskick auf "projectName -> New -> (Go) File";
+- oder über "File -> New -> (Go) File".
 [ENDFOLDOUT]
 
 ```go
