@@ -1,6 +1,6 @@
 title: Erste Schritte in JavaScript und DOM
 stage: alpha
-timevalue: 1.5
+timevalue: 2
 difficulty: 2
 requires: html-Formulare 
 # assumes: TODO-html-id-und-eigenschaften
@@ -84,6 +84,27 @@ In JavaScript gibt es neun grundlegende Datentypen.
 Einige davon sind primitiv: `string`, `number`, `bigint`, `boolean`, `null`, `undefined`, `symbol`.
 Andere sind Objekte, z. B. Arrays oder eigene Datenstrukturen.
 
+Wichtig zu `number` vs. `bigint`:
+
+- `number` ist immer ein 64‑Bit IEEE‑754 Gleitkommawert (ähnlich `float64`). Ganze Zahlen können damit nur bis `2^53 - 1` exakt dargestellt werden.
+- Für größere exakte Ganzzahlen braucht man `bigint`. Das muss explizit verwendet werden, entweder mit dem `n`‑Suffix oder über `BigInt(...)`.
+
+Beispiel:
+
+```
+let a = 999999999999999; // number (nahe an der Grenze; evtl. schon ungenau)
+let b = 999999999999999n; // bigint (exakt)
+console.log(typeof a); // "number"
+console.log(typeof b); // "bigint"
+
+
+// Unerwartetes Verhalten mit großen Zahlen (Rundung durch number):
+console.log(999999999999999 + 1); // 1000000000000000 (evtl. ok)
+console.log(9999999999999999 + 1); // 10000000000000000? -> Achtung: Präzisionsverlust!
+```
+
+Eine ausführlichere Erklärung findest du in der [MDN-Webdokumentation zu Number](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Number) und in der [MDN-Webdokumentation zu BigInt](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
+
 Der Datentyp `symbol` dient dazu, einzigartige und unveränderliche Bezeichner zu erzeugen.
 Jeder Aufruf von `Symbol()` erzeugt ein neues, eindeutiges Symbol, sogar, 
 wenn man denselben Beschreibungstext verwendet.
@@ -95,7 +116,7 @@ Ein Beispiel:
 ```
 let name = "Anna";          // string
 let age = 25;               // number
-let x = 999999999999999	    // bigint;
+let x = 999999999999999	    // bigint
 let isHappy = true;         // boolean
 let nothing = null;         // null
 let notDefined;             // undefined
@@ -134,8 +155,8 @@ function greet(name) {
 
 **2. Anonyme Funktionen:**
 
-Auch anonyme Funktionen sind in JavaScript möglich.
-In Python kennt man etwas Ähnliches unter dem Namen `lambda-Funktion`, z. B.:
+In Python kennt man etwas Ähnliches unter dem Namen `lambda-Funktion`.  
+Anders als Python-Lambdas können anonyme JS-Funktionen aber beliebig viele Anweisungen enthalten.
 
 ```python
 #Python:
@@ -144,9 +165,9 @@ say_hello = lambda name: print(f"Hallo, {name}!")
 
 ```JavaScript
 //JavaScript:
-setTimeout(function () {
-  console.log("Zeit ist um!");
-}, 1000);
+const say_hello = function (name) {
+  console.log("Hallo, " + name + "!");
+};
 ```
 
 Während man in Python z. B. `lambda` nutzt, verwendet JavaScript hier das Schlüsselwort `function`,
@@ -346,6 +367,26 @@ Liest den aktuellen Inhalt eines Eingabefelds (z. B. `<input>` oder `<textarea
 `innerHTML`:  
 Ändert oder liest den HTML-Inhalt eines Elements, also auch mit Tags oder Formatierung:  
 `document.getElementById("willkommen").innerHTML = "Willkommen, " + name + "!";`
+
+`innerText`:  
+Gibt den sichtbaren Text zurück, wie er gerendert wird (berücksichtigt CSS, Zeilenumbrüche usw.):
+`document.getElementById("willkommen").innerText = "Willkommen, " + name + "!";`
+
+Unterschied `innerHTML` vs `innerText`:
+
+```
+<div id="demo"></div>
+
+<script>
+  const el = document.getElementById("demo");
+
+  el.innerText = "<b>Hallo Welt</b>";
+  // Ergebnis im Browser: <b>Hallo Welt</b> (die spitzen Klammern sind sichtbar)
+
+  el.innerHTML = "<b>Hallo Welt</b>";
+  // Ergebnis im Browser: Hallo Welt (fett gedruckt)
+</script>
+```
 
 `addEventListener(...)`:  
 Damit lässt sich auf Ereignisse wie Klicks, Tastatureingaben oder Mausbewegungen reagieren:
