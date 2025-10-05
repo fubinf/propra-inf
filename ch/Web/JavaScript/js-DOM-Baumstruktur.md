@@ -39,7 +39,7 @@ body
         └── Textknoten
 ```
 
-Du kannst im DOM mit `parentNode`, `children`, `firstChild`, `nextElementSibling` usw. navigieren:
+Sie können im DOM mit `parentNode`, `children`, `firstChild`, `nextElementSibling` usw. navigieren:
 
 Um Elemente zu bearbeiten, muss man sie zunächst einmal finden. 
 Dafür gibt es unter anderem`document.querySelector`, das Elemente auf Basis eines CSS-Selektors finden kann.
@@ -62,7 +62,7 @@ Neben `innerHTML`, `innerText` oder `textContent` gibt es weitere nützliche Met
 
 `.appendChild(...)` – Elemente hinzufügen:
 
-Damit kannst du neue HTML-Elemente erzeugen und einfügen:
+Damit können Sie HTML-Elemente erzeugen und einfügen:
 
 ```js
 const li = document.createElement("li");
@@ -74,7 +74,7 @@ Diese Methode eignet sich sehr gut für dynamische Listen.
 
 `.remove()` – Elemente löschen:
 
-Damit kannst du einen DOM-Knoten entfernen:
+Damit kannst Sie einen DOM-Knoten entfernen:
 
 ```js
 const hinweis = document.getElementById("hinweisText");
@@ -92,19 +92,19 @@ den jeweiligen Listenpunkt wieder löschen kann.
 [HINT::Umgang mit verschachtelter Liste]
 Die vorhandene HTML-Struktur enthält untergeordnete Listen 
 (z. B. Bibliotheken innerhalb von "Programme nach Ihren Wünschen").
-Achte bei deiner Umsetzung darauf, neue Einträge nicht in solche verschachtelten Bereiche einzufügen,
+Achten Sie bei Ihrer Umsetzung darauf, neue Einträge nicht in solche verschachtelten Bereiche einzufügen,
 sondern nur in die äußere Liste mit den Hauptpunkten.
 Gib der äußeren Liste (also `<ul>`, nicht den inneren) eine eindeutige `id`, 
 z. B. `id="leistungenListe"`,
-und verwende im JavaScript `getElementById("leistungenListe")`, 
+und verwenden Sie im JavaScript `getElementById("leistungenListe")`, 
 um gezielt nur dort neue Einträge hinzuzufügen.
 [ENDHINT]
 
 
 ### Mehrere Elemente bearbeiten nach einem Event
 
-Manchmal möchtest du mehrere Elemente auf einmal ansprechen, zum Beispiel, um alle Listeneinträge zu markieren oder zu verändern. 
-Dazu kannst du eine Schleife verwenden:
+Manchmal möchten Sie mehrere Elemente auf einmal ansprechen, zum Beispiel, um alle Listeneinträge zu markieren oder zu verändern. 
+Dazu können Sie eine Schleife verwenden:
 
 ```
 const button = document.getElementById("btnHervorheben");
