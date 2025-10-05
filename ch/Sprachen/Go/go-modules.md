@@ -1,5 +1,5 @@
 title: Module und Pakete in Go
-stage: alpha
+stage: draft
 timevalue: 3
 difficulty: 2
 assumes: go-basics
