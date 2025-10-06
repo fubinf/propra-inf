@@ -96,24 +96,6 @@ zufügen sollte, um weniger hoffnungsvoll zu agieren?
 
 [INSTRUCTOR::Testentwurf]
 
-- Der ursprüngliche Test sollte erhalten bleiben oder in den tabellengesteuerten integriert werden.
-- Wer `unittest` benutzt hat und jeden Testfall einzeln handkodiert, bitte zurückweisen:
-  das ist unprofessionell.
-- Wer `unittest` benutzt und sich selbst eine tabellengesteuerte Testlogik gebaut hat,
-  kann wahrscheinlich pro Testlauf nur 1 [TERMREF::Versagen] sehen, nicht mehrere.
-  Auf die Vorzüge von `pytest` hinweisen, wo das ohne Mehraufwand besser geht.
-- Wenn die Sulfuras-Regel, dass sich `sell_in` nicht verändert, nicht überprüft wird,
-  die Tests zurückweisen.  
-  Ob man das hingegen in der Tabelle widerspiegelt oder in der Testlogik separat abfragt,
-  ist Geschmackssache.
-- Wenn jemand noch mehr Regeln mit Testlogik abgebildet hat anstatt über Daten,
-  bitte ermahnen: Das würde einem im wirklichen Leben schnell über den Kopf wachsen.
-  Für Charakterisierungstests sind Testtabellen die Methode der Wahl.
-
-Beispiellösung siehe [TREEREF::/Bestandscode/Refactoring-Praxis/gildedrose]
-
-### Fragen
-
 [INCLUDE::ALT:]
 
 ### Kommandoprotokoll
