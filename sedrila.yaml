@@ -178,6 +178,7 @@ chapters:
       - name: Dokumentation
       - name: Pandas
       - name: Matplotlib
+      - name: NumPy
   - name: Testen
     taskgroups:
       - name: Testgrundlagen
