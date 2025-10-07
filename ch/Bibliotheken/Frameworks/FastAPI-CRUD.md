@@ -165,15 +165,13 @@ läuft, <kbd>Strg</kbd>+<kbd>c</kbd> eingeben.
 
 [EC] Starten Sie den Server mit `fastapi dev FastAPI-CRUD.py` und öffnen Sie
 die automatische Dokumentation in ihrem Browser.
+Führen Sie nun nacheinander diese Aktionen aus:
 
-[EC] Erstellen Sie zweimal dasselbe Exemplar über Ihren POST-Endpunkt `/grade`.
-
-[EC] Aktualisieren Sie das Exemplar über Ihren PATCH-Endpunkt `/grade`.
-
-[EC] Versuchen Sie nun ein Exemplar, das nicht existiert, über Ihren
+- Erstellen Sie zweimal dasselbe Exemplar über Ihren POST-Endpunkt `/grade`.
+- Aktualisieren Sie das Exemplar über Ihren PATCH-Endpunkt `/grade`.
+- Versuchen Sie nun ein Exemplar, das nicht existiert, über Ihren
 PATCH-Endpunkt `/grade` zu aktualisieren.
-
-[EC] Löschen Sie nun ein Exemplar über Ihren DELETE-Endpunk `/grade`.
+- Löschen Sie nun ein Exemplar über Ihren DELETE-Endpunk `/grade`.
 
 [ENDSECTION]
 
@@ -189,8 +187,13 @@ PATCH-Endpunkt `/grade` zu aktualisieren.
 
 [INCLUDE::ALT:FastAPI-CRUD.md]
 
-[PROT::ALT:FastAPI-CRUD.prot]
 
-Musterlösung siehe [TREEREF::/Bibliotheken/Frameworks/FastAPI-CRUD.py]
+### Musterlösung
+
+Musterlösung siehe [TREEREF::FastAPI-CRUD.py]
+
+```py
+[INCLUDE::ITREE:FastAPI-CRUD.py]
+```
 
 [ENDINSTRUCTOR]
