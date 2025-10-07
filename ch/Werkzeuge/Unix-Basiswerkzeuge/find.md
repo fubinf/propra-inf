@@ -1,5 +1,5 @@
-title: find - Dateien auf dem System finden
-stage: alpha
+title: find - Dateien auf dem System wiederfinden
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: Umgang-mit-Verzeichnissen, redirect
@@ -7,8 +7,9 @@ requires: Dateibaum-beschaffen
 ---
 
 [SECTION::goal::idea]
-Ich verstehe wie find funktioniert und weiß wie ich damit Dateien finden kann.
+Ich verstehe wie `find` funktioniert und weiß wie ich damit Dateien finden kann.
 [ENDSECTION]
+
 
 [SECTION::background::default]
 Das Kommando `find` ist ein vielseitiges Werkzeug, um Verzeichnisbäume zu durchsuchen. 
@@ -16,15 +17,17 @@ Es erlaubt, Suchkriterien wie Namen, Dateitypen, Änderungszeiten oder Berechtig
 und die so gefundenen Dateien zu bearbeiten oder (meistens) ihre Pfadnamen auszugeben.
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 [EC] Wechseln Sie in den Ordner Ihres [TERMREF2::Hilfsbereich::-s], wo der Dateibaum entpackt wurde.
 
 Lesen und verstehen Sie die Synopsis der 
 [find(1) manpage](https://manpages.debian.org/stable/findutils/find.1.en.html).
+Nutzen Sie die manpage als Plan B, falls in den anderen Quellen etwas nicht klar genug wird.
 
 Lesen und verstehen Sie den Abschnitt **Name** von der 
 [ubuntuusers find-Seite](https://wiki.ubuntuusers.de/find/).
+
 
 ### `find` auf Dateien und Verzeichnisse anwenden
 
@@ -45,7 +48,7 @@ befinden, um z. B. alle Skripte zu überprüfen, Tests auszuführen oder eine 
 zu erstellen. Die Dateien können in unterschiedlichen Unterverzeichnissen liegen, und
 manuelles Durchsuchen wäre zu zeitaufwendig.
 
-`find` kann den gesamten Verzeichnisbaum durchsuchen und gezielt nach Dateiendungen
+`find` kann den gesamten Verzeichnisbaum durchsuchen und gezielt auch nach Dateiendungen
 suchen. So bekommen Sie schnell einen vollständigen Überblick über alle relevanten
 Dateien.
 
@@ -62,29 +65,30 @@ Um das Prinzip zu veranschaulichen, machen wir ein Beispiel mit dem Wort `defaul
 [EC] Finden Sie alle Dateien, die `default` heißen, egal ob Groß- oder
 Kleinschreibung.
 
-Lesen und verstehen Sie den Abschnitt **Pfadteile** und **Typ** von der 
+Lesen und verstehen Sie die Unterabschnitte **Pfad** und **Typ** von der 
 [ubuntuusers find-Seite](https://wiki.ubuntuusers.de/find/).
 
 Sie haben gerade gelernt, wie man mit `find` sowohl Dateien als auch Verzeichnisse
-finden kann. Oft ist es aber hilfreich, gezielt nur nach dem einen oder dem anderen zu
+finden kann. Oft ist es aber hilfreich, gezielt nur nach dem einen _oder_ dem anderen zu
 suchen.  
 
-Stellen Sie sich vor, Sie haben ein großes Projekt und möchten alle Konfigurationsordner
+Stellen Sie sich vor, Sie haben ein großes Projekt und möchten alle Konfigurationsordner `config`
 ausfindig machen, um deren Inhalte zu überprüfen oder Skripte darauf anzuwenden – ohne
-jeden Pfad einzeln kennen zu müssen.  
+jeden Pfad einzeln kennen zu müssen.
+Sie ahnen oder wissen, dass es zugleich auch einzelne Dateien mit dem Namen `config`
+gibt; potentiell viele. Die möchten Sie also aus der Suche ausschließen.
 
-[EC] Listen Sie alle `config`-Verzeichnisse auf.  
+[EC] Listen Sie alle `config`-Verzeichnisse auf (aber nicht Dateien namens `config`).
 
-Oder nehmen wir den Fall, dass Sie nur ganz bestimmte Dateien suchen möchten. Angenommen,
-Sie wollen genau die Dateien finden, die `config` heißen, und dabei keine Verzeichnisse
-oder Links berücksichtigen.  
+Nun fällt Ihnen ein "Nein, das war ja genau falschrum.".
+Tatsächlich müssen Sie die _Dateien_ namens `config` finden und die Ordner unterdrücken.
 
 [EC] Listen Sie alle Dateien (keine Verzeichnisse, Links etc.) auf, die `config` heißen.
 
 
 ### `find` auf Zeitangaben und Dateiengrößen anwenden
 
-Lesen und verstehen Sie den Abschnitt **Groesse** und **Alter** von der 
+Lesen und verstehen Sie die Unterabschnitte **Groesse** und **Alter** von der 
 [ubuntuusers find-Seite](https://wiki.ubuntuusers.de/find/).
 
 Manchmal entstehen in Projekten leere Dateien – etwa versehentlich beim Kopieren oder
@@ -97,10 +101,12 @@ Projekt leere Dateien existieren, um diese gezielt zu löschen oder zu überprü
 In Projekten ist es oft wichtig, den Überblick über aktuelle Änderungen zu behalten. 
 Vielleicht wollen Sie die neuesten Dateien sichern, Änderungen überprüfen oder nach einem 
 Fehler nachvollziehen, welche Dateien zuletzt verändert wurden.  
+Zum Beispiel erinnern Sie sich, dass Sie irgendeine `apt`-Konfiguration nach der letzten
+Änderung an `apt/sources.list` modifiziert hatten, die Sie jetzt erneut ändern möchten.
+Aber welche war es?
 
-[EC] Finden Sie alle Dateien, die innerhalb der letzten 24 Stunden geändert wurden.
+[EC] Finden Sie alle Dateien (nicht Verzeichnisse) im Teilbaum `apt`, die jünger sind als `apt/sources.list`.
 
-Es ist in Ordnung wenn sie hier keine Ergebnisse bekommen, da die Daten schon etwas älter sind.
 
 ### Aktionen auf Dateien ausführen
 
@@ -113,24 +119,27 @@ Konfigurationsdateien existieren und welche Eigenschaften (z. B. Größe, Änder
 oder Berechtigungen) sie haben. So können Sie leichter entscheiden, ob eine Datei 
 überprüft, bearbeitet oder gesichert werden sollte.  
 
-[EC] Finden Sie alle `.conf`-Dateien im aktuellen Verzeichnisbaum und zeigen Sie deren 
+[EC] Finden Sie alle `*.conf`-Dateien im aktuellen Verzeichnisbaum und zeigen Sie deren 
 Systeminformationen an. Kürzen Sie die Ausgabe mit `head -10` ab.
 
 
 Leseen und verstehen Sie die **Tabelle 3a** aus dem Abschnitt **Suchkriterien** von der 
 [ubuntuusers find-Seite](https://wiki.ubuntuusers.de/find/).
 
-Im Verzeichnisbaum gibt es den Ordner `security`, in dem wichtige Konfigurationsdateien 
-für Zugriffsrechte und Sicherheitsrichtlinien liegen. Sie möchten gezielt nur diese Dateien prüfen, 
-ohne versehentlich Konfigurationen in tieferliegenden Unterordnern zu ändern.  
+Sie suchen unter den hunderten `*.conf`-Dateien eine, von der Sie nur noch wissen,
+dass sie sehr tief verschachtelt lag; mindestens drei Ebenen tief (also auf Ebene 4,
+mit 4 Schrägstrichen im relativen Dateinamen).
+Sie suchen also alle diese, in der Hoffnung, dass es so wenige sind, dass Ihnen bei deren Anblick
+der Name wieder einfällt. War es irgendwas mit "session"? Sie sind nicht sicher.
 
-[EC] Finden Sie alle `.conf`-Dateien im Verzeichnis `security`, aber nicht in Unterverzeichnissen.
-
+[EC] Finden Sie alle `*.conf`-Dateien, die auf Ebene 4 des Baums oder noch tiefer liegen.
 [ENDSECTION]
+
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Kommandoprotokoll]
 [PROT::ALT:find.prot]
