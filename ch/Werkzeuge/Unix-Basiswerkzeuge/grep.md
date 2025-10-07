@@ -1,5 +1,5 @@
 title: "grep: print lines that match patterns"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: Umgang-mit-Verzeichnissen, redirect, re-Quantoren
@@ -87,18 +87,18 @@ Wo stehen die?
 
 Sie arbeiten an einem Linux-System und möchten verstehen, welche Paketquellen
 aktuell für APT konfiguriert sind. In `/etc/apt/` liegen alle Konfigurationen,
-wichtig sind besonders die Dateien `sources.list` und die Fragmente in
-`sources.list.d/`.  
+wichtig sind besonders die Datei `sources.list` und die Fragmente in
+`/etc/apt/sources.list.d/`.  
 
 Sie sollen überprüfen, ob ein bestimmtes Repository korrekt eingetragen wurde oder 
 ob eine Quelle doppelt vorhanden ist. Dazu möchten Sie alle Dateien durchsehen, 
 die `deb` enthalten, ohne jede Datei einzeln öffnen zu müssen.
 
 Die Dateien sind über mehrere Ebenen verteilt: manche direkt in `/etc/apt/`, andere
-in Unterordnern wie `sources.list.d/`. Mit einer rekursiven Suche können Sie alle
+in Unterordnern wie `/etc/apt/sources.list.d/`. Mit einer rekursiven Suche können Sie alle
 Vorkommen gleichzeitig auflisten, ohne jeden Ordner manuell öffnen zu müssen.
 
-[EC] Suchen Sie rekursiv in `/etc/apt/` nach allen Zeilen, die das Wort `deb`
+[EC] Suchen Sie rekursiv im gesamten Baum `/etc/apt/` nach allen Zeilen, die das Wort `deb`
 enthalten. Zeigen Sie Dateiname und Zeilennummer an.
 
 
