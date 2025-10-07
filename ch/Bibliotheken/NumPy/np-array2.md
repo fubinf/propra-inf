@@ -1,4 +1,4 @@
-title: np-array2
+title: NumPy Array-Broadcasting, -Iteration und -Form-Manipulationen
 stage: alpha
 timevalue: 1.5
 difficulty: 2
@@ -159,9 +159,9 @@ normalized = (data - min_vals) / range_vals
 
 <!-- time estimate: 15 min -->
 
-### NumPy Array-Iteration mit nditer
+### NumPy Array-Iteration mit `nditer`
 
-Der numpy.nditer bietet flexible Möglichkeiten zur Array-Iteration:
+Der `numpy.nditer` bietet flexible Möglichkeiten zur Array-Iteration:
 
 **Grundlegende Iteration:**
 ```python
@@ -218,7 +218,7 @@ In welchen Situationen könnte die Wahl der Ordnung performance-relevant sein?
 
 <!-- time estimate: 20 min -->
 
-### Array-Form-Manipulationen
+### Array-Form-Manipulationen: `reshape`, `flatten`, `ravel`, `expand_dims`, `squeeze`, `transpose`
 
 Verschiedene Funktionen ermöglichen die Manipulation von Array-Formen:
 

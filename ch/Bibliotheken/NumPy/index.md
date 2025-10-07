@@ -1,6 +1,6 @@
-title: Grundlagen von NumPy
+title: NumPy (Numerical Python)
 ---
-NumPy (Numerical Python) ist die fundamentale Bibliothek für wissenschaftliches Rechnen in Python:
+NumPy ist die fundamentale Bibliothek für wissenschaftliches Rechnen in Python:
 Sie stellt das N-dimensionale Array-Objekt (`ndarray`) zur Verfügung, das effiziente Operationen
 auf großen Datenmengen ermöglicht, sowie mathematische Funktionen für lineare Algebra,
 Fourier-Transformation und Zufallszahlen.
