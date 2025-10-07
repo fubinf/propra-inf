@@ -1,8 +1,8 @@
 title: np-array2
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: np-array
+assumes: np-Einführung, np-array
 ---
 
 [SECTION::goal::idea,experience]
@@ -16,17 +16,31 @@ assumes: np-array
 
 [SECTION::background::default]
 
-NumPy Broadcasting ist eine mächtige Funktionalität, die es ermöglicht, arithmetische Operationen zwischen Arrays unterschiedlicher Formen durchzuführen, ohne explizit die kleineren Arrays zu vergrößern. Dies macht den Code effizienter und eleganter. Zusätzlich bietet NumPy flexible Iterationsmöglichkeiten über Array-Elemente, die für komplexe Datenverarbeitungsaufgaben unerlässlich sind.
+NumPy Broadcasting ist eine mächtige Funktionalität, die es ermöglicht, arithmetische Operationen 
+zwischen Arrays unterschiedlicher Formen durchzuführen, 
+ohne explizit die kleineren Arrays zu vergrößern. 
+Dies macht den Code effizienter und eleganter. Zusätzlich bietet NumPy flexible 
+Iterationsmöglichkeiten über Array-Elemente, 
+die für komplexe Datenverarbeitungsaufgaben unerlässlich sind.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
+### Voraussetzungen
+
+Bitte lesen Sie zunächst [PARTREF::np-Einführung] und [PARTREF::np-array] und 
+folgen Sie den dort beschriebenen
+Schritten, um NumPy erfolgreich zu installieren.
+Damit verfügen Sie über eine funktionsfähige NumPy-Installation für die folgenden Aufgaben.
+
 ### NumPy Broadcasting: Grundlagen
 
-Broadcasting ermöglicht arithmetische Operationen zwischen Arrays unterschiedlicher Formen. Wenn zwei Arrays kompatible Formen haben, "broadcasted" NumPy automatisch das kleinere Array, um es an die Form des größeren anzupassen.
+Broadcasting ermöglicht arithmetische Operationen zwischen Arrays unterschiedlicher Formen. 
+Wenn zwei Arrays kompatible Formen haben, "broadcasted" NumPy automatisch das kleinere Array, 
+um es an die Form des größeren anzupassen.
 
-**Einfaches Beispiel:**
+**Grundlegende Broadcasting-Beispiele:**
 ```python
 import numpy as np
 
@@ -34,11 +48,17 @@ import numpy as np
 a = np.array([1, 2, 3, 4])
 b = np.array([10, 20, 30, 40])
 c = a * b  # Ergebnis: [10, 40, 90, 160]
+
+# Broadcasting mit verschiedenen Formen
+matrix = np.array([[1, 2, 3], [4, 5, 6]])  # Form: (2, 3)
+vector = np.array([10, 20, 30])             # Form: (3,)
+result = matrix + vector                    # Broadcasting auf (2, 3)
+# Ergebnis: [[11, 22, 33], [14, 25, 36]]
 ```
 
-**Broadcasting-Beispiel:**
+**Broadcasting mit verschiedenen Dimensionen:**
 ```python
-# Verschiedene Formen - Broadcasting
+# 2D-Array mit 1D-Array
 a = np.array([[0, 0, 0],
               [10, 10, 10], 
               [20, 20, 20],
@@ -54,92 +74,90 @@ Optional: Weitere Erklärungen finden Sie hier:
 Geben Sie ein konkretes Beispiel an, wo Broadcasting Ihnen Arbeit erspart.
 <!-- EQ1 -->
 
+<!-- time estimate: 10 min -->
+
 ### Broadcasting-Regeln verstehen
 
 NumPy wendet beim Broadcasting folgende Regeln an:
 
 1. **Dimensionsanpassung**: Arrays werden von rechts nach links verglichen
 2. **Größenkompatibilität**: Dimensionen sind kompatibel wenn:
+
    - Sie identisch sind, ODER
    - Eine davon ist 1, ODER
    - Eine davon existiert nicht (wird als 1 behandelt)
 
-**Beispiel für Regelanwendung:**
+**Beispiele für Regelanwendung:**
+```python
+# Kompatible Formen
+A: (4, 3)     +     B: (3,)      →  Ergebnis: (4, 3)
+A: (5, 1, 4)  +     B: (2, 4)    →  Ergebnis: (5, 2, 4)
+A: (6, 1)     +     B: (1, 5)    →  Ergebnis: (6, 5)
+
+# Inkompatible Formen (Fehler)
+A: (3, 4)     +     B: (2,)      →  Fehler: 4 ≠ 2
+```
+
+**Schritt-für-Schritt-Analyse:**
 ```python
 # Array A: Form (4, 3) 
 # Array B: Form (3,) wird zu (1, 3) erweitert
-# Kompatibel: 4 mit 1 (OK), 3 mit 3 (OK)
+# Vergleich: 4 mit 1 (OK), 3 mit 3 (OK) → kompatibel
 ```
 
 [EQ] Analysieren Sie folgende Array-Kombinationen und bestimmen Sie, 
 ob Broadcasting möglich ist. Begründen Sie Ihre Antwort:
 
-a) Array A: Form (5, 4) mit Array B: Form (4,)
-b) Array A: Form (3, 1, 4) mit Array B: Form (2, 4) 
-c) Array A: Form (6, 1) mit Array B: Form (1, 5)
+- Array A: Form (5, 4) mit Array B: Form (4,)
+- Array A: Form (3, 1, 4) mit Array B: Form (2, 4) 
+- Array A: Form (6, 1) mit Array B: Form (1, 5)
 <!-- EQ2 -->
 
-[ER] Schreiben Sie Python-Code, der Broadcasting demonstriert:
+[ER] Demonstrieren Sie Broadcasting mit verschiedenen Array-Kombinationen:
 
-```python
-import numpy as np
-
-# Erstellen Sie folgende Arrays:
-# matrix: 3x4 Matrix mit Werten 0 bis 11
-# row_vec: 1D-Array mit Werten [1, 2, 3, 4]  
-# col_vec: 2D-Array der Form (3, 1) mit Werten [[10], [20], [30]]
-
-# Führen Sie diese Operationen durch Broadcasting aus:
-# 1. matrix + row_vec
-# 2. matrix + col_vec  
-# 3. row_vec * col_vec
-
-# Geben Sie jeweils die resultierende Form und die ersten zwei Zeilen aus
-```
+- Erstellen Sie eine 3x4 Matrix mit Werten 0-11
+- Erstellen Sie einen 1D-Array mit 4 Elementen [1, 2, 3, 4]
+- Erstellen Sie einen 2D-Array der Form (3, 1) mit Werten [[10], [20], [30]]
+- Führen Sie Broadcasting-Operationen zwischen diesen Arrays durch
+- Dokumentieren Sie die resultierenden Formen und zeigen Sie die ersten Zeilen
 <!-- ER1 -->
+
+<!-- time estimate: 20 min -->
 
 ### Praktische Broadcasting-Anwendungen
 
 Broadcasting wird häufig für Normalisierung und Datenvorverarbeitung verwendet:
 
+**Standardisierung mit Broadcasting:**
 ```python
 # Datennormalisierung
 data = np.random.random((100, 5))  # 100 Samples, 5 Features
-mean_vals = np.mean(data, axis=0)  # Mittelwerte pro Feature
-std_vals = np.std(data, axis=0)    # Standardabweichungen pro Feature
+mean_vals = np.mean(data, axis=0)  # Mittelwerte pro Feature: Form (5,)
+std_vals = np.std(data, axis=0)    # Standardabweichungen: Form (5,)
 
 # Broadcasting für Standardisierung
-normalized = (data - mean_vals) / std_vals
+normalized = (data - mean_vals) / std_vals  # Broadcasting auf (100, 5)
 ```
 
-[ER] Implementieren Sie eine Funktion zur Min-Max-Normalisierung mit Broadcasting:
-
+**Min-Max-Normalisierung:**
 ```python
-def min_max_normalize(data, axis=0):
-    """
-    Normalisiert Daten auf den Bereich [0, 1] mittels Broadcasting.
-    
-    Parameter:
-    data: numpy array
-    axis: Achse entlang derer normalisiert wird (0 für spaltenweise)
-    
-    Rückgabe: 
-    Normalisierte Daten als numpy array
-    """
-    # Ihr Code hier:
-    # 1. Berechnen Sie Minimum und Maximum entlang der gewünschten Achse
-    # 2. Verwenden Sie Broadcasting für die Normalisierung
-    # 3. Behandeln Sie den Fall, dass max = min (Division durch 0)
-    pass
-
-# Testen Sie mit:
-test_data = np.array([[1, 10, 100], 
-                      [2, 20, 200], 
-                      [3, 30, 300]])
-result = min_max_normalize(test_data, axis=0)
-print("Normalisiert:", result)
+# Min-Max-Normalisierung auf [0, 1]
+min_vals = np.min(data, axis=0, keepdims=True)  # Form: (1, 5)
+max_vals = np.max(data, axis=0, keepdims=True)  # Form: (1, 5)
+range_vals = max_vals - min_vals
+normalized = (data - min_vals) / range_vals
 ```
+
+[ER] Implementieren Sie eine Min-Max-Normalisierung mit Broadcasting:
+
+- Erstellen Sie eine Funktion `min_max_normalize(data, axis=0)` 
+- Die Funktion soll Daten auf den Bereich [0, 1] normalisieren
+- Verwenden Sie Broadcasting für die Berechnung
+- Behandeln Sie den Fall Division durch 0 (wenn max = min)
+- Testen Sie mit einer 3x3 Testmatrix
 <!-- ER2 -->
+
+<!-- time estimate: 15 min -->
 
 ### NumPy Array-Iteration mit nditer
 
@@ -160,11 +178,26 @@ for x in np.nditer(a):
 ```python
 # C-Ordnung (zeilenweise)
 for x in np.nditer(a, order='C'):
-    print(x, end=', ')
+    print(x, end=', ')  # Ausgabe: 0, 1, 2, 3, 4, 5
 
 # Fortran-Ordnung (spaltenweise)  
 for x in np.nditer(a, order='F'):
-    print(x, end=', ')
+    print(x, end=', ')  # Ausgabe: 0, 3, 1, 4, 2, 5
+```
+
+**Erweiterte nditer-Funktionen:**
+```python
+# Index-Verfolgung
+for x in np.nditer(a, flags=['multi_index']):
+    print(f'Index {x.multi_index}: Wert {x}')
+
+# Schreibzugriff
+for x in np.nditer(a, op_flags=['readwrite']):
+    x[...] = 2 * x  # Jeden Wert mit 2 multiplizieren
+
+# Externe Schleife
+for column in np.nditer(a, flags=['external_loop'], order='F'):
+    print(f'Spalte: {column}')
 ```
 
 Optional: Detailschritt-für-Schritt erklärt unter:
@@ -174,22 +207,16 @@ Optional: Detailschritt-für-Schritt erklärt unter:
 In welchen Situationen könnte die Wahl der Ordnung performance-relevant sein?
 <!-- EQ3 -->
 
-[ER] Schreiben Sie Code für fortgeschrittene nditer-Verwendung:
+[ER] Experimentieren Sie mit erweiterten nditer-Funktionen:
 
-```python
-import numpy as np
-
-# Erstellen Sie ein 2D-Array (4x3) mit Werten 0 bis 11
-arr = np.arange(12).reshape(4, 3)
-
-# Implementieren Sie folgende Iterationen:
-# 1. Iteration mit Index-Verfolgung (multi_index Flag)
-# 2. Iteration mit Schreibzugriff (readwrite Flag) - multiplizieren Sie jeden Wert mit 2
-# 3. Externe Schleife (external_loop Flag) mit F-Ordnung
-
-# Geben Sie für jede Iteration eine Beschreibung und das Ergebnis aus
-```
+- Erstellen Sie ein 4x3 Array mit Werten 0-11
+- Implementieren Sie Iteration mit Index-Verfolgung
+- Verwenden Sie Schreibzugriff um alle Werte zu verdoppeln  
+- Testen Sie externe Schleifen mit verschiedenen Ordnungen
+- Vergleichen Sie die Ausgaben und Reihenfolgen
 <!-- ER3 -->
+
+<!-- time estimate: 20 min -->
 
 ### Array-Form-Manipulationen
 
@@ -202,93 +229,86 @@ a = np.arange(12)
 reshaped = a.reshape(3, 4)
 
 # flatten: Kopie als 1D-Array
-flattened = reshaped.flatten()
+flattened = reshaped.flatten()  # Immer eine Kopie
 
 # ravel: Ansicht als 1D-Array (wenn möglich)
-raveled = reshaped.ravel()
+raveled = reshaped.ravel()      # Ansicht wenn möglich, sonst Kopie
 ```
 
 **Dimensionsmanipulation:**
 ```python
 # expand_dims: Neue Achse hinzufügen
-expanded = np.expand_dims(a, axis=1)
+arr_2d = np.array([[1, 2], [3, 4]])
+expanded = np.expand_dims(arr_2d, axis=0)  # Form: (1, 2, 2)
 
 # squeeze: Entfernt Dimensionen der Größe 1
-squeezed = np.squeeze(expanded)
+squeezed = np.squeeze(expanded)  # Zurück zu (2, 2)
+
+# transpose: Vertauscht Achsen
+transposed = arr_2d.T  # oder np.transpose(arr_2d)
 ```
 
-[ER] Implementieren Sie eine Funktion für komplexe Array-Manipulationen:
-
+**Unterschiede zwischen flatten und ravel:**
 ```python
-def array_shape_demo(input_array):
-    """
-    Demonstriert verschiedene Array-Form-Manipulationen.
-    
-    Parameter:
-    input_array: 1D numpy array der Länge 24
-    
-    Rückgabe:
-    Dictionary mit verschiedenen Ansichten/Kopien des Arrays
-    """
-    results = {}
-    
-    # 1. Reshape zu (4, 6), (3, 8), (2, 3, 4)
-    # 2. Transpose der (4, 6) Form  
-    # 3. Flatten vs. Ravel Vergleich
-    # 4. Expand_dims an verschiedenen Achsen
-    # 5. Squeeze-Operation
-    
-    # Ihr Code hier
-    
-    return results
+a = np.array([[1, 2], [3, 4]])
+flat = a.flatten()  # Immer Kopie
+rav = a.ravel()     # Ansicht wenn möglich
 
-# Test mit:
-test_array = np.arange(24)
-demo_results = array_shape_demo(test_array)
+# Test: Ist ravel eine Ansicht?
+print(rav.base is a.base)  # True wenn Ansicht
 ```
+
+[ER] Arbeiten Sie mit verschiedenen Array-Form-Manipulationen:
+
+- Beginnen Sie mit einem 1D-Array der Länge 24
+- Formen Sie es in verschiedene 2D- und 3D-Strukturen um
+- Testen Sie Unterschiede zwischen flatten und ravel
+- Experimentieren Sie mit expand_dims und squeeze
+- Vergleichen Sie Speicherverhalten (Ansicht vs. Kopie)
 <!-- ER4 -->
 
-### Broadcasting mit mehreren Arrays
+<!-- time estimate: 20 min -->
+
+### Multi-Array-Broadcasting
 
 NumPy kann auch mehrere Arrays gleichzeitig broadcasten:
 
+**Drei-Array-Broadcasting:**
 ```python
 # Drei Arrays mit verschiedenen Formen
-a = np.arange(12).reshape(3, 4)     # (3, 4)
-b = np.arange(4)                     # (4,)  
-c = np.arange(3).reshape(3, 1)      # (3, 1)
+a = np.arange(12).reshape(3, 4)     # Form: (3, 4)
+b = np.arange(4)                     # Form: (4,)  
+c = np.arange(3).reshape(3, 1)      # Form: (3, 1)
 
 # Kombinierte Operation
 result = a + b + c  # Broadcasting auf (3, 4)
 ```
 
+**Broadcasting-Analyse für komplexe Formen:**
+```python
+# Schritt-für-Schritt-Analyse:
+# A: (4, 1, 3)
+# B: (2, 3) → erweitert zu (1, 2, 3)  
+# C: (4, 2, 1)
+# 
+# Vergleich der Dimensionen (von rechts):
+# Dim 2: A=3, B=3, C=1 → OK (3 kompatibel mit 3 und 1)
+# Dim 1: A=1, B=2, C=2 → OK (1 kompatibel mit 2)
+# Dim 0: A=4, B=1, C=4 → OK (4 kompatibel mit 1 und 4)
+# Ergebnis: (4, 2, 3)
+```
+
 [EQ] Gegeben sind drei Arrays:
-- Array X: Form (2, 1, 4)
-- Array Y: Form (3, 4)  
-- Array Z: Form (2, 3, 1)
+
+- Array X: Form (3, 1, 5)
+- Array Y: Form (2, 5)  
+- Array Z: Form (3, 2, 1)
 
 Bestimmen Sie die resultierende Form bei der Operation `X + Y + Z` 
 oder erklären Sie, warum die Operation nicht möglich ist.
 <!-- EQ4 -->
 
-[ER] Erstellen Sie ein praktisches Beispiel für Multi-Array-Broadcasting:
-
-```python
-import numpy as np
-
-# Simulieren Sie eine Bildverarbeitung mit Broadcasting:
-# - image: 3D-Array (Höhe=100, Breite=100, Kanäle=3) mit Zufallswerten 0-255
-# - brightness: Helligkeitsanpassung pro Kanal [1.2, 0.8, 1.1]  
-# - contrast: Kontrastmatrix (100, 100) mit Werten zwischen 0.5 und 1.5
-# - bias: Konstanter Offset-Wert 10
-
-# Implementieren Sie:
-# adjusted_image = (image * brightness * contrast) + bias
-
-# Stellen Sie sicher, dass Werte im Bereich [0, 255] bleiben
-# Geben Sie die Formen aller beteiligten Arrays aus
-```
-<!-- ER5 -->
+<!-- time estimate: 10 min -->
 
 [ENDSECTION]
 
