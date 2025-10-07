@@ -72,4 +72,5 @@
 - **2025-09-30**: Aufgabe/Bibliotheken/Frameworks/[PARTREF::FastAPI-GET] zugefügt.
 - **2025-10-02**: Aufgabengruppe Sprachen/[PARTREF::Go] freigegeben,
   mit 8 Aufgaben im Gesamtumfang von 13 Stunden.
+- **2025-10-07**: Aufgabe/Bibliotheken/Frameworks/[PARTREF::FastAPI-CRUD] zugefügt.
 - ...
