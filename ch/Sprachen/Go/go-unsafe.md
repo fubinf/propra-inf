@@ -175,9 +175,9 @@ Der Header eines Slice sieht so aus (definiert in `go/src/runtime/slice.go`):
 
 ```go
 type slice struct {
-array unsafe.Pointer
-len   int
-cap   int
+    array unsafe.Pointer
+    len   int
+    cap   int
 }
 ```
 
