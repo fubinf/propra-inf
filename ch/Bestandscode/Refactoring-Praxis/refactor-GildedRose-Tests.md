@@ -80,8 +80,7 @@ Könnte man z.B. ggf. einen duplizierten Testfall leicht erkennen?
 Bzw. warum haben Sie nichts dagegen unternommen?
 
 [EQ] Halten Sie Ihre Testfallmenge eher für übervorsichtig (sehr viele Tests, vermutlich mehr 
-als nötig) oder für hoffnungsvoll (eher wenige Tests: "Wird schon klappen") oder für genau 
-passend? Warum?
+als nötig) oder für hoffnungsvoll (eher wenige Tests: "Wird schon klappen")? Warum?
 Welches wäre der erste übervorsichtige Test, den man streichen könnte, bzw. der nächste, den man 
 zufügen sollte, um weniger hoffnungsvoll zu agieren?
 
