@@ -105,7 +105,7 @@ sodass keine manuelle Größenangabe erforderlich ist.
 Ein [TERMREF::Slice (Golang)] ist eine flexible "View" bzw. eine Sicht in das zugrundeliegende 
 Array und ist ein _Mehrblocktyp_.
 
-Es gibt drei Möglichkeiten, einen Slice zu kreieren:
+Es gibt vier Möglichkeiten, einen Slice zu kreieren:
 
 - als ein _Slice-Literal_;
 - durch Deklaration;
