@@ -1,5 +1,5 @@
 title: Goroutinen
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 2
 assumes: go-basics, go-functions
@@ -53,7 +53,7 @@ laufende Funktion ihre Aufgabe beendet hat.
 `go delayedGreeting("Hello world delayed!")` und in der nächsten Zeile 
 `fmt.Println("Hello world!")` aufrufen.
 
-[ER] Rufen Sie die Funktion `testGo()` aus der `main`-Funktion aus und blockieren 
+[ER] Rufen Sie die Funktion `testGo()` aus der `main`-Funktion auf und blockieren 
 Sie `main` mittels einer Endlosschleife.
 Später lernen Sie bessere Synchronisierungsmöglichkeiten, aber für jetzt reicht 
 ein `for {}` völlig aus.
