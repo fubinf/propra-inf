@@ -322,6 +322,6 @@ für Aufgaben wie Datenfilterung, -transformation und -analyse.
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Fragen und Python-Dateien
-[INCLUDE::ALT:np-SLICE-INDEX.md]
+[INCLUDE::ALT:np-index-slice.md]
 
 [ENDINSTRUCTOR]
