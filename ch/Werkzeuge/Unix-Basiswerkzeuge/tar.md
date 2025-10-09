@@ -7,14 +7,14 @@ assumes: Umgang-mit-Verzeichnissen, redirect
 
 [SECTION::goal::idea]
 Ich weiß was `tar` ist und wie ich damit Archive erstellen, anzeigen und entpacken kann.
+Ich kenne den Nutzen von Kompression und kann große Archive mit `split` teilen und wieder zusammenfügen.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-`tar` (kurz für “tape archive(r)”) erstellt Archive im Format tar, 
-indem eine Gruppe von Dateien in ein Archiv umgewandelt wird. 
-Diese erstellten Archive werden auch mit `tar` extrahiert.
-Archive sind praktisch, um viele Dateien kompakt zusammenzufassen, zu sichern oder zu übertragen. 
+`tar` (kurz für “tape archiver”) erstellt und liest Archive, indem mehrere Dateien zu einer Archivdatei
+zusammengefasst werden. Früher diente es zur Bandsicherung, heute wird es für Backups, Softwareverteilung
+und Projektarchivierung eingesetzt. 
 [ENDSECTION]
 
 
@@ -52,7 +52,7 @@ Das Skript erstellt 100 Dateien im gerade geöffneten Ordner.
 Ursprünglich wurde `tar` entwickelt, um Daten auf Magnetbändern zu sichern.
 Heute ist `tar` der Standard für Backups, Softwarepakete und den Austausch von Projekten. 
 
-Lesen und verstehen Sie die Abschnitte **Syntax** und insbesondere die **Optionen c,f,J,z** der 
+Lesen Sie den Abschnitt **Syntax** und verstehen Sie insbesondere die **Optionen c,f,J,z** der 
 [ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
 
 Schauen Sie sich die **Beispiele** zum **Anlegen** von Archiven der 
