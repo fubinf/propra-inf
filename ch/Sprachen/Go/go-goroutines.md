@@ -86,6 +86,17 @@ Diskutieren Sie:
 (beenden ihre Ausführung)?
 
 <!-- time estimate: 10 min -->
+
+[FOLDOUT::Wie werden Goroutinen verwaltet?]
+__Diese Information liegt vollständig außerhalb des Umfangs dieser Aufgabe.__
+
+Falls Sie sich jedoch besonders für Go interessieren und genauer verstehen möchten,
+wie Goroutinen intern funktionieren, gibt es zwei empfehlenswerte Quellen
+(betreten auf eigene Gefahr!):
+
+* [Kurze Version](https://medium.com/@hatronix/inside-the-go-scheduler-a-step-by-step-look-at-goroutine-management-1a8cbe9d5dbd)
+* [Lange Version](https://medium.com/@sanilkhurana7/understanding-the-go-scheduler-and-looking-at-how-it-works-e431a6daacf)
+[ENDFOLDOUT]
 [ENDSECTION]
 
 [SECTION::submission::information,trace,program]
