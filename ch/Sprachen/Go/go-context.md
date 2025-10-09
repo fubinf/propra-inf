@@ -8,6 +8,59 @@ Src: https://www.digitalocean.com/community/tutorials/how-to-use-contexts-in-go
 
 ### `context` [Dokumentation](https://pkg.go.dev/context)
 
+Beispiel:
+
+```go
+var dataChan chan []byte
+
+// struct{} ist ein zero-byte Typ, bequem für Kommunikation der Art "guck mal hier, es ist was passiert"
+var cancelChan chan struct{}
+
+...
+for {
+    select {
+    case data := <-dataChan:
+        processData(data)
+    case <-cancelChan:
+        // wir interessieren uns nicht dafür, _was_ empfangen wurde
+        // das Empfagen selbst ist das Signal
+        return
+    }
+}
+```
+
+[FOLDOUT::Wo kommt der `cancelChan` her?]
+
+Einen solchen Kanal können Sie natürlich selbstständig erzeugen und benutzen.
+Meistens kommt er jedoch als Teil eines _Kontexts_.
+
+Das Paket `context` gehört zur Standardbibliothek und bietet Werkzeuge zur Übertragung von Abbruchsignalen oder anfragespezifischen Werten.
+
+Beispiele:
+
+```go
+// so wird ein Kontext erzeugt; in 10 Sekunden kommt ein Abbruchsignal
+ctx, _ := context.WithTimeout(context.Background(), 10 * time.Second)
+```
+
+```go
+func doWork(ctx context.Context, ch chan int) {
+    for {
+        select {
+            case newInt := <- ch {
+                // do work...
+            }
+            // ctx.Done() gibt einen Kanal zurück, der geschlossen wird, wenn die Ausführung abgebrochen werden soll
+            // dieses Ereignis wird hier im select-Block abgefangen
+            case <- ctx.Done() {
+                return
+            }
+        }
+    }
+}
+```
+[ENDFOLDOUT]
+
 Das Paket `context` bietet Mechanismen zur Übertragung von anfragespezifischen Werten, Abbruchsignalen und Fristen.
 
 Das Hauptobjekt des Pakets ist das Interface `Context`:
