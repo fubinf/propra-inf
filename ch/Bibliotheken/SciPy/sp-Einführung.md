@@ -1,6 +1,6 @@
 title: SciPy Grundlagen verstehen und anwenden
-stage: draft
-timevalue: 2
+stage: alpha
+timevalue: 1
 difficulty: 2
 assumes: 
 ---
@@ -76,9 +76,48 @@ Es wird empfohlen, pip vor der Installation zu aktualisieren mit:
 überprüft, ob die Installation erfolgreich war. Geben Sie zusätzlich eine Erfolgsmeldung aus.
 <!-- ER1 -->
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
-### SciPy Constants-Modul verstehen
+### SciPy-Module: Überblick und Anwendungsbereiche
+
+SciPy ist in spezialisierte Module unterteilt, die verschiedene wissenschaftliche Bereiche abdecken:
+
+**Wichtige Module:**
+
+- `scipy.optimize`: Optimierung und Nullstellenfindung
+- `scipy.integrate`: Numerische Integration
+- `scipy.linalg`: Erweiterte lineare Algebra
+- `scipy.stats`: Statistische Funktionen und Verteilungen
+- `scipy.signal`: Signalverarbeitung
+- `scipy.interpolate`: Interpolation und Approximation
+- `scipy.fft`: Schnelle Fourier-Transformation
+- `scipy.sparse`: Sparse-Matrix-Operationen
+
+**Beispiel für Module-Import:**
+```python
+from scipy import optimize, integrate, linalg
+from scipy import constants
+
+# Beispiel: Einfache Optimierung
+result = optimize.minimize_scalar(lambda x: x**2 + 4*x + 1)
+print("Minimum bei x =", result.x)
+```
+
+Optional: Detaillierte Modulbeschreibungen finden Sie hier:
+[SciPy Reference Guide](https://docs.scipy.org/doc/scipy/reference/)
+
+[EQ] Welches SciPy-Modul würden Sie für folgende Aufgaben verwenden? Begründen Sie Ihre Auswahl:
+
+- Berechnung der Fläche unter einer Kurve
+- Lösung eines linearen Gleichungssystems mit 1000 Variablen  
+- Filterung eines verrauschten Signals
+- Bestimmung des Minimums einer mathematischen Funktion
+
+<!-- EQ2 -->
+
+<!-- time estimate: 10 min -->
+
+### Constants-Modul verstehen und berechnen: `constants`
 
 Das Constants-Modul (`scipy.constants`) stellt viele mathematische und physikalische Konstanten bereit. 
 Es ist besonders nützlich für wissenschaftliche Berechnungen.
@@ -113,59 +152,16 @@ Optional: Vollständige Liste aller Konstanten finden Sie hier:
 [EQ] Führen Sie `dir(constants)` aus, um alle verfügbaren Konstanten anzuzeigen. 
 Analysieren Sie die ausgegebene Liste: Was fällt Ihnen bei der Namensgebung der Konstanten auf? 
 Welche Muster oder Kategorien können Sie erkennen?
-<!-- EQ2 -->
-
-[ER] Erstellen Sie ein Programm, das folgende Konstanten aus `scipy.constants` verwendet:
-
-- Geben Sie π (pi) und den goldenen Schnitt (golden) aus
-- Berechnen Sie, wie viele Quadratmeter ein Acre hat
-- Zeigen Sie die Lichtgeschwindigkeit (speed_of_light) in m/s an
-- Führen Sie `dir(constants)` aus und wählen Sie aus der Liste mindestens 5 weitere 
-  interessante Konstanten aus (z.B. Avogadro, Boltzmann, Planck, etc.)
-- Geben Sie diese 5 Konstanten mit ihren Werten aus
-
-<!-- ER2 -->
-<!-- time estimate: 25 min -->
-
-### SciPy-Module: Überblick und Anwendungsbereiche
-
-SciPy ist in spezialisierte Module unterteilt, die verschiedene wissenschaftliche Bereiche abdecken:
-
-**Wichtige Module:**
-- `scipy.optimize`: Optimierung und Nullstellenfindung
-- `scipy.integrate`: Numerische Integration
-- `scipy.linalg`: Erweiterte lineare Algebra
-- `scipy.stats`: Statistische Funktionen und Verteilungen
-- `scipy.signal`: Signalverarbeitung
-- `scipy.interpolate`: Interpolation und Approximation
-- `scipy.fft`: Schnelle Fourier-Transformation
-- `scipy.sparse`: Sparse-Matrix-Operationen
-
-**Beispiel für Module-Import:**
-```python
-from scipy import optimize, integrate, linalg
-from scipy import constants
-
-# Beispiel: Einfache Optimierung
-result = optimize.minimize_scalar(lambda x: x**2 + 4*x + 1)
-print("Minimum bei x =", result.x)
-```
-
-Optional: Detaillierte Modulbeschreibungen finden Sie hier:
-[SciPy Reference Guide](https://docs.scipy.org/doc/scipy/reference/)
-
-[EQ] Welches SciPy-Modul würden Sie für folgende Aufgaben verwenden? Begründen Sie Ihre Auswahl:
-
-- Berechnung der Fläche unter einer Kurve
-- Lösung eines linearen Gleichungssystems mit 1000 Variablen  
-- Filterung eines verrauschten Signals
-- Bestimmung des Minimums einer mathematischen Funktion
-
 <!-- EQ3 -->
 
-<!-- time estimate: 15 min -->
+[ER] Schreiben Sie ein Programm, das verschiedene Konstanten aus `scipy.constants` ausgibt:
 
-### Praktische Anwendung: `constants` in Berechnungen
+- Geben Sie π (pi) und den goldenen Schnitt (golden) aus
+- Geben Sie die Größe eines Acres in Quadratmetern aus (verwenden Sie `constants.acre`)
+- Geben Sie die Größe eines Hektars in Quadratmetern aus (verwenden Sie `constants.hectare`)
+
+<!-- ER2 -->
+<!-- time estimate: 15 min -->
 
 **Einheitenumrechnungen mit Constants:**
 ```python
@@ -196,16 +192,15 @@ print("Kilo =", constants.kilo)
 print("Mega =", constants.mega)
 ```
 
-[ER] Implementieren Sie ein kleines "Konstanten-Rechner"-Programm:
+[ER] Schreiben Sie ein Programm, das grundlegende Umrechnungen mit SciPy-Konstanten durchführt:
 
-- Berechnen Sie die Energie eines Photons mit der Wellenlänge 500 nm (E = h⋅c/λ)
-- Verwenden Sie dabei `constants.h`, `constants.c` und `constants.nano` für die Einheiten
-- Wandeln Sie ein Zeitintervall von 3 Tagen, 4 Stunden und 25 Minuten in Sekunden um
-- Berechnen Sie, wie viele Hektar 5 Acres entsprechen
-- Geben Sie alle Ergebnisse mit aussagekräftigen Beschreibungen aus
+- Berechnen Sie, wie viele Sekunden 2 Stunden und 30 Minuten sind
+  (Verwenden Sie `constants.hour` und `constants.minute`)
+- Rechnen Sie 10 Acres in Quadratmeter um (verwenden Sie `constants.acre`)
+- Geben Sie π (pi) und die Lichtgeschwindigkeit (c) aus
+- Geben Sie alle Ergebnisse mit einer kurzen Beschreibung aus
 
 <!-- ER3 -->
-<!-- time estimate: 30 min -->
 
 ### Zusammenfassung und Ausblick
 
@@ -221,6 +216,7 @@ Simulation und wissenschaftlichen Modellierung.
 
 Optional: Für weiterführende Tutorials siehe:
 [SciPy Lecture Notes](https://scipy-lectures.org/)
+<!-- time estimate: 20 min -->
 
 [ENDSECTION]
 
