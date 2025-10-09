@@ -244,21 +244,19 @@ bekannt.
 <!-- time estimate: 10 min -->
 [ENDSECTION]
 
-[SECTION::submission::information,snippet,program]
+[SECTION::submission::information,snippet,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-[INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Lösungen]
-[EREFQ::2]: Studierende müssen auf Fe-Ni-Au gekommen sein; der Teil über die Herkunft
-der Proben ist völlig optional.
+[EREFQ::2]: Der Teil über die Herkunft der Proben ist völlig optional.
 
-[EREFR::5] und [EREFR::6]: die eingebauten Funktionen `len()` und `cap()` dürfen __nicht__
+[EREFR::5] und [EREFR::6]: Die eingebauten Funktionen `len()` und `cap()` dürfen __nicht__
 verwendet werden.
 
-[EREFR::9]:
-ist die Ausgabe für `cap(s)` gleich, so müssen auch Adressen von `&s` übereinstimmen.
+[EREFR::9]: Ist die Ausgabe für `cap(s)` gleich, so müssen auch Adressen von `&s` übereinstimmen.
 
 **Kommandoprotokoll**
 [PROT::ALT:go-unsafe.prot]
