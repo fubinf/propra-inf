@@ -1,7 +1,8 @@
 title: "Go: sync.Mutex"
 stage: draft
-timevalue: 1.5
+timevalue: 1
 difficulty: 2
+assumes: go-basics, go-functions, go-structs1, go-pointers, go-waitgroup
 ---
 
 [SECTION::goal::idea,experience]
@@ -9,85 +10,91 @@ Ich weiß, was ein Mutex ist und wie Mutexe in Go verwendet werden.
 [ENDSECTION]
 
 [SECTION::background::default]
-Eine der Synchronisierungsmöglichkeiten sind Mutexe — Schlossvariablen,
-die kontrollieren, wer auf bestimmte geteilte Daten zu einem bestimmten Zeitpunkt 
-zugreifen darf und wer nicht.
+Eine Möglichkeit zur Synchronisation sind _Mutexe_ — Sperrvariablen,
+die dafür sorgen, dass immer nur eine Goroutine gleichzeitig auf bestimmte geteilte Daten
+zugreifen kann.
 
-In dieser Aufgabe geht es um Mutexe in Go: Welche es gibt, wo und wie sie zu verwenden sind,
-und welche Alternativen es gibt.
+In dieser Aufgabe geht es um Mutexe in Go: 
+Welche Arten es gibt, wie und wo sie eingesetzt werden und welche Alternativen zur Verfügung stehen.
 [ENDSECTION]
+
+[TOC]
 
 [SECTION::instructions::detailed]
 
-### sync.Mutex
+### `sync.Mutex`
 
 Das Wort "Mutex" stammt von "mutual exclusion" — "gegenseitiger Ausschluss".
 
-Vereinfacht ist ein Mutex eine Lock-Variable, die den unkoordinierten Zugriff auf 
-die gemeinsamen Datenstrukturen von verschiedenen Threads verhindert.
+Ein Mutex dient dem Schutz des sogenannten _kritischen Abschnitts_ — eines Quellcodebereichs,
+der jeweils nur von einem Prozess oder Thread gleichzeitig ausgeführt werden darf.
 
-Mutexe sind eine Lösung von dem Problem des kritischen Abschnitts — eines Quellcodeabschnitts, 
-welcher nur von einem Prozess/Thread zur selben Zeit ausgeführt werden darf.
+Solange eine Goroutine den Mutex hält, darf keine andere Goroutine den kritischen 
+Abschnitt betreten.
 
-In diesem 
-[StackOverflow-Beitrag](https://stackoverflow.com/questions/34524/what-is-a-mutex)
-finden Sie eine ziemlich gute Erklärung, was ein Mutex ist.
+Sehen Sie sich das 
+[Beispiel "Go by Example: Mutexes"](https://gobyexample.com/mutexes)
+an und beantworten Sie die Fragen unten.
 
-Beispiel:
+[FOLDOUT::Was ist `defer`?]
+Eine Anweisung, die mit `defer` deklariert wurde, wird erst beim Aufräumen des 
+Gültigkeitsbereichs ausgeführt.
 
-```go
-var mu sync.Mutex
+In der Regel handelt es sich dabei um eine Funktion — `defer`-Aufrufe werden unmittelbar
+vor dem Verlassen der Funktion ausgeführt, also direkt vor dem `return`.
 
-...
-
-mu.Lock()
-counter++
-someCriticalSectionMap["newKey"] = newValue
-mu.Unlock()
-```
-
-[FOLDOUT::Eine Alternative dem lock-increment-unlock-Zyklus: `atomic`]
-Für einen Zähler scheint das etwas umständlich — einen Mutex initialisieren, sperren, freigeben...
-Wenn es sich ausschließlich um Variablenmanipulationen handelt, ist das Paket `atomic` sehr hilfreich.
-
-Ein Zähler mit Mutexen und ohne `atomic`:
-
-```go
-counter := 0
-var mu sync.Mutex
-
-// kritischer Abschnitt Start
-mu.Lock()
-counter++
-mu.Unlock()
-// kritischer Abschnitt Ende
-```
-
-Ein Zähler ohne Mutexe und mit `atomic`:
-
-```go
-var counter atomic.Int32        // counter == 0, weil das der Nullwert von int32 ist
-
-// kritischer Abschnitt Start
-counter.Add(1)
-// kritischer Abschnitt Ende
-```
+<!-- TODO_2_Brandes: add a link to go-advanced-control-flow once it's ready  -->
 [ENDFOLDOUT]
 
-[FOLDOUT::mehr Granularität]
-Zusätzlich zum `sync.Mutex` gibt es noch den `sync.RWMutex` (Read-Write-Mutex).
+[EQ] Welche Methoden von `sync.Mutex` werden im Beispiel verwendet, und wozu dienen sie?
 
-Dieser ist zu bevorzugen, wenn Leseoperationen viel öfter stattfinden als die Schreiboperationen.
-Hier ist eine Übersicht von möglichen Abwägungen:
+[EQ] Was ist der Nullwert eines `sync.Mutex`?
 
-* Idee 1: kein Mutex beim Lesen, Mutex beim Schreiben.
-    - fehlerhaft, wenn eine Goroutine die Daten ausliest, während die andere die Daten modifiziert — Korrektheit kann nicht garantiert werden (**Race Condition**).
-* Idee 2: Mutex sowohl beim Lesen als auch beim Schreiben.
-    - unnötiger Leistungsverlust — es kann nur eine Goroutine zur selben Zeit die Daten auslesen, auch wenn mehrere parallele Leseoperationen in Ordnung wären.
-* Lösung: `sync.RWMutex` — `Lock()`/`Unlock()` beim Schreiben und `RLock()`/`RUnlock()` beim Lesen.
-    - erlaubt nebenläufige Lesezugriffe, solange die Daten unverändert bleiben.
-      ein `.RLock()`-Aufruf blockiert die anderen `.RLock()`-Aufrufe nicht; ein `.Lock()`-Aufruf blockiert die anderen `.Lock()`- und `.RLock()`-Aufrufe.
-[ENDFOLDOUT]
+[EQ] Wie würde sich die Funktionsweise des Beispielprogramms ändern, wenn `Container`
+in `inc` per Wert übergeben worden wäre?
+(`(c Container) inc(name string)` anstatt von `(c *Container) inc(name string)`)
+
+<!-- time estimate: 10 min -->
+
+
+### `sync.RWMutex`
+
+Die Go-Standardbibliothek stellt mit `sync.RWMutex` eine feingranulare Alternative zum 
+gewöhnlichen `sync.Mutex` bereit.
+
+Diese Variante unterscheidet zwischen Lese- und Schreibzugriffen und bietet vier 
+zentrale Methoden:
+
+- Für Lesezugriffe: `RLock()` und `RUnlock()`;
+- Für Schreibzugriffe: `Lock()` und `Unlock()`.
+
+[EQ] Lesen Sie diese
+[Antwort auf Stack Overflow](https://stackoverflow.com/questions/19148809/how-to-use-rwmutex/19168242#19168242) 
+aufmerksam durch und erklären Sie selbst:
+Welches Problem löst `sync.RWMutex`?
+
+<!-- time estimate: 10 min -->
+
+
+### `sync/atomic`
+
+Eine Alternative zum Lock-Increment-Unlock-Zyklus ist das Paket `sync/atomic`.
+
+Schauen Sie sich das
+[Beispiel "Go by Example: Atomic Counters"](https://gobyexample.com/atomic-counters)
+an und beantworten Sie die Fragen unten.
+
+[EQ] Wie verwendet man eine _atomare Variable_?
+Wie laufen die Lese- und Schreibzugriffe ab? 
+
+[EQ] Wann würden Sie diese Option den Mutexen bevorzugen?
+
+[HINT::Ich verstehe nicht, was "atomar" in diesem Kontext bedeutet]
+Eine gute Erklärung finden Sie im
+[Artikel "Atomare Operation" auf Wikipedia](https://de.wikipedia.org/wiki/Atomare_Operation).
+[ENDHINT]
+
+<!-- time estimate: 10 min -->
 
 
 ### Programmieren
@@ -95,49 +102,50 @@ Hier ist eine Übersicht von möglichen Abwägungen:
 [ER] Implementieren Sie eine Funktion namens `testCounter`.
 Diese soll folgendes tun:
 
-- einen Zähler mit 0 initialisieren und in einer `for`-Schleife eine Million Goroutinen starten, welche den Zähler jeweils um 1 inkrementieren.
-  Die Goroutinen müssen mittels einer `WaitGroup` synchronisiert werden, sonst wird die Funktion `testCounter` zu früh beendet;
+- einen Zähler mit 0 initialisieren und in einer `for`-Schleife eine Million Goroutinen starten, 
+  welche den Zähler jeweils um 1 inkrementieren;
 - die totale Ausführungszeit messen (`time.Now()` und `time.Since()` helfen Ihnen dabei);
 - den Zähler sowie die Ausführungszeit auf die Kommandozeile ausgeben.
-  Das Format soll folgendermaßen aussehen: `"function_name - counter: %Wert%, achieved in %Wert%\n"`.
+  Das Format soll folgendermaßen aussehen: `"testCounter - counter: %v, achieved in %v\n"`;
+- Synchronisieren Sie die Goroutine mittels einer `sync.WaitGroup`.
 
-[ER] Implementieren Sie eine Funktion namens `testCounterMutex`.
-In dieser Variante muss der kritische Abschnitt mithilfe von einem Mutex geschützt werden.
-An allen anderen Stellen darf die Funktion genauso bleiben wie die `testCounter`. Passen Sie die Ausgabe auf die Kommandozeile entsprechend an (`function_name = testCounterMutex`).
+[ER] Implementieren Sie eine Funktion mit dem Namen `testCounterMutex`.
+Diese soll im Wesentlichen dasselbe tun, wie `testCounter`, allerdings muss in dieser Variante 
+der kritische Abschnitt (Inkrementieren des Zählers) durch einen `sync.Mutex` geschützt werden.
+Passen Sie die Ausgabe auf die Kommandozeile entsprechend an 
+(`"testCounterMutex - counter: %v, achieved in %v\n"`).
 
+[ER] Implementieren Sie anschließend eine Funktion `testCounterAtomic`.
+Hier implementieren Sie dieselbe Funktionalität mithilfe einer `atomic.Int64`-Variable.
+Passen Sie die Ausgabe auf die Kommandozeile an
+(`"testCounterAtomic - counter: %v, achieved in %v\n"`).
 
-### Oft begangene Fehler
+[EC] Fügen Sie die drei Funktionen Ihrer `main`-Funktion hinzu und führen Sie 
+das Programm mittels `go run` aus.
 
-#### Wettlaufsituation (Race Condition)
+[EQ] Welche Implementierungen haben das richtige Ergebnis geliefert?
 
-Eine Race Condition ist ein Fehlertyp, bei dem das Ergebnis von der Ausführungsreihenfolge von nebenläufigen Operationen abhängt.
-Diesen Fehlertyp haben Sie bereits anhand von `testCounter` kennengelernt.
+[EQ] Diskutieren Sie die Laufzeiteffizienz der drei Varianten.
+Was ist die schnellste Implementierung und warum?
+Was ist die schnellste _korrekte_ Implementierung?
 
-#### Mutexe per Wert übergeben
-
-```go
-// diese Struktur zählt, wie oft ein Wort vorkommt
-type Counter struct {
-    mu    sync.Mutex
-    words map[string]int
-}
-
-// c ist ein neuer Zähler — eine Kopie, weil Strukturen per Wert übergeben werden
-func worker(c Counter, wg *sync.WaitGroup) {
-    defer wg.Done()
-    // Textverarbeitung hier...
-    
-    c.mu.Lock()         // c.mu ist ein komplett anderer Mutex
-    words[nextWord]++   // gefährlich, wenn es mehrere 'worker's gibt
-    c.mu.Unlock()
-    
-    // Textverarbeitung geht weiter...
-}
-```
-
+<!-- time estimate: 20 min -->
 [ENDSECTION]
 
-[SECTION::submission::trace,program]
+[SECTION::submission::information,snippet,trace,program]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
+
+[INSTRUCTOR::Lösungen]
+**Kommandoprotokoll**
+[PROT::ALT:go-mutex.prot]
+
+**Lösungen**
+
+[INCLUDE::ALT:]
+
+Musterlösung der Programmieraufgabe als ausführbare Datei hier:
+[TREEREF::/Sprachen/Go/go-mutex.go].
+[ENDINSTRUCTOR]
