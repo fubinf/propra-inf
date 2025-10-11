@@ -2,7 +2,7 @@ title: SciPy Optimierung und Nullstellenfindung verstehen und anwenden
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: sp-Einführung
+assumes: np-Einführung, sp-Einführung
 ---
 
 [SECTION::goal::idea,experience]

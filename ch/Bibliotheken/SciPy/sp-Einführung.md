@@ -2,7 +2,7 @@ title: SciPy Grundlagen verstehen und anwenden
 stage: alpha
 timevalue: 1
 difficulty: 2
-assumes: 
+assumes: np-Einführung 
 ---
 
 [SECTION::goal::idea,experience]
