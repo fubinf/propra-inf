@@ -55,8 +55,10 @@ kann über `conda` installiert werden:
 conda install scipy
 ```
 
-**Wichtiger Hinweis**: SciPy benötigt NumPy als Abhängigkeit. Bei der Installation wird NumPy 
+[NOTICE]
+SciPy benötigt NumPy als Abhängigkeit. Bei der Installation wird NumPy 
 automatisch mitinstalliert, falls es noch nicht vorhanden ist.
+[ENDNOTICE]
 
 Die offizielle SciPy-Dokumentation bietet verschiedene Einstiegspunkte:
 

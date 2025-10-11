@@ -65,8 +65,7 @@ print(scipy.__version__)
 ```
 
 [NOTICE]
-Es wird empfohlen, pip vor der Installation zu aktualisieren mit: 
-`python3 -m pip install -U pip`
+Es wird empfohlen, pip vor der Installation zu aktualisieren mit: `python3 -m pip install -U pip`
 [ENDNOTICE]
 
 [EQ] Erklären Sie den Unterschied zwischen NumPy und SciPy. Warum benötigt SciPy NumPy als Abhängigkeit?
@@ -121,6 +120,34 @@ Optional: Detaillierte Modulbeschreibungen finden Sie hier:
 
 Das Constants-Modul (`scipy.constants`) stellt viele mathematische und physikalische Konstanten bereit. 
 Es ist besonders nützlich für wissenschaftliche Berechnungen.
+
+**Formatierte Ausgabe von Zahlen:**
+
+Bevor wir mit den Konstanten arbeiten, ist es wichtig zu verstehen, wie man Zahlen formatiert ausgibt.
+Python bietet mit f-Strings eine elegante Möglichkeit zur Formatierung:
+
+```python
+from scipy import constants
+
+# Einfache Ausgabe (viele Dezimalstellen)
+print(f"Pi = {constants.pi}")
+
+# Formatierte Ausgabe mit kontrollierten Dezimalstellen
+print(f"Pi mit 2 Nachkommastellen: {constants.pi:.2f}")
+print(f"Pi mit 6 Nachkommastellen: {constants.pi:.6f}")
+
+# Wissenschaftliche Notation
+große_zahl = constants.c ** 2  # Lichtgeschwindigkeit im Quadrat
+print(f"c² = {große_zahl:.2e}")  # 2 signifikante Stellen in wissenschaftlicher Notation
+```
+
+**Wichtige Format-Spezifizierer:**
+
+- `:.2f` - Fließkommazahl mit 2 Dezimalstellen
+- `:.6f` - Fließkommazahl mit 6 Dezimalstellen
+- `:.2e` - Wissenschaftliche Notation mit 2 signifikanten Stellen
+- `:8.4f` - Gesamt 8 Zeichen breit, 4 Dezimalstellen
+- `:,.0f` - Tausendertrennzeichen, keine Dezimalstellen
 
 **Grundlegende mathematische Konstanten:**
 ```python

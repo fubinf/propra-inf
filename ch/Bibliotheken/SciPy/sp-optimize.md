@@ -90,6 +90,30 @@ Die `root`-Funktion löst nichtlineare Gleichungssysteme der Form `f(x) = 0`.
 - `result.success`: Ob die Optimierung erfolgreich war
 - `result.nfev`: Anzahl der Funktionsauswertungen
 
+**Formatierte Ausgabe von Ergebnissen:**
+
+Bei wissenschaftlichen Berechnungen ist eine übersichtliche Ausgabe wichtig. 
+Verwenden Sie f-Strings mit Format-Spezifizierern:
+
+```python
+result = root(equation, 0)
+
+# Formatierte Ausgabe
+print(f"Lösung: x = {result.x[0]:.6f}")      # 6 Dezimalstellen
+print(f"Funktionswert: {result.fun[0]:.2e}") # Wissenschaftliche Notation
+print(f"Erfolg: {result.success}")
+
+# Beispiel für Tabellenausgabe mit fester Breite
+print(f"x = {result.x[0]:8.4f}")  # 8 Zeichen breit, 4 Dezimalstellen
+```
+
+**Häufig verwendete Format-Spezifizierer:**
+
+- `:.6f` - 6 Nachkommastellen (z.B. 1.234567)
+- `:.2e` - Wissenschaftliche Notation (z.B. 1.23e-05)
+- `:8.4f` - Feste Breite für Tabellenausgabe
+- `:,.0f` - Tausendertrennzeichen (z.B. 1,234,567)
+
 Optional: Weitere Details zu Lösungsverfahren finden Sie hier:
 [Root Finding Methods](https://docs.scipy.org/doc/scipy/reference/optimize.html#root-finding)
 
@@ -160,78 +184,83 @@ Im Gegensatz zu `minimize` wird hier **kein Startwert benötigt**.
 - `bounds`: Optional, Tupel (min, max) für Bereichseinschränkung
 - `method`: 'bounded' bei Verwendung von bounds, sonst automatisch
 
-**Hinweise:**
-
-- Verwenden Sie `np.abs(x)` für Absolutwerte in Funktionen
-- Der Vergleich mit/ohne Bereichseinschränkung zeigt, ob globale Minima gefunden wurden
+[NOTICE]
+Verwenden Sie `np.abs(x)` für Absolutwerte in Funktionen. 
+Der Vergleich mit/ohne Bereichseinschränkung zeigt, ob globale Minima gefunden wurden. 
+Beachten Sie, dass kubische Funktionen kein globales Minimum ohne Bereichseinschränkung haben, 
+da sie für x → -∞ gegen -∞ gehen.
+[ENDNOTICE]
 
 [ER] Verwenden Sie `minimize_scalar` für verschiedene Aufgaben:
 
-- Minimieren Sie `f(x) = x³ - 6x² + 9x + 1` ohne Bereichseinschränkung
+- Minimieren Sie `f(x) = x³ - 6x² + 9x + 1` im Bereich [0, 5]
 - Finden Sie das Minimum von `g(x) = |sin(x)| + 0.1*x²` im Bereich [0, 10]
 - Bestimmen Sie das Minimum von `h(x) = e^x - 2*x` (verwenden Sie `np.exp`)
 
-Vergleichen Sie die Ergebnisse mit und ohne Bereichseinschränkung.
+Vergleichen Sie die Ergebnisse mit und ohne Bereichseinschränkung (wo sinnvoll).
 <!-- ER3 -->
 
 <!-- time estimate: 15 min -->
 
-### Praktische Anwendung: Kurvenanpassung
+### Praktische Anwendung: Kurvenanpassung mit `curve_fit`
 
-Ein häufiger Anwendungsfall ist die Anpassung von Parametern an Messdaten.
+Ein häufiger Anwendungsfall ist die Anpassung von Modellparametern an Messdaten.
+SciPy bietet mit `curve_fit` eine spezialisierte Funktion, die dies sehr einfach macht.
 
-**Kostenfunktionen:**
+**Die `curve_fit` Funktion:**
 
-Bei der Kurvenanpassung wird üblicherweise die Summe der quadrierten Abweichungen
-(Least Squares) als Kostenfunktion verwendet. Diese ist mathematisch günstig
-(differenzierbar, konvex) und bei normalverteilten Messfehlern optimal.
-Alternative Kostenfunktionen wie die Summe der absoluten Abweichungen (L1-Norm)
-sind robuster gegen Ausreißer, aber rechnerisch aufwendiger.
+`curve_fit` passt eine Modellfunktion automatisch an Daten an. Sie benötigen nur:
 
-**Grundlegende Schritte:**
+1. Eine **Modellfunktion** mit der Signatur `f(x, param1, param2, ...)`
+2. Ihre **Messdaten** (x_data und y_data)
 
-1. **Modellfunktion** definieren: `def model(params, x)` gibt vorhergesagte Werte zurück
-2. **Kostenfunktion** definieren: Berechnet Abweichung zwischen Daten und Modell
-3. **Optimierung** durchführen: `minimize(cost_function, initial_guess)`
-
-**Beispiel-Struktur** (Quadratisches Modell):
+**Einfaches Beispiel** (Lineare Funktion):
 ```python
 import numpy as np
-from scipy.optimize import minimize
+from scipy.optimize import curve_fit
 
-# Modell: y = a*x² + b*x + c
-def model(params, x):
-    a, b, c = params
-    return a*x**2 + b*x + c
+# Modellfunktion: y = a*x + b
+def linear_model(x, a, b):
+    return a * x + b
 
-# Kostenfunktion
-def cost_function(params):
-    predicted = model(params, x_data)
-    return np.sum((y_data - predicted)**2)
+# Testdaten mit Rauschen (wahre Werte: a=2, b=1)
+np.random.seed(42)
+x_data = np.array([0, 1, 2, 3, 4])
+y_data = np.array([1.2, 2.8, 5.1, 7.3, 9.0])  # ≈ 2*x + 1 mit Rauschen
 
-# Optimierung
-result = minimize(cost_function, initial_guess=[1, 1, 1])
+# Kurvenanpassung durchführen
+params, _ = curve_fit(linear_model, x_data, y_data)
+a_fit, b_fit = params
+
+print(f"Geschätzte Parameter: a={a_fit:.2f}, b={b_fit:.2f}")
 ```
 
-**Hinweis**: Für Testdaten mit Rauschen verwenden Sie `np.random.normal(mean, std, size)`.
+Optional: Weitere Details finden Sie hier:
+[Curve Fitting Documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html)
 
-Optional: Neugierig geworden? Dann lesen Sie hier weiter:
-[Curve Fitting Examples](https://docs.scipy.org/doc/scipy/reference/optimize.html#curve-fitting)
+[ER] Führen Sie eine einfache Kurvenanpassung mit `curve_fit` durch:
 
-[ER] Führen Sie eine eigene Kurvenanpassung durch:
+Gegeben sind folgende Messdaten einer linearen Beziehung `y = a*x + b`:
 
-- Erzeugen Sie Testdaten für eine Exponentialfunktion `y = A * e^(B*x) + C` 
-  mit x-Werten [0, 1, 2, 3, 4] und bekannten Parametern A=2, B=0.5, C=1
-- Fügen Sie etwas Rauschen zu den y-Werten hinzu (verwenden Sie `np.random.normal(0, 0.1, 5)`)
-- Definieren Sie eine Modellfunktion und eine Kostenfunktion
-- Verwenden Sie `minimize` mit einem initialen Startwert [1.5, 0.3, 0.8]
-- Vergleichen Sie die geschätzten mit den wahren Parametern
+```python
+x_data = np.array([0, 1, 2, 3, 4, 5])
+y_data = np.array([1.1, 3.9, 7.2, 9.8, 13.1, 15.9])
+```
 
-Hinweis: Verwenden Sie `np.exp` für die Exponentialfunktion und `np.random.seed(42)` 
-für reproduzierbare Ergebnisse.
+Ihre Aufgaben:
+- Definieren Sie eine lineare Modellfunktion `linear(x, a, b)` die `a*x + b` zurückgibt
+- Verwenden Sie `curve_fit(linear, x_data, y_data)` um die Parameter zu bestimmen
+- Geben Sie die geschätzten Werte für `a` und `b` aus
+- Berechnen Sie die vorhergesagten y-Werte mit den geschätzten Parametern
+- Geben Sie die Abweichungen zwischen gemessenen und vorhergesagten Werten aus
+
+[NOTICE]
+Die wahren Parameter sind ungefähr a=3 und b=1 (mit Messrauschen).
+[ENDNOTICE]
+
 <!-- ER4 -->
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 15 min -->
 
 [ENDSECTION]
 
