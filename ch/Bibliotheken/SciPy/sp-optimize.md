@@ -127,7 +127,7 @@ Optional: Weitere Details zu Lösungsverfahren finden Sie hier:
 Geben Sie für jede Lösung die gefundene Nullstelle und den Funktionswert an der Lösung aus.
 <!-- ER1 -->
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Funktionsminimierung mit `scipy.optimize.minimize`
 
@@ -200,7 +200,7 @@ da sie für x → -∞ gegen -∞ gehen.
 Vergleichen Sie die Ergebnisse mit und ohne Bereichseinschränkung (wo sinnvoll).
 <!-- ER3 -->
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Praktische Anwendung: Kurvenanpassung mit `curve_fit`
 
@@ -260,7 +260,7 @@ Die wahren Parameter sind ungefähr a=3 und b=1 (mit Messrauschen).
 
 <!-- ER4 -->
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 25 min -->
 
 [ENDSECTION]
 
