@@ -1,5 +1,5 @@
-title: Programmierpraktikum SoSe 2025, Bachelor Informatik, FU Berlin
-name: ProPra2025
+title: $SEDRILA_TITLE
+name: $SEDRILA_NAME
 baseresourcedir: baseresources
 chapterdir: ch
 altdir: altdir/ch
@@ -76,24 +76,6 @@ instructors:
       hF3ymu8+s6vDa3qAKdTi3cNQRSG6
       =25DT
       -----END PGP PUBLIC KEY BLOCK-----
-  - nameish: David Harwardt
-    email: davih05@zedat.fu-berlin.de
-    gitaccount: davih05
-    webaccount: davih05
-    keyfingerprint: "90998E944193517FFBFA6421C54E581C42143FAE"
-    pubkey: |
-      -----BEGIN PGP PUBLIC KEY BLOCK-----
-      mDMEZ/0xyRYJKwYBBAHaRw8BAQdAY81UMjm/9gGkQfX6ouKNp8HCRfizR2XcYuYx
-      9256Uz+0JGRhdmloMDUgPGRhdmloMDVAemVkYXQuZnUtYmVybGluLmRlPoiZBBMW
-      CgBBFiEEkJmOlEGTUX/7+mQhxU5YHEIUP64FAmf9MckCGwMFCQPCZwAFCwkIBwIC
-      IgIGFQoJCAsCBBYCAwECHgcCF4AACgkQxU5YHEIUP66zxwEA9aWZJBKkKBpXNWzW
-      1NJWMsKDOexHdr+IeyI2Qfoc0WEBAPyiVsahjAGORy1g5W9GI33VmKT+lXSNkWra
-      OgSULPQGuDgEZ/0xyRIKKwYBBAGXVQEFAQEHQDoN4Dr7nmXnMMYZrQSkxMNqR/l1
-      Ipb4KpHkTIyu0oxjAwEIB4h+BBgWCgAmFiEEkJmOlEGTUX/7+mQhxU5YHEIUP64F
-      Amf9MckCGwwFCQPCZwAACgkQxU5YHEIUP65RqAD/RJAnApW2b8lmy/OFyIB4Gs4W
-      EMZmkSf2ntEnqG8KlrQBAOcfOI+1glk+kHAzymd12AvRU2l0wrSycI3IjYMtQb4D
-      =50Ay
-      -----END PGP PUBLIC KEY BLOCK-----
   - nameish: Mert Yaylaci
     email: merty03@zedat.fu-berlin.de
     gitaccount: merty03
@@ -139,6 +121,28 @@ instructors:
       r6c/04qCimfD8vRiXpRWNDzCPoyNJY7la6naKgf1h6YrDu++qBrcuM6vWUa36tD/
       z8kEk1rwtVnZTbsoYaAKip9Qyb0XbprD2CdPENgLCZVe6752Iz1XRFQ1
       =zJzw
+      -----END PGP PUBLIC KEY BLOCK-----
+  - nameish: Alexander Stage
+    email: staa00@zedat.fu-berlin.de
+    gitaccount: staa00
+    webaccount: staa00
+  - nameish: David Harwardt.
+    email: davih05@zedat.fu-berlin.de
+    gitaccount: davih05
+    webaccount: davih05
+    keyfingerprint: "90998E944193517FFBFA6421C54E581C42143FAE"
+    pubkey: |
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
+      mDMEZ/0xyRYJKwYBBAHaRw8BAQdAY81UMjm/9gGkQfX6ouKNp8HCRfizR2XcYuYx
+      9256Uz+0JGRhdmloMDUgPGRhdmloMDVAemVkYXQuZnUtYmVybGluLmRlPoiZBBMW
+      CgBBFiEEkJmOlEGTUX/7+mQhxU5YHEIUP64FAmf9MckCGwMFCQPCZwAFCwkIBwIC
+      IgIGFQoJCAsCBBYCAwECHgcCF4AACgkQxU5YHEIUP66zxwEA9aWZJBKkKBpXNWzW
+      1NJWMsKDOexHdr+IeyI2Qfoc0WEBAPyiVsahjAGORy1g5W9GI33VmKT+lXSNkWra
+      OgSULPQGuDgEZ/0xyRIKKwYBBAGXVQEFAQEHQDoN4Dr7nmXnMMYZrQSkxMNqR/l1
+      Ipb4KpHkTIyu0oxjAwEIB4h+BBgWCgAmFiEEkJmOlEGTUX/7+mQhxU5YHEIUP64F
+      Amf9MckCGwwFCQPCZwAACgkQxU5YHEIUP65RqAD/RJAnApW2b8lmy/OFyIB4Gs4W
+      EMZmkSf2ntEnqG8KlrQBAOcfOI+1glk+kHAzymd12AvRU2l0wrSycI3IjYMtQb4D
+      =50Ay
       -----END PGP PUBLIC KEY BLOCK-----
 htaccess_template: |
     AuthName "FU Berlin, FB Mathematik/Informatik"
