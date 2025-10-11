@@ -1,90 +1,111 @@
 title: "Go: sync.WaitGroup"
 stage: draft
-timevalue: 1.5
+timevalue: 0.5
 difficulty: 2
+assumes: go-basics, go-functions, go-structs1, go-pointers, go-goroutines
 ---
 
 [SECTION::goal::idea,experience]
-TODO_Brandes
+Ich kann mehrere Goroutinen mit einer `sync.WaitGroup` synchronisieren.
 [ENDSECTION]
 
 [SECTION::background::default]
-TODO_Brandes
+Ist es Ihnen schon einmal passiert, dass Sie in der `main`-Funktion mehrere Goroutinen
+gestartet haben, das Programm aber sofort beendet wurde, ohne etwas Sinnvolles auf der
+Kommandozeile auszugeben?
+
+Oft liegt das daran, dass die `main`-Funktion beendet wird, bevor die Goroutinen ihre
+Arbeit abgeschlossen haben.
+In solchen Fällen muss die `main`-Funktion blockiert werden.
+
+Doch wie lange?
+
+Ein `time.Sleep()` ist in den seltensten Fällen die richtige Lösung.
+
+Genau dafür gibt es die `sync.WaitGroup`.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### sync.WaitGroup
+### `sync.WaitGroup`
 
-`sync.WaitGroup` ist ein weiterer Synchronisationsmechanismus, der mehrere Goroutinen untereinander synchronisiert.
-Hier bedeutet das: Die Programmausführung darf erst dann fortgesetzt werden, wenn alle _n_ Goroutinen beendet wurden.
+`sync.WaitGroup` ist ein weiterer Mechanismus zur Synchronisation, mit dem sich mehrere
+Goroutinen koordinieren lassen.
 
-Intern besitzt jede `WaitGroup` einen Zähler — dieser gibt an, auf wie viele Goroutinen es gewartet werden soll.
-Der Zähler wird mit 0 initialisiert (es muss auf nichts gewartet werden).
+In diesem Fall bedeutet das:
+Die Programmausführung soll erst dann fortgesetzt werden, wenn alle Goroutinen abgeschlossen sind.
 
-`wg.Add(delta int)` addiert `delta` zum Wert des internen Zählers, `wg.Done()` subtrahiert 1.
+
+### Funktionsweise
+
+Intern verwaltet jede `WaitGroup` einen Zähler, der angibt, auf wie viele Goroutinen noch
+gewartet werden muss.
+Zu Beginn ist dieser Zähler auf 0 gesetzt — es muss also auf nichts gewartet werden.
+
+Mit `wg.Add(delta int)` wird der Zähler um `delta` erhöht (beispielsweise beim Start
+neuer Goroutinen).
+Ein Aufruf von `wg.Done()` verringert ihn um 1 (wenn eine Goroutine fertig ist).
 
 `wg.Wait()` blockiert, solange der interne Zähler größer als 0 ist.
 
-Grobe Vorgehensweise:
+[EQ] Was passiert, wenn der interne Zähler einer `sync.WaitGroup` negativ wird?
 
-- jede Goroutine bei einer `WaitGroup` anmelden: `wg.Add(1)`;
-- Goroutine starten;
-- wenn eine Goroutine mit ihrer Aufgabe fertig ist, ruft sie `wg.Done()` auf;
-- `wg.Wait()` blockiert, bis alle Goroutinen `wg.Done()` aufgerufen haben.
+[EQ] Schauen Sie sich das erste Beispiel im
+[Artikel "Golang sync.WaitGroup: Powerful, but tricky"](https://wundergraph.com/blog/golang-wait-groups)
+an und skizzieren Sie, wie man eine `sync.WaitGroup` verwendet.
+
+[FOLDOUT::Was ist `defer`?]
+Eine Anweisung, die mit `defer` deklariert wurde, wird erst beim Aufräumen des
+Gültigkeitsbereichs ausgeführt.
+
+In der Regel handelt es sich dabei um eine Funktion — `defer`-Aufrufe werden unmittelbar
+vor dem Verlassen der Funktion ausgeführt, also direkt vor dem `return`.
+
+<!-- TODO_2_Brandes: add a link to go-advanced-control-flow once it's ready  -->
+[ENDFOLDOUT]
+
+[EQ] In der Version 1.25 wurde eine neue Methode hinzugefügt: `WaitGroup.Go()`.
+Schauen Sie sich die 
+[Dokumentation](https://pkg.go.dev/sync#WaitGroup.Go)
+und/oder den 
+[Quellcode](https://cs.opensource.google/go/go/+/refs/tags/go1.25.2:src/sync/waitgroup.go;l=235)
+der neuen Methode und erklären Sie, was diese tut.
+
+
+### Programmieren
+
+[ER] Schreiben Sie ein Programm, das 5 Goroutinen startet.
+Jede Goroutine soll `"Worker X done"` (mit X = 0 bis 4) ausgeben.
+Verwenden Sie eine `sync.WaitGroup`, um sicherzustellen, dass das Hauptprogramm erst
+`"All done"` ausgibt, wenn alle Goroutinen abgeschlossen sind.
+
+[EC] Führen Sie Ihr Programm mittels `go run` aus.
+
+<!-- time estimate: 20 min -->
 
 [WARNING]
-
 `wg.Add(1)` muss immer **vor dem Start** der entsprechenden Goroutine aufgerufen werden.
 
-Vergleichen Sie die folgenden Beispiele:
-
-```go
-// Beispiel 1
-wg := sync.WaitGroup{}
-
-wg.Add(1)
-go func() {
-    defer wg.Done()
-    // do work
-}()
-
-wg.Wait()
-```
-
-```go
-// Beispiel 2
-wg := sync.WaitGroup{}
-
-go func() {
-    wg.Add(1)
-    defer wg.Done()
-    // do work
-}()
-
-wg.Wait()
-```
-
-Im zweiten Beispiel ist es nicht garantiert, dass `wg.Wait()` nach dem `wg.Add(1)` aufgerufen wird.
-Sollte das nicht der Fall sein, so endet das Programm noch bevor die Goroutine ihre Aufgabe erledigt hat.
-
+Wird es erst danach oder gleichzeitig aufgerufen, kann es passieren, dass der Aufruf nebenläufig
+zum `wg.Wait()` erfolgt — möglicherweise sogar erst _nach_ dem `wg.Wait()`.
+In diesem Fall würde auf die Goroutine nicht gewartet werden.
 [ENDWARNING]
-
-
-#### Synchronisierung ausprobieren
-
-[ER] Implementieren Sie eine Funktion namens `testCounter`.
-Diese soll folgendes tun:
-
-- einen Zähler mit 0 initialisieren und in einer `for`-Schleife eine Million Goroutinen starten, welche den Zähler jeweils um 1 inkrementieren.
-  Die Goroutinen müssen mittels einer `WaitGroup` synchronisiert werden, sonst wird die Funktion `testCounter` zu früh beendet;
-- die totale Ausführungszeit messen (`time.Now()` und `time.Since()` helfen Ihnen dabei);
-- den Zähler sowie die Ausführungszeit auf die Kommandozeile ausgeben.
-  Das Format soll folgendermaßen aussehen: `"function_name - counter: %Wert%, achieved in %Wert%\n"`.
-
 [ENDSECTION]
 
-[SECTION::submission::trace,program]
+[SECTION::submission::information,snippet,trace]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
+
+[INSTRUCTOR::Lösungen]
+**Kommandoprotokoll**
+[PROT::ALT:go-waitgroup.prot]
+
+**Lösungen**
+
+[INCLUDE::ALT:]
+
+Musterlösung der Programmieraufgabe als ausführbare Datei hier:
+[TREEREF::/Sprachen/Go/go-waitgroup.go].
+[ENDINSTRUCTOR]

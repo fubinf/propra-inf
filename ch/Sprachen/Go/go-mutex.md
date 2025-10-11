@@ -2,7 +2,7 @@ title: "Go: sync.Mutex"
 stage: draft
 timevalue: 1
 difficulty: 2
-assumes: go-basics, go-functions, go-structs1, go-pointers, go-waitgroup
+assumes: go-basics, go-functions, go-structs1, go-pointers, go-goroutines, go-waitgroup
 ---
 
 [SECTION::goal::idea,experience]
