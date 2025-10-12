@@ -101,7 +101,7 @@ der nur gültige Uhrzeiten in diesem Format trifft.
 [EQ] Schreiben Sie einen regulären Ausdruck, der ein Datum im Format `DD.MM.YYYY` erkennt, unter folgenden Bedingungen:     
 - `DD`: Tag von 01 bis 31       
 - `MM`: Monat von 01 bis 12       
-- `YYYY`: vierstellige Jahreszahl von 1000 bis 9999
+- `YYYY`: vierstellige Jahreszahl von 1000 bis 9999     
 Einzelne Monatsgrenzen, wie z. B. dass der Februar 28 Tage hat, müssen Sie nicht beachten.
 
 [EQ] Schreiben Sie einen regulären Ausdruck, der gültige E-Mail-Adressen trifft.  
