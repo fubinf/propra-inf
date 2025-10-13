@@ -1,10 +1,9 @@
 # sedrila
+.idea/
 out/
 out2/
 outb/
-.idea/
-sedrila/
-source/
+participants/
 *.bak/
 
 #vscode
