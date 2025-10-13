@@ -1,8 +1,8 @@
 title: Klassen und Prototypen – Strukturierte Logik in JavaScript
-stage: draft
-timevalue: 1
+stage: alpha
+timevalue: 1.0
 difficulty: 2
-requires: js-DOM-Einführung
+assumes: js-DOM-Einführung
 ---
 
 [SECTION::goal::idea]
@@ -10,14 +10,14 @@ requires: js-DOM-Einführung
 - Ich kann in JavaScript eigene Klassen definieren und Instanzen davon erstellen.  
 - Ich kann Methoden und Vererbung einsetzen, um wiederverwendbare Strukturen aufzubauen.  
 - Ich verstehe den Zusammenhang zwischen Klassen und Prototypen in JavaScript.  
-- Ich kann Gemeinsamkeiten und Unterschiede zu Python-Klassen benennen.  
+- Ich kann Gemeinsamkeiten und Unterschiede zu Python-Klassen benennen. 
 [ENDSECTION]
 
 
 [SECTION::background::default]
 Mit Klassen können wir Code strukturieren, wiederverwenden und leichter verstehen.  
 Statt verstreute Funktionen und Daten getrennt zu behandeln, bündeln wir beides in klaren Bausteinen.  
-So lassen sich auch größere Programme übersichtlich aufbauen.  
+So lassen sich auch größere Programme übersichtlich aufbauen. 
 [ENDSECTION]
 
 
@@ -76,9 +76,9 @@ console.log(aufgabe.anzeigen()); // "✔️ Kapitel 4 lesen"
 
 #### Parallelen:
 
-Sowohl in Python als auch in JavaScript definiert man Klassen mit dem Schlüsselwort `class`.
-In Python übernimmt die spezielle Methode `__init__` die Rolle des Konstruktors, während in JavaScript dafür die Methode `constructor` vorgesehen ist.
-Auch der Verweis auf das aktuelle Objekt ist vergleichbar: In Python geschieht das über `self`, in JavaScript über `this`.
+Sowohl in Python als auch in JavaScript definiert man Klassen mit dem Schlüsselwort `class`.  
+In Python übernimmt die spezielle Methode `__init__` die Rolle des Konstruktors, während in JavaScript dafür die Methode `constructor` vorgesehen ist.  
+Auch der Verweis auf das aktuelle Objekt ist vergleichbar: In Python geschieht das über `self`, in JavaScript über `this`.  
 Methoden werden in beiden Sprachen direkt innerhalb der Klassendefinition notiert, sodass die grundlegende Struktur von Klassen in Python und JavaScript auf den ersten Blick sehr ähnlich wirkt.
 
 [ER] Erstelle eine Klasse `Produkt`, die Name und Preis im Konstruktor entgegennimmt.
@@ -86,7 +86,7 @@ Füge eine Methode `beschreibung()` hinzu, die beides als String zurückgibt.
 
 ### Was bedeutet „Prototyp“?
 
-In JavaScript hat jedes Objekt intern einen Prototyp, ein anderes Objekt, von dem es Eigenschaften erben kann.
+In JavaScript hat jedes Objekt intern einen Prototyp, ein anderes Objekt, von dem es Eigenschaften erben kann.  
 Klassen (`class`) sind also eigentlich nur eine modernere und übersichtlichere Schreibweise für diese Prototyp-Verkettung.
 
 Beispiel mit Prototypen (ohne class):
@@ -123,8 +123,8 @@ Beide Varianten tun dasselbe, nur die Syntax unterscheidet sich.
 
 [ER] Prototyp statt class:  
 
-1. Erstelle eine Konstruktorfunktion `Auto(marke, baujahr)`.
-2. Ergänze eine Methode `alter()` über `Auto.prototype`, die das Alter des Autos aus dem aktuellen Jahr berechnet.
+1. Erstelle eine Konstruktorfunktion `Auto(marke, baujahr)`.  
+2. Ergänze eine Methode `alter()` über `Auto.prototype`, die das Alter des Autos aus dem aktuellen Jahr berechnet.  
 3. Erzeuge zwei Auto-Objekte und gib für beide mit `console.log` Marke und Alter aus.
 
 
@@ -203,7 +203,8 @@ Intern:
 - JavaScript: wieder nur Prototyp-Ketten, die durch `extends` gesetzt werden.  
 
 
-[ER] Leite eine Klasse `DigitalProdukt` von `Produkt` ab. Sie soll:  
+[ER] Leite eine Klasse `DigitalProdukt` von `Produkt` ab.  
+Sie soll:  
 - zusätzlich eine Eigenschaft `downloadLink` im Konstruktor setzen,  
 - eine Methode `info()` besitzen, die Name und Link kombiniert zurückgibt.
 
@@ -219,8 +220,10 @@ console.log(ebook.info());         // "JavaScript Basics → Download: http://do
 ### Prototypische Vererbung verstehen
 
 Wir haben bereits gesehen, dass JavaScript-Objekte intern über Prototypen miteinander verbunden sind.  
-Gehen wir jetzt einen Schritt weiter und schauen uns an, wie die Vererbung konkret funktioniert. Jedes Objekt in JavaScript hat eine interne Referenz auf ein anderes Objekt, seinen Prototypen.  
-Wenn man auf eine Eigenschaft oder Methode zugreift, die im aktuellen Objekt nicht vorhanden ist, sucht JavaScript automatisch im Prototyp weiter. Das nennt man die Prototyp-Kette.
+Gehen wir jetzt einen Schritt weiter und schauen uns an, wie die Vererbung konkret funktioniert.  
+Jedes Objekt in JavaScript hat eine interne Referenz auf ein anderes Objekt, seinen Prototypen.   
+Wenn man auf eine Eigenschaft oder Methode zugreift, die im aktuellen Objekt nicht vorhanden ist, sucht JavaScript automatisch im Prototyp weiter.  
+Das nennt man die Prototyp-Kette.
 
 Beispiel mit einer Konstruktorfunktion:
 
@@ -269,6 +272,7 @@ Darum gilt:
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Antworten im Großen und Ganzen korrekt?]
 [INCLUDE::ALT:]
