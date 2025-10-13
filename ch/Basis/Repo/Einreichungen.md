@@ -43,6 +43,8 @@ Grundsätzlich liegen Ihre Dateien fast immer in einem Pfad,
 der dem Pfad der Aufgabe im ProPra-Website-Inhaltsverzeichnis entspricht.
 Das Verzeichnis für die Aufgabe selbst kann man je nach Geschmack auch einsparen, 
 wenn alle abzugebenden Dateien Namen haben, die mit dem Aufgabennamen anfangen.
+(Das müssen dann allerdings beide Mitglieder jedes gemeinsam abgebenden Paars überall
+gleich handhaben!)
 
 Beispiel:
 Angenommen, es gäbe eine (dort aber tatsächlich gar nicht geforderte) 
@@ -72,7 +74,6 @@ Programmierpraktikum/README.md
 
 Die einzelnen Abgabedateien haben im Normalfall entweder den Aufgabennamen als Basisname oder Namenspräfix
 oder sie liegen in einem Verzeichnis, das wie die Aufgabe heißt.
-Hin und wieder gibt es Ausnahmen, die dann in der Aufgabe beschrieben sind.
 
 Genauer gesagt, ist es so:
 
@@ -102,12 +103,47 @@ Meistens ergibt es sich jedoch aus folgender Konvention:
 
 - Wenn Sie in der Anleitung Markierungen sehen wie [EQ], [EQ], [EQ],
   dann ist als Abgabe dazu eine [PARTREF::Markdown]-Datei gefragt und 
-  Sie sollten darin die gleichen Markierungen (nur ohne Farbe) für die zugehörigen Antworten verwenden.
+  Sie sollten darin die gleichen Markierungen (nur ohne Farbe) für die zugehörigen Antworten 
+  verwenden (und genug von der Frage wiederholen, das Ihre Tutor_in sich schnell zurecht findet).
 - Wenn Sie in der Anleitung Markierungen sehen wie [EC], [EC], [EC],
   dann ist als Abgabe dazu ein Kommandoprotokoll gefragt.
 - Wenn Sie in der Anleitung Markierungen sehen wie [ER], [ER], [ER],
   dann gehört das zugehörige Arbeitsergebnis in Quellcodedateien.
 - **F** steht für Frage, **K** für Kommando und **A** für Anforderung.
+
+
+### Dateien außerhalb des üblichen Verzeichnisses
+
+Bei manchen Aufgaben kommt es vor, dass mehrere verschiedene Aufgaben an denselben Dateien 
+oder jedenfalls in einem gemeinsamen Dateibaum arbeiten, sodass der Pfad
+`Programmierpraktikum/Kapitelname/Gruppenname/Aufgabenname/*` nicht immer funktionieren kann.
+Damit das `sedrila`-Werkzeug auch in diesem Fall die Tutor_in gut dabei unterstützen kann,
+alle relevanten Dateien zügig zu sichten, müssen Sie in diesem Fall eine Dateilisten-Datei
+abgeben, die diese Dateien aufführt. Wie sieht das aus?
+Dateilisten-Dateien sind Textdateien, haben einen Namen der Form `*.files` und 
+enthalten einen relativen Pfadnamen pro Zeile.
+
+Beispiel:
+Angenommen, die Dateien
+```
+Programmierpraktikum/Basis/Repo/Task99/Bild.png
+Programmierpraktikum/Basis/Repo/Task99/Script.py
+```
+sind auch noch für Aufgaben aus anderen Gruppen oder sogar anderen Kapiteln relevant.
+Dann schreibt die Aufgabe `Task99` vielleicht vor:
+_"Packen Sie die Dateien in den Pfad `MitBild` auf oberster Ebene"_
+und Sie machen nach dieser Anweisung automatisch eine Abgabedatei
+```
+Programmierpraktikum/Basis/Repo/Task99.files
+```
+in der steht
+```
+../../MitBild/Bild.png
+../../MitBild/Script.py
+```
+Warum diese Pfade?
+Weil die Angaben relativ zu dem Ort sind, an dem die Listendatei liegt, also `Repo`.
+Von dort aus muss man zwei Ebenen aufsteigen, damit `MitBild` dort ein Unterverzeichnis ist.
 
 
 ### Commits nachholen
