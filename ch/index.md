@@ -223,7 +223,8 @@ Die Bedeutung ist dieselbe.
 ## 4. Änderungen nach dem Start
 
 Leider ist das ProPra noch nicht fertig entwickelt.
-Deshalb liefern wir ca. wöchentlich Aufgaben nach.
+Deshalb liefern immer wieder Aufgaben nach;
+auch andere Dinge ändern sich gelegentlich.
 Hier steht, welche; schauen Sie hier bitte also immer mal vorbei:
 
 [INCLUDE::changes.md]
