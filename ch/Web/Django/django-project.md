@@ -191,12 +191,7 @@ Jetzt erstellen wir unsere erste eigene Webseite.
 [ER] Erstellen Sie die Datei `meinprojekt/meinprojekt/views.py`:
 <!-- ER1 -->
 
-```python
-from django.http import HttpResponse
-
-def hello(request):
-    return HttpResponse("Hello World!")
-```
+@INCLUDE_SNIPPET: django_hello_view from altdir/ch/Web/Django/django-project.md
 
 Diese View-Funktion:
 
@@ -204,16 +199,9 @@ Diese View-Funktion:
 - Gibt ein `HttpResponse`-Objekt mit unserem Text zurück
 
 [ER] Modifizieren Sie `meinprojekt/meinprojekt/urls.py` vollständig:
-
-```python
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path("", views.hello, name="hello"),
-]
-```
 <!-- ER2 -->
+
+@INCLUDE_SNIPPET: django_hello_urls from altdir/ch/Web/Django/django-project.md
 [NOTICE]
 Der Django-Entwicklungsserver lädt Code-Änderungen automatisch neu.
 Sie müssen den Server nicht manuell neustarten!
