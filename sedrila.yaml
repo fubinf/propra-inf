@@ -141,6 +141,25 @@ instructors:
       z8kEk1rwtVnZTbsoYaAKip9Qyb0XbprD2CdPENgLCZVe6752Iz1XRFQ1
       =zJzw
       -----END PGP PUBLIC KEY BLOCK-----
+  - nameish: Alexander Stage
+    email: staa00@zedat.fu-berlin.de
+    gitaccount: staa00
+    webaccount: staa00
+    keyfingerprint: 79DB7A5565E0EE1412F5C54C357DB40C2D1A01C1
+    pubkey: |
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
+      mDMEaOlDpBYJKwYBBAHaRw8BAQdA3vmJr9xci2GEQd9mmIj0AQ+YecgGTJz0wSLr
+      2OPqThG0NkFsZXhhbmRlciBTdGFnZSAoVHV0b3IpIDxhbGV4YW5kZXIuc3RhZ2VA
+      ZnUtYmVybGluLmRlPoiWBBMWCgA+FiEEedt6VWXg7hQS9cVMNX20DC0aAcEFAmjp
+      Q6QCGwMFCQDtTgAFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQNX20DC0aAcGD
+      iwEAqkcPxOWSvjPiv6kedqDmjOXZkbVhkcZ2HXn/u4pyk1MA/RU715uB4N+AHp3Y
+      CU5GO3H9obYZWY/hwTjoZyS0TysFuDgEaOlDpBIKKwYBBAGXVQEFAQEHQI30gk3q
+      QwVclFlZzk1hhxLgL8ylHS9ff+svJuJnVXlyAwEIB4h+BBgWCgAmFiEEedt6VWXg
+      7hQS9cVMNX20DC0aAcEFAmjpQ6QCGwwFCQDtTgAACgkQNX20DC0aAcHSdgEAuydq
+      WzaB+KlwTsSYVszvenTYZlM2uYCc5tEAnnAijtUBAIkcZ622azCUdcQDS7McRxAT
+      vfIEfhsZsv8t92A3TaEM
+      =6Qc+
+      -----END PGP PUBLIC KEY BLOCK-----
   - nameish: David Harwardt.
     email: davih05@zedat.fu-berlin.de
     gitaccount: davih05
