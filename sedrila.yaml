@@ -1,3 +1,4 @@
+# ----- for sedrila author:
 title: $SEDRILA_TITLE
 name: $SEDRILA_NAME
 baseresourcedir: baseresources
@@ -29,6 +30,24 @@ blockmacro_topmatter:
   INSTRUCTOR: "<h2>Kontrolle Tutor_in: {arg1}</h2>"
   WARNING: "<strong>Warnung:</strong>"
   NOTICE: "<strong>Bemerkung:</strong>"
+htaccess_template: |
+    AuthName "FU Berlin, FB Mathematik/Informatik"
+    AuthType Basic
+    AuthBasicProvider ldap
+    AuthBasicAuthoritative on                                       
+    AuthLDAPGroupAttributeIsDN off                                  
+    AuthLDAPGroupAttribute memberUid                                
+    AuthLDAPUrl "ldaps://ldap1.imp.fu-berlin.de ldap2.imp.fu-berlin.de ldap3.imp.fu-berlin.de/ou=People,ou=mi,dc=imp,dc=fu-berlin,dc=de?cn"
+    Require ldap-user {userlist_quotes_spaces}
+# ----- for sedrila student:
+student_yaml_attribute_prompts:
+  student_name: "Your full name [givenname familyname]: "
+  student_id: "Your student ID: "
+  student_gituser: "Your git account name [git username]: "
+  partner_gituser: "Your partner's git account name (or empty if you work alone): "
+# ----- for sedrila instructor:
+# ----- for sedrila instructor, sedrila student:
+allowed_attempts: "2 + 0.4/h"
 instructors:
   - nameish: Lutz Prechelt
     email: prechelt@inf.fu-berlin.de
@@ -140,21 +159,7 @@ instructors:
       EMZmkSf2ntEnqG8KlrQBAOcfOI+1glk+kHAzymd12AvRU2l0wrSycI3IjYMtQb4D
       =50Ay
       -----END PGP PUBLIC KEY BLOCK-----
-htaccess_template: |
-    AuthName "FU Berlin, FB Mathematik/Informatik"
-    AuthType Basic
-    AuthBasicProvider ldap
-    AuthBasicAuthoritative on                                       
-    AuthLDAPGroupAttributeIsDN off                                  
-    AuthLDAPGroupAttribute memberUid                                
-    AuthLDAPUrl "ldaps://ldap1.imp.fu-berlin.de ldap2.imp.fu-berlin.de ldap3.imp.fu-berlin.de/ou=People,ou=mi,dc=imp,dc=fu-berlin,dc=de?cn"
-    Require ldap-user {userlist_quotes_spaces}
-student_yaml_attribute_prompts:
-  student_name: "Your full name [givenname familyname]: "
-  student_id: "Your student ID: "
-  student_gituser: "Your git account name [git username]: "
-  partner_gituser: "Your partner's git account name (or empty if you work alone): "
-allowed_attempts: "2 + 0.4/h"
+# ----- for all subcommands:
 chapters:
   - name: Basis
     taskgroups:
