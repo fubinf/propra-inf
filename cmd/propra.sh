@@ -16,7 +16,7 @@ SEDRILA=~/venv/sedrila/bin/python\ /ws/fubinf/sedrila/py/sedrila.py  # which com
 s_setSS() {
   export SEDRILA_TITLE="Programmierpraktikum SoSe 2025, Bachelor Informatik, FU Berlin"
   export SEDRILA_NAME="ProPra-2025-04"
-  export SEDRILA_PARTICIPANTS_FILE="participants-2025-04.tsv"
+  export SEDRILA_PARTICIPANTS_FILE=""
   PROPRA_BUILDDIR="out/2025-04"
   PROPRA_TARGETDIR="K-ProPra-2025-04"
 }
@@ -24,7 +24,7 @@ s_setSS() {
 s_setWS() {
   export SEDRILA_TITLE="Programmierpraktikum WiSe 2025/2026, Bachelor Informatik, FU Berlin"
   export SEDRILA_NAME="ProPra-2025-10"
-  export SEDRILA_PARTICIPANTS_FILE="participants-2025-10.tsv"
+  export SEDRILA_PARTICIPANTS_FILE="participants/propra-2025-10.tsv"
   PROPRA_BUILDDIR="out/2025-10"
   PROPRA_TARGETDIR="K-ProPra-2025-10"
 }
@@ -39,7 +39,7 @@ s_author_do() {  # possible args are additional sedrila flags, esp. --stats
   (set -x;  $SEDRILA author "$@" $PROPRA_BUILDDIR)
 }
 
-s_author1() {  # build all tasks. 
+s_author() {  # build all tasks. 
   s_set_draft
   s_author_do --include_stage draft "$@"
 }
@@ -56,14 +56,16 @@ s_authorWS() {  # build released tasks for winter semester
 
 s_author2() {  # build released tasks for both semesters
   s_authorSS "$@"
-  s_authorWS --stats "$@"
+  s_authorWS --sums "$@"
 }
 
 s_publish_do() {
-  rsync -cir --delete --exclude='instructor/.sedrila_cache.*' $PROPRA_BUILDDIR/* PROPRA_BASEDIR/$PROPRA_TARGETDIR
+  (set -x; 
+   rsync -cir --delete --exclude='instructor/.sedrila_cache.*' $PROPRA_BUILDDIR/ $PROPRA_BASEDIR/$PROPRA_TARGETDIR)
+   
 }
 
-s_publishSS() {  # 
+s_publishSS() {  
   s_setSS
   s_publish_do  
 }
@@ -71,6 +73,11 @@ s_publishSS() {  #
 s_publishWS() {
   s_setWS
   s_publish_do  
+}
+
+s_publish2() {
+  s_publishSS
+  s_publishWS
 }
 
 s_serve() {
