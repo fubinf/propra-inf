@@ -1,4 +1,4 @@
-title: "Go-Kontrollfluss: defer, panic und recover"
+title: "Kontrollfluss in Go: defer, panic und recover"
 stage: draft
 timevalue: 1.25
 difficulty: 2
