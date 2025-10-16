@@ -19,11 +19,6 @@ Do not add new entries here. We use the GitHub issue tracker now for managing th
 - ch/Sprachen/Python/py-import.md (HA->LP->HA->LP->HA)
 
 
-## Rework to do for Ivan Condric
-
-- ch/Werkzeuge/Unix-Diverses/0x_cron.md
-
-
 ## Rework to do for Sven Hüster
 
 - ch/Debugging/Debuggingtools/python-profiling.md (Hüster->LP->SH)  
