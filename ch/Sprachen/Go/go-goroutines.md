@@ -1,4 +1,4 @@
-title: Goroutinen
+title: "Go: Goroutinen"
 stage: alpha
 timevalue: 0.5
 difficulty: 2
