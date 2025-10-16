@@ -2,7 +2,7 @@ title: "Go: sync.WaitGroup"
 stage: draft
 timevalue: 0.5
 difficulty: 2
-assumes: go-basics, go-functions, go-structs1, go-pointers, go-goroutines
+assumes: go-basics, go-functions, go-structs1, go-pointers, go-goroutines, go-advanced-control-flow
 ---
 
 [SECTION::goal::idea,experience]
@@ -53,16 +53,6 @@ Ein Aufruf von `wg.Done()` verringert ihn um 1 (wenn eine Goroutine fertig ist).
 [EQ] Schauen Sie sich das erste Beispiel im
 [Artikel "Golang sync.WaitGroup: Powerful, but tricky"](https://wundergraph.com/blog/golang-wait-groups)
 an und skizzieren Sie, wie man eine `sync.WaitGroup` verwendet.
-
-[FOLDOUT::Was ist `defer`?]
-Eine Anweisung, die mit `defer` deklariert wurde, wird erst beim Aufräumen des
-Gültigkeitsbereichs ausgeführt.
-
-In der Regel handelt es sich dabei um eine Funktion — `defer`-Aufrufe werden unmittelbar
-vor dem Verlassen der Funktion ausgeführt, also direkt vor dem `return`.
-
-<!-- TODO_2_Brandes: add a link to go-advanced-control-flow once it's ready  -->
-[ENDFOLDOUT]
 
 [EQ] In der Version 1.25 wurde eine neue Methode hinzugefügt: `WaitGroup.Go()`.
 Schauen Sie sich die 

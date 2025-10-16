@@ -2,7 +2,7 @@ title: "Go: sync.Mutex"
 stage: draft
 timevalue: 1
 difficulty: 2
-assumes: go-basics, go-functions, go-structs1, go-pointers, go-goroutines, go-waitgroup
+assumes: go-basics, go-functions, go-structs1, go-pointers, go-goroutines, go-waitgroup, go-advanced-control-flow
 ---
 
 [SECTION::goal::idea,experience]
@@ -35,16 +35,6 @@ Abschnitt betreten.
 Sehen Sie sich das 
 [Beispiel "Go by Example: Mutexes"](https://gobyexample.com/mutexes)
 an und beantworten Sie die Fragen unten.
-
-[FOLDOUT::Was ist `defer`?]
-Eine Anweisung, die mit `defer` deklariert wurde, wird erst beim Aufräumen des 
-Gültigkeitsbereichs ausgeführt.
-
-In der Regel handelt es sich dabei um eine Funktion — `defer`-Aufrufe werden unmittelbar
-vor dem Verlassen der Funktion ausgeführt, also direkt vor dem `return`.
-
-<!-- TODO_2_Brandes: add a link to go-advanced-control-flow once it's ready  -->
-[ENDFOLDOUT]
 
 [EQ] Welche Methoden von `sync.Mutex` werden im Beispiel verwendet, und wozu dienen sie?
 

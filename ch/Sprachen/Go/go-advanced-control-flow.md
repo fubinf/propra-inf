@@ -2,6 +2,7 @@ title: "Go-Kontrollfluss: defer, panic und recover"
 stage: draft
 timevalue: 1.25
 difficulty: 2
+assumes: go-basics, go-functions, go-interfaces
 ---
 
 [SECTION::goal::idea,experience]
