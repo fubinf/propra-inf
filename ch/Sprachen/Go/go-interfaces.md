@@ -2,7 +2,7 @@ title: Go Interfaces
 stage: beta
 timevalue: 3.5
 difficulty: 2
-assumes: go-basics
+assumes: go-structs1, go-pointers
 ---
 
 [SECTION::goal::idea,experience]

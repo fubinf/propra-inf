@@ -2,7 +2,7 @@ title: "Go: sync.WaitGroup"
 stage: draft
 timevalue: 0.5
 difficulty: 2
-assumes: go-basics, go-functions, go-structs1, go-pointers, go-goroutines, go-advanced-control-flow
+assumes: go-goroutines, go-advanced-control-flow
 ---
 
 [SECTION::goal::idea,experience]

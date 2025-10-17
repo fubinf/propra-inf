@@ -2,7 +2,7 @@ title: "Grundlagen von Go: Strukturen (Teil 1)"
 stage: beta
 timevalue: 1
 difficulty: 2
-assumes: go-basics, go-functions
+assumes: go-functions
 ---
 
 [SECTION::goal::idea,experience]

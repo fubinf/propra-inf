@@ -3,7 +3,7 @@ stage: beta
 timevalue: 2
 difficulty: 2
 explains: Slice (Golang)
-assumes: go-basics, go-pointers, go-functions, go-structs1
+assumes: go-pointers
 ---
 
 [SECTION::goal::idea,experience]

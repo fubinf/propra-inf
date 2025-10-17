@@ -2,6 +2,7 @@ title: Testen in Go
 stage: draft
 timevalue: 2.5
 difficulty: 2
+assumes: go-arrays-and-slices
 ---
 
 [SECTION::goal::idea,experience]

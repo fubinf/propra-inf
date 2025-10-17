@@ -2,7 +2,7 @@ title: "Go: Kanäle (Channels)"
 stage: draft
 timevalue: 1.25
 difficulty: 2
-assumes: go-basics, go-goroutines, go-functions, go-arrays-and-slices
+assumes: go-goroutines, go-arrays-and-slices
 ---
 
 [SECTION::goal::idea,experience]

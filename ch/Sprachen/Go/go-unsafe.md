@@ -2,7 +2,7 @@ title: "Go: das Paket 'unsafe'"
 stage: draft
 timevalue: 1.25
 difficulty: 3
-assumes: go-basics, go-functions, go-structs1, go-pointers, go-arrays-and-slices
+assumes: go-structs1, go-arrays-and-slices
 ---
 
 [SECTION::goal::idea,experience]

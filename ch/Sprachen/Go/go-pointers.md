@@ -2,7 +2,7 @@ title: "Grundlagen von Go: Zeiger"
 stage: beta
 timevalue: 0.5
 difficulty: 2
-assumes: go-basics, go-functions
+assumes: go-functions
 ---
 
 [SECTION::goal::idea,experience]

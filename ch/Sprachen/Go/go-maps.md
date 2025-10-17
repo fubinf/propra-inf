@@ -2,7 +2,7 @@ title: "Grundlagen von Go: Maps"
 stage: beta
 timevalue: 1
 difficulty: 2
-assumes: go-basics, go-pointers, go-functions, go-arrays-and-slices
+assumes: go-arrays-and-slices
 ---
 
 [SECTION::goal::idea,experience]
