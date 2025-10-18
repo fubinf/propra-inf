@@ -3,7 +3,8 @@ stage: beta
 timevalue: 0.5
 difficulty: 2
 explains: Prompt
-requires: Git101, Markdown
+assumes: Markdown
+requires: Git101
 ---
 [SECTION::goal::product]
 
