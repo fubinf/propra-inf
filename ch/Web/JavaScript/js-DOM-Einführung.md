@@ -127,7 +127,7 @@ let numbers = [1, 2, 3];    // array
 
 [EQ] Recherchiere den Unterschied zwischen `undefined` und `null` in JavaScript. Warum sind Beide notwendig? Einen guten Einstieg findest du in der [MDN-Webdokumentation zu null vs undefined](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/null#null_vs_undefined).
 
-#### Kurz zu JSON
+#### JSON
 
 `JSON` („JavaScript Object Notation“) ist ein textbasiertes Datenformat, 
 das sehr ähnlich zu JavaScript-Objekten aussieht und sich auch an Python-Dicts/Listen anlehnt.
@@ -338,9 +338,13 @@ Ein `<script>`-Tag kann nur entweder Code oder `src=` enthalten, nicht beides.
 ### DOM-Zugriff: Die wichtigsten Bausteine
 
 Damit JavaScript die HTML-Seite analysieren und manipulieren kann, braucht es Zugriff auf einzelne Elemente.
-Dieser Zugriff läuft über das sogenannte [DOM (Document Object Model)](https://developer.mozilla.org/de/docs/Web/API/Document_Object_Model), 
+Dieser Zugriff läuft über das sogenannte 
+[DOM (Document Object Model)](https://developer.mozilla.org/de/docs/Web/API/Document_Object_Model), 
 das die HTML-Struktur als Baum abbildet und per JavaScript veränderbar macht.
-Hier sind die wichtigsten Bausteine:
+Der Browser und JavaScript teilen sich ein solches Objekt und der Browser benutzt es kontinuierlich
+als Eingabe für den HTML-Renderer. 
+Das bedeutet, wenn man am DOM etwas ändert, sieht die Webseite _sofort_ entsprechend anders aus.
+Hier sind ein paar erste Wissensbröckchen über das DOM:
 
 `id`:  
 Jedes HTML-Element kann eine eindeutige(!) Kennung (`id`) bekommen.  
@@ -401,24 +405,25 @@ document.getElementById("buttonId").addEventListener("click", function () {
 ### Selber machen!
 
 Nun wollen wir das erlernte Wissen einsetzen. 
-Dazu nutzen wir unsere Lösung aus [HTMLErsteSchritte](https://www.inf.fu-berlin.de/inst/ag-se/teaching/K-ProPra-2024-04/HTMLErsteSchritte.html) und erweitern diese.
+Dazu nutzen wir eine Kopie unserer Lösung aus [HTMLErsteSchritte](https://www.inf.fu-berlin.de/inst/ag-se/teaching/K-ProPra-2024-04/HTMLErsteSchritte.html) und erweitern diese.
 
 
-[ER] Füge ein Eingabefeld und einen Button unter der Hauptüberschrift ein. 
+[ER] Fügen Sie ein Eingabefeld und einen Button unter der Hauptüberschrift ein. 
 Nach Eingabe eines Namens und einem Klick auf den Button soll sich der  Willkommenssatz darunter 
 ändern zu „Willkommen bei der Softwareschmiede ProPy, [Name]!“. 
-Nutze `getElementById`, `value`,  `innerHTML` und `addEventListener`. 
-Schreibe den JavaScript-Code innerhalb des HTML-Dokuments mit dem `<script>` Tag.
+Nutzen Sie `getElementById`, `value`,  `innerHTML` und `addEventListener`. 
+Schreiben Sie den JavaScript-Code innerhalb des HTML-Dokuments mit dem `<script>` Tag.
 
-[ER] Setze die gleiche Funktionalität nun mit ausgelagerter JavaScript-Datei um. 
+[ER] Setzen Sie die gleiche Funktionalität nun mit ausgelagerter JavaScript-Datei um. 
 Der HTML-Code bleibt unverändert, aber der JavaScript-Code soll in eine separate Datei namens 
 `jsEinfuehrung.js` ausgelagert werden.
 
-[EQ] Untersuche den Unterschied zwischen `innerHTML` und `textContent` in JavaScript. 
-Erkläre, wofür man die beiden Eigenschaften verwendet, und wann welche besser geeignet ist. 
-Gib je ein Beispiel, in dem `innerHTML` sinnvoll ist, und eines, in dem `textContent` vorzuziehen ist. 
-Erkläre, warum man `innerHTML` in manchen Fällen vermeiden sollte. 
-Eine gute Einführung zu beiden Eigenschaften findest du in der MDN-Webdokumentation zu 
+[EQ] Untersuchen Sie den Unterschied zwischen `innerHTML` und `textContent` in JavaScript. 
+Erklären Sie, wofür man die beiden Eigenschaften verwendet, und wann welche besser geeignet ist. 
+Geben Sie je ein Beispiel, in dem `innerHTML` sinnvoll ist, und eines, 
+in dem `textContent` vorzuziehen ist. 
+Erklären Sie allgemein, in welchen Fällen man `innerHTML` vermeiden sollte. 
+Eine gute Einführung zu beiden Eigenschaften finden Sie in der MDN-Webdokumentation zu 
 [innerHTML](https://developer.mozilla.org/de/docs/Web/API/Element/innerHTML) und 
 [textContent](https://developer.mozilla.org/de/docs/Web/API/Node/textContent).
 [ENDSECTION]

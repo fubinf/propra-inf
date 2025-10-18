@@ -15,7 +15,8 @@ requires: html-Formulare
 
 
 [SECTION::background::default]
-Mit HTML und CSS kann man Webseiten gestalten, die ansprechend aussehen,aber sie bleiben (weitgehend) passive Dokumente.
+Mit HTML und CSS kann man Webseiten gestalten, die ansprechend aussehen,
+aber sie bleiben weitgehend passive Dokumente.
 Mit JavaScript kann man sie zum Leben erwecken und ihnen Programmfunktionalität zufügen.
 Dieses Kapitel zeigt, wie man gezielt mit der Seitenstruktur (DOM) arbeitet und auf Benutzeraktionen reagiert.
 [ENDSECTION]
@@ -23,11 +24,15 @@ Dieses Kapitel zeigt, wie man gezielt mit der Seitenstruktur (DOM) arbeitet und 
 
 [SECTION::instructions::loose]
 
-### Der DOM als Baumstruktur
+### Das DOM als Baumstruktur
 
-Jede HTML-Seite wird vom Browser intern als Baumstruktur dargestellt. 
-Die Wurzel ist dabei das `document`, darunter folgen `html`, `head`, `body`, und so weiter. 
-Jeder Tag ist ein Knoten im DOM-Baum.
+Sie wissen schon: DOM steht für "Document Object Model" und bezeichnet eine baumförmige Speicherstruktur, 
+mit der ein HTML-Dokument im Browser dargestellt wird; 
+JavaScript hat darauf Zugriff, kann Änderungen am DOM machen und der Browser stellt daraufhin
+die Seite sofort entsprechend anders dar.
+
+Die Wurzel eines DOM ist das `document`, darunter folgen `html`, `head`, `body`, und so weiter. 
+Jedes Tag wird zu einem Knoten im DOM-Baum.
 Beispiel:
 
 ```
@@ -52,8 +57,8 @@ console.log(absatz.children);   // gibt [<strong>] aus
 
 Einige Elemente sind auch direkt verfügbar, beispielsweise `document.body`.
 
-[EQ] Es gibt noch weitere Möglichkeiten, Elemente zu finden. Nennen drei und geben ein Beispiele
-für die jeweilige Verwendung.
+[EQ] Es gibt noch weitere Möglichkeiten, Elemente zu finden. 
+Nennen Sie drei und geben je ein Beispiel für die Verwendung.
 
 
 ### DOM gezielt verändern
@@ -74,7 +79,7 @@ Diese Methode eignet sich sehr gut für dynamische Listen.
 
 `.remove()` – Elemente löschen:
 
-Damit kannst Sie einen DOM-Knoten entfernen:
+Damit kann man einen DOM-Knoten entfernen:
 
 ```js
 const hinweis = document.getElementById("hinweisText");
@@ -82,9 +87,9 @@ hinweis.remove();
 ```
 Das betroffene Element verschwindet dabei augenblicklich und vollständig von der Seite.
 
-[ER] Erweitere die bestehende HTML-Seite aus `Erste Schritte in JavaScript und DOM` im Bereich 
+[ER] Erweitern Sie die bestehende HTML-Seite aus `Erste Schritte in JavaScript und DOM` im Bereich 
 "Unsere Leistungen" zu einer interaktiven Liste: 
-Füge ein Eingabefeld und einen Button hinzu, mit dem man neue Leistungen hinzufügen kann. 
+Fügen Sie ein Eingabefeld und einen Button hinzu, mit dem man neue Leistungen hinzufügen kann. 
 Der Text im Eingabefeld soll als neuer `<li>` zur Liste unter "Unsere Leistungen" hinzugefügt werden. 
 Jeder Listenpunkt, der hinzugefügt wurde, soll einen kleinen "Entfernen"-Button erhalten, mit dem man 
 den jeweiligen Listenpunkt wieder löschen kann.
@@ -103,7 +108,8 @@ um gezielt nur dort neue Einträge hinzuzufügen.
 
 ### Mehrere Elemente bearbeiten nach einem Event
 
-Manchmal möchten Sie mehrere Elemente auf einmal ansprechen, zum Beispiel, um alle Listeneinträge zu markieren oder zu verändern. 
+Manchmal möchten Sie mehrere Elemente auf einmal ansprechen, zum Beispiel, 
+um alle Listeneinträge zu markieren oder zu verändern. 
 Dazu können Sie eine Schleife verwenden:
 
 ```
@@ -121,7 +127,7 @@ Wir wählen alle `<li>`-Elemente und gehen sie mit einer Schleife durch.
 Jeder Eintrag bekommt ein Häkchen vorangestellt.
 
 [EQ] In welchen Fällen braucht man eine Schleife über mehrere Elemente, 
-wann reicht ein einzelner Zugriff wie `document.getElementById(...)`?
+wann reicht ein einzelner Zugriff wie `document.getElementById(...)`? 
 [ENDSECTION]
 
 
