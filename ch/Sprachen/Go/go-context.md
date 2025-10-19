@@ -2,7 +2,7 @@ title: "Go: das Paket 'context'"
 stage: draft
 timevalue: 1.5
 difficulty: 2
-assumes: go-channels
+assumes: go-channels, go-advanced-control-flow
 ---
 
 [SECTION::goal::idea,experience]
