@@ -166,13 +166,10 @@ in Ihrem Arbeitsverzeichnis folgenden Befehl ausführen:
 sedrila student
 ```
 
-Das Kommando 'p' ("prepare") schreibt in die Datei `submission.yaml`
-die Liste einreichungsfähiger Aufgaben. Das sind die, zu denen Sie Commits angelegt
-haben, die das Format von [PARTREF::Zeiterfassung] einhalten.
-Mit 'w' ("webapp") können Sie im Webbrowser auswählen, welche davon eingereicht
+Mit 'w' ("webapp") können Sie im Webbrowser auswählen, welche Aufgaben eingereicht
 werden sollen (und welche vielleicht lieber noch nicht).
 
-Haben Sie das Format der Zeiterfassung nicht eingehalten, müssen Sie `submission.yaml` von Hand
+Haben Sie das Format der [PARTREF::Zeiterfassung] nicht eingehalten, müssen Sie `submission.yaml` von Hand
 anlegen. Die Datei besteht aus Zeilen der Form  
 `taskname: CHECK`  
 also beispielsweise  
