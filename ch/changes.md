@@ -11,4 +11,6 @@
   bitte mittels `pipx uninstall sedrila; pipx install sedrila` aktualisieren.
   Alle anderen folgen zur Installation normal den Aufgaben im Kapitel [PARTREF::Basis].
 - **2025-10-23**: Veralteten Verweis auf "prepare"-Schritt in [PARTREF::Einreichungen] entfernt.
+- **2025-10-23**: Neue Version 2.10.2 von sedrila mit diversen Verbesserungen an der Webapp.
+  Installation mit `pipx upgrade sedrila`.
 - ...
