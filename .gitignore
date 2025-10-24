@@ -12,3 +12,7 @@ participants/
 
 #macos
 .DS_Store
+
+# Act local testing
+.secrets
+.actrc
