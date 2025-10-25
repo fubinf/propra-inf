@@ -229,13 +229,10 @@ Optional: Weitere Erklärungen finden Sie hier:
 [URL dispatcher](https://docs.djangoproject.com/en/4.2/topics/http/urls/)
 
 [ER] Ändern Sie die URL-Konfiguration, damit "Hello World" unter `/hello/` erreichbar ist:
-
-```python
-urlpatterns = [
-    path('hello/', views.hello, name='hello'),
-]
-```
 <!-- ER3 -->
+
+<!-- Korrekte Referenz. Zum Testen kann sie geändert werden in: wrong_snippet_id -->
+@INCLUDE_SNIPPET: django_hello_route from altdir/ch/Web/Django/django-project.md
 
 [EQ] Testen Sie `http://127.0.0.1:8000/hello/` im Browser. 
 Was passiert, wenn Sie `http://127.0.0.1:8000/` (ohne hello) aufrufen?
