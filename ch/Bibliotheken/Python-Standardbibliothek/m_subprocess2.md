@@ -165,7 +165,7 @@ def test_median(generator):
 
 [ENDSECTION]
 
-<!-- @PROGRAM_TEST_SKIP: reason=".prot file includes tests for different program versions (pytest vs direct execution with different parameters), similar to go-basics issue" manual_test_required=true -->
+<!-- @PROGRAM_TEST_SKIP: reason=".prot file includes tests for different program versions (pytest vs direct execution with different parameters)" manual_test_required=true -->
 
 [INSTRUCTOR::Ist das Problem gelöst? Und seriös gelöst?]
 
