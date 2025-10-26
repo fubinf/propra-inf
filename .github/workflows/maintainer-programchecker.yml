@@ -1,6 +1,9 @@
 name: Maintainer-ProgramChecker
 
 on:
+  push:
+    branches:
+      - feature/programchecker
   schedule:
     # Run every Sunday at 03:30 UTC (offset from linkchecker)
     - cron: '30 3 * * 0'
