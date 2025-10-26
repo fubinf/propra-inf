@@ -88,6 +88,8 @@ In diesem Fall würde auf die Goroutine nicht gewartet werden.
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
+<!-- @PROGRAM_TEST_SKIP: reason="Concurrent execution order is non-deterministic" manual_test_required=true -->
+
 [INSTRUCTOR::Lösungen]
 **Kommandoprotokoll**
 [PROT::ALT:go-waitgroup.prot]

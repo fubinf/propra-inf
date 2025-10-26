@@ -164,6 +164,9 @@ def test_median(generator):
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
+
+<!-- @PROGRAM_TEST_SKIP: reason=".prot file includes tests for different program versions (pytest vs direct execution with different parameters), similar to go-basics issue" manual_test_required=true -->
+
 [INSTRUCTOR::Ist das Problem gelöst? Und seriös gelöst?]
 
 - Hilfestellung: Wer nicht in jedem Test und auch im Hauptprogramm `initrandom()` aufruft, 

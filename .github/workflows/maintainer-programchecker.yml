@@ -1,0 +1,138 @@
+name: Maintainer-ProgramChecker
+
+on:
+  schedule:
+    # Run every Sunday at 03:30 UTC (offset from linkchecker)
+    - cron: '30 3 * * 0'
+  workflow_dispatch:  # Allow manual triggering for testing
+
+jobs:
+  check-example-programs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout propra-inf repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        token: ${{ secrets.SUBMODULE_TOKEN }}
+    
+    - name: Checkout sedrila repository
+      uses: actions/checkout@v4
+      with:
+        repository: fubinf/sedrila
+        path: sedrila
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.23'
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install \
+          "argparse_subcommand>=1.2" \
+          "blessed>=1.20" \
+          "bottle>=0.13" \
+          "GitPython>=3.1" \
+          "Jinja2>=3.1" \
+          "Markdown>=3.7" \
+          "matplotlib>=3.9" \
+          "mdx_linkify>=2.1" \
+          "numpy<2" \
+          "pandas>=2.2" \
+          "Pygments>=2.17" \
+          "python-gnupg>=0.5.5" \
+          "PyYAML>=6.0" \
+          "requests>=2.32" \
+          "rich>=13.7"
+        
+        # Install packages needed by example programs
+        pip install \
+          "fastapi>=0.104" \
+          "pydantic>=2.0" \
+          "uvicorn>=0.24" \
+          "pytest>=7.4"
+    
+    - name: Verify environment
+      run: |
+        python --version
+        go version
+        ls -la
+        ls -la sedrila/py/
+    
+    - name: Build course (create itree.zip)
+      run: |
+        echo "Building complete course to generate itree.zip..."
+        python sedrila/py/sedrila.py author /tmp/build
+        echo "itree.zip created:"
+        ls -la altdir/itree.zip/ | head -10
+    
+    - name: Run program tests
+      run: |
+        python sedrila/py/sedrila.py maintainer --check-programs --batch
+      continue-on-error: false
+    
+    - name: Upload program test reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: program-test-reports
+        path: |
+          program_test_report.json
+          program_test_report.md
+        retention-days: 90
+    
+    - name: Display test summary and errors
+      if: always()
+      run: |
+        echo "============================================================"
+        echo "PROGRAM TEST SUMMARY"
+        echo "============================================================"
+        if [ -f program_test_report.json ]; then
+          python3 << 'PYTHON_SCRIPT'
+        import json
+        with open('program_test_report.json') as f:
+            data = json.load(f)
+            failed = data.get('failed_tests', [])
+            
+            # Read fields from top level (not from 'statistics' object)
+            total = data.get('total_tests', 0)
+            passed = data.get('passed', 0)
+            failed_count = data.get('failed', 0)
+            skipped = data.get('skipped', 0)
+            
+            # Calculate success rate
+            tested = total - skipped
+            success_rate = (passed / tested * 100) if tested > 0 else 0.0
+            
+            print(f"Total Programs: {total}")
+            print(f"  - Passed:      {passed}")
+            print(f"  - Failed:      {failed_count}")
+            print(f"  - Skipped:     {skipped}")
+            print(f"Success Rate: {success_rate:.1f}%")
+            
+            if failed:
+                print()
+                print('=' * 60)
+                print(f'FAILED TESTS ({len(failed)} total):')
+                print('=' * 60)
+                for test in failed:
+                    print(f"  FAIL: {test['program_name']} ({test['language']}): {test['error_message']}")
+            else:
+                print()
+                print('✓ All tests passed!')
+        PYTHON_SCRIPT
+          echo ""
+          echo "Full reports uploaded as artifacts (retention: 90 days)"
+          ls -la program_test_report.*
+        else
+          echo "ERROR: No reports generated"
+        fi
+

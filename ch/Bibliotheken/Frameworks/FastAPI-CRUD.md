@@ -182,6 +182,7 @@ PATCH-Endpunkt `/grade` zu aktualisieren.
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+<!-- @PROGRAM_TEST_SKIP: reason="Output contains uncontrollable status codes and timestamps" manual_test_required=true -->
 
 [INSTRUCTOR::Codedurchsicht]
 

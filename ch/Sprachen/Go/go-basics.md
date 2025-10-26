@@ -539,6 +539,8 @@ In dieser Aufgabe dürfen Sie den zweiten Wert (`error`) explizit ignorieren.
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
+<!-- @PROGRAM_TEST_SKIP: reason=".prot file includes tests for incomplete versions of go-basics.go (e.g., first run only outputs hello world)" manual_test_required=true -->
+
 [INSTRUCTOR::Hinweise]
 **Kommandoprotokoll**
 [PROT::ALT:go-basics.prot]

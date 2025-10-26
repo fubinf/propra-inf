@@ -250,6 +250,8 @@ bekannt.
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
+<!-- @PROGRAM_TEST_SKIP: reason="Output contains numerous dynamic memory addresses" manual_test_required=true -->
+
 [INSTRUCTOR::Lösungen]
 [EREFQ::2]: Der Teil über die Herkunft der Proben ist völlig optional.
 

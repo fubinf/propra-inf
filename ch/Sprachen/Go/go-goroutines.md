@@ -105,6 +105,8 @@ wie Goroutinen intern funktionieren, gibt es zwei empfehlenswerte Quellen
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
+<!-- @PROGRAM_TEST_SKIP: reason="Infinite loop program, requires manual interruption" manual_test_required=true -->
+
 [INSTRUCTOR::Hinweise]
 
 **Kommandoprotokoll**
