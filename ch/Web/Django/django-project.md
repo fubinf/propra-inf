@@ -234,6 +234,7 @@ Optional: Weitere Erklärungen finden Sie hier:
 <!-- Korrekte Referenz. Zum Testen kann sie geändert werden in: wrong_snippet_id -->
 @INCLUDE_SNIPPET: django_hello_route from altdir/ch/Web/Django/django-project.md
 
+
 [EQ] Testen Sie `http://127.0.0.1:8000/hello/` im Browser. 
 Was passiert, wenn Sie `http://127.0.0.1:8000/` (ohne hello) aufrufen?
 Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
