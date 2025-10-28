@@ -13,5 +13,7 @@
 - **2025-10-23** Veralteten Verweis auf "prepare"-Schritt in [PARTREF::Einreichungen] entfernt.
 - **2025-10-23** Neue Version 2.10.2 von sedrila mit diversen Verbesserungen an der Webapp.
   Installation mit `pipx upgrade sedrila`.
-- **2025-10-28** Aufgabe Bibliotheken/Pandas/[PARTREF::pd-Datenselektion2] freigegeben. 
+- **2025-10-28** Aufgabe Bibliotheken/Pandas/[PARTREF::pd-Datenselektion2] freigegeben.  
+  Aufgabengruppe Sprachen/Regexp mit 3 Aufgaben freigegeben:
+  [PARTREF::re-Metazeichen], [PARTREF::re-Quantoren], [PARTREF::re-Gruppen]. 
 - ...

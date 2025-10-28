@@ -1,5 +1,4 @@
 title: "regex: Reguläre Ausdrücke"
-stage: alpha
 ---
 **Regular Expressions** oder auf Deutsch **Reguläre Ausdrücke** oder kurz **regex** bzw. **regexp** 
 stellen ein wichtiges Werkzeug in der Informatik bzw. Softwareentwicklung dar.
