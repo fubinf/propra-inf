@@ -5,7 +5,7 @@ difficulty: 2
 ---
 
 [SECTION::goal::idea]
-Ich verstehe, was Matplotlib ist, was eine `Figure` ist und wie ich erste
+Ich verstehe, was in Matplotlib eine `Figure` ist und wie ich erste
 Daten plotte.
 [ENDSECTION]
 
@@ -13,26 +13,28 @@ Daten plotte.
 [SECTION::background::default]
 Matplotlib ist eine der bekanntesten Bibliotheken für Visualisierungen in Python. 
 Sie verwandelt Daten in Grafiken und wird auch in vielen wissenschaftlichen Publikationen genutzt. 
-Um zu verstehen wie Grafiken in Matplotlib dargestellt werden, 
+Um zu verstehen, wie Grafiken in Matplotlib dargestellt werden, 
 muss man die zugrundeliegende Struktur, die `Figure`, verstehen.
 [ENDSECTION]
 
 
 [SECTION::instructions::loose]
+
 ### Matplotlib installieren
 
-Um Matplotlib in Python zu nutzen, müssen Sie diese erst installieren und in Ihre Python-Umgebung importieren.
+ Installieren Sie `matplotlib` mittels [TERMREF::pip]: `pip install matplotlib`
 
-- Installieren Sie `matplotlib` mittels [TERMREF::pip]: `pip install matplotlib`
-- Sie werden `matplotlib` üblicherweise über die `pyplot`-Funktionen benutzen.
-Importieren Sie diese wie folgt: `import matplotlib.pyplot as plt`
+Sie werden `matplotlib` üblicherweise über die `pyplot`-Funktionen benutzen.
+Diese werden per Konvention wie folgt importiert: `import matplotlib.pyplot as plt`
+
 
 ### `Figure`
+
 Das wohl grundlegendste Element in Matplotlib ist die `Figure`.
 Man kann sie sich als Leinwand vorstellen, auf der die Grafiken, z.B. ein Diagramm mit Linien oder
 Punkten, "aufgemalt" werden.
 
-- Erstellen Sie mit dem folgenden Code Ihre erste `Figure`.
+Erstellen Sie mit dem folgenden Code Ihre erste `Figure`:
 ```python
 import matplotlib.pyplot as plt
 
@@ -65,13 +67,14 @@ zum Beispiel durch die Methode `plot()` die Punkte bei den übergebenen X- und Y
 
 [ER] Standardmäßig stell `plot` alle Punkte als eine Linie dar. Schauen Sie sich die 
 [Dokumentation zu der Methode `plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot)
-an und stellen Sie die gleichen Daten mit Hilfe von einzelnen Punkten anstelle einer Linie dar.
+an und stellen Sie die gleichen Daten mithilfe von einzelnen Punkten anstelle einer Linie dar.
 
 [EQ] Was passiert, wenn Sie mehrere `Figure` erstellen?
 
+
 ### Mathematik
 
-Matplotlib wird gerne genutzt um Datensätze darzustellen, aber auch um mathematische Konzepte 
+Matplotlib wird gerne genutzt, um Datensätze darzustellen, aber auch um mathematische Konzepte 
 zu visualisieren.
 Im Folgenden werden Sie ein paar Funktionen visualisieren.
 Dazu werden Sie unter anderem die mathematische Bibliothek `numpy` verwenden, für die Erstellung
@@ -109,12 +112,13 @@ Verkürzen Sie die Erstellung von `Figure` und `Axes` mit der Methode
 [`plt.subplots()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html).
 Schauen Sie dafür, falls nötig, in die Beispiele der Dokumentation.
 Dies ist eine gängige Methode zur Erstellung der beiden Objekte. 
-
 [ENDSECTION]
+
 
 [SECTION::submission::information]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Korrekter Code]
 [INCLUDE::ALT:]
