@@ -90,7 +90,6 @@ Arbeiten Sie mit den beiden Datensätze wie Sie am Ende von [PARTREF::pd-Datensa
 wetter_dahlem_df = pd.read_table("pfad/zur/dahlem.txt", sep=';', encoding='latin')
 wetter_aigen_df = pd.read_csv("pfad/zur/aigen.csv", encoding='latin')
 ```
-<!--TODO_2_SAKA vorgeben -->
 
 Die Spalten aus `wetter_aigen_df` sollten gefiltert sein und so heißen, wie die äquivalenten Spalten
 in `wetter_dahlem_df`!

@@ -124,9 +124,7 @@ Und wieso nicht zu den anderen Spalten?
 
 Mit `describe()` lassen sich, wie Sie sehen, viele statistische Metadaten schnell präsentieren.
 Neben dem Minimum, Maximum und Durchschnitt gibt es noch weitere interessante Metriken, 
-die Sie in späteren Aufgaben kennenlernen werden.
-
-<!-- TODO_2_Saka: Auf Aufgabe verweisen, in der man in die analytischen Methoden eingeführt wird -->
+die Sie in späteren Aufgaben ([PARTREF::pd-Statistik]) kennenlernen werden.
 [ENDSECTION]
 
 [SECTION::submission::information]

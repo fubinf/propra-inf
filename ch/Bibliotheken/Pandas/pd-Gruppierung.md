@@ -3,6 +3,7 @@ stage: draft
 timevalue: 2
 difficulty: 2
 requires: pd-Datenselektion2
+assumes: pd-Transformationen
 ---
 
 [SECTION::goal::idea]
@@ -72,9 +73,9 @@ Informationen über die Gruppen wir gerne hätten.
 Im gleichen Stil lassen sich auch andere Funktionen wie z.b. `min()` oder `mean()` anwenden.
 Und noch viel besser zum Betrachten der Daten: 
 Wenden Sie eine anonyme Funktion wie `apply(lambda x: x)` auf `bezirks_gruppierung` an,
-um die Daten in Ihrer rohen Form betrachten zu können. 
+um die Daten in Ihrer rohen Form betrachten zu können
+(siehe [PARTREF::pd-Transformationen] für mehr zu `apply()`).
 Mit Funktionen weiß `pandas` also Bescheid, welche Informationen Sie über die Gruppen haben wollen.
-<!-- TODO_2_Saka: Verweis auf apply Aufgabe -->
 
 [ER] Gruppieren Sie nach "Wahlbezirksart" und berechnen Sie die 
 durchschnittliche Anzahl gültiger Stimmen.

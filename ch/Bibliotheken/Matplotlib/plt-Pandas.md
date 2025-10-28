@@ -58,11 +58,13 @@ angucken möchte.
 Wenn man jedoch die komplette Kontrolle über die Visualisierung haben möchte oder die
 Visualisierung selbst komplexer ist, dann ist es sinnvoll Matplotlib selbst zu benutzen.
 
-[ER] Setzen Sie das gleiche Diagramm statt mit der Pandas `plot()`-Methode mit Matplotlib
-(explizite Schreibweise) um.
+[ER] Setzen Sie das gleiche Diagramm mit der 
+[`bar()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.bar.html) 
+(explizite Schreibweise) statt mit der Pandas `plot()`-Methode um.
 
 Das geht aber noch deutlich geschickter.
-Im Folgenden werden Sie diese Grafik (<!--TODO_1_Saka-->) nachbauen.
+Im Folgenden werden Sie diese Grafik nachbauen:
+<img src="plt-votes-figure.png" style="width: 50%;"></img>
 
 [ER] Rechnen Sie dafür für jede Partei den Prozentwert aus.
 
@@ -86,7 +88,7 @@ party_colors = {
     "BSW": "#FF6600",
     "Andere": "#A0A0A0"
 }
-colors = [party_colors.get(p, "#A0A0A0") for p in major_parties]
+colors = [party_colors.get(p, "#A0A0A0") for p in major_parties.index]
 ```
 
 [ER] Plotten Sie das Säulendiagramm mit den Parteien und den richtigen Farben.
