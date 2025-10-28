@@ -1,5 +1,5 @@
 title: "pandas: Selektion mit logischen Ausdrücken"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 requires: pd-Datenselektion
@@ -28,6 +28,7 @@ wie in [PARTREF::pd-Einführung] beschrieben:
 import pandas as pd
 erststimmen_df = pd.read_csv("Pfad/zur/Berlin_BT25_W1.csv", sep=';')
 ```
+
 
 ### Logische Ausdrücke auf `Series`
 
@@ -69,6 +70,7 @@ Formulieren Sie auf die gleiche Weise eine Abfrage aller Wahlbezirke,
 in denen die Linke mehr Stimmen hat als die CDU.
 Geben Sie zusätzlich die Anzahl an Zeilen mit ab, für die diese Bedingung erfüllt ist.
 
+
 ### Verkettung
 
 Logische Ausdrücke lassen sich auch mit `&` (und) oder `|` (oder) verknüpfen. 
@@ -91,6 +93,7 @@ Formulieren Sie eine Abfrage aller Wahlbezirke, in denen die Linke mehr als 50 S
 es aber weniger als 250 Gültige Stimmen gab.
 Geben Sie zusätzlich die Anzahl an Zeilen mit ab, für die diese Bedingung erfüllt ist.
 
+
 ### Boolean-Series als Filter benutzen (Boolean-Indexing)
 
 Bis jetzt haben Sie lediglich `Series` mit Booleans als Inhalt erstellt. 
@@ -112,9 +115,9 @@ Wie man eine `Series` als Filter benutzt wird auch in der
 veranschaulicht.
 [ENDNOTICE]
 
-[ER] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen der Bezirksname nicht "Mitte" ist.
+[ER] Rufen Sie aus `erststimmen_df` alle Wahlbezirke ab, in denen der Bezirksname nicht "Mitte" ist.
 
-[ER] Filtern Sie `erststimmen_df` auf alle Wahlbezirke, in denen die Linke mehr Stimmen bekommen hat als die CDU, 
+[ER] Rufen Sie aus `erststimmen_df` alle Wahlbezirke ab, in denen die Linke mehr Stimmen bekommen hat als die CDU, 
 aber weniger als SPD.
 
 [ER] Formulieren Sie den gleichen Audruck aus der vorherigen Aufgabe 
@@ -157,11 +160,12 @@ Lesen Sie diesen
 Zu welcher Variante neigen Sie und warum?
 Begründen Sie.
 
+
 ### `filter()`
 <!-- TODO_3: Verweis auf Regexp-Aufgabe zufügen -->
 
 Die Methode `filter()` funktioniert etwas anders. 
-Sie filtert auf den Spalten oder Zeilen eines DataFrames anhand des Namens der Spalten oder Zeilen.
+Sie filtert auf den Spalten oder Zeilen eines DataFrames anhand des _Namens_ der Spalten oder Zeilen.
 Sie ist damit also sehr ähnlich zu den Funktionen zur Auswahl von Teilbereichen wie z.B. `loc()`.
 Sie kann aber noch mehr z.B. jede Spalte auswählen, 
 deren Namen einen bestimmten Regulären Ausdruck erfüllt.
@@ -169,11 +173,12 @@ deren Namen einen bestimmten Regulären Ausdruck erfüllt.
 [ER] Schauen Sie sich die 
 [Dokumentation zu filter()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.filter.html) 
 an. 
-Wählen Sie mit Hilfe des `like`-Parameters alle _Zeilen_ aus, die eine 1 enthalten.
+Wählen Sie mit Hilfe des `like`-Parameters alle _Zeilen_ aus, deren Name "1" enthält.
 
-[ER] Wählen Sie mit der Methode `filter()` alle _Spalten_ aus, die in irgendeiner Weise das
-Wort "Bezirk" enthalten. 
+[ER] Wählen Sie mit der Methode `filter()` alle _Spalten_ aus, deren Name in irgendeiner Weise das
+Wort "Bezirk" enthält. 
 Der Reguläre Ausdruck dafür lautet wie folgt: "(?i)bezirk"
+
 
 ### `sort_values()`
 
@@ -186,7 +191,7 @@ und sortieren Sie `erststimmen_df` absteigend nach den Bezirksnamen.
 
 [ER] Verbinden Sie nun das Gelernte. 
 Sortieren Sie `erststimmen_df` absteigend nach den Stimmen für die SPD.
-Filtern Sie diese Auswahl, sodass Sie alle Zeilen ausgeben in denen die CDU mehr Stimmen hat
+Filtern Sie diese Auswahl, sodass Sie alle Zeilen ausgeben, in denen die CDU mehr Stimmen hat
 als die SPD.
 [ENDSECTION]
 
