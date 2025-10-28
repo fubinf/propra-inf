@@ -2,7 +2,7 @@ title: Funktionen, Eventhandling und Interaktion
 stage: alpha
 timevalue: 1.25
 difficulty: 2
-assumes: 
+assumes: html-erste-Schritte, html-Medien   
 requires: js-DOM-Baumstruktur
 ---
 
