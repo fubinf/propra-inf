@@ -2,8 +2,8 @@ title: DOM erkunden und erste Interaktionen
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: js-DOM-Einführung
-requires: html-Formulare
+assumes: html-erste-Schritte, html-Medien, css-Einführung, css-Selektoren
+requires: js-DOM-Einführung
 ---
 
 [SECTION::goal::idea]
@@ -47,7 +47,7 @@ body
 Sie können im DOM mit `parentNode`, `children`, `firstChild`, `nextElementSibling` usw. navigieren:
 
 Um Elemente zu bearbeiten, muss man sie zunächst einmal finden. 
-Dafür gibt es unter anderem`document.querySelector`, das Elemente auf Basis eines CSS-Selektors finden kann.
+Dafür gibt es unter anderem `document.querySelector`, das Elemente auf Basis eines CSS-Selektors finden kann.
 
 ```js
 const absatz = document.querySelector("p"); // wählt das erste <p> aus
@@ -58,7 +58,7 @@ console.log(absatz.children);   // gibt [<strong>] aus
 Einige Elemente sind auch direkt verfügbar, beispielsweise `document.body`.
 
 [EQ] Es gibt noch weitere Möglichkeiten, Elemente zu finden. 
-Nennen Sie drei und geben je ein Beispiel für die Verwendung.
+Nennen Sie drei und geben Sie je ein Beispiel für die Verwendung.
 
 
 ### DOM gezielt verändern
@@ -87,29 +87,25 @@ hinweis.remove();
 ```
 Das betroffene Element verschwindet dabei augenblicklich und vollständig von der Seite.
 
-[ER] Erweitern Sie die bestehende HTML-Seite aus `Erste Schritte in JavaScript und DOM` im Bereich 
-"Unsere Leistungen" zu einer interaktiven Liste: 
-Fügen Sie ein Eingabefeld und einen Button hinzu, mit dem man neue Leistungen hinzufügen kann. 
-Der Text im Eingabefeld soll als neuer `<li>` zur Liste unter "Unsere Leistungen" hinzugefügt werden. 
-Jeder Listenpunkt, der hinzugefügt wurde, soll einen kleinen "Entfernen"-Button erhalten, mit dem man 
-den jeweiligen Listenpunkt wieder löschen kann.
+[ER] Erweitern Sie die bestehende HTML-Seite aus [PARTREF::js-DOM-Einführung] im Bereich 
+"Unsere Leistungen" zu einer interaktiven Liste:  
+Fügen Sie ein Eingabefeld und einen Button hinzu, mit dem man neue Leistungen hinzufügen kann.  
+Der Text im Eingabefeld soll als neuer `<li>` zur Liste unter "Unsere Leistungen" hinzugefügt werden.  
+Jeder Listenpunkt, der hinzugefügt wurde, soll einen kleinen "Entfernen"-Button erhalten,  
+mit dem man den jeweiligen Listenpunkt wieder löschen kann.
 
 [HINT::Umgang mit verschachtelter Liste]
-Die vorhandene HTML-Struktur enthält untergeordnete Listen 
-(z. B. Bibliotheken innerhalb von "Programme nach Ihren Wünschen").
-Achten Sie bei Ihrer Umsetzung darauf, neue Einträge nicht in solche verschachtelten Bereiche einzufügen,
+Die vorhandene HTML-Struktur enthält untergeordnete Listen (z. B. Bibliotheken innerhalb von "Programme nach Ihren Wünschen").  
+Achten Sie bei Ihrer Umsetzung darauf, neue Einträge nicht in solche verschachtelten Bereiche einzufügen,  
 sondern nur in die äußere Liste mit den Hauptpunkten.
-Gib der äußeren Liste (also `<ul>`, nicht den inneren) eine eindeutige `id`, 
-z. B. `id="leistungenListe"`,
-und verwenden Sie im JavaScript `getElementById("leistungenListe")`, 
-um gezielt nur dort neue Einträge hinzuzufügen.
+Geben Sie der äußeren Liste (also `<ul>`, nicht den inneren) eine eindeutige `id`, z. B. `id="leistungenListe"`,  
+und verwenden Sie im JavaScript `getElementById("leistungenListe")`, um gezielt nur dort neue Einträge hinzuzufügen.
 [ENDHINT]
 
 
 ### Mehrere Elemente bearbeiten nach einem Event
 
-Manchmal möchten Sie mehrere Elemente auf einmal ansprechen, zum Beispiel, 
-um alle Listeneinträge zu markieren oder zu verändern. 
+Manchmal möchten Sie mehrere Elemente auf einmal ansprechen, zum Beispiel, um alle Listeneinträge zu markieren oder zu verändern.  
 Dazu können Sie eine Schleife verwenden:
 
 ```
