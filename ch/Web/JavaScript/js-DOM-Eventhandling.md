@@ -2,7 +2,8 @@ title: Funktionen, Eventhandling und Interaktion
 stage: alpha
 timevalue: 1.25
 difficulty: 2
-assumes: js-DOM-Baumstruktur
+assumes: 
+requires: js-DOM-Baumstruktur
 ---
 
 [SECTION::goal::idea]
@@ -44,18 +45,18 @@ document.getElementById("sendenBtn").addEventListener("click", begruesseNutzer);
 ```
 Die Begrüßung ist nun an zentraler Stelle definiert und kann an mehreren Stellen im Code verwendet werden.
 
-[ER] Änderen Sie Ihren bisherigen Code so um, dass der Begrüßungstext nicht mehr direkt im `addEventListener`, 
-sondern in einer eigenen Funktion steht.
+[ER] Ändern Sie Ihren bisherigen Code aus [PARTREF::js-DOM-Baumstruktur] so um, dass der Begrüßungstext nicht mehr direkt im `addEventListener`, sondern in einer eigenen Funktion steht.
 
 
 ### Vertiefung: `value`, `textContent`, `innerHTML` im Einsatz
 
-Wenn wir Inhalte im DOM ändern oder auslesen wollen, müssen wir unterscheiden, mit welcher Art von Element wir arbeiten, ein Textfeld, ein Absatz oder ein Bereich mit HTML-Auszeichnung.  
+Wenn wir Inhalte im DOM ändern oder auslesen wollen, müssen wir unterscheiden, mit welcher Art von Element wir arbeiten,  
+ein Textfeld, ein Absatz oder ein Bereich mit HTML-Auszeichnung.  
 Hier kommen die drei Zugriffsarten `value`, `textContent` und `innerHTML` ins Spiel.  
 Schon kleine Fehler bei der Auswahl führen zu unerwartetem Verhalten, z. B. sichtbaren HTML-Tags oder leeren Ausgaben.  
 
 Wir wissen: `value` ist für Eingabefelder, `textContent` für reinen Text, `innerHTML` für HTML-Strukturen.  
-Eine ausführlichere Dokumentation für `value` findest du in der [MDN-Webdokumentation zu value](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/value?utm_source=chatgpt.com).  
+Eine ausführlichere Dokumentation für `value` finden Sie in der [MDN-Webdokumentation zu value](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/value?utm_source=chatgpt.com).  
 Aber spannend ist, was bei den beiden folgenden Codeblöcken passiert:
 
 1.
@@ -68,7 +69,7 @@ absatz.textContent = "<strong>Fehler:</strong> Eingabe fehlt";
 absatz.innerHTML = "<strong>Fehler:</strong> Eingabe fehlt";
 ```
 
-Bei dem ersten Codeblock erscheinen die Tags erscheinen als Text.
+Bei dem ersten Codeblock werden die Tags als Text angezeigt.  
 Bei dem zweiten wird der Text fett dargestellt.
 
 [NOTICE]
@@ -77,7 +78,7 @@ Bei Benutzereingaben kann das gefährlich sein, etwa bei eingebettetem JavaScrip
 Nutzen Sie `innerHTML` nur, wenn Sie den Inhalt selbst kontrollieren.
 [ENDNOTICE]
 
-Die Methode `value` funktioniert nur bei Eingabeelementen wie `<input>` oder `<textarea>`:
+Die Eigenschaft `value` funktioniert bei Eingabeelementen wie `\<input>`, `\<textarea>` und `\<select>`:
 
 ```
 <input id="eingabe" type="text" />
@@ -90,25 +91,23 @@ const ausgabe = document.getElementById("ausgabe");
 
 ausgabe.textContent = eingabefeld.value;
 ```
-Wenn Sie hier fälschlich `textContent` auf das Eingabefeld anwenden, bekommen Sie `undefined`.  
-Wenn Sie mit Benutzereingaben arbeiten, ist fast immer `value` gemeint.
+Wenn Sie hier fälschlich `textContent` auf das Eingabefeld anwenden, erhalten Sie `""` (einen leeren String).  
+Wenn Sie mit Benutzereingaben arbeiten, können Sie davon ausgehen, dass fast immer `value` gemeint ist.
 
 [ER] Ergänzen Sie Ihren bestehenden Code so, dass direkt unter dem Namens-`<input>`-Feld ein Bereich (`<p>` oder `<div>`) angezeigt wird.  
-
-Wird das Feld ohne Eingabe verlassen, soll dort mittels eines `blur-events` (MDN-Webdokumentation: [blur Event (MDN)](https://developer.mozilla.org/de/docs/Web/API/Element/blur_event)) der Hinweis `<strong>Fehler:</strong> Bitte Name eingeben` erscheinen:
+Wird das Feld ohne Eingabe verlassen, soll dort mittels eines `blur`-Events (MDN-Webdokumentation: [blur Event (MDN)](https://developer.mozilla.org/de/docs/Web/API/Element/blur_event)) der Hinweis `<strong>Fehler:</strong> Bitte Name eingeben` erscheinen:
 
 - Einmal mit `textContent` gesetzt.
 - Einmal mit `innerHTML` gesetzt.
-- Lies den eingegebenen Text mit `value` aus.
+- Lesen Sie den eingegebenen Text mit `value` aus.
 
-[EQ] Vergleiche:
+[EQ] Vergleichen Sie:
 
 - Was wird angezeigt?
 - Was passiert beim falschen Property?
 
 
 ### Das Eventobjekt gezielt nutzen
-
 
 Das Eventobjekt enthält Informationen über das Ereignis, das ausgelöst wurde:   
 z. B. um welchen Typ es sich handelt, welches Element betroffen war oder wo sich der Mauszeiger befindet.  
@@ -173,19 +172,19 @@ HTML-Ausschnitt dazu:
 So sparen Sie sich doppelte Codeblöcke und können bei Änderungen alles zentral anpassen.
 
 [ER] Schreiben Sie nun eine Funktion `zeigeEingabe`, die bei einem `input`-Event auf ein Textfeld den aktuellen Wert sofort im DOM anzeigt,  
- z. B. in einem `<p>`, nutzen Sie dafür das Eventobjekt und `event.target`.
+z. B. in einem `<p>`, nutzen Sie dafür das Eventobjekt und `event.target`.
 
 [EQ] Erklären Sie den Unterschied:  
 Wann verwendet man `click`, `input` oder `change` als Eventtyp?  
 Was passiert jeweils und worin unterscheiden sie sich in der Praxis?  
-Eine gute dafür Erklärung findest du in der MDN-Webdokumentation: [click Event (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event), [input Event (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event), [change Event (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event).
+Eine ausführlichere Erklärung dafür finden Sie in der MDN-Webdokumentation: [click Event (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event), [input Event (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event), [change Event (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event).
 
 
 ### Wiederverwendung durch Parameter
 
-
 Eine der wichtigsten Ideen beim Programmieren ist: Schreibe Dinge nicht doppelt.  
-Wenn Sie eine Funktion mehrfach mit kleinen Unterschieden brauchen, z. B. für verschiedene Texte oder Elemente, können Sie diese Unterschiede als Parameter übergeben.
+Wenn Sie eine Funktion mehrfach mit kleinen Unterschieden brauchen, z. B. für verschiedene Texte oder Elemente,  
+können Sie diese Unterschiede als Parameter übergeben.
 
 So bleibt Ihr Code übersichtlich und flexibel: Wenn sich etwas ändern muss, passen Sie es dann nur an einer Stelle an.  
 Wenn Sie dieselbe Aktion auf verschiedene Elemente anwenden möchten, können Sie einfach Funktionen mit Parametern schreiben:
