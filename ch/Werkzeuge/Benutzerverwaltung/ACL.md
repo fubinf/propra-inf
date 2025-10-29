@@ -45,9 +45,8 @@ lässt sich mit ACLs lösen.
 
 ### ACL installieren
 
-[EC] Aktualisieren Sie ihr System.
-
-[EC] Installieren Sie das Paket `acl`.
+Aktualisieren Sie Ihr System und installieren Sie das Paket `acl`:
+`sudo apt update && sudo apt upgrade -y && sudo apt install acl`
 
 
 ### Testumgebung erstellen

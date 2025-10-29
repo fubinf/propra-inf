@@ -50,9 +50,8 @@ aliquam erat volutpat.
 
 ### Nano installieren
 
-[EC] Aktualisieren Sie Ihr System.
-
-[EC] Installieren Sie das Paket `nano`.
+Aktualisieren Sie Ihr System und installieren Sie das Paket `nano`:
+`sudo apt update && sudo apt upgrade -y && sudo apt install nano`
 
 ### Arbeiten mit Nano
 
@@ -106,9 +105,8 @@ Lesen Sie Kapitel **3.6** des [nano Handbuchs](https://www.nano-editor.org/dist/
 
 ### Vim installieren
 
-[EC] Aktualisieren Sie Ihr System
-
-[EC] Installieren Sie das Paket `vim`.
+Aktualisieren Sie Ihr System und installieren Sie das Paket `vim`:
+`sudo apt update && sudo apt upgrade -y && sudo apt install vim`
 
 ### Arbeiten mit Vim
 

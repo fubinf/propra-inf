@@ -24,9 +24,8 @@ Zielserver = `andorra.imp.fu-berlin.de`
 
 ### Secure Shell installieren
 
-[EC] Aktualisieren Sie Ihr System
-
-[EC] Installieren Sie das Paket `openssh-client`
+Aktualisieren Sie Ihr System und Installieren Sie das Paket `openssh-client`:
+`sudo apt update && sudo apt upgrade -y && sudo apt install openssh-client`
 
 [NOTICE]
 Stellen Sie sicher, dass Sie sich im Netz der Hochschule befinden, nötigenfalls über VPN. 
