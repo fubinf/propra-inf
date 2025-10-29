@@ -6,7 +6,6 @@ assumes: css-Selektoren, css-Box-Modell
 ---
 
 [SECTION::goal::experience]
-
  - Ich kann Flexbox, Gridlayout, und Floats verwenden.
  - Ich kann ihre Unterschiede und Einsatzzwecke beschreiben.
 [ENDSECTION]
@@ -36,7 +35,7 @@ Um die Schwierigkeit der Aufgabe zu verringern und sich auf die Layouts zu konze
 können Sie das nachfolgende, vorgegebene CSS einfügen oder als Vergleich heranziehen.
 [HINT::CSS-Design]
 ```css
-    /** STYLING Vorgabe **/
+    /** Design-Vorgabe **/
     li {
       padding: 5px;
       border: 2px solid;
@@ -75,7 +74,7 @@ Sie müssen zunächst die Eigenschaft `clear` für ein Element definieren, um da
 
 [ER] Die Liste der Stichwörter soll sich horizontal über die verfügbare Breite verteilen
 und so viele Zeilen wie nötig in Anspruch nehmen. 
-Für Layouts die, die Seite in _eine_ Richtung, also horizontal oder vertikal, aufteilen sollen,
+Für Layouts, die die Seite in _eine_ Richtung, also horizontal oder vertikal, aufteilen sollen,
 eignet sich Flexbox ganz besonders. 
 Implementieren Sie das beschriebene Layout mittels Flexbox.
 Eine Übersicht über Flexbox erhalten Sie z.B. bei 
@@ -85,7 +84,7 @@ Nehmen Sie sich zum Lesen genug Zeit, Flexbox ist ein anspruchsvolles Konzept.
 [ER] Sollen Objekte in _zwei_ Dimensionen angeordnet werden, dann empfiehlt es sich das Gridlayout zu verwenden.
 Auch hierfür gibt es bei CSS-Tricks einen kompakten 
 [CSS Grid Layout Guide](https://css-tricks.com/snippets/css/complete-guide-grid/).
-Verwenden sie Grid Layout, um mittels vier Boxen ein `P` (wie ProPy) auf einem farbigen Hintergrund darzustellen,
+Verwenden Sie Grid Layout, um mittels vier Boxen ein `P` (wie ProPy) auf einem farbigen Hintergrund darzustellen,
 wie z.B. in nachfolgendem Bild:
 
 <img src="css-Layout-P.png">
