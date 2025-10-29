@@ -8,12 +8,14 @@ assumes: Umgang-mit-Verzeichnissen
 Ich verstehe wie rsync funktioniert und wie ich dieses anwende.
 [ENDSECTION]
 
+
 [SECTION::background::default]
 `rsync` ist ein Programm, um Dateien zwischen lokalen oder entfernten Pfaden
 effizient abzugleichen.  
 Es prüft vor dem Kopieren, welche Dateien sich geändert haben, und überträgt nur
 diese – das spart Zeit und Bandbreite.  
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -23,12 +25,14 @@ diese – das spart Zeit und Bandbreite.
 
 [EC] Installieren Sie das Paket `rsync`.
 
-Lesen Sie bis einschließlich **Null Output or DryRun, and Verbose** des Beitrages
+Lesen Sie 
 [Rsync Cross Platform Tutorial](https://www.linode.com/docs/guides/rsync-cross-platform-tutorial/)
+bis einschließlich des Abschnitts **"Null Output or DryRun, and Verbose"**.
 
 <replacement id='rsync-targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
 </replacement>
+
 
 ### Testdateien erstellen
 
@@ -62,13 +66,15 @@ Prüfen Sie, ob der Unterordner `rsync_copy_data` und die Textdateien vorhanden 
 
 ### Nutzen von rsync
 
+[EC] Erstellen Sie den Ordner `~/ws/tmp/rsync_destination`.
+
+[WARNING]
 Man arbeitet mit `rsync` meistens auf ganzen (oftmals großen) Dateibäumen.
 Dadurch können schon kleine Tippfehler beim Kommando sehr unerfreuliche Auswirkungen haben,
 also bitte Vorsicht!
+[ENDWARNING]
 
-[EC] Erstellen Sie den Ordner `~/ws/tmp/rsync_destination`.
-
-Führen Sie nacheinander beide Befehle aus  
+Führen Sie nacheinander die folgende beiden (gleichen) Befehle aus:  
 
 [EC] `rsync -a ~/ws/tmp/rsync_copy_data ~/ws/tmp/rsync_destination/`  
 
@@ -96,6 +102,7 @@ home-Ordner des Zielservers.
 [EC] Kopieren Sie die in der vorherigen Aufgabe kopierten Daten vom Zielserver auf ihr System in 
 einen neuen Ordner `~/ws/tmp/rsync_destination2`.
 
+
 ### Backup mit rsync
 
 `rsync` bietet einen entscheidenden Vorteil gegenüber herkömmlichen Kopierbefehlen: Es überprüft vor
@@ -119,6 +126,7 @@ hinzu.
 
 [EC] Vergewissern Sie sich, dass die Datei `datei1` im `~/ws/tmp/rsync_destination3` Ordner geändert wurde.
 
+
 ### Reflektion
 
 [EQ] Wie stellt rsync sicher, dass nur geänderte Dateien erneut kopiert werden?
@@ -126,14 +134,14 @@ hinzu.
 [EQ] Welche Unterschiede gibt es zwischen der Verwendung von rsync und anderen Kopierbefehlen wie `cp`?
 
 [EQ] Wie könnten Sie überprüfen, ob die Synchronisation tatsächlich alle Änderungen übernommen hat?
-
-
 [ENDSECTION]
+
 
 [SECTION::submission::reflection]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Kommandoprotokoll]
 [PROT::ALT:rsync.prot]
