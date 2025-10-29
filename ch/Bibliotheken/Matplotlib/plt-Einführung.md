@@ -22,7 +22,7 @@ muss man die zugrundeliegende Struktur, die `Figure`, verstehen.
 
 ### Matplotlib installieren
 
- Installieren Sie `matplotlib` mittels [TERMREF::pip]: `pip install matplotlib`
+Installieren Sie `matplotlib` mittels [TERMREF::pip]: `pip install matplotlib`
 
 Sie werden `matplotlib` üblicherweise über die `pyplot`-Funktionen benutzen.
 Diese werden per Konvention wie folgt importiert: `import matplotlib.pyplot as plt`
@@ -47,8 +47,11 @@ Es sollte lediglich ein leeres Fenster zu sehen sein.
 Auch wenn Sie nun eine `Figure` erstellt haben und sie auch mit `plt.show()` anzeigen lassen, 
 so beinhaltet die `Figure` noch keine Sachen die sie anzeigen soll.
 
-[ER] Fügen Sie an den Koordinaten (0,1), (1,2) und (2,4) Punkte hinzu. 
-Nutzen Sie dafür die folgende Struktur und befüllen Sie `x_values` und `y_values`:
+[ER] Der folgende Code nutzt die Methode
+[`plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html),
+um eine Linie zu zeichnen. 
+Fügen Sie an den Koordinaten (0,1), (1,2) und (2,4) Punkte hinzu. 
+Befüllen Sie dafür `x_values` und `y_values`:
 ```python
 ax = fig.subplots() # Axes der Figure
 
@@ -63,14 +66,14 @@ Wir greifen hierbei auf die `Axes` der `Figure` zu.
 Was genau die `Axes` sind, das lernen Sie in den kommenden Aufgaben genauer, 
 wichtig zum Verständnis ist nur, dass man sie benutzt,
 um Visualisierungen zu der `Figure` hinzuzufügen, 
-zum Beispiel durch die Methode `plot()` die Punkte bei den übergebenen X- und Y-Werten erstellt.
+zum Beispiel durch die Methode `plot()`.
 
-[ER] Standardmäßig stell `plot` alle Punkte als eine Linie dar. Schauen Sie sich die 
+[ER] Standardmäßig stellt `plot()` alle Punkte als eine Linie dar. Schauen Sie sich die 
 [Dokumentation zu der Methode `plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot)
-an und stellen Sie die gleichen Daten mithilfe von einzelnen Punkten anstelle einer Linie dar.
+noch einmal genauer an und stellen Sie die gleichen Daten mithilfe von einzelnen Punkten 
+anstelle einer Linie dar.
 
 [EQ] Was passiert, wenn Sie mehrere `Figure` erstellen?
-
 
 ### Mathematik
 
