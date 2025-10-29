@@ -105,7 +105,7 @@ der nur gültige Uhrzeiten in diesem Format trifft.
 Einzelne Monatsgrenzen, wie z. B. dass der Februar 28 Tage hat, müssen Sie nicht beachten.
 
 [EQ] Schreiben Sie einen regulären Ausdruck, der gültige E-Mail-Adressen trifft.  
-Die Anforderungen für eine gültige E-Mail-Adresse sind:
+Die Anforderungen für eine gültige E-Mail-Adresse sind:     
 - Eine E-Mail-Adresse muss genau ein "@" enthalten.     
 - Vor dem "@" dürfen Buchstaben (Groß- und Kleinbuchstaben), Ziffern, Punkte (.), Unterstriche (_) und Bindestriche (-) stehen.          
 - Nach dem "@" kommt der Domain-Name, bestehend aus Buchstaben, Ziffern oder Bindestrichen.         

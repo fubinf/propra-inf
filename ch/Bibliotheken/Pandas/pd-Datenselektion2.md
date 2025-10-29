@@ -56,8 +56,7 @@ wie folgt vorgehen:
 
 Geben Sie die Ausgabe dann z.B. als Kommentar im Code mit ab:
 ```python
-series > value
-# Zeilen, die Bedingung erfüllen: 42
+series > value # trifft 42 Zeilen
 ```
 [ENDNOTICE]
 
@@ -162,13 +161,13 @@ Begründen Sie.
 
 
 ### `filter()`
-<!-- TODO_3: Verweis auf Regexp-Aufgabe zufügen -->
 
 Die Methode `filter()` funktioniert etwas anders. 
 Sie filtert auf den Spalten oder Zeilen eines DataFrames anhand des _Namens_ der Spalten oder Zeilen.
 Sie ist damit also sehr ähnlich zu den Funktionen zur Auswahl von Teilbereichen wie z.B. `loc()`.
 Sie kann aber noch mehr z.B. jede Spalte auswählen, 
-deren Namen einen bestimmten Regulären Ausdruck erfüllt.
+deren Namen einen bestimmten Regulären Ausdruck erfüllt 
+(für mehr zu regulären Ausdrücken siehe [PARTREF::re-Metazeichen]).
 
 [ER] Schauen Sie sich die 
 [Dokumentation zu filter()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.filter.html) 
