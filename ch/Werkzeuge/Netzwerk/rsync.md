@@ -1,19 +1,18 @@
-title: Dateien mit rsync kopieren
+title: Dateien mit rsync abgleichen
 stage: alpha
 timevalue: 1
 difficulty: 2
 assumes: Umgang-mit-Verzeichnissen
 ---
+
 [SECTION::goal::idea]
 Ich verstehe wie rsync funktioniert und wie ich dieses anwende.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-`rsync` ist ein Programm, um Dateien zwischen lokalen oder entfernten Pfaden
-effizient abzugleichen.  
-Es prüft vor dem Kopieren, welche Dateien sich geändert haben, und überträgt nur
-diese – das spart Zeit und Bandbreite.  
+`rsync` gleicht Dateien zwischen lokalen oder entfernten Pfaden ab.
+Es prüft vor dem Kopieren, welche Dateien sich geändert haben und überträgt nur diese.
 [ENDSECTION]
 
 
@@ -21,13 +20,13 @@ diese – das spart Zeit und Bandbreite.
 
 ### rsync installieren
 
-[EC] Aktualisieren Sie Ihr System.
+Aktualisieren Sie Ihr System und installieren Sie das Paket `rsync`:
+`sudo apt update && sudo apt upgrade -y && sudo apt install rsync`
 
-[EC] Installieren Sie das Paket `rsync`.
+Lesen Sie die Abschnitte **Description und Usage** der 
+[rsync(1) manpage](https://manpages.debian.org/stable/rsync/rsync.1.en.html).
 
-Lesen Sie 
-[Rsync Cross Platform Tutorial](https://www.linode.com/docs/guides/rsync-cross-platform-tutorial/)
-bis einschließlich des Abschnitts **"Null Output or DryRun, and Verbose"**.
+Die **additional features** aus dem Abschnitt **Description** können Sie überspringen.
 
 <replacement id='rsync-targetserver'>
 Zielserver = `andorra.imp.fu-berlin.de`
@@ -36,37 +35,16 @@ Zielserver = `andorra.imp.fu-berlin.de`
 
 ### Testdateien erstellen
 
-```bash
-#!/bin/bash
+[EC] Erstellen Sie einen Ordner `rsync_copy_data` in Ihrem [TERMREF::Hilfsbereich].
 
-# Verzeichnis festlegen
-unterordner="$HOME/ws/tmp/rsync_copy_data/"
+Jetzt brauchen wir noch Dateien in diesem Ordner. Führen Sie den nächsten Befehl aus:
 
-# Sicherstellen, dass der Unterordner existiert
-if [ ! -d "$unterordner" ]; then
-    mkdir -p "$unterordner"
-fi
-
-# 5 Dateien erstellen
-for i in {1..5}; do
-    echo "Inhalt der Datei $i" > "$unterordner/datei_$i"
-done
-
-echo "$i Dateien wurden im Unterordner erstellt: $unterordner"
-```
-
-Erstellen Sie eine Datei `rsync_copy_data.sh` auf Ihrem System mit obigem Inhalt.
-
-Das Skript erstellt einen neuen Ordner `rsync_copy_data` mit 5 Textdateien in Ihrem [TERMREF::Hilfsbereich].
-
-[EC] Führen Sie das Skript mit `bash rsync_copy_data.sh` aus.
-
-Prüfen Sie, ob der Unterordner `rsync_copy_data` und die Textdateien vorhanden sind.
+[EC] `touch ws/tmp/rsync_copy_data/datei{1..5}`
 
 
-### Nutzen von rsync
+### Verhalten von `rsync`
 
-[EC] Erstellen Sie den Ordner `~/ws/tmp/rsync_destination`.
+[EC] Erstellen Sie den Ordner `rsync_destination` in Ihrem [TERMREF::Hilfsbereich].
 
 [WARNING]
 Man arbeitet mit `rsync` meistens auf ganzen (oftmals großen) Dateibäumen.
@@ -74,57 +52,81 @@ Dadurch können schon kleine Tippfehler beim Kommando sehr unerfreuliche Auswirk
 also bitte Vorsicht!
 [ENDWARNING]
 
-Führen Sie nacheinander die folgende beiden (gleichen) Befehle aus:  
+Führen Sie nacheinander die folgende beiden (gleichen) Befehle aus: 
 
-[EC] `rsync -a ~/ws/tmp/rsync_copy_data ~/ws/tmp/rsync_destination/`  
+[EC] `rsync -a ~/ws/tmp/rsync_copy_data ~/ws/tmp/rsync_destination/` 
+
+Schauen Sie sich die Dateien im Ordner `rsync_destination` an.
 
 [EC] `rsync -a ~/ws/tmp/rsync_copy_data/ ~/ws/tmp/rsync_destination/`
+
+Schauen Sie sich die Dateien im Ordner `rsync_destination` nochmal an.
 
 [EQ] Was ist der Unterschied im Verhalten der beiden Kommandos?
 
 [NOTICE]
-Merken Sie sich dieses Verhalten von rsync. Die meisten Kopier-Befehle (`cp`, `scp`, `rsync`...) 
-nutzen diese Semantik.
+Merken Sie sich dieses Verhalten von rsync. 
+Im Gegensatz zu anderen Kopier-Befehlen hat der nachgestellte Schrägstrich (_trailing slash_) beim 
+Quellverzeichnis bei `rsync` eine entscheidende Bedeutung.
 [ENDNOTICE]
-
-`rsync` bietet die Möglichkeit, Daten auf einen entfernten Pfad zu kopieren.
-
-Lesen Sie den Abschnitt **Usage** der 
-[rsync(1) manpage](https://manpages.debian.org/stable/rsync/rsync.1.en.html)
-
-[EC] Kopieren Sie die den Ordner `~/ws/tmp/rsync_copy_data` von Ihrem System auf Ihren 
-home-Ordner des Zielservers.
-
-`rsync` kann die Daten auch in die andere Richtung kopieren.
-
-[EC] Erstellen Sie einen neuen Ordner `~/ws/tmp/rsync_destination2`.
-
-[EC] Kopieren Sie die in der vorherigen Aufgabe kopierten Daten vom Zielserver auf ihr System in 
-einen neuen Ordner `~/ws/tmp/rsync_destination2`.
 
 
 ### Backup mit rsync
 
+Lesen und verstehen Sie die Optionen **--archive, --verbose, --dry-run** der 
+[rsync(1) manpage](https://manpages.debian.org/stable/rsync/rsync.1.en.html).
+
+Lesen Sie erst die Optionen in der **Options Summary** und danach in der **Options**.
+
+Nutzen Sie für die nächsten Aufgaben immer die Option `-v` zusätzlich.
+
 `rsync` bietet einen entscheidenden Vorteil gegenüber herkömmlichen Kopierbefehlen: Es überprüft vor
-dem Kopieren, welche Dateien sich geändert haben, und überträgt nur diese. Deshalb eignet sich
-`rsync` besonders gut für Backups, da nur geänderte Dateien kopiert werden und Zeit sowie
-Speicherplatz gespart werden.
+dem Kopieren, welche Dateien sich geändert haben, und überträgt nur diese. 
+Deshalb eignet sich `rsync` besonders gut für Backups, da nur geänderte Dateien kopiert werden und 
+Zeit sowie Speicherplatz gespart werden.
 
 Zur Veranschaulichung ändern wir eine Datei aus den vorhin erstellten Dateien und kopieren Sie in 
 einen Ordner.
 
-[EC] Erstellen Sie einen neuen Ordner `~/ws/tmp/rsync_destination3`.
+[EC] Erstellen Sie einen neuen Ordner `rsync_destination2` in Ihrem [TERMREF::Hilfsbereich].
 
-[EC] Kopieren Sie die Dateien aus dem Ordner `~/ws/tmp/rsync_copy_data` per rsync in den 
-`~/ws/tmp/rsync_destination3` Ordner.
+[EC] Kopieren Sie die Dateien aus dem Ordner `rsync_copy_data` per rsync in den 
+`rsync_destination2` Ordner.
 
-[EC] Fügen Sie der Datei `~/ws/tmp/rsync_copy_data/datei_1` den Text `Ich wurde veraendert` 
+[EC] Fügen Sie der Datei `rsync_copy_data/datei1` den Text `Ich wurde veraendert` 
 hinzu.
 
-[EC] Kopieren Sie die Dateien aus dem Ordner `~/ws/tmp/rsync_copy_data` per rsync in den 
-`~/ws/tmp/rsync_destination3` Ordner.
+Bevor wir die Datenübertragung starten, ist es sinnvoll, `rsync` im Dry-Run-Modus auszuführen, 
+um zu simulieren, welche Dateien am Ende kopiert würden. Die Simulation minimiert das Risiko von 
+unbeabsichtigtem Datenverlust, da man dann nochmal überprüft, was das Kommando machen würde.
 
-[EC] Vergewissern Sie sich, dass die Datei `datei1` im `~/ws/tmp/rsync_destination3` Ordner geändert wurde.
+[EC] Führen Sie einen `rsync`-dry-run durch, um die Dateien aus `rsync_copy_data` mit dem Zielordner 
+`rsync_destination2` abzugleichen.
+
+Jetzt wo wir gesehen haben, dass nur die veränderte Datei kopiert würde, kopieren wir diese nun.
+
+[EC] Gleichen Sie die Dateien aus dem Ordner `rsync_copy_data` per rsync mit dem 
+`rsync_destination2` Ordner ab.
+
+
+### Kopieren auf entfernte Systeme
+
+`rsync` bietet die Möglichkeit, Dateien auf einen entfernten Pfad zu kopieren, wie zum Beispiel in
+die Cloud oder in Ihre Colocation.
+
+Lesen Sie aus der **Synopsis** den Punkt **Access via remote shell** aus der 
+[rsync(1) manpage](https://manpages.debian.org/stable/rsync/rsync.1.en.html).
+
+[EC] Kopieren Sie den Ordner `rsync_copy_data` aus Ihrem [TERMREF::Hilfsbereich] in Ihren 
+`home`-Ordner des Zielservers.
+
+Die Stärke von rsync liegt darin, dass man durch einfaches Vertauschen von Quelle und Ziel die 
+Dateien vom Remote-Server genauso herunterladen kann, wie man sie hochgeladen hat.
+
+[EC] Erstellen Sie einen neuen Ordner `rsync_destination3` in Ihrem [TERMREF::Hilfsbereich].
+
+[EC] Kopieren Sie die in der vorherigen Aufgabe kopierten Dateien vom Zielserver auf ihr System in den
+Ordner `rsync_destination3` in Ihren [TERMREF::Hilfsbereich].
 
 
 ### Reflektion
@@ -143,10 +145,8 @@ hinzu.
 [ENDSECTION]
 
 
-[INSTRUCTOR::Kommandoprotokoll]
+[INSTRUCTOR::Kommandoprotokoll + Markdowndokument]
 [PROT::ALT:rsync.prot]
-[ENDINSTRUCTOR]
-
-[INSTRUCTOR::Markdowndokument]
+### Markdowndokument
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
