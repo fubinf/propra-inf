@@ -2,17 +2,15 @@ title: "sqlite3: lokales Datenbanksystem"
 stage: beta
 timevalue: 1.5
 difficulty: 2
-assumes: m_argparse, m_pprint, m_json2
+assumes: m_argparse, m_pprint, m_json2, sql-basics, sql-SELECT, sql-SELECT2
 ---
 
 [SECTION::goal::idea]
-
 Ich kenne die Funktionsweise von SQLite und kann dieses Datenbanksystem in Python verwenden.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Es gibt viele verschiedene Datenbanksysteme (z.B. mySQL, MS SQL, Oracle DB ...), die 
 unterschiedliche Eigenschaften mitbringen. 
 Einen Datenbankserver aufzusetzen und anschließend zu administrieren ist zeit- und ressourcenaufwändig. 
@@ -30,25 +28,27 @@ Kenntnisse in Datenbanksystemen und SQL werden nicht vorausgesetzt, aber auch ni
 vermittelt. Sobald SQL-Queries gebraucht werden, werden diese als Hints bereitgestellt. Nutzen 
 Sie diese, wenn Sie keine SQL Kenntnisse haben oder eine Musterlösung zur Kontrolle benötigen.
 [ENDNOTICE]
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
 ### Vorbereitungen
 
-- Machen Sie sich mit der _Abschnittsstruktur_ der
-  [Dokumentation von `sqlite3`](https://docs.python.org/3/library/sqlite3.html) vertraut.
-  Entnehmen Sie dieser Dokumentation dann in jedem Schritt unten die entsprechende Information.
-- Legen Sie die Datei `m_sqlite3.py` an und benutzen Sie diese Datei für den Rest der 
-  Aufgabe. 
-  Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile 
-  getrennt.
-- [ER] Das Programm soll beim Kommandozeilenaufruf einen Parameter erwarten, der einen von drei 
-  verschiedenen Werten annehmen kann: `create`, `query` oder `import`. Je nach übergebenen Wert 
-  soll ein anderer Teil der Aufgabe ausgeführt werden (Ein Vermerk, was wann ausgeführt werden 
-  soll, steht zu Beginn jedes Aufgabenabschnittes).  
-  Zur Verarbeitung von Argumenten eignet sich z.B. das Modul `argparse`.
+Machen Sie sich mit der _Abschnittsstruktur_ der
+[Dokumentation von `sqlite3`](https://docs.python.org/3/library/sqlite3.html) vertraut.
+Entnehmen Sie dieser Dokumentation dann in jedem Schritt unten die entsprechende Information.
+
+Legen Sie die Datei `m_sqlite3.py` an und benutzen Sie diese Datei für den Rest der 
+Aufgabe. 
+Fügen Sie ihre Python-Kommandos skript-artig hintereinander in die Datei ein, mit Leerzeile 
+getrennt.
+
+[ER] Das Programm soll beim Kommandozeilenaufruf einen Parameter erwarten, der einen von drei 
+verschiedenen Werten annehmen kann: `create`, `query` oder `import`. Je nach übergebenen Wert 
+soll ein anderer Teil der Aufgabe ausgeführt werden (Ein Vermerk, was wann ausgeführt werden 
+soll, steht zu Beginn jedes Aufgabenabschnittes).  
+Zur Verarbeitung von Argumenten eignet sich z.B. das Modul `argparse`.
 
 
 ### `create`, `import`, `query`: Datenbankdatei anlegen/öffnen
@@ -60,8 +60,8 @@ Wenn die Daten nur zur Laufzeit benötigt werden und nicht persistent gespeicher
 kann auch eine temporäre Datenbank im Arbeitsspeicher erstellt werden, die nach Ende des 
 Programms gelöscht wird.
 
-- [ER] Erzeugen Sie eine SQLite-Datenbank als Datei mit dem Namen `m_sqlite3.db`
-  oder öffnen Sie die vorhandene.
+[ER] Erzeugen Sie eine SQLite-Datenbank als Datei mit dem Namen `m_sqlite3.db`
+oder öffnen Sie die vorhandene.
 
 [NOTICE]
 Wenn Sie beim weiteren Bearbeiten ihre Datenbank versehentlich "kaputt machen" oder Sie sie einfach 
@@ -69,8 +69,8 @@ zurücksetzen möchten, können Sie einfach die Datenbankdatei löschen und mit 
 Programm wieder neu erstellen.
 [ENDNOTICE]
 
-- [ER] Um überhaupt Queries auf der Datenbank ausführen zu können, benötigen Sie einen 
-  sogenannten Cursor. Erzeugen Sie so ein Objekt.
+[ER] Um überhaupt Queries auf der Datenbank ausführen zu können, benötigen Sie einen 
+sogenannten Cursor. Erzeugen Sie so ein Objekt.
 
 
 ### `create`: Tabellen erstellen und befüllen
@@ -82,15 +82,15 @@ welche Bücher Sie besitzen (Buchtitel als String),
 zu welchem Genre sie gehören (noch ein String) und 
 ob Sie sie bereits gelesen haben (Integer 0 oder 1).
 
-- [ER] Erstellen Sie die Tabelle `books`, die die geeigneten Spalten beinhaltet, um die oben 
-  genannten Anforderungen abzubilden.  
-  Da unsere Datenbank **persistent** ist und Sie ihren Code vermutlich mehrmals während 
-  der Bearbeitung ausführen, sollte Ihre Query zusätzlich berücksichtigen, dass die Tabelle 
-  bereits existieren könnte.  
-  Zusätzlich soll der Buchtitel der Primärschlüssel der Tabelle sein, da es keinen Sinn ergibt, 
-  dasselbe Buch mehrmals in der Tabelle zu haben (zur Einfachheit blenden wir aus, dass der 
-  Buchtitel eigentlich kein guter Primärschlüssel ist, da man z.B. dasselbe Buch auch in verschiedenen 
-  Ausgaben besitzen kann. Eine ID, wie die ISBN, wäre besser geeignet).
+[ER] Erstellen Sie die Tabelle `books`, die die geeigneten Spalten beinhaltet, um die oben 
+genannten Anforderungen abzubilden.  
+Da unsere Datenbank **persistent** ist und Sie ihren Code vermutlich mehrmals während 
+der Bearbeitung ausführen, sollte Ihre Query zusätzlich berücksichtigen, dass die Tabelle 
+bereits existieren könnte.  
+Zusätzlich soll der Buchtitel der Primärschlüssel der Tabelle sein, da es keinen Sinn ergibt, 
+dasselbe Buch mehrmals in der Tabelle zu haben (zur Einfachheit blenden wir aus, dass der 
+Buchtitel eigentlich kein guter Primärschlüssel ist, da man z.B. dasselbe Buch auch in verschiedenen 
+Ausgaben besitzen kann. Eine ID, wie die ISBN, wäre besser geeignet).
 
 [HINT::SQL-Befehl]
 ```SQL
@@ -102,9 +102,9 @@ CREATE TABLE IF NOT EXISTS books (
 ```
 [ENDHINT]
 
-- [ER] Sie besitzen u.a. die folgenden Bücher: "The Lord of The Rings" (Fantasy), "1984" (Fiction) 
-  und "The Art of Computer Programming" (Monograph). Die ersten beiden Bücher haben Sie bereits 
-  gelesen. Tragen Sie alle drei Bücher entsprechend in die Tabelle `books` ein.
+ER] Sie besitzen u.a. die folgenden Bücher: "The Lord of The Rings" (Fantasy), "1984" (Fiction) 
+und "The Art of Computer Programming" (Monograph). Die ersten beiden Bücher haben Sie bereits 
+gelesen. Tragen Sie alle drei Bücher entsprechend in die Tabelle `books` ein.
 
 [HINT::SQL-Befehl]
 ```SQL
@@ -127,8 +127,8 @@ für mehr Informationen.
 Das im Abschnitt erwähnte `autocommit` Attribut existiert erst ab Python 3.12.
 [ENDNOTICE]
 
-- [ER] Sorgen Sie dafür, dass die Daten fest in die Datenbank geschrieben werden.  
-  **Achten Sie auch bei folgenden Aufgaben darauf, dass Transaktionen immer festgeschrieben werden.**
+[ER] Sorgen Sie dafür, dass die Daten fest in die Datenbank geschrieben werden.  
+**Achten Sie auch bei folgenden Aufgaben darauf, dass Transaktionen immer festgeschrieben werden.**
 
 
 ### `query`: Daten abfragen
@@ -136,9 +136,9 @@ Das im Abschnitt erwähnte `autocommit` Attribut existiert erst ab Python 3.12.
 Hier möchten wir ein paar Datenbankabfragen erstellen, mit deren Hilfe Sie den Inhalt ihrer 
 aktuellen Datenbank überprüfen können.
 
-- [ER] Fragen Sie aus der Datenbank die Anzahl der Einträge ab, die Sie in die Tabelle `books` 
-  importiert haben.  
-  `print("number of entries in 'books':", ...)`
+[ER] Fragen Sie aus der Datenbank die Anzahl der Einträge ab, die Sie in die Tabelle `books` 
+importiert haben.  
+`print("number of entries in 'books':", ...)`
 
 [HINT::SQL-Befehl]
 ```SQL
@@ -146,9 +146,9 @@ SELECT COUNT(title) FROM books
 ```
 [ENDHINT]
 
-- [ER] Fragen Sie ab, welche Bücher in Ihrer Datenbank aus dem Genre "Fantasy" kommen. Verwenden 
-  Sie `pprint` für eine lesbare Ausgabe.  
-  `print("fantasy books:")...`
+[ER] Fragen Sie ab, welche Bücher in Ihrer Datenbank aus dem Genre "Fantasy" kommen. Verwenden 
+Sie `pprint` für eine lesbare Ausgabe.  
+`print("fantasy books:")...`
 
 [HINT::SQL-Befehl]
 ```SQL
@@ -156,9 +156,9 @@ SELECT title FROM books WHERE genre = 'Fantasy'
 ```
 [ENDHINT]
 
-- [ER] Fragen Sie ab, welches Genre in Ihrer Datenbank am häufigsten vorkommt. Wenn mehr als ein 
-  Genre an erster Stelle steht, listen Sie alle diese Genres auf.  
-  `print("most common genre(s):", ...)`
+[ER] Fragen Sie ab, welches Genre in Ihrer Datenbank am häufigsten vorkommt. Wenn mehr als ein 
+Genre an erster Stelle steht, listen Sie alle diese Genres auf.  
+`print("most common genre(s):", ...)`
 
 [HINT::SQL-Befehl]
 ```SQL
@@ -169,9 +169,10 @@ ORDER BY COUNT(genre) DESC
 ```
 [ENDHINT]
 
-- [EC] Führen Sie ihr bisher erstellte Programm `m_sqlite3.py` einmal mit dem Parameter `create` 
-  aus, um die Datenbank zu erstellen, und anschließend einmal mit `query`, um zu testen, ob die 
-  Anlage und Befüllung korrekt funktioniert hat.
+[EC] Führen Sie ihr bisher erstellte Programm `m_sqlite3.py` einmal mit dem Parameter `create` 
+aus, um die Datenbank zu erstellen, und anschließend einmal mit `query`, um zu testen, ob die 
+Anlage und Befüllung korrekt funktioniert hat.
+
 
 ### `import`: Datensätze importieren
 
@@ -186,12 +187,13 @@ zu wollen. Die Datei haben Sie bereits bereinigt:
 ```
 [ENDFOLDOUT]
 
-- [ER] Speichern Sie die Daten aus dem Foldout als JSON Datei und importieren Sie sie mithilfe 
-  der `json` Bibliothek.
-- [ER] Die Importdaten, die bei Ihnen nun als Liste von Dictionaries vorliegen sollte, sollen 
-  nun in die Tabelle `books` geschrieben werden.
-  Verwenden Sie dafür eine geeignete Funktion des Cursors, die Ihnen die Verwendung von 
-  Schleifen erspart.
+[ER] Speichern Sie die Daten aus dem Foldout als JSON Datei und importieren Sie sie mithilfe 
+der `json` Bibliothek.
+
+[ER] Die Importdaten, die bei Ihnen nun als Liste von Dictionaries vorliegen sollte, sollen 
+nun in die Tabelle `books` geschrieben werden.
+Verwenden Sie dafür eine geeignete Funktion des Cursors, die Ihnen die Verwendung von 
+Schleifen erspart.
 
 [WARNING]
 Daten mittels simpler String-Operationen in SQL Queries einzubetten ist riskant, da es 
@@ -210,28 +212,27 @@ INSERT OR IGNORE INTO books VALUES (:title, :genre, 0)
 ```
 [ENDHINT]
 
-- [EC] Führen Sie nun Ihr Programm mit Parameter `import` und anschließend nochmal mit 
-  `query` aus, um die Abfragen mit den neuen Daten zu sehen.
+[EC] Führen Sie nun Ihr Programm mit Parameter `import` und anschließend nochmal mit 
+`query` aus, um die Abfragen mit den neuen Daten zu sehen.
 
 
 ### `create`, `import`, `query`: Datenbankdatei schließen
 
-- [ER] Schließen Sie die Datenbankverbindung am Ende des Programms wieder.
-
-
+[ER] Schließen Sie die Datenbankverbindung am Ende des Programms wieder.
 [ENDSECTION]
-[SECTION::submission::trace,program]
 
+
+[SECTION::submission::trace,program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 
 Die Datenbankdatei ist **nicht** Teil der Abgabe.
 Löschen Sie sie oder tragen Sie sie in `.gitignore` ein; siehe Aufgabe [PARTREF::git-ignore].
-
 [ENDSECTION]
-[INSTRUCTOR::Codedurchsicht]
 
-Das Programm muss 4 Mal mit verschiedenen Parametern ausgeführt werden:
+
+[INSTRUCTOR::Codedurchsicht]
+Das Programm muss 4 mal mit verschiedenen Parametern ausgeführt werden:
 
 - `python m_sqlite3 create` erstellt eine Datenbankdatei `m_sqlite3.db` im Ausführungsverzeichnis.
   Keine Ausgabe.
@@ -251,5 +252,4 @@ weil das Zerbrechlichkeit und Sicherheitslücken verursacht.
 Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_sqlite3.py]
 
 [PROT::ALT:m_sqlite3.prot]
-
 [ENDINSTRUCTOR]
