@@ -57,6 +57,7 @@ graph TD
 
 ### Erklärung
 
+<!-- TODO_2: rename pytest_* to pytest-*, ensure prefixes make sense -->
 - **m_unittest.md**: Basis für Unittests mit dem Standard-Testframework von Python. Grundlage für `m_pytest.md` und `testcoverage.md`.
 - **m_pytest.md**: Erweitert die Grundlagen von `m_unittest.md` und führt in das leistungsfähigere `pytest`-Framework ein. Grundlage für alle weiteren pytest-Themen.
 - **pytest_parametrize.md**: Baut auf `m_pytest.md` auf und zeigt, wie man tabellengesteuerte Tests mit `pytest` gestaltet. Grundlage für `pytest-Methodik-Blackbox.md`.
