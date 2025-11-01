@@ -20,7 +20,7 @@ jobs:
     - name: Checkout sedrila repository
       uses: actions/checkout@v4
       with:
-        repository: fubinf/sedrila
+        repository: RYZENNAVI/sedrila
         path: sedrila
         # If sedrila is a private repository, configure:
         # token: ${{ secrets.SEDRILA_ACCESS_TOKEN }}
@@ -59,7 +59,7 @@ jobs:
     
     - name: Run link checker
       run: |
-        python sedrila/py/sedrila.py maintainer --check-links --batch
+        python sedrila/py/sedrila.py maintainer --check-links --batch -- /tmp/linkcheck
       continue-on-error: false
     
     - name: Upload link check reports
@@ -68,20 +68,20 @@ jobs:
       with:
         name: link-check-reports
         path: |
-          link_check_report.json
-          link_check_report.md
+          /tmp/linkcheck/link_check_report.json
+          /tmp/linkcheck/link_check_report.md
         retention-days: 90
     
     - name: Display report summary
       if: always()
       run: |
         echo "=== Link Check Summary ==="
-        if [ -f link_check_report.json ]; then
+        if [ -f /tmp/linkcheck/link_check_report.json ]; then
           echo "Reports generated successfully:"
-          ls -la link_check_report.*
+          ls -la /tmp/linkcheck/link_check_report.*
           echo ""
           echo "JSON report preview:"
-          head -20 link_check_report.json
+          head -20 /tmp/linkcheck/link_check_report.json
         else
           echo "No reports found"
         fi

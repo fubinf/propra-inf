@@ -76,7 +76,7 @@ jobs:
     
     - name: Run program tests
       run: |
-        python sedrila/py/sedrila.py maintainer --check-programs --batch
+        python sedrila/py/sedrila.py maintainer --check-programs --batch -- /tmp/progtest
       continue-on-error: false
     
     - name: Upload program test reports
@@ -85,8 +85,8 @@ jobs:
       with:
         name: program-test-reports
         path: |
-          program_test_report.json
-          program_test_report.md
+          /tmp/progtest/program_test_report.json
+          /tmp/progtest/program_test_report.md
         retention-days: 90
     
     - name: Display test summary and errors
@@ -95,10 +95,10 @@ jobs:
         echo "============================================================"
         echo "PROGRAM TEST SUMMARY"
         echo "============================================================"
-        if [ -f program_test_report.json ]; then
+        if [ -f /tmp/progtest/program_test_report.json ]; then
           python3 << 'PYTHON_SCRIPT'
         import json
-        with open('program_test_report.json') as f:
+        with open('/tmp/progtest/program_test_report.json') as f:
             data = json.load(f)
             failed = data.get('failed_tests', [])
             
@@ -131,7 +131,7 @@ jobs:
         PYTHON_SCRIPT
           echo ""
           echo "Full reports uploaded as artifacts (retention: 90 days)"
-          ls -la program_test_report.*
+          ls -la /tmp/progtest/program_test_report.*
         else
           echo "ERROR: No reports generated"
         fi
