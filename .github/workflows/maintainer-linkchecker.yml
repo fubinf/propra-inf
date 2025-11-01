@@ -1,9 +1,6 @@
 name: Maintainer-LinkChecker
 
 on:
-  push:
-    branches:
-      - feature/programchecker  # Temporary: to make workflow visible in Actions UI
   schedule:
     # Run every Sunday at 03:00 UTC
     - cron: '0 3 * * 0'
