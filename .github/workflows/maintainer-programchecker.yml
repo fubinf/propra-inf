@@ -20,7 +20,7 @@ jobs:
     - name: Checkout sedrila repository
       uses: actions/checkout@v4
       with:
-        repository: fubinf/sedrila
+        repository: RYZENNAVI/sedrila
         path: sedrila
     
     - name: Set up Python
