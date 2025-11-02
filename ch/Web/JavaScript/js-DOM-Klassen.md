@@ -2,7 +2,7 @@ title: Klassen und Prototypen – Strukturierte Logik in JavaScript
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: js-DOM-Einführung
+requires: js-DOM-Einführung
 ---
 
 [SECTION::goal::idea]
@@ -26,7 +26,7 @@ So lassen sich auch größere Programme übersichtlich aufbauen.
 ### Eigene Klassen mit `class` und `constructor`
 
 In Python kennen wir bereits Klassen, die mit `class` eingeführt und mit der speziellen Methode `__init__` initialisiert werden.  
-In JavaScript gibt es seit ES6 ebenfalls eine `class`-Syntax – sie sieht ähnlich aus, funktioniert aber intern etwas anders.  
+In JavaScript gibt es seit ES6 ebenfalls eine `class`-Syntax, sie sieht ähnlich aus, funktioniert aber intern etwas anders.  
 JavaScript basiert nicht auf „echten“ Klassen wie Python, sondern auf Prototypen (dazu gleich mehr).  
 Das Prinzip ist jedoch gleich: Man bündelt Daten (Attribute) und Funktionen (Methoden) in einer wiederverwendbaren Struktur.
 
@@ -81,8 +81,9 @@ In Python übernimmt die spezielle Methode `__init__` die Rolle des Konstruktors
 Auch der Verweis auf das aktuelle Objekt ist vergleichbar: In Python geschieht das über `self`, in JavaScript über `this`.  
 Methoden werden in beiden Sprachen direkt innerhalb der Klassendefinition notiert, sodass die grundlegende Struktur von Klassen in Python und JavaScript auf den ersten Blick sehr ähnlich wirkt.
 
-[ER] Erstelle eine Klasse `Produkt`, die Name und Preis im Konstruktor entgegennimmt.
-Füge eine Methode `beschreibung()` hinzu, die beides als String zurückgibt.
+[ER] Erstellen Sie eine Klasse `Produkt`, die Name und Preis im Konstruktor entgegennimmt.  
+Fügen Sie eine Methode `beschreibung()` hinzu, die beides als String zurückgibt.
+
 
 ### Was bedeutet „Prototyp“?
 
@@ -123,9 +124,9 @@ Beide Varianten tun dasselbe, nur die Syntax unterscheidet sich.
 
 [ER] Prototyp statt class:  
 
-1. Erstelle eine Konstruktorfunktion `Auto(marke, baujahr)`.  
-2. Ergänze eine Methode `alter()` über `Auto.prototype`, die das Alter des Autos aus dem aktuellen Jahr berechnet.  
-3. Erzeuge zwei Auto-Objekte und gib für beide mit `console.log` Marke und Alter aus.
+1. Erstellen Sie eine Konstruktorfunktion `Auto(marke, baujahr)`.  
+2. Ergänzen Sie eine Methode `alter()` über `Auto.prototype`, die das Alter des Autos aus dem aktuellen Jahr berechnet.  
+3. Erzeugen Sie zwei Auto-Objekte und geben Sie für beide mit `console.log` Marke und Alter aus.
 
 
 ### Vererbung mit `extends`
@@ -203,7 +204,7 @@ Intern:
 - JavaScript: wieder nur Prototyp-Ketten, die durch `extends` gesetzt werden.  
 
 
-[ER] Leite eine Klasse `DigitalProdukt` von `Produkt` ab.  
+[ER] Leiten Sie eine Klasse `DigitalProdukt` von `Produkt` ab.  
 Sie soll:  
 - zusätzlich eine Eigenschaft `downloadLink` im Konstruktor setzen,  
 - eine Methode `info()` besitzen, die Name und Link kombiniert zurückgibt.
@@ -257,14 +258,14 @@ Darum gilt:
 - Prototypen = das eigentliche System dahinter
 
 [ER] Die Prototyp-Kette untersuchen  
-1. Definiere eine Klasse `Tier` und leite davon die Klasse `Hund` ab.  
-2. Erzeuge eine Instanz von `Hund`.  
-3. Verwende `Object.getPrototypeOf()`, um dir Schritt für Schritt die Kette anzeigen zu lassen:  
+1. Definieren Sie eine Klasse `Tier` und leiten Sie davon die Klasse `Hund` ab.  
+2. Erzeugen Sie eine Instanz von `Hund`.  
+3. Verwenden Sie `Object.getPrototypeOf()`, um Ihnen Schritt für Schritt die Kette anzeigen zu lassen:  
 - von der Instanz (`hund`) → `Hund.prototype`  
 - von `Hund.prototype` → `Tier.prototype`  
 - und schließlich bis `Object.prototype`.  
 
-[EQ] Erkläre anhand deiner Ausgabe, wie JavaScript bei einem Methodenaufruf (z. B. `hund.sprechen()`) durch diese Kette wandert, bis es die passende Methode findet.
+[EQ] Erklären Sie anhand Ihrer Ausgabe, wie JavaScript bei einem Methodenaufruf (z. B. `hund.sprechen()`) durch diese Kette wandert, bis es die passende Methode findet.
 [ENDSECTION]
 
 
