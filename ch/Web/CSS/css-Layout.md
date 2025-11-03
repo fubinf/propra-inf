@@ -46,7 +46,6 @@ können Sie das nachfolgende, vorgegebene CSS einfügen oder als Vergleich heran
       background-color: #003366;
       gap: 10px;
       padding: 20px;
-      justify-content: center;
       margin-top: 40px;
     }
 
@@ -101,6 +100,7 @@ Nennen Sie für jede zwei mögliche Anwendungsbereiche für eine gedachte realis
 
 
 [SECTION::submission::reflection,program]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
