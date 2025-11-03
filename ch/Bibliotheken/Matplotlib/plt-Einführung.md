@@ -20,6 +20,12 @@ muss man die zugrundeliegende Struktur, die `Figure`, verstehen.
 
 [SECTION::instructions::loose]
 
+[WARNING]
+Diese Aufgaben mit Windows 10 zu bearbeiten wird wahrscheinlich nicht funktionieren, da WSL unter
+Windows 10 *keine* grafische Anzeige besitzt, um Matplotlib-Grafiken anzuzeigen (`plt.show()`).
+Das Bearbeiten dieser Aufgaben unter Windows 10 WSL ist daher nicht empfehlenswert!
+[ENDWARNING]
+
 ### Matplotlib installieren
 
 Installieren Sie `matplotlib` mittels [TERMREF::pip]: `pip install matplotlib`
