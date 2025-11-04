@@ -1,5 +1,5 @@
 title: CSS Layout
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: css-Selektoren, css-Box-Modell

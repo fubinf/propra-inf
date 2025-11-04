@@ -17,4 +17,5 @@
   Aufgabengruppe Sprachen/Regexp mit 3 Aufgaben zugefügt:
   [PARTREF::re-Metazeichen], [PARTREF::re-Quantoren], [PARTREF::re-Gruppen]. 
 - **2025-10-31** Aufgabe Debugging/Debuggingtools/[PARTREF::py-Profiling] zugefügt.
+- **2025-11-04** Aufgabe Web/CSS/[PARTREF::css-Layout] zugefügt.
 - ...
