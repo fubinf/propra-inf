@@ -1,6 +1,7 @@
 title: Grundlagen von Matplotlib
+stage: alpha
 ---
-Matplotlib ist eine umfangreiche Python-Bibliothek zur Erstellung wissenschaftlicher Grafiken:
-Linien, Balken, Histogramme und Scatter-Plots und vieles mehr, dargestellt in sogenannten Figures.
-Matplotlib ist weit verbreitet und findet wegen seiner intuitiven Art und soliden Grafiken viel Anklang. 
-Das sieht man auch daran dass es bei berühmten Publikationen, wie zum Beispiel des erstem Foto eines schwarzen Lochs zur Visualisierung benutzt wurde!
+Matplotlib ist eine populäre und umfangreiche Python-Bibliothek zur Erstellung wissenschaftlicher Grafiken
+in "Publikationsqualität":
+Linien, Balken, Histogramme, Scatter-Plots und vieles mehr, mit präziser Kontrolle
+über viele Einzelheiten.
