@@ -34,8 +34,21 @@ Identifizieren Sie Elemente, die sich gut in der Breite anpassen lassen.
 [ER] Informieren Sie sich zu Media Queries, z.B. auf der 
 [Einstiegsseite zu Media Queries](https://wiki.selfhtml.org/wiki/CSS/Media_Queries/Einstieg) 
 bei SelfHTML. 
-Erstellen Sie eine Definition, sodass die Seite bei einer Breite von weniger als 
-1500 Pixeln nicht mehr horizontal gescrollt werden muss.
+Die gegebene Beispielseite muss bei einer Browserfensterbreite von weniger als 1500px horizontal gescrollt werden,
+um allen Inhalt zu sehen.
+Sie können das testen, indem Sie die Breite ihres Browserfensters ändern.
+Identifizieren Sie die HTML-Elemente, die über den Seitenrand hinausragen und 
+erstellen Sie ein CSS-Media-Query für eine Breite von weniger als 1500px,
+sodass nicht mehr horizontal gescrollt werden muss.
+
+[HINT::Developer Tools]
+Machen Sie sich die Developer-Tools Ihres Browser zunutze.
+Für gewöhnlich öffnen Sie diese mit Ctrl-Shift-I 
+oder dem Menüpunkt "Untersuchen" im Kontextmenü an einer beliebigen Stelle der Website.
+Gehen Sie in den Reiter Inspektor (Firefox) oder Elemente (Chrome-basiert).
+Wenn Sie jetzt mit der Maus auf die HTML-Elemente im Quelltext zeigen, 
+werden Ihnen die Dimensionen des Elements im Browserfenster visuell dargestellt.
+[ENDHINT]
 
 [ER] Eine beliebte Technik ist das Hamburger-Menü. 
 In der Beispielseite ist dieses bereits vorbereitet.
