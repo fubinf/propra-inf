@@ -1,4 +1,5 @@
 title: SciPy (Scientific Python)
+stage: alpha
 ---
 
 **SciPy** ist eine umfassende Bibliothek für wissenschaftliches und technisches Rechnen in Python, 
