@@ -1,5 +1,5 @@
 title: "Einführung in Matplotlib"
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 ---
@@ -23,7 +23,8 @@ muss man die zugrundeliegende Struktur, die `Figure`, verstehen.
 [WARNING]
 Diese Aufgaben mit Windows 10 zu bearbeiten wird wahrscheinlich nicht funktionieren, da WSL unter
 Windows 10 *keine* grafische Anzeige besitzt, um Matplotlib-Grafiken anzuzeigen (`plt.show()`).
-Das Bearbeiten dieser Aufgaben unter Windows 10 WSL ist daher nicht empfehlenswert!
+Das Bearbeiten dieser Aufgaben unter Windows 10 WSL ist daher nicht ohne Verrenkungen möglich.
+Mit Windows 11 funktioniert es hingegen.
 [ENDWARNING]
 
 
@@ -54,7 +55,7 @@ Es sollte lediglich ein leeres Fenster zu sehen sein.
 Auch wenn Sie nun eine `Figure` erstellt haben und sie auch mit `plt.show()` anzeigen lassen, 
 so beinhaltet die `Figure` noch keine Sachen die sie anzeigen soll.
 
-[ER] Der folgende Code nutzt die Methode
+[ER] Der folgende Code nutzt die Funktion
 [`plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html),
 um eine Linie zu zeichnen. 
 Fügen Sie an den Koordinaten (0,1), (1,2) und (2,4) Punkte hinzu. 
@@ -73,10 +74,10 @@ Wir greifen hierbei auf die `Axes` der `Figure` zu.
 Was genau die `Axes` sind, das lernen Sie in den kommenden Aufgaben genauer, 
 wichtig zum Verständnis ist nur, dass man sie benutzt,
 um Visualisierungen zu der `Figure` hinzuzufügen, 
-zum Beispiel durch die Methode `plot()`.
+zum Beispiel durch die Funktion `plot()`.
 
 [ER] Standardmäßig stellt `plot()` alle Punkte als eine Linie dar. Schauen Sie sich die 
-[Dokumentation zu der Methode `plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot)
+[Dokumentation zu der Funktion `plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot)
 noch einmal genauer an und stellen Sie die gleichen Daten mithilfe von einzelnen Punkten 
 anstelle einer Linie dar.
 
@@ -89,7 +90,9 @@ Matplotlib wird gerne genutzt, um Datensätze darzustellen, aber auch um mathema
 zu visualisieren.
 Im Folgenden werden Sie ein paar Funktionen visualisieren.
 Dazu werden Sie unter anderem die mathematische Bibliothek `numpy` verwenden, für die Erstellung
-der Beispieldaten.
+der Beispieldaten. 
+Was der Aufruf genau bedeutet, soll uns hier egal sein; 
+bei Interesse siehe Aufgabengruppe [PARTREF::NumPy].
 Installieren Sie `numpy` mit `pip install numpy`.
 
 ```python
@@ -117,12 +120,12 @@ Das Beispiel visualisiert eine quadratische Funktion.
 Woher stammen die Beschreibungen aus der Legende?
 
 [ER] Sie haben bisher `plt.figure()` verwendet, um eine leere Leinwand zu erstellen.
-Bei dieser Methode müssen Sie anschließend separat `fig.subplots()` aufrufen, 
+Dann müssen Sie anschließend separat `fig.subplots()` aufrufen, 
 um ein `Axes`-Objekt hinzuzufügen.
-Verkürzen Sie die Erstellung von `Figure` und `Axes` mit der Methode
+Verkürzen Sie die Erstellung von `Figure` und `Axes` mit der Funktion
 [`plt.subplots()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html).
 Schauen Sie dafür, falls nötig, in die Beispiele der Dokumentation.
-Dies ist eine gängige Methode zur Erstellung der beiden Objekte. 
+Dies ist eine gängige Verfahrensweise zur Erstellung der beiden Objekte. 
 [ENDSECTION]
 
 
