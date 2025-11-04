@@ -68,20 +68,20 @@ jobs:
       with:
         name: link-check-reports
         path: |
-          /tmp/linkcheck/instructor/link_check_report.json
-          /tmp/linkcheck/instructor/link_check_report.md
+          /tmp/linkcheck_i/link_check_report.json
+          /tmp/linkcheck_i/link_check_report.md
         retention-days: 90
     
     - name: Display report summary
       if: always()
       run: |
         echo "=== Link Check Summary ==="
-        if [ -f /tmp/linkcheck/instructor/link_check_report.json ]; then
+        if [ -f /tmp/linkcheck_i/link_check_report.json ]; then
           echo "Reports generated successfully:"
-          ls -la /tmp/linkcheck/instructor/link_check_report.*
+          ls -la /tmp/linkcheck_i/link_check_report.*
           echo ""
           echo "JSON report preview:"
-          head -20 /tmp/linkcheck/instructor/link_check_report.json
+          head -20 /tmp/linkcheck_i/link_check_report.json
         else
           echo "No reports found"
         fi
