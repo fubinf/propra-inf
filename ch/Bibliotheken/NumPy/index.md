@@ -2,60 +2,32 @@ title: NumPy (Numerical Python)
 stage: alpha
 ---
 
-**NumPy** ist die fundamentale Bibliothek für wissenschaftliches Rechnen in Python. 
-Sie stellt das N-dimensionale Array-Objekt (`ndarray`) zur Verfügung, das effiziente Operationen 
-auf großen Datenmengen ermöglicht, sowie umfangreiche mathematische Funktionen für lineare Algebra, 
-statistische Berechnungen, Fourier-Transformation und Zufallszahlen.
+NumPy ist die fundamentale, hoch effiziente Bibliothek für wissenschaftliches Rechnen in Python,
+geschrieben in C und Fortran. 
+Sie stellt das N-dimensionale Array-Objekt (`ndarray`) zur Verfügung, 
+sowie Funktionen für lineare Algebra, Zufallszahlen und anderes.
 
-NumPy ist das **Fundament des gesamten Python-Ökosystems** im Bereich wissenschaftlicher 
-Berechnungen und Data Science. Bibliotheken wie **SciPy**, **Pandas**, 
-**Matplotlib** und **scikit-learn** bauen alle auf NumPy auf 
-und erweitern dessen Funktionalität für spezifische Anwendungsbereiche.
-
-Typische Anwendungsbereiche sind:
-
-- Wissenschaftliche Berechnungen und numerische Simulationen
-- Datenanalyse und statistische Auswertungen
-- Machine Learning und künstliche Intelligenz
-- Bildverarbeitung und Signalanalyse
-- Finanzmodellierung und Risikobewertung
+NumPy ist das Fundament des gesamten Python-Ökosystems im Bereich wissenschaftlicher 
+Berechnungen und Data Science; Bibliotheken wie SciPy, Pandas, 
+Matplotlib und scikit-learn bauen alle auf NumPy auf.
+Typische Anwendungsbereiche sind wissenschaftliche Berechnungen, Datenanalyse, 
+Machine Learning, Bildverarbeitung, Finanzmodellierung und vieles mehr.
 
 NumPy bietet entscheidende Vorteile gegenüber Python-Listen:
+- Performance: Operationen auf NumPy-Arrays sind 10-100x schneller als auf Python-Listen
+- Speichereffizienz: Kompakte Speicherung durch homogene Datentypen
+- Vektorisierung: Elementweise Operationen ohne explizite Schleifen
+- Broadcasting: Automatische Anpassung von Array-Formen bei Operationen
 
-- **Performance**: Operationen auf NumPy-Arrays sind 10-100x schneller als auf Python-Listen
-- **Speichereffizienz**: Kompakte Speicherung durch homogene Datentypen
-- **Vektorisierung**: Element-weise Operationen ohne explizite Schleifen
-- **Broadcasting**: Automatische Anpassung von Array-Formen bei Operationen
-- **Reichhaltige Funktionsbibliothek**: Umfangreiche mathematische und statistische Funktionen
-
-Die Installation von NumPy erfolgt typischerweise über `pip`:
-
-```bash
-pip install numpy
-```
-
-Bei Verwendung von Anaconda/Miniconda ist NumPy bereits vorinstalliert oder 
-kann über `conda` installiert werden:
-
-```bash
-conda install numpy
-```
-
-Die offizielle NumPy-Dokumentation umfasst drei unterschiedliche Zugänge, die je nach Erfahrungsstand 
-und Ziel verwendet werden sollten:
+Die offizielle NumPy-Dokumentation umfasst drei unterschiedliche Zugänge:
 
 - **[Absolute Beginner's Guide](https://numpy.org/doc/stable/user/absolute_beginners.html)**: 
-  Einführung für absolute Anfänger ohne Vorkenntnisse. Ideal, um die grundlegenden Konzepte von 
-  Arrays und grundlegende Operationen kennenzulernen.
-
+  Grundlegende Konzepte und Operationen.
 - **[User Guide](https://numpy.org/doc/stable/user/index.html)**: 
-  Vertieftes Material, das die zentralen Konzepte umfassend erklärt. Diese Texte sind hilfreich, 
-  wenn man NumPy wirklich verstehen und in verschiedenen wissenschaftlichen Szenarien einsetzen möchte.
-
+  Gründliche Einführung in alle wichtigen Konzepte.
 - **[API Reference](https://numpy.org/doc/stable/reference/index.html)**: 
-  Vollständige Funktions- und Klassenreferenz. Diese nutzt man typischerweise erst dann, 
-  wenn man die Konzepte kennt und gezielt Details zu einer bestimmten Funktion oder Methode 
-  nachschlagen möchte.
+  Vollständige Funktions- und Klassenreferenz zum gezielten Nachschlagen von Details,
+  wenn man die Konzepte kennt.
 
 ---
 
