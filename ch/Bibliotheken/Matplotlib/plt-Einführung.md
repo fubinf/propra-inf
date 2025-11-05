@@ -130,6 +130,6 @@ Dies ist eine gängige Methode zur Erstellung der beiden Objekte.
 [ENDSECTION]
 
 
-[INSTRUCTOR::Korrekter Code]
+[INSTRUCTOR::Antworten im Großen und Ganzen korrekt?]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
