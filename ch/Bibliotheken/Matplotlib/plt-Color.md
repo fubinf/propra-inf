@@ -2,7 +2,7 @@ title: "Color und Colormaps"
 stage: draft
 timevalue: 1
 difficulty: 2
-requires: plt-Interfaces
+requires: plt-pyplot-vs-Axes
 ---
 
 [SECTION::goal::idea]

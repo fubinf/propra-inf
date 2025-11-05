@@ -19,6 +19,7 @@ muss man die zugrundeliegende Struktur, die `Figure`, verstehen.
 
 
 [SECTION::instructions::loose]
+
 [WARNING]
 Diese Aufgaben mit Windows 10 zu bearbeiten wird wahrscheinlich nicht funktionieren, da WSL unter
 Windows 10 *keine* grafische Anzeige besitzt, um Matplotlib-Grafiken anzuzeigen (`plt.show()`).

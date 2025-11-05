@@ -4,7 +4,7 @@ timevalue: 2
 difficulty: 3
 explains:
 assumes:
-requires: plt-Interfaces
+requires: plt-pyplot-vs-Axes
 ---
 
 [SECTION::goal::idea]
@@ -20,7 +20,7 @@ Die Wahl des passenden Diagramms hängt stark von der Art der Daten und der Frag
 
 [SECTION::instructions::loose]
 ### Linien- und Scatter-Plot (`plot()`, `scatter()`)
-In [PARTREF::plt-Interfaces] haben Sie bereits zwei der Arten von Diagrammen kennengelernt:
+In [PARTREF::plt-pyplot-vs-Axes] haben Sie bereits zwei der Arten von Diagrammen kennengelernt:
 Den Linienplot den Sie mit 
 [`plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html)
 erstellt haben und den Scatter-Plot, also eine Plot mit ganz vielen Punkten, den Sie mit
