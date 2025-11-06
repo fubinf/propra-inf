@@ -190,6 +190,8 @@ Starten Sie Ihren HTTP-Server und führen Sie folgende Befehle in einem anderen 
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
+<!-- @PROGRAM_TEST_SKIP: reason="Infinite loop program, requires manual interruption" manual_test_required=true -->
+
 [INSTRUCTOR::Lösungen]
 **Kommandoprotokoll**
 [PROT::ALT:go-http-server.prot]
