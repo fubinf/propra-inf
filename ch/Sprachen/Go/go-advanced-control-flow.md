@@ -1,5 +1,5 @@
 title: "Kontrollfluss in Go: defer, panic und recover"
-stage: draft
+stage: alpha
 timevalue: 1.25
 difficulty: 2
 assumes: go-interfaces
