@@ -126,7 +126,7 @@ Berechnen Sie den Kontostand nach jeder Transaktion.
 ```python
 balance = 500
 transactions = [100, -45, -300, 555, -38]
-print("balance after transactions:", ...)
+print("balance after every transactions:", ...)
 ```
 
 [HINT::Welche Funktion benötige ich?]
@@ -177,15 +177,15 @@ Wenden Sie diese Funktion auf die einzelnen Punktestände an.
 Da Iteratoren nur einmal durchiteriert werden können, ist `tee()` eine praktische Methode, um 
 mehrere identische, unabhängige Iteratoren zu erstellen.
 Allerdings werden für jeden Iterator einzeln die Zustände im Speicher gehalten und neue Elemente 
-einzeln generiert.
-Für kurze lookaheads oder kleine Iteratoren spielt das keine Rolle, aber wenn aufwändigere 
-Iteratoren mehrfach komplett durchiteriert werden, kann es effizienter sein, die Ergebnisse als 
-Liste zu speichern, anstatt sie jedes Mal neu zu berechnen.
+separat generiert.
+Für kurze lookaheads oder kleine Iteratoren ist das vernachlässigbar, aber wenn aufwändigere 
+Iteratoren mehrfach komplett durchiteriert werden, ist es i.d.R. besser, die Ergebnisse als 
+Liste zu speichern, also Speichereffizienz gegen Ausführungszeit einzutauschen.
 [ENDNOTICE]
 
 ### Unendliche Iteratoren
 
-Nicht alle Iteratoren müssen endlich sein, sondern können auch wie eine Endlosschleife immer 
+Nicht alle Iteratoren müssen endlich sein, sondern können auch wie in einer Endlosschleife immer 
 neue Elemente liefern, bis man selbst den Prozess beendet.
 
 [ER] Ein Datensatz soll zyklich an mehrere Worker verteilt werden.
@@ -204,14 +204,12 @@ Sie soll also einen Iterator, sowie einen Startwert entgegennehmen und wieder ei
 zurückgeben, der die Elemente mit der Zählvariable in einem Tupel zusammenfasst.  
 `print("enumerate:", my_enumerate(('a','b','c'), 5))`
 
+[HINT::Welche Funktion benötige ich?]
+`count()`
+[ENDHINT]
+
 
 ### Vergleich zu nativen Implementierungen
-
-<!--
-Neben den offensichtlichen Vorteilen, wie der besseren Lesbarkeit, ist auch die Geschwindigkeit 
-der `itertools` und Iteratoren generell zu beachten.
-Um das zu verdeutlichen, machen wir im Folgenden ein Experiment:
--->
 
 Nach dem kurzen Einblick schauen wir uns noch ein Beispiel an, wie `itertools` eingesetzt werden 
 kann.
@@ -272,8 +270,7 @@ Funktionen testen:
 `time.perf_counter()`
 
 
-Zum Testen führen Sie für beide Funktionen mit 
-10000 Elementen aus.
+Zum Testen führen Sie für beide Funktionen mit 10000 Elementen aus.
 Beobachten Sie zusätzlich in einem System-Monitor (z.B. Task-Manager auf Windows oder htop auch 
 Linux) die Arbeitsspeicherauslastung ihres Systems.
 
@@ -304,10 +301,11 @@ Den Code grob auf Richtigkeit prüfen.
 Das Kommandoprotokoll mit Musterausgabe vergleichen und bei Abweichung gezielt im Code 
 nachprüfen.
 Klare Defekte und sehr ungünstige Konstruktionen zurückweisen.
+
 Schleifen im Code können ein Hinweis darauf sein, dass Iteratoren und `itertools` nicht 
 ordnungsgemäß verwendet wurden.
 
-Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_glob.py]
+Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_itertools.py]
 
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
