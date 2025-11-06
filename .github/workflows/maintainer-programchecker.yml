@@ -74,31 +74,31 @@ jobs:
         echo "itree.zip created:"
         ls -la altdir/itree.zip/ | head -10
     
-    - name: Run program tests
+    - name: Run program checks
       run: |
-        python sedrila/py/sedrila.py maintainer --check-programs --batch -- /tmp/progtest
+        python sedrila/py/sedrila.py maintainer --check-programs --batch -- /tmp/progcheck
       continue-on-error: false
     
-    - name: Upload program test reports
+    - name: Upload program check reports
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: program-test-reports
+        name: program-check-reports
         path: |
-          /tmp/progtest_i/program_test_report.json
-          /tmp/progtest_i/program_test_report.md
+          /tmp/progcheck_i/program_test_report.json
+          /tmp/progcheck_i/program_test_report.md
         retention-days: 90
     
-    - name: Display test summary and errors
+    - name: Display check summary and errors
       if: always()
       run: |
         echo "============================================================"
-        echo "PROGRAM TEST SUMMARY"
+        echo "PROGRAM CHECK SUMMARY"
         echo "============================================================"
-        if [ -f /tmp/progtest_i/program_test_report.json ]; then
+        if [ -f /tmp/progcheck_i/program_test_report.json ]; then
           python3 << 'PYTHON_SCRIPT'
         import json
-        with open('/tmp/progtest_i/program_test_report.json') as f:
+        with open('/tmp/progcheck_i/program_test_report.json') as f:
             data = json.load(f)
             failed = data.get('failed_tests', [])
             
@@ -121,17 +121,17 @@ jobs:
             if failed:
                 print()
                 print('=' * 60)
-                print(f'FAILED TESTS ({len(failed)} total):')
+                print(f'FAILED CHECKS ({len(failed)} total):')
                 print('=' * 60)
-                for test in failed:
-                    print(f"  FAIL: {test['program_name']} ({test['language']}): {test['error_message']}")
+                for check in failed:
+                    print(f"  FAIL: {check['program_name']} ({check['language']}): {check['error_message']}")
             else:
                 print()
-                print('✓ All tests passed!')
+                print('✓ All checks passed!')
         PYTHON_SCRIPT
           echo ""
           echo "Full reports uploaded as artifacts (retention: 90 days)"
-          ls -la /tmp/progtest_i/program_test_report.*
+          ls -la /tmp/progcheck_i/program_test_report.*
         else
           echo "ERROR: No reports generated"
         fi
