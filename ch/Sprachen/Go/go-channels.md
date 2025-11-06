@@ -1,5 +1,5 @@
-title: "Go: Kanäle (Channels)"
-stage: draft
+title: "Grundlagen von Go: Kanäle (Channels)"
+stage: alpha
 timevalue: 1.25
 difficulty: 2
 assumes: go-goroutines, go-arrays-and-slices
@@ -174,5 +174,3 @@ das Programm mittels `go run` aus.
 Musterlösung der Programmieraufgabe als ausführbare Datei hier:
 [TREEREF::/Sprachen/Go/go-channels.go].
 [ENDINSTRUCTOR]
-
-<!-- @PROGRAM_TEST_OVERRIDE: original_command="go run main.go" correct_command="go run go-channels.go" reason=".prot file uses main.go but actual file is go-channels.go" -->
