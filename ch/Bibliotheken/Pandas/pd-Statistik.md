@@ -1,5 +1,5 @@
 title: "Deskriptive Statistik in Pandas"
-stage: draft
+stage: alpha
 timevalue: 1
 difficulty: 2
 requires: pd-Datenselektion
@@ -45,19 +45,20 @@ das aussagekräftigste Maß.
 [`median()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.median.html) (Median) 
 und [`mode()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.mode.html) (Modus)
 können Sie diese Kennzahlen für `Series` berechnen.
-Lesen Sie Dokumentation und probieren Sie diese aus falls nötig, um zu verstehen, wie sich diese
+Lesen Sie Dokumentation und probieren Sie diese aus, falls nötig, um zu verstehen, wie sich diese
 Kennzahlen ergeben.
 Beschreiben Sie bei jeder kurz, wie sich diese ergibt.
 
 [EQ] Wieso wird der Median oft als aussagekräftiger bezeichnet als der Durchschnitt?
 
-[EQ] Sie können diese Methoden nicht nur auf eine `Series` sondern auch auf ein `DataFrame` anwenden.
-Testen Sie dies mit `erststimmmen_df`. Was wird als Ergebnis dann zurückgegeben?
+[EQ] Sie können diese Methoden nicht nur auf eine `Series` sondern auch auf 
+ein `DataFrame` anwenden.
+Testen Sie dies mit `erststimmmen_df`. Was wird zurückgegeben?
 
 [NOTICE]
 Diese Methoden können nur auf numerische Spalten angewendet werden.
 Beim Benutzen auf das ganze `erststimmen_df` muss deshalb `numeric_only=True` in den Parametern 
-gesetzt werden, um nicht-numerische Spalten auszuschließen.
+gesetzt werden, um nichtnumerische Spalten auszuschließen.
 [ENDNOTICE]
 
 [EQ] Finden Sie den Modus der Bezirksnummern.
@@ -68,24 +69,24 @@ Was sagt das über die Wahlbezirke aus?
 Lagemaße allein geben kein vollständiges Bild. 
 Zwei Datensätze können denselben Mittelwert haben, sich aber stark darin unterscheiden, 
 wie stark die Werte um diesen Mittelwert streuen. 
-Deshalb sind Streuungsmaße wichtig.
+Deshalb ist es wichtig, die *Streuungsmaße* zu betrachten.
 
-[EQ] Beschreiben Sie was die Varianz 
+[EQ] Beschreiben Sie knapp, was die Varianz 
 ([`var()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.var.html))
-ist.
+misst bzw. was man daran ablesen kann.
 [HREF::https://de.wikipedia.org/wiki/Varianz]
 
 Die Standardabweichung ist definiert als die Wurzel aus der Varianz.
 Die Varianz hat quadrierte Einheiten, was schwer zu interpretieren ist.
-Die Standardabweichung hat die gleichen Einheiten wie die Originaldaten, was sie intuitiver macht.
+Die Standardabweichung hingegen hat die gleichen Einheiten wie die Originaldaten, 
+was sie intuitiver macht.
 
 [ER] Berechnen Sie die Standardabweichung der SPD-Stimmen mit 
-[`std()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.std.html).
-
-[EQ] Warum ist die Standardabweichung oft leichter zu interpretieren?
+[`std()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.std.html) und 
+geben Sie diese an.
 
 [EQ] Betrachten Sie zusätzlich zur Standardabweichung den Median der SPD-Stimmen.
-Nennen Sie diese und begründen Sie, ob Sie denken, dass die Werte stark streuen gemessen
+Nennen Sie diese und begründen Sie, ob Sie denken, dass die Werte stark streuen, gemessen
 an den beiden Kennzahlen.
 
 ### Extremwerte und ihre Position (`min()`,`idxmin()`,`max()`,`idxmax()`)
@@ -94,7 +95,7 @@ Oft interessieren uns nicht nur die Durchschnittswerte, sondern auch die Extremw
 und wo sie auftreten.
 Dabei sollte Ihnen Minimum 
 [`min()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.min.html)
-und Maximmum 
+und Maximum 
 [`max()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.max.html)
 ein Begriff sein.
 
@@ -105,12 +106,12 @@ und
 können Sie die *Positionen* dieser Minimal- und Maximalwerte finden.
 
 [ER] Finden Sie die Zeilenindizes der Wahlbezirke mit den geringsten und meisten
-Grünen-Stimmen mit.
+Grünen-Stimmen.
 
 [ER] Kombinieren Sie `idxmax()` mit `loc[]`, um die gesamte Zeile mit den meisten
 Grünen-Stimmen auszugeben. 
 
-Deskriptive Statistiken sind der erste Schritt in jeder Datenanalyse. Sie helfen uns,
+Deskriptive Statistiken sind der erste Schritt in jeder Datenanalyse. Sie helfen,
 Muster und Besonderheiten in den Daten zu erkennen, die dann mit komplexeren
 statistischen Methoden weiter untersucht werden können.
 [ENDSECTION]
