@@ -30,12 +30,13 @@ import pandas as pd
 erststimmen_df = pd.read_csv("Pfad/zur/Berlin_BT25_W1.csv", sep=';')
 ```
 
+
 ### Arithmetische Operationen (`+`,`-`,`/`,`*`,...)
 
 Genauso wie sie `Series` mit Boolean-Vergleichen (`<`,`=`,...) benutzen können, können Sie
 auch arithmetische Operationen darauf anwenden.
 
-Grundlegende arithmetische Operationen:
+Grundlegende arithmetische Operationen:     
 - Addition: `s + 5` oder `s1 + s2`      
 - Subtraktion: `s - 3` oder `s1 - s2`   
 - Multiplikation: `s * 10` oder `s1 * s2`   
@@ -49,6 +50,7 @@ Grundlegende arithmetische Operationen:
 [ER] Erstellen Sie eine neue Spalte `"SPD_pro_Waehlende"`, in der Sie die Stimmen der `"SPD"` durch die
 Anzahl der `"Wählende"` Spalte teilen.  
 
+
 ### `apply()`
 
 Ein essenzielles Tool zur Datenbearbeitung in Pandas ist
@@ -56,7 +58,7 @@ Ein essenzielles Tool zur Datenbearbeitung in Pandas ist
 
 [ER] Verwenden Sie `apply()` mit der eingebauten Python-Funktion `len`, um die Länge aller Einträge der Spalte `"Bezirksname"` zu berechnen.
 
-[ER] Definieren Sie eine Funktion um die Stimmzahlen zu verdoppeln, 
+[ER] Definieren Sie eine Funktion, um die Stimmzahlen zu verdoppeln, 
 falls die Stimmzahlen ungerade sind und wenden Sie diese mit `apply()` auf die "SPD" an.
 
 Manchmal ist es praktisch, Funktion die man eh nur einmal verwendent, 
@@ -69,8 +71,9 @@ So eine Funktion nennt man [TERMREF::Anonyme Funktion].
 Begründen Sie.
 
 [EQ] Wenden Sie `max()` mittels `apply()` auf das ganze `erststimmen_df` an.
-Was passiert wenn Sie `apply()` auf ein `DataFrame` statt auf eine `Series` anwenden.
+Was passiert, wenn Sie `apply()` auf ein `DataFrame` statt auf eine `Series` anwenden.
 Beschreiben Sie die Rückgabe.
+
 
 ### Mapping mittels `apply()` und `map()`
 
@@ -97,7 +100,7 @@ Für solche Mapping-Vorgänge können Sie aber auch die Funktion
 [`map()`](https://pandas.pydata.org/docs/reference/api/pandas.Series.map.html#pandas.Series.map)
 anwenden.
 
-[ER] Nutzen sie das Dictionary mit `map()`, um das gleiche Ergebnis wie mit `apply()` zu erhalten.
+[ER] Nutzen Sie das Dictionary mit `map()`, um das gleiche Ergebnis wie mit `apply()` zu erhalten.
 
 [EQ] Erklären Sie den Unterschied zwischen `map()` und `apply()` in Bezug auf ihre typische Verwendung.  
 Wann ist `map()` ausreichend, wann braucht man `apply()`?
