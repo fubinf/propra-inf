@@ -203,6 +203,11 @@ Zum Zurückwandeln in einen String gibt es die Funktion `datetime.datetime.strft
 [ENDHINT]
 
 
+### Programmlauf für die Abgabe
+
+[EC] Führen Sie das gesamte so erzeugte Programm `m_re.py` einmal aus.
+
+
 ### Reguläre Ausdrücke kompilieren
 
 Jeder RegEx-String, den Sie an eine Funktion von `re` übergeben, muss zuerst in einen Bytecode 
