@@ -24,11 +24,6 @@ suchen, überprüfen und sogar editieren von Strings ermöglicht.
 
 [SECTION::instructions::detailed]
 
-<!--
-match, fullmatch, search, IGNORECASE, MULTILINE, DOTALL, sub (Ersetzung mit Gruppenreferenzen, 
-Ersetzung mit Funktionsaufruf), split, findall ist aus meiner Sicht das Minimalpensum.
--->
-
 ### Vorbereitung
 
 Machen Sie sich mit der [Dokumentation von `re`](https://docs.python.org/3/library/re.html) 
@@ -66,13 +61,6 @@ log = """2025-10-22T00:48:50.008Z server01 DatabaseConnector [Warn]: Operation f
 2025-10-28T08:08:37.915Z server01 AuthController [Error]: Operation started for user 212"""
 ```
 
-<!--
-In der Aufgabe wollen wir als kleines anschauliches Beispiel ein kleines Programm schreiben, dass 
-den Quellcode einer Webseite analysiert.
-Legen Sie dazu noch die Datei `m_re.html` an und kopieren Sie den Inhalt folgenden Foldouts in 
-die Datei (hierbei handelt es sich um den HTML-Code der Basis-Kapitelseite des ProPras).
--->
-
 
 ### Suchen und vergleichen
 
@@ -94,13 +82,6 @@ dem Fall am besten geeignet ist:
 4. Für eine Artikelnummer soll geprüft werden, ob sie immer mit einer festen Anzahl an Ziffern 
    beginnt.
 
-<!--
-[#ER] Suchen Sie, ob es eine Error-Meldung am 22. Oktober 2025 gab.
-`print("error on Oct 22:", (... is not None))`
-
-[#ER] Prüfen Sie, ob jede Zeile des Logs mit demselben Schema beginnt: `Zeit Server Service 
-[Nachrichtentyp]: Nachricht`.
--->
 
 ### regex-Pattern und Metazeichen
 
@@ -156,30 +137,6 @@ Erstellen Sie einen Ausdruck, der dieses Schema abbildet.
 Prüfen Sie nun, ob die erste Zeile des Logs dieses Schema erfüllt.
 Geben Sie das Ergebnis entsprechend aus (`\nfirst line matches the schema` bzw. 
 `\nfirst line doesn't match the schema`).
-
-<!--
-[#ER] Erstellen Sie einen String mit einem regulären Ausdruck in Python.
-Dieser soll immer das letzte Wort eines Satzes matchen, also das Wort, das auf einem Satzzeichen 
-(`.!?`) endet (das Zeichen selbst über ein lookahead aus dem Match auszuschließen ist optional).
-
-Beim Suchen mit `re` erhalten Sie von der verwendeten Funktion ein sog. Match-Objekt 
-zurück. Gibt es keine Übereinstimmung, wird `None` zurückgegeben.
-
-[#ER] Verwenden Sie nun `re.findall()`, um den Ausdruck auf den folgenden String anzuwenden.
-Geben Sie vom erhaltenen Match-Objekt den ursprünglichen String, die Start- und Endposition, 
-sowie das Match selbst aus.
--->
-
-<!--
-[#ER] Verwenden Sie das 
-Dieser soll aus der Datei den Titel der Webseite finden (der im Tag `<title>...</tile>` steht).
-Verwenden Sie `re.search()`, um es in der Datei zu finden.
-
-[#ER] Suchen Sie alle Vorkommen von Links auf der Seite. Listen Sie den Link, sowie die Stelle an 
-dem er gefunden wurde auf.
-
-[#ER] Prüfen Sie, ob das Grundgerüst der Webseite korrekt ist (Doctype, html, head und body-Tag)
--->
 
 
 ### Flags
