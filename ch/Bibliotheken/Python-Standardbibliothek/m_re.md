@@ -11,7 +11,7 @@ Ich kann reguläre Ausdrücke in Python verwenden
 
 
 [SECTION::background::default]
-**[TERMREF2::Regulärer Ausdruck::Regular Expressions]** oder auf Deutsch **Reguläre Ausdrücke** 
+**[TERMREF2::Regulärer Ausdruck::Regular Expressions]** oder auf Deutsch **reguläre Ausdrücke** 
 oder kurz **re**, **regex** oder **regexp** stellen ein wichtiges Werkzeug in der Informatik bzw.
 der Softwareentwicklung dar.
 Reguläre Ausdrücke sind vielseitig einsetzbar, beispielsweise um Vorkommen solcher Ausdrücke in 
@@ -38,13 +38,14 @@ Eine etwas ausführlichere und einsteigerfreundliche Einführung finden Sie auß
 
 Allgemein gehen wir in der Aufgabe davon aus, dass Sie bereits grundsätzlich mit regex umgehen 
 können.
-Für einen Einstieg in das Thema regex selbst empfehlen wir die Aufgabengruppe [PARTREF::RegExp]).
-Zur Auffrischung der Syntax finden Sie auch eine Übersicht in der Doku
+Für einen Einstieg in das Thema regex selbst empfehlen wir die Aufgabengruppe [PARTREF::RegExp].
+Zur Auffrischung der Syntax finden Sie auch eine Übersicht in der Python Doku von `re`.
 
 Legen Sie die Datei `m_re.py` an und fügen Sie dort Ihre Lösungen für die folgenden 
 Programmieraufgaben ein.
 
-Als Beispiel werden wir öfter ein Pseudo-Log betrachten und mit `re` ein wenig analysieren. 
+Als Beispiel werden wir in der Aufgabe ein Pseudo-Log betrachten und mit `re` ein wenig 
+analysieren. 
 Kopieren Sie den folgenden String in Ihre Datei:
 
 ```python
@@ -55,7 +56,7 @@ log = """2025-10-22T00:48:50.008Z server01 DatabaseConnector [Warn]: Operation f
 2025-10-22T10:39:19.163Z server01 PaymentGateway [Debug]: Operation failed for user 68
 2025-10-23T03:40:56.106Z server01 DatabaseConnector [Info]: Operation started for user 389
 2025-10-25T20:00:28.501Z server01 PaymentGateway [Info]: Operation completed for user 141
-2025-10-25T23:04:31.945Z server01 UserService [Debug]: Operation failed for user 70
+2025-10-25T23:04:31.945Z server01 UserService [Warn]: Operation failed for user 999
 2025-10-26T03:38:07.881Z server01 UserService [Warn]: Operation started for user 704
 2025-10-26T20:17:23.887Z server01 UserService [Warn]: Operation failed for user 919
 2025-10-27T01:04:47.393Z server01 PaymentGateway [Warn]: Operation failed for user 999
@@ -105,9 +106,9 @@ dem Fall am besten geeignet ist:
 
 Bei regulären Ausdrücken in Python gibt es eine Besonderheit zu beachten:
 
-Reguläre Ausdrücke verwenden Backslashes (`\`) als Metazeichen (z.B bei `\d` für alle Ziffern, 
-äquivalent zu `[0-9]`) sowie als Maskierungszeichen, um andere Metazeichen zu unterdrücken (z.B. 
-`\[`, um nach der eckigen Klammer zu suchen anstatt eine Zeichenklasse zu definieren).
+Reguläre Ausdrücke verwenden Backslashes (`\`) als Metazeichen (z.B. `\w`, `\d`) sowie als 
+Maskierungszeichen, um andere Metazeichen zu unterdrücken (z.B. `\[`, um nach der eckigen 
+Klammer zu suchen anstatt eine Zeichenklasse zu definieren).
 Python benutzt für Strings aber auch selbst `\` als Meta- und Maskierungszeichen, z.B. um mit 
 `\n` Zeilenumbrüche darzustellen.
 Das führt natürlich zu Konflikten und verschlechtert die Lesbarkeit von Ausdrücken.
@@ -118,8 +119,8 @@ Die bessere Alternative ist die Verwendung von Raw-Strings.
 Diese kann man durch das Präfix `r` vor einem String erzeugen (z.B. `r"\\"`).
 So verwendet Python den String, ohne selbst Metazeichen zu interpretieren.
 
-[ER] Sie wollen im Log nach der ersten `[Error]`-Meldung, sowie der nachfolgenden Textnachricht 
-suchen.
+[ER] Sie wollen im Log nach der **ersten** `[Error]`-Meldung, sowie dem Prozess/Service, der die 
+Meldung erzeugt hat, suchen.
 Schreiben Sie hierfür zuerst einen regulären Ausdruck, der genau dies matcht.
 Verwenden Sie nun eine geeignete Funktion aus `re`, um den Ausdruck anzuwenden.
 Speichern Sie den Rückgabewert der Funktion in einer Variable.
@@ -131,9 +132,9 @@ Beim Suchen mit `re` erhalten Sie von der verwendeten Funktion ein
 `findall()` und `finditer()`, wo sie eine Liste bzw. einen Iterator aller Matches erhalten).
 Wird keine Übereinstimmung gefunden, ist der Rückgabewert `None`.
 
-[ER] Machen Sie eine Fallunterscheidung: Wenn eim Match gefunden wurde, geben Sie den 
+[ER] Machen Sie eine Fallunterscheidung: Wenn in [EREFR::1] ein Match gefunden wurde, geben Sie den 
 gefundenen String sowie seine Anfangs- und Endposition im Suchstring aus:  
-`print("error message found:", ..., "at position:", ...)`  
+`print("error found:", ..., "at position:", ...)`  
 Ansonsten geben Sie nur `no error found` aus.
 
 [ER] Erweitern Sie nun den regulären Ausdruck, sodass er nun sowohl `Error`, als auch 
@@ -142,9 +143,9 @@ Außerdem soll der Ausdruck in zwei Gruppen unterteilt werden: eine mit dem Name
 Servicenamen enthält und eine mit dem Namen `type`, die den Log-Typen (ohne eckige Klammern) 
 enthält.  
 Geben Sie vom gefundenen Match die einzelnen Gruppen sowie nochmal die Position aus:  
-`print("\nservice:", ..., "\nlog type:", ..., "\nposition:", ...)`
+`print("\nlog type:", ..., "\nservice:", ..., "\nposition:", ...)`
 
-[ER] Suchen Sie jetzt nach allen Vorkommen von Errors oder Warnings im Log.
+[ER] Suchen Sie jetzt nach **allen** Vorkommen von Errors oder Warnings im Log.
 Zählen Sie anschließend, welcher Service am häufigsten Fehler oder Warnungen gemeldet hat. 
 `print("\nmost errors or warnings occurred in service:", ...)`
 
@@ -165,7 +166,7 @@ Beim Suchen mit `re` erhalten Sie von der verwendeten Funktion ein sog. Match-Ob
 zurück. Gibt es keine Übereinstimmung, wird `None` zurückgegeben.
 
 [#ER] Verwenden Sie nun `re.findall()`, um den Ausdruck auf den folgenden String anzuwenden.
-Geben Sie vom erhaltenen Match-Objekt den ursprüglichen String, die Start- und Endposition, 
+Geben Sie vom erhaltenen Match-Objekt den ursprünglichen String, die Start- und Endposition, 
 sowie das Match selbst aus.
 -->
 
@@ -194,13 +195,13 @@ und schreiben Sie jeweils ein kurzes Beispiel auf, in denen sie sinnvoll verwend
 [ER] Suchen Sie alle Zeilen im Log, die Aktionen für den User 999 zeigen.
 Dabei wollen Sie immer die gesamte Zeile matchen, um sie komplett auszugeben.
 Geben Sie jedes Match in einer eigenen Zeile aus:  
-`print("\nfound messages for user 999:")
+`print("\nmessages for user 999:")
 ...`
 
 [ER] Prüfen Sie, ob am 23.10.2025 oder später noch einmal ein Error aufgetreten ist.
-Erstellen Sie dafür einen Ausdruck, der den gesamten Inhalt der ersten Zeile matcht, die einen 
-Error-Meldung enthält.
-Geben Sie die gefundene Zeile ähnlich zu [EREFR::2] aus.  
+Erstellen Sie dafür einen Ausdruck, der den gesamten Inhalt der ersten gefundenen Zeile matcht, die 
+die Error-Meldung enthält.
+Geben Sie die gefundene Zeile ähnlich wie in [EREFR::2] aus.  
 `print("\nfound error after Oct. 22:", ..., "\nat position:", ...)`
 
 
@@ -213,9 +214,9 @@ z.B. Alternativen die `split()` und `replace()` Methoden des `string`-Moduls.
 [ER] Teilen Sie zuerst das Log in seine einzelnen Zeilen auf (da das keinen regulären Ausdruck 
 benötigt, dürfen Sie hier auch einen normalen String-Split verwenden).
 Teilen Sie anschließend jede Zeile in Ihre Bestandteile auf, also Zeit, Server, Service, Log-Typ 
-und Nachricht.
+(ohne Klammern) und Nachricht.
 Geben Sie von der letzten Log-Zeile alle Bestandteile als Liste aus.  
-`print ("\nlast plit line:", ...)`
+`print ("\nlast line:", ...)`
 
 [ER] Sie wollen die Zeitangaben im Log-File in eine andere Zeitzone umrechnen.
 Schreiben Sie zuerst einen regulären Ausdruck, der das Zeitformat der Log-Einträge matcht.  
@@ -228,16 +229,18 @@ Verwenden Sie [`datetime`](https://docs.python.org/3/library/datetime.html), um 
 umzuwandeln, da ein manuelles Handling der Zeiten zu komplex werden würde. Verzichten sie auch 
 auf die Verwendung echter Zeitzonen, sondern addieren Sie nur ein Zeitdelta zum `datetime`-Objekt.  
 Verwenden Sie schließlich `re.sub()`, übergeben Sie ihre Funktion mit einem Zeitdelta, sodass die 
-Zeit um eine Stunde nach vorne gestellt wird (z.B. 8:00 → 9:00).
-Geben Sie das gesamte konvertierte Log aus.
+Zeit um eine Stunde vorgestellt wird (z.B. 8:00 → 9:00).
+Geben Sie das gesamte konvertierte Log aus.  
+`print("\nadjusted time zone:")
+...`
 
-[HINT::Welche Funktionen von `datetime` sollte ich verwenden?]
+[HINT::Welche Funktionen von `datetime` kann ich verwenden?]
 Zum Konvertieren eines Strings in ein `datetime`-Objekt können Sie `datetime.datetime.strptime()` 
-verwenden. Eine Übersicht über die Formatierungszeichen finden Sie hier: 
+verwenden.
+Eine Übersicht über die Formatierungszeichen finden Sie hier: 
 [HREF::https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes].
 
-Um auf das `datetime`-Objekt Zeiten zu addieren können Sie `datetime.timedelta` verwenden. 
-Mit echten Zeitzonen zu arbeiten würde an der Stelle zu komplex werden.
+Um auf das `datetime`-Objekt Zeiten zu addieren können Sie `datetime.timedelta` verwenden.
 
 Zum Zurückwandeln in einen String gibt es die Funktion `datetime.datetime.strftime()`.
 [ENDHINT]
@@ -269,8 +272,20 @@ Begründen Sie Ihre Antwort.
 [ENDSECTION]
 
 [INSTRUCTOR::Codedurchsicht]
+Code prüfen, ob er die geforderten Werkzeuge verwendet (Elemente aus `re`).
+Das Kommandoprotokoll mit Muster vergleichen.
+Bei Abweichungen gezielt im Code nachschauen, woran dies liegt.
+Bei klaren Defekten und Abgaben, die nicht die in der Aufgabe geforderten Werkzeuge verwenden, 
+zurückweisen.
+
 Achten Sie darauf, dass die Studierenden Raw-Strings für reguläre Ausdrücke verwenden (`r"..."`),
 um Kollisionen mit Python-Metazeichen und übermäßigen Gebrauch von Backslashes zu vermeiden.
 
+Musterlösung siehe: [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_re.py]
+
 [INCLUDE::ALT:]
+
+### Kommandoprotokoll
+
+[PROT::ALT:m_re.prot]
 [ENDINSTRUCTOR]
