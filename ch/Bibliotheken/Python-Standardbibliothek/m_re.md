@@ -1,5 +1,5 @@
 title: "re: Reguläre Ausdrücke in Python"
-stage: draft
+stage: alpha
 timevalue: 2
 difficulty: 3
 assumes: re-Gruppen, m_datetime, py-Funktionale-Programmierung
@@ -18,7 +18,7 @@ Reguläre Ausdrücke sind vielseitig einsetzbar, beispielsweise um Vorkommen sol
 Texten zu finden oder um die Integrität übergebener Daten zu prüfen (z.B. ob eine eingegebene 
 E-Mail- oder IP-Adresse syntaktisch korrekt ist).
 Python stellt `re` ein umfangreiches Modul für regex in der Standardbibliothek bereit, das 
-suchen, überprüfen und sogar editieren von Strings ermöglicht.
+Suchen, Überprüfen und sogar Editieren von Strings ermöglicht.
 [ENDSECTION]
 
 
