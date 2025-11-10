@@ -669,6 +669,8 @@ p:has(span.enumeration-er) {
 
 .vwr-output {
     color: #660000;
+    display: inline-block;
+    min-height: 1em;
 }
 
 .vwr-dirlink {
