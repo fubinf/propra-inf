@@ -14,8 +14,8 @@ und was ich mit ihnen bewirken kann.
 
 
 [SECTION::background::default]
-`Axes` und `Axis` sind in Matplotlib zwei verschiedene Konzepte. Dies sollte man einmal klar trennen,
-um mögliche Verwirrung zu vermeiden.
+`Axes` und `Axis` sind in Matplotlib zwei Konzepte verschiedener Art und
+bezeichnen _nicht nur_ ein oder mehrere Dinge der gleichen Art.
 [ENDSECTION]
 
 
@@ -25,13 +25,25 @@ um mögliche Verwirrung zu vermeiden.
 
 In [PARTREF::plt-Einführung] haben Sie bereits die `Figure`, die "Leinwand" der Visualisierungen 
 kennengelernt.
-Die `Axes` ist quasi das Bild, das Sie auf die Leinwand zeichnen.
-Sie können sich auch
-[diese Übersicht](https://matplotlib.org/stable/users/explain/quick_start.html#parts-of-a-figure)
-angucken, um den Zusammenhang aller Komponenten in `matplotlib` zu verstehen.
+Eine solche Leinwand kann mehrere Plots enthalten, jeder mit einem eigenen Koordinatensystem.
+Ein `Axes`-Objekt repräsentiert den Rahmen für einen solchen Plot:
+(1) Ein Achsenpaar (mit allen seinen Markierungen),
+(2) das zugehörige Koordinatensystem und
+(3) der Bildausschnitt innerhalb der `Figure`, in dem der Plot erscheinen soll.
 
-Das Besondere ist, dass Sie auch mehrere Bilder auf eine Leinwand zeichnen können.
-Nehmen Sie dieses Beispiel:
+Eine `Axis` ist darin eine der beiden Achsen (oder drei Achsen im Fall von 3D-Plots).
+
+Nehmen Sie sich fünf Minuten Zeit, um die Namen vieler der Bildelemente kennenzulernen,
+die in einem solchen Plot auftreten können:  
+[Übersicht von matplotlib-Bildelementen](https://matplotlib.org/stable/users/explain/quick_start.html#parts-of-a-figure)  
+Verstehen Sie auch das Konzept `Artist`: Jedes Objekt, das etwas Sichtbares zeichnen kann.
+
+Vielleicht ist Ihnen in [PARTREF::plt-Einführung] der Aufruf `fig.subplots()` negativ aufgefallen:
+Er klingt, als sollten da Teilabbildungen entstehen (sub-plots), das ist aber gar nicht der Fall.
+Das liegt daran, dass wir einen trivialen Aufruf benutzt haben; mit Parametern erzeugt das
+tatsächlich mehrere Teilabbildungen, also mehrere `Axes`.
+
+Betrachten Sie dieses Beispiel, bei dem zwei Kurven in ein Achsenpaar gezeichnet werden:
 ```python
 fig = plt.figure()
 ax = fig.subplots()
@@ -44,10 +56,10 @@ ax.plot(x, x**2, label='quadratisch')
 plt.show()
 ```
 
-In dem Beispiel haben Sie im Moment eine `Axes` auf der zwei Funktionen gemalt werden.
+Hier haben wir also ein `Axes`, auf dem zwei Funktionen gemalt werden.
 
-[ER] Schauen Sie sich die Dokumentation zu
-[`fig.subplots()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.subplots.html#)
+[ER] Schauen Sie sich die 
+[Dokumentation zu `fig.subplots()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.subplots.html#)
 an und ändern Sie den Code, sodass die `Figure` zwei `Axes` nebeneinander hat.
 
 [EQ] Was ist der Rückgabetyp von `subplots()`, wenn Sie mehrere `Axes` erstellen?
@@ -55,12 +67,13 @@ an und ändern Sie den Code, sodass die `Figure` zwei `Axes` nebeneinander hat.
 [ER] Ändern Sie die geplotteten Funktionen, sodass die lineare Funktion auf der linken `Axes`
 angezeigt wird und die quadratische Funktion auf der Rechten.
 
+
 ### Axis
 
-Leicht zu verwechseln mit den `Axes` sind vom Namen her die `Axis`-Objekte.
-Während eine `Axes` einen ganze Grafik und ihre Elemente bezeichet ist eine `Axis` das, 
-was man im alltäglichen Sprachgebrauch als "Achse" bezeichnet (z. B. X-Achse, Y-Achse).
-Jede `Axes` hat typischerweise zwei `Axis`-Objekte: `ax.xaxis` und `ax.yaxis`.
+Sie sind jetzt hoffentlich sensibilisiert für den erhablichen Unterschied zwischen `Axes`
+(komplette Teilabbildung: Achsenpaar und zugehöriger Bildbereich)
+und `Axis` (Koordinatenachse, z. B. X-Achse, Y-Achse).
+Jedes `Axes`-Objekt `ax` hat typischerweise zwei `Axis`-Objekte: `ax.xaxis` und `ax.yaxis`.
 
 ```python
 fig = plt.figure()
