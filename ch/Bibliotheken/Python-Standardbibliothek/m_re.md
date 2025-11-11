@@ -6,19 +6,13 @@ assumes: re-Gruppen, m_datetime, py-Funktionale-Programmierung
 ---
 
 [SECTION::goal::idea]
-Ich kann reguläre Ausdrücke in Python verwenden
+Ich kann in Python zum Suchen oder zum Suchen-und-Ersetzen reguläre Ausdrücke verwenden.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-**[TERMREF2::Regulärer Ausdruck::Regular Expressions]** oder auf Deutsch **reguläre Ausdrücke** 
-oder kurz **re**, **regex** oder **regexp** stellen ein wichtiges Werkzeug in der Informatik bzw.
-der Softwareentwicklung dar.
-Reguläre Ausdrücke sind vielseitig einsetzbar, beispielsweise um Vorkommen solcher Ausdrücke in 
-Texten zu finden oder um die Integrität übergebener Daten zu prüfen (z.B. ob eine eingegebene 
-E-Mail- oder IP-Adresse syntaktisch korrekt ist).
-Python stellt `re` ein umfangreiches Modul für regex in der Standardbibliothek bereit, das 
-Suchen, Überprüfen und sogar Editieren von Strings ermöglicht.
+Das Python-Modul `re` ist so handlich und leistungsstark, dass man es bei der Programmierung
+für ungeheuer viele Zwecke einsetzt, weil es oft sehr kompakte Lösungen erlaubt.
 [ENDSECTION]
 
 
@@ -26,21 +20,19 @@ Suchen, Überprüfen und sogar Editieren von Strings ermöglicht.
 
 ### Vorbereitung
 
+Die `assumes`-Einträge dieser Aufgabe haben Sie ja hoffentlich beachtet und sind schon ganz
+ungeduldig, Ihr Regexp-Wissen praktisch einzusetzen?
+Dann können wir ja loslegen.
+
 Machen Sie sich mit der [Dokumentation von `re`](https://docs.python.org/3/library/re.html) 
 vertraut.
 Eine etwas ausführlichere und einsteigerfreundliche Einführung finden Sie außerdem in dem folgenden
 [How-To Artikel](https://docs.python.org/3/howto/regex.html#regex-howto).
 
-Allgemein gehen wir in der Aufgabe davon aus, dass Sie bereits grundsätzlich mit regex umgehen 
-können.
-Für einen Einstieg in das Thema regex selbst empfehlen wir die Aufgabengruppe [PARTREF::RegExp].
-Zur Auffrischung der Syntax finden Sie auch eine Übersicht in der Python Doku von `re`.
-
 Legen Sie die Datei `m_re.py` an und fügen Sie dort Ihre Lösungen für die folgenden 
 Programmieraufgaben ein.
 
-Als Beispiel werden wir in der Aufgabe ein Pseudo-Log betrachten und mit `re` ein wenig 
-analysieren. 
+Als Beispiel werden wir in der Aufgabe Logging-Daten betrachten und mit `re` analysieren. 
 Kopieren Sie den folgenden String in Ihre Datei:
 
 ```python
@@ -51,20 +43,21 @@ log = """2025-10-22T00:48:50.008Z server01 DatabaseConnector [Warn]: Operation f
 2025-10-22T10:39:19.163Z server01 PaymentGateway [Debug]: Operation failed for user 68
 2025-10-23T03:40:56.106Z server01 DatabaseConnector [Info]: Operation started for user 389
 2025-10-25T20:00:28.501Z server01 PaymentGateway [Info]: Operation completed for user 141
-2025-10-25T23:04:31.945Z server01 UserService [Warn]: Operation failed for user 999
+2025-10-25T23:04:31.945Z server07 UserService [Warn]: Operation failed for user 999
 2025-10-26T03:38:07.881Z server01 UserService [Warn]: Operation started for user 704
-2025-10-26T20:17:23.887Z server01 UserService [Warn]: Operation failed for user 919
-2025-10-27T01:04:47.393Z server01 PaymentGateway [Warn]: Operation failed for user 999
+2025-10-26T20:17:23.887Z server10 UserService [Warn]: Operation failed for user 919
+2025-10-27T01:04:47.393Z server10 PaymentGateway [Warn]: Operation failed for user 999
 2025-10-27T07:43:45.078Z server01 AuthController [Debug]: Operation pending for user 447
 2025-10-27T21:05:57.722Z server01 UserService [Info]: Operation completed for user 671
 2025-10-28T01:46:13.661Z server01 UserService [Info]: Operation started for user 185
-2025-10-28T08:08:37.915Z server01 AuthController [Error]: Operation started for user 212"""
+2025-10-28T08:08:37.915Z server01 AuthController [Error]: Operation started for user 212
+"""
 ```
 
 
-### Suchen und vergleichen
+### Suchen und Vergleichen
 
-Gerade zum Suchen und Vergleichen bietet `re` mehrere Funktionen an, von denen nicht auf den 
+Zum Suchen und Vergleichen bietet `re` mehrere Funktionen an, von denen nicht auf den 
 ersten Blick erkennbar ist, was genau die Unterschiede sind und sich daher leicht verwechseln 
 lassen.
 Zu den Funktionen gehören:  
@@ -73,44 +66,50 @@ Zu den Funktionen gehören:
 [EQ] Nennen Sie kurz die Unterschiede der Funktionen.
 
 [EQ] Ordnen Sie den nachfolgenden Szenarios jeweils die Funktion zu, die Ihrer Meinung nach in 
-dem Fall am besten geeignet ist:
+dem Fall am besten geeignet ist (schreiben Sie noch keinen konkreten Code):
 
 1. Zur Analyse einer Log-Datei sollen alle Vorkommen des Schlagwortes "Error" gesucht werden.
-2. Für einen vom User eingegebenen String soll geprüft werden, ob es sich um eine gültige 
+2. Für einen gegebenen String soll geprüft werden, ob es sich um eine gültige 
    E-Mail-Adresse handelt.
-3. In einem Text wollen Sie prüfen, ob es ein Wort mit einem deutschen Umlaut enthält.
-4. Für eine Artikelnummer soll geprüft werden, ob sie immer mit einer festen Anzahl an Ziffern 
-   beginnt.
+3. In einem Text wollen Sie prüfen, ob er ein Wort mit einem deutschen Umlaut enthält.
+4. Für einen Artikelcode soll sichergestellt werden, dass er mit 4 Ziffern beginnt.
 
 
-### regex-Pattern und Metazeichen
-
-Bei regulären Ausdrücken in Python gibt es eine Besonderheit zu beachten:
+### regex-Patterns und Raw-Strings
 
 Reguläre Ausdrücke verwenden Backslashes (`\`) als Metazeichen (z.B. `\w`, `\d`) sowie als 
 Maskierungszeichen, um andere Metazeichen zu unterdrücken (z.B. `\[`, um nach der eckigen 
 Klammer zu suchen anstatt eine Zeichenklasse zu definieren).
 Python benutzt für Strings aber auch selbst `\` als Meta- und Maskierungszeichen, z.B. um mit 
 `\n` Zeilenumbrüche darzustellen.
-Das führt natürlich zu Konflikten und verschlechtert die Lesbarkeit von Ausdrücken.
-Wenn z.B. direkt nach einem Backslash gesucht werden soll, müsste man dieses als `\\\\` 
-schreiben, um es sowohl in Python als auch in regex zu maskieren.
+
+Das verschlechtert die Lesbarkeit von regulären Ausdrücken in normalen Strings:
+Wenn z.B. direkt nach einem Backslash gesucht werden soll, müsste man das Literal dafür 
+als `\\\\` schreiben. 
+Der resultierende String enthält dann zwei Backslashes.
+Dieser reguläre Ausdruck trifft auf einen Backslash zu.
 
 Die bessere Alternative ist die Verwendung von Raw-Strings.
 Diese kann man durch das Präfix `r` vor einem String erzeugen (z.B. `r"\\"`).
-So verwendet Python den String, ohne selbst Metazeichen zu interpretieren.
+In einem Raw-String gibt es keine Metazeichen; `r"\\"` steht also für einen String,
+der zwei Backslashes enthält.
+Für reguläre Ausdrücke verwendet man in Python per Konvention immer Raw-Strings, sogar dann,
+wenn der Ausdruck keinen einzigen Backslash benötigen sollte.
+(Deshalb glauben manche Leute, das `r` stehe für "regular expression". Das ist nicht der Fall.)
 
-[ER] Sie wollen im Log nach der **ersten** `[Error]`-Meldung, sowie dem Prozess/Service, der die 
-Meldung erzeugt hat, suchen.
+[ER] Sie wollen im Log nach der ersten `[Error]`-Meldung suchen und daraus den Prozess/Service
+extrahieren, der die Meldung erzeugt hat.
 Schreiben Sie hierfür zuerst einen regulären Ausdruck, der genau dies matcht.
 Verwenden Sie nun eine geeignete Funktion aus `re`, um den Ausdruck anzuwenden.
 Speichern Sie den Rückgabewert der Funktion in einer Variable.
 
-# Match-Objekte
+
+### Match-Objekte
 
 Beim Suchen mit `re` erhalten Sie von der verwendeten Funktion ein 
-[Match-Objekt](https://docs.python.org/3/library/re.html#match-objects) zurück (mit Ausnahme von 
-`findall()` und `finditer()`, wo sie eine Liste bzw. einen Iterator aller Matches erhalten).
+[Match-Objekt](https://docs.python.org/3/library/re.html#match-objects) 
+zurück (mit Ausnahme von `findall()` und `finditer()`, 
+wo sie eine Liste bzw. einen Iterator aller Matches erhalten).
 Wird keine Übereinstimmung gefunden, ist der Rückgabewert `None`.
 
 [ER] Machen Sie eine Fallunterscheidung: Wenn in [EREFR::1] ein Match gefunden wurde, geben Sie den 
