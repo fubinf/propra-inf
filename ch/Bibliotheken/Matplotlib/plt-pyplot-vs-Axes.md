@@ -1,4 +1,4 @@
-title: "Implizites vs. Explizites Interface"
+title: "Implizites vs. Explizites Interface von matplotlib"
 stage: draft
 timevalue: 1
 difficulty: 2
@@ -60,7 +60,16 @@ Wenn Sie `plt.plot(...)` aufrufen, erzeugt `matplotlib` im Hintergrund automatis
 und `Axes`, falls es noch keine gibt. 
 Alles, was Sie mit `plt.` aufrufen, bezieht sich auf die zuletzt benutzten Objekte.
 
-Diese Methode ist kürzer und schneller, aber weniger kontrollierbar, 
+[NOTICE]
+Wenn man beide Programme vergleicht, sollte man denken, dass es im expliziten Stil
+`fig.show()` heißen sollte anstatt `plt.show()`. 
+Tatsächlich funktioniert das auch oft -- aber nicht immer so, wie man denkt.
+Sondern auch im expliziten Stil ist `plt.show()` der korrekte Weg, um alle derzeit
+offenen Figures anzuzeigen (ggf. mehrere).
+[ENDNOTICE]
+
+Die implizite Methode ist für einfache Fälle kürzer und schneller.
+Sie ist aber weniger flexibel, 
 wenn man z. B. mehrere Diagramme auf einer Seite haben will.
 
 [EQ] Handelt es sich bei dem nachfolgenden Beispiel um eine implizite oder explizite Schreibweise?
