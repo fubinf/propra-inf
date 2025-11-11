@@ -38,8 +38,20 @@ Die gegebene Beispielseite muss bei einer Browserfensterbreite von weniger als 1
 um allen Inhalt zu sehen.
 Sie können das testen, indem Sie die Breite ihres Browserfensters ändern.
 Identifizieren Sie die HTML-Elemente, die über den Seitenrand hinausragen und 
-erstellen Sie ein CSS-Media-Query für eine Breite von weniger als 1500px,
-sodass nicht mehr horizontal gescrollt werden muss.
+erstellen Sie eine CSS-Media-Query für eine Breite von weniger als 1500px so,
+dass nicht mehr horizontal gescrollt werden muss.
+
+[HINT::Wie schmal muss es denn dafür sein?]
+Der Trick dabei ist, von der absoluten Breite `1500px` auf eine _relative Breite_ zu wechseln.
+
+[HINT::Relativ wozu?]
+Relativ zum umgebenden Element (das in diesem Fall nämlich so breit ist wie der viewport).
+
+[HINT::Wie geht das?]
+Prozent
+[ENDHINT]
+[ENDHINT]
+[ENDHINT]
 
 [HINT::Developer Tools]
 Machen Sie sich die Developer-Tools Ihres Browser zunutze.
@@ -54,15 +66,18 @@ werden Ihnen die Dimensionen des Elements im Browserfenster visuell dargestellt.
 In der Beispielseite ist dieses bereits vorbereitet.
 Erstellen Sie eine Definition mittels Media Queries, die das normale Menü ausblendet 
 und das Hamburger-Menü-Symbol einblendet, wenn die Bildschirmbreite zu schmal für das reguläre Menü wird.
+(Das über die genaue Menübreite zu steuern ist für uns hier zu kompliziert. 
+Setzen Sie einfach eine feste Größe ein.)
 
 [EQ] Geben Sie weitere Vorschläge für Elemente einer Webseite, 
 auf die sich Media Queries sinnvoll anwenden lassen.
 
 [EQ] Media Queries sind nicht nur hilfreich für das Anpassen der Webseite auf die Anzeigebreite.
-Wofür könnten sie noch verwendet werden?
+Beschreiben Sie in eigenen Worten zwei ganz andersartige Einsatzfälle:
+Aus welchem Anlass wird die Media Query benutzt? Was wird damit erreicht?
 
 [HINT::Lösungsvorschläge]
-In der oben angegebenen Quelle auf SelfHTML finden sich Anwedungsbeispiele.
+In der oben angegebenen Quelle auf SelfHTML finden sich Anwendungsbeispiele.
 [ENDHINT]
 [ENDSECTION]
 
@@ -73,5 +88,6 @@ In der oben angegebenen Quelle auf SelfHTML finden sich Anwedungsbeispiele.
 
 [INSTRUCTOR::Musterlösung]
 [INCLUDE::ALT:]
+
 Eine Musterlösung findet sich in [TREEREF::/Web/CSS/css-Media-Queries.html].
 [ENDINSTRUCTOR]
