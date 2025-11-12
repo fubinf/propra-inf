@@ -201,5 +201,5 @@ Starten Sie Ihren HTTP-Server und führen Sie folgende Befehle in einem anderen 
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe als ausführbare Datei hier:
-[TREEREF::/Sprachen/Go/go-http-server.go].
+[TREEREF::/Bibliotheken/Go-Standardbibliothek/go-http-server.go].
 [ENDINSTRUCTOR]

@@ -268,5 +268,5 @@ verwendet werden.
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe als ausführbare Datei hier:
-[TREEREF::/Sprachen/Go/go-unsafe.go].
+[TREEREF::/Bibliotheken/Go-Standardbibliothek/go-unsafe.go].
 [ENDINSTRUCTOR]

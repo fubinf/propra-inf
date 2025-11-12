@@ -229,5 +229,5 @@ func main() {
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe als ausführbare Datei hier:
-[TREEREF::/Sprachen/Go/go-json.go].
+[TREEREF::/Bibliotheken/Go-Standardbibliothek/go-json.go].
 [ENDINSTRUCTOR]

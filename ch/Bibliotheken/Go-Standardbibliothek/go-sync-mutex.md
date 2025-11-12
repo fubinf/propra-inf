@@ -2,7 +2,7 @@ title: "Go: sync.Mutex"
 stage: draft
 timevalue: 1
 difficulty: 2
-assumes: go-waitgroup
+assumes: go-sync-waitgroup
 ---
 
 [SECTION::goal::idea,experience]
@@ -132,12 +132,12 @@ Was ist die schnellste _korrekte_ Implementierung?
 
 [INSTRUCTOR::Lösungen]
 **Kommandoprotokoll**
-[PROT::ALT:go-mutex.prot]
+[PROT::ALT:go-sync-mutex.prot]
 
 **Lösungen**
 
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe als ausführbare Datei hier:
-[TREEREF::/Sprachen/Go/go-mutex.go].
+[TREEREF::/Bibliotheken/Go-Standardbibliothek/go-sync-mutex.go].
 [ENDINSTRUCTOR]

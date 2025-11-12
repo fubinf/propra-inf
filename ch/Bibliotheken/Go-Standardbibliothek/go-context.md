@@ -182,5 +182,5 @@ func main() {
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe als ausführbare Datei hier:
-[TREEREF::/Sprachen/Go/go-context.go].
+[TREEREF::/Bibliotheken/Go-Standardbibliothek/go-context.go].
 [ENDINSTRUCTOR]

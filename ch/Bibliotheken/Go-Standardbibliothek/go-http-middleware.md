@@ -203,5 +203,5 @@ Die Funktion `log` soll die Antwort-Bytefolge zu einer Zeichenkette umwandeln un
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe als ausführbare Datei hier:
-[TREEREF::/Sprachen/Go/go-http-middleware.go].
+[TREEREF::/Bibliotheken/Go-Standardbibliothek/go-http-middleware.go].
 [ENDINSTRUCTOR]

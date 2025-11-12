@@ -179,5 +179,5 @@ Denken Sie daran, `Response.Body` nach dem Lesen zu schließen!
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe als ausführbare Datei hier:
-[TREEREF::/Sprachen/Go/go-http-client.go].
+[TREEREF::/Bibliotheken/Go-Standardbibliothek/go-http-client.go].
 [ENDINSTRUCTOR]

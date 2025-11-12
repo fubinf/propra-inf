@@ -92,12 +92,12 @@ In diesem Fall würde auf die Goroutine nicht gewartet werden.
 
 [INSTRUCTOR::Lösungen]
 **Kommandoprotokoll**
-[PROT::ALT:go-waitgroup.prot]
+[PROT::ALT:go-sync-waitgroup.prot]
 
 **Lösungen**
 
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe als ausführbare Datei hier:
-[TREEREF::/Sprachen/Go/go-waitgroup.go].
+[TREEREF::/Bibliotheken/Go-Standardbibliothek/go-sync-waitgroup.go].
 [ENDINSTRUCTOR]
