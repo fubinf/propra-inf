@@ -26,8 +26,18 @@ Dann können wir ja loslegen.
 
 Machen Sie sich mit der [Dokumentation von `re`](https://docs.python.org/3/library/re.html) 
 vertraut.
-Eine etwas ausführlichere und einsteigerfreundliche Einführung finden Sie außerdem in dem folgenden
-[How-To Artikel](https://docs.python.org/3/howto/regex.html#regex-howto).
+Da diese etwas umfangreicher ist, verschaffen Sie sich einen guten Überblick über die einzelnen 
+Kapitel, sodass Sie sich die folgenden Fragen anschließend selbst beantworten können:
+
+- Welcher Teil erklärt die Syntax von regulären Ausdrücken in Python?
+- Wo werden die vom Modul bereitgestellten Funktionen erklärt?
+- Welcher Abschnitt behandelt Match-Objekte?
+- Wo finde ich Anwendungsbeispiele?
+
+Falls Sie darüber hinaus eine etwas ausführlichere und einsteigerfreundliche Anleitung zu `re` 
+lesen möchten, können Sie sich zusätzlich den folgenden
+[How-To Artikel](https://docs.python.org/3/howto/regex.html#regex-howto) ansehen (der die Doku 
+aber nicht ersetzt).
 
 Legen Sie die Datei `m_re.py` an und fügen Sie dort Ihre Lösungen für die folgenden 
 Programmieraufgaben ein.
@@ -63,7 +73,9 @@ lassen.
 Zu den Funktionen gehören:  
 `match`, `fullmatch`, `search` und `findall`.
 
-[EQ] Nennen Sie kurz die Unterschiede der Funktionen.
+[EQ] Schauen Sie sich diese Funktionen einmal genauer in der 
+[Dokumentation](https://docs.python.org/3/library/re.html#functions) an und nennen Sie kurz die 
+Unterschiede der Funktionen.
 
 [EQ] Ordnen Sie den nachfolgenden Szenarios jeweils die Funktion zu, die Ihrer Meinung nach in 
 dem Fall am besten geeignet ist (schreiben Sie noch keinen konkreten Code):
@@ -143,7 +155,8 @@ Geben Sie das Ergebnis entsprechend aus (`\nfirst line matches the schema` bzw.
 Reguläre Ausdrücke können neben dem eigentlichen Ausdruck noch zusätzliche Optionen 
 erhalten, die das Verhalten des Ausdrucks beeinflussen, z.B. um festzulegen, ob 
 Groß-/Kleinschreibung mit berücksichtigt werden soll.
-In Python lassen sich diese Optionen als Flags zusammen mit dem Ausdruck übergeben.
+In Python lassen sich diese Optionen als [Flags](https://docs.python.org/3/library/re.html#flags) 
+zusammen mit dem Ausdruck übergeben.
 
 [EQ] Nehmen Sie drei der Flags, von denen Sie denken, dass sie am häufigsten eingesetzt werden 
 und schreiben Sie jeweils ein kurzes Beispiel auf, in denen sie sinnvoll verwendet werden könnten.
