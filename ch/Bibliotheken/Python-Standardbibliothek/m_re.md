@@ -71,7 +71,7 @@ Zum Suchen und Vergleichen bietet `re` mehrere Funktionen an, von denen nicht au
 ersten Blick erkennbar ist, was genau die Unterschiede sind und sich daher leicht verwechseln 
 lassen.
 Zu den Funktionen gehören:  
-`match`, `fullmatch`, `search` und `findall`.
+`match`, `fullmatch` und `search`.
 
 [EQ] Schauen Sie sich diese Funktionen einmal genauer in der 
 [Dokumentation](https://docs.python.org/3/library/re.html#functions) an und nennen Sie kurz die 
@@ -80,11 +80,10 @@ Unterschiede der Funktionen.
 [EQ] Ordnen Sie den nachfolgenden Szenarios jeweils die Funktion zu, die Ihrer Meinung nach in 
 dem Fall am besten geeignet ist (schreiben Sie noch keinen konkreten Code):
 
-1. Zur Analyse einer Log-Datei sollen alle Vorkommen des Schlagwortes "Error" gesucht werden.
-2. Für einen gegebenen String soll geprüft werden, ob es sich um eine gültige 
-   E-Mail-Adresse handelt.
-3. In einem Text wollen Sie prüfen, ob er ein Wort mit einem deutschen Umlaut enthält.
-4. Für einen Artikelcode soll sichergestellt werden, dass er mit 4 Ziffern beginnt.
+1. Für einen gegebenen String soll geprüft werden, ob es sich um eine gültige E-Mail-Adresse 
+   handelt.
+2. In einem Text wollen Sie prüfen, ob er ein Wort mit einem deutschen Umlaut enthält.
+3. Für einen Artikelcode soll sichergestellt werden, dass er mit 4 Ziffern beginnt.
 
 
 ### regex-Patterns und Raw-Strings
@@ -146,10 +145,6 @@ enthält.
 Geben Sie vom gefundenen Match die einzelnen Gruppen sowie nochmal die Position aus:  
 `print("\nlog type:", ..., "\nservice:", ..., "\nposition:", ...)`
 
-[ER] Suchen Sie jetzt nach **allen** Vorkommen von Errors oder Warnings im Log.
-Zählen Sie anschließend, welcher Service am häufigsten Fehler oder Warnungen gemeldet hat. 
-`print("\nmost errors or warnings occurred in service:", ...)`
-
 [ER] Jede Log-Zeile sollte nach demselben Schema aufgebaut sein:
 Zeitstempel (im identischen Format), Server, Service, Log-Typ und eine Nachricht, die auf einer 
 User-ID endet.
@@ -158,6 +153,22 @@ Prüfen Sie nun, ob die erste Zeile des Logs dieses Schema erfüllt.
 Geben Sie das Ergebnis entsprechend aus (`\nfirst line matches the schema` bzw. 
 `\nfirst line doesn't match the schema`).
 
+
+### Alle Vorkommen finden
+
+`findall()` und `finditer()` funktionieren etwas anders:  
+`findall()` liefert eine Liste aller gefundenen Matches, bzw. eine Liste von Tupeln, die alle 
+gematchten Gruppen enthalten.
+`finditer()` wiederum liefert einen Iterator, der so lange `Match`-Objekte liefert, bis keine 
+Matches mehr gefunden werden.
+
+[EQ] Wann wäre die Verwendung von `finditer()` der Verwendung von `findall()` vorzuziehen?
+
+[ER] Nehmen Sie Ihren Ausdruck von [EREFR::3] und suchen Sie jetzt nach **allen** Vorkommen von 
+Errors oder Warnings im Log.
+Sie können selbst wählen, welche Funktion Sie hierfür einsetzen möchten
+Zählen Sie anschließend, welcher Service am häufigsten Fehler oder Warnungen gemeldet hat.  
+`print("\nmost errors or warnings occurred in service:", ...)`
 
 ### Flags
 
