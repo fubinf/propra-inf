@@ -109,9 +109,10 @@ Für reguläre Ausdrücke verwendet man in Python per Konvention immer Raw-Strin
 wenn der Ausdruck keinen einzigen Backslash benötigen sollte.
 (Deshalb glauben manche Leute, das `r` stehe für "regular expression". Das ist nicht der Fall.)
 
-[ER] Sie wollen im Log nach der ersten `[Error]`-Meldung suchen und daraus den Prozess/Service
-extrahieren, der die Meldung erzeugt hat.
-Schreiben Sie hierfür zuerst einen regulären Ausdruck, der genau dies matcht.
+[ER] Sie wollen im Log nach der ersten `[Error]`-Meldung, inklusive des Prozesses/Service, der 
+die Meldung erzeugt hat, suchen.
+Schreiben Sie hierfür zuerst einen regulären Ausdruck, der genau dies matcht (z.B. 
+`UserService [Error]`).
 Verwenden Sie nun eine geeignete Funktion aus `re`, um den Ausdruck anzuwenden.
 Speichern Sie den Rückgabewert der Funktion in einer Variable.
 
