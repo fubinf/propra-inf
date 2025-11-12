@@ -128,8 +128,9 @@ Mit Flags lässt sich das Verhalten bei Bedarf auch ändern (dazu später mehr).
 
 Beim Suchen mit `re` erhalten Sie von der verwendeten Funktion ein 
 [Match-Objekt](https://docs.python.org/3/library/re.html#match-objects) 
-zurück (mit Ausnahme von `findall()` und `finditer()`, 
-wo sie eine Liste bzw. einen Iterator aller Matches erhalten).
+zurück (mit Ausnahme von `findall()` und `finditer()`).
+Dieses enthält einige Informationen über den Match sowie Funktionen, um diese auszugeben, 
+insbesondere auch bei Verwendung von regex-Gruppen.
 Wird keine Übereinstimmung gefunden, ist der Rückgabewert `None`.
 
 [ER] Machen Sie eine Fallunterscheidung: Wenn in [EREFR::1] ein Match gefunden wurde, geben Sie den 
@@ -139,17 +140,18 @@ Ansonsten geben Sie nur `no error found` aus.
 
 [ER] Erweitern Sie nun den regulären Ausdruck, sodass er nun sowohl `Error`, als auch 
 `Warn`-Meldungen abfängt.
-Außerdem soll der Ausdruck in zwei Gruppen unterteilt werden: eine mit dem Namen `service`, die den 
-Servicenamen enthält und eine mit dem Namen `type`, die den Log-Typen (ohne eckige Klammern) 
-enthält.  
-Geben Sie vom gefundenen Match die einzelnen Gruppen sowie nochmal die Position aus:  
-`print("\nlog type:", ..., "\nservice:", ..., "\nposition:", ...)`
+Zusätzlich soll auch die Log-Meldung nach dem Doppelpunkt mit erfasst werden.
+Außerdem soll der Ausdruck in drei Gruppen unterteilt werden: eine mit dem Namen `service`, die den 
+Servicenamen enthält, eine mit dem Namen `type`, die den Log-Typen (ohne eckige Klammern) 
+enthält und eine namens `message` für die Log-Nachricht.  
+Geben Sie vom gefundenen Match die einzelnen Gruppen folgendermaßen aus:  
+`print("\nlog type:", ..., "\nservice:", ..., "\nmessage:", ...)`
 
-[ER] Jede Log-Zeile sollte nach demselben Schema aufgebaut sein:
-Zeitstempel (im identischen Format), Server, Service, Log-Typ und eine Nachricht, die auf einer 
-User-ID endet.
-Erstellen Sie einen Ausdruck, der dieses Schema abbildet.  
-Prüfen Sie nun, ob die erste Zeile des Logs dieses Schema erfüllt.
+[ER] Jede Log-Zeile soll nach demselben Schema aufgebaut sein:  
+Zeitstempel (im einheitlichen Format), Server, Service, Log-Typ und eine Nachricht, die auf einer 
+User-ID endet.  
+Erstellen Sie einen Ausdruck, der dieses Schema abbildet.
+Prüfen Sie nun, ob **die erste Zeile** des Logs dieses Schema erfüllt.
 Geben Sie das Ergebnis entsprechend aus (`\nfirst line matches the schema` bzw. 
 `\nfirst line doesn't match the schema`).
 
@@ -164,9 +166,8 @@ Matches mehr gefunden werden.
 
 [EQ] Wann wäre die Verwendung von `finditer()` der Verwendung von `findall()` vorzuziehen?
 
-[ER] Nehmen Sie Ihren Ausdruck von [EREFR::3] und suchen Sie jetzt nach **allen** Vorkommen von 
-Errors oder Warnings im Log.
-Sie können selbst wählen, welche Funktion Sie hierfür einsetzen möchten
+[ER] Suchen Sie jetzt nach **allen** Vorkommen von Errors oder Warnings im Log.
+Sie können selbst wählen, welche Funktion Sie hierfür einsetzen möchten.
 Zählen Sie anschließend, welcher Service am häufigsten Fehler oder Warnungen gemeldet hat.  
 `print("\nmost errors or warnings occurred in service:", ...)`
 
@@ -249,7 +250,7 @@ Ausdruck wurde schon einmal kompiliert und liegt noch im Cache vor.
 
 Wird ein Ausdruck häufiger verwendet, lässt sich dieser auch im Vorfeld mit 
 [`re.compile()`](https://docs.python.org/3/library/re.html#re.compile) kompilieren und das 
-erhaltene Objekt anschließend beliebig oft auf unterschiedliche Eingaben anwenden.
+erhaltene `Pattern`-Objekt anschließend beliebig oft auf unterschiedliche Eingaben anwenden.
 Das kann vor allem bei Verwendung einer großen Anzahl an Ausdrücken, die auch mehrfach 
 verwendet werden, effizienter sein.
 
