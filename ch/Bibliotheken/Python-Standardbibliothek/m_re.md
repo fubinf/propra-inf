@@ -116,6 +116,14 @@ Schreiben Sie hierfür zuerst einen regulären Ausdruck, der genau dies matcht (
 Verwenden Sie nun eine geeignete Funktion aus `re`, um den Ausdruck anzuwenden.
 Speichern Sie den Rückgabewert der Funktion in einer Variable.
 
+[NOTICE]
+Der Punkt (`.`) matcht in regulären Ausdrücken jedes Zeichen, **außer einen Zeilenumbruch**.
+
+Der Vorteil davon ist, dass zeilenweises Matchen so deutlich einfacher ist (ein simples `.*` 
+wäre sonst an einer solchen Stelle nicht möglich).
+Mit Flags lässt sich das Verhalten bei Bedarf auch ändern (dazu später mehr).
+[ENDNOTICE]
+
 
 ### Match-Objekte
 
