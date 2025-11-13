@@ -95,15 +95,10 @@ Wichtig zu `number` vs. `bigint`:
 Beispiel:
 
 ```
-let a = 999999999999999; // number (nahe an der Grenze; evtl. schon ungenau)
-let b = 999999999999999n; // bigint (exakt)
+let a = 9999999999999999; // number (über 2**53, deshalb vermutlich ungenau)
+let b = 9999999999999999n; // bigint (exakt)
 console.log(typeof a); // "number"
 console.log(typeof b); // "bigint"
-
-
-// Unerwartetes Verhalten mit großen Zahlen (Rundung durch number):
-console.log(999999999999999 + 1); // 1000000000000000 (evtl. ok)
-console.log(9999999999999999 + 1); // 10000000000000000? -> Achtung: Präzisionsverlust!
 ```
 
 Eine ausführlichere Erklärung finden Sie in der [MDN-Webdokumentation zu Number](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Number) und in der [MDN-Webdokumentation zu BigInt](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
