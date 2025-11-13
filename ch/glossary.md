@@ -336,6 +336,18 @@ und man kann die Formatierung sehr schnell global über viele Dokumente hinweg a
 indem man Styles ändert, die in allen diesen Dokumenten benutzt werden.
 [ENDTERM]
 
+[TERM::CSS-Pixel|Gerätepixel|DevicePixelRatio]
+Der Begriff CSS-Pixel beschreibt eine normativ definierte absolute Längeneinheit, 
+die in CSS mit `px` ausgewiesen wird. 
+Ein CSS-Pixel unterscheidet sich vom Gerätepixel, den physischen kleinsten Anzeigeeinheiten,
+die eine volle Farbe unabhängig von ihren Nachbarn darstellen können.
+Das aktuelle Verhältnis von Gerätepixeln zu CSS-Pixeln kann aus der 
+Browser-API über [TERMREF::JavaScript] ausgelesen werden.
+Für einen typischen Full-HD-Bildschirm ist das Verhältnis 1:1.
+Bei HiDPI-Geräten oder bei Verwendung des Browserzooms kann das nicht mehr der Fall sein.
+
+[HREF::https://developer.mozilla.org/de/docs/Web/API/Window/devicePixelRatio]
+[ENDTERM]
 
 [TERM::CSV|comma-separated values|character-separated values]
 Ein einfaches und verbreitetes Dateiformat für tabellarische Daten 
@@ -2024,6 +2036,15 @@ Projekts und den Praktiken des Entwicklungsteams variieren kann. Ein gängiges u
 verbreitetes Schema ist das MAJOR.MINOR.PATCH-Schema. Gemeinsam haben aber alle, dass sie
 Entwicklern und Benutzern ermöglichen, den Entwicklungsstand und die Stabilität einer
 Softwareanwendung aufgrund ihrer Eindeutigkeit schnell erkennen.
+[ENDTERM]
+
+[TERM::Viewport]
+ChatGPT:Ein Viewport bezeichnet den sichtbaren Bereich einer Webseite oder Anwendung, 
+den ein Gerät – z. B. ein Browserfenster auf einem Desktop oder der Bildschirm eines Smartphones – 
+tatsächlich anzeigt. 
+Er bestimmt also, welcher Teil des Inhalts ohne Scrollen sichtbar ist.
+
+[HREF::https://de.wikipedia.org/wiki/Viewport]
 [ENDTERM]
 
 ## W

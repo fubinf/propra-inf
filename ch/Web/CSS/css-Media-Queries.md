@@ -31,21 +31,24 @@ Dafür ist folgende Seite mit CSS-Code in einem Style-Element integriert gegeben
 [EQ] Testen Sie die Webseite in ihrem Browser. 
 Identifizieren Sie Elemente, die sich gut in der Breite anpassen lassen. 
 
-[ER] Informieren Sie sich zu Media Queries, z.B. auf der 
+[ER] Die gegebene Beispielseite ist für eine gewöhnliche Full-HD-Bildschirmauflösung angemessen.
+Wird das Browserfenster allerdings schmaler als 1500 [TERMREF::CSS-Pixel], 
+so ragen einige Elemente über den rechten Rand hinaus und es muss horizontal gescrollt werden.
+(Für diese Aufgabe reicht es CSS-Pixel als eine Längeneinheit mit einer definierten Länge,
+ähnlich wie z.B. ein Meter, zu betrachten)  
+Identifizieren Sie durch Anpassen der Breite ihres Browserfensters 
+die HTML-Elemente, die über den Seitenrand hinausragen,
+und erstellen Sie eine CSS-Media-Query für eine Breite von weniger als 1500px, 
+sodass nicht mehr horizontal gescrollt werden muss.
+Informieren Sie sich dazu über Media Queries, z.B. auf der 
 [Einstiegsseite zu Media Queries](https://wiki.selfhtml.org/wiki/CSS/Media_Queries/Einstieg) 
 bei SelfHTML. 
-Die gegebene Beispielseite muss bei einer Browserfensterbreite von weniger als 1500px horizontal gescrollt werden,
-um allen Inhalt zu sehen.
-Sie können das testen, indem Sie die Breite ihres Browserfensters ändern.
-Identifizieren Sie die HTML-Elemente, die über den Seitenrand hinausragen und 
-erstellen Sie eine CSS-Media-Query für eine Breite von weniger als 1500px so,
-dass nicht mehr horizontal gescrollt werden muss.
 
 [HINT::Wie schmal muss es denn dafür sein?]
-Der Trick dabei ist, von der absoluten Breite `1500px` auf eine _relative Breite_ zu wechseln.
+Der Trick dabei ist, von der absoluten Breite `1448px` auf eine _relative Breite_ zu wechseln.
 
 [HINT::Relativ wozu?]
-Relativ zum umgebenden Element (das in diesem Fall nämlich so breit ist wie der viewport).
+Relativ zum umgebenden Element (das in diesem Fall nämlich so breit ist wie der [TERMREF::Viewport]).
 
 [HINT::Wie geht das?]
 Prozent
@@ -54,7 +57,7 @@ Prozent
 [ENDHINT]
 
 [HINT::Developer Tools]
-Machen Sie sich die Developer-Tools Ihres Browser zunutze.
+Machen Sie sich die Developer-Tools Ihres Browsers zunutze.
 Für gewöhnlich öffnen Sie diese mit Ctrl-Shift-I 
 oder dem Menüpunkt "Untersuchen" im Kontextmenü an einer beliebigen Stelle der Website.
 Gehen Sie in den Reiter Inspektor (Firefox) oder Elemente (Chrome-basiert).
