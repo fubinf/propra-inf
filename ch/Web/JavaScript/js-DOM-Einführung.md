@@ -15,7 +15,7 @@ requires: html-Formulare
 
 [SECTION::background::default]
 Mit HTML und CSS kann man Webseiten gestalten, die ansprechend aussehen, 
-aber sie bleiben (weitgehend) passive Dokumente.
+aber sie bleiben weitgehend passive Dokumente.
 Mit JavaScript kann man sie zum Leben erwecken und ihnen Programmfunktionalität zufügen.
 [ENDSECTION]
 
@@ -25,7 +25,8 @@ Mit JavaScript kann man sie zum Leben erwecken und ihnen Programmfunktionalität
 ### Syntax verstehen
 
 Die JavaScript-Syntax ist knapp gehalten und ähnelt den Sprachen der C-Familie wie 
-C, C#, C++, Java, Objective C oder Swift: viele geschweifte Klammern.
+C, C#, C++, Go, Java, Kotlin, Objective C, Perl, PHP, 
+Swift, TypeScript: viele geschweifte Klammern.
 
 Ein Beispiel:
 
@@ -47,13 +48,15 @@ function begruessung(person, jahre) {
 console.log(begruessung(name, alter));
 ```
 Die Klammern um die `if`-Bedingung sind nötig, weil es kein `then`-Schlüsselwort gibt.  
-Die Folge von Anweisungen in einem `{ }`-Klammerpaar heißt "Block". Die Obige Funktion hat also drei Blöcke.
+Die Folge von Anweisungen in einem `{ }`-Klammerpaar heißt "Block". 
+Die obige Funktion hat also drei Blöcke.
 
 [NOTICE]
 JavaScript wird in den meisten Fällen im Webbrowser ausgeführt, nicht auf der Kommandozeile.  
-Mit `console.log(...)` können Sie Texte oder Werte in der Browser-Konsole ausgeben (etwa wie `print()` in Python, aber weniger flexibel).  
+Mit `console.log(...)` können Sie Texte oder Werte in der Browser-Konsole ausgeben 
+(etwa wie `print()` in Python, aber weniger flexibel).  
 Drücken Sie dafür im Browser die Taste `F12` und öffnen Sie den Tab `Konsole`.  
-Falls das nicht funktioniert, können Sie in der Webseite einen Rechtsklick machen,   
+Falls das nicht funktioniert, können Sie in der Webseite einen Rechtsklick machen,
 „Element untersuchen“/"Inspect" auswählen und anschließend den Tab `Konsole` öffnen.  
 Im Beispiel wird also eine Zeichenkette (`"Lisa"`) und eine Zahl (`22`) ausgegeben.
 [ENDNOTICE]
@@ -65,8 +68,10 @@ Variablen definieren Sie in JavaScript mit `let`, `const` oder `var`.
 Dabei nutzt man `const` für Variablen, die nicht verändert werden dürfen.  
 Im anderen Falle nutzt man `let`.  
 `var` ist ein älteres Sprachkonstrukt.  
-Es ähnelt `let`, aber die Variable ist damit in der ganzen Funktion sichtbar, nicht nur in dem Block, in dem sie deklariert ist, wie bei `let`.  
-Kleinere Sichtbarkeit führt zu verständlicherem Code, deshalb benutzt man `var` in modernem JavaScript nur noch selten.
+Es ähnelt `let`, aber die Variable ist damit in der ganzen Funktion sichtbar, nicht nur in dem Block, 
+in dem sie deklariert ist, wie bei `let`.  
+Kleinere Sichtbarkeit führt zu verständlicherem Code, 
+deshalb benutzt man `var` in modernem JavaScript nur noch selten.
 
 ```
 let x = 5;        // veränderbar
@@ -82,8 +87,10 @@ Andere sind Objekte, z. B. Arrays oder eigene Datenstrukturen.
 
 Wichtig zu `number` vs. `bigint`:
 
-- `number` ist immer ein 64‑Bit IEEE‑754 Gleitkommawert (ähnlich `float64`). Ganze Zahlen können damit nur bis `2^53 - 1` exakt dargestellt werden.
-- Für größere exakte Ganzzahlen braucht man `bigint`. Das muss explizit verwendet werden, entweder mit dem `n`‑Suffix oder über `BigInt(...)`.
+- `number` ist immer ein 64‑Bit IEEE‑754 Gleitkommawert (ähnlich `float64`). 
+  Ganze Zahlen können damit bis `2^53 - 1` exakt dargestellt werden.
+- Für größere exakte Ganzzahlen braucht man `bigint`. 
+  Das muss explizit verwendet werden, entweder mit dem `n`‑Suffix oder über `BigInt(...)`.
 
 Beispiel:
 
@@ -120,20 +127,19 @@ let numbers = [1, 2, 3];    // array
 ```
 
 [EQ] Recherchieren Sie den Unterschied zwischen `undefined` und `null` in JavaScript.  
-Warum sind Beide notwendig?  
+Warum sind beide notwendig?  
 Einen guten Einstieg dazu finden Sie in der [MDN-Webdokumentation zu null vs undefined](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/null#null_vs_undefined).
 
 #### JSON
 
-`JSON` („JavaScript Object Notation“) ist ein textbasiertes Datenformat, 
-das sehr ähnlich zu JavaScript-Objekten aussieht und sich auch an Python-Dicts/Listen anlehnt.
+`JSON` („JavaScript Object Notation“) ist ein textbasiertes Datenformat für (verschachtelte)
+Listen und Dictionaries.
+Jeder gültige JSON-String ist auch gültiges JavaScript mit der gleichen Bedeutung.
+(Wenn man sich dabei auf Strings und Integers beschränkt, ist ein JSON-String auch gültiges Python;
+bei manchen anderen Werten allerdings nicht mehr, z.B. `true` anstatt `True`.)
 
 Beispiel (`JSON` in JavaScript):  
 `{"name": "Anna", "alter": 25, "hobbys": ["Joggen", "Lesen"]}`  
-
-In Python wäre das sehr ähnlich:  
-`{"name": "Anna", "alter": 25, "hobbys": ["Joggen", "Lesen"]}`
-
 
 
 ### Funktionen
