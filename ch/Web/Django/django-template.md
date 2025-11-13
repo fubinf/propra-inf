@@ -67,23 +67,8 @@ Zunächst müssen wir die Template-Konfiguration in den Projekteinstellungen anp
 [ER] Erstellen Sie ein `templates`-Verzeichnis im Hauptprojektordner 
 und öffnen Sie `meinprojekt/settings.py` und modifizieren Sie die `TEMPLATES`-Konfiguration:
 
-```python
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # Hier anpassen
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-```
+@INCLUDE_SNIPPET: django_template1 from altdir/ch/Web/Django/django-template.md
+
 <!-- ER1 -->
 
 ### Erstes Template erstellen

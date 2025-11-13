@@ -232,7 +232,9 @@ Optional: Weitere Erklärungen finden Sie hier:
 <!-- ER3 -->
 
 <!-- Korrekte Referenz. Zum Testen kann sie geändert werden in: wrong_snippet_id -->
-@INCLUDE_SNIPPET: django_hello_route from altdir/ch/Web/Django/django-project.md
+@INCLUDE_SNIPPET: django_hello_route
+<!-- altdir Pfad: @INCLUDE_SNIPPET: django_hello_route from altdir/ch/Web/Django/django-project.md
+ -->
 
 
 [EQ] Testen Sie `http://127.0.0.1:8000/hello/` im Browser. 
