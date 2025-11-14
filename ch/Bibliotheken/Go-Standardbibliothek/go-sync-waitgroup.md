@@ -1,5 +1,5 @@
 title: "Go: sync.WaitGroup"
-stage: draft
+stage: alpha
 timevalue: 0.5
 difficulty: 2
 assumes: go-goroutines, go-advanced-control-flow
