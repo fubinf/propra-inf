@@ -1,7 +1,7 @@
 title: "Go: sync.Mutex"
-stage: draft
+stage: alpha
 timevalue: 1
-difficulty: 2
+difficulty: 3
 assumes: go-sync-waitgroup
 ---
 
