@@ -1,5 +1,5 @@
 title: Erste Schritte in JavaScript und DOM
-stage: alpha
+stage: beta
 timevalue: 2.25
 difficulty: 2
 requires: html-Formulare 
