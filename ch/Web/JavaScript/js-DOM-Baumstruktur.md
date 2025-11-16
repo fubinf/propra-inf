@@ -57,8 +57,7 @@ console.log(absatz.children);   // gibt [<strong>] aus
 
 Einige Elemente sind auch direkt verfügbar, beispielsweise `document.body`.
 
-[EQ] Es gibt noch weitere Möglichkeiten, Elemente zu finden. 
-Nennen Sie drei und geben Sie je ein Beispiel für die Verwendung.
+[EQ] Welche Informationen liefert `children`, die `childNodes` nicht liefert? Beschreiben Sie den Unterschied.
 
 
 ### DOM gezielt verändern
