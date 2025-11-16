@@ -284,7 +284,7 @@ Lose Vergleiche (`==`, `!=`) führen Typumwandlungen durch. Strikte Vergleiche (
 
 [ER] Schreiben Sie jetzt mit dem erlernten Wissen eine Funktion, die eine Binärzahl als Eingabe erhält,  
 alle vorkommenden 1en zählt und die Anzahl der 1en ausgibt.   
-Legen Sie dafür eine neue Datei `zähle1en.js` an.  
+Legen Sie dafür eine neue Datei `zaehle1en.js` an.  
 Nutzen Sie `console.log()`, um Ihre Funktion zu testen.
 
 ### JavaScript in HTML Einbinden
