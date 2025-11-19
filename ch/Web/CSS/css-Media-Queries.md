@@ -1,5 +1,5 @@
 title: "CSS: Media Queries"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: css-Einführung

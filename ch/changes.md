@@ -21,4 +21,5 @@
 - **2025-11-19** Neue Version 2.11.1 von sedrila mit 2 Reparaturen an der Webapp:
   Wo bislang für eine Datei `<binary>` angezeigt wurde, erscheint nun der korrekte Inhalt.
   Installation mit `pipx upgrade sedrila`.
+- **2025-11-19** Aufgabe Web/CSS/[PARTREF::css-Media-Queries] zugefügt.
 - ...
