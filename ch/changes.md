@@ -18,4 +18,7 @@
   [PARTREF::re-Metazeichen], [PARTREF::re-Quantoren], [PARTREF::re-Gruppen]. 
 - **2025-10-31** Aufgabe Debugging/Debuggingtools/[PARTREF::py-Profiling] zugefügt.
 - **2025-11-04** Aufgabe Web/CSS/[PARTREF::css-Layout] zugefügt.
+- **2025-11-19** Neue Version 2.11.0 von sedrila mit 2 Reparaturen an der Webapp:
+  Wo bislang für eine Datei `<binary>` angezeigt wurde, erscheint nun der korrekte Inhalt.
+  Installation mit `pipx upgrade sedrila`.
 - ...
