@@ -79,6 +79,7 @@ const y = 10;     // konstant
 var z = 15;       // alt, besser vermeiden
 ```
 
+
 ### Datentypen
 
 In JavaScript gibt es neun grundlegende Datentypen.  
@@ -124,6 +125,7 @@ let numbers = [1, 2, 3];    // array
 [EQ] Recherchieren Sie den Unterschied zwischen `undefined` und `null` in JavaScript.  
 Warum sind beide notwendig?  
 Einen guten Einstieg dazu finden Sie in der [MDN-Webdokumentation zu null vs undefined](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/null#null_vs_undefined).
+
 
 #### JSON
 
@@ -194,6 +196,7 @@ Eine ausführlichere Erklärung finden Sie in der [MDN-Webdokumentation zu Arrow
 
 [EQ] In welchen Fällen ist es sinnvoll, anonyme Funktionen statt klassischer Funktionen zu nutzen?
 
+
 #### Umgang mit `this`:
 
 In JavaScript ist `this` das, was in Python `self` genannt wird, aber:  
@@ -232,6 +235,7 @@ person.greet();
 // Ausgabe: Hallo, ich bin undefined
 ```
 
+
 ### Kontrollstrukturen
 
 JavaScript verwendet bekannte Kontrollstrukturen wie `if`, `else`, `for`, `while`.  
@@ -254,6 +258,7 @@ while (x < 10) {
   x++;
 }
 ```
+
 
 ### Vergleiche
 
@@ -278,21 +283,20 @@ Geben Sie Beispiele, in denen der Unterschied relevant wird und entscheiden Sie:
 
 [HINT::`==` & `===` Vergleiche]
 Lose Vergleiche (`==`, `!=`) führen Typumwandlungen durch. Strikte Vergleiche (`===`, `!==`) nicht!
-
 [ENDHINT]
-
 
 [ER] Schreiben Sie jetzt mit dem erlernten Wissen eine Funktion, die eine Binärzahl als Eingabe erhält,  
 alle vorkommenden 1en zählt und die Anzahl der 1en ausgibt.   
 Legen Sie dafür eine neue Datei `zaehle1en.js` an.  
 Nutzen Sie `console.log()`, um Ihre Funktion zu testen.
 
+
 ### JavaScript in HTML Einbinden
 
 Grundsätzlich gibt es zwei verschiedene Varianten, wie JavaScript in `HTML` eingebunden werden kann.
 
 1. **Innerhalb des HTML-Tags**:  
-Dabei schreibt man den JavaScript Code mit dem `<script>` Tag direkt innerhalb in der `HTML`-Datei:
+Dabei schreibt man den JavaScript-Code mit dem `<script>` Tag direkt innerhalb in der `HTML`-Datei:
 
 ```
 <!DOCTYPE html>
@@ -333,6 +337,7 @@ Vorteil hierbei ist, dass derselbe JavaScript-Code für mehrere `HTML`-Dokumente
 und dann vom Browser nicht auf jeder Seite neu geladen werden muss.  
 Außerdem ist es empfehlenswert für größere Projekte oder wenn man den Code trennen will.  
 Ein `<script>`-Tag kann nur entweder Code oder `src=` enthalten, nicht beides.
+
 
 ### Debugging: `console.log()` und `alert()`:
 
@@ -377,6 +382,9 @@ Eine ausführlichere Dokumentationene zu `console.log()` und `alert()` finden Si
 [console.log()](https://developer.mozilla.org/de/docs/Web/API/console/log) und 
 [alert()](https://developer.mozilla.org/de/docs/Web/API/Window/alert?utm_source=chatgpt.com).
 
+Eine dritte Möglichkeit, Ausgaben zu machen, ist die Veränderung des Inhalts der angezeigten Webseite.
+Das ist nicht nur für Debugging hilfreich, sondern auch für Anwendungslogik, und ist deshalb
+unser nächstes Thema (und das letzte, bevor wir dann selber etwas bauen).
 
 
 ### DOM-Zugriff: Die wichtigsten Bausteine
@@ -384,7 +392,8 @@ Eine ausführlichere Dokumentationene zu `console.log()` und `alert()` finden Si
 Damit JavaScript die HTML-Seite analysieren und manipulieren kann, braucht es Zugriff auf einzelne Elemente.  
 Dieser Zugriff läuft über das sogenannte [DOM (Document Object Model)](https://developer.mozilla.org/de/docs/Web/API/Document_Object_Model), 
 das die HTML-Struktur als Baum abbildet und per JavaScript veränderbar macht.  
-Der Browser und JavaScript teilen sich ein solches Objekt und der Browser benutzt es kontinuierlich als Eingabe für den HTML-Renderer.  
+Der Browser und JavaScript teilen sich ein solches Objekt und der Browser benutzt es kontinuierlich 
+als Eingabe für den HTML-Renderer.  
 Das bedeutet, wenn man am DOM etwas ändert, sieht die Webseite _sofort_ entsprechend anders aus.  
 
 Hier sind ein paar erste Wissensbröckchen über das DOM:
@@ -465,7 +474,8 @@ Nutzen Sie `getElementById`, `value`,  `innerHTML` und `addEventListener`.
 Schreiben Sie den JavaScript-Code innerhalb des HTML-Dokuments mit dem `<script>` Tag.
 
 [ER] Setzen Sie die gleiche Funktionalität nun mit ausgelagerter JavaScript-Datei um.  
-Der HTML-Code bleibt unverändert, aber der JavaScript-Code soll in eine separate Datei namens `jsEinfuehrung.js` ausgelagert werden.
+Der HTML-Code bleibt unverändert, aber der JavaScript-Code soll in eine separate Datei 
+namens `jsEinfuehrung.js` ausgelagert werden.
 
 [EQ] Untersuchen Sie den Unterschied zwischen `innerHTML` und `textContent` in JavaScript.   
 Erklären Sie, wofür man die beiden Eigenschaften verwendet, und wann welche besser geeignet ist.  
