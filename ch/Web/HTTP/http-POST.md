@@ -45,7 +45,7 @@ POST unterscheidet sich in mehreren wichtigen Aspekten von GET:
 
 **Semantik (der wichtigste Unterschied):**
 
-- GET: Ist wirkungsfrei (idempotent), verändert also den Server-Zustand nicht.
+- GET: Ist wirkungsfrei ("safe"), verändert also den Server-Zustand nicht.
 - POST: Verändert den Zustand auf dem Server; es kann Daten erstellen, ändern oder löschen.
 
 GET wird also zum Abrufen von Informationen verwendet, während POST zum Senden von Daten zur Verarbeitung dient.
