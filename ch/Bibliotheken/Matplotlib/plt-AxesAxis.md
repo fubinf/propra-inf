@@ -26,12 +26,14 @@ bezeichnen _nicht nur_ ein oder mehrere Dinge der gleichen Art.
 In [PARTREF::plt-Einführung] haben Sie bereits die `Figure`, die "Leinwand" der Visualisierungen 
 kennengelernt.
 Eine solche Leinwand kann mehrere Plots enthalten, jeder mit einem eigenen Koordinatensystem.
-Ein `Axes`-Objekt repräsentiert den Rahmen für einen solchen Plot:
-(1) Ein Achsenpaar (mit allen seinen Markierungen),
-(2) das zugehörige Koordinatensystem und
-(3) der Bildausschnitt innerhalb der `Figure`, in dem der Plot erscheinen soll.
+Ein `Axes`-Objekt repräsentiert den Rahmen für einen solchen Plot:      
+(1) Ein Achsenpaar (mit allen seinen Markierungen),     
+(2) das zugehörige Koordinatensystem und        
+(3) der Bildausschnitt innerhalb der `Figure`, in dem der Plot erscheinen soll.     
 
 Eine `Axis` ist darin eine der beiden Achsen (oder drei Achsen im Fall von 3D-Plots).
+Mit diesen `Axis`-Objekten lässt sich außerdem kontrollieren wie die Daten skaliert sind
+und welcher Wertebereich der Daten auf dem `Axes` angezeigt wird.
 
 Nehmen Sie sich fünf Minuten Zeit, um die Namen vieler der Bildelemente kennenzulernen,
 die in einem solchen Plot auftreten können:  
@@ -91,34 +93,46 @@ plt.show()
 [`set_label_text()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axis.Axis.set_label_text.html#matplotlib.axis.Axis.set_label_text)
 die Beschriftung der X- und Y-Achse zu "X-Achse" und "Y-Achse".
 
-[ER] Sie können die sogenannten `Ticks`, die Beschriftungen der Achse, bearbeiten:
-`ax.set_xticks([0,1,2,3,4,5,6,7,8,9,10])`.
-Eine andere Schreibweise ist der direkte Zugriff über das `Axis`-Objekt:
-`ax.xaxis.set_ticks([0,1,2,3,4,5,6,7,8,9,10])`
-Setzen Sie die `Ticks` für die Y-Achse auf `[0,10]` mit dem Zugriff über das `Axis`-Objekt.
+Matplotlib erlaubt es Ihnen die meisten Eigenschaften direkt über die `Axes` zu ändern.
+Deshalb gibt es äquivalent zu `xaxis.set_label_text()` die Methode
+[`axes.set_xlabel()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html)
+(gleiches gilt für die `yaxis`).
 
-Sie können auch den Wertebereich, der angezeigt wird, mit
-[`set_xlim()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlim.html#matplotlib.axes.Axes.set_xlim)
-und
-[`set_ylim()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylim.html#matplotlib.axes.Axes.set_ylim)
-anpassen.
+Sie können auch die sogenannten `Ticks`, die Beschriftungen der Achse, bearbeiten:
+[`set_xticks()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticks.html)
 
-[ER] Passen Sie die `limits` auf die Wertebereiche der vorherigen Aufgabe an.
-
-[ER] Die `Tick`-Beschriftungen müssen keine Zahlen sein, 
-Sie können auch durch Strings ersetzt werden.
-Setzen Sie mit 
-[`set_xticklabels`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html#matplotlib.axes.Axes.set_xticklabels)
-die Beschriftungen zu Buchstaben, in alphabetischer Reihenfolge aufsteigend.
+[ER] Stellen Sie sicher, dass alle Integer im Wertebereich der X-Achse explizit als Beschriftung
+der Achse vorkommen, bis auf die `3`.
+Schauen Sie sich außerdem an, was es mit den `major` und `minor` `Ticks` auf sich hat und
+geben Sie jede Hälfte zwischen den Integern (`0.5`,`1.5`,...) als einen `minor Tick` an.
 
 [EQ] Wie könnte der Ausdruck aus der vorherigen Aufgabe aussehen, wenn man wie bei den `Ticks`
 direkt über das `Axis`-Objekt darauf zugreifen möchte, statt über `Axes`?
 
-[EQ] Bei den Methoden zu `Tick` gibt es den Parameter `minor`.
-Beschreiben Sie, wozu der Parameter da ist.
+[EQ] Experimentieren Sie mit den Ticks anhand der Y-Achse.
+Der Wertebereich der Y-Achse liegt im Moment zwischen 0 und 100.
+Was passiert, wenn Sie `Ticks` angeben, die größer sind als der eigentliche Wertebereich?
+Und was, wenn Sie nur `Ticks` angeben, die kleiner sind?
+Können Sie so den *sichtbaren Wertebereich* anpassen? 
 
-[ER] Benutzen Sie den `minor`-Parameter, um die Y-Achsenbeschriftung in 1er-Schritten 
-von 0 bis 10 zu beschriften.
+Gezielt sollten Sie den Wertebereich jedoch anpassen, indem sie die sogenannten `limits` anpassen:
+[`set_xlim()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlim.html#matplotlib.axes.Axes.set_xlim)
+und
+[`set_ylim()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylim.html#matplotlib.axes.Axes.set_ylim)
+
+[ER] Passen Sie die `limits` beider Achsen auf zwischen 0 und 25 an.
+
+Wie Sie vielleicht schon merken, kann hier die Reihenfolge der Befehle eine Rolle spielen.
+
+[ER] Die `Tick`-Beschriftungen müssen keine Zahlen sein, 
+Sie können auch durch Strings ersetzt werden.
+Setzen Sie mit 
+[`set_xticklabels()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html#matplotlib.axes.Axes.set_xticklabels)
+die Beschriftungen zu Buchstaben, in alphabetischer Reihenfolge aufsteigend.
+
+Neben dem angezeigten Wertebereich, können die Achsen auch noch verschieden skaliert werden:
+[`set_xscale()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xscale.html#matplotlib.axes.Axes.set_xscale)
+Das ist z.B. hilfreich, wenn Sie eine logarithmische Skala haben wollen.
 [ENDSECTION]
 
 
