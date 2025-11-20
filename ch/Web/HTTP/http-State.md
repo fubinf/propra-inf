@@ -7,7 +7,7 @@ assumes: http-GET
 
 [SECTION::goal::idea]
 Ich verstehe das Konzept der Zustandslosigkeit in HTTP und kann erklären, 
-Sessions realisiert werden, um trotzdem zustandsbehaftetes Verhalten zu erlauben.
+wie Sessions realisiert werden, um trotzdem zustandsbehaftetes Verhalten zu erlauben.
 [ENDSECTION]
 
 

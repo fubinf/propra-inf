@@ -24,7 +24,7 @@ Lesen Sie den Eintrag [TERMREF::Dateiberechtigungen].
 Diese Berechtigungen geben an, wer auf eine Datei oder einen Ordner zugreifen kann.
 
 Lesen Sie [HREF::https://wiki.ubuntuusers.de/Rechte/] 
-bis einschließlich Abschnitt **Zugriffsrecht**.
+bis einschließlich Abschnitt **Rechte in symbolischer Darstellung**.
 
 [EC] Erstellen Sie eine Datei namens `dateiberechtigungen1`.
 

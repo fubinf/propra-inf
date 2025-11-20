@@ -50,7 +50,7 @@ Dabei wird eine [TERMREF::URL] zu einem Bild angegeben.
 Außerdem wird eine Alternativbeschreibung verlangt. 
 Diese ist hilfreich für [TERMREF::Screenreader] und den Fall, dass das Bild nicht geladen werden kann. 
 Verwenden Sie wieder [HREF::https://developer.mozilla.org], um die Referenz für das `<img>`-Element zu finden. 
-Beachten Sie auch den Absatz zu unterstützten Dataiformaten.
+Beachten Sie auch den Absatz zu unterstützten Dateiformaten.
 
 [ER]  Fügen Sie ein Bild mit Python-Quellcode in das HTML-Dokument ein. 
 

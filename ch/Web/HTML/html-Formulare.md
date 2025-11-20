@@ -8,10 +8,10 @@ assumes: html-erste-Schritte, html-Medien, html-Semantik, http-POST
 
 - Ich kann Formulare in HTML erstellen.
 - Ich kann verschiedene Eingabebausteine wie Textfelder, Radio-Buttons und Checkboxen verwenden.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+
+[SECTION::background::default]
 Damit die Kommunikation im Web nicht nur einseitig ist (Browser ruft Webseiten ab),
 brauchen wir eine Möglichkeit für den Benutzer,
 Eingaben zu machen und diese an den Webserver zu übermitteln.
@@ -21,8 +21,9 @@ In dieser Aufgabe, sehen wir uns nur an, wie man ein einfaches Formular _erstell
 das Formulardaten an den Server _versendet_. 
 Für eine _Auswertung_ der Formulardaten braucht man eine jeweils passende Routine auf dem Webserver 
 und daher betrachten wir diesen Aspekt in dieser Aufgabe nicht.
-
 [ENDSECTION]
+
+
 [SECTION::instructions::detailed]
 
 In dieser Aufgabe wollen wir die Website der Softwareschmiede ProPy erneut um eine weitere Seite ergänzen. 
@@ -49,7 +50,7 @@ möchten wir eine Auswahlliste zur Verfügung stellen, in der unser potentieller
 die Auftragsart auswählen kann. 
 Lesen Sie [Abschnitt 3 auf der Seite Auswahllisten](https://wiki.selfhtml.org/wiki/Formulare/Auswahllisten) in SelfHTML.
 
-[ER] Der Benutzer sollte noch unseren Datenschutzbedinungen zustimmen. 
+[ER] Der Benutzer sollte noch unseren Datenschutzbedingungen zustimmen. 
 Dazu werden für gewöhnlich eine Checkbox oder zwei Radiobuttons verwendet.
 Implementieren Sie beide Varianten.
 Lesen Sie Abschnitt 1 und 2 der obigen Seite.
@@ -58,20 +59,18 @@ Lesen Sie Abschnitt 1 und 2 der obigen Seite.
 Ferner ein Feld für einen Datei-Upload eines Dokuments mit näheren Erläuterungen.
 Das `input`-Element kann für viele verschiedene Eingabetypen benutzt werden, abhängig vom `type`-Attribut.
 Eine Liste gültiger Typen finden Sie in [mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
-
-
 [ENDSECTION]
+
+
 [SECTION::submission::program]
-
 [INCLUDE::../../_include/Submission-Quellcode.md]
-
 [ENDSECTION]
-[INSTRUCTOR::Musterlösung]
 
+
+[INSTRUCTOR::Musterlösung]
 Was das Formular absendet, kann z.B. über die 
 [Developer-Konsole des Browsers](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools) 
 (zu öffnen mit F12) inspiziert werden.
 
 Eine Musterlösung findet sich in [TREEREF::/Web/HTML/html-Formulare.html].
-
 [ENDINSTRUCTOR]

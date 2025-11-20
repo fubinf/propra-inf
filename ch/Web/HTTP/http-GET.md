@@ -84,7 +84,7 @@ Mit dem nano-Editor kann man
 [Steuerzeichen mittels Alt-V eingeben](https://www.nano-editor.org/dist/v5/cheatsheet.html).
 
 [EQ] Betrachten Sie [RFC 2616](https://www.rfc-editor.org/rfc/rfc2616),
-den Standard, der HTPP 1.1 beschreibt.
+den Standard, der HTTP 1.1 beschreibt.
 Der Standard ist die definitive Quelle für alle Fragen über HTTP in der Theorie
 (in der Praxis kommen regelmäßig noch ein paar Aspekte hinzu).
 Finden Sie per Inhaltsverzeichnis und Link-Verfolgung die Stelle,

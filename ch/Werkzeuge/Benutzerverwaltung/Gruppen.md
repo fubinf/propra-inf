@@ -30,7 +30,7 @@ Verstehen Sie die **Synopsis** (insbesondere die Punkte des Befehls `addgroup`) 
 
 [EC] Erstellen Sie eine neue Gruppe namens `propra`.
 
-[EC] Fügen sie der Gruppe `propra` den Account `nutzer1` hinzu.
+[EC] Fügen Sie der Gruppe `propra` den Account `nutzer1` hinzu.
 
 [EC] Wechseln Sie zu `nutzer1`.
 

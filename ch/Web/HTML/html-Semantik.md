@@ -8,19 +8,19 @@ requires: html-erste-Schritte, html-Medien
 
 - Ich kann erklären, warum es sinnvoll ist, semantisch bedeutsame HTML-Elemente zu verwenden
 - Ich kann die semantischen Elemente in HTML verwenden.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+ 
+[SECTION::background::default]
 Webseiten werden nicht nur von Menschen gelesen. 
 Auch Suchmaschinen und andere Computerprogramme durchforsten das Internet und laden Webseiten. 
 Gleichzeitig ist es auch für Menschen mit Sehbehinderung wichtig mit Webseiten umgehen zu können. 
 Dazu kommen dann sogenannte Screenreader zu Einsatz, die den Inhalt einer Webseite vorlesen. 
 Deshalb ist es wichtig, die Seitenstruktur einer Webseite nach semantischen Gesichtspunkten zu organisieren.
-
 [ENDSECTION]
-[SECTION::instructions::detailed]
 
+
+[SECTION::instructions::detailed]
 [ER] Kopieren die Seiten `HTMLErsteSchritte.html` und `HTMLMedien.html`  nach 
 `HTMLSemantik-ErsteSchritte.html` und `HTMLSemantik-Medien.html`.
 Ergänzen Sie sie um die Elemente `<header>, <main>, <footer>`;
@@ -63,15 +63,15 @@ Erstellen Sie ferner oben oder unten Links zu den anderen beiden Dokumenten als 
    *"Durch ihre fortschrittlichen KI-Lösungen hat ProPy den Weg für eine neue Generation von intelligenten Anwendungen geebnet, die Unternehmen jeder Größe zugutekommen."*  
    -- AI Tech Journal
 [ENDFOLDOUT]
-
 [ENDSECTION]
+
+
 [SECTION::submission::program]
-
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::../../_include/Submission-Quellcode.md]
-
 [ENDSECTION]
+
+
 [INSTRUCTOR::Musterlösung]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

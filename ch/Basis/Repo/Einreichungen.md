@@ -177,9 +177,9 @@ also beispielsweise
 Zeiterfassung: CHECK
 Einreichungen: CHECK
 ```
-Mit c ("commit") checken Sie die so entstandene `submission.yaml` mit der genau passenden
+Mit `c` ("commit") checken Sie die so entstandene `submission.yaml` mit der genau passenden
 Commit-Nachricht ein;
-mit p ("push") geben Sie diesen Commit frei.
+mit `u` ("push") geben Sie diesen Commit frei.
 Abschließend zeigt das Kommando an, wie es weitergeht: Email an eine Tutor_in.
 
 Da bei der hiesigen Aufgabe nichts weiter zu tun ist, 
