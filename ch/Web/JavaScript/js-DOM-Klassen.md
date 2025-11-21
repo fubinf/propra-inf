@@ -103,7 +103,6 @@ Tier.prototype.sprechen = function() {
 
 const hund = new Tier("Bello");
 hund.sprechen(); // "Bello macht ein Geräusch."
-console.log(aufgabe.anzeigen()); // "✔️ Kapitel 4 lesen"
 ```
 
 Die moderne class-Syntax:
@@ -200,8 +199,8 @@ Syntax:
 - JavaScript: `class Kind extends Eltern { ... }`
 
 Intern:  
-- Python: echte Klassenhierarchie.  
-- JavaScript: wieder nur Prototyp-Ketten, die durch `extends` gesetzt werden.  
+- Python: "echte" Klassenhierarchie.  
+- JavaScript: Prototyp-Ketten, die durch `extends` gebildet werden.  
 
 
 [ER] Leiten Sie eine Klasse `DigitalProdukt` von `Produkt` ab.  
@@ -223,8 +222,9 @@ console.log(ebook.info());         // "JavaScript Basics → Download: http://do
 Wir haben bereits gesehen, dass JavaScript-Objekte intern über Prototypen miteinander verbunden sind.  
 Gehen wir jetzt einen Schritt weiter und schauen uns an, wie die Vererbung konkret funktioniert.  
 Jedes Objekt in JavaScript hat eine interne Referenz auf ein anderes Objekt, seinen Prototypen.   
-Wenn man auf eine Eigenschaft oder Methode zugreift, die im aktuellen Objekt nicht vorhanden ist, sucht JavaScript automatisch im Prototyp weiter.  
-Das nennt man die Prototyp-Kette.
+Wenn man auf eine Eigenschaft oder Methode zugreift, die im aktuellen Objekt nicht vorhanden ist, 
+sucht JavaScript automatisch im Prototyp weiter.  
+Bei Vererbung ergibt sich daraus eine ganze Prototyp-Kette.
 
 Beispiel mit einer Konstruktorfunktion:
 
@@ -249,8 +249,9 @@ Hier passiert intern Folgendes:
 
 #### Verbindung zu `class` und `extends`
 
-Die moderne `class`-Syntax setzt im Hintergrund nur diese Prototyp-Ketten für uns auf.  
-Das heißt, wenn wir mit `extends` arbeiten, wird intern einfach die Prototyp-Referenz so gesetzt, dass die Kindklasse auf die Methoden der Elternklasse zugreifen kann.
+Die moderne `class`-Syntax setzt diese Prototyp-Ketten für uns auf.  
+Das heißt, wenn wir mit `extends` arbeiten, wird intern einfach die Prototyp-Referenz so gesetzt, 
+dass die Kindklasse auf die Methoden und sonstigen Attribute der Elternklasse zugreifen kann.
 
 Darum gilt:  
 
@@ -265,7 +266,10 @@ Darum gilt:
 - von `Hund.prototype` → `Tier.prototype`  
 - und schließlich bis `Object.prototype`.  
 
-[EQ] Erklären Sie anhand Ihrer Ausgabe, wie JavaScript bei einem Methodenaufruf (z. B. `hund.sprechen()`) durch diese Kette wandert, bis es die passende Methode findet.
+[EQ] Erklären Sie anhand Ihrer Ausgabe, wie JavaScript bei einem Methodenaufruf (z. B. `hund.sprechen()`) 
+durch diese Kette wandert, bis es die passende Methode findet:
+Welche Attribute von welchen Objekten werden der Reihe nach benutzt?
+Welcher Wert kommt dabei jeweils heraus?
 [ENDSECTION]
 
 
