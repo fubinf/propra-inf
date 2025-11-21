@@ -67,10 +67,7 @@ jobs:
       run: |
         REPORT_PATH="/tmp/linkcheck_i/link_check_report.md"
         if [ -f "$REPORT_PATH" ]; then
-          {
-            echo "## External Link Check Report"
-            cat "$REPORT_PATH"
-          } >> "$GITHUB_STEP_SUMMARY"
+          cat "$REPORT_PATH" >> "$GITHUB_STEP_SUMMARY"
         else
           echo "Markdown report not found at $REPORT_PATH"
         fi
