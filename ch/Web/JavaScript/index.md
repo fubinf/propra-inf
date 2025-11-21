@@ -15,5 +15,6 @@ Für alle Teile, die Webseiten betreffen, werden mindestens Grundkenntnisse in H
 und zum Teil auch CSS vorausgesetzt.
 
 Gute Dokumentation:
+
 - [W3Schools](https://www.w3schools.com/js/default.asp)
 - [Mozilla Developers Network (mdn)](https://developer.mozilla.org/en-US/).
