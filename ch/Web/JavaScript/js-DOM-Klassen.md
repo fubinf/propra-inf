@@ -242,7 +242,7 @@ hund.sprechen(); // "Bello macht ein Geräusch."
 ```
 
 Hier passiert intern Folgendes:  
-1. JavaScript sucht bei `hund.sprechen()` nach einer Methode `sprechen` im Objekt `hund`.  
+1. JavaScript sucht bei `hund.sprechen()` nach einer Methode `sprechen` im Objekt `hund`. 
 2. Sie wird dort nicht gefunden → also schaut die Engine im Prototyp (`Tier.prototype`) nach.  
 3. Dort gibt es `sprechen` → die Methode wird ausgeführt.
 
