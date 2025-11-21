@@ -63,6 +63,8 @@ Wie entscheidet der `ServeMux`, welchen Handler er aufruft?
 [EQ] Wie unterscheiden sich Muster `/users` und `/users/`? 
 Welche Anfragen werden welchem Muster zugeordnet?
 
+[EQ] Wie kann man explizit angeben, welche HTTP-Methode für ein bestimmtes Muster erlaubt ist?
+
 <!-- time estimate: 10 min -->
 
 
