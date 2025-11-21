@@ -62,13 +62,25 @@ jobs:
         python sedrila/py/sedrila.py maintainer --check-links --batch -- /tmp/linkcheck
       continue-on-error: false
     
+    - name: Publish markdown report to job summary
+      if: always()
+      run: |
+        REPORT_PATH="/tmp/linkcheck_i/link_check_report.md"
+        if [ -f "$REPORT_PATH" ]; then
+          {
+            echo "## External Link Check Report"
+            cat "$REPORT_PATH"
+          } >> "$GITHUB_STEP_SUMMARY"
+        else
+          echo "Markdown report not found at $REPORT_PATH"
+        fi
+    
     - name: Upload link check reports
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: link-check-reports
         path: |
-          /tmp/linkcheck_i/link_check_report.json
           /tmp/linkcheck_i/link_check_report.md
         retention-days: 90
     
@@ -76,13 +88,13 @@ jobs:
       if: always()
       run: |
         echo "=== Link Check Summary ==="
-        if [ -f /tmp/linkcheck_i/link_check_report.json ]; then
-          echo "Reports generated successfully:"
-          ls -la /tmp/linkcheck_i/link_check_report.*
+        if [ -f /tmp/linkcheck_i/link_check_report.md ]; then
+          echo "Markdown report available:"
+          ls -la /tmp/linkcheck_i/link_check_report.md
           echo ""
-          echo "JSON report preview:"
-          head -20 /tmp/linkcheck_i/link_check_report.json
+          echo "Report preview:"
+          head -40 /tmp/linkcheck_i/link_check_report.md
         else
-          echo "No reports found"
+          echo "No markdown report found"
         fi
 
