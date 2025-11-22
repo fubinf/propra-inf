@@ -32,7 +32,7 @@ Ein `Axes`-Objekt repräsentiert den Rahmen für einen solchen Plot:
 (3) der Bildausschnitt innerhalb der `Figure`, in dem der Plot erscheinen soll.     
 
 Eine `Axis` ist darin eine der beiden Achsen (oder drei Achsen im Fall von 3D-Plots).
-Mit diesen `Axis`-Objekten lässt sich außerdem kontrollieren wie die Daten skaliert sind
+Mit diesen `Axis`-Objekten lässt sich außerdem kontrollieren, wie die Daten skaliert sind
 und welcher Wertebereich der Daten auf dem `Axes` angezeigt wird.
 
 Nehmen Sie sich fünf Minuten Zeit, um die Namen vieler der Bildelemente kennenzulernen,
@@ -72,7 +72,7 @@ angezeigt wird und die quadratische Funktion auf der Rechten.
 
 ### Axis
 
-Sie sind jetzt hoffentlich sensibilisiert für den erhablichen Unterschied zwischen `Axes`
+Sie sind jetzt hoffentlich sensibilisiert für den erheblichen Unterschied zwischen `Axes`
 (komplette Teilabbildung: Achsenpaar und zugehöriger Bildbereich)
 und `Axis` (Koordinatenachse, z. B. X-Achse, Y-Achse).
 Jedes `Axes`-Objekt `ax` hat typischerweise zwei `Axis`-Objekte: `ax.xaxis` und `ax.yaxis`.
@@ -93,7 +93,7 @@ plt.show()
 [`set_label_text()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axis.Axis.set_label_text.html#matplotlib.axis.Axis.set_label_text)
 die Beschriftung der X- und Y-Achse zu "X-Achse" und "Y-Achse".
 
-Matplotlib erlaubt es Ihnen die meisten Eigenschaften direkt über die `Axes` zu ändern.
+Matplotlib erlaubt es Ihnen, die meisten Eigenschaften direkt über die `Axes` zu ändern.
 Deshalb gibt es äquivalent zu `xaxis.set_label_text()` die Methode
 [`axes.set_xlabel()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html)
 (gleiches gilt für die `yaxis`).
@@ -106,7 +106,7 @@ der Achse vorkommen, bis auf die `3`.
 Schauen Sie sich außerdem an, was es mit den `major` und `minor` `Ticks` auf sich hat und
 geben Sie jede Hälfte zwischen den Integern (`0.5`,`1.5`,...) als einen `minor Tick` an.
 
-[EQ] Wie könnte der Ausdruck aus der vorherigen Aufgabe aussehen, wenn man wie bei den `Ticks`
+[ER] Wie könnte der Ausdruck aus der vorherigen Aufgabe aussehen, wenn man wie bei den `Ticks`
 direkt über das `Axis`-Objekt darauf zugreifen möchte, statt über `Axes`?
 
 [EQ] Experimentieren Sie mit den Ticks anhand der Y-Achse.
@@ -115,24 +115,23 @@ Was passiert, wenn Sie `Ticks` angeben, die größer sind als der eigentliche We
 Und was, wenn Sie nur `Ticks` angeben, die kleiner sind?
 Können Sie so den *sichtbaren Wertebereich* anpassen? 
 
-Gezielt sollten Sie den Wertebereich jedoch anpassen, indem sie die sogenannten `limits` anpassen:
+Gezielt sollten Sie den Wertebereich jedoch anpassen, indem Sie die sogenannten Limits anpassen:
 [`set_xlim()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlim.html#matplotlib.axes.Axes.set_xlim)
 und
 [`set_ylim()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylim.html#matplotlib.axes.Axes.set_ylim)
 
-[ER] Passen Sie die `limits` beider Achsen auf zwischen 0 und 25 an.
+[ER] Passen Sie die Limits beider Achsen auf zwischen 0 und 25 an.
 
-Wie Sie vielleicht schon merken, kann hier die Reihenfolge der Befehle eine Rolle spielen.
+[EQ] Inwiefern spielt die Reihenfolge der `Tick`-Ausdrücke und der Limits eine Rolle beim
+Endergebnis?
+Erklären Sie.
 
 [ER] Die `Tick`-Beschriftungen müssen keine Zahlen sein, 
 Sie können auch durch Strings ersetzt werden.
-Setzen Sie mit 
+Während Sie mit `set_xticks()` festgelegt haben, welche `Ticks` angezeigt werden, können Sie mit
 [`set_xticklabels()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html#matplotlib.axes.Axes.set_xticklabels)
-die Beschriftungen zu Buchstaben, in alphabetischer Reihenfolge aufsteigend.
-
-Neben dem angezeigten Wertebereich, können die Achsen auch noch verschieden skaliert werden:
-[`set_xscale()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xscale.html#matplotlib.axes.Axes.set_xscale)
-Das ist z.B. hilfreich, wenn Sie eine logarithmische Skala haben wollen.
+die Beschriftungen dieser `Ticks` ändern.
+Ersetzen Sie die Beschriftungen zu Buchstaben, in alphabetischer Reihenfolge aufsteigend.
 [ENDSECTION]
 
 
