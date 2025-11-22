@@ -65,6 +65,9 @@ Welche Anfragen werden welchem Muster zugeordnet?
 
 [EQ] Wie kann man explizit angeben, welche HTTP-Methode für ein bestimmtes Muster erlaubt ist?
 
+[EQ] Was bedeutet `{id}` in dem Muster `/foo/{id}/bar`?
+Wie kann `id` im Handler ausgelesen werden?
+
 <!-- time estimate: 10 min -->
 
 
