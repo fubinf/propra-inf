@@ -67,7 +67,7 @@ Zunächst müssen wir die Template-Konfiguration in den Projekteinstellungen anp
 [ER] Erstellen Sie ein `templates`-Verzeichnis im Hauptprojektordner 
 und öffnen Sie `meinprojekt/settings.py` und modifizieren Sie die `TEMPLATES`-Konfiguration:
 
-@INCLUDE_SNIPPET: django_template1 from altdir/ch/Web/Django/django-template.md
+[SNIPPET::ALT::django_template1]
 
 <!-- ER1 -->
 

@@ -191,7 +191,7 @@ Jetzt erstellen wir unsere erste eigene Webseite.
 [ER] Erstellen Sie die Datei `meinprojekt/meinprojekt/views.py`:
 <!-- ER1 -->
 
-@INCLUDE_SNIPPET: django_hello_view from altdir/ch/Web/Django/django-project.md
+[SNIPPET::ALT::django_hello_view]
 
 Diese View-Funktion:
 
@@ -201,7 +201,7 @@ Diese View-Funktion:
 [ER] Modifizieren Sie `meinprojekt/meinprojekt/urls.py` vollständig:
 <!-- ER2 -->
 
-@INCLUDE_SNIPPET: django_hello_urls from altdir/ch/Web/Django/django-project.md
+[SNIPPET::ALT::django_hello_urls]
 [NOTICE]
 Der Django-Entwicklungsserver lädt Code-Änderungen automatisch neu.
 Sie müssen den Server nicht manuell neustarten!
@@ -232,9 +232,7 @@ Optional: Weitere Erklärungen finden Sie hier:
 <!-- ER3 -->
 
 <!-- Korrekte Referenz. Zum Testen kann sie geändert werden in: wrong_snippet_id -->
-@INCLUDE_SNIPPET: django_hello_route
-<!-- altdir Pfad: @INCLUDE_SNIPPET: django_hello_route from altdir/ch/Web/Django/django-project.md
- -->
+[SNIPPET::ALT::django_hello_route]
 
 
 [EQ] Testen Sie `http://127.0.0.1:8000/hello/` im Browser. 
