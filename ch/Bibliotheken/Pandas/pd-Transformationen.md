@@ -4,7 +4,7 @@ timevalue: 1
 difficulty: 2
 explains:
 assumes:
-requires: pd-Statistik, pd-Datenveränderung
+requires: pd-Datenveränderung
 ---
 
 [SECTION::goal::product]
