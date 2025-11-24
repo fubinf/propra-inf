@@ -10,55 +10,48 @@ Ich verstehe die `#include` Präprozessor-Direktive und kann diese anwenden
 [ENDSECTION]
 
 [SECTION::background::default]
-Zusammen mit [PARTREF::c-preprocessor-conditional] und [PARTREF::c-preprocessor-macros] werden Sie sich
-mit dem C-Präprozessors vertraut machen.
-
 Modulare Software und Wiederverwendung von Code ist mit zunehmender Größe des Programms
 unverzichtbar.
 Was in Python `import` ist, wird in C mithilfe der `#include` Präprozessor-Direktive gelöst.
 Sogar für das allseits bekannte "Hello World" benötigen Sie eine `#include`-Direktive.
 
 Die Aufgabe geht auf die zentrale Aufgabe der `#include`-Direktive ein.
-Wissbegierige können sich zusätzliche Informationen aus dem
-[Kapitel über Header des GCC Präprozessor Handbuches](https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html)
-entnehmen.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+## Deklaration und Definition, wo ist der Unterschied
+
+Bevor Sie mit dem Präprozessor beginnen, zuerst ein kleiner, aber notwendiger, Exkurs zum
+Thema Deklaration vs. Definition.
+
+Lesen Sie sich folgende
+[Übersicht über Unterschiede der Deklaration und Definition](https://www.geeksforgeeks.org/compiler-design/difference-between-definition-and-declaration/)
+durch.
+
+[EQ] Erläutern Sie knapp die wesentlichen Unterschiede zwischen Deklaration und Definition.
+
+[EQ] Angenommen Sie haben ein Projekt bestehend aus zehn `.c` Dateien.
+Eine Funktion die Sie geschrieben haben wird in fünf Dateien verwendet.
+Wie viele Deklarationen und Definitionen dieser Funktion werden gebraucht?
+
+[NOTICE]
+Der Binder wird Ihnen ein doppeltes Symbol (Variable bzw. Funktion) nicht annehmen.
+Beachten Sie diesen Fakt.
+[ENDNOTICE]
 
 
-## Was sind Header-Dateien
+## Header und der Präprozessor-Include Mechanismus
 
-Header-Dateien, zu erkennen an der Dateiendung `.h`, sind elementarer Bestandteil zur
-Wiederverwendung von Code.
-Genau wie in Python müssen auch in C Funktionen und Variablen vor deren Verwendung deklariert
-werden.
-Damit Sie dies aber nicht immer erneut machen müssen, nur weil Sie eine Funktion die in einer
-anderen `.c`, auch Implementierungs-Datei genant, Datei definiert ist, verwenden wollen, wurden die
-Header-Dateien eingeführt.
-Alle Funktionen, Makros, Konstanten oder Variablen die Sie an anderer Stelle verwenden wollen,
-definieren Sie einfach in einer Header-Datei.
+Nach vollendetem Exkurs geht es jetzt mit dem Eigentlichem Thema voran.
+Hierfür bedienen Sie sich des
+[Kapitel über Header des GCC Präprozessor Handbuches](https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html).
 
 
 ### Include
 
-Zum Einbinden einer Header-Datei wird die `#include` Direktive, gefolgt von `<DATEINAME.h>` oder
-`"DATEINAME.h"` verwendet.
-Dabei ist es wichtig zu beachten, dass der Präprozessor an unterschiedlichen Orten nach der Datei
-sucht, je nachdem ob `<>`oder `""` verwendet wird.
-Welche Orte das sind ist abhängig des verwendeten Präprozessors, in unserem
-Falle (gcc) beläuft es sich auf folgende:
+Lesen Sie sich die Kapitel Eins bis Drei des Handbuches durch.
 
-- Für `<>` wird in der Standardliste an Systemverzeichnissen gesucht, Sie können weiter hinzufügen
-  über den `-I` Kommandozeilenparameter.
-  Diese werden vorne in die Liste eingetragen.
-- Für `""` wird zuerst im Verzeichnis der Datei gesucht, in der die Direktive enthalten ist.
-  Danach wird in den "Quote-Directories" gesucht.
-  Diese List ist standardmäßig leer und wird mit dem `-i` Kommandozeilenparameter befüllt.
-  Als letztes wird in den selben Verzeichnissen wie mit `<>` gesucht.
-
-Der Präprozessor nutzt stets die zuerst gefunden Datei, seien Sie demnach vorsichtig beim Benennen
-der Dateien.
+[EQ] Welche Vorteile bietet Ihnen das System der Header-Dateien?
 
 Legen Sie das Projekt an.  
 Fügen Sie folgende Dateien hinzu:
@@ -93,36 +86,18 @@ int main(void) {
 
 [ER] Vervollständigen Sie die `#include`-Direktiven (...).
 
-[EC] Bauen und führen Sie das Programm aus. Geben sie nur die Ausgabe des Programms an.
+[EC] Bauen und führen Sie das Programm aus. Geben Sie nur die Ausgabe des Programms an.
 
 
 ### Include Guard
 
-Der C Präprozessor ist nicht sonderlich intelligent was `#include` angeht.
-Wenn eine `#include`-Direktive eingelesen wird, wird der gesamte Inhalt der angegebenen Datei
-stumpf an die Stelle der Direktive kopiert.
-Je nachdem was in der Header Datei deklariert bzw. definiert ist, kann das zu Problemen führen.
-Aus diesem Grund finden Sie häufig so genannte "Include-Guards" in Header-Dateien.
-Include-Guards sind Konditionale, ([PARTREF::c-preprocessor-conditional]).
-Durch das Prüfen auf nicht-Definition eines Makros mit anschließender Definition selbigen
-wird der Code ihres HEaders nur einmal betrachtet, bei einer weiteren Einbindung mit `#include`
-ist das Makro schon definiert und die Prüfung auf nicht-Definition evaluiert zu `false`, der Code
-wird ignoriert.
-
-```c
-#ifndef DATEINAME_H
-#define DATEINAME_H
-
-// Ihre Definitionen
-
-#endif
-```
+Lesen Sie sich die Kapitel Vier und Fünf des Handbuches durch.
 
 [NOTICE]
 Sollten Sie CLion benutzen werden Sie sehen, dass es die Include-Guards für Sie schon vorbereitet.
 Für die Aufgaben müssen Sie diese ersteinmal entfernen.
 
-In Zukunft allerdings bleiben die Include-Guards natürlich in der Datei.
+In Zukunft bleiben die Include-Guards natürlich in der Datei.
 [ENDNOTICE]
 
 Fügen Sie folgende Dateien hinzu:
@@ -227,10 +202,10 @@ einmal mit `const char *string` und einmal mit `int string`.
 
 [ER] Fügen Sie das notwendige `#include` in die `print.c` ein.
 
-[EC] Bauen Sie das Programm.
+[EC] Bauen Sie das Programm erneut.
 
-[EC] Beheben Sie den Fehler (ignorieren Sie diw Warnung bei dem `printf`).
-Bauen und führen Sie das Programm anschließend aus.
+[EC] Beheben Sie den Fehler (ignorieren Sie die Warnung bei dem `printf`).
+Bauen und führen Sie das Programm anschließend erneut aus.
 Geben Sie die Ausgabe des Bauprozesses sowie die des Programms selbst an.
 
 [ENDSECTION]
