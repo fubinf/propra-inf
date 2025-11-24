@@ -66,8 +66,18 @@ Dokumentation zurate ziehen muss.
   Verwenden Sie die Hinweise der IDE, um die Defekte zu korrigieren (nicht immer sind die 
   Beschreibungen aufschlussreich, aber man erkennt zumindest, in welcher Gegend man suchen sollte).
 
-[SNIPPET::ITREE:IDE-First-Steps.py::ide_first_steps]
-<!-- [SNIPPET::ITREE:Basis/IDE/IDE-First-Steps.py::ide_first_steps] -->
+```python
+def get_permutations(string, i=0)
+    res = []
+    if i = len(string):
+    res.append(string)
+
+    for j in range(i, len(string)):
+        chars = list(string)
+        chars[i], chars[j] = char[j], chars[i]
+        res.extend(get_permuations("".join(chars), i + 1)
+    return res
+```
 
 [NOTICE]
 Diese Korrekturhilfen können bei statisch (also ohne Programmausführung) erkennbaren Mängeln helfen, 
