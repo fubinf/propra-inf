@@ -2,7 +2,7 @@ title: Dateien mit rsync abgleichen
 stage: alpha
 timevalue: 1
 difficulty: 2
-assumes: Umgang-mit-Verzeichnissen
+assumes: Umgang-mit-Verzeichnissen, ssh
 ---
 
 [SECTION::goal::idea]
@@ -73,17 +73,18 @@ Quellverzeichnis bei `rsync` eine entscheidende Bedeutung.
 
 ### Backup mit rsync
 
-Lesen und verstehen Sie die Optionen **--archive, --verbose, --dry-run** der 
+Lesen und verstehen Sie die Optionen `--archive`, `--verbose`, `--dry-run` der 
 [rsync(1) manpage](https://manpages.debian.org/stable/rsync/rsync.1.en.html).
 
 Lesen Sie erst die Optionen in der **Options Summary** und danach in der **Options**.
 
 Nutzen Sie für die nächsten Aufgaben immer die Option `-v` zusätzlich.
+Diese erzeugt ausführlichere Ausgaben, sodass wir leichter verstehen, was vor sich geht.
 
 `rsync` bietet einen entscheidenden Vorteil gegenüber herkömmlichen Kopierbefehlen: Es überprüft vor
 dem Kopieren, welche Dateien sich geändert haben, und überträgt nur diese. 
-Deshalb eignet sich `rsync` besonders gut für Backups, da nur geänderte Dateien kopiert werden und 
-Zeit sowie Speicherplatz gespart werden.
+Deshalb eignet sich `rsync` gut für Spiegelungskopien, die man immer wieder aktualisieren möchte,
+da dann nur geänderte Dateien kopiert werden und sehr viel Zeit gespart wird.
 
 Zur Veranschaulichung ändern wir eine Datei aus den vorhin erstellten Dateien und kopieren Sie in 
 einen Ordner.
@@ -96,23 +97,22 @@ einen Ordner.
 [EC] Fügen Sie der Datei `rsync_copy_data/datei1` den Text `Ich wurde veraendert` 
 hinzu.
 
-Bevor wir die Datenübertragung starten, ist es sinnvoll, `rsync` im Dry-Run-Modus auszuführen, 
+Bevor wir eine Datenübertragung starten, ist es oft sinnvoll, `rsync` im Dry-Run-Modus auszuführen, 
 um zu simulieren, welche Dateien am Ende kopiert würden. Die Simulation minimiert das Risiko von 
-unbeabsichtigtem Datenverlust, da man dann nochmal überprüft, was das Kommando machen würde.
+unbeabsichtigtem Datenverlust, da man grobe Fehler so leicht vermeiden kann.
+Eine häufige Sorte ist z.B. ein Schrägstrich zu viel oder zu wenig.
 
-[EC] Führen Sie einen `rsync`-dry-run durch, um die Dateien aus `rsync_copy_data` mit dem Zielordner 
-`rsync_destination2` abzugleichen.
+[EC] Führen Sie einen `rsync`-Dry-Run durch, um den Abgleich der Dateien aus `rsync_copy_data` 
+mit dem Zielordner `rsync_destination2` zu prüfen.
 
-Jetzt wo wir gesehen haben, dass nur die veränderte Datei kopiert würde, kopieren wir diese nun.
-
-[EC] Gleichen Sie die Dateien aus dem Ordner `rsync_copy_data` per rsync mit dem 
-`rsync_destination2` Ordner ab.
+[EC] Alles OK? Dann gleichen Sie nun die Dateien wirklich ab.
 
 
 ### Kopieren auf entfernte Systeme
 
 `rsync` bietet die Möglichkeit, Dateien auf einen entfernten Pfad zu kopieren, wie zum Beispiel in
-die Cloud oder in Ihre Colocation.
+die Cloud oder von einem Entwicklungsrechner auf einen anderen.
+Das benutzt intern [PARTREF::ssh].
 
 Lesen Sie aus der **Synopsis** den Punkt **Access via remote shell** aus der 
 [rsync(1) manpage](https://manpages.debian.org/stable/rsync/rsync.1.en.html).
@@ -133,7 +133,8 @@ Ordner `rsync_destination3` in Ihren [TERMREF::Hilfsbereich].
 
 [EQ] Wie stellt rsync sicher, dass nur geänderte Dateien erneut kopiert werden?
 
-[EQ] Welche Unterschiede gibt es zwischen der Verwendung von rsync und anderen Kopierbefehlen wie `cp`?
+[EQ] Welche zwei wichtigsten Unterschiede gibt es zwischen der Verwendung von rsync 
+und anderen Kopierbefehlen wie `cp`?
 
 [EQ] Wie könnten Sie überprüfen, ob die Synchronisation tatsächlich alle Änderungen übernommen hat?
 [ENDSECTION]
