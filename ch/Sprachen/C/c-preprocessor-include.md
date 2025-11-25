@@ -12,27 +12,26 @@ Ich verstehe die `#include` Präprozessor-Direktive und kann diese anwenden
 [SECTION::background::default]
 Modulare Software und Wiederverwendung von Code ist mit zunehmender Größe des Programms
 unverzichtbar.
-Was in Python `import` ist, wird in C mithilfe der `#include` Präprozessor-Direktive gelöst.
-Sogar für das allseits bekannte "Hello World" benötigen Sie eine `#include`-Direktive.
+Was in Python `import` ist, wird in C mithilfe der `#include`-Präprozessor-Direktive gelöst.
+Schon für ein minimales "Hello World"-Programm benötigt man eine `#include`-Direktive.
 
 Die Aufgabe geht auf die zentrale Aufgabe der `#include`-Direktive ein.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-## Deklaration und Definition, wo ist der Unterschied
+## Deklaration und Definition
 
-Bevor Sie mit dem Präprozessor beginnen, zuerst ein kleiner, aber notwendiger, Exkurs zum
-Thema Deklaration vs. Definition.
-
-Lesen Sie sich folgende
+In C gibt es einen wichtigen Unterschied zwischen "Definition" und "Deklaration",
+zu dem es in Python keine Entsprechung gibt.
+Lesen Sie sich ein Verständnis dieser beiden Konzepte an:
 [Übersicht über Unterschiede der Deklaration und Definition](https://www.geeksforgeeks.org/compiler-design/difference-between-definition-and-declaration/)
-durch.
 
-[EQ] Erläutern Sie knapp die wesentlichen Unterschiede zwischen Deklaration und Definition.
+[EQ] Erläutern Sie in eigenen Worten den wesentlichen Unterschied zwischen Deklaration und Definition
+in einem Satz.
 
-[EQ] Angenommen Sie haben ein Projekt bestehend aus zehn `.c` Dateien.
-Eine Funktion die Sie geschrieben haben wird in fünf Dateien verwendet.
-Wie viele Deklarationen und Definitionen dieser Funktion werden gebraucht?
+[EQ] Angenommen, Sie haben ein Projekt bestehend aus zehn `.c` Dateien.
+Eine Funktion `myfunc`, die Sie geschrieben haben, wird in fünf Dateien verwendet.
+Wie viele Deklarationen und wie viele Definitionen dieser Funktion werden gebraucht?
 
 [NOTICE]
 Der Binder wird Ihnen ein doppeltes Symbol (Variable bzw. Funktion) nicht annehmen.
@@ -40,16 +39,15 @@ Beachten Sie diesen Fakt.
 [ENDNOTICE]
 
 
-## Header und der Präprozessor-Include Mechanismus
+## Header und der Präprozessor-Include-Mechanismus
 
-Nach vollendetem Exkurs geht es jetzt mit dem Eigentlichem Thema voran.
-Hierfür bedienen Sie sich des
-[Kapitel über Header des GCC Präprozessor Handbuches](https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html).
+Im Folgenden benutzen wir das
+[Kapitel über Header im GCC Präprozessor-Handbuch](https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html).
 
 
 ### Include
 
-Lesen Sie sich die Kapitel Eins bis Drei des Handbuches durch.
+Lesen Sie sich die Kapitel eins bis drei des Handbuchs durch.
 
 [EQ] Welche Vorteile bietet Ihnen das System der Header-Dateien?
 
@@ -70,7 +68,7 @@ void print(const char *string) {
 }
 ```
 
-Überschreiben Sie den Inhalt der `main.c` Datei mit folgendem:
+Überschreiben Sie den Inhalt der `main.c`-Datei mit folgendem:
 ```c
 #include ...
 
@@ -80,8 +78,7 @@ int main(void) {
   return 0;
 }
 ```
-
-[EQ] Begründen Sie kurz, welche der `#include` Varianten Sie verwenden würden.
+[EQ] Begründen Sie kurz, welche der `#include`-Varianten Sie verwenden würden.
 `printf` ist im System-Header `stdio` deklariert.
 
 [ER] Vervollständigen Sie die `#include`-Direktiven (...).
@@ -91,11 +88,11 @@ int main(void) {
 
 ### Include Guard
 
-Lesen Sie sich die Kapitel Vier und Fünf des Handbuches durch.
+Lesen Sie sich die Kapitel vier und fünf des Handbuchs durch.
 
 [NOTICE]
-Sollten Sie CLion benutzen werden Sie sehen, dass es die Include-Guards für Sie schon vorbereitet.
-Für die Aufgaben müssen Sie diese ersteinmal entfernen.
+Sollten Sie CLion benutzen, werden Sie sehen, dass es die Include-Guards für Sie schon vorbereitet.
+Für die Aufgaben müssen Sie diese erst einmal entfernen.
 
 In Zukunft bleiben die Include-Guards natürlich in der Datei.
 [ENDNOTICE]
@@ -119,7 +116,7 @@ void printCar(const struct car *car);
 #include "car.h"
 
 void printCar(const struct car *car) {
-  printf("Model %s wir von %s hergestellt.\n", car->model, car->manufacturer);
+  printf("Model %s wird von %s hergestellt.\n", car->model, car->manufacturer);
 }
 ```
 
@@ -139,7 +136,7 @@ struct car makeOpel(const char *model) {
 }
 ```
 
-Überschreiben Sie den Inhalt der `main.c` Datei mit folgendem.
+Überschreiben Sie den Inhalt der `main.c`-Datei mit folgendem:
 ```c
 #include "print.h"
 #include "car.h"
@@ -157,10 +154,9 @@ int main(void) {
   return 0;
 }
 ```
-
 [EC] Bauen Sie das Programm.
 
-[ER] Erweitern sie nun die Header `car.h` und `opel.h` um entsprechende Include-Guards.
+[ER] Erweitern Sie nun die Header `car.h` und `opel.h` um entsprechende Include-Guards.
 
 [EC] Bauen und führen Sie das Programm aus.
 Geben Sie die Ausgabe des Bauprozesses sowie die des Programms selbst an.
@@ -170,21 +166,20 @@ Geben Sie die Ausgabe des Bauprozesses sowie die des Programms selbst an.
 
 C hat keine
 [Funktionsüberladung](https://de.wikipedia.org/wiki/Überladen).
-
 C hat allerdings auch keinerlei Schutzmechanismen für versehentlich falsche Parameterlisten.
-Im besten Falle steigt Ihnen der Übersetzer direkt aus, im schlimmsten Falle baut Ihr Programm
+Im besten Fall steigt Ihnen der Übersetzer direkt aus. Im schlimmsten Fall baut Ihr Programm
 erfolgreich.
-Ob das Programm dann allerdings funktioniert ist ungewiss, denn C strotzt nur so vor
+Ob das Programm dann allerdings funktioniert, ist ungewiss, denn C strotzt nur so vor
 "Undefined Behaviour", also Verhalten, zu dem der Standard keinerlei Aussage macht.
 Das Programm kann dann abstürzen oder auch nicht, nur um dann an einer völlig anderen Stelle
-abzustürzen weil der fehlerhafte Aufruf den Funktionsstack zerschossen hat.
+abzustürzen, weil der fehlerhafte Aufruf den Funktionsstack zerschossen hat.
 
-Deshalb ist es gebräuchlich, Funktionen immer in einer Header-Datei zu deklarieren, und in der
-dazugehörigen Implementierungs-Datei einzubinden, auch wenn diese Funktion es eigentlich nicht
-notwendig hätte.
-Dadurch zwingen Sie den Übersetzer definiert mit einer Fehlermeldung zu terminieren.
+Deshalb ist es gebräuchlich, Funktionen immer in einer Header-Datei zu deklarieren und in der
+dazugehörigen Implementierungs-Datei einzubinden, auch wenn dies eigentlich nicht
+notwendig wäre.
+Dadurch zwingen Sie den Übersetzer, definiert mit einer Fehlermeldung zu terminieren.
 
-Verändern Sie die `print.c` Date wie folgt.
+Verändern Sie die `print.c`-Datei wie folgt:
 ```c
 #include <stdio.h>
 
@@ -193,10 +188,10 @@ void print(int string) {
 }
 ```
 
-Sie sollten nun in der `print.h` eine andere Funktionsdeklaration wie in der `print.c` haben,
+Sie sollten nun in der `print.h` eine andere Funktionsdeklaration haben als in der `print.c`:
 einmal mit `const char *string` und einmal mit `int string`.
 
-[EQ] Erläutern Sie kurz, was Sie vom Übersetzer erwarten, dass dieser tut.
+[EQ] Erläutern Sie kurz, was Sie vom Übersetzer erwarten.
 
 [EC] Bauen und führen Sie das Programm aus.
 
