@@ -6,36 +6,34 @@ assumes: pip, venv, m_pytest
 ---
 
 [SECTION::goal::trial]
-
 Ich kann das Python-Paket `tox` verwenden, um Tests automatisiert in verschiedenen virtuellen
 Umgebungen auszuführen.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Moderne Python-Projekte müssen oft auf verschiedenen Python-Versionen funktionieren und mit
 unterschiedlichen Abhängigkeiten getestet werden.
 Außerdem sollen Tests in einer sauberen, isolierten Umgebung laufen, um sicherzustellen,
 dass keine lokalen Installationen die Ergebnisse verfälschen.
-Das manuelle Erstellen und Verwalten multipler virtueller Umgebungen ist mühsam und fehleranfällig.
+Das manuelle Erstellen und Verwalten mehrerer virtueller Umgebungen ist mühsam und fehleranfällig.
 
 [`tox`](https://tox.wiki/) automatisiert genau diesen Prozess: Es erstellt automatisch virtuelle
-Umgebungen, installiert Abhängigkeiten und führt Tests aus - und das für beliebig viele
+Umgebungen, installiert Abhängigkeiten und führt Tests aus – und das für beliebig viele
 Python-Versionen und Konfigurationen parallel.
 
 [ENDSECTION]
 
 [SECTION::instructions::loose]
 
-Benutzen Sie bei Bedarf die [Dokumentation von `tox`](https://tox.wiki/).
+Benutzen Sie bei Bedarf die 
+[Dokumentation von `tox`](https://tox.wiki/).
 
 ### Installation und Vorbereitung
 
 - Installieren Sie `tox` mittels [PARTREF::pip].
 - Erstellen Sie einen neuen Ordner `tox_example` und wechseln Sie in diesen.
 - Erstellen Sie eine einfache Python-Datei `calculator.py` mit folgenden Funktionen:
-
 ```python
 def add(a, b):
     """Addiert zwei Zahlen."""
@@ -53,7 +51,6 @@ def divide(a, b):
 ```
 
 Erstellen Sie eine Testdatei `test_calculator.py` mit pytest-Tests für diese Funktionen:
-
 ```python
 import pytest
 from calculator import add, multiply, divide
@@ -77,10 +74,9 @@ def test_divide_by_zero():
 
 ### Grundlegende tox-Konfiguration
 
-Wir starten mit der wichtigsten Datei, ohne die Tox gar nicht erst funktioniert.
+Wir starten mit der wichtigsten Datei, ohne die tox gar nicht erst funktioniert.
 
-Erstellen Sie eine `tox.ini` Datei im Projektordner mit folgendem Grundgerüst:
-
+Erstellen Sie eine `tox.ini`-Datei im Projektordner mit folgendem Grundgerüst:
 ```ini
 [tox]
 envlist = py39, py310, py311
@@ -98,9 +94,9 @@ Führen Sie `tox` aus und beobachten Sie, was passiert.
 ### Tox-Umgebungen erkunden
 
 [NOTICE]
-Wenn Sie Debian Nutzer sind, werden Sie sicherlich keine mehrere Python Version
-installiert haben - es sei denn, sie `Pyenv` oder [PARTREF::apt]/ `apt-get` verwenden.
-Sie können sich daher entweder im Selbststudium mit mit diesen Tools beschäftigen,
+Wenn Sie Debian-Nutzer sind, werden Sie sicherlich nicht mehrere Python-Versionen
+installiert haben – es sei denn, Sie verwenden `pyenv` oder [PARTREF::apt]/`apt-get`.
+Sie können sich daher entweder im Selbststudium mit diesen Tools beschäftigen
 oder diese Aufgabe überspringen.
 
 Eine passende Aufgabe zu `pyenv` wird es zeitnah geben.
@@ -120,23 +116,21 @@ Führen Sie folgende Kommandos aus und beschreiben Sie die Ausgabe:
 
 - `tox -l` (oder `tox --list`)
 - `tox -e py39` (nur eine bestimmte Umgebung)
-- `tox -r` (recreate - Umgebungen neu erstellen)
+- `tox -r` (recreate – Umgebungen neu erstellen)
 
 [EQ] Was ist der Unterschied zwischen den ersten beiden Kommandos?
 
 ### Abhängigkeiten hinzufügen
 
-Ein Projekt kann bekanntlich viele Abhängigkeiten haben, deren es sich bedient. Tox hilft auch hier.
+Ein Projekt kann bekanntlich viele Abhängigkeiten haben, die es nutzt. Tox hilft auch hier.
 
-Erstellen Sie eine `requirements.txt` Datei:
-
+Erstellen Sie eine `requirements.txt`-Datei:
 ```sh
 pytest>=6.0
 requests>=2.25.0
 ```
 
 Erweitern Sie die `tox.ini` um diese Abhängigkeiten:
-
 ```ini
 [tox]
 envlist = py39, py310, py311
@@ -146,8 +140,7 @@ deps = -r{toxinidir}/requirements.txt
 commands = pytest test_calculator.py -v
 ```
 
-Erstellen Sie einen neuen Test in `test_calculator.py`, der das `requests` Paket verwendet:
-
+Erstellen Sie einen neuen Test in `test_calculator.py`, der das `requests`-Paket verwendet:
 ```python
 import requests
 
@@ -163,10 +156,9 @@ Führen Sie `tox -r` aus, um die Umgebungen mit den neuen Abhängigkeiten neu zu
 
 ### Mehrere Testkommandos
 
-Und Tox kann auch als Automatisierungstool verwendet werden, um verschiedene _Schritte_ auszuführen.
+Tox kann auch als Automatisierungstool verwendet werden, um verschiedene Schritte auszuführen.
 
 Erweitern Sie Ihre `tox.ini` um mehrere Kommandos:
-
 ```ini
 [testenv]
 deps = -r{toxinidir}/requirements.txt
@@ -182,12 +174,11 @@ Führen Sie tox aus und analysieren Sie die Ausgabe.
 
 ### Spezielle Umgebungen definieren
 
-Kommen wir zu weiteren tollen _Features_, die Tox uns mitgibt.
-Wir können Tox nicht nur für [TERMREF::Dynamische analytische Qualitätssicherung] verwenden,
-[TERMREF::Statische analytische Qualitätssicherung].
+Kommen wir zu weiteren tollen Features, die tox uns mitgibt.
+Wir können tox nicht nur für [TERMREF::Dynamische analytische Qualitätssicherung] verwenden,
+sondern auch für [TERMREF::Statische analytische Qualitätssicherung].
 
 Fügen Sie spezielle Umgebungen zu Ihrer `tox.ini` hinzu:
-
 ```ini
 [tox]
 envlist = py39, py310, py311, lint, docs
@@ -217,9 +208,9 @@ Installieren Sie `flake8` in Ihrer lokalen Umgebung und führen Sie `tox -e lint
 
 Bisher lief doch alles gut?
 Was aber, wenn es nicht immer so gut läuft?
-Schauen wir uns einmal einen Fehlschalg an.
+Schauen wir uns einmal einen Fehlschlag an.
 
-Fügen Sie absichtlich einen Fehler in `calculator.py` ein (z.B. Syntaxfehler) und führen Sie `tox` aus.
+Fügen Sie absichtlich einen Fehler in `calculator.py` ein (z. B. Syntaxfehler) und führen Sie `tox` aus.
 
 - [EQ] Wie verhält sich tox bei Fehlern? Bricht es alle Umgebungen ab oder nur die betroffene?
 - [EQ] Wo finden Sie detaillierte Fehlermeldungen?
@@ -228,10 +219,9 @@ Korrigieren Sie den Fehler wieder.
 
 ### Konfiguration verstehen
 
-Nicht alle _Schritte_ sind trivial in die Datei einzutragen. Manchmal bedarf es auch etwas mehr.
+Nicht alle Schritte sind trivial in die Datei einzutragen. Manchmal bedarf es auch etwas mehr.
 
 Experimentieren Sie mit verschiedenen Konfigurationsoptionen in der `tox.ini`:
-
 ```ini
 [testenv]
 deps = -r{toxinidir}/requirements.txt
@@ -252,11 +242,10 @@ commands =
 
 ### Umgebungsvariablen und Vererbung
 
-Wir können uns auch ein wenig tiefer ins System schreiben, um zum Beispiel bestimmte Konfiguratiopnen,
-die über Systemvariablen ausgelesen werden, zu setzen, oder Pfade zu setzen.
+Wir können auch tiefer ins System eingreifen, um zum Beispiel bestimmte Konfigurationen
+über Systemvariablen zu setzen oder Pfade zu definieren.
 
 Erstellen Sie eine erweiterte Konfiguration:
-
 ```ini
 [tox]
 envlist = py39, py310, coverage
@@ -282,10 +271,10 @@ Führen Sie `tox -e coverage` aus.
 
 ### Parallele Ausführung
 
-Manchmal haben wir für aufwendige Test weniog Zeit, vor allem, wenn es viele Testumgebungen gibt.
-Dann können wir das mit genügen Rechenpower auch parallel laufen lassen.
+Manchmal haben wir für aufwendige Tests wenig Zeit, vor allem, wenn es viele Testumgebungen gibt.
+Dann können wir das mit genügend Rechenpower auch parallel laufen lassen.
 
-Führen Sie `tox -p/ tox --parallel` aus und beobachten Sie das Verhalten.
+Führen Sie `tox -p`/`tox --parallel` aus und beobachten Sie das Verhalten.
 
 - [EQ] Was ist der Unterschied zur normalen Ausführung? Welche Vor- und Nachteile sehen Sie?
 
@@ -293,7 +282,7 @@ Führen Sie `tox -p/ tox --parallel` aus und beobachten Sie das Verhalten.
 
 Erstellen Sie eine `setup.py` oder `pyproject.toml` für Ihr Testprojekt:
 
-**setup.py** Variante:
+**setup.py**-Variante:
 ```python
 from setuptools import setup
 
@@ -309,7 +298,6 @@ setup(
 ```
 
 Anpassung der `tox.ini` für die Installation des eigenen Pakets:
-
 ```ini
 [testenv]
 deps = -r{toxinidir}/requirements.txt
