@@ -154,6 +154,8 @@ func main() {
 
 [INSTRUCTOR::Hinweise]
 
+<!-- @PROGRAM_TEST -->
+
 **Kommandoprotokoll**
 [PROT::ALT:go-structs1.prot]
 

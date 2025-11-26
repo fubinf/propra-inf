@@ -176,6 +176,8 @@ func main() {
 diese Funktion sollte unverändert in dem abgegebenen Quellcode präsent sein,
 damit das Kommandoprotokoll nicht verfälscht wird.
 
+<!-- @PROGRAM_TEST -->
+
 **Kommandoprotokoll**
 [PROT::ALT:go-maps.prot]
 

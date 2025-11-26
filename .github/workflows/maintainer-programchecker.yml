@@ -62,8 +62,16 @@ jobs:
     
     - name: Verify environment
       run: |
+        echo "=== Python Environment ==="
         python --version
+        python3 --version
+        which python
+        which python3
+        echo ""
+        echo "=== Go Environment ==="
         go version
+        echo ""
+        echo "=== Directory Structure ==="
         ls -la
         ls -la sedrila/py/
     
@@ -78,61 +86,37 @@ jobs:
       run: |
         python sedrila/py/sedrila.py maintainer --check-programs --batch -- /tmp/progcheck
       continue-on-error: false
-    
+
+    - name: Publish markdown report to job summary
+      if: always()
+      run: |
+        REPORT_PATH="/tmp/progcheck_i/program_test_report.md"
+        if [ -f "$REPORT_PATH" ]; then
+          cat "$REPORT_PATH" >> "$GITHUB_STEP_SUMMARY"
+        else
+          echo "Markdown report not found at $REPORT_PATH" >> "$GITHUB_STEP_SUMMARY"
+        fi
+
     - name: Upload program check reports
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: program-check-reports
         path: |
-          /tmp/progcheck_i/program_test_report.json
           /tmp/progcheck_i/program_test_report.md
         retention-days: 90
-    
-    - name: Display check summary and errors
+
+    - name: Display report summary
       if: always()
       run: |
-        echo "============================================================"
-        echo "PROGRAM CHECK SUMMARY"
-        echo "============================================================"
-        if [ -f /tmp/progcheck_i/program_test_report.json ]; then
-          python3 << 'PYTHON_SCRIPT'
-        import json
-        with open('/tmp/progcheck_i/program_test_report.json') as f:
-            data = json.load(f)
-            failed = data.get('failed_tests', [])
-            
-            # Read fields from top level (not from 'statistics' object)
-            total = data.get('total_tests', 0)
-            passed = data.get('passed', 0)
-            failed_count = data.get('failed', 0)
-            skipped = data.get('skipped', 0)
-            
-            # Calculate success rate
-            tested = total - skipped
-            success_rate = (passed / tested * 100) if tested > 0 else 0.0
-            
-            print(f"Total Programs: {total}")
-            print(f"  - Passed:      {passed}")
-            print(f"  - Failed:      {failed_count}")
-            print(f"  - Skipped:     {skipped}")
-            print(f"Success Rate: {success_rate:.1f}%")
-            
-            if failed:
-                print()
-                print('=' * 60)
-                print(f'FAILED CHECKS ({len(failed)} total):')
-                print('=' * 60)
-                for check in failed:
-                    print(f"  FAIL: {check['program_name']} ({check['language']}): {check['error_message']}")
-            else:
-                print()
-                print('✓ All checks passed!')
-        PYTHON_SCRIPT
+        echo "=== Program Check Summary ==="
+        REPORT_MD="/tmp/progcheck_i/program_test_report.md"
+        if [ -f "$REPORT_MD" ]; then
+          echo "Markdown report available:"
+          ls -la "$REPORT_MD"
           echo ""
-          echo "Full reports uploaded as artifacts (retention: 90 days)"
-          ls -la /tmp/progcheck_i/program_test_report.*
+          echo "Report preview:"
+          head -40 "$REPORT_MD"
         else
-          echo "ERROR: No reports generated"
+          echo "No markdown report found"
         fi
-

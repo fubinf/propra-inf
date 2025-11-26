@@ -170,6 +170,8 @@ Denken Sie daran, `Response.Body` nach dem Lesen zu schließen!
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
+<!-- @PROGRAM_TEST -->
+
 [INSTRUCTOR::Lösungen]
 **Kommandoprotokoll**
 [PROT::ALT:go-http-client.prot]
