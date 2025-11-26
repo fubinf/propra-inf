@@ -53,58 +53,84 @@ erstellen und die Strategien in Methoden festhalten.
 
 #### Schritt 1: Refaktorieren von `GildedRose.update_quality()`
 
-- Öffnen Sie die Datei `gildedrose/variante1/gilded_rose.py`.
-- [ER] Löschen Sie den Inhalt der Methode `GildedRose.update_quality()`.
-- [ER] Fügen Sie die Zeile `updater = Updater()` in die Methode `GildedRose.update_quality()` ein.  
-  (Achtung: Ihre IDE wird hier wahrscheinlich meckern und sagen, dass `Updater()` nicht 
-  implementiert ist. 
-  Ignorieren Sie vorerst diese Meldung, die Implementierung folgt gleich.)
-- [ER] Fügen Sie als Nächstes eine `for`-Schleife ein, die über jeden Gegenstand in `self.items` 
-  iteriert.
-- [ER] In der `for`-Schleife wird eine Liste von `items` durchlaufen. 
-  Für jedes Element `item` in der Liste soll eine bestimmte (noch nicht implementierte Aktion) 
-  durchgeführt werden.
-  Welche Aktion durchgeführt wird soll abhängig vom Namen des `item` sein.  
-  Implementieren Sie diese Abfrage mittels `if`-Ausdrücken.  
-  Die durchzuführenden Aktionen sollen lauten `updater.aged_brie(item)`, `updater.sulfuras(item)`, 
-  `updater.normal_item(item)` und `updater.backstage_passes(item)`.
-- [EQ] In welcher Reihenfolge sollten die Gegenstände Ihrer Meinung nach in dieser Kette von 
-  `if-elif-else`-Ausdrücken stehen? Warum?
-- [EC] Lassen Sie Ihre Testfälle laufen und überzeugen Sie sich, dass nun alle Testfälle 
-  fehlschlagen.
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
+Öffnen Sie die Datei `gildedrose/variante1/gilded_rose.py`.
+
+[ER] Löschen Sie den Inhalt der Methode `GildedRose.update_quality()`.
+
+[ER] Fügen Sie die Zeile `updater = Updater()` in die Methode `GildedRose.update_quality()` ein.  
+(Achtung: Ihre IDE wird hier wahrscheinlich meckern und sagen, dass `Updater()` nicht 
+implementiert ist. 
+Ignorieren Sie vorerst diese Meldung, die Implementierung folgt gleich.)
+
+[ER] Fügen Sie als Nächstes eine `for`-Schleife ein, die über jeden Gegenstand in `self.items` 
+iteriert.
+
+[ER] In der `for`-Schleife wird eine Liste von `items` durchlaufen. 
+Für jedes Element `item` in der Liste soll eine bestimmte (noch nicht implementierte Aktion) 
+durchgeführt werden.
+Welche Aktion durchgeführt wird soll abhängig vom Namen des `item` sein.  
+Implementieren Sie diese Abfrage mittels `if`-Ausdrücken.  
+Die durchzuführenden Aktionen sollen lauten `updater.aged_brie(item)`, `updater.sulfuras(item)`, 
+`updater.normal_item(item)` und `updater.backstage_passes(item)`.
+
+[EQ] In welcher Reihenfolge sollten die Gegenstände Ihrer Meinung nach in dieser Kette von 
+`if-elif-else`-Ausdrücken stehen? Warum?
+
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
 
 
 #### Schritt 2: Einführen der `Updater`-Klasse
 
-- [ER] Erstellen Sie eine neue Klasse namens `Updater`, sie erbt von `object`.
-- [ER] Erstellen Sie in der Klasse `Updater` zu jedem der vier Typen von Item eine Funktion mit den 
-  Namen `normal_item`, `aged_brie`, `sulfuras` und `backstage_passes`.  
-  Als Parameter erhalten die Funktionen `self` und das Item.
-  Schreiben Sie vorerst `pass` in den Methodenrumpf, die Inhalte werden gleich nach und nach 
-  eingefügt.
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
-- [ER] Implementieren Sie die Aktualisierungsregeln, die für normale Gegenstände gelten, in der
-  Methode `normal_item`.
-- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
-  Ihre Testfälle, die "normale Gegenstände" betreffen, sollten jetzt erfolgreich sein.
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
-- [ER] Implementieren Sie die Aktualisierungsregeln, die für den Gegenstand "Aged Brie" gelten, in der
-  Methode `aged_brie`.
-- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
-  Ihre Testfälle, die "Aged Brie" betreffen, sollten jetzt erfolgreich sein.
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
-- [ER] Implementieren Sie die Aktualisierungsregeln, die für "Backstage passes" gelten, in der
-  Methode `backstage_passes`.
-- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
-  Ihre Testfälle, die "Backstage passes" betreffen, sollten jetzt erfolgreich sein.
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
-- [EQ] Eine Änderung der Funktion `sulfuras` ist nicht nötig. Wieso nicht?
+[ER] Erstellen Sie eine neue Klasse namens `Updater`, sie erbt von `object`.
+
+[ER] Erstellen Sie in der Klasse `Updater` zu jedem der vier Typen von Item eine Funktion mit den 
+Namen `normal_item`, `aged_brie`, `sulfuras` und `backstage_passes`.  
+Als Parameter erhalten die Funktionen `self` und das Item.
+Schreiben Sie vorerst `pass` in den Methodenrumpf, die Inhalte werden gleich nach und nach 
+eingefügt.
+
+[EC] Lassen Sie Ihre Testfälle nun einmal laufen und überzeugen Sie sich, dass nun (fast) alle 
+Testfälle fehlschlagen.
+Um die Ausgabe für das Kommandoprotokoll zu reduzieren, verwenden Sie hier, sowie bei **allen 
+weiteren Aufrufen** von pytest, den Parameter `--tb=line`.
+
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
+
+[ER] Implementieren Sie die Aktualisierungsregeln, die für normale Gegenstände gelten, in der
+Methode `normal_item`.
+
+[EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+Ihre Testfälle, die "normale Gegenstände" betreffen, sollten jetzt erfolgreich sein.
+
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
+
+[ER] Implementieren Sie die Aktualisierungsregeln, die für den Gegenstand "Aged Brie" gelten, in der
+Methode `aged_brie`.
+
+[EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+Ihre Testfälle, die "Aged Brie" betreffen, sollten jetzt erfolgreich sein.
+
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
+
+[ER] Implementieren Sie die Aktualisierungsregeln, die für "Backstage passes" gelten, in der
+Methode `backstage_passes`.
+
+[EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+Ihre Testfälle, die "Backstage passes" betreffen, sollten jetzt erfolgreich sein.
+
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
+
+[EQ] Eine Änderung der Funktion `sulfuras` ist nicht nötig. Wieso nicht?
 
 
 #### Diskussion
@@ -117,13 +143,15 @@ Und jeder davon hätte nicht 3 Zeilen Logik, sondern 300 bis 1000.
 Und diese Logik wäre ähnlich verwickelt wie hier.  
 Und morgen wollen Ihre Kolleg_innen an vier dieser Fälle _inhaltliche_ Änderungen machen.
 
-- [EQ] Welchen großen Nachteil hat dann der Radikalansatz?
-- [EQ] Bis zu ungefähr welcher Größe (Anzahl Fälle, Umfang der Logik pro Fall) würden Sie ihn
-  für sinnvoll halten (die Alternative lernen wir gleich unten kennen)?
-- [EQ] Stellen Sie sich nun noch vor, Sie stellen bei Fall 18 fest, dass Ihr Ansatz mit
-  der `Updater`-Klasse überhaupt nicht alle Fälle tragen kann.
-  Verändert sich daraufhin Ihr obiges Urteil über die sinnvolle Maximalgröße für den Radikalansatz?
-  Wie lautet es nun?
+[EQ] Welchen großen Nachteil hat dann der Radikalansatz?
+
+[EQ] Bis zu ungefähr welcher Größe (Anzahl Fälle, Umfang der Logik pro Fall) würden Sie ihn
+für sinnvoll halten (die Alternative lernen wir gleich unten kennen)?
+
+[EQ] Stellen Sie sich nun noch vor, Sie stellen bei Fall 18 fest, dass Ihr Ansatz mit
+der `Updater`-Klasse überhaupt nicht alle Fälle tragen kann.
+Verändert sich daraufhin Ihr obiges Urteil über die sinnvolle Maximalgröße für den Radikalansatz?
+Wie lautet es nun?
 
 
 ### Variante 2: Transformation des Codes
@@ -139,8 +167,8 @@ Die beschriebene Reihenfolge von Transformationen kann wirr erscheinen.
 In der Realität ist das oft ähnlich, je nachdem, welche Änderungen einem wann einfallen.
 Es ist auch ganz normal, im Laufe dessen den gleichen Code mehrfach zu verändern.
 
-- Öffnen Sie die Datei `gildedrose/variante2/gilded_rose.py`.
-- Betrachten Sie die Funktion `GildedRose.update_quality()`.
+Öffnen Sie die Datei `gildedrose/variante2/gilded_rose.py` und betrachten Sie die Funktion 
+`GildedRose.update_quality()`.
 
 [NOTICE]
 Auf der obersten Ebene innerhalb der `for`-Schleife gibt es drei `if`-Anweisungen.
@@ -151,126 +179,168 @@ Block**" bezeichnet.
 
 #### Erster Block
 
-- Die oberste Bedingung ist recht sperrig zu lesen:
-  `if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert": (...).`  
-  Benutzen Sie die [TERMREF2::de-morgansche Regeln::de-morganschen Regeln], um diesen Ausdruck umzuschreiben.
-- Nun wenden Sie noch den `in`-Operator an: aus `a == v1 or a == v2` wird `a in (v1, v2)`.
-- Der `if`-Ausdruck hat jetzt die Form `if not (...)` und wird von einem `else` gefolgt.
-  Vertauschen Sie den Inhalt von `if` und `else` und negieren Sie den `if`-Ausdruck.
-- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
-  Alle Testfälle sollten weiterhin erfolgreich sein.
-- [EQ] Inwiefern machen diese Änderungen den Code lesbarer oder wartbarer?
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
-- [ER] In der Regel wird in diesem Code zuerst `item.name` überprüft, dann die `item.quality`. 
-  Zweimal jedoch nicht. 
-  Finden Sie die erste Stelle mit einer solchen Ausnahme und vertauschen Sie die beiden `if`-Ausdrücke,
-  um den Code regelmäßiger und somit leichter verständlich zu machen.
-- [EQ] Warum ist dieser Tausch einfach so möglich?
-- [ER] Der Code fragt in einer `if`-Abfrage nach, ob ein `item` den Namen "Aged Brie" 
-  oder "Backstage passes to a TAFKAL80ETC concert" trägt.
-  Zwei Ebenen darunter wird noch einmal gefragt, ob das `item` den Namen 
-  "Backstage passes to a TAFKAL80ETC concert" trägt.  
-  Teilen Sie die obere `if`-Anweisung in zwei Teile auf:  
-  Im ersten soll nach "Aged Brie" gefragt werden. 
-  Der zweite benutzt ein `elif`, in dem nach "Backstage passes to a TAFKAL80ETC concert" 
-  gefragt wird.  
-  Verschieben und kopieren Sie die relevanten Code-Teile in die zugehörigen Abschnitte.
-- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
-  Alle Testfälle sollten weiterhin erfolgreich sein.
-- [EQ] Viele Programmierer halten sich gerne an das [TERMREF::DRY-Prinzip].
-  Verletzt die gerade durchgeführte Änderung dieses Prinzip?
-  Beschreiben Sie den Effekt, den diese Änderung auf den Code hat: 
-  Wird er lesbarer? Wird er wartbarer?
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
-- Betrachten Sie den dritten `if`-Ausdruck, `if item.sell_in < 0: (...)`.
-  Dieser `if`-Ausdruck hat auch die Form `if not (...)`, gefolgt von einem `else`-Teil.
-  Tauschen Sie die Inhalte der beiden Ausdrücke und ändern Sie den `if`-Ausdruck zu `if (...)`.
-- [ER] Innerhalb des `else`-Ausdrucks finden Sie wieder dasselbe Muster vor. 
-  Ändern Sie den Code entsprechend um.
-- [ER] Nach dieser Änderung folgt auf den `else`-Ausdruck direkt ein `if`-Ausdruck.
-  Führen Sie beide zu einem `elif`-Ausdruck zusammen.
-- Finden Sie die zweite Stelle, wo nicht zuerst `item.name` überprüft wird und dann die `item.quality`,
-  und vertauschen Sie die beiden `if`-Ausdrücke.
-- Auf den `else`-Ausdruck folgt ein `if`-Ausdruck.
-  Führen Sie die beiden zu einem `elif`-Ausdruck zusammen.
-- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
-  Alle Testfälle sollten weiterhin erfolgreich sein.
-- [EQ] Beschreiben Sie den Effekt, den diese Änderungen auf den Code haben.  
-  Wird er lesbarer? Wird er wartbarer?  
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
+[ER] Die oberste Bedingung ist recht sperrig zu lesen:
+`if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert": (...).`  
+Benutzen Sie die [TERMREF2::de-morgansche Regeln::de-morganschen Regeln], um diesen Ausdruck umzuschreiben.
 
+[ER] Nun wenden Sie noch den `in`-Operator an: aus `a == v1 or a == v2` wird `a in (v1, v2)`.
 
-#### Globale Änderungen
+[ER] Der `if`-Ausdruck hat jetzt die Form `if not (...)` und wird von einem `else` gefolgt.
+Vertauschen Sie den Inhalt von `if` und `else` und negieren Sie den `if`-Ausdruck.
 
-- [ER] In der gesamten `for`-Schleife gibt es sieben Stellen, an denen mit einer 
-  `if`-Abfrage nach der Höhe von `item.quality` gefragt wird, worauf hin eine Änderung der 
-  dieses Wertes stattfindet.  
-  Anstatt `if`-und-Erhöhung kann die `min()`-Funktion benutzt werden,
-  anstatt `if`-und-Verringerung kann die `max()`-Funktion benutzt werden.
-  Damit werden siebenmal aus zwei Zeilen eine.
-  Führen Sie diese Änderungen durch.
-- Fügen Sie in der Funktion `GildedRose.update_quality()` vor der `for`-Schleife zwei Konstanten 
-  ein: `MIN_QUALITY = 0` und `MAX_QUALITY = 50`.  
-  Ersetzen Sie die festen Werte im Code durch die Konstantennamen.
-- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
-  Alle Testfälle sollten weiterhin erfolgreich sein.
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
+[EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+Alle Testfälle sollten weiterhin erfolgreich sein.
 
+[EQ] Inwiefern machen diese Änderungen den Code lesbarer oder wartbarer?
 
-#### Weiter im ersten Block
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
 
-- [ER] Im ersten Block wird zweimal `item.quality` eines "Backstage passes" in Abhängigkeit vom Wert 
-  von `sell_in` verändert.  
-  Betrachten Sie die entsprechenden `if`-Anweisungen. 
-  Ersetzen Sie sie durch einen `if-elif-else`-Block mit geeigneten 
-  Bedingungen, und setzen Sie darin `quality_adjustment = x` mit passendem `x`.
-- [ER] Ändern Sie erst nach diesem `if-elif-else`-Block einmal den Wert von `item.quality`. 
-- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
-  Alle Testfälle sollten weiterhin erfolgreich sein.
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
+[EC] `git -P show HEAD`
 
+[ER] In der Regel wird in diesem Code zuerst `item.name` überprüft, dann die `item.quality`. 
+Zweimal jedoch nicht. 
+Finden Sie die erste Stelle mit einer solchen Ausnahme und vertauschen Sie die beiden `if`-Ausdrücke,
+um den Code regelmäßiger und somit leichter verständlich zu machen.
 
-#### Nochmal globale Änderungen
+[EQ] Warum ist dieser Tausch einfach so möglich?
 
-- `item.quality` wird noch an anderen Stellen im Code abhängig von `item.name` und `item.sell_in` verändert.
-  Die gerade bei "Backstage passes" etablierte Variante der Qualitätsänderung lässt sich
-  generalisieren.  
-  Dabei machen wir es uns zunutze, dass es nur ein `item` gibt, bei dem die Qualität gleich bleibt.
-- [ER] Suchen Sie alle weiteren Stellen heraus, an denen Sie `item.quality` ändern.
-  Ersetzen Sie diese Zeilen durch `quality_adjustment = X`, wobei `X` die hier vorgenommene 
-  Änderung darstellt.  
-  Bisher war es vorteilhaft nach `if item.name != "Sulfuras, Hand of Ragnaros": (...)` zu fragen,
-  jetzt stört die negative Frage aber.
-  Ändern Sie also die negative Abfrage zu einer positiven um.
+[ER] Der Code fragt in einer `if`-Abfrage nach, ob ein `item` den Namen "Aged Brie" 
+oder "Backstage passes to a TAFKAL80ETC concert" trägt.
+Zwei Ebenen darunter wird noch einmal gefragt, ob das `item` den Namen 
+"Backstage passes to a TAFKAL80ETC concert" trägt.  
+Teilen Sie die obere `if`-Anweisung in zwei Teile auf:  
+Im ersten soll nach "Aged Brie" gefragt werden. 
+Der zweite benutzt ein `elif`, in dem nach "Backstage passes to a TAFKAL80ETC concert" 
+gefragt wird.  
+Verschieben und kopieren Sie die relevanten Code-Teile in die zugehörigen Abschnitte.
 
+[EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+Alle Testfälle sollten weiterhin erfolgreich sein.
 
-#### Zweiter Block
+[EQ] Viele Programmierer halten sich gerne an das [TERMREF::DRY-Prinzip].
+Verletzt die gerade durchgeführte Änderung dieses Prinzip?
+Beschreiben Sie den Effekt, den diese Änderung auf den Code hat: 
+Wird er lesbarer? Wird er wartbarer?
 
-- Ändern Sie die abgefragte Bedingung zu `if quality_adjustment != 0: (...)`.
-- Fügen Sie eine Zeile Code ein, die `item.quality` mithilfe von `quality_adjustment` ändert. 
-  Stellen Sie mit `min()` und `max()` sicher, dass `item.quality` in den erlaubten Grenzen bleibt.
-- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
-  Alle Testfälle sollten weiterhin erfolgreich sein.
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
 
 
 #### Dritter Block
 
-- [ER] Der **dritte Block** enthält drei Anweisungen, die `item.quality` ändern. 
-  Finden Sie für jede davon eine Stelle im **ersten Block**, wo die 
-  Qualitätsänderung stattdessen durchgeführt werden kann.  
-  Achten Sie darauf, dass die neu eingeführte Struktur erhalten bleibt.
-- [ER] Nach dieser Änderung sollte der **dritte Block** nichts mehr tun und kann gelöscht werden.
-- [EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
-  Alle Testfälle sollten weiterhin erfolgreich sein.
-- Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
-- [EC] `git -P show HEAD`
+[ER] Betrachten Sie den dritten `if`-Ausdruck, `if item.sell_in < 0: (...)`.
+Dieser `if`-Ausdruck hat auch die Form `if not (...)`, gefolgt von einem `else`-Teil.
+Tauschen Sie die Inhalte der beiden Ausdrücke und ändern Sie den `if`-Ausdruck zu `if (...)`.
+
+[ER] Innerhalb des `else`-Ausdrucks finden Sie wieder dasselbe Muster vor. 
+Ändern Sie den Code entsprechend um.
+
+[ER] Nach dieser Änderung folgt auf den `else`-Ausdruck direkt ein `if`-Ausdruck.
+Führen Sie beide zu einem `elif`-Ausdruck zusammen.
+
+[ER] Finden Sie die zweite Stelle, wo nicht zuerst `item.name` überprüft wird und dann die `item.
+quality`, und vertauschen Sie die beiden `if`-Ausdrücke.
+
+[ER] Auf den `else`-Ausdruck folgt ein `if`-Ausdruck.
+Führen Sie die beiden zu einem `elif`-Ausdruck zusammen.
+
+[EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+Alle Testfälle sollten weiterhin erfolgreich sein.
+
+[EQ] Beschreiben Sie den Effekt, den diese Änderungen auf den Code haben.  
+Wird er lesbarer? Wird er wartbarer?  
+
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
+
+
+#### Globale Änderungen
+
+[ER] In der gesamten `for`-Schleife gibt es sieben Stellen, an denen mit einer 
+`if`-Abfrage nach der Höhe von `item.quality` gefragt wird, worauf hin eine Änderung 
+dieses Wertes stattfindet.  
+Anstatt `if`-und-Erhöhung kann die `min()`-Funktion benutzt werden,
+anstatt `if`-und-Verringerung kann die `max()`-Funktion benutzt werden.
+Damit werden siebenmal aus zwei Zeilen eine.
+Führen Sie diese Änderungen durch.
+
+[ER] Fügen Sie in der Funktion `GildedRose.update_quality()` vor der `for`-Schleife zwei Konstanten 
+ein: `MIN_QUALITY = 0` und `MAX_QUALITY = 50`.  
+Ersetzen Sie die festen Werte im Code durch die Konstantennamen.
+
+[EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+ Alle Testfälle sollten weiterhin erfolgreich sein.
+
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
+
+
+#### Weiter im ersten Block
+
+[ER] Im ersten Block wird zweimal `item.quality` eines "Backstage passes" in Abhängigkeit vom Wert 
+von `sell_in` verändert.  
+Betrachten Sie die entsprechenden `if`-Anweisungen. 
+Ersetzen Sie sie durch einen `if-elif-else`-Block mit geeigneten 
+Bedingungen, und setzen Sie darin `quality_adjustment = x` mit passendem `x`.
+
+[ER] Ändern Sie erst nach diesem `if-elif-else`-Block einmal den Wert von `item.quality`. 
+
+[EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+Alle Testfälle sollten weiterhin erfolgreich sein.
+
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
+
+
+#### Nochmal globale Änderungen
+
+`item.quality` wird noch an anderen Stellen im Code abhängig von `item.name` und `item.sell_in` verändert.
+Die gerade bei "Backstage passes" etablierte Variante der Qualitätsänderung lässt sich
+generalisieren.  
+Dabei machen wir es uns zunutze, dass es nur ein `item` gibt, bei dem die Qualität gleich bleibt.
+
+[ER] Suchen Sie alle weiteren Stellen heraus, an denen Sie `item.quality` ändern.
+Ersetzen Sie diese Zeilen durch `quality_adjustment = X`, wobei `X` die hier vorgenommene 
+Änderung darstellt.  
+Bisher war es vorteilhaft nach `if item.name != "Sulfuras, Hand of Ragnaros": (...)` zu fragen,
+jetzt stört die negative Frage aber.
+Ändern Sie also die negative Abfrage zu einer positiven um.
+
+
+#### Zweiter Block
+
+[ER] Ändern Sie die abgefragte Bedingung zu `if quality_adjustment != 0: (...)`.
+
+[ER] Fügen Sie eine Zeile Code ein, die `item.quality` mithilfe von `quality_adjustment` ändert. 
+Stellen Sie mit `min()` und `max()` sicher, dass `item.quality` in den erlaubten Grenzen bleibt.
+
+[EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+Alle Testfälle sollten weiterhin erfolgreich sein.
+
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
+
+
+#### Dritter Block
+
+[ER] Der **dritte Block** enthält drei Anweisungen, die `item.quality` ändern. 
+Finden Sie für jede davon eine Stelle im **ersten Block**, wo die 
+Qualitätsänderung stattdessen durchgeführt werden kann.  
+Achten Sie darauf, dass die neu eingeführte Struktur erhalten bleibt.
+
+[ER] Nach dieser Änderung sollte der **dritte Block** nichts mehr tun und kann gelöscht werden.
+
+[EC] Lassen Sie zur Kontrolle Ihre Testfälle laufen.
+Alle Testfälle sollten weiterhin erfolgreich sein.
+
+Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
+
+[EC] `git -P show HEAD`
 
 [ENDSECTION]
 [SECTION::submission::program]
