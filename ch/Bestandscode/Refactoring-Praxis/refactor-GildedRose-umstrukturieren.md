@@ -360,4 +360,11 @@ Machen Sie einen Commit mit der veränderten Datei `gilded_rose.py`.
 - Der resultierende Code müsste immer recht ähnlich aussehen, es ist also nicht mit viel 
   Streuung bei den Lösungen zu rechnen.
 
+Beispiellösung siehe [TREEREF::/Bestandscode/Refactoring-Praxis/gildedrose]
+
+[INCLUDE::ALT:]
+
+### Kommandoprotokoll
+
+[PROT::ALT:refactor-GildedRose-Tests.prot]
 [ENDINSTRUCTOR]
