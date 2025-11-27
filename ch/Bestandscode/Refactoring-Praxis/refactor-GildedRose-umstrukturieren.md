@@ -366,5 +366,5 @@ Beispiellösung siehe [TREEREF::/Bestandscode/Refactoring-Praxis/gildedrose]
 
 ### Kommandoprotokoll
 
-[PROT::ALT:refactor-GildedRose-Tests.prot]
+[PROT::ALT:refactor-GildedRose-umstrukturieren.prot]
 [ENDINSTRUCTOR]
