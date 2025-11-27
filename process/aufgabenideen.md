@@ -481,7 +481,7 @@ Aufgabenbereiche:
   Lernziel: die Fälle verstehen, in denen das einer GUI überlegen ist: mit Globbing, mit mehreren Argumenten, mit speziellen Optionen
 - Typische Helfer für die Shellprogrammierung: touch, cat, head, tail, grep, uniq, sort, find, awk, sed, xargs, tee, ...  
   Lernziel: Je mindestens einen gut erinnerbaren Anwendungsfall ausprobieren, in dem das Helferlein gute Dienste leistet.  
-  Hier kommen natürlich nur noch die dran, die man nicht schon oben bei sprache/sh eingeführt hat.
+  Hier kommen natürlich nur noch die dran, die man nicht schon oben bei Sprachen/sh eingeführt hat.
 - Typische Idiome der Shellprogrammierung.
 
 Beispiele für interaktive Idiome:
@@ -496,14 +496,16 @@ Beispiele für interaktive Idiome:
 Beispiele für programmatische Idiome:
 - ...
 
+
 ### Werkzeuge/Netzwerk (condric)
 
-- ssh (mehrere Aufgaben) 
-  - tmux, ...
+- tmux
+- ...
 
 Lernziel ist immer, typische Anwendungsfälle und Stärken zu verstehen.
 
-### Werkzeuge/Admin (condric)
+
+### Werkzeuge/??? (condric)
 
 - Dateisystemaufbau: /bin, /usr, /var, /etc, /mnt, ...  
   Lernziel: Grobes Verständnis von "Was ist wo?"
@@ -548,35 +550,42 @@ Speziellerer Kram:
 - ...
 
 
-### Werkzeuge: sonstige Ideen
+### Werkzeuge/Paketmanager (N.N.)
 
-- Shell:
-  - https://writing.kemitchell.com/2024/03/28/Pick-From-a-List-Tools
-- IDE
-  - Unterschied IDE und Editor
-  - Projekterstellung
-  - Code-Ausführung in der IDE
-  - Debugging
-  - Refactoring
-  - git-Integration
-  - Integriertes Terminal
-- Paketmanager
-  - Welche stehen in meiner Sprache zur Verfügung? Gibt es überhaupt welche?
-  - Welche Funktionen bietet ein Paketmanager?
-  - Wie finde ich Pakete?
-  - Fallbeispiel über Probleme mit Paketmanagern
-    - Eine der unzähligen Probleme mit npm heraussuchen, vielleicht mit einem Post Mortem.
-      Aufgabe ist es herauszuarbeiten, was das Problem genau ist, ob es dauerhaft gefixt ist
-      oder ob es überhaupt fixbar ist.
-      Nicht als Draufprügeln für npm, sondern für das Verstehen, dass die Nutzung von Fremdcode
-      unter der Hand explodieren kann.
-- Arbeitsplatzergonomie
-  - *Persönlich* finde ich wichtig, dass die Studierenden nicht nur ihre Arbeitsumgebung im PC,
-    sondern auch um ihren PC herum einrichten können.
-    Meistens denkt man da erst dran, wenn es zu spät ist.
-    Maximal eine Aufgabe, darf nicht zu viel Platz beanspruchen.
-- docker?
+- Welche stehen in meiner Sprache zur Verfügung? Gibt es überhaupt welche?
+- Welche Funktionen bietet ein Paketmanager?
+- Wie finde ich Pakete?
+- Fallbeispiel über Probleme mit Paketmanagern
+  - Z.B. eines der unzähligen Probleme mit npm heraussuchen, vielleicht mit einem Post Mortem.
+    Aufgabe ist es herauszuarbeiten, was das Problem genau ist, ob es dauerhaft gefixt ist
+    oder ob es überhaupt fixbar ist.
+    Nicht als Draufprügeln für npm, sondern für das Verstehen, dass die Nutzung von Fremdcode
+    unter der Hand explodieren kann.
 
+
+### Werkzeuge/IDE (N.N.)
+
+Hmm, bringt es so eine Gruppe? Unklar.
+
+- Unterschied IDE und Editor
+- Projekterstellung
+- Code-Ausführung in der IDE
+- Debugging
+- Refactoring
+- git-Integration
+- Integriertes Terminal
+
+
+### Werkzeuge/docker (N.N.)
+
+Sollten wir eines Tages wohl ins Auge fassen:
+- Konzept von Docker (Isolation, leichtgewichtige Container, Image vs. Container)
+- Dockerfile
+- docker hub
+- Einbinden von Dateien des Hostsystems
+- Netzwerke definieren
+- `docker compose`
+- ...
 
 ## ch/Web (müllers, hofmann)
 
