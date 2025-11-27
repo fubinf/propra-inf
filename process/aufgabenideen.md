@@ -11,7 +11,7 @@ das plant; das Gebiet ist also verfügbar.
 
 Ziel ist, 
 - dass hier nichts mehr steht, was schon erledigt ist (oder in Kürze erledigt sein wird),
-- dass hier notierte sinnlose oder klar überholte Ideen getilgt oder durch bessere Idenn ersetzt sind,
+- dass hier notierte sinnlose oder klar überholte Ideen getilgt oder durch bessere Ideen ersetzt sind,
 - dass ggf. vorhandene oder frisch entdeckte zusätzliche Ideen, deren Umsetzung aktuell nicht absehbar ist,
   ergänzt sind,
 - sodass künftige Generationen von ProPra-Autor_innen sich schnell einen Überblick verschaffen können,
@@ -22,7 +22,7 @@ durchsehen und überarbeiten.
 Ist die Liste danach ganz leer (was OK wäre), den ganzen Abschnitt löschen.
 Wo man noch sehr unsicher ist, Inhalte erstmal stehen lassen und Überarbeitung auf Wiedervorlage legen.
 
-Bitte Änderungen für jeden Abschnitt separat einchecken und in der Commit-Nachicht den Abschnitt
+Bitte Änderungen für jeden Abschnitt separat einchecken und in der Commit-Nachricht den Abschnitt
 und die Natur der Änderungen kennzeichnen, z.B.:
 
 - "aufgabenideen.md: chap/tgroup additions, deletions"
@@ -320,28 +320,18 @@ String-Formatierung
 
 ### Sprachen/Go (brandes)
 
-- `go test`, `go build` und mehr zu Packages (Abhängigkeiten, `"go.mod"`)
-- `go install` vs `go get` (das zweite ist deprecated, nur als `go get -d` benutzen fürs Herunterladen)
 - File Management
   * file organizer - Dateien nach Typen sortieren
-  * File system watcher? 
-- Multiprocessing (goroutines, channels, `select`, Mutex)
-  * publisher/subscriber System
-  * n-body Simulation?
-  * Primzahlen bis n? (single- vs multithreaded, cpu/speicher trade-off)
-  * job queue bzw. Task Scheduler?
+  * File system watcher?
 - sqlite Integration
 - Networking
-  * (CRUD API?/ http messenger?)
   * file streaming über TCP
   * Paket-Inspector (TCP/UDP Paket Monitoring)
-- Dependency Injection und Decorator Patterns (wichtig im Kontext von Go)
-- generell - Go Standardbibliothek?
-- COG: Cogs of Go (cli Anwendung ähnlich wie mlh)
-  * `pin` - Alias zu dem Verzeichnis erstellen, wo das Kommando aufgerufen wurde;
-  * `size` - Größe von einer Datei bzw. einem Verzeichnis (Kombination von `du -sh` und `ls -l`);
-  * `color` - Nimmt einen Hex-Farbcode (z. B. #123456) an und zeigt diese Farbe im Terminal;
-  * `weather` - (vielleicht zu fortgeschritten) ip-address-geolocation-lookup + Wetterbericht für diesen Ort
+- Standardbibliothek
+  * os
+  * signal
+  * io
+  * ...
 - Effective Go, 100 Go Mistakes usw (https://github.com/dariubs/GoBooks)
 
 
