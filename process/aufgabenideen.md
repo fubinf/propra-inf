@@ -347,7 +347,9 @@ String-Formatierung
 
 ### Sprachen/C (khofmann)
 
-Kleiner Ausflug in die C-Programmierung, insbes. Zeiger, manuelle Speicherverwaltung.
+Kleiner Ausflug in die C-Programmierung, insbes. Präprozessor, Zeiger, manuelle Speicherverwaltung.
+
+Ideen-Bröckchen:
 
 - Compiler installieren, Hello World
 - Datei einlesen, Länge der längsten und der kürzesten (nichtleeren) Zeile bestimmen
@@ -366,6 +368,12 @@ Kleiner Ausflug in die C-Programmierung, insbes. Zeiger, manuelle Speicherverwal
   enorm viel beschleunigt wird? Der Rest des Codes bleibt in Python.
   Man schreibt sich also eine ganz kleine Bibliothek für einen Spezialalgorithmus in C 
   und bindet sie an.
+
+
+### Sprachen/C++ (khofmann)
+
+Die wichtigsten Konzepte von C++. 
+`assumes` fast alles von Taskgroup C.
 
 
 ### Sprachen/DSLs (N.N.)
