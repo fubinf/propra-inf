@@ -613,41 +613,44 @@ Doof am Thema: Geht auf WSL und Mac nur mit Verrenkungen.
 - Behandlung von folgenden Themen: HTML, CSS, ~~Bootstrap~~ Tailwind(?), JavaScript,
   evtl. TypeScript, Flask, Django, Vue(?), React(?).
 
-### Strukturvorschlag (basierend auf dem Stand vor den Änderungen von Frau Atarim)
+### Web/CSS
 
-1. HTML
-2. CSS
-   - Jeweils eine Aufgabe für: Basics, häufig benutzte Eigenschaften Box Model, Selectors, (Pseudo)Classes
-   - Es gab auch noch Shorthands (border statt border-left/-right/-top/-bottom)
-     und Margin/Border/Padding, weil das besondere Relevanz hat. -> Aufgabe Box Model.
-   - Medien-Abfragen, "responsive" Design
-   - Fortgeschritten: Calculated Properties und Variablen, Grid und Flex
-   - Optional: Verwenden von CSS Frameworks
-3. JS
-   - Verwenden von Ressourcen die JS für Python-Devs erklären.
-   - Kurze Erwähnung, dass Syntax C-Style ist. Könnte man ggf. ausweisen.
-     Erwähnung von function() {} vs () => {} als Frage, weil häufiger Stolperstein.
-   - Einführung des DOM als Struktur mit einfachen Funktionen zur Manipulation
-   - Einführung der asynchronen Struktur von JS.
-     - Gegenüberstellung von Callbacks vs async await, ggf IIFE. für async
-   - Kleines Beispielprogramm mit wiederkehrenden Elementen bauen lassen
-     - Klischeebeispiel: Todo-Liste. Nett, weil hohes feature ceiling
-   - Auf Basis des Programms Teplates und Slots motivieren und umsetzen.
-     Nicht immer wieder die gleichen Elemente anlegen müssen!
-   - Optional aufbauend auf Templates eigene Tags definieren.
-     Hier würde ich die Semantic Tags kurz erwähnen.
-   - Reactivity-Problem für die Template-Elemente erläutern.
-     Beispiel: Durchstreichen nach Abhaken o.ä.
-     Hier gibt es zwei Wege, das zu handlen:
-     - Top-Down: Wir verwenden ein wenig von vue/reactivity und erklären anschließend,
-       dass so etwas mit Proxy-Klassen selbst gebaut werden kann.
-       Optionale nachfolgende Aufgabe: Proxy selbst implementieren!
-     - Bottom-Up: Wir streichen Drittanbieter-Bibliotheken und bauen direkt selbst einen Proxy.
-       Nett, weil wenig Fremd-Information, aber sehr mühsam mit vergleichsweise wenig Lerneffekt.
-   - Shadow-DOM motivieren und ggf. mit Drittanbieter-Bibliothek anbinden
-   - Struktur des Frameworks der Wahl präsentieren und zeigen, wie es das gelernte umsetzt.
-4. Backend mit Python
-  - Flask, Django?
+- Jeweils eine Aufgabe für: Basics, häufig benutzte Eigenschaften Box Model, Selectors, (Pseudo)Classes
+- Es gab auch noch Shorthands (border statt border-left/-right/-top/-bottom)
+  und Margin/Border/Padding, weil das besondere Relevanz hat. -> Aufgabe Box Model.
+- Medien-Abfragen, "responsive" Design
+- Fortgeschritten: Calculated Properties und Variablen, Grid und Flex
+- Optional: Verwenden von CSS Frameworks
+
+
+### Web/JavaScript (ertekin)
+
+- Verwenden von Ressourcen die JS für Python-Devs erklären.
+- Kurze Erwähnung, dass Syntax C-Style ist. Könnte man ggf. ausweisen.
+  Erwähnung von function() {} vs () => {} als Frage, weil häufiger Stolperstein.
+- Einführung des DOM als Struktur mit einfachen Funktionen zur Manipulation
+- Einführung der asynchronen Struktur von JS.
+  - Gegenüberstellung von Callbacks vs async await, ggf IIFE. für async
+- Kleines Beispielprogramm mit wiederkehrenden Elementen bauen lassen
+  - Klischeebeispiel: Todo-Liste. Nett, weil hohes feature ceiling
+- Auf Basis des Programms Teplates und Slots motivieren und umsetzen.
+  Nicht immer wieder die gleichen Elemente anlegen müssen!
+- Optional aufbauend auf Templates eigene Tags definieren.
+  Hier würde ich die Semantic Tags kurz erwähnen.
+- Reactivity-Problem für die Template-Elemente erläutern.
+  Beispiel: Durchstreichen nach Abhaken o.ä.
+  Hier gibt es zwei Wege, das zu handlen:
+  - Top-Down: Wir verwenden ein wenig von vue/reactivity und erklären anschließend,
+    dass so etwas mit Proxy-Klassen selbst gebaut werden kann.
+    Optionale nachfolgende Aufgabe: Proxy selbst implementieren!
+  - Bottom-Up: Wir streichen Drittanbieter-Bibliotheken und bauen direkt selbst einen Proxy.
+    Nett, weil wenig Fremd-Information, aber sehr mühsam mit vergleichsweise wenig Lerneffekt.
+- Shadow-DOM motivieren und ggf. mit Drittanbieter-Bibliothek anbinden
+- Struktur des Frameworks der Wahl präsentieren und zeigen, wie es das gelernte umsetzt.
+
+### Web/Django (li)
+
+???
 
 
 ## ch/Programmierpraxis
