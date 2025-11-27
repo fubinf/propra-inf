@@ -200,14 +200,14 @@ zu klären:
 - chardet (und charset-normalizer)
 
 
-#### Bibliotheken/pip-popular pandas (N.N.)
+#### Bibliotheken/pandas (saka)
 
 - Pandas installieren, pandas101
 - Struktur der Doku verstehen
 - Theorie: Series, DataFrame, Index, MultiIndex: Zweck, Unterschiede, Gemeinsamkeiten.
 - Pandas-Cheatsheet: CSV-Tabelle einlesen, diverse Arten von Datenumstrukturieren ausprobieren
 
-#### Bibliotheken/pip-popular matplotlib (N.N.)
+#### Bibliotheken/matplotlib (saka)
 
 Assumes pandas
 
