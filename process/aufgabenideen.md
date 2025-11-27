@@ -640,10 +640,13 @@ Doof am Thema: Geht auf WSL und Mac nur mit Verrenkungen.
 
 ### Web/Django (li)
 
-- Es behandelt bereits Themen von den Grundlagen bis hin zu Formularen und deckt damit einen großen Teil der Basisinhalte für den Aufbau eines Backend-Frameworks ab.
-- Eine mögliche Erweiterung wäre es, eine umfassende Aufgabe zu erstellen, die diese Kenntnisse miteinander verknüpft und den Studierenden ermöglicht, das Gelernte praktisch anzuwenden.
+- Es behandelt bereits Themen von den Grundlagen bis hin zu Formularen und 
+  deckt damit einen großen Teil der Basisinhalte für den Aufbau eines Backend-Frameworks ab.
+- Eine mögliche Erweiterung wäre es, eine umfassende Aufgabe zu erstellen, 
+  die diese Kenntnisse miteinander verknüpft und den Studierenden ermöglicht, das Gelernte praktisch anzuwenden.
 - Im Abschnitt ch/Web steht: „Auf Grundlagen beschränken; das ProPra ist kein Workshop für Spezialkenntnisse.“
-Ich halte diesen Satz für sinnvoll. Daher brauchen wir derzeit keine weiteren Erweiterungen für den Django-Teil, da solche Inhalte zu tiefgehend wären.
+  Ich halte diesen Satz für sinnvoll. Daher brauchen wir derzeit keine weiteren Erweiterungen für den Django-Teil, 
+  da solche Inhalte zu tiefgehend wären.
 
 ## ch/Programmierpraxis
 
