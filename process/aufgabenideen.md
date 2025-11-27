@@ -115,7 +115,23 @@ Guter Anlaufpunkt: <https://refactoring.guru/>
     - TODO_3 Aufgabe für Typing in Python nötig
 
 
-## ch/Debugging (pietrak)
+## ch/Debugging (N.N.)
+
+Wir haben schon eine Reihe von Aufgaben zu Grundlagen des Debuggings.
+Diese könnten noch Ergänzung vertragen, um auch in komplexere Gefilde vorzudringen.
+
+Beispielsweise ist eine Art "geführtes" Debugging denkbar, wo eine schwierige Aufgabe
+gestellt wird, deren Lösung uns bekannt ist, und die Studierenden Schritte üben wie
+Stoßrichtung entscheiden, Hypothese aufstellen, Hypothese validieren
+und sofort im Anschluss Hilfe in Form einer Art Musterlösung bekommen,
+weil wir einen guten (oder auf Teilstrecken vielleicht auch mal weniger guten)
+Debugging-Weg durch das komplexe Problem ermittelt und in der Aufgabe vorgezeichnet haben.
+
+Diese Aufgabe(n) sollte(n) auf Vorkenntnissen in einer Codebasis aufbauen, die im Kapitel
+"Bestandscode" verwendet wird. Die dortigen Aufgaben sind dann ganz oder teilweise
+hier `assumes`-Abhängigkeiten.
+
+Aspekte, die man z.B. versuchen könnte unterzubringen:
 
 - Werkzeuge zum Debuggen
   - Logging
