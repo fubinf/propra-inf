@@ -75,13 +75,6 @@ jobs:
         ls -la
         ls -la sedrila/py/
     
-    - name: Build course (create itree.zip)
-      run: |
-        echo "Building complete course to generate itree.zip..."
-        python sedrila/py/sedrila.py author /tmp/build
-        echo "itree.zip created:"
-        ls -la altdir/itree.zip/ | head -10
-    
     - name: Run program checks
       run: |
         python sedrila/py/sedrila.py maintainer --check-programs --batch -- /tmp/progcheck
