@@ -1,5 +1,37 @@
 # Aufgabenideen zu Kapiteln
 
+Die Namen in Klammern sind aktuelle "Inhaber" dieses Themengebietes.
+Wer daran mitwirken möchte, kann Sie ansprechen, denn nicht immer werden die das komplett
+abdecken können oder auch nur wollen.  
+N.N. bedeutet, wir hätten hierzu gern Aufgaben, es gibt aber aktuell niemanden, der
+das plant; das Gebiet ist also verfügbar.
+
+
+## Überarbeitung Dezember 2025
+
+Ziel ist, 
+- dass hier nichts mehr steht, was schon erledigt ist (oder in Kürze erledigt sein wird),
+- dass hier notierte sinnlose oder klar überholte Ideen getilgt oder durch bessere Idenn ersetzt sind,
+- dass ggf. vorhandene oder frisch entdeckte zusätzliche Ideen, deren Umsetzung aktuell nicht absehbar ist,
+  ergänzt sind,
+- sodass künftige Generationen von ProPra-Autor_innen sich schnell einen Überblick verschaffen können,
+  was für Sie an Themen verfügbar ist.
+
+Bitte jeder seine Themenbereiche (ob mit dem eigenen Namen markiert oder nicht) in dieser Hinsicht
+durchsehen und überarbeiten.
+Ist die Liste danach ganz leer (was OK wäre), den ganzen Abschnitt löschen.
+Wo man noch sehr unsicher ist, Inhalte erstmal stehen lassen und Überarbeitung auf Wiedervorlage legen.
+
+Bitte Änderungen für jeden Abschnitt separat einchecken und in der Commit-Nachicht den Abschnitt
+und die Natur der Änderungen kennzeichnen, z.B.:
+
+- "aufgabenideen.md: chap/tgroup additions, deletions"
+- "aufgabenideen.md: chap/tgroup deleted: all done"
+- "aufgabenideen.md: chap/tgroup merged with chap2/tgroup2"
+- "aufgabenideen.md: chap/tgroup split --> chap2/tgroup2"
+- u.s.w.
+
+Unklar? Ein paar solcher Commits gibt es schon.
 
 ## ch/Bestandscode 
 
