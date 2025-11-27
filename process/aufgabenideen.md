@@ -52,6 +52,7 @@ Ideen für Aufgaben:
 -    https://www.youtube.com/watch?v=2qYll837a_0  Siehe Discord-Kommentar prechelt 2024-04-20 16:21
 -    https://www.youtube.com/watch?v=Bks59AaHe1c  Siehe Discord-Kommentar prechelt 2024-04-20 16:54
 
+
 ### Bestandscode/codereading (hofmann)
 
 - An kleinen Beispielen verstehen, was Codeverstehen einfach oder schwierig macht:
@@ -68,7 +69,7 @@ Nutzung existierender Loggingfunktionalität, um grobe Abläufe in der Software 
 Geht natürlich nur, wenn passende Info in den Logs vorhanden ist (existierende Logs)
 oder beschafft werden kann (loglevel konfigurieren, dann passende Aktionen in der Software auslösen).
 
-### Bestandscode/stepping (pietrak+hofmann)
+### Bestandscode/stepping (hofmann)
 
 Der Debugger ist nicht nur hilfreich zum Defektlokalisieren, sondern eventuell auch
 zum Programmverstehen, weil sich der Computer niemals bei der Frage vertut,
@@ -77,7 +78,7 @@ Außerdem hat er ein sehr viel größeres Arbeitsgedächtnis als der Mensch.
 
 Dies mit einem geeigneten Szenario verdeutlichen, vermutlich mit einem nicht sooo großen Programm.
 
-### Bestandscode/Refactoring* (pietrak)
+### Bestandscode/Refactoring* (N.N.)
 
 - Am kleinen Beispiel üben: Code verständlicher machen durch
   Rename, Extract variable, Extract method.  
