@@ -576,6 +576,17 @@ Hmm, bringt es so eine Gruppe? Unklar.
 - Integriertes Terminal
 
 
+### Werkzeuge/LLM (N.N.)
+
+Eines Tages, wenn wir das Thema gut genug verstanden haben und der technische Fortschritt nicht mehr
+ganz so sehr galoppiert wie derzeit (2025), sollten wir hier eine Taskgroup zum Thema 
+"Software entwickeln mit Codierassistenten" haben, wo man lernen kann
+
+- wie man es nicht macht (zu ungenaue Prompts, zu umfangreiche Aufträge, zu wenig Nachkontrolle)
+- wie man es macht (erst planen, dann Plan abarbeiten, engmaschig prüfen, 
+  Code zusammen mit Tests entwickeln, Konventionen zentral vorgeben, ...)
+
+
 ### Werkzeuge/docker (N.N.)
 
 Sollten wir eines Tages wohl ins Auge fassen:
@@ -587,7 +598,10 @@ Sollten wir eines Tages wohl ins Auge fassen:
 - `docker compose`
 - ...
 
-## ch/Web (müllers, hofmann)
+Doof am Thema: Geht auf WSL und Mac nur mit Verrenkungen.
+
+
+## ch/Web (müllers, ertekin, li)
 
 - assumes: Wissen über http-Header, curl  
   https://icanhazdadjoke.com liefert im Browser etwas anderes als wenn man es mit curl abruft.
