@@ -378,6 +378,15 @@ Die wichtigsten Konzepte von C++.
 
 ### Sprachen/DSLs (N.N.)
 
+Domain-specific languages haben in einem sehr eingeschränkten Anwendungsbereich eine
+besonders hohe Ausdruckskraft: Man kann damit Dinge sehr viel einfacher hinschreiben
+als mit anderen Mitteln. Regexp sind ein herausragendes Beispiel.
+
+In dieser Gruppe vermitteln wir a) diese Grundidee und b) Grundkenntnisse in ein paar
+weit verbreiteten und recht praktischen DSLs.
+Es kommt vor allem darauf an, die "Sweetspots" herauszuarbeiten, wo man mit dieser DSL
+ernstlich Aufwand sparen kann. Oft ist das im Bereich Shellprogrammierung.
+
 - Was ist eine DSL? (interne, externe)
 - Grundlagen/häufigste Fälle von awk
 - Grundlagen/häufigste Fälle von sed
