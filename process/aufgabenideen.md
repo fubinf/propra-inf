@@ -243,19 +243,16 @@ Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
 - Aufgaben zum Kennenlernen des Unterschieds zwischen Posix-System und anderen unixoiden (sprich: Linux).
 
 
-
 ## ch/Sprachen
 
-### Sprachen/Shell (condric+hüster?)
+### Sprachen/Shell (condric?, hüster?, N.N.)
 
 Puh, wie man folgendes in eine vernünftige Lernreihenfolge bringt, ist nicht offensichtlich:  
 Es wäre schön, die Trennung zwischen der Shellsprache (inkl. builtins) und den Utilities zu vermitteln.  
 Ferner den Unterschied zwischen `sh` und `bash`.
 
-Die Utilities gehören an sich nicht hierhin, sondern ins Kapitel `Werkzeuge`.
-Vermutlich führt man hier von den allerwichtigsten Utilities (z.B. Dateihandling)
-das Grundkonzept ein (weil man ohne sie nichts Sinnvolles tun kann) und 
-in `Werkzeuge` folgen später diverse Optionen und Varianten der Benutzung?
+Die Utilities gehören nicht hierhin, sondern ins Kapitel `Werkzeuge`.
+Nötiges Vorwissen darüber wird durch `assumes`-Abhängigkeiten deklariert.
 
 Wörter, Kommandos, einfaches Quoting, Globbing, Redirect, Pipe.
 if, Tests, for, while, exit codes,
@@ -266,13 +263,17 @@ Shellprozeduren.
 
 Typische Idiome in Shellskripten.
 
+All das wollen wir nicht als totes und frei im Raum schwebendes Wissen vermitteln,
+sondern stets anhand von realistischen Beispielen mit einleuchtendem Nutzen.
+Dafür dürfen Aufgaben gern auch aufeinander aufbauen.
+
 
 ### Sprachen/Bash (condric+hüster?)
 
 Die wichtigsten Erweiterungen ggü. sh bezüglich Sprache, Variablen, Builtins, etc.
 
 Ziel: Verstehen, dass sh (auf allen Plattformen vorhanden, wenn auch nicht immer _genau_ gleich) 
-und bash (deutlich erweitert) verschiedene Dinge sind.
+und bash (deutlich erweitert, weniger portabel) verschiedene Dinge sind.
 
 
 ### Sprachen/Regexp (hüster)
@@ -315,6 +316,7 @@ Aufgabe(n) zu den Dunder-Methoden von Klassen (z. B. `__init__`, `__bool__`, `__
 Folgeaufgabe zu ch/Sprachen/Python/PythonObjectsClassesIntro.md
 
 String-Formatierung
+
 
 ### Sprachen/Go (brandes)
 
