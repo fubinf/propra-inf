@@ -683,15 +683,11 @@ Weitere Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 
 # Aufgabenideen ohne Heimat
 
-- Lektion: Kämpfe nicht gegen den Compiler an.
-    - Sucht nach einer Umsetzung.
-      Eine eigene Implementierung vs eine Implementierung der Standardbibliothek zu dekompilieren 
-      führt nicht zum Ziel, Python optimiert recht wenig.
-- ORM mit Python (Django oder sqlalchemy)
 - Lernmethoden und Lernressourcen:
     - https://earthly.dev/blog/golang-streamers/
     - https://earthly.dev/blog/programming-language-improvements/
 - DB-Programmierung-Antimuster vermeiden: SQL-Injektion, n+1 Queries
 - Praxis Datenbankdesign
 - Vergleich von sqlite, mysql, postgres; evtl. selber Aufsetzen und Ausprobieren.
-- Machine Learning: Einfache Gehversuche mit scikit-learn (dubios: braucht erstmal Theoriewissen)
+- Machine Learning: Einfache Gehversuche mit scikit-learn (aber dann brauchen wir einen
+  Eingangstest, der nur Leute durchlässt, die das nötige Theoriewissen (insbes. Statistik) haben
