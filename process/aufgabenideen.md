@@ -393,18 +393,39 @@ ernstlich Aufwand sparen kann. Oft ist das im Bereich Shellprogrammierung.
 - `jq`, `jid`, `jgrep`
 
 
-### Sprachen/Andere-Shells (N.N.)
+### Sprachen/fish (N.N.)
 
-Alternative Shells. 
+Ideen-Bröckchen:
 
 - Fish1: die netten interaktiven Eigenschaften ausprobieren. Reflektion darüber.
-- Fish2: Ein Skript, das man oben für bash geschrieben (oder gelesen?) hat,
+- Fish2: (`fish` hat eine sehr viel weniger verrückte Scripting-Sprache als `bash`,
+  was sie für Shell-Programmierung attraktiv macht, wenn die geringere Verbreitung/Verfügbarkeit
+  kein Problem darstellt.)
+  Ein Skript, das man oben für bash geschrieben (oder gelesen?) hat,
   nach `fish` umschreiben. Reflektion darüber.
 - Zsh: Die Anpassbarkeit bestaunen. Evtl. [Oh my zsh](https://ohmyz.sh/) durchstöbern.
   Reflektion darüber.
 - Powershell: 1-4 Aufgaben zu den ganz anderen Konzepten dieser Shell. (Ggf. eigene Gruppe.
-  Geht nicht auf MacOS.)  
+  Geht nicht auf MacOS(?))  
   
+
+### Sprachen/powershell (N.N.)
+
+Geht nicht auf MacOS(?)
+
+Ideen-Bröckchen:
+
+1-4 Aufgaben zu den ganz anderen Konzepten dieser Shell.
+
+  
+### Sprachen/zsh (N.N.)
+
+Ideen-Bröckchen:
+
+- Die Anpassbarkeit bestaunen. Evtl. [Oh my zsh](https://ohmyz.sh/) durchstöbern.
+- Reflektion darüber.
+- Vergleich der Shellsprache mit `sh` (z.B. Array-Indexierung, word splitting, `emulate`)
+
 
 
 ## ch/Testen (ruhe)
