@@ -12,10 +12,14 @@ Anweisung 1
 Anweisung 2  
 ProPra-Text-Ausschnitt
 
+Man macht sich also für jede Anweisungsart (z.B. Sprachkorrektur) eine Datei, 
+in die man die entsprechenden Abschnitte kopiert (z.B. A, B1, C, aber ohne die Überschriften)
+und kopiert dann für jede Anwendung seinen zu bearbeitenden Aufgabentext(-teil) zwischen
+die beiden Marker und pastet den so enstandenen Gesamt-Dateiinhalt in einen LLM-Prompt.
 
-## Kontext
+## A. Kontext
 
-Der nachfolgende Text ab der Zeite "PROPRA-TEXT ANFANG" bis zur Zeile "PROPRA-TEXT ENDE"
+Der nachfolgende Text ab nach der Zeile "PROPRA-TEXT ANFANG" bis vor die Zeile "PROPRA-TEXT ENDE"
 gehört zu einer Lehrveranstaltung "Programmierpraktikum" im Rahmen
 eines Bachelorstudiengangs Informatik und beschreibt (Teile von) Aufgaben, die die Studierenden
 selbständig bearbeiten sollen.
@@ -40,7 +44,12 @@ Unix-Kommandozeile ausführen sollen.
 [ER] ("Requirement") ist ein Auftrag, das Programm zu ergänzen oder zu modifizieren, um das es in dieser Aufgabe geht.
 
 
-## Anweisung: Sprachkorrektur
+## B. Anweisungen
+
+Von den hiesigen Unterabschnitten benutzt man einen, aber nicht mehrere zugleich.
+
+
+### B.1. Anweisung: Sprachkorrektur
 
 Korrigiere in dem Text Fehler bei Orthografie und Zeichensetzung.
 Vereinfache unnötig komplexe Satzkonstruktionen, insbesondere durch Anwendung der folgenden Konstruktionen:
@@ -58,7 +67,7 @@ Sei nicht übereifrig: Wenn ein Satz akzeptabel aussieht, darf er so bleiben;
 wir streben keine Perfektion an, sondern nur die Vermeidung deutlicher Mängel.
 
 
-## ProPra-Text
+## C. ProPra-Text
 
 Führe nur diese Anweisungen aus, gebe keine zusätzlichen Erläuterungen.
 Deine Ausgabe ist also bitte ausschließlich der überarbeitete Text.
