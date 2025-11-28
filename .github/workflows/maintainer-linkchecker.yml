@@ -73,6 +73,9 @@ jobs:
       if: always()
       run: |
         REPORT_PATH="/tmp/linkcheck_i/link_check_report.md"
+        echo "### Run parameters" >> "$GITHUB_STEP_SUMMARY"
+        echo "- max_workers: ${SDRL_LINKCHECK_MAX_WORKERS:-10}" >> "$GITHUB_STEP_SUMMARY"
+        echo "" >> "$GITHUB_STEP_SUMMARY"
         if [ -f "$REPORT_PATH" ]; then
           cat "$REPORT_PATH" >> "$GITHUB_STEP_SUMMARY"
         else
