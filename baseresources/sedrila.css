@@ -620,7 +620,30 @@ p:has(span.enumeration-er) {
   text-indent: -1.0em;  /* indent continuing lines, if any */
 }
 
-/********** viewer role: */
+/********** command protocol rendering: */
+
+.prot-manual-color {  background-color: #ffc107; }
+.prot-ok-color {  background-color: #9c0; }  /* like difficulty2-color */
+.prot-alert-color {  background-color: #c00; }  /* like difficulty4-color */
+.prot-skip-color {  background-color: #ddd; }
+
+.prot-counter {
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.prot-spec-manual {
+    margin-left: 3em;
+    background: #ffc107;
+}
+
+.prot-spec-extra {
+    margin-left: 3em;
+    background: #eee;
+}
+
+
+/********** viewer role:  TODO 3: rename vwr- to webapp- */
 
 .vwr-table {
     white-space: pre;
@@ -632,7 +655,7 @@ p:has(span.enumeration-er) {
     tab-size: 8;
 }
 
-.vwr-promptidx {
+.vwr-promptidx {  /* TODO 2: remove once sedrila 2.11 is no longer used (around 2026-03) */
     background-color: #ffc107;
     font-size: 200%;
     font-weight: bold;
