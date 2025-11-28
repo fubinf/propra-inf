@@ -39,12 +39,12 @@ Sie wurden beauftragt, zwei zugehörige Nutzerkonten einzurichten.
 Sie informieren sich, wie man Nutzer auf Linux einrichtet und finden zwei Möglichkeiten: 
 `useradd` und `adduser`.
 Wir probieren hier beide aus.
-
+<!-- LINK_CHECK: status=403 --> 
 Verstehen Sie die **Synopsis**, lesen Sie die **Description**, und die Optionen **-g, -N, -U** der 
 useradd(8) [manpage](https://linux.die.net/man/8/useradd).
 
 [EC] Erstellen Sie einen neuen Nutzer namens `user1` mit dem Befehl `useradd`.
-
+<!-- LINK_CHECK: status=403 --> 
 Lesen Sie die **Description** der passwd(5) [manpage](https://linux.die.net/man/5/passwd).
 
 [EC] Holen Sie nur den Eintrag von user1 aus der Benutzerkontendatei: `grep user1 /etc/passwd`
@@ -73,7 +73,7 @@ Einen Account "so wie üblich" anlegen.
 
 
 ### Passwörter für Nutzer setzen
-
+<!-- LINK_CHECK: status=403 --> 
 Lesen Sie in den manpages von [useradd](https://linux.die.net/man/8/useradd) und 
 [adduser](https://manpages.debian.org/stable/adduser/adduser.8.en.html) nach, wie man ein 
 Passwort setzt.
@@ -84,7 +84,7 @@ Passwort setzt.
 
 Die Mitarbeiter_in kündigt und Sie sind zuständig, dass die zugehörigen Nutzerkonten gesperrt 
 werden.
-
+<!-- LINK_CHECK: status=403 --> 
 Schauen Sie in der [usermod(8)](https://linux.die.net/man/8/usermod) manpage nach Optionen, wie 
 man Nutzer sperrt.
 Vorsicht: Ein Passwort sperren ist nicht das Gleiche wie das ganze Konto zu sperren,
