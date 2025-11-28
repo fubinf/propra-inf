@@ -172,13 +172,10 @@ Wie viele Apps sind in `INSTALLED_APPS` vorkonfiguriert?
 Die `urls.py` definiert, welche URLs zu welchen Views führen:
 
 ```python
-from django.contrib import admin
-from django.urls import path
-
-urlpatterns = [
-    path('admin/', admin.site.urls),  # Admin-Interface
-]
+[SNIPPET::ITREE:/Web/Django/snippet-test.py::snippet_test]
 ```
+<!-- [SNIPPET::ITREE:Web/Django/snippet-test.py::snippet_test] -->
+<!-- [SNIPPET::ITREE:snippet-test.py::snippet_test] -->
 
 [EQ] Untersuchen Sie `meinprojekt/urls.py`. Welche Route ist standardmäßig definiert?
 <!-- EQ2 -->
@@ -215,9 +212,10 @@ Sie müssen den Server nicht manuell neustarten!
 
 Die `path()`-Funktion hat folgende Syntax:
 ```python
-path(route, view, kwargs=None, name=None)
+[SNIPPET::/Web/Django/include/snippet-test.py::snippet_test_path]
 ```
-
+<!-- [SNIPPET::/Web/Django/include/snippet-test.py::snippet_test_path] -->
+<!-- [SNIPPET::include/snippet-test.py::snippet_test_path] -->
 Parameter:
 
 - `route` - URL-Muster als String
