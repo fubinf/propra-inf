@@ -7,15 +7,15 @@ on:
   workflow_dispatch:  # Allow manual triggering
     inputs:
       max_workers:
-        description: 'Max link-checker workers (default 10)'
+        description: 'Max link-checker workers (default 230)'
         required: false
-        default: '10'
+        default: '230'
 
 jobs:
   check-external-links:
     runs-on: ubuntu-latest
     env:
-      SDRL_LINKCHECK_MAX_WORKERS: ${{ github.event.inputs.max_workers || '10' }}
+      SDRL_LINKCHECK_MAX_WORKERS: ${{ github.event.inputs.max_workers || '230' }}
     
     steps:
     - name: Checkout propra-inf repository
@@ -74,7 +74,7 @@ jobs:
       run: |
         REPORT_PATH="/tmp/linkcheck_i/link_check_report.md"
         echo "### Run parameters" >> "$GITHUB_STEP_SUMMARY"
-        echo "- max_workers: ${SDRL_LINKCHECK_MAX_WORKERS:-10}" >> "$GITHUB_STEP_SUMMARY"
+        echo "- max_workers: ${SDRL_LINKCHECK_MAX_WORKERS:-230}" >> "$GITHUB_STEP_SUMMARY"
         echo "" >> "$GITHUB_STEP_SUMMARY"
         if [ -f "$REPORT_PATH" ]; then
           cat "$REPORT_PATH" >> "$GITHUB_STEP_SUMMARY"
