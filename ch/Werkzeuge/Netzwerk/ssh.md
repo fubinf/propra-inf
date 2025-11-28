@@ -54,7 +54,7 @@ Wenn Sie sich das erste Mal mit dem Zielserver verbinden, dann werden Sie nach d
 des entfernten Rechners gefragt. Hier wurden sogenannte `host_keys` zwischen beiden Instanzen ausgetauscht.
 Diese `host_keys` sind ein Teil der symmetrischen Verschlüsselung für SSH.
 
-Lesen Sie den Abschnitt **Session Encryption Negotiation** von 
+Lesen Sie den Abschnitt **How SSH use encryption techniques to secure connections?** von 
 [HREF::https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work].
 
 Lesen Sie den Abschnitt **SSH Host Fingerprint** bis einschließlich **Warnung bei geänderten Fingerprints**
