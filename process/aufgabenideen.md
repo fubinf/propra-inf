@@ -366,6 +366,29 @@ Die wichtigsten Konzepte von C++.
 `assumes` fast alles von Taskgroup C.
 
 
+### Sprachen/Java (N.N.)
+
+Java sollte man als Informatiker können.
+Und die JVM verstehen, mit ihren diversen Einsatzfeldern.
+Und das Ökosystem mit den wichtigsten Werkzeugen, insbes. maven.
+Je nach Umfang der Ausarbeitung ergeben sich daraus weitere Aufgabengruppen in den Kapiteln
+Bibliotheken (stdlib), Programmierpraxis, Werkzeuge.
+
+
+### Sprachen/Scala (N.N.)
+
+Wenn wir Java erarbeitet haben, wäre ein Bereich zu Scala ebenfalls wünschenswert.
+Oder man macht nur den für Scala und konzentriert sich dann auf funktionale Programmierung.
+
+
+### Sprachen/Rust (N.N.)
+
+Ähnlich wie Java und Go ein umfangreiches Ökosystem.
+Rust ist konzeptionell sehr eigen und gilt als ausgesprochen schwierig zu lernen;
+deshalb für das ProPra nur beschränkt geeignet. 
+Hier wären dann viele Aufgaben 'mittel' oder sogar 'schwer'.
+
+
 ### Sprachen/DSLs (N.N.)
 
 Domain-specific languages haben in einem sehr eingeschränkten Anwendungsbereich eine
@@ -681,6 +704,7 @@ Weitere Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 - Lernmethoden und Lernressourcen:
     - https://earthly.dev/blog/golang-streamers/
     - https://earthly.dev/blog/programming-language-improvements/
+- Lernenswerte Python-Ressourcen: https://github.com/lukasmasuch/best-of-python
 - DB-Programmierung-Antimuster vermeiden: SQL-Injektion, n+1 Queries
 - Praxis Datenbankdesign
 - Vergleich von sqlite, mysql, postgres; evtl. selber Aufsetzen und Ausprobieren.
