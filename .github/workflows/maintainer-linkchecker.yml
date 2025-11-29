@@ -27,7 +27,7 @@ jobs:
     - name: Checkout sedrila repository
       uses: actions/checkout@v4
       with:
-        repository: RYZENNAVI/sedrila
+        repository: fubinf/sedrila
         path: sedrila
         # If sedrila is a private repository, configure:
         # token: ${{ secrets.SEDRILA_ACCESS_TOKEN }}
