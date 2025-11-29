@@ -59,6 +59,13 @@ Wie bei Slices lassen sich auch bei Kanälen mit `cap` und `len` Informationen a
 - `len(ch)` gibt die Anzahl der aktuell im Puffer befindlichen Elemente zurück.
 [ENDNOTICE]
 
+[WARNING]
+Stellen Sie sicher, dass jeder Kanal nur an genau einer Stelle ausgelesen wird.
+Wenn mehrere Goroutinen denselben Kanal konsumieren, entsteht leicht eine _Wettlaufsituation_ 
+(Race Condition) — also eine Situation, in der der Programmablauf davon abhängt, welche Goroutine 
+den gesendeten Wert erhält.
+[ENDWARNING]
+
 <!-- time estimate: 15 min -->
 
 

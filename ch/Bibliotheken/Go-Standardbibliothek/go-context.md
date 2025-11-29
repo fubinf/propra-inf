@@ -129,8 +129,8 @@ Jeder Kontext kann Schlüssel-Wert-Paare speichern.
 Die Funktion `context.WithValue()` dient dazu, anfragebezogene Daten entlang der Aufrufkette 
 weiterzugeben, ohne sie an jede Funktionssignatur anhängen zu müssen.
 
-[EQ] Schauen Sie sich den Artikel 
-["Context abuse"](https://boldlygo.tech/archive/2025-04-10-context-abuse/)
+[EQ] Schauen Sie sich den 
+[Artikel "Context abuse"](https://boldlygo.tech/archive/2025-04-10-context-abuse/)
 an und erläutern Sie kurz, wie man entscheiden kann, ob bestimmte Daten im Kontext 
 gespeichert werden sollten oder nicht. 
 
