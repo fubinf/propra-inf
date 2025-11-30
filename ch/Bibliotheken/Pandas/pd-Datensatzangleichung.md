@@ -22,10 +22,13 @@ Für diese Aufgabe werden Sie sowohl die Daten der Wetterstation Dahlem als auch
 der österreichischen Wetterstation "Aigen im Ennstal" verwenden.
 
 Wetterstation Dahlem: Wie in [PARTREF::pd-Datenaufbereitung] beschrieben.  
-Wetterstation Aigen: Finden Sie [hier](https://dataset.api.hub.geosphere.at/v1/station/historical/klima-v2-1m?parameters=vv_mittel%2Cvv_mittel_flag%2Ctlmax%2Ctlmin%2Ctl_mittel%2Ctlmax_mittel%2Ctlmin_mittel&start=1963-01-01T00%3A53%3A00.000Z&end=2024-12-01T00%3A00%3A00.000Z&station_ids=2&output_format=csv&filename=AigenEnnstal_196301_202412).
+Wetterstation Aigen: Finden Sie 
+<!-- LINK_CHECK: status=405 -->
+[hier](https://dataset.api.hub.geosphere.at/v1/station/historical/klima-v2-1m?parameters=vv_mittel%2Cvv_mittel_flag%2Ctlmax%2Ctlmin%2Ctl_mittel%2Ctlmax_mittel%2Ctlmin_mittel&start=1963-01-01T00%3A53%3A00.000Z&end=2024-12-01T00%3A00%3A00.000Z&station_ids=2&output_format=csv&filename=AigenEnnstal_196301_202412).
 Dies ist der Download für die ausgewählten Daten, die Website die das bereitstellt ist 
 [GeoSphere Austria](https://dataset.api.hub.geosphere.at/app/frontend/station/historical/klima-v2-1m).
 Die Metadatenbeschreibung finden Sie 
+<!-- LINK_CHECK: status=405 -->
 [hier](https://dataset.api.hub.geosphere.at/v1/station/historical/klima-v2-1m/metadata/parameters?filename=Messstationen+Monatsdaten+v2+Parameter-Metadaten).
 
 Laden Sie die beiden Datensätze wie folgt in Ihre Umgebung:
