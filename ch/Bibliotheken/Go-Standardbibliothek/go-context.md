@@ -1,5 +1,5 @@
 title: "Go: das Paket 'context'"
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 assumes: go-channels, go-advanced-control-flow
