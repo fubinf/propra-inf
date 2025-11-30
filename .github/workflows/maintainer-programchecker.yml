@@ -5,10 +5,17 @@ on:
     # Run every Sunday at 03:30 UTC (offset from linkchecker)
     - cron: '30 3 * * 0'
   workflow_dispatch:  # Allow manual triggering
+    inputs:
+      max_workers:
+        description: 'Max program checker workers (default 4)'
+        required: false
+        default: '4'
 
 jobs:
   check-example-programs:
     runs-on: ubuntu-latest
+    env:
+      SDRL_PROGCHECK_MAX_WORKERS: ${{ github.event.inputs.max_workers || '4' }}
     
     steps:
     - name: Checkout propra-inf repository
