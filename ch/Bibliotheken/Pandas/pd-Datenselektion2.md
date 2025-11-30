@@ -152,6 +152,7 @@ Strings hingegen können mit `'` umklammert werden:
 
 [ER] Setzen Sie [EREFR::7] mit Hilfe der `query()`-Funktion um.
 
+<!-- LINK_CHECK: status=403 -->
 [EQ] Wie Sie merken, ist es eher eine Stilfrage, ob man `query()` verwendet
 oder beim herkömmlichen Boolean-Indexing bleibt.
 Lesen Sie diesen 
