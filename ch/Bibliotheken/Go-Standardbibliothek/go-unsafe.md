@@ -61,6 +61,7 @@ Alle low-level-Manipulationen benutzten zwei Typen: `uintptr` und `unsafe.Pointe
   [Dokumentation von `unsafe.Pointer`](https://pkg.go.dev/unsafe#Pointer)
   ist für diese Aufgabe nicht notwendig, aber sehr empfohlen.)
 
+<!-- LINK_CHECK: status=403 -->
 Lesen Sie nun folgende Abschnitte aus dem Artikel
 [Exploring ‘unsafe’ Features in Go 1.20: A Hands-On Demo](https://medium.com/@bradford_hamilton/exploring-unsafe-features-in-go-1-20-a-hands-on-demo-7149ba82e6e1):
 
@@ -119,6 +120,7 @@ Im obigen Beispiel wurde die Variable `b` ausschließlich durch `a` und Manipula
 an Adressen verändert.
 
 [HINT::Ich verstehe nicht, warum es subtrahiert wird]
+<!-- LINK_CHECK: status=403 -->
 In C werden lokale Variablen auf dem
 [Stack](https://wiki.osdev.org/Stack)
 abgelegt.
