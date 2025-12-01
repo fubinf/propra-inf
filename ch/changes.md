@@ -22,4 +22,5 @@
   Wo bislang für eine Datei `<binary>` angezeigt wurde, erscheint nun der korrekte Inhalt.
   Installation mit `pipx upgrade sedrila`.
 - **2025-11-19** Aufgabe Web/CSS/[PARTREF::css-Media-Queries] zugefügt.
+- **2025-12-01** Aufgabe Bibliotheken/Pandas/[PARTREF::pd-Transformationen] zugefügt.
 - ...
