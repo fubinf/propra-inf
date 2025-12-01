@@ -54,11 +54,18 @@ Weniger flexibel, aber in einfachen Fällen bequemer hinzuschreiben als eine
 
 [TERM::Anonyme Funktion|Lambda-Funktion]
 Eine anonyme Funktion ist eine Funktionsdefinition, die nicht an einen Bezeichner gebunden ist.
-Anonyme Funktionen werden häufig als Argumente an Funktionen höherer Ordnung übergeben.
+Anonyme Funktionen werden häufig als Argumente an anderen Funktionen übergeben,
+die man dann Funktionen höherer Ordnung nennt.
+
 [HREF::https://de.wikipedia.org/wiki/Anonyme_Funktion]
 
-Eine anonyme Funktion in Python folgt dem Muster: `lambda arguments : expression`.
-Eine anonyme Funktion, die eine Zahl potenziert könnte somit wie folgt aussehen: `lambda x : x**2`
+Eine anonyme Funktion in Python folgt dem Muster `lambda arguments : expression`
+und wird in Python deshalb auch oft Lambda-Funktion genannt.
+Eine Lambda-Funktion, die eine Zahl potenziert, könnte somit z.B. so aussehen: `lambda x : x**2`.
+Man kann in einer Lambda-Funktion also nur einen einzigen Ausdruck zur Berechnung verwenden,
+nicht eine ganze _Reihe_ von Statements. 
+Das ist eine Einschränkung zu Gunsten der Lesbarkeit, denn kompliziertere anonyme Funktionen würden
+ein Programm schnell unübersichtlich machen.
 [ENDTERM]
 
 
