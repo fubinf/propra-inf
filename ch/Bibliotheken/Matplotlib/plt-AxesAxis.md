@@ -33,7 +33,7 @@ Ein `Axes`-Objekt repräsentiert den Rahmen für einen solchen Plot:
 
 Eine `Axis` ist darin eine der beiden Achsen (oder drei Achsen im Fall von 3D-Plots).
 Mit diesen `Axis`-Objekten lässt sich außerdem kontrollieren, wie die Daten skaliert sind
-und welcher Wertebereich der Daten auf dem `Axes` angezeigt wird.
+und welcher Wertebereich der Daten angezeigt wird.
 
 Nehmen Sie sich fünf Minuten Zeit, um die Namen vieler der Bildelemente kennenzulernen,
 die in einem solchen Plot auftreten können:  
