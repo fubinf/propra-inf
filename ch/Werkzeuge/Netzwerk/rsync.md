@@ -94,8 +94,7 @@ einen Ordner.
 [EC] Kopieren Sie die Dateien aus dem Ordner `rsync_copy_data` per rsync in den 
 `rsync_destination2` Ordner.
 
-[EC] Fügen Sie der Datei `rsync_copy_data/datei1` den Text `Ich wurde veraendert` 
-hinzu.
+[EC] Fügen Sie der Datei `rsync_copy_data/datei1` den Text `Ich wurde veraendert` hinzu.
 
 Bevor wir eine Datenübertragung starten, ist es oft sinnvoll, `rsync` im Dry-Run-Modus auszuführen, 
 um zu simulieren, welche Dateien am Ende kopiert würden. Die Simulation minimiert das Risiko von 
@@ -108,6 +107,32 @@ mit dem Zielordner `rsync_destination2` zu prüfen.
 [EC] Alles OK? Dann gleichen Sie nun die Dateien wirklich ab.
 
 
+### Checksummen überprüfen
+
+Lesen Sie die Option **--checksum, -c** der 
+[rsync(1) manpage](https://manpages.debian.org/stable/rsync/rsync.1.en.html)
+
+`rsync` bietet die Möglichkeit, den Vergleichsalgorithmus zu ändern. Standardmäßig entscheidet 
+`rsync`, ob eine Datei übertragen werden muss, basierend auf zwei Kriterien: der Dateigröße und dem 
+Zeitstempel der letzten Änderung. 
+
+Dieser Mechanismus ist zwar sehr schnell, bietet aber keine hundertprozentige Sicherheit gegen 
+unentdeckte Bitfehler oder seltene Inkonsistenzen. Zudem lässt sich die Modifikationszeit `mtime` 
+einer Datei mit dem Befehl `touch -m` relativ einfach manipulieren, um eine Änderung zu 
+verschleiern.
+
+Um eine wesentlich sicherere Überprüfung zu gewährleisten, können Sie die Option `--checksum` 
+(oder kurz `-c`) verwenden. 
+Mit dieser Option berechnet `rsync` für jede Datei die Checksumme. 
+
+[EC] Fügen Sie der Datei `rsync_copy_data/datei2` den Text `Ich wurde veraendert` hinzu.
+
+[EC] Führen Sie einen `rsync`-Dry-Run mit dem Checksum-Vergleichsalgorithmus durch, um den Abgleich 
+der Dateien aus `rsync_copy_data` mit dem Zielordner `rsync_destination2` zu prüfen.
+
+[EC] Alles OK? Dann gleichen Sie nun die Dateien mit dem Checksum-Vergleichsalgorithmus ab.
+
+
 ### Kopieren auf entfernte Systeme
 
 `rsync` bietet die Möglichkeit, Dateien auf einen entfernten Pfad zu kopieren, wie zum Beispiel in
@@ -116,6 +141,11 @@ Das benutzt intern [PARTREF::ssh].
 
 Lesen Sie aus der **Synopsis** den Punkt **Access via remote shell** aus der 
 [rsync(1) manpage](https://manpages.debian.org/stable/rsync/rsync.1.en.html).
+
+Lesen und verstehen Sie die Abschnitte 
+**Sicherung von lokalem Rechner auf entfernten Rechner** und
+**Sicherung von entferntem Rechner auf lokalen Rechner** des
+[rsync-Beitrags](https://wiki.ubuntuusers.de/rsync/) von ubuntuusers.
 
 [EC] Kopieren Sie den Ordner `rsync_copy_data` aus Ihrem [TERMREF::Hilfsbereich] in Ihren 
 `home`-Ordner des Zielservers.
@@ -136,7 +166,8 @@ Ordner `rsync_destination3` in Ihren [TERMREF::Hilfsbereich].
 [EQ] Welche zwei wichtigsten Unterschiede gibt es zwischen der Verwendung von rsync 
 und anderen Kopierbefehlen wie `cp`?
 
-[EQ] Wie könnten Sie überprüfen, ob die Synchronisation tatsächlich alle Änderungen übernommen hat?
+[EQ] Wie könnten Sie mit `rsync` überprüfen, ob die Synchronisation tatsächlich alle Änderungen 
+übernommen hat?
 [ENDSECTION]
 
 
