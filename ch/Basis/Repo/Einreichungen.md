@@ -6,13 +6,11 @@ assumes: Markdown
 requires: Sedrila-einrichten
 ---
 [SECTION::goal::idea]
-
 Ich habe gelernt, wie ich etwas bei der Tutor_in einreiche und habe das einmal ausprobiert.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Das ProPra ist eine ideale Gelegenheit, das ordentliche Arbeiten mit git zu lernen.
 
 In der Softwareentwicklung hat es zahlreiche Vorteile, jeden logischen Arbeitsschritt
@@ -29,7 +27,6 @@ Jede Aufgabe wird in einem separaten Commit (oder ggf. mehreren) eingecheckt,
 niemals mehrere Aufgaben zugleich.
 Dann kann man in der Commit-Nachricht die betreffende Aufgabe so markieren,
 dass sich das automatisch verarbeiten lässt -- und das macht `sedrila` sich zunutze.
-
 [ENDSECTION]
 
 [SECTION::instructions::loose]
@@ -41,10 +38,13 @@ hier soll es um den Commit-Inhalt gehen.
 
 Grundsätzlich liegen Ihre Dateien fast immer in einem Pfad,
 der dem Pfad der Aufgabe im ProPra-Website-Inhaltsverzeichnis entspricht.
-Das Verzeichnis für die Aufgabe selbst kann man je nach Geschmack auch einsparen, 
-wenn alle abzugebenden Dateien Namen haben, die mit dem Aufgabennamen anfangen.
-(Das müssen dann allerdings beide Mitglieder jedes gemeinsam abgebenden Paars überall
-gleich handhaben!)
+Das Verzeichnis für die Aufgabe selbst kann man im Prinzip manchmal einsparen: 
+Falls nämlich alle abzugebenden Dateien Namen haben, die mit dem Aufgabennamen anfangen.
+Dabei ist allerdings Vorsicht angezeigt: Beide Mitglieder jedes gemeinsam abgebenden Paars
+müssten das ggf. überall genau gleich handhaben!
+Außerdem sieht man die Dateiliste zu Beginn einer Aufgabe nicht immer richtig kommen.
+Deshalb ist es sinnvoller, das Verzeichnis für die Aufgabe _immer_ anzulegen,
+auch wenn einem das bei den ersten Aufgaben unnötig vorkommen mag.
 
 Beispiel:
 Angenommen, es gäbe eine (dort aber tatsächlich gar nicht geforderte) 
@@ -190,6 +190,7 @@ Hierfür verwendet man `git commit --allow-empty -m"..."`.
 Vergessen Sie nicht, Ihren Stand mittels `git push` verfügbar zu machen!
 [ENDSECTION]
 
+
 [SECTION::submission::snippet]
 Die Abgabe besteht entgegen dem üblichen Format diesmal nur aus dem leeren Commit.
 
@@ -207,6 +208,7 @@ Achten Sie darauf, dass bis zum Schlusstermin genügend Luft bleibt, um auch Ihr
 Abgabe sauber abwickeln zu können!
 [ENDWARNING]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Nichts zu prüfen]
 Wer geschafft hat, eine sinnvolle `submission.yaml` einzureichen, 
