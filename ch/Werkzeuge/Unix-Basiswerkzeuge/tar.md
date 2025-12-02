@@ -13,8 +13,10 @@ Ich kenne den Nutzen von Kompression und kann große Archive mit `split` teilen 
 
 [SECTION::background::default]
 `tar` (kurz für “tape archiver”) erstellt und liest Archive, indem mehrere Dateien zu einer Archivdatei
-zusammengefasst werden. Früher diente es zur Bandsicherung, heute wird es für Backups, Softwareverteilung
-und Projektarchivierung eingesetzt. 
+zusammengefasst werden. 
+Früher diente es zur Bandsicherung (und macht deshalb im Gegensatz zu z.B. `zip` seine
+Schreibzugriffe ausschließlich sequenziell), heute wird es stark zur Softwareverteilung
+und gelegentlich für Backups und Projektarchivierung eingesetzt. 
 [ENDSECTION]
 
 
@@ -37,7 +39,7 @@ Erstellen Sie in ihrem [TERMREF::Hilfsbereich] einen neuen Ordner `tar`.
 
 Wechseln Sie in den neuen Ordner.
 
-Erstellen Sie eine neue Datei `tar_create_data.sh` mit oberem Inhalt, im neu erstellten Ordner.
+Erstellen Sie dort eine neue Datei `tar_create_data.sh` mit obigem Inhalt.
 
 [WARNING]
 Das Skript erstellt 100 Dateien im gerade geöffneten Ordner.
@@ -49,18 +51,15 @@ Das Skript erstellt 100 Dateien im gerade geöffneten Ordner.
 ### `tar`-Archive erstellen
 
 `tar` fasst mehrere Dateien und Verzeichnisse in einer einzigen Archivdatei zusammen. 
-Ursprünglich wurde `tar` entwickelt, um Daten auf Magnetbändern zu sichern.
-Heute ist `tar` der Standard für Backups, Softwarepakete und den Austausch von Projekten. 
-
 Lesen Sie den Abschnitt **Syntax** und verstehen Sie insbesondere die **Optionen c,f,J,z** der 
 [ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
 
-Schauen Sie sich die **Beispiele** zum **Anlegen** von Archiven der 
-[ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/) an.
+Verstehen Sie im Abschnitt **Beispiele** den Teil "Anlegen" der 
+[ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
 
-[EC] Erstellen Sie ein `.tar`-Archiv mit den gerade 100 erstellten Dateien.
+[EC] Erstellen Sie ein `.tar`-Archiv `meinarchiv.tar` mit den gerade erstellten 100 Dateien.
 
-Neben dem Erstellen von Archiven, kann `tar` Archive auch komprimieren. 
+Neben dem Erstellen von Archiven kann `tar` Archive auch komprimieren. 
 Es stehen mehrere Algorithmen zur Verfügung, wir beschränken uns hier auf zwei.
 
 Angenommen Sie möchten 100 Dateien per Mail versenden.
@@ -68,20 +67,24 @@ Ihr Mailprogramm erlaubt es Ihnen nicht, weil die Daten zu groß sind.
 Mit einem komprimierten `tar`-Archiv können Sie alle Dateien in einer komprimierten Datei bündeln 
 und so einfacher verschicken.
 
-Die Dateiendung eines `tar`-Archivs ist nicht zwingend, aber praktisch: 
-Konventionelle Endungen wie `.tar`, `.tar.gz` oder `.tar.xz` machen sofort erkennbar, welcher 
-Komprimierungsalgorithmus verwendet wurde.
+Die Dateiendung eines `tar`-Archivs ist von `tar` nicht vorgegeben, unterliegt faktisch aber
+einer sehr einheitlichen Konvention: 
+`.tar` sind unkomprimierte Archive, 
+`.tar.gz` sind mit `gzip` komprimiert,
+`.tar.xz` sind mit `xz` komprimiert.
+`xz` komprimiert etwas stärker, braucht aber _sehr_ viel länger und ist weniger verbreitet.
 
-[EC] Erstellen Sie ein mit `gzip` komprimiertes `.tar.gz`-Archiv mit den 100 Dateien.
+[EC] Erstellen Sie ein mit `gzip` komprimiertes Archiv `meinarchiv.tar.gz` mit den 100 Dateien.
 
-[EC] Erstellen Sie ein mit `xz` komprimiertes `tar.xz`-Archiv mit den 100 Dateien.
+[EC] Erstellen Sie ein mit `xz` komprimiertes Archiv `meinarchiv.tar.xz` mit den 100 Dateien.
 
 [EQ] Vergleichen Sie die Größen der drei Archive.
+(Unsere Dateien ähneln sich sehr stark, deshalb lassen sie sich ungewöhnlich gut komprimieren.)
 
 
 ### `tar`-Archive anzeigen
 
-Angenommen Sie müssen ein Programm installieren.
+Angenommen Sie müssen ein Softwarepaket installieren.
 Dieses haben Sie als `tar.gz` heruntergeladen.
 Bevor Sie es installieren, möchten Sie nachschauen, wie die Datenstruktur im Archiv aufgebaut ist, 
 damit Sie entscheiden können, wo Sie es installieren möchten.
@@ -89,14 +92,14 @@ damit Sie entscheiden können, wo Sie es installieren möchten.
 Lesen und verstehen Sie die **Optionen t,v** der 
 [ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
 
-Schauen Sie sich die **Beispiele** zum **Anzeigen** von Archiven der 
-[ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/) an.
+Verstehen Sie im Abschnitt **Beispiele** den Teil "Anzeigen" der 
+[ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
 
-[EC] Schauen Sie sich den Inhalt des erstellten `gzip`-komprimierten Archivs an.
-    Kürzen Sie mit `head -10` für das Kommandoprotokoll ab.
+[EC] Zeigen Sie den Inhalt des erstellten `gzip`-komprimierten Archivs an.
+    Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 
-[EC] Schauen Sie sich den Inhalt des erstellten `gzip`-komprimierten Archivs mit mehr Details an.
-    Kürzen Sie mit `head -10` für das Kommandoprotokoll ab.
+[EC] Zeigen Sie den Inhalt des erstellten `gzip`-komprimierten Archivs mit mehr Details an.
+    Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 
 
 ### `tar`-Archive auspacken
@@ -107,7 +110,7 @@ installieren können, falls nötig.
 Lesen und verstehen Sie die **Optionen x,C** der 
 [ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
 
-Schauen Sie sich die **Beispiele** zum **Extrahieren** von Archiven der 
+Verstehen Sie im Abschnitt **Beispiele** den Teil "Extrahieren" der 
 [ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/) an.
 
 [EC] Erstellen Sie einen neuen Ordner im `tar`-Ordner namens, `entpackt`.
@@ -116,10 +119,10 @@ Schauen Sie sich die **Beispiele** zum **Extrahieren** von Archiven der
     wechseln.
 
 
-### `tar`-Archive splitten und zusammenfügen
+### `tar`-Archive aufteilen ("splitten")
 
-Sie haben ein `tar`-Archiv erstellt und Ihr Mailprogramm sagt immer noch, dass die Daten zu groß sind.
-Auch nachdem Sie sie komprimiert haben.
+Sie haben nun ein komprimiertes Archiv erstellt, aber Ihr Mailprogramm sagt immer noch, 
+dass die Daten zu groß sind.
 Jetzt wollen Sie das Archiv aufteilen, damit Sie es in einzelnen Mails verschicken können.
 
 Lesen und verstehen Sie die Abschnitte **Benutzung, Beispiele** und insbesondere die 
@@ -138,14 +141,17 @@ Lesen und verstehen Sie die Abschnitte **Benutzung, Beispiele** und insbesondere
 [EC] Teilen Sie das `.tar`-Archiv mit einem Zeilenabstand von 40 auf. 
     Benennen Sie die neuen Archive `line_split_tar.tar`.
 
-Sie haben auf die Mail eine Antwort mit gesplitteten Archiven zurückbekommen.
-Damit Sie das aufgeteilte Archiv wieder entpacken können, müssen Sie sie wieder zusammenfügen.
+
+### Aufgeteilte `tar`-Archive wieder zusammenfügen
+
+Sie haben auf die Mail eine Antwort aus mehreren Emails mit gesplitteten Archivteilen zurückbekommen.
+Damit Sie das aufgeteilte Archiv wieder entpacken können, müssen Sie die Teile wieder zusammenfügen.
 
 Lesen und verstehen Sie den Abschnitt **Zusammenführen** der 
 [ubuntuusers split-Seite](https://wiki.ubuntuusers.de/split/).
 
-[EC] Fügen Sie das `tar`-Archiv, welches in 5 gleich große Teile getrennt wurde, wieder zusammen. 
-    Benennen Sie es `cat_tar.tar`
+[EC] Fügen Sie das `tar`-Archiv, welches Sie in 5 gleich große Teile getrennt haben, wieder zusammen. 
+    Benennen Sie das Resultat `cat_tar.tar`
 
 [EC] Listen Sie den Ordner `split` in Listenform auf.
 
