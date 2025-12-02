@@ -121,13 +121,14 @@ Sie sollten also nun die HTTP-Response sehen können.
 Die erste Zeile enthält den Statuscode.
 Sie sollten einen der folgenden erhalten haben: 200, 301, 302, 400, 403, 404.
 
-[Lesen Sie nach](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status), was diese Codes bedeuten,
+[Lesen Sie grob nach](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status), 
+was diese sechs Codes bedeuten,
 denn die sind äußerst wichtig bei der Nutzung von HTTP.
 Dann erst geht es bitte hier weiter:
 
 - Bei Statuscode 200 waren Sie erfolgreich.
 - Bei 301 oder 302 befolgen Sie bitte den Hinweis aus dem Rumpf.  
-  Machen Sie einen entsprechenen neuen Request.  
+  Machen Sie einen entsprechenden neuen Request.  
   Haben Sie keinen solchen Code erhalten, rufen Sie einen Shortlink auf, um das zu erleben,
   z.B. [HREF::http://tinyurl.com/myalias]; bei denen ist Umlenken der Job.
 - Bei 400 war der Request in der Eingabdatei nicht wohlgeformt.  
@@ -138,6 +139,8 @@ Dann erst geht es bitte hier weiter:
   Korrigieren Sie das und versuchen Sie erneut.
 
 Diese Korrekturschritte gehören ggf. mit ins Kommandoprotokoll.
+
+In der Aufgabe [PARTREF::http-Status] lernen wir diese Codes genauer kennen.
 
 
 ### GET-Response Content-Type
