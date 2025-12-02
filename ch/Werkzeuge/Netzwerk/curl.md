@@ -1,8 +1,8 @@
-title: Linux curl Kommando für Datenübertragung
+title: Datenübertragung mit curl
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: http-GET, http-POST
+assumes: http-GET, http-POST, http-State
 ---
 
 [SECTION::goal::experience]
@@ -10,33 +10,28 @@ Ich kann das curl-Kommando für verschiedene Netzwerk-Datenübertragungen verwen
 verstehe die wichtigsten Optionen für HTTP-Requests, Datei-Downloads und API-Interaktionen.
 [ENDSECTION]
 
+
 [SECTION::background::default]
 In der modernen Softwareentwicklung und Systemadministration ist die Kommunikation mit 
-Webservern und APIs alltäglich geworden. 
-Das curl-Kommando ist ein unverzichtbares Werkzeug für diese, 
-da es eine einfache und mächtige Möglichkeit bietet, 
-Daten über verschiedene Netzwerkprotokolle zu übertragen.
-Von einfachen Webseiten-Abfragen bis hin zu komplexen API-Interaktionen 
-ermöglicht curl präzise Kontrolle über HTTP-Requests direkt von der Kommandozeile aus.
+Webservern per HTTP alltäglich geworden. 
+Das curl-Kommando ist eine Art Schweizer Messer dafür.
+Man bekommt damit von einfachen Abrufen bis zu recht komplexen maßgeschneiderten Requests
+verblüffend viele Dinge ohne Programmierung hin, direkt auf der Kommandozeile.
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
 ### Was ist curl und warum ist es wichtig?
 
 curl (Client URL) ist ein Kommandozeilen-Tool zur Datenübertragung, 
-das in praktisch allen Linux-Distributionen verfügbar ist. 
-Es unterstützt zahlreiche Protokolle wie HTTP, HTTPS, FTP, SFTP und viele andere.
-
-Die Hauptvorteile von curl:
-
-- **Vielseitigkeit**: Unterstützt fast alle gängigen Netzwerkprotokolle
-- **Automatisierung**: Perfekt für Skripte und automatisierte Aufgaben geeignet
-- **Präzision**: Vollständige Kontrolle über Request-Headers, Methoden und Daten
-- **Plattformunabhängigkeit**: Funktioniert auf Linux, macOS und Windows
+das in praktisch allen Linux-Distributionen (und anderen Plattformen) verfügbar ist. 
+Es unterstützt zahlreiche Protokolle wie HTTP, HTTPS, FTP, SFTP und andere und bietet
+genaue Kontrolle über Request-Headers, Methoden und Daten.
 
 Optional: Für eine grundlegende Einführung lesen Sie bitte:
 [curl Tutorial Basics](https://curl.se/docs/tutorial.html)
+
 
 ### Grundlegende Syntax und erste Schritte
 
@@ -54,13 +49,15 @@ curl https://httpbin.org/get
 ```
 <!-- time estimate: 15 min -->
 
+
 ### HTTP-Methoden und Request-Steuerung
 
 curl unterstützt alle gängigen HTTP-Methoden. 
 Die wichtigsten Optionen für Request-Kontrolle:
 
 - `-X METHOD`: Spezifiziert die HTTP-Methode (GET, POST, PUT, DELETE, etc.)
-- `-d "data"`: Sendet POST-Daten
+- `-d "param=value"`: Sendet ein Name/Wert-Paar als POST-Daten
+- `-d "data"`: Sendet POST-Daten in einem anderen Format
 - `-H "Header: Value"`: Fügt Custom-Headers hinzu
 - `-G`: Konvertiert POST-Daten zu GET-Parametern
 
@@ -76,31 +73,34 @@ mit entsprechendem Content-Type-Header:
 curl -X POST -H "Content-Type: application/json" -d '{"myname":"TestUser","myage":"999"}' https://httpbin.org/post
 ```
 
+
 ### Datei-Downloads und Output-Kontrolle
 
 curl bietet verschiedene Möglichkeiten, die Ausgabe zu steuern:
 
-- `-o myfilename`: Speichert Output unter angegebenem Namen
-- `-O`: Verwendet den ursprünglichen Dateinamen der URL
+- `-o myfilename`: Speichert den Rumpf der Antwort unter angegebenem Namen 
+  (statt ihn auf der Standardausgabe auszugeben)
+- `-O`: Verwendet die letzte Komponente der URL als Dateiname
 - `-s`: Stiller Modus (keine Fortschrittsanzeige)
-- `-v`: Verbose-Modus (zeigt detaillierte Kommunikation)
+- `-v`: Verbose-Modus (zeigt detailliert die Kommunikation)
 
 [EC] Laden Sie die Datei `https://httpbin.org/robots.txt` herunter 
-und verwenden Sie den ursprünglichen Dateinamen.
+und verwenden Sie den ursprünglichen Dateinamen für das Speichern der Antwort.
 
 [EC] Führen Sie den gleichen Download im verbose-Modus durch, 
 um die HTTP-Kommunikation zu analysieren:
 
 <!-- time estimate: 20 min -->
 
+
 ### Headers und Authentifizierung
 
-Für erweiterte HTTP-Kommunikation sind Headers und Authentifizierung essentiell:
+Für erweiterte HTTP-Kommunikation sind oft Headers und Authentifizierung relevant:
 
 - `-H "Header: Value"`: Custom Headers setzen
 - `-u username:password`: HTTP Basic Authentication
-- `-I`: Nur Response-Headers abrufen (HEAD-Request)
-- `-L`: Automatisches Folgen von Redirects
+- `-I`: Nur Response-Headers abrufen (`HEAD`-Request)
+- `-L`: Automatisches Verfolgen von Redirects
 
 Optional: Weitere Authentifizierungsmethoden unter:
 [Authentication with curl](https://everything.curl.dev/http/auth)
@@ -126,9 +126,10 @@ Verwenden Sie dazu den Endpunkt `/cookies/set/mysession/abc123` von `https://htt
 
 <!-- time estimate: 15 min -->
 
+
 ### Datei-Upload und Formulare
 
-Für Datei-Uploads verwendet curl die multipart/form-data-Codierung:
+Für Datei-Uploads verwendet curl die Codierung `multipart/form-data`:
 
 - `-F "field=value"`: Formularfeld setzen
 - `-F "file=@myfilename"`: Datei hochladen
@@ -139,19 +140,19 @@ und laden Sie sie anschließend mit curl sowie dem Feld `mydescription=Test Uplo
 nach `https://httpbin.org/post` hoch.
 
 [EQ] In welchen Situationen würden Sie curl gegenüber einem grafischen HTTP-Client 
-oder einem Browser bevorzugen? Nennen Sie mindestens drei konkrete Anwendungsfälle.
+oder einem Browser bevorzugen? Nennen Sie zwei Fälle.
 
 <!-- time estimate: 10 min -->
-
 [ENDSECTION]
+
 
 [SECTION::submission::program,trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Kontrollergebnisse]
 
+[INSTRUCTOR::Kontrollergebnisse]
 
 ### Kommandoprotokoll
 
@@ -160,5 +161,4 @@ oder einem Browser bevorzugen? Nennen Sie mindestens drei konkrete Anwendungsfä
 ### Markdown
 
 [INCLUDE::ALT:curl.md]
-
 [ENDINSTRUCTOR]
