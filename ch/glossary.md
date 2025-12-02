@@ -1823,11 +1823,16 @@ dann für die Authentifizierung verwendet.
 
 [TERM::Top-Level-Domain]
 Top-Level-Domains (TLDs) sind die letzten Teile einer Internet-Domain, die nach dem letzten Punkt 
-in einer Webadresse erscheinen, wie z. B. .com, .org oder .de. 
-Sie werden in zwei Hauptkategorien unterteilt: generische TLDs (gTLDs), die allgemein verwendet 
-werden und keine speziellen Anforderungen haben, und länderspezifische TLDs (ccTLDs), die für 
-bestimmte Länder oder Regionen stehen (z. B. .fr für Frankreich oder .jp für Japan). 
-TLDs helfen, die Art und den Standort einer Website zu identifizieren und sind ein wichtiger 
+in einer Webadresse erscheinen, wie z. B. `com`, `org` oder `de`. 
+Sie werden in zwei Hauptkategorien unterteilt: 
+generische TLDs 
+([gTLDs](https://en.wikipedia.org/wiki/Generic_top-level_domain)), 
+die allgemein verwendet werden und keine speziellen Anforderungen haben, 
+und länderspezifische TLDs 
+([ccTLDs](https://en.wikipedia.org/wiki/Country_code_top-level_domain)), 
+die immer zweibuchstabig sind und für 
+bestimmte Länder oder Regionen stehen (von `ad` für Andorra bis `zw` für Zimbabwe). 
+TLDs helfen, die Art oder den Standort einer Website zu identifizieren und sind ein wichtiger 
 Bestandteil des Domain Name Systems (DNS).
 [ENDTERM]
 
