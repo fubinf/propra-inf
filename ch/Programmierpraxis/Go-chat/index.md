@@ -1,4 +1,5 @@
 title: "Chat: Nachrichtenaustausch im Terminal"
+stage: alpha
 ---
 Jeder kennt WhatsApp, Telegram, Signal und sicherlich einige weitere Anwendungen,
 die uns Austausch mit anderen Benutzern ermöglichen.
