@@ -326,7 +326,8 @@ wie lässt sich ggf. dadurch der Unterschied erklären?
 
 [HINT::Worin unterscheiden sich die beiden Ansätze?]
 Schauen Sie sich in 
-[folgendem Artikel](https://labex.io/tutorials/python-how-to-implement-lazy-evaluation-in-a-python-iterator-397687#implementing-lazy-iterators-in-python) 
+<!-- LINK_CHECK: status=403 -->
+[folgendem Artikel](https://labex.io/tutorials/python-how-to-implement-lazy-evaluation-in-a-python-iterator-397687) 
 die Bedeutung von [TERMREF::Lazy Evaluation] noch einmal an, und wie dies mit Iteratoren 
 zusammenhängt.
 [ENDHINT]
