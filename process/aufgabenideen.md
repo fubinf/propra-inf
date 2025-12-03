@@ -150,11 +150,37 @@ Aspekte, die man z.B. versuchen könnte unterzubringen:
 Hier liegen zahlreiche kleine Aufgaben, mit denen man einzelne oft benötigte Teile der 
 Python-Standardbibliothek ausprobiert.
 
+Die folgenden Module werden häufig in Python verwendet oder bieten dem Programmierer einen 
+größeren Mehrwert:
+
 - itertools: eventuell eigenes kleines Modul zu funktionaler Programmierung in Python  
   Idiome recherchieren, Vergleich zwischen Schleifen und Itertools, Betrachtung bzgl. 
   Effizienz, Lesbarkeit und Python Idiomen (was ist eher Python-artig?)
 - functools: ähnlich wie oder in Verbindung mit itertools
-- abc: Teil der stdlib, aber noch unklar, ob es thematisch eher zu stlib oder Python gehört
+- abc: assumes-Abhängigkeit; abc ist ein Modul der stdlib, abstract base classes sind aber ein 
+  eigenes Programmierkonzept, weshalb eine Aufgabe hierzu auch in die Python-Taskgroup passen würde.
+- os: sehr umfangreich, daher wahrscheinlich nur auf die wichtigsten Funktionen begrenzt oder 
+  in weitere Aufgaben unterteilt, wie z.B. bei os.path
+- logging
+- time: ggf. mit spezifischer Betrachtung der Unterschiede zum Modul datetime
+- collections
+- math
+- copy
+- typing
+- threading/multiprocessing: Aufgabe zu den jeweiligen nebenläufigen Bibliotheken, aufbauend auf 
+  eine allgemeine Aufgabe zu concurrent (siehe unten)
+- warnings
+- io
+- uuid
+- socket
+- traceback
+- base64
+- operator
+
+Manche Module sind zu spezifisch, um daraus eigene Aufgabe zu bauen. 
+Stattdessen könnte es in manchen Fällen praktischer sein, mehrere Module eines 
+[Kapitels](https://docs.python.org/3/library/index.html) gebündelt zu behandeln:
+
 - markup [DIFF::3]: Wahlaufgabe zum Bereich X="Structured Markup Processing Tools":
   Wählen Sie ein Modul aus dem Bereich X der Python-Standardbibliothek aus,
   das Sie noch nie benutzt haben.
@@ -173,27 +199,9 @@ Python-Standardbibliothek ausprobiert.
 - cryptoservice [DIFF::3]: Wahlaufgabe zum Bereich X="Cryptographic Services"
 - fileformat [DIFF::3]: Wahlaufgabe zum Bereich X="File Formats"
 - archives [DIFF::3]: Wahlaufgabe zum Bereich X="Data Compression and Archiving"
-
-zu klären:
-
-- os: sehr umfangreich, eventuell nur einzelne Teile?
-- logging
-- re: gehört vmtl eher zum Kapitel RegExp
-- time: sollte das nochmal separat von datetime betrachtet werden oder mit in die Aufgabe 
-  integriert werden?
-- sys
-- collections
-- math
-- copy
-- typing
-- threading/multiprocessing
-- warnings
-- io
-- uuid
-- socket
-- traceback
-- base64
-- operator
+- concurrent: Aufgabe zum Bereich "Concurrent Execution" als Einführung in das Thema nebenläufige 
+  Programmierung in Python. 
+  Möglicherweise passt eine solche Aufgabe auch besser nach Sprachen/Python.
 
 ### Bibliotheken/pip-popular (N.N.)
 
