@@ -7,32 +7,36 @@ assumes: m_pytest
 
 [SECTION::goal::idea]
 
-Ich kann grundlegende Unittests in verschiedenen Anwendungsbereichen mocken.
-Ich kann beschreiben, was "Mocks" sind und wie sie in pytest Anwendung finden.
-Ich kann "Mocks" von anderen Testmethoden abgrenzen.
-Ich kann begründen, wann die Anwendung von "Mocks" sinnvoll ist.
-
+- Ich kann beschreiben, was Attrappen ("Mocks") sind und wie sie in pytest Anwendung finden.
+- Ich kann grundlegende Unittests mittels Attrappen realisieren.
+- Ich kann begründen, wann die Anwendung von Attrappen sinnvoll ist.
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Unittests auf elementare Module sind kein Problem.
 Aber wenn ein Modul von vielen anderen Dingen abhängt, stellt sich die Frage, ob man die
 alle mittesten soll und will.
+Falls es _nicht_ sinnvoll zu sein scheint, kann man es mithilfe von Attrappen vermeiden,
+die an die Stelle jener anderen Module treten.
 
+Für manche Zwecke ist das mehr eine Geschmacksfrage, in anderen Fällen, vor allem für
+Tests, die mit Zeit zu tun haben, ist es eine unverzichtbare Testtechnik.
 [ENDSECTION]
+
 [SECTION::instructions::loose]
 
 ### Vorbereitung
 
-Verschaffen Sie sich einen Überblick über die 
+Verschaffen Sie sich einen groben Überblick über die 
 [Dokumentation von `unittest.mock`](https://docs.python.org/3/library/unittest.mock.html).
 
 ### Aufgaben 
 
-Zu jeder Aufgabe wird es eine kleine Funktion geben, die jeweils in einer separaten Datei abzulegen
-ist: `mock_example_<lfd>.py`. Erinnern Sie sich bitte, wie die Konvention zu den Test-Dateien
-gestaltet ist und wenden Sie diese an.
+Zu jeder Aufgabe wird es eine zu testende Funktion geben, die in der Aufgabe vorgegeben ist und
+die Sie jeweils in einer separaten Datei ablegen sollen.
+Der Name dieser Datei ist jeweils oben in dem Codeblock angegeben, z.B. 
+`mock_example_1.py`.
 
 Ihre Aufgabe ist es, die externen Abhängigkeiten und Seiteneffekte zu Ihren Tests zu isolieren,
 damit Sie sich auf das Testen der eigentlichen Logik Ihrer Funktionen und Methoden konzentrieren
