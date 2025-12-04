@@ -8,39 +8,19 @@ difficulty: 2
 
 - Ich verstehe die Bedeutung und Anwendungsgebiete von NumPy in der wissenschaftlichen Datenverarbeitung.
 - Ich kann NumPy erfolgreich installieren und die Installation verifizieren.
-- Ich verstehe die Grundlagen des ndarray-Objekts und seine Eigenschaften.
-- Ich kenne die wichtigsten NumPy-Datentypen und deren Verwendung.
-- Ich kann einfache NumPy-Arrays erstellen und grundlegende Operationen durchführen.
-
+- Ich kenne die wichtigsten NumPy-Datentypen und deren grundlegende Verwendung.
 [ENDSECTION]
+
 
 [SECTION::background::default]
-
 NumPy (Numerical Python) ist eine fundamentale Bibliothek für wissenschaftliches Rechnen in Python. 
 Sie stellt leistungsstarke N-dimensionale Array-Objekte zur Verfügung und ist die Grundlage für viele 
-andere wissenschaftliche Python-Bibliotheken wie SciPy und Matplotlib. 
-In dieser Aufgabe lernen wir die Grundlagen von NumPy kennen und machen erste praktische Erfahrungen 
-mit der Erstellung und Manipulation von Arrays.
-
+andere wissenschaftliche Python-Bibliotheken wie 
+[PARTREF::Pandas], [PARTREF::SciPy] und [PARTREF::Matplotlib]. 
 [ENDSECTION]
 
+
 [SECTION::instructions::detailed]
-
-### NumPy und sein Ökosystem verstehen
-
-NumPy bildet das Fundament des wissenschaftlichen Python-Ökosystems. Es wird häufig zusammen mit 
-anderen Bibliotheken verwendet:
-
-- **SciPy** (Scientific Python): Erweitert NumPy um Algorithmen für Optimierung, lineare Algebra, 
-  Integration, Interpolation und andere wissenschaftliche Berechnungen
-- **Matplotlib**: Ermöglicht die Visualisierung von Daten und erstellt Diagramme und Grafiken
-- **Pandas**: Bietet Datenstrukturen und Analysewerkzeuge für strukturierte Daten
-
-Diese Kombination stellt eine mächtige Alternative zu MATLAB dar und ermöglicht umfassende 
-Datenanalyse und maschinelles Lernen in Python.
-
-Optional: Weitere Erklärungen finden Sie hier:
-[NumPy User Guide](https://numpy.org/doc/stable/user/index.html)
 
 ### NumPy Installation und Verifikation
 
@@ -147,9 +127,9 @@ NumPy unterstützt viel mehr Datentypen als Standard-Python und orientiert sich 
 **Wichtige NumPy-Datentypen:**
 
 - `bool_`: Boolesche Werte (True/False)
-- `int8`, `int16`, `int32`, `int64`: Vorzeichenbehaftete Ganzzahlen verschiedener Größen
+- `int8`, `int16`, `int32`, `int64`: Vorzeichenbehaftete Ganzzahlen verschiedener Größen (in Bits)
 - `uint8`, `uint16`, `uint32`, `uint64`: Vorzeichenlose Ganzzahlen
-- `float16`, `float32`, `float64`: Gleitkommazahlen verschiedener Präzision
+- `float16`, `float32`, `float64`: Gleitkommazahlen
 - `complex64`, `complex128`: Komplexe Zahlen
 
 **Beispiel für explizite Datentyp-Angabe:**
