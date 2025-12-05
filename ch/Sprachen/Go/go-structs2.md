@@ -9,17 +9,19 @@ assumes: go-pointers, go-structs1
 Ich kann komplexere Datentypen in Go definieren.
 [ENDSECTION]
 
-[SECTION::background::default]
-In [PARTREF::go-structs1] haben sie bereits Strukturen kennengelernt.
 
-In dieser Aufgabe handelt es sich um anonyme Strukturen, die leere Struktur und 
-Strategien zur Kontrolle des Speicherverbrauchs (im Kontext von Speicherlayout).
+[SECTION::background::default]
+In [PARTREF::go-structs1] haben Sie bereits Strukturen kennengelernt.
+
+In dieser Aufgabe geht es um anonyme Strukturen, leere Strukturen und 
+die Steuerung des Speicherlayouts.
 [ENDSECTION]
+
 
 [TOC]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 
 ### Anonyme Strukturen
 
@@ -33,14 +35,14 @@ um zu erfahren, was anonyme Strukturen sind.
 die Felder `price`, `language` und `author` besitzen?
 Geben Sie den Codeabschnitt in Ihrer Markdown-Datei ab.
 
-(Die konkreten Werte für die drei Felder dürfen Sie ausdenken.)
+(Die konkreten Werte für die drei Felder dürfen Sie sich beliebig ausdenken.)
 
 <!-- time estimate: 15 min -->
 
 
-### Die leere Struktur
+### Leere Strukturen
 
-Die leere Struktur stellt einen Typ dar, dessen Größe 0 Byte beträgt.
+Eine leere Struktur ist ein Typ ohne Felder und mit Größe 0 Byte.
 
 Dieses Konstrukt wird in den Situationen benutzt, wo Ab- oder Anwesenheit
 eines Wertes wichtiger ist als der Wert selbst.
@@ -54,29 +56,28 @@ es := struct{}{}
 ```
 
 [FOLDOUT::0 Bytes groß? Wie?]
-Der Trick ist, dass alle Instanzen von der leeren Struktur sich eine von dem
-Compiler festgelegte Speicheradresse teilen — `zerobase`.
+Der Trick ist, dass alle Instanzen aller leeren Strukturen sich eine vom
+Compiler festgelegte Speicheradresse teilen: `zerobase`.
 
-Go Compiler erkennt, dass so eine Struktur keine Felder besitzt und
-dementsprechend keinen Speicherplatz braucht, und spart sich das Allokieren.
+Der Compiler erkennt, dass so eine Struktur keinen Speicherplatz braucht und spart sich das Allokieren.
 
-Falls Sie mehr zum Thema wissen wollen (könnte auch dann von Interesse sein, wenn
-Sie noch relativ frisch im Go-Universum sind):
+Falls Sie sich mehr an diesen etwas seltsamen Gedanken gewöhnen möchten:
 
 - [Dave Cheney: The empty struct](https://dave.cheney.net/2014/03/25/the-empty-struct)
 - [Decrypt Go: empty struct](https://dev.to/huizhou92/decrypt-go-empty-struct-5i4)
 [ENDFOLDOUT]
 
 [ER] Implementieren Sie eine Funktion namens `testEmptyStruct`, welche 3 Instanzen
-von der leeren Struktur erzeugt und deren Adressen auf die Kommandozeile ausgibt.
+der obigen leeren Struktur erzeugt und deren Adressen auf die Kommandozeile ausgibt.
 Was fällt Ihnen auf?
 
 [HINT::Ich weiß nicht, wie ich die Adresse einer Variable ausgeben kann]
 Benutzen Sie die Funktion `fmt.Printf` mit dem `%p` Platzhalter — `p` steht für
-"Pointer" und sorgt dafür, dass es tatsächlich die Speicheradresse angezeigt wird.
+"Pointer" und sorgt dafür, dass die Speicheradresse angezeigt wird
+(siehe [PARTREF::go-basics]).
 
 [HINT::Ich weiß nicht, wie ich die Adresse einer Variable ermitteln kann]
-Das _Referenzieren_ ermöglicht uns der Operator `&`.
+Das _Referenzieren_ ermöglicht uns der Operator `&` (siehe [PARTREF::go-pointers]).
 
 `&variable` gibt die Adresse der Variable zurück.
 [ENDHINT]
@@ -108,7 +109,7 @@ func processPerson(p *Person) {
 }
 ```
 
-Schauen Sie sich diese
+Schauen Sie sich diesen
 [pass-by-value vs pass-by-reference Benchmark](https://blog.boot.dev/golang/pointers-faster-than-values/)
 an, um die folgende Frage zu beantworten.
 

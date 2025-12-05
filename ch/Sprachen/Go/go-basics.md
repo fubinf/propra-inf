@@ -490,7 +490,7 @@ die anstatt der Platzhalter angezeigt werden, und gibt eine formatierte Zeichenk
 
 `%v` ist ein universeller Platzhalter (steht für `value`), um den Wert einer Variable ausgeben zu
 lassen.
-Der Datentyp wird dann automatisch erkennt.
+Der Datentyp wird dann automatisch erkannt.
 
 [FOLDOUT::Die anderen relativ oft benutzten Platzhalter]
 
