@@ -1,5 +1,5 @@
-title: Dateien mit rsync abgleichen
-stage: alpha
+title: Dateibäume mit rsync abgleichen
+stage: beta
 timevalue: 1
 difficulty: 2
 assumes: Umgang-mit-Verzeichnissen, ssh
@@ -11,7 +11,7 @@ Ich verstehe wie rsync funktioniert und wie ich dieses anwende.
 
 
 [SECTION::background::default]
-`rsync` gleicht Dateien zwischen lokalen oder entfernten Pfaden ab.
+`rsync` gleicht zwei Dateibäume ab, die lokal oder entfernt sein können.
 Es prüft vor dem Kopieren, welche Dateien sich geändert haben und überträgt nur diese.
 [ENDSECTION]
 
@@ -118,10 +118,9 @@ Zeitstempel der letzten Änderung.
 
 Dieser Mechanismus ist zwar sehr schnell, bietet aber keine hundertprozentige Sicherheit gegen 
 unentdeckte Bitfehler oder seltene Inkonsistenzen. Zudem lässt sich die Modifikationszeit `mtime` 
-einer Datei mit dem Befehl `touch -m` relativ einfach manipulieren, um eine Änderung zu 
-verschleiern.
+einer Datei relativ einfach manipulieren, um eine Änderung zu verschleiern.
 
-Um eine wesentlich sicherere Überprüfung zu gewährleisten, können Sie die Option `--checksum` 
+Um eine genaue Überprüfung zu gewährleisten, können Sie die Option `--checksum` 
 (oder kurz `-c`) verwenden. 
 Mit dieser Option berechnet `rsync` für jede Datei die Checksumme. 
 
@@ -161,13 +160,24 @@ Ordner `rsync_destination3` in Ihren [TERMREF::Hilfsbereich].
 
 ### Reflektion
 
-[EQ] Wie stellt rsync sicher, dass nur geänderte Dateien erneut kopiert werden?
+[EQ] Wie stellt rsync sicher, dass nur _geänderte_ Dateien erneut kopiert werden?
 
 [EQ] Welche zwei wichtigsten Unterschiede gibt es zwischen der Verwendung von rsync 
 und anderen Kopierbefehlen wie `cp`?
 
-[EQ] Wie könnten Sie mit `rsync` überprüfen, ob die Synchronisation tatsächlich alle Änderungen 
-übernommen hat?
+[EQ] Wie könnten Sie (theoretisch; praktisch ist das nicht relevant) mit `rsync` überprüfen, 
+ob die Synchronisation tatsächlich alle Änderungen 
+übernommen hat, _ohne_ das Kopieren zu wiederholen?
+
+[HINT::Vernetztes Denken nötig]
+Sie müssen dafür zwei der hier besprochenen Optionen kombinieren.
+
+[HINT::Ich komme immer noch nicht drauf]
+Eine Option zum inhaltlichen Prüfen der Daten
+und eine zweite zum Nichtkopieren.
+[ENDHINT]
+
+[ENDHINT]
 [ENDSECTION]
 
 
