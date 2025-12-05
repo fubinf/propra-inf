@@ -110,7 +110,7 @@ Hier gibt es zwei mögliche Fälle:
    Dabei müssen Sie aufpassen, dass Ihr Abhängigkeitsgraph azyklisch bleibt.
 2. Importieren von externen Modulen — beispielsweise von einem Modul, welches
    sich unter `github.com/username/module_name` befindet.
-    - in dem Root-Verzeichnis des Moduls `go get github.com/username/module_name`
+    - im Root-Verzeichnis des Moduls `go get github.com/username/module_name`
       ausführen und dann im Quellcode importieren;
     - **oder** zuerst im Quellcode importieren (`import "github.com/username/module_name"`)
       und danach aus dem Root-Verzeichnis des Moduls `go get` ausführen.
@@ -253,7 +253,7 @@ Falls das nicht ausreicht, dürfen Sie alle verfügbaren Quellen benutzen.
 Bibliotheken in Go unterliegen den Regeln semantischer Versionierung
 — Versionsnummer entsprechen dem Schema `vMAJOR.MINOR.PATCH`.
 
-[EQ] Finden Sie in dem Artikel [Semantic Versioning 2.0.0](https://semver.org/) eine Antwort
+[EQ] Finden Sie im [Artikel "Semantic Versioning 2.0.0"](https://semver.org/) eine Antwort
 auf die Frage: Wodurch unterscheiden sich Major-, Minor- und Patch-Versionen?
 
 <!-- time estimate: 5 min -->
@@ -269,7 +269,7 @@ eine Datei `go.mod`, wo der Modulname als `github.com/your_username/your_module_
 beziehungsweise `.../v3` angegeben wird.
 
 [NOTICE]
-Major-Versionen höher als 1 müssen in dem Import-Pfad angegeben werden!
+Major-Versionen höher als 1 müssen im Import-Pfad angegeben werden!
 
 ```go
 import m3 "github.com/username/library/v3"

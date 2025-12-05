@@ -42,7 +42,7 @@ Solche Goroutinen sind bezüglich der Laufzeiteffizienz extrem billig:
 Millionen von Goroutinen können nebeneinander ausgeführt werden.
 
 Eine neue Goroutine wird mit dem Schlüsselwort `go` erzeugt.
-Diese braucht keine besondere Verwaltung — sie wird automatisch von dem 
+Diese braucht keine besondere Verwaltung — sie wird automatisch vom 
 Scheduler zum Laufen gebracht und automatisch aufgeräumt, sobald die darin 
 laufende Funktion ihre Aufgabe beendet hat.
 
