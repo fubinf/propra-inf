@@ -1,6 +1,6 @@
 title: "Grundlagen von Go: Strukturen (Teil 2)"
 stage: alpha
-timevalue: 1.5
+timevalue: 1.25
 difficulty: 2
 assumes: go-pointers, go-structs1
 ---
@@ -69,7 +69,18 @@ Falls Sie sich mehr an diesen etwas seltsamen Gedanken gewöhnen möchten:
 
 [ER] Implementieren Sie eine Funktion namens `testEmptyStruct`, welche 3 Instanzen
 der obigen leeren Struktur erzeugt und deren Adressen auf die Kommandozeile ausgibt.
-Was fällt Ihnen auf?
+
+[EQ] Was fällt Ihnen während der Ausführung auf?
+
+[ER] Stellen Sie sicher, dass Ihre `main`-Funktion genau so aussieht:
+
+```go
+func main() {
+    testEmptyStruct()
+}
+```
+
+[EC] Führen Sie nun das Programm mittels `go run` aus.
 
 [HINT::Ich weiß nicht, wie ich die Adresse einer Variable ausgeben kann]
 Benutzen Sie die Funktion `fmt.Printf` mit dem `%p` Platzhalter — `p` steht für
@@ -86,46 +97,7 @@ Das _Referenzieren_ ermöglicht uns der Operator `&` (siehe [PARTREF::go-pointer
 <!-- time estimate: 10 min -->
 
 
-### "Pass-by-value" und "Pass-by-reference"
-
-In [PARTREF::go-pointers] haben Sie bereits gelernt, dass Funktionsargumente
-beim Übergeben immer kopiert werden.
-
-Daraus ergeben sich folgende Nachteile:
-
-- eine Funktion kann die ursprünglichen Argumente nicht verändern (was manchmal
-  gewünscht wäre);
-- jeder Funktionsaufruf kopiert alle Argumente — ineffizient für große Strukturen.
-
-```go
-// Option 1
-func processPerson(p Person) {
-    ...
-}
-
-// Option 2
-func processPerson(p *Person) {
-    ...
-}
-```
-
-Schauen Sie sich diesen
-[pass-by-value vs pass-by-reference Benchmark](https://blog.boot.dev/golang/pointers-faster-than-values/)
-an, um die folgende Frage zu beantworten.
-
-[EQ] Was wäre ein guter Grund, Option 2 (übergabe per Zeiger) gegenüber
-Option 1 (übergabe per Wert) zu bevorzugen?
-Was wäre ein nicht so guter Grund?
-
-[FOLDOUT::Gibt es einen Punkt, ab dem die Laufzeiteffizienz deutlich beeinflusst wird?]
-Kurze Antwort — ja, wenn die Struktur größer als 10MB ist.
-
-Eine etwas längere Antwort finden Sie in dem Artikel:
-[Go Benchmarks: Does Pass by Pointer Really Make a Difference?](https://dev.to/anubhav023/go-benchmarks-does-pass-by-pointer-really-make-a-difference-1540).
-[ENDFOLDOUT]
-
-[NOTICE]
-**Automatisches Dereferenzieren**
+### Automatisches Dereferenzieren
 
 Unabhängig davon, ob es sich um eine Struktur oder um einen Zeiger auf eine
 Struktur handelt, darf man auf die Felder mit der `.`-Syntax zugreifen:
@@ -138,37 +110,12 @@ fmt.Println(p.Age) // 0
 fmt.Println(pptr.Age) // 0
 fmt.Println((*pptr).Age) // explizit (aber unnötig)
 ```
-[ENDNOTICE]
 
-[ER] Übernehmen Sie die Strukturen `Person` und `Employee` aus [PARTREF::go-structs1].
-Implementieren Sie eine Methode `Promote` auf `Employee`, die ein Argument
-`newPosition string` erwartet.
-Sie soll die Struktur modifizieren und das Feld `Position` auf den neuen Wert setzen.
+[EQ] Was wäre Ihrer Meinung nach ein guter Grund, eine Struktur per Zeiger statt 
+per Wert zu übergeben? 
+Und was wäre ein weniger überzeugender Grund?
 
-[ER] Implementieren Sie außerdem eine Methode `(e Employee) Print()`, die die Struktur
-im folgenden Format darstellt:
-```go
-fmt.Printf("%v %v, %v (%v)\n", e.FirstName, e.LastName, e.Age, e.Position)
-```
-
-[ER] Fügen Sie folgende Testfunktion in Ihre Datei ein:
-
-```go
-[INCLUDE::include/go-structs-mutation-control-snippet.go]
-```
-
-[ER] Stellen Sie sicher, dass Ihre `main`-Funktion genau so aussieht:
-
-```go
-func main() {
-    testEmptyStruct()
-    testMutation()
-}
-```
-
-[EC] Führen Sie nun das Programm mittels `go run` aus.
-
-<!-- time estimate: 20 min -->
+<!-- time estimate: 5 min -->
 
 
 ### Speicherlayout (Alignment und Padding)
@@ -179,8 +126,8 @@ tatsächlich einen Unterschied macht.
 Ein wichtiger Begriff, den Sie an dieser Stelle kennenlernen sollten, ist das sogenannte
 _Alignment_.
 
-Lesen Sie dazu den Abschnitt "Type Alignment Guarantees in Go" aus dem Artikel
-[go101: Memory Layouts](https://go101.org/article/memory-layout.html),
+Lesen Sie den
+[Abschnitt "Type Alignment Guarantees in Go" im Artikel "go101: Memory Layouts"](https://go101.org/article/memory-layout.html),
 um ein besseres Verständnis dafür zu bekommen, was genau mit Alignment gemeint ist.
 
 [HINT::Ich finde den Abschnitt zu technisch]
@@ -290,11 +237,13 @@ Diese beiden zusätzlichen Bytes nennt man _Padding_.
 <!-- time estimate: 30 min -->
 [ENDSECTION]
 
+
 [SECTION::submission::information,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
+
 
 <!-- @PROGRAM_TEST_SKIP: reason="Output contains dynamic memory addresses" manual_test_required=true -->
 
@@ -302,7 +251,6 @@ Diese beiden zusätzlichen Bytes nennt man _Padding_.
 
 - `testEmptyStruct` — die Speicheradresse im abgegebenen Kommandoprotokoll muss
   nicht mit dieser in der Musterlösung übereinstimmen.
-  Der Punkt ist, dass es dreimal dieselbe Adresse ist.
 
 **Kommandoprotokoll**
 [PROT::ALT:go-structs2.prot]
@@ -312,6 +260,5 @@ Diese beiden zusätzlichen Bytes nennt man _Padding_.
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe als ausführbare Datei siehe hier:
-[TREEREF::/Sprachen/Go/go-structs2.go]
-.
+[TREEREF::/Sprachen/Go/go-structs2.go].
 [ENDINSTRUCTOR]
