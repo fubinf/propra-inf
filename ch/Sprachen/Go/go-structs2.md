@@ -97,7 +97,19 @@ Das _Referenzieren_ ermöglicht uns der Operator `&` (siehe [PARTREF::go-pointer
 <!-- time estimate: 10 min -->
 
 
-### Automatisches Dereferenzieren
+### "Pass-by-value" und "Pass-by-reference"
+
+In [PARTREF::go-pointers] haben Sie bereits gelernt, dass Funktionsargumente
+beim Übergeben immer kopiert werden.
+
+[EQ] Was wäre Ihrer Meinung nach ein guter Grund, eine Struktur per Zeiger statt
+per Wert zu übergeben?
+Und was wäre ein weniger überzeugender Grund?
+
+[EQ] Wie würden Sie vorgehen, wenn die Struktur sehr groß ist, aber nicht verändert werden darf?
+
+[NOTICE]
+**Automatisches Dereferenzieren**
 
 Unabhängig davon, ob es sich um eine Struktur oder um einen Zeiger auf eine
 Struktur handelt, darf man auf die Felder mit der `.`-Syntax zugreifen:
@@ -110,12 +122,9 @@ fmt.Println(p.Age) // 0
 fmt.Println(pptr.Age) // 0
 fmt.Println((*pptr).Age) // explizit (aber unnötig)
 ```
+[ENDNOTICE]
 
-[EQ] Was wäre Ihrer Meinung nach ein guter Grund, eine Struktur per Zeiger statt 
-per Wert zu übergeben? 
-Und was wäre ein weniger überzeugender Grund?
-
-<!-- time estimate: 5 min -->
+<!-- time estimate: 10 min -->
 
 
 ### Speicherlayout (Alignment und Padding)
