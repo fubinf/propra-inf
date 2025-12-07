@@ -1817,8 +1817,8 @@ Ein Thread ist die kleinste vom Betriebssystem verwaltete Ausführungseinheit ei
 Er besitzt einen eigenen Ausführungskontext (z. B. Registerzustand und Stack), teilt sich jedoch den 
 Adressraum und die meisten Betriebssystemressourcen des Prozesses mit anderen Threads desselben 
 Prozesses.
-Threads ermöglichen parallele bzw. nebenläufige Ausführung und werden daher häufig im Zusammenhang m
-it nebenläufigen oder nicht-sequentiellen Programmiermodellen genannt.
+Threads ermöglichen parallele bzw. nebenläufige Ausführung und werden daher häufig im Zusammenhang
+mit nebenläufigen oder nicht-sequentiellen Programmiermodellen genannt.
 [ENDTERM]
 
 
