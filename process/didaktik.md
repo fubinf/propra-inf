@@ -35,9 +35,6 @@ Eine Vorgehensempfehlung:
 3. Konstruktion der Aufgabe
 4. Aufgabe prüfen
 
-Hier nicht weiter erwähnt, ist aber der vierte Schritt unabdinglich: 
-Prüfen Sie die Aufgabe, indem Sie sie selbst durchführen.
-
 ### 2.1 Formulieren von Lernzielen
 Ein Lernziel ist ein Ziel, das die Studierenden nach Bearbeiten der Aufgabe erreicht haben sollen.
 Lernziele sind immer ergebnisorientiert. 
@@ -69,13 +66,14 @@ Zu jedem Schritt gibt es Leitfragen und ein erwartetes Ergebnis.
 
 ### 2.1.1 Kompetenzzuwachs  
 **Leitfragen:**  
- *  Zu welchem Lernzuwachs befähigt das Kapitel, die Taskgroup bzw. die Aufgabe?  
- *  Was sollen die Studierenden mit dem Inhalt tun können?  
+ *  Zu welchem Lernzuwachs befähigt das Kapitel, die Taskgroup bzw. die Aufgabe?
+ *  Welche Kompetenz erwerben die Studierenden?
+ *  Was sollen die Studierenden mit dem Inhalt tun können?
   
 Als Ergebnis sollte hier eine Liste mit mehreren Items entstehen, 
 je nach Umfang von Kapitel, Taskgroup oder Aufgabe.
 
-Beispiel: 
+> **Beispiel:**  
 > Die Aufgabe soll die Themen Grid-Layout und Flexbox einmal anreißen, ohne tief ins Detail zu gehen.
 > Stattdessen sollen sinnvolle Quellen zum Thema geteilt werden, sodass Studierende sich an die Technik
 > erinnern, wenn sie benötigt wird, und einen Ausgangspunkt zum Nachschlagen haben.
@@ -95,7 +93,7 @@ Als Ergebnis dieses Schritts soll eine Auflistung der Items aus Schritt 1 entste
 die jeweils mit einem passenden Operator (vgl. 2.1.4 Operatoren) versehen werden. 
 Das Lernergebnis wird in der Ich-Form formuliert. 
 
-Beispiel:
+> **Beispiel:**  
 > In der CSS-Aufgabe sollen die Studierenden für jede Technik einmal ein Beispiel gesehen haben, 
 > wie die Technik angewandt werden kann und sie selbst ausprobieren. 
 > Ein geeigneter Operator wäre dann "implementieren".
@@ -114,7 +112,7 @@ Leitfragen:
 Als Ergebnis wird die Definition der angestrebten Kompetenz nun noch um den 
 Zusammenhang zwischen Kontext und angestrebtem Lernzuwachs ergänzt.   
 
-Beispiel:
+> **Beispiel:**  
 > Für die Implementierung in der CSS-Aufgabe wählen wir nur relativ simple Beispiele, um die Funktionalität aufzuzeigen.
 > Der Vergleich bezieht sich ausschließlich darauf, wie die beiden Techniken einzusetzen sind.
 > Eine aktualisierte Liste der gewünschten Lernziele könnte z.B. so aussehen:
@@ -234,7 +232,7 @@ den es durch die Aufgabe zu klären oder zu lösen gilt.
     Je nach Schwierigkeitsgrad und vorausgesetzter Kompetenz für die Aufgaben, 
     die die Studierenden vor Bearbeitung bereits mitbringen müssen,
     kann nun in mehr oder weniger offenen Teilaufgaben,
-    d.h. weniger oder mehr geführten Arbeitsaufträgen (vgl. 2.5 Öffnen von Aufgaben),  
+    d.h. weniger oder mehr geführten Arbeitsaufträgen (vgl. 3.1 Öffnen von Aufgaben),  
     Schritt für Schritt durch die Lösung des Problems geführt werden.  
   
     An dieser Stelle kann es sicherlich auch hilfreich sein,
@@ -249,7 +247,7 @@ den es durch die Aufgabe zu klären oder zu lösen gilt.
    Das kann z.B. in einer Reflexionsaufgabe erfolgen, oder indem man die Studierenden die Problemlösung zur 
    Selbstüberprüfung an weiteren ähnlichen oder auch verschiedenen Beispielen mit weniger Anleitung wiederholen lässt.
 
-Beispiel:
+> **Beispiel:**  
 > In der Aufgabe `html-Tabellen` wird generell diesem für viele Aufgaben typischen Schema gefolgt.
 > Die Hintergrund-Sektion beschreibt den Einsatzzweck für Tabellen 
 > und in welchem Kontext sie für gewöhnlich Benutzung finden. 
@@ -272,7 +270,7 @@ Beispiel:
 > Man könnte beispielsweise eine weitere Tabelle implementieren lassen, sodass
 > so Selbstüberprüfung und Verankerung ein größerer Bestandteil der Aufgabe werden. 
 
-## 2.3.2 BAGV - Benutzen, Analysieren, Gestalten, Verankern
+### 2.3.2 BAGV - Benutzen, Analysieren, Gestalten, Verankern
 Die Methode Benutzen, Analysieren, Gestalten, Verankern ist für das erkundende Lernen konzipiert. 
 Der typische Lernablauf, sich zunächst Konzepte anzusehen 
 und anschließend Werkzeuge dazu kennenzulernen, wird dabei umgedreht. 
@@ -312,7 +310,7 @@ Nur dann ist eine Analyse des Problems überhaupt sinnvoll möglich.
 Phase 2 und 3 können auch iterative Prozesse sein, 
 indem ein erster Gestaltungsversuch z.B. nur eine partielle Lösung liefert und weitere Problemanalyse nötig ist.
 
-Beispiel:
+> **Beispiel:**  
 > Die Aufgabe `css-Layout` benutzt das Modell BAGV. 
 > Sie soll die Lernziele durch erkundendes Lernen im Kontext der Gestaltung einer Firmenwebsite vermitteln.
 > 
@@ -340,10 +338,13 @@ Dabei sind unter anderem folgende Punkte zu beachten:
 - Ist der Ablauf der Teilaufgaben nachvollziehbar?
 - Sind die Arbeitsaufträge klar definiert?
 - Führt die Bearbeitung der Aufgabe zum gewünschten Kompetenzzuwachs?
+- Entsprechend die 
 - Wie lange dauert die Bearbeitung, ist die angesetzte Zeit realistisch?
 - Welche zusätzlichen Hinweise benötigen Tutor*innen zum Bewerten der Aufgabe?
 
-## 2.5 Öffnen von Aufgaben
+# 3 Didaktische Erwägungen
+
+## 3.1 Öffnen von Aufgaben
 
 Offene Aufgaben sind Aufgaben, bei denen es nicht nur eine richtige Lösung gibt, 
 sondern mehrere Lösungswege und Lösungen. 
@@ -371,19 +372,68 @@ nicht nur eine Musterlösung anzubieten, sondern auch die Kriterien zu benennen,
 die für eine erfolgreiche Bearbeitung der Aufgabe sprechen.
 Diese Kriterien sind bestenfalls gut und schnell überprüfbar.
 
+## 3.2 Scaffolding und gestufte Lernhilfen
 
-## 3 Reihenplanung
+Scaffolding (engl. Gerüst) bezeichnet die vorübergehende Unterstützung von Lernenden bei der Aufgabenbearbeitung
+von Aufgaben, die sie alleine noch nicht ausführen können. 
+Dies kann man sich als ein Baugerüst vorstellen, das abgebaut wird, sobald das Haus von alleine stehen kann.
+Genauso wird die Unterstützung Stück für Stück abgebaut, je weiter die Lernenden im Lernprozess sind.
+Insbesondere soll Scaffolding dabei die kognitiven Anforderungen an eine Aufgabe entlasten
+und ist die primäre Methode, mit der sich zu erwartende Schwierigkeiten beim Lernprozess abfangen und abmildern lassen. 
+
+In erster Linie bedeutet das, dass für komplexe Konzepte, Aufgaben zu Beginn viel Hilfestellung bieten müssen
+und die Erstellung der Lernprodukte stark geführt ist.
+Im Verlauf der Aufgabenreihe wird dann mit dem Zuwachs der Kompetenz bei den Lernenden 
+Stück für Stück die Hilfestellung zurückgefahren,
+Aufgabenstellungen werden offener, die Komplexität der Aufgaben nimmt zu. 
+
+> **Beispiel:**  
+> Die Studierenden legen zum Beginn des Programmierpraktikums ein Git-Repository an, 
+> ohne, dass Aufgaben zum Umgang mit `git` bereits durchgeführt wurden.
+> Entsprechend sind die Arbeitsanweisung sehr kleinteilig und lassen keinen Spielraum für eigene Lösungen,
+> mit dem die Studierenden vielleicht überfordert wären.
+
+Gestufte Lernhilfen sind eine Form von Lösungsbeispielen. Es wird keine komplette Lösung vorgegeben, 
+sondern Lösungshinweise werden schrittweise gegeben und die Lernenden können bei Bedarf darauf zurückgreifen.
+Sind mit einer Aufgabe Schwierigkeiten zu erwarten, 
+kann mit solchen Lösungshinweisen den Lernenden eine Möglichkeit gegeben werden,
+die schweren Stellen besser zu verstehen oder zu umschiffen.
+
+Für das ProPra stellen gestufte Lernhilfen eine der primären Methoden dar,
+mit der wir jenseits von der Gestaltung der Aufgabenstellung selbst Scaffolding anbieten können.
+Im ProPra können wir dies mit den HINT-Macros sehr gut umsetzen und so Bedarfshilfen zur Verfügung stellen.
+Sollen diese in verschiedenen Stufen angeboten werden, 
+ist es auch sinnvoll, diese Ausklapptexte verschachtelt aufzubauen.
+
+# 4 Reihenplanung
 
 Bei der Planung der Aufgabenreihe, oft Grobplanung genannt, sollten Sie ähnlich vorgehen. 
 Anstatt, dass Sie sich jetzt im konkreten Gedanken über einzelne Aufgabenthemen machen, 
 stellen Sie sich Fragen zum übergreifenden Themenbereich, 
 den Sie mit der Aufgabenreihe (Taskgroup oder Kapitel) abdecken wollen.
 
-1. Welches sind die wichtigsten Kompetenzen, die Studierende aus dem Themenbereich mitnehmen sollen?
-2. Welche Kompetenzen setzten welche anderen Kompetenzen voraus? Welche Reihenfolge ist sinnvoll für die Aufgaben?
-3. Wie lassen sich Meta-Kompetenzen des ProPra mit einbauen?
-4. Was ist ein geeigneter Kontext für die Aufgabenreihe?
+Zu Beginn der Reihenplanung steht eine Bedarfsanalyse.
+
+Die Leitfragen sind hier:
+- Welche formalen Anforderungen gibt es an den Inhalt?
+- Welche Voraussetzungen bringen die Lernenden mit und wie holt man sie inhaltlich ab?
+- Welches grundlegende theoretische oder anwendungsorientierte Wissen ist notwendig, welches soll gelehrt werden?
+- Welche praktischen Fertigkeiten sollen die Studierenden erwerben? Welche sind Voraussetzung?
+- Welche Kompetenzen setzten welche anderen Kompetenzen voraus? Welche Reihenfolge ist sinnvoll für die Aufgaben? 
+- Wie lassen sich Meta-Kompetenzen des ProPra mit einbauen? 
+- Was ist ein geeigneter Kontext für die Aufgabenreihe?
+- Welche Schwierigkeiten sind bei der Bearbeitung der Aufgabe zu erwarten?
+
+Im Anschluss legen Sie ihre Lernziele (vgl. 2.1) fest und
+ergänzen Ihre Bedarfsanalyse durch Recherche und didaktische Analyse (vgl 2.2)
 
 Die konkrete Konstruktion der Aufgaben wird hier dann natürlich ersetzt mit einer Liste an Aufgaben, 
 die Sie erstellen sollten, um die wichtigsten Kompetenzen zu vermitteln sowie eine Reihenfolge, 
-die Sie den Studierenden mittels `assumes` und `requires`-Beziehungen vorschlagen können.
+die Sie den Studierenden mittels `assumes` und `requires`-Beziehungen vorschlagen können. 
+Dabei sollten Sie natürlich zunächst die grundlegenden Kompetenzen vermitteln, 
+d.h. erst leicht dann schwer und erst komplex und dann abstrakt.
+
+
+
+
+
