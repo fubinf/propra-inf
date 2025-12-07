@@ -14,12 +14,14 @@ Ich kenne die gängigen Diagrammarten und weiß sie mit Matplotlib sinnvoll einz
 
 [SECTION::background::default]
 Matplotlib bietet eine Vielzahl an Diagrammtypen.  
-Die Wahl des passenden Diagramms hängt stark von der Art der Daten und der Frage ab, die man beantworten möchte.
+Die Wahl des passenden Diagramms hängt stark von der Art der Daten und der Frage ab, 
+die man beantworten möchte.
 [ENDSECTION]
 
 
 [SECTION::instructions::loose]
 ### Linien- und Scatter-Plot (`plot()`, `scatter()`)
+
 In [PARTREF::plt-pyplot-vs-Axes] haben Sie bereits zwei der Arten von Diagrammen kennengelernt:
 Den Linienplot den Sie mit 
 [`plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html)
@@ -35,6 +37,7 @@ erstellt haben und den Scatter-Plot, also eine Plot mit ganz vielen Punkten, den
 Sie möchten die Veränderung der Temperatur darstellen:
 Würden Sie eher den Scatter-Plot oder den Linienplot dafür wählen?
 Begründen Sie.
+
 
 ### Säulendiagramm (`bar()`, `barh()`)
 Säulendiagramme sind eine weitere Form der Visualisierung von Daten. 
@@ -72,6 +75,7 @@ maenner = [50, 55, 25, 50]
 frauen = [70, 30, 20, 15]
 ```
 
+
 ### Kreisdiagramm
 
 Kreisdiagramme eignen sich besonders, um Anteile eines Ganzen darzustellen. 
@@ -87,12 +91,14 @@ Heben Sie den Informatik-Anteil hervor mit dem Wert `0.1`.
 [EQ] Wann könnte ein Kreisdiagramm ungeeignet sein, auch wenn es sich um Anteile eines ganzen
 Handelt?
 
+
 ### Statistische Diagramme
 
 Bis jetzt waren die Diagrammtypen ziemlich selbsterklärend und in irgendeiner Form sind Sie diesen
 bestimmt schon einmal über den Weg gelaufen.
 Die folgenden Diagrammtypen sind jedoch etwas spezieller und ihnen teilweise eventuell neu.
 Dafür können sie sehr gut statistische Aspekte von Daten darstellen, die man oft haben möchte.
+
 
 ### Histogramm
 
@@ -109,6 +115,7 @@ werden keine Kategorien, sondern Wertebereiche dargestellt.
 [ER] Erhöhen Sie die Anzahl der Bins auf 50 und vergleichen Sie die Darstellung.
 
 [EQ] Was passiert, wenn Sie zu wenige oder zu viele Bins wählen? Wie beeinflusst das die Aussagekraft des Histogramms?
+
 
 ### Box-Plot
 
@@ -147,6 +154,7 @@ women = np.random.normal(loc=165.8, scale=7.1, size=100)
 Ein Histogramm zeigt die Häufigkeitsverteilung der Daten. 
 Welche Aspekte der Datenverteilung lassen sich in einem Box-Plot ergänzend erkennen?
 
+
 ### Heatmap
 
 Eine 
@@ -160,6 +168,7 @@ Sie eignet sich besonders, um Muster in 2D-Daten oder Korrelationen sichtbar zu 
 [EQ] Warum ist eine Heatmap besser geeignet als eine Tabelle, 
 wenn man viele Zahlen gleichzeitig darstellen möchte?
 
+
 ### Weitere Plots
 
 Es gibt noch viele weitere Diagrammtypen in Matplotlib, die über die hier vorgestellten hinausgehen.
@@ -172,9 +181,6 @@ wofür diese jeweils geeignet sind:
 
 - Stackplot (`stackplot()`)  
 - Quiver-Plot (`quiver()`)  
-
-
-
 [ENDSECTION]
 
 
