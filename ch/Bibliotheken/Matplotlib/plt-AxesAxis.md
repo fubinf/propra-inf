@@ -69,6 +69,40 @@ an und ändern Sie den Code, sodass die `Figure` zwei `Axes` nebeneinander hat.
 [ER] Ändern Sie die geplotteten Funktionen, sodass die lineare Funktion auf der linken `Axes`
 angezeigt wird und die quadratische Funktion auf der Rechten.
 
+[ER] Schreiben Sie eine Funktion `polynomplots(k: int) -> list[Axes]`, die in einer quadratischen
+Anordnung je einen Plot (jeweils für `x` von `-10` bis `10`) von `x**i` (für `i=1..k`) liefert, mit einem jeweils passenden Wertebereich für y.
+
+[HINT::Allgemeine Schritte]
+
+1. Subplots erstellen
+
+[HINT::Quadratische Subplots]
+
+Um die `axes` mit `subplots()` quadratisch zu gestalten, muss man `nrows` und `ncols` entsprechend
+setzen.
+Sie wollen `k`-viele Subplots unterbringen also brauchen wir mindestens ein Quadrat mit Wurzel aus
+`k` als Seitenlänge.
+Hierfür nimmt man also die (nach oben gerundete) Wurzel von `k`: `int(np.ceil(np.sqrt(k)))`
+
+[ENDHINT]
+
+2. `axes` iterieren und plotten
+
+[HINT::`axes` in eine eindimensionale Liste transformieren]
+
+Theoretisch ist das nicht nötig, man kann die `axes`-Elemente auch so iterieren, es erleichtert
+das Iterieren aber deutlich.
+
+Mit der Methode `ravel()` lassen sich die `axes` von einer mehrdimensionalen Darstellung in eine
+1-dimensionale Liste umwandeln.
+
+[ENDHINT]
+
+3. Ungenutzte `axes` ausblenden (`set_visible(False)`)
+
+4. Genutzte `axes` zurückgeben
+
+[ENDHINT]
 
 ### Axis
 
@@ -90,7 +124,7 @@ plt.show()
 ```
 
 [ER] Setzen Sie mit 
-[`set_label_text()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axis.Axis.set_label_text.html#matplotlib.axis.Axis.set_label_text)
+[`set_label_text()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axis.Axis.set_label_text.html)
 die Beschriftung der X- und Y-Achse zu "X-Achse" und "Y-Achse".
 
 Matplotlib erlaubt es Ihnen, die meisten Eigenschaften direkt über die `Axes` zu ändern.
