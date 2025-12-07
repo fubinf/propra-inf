@@ -161,6 +161,20 @@ die Lambda-Funktion) gestartet?
 [EQ] In welcher Reihenfolge verlassen die vier Funktionen den Geltungsbereich (beenden ihre
 Ausführung)?
 
+[NOTICE]
+__Wie werden Werte aus einer Funktion zurückgegeben, die in einer anderen Goroutine läuft?__
+
+Die Rückgabe kann
+
+- über __Kanäle__ (Channels) erfolgen oder
+- über gemeinsam genutzte Daten erfolgen. 
+
+Bei gemeinsam genutzten Daten muss ein Synchronisationsmechanismus, etwa ein Mutex (`sync.Mutex`), 
+zum Schutz der Daten eingesetzt werden.
+
+<!-- TODO_2_Brandes: add links to the tasks once they are live -->
+[ENDNOTICE]
+
 <!-- time estimate: 30 min -->
 
 [ENDSECTION]
