@@ -1,9 +1,9 @@
 title: "pandas: Daten gruppieren"
-stage: draft
+stage: alpha
 timevalue: 2
 difficulty: 2
-requires: pd-Datenselektion2
-assumes: pd-Transformationen
+requires:
+assumes: pd-Datenselektion2, pd-Transformationen
 ---
 
 [SECTION::goal::idea]
@@ -31,6 +31,7 @@ import pandas as pd
 erststimmen_df = pd.read_csv("Pfad/zur/Berlin_BT25_W1.csv", sep=';')
 ```
 
+
 ### Kategorische Daten
 
 Kategorische Daten sind Daten, die Werte in Form von Gruppen oder Kategorien annehmen, 
@@ -44,6 +45,7 @@ Wenn wir einen Datensatz über Personen hätten, dann sind z. B. das Geschlecht 
 [EQ] Die Spalte "Bezirksnummer" enthält numerische Daten. 
 Handelt es sich hierbei trotzdem um kategorische Daten oder nicht?
 Begründen Sie.
+
 
 ### Gruppieren mit `groupby()`
 
@@ -106,6 +108,7 @@ aus (von `wahlart_df`).
 [`reset_index()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reset_index.html)
 zu einem einfachen Index.
 
+
 ### `agg()`
 
 [ER] Schauen Sie sich die Dokumentation zu 
@@ -138,6 +141,7 @@ sowie die durchschnittliche Anzahl an ungültigen Stimmen.
 [EQ] Können Sie `reset_index()` auch nutzen, um den Spaltenindex von Multiindex zu einem einfachen
 Index zu konvertieren?
 
+
 ### Gruppieren mit Bedingungen
 
 Ähnlich wie bei [PARTREF::pd-Datenselektion2], kann man auch bei `groupby()` nicht nur Spalten
@@ -150,7 +154,6 @@ grouped = df.groupby(df['Punkte'] >= 50) # Beispiel
 als die Linke.
 
 [EQ] Beschreiben Sie den Zeilenindex.
-
 [ENDSECTION]
 
 
