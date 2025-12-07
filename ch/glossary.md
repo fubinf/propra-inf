@@ -1812,6 +1812,16 @@ oder Verhaltensweisen der Software.
 [ENDTERM]
 
 
+[TERM::Thread]
+Ein Thread ist die kleinste vom Betriebssystem verwaltete Ausführungseinheit eines Prozesses.
+Er besitzt einen eigenen Ausführungskontext (z. B. Registerzustand und Stack), teilt sich jedoch den 
+Adressraum und die meisten Betriebssystemressourcen des Prozesses mit anderen Threads desselben 
+Prozesses.
+Threads ermöglichen parallele bzw. nebenläufige Ausführung und werden daher häufig im Zusammenhang m
+it nebenläufigen oder nicht-sequentiellen Programmiermodellen genannt.
+[ENDTERM]
+
+
 [TERM::Time-Based One-Time Password|TOTP]
 Dabei handelt es sich um ein zeitbasiertes, einmalig verwendbares Passwort, das oft in der
 Zwei-Faktor-Authentifizierung (2FA) verwendet wird. Bei TOTP generiert eine Anwendung wie Google
