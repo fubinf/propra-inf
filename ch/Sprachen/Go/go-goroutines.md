@@ -92,6 +92,19 @@ eingeführt.
 
 Eine Goroutine ist ein leichtgewichtiger („grüner/virtueller“) [TERMREF::Thread].
 
+Goroutinen sind ein nützliches Werkzeug, wenn mehrere Aufgaben gleichzeitig bearbeitet werden 
+müssen.
+Beispiele sind:
+
+- Warten auf Eingaben;
+- Bearbeitung von HTTP-Anfragen;
+- Hintergrundarbeiten (Aufräumarbeiten oder Logging);
+- Aufwändige Berechnungen.
+
+Bei Bedarf verteilt das Go‑Runtime die Goroutinen auf mehrere CPU‑Kerne.
+Für rechenintensive Aufgaben liefert das einen klaren Leistungsgewinn gegenüber sequentiellen 
+Implementierungen.
+
 Lesen Sie den
 [Abschnitt „Goroutines“ auf der Webseite „Effective Go“](https://go.dev/doc/effective_go#goroutines)
 und beantworten Sie die folgenden Fragen.
