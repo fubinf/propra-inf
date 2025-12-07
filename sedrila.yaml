@@ -178,6 +178,24 @@ instructors:
       EMZmkSf2ntEnqG8KlrQBAOcfOI+1glk+kHAzymd12AvRU2l0wrSycI3IjYMtQb4D
       =50Ay
       -----END PGP PUBLIC KEY BLOCK-----
+  - nameish: Ryzen
+    email: 123@qq.com
+    webaccount: ryzen
+    keyfingerprint: D3159E8A6126BFBC1DD8B7574BFE9D5D5F56B11C
+    pubkey: |
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
+
+      mDMEaTViFhYJKwYBBAHaRw8BAQdARsRKKxz15KUqpJGGlw3xGTH1FVBk6hytU3VP
+      fBxV4WW0ElJ5emVuIDwxMjNAcXEuY29tPoiZBBMWCgBBFiEE0xWeimEmv7wd2LdX
+      S/6dXV9WsRwFAmk1YhYCGwMFCQWjmoAFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcC
+      F4AACgkQS/6dXV9WsRxmsAEAtG5NBIwHMMZx/K6Lgc+7ImRhloO/2SdmA8GoAjMl
+      g3QBAKaicjDLRVeMTTxvsQbCVuf2cQYC2SxLX9S3WyiBdR0NuDgEaTViFhIKKwYB
+      BAGXVQEFAQEHQAMf0ZPKdE9O7A9R5T4/nfaLoPnt69MbI+Kamc3jh8dEAwEIB4h+
+      BBgWCgAmFiEE0xWeimEmv7wd2LdXS/6dXV9WsRwFAmk1YhYCGwwFCQWjmoAACgkQ
+      S/6dXV9WsRzhdwD/dDGhy73HrPcb9FCE2BElMy7byyg/6IeSNpgBh9LOg0UBAPa+
+      e08vL3RhafESCZU6pRX9PJjTZT9M/UDk8yoZImkA
+      =s3KP
+      -----END PGP PUBLIC KEY BLOCK-----
 # ----- for all subcommands:
 chapters:
   - name: Basis
