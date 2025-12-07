@@ -1,13 +1,13 @@
 title: "Implizites vs. Explizites Interface von matplotlib"
-stage: draft
+stage: alpha
 timevalue: 1
 difficulty: 2
 requires: plt-AxesAxis
 ---
 
 [SECTION::goal::idea]
-Ich verstehe den Unterschied zwischen der impliziten und expliziten Nutzung von Matplotlib und weiß, 
-wie ich beide benutze.
+Ich verstehe den Unterschied zwischen der impliziten und expliziten Nutzung von Matplotlib und
+weiß, wie ich beide benutze.
 [ENDSECTION]
 
 
