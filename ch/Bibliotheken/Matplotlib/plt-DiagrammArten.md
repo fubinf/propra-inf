@@ -1,10 +1,9 @@
 title: "Diagrammtypen in Matplotlib"
-stage: draft
+stage: alpha
 timevalue: 2
 difficulty: 3
 explains:
-assumes:
-requires: plt-pyplot-vs-Axes
+assumes: plt-pyplot-vs-Axes
 ---
 
 [SECTION::goal::idea]
@@ -25,7 +24,7 @@ die man beantworten möchte.
 In [PARTREF::plt-pyplot-vs-Axes] haben Sie bereits zwei der Arten von Diagrammen kennengelernt:
 Den Linienplot den Sie mit 
 [`plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html)
-erstellt haben und den Scatter-Plot, also eine Plot mit ganz vielen Punkten, den Sie mit
+erstellt haben und den Scatter-Plot, also einen Plot mit ganz vielen Punkten, den Sie mit
 [`scatter()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html).
 
 [ER] Erstellen Sie einen einfachen Linienplot von `np.sin(x)` für 
@@ -33,7 +32,7 @@ erstellt haben und den Scatter-Plot, also eine Plot mit ganz vielen Punkten, den
 
 [ER] Erstellen Sie für die gleichen Daten einen Scatter-Plot.
 
-[EQ] Angenommen Sie haben Daten für die Durchschnittstemperatur der vergangenen Jahre.
+[EQ] Angenommen, Sie haben Daten für die Durchschnittstemperatur der vergangenen Jahre.
 Sie möchten die Veränderung der Temperatur darstellen:
 Würden Sie eher den Scatter-Plot oder den Linienplot dafür wählen?
 Begründen Sie.
@@ -66,9 +65,8 @@ gleichzeitig die Zusammensetzung der Werte sehen will.
 
 [ER] Stellen Sie die Anzahl Studierender in den 4 Studiengängen nach Geschlecht in einem
 gestapelten Säulendiagramm dar.
-Wie Sie das mit `bar()` tuen können Sie auch an diesem 
-[Beispiel in der Dokumentation](https://matplotlib.org/stable/gallery/lines_bars_and_markers/bar_stacked.html)
-sehen.
+Wie Sie das mit `bar()` tun können, sehen Sie auch an diesem 
+[Beispiel in der Dokumentation](https://matplotlib.org/stable/gallery/lines_bars_and_markers/bar_stacked.html).
 ```python
 studiengaenge = ['WiWi', 'Informatik', 'Mathe', 'Physik']
 maenner = [50, 55, 25, 50]
@@ -88,8 +86,8 @@ für die Studiengangs-Daten aus [EREFR::3].
 [ER] In Matplotlib können Sie bei einem Kreisdiagramm einzelne Anteile hervorheben (`explode`).
 Heben Sie den Informatik-Anteil hervor mit dem Wert `0.1`.
 
-[EQ] Wann könnte ein Kreisdiagramm ungeeignet sein, auch wenn es sich um Anteile eines ganzen
-Handelt?
+[EQ] Wann könnte ein Kreisdiagramm ungeeignet sein, auch wenn es sich um Anteile eines Ganzen
+handelt?
 
 
 ### Statistische Diagramme
@@ -126,7 +124,7 @@ gleichzeitig mögliche Ausreißer darzustellen
 Schauen Sie sich die Beispiel-Boxplots in der Matplotlib-Dokumentation an:
 [Box-Plot Beispiele](https://matplotlib.org/stable/gallery/statistics/boxplot_demo.html#sphx-glr-gallery-statistics-boxplot-demo-py)
 
-Diese Darstellung scheinen erstmal kryptisch, wenn man nicht weiß, was sie bedeuten.
+Diese Darstellungen scheinen erstmal kryptisch, wenn man nicht weiß, was sie bedeuten.
 Boxplots geben folgende Informationen über die Daten:
 
 Mittelwert: Der mittlere Wert, wenn alle Daten der Größe nach sortiert sind.  
@@ -140,7 +138,7 @@ Quartile: Grenzen, die die Daten in vier gleich große Teile einteilen
 Die "Whisker" zeigen, wie weit die Werte typischerweise reichen.  
 
 [EQ] Schauen Sie in die Dokumentation und beschreiben Sie für diese Informationen 
-(Mittelwert, Quartile, Whisker, Ausreißer) wodurch diese im Box-Plot dargestellt werden.
+(Mittelwert, Quartile, Whisker, Ausreißer), wodurch diese im Box-Plot dargestellt werden.
 
 [ER] Erstellen Sie einen Box-Plot für 100 normalverteilte Zufallszahlen (`np.random.randn(100)`).
 
@@ -163,7 +161,8 @@ ist ein Diagramm, das Werte in einer Matrix durch Farben darstellt.
 Je höher oder niedriger ein Wert ist, desto intensiver (oder anders) ist die Farbe.
 Sie eignet sich besonders, um Muster in 2D-Daten oder Korrelationen sichtbar zu machen.
 
-[ER] Erstellen Sie eine 10×10-Matrix mit Zufallswerten (`np.random.rand(10,10)`) und stellen Sie diese mit plt.imshow() dar.
+[ER] Erstellen Sie eine 10×10-Matrix mit Zufallswerten (`np.random.rand(10,10)`) und stellen Sie
+diese mit `plt.imshow()` dar.
 
 [EQ] Warum ist eine Heatmap besser geeignet als eine Tabelle, 
 wenn man viele Zahlen gleichzeitig darstellen möchte?
@@ -172,11 +171,11 @@ wenn man viele Zahlen gleichzeitig darstellen möchte?
 ### Weitere Plots
 
 Es gibt noch viele weitere Diagrammtypen in Matplotlib, die über die hier vorgestellten hinausgehen.
-Mit den hier gelernten haben Sie jedoch schon eine gute Grundlage um viele Fälle abzudecken.
+Mit den hier Gelernten haben Sie jedoch schon eine gute Grundlage, um viele Fälle abzudecken.
 
 [EQ] Schauen Sie sich die [Matplotlib Gallery](https://matplotlib.org/stable/gallery/index.html) an.
 Dort finden Sie eine Reihe an Arten von Visualisierungen.
-Recherchieren Sie die folgenden drei Diagrammtypen und beschreiben Sie kurz, 
+Recherchieren Sie die folgenden zwei Diagrammtypen und beschreiben Sie kurz, 
 wofür diese jeweils geeignet sind:
 
 - Stackplot (`stackplot()`)  
@@ -189,6 +188,6 @@ wofür diese jeweils geeignet sind:
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Aufgaben im großen und ganzen Korrekt?]
+[INSTRUCTOR::Aufgaben im Großen und Ganzen Korrekt?]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
