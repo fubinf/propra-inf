@@ -1,8 +1,8 @@
 title: "Matplotlib mit Pandas (Zweitstimmen)"
-stage: draft
+stage: alpha
 timevalue: 1.25
 difficulty: 2
-requires: plt-DiagrammArten, pd-Datenselektion2
+assumes: plt-DiagrammArten, pd-Datenselektion2
 ---
 
 [SECTION::goal::idea]
@@ -66,7 +66,8 @@ Das geht aber noch deutlich geschickter.
 Im Folgenden werden Sie diese Grafik nachbauen:
 <img src="plt-votes-figure.png" style="width: 50%;"></img>
 
-[ER] Rechnen Sie dafür für jede Partei den Prozentwert aus.
+[ER] Rechnen Sie dafür für jede Partei den Prozentwert aus und speichern diese in der Variable
+`percent`.
 
 [ER] Unterteilen Sie dann erst einmal alle Parteien in `major_parties` also die, die mindestens 5%
 haben und die, die darunter liegen `minor_parties`.
@@ -112,6 +113,8 @@ for bar, value in zip(bars, major_parties.values):
 
 [ER] Geben Sie dem Diagramm den Titel "Zweitstimmen Bundestagswahl Berlin 2025" und die
 Y-Achsenbeschriftung "Zweitstimmen in %".
+
+Ihr Diagramm sollte nun so aussehen, wie im Bild oben.
 
 ### Kuchendiagramm Wählende
 
