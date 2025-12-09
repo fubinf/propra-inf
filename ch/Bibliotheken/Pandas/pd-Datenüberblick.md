@@ -3,7 +3,6 @@ stage: beta
 timevalue: 0.5
 difficulty: 2
 assumes: pd-Datenstrukturen
-requires: pd-Einführung
 ---
 
 [SECTION::goal::idea]

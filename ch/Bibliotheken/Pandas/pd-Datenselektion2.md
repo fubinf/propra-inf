@@ -3,6 +3,7 @@ stage: beta
 timevalue: 1.5
 difficulty: 2
 requires: pd-Datenselektion
+assumes: re-Metazeichen
 ---
 
 [SECTION::goal::idea]

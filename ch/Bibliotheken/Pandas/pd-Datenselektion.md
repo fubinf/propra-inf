@@ -3,7 +3,6 @@ stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: pd-Datenstrukturen
-requires: pd-Einführung
 explains: Slicing (Python)
 ---
 
