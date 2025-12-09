@@ -5,6 +5,7 @@ wobei auf das Erstellen von Kompetenzen (Lernzielen), die Recherche und didaktis
 sowie zwei ausgewählte Unterrichtsmethoden erläutert werden.
 
 # 1 Lernaufgaben
+
 Es kann unterschieden werden zwischen **Lernaufgaben** und **Leistungsaufgaben**. 
 Während Leistungsaufgaben der Überprüfung von Wissen und Kompetenzen dienen,  
 zielen Lernaufgaben auf den **Kompetenzzuwachs** ab.
@@ -26,7 +27,8 @@ Lernaufgaben sollen:
 - Lernzuwachs sichtbar machen
 - Transfer auf neue Situationen fördern
 
-## 2 Entwurf einer Aufgabe
+
+# 2 Entwurf einer Aufgabe
 
 Eine Vorgehensempfehlung:
 
@@ -35,7 +37,9 @@ Eine Vorgehensempfehlung:
 3. Konstruktion der Aufgabe
 4. Aufgabe prüfen
 
-### 2.1 Formulieren von Lernzielen
+
+## 2.1 Formulieren von Lernzielen
+
 Ein Lernziel ist ein Ziel, das die Studierenden nach Bearbeiten der Aufgabe erreicht haben sollen.
 Lernziele sind immer ergebnisorientiert. 
 In der Regel soll  nicht reines Wissen erlangt werden, sondern Kompetenzen.
@@ -59,12 +63,14 @@ Schritte des Verfassens von Aufgaben, auf gleich drei verschiedenen Ebenen:
 3. Anforderungen an die Aufgabe, die durch die Aufgabenstellung dafür  
    Sorge zu tragen hat, die intendierten Lernergebnisse auch zu erreichen.  
   
-Ein Vorschlag, die Lernziele bzw. zu erreichenden Kompetenzen zu entwickeln ist einem  
-dreistufigen Prozess zu folgen. Dabei werden zunächst die Inhalte herausgearbeitet,  
+Man kann die Lernziele bzw. zu erreichenden Kompetenzen in drei Schritten entwickeln:
+Dabei werden zunächst die Inhalte herausgearbeitet,  
 dann das angestrebte Niveau des Lernprozesses ermittelt und schließlich Kontext gegeben.  
 Zu jedem Schritt gibt es Leitfragen und ein erwartetes Ergebnis.
 
-### 2.1.1 Kompetenzzuwachs  
+
+### 2.1.1 Kompetenzzuwachs
+
 **Leitfragen:**  
  *  Zu welchem Lernzuwachs befähigt das Kapitel, die Taskgroup bzw. die Aufgabe?
  *  Welche Kompetenz erwerben die Studierenden?
@@ -81,7 +87,9 @@ je nach Umfang von Kapitel, Taskgroup oder Aufgabe.
 > - Die Studierenden sollten gesehen haben, wie man Flexbox und Grid-Layout einsetzen kann.
 > - Die Studierenden sollten wissen, zu welchem Zweck man sie einsetzen kann.
 
+
 ### 2.1.2 Niveau des Lernprozesses  
+
 Im zweiten Schritt soll für jedes Item aus Schritt 1 das Niveau des Lernprozesses festgelegt werden.  
   
 **Leitfragen:**
@@ -103,7 +111,9 @@ Das Lernergebnis wird in der Ich-Form formuliert.
 > - Ich implementiere Flexbox und Grid-Layout.
 > - Ich vergleiche Flexbox und Grid-Layout.
 
+
 ### 2.1.3 Objekt und Kontext  
+
 Leitfragen:  
  * Wie passen Kompetenz und Kontext zusammen?
  * Vor welchem Hintergrund sollen Studierende den aktiven Lernprozess ausführen?  
@@ -122,7 +132,9 @@ Zusammenhang zwischen Kontext und angestrebtem Lernzuwachs ergänzt.
 Sind die gewünschten Lernergebnisse formuliert, geht es an die Planung der Reihe bzw. Aufgabe. 
 Hier sollte man immer im Hinterkopf haben, was die Lernergebnisse sein sollen, und wie sie erreicht werden können.
 
+
 ### 2.1.4 Operatoren  
+
 Für die Wahl der geeigneten Operatoren sei einmal auf die SOLO-Taxonomie verwiesen.  
 SOLO steht für "Structure of the Observed Learning Outcome" und ist ein Modell,   
 dass die von Studierenden erworbenen Kompetenzen verschiedenen Komplexitätsstufen zuordnet. 
@@ -167,7 +179,9 @@ Video von Claus Braband und Jacob Andersen, Universität Aarhus.
 	(2/3) https://www.youtube.com/watch?v=SfloUd3eO_M   
 	(3/3) https://www.youtube.com/watch?v=w6rx-GBBwVg
 
+
 ## 2.2 Recherche zum Thema und didaktische Analyse
+
 Was Sie nicht wissen, können Sie auch nicht vermitteln. 
 In der Didaktik ist es daher wichtig, sich mit den zu vermittelnden Kompetenzen auseinanderzusetzen. 
 Insofern ist es sinnvoll, das eigene Vorwissen zum Thema strukturiert festzuhalten. 
@@ -199,11 +213,14 @@ Die Recherche ist ein iterativer Prozess.
 Ergänzen Sie dabei Ihre eigene Wissenssammlung. 
 Es kann auch sein, dass Sie dabei feststellen, dass Sie Ihre intendierten Lernergebnisse noch einmal anpassen müssen.
 
+
 ## 2.3 Konstruktion der Aufgabe
+
 Zwei ausgewählte Methoden zur Aufgabenerstellung seien hier einmal vorgestellt:
 
 1. Das Lehr-Lern-Modell für Lernaufgaben von Josef Leisen
 2. Das Modell *Benutzen, Analysieren, Gestalten, Verankern* von Lutz Hellmig und Tino Hempel
+
 
 ### 2.3.1 Lehr-Lern-Modell für Lernaufgaben
 
@@ -270,7 +287,9 @@ den es durch die Aufgabe zu klären oder zu lösen gilt.
 > Man könnte beispielsweise eine weitere Tabelle implementieren lassen, sodass
 > so Selbstüberprüfung und Verankerung ein größerer Bestandteil der Aufgabe werden. 
 
+
 ### 2.3.2 BAGV - Benutzen, Analysieren, Gestalten, Verankern
+
 Die Methode Benutzen, Analysieren, Gestalten, Verankern ist für das erkundende Lernen konzipiert. 
 Der typische Lernablauf, sich zunächst Konzepte anzusehen 
 und anschließend Werkzeuge dazu kennenzulernen, wird dabei umgedreht. 
@@ -331,7 +350,9 @@ indem ein erster Gestaltungsversuch z.B. nur eine partielle Lösung liefert und 
 > 4. Im letzten Schritt (Verankern) wird noch einmal etwas über den Tellerrand geschaut, 
 > um einen Vergleich anzustellen, welche Layouttechnik in welcher Situation sinnvoll anwendbar sein kann.
 
+
 ## 2.4 Ausprobieren der Aufgabe
+
 Nach der Konstruktion der Aufgabe, gilt es die Aufgabe selbst auszuprobieren.
 Dabei sind unter anderem folgende Punkte zu beachten:
 
@@ -341,6 +362,7 @@ Dabei sind unter anderem folgende Punkte zu beachten:
 - Entsprechend die 
 - Wie lange dauert die Bearbeitung, ist die angesetzte Zeit realistisch?
 - Welche zusätzlichen Hinweise benötigen Tutor*innen zum Bewerten der Aufgabe?
+
 
 # 3 Didaktische Erwägungen
 
@@ -371,6 +393,7 @@ Für die Bewertung von offeneren Aufgaben ist es wichtig für die Tutor*innen,
 nicht nur eine Musterlösung anzubieten, sondern auch die Kriterien zu benennen, 
 die für eine erfolgreiche Bearbeitung der Aufgabe sprechen.
 Diese Kriterien sind bestenfalls gut und schnell überprüfbar.
+
 
 ## 3.2 Scaffolding und gestufte Lernhilfen
 
@@ -404,6 +427,7 @@ mit der wir jenseits von der Gestaltung der Aufgabenstellung selbst Scaffolding 
 Im ProPra können wir dies mit den HINT-Macros sehr gut umsetzen und so Bedarfshilfen zur Verfügung stellen.
 Sollen diese in verschiedenen Stufen angeboten werden, 
 ist es auch sinnvoll, diese Ausklapptexte verschachtelt aufzubauen.
+
 
 # 4 Reihenplanung
 
