@@ -210,10 +210,9 @@ Stattdessen könnte es in manchen Fällen praktischer sein, mehrere Module eines
 
 #### Bibliotheken/pandas (saka)
 
-- Pandas installieren, pandas101
-- Struktur der Doku verstehen
-- Theorie: Series, DataFrame, Index, MultiIndex: Zweck, Unterschiede, Gemeinsamkeiten.
-- Pandas-Cheatsheet: CSV-Tabelle einlesen, diverse Arten von Datenumstrukturieren ausprobieren
+- Pandas-Cheatsheet: Übersicht in welcher Aufgabe was behandelt wird
+- `pd-Zeit-Datum`: extra Aufgabe für Zeitreihen, etc.
+  (wird bereits in `pd-Datenbereinigung` untergeordnet mitbehandelt)
 
 #### Bibliotheken/matplotlib (saka)
 
