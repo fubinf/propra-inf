@@ -34,11 +34,16 @@ erststimmen_df = pd.read_csv("Pfad/zur/Berlin_BT25_W1.csv", sep=';')
 
 ### Kategorische Daten
 
-Kategorische Daten sind Daten, die Werte in Form von Gruppen oder Kategorien annehmen, 
-ohne eine natürliche Reihenfolge oder numerische Bedeutung zu haben.
-
-Wenn wir einen Datensatz über Personen hätten, dann sind z. B. das Geschlecht mit `männlich` oder
-`weiblich` kategorische Daten oder die Augenfarbe (`blau`,`grün`,`braun`,etc.).
+Kategorische Daten sind Daten, deren Werte einzelne Namen darstellen ("Nominalskala").
+Das können Aufzählungstypen sein (mit einem festen, meist recht kleinen Wertebereich,
+z.B. Geschlecht: "männlich", "weiblich", "divers")
+oder offene Benennungen (z.B. Straßennamen, Familiennamen).
+Auch geordnete Daten ("Ordinalskala", z.B. Größe: "S", "M", "L", "XL") kann man als kategorische Daten ansehen,
+wenn sie keiner numerischen Ordnung folgen.
+Allgemeine Strings, die man ja alphabetisch sortieren kann, würde man eher nicht als
+kategorisch ansehen, wenn sie "zu viele" verschiedene Werte annehmen, denn in der Statistik
+ist die Rolle kategorischer Daten oft, Datensätze in relevante Gruppen zu unterteilen.
+Eine scharfe Grenze dafür gibt es aber nicht.
 
 [EQ] Listen Sie 5 Spalten aus dem `erststimmen_df` auf, die kategorische Daten enthalten.
 
@@ -49,25 +54,23 @@ Begründen Sie.
 
 ### Gruppieren mit `groupby()`
 
-Kategorische Daten kann man sich als Gruppen vorstellen.
+Kategorische Daten kann man sich als Gruppenbezeichnungen vorstellen.
 Oft kann es interessant sein zu sehen, in welchen anderen Eigenschaften sich diese Gruppen
 unterscheiden.
-Wenn Sie z.B. zwischen `männlich` und `weiblich` unterscheiden, kann es interessant sein sich
-anzugucken, wie die durchschnittliche Lebensdauer in diesen beiden Gruppen ist.
 Die Methode
 [`groupby()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html)
-ist ideal, um solche kategorischen Daten zu gruppieren.
+stellt eine entsprechende Gruppierung her.
 
-[ER] Schauen Sie sich die Dokumenation zu `groupby()` an und gruppieren Sie `erststimmen_df`
+[ER] Schauen Sie sich die Dokumentation zu `groupby()` an und gruppieren Sie `erststimmen_df`
 nach den Bezirksnamen in die Variable `bezirks_gruppierung`.
 
-[EQ] Was für einen Datentyp ist `bezirks_gruppierung`?
+[EQ] Was für ein Datentyp ist `bezirks_gruppierung`?
 
 Wie Sie merken, handelt es sich hierbei um ein etwas undruchsichtigeres Konstrukt.
 Zwar wissen wir, dass die Daten nun gruppiert sind, aber wie das genau aussehen soll ist nicht
 ganz ersichtlich.
 Wenn man `bezirks_gruppierung` ansieht, dann handelt es sich auch nicht um ein simples DataFrame.
-Das liegt daran das wir zwar die Daten gruppiert haben, `pandas` weiß aber nicht welche
+Das liegt daran, dass wir zwar die Daten gruppiert haben, `pandas` weiß aber nicht welche
 Informationen über die Gruppen wir gerne hätten. 
 
 [EQ] Beschreiben Sie was `bezirks_gruppierung.max()` zurückgibt und in welcher Struktur.
@@ -87,17 +90,17 @@ Gruppieren Sie `erststimmen_df` nach "Bezirksname" und "Wahlbezirksart" und
 betrachten Sie das Ergebnis mit `apply(lambda x: x)`.
 Speichern Sie diesen in die Variable `wahlart_df`.
 
-Wenn Sie das Ergebnis betrachten, fällt Ihnen bestimmt der eigenartige Index auf, für die Zeilen.
-Dadurch, dass Sie nun mehrer Gruppierungskriterien angegeben haben, brauchen wir Gruppen in
+Wenn Sie das Ergebnis betrachten, fällt Ihnen bestimmt der eigenartige Index für die Zeilen auf.
+Dadurch, dass Sie nun mehrere Gruppierungskriterien angegeben haben, brauchen wir Gruppen in
 den Gruppen.
-Der Index hat jetzt quasi mehrere _Level_ und wird auch hierarchischer Index oder
+Der Index hat jetzt quasi mehrere Stufen (_Level_) und wird auch hierarchischer Index oder
 [MultiIndex](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.html#pandas.MultiIndex)
-genannt mit "Bezirksname" auf dem einen Level und "Wahlbezirksart" auf dem anderen.
+genannt mit "Bezirksname" auf der einen Stufe und "Wahlbezirksart" auf der anderen.
 So lassen sich auch feingranulare Analysen durchführen, z. B. wie sich Wahlergebnisse je nach
 Bezirk und Wahlform unterscheiden.
 
 [EQ] Wie können Sie im Code überprüfen, ob es sich beim Index eines `DataFrame` 
-um einen MultIndex oder einen "normalen" Index handelt?
+um einen MultiIndex oder einen "normalen" Index handelt?
 
 [ER] Wenn Sie auf ein bestimmtes Level zugreifen möchten, dann geben Sie nun statt `loc[IndexWert]`
 das Level mit an in einem Tupel `loc[(Level1Wert, Level2Wert)]`.
@@ -134,11 +137,12 @@ partei_stats = erststimmen_df.groupby('Bezirksname').agg({
 })
 ```
 
-[ER] Gruppieren Sie nach "Bezirksname" und "OstWest". 
+[ER] Man kann offensichtlich auch heterogen aggregieren:
+Gruppieren Sie nach "Bezirksname" und "OstWest". 
 Aggreggieren Sie die Summe der Stimmen für die AfD, das Maximum für die Grünen, 
 sowie die durchschnittliche Anzahl an ungültigen Stimmen.
 
-[EQ] Können Sie `reset_index()` auch nutzen, um den Spaltenindex von Multiindex zu einem einfachen
+[EQ] Können Sie `reset_index()` auch nutzen, um den _Spaltenindex_ von MultiIndex zu einem einfachen
 Index zu konvertieren?
 
 
@@ -147,13 +151,13 @@ Index zu konvertieren?
 Ähnlich wie bei [PARTREF::pd-Datenselektion2], kann man auch bei `groupby()` nicht nur Spalten
 angeben, sondern auch logische Ausdrücke:
 ```python
-grouped = df.groupby(df['Punkte'] >= 50) # Beispiel
+grouped = df.groupby(df['Punkte'] >= 50)  # Beispiel
 ```
 
 [ER] Gruppieren Sie `erststimmen_df` nach Einträgen, bei denen die AfD mehr Stimmen hatte 
 als die Linke.
 
-[EQ] Beschreiben Sie den Zeilenindex.
+[EQ] Beschreiben Sie die Struktur des Zeilenindex sprachlich.
 [ENDSECTION]
 
 
@@ -161,6 +165,7 @@ als die Linke.
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::`groupby()` und `agg()` im Wesentlichen verstanden]
 [INCLUDE::ALT:]
