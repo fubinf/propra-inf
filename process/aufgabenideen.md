@@ -216,17 +216,7 @@ Stattdessen könnte es in manchen Fällen praktischer sein, mehrere Module eines
 
 #### Bibliotheken/matplotlib (saka)
 
-Assumes pandas
-
-- matplotlib installieren
-- Doku sichten, Grundkonzepte lernen (nämlich welche?)
-- Barplot ausprobieren
-- Boxplot ausprobieren
-- Multi-Boxplot für Teilmengen von Variable B gemäß der Gruppen laut Variable A
-- einen komplexen Plot nachahmen, der visuell vorliegt und viele Konfig-Anpassungen braucht
-  (Namen der nötigen Konstrukte sind vorgegeben)
-- Dito ohne Namensvorgaben.
-
+- evtl. Animationen mit matplotlib
 
 ### Bibliotheken/chooselib (N.N.)
 
