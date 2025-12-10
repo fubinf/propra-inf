@@ -1,10 +1,8 @@
 title: "Artists anpassen"
-stage: draft
+stage: alpha
 timevalue: 0.75
 difficulty: 2
-explains:
-assumes:
-requires: plt-DiagrammArten
+assumes: plt-DiagrammArten
 ---
 
 [SECTION::goal::idea]
@@ -59,7 +57,7 @@ Wir möchten jedoch nur das Element aus dieser Liste haben.
 Handelt es sich dabei wirklich um eine Art `Artist`?
 
 [ER] Verändern Sie das zurückgegebene `lineobj` nachträglich so, dass:  
-- die Farbe rot wird    
+- Rot als Farbe genutzt wird    
 - die Linie gestrichelt dargestellt wird    
 - die Linienstärke auf 3 gesetzt wird   
 Schauen Sie dafür in die Dokumentation der Klasse und derer Setter-Methoden.
