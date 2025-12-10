@@ -1,7 +1,7 @@
 title: "Daten Kombinieren"
-stage: draft
+stage: alpha
 timevalue: 1.5
-difficulty: 2
+difficulty: 3
 explains:
 assumes:
 requires: pd-Datensatzangleichung
@@ -16,7 +16,7 @@ funktionieren.
 [SECTION::background::default]
 Daten zu verarbeiten heißt auch Daten aus verschiedene Quellen nicht nur vergleichen zu können,
 sondern auch kombinieren zu können.
-Dazu bietet Pandas verschieden vorgehensweisen.
+Dazu bietet Pandas verschiedene Vorgehensweisen.
 [ENDSECTION]
 
 
@@ -64,7 +64,7 @@ df4 = pd.DataFrame({
 
 ### `keys`-Parameter
 
-[ER] Nutzen Sie den Parameter keys, um beim Zusammenfügen von `df1` und `df3` zu kennzeichnen, aus
+[ER] Nutzen Sie den Parameter `keys`, um beim Zusammenfügen von `df1` und `df3` zu kennzeichnen, aus
 welchem DataFrame die Zeilen stammen.
 
 
@@ -77,7 +77,7 @@ Hierzu ist der `join`-Parameter ein wichtiges Hilfsmittel.
 
 [EQ] Lesen Sie die 
 [Dokumentation zur Join-Logik](https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html#joining-logic-of-the-resulting-axis)
-und erklären Sie die beiden Arten joinen.
+und erklären Sie "Inner" und "Outer Join".
 
 [ER] Außerdem wird eine dritte Join-Art beschrieben, der "Left-Join".
 Lesen Sie nach, wie dieser mit `concat` umsetzbar ist und left-joinen Sie `df2` und `df4`.
@@ -94,7 +94,6 @@ wetter_aigen_df = pd.read_csv("pfad/zur/aigen.csv", encoding='latin')
 Die Spalten aus `wetter_aigen_df` sollten gefiltert sein und so heißen, wie die äquivalenten Spalten
 in `wetter_dahlem_df`!
 
-### `merge()`
 
 Mit [`pd.merge()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.merge.html) 
 können Sie zwei `DataFrames` ähnlich wie in SQL zusammenführen.  
@@ -112,7 +111,7 @@ Unterscheidung die Suffixe `_x` und `_y` haben.
 [ER] Nutzen Sie den Parameter `suffixes`, um gleichnamige Spalten aus den beiden DataFrames zu unterscheiden.  
 Wählen Sie etwa `suffixes=("_dahlem", "_aigen")` und prüfen Sie die Spaltennamen im Ergebnis.  
 
-[EQ] Was passiert mit Zeilen, die nur in einem der beiden DataFrames vorkommen?  
+[EQ] Was passiert mit Zeilen, die nur in einem der beiden DataFrames vorkommen?
 
 [ER] Probieren Sie nun einen `left`-Join (`how="left"`) mit `wetter_df_dahlem` als 
 linkem DataFrame.
@@ -120,6 +119,7 @@ Speichern Sie das Ergebnis in `wetter_merged_left`.
 
 [EQ] Erklären Sie, warum das Ergebnis mehr Zeilen enthält als der `inner`-Join.  
 Was bestimmt beim `left`-Join die Anzahl der Zeilen im Ergebnis?  
+
 
 ### `join()`
 
@@ -141,7 +141,8 @@ Nutzen Sie dabei die Option `how="inner"`.
 [EQ] Was unterscheidet `join()` in der Anwendung von `merge()`?
 In welchen Situationen könnte `join()` den praktischeren Weg darstellen?
 
-### Andere Hilreiche Funktionen
+
+### Andere Hilfreiche Funktionen
 
 Neben `concat`, `merge` und `join` gibt es in pandas noch weitere Möglichkeiten, 
 Daten aus mehreren Quellen zu kombinieren oder gegeneinander abzugleichen:  
@@ -155,12 +156,8 @@ Daten aus mehreren Quellen zu kombinieren oder gegeneinander abzugleichen:
 - [`compare`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.compare.html):  
   Zeigt die Unterschiede zwischen zwei DataFrames übersichtlich an.  
   Besonders nützlich, wenn man prüfen möchte, welche Werte sich nach einer Bereinigung oder Transformation verändert haben.  
-
 [ENDSECTION]
 
-[SECTION::instructions::loose]
-
-[ENDSECTION]
 
 [SECTION::submission::reflection]
 [INCLUDE::/_include/Submission-Quellcode.md]
