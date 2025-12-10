@@ -1,7 +1,7 @@
 title: "Mit mehreren Datensätzen arbeiten"
 stage: alpha
 timevalue: 1.5
-difficulty: 2
+difficulty: 3
 requires: pd-Datenbereinigung
 ---
 
@@ -39,7 +39,7 @@ wetter_aigen_df = pd.read_csv("pfad/zur/aigen.csv", encoding='latin')
 
 Unser Ziel ist es, die Lufttemperaturen über die Zeit zu vergleichen.
 Machen Sie sich daher zuerst mit der Beschreibung der bereitgestellten Felder in der CSV-Datei
-vetraut.
+vertraut.
 
 
 ### Fehlende Daten
@@ -73,7 +73,7 @@ Eine der Stolperfallen bei der Arbeit mit `datetime`!
 
 [EQ] Schauen Sie in die Dokumentation von
 [`to_datetime`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_datetime.html#pandas.to_datetime)
-und nennen Sie wie und mit welchem Parameter Sie dafür sorgen können, dass beide Spalten im
+und nennen Sie, wie und mit welchem Parameter Sie dafür sorgen können, dass beide Spalten im
 UTC-Format sind.
 
 
