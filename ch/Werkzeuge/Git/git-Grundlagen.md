@@ -32,71 +32,130 @@ Erst damit kann man sich in Situationen außerhalb des kleinen git-Einmaleins
 und wissen, was jeweils zu tun ist.
 
 Wir arbeiten die Inhalte anhand eines winzig kleinen Beispielprojekts durch: 
-Wenige Zeilen Code für ein supersimples Taschenrechner-Programm.
+wenige Zeilen Code für ein supersimples Taschenrechner-Programm.
 
 Anders als bei den meisten Aufgaben brauchen wir diesmal ein ganz neues Repo. 
 Das dient in erster Linie dazu, dass Sie weiteres Verständnis darüber aufbauen was in diesem 
 Schritt passiert und einmal die Repo-Erstellung selber durchturnen als wie üblich von Tools wie 
 Gitlab und Co. abgenommen zu bekommen. 
 Dafür erstellen Sie ein neues Verzeichnis **außerhalb ihrer bestehenden ProPra-Repositories**, 
-navigieren mit ihrer Kommandozeile dort hinein und führen den Befehl `git init` aus. 
+wie wir es bereits im [TERMREF::Hilfsbereich] teil der ProPra Grundlagen eingerichtet haben.
+Navigieren Sie mit ihrer Kommandozeile dort hinein und führen den Befehl `git init` aus. 
 
 [HINT::Kann ich ein neues Repository in meinem bestehenden erstellen?]
-Jein. Git bietet die Möglichkeit des Einbindens weiterer Repos mithilfe sogenannter Submodules an. 
+Jein. git bietet die Möglichkeit des Einbindens weiterer Repos mithilfe sogenannter Submodules an. 
 Submodules sind auch bei kompetenten Git-Nutzer_innen berüchtigt dafür, wie kompliziert
 das Leben dann wird; also gehen wir diesen Weg hier lieber nicht,
 sondern trennen unser Übungs-Repo vom ProPra-Repo.
 [ENDHINT]
 
-Schauen wir jetzt mit `ls` in unser Verzeichnis fällt uns auf, dass uns gar nichts auffällt...
-Wir haben ja immernoch ein leeres Verzeichnis.
-Aber warum ist das so?
-Wenn `git init` ausgeführt wird, wird ein neuer unsichtbarer Ordner angelegt, `.git`.
-Führen wir `ls -a` aus, sehen wir auch diesen.
-Dieser `.git` Ordner wird auch *Repository Directory* genannt. 
-Darin speichert git alle Informationen über unser Repository. 
-Dabei geht es nicht nur um Meta-Informationen, sondern auch um **alle** Daten, die über die 
-Lebenszeit unseres Repositories mithilfe von git getrackt werden.
-Was bedeutet getrackt? Git interessiert sich nur für Dateien, die wir ihm explizit angeben. 
-Alle anderen Dateien kann es zwar sehen, wird deren Inhalt aber nicht ohne Aufforderung 
-speichern oder anderweitig verfolgen.
-Wie genau das funktioniert und was gespeichert wird, lernen wir im weiteren Verlauf der Aufgabe.
+### Git initialisieren; Repository-, Working-Directory und Bäume
 
-Genauso wie es ein *Repository Directory* gibt, so gibt es auch ein *Working Directory* (dt. 
-Arbeitsverzeichnis), manchmal auch *Working Tree* genannt. 
-Warum *Working **tree** *? Weil git Verzeichnisse grundsätzlich als Baumstrukturen aufzeichnet.
+Unser neues Repo wirkt auf den ersten Blick leer – sowohl im GUI-Dateimanager des Betriebssystems als auch in der Kommandozeile mit `ls`.
+Warum ist das so?
 
-Jetzt geht es aber erstmal zurück zu unserer Aufgabe.
-In [PARTREF::git-Funktionsweise] haben Sie schon einmal den Befehl `git help` kennengelernt. 
-Diesen wollen wir jetzt wieder nutzen um zu lernen wozu `git init` genutzt wird.
+Wenn `git init` ausgeführt wird, legt git den unsichtbaren Ordner `.git` an.
+Führen wir `ls -a` aus oder lassen uns im Dateimanager versteckte Verzeichnisse anzeigen, sehen wir diesen Ordner.
 
-[EQ] Was macht der Befehl `git init`? 
+Der Ordner `.git` wird auch [TERMREF::Repository-Verzeichnis] (engl. Repository-Directory) genannt.
+*Repository* bedeutet *Lager* oder *Speicher*. Man kann es sich wie ein Archiv vorstellen, in dem git alle Informationen über unser Projekt speichert – sowohl Dateiinhalte als auch Metadaten.
+
+Jedes Mal, wenn Sie eine Datei bzw. den Zustand einer Datei dauerhaft sichern möchten, übergeben Sie sie an das Repository.
+Dieses Archiv teilen Sie später mit anderen Nutzern bzw. laden es auf einen Git-Server hoch.
+Andere können dann jeden gespeicherten Zustand wiederherstellen oder eigene Zustände hinzufügen.
+
+Gespeicherte Dateien lassen sich nicht ohne Weiteres ändern. Das ist wichtig zu wissen!
+Haben Sie z. B. versehentlich Passwörter oder andere sensible Daten commitet und auf den Git-Server gepusht, wird es mühsam, diese wieder zu entfernen.
+Dazu später mehr.
+
+Neben dem *Repository Directory* gibt es auch das *Working Directory* (dt. Arbeitsverzeichnis), manchmal *Working Tree* genannt.
+Das Arbeitsverzeichnis enthält den aktuellen Zustand Ihres Projekts. Mit diesen Dateien arbeiten Sie und können daran grundsätzlich alles ändern, denn alte Zustände lassen sich jederzeit aus dem Archiv wiederherstellen.
+Aus dem Working Tree wählen Sie auch die Dateien und Änderungen aus, die Sie erneut im Repository speichern möchten.
+
+Warum eigentlich *Working **Tree***?
+Weil git Verzeichnisse grundsätzlich als Baumstrukturen darstellt.
+
+Was haben wir bis hierhin gelernt?
+
+* `git init` erzeugt das Repository-Verzeichnis und legt es im Ordner `.git` an.
+* Im Repository-Verzeichnis befinden sich alle Informationen und Daten zu unserem Projekt.
+* Wir können jederzeit zu jedem einmal abgelegten Zustand des Repositorys zurückkehren.
+* Das Arbeitsverzeichnis (Working Directory) ist unsere lokale Arbeitskopie des Repos. Hier können wir beliebig Änderungen vornehmen.
+* Diese Änderungen sowie neu hinzugefügte Dateien und Verzeichnisse können wir dem Repository zum dauerhaften Speichern übergeben.
+
+### Wo bekomme ich nochmal Hilfe?
+
+In [PARTREF::git-Funktionsweise] haben Sie bereits den Befehl `git help` kennengelernt.
+Diesen wollen wir jetzt wieder nutzen, um zu lernen, wozu `git init` dient.
+
+[EQ] Was macht der Befehl `git init`?
 Referenzieren Sie hierbei die Git-Hilfe und vor allem die Teile, die Sie verstehen.
 
-In der Dokumentation zu `git init` werden ihnen vielleicht der `.git` Ordner sowie die "Objekte" 
-aufgefallen sein. 
-Um deren Zweck zu verstehen, lesen wir den Abschnitt 
-[Creating a Git repository](https://git-scm.com/docs/gitcore-tutorial) 
-im `gitcore-tutorial`.
+### Aufbau des Repository-Verzeichnisses und Git-Objekte
 
-[EQ] Was wird im Verzeichnis `.git/objects` abgelegt?  
+Besonders wichtig für uns sind der `.git`-Ordner (Repository-Verzeichnis) und die Git-Objekte.
+Zwar müssen wir im Idealfall nie direkt in diesem Ordner arbeiten, aber es hilft beim Verständnis zu wissen, was sich darin befindet und wie git ihn verwaltet.
 
-[EQ] Wie werden Git-Objekte referenziert?  
+Lesen Sie dazu den Abschnitt
+[Creating a git repository](https://git-scm.com/docs/gitcore-tutorial)
+im `gitcore-tutorial` und beantworten Sie dann die folgenden Fragen.
 
-[EQ] Wie heisst der default Branch?
-Kann ich diesen umbenennen und brauche ich ihn überhaupt?  
+[EQ] Was wird im Verzeichnis `.git/objects` abgelegt?
 
-Nun haben wir also ein neues und sauberes git Repo und haben verstanden, 
-was sich bis dato darin befindet. 
-Als Nächstes wollen wir herausfinden, 
-wie wir den aktuellen Zustand unseres Repos betrachten können. 
-Dafür gibt es den Befehl `git status`. 
-Dieser zeigt uns Informationen darüber an, welche Dateien git sieht, 
-beobachtet und ob es Veränderungen zum letzten Commit gibt. 
-Führen Sie `git status` jetzt aus, werden Sie feststellen, dass das Repo fast leer ist:
-Es gibt einen Zweig ("branch"), aber keine Commits darauf. 
-Damit wir ein bisschen mit Daten hantieren können, brauchen wir also erstmal welche in unserem Repository. 
-Beginnen wir also mit unserem fiktiven Grundgerüst, der Funktionsdefinition:
+[EQ] Wie werden Git-Objekte referenziert?
+
+[EQ] Wie heißt der Default-Branch, und können Sie ihn umbenennen bzw. brauchen Sie ihn überhaupt?
+
+Ziehen wir ein kurzes Zwischenfazit:
+
+Sie sollten jetzt verstehen, was `git init` tut, kennen den Unterschied zwischen Repository- und Arbeitsverzeichnis und wissen, was Git-Objekte sind und wo Sie Hilfe zu bestimmten Git-Kommandos finden können.
+
+### `git status`
+
+Wie wir wissen, können wir im Arbeitsverzeichnis nach Belieben Änderungen vornehmen.
+Git hat jedoch eine andere Sicht auf das Arbeitsverzeichnis.
+Um den Unterschied zu sehen, gibt es ein hilfreiches Kommando: `git status`.
+Es zeigt an, welche Dateien git erkennt, welche es trackt und ob es Änderungen seit dem letzten Commit gibt.
+
+Führen wir `git status` in unserem neuen Repository aus, sehen wir folgende Ausgabe:
+
+```terminaloutput
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+```
+
+### Was bedeutet eigentlich *tracken*?
+
+*To track something* bedeutet *etwas zu verfolgen*.
+Genau das macht git hier. Für jede getrackte Datei prüft Git, ob seit der letzten Archivierung Änderungen vorgenommen wurden.
+
+Mit `git add` sagen wir git für jede Datei einmal, dass wir sie tracken wollen.
+Nicht getrackte Dateien kann git zwar sehen, aber es speichert ihren Zustand nicht.
+
+Es gibt auch eine Möglichkeit, bestimmte Dateien oder Verzeichnisse komplett zu ignorieren:
+die `.gitignore`-Datei.
+Git wird dann nie vorschlagen, diese Dateien zu tracken oder ihre Inhalte zu sichern.
+
+### Was ist ein Commit?
+
+Wir erinnern uns an das Archiv.
+Git archiviert nur die Zustände des Repos, die wir ihm *übergeben*.
+Diese Zustände nennt man „Commits“. 
+Der Begriff kommt vom englischen Verb *to commit*, also „etwas übergeben“ oder „überlassen“.
+
+Wir übergeben git also den aktuellen Zustand unseres Arbeitsverzeichnisses bzw. bestimmter 
+Dateien und beauftragen es mit der Archivierung.
+Git gibt uns dafür einen eindeutigen Identifikator, einen Hash.
+Mit diesem Commit-Hash können wir jederzeit auf den Zustand zum Zeitpunkt dieses Commits zurückgreifen.
+
+Auf Hashes und den Vorgang des Commitens gehen wir weiter unten noch genauer ein.
+Das Verständnis fällt jedoch leichter, wenn wir erst ein paar Daten haben, 
+mit denen wir Beispiel-Commits erstellen können.
+
+Daher beginnen wir jetzt mit unserem fiktiven Grundgerüst, der Funktionsdefinition:
 
 ```python
 # Ein einfacher Rechner
@@ -105,74 +164,66 @@ def addiere(a, b):
     
 ```
 
-Erstellen Sie die Datei `calculator.py` mit dem obigen Inhalt und schauen Sie sich nochmal 
-den Status an.
+Erstellen Sie die Datei `calculator.py` mit dem obigen Inhalt und schauen Sie sich anschließend 
+noch einmal den Status Ihres Git-Repositories an.
 
-Hier sehen wir jetzt einige neue Informationen. 
-Zum einen bekommen wir noch immer "No commits yet" angezeigt. 
-Was ja auch stimmt, denn wir haben lediglich eine neue Datei angelegt. 
-Zumindest scheint git aber *irgendwas* über diese Datei zu wissen, denn sie wird als "Untracked file" 
-angegeben.
+Jetzt zeigt `git status` einige neue Informationen.
+Es erscheint weiterhin `No commits yet`, aber git hat die neue Datei erkannt.
+Sie wird als `Untracked file` aufgeführt.
 
-Aber weiß git auch, was sich in dieser Datei befindet? 
-Die letzte Zeile des git-Status gibt uns einen kleinen Hinweis. 
+Weiß git aber schon, was in dieser Datei steht?
+Die Ausgabe von `git status` deutet an, dass git zwar alle Dateien im Arbeitsverzeichnis sieht, 
+sich jedoch erst dann aktiv um sie kümmert, wenn wir es dazu auffordern.
 
-Wir erinnern uns: Vorhin haben wir gelernt, dass git zwar alle Dateien im Arbeitsverzeichnis 
-sehen kann, sich aber grundsätzlich erst nach Aufforderung um Sie kümmert?
-Erst wenn wir `git add` benutzen, sagen wir git, welche Dateien es verfolgen/tracken soll.
-Genau das machen wir jetzt.
+Wir erinnern uns: Mit `git add` teilen wir git mit, welche Dateien es tracken soll.
+Das tun wir jetzt.
 
 #### Git-Index
 
-Der git-Index, auch Staging-Area genannt, ist ein Kernelement der git-Arbeitsweise und versteht 
-sich quasi als eine Art Zwischenablage.
-Er kommt ständig zum Einsatz, nämlich immer dann, wenn wir dem Repository neue Dateien 
-hinzufügen, bestehende Dateien ändern oder bereits vorhandene Dateien löschen wollen.
+Der Git-Index, auch Staging-Area genannt, ist ein Kernelement der Git-Arbeitsweise und dient als 
+eine Art Zwischenablage.
+Er kommt immer dann zum Einsatz, wenn wir dem Repository neue Dateien hinzufügen, 
+bestehende Dateien ändern oder bereits vorhandene Dateien löschen möchten.
 
-Wie weiter oben bereits angemerkt, verwenden wir dafür den Befehl `git add`.
+Wie weiter oben bereits erwähnt, verwenden wir dafür den Befehl `git add`.
 
-Man kann sich die Staging-Area als Pufferzone zwischen dem Arbeitsverzeichnis und dem Repository
-vorstellen:
-Erst wenn ein neuer git-Commit erstellt wird, werden alle im Index vorgemerkten Dateien dauerhaft in
-einem neuen Commit-Objekt gespeichert. 
-Hierbei werden vor allem nicht nur Änderungen an Dateien gesichert, sondern immer vollständige 
-Abbilder.
-Einen Commit kann man sich also wie eine Momentaufnahme, also einen [TERMREF::Snapshot (git)] 
-(dt. Schnappschuss), vorstellen.
-Bestehende unveränderte Dateien werden einfach vom vorherigen Commit übernommen (mithilfe einer 
-Referenz). 
-So spart git Rechenaufwand und Speicherplatz. 
+Man kann sich die Staging-Area als Pufferzone zwischen dem Arbeitsverzeichnis und dem 
+Repository vorstellen:
+Erst wenn ein neuer Commit erstellt wird, speichert git alle im Index vorgemerkten Dateien 
+dauerhaft in einem neuen Commit-Objekt.
+Dabei werden nicht nur Änderungen gesichert, sondern immer vollständige Abbilder.
+Ein Commit ist also eine Momentaufnahme – ein [TERMREF::Snapshot (git)] (dt. Schnappschuss).
 
-In [PARTREF::git-Funktionsweise] haben wir es bereits gesehen, aber wer sich dazu einen 
-Auffrischer abholen möchte, kann sich nochmal die Grafiken im Teil 
-[What is Git?](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F) 
-des Pro Git Books anschauen.
+Unveränderte Dateien übernimmt git einfach vom vorherigen Commit mithilfe einer Referenz.
+So spart git Rechenaufwand und Speicherplatz.
 
-Die Staging-Area erlaubt uns auch, wie so vieles in git, Änderungen im Arbeitsverzeichnis 
-rückgängig zu machen, indem wir den Zustand der Datei auf den der Staging-Area zurücksetzen. 
-Daher bietet es sich an, öfter mal Dateien zu sinnvollen Zeitpunkten der Staging-Area 
-hinzuzufügen, damit man ggf. auf den dabei gesicherten Zustand zurückgreifen kann.
+In [PARTREF::git-Funktionsweise] haben wir dies bereits gesehen.
+Wer eine Auffrischung braucht, kann sich die Grafiken im Abschnitt
+[What is Git?](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F)
+des *Pro Git Books* anschauen.
 
-Trotzdem sollte man das Ganze nicht als "Backup" sehen, denn wirklich langfristig gesichert sind 
-unsere Änderungen erst nach dem Hinzufügen zu einem Commit.
+Die Staging-Area erlaubt uns auch, Änderungen im Arbeitsverzeichnis rückgängig zu machen, 
+indem wir den Zustand einer Datei auf den Stand der Staging-Area zurücksetzen.
+Es bietet sich daher an, Dateien zu sinnvollen Zeitpunkten zur Staging-Area hinzuzufügen, 
+damit man auf diese gesicherten Zustände zurückgreifen kann.
+
+Trotzdem ersetzt dies kein richtiges Backup: Wirklich langfristig gesichert sind Änderungen erst, 
+wenn sie Teil eines Commits geworden sind.
 
 [NOTICE]
-Übrigens: als Backup sollte man ein git-Repository sowieso nie betrachten. 
-Höchstens, wenn wir unseren lokalen Zustand auch auf einen entfernten Server gepusht haben. 
-Allerdings können wir, nachdem wir einen Commit erstellt haben, jederzeit zu dessen erfassten 
-Zustand zurückkehren. 
-Wer mehr darüber lernen möchte, findet später im Abschnitt [PARTREF::git-Fehlerbehebung] mehr 
-praktisches Wissen.
+Übrigens: Ein Git-Repository sollte generell nicht als Backup betrachtet werden.
+Allenfalls, wenn wir unseren lokalen Zustand zusätzlich auf einen entfernten Server gepusht haben.
+Nach einem Commit können wir jedoch jederzeit zu dessen Zustand zurückkehren.
+Mehr dazu finden Sie später im Abschnitt [PARTREF::git-Fehlerbehebung].
 [ENDNOTICE]
 
-Fügen Sie also jetzt die Datei `calculator.py` der [TERMREF::Staging-Area] hinzu und prüfen Sie 
-wieder den Status.
+Fügen Sie jetzt die Datei `calculator.py` der [TERMREF::Staging-Area] hinzu und prüfen Sie 
+erneut den Status.
 
 [EQ] Welche Veränderungen stellen Sie fest?
 
-Inzwischen sollten wir ein recht gutes Verständnis haben, was die Staging-Area/Index, Working 
-Directory und Repository Directory sind. 
-Außerdem sollten wir wissen, wie man Dateien zum Index hinzufügt.
+Inzwischen sollten Sie ein gutes Verständnis davon haben, was Staging-Area/Index, 
+Working Directory und Repository Directory sind und wie man Dateien zum Index hinzufügt.
 
 Als nächstes, möchten wir wieder ein bisschen in den theoretischeren Teil eintauchen.
 Schauen Sie dazu das Video [Git from the inside out](https://www.youtube.com/watch?v=fCtZWGhQBvo).
@@ -185,7 +236,7 @@ Wir schauen das Video ca. bis zum Textabschnitt "Check out a commit".
 In diesem Video werden einige sehr grundlegende Konzepte aufgegriffen. 
 Hierzu ein paar Fragen, die Sie beantworten können sollten, bevor Sie mit der Aufgabe fortfahren:
 
-[EQ] Wie speichert Git eine Datei, wenn `git add` ausgeführt wird? (blob object, mit hash name, 
+[EQ] Wie speichert git eine Datei, wenn `git add` ausgeführt wird? (blob object, mit hash name, 
 eindeutig referenzierbar)
 
 [EQ] Wenn wir mit `git add` weitere Änderungen an einer Datei zum Index hinzufügen, bevor wir 
@@ -386,7 +437,7 @@ sinnvoller Nachricht.
 
 ### Git-Historie
 
-Nicht selten wollen wir in Git aber nicht nur neue Änderungen hinzufügen und uns ausschließlich 
+Nicht selten wollen wir in git aber nicht nur neue Änderungen hinzufügen und uns ausschließlich 
 Vorwärts bewegen, sondern oft auch in die Vergangenheit schauen.
 Vielleicht, um einen alten Zustand zu betrachten und ggf. auch wiederherzustellen oder einfach nur 
 um zu prüfen, was wir aktuell für Commits im Repository haben.
