@@ -51,26 +51,35 @@ sondern trennen unser Übungs-Repo vom ProPra-Repo.
 
 ### Git initialisieren; Repository-, Working-Directory und Bäume
 
-Unser neues Repo wirkt auf den ersten Blick leer – sowohl im GUI-Dateimanager des Betriebssystems als auch in der Kommandozeile mit `ls`.
+Unser neues Repo wirkt auf den ersten Blick leer – sowohl im GUI-Dateimanager des 
+Betriebssystems als auch in der Kommandozeile mit `ls`.
 Warum ist das so?
 
 Wenn `git init` ausgeführt wird, legt git den unsichtbaren Ordner `.git` an.
-Führen wir `ls -a` aus oder lassen uns im Dateimanager versteckte Verzeichnisse anzeigen, sehen wir diesen Ordner.
+Führen wir `ls -a` aus oder lassen uns im Dateimanager versteckte Verzeichnisse anzeigen, 
+sehen wir diesen Ordner.
 
 Der Ordner `.git` wird auch [TERMREF::Repository-Verzeichnis] (engl. Repository-Directory) genannt.
-*Repository* bedeutet *Lager* oder *Speicher*. Man kann es sich wie ein Archiv vorstellen, in dem git alle Informationen über unser Projekt speichert – sowohl Dateiinhalte als auch Metadaten.
+*Repository* bedeutet *Lager* oder *Speicher*. Man kann es sich wie ein Archiv vorstellen, 
+in dem git alle Informationen über unser Projekt speichert – sowohl Dateiinhalte als auch Metadaten.
 
-Jedes Mal, wenn Sie eine Datei bzw. den Zustand einer Datei dauerhaft sichern möchten, übergeben Sie sie an das Repository.
+Jedes Mal, wenn Sie eine Datei bzw. den Zustand einer Datei dauerhaft sichern möchten, 
+übergeben Sie sie an das Repository.
 Dieses Archiv teilen Sie später mit anderen Nutzern bzw. laden es auf einen Git-Server hoch.
 Andere können dann jeden gespeicherten Zustand wiederherstellen oder eigene Zustände hinzufügen.
 
 Gespeicherte Dateien lassen sich nicht ohne Weiteres ändern. Das ist wichtig zu wissen!
-Haben Sie z. B. versehentlich Passwörter oder andere sensible Daten commitet und auf den Git-Server gepusht, wird es mühsam, diese wieder zu entfernen.
+Haben Sie z. B. versehentlich Passwörter oder andere sensible Daten commitet und auf den 
+Git-Server gepusht, wird es mühsam, diese wieder zu entfernen.
 Dazu später mehr.
 
-Neben dem *Repository Directory* gibt es auch das *Working Directory* (dt. Arbeitsverzeichnis), manchmal *Working Tree* genannt.
-Das Arbeitsverzeichnis enthält den aktuellen Zustand Ihres Projekts. Mit diesen Dateien arbeiten Sie und können daran grundsätzlich alles ändern, denn alte Zustände lassen sich jederzeit aus dem Archiv wiederherstellen.
-Aus dem Working Tree wählen Sie auch die Dateien und Änderungen aus, die Sie erneut im Repository speichern möchten.
+Neben dem *Repository Directory* gibt es auch das *Working Directory* (dt. Arbeitsverzeichnis), 
+manchmal *Working Tree* genannt.
+Das Arbeitsverzeichnis enthält den aktuellen Zustand Ihres Projekts. 
+Mit diesen Dateien arbeiten Sie und können daran grundsätzlich alles ändern, 
+denn alte Zustände lassen sich jederzeit aus dem Archiv wiederherstellen.
+Aus dem Working Tree wählen Sie auch die Dateien und Änderungen aus, 
+die Sie erneut im Repository speichern möchten.
 
 Warum eigentlich *Working **Tree***?
 Weil git Verzeichnisse grundsätzlich als Baumstrukturen darstellt.
@@ -80,8 +89,10 @@ Was haben wir bis hierhin gelernt?
 * `git init` erzeugt das Repository-Verzeichnis und legt es im Ordner `.git` an.
 * Im Repository-Verzeichnis befinden sich alle Informationen und Daten zu unserem Projekt.
 * Wir können jederzeit zu jedem einmal abgelegten Zustand des Repositorys zurückkehren.
-* Das Arbeitsverzeichnis (Working Directory) ist unsere lokale Arbeitskopie des Repos. Hier können wir beliebig Änderungen vornehmen.
-* Diese Änderungen sowie neu hinzugefügte Dateien und Verzeichnisse können wir dem Repository zum dauerhaften Speichern übergeben.
+* Das Arbeitsverzeichnis (Working Directory) ist unsere lokale Arbeitskopie des Repos. 
+  Hier können wir beliebig Änderungen vornehmen.
+* Diese Änderungen sowie neu hinzugefügte Dateien und Verzeichnisse können wir dem Repository 
+  zum dauerhaften Speichern übergeben.
 
 ### Wo bekomme ich nochmal Hilfe?
 
@@ -94,7 +105,8 @@ Referenzieren Sie hierbei die Git-Hilfe und vor allem die Teile, die Sie versteh
 ### Aufbau des Repository-Verzeichnisses und Git-Objekte
 
 Besonders wichtig für uns sind der `.git`-Ordner (Repository-Verzeichnis) und die Git-Objekte.
-Zwar müssen wir im Idealfall nie direkt in diesem Ordner arbeiten, aber es hilft beim Verständnis zu wissen, was sich darin befindet und wie git ihn verwaltet.
+Zwar müssen wir im Idealfall nie direkt in diesem Ordner arbeiten, 
+aber es hilft beim Verständnis zu wissen, was sich darin befindet und wie git ihn verwaltet.
 
 Lesen Sie dazu den Abschnitt
 [Creating a git repository](https://git-scm.com/docs/gitcore-tutorial)
@@ -108,14 +120,17 @@ im `gitcore-tutorial` und beantworten Sie dann die folgenden Fragen.
 
 Ziehen wir ein kurzes Zwischenfazit:
 
-Sie sollten jetzt verstehen, was `git init` tut, kennen den Unterschied zwischen Repository- und Arbeitsverzeichnis und wissen, was Git-Objekte sind und wo Sie Hilfe zu bestimmten Git-Kommandos finden können.
+Sie sollten jetzt verstehen, was `git init` tut, kennen den Unterschied zwischen Repository- 
+und Arbeitsverzeichnis und wissen, was Git-Objekte sind und wo Sie Hilfe zu bestimmten Git-Kommandos 
+finden können.
 
 ### `git status`
 
 Wie wir wissen, können wir im Arbeitsverzeichnis nach Belieben Änderungen vornehmen.
 Git hat jedoch eine andere Sicht auf das Arbeitsverzeichnis.
 Um den Unterschied zu sehen, gibt es ein hilfreiches Kommando: `git status`.
-Es zeigt an, welche Dateien git erkennt, welche es trackt und ob es Änderungen seit dem letzten Commit gibt.
+Es zeigt an, welche Dateien git erkennt, 
+welche es trackt und ob es Änderungen seit dem letzten Commit gibt.
 
 Führen wir `git status` in unserem neuen Repository aus, sehen wir folgende Ausgabe:
 
@@ -130,7 +145,8 @@ nothing to commit (create/copy files and use "git add" to track)
 ### Was bedeutet eigentlich *tracken*?
 
 *To track something* bedeutet *etwas zu verfolgen*.
-Genau das macht git hier. Für jede getrackte Datei prüft Git, ob seit der letzten Archivierung Änderungen vorgenommen wurden.
+Genau das macht git hier. Für jede getrackte Datei prüft Git, 
+ob seit der letzten Archivierung Änderungen vorgenommen wurden.
 
 Mit `git add` sagen wir git für jede Datei einmal, dass wir sie tracken wollen.
 Nicht getrackte Dateien kann git zwar sehen, aber es speichert ihren Zustand nicht.
@@ -188,7 +204,7 @@ bestehende Dateien ändern oder bereits vorhandene Dateien löschen möchten.
 Wie weiter oben bereits erwähnt, verwenden wir dafür den Befehl `git add`.
 
 Man kann sich die Staging-Area als Pufferzone zwischen dem Arbeitsverzeichnis und dem 
-Repository vorstellen:
+Repository-Verzeichnis vorstellen:
 Erst wenn ein neuer Commit erstellt wird, speichert git alle im Index vorgemerkten Dateien 
 dauerhaft in einem neuen Commit-Objekt.
 Dabei werden nicht nur Änderungen gesichert, sondern immer vollständige Abbilder.
@@ -196,6 +212,21 @@ Ein Commit ist also eine Momentaufnahme – ein [TERMREF::Snapshot (git)] (dt. S
 
 Unveränderte Dateien übernimmt git einfach vom vorherigen Commit mithilfe einer Referenz.
 So spart git Rechenaufwand und Speicherplatz.
+
+Auch hier können wir unsere Archiv-Analogie verwenden:
+Haben wir Änderungen im Arbeitsverzeichnis vorgenommen, 
+können wir jederzeit Kopien dieser veränderten Dateien nehmen und in einen neuen Ablagestapel legen.
+Dieser Ablagestapel ist unsere Staging-Area.
+
+Damit ergeben sich mehrere Möglichkeiten:
+
+* Wir können Dateien aus dem Ablagestapel herausholen, 
+  um ihren Zustand anzuschauen und unsere Arbeitskopien wieder auf diesen Zustand zurücksetzen.
+* Wir können Dateien auch wieder aus dem Ablagestapel entfernen und verwerfen.
+
+Sind wir mit den im Ablagestapel gesammelten Kopien zufrieden, 
+können wir uns jederzeit dafür entscheiden, daraus ein Paket (einen Commit) zu schnüren 
+und dieses in unserem Archiv abzulegen.
 
 In [PARTREF::git-Funktionsweise] haben wir dies bereits gesehen.
 Wer eine Auffrischung braucht, kann sich die Grafiken im Abschnitt
@@ -208,10 +239,12 @@ Es bietet sich daher an, Dateien zu sinnvollen Zeitpunkten zur Staging-Area hinz
 damit man auf diese gesicherten Zustände zurückgreifen kann.
 
 Trotzdem ersetzt dies kein richtiges Backup: Wirklich langfristig gesichert sind Änderungen erst, 
-wenn sie Teil eines Commits geworden sind.
+wenn sie Teil eines Commits geworden sind und dieser Commit muss natürlich dann auch 
+entsprechend auf einem git-Server gespeichert werden.
 
 [NOTICE]
-Übrigens: Ein Git-Repository sollte generell nicht als Backup betrachtet werden.
+Übrigens: Auch wenn wir den Begriff oben verwendet haben,
+ein einzelnes Git-Repository ist kein Backup.
 Allenfalls, wenn wir unseren lokalen Zustand zusätzlich auf einen entfernten Server gepusht haben.
 Nach einem Commit können wir jedoch jederzeit zu dessen Zustand zurückkehren.
 Mehr dazu finden Sie später im Abschnitt [PARTREF::git-Fehlerbehebung].
