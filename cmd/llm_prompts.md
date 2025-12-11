@@ -56,7 +56,7 @@ Vereinfache unnötig komplexe Satzkonstruktionen, insbesondere durch Anwendung d
 - Satzanteile ohne eigenen Sinngehalt ggf. weglassen
 - Unschöne Passivkonstruktionen durch Aktiv ersetzen
 - Unnötig lange Sätze in kürzere zerlegen (aber bitte kein Stakkato-Stil)
-- Tiefe Schachtelsätze möglichst "flachklopfen", in dem die Aspekte der Reihe nach besprochen werden
+- Tiefe Schachtelsätze möglichst "flachklopfen", indem die Aspekte der Reihe nach besprochen werden
 - Sätze mit längeren Aufzählungen (ab drei langen oder vier mittellangen Elementen) in Spiegelstrich-Listen verwandeln.
   Unser Markdown-Prozessor benötigt vor dem ersten Spiegelstrich eine Leerzeile.
 
