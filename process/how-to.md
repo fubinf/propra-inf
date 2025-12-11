@@ -259,6 +259,14 @@ than those at difficulties 3 or 4.
 However, the majority of our tasks needs to have difficulty 2 in order to address the majority
 of our audience adequately.
 
+Estimate the `timevalue` of your task once the instructions are complete.
+Estimating parts of it separately is often a good approach,
+especially for longer tasks, and can be supported by inserting comments like this
+at the end of each part:  
+`<!-- time estimate: 20 min -->`  
+Once done, `grep` for these lines and sum times up.  
+For examples, search for "time estimate:" in the existing tasks.
+
 
 ### 2.3.10 [SECTION::submission::subtype1,subtype2]
 
