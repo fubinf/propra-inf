@@ -317,7 +317,7 @@ Die vier Phasen der Methode sollten dabei zeitlich in etwa alle denselben Raum e
    wie sie die Problemlösung angehen und die Raum für Kreativität und Gestaltung offen lässt.
    Nichtsdestotrotz ist es wichtig den Prozess für lernschwächere Studierende zu unterstützen. 
    Es bietet sich an, von der HINT-Funktion Gebrauch zu machen.
-4. Verankern
+4. **Verankern:**
    Möglichkeiten der Verankerung wären z.B. eine Reflexionsaufgabe mit Abgabe als Markdown-Dokument, 
    weitere Anwendung der Problemlösung auf andere Situationen, im Bestfall solche, die man auch schon vorher verwendet hat. 
    Dies ist ein wichtiger Schritt, der für nachhaltiges Lernen nicht ausgelassen werden sollte, 
