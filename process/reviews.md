@@ -6,19 +6,6 @@ Do not add new entries here. We use the GitHub issue tracker now for managing th
 
 -------------------------------------------------------------------------------------------
 
-## Rework to do for Hanen Alrwasheda
-
-- Python0/ Inhalt wird am Ende ausgearbeitet.
-
-- ch/Sprachen/Python/py-OOP-Intro.md (HA->LP->HA)
-- ch/Sprachen/Python/py-OOP-Methods.md (HA->LP->HA)
-- ch/Sprachen/Python/py-OOP-Inheritance.md (HA-LP->HA)
-- ch/Sprachen/Python/py-OOP-Praxis.md: (HA-LP->HA)
-- ch/Sprachen/Python/py-Context-Managers.md (HA->LP->HA)
-- ch/Sprachen/Python/py-Function-Arguments-Advanced.md (HA->LP->HA)
-- ch/Sprachen/Python/py-import.md (HA->LP->HA->LP->HA)
-
-
 ## Rework to do for Sven Hüster
 
 - ch/Debugging/Debuggingtools/python-profiling.md (Hüster->LP->SH)  
