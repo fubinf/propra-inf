@@ -281,39 +281,23 @@ Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall ke
 
 ### Sprachen/Python0 (alrwasheda)
 
-Aufgaben mit DIFF1 als unvollkommene Starthilfe, überwiegend für Leute mit zu niedrigem Wissen.
-Wiederholung (manches ist aber auch neu!) der absoluten Essentials: 
-Kontrollstrukturen: if, elif, else, for, while, etc.
-Keywords: def, return, break, continue, etc.
+Aufgaben mit Schwierigkeit der Stufe 1 als unvollkommene Starthilfe, überwiegend für Leute mit zu niedrigem Wissen.
+Kontrollstrukturen: for, while, etc.
 Datenstrukturen: list, dict, set etc.
-OOP: class, self, Vererbung, super(), Objekterzeugung etc.
-Gemischtes: tuple unpacking, ...
-
-Vermutlich sinnvoll als Lückentext, sodass sehr kleine und eingegrenzte Aufgaben entstehen?
-
+Gemischtes: Bspw. Tuple unpacking
 
 ### Sprachen/Python (alrwasheda)
 
 Fortgeschrittenere Konstrukte:
-Projektstruktur: import, packages, modules, __init__.py, etc.
-Context: with, open
-try/except, eigene Exceptions, realistische Ausnahmebehandlung (try except raise und das dann ganz woanders fangen),
-Typdeklarationen für Parameter und Resultate, Modul typing,
-Typdeklarationen für Attribute, fast alles aus
-https://medium.com/@rosk.abed/why-python-is-the-best-programming-language-so-far-5e481804159b,
-builtins (all, any, get/set/hasattr, isinstance/issubclass, advanced print/list/dict/set,
-str/bytes, sum, zip etc.)
-und anderes mehr.
-
-Alternativlösung: wir weisen bei den Programmieraufgaben auf diese Konstrukte hin als
-etwas, das man dabei lernen und benutzen kann oder soll.
-Das ist aber nicht zielgenau, wenn die Aufgaben Spielraum bei der Entwurfsstruktur haben.
-
-Aufgabe(n) zu den Dunder-Methoden von Klassen (z. B. `__init__`, `__bool__`, `__add__`,...) als 
-Folgeaufgabe zu ch/Sprachen/Python/PythonObjectsClassesIntro.md
-
-String-Formatierung
-
+- Projektstruktur: import, packages, modules, __init__.py, etc.
+- Context: with, open
+- try/except, eigene Exceptions, realistische Ausnahmebehandlung (try except raise und das dann ganz woanders fangen),
+- https://medium.com/@rosk.abed/why-python-is-the-best-programming-language-so-far-5e481804159b,
+- builtins (all, any, get/set/hasattr, isinstance/issubclass, advanced print/list/dict/set,
+str/bytes, sum, zip etc.). Each one of those could be covered in a belonging topic.
+- Aufgabe(n) zu den Dunder-Methoden von Klassen (z. B. `__init__`, `__bool__`, `__add__`,...) als 
+Begleitung zu den OOP-Aufgaben.
+- String-Formatierung
 
 ### Sprachen/Go (brandes)
 
