@@ -764,6 +764,18 @@ a:link.vwr-filelink-submission {
         color: var(--on-background-color);
     }
 
+    #preheader {
+        background-color: var(--background-color);
+    }
+
+    .main {
+        background-color: var(--background-color);
+    }
+
+    main {
+        background-color: var(--background-color);
+    }
+
     a,
     a:link {
         color: var(--main-color);
@@ -941,5 +953,23 @@ a:link.vwr-filelink-submission {
 
     .vwr-output {
         color: #ffcccc;
+    }
+
+    .prot-counter {
+        color: black !important;
+    }
+
+    .prot-counter.prot-alert-color {
+        color: white !important;
+    }
+
+    .prot-spec-manual,
+    .prot-spec-extra {
+        color: black !important;
+    }
+
+    .prot-spec-manual p,
+    .prot-spec-extra p {
+        color: black !important;
     }
 }
