@@ -219,7 +219,8 @@ console.log(ebook.info());         // "JavaScript Basics → Download: http://do
 
 ### Prototypische Vererbung verstehen
 
-Wir haben bereits gesehen, dass JavaScript-Objekte intern über Prototypen miteinander verbunden sind.  
+Bisher haben wir Vererbung mit `extends` genutzt.  
+Jetzt schauen wir uns an, wie JavaScript das intern umsetzt: über Prototyp-Ketten.  
 Gehen wir jetzt einen Schritt weiter und schauen uns an, wie die Vererbung konkret funktioniert.  
 Jedes Objekt in JavaScript hat eine interne Referenz auf ein anderes Objekt, seinen Prototypen.   
 Wenn man auf eine Eigenschaft oder Methode zugreift, die im aktuellen Objekt nicht vorhanden ist, 
