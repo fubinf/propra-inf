@@ -36,6 +36,13 @@ Jedes Tag wird zu einem Knoten im DOM-Baum.
 Beispiel:
 
 ```
+<section>
+  <h1>Titel</h1>
+  <p>Ein <strong>wichtiger</strong> Text.</p>
+</section>
+```
+
+```
 body
 └── section
     ├── h1
@@ -55,7 +62,14 @@ console.log(absatz.parentNode); // gibt das <section> Element aus
 console.log(absatz.children);   // gibt [<strong>] aus
 ```
 
-Einige Elemente sind auch direkt verfügbar, beispielsweise `document.body`.
+Einige Elemente sind auch direkt verfügbar, beispielsweise `document.body`.  
+
+Lesen Sie in der MDN-Dokumentation nach zu:
+
+- [Node.childNodes](https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes)  
+- [Element.children](https://developer.mozilla.org/en-US/docs/Web/API/Element/children)  
+
+Nutzen Sie diese Informationen, um die folgende Frage zu beantworten:
 
 [EQ] Welche Informationen liefert `children`, die `childNodes` nicht liefert? Beschreiben Sie den Unterschied.
 
@@ -106,6 +120,14 @@ und verwenden Sie im JavaScript `getElementById("leistungenListe")`, um gezielt 
 
 Manchmal möchten Sie mehrere Elemente auf einmal ansprechen, zum Beispiel, um alle Listeneinträge zu markieren oder zu verändern.  
 Dazu können Sie eine Schleife verwenden:
+
+```
+<button id="btnHervorheben">Hervorheben</button>
+<ul>
+  <li>Eintrag 1</li>
+  <li>Eintrag 2</li>
+</ul>
+```
 
 ```
 const button = document.getElementById("btnHervorheben");
