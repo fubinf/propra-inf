@@ -1,7 +1,7 @@
 title: "Funktionale Programmierung in Python"
 stage: beta
-timevalue: 1.5
-difficulty: 3
+timevalue: 1.0
+difficulty: 2
 assumes: py-Iterators, m_pprint
 ---
 
@@ -120,57 +120,6 @@ früher als man denkt.
 [ENDNOTICE]
 
 
-### Generatoren
-
-Generatoren sehen zunächst wie ganz normale Funktionen aus. 
-Sie enthalten allerdings ein bestimmtes Schlüsselwort: `yield`. 
-Das ermöglicht es, die Funktion wie einen Iterator zu verwenden: wird `next()` auf den Generator 
-ausgeführt, wird die Funktion bis zum nächsten `yield` Keyword ausgeführt und der damit verbundene 
-Wert zurückgegeben. 
-Die Funktion wird anschließend nicht beendet, sondern bleibt weiter im Speicher, sodass sie beim 
-nächsten Aufruf von `next()` an der gleichen Stelle fortfährt, bis erneut `yield` aufgerufen wird 
-oder sie terminiert. 
-So lässt sich ein Iterator schnell und einfach wie eine Funktion definieren.
-
-Bei Bedarf lesen Sie nochmal den 
-[Abschnitt zu Generatoren](https://docs.python.org/3/howto/functional.html#generators) im 
-How-To-Artikel.
-
-[ER] Definieren Sie einen Generator `generate_substrings(text: str, delimiter: str)`. 
-Dieser soll einen String entgegennehmen und in jeder Iteration den nächsten Substring bis zum 
-nächsten Trennzeichen (delimiter) zurückgeben. 
-Rufen Sie anschließend Ihren Generator folgendermaßen auf:  
-```python
-gen = generate_substrings("Generatoren sind sehr praktisch.", " ")
-print("\nfirst three words:", list([next(gen) for _ in range(3)]))
-```
-
-[NOTICE]
-Um Strings bei einem Delimiter aufzuspalten, verwendet man i.d.R. die 
-[`split()`](https://docs.python.org/3/library/stdtypes.html#str.split) Funktion vom String-Datentyp.
-Diese arbeitet jedoch nicht mit Iteratoren und würde daher das Konzept eines Generators, 
-jedes Element einzeln auf Abruf zu generieren, umgehen.
-__Verzichten__ Sie hier daher auf die Verwendung der Funktion.
-[ENDNOTICE]
-
-[HINT::Was benötige ich dafür?]
-Schreiben Sie einen einfachen Algorithmus, der in dem String nach dem Delimiter sucht und die 
-einzelnen gefundenen Strings "wirft".
-Wenn Sie bereits Erfahrung mit regulären Ausdrücken in Python haben, können Sie auch 
-[PARTREFMANUAL::m_re::re.finditer()] verwenden.
-[ENDHINT]
-
-Eine weitere praktische Alternative zur Erstellung eigener Iteratoren sind **Generator 
-Expressions**. 
-Diese funktionieren genauso wie [PARTREFMANUAL::py-List-Comprehensions::List Comprehensions], 
-aber mit dem Unterschied, dass sie keine Liste, sondern einen Generator erzeugen. 
-Syntaktisch unterscheiden sie sich nur durch ihre Klammern (`()` statt `[]`).
-Wenn man das Ergebnis nur der Reihe nach mit einer Schleife weiterverarbeitet und
-die Zahl der Elemente groß ist, spart das viel Speicherplatz ein und 
-obwohl sich alles wie die Arbeit mit Listen anfühlt, kann man sogar
-Datenmengen verarbeiten, die gar nicht in den Speicher passen würden.
-
-
 ### `map()`, `filter()` und ihre Kolleginnen
 
 Einige der [Built-in Funktionen](https://docs.python.org/3/howto/functional.html#built-in-functions) 
@@ -225,7 +174,6 @@ print("\nposition of all words with letter 'y':", ...)
 Um, wie in funktionalen Sprachen üblich, ohne Schleifen auszukommen, aber trotzdem alle Elemente 
 wie mit einer Zählvariable zu nummerieren, ist 
 [`enumerate()`](https://docs.python.org/3/library/functions.html#enumerate) geeignet.
-Außerdem könnte ihnen die Lösung von einer der vorherigen Aufgaben behilflich sein.
 [ENDHINT]
 
 
@@ -343,6 +291,9 @@ bieten, um noch effizienter funktionale Programme zu schreiben:
   Operationen auf und mit Iteratoren durchzuführen.
 - Das [PARTREFMANUAL::m_functools::functools-Modul] bietet weitere Hilfsmittel für die 
   Verwendung von Funktionen höherer Ordnung.
+- [PARTREFMANUAL::py-Generators::Generatoren] ermöglichen es einem, eigene Iteratoren kompakt 
+  und leicht verständlich zu implementieren und so ein nützlicher Baustein zur funktionalen 
+  Programmierung.
 
 [ENDSECTION]
 
@@ -361,4 +312,8 @@ zurückweisen.
 Beispiellösung siehe [TREEREF::/Sprachen/Python/py-Funktionale-Programmierung.py]
 
 [INCLUDE::ALT:]
+
+### Kommandoprotokoll
+
+[PROT::ALT:py-Funktionale-Programmierung.prot]
 [ENDINSTRUCTOR]
