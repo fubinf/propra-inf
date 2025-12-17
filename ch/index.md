@@ -182,9 +182,12 @@ Im Inhaltsverzeichnis wird für jede Aufgabe ein Zeitwert angegeben, z.B. 1.5h.
 Das ist die erwartete Arbeitszeit für diese Aufgabe.
 Wenn Sie diese Aufgabe einreichen und die Tutor_in akzeptiert die Einreichung, 
 wird dieser Wert Ihrem ProPra-Konto gutgeschrieben (Ausnahme siehe unten).
-Sobald die Summe dieser Werte mindestens dem Kursumfang entspricht (30 Stunden pro Leistungspunkt)
+Sobald die Summe dieser Werte mindestens dem Kursumfang entspricht 
+(im Normalfall 30 Stunden pro Leistungspunkt)
 **und Sie die Tutor_in darauf hinweisen und diese einen entsprechenden Eintrag macht**, 
 ist das ProPra erfolgreich absolviert.
+Eventuell wird in Ihrem Exemplar des ProPra vom obigen Normalfall etwas abgewichen,
+das würde dann in der Einführungsveranstaltung mündlich erklärt.
 
 Ihre tatsächliche Arbeitszeit kann darunter liegen.
 Das kommt vor, wenn Sie Aufgaben wählen, die zu einfach für Ihre vorhandenen Fertigkeiten sind
