@@ -29,14 +29,7 @@ Lernaufgaben sollen:
 
 
 # 2 Entwurf einer Aufgabe
-
-Eine Vorgehensempfehlung:
-
-1. Angestrebte Lernergebnisse (Aufgabenziele) formulieren
-2. Recherche und didaktische Analyse
-3. Konstruktion der Aufgabe
-4. Aufgabe prüfen
-
+Zur allgemeinen Vorgehensweise, siehe [How-To 2.3.6](/process/how-to.md)
 
 ## 2.1 Formulieren von Lernzielen
 

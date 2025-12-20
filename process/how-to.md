@@ -95,7 +95,7 @@ for its structure and attempt to obey them throughout:
 
 Most of these principles serve the same purpose:
 Maximizing the students' motivation to learn and try out things
-because they find them interesting and relevant, find the tasks are fun to do,
+because they find them interesting and relevant, find the tasks that are fun to do for them,
 and can observe their progress well. 
 
 
@@ -185,25 +185,37 @@ For the latter, find a list of possible models (mostly geared to interactive tea
 in schools) here:
 [Liste der Unterrichtsmethoden (Wikipedia)](https://de.wikipedia.org/wiki/Liste_der_Unterrichtsmethoden)
 
+Find more information on didactic considerations (in German) in [Didaktik](process/didaktik.md).
+The document discusses both general topics and specific steps for some tasks.
 
-### 2.3.6 Work steps towards a task description 
 
-Suggested procedure:
+### 2.3.6 Work steps towards producing tasks and task groups 
 
-1. Sketch a task group and its motivation.
+Suggested procedure creating a task group:
+
+1. Sketch a task group and its motivation. (Compare [Didaktik 4](process/didaktik.md))
 2. List candidate tasks for the task group.
-   Order them from more general (and useful for most people) to more specialized.  
+3. Order them from more general (and useful for most people) to more specialized.
    As a rule, the more general tasks should be difficulty 2, the specialized ones harder.  
-   For the general tasks, split large ones (over two hours) into pieces, including
+4. For the general tasks, split large ones (over two hours) into pieces, including
    pieces that should be "assumed" and then belong into 
-   different taskgroups or even chapters. Create placeholders with todo markers for those.
-3. Outline a task description by selecting the section structure, 
-   in particular the section subtypes,
-   and formulating the learning goal.
-4. Draft the background (keep it short), instructions, and submission sections.
-   Background is for motivation only, not for delivering required information. 
+   different taskgroups or even chapters. 
+   Create placeholders with todo markers for those.
+
+Suggested procedure developing individual tasks:
+
+1. Outline a task description by selecting the section structure, 
+   in particular the section subtypes (see 2.3.8 to 2.3.11),
+   and formulating the learning goals (see 2.3.7 and [Didaktik 2.1](process/didaktik.md)).
+2. Research the task's topic and perform didactic analysis (see [Didaktik 2.2](process/didaktik.md))
+3. Draft the background (keep it short) and instructions.
+   See [Didaktik 2.3](process/didaktik.md) for teaching methods and examples.
+   See this document (2.3.8 to 2.3.11) for the practical execution.
+   Fill in submission types based on your tasks.
+   Add sample solutions and hints for corrections.
+4. Test and review your own task. See also [Didaktik 2.4](process/didaktik.md).
 5. Have someone else review the description for coherence between goal and instructions/submission
-   and for appropriateness of the instructions given the difficulty.
+   and for appropriateness of the instructions given the difficulty. (see 2.4.2)
 
 
 ### 2.3.7 `[SECTION::goal::...]`
@@ -213,16 +225,23 @@ The goal section
 - is always rather short
 - usually formulates one goal or two, not many
 - aims at giving a quick idea what can be learned in this task to help students select tasks
+- should indicate the outcome: What can the student do after completing the task
+- uses operators
 
+compare [Didaktik 2.1](process/didaktik.md)
 
 ### 2.3.8 `[SECTION::background::default]`
 
 The background section
 
-- is the only one that can be missing (but is usually present)
 - should typically be short
 - is _not_ used for providing background information that is part of the technical content
-- is used only for _motivation_: Why or how it can be useful to have learned what can be learned here. 
+- is used only for _motivation_: 
+  - Provide context where the task subject is used or may be useful.
+  - Why or how it can be useful to have learned what can be learned here.
+- It is one of the first parts that students are confronted with 
+  and may be additional help selecting the task
+- this section may technically be missing, but it should generally always be present
 
 
 ### 2.3.9 `[SECTION::instructions::type]`
@@ -241,16 +260,17 @@ The instruction section
   Therefore, turning some understanding step into an inventive step and providing a `[HINT]` for it
   can be a useful task design technique.
 - Instructions of type `loose` at difficulty 3 (medium) 
-  require much larger invention steps (Bloom taxonomy levels 4+5)
+  require much larger invention steps (SOLO taxonomy levels 3+4,
+  for SOLO taxonomy see [Didaktik.md 2.1.4 Operatoren](process/didaktik.md))
   but provide `[HINT]`s to make the task feasible for many more people.
   For difficult topics, difficulty 3 tasks sometimes use `detailed` instructions.
 - Instructions of type `loose` or `tricky` at difficulty 4 (difficult) 
   require still larger invention steps and much more self-steered
-  work for the understanding parts as well (Bloom taxonomy levels 4+5).
+  work for the understanding parts as well (SOLO 4+5).
   They provide few `[HINT]`s (for `tricky`) or none.
 - At any difficulty level, the instructions can and should provide `[EQ]` reflection questions where
   students make up their minds what they think are advantages/disadvantages of something,
-  what they like/dislike (and why) etc. (Bloom taxonomy level 6).
+  what they like/dislike (and why) etc. (SOLO 5).
   (At difficulty 2, we will accept almost any response, 
   at levels 3+4, the responses should be sensible.)
 
