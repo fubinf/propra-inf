@@ -6,7 +6,9 @@ assumes: html-erste-Schritte, html-Medien
 ---
 [SECTION::goal::experience]
 
-- Ich kann einfache und komplexere Tabellen in HTML konstruieren.
+- Ich kann erklären, wie die Elemente "table", "tründ "tdßum Erstellen einer Tabelle
+eingesetzt werden.
+- Ich implementiere einfache Tabellen mit spalten- oder zeilenübergreifenden Zellen
 
 [ENDSECTION]
 [SECTION::background::default]
