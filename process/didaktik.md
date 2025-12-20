@@ -42,7 +42,7 @@ Eine Vorgehensempfehlung:
 
 Ein Lernziel ist ein Ziel, das die Studierenden nach Bearbeiten der Aufgabe erreicht haben sollen.
 Lernziele sind immer ergebnisorientiert. 
-In der Regel soll  nicht reines Wissen erlangt werden, sondern Kompetenzen.
+In der Regel soll nicht reines Wissen erlangt werden, sondern Kompetenzen.
 Die gängige Definition für eine Kompetenz, die auch von der Kultusministerkonferenz verwendet wird, ist dabei folgende: 
 
 > Kompetenzen bezeichnen "die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten, 
@@ -114,6 +114,7 @@ Das Lernergebnis wird in der Ich-Form formuliert.
 
 ### 2.1.3 Objekt und Kontext  
 
+!TODO: Kontext: Konkreter, was ist gemeint
 Leitfragen:  
  * Wie passen Kompetenz und Kontext zusammen?
  * Vor welchem Hintergrund sollen Studierende den aktiven Lernprozess ausführen?  
@@ -126,7 +127,7 @@ Zusammenhang zwischen Kontext und angestrebtem Lernzuwachs ergänzt.
 > Für die Implementierung in der CSS-Aufgabe wählen wir nur relativ simple Beispiele, um die Funktionalität aufzuzeigen.
 > Der Vergleich bezieht sich ausschließlich darauf, wie die beiden Techniken einzusetzen sind.
 > Eine aktualisierte Liste der gewünschten Lernziele könnte z.B. so aussehen:
-> - Ich kann einfach Beispiele für Flexbox und Grid-Layout implementieren.
+> - Ich kann einfache Beispiele für Flexbox und Grid-Layout implementieren.
 > - Ich vergleiche Flexbox und Grid-Layout anhand ihres Einsatzzwecks.
 
 Sind die gewünschten Lernergebnisse formuliert, geht es an die Planung der Reihe bzw. Aufgabe. 
@@ -136,7 +137,7 @@ Hier sollte man immer im Hinterkopf haben, was die Lernergebnisse sein sollen, u
 ### 2.1.4 Operatoren  
 
 Für die Wahl der geeigneten Operatoren sei einmal auf die SOLO-Taxonomie verwiesen.  
-SOLO steht für "Structure of the Observed Learning Outcome" und ist ein Modell,   
+SOLO steht für "Structure of the Observed Learning Outcome" und ist ein Modell,  
 dass die von Studierenden erworbenen Kompetenzen verschiedenen Komplexitätsstufen zuordnet. 
   
 Die SOLO-Taxonomie definiert die folgenden fünf Komplexitätsstufen:  
@@ -359,7 +360,6 @@ Dabei sind unter anderem folgende Punkte zu beachten:
 - Ist der Ablauf der Teilaufgaben nachvollziehbar?
 - Sind die Arbeitsaufträge klar definiert?
 - Führt die Bearbeitung der Aufgabe zum gewünschten Kompetenzzuwachs?
-- Entsprechend die 
 - Wie lange dauert die Bearbeitung, ist die angesetzte Zeit realistisch?
 - Welche zusätzlichen Hinweise benötigen Tutor*innen zum Bewerten der Aufgabe?
 
@@ -446,7 +446,7 @@ Die Leitfragen sind hier:
 - Welche Kompetenzen setzten welche anderen Kompetenzen voraus? Welche Reihenfolge ist sinnvoll für die Aufgaben? 
 - Wie lassen sich Meta-Kompetenzen des ProPra mit einbauen? 
 - Was ist ein geeigneter Kontext für die Aufgabenreihe?
-- Welche Schwierigkeiten sind bei der Bearbeitung der Aufgabe zu erwarten?
+- Welche Schwierigkeiten sind bei der Bearbeitung der Aufgaben zu erwarten?
 
 Im Anschluss legen Sie ihre Lernziele (vgl. 2.1) fest und
 ergänzen Ihre Bedarfsanalyse durch Recherche und didaktische Analyse (vgl 2.2)
