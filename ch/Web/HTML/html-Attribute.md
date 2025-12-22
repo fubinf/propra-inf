@@ -37,7 +37,7 @@ Soll ein Element z.B. eindeutig identifiziert werden, so kann es mit dem Univers
 Der Wert muss innerhalb des Dokuments eindeutig sein.
 Dieser kann dann beispielsweise von Links referenziert werden, sodass der Browser an die Stelle springt.
 Auch [TERMREF::CSS] und [TERMREF::JavaScript] machen sich dieses Attribut zu Nutzen.
-Weitere für CSS relevante Attribute sind beispielsweise `style` und `class`. Mehr dazu in [PARTREF:CSS].
+Weitere für CSS relevante Attribute sind beispielsweise `style` und `class`. Mehr dazu in [PARTREF::CSS].
 
 [ER] Versehen Sie das Video auf der Medienseite mit einer ID. 
 Erstellen Sie einen Link zum Beginn der Seite, der auf das Video referenziert.
@@ -45,7 +45,9 @@ Verwenden sie dazu die ID, die sie vergeben haben, mit einer vorangestellten `#`
 Speichen Sie Ihre Lösung als `html-Attribute.html`
 
 [EQ] Einige Attribute werden in mehreren Elementen verwendet, obwohl sie keine Universal-Attribute sind.
-Recherchieren Sie auf MDN zu den Attributen `href`, `name`, `colspan` und `src`.
+Recherchieren Sie beispielsweise in der 
+[Attribut-Kategorie auf SelfHTML](https://wiki.selfhtml.org/wiki/Kategorie:Attribut_(HTML)) 
+zu den Attributen `href`, `name`, `colspan` und `src`.
 In welchen Elementen können sie verwendet werden?
 Was ist ihr Zweck?
 
