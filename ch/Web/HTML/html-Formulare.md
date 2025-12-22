@@ -6,8 +6,8 @@ assumes: html-erste-Schritte, html-Medien, html-Semantik, http-POST
 ---
 [SECTION::goal::experience]
 
-- Ich kann Formulare in HTML erstellen.
-- Ich kann verschiedene Eingabebausteine wie Textfelder, Radio-Buttons und Checkboxen verwenden.
+- Ich kann Formulare in HTML entwerfen.
+- Ich kann verschiedene Eingabebausteine wie Textfelder, Radio-Buttons und Checkboxen implementieren.
 [ENDSECTION]
 
 

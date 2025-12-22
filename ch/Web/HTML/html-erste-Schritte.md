@@ -6,9 +6,9 @@ difficulty: 2
 
 [SECTION::goal::experience]
 
-- Ich kann Unterschiede in der Interpretation eines Textdokuments und eines HTML-Dokuments durch einen Browser benennen.
-- Ich kann HTML-Elemente identifizieren und einige einfache HTML-Elemente anwenden.
-- Ich kann mit der Grundstruktur eines HTML-Dokuments umgehen.
+- Ich kann Unterschiede in der Interpretation eines Textdokuments und eines HTML-Dokuments durch einen Browser darstellen.
+- Ich kann HTML-Elemente bestimmen und einige einfache HTML-Elemente implementieren.
+- Ich kann die Grundstruktur eines HTML-Dokuments angeben.
 
 [ENDSECTION]
 [SECTION::background::default]

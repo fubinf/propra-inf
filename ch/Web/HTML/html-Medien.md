@@ -6,8 +6,8 @@ requires: html-erste-Schritte
 ---
 [SECTION::goal::experience]
 
-- Ich kann Links, Bilder und Videos in HTML verwenden.
-- Ich kann MDN Web Docs als Referenz für HTML-Elemente benutzen 
+- Ich kann Links, Bilder und Videos in HTML implementieren.
+- Ich kann MDN Web Docs als Referenz für HTML-Elemente benutzen.
 
 [ENDSECTION]
 [SECTION::background::default]

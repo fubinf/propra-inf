@@ -6,7 +6,7 @@ assumes: html-erste-Schritte, html-Medien
 ---
 [SECTION::goal::experience]
 
-- Ich kann erklären, wie die Elemente "table", "tründ "tdßum Erstellen einer Tabelle
+- Ich kann erklären, wie die Elemente `table`, `tr` und `td` zum Erstellen einer Tabelle
 eingesetzt werden.
 - Ich implementiere einfache Tabellen mit spalten- oder zeilenübergreifenden Zellen
 

@@ -7,7 +7,7 @@ requires: html-erste-Schritte, html-Medien
 [SECTION::goal::experience]
 
 - Ich kann erklären, warum es sinnvoll ist, semantisch bedeutsame HTML-Elemente zu verwenden
-- Ich kann die semantischen Elemente in HTML verwenden.
+- Ich kann die semantischen Elemente in HTML implementieren.
 [ENDSECTION]
 
  

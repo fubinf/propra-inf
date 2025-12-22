@@ -8,7 +8,7 @@ assumes: css-Selektoren, html-Semantik
 [SECTION::goal::experience]
 
 - Ich kann erklären, was das Box-Modell ist und welche Rolle die CSS-Eigenschaften `margin`, `border` und `padding` spielen. 
-- Ich kann CSS-Eigenschaften wie `margin`, `border` und `padding` angemessen anwenden.
+- Ich kann CSS-Eigenschaften wie `margin`, `border` und `padding` angemessen implementieren.
 
 [ENDSECTION]
 
