@@ -7,8 +7,8 @@ assumes: css-Einführung, html-Semantik
 
 [SECTION::goal::experience]
 
- - Ich kann Klassen und Pseudoklassen einsetzen
- - Ich kann die Priorität verschiedener CSS-Definitionen für das gleiche HTML-Element unterscheiden
+ - Ich kann Klassen und Pseudoklassen implementieren
+ - Ich vergleiche die Priorität verschiedener CSS-Definitionen für das gleiche HTML-Element
 [ENDSECTION]
 
 

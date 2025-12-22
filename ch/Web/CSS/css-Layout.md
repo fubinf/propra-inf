@@ -6,8 +6,10 @@ assumes: css-Selektoren, css-Box-Modell
 ---
 
 [SECTION::goal::experience]
- - Ich kann Flexbox, Gridlayout, und Floats verwenden.
- - Ich kann ihre Unterschiede und Einsatzzwecke beschreiben.
+
+ - Ich kann einfache Beispiele für Float, Flexbox und Grid-Layout implementieren.
+ - Ich vergleiche Float, Flexbox und Grid-Layout anhand ihres Einsatzzwecks.
+
 [ENDSECTION]
 
 

@@ -7,8 +7,8 @@ assumes: css-Selektoren, html-Semantik
 
 [SECTION::goal::experience]
 
+- Ich kann erklären, was das Box-Modell ist und welche Rolle die CSS-Eigenschaften `margin`, `border` und `padding` spielen. 
 - Ich kann CSS-Eigenschaften wie `margin`, `border` und `padding` angemessen anwenden.
-- Ich bekomme eine erste Ahnung von der Ausdruckskraft der Angabe `display`.
 
 [ENDSECTION]
 
@@ -32,7 +32,7 @@ Verwenden Sie die Eigenschaften `margin` und `padding`, um einen angemessenen Ab
 vom Rahmen zu Inhalt und zwischen den Rahmen herzustellen.
 
 [ER] Geben Sie dem die Artikel umschließenden Element, vmtl. `main`, die CSS-Definition
-`display: flex; flex-wrap: wrap;` (mehr dazu in einer späteren Aufgabe).
+`display: flex; flex-wrap: wrap;` (mehr dazu in [PARTREF::css-Layout]).
 Wir möchten jetzt gerne pro Zeile drei Artikel sehen. 
 Geben Sie dem Artikel also eine Breite von 33%.
 

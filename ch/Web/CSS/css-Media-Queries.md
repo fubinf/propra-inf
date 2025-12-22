@@ -6,8 +6,10 @@ assumes: css-Einführung
 ---
 
 [SECTION::goal::experience]
+
  - Ich kann erklären, wann und wofür Media Queries angewandt werden sollen.
  - Ich kann einfache Media Queries implementieren.
+
 [ENDSECTION]
 
 [SECTION::background::default]

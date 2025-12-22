@@ -8,7 +8,7 @@ requires: html-erste-Schritte
 [SECTION::goal::experience]
 
  - Ich kann CSS in HTML oder als separate Datei einbinden
- - Ich kann CSS-Elemente identifizieren und einige einfache CSS-Eigenschaften anwenden.
+ - Ich beschreibe CSS-Elemente und implementiere einige einfache CSS-Eigenschaften.
 
 [ENDSECTION]
 [SECTION::background::default]
