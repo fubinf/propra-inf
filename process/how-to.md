@@ -168,6 +168,7 @@ Therefore,
   why the material will be (or can be) useful for a practicing software engineer;
 - we should make every attempt at implementing one of the principles described in this article:
   [12 Prinzipien zur Motivation Lernender](https://link.springer.com/chapter/10.1007/978-3-658-26990-6_1)
+- for additional considerations compare [Didaktik 3.3](process/didaktik.md)
 
 
 ### 2.3.5 Strive to re-use known didactic methods

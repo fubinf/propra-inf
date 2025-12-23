@@ -4,6 +4,26 @@ Dabei wird ein Ablauf für die Aufgabenerstellung vorgeschlagen,
 wobei auf das Erstellen von Kompetenzen (Lernzielen), die Recherche und didaktische Analyse eingegangen wird, 
 sowie zwei ausgewählte Unterrichtsmethoden erläutert werden.
 
+## Inhalt:
+1. Lernaufgaben
+2. Entwurf einer Aufgabe
+    - 2.1 Formulieren von Lernzielen
+      - 2.1.1 Kompetenzzuwachs
+      - 2.1.2 Niveau des Lernprozesses
+      - 2.1.3 Objekt und Kontext
+      - 2.1.4 Operatoren
+    - 2.2 Recherche zum Thema und didaktische Analyse
+    - 2.3 Konstruktion der Aufgabe
+      - 2.3.1 Lehr-Lern-Modell für Lernaufgaben
+      - 2.3.2 Erkundendes Lernen und offene Aufgaben (BAGV)
+    - 2.4 Ausprobieren der Aufgabe
+3. Didaktische Erwägungen
+   - 3.1 Öffnen von Aufgaben
+   - 3.2 Scaffolding und gestufte Lernhilfen
+   - 3.3 Motivation
+4. Reihenplanung
+
+
 # 1 Lernaufgaben
 
 Es kann unterschieden werden zwischen **Lernaufgaben** und **Leistungsaufgaben**. 
@@ -13,19 +33,21 @@ Da das ProPra hauptsächlich das Ziel des Kompetenzzuwachses hat,
 sollten Aufgaben auch als Lernaufgabe konzipiert werden.
 
 Definition
-> Eine Lernaufgabe ist eine Lernumgebung zur Kompetenzentwicklung, 
-> die den Lernprozess durch gestufte Aufgabenstellungen und passende Lernmaterialien steuert.
-> 
+> Eine Lernaufgabe ist eine Lernumgebung zur Kompetenzentwicklung
+> und steuert den Lernprozess durch eine Folge von gestuften Aufgabenstellungen
+> mit entsprechenden Lernmaterialien.
+>
 >	-- Josef Leisen
 
 Lernaufgaben sollen:
 - In einen Kontext eingebettet sein
-- An Vorwissen anknüpfen
+- An Vorwissen anknüpfen und etwas Neues bieten.
 - Eine selbstständige Bearbeitung ermöglichen
 - Abgestufte Lernhilfen bieten
 - Ein auswertbares Lernprodukt erzeugen
 - Lernzuwachs sichtbar machen
 - Transfer auf neue Situationen fördern
+- Eine klare Aufgabenstellung bieten
 
 
 # 2 Entwurf einer Aufgabe
@@ -36,15 +58,17 @@ Zur allgemeinen Vorgehensweise, siehe [How-To 2.3.6](/process/how-to.md)
 Ein Lernziel ist ein Ziel, das die Studierenden nach Bearbeiten der Aufgabe erreicht haben sollen.
 Lernziele sind immer ergebnisorientiert. 
 In der Regel soll nicht reines Wissen erlangt werden, sondern Kompetenzen.
-Die gängige Definition für eine Kompetenz, die auch von der Kultusministerkonferenz verwendet wird, ist dabei folgende: 
+Die gängige Definition für eine Kompetenz ist dabei folgende: 
 
 > Kompetenzen bezeichnen "die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten, 
 > um bestimmte Probleme zu lösen sowie die damit verbundenen motivationalen, 
 > volitionalen (d.h. absichts- und willensbezogenen) und sozialen Bereitschaften, 
 > damit die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll genutzt werden können." 
+>
 > -- Franz Emanuel Weinert
 
-Eine Kompetenz beinhaltet demnach auch die Fähigkeiten, das Wissen zur Problemlösung anzuwenden.
+Eine Kompetenz beinhaltet demnach nicht nur das reine Fachwissen, sondern auch die Fähigkeiten, 
+die notwendig sind, um das Wissen zur Problemlösung anzuwenden.
 
 Das Formulieren von angestrebten Lernergebnissen ist einer der wichtigsten  
 Schritte des Verfassens von Aufgaben, auf gleich drei verschiedenen Ebenen:  
@@ -53,12 +77,12 @@ Schritte des Verfassens von Aufgaben, auf gleich drei verschiedenen Ebenen:
    und was sie von der Aufgabe erwarten können.  
 2. Informieren der Tutor*innen, was die Erwartungen an die Studierenden beim  
    Bearbeiten der Aufgabe sind.  
-3. Anforderungen an die Aufgabe, die durch die Aufgabenstellung dafür  
-   Sorge zu tragen hat, die intendierten Lernergebnisse auch zu erreichen.  
+3. Anforderungen an die Aufgabe selbst, da die Aufgabenstellung so gestaltet werden muss,  
+   dass die intendierten Lernergebnisse erreicht werden.  
   
 Man kann die Lernziele bzw. zu erreichenden Kompetenzen in drei Schritten entwickeln:
 Dabei werden zunächst die Inhalte herausgearbeitet,  
-dann das angestrebte Niveau des Lernprozesses ermittelt und schließlich Kontext gegeben.  
+dann das angestrebte Niveau des Lernprozesses ermittelt und schließlich wird Kontext gegeben.  
 Zu jedem Schritt gibt es Leitfragen und ein erwartetes Ergebnis.
 
 
@@ -73,7 +97,7 @@ Als Ergebnis sollte hier eine Liste mit mehreren Items entstehen,
 je nach Umfang von Kapitel, Taskgroup oder Aufgabe.
 
 > **Beispiel:**  
-> Die Aufgabe soll die Themen Grid-Layout und Flexbox einmal anreißen, ohne tief ins Detail zu gehen.
+> Die Aufgabe soll die Themen Grid-Layout und Flexbox einführen, ohne tief ins Detail zu gehen.
 > Stattdessen sollen sinnvolle Quellen zum Thema geteilt werden, sodass Studierende sich an die Technik
 > erinnern, wenn sie benötigt wird, und einen Ausgangspunkt zum Nachschlagen haben.
 > Ergebnis:
@@ -107,14 +131,15 @@ Das Lernergebnis wird in der Ich-Form formuliert.
 
 ### 2.1.3 Objekt und Kontext  
 
-!TODO: Kontext: Konkreter, was ist gemeint
 Leitfragen:  
  * Wie passen Kompetenz und Kontext zusammen?
  * Vor welchem Hintergrund sollen Studierende den aktiven Lernprozess ausführen?  
  * Welche Inhalte können zu einem übergeordneten Kontext zusammengefasst werden?  
   
-Als Ergebnis wird die Definition der angestrebten Kompetenz nun noch um den 
-Zusammenhang zwischen Kontext und angestrebtem Lernzuwachs ergänzt.   
+Als Ergebnis wird die Definition der angestrebten Kompetenz um den Zusammenhang 
+zwischen Kontext und angestrebtem Lernzuwachs ergänzt.
+Gibt es einen übergreifenden Kontext für die Taskgroup oder das Kapitel und sind die Lernziele
+in diesem Zusammenhang zu erreichen, sollte das in der Beschreibung Erwähnung finden.
 
 > **Beispiel:**  
 > Für die Implementierung in der CSS-Aufgabe wählen wir nur relativ simple Beispiele, um die Funktionalität aufzuzeigen.
@@ -123,13 +148,13 @@ Zusammenhang zwischen Kontext und angestrebtem Lernzuwachs ergänzt.
 > - Ich kann einfache Beispiele für Flexbox und Grid-Layout implementieren.
 > - Ich vergleiche Flexbox und Grid-Layout anhand ihres Einsatzzwecks.
 
-Sind die gewünschten Lernergebnisse formuliert, geht es an die Planung der Reihe bzw. Aufgabe. 
-Hier sollte man immer im Hinterkopf haben, was die Lernergebnisse sein sollen, und wie sie erreicht werden können.
+Bei der Planung der Aufgabe oder Reihe sollte man immer im Hinterkopf haben, 
+was die Lernergebnisse sein sollen, und wie sie erreicht werden können.
 
 
 ### 2.1.4 Operatoren  
 
-Für die Wahl der geeigneten Operatoren sei einmal auf die SOLO-Taxonomie verwiesen.  
+Für die Wahl der geeigneten Operatoren sei auf die SOLO-Taxonomie verwiesen.  
 SOLO steht für "Structure of the Observed Learning Outcome" und ist ein Modell,  
 dass die von Studierenden erworbenen Kompetenzen verschiedenen Komplexitätsstufen zuordnet. 
   
@@ -176,8 +201,7 @@ Video von Claus Braband und Jacob Andersen, Universität Aarhus.
 
 ## 2.2 Recherche zum Thema und didaktische Analyse
 
-Was Sie nicht wissen, können Sie auch nicht vermitteln. 
-In der Didaktik ist es daher wichtig, sich mit den zu vermittelnden Kompetenzen auseinanderzusetzen. 
+In der Didaktik ist es wichtig, sich mit den zu vermittelnden Kompetenzen auseinanderzusetzen. 
 Insofern ist es sinnvoll, das eigene Vorwissen zum Thema strukturiert festzuhalten. 
 Dies kann z.B. in einer Stichpunktliste oder einer Mindmap geschehen.
 
@@ -192,8 +216,17 @@ Außerdem gibt es zu bestimmten Themen auch oft vorgefasste Meinungen.
 Im ProPra ist z.B. zunächst Python die Programmiersprache, in der die Studierenden Kompetenzen entwickelt haben. 
 Dies kann einen Einfluss darauf haben, wie die Studierenden Konzepte z.B. in anderen Programmiersprachen wahrnehmen. 
 
-Didaktisch muss man sich dann auch überlegen, welche Aspekte des Themenbereichs wichtig für das Lernergebnis sind 
+Didaktisch muss man sich auch überlegen, welche Aspekte des Themenbereichs wichtig für das Lernergebnis sind 
 und welche vielleicht weggelassen werden können, damit die Aufgabe nicht zu komplex wird.
+
+Das können Sie z.B. tun, indem sie sich mehrere Siebe vorstellen.
+Jedes Sieb erhält eine bestimmte Zeitvorgabe, in der Sie ihr Aufgabenthema vermitteln müssen.
+Im Sieb hängen bleiben die Aspekte des Themas, die Sie auf jeden Fall erklären würden, 
+wenn Sie das Thema innerhalb der Zeitvorgabe (z.B. 5 Minuten) erklären müssten.
+
+Ebenso könnten Sie sich ihr Thema als Mindmap visualisieren, 
+wobei von innen nach außen immer detailliertere Aspekte dargestellt werden.
+So können Sie dann eine Grenze ziehen, bis zu welchem Detailgrad Sie in der Aufgabe gehen möchten.
 
 Bei Ihrer Recherche sollten Sie sich also auf jeden Fall folgende Fragen stellen:
 
@@ -205,58 +238,104 @@ Bei Ihrer Recherche sollten Sie sich also auf jeden Fall folgende Fragen stellen
 
 Die Recherche ist ein iterativer Prozess. 
 Ergänzen Sie dabei Ihre eigene Wissenssammlung. 
-Es kann auch sein, dass Sie dabei feststellen, dass Sie Ihre intendierten Lernergebnisse noch einmal anpassen müssen.
+Es ist möglich, dass Sie dabei feststellen, dass Sie Ihre intendierten Lernergebnisse noch einmal anpassen müssen.
+
+> **Beispiel**:
+> Im angesprochenen Beispiel der Aufgabe zu CSS-Layouts sollen die Leitfragen einmal beantwortet werden
+> 
+> Zunächst eine knappe Zusammenfassung der Recherche, die sicherlich deutlich gründlicher ausfallen könnte/sollte.
+> 
+> CSS-Layout
+> - Voraussetzungen
+>   - Box-Modell, Selektoren
+> - float
+>   - clear, clearfix
+> - position
+>   - absolute, relativ, z-index, left/right/top/bottom, Strickfallen
+> - flex
+>   - eine Dimension, direction, wrap, justify, grow/shrink, order, Container/Items
+> - grid
+>   - zwei Dimensionen, Gridlines, Template, justify, Column/Row, Einheiten des verbleibenden Platzes
+> - Quellen
+>   - MDN, SelfHTML, CSS-Tricks
+> 
+> 1. Es gibt im Internet verschiedene Nachschlagewerke für die Themen. 
+>    SelfHTML als Tutorial hat oft interessante Ansätze. 
+>    Es gibt hier je ein Tutorial für Flex und Grid, bei dem man sich inspirieren lassen kann.
+> 2. Geeignete Dokumentation gibt es z.B. bei SelfHTML, MSN und bei CSS-Tricks.
+>    Insbesondere die letzte Quelle bietet eine kompakte und anschauliche Übersicht zum Thema 
+>    und ist so als Informationsmaterial für die Studierenden geeignet.
+> 3. Ergebnis der Recherche (s.o.) ist eine Kombination aus eigenem Vorwissen und Recherche zum Thema
+> 4. Studierende könnten erwarten, dass CSS-Layouts auf pixelgenauen Angaben basieren, 
+>    dass Tabellen verwendet werden oder dass das Layout mittels HTML-Elementen gesteuert werden kann.
+> 5. Da Flexbox und Grid nur angerissen und demonstriert werden sollen, ist es sicherlich nicht sinnvoll,
+>    viele verschiedene Eigenschaften und Möglichkeiten zu beleuchtet.
+>    Stattdessen wird sich auf ein oder zwei Beispiele von Eigenschaften konzentriert
+>    und je ein konkretes Beispiel implementiert.
 
 
 ## 2.3 Konstruktion der Aufgabe
 
-Zwei ausgewählte Methoden zur Aufgabenerstellung seien hier einmal vorgestellt:
+Zwei ausgewählte Methoden zur Aufgabenerstellung seien hier vorgestellt:
 
 1. Das Lehr-Lern-Modell für Lernaufgaben von Josef Leisen
 2. Das Modell *Benutzen, Analysieren, Gestalten, Verankern* von Lutz Hellmig und Tino Hempel
 
 
 ### 2.3.1 Lehr-Lern-Modell für Lernaufgaben
-
-Leisen verknüpft Lernaufgaben mit seinem Lehr-Lern-Modell, das sechs Schritte umfasst.
-Die Aufgabenstellung geht dabei von einem Sachverhalt (das Problem) aus, 
+Lernaufgaben im ProPra sollten generell einem didaktisch fundierten Lehr-Lern-Modell folgen.
+Im Lehr-Lernmodell von Leisen, das diesem Abschnitt zugrunde liegt,
+geht die Aufgabenstellung von einem Sachverhalt (das Problem) aus, 
 den es durch die Aufgabe zu klären oder zu lösen gilt.
-  
-1. **Vorstellung des Kontextes und Entdeckung des Problems**  
-    Im ProPra lässt sich das Problem im Hintergrund-Bereich erläutern.   
-    Hier lässt sich eine knappe Problembeschreibung oder der Kontext schildern,   
-    der für das angestrebte Lernergebnis relevant ist.   
-  
-2. **Erster Zugriff auf das Problem und Entwicklung von Vorstellungen**  
-    Hier kann es sich anbieten, das Problem noch einmal in Form eines Arbeitsauftrags zu präsentieren,   
-    sodass die Studierenden es selbst erfahren können.   
-    Darauf basierend können sie dann Vorstellungen entwickeln, wie das Problem möglicherweise zu lösen ist.  
-  
-3. **Reaktivierung des Vorwissens und Auswertung neuer Informationen**  
-    Durch Bezug auf gute, im Internet verfügbare Quellen können nun die   
-    für die Problemlösung nötigen zusätzlichen Informationen vermittelt werden.   
-    Verwendet man beispielsweise Quellen, die auch schon vorher referenziert wurden  
-    (wie z.B. man-pages, Mozilla Developer Network, etc.), knüpft man auch gleich an Vorwissen an,   
-    das beim Verwenden der Quellen aufgebaut wurde.  
-  
-4. **Erarbeitung des Neuen Schritt für Schritt und Erstellung eines Lernproduktes**  
-    Je nach Schwierigkeitsgrad und vorausgesetzter Kompetenz für die Aufgaben, 
-    die die Studierenden vor Bearbeitung bereits mitbringen müssen,
-    kann nun in mehr oder weniger offenen Teilaufgaben,
-    d.h. weniger oder mehr geführten Arbeitsaufträgen (vgl. 3.1 Öffnen von Aufgaben),  
-    Schritt für Schritt durch die Lösung des Problems geführt werden.  
-  
-    An dieser Stelle kann es sicherlich auch hilfreich sein,
-    abgestufte Lernhilfen zu verwenden.
-    Im ProPra wird dies hauptsächlich durch das HINT-Macro ermöglicht, 
-    das einen zusätzlichen Hinweistext anzeigen kann, wenn die Studierenden die Hilfe benötigen.  
-  
-5. **Bewusstmachung des neu Erlernten und Definition des Lernzugewinns**, sowie
-6. **Selbstüberprüfung, Verankerung um Wissensnetz, Anwendung auf andere Beispiele**  
-   Ist das Problem erarbeitet, sollte die Lösung des Problems noch einmal herausgestellt werden  
-   und die hinzugewonnene Problemlösekompetenz identifiziert werden.   
-   Das kann z.B. in einer Reflexionsaufgabe erfolgen, oder indem man die Studierenden die Problemlösung zur 
-   Selbstüberprüfung an weiteren ähnlichen oder auch verschiedenen Beispielen mit weniger Anleitung wiederholen lässt.
+Dabei kann man sich die Struktur, in der ProPra-Aufgaben vorgestellt werden, zunutze machen.
+
+Auf der Aufgabenseite sind zunächst die Lernziele gelistet.
+Dies hat hauptsächlich einen informativen Charakter. (vgl. 2.1)
+
+Der Hintergrundbereich ist ein wichtiger Baustein im Lehr-Lern-Modell.
+Er erfüllt die Funktion der Vorstellung des Kontextes und der Entdeckung des Problems und
+kann auch bereits einen ersten Zugriff auf das zu Lernende bieten.
+
+Zunächst ist hier eine knappe Beschreibung des Problems zu verfassen.
+Anschließend ist eine Einordnung in einen sinnstiftenden Kontext gefragt,
+d.h. eine Erklärung, warum das Thema der Aufgabe für die Studierenden relevant ist
+oder in welchen Fällen sie die gelernten Kompetenzen anwenden können.
+
+In der eigentlichen Aufgabe kann es sich anbieten, 
+das Problem noch einmal in Form eines Arbeitsauftrags zu präsentieren, 
+falls die Hintergrundbeschreibung dafür noch nicht ausreichend gewesen ist.
+Dies ermöglicht, dass die Studierenden das Problem selbst erfahren können.
+Darauf basierend können sie dann Vorstellungen entwickeln, wie das Problem möglicherweise zu lösen ist. 
+
+Durch Bezug auf gute, im Internet verfügbare Quellen können nun die  
+für die Problemlösung nötigen zusätzlichen Informationen vermittelt werden.  
+Verwendet man beispielsweise Quellen, die auch schon vorher referenziert wurden  
+(wie z.B. man-pages, Mozilla Developer Network, etc.), knüpft man auch gleich an Vorwissen an,   
+das beim Verwenden der Quellen aufgebaut wurde.
+
+Je nach Schwierigkeitsgrad und für die Aufgabe vorausgesetzter Kompetenz, 
+die die Studierenden vor Bearbeitung bereits mitbringen müssen,
+kann nun in mehr oder weniger offenen Teilaufgaben,
+d.h. weniger oder mehr geführten Arbeitsaufträgen (vgl. 3.1 Öffnen von Aufgaben),  
+Schritt für Schritt durch die Lösung des Problems geführt werden. 
+
+An dieser Stelle kann es sicherlich auch hilfreich sein,
+abgestufte Lernhilfen zu verwenden.
+Im ProPra wird dies hauptsächlich durch das HINT-Macro ermöglicht, 
+das einen zusätzlichen Hinweistext anzeigen kann, wenn die Studierenden die Hilfe benötigen (vgl. 3.2).
+
+Ist das Problem erarbeitet, sollte die Lösung des Problems noch einmal herausgestellt werden  
+und die hinzugewonnene Problemlösekompetenz identifiziert werden.   
+Das kann z.B. in einer Reflexionsaufgabe erfolgen, oder indem man die Studierenden die Problemlösung zur 
+Selbstüberprüfung an weiteren ähnlichen oder auch verschiedenen Beispielen mit weniger Anleitung wiederholen lässt.
+
+Zusammengefasst:
+1. Entdeckung des Problems, Vorstellen des Kontextes, Motivation der Aufgabe (Hintergrundbereich)
+2. Erster Zugriff auf das Problem und Entwicklung von Vorstellungen (Hintergrundbereich oder erster Teil der Aufgabe)  
+3. Bezug auf Vorwissen und Erarbeitung des Neuen (Bezug zu vorherigen Aufgaben, gute Internetquellen für Neues)
+4. Arbeitsaufträge führen durch die Erstellung des Lernprodukts (Verwendung von HINT-Macros, wo sinnvoll)
+5. Reflexion, Verankerung, Transfer (Reflexionsfragen stellen, weitere Beispiele erarbeiten lassen)  
+
 
 > **Beispiel:**  
 > In der Aufgabe `html-Tabellen` wird generell diesem für viele Aufgaben typischen Schema gefolgt.
@@ -266,7 +345,7 @@ den es durch die Aufgabe zu klären oder zu lösen gilt.
 > 
 > In der zweiten Aufgabe wird das Problem als Aufgabe präsentiert (Schritt 2). 
 > Eine konkrete Tabelle soll in HTML erstellt werden.
-> Die Quelle gibt nun neue Informationen zum Auswerten darüber, wie das Problem gelöst werden kann. 
+> Eine Quelle gibt nun neue Informationen zum Auswerten darüber, wie das Problem gelöst werden kann. 
 > Die Aktivierung von Vorwissen ist hier etwas vorgezogen bereits in Aufgabe 1 erfolgt. 
 > Beides zusammen entspricht aber dem Schritt 3 des Modells.
 > 
@@ -282,9 +361,8 @@ den es durch die Aufgabe zu klären oder zu lösen gilt.
 > so Selbstüberprüfung und Verankerung ein größerer Bestandteil der Aufgabe werden. 
 
 
-### 2.3.2 BAGV - Benutzen, Analysieren, Gestalten, Verankern
-
-Die Methode Benutzen, Analysieren, Gestalten, Verankern ist für das erkundende Lernen konzipiert. 
+### 2.3.2 Erkundendes Lernen - offenere Aufgaben (BAGV)
+Die Methode Benutzen, Analysieren, Gestalten, Verankern (BAGV-Methode) ist für das erkundende Lernen konzipiert. 
 Der typische Lernablauf, sich zunächst Konzepte anzusehen 
 und anschließend Werkzeuge dazu kennenzulernen, wird dabei umgedreht. 
 Die Lernenden sollen etwas anwenden und dabei ein oder mehrere Probleme finden, die es zu lösen gilt. 
@@ -314,17 +392,13 @@ Die vier Phasen der Methode sollten dabei zeitlich in etwa alle denselben Raum e
 4. **Verankern:**
    Möglichkeiten der Verankerung wären z.B. eine Reflexionsaufgabe mit Abgabe als Markdown-Dokument, 
    weitere Anwendung der Problemlösung auf andere Situationen, im Bestfall solche, die man auch schon vorher verwendet hat. 
-   Dies ist ein wichtiger Schritt, der für nachhaltiges Lernen nicht ausgelassen werden sollte, 
-   und entspricht dem 6. Schritt im Modell von Leisen.
+   Dies ist ein wichtiger Schritt, der für nachhaltiges Lernen nicht ausgelassen werden sollte.
 
-Damit die Methode sinnvoll eingesetzt werden kann, sollte das betrachtete Informatiksystem so zugänglich sein, 
-dass Quelltexte eingesehen werden können oder informative Fehlermeldungen ausgegeben werden. 
-Nur dann ist eine Analyse des Problems überhaupt sinnvoll möglich.
 Phase 2 und 3 können auch iterative Prozesse sein, 
 indem ein erster Gestaltungsversuch z.B. nur eine partielle Lösung liefert und weitere Problemanalyse nötig ist.
 
 > **Beispiel:**  
-> Die Aufgabe `css-Layout` benutzt das Modell BAGV. 
+> Die Aufgabe `css-Layout` benutzt die BAGV-Methode. 
 > Sie soll die Lernziele durch erkundendes Lernen im Kontext der Gestaltung einer Firmenwebsite vermitteln.
 > 
 > 1. Im ersten Schritt (Benutzen) erhalten die Studierenden eine Beispielseite, 
@@ -351,11 +425,26 @@ Nach der Konstruktion der Aufgabe, gilt es die Aufgabe selbst auszuprobieren.
 Dabei sind unter anderem folgende Punkte zu beachten:
 
 - Ist der Ablauf der Teilaufgaben nachvollziehbar?
-- Sind die Arbeitsaufträge klar definiert?
-- Führt die Bearbeitung der Aufgabe zum gewünschten Kompetenzzuwachs?
-- Wie lange dauert die Bearbeitung, ist die angesetzte Zeit realistisch?
-- Welche zusätzlichen Hinweise benötigen Tutor*innen zum Bewerten der Aufgabe?
 
+- Sind die Arbeitsaufträge klar definiert?
+
+- Führt die Bearbeitung der Aufgabe zum gewünschten Kompetenzzuwachs?
+  Das ist sicherlich keine einfach zu beantwortende Frage, da Sie die Kompetenzen bereits besitzen.
+  Sie sollten allerdings sicherstellen, dass die eingangs definierten Lernziele auch dem entsprechen,
+  was Sie mittels der Aufgaben durchführen und abgeben lassen, 
+  denn sonst werden die Studierenden eben nur die zur Aufgabenlösung nötigen Aktivitäten durchführen
+  und der gewünschte Kompetenzzuwachs trifft nicht ein.
+  
+- Wie lange dauert die Bearbeitung, ist die angesetzte Zeit realistisch? 
+  Einen Vorschlag zur Abschätzung der Zeit finden Sie in [how-to.md Abschnitt 2.3.9](process/how-to.md).
+  Bedenken Sie, dass die Studierenden mehr Zeit zur Bearbeitung benötigen werden als Sie, 
+  da Sie sich mit der Aufgabe und ihrem Thema eingehend beschäftigt haben.
+
+- Welche zusätzlichen Hinweise benötigen Tutor*innen zum Bewerten der Aufgabe?
+  Vielleicht gibt es typische Fehler, die Lernenden passieren. 
+  Reicht eine Musterlösung oder ein Kommandoprotokoll aus?
+  Nutzen Sie die Chance den Tutor*innen auch weitergehende Hinweise mitzugeben,
+  mit denen sie den Studierenden bei der Bearbeitung der Aufgabe helfen können.
 
 # 3 Didaktische Erwägungen
 
@@ -378,15 +467,22 @@ und Hinweise zu Lösungsansätzen zunächst entfernt werden.
 Nicht der Lösungsweg steht im Vordergrund der Aufgabe, sondern das erzeugte Lernprodukt. 
 Dabei sollten die Lernenden auf bereits erlerntes zurückgreifen können.
 Das Aufgabenformat eignet sich insofern weniger für Einführungsaufgaben und mehr für daran anschließende Aufgaben. 
+Es ist zu erwarten, dass Aufgaben mit Schwierigkeitsgrad 2/"leicht" eher geschlossener und geführter sind.
+Für Aufgaben des Typs "mittel" oder "schwer" ist es dafür sinnvoll, offene Aufgaben zu konstruieren.
+Weitere Überlegungen zum Schwierigkeitsgrad finden sich in [How-to.md 2.3.3](process/how-to.md).
+
 Offene Aufgaben sollten unterstützt werden durch Bearbeitungshilfen, 
 die einen Anstoß in die richtige Richtung geben können oder mehr Informationen oder Kontext liefern. 
-Hier kann im ProPra durch ggf. sogar verschachtelte HINT-Macros Bedarfshilfe angeboten werden.
+Hier kann im ProPra durch ggf. sogar verschachtelte HINT-Macros Bedarfshilfe angeboten werden. (vgl. 3.2)
 
 Für die Bewertung von offeneren Aufgaben ist es wichtig für die Tutor*innen, 
 nicht nur eine Musterlösung anzubieten, sondern auch die Kriterien zu benennen, 
 die für eine erfolgreiche Bearbeitung der Aufgabe sprechen.
 Diese Kriterien sind bestenfalls gut und schnell überprüfbar.
 
+Generell ist zu erwarten, dass es reichen kann, die schwierigsten Schritte der Aufgabe zu überprüfen.
+Vielleicht spricht eine korrekte Ausgabe am Ende eines Programms für eine erfolgreiche Bearbeitung.
+Ist ein festes Ziel vorgegeben, d.h. die Aufgabe halboffen, sollte das Erreichen des Ziels aussagekräftig sein.
 
 ## 3.2 Scaffolding und gestufte Lernhilfen
 
@@ -411,7 +507,7 @@ Aufgabenstellungen werden offener, die Komplexität der Aufgaben nimmt zu.
 
 Gestufte Lernhilfen sind eine Form von Lösungsbeispielen. Es wird keine komplette Lösung vorgegeben, 
 sondern Lösungshinweise werden schrittweise gegeben und die Lernenden können bei Bedarf darauf zurückgreifen.
-Sind mit einer Aufgabe Schwierigkeiten zu erwarten, 
+Sind bei einer Aufgabe für die Studierenden Schwierigkeiten zu erwarten, 
 kann mit solchen Lösungshinweisen den Lernenden eine Möglichkeit gegeben werden,
 die schweren Stellen besser zu verstehen oder zu umschiffen.
 
@@ -421,36 +517,79 @@ Im ProPra können wir dies mit den HINT-Macros sehr gut umsetzen und so Bedarfsh
 Sollen diese in verschiedenen Stufen angeboten werden, 
 ist es auch sinnvoll, diese Ausklapptexte verschachtelt aufzubauen.
 
+> **Beispiel:**  
+> Ein Beispiel für eine gute verschachtelte Verwendung findet sich in 
+> [css-Media-Queries](https://github.com/fubinf/propra-inf/blob/10808552f6d15e7ed0001a25db6d35d6fdbbfe08/ch/Web/CSS/css-Media-Queries.md).
+
+## 3.3 Motivation
+
+Motivation ist der Zustand des Angetriebenseins.
+Sie kann durch verschiedene Faktoren wie Ehrgeiz, Schaffensfreude, 
+Erfolg oder Interesse erzeugt und beeinflusst werden.
+Motivation ist eine wichtige Voraussetzung für Lernprozesse,
+kann aber gleichzeitig auch deren Ergebnis sein.
+
+Für das ProPra ist, wie in [How-to 2.3.4](process/how-to.md) beschrieben, Lernmotivation von zentraler Wichtigkeit.
+Aspekte auf die Sie für eine motivierende Aufgabengestaltung zusätzlich achten sollten:
+
+- Aufgaben sind klar strukturiert und Arbeitsaufträge verständlich und eindeutig.
+- Finden Sie einen geeigneten praxisnahen Kontext aus der realen Welt für ihre Aufgaben.
+- Verdeutlichen Sie, welchen Nutzen das Bearbeiten der Aufgaben für zukünftiges Studium oder Arbeit hat.
+- Erfolgserlebnisse motivieren für das Bearbeiten weiterer Teilschritte oder der nächsten Aufgabe.
 
 # 4 Reihenplanung
 
 Bei der Planung der Aufgabenreihe, oft Grobplanung genannt, sollten Sie ähnlich vorgehen. 
 Anstatt, dass Sie sich jetzt im konkreten Gedanken über einzelne Aufgabenthemen machen, 
 stellen Sie sich Fragen zum übergreifenden Themenbereich, 
-den Sie mit der Aufgabenreihe (Taskgroup oder Kapitel) abdecken wollen.
+den Sie mit der Aufgabenreihe abdecken wollen.
+Was genau eine Aufgabenreihe im ProPra ausmacht ist etwas schwammig.
+Eine Reihe kann eine Taskgroup sein oder ggf. mehrere Taskgroups umfassen.
+Eine Taskgroup kann auch nur ein loserer Verband von Aufgaben sein, die thematisch zusammen passen.
+Wie rigide die Taskgroup als Reihe zu verstehen ist, die in einer Sequenz abgehandelt werden muss,
+ist ebenfalls ein Teil der Analyse.
 
-Zu Beginn der Reihenplanung steht eine Bedarfsanalyse.
+Zu Beginn der Reihenplanung steht eine Analyse der Studierendenvoraussetzungen, 
+der Abhängigkeiten der Lernziele und eine Festlegung der Lerninhalte.
 
 Die Leitfragen sind hier:
-- Welche formalen Anforderungen gibt es an den Inhalt?
-- Welche Voraussetzungen bringen die Lernenden mit und wie holt man sie inhaltlich ab?
-- Welches grundlegende theoretische oder anwendungsorientierte Wissen ist notwendig, welches soll gelehrt werden?
-- Welche praktischen Fertigkeiten sollen die Studierenden erwerben? Welche sind Voraussetzung?
-- Welche Kompetenzen setzten welche anderen Kompetenzen voraus? Welche Reihenfolge ist sinnvoll für die Aufgaben? 
-- Wie lassen sich Meta-Kompetenzen des ProPra mit einbauen? 
+- Welches grundlegende theoretische oder anwendungsorientierte Wissen und welche Fertigkeiten sind notwendig?
+- Welches Wissen und welche Fertigkeiten sollen die Studierenden erwerben?
 - Was ist ein geeigneter Kontext für die Aufgabenreihe?
+- Welche Kompetenzen setzten welche anderen Kompetenzen voraus? Welche Reihenfolge ist sinnvoll für die Aufgaben?
 - Welche Schwierigkeiten sind bei der Bearbeitung der Aufgaben zu erwarten?
 
 Im Anschluss legen Sie ihre Lernziele (vgl. 2.1) fest und
 ergänzen Ihre Bedarfsanalyse durch Recherche und didaktische Analyse (vgl 2.2)
 
-Die konkrete Konstruktion der Aufgaben wird hier dann natürlich ersetzt mit einer Liste an Aufgaben, 
+Die konkrete Konstruktion der Aufgaben wird hier ersetzt mit einer Liste an Aufgaben, 
 die Sie erstellen sollten, um die wichtigsten Kompetenzen zu vermitteln sowie eine Reihenfolge, 
 die Sie den Studierenden mittels `assumes` und `requires`-Beziehungen vorschlagen können. 
-Dabei sollten Sie natürlich zunächst die grundlegenden Kompetenzen vermitteln, 
-d.h. erst leicht dann schwer und erst komplex und dann abstrakt.
+Dabei sollten Sie zunächst die grundlegenden Kompetenzen vermitteln, 
+d.h. erst leicht dann schwer oder komplex und erst konkret dann abstrakt.
 
-
-
-
+> **Beispiel:**
+> Aufgabenreihe HTML und CSS:
+> - Welches grundlegende theoretische oder anwendungsorientierte Wissen und welche Fertigkeiten sind notwendig?
+>   - Keine Voraussetzungen über die allgemeinen Voraussetzungen des ProPra hinaus.
+>   - Es kann erwartet werden, dass der Umgang mit einem Browser vertraut ist.
+> - Welches Wissen und welche Fertigkeiten sollen die Studierenden erwerben?
+>   - Lernziele:
+>     - Ich beschreibe die Funktion von HTML und CSS für Websites.
+>     - Ich erkläre die Syntax und Semantik von HTML-Elementen und CSS-Definitionen. 
+>     - Ich implementiere einfache Beispiele einer Firmenwebsite in HTML und CSS.
+>     - Ich beschreibe die Verwendung grundlegender HTML-Elemente auf einer Website 
+>       und übertrage die Verwendungsweise auf andere Beispiele. 
+>     - Ich gebe typische CSS-Eigenschaften an und bewerte, wie sie für einfache Websites eingesetzt werden können.
+>     - Ich analysiere, wie die CSS-Kaskade funktioniert, und implementiere CSS-Quellcode entsprechend ihrer Regeln.
+>     - Ich analysiere und vergleiche Dokumentationen und Nachschlagewerke zum Thema
+> - Was ist ein geeigneter Kontext für die Aufgabenreihe?
+>   - Als praxisnaher Kontext wird hier das Erstellen eine Firmenwebsite herangezogen
+> - Welche Kompetenzen setzten welche anderen Kompetenzen voraus? Welche Reihenfolge ist sinnvoll für die Aufgaben?
+>   - Reihenfolge nach der Einführung relativ offen. 
+>   - Die Aufgaben des jeweiligen Themenbereichs gehen davon aus, dass die Einführungsaufgabe bearbeitet worden ist. 
+>   - html-Medien wird ebenfalls oft vorausgesetzt, da hier der Umgang mit Links behandelt wird.
+>   - Einige Aufgaben in CSS verwenden Inhalte aus den html-Aufgaben weiter, hier gibt es dann assumes-Beziehungen
+> - Welche Schwierigkeiten sind bei der Bearbeitung der Aufgaben zu erwarten?
+>   - z.B. differenzierte Lernvoraussetzungen, Überforderung durch zu viele Konzepte
 
