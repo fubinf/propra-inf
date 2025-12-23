@@ -36,8 +36,8 @@ Erstellen Sie eine einfache Tabelle mit zwei Zeilen und drei Spalten:
 ```
 
 Bei SelfHTML finden Sie unter 
-[Aufbau einer Tabelle](https://wiki.selfhtml.org/wiki/HTML/Tabellen/Aufbau_einer_Tabelle)
-einen Überblick, wie das funktioniert.
+[Aufbau einer Tabelle](https://wiki.selfhtml.org/wiki/Tabellen/Aufbau_einer_Tabelle) 
+im Abschnitt Aufbau einen Überblick, wie das funktioniert.
 
 [ER] Für lange Tabellen, die beim Ausdrucken über mehrere Seiten gehen würden, 
 kann es sinnvoll sein, wenn Spaltenköpfe oder -füße separat von den eigentlichen
@@ -52,8 +52,7 @@ Setzen Sie dies für Ihre Tabelle um.
 mehrere Zeilen überspannen. 
 Dafür gibt es Lösungen mit den Attributen `colspan` und `rowspan`.
 Ergänzen Sie Ihre Tabelle, sodass die untenstehende Tabelle abgebildet wird.
-Eine Erklärung dazu finden Sie in Abschnitt zwei des SelfHTML-Dokuments
-[Zellen verbinden](https://wiki.selfhtml.org/wiki/HTML/Tabellen/Zellen_verbinden#Zellen_verbinden).
+Eine Erklärung dazu finden Sie im Abschnitt Zellen verbinden des obigen SelfHTML-Dokuments.
 
 ```text
 |-------------------------------------------------------|
