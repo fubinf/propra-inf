@@ -596,7 +596,6 @@ Doof am Thema: Geht auf WSL und Mac nur mit Verrenkungen.
 
 
 ## ch/Web (müllers, ertekin, li)
-
 - assumes: Wissen über http-Header, curl  
   https://icanhazdadjoke.com liefert im Browser etwas anderes als wenn man es mit curl abruft.
   Was vermuten Sie, wie funktioniert das? (User-Agent abfragen).
@@ -608,13 +607,8 @@ Doof am Thema: Geht auf WSL und Mac nur mit Verrenkungen.
   evtl. TypeScript, Flask, Django, Vue(?), React(?).
 
 ### Web/CSS
-
-- Jeweils eine Aufgabe für: Basics, häufig benutzte Eigenschaften Box Model, Selectors, (Pseudo)Classes
-- Es gab auch noch Shorthands (border statt border-left/-right/-top/-bottom)
-  und Margin/Border/Padding, weil das besondere Relevanz hat. -> Aufgabe Box Model.
-- Medien-Abfragen, "responsive" Design
-- Fortgeschritten: Calculated Properties und Variablen, Grid und Flex
-- Optional: Verwenden von CSS Frameworks
+- Fortgeschritten: Calculated Properties und Variablen
+- Optional: Verwenden von (weiteren) CSS Frameworks als Alternative zu Bootstrap
 
 
 ### Web/JavaScript (ertekin)
