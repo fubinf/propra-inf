@@ -1,6 +1,6 @@
 title: HTML-Attribute
 stage: alpha
-timevalue: 0.5
+timevalue: 1
 difficulty: 2
 requires: html-Medien
 ---
