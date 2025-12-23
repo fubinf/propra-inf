@@ -94,5 +94,4 @@ In der oben angegebenen Quelle auf SelfHTML finden sich Anwendungsbeispiele.
 [INSTRUCTOR::Musterlösung]
 [INCLUDE::ALT:]
 
-Eine Musterlösung findet sich in [TREEREF::/Web/CSS/css-Media-Queries.html].
 [ENDINSTRUCTOR]
