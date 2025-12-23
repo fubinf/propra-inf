@@ -596,14 +596,8 @@ Doof am Thema: Geht auf WSL und Mac nur mit Verrenkungen.
 
 
 ## ch/Web (müllers, ertekin, li)
-- assumes: Wissen über http-Header, curl  
-  https://icanhazdadjoke.com liefert im Browser etwas anderes als wenn man es mit curl abruft.
-  Was vermuten Sie, wie funktioniert das? (User-Agent abfragen).
-  Finden Sie eine Website, die Ihnen hilft zu prüfen, ob die Voraussetzung für ihre Vermutung
-  gegeben ist.
-- Auf Grundlagen beschränken; das ProPra ist kein Workshop für Spezialkenntnisse.  
 - Frontend und Backend gemeinsam behandeln; Informatiker_innen sollten einen Überblick haben.
-- Behandlung von folgenden Themen: HTML, CSS, ~~Bootstrap~~ Tailwind(?), JavaScript,
+- Behandlung von folgenden Themen: Tailwind(?), 
   evtl. TypeScript, Flask, Django, Vue(?), React(?).
 
 ### Web/CSS
