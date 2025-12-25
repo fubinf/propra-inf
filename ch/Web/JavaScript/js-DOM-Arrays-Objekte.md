@@ -79,6 +79,18 @@ for (const p of produkte) {
 }
 ```
 
+[NOTICE]
+Neben `for...of` gibt es in JavaScript auch die Schleife `for...in`:  
+
+- `for...of` wird verwendet, um über Werte in iterierbaren Datenstrukturen zu laufen, z. B. Arrays.  
+Typischer Anwendungsfall: Jedes Element eines Arrays nacheinander verarbeiten.  
+- `for...in` iteriert über die Schlüssel (Property-Namen) eines Objekts und ist daher vor allem für Objekte gedacht, nicht für Arrays.  
+
+Gerade bei Arrays führt die Verwendung von `for...in` häufig zu unerwartetem Verhalten.  
+Verwechseln Sie diese beiden Schleifen daher nicht.  
+In diesem Kapitel verwenden wir bewusst ausschließlich `for...of`.  
+[ENDNOTICE]
+
 #### `forEach` – die Array-Methode
 
 JavaScript bietet für Arrays außerdem eine eingebaute Methode `.forEach()`.  
@@ -95,6 +107,8 @@ produkte.forEach(function(p) {
 - `for` / `while` sind allgemeine Schleifen → flexibel, auch für komplizierte Abläufe.  
 - `.forEach()` ist speziell für Arrays → kürzer und oft lesbarer, wenn man einfach alle Elemente nacheinander abarbeiten will.  
 - Anders als `for` kann `.forEach()` nicht mit `break` oder `continue` unterbrochen werden.
+- Anders als bei klassischen Schleifen gibt es in `.forEach()` kein echtes `break` oder `continue`,  
+der aktuelle Durchlauf kann jedoch durch ein `return` im Callback vorzeitig beendet werden
 
 Eine ausführlichere Erklärung zu `.forEach()` und `for...of` finden Sie in der [MDN-Webdokumentation zu .forEach()](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) und in der [MDN-Webdokumentation zu for...of](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Statements/for...of).
 
