@@ -347,7 +347,7 @@ console.log(summe); // 4.5
 
 Hier passiert Folgendes:  
 - Der zweite Parameter (`0`) ist der Startwert des Akkumulators.  
-- Die Funktion `(akkumulator, wert)` wird für jedes Element aufgerufen.  
+- Die Funktion `(akkumulator, wert) => akkumulator + wert` wird für jedes Element aufgerufen.  
 - Das Ergebnis wird jeweils als neuer Akkumulator weitergegeben.  
 - Am Ende gibt `reduce()` den letzten Akkumulatorwert zurück.
 
