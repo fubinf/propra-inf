@@ -34,39 +34,67 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-    
+
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
         go-version: '1.23'
-    
-    - name: Install Python dependencies
+
+    - name: Create and activate Python virtual environment
       run: |
+        python -m venv /tmp/sedrila_venv
+        source /tmp/sedrila_venv/bin/activate
         python -m pip install --upgrade pip
-        pip install \
-          "argparse_subcommand>=1.2" \
-          "blessed>=1.20" \
-          "bottle>=0.13" \
-          "GitPython>=3.1" \
-          "Jinja2>=3.1" \
-          "Markdown>=3.7" \
-          "matplotlib>=3.9" \
-          "mdx_linkify>=2.1" \
-          "numpy<2" \
-          "pandas>=2.2" \
-          "Pygments>=2.17" \
-          "python-gnupg>=0.5.5" \
-          "PyYAML>=6.0" \
-          "requests>=2.32" \
-          "rich>=13.7"
-        
-        # Install packages needed by example programs
-        pip install \
-          "fastapi>=0.104" \
-          "pydantic>=2.0" \
-          "uvicorn>=0.24" \
-          "pytest>=7.4"
-    
+        # Install sedrila dependencies from pyproject.toml
+        cd sedrila && pip install -e . && cd ..
+
+    - name: Collect metadata and dependencies
+      run: |
+        source /tmp/sedrila_venv/bin/activate
+        python sedrila/py/sedrila.py maintainer --log ERROR --collect > /tmp/metadata.json 2>/dev/null || echo '{"languages": {}, "dependencies": []}' > /tmp/metadata.json
+        echo "Collected metadata:"
+        cat /tmp/metadata.json
+
+    - name: Display required languages and dependencies
+      run: |
+        echo "=== Required Programming Languages ==="
+        jq -r '.languages | to_entries[] | "\(.key):\(.value)"' /tmp/metadata.json || echo "No languages specified"
+        echo ""
+        echo "=== Program Dependencies ==="
+        jq -r '.dependencies[]' /tmp/metadata.json || echo "No dependencies specified"
+        echo ""
+
+    - name: Install program dependencies
+      run: |
+        set -e
+
+        source /tmp/sedrila_venv/bin/activate
+
+        # Extract dependencies from JSON and install them
+        dependencies=$(jq -r '.dependencies[]' /tmp/metadata.json 2>/dev/null || echo "")
+
+        if [ -z "$dependencies" ]; then
+          echo "No dependencies to install"
+          exit 0
+        fi
+
+        echo "Installing program dependencies:"
+        echo "$dependencies" | while IFS= read -r cmd; do
+          [ -z "$cmd" ] && continue
+          echo ""
+          echo "Executing: $cmd"
+
+          # Handle commands that need sudo
+          if [[ "$cmd" == *"apt-get"* ]]; then
+            sudo $cmd
+          else
+            $cmd
+          fi
+        done
+
+        echo ""
+        echo "All dependencies installed successfully"
+
     - name: Verify environment
       run: |
         echo "=== Python Environment ==="
@@ -84,6 +112,7 @@ jobs:
     
     - name: Run program checks
       run: |
+        source /tmp/sedrila_venv/bin/activate
         python sedrila/py/sedrila.py maintainer --check-programs --batch -- /tmp/progcheck
       continue-on-error: false
 
