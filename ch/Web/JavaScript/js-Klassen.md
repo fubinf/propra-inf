@@ -50,7 +50,7 @@ aufgabe.erledigen()
 print(aufgabe.anzeigen())   # ✔️ Kapitel 4 lesen
 ```
 
-Das gleiche Prinzip in JavaScript:
+Das gleiche in JavaScript:
 
 ```js
 class TodoItem {
@@ -77,9 +77,12 @@ console.log(aufgabe.anzeigen()); // "✔️ Kapitel 4 lesen"
 #### Parallelen:
 
 Sowohl in Python als auch in JavaScript definiert man Klassen mit dem Schlüsselwort `class`.  
-In Python übernimmt die spezielle Methode `__init__` die Rolle des Konstruktors, während in JavaScript dafür die Methode `constructor` vorgesehen ist.  
-Auch der Verweis auf das aktuelle Objekt ist vergleichbar: In Python geschieht das über `self`, in JavaScript über `this`.  
-Methoden werden in beiden Sprachen direkt innerhalb der Klassendefinition notiert, sodass die grundlegende Struktur von Klassen in Python und JavaScript auf den ersten Blick sehr ähnlich wirkt.
+In Python übernimmt die spezielle Methode `__init__` die Rolle des Konstruktors, 
+während in JavaScript dafür die Methode `constructor` vorgesehen ist.  
+Auch der Verweis auf das aktuelle Objekt ist vergleichbar: 
+In Python geschieht das über `self`, in JavaScript über `this`.  
+Methoden werden in beiden Sprachen direkt innerhalb der Klassendefinition notiert, 
+sodass die grundlegende Struktur von Klassen in Python und JavaScript auf den ersten Blick sehr ähnlich wirkt.
 
 [ER] Erstellen Sie eine Klasse `Produkt`, die Name und Preis im Konstruktor entgegennimmt.  
 Fügen Sie eine Methode `beschreibung()` hinzu, die beides als String zurückgibt.
@@ -88,9 +91,9 @@ Fügen Sie eine Methode `beschreibung()` hinzu, die beides als String zurückgib
 ### Was bedeutet „Prototyp“?
 
 In JavaScript hat jedes Objekt intern einen Prototyp, ein anderes Objekt, von dem es Eigenschaften erben kann.  
-Klassen (`class`) sind also eigentlich nur eine modernere und übersichtlichere Schreibweise für diese Prototyp-Verkettung.
+Klassen (`class`) sind nur eine modernere und übersichtlichere Schreibweise für diese Prototyp-Verkettung.
 
-Beispiel mit Prototypen (ohne class):
+Beispiel mit Prototypen (ohne `class`):
 
 ```js
 function Tier(name) {
@@ -105,7 +108,7 @@ const hund = new Tier("Bello");
 hund.sprechen(); // "Bello macht ein Geräusch."
 ```
 
-Die moderne class-Syntax:
+Die moderne `class`-Syntax:
 
 ```js
 class Tier {
@@ -121,7 +124,7 @@ class Tier {
 
 Beide Varianten tun dasselbe, nur die Syntax unterscheidet sich.
 
-[ER] Prototyp statt class:  
+[ER] Prototyp statt `class`:  
 
 1. Erstellen Sie eine Konstruktorfunktion `Auto(marke, baujahr)`.  
 2. Ergänzen Sie eine Methode `alter()` über `Auto.prototype`, die das Alter des Autos aus dem aktuellen Jahr berechnet.  
