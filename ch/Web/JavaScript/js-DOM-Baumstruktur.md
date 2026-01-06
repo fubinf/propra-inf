@@ -1,5 +1,5 @@
 title: DOM erkunden und erste Interaktionen
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: html-erste-Schritte, html-Medien, css-Einführung, css-Selektoren
@@ -111,7 +111,8 @@ Jeder Listenpunkt, der hinzugefügt wurde, soll einen kleinen "Entfernen"-Button
 mit dem man den jeweiligen Listenpunkt wieder löschen kann.
 
 [HINT::Umgang mit verschachtelter Liste]
-Die vorhandene HTML-Struktur enthält untergeordnete Listen (z. B. Bibliotheken innerhalb von "Programme nach Ihren Wünschen").  
+Die vorhandene HTML-Struktur enthält untergeordnete Listen 
+(z. B. Bibliotheken innerhalb von "Programme nach Ihren Wünschen").  
 Achten Sie bei Ihrer Umsetzung darauf, neue Einträge nicht in solche verschachtelten Bereiche einzufügen,  
 sondern nur in die äußere Liste mit den Hauptpunkten.
 Geben Sie der äußeren Liste (also `<ul>`) eine eindeutige `id`, z. B. `id="leistungenListe"`,  
