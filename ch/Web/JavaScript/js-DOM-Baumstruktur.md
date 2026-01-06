@@ -76,7 +76,7 @@ Nutzen Sie diese Informationen, um die folgende Frage zu beantworten:
 
 ### DOM gezielt verändern
 
-Neben `innerHTML`, `innerText` oder `textContent` gibt es weitere nützliche Methoden:
+Man kann einen DOM-Baum nicht nur analysieren, sondern auch modifizieren:
 
 `.appendChild(...)` – Elemente hinzufügen:
 
@@ -88,11 +88,11 @@ li.textContent = "Neuer Eintrag";
 const liste = document.getElementById("meineListe");
 liste.appendChild(li);
 ```
-Diese Methode eignet sich sehr gut für dynamische Listen.
+Diese Methode eignet sich zum Beispiel sehr gut für dynamische Listen.
 
 `.remove()` – Elemente löschen:
 
-Damit kann man einen DOM-Knoten entfernen:
+Damit kann man einen DOM-Knoten (also ggf. einen ganzen Unterbaum) entfernen:
 
 ```js
 const hinweis = document.getElementById("hinweisText");
@@ -111,14 +111,14 @@ mit dem man den jeweiligen Listenpunkt wieder löschen kann.
 Die vorhandene HTML-Struktur enthält untergeordnete Listen (z. B. Bibliotheken innerhalb von "Programme nach Ihren Wünschen").  
 Achten Sie bei Ihrer Umsetzung darauf, neue Einträge nicht in solche verschachtelten Bereiche einzufügen,  
 sondern nur in die äußere Liste mit den Hauptpunkten.
-Geben Sie der äußeren Liste (also `<ul>`, nicht den inneren) eine eindeutige `id`, z. B. `id="leistungenListe"`,  
+Geben Sie der äußeren Liste (also `<ul>`) eine eindeutige `id`, z. B. `id="leistungenListe"`,  
 und verwenden Sie im JavaScript `getElementById("leistungenListe")`, um gezielt nur dort neue Einträge hinzuzufügen.
 [ENDHINT]
 
 
 ### Mehrere Elemente bearbeiten nach einem Event
 
-Manchmal möchten Sie mehrere Elemente auf einmal ansprechen, zum Beispiel, um alle Listeneinträge zu markieren oder zu verändern.  
+Manchmal möchten Sie mehrere Elemente ansprechen, zum Beispiel, um alle Listeneinträge zu markieren oder zu verändern.  
 Dazu können Sie eine Schleife verwenden:
 
 ```
