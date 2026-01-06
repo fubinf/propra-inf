@@ -46,9 +46,12 @@ Beispiel:
 body
 └── section
     ├── h1
+    │   └── "Titel"
     └── p
+        ├── "Ein "
         ├── strong
-        └── Textknoten
+        │   └── "wichtiger"
+        └── " Text."
 ```
 
 Sie können im DOM mit `parentNode`, `children`, `firstChild`, `nextElementSibling` usw. navigieren:
@@ -71,7 +74,7 @@ Lesen Sie in der MDN-Dokumentation nach zu:
 
 Nutzen Sie diese Informationen, um die folgende Frage zu beantworten:
 
-[EQ] Welche Informationen liefert `children`, die `childNodes` nicht liefert? Beschreiben Sie den Unterschied.
+[EQ] Welche Informationen liefert `childNodes`, die `children` nicht liefert? Beschreiben Sie den Unterschied.
 
 
 ### DOM gezielt verändern
