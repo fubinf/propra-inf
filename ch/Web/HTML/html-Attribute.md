@@ -1,5 +1,5 @@
 title: HTML-Attribute
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 2
 requires: html-Medien

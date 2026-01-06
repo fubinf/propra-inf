@@ -24,4 +24,5 @@
 - **2025-11-19** Aufgabe Web/CSS/[PARTREF::css-Media-Queries] zugefügt.
 - **2025-12-01** Aufgabe Bibliotheken/Pandas/[PARTREF::pd-Transformationen] zugefügt.
 - **2025-12-05** Aufgabe Werkzeuge/Netzwerk/[PARTREF::rsync] zugefügt.
+- **2026-01-06** Aufgabe Web/HTML/[PARTREF::html-Attribute] zugefügt.
 - ...
