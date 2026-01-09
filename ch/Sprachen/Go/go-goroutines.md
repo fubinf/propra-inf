@@ -11,18 +11,14 @@ Ich habe Goroutinen kennengelernt und mein erstes nichtsequentielles Programm in
 
 
 [SECTION::background::default]
-Fast alle modernen Rechner sind mit Mehrkernprozessoren ausgestattet — eine Ressource, die wir als
-Programmierer_innen nicht ungenutzt lassen sollten.
-Wer seine Software nur auf einem Kern ausführt, verschenkt wertvolle Rechenleistung und bremst die 
-Anwendung unnötig.
-
+Fast alle modernen Rechner sind mit Mehrkernprozessoren ausgestattet und haben Möglichkeiten,
+die wir als  Programmierer_innen nutzen wollen.
 Nicht-sequentielle Programmierung erfolgt in Go mithilfe von __Goroutinen__ — unabhängigen
 Ausführungspfaden, die jeweils eigene Aufgaben übernehmen. 
-In dieser Aufgabe lernen Sie Goroutinen kennen.
 
-__Anmerkung:__ Goroutinen allein reichen nicht aus, um effektive nebenläufige Programme in Go zu
-schreiben. 
-Sie sind jedoch der erste Schritt, um die nicht-sequentielle Denkweise zu erlangen.
+__Anmerkung:__ Goroutinen allein reichen nicht aus, um echte nebenläufige Programme in Go zu
+schreiben, denn sie leisten weder Kommunikation noch Synchronisation. 
+Sie sind jedoch der erste Schritt.
 
 <!-- TODO_2_Brandes: add teasers to go-channels, go-sync-mutex and go-sync-waitgroup once all four tasks are live -->
 [ENDSECTION]
@@ -38,9 +34,9 @@ Beide Konzepte sind zentral, daher werden sie im Folgenden erläutert und vonein
 - __Sequentielle Ausführung:__ Alle Befehle eines Programms werden strikt nacheinander auf einem
   CPU-Kern ausgeführt.
 - __Nebenläufige Ausführung:__ Aufgaben werden nicht sequentiell ausgeführt.
-  Ein typisches Beispiel sind mehrere Threads (siehe [TERMREF::Thread] im Glossar), die abwechselnd 
-  auf einem CPU-Kern laufen.
-- __Parallele Ausführung:__ Einzelne Befehle oder Aufgaben werden gleichzeitig auf mehreren
+  Ein typisches Beispiel sind mehrere [TERMREF2::Thread::-s], die 
+  gleichzeitig oder abwechselnd laufen.
+- __Parallele Ausführung:__ Mehrere Aufgaben werden gleichzeitig auf mehreren
   CPU-Kernen ausgeführt.
   Parallelität ist ein Spezialfall der Nebenläufigkeit.
 
@@ -113,7 +109,7 @@ und beantworten Sie die folgenden Fragen.
 
 [EQ] Was ist die Beziehung zwischen Goroutinen und OS-Threads?
 
-[FOLDOUT::Wie werden Goroutinen verwaltet?]
+[FOLDOUT::Bei Interesse: Wie werden Goroutinen verwaltet?]
 Jede ausführbare Binärdatei, die vom Go-Compiler produziert wird, enthält neben dem Programm selbst
 noch Komponenten der Laufzeitumgebung, beispielsweise Garbage Collector und _den Scheduler_.
 
