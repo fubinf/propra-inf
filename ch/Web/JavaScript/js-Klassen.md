@@ -27,8 +27,8 @@ So lassen sich auch größere Programme übersichtlich aufbauen.
 
 In Python kennen wir bereits Klassen, die mit `class` eingeführt und mit der speziellen Methode `__init__` initialisiert werden.  
 In JavaScript gibt es seit ES6 ebenfalls eine `class`-Syntax, sie sieht ähnlich aus, funktioniert aber intern etwas anders.  
-JavaScript basiert nicht auf „echten“ Klassen wie Python, sondern auf Prototypen (dazu gleich mehr).  
-Das Prinzip ist jedoch gleich: Man bündelt Daten (Attribute) und Funktionen (Methoden) in einer wiederverwendbaren Struktur.
+JavaScript verwendet intern keine Klassenhierarchie wie Python, sondern ein prototypbasiertes Objektmodell (dazu gleich mehr).  
+Die `class`-Syntax ist lediglich eine alternative Schreibweise für dieses Prototyp-System.
 
 Beispiel in Python:
 
@@ -90,7 +90,8 @@ Fügen Sie eine Methode `beschreibung()` hinzu, die beides als String zurückgib
 
 ### Was bedeutet „Prototyp“?
 
-In JavaScript hat jedes Objekt intern einen Prototyp, ein anderes Objekt, von dem es Eigenschaften erben kann.  
+In JavaScript besitzt jedes Objekt intern einen Verweis auf ein anderes Objekt, seinen Prototyp.  
+Wenn auf eine Eigenschaft zugegriffen wird, die im Objekt selbst nicht existiert, wird im Prototyp weitergesucht.
 Klassen (`class`) sind nur eine modernere und übersichtlichere Schreibweise für diese Prototyp-Verkettung.
 
 Beispiel mit Prototypen (ohne `class`):
@@ -122,19 +123,24 @@ class Tier {
 }
 ```
 
-Beide Varianten tun dasselbe, nur die Syntax unterscheidet sich.
+Beide Varianten erzeugen dieselbe Struktur:  
+Eine Konstruktorfunktion, deren `prototype`-Objekt die Methode `sprechen` enthält.  
+Der Unterschied liegt nur in der Schreibweise.
 
 [ER] Prototyp statt `class`:  
 
-1. Erstellen Sie eine Konstruktorfunktion `Auto(marke, baujahr)`.  
-2. Ergänzen Sie eine Methode `alter()` über `Auto.prototype`, die das Alter des Autos aus dem aktuellen Jahr berechnet.  
-3. Erzeugen Sie zwei Auto-Objekte und geben Sie für beide mit `console.log` Marke und Alter aus.
+1. Erstellen Sie eine Konstruktorfunktion `Auto(marke, baujahr)`, die die übergebenen Werte als Eigenschaften speichert.  
+2. Ergänzen Sie eine Methode `alter(aktuellesJahr)` über `Auto.prototype`.  
+Die Methode soll das Alter des Autos als Differenz aus `aktuellesJahr` und dem gespeicherten Baujahr berechnen und zurückgeben.  
+3. Erzeugen Sie zwei Auto-Objekte, legen Sie ein aktuelles Jahr in einer Variablen fest  
+und geben Sie für beide mit `console.log` Marke und Alter aus.
 
 
 ### Vererbung mit `extends`
 
 Genauso wie in Python kann man in JavaScript Klassen von anderen Klassen ableiten.  
-Das bedeutet: Eine Unterklasse übernimmt Eigenschaften und Methoden der Elternklasse und kann neue hinzufügen oder bestehende überschreiben.  
+Das bedeutet: Eine Unterklasse kann auf Eigenschaften und Methoden der Elternklasse zugreifen,  
+weil ihre Instanzen über eine Prototyp-Kette mit der Elternklasse verbunden sind.  
 So vermeiden wir doppelten Code und können gemeinsame Logik an einer zentralen Stelle definieren.
 
 In Python sieht das z. B. so aus:
@@ -193,9 +199,17 @@ console.log(buch.endpreis());     // 24
 
 #### Wichtige Gemeinsamkeiten und Unterschiede
 
-`super()`:  
-- Python: ruft den Konstruktor der Elternklasse auf.  
-- JavaScript: genau dasselbe – nur Pflicht, wenn man im Konstruktor von `extends`-Klassen auf `this` zugreifen will.
+`super`:  
+- Python: `super()` liefert ein Proxy-Objekt, über das Methoden/Attribute der Elternklasse aufgerufen werden können  
+(z. B. `super().__init__(...)`). Es ist nicht „die Elternklasse selbst“, sondern ein spezieller Zugriff darauf.    
+- JavaScript: `super` ist ein spezielles Schlüsselwort für Zugriffe auf den Prototyp der Elternklasse.  
+`super(...)` ruft im Konstruktor den Konstruktor der Elternklasse auf.  
+`super.methode()` ruft eine Methode der Elternklasse auf.
+
+Wichtig in JavaScript:  
+In einer abgeleiteten Klasse (`extends`) muss im `constructor` zuerst `super(...)` aufgerufen werden,  
+bevor `this` verwendet werden darf.  
+Wenn Sie keinen eigenen `constructor` definieren, fügt JavaScript automatisch einen ein, der `super(...)` aufruft.
 
 Syntax:  
 - Python: `class Kind(Eltern)`:  
@@ -253,9 +267,21 @@ Hier passiert intern Folgendes:
 
 #### Verbindung zu `class` und `extends`
 
-Die moderne `class`-Syntax setzt diese Prototyp-Ketten für uns auf.  
-Das heißt, wenn wir mit `extends` arbeiten, wird intern einfach die Prototyp-Referenz so gesetzt, 
-dass die Kindklasse auf die Methoden und sonstigen Attribute der Elternklasse zugreifen kann.
+Die moderne `class`-Syntax übernimmt für uns genau die Schritte,  
+die wir zuvor manuell mit Konstruktorfunktionen und Prototypen durchführen würden.
+
+Wenn eine Klasse `B` mit `extends A` von einer anderen Klasse erbt,  
+setzt JavaScript intern zwei wichtige Verknüpfungen:
+
+1. Das Prototyp-Objekt der Kindklasse wird mit dem Prototyp-Objekt der Elternklasse verbunden:  
+`B.prototype` erhält als Prototyp `A.prototype`.  
+2. Der Konstruktor der Kindklasse wird mit dem Konstruktor der Elternklasse verbunden,  
+sodass `super(...)` im Konstruktor von `B` den Konstruktor von `A` aufrufen kann.
+
+Dadurch entsteht eine Prototyp-Kette:  
+Instanzen von `B` → `B.prototype` → `A.prototype` → `Object.prototype`.
+
+Die `class`-Syntax ist damit lediglich eine lesbarere Schreibweise für diese Prototyp-Verknüpfungen.
 
 Darum gilt:  
 
