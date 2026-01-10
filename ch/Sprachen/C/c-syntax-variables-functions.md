@@ -12,7 +12,7 @@ Ich verstehe den C Variablen- und Funktionssyntax.
 Pythons Syntax ist Ihnen sicherlich bekannt.
 Er ist nicht immer geradlinig, aber dennoch gut und flüssig lesbar.
 In C ist das leider nicht so.
-Der Syntax is klobig und alt.
+Die Syntax is klobig und alt.
 Er zeigt eine störrische, unflexible Seite der Welt der Programmiersprachen, aber auch eine
 Beständigkeit die seines gleichen sucht.
 C ist nicht ohne Grund die Inspiration sehr vieler Sprachen.

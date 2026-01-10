@@ -90,76 +90,12 @@ int main(void) {
 
 Lesen Sie sich die Kapitel vier und fünf des Handbuchs durch.
 
-[NOTICE]
-Sollten Sie CLion benutzen, werden Sie sehen, dass es die Include-Guards für Sie schon vorbereitet.
-Für die Aufgaben müssen Sie diese erst einmal entfernen.
+[EQ] Erläutern Sie kurz, weshalb Include Guards verwendet werden sollten.
 
-In Zukunft bleiben die Include-Guards natürlich in der Datei.
-[ENDNOTICE]
-
-Fügen Sie folgende Dateien hinzu:
-
-`car.h`
-```c
-struct car {
-  const char *manufacturer;
-  const char *model;
-};
-
-void printCar(const struct car *car);
-```
-
-`car.c`
-```c
-#include <stdio.h>
-
-#include "car.h"
-
-void printCar(const struct car *car) {
-  printf("Model %s wird von %s hergestellt.\n", car->model, car->manufacturer);
-}
-```
-
-`opel.h`
-```c
-#include "car.h"
-
-struct car makeOpel(const char *model);
-```
-
-`opel.c`
-```c
-#include "opel.h"
-
-struct car makeOpel(const char *model) {
-  return (struct car){ .manufacturer = "Opel", .model = model };
-}
-```
-
-Überschreiben Sie den Inhalt der `main.c`-Datei mit folgendem:
-```c
-#include "print.h"
-#include "car.h"
-#include "opel.h"
-
-int main(void) {
-  print("Hallo Welt!\n");
-
-  struct car CLK = { .manufacturer = "Mercedes-Benz", .model = "CLK" };
-  struct car Kadett = makeOpel("Kadett");
-
-  printCar(&CLK);
-  printCar(&Kadett);
-
-  return 0;
-}
-```
-[EC] Bauen Sie das Programm.
-
-[ER] Erweitern Sie nun die Header `car.h` und `opel.h` um entsprechende Include-Guards.
-
-[EC] Bauen und führen Sie das Programm aus.
-Geben Sie die Ausgabe des Bauprozesses sowie die des Programms selbst an.
+[EQ] Angenommen Sie haben zwei Header-Dateien `a.h`und `b.h`.
+Header `a.h` inkludiert `b.h` und `b.h` inkludiert `a.h`.
+Erläutern Sie kurz, was Sie vom Übersetzer erwarten, wenn beide Header keine Include Guards
+besitzen.
 
 
 ### Schutz vor falschen Parameterlisten

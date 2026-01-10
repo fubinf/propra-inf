@@ -5,7 +5,7 @@ difficulty: 3
 assumes: c-syntax-variables-functions, c-types
 ---
 [SECTION::goal::idea]
-Ich verstehe den Syntax der Kontrollstrukturen (`if - else`, Schleifen, etc.) in C.
+Ich verstehe die Syntax der Kontrollstrukturen (`if - else`, Schleifen, etc.) in C.
 [ENDSECTION]
 
 [SECTION::background::default]
