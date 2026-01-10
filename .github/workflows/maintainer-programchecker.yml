@@ -26,7 +26,10 @@ jobs:
           git \
           curl \
           ca-certificates \
-          jq
+          jq \
+          python3.11 \
+          python3.11-venv
+        ln -s /usr/bin/python3.11 /usr/bin/python
 
     - name: Checkout propra-inf repository
       uses: actions/checkout@v4
