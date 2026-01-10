@@ -23,10 +23,13 @@ jobs:
       run: |
         apt-get update
         apt-get install -y \
+          bash \
           git \
           curl \
           ca-certificates \
           jq \
+          nodejs \
+          npm \
           python3.11 \
           python3.11-venv
         ln -s /usr/bin/python3.11 /usr/bin/python
@@ -44,6 +47,7 @@ jobs:
         path: sedrila
 
     - name: Create and activate Python virtual environment
+      shell: bash
       run: |
         python -m venv /tmp/sedrila_venv
         source /tmp/sedrila_venv/bin/activate
@@ -52,6 +56,7 @@ jobs:
         cd sedrila && pip install -e . && cd ..
 
     - name: Collect metadata and dependencies
+      shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
         python sedrila/py/sedrila.py maintainer --log ERROR --collect > /tmp/metadata.json 2>/dev/null || echo '{"taskgroups": {}}' > /tmp/metadata.json
@@ -68,6 +73,7 @@ jobs:
         echo ""
 
     - name: Install language runtimes and dependencies
+      shell: bash
       run: |
         set -e
 
@@ -79,7 +85,7 @@ jobs:
           [ -z "$cmd" ] && continue
           echo ""
           echo "Executing: $cmd"
-          $cmd
+          eval "$cmd"
         done
 
         # Phase 2: Install task-specific dependencies
@@ -89,7 +95,7 @@ jobs:
           [ -z "$cmd" ] && continue
           echo ""
           echo "Executing: $cmd"
-          $cmd
+          eval "$cmd"
         done
 
         echo ""
@@ -111,6 +117,7 @@ jobs:
         ls -la sedrila/py/
     
     - name: Run program checks
+      shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
         python sedrila/py/sedrila.py maintainer --check-programs --batch -- /tmp/progcheck
