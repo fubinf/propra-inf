@@ -14,31 +14,31 @@ on:
 jobs:
   check-example-programs:
     runs-on: ubuntu-latest
+    container: debian:12
     env:
       SDRL_PROGCHECK_MAX_WORKERS: ${{ github.event.inputs.max_workers || '4' }}
-    
+
     steps:
+    - name: Install system dependencies for Debian 12
+      run: |
+        apt-get update
+        apt-get install -y \
+          git \
+          curl \
+          ca-certificates \
+          jq
+
     - name: Checkout propra-inf repository
       uses: actions/checkout@v4
       with:
         submodules: recursive
         token: ${{ secrets.SUBMODULE_TOKEN }}
-    
+
     - name: Checkout sedrila repository
       uses: actions/checkout@v4
       with:
         repository: fubinf/sedrila
         path: sedrila
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.23'
 
     - name: Create and activate Python virtual environment
       run: |
@@ -51,49 +51,46 @@ jobs:
     - name: Collect metadata and dependencies
       run: |
         source /tmp/sedrila_venv/bin/activate
-        python sedrila/py/sedrila.py maintainer --log ERROR --collect > /tmp/metadata.json 2>/dev/null || echo '{"languages": {}, "dependencies": []}' > /tmp/metadata.json
+        python sedrila/py/sedrila.py maintainer --log ERROR --collect > /tmp/metadata.json 2>/dev/null || echo '{"taskgroups": {}}' > /tmp/metadata.json
         echo "Collected metadata:"
         cat /tmp/metadata.json
 
-    - name: Display required languages and dependencies
+    - name: Display required taskgroups and dependencies
       run: |
-        echo "=== Required Programming Languages ==="
-        jq -r '.languages | to_entries[] | "\(.key):\(.value)"' /tmp/metadata.json || echo "No languages specified"
+        echo "=== Taskgroups and Language Requirements ==="
+        jq -r '.taskgroups | to_entries[] | "\(.key): lang_commands: \(.value.lang_commands | @json)"' /tmp/metadata.json || echo "No taskgroups specified"
         echo ""
-        echo "=== Program Dependencies ==="
-        jq -r '.dependencies[]' /tmp/metadata.json || echo "No dependencies specified"
+        echo "=== Task Dependencies ==="
+        jq -r '.taskgroups[] | .tasks | to_entries[] | "\(.key): deps: \(.value.deps | @json)"' /tmp/metadata.json || echo "No task dependencies specified"
         echo ""
 
-    - name: Install program dependencies
+    - name: Install language runtimes and dependencies
       run: |
         set -e
 
         source /tmp/sedrila_venv/bin/activate
 
-        # Extract dependencies from JSON and install them
-        dependencies=$(jq -r '.dependencies[]' /tmp/metadata.json 2>/dev/null || echo "")
-
-        if [ -z "$dependencies" ]; then
-          echo "No dependencies to install"
-          exit 0
-        fi
-
-        echo "Installing program dependencies:"
-        echo "$dependencies" | while IFS= read -r cmd; do
+        # Phase 1: Install language runtimes per taskgroup
+        echo "=== Installing Language Runtimes per Taskgroup ==="
+        jq -r '.taskgroups | to_entries[] | .value.lang_commands[] | select(. != null)' /tmp/metadata.json 2>/dev/null | sort -u | while IFS= read -r cmd; do
           [ -z "$cmd" ] && continue
           echo ""
           echo "Executing: $cmd"
+          $cmd
+        done
 
-          # Handle commands that need sudo
-          if [[ "$cmd" == *"apt-get"* ]]; then
-            sudo $cmd
-          else
-            $cmd
-          fi
+        # Phase 2: Install task-specific dependencies
+        echo ""
+        echo "=== Installing Task-Specific Dependencies ==="
+        jq -r '.taskgroups[] | .tasks | to_entries[] | .value.deps[] | select(. != null)' /tmp/metadata.json 2>/dev/null | sort -u | while IFS= read -r cmd; do
+          [ -z "$cmd" ] && continue
+          echo ""
+          echo "Executing: $cmd"
+          $cmd
         done
 
         echo ""
-        echo "All dependencies installed successfully"
+        echo "All language runtimes and dependencies installed successfully"
 
     - name: Verify environment
       run: |
