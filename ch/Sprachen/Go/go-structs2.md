@@ -254,8 +254,6 @@ Diese beiden zusätzlichen Bytes nennt man _Padding_.
 [ENDSECTION]
 
 
-<!-- @PROGRAM_TEST_SKIP: reason="Output contains dynamic memory addresses" manual_test_required=true -->
-
 [INSTRUCTOR::Hinweise]
 
 - `testEmptyStruct` — die Speicheradresse im abgegebenen Kommandoprotokoll muss

@@ -182,8 +182,6 @@ die Summe der Ganzzahlen berechnet werden.
 diese beiden Funktionen sollten unverändert in dem abgegebenen Quellcode präsent sein,
 damit das Kommandoprotokoll nicht verfälscht wird.
 
-<!-- @PROGRAM_TEST -->
-
 
 **Kommandoprotokoll**
 [PROT::ALT:go-functions.prot]

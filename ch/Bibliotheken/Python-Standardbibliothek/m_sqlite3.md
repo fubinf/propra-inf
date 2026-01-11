@@ -253,5 +253,3 @@ Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_sqlite
 
 [PROT::ALT:m_sqlite3.prot]
 [ENDINSTRUCTOR]
-
-<!-- @PROGRAM_TEST -->

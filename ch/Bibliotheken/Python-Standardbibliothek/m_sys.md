@@ -110,8 +110,6 @@ und sie dann neu erzeugen, um so zu einem sauberen Abbruch zu kommen.)
 
 [ENDSECTION]
 
-<!-- @PROGRAM_TEST_SKIP: reason="Contains sys.path (varies across machines) and shell redirection (>/tmp/a). Automated testing cannot distinguish redirection from arguments" manual_test_required=true -->
-
 [INSTRUCTOR::Die Details sind nicht wichtig]
 Programmcode:  
 [EREFR::3] `print("Meldung nach stderr", file=sys.stderr)` (nicht mit `write()` oder sowas)  

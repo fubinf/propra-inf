@@ -128,8 +128,6 @@ Was ist die schnellste _korrekte_ Implementierung?
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-<!-- @PROGRAM_TEST_SKIP: reason="Output contains dynamic execution time and counter values" manual_test_required=true -->
-
 [INSTRUCTOR::Lösungen]
 **Kommandoprotokoll**
 [PROT::ALT:go-sync-mutex.prot]

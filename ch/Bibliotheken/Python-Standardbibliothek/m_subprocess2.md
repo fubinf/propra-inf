@@ -165,8 +165,6 @@ def test_median(generator):
 
 [ENDSECTION]
 
-<!-- @PROGRAM_TEST_SKIP: reason=".prot file includes tests for different program versions (pytest vs direct execution with different parameters)" manual_test_required=true -->
-
 [INSTRUCTOR::Ist das Problem gelöst? Und seriös gelöst?]
 
 - Hilfestellung: Wer nicht in jedem Test und auch im Hauptprogramm `initrandom()` aufruft, 

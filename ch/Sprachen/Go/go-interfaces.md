@@ -268,8 +268,6 @@ Diese muss folgendes beinhalten:
 * `HandleSpeaker(s Speaker)`
 [ENDSECTION]
 
-<!-- @PROGRAM_TEST_OVERRIDE: original_command="go run interfaces.go" correct_command="go run go-interfaces.go" reason=".prot file uses interfaces.go but actual file is go-interfaces.go" -->
-
 [INSTRUCTOR::Korrekturhinweise]
 
 1. Die Test-Methoden müssen in der abgegebenen Quellcode-Datei unverändert bleiben;

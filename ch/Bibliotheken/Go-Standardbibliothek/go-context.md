@@ -173,8 +173,6 @@ func main() {
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-<!-- @PROGRAM_TEST -->
-
 [INSTRUCTOR::Lösungen]
 **Kommandoprotokoll**
 [PROT::ALT:go-context.prot]

@@ -192,8 +192,6 @@ Die Funktion `log` soll die Antwort-Bytefolge zu einer Zeichenkette umwandeln un
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-<!-- @PROGRAM_TEST_SKIP: reason="Infinite loop program, requires manual interruption" manual_test_required=true -->
-
 [INSTRUCTOR::Lösungen]
 **Kommandoprotokoll**
 [PROT::ALT:go-http-middleware.prot]

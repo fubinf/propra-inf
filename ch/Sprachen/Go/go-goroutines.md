@@ -183,8 +183,6 @@ zum Schutz der Daten eingesetzt werden.
 [ENDSECTION]
 
 
-<!-- @program_test_skip: reason="Infinite loop program, requires manual interruption" manual_test_required=true -->
-
 [INSTRUCTOR::Hinweise]
 
 **Kommandoprotokoll**
