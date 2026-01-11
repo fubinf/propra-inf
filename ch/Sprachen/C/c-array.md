@@ -2,7 +2,7 @@ title: "C Arrays"
 stage: draft
 timevalue: 1
 difficulty: 3
-assumes: c-pointer, c-types
+assumes: c-pointer
 ---
 [SECTION::goal::idea]
 Ich verstehe den Aufbau von C-Arrays.

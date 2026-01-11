@@ -9,9 +9,6 @@ Ich verstehe die `#define` Präprozessor-Direktive und kann diese anwenden.
 [ENDSECTION]
 
 [SECTION::background::default]
-Zusammen mit [PARTREF::c-preprocessor-include] und [PARTREF::c-preprocessor-conditional] werden Sie
-sich mit dem C-Präprozessors vertraut machen.
-
 Makros sind das wohl mächtigste Feature des C-Präprozessors.
 Es können Konstanten definiert werden, oft genutzte Prüfungen (z.B. `isEven`) gänzlich ohne
 den Overhead eines Funktionsaufrufs realisiert werden oder sogar einfache Polymorphismen abgebildet
