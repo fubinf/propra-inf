@@ -2,8 +2,8 @@ title: Klassen und DOM Interaktive Anwendungen
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-assumes: css-Einführung, css-Selektoren, css-Layout, html-erste-Schritte, html-Medien 
-requires: js-Klassen, js-DOM-Arrays-Objekte2, html-Attribute
+assumes: css-Selektoren, css-Layout, html-erste-Schritte,
+requires: js-Klassen, js-DOM-Arrays-Objekte2, js-DOM-CSS, html-Attribute
 ---
 
 [SECTION::goal::idea]
