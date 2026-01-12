@@ -252,8 +252,7 @@ Sorgen Sie dafür, dass ein Klick auf eine Card diese auswählt.
 - Alle anderen Cards verlieren die Klasse selected  
 - Es ist immer genau eine Card ausgewählt  
 
-[HINT::]
-Alle Cards finden:
+[HINT::Alle Cards finden:]
 `const cards = document.querySelectorAll(".card");`
 [ENDHINT]
 
