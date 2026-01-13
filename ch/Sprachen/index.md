@@ -19,3 +19,4 @@ sollte sich mit 2-3 universellen Sprachen mindestens befriedigend gut auskennen
 und sollte diejenigen DSLs beherrschen, die im eigenen Arbeitsbereich wichtig sind.
 
 Dieses Kapitel erlaubt, auf dem Sektor Programmiersprachenkenntnis einige Fortschritte zu machen.
+Weitere Sprachen gibt es im Kapitel [PARTREF::Web].
