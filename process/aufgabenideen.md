@@ -242,7 +242,7 @@ Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
 
 ## ch/Sprachen
 
-### Sprachen/Shell (condric?, hüster?, N.N.)
+### Sprachen/Shell (condric?, N.N.)
 
 Puh, wie man folgendes in eine vernünftige Lernreihenfolge bringt, ist nicht offensichtlich:  
 Es wäre schön, die Trennung zwischen der Shellsprache (inkl. builtins) und den Utilities zu vermitteln.  
@@ -265,7 +265,7 @@ sondern stets anhand von realistischen Beispielen mit einleuchtendem Nutzen.
 Dafür dürfen Aufgaben gern auch aufeinander aufbauen.
 
 
-### Sprachen/Bash (condric+hüster?)
+### Sprachen/Bash (condric?)
 
 Die wichtigsten Erweiterungen ggü. sh bezüglich Sprache, Variablen, Builtins, etc.
 
@@ -273,7 +273,7 @@ Ziel: Verstehen, dass sh (auf allen Plattformen vorhanden, wenn auch nicht immer
 und bash (deutlich erweitert, weniger portabel) verschiedene Dinge sind.
 
 
-### Sprachen/Regexp (hüster)
+### Sprachen/Regexp (N.N.)
 
 Basiskurs in "einfach", fortgeschrittenes Zeug in "mittel".
 Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall kennenlernt.
@@ -469,7 +469,7 @@ Aufgabenbereiche:
 
 ## ch/Werkzeuge
 
-### Werkzeuge/Bash2 (condric+hüster?)
+### Werkzeuge/Bash2 (condric?)
 
 - Umgang mit Dateien: ls, mv, rm, cp, mkdir, rmdir, ...  
   Lernziel: die Fälle verstehen, in denen das einer GUI überlegen ist: mit Globbing, mit mehreren Argumenten, mit speziellen Optionen
