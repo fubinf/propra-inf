@@ -31,8 +31,10 @@ The generated website appears in `out/` (student version) and `out/instructor/` 
   - Taskgroups are subdirectories within chapters
   - Tasks are individual `.md` files following the template structure
 - **altdir/**: Alternative content directory (git submodule) containing:
-  - `ch/`: Include files containing non-public, instructor-only content 
-  - `itree.zip/`: Instructor tree with solution files, command protocols, source code examples
+  - `ch/`: Include files containing non-public, instructor-only content;
+    parallels `ch/**`.
+  - `itree.zip/`: Instructor tree with solution files, command protocols, source code examples;
+    mostly parallels `ch/**`.
 - **baseresources/**: Base resources for the website (CSS, etc.)
 - **process/**: Development documentation
   - `how-to.md`: Comprehensive guide for authors and instructors
@@ -80,9 +82,22 @@ Instructor hints and sample solutions
 - `[EC]`: Render a command students should execute (which then contributes to command protocol submission)
 - `[EQ]`: Question to answer (for markdown document submission)
 - `[ER]`: Code requirement (for source code submission)
-- `[HINT::Title]...[ENDHINT]`: Collapsible help
+- `[HINT::Title]...[ENDHINT]`: Collapsible step-specific help; can (and often should) be nested for gradual help.
 - `[PARTREF::TaskName]`: Link to another task/taskgroup/chapter
 - `[TERMREF::Term]`: Link to glossary entry
+
+## Task file YAML top matter
+
+- `assumes`: names of other tasks. Students need to know the material of these and can have done the task or not.
+- `requires`: names of other tasks. This task will build on top of products that students created in them.
+- `difficulty`: 1: easy; guiding students through the work step-by-step. At least three quarters of
+  all second-semester CS students should be able to solve the task with no major problems.
+  2: medium; the task steps are larger and students need to do some searching, thinking, or solving 
+  without explicit instructions.
+  3: difficult: suitable only for students that are highly intelligent or had much more previous
+  programming practice than most.
+- `timevalue`: how long (in hours) the average student should need for the task if they follow instructions
+  carefully and make no major mistake.
 
 ## Development Workflow
 
