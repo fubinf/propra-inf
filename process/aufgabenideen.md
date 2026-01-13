@@ -242,7 +242,7 @@ Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
 
 ## ch/Sprachen
 
-### Sprachen/Shell (condric?, N.N.)
+### Sprachen/Shell (condric?, hüster?, N.N.)
 
 Puh, wie man folgendes in eine vernünftige Lernreihenfolge bringt, ist nicht offensichtlich:  
 Es wäre schön, die Trennung zwischen der Shellsprache (inkl. builtins) und den Utilities zu vermitteln.  
@@ -265,7 +265,7 @@ sondern stets anhand von realistischen Beispielen mit einleuchtendem Nutzen.
 Dafür dürfen Aufgaben gern auch aufeinander aufbauen.
 
 
-### Sprachen/Bash (condric?)
+### Sprachen/Bash (condric+hüster?)
 
 Die wichtigsten Erweiterungen ggü. sh bezüglich Sprache, Variablen, Builtins, etc.
 
@@ -273,7 +273,7 @@ Ziel: Verstehen, dass sh (auf allen Plattformen vorhanden, wenn auch nicht immer
 und bash (deutlich erweitert, weniger portabel) verschiedene Dinge sind.
 
 
-### Sprachen/Regexp (N.N.)
+### Sprachen/Regexp (hüster)
 
 Basiskurs in "einfach", fortgeschrittenes Zeug in "mittel".
 Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall kennenlernt.
@@ -391,16 +391,12 @@ ernstlich Aufwand sparen kann. Oft ist das im Bereich Shellprogrammierung.
 
 Ideen-Bröckchen:
 
-- Fish1: die netten interaktiven Eigenschaften ausprobieren. Reflektion darüber.
+- Fish1: die netten interaktiven Eigenschaften ausprobieren. Reflexion darüber.
 - Fish2: (`fish` hat eine sehr viel weniger verrückte Scripting-Sprache als `bash`,
   was sie für Shell-Programmierung attraktiv macht, wenn die geringere Verbreitung/Verfügbarkeit
   kein Problem darstellt.)
   Ein Skript, das man oben für bash geschrieben (oder gelesen?) hat,
-  nach `fish` umschreiben. Reflektion darüber.
-- Zsh: Die Anpassbarkeit bestaunen. Evtl. [Oh my zsh](https://ohmyz.sh/) durchstöbern.
-  Reflektion darüber.
-- Powershell: 1-4 Aufgaben zu den ganz anderen Konzepten dieser Shell. (Ggf. eigene Gruppe.
-  Geht nicht auf MacOS(?))  
+  nach `fish` umschreiben. Reflexion darüber.
   
 
 ### Sprachen/powershell (N.N.)
@@ -469,7 +465,7 @@ Aufgabenbereiche:
 
 ## ch/Werkzeuge
 
-### Werkzeuge/Bash2 (condric?)
+### Werkzeuge/Bash2 (condric+hüster?)
 
 - Umgang mit Dateien: ls, mv, rm, cp, mkdir, rmdir, ...  
   Lernziel: die Fälle verstehen, in denen das einer GUI überlegen ist: mit Globbing, mit mehreren Argumenten, mit speziellen Optionen
