@@ -135,3 +135,25 @@ git submodule update --recursive
 
 ## Current development step
 
+I need to develop an LLM-supported method for quality assurance of new tasks.
+A task can have a large variety of problems, for instance (in decreasing order of importance):
+
+- Factual errors wrt the technical content (in which I am often not an expert)
+- Unclear instructions for students
+- Unclear instructions for instructors wrt what is expected of a student solution and what is not.
+  We are liberal in what we expect and instructors should focus the checking on the few important bits
+  that determine whether the specific learning goal of the task has likely been reached by the student.
+- Too simple or too difficult for the claimed `difficulty` and `timevalue`.
+- Individual steps that are a bit harder but lack an accompanying [HINT] for reducing
+  difficulty if need be, in particular for `medium` tasks.
+- Redundancy wrt to previous tasks (those in the `assumes` and `requires` chains)
+- Submission section mentions the wrong submission types.
+  (The instructions for the three standard types of submission (sum of the [EQ], [EC], [ER] steps, respectively)
+  are described in task `Einreichungen`.)
+- Issues with spelling, punctuation, grammar, sentence construction.
+
+How to approach this?
+Can you find all required context yourself for judging these aspects for each task?
+Then I'd ask for a review of one task at a time.
+I want the findings as a compact list, with just enough elaboration to understand the problem,
+and would then probably turn it into feedback to the task author myself.
