@@ -1,55 +1,7 @@
 # Zentrale Datei zur Koordindation unserer Arbeit
 
 
-## 1. Konventionen
-
-### 1.1 TODO-Marker
-
-Folgende Konvention erlaubt TODO-Bedarf zu verwalten auf eine Weise, die
-zugleich sehr bequem ist und sehr flexibel:
-
-Wir schreiben an beliebige Textstellen, die noch Bearbeitungsbedarf haben oder welchen erklären
-eine Marke der Form `TODO_n` oder `TODO_n_name`.  
-Dabei hat `n` den Wert 1, 2 oder 3 und zeigt an, wie bald die Änderung vermutlich
-erfolgen wird (Zeitrahmen):
-
-- `1`: Binnen weniger Tage (weil Kleinigkeit oder dringend)
-- `2`: Binnen einiger Wochen. Kommt dran, sobald die 1er erledigt sind.
-- `3`: Eines schönen Tages oder nie. Geringere Priorität.
-`name` ist der Benutzername der Person, die das TODO _voraussichtlich_ erledigen soll.
-
-Verwendungsweise:
-
-- Wir schreiben reichlich solche Marker überall hin, wo sie nützlich sein könnten:
-  - "Hier klafft noch eine große Lücke", z.B. ganze Aufgabengruppe, die noch leer ist.
-  - "Hier habe ich gerade keine gute Idee", das muss ich später noch mal verbessern
-  - "Hier ist was nicht in Ordnung": Problem entdeckt, das bereinigt werden muss
-  - etc.
-- Wenn man die Person weiß, die das erledigen sollte, schreibt man ihren Namen dazu.
-  (Meist den eigenen, ggf. aber auch einen fremden. Bei `3` sehr oft gar keinen.)
-- Wenn man (egal wer) den Zeitrahmen für unpassend hält, ändert man ihn, typischerweise nach oben.
-- Wenn eine optionale Änderung unrealistisch wird, entfernt man den ganzen TODO-Marker.
-- Ziel ist, sich in der IDE jederzeit schnell einen _hochwertigen_ Überblick verschaffen
-  zu können, was alles zu tun ist, und das zu benutzen, damit 1er-Änderungen immer zügig
-  erledigt werden. Fühlt sich gut an.
-- Wenn man ein neues Feature der gegebenen Sprache, Bibliothek, Werkzeug etc. in einer Aufgabe
-  eigentlich gern einbauen würde, aber noch nicht benutzen kann,
-  weil das Feature beim aktuellen Betriebssystemstand gemäß der Festlegung in 
-  `Basis/Unix-Umgebung/index.md` noch nicht verfügbar ist, bitte einen Kommentar einfügen,
-  der beschreibt, was zur gegebenen Zeit künftig geändert werden könnte oder sollte.
-  Diese "gegebene Zeit" wird durch die Versionsnummer des fraglichen Pakets beschrieben und
-  das Ganze ist ein Stufe-3 TODO-Kommentar, z.B. so:  
-  `<!-- TODO_3 Python 3.12: allow using sqlite3 command line client instead of SQLite Online -->`
-
-### 1.2 Namenskonventionen
-
-- Kapitelnamen beginnen mit Großbuchstaben
-- Taskgroupnamen beginnen in der Regel mit Großbuchstaben
-- Tasknamen folgen innerhalb einer Aufgabengruppe möglichst einem festen Schema
-  oder bilden zumindest Subgruppen mit je einem festen Namensschema.
-- Namen enthalten keine Leerzeichen,
-  sondern nötigenfalls Underscores (wenn es um Python-Dateien geht)
-  oder Trennstriche (sonst).
+## 1. (currently unused)
 
 
 ## 2. Korrekturbedarf am Bestand
@@ -137,7 +89,7 @@ Gelegentlich:
 ### 2.4 Anträge an den Rechnerbetrieb
 
 Was auf den Poolrechnern noch installiert werden muss:
-- ...
+- (derzeit nichts)
 
 
 ### 2.5 Reviews Einzeldateien
@@ -203,7 +155,7 @@ Rule 4 (Start with a learner persona) und Rule 5 (Differentiate yourself)
 https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011305
 
 
-## 4.4: Mentale Modelle aufzeichnen
+### 4.4: Mentale Modelle aufzeichnen
 
 Man könnte draw.io vorgeben, damit die Studis zu manchen Aufgaben ein Diagramm
 abgeben und das den Instructors direkt in der webapp mit anzeigen.  

@@ -356,10 +356,46 @@ Wenn wir uns auf einen Teil der Universität beziehen, nennen wir sie beim volle
 und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe änderbar zu machen.
 
 
-## 2.4 Technical development process
+## 2.4 Naming conventions
+
+- Chapter names start with a capital letter
+- Taskgroup names usually start with a capital letter
+- Task names within any one taskgroup follow a common schema.
+  In most cases, they have a common prefix that designates the taskgroup or a set of taskgroups.
+  These prefixes are all-lowercase and short.
+- Names never contain blanks.
+  Use dash as separator unless something else is obviously more appropriate, 
+  in particular underscores where programming language naming rules need to be obeyed.
 
 
-### 2.4.1 Development flow in general
+## 2.5 TODO markers
+
+When a required change or addition is firmly related to a particular file,
+we do not open a GitHub issue to note it, but rather write it right into that file;
+this results in much more lightweight handling.
+For Markdown files, we place it in an HTML comment.
+
+There are two forms:
+- `TODO_1: what needs to be done`:
+- `TODO_1_prechelt: what else needs to be done`
+
+The number is a priority and indicates when we expect to resolve the TODO:
+- 1: as soon as possible, no later than within a few days
+- 2: within a few weeks
+- 3: at some unknown time or possibly never.
+  If a prio 3 item depends on a certain event, mention that event first in the text.
+  Most often, that event is some change in other files or external software:
+  `<!-- TODO_3 Python 3.12: allow using sqlite3 command line client instead of SQLite Online -->`
+
+The third word, if present, is the lastname of the person responsible for resolving the item.
+
+Use these entries via text search in the IDE.
+Keep them up-to-date, i.e., update or kill outdated ones immediately when you see them anywhere.
+
+
+## 2.6 Technical development process
+
+### 2.6.1 Development flow in general
 
 - We are not using branches, all commits happen on `main` directly.
   We are a closed group and trust each other to work carefully.
@@ -373,7 +409,7 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
   create an issue named `MyChapter/MyTaskgroup/MyTask` and assign it to `prechelt`.  
 
 
-### 2.4.2 Task review flow
+### 2.6.2 Task review flow
 
 - If the reviewing takes more than one round, Lutz Prechelt will unassign himself from the issue each time
   he hands back the task to you.
@@ -395,7 +431,7 @@ und benutzen `<replacement id="...">...</replacement>` Tags, um die Angabe ände
   If you rename a task group, make sure to change all respective issue names.
 
 
-#### 2.4.2.1 Two modes of reviewing
+#### 2.6.2.1 Two modes of reviewing
 
 In the interest of rapid reviewing progress, the reviewer will use two different reviewing modes
 as follows:
@@ -412,7 +448,7 @@ as follows:
   there may be in the task that will have to be changed.
 
 
-#### 2.4.2.2 Modifying published tasks
+#### 2.6.2.2 Modifying published tasks
 
 - Sometimes we recognize that some extension to an existing task (already in use by students)
   would be useful, so we can build on it in a later (new) task.
@@ -427,7 +463,7 @@ as follows:
   and publishing the modified task should then be done on a single day.
 
 
-### 2.4.3 Task text layout conventions
+### 2.6.3 Task text layout conventions
 
 - Line length: Restrict lines to 100 characters, prefer 80 where easily possible.
   Start each sentence on a new line.
@@ -446,7 +482,7 @@ as follows:
 - prefers medium-long paragraphs otherwise
 
 
-### 2.4.4 Working with the `altdir` submodule
+### 2.6.4 Working with the `altdir` submodule
 
 Unfortunately, working with submodules in git is a bit tricky.
 
@@ -487,4 +523,3 @@ Unfortunately, working with submodules in git is a bit tricky.
   you commit a submodule hash to the main project.  
   Then `commit` and `push` those changes ASAP.
   The shorter your change episodes, the fewer git problems.
-
