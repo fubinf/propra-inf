@@ -1,7 +1,13 @@
 # Zentrale Datei zur Koordindation unserer Arbeit
 
 
-## 1. (currently unused)
+## 1. GitHub issues
+
+Most open work is described by a GitHub issue:
+https://github.com/fubinf/propra-inf/issues
+
+Most issues relate to a single task and then have a name of the form
+`chaptername/taskgroupname/taskname`
 
 
 ## 2. Korrekturbedarf am Bestand
