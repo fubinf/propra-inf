@@ -31,7 +31,7 @@ The generated website appears in `out/` (student version) and `out/instructor/` 
   - Taskgroups are subdirectories within chapters
   - Tasks are individual `.md` files following the template structure
 - **altdir/**: Alternative content directory (git submodule) containing:
-  - `ch/`: Alternative task versions
+  - `ch/`: Include files containing non-public, instructor-only content 
   - `itree.zip/`: Instructor tree with solution files, command protocols, source code examples
 - **baseresources/**: Base resources for the website (CSS, etc.)
 - **process/**: Development documentation
@@ -77,9 +77,9 @@ Instructor hints and sample solutions
 
 ## Key Macros
 
-- `[EC]`: Command to execute (generates command protocol submission)
-- `[EQ]`: Question to answer (generates markdown document submission)
-- `[ER]`: Code requirement (generates source code submission)
+- `[EC]`: Render a command students should execute (which then contributes to command protocol submission)
+- `[EQ]`: Question to answer (for markdown document submission)
+- `[ER]`: Code requirement (for source code submission)
 - `[HINT::Title]...[ENDHINT]`: Collapsible help
 - `[PARTREF::TaskName]`: Link to another task/taskgroup/chapter
 - `[TERMREF::Term]`: Link to glossary entry
@@ -90,7 +90,7 @@ Instructor hints and sample solutions
 - Use `git pull --rebase` (set default: `git config pull.rebase true`)
 - Task review process: Set `stage: alpha`, create GitHub issue named `Chapter/Taskgroup/Task`, assign to reviewer
 - After positive review, set `stage: beta` for publication
-- TODO markers in files: `TODO_1` (urgent), `TODO_2` (soon), `TODO_3` (later)
+- TODO markers in files: `TODO_1` (soon), `TODO_2` (soonish), `TODO_3` (later)
 
 ## Working with the altdir Submodule
 
@@ -116,3 +116,7 @@ git submodule update --recursive
 - "beispielsweise" not "z.B." in flowing text
 - "Repo" as abbreviation for "Repository"
 - "Git" for the software name, "git" in commands
+
+
+## Current development step
+
