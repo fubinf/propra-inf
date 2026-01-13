@@ -90,14 +90,16 @@ Instructor hints and sample solutions
 
 - `assumes`: names of other tasks. Students need to know the material of these and can have done the task or not.
 - `requires`: names of other tasks. This task will build on top of products that students created in them.
-- `difficulty`: 1: easy; guiding students through the work step-by-step. At least three quarters of
-  all second-semester CS students should be able to solve the task with no major problems.
-  2: medium; the task steps are larger and students need to do some searching, thinking, or solving 
+- `difficulty`: 1: very easy; hardly ever used. 
+  2: easy; guiding students through the work step-by-step. At least three quarters of
+  all second-semester CS students should be able to solve the task with no major problems
+  if (and often indeed only if) they read and work carefully.
+  3: medium; the task steps are larger and students need to do some searching, thinking, or solving 
   without explicit instructions.
-  3: difficult: suitable only for students that are highly intelligent or had much more previous
+  4: difficult: suitable only for students that are highly intelligent or had much more previous
   programming practice than most.
 - `timevalue`: how long (in hours) the average student should need for the task if they follow instructions
-  carefully and make no major mistake.
+  carefully and make no major mistake. Granularity is 15 minutes up to 1.25 and 30 minutes beyond.
 
 ## Development Workflow
 
@@ -133,27 +135,29 @@ git submodule update --recursive
 - "Git" for the software name, "git" in commands
 
 
-## Current development step
+## How to review a task
 
-I need to develop an LLM-supported method for quality assurance of new tasks.
 A task can have a large variety of problems, for instance (in decreasing order of importance):
 
 - Factual errors wrt the technical content (in which I am often not an expert)
-- Unclear instructions for students
+- Unclear instructions for students or avoidable issues with terminological/conceptual clarity. 
 - Unclear instructions for instructors wrt what is expected of a student solution and what is not.
-  We are liberal in what we expect and instructors should focus the checking on the few important bits
+  We aim to be liberal in what we expect. 
+  Instructors should focus the checking on the few important bits
   that determine whether the specific learning goal of the task has likely been reached by the student.
-- Too simple or too difficult for the claimed `difficulty` and `timevalue`.
+- Task too simple or too difficult for the claimed `difficulty` and `timevalue`.
 - Individual steps that are a bit harder but lack an accompanying [HINT] for reducing
   difficulty if need be, in particular for `medium` tasks.
-- Redundancy wrt to previous tasks (those in the `assumes` and `requires` chains)
+- Redundancy (or, conversely, knowledge gaps) wrt to previous tasks (those in the `assumes` and `requires` chains)
 - Submission section mentions the wrong submission types.
   (The instructions for the three standard types of submission (sum of the [EQ], [EC], [ER] steps, respectively)
   are described in task `Einreichungen`.)
 - Issues with spelling, punctuation, grammar, sentence construction.
 
-How to approach this?
-Can you find all required context yourself for judging these aspects for each task?
-Then I'd ask for a review of one task at a time.
-I want the findings as a compact list, with just enough elaboration to understand the problem,
-and would then probably turn it into feedback to the task author myself.
+Review for these problems, but also apply programming common sense throughout.
+Give me findings in two lists (major, minor), with just enough elaboration to understand the problem.
+
+
+## Current development step
+
+None.
