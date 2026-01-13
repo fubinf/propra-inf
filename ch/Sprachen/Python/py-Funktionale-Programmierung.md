@@ -6,14 +6,12 @@ assumes: py-Iterators, m_pprint
 ---
 
 [SECTION::goal::idea]
-
 Ich habe ein paar grundlegende Methoden der funktionalen Programmierung in Python kennengelernt 
 und kann sie verwenden, um meine Codequalität zu verbessern.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Python ist eine Multi-Paradigmen-Sprache, das heißt neben prozeduralen und objektorientierten 
 Programmierparadigmen bietet Python auch Möglichkeiten, um funktionale Programme zu 
 schreiben.
@@ -29,8 +27,8 @@ sondern Schleifen und Variablenzuweisungen bleiben weiter erlaubt und sinnvoll.
 Die funktionale Programmierung wird z.B. auf Ebene von Unterprogramm-Schnittstellen
 angewandt, aber nicht unbedingt _innerhalb_ eines Unterprogramms. 
 [ENDNOTICE]
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -225,7 +223,7 @@ print("\nposition of all words with letter 'y':", ...)
 Um, wie in funktionalen Sprachen üblich, ohne Schleifen auszukommen, aber trotzdem alle Elemente 
 wie mit einer Zählvariable zu nummerieren, ist 
 [`enumerate()`](https://docs.python.org/3/library/functions.html#enumerate) geeignet.
-Außerdem könnte ihnen die Lösung von einer der vorherigen Aufgaben behilflich sein.
+Außerdem könnte Ihnen die Lösung von einer der vorherigen Aufgaben behilflich sein.
 [ENDHINT]
 
 
@@ -265,7 +263,7 @@ Zurück soll ein Iterator gegeben werden, der die Produkte mit den umgerechneten
 Testen Sie anschließend Ihre Funktion folgendermaßen:  
 ```python
 products_in_usd = convert_currency(some_products, 1.13)
-p = next(products_in_dollar)
+p = next(products_in_usd)
 print("\nThe", p["product"], "costs", p["price"], "USD")
 ```
 
@@ -307,7 +305,7 @@ Anschließend kann das Ergebnis wieder entsprechend __gefiltert__ werden.
 
 ### Programmlauf für die Abgabe
 
-[EC] Führen Sie das gesamte so erzeugte Programm `py_Funktionale_Programmierung.py` einmal aus.
+[EC] Führen Sie das gesamte so erzeugte Programm `py-Funktionale-Programmierung.py` einmal aus.
 
 
 ### Funktional vs. imperativ
@@ -343,14 +341,15 @@ bieten, um noch effizienter funktionale Programme zu schreiben:
   Operationen auf und mit Iteratoren durchzuführen.
 - Das [PARTREFMANUAL::m_functools::functools-Modul] bietet weitere Hilfsmittel für die 
   Verwendung von Funktionen höherer Ordnung.
-
 [ENDSECTION]
+
 
 [SECTION::submission::reflection,information,snippet,trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Antworten prüfen und Codedurchsicht]
 Code lesen und manuell grob auf Richtigkeit prüfen.
