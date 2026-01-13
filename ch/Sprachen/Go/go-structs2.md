@@ -1,5 +1,5 @@
 title: "Grundlagen von Go: Strukturen (Teil 2)"
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 2
 assumes: go-pointers, go-structs1
@@ -51,7 +51,7 @@ eines Wertes wichtiger ist als der Wert selbst.
 type emptyStruct struct{}
 es := emptyStruct{}
 
-// "anonyme" Schreibweise
+// anonyme Schreibweise
 es := struct{}{}
 ```
 
@@ -83,12 +83,10 @@ func main() {
 [EC] Führen Sie nun das Programm mittels `go run` aus.
 
 [HINT::Ich weiß nicht, wie ich die Adresse einer Variable ausgeben kann]
-Benutzen Sie die Funktion `fmt.Printf` mit dem `%p` Platzhalter — `p` steht für
-"Pointer" und sorgt dafür, dass die Speicheradresse angezeigt wird
-(siehe [PARTREF::go-basics]).
+Siehe [PARTREF::go-basics] über `fmt.printf`-Formatangaben.
 
 [HINT::Ich weiß nicht, wie ich die Adresse einer Variable ermitteln kann]
-Das _Referenzieren_ ermöglicht uns der Operator `&` (siehe [PARTREF::go-pointers]).
+Siehe [PARTREF::go-pointers] über den Operator `&`.
 
 `&variable` gibt die Adresse der Variable zurück.
 [ENDHINT]
@@ -164,9 +162,9 @@ Für die Aufgabe konzentrieren wir uns auf zwei primitiven Datentypen:
 - `bool` — 1 Byte groß, Alignment 1
 - `int32` — 4 Byte groß, Alignment 4
 
-[EQ] Laut den spezifizierten Alignments, welche Speicherzellen dürfen einen `bool`-Wert
+[EQ] Laut den spezifizierten Alignments, welche dargestellten Speicherzellen dürfen einen `bool`-Wert
 adressieren?
-Einen `int32`-Wert?
+Welche einen `int32`-Wert?
 
 Jetzt probieren Sie ein paar Anordnungen aus, um ein Bauchgefühl zu entwickeln,
 wie Speicherplatz tatsächlich benutzt wird.
@@ -176,6 +174,7 @@ das erste Feld kommt zuerst, dann das zweite und so weiter.
 
 Die Antwort soll folgendermaßen aussehen: `a[0-3]b[4]c[5-12]`, wo die Zahlen in
 eckigen Klammern den Start- und den Endindex beinhalten (beide inklusive).
+Unbenutzte Bytes werden nicht erwähnt.
 
 [EQ]
 ```go
@@ -214,7 +213,7 @@ type D struct {
 }
 ```
 
-[EQ] Was ist die minimal erforderliche Größe, um diese vier Felder (zwei `bool` und zwei `int32`)
+[EQ] Was ist die minimal erforderliche Größe, um zwei `bool`- und zwei `int32`-Felder
 speichern zu können?
 
 Überprüfen Sie nun Ihre Größeneinschätzung mithilfe von der Funktion `unsafe.Sizeof()`.
