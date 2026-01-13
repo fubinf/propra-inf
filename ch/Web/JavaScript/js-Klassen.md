@@ -212,7 +212,7 @@ bevor `this` verwendet werden darf.
 Wenn Sie keinen eigenen `constructor` definieren, fügt JavaScript automatisch einen ein, der `super(...)` aufruft.
 
 Syntax:  
-- Python: `class Kind(Eltern)`:  
+- Python: `class Kind(Eltern)`
 - JavaScript: `class Kind extends Eltern { ... }`
 
 Intern:  
@@ -238,10 +238,9 @@ console.log(ebook.info());         // "JavaScript Basics → Download: http://do
 
 Bisher haben wir Vererbung mit `extends` genutzt.  
 Jetzt schauen wir uns an, wie JavaScript das intern umsetzt: über Prototyp-Ketten.  
-Gehen wir jetzt einen Schritt weiter und schauen uns an, wie die Vererbung konkret funktioniert.  
 Jedes Objekt in JavaScript hat eine interne Referenz auf ein anderes Objekt, seinen Prototypen.   
 Wenn man auf eine Eigenschaft oder Methode zugreift, die im aktuellen Objekt nicht vorhanden ist, 
-sucht JavaScript automatisch im Prototyp weiter.  
+sucht JavaScript im Prototyp weiter.  
 Bei Vererbung ergibt sich daraus eine ganze Prototyp-Kette.
 
 Beispiel mit einer Konstruktorfunktion:
