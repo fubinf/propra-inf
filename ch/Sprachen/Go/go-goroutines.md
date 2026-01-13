@@ -124,9 +124,10 @@ Artikel
 und
 ["Go's work-stealing scheduler"](https://rakyll.org/scheduler/)
 helfen Ihnen, das Scheduling genau zu verstehen.
-[ENDHINT]
+[ENDFOLDOUT]
 
 [ER] Implementieren Sie die Funktion `delayedGreeting(msg string)`, die zunächst 2 Sekunden wartet
+(`time.Sleep(2 * time.Second)` und das benötigt `import time`)
 und anschließend eine Zeichenkette auf die Kommandozeile ausgibt.
 
 [ER] Implementieren Sie außerdem die Funktion `testGo()`, die
@@ -134,7 +135,7 @@ und anschließend eine Zeichenkette auf die Kommandozeile ausgibt.
 `fmt.Println("Hello world!")` ausgibt.
 
 [ER] Rufen Sie `testGo()` aus der `main`-Funktion auf und blockieren Sie `main` mit einer
-Endlosschleife. Für den Moment reicht ein `for {}` aus.
+Endlosschleife. Dafür reicht uns ein `for {}` aus.
 
 Für manche kann das umständlich wirken — immer zuerst eine neue Funktion definieren zu müssen. Zum
 Glück ist das nicht nötig, denn Go erlaubt das Schlüsselwort `go` auch für anonyme (Lambda-)
@@ -172,7 +173,6 @@ zum Schutz der Daten eingesetzt werden.
 [ENDNOTICE]
 
 <!-- time estimate: 30 min -->
-
 [ENDSECTION]
 
 
