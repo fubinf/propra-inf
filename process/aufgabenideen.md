@@ -401,11 +401,9 @@ Ideen-Bröckchen:
 
 ### Sprachen/powershell (N.N.)
 
-Geht nicht auf MacOS(?)
-
 Ideen-Bröckchen:
 
-1-4 Aufgaben zu den ganz anderen Konzepten dieser Shell.
+- 2-4 Aufgaben zu den ganz anderen Konzepten dieser Shell.
 
   
 ### Sprachen/zsh (N.N.)
