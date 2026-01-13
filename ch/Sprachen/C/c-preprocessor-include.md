@@ -1,6 +1,6 @@
 title: "C Präprozessor: Include"
 stage: alpha
-timevalue: 0.75
+timevalue: 1.0
 difficulty: 2
 assumes: c-compiler-assembler-linker
 ---
@@ -12,7 +12,8 @@ Ich verstehe die `#include` Präprozessor-Direktive und kann diese anwenden
 [SECTION::background::default]
 Modulare Software und Wiederverwendung von Code ist mit zunehmender Größe des Programms
 unverzichtbar.
-Was in Python `import` ist, wird in C mithilfe der `#include`-Präprozessor-Direktive gelöst.
+Was in Python das `import`-Statement erledigt (das Bereitstellen von Funktionen aus einem anderen Modul),
+wird in C mithilfe der `#include`-Präprozessor-Direktive gelöst.
 Schon für ein minimales "Hello World"-Programm benötigt man eine `#include`-Direktive.
 
 Die Aufgabe geht auf die zentrale Aufgabe der `#include`-Direktive ein.
@@ -83,7 +84,7 @@ int main(void) {
 
 [ER] Vervollständigen Sie die `#include`-Direktiven (...).
 
-[EC] Bauen und führen Sie das Programm aus. Geben Sie nur die Ausgabe des Programms an.
+[EC] Bauen und führen Sie das Programm aus.
 
 
 ### Include Guard
@@ -92,7 +93,7 @@ Lesen Sie sich die Kapitel vier und fünf des Handbuchs durch.
 
 [EQ] Erläutern Sie kurz, weshalb Include Guards verwendet werden sollten.
 
-[EQ] Angenommen Sie haben zwei Header-Dateien `a.h`und `b.h`.
+[EQ] Angenommen Sie haben zwei Header-Dateien `a.h` und `b.h`.
 Header `a.h` inkludiert `b.h` und `b.h` inkludiert `a.h`.
 Erläutern Sie kurz, was Sie vom Übersetzer erwarten, wenn beide Header keine Include Guards
 besitzen.
