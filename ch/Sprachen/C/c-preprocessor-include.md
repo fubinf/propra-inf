@@ -48,11 +48,12 @@ Im Folgenden benutzen wir das
 
 ### Include
 
-Lesen Sie sich die Kapitel eins bis drei des Handbuchs durch.
+Lesen Sie sich die Kapitel 2.1 bis 2.3 des Handbuchs durch.
 
 [EQ] Welche Vorteile bietet Ihnen das System der Header-Dateien?
 
-Legen Sie das Projekt an.  
+[ER] Vervollständigen Sie die `#include`-Direktiven (...).  
+Legen Sie dafür zuerst ein neues CLion Projekt (s. [PARTREF::c-setup]) an.  
 Fügen Sie folgende Dateien hinzu:
 
 `print.h`
@@ -79,17 +80,20 @@ int main(void) {
   return 0;
 }
 ```
-[EQ] Begründen Sie kurz, welche der `#include`-Varianten Sie verwenden würden.
-`printf` ist im System-Header `stdio` deklariert.
 
-[ER] Vervollständigen Sie die `#include`-Direktiven (...).
+[NOTICE]
+`printf` ist im System-Header `stdio` deklariert.
+[ENDNOTICE]
 
 [EC] Bauen und führen Sie das Programm aus.
+
+[EQ] Begründen Sie kurz, warum Sie sich für `#include ""` bzw. `#include <>` in [EREFR::1]
+entschieden haben.
 
 
 ### Include Guard
 
-Lesen Sie sich die Kapitel vier und fünf des Handbuchs durch.
+Lesen Sie sich die Kapitel 2.4 und 2.5 des Handbuchs durch.
 
 [EQ] Erläutern Sie kurz, weshalb Include Guards verwendet werden sollten.
 
@@ -101,44 +105,30 @@ besitzen.
 
 ### Schutz vor falschen Parameterlisten
 
-C hat keine
-[Funktionsüberladung](https://de.wikipedia.org/wiki/Überladen).
-C hat allerdings auch keinerlei Schutzmechanismen für versehentlich falsche Parameterlisten.
-Im besten Fall steigt Ihnen der Übersetzer direkt aus. Im schlimmsten Fall baut Ihr Programm
-erfolgreich.
-Ob das Programm dann allerdings funktioniert, ist ungewiss, denn C strotzt nur so vor
-"Undefined Behaviour", also Verhalten, zu dem der Standard keinerlei Aussage macht.
-Das Programm kann dann abstürzen oder auch nicht, nur um dann an einer völlig anderen Stelle
-abzustürzen, weil der fehlerhafte Aufruf den Funktionsstack zerschossen hat.
-
-Deshalb ist es gebräuchlich, Funktionen immer in einer Header-Datei zu deklarieren und in der
-dazugehörigen Implementierungs-Datei einzubinden, auch wenn dies eigentlich nicht
-notwendig wäre.
-Dadurch zwingen Sie den Übersetzer, definiert mit einer Fehlermeldung zu terminieren.
-
 Verändern Sie die `print.c`-Datei wie folgt:
 ```c
-#include <stdio.h>
-
 void print(int string) {
   printf("%s", string);
 }
 ```
 
-Sie sollten nun in der `print.h` eine andere Funktionsdeklaration haben als in der `print.c`:
-einmal mit `const char *string` und einmal mit `int string`.
-
-[EQ] Erläutern Sie kurz, was Sie vom Übersetzer erwarten.
+Sie sollten nun in der `print.h` eine andere Funktionsdeklaration haben als die in der `print.c` 
+definierte Funktion (Unterschied in der Parameterliste).
 
 [EC] Bauen und führen Sie das Programm aus.
 
-[ER] Fügen Sie das notwendige `#include` in die `print.c` ein.
+[ER] Fügen Sie das notwendige `#include` in die `print.c` ein, um `print.h` zu inkludieren.
 
 [EC] Bauen Sie das Programm erneut.
 
-[EC] Beheben Sie den Fehler (ignorieren Sie die Warnung bei dem `printf`).
+[EC] Beheben Sie den Fehler (ignorieren Sie die Warnung bei dem `printf`) indem Sie in der
+`print.c` das `int` durch `const char *` ersetzen.  
 Bauen und führen Sie das Programm anschließend erneut aus.
 Geben Sie die Ausgabe des Bauprozesses sowie die des Programms selbst an.
+
+Um den oben durchgespielten Fehlerfall zu umgehen ist es gebräuchlich, jede Funktion, auch wenn
+man diese nicht woanders nutzen möchte, dennoch in einer Header-Datei zu deklarieren und diese, wie
+in [EREFR::3], zu inkludieren.
 
 [ENDSECTION]
 
