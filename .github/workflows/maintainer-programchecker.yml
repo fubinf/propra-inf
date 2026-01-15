@@ -59,43 +59,73 @@ jobs:
       shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
-        python sedrila/py/sedrila.py maintainer --log ERROR --collect > /tmp/metadata.json 2>/dev/null || echo '{"taskgroups": {}}' > /tmp/metadata.json
+        python sedrila/py/sedrila.py maintainer --log ERROR --collect -o /tmp/metadata.json 2>/dev/null || echo '{"taskgroups": {}}' > /tmp/metadata.json
         echo "Collected metadata:"
         cat /tmp/metadata.json
 
     - name: Display required taskgroups and dependencies
       run: |
         echo "=== Taskgroups and Language Requirements ==="
-        jq -r '.taskgroups | to_entries[] | "\(.key): lang_commands: \(.value.lang_commands | @json)"' /tmp/metadata.json || echo "No taskgroups specified"
+        jq -r '.taskgroups | to_entries[] | "\(.key): lang: \(.value.lang | @json)"' /tmp/metadata.json || echo "No taskgroups specified"
         echo ""
         echo "=== Task Dependencies ==="
         jq -r '.taskgroups[] | .tasks | to_entries[] | "\(.key): deps: \(.value.deps | @json)"' /tmp/metadata.json || echo "No task dependencies specified"
         echo ""
 
-    - name: Install language runtimes and dependencies
+    - name: Create isolated taskgroup directories
+      shell: bash
+      run: |
+        echo "=== Creating Isolated Taskgroup Directories ==="
+        ISOLATION_BASE="/tmp/sedrila_taskgroups"
+        mkdir -p "$ISOLATION_BASE"
+
+        # Extract taskgroup names and create directories
+        TASKGROUPS=$(jq -r '.taskgroups | keys[]' /tmp/metadata.json 2>/dev/null || echo "")
+        if [ -z "$TASKGROUPS" ]; then
+          echo "No taskgroups found in metadata"
+          exit 0
+        fi
+
+        for taskgroup in $TASKGROUPS; do
+          taskgroup_dir="$ISOLATION_BASE/$taskgroup"
+          mkdir -p "$taskgroup_dir/bin"
+          echo "Created isolated directory: $taskgroup_dir"
+        done
+
+        # Save the base path for later use
+        echo "$ISOLATION_BASE" > /tmp/isolation_base.txt
+
+    - name: Install language runtimes and dependencies into isolated taskgroups
       shell: bash
       run: |
         set -e
 
         source /tmp/sedrila_venv/bin/activate
+        ISOLATION_BASE=$(cat /tmp/isolation_base.txt)
 
-        # Phase 1: Install language runtimes per taskgroup
         echo "=== Installing Language Runtimes per Taskgroup ==="
-        jq -r '.taskgroups | to_entries[] | .value.lang_commands[] | select(. != null)' /tmp/metadata.json 2>/dev/null | sort -u | while IFS= read -r cmd; do
-          [ -z "$cmd" ] && continue
+
+        # Install language runtimes for each taskgroup
+        jq -r '.taskgroups | to_entries[] | "\(.key):\(.value.lang | @csv)"' /tmp/metadata.json 2>/dev/null | while IFS=: read -r taskgroup cmds; do
           echo ""
-          echo "Executing: $cmd"
-          eval "$cmd"
+          echo "Installing languages for taskgroup: $taskgroup"
+          taskgroup_dir="$ISOLATION_BASE/$taskgroup"
+
+          # Evaluate each language command with taskgroup path available
+          eval "$(echo "$cmds" | sed 's/"//g' | awk -F',' '{for(i=1;i<=NF;i++) if($i != "") print $i}')" || true
         done
 
-        # Phase 2: Install task-specific dependencies
         echo ""
         echo "=== Installing Task-Specific Dependencies ==="
-        jq -r '.taskgroups[] | .tasks | to_entries[] | .value.deps[] | select(. != null)' /tmp/metadata.json 2>/dev/null | sort -u | while IFS= read -r cmd; do
-          [ -z "$cmd" ] && continue
+
+        # Install task-specific dependencies for each taskgroup
+        jq -r '.taskgroups | to_entries[] | "\(.key):\(.value.deps | @csv)"' /tmp/metadata.json 2>/dev/null | while IFS=: read -r taskgroup deps; do
           echo ""
-          echo "Executing: $cmd"
-          eval "$cmd"
+          echo "Installing dependencies for taskgroup: $taskgroup"
+          taskgroup_dir="$ISOLATION_BASE/$taskgroup"
+
+          # Evaluate each dependency command with taskgroup path available
+          eval "$(echo "$deps" | sed 's/"//g' | awk -F',' '{for(i=1;i<=NF;i++) if($i != "") print $i}')" || true
         done
 
         echo ""
@@ -115,12 +145,23 @@ jobs:
         echo "=== Directory Structure ==="
         ls -la
         ls -la sedrila/py/
-    
+
+    - name: Generate taskgroup paths mapping
+      shell: bash
+      run: |
+        ISOLATION_BASE=$(cat /tmp/isolation_base.txt)
+        echo "=== Generating Taskgroup Paths Mapping ==="
+        python3 -c 'import json;isolation_base=open("/tmp/isolation_base.txt").read().strip();metadata=json.load(open("/tmp/metadata.json"));taskgroup_paths={tg:f"{isolation_base}/{tg}"for tg in metadata.get("taskgroups",{}).keys()};open("/tmp/taskgroup_paths.json","w").write(json.dumps(taskgroup_paths,indent=2));print("Generated taskgroup paths mapping:");print(json.dumps(taskgroup_paths,indent=2))'
+
     - name: Run program checks
       shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
-        python sedrila/py/sedrila.py maintainer --check-programs --batch -- /tmp/progcheck
+        python sedrila/py/sedrila.py maintainer \
+          --check-programs \
+          --batch \
+          --taskgroup-paths /tmp/taskgroup_paths.json \
+          /tmp/progcheck
       continue-on-error: false
 
     - name: Publish markdown report to job summary
