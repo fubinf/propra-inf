@@ -1,156 +1,78 @@
 title: "Grundlagen von Go: Goroutinen"
 stage: alpha
-timevalue: 1
+timevalue: 1.5
 difficulty: 2
 assumes: go-functions
 ---
 
 [SECTION::goal::idea,experience]
-Ich habe Goroutinen kennengelernt und mein erstes nichtsequentielles Programm in Go geschrieben.
+Ich habe meine ersten Goroutinen gestartet und verstanden, wie sich die Programmausführung ändert,
+wenn Code nicht mehr streng sequentiell abläuft.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-Fast alle modernen Rechner sind mit Mehrkernprozessoren ausgestattet und haben Möglichkeiten,
-die wir als  Programmierer_innen nutzen wollen.
-Nicht-sequentielle Programmierung erfolgt in Go mithilfe von __Goroutinen__ — unabhängigen
-Ausführungspfaden, die jeweils eigene Aufgaben übernehmen. 
+Fast alle modernen Rechner sind mit Mehrkernprozessoren ausgestattet und bieten Möglichkeiten,
+die wir als Programmierer_innen nutzen wollen.
+Nicht-sequentielle Programmierung erfolgt in Go mithilfe von __Goroutinen__ — unabhängigen Ausführungspfaden,
+die jeweils eigene Aufgaben übernehmen.
 
-__Anmerkung:__ Goroutinen allein reichen nicht aus, um echte nebenläufige Programme in Go zu
-schreiben, denn sie leisten weder Kommunikation noch Synchronisation. 
+__Anmerkung:__ Goroutinen allein reichen nicht aus, um echte nebenläufige Programme in Go zu schreiben;
+sie leisten weder Kommunikation noch Synchronisation.
 Sie sind jedoch der erste Schritt.
-
-<!-- TODO_2_Brandes: add teasers to go-channels, go-sync-mutex and go-sync-waitgroup once all four tasks are live -->
 [ENDSECTION]
+
+
+[TOC]
 
 
 [SECTION::instructions::detailed]
 
-### Nebenläufigkeit vs. Parallelität
+### Teil 1: Die Praxis
 
-In der Programmierung werden häufig die Begriffe „nebenläufig“ und „parallel“ verwendet.
-Beide Konzepte sind zentral, daher werden sie im Folgenden erläutert und voneinander abgegrenzt:
+Wir wollen simulieren, dass eine Aufgabe Zeit kostet und nicht sofort fertig ist.
 
-- __Sequentielle Ausführung:__ Alle Befehle eines Programms werden strikt nacheinander auf einem
-  CPU-Kern ausgeführt.
-- __Nebenläufige Ausführung:__ Aufgaben werden nicht sequentiell ausgeführt.
-  Ein typisches Beispiel sind mehrere [TERMREF2::Thread::-s], die 
-  gleichzeitig oder abwechselnd laufen.
-- __Parallele Ausführung:__ Mehrere Aufgaben werden gleichzeitig auf mehreren
-  CPU-Kernen ausgeführt.
-  Parallelität ist ein Spezialfall der Nebenläufigkeit.
+[ER] Implementieren Sie eine Funktion `delayedGreeting(msg string)`, die zuerst 2 Sekunden wartet
+(`time.Sleep(2 * time.Second)` und das benötigt `import time`) und danach die Zeichenkette `msg`
+auf der Konsole ausgibt.
 
-[EQ] Geben Sie ein paar Beispiele aus dem Alltag, bei denen Sie Threads statt sequentiellem Code
-verwenden würden.
+[ER] Schreiben Sie eine Funktion `testGo()`. Diese soll:
 
-Welche der folgenden Aussagen sind richtig?
-Begründen Sie.
+- `delayedGreeting("Hello world delayed!")` aufrufen.
+  Setzen Sie das Schlüsselwort `go` vor diesen Aufruf.
+- Direkt in der nächsten Zeile `fmt.Println("Hello world!")` aufrufen (ohne `go`).
 
-[EQ] _"Nebenläufige Ausführung setzt mehrere CPU-Kerne voraus."_
+[EQ] Rufen Sie `testGo()` in Ihrer `main`-Funktion auf.
+Was beobachten Sie?
 
-[EQ] _"Parallel ist immer nebenläufig."_
-
-[EQ] _"Nebenläufig ist immer parallel."_
-
-[EQ] _"Es ist unmöglich, die Leistung eines Programms auf einem CPU-Kern durch Threads zu
-verbessern."_
-
-<!-- time estimate: 10 min -->
-
-
-### Thread-Taxonomie
-
-Welche Threads gibt es?
-
-Je nach Situation werden typischerweise folgende Arten von Threads erwähnt:
-
-- __Hardware-Threads:__ Logische Kerne der CPU.
-  Auch wenn die CPU nur 8 Kerne besitzt, kann es 16 Hardware-Threads geben (mehr dazu im
-  [Wikipedia-Artikel „Simultaneous Multithreading“](https://de.wikipedia.org/wiki/Simultaneous_Multithreading)).
-- __Kernel- bzw. OS-Threads:__ „Echte“ Threads, die vom Betriebssystem verwaltet werden.
-  Sie werden den verfügbaren Hardware-Threads zugeordnet und ermöglichen echte Parallelität.
-- __User-Threads:__ Threads, die von einem Programm oder einer Bibliothek im Benutzerraum verwaltet
-  werden.
-  Das Betriebssystem kennt sie nicht, daher ist echte Parallelität nicht möglich.
-  Im Gegensatz zu OS-Threads ist Erzeugung und Kontextwechsel bei User-Threads viel billiger.
-
-Auf einer feineren Ebene wird die Begrifflichkeit etwas inkonsistent: Man hört zusätzlich von
-[_Green-Threads_](https://en.wikipedia.org/wiki/Green_thread)
-und
-[_virtuellen Threads_](https://en.wikipedia.org/wiki/Virtual_thread),
-wobei die Abgrenzung immer schwieriger wird.
-
-Das haben die Entwickler von Go rechtzeitig erkannt und als Folge den Begriff „Goroutine“
-eingeführt.
-
-
-### Goroutinen
-
-Eine Goroutine ist ein leichtgewichtiger („grüner/virtueller“) [TERMREF::Thread].
-
-Goroutinen sind ein nützliches Werkzeug, wenn mehrere Aufgaben gleichzeitig bearbeitet werden 
-müssen.
-Beispiele sind:
-
-- Warten auf Eingaben;
-- Bearbeitung von HTTP-Anfragen;
-- Hintergrundarbeiten (Aufräumarbeiten oder Logging);
-- Aufwändige Berechnungen.
-
-Bei Bedarf verteilt das Go‑Runtime die Goroutinen auf mehrere CPU‑Kerne.
-Für rechenintensive Aufgaben liefert das einen klaren Leistungsgewinn gegenüber sequentiellen 
-Implementierungen.
-
-Lesen Sie den
-[Abschnitt „Goroutines“ auf der Webseite „Effective Go“](https://go.dev/doc/effective_go#goroutines)
-und beantworten Sie die folgenden Fragen.
-
-[EQ] Wie wird eine Funktion in einer neuen Goroutine ausgeführt?
-
-[EQ] Was ist die Beziehung zwischen Goroutinen und OS-Threads?
-
-[FOLDOUT::Bei Interesse: Wie werden Goroutinen verwaltet?]
-Jede ausführbare Binärdatei, die vom Go-Compiler produziert wird, enthält neben dem Programm selbst
-noch Komponenten der Laufzeitumgebung, beispielsweise Garbage Collector und _den Scheduler_.
-
-Der Scheduler entscheidet:
-
-- welche Goroutine wann ausgeführt wird,
-- auf welchem OS-Thread dies geschieht,
-- und wie die Last über alle CPU-Kerne verteilt wird.
-
-Artikel
-["Understanding the Go Scheduler: How Goroutines Are Managed"](https://rickkoch.github.io/posts/go-scheduler/)
-und
-["Go's work-stealing scheduler"](https://rakyll.org/scheduler/)
-helfen Ihnen, das Scheduling genau zu verstehen.
+[FOLDOUT::Erklärung]
+Das beobachtete Verhalten liegt daran, dass das Hauptprogramm (`main`) sich beendet, ohne auf die
+nebenläufig gestartete Goroutine zu warten, die Sie durch den Aufruf
+`go delayedGreeting("Hello world delayed!")` gestartet haben.
 [ENDFOLDOUT]
 
-[ER] Implementieren Sie die Funktion `delayedGreeting(msg string)`, die zunächst 2 Sekunden wartet
-(`time.Sleep(2 * time.Second)` und das benötigt `import time`)
-und anschließend eine Zeichenkette auf die Kommandozeile ausgibt.
+[ER] Ergänzen Sie Ihre `main`-Funktion am Ende um eine Endlosschleife, damit das Programm nicht sofort beendet wird.
+Später müssen Sie das Programm manuell mit `Strg+C` abbrechen.
 
-[ER] Implementieren Sie außerdem die Funktion `testGo()`, die
-`go delayedGreeting("Hello world delayed!")` aufruft und in der nächsten Zeile
-`fmt.Println("Hello world!")` ausgibt.
+Man muss nicht immer eine extra Funktion definieren, denn Go erlaubt das Starten von Goroutinen auch direkt mit anonymen
+Funktionen (Lambdas).
 
-[ER] Rufen Sie `testGo()` aus der `main`-Funktion auf und blockieren Sie `main` mit einer
-Endlosschleife. Dafür reicht uns ein `for {}` aus.
+[ER] Implementieren Sie eine Funktion `testGoLambda()`.
+Starten Sie darin eine Goroutine mit einer anonymen Funktion: `go func() { ... }()`, wo zuerst zwei
+Sekunden gewartet und danach `"Hello world delayed!"` auf der Kommandozeile ausgegeben wird.
+Geben Sie außerdem `"Hello world!"` am Ende von `testGoLambda` aus.
+Fügen Sie die Funktion `testGoLambda()` Ihrer `main`-Funktion hinzu:
 
-Für manche kann das umständlich wirken — immer zuerst eine neue Funktion definieren zu müssen. Zum
-Glück ist das nicht nötig, denn Go erlaubt das Schlüsselwort `go` auch für anonyme (Lambda-)
-Funktionen.
+```go
+func main() {
+    testGo()
+    testGoLambda()
+    ...
+}
+```
 
-[ER] Implementieren Sie die Funktion `testGoLambda()`, die dasselbe tut wie `testGo()`, jedoch
-`delayedGreeting` als anonyme Funktion definiert. Die auszugebende Zeichenkette bleibt
-`"Hello world delayed!"`.
-
-[ER] Fügen Sie `testGoLambda()` ebenfalls in Ihre `main()`-Funktion ein.
-
-[EC] Führen Sie Ihr Programm aus, warten Sie, bis alle Funktionen beendet wurden, und unterbrechen
-Sie die Endlosschleife per `Ctrl+C`.
-
-Diskutieren Sie:
+[EC] Führen Sie das Programm aus.
+Warten Sie auf die Ausgaben und beenden Sie es dann manuell.
 
 [EQ] In welcher Reihenfolge werden die Funktionen (`testGo`, `testGoLambda`, `delayedGreeting` und
 die Lambda-Funktion) gestartet?
@@ -158,21 +80,153 @@ die Lambda-Funktion) gestartet?
 [EQ] In welcher Reihenfolge verlassen die vier Funktionen den Geltungsbereich (beenden ihre
 Ausführung)?
 
+<!-- time estimate: 30 min -->
+
+
+### Teil 2: Was ist eine Goroutine genau?
+
+Alle Go-Programme bestehen aus einer oder mehreren _Goroutinen_ — `main` läuft ebenfalls in einer Goroutine.
+Der Aufruf `go someFunc()` startet die Funktion `someFunc` in einer neuen Goroutine und blockiert die
+übergeordnete Goroutine nicht.
+
 [NOTICE]
-__Wie werden Werte aus einer Funktion zurückgegeben, die in einer anderen Goroutine läuft?__
-
-Die Rückgabe kann
-
-- über __Kanäle__ (Channels) erfolgen oder
-- über gemeinsam genutzte Daten erfolgen. 
-
-Bei gemeinsam genutzten Daten muss ein Synchronisationsmechanismus, etwa ein Mutex (`sync.Mutex`), 
-zum Schutz der Daten eingesetzt werden.
-
-<!-- TODO_2_Brandes: add links to the tasks once they are live -->
+Oben mussten Sie `main` mit einer Endlosschleife blockieren, da die Beendung von `main` das Ende des
+Programms bedeutet und alle laufenden Goroutinen automatisch abgebrochen werden.
 [ENDNOTICE]
 
-<!-- time estimate: 30 min -->
+
+#### Sequentiell vs. Nebenläufig
+
+__Sequentiell__: Ein Schritt nach dem anderen.
+Wäre `delayedGreeting` ohne `go` aufgerufen worden, hätte das ganze Programm 2 Sekunden blockiert,
+bevor `"Hello World"` ausgegeben worden wäre.
+
+__Nebenläufig__: Durch das Schlüsselwort `go` wurde `delayedGreeting` in eine eigene Goroutine ausgelagert.
+Das Hauptprogramm lief sofort weiter.
+
+Intern führen Goroutinen ihren Code _sequentiell_ aus.
+In Relation zueinander sind Goroutinen _nebenläufig_.
+
+[NOTICE]
+Parallelität ist ein Spezialfall von Nebenläufigkeit.
+[ENDNOTICE]
+
+[EQ] Nennen Sie ein Beispiel aus dem Alltag (außerhalb der IT), bei dem Aufgaben sequentiell
+abgearbeitet werden müssen, und eines, bei dem Nebenläufigkeit sinnvoller ist.
+
+<!-- time estimate: 10 min -->
+
+
+#### Kernbegriffe
+
+Für ein gutes Verständnis, was eine Goroutine ist, müssen Sie zuerst die folgenden Begriffe kennenlernen.
+Stellen Sie sicher, dass Sie ein Bauchgefühl für die Bedeutung der Wörter haben, und springen Sie zurück
+zu dieser Liste, falls Sie bei der weiteren Erklärung etwas nicht verstehen.
+
+- __Thread__: Die kleinste Einheit der Programmausführung, die sich unabhängig verwalten lässt.
+- __(Betriebssystem-)Kernel__: Das Herz eines Betriebssystems;
+  hier werden Ressourcen wie Arbeitsspeicher und CPU verwaltet.
+- __Kernelraum__: Der privilegierte Speicherbereich, in dem der Kernel läuft.
+- __Benutzerraum__: Speicherbereich, in dem alle „normalen“ Benutzeranwendungen laufen.
+- __Scheduler__: Ein Programm, das die Verwaltung von Threads übernimmt.
+- __kooperativ__: Ein Thread kommt erst dann zur Ausführung, wenn ein anderer Thread seine Ausführung selbst pausiert.
+- __präemptiv__: Der aktuell laufende Thread wird in gewissen Zeitabständen vom Scheduler unterbrochen, um anderen
+  Threads Ausführung zu ermöglichen.
+- __Stack__: Hier: ein „privater“ Speicherbereich eines Threads.
+
+<!-- time estimate: 10 min -->
+
+
+#### Goroutinen vs. Threads
+
+Hier sammeln wir nun einige weitere Begriffe, die im Kontext von Nebenläufigkeit wichtig sind.
+
+1. __Hardware-Threads__: Die logischen Kerne Ihrer CPU — die echten „Arbeiter“.
+2. __OS-Threads__: Threads, die im _Kernel_ verwaltet werden.
+   Sie sind relativ „teuer“ im Speicherverbrauch (Stacks zwischen 512 KB und 8 MB) und ihr Wechsel kostet Zeit,
+   weil die Threads im _Benutzerraum_ laufen.
+   Das Betriebssystem ordnet OS-Threads den Hardware-Threads zu.
+3. __User Threads__: 
+   Threads, die von einem _Scheduler_ im _Benutzerraum_ verwaltet werden — von einem externen Programm.
+   Sie sind für das Betriebssystem komplett unsichtbar und leichter als OS-Threads, weil ihre Erzeugung
+   und ihr Kontextwechsel keinen Sprung zwischen Kernel- und Benutzerraum benötigen.
+
+In der Praxis begegnet man noch anderen Bezeichnungen für „Threads, die keine OS-Threads sind“.
+Diese werden heute oft synonym verwendet und sind im Grunde verschiedene Sorten von _User Threads_:
+
+- __Green Threads__:
+  Eine Implementierung von User Threads in der Standardbibliothek von Java 1.1, die mit Java 1.3 abgeschafft wurde.
+  Sie teilten sich einen OS-Thread und waren größtenteils _kooperativ_.
+- __Virtual Threads__: Eine modernere Implementierung von User Threads (Java 21).
+  Virtual Threads benutzen das __M:N Mapping__:
+  Die Laufzeit verteilt _M_ virtuelle Threads dynamisch auf _N_ OS-Threads.
+  Im Gegensatz zu Green Threads ist das Scheduling hier (fast) __präemptiv__ — der Scheduler unterbricht die Ausführung
+  eines Threads bei blockierenden Ein- und Ausgabeoperationen.
+- __Goroutinen__: Eine komplett _präemptive_ Implementierung von Virtual Threads in Go.
+  Eine Endlosschleife in einem Virtual Thread in Java würde den darunterliegenden OS-Thread komplett blockieren,
+  in Go nicht.
+  Außerdem sind die Stacks von Goroutinen zu Beginn sehr klein — nur 2 KB.
+
+__Anmerkung__: Es gibt noch weitere Begriffe, etwa
+[Fibers](https://en.wikipedia.org/wiki/Fiber_(computer_science))
+oder
+[Protothreads](https://en.wikipedia.org/wiki/Protothread#:~:text=A%20protothread%20is%20a%20low,the%20order%20of%20single%20bytes).
+Eine vertiefte Auseinandersetzung ist für diese Aufgabe jedoch kaum nötig, weil sich dieses Wissen
+in Go kaum anwenden lässt.
+
+[FOLDOUT::Tiefenwissen: Scheduler Details]
+Wenn Sie genau wissen wollen, wie der Go-Scheduler die Last verteilt („Work Stealing“), empfehlen wir die Artikel:
+["Understanding the Go Scheduler"](https://rickkoch.github.io/posts/go-scheduler/)
+oder
+["Go's work-stealing scheduler"](https://rakyll.org/scheduler/).
+Dies ist für den Einstieg nicht zwingend nötig.
+[ENDFOLDOUT]
+
+<-- time estimate: 15 min -->
+
+
+### Verständnis-Check
+
+Sie haben jetzt viel über Threads und Goroutinen gelesen.
+Prüfen Sie kurz, ob das Konzept sitzt:
+
+[EQ] __Szenario 1__:
+Stellen Sie sich vor, Sie schreiben einen Chat-Server, der eine Million Nutzer gleichzeitig bedienen muss.
+Für jeden Nutzer brauchen Sie einen eigenen „Arbeiter“ (Thread).
+Warum würde Ihr Server wahrscheinlich abstürzen, wenn Sie dafür eine Million OS-Threads starten,
+während er mit einer Million Goroutinen stabil läuft?
+
+[HINT::Ich weiß nicht]
+Wägen Sie die Situation in Bezug auf den Speicherverbrauch ab.
+Wie viel Arbeitsspeicher benötigen OS-Threads im Gegensatz zu Goroutinen?
+[ENDHINT]
+
+[EQ] __Szenario 2__: In Ihrem Code oben haben Sie eine Goroutine gestartet, die nur wartet.
+Angenommen, Sie schreiben stattdessen eine Goroutine, die ununterbrochen rechnet (`for { i++ }`).
+Warum friert das Hauptprogramm dabei trotzdem nicht komplett ein?
+
+[HINT::Ich weiß nicht]
+Betrachten Sie noch einmal den Unterschied zwischen _kooperativ_ und _präemptiv_.
+[ENDHINT]
+
+<!-- time estimate: 15 min -->
+
+
+### Zusammenfassung & Ausblick
+
+Sie haben gelernt, dass `go func()` einen neuen Ausführungsstrang startet.
+Sie haben aber auch das größte Problem der Nebenläufigkeit entdeckt: __Synchronisation__.
+
+Wir mussten eine „dumme“ Endlosschleife (`for {}`) nutzen, damit `main` nicht zu früh beendet wird.
+In echten Programmen verwenden wir dafür:
+
+1. WaitGroups (um zu warten, bis Aufgaben fertig sind).
+2. Channels (um Daten sicher zwischen Goroutinen auszutauschen).
+3. Mutex (um gemeinsamen Speicher zu schützen).
+
+Das lernen Sie in den nächsten Aufgaben.
+
+<!-- TODO_2_Brandes: add teasers to go-channels, go-sync-mutex and go-sync-waitgroup once all four tasks are live -->
 [ENDSECTION]
 
 
