@@ -55,16 +55,14 @@ jobs:
         # Install sedrila dependencies from pyproject.toml
         cd sedrila && pip install -e . && cd ..
 
-    - name: Collect metadata and dependencies
+    - name: Collect and display metadata
       shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
         python sedrila/py/sedrila.py maintainer --log ERROR --collect -o /tmp/metadata.json 2>/dev/null || echo '{"taskgroups": {}}' > /tmp/metadata.json
         echo "Collected metadata:"
         cat /tmp/metadata.json
-
-    - name: Display required taskgroups and dependencies
-      run: |
+        echo ""
         echo "=== Taskgroups and Language Requirements ==="
         jq -r '.taskgroups | to_entries[] | "\(.key): lang: \(.value.lang | @json)"' /tmp/metadata.json || echo "No taskgroups specified"
         echo ""
@@ -164,26 +162,7 @@ jobs:
           /tmp/progcheck
       continue-on-error: false
 
-    - name: Publish markdown report to job summary
-      if: always()
-      run: |
-        REPORT_PATH="/tmp/progcheck_i/program_test_report.md"
-        if [ -f "$REPORT_PATH" ]; then
-          cat "$REPORT_PATH" >> "$GITHUB_STEP_SUMMARY"
-        else
-          echo "Markdown report not found at $REPORT_PATH" >> "$GITHUB_STEP_SUMMARY"
-        fi
-
-    - name: Upload program check reports
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: program-check-reports
-        path: |
-          /tmp/progcheck_i/program_test_report.md
-        retention-days: 90
-
-    - name: Display report summary
+    - name: Process and publish program check report
       if: always()
       run: |
         echo "=== Program Check Summary ==="
@@ -194,6 +173,18 @@ jobs:
           echo ""
           echo "Report preview:"
           head -40 "$REPORT_MD"
+          echo ""
+          echo "Publishing to job summary..."
+          cat "$REPORT_MD" >> "$GITHUB_STEP_SUMMARY"
         else
-          echo "No markdown report found"
+          echo "No markdown report found" >> "$GITHUB_STEP_SUMMARY"
         fi
+
+    - name: Upload program check reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: program-check-reports
+        path: |
+          /tmp/progcheck_i/program_test_report.md
+        retention-days: 90
