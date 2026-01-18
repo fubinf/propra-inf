@@ -216,8 +216,8 @@ Syntax:
 - JavaScript: `class Kind extends Eltern { ... }`
 
 Intern:  
-- Python: "echte" Klassenhierarchie.  
-- JavaScript: Prototyp-Ketten, die durch `extends` gebildet werden.  
+- Python: Objekte beziehen Methoden/Attribute über ihre Klasse(n) (Vererbungsbeziehung zwischen Klassen).
+- JavaScript: Objekte beziehen Methoden/Attribute über eine Prototyp-Kette (Verkettung von Prototyp-Objekten).
 
 
 [ER] Leiten Sie eine Klasse `DigitalProdukt` von `Produkt` ab.  
@@ -245,23 +245,42 @@ Bei Vererbung ergibt sich daraus eine ganze Prototyp-Kette.
 
 Beispiel mit einer Konstruktorfunktion:
 
+Erinnerung:  
+Das folgende Beispiel mit einer Konstruktorfunktion kennen Sie bereits aus dem vorherigen Abschnitt.  
+Wir greifen es hier noch einmal auf, um daran die Prototyp-Verknüpfung explizit sichtbar zu machen.
+
 ```js
 function Tier(name) {
   this.name = name;
 }
-
 Tier.prototype.sprechen = function() {
   console.log(this.name + " macht ein Geräusch.");
 };
 
-const hund = new Tier("Bello");
-hund.sprechen(); // "Bello macht ein Geräusch."
+function Hund(name) {
+  Tier.call(this, name);
+}
+
+// Hund erbt von Tier:
+Hund.prototype = Object.create(Tier.prototype);
+Hund.prototype.constructor = Hund;
+
+Hund.prototype.bellen = function() {
+  console.log(this.name + " bellt.");
+};
+
+const hund = new Hund("Bello");
+hund.bellen();    // "Bello bellt."
+hund.sprechen();  // "Bello macht ein Geräusch."
+
 ```
 
 Hier passiert intern Folgendes:  
-1. JavaScript sucht bei `hund.sprechen()` nach einer Methode `sprechen` im Objekt `hund`. 
-2. Sie wird dort nicht gefunden → also schaut die Engine im Prototyp (`Tier.prototype`) nach.  
-3. Dort gibt es `sprechen` → die Methode wird ausgeführt.
+1. JavaScript sucht bei `hund.sprechen()` nach einer Methode `sprechen` im Objekt `hund`.  
+2. Sie wird dort nicht gefunden → JavaScript schaut im Prototyp von `hund`, also in `Hund.prototype`.  
+3. Auch dort nicht gefunden → JavaScript folgt der Prototyp-Kette weiter zu `Tier.prototype`.  
+4. Dort existiert `sprechen` → die Methode wird ausgeführt.  
+5. Wäre sie auch dort nicht vorhanden, würde die Suche weiter zu `Object.prototype` und schließlich zu `null` gehen.
 
 
 #### Verbindung zu `class` und `extends`
