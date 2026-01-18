@@ -100,31 +100,42 @@ jobs:
 
         source /tmp/sedrila_venv/bin/activate
         ISOLATION_BASE=$(cat /tmp/isolation_base.txt)
+        export ISOLATION_BASE
 
         echo "=== Installing Language Runtimes per Taskgroup ==="
 
-        # Install language runtimes for each taskgroup
-        jq -r '.taskgroups | to_entries[] | "\(.key):\(.value.lang | @csv)"' /tmp/metadata.json 2>/dev/null | while IFS=: read -r taskgroup cmds; do
-          echo ""
-          echo "Installing languages for taskgroup: $taskgroup"
-          taskgroup_dir="$ISOLATION_BASE/$taskgroup"
+        # Create temporary script for parallel lang installation
+        cat > /tmp/install_langs.sh << 'SCRIPT'
+        taskgroup=$1
+        taskgroup_dir="$ISOLATION_BASE/$taskgroup"
+        echo ""
+        echo "Installing languages for taskgroup: $taskgroup"
+        cmds=$(jq -r ".taskgroups[\"$taskgroup\"].lang | @csv" /tmp/metadata.json 2>/dev/null)
+        cd "$taskgroup_dir" && eval "$(echo "$cmds" | sed 's/"//g' | awk -F',' '{for(i=1;i<=NF;i++) if($i != "") print $i}')" || true
+        SCRIPT
 
-          # Evaluate each language command with taskgroup path available
-          eval "$(echo "$cmds" | sed 's/"//g' | awk -F',' '{for(i=1;i<=NF;i++) if($i != "") print $i}')" || true
-        done
+        chmod +x /tmp/install_langs.sh
+
+        # Install language runtimes in parallel (4 parallel workers)
+        jq -r '.taskgroups | keys[]' /tmp/metadata.json 2>/dev/null | xargs -P 4 -I {} /tmp/install_langs.sh {}
 
         echo ""
         echo "=== Installing Task-Specific Dependencies ==="
 
-        # Install task-specific dependencies for each taskgroup
-        jq -r '.taskgroups | to_entries[] | "\(.key):\(.value.deps | @csv)"' /tmp/metadata.json 2>/dev/null | while IFS=: read -r taskgroup deps; do
-          echo ""
-          echo "Installing dependencies for taskgroup: $taskgroup"
-          taskgroup_dir="$ISOLATION_BASE/$taskgroup"
+        # Create temporary script for parallel deps installation
+        cat > /tmp/install_deps.sh << 'SCRIPT'
+        taskgroup=$1
+        taskgroup_dir="$ISOLATION_BASE/$taskgroup"
+        echo ""
+        echo "Installing dependencies for taskgroup: $taskgroup"
+        deps=$(jq -r ".taskgroups[\"$taskgroup\"].deps | @csv" /tmp/metadata.json 2>/dev/null)
+        cd "$taskgroup_dir" && eval "$(echo "$deps" | sed 's/"//g' | awk -F',' '{for(i=1;i<=NF;i++) if($i != "") print $i}')" || true
+        SCRIPT
 
-          # Evaluate each dependency command with taskgroup path available
-          eval "$(echo "$deps" | sed 's/"//g' | awk -F',' '{for(i=1;i<=NF;i++) if($i != "") print $i}')" || true
-        done
+        chmod +x /tmp/install_deps.sh
+
+        # Install dependencies in parallel (4 parallel workers)
+        jq -r '.taskgroups | keys[]' /tmp/metadata.json 2>/dev/null | xargs -P 4 -I {} /tmp/install_deps.sh {}
 
         echo ""
         echo "All language runtimes and dependencies installed successfully"
