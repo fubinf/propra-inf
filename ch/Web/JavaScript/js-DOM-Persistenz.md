@@ -1,5 +1,5 @@
 title: Persistenz im Browser – Daten mit localStorage speichern
-stage: beta
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 assumes: js-DOM-Arrays-Objekte
