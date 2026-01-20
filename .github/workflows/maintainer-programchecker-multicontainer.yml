@@ -285,6 +285,13 @@ jobs:
           echo "No report generated for $TASKGROUP"
         fi
 
+    - name: "[Container: ${{ matrix.taskgroup }}] Upload taskgroup report for aggregation"
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: program-check-report-${{ matrix.taskgroup }}
+        path: /tmp/progcheck_${{ matrix.taskgroup }}_i/program_test_report.md
+        retention-days: 1
 
   aggregate-results:
     needs: program-check-per-taskgroup
@@ -495,3 +502,23 @@ jobs:
         name: program-check-merged-report
         path: /tmp/merged_report.md
         retention-days: 90
+
+    - name: Clean up intermediate taskgroup reports
+      if: always()
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo "Deleting intermediate taskgroup reports..."
+        # Get all artifacts for this run
+        ARTIFACTS=$(gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts --jq '.artifacts[] | select(.name | startswith("program-check-report-")) | .id')
+
+        if [ -z "$ARTIFACTS" ]; then
+          echo "No intermediate artifacts to delete"
+          exit 0
+        fi
+
+        for artifact_id in $ARTIFACTS; do
+          echo "Deleting artifact ID: $artifact_id"
+          gh api repos/${{ github.repository }}/actions/artifacts/$artifact_id -X DELETE
+        done
+        echo "Cleanup completed"
