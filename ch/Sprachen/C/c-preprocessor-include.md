@@ -23,7 +23,7 @@ Die Aufgabe geht auf die zentrale Aufgabe der `#include`-Direktive ein.
 ## Deklaration und Definition
 
 In C gibt es einen wichtigen Unterschied zwischen "Definition" und "Deklaration",
-zu dem es in Python keine Entsprechung gibt.
+zu dem es in Python keine Entsprechung gibt: Python hat nur Definitionen.
 Lesen Sie sich ein Verständnis dieser beiden Konzepte an:
 [Übersicht über Unterschiede der Deklaration und Definition](https://www.geeksforgeeks.org/compiler-design/difference-between-definition-and-declaration/)
 
@@ -35,8 +35,12 @@ Eine Funktion `myfunc`, die Sie geschrieben haben, wird in fünf Dateien verwend
 Wie viele Deklarationen und wie viele Definitionen dieser Funktion werden gebraucht?
 
 [NOTICE]
-Der Binder wird Ihnen ein doppeltes Symbol (Variable bzw. Funktion) nicht annehmen.
-Beachten Sie diesen Fakt.
+C hat nur wenige Namensräume:
+Einen lokalen in jeder Funktion (genauer: Jedem Block).
+Einen lokalen in jeder Datei (`static`-Funktionen und -Variablen).
+Einen einzigen globalen.  
+Nichts dazwischen.  
+Und die lokalen Namensräume können nirgendwo anders sichtbar gemacht oder importiert werden.
 [ENDNOTICE]
 
 
@@ -58,23 +62,23 @@ Fügen Sie folgende Dateien hinzu:
 
 `print.h`
 ```c
-void print(const char *string);
+void print(const char *string);  /* a function declaration */
 ```
 
 `print.c`
 ```c
 #include ...
 
-void print(const char *string) {
+void print(const char *string) {  /* a function definition */
   printf("%s", string);
 }
 ```
 
-Überschreiben Sie den Inhalt der `main.c`-Datei mit folgendem:
+Überschreiben Sie den Inhalt der `main.c`-Datei wie folgt:
 ```c
 #include ...
 
-int main(void) {
+int main(void) {  /* a function definition */
   print("Hallo Welt!\n");
 
   return 0;
