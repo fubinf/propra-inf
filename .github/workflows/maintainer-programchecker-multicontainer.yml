@@ -1,0 +1,335 @@
+name: Maintainer-ProgramChecker-MultiContainer
+
+on:
+  schedule:
+    # Run every Sunday at 04:30 UTC (offset from single-container version)
+    - cron: '30 4 * * 0'
+  workflow_dispatch:  # Allow manual triggering
+    inputs:
+      max_workers:
+        description: 'Max program checker workers (default 4)'
+        required: false
+        default: '4'
+
+# Multi-container isolation strategy: each taskgroup runs in an independent container
+# Advantages: complete isolation, no version conflicts, naturally supports different Python/Go versions
+# Disadvantages: starts multiple containers, total time may be longer
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    container: debian:12
+    outputs:
+      taskgroups: ${{ steps.extract.outputs.taskgroups }}
+    env:
+      SDRL_PROGCHECK_MAX_WORKERS: ${{ github.event.inputs.max_workers || '4' }}
+
+    steps:
+    - name: Install system dependencies for Debian 12
+      run: |
+        apt-get update
+        apt-get install -y \
+          bash \
+          git \
+          curl \
+          ca-certificates \
+          jq \
+          nodejs \
+          npm \
+          python3.11 \
+          python3.11-venv
+        ln -s /usr/bin/python3.11 /usr/bin/python
+
+    - name: Checkout propra-inf repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        token: ${{ secrets.SUBMODULE_TOKEN }}
+
+    - name: Checkout sedrila repository
+      uses: actions/checkout@v4
+      with:
+        repository: fubinf/sedrila
+        path: sedrila
+
+    - name: Create and activate Python virtual environment
+      shell: bash
+      run: |
+        python -m venv /tmp/sedrila_venv
+        source /tmp/sedrila_venv/bin/activate
+        python -m pip install --upgrade pip
+        # Install sedrila dependencies from pyproject.toml
+        cd sedrila && pip install -e . && cd ..
+
+    - name: Collect and display metadata
+      shell: bash
+      run: |
+        source /tmp/sedrila_venv/bin/activate
+        python sedrila/py/sedrila.py maintainer --log ERROR --collect -o /tmp/metadata.json 2>/dev/null || echo '{"taskgroups": {}}' > /tmp/metadata.json
+        echo "Collected metadata:"
+        cat /tmp/metadata.json
+        echo ""
+        echo "=== Taskgroups and Language Requirements ==="
+        jq -r '.taskgroups | to_entries[] | "\(.key): lang: \(.value.lang | @json)"' /tmp/metadata.json || echo "No taskgroups specified"
+        echo ""
+        echo "=== Task Dependencies ==="
+        jq -r '.taskgroups[] | .tasks | to_entries[] | "\(.key): deps: \(.value.deps | @json)"' /tmp/metadata.json || echo "No task dependencies specified"
+        echo ""
+
+    - name: Extract taskgroups for matrix
+      id: extract
+      shell: bash
+      run: |
+        TASKGROUPS=$(jq -r '.taskgroups | keys | @json' /tmp/metadata.json 2>/dev/null)
+        echo "taskgroups=${TASKGROUPS}" >> $GITHUB_OUTPUT
+        echo "Extracted taskgroups: $TASKGROUPS"
+
+    # Note: Skipping artifact upload to avoid act permission issues
+    # Each matrix job will regenerate metadata.json independently
+
+  program-check-per-taskgroup:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      # Use all-in-one container with all runtimes available
+      # This avoids hardcoded container mappings and scales automatically
+      matrix:
+        taskgroup: ${{ fromJson(needs.setup.outputs.taskgroups) }}
+
+    container: debian:12
+
+    steps:
+    - name: "[Container: ${{ matrix.taskgroup }}] Install minimal base dependencies"
+      shell: bash
+      run: |
+        echo "=== Installing minimal base dependencies ==="
+
+        apt-get update
+        apt-get install -y \
+          bash \
+          curl \
+          git \
+          ca-certificates \
+          jq \
+          nodejs \
+          npm \
+          python3.11 \
+          python3.11-venv
+        ln -s /usr/bin/python3.11 /usr/bin/python
+
+        echo "Minimal base dependencies installed"
+        echo "Node.js version: $(node --version)"
+        echo "npm version: $(npm --version)"
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Checkout repositories"
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        token: ${{ secrets.SUBMODULE_TOKEN }}
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Checkout sedrila"
+      uses: actions/checkout@v4
+      with:
+        repository: fubinf/sedrila
+        path: sedrila
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Setup Python venv for sedrila"
+      shell: bash
+      run: |
+        echo "=== Setting up Python environment in container ==="
+        python3 -m venv /tmp/sedrila_venv
+        source /tmp/sedrila_venv/bin/activate
+        python -m pip install --upgrade pip
+        cd sedrila && pip install -e . && cd ..
+        echo "Python venv ready"
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Get taskgroup metadata"
+      shell: bash
+      run: |
+        # Download metadata from setup job
+        echo "=== Getting metadata for ${{ matrix.taskgroup }} ==="
+        mkdir -p /tmp/artifacts
+        # In real scenario, we'd download the artifact; for now, we regenerate
+        source /tmp/sedrila_venv/bin/activate
+        python sedrila/py/sedrila.py maintainer --log ERROR --collect -o /tmp/metadata.json 2>/dev/null
+        echo "Metadata collected"
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Extract lang and deps for this taskgroup"
+      shell: bash
+      run: |
+        echo "=== Extracting lang and deps for taskgroup: ${{ matrix.taskgroup }} ==="
+
+        TASKGROUP="${{ matrix.taskgroup }}"
+        LANG_CMDS=$(jq -r ".taskgroups[\"$TASKGROUP\"].lang | @csv" /tmp/metadata.json 2>/dev/null)
+        DEPS_CMDS=$(jq -r ".taskgroups[\"$TASKGROUP\"].deps | @csv" /tmp/metadata.json 2>/dev/null)
+
+        echo "Lang commands: $LANG_CMDS"
+        echo "Deps commands: $DEPS_CMDS"
+
+        # Save for next steps
+        echo "$LANG_CMDS" > /tmp/lang_cmds.txt
+        echo "$DEPS_CMDS" > /tmp/deps_cmds.txt
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Install language runtime"
+      shell: bash
+      run: |
+        echo "=== Installing language runtime for ${{ matrix.taskgroup }} ==="
+
+        LANG_CMDS=$(cat /tmp/lang_cmds.txt)
+
+        if [ -z "$LANG_CMDS" ] || [ "$LANG_CMDS" = "null" ] || [ "$LANG_CMDS" = "" ]; then
+          echo "[SKIP] No lang commands for this taskgroup"
+        else
+          echo "Executing lang commands: $LANG_CMDS"
+          # Parse CSV-like format
+          echo "$LANG_CMDS" | tr ',' '\n' | while read -r cmd; do
+            cmd=$(echo "$cmd" | sed 's/^"//;s/"$//;s/\\//g')
+            if [ ! -z "$cmd" ]; then
+              echo "Running: $cmd"
+              eval "$cmd" || echo "Warning: Lang command failed but continuing"
+            fi
+          done
+        fi
+
+        echo "Language runtime installation complete"
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Install task dependencies"
+      shell: bash
+      run: |
+        echo "=== Installing dependencies for ${{ matrix.taskgroup }} ==="
+
+        source /tmp/sedrila_venv/bin/activate
+
+        DEPS_CMDS=$(cat /tmp/deps_cmds.txt)
+
+        if [ -z "$DEPS_CMDS" ] || [ "$DEPS_CMDS" = "null" ] || [ "$DEPS_CMDS" = "" ]; then
+          echo "[SKIP] No deps commands for this taskgroup"
+        else
+          echo "Executing deps commands: $DEPS_CMDS"
+          # Parse CSV-like format
+          echo "$DEPS_CMDS" | tr ',' '\n' | while read -r cmd; do
+            cmd=$(echo "$cmd" | sed 's/^"//;s/"$//;s/\\//g')
+            if [ ! -z "$cmd" ]; then
+              echo "Running: $cmd"
+              eval "$cmd" || echo "Warning: Deps command failed but continuing"
+            fi
+          done
+        fi
+
+        echo "Dependencies installation complete"
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Verify environment after installation"
+      shell: bash
+      run: |
+        echo "=== Environment after language/dependency installation ==="
+        echo ""
+        echo "Current PATH:"
+        echo "$PATH"
+        echo ""
+        echo "Installed packages:"
+        apt list --installed 2>/dev/null | grep -E "python|go|node|gcc|git|java" | head -20 || true
+        echo ""
+        echo "Tools in /usr/bin:"
+        ls -1 /usr/bin | grep -E "python|go|node|npm|gcc|git|java" || echo "  (none found)"
+        echo ""
+        echo "Tools in /usr/local/bin:"
+        ls -1 /usr/local/bin 2>/dev/null | head -10 || echo "  (directory not found or empty)"
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Create isolation base"
+      shell: bash
+      run: |
+        echo "=== Creating isolation directory ==="
+        mkdir -p /tmp/sedrila_taskgroups
+        echo "/tmp/sedrila_taskgroups" > /tmp/isolation_base.txt
+
+        # In multi-container, each container has its own /usr/local
+        # No need for additional isolation since we are already isolated
+        echo "Isolation base: /tmp/sedrila_taskgroups"
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Setup taskgroup paths"
+      shell: bash
+      run: |
+        echo "=== Setup taskgroup paths ==="
+        # Multi-container approach: each container is already isolated
+        # So we pass empty taskgroup_paths; programchecker.py will use default container PATH
+        echo '{}' > /tmp/taskgroup_paths.json
+        echo "Using container-native isolation (no taskgroup_paths needed)"
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Run program checks for this taskgroup"
+      shell: bash
+      env:
+        SDRL_TASKGROUP: ${{ matrix.taskgroup }}
+      run: |
+        echo "=== Running program checks for taskgroup: ${{ matrix.taskgroup }} ==="
+
+        source /tmp/sedrila_venv/bin/activate
+
+        python sedrila/py/sedrila.py maintainer \
+          --check-programs \
+          --batch \
+          --taskgroup-paths /tmp/taskgroup_paths.json \
+          /tmp/progcheck_${{ matrix.taskgroup }}
+      continue-on-error: true
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Process program check report"
+      if: always()
+      shell: bash
+      run: |
+        TASKGROUP="${{ matrix.taskgroup }}"
+        REPORT_MD="/tmp/progcheck_${{ matrix.taskgroup }}_i/program_test_report.md"
+
+        if [ -f "$REPORT_MD" ]; then
+          echo "=== Report for taskgroup: $TASKGROUP ==="
+          head -50 "$REPORT_MD"
+        else
+          echo "No report generated for $TASKGROUP"
+        fi
+
+    - name: "[Container: ${{ matrix.taskgroup }}] Upload results"
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: program-check-report-${{ matrix.taskgroup }}
+        path: /tmp/progcheck_${{ matrix.taskgroup }}_i/program_test_report.md
+        retention-days: 90
+
+  aggregate-results:
+    needs: program-check-per-taskgroup
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+    - name: Download all reports
+      uses: actions/download-artifact@v4
+      with:
+        path: /tmp/all_reports
+
+    - name: Aggregate and publish summary
+      run: |
+        echo "=== MultiContainer Program Check Summary ===" | tee /tmp/summary.md
+        echo "" | tee -a /tmp/summary.md
+        echo "Completed checks across isolated container environments:" | tee -a /tmp/summary.md
+        echo "" | tee -a /tmp/summary.md
+
+        for dir in /tmp/all_reports/program-check-report-*/; do
+          taskgroup=$(basename "$dir" | sed 's/program-check-report-//')
+          echo "**Taskgroup: $taskgroup**" | tee -a /tmp/summary.md
+
+          report_file="$dir/program_test_report.md"
+          if [ -f "$report_file" ]; then
+            echo "✓ Report found" | tee -a /tmp/summary.md
+            echo "" | tee -a /tmp/summary.md
+            cat "$report_file" | head -30 | tee -a /tmp/summary.md
+            echo "" | tee -a /tmp/summary.md
+          else
+            echo "✗ No report file" | tee -a /tmp/summary.md
+          fi
+        done
+
+        cat /tmp/summary.md >> $GITHUB_STEP_SUMMARY
+
+    - name: Upload final summary
+      uses: actions/upload-artifact@v4
+      with:
+        name: multicontainer-summary
+        path: /tmp/summary.md
+        retention-days: 90
