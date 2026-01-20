@@ -3,27 +3,17 @@ stage: alpha
 ---
 
 SciPy ist eine umfassende Bibliothek für wissenschaftliches und technisches Rechnen in Python, 
-die auf NumPy aufbaut. Sie erweitert NumPy um spezialisierte Algorithmen und Funktionen für 
+die auf [PARTREF::NumPy] aufbaut (und Verständnis von NumPy benötigt). 
+Sie erweitert die Basisoperationen aus NumPy um spezialisierte und hoch optimierte Funktionen für 
 fortgeschrittene mathematische Berechnungen, wissenschaftliche Analysen und technische Anwendungen.
 
-SciPy ist eine der Kernbibliotheken des wissenschaftlichen Python-Ökosystems und bietet 
-hochoptimierte Implementierungen für eine Vielzahl wissenschaftlicher Problemstellungen. 
-Während NumPy die Grundlage für Array-Operationen bildet, stellt SciPy spezialisierte 
-Werkzeuge für komplexe wissenschaftliche Berechnungen bereit.
+Eigenschaften:
 
-SciPy bietet wesentliche Vorteile für wissenschaftliche Anwendungen:
-
-- Spezialisierte Algorithmen: Hochoptimierte Implementierungen wissenschaftlicher Standardverfahren
 - Umfassende Abdeckung: Breites Spektrum mathematischer und wissenschaftlicher Funktionen
 - Performance: Viele Funktionen basieren auf optimierten C/Fortran-Bibliotheken (BLAS, LAPACK)
 - Integration: Nahtlose Integration mit NumPy-Arrays und dem Python-Ökosystem
-- Validiert und getestet: Umfangreich getestete Implementierungen wissenschaftlicher Algorithmen
+- Validiert und getestet: Umfangreich getestete Implementierungen
 - Open Source: Aktive Community und kontinuierliche Weiterentwicklung
-
-[NOTICE]
-SciPy benötigt NumPy als Abhängigkeit. Bei der Installation wird NumPy 
-automatisch mitinstalliert, falls es noch nicht vorhanden ist.
-[ENDNOTICE]
 
 Die offizielle SciPy-Dokumentation bietet verschiedene Einstiegspunkte:
 
@@ -36,7 +26,3 @@ Die offizielle SciPy-Dokumentation bietet verschiedene Einstiegspunkte:
 - **[SciPy Lecture Notes](https://scipy-lectures.org/)**: 
   Umfassende Tutorials, die SciPy im Kontext des gesamten wissenschaftlichen 
   Python-Ökosystems behandeln.
-
-SciPy baut direkt auf NumPy auf. Gute NumPy-Kenntnisse sind daher die ideale 
-Voraussetzung für die effektive Nutzung von SciPy. Die meisten SciPy-Funktionen akzeptieren 
-NumPy-Arrays als Eingabe und geben NumPy-Arrays zurück.
