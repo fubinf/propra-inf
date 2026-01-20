@@ -1,6 +1,6 @@
 title: "C Speicherklassen"
 stage: draft
-timevalue: 1
+timevalue: 0
 difficulty: 3
 assumes: c-types
 ---

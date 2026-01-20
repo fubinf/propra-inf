@@ -1,6 +1,6 @@
 title: "C Struct und Union"
 stage: draft
-timevalue: 1
+timevalue: 0
 difficulty: 3
 assumes: c-syntax-variables-functions, c-types
 ---

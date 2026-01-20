@@ -1,6 +1,6 @@
 title: "C Variadic"
 stage: draft
-timevalue: 1
+timevalue: 0
 difficulty: 3
 assumes: c-syntax-variables-functions, c-syntax-flow-control
 ---
