@@ -12,8 +12,6 @@ on:
         default: '4'
 
 # Multi-container isolation strategy: each taskgroup runs in an independent container
-# Advantages: complete isolation, no version conflicts, naturally supports different Python/Go versions
-# Disadvantages: starts multiple containers, total time may be longer
 
 jobs:
   setup:
@@ -84,15 +82,10 @@ jobs:
         echo "taskgroups=${TASKGROUPS}" >> $GITHUB_OUTPUT
         echo "Extracted taskgroups: $TASKGROUPS"
 
-    # Note: Skipping artifact upload to avoid act permission issues
-    # Each matrix job will regenerate metadata.json independently
-
   program-check-per-taskgroup:
     needs: setup
     runs-on: ubuntu-latest
     strategy:
-      # Use all-in-one container with all runtimes available
-      # This avoids hardcoded container mappings and scales automatically
       matrix:
         taskgroup: ${{ fromJson(needs.setup.outputs.taskgroups) }}
 
