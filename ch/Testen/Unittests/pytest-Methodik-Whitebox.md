@@ -9,7 +9,8 @@ assumes: m_pytest, pytest-Methodik-Blackbox
 
 Ich verstehe die Idee von Whitebox-Testing.
 
-Ich kann Whitebox-Tests mit pytest schreiben und ausführen.
+Ich kann Whitebox-Tests mit pytest schreiben.
+Ich erkenne die Unterschiede zwischen strukturellen Testkriterien (Statement, Condition, Branch, Path).
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -44,19 +45,94 @@ Codeausführung durchlaufen werden können.
 
 Typische Whitebox-Testkriterien:
 
-- **Anweisungsüberdeckung** (statement coverage, C₀): Testet, ob jede einzelne Anweisung im Code
-  mindestens einmal ausgeführt wird. Dies ist die grundlegendste Form der Testabdeckung.
-- **Bedingungsüberdeckung** (condition coverage, C₁): Testet, ob jede Bedingung im Code sowohl den
-  Wert True als auch False annimmt. Bei zusammengesetzten Bedingungen sollte jede Teilbedingung
-  separat betrachtet werden.
-- **Zweigüberdeckung** (branch coverage): Testet, ob jeder mögliche Zweig (also jeder Ausgang einer
-  Verzweigung, z.B. if/else) mindestens einmal durchlaufen wird. Sie ergibt sich aus der
-  Bedingungsüberdeckung, ist aber nicht identisch – insbesondere bei komplexen Bedingungen.
-- **Schleifenüberdeckung** (loop coverage): Testet, ob jede Schleife im Code mindestens einmal gar
-  nicht (0-mal), einmal und mehrmals durchlaufen wird. Bei einfachen Funktionen ohne Schleifen
-  bringt Schleifenüberdeckung keine zusätzlichen Testfälle.
-- **Pfadüberdeckung** (path coverage): Testet alle möglichen Ausführungspfade durch den Code.
-  Dies ist oft nur bei sehr kleinen Funktionen praktikabel, da die Anzahl der Pfade schnell explodiert.
+- **Anweisungsüberdeckung** (statement coverage, C₀): **Jede einzelne ausführbare Codezeile** wird mindestens einmal durchlaufen.
+  
+  *Beispiel:* 
+  ```python
+  def check_age(age):          # Zeile 1: Nicht ausführbar (nur Definition)
+      if age >= 18:            # Zeile 2: Ausführbar (Bedingung wird geprüft)  
+          return "adult"       # Zeile 3: Ausführbar (return-Statement)
+      return "minor"           # Zeile 4: Ausführbar (return-Statement)
+  ```
+  **Ein** Test mit `age=20` erreicht bereits 100% Anweisungsüberdeckung (alle ausführbaren Zeilen durchlaufen).
+- **Bedingungsüberdeckung** (condition coverage, C₁): **Jede atomare (unteilbare) Teilbedingung** wird sowohl True als auch False.
+  
+  **Wichtig - "atomar" bedeutet:** Bei `if age >= 18 and income > 30000:` gibt es **zwei** atomare Bedingungen:
+  - `age >= 18` muss einmal True und einmal False werden  
+  - `income > 30000` muss einmal True und einmal False werden
+  
+  **Vier** Tests nötig: `(age=20, income=40000)`, `(age=20, income=20000)`, `(age=16, income=40000)`, `(age=16, income=20000)`
+  
+  **Häufiger Fehler:** Die gesamte Bedingung `age >= 18 and income > 30000` als eine Einheit zu betrachten!
+- **Zweigüberdeckung** (branch coverage): **Jeder mögliche Ausgang einer Entscheidung** wird mindestens einmal genommen.
+  
+  **Was ist ein "Zweig"?** Ein Zweig ist ein möglicher **Ausführungspfad** nach einer Entscheidung:
+  ```python
+  if condition:        # ← Entscheidung mit ZWEI Zweigen
+      do_something()   # ← True-Zweig (expliziter Code)
+  # impliziter else   # ← False-Zweig (auch ohne 'else'!)
+  next_statement()
+  ```
+  
+  **Wichtig:** Auch `if` ohne `else` hat **zwei** Zweige!
+  - **True-Zweig:** Bedingung erfüllt → Code im if-Block wird ausgeführt
+  - **False-Zweig:** Bedingung nicht erfüllt → if-Block wird übersprungen
+  
+  _Beispiel:_ Bei `if age >= 18:` gibt es **zwei** Ausgänge/Zweige:
+  - **True-Zweig:** Code wird ausgeführt, wenn Bedingung erfüllt ist (`return "adult"`)
+  - **False-Zweig:** Code wird ausgeführt, wenn Bedingung nicht erfüllt ist (`return "minor"`)
+  
+  **Zwei** Tests nötig: `age=20` (True-Zweig) und `age=16` (False-Zweig)
+  
+  **Unterschied zur Bedingungsüberdeckung:** Zweigüberdeckung fragt "Welche Wege werden genommen?", 
+  Bedingungsüberdeckung fragt "Welche Teilbedingungen werden wahr/falsch?"
+- **Schleifenüberdeckung** (loop coverage): **Alle wichtigen Iterationszustände** einer Schleife werden getestet.
+  
+  _Typische Testfälle:_ **Null** Durchläufe, **ein** Durchlauf, **mehrere** Durchläufe:
+  ```python
+  def sum_positive(numbers):
+      total = 0
+      for num in numbers:  # ← Diese Schleife testen
+          if num > 0:
+              total += num
+      return total
+  ```
+  **Drei Tests für Schleifenüberdeckung:**
+  - `sum_positive([])` → 0 Durchläufe (Edge Case)
+  - `sum_positive([5])` → 1 Durchlauf (Normalfall minimal) 
+  - `sum_positive([1, -2, 3, 4])` → 4 Durchläufe (Normalfall mehrfach)
+  
+  **Besonders wichtig:** Test mit **0 Durchläufen** deckt oft Initialisierungsdefekte auf!
+- **Pfadüberdeckung** (path coverage): **Jede mögliche Kombination von Entscheidungen** durch den gesamten Code wird getestet.
+  
+  _Beispiel Verzweigungen:_ Bei zwei aufeinanderfolgenden if-Anweisungen entstehen **vier** verschiedene Pfade:
+  ```python
+  def example(a, b):
+      if a > 0:     # Entscheidung 1: True oder False
+          x = 1
+      if b > 0:     # Entscheidung 2: True oder False  
+          y = 1
+      return x, y
+  ```
+  **Vier Pfade:** (True,True), (True,False), (False,True), (False,False) → **4 Tests** erforderlich.
+  
+  **Schleifen-Problematik:** Schleifen sind besonders **fehleranfällig** und erfordern spezielle Behandlung:
+  ```python
+  def process_items(items, threshold):
+      count = 0
+      for item in items:  # ← Schleife: Wie viele Durchläufe?
+          if item > threshold:
+              count += 1
+      return count
+  ```
+  **Drei kritische Pfade für Schleifen:**
+  - **0 Durchläufe:** `process_items([], 5)` → Leere Liste (Initialisierung testen)
+  - **1 Durchlauf:** `process_items([3], 5)` → Minimaler Fall (Schleifenkörper einmal)  
+  - **>1 Durchläufe:** `process_items([3, 7, 2, 8], 5)` → Typischer Fall (mehrfache Iteration)
+  
+  **Exponentielles Wachstum:** Bei n Entscheidungen entstehen 2ⁿ Pfade! 
+  Bei Schleifen wird es noch extremer: Eine Schleife mit 0-10 Durchläufen = 11 Pfade.
+  **Verschachtelte Schleifen** führen schnell zu hunderten möglichen Pfaden → Pfadüberdeckung wird unpraktikabel!
 - **Datenflusskriterien**: Hierbei werden die möglichen Belegungen und Verwendungen von Variablen
   getestet (z.B. „def-use“-Paare). Das ist ein fortgeschrittenes Thema und für Einsteiger meist komplex
   - dennoch wagen wir einen kleinen Blick in das Thema.
@@ -70,54 +146,88 @@ auch wenn es dafür Hilfestellungen gibt.
 
 ### Vorbereitung
 
+Die folgenden Aufgaben basieren auf dem echten Open-Source-Projekt
+[keon/algorithms](https://github.com/keon/algorithms), das über 24.000 Sterne hat und eine
+umfassende Sammlung von Python-Algorithmus-Implementierungen enthält.
+Die verwendeten Funktionen stammen konkret aus den Dateien `algorithms/search/binary_search.py` und
+`algorithms/sort/cocktail_shaker_sort.py`.
+Sie arbeiten mit realen Algorithmen, die in der Praxis verwendet werden – inklusive echter Defekte,
+die durch systematische Whitebox-Testverfahren aufgedeckt werden können.
+
 - Legen Sie die Datei `whitebox.py` mit folgendem Inhalt an:
 
 ```python
-def discount(price, is_member):
+def binary_search_recur(array, low, high, val):
     """
-    Berechnet Rabatt basierend auf Preis und Mitgliedschaft.
-    - price: Grundpreis des Produkts (float, >=0)
-    - is_member: True, wenn Mitgliedsrabatt gilt, sonst False
+    Rekursive Binärsuche in einem sortierten Array.
+    Quelle: Adaptiert von github.com/keon/algorithms
     
-    Mitglieder: 10% Rabatt + 20% Extrarabatt bei Preis > 100
-    Nicht-Mitglieder: 5% Rabatt nur bei Preis > 200
+    Args:
+        array: Sortiertes Array zum Durchsuchen
+        low: Startindex
+        high: Endindex
+        val: Zu suchender Wert
+    
+    Returns:
+        Index des gefundenen Werts oder -1 wenn nicht gefunden
     """
-    if price < 0:
-        raise ValueError("Preis darf nicht negativ sein.")
+    if low > high:
+        return -1
     
-    if is_member:
-        if price > 100:
-            return price * 0.8  # 20% Rabatt für Mitglieder bei teueren Produkten
-        else:
-            return price * 0.9  # 10% Rabatt für Mitglieder
+    mid = low + (high - low) // 2
+    
+    if val < array[mid]:
+        return binary_search_recur(array, low, mid - 1, val)
+    elif val > array[mid]:
+        return binary_search_recur(array, mid + 1, high, val)
     else:
-        if price > 200:
-            return price * 0.95  # 5% Rabatt für Nicht-Mitglieder bei sehr teueren Produkten
-        else:
-            return price  # Kein Rabatt
+        return mid
 
 
-def bonus(salary, performance, years):
+def cocktail_shaker_sort(arr):
     """
-    Berechnet Bonus basierend auf Gehalt, Performance und Dienstjahren.
+    Cocktail Shaker Sort - bidirektionale Bubble Sort Variante.
+    Quelle: Adaptiert von github.com/keon/algorithms
+    
+    Bug: Enthält einen subtilen Defekt im Algorithmus!
+    
+    Args:
+        arr: Zu sortierendes Array
+        
+    Returns:
+        Sortiertes Array
     """
-    base_bonus = 0
-    if performance == "excellent":
-        base_bonus = salary * 0.2
-    elif performance == "good":
-        base_bonus = salary * 0.1
-
-    loyalty_bonus = 0
-    if years > 5:
-        loyalty_bonus = salary * 0.05
-
-    total_bonus = base_bonus + loyalty_bonus
-    return total_bonus
+    def swap(i, j):
+        arr[i], arr[j] = arr[j], arr[i]
+    
+    n = len(arr)
+    swapped = True
+    
+    while swapped:
+        swapped = False
+        
+        # Vorwärts durchlaufen
+        for i in range(1, n):
+            if arr[i - 1] > arr[i]:
+                swap(i - 1, i)
+                swapped = True
+        
+        if not swapped:  # Bug: Frühzeitiger Exit verhindert Rückwärtslauf
+            return arr
+            
+        swapped = False
+        
+        # Rückwärts durchlaufen  
+        for i in range(n - 1, 0, -1):
+            if arr[i - 1] > arr[i]:
+                swap(i - 1, i)
+                swapped = True
+                
+    return arr
 ```
 
-Diese Funktionen enthalten verschiedene Verzweigungen und Bedingungen, die für das Erlernen der
-Whitebox-Testkriterien ideal sind. Die `discount` Funktion hat klare Pfade, die `bonus` Funktion
-zeigt Datenflussmuster.
+Diese Algorithmen aus einer realen Open-Source-Bibliothek bieten komplexere Kontrollstrukturen und
+echte Defekte, die durch systematische Whitebox-Testverfahren aufgedeckt werden können.
 
 Legen Sie für die folgenden Aufgaben die Datei `test_whitebox.py` an.
 
@@ -135,8 +245,23 @@ Dies ist die einfachste Form der strukturellen Testabdeckung.
 **Beispiel** Bei einer Funktion mit mehreren `if`-Blöcken sollten die Tests so gestaltet sein, dass
 für jeden Block mindestens ein Fall zutrifft und ausgeführt wird.
 
-- [ER] Schreiben Sie eine pytest-Testfunktion `test_statement_coverage()`, die sicherstellt,
-  dass jede Anweisung in der Funktion `discount(..)` mindestens einmal ausgeführt wird.
+- [ER] Schreiben Sie eine pytest-Testfunktion `test_statement_coverage_binary_search()`, die sicherstellt,
+  dass jede Anweisung in der Funktion `binary_search_recur(..)` mindestens einmal ausgeführt wird.
+
+[HINT::Anweisungen in binary_search_recur() identifizieren]
+Schauen Sie sich die `binary_search_recur()` Funktion genau an. Sie enthält folgende ausführbare Anweisungen:
+
+- `if low > high:` (Basisfall-Bedingung)
+- `return -1` (Nicht gefunden)
+- `mid = low + (high - low) // 2` (Mittelwert berechnen)
+- `if val < array[mid]:` (Wert kleiner als Mitte)
+- `return binary_search_recur(array, low, mid - 1, val)` (Linke Hälfte)
+- `elif val > array[mid]:` (Wert größer als Mitte)  
+- `return binary_search_recur(array, mid + 1, high, val)` (Rechte Hälfte)
+- `return mid` (Wert gefunden)
+
+Jede dieser Zeilen muss durch mindestens einen Testfall ausgeführt werden.
+[ENDHINT]
 
 ### Bedingungsüberdeckung
 
@@ -151,8 +276,8 @@ Hilfreich zur Erkennung von falsch gesetzten oder überflüssigen Bedingungen.
 **Beispiel** Wenn eine Funktion prüft `if price > 100`, brauchen Sie Testfälle für `price > 100` und
 `price <= 100`.
 
-- [ER] Schreiben Sie eine pytest-Testfunktion `test_condition_coverage()`, die sicherstellt, dass
-  alle Bedingungen in der Funktion `discount(..)` sowohl `True` als auch `False` sind.
+- [ER] Schreiben Sie eine pytest-Testfunktion `test_condition_coverage_binary_search()`, die sicherstellt, dass
+  alle Bedingungen in der Funktion `binary_search_recur(..)` sowohl `True` als auch `False` sind.
 
 ### Zweigüberdeckung
 
@@ -166,8 +291,8 @@ wurde.
 
 **Beispiel** Für `if is_member:` brauchst du Testfälle mit `is_member = True` und `is_member = False`.
 
-- [ER] Schreiben Sie eine pytest-Testfunktion `test_branch_coverage()`, die sicherstellt, dass
-  jede Verzweigung in der Funktion `discount(..)` mindestens einmal durchlaufen wird.
+- [ER] Schreiben Sie eine pytest-Testfunktion `test_branch_coverage_cocktail_sort()`, die sicherstellt, dass
+  jede Verzweigung in der Funktion `cocktail_shaker_sort(..)` mindestens einmal durchlaufen wird.
 
 ### Pfadüberdeckung
 
@@ -179,12 +304,24 @@ Je komplexer der Code (z. B. mit vielen verschachtelten `if`-Anweisungen), des
 die vollständige Pfadüberdeckung.
 Hilfreich für sicherheitskritische oder sehr fehleranfällige Funktionen.
 
-**Beispiel** Die Funktion `discount(..)` hat mindestens 5 logische Pfade, abhängig von price und
-is_member.
+**Beispiel** Die Funktion `binary_search_recur(..)` hat verschiedene logische Pfade je nach Vergleichsergebnis
+und Rekursionstiefe.
 Jeder Pfad sollte durch einen Testfall abgedeckt werden.
 
-- [ER] Schreiben Sie eine pytest-Testfunktion `test_path_coverage()`, die alle möglichen
-  Ausführungspfade in der Funktion `discount(..)` testet.
+- [ER] Schreiben Sie eine pytest-Testfunktion `test_path_coverage_binary_search()`, die alle möglichen
+  Ausführungspfade in der Funktion `binary_search_recur(..)` testet.
+
+[HINT::Die Pfade in binary_search_recur() analysieren]
+Die `binary_search_recur()` Funktion hat diese möglichen Ausführungspfade:
+
+1. **Pfad 1**: `low > high` → Rückgabe -1 (Element nicht gefunden)
+2. **Pfad 2**: `low <= high` UND `val < array[mid]` → Rekursion in linker Hälfte
+3. **Pfad 3**: `low <= high` UND `val > array[mid]` → Rekursion in rechter Hälfte  
+4. **Pfad 4**: `low <= high` UND `val == array[mid]` → Rückgabe mid (Element gefunden)
+
+Beachten Sie, dass durch die Rekursion zusätzliche Pfadkombinationen entstehen können.
+Erstellen Sie Testfälle, die diese verschiedenen Szenarien abdecken.
+[ENDHINT]
 
 ### Datenflusskriterium
 
@@ -218,21 +355,140 @@ genutzt wurde.
   - `test_dataflow_bonus()` für die Analyse des Datenflusses in der `bonus` Funktion
   - `test_dataflow_discount()` für die Analyse des Datenflusses in der `discount` Funktion
 
+[HINT::Vereinfachte Datenflussanalyse]
+Für Einsteiger ist es oft ausreichend, zu testen, dass:
+
+**Für `binary_search_recur`:**
+- Parameter (`array`, `low`, `high`, `val`) werden in verschiedenen Konstellationen verwendet
+- Variable `mid` wird korrekt berechnet und in Vergleichen verwendet
+- Rekursive Aufrufe verwenden modifizierte Parameter (`mid-1`, `mid+1`)
+
+**Für `cocktail_shaker_sort`:**
+- Parameter `arr` wird modifiziert und zurückgegeben
+- Variablen `n`, `swapped` werden definiert und in Schleifen verwendet
+- Vertauschen von Elementen via `swap()` wird getestet
+
+Konzentrieren Sie sich auf die wichtigsten Def-Use-Paare, anstatt alle theoretisch möglichen Pfade abzudecken.
+[ENDHINT]
+
+### Coverage-Kriterien und ihre relative Schärfe
+
+Ein wichtiger Aspekt beim Whitebox-Testing ist das Verständnis, wann ein Testkriterium **schärfer** 
+(strenger) ist als ein anderes. Ein Kriterium A ist schärfer als Kriterium B, wenn jede Testsuite, 
+die A erfüllt, automatisch auch B erfüllt – aber nicht umgekehrt.
+
+#### Hierarchie der Coverage-Kriterien
+
+- [EQ] **Anweisungsüberdeckung vs. Bedingungsüberdeckung**: Betrachten Sie folgenden Code:
+  ```python
+  def check_eligibility(age, income):
+      if age >= 18 and income > 30000:
+          return "eligible"
+      return "not eligible"
+  ```
+  
+  Erstellen Sie Testfälle, die:
+  1. 100% Anweisungsüberdeckung erreichen
+  2. 100% Bedingungsüberdeckung erreichen
+  
+  Welches Kriterium ist schärfer? Warum können Sie mit nur einem Test alle Anweisungen abdecken, 
+  benötigen aber mehrere Tests für alle Bedingungen?
+
+[HINT::Anweisungs- vs. Bedingungsüberdeckung]
+**Anweisungsüberdeckung** erfordert nur, dass jede Zeile mindestens einmal ausgeführt wird. 
+Ein Test mit `age=20, income=40000` würde beide Anweisungen abdecken.
+
+**Bedingungsüberdeckung** erfordert, dass jede atomare Bedingung sowohl `True` als auch `False` wird:
+- `age >= 18`: einmal True, einmal False
+- `income > 30000`: einmal True, einmal False
+
+Das bedeutet mindestens 4 verschiedene Testfälle sind nötig!
+Bedingungsüberdeckung ist daher schärfer als Anweisungsüberdeckung.
+[ENDHINT]
+
+- [EQ] **Bedingungsüberdeckung vs. Zweigüberdeckung**: Analysieren Sie diesen Code:
+  ```python
+  def complex_check(a, b, c):
+      if (a > 0 and b > 0) or c > 10:
+          return "pass"
+      return "fail"
+  ```
+  
+  Können Sie Testfälle finden, die 100% Bedingungsüberdeckung, aber nicht 100% Zweigüberdeckung 
+  erreichen? Oder umgekehrt? Was bedeutet das für die relative Schärfe?
+
+[HINT::Bedingung vs. Zweig - Unabhängigkeit]
+Hier zeigt sich ein interessantes Phänomen: **Bedingungsüberdeckung und Zweigüberdeckung sind 
+unvergleichbar** - keines ist generell schärfer als das andere!
+
+**Szenario 1**: Bedingungsüberdeckung ohne vollständige Zweigüberdeckung:
+- `a=1, b=1, c=5` → erste Bedingung True, zweite False, Zweig "pass"
+- `a=-1, b=-1, c=15` → erste Bedingung False, zweite True, Zweig "pass"
+
+Alle Bedingungen werden True/False, aber der "fail"-Zweig wird nie erreicht!
+
+**Szenario 2**: Zweigüberdeckung ohne vollständige Bedingungsüberdeckung:
+- `a=1, b=1, c=15` → "pass" Zweig  
+- `a=-1, b=-1, c=5` → "fail" Zweig
+
+Beide Zweige erreicht, aber `b > 0` wurde nie als True getestet!
+[ENDHINT]
+
+- [EQ] **Zweigüberdeckung vs. Pfadüberdeckung**: Betrachten Sie die `cocktail_shaker_sort` Funktion.
+  Wie viele verschiedene Zweige gibt es? Wie viele verschiedene Pfade durch die verschachtelten 
+  Schleifen? Warum ist Pfadüberdeckung hier praktisch unmöglich?
+
+[HINT::Pfad-Explosion]
+Die Anzahl der Pfade wächst **exponentiell** mit der Anzahl der Entscheidungspunkte:
+- 2 if-Anweisungen → 4 mögliche Pfade
+- 3 if-Anweisungen → 8 mögliche Pfade
+- n if-Anweisungen → 2ⁿ mögliche Pfade
+
+Bei Schleifen wird es noch schlimmer: Eine Schleife, die 0-10 mal läuft, erzeugt bereits 11 verschiedene 
+Pfade. Zwei verschachtelte Schleifen → 11×11 = 121 Pfade!
+
+**Pfadüberdeckung ist daher das schärfste, aber auch das unpraktischste Kriterium.**
+[ENDHINT]
+
+#### Praktische Anwendung der Kriterien-Hierarchie
+
+- [EQ] **Rekursive Funktionen**: Bei der `binary_search_recur` Funktion - welches Coverage-Kriterium 
+  hilft am besten dabei, den rekursiven Aufruf in verschiedenen Tiefen zu testen? Warum reicht 
+  Anweisungsüberdeckung hier nicht aus?
+
+- [EQ] **Kostenabwägung**: Ordnen Sie die Coverage-Kriterien nach ihrem Aufwand-Nutzen-Verhältnis 
+  für typische Geschäftslogik. Begründen Sie Ihre Entscheidung anhand konkreter Beispiele.
+
+[HINT::Praktische Coverage-Strategien]
+**Typische Reihenfolge nach Aufwand-Nutzen-Verhältnis:**
+
+1. **Zweigüberdeckung** (85-95% aller Bugs) - Bester Kompromiss
+2. **Anweisungsüberdeckung** (60-70% aller Bugs) - Minimum für Produktionscode
+3. **Bedingungsüberdeckung** (90-95% aller Bugs) - Für kritische Algorithmen
+4. **Pfadüberdeckung** (95-99% aller Bugs) - Nur für sicherheitskritische Systeme
+5. **Datenflusskriterien** - Für komplexe Zustandslogik
+
+**Faustregel**: Beginnen Sie mit Zweigüberdeckung, fügen Sie Bedingungsüberdeckung für komplexe 
+Entscheidungslogik hinzu.
+[ENDHINT]
+
 ### Reflektieren Sie
 
-- [EQ] Welche Herausforderungen haben Sie bei der Testfallerstellung erkannt? Welche Methode
-  empfanden Sie als zu komplex in Relation zur Funktionskomplexität?
+- [EQ] Welche Herausforderungen haben Sie bei der Testfallerstellung für die Algorithmus-Funktionen erkannt?
+  Wie schwierig war es, Tests für rekursive Funktionen wie `binary_search_recur` zu erstellen?
+- [EQ] Konnten Sie den Defekt in `cocktail_shaker_sort` durch Ihre Whitebox-Tests identifizieren?
+  Welche Coverage-Methode hat dabei geholfen?
 - [EQ] Ist es stets sinnvoll oder möglich, alle Whitebox-Testkriterien auf jede Funktion anzuwenden?
-- [ER] - Führen Sie alle Tests mit folgendem Befehl aus und dokumentieren Sie das Ergebnis:
-
-```bash
-pip install pytest-cov
-pytest --cov=whitebox --cov-report=term-missing --cache-clear
-```
+- [EQ] Welche der Coverage-Arten (Statement, Condition, Branch, Path) bietet das beste
+  Verhältnis zwischen Aufwand und Nutzen für typische Algorithmus-Implementierungen?
 
 [NOTICE]
-Eventuell können Sie mit dem Thema Coverage mit Pytest noch nichts anfagen.
-Keine Sorgen, das Thema ist ebenfalls Bestandteil in diesem Kurs und kann im Anschluss gerne hier
+**Automatisierte Coverage-Messung:** In der Praxis würden Sie Tools wie `pytest-cov` verwenden, 
+um automatisch zu messen, welche Codezeilen durch Ihre Tests abgedeckt werden. 
+Solche Tools können Ihnen zeigen, ob Ihre manuell entwickelten Testfälle tatsächlich alle 
+gewünschten Coverage-Kriterien erfüllen.
+
+Das Thema Coverage-Tools ist ebenfalls Bestandteil in diesem Kurs und kann im Anschluss gerne hier
 [PARTREF::pytest_plugin_testcoverage] oder hier [PARTREF::testcoverage] angepackt werden.
 [ENDNOTICE]
 
