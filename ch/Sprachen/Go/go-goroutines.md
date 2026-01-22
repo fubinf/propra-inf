@@ -182,7 +182,7 @@ oder
 Dies ist für den Einstieg nicht zwingend nötig.
 [ENDFOLDOUT]
 
-<-- time estimate: 15 min -->
+<!-- time estimate: 15 min -->
 
 
 ### Verständnis-Check
