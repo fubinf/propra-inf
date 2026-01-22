@@ -296,194 +296,34 @@ jobs:
       with:
         path: /tmp/all_reports
 
-    - name: Aggregate and merge reports (using ProgramChecker format)
+    - name: Aggregate and merge reports
       run: |
-        python3 << 'PYTHON_EOF'
+        python3 << 'EOF'
+        import sys
         import os
-        import re
         from pathlib import Path
-        from datetime import datetime
-        from dataclasses import dataclass
 
-        @dataclass
-        class TestResult:
-            """Simplified test result structure."""
-            program_name: str
-            taskgroup: str
-            typ: str  # 'manual' or 'regex'
-            success: bool
-            skipped: bool
-            execution_time: float = 0.0
-            error_message: str = ""
-            manual_reason: str = ""
-            files: str = ""
+        sys.path.insert(0, '/github/workspace/sedrila/py')
 
-        def parse_test_results_from_report(report_content, taskgroup):
-            """Parse test results from a markdown report."""
-            results = []
+        import base as b
+        import sdrl.programchecker as programchecker
 
-            # Parse Summary section to get stats
-            summary_match = re.search(r'- \*\*Total programs:\*\* (\d+)', report_content)
-            if not summary_match:
-                return results
+        b.set_loglevel('INFO')
 
-            # Parse Passed Tests table
-            passed_section = re.search(r'## Passed Tests\n\n(.*?)(?=\n## |\Z)', report_content, re.DOTALL)
-            if passed_section:
-                table_rows = re.findall(r'\| `([^`]+)` \| (.*?) \| ([\d.]+)s \|', passed_section.group(1))
-                for program_name, files, exec_time in table_rows:
-                    results.append(TestResult(
-                        program_name=program_name,
-                        taskgroup=taskgroup,
-                        typ='regex',
-                        success=True,
-                        skipped=False,
-                        execution_time=float(exec_time),
-                        files=files
-                    ))
+        reports_dir = Path('/tmp/all_reports')
+        output_file = Path('/tmp/merged_report.md')
 
-            # Parse Skipped Tests table
-            skipped_section = re.search(r'## Skipped Tests.*?\n\n(.*?)(?=\n## |\Z)', report_content, re.DOTALL)
-            if skipped_section:
-                table_rows = re.findall(r'\| `([^`]+)` \| (.*?) \| (.*?) \|', skipped_section.group(1))
-                for program_name, files, reason in table_rows:
-                    results.append(TestResult(
-                        program_name=program_name,
-                        taskgroup=taskgroup,
-                        typ='manual',
-                        success=False,
-                        skipped=True,
-                        manual_reason=reason,
-                        files=files
-                    ))
+        checker = programchecker.ProgramChecker()
+        unified_report = checker.aggregate_and_merge_reports(
+            reports_dir=reports_dir,
+            output_file=output_file
+        )
 
-            # Parse Failed Tests table
-            failed_section = re.search(r'## Failed Tests\n\n(.*?)(?=\n### |\n## |\Z)', report_content, re.DOTALL)
-            if failed_section:
-                table_rows = re.findall(r'\| `([^`]+)` \| (.*?) \| (.*?) \|', failed_section.group(1))
-                for program_name, files, error in table_rows:
-                    results.append(TestResult(
-                        program_name=program_name,
-                        taskgroup=taskgroup,
-                        typ='regex',
-                        success=False,
-                        skipped=False,
-                        error_message=error,
-                        files=files
-                    ))
-
-            return results
-
-        def generate_unified_report(all_results):
-            """Generate report in programchecker.py format."""
-            report_lines = []
-
-            # Header (same as programchecker.py)
-            report_lines.append("# Program Test Report\n")
-            report_lines.append(f"\n**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-            report_lines.append("**Run parameters:** max_workers = 4\n\n")
-
-            # Statistics
-            total = len(all_results)
-            passed = sum(1 for r in all_results if r.success)
-            failed = sum(1 for r in all_results if not r.success and not r.skipped)
-            skipped = sum(1 for r in all_results if r.skipped)
-
-            pass_rate = (passed / total * 100) if total > 0 else 0.0
-            fail_rate = (failed / total * 100) if total > 0 else 0.0
-            skip_rate = (skipped / total * 100) if total > 0 else 0.0
-
-            # Summary section
-            report_lines.append("## Summary\n\n")
-            report_lines.append(f"- **Total programs:** {total}\n")
-            report_lines.append(f"- **Passed:** {passed} ({pass_rate:.1f}%)\n")
-            report_lines.append(f"- **Failed:** {failed} ({fail_rate:.1f}%)\n")
-            report_lines.append(f"- **Skipped (manual test):** {skipped} ({skip_rate:.1f}%)\n\n")
-
-            # Failed Tests section
-            if failed > 0:
-                report_lines.append("## Failed Tests\n\n")
-                report_lines.append("| Test | Files | Error |\n")
-                report_lines.append("|------|-------|-------|\n")
-                for r in all_results:
-                    if not r.success and not r.skipped:
-                        error_msg = r.error_message.replace('\n', ' ').replace('|', '\\|')[:100]
-                        report_lines.append(f"| `{r.program_name}` | {r.files} | {error_msg} |\n")
-                report_lines.append("\n")
-
-                report_lines.append("### Failed Tests Detail\n\n")
-                for r in all_results:
-                    if not r.success and not r.skipped:
-                        mode_label = "[REGEX]"
-                        report_lines.append(f"#### {r.program_name} {mode_label}\n\n")
-                        report_lines.append(f"- **Error:** {r.error_message}\n")
-                        report_lines.append(f"- **Taskgroup:** {r.taskgroup}\n\n")
-
-            # Skipped Tests section
-            if skipped > 0:
-                report_lines.append("## Skipped Tests (Manual Testing Required)\n\n")
-                report_lines.append("| Test | Files | Reason |\n")
-                report_lines.append("|------|-------|--------|\n")
-                for r in all_results:
-                    if r.skipped:
-                        reason = r.manual_reason.replace('\n', ' ').replace('|', '\\|')
-                        report_lines.append(f"| `{r.program_name}` | {r.files} | {reason} |\n")
-                report_lines.append("\n")
-
-            # Passed Tests section
-            if passed > 0:
-                report_lines.append("## Passed Tests\n\n")
-                report_lines.append("| Test | Files | Execution Time |\n")
-                report_lines.append("|------|-------|----------------|\n")
-                for r in all_results:
-                    if r.success:
-                        report_lines.append(f"| `{r.program_name}` | {r.files} | {r.execution_time:.2f}s |\n")
-                report_lines.append("\n")
-
-            return ''.join(report_lines)
-
-        def main():
-            """Main aggregation logic."""
-            reports_dir = Path('/tmp/all_reports')
-            all_results = []
-
-            # Collect all test results from individual reports
-            for report_dir in sorted(reports_dir.glob('program-check-report-*')):
-                taskgroup = report_dir.name.replace('program-check-report-', '')
-                report_file = report_dir / 'program_test_report.md'
-
-                if report_file.exists():
-                    try:
-                        content = report_file.read_text()
-                        results = parse_test_results_from_report(content, taskgroup)
-                        all_results.extend(results)
-                        print(f"✓ Parsed {len(results)} tests from taskgroup: {taskgroup}")
-                    except Exception as e:
-                        print(f"✗ Error parsing {report_file}: {e}")
-
-            if not all_results:
-                print("✗ No test results found!")
-                return
-
-            # Generate unified report
-            unified_report = generate_unified_report(all_results)
-            output_path = Path('/tmp/merged_report.md')
-            output_path.write_text(unified_report)
-
-            # Statistics
-            passed = sum(1 for r in all_results if r.success)
-            failed = sum(1 for r in all_results if not r.success and not r.skipped)
-            skipped = sum(1 for r in all_results if r.skipped)
-            total = len(all_results)
-
-            print(f"\n✓ Unified report generated: {output_path}")
-            print(f"  Total Programs: {total}")
-            print(f"  Passed: {passed} ({passed/total*100:.1f}%)")
-            print(f"  Failed: {failed} ({failed/total*100:.1f}%)")
-            print(f"  Skipped: {skipped} ({skipped/total*100:.1f}%)")
-
-        main()
-        PYTHON_EOF
+        if unified_report:
+            print("\n✓ Report aggregation completed successfully")
+        else:
+            print("\n✗ No reports to aggregate")
+        EOF
 
     - name: Publish merged report to summary
       run: |
