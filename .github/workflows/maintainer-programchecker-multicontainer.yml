@@ -289,6 +289,7 @@ jobs:
   aggregate-results:
     needs: program-check-per-taskgroup
     runs-on: ubuntu-latest
+    container: debian:12
     if: always()
     steps:
     - name: Checkout sedrila repository
@@ -297,11 +298,22 @@ jobs:
         repository: fubinf/sedrila
         path: sedrila
 
-    - name: Install Python and create virtual environment
+    - name: Install dependencies and Python
       run: |
         apt-get update
-        apt-get install -y python3.11 python3.11-venv
-        python3.11 -m venv /tmp/sedrila_venv
+        apt-get install -y \
+          bash \
+          curl \
+          git \
+          ca-certificates \
+          jq \
+          python3.11 \
+          python3.11-venv
+        ln -s /usr/bin/python3.11 /usr/bin/python
+
+    - name: Create Python virtual environment
+      run: |
+        python3 -m venv /tmp/sedrila_venv
         source /tmp/sedrila_venv/bin/activate
         python -m pip install --upgrade pip
         cd sedrila && pip install -e . && cd ..
