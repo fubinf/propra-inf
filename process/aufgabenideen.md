@@ -239,6 +239,14 @@ Wichtige wiederkehrende Tätigkeit in einem Entwickler_innenleben.
 
 - Aufgaben zum Kennenlernen des Unterschieds zwischen Posix-System und anderen unixoiden (sprich: Linux).
 
+### Bibliotheken/Go-Standardbibliothek (N.N.)
+
+Aufgaben zu weiteren Paketen in der Go-Standardbibliothek, die für systemnahes Programmieren relevant sind:
+  * `os`
+  * `signal`
+  * `io`
+  * ...
+
 
 ## ch/Sprachen
 
@@ -299,21 +307,9 @@ str/bytes, sum, zip etc.). Each one of those could be covered in a belonging top
 Begleitung zu den OOP-Aufgaben.
 - String-Formatierung
 
-### Sprachen/Go (brandes)
+### Sprachen/Go
 
-- File Management
-  * file organizer - Dateien nach Typen sortieren
-  * File system watcher?
-- sqlite Integration
-- Networking
-  * file streaming über TCP
-  * Paket-Inspector (TCP/UDP Paket Monitoring)
-- Standardbibliothek
-  * os
-  * signal
-  * io
-  * ...
-- Effective Go, 100 Go Mistakes usw (https://github.com/dariubs/GoBooks)
+- `go doc`
 
 
 ### Sprachen/C (khofmann)
@@ -660,6 +656,27 @@ Weitere Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 Weitere Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 
 - `linkcheck-mlh`: als Subkommando in `mlh` integrieren.
+
+
+### Prgrammierpraxis/Go-chat (brandes)
+
+Eine Chat-Anwendung im Terminal, die Nachrichtenaustausch über HTTP zwischen zwei Rechnern im selben WLAN ermöglicht.
+
+- Grundfunktionalität (brandes)
+- Datenbankintegration: sqlite oder postgres (N.N.)
+- End-to-End-Verschlüsselung (N.N.)
+
+
+### Prgrammierpraxis/Go-cog (N.N.)
+
+"Cogs of Go": Eine Sammlung von Teilanwendungen, die jeweils eine kleine Aufgabe erfüllen.
+Ideen:
+
+- `cog pin [name]`: Fügt ein Alias `name="cd %Verzeichnis_wo_cog_pin_aufgerufen_wurde%"` in
+  `.bashrc`/`.zshrc`/etc ein.
+- `cog weather`: Zuerst nach der eigenen IP Standort nachschlagen und dann für diesen Standort das Wetter anzeigen.
+  Hier bietet sich eine TUI-Integration an.
+- (etwas mit TCP/UDP Paket inspection, zwecks low-level-systemnahen Programmierens)
 
 
 # Aufgabenideen ohne Heimat
