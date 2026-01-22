@@ -298,12 +298,11 @@ jobs:
 
     - name: Aggregate and merge reports
       run: |
+        source /tmp/sedrila_venv/bin/activate
         python3 << 'EOF'
         import sys
         import os
         from pathlib import Path
-
-        sys.path.insert(0, '/github/workspace/sedrila/py')
 
         import base as b
         import sdrl.programchecker as programchecker
