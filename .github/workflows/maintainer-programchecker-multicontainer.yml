@@ -291,6 +291,21 @@ jobs:
     runs-on: ubuntu-latest
     if: always()
     steps:
+    - name: Checkout sedrila repository
+      uses: actions/checkout@v4
+      with:
+        repository: fubinf/sedrila
+        path: sedrila
+
+    - name: Install Python and create virtual environment
+      run: |
+        apt-get update
+        apt-get install -y python3.11 python3.11-venv
+        python3.11 -m venv /tmp/sedrila_venv
+        source /tmp/sedrila_venv/bin/activate
+        python -m pip install --upgrade pip
+        cd sedrila && pip install -e . && cd ..
+
     - name: Download all reports
       uses: actions/download-artifact@v4
       with:
