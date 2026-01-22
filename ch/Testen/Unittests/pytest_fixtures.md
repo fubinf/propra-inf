@@ -1,7 +1,7 @@
 title: Fixtures mit dem Pytest Framework
 stage: alpha
-timevalue: 2.5
-difficulty: 3
+timevalue: 3
+difficulty: 2
 assumes: m_pytest
 ---
 
@@ -19,324 +19,339 @@ bereitzustellen.
 Sie sind insbesondere geeignet, um Testdaten bereitzustellen.
 
 [ENDSECTION]
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
-Nutzen Sie das Feature 
+Nutzen Sie die Übersicht
 [Pytest Fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
-um die nachfolgenden Aufgaben zu lösen:
+parallel zum Bearbeiten der Aufgaben.
+Wir betrachten zu erst das Grundlegende.
 
-### Einfache Fixture-Daten bereitstellen
+#### Das Problem ohne Fixtures
 
-[ER] Legen Sie die Datei `test_pytest_fixtures.py` an.
-Fügen Sie folgenden Test ein und ergänzen Sie die fehlende Fixture-Markierung:
-
-```python
-import pytest
-
-@pytest.fixture
-def example_fixture():
-    return "Hello, World!"
-
-def test_example(example_fixture):
-    assert example_fixture == "Hello, World!"
-```
-
-`example_fixture` stellt also Testdaten bereit. 
-Jeder Test, der genau diese Daten gebrauchen kann, kann das Fixture bennennen und damit aufrufen.
-
-### Komplexere Fixture-Daten bereitstellen
-
-Das gleiche Prinzip funktioniert natürlich auch mit komplexeren Datenstrukturen.
-
-[ER] Ergänzen Sie folgenden Testfall in die Datei und vervollständigen Sie ihn.
-Prüfen Sie in `test_user_data()` trivial, ob der Nutzername und die Email-Adresse korrekt sind.
+[EQ] Betrachten Sie folgenden Testcode für eine Webanwendung:
 
 ```python
-import pytest
-
-class User:
-    def __init__(self, username, email):
-        self.username = username
-        self.email = email
-
-@pytest.fixture
-def user_data():
-    return User(username="testuser", email="testuser@example.com")
-
-def test_user_data(user_data):
-    # Ergänzen Sie die fehlenden Asserts
-    assert user_data.username == "testuser"
-    assert user_data.email == "testuser@example.com"
-```
-
-
-### Komplexe Testdaten mit mehreren Fixtures
-
-Ein Test kann auch mehr als eine Fixture benutzen.
-
-[ER] Ergänzen Sie die fehlenden Fixtures, damit das (unveränderte) `test_combined_data()` funktioniert.
-
-```python
-import pytest
-
-class Product:
-    def __init__(self, name, price):
-        self.name = name
-        self.price = price
-
-@pytest.fixture
-def user_data3():
-    return [User(f"testuser{i}", f"testuser{i}@example.com") for i in range(1, 4)]
-
-@pytest.fixture
-def product_data3():
-    return [Product(f"Product{i}", i * 10.0) for i in range(1, 4)]
-
-def test_combined_data(user_data3, product_data3):
-    assert len(user_data3) == 3
-    assert len(product_data3) == 3
-    assert user_data3[0].username == "testuser1"
-    assert product_data3[0].name == "Product1"
-```
-
-[HINT::Wie schaffe ich, dass das `len` funktioniert?]
-Beide Fixtures liefern eine Liste, nicht nur ein einzelnes Objekt.
-[ENDHINT]
-
-
-### Vor- und Nachbedingung auf Testfallebene schaffen
-
-- Legen Sie die Datei `unittests/test_pytest_fixtures4.py` an.
-
-Verwenden Sie die folgende Klasseninitialisierung, um ...
-
-```python
-import pytest
-
-class User:
-    def __init__(self, username, email):
-        self.username = username
-        self.email = email
-```
-
-- [ER] ... ein `user_setup_teardown()`-Fixture und ein `test_user()` zu erstellen, wobei:
-`user_setup_teardown` sowohl die Erstellung, als auch die Löschung des Nutzer umsetzt und
-`test_user` Nutzername und Passwort prüft
-
-[HINT::Wie macht man Setup und Teardown?]
-Ein Setup und Teardown in einem Fixture kann mit [yield](https://docs.pytest.org/en/stable/how-to/fixtures.html#yield-fixtures-recommended) realisiert werden.
-[ENDHINT]
-
-### Fixture Scope
-
-Die Fixture können in unterschiedlichen Bereichen eingesetzt werden. Prüfen Sie die möglichen
-Bereiche für Fixtures in der oben angegebenen Dokumentation.
-
-- [ER] Ergänzen Sie in [EREFR::4] den Scope `session`.
-
-### Fixtures auslagern
-
-Wenn wir schon Bereiche angeben können, sollten auch andere Tests, die nicht im selben Modul sind,
-davon profitieren können.
-
-- [ER] Lagern Sie die Fixture `user_setup_teardown()` aus [EREFR::4] in eine separate Datei
-  `conftest.py` aus.
-- [EC] Lassen Sie den Testfall erneut laufen.
-
-### Build-In Fixtures
-
-Pytest besitzt bereits einige definierte Fixtures. Eine Auflistung und eine Beschreibung finden
-Sie [hier](https://docs.pytest.org/en/stable/reference/fixtures.html#built-in-fixtures)
-
-- [ER] Erstellen Sie ein Cache Beispiel, indem ein Cache angefragt und geprüft wird. Falls der Wert
-  `None` ist, soll er mit dem zu prüfenden Wert belegt werden.
-- [EQ] Ich habe nach der Ausführung dieses Codes einne Blick in meinen Browser Cache geworfen. Einen
-  neuen Cache Wert finde ich nicht. Ist meine Funktion deshlab falsch, oder liegt das an etwas anderem?
-
-### Verwendung von eingebauten Fixtures
-
-- Legen Sie die Datei `unittests/test_pytest_built_in_fixtures.py` an.
-
-#### Aufgabe 1: Verwendung von `capsys`
-
-Betrachten Sie die folgende Funktion:
-
-```python
-import pytest
-
-def greet(name):
-    print(f"Hello, {name}!")
-
-def test_greet_output(capsys):
-    greet("World")
-    captured = capsys.readouterr()
-    assert captured.out == "Hello, World!\n"
-```
-
-- [ER] Erstellen Sie einen Test, der die Ausgabe von `stdout` mit `capsys` abfängt und überprüft, ob die Begrüßung korrekt ist.
-
-[HINT::Referenz_capsys]
-Weitere Informationen zur Verwendung von `capsys` finden Sie in der [Pytest-Dokumentation](https://docs.pytest.org/en/stable/how-to/capture-stdout-stderr.html#accessing-captured-output-from-a-test-function).
-[ENDHINT]
-
-#### Aufgabe 2: Verwendung von `tmpdir`
-
-Betrachten Sie die folgende Funktion:
-
-```python
-import pytest
-
-def write_to_file(file_path, content):
-    with open(file_path, 'w') as f:
-        f.write(content)
-
-def test_write_to_file(tmpdir):
-    file_path = tmpdir.join("test.txt")
-    content = "Hello, pytest!"
-    write_to_file(str(file_path), content)
-    assert file_path.read() == content
-```
-
-- [ER] Erstellen Sie einen Test, der ein temporäres Verzeichnis mit `tmpdir` verwendet, um eine Datei zu erstellen und deren Inhalt zu überprüfen.
-
-[HINT::Referenz_tmpdir]
-Weitere Informationen zur Verwendung von `tmpdir` finden Sie in der [Pytest-Dokumentation](https://docs.pytest.org/en/stable/how-to/tmpdir.html).
-[ENDHINT]
-
-#### Aufgabe 3: Verwendung von `monkeypatch`
-
-Betrachten Sie die folgende Funktion:
-
-```python
-import pytest
-import os
-
-def get_current_directory():
-    return os.getcwd()
-
-def test_get_current_directory(monkeypatch):
-    test_dir = "/test/directory"
-    monkeypatch.setattr(os, "getcwd", lambda: test_dir)
-    assert get_current_directory() == test_dir
-```
-
-- [ER] Erstellen Sie einen Test, der die Funktion `get_current_directory` mit `monkeypatch` patcht und überprüft, ob das aktuelle Verzeichnis korrekt zurückgegeben wird.
-
-[HINT::Referenz_monkeypatch]
-Weitere Informationen zur Verwendung von `monkeypatch` finden Sie in der [Pytest-Dokumentation](https://docs.pytest.org/en/stable/how-to/monkeypatch.html).
-[ENDHINT]
-
-### Erweiterte Verwendung von `yield` in Fixtures
-
-- Legen Sie die Datei `unittests/test_pytest_yield_fixture.py` an.
-
-```python
-import pytest
-
-class Database:
-    def connect(self):
-        print("Connecting to database")
-    def disconnect(self):
-        print("Disconnecting from database")
-
-@pytest.fixture
-def db():
-    db = Database()
+def test_user_registration():
+    # Setup
+    db = Database("test.db")
     db.connect()
-    yield db
+    db.create_tables()
+    user_service = UserService(db)
+    
+    # Test
+    result = user_service.register("alice", "alice@test.com", "password123")
+    assert result.success == True
+    
+    # Cleanup
+    db.delete_all_users()
     db.disconnect()
+    os.remove("test.db")
 
-def test_db_connection(db):
-    assert db is not None
+def test_user_login():
+    # Setup (identisch!)
+    db = Database("test.db")
+    db.connect() 
+    db.create_tables()
+    user_service = UserService(db)
+    user_service.register("alice", "alice@test.com", "password123")
+    
+    # Test
+    result = user_service.login("alice", "password123")
+    assert result.success == True
+    
+    # Cleanup (identisch!)
+    db.delete_all_users()
+    db.disconnect()
+    os.remove("test.db")
 ```
 
-- [ER] Erstellen Sie eine Fixture, die eine Datenbankverbindung herstellt und nach dem Test wieder trennt.
+[EQ] Welche Probleme erkennen Sie in diesem Code? Notieren Sie mindestens 3 Probleme.
 
-[HINT::Referenz_yield]
-Weitere Informationen zur Verwendung von `yield` in Fixtures finden Sie in der [Pytest-Dokumentation](https://docs.pytest.org/en/stable/how-to/fixtures.html#yield-fixtures-recommended).
-[ENDHINT]
+#### Das Fixture-Konzept entdecken
 
-### Verwendung von `autouse`
+Pytest löst das obige Problem mit "Fixtures".
 
-- Legen Sie die Datei `unittests/test_pytest_autouse_fixture.py` an.
+[EQ] Was vermuten Sie: Was ist der Kerngedanke hinter Fixtures? Was sollen sie erreichen?
+
+[ER] Erstellen Sie die Datei `test_discovery.py` und implementieren Sie die folgenden Tests  
+mit einer einfachen Mock-Klasse:
 
 ```python
-import pytest
+class MockUserService:
+    def __init__(self):
+        self.users = {}
+    
+    def register(self, username, email, password):
+        if username in self.users:
+            return type('Result', (), {'success': False})()
+        self.users[username] = {'email': email, 'password': password}
+        return type('Result', (), {'success': True})()
+    
+    def login(self, username, password):
+        user = self.users.get(username)
+        if user and user['password'] == password:
+            return type('Result', (), {'success': True})()
+        return type('Result', (), {'success': False})()
 
-@pytest.fixture(autouse=True)
-def setup_teardown():
-    print("Setup")
-    yield
-    print("Teardown")
+def test_user_registration():
+    # TODO: Viel Setup-Code hier
+    service = MockUserService()
+    result = service.register("alice", "alice@test.com", "password123") 
+    assert result.success == True
 
-def test_example():
+def test_user_login():
+    # TODO: Noch mehr Setup-Code hier - mit Duplizierung!
+    service = MockUserService()
+    service.register("alice", "alice@test.com", "password123")  # Pre-condition
+    result = service.login("alice", "password123")
+    assert result.success == True
+```
+
+[EC] Führen Sie die Tests aus. Sie funktionieren, aber was stört Sie daran?
+
+#### Erste Fixture: Das Setup Problem lösen
+
+[EQ] Pytest Fixtures lösen das Setup-Problem. Was erwarten Sie von der folgenden Syntax?
+
+```python
+@pytest.fixture
+def user_service():
+    return MockUserService()
+
+def test_user_registration(user_service):
+    result = user_service.register("alice", "alice@test.com", "password123")
+    assert result.success == True
+```
+
+[ER] Ergänzen Sie Ihre `test_discovery.py` um diese Fixture und modifizieren Sie beide Tests,  
+um die Fixture zu nutzen.
+
+[EQ] Führen Sie die Tests aus. Was passiert? Was haben Sie gewonnen, was haben Sie verloren?
+
+#### Das Isolationsproblem
+
+[EQ] Fügen Sie einen dritten Test hinzu:
+
+```python
+def test_duplicate_registration(user_service):
+    # Erst erfolgreich registrieren
+    result1 = user_service.register("alice", "alice@test.com", "password123")
+    assert result1.success == True
+    
+    # Zweite Registrierung desselben Users sollte fehlschlagen
+    result2 = user_service.register("alice", "other@test.com", "other_pass")
+    assert result2.success == False
+```
+
+[EQ] Führen Sie alle Tests aus. Was passiert? Warum funktioniert das manchmal, manchmal nicht?
+
+[EQ] Sie haben ein **Test-Isolationsproblem** entdeckt. Was ist die Ursache?  
+Welche Lösungsansätze fallen Ihnen ein?
+
+#### Fixture Scopes verstehen
+
+
+Pytest bietet verschiedene "Scopes" für Fixtures:
+
+- `function` (default)
+- `class` 
+- `module`
+- `session`
+
+[EQ] Was vermuten Sie: Was bedeuten diese Scopes? Wann würden Sie welchen verwenden?
+
+[ER] Experimentieren Sie mit Scopes. Fügen Sie folgende Fixtures zu Ihrer Datei hinzu:
+
+```python
+@pytest.fixture(scope="function")
+def function_service():
+    print("Erstelle function_service")
+    return MockUserService()
+
+@pytest.fixture(scope="module")  
+def module_service():
+    print("Erstelle module_service") 
+    return MockUserService()
+
+def test_function_scope_1(function_service):
+    print("test_function_scope_1 läuft")
+    assert True
+
+def test_function_scope_2(function_service):
+    print("test_function_scope_2 läuft")
+    assert True
+    
+def test_module_scope_1(module_service):
+    print("test_module_scope_1 läuft")
+    assert True
+
+def test_module_scope_2(module_service):
+    print("test_module_scope_2 läuft")
     assert True
 ```
 
-- [ER] Erstellen Sie eine Fixture, die automatisch für jeden Test ausgeführt wird, ohne dass sie explizit angegeben werden muss.
+[EC] Führen Sie die Tests mit `-s` aus: `pytest -s test_discovery.py`
 
-[HINT::Referenz_autouse]
-Weitere Informationen zur Verwendung von `autouse` in Fixtures finden Sie in der [Pytest-Dokumentation](https://docs.pytest.org/en/stable/how-to/fixtures.html#autouse-fixtures).
-[ENDHINT]
+[EQ] Analysieren Sie die Ausgabe. Wann wird welche Fixture erstellt?  
+Was bedeutet das für Ihr Isolationsproblem?
 
-### Weitere Beispiele für eingebaute Fixtures
+#### Setup und Teardown: Das yield-Pattern
 
-- Legen Sie die Datei `unittests/test_pytest_more_built_in_fixtures.py` an.
+Manche Tests brauchen nicht nur Setup, sondern auch Cleanup (Teardown).  
+Beispiel: Datei erstellen → Test → Datei löschen.
 
-#### Aufgabe 1: Verwendung von `tmp_path`
+[EQ] Was erwarten Sie von diesem Code?
 
-Betrachten Sie die folgende Funktion:
+```python
+@pytest.fixture
+def temp_file():
+    filename = "test_temp.txt"
+    with open(filename, "w") as f:
+        f.write("Testdaten")
+    
+    yield filename  # Hier passiert der Test
+    
+    os.remove(filename)  # Cleanup nach dem Test
+```
+
+[ER] Testen Sie das yield-Pattern:
+
+```python
+import os
+
+@pytest.fixture  
+def temp_file():
+    filename = "test_temp.txt"
+    print(f"Setup: Erstelle {filename}")
+    with open(filename, "w") as f:
+        f.write("Testdaten")
+    
+    yield filename
+    
+    print(f"Teardown: Lösche {filename}")
+    os.remove(filename)
+
+def test_file_exists(temp_file):
+    assert os.path.exists(temp_file)
+    with open(temp_file) as f:
+        assert f.read() == "Testdaten"
+```
+
+[EQ] Was passiert, wenn ein Test einen Fehler wirft? Wird Teardown trotzdem ausgeführt?  
+Testen Sie es, indem Sie `assert False` in einen Test einfügen.
+
+#### Fixtures teilen: conftest.py
+
+[EQ] Sie haben mehrere Test-Dateien, die alle ähnliche Fixtures brauchen.  
+Wie könnte Pytest dieses Problem lösen?
+
+[ER] Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures:
 
 ```python
 import pytest
 
-def write_to_file(file_path, content):
-    with open(file_path, 'w') as f:
-        f.write(content)
+class MockUserService:
+    def __init__(self):
+        self.users = {}
+        print(f"Neuer UserService erstellt (ID: {id(self)})")
+    
+    def register(self, username, email, password):
+        if username in self.users:
+            return type('Result', (), {'success': False})()
+        self.users[username] = {'email': email, 'password': password}
+        return type('Result', (), {'success': True})()
 
-def test_write_to_file_tmp_path(tmp_path):
-    file_path = tmp_path / "test.txt"
-    content = "Hello, tmp_path!"
-    write_to_file(file_path, content)
-    assert file_path.read_text() == content
+@pytest.fixture
+def fresh_user_service():
+    """Frischer UserService für jeden Test."""
+    return MockUserService()
 ```
 
-- [ER] Erstellen Sie einen Test, der ein temporäres Verzeichnis mit `tmp_path` verwendet, um eine Datei zu erstellen und deren Inhalt zu überprüfen.
-
-[HINT::Referenz_tmp_path]
-Weitere Informationen zur Verwendung von `tmp_path` finden Sie in der [Pytest-Dokumentation](https://docs.pytest.org/en/stable/how-to/tmpdir.html#the-tmp-path-fixture).
-[ENDHINT]
-
-#### Aufgabe 2: Verwendung von `caplog`
-
-Betrachten Sie die folgende Funktion:
+[ER] Erstellen Sie eine zweite Testdatei `test_sharing.py`:
 
 ```python
-import pytest
-import logging
-
-def log_message(message):
-    logging.info(message)
-
-def test_log_message(caplog):
-    with caplog.at_level(logging.INFO):
-        log_message("Test message")
-    assert "Test message" in caplog.text
+def test_in_other_file(fresh_user_service):
+    result = fresh_user_service.register("bob", "bob@test.com", "pass")
+    assert result.success == True
 ```
 
-- [ER] Erstellen Sie einen Test, der die Log-Ausgabe mit `caplog` abfängt und überprüft, ob die Nachricht korrekt geloggt wurde.
+[EQ] Was vermuten Sie: Können die Tests in `test_sharing.py` die Fixtures aus `conftest.py` nutzen,  
+obwohl sie nicht importiert werden?
 
-[HINT::Referenz_caplog]
-Weitere Informationen zur Verwendung von `caplog` finden Sie in der [Pytest-Dokumentation](https://docs.pytest.org/en/stable/how-to/logging.html#caplog-fixture).
-[ENDHINT]
+[EC] Testen Sie es. Was beobachten Sie?
 
-### Reflektion
+#### Eingebaute Fixtures verstehen
 
-Sie haben eine kleine Übersicht über nützliche Fixtures kennengelernt.
+[EQ] Pytest bringt viele eingebaute Fixtures mit. Hier sind drei wichtige:
 
-- [EQ] Welche von denen haben Sie bereits persönlich verwnendet. Kennen Sie weitere Fixtures, die in
-  jedem Werkzeugkasten eines Softwareentwicklers gehören sollte? Welches dieser Fixtures hat Ihnen
-  Schwierigkeiten verursacht? Woran könnte das gelegen haben?
+- `tmp_path`: Temporäres Verzeichnis
+- `capsys`: Output-Capturing  
+- `monkeypatch`: Mocking/Patching
+
+[EQ] Was vermuten Sie: Wozu sind diese gut? In welchen Testszenarien würden Sie sie einsetzen?
+
+[ER] Experimentieren Sie mit eingebauten Fixtures:
+
+```python
+import sys
+
+def test_tmp_path_experiment(tmp_path):
+    # tmp_path ist ein pathlib.Path zu einem temporären Verzeichnis
+    test_file = tmp_path / "experiment.txt"
+    test_file.write_text("Das ist ein Test")
+    
+    assert test_file.read_text() == "Das ist ein Test"
+    print(f"Temporäres Verzeichnis: {tmp_path}")
+
+def test_capsys_experiment(capsys):
+    print("Das ist eine Debug-Ausgabe")
+    print("Und noch eine Zeile", file=sys.stderr)
+    
+    captured = capsys.readouterr() 
+    assert "Debug-Ausgabe" in captured.out
+    assert "noch eine Zeile" in captured.err
+```
+
+[EQ] Welche realen Testprobleme lösen diese Fixtures? Fallen Ihnen Beispiele aus Ihren  
+eigenen Projekten ein?
+
+#### Reflexion: Wann und Warum Fixtures?
+
+[EQ] Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
+
+1. **DRY-Prinzip**: Wie helfen Fixtures, Code-Duplizierung zu vermeiden?
+
+2. **Test-Isolation**: Welche Scope sollten Sie standardmäßig verwenden und warum?
+
+3. **Setup/Teardown**: Wann brauchen Sie yield? Nennen Sie 3 konkrete Beispiele.
+
+4. **Eingebaute vs. eigene Fixtures**: Wann verwenden Sie `tmp_path`, wann schreiben Sie eigene?
+
+[EQ] **Designentscheidung**: Sie entwickeln Tests für eine E-Commerce-API.  
+Sie brauchen: Database-Setup, Test-Produkte, Test-User, Payment-Mock.
+
+Skizzieren Sie eine Fixture-Architektur: Welche Fixtures erstellen Sie?  
+Welche Scopes verwenden Sie? Welche Dependencies gibt es?
+
+[EQ] **Anti-Pattern**: Was macht folgenden Code problematisch?
+
+```python
+@pytest.fixture(scope="session")
+def user_database():
+    db = Database()
+    db.add_user("alice", "alice@test.com") 
+    return db
+
+def test_alice_login(user_database):
+    result = user_database.login("alice", "password")
+    assert result.success
+
+def test_alice_deletion(user_database):
+    user_database.delete_user("alice")
+    assert "alice" not in user_database.users
+```
+
+Was würde passieren, wenn diese Tests in unterschiedlicher Reihenfolge laufen?
 
 [ENDSECTION]
 [SECTION::submission::trace]
