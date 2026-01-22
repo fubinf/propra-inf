@@ -299,6 +299,7 @@ jobs:
         path: sedrila
 
     - name: Install dependencies and Python
+      shell: bash
       run: |
         apt-get update
         apt-get install -y \
@@ -307,11 +308,13 @@ jobs:
           git \
           ca-certificates \
           jq \
+          gh \
           python3.11 \
           python3.11-venv
         ln -s /usr/bin/python3.11 /usr/bin/python
 
     - name: Create Python virtual environment
+      shell: bash
       run: |
         python3 -m venv /tmp/sedrila_venv
         source /tmp/sedrila_venv/bin/activate
@@ -324,6 +327,7 @@ jobs:
         path: /tmp/all_reports
 
     - name: Aggregate and merge reports
+      shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
         python3 << 'EOF'
@@ -364,6 +368,7 @@ jobs:
 
     - name: Clean up intermediate taskgroup reports
       if: always()
+      shell: bash
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
