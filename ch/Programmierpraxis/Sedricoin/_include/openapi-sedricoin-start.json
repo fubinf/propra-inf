@@ -1,0 +1,208 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Sedricoin Server",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/block/head": {
+            "get": {
+                "summary": "Read Block Head",
+                "description": "Gibt den index des neuesten Blocks zurück.",
+                "operationId": "read_block_head_block_head_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer",
+                                    "title": "Response Read Block Head Block Head Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/block/{block_index}": {
+            "get": {
+                "summary": "Read Block",
+                "description": "Gibt den Block an der entsprechenden Stelle zurück.\nFalls der Block nicht existiert, wird der HTTP Status Code 404 geantwortet.",
+                "operationId": "read_block_block__block_index__get",
+                "parameters": [
+                    {
+                        "name": "block_index",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Block Index"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Block-Output"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Block Not Found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/block": {
+            "post": {
+                "summary": "Create New Block",
+                "description": "Prüft einen Block auf seine Gültigkeit und speichert diesen bei Erfolg in der Blockchain.\nAnschließend wird der Blockindex des neuen Blocks geantwortet.\n\nEin Block ist gültig, wenn alle Bedienungen erfüllt sind:\n\n- `previous_hash` entspricht dem Hash des Vorgängers\n- `timestamp` ist nicht in der Zukunft und nachdem des Vorgängers",
+                "operationId": "create_new_block_block_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Block-Input"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer",
+                                    "title": "Response Create New Block Block Post"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Block"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Block-Input": {
+                "properties": {
+                    "header": {
+                        "$ref": "#/components/schemas/BlockHeader"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "header"
+                ],
+                "title": "Block"
+            },
+            "Block-Output": {
+                "properties": {
+                    "header": {
+                        "$ref": "#/components/schemas/BlockHeader"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "header"
+                ],
+                "title": "Block"
+            },
+            "BlockHeader": {
+                "properties": {
+                    "previous_hash": {
+                        "type": "string",
+                        "title": "Previous Hash"
+                    },
+                    "timestamp": {
+                        "type": "integer",
+                        "title": "Timestamp"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "previous_hash",
+                    "timestamp"
+                ],
+                "title": "BlockHeader"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        }
+    }
+}
+
