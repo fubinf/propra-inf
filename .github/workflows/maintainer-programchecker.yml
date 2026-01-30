@@ -59,15 +59,15 @@ jobs:
       shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
-        python sedrila/py/sedrila.py maintainer --log ERROR --collect -o /tmp/metadata.json 2>/dev/null || echo '{"taskgroups": {}}' > /tmp/metadata.json
+        python sedrila/py/sedrila.py maintainer --log ERROR --collect -o /tmp/metadata.json 2>/dev/null || echo '{"lang": [], "tasks": {}}' > /tmp/metadata.json
         echo "Collected metadata:"
         cat /tmp/metadata.json
         echo ""
-        echo "=== Taskgroups and Language Requirements ==="
-        jq -r '.taskgroups | to_entries[] | "\(.key): lang: \(.value.lang | @json)"' /tmp/metadata.json || echo "No taskgroups specified"
+        echo "=== Language Requirements ==="
+        jq -r '.lang[]?' /tmp/metadata.json || echo "No language requirements specified"
         echo ""
-        echo "=== Task Dependencies ==="
-        jq -r '.taskgroups[] | .tasks | to_entries[] | "\(.key): deps: \(.value.deps | @json)"' /tmp/metadata.json || echo "No task dependencies specified"
+        echo "=== Tasks and Dependencies ==="
+        jq -r '.tasks | to_entries[] | "\(.key): deps: \(.value.deps | @json)"' /tmp/metadata.json || echo "No task dependencies specified"
         echo ""
 
     - name: Install language runtimes and task dependencies globally
@@ -80,7 +80,7 @@ jobs:
         echo "=== Installing Language Runtimes ==="
 
         # Collect all unique lang commands and install them
-        LANG_CMDS=$(jq -r '.taskgroups[].lang[]?' /tmp/metadata.json 2>/dev/null | sort | uniq)
+        LANG_CMDS=$(jq -r '.lang[]?' /tmp/metadata.json 2>/dev/null | sort | uniq)
         if [ -z "$LANG_CMDS" ] || [ "$LANG_CMDS" = "null" ]; then
           echo "[No language runtimes to install]"
         else
@@ -96,7 +96,7 @@ jobs:
         echo "=== Installing Task-Specific Dependencies ==="
 
         # Collect all unique deps commands and install them
-        DEPS_CMDS=$(jq -r '.taskgroups[].deps[]?' /tmp/metadata.json 2>/dev/null | sort | uniq)
+        DEPS_CMDS=$(jq -r '.tasks[].deps[]?' /tmp/metadata.json 2>/dev/null | sort | uniq)
         if [ -z "$DEPS_CMDS" ] || [ "$DEPS_CMDS" = "null" ]; then
           echo "[No dependencies to install]"
         else
@@ -129,14 +129,6 @@ jobs:
         echo "=== Current PATH ==="
         echo "$PATH"
 
-    - name: Generate empty taskgroup paths mapping (all share system tools)
-      shell: bash
-      run: |
-        echo "=== Taskgroup Paths Mapping ==="
-        echo "All taskgroups use shared system tools"
-        echo '{}' > /tmp/taskgroup_paths.json
-        cat /tmp/taskgroup_paths.json
-
     - name: Run program checks
       shell: bash
       run: |
@@ -144,7 +136,6 @@ jobs:
         python sedrila/py/sedrila.py maintainer \
           --check-programs \
           --batch \
-          --taskgroup-paths /tmp/taskgroup_paths.json \
           /tmp/progcheck
       continue-on-error: false
 
