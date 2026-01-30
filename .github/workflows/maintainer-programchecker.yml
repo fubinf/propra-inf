@@ -70,183 +70,72 @@ jobs:
         jq -r '.taskgroups[] | .tasks | to_entries[] | "\(.key): deps: \(.value.deps | @json)"' /tmp/metadata.json || echo "No task dependencies specified"
         echo ""
 
-    - name: Create isolated taskgroup directories
-      shell: bash
-      run: |
-        echo "=== Creating Isolated Taskgroup Directories ==="
-        ISOLATION_BASE="/tmp/sedrila_taskgroups"
-        mkdir -p "$ISOLATION_BASE"
-
-        # Extract taskgroup names and create directories
-        TASKGROUPS=$(jq -r '.taskgroups | keys[]' /tmp/metadata.json 2>/dev/null || echo "")
-        if [ -z "$TASKGROUPS" ]; then
-          echo "No taskgroups found in metadata"
-          exit 0
-        fi
-
-        for taskgroup in $TASKGROUPS; do
-          taskgroup_dir="$ISOLATION_BASE/$taskgroup"
-          mkdir -p "$taskgroup_dir/bin"
-          echo "Created isolated directory: $taskgroup_dir"
-        done
-
-        # Save the base path for later use
-        echo "$ISOLATION_BASE" > /tmp/isolation_base.txt
-
-    - name: Install language runtimes and dependencies into isolated taskgroups
+    - name: Install language runtimes and task dependencies globally
       shell: bash
       run: |
         set -e
 
         source /tmp/sedrila_venv/bin/activate
-        ISOLATION_BASE=$(cat /tmp/isolation_base.txt)
 
-        echo "=== Installing Language Runtimes per Taskgroup ==="
+        echo "=== Installing Language Runtimes ==="
 
-        # Install language runtimes for each taskgroup with bind mount isolation
-        jq -r '.taskgroups | keys[]' /tmp/metadata.json 2>/dev/null | while IFS= read -r taskgroup; do
-          taskgroup_dir="$ISOLATION_BASE/$taskgroup"
-          echo ""
-          echo "Installing languages for taskgroup: $taskgroup"
-          echo "  Working directory: $taskgroup_dir"
-
-          # Create directory structure for isolation
-          mkdir -p "$taskgroup_dir"/{usr/local,usr/bin,lib,tmp}
-
-          cmds=$(jq -r ".taskgroups[\"$taskgroup\"].lang | @csv" /tmp/metadata.json 2>/dev/null)
-          echo "  Extracted lang commands: $cmds"
-
-          if [ -z "$cmds" ] || [ "$cmds" = "null" ]; then
-            echo "  [No lang commands found for this taskgroup]"
-          else
-            echo "  Setting up bind mount isolation for $taskgroup..."
-            # Create bind mounts to redirect installations to isolated directory
-            mount --bind "$taskgroup_dir/usr/local" /usr/local 2>/dev/null || {
-              echo "  [WARNING: mount failed, continuing without isolation]"
-            }
-
-            echo "  Executing installation in isolated environment..."
-            cd "$taskgroup_dir" && eval "$(echo "$cmds" | sed 's/"//g' | awk -F',' '{for(i=1;i<=NF;i++) if($i != "") print $i}')" || true
-
-            # Clean up bind mounts
-            echo "  Cleaning up bind mounts..."
-            umount /usr/local 2>/dev/null || true
-          fi
-
-          echo "  Contents of $taskgroup_dir/usr/local after installation:"
-          ls -la "$taskgroup_dir/usr/local" 2>/dev/null | head -20 || echo "    [directory not found]"
-        done
+        # Collect all unique lang commands and install them
+        LANG_CMDS=$(jq -r '.taskgroups[].lang[]?' /tmp/metadata.json 2>/dev/null | sort | uniq)
+        if [ -z "$LANG_CMDS" ] || [ "$LANG_CMDS" = "null" ]; then
+          echo "[No language runtimes to install]"
+        else
+          while IFS= read -r cmd; do
+            if [ ! -z "$cmd" ]; then
+              echo "Executing: $cmd"
+              eval "$cmd" || true
+            fi
+          done <<< "$LANG_CMDS"
+        fi
 
         echo ""
         echo "=== Installing Task-Specific Dependencies ==="
 
-        # Install dependencies for each taskgroup with bind mount isolation
-        jq -r '.taskgroups | keys[]' /tmp/metadata.json 2>/dev/null | while IFS= read -r taskgroup; do
-          taskgroup_dir="$ISOLATION_BASE/$taskgroup"
-          echo ""
-          echo "Installing dependencies for taskgroup: $taskgroup"
-          echo "  Working directory: $taskgroup_dir"
-
-          # Ensure directory structure exists
-          mkdir -p "$taskgroup_dir"/{usr/local,usr/bin,lib,tmp}
-
-          deps=$(jq -r ".taskgroups[\"$taskgroup\"].deps | @csv" /tmp/metadata.json 2>/dev/null)
-          echo "  Extracted deps commands: $deps"
-
-          if [ -z "$deps" ] || [ "$deps" = "null" ]; then
-            echo "  [No deps commands found for this taskgroup]"
-          else
-            echo "  Setting up bind mount isolation for $taskgroup..."
-            # Create bind mounts to redirect installations to isolated directory
-            mount --bind "$taskgroup_dir/usr/local" /usr/local 2>/dev/null || {
-              echo "  [WARNING: mount failed, continuing without isolation]"
-            }
-
-            echo "  Executing installation in isolated environment..."
-            cd "$taskgroup_dir" && eval "$(echo "$deps" | sed 's/"//g' | awk -F',' '{for(i=1;i<=NF;i++) if($i != "") print $i}')" || true
-
-            # Clean up bind mounts
-            echo "  Cleaning up bind mounts..."
-            umount /usr/local 2>/dev/null || true
-          fi
-
-          echo "  Contents of $taskgroup_dir/usr/local after installation:"
-          ls -la "$taskgroup_dir/usr/local" 2>/dev/null | head -20 || echo "    [directory not found]"
-        done
+        # Collect all unique deps commands and install them
+        DEPS_CMDS=$(jq -r '.taskgroups[].deps[]?' /tmp/metadata.json 2>/dev/null | sort | uniq)
+        if [ -z "$DEPS_CMDS" ] || [ "$DEPS_CMDS" = "null" ]; then
+          echo "[No dependencies to install]"
+        else
+          while IFS= read -r cmd; do
+            if [ ! -z "$cmd" ]; then
+              echo "Executing: $cmd"
+              eval "$cmd" || true
+            fi
+          done <<< "$DEPS_CMDS"
+        fi
 
         echo ""
         echo "All language runtimes and dependencies installed successfully"
 
-    - name: Verify isolated taskgroup environments
+    - name: Verify installed tools
       shell: bash
       run: |
-        ISOLATION_BASE=$(cat /tmp/isolation_base.txt)
-        echo "=== Isolated Taskgroup Directories and Installed Tools ==="
-        echo ""
-        if [ ! -d "$ISOLATION_BASE" ]; then
-          echo "ERROR: Isolation base directory not found: $ISOLATION_BASE"
-          exit 1
-        fi
-
-        for taskgroup_dir in "$ISOLATION_BASE"/*; do
-          if [ -d "$taskgroup_dir" ]; then
-            taskgroup=$(basename "$taskgroup_dir")
-            echo "Taskgroup: $taskgroup"
-
-            echo "  Tools in isolated usr/local/bin:"
-            if [ -d "$taskgroup_dir/usr/local/bin" ]; then
-              bin_contents=$(ls -1 "$taskgroup_dir/usr/local/bin" 2>/dev/null)
-              if [ -z "$bin_contents" ]; then
-                echo "    [empty]"
-              else
-                ls -1 "$taskgroup_dir/usr/local/bin" | while read -r tool; do
-                  echo "    - $tool"
-                done
-              fi
-            else
-              echo "    [directory not found]"
-            fi
-
-            echo "  Tools in isolated bin:"
-            if [ -d "$taskgroup_dir/bin" ]; then
-              bin_contents=$(ls -1 "$taskgroup_dir/bin" 2>/dev/null)
-              if [ -z "$bin_contents" ]; then
-                echo "    [empty]"
-              else
-                ls -1 "$taskgroup_dir/bin" | while read -r tool; do
-                  echo "    - $tool"
-                done
-              fi
-            else
-              echo "    [directory not found]"
-            fi
-            echo ""
-          fi
-        done
-
-        echo "=== System-level Installed Tools (Global /usr/local/bin) ==="
-        echo "Available tools in /usr/local/bin:"
+        echo "=== Installed Tools in /usr/local/bin ==="
         if [ -d "/usr/local/bin" ]; then
-          ls -1 /usr/local/bin 2>/dev/null | grep -E "go|python|node|npm|java|gcc|rustc|ruby|php" | head -20 || echo "  [no relevant tools found]"
+          ls -1 /usr/local/bin 2>/dev/null | head -20 || echo "  [empty or not found]"
         else
-          echo "  [/usr/local/bin not found]"
+          echo "  [directory not found]"
         fi
         echo ""
 
-        echo "=== System-level Installed Tools (Global /usr/bin) ==="
-        echo "Available tools in /usr/bin (language/build tools):"
+        echo "=== Installed Tools in /usr/bin (language/build tools) ==="
         ls -1 /usr/bin 2>/dev/null | grep -E "^(go|python|node|npm|java|gcc|g\+\+|make|rustc|ruby|php)" | head -20 || echo "  [no relevant tools found]"
         echo ""
 
-        echo "=== Metadata Summary ==="
-        jq '.taskgroups | keys' /tmp/metadata.json
+        echo "=== Current PATH ==="
+        echo "$PATH"
 
-    - name: Generate taskgroup paths mapping
+    - name: Generate empty taskgroup paths mapping (all share system tools)
       shell: bash
       run: |
-        ISOLATION_BASE=$(cat /tmp/isolation_base.txt)
-        echo "=== Generating Taskgroup Paths Mapping ==="
-        python3 -c 'import json;isolation_base=open("/tmp/isolation_base.txt").read().strip();metadata=json.load(open("/tmp/metadata.json"));taskgroup_paths={tg:f"{isolation_base}/{tg}"for tg in metadata.get("taskgroups",{}).keys()};open("/tmp/taskgroup_paths.json","w").write(json.dumps(taskgroup_paths,indent=2));print("Generated taskgroup paths mapping:");print(json.dumps(taskgroup_paths,indent=2))'
+        echo "=== Taskgroup Paths Mapping ==="
+        echo "All taskgroups use shared system tools"
+        echo '{}' > /tmp/taskgroup_paths.json
+        cat /tmp/taskgroup_paths.json
 
     - name: Run program checks
       shell: bash

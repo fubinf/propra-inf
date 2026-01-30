@@ -228,26 +228,6 @@ jobs:
         echo "Tools in /usr/local/bin:"
         ls -1 /usr/local/bin 2>/dev/null | head -10 || echo "  (directory not found or empty)"
 
-    - name: "[Container: ${{ matrix.taskgroup }}] Create isolation base"
-      shell: bash
-      run: |
-        echo "=== Creating isolation directory ==="
-        mkdir -p /tmp/sedrila_taskgroups
-        echo "/tmp/sedrila_taskgroups" > /tmp/isolation_base.txt
-
-        # In multi-container, each container has its own /usr/local
-        # No need for additional isolation since we are already isolated
-        echo "Isolation base: /tmp/sedrila_taskgroups"
-
-    - name: "[Container: ${{ matrix.taskgroup }}] Setup taskgroup paths"
-      shell: bash
-      run: |
-        echo "=== Setup taskgroup paths ==="
-        # Multi-container approach: each container is already isolated
-        # So we pass empty taskgroup_paths; programchecker.py will use default container PATH
-        echo '{}' > /tmp/taskgroup_paths.json
-        echo "Using container-native isolation (no taskgroup_paths needed)"
-
     - name: "[Container: ${{ matrix.taskgroup }}] Run program checks for this taskgroup"
       shell: bash
       env:
@@ -260,7 +240,6 @@ jobs:
         python sedrila/py/sedrila.py maintainer \
           --check-programs \
           --batch \
-          --taskgroup-paths /tmp/taskgroup_paths.json \
           /tmp/progcheck_${{ matrix.taskgroup }}
       continue-on-error: true
 
