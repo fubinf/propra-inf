@@ -12,9 +12,9 @@ weiß, wie ich beide benutze.
 
 
 [SECTION::background::default]
-In Matplotlib kann man auf zwei verschiedene Weisen etwas plotten.
-Wenn man dies nicht weiß oder nicht ausreichend kennt, kann das sehr verwirrend sein, 
-da man auf unterschiedlichen Wegen zum Ergebnis kommen kann.
+In Matplotlib kann man auf zwei grundlegend verschiedene Weisen arbeiten.
+Wenn man dies nicht weiß, kann das sehr verwirrend sein, 
+weil sich z.B. passend aussehender Beispielcode evtl. nicht mit dem vorhandenen eigenen Code kombinieren lässt.
 [ENDSECTION]
 
 
@@ -35,15 +35,15 @@ plt.show()
 ```
 
 Dabei haben Sie zuerst eine sogenannte Figure, eine Art "Leinwand", erstellt
-und dann mit `subplots()` eine Achse (`Axes`) hinzugefügt. 
+und dann mit `subplots()` einen Zeichenbereich (`Axes`) hinzugefügt. 
 Darauf konnten Sie zeichnen.
 Dieser Weg wird oft als "explizit" oder objektorientiert bezeichnet, weil Sie die Elemente 
 (`Figure`, `Axes`) selbst erzeugen, benennen und direkt darauf zugreifen.
 
 Es gibt aber eine zweite Möglichkeit, wie man in Matplotlib etwas zeichnen kann.
 Dieser Weg wird als implizit bzw. funktional beschrieben, weil man keine eigenen Objekte erstellt, 
-sondern Matplotlib intern automatisch eine Grafik erzeugt und verwendet.
-Das obrige Beispiel könnte man dann auf implizite Weise so umsetzen:
+sondern Matplotlib _intern_ automatisch eine Grafik erzeugt und verwendet.
+Das obrige Beispiel könnte man auf implizite Weise so umsetzen:
 
 ```python
 import matplotlib.pyplot as plt
@@ -60,19 +60,20 @@ Wenn Sie `plt.plot(...)` aufrufen, erzeugt `matplotlib` im Hintergrund automatis
 und `Axes`, falls es noch keine gibt. 
 Alles, was Sie mit `plt.` aufrufen, bezieht sich auf die zuletzt benutzten Objekte.
 
-[NOTICE]
+[WARNING]
 Wenn man beide Programme vergleicht, sollte man denken, dass es im expliziten Stil
-`fig.show()` heißen sollte anstatt `plt.show()`. 
+`fig.show()` heißen müsste anstatt `plt.show()`. 
 Tatsächlich funktioniert das auch oft -- aber nicht immer so, wie man denkt.
 Sondern auch im expliziten Stil ist `plt.show()` der korrekte Weg, um alle derzeit
 offenen Figures anzuzeigen (ggf. mehrere).
-[ENDNOTICE]
+[ENDWARNING]
 
-Die implizite Methode ist für einfache Fälle kürzer und schneller.
+Die implizite Methode ist für einfache Fälle kürzer und schneller (und findet sich deshalb
+im Netz bei Beispielen häufiger).
 Sie ist aber weniger flexibel, 
 wenn man z. B. mehrere Diagramme auf einer Seite haben will.
 
-[EQ] Handelt es sich bei dem nachfolgenden Beispiel um eine implizite oder explizite Schreibweise?
+[EQ] Handelt es sich bei dem nachfolgenden Beispiel um implizite oder explizite Schreibweise?
 Begründen Sie.
 
 ```python
@@ -93,8 +94,8 @@ begegnet Ihnen die jeweils andere bei z.B. Recherche nach Problemen, die Sie hab
 Schauen Sie sich 
 [diese Frage zu `matplotlib` auf Stackoverflow](https://stackoverflow.com/questions/28269157/plotting-in-a-non-blocking-way-with-matplotlib)
 an. 
-Sie müssen den Code der Frage nicht vollständig verstehen, sie sollen nur bewerten, ob es
-sich dabei um das explizite oder implizite Interface handelt.
+Was haben wir hier vor uns, implizite oder explizite Schreibweise?
+Sie müssen den Code der Frage nicht vollständig verstehen.
 
 [ER] Wandeln Sie das Beispiel aus [EREFQ::1] in die andere Variante um.
 Sie können die 
@@ -125,9 +126,9 @@ plt.show()
 ```
 
 [EQ] Wie Sie sehen, kann man auch mehrere `Figure` und `Axes` in der impliziten Schreibweise haben. 
-Für "Quadrate" gibt es nun eine `Axes` und für "Umgekehrt" auch.
+Für "Quadrate" gibt es nun ein `Axes` und für "Umgekehrt" auch.
 Könnten Sie in der impliziten Schreibweise auf die "Quadrate" Objekte zugreifen, nachdem Sie bereits
-eine neue `Axes` erstellt haben? (siehe Anmerkung im Code)
+ein neues `Axes` erstellt haben? (siehe Anmerkung im Code)
 
 [ER] Wandeln Sie den folgenden Code in eine implizite Schreibweise um.
 
@@ -150,8 +151,7 @@ plt.show()
 ### Vermischung
 
 Das wirklich Verwirrende beginnt, wenn diese beiden Arten, die Objekte anzusprechen, vermischt werden.
-Das passiert oft bei Neulingen, die verständlicherweise an impliziten und expliziten Beispielen
-lernen und dies dann vermischen.
+Das passiert oft bei Neulingen, die beide Stile in Beispielen sehen und dann vermischen.
 
 [EQ] Das folgende Beispiel mischt diese Konzepte.
 Was passiert im folgenden Code?
@@ -171,11 +171,12 @@ plt.title("Was passiert hier?")
 plt.show()
 ```
 
-[EQ] Angenommen, Sie würden an dieser Stelle ein weiteres mal `plt.plot([1, 2, 3], [4, 5, 6])`
+[EQ] Angenommen, Sie würden an dieser Stelle ein weiteres Mal `plt.plot([1, 2, 3], [4, 5, 6])`
 anwenden.
-Wie viele `Figure` gäbe es dann?
+Wie viele `Figure`-Objekte gäbe es dann?
 
-[ER] Ändern Sie das Beispiel ab, sodass es explizit und nur eine `Figure` benutzt.
+[ER] Ändern Sie das Beispiel ab, sodass es explizit ist und nur eine `Figure` benutzt.
+
 
 ### Best Practice
 
@@ -183,9 +184,9 @@ Generell ist die implizite Variante für die meisten Anwendungsfälle ausreichen
 Variante bietet aber viel mehr Kontrolle.
 Besonders wenn man mehrere Figures oder Axes benutzen will, braucht man das explizite Interface.
 Es ist daher sinnvoll sich die explizite Variante anzugewöhnen, auch wenn man beides
-versten sollte.
+verstehen sollte.
 In den folgenden Aufgaben werden Sie vorrangig die explizite Variante kennenlernen, 
-da an dieser die Funktionsweise von Matplotlib um einiges deutlicher wird.
+da damit die Funktionsweise von Matplotlib klarer wird.
 [ENDSECTION]
 
 
