@@ -17,7 +17,7 @@ Ich kann mit hierarchischen Indizes umgehen.
 
 [SECTION::background::default]
 Datenpunkte haben oft Gemeinsamkeiten bzw. Unterschiede nach denen man die Daten aufteilen möchte.
-Diese Aufgabe behandelt wie das geht und was man mit den gruppierten Daten machen kann.
+Diese Aufgabe behandelt, wie das geht und was man mit den gruppierten Daten machen kann.
 [ENDSECTION]
 
 
@@ -39,13 +39,13 @@ Das können Aufzählungstypen sein (mit einem festen, meist recht kleinen Werteb
 z.B. Geschlecht: "männlich", "weiblich", "divers")
 oder offene Benennungen (z.B. Straßennamen, Familiennamen).
 Auch geordnete Daten ("Ordinalskala", z.B. Größe: "S", "M", "L", "XL") kann man als kategorische Daten ansehen,
-wenn sie keiner numerischen Ordnung folgen.
+wenn sie keiner _numerischen_ Ordnung folgen.
 Allgemeine Strings, die man ja alphabetisch sortieren kann, würde man eher nicht als
 kategorisch ansehen, wenn sie "zu viele" verschiedene Werte annehmen, denn in der Statistik
 ist die Rolle kategorischer Daten oft, Datensätze in relevante Gruppen zu unterteilen.
 Eine scharfe Grenze dafür gibt es aber nicht.
 
-[EQ] Listen Sie 5 Spalten aus dem `erststimmen_df` auf, die kategorische Daten enthalten.
+[EQ] Nennen Sie 5 Spalten aus `erststimmen_df`, die kategorische Daten enthalten.
 
 [EQ] Die Spalte "Bezirksnummer" enthält numerische Daten. 
 Handelt es sich hierbei trotzdem um kategorische Daten oder nicht?
@@ -131,7 +131,7 @@ Wenden Sie sowohl `min()` als auch `max()` mit `agg()` an.
 
 Nun handelt es sich bei den Spalten um einen `MultiIndex`.
 
-Das `agg()` sehr flexibel ist, sieht man auch daran, dass man Dictionaries übergeben kann,
+Dass `agg()` sehr flexibel ist, sieht man auch daran, dass man Dictionaries übergeben kann,
 um noch gezielter Informationen zu bekommen.
 
 ```python
@@ -164,7 +164,7 @@ grouped = df.groupby(df['Punkte'] >= 50)  # Beispiel
 [ER] Gruppieren Sie `erststimmen_df` nach Einträgen, bei denen die AfD mehr Stimmen hatte 
 als die Linke.
 
-[EQ] Beschreiben Sie die Struktur des Zeilenindex sprachlich.
+[EQ] Beschreiben Sie die Struktur (und ihre Bedeutung) des Zeilenindex sprachlich.
 [ENDSECTION]
 
 
