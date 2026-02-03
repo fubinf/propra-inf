@@ -13,10 +13,9 @@ Ich kann Fixtures mit dem Pytest Framework anwenden.
 [SECTION::background::default]
 
 Oftmals benötigt ein Test, dass bestimmte Voraussetzungen hergestellt werden.
-Fixtures ("Halterungen" für den Test -- ein seltsamer Ausdruck) sind ein zentrales Konzept in Pytest, 
-das es ermöglicht, wiederverwendbaren Code zur Vor- und Nachbereitung (Setup und Teardown) von Tests 
-bereitzustellen. 
-Sie sind insbesondere geeignet, um Testdaten bereitzustellen.
+Fixtures sind ein zentrales Konzept in Pytest, das es ermöglicht,
+wiederverwendbaren Code zur Vor- und Nachbereitung (Setup und Teardown) von Tests bereitzustellen.
+Somit sind sie insbesondere dafür geeignet, um Testdaten bereitzustellen.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
@@ -28,7 +27,7 @@ Wir betrachten zu erst das Grundlegende.
 
 #### Das Problem ohne Fixtures
 
-[EQ] Betrachten Sie folgenden Testcode für eine Webanwendung:
+Betrachten Sie folgenden Testcode für eine Webanwendung:
 
 ```python
 def test_user_registration():
@@ -48,18 +47,18 @@ def test_user_registration():
     os.remove("test.db")
 
 def test_user_login():
-    # Setup (identisch!)
+    # Setup
     db = Database("test.db")
     db.connect() 
     db.create_tables()
     user_service = UserService(db)
-    user_service.register("alice", "alice@test.com", "password123")
+    user_service.register("alice", "alice@test.com", "password123") 
     
     # Test
     result = user_service.login("alice", "password123")
     assert result.success == True
     
-    # Cleanup (identisch!)
+    # Cleanup
     db.delete_all_users()
     db.disconnect()
     os.remove("test.db")
@@ -69,11 +68,13 @@ def test_user_login():
 
 #### Das Fixture-Konzept entdecken
 
-Pytest löst das obige Problem mit "Fixtures".
+Pytest löst die von Ihnen erkannten Probleme mit "Fixtures".
 
-[EQ] Was vermuten Sie: Was ist der Kerngedanke hinter Fixtures? Was sollen sie erreichen?
+Mit Fixtures werden Sie im folgenden Wiederverwendbare Setup-Komponenten kennenlernen.
+Sehen, dass ,man jedem Test `frische` Ressourcen mitgeben kann und in Tests nur wirklich deklarieren,
+was sie brauchen. Aber auch, dass man damit die Setup-Logik von Test-Logik trennen kann.
 
-[ER] Erstellen Sie die Datei `test_discovery.py` und implementieren Sie die folgenden Tests  
+Erstellen Sie die Datei `test_discovery.py` und implementieren Sie die folgenden Tests  
 mit einer einfachen Mock-Klasse:
 
 ```python
@@ -94,13 +95,11 @@ class MockUserService:
         return type('Result', (), {'success': False})()
 
 def test_user_registration():
-    # TODO: Viel Setup-Code hier
     service = MockUserService()
     result = service.register("alice", "alice@test.com", "password123") 
     assert result.success == True
 
 def test_user_login():
-    # TODO: Noch mehr Setup-Code hier - mit Duplizierung!
     service = MockUserService()
     service.register("alice", "alice@test.com", "password123")  # Pre-condition
     result = service.login("alice", "password123")
@@ -111,7 +110,7 @@ def test_user_login():
 
 #### Erste Fixture: Das Setup Problem lösen
 
-[EQ] Pytest Fixtures lösen das Setup-Problem. Was erwarten Sie von der folgenden Syntax?
+Pytest Fixtures lösen das Problem mit einem `Setup`.
 
 ```python
 @pytest.fixture
@@ -119,26 +118,24 @@ def user_service():
     return MockUserService()
 
 def test_user_registration(user_service):
-    result = user_service.register("alice", "alice@test.com", "password123")
-    assert result.success == True
+    # Testinhalt
 ```
 
-[ER] Ergänzen Sie Ihre `test_discovery.py` um diese Fixture und modifizieren Sie beide Tests,  
+[ER] Ergänzen Sie Ihre `test_discovery.py`, um diese Fixture und modifizieren Sie beide Tests,  
 um die Fixture zu nutzen.
 
-[EQ] Führen Sie die Tests aus. Was passiert? Was haben Sie gewonnen, was haben Sie verloren?
+[EQ] Was haben Sie gewonnen, was haben Sie verloren?
 
 #### Das Isolationsproblem
 
-[EQ] Fügen Sie einen dritten Test hinzu:
+Ein `Setup` löst aber nicht alle Probleme alleine.
+Fügen Sie folgenden Test zur Datei `test_discovery.py` hinzu:
 
 ```python
 def test_duplicate_registration(user_service):
-    # Erst erfolgreich registrieren
     result1 = user_service.register("alice", "alice@test.com", "password123")
     assert result1.success == True
     
-    # Zweite Registrierung desselben Users sollte fehlschlagen
     result2 = user_service.register("alice", "other@test.com", "other_pass")
     assert result2.success == False
 ```
@@ -150,17 +147,15 @@ Welche Lösungsansätze fallen Ihnen ein?
 
 #### Fixture Scopes verstehen
 
-
 Pytest bietet verschiedene "Scopes" für Fixtures:
 
-- `function` (default)
-- `class` 
-- `module`
-- `session`
+- `function`: Neue Instanz für jeden Test (beste Isolation)
+- `class`: Eine Instanz für alle Tests einer Test-Klasse
+- `module`: Eine Instanz für alle Tests einer Datei  
+- `session`: Eine Instanz für die gesamte Test-Session
 
-[EQ] Was vermuten Sie: Was bedeuten diese Scopes? Wann würden Sie welchen verwenden?
-
-[ER] Experimentieren Sie mit Scopes. Fügen Sie folgende Fixtures zu Ihrer Datei hinzu:
+Experimentieren Sie mit Scopes.
+Fügen Sie folgende Fixtures zu Ihrer Datei hinzu:
 
 ```python
 @pytest.fixture(scope="function")
@@ -198,23 +193,10 @@ Was bedeutet das für Ihr Isolationsproblem?
 #### Setup und Teardown: Das yield-Pattern
 
 Manche Tests brauchen nicht nur Setup, sondern auch Cleanup (Teardown).  
-Beispiel: Datei erstellen → Test → Datei löschen.
+Beispiel: Datei erstellen → Test → Datei löschen. (Wenn sinnvoll, immer ein gites Vorgehen.)
 
-[EQ] Was erwarten Sie von diesem Code?
-
-```python
-@pytest.fixture
-def temp_file():
-    filename = "test_temp.txt"
-    with open(filename, "w") as f:
-        f.write("Testdaten")
-    
-    yield filename  # Hier passiert der Test
-    
-    os.remove(filename)  # Cleanup nach dem Test
-```
-
-[ER] Testen Sie das yield-Pattern:
+Testen Sie das yield-Pattern in einer neuen beliebigen Datei.
+Testen Sie es, indem Sie auch `assert False` in einen Test einfügen.
 
 ```python
 import os
@@ -237,15 +219,15 @@ def test_file_exists(temp_file):
         assert f.read() == "Testdaten"
 ```
 
-[EQ] Was passiert, wenn ein Test einen Fehler wirft? Wird Teardown trotzdem ausgeführt?  
-Testen Sie es, indem Sie `assert False` in einen Test einfügen.
+[EQ] Was passiert, wenn ein Test einen Fehler wirft? Wird Teardown trotzdem ausgeführt?
+[ER] Ergänzen Sie passende Testfälle zu `test_yield_success` und `test_yield_error`.  
 
 #### Fixtures teilen: conftest.py
 
-[EQ] Sie haben mehrere Test-Dateien, die alle ähnliche Fixtures brauchen.  
-Wie könnte Pytest dieses Problem lösen?
+Sie haben mehrere Test-Dateien, die alle `ähnliche` Fixtures brauchen.  
+Jetzt schauen wir uns an, wie Pytest dieses Problem lösen kann?
 
-[ER] Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures:
+Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures:
 
 ```python
 import pytest
@@ -267,7 +249,7 @@ def fresh_user_service():
     return MockUserService()
 ```
 
-[ER] Erstellen Sie eine zweite Testdatei `test_sharing.py`:
+Erstellen Sie eine zweite Testdatei `test_sharing.py`:
 
 ```python
 def test_in_other_file(fresh_user_service):
@@ -275,22 +257,33 @@ def test_in_other_file(fresh_user_service):
     assert result.success == True
 ```
 
-[EQ] Was vermuten Sie: Können die Tests in `test_sharing.py` die Fixtures aus `conftest.py` nutzen,  
+[EC] Können die Tests in `test_sharing.py` die Fixtures aus `conftest.py` nutzen,  
 obwohl sie nicht importiert werden?
 
-[EC] Testen Sie es. Was beobachten Sie?
+Folgendes habne Sie gerade beobachtet:
+
+1. **Automatisches Laden:** Pytest lädt automatisch alle conftest.py Dateien im aktuellen Verzeichnis und allen übergeordneten Verzeichnissen
+2. **Fixture-Discovery:** Pytest scannt diese conftest.py Dateien nach @pytest.fixture Dekoratoren und registriert sie global
+3. **Namensauflösung:** Wenn ein Test einen Parameter fresh_user_service hat, sucht pytest automatisch nach einer gleichnamigen Fixture in:
+
+- Der gleichen Datei
+- conftest.py im gleichen Verzeichnis
+- conftest.py in übergeordneten Verzeichnissen
+- Eingebauten pytest Fixtures
+
+Kein Import nötig: Das ist ein spezielles Feature von pytest - normale Python-Import-Regeln gelten hier nicht
 
 #### Eingebaute Fixtures verstehen
 
-[EQ] Pytest bringt viele eingebaute Fixtures mit. Hier sind drei wichtige:
+Pytest bringt viele eingebaute Fixtures mit. Hier sind drei wichtige:
 
-- `tmp_path`: Temporäres Verzeichnis
-- `capsys`: Output-Capturing  
-- `monkeypatch`: Mocking/Patching
+- `tmp_path`: Temporäre Dateien/Verzeichnisse für File-IO-Tests
+- `capsys`: Output-Testing, Debug-Ausgaben validieren
+- `monkeypatch`: Zeit, Umgebungsvariablen, externe APIs mocken
 
-[EQ] Was vermuten Sie: Wozu sind diese gut? In welchen Testszenarien würden Sie sie einsetzen?
+[EQ] In welchen Testszenarien würden Sie sie einsetzen?
 
-[ER] Experimentieren Sie mit eingebauten Fixtures:
+Experimentieren Sie mit eingebauten Fixtures:
 
 ```python
 import sys
@@ -312,48 +305,16 @@ def test_capsys_experiment(capsys):
     assert "noch eine Zeile" in captured.err
 ```
 
-[EQ] Welche realen Testprobleme lösen diese Fixtures? Fallen Ihnen Beispiele aus Ihren  
-eigenen Projekten ein?
-
 #### Reflexion: Wann und Warum Fixtures?
 
-[EQ] Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
+Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
 
-1. **DRY-Prinzip**: Wie helfen Fixtures, Code-Duplizierung zu vermeiden?
+[EQ] **Fixture-Philosophie:** Fixtures verändern die Art, wie Sie über Tests denken - weg von "Setup-Code schreiben" hin zu "Dependencies deklarieren". Wie beeinflusst diese Denkweise Ihren Ansatz beim Schreiben neuer Tests? Welche anderen Programmierkonzepte folgen einem ähnlichen "deklarativen" Ansatz?
 
-2. **Test-Isolation**: Welche Scope sollten Sie standardmäßig verwenden und warum?
-
-3. **Setup/Teardown**: Wann brauchen Sie yield? Nennen Sie 3 konkrete Beispiele.
-
-4. **Eingebaute vs. eigene Fixtures**: Wann verwenden Sie `tmp_path`, wann schreiben Sie eigene?
-
-[EQ] **Designentscheidung**: Sie entwickeln Tests für eine E-Commerce-API.  
-Sie brauchen: Database-Setup, Test-Produkte, Test-User, Payment-Mock.
-
-Skizzieren Sie eine Fixture-Architektur: Welche Fixtures erstellen Sie?  
-Welche Scopes verwenden Sie? Welche Dependencies gibt es?
-
-[EQ] **Anti-Pattern**: Was macht folgenden Code problematisch?
-
-```python
-@pytest.fixture(scope="session")
-def user_database():
-    db = Database()
-    db.add_user("alice", "alice@test.com") 
-    return db
-
-def test_alice_login(user_database):
-    result = user_database.login("alice", "password")
-    assert result.success
-
-def test_alice_deletion(user_database):
-    user_database.delete_user("alice")
-    assert "alice" not in user_database.users
-```
-
-Was würde passieren, wenn diese Tests in unterschiedlicher Reihenfolge laufen?
+[EQ] **Transfer und Grenzen:** Sie haben Fixtures in einem einfachen Mock-Szenario kennengelernt. Überlegen Sie sich ein konkretes Projekt aus Ihrem eigenen Erfahrungsbereich: Welche Setup-Situationen hätten Sie dort? Wo würden Fixtures helfen, wo könnten sie möglicherweise "zu viel des Guten" sein? Begründen Sie Ihre Einschätzung.
 
 [ENDSECTION]
+
 [SECTION::submission::trace]
 
 [INCLUDE::/_include/Submission-Quellcode.md]
