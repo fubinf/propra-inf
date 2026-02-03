@@ -24,8 +24,9 @@ die man beantworten möchte.
 In [PARTREF::plt-pyplot-vs-Axes] haben Sie bereits zwei der Arten von Diagrammen kennengelernt:
 Den Linienplot den Sie mit 
 [`plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html)
-erstellt haben und den Scatter-Plot, also einen Plot mit ganz vielen Punkten, den Sie mit
-[`scatter()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html).
+erstellt haben und den Scatter-Plot, also einen Plot mit einzelnen Punkten, mit
+[`scatter()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html) 
+(wobei Sie da den Code fertig vorgefunden hatten).
 
 [ER] Erstellen Sie einen einfachen Linienplot von `np.sin(x)` für 
 `x = np.linspace(-np.pi,np.pi,100)`.
@@ -86,15 +87,15 @@ für die Studiengangs-Daten aus [EREFR::3].
 [ER] In Matplotlib können Sie bei einem Kreisdiagramm einzelne Anteile hervorheben (`explode`).
 Heben Sie den Informatik-Anteil hervor mit dem Wert `0.1`.
 
-[EQ] Wann könnte ein Kreisdiagramm ungeeignet sein, auch wenn es sich um Anteile eines Ganzen
+[EQ] Wann könnte ein Kreisdiagramm schlecht sein, auch wenn es sich um Anteile eines Ganzen
 handelt?
 
 
 ### Statistische Diagramme
 
-Bis jetzt waren die Diagrammtypen ziemlich selbsterklärend und in irgendeiner Form sind Sie diesen
+Bis jetzt waren die Diagrammtypen ziemlich selbsterklärend und in irgendeiner Form sind sie Ihnen
 bestimmt schon einmal über den Weg gelaufen.
-Die folgenden Diagrammtypen sind jedoch etwas spezieller und ihnen teilweise eventuell neu.
+Die folgenden Diagrammtypen sind jedoch etwas spezieller und Ihnen teilweise vielleicht neu.
 Dafür können sie sehr gut statistische Aspekte von Daten darstellen, die man oft haben möchte.
 
 
@@ -119,7 +120,7 @@ werden keine Kategorien, sondern Wertebereiche dargestellt.
 
 Ein Box-Plot (oder Kastendiagramm) eignet sich besonders gut, um die Verteilung von Daten und
 gleichzeitig mögliche Ausreißer darzustellen
-([`hist()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.boxplot.html)).
+([`boxplot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.boxplot.html)).
 
 Schauen Sie sich die Beispiel-Boxplots in der Matplotlib-Dokumentation an:
 [Box-Plot Beispiele](https://matplotlib.org/stable/gallery/statistics/boxplot_demo.html#sphx-glr-gallery-statistics-boxplot-demo-py)
@@ -127,18 +128,21 @@ Schauen Sie sich die Beispiel-Boxplots in der Matplotlib-Dokumentation an:
 Diese Darstellungen scheinen erstmal kryptisch, wenn man nicht weiß, was sie bedeuten.
 Boxplots geben folgende Informationen über die Daten:
 
-Mittelwert: Der mittlere Wert, wenn alle Daten der Größe nach sortiert sind.  
+Median: Der mittlere Wert, wenn die Daten der Größe nach sortiert sind.  
+(Nicht zu verwechseln mit dem arithmetischen Mittelwert.)
 
 Quartile: Grenzen, die die Daten in vier gleich große Teile einteilen
 
-- Q1 = 25 % der Werte liegen unter dem Wert Q1
-- Q2 = Mittelwert (50% der Werte liegen unter Q2)
-- Q3 = 75 % der Werte liegen unter Q3  
+- Q0 = Minimum
+- Q1 = 25 % der Werte liegen unter oder auf dem Wert Q1
+- Q2 = Median (50% der Werte liegen unter oder auf Q2)
+- Q3 = 75 % der Werte liegen unter oder auf Q3
+- Q4 = Maximum
   
 Die "Whisker" zeigen, wie weit die Werte typischerweise reichen.  
 
 [EQ] Schauen Sie in die Dokumentation und beschreiben Sie für diese Informationen 
-(Mittelwert, Quartile, Whisker, Ausreißer), wodurch diese im Box-Plot dargestellt werden.
+(Median, Quartile, Whisker, Ausreißer), wodurch diese im Box-Plot dargestellt werden.
 
 [ER] Erstellen Sie einen Box-Plot für 100 normalverteilte Zufallszahlen (`np.random.randn(100)`).
 
