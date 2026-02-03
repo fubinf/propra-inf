@@ -75,7 +75,12 @@ Sehen, dass ,man jedem Test `frische` Ressourcen mitgeben kann und in Tests nur 
 was sie brauchen. Aber auch, dass man damit die Setup-Logik von Test-Logik trennen kann.
 
 Erstellen Sie die Datei `test_discovery.py` und implementieren Sie die folgenden Tests  
-mit einer einfachen Mock-Klasse:
+mit einer einfachen Klasse:
+
+[NOTICE]
+Hier wird der Begriff Mock verwendet. Das Thema Mocking wird ebenfalls in diesem Kapitel behandelt,
+hat hier aber keine aktive Anwendung.
+[ENDNOTICE]
 
 ```python
 class MockUserService:
