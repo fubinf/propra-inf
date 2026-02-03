@@ -14,29 +14,30 @@ Möglichkeiten es gibt, Farben flexibel anzupassen.
 [SECTION::background::default]
 Farben spielen in der Visualisierung von Daten oder Konzepten eine wichtige Rolle, um Informationen
 gezielt und schneller zu vermitteln.  
-Matplotlib bietet eine Vielzahl an Möglichkeiten, Farben zu definiere, von einfachen Farbnamen bis
-hin zu komplexen Farbverläufen (`Colormaps`).
+Matplotlib bietet eine Vielzahl an Möglichkeiten, Farben zu definieren, von einfachen Farbnamen bis
+hin zu Farbverläufen (`Colormaps`).
 [ENDSECTION]
 
 
 [SECTION::instructions::detailed]
+
 ### Farben
 
-Sie haben bereits gesehen, dass wenn sie mehrere Objekte plotten, diese Objekte verschiedenen Farben
+Sie haben bereits gesehen, dass, wenn sie mehrere Objekte plotten, diesen Objekten verschiedene Farben
 zugeteilt werden.
-Sie können diese Objekte auch mit spezifichen Farben plotten.
+Sie können diese Objekte natürlich aber auch mit selbst gewählten Farben plotten.
 
 [ER] Plotten Sie drei Funktionen (z. B. `sin(x)`, `cos(x)`, `x^2`) auf derselben Achse für 
 `x = np.linspace(-10,10,100)`.  
-Weisen Sie der ersten Funktion die Farbe blau, 
-der zweiten orange und der dritten grün zu.  
+Weisen Sie der ersten Funktion die Farbe Blau zu, 
+der zweiten Orange und der dritten Grün.  
 Verwenden Sie das Argument `color` in 
 [`plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html).
 
 
 [ER] Erstellen Sie denselben Plot wie in der vorherigen Aufgabe,
-aber verwenden Sie drei verschiedene Schreibweisen für Farben:  
-- einen Hexcode (`'#1f77b4'`)
+aber verwenden Sie drei verschiedene Schreibweisen für die drei Farben:  
+- einen RGB-Hexcode (`'#1f77b4'`)
 - einen Farbnamen (`'orange'`)
 - einen RGB-Tupelwert (`(0.0, 1.0, 0.0)`)
 
@@ -61,8 +62,11 @@ Färben Sie die Punkte nach ihren y-Werten mithilfe einer Colormap (z. B. `'viri
 Nutzen Sie das Argument `c=` für die Werte und `cmap=` für die Colormap.  
 Fügen Sie eine Farbleiste (`colorbar()`) hinzu.
 
+
 ### Colormap-Typen
-Manchmal möchte man nur wenige Farben aus einer Colormap nutzen, statt einer kontinuierlichen Farbänderung zwei oder drei feste Farben.
+
+Manchmal möchte man nur wenige Farben aus einer Colormap nutzen, 
+statt einer kontinuierlichen Farbänderung zwei oder drei feste Farben.
 
 Colormaps haben verschiedene Typen:
 - Sequentiell: Werte von klein nach groß, z. B. `'viridis'`  
