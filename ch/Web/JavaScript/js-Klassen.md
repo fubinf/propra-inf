@@ -1,5 +1,5 @@
 title: Klassen und Prototypen – Strukturierte Logik in JavaScript
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 requires: js-DOM-Einführung
@@ -199,29 +199,33 @@ console.log(buch.endpreis());     // 24
 
 #### Wichtige Gemeinsamkeiten und Unterschiede
 
-`super`:  
+`super`:
+
 - Python: `super()` liefert ein Proxy-Objekt, über das Methoden/Attribute der Elternklasse aufgerufen werden können  
-(z. B. `super().__init__(...)`). Es ist nicht „die Elternklasse selbst“, sondern ein spezieller Zugriff darauf.    
+  (am häufigsten `super().__init__(...)`). Es ist nicht „die Elternklasse selbst“, sondern ein spezieller Zugriff darauf.    
 - JavaScript: `super` ist ein spezielles Schlüsselwort für Zugriffe auf den Prototyp der Elternklasse.  
-`super(...)` ruft im Konstruktor den Konstruktor der Elternklasse auf.  
-`super.methode()` ruft eine Methode der Elternklasse auf.
+  `super(...)` ruft den Konstruktor der Elternklasse auf.  
+  `super.methode()` ruft eine Methode der Elternklasse auf.
 
 Wichtig in JavaScript:  
 In einer abgeleiteten Klasse (`extends`) muss im `constructor` zuerst `super(...)` aufgerufen werden,  
 bevor `this` verwendet werden darf.  
 Wenn Sie keinen eigenen `constructor` definieren, fügt JavaScript automatisch einen ein, der `super(...)` aufruft.
 
-Syntax:  
+Syntax:
+
 - Python: `class Kind(Eltern)`
 - JavaScript: `class Kind extends Eltern { ... }`
 
-Intern:  
+Intern:
+
 - Python: Objekte beziehen Methoden/Attribute über ihre Klasse(n) (Vererbungsbeziehung zwischen Klassen).
 - JavaScript: Objekte beziehen Methoden/Attribute über eine Prototyp-Kette (Verkettung von Prototyp-Objekten).
 
 
 [ER] Leiten Sie eine Klasse `DigitalProdukt` von `Produkt` ab.  
 Sie soll:  
+
 - zusätzlich eine Eigenschaft `downloadLink` im Konstruktor setzen,  
 - eine Methode `info()` besitzen, die Name und Link kombiniert zurückgibt.
 
@@ -234,11 +238,11 @@ console.log(ebook.info());         // "JavaScript Basics → Download: http://do
 ```
 
 
-### Prototypische Vererbung verstehen
+### Prototyp-basierte Vererbung verstehen
 
 Bisher haben wir Vererbung mit `extends` genutzt.  
 Jetzt schauen wir uns an, wie JavaScript das intern umsetzt: über Prototyp-Ketten.  
-Jedes Objekt in JavaScript hat eine interne Referenz auf ein anderes Objekt, seinen Prototypen.   
+Jedes Objekt in JavaScript hat eine interne Referenz auf ein anderes Objekt, seinen Prototypen.  
 Wenn man auf eine Eigenschaft oder Methode zugreift, die im aktuellen Objekt nicht vorhanden ist, 
 sucht JavaScript im Prototyp weiter.  
 Bei Vererbung ergibt sich daraus eine ganze Prototyp-Kette.
@@ -300,8 +304,10 @@ Dadurch entsteht eine Prototyp-Kette:
 Instanzen von `B` → `B.prototype` → `A.prototype` → `Object.prototype`.
 
 Die `class`-Syntax ist damit lediglich eine lesbarere Schreibweise für diese Prototyp-Verknüpfungen.
+Der Zugang über Prototypen hat hingegen Vorteile, wenn man zur Laufzeit Methoden zufügen oder ändern
+möchte, wie man oben bei `Hund.prototype.bellen` sieht.
 
-Darum gilt:  
+Es gilt also:  
 
 - `class` = lesbarere Syntax  
 - Prototypen = das eigentliche System dahinter
