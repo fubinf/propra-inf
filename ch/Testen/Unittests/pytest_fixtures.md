@@ -155,10 +155,15 @@ Führen Sie die Tests mit `-v` aus: `pytest -v test_discovery.py`.
 
 Es sollte nicht fehlerfrei durchlaufen.
 
-[EQ] Sie haben ein **Test-Isolationsproblem** entdeckt. Was ist die Ursache?  
-Welche Lösungsansätze fallen Ihnen ein?
+Sie haben ein **Test-Isolationsproblem** entdeckt.
 
-Ersetzen Sie jetzt die Fuxture durch folgenden Teil:
+[EQ] Beschreiben Sie in eigenen Worten, was das Problem ist.
+
+[HINT::MoveIt]
+Um einen besseren Eindruck zu bekommen, verändern Sie doch einfach einmal die Reihenfolge der Tests.
+[ENDHINT]
+
+Ersetzen Sie jetzt die Fixture durch folgenden Teil:
 
 ```python
 @pytest.fixture(scope="module")
@@ -169,7 +174,8 @@ def user_service():
 Führen Sie die Test erneut aus.
 Sie werden erkennen, dass alle Tests fehlerfrei laufen.
 Aber Sie sind noch nicht mit der Testfallerstellung fertig.
-Ergänzen Sie folgenden Testfall und führen Sie alle Testfälle aus.
+
+Ergänzen Sie folgenden Testfall am Ende Ihrer Testdatei und führen Sie alle erneut Testfälle aus.
 
 ```python
 def test_clean_start_assumption(user_service):
@@ -179,9 +185,11 @@ def test_clean_start_assumption(user_service):
     assert result.success == True
 ```
 
-Uff, das hat nicht funktioniert. Jetzt könnten Sie natürlich wieder den Scope verändern.
-Toben Sie sich gerne damit aus. Das wird leider nicht funktionieren. Warum da so ist, dazu müssen
-wir erst einmal Fixture Scopes betrachten,
+Uff, das hat nicht funktioniert.
+Jetzt könnten Sie natürlich wieder den Scope verändern.
+Toben Sie sich gerne damit aus.
+Das wird leider nicht funktionieren.
+Warum da so ist, dazu müssen wir erst einmal Fixture Scopes betrachten.
 
 #### Fixture Scopes verstehen
 
@@ -230,38 +238,169 @@ Eine Lösung wäre, einen weiteren Scope einzuführen.
 
 [EC] Ergänzen Sie einen weiteren Fixture Scope so, dass wirklich alle Testfälle erfolgreich sind.
 
-#### Setup und Teardown: Das yield-Pattern
+[HINT::Reference]
 
-Manche Tests brauchen nicht nur Setup, sondern auch Cleanup (Teardown).  
-Beispiel: Datei erstellen → Test → Datei löschen. (Wenn sinnvoll, immer ein gites Vorgehen.)
+1. Bedenken Sie, dass die Fixtures von den Testfällen gezielt genutzt werden, d.h. ein Testfall
+   referenziert auf ein Fixture.
+2. Ein Fixture alleine ist oftmals nicht ausreichend.
+   Hier haben Sie eine Abhängigkeit der Reihenfolge erkannt.
+   Der eine Scope hat eine Abhängigkeit, der andere keine, d.h. Sie müssen evt. einen weiteren
+   Testfall mit in den Scope aufnehmen, um den fehlgeschlagenen Test erfolgreich zu bekommen.
 
-Testen Sie das yield-Pattern in einer neuen beliebigen Datei.
-Testen Sie es, indem Sie auch `assert False` in einen Test einfügen.
+[ENDHIN]
+
+#### Setup und Teardown: Das Cleanup-Problem
+
+Manche Tests erstellen Dateien, Datenbank-Einträge oder andere Ressourcen.  
+Was passiert, wenn diese nicht aufgeräumt werden?
+
+Betrachten Sie dieses problematische Beispiel:
 
 ```python
 import os
+import pytest
 
-@pytest.fixture  
+@pytest.fixture(scope="module")
 def temp_file():
-    filename = "test_temp.txt"
+    filename = "debug_output.txt"
     print(f"Setup: Erstelle {filename}")
     with open(filename, "w") as f:
-        f.write("Testdaten")
-    
-    yield filename
-    
-    print(f"Teardown: Lösche {filename}")
-    os.remove(filename)
+        f.write("Test war hier!")
+    return filename
 
-def test_file_exists(temp_file):
+def test_creates_temp_file(temp_file):
     assert os.path.exists(temp_file)
     with open(temp_file) as f:
-        assert f.read() == "Testdaten"
+        assert "Test war hier" in f.read()
+    
+    with open(temp_file, "a") as f:
+        f.write(" - Test 1 war hier!")
+
+def test_another_temp_file(temp_file):
+    with open(temp_file) as f:
+        content = f.read()
+    print(f"Dateiinhalt: {content}")
+    assert content == "Test war hier!"
 ```
 
-[EQ] Was passiert, wenn ein Test einen Fehler wirft? Wird Teardown trotzdem ausgeführt?
+[EQ] Testen Sie den Code und führen Sie ihn aus. Was ist hier das Problem?
 
-[ER] Ergänzen Sie passende Testfälle zu `test_yield_success` und `test_yield_error`.  
+Wir könnten den Scope ändern, aber nehmen wir mal an, dass wir ihn für unsere Testsammlung an dieser
+Stelle benötigen.
+Dann haben wir noch eine andere - gute - Möglichkeit: Aufräumen.
+
+Hier ist eine Möglichkeit, um am Ende der Testdatei aufzuräumen.
+Sie verwenden cleanup(), um die Datei zu löschen.
+
+```python
+@pytest.fixture(scope="module")
+def temp_file(request):  # <- request muss Parameter sein!
+    filename = "debug_output.txt"
+    print(f"Setup: Erstelle {filename}")
+    with open(filename, "w") as f:
+        f.write("Test war hier!")
+    
+    def cleanup():
+        print(f"Teardown: Lösche {filename}")
+        if os.path.exists(filename):
+            os.remove(filename)
+    
+    request.addfinalizer(cleanup)
+    return filename
+```
+
+Jedoch wollen wir nicht am Ende löschen, sondern brauchen diese tolle Funktion viel früher.
+
+```python
+@pytest.fixture(scope="module")
+def temp_file_manager(request):
+    filename = "debug_output.txt"
+    original_content = "Test war hier!"
+    
+    def reset_file():
+        print(f"Reset: Setze {filename} zurück")
+        with open(filename, "w") as f:
+            f.write(original_content)
+    
+    def cleanup():
+        print(f"Teardown: Lösche {filename}")
+        if os.path.exists(filename):
+            os.remove(filename)
+    
+    # Erste Erstellung
+    reset_file()
+    request.addfinalizer(cleanup)
+    
+    class FileManager:
+        def __init__(self):
+            self.filename = filename
+            self.original_content = original_content
+        
+        def reset(self):
+            reset_file()
+    
+    return FileManager()
+
+def test_creates_temp_file(temp_file_manager):
+    assert os.path.exists(temp_file_manager.filename)
+    with open(temp_file_manager.filename) as f:
+        assert "Test war hier" in f.read()
+    
+    with open(temp_file_manager.filename, "a") as f:
+        f.write(" - Test 1 war hier!")
+
+def test_another_temp_file(temp_file_manager):
+    # Datei vor diesem Test zurücksetzen
+    temp_file_manager.reset()
+    
+    with open(temp_file_manager.filename) as f:
+        content = f.read()
+    print(f"Dateiinhalt: {content}")
+    assert content == "Test war hier!"  # Funktioniert jetzt!
+```
+
+[ER] Implementieren Sie ein Teardown/Cleanup nach jedem Testfall.
+
+[EQ] Was passiert, wenn ein Test einen Fehler wirft? Wird Cleanup trotzdem ausgeführt?
+
+Das Ganze kann man auch mit Hilfe einer Hilfklasse umsetzen, was es übersichtlicher egstaltet.
+
+```python
+class TempFileManager:
+    def __init__(self, filename):
+        self.filename = filename
+        with open(filename, "w") as f:
+            f.write("Standardinhalt")
+    
+    def write(self, content):
+        with open(self.filename, "w") as f:
+            f.write(content)
+    
+    def read(self):
+        with open(self.filename) as f:
+            return f.read()
+    
+    def cleanup(self):
+        if os.path.exists(self.filename):
+            os.remove(self.filename)
+
+@pytest.fixture
+def file_manager(request):
+    manager = TempFileManager("managed_file.txt")
+    request.addfinalizer(manager.cleanup)
+    return manager
+
+def test_creates_temp_file(file_manager):
+    file_manager.write("Test content")
+    assert file_manager.read() == "Test content"
+
+def test_another_temp_file(file_manager):
+    file_manager.write("Test content")
+    assert file_manager.read() == "Test content"
+```
+
+Hier stellen wir in unserem Fixture sicher, dass wir immer 
+`request.addfinalizer(manager.cleanup)` nach jedem test ausführen.
 
 #### Fixtures teilen: conftest.py
 
