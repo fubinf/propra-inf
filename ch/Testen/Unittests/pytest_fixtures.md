@@ -111,7 +111,7 @@ def test_user_login():
     assert result.success == True
 ```
 
-[EC] Führen Sie die Tests aus. Sie funktionieren, aber was stört Sie daran?
+[EQ] Führen Sie die Tests aus. Sie funktionieren, aber was stört Sie daran?
 
 #### Erste Fixture: Das Setup Problem lösen
 
@@ -225,6 +225,7 @@ def test_file_exists(temp_file):
 ```
 
 [EQ] Was passiert, wenn ein Test einen Fehler wirft? Wird Teardown trotzdem ausgeführt?
+
 [ER] Ergänzen Sie passende Testfälle zu `test_yield_success` und `test_yield_error`.  
 
 #### Fixtures teilen: conftest.py
