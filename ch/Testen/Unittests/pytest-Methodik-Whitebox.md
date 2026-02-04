@@ -489,7 +489,7 @@ Solche Tools können Ihnen zeigen, ob Ihre manuell entwickelten Testfälle tats�
 gewünschten Coverage-Kriterien erfüllen.
 
 Das Thema Coverage-Tools ist ebenfalls Bestandteil in diesem Kurs und kann im Anschluss gerne hier
-[PARTREF::pytest_plugin_testcoverage] oder hier [PARTREF::testcoverage] angepackt werden.
+[PARTREF::testcoverage] angepackt werden.
 [ENDNOTICE]
 
 [ENDSECTION]

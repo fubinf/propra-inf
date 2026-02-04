@@ -19,7 +19,6 @@ graph TD
     pytest_mocking["pytest_mocking.md"]
     pytest_fixtures["pytest_fixtures.md"]
     pytest_call["pytest_call.md"]
-    pytest_plugin_testcoverage["pytest_plugin_testcoverage.md"]
     pytest_plugin_linter_flake8["pytest_plugin_linter_flake8.md"]
     pytest_aaa["pytest_aaa.md"]
     pytest_benchmark["pytest_benchmark.md"]
@@ -47,7 +46,6 @@ graph TD
     m_pytest --> pytest_methodik_blackbox
     m_pytest --> pytest_methodik_whitebox
     m_pytest --> pytest_plugin_linter_flake8
-    pytest_call --> pytest_plugin_testcoverage
     pytest_call --> pytest_plugin_linter_flake8
     flake8 --> pytest_plugin_linter_flake8
     pytest_mocking --> pytest_mocking_freezegun
@@ -67,7 +65,6 @@ graph TD
 - **pytest_aaa.md**: Einführung in das Arrange-Act-Assert-Pattern für pytest. Setzt `m_pytest.md` voraus.
 - **pytest_benchmark.md**: Performance-Testing und Benchmarking mit pytest-benchmark. Setzt `m_pytest.md` voraus.
 - **pytest_tox.md**: Testen in verschiedenen Python-Umgebungen mit tox und pytest. Setzt `m_pytest.md` voraus.
-- **pytest_plugin_testcoverage.md**: Zeigt, wie man mit `pytest-cov` die Testabdeckung analysiert. Setzt `pytest_call.md` voraus.
 - **pytest_plugin_linter_flake8.md**: Behandelt die Integration von Flake8 in `pytest` für Code-Qualitätsprüfungen. Setzt `m_pytest.md`, `pytest_call.md` und `flake8.md` voraus.
 - **tdd.md**: Einführung in Test-Driven Development (TDD). Setzt `m_pytest.md` voraus und ist Grundlage für `tdd_pp.md`.
 - **tdd_pp.md**: Anwendung von TDD im Pair Programming. Setzt `tdd.md` voraus.
