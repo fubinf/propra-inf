@@ -41,7 +41,7 @@ welcher Wahlbezirk die meisten Stimmen für eine bestimmte Partei gegeben hat,
 in welchem Bezirk es die meisten ungültigen Stimmen gab oder 
 Unterschiede im Wahlverhalten zwischen West- und Ost-Berlin (falls man weiß, welcher Bezirk wohin gehört).
 
-<!-- LINK_CHECK: status=403 -->
+<!-- @LINK_SPEC: status=403 -->
 - Sehen Sie sich die Daten an. 
   Öffnen Sie dazu die CSV-Datei mithilfe eines Online-Viewers (z.B. 
   [becsv.com](https://www.becsv.com/csv-viewer.php)) oder 

@@ -323,8 +323,8 @@ Wie schätzen Sie die beiden Funktionen hinsichtlich ihrer Laufzeit und Speicher
 wie lässt sich ggf. dadurch der Unterschied erklären?
 
 [HINT::Worin unterscheiden sich die beiden Ansätze?]
-Schauen Sie sich in 
-<!-- LINK_CHECK: status=403 -->
+Schauen Sie sich in
+<!-- @LINK_SPEC: status=403 -->
 [folgendem Artikel](https://labex.io/tutorials/python-how-to-implement-lazy-evaluation-in-a-python-iterator-397687) 
 die Bedeutung von [TERMREF::Lazy Evaluation] noch einmal an, und wie dies mit Iteratoren 
 zusammenhängt.
