@@ -247,7 +247,7 @@ Eine Lösung wäre, einen weiteren Scope einzuführen.
    Der eine Scope hat eine Abhängigkeit, der andere keine, d.h. Sie müssen evt. einen weiteren
    Testfall mit in den Scope aufnehmen, um den fehlgeschlagenen Test erfolgreich zu bekommen.
 
-[ENDHIN]
+[ENDHINT]
 
 #### Setup und Teardown: Das Cleanup-Problem
 
@@ -437,21 +437,39 @@ def test_in_other_file(fresh_user_service):
     assert result.success == True
 ```
 
-[EC] Können die Tests in `test_sharing.py` die Fixtures aus `conftest.py` nutzen,  
-obwohl sie nicht importiert werden?
+Wenn Sie den Test ausführen, sehen Sie, dass es magischer Weise funktioniert.
+Dabei haben wir `confest.py` doch gar nicht in `test_sharing.py` importiert.
 
-Folgendes habne Sie gerade beobachtet:
+Folgendes haben Sie gerade beobachtet:
 
-1. **Automatisches Laden:** Pytest lädt automatisch alle conftest.py Dateien im aktuellen Verzeichnis und allen übergeordneten Verzeichnissen
-2. **Fixture-Discovery:** Pytest scannt diese conftest.py Dateien nach @pytest.fixture Dekoratoren und registriert sie global
-3. **Namensauflösung:** Wenn ein Test einen Parameter fresh_user_service hat, sucht pytest automatisch nach einer gleichnamigen Fixture in:
+1. **Automatisches Laden:** Pytest lädt automatisch alle `conftest.py` Dateien im aktuellen
+   Verzeichnis und allen übergeordneten Verzeichnissen
+2. **Fixture-Discovery:** Pytest scannt diese conftest.py Dateien nach @pytest.fixture
+   Dekoratoren und registriert sie global
+3. **Namensauflösung:** Wenn ein Test einen Parameter fresh_user_service hat, sucht pytest
+   automatisch nach einer gleichnamigen Fixture in:
 
 - Der gleichen Datei
 - conftest.py im gleichen Verzeichnis
 - conftest.py in übergeordneten Verzeichnissen
 - Eingebauten pytest Fixtures
 
-Kein Import nötig: Das ist ein spezielles Feature von pytest - normale Python-Import-Regeln gelten hier nicht
+Kein Import nötig: Das ist ein spezielles Feature von pytest - normale Python-Import-Regeln
+gelten hier nicht.
+Und warum nehmen wir nicht einfach den Import.
+
+Vorweg, natürlich geht auch das!
+Sie könnten es wie folgt umsetzen:
+
+```python
+from test_fixtures_module import explicit_user_service
+
+def test_with_explicit_import(explicit_user_service):
+    result = explicit_user_service.register("charlie", "charlie@test.com", "pass")
+    assert result.success == True
+```
+
+[EQ] Ganz intuitiv: Welche Vor- und Nachteile sehen Sie in den beiden Varianten?
 
 #### Eingebaute Fixtures verstehen
 
@@ -489,9 +507,10 @@ def test_capsys_experiment(capsys):
 
 Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
 
-[EQ] **Fixture-Philosophie:** Fixtures verändern die Art, wie Sie über Tests denken - weg von "Setup-Code schreiben" hin zu "Dependencies deklarieren". Wie beeinflusst diese Denkweise Ihren Ansatz beim Schreiben neuer Tests? Welche anderen Programmierkonzepte folgen einem ähnlichen "deklarativen" Ansatz?
-
-[EQ] **Transfer und Grenzen:** Sie haben Fixtures in einem einfachen Mock-Szenario kennengelernt. Überlegen Sie sich ein konkretes Projekt aus Ihrem eigenen Erfahrungsbereich: Welche Setup-Situationen hätten Sie dort? Wo würden Fixtures helfen, wo könnten sie möglicherweise "zu viel des Guten" sein? Begründen Sie Ihre Einschätzung.
+[EQ] **Fixture-Philosophie:** Fixtures verändern die Art, wie Sie über Tests denken - weg von
+"Setup-Code schreiben" hin zu "Dependencies deklarieren".
+Können Sie sich vorstellen intensiv mit Fixtures zu arbeiten, oder scheint Ihnen das Ganze doch
+zu unübersichtlich zu sein?
 
 [ENDSECTION]
 
