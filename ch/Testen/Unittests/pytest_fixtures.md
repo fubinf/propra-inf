@@ -131,24 +131,57 @@ um die Fixture zu nutzen.
 
 [EQ] Was haben Sie gewonnen, was haben Sie verloren?
 
-#### Das Isolationsproblem
+#### Das Isolationsproblem demonstrieren
 
-Ein `Setup` löst aber nicht alle Probleme alleine.
-Fügen Sie folgenden Test zur Datei `test_discovery.py` hinzu:
+Jetzt demonstrieren wir bewusst ein Isolationsproblem.
 
 ```python
-def test_duplicate_registration(user_service):
-    result1 = user_service.register("alice", "alice@test.com", "password123")
-    assert result1.success == True
-    
-    result2 = user_service.register("alice", "other@test.com", "other_pass")
-    assert result2.success == False
+def test_user_registration(user_service):
+    result = user_service.register("alice", "alice@test.com", "password123") 
+    assert result.success == True
+
+def test_user_login(user_service):
+    user_service.register("alice", "alice@test.com", "password123")
+    result = user_service.login("alice", "password123")
+    assert result.success == True
+
+def test_expects_alice_exists(user_service):
+    assert "alice" in user_service.users, "Alice sollte bereits registriert sein!"
+    result = user_service.login("alice", "password123")
+    assert result.success == True
 ```
 
-[EQ] Führen Sie alle Tests aus. Was passiert? Warum funktioniert das manchmal, manchmal nicht?
+Führen Sie die Tests mit `-v` aus: `pytest -v test_discovery.py`.
+
+Es sollte nicht fehlerfrei durchlaufen.
 
 [EQ] Sie haben ein **Test-Isolationsproblem** entdeckt. Was ist die Ursache?  
 Welche Lösungsansätze fallen Ihnen ein?
+
+Ersetzen Sie jetzt die Fuxture durch folgenden Teil:
+
+```python
+@pytest.fixture(scope="module")
+def user_service():
+    return MockUserService()
+```
+
+Führen Sie die Test erneut aus.
+Sie werden erkennen, dass alle Tests fehlerfrei laufen.
+Aber Sie sind noch nicht mit der Testfallerstellung fertig.
+Ergänzen Sie folgenden Testfall und führen Sie alle Testfälle aus.
+
+```python
+def test_clean_start_assumption(user_service):
+    assert len(user_service.users) == 0, f"UserService sollte leer sein, hat aber: {user_service.users}"
+    
+    result = user_service.register("bob", "bob@test.com", "password456")
+    assert result.success == True
+```
+
+Uff, das hat nicht funktioniert. Jetzt könnten Sie natürlich wieder den Scope verändern.
+Toben Sie sich gerne damit aus. Das wird leider nicht funktionieren. Warum da so ist, dazu müssen
+wir erst einmal Fixture Scopes betrachten,
 
 #### Fixture Scopes verstehen
 
@@ -165,12 +198,6 @@ Fügen Sie folgende Fixtures zu Ihrer Datei hinzu:
 ```python
 @pytest.fixture(scope="function")
 def function_service():
-    print("Erstelle function_service")
-    return MockUserService()
-
-@pytest.fixture(scope="module")  
-def module_service():
-    print("Erstelle module_service") 
     return MockUserService()
 
 def test_function_scope_1(function_service):
@@ -194,6 +221,14 @@ def test_module_scope_2(module_service):
 
 [EQ] Analysieren Sie die Ausgabe. Wann wird welche Fixture erstellt?  
 Was bedeutet das für Ihr Isolationsproblem?
+
+Wenn Sie fertig sind, entfernen Sie diese Ergänzungen wieder.
+
+Das aktuelle Dilemma ist, dass wir nicht alle Testfälle gleichzeitig erfolgreich durchlaufen
+lassen können. Auch der vorhandene Scope hilft uns da nicht weiter.
+Eine Lösung wäre, einen weiteren Scope einzuführen.
+
+[EC] Ergänzen Sie einen weiteren Fixture Scope so, dass wirklich alle Testfälle erfolgreich sind.
 
 #### Setup und Teardown: Das yield-Pattern
 
