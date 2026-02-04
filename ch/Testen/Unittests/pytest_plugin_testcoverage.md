@@ -1,6 +1,6 @@
 title: "Pytest: Wieviele Testfälle muss ich noch erstellen?"
 stage: alpha
-timevalue: 1
+timevalue: 2
 difficulty: 3
 assumes: m_pytest
 requires: pytest_call

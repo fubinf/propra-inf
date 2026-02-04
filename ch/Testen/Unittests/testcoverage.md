@@ -1,185 +1,372 @@
-title: Code Coverage - Code angemessen abdecken
+title: Code Coverage mit pytest-cov - Von Tool-Nutzung zur kritischen Bewertung
 stage: draft
-timevalue: 0
+timevalue: 2.5
 difficulty: 3
-assumes: m_unittest
+assumes: m_pytest
+requires: pytest_call
 ---
-TODO_1_ruhe:
-
-- Im Prinzip eine schöne Kombination von technischer und methodischer Aufgabe!
-- Bitte stellen Sie das auf pytest-coverage um.
-  Das ist ein eigenes Paket, das ein pytest-Plugin liefert, mit dem coverage dann netter
-  in pytest integriert ist als bei unittest möglich.
-- Die Überlegungen zur "sinnvollen" Testabdeckung finde ich sehr wertvoll.  
-  Allerdings ist es schade, dass auf einem Trivialbeispiel zu machen.  
-  Sondern diese Aufgabe sollte eine Folgeaufgabe von derjenigen (noch zu erstellenden)
-  Aufgabe sein, die den Testfallentwurf und sinnvolle Überlegungen zum black-box-Testen
-  und White-Box-Testen an einem nicht ganz simplen (gern auch realen -- wir dürfen uns für diesen
-  wichtigen Stoff gern ausgiebig Zeit lassen) Beispiel lehrt.
 
 [SECTION::goal::idea]
 
-- Ich kann die Vor- und Nachteile von einer hohen Testabdeckung erklären.
-- Ich kann meine Unittest-Abdeckung abfragen
+- Ich kann Code Coverage mit pytest-cov für bestehende und neue Codebasis anwenden
+- Ich kann Coverage-Reports interpretieren und systematisch 100% Coverage erreichen
+- Ich verstehe die Grenzen und Fallstricke von Coverage-Metriken
+- Ich kann angemessene Coverage-Ziele für verschiedene Projekttypen definieren
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Während Unittests dazu dienen, die Funktionalität von Code zu überprüfen und sicherzustellen, dass
-er wie erwartet funktioniert, ermöglicht die Code-Abdeckung einen Einblick in den Umfang, in dem der
-Code von Tests erreicht wird.
-Dabei sollte man aufpassen: Wenige Testfälle können viel Abdecken, viele Testfälle bestimmte Bereiche
-doppelt testen. Können Sie festlegen, wie viele Tests gut sind?
+Code Coverage misst, welcher Anteil Ihres Codes von Tests ausgeführt wird. Während hohe Coverage-Werte beruhigend wirken können, sind sie kein Garant für Testqualität.
+
+Eine 100%ige Zeilenabdeckung kann existieren, ohne dass ein einziger sinnvoller Test geschrieben wurde. Umgekehrt können gut durchdachte Tests mit 80% Coverage mehr Vertrauen schaffen als oberflächliche Tests mit 100% Coverage.
+
+In dieser Aufgabe lernen Sie pytest-cov zunächst an bestehender Codebasis kennen, bevor wir ein realitätsnahes Beispiel entwickeln und ein kritisches Verständnis für Coverage-Metriken aufbauen.
+
+Schön ist es, wenn man zusätzlich zu seinem Testergebnis auch sieht, dass sich die Testabdeckung verbessert. Um diese Abfrage nicht separat durchführen zu müssen, verwenden wir das pytest-cov Plugin.
 
 [ENDSECTION]
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
-Hier sollen sie sich mit dem Thema auseinander setzen, wie man sicherstellen kann, dass Tests eine
-angemessene Code-Abdeckung bieten? Dazu werden wir im Folgenden ein gewissen Maß an Abdeckung umsetzen,
-um zu analysieren, ob diese Abdeckung gut ist. Diese Analyse lassen wir von dem Python Tool
-`coverage` durchführen. Sie werten anschließend aus.
+## Teil A: pytest-cov Grundlagen mit bestehender Codebasis
 
-Studieren Sie zuvor den Folgenden Blog-Eintrag
-[Code Coverage – Kein zuverlässiges Qualitätsmaß](https://blog.ordix.de/code-coverage-kein-zuverlaessiges-qualitaetsmass),
-der einen guten udn kurzen Überblick über diese Thematik bietet.
+Zunächst lernen Sie pytest-cov an einer bestehenden Codebasis kennen und erreichen systematisch 100% Coverage.
 
-Jetzt erahnen Sie sicherlich, wohin die Reise in dieser Aufgabe gehen soll. Aber warum das so ist,
-sollen Sie anhand von praktisher Beispiele selber erarbeiten.
+### pytest-cov Setup
 
-### Coverage Packet kennenlernen
+pytest-cov ist ein pytest-Plugin, das Coverage-Messung nahtlos in Ihren Test-Workflow integriert.
 
-Nutzern Sie die Dokumentation [Coverage](https://coverage.readthedocs.io/en/7.5.3/), um für die
-anstehende Analyse vorbereitet zu sein.
+[EC] Installieren Sie pytest-cov: `pip install pytest-cov`
 
-- [EC] Installieren Sie das Paket `coverage`
-- [EC] Welche Version gibt Ihnen `pip show coverage` zurück?
+[EC] Verifizieren Sie die Installation: `pytest --version` und `pytest --help | grep cov`
 
-Erstellen Sie die Dateien `greetings.py` und `test_greetings.py` im gleichen Verzeichnis und befüllen Sie diese
-Dateien wie folgt:
+### Anwendung auf bestehende Codebasis
 
-***greetings.py***
+Wenden Sie pytest-cov auf die `toolz`-Bibliothek aus [PARTREF::pytest_call] an.
 
-```python
-def greet(name):
-    if not name:
-        return "Hello, World!"
-    return f"Hello, {name}!"
-```
+[EC] Wie sieht der Kommandobefehl zum Ausführen einer Testabdeckungsanalyse für das Verzeichnis `toolz` aus?
 
-***test_greetings.py***
+[EQ] Wie hoch ist die aktuelle Coverage der toolz-Bibliothek? Was sagt Ihnen das über die Testqualität?
 
-```python
-import unittest
-from greetings import greet
+[EC] Wie finden Sie heraus, welche spezifischen Zeilen nicht abgedeckt sind?
 
-class TestGreetFunction(unittest.TestCase):
+[HINT::Missing Lines anzeigen]
+Der `--cov-report` Parameter bietet verschiedene Optionen. Suchen Sie in der pytest-cov Dokumentation nach "missing".
+[ENDHINT]
 
-    def test_greet_with_name(self):
-        self.assertEqual(greet("Alice"), "Hello, Alice!")
-        self.assertEqual(greet("Bob"), "Hello, Bob!")
+[ER] Ergänzen Sie die fehlenden Testfälle so, dass die Testabdeckung der relevanten Module auf 100% steht.
 
-    def test_greet_without_name(self):
-        self.assertEqual(greet(""), "Hello, World!")
-        self.assertEqual(greet(None), "Hello, World!")
-```
+[EQ] Erläutern Sie, warum Sie gerade diese Ergänzungen und Testfälle hinzugefügt haben. Was war schwer zu testen?
 
-- [EC] Führen Sie eine Codeabdeckungsanalyse mit `coverage` durch. Welche Befehle müssen Sie absetzen?
-- [EC] Wie sieht das Ergebnis von `coverage` aus?
+## Teil B: Coverage-Bewertung mit realitätsnahem Beispiel
 
-Jetzt sehen Sie nicht nur Ihre Code-Dateien, sondern auch die Testdateien. Da diese für uns nicht
-relevant sind, wollen wir diese Dateien ignorieren. Coverage bietet dafür eine
-[Konfiguration](https://coverage.readthedocs.io/en/7.5.3/config.html) an.
-Prüfen Sie, wie Sie diese Datei:en aus der Analyse herausnehmen können.
+Nun entwickeln wir ein komplexeres Verständnis von Coverage-Qualität mit einem eigenen Beispiel.
 
-- [ER] Erstellen Sie eine Konfiguration, die die Datatei `test_greetings.py` (oder alle Testdateien)
-  ignoriert.
-- [EC] Wie sieht die aktuelle Ausgabe aus?
+Lesen Sie zunächst diesen Artikel: [Code Coverage – Kein zuverlässiges Qualitätsmaß](https://blog.ordix.de/code-coverage-kein-zuverlaessiges-qualitaetsmass), um die kritischen Aspekte von Coverage zu verstehen.
 
-Standardmäßig misst `coverage` die Zeilenabdeckung.
+### Realitätsnahes Beispiel: E-Mail Validator
 
-- [EC] Wollen wir eine Zweigabdeckungs-Analyse erreichen, was müssen wir ergänzen?
+Wir arbeiten mit einer E-Mail-Validierungsklasse - ein typisches Real-World-Szenario mit verschiedenen Edge Cases.
 
-Das `cpverage`-Modul bietet viele weitere hilfreiche Einstellungen und Funktionalitäten. Stöbern Sie
-gerne tiefer in die Dokumentation, um einen besseren Eindruck davon zu gewinnen, wie tiefgehend
-eine Testabdeckung gehen kann.
-
-In unserem ersten Beispiel haben wir eine Zeilenadekcung von 100% erreicht. Wenn Sie sich die
-vorgegebenen Testfälle anschauen, sind Sie trotz der Analyse glücklich mit der Testabdeckung, oder ...
-
-- [EQ] ... sollten weitere Testdaten ergänzt oder entfernt werden?
-- [EQ] ... fehlen Ihnen noch Testfälle, oder können welche entfernt werden?
-
-### Testfälle erstellen
-
-Erstellen Sie die Datei `calculation.py` mit folgendem Inhalt.
+Erstellen Sie `email_validator.py`:
 
 ```python
-def add(a, b):
-    return a + b
+import re
+from typing import List, Optional
 
-def subtract(a, b):
-    return a - b
-
-def multiply(a, b):
-    return a * b
-
-def divide(a, b):
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
-
-- [ER] Erstellen Sie Testfälle in `test_calculation.py`, so das eine 100% Zeilenabdeckung von `coverage` gemessen wird.
-- [EC] Wie sieht Ihre `coverage` Analyse aus?
-
-Sie werden mit Sicherheit eine gute Testabdeckung erreicht haben, aber ...
-
-- [EQ] ... fehlen Ihnen auch hier noch Tests, die ggf. sogar die Testfälle fehlschlagen lassen?
-- [EQ] ... sollten wir auch willkürlich große Zahlen in die Testabdekcung mit aufnehmen? Wenn ja, wieviele?
-
-Erstellen Sie die Datei `complex_branch.py` mit folgendem Inhalt:
-
-```python
-def complex_function(x, y):
-    if x > 0:
-        if y > 0:
-            return "Both x and y are positive"
+class EmailValidator:
+    """Validiert E-Mail-Adressen nach verschiedenen Kriterien."""
+    
+    def __init__(self, allow_internationalized: bool = False):
+        self.allow_internationalized = allow_internationalized
+        self._blocked_domains = set()
+        self._required_domains = set()
+        
+    def block_domain(self, domain: str) -> None:
+        """Blockiere eine Domain."""
+        self._blocked_domains.add(domain.lower())
+        
+    def require_domain(self, domain: str) -> None:
+        """Erlaube nur bestimmte Domains."""
+        self._required_domains.add(domain.lower())
+        
+    def validate(self, email: str) -> dict:
+        """Validiert eine E-Mail-Adresse."""
+        if not email or not isinstance(email, str):
+            return {'valid': False, 'errors': ['Email must be a non-empty string']}
+            
+        email = email.strip().lower()
+        errors = []
+        
+        # Basic format check
+        if '@' not in email:
+            return {'valid': False, 'errors': ['Email must contain @']}
+            
+        try:
+            local, domain = email.split('@', 1)
+        except ValueError:
+            return {'valid': False, 'errors': ['Invalid email format']}
+            
+        # Validate local part
+        if not local:
+            errors.append('Local part cannot be empty')
+        elif len(local) > 64:
+            errors.append('Local part too long (max 64 characters)')
+        elif '..' in local:
+            errors.append('Local part cannot contain consecutive dots')
+        elif local.startswith('.') or local.endswith('.'):
+            errors.append('Local part cannot start or end with dot')
+            
+        # Validate domain
+        domain_errors = self._validate_domain(domain)
+        errors.extend(domain_errors)
+        
+        # Check blocked/required domains
+        if domain in self._blocked_domains:
+            errors.append(f'Domain {domain} is blocked')
+            
+        if self._required_domains and domain not in self._required_domains:
+            errors.append(f'Domain {domain} not in allowed list')
+            
+        # Advanced regex validation
+        if not errors and not self._regex_validate(email):
+            errors.append('Email format invalid')
+            
+        return {
+            'valid': len(errors) == 0,
+            'errors': errors,
+            'email': email,
+            'local': local,
+            'domain': domain
+        }
+        
+    def _validate_domain(self, domain: str) -> List[str]:
+        """Validiert Domain-spezifische Regeln."""
+        errors = []
+        
+        if not domain:
+            errors.append('Domain cannot be empty')
+            return errors
+            
+        if len(domain) > 253:
+            errors.append('Domain too long (max 253 characters)')
+            
+        if '..' in domain:
+            errors.append('Domain cannot contain consecutive dots')
+            
+        if domain.startswith('.') or domain.endswith('.'):
+            errors.append('Domain cannot start or end with dot')
+            
+        # Check for at least one dot
+        if '.' not in domain:
+            errors.append('Domain must contain at least one dot')
+            
+        # Check individual domain parts
+        parts = domain.split('.')
+        for part in parts:
+            if len(part) > 63:
+                errors.append(f'Domain part {part} too long (max 63 characters)')
+            if not self.allow_internationalized and not part.isascii():
+                errors.append(f'Domain part {part} contains invalid characters')
+                    
+        return errors
+        
+    def _regex_validate(self, email: str) -> bool:
+        """Führt regex-basierte Validierung durch."""
+        if self.allow_internationalized:
+            # Simplified international pattern
+            pattern = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
         else:
-            return "Only x is positive"
-    elif y > 0:
-        return "Only y is positive"
-    else:
-        return "Neither x nor y is positive"
+            # ASCII-only pattern
+            pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+            
+        return bool(re.match(pattern, email))
+        
+    def validate_batch(self, emails: List[str]) -> dict:
+        """Validiert mehrere E-Mails auf einmal."""
+        results = []
+        stats = {'total': len(emails), 'valid': 0, 'invalid': 0, 'errors_by_type': {}}
+        
+        for email in emails:
+            result = self.validate(email)
+            results.append(result)
+            
+            if result['valid']:
+                stats['valid'] += 1
+            else:
+                stats['invalid'] += 1
+                for error in result['errors']:
+                    stats['errors_by_type'][error] = stats['errors_by_type'].get(error, 0) + 1
+                    
+        return {
+            'results': results,
+            'stats': stats
+        }
+            errors.append('Domain must contain at least one dot')
+            
+        # Validate each domain part
+        parts = domain.split('.')
+        for part in parts:
+            if not part:
+                continue
+            if len(part) > 63:
+                errors.append(f'Domain part {part} too long (max 63 characters)')
+            if not part.replace('-', '').replace('_', '').isalnum():
+                if not self.allow_internationalized:
+                    errors.append(f'Domain part {part} contains invalid characters')
+                    
+        return errors
+        
+    def _regex_validate(self, email: str) -> bool:
+        """Führt regex-basierte Validierung durch."""
+        if self.allow_internationalized:
+            # Simplified international pattern
+            pattern = r'^[\w\.-]+@[\w\.-]+\.[a-zA-Z]{2,}$'
+        else:
+            # ASCII only pattern
+            pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+            
+        return bool(re.match(pattern, email))
+        
+    def validate_batch(self, emails: List[str]) -> dict:
+        """Validiert mehrere E-Mails auf einmal."""
+        results = []
+        stats = {'valid': 0, 'invalid': 0, 'errors_by_type': {}}
+        
+        for email in emails:
+            result = self.validate(email)
+            results.append(result)
+            
+            if result['valid']:
+                stats['valid'] += 1
+            else:
+                stats['invalid'] += 1
+                for error in result['errors']:
+                    stats['errors_by_type'][error] = stats['errors_by_type'].get(error, 0) + 1
+                    
+        return {
+            'results': results,
+            'stats': stats
+        }
 ```
 
-Zusätzlich gebe ich Ihnen einen Teil meiner gefundenen Testfälle:
+### Erste Tests und Coverage-Messung
+
+Erstellen Sie `test_email_validator.py`:
 
 ```python
-import unittest
-from complex_branch import complex_function
+import pytest
+from email_validator import EmailValidator
 
-class TestComplexFunction(unittest.TestCase):
-
-    def test_both_positive(self):
-        result = complex_function(1, 1)
-        self.assertEqual(result, "Both x and y are positive")
-
-    def test_only_x_positive(self):
-        result = complex_function(1, -1)
-        self.assertEqual(result, "Only x is positive")
-
-    def test_only_y_positive(self):
-        result = complex_function(-1, 1)
-        self.assertEqual(result, "Only y is positive")
+class TestEmailValidator:
+    
+    def test_valid_email(self):
+        validator = EmailValidator()
+        result = validator.validate('user@example.com')
+        assert result['valid'] is True
+        assert result['email'] == 'user@example.com'
+        
+    def test_invalid_email_no_at(self):
+        validator = EmailValidator()
+        result = validator.validate('invalid-email')
+        assert result['valid'] is False
+        assert 'Email must contain @' in result['errors']
 ```
 
-- [EQ] Wie hoch ist die Zeilenabdeckung?
-- [EQ] Wie viele Zweige müssen getestet werden?
-- [ER] Erstellen Sie den/die fehlenden Test/s.
+[EC] Führen Sie die Tests mit Coverage aus: `pytest --cov=email_validator test_email_validator.py`
 
-- [EQ] Diskutieren Sie: Wie hoch sollte die Code Coverage aus Ihrer Sicht generell in einem Projekt sein?
-- [EQ] Diskutieren Sie: Angenommen, Sie sind Lead Entwickler und planen den Umgang mit Unittests in einem Backendlastigen
-  Python Projekt. Welche allgemeine Testabdeckung würden Sie für Ihr Team forcieren?
+[EQ] Wie hoch ist die aktuelle Coverage? Was sagt Ihnen das über die Testqualität?
+
+### Coverage-Konfiguration für eigenes Projekt
+
+Nach der Analyse bestehender Codebasis erstellen Sie nun eigene Coverage-Konfiguration.
+
+Erstellen Sie eine `pyproject.toml` für bessere Coverage-Einstellungen:
+
+```toml
+[tool.pytest.ini_options]
+addopts = "--cov=email_validator --cov-report=term-missing --cov-report=html"
+
+[tool.coverage.run]
+omit = [
+    "test_*.py",
+    "*test*.py"
+]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError"
+]
+```
+
+[EC] Führen Sie Tests erneut aus: `pytest`. Was hat sich geändert?
+
+[EC] Öffnen Sie den HTML-Report in `htmlcov/index.html`. Welche Code-Bereiche werden nicht getestet?
+
+### Systematischer Testausbau
+
+[ER] Erweitern Sie die Tests, um verschiedene Edge Cases abzudecken:
+- Leere/None-Eingaben
+- Verschiedene Domain-Validierungsfehler  
+- Blocked/Required Domains
+- Batch-Validierung
+- Internationale Zeichen
+
+[EQ] Nach dem Testausbau: Wie hat sich die Coverage verändert? Gibt es Code-Bereiche, die schwer zu testen sind?
+
+### Coverage-Kritik
+
+Jetzt werden Sie die Grenzen von Coverage-Metriken verstehen:
+
+[ER] Erstellen Sie einen Test, der 100% Line Coverage erreicht, aber trotzdem fehlerhaft ist:
+
+```python
+def test_fake_coverage():
+    """Dieser Test erreicht hohe Coverage, testet aber nichts Sinnvolles."""
+    validator = EmailValidator()
+    # Ruft alle Code-Pfade auf, aber ohne sinnvolle Assertions
+    validator.validate('')  # Empty string
+    validator.validate('user@example.com')  # Valid
+    validator.validate('invalid')  # No @
+    validator.block_domain('spam.com')
+    validator.require_domain('company.com')
+    # ... weitere Aufrufe ohne Assertions
+```
+
+[EQ] Was zeigt dieser Test über die Aussagekraft von Coverage-Metriken?
+
+[ER] Erstellen Sie jetzt einen Test mit niedriger Coverage, aber hoher Qualität:
+
+```python
+def test_security_critical_validation():
+    """Testet kritische Sicherheitsaspekte mit wenigen, aber wichtigen Assertions."""
+    validator = EmailValidator()
+    
+    # SQL Injection Attempt
+    result = validator.validate("'; DROP TABLE users; --@evil.com")
+    assert not result['valid']
+    
+    # XSS Attempt
+    result = validator.validate('<script>alert("xss")</script>@evil.com')
+    assert not result['valid']
+```
+
+### Reflexion und Best Practices
+
+[EQ] **Coverage-Ziele festlegen:** Basierend auf Ihrer Erfahrung:
+1. Welche Coverage-Ziele würden Sie für verschiedene Projekttypen setzen?
+2. Wann ist 80% Coverage besser als 95%?
+3. Welche Code-Bereiche sollten immer 100% Coverage haben?
+
+[EQ] **Quality Gates:** Stellen Sie sich vor, Sie implementieren Coverage-Requirements in einer CI/CD-Pipeline:
+1. Welche Metriken würden Sie überwachen? (Line/Branch/Function Coverage?)
+2. Bei welchen Coverage-Abfällen würden Sie Builds fehlschlagen lassen?
+3. Wie würden Sie mit Legacy-Code umgehen?
+
+[EQ] **Mutation Testing:** Research-Frage: Informieren Sie sich über "Mutation Testing" und vergleichen Sie es mit Coverage-Testing. Was sind die Vor-/Nachteile?
 
 [ENDSECTION]
 
@@ -190,108 +377,8 @@ class TestComplexFunction(unittest.TestCase):
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
-[INSTRUCTOR::Lösungshilfe]
+[INSTRUCTOR::Prüfhilfen]
 
-- [EREFC::1] `pip/pip3 install coverage`, aber auch `python3 -m pip install coverage` ist möglich.
-- [EREFC::2] Die Version sollte > 7.5.3 sein.
-- [EREFC::3] `coverage run -m unittest discover` und `coverage report`
-- [EREFC::4] Ausgabe sollte wie folgt aussehen:
-
-```bash
-Name                Stmts   Miss  Cover
----------------------------------------
-greetings.py            4      0   100%
-test_greetings.py       9      0   100%
----------------------------------------
-TOTAL                  13      0   100%
-```
-
-- [EREFR::1] Inhalt: (`omit` kann auch unter [report] stehen)
-
-```bash
-[run]
-source = .
-omit = test_*.py
-```
-
-- [EREFC::5]
-
-```bash
-Name           Stmts   Miss  Cover
-----------------------------------
-greetings.py       4      0   100%
-----------------------------------
-TOTAL              4      0   100%
-```
-
-- [EREFC::6] Wir müssen --branch ergänzen: `coverage run --branch -m unittest discover`
-
-- [EREFQ::1] Ja, es sollten weitere Testdaten verwendet werden, die spezielle Eingaben wie z.B.
-  Sonderzeichen, sehr lange Eingaben (üblic über 255 Zeichen oder auch gerne 10k), Integer oder ähnliche
-  prüfen. Auch sicherheitsrelevante Eingaben wie bei SQL Injection oder Cross Site Scripting wären sinnvoll,
-  wenn eine bestimmte Version von Python (z.B. sehr alte) genutzt wird. 
-  Bsp.: `user_input = "__import__('os').system('rm -rf /')" greet(user_input)`
-- [EREFQ::2] Weder noch.
-
-- [EREFR::2] Mögliche Unittests: (interessant sind hier Randwerte, positive udn negative Werte)
-  Ausnahembehandlungen wurden nicht geprüft. Falls ein Student das getan hat - somit Exceptions und Test
-  faile erhilt, sollte ein Lob ausgesprochen werden.
-
-```python
-import unittest
-from calculation import add, subtract, multiply, divide
-
-class TestMathOperations(unittest.TestCase):
-
-    def test_add(self):
-        self.assertEqual(add(1, 2), 3)
-        self.assertEqual(add(-1, 1), 0)
-        self.assertEqual(add(-1, -1), -2)
-
-    def test_subtract(self):
-        self.assertEqual(subtract(2, 1), 1)
-        self.assertEqual(subtract(-1, 1), -2)
-        self.assertEqual(subtract(-1, -1), 0)
-
-    def test_multiply(self):
-        self.assertEqual(multiply(2, 3), 6)
-        self.assertEqual(multiply(-1, 1), -1)
-        self.assertEqual(multiply(-1, -1), 1)
-
-    def test_divide(self):
-        self.assertEqual(divide(6, 3), 2)
-        self.assertEqual(divide(-6, 3), -2)
-        self.assertEqual(divide(-6, -3), 2)
-        with self.assertRaises(ValueError):
-            divide(1, 0)
-```
-
-- [EREFC::7]
-
-```bash
-Name             Stmts   Miss  Cover
-------------------------------------
-calculation.py      10      0   100%
-greetings.py         4      0   100%
-------------------------------------
-TOTAL               14      0   100%
-```
-
-- [EREFQ::3] Ja, Exceptions sollten geprüft werden, z.B. durch Werte wie `add(Integer, String)`.
-- [EREFQ::4] Nein, Randwerte sind entscheidend (Äquivalentklassenbildung von Testdaten)
-- [EREFQ::5] Bei 86%
-- [EREFQ::6] 6 Zweige:
-Alle haben einen Zweig, bis auf `"Neither x nor y is positive"`, hier gilt:
-Der erste Pfad tritt ein, wenn die Bedingung x <= 0 im elif-Block erfüllt ist.
-Der zweite Pfad tritt ein, wenn weder die Bedingung x > 0 noch die Bedingung elif y > 0 erfüllt sind
-und somit die Bedingung im else-Block erreicht wird.
-
-- [EREFR::3] Der letzte, der zwei Zweige abdeckt:
-
-```python
-    def test_neither_positive(self):
-        result = complex_function(-1, -1)
-        self.assertEqual(result, "Neither x nor y is positive")
-```
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
