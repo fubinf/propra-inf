@@ -279,7 +279,8 @@ hund.sprechen();  // "Bello macht ein Geräusch."
 
 ```
 
-Hier passiert intern Folgendes:  
+Hier passiert intern Folgendes: 
+
 1. JavaScript sucht bei `hund.sprechen()` nach einer Methode `sprechen` im Objekt `hund`.  
 2. Sie wird dort nicht gefunden → JavaScript schaut im Prototyp von `hund`, also in `Hund.prototype`.  
 3. Auch dort nicht gefunden → JavaScript folgt der Prototyp-Kette weiter zu `Tier.prototype`.  
