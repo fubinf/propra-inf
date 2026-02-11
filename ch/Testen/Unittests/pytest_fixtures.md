@@ -1,4 +1,4 @@
-title: Fixtures mit dem Pytest Framework
+title: Fixtures mit dem Pytest-Framework
 stage: alpha
 timevalue: 3
 difficulty: 2
@@ -6,26 +6,25 @@ assumes: m_pytest
 ---
 
 [SECTION::goal::idea]
-
 Ich kann Fixtures mit dem Pytest Framework anwenden.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+
+[SECTION::background::default]
 Oftmals benötigt ein Test, dass bestimmte Voraussetzungen hergestellt werden.
 Fixtures sind ein zentrales Konzept in Pytest, das es ermöglicht,
 wiederverwendbaren Code zur Vor- und Nachbereitung (Setup und Teardown) von Tests bereitzustellen.
 Somit sind sie insbesondere dafür geeignet, um Testdaten bereitzustellen.
-
 [ENDSECTION]
-[SECTION::instructions::detailed]
 
+
+[SECTION::instructions::detailed]
 Nutzen Sie die Übersicht
 [Pytest Fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
 parallel zum Bearbeiten der Aufgaben.
-Wir betrachten zu erst das Grundlegende.
+Wir betrachten zuerst das Grundlegende.
 
-#### Das Problem ohne Fixtures
+### Das Problem ohne Fixtures
 
 Betrachten Sie folgenden Testcode für eine Webanwendung:
 
@@ -66,24 +65,21 @@ def test_user_login():
 
 [EQ] Welche Probleme erkennen Sie in diesem Code? Notieren Sie mindestens 3 Probleme.
 
-#### Das Fixture-Konzept entdecken
 
-Pytest löst die von Ihnen erkannten Probleme mit "Fixtures".
+### Das Fixture-Konzept entdecken
 
-Mit Fixtures werden Sie im folgenden Wiederverwendbare Setup-Komponenten kennenlernen.
-Sehen, dass ,man jedem Test `frische` Ressourcen mitgeben kann und in Tests nur wirklich deklarieren,
-was sie brauchen. Aber auch, dass man damit die Setup-Logik von Test-Logik trennen kann.
+Pytest löst die Schwächen des obigen Codes mit "Fixtures".
+
+Fixtures sind wiederverwendbare Setup-Komponenten.
+Sie werden sehen, wie man damit jedem Test "frische" Ressourcen so mitgeben kann, 
+dass Tests nur deklarieren müssen, was sie brauchen; es ist kein einziges zusätzliches Statement nötig. 
+Zugleich kann man damit die Setup-Logik übersichtlich von der Test-Logik trennen.
 
 Erstellen Sie die Datei `test_discovery.py` und implementieren Sie die folgenden Tests  
 mit einer einfachen Klasse:
 
-[NOTICE]
-Hier wird der Begriff Mock verwendet. Das Thema Mocking wird ebenfalls in diesem Kapitel behandelt,
-hat hier aber keine aktive Anwendung.
-[ENDNOTICE]
-
 ```python
-class MockUserService:
+class PseudoUserservice:
     def __init__(self):
         self.users = {}
     
@@ -100,12 +96,12 @@ class MockUserService:
         return type('Result', (), {'success': False})()
 
 def test_user_registration():
-    service = MockUserService()
+    service = PseudoUserservice()
     result = service.register("alice", "alice@test.com", "password123") 
     assert result.success == True
 
 def test_user_login():
-    service = MockUserService()
+    service = PseudoUserservice()
     service.register("alice", "alice@test.com", "password123")  # Pre-condition
     result = service.login("alice", "password123")
     assert result.success == True
@@ -113,23 +109,26 @@ def test_user_login():
 
 [EQ] Führen Sie die Tests aus. Sie funktionieren, aber was stört Sie daran?
 
-#### Erste Fixture: Das Setup Problem lösen
+
+#### Setup deklarativ machen
 
 Pytest Fixtures lösen das Problem mit einem `Setup`.
 
 ```python
 @pytest.fixture
 def user_service():
-    return MockUserService()
+    return PseudoUserservice()
 
 def test_user_registration(user_service):
-    # Testinhalt
+    ...
 ```
 
 [ER] Ergänzen Sie Ihre `test_discovery.py`, um diese Fixture und modifizieren Sie beide Tests,  
 um die Fixture zu nutzen.
 
-[EQ] Was haben Sie gewonnen, was haben Sie verloren?
+[EQ] Stellen Sie sich eine Testdatei mit Dutzenden Tests verschiedener Art vor.
+Welchen Vorteil kann es haben, wenn die verwendeten Testobjekte in der Signatur zu erkennen sind?
+
 
 #### Das Isolationsproblem demonstrieren
 
@@ -168,7 +167,7 @@ Ersetzen Sie jetzt die Fixture durch folgenden Teil:
 ```python
 @pytest.fixture(scope="module")
 def user_service():
-    return MockUserService()
+    return PseudoUserservice()
 ```
 
 Führen Sie die Test erneut aus.
@@ -206,7 +205,7 @@ Fügen Sie folgende Fixtures zu Ihrer Datei hinzu:
 ```python
 @pytest.fixture(scope="function")
 def function_service():
-    return MockUserService()
+    return PseudoUserservice()
 
 def test_function_scope_1(function_service):
     print("test_function_scope_1 läuft")
@@ -412,7 +411,7 @@ Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures:
 ```python
 import pytest
 
-class MockUserService:
+class PseudoUserservice:
     def __init__(self):
         self.users = {}
         print(f"Neuer UserService erstellt (ID: {id(self)})")
@@ -426,7 +425,7 @@ class MockUserService:
 @pytest.fixture
 def fresh_user_service():
     """Frischer UserService für jeden Test."""
-    return MockUserService()
+    return PseudoUserservice()
 ```
 
 Erstellen Sie eine zweite Testdatei `test_sharing.py`:
@@ -477,9 +476,11 @@ Pytest bringt viele eingebaute Fixtures mit. Hier sind drei wichtige:
 
 - `tmp_path`: Temporäre Dateien/Verzeichnisse für File-IO-Tests
 - `capsys`: Output-Testing, Debug-Ausgaben validieren
-- `monkeypatch`: Zeit, Umgebungsvariablen, externe APIs mocken
+- `monkeypatch`: Zeit, Umgebungsvariablen, externe APIs durch Attrappen ersetzen
 
-[EQ] In welchen Testszenarien würden Sie sie einsetzen?
+Lesen Sie grob nach, was jede davon tut.
+
+[EQ] Skizzieren Sie für jede der drei ein Testszenario, in dem Ihnen der Einsatz sinnvoll erscheint.
 
 Experimentieren Sie mit eingebauten Fixtures:
 
@@ -507,11 +508,10 @@ def test_capsys_experiment(capsys):
 
 Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
 
-[EQ] **Fixture-Philosophie:** Fixtures verändern die Art, wie Sie über Tests denken - weg von
-"Setup-Code schreiben" hin zu "Dependencies deklarieren".
-Können Sie sich vorstellen intensiv mit Fixtures zu arbeiten, oder scheint Ihnen das Ganze doch
-zu unübersichtlich zu sein?
-
+[EQ] Fixtures verändern die Art, wie Sie über Tests nachdenken:
+weg von "Setup-Code schreiben" hin zu "Dependencies deklarieren".
+Die eigentliche Testlogik wird damit sehr viel besser erkennbar.
+Welcher Nachteil steht dem gegenüber?
 [ENDSECTION]
 
 [SECTION::submission::trace]
