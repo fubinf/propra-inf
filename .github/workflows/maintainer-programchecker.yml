@@ -14,17 +14,11 @@ jobs:
     steps:
     - name: Install system dependencies for Debian 12
       run: |
-        apt-get update
-        apt-get install -y \
-          bash \
-          git \
-          curl \
-          ca-certificates \
-          jq \
-          nodejs \
-          npm \
-          python3.11 \
-          python3.11-venv
+        apt-get update -qq
+        apt-get install -y -qq \
+          bash git curl ca-certificates jq \
+          nodejs npm \
+          python3.11 python3.11-venv > /dev/null
         ln -s /usr/bin/python3.11 /usr/bin/python
 
     - name: Checkout propra-inf repository
@@ -44,24 +38,15 @@ jobs:
       run: |
         python -m venv /tmp/sedrila_venv
         source /tmp/sedrila_venv/bin/activate
-        python -m pip install --upgrade pip
-        # Install sedrila dependencies from pyproject.toml
-        cd sedrila && pip install -e . && cd ..
+        python -m pip install -q --upgrade pip
+        cd sedrila && pip install -q -e . && cd ..
 
-    - name: Collect and display metadata
+    - name: Collect metadata
       shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
-        python sedrila/py/sedrila.py maintainer --log ERROR --collect -o /tmp/metadata.json 2>/dev/null || echo '{"lang": [], "tasks": {}}' > /tmp/metadata.json
-        echo "Collected metadata:"
-        cat /tmp/metadata.json
-        echo ""
-        echo "=== Language Requirements ==="
-        jq -r '.lang[]?' /tmp/metadata.json || echo "No language requirements specified"
-        echo ""
-        echo "=== Tasks and Dependencies ==="
-        jq -r '.tasks | to_entries[] | "\(.key): deps: \(.value.deps | @json)"' /tmp/metadata.json || echo "No task dependencies specified"
-        echo ""
+        python sedrila/py/sedrila.py maintainer --log ERROR --collect -o /tmp/metadata.json 2>/dev/null || echo '{"lang": [], "deps": [], "tasks": {}}' > /tmp/metadata.json
+        echo "Lang: $(jq -r '.lang | length' /tmp/metadata.json) commands, Deps: $(jq -r '.deps | length' /tmp/metadata.json) commands, Tasks: $(jq -r '.tasks | length' /tmp/metadata.json)"
 
     - name: Install language runtimes and task dependencies globally
       shell: bash
@@ -103,24 +88,6 @@ jobs:
 
         echo ""
         echo "All language runtimes and dependencies installed successfully"
-
-    - name: Verify installed tools
-      shell: bash
-      run: |
-        echo "=== Installed Tools in /usr/local/bin ==="
-        if [ -d "/usr/local/bin" ]; then
-          ls -1 /usr/local/bin 2>/dev/null | head -20 || echo "  [empty or not found]"
-        else
-          echo "  [directory not found]"
-        fi
-        echo ""
-
-        echo "=== Installed Tools in /usr/bin (language/build tools) ==="
-        ls -1 /usr/bin 2>/dev/null | grep -E "^(go|python|node|npm|java|gcc|g\+\+|make|rustc|ruby|php)" | head -20 || echo "  [no relevant tools found]"
-        echo ""
-
-        echo "=== Current PATH ==="
-        echo "$PATH"
 
     - name: Run program checks
       shell: bash
