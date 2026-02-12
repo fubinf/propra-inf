@@ -1,0 +1,142 @@
+name: Maintainer-ProgramChecker-Multicontainer
+
+on:
+  schedule:
+    # Run every Sunday at 04:00 UTC (offset from single-container version)
+    - cron: '0 4 * * 0'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  check-example-programs:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - container: debian:bookworm
+            python_pkg: python3.11
+            python_bin: python3.11
+          - container: debian:trixie
+            python_pkg: python3.12
+            python_bin: python3.12
+          - container: ubuntu:24.04
+            python_pkg: python3.12
+            python_bin: python3.12
+    container: ${{ matrix.container }}
+
+    steps:
+    - name: Install system dependencies
+      run: |
+        apt-get update -qq
+        apt-get install -y -qq \
+          bash git curl ca-certificates jq \
+          nodejs npm \
+          ${{ matrix.python_pkg }} ${{ matrix.python_pkg }}-venv > /dev/null
+        ln -sf /usr/bin/${{ matrix.python_bin }} /usr/bin/python
+
+    - name: Checkout propra-inf repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        token: ${{ secrets.SUBMODULE_TOKEN }}
+
+    - name: Checkout sedrila repository
+      uses: actions/checkout@v4
+      with:
+        repository: fubinf/sedrila
+        path: sedrila
+
+    - name: Create and activate Python virtual environment
+      shell: bash
+      run: |
+        python -m venv /tmp/sedrila_venv
+        source /tmp/sedrila_venv/bin/activate
+        python -m pip install -q --upgrade pip
+        cd sedrila && pip install -q -e . && cd ..
+
+    - name: Collect metadata
+      shell: bash
+      run: |
+        source /tmp/sedrila_venv/bin/activate
+        python sedrila/py/sedrila.py maintainer --log ERROR --collect -o /tmp/metadata.json 2>/dev/null || echo '{"lang": [], "deps": [], "tasks": {}}' > /tmp/metadata.json
+        echo "Lang: $(jq -r '.lang | length' /tmp/metadata.json) commands, Deps: $(jq -r '.deps | length' /tmp/metadata.json) commands, Tasks: $(jq -r '.tasks | length' /tmp/metadata.json)"
+
+    - name: Install language runtimes and task dependencies globally
+      shell: bash
+      run: |
+        set -e
+
+        source /tmp/sedrila_venv/bin/activate
+
+        echo "=== Installing Language Runtimes ==="
+
+        # Lang commands are already deduplicated by sedrila --collect
+        LANG_CMDS=$(jq -r '.lang[]?' /tmp/metadata.json 2>/dev/null)
+        if [ -z "$LANG_CMDS" ] || [ "$LANG_CMDS" = "null" ]; then
+          echo "[No language runtimes to install]"
+        else
+          while IFS= read -r cmd; do
+            if [ ! -z "$cmd" ]; then
+              echo "Executing: $cmd"
+              eval "$cmd" || true
+            fi
+          done <<< "$LANG_CMDS"
+        fi
+
+        echo ""
+        echo "=== Installing Task-Specific Dependencies ==="
+
+        # Deps commands are already deduplicated by sedrila --collect
+        DEPS_CMDS=$(jq -r '.deps[]?' /tmp/metadata.json 2>/dev/null)
+        if [ -z "$DEPS_CMDS" ] || [ "$DEPS_CMDS" = "null" ]; then
+          echo "[No dependencies to install]"
+        else
+          while IFS= read -r cmd; do
+            if [ ! -z "$cmd" ]; then
+              echo "Executing: $cmd"
+              eval "$cmd" || true
+            fi
+          done <<< "$DEPS_CMDS"
+        fi
+
+        echo ""
+        echo "All language runtimes and dependencies installed successfully"
+
+    - name: Run program checks
+      shell: bash
+      run: |
+        source /tmp/sedrila_venv/bin/activate
+        python sedrila/py/sedrila.py maintainer \
+          --check-programs \
+          --batch \
+          /tmp/progcheck
+      continue-on-error: false
+
+    - name: Process and publish program check report
+      if: always()
+      run: |
+        echo "=== Program Check Summary (${{ matrix.container }}) ==="
+        REPORT_MD="/tmp/progcheck_i/program_test_report.md"
+        if [ -f "$REPORT_MD" ]; then
+          echo "Markdown report available:"
+          ls -la "$REPORT_MD"
+          echo ""
+          echo "Report preview:"
+          head -40 "$REPORT_MD"
+          echo ""
+          echo "Publishing to job summary..."
+          echo "## Results: ${{ matrix.container }}" >> "$GITHUB_STEP_SUMMARY"
+          cat "$REPORT_MD" >> "$GITHUB_STEP_SUMMARY"
+        else
+          echo "## Results: ${{ matrix.container }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "No markdown report found" >> "$GITHUB_STEP_SUMMARY"
+        fi
+
+    - name: Upload program check reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: program-check-reports-${{ matrix.container }}
+        path: |
+          /tmp/progcheck_i/program_test_report.md
+        retention-days: 90
