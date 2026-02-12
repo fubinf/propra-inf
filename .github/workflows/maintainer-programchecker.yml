@@ -72,8 +72,8 @@ jobs:
 
         echo "=== Installing Language Runtimes ==="
 
-        # Collect all unique lang commands and install them
-        LANG_CMDS=$(jq -r '.lang[]?' /tmp/metadata.json 2>/dev/null | sort | uniq)
+        # Lang commands are already deduplicated by sedrila --collect
+        LANG_CMDS=$(jq -r '.lang[]?' /tmp/metadata.json 2>/dev/null)
         if [ -z "$LANG_CMDS" ] || [ "$LANG_CMDS" = "null" ]; then
           echo "[No language runtimes to install]"
         else
@@ -88,8 +88,8 @@ jobs:
         echo ""
         echo "=== Installing Task-Specific Dependencies ==="
 
-        # Collect all unique deps commands and install them
-        DEPS_CMDS=$(jq -r '.tasks[].deps[]?' /tmp/metadata.json 2>/dev/null | sort | uniq)
+        # Deps commands are already deduplicated by sedrila --collect
+        DEPS_CMDS=$(jq -r '.deps[]?' /tmp/metadata.json 2>/dev/null)
         if [ -z "$DEPS_CMDS" ] || [ "$DEPS_CMDS" = "null" ]; then
           echo "[No dependencies to install]"
         else
