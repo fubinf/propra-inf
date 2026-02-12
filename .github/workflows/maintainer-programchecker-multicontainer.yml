@@ -16,12 +16,15 @@ jobs:
           - container: debian:bookworm
             python_pkg: python3.11
             python_bin: python3.11
+            artifact_id: debian-bookworm
           - container: debian:trixie
-            python_pkg: python3.12
-            python_bin: python3.12
+            python_pkg: python3.11
+            python_bin: python3.11
+            artifact_id: debian-trixie
           - container: ubuntu:24.04
-            python_pkg: python3.12
-            python_bin: python3.12
+            python_pkg: python3.11
+            python_bin: python3.11
+            artifact_id: ubuntu-24.04
     container: ${{ matrix.container }}
 
     steps:
@@ -136,7 +139,7 @@ jobs:
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: program-check-reports-${{ matrix.container }}
+        name: program-check-reports-${{ matrix.artifact_id }}
         path: |
           /tmp/progcheck_i/program_test_report.md
         retention-days: 90
