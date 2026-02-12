@@ -18,12 +18,12 @@ jobs:
             python_bin: python3.11
             artifact_id: debian-bookworm
           - container: debian:trixie
-            python_pkg: python3.11
-            python_bin: python3.11
+            python_pkg: python3.13
+            python_bin: python3.13
             artifact_id: debian-trixie
           - container: ubuntu:24.04
-            python_pkg: python3.11
-            python_bin: python3.11
+            python_pkg: python3.12
+            python_bin: python3.12
             artifact_id: ubuntu-24.04
     container: ${{ matrix.container }}
 
@@ -34,7 +34,7 @@ jobs:
         apt-get install -y -qq \
           bash git curl ca-certificates jq \
           nodejs npm \
-          ${{ matrix.python_pkg }} ${{ matrix.python_pkg }}-venv > /dev/null
+          ${{ matrix.python_pkg }} ${{ matrix.python_pkg }}-venv ${{ matrix.python_pkg }}-dev > /dev/null
         ln -sf /usr/bin/${{ matrix.python_bin }} /usr/bin/python
 
     - name: Checkout propra-inf repository
