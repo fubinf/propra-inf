@@ -246,7 +246,7 @@ chapters:
       - name: Go-cog
       - name: Python-mlh
       - name: Python-linkcheck
-      - name: Sedricoin
+      - name: Python-Sedricoin
   - name: Feedback
     taskgroups:
       - name: ProPra-Mängel
