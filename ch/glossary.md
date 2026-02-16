@@ -1504,7 +1504,7 @@ Dieses Verzeichnis speichert alle Informationen über ein Repository.
 D.h. sowohl *alle* Versionen der Dateien im Repo als auch alle Metainformationen wie z.B. 
 Commits oder Branch- und Tagnamen. 
 Die Arbeitskopien eines Repos liegen außerhalb des Repository-Verzeichnisses und werden als 
-[TERMREF::Arbeitsverzeichnis] bzw. Working-Directory bezeichnet.
+Arbeitsverzeichnis bzw. Working-Directory ("workdir") bezeichnet.
 [ENDTERM]
 
 
@@ -1624,7 +1624,7 @@ Ein Snapshot ist das mentale Modell dafür, wie Git Inhalte speichert:
 anstatt nur Änderungen (Deltas) zu speichern, legt Git vollständige Abbilder aller getrackten 
 Dateien zum Zeitpunkt eines Commits ab.
 
-Diese Abbilder bestehen aus Verweisen auf [TERMREF::Blob]-Objekte, die in einem Tree-Objekt 
+Diese Abbilder bestehen aus Verweisen auf [TERMREF2::Blob (git)::Blob]-Objekte, die in einem Tree-Objekt 
 organisiert sind.
 
 Ein Commit ist also nicht einfach nur eine Änderung, sondern eine vollständige Momentaufnahme 
