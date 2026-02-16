@@ -1,6 +1,6 @@
 title: Whitebox-Testing - Testmethodik und Anwendung mit pytest
 stage: alpha
-timevalue: 1.0
+timevalue: 1.5
 difficulty: 3
 assumes: m_pytest, pytest-Methodik-Blackbox
 ---
@@ -55,7 +55,7 @@ Typische Whitebox-Testkriterien:
       return "minor"           # Zeile 4: Ausführbar (return-Statement)
   ```
   **Ein** Test mit `age=20` erreicht bereits 100% Anweisungsüberdeckung (alle ausführbaren Zeilen durchlaufen).
-- **Bedingungsüberdeckung** (condition coverage, C₁): **Jede atomare (unteilbare) Teilbedingung** wird sowohl True als auch False.
+- **Bedingungsüberdeckung** (condition coverage, C₁): **Jede atomare (unteilbare) Teilbedingung** wird sowohl True als auch False ausgewertet.
   
   **Wichtig - "atomar" bedeutet:** Bei `if age >= 18 and income > 30000:` gibt es **zwei** atomare Bedingungen:
   - `age >= 18` muss einmal True und einmal False werden  
@@ -116,7 +116,7 @@ Typische Whitebox-Testkriterien:
   ```
   **Vier Pfade:** (True,True), (True,False), (False,True), (False,False) → **4 Tests** erforderlich.
   
-  **Schleifen-Problematik:** Schleifen sind besonders **fehleranfällig** und erfordern spezielle Behandlung:
+  **Schleifen-Problematik:** Schleifen führen zu **exponentieller Pfadanzahl** und erfordern daher spezielle Behandlung:
   ```python
   def process_items(items, threshold):
       count = 0
@@ -273,7 +273,7 @@ nicht.
 `(a > 10, b < 5)` und erstellen Sie Testfälle, sodass jede davon einmal `True` und einmal `False` ergibt.
 Hilfreich zur Erkennung von falsch gesetzten oder überflüssigen Bedingungen.
 
-**Beispiel** Wenn eine Funktion prüft `if price > 100`, brauchen Sie Testfälle für `price > 100` und
+**Beispiel** Wenn eine Funktion prüft `if price > 100`, benötigen Sie Testfälle für `price > 100` und
 `price <= 100`.
 
 - [ER] Schreiben Sie eine pytest-Testfunktion `test_condition_coverage_binary_search()`, die sicherstellt, dass
@@ -289,7 +289,7 @@ oder `else`-Richtung einen passenden Testfall.
 So kann man sicherstellen, dass sowohl der positive als auch der negative Pfad tatsächlich getestet
 wurde.
 
-**Beispiel** Für `if is_member:` brauchst du Testfälle mit `is_member = True` und `is_member = False`.
+**Beispiel** Für `if is_member:` benötigen Sie Testfälle mit `is_member = True` und `is_member = False`.
 
 - [ER] Schreiben Sie eine pytest-Testfunktion `test_branch_coverage_cocktail_sort()`, die sicherstellt, dass
   jede Verzweigung in der Funktion `cocktail_shaker_sort(..)` mindestens einmal durchlaufen wird.
@@ -347,13 +347,14 @@ Dies hilft besonders bei der Fehlersuche in komplexer Logik.
 - **All-Uses**: Jede Verwendung einer Variable wird mindestens einmal von jeder möglichen Definition erreicht
 - **All-Def-Use-Paths**: Alle möglichen Pfade von Definitionen zu Verwendungen werden getestet
 
-**Beispiel** In der Funktion `discount(...)` wird price mehrfach geprüft und verwendet.
-Ziel ist es sicherzustellen, dass jede Zuweisung (z. B. über Rückgabewerte) auch getestet und
-genutzt wurde.
+**Beispiel** In der Funktion `binary_search_recur(...)` werden Parameter wie `low`, `high` und `val`
+mehrfach verwendet und modifiziert.
+Ziel ist es sicherzustellen, dass jede Zuweisung (z. B. bei der Berechnung von `mid` oder in
+rekursiven Aufrufen) auch getestet und genutzt wurde.
 
 - [ER] Analysieren Sie die Variablen in beiden Funktionen und erstellen Sie:
-  - `test_dataflow_bonus()` für die Analyse des Datenflusses in der `bonus` Funktion
-  - `test_dataflow_discount()` für die Analyse des Datenflusses in der `discount` Funktion
+  - `test_dataflow_binary_search()` für die Analyse des Datenflusses in der `binary_search_recur` Funktion
+  - `test_dataflow_cocktail_sort()` für die Analyse des Datenflusses in der `cocktail_shaker_sort` Funktion
 
 [HINT::Vereinfachte Datenflussanalyse]
 Für Einsteiger ist es oft ausreichend, zu testen, dass:
@@ -494,7 +495,7 @@ Das Thema Coverage-Tools ist ebenfalls Bestandteil in diesem Kurs und kann im An
 
 [ENDSECTION]
 
-[SECTION::submission::trace]
+[SECTION::submission::program,information]
 
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
