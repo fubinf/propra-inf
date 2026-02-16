@@ -66,7 +66,8 @@ deshalb bei uns weiblich.
     - Beginnen Sie mit `# Angebot <datum>`, z.B. `# Angebot 2026-07-19` (mit aktuellem Datum)
     - Für jede zu bearbeitende Issue fügen Sie eine Level-2-Überschrift im Markdown ein
       mit der Issue-Nummer, dem Issue-Namen und dem geplanten Zeitaufwand, z.B.:  
-      `## #123: author: Crashes on full moon (9h)`
+      `## #123: author: Crashes on full moon (9h)`  
+      (Achten Sie darauf, dass Issue-Nummern nie am Textanfang stehen, sonst wird eine H1-Überschrift daraus.) 
     - Für Issues mit einem eindeutigen, scharf definierten Profil notieren Sie im Rumpf des
       Abschnitts einfach "Wird erledigt".
     - Für Issues mit einem offene(re)n Zuschnitt, bei denen man von einem umfangreichen Problem
@@ -181,7 +182,7 @@ aus dem Entwicklungszweig Z heraus zusammenstellen:
 - Ergänzen Sie in Ihrer Markdowndatei einen Abschnitt  
   `# Vorlage Arbeitsergebnisse <datum>`  
   und listen Sie darin die URLs zu Ihren PRs auf, jeweils mit der Issue-Nummer, z.B.  
-  `- #47: https://github.com/fubinf/sedrila/pull/123`
+  `- Issue #47: https://github.com/fubinf/sedrila/pull/123`
 - Machen Sie dann die Abgabe wie unten beschrieben.
 
 
@@ -210,7 +211,9 @@ aus dem Entwicklungszweig Z heraus zusammenstellen:
   Ihrer Markdown-Datei einen Abschnitt    
   `# Erzielte Übereinkunft <datum>`  
   und listen Sie darin die akzeptierten PRs mit dem akzeptierten Zeitwert auf, z.B.  
-  `- #47 (5h): https://github.com/fubinf/sedrila/pull/123`
+  `- #47 (5h): https://github.com/fubinf/sedrila/pull/123`  
+  Vielleicht macht diesen Schritt sogar gleich die Kundin, falls alles akzeptiert ist oder
+  sie keine Nachbesserungen mehr wünscht.
 - Ergänzen Sie ferner einen letzten Abschnitt  
   `# Reflektion <datum>`  
   und beantworten Sie darin folgende Fragen:  
