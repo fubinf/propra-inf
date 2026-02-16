@@ -136,8 +136,7 @@ Dieser ist insofern besonders, da er keinen Vorgänger hat, auf den referenziert
 In Bitcoin und vielen anderen Blockchains wird er deswegen explizit in den Code geschrieben
 und nicht generiert.
 
-Setzen Sie dies nun in Sedricoin um.
-Nutzen Sie daher diesen Genesis Block an der notwendigen Stelle.
+Nutzen Sie diesen Genesis Block an der notwendigen Stelle.
 
 ```json
 {
