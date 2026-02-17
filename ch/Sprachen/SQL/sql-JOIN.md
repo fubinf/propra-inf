@@ -1,6 +1,6 @@
 title: Zusammenführen von Tabellen mittels JOIN
-stage: beta
-timevalue: 2.0
+stage: alpha
+timevalue: 2
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2
 ---
