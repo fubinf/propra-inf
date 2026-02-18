@@ -37,7 +37,7 @@ Die gängigsten Anwendungsfälle für Konditionale sind:
   gerade die Version für X übersetzen.
   Für diesen sehr häufigen Fall stellen alle gängigen C-Übersetzer vordefinierte Makros
   bereit.
-- Ein Programm kann zusätzliche Debugging-Funktionen erhalten, welche zur Übersetzungezeit
+- Ein Programm kann zusätzliche Debugging-Funktionen erhalten, welche zur Übersetzungszeit
   optional hinzugefügt oder weggelassen werden sollen.
 - Sie schreiben ein Programm, welches die Implementierung gewisser Funktionen anpasst, je nachdem
   welche Features eine benutzte Bibliothek bereitstellt.
