@@ -7,14 +7,14 @@ assumes: go-functions
 
 [SECTION::goal::idea,experience]
 Ich habe meine ersten Goroutinen gestartet und verstanden, wie sich die Programmausführung ändert,
-wenn Code nicht mehr streng sequentiell abläuft.
+wenn Code nicht mehr streng sequenziell abläuft.
 [ENDSECTION]
 
 
 [SECTION::background::default]
 Fast alle modernen Rechner sind mit Mehrkernprozessoren ausgestattet und bieten Möglichkeiten,
 die wir als Programmierer_innen nutzen wollen.
-Nicht-sequentielle Programmierung erfolgt in Go mithilfe von __Goroutinen__ — unabhängigen Ausführungspfaden,
+Nicht-sequenzielle Programmierung erfolgt in Go mithilfe von __Goroutinen__ — unabhängigen Ausführungspfaden,
 die jeweils eigene Aufgaben übernehmen.
 
 __Anmerkung:__ Goroutinen allein reichen nicht aus, um echte nebenläufige Programme in Go zu schreiben;
@@ -151,7 +151,7 @@ Hier sammeln wir nun einige weitere Begriffe, die im Kontext von Nebenläufigkei
    Sie sind für das Betriebssystem komplett unsichtbar und leichter als OS-Threads, weil ihre Erzeugung
    und ihr Kontextwechsel keinen Sprung zwischen Kernel- und Benutzerraum benötigen.
 
-In der Praxis begegnet man noch anderen Bezeichnungen für „Threads, die keine OS-Threads sind“.
+In der Praxis begegnet man noch anderen Bezeichnungen für Threads, die keine OS-Threads sind.
 Diese werden heute oft synonym verwendet und sind im Grunde verschiedene Sorten von _User Threads_:
 
 - __Green Threads__:
@@ -167,19 +167,12 @@ Diese werden heute oft synonym verwendet und sind im Grunde verschiedene Sorten 
   in Go nicht.
   Außerdem sind die Stacks von Goroutinen zu Beginn sehr klein — nur 2 KB.
 
-__Anmerkung__: Es gibt noch weitere Begriffe, etwa
-[Fibers](https://en.wikipedia.org/wiki/Fiber_(computer_science))
-oder
-[Protothreads](https://en.wikipedia.org/wiki/Protothread#:~:text=A%20protothread%20is%20a%20low,the%20order%20of%20single%20bytes).
-Eine vertiefte Auseinandersetzung ist für diese Aufgabe jedoch kaum nötig, weil sich dieses Wissen
-in Go kaum anwenden lässt.
-
 [FOLDOUT::Tiefenwissen: Scheduler Details]
 Wenn Sie genau wissen wollen, wie der Go-Scheduler die Last verteilt („Work Stealing“), empfehlen wir die Artikel:
 ["Understanding the Go Scheduler"](https://rickkoch.github.io/posts/go-scheduler/)
 oder
 ["Go's work-stealing scheduler"](https://rakyll.org/scheduler/).
-Dies ist für den Einstieg nicht zwingend nötig.
+Für unsere Aufgaben hier sind diese Quellen nicht nötig.
 [ENDFOLDOUT]
 
 <!-- time estimate: 15 min -->
