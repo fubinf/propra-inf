@@ -28,4 +28,5 @@
   Aufgabegruppe Web/[PARTREF::JavaScript] mit zunächst 3 Aufgaben zugefügt.
 - **2026-01-13** Aufgabe Sprachen/Go/[PARTREF::go-structs2] zugefügt
 - **2026-02-03** Aufgabe Web/JavaScript/[PARTREF::js-Klassen] zugefügt.
+- **2026-02-18** Aufgabe Bibliotheken/Frameworks/[PARTREF::FastAPI-Dependency-Injection] zugefügt.
 - ...
