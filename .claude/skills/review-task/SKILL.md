@@ -10,6 +10,14 @@ Gib die Ergebnisse in zwei Listen aus (schwerwiegend, geringfügig),
 mit gerade genug Erläuterung, um das Problem zu verstehen.
 Nenne bei jedem Befund die Zeilennummer(n).
 
+Falls ein URL mit angegeben ist, sollte das die zur Aufgabe gehörige Issue sein.
+Rufe diese ab und prüfe, ob die ggf. dort behaupteten letzten Nachbesserungsschritte
+passend erfolgt sind.
+Weise auf Kritikpunkte aus einem ggf. früheren Review nur dann erneut hin,
+wenn sie bei der Überarbeitung gar nicht beachtet wurden oder grob unzureichend
+korrigiert worden sind -- wir wollen eine "im Wesentlichen gute" Aufgabenqualität erreichen,
+nicht eine perfekte.
+
 ---
 
 ## A. Inhaltliche Probleme
