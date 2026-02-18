@@ -32,9 +32,9 @@ The generated website appears in `out/` (student version) and `out/instructor/` 
   - Tasks are individual `.md` files following the template structure
 - **altdir/**: Alternative content directory (git submodule) containing:
   - `ch/`: Include files containing non-public, instructor-only content;
-    parallels `ch/**`.
+    parallels `ch/**`. Accessed via `[INCLUDE::ALT:...]` and `[PROT::ALT:...]` macro calls.
   - `itree.zip/`: Instructor tree with solution files, command protocols, source code examples;
-    mostly parallels `ch/**`.
+    mostly parallels `ch/**`. Accessed via `[INCLUDE::ITREE:...]` macro calls.
 - **baseresources/**: Base resources for the website (CSS, etc.)
 - **process/**: Development documentation
   - `how-to.md`: Comprehensive guide for authors and instructors
