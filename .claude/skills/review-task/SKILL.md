@@ -6,9 +6,12 @@ description: Begutachte eine Task oder eine Taskgroup-Indexseite
 
 Reviewe die in $ARGUMENTS angegebene Aufgabendatei (oder Taskgroup-Indexseite).
 Lies zuerst die Datei, dann wende die untenstehenden Heuristiken an.
-Gib die Ergebnisse in zwei Listen aus (schwerwiegend, geringfügig),
+Gib die Ergebnisse in GitHub-Markdown-Syntax in zwei Listen aus 
+(schwerwiegend, geringfügig, je mit H3-Überschrift, durchgehend wie eine einzige Liste nummeriert),
 mit gerade genug Erläuterung, um das Problem zu verstehen.
 Nenne bei jedem Befund die Zeilennummer(n).
+Beginne jeden Satz auf einer neuen Zeile und packe den ganzen Satz auf diese Zeile.
+Setze technische Syntax in Backquotes.
 
 Falls ein URL mit angegeben ist, sollte das die zur Aufgabe gehörige Issue sein.
 Rufe diese ab und prüfe, ob die ggf. dort behaupteten letzten Nachbesserungsschritte
@@ -16,7 +19,8 @@ passend erfolgt sind.
 Weise auf Kritikpunkte aus einem ggf. früheren Review nur dann erneut hin,
 wenn sie bei der Überarbeitung gar nicht beachtet wurden oder grob unzureichend
 korrigiert worden sind -- wir wollen eine "im Wesentlichen gute" Aufgabenqualität erreichen,
-nicht eine perfekte.
+nicht eine perfekte. 
+Ein Vergleich der Aufgabe mit früheren Dateirevisionen in git sollte i.d.R. nicht nötig sein.
 
 ---
 
