@@ -211,7 +211,7 @@ Sie sind das wirksamste Mittel für hohe Produktivität bei der Softwareentwickl
 
 
 [TERM::Binder|Linker]
-Der Binder ist ein Programm, welches aus mehreren [TERMREF::Objekt-Dateien]
+Der Binder ist ein Programm, welches aus mehreren [TERMREF2::Objekt-Datei::-en]
 eine ausführbare Datei erzeugt.
 Konkret findet sich dies bei [TERMREF2::Bibliothek::-en], deren Bestandteile
 mittels des Binders in ein Programm eingebunden wird.
