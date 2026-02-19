@@ -344,7 +344,8 @@ Sie sparen Speicher und erhalten dennoch die Sicherheit, überall den selben Wer
 [ER] Fügen Sie `#define ARRAY_SIZE 101` unterhalb der `#include`s ein.
 
 [ER] Ersetzen Sie alle Vorkommnisse des Wertes (101) durch den Bezeichner `ARRAY_SIZE`,
-aus `bool isNotPrime[100];` wird `bool isNotPrime[ARRAY_SIZE];`
+aus `bool isNotPrime[100];` wird 
+<!-- sedrila: macros off -->`bool isNotPrime[ARRAY_SIZE];`<!-- sedrila: macros off end -->
 
 
 ## Optimierung des Siebes
