@@ -33,6 +33,7 @@ The generated website appears in `out/` (student version) and `out/instructor/` 
 - **altdir/**: Alternative content directory (git submodule) containing:
   - `ch/`: Include files containing non-public, instructor-only content;
     parallels `ch/**`. Accessed via `[INCLUDE::ALT:...]` and `[PROT::ALT:...]` macro calls.
+    Without filename, the default is the current sourcefile name in the parallel path.
   - `itree.zip/`: Instructor tree with solution files, command protocols, source code examples;
     mostly parallels `ch/**`. Accessed via `[INCLUDE::ITREE:...]` macro calls.
 - **baseresources/**: Base resources for the website (CSS, etc.)
