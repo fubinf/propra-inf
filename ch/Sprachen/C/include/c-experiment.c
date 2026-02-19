@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-// Index ist die Zahl, Wert gibt an ob Prim (true) oder nicht (false)
+// Index ist die Zahl, Wert gibt an ob Prim (false) oder nicht (true)
 bool isNotPrime[101];
 
 // Sieb des Eratosthenes
@@ -46,6 +46,7 @@ int main(void) {
   findPrimes();
 
   // Ausgabe
+  // Bewusst über das Array-Ende hinaus iterieren für den else Block
   for (unsigned char i = 2; i < 102; i++) {
     const int prime = isPrime(i);
     if (prime == 0) {
