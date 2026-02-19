@@ -1,5 +1,5 @@
 title: "re: Reguläre Ausdrücke in Python"
-stage: alpha
+stage: beta
 timevalue: 2
 difficulty: 3
 assumes: re-Gruppen, m_datetime, py-Funktionale-Programmierung
@@ -26,18 +26,17 @@ Dann können wir ja loslegen.
 
 Machen Sie sich mit der [Dokumentation von `re`](https://docs.python.org/3/library/re.html) 
 vertraut.
-Da diese etwas umfangreicher ist, verschaffen Sie sich einen guten Überblick über die einzelnen 
-Kapitel, sodass Sie sich die folgenden Fragen anschließend selbst beantworten können:
+Da diese umfangreicher ist, verschaffen Sie sich zunächst nur einen guten _Überblick_ über die einzelnen 
+Abschnitte, bis Sie z.B. die folgenden Fragen beantworten können:
 
 - Welcher Teil erklärt die Syntax von regulären Ausdrücken in Python?
 - Wo werden die vom Modul bereitgestellten Funktionen erklärt?
 - Welcher Abschnitt behandelt Match-Objekte?
 - Wo finde ich Anwendungsbeispiele?
 
-Falls Sie darüber hinaus eine etwas ausführlichere und einsteigerfreundliche Anleitung zu `re` 
-lesen möchten, können Sie sich zusätzlich den folgenden
-[How-To Artikel](https://docs.python.org/3/howto/regex.html#regex-howto) ansehen (der die Doku 
-aber nicht ersetzt).
+Eine ausführlichere und einsteigerfreundliche Anleitung zu `re` gibt es im
+[How-To Artikel](https://docs.python.org/3/howto/regex.html#regex-howto), 
+der die Doku des `re`-Moduls aber nicht ersetzt.
 
 Legen Sie die Datei `m_re.py` an und fügen Sie dort Ihre Lösungen für die folgenden 
 Programmieraufgaben ein.
@@ -63,6 +62,7 @@ log = """2025-10-22T00:48:50.008Z server01 DatabaseConnector [Warn]: Operation f
 2025-10-28T08:08:37.915Z server01 AuthController [Error]: Operation started for user 212
 """
 ```
+<!-- time estimate 10 min -->
 
 
 ### Suchen und Vergleichen
@@ -73,9 +73,9 @@ lassen.
 Zu den Funktionen gehören:  
 `match`, `fullmatch` und `search`.
 
-[EQ] Schauen Sie sich diese Funktionen einmal genauer in der 
-[Dokumentation](https://docs.python.org/3/library/re.html#functions) an und nennen Sie kurz die 
-Unterschiede der Funktionen.
+[EQ] Schauen Sie sich diese Funktionen in der 
+[Dokumentation](https://docs.python.org/3/library/re.html#functions) 
+an und nennen Sie kurz den wichtigsten Unterschied zwischen den drei Funktionen.
 
 [EQ] Ordnen Sie den nachfolgenden Szenarios jeweils die Funktion zu, die Ihrer Meinung nach in 
 dem Fall am besten geeignet ist (schreiben Sie noch keinen konkreten Code):
@@ -84,9 +84,10 @@ dem Fall am besten geeignet ist (schreiben Sie noch keinen konkreten Code):
    handelt.
 2. In einem Text wollen Sie prüfen, ob er ein Wort mit einem deutschen Umlaut enthält.
 3. Für einen Artikelcode soll sichergestellt werden, dass er mit 4 Ziffern beginnt.
+<!-- time estimate 10 min -->
 
 
-### regex-Patterns und Raw-Strings
+### regex-Patterns und Raw-Strings (`r"mystring"`)
 
 Reguläre Ausdrücke verwenden Backslashes (`\`) als Metazeichen (z.B. `\w`, `\d`) sowie als 
 Maskierungszeichen, um andere Metazeichen zu unterdrücken (z.B. `\[`, um nach der eckigen 
@@ -96,17 +97,21 @@ Python benutzt für Strings aber auch selbst `\` als Meta- und Maskierungszeiche
 
 Das verschlechtert die Lesbarkeit von regulären Ausdrücken in normalen Strings:
 Wenn z.B. direkt nach einem Backslash gesucht werden soll, müsste man das Literal dafür 
-als `\\\\` schreiben. 
-Der resultierende String enthält dann zwei Backslashes.
-Dieser reguläre Ausdruck trifft auf einen Backslash zu.
+als `"\\\\"` schreiben. 
+Der resultierende String enthält dann _zwei_ Backslashes.
+Als regulärer Ausdruck trifft das auf _einen_ Backslash zu.
 
-Die bessere Alternative ist die Verwendung von Raw-Strings.
-Diese kann man durch das Präfix `r` vor einem String erzeugen (z.B. `r"\\"`).
+Ein besserer Weg ist die Verwendung von Raw-Strings.
+Diese kann man durch das Präfix `r` vor einem String-Literal erzeugen (z.B. `r"\\"`).
 In einem Raw-String gibt es keine Metazeichen; `r"\\"` steht also für einen String,
 der zwei Backslashes enthält.
 Für reguläre Ausdrücke verwendet man in Python per Konvention immer Raw-Strings, sogar dann,
 wenn der Ausdruck keinen einzigen Backslash benötigen sollte.
 (Deshalb glauben manche Leute, das `r` stehe für "regular expression". Das ist nicht der Fall.)
+
+(Wenn Sie die letzten beiden Absätze nicht hundertprozentig verstanden haben,
+nehmen Sie bitte noch einen zweiten Anlauf. 
+Die Sache klingt verwirrend, ist aber nicht superschwierig -- sehr wohl aber superwichtig.)
 
 [ER] Sie wollen im Log nach der ersten `[Error]`-Meldung, inklusive des Prozesses/Service, der 
 die Meldung erzeugt hat, suchen.
@@ -116,12 +121,13 @@ Verwenden Sie nun eine geeignete Funktion aus `re`, um den Ausdruck anzuwenden.
 Speichern Sie den Rückgabewert der Funktion in einer Variable.
 
 [NOTICE]
-Der Punkt (`.`) matcht in regulären Ausdrücken jedes Zeichen, **außer einen Zeilenumbruch**.
+Der Punkt (`.`) matcht in regulären Ausdrücken jedes Zeichen, **außer einen Zeilenwechsel**.
 
-Der Vorteil davon ist, dass zeilenweises Matchen so deutlich einfacher ist (ein simples `.*` 
+Der Vorteil davon ist, dass zeilenweises Matchen in langen Strings so deutlich einfacher ist (ein simples `.*` 
 wäre sonst an einer solchen Stelle nicht möglich).
 Mit Flags lässt sich das Verhalten bei Bedarf auch ändern (dazu später mehr).
 [ENDNOTICE]
+<!-- time estimate 10 min -->
 
 
 ### Match-Objekte
@@ -129,8 +135,8 @@ Mit Flags lässt sich das Verhalten bei Bedarf auch ändern (dazu später mehr).
 Beim Suchen mit `re` erhalten Sie von der verwendeten Funktion ein 
 [Match-Objekt](https://docs.python.org/3/library/re.html#match-objects) 
 zurück (mit Ausnahme von `findall()` und `finditer()`).
-Dieses enthält einige Informationen über den Match sowie Funktionen, um diese auszugeben, 
-insbesondere auch bei Verwendung von regex-Gruppen.
+Dieses enthält einige Informationen über den Match sowie Funktionen, um darauf zuzugreifen, 
+insbesondere bei Verwendung von regex-Gruppen.
 Wird keine Übereinstimmung gefunden, ist der Rückgabewert `None`.
 
 [ER] Machen Sie eine Fallunterscheidung: Wenn in [EREFR::1] ein Match gefunden wurde, geben Sie den 
@@ -147,13 +153,14 @@ enthält und eine namens `message` für die Log-Nachricht.
 Geben Sie vom gefundenen Match die einzelnen Gruppen folgendermaßen aus:  
 `print("\nlog type:", ..., "\nservice:", ..., "\nmessage:", ...)`
 
-[ER] Jede Log-Zeile soll nach demselben Schema aufgebaut sein:  
+[ER] Jede Log-Zeile ist nach demselben Schema aufgebaut:  
 Zeitstempel (im einheitlichen Format), Server, Service, Log-Typ und eine Nachricht, die auf einer 
 User-ID endet.  
 Erstellen Sie einen Ausdruck, der dieses Schema abbildet.
 Prüfen Sie nun, ob **die erste Zeile** des Logs dieses Schema erfüllt.
 Geben Sie das Ergebnis entsprechend aus (`\nfirst line matches the schema` bzw. 
 `\nfirst line doesn't match the schema`).
+<!-- time estimate 20 min -->
 
 
 ### Alle Vorkommen finden
@@ -161,23 +168,30 @@ Geben Sie das Ergebnis entsprechend aus (`\nfirst line matches the schema` bzw.
 `findall()` und `finditer()` funktionieren etwas anders:  
 `findall()` liefert eine Liste aller gefundenen Matches, bzw. eine Liste von Tupeln, die alle 
 gematchten Gruppen enthalten.
-`finditer()` wiederum liefert einen Iterator, der so lange `Match`-Objekte liefert, bis keine 
+`finditer()` liefert hingegen einen Iterator, der so lange `Match`-Objekte liefert, bis keine 
 Matches mehr gefunden werden.
 
 [EQ] Wann wäre die Verwendung von `finditer()` der Verwendung von `findall()` vorzuziehen?
 
+[HINT::Es geht dabei um...]
+...Speicherersparnis, wenn es sehr viele Treffer gibt.
+[ENDHINT]
+
 [ER] Suchen Sie jetzt nach **allen** Vorkommen von Errors oder Warnings im Log.
 Sie können selbst wählen, welche Funktion Sie hierfür einsetzen möchten.
 Zählen Sie anschließend, welcher Service am häufigsten Fehler oder Warnungen gemeldet hat.  
-`print("\nmost errors or warnings occurred in service:", ...)`
+`print("\nmost errors or warnings occurred in service:", ...)`.  
+(Dafür ist die Klasse `collections.Counter` sehr praktisch.) 
+<!-- time estimate 10 min -->
+
 
 ### Flags
 
-Reguläre Ausdrücke können neben dem eigentlichen Ausdruck noch zusätzliche Optionen 
-erhalten, die das Verhalten des Ausdrucks beeinflussen, z.B. um festzulegen, ob 
-Groß-/Kleinschreibung mit berücksichtigt werden soll.
-In Python lassen sich diese Optionen als [Flags](https://docs.python.org/3/library/re.html#flags) 
-zusammen mit dem Ausdruck übergeben.
+In Python kann die Interpretation eines regulären Ausdrucks mit Optionen ("flags") 
+modifiziert werden, z.B. um festzulegen, ob Groß-/Kleinschreibung unterschieden werden soll oder nicht.
+In Python lassen sich diese Optionen als 
+[Flag-Konstanten](https://docs.python.org/3/library/re.html#flags) 
+bei einer Suchoperation mit übergeben.
 
 [EQ] Nehmen Sie drei der Flags, von denen Sie denken, dass sie am häufigsten eingesetzt werden 
 und schreiben Sie jeweils ein kurzes Beispiel auf, in denen sie sinnvoll verwendet werden könnten.
@@ -193,33 +207,35 @@ Erstellen Sie dafür einen Ausdruck, der den gesamten Inhalt der ersten gefunden
 die Error-Meldung enthält.
 Geben Sie die gefundene Zeile ähnlich wie in [EREFR::2] aus.  
 `print("\nfound error after Oct. 22:", ..., "\nat position:", ...)`
+<!-- time estimate 20 min -->
 
 
 ### Teilen und ersetzen
 
 `re` bietet nicht nur die Möglichkeit zum Suchen, sondern auch zum Editieren von Strings.
 `re.split()` und `re.sub()` bieten somit deutlich dynamischere Möglichkeiten zur Bearbeitung als 
-z.B. Alternativen die `split()` und `replace()` Methoden des `string`-Moduls.
+z.B. Alternativen die `split()` und `replace()` Methoden des `str`-Datentyps.
 
 [ER] Teilen Sie zuerst das Log in seine einzelnen Zeilen auf (da das keinen regulären Ausdruck 
 benötigt, dürfen Sie hier auch einen normalen String-Split verwenden).
-Teilen Sie anschließend jede Zeile in Ihre Bestandteile auf, also Zeit, Server, Service, Log-Typ 
+Teilen Sie anschließend jede Zeile in ihre Bestandteile auf, also Zeit, Server, Service, Log-Typ 
 (ohne Klammern) und Nachricht.
 Geben Sie von der letzten Log-Zeile alle Bestandteile als Liste aus.  
-`print ("\nlast line:", ...)`
+`print("\nlast line:", ...)`
 
-[ER] Sie wollen die Zeitangaben im Log-File in eine andere Zeitzone umrechnen.
+[ER] Sie wollen die Zeitangaben im Log-File in eine andere Zeitzone umrechnen.  
 Schreiben Sie zuerst einen regulären Ausdruck, der das Zeitformat der Log-Einträge matcht.  
 Wir verwenden nun `re.sub()`, wobei wir als Replacement keinen statischen String, sondern eine 
 Funktion übergeben wollen.
 Schreiben Sie hierfür eine Funktion, die ein `match`-Objekt sowie die Anzahl an Stunden, die 
 draufgerechnet bzw. abgezogen werden sollen, entgegennimmt und einen String mit demselben 
-Datumsformat und der entsprechend angepassten Zeit zurückgibt. 
+Datumsformat und der entsprechend angepassten Zeit zurückgibt.  
 Verwenden Sie [`datetime`](https://docs.python.org/3/library/datetime.html), um die Zeit korrekt 
-umzuwandeln, da ein manuelles Handling der Zeiten zu komplex werden würde. Verzichten sie auch 
-auf die Verwendung echter Zeitzonen, sondern addieren Sie nur ein Zeitdelta zum `datetime`-Objekt.  
-Verwenden Sie schließlich `re.sub()`, übergeben Sie ihre Funktion mit einem Zeitdelta, sodass die 
-Zeit um eine Stunde vorgestellt wird (z.B. 8:00 → 9:00).
+umzuwandeln, da ein manuelles Handling der Zeiten zu komplex werden würde. 
+Verzichten Sie auf die Verwendung echter Zeitzonen, sondern addieren Sie nur ein Zeitdelta zum `datetime`-Objekt.  
+Verwenden Sie schließlich `re.sub()`, übergeben Sie ihre Funktion 
+mit einem Zeitdelta von plus einer Stunde, sodass also die 
+Zeit um eine Stunde vorgestellt wird (z.B. 8:06 → 9:06).
 Geben Sie das gesamte konvertierte Log aus.  
 `print("\nadjusted time zone:")
 ...`
@@ -231,9 +247,13 @@ Eine Übersicht über die Formatierungszeichen finden Sie hier:
 [HREF::https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes].
 
 Um auf das `datetime`-Objekt Zeiten zu addieren können Sie `datetime.timedelta` verwenden.
-
 Zum Zurückwandeln in einen String gibt es die Funktion `datetime.datetime.strftime()`.
 [ENDHINT]
+
+[HINT::Wie übergebe ich die Funktion "mit einem Zeitdelta"?]
+Als lambda-Ausdruck, wie in [PARTREF::py-Funktionale-Programmierung] gelernt. 
+[ENDHINT]
+<!-- time estimate 20 min -->
 
 
 ### Programmlauf für die Abgabe
@@ -256,7 +276,7 @@ verwendet werden, effizienter sein.
 
 [EQ] Wäre die Verwendung von `re.compile()` im Umfang dieser Aufgabe sinnvoll?
 Begründen Sie Ihre Antwort.
-
+<!-- time estimate 10 min -->
 [ENDSECTION]
 
 
