@@ -6,10 +6,16 @@ description: Begutachte eine Task oder eine Taskgroup-Indexseite
 
 Reviewe die in $ARGUMENTS angegebene Aufgabendatei (oder Taskgroup-Indexseite).
 Lies zuerst die Datei, dann wende die untenstehenden Heuristiken an.
-Gib die Ergebnisse in GitHub-Markdown-Syntax in zwei Listen aus 
-("Änderungsvorschläge" für die wichtigeren Dinge, "Kleinere Sachen" für den Rest, 
-je mit H3-Überschrift, durchgehend wie eine einzige Liste nummeriert),
-mit gerade genug Erläuterung, um das Problem zu verstehen.
+Gib die Ergebnisse in GitHub-Markdown-Syntax in zwei Listen aus, 
+mit gerade genug Erläuterung, um das Problem zu verstehen,
+je mit H3-Überschrift, durchgehend wie eine einzige Liste nummeriert:
+
+1. "Änderungsvorschläge" für die wichtigen Dinge:
+   Falsche Faktenbehauptungen, falsche Begriffe,
+   logische Fehler, größere didaktische Mängel, mangelnde Anleitung
+   der Instructors u.ä..
+2. "Kleinere Sachen" für den Rest, insbesondere sprachliche Mängel und leicht ungünstige Begriffe.
+
 Nenne bei jedem Befund die Zeilennummer(n).
 Beginne jeden Satz auf einer neuen Zeile und packe den ganzen Satz auf diese Zeile.
 Setze technische Syntax in Backquotes.
@@ -39,8 +45,8 @@ und [HINT]-Blöcken für schwierigere Schritte.
 Wenn die Aufgabe eigenständiges Problemlösen erfordert, kann sie nicht Schwierigkeitsgrad 2 sein.
 
 **A1.2 Leichte Aufgaben müssen schrittweise anleiten.**
-Bei Schwierigkeitsgrad 2 erwarten Studierende, "mit einem wohlgeformten Löffel gefüttert" zu werden.
-Jedes neue Syntaxelement, jeder API-Aufruf und jedes Konzept muss gezeigt oder verlinkt werden.
+Bei Schwierigkeitsgrad 2 sollen Studierende, "mundgerecht gefüttert werden":
+Jedes neue Syntaxelement, jeder API-Aufruf und jedes Konzept wird gezeigt oder verlinkt.
 Nicht davon ausgehen, dass Studierende Nicht-Triviales selbst herausfinden können.
 Falls ein Schritt schwächere Studierende blockieren könnte, einen [HINT] hinzufügen.
 
