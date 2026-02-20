@@ -62,7 +62,7 @@ Programmieraufgaben ein.
 ### Rückblick `iterator`
 
 Iteratoren sind ein essenzielles Werkzeug in der 
-[PARTREFMANUAL::py-Funktionale-Programmierung::Funktionalen Programmierung in Python] und 
+[PARTREF2::py-Funktionale-Programmierung::Funktionalen Programmierung in Python] und 
 Grundlage für die Verwendung von `itertools`.
 Daher zuerst ein kleiner Rückblick:
 

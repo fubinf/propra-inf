@@ -48,7 +48,7 @@ usage: mlh pseudonymize [--nomatch {echo,ignore,fixedmsg,fail}]
 `pseudonymize` arbeitet als [TERMREF::Filter].
 
 Die Bedeutung der Optionsparameter klären und bauen wir erst im 
-[PARTREFMANUAL::mlh-pseudonymize2::Teil 2 dieser Aufgabe].  
+[PARTREF2::mlh-pseudonymize2::Teil 2 dieser Aufgabe].  
 `configfile` ist eine Textdatei, in der jede Zeile per regulärem Ausdruck
 ein Zeilenformat einer Logdatei beschreibt
 und dabei markiert, welche Teile durch Pseudonyme ersetzt werden sollen.

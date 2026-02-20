@@ -40,7 +40,7 @@ Schreiben Sie in der Funktion vorerst `pass`, damit Sie das Programm ausführen 
 und öffnen Sie diesen Endpunkt in der interaktiven Dokumentation.
 
 Sie sehen, dass der neue Endpunkt bei Erfolg mit Code `200` antwortet.
-Auf eine POST-Anfrage wird [PARTREFMANUAL::http-Status::wie sie wissen]
+Auf eine POST-Anfrage wird [PARTREF2::http-Status::wie sie wissen]
 in der Regel aber nicht `200` geantwortet,
 sondern `201`, mit der Bedeutung `Created`.
 

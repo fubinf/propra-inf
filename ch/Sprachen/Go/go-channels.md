@@ -10,7 +10,7 @@ Ich weiß, was Kanäle in Go sind und wie sie verwendet werden.
 [ENDSECTION]
 
 [SECTION::background::default]
-Sie kennen bereits [PARTREFMANUAL::go-goroutines::Goroutinen] — leichtgewichtige 
+Sie kennen bereits [PARTREF2::go-goroutines::Goroutinen] — leichtgewichtige 
 Ausführungspfade, die parallel beziehungsweise nebenläufig auf verschiedenen Prozessorkernen 
 oder Betriebssystem-Threads laufen können.
 

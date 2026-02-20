@@ -82,7 +82,7 @@ Was gibt es außer `A-Records` noch für Eintragstypen?
   Mailserver an, der für die Domain Email empfängt.
 - Der `NS-Record` gibt die [TERMREF::Nameserver] einer Domain an.
 - Der `CNAME-Record` gibt einen Alias des Domainnamens wieder. 
-  Das entspricht ungefähr einem [PARTREFMANUAL::Unix-Links::symbolischen Link]:
+  Das entspricht ungefähr einem [PARTREF2::Unix-Links::symbolischen Link]:
   Dann zeigen also mehrere Namen auf denselben Server X und wenn man einen DNS-Eintrag von X ändert,
   wirkt das auch auf die anderen Namen.
   Zum Beispiel ist oft `www.mydomain.tld` das Gleiche wie `mydomain.tld`.

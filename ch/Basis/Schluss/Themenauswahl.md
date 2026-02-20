@@ -30,11 +30,11 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
   [PARTREF::apt], [PARTREF::venv] und [PARTREF::pip] aus der Gruppe [PARTREF::Paketmanager].
   Danach beginnt die Kür:
 - Wer seine Python-Kenntnisse ausbauen möchte,
-  sollte bei [PARTREFMANUAL::Python-Standardbibliothek::Bibliotheken/Python-Standardbibliothek] starten
+  sollte bei [PARTREF2::Python-Standardbibliothek::Bibliotheken/Python-Standardbibliothek] starten
   und eine passende Dosis von
-  [PARTREFMANUAL::Python::Sprachen/Python] dazumixen.
+  [PARTREF2::Python::Sprachen/Python] dazumixen.
 - Wer noch nicht ziiiemlich gut mit git umgehen kann (und wer kann das schon!),
-  kann bei [PARTREFMANUAL::Git::Werkzeuge/Git] Schritt für Schritt eine recht große Schippe drauflegen
+  kann bei [PARTREF2::Git::Werkzeuge/Git] Schritt für Schritt eine recht große Schippe drauflegen
   und sich damit in die Riege bewunderter Technikbeherscher_innen vorarbeiten,
   denn selbst erfahrene Softwareentwickler_innen schwächeln auf diesem Sektor oft stark.  
   Besonders empfohlen!

@@ -6,5 +6,5 @@ _enorme_ Nützlichkeit entfalten, wenn man sie gut genug kennt.
 Davon wollen wir uns hier das eine oder andere ansehen.
 
 Alle Aufgaben in dieser Gruppe gehen davon aus, dass Sie sich mit den
-[PARTREFMANUAL::Unix-Basiswerkzeuge::-n] 
+[PARTREF2::Unix-Basiswerkzeuge::-n] 
 auskennen.

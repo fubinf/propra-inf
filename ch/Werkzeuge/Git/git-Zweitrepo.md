@@ -13,7 +13,7 @@ kaputtgehen darf, ohne das übliche Repo für unsere Abgaben zu gefährden.
 [SECTION::background::default]
 
 Normalerweise benutzen wir für unsere Abgaben das zu Beginn aufgesetzte git-Repo. 
-Allerdings führen wir in der [PARTREFMANUAL::Git::Git-Aufgabengruppe] 
+Allerdings führen wir in der [PARTREF2::Git::Git-Aufgabengruppe] 
 manchmal git-Befehle aus, die massive Veränderungen an unserem repo vornehmen. 
 Bei Fehlern entsteht dann ein Durcheinander, das nicht immer leicht zu reparieren ist.
 Um Datenverlust zu vermeiden, setzen wir deshalb hier ein zusätzliches Repo auf,

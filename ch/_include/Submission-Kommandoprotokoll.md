@@ -1,4 +1,4 @@
-Geben Sie ein [PARTREFMANUAL::Kommandoprotokolle::Kommandoprotokoll] ab,
+Geben Sie ein [PARTREF2::Kommandoprotokolle::Kommandoprotokoll] ab,
 das nur die Prompts, Eingaben und Ausgaben der obigen Kommandos [EREFC::1], [EREFC::2], ...
 enthält.
 Entfernen Sie vor Abgabe eventuelle Fehlversuche und sonstige zusätzliche Kommandos

@@ -1019,7 +1019,7 @@ Auswertungen erspart werden und berechnete Werte nicht im Speicher gehalten werd
 sondern erst bei Bedarf generiert werden.
 
 In Python findet Lazy Evaluation beispielsweise in Verbindung mit 
-[PARTREFMANUAL::py-Iterators::Iteratoren] statt.
+[PARTREF2::py-Iterators::Iteratoren] statt.
 [ENDTERM]
 
 

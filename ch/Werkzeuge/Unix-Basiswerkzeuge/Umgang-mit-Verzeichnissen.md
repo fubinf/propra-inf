@@ -26,7 +26,7 @@ mindestens folgende Einträge:
 `cd, ls, cat, mkdir, rmdir, touch, rm, mv, echo, free, head, history, df`.
 
 Wenn Ihnen etwas seltsam vorkommt (und dafür gibt es eine Menge Anlass),
-klären Sie es mit der passenden [PARTREFMANUAL::Manpages::manpage] auf
+klären Sie es mit der passenden [PARTREF2::Manpages::manpage] auf
 und überfliegen Sie auch, welche [TERMREF2::Option::-en] es gibt.
 Diese Webseite ist ein gutes Beispiel dafür, dass solche Fundstücke im Web
 zwar oft recht praktisch, aber nicht immer auch zuverlässig sind.

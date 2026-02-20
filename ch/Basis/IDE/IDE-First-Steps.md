@@ -162,9 +162,9 @@ Natürlich gibt es noch viele weitere Funktionen, die man als erfahrener Program
 sollte. 
 Einige von denen werden auch in fortgeschrittenen ProPra-Aufgaben gezielt vorgestellt:
 
-- [PARTREFMANUAL::git-IDE::Arbeiten mit Git in der IDE]
-- [PARTREFMANUAL::IDE-Debugging::Debugging in der IDE]
-- [PARTREFMANUAL::Linting-PyCharm::Linting in PyCharm]
+- [PARTREF2::git-IDE::Arbeiten mit Git in der IDE]
+- [PARTREF2::IDE-Debugging::Debugging in der IDE]
+- [PARTREF2::Linting-PyCharm::Linting in PyCharm]
 <!-- TODO_3: weitere Aufgaben auflisten, die IDE Features behandeln -->
 
 Natürlich können Sie sich auch jederzeit selbst über Features informieren. Die meisten IDE-Anbieter 

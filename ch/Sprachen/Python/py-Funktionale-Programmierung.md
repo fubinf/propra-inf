@@ -155,12 +155,12 @@ __Verzichten__ Sie hier daher auf die Verwendung der Funktion.
 Schreiben Sie einen einfachen Algorithmus, der in dem String nach dem Delimiter sucht und die 
 einzelnen gefundenen Strings "wirft".
 Wenn Sie bereits Erfahrung mit regulären Ausdrücken in Python haben, können Sie auch 
-[PARTREFMANUAL::m_re::re.finditer()] verwenden.
+[PARTREF2::m_re::re.finditer()] verwenden.
 [ENDHINT]
 
 Eine weitere praktische Alternative zur Erstellung eigener Iteratoren sind **Generator 
 Expressions**. 
-Diese funktionieren genauso wie [PARTREFMANUAL::py-List-Comprehensions::List Comprehensions], 
+Diese funktionieren genauso wie [PARTREF2::py-List-Comprehensions::List Comprehensions], 
 aber mit dem Unterschied, dass sie keine Liste, sondern einen Generator erzeugen. 
 Syntaktisch unterscheiden sie sich nur durch ihre Klammern (`()` statt `[]`).
 Wenn man das Ergebnis nur der Reihe nach mit einer Schleife weiterverarbeitet und
@@ -337,9 +337,9 @@ Mit den bisher in der Aufgabe gezeigten Werkzeugen lässt sich schon einiges anf
 aber noch weitere Module in der Python-Standardbibliothek, die weitere, fortgeschrittene Funktionen 
 bieten, um noch effizienter funktionale Programme zu schreiben:
 
-- Das [PARTREFMANUAL::m_itertools::itertools-Modul] bietet weitere Werkzeuge, um effiziente 
+- Das [PARTREF2::m_itertools::itertools-Modul] bietet weitere Werkzeuge, um effiziente 
   Operationen auf und mit Iteratoren durchzuführen.
-- Das [PARTREFMANUAL::m_functools::functools-Modul] bietet weitere Hilfsmittel für die 
+- Das [PARTREF2::m_functools::functools-Modul] bietet weitere Hilfsmittel für die 
   Verwendung von Funktionen höherer Ordnung.
 [ENDSECTION]
 

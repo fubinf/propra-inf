@@ -32,7 +32,7 @@ Vergleichen Sie dazu diese beiden Ausgaben.
 ```
 [ENDFOLDOUT]
 
-Anders als bei einem Programmabsturz wie in der [PARTREFMANUAL::einkaufsliste-defekt::ersten Aufgabe]
+Anders als bei einem Programmabsturz wie in der [PARTREF2::einkaufsliste-defekt::ersten Aufgabe]
 ist hier nicht so klar, wo man mit der Suche nach dem [TERMREF::Defekt] anfangen soll.
 
 

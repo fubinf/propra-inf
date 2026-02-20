@@ -33,7 +33,7 @@ Falls Sie sich Fragen wie beispielsweise "wie schreibt man **gute** Tests?" oder
 Das Kommando `go test` hat folgende Voraussetzungen:
 
 1. der zu testende Quellcode sowie Tests befinden sich in einem Modul 
-  ([PARTREFMANUAL::go-modules::hier] gibt es eine Aufgabe, wo Sie mehr zu Modulen 
+  ([PARTREF2::go-modules::hier] gibt es eine Aufgabe, wo Sie mehr zu Modulen 
   lernen können);
 2. alle Testfunktionen müssen sich in `*_test.go`-Dateien befinden;
 3. alle Testfunktionen müssen mit `Test`, `Benchmark` oder `Fuzz` anfangen;

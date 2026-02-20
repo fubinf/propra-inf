@@ -153,7 +153,7 @@ Prüfen Sie ihre Commits zu den vorherigen Aufgaben.
 - Benennen Sie ggf. unpassend benannte Dateien um 
   und checken Sie sie (_ohne_ Zeiterfassungs-Eintrag) erneut ein.
 - Holen Sie ggf. fehlende Commits nach.
-- Falls [PARTREFMANUAL::Zeiterfassung::Zeiterfassungs-Einträge] fehlen, holen Sie diese 
+- Falls [PARTREF2::Zeiterfassung::Zeiterfassungs-Einträge] fehlen, holen Sie diese 
   mit geschätzten Zeiten ebenfalls nach.
 
 
@@ -184,7 +184,7 @@ Abschließend zeigt das Kommando an, wie es weitergeht: Email an eine Tutor_in.
 
 Da bei der hiesigen Aufgabe nichts weiter zu tun ist, 
 Sie aber trotzdem Zeit gutgeschrieben bekommen sollen, 
-können Sie ausnahmsweise einen [PARTREFMANUAL::Zeiterfassung::Zeiterfassungscommit] ohne Inhalt machen.
+können Sie ausnahmsweise einen [PARTREF2::Zeiterfassung::Zeiterfassungscommit] ohne Inhalt machen.
 Hierfür verwendet man `git commit --allow-empty -m"..."`.
 
 Vergessen Sie nicht, Ihren Stand mittels `git push` verfügbar zu machen!

@@ -90,7 +90,7 @@ uminstallieren müssen).
 [NOTICE]
 Diese Aufgabe ist nur eine zielstrebige Einführung in *eine* Funktion von git.
 Wenn Sie sich mehr mit git auseinandersetzen wollen, werden Sie in 
-der Aufgabengruppe [PARTREFMANUAL::Git::Werkzeuge/Git] fündig!
+der Aufgabengruppe [PARTREF2::Git::Werkzeuge/Git] fündig!
 [ENDNOTICE]
 [ENDSECTION]
 

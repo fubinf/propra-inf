@@ -83,7 +83,7 @@ wollen, können Sie mithilfe des Parameters `recursive` rekursiv suchen.
 ### Ergebnis als Iterator
 
 Anstatt mit den Suchergebnissen in Form von Listen zu arbeiten, gibt `glob` auch die Möglichkeit,
-mit [PARTREFMANUAL::py-Iterators::Iteratoren] zu arbeiten.
+mit [PARTREF2::py-Iterators::Iteratoren] zu arbeiten.
 Bei Suchen in Verzeichnissen mit vielen Dateien hat das den Vorteil, dass nicht das gesamte 
 Ergebnis in eine Liste geschrieben wird, sondern immer bei Bedarf das nächste Element ermittelt 
 wird.
@@ -99,7 +99,7 @@ wird.
 ### Unterschied zu regulären Ausdrücken
 
 Wenn man sich mit den wildcards von `glob` beschäftigt, kommt einem einiges vielleicht von 
-[PARTREFMANUAL::RegExp::regulären Ausdrücken] entfernt bekannt vor. 
+[PARTREF2::RegExp::regulären Ausdrücken] entfernt bekannt vor. 
 Man sollte aber im Hinterkopf behalten, dass diese beiden Werkzeuge unterschiedliche 
 Funktionsweisen haben, wobei reguläre Ausdrücke deutlich komplexere Patterns ermöglichen als 
 `glob` und eher außerhalb von Pfadpattern verwendet werden.

@@ -66,7 +66,7 @@ Falls die Installation fehlschlägt, suchen Sie Hilfe auf [der offiziellen Seite
 #### a) GoLand
 
 * Falls noch nicht vorhanden, eine Studentenlizenz bei JetBrains beantragen
-  wie in der Aufgabengruppe [PARTREFMANUAL::IDE::Basis/IDE] beschrieben.
+  wie in der Aufgabengruppe [PARTREF2::IDE::Basis/IDE] beschrieben.
 * [Die Installationsdatei](https://www.jetbrains.com/go/) für Ihr Betriebssystem herunterladen.
 * Diese Datei öffnen, IDE installieren und aktivieren, indem Sie sich in der IDE mit Ihrem JetBrains-Konto einloggen
   ([Installationsanweisungen](https://www.jetbrains.com/help/go/installation-guide.html));
