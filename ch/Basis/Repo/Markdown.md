@@ -88,12 +88,14 @@ Man kann beide Arten von Listen auch verschachteln:
 
 [WARNING]
 Markdown hat zahlreiche Dialekte, d.h.
-nicht alle Markdown-Implementierungen [funktionieren gleich](https://johnmacfarlane.net/babelmark2/faq.html).
+nicht alle Markdown-Implementierungen 
+[funktionieren gleich](https://gist.github.com/vimtaai/99f8c89e7d3d02a362117284684baa0f).
 Wer halbwegs sicher sein will, sollte bei allen Verschachtelungen 
 jeweils 4 zusätzliche Leerzeichen weit einrücken.
 
 Eine "offizielle" Spezifikation gibt es nicht.
-Am ehesten kommt noch die [Urfassung](https://daringfireball.net/projects/markdown/syntax)
+Am ehesten kommt noch die 
+[Urfassung](https://daringfireball.net/projects/markdown/syntax)
 infrage.
 Eine besonders wichtige Variante ist 
 [GitHub-Markdown](https://docs.github.com/en/get-started/writing-on-github)

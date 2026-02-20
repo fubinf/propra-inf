@@ -264,7 +264,7 @@ Also sollten wir beide Aufrufe für den Linkprüfer nicht benutzen.
 Linkprüfer daran auszuprobieren.
 Geeignet sind oft die Webauftritte von Einzelpersonen (z.B. Freiberufler_innen;
 Sie könnten Beispielsweise mit 
-[einem Berufsnamen](https://de.wikipedia.org/wiki/Freier_Beruf_(Deutschland)) 
+[einem Berufsnamen](https://de.wikipedia.org/wiki/Freier_Beruf_%40Deutschland%41) 
 und dem Namen Ihres Stadtviertels suchen).  
 Schauen Sie die Website mit dem Browser grob durch.
 Schätzen Sie nun, wieviele Requests die Prüfung brauchen wird und wie lange sie läuft. 

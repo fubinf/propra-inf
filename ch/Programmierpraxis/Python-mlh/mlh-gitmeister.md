@@ -116,7 +116,7 @@ Das heißt also:
   [bipartiter Graph](https://de.wikipedia.org/wiki/Bipartiter_Graph) 
   (denn jede Kante verbindet einen Namen mit einer Emailaddresse), 
   von dem die 
-  [Zusammenhangskomponenten](https://de.wikipedia.org/wiki/Zusammenhang_(Graphentheorie)) 
+  [Zusammenhangskomponenten](https://de.wikipedia.org/wiki/Zusammenhang_%40Graphentheorie%41) 
   gesucht sind.
 - An der Stelle baut man dann eventuell seine Datenstrukturen um
   und überlegt, wie der Algorithmus für Zusammenhangskomponenten aussehen muss
