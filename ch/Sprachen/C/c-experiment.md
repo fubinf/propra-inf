@@ -359,9 +359,7 @@ Sie sparen Speicher und erhalten dennoch die Sicherheit, überall den selben Wer
 
 [ER] Ersetzen Sie alle Vorkommnisse des Wertes (101) durch den Bezeichner `ARRAY_SIZE`,
 aus `bool isNotPrime[101];` wird 
-<!-- sedrila: macros off -->
-`bool isNotPrime[ARRAY_SIZE];`
-<!-- sedrila: macros off end -->
+<!-- sedrila: macros off -->`bool isNotPrime[ARRAY_SIZE];`<!-- sedrila: macros off end -->
 
 
 ## Optimierung des Siebes

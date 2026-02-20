@@ -13,6 +13,7 @@ Makros sind das wohl mächtigste Feature des C-Präprozessors.
 Es können Konstanten definiert werden, oft genutzte Prüfungen (z.B. `isEven`) gänzlich ohne
 den Overhead eines Funktionsaufrufs realisiert werden oder sogar einfache Polymorphismen abgebildet
 werden
+<!-- @LINK_SPEC: status=403 -->
 (z.B. [Win32 API A vs. W](https://medium.com/@boutnaru/windows-win32-api-working-with-strings-d2a2dabb85c8)).
 
 Wissbegierige können sich zusätzliche Informationen aus dem
