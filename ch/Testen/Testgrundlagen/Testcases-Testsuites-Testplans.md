@@ -56,7 +56,7 @@ können, um sie auch nicht-Erstellern leicht zu vermitteln.
 
 Recherchieren Sie anhand der folgenden Leitfragen unter Beachtung der Quelle:
 
-[Testfall](https://www.dev-insider.de/was-sind-testfaelle-a-1111499/)
+[Testfall](https://#) TOTO_3_RUHE: Neue Quelle suchen
 [Testplan](https://testcity.de/testplan-wie-erstellen/)
 
 - [EQ] Skizzieren Sie, wie Testfälle, [TERMREF2::Testsammlung::-en] und Testpläne miteinander zusammenhängen.

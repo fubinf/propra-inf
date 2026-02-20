@@ -151,8 +151,10 @@ def test_fixture_usage(sample_browser):
 [ENDHINT]
 
 [HINT::Parametrisierung und Mocking]
-Siehe [pytest Parametrize](https://docs.pytest.org/en/stable/how.html#parametrize) für Daten-getriebene Tests und [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) für Test-Doubles.
+Siehe [pytest Parametrize](https://#) für Daten-getriebene Tests und [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) für Test-Doubles.
 [ENDHINT]
+
+TODO_3_RUHE: Neue Quelle suchen
 
 [EQ] Welche Herausforderungen ergeben sich beim Testen von Web-Scraping-Bibliotheken?
 
@@ -209,7 +211,9 @@ Ihre `tox.ini` sollte folgende Umgebungen und Konfigurationen enthalten:
    - Fokus auf Ihre pytorch-Lern-Tests
 
 [HINT::tox.ini Struktur]
-Orientieren Sie sich an der [tox-Dokumentation](https://tox.wiki/en/latest/config.html) für Syntax-Details:
+Orientieren Sie sich an der [tox-Dokumentation](https://#) für Syntax-Details:
+
+TODO_3_RUHE: Neue Quelle suchen
 
 ```ini
 [tox]

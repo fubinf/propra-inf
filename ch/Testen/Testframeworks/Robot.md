@@ -124,6 +124,7 @@ Wechseln Sie oben in der Editorbox zum Beispiel **BDD-Example**.
   und seine Erläuterung studieren. 
 
 [HINT::Was bedeuten `Given`, `When`, `Then`, `And`?]
+<!-- @LINK_SPEC: status=403 -->
 Das stammt von der verwandten Sprache 
 [Gherkin](https://en.wikipedia.org/wiki/Cucumber_(software)#Gherkin_language) 
 des verwandten Werkzeugs `Cucumber` aus der Ruby-Welt.

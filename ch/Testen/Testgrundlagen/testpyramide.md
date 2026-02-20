@@ -46,7 +46,7 @@ oben, oder unten betrachten.
 [ENDSECTION]
 
 [SECTION::instructions::loose]
-
+<!-- @LINK_SPEC: status=403 -->
 Zu erste sollten Sie sich einen Verständnis über das Thema Testpyramide entwickeln. Anschließend
 reflektieren Sie das neu erworbene Wissen. Lesen Sie dazu den kurzen aber informativen Beitrag des
 [Austrian Testing Board - Testpyramide](https://www.austriantestingboard.at/die-testautomationspyramide-ein-einfaches-gebilde-voller-missverstaendnisse/), um die folgenden

@@ -30,8 +30,10 @@ Sicht auf die Verhaltensweisen und Zustände der Objekte innerhalb der Anwendung
 
 ### CRUD Testplan
 
-Machen Sie sich [hier](https://codebots.com/crud/how-to-test-CRUD) mit dem Prinzip vertraut, wie CRUD am besten eingesetzt werden kann. Anschließend erstellen Sie einen Testplan für die im [Petstore](https://petstore.swagger.io)
+Machen Sie sich [hier](https://#) mit dem Prinzip vertraut, wie CRUD am besten eingesetzt werden kann. Anschließend erstellen Sie einen Testplan für die im [Petstore](https://petstore.swagger.io)
 hinterlegten `user`-Schnittstellen nach der CRUD-Methode.
+
+TODO_3_RUHE: Neue Quelle suchen
 
 - [EQ] Erstellen Sie den oben gewünschten Testplan nach CRUD für die Nutzer Schnittstellen im Petstore.
 

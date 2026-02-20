@@ -71,7 +71,8 @@ Um die Petstore-Schnittstellen abzufragen, verwenden Sie das requests-Modul in P
 ### Petstore kennenlernen
 
 Für die kommenden Aufgaben werden wir die freie API Petstore verwenden, die uns unter [swagger.io](https://petstore.swagger.io) zur Verfügung steht. Machen Sie sich mit der Navigation und der Beschreibung des Petstores vertraut.
-Lesen Sie den Artikel [REST Web Services](http://www.thomas-bayer.com/resources/rest/rest_webservices.pdf)
+Lesen Sie den Artikel [REST Web Services](https://#) 
+TODO_3_RUHE: Neue Quelle suchen
 und beantworten Sie folgende Fragen:
 
 - [EQ] Was versteht man unter REST?
