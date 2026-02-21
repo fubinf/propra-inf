@@ -1830,6 +1830,21 @@ neues Passwort basierend auf einem geheimen Schlüssel und der aktuellen Zeit. D
 dann für die Authentifizierung verwendet.
 [ENDTERM]
 
+[TERM::tmux|Terminal-Multiplexer]
+`tmux` ist ein Programm, das ein einzelnes Terminal-Fenster in mehrere unabhängige Fenster und Panes 
+aufteilen kann.
+Der Hauptvorteil ist die **Persistenz**: Prozesse laufen in einer `tmux`-Session weiter, auch wenn 
+die Verbindung zum Terminal unterbrochen wird (z.B. bei einer SSH-Verbindung, die abbricht).
+Eine Session ist die oberste Ebene der Hierarchie und enthält mehrere Fenster 
+(vergleichbar mit Tabs im Browser).
+Jedes Fenster kann wiederum in mehrere Panes aufgeteilt werden (nebeneinander oder übereinander), 
+um mehrere Shells gleichzeitig auf dem Bildschirm anzuzeigen.
+Das Programm wird über den **Prefix-Key** (standardmäßig `Ctrl+b`) gesteuert.
+`tmux` ist besonders nützlich für Remote-Arbeit auf Servern, da langwierige Prozesse nicht durch 
+Verbindungsabbrüche unterbrochen werden, und bei der lokalen Entwicklung für strukturierte 
+Arbeitsumgebungen mit mehreren Terminals nebeneinander.
+[ENDTERM]
+
 
 [TERM::Top-Level-Domain]
 Top-Level-Domains (TLDs) sind die letzten Teile einer Internet-Domain, die nach dem letzten Punkt 
