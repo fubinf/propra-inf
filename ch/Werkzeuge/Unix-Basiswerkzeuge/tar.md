@@ -1,4 +1,4 @@
-title: tar - das Archivierungsprogramm
+title: tar-split - Archive aufteilen und wieder zusammenfügen
 stage: alpha
 timevalue: 1.0
 difficulty: 2
@@ -7,7 +7,7 @@ assumes: Umgang-mit-Verzeichnissen, redirect
 
 [SECTION::goal::idea]
 Ich weiß was `tar` ist und wie ich damit Archive erstellen, anzeigen und entpacken kann.
-Ich kenne den Nutzen von Kompression und kann große Archive mit `split` teilen und wieder zusammenfügen.
+Ich kenne den Nutzen von Kompression und kann große Archive mit `split` aufteilen und wieder zusammenfügen.
 [ENDSECTION]
 
 
@@ -24,28 +24,16 @@ und gelegentlich für Backups und Projektarchivierung eingesetzt.
 
 ### Testdateien erstellen
 
-```bash
-#!/bin/bash
-
-# 5 Dateien erstellen
-for i in {001..100}; do
-    echo "Ich bin der Inhalt der Datei $i" > "tar_datei_$i"
-done
-
-echo "$i Dateien wurden erstellt."c
-```
-
 Erstellen Sie in ihrem [TERMREF::Hilfsbereich] einen neuen Ordner `tar`.
 
 Wechseln Sie in den neuen Ordner.
-
-Erstellen Sie dort eine neue Datei `tar_create_data.sh` mit obigem Inhalt.
 
 [WARNING]
 Das Skript erstellt 100 Dateien im gerade geöffneten Ordner.
 [ENDWARNING]
 
-[EC] Führen Sie das Skript aus: `bash tar_create_data.sh`
+[EC] Führen Sie diesen Befehl aus: 
+`for i in {001..100}; do echo "Ich bin der Inhalt der Datei $i" > "tar_datei_$i"; done`
 
 
 ### `tar`-Archive erstellen
@@ -96,10 +84,10 @@ Verstehen Sie im Abschnitt **Beispiele** den Teil "Anzeigen" der
 [ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
 
 [EC] Zeigen Sie den Inhalt des erstellten `gzip`-komprimierten Archivs an.
-    Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
+Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 
 [EC] Zeigen Sie den Inhalt des erstellten `gzip`-komprimierten Archivs mit mehr Details an.
-    Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
+Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 
 
 ### `tar`-Archive auspacken
@@ -126,7 +114,7 @@ dass die Daten zu groß sind.
 Jetzt wollen Sie das Archiv aufteilen, damit Sie es in einzelnen Mails verschicken können.
 
 Lesen und verstehen Sie die Abschnitte **Benutzung, Beispiele** und insbesondere die 
-**Optionen b,l,d** der 
+**Optionen b,d** der 
 [ubuntuusers split-Seite](https://wiki.ubuntuusers.de/split/).
 
 [EC] Erstellen Sie einen neuen Ordner `split` im `tar`-Ordner.
@@ -135,11 +123,8 @@ Lesen und verstehen Sie die Abschnitte **Benutzung, Beispiele** und insbesondere
 
 [EC] Wechseln Sie in den Ordner `split`.
 
-[EC] Teilen Sie das `.tar`-Archiv in 5 gleich große `tar`-Archive auf. 
-    Nummerieren Sie die Archive und vergeben Sie den Namen `split_tar.tar.`.
-
-[EC] Teilen Sie das `.tar`-Archiv mit einem Zeilenabstand von 40 auf. 
-    Benennen Sie die neuen Archive `line_split_tar.tar`.
+[EC] Teilen Sie das `.tar`-Archiv in 5 gleich große Archive auf.
+Vergeben Sie den Namen `split_meinarchiv.tar.` (mit Punkt am Ende).
 
 
 ### Aufgeteilte `tar`-Archive wieder zusammenfügen
@@ -150,10 +135,13 @@ Damit Sie das aufgeteilte Archiv wieder entpacken können, müssen Sie die Teile
 Lesen und verstehen Sie den Abschnitt **Zusammenführen** der 
 [ubuntuusers split-Seite](https://wiki.ubuntuusers.de/split/).
 
-[EC] Fügen Sie das `tar`-Archiv, welches Sie in 5 gleich große Teile getrennt haben, wieder zusammen. 
-    Benennen Sie das Resultat `cat_tar.tar`
+[EC] Fügen Sie das `tar`-Archiv, welches Sie in 5 gleich große Teile getrennt haben, wieder zusammen.
+Benennen Sie das Resultat `cat_meinarchiv.tar`.
 
-[EC] Listen Sie den Ordner `split` in Listenform auf.
+[EC] Prüfen Sie die Funktionstüchtigkeit des wieder zusammengefügten Archivs, indem Sie die Dateien von `cat_meinarchiv.tar`auflisten.
+Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
+
+[EC] Listen Sie den Ordner `split` mit mehr Details auf.
 
 
 [SECTION::submission::trace]
