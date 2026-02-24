@@ -13,7 +13,7 @@ und Panes sowie Fenster zur Strukturierung meiner Arbeit nutzen.
 
 
 [SECTION::background::default]
-[TERMREF::`tmux`] ist ein Terminal-Multiplexer. Er ermöglicht es, mehrere unabhängige Shells in einem einzigen 
+[TERMREF::tmux] ist ein Terminal-Multiplexer. Er ermöglicht es, mehrere unabhängige Shells in einem einzigen 
 Terminal-Fenster auszuführen. Sessions können in mehrere Fenster aufgeteilt werden, und jedes 
 Fenster lässt sich in mehrere Teilbereiche (Panes) unterteilen.
 [ENDSECTION]
