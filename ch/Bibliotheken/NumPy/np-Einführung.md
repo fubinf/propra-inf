@@ -1,7 +1,7 @@
 title: Einführung von NumPy
 stage: alpha
 timevalue: 2
-difficulty: 2
+difficulty: 1
 ---
 
 [SECTION::goal::idea,experience]
