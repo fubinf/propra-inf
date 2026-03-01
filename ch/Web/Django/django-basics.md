@@ -6,7 +6,7 @@ difficulty: 2
 
 [SECTION::goal::idea,experience]
 Ich verstehe die Grundkonzepte von Django, kann Django installieren und kenne die 
-MTV-Architektur sowie die wichtigsten Anwendungsszenarien.
+MVT-Architektur sowie die wichtigsten Anwendungsszenarien.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -55,16 +55,16 @@ Optional: Mehr Details zu Django's Design-Philosophie:
 [EQ] Erklären Sie in eigenen Worten, was "Convention over Configuration" bedeutet.
 <!-- time estimate: 10 min -->
 
-### MTV-Architektur vs. MVC
+### MVT-Architektur vs. MVC
 
-Django verwendet das **MTV (Model-Template-View)**-Muster, eine Variante des bekannten 
+Django verwendet das **MVT (Model-View-Template)**-Muster, eine Variante des bekannten 
 **MVC (Model-View-Controller)**-Musters:
 
 **Model**: Verwaltet Daten und Geschäftslogik, kommuniziert mit der Datenbank.
 
-**Template**: Zuständig für die Darstellung, generiert HTML-Ausgabe.
-
 **View**: Fungiert als Controller, verarbeitet Requests und koordiniert Model und Template.
+
+**Template**: Zuständig für die Darstellung, generiert HTML-Ausgabe.
 
 **Ablauf in Django**:
 
@@ -74,7 +74,7 @@ Django verwendet das **MTV (Model-Template-View)**-Muster, eine Variante des bek
 - Template rendert HTML und sendet Response zurück
 
 Optional: Vergleichen Sie mit der traditionellen MVC-Architektur: 
-[MVC vs MTV](https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/)
+[MVC vs MVT](https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/)
 
 
 ### Django's eingebaute Funktionen

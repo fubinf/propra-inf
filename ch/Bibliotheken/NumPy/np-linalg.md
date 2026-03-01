@@ -1,6 +1,6 @@
 title: NumPy Lineare Algebra und Matrixoperationen
 stage: alpha
-timevalue: 1.75
+timevalue: 2
 difficulty: 2
 assumes: np-Einführung, np-array
 ---
