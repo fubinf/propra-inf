@@ -88,6 +88,7 @@ for its structure and attempt to obey them throughout:
   The requirements for what students submit are geared towards making it simple and quick
   for instructors to review them, in particular by means of shell command protocols:
   [Kommandoprotokolle](ch/_include/Kommandoprotokolle.md).
+  (see 2.3.11 for more details)
 - **avoid academic material:**
   We avoid duplicating (or even refering to) academic material known from lectures
   and prefer tasks that feel practical, real-worldly and that can be understood
@@ -311,21 +312,37 @@ The submission section
   on the subtypes _before_ deciding on the details of the task.
 
 
-### 2.3.11 [SECTION::instructor::GistOfPriorities]
+### 2.3.11 `[INSTRUCTOR::title]`
 
-The instructor section
+The instructor section is different from the previous sections, as it is only visible by 
+instructors.
+It contains guidelines for the instructors on how to correct and evaluate the submissions.
 
-- will announce in its title what the instructors should consider most important
-  (usually: what indicates whether the student has learned the main teachings of the task)
-- will reflect that priority in the order of information in the section body:
-  important stuff first!
-- will use terms "must" and "should" for indicating reasons for rejecting a task
-  vs. points for mere feedback comments from the instructor to the student
-- will include concrete example answers for all `[EQ]` questions (with discussion if needed)
-- will include a concrete command protocol for all `[EC]` items
-- will (if there are `[ER]` items) either include an example solution source code
-  via an `[INCLUDE::ALT:sourcefile.xyz]` (embedded in triple backquotes for formatting)
-  or point to it via `[TREEREF::/Chapter/Group/File]`
+The section
+
+- announces in its title what the instructors should consider most important (usually, what 
+  indicates whether the student has learned the main teachings of the task) or a description of the 
+  evaluation steps (e.g. "code review")
+- reflects in its body the priorities from the title, ordered by the importance of information
+- lists important details to look out for in a submission that may indicate if a student 
+  understood the basic concepts of a task
+- makes a clear distinction between reasons for rejecting a submission vs. points for mere 
+  feedback comments from the instructor to the student
+- makes use of the 
+  [`altdir`](https://sedrila.readthedocs.io/en/latest/authors/#19-confidential-contents-altdir-itreedir) 
+  features of sedrila to separate confidential content (e.g. sample solutions) from the main 
+  repo (which is public by design)
+- includes sample solutions for all tasks:
+    - concrete answers/explanations for all `[EQ]` questions (with discussion if needed) in a 
+      separate Markdown file
+    - a command protocol for all `[EC]` items by embedding the file via the `[PROT::ALT:protfile.
+    prot]`
+    - source code for all `[ER]` items, either via an `[INCLUDE::ITREE:sourcefile.xyz]` 
+      (embedded in triple backquotes for formatting) or by pointing to it via 
+      `[TREEREF::/Chapter/Group/File]`
+
+For further details on how to write a helpful instructor section, see 
+[Korrekturhilfen](korrekturhilfen.md).
 
 
 ### 2.3.12 Language use (in German because we use German)
