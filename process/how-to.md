@@ -87,7 +87,7 @@ for its structure and attempt to obey them throughout:
 - **simple reviewing:**
   The requirements for what students submit are geared towards making it simple and quick
   for instructors to review them, in particular by means of shell command protocols:
-  [Kommandoprotokolle](ch/_include/Kommandoprotokolle.md).
+  [Kommandoprotokoll](../ch/_include/Submission-Kommandoprotokoll.md).
   (see 2.3.11 for more details)
 - **avoid academic material:**
   We avoid duplicating (or even refering to) academic material known from lectures
@@ -169,7 +169,7 @@ Therefore,
   why the material will be (or can be) useful for a practicing software engineer;
 - we should make every attempt at implementing one of the principles described in this article:
   [12 Prinzipien zur Motivation Lernender](https://link.springer.com/chapter/10.1007/978-3-658-26990-6_1)
-- for additional considerations compare [Didaktik 3.3](process/didaktik.md)
+- for additional considerations compare [Didaktik 3.3](didaktik.md)
 
 
 ### 2.3.5 Strive to re-use known didactic methods
@@ -187,7 +187,7 @@ For the latter, find a list of possible models (mostly geared to interactive tea
 in schools) here:
 [Liste der Unterrichtsmethoden (Wikipedia)](https://de.wikipedia.org/wiki/Liste_der_Unterrichtsmethoden)
 
-Find more information on didactic considerations (in German) in [Didaktik](process/didaktik.md).
+Find more information on didactic considerations (in German) in [Didaktik](didaktik.md).
 The document discusses both general topics and specific steps for some tasks.
 
 
@@ -195,7 +195,7 @@ The document discusses both general topics and specific steps for some tasks.
 
 Suggested procedure creating a task group:
 
-1. Sketch a task group and its motivation. (Compare [Didaktik 4](process/didaktik.md))
+1. Sketch a task group and its motivation. (Compare [Didaktik 4](didaktik.md))
 2. List candidate tasks for the task group.
 3. Order them from more general (and useful for most people) to more specialized.
    As a rule, the more general tasks should be difficulty 2, the specialized ones harder.  
@@ -208,14 +208,14 @@ Suggested procedure developing individual tasks:
 
 1. Outline a task description by selecting the section structure, 
    in particular the section subtypes (see 2.3.8 to 2.3.11),
-   and formulating the learning goals (see 2.3.7 and [Didaktik 2.1](process/didaktik.md)).
-2. Research the task's topic and perform didactic analysis (see [Didaktik 2.2](process/didaktik.md))
+   and formulating the learning goals (see 2.3.7 and [Didaktik 2.1](didaktik.md)).
+2. Research the task's topic and perform didactic analysis (see [Didaktik 2.2](didaktik.md))
 3. Draft the background (keep it short) and instructions.
-   See [Didaktik 2.3](process/didaktik.md) for teaching methods and examples.
+   See [Didaktik 2.3](didaktik.md) for teaching methods and examples.
    See this document (2.3.8 to 2.3.11) for the practical execution.
    Fill in submission types based on your tasks.
    Add sample solutions and hints for corrections.
-4. Test and review your own task. See also [Didaktik 2.4](process/didaktik.md).
+4. Test and review your own task. See also [Didaktik 2.4](didaktik.md).
 5. Have someone else review the description for coherence between goal and instructions/submission
    and for appropriateness of the instructions given the difficulty. (see 2.4.2)
 
@@ -230,7 +230,7 @@ The goal section
 - should indicate the outcome: What can the student do after completing the task
 - uses operators
 
-compare [Didaktik 2.1](process/didaktik.md)
+compare [Didaktik 2.1](didaktik.md)
 
 ### 2.3.8 `[SECTION::background::default]`
 
@@ -263,7 +263,7 @@ The instruction section
   can be a useful task design technique.
 - Instructions of type `loose` at difficulty 3 (medium) 
   require much larger invention steps (SOLO taxonomy levels 3+4,
-  for SOLO taxonomy see [Didaktik.md 2.1.4 Operatoren](process/didaktik.md))
+  for SOLO taxonomy see [Didaktik.md 2.1.4 Operatoren](didaktik.md))
   but provide `[HINT]`s to make the task feasible for many more people.
   For difficult topics, difficulty 3 tasks sometimes use `detailed` instructions.
 - Instructions of type `loose` or `tricky` at difficulty 4 (difficult) 
@@ -290,12 +290,12 @@ Once done, `grep` for these lines and sum times up.
 For examples, search for "time estimate:" in the existing tasks.
 
 
-### 2.3.10 [SECTION::submission::subtype1,subtype2]
+### 2.3.10 `[SECTION::submission::subtype1,subtype2]`
 
 The submission section
 
 - usually contains only calls to one or more of the boilerplate blocks  
-  ´[INCLUDE::/_include/Submission-Kommandoprotokoll.md]` (if `[EC]` is present anywhere in the task)  
+  `[INCLUDE::/_include/Submission-Kommandoprotokoll.md]` (if `[EC]` is present anywhere in the task)  
   `[INCLUDE::/_include/Submission-Quellcode.md]` (if `[ER]` is present)  
   `[INCLUDE::/_include/Submission-Markdowndokument.md]` (if `[EQ]` is present)  
   in a suitable order
