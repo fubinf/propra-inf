@@ -30,15 +30,15 @@ Motivation der Aufgabe
 
 ### Links
 
-[HREF::url] Link
-
-[Text](url) 
-Link mit eigenem Text (auf separate Zeile platzieren)
+Weblink (auf separate Zeile platzieren)
+[HREF::url]
+Weblink mit eigenen Text (auf separate Zeile platzieren)
+[Text](url)
 
 [PARTREF::Partname] Link zu Aufgabe, Aufgabengruppe, Kapitel oder Zip-Datei
+[PARTREF2::Partname::Link Text] mit eigenem Text
 
 [TERMREF::Term] Link zu Glossareintrag
-
 [TERMREF2::Term::Term Text] mit eigenem Text
 
 
@@ -74,5 +74,5 @@ eingeklappter Text, z.B. für längeren Sourcecode
 Hinweise an die Tutoren zur Aufgabenkorrektur
 [INCLUDE::ALT:]
 [TREEREF::Pfad/zu/Musterlösung]
-[PROT::Pfad/zu/Kommandoprotokoll]
+[PROT::ALT:Protokolldatei.prot]
 [ENDINSTRUCTOR]
