@@ -5,25 +5,16 @@
 
 Jede bearbeitete Aufgabe, die von einem Teilnehmer eingereicht wird, muss von einem Tutor 
 korrigiert und bewertet werden.
-Bei steigender Anzahl an Aufgaben führt das zu einem immer größeren Aufwand:
-
-- Tutoren müssen sich in viele, teilweise komplexe Themenbereiche hineinversetzen, wobei wir 
-  nicht voraussetzen können, dass sie über jeden einzelnen Bereich tiefergehendes Fachwissen 
-  verfügen.
-- Da es keine feste Bearbeitungsreihenfolge gibt, müssen Tutoren ständig zwischen Themen hin und 
-  her springen.
-
-Diese Umstände könnten auf Dauer dazu führen, dass Tutoren entweder die Masse an Korrekturen nicht 
-bewältigen können oder aus Zeitgründen nur noch oberflächlich korrigieren. 
-Die Folgen wären eine mangelnde Qualität der Korrekturen, wenn z.B. Mängel in den Einreichungen 
-oder Verständnislücken der Teilnehmer nicht mehr erkannt werden, worunter letztendlich der 
-Lernerfolg des Kurses leiden würde.
-Um das zu verhindern und den Tutoren Werkzeuge für gute und effiziente Korrekturen zu geben, 
-**muss** jede neue Aufgabe über **Korrekturhilfen** mithilfe von `[INSTRUCTOR]`-Blöcken verfügen, 
+Tutoren müssen sich in viele, teilweise komplexe Themenbereiche hineinversetzen, wobei wir nicht 
+voraussetzen können, dass sie über jeden einzelnen Bereich tiefergehendes Fachwissen verfügen.
+Bei steigender Anzahl an Aufgaben führt das zu einem immer größeren Korrekturaufwand.
+Um zu verhindern, dass Abgaben zu oberflächlich korrigiert werden, müssen den Tutoren 
+Werkzeuge für gute und effiziente Korrekturen gegeben werden.
+Daher **muss** jede Aufgabe über **Korrekturhilfen** mithilfe von `[INSTRUCTOR]`-Blöcken verfügen, 
 damit sie veröffentlicht werden kann.
 
 
-## allgemeine Anweisungen und Hinweise
+## Allgemeine Hinweise
 
 Jede Aufgabe muss **mindestens einen Instructor Block** am Ende der Aufgabe enthalten.
 Die Blöcke können aber auch **innerhalb der Aufgabe** verwendet werden, um z.B. spezifische 
@@ -37,7 +28,7 @@ Punkte zum Bestehen/Ablehnen einer Abgabe:
 
 - Angabe von Schlüsselwörtern/Codezeilen/Kommandos, die essenziell für die Lösung sind und 
   unbedingt vorkommen müssen
-- Dark Pattern, die auf keinen Fall in der Lösung vorkommen dürfen
+- Anti-Pattern oder falsche Herangehensweisen, die auf keinen Fall in der Lösung vorkommen dürfen
 
 Feedbackpunkte:
 
@@ -46,13 +37,13 @@ Feedbackpunkte:
 - eventuelle Fallstricke, über die man bei dem Aufgabenthema häufig stolpert
 
 
-## Herangehensweise zum Schreiben der Instructor-Blöcke
+## Mögliche Herangehensweise zum Schreiben der Instructor-Blöcke
 
 - Entwickle die Musterlösung parallel zur Aufgabe, um frühzeitig festzustellen, ob die Aufgabe 
   auch so lösbar ist, wie du es dir vorstellst.
 - Prüfe, ob deine Lösung reproduzierbar ist, also sowohl bei mehrfacher Ausführung und auf 
   anderen Geräten das gleiche Ergebnis liefert.
-  Schreibe ggf. deine Aufgabe um, sodass das Ergebnis möglichst nachvollziehbar ist.
+  Schreibe, sofern möglich, deine Aufgabe um, sodass das Ergebnis möglichst nachvollziehbar ist.
 - Prüfe, ob deine Lösung nicht zu kompliziert wird und für einen Tutor überschaubar bleibt.
   Versuche ansonsten, die abzugebende Lösung zu kürzen, indem unwichtiges/redundantes weggelassen 
   wird (denke im Worst Case darüber nach, ob ein Aufsplitten der Aufgabe sinnvoll wäre).
@@ -77,37 +68,42 @@ Sobald deine Aufgabe sowie Musterlösung grob fertig ist:
 
 ## altdir und itree
 
-Da das propra-inf Repository öffentlich auf github verfügbar ist, sind auch die 
+Da das `propra-inf` Repository öffentlich auf github verfügbar ist, sind auch die 
 Instructor-Blöcke öffentlich.
-Um Musterlösungen trotzdem verbergen zu können, werden sie in ein eigenes, privates Repo 
-abgekapselt, das als ein git Submodul im Ordner `altdir` eingebunden wird.
+Um Musterlösungen verbergen zu können, werden sie in ein eigenes, privates Repo 
+[`propra-inf-instructorparts`](https://github.com/fubinf/propra-inf-instructorparts)
+abgekapselt, das als git Submodul im Ordner `altdir` eingebunden wird.
 sedrila kann wiederum die Inhalte im `altdir` über Makros in Aufgaben einbinden.
+
 Ein spezielles Verzeichnis im `altdir` ist `itree.zip`.
 Alle Dateien in dem Verzeichnis werden beim Generieren in eine zip-Datei verpackt und den 
 Tutoren zur Verfügung gestellt.
 Das Verzeichnis ist somit für alle Codedateien gedacht, die zu Musterlösungen gehören.
 
-Die Instructor-Anweisungen werden also folgendermaßen geordnet:
+Instructor-Anweisungen werden folgendermaßen abgelegt:
 
 - Allgemeine Korrekturanweisungen und zu beachtende Besonderheiten kommen in den 
   Instructor-Block der Aufgabe
 - Musterlösungen und konkrete Lösungshinweise kommen in die jeweiligen Verzeichnisse in `altdir`
+- Ausführbarer Quellcode wird unter `altdir/itree.zip` abgelegt
 
 Genaue Informationen zu Aufbau und Funktionsweise vom `altdir` stehen in der 
 [sedrila Doku](https://sedrila.readthedocs.io/en/latest/authors/#19-confidential-contents-altdir-itreedir).
+Eine Anleitung zur Einrichtung und Verwendung des Submoduls stehen im
+[How-To 2.6.4](how-to.md).
 
 
-## Abgabentypen
+## Abgabetypen
 
 Äquivalent zu den drei Aufgabentypen, die `sedrila` vorgibt, existieren drei Arten von Abgaben 
 im ProPra.
-Für jede davon wird eine Musterlösung angefertigt und in die jeweiligen Dateien im `altdir` 
+Für jede davon wird eine Musterlösung angefertigt und in die jeweiligen Verzeichnissen im `altdir` 
 abgelegt:
 
 
 ### Wissensfragen `[EQ]`
 
-- Markdowndatei unter `altdir/ch/Pfad/zur/Aufgabengruppe`
+- Werden als Markdowndatei unter `altdir/ch/Pfad/zur/Aufgabengruppe` abgelegt.
 - Wird in den Instructor Block über `[INCLUDE::ALT:]` eingebunden.
 - Schreibe zuerst den `[EREFQ::X]` Marker zur Frage und kopiere anschließend die Fragestellung aus 
   der Aufgabe und füge sie dahinter ein.
@@ -124,7 +120,7 @@ abgelegt:
 
 ### Kommandozeilenbefehle `[EC]`
 
-- `.prot` Datei unter `altidir/ch/Pfad/zur/Aufgabengruppe`
+- `.prot` Dateien werden unter `altdir/ch/Pfad/zur/Aufgabengruppe` abgelegt.
 - Wird in den Instructor Block über `[PROT::ALT:]` eingebunden.
 - Führe die in der Aufgabe verlangten Kommandos selbst im Terminal durch.
 - Verwende den gleichen Prompt Stil, der auch in der Aufgabe 
@@ -159,7 +155,6 @@ abgelegt:
     `[TREEREF::Pfad/zum/Quellcode]`
     - Wenn du den Code selbst komplett einbetten willst, verwende `[INCLUDE::ITREE:sourcefile.xyz]` 
       in einem Code-Block.
-    - Wenn dein Code sehr umfangreich ist und du nur die wichtigsten Stellen daraus präsentieren 
-      möchtest, verwende 
+    - Wenn du wichtige Stellen daraus präsentieren möchtest, verwende 
       [Snippets](https://sedrila.readthedocs.io/en/latest/authors/#262-snippet).
       Verwende ggf. zusätzlich `[EREFR::]`, um die zugehörige Aufgabe zu referenzieren.
