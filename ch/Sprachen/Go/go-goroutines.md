@@ -33,7 +33,7 @@ Sie sind jedoch der erste Schritt.
 Wir wollen simulieren, dass eine Aufgabe Zeit kostet und nicht sofort fertig ist.
 
 [ER] Implementieren Sie eine Funktion `delayedGreeting(msg string)`, die zuerst 2 Sekunden wartet
-(`time.Sleep(2 * time.Second)` und das benötigt `import time`) und danach die Zeichenkette `msg`
+(`time.Sleep(2 * time.Second)` und das benötigt `import "time"`) und danach die Zeichenkette `msg`
 auf der Konsole ausgibt.
 
 [ER] Schreiben Sie eine Funktion `testGo()`. Diese soll:
@@ -43,7 +43,10 @@ auf der Konsole ausgibt.
 - Direkt in der nächsten Zeile `fmt.Println("Hello world!")` aufrufen (ohne `go`).
 
 [EQ] Rufen Sie `testGo()` in Ihrer `main`-Funktion auf.
-Was beobachten Sie?
+Was passiert — und warum ist das überraschend?
+
+[ER] Ergänzen Sie Ihre `main`-Funktion am Ende um eine Endlosschleife, damit das Programm nicht sofort beendet wird.
+Später müssen Sie das Programm manuell mit `Strg+C` abbrechen.
 
 [FOLDOUT::Erklärung]
 Das beobachtete Verhalten liegt daran, dass das Hauptprogramm (`main`) sich beendet, ohne auf die
@@ -51,22 +54,19 @@ nebenläufig gestartete Goroutine zu warten, die Sie durch den Aufruf
 `go delayedGreeting("Hello world delayed!")` gestartet haben.
 [ENDFOLDOUT]
 
-[ER] Ergänzen Sie Ihre `main`-Funktion am Ende um eine Endlosschleife, damit das Programm nicht sofort beendet wird.
-Später müssen Sie das Programm manuell mit `Strg+C` abbrechen.
+Man muss nicht immer eine extra Funktion definieren, denn Go erlaubt das Starten von Goroutinen auch
+direkt mit anonymen Funktionen (Lambdas).
 
-Man muss nicht immer eine extra Funktion definieren, denn Go erlaubt das Starten von Goroutinen auch direkt mit anonymen
-Funktionen (Lambdas).
-
-[ER] Implementieren Sie eine Funktion `testGoLambda()`.
+[ER] Implementieren Sie eine Funktion `testGoAnonymous()`.
 Starten Sie darin eine Goroutine mit einer anonymen Funktion: `go func() { ... }()`, wo zuerst zwei
 Sekunden gewartet und danach `"Hello world delayed!"` auf der Kommandozeile ausgegeben wird.
-Geben Sie außerdem `"Hello world!"` am Ende von `testGoLambda` aus.
-Fügen Sie die Funktion `testGoLambda()` Ihrer `main`-Funktion hinzu:
+Geben Sie außerdem `"Hello world!"` am Ende von `testGoAnonymous` aus.
+Fügen Sie die Funktion `testGoAnonymous()` Ihrer `main`-Funktion hinzu:
 
 ```go
 func main() {
     testGo()
-    testGoLambda()
+    testGoAnonymous()
     ...
 }
 ```
@@ -74,11 +74,13 @@ func main() {
 [EC] Führen Sie das Programm aus.
 Warten Sie auf die Ausgaben und beenden Sie es dann manuell.
 
-[EQ] In welcher Reihenfolge werden die Funktionen (`testGo`, `testGoLambda`, `delayedGreeting` und
-die Lambda-Funktion) gestartet?
+[ER] Fügen Sie jeder der vier Funktionen (`testGo`, `testGoAnonymous`, `delayedGreeting` sowie der
+anonymen Funktion in `testGoAnonymous`) zwei Aufrufe von `fmt.Println()` hinzu.
+Der erste Aufruf soll den Beginn der Funktionsausführung signalisieren, der zweite deren Ende.
 
-[EQ] In welcher Reihenfolge verlassen die vier Funktionen den Geltungsbereich (beenden ihre
-Ausführung)?
+[EQ] In welcher Reihenfolge werden die vier Funktionen gestartet?
+
+[EQ] In welcher Reihenfolge werden die vier Funktionen beendet?
 
 <!-- time estimate: 30 min -->
 
@@ -90,7 +92,7 @@ Der Aufruf `go someFunc()` startet die Funktion `someFunc` in einer neuen Gorout
 übergeordnete Goroutine nicht.
 
 [NOTICE]
-Oben mussten Sie `main` mit einer Endlosschleife blockieren, da die Beendung von `main` das Ende des
+Oben mussten Sie `main` mit einer Endlosschleife blockieren, da das Ende von `main` das Ende des
 Programms bedeutet und alle laufenden Goroutinen automatisch abgebrochen werden.
 [ENDNOTICE]
 
@@ -134,6 +136,12 @@ zu dieser Liste, falls Sie bei der weiteren Erklärung etwas nicht verstehen.
   Threads Ausführung zu ermöglichen.
 - __Stack__: Hier: ein „privater“ Speicherbereich eines Threads.
 
+[EQ] Stellen Sie sich vor, Sie sind der Scheduler.
+Sie verwalten 3 Threads, die alle gleichzeitig laufen wollen — aber Sie haben nur eine CPU.
+Was ist der Unterschied, wenn die Threads _selbst_ entscheiden, wann sie pausieren — versus, wenn _Sie_ entscheiden?
+
+[EQ] Wie würden Sie entscheiden, welcher Thread als nächster läuft?
+
 <!-- time estimate: 10 min -->
 
 
@@ -163,8 +171,8 @@ Diese werden heute oft synonym verwendet und sind im Grunde verschiedene Sorten 
   Im Gegensatz zu Green Threads ist das Scheduling hier (fast) __präemptiv__ — der Scheduler unterbricht die Ausführung
   eines Threads bei blockierenden Ein- und Ausgabeoperationen.
 - __Goroutinen__: Eine komplett _präemptive_ Implementierung von Virtual Threads in Go.
-  Eine Endlosschleife in einem Virtual Thread in Java würde den darunterliegenden OS-Thread komplett blockieren,
-  in Go nicht.
+  Eine Endlosschleife in einem Virtual Thread in Java würde den darunterliegenden OS-Thread in der Regel komplett
+  blockieren, in Go nicht.
   Außerdem sind die Stacks von Goroutinen zu Beginn sehr klein — nur 2 KB.
 
 [FOLDOUT::Tiefenwissen: Scheduler Details]
@@ -231,6 +239,11 @@ Das lernen Sie in den nächsten Aufgaben.
 
 
 [INSTRUCTOR::Hinweise]
+
+[EREFQ::5] und [EREFQ::6] sollen die Teilnehmenden nur zum Nachdenken anregen.
+Es geht nicht darum, eine fachlich korrekte Antwort zu liefern.
+Wichtig ist, dass Studierende sich die Frage stellen "Was würde ich an der Stelle des Schedulers tun?"
+und dadurch zu den simpelsten Scheduling-Verfahren kommen.
 
 **Kommandoprotokoll**
 [PROT::ALT:go-goroutines.prot]
