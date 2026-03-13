@@ -55,13 +55,13 @@ nebenläufig gestartete Goroutine zu warten, die Sie durch den Aufruf
 [ENDFOLDOUT]
 
 Man muss nicht immer eine extra Funktion definieren, denn Go erlaubt das Starten von Goroutinen auch
-direkt mit anonymen Funktionen (Lambdas).
+direkt mit anonymen Funktionen (in Go genannt "Funktionsliterale", in Python "Lambdas").
 
 [ER] Implementieren Sie eine Funktion `testGoAnonymous()`.
 Starten Sie darin eine Goroutine mit einer anonymen Funktion: `go func() { ... }()`, wo zuerst zwei
 Sekunden gewartet und danach `"Hello world delayed!"` auf der Kommandozeile ausgegeben wird.
 Geben Sie außerdem `"Hello world!"` am Ende von `testGoAnonymous` aus.
-Fügen Sie die Funktion `testGoAnonymous()` Ihrer `main`-Funktion hinzu:
+Rufen Sie `testGoAnonymous()` in Ihrer `main`-Funktion auf:
 
 ```go
 func main() {
@@ -170,7 +170,7 @@ Diese werden heute oft synonym verwendet und sind im Grunde verschiedene Sorten 
   Die Laufzeit verteilt _M_ virtuelle Threads dynamisch auf _N_ OS-Threads.
   Im Gegensatz zu Green Threads ist das Scheduling hier (fast) __präemptiv__ — der Scheduler unterbricht die Ausführung
   eines Threads bei blockierenden Ein- und Ausgabeoperationen.
-- __Goroutinen__: Eine komplett _präemptive_ Implementierung von Virtual Threads in Go.
+- __Goroutinen__: Sind in Go eine komplett _präemptive_ Alternative zu Virtual Threads.
   Eine Endlosschleife in einem Virtual Thread in Java würde den darunterliegenden OS-Thread in der Regel komplett
   blockieren, in Go nicht.
   Außerdem sind die Stacks von Goroutinen zu Beginn sehr klein — nur 2 KB.
@@ -216,7 +216,8 @@ Betrachten Sie noch einmal den Unterschied zwischen _kooperativ_ und _präemptiv
 ### Zusammenfassung & Ausblick
 
 Sie haben gelernt, dass `go func()` einen neuen Ausführungsstrang startet.
-Sie haben aber auch das größte Problem der Nebenläufigkeit entdeckt: __Synchronisation__.
+Sie haben aber auch die größten Probleme der Nebenläufigkeit erlebt: 
+__Koordination und Synchronisation__.
 
 Wir mussten eine „dumme“ Endlosschleife (`for {}`) nutzen, damit `main` nicht zu früh beendet wird.
 In echten Programmen verwenden wir dafür:
