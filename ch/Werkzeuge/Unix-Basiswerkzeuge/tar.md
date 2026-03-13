@@ -24,12 +24,12 @@ und gelegentlich für Backups und Projektarchivierung eingesetzt.
 
 ### Testdateien erstellen
 
-Erstellen Sie in ihrem [TERMREF::Hilfsbereich] einen neuen Ordner `tar`.
+Erstellen Sie in Ihrem [TERMREF::Hilfsbereich] ein neues Verzeichnis `tar`.
 
-Wechseln Sie in den neuen Ordner.
+Wechseln Sie in das neue Verzeichnis.
 
 [WARNING]
-Das Skript erstellt 100 Dateien im gerade geöffneten Ordner.
+Das Skript erstellt 100 Dateien im aktuellen Verzeichnis.
 [ENDWARNING]
 
 [EC] Führen Sie diesen Befehl aus: 
@@ -47,7 +47,7 @@ Verstehen Sie im Abschnitt **Beispiele** den Teil "Anlegen" der
 
 [EC] Erstellen Sie ein `.tar`-Archiv `meinarchiv.tar` mit den gerade erstellten 100 Dateien.
 
-Neben dem Erstellen von Archiven kann `tar` Archive auch komprimieren. 
+`tar` kann Archive auch komprimiert erstellen. 
 Es stehen mehrere Algorithmen zur Verfügung, wir beschränken uns hier auf zwei.
 
 Angenommen Sie möchten 100 Dateien per Mail versenden.
@@ -67,7 +67,7 @@ einer sehr einheitlichen Konvention:
 [EC] Erstellen Sie ein mit `xz` komprimiertes Archiv `meinarchiv.tar.xz` mit den 100 Dateien.
 
 [EQ] Vergleichen Sie die Größen der drei Archive.
-(Unsere Dateien ähneln sich sehr stark, deshalb lassen sie sich ungewöhnlich gut komprimieren.)
+(Unsere Dateien ähneln sich besonders stark, deshalb lassen sie sich ungewöhnlich gut komprimieren.)
 
 
 ### `tar`-Archive anzeigen
@@ -99,12 +99,12 @@ Lesen und verstehen Sie die **Optionen x,C** der
 [ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
 
 Verstehen Sie im Abschnitt **Beispiele** den Teil "Extrahieren" der 
-[ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/) an.
+[ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
 
-[EC] Erstellen Sie einen neuen Ordner im `tar`-Ordner namens, `entpackt`.
+[EC] Erstellen Sie im Verzeichnis `tar` ein neues Verzeichnis namens `entpackt`.
 
-[EC] Entpacken Sie das mit `xz` komprimierte Archiv in den Ordner `entpackt` ohne den Ordner zu 
-    wechseln.
+[EC] Entpacken Sie das mit `xz` komprimierte Archiv in das Verzeichnis `entpackt`,
+ohne das Verzeichnis zu wechseln.
 
 
 ### `tar`-Archive aufteilen ("splitten")
@@ -117,19 +117,20 @@ Lesen und verstehen Sie die Abschnitte **Benutzung, Beispiele** und insbesondere
 **Optionen b,d** der 
 [ubuntuusers split-Seite](https://wiki.ubuntuusers.de/split/).
 
-[EC] Erstellen Sie einen neuen Ordner `split` im `tar`-Ordner.
+[EC] Erstellen Sie ein neues Verzeichnis `split` im Verzeichnis `tar`.
 
-[EC] Kopieren Sie das `.tar`-Archiv in den Ordner `split`.
+[EC] Kopieren Sie das `.tar`-Archiv in das Verzeichnis `split`.
 
-[EC] Wechseln Sie in den Ordner `split`.
+[EC] Wechseln Sie in das Verzeichnis `split`.
 
-[EC] Teilen Sie das `.tar`-Archiv in 5 gleich große Archive auf.
+[EC] Teilen Sie das `.tar`-Archiv in 5 gleich große Teile auf.
 Vergeben Sie den Namen `split_meinarchiv.tar.` (mit Punkt am Ende).
 
 
 ### Aufgeteilte `tar`-Archive wieder zusammenfügen
 
-Sie haben auf die Mail eine Antwort aus mehreren Emails mit gesplitteten Archivteilen zurückbekommen.
+Sie haben auf die Mail eine Antwort aus mehreren Emails
+mit aufgeteilten Archivteilen zurückbekommen.
 Damit Sie das aufgeteilte Archiv wieder entpacken können, müssen Sie die Teile wieder zusammenfügen.
 
 Lesen und verstehen Sie den Abschnitt **Zusammenführen** der 
@@ -138,13 +139,16 @@ Lesen und verstehen Sie den Abschnitt **Zusammenführen** der
 [EC] Fügen Sie das `tar`-Archiv, welches Sie in 5 gleich große Teile getrennt haben, wieder zusammen.
 Benennen Sie das Resultat `cat_meinarchiv.tar`.
 
-[EC] Prüfen Sie die Funktionstüchtigkeit des wieder zusammengefügten Archivs, indem Sie die Dateien von `cat_meinarchiv.tar`auflisten.
+[EC] Prüfen Sie die Funktionstüchtigkeit des wieder zusammengefügten Archivs,
+indem Sie die Dateien von `cat_meinarchiv.tar` auflisten.
 Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 
-[EC] Listen Sie den Ordner `split` mit mehr Details auf.
+[EC] Listen Sie das Verzeichnis `split` mit mehr Details auf.
 
 
-[SECTION::submission::trace]
+[ENDSECTION]
+
+[SECTION::submission::trace,information]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
