@@ -95,7 +95,7 @@ Eine Anleitung zur Einrichtung und Verwendung des Submoduls stehen im
 
 ## Abgabetypen
 
-Äquivalent zu den drei Aufgabentypen, die `sedrila` vorgibt, existieren drei Arten von Abgaben 
+Äquivalent zu den drei Typen von Aufgabenschritt, die `sedrila` vorgibt, existieren drei Arten von Abgaben 
 im ProPra.
 Für jede davon wird eine Musterlösung angefertigt und in die jeweiligen Verzeichnissen im `altdir` 
 abgelegt:
