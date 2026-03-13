@@ -21,6 +21,7 @@ Beginne jeden Satz auf einer neuen Zeile und packe den ganzen Satz auf diese Zei
 Setze technische Syntax in Backquotes.
 Schreibe das Ergebnis in die Datei .claude/draft-reviews/r-<mytaskname>.md.
 Das Verzeichnis existiert bereits.
+Umbreche den Text dabei auf ca. 100 Zeichen pro Zeile.
 
 Falls in $ARGUMENTS ein URL mit angegeben ist, sollte das die zur Aufgabe gehörige Issue sein.
 Rufe diese ab und prüfe, ob die ggf. dort behaupteten letzten Nachbesserungsschritte
@@ -28,8 +29,11 @@ passend erfolgt sind.
 Weise auf Kritikpunkte aus einem ggf. früheren Review nur dann erneut hin,
 wenn sie bei der Überarbeitung gar nicht beachtet wurden oder grob unzureichend
 korrigiert worden sind -- wir wollen eine "im Wesentlichen gute" Aufgabenqualität erreichen,
-nicht eine perfekte. 
+nicht eine perfekte und unsere Studierenden verfügen über ein gewisses Denkvermögen. 
 Ein Vergleich der Aufgabe mit früheren Dateirevisionen in git sollte selten nötig sein.
+
+Die Tendenz sollte sein, dass die resultierende Liste der Kritikpunkte in der Regel bei jedem Durchgang
+deutlich kürzer wird.
 
 ---
 
