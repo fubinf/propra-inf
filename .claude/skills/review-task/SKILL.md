@@ -5,8 +5,13 @@ description: Begutachte eine Task oder eine Taskgroup-Indexseite
 # Aufgaben-Review
 
 Reviewe die in $ARGUMENTS angegebene Aufgabendatei (oder Taskgroup-Indexseite).
-Lies zuerst die Datei, dann wende die untenstehenden Heuristiken an.
-Gib die Ergebnisse in GitHub-Markdown-Syntax in zwei Listen aus, 
+Lies die Datei und wende die untenstehenden Heuristiken an.
+Verwende GitHub-Markdown-Syntax. 
+Beginne mit folgendem Absatz:
+"_Solcher kursiver Text ist von mir, der große Rest stammt von Claude. 
+Ggf. habe ich manche Sachen direkt erledigt und in Abschnitt 3 verschoben._"
+Fasse dann zunächst ggf. den Ausgangsstand im Issue zusammen.
+Dann gib die Ergebnisse in drei Listen aus, 
 mit gerade genug Erläuterung, um das Problem zu verstehen,
 je mit H3-Überschrift, durchgehend wie eine einzige Liste nummeriert:
 
@@ -14,7 +19,13 @@ je mit H3-Überschrift, durchgehend wie eine einzige Liste nummeriert:
    Falsche Faktenbehauptungen, falsche Begriffe,
    logische Fehler, größere didaktische Mängel, mangelnde Anleitung
    der Instructors u.ä..
-2. "Kleinere Sachen" für den Rest, insbesondere sprachliche Mängel und leicht ungünstige Begriffe.
+2. "Kleinere Sachen" für den Rest, soweit er nicht von 3. erfasst wird.
+3. "Schon erledigt" für kleinere Sachen, deren Korrektur vermutlich so unstreitig ist,
+   dass es nicht lohnt, einen Autor damit zu belästigen: insbesondere Mängel bei Markup,
+   Orthografie, Begriffsschwankungen, unnötig komplizierte Formuliergungen,
+   sowie höhere Präzision mit nur marginal mehr Text.
+   Hier führe die entsprechende Korrektur in der begutachteten Quelle direkt selbst aus und
+   schreibe knapp ins Review, was Du warum getan hast.
 
 Nenne bei jedem Befund die Zeilennummer(n).
 Beginne jeden Satz auf einer neuen Zeile und packe den ganzen Satz auf diese Zeile.
