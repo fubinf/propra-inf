@@ -1,6 +1,6 @@
 title: "'unittest.mock': Ersetzen von Objekten für Testzwecke"
 stage: alpha
-timevalue: 3.0
+timevalue: 2.0
 difficulty: 3
 assumes: m_pytest
 ---
@@ -45,8 +45,8 @@ Nutzen Sie zum Bearbeiten der Aufgaben die folgende Dokumentation nach Bedarf
 
 Für diese Aufgabe benötigen Sie ein ganzes Verzeichnis `pytest_mocking/`.
 
-
 ### Warum Attrappen? Das Problem verstehen
+<!-- time estimate: 5 min -->
 
 Betrachten Sie folgenden Code, der mehrere externe Abhängigkeiten hat:
 
@@ -89,8 +89,8 @@ Nennen Sie mindestens einen Punkt für jeden der drei Schritte.
 
 Diese Probleme können wir mit folgenden Methoden umgehen:
 
-
 ### Was ist eine Attrappe?
+<!-- time estimate: 5 min -->
 
 Eine Attrappe ist ein Objekt, das nach außen die gleiche Schnittstelle anbietet wie das Original,
 bei der Funktionalität aber "nur so tut, als ob"; in einer Weise, die für den Testzweck passend ist.
@@ -101,8 +101,8 @@ Die SMTP-Server-Attrappe würde aufzeichnen was passiert: Login mit den-und-den 
 die-und-die Email wurde verschickt usw.
 Der Test könnte anschließend diese Aufzeichnungen abfragen und mit den Erwartungen vergleichen.
 
-
 ### Zwei Wege zum Ziel: Monkeypatching vs. Dependency Injection
+<!-- time estimate: 5 min -->
 
 Es gibt grundsätzlich u.a. zwei gute Techniken, um Abhängigkeiten durch Attrappen zu ersetzen:
 
@@ -122,8 +122,8 @@ Im Testcode benutzen wir stattdessen drei Attrappen mit der entsprechenden (Pseu
 Wir schauen uns beide Ansätze an, beginnend mit dem `Monkeypatching`, da wir hier keine
 Vorbedingungen benötigen.
 
-
 #### Erste Schritte: Monkeypatching mit `patch()`
+<!-- time estimate: 30 min -->
 
 Zu jeder kommenden Aufgabe wird es eine zu testende Funktion geben, die in der Aufgabe vorgegeben
 ist oder von Ihnen erstellt werden soll.
@@ -185,7 +185,6 @@ Erklären Sie den Mechanismus in eigenen Worten; ein Satz genügt.
 Sie denken doch daran, die oben angegebenen Dokumentationsquellen zu benutzen?
 [ENDHINT]
 
-
 #### Das Problem mit Monkeypatching: Redundanz
 
 Monkeypatching funktioniert, hat aber Nachteile.
@@ -222,16 +221,56 @@ Nutzen Sie `side_effect` mit einer Funktion oder einem Mapping,
 um für jede Stadt unterschiedliche Antworten zu geben.
 [ENDHINT]
 
+Aber sollten Sie `Mock()` oder `MagicMock()` verwenden? Gutes Experiment!
+
+**Experiment: Mock vs. MagicMock im Vergleich**
+
+Versuchen Sie, folgende Code-Snippets zu verstehen:
+
+```python
+from unittest.mock import Mock, MagicMock
+
+# Versuch 1: Mit Mock()
+response_mock = Mock()
+response_mock.json.return_value = {'main': {'temp': 15}}
+print(response_mock.json())  # Funktioniert, da wir .json.return_value explizit gesetzt haben
+
+# Versuch 2: Was, wenn wir auf ein nicht explizit gesetztes Attribut zugreifen?
+response_mock2 = Mock()
+print(response_mock2.status_code)  
+# Auch möglich! Mock erzeugt es automatisch als leeres Mock-Objekt.
+# Aber: Wir haben die Kontrolle verloren – es ist nicht das, was wir wollen.
+
+# Versuch 3: Echtes Problem mit Mock()
+response_mock3 = Mock()
+# Wenn wir hier response_mock3.json() aufrufen, ohne vorher 
+# response_mock3.json.return_value zu setzen, erhalten wir ein leeres Mock-Objekt zurück,
+# nicht das, was wir wollen!
+
+# Versuch 4: Mit MagicMock()
+response_magicmock = MagicMock()
+response_magicmock.json.return_value = {'main': {'temp': 25}}
+print(response_magicmock.json())  # Funktioniert
+print(response_magicmock.status_code)  # Auch möglich, wenn nötig
+```
+
+**Kernunterschied:**
+- `Mock()`: Nur explizit gesetzte Methoden/Attribute funktionieren kontrolliert.
+- `MagicMock()`: Erlaubt beliebige Methodenaufrufe und Attribute automatisch.
+
+**Für unseren Fall:** Da `requests.get()` ein Response-Objekt mit `.json()` Methode zurückgibt,
+verwenden wir `MagicMock()`, um flexibel zu sein:
+
 [HINT::Wie baut man das Response-Objekt?]
 `requests.get()` gibt ein Response-Objekt zurück, das eine `.json()` Methode hat.
-Ihre Attrappe muss das nachahmen.
-Am einfachsten geht das mit `unittest.mock.MagicMock`.
+Ihre Attrappe muss das nachahmen.Am einfachsten geht das mit `unittest.mock.MagicMock`.
 
 [HINT::Habe ich angeschaut. Ich schnall's leider nicht.]
 ```python
 mock_response = MagicMock()
 mock_response.json.return_value = {'main': {'temp': 25.0}, 'weather': [{'description': 'sunny'}]}
 ```
+
 [ENDHINT]
 
 [ENDHINT]
@@ -246,11 +285,14 @@ Eine einfache Lösung ist, darin nach `f"q={city}"` zu suchen.
 Eventuell sind Sie bei der Testfallerstellung mit Monkeypatching nicht so gut vorangekommen, wie Sie
 es sich vielleicht erhofft haben.
 
+#### Das Problem mit Monkeypatching: Redundanz
+<!-- time estimate: 30 min -->
+
 [EQ] Was stört Sie an Ihrem Testcode? Welche Teile der ursprünglichen Funktion haben Sie im
 Testcode "nachbauen" müssen?
 
-
 #### Der elegantere Weg: Dependency Injection
+<!-- time estimate: 10 min -->
 
 Dependency Injection bedeutet: Die Attrappe wird dem Produktivcode vom Testcode förmlich übergeben
 statt ihm sozusagen heimlich untergeschoben zu werden.
@@ -320,7 +362,6 @@ guter Benutzbarkeit (nur der Testcode muss eine Attrappe injizieren; der Produkt
 und guter Testbarkeit (der Testcode kann ohne Umstände die gewünschte Attrappe injizieren).
 [ENDNOTICE]
 
-
 ### Praxis: Verschiedene Szenarien
 
 Nachdem Sie die beiden Grundtechniken kennengelernt haben, wenden wir sie nun
@@ -328,6 +369,7 @@ auf verschiedene praxistypische Szenarien an. Dabei können Sie selbst entscheid
 welche Technik für das jeweilige Problem besser geeignet ist.
 
 #### Szenario 1: Dateioperationen
+<!-- time estimate: 10 min -->
 
 Hier beginnen wir mit dem sauberen Ansatz: Die Funktion ist bereits für 
 Dependency Injection entworfen.
@@ -369,46 +411,8 @@ und dann Dateizugriffe zu simulieren, ohne tatsächlich Dateien lesen oder schre
 **Warum Attrappen hier sinnvoll sind**: Dateioperationen können langsam sein und das Hantieren
 mit mehreren kleinen Testdateien ist unnötig umständlich.
 
-
-#### Szenario 2: Datenbankoperationen mit MagicMock
-
-In dieser Aufgabe lernen Sie, wie man Datenbankzugriffe beim Testen durch Attrappen ersetzt.
-Der Zugriff auf echte Datenbanken bringt viele Herausforderungen mit sich – von der Performance
-über die Testdatenpflege bis hin zur Reproduzierbarkeit von Ergebnissen.
-
-[ER] Schreiben Sie einen Test für die Funktion `get_user_age()`, die sich in der Datei
-`database_example.py` befinden soll und die das Alter eines Benutzers aus einer SQL-Datenbank
-abruft.
-Schreiben Sie einen Pytest für diese Funktion, wobei die Datenbankverbindung und -abfragen durch
-Attrappen ersetzt werden, um keine echte Datenbank zu verwenden.
-
-```Python
-# database_example.py
-import sqlite3
-
-def get_user_age(user_id):
-    conn = sqlite3.connect('my_database.db')  # in echtem Code gehört das viel weiter außen hin  
-    cursor = conn.cursor()
-    cursor.execute("SELECT age FROM users WHERE id = ?", (user_id,))
-    result = cursor.fetchone()
-    conn.close()  # in echtem Code gehört das viel weiter außen hin
-    return result[0] if result else None
-```
-
-[NOTICE]
-Wir könnten ebenfalls MagicMock nutzen, um ein Attrappen-Objekt zu erstellen, das sich wie ein echtes
-Objekt verhält und Methodenaufrufe sowie deren Rückgabewerte simulieren kann. 
-MagicMock ist besonders nützlich, wenn wir komplexe Objekte oder Methoden mit mehreren Attributen
-und Methoden durch Attrappen ersetzen müssen.
-In diesem Fall wird MagicMock verwendet, um das Verhalten des Datenbank-Cursors zu simulieren,
-einschließlich der Rückgabe von Ergebnissen für SQL-Abfragen.
-[ENDNOTICE]
-
-**Warum Attrappen hier sinnvoll sind**: Datenbankoperationen können langsam und komplex sein. Durch
-Attrappen können wir sicherstellen, dass unsere Tests schnell und zuverlässig sind.
-
-
-#### Szenario 3: Fehlerzustände simulieren
+#### Szenario 2: Fehlerzustände simulieren
+<!-- time estimate: 20 min -->
 
 Fehler treten in der echten Welt auf – aber selten dann, wenn man es im Test braucht.
 Attrappen erlauben es uns, genau diese Situationen gezielt herbeizuführen, um zu überprüfen,
@@ -435,6 +439,7 @@ def get_weather_data(city):
 ```
 
 ### Reflektion: "Wann sollte man Attrappen verwenden und wann lieber nicht?"
+<!-- time estimate: 15 min -->
 
 #### Testdoubles: "Attrappen sind nicht alle gleich"
 
@@ -457,7 +462,6 @@ def send_email_to_users(users, email_service):
 [EQ] Reflektieren Sie: Warum haben Sie sich für das entsprechende Testdouble aus der Testdoubles-Aufgabe
 entschieden, und nicht für die anderen Möglichkeiten?
 
-
 #### Vor- und Nachteile von Attrappen
 
 Nutzen Sie den folgenden Artikel von Robert C. Martin ("Uncle Bob") zum Thema
@@ -467,19 +471,19 @@ Nutzen Sie den folgenden Artikel von Robert C. Martin ("Uncle Bob") zum Thema
 Welcher am meisten? Warum?  
 Welcher am wenigsten? Warum?
 
-
 #### Dependency Injection vs. Monkeypatching
 
 [EQ] Reflektieren Sie: Was ist an Dependency Injection "sauberer" als bei patch()?
 [ENDSECTION]
 
-
 [SECTION::submission::program]
 Reichen Sie für jede der Aufgaben [EREFR::1] bis [EREFR::7] eine Python-Datei ein.
 
+**K1-Hinweis:** Führen Sie Ihre Tests mit `pytest -v` aus und fügen Sie die Ausgabe als Kommentar
+oder Screenshot bei, damit Tutor:innen die erfolgreiche Ausführung direkt sehen können.
+
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
-
 
 [INSTRUCTOR::Prüfhilfen]
 [INCLUDE::ALT:]
