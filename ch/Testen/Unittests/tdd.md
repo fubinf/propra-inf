@@ -1,123 +1,153 @@
-title: Grundlagen des Test Driven Development mit Python
-stage: draft
-timevalue: 0
-difficulty: 1
+title: "Test Driven Development: FizzBuzz mit pytest"
+stage: alpha
+timevalue: 1.5
+difficulty: 2
+assumes: m_pytest
 explains: TDD
 ---
-TODO_1_ruhe:
-- TDD nur Erklärenkönnen ist nicht unser Ding. 
-- Bitte in eine praktische Aufgabe verwandeln.
-- Davor braucht man die technischen Grundlagen für Unittests, m_pytest vermutlich.
-- Dann braucht man eine Quelle, die ein Beispiel theoretisch durchexerziert, mit Diskussion
-  vor allem des Refaktoringschritts.
-- Dann sollen die Studis selber ein Beispiel durchlaufen, das mindestens drei Tests braucht.
-  FizzBuzz wäre wohl so ungefähr das Einfachste.
-- Nach jedem Schritt ist ein Commit zu machen und am Ende sind alle diese Commits (`git show`)
-  als Kommandoprotokoll vorzuzeigen.
-- Paararbeit anregen: Einer schreibt den Test, der andere den Code und den nächsten Test.
-  Dabei ständige Diskussion.
 
-[SECTION::goal::idea]
+[SECTION::goal::product]
 
-Ich kann das Konzept von TDD erklären
+Ich kann eine Funktion mittels Test Driven Development entwickeln und dabei den Red-Green-Refactor-Zyklus anwenden.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Als Entwickler ist es entscheidend, [TERMREF::TDD] zu beherrschen, da diese Methode die Codequalität
-verbessert, frühzeitige Fehlererkennung ermöglicht und die Sicherheit bei Codeänderungen erhöht.
-Durch die effiziente iterative Entwicklungsmethode von TDD können Entwickler ihre Zeit optimal
-nutzen und inkrementelle Verbesserungen am Code vornehmen. Die Fähigkeit, TDD zu nutzen, ist nicht
-nur ein Zeichen für professionelle Exzellenz, sondern kann auch die Karrierechancen verbessern, da
-TDD eine weit verbreitete Praxis in der Softwareentwicklung ist.
+[TERMREF::TDD] ist eine Entwicklungsmethode, bei der Tests vor dem eigentlichen Code geschrieben werden.
+Dies führt zu besser testbarem Code, frühzeitiger Fehlererkennung und mehr Sicherheit bei Refactorings.
+
+Durch das Schreiben der Tests vor dem eigentlichen Code werden Sie dazu gezwungen,
+sich frühzeitig mit den Anforderungen und dem gewünschten Verhalten Ihrer Funktionen
+auseinanderzusetzen.
+Dies führt in der Regel zu einer höheren Testabdeckung, da Sie von Anfang an alle relevanten Fälle
+bedenken.
+Außerdem fördert TDD ein besseres Code-Design, weil Sie Funktionen so gestalten, dass sie einfach
+testbar sind und eine klare Schnittstelle besitzen.
+
+Ein weiterer Vorteil von TDD ist das schnelle Feedback: Sobald Sie Änderungen am Code vornehmen,
+zeigen Ihnen die Tests sofort, ob noch alles wie gewünscht funktioniert. Dadurch sinkt der Aufwand
+für das spätere Debugging erheblich.
+Insgesamt trägt TDD dazu bei, Fehler frühzeitig zu erkennen und zu beheben, was langfristig Zeit
+spart und die Qualität Ihres Codes verbessert.
+
+Der TDD-Zyklus besteht aus drei Schritten:
+1. **Red**: Schreibe einen Test, der fehlschlägt (weil die Funktion noch nicht existiert)
+2. **Green**: Implementiere minimalen Code, damit der Test besteht
+3. **Refactor**: Verbessere den Code, ohne die Tests zu brechen
+
+In dieser Aufgabe entwickeln Sie die klassische FizzBuzz-Funktion mittels TDD.
+FizzBuzz soll für eine Zahl n zurückgeben:
+- "Fizz", wenn n durch 3 teilbar ist
+- "Buzz", wenn n durch 5 teilbar ist
+- "FizzBuzz", wenn n durch 3 und 5 teilbar ist
+- Sonst die Zahl selbst als String
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
+<!-- time estimate: 10 min -->
 
-## Grundlagen
+[EQ] Diskutieren Sie im Team, welche dieser Vorteile für Sie am wichtigsten sind und wie sich TDD auf
+Ihre Arbeitsweise auswirken könnte.
 
-TDD ist eine Entwicklungspraxis, bei der Tests vor der Implementierung des Codes geschrieben werden.
-Der Prozess folgt einem einfachen Zyklus: Schreiben eines Tests, Implementieren des minimal
-notwendigen Codes, Testen und abschließende [TERMREF::Refaktorisierung]. Ziel ist es, die
-Codequalität zu verbessern, frühzeitig Fehler zu erkennen und eine sichere Entwicklungsumgebung zu
-schaffen.
+Sie arbeiten zu zweit: Eine Person schreibt die Tests, die andere implementiert den Code.
+Wechseln Sie nach jedem Zyklus die Rollen und diskutieren Sie Ihre Entscheidungen.
 
-## Schreiben eines Tests
+- [ER] Erstellen Sie die Dateien `fizzbuzz.py` (für den Code) und `test_fizzbuzz.py` (für die Tests).
+- [EC] Initialisieren Sie ein Git-Repository: `git init`
+- [EC] Fügen Sie die leeren Dateien hinzu: `git add fizzbuzz.py test_fizzbuzz.py`
 
-Beginnen Sie mit einem einfachen Test, der das erwartete Verhalten der zu entwickelnden Funktion
-beschreibt. Für Folgeaufgaben verwende Sie das Python-Modul *unittest* oder *pytest* für das Testen.
+### Zyklus 1: Erster Test - Normale Zahlen
+<!-- time estimate: 10 min -->
 
-Betrachten Sie folgendes Test-Beispiel:
+**Test schreiben (Red):**
+- [ER] Schreiben Sie in `test_fizzbuzz.py` einen Test für eine normale Zahl (z.B. 1 → "1").
+- [EC] Führen Sie den Test aus: `pytest test_fizzbuzz.py` (sollte fehlschlagen)
 
-```Python
-import unittest
+**Code implementieren (Green):**
+- [ER] Implementieren Sie die minimalste `fizzbuzz()`-Funktion in `fizzbuzz.py`, die den Test besteht.
+- [EC] Führen Sie den Test aus: `pytest test_fizzbuzz.py` (sollte bestehen)
+- [EC] Commit: `git add . && git commit -m "Zyklus 1: Normale Zahlen"`
 
-def square_root(x):
-    # Funktion implementieren
+### Zyklus 2: Fizz (durch 3 teilbar)
+<!-- time estimate: 10 min -->
 
-class TestSquareRoot(unittest.TestCase):
-    def test_positive_number(self):
-        self.assertEqual(square_root(4), 2)
-```
+**Test schreiben (Red):**
+- [ER] Fügen Sie einen Test für eine durch 3 teilbare Zahl hinzu (z.B. 3 → "Fizz").
+- [EC] Führen Sie die Tests aus: `pytest test_fizzbuzz.py` (der neue Test sollte fehlschlagen)
 
-## Code implementieren
+**Code implementieren (Green):**
+- [ER] Erweitern Sie die Funktion, damit auch dieser Test besteht.
+- [EC] Führen Sie die Tests aus: `pytest test_fizzbuzz.py` (alle sollten bestehen)
+- [EC] Commit: `git add . && git commit -m "Zyklus 2: Fizz für Vielfache von 3"`
 
-Jetzt kann der Code implementiert werden. Implementieren Sie den Code so, dass der Test erfolgreich
-durchgeführt wird. Halten Sie den Code einfach und minimal, um die Anforderungen des Tests zu erfüllen.
+### Zyklus 3: Buzz (durch 5 teilbar)
+<!-- time estimate: 10 min -->
 
-Betrachten Sie folgendes Code-Beispiel:
+**Test schreiben (Red):**
+- [ER] Fügen Sie einen Test für eine durch 5 teilbare Zahl hinzu (z.B. 5 → "Buzz").
+- [EC] Führen Sie die Tests aus: `pytest test_fizzbuzz.py`
 
-```Python
-import math
+**Code implementieren (Green):**
+- [ER] Erweitern Sie die Funktion für Buzz.
+- [EC] Führen Sie die Tests aus: `pytest test_fizzbuzz.py`
+- [EC] Commit: `git add . && git commit -m "Zyklus 3: Buzz für Vielfache von 5"`
 
-def square_root(x):
-    return math.sqrt(x)
-```
+### Zyklus 4: FizzBuzz (durch 3 und 5 teilbar)
+<!-- time estimate: 10 min -->
 
-## Testausführung / Testen
+**Test schreiben (Red):**
+- [ER] Fügen Sie einen Test für eine durch 15 teilbare Zahl hinzu (z.B. 15 → "FizzBuzz").
+- [EC] Führen Sie die Tests aus: `pytest test_fizzbuzz.py`
 
-Bevor es mit der Entwicklung neuer Testfälle und damit weiterem Code weiter geht, ist zu prüfen,
-ob der Testfall auch positiv ausfällt. Führen Sie den Test aus, um sicherzustellen, dass die
-Funktion wie erwartet funktioniert.
+**Code implementieren (Green):**
+- [ER] Erweitern Sie die Funktion für FizzBuzz.
+- [EC] Führen Sie die Tests aus: `pytest test_fizzbuzz.py`
+- [EC] Commit: `git add . && git commit -m "Zyklus 4: FizzBuzz für Vielfache von 15"`
 
-## Refactoring
+### Zyklus 5: Refactoring
+<!-- time estimate: 10 min -->
 
-Manchmal testet man beim Entwickeln herum. Dabei entsteht unnötiger oder schwer lesbarer Code.
-Nutzen Sie hier die Chance den Code zu Refaktorisieren, um ihn klarer und wartbarer zu machen,
-oder auch Kommentare einzufügen, aber achten Sie darauf, dass alle Tests weiterhin erfolgreich
-durchgeführt werden.
+**Code verbessern:**
+- [ER] Refaktorieren Sie den Code (z.B. magische Zahlen eliminieren, bessere Struktur).
+- [EC] Stellen Sie sicher, dass alle Tests weiterhin bestehen: `pytest test_fizzbuzz.py`
+- [EC] Commit: `git add . && git commit -m "Zyklus 5: Refactoring"`
 
-```Python
-def square_root(x):
-    """
-    Berechnet die Quadratwurzel einer gegebenen Zahl.
+[HINT::Refactoring-Ideen]
+- Konstanten für 3, 5, 15 definieren
+- if-elif-else Struktur optimieren
+- Kommentare und Docstring hinzufügen
+- Edge Cases bedenken (0, negative Zahlen)
+[ENDHINT]
 
-    Args:
-        x (int oder float): Die Zahl, deren Quadratwurzel berechnet werden soll. Muss eine nicht-negative Zahl sein.
+### Zyklus 6: Edge Cases
+<!-- time estimate: 10 min -->
 
-    Returns:
-        float: Die Quadratwurzel von x.
+**Weitere Tests hinzufügen:**
+- [ER] Fügen Sie Tests für Edge Cases hinzu (z.B. 0, negative Zahlen - was sollte passieren?).
+- [ER] Implementieren Sie die entsprechende Logik.
+- [EC] Führen Sie alle Tests aus: `pytest test_fizzbuzz.py`
+- [EC] Commit: `git add . && git commit -m "Zyklus 6: Edge Cases"`
 
-    Raises:
-        ValueError: Wenn x negativ ist.
-    """
-    if x < 0:
-        raise ValueError("Kann keine Quadratwurzel aus einer negativen Zahl ziehen.")
-    return math.sqrt(x)
-```
+### Finale Dokumentation und Reflektion
+<!-- time estimate: 15 min -->
 
-## Ergänze Testfälle
+- [EC] Zeigen Sie alle Commits: `git log --oneline`
+- [EC] Zeigen Sie die finale Testausführung: `pytest -v test_fizzbuzz.py`
 
-In der Entwicklung müssen viele (Sonder-)Fälle betrachtet werden. Durch die Erstellung von Negativ-
-Tests hat man eine schöne Möglichkeit den Code zu verbessern.
-
-- [ER] Erstellen Sie einen Testfall, der den oben abgebildeten Codeteil (x < 0) testet.
-- [EQ] Wir haben den zuvor erklärten Zyklus des TDD in diesem Beispiel nicht eingehalten: Erklären
-Sie, welche Schritte wir verändert haben.
+- [EQ] Welche Vorteile hat TDD gegenüber "Code first, Test later" gebracht?
+- [EQ] Wie hat sich Ihr Code-Design durch die Tests entwickelt?
+- [EQ] Was war die größte Herausforderung beim Refactoring?
+- [EQ] Wie würden Sie TDD in einem Teamprojekt einsetzen?
 
 [ENDSECTION]
-
 [SECTION::submission::trace]
+
+[INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
+
 [ENDSECTION]
+
+[INSTRUCTOR::Prüfhilfen]
+[INCLUDE::ALT:]
+[ENDINSTRUCTOR]
