@@ -14,8 +14,8 @@ in einem frischen Repository.
 [SECTION::background::default]
 In [PARTREF::Git101] haben wir gerade so das Nötigste gelernt, um unsere Aufgaben im ProPra 
 abzugeben. 
-Jetzt geht es darum, das Gelernte zu vertiefen und das Wissen um die Befehle und 
-[PARTREF::git-Funktionsweise] zu festigen.
+Jetzt geht es darum, das Gelernte zu vertiefen und unser Wissen über die Befehle und 
+die [PARTREF::git-Funktionsweise] zu festigen.
 
 In dieser Aufgabe erstellen wir ein frisches Repository und lernen dabei,
 was `git init` eigentlich tut, was sich im `.git`-Ordner verbirgt 
@@ -27,9 +27,9 @@ Am Ende steht unser erster Commit.
 [SECTION::instructions::detailed]
 
 Anders als bei den meisten Aufgaben brauchen wir diesmal ein ganz neues Repo. 
-Das dient in erster Linie dazu, dass Sie weiteres Verständnis darüber aufbauen, was in diesem 
-Schritt passiert, und einmal die Repo-Erstellung selber durchturnen, anstatt sie wie üblich 
-von Tools wie GitLab und Co. abgenommen zu bekommen. 
+Das dient dazu, dass Sie besser verstehen, was in diesem Schritt passiert,
+und die Repo-Erstellung einmal selbst durchführen, anstatt sie wie üblich 
+von Tools wie GitLab erledigen zu lassen. 
 Dafür erstellen Sie ein neues Verzeichnis **außerhalb Ihres bestehenden ProPra-Repositories**, 
 wie wir es bereits im [TERMREF::Hilfsbereich] der ProPra-Grundlagen eingerichtet haben.
 Navigieren Sie mit Ihrer Kommandozeile dort hinein und führen Sie den Befehl `git init` aus. 
@@ -47,7 +47,7 @@ Unser neues Repo wirkt auf den ersten Blick leer – sowohl im GUI-Dateimanager 
 Betriebssystems als auch in der Kommandozeile mit `ls`.
 Warum ist das so?
 
-Wenn `git init` ausgeführt wird, legt Git den unsichtbaren Ordner `.git` an.
+Wenn Sie `git init` ausführen, legt Git den unsichtbaren Ordner `.git` an.
 Führen wir `ls -a` aus oder lassen uns im Dateimanager versteckte Verzeichnisse anzeigen, 
 sehen wir diesen Ordner.
 
@@ -63,7 +63,7 @@ Andere können dann jeden gespeicherten Zustand wiederherstellen oder eigene Zus
 Gespeicherte Dateien lassen sich nicht ohne Weiteres ändern. Das ist wichtig zu wissen!
 Haben Sie z. B. versehentlich Passwörter oder andere sensible Daten committet und auf den 
 Git-Server gepusht, wird es mühsam, diese wieder zu entfernen.
-Dazu später mehr.
+Darauf gehen wir in späteren Aufgaben näher ein.
 
 Neben dem *Repository Directory* gibt es auch das *Working Directory* (dt. Arbeitsverzeichnis), 
 manchmal *Working Tree* genannt.
@@ -112,7 +112,7 @@ In der nächsten Aufgabe werden wir uns die Git-Objekte sehr viel genauer ansehe
 Für den Moment reicht es zu wissen, dass Git alles, was es speichert, als Objekte im 
 `.git/objects`-Verzeichnis ablegt und über Hashes referenziert.
 
-### `git status`
+### git status
 
 Wie wir wissen, können wir im Arbeitsverzeichnis nach Belieben Änderungen vornehmen.
 Git hat jedoch eine andere Sicht auf das Arbeitsverzeichnis.
@@ -136,13 +136,16 @@ nothing to commit (create/copy files and use "git add" to track)
 Genau das macht Git hier. Für jede getrackte Datei prüft Git, 
 ob seit der letzten Archivierung Änderungen vorgenommen wurden.
 
-Mit `git add` sagen wir Git für jede Datei, dass wir sie tracken wollen.
+Mit `git add` teilen wir Git mit, welche Dateien wir tracken wollen.
 Nicht getrackte Dateien kann Git zwar sehen, aber es speichert ihren Zustand nicht.
 
+[NOTICE]
 Es gibt auch eine Möglichkeit, bestimmte Dateien oder Verzeichnisse komplett zu ignorieren:
 die `.gitignore`-Datei.
 Git wird dann nie vorschlagen, diese Dateien zu tracken oder ihre Inhalte zu sichern.
 Dazu kommen wir in einer späteren Aufgabe.
+[ENDNOTICE]
+
 
 ### Was ist ein Commit?
 
@@ -224,8 +227,4 @@ als nur eine Datei „vorzumerken".
 [INSTRUCTOR::Prüfhinweise]
 Prüfen Sie das Protokoll auf:
 - Korrekte Ausführung von `git init`, `git status`, `git add`, `git commit`
-- EQ-Antworten zeigen Verständnis des Unterschieds Repo-Verzeichnis vs. Arbeitsverzeichnis
-- EQ zu `.git/objects`: Objekte/Hashes erwähnt
-- EQ zu `git status` nach `git add`: Datei wird jetzt als "Changes to be committed" geführt
-- EQ zu `git log`: ein Commit sichtbar mit Hash, Autor, Datum, Nachricht
 [ENDINSTRUCTOR]
