@@ -71,8 +71,8 @@ Das Arbeitsverzeichnis enthält den aktuellen Zustand Ihres Projekts.
 Mit diesen Dateien arbeiten Sie und können daran grundsätzlich alles ändern, 
 denn alte Zustände lassen sich jederzeit aus dem Archiv wiederherstellen.
 
-Warum eigentlich *Working **Tree***?
-Weil Git Verzeichnisse grundsätzlich als Baumstrukturen darstellt.
+Warum eigentlich *Working __Tree__*?
+Weil Git Verzeichnisse grundsätzlich als Baumstrukturen versteht.
 
 Was haben wir bis hierhin gelernt?
 
@@ -198,13 +198,13 @@ Grundsätzlich gilt: Halten Sie sich kurz und beschreiben Sie klar, was der Comm
 In unserem Fall z. B.: `calculator.py mit Additionsfunktion angelegt`.
 Später dann vielleicht: `fix: Division fängt Division durch Null ab`.
 Die Sprache ist dabei egal, aber im Code wird häufig Englisch verwendet.
-Mehr Tipps dazu gibt es z. B. hier: 
-https://docs.wpvip.com/development-workflow/write-a-good-commit-message/
+Mehr Tipps dazu gibt es z. B. [hier.](https://docs.wpvip.com/guidebooks/developer-best-practices/
+create-a-good-commit-message/)
 [ENDFOLDOUT]
 
-Führen Sie nach dem Commit noch einmal `git status` und `git log` aus.
+Führen Sie nach dem Commit noch einmal `git status` aus.
 
-[EQ] Was zeigt `git status` jetzt? Was zeigt `git log`?
+[EQ] Was zeigt `git status` jetzt?
 
 ### Zwischenfazit
 
@@ -227,4 +227,7 @@ als nur eine Datei „vorzumerken".
 [INSTRUCTOR::Prüfhinweise]
 Prüfen Sie das Protokoll auf:
 - Korrekte Ausführung von `git init`, `git status`, `git add`, `git commit`
+
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
