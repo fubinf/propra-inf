@@ -21,7 +21,7 @@ Statt alles fest in HTML zu schreiben, speichern wir die Daten in Arrays oder Ob
 [ENDSECTION]
 
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
 ### Arrays – Listen von Daten
 
@@ -40,12 +40,7 @@ const produkte = ["Apfel", "Banane", "Kirsche"];
 console.log(produkte[0]); // "Apfel"
 ```
 
-Neue Elemente können Sie in Python mit `.append(...)` anhängen:
-
-```python
-produkte.append("Orange")
-```
-
+Neue Elemente können Sie in Python mit `.append(...)` anhängen.  
 In JavaScript heißt das `.push(...)`:
 
 ```js
@@ -54,13 +49,7 @@ produkte.push("Orange");
 
 #### Arrays durchlaufen
 
-Um alle Elemente einer Liste zu verarbeiten, also z. B. jedes Produkt einmal auszugeben, nutzt man in Python häufig eine for-Schleife:
-
-```python
-for p in produkte:
-    print("Produkt:", p)
-```
-
+Um alle Elemente einer Liste zu verarbeiten, also z. B. jedes Produkt einmal auszugeben, nutzt man in Python häufig eine for-Schleife.  
 In JavaScript geht das ganz ähnlich mit einer klassischen Schleife:
 
 ```js
@@ -153,7 +142,7 @@ const produktliste = [
 
 #### Warum Objekte verwenden?
 - Ein Array allein speichert nur Werte (z. B. eine Liste von Strings).
-- Mit Objekten können Sie zusammengehörige Eigenschaften bündeln (z. B. `Name` + `Preis` + `Kategorie`).
+- Mit Objekten können Sie zusammengehörige Eigenschaften bündeln (z. B. `name` + `preis` + `kategorie`).
 - Arrays von Objekten sind die Grundlage für viele echte Anwendungen, von Produktlisten über Blogbeiträge bis hin zu Chat-Nachrichten.
 
 Mehr Informationen zu Arrays und zu Objekten finden Sie in der
@@ -205,6 +194,30 @@ renderListe();
 Fügen Sie darunter zwei Eingabefelder für Name und Preis sowie einen Button hinzu.
 Wenn der Button geklickt wird, soll das eingegebene Produkt per `.push()` ins Array eingefügt und die Liste neu gerendert werden.
 
+[HINT:: HTML-Struktur]
+Für diese Aufgabe benötigen Sie ein kleines HTML-Grundgerüst.
+
+Die Produkte können z. B. in einer ungeordneten Liste (`<ul>`) angezeigt werden.
+Zusätzlich benötigen Sie zwei Eingabefelder für Name und Preis sowie einen Button,
+mit dem ein neues Produkt hinzugefügt werden kann.
+
+Ein mögliches Grundgerüst könnte so aussehen:
+
+<ul id="produktListe"></ul>
+
+<input id="nameInput" placeholder="Produktname">
+<input id="preisInput" placeholder="Preis">
+
+<button id="hinzufuegenBtn">Hinzufügen</button>
+
+Über `document.getElementById(...)` können Sie diese Elemente
+in Ihrem JavaScript-Code ansprechen.
+
+Beim Klick auf den Button können Sie die Werte aus den Eingabefeldern
+auslesen und ein neues Objekt zum Array hinzufügen.
+Anschließend sollte die Liste im DOM neu erzeugt werden.
+[ENDHINT]
+
 [EQ] Warum ist es sinnvoll, zuerst die Daten im Array zu ändern und nicht direkt das DOM zu manipulieren?
 
 
@@ -251,8 +264,8 @@ Wir ändern nicht direkt das HTML, sondern immer zuerst die Daten im Array und e
 So können Sie leicht weitere Funktionen ergänzen: Sortieren, Filtern, Preise ändern …
 [ENDNOTICE]
 
-[EQ] Nennen Sie weitere Punkte, warum es sinnvoll ist, Daten und Darstellung zu trennen.
-Welche Vorteile hat das gegenüber fest eingebauten HTML-Inhalten?
+[EQ] Angenommen, Sie möchten statt einer Produktliste eine Liste von Blogbeiträgen anzeigen (z. B. mit `titel` und `autor`).
+Welche Teile Ihres Programms müssten angepasst werden und welche könnten unverändert bleiben?
 [ENDSECTION]
 
 
@@ -263,5 +276,15 @@ Welche Vorteile hat das gegenüber fest eingebauten HTML-Inhalten?
 
 
 [INSTRUCTOR::Antworten im Großen und Ganzen korrekt?]
+Priorität bei der Bewertung:
+
+- Studierende sollen Arrays korrekt durchlaufen können (`for`, `for...of`, `forEach`).  
+- Bei der Produktliste soll ein Array von Objekten verwendet werden (z. B. `{name, preis}`).  
+- Beim DOM-Teil ist wichtig, dass Daten aus dem Array erzeugt und als `<li>`-Elemente ins DOM eingefügt werden.
+
+Kleine Unterschiede in der Implementierung (z. B. `for` statt `forEach`, andere Variablennamen) sind unproblematisch.
+
+Bei den EQ-Fragen reicht eine sinngemäße Erklärung:  
+Studierende sollten erkennen, dass das Array die Datenquelle ist und das DOM nur die Darstellung.  
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
