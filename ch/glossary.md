@@ -286,13 +286,23 @@ auf einer _Kommandozeile_ eingegeben werden.
 Häufigste Sorte solcher Kommandozeilen-Interpretierer sind [TERMREF2::Shell::-s].
 [ENDTERM]
 
-
 [TERM::Code Convention|Programming Style|Programmierstil]
 Ein Programmierstil und die Vorgaben dazu regeln, „wie“ ein Programm, d. h. sein Quellcode,
 in formaler und struktureller Hinsicht gestaltet sein soll –
 unabhängig davon, „was“ das Programm leisten soll.
 [ENDTERM]
 
+[TERM::Commit (git)|Commit]
+Ein Commit ist ein dauerhaft gespeicherter Zustand eines Git-Repositorys.
+Beim Erstellen eines Commits speichert Git ein vollständiges Abbild
+([TERMREF::Snapshot (git)]) aller vorgemerkten Dateien, nicht nur die Änderungen.
+Jeder Commit wird durch einen eindeutigen Hash identifiziert und enthält
+Metadaten wie Autor, Zeitstempel und eine Commit-Nachricht.
+Über die Kette von Vorgänger-Commits ergibt sich die Versionsgeschichte eines [TERMREF2::Branch::-es].
+
+Mit `git add` werden Änderungen in der [TERMREF::Staging-Area] vorgemerkt;
+`git commit` fasst deren Inhalt zu einem neuen Commit-Objekt zusammen.
+[ENDTERM]
 
 [TERM::Compiler|Übersetzer]
 Ein Übersetzer ist ein Programm, welches Quellcode einer Sprache in eine andere
@@ -2098,6 +2108,19 @@ Das Gegenteil zu [TERMREF::DRY].
 Während WET nicht als allgemein zu verfolgendes Prinzip gilt, 
 ist es in Einzelfällen sehr wohl eine gute Variante, um Code 
 lesbarer und wartbarer zu machen.
+[ENDTERM]
+
+[TERM::Working Directory|Working Tree|Arbeitsverzeichnis]
+Das Working Directory (dt. Arbeitsverzeichnis), auch Working Tree genannt,
+ist der Verzeichnisbaum, in dem die aktuell ausgecheckten Dateien eines
+Git-Repositorys liegen.
+Mit diesen Dateien arbeiten Sie direkt — im Gegensatz zum
+[TERMREF::Repository-Verzeichnis] (`.git`), das Gits interne Daten enthält.
+
+Änderungen im Working Directory sind zunächst nur lokal und werden von Git
+nicht automatisch gespeichert.
+Erst durch `git add` (Vormerken in der [TERMREF::Staging-Area]) und
+`git commit` werden sie dauerhaft im Repository abgelegt.
 [ENDTERM]
 
 ## X
