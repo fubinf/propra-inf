@@ -1,4 +1,4 @@
-title: git-Grundlagen
+title: git-Repository
 stage: draft
 timevalue: 1
 difficulty: 2
@@ -155,6 +155,9 @@ Diese Zustände nennt man *Commits*.
 Der Begriff kommt vom englischen Verb *to commit*, also „etwas übergeben" oder „überlassen".
 
 Wir übergeben Git den aktuellen Zustand bestimmter Dateien und beauftragen es mit der Archivierung.
+Dabei speichert Git nicht etwa die Änderungen, die wir vorgenommen haben, sondern ein vollständiges Abbild 
+— einen sogenannten Snapshot — aller vorgemerkten Dateien. 
+Was genau das bedeutet und warum das so ist, schauen wir uns in der nächsten Aufgabe an.
 Git gibt uns dafür einen eindeutigen Identifikator, einen Hash.
 Mit diesem Commit-Hash können wir jederzeit auf den Zustand zum Zeitpunkt dieses Commits zurückgreifen.
 
