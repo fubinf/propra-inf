@@ -2,7 +2,7 @@ title: Git Branches
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-assumes: git-Grundlagen, git-Zweitrepo
+assumes: git-Repository, git-Zweitrepo
 ---
 
 [SECTION::goal::idea]
@@ -34,10 +34,10 @@ diese Analogien aufrechtzuerhalten.
 Daher sparen wir uns an dieser Stelle irgendwelche Metaphern und lernen einfach direkt, wie es 
 richtig geht.
 
-Wie bei [PARTREF::git-Grundlagen] werden wir auch hier wieder mit einem neuen Repository arbeiten.
+Wie bei [PARTREF::git-Repository] werden wir auch hier wieder mit einem neuen Repository arbeiten.
 Wir gehen davon aus, dass Sie [PARTREF::git-Zweitrepo] durchgearbeitet haben und ein zweites, 
 auf Gitlab gehostetes Repo erstellt haben. 
-Während wir in [PARTREF::git-Grundlagen] noch mit einem reinen "offline" Repo gearbeitet haben, 
+Während wir in [PARTREF::git-Repository] noch mit einem reinen "offline" Repo gearbeitet haben, 
 erwarten wir für diese Aufgabe die Erstellung eines neuen Repos in Gitlab, da sie die Aufgabe 
 auch mit ihrem Übungspartner gemeinsam bearbeiten sollen.
 
@@ -79,7 +79,7 @@ Date:   Tue May 20 10:28:43 2025 +0200
     add calc.py
 ```
 
-Git log kennen wir ja bereits aus der [PARTREF::git-Grundlagen] Aufgabe. 
+Git log kennen wir ja bereits aus der [PARTREF::git-Repository] Aufgabe. 
 Was wir darin allerdings nicht so richtig beachtet haben, war der sogenannte `HEAD`. 
 Der ist uns zwar ein paar Mal untergekommen, aber was das ist wissen Sie wahrscheinlich noch nicht.
 
