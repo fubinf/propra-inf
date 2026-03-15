@@ -2,7 +2,7 @@ title: git-Repository
 stage: draft
 timevalue: 1
 difficulty: 2
-explains:
+explains: Repository-Verzeichnis, Working Directory, Commit (git)
 assumes: git-Funktionsweise
 ---
 
@@ -30,14 +30,14 @@ Anders als bei den meisten Aufgaben brauchen wir diesmal ein ganz neues Repo.
 Das dient dazu, dass Sie besser verstehen, was in diesem Schritt passiert,
 und die Repo-Erstellung einmal selbst durchführen, anstatt sie wie üblich 
 von Tools wie GitLab erledigen zu lassen. 
-Dafür erstellen Sie ein neues Verzeichnis **außerhalb Ihres bestehenden ProPra-Repositories**, 
-wie wir es bereits im [TERMREF::Hilfsbereich] der ProPra-Grundlagen eingerichtet haben.
+Erstellen Sie dafür ein neues Verzeichnis **außerhalb Ihres bestehenden ProPra-Repositories**, 
+z. B. im [TERMREF::Hilfsbereich], den wir in den ProPra-Grundlagen eingerichtet haben.
 Navigieren Sie mit Ihrer Kommandozeile dort hinein und führen Sie den Befehl `git init` aus. 
 
 [HINT::Kann ich ein neues Repository in meinem bestehenden erstellen?]
 Jein. Git bietet die Möglichkeit, weitere Repos mithilfe sogenannter Submodules einzubinden. 
-Submodules sind auch bei kompetenten Git-Nutzer_innen berüchtigt dafür, wie kompliziert
-das Leben dann wird; also gehen wir diesen Weg hier lieber nicht,
+Submodules sind auch bei kompetenten Git-Nutzer_innen dafür bekannt, dass sie die Arbeit
+erheblich verkomplizieren. Wir gehen diesen Weg hier also lieber nicht,
 sondern trennen unser Übungs-Repo vom ProPra-Repo.
 [ENDHINT]
 
@@ -47,25 +47,25 @@ Unser neues Repo wirkt auf den ersten Blick leer – sowohl im GUI-Dateimanager 
 Betriebssystems als auch in der Kommandozeile mit `ls`.
 Warum ist das so?
 
-Wenn Sie `git init` ausführen, legt Git den unsichtbaren Ordner `.git` an.
-Führen wir `ls -a` aus oder lassen uns im Dateimanager versteckte Verzeichnisse anzeigen, 
-sehen wir diesen Ordner.
+Wenn Sie `git init` ausführen, legt Git den versteckten Ordner `.git` an.
+Führen Sie `ls -a` aus oder lassen Sie sich im Dateimanager versteckte Verzeichnisse anzeigen,
+um diesen Ordner zu sehen.
 
 Der Ordner `.git` wird auch [TERMREF::Repository-Verzeichnis] (engl. Repository Directory) genannt.
 *Repository* bedeutet *Lager* oder *Speicher*. Man kann es sich wie ein Archiv vorstellen, 
 in dem Git alle Informationen über unser Projekt speichert – sowohl Dateiinhalte als auch Metadaten.
 
-Jedes Mal, wenn Sie eine Datei bzw. den Zustand einer Datei dauerhaft sichern möchten, 
+Jedes Mal, wenn Sie den Zustand einer Datei dauerhaft sichern möchten, 
 übergeben Sie sie an das Repository.
-Dieses Archiv teilen Sie später mit anderen Nutzern bzw. laden es auf einen Git-Server hoch.
+Dieses Archiv teilen Sie später mit anderen Nutzer_innen oder laden es auf einen Git-Server hoch.
 Andere können dann jeden gespeicherten Zustand wiederherstellen oder eigene Zustände hinzufügen.
 
-Gespeicherte Dateien lassen sich nicht ohne Weiteres ändern. Das ist wichtig zu wissen!
+Gespeicherte Dateien lassen sich nicht ohne Weiteres ändern – das ist wichtig zu wissen!
 Haben Sie z. B. versehentlich Passwörter oder andere sensible Daten committet und auf den 
 Git-Server gepusht, wird es mühsam, diese wieder zu entfernen.
 Darauf gehen wir in späteren Aufgaben näher ein.
 
-Neben dem *Repository Directory* gibt es auch das *Working Directory* (dt. Arbeitsverzeichnis), 
+Neben dem *Repository Directory* gibt es auch das [TERMREF::Working Directory] (dt. Arbeitsverzeichnis), 
 manchmal *Working Tree* genannt.
 Das Arbeitsverzeichnis enthält den aktuellen Zustand Ihres Projekts. 
 Mit diesen Dateien arbeiten Sie und können daran grundsätzlich alles ändern, 
@@ -87,10 +87,10 @@ Was haben wir bis hierhin gelernt?
 ### Wo bekomme ich nochmal Hilfe?
 
 In [PARTREF::git-Funktionsweise] haben Sie bereits den Befehl `git help` kennengelernt.
-Diesen wollen wir jetzt wieder nutzen, um zu lernen, wozu `git init` dient.
+Den wollen wir jetzt wieder nutzen, um mehr über `git init` zu erfahren.
+Rufen Sie git help init auf und beantworten Sie:
 
-[EQ] Was macht der Befehl `git init`?
-Referenzieren Sie hierbei die Git-Hilfe und vor allem die Teile, die Sie verstehen.
+[EQ] Wie können Sie beim Erstellen eines neuen Repositories einen bestimmten Namen für den initialen Branch festlegen?
 
 ### Aufbau des Repository-Verzeichnisses
 
@@ -106,9 +106,9 @@ im `gitcore-tutorial` und beantworten Sie dann die folgenden Fragen.
 
 [EQ] Wie werden Git-Objekte referenziert?
 
-[EQ] Wie heißt der Default-Branch, und können Sie ihn umbenennen?
+[EQ] Wie heißt der Default-Branch bei Ihnen? Wie können Sie den Namen eines bereits bestehenden Branches nachträglich ändern, und wie den Standard für alle zukünftigen Repositories?
 
-In der nächsten Aufgabe werden wir uns die Git-Objekte sehr viel genauer ansehen.
+In [PARTREF::git-Objektmodell] werden wir uns die Git-Objekte sehr viel genauer ansehen.
 Für den Moment reicht es zu wissen, dass Git alles, was es speichert, als Objekte im 
 `.git/objects`-Verzeichnis ablegt und über Hashes referenziert.
 
@@ -123,14 +123,20 @@ welche es verfolgt (engl. *trackt*) und ob es Änderungen seit dem letzten Commi
 Führen wir `git status` in unserem neuen Repository aus, sehen wir folgende Ausgabe:
 
 ```terminaloutput
-On branch master
+On branch main
 
 No commits yet
 
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
-### Was bedeutet *tracken*?
+[NOTICE]
+Je nach Git-Version und Konfiguration kann der [TERMREF::Main-Branch] `main` oder `master` heißen.
+Neuere Git-Installationen verwenden `main`.
+Falls bei Ihnen `master` steht, ist das kein Fehler.
+[ENDNOTICE]
+
+### Was bedeutet *Tracking*?
 
 *To track something* bedeutet *etwas zu verfolgen*.
 Genau das macht Git hier. Für jede getrackte Datei prüft Git, 
@@ -151,17 +157,16 @@ Dazu kommen wir in einer späteren Aufgabe.
 
 Wir erinnern uns an das Archiv.
 Git archiviert nur die Zustände des Repos, die wir ihm *übergeben*.
-Diese Zustände nennt man *Commits*. 
+Diese Zustände nennt man [TERMREF2::Commit (git)::Commits]. 
 Der Begriff kommt vom englischen Verb *to commit*, also „etwas übergeben" oder „überlassen".
 
 Wir übergeben Git den aktuellen Zustand bestimmter Dateien und beauftragen es mit der Archivierung.
-Dabei speichert Git nicht etwa die Änderungen, die wir vorgenommen haben, sondern ein vollständiges Abbild 
-— einen sogenannten Snapshot — aller vorgemerkten Dateien. 
-Was genau das bedeutet und warum das so ist, schauen wir uns in der nächsten Aufgabe an.
+Dabei speichert Git nicht die Änderungen, die wir vorgenommen haben, sondern ein vollständiges Abbild 
+— einen sogenannten [TERMREF::Snapshot (git)] — aller vorgemerkten Dateien. 
+Was genau das bedeutet und warum das so ist, schauen wir uns in [PARTREF::git-Objektmodell] an.
 Git gibt uns dafür einen eindeutigen Identifikator, einen Hash.
 Mit diesem Commit-Hash können wir jederzeit auf den Zustand zum Zeitpunkt dieses Commits zurückgreifen.
 
-Wie genau das alles funktioniert, schauen wir uns in der nächsten Aufgabe im Detail an.
 Für jetzt reicht es zu wissen: `git add` merkt Dateien vor, `git commit` speichert sie dauerhaft.
 
 ### Der erste Commit
@@ -216,7 +221,7 @@ Sie kennen jetzt den Unterschied zwischen Repository-Verzeichnis (`.git`) und Ar
 wissen, was Tracking bedeutet, und haben den grundlegenden Zyklus durchlaufen:
 Datei erstellen → `git add` → `git commit`.
 
-In der nächsten Aufgabe schauen wir uns an, was dabei *wirklich* passiert –
+In [PARTREF::git-Objektmodell] schauen wir uns an, was dabei *wirklich* passiert –
 was Git unter der Haube mit unseren Dateien macht und warum `git add` mehr tut, 
 als nur eine Datei „vorzumerken".
 
