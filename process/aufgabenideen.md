@@ -585,7 +585,7 @@ Sollten wir eines Tages wohl ins Auge fassen:
 Doof am Thema: Geht auf WSL und Mac nur mit Verrenkungen.
 
 
-## ch/Web (müllers, ertekin, li)
+## ch/Web (müllers, li)
 - Frontend und Backend gemeinsam behandeln; Informatiker_innen sollten einen Überblick haben.
 - Behandlung von folgenden Themen: Tailwind(?), 
   evtl. TypeScript, Flask, Django, Vue(?), React(?).
@@ -595,16 +595,9 @@ Doof am Thema: Geht auf WSL und Mac nur mit Verrenkungen.
 - Optional: Verwenden von (weiteren) CSS Frameworks als Alternative zu Bootstrap
 
 
-### Web/JavaScript (ertekin)
+### Web/JavaScript (N.N.)
 
 - Verwenden von Ressourcen die JS für Python-Devs erklären.
-- Kurze Erwähnung, dass Syntax C-Style ist. Könnte man ggf. ausweisen.
-  Erwähnung von function() {} vs () => {} als Frage, weil häufiger Stolperstein.
-- Einführung des DOM als Struktur mit einfachen Funktionen zur Manipulation
-- Einführung der asynchronen Struktur von JS.
-  - Gegenüberstellung von Callbacks vs async await, ggf IIFE. für async
-- Kleines Beispielprogramm mit wiederkehrenden Elementen bauen lassen
-  - Klischeebeispiel: Todo-Liste. Nett, weil hohes feature ceiling
 - Auf Basis des Programms Teplates und Slots motivieren und umsetzen.
   Nicht immer wieder die gleichen Elemente anlegen müssen!
 - Optional aufbauend auf Templates eigene Tags definieren.
