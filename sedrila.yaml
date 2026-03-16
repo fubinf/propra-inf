@@ -1,4 +1,4 @@
-# ----- for sedrila author:
+# ----- entries relevant for sedrila author:
 title: $SEDRILA_TITLE
 name: $SEDRILA_NAME
 baseresourcedir: baseresources
@@ -39,14 +39,24 @@ htaccess_template: |
     AuthLDAPGroupAttribute memberUid                                
     AuthLDAPUrl "ldaps://ldap1.imp.fu-berlin.de ldap2.imp.fu-berlin.de ldap3.imp.fu-berlin.de/ou=People,ou=mi,dc=imp,dc=fu-berlin,dc=de?cn"
     Require ldap-user {userlist_quotes_spaces}
-# ----- for sedrila student:
+# ----- entries relevant for sedrila student:
 student_yaml_attribute_prompts:
+  course_size_hours: "Size of your course in hours [one ECTS equals 30 hours]: "
   student_name: "Your full name [givenname familyname]: "
   student_id: "Your student ID: "
   student_gituser: "Your git account name [git username]: "
   partner_gituser: "Your partner's git account name (or empty if you work alone): "
-# ----- for sedrila instructor:
-# ----- for sedrila instructor, sedrila student:
+# ----- entries relevant for sedrila instructor:
+  # (no purely instructor-specific entries so far)
+# ----- entries relevant for sedrila instructor & sedrila student:
+startdate: 2025-04-15  # first day of the course (provisional, must become $STARTDATE)
+enddate: 2026-03-31  # last day of the course (provisional)
+bonusrules:
+    student_yaml_attribute: course_size_hours
+    bonusperiod_type: month  # "week"/"month" for calendar week or calendar month
+    bonusperiods: 10  # how many periods (counting from the first) are eligible for a bonus
+    bonus_threshold_percent: 10  # what fraction of course_size_hours must be done to get the bonus for period
+    bonus_size_percent: 1  # what fraction of course_size_hours is deducted for each bonus
 allowed_attempts: "2 + 0.4/h"
 instructors:
   - nameish: Lutz Prechelt
@@ -178,7 +188,7 @@ instructors:
       EMZmkSf2ntEnqG8KlrQBAOcfOI+1glk+kHAzymd12AvRU2l0wrSycI3IjYMtQb4D
       =50Ay
       -----END PGP PUBLIC KEY BLOCK-----
-# ----- for all subcommands:
+# ----- entries relevant for all roles:
 chapters:
   - name: Basis
     taskgroups:
