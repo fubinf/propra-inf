@@ -222,11 +222,13 @@ Nutzen Sie `side_effect` mit einer Funktion oder einem Mapping,
 um für jede Stadt unterschiedliche Antworten zu geben.
 [ENDHINT]
 
-Aber sollten Sie `Mock()` oder `MagicMock()` verwenden? Gutes Experiment!
+Welche Attrappe brauchen Sie hier?
+Versuchen Sie, die Unterschiede zwischen `Mock()` und `MagicMock()` zu verstehen:
 
 **Experiment: Mock vs. MagicMock im Vergleich**
 
-Versuchen Sie, folgende Code-Snippets zu verstehen:
+Beide Klassen erzeugen automatisch neue Mock-Objekte bei Attribut-Zugriff.
+Aber es gibt einen wichtigen Unterschied:
 
 ```python
 from unittest.mock import Mock, MagicMock
@@ -255,18 +257,37 @@ print(response_magicmock.json())  # Funktioniert
 print(response_magicmock.status_code)  # Auch möglich, wenn nötig
 ```
 
-**Kernunterschied:**
-- `Mock()`: Nur explizit gesetzte Methoden/Attribute funktionieren kontrolliert.
-- `MagicMock()`: Erlaubt beliebige Methodenaufrufe und Attribute automatisch.
+**Kernunterschied: Magic Methods**
 
-**Für unseren Fall:** Da `requests.get()` ein Response-Objekt mit `.json()` Methode zurückgibt,
-verwenden wir `MagicMock()`, um flexibel zu sein:
+`MagicMock()` ist eine Unterklasse von `Mock()` mit zusätzlicher Unterstützung für "Magic Methods" (Dunder-Methoden). 
+Diese sind spezielle Methoden in Python wie `__len__()`, `__iter__()`, `__str__()`, etc.
+Sie ermöglichen es dem Mock-Objekt, sich wie eingebaute Python-Typen zu verhalten.
+
+**In unserem Fall für HTTP-Responses:** Für die `.json()`-Methode brauchen Sie `MagicMock()`, 
+damit auch komplexere Verkettungen wie `response.json()['main']` zuverlässig funktionieren.
+
+**Praktischer Unterschied:**
+```python
+# Mit Mock() ist ALLES ein leeres Mock-Objekt, solange nicht explizit gesetzt:
+m = Mock()
+print(m.x)  # <Mock name='mock.x' id='...'> - leeres Mock-Objekt
+print(len(m))  # TypeError: object of type 'Mock' has no len()
+
+# Mit MagicMock() gibt es Standardverhalten für Magic Methods:
+mm = MagicMock()
+print(mm.x)  # <MagicMock name='magic_mock.x' id='...'> - leeres Mock-Objekt
+print(len(mm))  # 0 - sinnvoll!
+```
+
+Für Ihre HTTP-Response-Attrappe: Verwenden Sie `MagicMock()`, um sicherzustellen, dass nested Attribute 
+wie `.json()['main']['temp']` geschmeidig funktionieren.
 
 [HINT::Wie baut man das Response-Objekt?]
 `requests.get()` gibt ein Response-Objekt zurück, das eine `.json()` Methode hat.
 Ihre Attrappe muss das nachahmen. Am einfachsten geht das mit `unittest.mock.MagicMock`.
 
 [HINT::Habe ich angeschaut. Ich schnall's leider nicht.]
+
 ```python
 mock_response = MagicMock()
 mock_response.json.return_value = {'main': {'temp': 25.0}, 'weather': [{'description': 'sunny'}]}
@@ -410,7 +431,7 @@ und dann Dateizugriffe zu simulieren, ohne tatsächlich Dateien lesen oder schre
 mit mehreren kleinen Testdateien ist unnötig umständlich.
 
 #### Szenario 2: Fehlerzustände simulieren
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
 Fehler treten in der echten Welt auf – aber selten dann, wenn man es im Test braucht.
 Attrappen erlauben es uns, genau diese Situationen gezielt herbeizuführen, um zu überprüfen,
@@ -441,9 +462,10 @@ def get_weather_data(city):
 
 #### Testdoubles: "Attrappen sind nicht alle gleich"
 
-Überfliegen Sie den
-[Artikel von Martin Fowler zu "Mocking"](https://martinfowler.com/articles/mocksArentStubs.html).
-Lesen Sie den Bereich der Testdoubles.
+Machen Sie sich mit dem Artikel
+[Artikel von Martin Fowler zu "Mocking"](https://martinfowler.com/articles/mocksArentStubs.html) vertraut.
+Lesen Sie den Bereich der Testdoubles "The Difference Between Mocks and Stubs" durch, damit wir diese
+im folgenden einsetzen können.
 
 [ER] Betrachten Sie die folgende Funktion `send_email_to_users(users, email_service)`, die sich in
 der Datei `testdoubles_example.py` befinden soll und entscheiden Sie, welche Art von Testdouble
@@ -465,22 +487,19 @@ entschieden, und nicht für die anderen Möglichkeiten?
 Nutzen Sie den folgenden Artikel von Robert C. Martin ("Uncle Bob") zum Thema
 "[When to Mock](https://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html)".
 
-[EQ] Stimmen Sie den Aussagen zu?  
-Welcher am meisten? Warum?  
-Welcher am wenigsten? Warum?
+[EQ] Welcher Aussage stimmen Sie warum zu oder sehen Sie anders?
 
-#### Dependency Injection vs. Monkeypatching
+#### Abschluss
 
-[EQ] Reflektieren Sie: Was ist an Dependency Injection "sauberer" als bei patch()?
-[ENDSECTION]
-
-[SECTION::submission::program]
-Reichen Sie für jede der Aufgaben [EREFR::1] bis [EREFR::7] eine Python-Datei ein.
-
-**K1-Hinweis:** Führen Sie Ihre Tests mit `pytest -v` aus und fügen Sie die Ausgabe als Kommentar
+[EC] Führen Sie Ihre Tests mit `pytest -v` aus und fügen Sie die Ausgabe als Kommentar
 oder Screenshot bei, damit Tutor:innen die erfolgreiche Ausführung direkt sehen können.
 
+[ENDSECTION]
+
+[SECTION::submission::snippet,reflection]
+[INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Prüfhilfen]
