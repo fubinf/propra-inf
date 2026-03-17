@@ -186,6 +186,7 @@ Sie denken doch daran, die oben angegebenen Dokumentationsquellen zu benutzen?
 [ENDHINT]
 
 #### Das Problem mit Monkeypatching: Redundanz
+<!-- time estimate: 30 min -->
 
 Monkeypatching funktioniert, hat aber Nachteile.
 Betrachten Sie eine komplexere Funktion:
@@ -263,7 +264,7 @@ verwenden wir `MagicMock()`, um flexibel zu sein:
 
 [HINT::Wie baut man das Response-Objekt?]
 `requests.get()` gibt ein Response-Objekt zurück, das eine `.json()` Methode hat.
-Ihre Attrappe muss das nachahmen.Am einfachsten geht das mit `unittest.mock.MagicMock`.
+Ihre Attrappe muss das nachahmen. Am einfachsten geht das mit `unittest.mock.MagicMock`.
 
 [HINT::Habe ich angeschaut. Ich schnall's leider nicht.]
 ```python
@@ -284,9 +285,6 @@ Eine einfache Lösung ist, darin nach `f"q={city}"` zu suchen.
 
 Eventuell sind Sie bei der Testfallerstellung mit Monkeypatching nicht so gut vorangekommen, wie Sie
 es sich vielleicht erhofft haben.
-
-#### Das Problem mit Monkeypatching: Redundanz
-<!-- time estimate: 30 min -->
 
 [EQ] Was stört Sie an Ihrem Testcode? Welche Teile der ursprünglichen Funktion haben Sie im
 Testcode "nachbauen" müssen?
