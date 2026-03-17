@@ -71,18 +71,15 @@ func main() {
 }
 ```
 
+[HINT::Warum gibt es am Ende von `go func() { ... }()` noch einmal runde Klammern?]
+Der Ausdruck `go func() {}` definiert eine anonyme Funktion.
+Die runden Klammern `()` am Ende rufen die gerade definierte Funktion sofort auf.
+[ENDHINT]
+
 [EC] Führen Sie das Programm aus.
 Warten Sie auf die Ausgaben und beenden Sie es dann manuell.
 
-[ER] Fügen Sie jeder der vier Funktionen (`testGo`, `testGoAnonymous`, `delayedGreeting` sowie der
-anonymen Funktion in `testGoAnonymous`) zwei Aufrufe von `fmt.Println()` hinzu.
-Der erste Aufruf soll den Beginn der Funktionsausführung signalisieren, der zweite deren Ende.
-
-[EQ] In welcher Reihenfolge werden die vier Funktionen gestartet?
-
-[EQ] In welcher Reihenfolge werden die vier Funktionen beendet?
-
-<!-- time estimate: 30 min -->
+<!-- time estimate: 20 min -->
 
 
 ### Teil 2: Was ist eine Goroutine genau?
@@ -152,7 +149,7 @@ Hier sammeln wir nun einige weitere Begriffe, die im Kontext von Nebenläufigkei
 1. __Hardware-Threads__: Die logischen Kerne Ihrer CPU — die echten „Arbeiter“.
 2. __OS-Threads__: Threads, die im _Kernel_ verwaltet werden.
    Sie sind relativ „teuer“ im Speicherverbrauch (Stacks zwischen 512 KB und 8 MB) und ihr Wechsel kostet Zeit,
-   weil die Threads im _Benutzerraum_ laufen.
+   weil die Umschaltung einen Übergang zwischen _Benutzer-_ und _Kernelraum_ erfordert.
    Das Betriebssystem ordnet OS-Threads den Hardware-Threads zu.
 3. __User Threads__: 
    Threads, die von einem _Scheduler_ im _Benutzerraum_ verwaltet werden — von einem externen Programm.
@@ -240,11 +237,18 @@ Das lernen Sie in den nächsten Aufgaben.
 
 
 [INSTRUCTOR::Hinweise]
+[EREFQ::1] — hier sollen die Studierenden beobachten, dass sich das Programm sofort beendet und
+`delayedGreeting` nicht zur Ausführung kommt.
 
-[EREFQ::5] und [EREFQ::6] sollen die Teilnehmenden nur zum Nachdenken anregen.
+[EREFQ::2] — alles ist korrekt, was einigermaßen plausibel begründet ist.
+
+[EREFQ::3] und [EREFQ::4] sollen die Teilnehmenden nur zum Nachdenken anregen.
 Es geht nicht darum, eine fachlich korrekte Antwort zu liefern.
 Wichtig ist, dass Studierende sich die Frage stellen "Was würde ich an der Stelle des Schedulers tun?"
 und dadurch zu den simpelsten Scheduling-Verfahren kommen.
+
+[EREFQ::5] und [EREFQ::6] — hier sollen die Studierenden die Szenarien im Hinblick auf Präemptivität
+und Speicherverbrauch von Goroutinen im Vergleich zu OS-Threads diskutieren.
 
 **Kommandoprotokoll**
 [PROT::ALT:go-goroutines.prot]
