@@ -35,7 +35,7 @@ Das Verzeichnis existiert bereits.
 Umbreche den Text dabei auf ca. 100 Zeichen pro Zeile.
 
 Falls in $ARGUMENTS ein URL mit angegeben ist, sollte das die zur Aufgabe gehörige Issue sein.
-Rufe diese ab und prüfe, ob die ggf. dort behaupteten letzten Nachbesserungsschritte
+Rufe diese ab (z.B. mit dem `gh` CLI) und prüfe, ob die ggf. dort behaupteten letzten Nachbesserungsschritte
 passend erfolgt sind.
 Weise auf Kritikpunkte aus einem ggf. früheren Review nur dann erneut hin,
 wenn sie bei der Überarbeitung gar nicht beachtet wurden oder grob unzureichend
