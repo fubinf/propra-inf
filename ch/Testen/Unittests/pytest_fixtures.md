@@ -19,9 +19,10 @@ Somit sind sie insbesondere dafür geeignet, um Testdaten bereitzustellen.
 
 
 [SECTION::instructions::detailed]
-Nutzen Sie die Übersicht
+Nutzen Sie die folgende Übersicht parallel zum Bearbeiten der Aufgaben:
+
 [Pytest Fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
-parallel zum Bearbeiten der Aufgaben.
+
 Wir betrachten zuerst das Grundlegende.
 
 ### Das Problem ohne Fixtures
@@ -107,12 +108,10 @@ def test_user_login():
     assert result.success == True
 ```
 
-[EQ] Führen Sie die Tests aus. Sie funktionieren, aber was stört Sie daran?
-
 
 #### Setup deklarativ machen
 
-Pytest Fixtures lösen das Problem mit einem `Setup`.
+Pytest Fixtures lösen das, indem man Setup-Code einmal als Fixture definiert und ihn in beliebig vielen Tests wiederverwendet.
 
 ```python
 @pytest.fixture
@@ -123,130 +122,97 @@ def test_user_registration(user_service):
     ...
 ```
 
-[ER] Ergänzen Sie Ihre `test_discovery.py`, um diese Fixture und modifizieren Sie beide Tests,  
+[ER] Ergänzen Sie Ihre `test_discovery.py` um diese Fixture, und modifizieren Sie beide Tests,
 um die Fixture zu nutzen.
 
-[EQ] Stellen Sie sich eine Testdatei mit Dutzenden Tests verschiedener Art vor.
-Welchen Vorteil kann es haben, wenn die verwendeten Testobjekte in der Signatur zu erkennen sind?
+Ein Test kann auch mehrere Fixtures gleichzeitig verwenden – er listet sie einfach als mehrere
+Parameter auf.
+Suchen Sie in der oben verlinkten Pytest-Übersicht nach dem Abschnitt
+„A test/fixture can request more than one fixture at a time" und lesen Sie ihn.
 
-
-#### Das Isolationsproblem demonstrieren
-
-Jetzt demonstrieren wir bewusst ein Isolationsproblem.
+Zum Beispiel:
 
 ```python
-def test_user_registration(user_service):
-    result = user_service.register("alice", "alice@test.com", "password123") 
-    assert result.success == True
+@pytest.fixture
+def credentials():
+    return {"email": "alice@test.com", "password": "secret"}
 
-def test_user_login(user_service):
-    user_service.register("alice", "alice@test.com", "password123")
-    result = user_service.login("alice", "password123")
-    assert result.success == True
-
-def test_expects_alice_exists(user_service):
-    assert "alice" in user_service.users, "Alice sollte bereits registriert sein!"
-    result = user_service.login("alice", "password123")
+def test_login(user_service, credentials):
+    user_service.register("alice", credentials["email"], credentials["password"])
+    result = user_service.login("alice", credentials["password"])
     assert result.success == True
 ```
 
-Führen Sie die Tests mit `-v` aus: `pytest -v test_discovery.py`.
+[EQ] Stellen Sie sich eine Testdatei mit Dutzenden Tests vor, die verschiedene Kombinationen
+von Fixtures verwenden.
+Welchen Vorteil hat es, wenn alle benötigten Fixtures als Parameter in der Signatur stehen?
 
-Es sollte nicht fehlerfrei durchlaufen.
 
-Sie haben ein **Test-Isolationsproblem** entdeckt.
+#### Fixture Scopes: wann welcher?
 
-[EQ] Beschreiben Sie in eigenen Worten, was das Problem ist.
+Manche Fixtures sind aufwendig: eine Datenbankverbindung aufbauen, Testdaten laden oder
+einen Server starten kann Sekunden dauern.
+Mit dem Standard-Scope `"function"` wird das Setup für jeden einzelnen Test wiederholt.
 
-[HINT::MoveIt]
-Um einen besseren Eindruck zu bekommen, verändern Sie doch einfach einmal die Reihenfolge der Tests.
-[ENDHINT]
+Simulieren Sie das mit `time.sleep()`:
 
-Ersetzen Sie jetzt die Fixture durch folgenden Teil:
+```python
+import time
+
+@pytest.fixture
+def slow_service():
+    time.sleep(1)  # Simuliert langsames Setup (z.B. DB-Verbindung aufbauen)
+    return PseudoUserservice()
+
+def test_slow_1(slow_service):
+    slow_service.register("alice", "alice@test.com", "secret")
+    assert True
+
+def test_slow_2(slow_service):
+    slow_service.register("bob", "bob@test.com", "secret")
+    assert True
+
+def test_slow_3(slow_service):
+    assert True
+```
+
+[EC] Fügen Sie diesen Code zu `test_discovery.py` hinzu und messen Sie die Laufzeit:
+`pytest -v test_discovery.py`
+
+[EQ] Wie viele Sekunden dauert die Testsuite insgesamt?
+Was wäre bei 100 Tests, die diese Fixture verwenden?
+
+Pytest bietet verschiedene Scopes für Fixtures:
+
+- `function`: Neue Instanz für jeden Test (Standard, beste Isolation)
+- `class`: Eine Instanz für alle Tests einer Test-Klasse
+- `module`: Eine Instanz für alle Tests einer Datei
+- `session`: Eine Instanz für die gesamte Test-Session
+
+Ändern Sie nun den Scope auf `"module"`:
 
 ```python
 @pytest.fixture(scope="module")
-def user_service():
+def slow_service():
+    time.sleep(1)
     return PseudoUserservice()
 ```
 
-Führen Sie die Test erneut aus.
-Sie werden erkennen, dass alle Tests fehlerfrei laufen.
-Aber Sie sind noch nicht mit der Testfallerstellung fertig.
+[EC] Führen Sie die Tests erneut aus: `pytest -v test_discovery.py`
 
-Ergänzen Sie folgenden Testfall am Ende Ihrer Testdatei und führen Sie alle erneut Testfälle aus.
+[EQ] Wie verändert sich die Laufzeit, und warum?
+Was müssen Sie beachten, wenn mehrere Tests dieselbe Instanz teilen?
 
-```python
-def test_clean_start_assumption(user_service):
-    assert len(user_service.users) == 0, f"UserService sollte leer sein, hat aber: {user_service.users}"
-    
-    result = user_service.register("bob", "bob@test.com", "password456")
-    assert result.success == True
-```
-
-Uff, das hat nicht funktioniert.
-Jetzt könnten Sie natürlich wieder den Scope verändern.
-Toben Sie sich gerne damit aus.
-Das wird leider nicht funktionieren.
-Warum da so ist, dazu müssen wir erst einmal Fixture Scopes betrachten.
-
-#### Fixture Scopes verstehen
-
-Pytest bietet verschiedene "Scopes" für Fixtures:
-
-- `function`: Neue Instanz für jeden Test (beste Isolation)
-- `class`: Eine Instanz für alle Tests einer Test-Klasse
-- `module`: Eine Instanz für alle Tests einer Datei  
-- `session`: Eine Instanz für die gesamte Test-Session
-
-Experimentieren Sie mit Scopes.
-Fügen Sie folgende Fixtures zu Ihrer Datei hinzu:
-
-```python
-@pytest.fixture(scope="function")
-def function_service():
-    return PseudoUserservice()
-
-def test_function_scope_1(function_service):
-    print("test_function_scope_1 läuft")
-    assert True
-
-def test_function_scope_2(function_service):
-    print("test_function_scope_2 läuft")
-    assert True
-    
-def test_module_scope_1(module_service):
-    print("test_module_scope_1 läuft")
-    assert True
-
-def test_module_scope_2(module_service):
-    print("test_module_scope_2 läuft")
-    assert True
-```
-
-[EC] Führen Sie die Tests mit `-s` aus: `pytest -s test_discovery.py`
-
-[EQ] Analysieren Sie die Ausgabe. Wann wird welche Fixture erstellt?  
-Was bedeutet das für Ihr Isolationsproblem?
-
-Wenn Sie fertig sind, entfernen Sie diese Ergänzungen wieder.
-
-Das aktuelle Dilemma ist, dass wir nicht alle Testfälle gleichzeitig erfolgreich durchlaufen
-lassen können. Auch der vorhandene Scope hilft uns da nicht weiter.
-Eine Lösung wäre, einen weiteren Scope einzuführen.
-
-[EC] Ergänzen Sie einen weiteren Fixture Scope so, dass wirklich alle Testfälle erfolgreich sind.
-
-[HINT::Reference]
-
-1. Bedenken Sie, dass die Fixtures von den Testfällen gezielt genutzt werden, d.h. ein Testfall
-   referenziert auf ein Fixture.
-2. Ein Fixture alleine ist oftmals nicht ausreichend.
-   Hier haben Sie eine Abhängigkeit der Reihenfolge erkannt.
-   Der eine Scope hat eine Abhängigkeit, der andere keine, d.h. Sie müssen evt. einen weiteren
-   Testfall mit in den Scope aufnehmen, um den fehlgeschlagenen Test erfolgreich zu bekommen.
-
+[HINT::Ich verstehe nicht, was dabei schiefgehen kann]
+Im `function`-Scope bekommt jeder Test eine frische Instanz – Zustandsänderungen eines Tests
+sind für andere Tests unsichtbar.
+Im `module`-Scope teilen sich alle Tests dieselbe Instanz: Wenn ein Test Nutzerdaten speichert
+oder andere Zustandsänderungen vornimmt, sehen das alle nachfolgenden Tests ebenfalls.
+Tests müssen deshalb so geschrieben sein, dass sie nicht auf Zustand angewiesen sind,
+den ein anderer Test hinterlassen hat.
 [ENDHINT]
+
+Wenn Sie fertig sind, entfernen Sie `slow_service` und die drei zugehörigen Tests wieder.
 
 #### Setup und Teardown: Das Cleanup-Problem
 
@@ -282,7 +248,7 @@ def test_another_temp_file(temp_file):
     assert content == "Test war hier!"
 ```
 
-[EQ] Testen Sie den Code und führen Sie ihn aus. Was ist hier das Problem?
+[EQ] Führen Sie den Code aus. Was ist hier das Problem?
 
 Wir könnten den Scope ändern, aber nehmen wir mal an, dass wir ihn für unsere Testsammlung an dieser
 Stelle benötigen.
@@ -308,7 +274,7 @@ def temp_file(request):  # <- request muss Parameter sein!
     return filename
 ```
 
-Jedoch wollen wir nicht am Ende löschen, sondern brauchen diese tolle Funktion viel früher.
+Jedoch benötigen wir das Zurücksetzen der Datei *zwischen* den Tests, nicht erst am Ende.
 
 ```python
 @pytest.fixture(scope="module")
@@ -358,11 +324,14 @@ def test_another_temp_file(temp_file_manager):
     assert content == "Test war hier!"  # Funktioniert jetzt!
 ```
 
-[ER] Implementieren Sie ein Teardown/Cleanup nach jedem Testfall.
+[ER] Implementieren Sie die `temp_file_manager`-Fixture aus dem Codebeispiel oben in Ihrer
+`test_discovery.py` und ersetzen Sie damit `temp_file` in beiden Tests.
+Stellen Sie sicher, dass `test_another_temp_file` besteht – unabhängig davon,
+ob `test_creates_temp_file` vorher gelaufen ist.
 
 [EQ] Was passiert, wenn ein Test einen Fehler wirft? Wird Cleanup trotzdem ausgeführt?
 
-Das Ganze kann man auch mit Hilfe einer Hilfklasse umsetzen, was es übersichtlicher egstaltet.
+Das Ganze kann man auch mit Hilfe einer Hilfsklasse umsetzen, was es übersichtlicher gestaltet.
 
 ```python
 class TempFileManager:
@@ -398,13 +367,13 @@ def test_another_temp_file(file_manager):
     assert file_manager.read() == "Test content"
 ```
 
-Hier stellen wir in unserem Fixture sicher, dass wir immer 
-`request.addfinalizer(manager.cleanup)` nach jedem test ausführen.
+Hier stellen wir in unserer Fixture sicher, dass `request.addfinalizer(manager.cleanup)`
+nach Ablauf des Fixture-Scopes ausgeführt wird – also nach dem letzten Test, der die Fixture nutzt.
 
 #### Fixtures teilen: conftest.py
 
-Sie haben mehrere Test-Dateien, die alle `ähnliche` Fixtures brauchen.  
-Jetzt schauen wir uns an, wie Pytest dieses Problem lösen kann?
+Sie haben mehrere Test-Dateien, die alle ähnliche Fixtures brauchen.
+Jetzt schauen wir uns an, wie Pytest dieses Problem lösen kann.
 
 Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures:
 
@@ -436,8 +405,8 @@ def test_in_other_file(fresh_user_service):
     assert result.success == True
 ```
 
-Wenn Sie den Test ausführen, sehen Sie, dass es magischer Weise funktioniert.
-Dabei haben wir `confest.py` doch gar nicht in `test_sharing.py` importiert.
+Wenn Sie den Test ausführen, sehen Sie, dass es magischerweise funktioniert.
+Dabei haben wir `conftest.py` doch gar nicht in `test_sharing.py` importiert.
 
 Folgendes haben Sie gerade beobachtet:
 
@@ -448,23 +417,23 @@ Folgendes haben Sie gerade beobachtet:
 3. **Namensauflösung:** Wenn ein Test einen Parameter fresh_user_service hat, sucht pytest
    automatisch nach einer gleichnamigen Fixture in:
 
-- Der gleichen Datei
-- conftest.py im gleichen Verzeichnis
-- conftest.py in übergeordneten Verzeichnissen
-- Eingebauten pytest Fixtures
+   - Der gleichen Datei
+   - conftest.py im gleichen Verzeichnis
+   - conftest.py in übergeordneten Verzeichnissen
+   - Eingebauten pytest Fixtures
 
 Kein Import nötig: Das ist ein spezielles Feature von pytest - normale Python-Import-Regeln
 gelten hier nicht.
-Und warum nehmen wir nicht einfach den Import.
+Und warum nehmen wir nicht einfach den Import?
 
 Vorweg, natürlich geht auch das!
 Sie könnten es wie folgt umsetzen:
 
 ```python
-from test_fixtures_module import explicit_user_service
+from conftest import fresh_user_service
 
-def test_with_explicit_import(explicit_user_service):
-    result = explicit_user_service.register("charlie", "charlie@test.com", "pass")
+def test_with_explicit_import(fresh_user_service):
+    result = fresh_user_service.register("charlie", "charlie@test.com", "pass")
     assert result.success == True
 ```
 
@@ -476,9 +445,11 @@ Pytest bringt viele eingebaute Fixtures mit. Hier sind drei wichtige:
 
 - `tmp_path`: Temporäre Dateien/Verzeichnisse für File-IO-Tests
 - `capsys`: Output-Testing, Debug-Ausgaben validieren
-- `monkeypatch`: Zeit, Umgebungsvariablen, externe APIs durch Attrappen ersetzen
+- `monkeypatch`: Funktionen, Umgebungsvariablen und Attribute durch Attrappen ersetzen
 
-Lesen Sie grob nach, was jede davon tut.
+Lesen Sie nach, was jede davon tut:
+
+[Built-in fixtures reference](https://docs.pytest.org/en/stable/reference/fixtures.html)
 
 [EQ] Skizzieren Sie für jede der drei ein Testszenario, in dem Ihnen der Einsatz sinnvoll erscheint.
 
@@ -504,6 +475,9 @@ def test_capsys_experiment(capsys):
     assert "noch eine Zeile" in captured.err
 ```
 
+[EC] Fügen Sie beide Tests zu `test_discovery.py` hinzu und führen Sie sie aus:
+`pytest -v test_discovery.py`
+
 #### Reflexion: Wann und Warum Fixtures?
 
 Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
@@ -516,6 +490,7 @@ Welcher Nachteil steht dem gegenüber?
 
 [SECTION::submission::trace]
 
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
