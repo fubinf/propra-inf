@@ -134,6 +134,7 @@ git submodule update --recursive
 - "beispielsweise" not "z.B." in flowing text
 - "Repo" as abbreviation for "Repository"
 - "Git" for the software name, "git" in commands
+- "der URL" (not "die")
 
 
 ## How to review a task
