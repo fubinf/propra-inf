@@ -1,112 +1,179 @@
 title: "Das AAA-Muster: Strukturierte Unit-Tests mit Pytest"
 stage: alpha
-timevalue: 0.5
+timevalue: 1.0
 difficulty: 2
 assumes: m_pytest, pytest_call
 ---
 
-[SECTION::goal::idea]
+[SECTION::goal::experience]
 
-Ich kann Unit-Tests nach dem Arrange-Act-Assert (AAA)-Muster schreiben und deren Vorteile erklären.
+Ich kann Unit-Tests nach dem Arrange-Act-Assert (AAA)-Muster schreiben,
+gemeinsamen Setup-Code in Hilfsfunktionen auslagern und
+mehrere Act/Assert-Blöcke sinnvoll in einem Test kombinieren.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Oftmals möchte man seine Gedanken einfach nur schnell herunter tippen.
-Überarbeiten ist später doch auch möglich?
-Jain, oftmals aber auch komplizierter als man denkt.
-Um das jedoch bei der Erstellung von Testfällen zu vermeiden, kann man ein einfaches Prinzip
-anwenden, dass wir hier vertiefen wollen.
+Gut strukturierte Tests sind leicht zu lesen und schnell zu debuggen.
+Wenn ein Test fehlschlägt, sollte sofort klar sein, ob das Problem im Setup,
+bei der Ausführung oder beim Vergleich liegt.
+Das AAA-Muster (Arrange-Act-Assert) erzwingt genau diese Trennung.
+
+In der Praxis stoßen Sie bald auf zwei Situationen, die einfache AAA-Tests überfordern:
+
+- Viele Tests teilen dasselbe aufwändige Setup — Kopieren kostet Zeit und erzeugt Fehlerquellen.
+- Ein Testszenario besteht aus mehreren aufeinander aufbauenden Schritten,
+  deren Zwischenzustände jeweils überprüft werden sollen.
+
+Diese Aufgabe behandelt beide Situationen.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-Das AAA-Muster (Arrange, Act, Assert) ist eine bewährte Methode, um Tests klar und nachvollziehbar
-zu strukturieren.
-Es unterteilt jeden Test in drei Schritte:
+### Das AAA-Muster
 
-- **Arrange**: Vorbereitung aller benötigten Daten und Bedingungen für den Test (z.B. Variablen,
-  Objekte, Testumgebung).
+Das AAA-Muster unterteilt jeden Test in drei klar abgegrenzte Schritte:
+
+- **Arrange**: Vorbereitung aller benötigten Daten und Bedingungen.
 - **Act**: Ausführung der zu testenden Funktion oder Methode.
-- **Assert**: Überprüfung, ob das Ergebnis dem erwarteten Wert entspricht.
-
-Diese Struktur sorgt für Übersichtlichkeit und erleichtert die Fehlersuche.
-
-### Das AAA-Muster im Beispiel
+- **Assert**: Überprüfung, ob das Ergebnis dem Erwartungswert entspricht.
 
 ```python
-# Funktion, die getestet werden soll
 def addiere_zahlen(a, b):
     return a + b
 
-# Testfunktion nach AAA-Muster
 def test_addiere_zahlen():
     # Arrange
     zahl1 = 6
     zahl2 = 2
     erwartetes_ergebnis = 8
-
     # Act
     ergebnis = addiere_zahlen(zahl1, zahl2)
-
     # Assert
-    assert ergebnis == erwartetes_ergebnis, f'Erwartet {erwartetes_ergebnis}, aber erhalten {ergebnis}'
+    assert ergebnis == erwartetes_ergebnis
 ```
 
-**Erläuterung:**
+Diese Trennung macht sofort sichtbar, *wo* ein Fehler liegt: im Setup, bei der Ausführung
+oder beim Vergleich.
 
-- *Arrange*: Die Zahlen und das erwartete Ergebnis werden festgelegt.
-- *Act*: Die Funktion wird mit den vorbereiteten Werten aufgerufen.
-- *Assert*: Das Ergebnis wird mit dem Erwartungswert verglichen.
+### Beispiel: Warenkorb
 
-### Können Sie das auch?
-
-Betrachten Sie das folgende kleine Beispiel:
+Für die folgenden Aufgaben verwenden Sie die folgende Klasse.
+Legen Sie eine Datei `cart.py` mit diesem Inhalt an:
 
 ```python
-def calculate_discounted_price(price, discount, tax_rate, is_member):
-    """
-    Berechnet den Endpreis eines Produkts nach Rabatt und Steuern.
-    - price: Grundpreis des Produkts (float, >0)
-    - discount: Rabatt in Prozent (float, 0-100)
-    - tax_rate: Mehrwertsteuer in Prozent (float, 0-100)
-    - is_member: True, wenn Mitgliedsrabatt gilt, sonst False
+class ShoppingCart:
+    def __init__(self):
+        self.items = {}
 
-    Mitglieder erhalten zusätzlich 5% Rabatt auf den rabattierten Preis.
-    Der Endpreis darf nie negativ werden.
-    """
-    if price < 0 or discount < 0 or discount > 100 or tax_rate < 0 or tax_rate > 100:
-        raise ValueError("Ungültige Eingabewerte.")
+    def add_item(self, name: str, price: float, quantity: int = 1):
+        """Fügt einen Artikel hinzu oder erhöht die Menge bei erneutem Aufruf."""
+        if price < 0 or quantity <= 0:
+            raise ValueError("Preis muss >= 0 und Menge > 0 sein.")
+        if name in self.items:
+            self.items[name]["quantity"] += quantity
+        else:
+            self.items[name] = {"price": price, "quantity": quantity}
 
-    discounted = price * (1 - discount / 100)
-    if is_member:
-        discounted *= 0.95  # 5% zusätzlicher Rabatt
+    def remove_item(self, name: str):
+        """Entfernt einen Artikel aus dem Warenkorb."""
+        if name not in self.items:
+            raise KeyError(f"Artikel '{name}' nicht im Warenkorb.")
+        del self.items[name]
 
-    taxed = discounted * (1 + tax_rate / 100)
-    return round(max(taxed, 0), 2)
+    def total(self) -> float:
+        """Berechnet den Gesamtpreis aller Artikel."""
+        return round(sum(v["price"] * v["quantity"] for v in self.items.values()), 2)
+
+    def item_count(self) -> int:
+        """Gibt die Anzahl verschiedener Artikeltypen zurück."""
+        return len(self.items)
 ```
 
-Legen Sie wie gewohnt eine Testdatei `calculate.py` an, um die folgende Aufgabe zu bearbeiten.
+Legen Sie außerdem eine Testdatei `test_cart.py` an.
 
-#### AAA-Muster anwenden
+### Tests mit Hilfsfunktionen
 
-[ER] Schreiben Sie Tests für die Funktion nach dem AAA-Muster.
-   Achten Sie darauf, die drei Schritte klar zu trennen und sinnvolle Variablennamen zu wählen.
+Wenn mehrere Tests dasselbe aufwändige Setup benötigen,
+ist es besser, den Arrange-Schritt einmal in eine Hilfsfunktion auszulagern, statt ihn zu kopieren:
 
-Ändern Sie den Erwartungswert im `Assert`-Schritt beliebig um und führen Sie den Test aus.
-Beobachten Sie, wie Pytest den Fehler meldet.
+```python
+from cart import ShoppingCart
 
-#### Reflexion
+def cart_with_two_items():
+    cart = ShoppingCart()
+    cart.add_item("Buch", 25.00, 2)   # 50,00 €
+    cart.add_item("Stift", 2.50, 4)   # 10,00 €
+    return cart
+```
 
-[EQ] Überlegen Sie, warum das AAA-Muster die Fehlersuche erleichtert und wie es die Lesbarkeit
-   Ihrer Tests verbessert.
-[EQ] Würde anstelle eines AAA Konzepts auch ein beliebig abgewandelte AA-Variante möglich sein?
+[ER] Schreiben Sie mithilfe dieser Hilfsfunktion mindestens drei Tests nach dem AAA-Muster,
+   die verschiedene Szenarien abdecken:
+
+- `total()` liefert den korrekten Gesamtpreis.
+- `remove_item()` entfernt den Artikel korrekt und ändert `total()` entsprechend.
+- `add_item()` mit einem negativen Preis wirft einen `ValueError`.
+
+### Mehrere Act/Assert-Blöcke
+
+Manchmal hängen Teile eines Szenarios voneinander ab oder der Arrange-Schritt ist so aufwändig,
+dass man ihn nicht für jeden einzelnen Assert neu aufbauen möchte.
+In diesem Fall können mehrere Act/Assert-Blöcke im selben Test sinnvoll sein —
+das Muster heißt dann AAAAA (zwei Zyklen) bzw. AAAAAAA (drei Zyklen) usw.,
+je nach Anzahl der Act/Assert-Paare.
+
+Das folgende Beispiel prüft einen vollständigen Warenkorb-Ablauf mit drei Zyklen
+in einem einzigen Test, weil alle Schritte auf demselben Zustand aufbauen:
+
+```python
+def test_cart_workflow():
+    # Arrange
+    cart = ShoppingCart()
+
+    # Act
+    cart.add_item("Buch", 25.00, 2)
+    # Assert
+    assert cart.total() == 50.00
+    assert cart.item_count() == 1
+
+    # Act
+    cart.add_item("Stift", 2.50, 4)
+    # Assert
+    assert cart.total() == 60.00
+    assert cart.item_count() == 2
+
+    # Act
+    cart.remove_item("Buch")
+    # Assert
+    assert cart.total() == 10.00
+    assert cart.item_count() == 1
+```
+
+[ER] Schreiben Sie einen Test mit mindestens zwei Act/Assert-Blöcken,
+   der einen anderen realistischen Ablauf testet —
+   z.B. denselben Artikel zweimal hinzufügen und anschließend entfernen.
+   Kommentieren Sie alle Abschnitte klar mit `# Arrange`, `# Act` und `# Assert`.
+
+Ändern Sie in einem Ihrer Tests den Erwartungswert in einem `assert` absichtlich
+auf einen falschen Wert und führen Sie die Tests aus.
+
+[EQ] Was zeigt pytest dabei an?
+   In welchem AAA-Abschnitt liegt der gemeldete Fehler, und woran erkennen Sie das?
+
+### Reflexion
+
+[EQ] Warum erleichtert das AAA-Muster die Fehlersuche, und wie verbessert es die Lesbarkeit?
+
+[EQ] Wann ist es sinnvoll, mehrere Act/Assert-Blöcke in einem einzigen Test zu verwenden,
+   und wann sollte man stattdessen lieber separate Tests schreiben?
+
+[EQ] Würde anstelle des AAA-Konzepts auch eine beliebig abgewandelte AA-Variante möglich sein?
 
 [ENDSECTION]
 
 [SECTION::submission::trace]
-[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
