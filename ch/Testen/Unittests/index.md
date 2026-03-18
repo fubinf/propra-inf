@@ -1,75 +1,116 @@
-title: Test-Frameworks
+title: Unittests
 ---
-Beim Schreiben automatisierter Tests gibt es eine Reihe von Routineaufgaben
-(z.B. Tests aufrufen; Anzeigen, welche Tests fehlgeschlagen sind),
-die sinnvollerweise von einer Bibliothek erledigt werden sollten.
-Außerdem sind Tests leichter zu verstehen, wenn sie festen Konventionen gehorchen.
+Unit-Tests sind automatisierte Tests, die einzelne Komponenten einer Software isoliert prüfen.
+Sie bilden das Fundament jeder professionellen Testpyramide: schnell, granular und reproduzierbar.
 
-Deshalb gibt es Testframeworks, die solche Konventionen vorgeben und Routineaufgaben erledigen.
-Sie gehören zum wichtigsten täglichen Handwerkszeug in der professionellen Softwareentwicklung
-und bilden deshalb hier ein umfangreiches Thema.
+In dieser Taskgroup lernen Sie zunächst Pythons Standard-Testframework `unittest`,
+dann das leistungsfähigere `pytest`-Ökosystem.
+Aufbauend darauf werden systematische Testmethodik (Blackbox/Whitebox),
+wichtige pytest-Features (Fixtures, Mocking, Parametrisierung)
+sowie Test-Driven Development behandelt.
 
-### Abhängigkeitsdiagramm der Unittest-Dateien
+**Empfohlener Einstiegspfad:**
+`m_unittest` → `m_pytest` → `pytest_call` → thematische Vertiefung nach Interesse
+
+## Abhängigkeitsdiagramm der Unittest-Tasks
 
 ```mermaid
 graph TD
     m_unittest["m_unittest.md"]
     m_pytest["m_pytest.md"]
-    pytest_parametrize["pytest_parametrize.md"]
-    pytest_mocking["pytest_mocking.md"]
-    pytest_fixtures["pytest_fixtures.md"]
     pytest_call["pytest_call.md"]
-    pytest_plugin_linter_flake8["pytest_plugin_linter_flake8.md"]
+    pytest_parametrize["pytest_parametrize.md"]
     pytest_aaa["pytest_aaa.md"]
-    pytest_benchmark["pytest_benchmark.md"]
-    pytest_tox["pytest_tox.md"]
-    tdd["tdd.md"]
-    tdd_pp["tdd_pp.md"]
-    testcoverage["testcoverage.md"]
+    pytest_fixtures["pytest_fixtures.md"]
+    pytest_mocking["pytest_mocking.md"]
     pytest_mocking_freezegun["pytest_mocking_freezegun.md"]
-    pytest_mutation_testing["pytest_mutation_testing.md"]
+    pytest_plugin_linter_flake8["pytest_plugin_linter_flake8.md"]
+    tdd["tdd.md"]
     pytest_methodik_blackbox["pytest-Methodik-Blackbox.md"]
     pytest_methodik_whitebox["pytest-Methodik-Whitebox.md"]
-    flake8["flake8.md"]
+    flake8_ext["flake8.md (extern)"]
+
+    subgraph draft_group ["In Entwicklung"]
+        testcoverage["testcoverage.md"]
+        pytest_benchmark["pytest_benchmark.md"]
+        pytest_tox["pytest_tox.md"]
+        pytest_mutation_testing["pytest_mutation_testing.md"]
+        tdd_pp["tdd_pp.md"]
+    end
 
     m_unittest --> m_pytest
-    m_unittest --> testcoverage
-    m_pytest --> pytest_parametrize
-    m_pytest --> pytest_mocking
-    m_pytest --> pytest_fixtures
     m_pytest --> pytest_call
+    m_pytest --> pytest_parametrize
     m_pytest --> pytest_aaa
-    m_pytest --> pytest_benchmark
-    m_pytest --> pytest_tox
+    m_pytest --> pytest_fixtures
+    m_pytest --> pytest_mocking
     m_pytest --> tdd
-    m_pytest --> pytest_mutation_testing
     m_pytest --> pytest_methodik_blackbox
-    m_pytest --> pytest_methodik_whitebox
-    m_pytest --> pytest_plugin_linter_flake8
+    m_pytest --> pytest_mutation_testing
+    pytest_call --> pytest_aaa
     pytest_call --> pytest_plugin_linter_flake8
-    flake8 --> pytest_plugin_linter_flake8
-    pytest_mocking --> pytest_mocking_freezegun
+    pytest_call --> testcoverage
     pytest_parametrize --> pytest_methodik_blackbox
+    pytest_parametrize --> pytest_tox
+    pytest_methodik_blackbox --> pytest_methodik_whitebox
+    pytest_methodik_whitebox --> testcoverage
+    pytest_mocking --> pytest_mocking_freezegun
+    pytest_fixtures --> pytest_benchmark
     tdd --> tdd_pp
+    testcoverage --> pytest_tox
+    flake8_ext --> pytest_plugin_linter_flake8
 ```
 
-### Erklärung
+## Thematische Übersicht
 
-<!-- TODO_2: rename pytest_* to pytest-*, ensure prefixes make sense -->
-- **m_unittest.md**: Basis für Unittests mit dem Standard-Testframework von Python. Grundlage für `m_pytest.md` und `testcoverage.md`.
-- **m_pytest.md**: Erweitert die Grundlagen von `m_unittest.md` und führt in das leistungsfähigere `pytest`-Framework ein. Grundlage für alle weiteren pytest-Themen.
-- **pytest_parametrize.md**: Baut auf `m_pytest.md` auf und zeigt, wie man tabellengesteuerte Tests mit `pytest` gestaltet. Grundlage für `pytest-Methodik-Blackbox.md`.
-- **pytest_mocking.md**: Setzt `m_pytest.md` voraus und behandelt das Mocking von Abhängigkeiten in Tests. Grundlage für `pytest_mocking_freezegun.md`.
-- **pytest_fixtures.md**: Zeigt, wie man mit `pytest` Fixtures für Setup und Teardown verwendet. Setzt `m_pytest.md` voraus.
-- **pytest_call.md**: Behandelt die Steuerung der Testausführung mit `pytest`. Setzt `m_pytest.md` voraus und ist Grundlage für Plugin-Themen.
-- **pytest_aaa.md**: Einführung in das Arrange-Act-Assert-Pattern für pytest. Setzt `m_pytest.md` voraus.
-- **pytest_benchmark.md**: Performance-Testing und Benchmarking mit pytest-benchmark. Setzt `m_pytest.md` voraus.
-- **pytest_tox.md**: Testen in verschiedenen Python-Umgebungen mit tox und pytest. Setzt `m_pytest.md` voraus.
-- **pytest_plugin_linter_flake8.md**: Behandelt die Integration von Flake8 in `pytest` für Code-Qualitätsprüfungen. Setzt `m_pytest.md`, `pytest_call.md` und `flake8.md` voraus.
-- **tdd.md**: Einführung in Test-Driven Development (TDD). Setzt `m_pytest.md` voraus und ist Grundlage für `tdd_pp.md`.
-- **tdd_pp.md**: Anwendung von TDD im Pair Programming. Setzt `tdd.md` voraus.
-- **testcoverage.md**: Behandelt die Analyse der Testabdeckung mit verschiedenen Tools. Setzt `m_unittest.md` voraus.
-- **pytest_mocking_freezegun.md**: Zeigt, wie man mit Freezegun zeitabhängige Tests erstellt. Setzt `pytest_mocking.md` voraus.
-- **pytest_mutation_testing.md**: Einführung in Mutation Testing mit pytest. Setzt `m_pytest.md` voraus.
-- **pytest-Methodik-Blackbox.md**: Einführung in Blackbox-Testing mit pytest, einschließlich Äquivalenzklassen und Randwertanalyse. Setzt `m_pytest.md` und `pytest_parametrize.md` voraus.
-- **pytest-Methodik-Whitebox.md**: Einführung in Whitebox-Testing-Methoden mit pytest. Setzt `m_pytest.md` voraus.
+### Grundlagen
+
+- **m_unittest.md**: Einführung in Pythons Standard-Testframework `unittest`.
+  Ausgangspunkt für alle weiteren Tasks in dieser Gruppe.
+- **m_pytest.md**: Wechsel auf `pytest`, das leistungsfähigere Framework der professionellen Praxis.
+  Setzt `m_unittest.md` voraus und ist Grundlage für alle weiteren pytest-Tasks.
+
+### Teststruktur & Methodik
+
+- **pytest_aaa.md**: Das Arrange-Act-Assert-Muster als strukturierende Konvention für lesbare Unit-Tests.
+  Setzt `m_pytest.md` und `pytest_call.md` voraus.
+- **pytest_parametrize.md**: Tabellengesteuerte Tests mit `@pytest.mark.parametrize`.
+  Setzt `m_pytest.md` voraus; Grundlage für Blackbox-Testing.
+- **pytest-Methodik-Blackbox.md**: Systematisches Blackbox-Testing mit Äquivalenzklassen und Randwertanalyse.
+  Setzt `m_pytest.md` und `pytest_parametrize.md` voraus.
+- **pytest-Methodik-Whitebox.md**: Whitebox-Testmethodik und strukturierte Testfallableitung aus dem Quellcode.
+  Setzt `pytest-Methodik-Blackbox.md` voraus.
+
+### pytest-Features
+
+- **pytest_call.md**: Steuerung der Testausführung – Selektion, Konfiguration, Kommandozeilenoptionen.
+  Setzt `m_pytest.md` voraus.
+- **pytest_fixtures.md**: Wiederverwendbare Vor- und Nachbedingungen mit pytest-Fixtures.
+  Setzt `m_pytest.md` voraus.
+- **pytest_mocking.md**: Abhängigkeiten mit `unittest.mock` isolieren und ersetzen.
+  Setzt `m_pytest.md` voraus.
+- **pytest_mocking_freezegun.md**: Zeitabhängige Tests mit der `freezegun`-Bibliothek.
+  Setzt `pytest_mocking.md` voraus.
+
+### Werkzeuge & Integration
+
+- **pytest_plugin_linter_flake8.md**: Code-Qualitätsprüfung mit dem Flake8-Plugin direkt in pytest.
+  Setzt `pytest_call.md` und die externe Task
+  [`flake8.md`](../../Werkzeuge/Linter/flake8.md) voraus.
+
+### Test-Driven Development
+
+- **tdd.md**: Einführung in Test-Driven Development am Beispiel FizzBuzz mit pytest.
+  Setzt `m_pytest.md` voraus.
+
+### In Entwicklung
+
+Diese Tasks sind noch nicht veröffentlicht (`stage: draft`) und werden künftig verfügbar sein:
+
+- **testcoverage.md**: Code Coverage mit `pytest-cov` messen, interpretieren und kritisch bewerten.
+  Setzt `pytest_call.md` und `pytest-Methodik-Whitebox.md` voraus.
+- **tdd_pp.md**: TDD im Pair Programming. Setzt `tdd.md` voraus.
+- **pytest_benchmark.md**: Performance-Benchmarks mit `pytest-benchmark`. Setzt `pytest_fixtures.md` voraus.
+- **pytest_tox.md**: Testen in mehreren Python-Umgebungen mit `tox`.
+  Setzt `pytest_parametrize.md` und `testcoverage.md` voraus.
+- **pytest_mutation_testing.md**: Mutation Testing zur Qualitätsbewertung von Tests. Setzt `m_pytest.md` voraus.
