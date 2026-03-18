@@ -36,6 +36,7 @@ Verwenden Sie bei Bedarf die
 [pyenv Command Reference](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md).
 
 ### pyenv installieren
+<!-- time estimate: 15 min -->
 
 1. Installieren Sie `pyenv` passend zu Ihrem Betriebssystem:
 
@@ -89,6 +90,7 @@ bietet dieselben Kernfunktionen wie das originale `pyenv`.
    Überprüfen Sie die Installation: `pyenv --version`
 
 ### Verfügbare Python-Versionen erkunden
+<!-- time estimate: 5 min -->
 
 1. [EC] Listen Sie alle installierbaren Python-Versionen auf: `pyenv install --list`
    Die Ausgabe ist sehr lang.
@@ -108,6 +110,7 @@ Die zwei führenden Leerzeichen verhindern, dass Anaconda- oder PyPy-Einträge m
    Zu Beginn sehen Sie dort nur `system` (Ihr vorhandenes System-Python).
 
 ### Python-Versionen installieren
+<!-- time estimate: 15 min -->
 
 Suchen Sie sich aus der `pyenv install --list`-Ausgabe jeweils die neueste Patchversion von Python 3.10
 und 3.11 heraus (also z. B. `3.10.17` und `3.11.12`) und installieren Sie beide
@@ -118,6 +121,7 @@ und 3.11 heraus (also z. B. `3.10.17` und `3.11.12`) und installieren Sie beide
 3. [EC] Überprüfen Sie Ihre installierten Versionen: `pyenv versions`
 
 ### Python-Versionen verwenden
+<!-- time estimate: 15 min -->
 
 `pyenv` kennt drei Ebenen für die aktive Python-Version:
 
@@ -138,6 +142,7 @@ und 3.11 heraus (also z. B. `3.10.17` und `3.11.12`) und installieren Sie beide
    Welche Version ist nun aktiv und warum?
 
 ### Überblick und Reflexion
+<!-- time estimate: 10 min -->
 
 1. [EQ] Sie haben soeben `pyenv global` und `pyenv local` ausprobiert.
    Wann im Entwicklungsalltag würden Sie welches verwenden?
