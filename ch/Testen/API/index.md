@@ -1,15 +1,12 @@
 title: API Tests
-stage: draft
+stage: alpha
 ---
-Der Trend zur Modularität und Unabhängigkeit von Programmteilen führt zu gut definierten Schnittstellen 
-in der Softwareentwicklung. 
-API-Tests gewährleisten, dass dahinterliegende Module korrekt integriert sind und erwartete Ergebnisse liefern. 
-APIs dienen als Schnittstellen zwischen Softwarekomponenten, und Tests sichern deren Stabilität. 
-Frühzeitige Fehlererkennung, Beschleunigung der Entwicklung und einfache Dokumentation sind weitere Vorteile 
-einer immer weiter wachsenden Anzahl an API Implementationen. 
-APIs bieten einen idealen Einstieg ins automatisierte Testen, aufgrund ihrer einfachen Struktur und 
-gleichbleibenden Anwendungsmöglichkeit.
+Moderne Software besteht aus vielen unabhängigen Komponenten, die über [TERMREF::API]s miteinander
+kommunizieren.
+Weit verbreitet sind dabei [TERMREF::REST]-APIs: Sie nutzen standardisierte HTTP-Methoden
+und liefern Antworten typischerweise im [TERMREF::JSON]-Format —
+das macht sie gut testbar und ideal für den Einstieg ins automatisierte Testen.
 
-Insgesamt gewährleisten API-Tests die Zuverlässigkeit, Stabilität und Sicherheit von Softwareanwendungen, 
-was in der modernen, modularisierten Entwicklungsumgebung von entscheidender Bedeutung ist. 
-Deshalb ist es wichtig als Softwareentwickler und als potentieller Tester mit APIs gearbeitet zu haben.
+In dieser Taskgroup lernen Sie, REST-APIs mit Python zu testen:
+zuerst Grundlagen und erste Requests, dann das Verarbeiten von Antwortdaten,
+und schließlich einen vollständigen Testdurchlauf nach dem CRUD-Prinzip.
