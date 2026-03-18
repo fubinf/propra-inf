@@ -191,7 +191,7 @@ Richtig genau steht es in der Dokumentation von Bash.
 Eine agile Softwareentwicklungsmethode, die sich auf die Zusammenarbeit
 zwischen Entwicklern, Testern und nicht-technischen Stakeholdern konzentriert.
 In BDD werden Anforderungen
-in verständlichen, semi-natürlichsprachlichen Szenarien formuliert,
+in verständlichen, semi-natürlichsprachlichen ([TERMREF::DSL]) Szenarien formuliert,
 die dann mithilfe handgeschriebener Adapter als automatisierte Tests ausgeführt werden.
 
 [HREF::https://docs.robotframework.org/docs/testcase_styles/bdd#what-is-bdd]  
@@ -411,6 +411,12 @@ In der Informatik und Softwaretechnik ist eine Datenstruktur ein Objekt, welches
 [HREF::https://de.wikipedia.org/wiki/Datenstruktur]
 [ENDTERM]
 
+[TERM::dd-utility|dd]
+Unix-Kommandozeilenwerkzeug zum Kopieren und Konvertieren von Datenströmen auf Byte-Ebene,
+z.B. zum Erstellen von Disk-Images oder zum Schreiben von Daten auf ein Blockgerät.
+
+Siehe auch `man dd`.
+[ENDTERM]
 
 [TERM::de-morgansche Gesetze|de-morgansche Regeln]
 Die de-morganschen Gesetze sind zwei grundlegende Regeln für logische Aussagen und gelten in 
