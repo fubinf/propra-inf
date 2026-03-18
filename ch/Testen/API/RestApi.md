@@ -1,14 +1,9 @@
 title: Rest API Test mit Python Request
-stage: draft
-timevalue: 0
+stage: alpha
+timevalue: 1.0
 difficulty: 2
 assumes: pip, m_requests
 ---
-# Review
-- Fragen zur Restful API: Finde ich als Lernaufgabe nicht so schön. Beispiel bauen ist super. Vielleicht findest du ja eine Möglichkeit, die anderen Dinge da auch irgendwie einzubauen? Also du lässt z.B. den API-Endpunkt so bauen, dass all die erkannten Grundsätze und Regeln da auch angewandt werden müssen.
-- Ähnliches auch für den Teil zum Petstore.
-Anmerkung Ruhe: Restful API Anteil wurde auf Grundlage Review 1 (Discord) mit aufgenommen.
-
 [SECTION::goal::trial]
 
 - Ich habe gelernt, was eine API-Schnittstelle ist
@@ -20,74 +15,80 @@ Anmerkung Ruhe: Restful API Anteil wurde auf Grundlage Review 1 (Discord) mit au
 
 [TERMREF::API]s erleichtern die Integration von Funktionen einer Software in eine andere und ermöglichen
 so die Entwicklung von Anwendungen, die auf bereits vorhandenen Diensten oder Plattformen aufbauen.
-So können Sie zu jeder freigegebene Schnittstelle eigene Funktionalitäten, Programme oder Anwendungen
+So können Sie zu jeder freigegebenen Schnittstelle eigene Funktionalitäten, Programme oder Anwendungen
 entwickeln, die mit diesen Schnittstellen kommunizieren.
-Eine RESTful API baut auf den Prinzipien des REST-Architekturstils auf und ermöglicht die Kommunikation
-zwischen Client und Server über **standardisierte** HTTP-Anfragen. Durch die Nutzung diese standardisierten
-HTTP-Methoden bietet eine RESTful API eine flexible und effiziente Möglichkeit, Daten zwischen verschiedenen
-Anwendungen auszutauschen.
+Eine RESTful-API baut auf den Prinzipien des REST-Architekturstils auf und ermöglicht die Kommunikation
+zwischen Client und Server über **standardisierte** HTTP-Anfragen.
+Durch die Nutzung dieser standardisierten HTTP-Methoden bietet eine RESTful-API eine flexible und
+effiziente Möglichkeit, Daten zwischen verschiedenen Anwendungen auszutauschen.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
 
 ### API - Was ist das?
+<!-- time estimate: 10 min -->
 
-Es gibt verschiedene Arten von APIs, darunter Web APIs, Bibliotheks-APIs und Betriebssystem-APIs.
-Web APIs sind besonders verbreitet und ermöglichen die Kommunikation zwischen verschiedenen Anwendungen
+Es gibt verschiedene Arten von APIs, darunter Web-APIs, Bibliotheks-APIs und Betriebssystem-APIs.
+Web-APIs sind besonders verbreitet und ermöglichen die Kommunikation zwischen verschiedenen Anwendungen
 über das Internet.
 Sie basieren oft auf standardisierten Protokollen wie [TERMREF::HTTP] und können verschiedene
 Datenformate wie [TERMREF::JSON] oder [TERMREF::XML] verwenden.
 
 Eine API stellt normalerweise eine Sammlung von definierten Schnittstellen und Funktionen bereit,
 die von Entwicklern genutzt werden können, um auf bestimmte Dienste oder Ressourcen zuzugreifen.
-Eine solche Sammlung kann u.a. mit Hilfe
-von [TERMREF::OpenAPI] dokumentiert werden. Diese Dokumentationshilfe wird uns in diesem Kapitel
-dabei helfen, Schnittstellen anzusprechen und zu testen.
+Eine solche Sammlung kann u.a. mit Hilfe von [TERMREF::OpenAPI] dokumentiert werden.
+Diese Dokumentationshilfe wird uns in diesem Kapitel dabei helfen, Schnittstellen anzusprechen und zu testen.
 
-- [EQ] Werfen Sie einen Blick in ein beliebiges OpenAPI Projekt. Welche HTTP-Methoden finden Sie
-  dort wieder?
+- [EQ] Werfen Sie einen Blick in die
+  [Petstore-Dokumentation](https://petstore.swagger.io).
+  Welche HTTP-Methoden finden Sie dort wieder?
 
 ### RESTful-API
+<!-- time estimate: 15 min -->
 
-Eine RESTful-API hat besondere Eigenschaften, die wir uns hier genauer anschauen. Recherchieren Sie
-auf der [RESTful-API-Seite](https://restfulapi.net):
+Eine RESTful-API hat besondere Eigenschaften, die wir uns hier genauer anschauen.
+Recherchieren Sie auf der [RESTful-API-Seite](https://restfulapi.net):
 
-- [EQ] Was zeichnet eine RESTful-API Architektur aus?
-- [EQ] Was sind die 6 grundlegenden Prinzipien?
-- [EQ] Wie sieht ein REST-Endpunkt aus und werden Ressourcen-Endpunkte in Singular oder Plural bezeichnet?
-- [EQ] Worin unterscheiden sich `PUT` und `POST`? Erstellen Sie jeweils ein Beispiel, um den
-  Unterschied zu verdeutlichen.
-- [EQ] Sind REST udn HTTP gleichzusetzen?
+- [EQ] Was zeichnet eine RESTful-API-Architektur aus?
+- [EQ] Wie sieht ein REST-Endpunkt aus?
+  Werden Ressourcen-Endpunkte in Singular oder Plural bezeichnet?
+- [EQ] Worin unterscheiden sich `PUT` und `POST`?
+  Erstellen Sie jeweils ein Beispiel, um den Unterschied zu verdeutlichen.
+- [EQ] Sind REST und HTTP gleichzusetzen?
 
-### Python Request - Wofür benötige ich das?
+### Python requests
+<!-- time estimate: 5 min -->
 
-Das requests-Modul ist eine externe Bibliothek für Python, die die Arbeit mit HTTP-Anfragen vereinfacht.
-Es bietet eine einfach zu bedienende API für das Senden von HTTP-Anfragen und das Verarbeiten von HTTP-Antworten.
-Um die Petstore-Schnittstellen abzufragen, verwenden Sie das requests-Modul in Python.
+Das `requests`-Modul haben Sie bereits in [PARTREF::m_requests] kennengelernt.
+Dort finden Sie auch die Dokumentation zu den verwendeten Funktionen.
 
-- [EC] Wenn Sie das Paket noch nicht installiert haben, können Sie es mit folgendem Befehl
-  `pip install requests` nachholen.
+- [EQ] Kann ich einen `POST`-Request direkt über einen Webbrowser absetzen?
+  Warum brauche ich dafür ein Script?
+
+Falls Sie das Paket noch nicht installiert haben, holen Sie das nach: `pip install requests`
 
 ### Petstore kennenlernen
+<!-- time estimate: 5 min -->
 
-Für die kommenden Aufgaben werden wir die freie API Petstore verwenden, die uns unter [swagger.io](https://petstore.swagger.io) zur Verfügung steht. Machen Sie sich mit der Navigation und der Beschreibung des Petstores vertraut.
-Lesen Sie den Artikel [REST Web Services](https://#) 
-TODO_3_RUHE: Neue Quelle suchen
-und beantworten Sie folgende Fragen:
+Für die kommenden Aufgaben verwenden wir die freie API Petstore.
+Sie steht uns unter
+[petstore.swagger.io](https://petstore.swagger.io)
+zur Verfügung.
+Machen Sie sich mit der Navigation und der Beschreibung des Petstores vertraut.
 
-- [EQ] Was versteht man unter REST?
-- [EQ] Kann ich einen POST Request über einen Webbrowser absetzen?
+- [EQ] Welche Ressourcen-Kategorien (z.B. `/pet`, `/store`, `/user`) bietet der Petstore an,
+  und welche HTTP-Methoden sind jeweils verfügbar?
 
 ### Petstore-Schnittstellen verwenden
+<!-- time estimate: 25 min -->
 
-Jetzt widmen wir uns den praktischen Aufgaben zu. nachdem Sie einen Blick in die Petstore-Dokumentation
-geworfen haben, sind Ihnen bestimmt auch verschiedene Schnittstellen aufgefallen. Diese nutzen wir jetzt,
-um Informationen zu erhalten.
+Nachdem Sie einen Blick in die Petstore-Dokumentation geworfen haben, sind Ihnen bestimmt auch
+verschiedene Schnittstellen aufgefallen. Diese nutzen wir jetzt, um Informationen zu erhalten.
 
-- [EC] Nutzen Sie folgendes Script, um eine API Anfrage zu senden. Kommentieren und beschreiben Sie die
-  enthaltenen TODOs:
+- [ER] Ersetzen Sie im folgenden Script die TODOs durch erklärende Kommentare,
+  die beschreiben, was die jeweilige Zeile bzw. der jeweilige Block tut:
 
-```Python
+```python
 # todo 1
 import requests
 
@@ -114,17 +115,16 @@ if __name__ == "__main__":
     get_pet_data()
 ```
 
-- [EC] Im folgenden POST Request ist ein Fehler unterlaufen. Korrigieren Sie das Problem und Beschreiben
-  Sie die Rückgabe (JSON Response).
+- [EC] Führen Sie das annotierte Script aus.
 
-```Python
+- [ER] Im folgenden POST-Request ist ein Fehler unterlaufen. Korrigieren Sie ihn:
+
+```python
 import requests
 
 def create_pet():
-    # URL der API
     api_url = "https://petstore.swagger.io/v2/pet"
 
-    # Beispiel-Daten für den POST-Request (Sie können diese Daten anpassen)
     pet_data = {
         "id": 12345,
         "name": "Fluffy",
@@ -145,12 +145,9 @@ def create_pet():
     }
 
     try:
-        # POST-Anfrage an die API senden
-        response = requests.post(api_url, json=pet_data)
+        response = requests.post(api_url, data=pet_data)
 
-        # Überprüfen Sie den Statuscode der Antwort
         if response.status_code == 200:
-            # Die Antwort als JSON-Daten analysieren
             created_pet_data = response.json()
             print("Pet erfolgreich erstellt. Neue Daten:")
             print(created_pet_data)
@@ -163,12 +160,41 @@ if __name__ == "__main__":
     create_pet()
 ```
 
-- [ER] Erstellen Sie ein Update und ein Delete Request für eine beliebige existierende Pet-ID
-  (Suchen Sie eigenständig nach einem vorhandenen Eintrag.)
+- [EC] Führen Sie das korrigierte Script aus und beschreiben Sie die JSON-Rückgabe im Protokoll.
 
-[HINT::VisibleTitle]
-Die OpenAPI Dokumentation bietet ebenfalls die Möglichkeit Anfragen zu senden. Dadurch erhalten Sie die
-Möglichkeiten Ihren Response mit Hilfe Ihrer Scripte mit dem Response über OpenAPI zu vergleichen.  
+- [ER] Vervollständigen Sie die folgenden Script-Gerüste für ein `PUT`- und ein `DELETE`-Request.
+  Verwenden Sie eine der IDs, die beim vorherigen GET-Request zurückgegeben wurden.
+
+```python
+import requests
+
+def update_pet(pet_id):
+    url = "https://petstore.swagger.io/v2/pet"
+    pet_data = {
+        "id": pet_id,
+        # TODO: Ergänzen Sie weitere Felder analog zum POST-Request (name, status, ...)
+    }
+    # TODO: Senden Sie einen PUT-Request mit json=pet_data
+    # TODO: Geben Sie Statuscode und Response aus
+
+def delete_pet(pet_id):
+    # TODO: Bauen Sie die URL mit der pet_id zusammen: .../pet/{pet_id}
+    # TODO: Senden Sie einen DELETE-Request
+    # TODO: Geben Sie den Statuscode aus
+
+if __name__ == "__main__":
+    pet_id = 0  # TODO: Ersetzen Sie 0 durch eine gültige ID aus dem GET-Request
+    update_pet(pet_id)
+    delete_pet(pet_id)
+```
+
+[HINT::Welche Petstore-Endpunkte sind gemeint?]
+Für das Update: `PUT /pet` — der vollständige Pet-Datensatz wird als JSON-Body mitgegeben
+(analog zum POST-Request, nur mit `requests.put()`).
+Für das Löschen: `DELETE /pet/{petId}` — die ID gehört in die URL, nicht in den Body
+(`requests.delete(url)`).
+Die Petstore-Dokumentation ermöglicht auch direkt Testanfragen über die Oberfläche —
+das ist nützlich, um Ihre Scripts mit der erwarteten API-Antwort zu vergleichen.
 [ENDHINT]
 
 [ENDSECTION]
@@ -176,11 +202,11 @@ Möglichkeiten Ihren Response mit Hilfe Ihrer Scripte mit dem Response über Ope
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Pet-ID]
+[INSTRUCTOR::Prüfhilfen]
 
-- [EREFR::1] Die gefundene Pet-Id kann von Fall zu Fall unterschiedlich sein, aber auch nicht mehr
-  existieren, da diese Schnittstelle jedermann zugänglich ist und somit ständig unter Anwendung steht.
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
