@@ -1,6 +1,6 @@
 title: Fixtures mit dem Pytest-Framework
 stage: alpha
-timevalue: 3
+timevalue: 2.0
 difficulty: 2
 assumes: m_pytest
 ---
@@ -26,6 +26,7 @@ Nutzen Sie die folgende Übersicht parallel zum Bearbeiten der Aufgaben:
 Wir betrachten zuerst das Grundlegende.
 
 ### Das Problem ohne Fixtures
+<!-- time estimate: 5 min -->
 
 Betrachten Sie folgenden Testcode für eine Webanwendung:
 
@@ -68,6 +69,7 @@ def test_user_login():
 
 
 ### Das Fixture-Konzept entdecken
+<!-- time estimate: 10 min -->
 
 Pytest löst die Schwächen des obigen Codes mit "Fixtures".
 
@@ -110,6 +112,7 @@ def test_user_login():
 
 
 #### Setup deklarativ machen
+<!-- time estimate: 15 min -->
 
 Pytest Fixtures lösen das, indem man Setup-Code einmal als Fixture definiert und ihn in beliebig vielen Tests wiederverwendet.
 
@@ -149,6 +152,7 @@ Welchen Vorteil hat es, wenn alle benötigten Fixtures als Parameter in der Sign
 
 
 #### Fixture Scopes: wann welcher?
+<!-- time estimate: 25 min -->
 
 Manche Fixtures sind aufwendig: eine Datenbankverbindung aufbauen, Testdaten laden oder
 einen Server starten kann Sekunden dauern.
@@ -215,6 +219,7 @@ den ein anderer Test hinterlassen hat.
 Wenn Sie fertig sind, entfernen Sie `slow_service` und die drei zugehörigen Tests wieder.
 
 #### Setup und Teardown: Das Cleanup-Problem
+<!-- time estimate: 30 min -->
 
 Manche Tests erstellen Dateien, Datenbank-Einträge oder andere Ressourcen.  
 Was passiert, wenn diese nicht aufgeräumt werden?
@@ -371,6 +376,7 @@ Hier stellen wir in unserer Fixture sicher, dass `request.addfinalizer(manager.c
 nach Ablauf des Fixture-Scopes ausgeführt wird – also nach dem letzten Test, der die Fixture nutzt.
 
 #### Fixtures teilen: conftest.py
+<!-- time estimate: 15 min -->
 
 Sie haben mehrere Test-Dateien, die alle ähnliche Fixtures brauchen.
 Jetzt schauen wir uns an, wie Pytest dieses Problem lösen kann.
@@ -440,6 +446,7 @@ def test_with_explicit_import(fresh_user_service):
 [EQ] Ganz intuitiv: Welche Vor- und Nachteile sehen Sie in den beiden Varianten?
 
 #### Eingebaute Fixtures verstehen
+<!-- time estimate: 15 min -->
 
 Pytest bringt viele eingebaute Fixtures mit. Hier sind drei wichtige:
 
@@ -479,6 +486,7 @@ def test_capsys_experiment(capsys):
 `pytest -v test_discovery.py`
 
 #### Reflexion: Wann und Warum Fixtures?
+<!-- time estimate: 5 min -->
 
 Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
 
