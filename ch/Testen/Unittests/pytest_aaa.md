@@ -33,6 +33,7 @@ Diese Aufgabe behandelt beide Situationen.
 [SECTION::instructions::detailed]
 
 ### Das AAA-Muster
+<!-- time estimate: 5 min -->
 
 Das AAA-Muster unterteilt jeden Test in drei klar abgegrenzte Schritte:
 
@@ -59,6 +60,7 @@ Diese Trennung macht sofort sichtbar, *wo* ein Fehler liegt: im Setup, bei der A
 oder beim Vergleich.
 
 ### Beispiel: Warenkorb
+<!-- time estimate: 5 min -->
 
 Für die folgenden Aufgaben verwenden Sie die folgende Klasse.
 Legen Sie eine Datei `cart.py` mit diesem Inhalt an:
@@ -95,6 +97,7 @@ class ShoppingCart:
 Legen Sie außerdem eine Testdatei `test_cart.py` an.
 
 ### Tests mit Hilfsfunktionen
+<!-- time estimate: 20 min -->
 
 Wenn mehrere Tests dasselbe aufwändige Setup benötigen,
 ist es besser, den Arrange-Schritt einmal in eine Hilfsfunktion auszulagern, statt ihn zu kopieren:
@@ -117,6 +120,7 @@ def cart_with_two_items():
 - `add_item()` mit einem negativen Preis wirft einen `ValueError`.
 
 ### Mehrere Act/Assert-Blöcke
+<!-- time estimate: 20 min -->
 
 Manchmal hängen Teile eines Szenarios voneinander ab oder der Arrange-Schritt ist so aufwändig,
 dass man ihn nicht für jeden einzelnen Assert neu aufbauen möchte.
@@ -163,6 +167,7 @@ auf einen falschen Wert und führen Sie die Tests aus.
    In welchem AAA-Abschnitt liegt der gemeldete Fehler, und woran erkennen Sie das?
 
 ### Reflexion
+<!-- time estimate: 10 min -->
 
 [EQ] Warum erleichtert das AAA-Muster die Fehlersuche, und wie verbessert es die Lesbarkeit?
 
