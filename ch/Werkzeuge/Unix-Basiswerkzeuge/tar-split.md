@@ -5,7 +5,7 @@ difficulty: 2
 assumes: Umgang-mit-Verzeichnissen, redirect
 ---
 
-[SECTION::goal::idea]
+[SECTION::goal::idea,experience]
 Ich weiß was `tar` ist und wie ich damit Archive erstellen, anzeigen und entpacken kann.
 Ich kenne den Nutzen von Kompression und kann große Archive mit `split` aufteilen und wieder zusammenfügen.
 [ENDSECTION]
@@ -72,10 +72,11 @@ einer sehr einheitlichen Konvention:
 
 ### `tar`-Archive anzeigen
 
-Angenommen Sie müssen ein Softwarepaket installieren.
-Dieses haben Sie als `tar.gz` heruntergeladen.
-Bevor Sie es installieren, möchten Sie nachschauen, wie die Datenstruktur im Archiv aufgebaut ist, 
-damit Sie entscheiden können, wo Sie es installieren möchten.
+Angenommen, Sie haben ein `tar.gz`-Archiv als E-Mail-Anhang erhalten. 
+Bevor Sie die Dateien entpacken, möchten Sie die Datenstruktur innerhalb des Archivs prüfen. 
+Dies ist notwendig, um zu entscheiden, auf welche Weise Sie das Archiv entpacken möchten.
+Beispielsweise, ob Sie zuvor ein neues Verzeichnis erstellen müssen oder ob das Archiv bereits 
+einen passenden Hauptordner enthält.
 
 Lesen und verstehen Sie die **Optionen t,v** der 
 [ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
@@ -154,6 +155,6 @@ Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll + Markdowndokument]
-[PROT::ALT:tar.prot]
+[PROT::ALT:tar-split.prot]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
