@@ -1213,6 +1213,18 @@ Es gibt 65536 Ports, die in drei Hauptkategorien unterteilt sind:
     Port benötigen.
 [ENDTERM]
 
+[TERM::nohup]
+Ein Unix-Kommando, das einen Prozess vor dem Signal `SIGHUP` ("Hang Up") schützt.
+Dieses Signal wird normalerweise an alle Prozesse einer Shell-Sitzung gesendet,
+wenn die Sitzung beendet wird.
+`nohup` sorgt dafür, dass Befehle auch nachdem Abmelden weiterlaufen.
+`nohup` ist eine einfache Alternative zu [TERMREF::tmux], wenn man nur einen einzigen
+Prozess persistent im Hintergrund laufen lassen möchte, ohne eine vollständige
+Terminal-Session aufrechtzuerhalten.
+
+Siehe auch `man nohup`.
+[ENDTERM]
+
 ## O
 
 [TERM::OAOO|Once and only once]
