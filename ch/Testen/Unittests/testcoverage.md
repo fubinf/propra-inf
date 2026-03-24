@@ -1,6 +1,6 @@
 title: Code Coverage mit pytest-cov - Von Tool-Nutzung zur kritischen Bewertung
-stage: draft
-timevalue: 2.5
+stage: alpha
+timevalue: 2.7
 difficulty: 3
 assumes: m_pytest, pytest-Methodik-Whitebox
 requires: pytest_call
@@ -16,19 +16,22 @@ requires: pytest_call
 [ENDSECTION]
 [SECTION::background::default]
 
-Code Coverage misst, welcher Anteil Ihres Codes von Tests ausgeführt wird. Während hohe Coverage-Werte beruhigend wirken können, sind sie kein Garant für Testqualität.
+Code Coverage misst, welcher Anteil Ihres Codes von Tests ausgeführt wird.
+Während hohe Coverage-Werte beruhigend wirken können, sind sie kein Garant für Testqualität.
 
-Eine 100%ige Zeilenabdeckung kann existieren, ohne dass ein einziger sinnvoller Test geschrieben wurde. Umgekehrt können gut durchdachte Tests mit 80% Coverage mehr Vertrauen schaffen als oberflächliche Tests mit 100% Coverage.
+Eine 100%ige Zeilenabdeckung kann existieren, ohne dass ein einziger sinnvoller Test geschrieben wurde.
+Umgekehrt können gut durchdachte Tests mit 80% Coverage mehr Vertrauen schaffen als oberflächliche Tests mit 100% Coverage.
 
 Im Folgenden verwenden wir „Testabdeckung“ und „Coverage“ synonym.
 
-In dieser Aufgabe lernen Sie pytest-cov zunächst an bestehender Codebasis kennen, bevor wir ein realitätsnahes Beispiel entwickeln und ein kritisches Verständnis für Coverage-Metriken aufbauen.
+In dieser Aufgabe lernen Sie `pytest-cov` zunächst an bestehender Codebasis kennen.
+Anschließend entwickeln Sie ein realitätsnahes Beispiel und bauen ein kritisches Verständnis für Coverage-Metriken auf.
 
-Wenn Sie [PARTREF::pytest-Methodik-Whitebox] bereits bearbeitet haben, können Sie die dort erstellten
-Artefakte als Ausgangspunkt für die Coverage-Analyse verwenden. Falls nicht, nutzen Sie das Beispiel
-in Teil B.
+Die in [PARTREF::pytest-Methodik-Whitebox] erstellten Artefakte können Sie in Teil B
+alternativ zum vorgegebenen `EmailValidator` verwenden.
 
-Schön ist es, wenn man zusätzlich zu seinem Testergebnis auch sieht, dass sich die Testabdeckung verbessert. Um diese Abfrage nicht separat durchführen zu müssen, verwenden wir das pytest-cov Plugin.
+Es ist hilfreich, Testergebnis und Testabdeckung gemeinsam einzusehen.
+Um diese Abfrage nicht separat durchführen zu müssen, verwenden wir das `pytest-cov`-Plugin.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
@@ -38,24 +41,34 @@ Schön ist es, wenn man zusätzlich zu seinem Testergebnis auch sieht, dass sich
 Zunächst lernen Sie pytest-cov an einer bestehenden Codebasis kennen und erreichen systematisch 100% Coverage.
 
 ### pytest-cov Setup
+<!-- time estimate: 5 min -->
 
-pytest-cov ist ein pytest-Plugin, das Coverage-Messung nahtlos in Ihren Test-Workflow integriert.
+`pytest-cov` ist ein pytest-Plugin, das Coverage-Messung nahtlos in Ihren Test-Workflow integriert.
 
 [EC] Installieren Sie pytest-cov: `pip install pytest-cov`
 
 [EC] Verifizieren Sie die Installation: `pytest --version` und `pytest --help | grep cov`
 
 ### Anwendung auf bestehende Codebasis
+<!-- time estimate: 45 min -->
 
 Wenden Sie pytest-cov auf die `toolz`-Bibliothek aus [PARTREF::pytest_call] an.
 
-[EC] Wie sieht der Kommandobefehl zum Ausführen einer Testabdeckungsanalyse für das Verzeichnis
-`toolz` aus?
+[EQ] Wie lautet der Befehl zur Coverage-Analyse für das `toolz`-Verzeichnis?
+
+[HINT::Wie starte ich die Coverage-Analyse?]
+Die Ausgabe von [EREFC::2] zeigt alle verfügbaren `--cov`-Optionen.
+Alternativ: [pytest-cov Dokumentation](https://pytest-cov.readthedocs.io/).
+[ENDHINT]
+
+[EC] Führen Sie diesen Befehl aus.
 
 [EQ] Wie hoch ist die aktuelle Coverage der toolz-Bibliothek? Was sagt Ihnen das über die
 Testqualität?
 
-[EC] Wie finden Sie heraus, welche spezifischen Zeilen nicht abgedeckt sind?
+[EQ] Wie finden Sie heraus, welche spezifischen Zeilen nicht abgedeckt sind?
+
+[EC] Führen Sie diesen Befehl aus.
 
 [HINT::Missing Lines anzeigen]
 Der `--cov-report` Parameter bietet verschiedene Optionen. Suchen Sie in der pytest-cov
@@ -69,22 +82,26 @@ genutzten Module auf 100% steht.
 schwer zu testen?
 
 ## Teil B: Coverage-Bewertung mit realitätsnahem Beispiel
+<!-- time estimate: 10 min -->
 
-Nun entwickeln wir ein komplexeres Verständnis von Coverage-Qualität mit einem eigenen Beispiel.
+Nun entwickeln Sie ein komplexeres Verständnis von Coverage-Qualität mit einem eigenen Beispiel.
 
 Lesen Sie zunächst diesen Artikel: [Code Coverage – Kein zuverlässiges Qualitätsmaß](https://blog.ordix.de/code-coverage-kein-zuverlaessiges-qualitaetsmass),
 um die kritischen Aspekte von Coverage zu verstehen.
 
-### Realitätsnahes Beispiel: E-Mail Validator
+[EQ] Welches Hauptargument nennt der Autor dafür, dass hohe Coverage-Werte kein Qualitätsmerkmal sind?
 
-Wir arbeiten mit einer E-Mail-Validierungsklasse - ein typisches Real-World-Szenario mit
+### Beispiel: E-Mail Validator
+<!-- time estimate: 5 min -->
+
+Sie arbeiten mit einer E-Mail-Validierungsklasse — ein typisches Real-World-Szenario mit
 verschiedenen Edge Cases.
 
 [ER] Erstellen Sie die Datei `email_validator.py` mit folgendem Inhalt:
 
 ```python
 import re
-from typing import List, Optional
+from typing import List
 
 class EmailValidator:
     """Validiert E-Mail-Adressen nach verschiedenen Kriterien."""
@@ -116,7 +133,7 @@ class EmailValidator:
             
         try:
             local, domain = email.split('@', 1)
-        except ValueError:
+        except ValueError:  # pragma: no cover
             return {'valid': False, 'errors': ['Invalid email format']}
             
         # Validate local part
@@ -217,6 +234,7 @@ class EmailValidator:
 ```
 
 ### Erste Tests und Coverage-Messung
+<!-- time estimate: 15 min -->
 
 [ER] Erstellen Sie die Datei `test_email_validator.py` mit folgenden Starttests:
 
@@ -244,6 +262,7 @@ class TestEmailValidator:
 [EQ] Wie hoch ist die aktuelle Coverage? Was sagt Ihnen das über die Testqualität?
 
 ### Coverage-Konfiguration für eigenes Projekt
+<!-- time estimate: 15 min -->
 
 Nach der Analyse bestehender Codebasis erstellen Sie nun eigene Coverage-Konfiguration.
 
@@ -269,11 +288,17 @@ exclude_lines = [
 ]
 ```
 
-[EC] Führen Sie Tests erneut aus: `pytest`. Was hat sich geändert?
+[EC] Führen Sie Tests erneut aus: `pytest`
 
-[EC] Öffnen Sie den HTML-Report in `htmlcov/index.html`. Welche Code-Bereiche werden nicht getestet?
+[EQ] Was hat sich geändert?
+
+Öffnen Sie den HTML-Report in `htmlcov/index.html`
+(macOS: `open htmlcov/index.html`, Linux: `xdg-open htmlcov/index.html`).
+
+[EQ] Welche Code-Bereiche werden nicht getestet?
 
 ### Systematischer Testausbau
+<!-- time estimate: 25 min -->
 
 [ER] Erweitern Sie die Tests, um verschiedene Edge Cases abzudecken:
 
@@ -287,10 +312,12 @@ exclude_lines = [
 testen sind?
 
 ### Coverage-Kritik
+<!-- time estimate: 20 min -->
 
 Jetzt werden Sie die Grenzen von Coverage-Metriken verstehen:
 
-[ER] Erstellen Sie einen Test, der 100% Line Coverage erreicht, aber trotzdem fehlerhaft ist:
+[ER] Ergänzen Sie den folgenden Testrahmen so, dass `pytest --cov=email_validator` danach
+100% Line Coverage für `email_validator.py` meldet — aber ohne eine einzige sinnvolle Assertion:
 
 ```python
 def test_fake_coverage():
@@ -307,7 +334,7 @@ def test_fake_coverage():
 
 [EQ] Was zeigt dieser Test über die Aussagekraft von Coverage-Metriken?
 
-[ER] Erstellen Sie jetzt einen Test mit niedriger Coverage, aber hoher Qualität:
+[ER] Erstellen Sie jetzt einen fokussierten Test mit wenigen, aber kritischen Assertions:
 
 ```python
 def test_security_critical_validation():
@@ -324,20 +351,20 @@ def test_security_critical_validation():
 ```
 
 ### Reflexion und Best Practices
+<!-- time estimate: 20 min -->
 
-[EQ] **Coverage-Ziele festlegen:** Basierend auf Ihrer Erfahrung:
-1. Welche Coverage-Ziele würden Sie für verschiedene Projekttypen setzen?
-2. Wann ist 80% Coverage besser als 95%?
-3. Welche Code-Bereiche sollten immer 100% Coverage haben?
+[EQ] Welches Coverage-Ziel hätten Sie für den `EmailValidator` gesetzt — und warum?
+Welche Methoden des `EmailValidator` sollten auf jeden Fall 100% Coverage haben?
 
-[EQ] **Quality Gates:** Stellen Sie sich vor, Sie implementieren Coverage-Requirements in einer
-CI/CD-Pipeline:
-1. Welche Metriken würden Sie überwachen? (Line/Branch/Function Coverage?)
+[EQ] Was hat `test_fake_coverage` konkret gezeigt: Was sagt eine hohe Coverage-Prozentzahl aus, und was nicht?
+
+[EQ] **Quality Gates:** Angenommen, Sie fügen Coverage-Checks für den `EmailValidator` in eine CI/CD-Pipeline ein:
+
+1. Welche Coverage-Metriken würden Sie überwachen? (Line/Branch/Function Coverage?)
 2. Bei welchen Coverage-Abfällen würden Sie Builds fehlschlagen lassen?
-3. Wie würden Sie mit Legacy-Code umgehen?
+3. Wie würden Sie mit schwer testbarem Code umgehen?
 
-[EQ] **Mutation Testing:** Informieren Sie sich über "Mutation Testing" und vergleichen Sie es mit
-Coverage-Testing. Was sind die Vor-/Nachteile?
+[PARTREF::pytest_mutation_testing] vertieft dieses Thema — dort lernen Sie Mutation Testing praktisch kennen.
 
 [ENDSECTION]
 
