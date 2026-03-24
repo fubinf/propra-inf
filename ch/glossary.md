@@ -412,9 +412,11 @@ In der Informatik und Softwaretechnik ist eine Datenstruktur ein Objekt, welches
 [ENDTERM]
 
 [TERM::dd-utility|dd]
-Unix-Kommandozeilenwerkzeug zum Kopieren und Konvertieren von Datenströmen auf Byte-Ebene,
-z.B. zum Erstellen von Disk-Images oder zum Schreiben von Daten auf ein Blockgerät.
-
+Unix-Kommandozeilenwerkzeug zum Kopieren und Konvertieren von Datenströmen auf Byte-Ebene.
+Im Gegensatz zu Befehlen wie `cp` arbeitet `dd` nicht auf Dateiebene,
+sondern liest und schreibt rohe Bytedaten. 
+Gegebenenfalls wird es von oder auf Blockgeräte wie Festplatten, USB-Sticks oder Partitionen gelesen
+und geschrieben.
 Siehe auch `man dd`.
 [ENDTERM]
 
