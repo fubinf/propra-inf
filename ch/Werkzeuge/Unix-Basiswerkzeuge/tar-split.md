@@ -93,8 +93,7 @@ Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 
 ### `tar`-Archive auspacken
 
-Sie haben sich das `tar`-Archiv angeschaut und möchten es jetzt entpacken, damit Sie es später 
-installieren können, falls nötig.
+Sie haben sich das `tar`-Archiv angeschaut und möchten es jetzt entpacken.
 
 Lesen und verstehen Sie die **Optionen x,C** der 
 [ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
@@ -130,14 +129,15 @@ Vergeben Sie den Namen `split_meinarchiv.tar.` (mit Punkt am Ende).
 
 ### Aufgeteilte `tar`-Archive wieder zusammenfügen
 
-Sie haben auf die Mail eine Antwort aus mehreren Emails
+Sie haben auf die Mail eine Antwort aus mehreren E-Mails
 mit aufgeteilten Archivteilen zurückbekommen.
-Damit Sie das aufgeteilte Archiv wieder entpacken können, müssen Sie die Teile wieder zusammenfügen.
+Damit Sie das aufgeteilte Archiv wieder entpacken können,
+müssen Sie die Teile wieder zusammenfügen.
 
-Lesen und verstehen Sie den Abschnitt **Zusammenführen** der 
+Lesen und verstehen Sie den Abschnitt **Zusammenführen** der
 [ubuntuusers split-Seite](https://wiki.ubuntuusers.de/split/).
 
-[EC] Fügen Sie das `tar`-Archiv, welches Sie in 5 gleich große Teile getrennt haben, wieder zusammen.
+[EC] Fügen Sie das `tar`-Archiv, das Sie in 5 Teile aufgeteilt haben, wieder zusammen.
 Benennen Sie das Resultat `cat_meinarchiv.tar`.
 
 [EC] Prüfen Sie die Funktionstüchtigkeit des wieder zusammengefügten Archivs,
