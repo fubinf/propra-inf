@@ -1,4 +1,4 @@
-title: "pyenv: Python-Versionsverwaltung leicht gemacht"
+title: "pyenv: Mehrere Python-Versionen nebeneinander benutzen"
 stage: alpha
 timevalue: 1.0
 difficulty: 2
@@ -106,7 +106,7 @@ Der Punkt im Versionsmuster ist durch `\.` als Literalpunkt maskiert
 Die zwei führenden Leerzeichen verhindern, dass Anaconda- oder PyPy-Einträge mitangezeigt werden.
 [ENDHINT]
 
-1. [EC] Zeigen Sie aktuell installierte Versionen an: `pyenv versions`
+2. [EC] Zeigen Sie aktuell installierte Versionen an: `pyenv versions`
    Zu Beginn sehen Sie dort nur `system` (Ihr vorhandenes System-Python).
 
 ### Python-Versionen installieren
