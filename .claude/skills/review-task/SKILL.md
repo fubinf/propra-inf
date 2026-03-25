@@ -189,7 +189,9 @@ Prüfen, ob die Klassifikation zur tatsächlichen Verwendung passt.
 
 **A4.6 Stoff aus Voraussetzungsaufgaben nicht erneut erklären.**
 Wenn Material durch eine Aufgabe in `assumes`/`requires` abgedeckt ist,
-nicht wiederholen. Ein kurzer Verweis genügt.
+nicht wiederholen. 
+Aber ein Hinweis kann hilfreich sein, wie sich hier Wissensbausteine zu höherem Wissen zusammenfügen 
+oder wie das hiesige Wissen zum Gesamtbild (Taskgroup-`index.md`) beiträgt. 
 
 **A4.7 Fachwissenschaft nicht in einem Programmierkurs lehren.**
 Aufgaben über Bibliotheken sollten lehren, wie man die Bibliothek benutzt,
@@ -218,7 +220,7 @@ Stable-/Release-URLs verwenden, nicht Dev-/Nightly-Versionen, die sich ändern k
 **A5.5 Verweise auf andere Aufgaben müssen [PARTREF::...] verwenden.**
 Das Makro verwenden, nicht fest codierte URLs oder vage Formulierungen wie
 "in der vorherigen Aufgabe".
-Studierende arbeiten Aufgaben möglicherweise nicht in der erwarteten Reihenfolge.
+Studierende bearbeiten Aufgaben möglicherweise nicht in der erwarteten Reihenfolge.
 
 ### A6. Übungen und Einreichungen
 
