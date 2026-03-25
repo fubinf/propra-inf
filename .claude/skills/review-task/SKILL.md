@@ -7,19 +7,25 @@ description: Begutachte eine Task oder eine Taskgroup-Indexseite
 Reviewe die in $ARGUMENTS angegebene Aufgabendatei (oder Taskgroup-Indexseite).
 Lies die Datei und wende die untenstehenden Heuristiken an.
 Verwende GitHub-Markdown-Syntax. 
+
 Beginne mit folgendem Absatz:
 "_Solcher kursiver Text ist von mir, der große Rest stammt von Claude. 
 Ggf. habe ich manche Sachen direkt erledigt und in Abschnitt 3 verschoben._"
+
 Fasse dann zunächst ggf. den Ausgangsstand im Issue zusammen.
+
 Dann gib die Ergebnisse in drei Listen aus, 
 mit gerade genug Erläuterung, um das Problem zu verstehen,
-je mit H3-Überschrift, durchgehend wie eine einzige Liste nummeriert:
+je mit H3-Überschrift, durchgehend wie eine einzige Liste nummeriert,
+mit einer Leerzeile hinter jedem Eintrag:
 
 1. "Änderungsvorschläge" für die wichtigen Dinge:
    Falsche Faktenbehauptungen, falsche Begriffe,
    logische Fehler, größere didaktische Mängel, mangelnde Anleitung
    der Instructors u.ä..
+
 2. "Kleinere Sachen" für den Rest, soweit er nicht von 3. erfasst wird.
+
 3. "Schon erledigt" für kleinere Sachen, deren Korrektur vermutlich so unstreitig ist,
    dass es nicht lohnt, einen Autor damit zu belästigen: insbesondere Mängel bei Markup,
    Orthografie, Begriffsschwankungen, unnötig komplizierte Formuliergungen,
@@ -30,9 +36,10 @@ je mit H3-Überschrift, durchgehend wie eine einzige Liste nummeriert:
 Nenne bei jedem Befund die Zeilennummer(n).
 Beginne jeden Satz auf einer neuen Zeile und packe den ganzen Satz auf diese Zeile.
 Setze technische Syntax in Backquotes.
+
 Schreibe das Ergebnis in die Datei .claude/draft-reviews/r-<mytaskname>.md.
 Das Verzeichnis existiert bereits.
-Umbreche den Text dabei auf ca. 100 Zeichen pro Zeile.
+Umbreche den Text dabei auf ungefähr 100 Zeichen pro Zeile.
 
 Falls in $ARGUMENTS ein URL mit angegeben ist, sollte das die zur Aufgabe gehörige Issue sein.
 Rufe diese ab (z.B. mit dem `gh` CLI) und prüfe, ob die ggf. dort behaupteten letzten Nachbesserungsschritte
