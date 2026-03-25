@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 2
 difficulty: 3
 explains:
-assumes: git-Repository
+requires: git-Repository
 ---
 
 [SECTION::goal::experience]
@@ -212,8 +212,7 @@ Setzen Sie jetzt die Datei wieder auf den korrekten Zustand zurück
 
 ### Zweiter Commit: Multiplikation
 
-Ihre Datei im Arbeitsverzeichnis enthält noch die (nicht im Index befindliche) 
-Multiplikationsfunktion.
+Ihre Datei im Arbeitsverzeichnis enthält noch die Multiplikationsfunktion, die sich nicht im Index befindet.
 Falls Sie sie bei den vorherigen Experimenten verloren haben, 
 bringen Sie `calculator.py` auf diesen Stand:
 
@@ -238,9 +237,11 @@ Prüfen Sie mit `git log`, dass Sie jetzt zwei Commits sehen.
 
 Sie verstehen jetzt das Drei-Bereiche-Modell: 
 Working Directory → Staging Area → Repository.
-Sie wissen, dass `git add` den exakten Dateiinhalt als Blob-Objekt speichert,
-dass Commits auf Tree-Objekte verweisen, die wiederum auf Blobs zeigen,
-und dass Git Objekte über SHA-1-Hashes referenziert.
+Sie wissen:
+
+- dass `git add` den exakten Dateiinhalt als Blob-Objekt speichert,
+- dass Commits auf Tree-Objekte verweisen, die wiederum auf Blobs zeigen,
+- und dass Git Objekte über SHA-1-Hashes referenziert.
 
 In der nächsten Aufgabe lernen wir, diese Informationen praktisch zu nutzen:
 mit `git diff` Änderungen vergleichen und mit `git log` die Historie durchsuchen.
@@ -254,4 +255,7 @@ mit `git diff` Änderungen vergleichen und mit `git log` die Historie durchsuche
 
 [INSTRUCTOR::Prüfhinweise]
 Prüfen Sie das Protokoll und die Antworten.
+
+[INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
