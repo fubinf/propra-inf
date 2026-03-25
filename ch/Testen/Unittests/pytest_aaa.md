@@ -61,7 +61,7 @@ Diese Trennung macht sofort sichtbar, *wo* ein Fehler liegt.
 ### Beispiel: Warenkorb
 <!-- time estimate: 5 min -->
 
-Für die folgenden Übungen verwenden Sie die folgende Klasse.
+Für die folgenden Übung verwenden Sie die folgende Klasse.
 Legen Sie eine Datei `cart.py` mit diesem Inhalt an:
 
 ```python
@@ -111,6 +111,26 @@ def cart_with_two_items():
     return cart
 ```
 
+#### Ausnahmen testen mit `pytest.raises`
+
+Eine der geforderten Übungen prüft, ob `add_item()` bei einem negativen Preis eine Ausnahme wirft.
+Dafür stellt pytest den Kontextmanager `pytest.raises` bereit:
+
+```python
+import pytest
+from cart import ShoppingCart
+
+def test_invalid_price_raises_value_error():
+    # Arrange
+    cart = ShoppingCart()
+    # Act & Assert
+    with pytest.raises(ValueError):
+        cart.add_item("Fehler", -5.00)
+```
+
+Der Block schlägt fehl, wenn *kein* `ValueError` geworfen wird.
+Details: [pytest-Dokumentation zu `raises`](https://docs.pytest.org/en/stable/how-to/assert.html#assertions-about-expected-exceptions)
+
 [ER] Schreiben Sie mithilfe dieser Hilfsfunktion mindestens drei Tests nach dem AAA-Muster,
    die verschiedene Szenarien abdecken:
 
@@ -124,8 +144,8 @@ def cart_with_two_items():
 Manchmal hängen Teile eines Szenarios voneinander ab oder der Arrange-Schritt ist so aufwändig,
 dass man ihn nicht für jeden einzelnen Assert neu aufbauen möchte.
 In diesem Fall können mehrere Act/Assert-Blöcke im selben Test sinnvoll sein —
-das Muster heißt dann AAAAA (zwei Zyklen) bzw. AAAAAAA (drei Zyklen) usw.,
-je nach Anzahl der Act/Assert-Paare.
+das Muster heißt dann A-AA-AA (zwei Zyklen) bzw. A-AA-AA-AA (drei Zyklen) usw. —
+die Bindestriche trennen die Zyklen und erleichtern die Lesbarkeit.
 
 Das folgende Beispiel prüft einen vollständigen Warenkorb-Ablauf mit drei Zyklen
 in einem einzigen Test, weil alle Schritte auf demselben Zustand aufbauen:
@@ -168,16 +188,26 @@ auf einen falschen Wert und führen Sie die Tests aus.
 ### Reflexion
 <!-- time estimate: 10 min -->
 
-[EQ] Warum erleichtert das AAA-Muster die Fehlersuche, und wie verbessert es die Lesbarkeit?
+[EQ] Beide Techniken — Hilfsfunktionen und mehrere Act/Assert-Blöcke — helfen, wenn das Setup aufwändig ist.
+   Was ist der wesentliche Unterschied zwischen ihnen, und wann würden Sie welche Technik wählen?
 
 [EQ] Wann ist es sinnvoll, mehrere Act/Assert-Blöcke in einem einzigen Test zu verwenden,
    und wann sollte man stattdessen lieber separate Tests schreiben?
 
-[EQ] Würde anstelle des AAA-Konzepts auch eine beliebig abgewandelte AA-Variante möglich sein?
+[EQ] Nennen Sie je ein Beispiel, bei dem (a) ein explizites Arrange entfallen kann und
+   (b) Act und Assert sinnvoll zusammenfallen.
+   Wann sollte trotzdem das vollständige AAA-Muster verwendet werden?
 
 [ENDSECTION]
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
+
 [ENDSECTION]
+
+[INSTRUCTOR::Prüfhilfen]
+
+[INCLUDE::ALT:]
+
+[ENDINSTRUCTOR]
