@@ -26,8 +26,9 @@
 - **2025-12-05** Aufgabe Werkzeuge/Netzwerk/[PARTREF::rsync] zugefügt.
 - **2026-01-06** Aufgabe Web/HTML/[PARTREF::html-Attribute] zugefügt.
   Aufgabegruppe Web/[PARTREF::JavaScript] mit zunächst 3 Aufgaben zugefügt.
-- **2026-01-13** Aufgabe Sprachen/Go/[PARTREF::go-structs2] zugefügt
+- **2026-01-13** Aufgabe Sprachen/Go/[PARTREF::go-structs2] zugefügt.
 - **2026-02-03** Aufgabe Web/JavaScript/[PARTREF::js-Klassen] zugefügt.
 - **2026-02-18** Aufgabe Bibliotheken/Frameworks/[PARTREF::FastAPI-Dependency-Injection] zugefügt.
 - **2026-02-19** Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_re] zugefügt.
+- **2026-03-25** Aufgabe Sprachen/Go/[PARTREF::go-goroutines] zugefügt.
 - ...

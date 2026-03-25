@@ -1,7 +1,7 @@
 title: "Grundlagen von Go: Goroutinen"
-stage: alpha
+stage: beta
 timevalue: 1.5
-difficulty: 2
+difficulty: 3
 assumes: go-functions
 ---
 
@@ -45,7 +45,8 @@ auf der Konsole ausgibt.
 [EQ] Rufen Sie `testGo()` in Ihrer `main`-Funktion auf.
 Was passiert — und warum ist das überraschend?
 
-[ER] Ergänzen Sie Ihre `main`-Funktion am Ende um eine Endlosschleife, damit das Programm nicht sofort beendet wird.
+[ER] Ergänzen Sie Ihre `main`-Funktion am Ende um eine Endlosschleife (typisches Idiom: `for {}`), 
+damit das Programm nicht sofort beendet wird.
 Später müssen Sie das Programm manuell mit `Strg+C` abbrechen.
 
 [FOLDOUT::Erklärung]
@@ -55,7 +56,7 @@ nebenläufig gestartete Goroutine zu warten, die Sie durch den Aufruf
 [ENDFOLDOUT]
 
 Man muss nicht immer eine extra Funktion definieren, denn Go erlaubt das Starten von Goroutinen auch
-direkt mit anonymen Funktionen (in Go genannt "Funktionsliterale", in Python "Lambdas").
+direkt mit anonymen Funktionen (in Go genannt "Funktionsliterale", das entspricht in Python den "Lambdas").
 
 [ER] Implementieren Sie eine Funktion `testGoAnonymous()`.
 Starten Sie darin eine Goroutine mit einer anonymen Funktion: `go func() { ... }()`, wo zuerst zwei
@@ -98,7 +99,7 @@ Programms bedeutet und alle laufenden Goroutinen automatisch abgebrochen werden.
 
 __Sequentiell__: Ein Schritt nach dem anderen.
 Wäre `delayedGreeting` ohne `go` aufgerufen worden, hätte das ganze Programm 2 Sekunden blockiert,
-bevor `"Hello World"` ausgegeben worden wäre.
+bevor `"Hello world!"` ausgegeben worden wäre.
 
 __Nebenläufig__: Durch das Schlüsselwort `go` wurde `delayedGreeting` in eine eigene Goroutine ausgelagert.
 Das Hauptprogramm lief sofort weiter.
@@ -126,12 +127,12 @@ zu dieser Liste, falls Sie bei der weiteren Erklärung etwas nicht verstehen.
 - __(Betriebssystem-)Kernel__: Das Herz eines Betriebssystems;
   hier werden Ressourcen wie Arbeitsspeicher und CPU verwaltet.
 - __Kernelraum__: Der privilegierte Speicherbereich, in dem der Kernel läuft.
-- __Benutzerraum__: Speicherbereich, in dem alle „normalen“ Benutzeranwendungen laufen.
+- __Benutzerraum__: Speicherbereich, in dem alle "normalen" Benutzeranwendungen laufen.
 - __Scheduler__: Ein Programm, das die Verwaltung von Threads übernimmt.
 - __kooperativ__: Ein Thread kommt erst dann zur Ausführung, wenn ein anderer Thread seine Ausführung selbst pausiert.
 - __präemptiv__: Der aktuell laufende Thread wird in gewissen Zeitabständen vom Scheduler unterbrochen, um anderen
   Threads Ausführung zu ermöglichen.
-- __Stack__: Hier: ein „privater“ Speicherbereich eines Threads.
+- __Stack__: Hier: ein "privater" Speicherbereich eines Threads.
 
 [EQ] Stellen Sie sich vor, Sie sind der Scheduler.
 Sie verwalten 3 Threads, die alle gleichzeitig laufen wollen — aber Sie haben nur eine CPU.
@@ -139,6 +140,9 @@ Was ist der Unterschied, wenn die Threads _selbst_ entscheiden, wann sie pausier
 
 [EQ] Wie würden Sie entscheiden, welcher Thread als nächster läuft?
 
+[HINT::Ein gutes Kriterium ist...]
+Fairness: Jeder Thread sollte nach einer Weile garantiert wieder drankommen.
+[ENDHINT]
 <!-- time estimate: 10 min -->
 
 
@@ -146,34 +150,35 @@ Was ist der Unterschied, wenn die Threads _selbst_ entscheiden, wann sie pausier
 
 Hier sammeln wir nun einige weitere Begriffe, die im Kontext von Nebenläufigkeit wichtig sind.
 
-1. __Hardware-Threads__: Die logischen Kerne Ihrer CPU — die echten „Arbeiter“.
+1. __Hardware-Threads__: Die logischen Kerne Ihrer CPU — die echten "Arbeiter".
 2. __OS-Threads__: Threads, die im _Kernel_ verwaltet werden.
-   Sie sind relativ „teuer“ im Speicherverbrauch (Stacks zwischen 512 KB und 8 MB) und ihr Wechsel kostet Zeit,
+   Sie sind relativ "teuer" im Speicherverbrauch (Stacks zwischen 512 KB und 8 MB) und ihr Wechsel kostet Zeit,
    weil die Umschaltung einen Übergang zwischen _Benutzer-_ und _Kernelraum_ erfordert.
    Das Betriebssystem ordnet OS-Threads den Hardware-Threads zu.
 3. __User Threads__: 
-   Threads, die von einem _Scheduler_ im _Benutzerraum_ verwaltet werden — von einem externen Programm.
-   Sie sind für das Betriebssystem komplett unsichtbar und leichter als OS-Threads, weil ihre Erzeugung
+   Threads, die von einem _Scheduler_ im _Benutzerraum_ verwaltet werden.
+   Der Scheduler ist Teil des Laufzeitsystems der jeweiligen Programmiersprache.
+   User Threads sind für das Betriebssystem komplett unsichtbar und leichter als OS-Threads, weil ihre Erzeugung
    und ihr Kontextwechsel keinen Sprung zwischen Kernel- und Benutzerraum benötigen.
 
 In der Praxis begegnet man noch anderen Bezeichnungen für Threads, die keine OS-Threads sind.
 Diese werden heute oft synonym verwendet und sind im Grunde verschiedene Sorten von _User Threads_:
 
 - __Green Threads__:
-  Eine Implementierung von User Threads in der Standardbibliothek von Java 1.1, die mit Java 1.3 abgeschafft wurde.
-  Sie teilten sich einen OS-Thread und waren größtenteils _kooperativ_.
-- __Virtual Threads__: Eine modernere Implementierung von User Threads (Java 21).
+  Eine Implementierung von User Threads in der Standardbibliothek mancher Sprachen (z.B. frühen Versionen von Java).
+  Sie teilen sich einen OS-Thread und sind größtenteils _kooperativ_. Kaum noch gebräuchlich.
+- __Virtual Threads__: Eine modernere Implementierung von User Threads (z.B. in Java 21).
   Virtual Threads benutzen das __M:N Mapping__:
   Die Laufzeit verteilt _M_ virtuelle Threads dynamisch auf _N_ OS-Threads.
   Im Gegensatz zu Green Threads ist das Scheduling hier (fast) __präemptiv__ — der Scheduler unterbricht die Ausführung
   eines Threads bei blockierenden Ein- und Ausgabeoperationen.
-- __Goroutinen__: Sind in Go eine komplett _präemptive_ Alternative zu Virtual Threads.
+- __Goroutinen__: Eine komplett _präemptive_ Alternative zu Virtual Threads in Go.
   Eine Endlosschleife in einem Virtual Thread in Java würde den darunterliegenden OS-Thread in der Regel komplett
   blockieren, in Go nicht.
   Außerdem sind die Stacks von Goroutinen zu Beginn sehr klein — nur 2 KB.
 
-[FOLDOUT::Tiefenwissen: Scheduler Details]
-Wenn Sie genau wissen wollen, wie der Go-Scheduler die Last verteilt („Work Stealing“), empfehlen wir die Artikel:
+[FOLDOUT::Tiefenwissen: Scheduler-Details]
+Wenn Sie genau wissen wollen, wie der Go-Scheduler die Last verteilt ("Work Stealing"), empfehlen wir die Artikel:
 ["Understanding the Go Scheduler"](https://rickkoch.github.io/posts/go-scheduler/)
 oder
 ["Go's work-stealing scheduler"](https://rakyll.org/scheduler/).
@@ -190,7 +195,7 @@ Prüfen Sie kurz, ob das Konzept sitzt:
 
 [EQ] __Szenario 1__:
 Stellen Sie sich vor, Sie schreiben einen Chat-Server, der eine Million Nutzer gleichzeitig bedienen muss.
-Für jeden Nutzer brauchen Sie einen eigenen „Arbeiter“ (Thread).
+Für jeden Nutzer brauchen Sie einen eigenen "Arbeiter" (Thread).
 Warum würde Ihr Server wahrscheinlich abstürzen, wenn Sie dafür eine Million OS-Threads starten,
 während er mit einer Million Goroutinen stabil läuft?
 
@@ -212,11 +217,11 @@ Betrachten Sie noch einmal den Unterschied zwischen _kooperativ_ und _präemptiv
 
 ### Zusammenfassung & Ausblick
 
-Sie haben gelernt, dass `go func()` einen neuen Ausführungsstrang startet.
+Sie haben gelernt, dass `go f()` einen neuen Ausführungsstrang startet.
 Sie haben aber auch die größten Probleme der Nebenläufigkeit erlebt: 
 __Koordination und Synchronisation__.
 
-Wir mussten eine „dumme“ Endlosschleife (`for {}`) nutzen, damit `main` nicht zu früh beendet wird.
+Wir mussten eine "dumme" Endlosschleife (`for {}`) nutzen, damit `main` nicht zu früh beendet wird.
 In echten Programmen verwenden wir dafür:
 
 1. WaitGroups (um zu warten, bis Aufgaben fertig sind).
@@ -237,24 +242,11 @@ Das lernen Sie in den nächsten Aufgaben.
 
 
 [INSTRUCTOR::Hinweise]
-[EREFQ::1] — hier sollen die Studierenden beobachten, dass sich das Programm sofort beendet und
-`delayedGreeting` nicht zur Ausführung kommt.
-
-[EREFQ::2] — alles ist korrekt, was einigermaßen plausibel begründet ist.
-
-[EREFQ::3] und [EREFQ::4] sollen die Teilnehmenden nur zum Nachdenken anregen.
-Es geht nicht darum, eine fachlich korrekte Antwort zu liefern.
-Wichtig ist, dass Studierende sich die Frage stellen "Was würde ich an der Stelle des Schedulers tun?"
-und dadurch zu den simpelsten Scheduling-Verfahren kommen.
-
-[EREFQ::5] und [EREFQ::6] — hier sollen die Studierenden die Szenarien im Hinblick auf Präemptivität
-und Speicherverbrauch von Goroutinen im Vergleich zu OS-Threads diskutieren.
 
 **Kommandoprotokoll**
 [PROT::ALT:go-goroutines.prot]
 
 **Lösungen**
-
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe als ausführbare Datei siehe hier:
