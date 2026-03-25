@@ -56,13 +56,12 @@ def test_addiere_zahlen():
     assert ergebnis == erwartetes_ergebnis
 ```
 
-Diese Trennung macht sofort sichtbar, *wo* ein Fehler liegt: im Setup, bei der Ausführung
-oder beim Vergleich.
+Diese Trennung macht sofort sichtbar, *wo* ein Fehler liegt.
 
 ### Beispiel: Warenkorb
 <!-- time estimate: 5 min -->
 
-Für die folgenden Aufgaben verwenden Sie die folgende Klasse.
+Für die folgenden Übungen verwenden Sie die folgende Klasse.
 Legen Sie eine Datei `cart.py` mit diesem Inhalt an:
 
 ```python
