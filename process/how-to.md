@@ -448,21 +448,20 @@ Keep them up-to-date, i.e., update or kill outdated ones immediately when you se
   If you rename a task group, make sure to change all respective issue names.
 
 
-#### 2.6.2.1 Two modes of reviewing
+#### 2.6.2.1 Three stages of reviewing
 
-In the interest of rapid reviewing progress, the reviewer will use two different reviewing modes
-as follows:
-
-- Upon starting each review, decide quickly whether this task is presumably ready for
-  final editing and release.
-- If yes, enter "thorough" review mode:  
-  Make all those final changes that are quick to make;
-  leave larger final changes to the author (in particular adjustments to the `altdir` parts);
-  release the task if possible.
-- If not, enter "helpful" review mode and just provide enough feedback (without investing too much
-  work, producing long waittimes) that the author can make substantial progress:
-  explaining a handful of major issues to be repaired is enough, no matter how much or how little else
-  there may be in the task that will have to be changed.
+1. Initial reviews of tasks are driven by AI (Claude Code Opus) according to the rules
+   set out in `.claude/skills/review-task`.
+   Lutz Prechelt will comment on each item raised by Claude, providing weighting, preferences,
+   and sometimes hints.
+   Stage 1 reviewing repeats until the issues reported by Claude seem few enough to enter stage 2:
+2. Lutz Prechelt will review manually and judge whether the task is "almost done".
+   If yes, it will enter stage 3.
+   Otherwise, prechelt provides specific feedback and hands back to the author.
+   Warning: If things go badly and something is fundamentally wrong with the task,
+   this may be detected only now, potentially wasting a lot of stage-1 effort.
+   If you fear this might happen, say so in the initial issue.
+3. Lutz Prechelt will perform final editing and release the task.
 
 
 #### 2.6.2.2 Modifying published tasks
@@ -470,14 +469,15 @@ as follows:
 - Sometimes we recognize that some extension to an existing task (already in use by students)
   would be useful, so we can build on it in a later (new) task.
   We allow ourselves to make such additions, with care. Process:
-- If you work with a fork anyway, make the necessary change(s) on a separate branch and
-  create a GitHub Pull Request.
-- If not (which is the normal case in our team), describe the change in an issue, 
-  either as a block of Markdown text plus coordindates where to include it, 
-  or (only if block-of-text does not work for this case) as a diff 
-  for a locally modified file you have not yet checked in.
+- Changes that are backwards-compatible (better wording) can be made at any time.
+- Small extensions that do not change the _structure_ (e.g. F1 etc. items) of the submission
+  can be made, but must be described in `changes.md` to make students aware of them.
 - In both cases, reviewing by prechelt, describing the change on the homepage (`changes.md`),
   and publishing the modified task should then be done on a single day.
+- Larger, backwards-incompatible changes such as more steps, different timevalue,
+  or even splitting a task into to must wait until the next course and are stored for
+  later application in the manner described in issue
+  [Using the future-changes branch](https://github.com/fubinf/propra-inf/issues/131).
 
 
 ### 2.6.3 Task text layout conventions
@@ -485,10 +485,11 @@ as follows:
 - Line length: Restrict lines to 100 characters, prefer 80 where easily possible.
   Start each sentence on a new line.
   These two rules make the `diff` for later changes much more readable.
-- Empty lines: Place two empty lines before each SECTION and before each heading.  
+- Empty lines: See `ch/template_md`.
+  In words: Place two empty lines before each SECTION and before each heading.  
   Place one empty line before each blockmacro start line and after each blockmacro end line,
   but none after the start line (unless needed to repair a broken itemized list) 
-  or before the end line. See `ch/template_md`.
+  or before the end line. 
 - Put hyperlinks on a separate line.
 
 `[SECTION::instructions::...]`
