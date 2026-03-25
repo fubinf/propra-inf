@@ -1,5 +1,5 @@
 title: Staging Area und Git-Objekte
-stage: alpha
+stage: draft
 timevalue: 2
 difficulty: 3
 explains:
