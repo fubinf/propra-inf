@@ -43,7 +43,7 @@ Dieser Weg wird oft als "explizit" oder objektorientiert bezeichnet, weil Sie di
 Es gibt aber eine zweite Möglichkeit, wie man in Matplotlib etwas zeichnen kann.
 Dieser Weg wird als implizit bzw. funktional beschrieben, weil man keine eigenen Objekte erstellt, 
 sondern Matplotlib _intern_ automatisch eine Grafik erzeugt und verwendet.
-Das obrige Beispiel könnte man auf implizite Weise so umsetzen:
+Das obige Beispiel könnte man auf implizite Weise so umsetzen:
 
 ```python
 import matplotlib.pyplot as plt
@@ -183,7 +183,7 @@ Wie viele `Figure`-Objekte gäbe es dann?
 Generell ist die implizite Variante für die meisten Anwendungsfälle ausreichend, die explizite
 Variante bietet aber viel mehr Kontrolle.
 Besonders wenn man mehrere Figures oder Axes benutzen will, braucht man das explizite Interface.
-Es ist daher sinnvoll sich die explizite Variante anzugewöhnen, auch wenn man beides
+Es ist daher sinnvoll, sich die explizite Variante anzugewöhnen, auch wenn man beides
 verstehen sollte.
 In den folgenden Aufgaben werden Sie vorrangig die explizite Variante kennenlernen, 
 da damit die Funktionsweise von Matplotlib klarer wird.
