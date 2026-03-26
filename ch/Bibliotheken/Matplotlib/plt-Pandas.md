@@ -15,7 +15,7 @@ zu erstellen.
 Bisher haben Sie Pandas zur Analyse von Daten und Matplotlib zum Erstellen verschiedener Diagramme
 getrennt kennengelernt.  
 In der Praxis nutzt man beide Bibliotheken oft zusammen, 
-wenn es darum geht Datensätze zu visualisieren.
+wenn es darum geht, Datensätze zu visualisieren.
 [ENDSECTION]
 
 
@@ -38,7 +38,7 @@ party_cols = [
 ]
 ```
 
-[ER] Summieren Sie für die nächsten Aufgabe die Stimmen der Parteien auf ihre Gesamtzahl pro
+[ER] Summieren Sie für die nächsten Aufgaben die Stimmen der Parteien auf ihre Gesamtzahl pro
 Partei auf (`Series`).
 
 [ER] Daten schnell zu plotten ist mit der eingebauten
@@ -96,7 +96,7 @@ colors = [party_colors.get(p, "#A0A0A0") for p in major_parties.index]
 
 [EQ] Noch zeigt das Diagramm nicht an, wie viel Prozent eigentlich jede Partei hat, man kann
 es nur ungefähr schätzen.
-Änderen Sie ihren Code, sodass der Rückgabewert von `ax.bar()` in der Variable `bars` gespeichert
+Ändern Sie Ihren Code, sodass der Rückgabewert von `ax.bar()` in der Variable `bars` gespeichert
 wird.
 Was genau ist dieser Rückgabewert?
 
@@ -119,11 +119,11 @@ Ihr Diagramm sollte nun so aussehen, wie im Bild oben.
 ### Kuchendiagramm Wählende
 
 Nun möchten wir ein Kreisdiagramm erstellen, welches visualisiert, wie viel Prozent der
-Wahlberechtigten wählen waren und wie viele nicht.
+Wahlberechtigten wählen gegangen sind und wie viele nicht.
 
 [EQ] Welche 2 Spalten sind dafür relevant? Wie können Sie den Anteil an Nicht-Wählern berechnen?
 
-[ER] Berechne Sie die Wähler und Nicht-Wähler. Plotten Sie diese als Kreisdiagramm.
+[ER] Berechnen Sie die Wähler und Nicht-Wähler. Plotten Sie diese als Kreisdiagramm.
 Setzen Sie die `labels` entsprechend auf "Wählende" und "Nicht-Wählende".
 Zeigen Sie mit `autopct` die Prozentsätze im Kreisdiagramm an.
 [ENDSECTION]
