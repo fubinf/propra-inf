@@ -6,7 +6,14 @@ description: Begutachte eine Task oder eine Taskgroup-Indexseite
 
 Reviewe die in $ARGUMENTS angegebene Aufgabendatei (oder Taskgroup-Indexseite).
 Lies die Datei und wende die untenstehenden Heuristiken an.
-Verwende GitHub-Markdown-Syntax. 
+(Wenn wir z.B. `ch/Meinkapitel/Meinegruppe/Meineaufgabe.md` begutachten,
+dann bedeutet darin `[INCLUDE::ALT:]`, dass die Datei 
+`altdir/ch/Meinkapitel/Meinegruppe/Meineaufgabe.md` eingeschlossen werden soll
+und also mitzuberücksichtigen ist. 
+Absolute oder relative Pfade kommen auch vor: `[INCLUDE::ALT:../Gruppe2/andere.md]` verweist auf
+`altdir/ch/Meinkapitel/Gruppe2/andere.md`, etc.)
+
+Erstelle ein Gutachten. Verwende GitHub-Markdown-Syntax. 
 
 Beginne mit folgendem Absatz:
 "_Solcher kursiver Text ist von mir, der große Rest stammt von Claude. 
