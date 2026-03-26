@@ -104,7 +104,7 @@ Der Test könnte anschließend diese Aufzeichnungen abfragen und mit den Erwartu
 ### Zwei Wege zum Ziel: Monkeypatching vs. Dependency Injection
 <!-- time estimate: 5 min -->
 
-Es gibt grundsätzlich u.a. zwei gute Techniken, um Abhängigkeiten durch Attrappen zu ersetzen:
+Es gibt grundsätzlich zwei Techniken, um Abhängigkeiten durch Attrappen zu ersetzen:
 
 **Monkeypatching:** Zur Laufzeit wird das Original durch die Attrappe ersetzt.
 
@@ -457,7 +457,7 @@ def get_weather_data(city):
         return None
 ```
 
-### Reflektion: "Wann sollte man Attrappen verwenden und wann lieber nicht?"
+### Reflexion: "Wann sollte man Attrappen verwenden und wann lieber nicht?"
 <!-- time estimate: 15 min -->
 
 #### Testdoubles: "Attrappen sind nicht alle gleich"
