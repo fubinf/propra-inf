@@ -1,6 +1,6 @@
 title: Zusammenführen von Tabellen mittels JOIN
-stage: alpha
-timevalue: 2
+stage: beta
+timevalue: 2.0
 difficulty: 2
 assumes: sql-basics, sql-SELECT, sql-SELECT2
 ---
@@ -12,11 +12,10 @@ und kenne die Eigenschaften der unterschiedlichen Verbindungen.
 
 
 [SECTION::background::default]
-In einem Datenbankprojekt werden meist mehrere Tabellen verwendet, 
-die unterschiedliche Informationsbereiche abbilden.
+In einem Datenbankprojekt werden fast immer _mehrere_ Tabellen verwendet, die unterschiedliche Informationsbereiche abbilden.
 Um Wiederholungen und Inkonsistenzen zu vermeiden, 
-werden Tabellen über Referenzen miteinander verknüpft.
-`JOIN`-Operationen dienen dazu, relevante Daten aus diesen Tabellen zu kombinieren.
+werden Tabellen über Referenzen ("Fremdschlüssel", foreign keys) miteinander verknüpft.
+`JOIN`-Operationen dienen dazu, relevante Daten aus mehreren Tabellen zusammenzuführen.
 [ENDSECTION]
 
 
@@ -26,8 +25,7 @@ werden Tabellen über Referenzen miteinander verknüpft.
 
 Sie haben bereits grundlegende Abfragen mit `SELECT` und `WHERE` in [PARTREF::sql-SELECT] 
 kennengelernt, um Daten aus einer einzigen Tabelle abzurufen und zu filtern. 
-Eine erweiterte Mögilichkeit, Daten aus mehreren Tabellen abzurufen, ist das Kreuzprodukt mittels 
-kommaseparierter Listen:
+Eine Möglichkeit, Daten aus mehreren Tabellen zugleich abzurufen, ist das Kreuzprodukt:
 
 ```sql
 SELECT *
@@ -36,19 +34,16 @@ WHERE mytable1.id = mytable2.t1_id
   AND mytable2.id = mytable3.t2_id;
 ```
 
-Jedoch können solche Abfragen sehr komplex und ineffizient werden, insbesondere wenn große 
-Datenmengen verarbeitet werden müssen. 
-Um die Lesbarkeit zu verbessern und die Performance zu optimieren, 
-bietet SQL eine elegantere Lösung: das Schlüsselwort `JOIN`. 
-Dadurch können mehrere Tabellen in einer Abfrage miteinander verknüpft werden.
+Jedoch können solche Abfragen manchmal schwer verständlich und/oder ineffizient werden, 
+insbesondere wenn große Datenmengen verarbeitet werden müssen. 
+Um die Intention klar sichtbar zu machen und das Leistungsrisiko zu vermindern, 
+bietet SQL eine Lösung: das Schlüsselwort `JOIN`. 
+Dadurch können mehrere Tabellen in einer Abfrage gezielter miteinander verknüpft werden.
 
-Es gibt verschiedene `JOIN`-Verfahren, die je nach Tabellenstruktur und Abfrageziel sinnvoll 
-eingesetzt werden können. 
+Es gibt verschiedene `JOIN`-Verfahren, die je nach Tabellenstruktur und Abfrageziel 
+eingesetzt werden. 
 Zu den gängigsten `JOIN`-Typen gehören `INNER JOIN`, `LEFT JOIN`, 
-`RIGHT JOIN` und `FULL JOIN`. 
-Jeder dieser `JOIN`-Typen hat seine eigenen Eigenschaften und 
-Anwendungsfälle, die es ermöglichen, Daten effektiv und genau zu kombinieren, um die 
-gewünschten Ergebnisse zu erhalten.
+`RIGHT JOIN` und `FULL JOIN`.
 
 (Optional) Lesen Sie zunächst die grundlegende Erklärung zu 
 [`JOIN`](https://mode.com/sql-tutorial/sql-joins) 
@@ -59,14 +54,14 @@ für weitere Details und Beispiele.
 ### INNER JOIN: Übereinstimmende Datensätze
 
 Ein `INNER JOIN` gibt nur Datensätze zurück, für die bestimmte Merkmale in beiden Tabellen übereinstimmen. 
-Jeder resultierende Datensatz enthält dann alle Attribute beider seiner Teile.
+Jeder resultierende Datensatz enthält dann alle Spalten beider beteiligten Tabellen.
 
 (Optional) Weitere Syntax-Details und praktische Beispiele finden Sie unter 
 [`INNER JOIN`](https://mode.com/sql-tutorial/sql-inner-join).
 
 Die `ON`-Klausel bestimmt, unter welchen Bedingungen zwei Tabellenzeilen als passend gelten. 
 Ohne `ON` (oder bei einem Fehler) entsteht ein **kartesisches Produkt**, das alle möglichen 
-Kombinationen liefert –- langsam und meist nutzlos. 
+Kombinationen liefert -- langsam und meist nutzlos.
 Deshalb ist `ON t1.col = t2.col` der **zentrale Bestandteil** eines JOINs, 
 um sinnvolle und korrekte Ergebnisse zu erhalten.
 
@@ -81,12 +76,13 @@ INNER JOIN mytable2
 ```
 
 Verwenden Sie wieder die aus [PARTREF::sql-basics] bekannte Seite 
-[SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen. 
+[SQLite Online](https://sqliteonline.com), um SQL Abfragen zu erstellen.   
+Achtung: SQLite Online unterstützt `RIGHT JOIN` und `FULL JOIN` _nicht!_
 
 [ER] Dazu erstellen Sie im ersten Schritt die folgenden Tabellen, mit denen Sie in dieser 
 Aufgabe arbeiten werden. Verwenden Sie die aus [PARTREF::sql-basics] bekannte Methode zur Tabellenerstellung.
 
-**Tabelle students:**
+**Tabelle students (mit den Spalten `name`, `age`, `course_id`):**
 ```sql
 ('Alice', 22, 1),
 ('Bob', 20, 2),
@@ -100,7 +96,7 @@ Aufgabe arbeiten werden. Verwenden Sie die aus [PARTREF::sql-basics] bekannte Me
 ('Jessica', 20, 3);
 ```
 
-**Tabelle courses:**
+**Tabelle courses (mit den Spalten `name`, `teacher`, `semester`):**
 ```sql
 ('Mathematics', 'Dr. Smith', 1),
 ('Computer Science', 'Prof. Johnson', 2),
@@ -254,7 +250,8 @@ vorhanden ist.
 <!-- time estimate: 10 min -->
 
 [EQ] Sehen Sie den Bedarf der `LEFT`, `RIGHT` und `FULL` JOINS, oder können Sie sich 
-vorstellen, lediglich mit dem `INNER JOIN` auszukommen?
+vorstellen, lediglich mit dem `INNER JOIN` auszukommen? 
+<!-- TODO_3: besser "Welche der obigen Aufgaben wäre mit INNER JOIN nicht lösbar und warum?"? -->
 <!-- time estimate: 10 min -->
 [ENDSECTION]
 

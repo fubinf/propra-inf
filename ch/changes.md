@@ -31,4 +31,7 @@
 - **2026-02-18** Aufgabe Bibliotheken/Frameworks/[PARTREF::FastAPI-Dependency-Injection] zugefügt.
 - **2026-02-19** Aufgabe Bibliotheken/Python-Standardbibliothek/[PARTREF::m_re] zugefügt.
 - **2026-03-25** Aufgabe Sprachen/Go/[PARTREF::go-goroutines] zugefügt.
+- **2026-03-26** Aufgabe Sprachen/SQL/[PARTREF::sql-JOIN], die 2025-08-08 erschienen war,
+  ist durch einen Autorenfehler 2026-02-17 wieder aus dem ProPra verschwunden.
+  Heute haben wir das entdeckt und sie ist zurückgekehrt.
 - ...
