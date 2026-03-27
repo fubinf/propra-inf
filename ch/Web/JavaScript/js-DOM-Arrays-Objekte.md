@@ -1,5 +1,5 @@
-title: Datenstrukturen verstehen – Arrays & Objekte im DOM nutzen
-stage: alpha
+title: "JavaScript-Datenstrukturen: Arrays und Objekte im DOM"
+stage: beta
 timevalue: 1.5
 difficulty: 2
 requires: js-DOM-Eventhandling
@@ -15,9 +15,9 @@ requires: js-DOM-Eventhandling
 
 
 [SECTION::background::default]
-Viele Inhalte auf Webseiten entstehen nicht durch manuelles HTML, sondern aus Daten:  
-Produkte in einem Shop, Nachrichten in einer Liste oder Ergebnisse einer Suche.  
-Statt alles fest in HTML zu schreiben, speichern wir die Daten in Arrays oder Objekten und erzeugen das DOM dynamisch.  
+Viele Inhalte auf Webseiten entstehen nicht durch manuelles HTML, sondern aus Daten:
+Produkte in einem Shop, Nachrichten in einer Liste oder Ergebnisse einer Suche.
+Statt alles fest in HTML zu schreiben, speichern wir die Daten in Arrays oder Objekten und erzeugen das DOM dynamisch.
 [ENDSECTION]
 
 
@@ -25,7 +25,7 @@ Statt alles fest in HTML zu schreiben, speichern wir die Daten in Arrays oder Ob
 
 ### Arrays – Listen von Daten
 
-In Python kennen Sie schon Listen, die Sie mit `[...]` notieren können.  
+In Python kennen Sie schon Listen, die Sie mit `[...]` notieren können.
 Ein Array in JavaScript ist fast dasselbe: eine geordnete Sammlung von Werten.
 
 ```python
@@ -40,7 +40,7 @@ const produkte = ["Apfel", "Banane", "Kirsche"];
 console.log(produkte[0]); // "Apfel"
 ```
 
-Neue Elemente können Sie in Python mit `.append(...)` anhängen.  
+Neue Elemente können Sie in Python mit `.append(...)` anhängen.
 In JavaScript heißt das `.push(...)`:
 
 ```js
@@ -49,7 +49,7 @@ produkte.push("Orange");
 
 #### Arrays durchlaufen
 
-Um alle Elemente einer Liste zu verarbeiten, also z. B. jedes Produkt einmal auszugeben, nutzt man in Python häufig eine for-Schleife.  
+Um alle Elemente einer Liste zu verarbeiten, also z. B. jedes Produkt einmal auszugeben, nutzt man in Python häufig eine for-Schleife.
 In JavaScript geht das ganz ähnlich mit einer klassischen Schleife:
 
 ```js
@@ -58,8 +58,7 @@ for (let i = 0; i < produkte.length; i++) {
 }
 ```
 
-Oder mit einer moderneren Variante:
-`for...of`:
+Oder mit `for...of`, einer moderneren Variante:
 
 ```js
 for (const p of produkte) {
@@ -76,7 +75,7 @@ Typischer Anwendungsfall: Jedes Element eines Arrays nacheinander verarbeiten.
 
 Gerade bei Arrays führt die Verwendung von `for...in` häufig zu unerwartetem Verhalten.
 Verwechseln Sie diese beiden Schleifen daher nicht.
-In diesem Kapitel verwenden wir bewusst ausschließlich `for...of`.
+In dieser Aufgabe verwenden wir bewusst ausschließlich `for...of`.
 [ENDNOTICE]
 
 #### `forEach` – die Array-Methode
@@ -90,7 +89,7 @@ produkte.forEach(function(p) {
 });
 ```
 
-#### for-Schleife vs. forEach:
+#### `for`-Schleife vs. `forEach`
 
 - `for` / `while` sind allgemeine Schleifen → flexibel, auch für komplizierte Abläufe.
 - `.forEach()` ist speziell für Arrays → kürzer und oft lesbarer, wenn man einfach alle Elemente nacheinander abarbeiten will.
@@ -162,7 +161,9 @@ Viele Inhalte auf Webseiten entstehen direkt aus Datenstrukturen, nicht aus fest
 Ein Array von Objekten kann z. B. eine Produktliste speichern.
 Daraus erzeugen wir die Darstellung im DOM.
 
-Im folgenden Beispiel wird die Arrow-Function-Syntax verwendet: `p => { ... }` ist eine Kurzschreibweise für `function(p) { ... }`.
+Ab hier verwenden wir die Arrow-Function-Syntax:
+`p => { ... }` ist eine Kurzschreibweise für
+`function(p) { ... }`.
 
 ```js
 const produktliste = [
@@ -203,12 +204,14 @@ mit dem ein neues Produkt hinzugefügt werden kann.
 
 Ein mögliches Grundgerüst könnte so aussehen:
 
+```html
 <ul id="produktListe"></ul>
 
 <input id="nameInput" placeholder="Produktname">
 <input id="preisInput" placeholder="Preis">
 
 <button id="hinzufuegenBtn">Hinzufügen</button>
+```
 
 Über `document.getElementById(...)` können Sie diese Elemente
 in Ihrem JavaScript-Code ansprechen.
@@ -253,7 +256,7 @@ und in der
 Wenn der Button geklickt wird, soll die gefilterte Liste (Variable `gefiltert`) im DOM angezeigt werden.
 
 [ER] Erweitern Sie Ihre Produktliste so, dass beim Klick auf einen Button
-„Preise in Dollar anzeigen“ alle Produktpreise umgerechnet (z. B. × 1.1) und als neue Liste im DOM dargestellt werden.
+„Preise in Dollar anzeigen“ alle Produktpreise umgerechnet (z. B. mal 1.1) und als neue Liste im DOM dargestellt werden.
 Speichern Sie die umgerechneten Produkte in einer Variable namens `dollarListe`.
 Das ursprüngliche Array in Euro soll dabei nicht verändert werden.
 
