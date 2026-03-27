@@ -6,29 +6,25 @@ assumes: py-Iterators, py-List-Comprehensions, py-Funktionale-Programmierung
 ---
 
 [SECTION::goal::idea]
-
-Ich kann Generatoren in Python verwenden, um eigene Iteratoren effizient und verständlich zu 
-implementieren
-
+Ich kann Generatoren in Python verwenden, um einfach und verständlich Iteratoren zu bauen. 
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Iteratoren sind ein grundlegender Baustein in Python:
 Viele Datentypen, wie Listen oder Tupel, aber auch benutzerdefinierte Objekte implementieren die 
 Iterator-Schnittstelle und ermöglichen so zum Beispiel ein einfaches Durchlaufen über for-Schleifen.
 
-Wer einen eigenen Iterator definieren will, muss hierfür alle Zustände, sowie die notwendigen 
-Funktionen selbst verwalten, was die Erstellung eines simplen Iterators zur 
-sequenziellen Datenverabredung verkomplizieren kann.
+Wer einen eigenen Iterator definieren will, muss hierfür alle Zustände sowie die notwendigen 
+Methoden selbst verwalten, was die Erstellung eines simplen Iterators zum
+sequenziellen Durcharbeiten verkomplizieren kann.
 Eine Alternative können Generatoren sein, die nach außen wie eine Funktion aussehen, sich aber 
 wie ein Iterator verhalten.
 So lassen sich viele Iteratoren kompakter und lesbarer implementieren.
-
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 ### Vorbereitung
 
 Lesen Sie den Abschnitt über Generatoren in folgendem 
@@ -41,12 +37,12 @@ die folgenden Programmieraufgaben ein.
 ### Iterator selber schreiben
 
 Für die Aufgabe möchten wir einen Sliding Window-Iterator implementieren.
-Dieser soll einen Iterable erhalten und dann davon immer ein "Fenster" zurückgeben und 
+Dieser soll ein Iterable erhalten und dann davon immer ein "Fenster" zurückgeben und 
 anschließend eine Position vorrücken.
 
 Beispiel:  
-Input: `[1,2,3,4,5]`, Fenstergröße 3  
-Output: `[1,2,3], [2,3,4], [3,4,5]`
+Input: `[10,20,30,40,50]`, Fenstergröße 3  
+Output: `[10,20,30], [20,30,40], [30,40,50]`
 
 [ER] Erstellen Sie die Klasse `SlidingWindowIterator`.
 Implementieren Sie die Methode `__init__()`, die das Objekt mit den Parametern `data` (Iterable)
@@ -57,7 +53,7 @@ wobei die erste nur das Objekt selbst zurückgibt und die zweite immer das näch
 und zurückgibt, bis die Input-Daten erschöpft sind.
 Falls das Fenster größer ist als die Menge der Input-Daten, soll trotzdem das unvollständige 
 Fenster einmal ausgegeben werden.
-Sobald die Input-Daten erschöpft sind, soll die Funktion die Exception `StopIteration` werfen.
+Sobald die Input-Daten erschöpft sind, soll die Methode die Exception `StopIteration` auslösen.
 
 [ER] Testen Sie nun den Iterator, indem Sie folgendermaßen Instanzen davon erzeugen und ausgeben:  
 ```python
@@ -81,7 +77,7 @@ Das ermöglicht es, die Funktion wie einen Iterator zu verwenden: wird `next()` 
 ausgeführt, wird die Funktion bis zum nächsten `yield` Keyword ausgeführt und der damit verbundene 
 Wert zurückgegeben. 
 Die Funktion wird anschließend nicht beendet, sondern bleibt weiter im Speicher, sodass sie beim 
-nächsten Aufruf von `next()` an der gleichen Stelle fortfährt, bis erneut `yield` aufgerufen wird 
+nächsten Aufruf von `next()` an der gleichen Stelle fortfährt, bis erneut `yield` erreicht wird 
 oder sie terminiert. 
 So lässt sich ein Iterator schnell und einfach wie eine Funktion definieren.
 
@@ -104,12 +100,12 @@ In welchen Fällen würden Sie die eine Variante der anderen vorziehen?
 
 Eine weitere praktische Alternative zur Erstellung eigener Iteratoren sind **Generator 
 Expressions**. 
-Diese funktionieren genauso wie [PARTREFMANUAL::py-List-Comprehensions::List Comprehensions], 
+Diese funktionieren genauso wie [PARTREF2::py-List-Comprehensions::List Comprehensions], 
 aber mit dem Unterschied, dass sie keine Liste, sondern einen Generator erzeugen. 
 Syntaktisch unterscheiden sie sich nur durch ihre Klammern (`()` statt `[]`).
-So lassen sich die Vorteile von Iteratoren auch für solche kurzen Ausdrücke 
+So lassen sich die Vorteile von Generatoren auch für solche kurzen Ausdrücke nutzen.
 
-[ER] Schreiben Sie eine Generator Expression, die für jedes Fenster des Sliding Window 
+[ER] Schreiben Sie eine _Generator Expression_, die für jedes Fenster des Sliding Window 
 Generators den durchschnittlichen Wert berechnet.
 Verwenden Sie als Eingabedaten `values1` und Fenstergröße 3.
 ```python
@@ -125,15 +121,16 @@ Falls nein, worin liegen ihre Grenzen?
 
 ### Programmlauf für die Abgabe
 
-[EC] Führen Sie das gesamte so erzeugte Programm `py_Generators.py` einmal aus.
-
+[EC] Führen Sie das gesamte so erzeugte Programm `py-Generators.py` einmal aus.
 [ENDSECTION]
+
 
 [SECTION::submission::reflection,information,snippet,trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Antworten prüfen und Codedurchsicht]
 Code lesen und manuell grob auf Richtigkeit prüfen.
