@@ -2,11 +2,10 @@ title: Datenstrukturen vertiefen – Dynamische DOM-Anwendungen mit Arrays & Obj
 stage: alpha
 timevalue: 2.5
 difficulty: 2
-assumes: html-erste-Schritte, html-Medien
 requires: js-DOM-Arrays-Objekte
 ---
 
-[SECTION::goal::idea]
+[SECTION::goal::idea,experience]
 
 - Ich kann Datensätze in Arrays gezielt suchen, einfügen, löschen und sortieren.
 - Ich kann Array-Methoden wie `find()`, `splice()`, `sort()` und `reduce()` sicher anwenden.
@@ -21,9 +20,9 @@ So entstehen interaktive DOM-Anwendungen, in denen sich Produktlisten, Preise od
 [ENDSECTION]
 
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
-### Datensätze suchen – `find()` und `findIndex()`
+### 1. Datensätze suchen – `find()` und `findIndex()`
 
 In [PARTREF::js-DOM-Arrays-Objekte] haben Sie gelernt, wie man mit `filter()` und `map()` Arrays verarbeitet,
 um gezielt Elemente auszuwählen oder Inhalte zu transformieren.
@@ -87,12 +86,7 @@ sonst greift man versehentlich auf ein Element zu, das gar nicht existiert.
 
 #### Elemente mit `splice()` entfernen oder einfügen
 
-Wenn Sie in Python ein Element in einer Liste entfernen wollen, benutzen Sie z. B. `del` oder `.remove()`:
-
-```python
-fruechte = ["Apfel", "Banane", "Kirsche"]
-fruechte.remove("Banane")
-```
+Wenn Sie in Python ein Element in einer Liste entfernen wollen, benutzen Sie z. B. `del` oder `.remove()`.
 
 In JavaScript übernimmt das die Methode `.splice()`.
 Sie kann beliebig viele Elemente ab einem bestimmten Index aus einem Array entfernen (oder auch neue einfügen).
@@ -116,13 +110,7 @@ if (index !== -1) {        // nur löschen, wenn es das Element wirklich gibt
 }
 ```
 
-Wenn Sie in Python ein neues Element an einer bestimmten Position einfügen möchten, verwenden Sie z. B. `.insert()`:
-
-```py
-fruechte = ["Apfel", "Kirsche"]
-fruechte.insert(1, "Banane")
-print(fruechte)  # ['Apfel', 'Banane', 'Kirsche']
-```
+Wenn Sie in Python ein neues Element an einer bestimmten Position einfügen möchten, verwenden Sie z. B. `.insert()`.
 
 In JavaScript macht man dasselbe mit `.splice()`, diesmal mit einem kleinen Unterschied in den Parametern:
 Sie geben an, wo eingefügt werden soll, wie viele Elemente gelöscht werden (hier: `0`),
@@ -292,16 +280,6 @@ während `.sort()` die Liste selbst verändert.
 
 JavaScript verhält sich also wie Pythons `.sort()`, das Originalarray wird angepasst.
 
-```py
-produkte = [
-    {"name": "Apfel", "preis": 1.2},
-    {"name": "Banane", "preis": 0.8},
-    {"name": "Kirsche", "preis": 2.5}
-]
-
-produkte.sort(key=lambda p: p["preis"])
-```
-
 Eine ausführliche Dokumentation zu `sort()` und `localeCompare()` finden Sie in der
 [MDN-Webdokumentation zu sort()](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 und in der
@@ -331,17 +309,8 @@ Dafür gibt es die Methode `.reduce()`.
 Das Grundprinzip dahinter ist:
 Man nimmt ein Array mit vielen Elementen und **reduziert** es schrittweise zu einem einzigen Ergebnis.
 
-In Python würden Sie so etwas z. B. mit einer Schleife machen:
-
-```python
-preise = [1.2, 0.8, 2.5]
-summe = 0
-for p in preise:
-    summe += p
-print(summe)  # 4.5
-```
-
-In JavaScript geht das eleganter mit `reduce()`:
+In Python würden Sie so etwas z. B. mit einer Schleife machen.
+In JavaScript geht das alternativ auch im funktionalen Stil: mit `reduce()`
 
 ```js
 const preise = [1.2, 0.8, 2.5];
@@ -390,6 +359,7 @@ console.log("Durchschnittspreis:", durchschnitt.toFixed(2)); // 1.50
 Das ist praktisch, aber riskant bei leeren Arrays, dann führt der Aufruf zu einem Fehler.
 `[].reduce((a, b) => a + b); // ❌ TypeError`
 
+#### Vielseitigkeit von reduce()
 `reduce()` kann nicht nur summieren!
 Man kann auch Arrays zusammenfügen, Gruppen bilden oder Zähler aufbauen.
 
@@ -432,5 +402,14 @@ Der Durchschnitt soll mit zwei Nachkommastellen angezeigt werden (nutzen Sie `to
 
 
 [INSTRUCTOR::Antworten im Großen und Ganzen korrekt?]
+Priorität bei der Bewertung:
+
+- Studierende sollen gezielt mit Arrays arbeiten können (insbesondere `find()`, `findIndex()`, `splice()`, `sort()` und `reduce()`).  
+- Bei der Produktliste soll ein Array von Objekten verwendet werden (z. B. `{name, preis}`).  
+- Es soll verstanden werden, wie Elemente gezielt gesucht, eingefügt und gelöscht werden (nicht nur immer am Ende).  
+- Beim DOM-Teil ist wichtig, dass Änderungen am Array (Einfügen, Löschen, Sortieren) korrekt im DOM dargestellt werden (`renderListe`).
+
+Bei den Aufgaben zu `sort()` ist entscheidend, dass eine Vergleichsfunktion verwendet wird und idealerweise das Originalarray nicht verändert wird (Kopie mit `[...array]`).  
+Bei `reduce()` reicht es, wenn Studierende das Prinzip der Zusammenfassung erkennen (z. B. Summe oder Durchschnitt korrekt berechnen).  
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
