@@ -34,4 +34,5 @@
 - **2026-03-26** Aufgabe Sprachen/SQL/[PARTREF::sql-JOIN], die 2025-08-08 erschienen war,
   ist durch einen Autorenfehler 2026-02-17 wieder aus dem ProPra verschwunden.
   Heute haben wir das entdeckt und sie ist zurückgekehrt.
+- **2026-03-27**: Aufgabe Web/JavaScript/[PARTREF::js-DOM-Arrays-Objekte] zugefügt.
 - ...
