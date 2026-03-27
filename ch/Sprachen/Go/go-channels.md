@@ -1,6 +1,6 @@
 title: "Grundlagen von Go: Kanäle (Channels)"
 stage: alpha
-timevalue: 1.25
+timevalue: 1.0
 difficulty: 2
 assumes: go-goroutines, go-arrays-and-slices
 ---
@@ -84,7 +84,7 @@ Verantwortlichkeiten klar zwischen den Komponenten eines Systems trennt:
 
 ```go
 func foo(c <-chan int) {
-    // c kann hier nur zum Empfangen verwenden werden
+    // c kann hier nur zum Empfangen verwendet werden
 }
 ```
 
@@ -97,7 +97,7 @@ Begründen Sie.
 ### `range` und `close`
 
 Lesen Sie das
-[Thema 'Range and Close' in "A Tour fo Go"](https://go.dev/tour/concurrency/4).
+[Thema 'Range and Close' in "A Tour of Go"](https://go.dev/tour/concurrency/4).
 
 [EQ] Warum kann ein Kanal geschlossen werden?
 
