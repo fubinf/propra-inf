@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 2.0
 difficulty: 2
 assumes: html-Formulare, css-Selektoren, css-Einführung
-requires: js-DOM-Eventhandling, js-DOM-CSS
+requires: js-DOM-CSS
 ---
 
 [SECTION::goal::idea]

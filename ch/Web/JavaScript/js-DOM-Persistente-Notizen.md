@@ -2,8 +2,7 @@ title: Persistente Notizen-App mit localStorage und JSON
 stage: alpha
 timevalue: 2.5
 difficulty: 2
-assumes: js-DOM-Eventhandling
-requires: js-DOM-Arrays-Objekte, js-DOM-Klassen-und-Objekte, js-DOM-Persistenz
+requires: js-DOM-Klassen-und-Objekte, js-DOM-Persistenz
 ---
 
 [SECTION::goal::idea]

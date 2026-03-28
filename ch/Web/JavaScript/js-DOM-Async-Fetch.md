@@ -2,8 +2,8 @@ title: Asynchrone Programmierung – Daten aus dem Internet laden
 stage: alpha
 timevalue: 3
 difficulty: 3
-assumes: js-DOM-Arrays-Objekte, http-GET, http-Status
-requires: js-DOM-Eventhandling, js-DOM-Persistente-Notizen
+assumes: http-GET, http-Status
+requires: js-DOM-Persistente-Notizen
 ---
 
 [SECTION::goal::idea]
