@@ -11,13 +11,14 @@ Ich kann Generatoren in Python verwenden, um einfach und verständlich Iteratore
 
 
 [SECTION::background::default]
-Iteratoren sind ein grundlegender Baustein in Python:
-Viele Datentypen, wie Listen oder Tupel, aber auch benutzerdefinierte Objekte implementieren die 
-Iterator-Schnittstelle und ermöglichen so zum Beispiel ein einfaches Durchlaufen über for-Schleifen.
+Viele Datentypen, wie Listen oder Tupel, sind iterierbar und ermöglichen so ein einfaches 
+Durchlaufen über for-Schleifen.
+Ebenso kann man eigene Objekte definieren, über die genauso leicht iteriert werden kann, 
+indem sie die [PARTREF2::py-Iterators::Iterator]-Schnittstelle implementieren.
 
-Wer einen eigenen Iterator definieren will, muss hierfür alle Zustände sowie die notwendigen 
-Methoden selbst verwalten, was die Erstellung eines simplen Iterators zum
-sequenziellen Durcharbeiten verkomplizieren kann.
+Wer eigene Iteratoren definieren will, muss hierfür allerdings alle Zustände sowie die notwendigen 
+Methoden selbst verwalten, was die Erstellung eines simplen Iterators zum sequenziellen 
+Durcharbeiten verkomplizieren kann.
 Eine Alternative können Generatoren sein, die nach außen wie eine Funktion aussehen, sich aber 
 wie ein Iterator verhalten.
 So lassen sich viele Iteratoren kompakter und lesbarer implementieren.
@@ -73,17 +74,21 @@ Nun wollen wir dasselbe nochmal machen, allerdings nun unter der Verwendung eine
 
 Generatoren sehen zunächst wie normale Funktionen aus. 
 Sie enthalten allerdings ein bestimmtes Schlüsselwort: `yield`. 
-Das ermöglicht es, die Funktion wie einen Iterator zu verwenden: wird `next()` auf den Generator 
-ausgeführt, wird die Funktion bis zum nächsten `yield` Keyword ausgeführt und der damit verbundene 
-Wert zurückgegeben. 
+Das ermöglicht es, die Funktion wie einen Iterator zu verwenden: 
+Der Aufruf des Generators sieht wie ein normaler Funktionsaufruf aus und liefert ein 
+Generator-Objekt zurück.
+Wird `next()` auf dieses Objekt aufgerufen, wird die Funktion bis zum nächsten `yield` Keyword 
+ausgeführt und der damit verbundene Wert zurückgegeben. 
 Die Funktion wird anschließend nicht beendet, sondern bleibt weiter im Speicher, sodass sie beim 
 nächsten Aufruf von `next()` an der gleichen Stelle fortfährt, bis erneut `yield` erreicht wird 
 oder sie terminiert. 
 So lässt sich ein Iterator schnell und einfach wie eine Funktion definieren.
+Außerdem bringen Generatoren ebenfalls dieselben Vorteile bezüglich Speichereffizienz und 
+[TERMREF::Lazy Evaluation] mit sich wie Iteratoren.
 
 [ER] Definieren Sie den Generator `sliding_window()`, der äquivalent zum Iterator agiert.
 
-[ER] 
+[ER] Testen Sie nun Ihren Generator:  
 ```python
 print("\nsliding window generator:")
 for w in sliding_window(values1, 3):
