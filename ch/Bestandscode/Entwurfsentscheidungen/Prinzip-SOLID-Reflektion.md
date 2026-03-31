@@ -15,7 +15,7 @@ Sie haben in [PARTREF::Prinzip-SOLID] eine erste Einschätzung zum Nutzen von SO
 Python abgegeben haben und sich in den darauf folgenden Aufgaben mit jedem einzelnen der 
 Prinzipien auseinandergesetzt.
 
-TODO_1_pietrak verschiedene Lösungen für Reflexionsaufgaben überdenken
+TODO_3 verschiedene Lösungen für Reflexionsaufgaben überdenken
 Lösung 1: eine Reflexion je Prinzip
 Lösung 2: eine Reflexion für alle Prinzipien
 Lösung 3: ???

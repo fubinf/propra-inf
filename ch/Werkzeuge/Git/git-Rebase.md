@@ -1,11 +1,11 @@
 title: Rebasing in git
-stage: alpha
+stage: draft
 timevalue: 2.0
 difficulty: 3
 requires: git-Zweitrepo, git-Branches
 ---
 
-TODO_1_hüster:
+TODO_2_hüster:
 
 - goal: "git rebase benutzen" ist kein sinnvolles Lernziel. 
   Sondern: Was kann ich mit dem hier Gelernten erreichen?

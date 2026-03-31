@@ -5,7 +5,7 @@ difficulty: 3
 ---
 
 [SECTION::goal::trial]
-TODO_1_alrwasheda: Einführen in abstrakte Klassen in Python, u. a. benötigt in 
+TODO_3_alrwasheda: Einführen in abstrakte Klassen in Python, u. a. benötigt in 
 Bestandscode/Refactoring-Grundlagen/{srp,ocp,lsp,isp,dip}
 [ENDSECTION]
 

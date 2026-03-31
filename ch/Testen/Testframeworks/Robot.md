@@ -1,5 +1,5 @@
 title: Funktionale Tests mit dem Robot Framework
-stage: alpha
+stage: draft
 timevalue: 1.5
 difficulty: 3
 explains: BDD
@@ -188,6 +188,6 @@ die Ihnen neu erscheinen.
 [ENDSECTION]
 [INSTRUCTOR::Musterlösung]
 
-TODO_1_ruhe
+TODO_2_ruhe
 
 [ENDINSTRUCTOR]
