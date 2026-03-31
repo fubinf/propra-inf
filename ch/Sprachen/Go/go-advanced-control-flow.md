@@ -18,14 +18,15 @@ Das Schlüsselwort `panic` ist Ihnen möglicherweise bereits bekannt.
 `panic` und `recover` stellen einen alternativen Kontrollflussmechanismus dar — 
 das sogenannte _Panicking_.
 Dieses Verhalten erinnert an Ausnahmen (Exceptions) in Sprachen wie Java oder Python, 
-weist jedoch einige wichtige Unterschiede auf.
+weist jedoch wichtige Unterschiede auf.
 
-In dieser Aufgabe schauen wir uns diese Konzepte im Detail an und klären folgende Fragen:
+In dieser Aufgabe schauen wir uns diese Konzepte an und klären folgende Fragen:
 
-* Wie funktioniert `defer` genau?
 * Was bedeutet _Panicking_ konkret?
 * Wie (und wann) sollte `recover` verwendet werden — wenn überhaupt?
+* Wie funktioniert `defer`?
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -35,7 +36,6 @@ Das Schlüsselwort `defer` verzögert die Ausführung eines Funktionsaufrufs.
 
 Ein `defer`-Aufruf wird erst dann ausgeführt, wenn die umgebende Funktion 
 (oder generell: Geltungsbereich) ihre Ausführung beendet — unmittelbar _vor_ dem `return`.
-
 Schauen Sie sich das
 [Thema 'defer' in "A Tour of Go"](https://go.dev/tour/flowcontrol/12)
 an.
@@ -43,7 +43,6 @@ an.
 [EQ] Fügen Sie dem Beispielprogramm dort eine weitere `defer`-Anweisung hinzu — beispielsweise
 `defer fmt.Println("!")` in Zeile 7.
 Was können Sie über die Ausführungsreihenfolge von mehreren `defer`s sagen?
-
 <!-- time estimate: 5 min -->
 
 
@@ -53,7 +52,8 @@ Im
 [Beitrag 'Defer, Panic, and Recover' im Go Blog](https://go.dev/blog/defer-panic-and-recover)
 findet sich eine interessante Aussage über das Verhalten von `defer`:
 
-    Die Argumente einer aufgeschobenen Funktion werden zum Zeitpunkt der Ausführung der `defer`-Anweisung ausgewertet.
+> Die Argumente einer aufgeschobenen Funktion werden zum Zeitpunkt der Ausführung
+> der `defer`-Anweisung ausgewertet.
 
 Doch was bedeutet das genau?
 
@@ -79,7 +79,7 @@ Im zweiten Fall wird nur das explizit übergebene Argument (`t`) direkt ausgewer
 Andere innerhalb der anonymen Funktion verwendete Variablen wie `v` werden erst beim 
 tatsächlichen Ausführen der aufgeschobenen Funktion ausgewertet.
 
-[EQ] Was wird beim Ausführen dieser Funktion auf der Kommandozeile ausgegeben?
+[EQ] Was wird beim Ausführen der folgenden Funktion auf der Kommandozeile ausgegeben?
 Warum?
 
 ```go
@@ -90,7 +90,7 @@ func testDefer() (s string) {
 }
 ```
 
-[EQ] Was wird beim Ausführen dieser Funktion auf der Kommandozeile ausgegeben?
+[EQ] Was wird beim Ausführen der folgenden  Funktion auf der Kommandozeile ausgegeben?
 Warum?
 
 ```go
@@ -104,18 +104,16 @@ func testDefer() (s string) {
 [EQ] Welche Anwendungen von `defer` werden im
 [Artikel 'defer' in "Go by Example"](https://gobyexample.com/defer)
 erwähnt?
-Welche andere Anwendungen fallen Ihnen ein?
+Welche anderen Anwendungen fallen Ihnen ein?
 
 <!-- time estimate: 15 min -->
 
 
 ### `panic`
 
-
 #### Fehler als Werte
 
 In [PARTREF::go-interfaces] haben Sie das Interface `error` kennengelernt.
-
 Die Fehlerbehandlung in Go folgt dem Prinzip _"Errors as Values"_ 
 (beziehungsweise _"Fehler als Werte"_):
 Funktionen, bei denen etwas schiefgehen kann, geben nach Konvention einen 
@@ -148,7 +146,7 @@ die oberste Ebene erreicht (einschließlich der `main`-Funktion).
 In letzterem Fall spricht man von einem Programmabbruch oder einem _Crash_.
 
 [NOTICE]
-Alle Funktionen, die intern `panic()` aufrufen, sollen nach Konvention mit `must`
+Alle Funktionen, die intern `panic()` aufrufen, sollen im Namen nach Konvention mit `must`
 anfangen und dürfen keinen `error` zurückgeben.
 Die Idee ist, dass die Operation erfolgreich sein **muss** — wenn das schiefgeht, 
 ergibt weitere Ausführung keinen Sinn und das komplette Programm darf abstürzen.
@@ -169,7 +167,7 @@ folgende Aufgaben erfüllt:
 [ER] Rufen Sie die Funktion `mustGetInt64FromConsole()` in der `main`-Funktion auf und 
 geben Sie das Ergebnis auf die Kommandozeile aus.
 
-[HINT::ich weiß nicht, wie eine Zahl von der Kommandozeile eingelesen wird]
+[HINT::Ich weiß nicht, wie eine Zahl von der Kommandozeile eingelesen wird]
 Schauen Sie hier nach, wie das funktioniert: 
 [Reading in Console Input in Go](https://tutorialedge.net/golang/reading-console-input-golang/).
 
@@ -186,9 +184,7 @@ Es macht keinen Unterschied, ob Sie `bufio.Reader` oder `bufio.Scanner` benutzen
 ### `recover`
 
 In der Erklärung von `panic` wurde angesprochen, dass sie abgefangen werden kann.
-
 Wie?
-
 Durch einen Aufruf von `recover()` in der __aufgeschobenen anonymen Funktion:__
 
 ```go
@@ -214,7 +210,7 @@ Der Ablauf beim Abfangen einer `panic` sieht folgendermaßen aus:
     - ggf. die Rückgabewerte der Funktion anzupassen.
 
 [NOTICE]
-Sie können Rückgabewerte innerhalb eines `defer`-Blocks verändern — vorausgesetzt, 
+Sie können Rückgabewerte innerhalb eines `defer`-Blocks verändern, vorausgesetzt, 
 es handelt sich um _benannte Rückgabewerte_.
 [ENDNOTICE]
 
@@ -236,7 +232,7 @@ wenn es einen `error` gibt.
 
 [EQ] Nun kennen Sie zwei Mechanismen zur Fehlerbehandlung in Go: _Panicking_ 
 und _"Fehler als Werte"_.
-Mit diesem Wissen im Hinterkopf, was halten Sie vom 
+Mit diesem Wissen im Hinterkopf: Was halten Sie vom 
 [Go-Sprichwort](https://go-proverbs.github.io/)
 _"don't panic"_?
 
