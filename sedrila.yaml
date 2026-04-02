@@ -47,10 +47,13 @@ student_yaml_attribute_prompts:
   student_gituser: "Your git account name [git username]: "
   partner_gituser: "Your partner's git account name (or empty if you work alone): "
 # ----- entries relevant for sedrila instructor:
-  # (no purely instructor-specific entries so far)
+participants:
+  file: "$SEDRILA_PARTICIPANTS_FILE"
+  file_column: student_gituser
+  student_attribute: student_gituser
 # ----- entries relevant for sedrila instructor & sedrila student:
-startdate: 2025-04-15  # first day of the course (provisional, must become $STARTDATE)
-enddate: 2026-03-31  # last day of the course (provisional)
+startdate: $SEDRILA_STARTDATE  # first day of the course
+enddate: $SEDRILA_ENDDATE  # last day of the course
 bonusrules:
     student_yaml_attribute: course_size_hours
     bonusperiod_type: month  # "week"/"month" for calendar week or calendar month
@@ -58,6 +61,9 @@ bonusrules:
     bonus_threshold_percent: 10  # what fraction of course_size_hours must be done to get the bonus for period
     bonus_size_percent: 1  # what fraction of course_size_hours is deducted for each bonus
 allowed_attempts: "2 + 0.4/h"
+manual_bookings:
+    types: ['REASON-A', 'REASON-B']
+    explanation_url: "https://www.mi.fu-berlin.de/w/SE/Programmierpraktikum"
 instructors:
   - nameish: Lutz Prechelt
     email: prechelt@inf.fu-berlin.de
@@ -105,6 +111,53 @@ instructors:
       hF3ymu8+s6vDa3qAKdTi3cNQRSG6
       =25DT
       -----END PGP PUBLIC KEY BLOCK-----
+  - nameish: Arman Durmus
+    email: armad00@zedat.fu-berlin.de
+    gitaccount: armad00
+    webaccount: armad00
+    keyfingerprint: "FA7CC6E516DA59EDCBECC053E5DDBDC7E4A9EE40"
+    pubkey: |
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
+      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
+      =XKPV
+      -----END PGP PUBLIC KEY BLOCK-----
+former_instructors:
   - nameish: Mert Yaylaci
     email: merty03@zedat.fu-berlin.de
     gitaccount: merty03
@@ -170,24 +223,7 @@ instructors:
       vfIEfhsZsv8t92A3TaEM
       =6Qc+
       -----END PGP PUBLIC KEY BLOCK-----
-  - nameish: David Harwardt.
-    email: davih05@zedat.fu-berlin.de
-    gitaccount: davih05
-    webaccount: davih05
-    keyfingerprint: "90998E944193517FFBFA6421C54E581C42143FAE"
-    pubkey: |
-      -----BEGIN PGP PUBLIC KEY BLOCK-----
-      mDMEZ/0xyRYJKwYBBAHaRw8BAQdAY81UMjm/9gGkQfX6ouKNp8HCRfizR2XcYuYx
-      9256Uz+0JGRhdmloMDUgPGRhdmloMDVAemVkYXQuZnUtYmVybGluLmRlPoiZBBMW
-      CgBBFiEEkJmOlEGTUX/7+mQhxU5YHEIUP64FAmf9MckCGwMFCQPCZwAFCwkIBwIC
-      IgIGFQoJCAsCBBYCAwECHgcCF4AACgkQxU5YHEIUP66zxwEA9aWZJBKkKBpXNWzW
-      1NJWMsKDOexHdr+IeyI2Qfoc0WEBAPyiVsahjAGORy1g5W9GI33VmKT+lXSNkWra
-      OgSULPQGuDgEZ/0xyRIKKwYBBAGXVQEFAQEHQDoN4Dr7nmXnMMYZrQSkxMNqR/l1
-      Ipb4KpHkTIyu0oxjAwEIB4h+BBgWCgAmFiEEkJmOlEGTUX/7+mQhxU5YHEIUP64F
-      Amf9MckCGwwFCQPCZwAACgkQxU5YHEIUP65RqAD/RJAnApW2b8lmy/OFyIB4Gs4W
-      EMZmkSf2ntEnqG8KlrQBAOcfOI+1glk+kHAzymd12AvRU2l0wrSycI3IjYMtQb4D
-      =50Ay
-      -----END PGP PUBLIC KEY BLOCK-----
+
 # ----- entries relevant for all roles:
 chapters:
   - name: Basis
