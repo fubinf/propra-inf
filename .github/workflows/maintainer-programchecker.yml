@@ -10,6 +10,11 @@ jobs:
   check-example-programs:
     runs-on: ubuntu-latest
     container: debian:12
+    env:
+      SEDRILA_TITLE: "ProPra"
+      SEDRILA_NAME: "propra-inf"
+      SEDRILA_STARTDATE: "2026-01-01"
+      SEDRILA_ENDDATE: "2026-12-31"
 
     steps:
     - name: Install system dependencies for Debian 12
@@ -45,7 +50,7 @@ jobs:
       shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
-        python sedrila/py/sedrila.py maintainer --log ERROR --collect -o /tmp/metadata.json 2>/dev/null || echo '{"lang": [], "deps": [], "tasks": {}}' > /tmp/metadata.json
+        python sedrila/py/sedrila.py maintainer collect-dependencies -o /tmp/metadata.json 2>/dev/null || echo '{"lang": [], "deps": [], "tasks": {}}' > /tmp/metadata.json
         echo "Lang: $(jq -r '.lang | length' /tmp/metadata.json) commands, Deps: $(jq -r '.deps | length' /tmp/metadata.json) commands, Tasks: $(jq -r '.tasks | length' /tmp/metadata.json)"
 
     - name: Install language runtimes and task dependencies globally
@@ -93,8 +98,7 @@ jobs:
       shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
-        python sedrila/py/sedrila.py maintainer \
-          --check-programs \
+        python sedrila/py/sedrila.py maintainer check-programs \
           --batch \
           /tmp/progcheck
       continue-on-error: false
