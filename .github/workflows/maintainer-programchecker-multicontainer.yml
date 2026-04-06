@@ -31,6 +31,7 @@ jobs:
       SEDRILA_NAME: "propra-inf"
       SEDRILA_STARTDATE: "2026-01-01"
       SEDRILA_ENDDATE: "2026-12-31"
+      SEDRILA_PARTICIPANTS_FILE: "/dev/null"
 
     steps:
     - name: Install system dependencies
