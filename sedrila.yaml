@@ -62,7 +62,8 @@ bonusrules:
     bonus_size_percent: 1  # what fraction of course_size_hours is deducted for each bonus
 allowed_attempts: "2 + 0.4/h"
 manual_bookings:
-    types: ['REASON-A', 'REASON-B']
+    types: ['BASIS-LANGSAM', 'HISTORIE-GESCHROTTET', 'VERTRAUEN-VERLETZT', 'FALSCH-BEHAUPTET',
+            'ZU-GROB', 'ZU-FEIN', 'SONSTIGES']
     explanation_url: "https://www.mi.fu-berlin.de/w/SE/Programmierpraktikum"
 instructors:
   - nameish: Lutz Prechelt
