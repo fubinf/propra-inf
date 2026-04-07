@@ -163,7 +163,7 @@ Nachdem Sie einige Commits zu vorherigen Aufgaben erstellt haben, können Sie
 in Ihrem Arbeitsverzeichnis folgenden Befehl ausführen:
 
 ```
-sedrila student
+sedrila student menu
 ```
 
 Mit 'w' ("webapp") können Sie im Webbrowser auswählen, welche Aufgaben eingereicht
@@ -185,7 +185,8 @@ Abschließend zeigt das Kommando an, wie es weitergeht: Email an eine Tutor_in.
 Da bei der hiesigen Aufgabe nichts weiter zu tun ist, 
 Sie aber trotzdem Zeit gutgeschrieben bekommen sollen, 
 können Sie ausnahmsweise einen [PARTREF2::Zeiterfassung::Zeiterfassungscommit] ohne Inhalt machen.
-Hierfür verwendet man `git commit --allow-empty -m"..."`.
+Hierfür verwendet man `git commit --allow-empty -m"..."` 
+(und statt der Punkte natürlich die passende Commit-Nachricht).
 
 Vergessen Sie nicht, Ihren Stand mittels `git push` verfügbar zu machen!
 [ENDSECTION]
@@ -195,7 +196,7 @@ Vergessen Sie nicht, Ihren Stand mittels `git push` verfügbar zu machen!
 Die Abgabe besteht entgegen dem üblichen Format diesmal nur aus dem leeren Commit.
 
 Zeigen Sie nun Ihre bisherigen Ergebnisse bei der Tutor_in vor wie im Schritt 'push' von Kommando
-`sedrila student` beschrieben.
+`sedrila student menu` beschrieben.
 
 Die Email dient dabei nur zum Übermitteln der Zugangsdaten,
 für die Abnahme gelten die Verfahrensweisen, die die 

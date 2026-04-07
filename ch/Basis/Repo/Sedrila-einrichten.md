@@ -41,7 +41,7 @@ pipx install sedrila
 In Ihrem ProPra-Verzeichnis (git-Arbeitsverzeichnis) führen Sie anschließend folgenden Befehl aus:
 
 ```
-sedrila student --init
+sedrila student init
 ```
 
 Sie werden aufgefordert, folgende Daten anzugeben, die Sie zuvor bereithalten sollten:
@@ -62,13 +62,13 @@ Keinesfalls ändern sollten Sie hingegen den URL, jedenfalls sobald Sie erstmali
 erfolgreich bei der Tutor_in eingereicht haben, denn dadurch würde Ihr bis dahin angesammeltes
 Stundenkonto ungültig.)
 
-Sie sollten anschließend in der Lage sein, `sedrila student` auszuführen und
+Sie sollten anschließend in der Lage sein, `sedrila student menu` auszuführen und
 können dann in der webapp eine Tabelle mit den bisher bearbeiteten Aufgaben sehen.
 Darin stehen zwei Sorten von Aufgaben:
 Erstens die, die Sie schon mal eingereicht haben.
 Zweitens die, für die Sie einen Commit, in dem Format gemacht haben,
 das in [PARTREF::Zeiterfassung] beschrieben wurde.
-Uneingereichtes ohne einen solchen Commit fehlt in der Tabelle, denn darüber kann sedrila nichts
+Uneingereichtes ohne einen solchen Commit fehlt in der Tabelle, denn darüber kann `sedrila` nichts
 Nützliches sagen. Holen Sie ggf. solche Commits wie dort beschrieben nach.
 
 "Timevalue TOTAL" ist bislang 0, denn das umfasst nur bereits eingereichte und akzeptierte Abgaben.
@@ -77,7 +77,7 @@ Wie man Einreichungen macht, lernen Sie in der nächsten Aufgabe.
 [ENDSECTION]
 
 [SECTION::submission::snippet]
-Die Abgabe besteht aus der von `sedrila student --init`
+Die Abgabe besteht aus der von `sedrila student init`
 generierten Datei `student.yaml`.
 [ENDSECTION]
 

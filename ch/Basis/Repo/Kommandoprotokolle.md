@@ -137,7 +137,7 @@ Analog werden wir das künftig bei vielen Aufgaben machen.
 Ein falsches Kommandoprotokoll kann sehr verwirrend sein.
 Kontrollieren Sie deshalb vor dem Einchecken Ihr Protokoll bitte wie folgt:
 
-- Rufen Sie `sedrila  student --op webapp` auf.
+- Rufen Sie `sedrila  student webapp` auf.
   Das startet einen Webserver.
 - Besuchen Sie nun `http://localhost:8077` in Ihrem Browser.
   Sie erhalten ein Verzeichnislisting Ihres Arbeitsverzeichnisses.
@@ -162,19 +162,19 @@ Wir erwarten von Kommandoprotokollen folgendes:
 1. Das Protokoll fängt in Zeile 1 mit einem Prompt an.
 2. Dieser Prompt ist gemäß [PARTREF::Shellprompt], wird korrekt erkannt und entsprechend gerendert.
 3. Bitte immer auf die Plausibilität dieser Prompts achten.
-   Insbesondere zeigt ein falscher Benutzername an, dass dieser Studi nicht wie
+   Insbesondere zeigt ein **falscher Benutzername** an, dass dieser Studi nicht wie
    vorgesehen die Kommandosequenz selber durchgeturnt hat.
    Solche Abgaben bitte immer zurückweisen.
 4. Die Nummerierung der Kommandos entspricht den [EREFC::1],[EREFC::2]-...-Markern aus der Aufgabe.
    Wenn bei der händischen Korrektur zu viel, viel zu wenig oder das Falsche weggeschnitten wurde,
-   die Abgabe zurückweisen (und darauf hinweisen, dass es sehr oft einfacher sein dürfte,
-   nochmal von vorn anzufangen, als die kaputte Abgabe zu reparieren).
+   die Abgabe zurückweisen (und darauf hinweisen, dass es oft einfacher ist,
+   das Protokoll frisch anzulegen, als die kaputte Abgabe zu reparieren).
 5. Die Kommandos erfüllen den Zweck, der in der Aufgabe verfolgt wird, und zwar
    sowohl den inhaltlichen Zweck (Wirkung des Kommandos) als auch den Lernzweck (wegen dem
    bei manchen Aufgaben nicht jedes Kommando mit gleicher Wirkung akzeptabel ist).
 
-In dieser Aufgabe sollte das Ergebnis mit `sedrila  instructor --op webapp` sinngemäß wie folgt aussehen
-(Stand August 2024):
+In dieser Aufgabe sollte das Ergebnis mit `sedrila  instructor menu` und dann `webapp` 
+sinngemäß wie folgt aussehen:
 
 [PROT::ALT:Kommandoprotokolle.prot]
 
