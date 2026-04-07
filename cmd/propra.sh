@@ -17,6 +17,8 @@ s_setSS() {
   export SEDRILA_TITLE="Programmierpraktikum SoSe 2025, Bachelor Informatik, FU Berlin"
   export SEDRILA_NAME="ProPra-2025-04"
   export SEDRILA_PARTICIPANTS_FILE=""
+  export SEDRILA_STARTDATE="2025-04-15"
+  export SEDRILA_ENDDATE="2026-03-31"
   PROPRA_BUILDDIR="out/2025-04"
   PROPRA_TARGETDIR="K-ProPra-2025-04"
 }
@@ -25,6 +27,8 @@ s_setWS() {
   export SEDRILA_TITLE="Programmierpraktikum WiSe 2025/2026, Bachelor Informatik, FU Berlin"
   export SEDRILA_NAME="ProPra-2025-10"
   export SEDRILA_PARTICIPANTS_FILE="participants/propra-2025-10.tsv"
+  export SEDRILA_STARTDATE="2025-10-15"
+  export SEDRILA_ENDDATE="2026-09-30"
   PROPRA_BUILDDIR="out/2025-10"
   PROPRA_TARGETDIR="K-ProPra-2025-10"
 }
@@ -76,7 +80,7 @@ s_publishWS() {
 }
 
 s_publish2() {
-  s_publishSS
+  # INACTIVE!!! s_publishSS
   s_publishWS
 }
 
