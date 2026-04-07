@@ -94,13 +94,15 @@ colors = [party_colors.get(p, "#A0A0A0") for p in major_parties.index]
 
 [ER] Plotten Sie das Säulendiagramm mit den Parteien und den richtigen Farben.
 
-[EQ] Noch zeigt das Diagramm nicht an, wie viel Prozent eigentlich jede Partei hat, man kann
+[ER] Noch zeigt das Diagramm nicht an, wie viel Prozent eigentlich jede Partei hat, man kann
 es nur ungefähr schätzen.
 Ändern Sie Ihren Code, sodass der Rückgabewert von `ax.bar()` in der Variable `bars` gespeichert
 wird.
-Was genau ist dieser Rückgabewert?
 
-[EQ] Nutzen Sie `bars`, um folgenden Code einzubinden. Beschreiben Sie was dieser tut:
+[EQ] Welche Struktur und Bedeutung hat dieser Rückgabewert?
+
+[EQ] Betrachten Sie folgenden Codeschnipsel, der `bars` benutzt.
+Erklären Sie (und zwar theoretisch, ohne ihn auszuführen), was er tut:
 ```python
 for bar, value in zip(bars, major_parties.values):
     ax.text(
@@ -111,7 +113,8 @@ for bar, value in zip(bars, major_parties.values):
     )
 ```
 
-[ER] Geben Sie dem Diagramm den Titel "Zweitstimmen Bundestagswahl Berlin 2025" und die
+[ER] Binden Sie den Codeschnipsel in Ihr Programm ein.
+Geben Sie außerdem dem Diagramm den Titel "Zweitstimmen Bundestagswahl Berlin 2025" und die
 Y-Achsenbeschriftung "Zweitstimmen in %".
 
 Ihr Diagramm sollte nun so aussehen, wie im Bild oben.
