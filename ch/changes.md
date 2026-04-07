@@ -35,4 +35,11 @@
   ist durch einen Autorenfehler 2026-02-17 wieder aus dem ProPra verschwunden.
   Heute haben wir das entdeckt und sie ist zurückgekehrt.
 - **2026-03-27**: Aufgabe Web/JavaScript/[PARTREF::js-DOM-Arrays-Objekte] zugefügt.
+- **2026-04-07**: Falls Sie `sedrila` nochmal installieren oder aktualisieren möchten,
+  tun Sie das ab jetzt bitte mit `pipx install --force "sedrila==2.11.1"`.
+  Andernfalls bekommen Sie die neue Version 3, die eine andere Kommandoschnittstelle benutzt.
+- **2026-04-07**: Mit dem Ende des Wintersemesters endet die Aktualisierungsperiode für ProPra 2025-10.
+  Ab jetzt kommen also keine neuen Aufgaben mehr.  
+  Bitte ändern Sie bei sich am Aufbau ansonsten nichts: 
+  Selbe Website, selbes Repo, selbe Whiteboard-Site, selbe CampusManagement-Anmeldung.
 - ...
