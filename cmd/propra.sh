@@ -14,16 +14,18 @@ SEDRILA=~/venv/sedrila/bin/python\ /ws/fubinf/sedrila/py/sedrila.py  # which com
 # user must set PROPRA_BASEDIR: common prefix of both propra deploy dirs (which end in PROPRA_TARGETDIR)
 
 s_setSS() {
-  export SEDRILA_TITLE="Programmierpraktikum SoSe 2025, Bachelor Informatik, FU Berlin"
-  export SEDRILA_NAME="ProPra-2025-04"
+  export SEDRILA_TITLE="Programmierpraktikum SoSe 2026, Bachelor Informatik, FU Berlin"
+  export SEDRILA_NAME="ProPra-2026-04"
   export SEDRILA_PARTICIPANTS_FILE=""
-  export SEDRILA_STARTDATE="2025-04-15"
-  export SEDRILA_ENDDATE="2026-03-31"
-  PROPRA_BUILDDIR="out/2025-04"
-  PROPRA_TARGETDIR="K-ProPra-2025-04"
+  export SEDRILA_STARTDATE="2026-04-21"
+  export SEDRILA_ENDDATE="2027-03-31"
+  PROPRA_BUILDDIR="out/2026-04"
+  PROPRA_TARGETDIR="K-ProPra-2026-04"
 }
 
 s_setWS() {
+  printf 'Are you sure? ProPra-2025-10? Press Ctrl-C if not.  '
+  read answer
   export SEDRILA_TITLE="Programmierpraktikum WiSe 2025/2026, Bachelor Informatik, FU Berlin"
   export SEDRILA_NAME="ProPra-2025-10"
   export SEDRILA_PARTICIPANTS_FILE="participants/propra-2025-10.tsv"
@@ -40,28 +42,28 @@ s_set_draft() {
 }
 
 s_author_do() {  # possible args are additional sedrila flags, esp. --stats
-  (set -x;  $SEDRILA author "$@" $PROPRA_BUILDDIR)
+  (set -x;  $SEDRILA author build "$@" $PROPRA_BUILDDIR)
 }
 
 s_author() {  # build all tasks. 
   s_set_draft
-  s_author_do --include_stage draft "$@"
+  s_author_do --include-stage draft "$@"
 }
 
 s_authorSS() {  # build released tasks for summer semester
   s_setSS
-  s_author_do --include_stage beta "$@"
+  s_author_do --include-stage beta "$@"
 }
 
 s_authorWS() {  # build released tasks for winter semester
   s_setWS
-  s_author_do --include_stage beta "$@"
+  s_author_do --include-stage beta "$@"
 }
 
-s_author2() {  # build released tasks for both semesters
-  s_authorSS "$@"
-  s_authorWS --sums "$@"
-}
+#s_author2() {  # build released tasks for both semesters
+#  s_authorSS "$@"
+#  s_authorWS --sums "$@"
+#}
 
 s_publish_do() {
   (set -x; 
@@ -79,10 +81,10 @@ s_publishWS() {
   s_publish_do  
 }
 
-s_publish2() {
-  # INACTIVE!!! s_publishSS
-  s_publishWS
-}
+#s_publish2() {
+#  s_publishSS
+#  s_publishWS
+#}
 
 s_serve() {
   s_set_draft
