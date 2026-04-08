@@ -1,4 +1,4 @@
-title: Klassen und DOM Interaktive Anwendungen
+title: Klassen und DOM – Interaktive Anwendungen
 stage: alpha
 timevalue: 2.0
 difficulty: 2
@@ -16,8 +16,8 @@ requires: js-Klassen, js-DOM-Arrays-Objekte2, js-DOM-CSS
 
 
 [SECTION::background::default]
-Sobald eine Webseite mehr als einzelne interaktive Elemente enthält,  
-wird es schnell unübersichtlich, Zustände und DOM-Manipulationen sauber zu trennen.  
+Sobald eine Webseite mehr als einzelne interaktive Elemente enthält,
+wird es schnell unübersichtlich, Zustände und DOM-Manipulationen sauber zu trennen.
 Wie strukturiert man in diesem Umfeld eine kleine interaktive Anwendung sinnvoll?
 [ENDSECTION]
 
@@ -37,13 +37,11 @@ Dabei üben Sie insbesondere zwei Dinge:
 - Modellieren mit Klassen: Eine Notiz ist ein Objekt mit Eigenschaften und Methoden.  
 - Darstellung im DOM: Aus einem Objekt wird eine passende DOM-Struktur erzeugt.
 
-Sie werden also nicht einfach „irgendwie HTML verändern“, sondern die Webseite  
-systematisch aus Ihren Objekten heraus aufbauen.
+Sie werden also nicht einfach „irgendwie HTML verändern“, sondern die Webseite systematisch aus Ihren Objekten heraus aufbauen.
 
 ### Ausgangspunkt: HTML-Grundgerüst anlegen
 
-Erstellen Sie eine neue HTML-Datei und fügen Sie folgendes Grundgerüst ein.  
-
+Erstellen Sie eine neue HTML-Datei und fügen Sie folgendes Grundgerüst ein.
 ```html
 <!doctype html>
 <html lang="de">
@@ -83,31 +81,38 @@ Die eigentliche Logik wird später ausschließlich in JavaScript implementiert.
 
 ### Datenmodell: Klasse `Note`
 
-Bevor DOM-Elemente erzeugt oder verändert werden können, definieren wir das Datenmodell der Anwendung.  
+Bevor DOM-Elemente erzeugt oder verändert werden können, definieren wir das Datenmodell der Anwendung.
 
-Eine Notiz wird zunächst nur als JavaScript-Objekt betrachtet.  
-Sie speichert Informationen und stellt Methoden bereit, um ihren Zustand zu verändern.  
-Die Darstellung im DOM wird davon klar getrennt behandelt.  
+Eine Notiz wird zunächst nur als JavaScript-Objekt betrachtet.
+Sie speichert Informationen und stellt Methoden bereit, um ihren Zustand zu verändern.
+Die Darstellung im DOM wird davon klar getrennt behandelt.
 
 #### Eigenschaften einer Notiz
 
 Jede Notiz besitzt drei zentrale Eigenschaften:
 
-- `id`: Eine eindeutige Kennung, mit der eine Notiz später im DOM eindeutig  
+- `id`: Eine eindeutige Kennung, mit der eine Notiz später im DOM eindeutig
 identifiziert werden kann (z. B. nach einem Klick auf einen Button).  
 - `text`: Der Textinhalt der Notiz, der dem Benutzer angezeigt wird.  
 - `done`: Ein Wahrheitswert (`true` oder `false`), der angibt, ob die Notiz als erledigt markiert ist.
 
 Diese Eigenschaften beschreiben den Zustand einer Notiz zu einem bestimmten Zeitpunkt.
 
+[NOTICE]
+Jede Notiz braucht eine eigene Kennung, damit sie später eindeutig wiedergefunden werden kann.
+Eine einfache Möglichkeit dafür ist eine Zählvariable, die bei jeder neuen Notiz erhöht wird, z. B. `let nextId = 1`.
+[ENDNOTICE]
+
 #### Methoden einer Notiz
 
 Zusätzlich zum Zustand besitzt eine Notiz Methoden,  
 mit denen dieser Zustand gezielt verändert werden kann:
 
-`toggle()`: Ändert den Zustand der Notiz von „erledigt“ zu „nicht erledigt“ oder umgekehrt.
+`toggle()`  
+Ändert den Zustand der Notiz von „erledigt“ zu „nicht erledigt“ oder umgekehrt.
 
-`rename(neuerText)`: Ersetzt den bisherigen Text der Notiz durch `neuerText`.
+`rename(neuerText)`  
+Ersetzt den bisherigen Text der Notiz durch `neuerText`.
 
 Diese Methoden verändern ausschließlich die Daten der Notiz.  
 Sie nehmen keine direkten Änderungen am DOM vor.  
@@ -116,11 +121,16 @@ Sie nehmen keine direkten Änderungen am DOM vor.
 
 #### Darstellung im DOM
 
-Damit eine Notiz im Browser sichtbar werden kann, muss aus den Daten der Notiz (`id`, `text`, `done`) eine passende DOM-Struktur erzeugt werden.  
+Damit eine Notiz im Browser sichtbar werden kann, muss aus den Daten der Notiz (`id`, `text`, `done`) eine passende DOM-Struktur erzeugt werden.
 Das soll die Methode `toDOM()` übernehmen.  
 
 Die Methode `toDOM()` ist eine Übersetzungsfunktion:  
 Sie nimmt die aktuellen Daten der Notiz (Zustand) und erzeugt daraus ein neues DOM-Element, das genau diesen Zustand darstellt.  
+
+Hinweis: Statt `appendChild()` kann auch `append()` verwendet werden.  
+`append()` erlaubt mehrere Elemente auf einmal einzufügen.
+
+Mehr zu `append()` finden Sie in der [MDN-Webdokumentation zu append()](https://developer.mozilla.org/en-US/docs/Web/API/Element/append).
 
 ##### Erzeugte DOM-Elemente
 
@@ -149,14 +159,14 @@ Beim Erzeugen der DOM-Elemente muss der aktuelle Zustand der Notiz
 in die Darstellung übernommen werden, sodass Daten und Anzeige übereinstimmen.
 
 - Der Notiztext wird über `textContent` in das `<span>` gesetzt.  
-- Ist `done === true`, erhält der `<span>` zusätzlich die Klasse `done`.  
+- Ist `done === true`, erhält das `<span>`-Element zusätzlich die Klasse `done`.  
 - Die Methode fügt das erzeugte Element nicht selbst in das Dokument ein.  
 - Die Buttons besitzen keine eigenen Event-Listener.  
 - Ereignisse werden später zentral über Event Delegation verarbeitet.  
 
 #### Vorgegebene DOM-Struktur
 
-Die folgenden HTML-Elemente zeigen die vollständige Struktur, die von `toDOM()` erzeugt werden soll.   
+Die folgenden HTML-Elemente zeigen die vollständige Struktur, die von `toDOM()` erzeugt werden soll.  
 Diese Struktur dient als verbindliche Vorgabe für Ihre Implementierung.
 
 ```html
@@ -199,6 +209,13 @@ Für die Anwendung werden mehrere bereits vorhandene DOM-Elemente benötigt:
 
 Diese Elemente werden einmal gesucht und anschließend wiederverwendet.
 
+[HINT::`this`]
+Wenn eine Methode als Event-Handler verwendet wird, muss `this` weiterhin auf die aktuelle Instanz von `NotesApp` zeigen.
+
+Eine häufige Lösung ist eine Arrow-Function, z. B.:  
+`this.addBtn.addEventListener("click", () => this.addFromInput())`
+[ENDHINT]
+
 #### Notizen hinzufügen
 
 Wird der „Hinzufügen“-Button angeklickt, soll:
@@ -220,15 +237,24 @@ für jede gespeicherte Notiz ein neues DOM-Element erzeugt (mit Hilfe der Method
 #### Benutzeraktionen auf Notizen
 
 Jede Notiz enthält mehrere Buttons.  
-Anstatt für jeden Button einen eigenen Event-Listener zu registrieren,  
-wird ein einzelner Listener auf dem umgebenden Container verwendet.
+Anstatt für jeden Button einen eigenen Event-Listener zu registrieren, wird ein einzelner Listener auf dem umgebenden Container verwendet.
 
-Bei einem Klick kann über `data-action` erkannt werden,
+Den Umgang mit `data-*`-Attributen und `dataset` kennen Sie bereits aus [PARTREF::js-DOM-CSS].
 
-- welche Aktion ausgelöst wurde  
-- und über `data-id`, zu welcher Notiz sie gehört  
+Wird auf einen Button geklickt, kann über `event.target.dataset.action` ermittelt werden, ob es sich z. B. um `toggle`, `edit` oder `delete` handelt.  
+Um die zugehörige Notiz zu finden, muss vom angeklickten Button aus das umgebende `.note`-Element bestimmt werden.
 
-Je nach Aktion wird dann der Zustand der entsprechenden Notiz geändert oder sie wird entfernt.
+Dafür eignet sich die Methode `closest(".note")`: Sie sucht vom aktuellen Element aus nach oben im DOM-Baum nach dem nächsten passenden Elternelement.  
+Über dessen `data-id` kann anschließend bestimmt werden, welche Notiz im Array gemeint ist.
+
+Mehr zu `closest()` finden Sie in der [MDN-Webdokumentation zu `closest()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest).
+
+Je nach Aktion wird dann der Zustand der entsprechenden Notiz geändert oder sie wird entfernt.  
+Bei der Aktion `edit` soll ein neuer Text vom Benutzer abgefragt und in der betroffenen Notiz gespeichert werden.  
+Für diese einfache Eingabe kann `prompt()` verwendet werden.
+Dabei sollte auch berücksichtigt werden, dass der Benutzer die Eingabe abbrechen oder einen leeren Text eingeben kann.
+
+Mehr zu `prompt()` finden Sie in der [MDN-Webdokumentation zu `prompt()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt).
 
 [ER] Implementieren Sie die Klasse `NotesApp`, die  
 - alle Notizen in einem Array speichert  
@@ -259,7 +285,8 @@ Event-Listener verarbeitet und nicht über einzelne Listener pro Button?
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
+[INSTRUCTOR::Musterlösungen]
 
-[INSTRUCTOR::Antworten im Großen und Ganzen korrekt?]
 [INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
