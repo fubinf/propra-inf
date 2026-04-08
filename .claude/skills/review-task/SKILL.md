@@ -275,8 +275,10 @@ es sei denn, die Wahlfreiheit ist selbst didaktisch wertvoll.
 
 **A7.1 Instruktorenabschnitt muss existieren und nützlich sein.**
 Jede Aufgabe braucht einen [INSTRUCTOR]-Abschnitt mit Frage-/Aufgabenlabels (F1, A1 usw.),
-kurzen erwarteten Antworten und Review-Prioritäten.
-Den Tutoren sagen, worauf sie sich konzentrieren sollen.
+kurzen erwarteten Antworten und am besten auch Review-Prioritäten:
+Idealerweise gibt es ein bis zwei "Knackpunkte", die eine zurückzuweisende Lösung
+höchstwahrscheinlich falsch hat. Sind die richtig, kann man die Aufgabe als OK betrachten.
+Ein guter Instruktorenabschnitt hebt diese Knackpunkte klar hervor.
 
 **A7.2 Offene Fragen brauchen klare Erwartungen.**
 Angeben, was eine minimal akzeptable Antwort ausmacht.
@@ -293,7 +295,7 @@ Nummerierung, Musterlösungen, Review-Hinweise.
 
 **A7.5 Musterlösungen gehören ins altdir, nicht in die öffentliche Datei.**
 Instruktorenlösungen kommen in das `altdir`-Submodul.
-Die öffentliche Datei sollte nur eine INCLUDE-Direktive haben.
+Die öffentliche Datei sollte nur Überschriften, INCLUDE, PROT u.ä. enthalten.
 
 ---
 
