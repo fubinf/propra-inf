@@ -60,7 +60,7 @@ Fehler bei der Auswahl führen zu unerwartetem Verhalten, z. B. sichtbaren HTM
 
 Wir wissen: `value` ist für Eingabefelder, `textContent` für reinen Text, `innerHTML` für HTML-Strukturen.  
 Eine ausführlichere Dokumentation für `value` finden Sie in der 
-[MDN-Webdokumentation zu value](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/value?utm_source=chatgpt.com).  
+[MDN-Webdokumentation zu value](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/value).  
 Aber spannend ist, was bei den beiden folgenden Codeblöcken passiert:
 
 1.

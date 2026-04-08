@@ -380,7 +380,7 @@ Hier sehen Sie beim Laden der Seite:
 
 Eine ausführlichere Dokumentationene zu `console.log()` und `alert()` finden Sie in der MDN-Webdokumentation zu 
 [console.log()](https://developer.mozilla.org/de/docs/Web/API/console/log) und 
-[alert()](https://developer.mozilla.org/de/docs/Web/API/Window/alert?utm_source=chatgpt.com).
+[alert()](https://developer.mozilla.org/de/docs/Web/API/Window/alert).
 
 Eine dritte Möglichkeit, Ausgaben zu machen, ist die Veränderung des Inhalts der angezeigten Webseite.
 Das ist nicht nur für Debugging hilfreich, sondern auch für Anwendungslogik, und ist deshalb
