@@ -36,7 +36,7 @@ s_setWS() {
 }
 
 s_set_draft() {
-  s_setWS
+  s_setSS
   PROPRA_BUILDDIR="out/draft"
   unset PROPRA_TARGETDIR
 }
@@ -88,5 +88,5 @@ s_publishWS() {
 
 s_serve() {
   s_set_draft
-  (cd $PROPRA_BUILDDIR; $SEDRILA server --quiet 8099 .)
+  (cd $PROPRA_BUILDDIR; $SEDRILA server --quiet --port 8099 .)
 }
