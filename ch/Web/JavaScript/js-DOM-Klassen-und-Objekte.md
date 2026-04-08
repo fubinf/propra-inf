@@ -236,7 +236,7 @@ Je nach Aktion wird dann der Zustand der entsprechenden Notiz geändert oder sie
 - alle Notizen im DOM darstellt  
 - Klicks auf Notiz-Buttons verarbeitet  
 
-[ER] Erzeugen Sie eine Instanz der Klasse `NotesApp`,sodass die Anwendung nach dem Laden der Seite benutzbar ist.
+[ER] Erzeugen Sie eine Instanz der Klasse `NotesApp`, sodass die Anwendung nach dem Laden der Seite benutzbar ist.
 
 
 ### Verständnisfragen und Einordnung
