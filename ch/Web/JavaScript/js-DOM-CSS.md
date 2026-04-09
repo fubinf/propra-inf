@@ -16,8 +16,10 @@ requires: js-DOM-Eventhandling
 
 
 [SECTION::background::default]
-Bisher haben Sie CSS genutzt, um das Aussehen von HTML-Elementen zu gestalten, und JavaScript + DOM, um auf Benutzeraktionen zu reagieren.  
-In dieser Aufgabe verbinden Sie beides erstmals systematisch: JavaScript entscheidet über Zustände, CSS stellt diese visuell dar.
+Bisher haben Sie CSS genutzt, um das Aussehen von HTML-Elementen zu gestalten, und 
+JavaScript + DOM, um auf Benutzeraktionen zu reagieren.  
+In dieser Aufgabe verbinden Sie beides erstmals systematisch: 
+JavaScript entscheidet über Zustände, CSS stellt diese visuell dar.
 [ENDSECTION]
 
 
@@ -78,7 +80,7 @@ Ordnen Sie die folgenden Aufgaben JavaScript oder CSS zu:
 Begründen Sie Ihre Zuordnung kurz.
 
 
-### Neue DOM-Methode: `classList`
+### Neue DOM-Eigenschaft: `classList`
 
 Damit JavaScript Zustände setzen kann, muss es CSS-Klassen zu einem Element hinzufügen oder entfernen können.  
 Dafür stellt das DOM die Eigenschaft `classList` bereit. Sie repräsentiert die Liste aller CSS-Klassen eines Elements.
@@ -120,19 +122,22 @@ card.classList.toggle("selected");
 - Zweiter Klick → selected wird entfernt  
 - Dritter Klick → selected wird wieder hinzugefügt
 
-Gerade für interaktive Elemente wie Buttons oder Cards ist `toggle` besonders geeignet, da Zustände häufig zwischen zwei Möglichkeiten wechseln.
+Gerade für interaktive Elemente wie Buttons oder Cards ist `toggle` besonders geeignet,
+da Zustände häufig zwischen zwei Möglichkeiten wechseln.
 
 Wichtig ist dabei: JavaScript verändert keine einzelnen CSS-Eigenschaften wie Farbe oder Rahmen.  
-Stattdessen wird nur der Zustand des Elements geändert. Welche visuellen Folgen dieser Zustand hat, entscheidet weiterhin CSS.
+Stattdessen wird nur der Zustand des Elements geändert. 
+Welche visuellen Folgen dieser Zustand hat, entscheidet weiterhin CSS.
 
-Weitere Informationen zu `classList` finden Sie hier: [classList](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
+Weitere Informationen finden Sie unter 
+[`classList` auf MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList).
 
-[EQ] Was könnte der Grund sein warum `toggle` für klickbare Elemente oft praktischer ist als eine Kombination aus `add` und `remove`?
+[EQ] Was könnte der Grund sein, warum `toggle` für klickbare Elemente oft praktischer ist als eine Kombination aus `add` und `remove`?
 
 
 ### Erstes Zusammenspiel: Klick → Klasse → Stil
 
-Nachdem Sie nun die einzelnen Bausteine kennengelernt haben, betrachten wir erstmals ein vollständiges,  
+Nachdem Sie nun die einzelnen Bausteine kennengelernt haben, betrachten wir erstmals ein vollständiges, 
 aber bewusst vereinfachtes Beispiel, in dem HTML, CSS und JavaScript zusammenwirken.
 
 Das folgende Dokument enthält:
@@ -324,7 +329,7 @@ anstatt z. B. Farbe oder Transparenz eines Elements auszuwerten?
 
 ### Event Delegation und `data-*`-Attribute
 
-Bisher haben Sie auf jede Card separat reagiert, indem Sie für jede Card einen eigenen Event-Listener registriert haben.    
+Bisher haben Sie auf jede Card separat reagiert, indem Sie für jede Card einen eigenen Event-Listener registriert haben.
 Das ist für wenige Elemente gut nachvollziehbar, wird aber schnell unübersichtlich,  
 sobald viele Cards oder zusätzliche interaktive Elemente (z. B. Buttons) dazukommen.
 
@@ -364,7 +369,7 @@ element.dataset.id       // "1"
 element.dataset.action   // "disable"
 ```
 
-Weitere Informationen zu `data-*`-Attributen finden Sie hier: [data-*](https://developer.mozilla.org/en-US/docs/Web/HTML/How_to/Use_data_attributes)
+Weitere Informationen finden Sie unter [`data-*`-Attribute auf MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/How_to/Use_data_attributes).
 
 #### Buttons mit Aktionen versehen
 
