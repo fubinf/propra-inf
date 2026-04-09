@@ -1,5 +1,9 @@
-# Korrekturhilfen
+# Korrekturhilfen (der `[INSTRUCTOR::]`-Block)
 
+(Diese Hinweise sind noch unausgereift. Wer Sie benutzt, bitte Feedback geben, was hilfreich
+zu sein scheint, was unnötig ausführlich und was eher unnötig oder gar hinderlich.  
+Wer sich ein klares Urteil zutraut, darf hier selbst gern Änderungen vornehmen.
+Dann bitte einen Hinweis (samt Commit-Hash) auf Discord schreiben.) 
 
 ## Hintergrund
 
