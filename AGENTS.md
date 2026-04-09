@@ -137,29 +137,6 @@ git submodule update --recursive
 - "der URL" (not "die")
 
 
-## How to review a task
-
-A task can have a large variety of problems, for instance (in decreasing order of importance):
-
-- Factual errors wrt the technical content (in which I am often not an expert)
-- Unclear instructions for students or avoidable issues with terminological/conceptual clarity. 
-- Unclear instructions for instructors wrt what is expected of a student solution and what is not.
-  We aim to be liberal in what we expect. 
-  Instructors should focus the checking on the few important bits
-  that determine whether the specific learning goal of the task has likely been reached by the student.
-- Task too simple or too difficult for the claimed `difficulty` and `timevalue`.
-- Individual steps that are a bit harder but lack an accompanying [HINT] for reducing
-  difficulty if need be, in particular for `medium` tasks.
-- Redundancy (or, conversely, knowledge gaps) wrt to previous tasks (those in the `assumes` and `requires` chains)
-- Submission section mentions the wrong submission types.
-  (The instructions for the three standard types of submission (sum of the [EQ], [EC], [ER] steps, respectively)
-  are described in task `Einreichungen`.)
-- Issues with spelling, punctuation, grammar, sentence construction.
-
-Review for these problems, but also apply programming common sense throughout.
-Give me findings in two lists (major, minor), with just enough elaboration to understand the problem.
-
-
 ## Current development step
 
 None.
