@@ -27,18 +27,22 @@ mit gerade genug Erläuterung, um das Problem zu verstehen,
 je mit H3-Überschrift, durchgehend wie eine einzige Liste nummeriert,
 mit einer Leerzeile hinter jedem Eintrag:
 
-1. "Änderungsvorschläge" für die wichtigen Dinge:
+1. "Änderungsvorschläge" für die Dinge, die die Substanz der Aufgabe und Lösung betreffen, z.B.:
    Falsche Faktenbehauptungen, falsche Begriffe,
-   logische Fehler, größere didaktische Mängel, mangelnde Anleitung
-   der Instructors u.ä..
+   logische Fehler, größere didaktische Mängel, 
+   fehlende oder falsche Markierung von Aufgabenschritten ([EQ] etc.), 
+   mangelnde Anleitung der Instructors u.ä..
 
-2. "Kleinere Sachen" für den Rest, soweit er nicht von 3. erfasst wird.
+2. "Kleinere Sachen" für die Dinge, die nur die Form, aber nicht die Substanz der Aufgabe betreffen
+   (etwa unnötig komplizierte Formulierungen, Layoutmängel, verwirrende Schwankungen in der Ausdrucksweise u.ä.),
+   soweit sie nicht von 3. erfasst sind.
 
-3. "Schon erledigt" für kleinere Sachen, deren Korrektur vermutlich so unstreitig ist,
+3. "Schon erledigt" für Punkte aus Kategorie 2, deren Korrektur vermutlich so unstreitig ist,
    dass es nicht lohnt, einen Autor damit zu belästigen: insbesondere Mängel bei Markup,
-   Orthografie, Begriffsschwankungen, unnötig komplizierte Formuliergungen,
+   Orthografie, Begriffsschwankungen mit klarem bestem Begriff, eindeutig zerlegbare komplizierte Formulierungen,
    sowie höhere Präzision mit nur marginal mehr Text.
-   Hier führe die entsprechende Korrektur in der begutachteten Quelle direkt selbst aus und
+   In den meisten Fällen wird Kategorie 3 mehr Einträge haben als der verbleibende Rest von Kategorie 2.
+   Hierfür führe die entsprechende Korrektur in der begutachteten Quelle direkt selbst durch und
    schreibe knapp ins Review, was Du warum getan hast.
 
 Nenne bei jedem Befund die Zeilennummer(n).
@@ -275,10 +279,7 @@ es sei denn, die Wahlfreiheit ist selbst didaktisch wertvoll.
 
 **A7.1 Instruktorenabschnitt muss existieren und nützlich sein.**
 Jede Aufgabe braucht einen [INSTRUCTOR]-Abschnitt mit Frage-/Aufgabenlabels (F1, A1 usw.),
-kurzen erwarteten Antworten und am besten auch Review-Prioritäten:
-Idealerweise gibt es ein bis zwei "Knackpunkte", die eine zurückzuweisende Lösung
-höchstwahrscheinlich falsch hat. Sind die richtig, kann man die Aufgabe als OK betrachten.
-Ein guter Instruktorenabschnitt hebt diese Knackpunkte klar hervor.
+kurzen erwarteten Antworten
 
 **A7.2 Offene Fragen brauchen klare Erwartungen.**
 Angeben, was eine minimal akzeptable Antwort ausmacht.
@@ -296,6 +297,15 @@ Nummerierung, Musterlösungen, Review-Hinweise.
 **A7.5 Musterlösungen gehören ins altdir, nicht in die öffentliche Datei.**
 Instruktorenlösungen kommen in das `altdir`-Submodul.
 Die öffentliche Datei sollte nur Überschriften, INCLUDE, PROT u.ä. enthalten.
+
+**A7.6 Instruktorenabschnitt benennt Knackpunkte.**
+Die zu prüfenden Punkte sollten nicht alle den gleichen Rang haben,
+sondern bei den meisten Aufgaben gibt es einige wenige, typisch sind ein bis drei,
+die am schwierigsten sind.
+Diese sollten durch das fettgedruckte Wort "Knackpunkt:" markiert sein.
+Eine zurückzuweisende Lösung hat diese Punkte höchstwahrscheinlich falsch. 
+Sind sie hingegen richtig, kann man die Aufgabe als OK betrachten ohne den Rest gleichermaßen
+gründlich zu prüfen.
 
 ---
 
