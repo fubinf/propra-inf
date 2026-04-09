@@ -86,6 +86,15 @@ Instructor hints and sample solutions
 - `[HINT::Title]...[ENDHINT]`: Collapsible step-specific help; can (and often should) be nested for gradual help.
 - `[PARTREF::TaskName]`: Link to another task/taskgroup/chapter
 - `[TERMREF::Term]`: Link to glossary entry
+- `[INCLUDE::...]` appearing in file `ch/mychapter/mygroup/mytask.md`:
+  `[INCLUDE::file]` means to include `ch/mychapter/mygroup/file`;
+  `[INCLUDE::ALT:]` means to include `altdir/ch/mychapter/mygroup/mytask.md`;
+  `[INCLUDE::ALT:/somepath/file.py]` means to include `altdir/ch/somepath/file.py`.
+- Similarly, `[PROT::...]` appearing in file `ch/mychapter/mygroup/mytask.md`:
+  `[PROT::file.prot]` means to include `ch/mychapter/mygroup/file.prot`;
+  `[PROT::ALT:]` means to include `altdir/ch/mychapter/mygroup/mytask.prot`;
+  `[PROT::ALT:mytask.prot]` also means to include `altdir/ch/mychapter/mygroup/mytask.prot`;
+  and so on. PROT is like INCLUDE, but applies a special mode of rendering.
 
 ## Task file YAML top matter
 
