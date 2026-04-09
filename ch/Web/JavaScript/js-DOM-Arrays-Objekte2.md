@@ -1,5 +1,5 @@
 title: Datenstrukturen vertiefen – Dynamische DOM-Anwendungen mit Arrays & Objekten
-stage: alpha
+stage: beta
 timevalue: 2.5
 difficulty: 2
 requires: js-DOM-Arrays-Objekte
@@ -56,8 +56,8 @@ console.log(unbekannt); // undefined
 ```
 
 [NOTICE]
-- `find()` gibt nur ein einzelnes Objekt zurück (nicht ein Array).
-- Wenn Sie mehrere Treffer erwarten, sollten Sie stattdessen `filter()` verwenden.
+`find()` gibt nur ein einzelnes Objekt zurück (nicht ein Array).
+Wenn Sie mehrere Treffer erwarten, sollten Sie stattdessen `filter()` verwenden.
 [ENDNOTICE]
 
 
@@ -303,14 +303,15 @@ Achten Sie darauf, dass das ursprüngliche Array unverändert bleibt (verwenden 
 ### 3. Daten zusammenfassen – `reduce()`
 
 Bisher haben Sie mit `map()`, `filter()` und `sort()` gelernt, wie man Arrays verändert, filtert oder sortiert.
-Doch oft möchte man alle Elemente zu einem einzigen Wert zusammenfassen, z. B. eine Summe, einen Durchschnitt oder eine Statistik berechnen.
+Doch oft möchte man alle Elemente zu einem einzigen Wert zusammenfassen, 
+z. B. eine Summe, einen Durchschnitt oder eine Statistik berechnen.
 Dafür gibt es die Methode `.reduce()`.
 
 Das Grundprinzip dahinter ist:
 Man nimmt ein Array mit vielen Elementen und **reduziert** es schrittweise zu einem einzigen Ergebnis.
 
 In Python würden Sie so etwas z. B. mit einer Schleife machen.
-In JavaScript geht das alternativ auch im funktionalen Stil: mit `reduce()`
+In JavaScript geht das alternativ auch im funktionalen Stil: mit `reduce()`.
 
 ```js
 const preise = [1.2, 0.8, 2.5];
@@ -359,7 +360,7 @@ console.log("Durchschnittspreis:", durchschnitt.toFixed(2)); // 1.50
 Das ist praktisch, aber riskant bei leeren Arrays, dann führt der Aufruf zu einem Fehler.
 `[].reduce((a, b) => a + b); // ❌ TypeError`
 
-#### Vielseitigkeit von reduce()
+#### Vielseitigkeit von `reduce()`
 `reduce()` kann nicht nur summieren!
 Man kann auch Arrays zusammenfügen, Gruppen bilden oder Zähler aufbauen.
 
@@ -372,12 +373,15 @@ const haeufigkeit = namen.reduce((map, name) => {
 console.log(haeufigkeit);
 // { Anna: 2, Bernd: 1, Clara: 1 }
 ```
+Der Ausdruck `(map[name] || 0)` ist ein häufiges Idiom in JavaScript: 
+Wenn es `map[name]` (noch) nicht gibt, es also `undefined` ist, benutze stattdessen `0`.
+Diese Schreibweise spart viele sperrige `if`-Abfragen ein.
 
 [NOTICE]
 `reduce()` ist die vielseitigste Array-Methode in JavaScript.
-Sie kann jedes andere Muster nachbilden, Zählen, Summieren, Gruppieren, sogar Filtern.
-Aber: Der Code kann dadurch schwerer lesbar werden.
-Benutzen Sie `reduce()` also nur, wenn die Aufgabe wirklich eine Zusammenfassung ist.
+Sie kann jedes andere Muster nachbilden: Zählen, Summieren, Gruppieren, sogar Filtern.
+Aber der Code kann dadurch schnell schwer lesbar werden.
+Benutzen Sie `reduce()` nur, wenn die Aufgabe wirklich eine Zusammenfassung ist.
 [ENDNOTICE]
 
 Eine ausführlichere Erklärung zu `reduce()` finden Sie in der
@@ -404,12 +408,12 @@ Der Durchschnitt soll mit zwei Nachkommastellen angezeigt werden (nutzen Sie `to
 [INSTRUCTOR::Antworten im Großen und Ganzen korrekt?]
 Priorität bei der Bewertung:
 
-- Studierende sollen gezielt mit Arrays arbeiten können (insbesondere `find()`, `findIndex()`, `splice()`, `sort()` und `reduce()`).  
-- Bei der Produktliste soll ein Array von Objekten verwendet werden (z. B. `{name, preis}`).  
-- Es soll verstanden werden, wie Elemente gezielt gesucht, eingefügt und gelöscht werden (nicht nur immer am Ende).  
+- Studierende sollen gezielt mit Arrays arbeiten können (insbesondere `find()`, `findIndex()`, `splice()`, `sort()` und `reduce()`).
+- Bei der Produktliste soll ein Array von Objekten verwendet werden (z. B. `{name, preis}`).
+- Es soll verstanden werden, wie Elemente gezielt gesucht, eingefügt und gelöscht werden (nicht nur immer am Ende).
 - Beim DOM-Teil ist wichtig, dass Änderungen am Array (Einfügen, Löschen, Sortieren) korrekt im DOM dargestellt werden (`renderListe`).
 
-Bei den Aufgaben zu `sort()` ist entscheidend, dass eine Vergleichsfunktion verwendet wird und idealerweise das Originalarray nicht verändert wird (Kopie mit `[...array]`).  
-Bei `reduce()` reicht es, wenn Studierende das Prinzip der Zusammenfassung erkennen (z. B. Summe oder Durchschnitt korrekt berechnen).  
+Bei den Aufgaben zu `sort()` ist entscheidend, dass eine Vergleichsfunktion verwendet wird und idealerweise das Originalarray nicht verändert wird (Kopie mit `[...array]`).
+Bei `reduce()` reicht es, wenn Studierende das Prinzip der Zusammenfassung erkennen (z. B. Summe oder Durchschnitt korrekt berechnen).
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
