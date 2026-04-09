@@ -58,7 +58,7 @@ Dabei greifen mehrere Konzepte ineinander, die Sie bereits kennengelernt haben:
 
 Neu ist in dieser Aufgabe vor allem die systematische Kombination dieser Techniken.
 
-Das folgende HTML-Dokument enthält bereits ein vollständiges Formular sowie passende CSS-Klassen für verschiedene Zustände.    
+Das folgende HTML-Dokument enthält bereits ein vollständiges Formular sowie passende CSS-Klassen für verschiedene Zustände.
 Ihre Aufgabe besteht ausschließlich darin, die Validierungslogik in JavaScript umzusetzen.
 
 Am Ende dieser Aufgabe haben Sie eine kleine, aber realistische Formularlogik implementiert,  
@@ -215,7 +215,7 @@ Eine ausführliche Einführung zu `preventDefault()` finden Sie in der [MDN-Doku
 
 Das Formular soll dadurch zunächst grundsätzlich nicht automatisch abgeschickt werden.
 
-[EQ] Was würde ohne den Aufruf von `event.preventDefault()` passieren,wenn das Formular abgeschickt wird?
+[EQ] Was würde ohne den Aufruf von `event.preventDefault()` passieren, wenn das Formular abgeschickt wird?
 
 
 ### Validierungsfunktionen erstellen
@@ -232,7 +232,7 @@ Dieses Vorgehen verbessert unter anderem:
 - die Wartbarkeit, da Änderungen lokal vorgenommen werden können  
 - die Fehlersuche, weil Probleme leichter eingegrenzt werden können  
 
-Ziel dieses Abschnitts ist daher nicht nur die technische Umsetzung der Validierung,sondern auch eine übersichtliche Strukturierung Ihres Programms.  
+Ziel dieses Abschnitts ist daher nicht nur die technische Umsetzung der Validierung, sondern auch eine übersichtliche Strukturierung Ihres Programms.
 Achten Sie darauf, dass alle Funktionen nach einem einheitlichen Muster aufgebaut sind.
 
 #### Validierungsregeln
