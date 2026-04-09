@@ -93,32 +93,26 @@ existieren nur im Arbeitsspeicher des Browsers und nur für die aktuelle Sitzung
 
 ### Einführung: `localStorage`
 
-`localStorage` ist ein vom Browser bereitgestellter Speicherbereich, mit dem JavaScript Daten dauerhaft im Browser ablegen kann.
+`localStorage` ist ein vom Browser bereitgestellter Speicherbereich, 
+mit dem JavaScript Daten dauerhaft im Browser ablegen kann.
 
 Im Gegensatz zu normalen Variablen bleiben diese Daten erhalten,
 auch wenn die Seite neu geladen oder der Browser geschlossen und später wieder geöffnet wird.
 
-Die Grundidee dabei, man kann sich `localStorage` wie eine kleine, einfache Datenablage vorstellen:  
-Die Daten sind browserabhängig, derselbe Code in einem anderen Browser hat einen eigenen `localStorage`.
-
-Jede gespeicherte Information besteht aus:  
-- einem Schlüssel (Name)  
-- einem Wert (Inhalt)  
-Der Zugriff erfolgt immer über diesen Schlüssel.
-
 `localStorage` speichert Daten in Form von Schlüssel–Wert-Paaren.  
 Dabei sind sowohl die Schlüssel als auch die gespeicherten Werte immer Zeichenketten (Strings).  
-Einmal gespeicherte Daten bleiben auch nach einem Neuladen der Seite erhalten und gehen selbst dann nicht verloren,  
-wenn der Browser geschlossen und später wieder geöffnet wird.
+Die Daten sind browserabhängig: derselbe Code in einem anderen Browser hat einen eigenen `localStorage`.
 
-Der gespeicherte Inhalt ist dabei nicht direkt im HTML sichtbar und kann auch nicht mit HTML oder CSS beeinflusst werden.  
-Der Zugriff auf diese Daten erfolgt ausschließlich über JavaScript, indem gezielt über den jeweiligen Schlüssel gelesen oder geschrieben wird.
+Der gespeicherte Inhalt ist nicht direkt im HTML sichtbar und kann nicht mit HTML oder CSS beeinflusst werden.  
+Der Zugriff erfolgt ausschließlich über JavaScript.
 
 Wichtig:  
 `localStorage` ist kein gewöhnliches JavaScript-Objekt, das man selbst erzeugt oder verändert,  
-sondern eine vom Browser bereitgestellte Schnittstelle (API), die JavaScript zum dauerhaften Speichern von Daten nutzen kann.
+sondern eine vom Browser bereitgestellte Schnittstelle (API), 
+die JavaScript zum dauerhaften Speichern von Daten nutzen kann.
 
-Eine ausführlichere Beschreibung zu `localStorage` finden Sie in der [MDN-Dokumentation zu localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+Eine ausführlichere Beschreibung zu `localStorage` finden Sie in der 
+[MDN-Dokumentation zu localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
 
 #### Daten speichern: `setItem`
 
@@ -174,14 +168,14 @@ der aktuelle Wert von `zaehler` unter dem Schlüssel `"zaehler"` im `localStorag
 Überprüfen Sie anschließend, ob der Wert wirklich gespeichert wird:  
 Öffnen Sie im Browser die Entwicklertools (meist F12), wechseln Sie danach zum Tab Application / Storage.  
 Suchen Sie dort den Eintrag im Local Storage Ihrer Seite,  
-schauen sie nach ob der Wert des Schlüssels `"zaehler"` beim klicken des buttons auch mit hoch geht.
+schauen Sie nach, ob der Wert des Schlüssels `"zaehler"` beim Klicken des Buttons auch hochgeht.
 
 #### Daten löschen
 
 Gespeicherte Daten im `localStorage` bleiben so lange erhalten, bis sie explizit gelöscht oder überschrieben werden.  
 Dafür stellt der Browser zwei unterschiedliche Möglichkeiten bereit.
 
-Einzelnen Eintrag löschen: `removeItem`
+#### Einzelnen Eintrag löschen: `removeItem`
 
 Um einen bestimmten gespeicherten Wert zu entfernen,
 verwendet man die Methode `removeItem`:
@@ -193,7 +187,7 @@ localStorage.removeItem("name");
 Dabei wird genau der Eintrag gelöscht, der unter dem angegebenen Schlüssel gespeichert ist.  
 Existiert der Schlüssel nicht, passiert nichts.
 
-Nach dem Löschen liefert: `localStorage.getItem("name");` den Wert null.
+Nach dem Löschen liefert `localStorage.getItem("name")` den Wert `null`.
 
 Nur der Eintrag mit diesem Schlüssel wird entfernt.  
 Alle anderen gespeicherten Daten bleiben dabei unverändert erhalten.
@@ -221,20 +215,18 @@ während `clear` alle gespeicherten Daten einer Webseite aus dem `localStorage` 
 
 Angenommen, im `localStorage` sind folgende Einträge gespeichert:
 
-```
 | Schlüssel | Wert   |
 | --------- | ------ |
 | zaehler   | 5      |
 | name      | "Lisa" |
 | theme     | "dark" |
-```
 
 Was passiert jeweils nach diesen folgenden Aufrufen?
 ```js
 localStorage.removeItem("name");
 localStorage.clear();
 ```
-Beschreiben Sie kurz, welche Einträge nach dem ersten und nach dem zweiten aufruf noch vorhanden sind und welche nicht.
+Beschreiben Sie kurz, welche Einträge nach dem ersten und nach dem zweiten Aufruf noch vorhanden sind und welche nicht.
 
 [ER] Zähler-Beispiel Erweitern:
 
@@ -294,7 +286,7 @@ Ein möglicher Ablauf beim Start der Seite ist:
 
 1. Prüfen, ob ein Wert im `localStorage` existiert  
 2. Falls ja: diesen Wert als Startwert verwenden  
-3. Falls nein: bei `0` beginne
+3. Falls nein: bei `0` beginnen
 
 Beispiel:
 
@@ -347,7 +339,8 @@ Oberfläche:
 - Button `Zähler zurücksetzen`  
 - Button `Alles zurücksetzen`  
 
-Zu speichernde Daten (`localStorage`) Verwenden Sie mehrere Schlüssel, z. B.:  
+Zu speichernde Daten (`localStorage`).
+Verwenden Sie mehrere Schlüssel, z. B.:  
 
 - `"zaehler"` → aktueller Zählerwert  
 - `"step"` → aktuelle Schrittweite  
