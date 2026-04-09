@@ -45,13 +45,12 @@ mit einer Leerzeile hinter jedem Eintrag:
    Hierfür führe die entsprechende Korrektur in der begutachteten Quelle direkt selbst durch und
    schreibe knapp ins Review, was Du warum getan hast.
 
-Nenne bei jedem Befund die Zeilennummer(n).
+Nenne bei jedem Befund die Zeilennummer(n) und sortiere jede Liste danach, aufsteigend.
 Beginne jeden Satz auf einer neuen Zeile und packe den ganzen Satz auf diese Zeile.
 Setze technische Syntax in Backquotes.
 
 Schreibe das Ergebnis in die Datei .claude/draft-reviews/r-<mytaskname>.md.
 Das Verzeichnis existiert bereits.
-Umbreche den Text dabei auf ungefähr 100 Zeichen pro Zeile.
 
 Falls in $ARGUMENTS ein URL mit angegeben ist, sollte das die zur Aufgabe gehörige Issue sein.
 Rufe diese ab (z.B. mit dem `gh` CLI) und prüfe, ob die ggf. dort behaupteten letzten Nachbesserungsschritte
