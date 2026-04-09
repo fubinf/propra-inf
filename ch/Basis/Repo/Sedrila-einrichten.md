@@ -48,6 +48,7 @@ Sie werden aufgefordert, folgende Daten anzugeben, die Sie zuvor bereithalten so
 
 <replacement id="Sedrila-einrichten-Promptlist">
 - die URL der Homepage des ProPras
+- die Größe Ihres gewählten Moduls in Stunden (z.B. 150 für ein 5-LP-Modul)
 - Ihren vollen Namen
 - Ihre Matrikelnummer
 - Ihren git-Benutzernamen (Accountnamen)
