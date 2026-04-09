@@ -314,35 +314,51 @@ The submission section
 
 ### 2.3.11 `[INSTRUCTOR::title]`
 
-The instructor section is different from the previous sections, as it is only visible by 
+The instructor section is different from the previous sections, as it is only visible for 
 instructors.
 It contains guidelines for the instructors on how to correct and evaluate the submissions.
 
-The section
-
-- announces in its title what the instructors should consider most important (usually, what 
+- The section announces in its title what the instructors should consider most important (usually, what 
   indicates whether the student has learned the main teachings of the task) or a description of the 
-  evaluation steps (e.g. "code review")
-- reflects in its body the priorities from the title, ordered by the importance of information
-- lists important details to look out for in a submission that may indicate if a student 
-  understood the basic concepts of a task
-- makes a clear distinction between reasons for rejecting a submission vs. points for mere 
-  feedback comments from the instructor to the student
-- makes use of the 
+  main evaluation steps (e.g. "code review")
+- The section reflects in its body the priorities from the title, ordered by the importance of information
+- Consider all task items (`[EQ], [ER], [EC]`) to be divided into four groups:
+    - backbone (i.e. important for the task's learning goals) and difficult: BD
+    - backbone and simple: BS
+    - detail (i.e. not important for the task's learning goals) and difficult: DD
+    - detail and simple: DS
+- "difficult" and "simple" are relative to the difficulty of the task. 
+  Group BD cannot be empty, the others can.
+- Pick a subset of the BD category that participants are most likely to get wrong.
+  We call each of these items a "crux" (or "Knackpunkt" in German) and mark them
+  by a boldfaced "**Knackpunkt:**" in the instructor information.  
+  The idea is that an instructor can stop checking (and accept the submission) 
+  if all Knackpunkte items have been solved cleanly.
+- If it fits the particular task, we discuss the groups in the order BD, BS, DD, DS,
+  and prepend a heading such as "Backbone and difficult" (etc.) before each.
+- If such ordering would be confusing, we use a more appropriate one instead and mark each
+  item individually. Examples: `[EREFQ::1] (BS)` or `**Knackpunkt:** [EREFR::5] (BD)`. 
+- Each item should specify the range of acceptable solutions, e.g. an example solution and a description
+  of possible variations or alternatives.
+  At least the BD and BS items should provide hints for the instructor for feedback to give 
+  to students who get this item wrong.
+- Together, the information must enable an instructor who understands the task only very roughly
+  to make a sensible acceptance judgment tailored to the case at hand.
+- The section makes use of the 
   [`altdir`](https://sedrila.readthedocs.io/en/latest/authors/#19-confidential-contents-altdir-itreedir) 
   features of sedrila to separate confidential content (e.g. sample solutions) from the main 
   repo (which is public by design)
-- includes sample solutions for all tasks:
+- The section includes sample solutions for all tasks:
     - concrete answers/explanations for all `[EQ]` questions (with discussion if needed) in a 
       separate Markdown file
-    - a command protocol for all `[EC]` items by embedding the file via the `[PROT::ALT:protfile.
-    prot]`
+    - a command protocol for all `[EC]` items by embedding the file via the `[PROT::ALT:protfile.prot]`
     - source code for all `[ER]` items, either via an `[INCLUDE::ITREE:sourcefile.xyz]` 
-      (embedded in triple backquotes for formatting) or by pointing to it via 
-      `[TREEREF::/Chapter/Group/File]`
+      (embedded in triple backquotes for formatting) or `[SNIPPET]s` or via 
+      `[TREEREF::/Chapter/Group/File]` or `[TREEREF::File]`
 
-For further details on how to write a helpful instructor section, see 
+For other hints on how to produce a helpful instructor section, see 
 [Korrekturhilfen](korrekturhilfen.md).
+Where this document contradicts the above items, the items above have priority.
 
 
 ### 2.3.12 Language use (in German because we use German)
