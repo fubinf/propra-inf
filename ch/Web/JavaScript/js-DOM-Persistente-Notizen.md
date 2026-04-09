@@ -39,7 +39,7 @@ In der Aufgabe [PARTREF::js-DOM-Klassen-und-Objekte] haben Sie eine funktioniere
 - aus diesen Objekten wird die Anzeige im DOM erzeugt  
 - Änderungen werden korrekt dargestellt  
 
-Diese Anwendung funktioniert vollständig aber nur solange die Seite geöffnet ist.
+Diese Anwendung funktioniert vollständig, aber nur solange die Seite geöffnet ist.
 
 Sobald Sie die Seite neu laden, beginnt das Programm von vorn:  
 
@@ -86,16 +86,14 @@ Betrachten Sie dieses Beispiel:
 const arr = ["a", "b"];
 localStorage.setItem("x", arr);
 ```
-Was hier tatsächlich gespeichert wird ist nicht das Array selbst, sondern der String: `"a,b"`
+Was hier tatsächlich gespeichert wird, ist nicht das Array selbst, sondern der String: `"a,b"`
 
-Dabei passiert Folgendes:
+Dabei geht die Struktur verloren:
 
-- Die Klammern des Arrays gehen verloren  
+- Die Klammern des Arrays fehlen  
 - Die einzelnen Elemente werden zu einem einfachen Text verbunden  
-- Die ursprüngliche Struktur existiert nicht mehr  
-- Das Ergebnis ist kein Array mehr  
-- Die Reihenfolge und Typen sind nicht mehr eindeutig rekonstruierbar  
-- Bei Objekten würden sogar Eigenschaftsnamen und Struktur verloren gehen
+- Typen sind nicht mehr eindeutig rekonstruierbar  
+- Bei Objekten gehen sogar Eigenschaftsnamen und Struktur verloren
 
 Das bedeutet:  
 Wir können Datenstrukturen nicht direkt im `localStorage` speichern.  
@@ -162,7 +160,7 @@ Der Inhalt dieses Strings sieht so aus:
 [{"text":"Einkaufen","done":false}]
 ```
 
-Das ist ein Text der die komplette Struktur des Arrays und des Objekts beschreibt inklusive Klammern, Eigenschaftsnamen und Werte.
+Das ist ein Text, der die komplette Struktur des Arrays und des Objekts beschreibt, inklusive Klammern, Eigenschaftsnamen und Werte.
 
 Wichtig dabei ist:
 
@@ -228,7 +226,7 @@ const data = [
 const jsonText = JSON.stringify(data);
 ```
 
-1. Geben sie den Code in die Konsole des Browsers ein.
+1. Geben Sie den Code in die Konsole des Browsers ein.
 2. Geben Sie `jsonText` mit `console.log` aus.  
 3. Vergleichen Sie die Ausgabe mit der ursprünglichen Datenstruktur.  
 4. Erklären Sie kurz, warum `jsonText` kein Array mehr ist, obwohl er äußerlich noch Klammern enthält.
@@ -240,7 +238,7 @@ Erweitern Sie den Code aus der vorherigen Aufgabe wie folgt:
 const arr = JSON.parse(jsonText);
 ```
 
-1. Geben sie den Code wieder in die Konsole des Browsers ein.
+1. Geben Sie den Code wieder in die Konsole des Browsers ein.
 2. Geben Sie `arr` mit `console.log` aus.  
 3. Greifen Sie auf `arr[0].text` zu und geben Sie den Wert aus.  
 4. Fügen Sie dem Array mit `arr.push(...)` ein weiteres Objekt hinzu.
@@ -314,7 +312,8 @@ Typische Fälle sind:
 - eine Notiz wird umbenannt,  
 - eine Notiz wird gelöscht.
 
-[ER]Suchen Sie in Ihrem Code alle Stellen, an denen sich der Zustand Ihrer Notizen tatsächlich ändert  
+[ER]
+Suchen Sie in Ihrem Code alle Stellen, an denen sich der Zustand Ihrer Notizen tatsächlich ändert  
 (d. h. das Notizen-Array oder eine Notiz-Eigenschaft wird verändert).  
 Fügen Sie dort jeweils einen Aufruf von `save()` ein, und zwar so, dass die Reihenfolge logisch bleibt:  
 Zuerst ändern Sie die Daten, dann speichern Sie, danach aktualisieren Sie die Anzeige.
@@ -366,7 +365,7 @@ Ihre Anwendung arbeitet jedoch mit Notiz-Objekten (Instanzen Ihrer `Note`-Klasse
 weil daran die Methoden hängen, die Sie im Code benutzen.
 
 [ER]
-Erzeugen Sie aus den geladenen Objekten wieder Notiz-Objekte und speichern Sie diese in Ihrem Notize-Array.  
+Erzeugen Sie aus den geladenen Objekten wieder Notiz-Objekte und speichern Sie diese in Ihrem Notizen-Array.  
 Dafür brauchen Sie eine Möglichkeit, eine Notiz mit vorgegebenen Werten zu erzeugen  
 (`id`, `text`, `done`) denn diese Werte kommen aus dem Speicher.  
 Passen Sie Ihre `Note`-Erzeugung so an, dass beim Laden die gespeicherte `id` übernommen werden kann, statt eine neue zu vergeben.
