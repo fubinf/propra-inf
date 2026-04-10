@@ -998,10 +998,12 @@ Serverseite von Webanwendungen ("backend").
 
 
 [TERM::JSON|JavaScript Object Notation]
-Leichtgewichtiges Datenaustauschformat.
+Leichtgewichtiges, textbasiertes Datenaustauschformat.
 Ursprünglich eine kleine Teilmenge der Programmiersprache [TERMREF::JavaScript],
 heute aber in jeder gängigen Programmiersprache als [TERMREF::Bibliothek] implementiert
-und sehr verbreitet für den Datenaustausch zwischen Anwendungen.
+und sehr verbreitet für den Datenaustausch zwischen Anwendungen sowie zum Speichern strukturierter Daten.
+
+[HREF::https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON]
 [ENDTERM]
 
 ## K
@@ -2043,6 +2045,13 @@ möglicherweise ein Pfad zu einer spezifischen Seite oder Datei innerhalb der We
 möglicherweise Anfrageparametern
 ("query", z.B. "?a=1&b=user").
 URLs ermöglichen es [TERMREF::HTTP]-Klienten (z.B. Webbrowsern), Web-Ressourcen zu bezeichnen (zu "adressieren").
+
+Die Teile Protokoll, Domain und Port zusammen bilden den sogenannten _Origin_ (Ursprung) einer Seite,
+z.B. `https://example.com:443`.
+Zwei URLs haben denselben Origin, wenn Protokoll, Domain **und** Port übereinstimmen –
+`http://example.com` und `https://example.com` z.B. nicht, obwohl die Domain gleich ist.
+Der Origin ist u.a. der Sichtbarkeitsbereich von `localStorage`:
+Jede Kombination hat ihren eigenen, isolierten Speicher.
 [ENDTERM]
 
 
