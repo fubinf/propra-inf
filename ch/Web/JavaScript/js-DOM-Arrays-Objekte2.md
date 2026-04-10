@@ -404,16 +404,8 @@ Der Durchschnitt soll mit zwei Nachkommastellen angezeigt werden (nutzen Sie `to
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
+[INSTRUCTOR::Musterlösungen]
 
-[INSTRUCTOR::Antworten im Großen und Ganzen korrekt?]
-Priorität bei der Bewertung:
-
-- Studierende sollen gezielt mit Arrays arbeiten können (insbesondere `find()`, `findIndex()`, `splice()`, `sort()` und `reduce()`).
-- Bei der Produktliste soll ein Array von Objekten verwendet werden (z. B. `{name, preis}`).
-- Es soll verstanden werden, wie Elemente gezielt gesucht, eingefügt und gelöscht werden (nicht nur immer am Ende).
-- Beim DOM-Teil ist wichtig, dass Änderungen am Array (Einfügen, Löschen, Sortieren) korrekt im DOM dargestellt werden (`renderListe`).
-
-Bei den Aufgaben zu `sort()` ist entscheidend, dass eine Vergleichsfunktion verwendet wird und idealerweise das Originalarray nicht verändert wird (Kopie mit `[...array]`).
-Bei `reduce()` reicht es, wenn Studierende das Prinzip der Zusammenfassung erkennen (z. B. Summe oder Durchschnitt korrekt berechnen).
 [INCLUDE::ALT:]
+
 [ENDINSTRUCTOR]
