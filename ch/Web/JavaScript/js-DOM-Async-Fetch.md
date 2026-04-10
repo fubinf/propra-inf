@@ -17,21 +17,12 @@ requires: js-DOM-Persistente-Notizen
 
 
 [SECTION::background::default]
-Bisher haben wir mit JavaScript Daten verarbeitet, die bereits im Browser vorhanden waren:  
-Benutzereingaben, Werte aus dem localStorage oder fest im Code eingetragene Informationen.
-
-Viele Webanwendungen benötigen aber Daten von außen:
-aktuelle Wetterinformationen, Suchergebnisse, Posts aus einem Forum oder Produktdaten aus einer Datenbank.  
-Diese Daten werden über das Netzwerk geladen.
-
-Das Problem: Netzwerkanfragen dauern eine gewisse Zeit.  
+Viele Webanwendungen benötigen aber Daten von außen, die über das Netz geladen werden.
+Solche Netzwerkanfragen dauern eine gewisse Zeit.  
 Wenn JavaScript während des Ladens warten müsste, würde die gesamte Webseite einfrieren
 und der Nutzer könnte nichts mehr tun.  
 Deshalb arbeitet JavaScript asynchron: Es startet die Anfrage im Hintergrund
-und macht erst weiter, wenn die Antwort da ist.  
-
-In dieser Aufgabe lernen Sie, wie asynchrone Programmierung in JavaScript funktioniert
-und wie Sie damit Daten von Servern laden können.
+und verarbeitet die Antwort wie ein Ereignis, sobald sie da ist.  
 [ENDSECTION]
 
 
@@ -60,7 +51,8 @@ keine Klicks verarbeiten, keine Animationen abspielen, keine Eingaben entgegenne
 Die Seite würde einfach einfrieren.
 
 Deshalb funktioniert JavaScript im Browser anders:  
-Wenn eine Operation länger dauert (z. B. Daten aus dem Netzwerk laden), wird sie im Hintergrund gestartet und JavaScript macht sofort mit dem restlichen Code weiter.  
+Wenn eine Operation länger dauert (z. B. Daten aus dem Netzwerk laden), wird sie im Hintergrund gestartet und 
+JavaScript macht sofort mit dem restlichen Code weiter.  
 Sobald die Operation fertig ist, wird ein Stück Code ausgeführt, das darauf reagiert.  
 Das nennt man asynchrone Ausführung.
 
@@ -93,11 +85,14 @@ Nach 2 Sekunden ruft der Browser dann die Funktion auf, die wir `setTimeout` üb
 Diese Funktion nennt man einen Callback: Sie wird später zurückgerufen, wenn die Zeit abgelaufen ist.
 
 Wichtig zum Verständnis: JavaScript hat nur einen einzigen Ausführungsstrang (Single Thread).  
-Das bedeutet, es wird immer zuerst der gesamte gerade laufende Code abgearbeitet, bevor irgendetwas anderes (beispielsweise ein Callback aus `setTimeout`) an die Reihe kommt.  
-Die Callback-Funktion wird nicht sofort ausgeführt, sondern in eine Warteschlange eingereiht und erst verarbeitet, wenn der aktuelle Codeblock vollständig durchgelaufen ist.  
+Das bedeutet, es wird immer zuerst der gesamte gerade laufende Code abgearbeitet, 
+bevor irgendetwas anderes (beispielsweise ein Callback aus `setTimeout`) an die Reihe kommt.  
+Die Callback-Funktion wird nicht sofort ausgeführt, sondern in eine Warteschlange eingereiht und erst verarbeitet, 
+wenn der aktuelle Codeblock vollständig durchgelaufen ist.  
 Diesen Mechanismus nennt man die Event Loop.
 
-Mehr Informationen zu `setTimeout` finden Sie in der [MDN-Webdokumentation zu setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout)
+Mehr Informationen zu `setTimeout` finden Sie in der 
+[MDN-Webdokumentation zu setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout).
 
 [ER] Asynchrones Verhalten ausprobieren:
 
@@ -119,9 +114,10 @@ Was wird in welcher Reihenfolge ausgegeben und wieso?
 JavaScript arbeitet mit einer sogenannten Event Loop:  
 Zuerst wird der gesamte synchrone Code (also alles, was nicht in Callbacks steht) ausgeführt.  
 Erst danach werden asynchrone Callbacks aus einer Warteschlange abgearbeitet,
-selbst wenn deren Wartezeit bereits abgelaufen ist.
+selbst wenn deren Wartezeit längst abgelaufen ist.
 
-Das bedeutet: `setTimeout(..., 0)` bedeutet nicht "sofort", sondern "so bald wie möglich, nachdem der aktuelle Code fertig ist".
+Das bedeutet: `setTimeout(..., 0)` bedeutet nicht "sofort", sondern 
+"so bald wie möglich, nachdem der aktuelle Code fertig ist".
 [ENDHINT]
 
 [EQ] Erklären Sie in eigenen Worten, warum JavaScript im Browser asynchron arbeitet.
@@ -168,9 +164,10 @@ Dieses Problem wird als Callback Hell oder Pyramid of Doom bezeichnet.
 Außerdem ist die Fehlerbehandlung mit Callbacks kompliziert:  
 Man müsste in jedem Callback prüfen, ob ein Fehler aufgetreten ist, und dann entsprechend reagieren.
 
-Deshalb wurden Promises eingeführt: eine bessere Möglichkeit, mit asynchronen Operationen umzugehen.
+Deshalb wurden _Promises_ eingeführt: eine bessere Möglichkeit, mit asynchronen Operationen umzugehen.
 
-Mehr Informationen zu Callbacks finden Sie in der [MDN-Webdokumentation zu Callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function)
+Mehr Informationen zu Callbacks finden Sie in der 
+[MDN-Webdokumentation zu Callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function).
 
 
 ### Promises: Eine strukturiertere Lösung
@@ -179,12 +176,12 @@ Ein Promise ist ein Objekt, das ein zukünftiges Ergebnis repräsentiert.
 
 Stellen Sie sich vor, Sie bestellen ein Buch online.  
 Die Bestellung selbst ist sofort da, aber das Buch noch nicht.  
-Sie bekommen eine Bestätigung (das Promise), die sagt: "Das Buch wird geliefert, sobald es verfügbar ist."
+Sie bekommen eine Bestätigung (das Promise-Objekt), die sagt: "Das Buch wird geliefert, sobald es verfügbar ist."
 
 Später passiert eines von zwei Dingen:
 
-1. Das Buch wird geliefert (Promise ist erfüllt, auf englisch fulfilled)  
-2. Die Lieferung schlägt fehl (Promise ist abgelehnt, auf englisch rejected)
+1. Das Buch wird geliefert (Promise ist erfüllt, auf englisch _fulfilled_)  
+2. Die Lieferung schlägt fehl (Promise ist abgelehnt, auf englisch _rejected_)
 
 Solange keines von beidem passiert ist, ist das Promise ausstehend (pending).
 
@@ -239,12 +236,12 @@ Die Funktion bekommt den Wert übergeben, mit dem `resolve()` aufgerufen wurde.
 `.catch()` wird aufgerufen, wenn das Promise abgelehnt wurde.  
 Die Funktion bekommt den Fehler übergeben, mit dem `reject()` aufgerufen wurde.
 
-Eine Ausführliche Doku zu Promises finden sie in der [MDN-Webdokumentation zu Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+Eine ausführliche Doku zu Promises finden Sie in der 
+[MDN-Webdokumentation zu Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 [NOTICE]
-Sie müssen Promises nicht selbst erstellen.  
-Die meisten asynchronen Funktionen in JavaScript (wie `fetch`, das wir gleich kennenlernen) geben bereits Promises zurück.  
-Trotzdem ist es hilfreich zu verstehen, wie Promises funktionieren.
+Sie müssen Promises meist nicht selbst erstellen, denn die meisten asynchronen Funktionen in JavaScript 
+(wie `fetch`, das wir gleich kennenlernen) geben Promises zurück.
 [ENDNOTICE]
 
 [ER] Eigenes Promise erstellen:
@@ -358,10 +355,11 @@ Promise.resolve(10)
 
 ### async und await: Asynchroner Code, der synchron aussieht
 
-Promises sind schon viel besser als Callbacks, aber bei vielen aufeinanderfolgenden Operationen kann der Code immer noch recht verschachtelt werden.
+Promises sind schon viel besser als Callbacks, aber bei vielen aufeinanderfolgenden Operationen kann 
+der Code immer noch recht verschachtelt werden.
 
 Die Schlüsselwörter `async` und `await` machen asynchronen Code noch lesbarer.  
-Sie sind syntaktischer Zucker (eine angenehmere Schreibweise) für Promises.
+Sie sind syntaktischer Zucker (d.h. eine andere, angenehmere Schreibweise) für Promises.
 
 Eine Funktion, die mit `async` markiert ist, gibt automatisch ein Promise zurück:
 
@@ -375,8 +373,10 @@ holeBegruessung().then(function(text) {
 });
 ```
 
-Mehr Informationen finden Sie in der [MDN-Dokumentation zu async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)  
-und der [MDN-Dokumentation zu await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
+Mehr Informationen finden Sie in der 
+[MDN-Dokumentation zu async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)  
+und der 
+[MDN-Dokumentation zu await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
 
 Das Besondere an `async`-Funktionen ist, dass man darin das Schlüsselwort `await` verwenden kann.  
 `await` pausiert die Ausführung der Funktion, bis ein Promise erfüllt ist:
@@ -530,10 +530,13 @@ Beachten Sie: Wir brauchen zwei `await`-Aufrufe:
 1. `await fetch(...)` wartet auf die HTTP-Antwort vom Server  
 2. `await response.json()` wartet auf das Parsen der JSON-Daten
 
-Mehr Informationen finden Sie in der [MDN-Dokumentation zu Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+Mehr Informationen finden Sie in der 
+[MDN-Dokumentation zu Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
 
 [NOTICE]
-Für die folgenden Übungen verwenden wir [JSONPlaceholder](https://jsonplaceholder.typicode.com/), eine kostenlose Test-API, die speziell zum Üben gedacht ist.  
+Für die folgenden Übungen verwenden wir 
+[JSONPlaceholder](https://jsonplaceholder.typicode.com/), 
+eine kostenlose Test-API, die speziell zum Üben gedacht ist.  
 Sie benötigt keine Registrierung oder Authentifizierung.
 
 Die API liefert Beispieldaten für Blogposts, Benutzer, Kommentare und mehr.  
@@ -561,7 +564,8 @@ inhalt.textContent = daten.body;
 ausgabe.appendChild(inhalt);
 ```
 
-Mehr Informationen finden Sie in der [MDN-Dokumentation zu Response.json()](https://developer.mozilla.org/en-US/docs/Web/API/Response/json).
+Mehr Informationen finden Sie in der 
+[MDN-Dokumentation zu Response.json()](https://developer.mozilla.org/en-US/docs/Web/API/Response/json).
 
 [ER] Erste Schritte mit Fetch:
 
@@ -612,15 +616,15 @@ console.log(daten.body);   // Inhalt
 
 ### HTTP-Fehler erkennen und behandeln
 
-Die Fetch API verhält sich bei HTTP-Fehlern anders, als man vielleicht erwarten würde.
-
-Wenn der Server mit einem Fehlercode antwortet (z. B. 404 Not Found oder 500 Internal Server Error), wird das Promise nicht abgelehnt!  
+Die Fetch API verhält sich bei HTTP-Fehlern anders, als man vielleicht erwarten würde:
+Wenn der Server mit einem Fehlercode antwortet (z. B. 404 Not Found oder 500 Internal Server Error), 
+wird das Promise nicht abgelehnt!  
 Stattdessen wird es erfüllt, und Sie erhalten ein `response`-Objekt, dessen `ok`-Eigenschaft `false` ist.
 
 Das Promise wird nur bei Netzwerkfehlern abgelehnt,  
-also wenn die Anfrage gar nicht erst den Server erreicht(z. B. weil keine Internetverbindung besteht).
+also wenn die Anfrage gar nicht erst den Server erreicht (z. B. weil keine Internetverbindung besteht).
 
-Um HTTP-Fehler zu erkennen, müssen Sie `response.ok` prüfen:
+Um HTTP-Fehler zu erkennen, müssen Sie hingegen `response.ok` oder `response.status` prüfen:
 
 ```js
 async function holeDaten() {
@@ -641,11 +645,10 @@ async function holeDaten() {
 
 `response.ok` ist `true`, wenn der HTTP-Statuscode im Bereich 200-299 liegt (also Erfolg signalisiert).  
 Für alle anderen Statuscodes ist `ok` gleich `false`.
-
 `response.status` enthält den numerischen Statuscode (z. B. 404, 500, 200).
 
-Wenn wir in dem `if`-Block einen Fehler werfen (`throw new Error(...)`), wird das Promise abgelehnt und der `catch`-Block wird ausgeführt.
-
+Wenn wir in dem `if`-Block einen Fehler werfen (`throw new Error(...)`), 
+wird das Promise abgelehnt und der `catch`-Block wird ausgeführt.
 Wenn Sie mit `throw new Error("HTTP-Fehler 404")` einen Fehler werfen, erzeugt JavaScript ein Error-Objekt.  
 Im `catch`-Block können Sie auf dessen Nachricht mit `.message` zugreifen:
 
@@ -660,7 +663,7 @@ catch (fehler) {
 Erweitern Sie Ihre bisherige HTML-Datei:
 
 1. Fügen Sie einen zweiten Button "Ungültigen Post laden" hinzu  
-2. Dieser Button soll versuchen, `https://jsonplaceholder.typicode.com/posts/99999` zu laden (existiert nicht)  
+2. Dieser Button soll versuchen, `https://jsonplaceholder.typicode.com/posts/99999` zu laden, der nicht existiert.  
 3. Prüfen Sie `response.ok` und werfen Sie bei `false` einen Fehler mit `throw new Error(...)`  
 4. Fangen Sie den Fehler mit `try`/`catch` ab  
 5. Zeigen Sie die Fehlermeldung im DOM an (z. B. in roter Farbe)
@@ -679,7 +682,7 @@ Für eine gute Benutzererfahrung ist es wichtig, dem Nutzer zu zeigen, was gerad
 Stellen Sie sich vor, Sie klicken auf einen Button und nichts passiert.  
 Sie fragen sich: Hat der Klick funktioniert? Lädt gerade etwas? Ist die Seite abgestürzt?
 
-Deshalb sollten Sie immer drei Zustände unterscheiden und sichtbar machen:
+Deshalb sollten Sie immer vier Zustände unterscheiden und sichtbar machen:
 
 1. Vor dem Laden: Neutraler Zustand (z. B. leeres `<div>` oder "Klicken Sie auf Laden")  
 2. Während des Ladens: Ladeanzeige (z. B. "Lädt Daten...")  
@@ -754,7 +757,7 @@ Implementieren Sie folgendes Verhalten:
 2. Laden Sie die ersten 5 Posts von `https://jsonplaceholder.typicode.com/posts?_limit=5`  
    (Die API liefert ein Array von Post-Objekten)
 3. Fügen Sie nach dem Fetch eine künstliche Verzögerung von 2 Sekunden ein,  
-   damit der Ladezustand sichtbar wird (Da die API sehr schnell antwortet).  
+   damit der Ladezustand sichtbar wird (da die API sehr schnell antwortet).  
    Dafür können Sie folgende Hilfsfunktion verwenden:
 
 ```js
@@ -810,7 +813,7 @@ Stellen Sie sich vor, ein Nutzer klickt mehrmals schnell hintereinander auf "Lad
 Dann werden mehrere Anfragen parallel gestartet, und die Ergebnisse werden mehrfach angezeigt.  
 Das kann verwirrend sein.
 
-Deshalb ist es sinnvoll, den Button während des Ladens zu deaktivieren:
+Deshalb ist es üblich, den Button während des Ladens zu deaktivieren:
 
 ```js
 async function ladeDaten() {
@@ -832,8 +835,8 @@ async function ladeDaten() {
 
 Der `finally`-Block wird immer ausgeführt, egal ob ein Fehler aufgetreten ist oder nicht.  
 Das ist der perfekte Ort, um den Button wieder zu aktivieren.
-
-Wenn Sie `finally` weglassen und den Button nur im `try`-Block aktivieren, bleibt er nach einem Fehler dauerhaft deaktiviert!
+Wenn Sie `finally` weglassen und den Button nur im `try`-Block aktivieren, 
+bleibt er nach einem Fehler dauerhaft deaktiviert!
 
 [ER] Erweitern Sie Ihre Posts-Liste aus der vorherigen Aufgabe:
 
