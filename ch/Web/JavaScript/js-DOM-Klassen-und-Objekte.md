@@ -1,5 +1,5 @@
 title: Klassen und DOM – Interaktive Anwendungen
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 2
 assumes: css-Selektoren, css-Layout, html-Attribute
@@ -210,10 +210,12 @@ Für die Anwendung werden mehrere bereits vorhandene DOM-Elemente benötigt:
 Diese Elemente werden einmal gesucht und anschließend wiederverwendet.
 
 [HINT::`this`]
-Wenn eine Methode als Event-Handler verwendet wird, muss `this` weiterhin auf die aktuelle Instanz von `NotesApp` zeigen.
-
+Wenn eine Methode als Event-Handler verwendet wird, muss `this` weiterhin auf 
+die aktuelle Instanz von `NotesApp` zeigen.  
 Eine häufige Lösung ist eine Arrow-Function, z. B.:  
-`this.addBtn.addEventListener("click", () => this.addFromInput())`
+`this.addBtn.addEventListener("click", () => this.addFromInput())`  
+Siehe [PARTREF::js-DOM-Einführung] und/oder
+[MDN zu Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
 [ENDHINT]
 
 #### Notizen hinzufügen
