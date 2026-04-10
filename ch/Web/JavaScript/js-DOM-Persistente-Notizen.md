@@ -102,33 +102,13 @@ Wir brauchen also eine Möglichkeit, Arrays und Objekte als String zu speichern 
 
 ### Lösung: JSON als Zwischenformat
 
-Wir haben gesehen, dass `localStorage` ausschließlich Strings speichern kann.  
-Gleichzeitig arbeiten wir in unserer Anwendung mit Arrays und Objekten, also mit strukturierten Daten.  
-Wir benötigen daher ein Format, das beides miteinander verbindet:  
-Es muss als normaler Text speicherbar sein und dennoch die Struktur der Daten vollständig beschreiben.
+Da `localStorage` ausschließlich Strings speichern kann, brauchen wir ein Format,
+das Arrays und Objekte als Text darstellt und später verlustfrei zurückgelesen werden kann.
+Genau das leistet [TERMREF::JSON].
 
-Genau dafür wird JSON verwendet.
-
-JSON steht für JavaScript Object Notation.  
-Es handelt sich um ein textbasiertes Datenformat, das ursprünglich aus JavaScript stammt,  
-aber heute von nahezu allen Programmiersprachen verstanden wird.  
-JSON wird überall dort eingesetzt, wo strukturierte Daten gespeichert oder übertragen werden sollen,  
-zum Beispiel bei Konfigurationsdateien, beim Datenaustausch zwischen Server und Browser  
-oder wie in dieser Aufgabe beim Speichern von Anwendungszustand im Browser.
-
-Das Entscheidende an JSON ist:  
-Es beschreibt Arrays und Objekte als reinen Text.  
-Dieser Text enthält Klammern, Eigenschaftsnamen und Werte so, dass die ursprüngliche Struktur eindeutig rekonstruiert werden kann.
-
-Man kann sich JSON als eine textuelle Bauanleitung für eine Datenstruktur vorstellen:  
-Der Text selbst ist noch kein Array und kein Objekt, sondern eine Beschreibung davon.  
-Ein Programm kann diese Beschreibung lesen und daraus wieder echte Datenstrukturen erzeugen.  
-
-JavaScript stellt dafür zwei zentrale Funktionen bereit:  
-Mit `JSON.stringify(...)` wird eine Datenstruktur in JSON-Text umgewandelt,  
-und mit `JSON.parse(...)` wird dieser Text wieder als echte JavaScript-Struktur eingelesen.
-
-Eine ausführlichere Einführung zu JSON finden Sie in der [MDN-Dokumentation zu JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON).
+JavaScript stellt dafür zwei Funktionen bereit:
+`JSON.stringify(...)` wandelt eine Datenstruktur in JSON-Text um,
+`JSON.parse(...)` wandelt diesen Text wieder in eine echte JavaScript-Datenstruktur zurück.
 
 [EQ] Warum kann man mit dem Wert, der aus dem `localStorage` gelesen wird,  
 nicht direkt weiterarbeiten, auch wenn er wie ein Array oder Objekt aussieht?

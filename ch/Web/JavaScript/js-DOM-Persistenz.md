@@ -1,18 +1,18 @@
 title: Persistenz im Browser – Daten mit localStorage speichern
 stage: alpha
 timevalue: 1.5
-difficulty: 2
-assumes: js-DOM-Arrays-Objekte
-requires: js-DOM-Eventhandling
+difficulty: 3
+assumes: js-DOM-Arrays-Objekte, js-DOM-Eventhandling
 ---
 
-[SECTION::goal::idea]
+[SECTION::goal::idea,product]
 
 - Ich verstehe, warum JavaScript-Variablen beim Neuladen der Seite zurückgesetzt werden.  
 - Ich kann Werte mit `localStorage.setItem()` dauerhaft im Browser speichern.  
 - Ich kann gespeicherte Werte mit `localStorage.getItem()` laden und beim Start der Seite verwenden.  
 - Ich kann gespeicherte Daten gezielt löschen (`removeItem`) oder alles zurücksetzen (`clear`).  
-- Ich kann eine kleine Web-Anwendung so bauen, dass die Anzeige (DOM), interner Zustand und `localStorage` immer konsistent sind.
+- Ich kann eine kleine Web-Anwendung so bauen, dass die Anzeige (DOM), interner Zustand
+  und `localStorage` immer konsistent sind.
 [ENDSECTION]
 
 
@@ -32,7 +32,8 @@ mit dem Daten dauerhaft abgelegt und beim Start der Seite wieder geladen werden 
 
 Bevor wir uns mit dauerhaftem Speichern beschäftigen,  
 schauen wir uns an, wie sich JavaScript-Variablen im Browser verhalten.  
-Anhand eines einfachen Beispiels wird deutlich, warum der aktuelle Zustand einer Webseite nach einem Neuladen verloren geht.
+Anhand eines einfachen Beispiels wird deutlich,
+warum der aktuelle Zustand einer Webseite nach einem Neuladen verloren geht.
 
 Betrachten Sie den folgenden vereinfachten Code:
 
@@ -69,14 +70,16 @@ Betrachten Sie den folgenden vereinfachten Code:
 Solange die Webseite geöffnet ist, funktioniert dieser Code wie erwartet:  
 Bei jedem Klick auf den Button wird der Zähler erhöht und der aktuelle Wert auf der Webseite angezeigt.
 
-Wenn Sie die Seite jedoch neu laden (z. B. mit `F5` oder über den Aktualisieren-Button des Browsers), steht der Zähler plötzlich wieder auf `0`.
+Wenn Sie die Seite jedoch neu laden (z. B. mit `F5` oder über den Aktualisieren-Button des Browsers),
+steht der Zähler plötzlich wieder auf `0`.
 
 Warum passiert das?  
 Beim Neuladen der Seite passiert im Hintergrund Folgendes:
 
 - Das HTML-Dokument wird neu geladen.  
 - Das JavaScript wird komplett neu ausgeführt.  
-- Die Daten „gehen nicht verloren“, sondern das JavaScript-Programm wird vollständig neu gestartet und erzeugt seine Variablen erneut von Anfang an. 
+- Die Daten „gehen nicht verloren”, sondern das JavaScript-Programm wird vollständig neu gestartet
+  und erzeugt seine Variablen erneut von Anfang an.
 - Der Code beginnt wieder von der ersten Zeile an.
 
 Die Zeile `let zaehler = 0;` wird also erneut ausgeführt und setzt den Zähler wieder auf den Anfangswert.  
@@ -88,7 +91,8 @@ Für ihn ist jeder Seitenaufruf ein komplett neuer Start.
 
 Die Konsequenz dabei:  
 Alle Daten, die Sie bisher in Variablen, Arrays oder Objekten gespeichert haben,  
-existieren nur im Arbeitsspeicher des Browsers und nur für die aktuelle Sitzung.
+existieren nur im Arbeitsspeicher des Browsers und nur so lange, wie die Seite geladen ist.  
+Beim nächsten Laden beginnt das Skript neu, und alle Variablen werden von Grund auf neu erzeugt.
 
 
 ### Einführung: `localStorage`
@@ -101,7 +105,11 @@ auch wenn die Seite neu geladen oder der Browser geschlossen und später wieder 
 
 `localStorage` speichert Daten in Form von Schlüssel–Wert-Paaren.  
 Dabei sind sowohl die Schlüssel als auch die gespeicherten Werte immer Zeichenketten (Strings).  
-Die Daten sind browserabhängig: derselbe Code in einem anderen Browser hat einen eigenen `localStorage`.
+Die Daten sind browserabhängig: derselbe Code in einem anderen Browser hat einen eigenen `localStorage`.  
+Außerdem gilt: Der Sichtbarkeitsbereich von `localStorage` ist durch Protokoll, Domain und Port
+der Seite (den sogenannten _Origin_, siehe [TERMREF::URI]) bestimmt,
+zwei Seiten mit unterschiedlicher Kombination dieser drei Teile haben jeweils einen vollständig
+getrennten `localStorage`, auch wenn sie denselben Schlüssel verwenden.
 
 Der gespeicherte Inhalt ist nicht direkt im HTML sichtbar und kann nicht mit HTML oder CSS beeinflusst werden.  
 Der Zugriff erfolgt ausschließlich über JavaScript.
@@ -130,8 +138,7 @@ Man kann sich den Schlüssel wie eine Beschriftung vorstellen, unter der die Dat
 Der zweite Parameter ist der Wert, der gespeichert werden soll.  
 In diesem Beispiel ist das der String `"Lisa"`.
 
-Sobald `setItem` aufgerufen wird, wird der Wert sofort im Speicher des Browsers abgelegt.  
-Es ist kein zusätzlicher „Speichern“-Button nötig und es muss nichts bestätigt werden.  
+Sobald `setItem` aufgerufen wird, wird der Wert sofort im Speicher des Browsers abgelegt.
 
 Wird später erneut `setItem` mit demselben Schlüssel aufgerufen, wird der bisherige Wert überschrieben:
 
@@ -141,24 +148,9 @@ localStorage.setItem("name", "Anna");
 
 Der Schlüssel `"name"` existiert weiterhin, aber der gespeicherte Wert ist nun `"Anna"`.
 
-Merksatz:  
-`setItem` speichert einen Wert dauerhaft im Browser unter einem festen Schlüssel und überschreibt vorhandene Werte mit demselben Schlüssel.
-
-`setItem` ändert keine Variablen im Programm.  
-Es speichert lediglich einen Wert extern, das Programm selbst läuft unverändert weiter.
-
-[EQ] Betrachten Sie den folgenden Code:
-
-```js
-localStorage.setItem("test", "123");
-localStorage.setItem("test", "456");
-```
-
-Beantworten Sie die folgenden Fragen:
-
-1. Wie viele Einträge existieren nach der Ausführung im `localStorage`?  
-2. Welcher Wert ist unter dem Schlüssel `"test"` gespeichert?  
-3. Warum entsteht kein zweiter Eintrag, obwohl `setItem` zweimal aufgerufen wird?
+[EQ] Angenommen, zwei verschiedene Webseiten verwenden beide den Schlüssel `"zaehler"` im `localStorage`.  
+Können sich die beiden Seiten dabei gegenseitig die Werte überschreiben?  
+Begründen Sie Ihre Antwort und erklären Sie, wovon der Sichtbarkeitsbereich des `localStorage` abhängt.
 
 [ER] Zählerwert im `localStorage` speichern:  
 
@@ -194,7 +186,8 @@ Alle anderen gespeicherten Daten bleiben dabei unverändert erhalten.
 
 #### Alle Einträge löschen: `clear`
 
-Mit der Methode `clear` können alle im `localStorage` gespeicherten Daten dieser Webseite auf einmal gelöscht werden:
+Mit der Methode `clear` können alle im `localStorage` gespeicherten Daten der aktuellen Seite
+auf einmal gelöscht werden:
 ```js
 localStorage.clear();
 ```
@@ -204,12 +197,12 @@ wenn eine Anwendung vollständig zurückgesetzt werden soll, wenn ein Nutzer aus
 oder während der Entwicklung, um gespeicherte Testdaten wieder zu entfernen.
 
 Dabei ist Vorsicht geboten:  
-`clear()` entfernt sämtliche im `localStorage` gespeicherten Einträge dieser Webseite.  
-Nach dem Aufruf ist der `localStorage` für diese Seite vollständig leer.
+`clear()` entfernt sämtliche im `localStorage` gespeicherten Einträge der aktuellen Seite.  
+Nach dem Aufruf ist der `localStorage` vollständig leer.
 
 Zusammengefasst gilt:  
 `removeItem` löscht genau einen gespeicherten Wert anhand seines Schlüssels,  
-während `clear` alle gespeicherten Daten einer Webseite aus dem `localStorage` entfernt.
+während `clear` alle gespeicherten Daten der aktuellen Seite aus dem `localStorage` entfernt.
 
 [EQ] `removeItem` vs. `clear` verstehen:
 
@@ -230,7 +223,8 @@ Beschreiben Sie kurz, welche Einträge nach dem ersten und nach dem zweiten Aufr
 
 [ER] Zähler-Beispiel Erweitern:
 
-Erweitern Sie das bestehende Zähler-Beispiel um einen zweiten Button mit der Beschriftung „Zähler zurücksetzen“.  
+Erweitern Sie das bestehende Zähler-Beispiel um einen zweiten Button
+mit der Beschriftung „Zähler zurücksetzen”.  
 Beim Klick auf diesen Button soll:  
 1. der Eintrag `"zaehler"` aus dem `localStorage` gelöscht werden  
 2. die Variable `zaehler` wieder auf `0` gesetzt werden  
@@ -278,7 +272,8 @@ let zaehler = 0;
 
 Diese Zeile wird bei jedem Laden der Seite ausgeführt und setzt den Zähler immer wieder auf `0`,  
 unabhängig davon, ob im `localStorage` bereits ein anderer Wert gespeichert ist.  
-Damit der gespeicherte Wert genutzt werden kann, muss der Startwert von `zaehler` abhängig vom `localStorage` gesetzt werden.
+Damit der gespeicherte Wert genutzt werden kann,
+muss der Startwert von `zaehler` abhängig vom `localStorage` gesetzt werden.
 
 #### Initialisierung aus dem localStorage
 
@@ -296,17 +291,14 @@ let zaehler = 0;
 const gespeicherterWert = localStorage.getItem("zaehler");
 
 if (gespeicherterWert !== null) {
-  zaehler = gespeicherterWert;
+  zaehler = Number(gespeicherterWert);
 }
 ```
 
-Der Wert wird hier noch als `String` übernommen.  
-Für diesen einfachen Zähler ist das ausreichend, weil JavaScript beim Hochzählen automatisch umwandelt.  
-Für komplexere Daten ist das jedoch nicht zuverlässig.
-
-Merksatz:  
-Gespeicherte Daten müssen beim Start aktiv geladen und gesetzt werden.  
-`localStorage` allein ändert keine Variablen automatisch.
+Wichtig: `getItem` liefert immer einen String.  
+Damit der Wert als Zahl verwendet werden kann, muss er explizit mit `Number(...)` umgewandelt werden.  
+Ohne diese Umwandlung würde `zaehler` einen String enthalten,
+was bei Rechenoperationen wie `+` zu unerwartetem Verhalten führt (z. B. `"5" + 1` ergibt `"51"` statt `6`).
 
 [ER] Erweitern Sie das bestehende Zähler-Beispiel so, dass:
 
@@ -393,6 +385,22 @@ Zusätzliche Anforderungen:
 - Das HTML enthält keine Logik  
 - Alle Zustandsänderungen erfolgen über JavaScript  
 - Anzeige, interner Zustand und `localStorage` müssen immer konsistent sein
+
+[HINT::Checkbox und Zählerwert konsistent halten]
+Wenn die Checkbox `Negative Werte erlauben` deaktiviert wird, prüfen Sie sofort,
+ob der aktuelle Zählerwert negativ ist.
+Falls ja, setzen Sie ihn auf `0` und aktualisieren Sie sowohl die Anzeige als auch den `localStorage`.
+Denken Sie auch daran, den `−`-Button zu deaktivieren, wenn der Zähler bei `0` steht
+und negative Werte nicht erlaubt sind.
+[ENDHINT]
+
+[HINT::Alle Werte beim Start korrekt laden]
+Beim Laden der Seite müssen alle drei Werte (`zaehler`, `step`, `allowNegative`) 
+einzeln aus dem `localStorage` gelesen und geprüft werden.
+Beachten Sie, dass `getItem` immer einen String liefert:
+Für den Zähler und die Schrittweite brauchen Sie `Number(...)`,
+für die Checkbox einen Vergleich wie `wert === "true"`.
+[ENDHINT]
 [ENDSECTION]
 
 
