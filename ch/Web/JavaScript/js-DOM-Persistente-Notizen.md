@@ -2,7 +2,7 @@ title: Persistente Notizen-App mit localStorage und JSON
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-requires: js-Objekte-zum-DOM, js-DOM-Persistenz
+requires: js-Objekte-zum-DOM, js-localStorage
 # TODO: assumes: m_json (sobald m_json1 und m_json2 zu m_json fusioniert sind)
 ---
 
@@ -19,7 +19,7 @@ requires: js-Objekte-zum-DOM, js-DOM-Persistenz
 
 
 [SECTION::background::default]
-Sie kennen `localStorage` bereits aus [PARTREF::js-DOM-Persistenz].
+Sie kennen `localStorage` bereits aus [PARTREF::js-localStorage].
 Da `localStorage` ausschließlich Strings speichert,
 müssen strukturierte Daten wie Arrays und Objekte erst umgewandelt werden,
 bevor sie gespeichert werden können.
