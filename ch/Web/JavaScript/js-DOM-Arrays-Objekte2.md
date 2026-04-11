@@ -2,7 +2,7 @@ title: Datenstrukturen vertiefen – Dynamische DOM-Anwendungen mit Arrays & Obj
 stage: beta
 timevalue: 2.5
 difficulty: 2
-requires: js-DOM-Arrays-Objekte
+requires: js-Objektarrays-zum-DOM
 ---
 
 [SECTION::goal::idea,experience]
@@ -24,7 +24,7 @@ So entstehen interaktive DOM-Anwendungen, in denen sich Produktlisten, Preise od
 
 ### 1. Datensätze suchen – `find()` und `findIndex()`
 
-In [PARTREF::js-DOM-Arrays-Objekte] haben Sie gelernt, wie man mit `filter()` und `map()` Arrays verarbeitet,
+In [PARTREF::js-Objektarrays-zum-DOM] haben Sie gelernt, wie man mit `filter()` und `map()` Arrays verarbeitet,
 um gezielt Elemente auszuwählen oder Inhalte zu transformieren.
 Dabei haben Sie gesehen: `filter()` erstellt immer ein neues Array, das alle Elemente enthält, die eine bestimmte Bedingung erfüllen.
 
@@ -138,7 +138,7 @@ Eine ausführlichere Erklärung zu `splice()` finden Sie in der
 [MDN-Webdokumentation zu splice()](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
 
 [ER] Suchfunktion erweitern:
-Ergänzen Sie Ihre Produktliste aus der vorherigen Aufgabe [PARTREF::js-DOM-Arrays-Objekte] um:
+Ergänzen Sie Ihre Produktliste aus der vorherigen Aufgabe [PARTREF::js-Objektarrays-zum-DOM] um:
 - ein Eingabefeld für den Produktnamen,
 - einen Button „Suchen“,
 - einen eigenen Bereich (z. B. `<p id="suchErgebnis"></p>`).
