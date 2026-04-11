@@ -2,7 +2,7 @@ title: Persistente Notizen-App mit localStorage und JSON
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-requires: js-DOM-Klassen-und-Objekte, js-DOM-Persistenz
+requires: js-Objekte-zum-DOM, js-DOM-Persistenz
 # TODO: assumes: m_json (sobald m_json1 und m_json2 zu m_json fusioniert sind)
 ---
 
@@ -31,7 +31,7 @@ In dieser Aufgabe erweitern Sie Ihre Notizen-App um genau diese Persistenz.
 
 ### Ausgangspunkt
 
-In der Aufgabe [PARTREF::js-DOM-Klassen-und-Objekte]
+In der Aufgabe [PARTREF::js-Objekte-zum-DOM]
 haben Sie eine funktionierende Notizen-App gebaut:
 
 - Notizen werden als `Note`-Objekte modelliert  
