@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 3
 difficulty: 3
 assumes: http-GET, http-Status
-requires: js-DOM-Persistente-Notizen
+requires: js-localStorage-JSON
 ---
 
 [SECTION::goal::idea]
