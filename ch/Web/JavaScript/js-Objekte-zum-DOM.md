@@ -3,7 +3,7 @@ stage: beta
 timevalue: 2.0
 difficulty: 2
 assumes: css-Selektoren, css-Layout, html-Attribute
-requires: js-Klassen, js-DOM-Arrays-Objekte2, js-DOM-CSS
+requires: js-Klassen, js-DOM-Arrays-Objekte2, js-CSS-zum-DOM
 ---
 
 [SECTION::goal::idea]
@@ -241,7 +241,7 @@ für jede gespeicherte Notiz ein neues DOM-Element erzeugt (mit Hilfe der Method
 Jede Notiz enthält mehrere Buttons.  
 Anstatt für jeden Button einen eigenen Event-Listener zu registrieren, wird ein einzelner Listener auf dem umgebenden Container verwendet.
 
-Den Umgang mit `data-*`-Attributen und `dataset` kennen Sie bereits aus [PARTREF::js-DOM-CSS].
+Den Umgang mit `data-*`-Attributen und `dataset` kennen Sie bereits aus [PARTREF::js-CSS-zum-DOM].
 
 Wird auf einen Button geklickt, kann über `event.target.dataset.action` ermittelt werden, ob es sich z. B. um `toggle`, `edit` oder `delete` handelt.  
 Um die zugehörige Notiz zu finden, muss vom angeklickten Button aus das umgebende `.note`-Element bestimmt werden.

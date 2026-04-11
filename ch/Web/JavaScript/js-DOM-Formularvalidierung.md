@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 2.0
 difficulty: 2
 assumes: html-Formulare, css-Selektoren, css-Einführung, js-Eventhandling
-requires: js-DOM-CSS
+requires: js-CSS-zum-DOM
 ---
 
 [SECTION::goal::trial]
@@ -19,7 +19,7 @@ requires: js-DOM-CSS
 [SECTION::background::default]
 In dieser Aufgabe validieren Sie Benutzereingaben in einem Registrierungsformular.
 Sie kombinieren dabei DOM-Zugriffe, Events und CSS-Klassen,
-die Sie aus [PARTREF::js-DOM-CSS] und [PARTREF::js-Eventhandling] kennen.
+die Sie aus [PARTREF::js-CSS-zum-DOM] und [PARTREF::js-Eventhandling] kennen.
 Neu ist die strukturierte Organisation der Validierungslogik
 und das Zusammenführen mehrerer Einzelprüfungen zu einer Gesamtentscheidung.
 [ENDSECTION]
