@@ -3,7 +3,7 @@ stage: beta
 timevalue: 2.0
 difficulty: 2
 assumes: css-Selektoren, css-Layout, html-Attribute
-requires: js-Klassen, js-DOM-Arrays-Objekte2, js-CSS-zum-DOM
+requires: js-Klassen, js-Objektarrays-zum-DOM2, js-CSS-zum-DOM
 ---
 
 [SECTION::goal::idea]
