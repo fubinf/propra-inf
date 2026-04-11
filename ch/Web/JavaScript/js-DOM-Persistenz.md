@@ -2,7 +2,7 @@ title: Persistenz im Browser – Daten mit localStorage speichern
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-assumes: js-DOM-Arrays-Objekte, js-DOM-Eventhandling
+assumes: js-DOM-Arrays-Objekte, js-Eventhandling
 ---
 
 [SECTION::goal::idea,product]

@@ -2,7 +2,7 @@ title: Formulare validieren – Eingaben prüfen und Fehlerzustände darstellen
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-assumes: html-Formulare, css-Selektoren, css-Einführung, js-DOM-Eventhandling
+assumes: html-Formulare, css-Selektoren, css-Einführung, js-Eventhandling
 requires: js-DOM-CSS
 ---
 
@@ -19,7 +19,7 @@ requires: js-DOM-CSS
 [SECTION::background::default]
 In dieser Aufgabe validieren Sie Benutzereingaben in einem Registrierungsformular.
 Sie kombinieren dabei DOM-Zugriffe, Events und CSS-Klassen,
-die Sie aus [PARTREF::js-DOM-CSS] und [PARTREF::js-DOM-Eventhandling] kennen.
+die Sie aus [PARTREF::js-DOM-CSS] und [PARTREF::js-Eventhandling] kennen.
 Neu ist die strukturierte Organisation der Validierungslogik
 und das Zusammenführen mehrerer Einzelprüfungen zu einer Gesamtentscheidung.
 [ENDSECTION]
@@ -152,7 +152,7 @@ Ihre Aufgabe besteht darin, die Validierungslogik in JavaScript umzusetzen.
 
 HTML-Formulare senden beim Absenden die Daten und laden die Seite neu,
 unabhängig davon, ob der Benutzer den Button klickt oder Enter drückt.
-Wie Events und Eventobjekte funktionieren, kennen Sie aus [PARTREF::js-DOM-Eventhandling].
+Wie Events und Eventobjekte funktionieren, kennen Sie aus [PARTREF::js-Eventhandling].
 
 Neu ist hier
 [`event.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault):

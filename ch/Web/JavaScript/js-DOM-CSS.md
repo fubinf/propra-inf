@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 2.5
 difficulty: 2
 assumes: html-erste-Schritte, css-Einführung, css-Selektoren, html-Attribute
-requires: js-DOM-Eventhandling
+requires: js-Eventhandling
 ---
 
 [SECTION::goal::idea]
