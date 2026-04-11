@@ -7,13 +7,14 @@ assumes: Umgang-mit-Verzeichnissen, redirect
 
 [SECTION::goal::idea,experience]
 Ich weiß was `tar` ist und wie ich damit Archive erstellen, anzeigen und entpacken kann.
-Ich kenne den Nutzen von Kompression und kann große Archive mit `split` aufteilen und wieder zusammenfügen.
+Ich kenne den Nutzen von Kompression und kann große Archive mit `split` aufteilen und wieder 
+zusammenfügen.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-`tar` (kurz für “tape archiver”) erstellt und liest Archive, indem mehrere Dateien zu einer Archivdatei
-zusammengefasst werden. 
+`tar` (kurz für “tape archiver”) fasst mehrere Dateien zu einer Archivdatei zusammen und kann 
+solche Archive auch wieder entpacken. 
 Früher diente es zur Bandsicherung (und macht deshalb im Gegensatz zu z.B. `zip` seine
 Schreibzugriffe ausschließlich sequenziell), heute wird es stark zur Softwareverteilung
 und gelegentlich für Backups und Projektarchivierung eingesetzt. 
@@ -123,8 +124,11 @@ Lesen und verstehen Sie die Abschnitte **Benutzung, Beispiele** und insbesondere
 
 [EC] Wechseln Sie in das Verzeichnis `split`.
 
-[EC] Teilen Sie das `.tar`-Archiv in 5 gleich große Teile auf.
-Vergeben Sie den Namen `split_meinarchiv.tar.` (mit Punkt am Ende).
+Da die meisten E-Mail-Anbieter ein striktes Limit für die Größe von Dateianhängen festlegen, 
+müssen Sie das Archiv in kleinere Segmente zerlegen, um die Größenbeschränkung zu unterschreiten.
+
+[EC] Teilen Sie das .tar-Archiv in Teile auf, die jeweils eine Größe von 22 Kilobyte haben.
+Vergeben Sie den Namen `split_meinarchiv.tar`.
 
 
 ### Aufgeteilte `tar`-Archive wieder zusammenfügen
