@@ -2,8 +2,8 @@ title: Erste Schritte in JavaScript und DOM
 stage: beta
 timevalue: 2.25
 difficulty: 2
-assumes: html-Attribute
-requires: html-Formulare 
+assumes: html-Attribute, html-Formulare 
+requires: html-erste-Schritte
 ---
 
 [SECTION::goal::idea]

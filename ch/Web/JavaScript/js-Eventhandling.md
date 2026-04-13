@@ -1,8 +1,7 @@
 title: Funktionen, Eventhandling und Interaktion
 stage: beta
 timevalue: 1.25
-difficulty: 2
-assumes: html-erste-Schritte, html-Medien   
+difficulty: 2 
 requires: js-DOM-Baumstruktur
 ---
 

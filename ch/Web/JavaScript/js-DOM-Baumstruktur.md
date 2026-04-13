@@ -2,7 +2,6 @@ title: DOM erkunden und erste Interaktionen
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: html-erste-Schritte, html-Medien, css-Einführung, css-Selektoren
 requires: js-DOM-Einführung
 ---
 
