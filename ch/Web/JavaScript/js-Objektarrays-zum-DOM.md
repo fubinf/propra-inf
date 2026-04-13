@@ -2,7 +2,7 @@ title: "JavaScript-Datenstrukturen: Arrays und Objekte im DOM"
 stage: beta
 timevalue: 1.5
 difficulty: 2
-requires: js-Eventhandling
+assumes: js-Eventhandling
 ---
 
 [SECTION::goal::idea,experience]

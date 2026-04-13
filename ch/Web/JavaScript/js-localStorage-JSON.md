@@ -2,7 +2,8 @@ title: Persistente Notizen-App mit localStorage und JSON
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-requires: js-Objekte-zum-DOM, js-localStorage
+assumes: js-localStorage
+requires: js-Objekte-zum-DOM
 # TODO: assumes: m_json (sobald m_json1 und m_json2 zu m_json fusioniert sind)
 ---
 

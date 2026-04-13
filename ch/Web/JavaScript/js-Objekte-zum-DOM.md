@@ -2,8 +2,7 @@ title: Klassen und DOM – Interaktive Anwendungen
 stage: beta
 timevalue: 2.0
 difficulty: 2
-assumes: css-Selektoren, css-Layout, html-Attribute
-requires: js-Klassen, js-Objektarrays-zum-DOM2, js-CSS-zum-DOM
+assumes: css-Layout, js-CSS-zum-DOM, js-Klassen, js-Objektarrays-zum-DOM2
 ---
 
 [SECTION::goal::idea]

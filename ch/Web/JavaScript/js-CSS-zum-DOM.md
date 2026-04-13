@@ -2,8 +2,7 @@ title: JavaScript und CSS verbinden – Zustände sichtbar machen
 stage: alpha
 timevalue: 2.5
 difficulty: 2
-assumes: html-erste-Schritte, css-Einführung, css-Selektoren, html-Attribute
-requires: js-Eventhandling
+assumes: css-Selektoren, html-Attribute, js-Eventhandling
 ---
 
 [SECTION::goal::idea]

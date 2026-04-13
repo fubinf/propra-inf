@@ -2,8 +2,7 @@ title: Formulare validieren – Eingaben prüfen und Fehlerzustände darstellen
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-assumes: html-Formulare, css-Selektoren, css-Einführung, js-Eventhandling
-requires: js-CSS-zum-DOM
+assumes: html-Formulare, css-Selektoren, js-CSS-zum-DOM
 ---
 
 [SECTION::goal::trial]
