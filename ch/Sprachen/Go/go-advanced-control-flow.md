@@ -34,8 +34,8 @@ In dieser Aufgabe schauen wir uns diese Konzepte an und klären folgende Fragen:
 
 Das Schlüsselwort `defer` verzögert die Ausführung eines Funktionsaufrufs.
 
-Ein `defer`-Aufruf wird erst dann ausgeführt, wenn die umgebende Funktion 
-(oder generell: Geltungsbereich) ihre Ausführung beendet — unmittelbar _vor_ dem `return`.
+Ein `defer`-Aufruf wird erst dann ausgeführt, wenn die umgebende Funktion ihre Ausführung beendet —
+unmittelbar _vor_ dem `return`.
 Schauen Sie sich das
 [Thema 'defer' in "A Tour of Go"](https://go.dev/tour/flowcontrol/12)
 an.
@@ -52,19 +52,21 @@ Im
 [Beitrag 'Defer, Panic, and Recover' im Go Blog](https://go.dev/blog/defer-panic-and-recover)
 findet sich eine interessante Aussage über das Verhalten von `defer`:
 
-> Die Argumente einer aufgeschobenen Funktion werden zum Zeitpunkt der Ausführung
-> der `defer`-Anweisung ausgewertet.
+> A deferred function’s arguments are evaluated when the defer statement is evaluated.
+
+oder sinngemäß ins Deutsche übersetzt:
+> Die Argumente einer aufgeschobenen Funktion werden zum Zeitpunkt der Ausführung der `defer`-Anweisung ausgewertet.
 
 Doch was bedeutet das genau?
 
 Konzeptionell gibt es zwei gängige Arten, `defer` zu verwenden:
 
-__1. Mit einem direkten Funktionsaufruf:__
+**1. Mit einem direkten Funktionsaufruf:**
 ```go
 defer fmt.Println(s)
 ```
 
-__2. Mit einer anonymen Funktion:__
+**2. Mit einer anonymen Funktion:**
 ```go
 defer func(t string) { 
     fmt.Println(t)
@@ -90,7 +92,7 @@ func testDefer() (s string) {
 }
 ```
 
-[EQ] Was wird beim Ausführen der folgenden  Funktion auf der Kommandozeile ausgegeben?
+[EQ] Was wird beim Ausführen der folgenden Funktion auf der Kommandozeile ausgegeben?
 Warum?
 
 ```go
@@ -104,7 +106,6 @@ func testDefer() (s string) {
 [EQ] Welche Anwendungen von `defer` werden im
 [Artikel 'defer' in "Go by Example"](https://gobyexample.com/defer)
 erwähnt?
-Welche anderen Anwendungen fallen Ihnen ein?
 
 <!-- time estimate: 15 min -->
 
@@ -146,13 +147,17 @@ die oberste Ebene erreicht (einschließlich der `main`-Funktion).
 In letzterem Fall spricht man von einem Programmabbruch oder einem _Crash_.
 
 [NOTICE]
-Alle Funktionen, die intern `panic()` aufrufen, sollen im Namen nach Konvention mit `must`
-anfangen und dürfen keinen `error` zurückgeben.
-Die Idee ist, dass die Operation erfolgreich sein **muss** — wenn das schiefgeht, 
-ergibt weitere Ausführung keinen Sinn und das komplette Programm darf abstürzen.
+Funktionen, die bewusst `panic()` statt einer error-Rückgabe verwenden, sollen nach Konvention mit `Must`/`must`
+anfangen.
+Dieses Muster wird oft bei Hilfsfunktionen benutzt, die am Anfang des Programms aufgerufen werden.
+Die Idee ist, dass die Operation erfolgreich sein **muss** — wenn das schiefgeht, ergibt weitere Ausführung keinen Sinn.
+
+Mehr dazu finden Sie im
+[Abschnitt 'Must functions'](https://google.github.io/styleguide/go/decisions.html#must-functions)
+im Styleguide von Google.
 [ENDNOTICE]
 
-[EQ] Lesen Sie den Abschnitt __"When is panicking appropriate?"__ im 
+[EQ] Lesen Sie den Abschnitt **"When is panicking appropriate?"** im 
 [Artikel "When is it OK to panic in Go?"](https://www.alexedwards.net/blog/when-is-it-ok-to-panic-in-go) 
 und beantworten Sie die Frage:
 Wann würde der Autor des Artikels _Panicking_ der normalen Fehlerbehandlung vorziehen?
@@ -161,18 +166,20 @@ Wann würde der Autor des Artikels _Panicking_ der normalen Fehlerbehandlung vor
 folgende Aufgaben erfüllt:
 
 - Liest eine Ganzzahl von der Kommandozeile ein und gibt sie als `int64` zurück;
-- Ruft `panic(err)` auf, falls `strconv.ParseInt()` einen `error` liefert;
+- Ruft `panic(err)` auf, falls
+  [`strconv.ParseInt()`](https://pkg.go.dev/strconv#ParseInt)
+  einen `error` liefert;
 - Gibt andernfalls das Ergebnis `res` zurück.
 
-[ER] Rufen Sie die Funktion `mustGetInt64FromConsole()` in der `main`-Funktion auf und 
-geben Sie das Ergebnis auf die Kommandozeile aus.
-
 [HINT::Ich weiß nicht, wie eine Zahl von der Kommandozeile eingelesen wird]
-Schauen Sie hier nach, wie das funktioniert: 
+Schauen Sie hier nach, wie das funktioniert:
 [Reading in Console Input in Go](https://tutorialedge.net/golang/reading-console-input-golang/).
 
 Es macht keinen Unterschied, ob Sie `bufio.Reader` oder `bufio.Scanner` benutzen.
 [ENDHINT]
+
+[ER] Rufen Sie die Funktion `mustGetInt64FromConsole()` in der `main`-Funktion auf und 
+geben Sie das Ergebnis auf die Kommandozeile aus.
 
 [EC] Rufen Sie das Programm mittels `go run` aus und geben Sie "42" ein.
 
@@ -185,7 +192,7 @@ Es macht keinen Unterschied, ob Sie `bufio.Reader` oder `bufio.Scanner` benutzen
 
 In der Erklärung von `panic` wurde angesprochen, dass sie abgefangen werden kann.
 Wie?
-Durch einen Aufruf von `recover()` in der __aufgeschobenen anonymen Funktion:__
+Durch einen Aufruf von `recover()` in der **aufgeschobenen anonymen Funktion:**
 
 ```go
 func notPanickingFunction() (s string) {
@@ -220,9 +227,10 @@ an.
 
 [ER] Schreiben Sie eine Wrapper-Funktion `getInt64FromConsole() (i int64, err error)`, die
 intern die Funktion `mustGetInt64FromConsole` aufruft und ihre `panic` abfängt.
-Setzen Sie den Rückgabewert `err` auf das Ergebnis von `recover()` und `i = 0`, 
-wenn es einen `error` gibt.
-(die Typumwandlung von `any` zu `error` überwinden Sie mittels `fmt.Errorf("%v", someAny)`.)
+Rufen Sie `recover()` in einer `defer`-Funktion auf und speichern Sie das Ergebnis in einer Variable.
+Sofern dieses Ergebnis nicht `nil` ist, setzen Sie `err` auf das Ergebnis von `recover()` und `i` auf `0`.
+Der Rückgabewert von `recover()` ist vom Typ `any` — diesen konvertieren Sie zu `error` mittels
+`fmt.Errorf("%v", someAny)`.
 
 [ER] Ersetzen Sie `mustGetInt64FromConsole` in der `main`-Funktion durch `getInt64FromConsole`.
 
@@ -247,10 +255,14 @@ _"don't panic"_?
 
 [INSTRUCTOR::Hinweise]
 
-[EREFQ::4], [EREFQ::6], [EREFQ::7] sind als Lernfragen gedacht.
-Ihr Zweck besteht darin, dass Studierende darüber nachdenken und gegebenenfalls eigene
-Schlussfolgerungen ziehen. 
-Der Fokus liegt hierbei auf dem Reflektieren und Diskutieren, nicht auf richtig oder falsch.
+- [EREFQ::1] Hier müssen Studierende ausprobieren und das beobachtete Verhalten beschreiben.
+- [EREFQ::2] und [EREFQ::3] sind wichtig.
+  Eine plausible Erklärung ist gewünscht, was zu welchem Zeitpunkt ausgewertet wird.
+- [EREFQ::4] — [EREFQ::7] sind als Lernfragen gedacht.
+  Ihr Zweck besteht darin, dass Studierende darüber nachdenken, eigene Schlussfolgerungen ziehen und sich
+  das Wissen so gut es geht aneignen.
+- [EREFR::1] — [EREFR::4] müssen nicht einzeln kontrolliert werden, solange das Kommandoprotokoll mit den
+  Ausgaben von [EREFC::1] — [EREFC::4] übereinstimmt.
 
 **Kommandoprotokoll**
 [PROT::ALT:go-advanced-control-flow.prot]
