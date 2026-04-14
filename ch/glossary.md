@@ -1093,10 +1093,8 @@ deren Folgezeilen dann evtl. kein solches Standardformat haben.
 
 [TERM::Main-Branch|Master-Branch]
 Der Hauptzweig in einem git-Repository, welcher beim Initialisieren des Repos erstellt wird. 
-Dieser wird je nach Client und Server entweder `main` oder `master` heißen. In der 
-Debian-Installation von git wird weiterhin `master` verwendet, allerdings mit einem Verweis 
-darauf, dass sich dieser in Zukunft ändern wird. Wann das sein wird, ist unklar.
-Mit der Option `init.defaultBranch` lässt sich der Standardname permanent ändern.
+Dieser hieß früher `master`, seit einigen Jahren ist `main` üblich. 
+Mit der Option `init.defaultBranch` lässt sich der Standardname für künftige neue Repos ändern.
 [ENDTERM]
 
 
