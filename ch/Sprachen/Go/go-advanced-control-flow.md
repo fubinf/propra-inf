@@ -147,7 +147,7 @@ die oberste Ebene erreicht (einschließlich der `main`-Funktion).
 In letzterem Fall spricht man von einem Programmabbruch oder einem _Crash_.
 
 [NOTICE]
-Funktionen, die bewusst `panic()` statt einer error-Rückgabe verwenden, sollen nach Konvention mit `Must`/`must`
+Funktionen, die bewusst `panic()` statt einer `error`-Rückgabe verwenden, sollen nach Konvention mit `Must`/`must`
 anfangen.
 Dieses Muster wird oft bei Hilfsfunktionen benutzt, die am Anfang des Programms aufgerufen werden.
 Die Idee ist, dass die Operation erfolgreich sein **muss** — wenn das schiefgeht, ergibt weitere Ausführung keinen Sinn.
@@ -165,7 +165,7 @@ Wann würde der Autor des Artikels _Panicking_ der normalen Fehlerbehandlung vor
 [ER] Implementieren Sie eine Funktion `mustGetInt64FromConsole() int64`, die 
 folgende Aufgaben erfüllt:
 
-- Liest eine Ganzzahl von der Kommandozeile ein und gibt sie als `int64` zurück;
+- Liest eine Ganzzahl von der Standardeingabe ein und gibt sie als `int64` zurück;
 - Ruft `panic(err)` auf, falls
   [`strconv.ParseInt()`](https://pkg.go.dev/strconv#ParseInt)
   einen `error` liefert;
@@ -181,9 +181,9 @@ Es macht keinen Unterschied, ob Sie `bufio.Reader` oder `bufio.Scanner` benutzen
 [ER] Rufen Sie die Funktion `mustGetInt64FromConsole()` in der `main`-Funktion auf und 
 geben Sie das Ergebnis auf die Kommandozeile aus.
 
-[EC] Rufen Sie das Programm mittels `go run` aus und geben Sie "42" ein.
+[EC] Rufen Sie das Programm mittels `go run` auf und geben Sie "42" ein.
 
-[EC] Rufen Sie das Programm mittels `go run` aus und geben Sie "hello" ein.
+[EC] Rufen Sie das Programm mittels `go run` auf und geben Sie "hello" ein.
 
 <!-- time estimate: 20 min -->
 
@@ -234,9 +234,9 @@ Der Rückgabewert von `recover()` ist vom Typ `any` — diesen konvertieren Sie 
 
 [ER] Ersetzen Sie `mustGetInt64FromConsole` in der `main`-Funktion durch `getInt64FromConsole`.
 
-[EC] Rufen Sie das Programm mittels `go run` aus und geben Sie "42" ein.
+[EC] Rufen Sie das Programm mittels `go run` auf und geben Sie "42" ein.
 
-[EC] Rufen Sie das Programm mittels `go run` aus und geben Sie "hello" ein.
+[EC] Rufen Sie das Programm mittels `go run` auf und geben Sie "hello" ein.
 
 [EQ] Nun kennen Sie zwei Mechanismen zur Fehlerbehandlung in Go: _Panicking_ 
 und _"Fehler als Werte"_.
@@ -247,11 +247,13 @@ _"don't panic"_?
 <!-- time estimate: 20 min -->
 [ENDSECTION]
 
+
 [SECTION::submission::information,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Hinweise]
 
