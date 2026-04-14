@@ -1,5 +1,5 @@
 title: "Grundlagen von Go: Kanäle (Channels)"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: go-goroutines, go-arrays-and-slices
@@ -27,8 +27,8 @@ Doch Go bietet dafür eine elegantere Lösung: **Kanäle**.
 
 ### Übersicht
 
-Ein Kanal ist eine typisierte (optional: gepufferte) Rohrleitung zwischen zwei Goroutinen.
-Kanäle gehören zu _Mehrblocktypen_.
+Ein Kanal ist eine typisierte (optional: gepufferte) "Rohrleitung" zwischen Goroutinen.
+Kanäle gehören zu den _Mehrblocktypen_.
 
 Schauen Sie sich die folgenden zwei Themen in "A Tour Of Go" an:
 
@@ -36,11 +36,11 @@ Schauen Sie sich die folgenden zwei Themen in "A Tour Of Go" an:
 - ['Buffered Channels'](https://go.dev/tour/concurrency/3)
 
 Vollziehen Sie die Beispielprogramme nach und machen Sie selber Änderungen, 
-um die Fragen unten zu beantworten:
+um die folgenden Fragen zu beantworten. Geben Sie jeweils kommentarlos ein Beispiel an:
 
 [EQ] Wie wird ein `int`-Kanal **deklariert**?
 
-[EQ] Wie wird ein `int`-Kanal **definiert**?
+[EQ] Wie wird ein `int`-Kanal **initialisiert**?
 
 [EQ] Wie wird ein `int`-Kanal mit einem Puffer von Größe 2 **definiert**?
 
@@ -129,7 +129,7 @@ die beschriebenen Aktionen auszuprobieren.
 [WARNING]
 Senden an sowie Empfangen von einem `nil`-Kanal blockiert immer.
 
-Das Schließen eines bereits geschlossenen oder eines `nil`-Kanals führt zu `panic`.  
+Das Schließen eines bereits geschlossenen oder eines `nil`-Kanals führt zu `panic`.
 [ENDWARNING]
 
 <!-- time estimate: 10 min -->
@@ -138,15 +138,10 @@ Das Schließen eines bereits geschlossenen oder eines `nil`-Kanals führt zu `pa
 ### `select`
 
 `select` ist ein Sprachkonstrukt zur Koordination von Kanälen.
-
-Im Kontext nebenläufiger Programmierung wirkt `select` wie eine _Barriere_:
-Es besteht aus mehreren Zweigen (`case`-Anweisungen) und führt genau denjenigen aus,
+Es besteht aus mehreren Zweigen (`case`-Anweisungen) und führt davon immer einen aus,
 der nicht blockiert, also zu diesem Zeitpunkt ausgeführt werden kann.
-
 Optional kann ein `default`-Zweig angegeben werden, der nur dann ausgeführt wird,
 wenn alle anderen Zweige blockieren würden.
-
-Typischerweise wird `select` zur Synchronisation und Koordination von Kanälen verwendet.
 
 Sehen Sie sich das 
 [Thema 'Select' in "A Tour of Go"](https://go.dev/tour/concurrency/5)
