@@ -49,7 +49,7 @@ von Komponenten wie Templates, Modellen und Views.
 **Rapid Development**: Schnelle Entwicklung von Prototypen bis hin zu produktionsreifen 
 Anwendungen.
 
-Optional: Mehr Details zu Django's Design-Philosophie: 
+Optional: Mehr Details zu Djangos Design-Philosophie: 
 [Django Design Philosophy](https://docs.djangoproject.com/en/stable/misc/design-philosophies/)
 
 [EQ] Erklären Sie in eigenen Worten, was "Convention over Configuration" bedeutet.
@@ -77,7 +77,7 @@ Optional: Vergleichen Sie mit der traditionellen MVC-Architektur:
 [MVC vs MVT](https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/)
 
 
-### Django's eingebaute Funktionen
+### Djangos eingebaute Funktionen
 
 Django bietet zahlreiche eingebaute Features:
 
@@ -128,7 +128,7 @@ ein konkretes Anwendungsbeispiel.
 <!-- time estimate: 20 min -->
 
 
-### Entwicklungsumgebung einrichten und  Django Installation
+### Entwicklungsumgebung einrichten und Django installieren
 
 **Empfohlene Entwicklungstools**:
 
