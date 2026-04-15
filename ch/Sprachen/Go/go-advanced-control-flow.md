@@ -13,8 +13,6 @@ verwendet werden.
 [TOC]
 
 [SECTION::background::default]
-Das Schlüsselwort `panic` ist Ihnen möglicherweise bereits bekannt.
-
 `panic` und `recover` stellen einen alternativen Kontrollflussmechanismus dar — 
 das sogenannte _Panicking_.
 Dieses Verhalten erinnert an Ausnahmen (Exceptions) in Sprachen wie Java oder Python, 
@@ -41,7 +39,7 @@ Schauen Sie sich das
 an.
 
 [EQ] Fügen Sie dem Beispielprogramm dort eine weitere `defer`-Anweisung hinzu — beispielsweise
-`defer fmt.Println("!")` in Zeile 7.
+`defer fmt.Println("!")`.
 Was können Sie über die Ausführungsreihenfolge von mehreren `defer`s sagen?
 <!-- time estimate: 5 min -->
 
@@ -149,8 +147,8 @@ In letzterem Fall spricht man von einem Programmabbruch oder einem _Crash_.
 [NOTICE]
 Funktionen, die bewusst `panic()` statt einer `error`-Rückgabe verwenden, sollen nach Konvention mit `Must`/`must`
 anfangen.
-Dieses Muster wird oft bei Hilfsfunktionen benutzt, die am Anfang des Programms aufgerufen werden.
-Die Idee ist, dass die Operation erfolgreich sein **muss** — wenn das schiefgeht, ergibt weitere Ausführung keinen Sinn.
+Die Idee ist, dass die Operation erfolgreich sein **muss** bzw. ein Fehlschlag dabei total unerwartet
+wäre — wenn so etwas schiefgeht, ergibt weitere Ausführung keinen Sinn.
 
 Mehr dazu finden Sie im
 [Abschnitt 'Must functions'](https://google.github.io/styleguide/go/decisions.html#must-functions)
