@@ -129,8 +129,10 @@ Dann erst geht es bitte hier weiter:
 - Bei Statuscode 200 waren Sie erfolgreich.
 - Bei 301 oder 302 befolgen Sie bitte den Hinweis aus dem Rumpf.  
   Machen Sie einen entsprechenden neuen Request.  
-  Haben Sie keinen solchen Code erhalten, rufen Sie einen Shortlink auf, um das zu erleben,
-  z.B. [HREF::http://tinyurl.com/myalias]; bei denen ist Umlenken der Job.
+  Haben Sie keinen solchen Code erhalten, rufen Sie einen Shortlink auf, um das zu erleben, z.B. 
+  <!-- @LINK_SPEC: status=403 -->
+  [HREF::http://tinyurl.com/myalias]; 
+  bei denen ist Umlenken der Job.
 - Bei 400 war der Request in der Eingabdatei nicht wohlgeformt.  
   Korrigieren Sie das und versuchen Sie erneut (Haben Sie CRLF benutzt?)
 - Bei 403 ist vermutlich ein Login nötig; das lösen wir hier nicht.  
