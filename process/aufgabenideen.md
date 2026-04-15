@@ -683,3 +683,25 @@ Ideen:
 - Vergleich von sqlite, mysql, postgres; evtl. selber Aufsetzen und Ausprobieren.
 - Machine Learning: Einfache Gehversuche mit scikit-learn (aber dann brauchen wir einen
   Eingangstest, der nur Leute durchlässt, die das nötige Theoriewissen (insbes. Statistik) haben
+
+
+# Globale TODO_3
+
+Umsetzung mit Coding Agent, nicht von Hand:
+
+## Im Glossar
+
+- Interne Querverweise (nur auf vermutlich noch unbekannte Konzepte) ergänzen
+- `explains:` in Aufgaben ergänzen
+- Einträge durchsehen, wo noch ein externer Link ergänzt gehört
+- Einträge durchsehen, wo zu viele Einzelheiten stehen, insbesondere solche, die zeitlich
+  nicht konstant sind
+- Bei Mehrfachstichworten prüfen, ob das gängigste vorn steht.
+
+## In Aufgaben
+
+- `assumes:` ergänzen für `pip` und `apt` (oder globale Lösung: Aufgaben ins Basiskapitel verlagern)
+- `TERMREF` ergänzen
+- Redundanz vermeiden durch `SNIPPET`
+- Knackpunkte nachrüsten
+- Struktur der Musterlösungen vereinheitlichen
