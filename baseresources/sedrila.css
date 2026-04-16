@@ -643,7 +643,7 @@ p:has(span.enumeration-er) {
 }
 
 
-/********** viewer role:  TODO 3: rename vwr- to webapp- */
+/********** viewer role (i.e. the webapp for instructor or student): */
 
 .vwr-table {
     white-space: pre;
@@ -655,7 +655,7 @@ p:has(span.enumeration-er) {
     tab-size: 8;
 }
 
-.vwr-promptidx {  /* TODO 2: remove once sedrila 2.11 is no longer used (around 2026-03) */
+.vwr-promptidx {  /* TODO 2: remove once sedrila 2.11 is no longer used (around 2026-11) */
     background-color: #ffc107;
     font-size: 200%;
     font-weight: bold;
