@@ -22,7 +22,7 @@ für das Programmierpraktikum herstellen:
 [ENDSECTION]
 
 Anders als in allen anderen Kapiteln, wo Sie recht frei auswählen können,
-was Sie bearbeiten wollen, müssen Sie in diesem (kleinen) Kapitel
+was Sie bearbeiten wollen, sollten Sie in diesem (kleinen) Kapitel
 **alles abarbeiten** und sollten das **von oben nach unten** tun. 
 Nur dann haben Sie verlässlich die in den Aufgaben angenommene Arbeitsumgebung
 und das Grundverständnis für den Arbeitsablauf im ProPra.
@@ -30,3 +30,7 @@ und das Grundverständnis für den Arbeitsablauf im ProPra.
 _Alles_ heißt dabei allerdings nicht jede Aufgabe,
 denn an zwei Stellen gibt es drei Varianten (für drei Betriebssysteme),
 von denen Sie jeweils nur eine bearbeiten.
+
+Außerdem gibt unterwegs es ein paar Aufgaben, die nicht der Einrichtung der Arbeitsumgebung dienen, 
+sondern nur technisches Wissen vermitteln; diese sind als überspringbar markiert und wer
+das jeweilige Wissen schon hat, lässt diese Aufgaben aus.

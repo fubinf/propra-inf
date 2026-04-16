@@ -13,7 +13,7 @@ andere Betriebsumgebungen zielen.)
 [NOTICE]
 Wer schon ein konfiguriertes PyCharm oder ein VS Code mit Python-Unterstützung parat hat und 
 sich damit ein wenig auskennt, 
-darf diese Aufgabengruppe auch gern überspringen.
+sollte diese ganze Aufgabengruppe ruhig überspringen.
 [ENDNOTICE]
 
 

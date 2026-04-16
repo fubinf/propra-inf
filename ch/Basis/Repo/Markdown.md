@@ -19,7 +19,7 @@ Dazu verwenden wir die schön simple Notation "Markdown".
 
 [NOTICE]
 Wer Markdown schon kennt (halbwegs gut reicht), 
-darf diese Aufgabe auch gern überspringen.
+sollte diese Aufgabe überspringen.
 [ENDNOTICE]
 [ENDSECTION]
 
