@@ -20,7 +20,7 @@ und Linux.
 Linux ist nicht POSIX-kompatibel, hat aber die breiteste Softwareunterstützung und
 ist insbesondere auf Servern führend.
 
-**Wir tun hier immer so, als wären wir auf Linux, genauer: auf GNU/Linux Debian 12 "Bookworm"**
+**Wir tun hier immer so, als wären wir auf Linux, genauer: auf GNU/Linux Debian 13 "Trixie"**
 (oder ggf. einer späteren Version von Debian).
 Wer ein anderes Linux benutzt und 
 mehr noch Mac-Benutzer_innen müssen sich hier und da auf Abweichungen gefasst machen.
