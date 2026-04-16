@@ -230,6 +230,7 @@ chapters:
     taskgroups:
       - name: Unix-Umgebung
       - name: Repo
+      - name: Paketverwaltung
       - name: IDE
       - name: Schluss
   - name: Sprachen
