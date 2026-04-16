@@ -26,8 +26,6 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
   [PARTREF::Unix-Basiswerkzeuge] durchsehen und ggf. absolvieren.
   Von diesem Wissen macht das ProPra nämlich so häufig Gebrauch, dass diese Teile nicht jedes Mal
   als `assumes`-Abhängigkeit angegeben sind.
-- Das Gleiche gilt für die Aufgaben 
-  [PARTREF::apt], [PARTREF::venv] und [PARTREF::pip] aus der Gruppe [PARTREF::Paketmanager].
   Danach beginnt die Kür:
 - Wer seine Python-Kenntnisse ausbauen möchte,
   sollte bei [PARTREF2::Python-Standardbibliothek::Bibliotheken/Python-Standardbibliothek] starten
@@ -40,14 +38,13 @@ Deshalb schauen wir uns jetzt im Aufgabenkatalog um.
   Besonders empfohlen!
 - Wer seine methodischen Fertigkeiten verbessern möchte, dem legen wir die Kapitel
   [PARTREF::Testen] und [PARTREF::Debugging] ans Herz:
-  Was Sie dort lernen, ist auch in 30 Jahren noch wertvoll; 
-  tolle aktuelle Technikwerkzeuge lernen Sie dort zusätzlich kennen.
+  Was Sie dort lernen, wird überwiegend auch in 30 Jahren noch wertvoll sein.
   Das Kapitel [PARTREF::Bestandscode] gehört auch in diese Kategorie.
 - Wer angesichts des Titels "Programmierpraktikum" ganze Programme (statt nur kleiner Schnipsel)
   schreiben und so ganzheitlich üben möchte,
   findet passendes Material im Kapitel [PARTREF::Programmierpraxis].
 - Wer sich stark für Technologisches interessiert, fühlt sich hingegen im Kapitel 
-  [PARTREF::Web] zuhause. Das ist ein gigantischer Themenkreis, deshalb gibt es hier
+  [PARTREF::Web] zuhause. Das ist ein riesiger Themenkreis, deshalb gibt es hier
   vor allem dessen _Grundlagen_, was ebenfalls wieder halbwegs langlebiges Wissen zu sein verspricht.
   (Fortgeschrittene Technologiesachen sind hingegen detailreich und zugleich furchtbar kurzlebig.
   Sie lohnen die Lerninvestition nur, wenn man genau das Gelernte alsbald intensiv benutzen möchte.)
