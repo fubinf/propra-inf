@@ -66,8 +66,8 @@ defer fmt.Println(s)
 
 **2. Mit einer anonymen Funktion:**
 ```go
-defer func(t string) { 
-    fmt.Println(t)
+defer func(msg string) { 
+    fmt.Println(msg)
     fmt.Println(v) // v stammt aus dem äußeren Geltungsbereich 
 }(t)
 ```
@@ -75,7 +75,8 @@ defer func(t string) {
 Im ersten Fall werden alle Argumente der Funktion — hier also `s` — sofort beim 
 Erfassen der `defer`-Anweisung ausgewertet.
 
-Im zweiten Fall wird nur das explizit übergebene Argument (`t`) direkt ausgewertet.
+Im zweiten Fall wird nur das explizit übergebene Argument (`t`, welches in der Funktion als `msg` referenziert wird)
+direkt ausgewertet.
 Andere innerhalb der anonymen Funktion verwendete Variablen wie `v` werden erst beim 
 tatsächlichen Ausführen der aufgeschobenen Funktion ausgewertet.
 
@@ -193,17 +194,32 @@ Wie?
 Durch einen Aufruf von `recover()` in der **aufgeschobenen anonymen Funktion:**
 
 ```go
-func notPanickingFunction() (s string) {
+func safeDiv(a, b int) (result int, err error) {
     defer func() {
-        recover()
-        // hier darf s modifiziert werden
+        if r := recover(); r != nil {
+            err = fmt.Errorf("panic abgefangen: %v", r)
+        }
     }()
+	// Teilen durch 0 verursacht eine Panik
+    return a / b, nil
 }
 ```
 
 Ein Aufruf von `recover()` unterbricht das _Panicking_ und stellt den normalen 
 Programmfluss wieder her.
-Als Rückgabewert erhält man den Wert, mit dem das _Panicking_ ausgelöst wurde.
+Als Rückgabewert erhält man den Wert, mit dem das _Panicking_ ausgelöst wurde, jedoch als `any` typisiert.
+
+[FOLDOUT::Wie konvertiere ich `any` zu `error`? Typzusicherung!]
+Wenn Sie ganz genau wissen, dass sich in einem `any` ein `error` versteckt, können Sie dies mithilfe
+von _Typzusicherung_ (type assertion) überprüfen:
+
+```go
+reallyError, ok := maybeError.(error)
+```
+
+Ist `ok == true`, so ist die Umwandlung von `maybeError` (Typ `any`) zu `reallyError` (Typ `error`) gelungen;
+andernfalls ist die Konvertierung nicht möglich.
+[ENDFOLDOUT]
 
 Der Ablauf beim Abfangen einer `panic` sieht folgendermaßen aus:
 
@@ -226,9 +242,7 @@ an.
 [ER] Schreiben Sie eine Wrapper-Funktion `getInt64FromConsole() (i int64, err error)`, die
 intern die Funktion `mustGetInt64FromConsole` aufruft und ihre `panic` abfängt.
 Rufen Sie `recover()` in einer `defer`-Funktion auf und speichern Sie das Ergebnis in einer Variable.
-Sofern dieses Ergebnis nicht `nil` ist, setzen Sie `err` auf das Ergebnis von `recover()` und `i` auf `0`.
-Der Rückgabewert von `recover()` ist vom Typ `any` — diesen konvertieren Sie zu `error` mittels
-`fmt.Errorf("%v", someAny)`.
+Sofern dieses Ergebnis nicht `nil` ist, setzen Sie `err` mithilfe einer Typzusicherung auf diesen Wert.
 
 [ER] Ersetzen Sie `mustGetInt64FromConsole` in der `main`-Funktion durch `getInt64FromConsole`.
 
