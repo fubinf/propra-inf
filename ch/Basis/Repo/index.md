@@ -2,7 +2,7 @@ title: "Repo: Mit einem Git-Repository für die Ergebnisse arbeiten"
 ---
 Zur Verwaltung Ihrer Arbeitsergebnisse benutzen wir im ProPra eine
 versionierte Dateiablage, meistens genannt "Repository" (also "Ablage", "Lagerstätte")
-oder kurz "Repo".  TODO_2: TERM
+oder kurz [TERMREF::Repo].
 
 Die dabei benutzte Software heißt Git (gesprochen "gitt", mal großgeschrieben und mal klein).
 

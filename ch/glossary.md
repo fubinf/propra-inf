@@ -698,9 +698,13 @@ Kriterien erfüllt sind, bevor der Code in die nächste Phase des Entwicklungszy
 [ENDTERM]
 
 
-[TERM::Git]
+[TERM::Git|git]
 Das heute mit weitem Abstand verbreitetste 
 [Versionsverwaltungssystem](https://de.wikipedia.org/wiki/Versionsverwaltung).
+
+Eigentlich unterscheidet man das System "Git" (mit großem G) von dem Kommando
+"`git`" (mit kleinem g), das man zur Benutzung des Systems verwendet, aber in der Praxis
+wird der Unterschied kaum beachtet.
 [ENDTERM]
 
 
@@ -1527,14 +1531,25 @@ und können dort nach Belieben Code ausführen.
 [ENDTERM]
 
 
-[TERM::Repository-Verzeichnis]
-Engl. Repository-Directory, bezeichnet das von git erstellte unsichtbare `.git` 
-Verzeichnis in einem Repository. 
-Dieses Verzeichnis speichert alle Informationen über ein Repository. 
-D.h. sowohl *alle* Versionen der Dateien im Repo als auch alle Metainformationen wie z.B. 
-Commits oder Branch- und Tagnamen. 
-Die Arbeitskopien eines Repos liegen außerhalb des Repository-Verzeichnisses und werden als 
-Arbeitsverzeichnis bzw. Working-Directory ("workdir") bezeichnet.
+[TERM::Repository|Repo|Repository-Verzeichnis]
+Mit "Repository" (kurz: Repo, auf Deutsch: Versionsablage) ist heute in der Softwareentwicklung
+meistens ein [TERMREF::Git]-Repo gemeint,
+also ein Datenbestand, der eine Entwicklungsgeschichte für einen Dateibaum repräsentiert:
+Viele Dateien, hierarchisch in Verzeichnissen organisiert, mit ihren diversen aufeinanderfolgenden
+Versionen mit verschiedenem Inhalt, dazu Metadaten wie Autoren und Zeitstempel.
+
+Mit dem Wort wird oft die Kombination von zwei Dingen bezeichnet:
+das Repository-Verzeichnis und das Arbeitsverzeichnis.
+
+Das Repository-Verzeichnis ist das von git erstellte unsichtbare 
+Verzeichnis `.git` zuoberst in einem Repository. 
+Dieses Verzeichnis speichert alle Informationen über ein Repository: 
+alle Versionen aller Dateien und alle Metainformationen in geeigneten technischen Formaten;
+z.B. liegen die Dateien komprimiert vor.
+Dieses Verzeichnis wird im Normalfall nur von git gelesen und bearbeitet,
+nicht von der Benutzer_in.
+Die arbeitet stattdessen mit dem Arbeitsverzeichnis (engl. "working directory", "workdir"): 
+einer Fassung des verwalteten Dateibaums in seiner normalen Form.
 [ENDTERM]
 
 
