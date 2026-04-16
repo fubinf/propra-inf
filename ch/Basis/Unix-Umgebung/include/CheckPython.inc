@@ -14,7 +14,7 @@ nach und wiederholen Sie dann die obigen beiden Tests.
 Je nach Installationsweise liegen die Programme stattdessen oder zusätzlich als 
 `python3` und `pip3` statt `python` und `pip` vor.
 
-Sobald Sie im nächsten Abschnitt des Basiskapitels gelernt haben, wie das geht, 
+Sobald Sie im Abschnitt 'Repo' des Basiskapitels gelernt haben, wie das geht, 
 geben Sie die Ausgabe des folgenden Kommandos als Textdatei ab:
 `uname -a; cat /etc/os-release|grep PRETTY; python -V; pip -V`  
 (Sie sollten sich jetzt also eine Notiz machen, um das nicht zu vergessen.)

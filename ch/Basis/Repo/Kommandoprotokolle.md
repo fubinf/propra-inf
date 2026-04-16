@@ -29,9 +29,9 @@ Deshalb üben wir hier das Anfertigen und die Kontrolle von Kommandoprotokollen.
     2. `uptime`
     3. `whoami`
     4. `whoareyou`
-    4. `uname -a`
-    5. `cat /etc/os-release`
-    6. `python -V; pip -V`
+    5. `uname -a`
+    6. `cat /etc/os-release`
+    7. `python -V; pip -V`
 
 
 ### In Datei verfrachten
@@ -43,7 +43,7 @@ Deshalb üben wir hier das Anfertigen und die Kontrolle von Kommandoprotokollen.
   Auf Windows in Microsoft Terminal geht das mit der Tastenkombination Ctrl-C (Strg-C).
   Auf Mac OS ist es Command-C (Propeller-C).
   Auf Linux hängt es vom verwendeten Terminal ab; nötigenfalls bitte in dessen Hilfe schauen.
-- Starten Sie einen Texteditor.
+- Starten Sie einen Texteditor (siehe ggf. unten).
 - Fügen Sie die Zwischenablage-Inhalte dort ein (meist mit Ctrl-V/Strg-V bzw. Command-V/Propeller-V).
   Die Farbe der Prompts geht dabei verloren, was den Text erheblich weniger übersichtlich macht.
 - Speichern Sie die Datei als `Kommandoprotokolle.prot`.
