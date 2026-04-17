@@ -153,6 +153,9 @@ bei jedem einzelnen Kommando den Prompt verlangsamen.
 
 [INSTRUCTOR::Prompt-Elemente vorhanden?]
 Nur kontrollieren, ob die obigen Bedingungen von
-"Prompt selber bauen" eingehalten sind.
-Die Kontrolle erfolgt anhand der Abgabe zu [PARTREF::Kommandoprotokolle].
+"Prompt selber bauen" eingehalten sind -- das aber **genau**:
+Der regelgerechte Shellprompt ist entscheidend wichtig für die Kontrolle des
+Kommandoprotokolls bei fast jeder Aufgabe!
+
+Die Validierung des Shellprompts erfolgt anhand der Abgabe zu [PARTREF::Kommandoprotokolle].
 [ENDINSTRUCTOR]
