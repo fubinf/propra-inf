@@ -1,5 +1,5 @@
 title: "Kontrollfluss in Go: defer, panic und recover"
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 2
 assumes: go-interfaces
@@ -200,7 +200,7 @@ func safeDiv(a, b int) (result int, err error) {
             err = fmt.Errorf("panic abgefangen: %v", r)
         }
     }()
-	// Teilen durch 0 verursacht eine Panik
+    // Teilen durch 0 verursacht eine Panik
     return a / b, nil
 }
 ```
@@ -219,6 +219,10 @@ reallyError, ok := maybeError.(error)
 
 Ist `ok == true`, so ist die Umwandlung von `maybeError` (Typ `any`) zu `reallyError` (Typ `error`) gelungen;
 andernfalls ist die Konvertierung nicht möglich.
+
+(`func safeDiv()` oben macht diese Annahme _nicht_, sondern wickelt das erhaltene Objekt einfach
+nochmal frisch in einen `error` ein. 
+Das ist einfach, aber nicht hübsch, wenn man es auch vermeiden kann.)
 [ENDFOLDOUT]
 
 Der Ablauf beim Abfangen einer `panic` sieht folgendermaßen aus:
