@@ -1,5 +1,5 @@
-title: cron - Automatisierte Aufgaben planen mit cronjobs
-stage: alpha
+title: "cron: Automatisierte Aufgaben planen mit cronjobs"
+stage: beta
 timevalue: 1.0
 difficulty: 3
 assumes: redirect
@@ -20,23 +20,33 @@ ohne manuelles Eingreifen zu automatisieren.
 
 [SECTION::instructions::detailed]
 
-Es gitb drei zentrale Begriffe:
+Es gibt drei zentrale Begriffe:
 
 - `cron` ist der Daemon, der kontinuierlich läuft und `cronjobs` nach Plan ausführt.
 - `crontab` ist die Datei, in der Zeitpläne und Befehle definiert werden.
 - `cronjob` ist ein einzelner Eintrag in der `crontab`, der zu festgelegten Zeiten läuft.
 
+[NOTICE]
+## Windows-Benutzer, aufgepasst!
+
+Auf jedem normalen Linux-System läuft der `cron`-Daemon stets.
+Ihr WSL-Debian ist aber kein "normales" Linux in diesem Sinne, dort laufen nämlich
+üblicherweise überhaupt keine Hintergrunddienste.
+
+Damit Sie diese Übung machen können, müssen Sie einmal `sudo service cron start` ausführen.
+`cron` läuft dann, bis Sie das nächste Mal alle WSL-Fenster schließen.
+[ENDNOTICE]
 
 ### `cronjobs` auflisten
 
-Lesen Sie den ersten Absatz und die letzten fünf Absätze der **Description** der 
+Wir wollen lernen, wie die `crontab` bearbeitet wird und wie die Zeitfelder funktionieren.
+Lesen Sie dafür den ersten Absatz und die letzten fünf Absätze der **Description** der 
 [crontab(1) manpage](https://manpages.debian.org/stable/cron/crontab.1.en.html)
-
-Lesen Sie den Abschnitt **Getting started with Cron** der
+sowie den Abschnitt **Getting started with Cron** des
 [IT'S FOSS: Cron Job Beginner Guide](https://itsfoss.com/cron-job/).
-Achten Sie darauf, wie `crontab` bearbeitet wird und wie die Zeitfelder funktionieren.
 
-Sie übernehmen einen Server, auf dem verschiedene Skripte automatisch laufen.
+Unser Szenario ist wie folgt:
+Sie übernehmen einen Server, auf dem verschiedene Skripte automatisch regelmäßig per `cron` laufen.
 Bevor Sie Änderungen vornehmen oder neue `cronjobs` hinzufügen, ist es wichtig, einen Überblick zu 
 bekommen.
 
@@ -45,30 +55,29 @@ bekommen.
 
 ### Einen eigenen `cronjob` erstellen
 
-Sie wollen einen neuen `cronjob` erstellen, der jeden Montag um 3 Uhr morgens ein Backup-Skript 
-läuft.
-Um das besser zu verstehen, erstellen wir zuerst ein einfaches Testbeispiel.
+Szenario: Sie wollen einen neuen `cronjob` erstellen, der jeden Montag um 3 Uhr morgens ein Backup-Skript 
+ausführt.
+Da wir weder bis um 3 Uhr warten wollen, noch ein echtes Backup machen wollen, 
+bauen wir uns stattdessen ein einfaches Testbeispiel.
 
-Erstellen Sie einen `cronjob`, der jede Minute ausgeführt wird und die Datei 
-`~/ws/tmp/cron/uhrzeit.txt` mit der aktuellen Uhrzeit ergänzt.  
-
-Erstellen Sie einen entsprechenden `cronjob` für den aktuellen Benutzer. 
+Erstellen Sie für den aktuellen Benutzer einen `cronjob`, der _jede Minute_ ausgeführt wird und 
+in die Datei `cron/uhrzeit.txt` in Ihrem [TERMREF::Hilfsbereich] eine Zeile mit der aktuellen Uhrzeit ergänzt.
 
 [HINT::Spezielle Zeichen in Crontab]
-Innerhalb von `crontab` werden `%`-Zeichen speziell behandelt (Cron interpretiert sie als 
-Zeilenumbruch).
+Innerhalb von `crontab` werden `%`-Zeichen speziell behandelt: `cron` interpretiert sie als 
+Zeilenumbruch.
 Um diese Zeichen zu nutzen, müssen Sie sie mit Backslash maskieren: `\%`.
-Außerdem verwenden Sie `>>`, um Inhalte an eine Datei anzuhängen (ohne vorherige Inhalte zu löschen).
+Verwenden Sie `>>`, um Inhalte an eine Datei anzuhängen.
 
-[HINT::Wie gehen nochmal die Zeitangeben?]
-Nutzen Sie für den Job `echo "Aktuelle Uhrzeit: $(date +\%H:\%M:\%S)"`
+[HINT::Puh, wie lautet der resultierende Befehl?]
+Nutzen Sie für den Job `echo "$(date +\%H:\%M:\%S)"`
 [ENDHINT]
 
 [ENDHINT]
 
 [EC] Zeigen Sie Ihre modifizierte `crontab`.
 
-[EC] Zeigen Sie den Inhalt von `~/ws/tmp/cron/uhrzeit.txt`.
+[EC] Zeigen Sie den Inhalt von `cron/uhrzeit.txt`.
 
 ### Cron-Syntax anwenden
 
@@ -86,8 +95,8 @@ Entfernen oder kommentieren Sie Ihren Uhrzeit-`cronjob` aus Ihrer `crontab`.
 
 ### Weiterführende Links
 
-Falls Sie noch weiter mit Cron-Zeitplänen experimentieren möchten:
-[crontab.guru](https://crontab.guru/)
+Falls Sie noch weiter mit Cron-Zeitplänen experimentieren möchten, hilft
+[crontab.guru](https://crontab.guru/).
 [ENDSECTION]
 
 
@@ -97,7 +106,8 @@ Falls Sie noch weiter mit Cron-Zeitplänen experimentieren möchten:
 [ENDSECTION]
 
 
-[INSTRUCTOR::Kommandoprotokoll + Markdown]
+[INSTRUCTOR::Kommandoprotokoll]
+Als Knackpunkt reicht die erfolgreiche automatische Prüfung von Eintrag 2 des Kommandoprotokolls:
 [PROT::ALT:cron.prot]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
