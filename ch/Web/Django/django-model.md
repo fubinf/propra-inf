@@ -121,7 +121,7 @@ class Student(models.Model):
 - `DateTimeField()` - Datum und Zeit
 - `auto_now_add=True` - Automatisch beim Erstellen setzen
 
-Die `__str__`-Methode definiert, wie das Objekt als String dargestellt wird.
+Die `__str__`-Methode legt fest, wie das Objekt als String dargestellt wird.
 
 Optional: Neugierig geworden? Dann lesen Sie hier weiter:
 [Model field reference](https://docs.djangoproject.com/en/4.2/ref/models/fields/)
@@ -299,7 +299,7 @@ print("Studenten mit Alter 25 gelöscht")
 remaining = Student.objects.all()
 print("Verbleibende Studenten:", remaining)
 
-# beenden
+# Beenden
 exit()
 ```
 <!-- EC9 -->
@@ -354,7 +354,6 @@ python manage.py showmigrations mymodels
 
 ```python
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.db.models import Avg
 from .models import Student
 
