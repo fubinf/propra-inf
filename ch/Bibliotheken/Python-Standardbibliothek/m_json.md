@@ -1,5 +1,5 @@
 title: "json: Einlesen und manipulieren von JSON-Objekten"
-stage: draft
+stage: beta
 timevalue: 1.5
 difficulty: 2
 explains: JSON
