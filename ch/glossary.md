@@ -1181,6 +1181,20 @@ Anteil an erkannten Mutationen deutet auf gute Tests hin.
 
 ## N
 
+[TERM::Namenskonvention|camel case|snake case|kebab case]
+Eine Vereinbarung darüber, wie Namen geschrieben werden, um ein einheitliches Schriftbild zu 
+erhalten.
+In Programmiersprachen beschreibt man i.d.R. die Art und Weise, wie Namen von Variablen, Klassen 
+etc. geschrieben werden.
+Ein paar häufig verwendete Konventionen sind:
+
+- `camelCase`: jedes neue Wort im Namen großgeschrieben, üblich in z.B. Java, JavaScript, C#
+- `CamelCase`/`PascalCase`: wie `camelCase`, aber mit großem Anfangsbuchstaben
+- `snake_case`: alles kleingeschrieben, Unterstrich zwischen Wörtern, üblich in z.B. Python, C
+- `kebab-case`: alles kleingeschrieben, Minuszeichen zwischen Wörtern, üblich in z.B. CSS
+[ENDTERM]
+
+
 [TERM::Nameserver|Nameservers]
 Ein Nameserver hat die Aufgabe, Webadresse in IP-Adressen zu übersetzen. Diese Übersetzung ist 
 notwendig, weil Benutzer in der Regel leicht zu merkende Domainnamen (wie z.B. www.beispiel.de) 
