@@ -2,7 +2,7 @@ title: API Antworten verarbeiten
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: RestApi, m_json1
+assumes: RestApi, m_json
 ---
 [SECTION::goal::idea]
 
@@ -38,7 +38,7 @@ Daten auslassen. Daher werden wir mit diesem Response weiter arbeiten und die er
 
 In dem erhaltenen Response ist ein Array enthalten. Dieses Array besitzt JSON Objekte. Wir wollen einen Blick auf alle
 erhaltenen Werte des Feldes `id` werfen. 
-Nutzen Sie das [PARTREF2::m_json1::json]-Modul, um an diese Informationen heranzukommen.
+Nutzen Sie das [PARTREF2::m_json::json]-Modul, um an diese Informationen heranzukommen.
 
 - [ER] Filtern Sie alle erhaltenen `id`-Werte aus dem Response.
 - [ER] Erweitern Sie den Code so, dass alle Werte in einem Array stehen.

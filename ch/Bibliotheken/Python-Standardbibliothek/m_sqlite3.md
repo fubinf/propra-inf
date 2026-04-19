@@ -2,7 +2,7 @@ title: "sqlite3: lokales Datenbanksystem"
 stage: beta
 timevalue: 1.5
 difficulty: 2
-assumes: m_argparse, m_pprint, m_json2, sql-basics, sql-SELECT, sql-SELECT2
+assumes: m_argparse, m_pprint, m_json, sql-basics, sql-SELECT, sql-SELECT2
 ---
 
 [SECTION::goal::idea]

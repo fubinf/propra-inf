@@ -2,7 +2,7 @@ title: TDD im Pair Programming
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: tdd, m_json1, encoding-and-open
+assumes: tdd, m_json, encoding-and-open
 ---
 
 [SECTION::goal::product]

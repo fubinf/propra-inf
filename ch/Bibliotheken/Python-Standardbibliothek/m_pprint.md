@@ -3,7 +3,7 @@ stage: beta
 timevalue: 1.0
 difficulty: 2
 explains:
-assumes: m_json2, encoding-and-open
+assumes: m_json, encoding-and-open
 requires:
 ---
 [SECTION::goal::trial]

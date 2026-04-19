@@ -2,7 +2,7 @@ title: Pydantic
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: m_json2, m_datetime, m_dataclasses, py-OOP-Inheritance
+assumes: m_json, m_datetime, m_dataclasses, py-OOP-Inheritance
 
 ---
 
