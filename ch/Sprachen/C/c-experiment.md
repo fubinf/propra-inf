@@ -32,7 +32,7 @@ Während der Aufgabe werden Sie das folgende Programm analysieren und modifizier
 [INCLUDE::include/c-experiment.c]
 ```
 
-Legen Sie alls Allererstes ein neues CLion Projekt für die Aufgabe an (s. [PARTREF::c-setup]).
+Legen Sie als Allererstes ein neues CLion Projekt für die Aufgabe an (s. [PARTREF::c-setup]).
 Ersetzen Sie den gesamten Inhalt der `main.c` mit obigem Programm.
 
 [EC] Bauen und führen Sie das Programm aus.
@@ -76,14 +76,14 @@ In diesem Programm werden zwei sogenannte Header-Dateien eingebunden, `stdbool.h
 `stdbool.h` wird benötigt, um den Alias `bool` für den C Datentyp `_Bool` zu bekommen, sowie
 dedizierte `true` und `false` Konstanten.
 Das mag seltsam vorkommen, aber C hatte ursprünglich keinen Boolean.
-Damit bestehende Programme durch eine Einführung nicht kaputt gingen, wurde `_Bool` verwendet.
+Damit bestehende Programme durch eine Einführung nicht kaputtgingen, wurde `_Bool` verwendet.
 Der optionale Header `stdbool.h` dient also nur der Schönheit, ist allerdings mit Blick auf die
 Zukunft (C23, hier wird `bool`, `true` und `false` ein Kernbestandteil der Sprache werden)
 sehr zu empfehlen.
 
-`stdio.h` bring die `printf`, vergleichbar mit Pythons `print`, Funktion ins Spiel.
+`stdio.h` bringt die `printf`-Funktion ins Spiel, vergleichbar mit Pythons `print`.
 
-Freunden Sie sich am Besten direkt mit der `#include`-Direktive an, denn "built-ins" wie in Python
+Freunden Sie sich am besten direkt mit der `#include`-Direktive an, denn "built-ins" wie in Python
 gibt es in C nicht.
 
 
@@ -127,7 +127,7 @@ int main(void) {
 
 Es mag seltsam sein als erstes ganz ans Ende der Datei zu springen, aber es macht Sinn.
 In C spielt die Reihenfolge wie Sie Funktionen und Variablen schreiben eine wichtige Rolle,
-Sie können nämlich erst in den Zeilen danach auf diese Zugreifen.
+Sie können nämlich erst in den Zeilen danach auf diese zugreifen.
 
 Ein jedes C-Programm braucht eine Funktion die `main` heißt, sie bildet den Einstiegspunkt
 des Programmes.
@@ -140,10 +140,10 @@ mit dem Format `Datentyp Name` ist.
 
 Datentypen können Sie hier drei sehen:
 
-- `int`, eine Ganzzahl, die Größe ist Betriebssystem, Übersetzer und Prozessorarchitektur abhängig,
+- `int`, eine Ganzzahl, die Größe ist von Betriebssystem, Übersetzer und Prozessorarchitektur abhängig,
   für das im ProPra verwendete Debian mit GCC auf amd64 Prozessoren ist `int` auf 32-Bit gesetzt,
 - `char`, eine 8-Bit Ganzzahl,
-- `void`, der Nichts-Typ, verwendet um Anzugeben, dass Nichts zurückgegeben wird bzw. bei
+- `void`, der Nichts-Typ, verwendet um anzugeben, dass nichts zurückgegeben wird bzw. bei
   Parameterlisten keine Parameter existieren.
 
 Zusätzlich sind zwei Modifizierer zu sehen:
@@ -196,7 +196,7 @@ Im obigen Ausschnitt ist die Iterationsvariable `i`, Typ `unsigned char`, die En
 die Schleife stoppt, `i < 102`, und der Zuwachs ist mit `i++` auf + 1 pro Aufruf gesetzt.
 
 [NOTICE]
-C hat dedizierte Inkrementierungs und Dekrementierungs Operatoren, `++` und `--`.
+C hat dedizierte Inkrementierungs- und Dekrementierungsoperatoren, `++` und `--`.
 Man kann diese jeweils vor oder hinter eine Zahlenvariable schreiben.  
 Der Unterschied ist hierbei beim Rückgabewert des Operators, bei `x++` wird zwar `x` um eins erhöht,
 allerdings wird nicht das neue `x`, sondern das _vorherige_ zurückgegeben
@@ -273,8 +273,8 @@ void findPrimes(void) {
 Diese Funktion bildet den Kern des Programms.
 Es handelt sich um eine naive Implementierung des "Sieb des Eratosthenes".
 
-Einzige Neuerung hier ist eine neuer Datentyp, `short`, kurz für `short int`.
-Was genau ein `short` is hängt vom Betriebssystem, Übersetzer und der Prozessorarchitektur ab.
+Einzige Neuerung hier ist ein neuer Datentyp, `short`, kurz für `short int`.
+Was genau ein `short` ist, hängt vom Betriebssystem, Übersetzer und der Prozessorarchitektur ab.
 Für das im ProPra verwendete Debian mit GCC auf amd64 Prozessoren ist `short` auf 16-Bit gesetzt.
 
 
@@ -309,17 +309,17 @@ int isPrime(const unsigned char i) {
 }
 ```
 
-Eine einfache Funktion, deren einzige Aufgabe es ist, für eine Zahl `i` auszusagen, ob diese Prim
+Eine einfache Funktion, deren einzige Aufgabe es ist, für eine Zahl `i` auszusagen, ob diese prim
 ist oder nicht.
 Hierfür wird das mittels `findPrimes` aufgebaute Array `isNotPrime` verwendet.
 
 Eine Besonderheit gibt es dennoch, und zwar eine Kurzschreibweise für Kontrollstrukturen.
 Denn, wenn Sie nur eine einzige Zeile in einem `if`, `else`, oder gar Schleifenkörper haben,
 können die `{}` weggelassen werden.  
-Es empfiehlt sich diese dennoch zu schreiben, man spart sich so das
-nachträgliche Einfügen sollte später doch eine zweite Zeilen benötigt werden.
-Hier ist mit dem `if` ein "Early-Return"-Abbruch implementiert, diese sind für gewöhnlich immer
-nur ein `return`, es bietet sich die kompaktere Schreibweise der Leserlichkeit halber an.
+Es empfiehlt sich, diese dennoch zu schreiben; man spart sich so das
+nachträgliche Einfügen, sollte später doch eine zweite Zeile benötigt werden.
+Hier ist mit dem `if` ein "Early-Return"-Abbruch implementiert; solche bestehen für gewöhnlich
+nur aus einem `return`, die kompaktere Schreibweise bietet sich der Lesbarkeit halber an.
 
 
 # Geführte Veränderungen
@@ -337,8 +337,8 @@ Arrays in C sind immer fester Länge, wobei diese Länge durchaus auch aus einer
 darf.  
 Hier ist die Länge aber fest gesetzt, sie beträgt 101.
 
-Wenn Sie in Python auf einen Index zugreifen der außerhalb des Arrays liegt, bekommen Sie eine
-Ausnahme, garantiert, jedes mal.
+Wenn Sie in Python auf einen Index zugreifen, der außerhalb des Arrays liegt, bekommen Sie eine
+Ausnahme, garantiert, jedes Mal.
 In C hingegen ist es ungewiss was passiert, der Standard macht keine Aussage.
 Meist stürzt das Programm ab, es kann aber auch weiterlaufen mit nun beschädigten Daten (oder
 schlimmer, einer Sicherheitslücke die einen Angriffsvektor darstellt).
@@ -355,7 +355,7 @@ Während des Präprozessorschrittes der Übersetzung werden dann alle Vorkommnis
 durch den Wert ersetzt.
 Sie sparen Speicher und erhalten dennoch die Sicherheit, überall den selben Wert zu haben.
 
-[ER] Fügen Sie `#define ARRAY_SIZE 101` unterhalb der `#include` ein.
+[ER] Fügen Sie `#define ARRAY_SIZE 101` unterhalb der `#include`-Direktiven ein.
 
 [ER] Ersetzen Sie alle Vorkommnisse des Wertes (101) durch den Bezeichner `ARRAY_SIZE`,
 aus `bool isNotPrime[101];` wird 
@@ -366,11 +366,11 @@ aus `bool isNotPrime[101];` wird
 
 Bis jetzt prüft die Implementierung des Siebes alle Zahlen ab 2 bis 100.
 Das ist etwas ineffizient, es reicht aus nur bis zur Wurzel aus 100 zu prüfen, da alle Zahlen danach
-entweder ein Vielfaches einer bereits geprüften Zahl, oder Prim sind.
+entweder ein Vielfaches einer bereits geprüften Zahl, oder prim sind.
 
 [ER] Binden Sie den Mathe-Header `math.h` mittels `#include <math.h>` ein.
 
-[ER] Verändern Sie die Endbedingung der Ersten For-Schleife des Siebes so, dass die Schleife 
+[ER] Verändern Sie die Endbedingung der ersten For-Schleife des Siebes so, dass die Schleife 
 höchstens bis zur Wurzel aus 100 läuft.
 
 [HINT::Grenzwert]
@@ -380,7 +380,7 @@ Nutzen Sie für die Bedingung `ARRAY_SIZE`.
 
 ## Vereinfachung der Nutzung
 
-Damit `isPrime` funktioniert muss vorher `findPrimes` ausgeführt werden.
+Damit `isPrime` funktioniert, muss vorher `findPrimes` ausgeführt werden.
 Es wäre schöner, wenn `isPrime` das für Sie übernimmt, aber nur, wenn `findPrimes` vorher noch
 nie ausgeführt wurde.
 
@@ -388,7 +388,7 @@ nie ausgeführt wurde.
 Die Variable soll auch Typ `bool` sein, mit dem Bezeichner `isInitialised`.
 
 [ER] Am Ende der `findPrimes`, also nach der For-Schleife aber noch vor dem Funktionsende, soll
-die Variable `isInitialised` auf `true` gesetzte werden (Achtung, anders als in Python werden
+die Variable `isInitialised` auf `true` gesetzt werden (Achtung, anders als in Python werden
 `true` und `false` klein geschrieben).
 
 [ER] Fügen Sie vor dem `return` in der `isPrime` einen `if` Block ein, der, wenn `isInitialised`
