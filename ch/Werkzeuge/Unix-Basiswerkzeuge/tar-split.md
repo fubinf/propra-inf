@@ -1,5 +1,5 @@
 title: tar-split - Archive aufteilen und wieder zusammenfügen
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: Umgang-mit-Verzeichnissen, redirect
