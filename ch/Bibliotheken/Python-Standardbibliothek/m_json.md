@@ -64,7 +64,7 @@ Recherchieren Sie für die folgenden Fragen ggf. im Netz:
 [EQ] JSON wird häufig als 'leichtgewichtig' bezeichnet.
 Vergleichen Sie es mit zwei weiteren Datenstrukturformaten diesbezüglich.
 Bringt die Leichtgewichtigkeit evtl. auch Nachteile mit sich?
-`<!-- time estimate: 20 min -->`
+<!-- time estimate: 20 min -->
 
 
 ### JSON-Objekt erstellen
@@ -96,7 +96,7 @@ Speichern Sie das Objekt als Datei unter dem Namen `m_json_students.json`.
 
 [ER] Ergänzen Sie einen weiteren Eintrag für einen zweiten Studenten in das JSON-Objekt.
 Sie brauchen nur einen Namen anzugeben, die übrigen Felder können entfallen.
-`<!-- time estimate: 10 min -->`
+<!-- time estimate: 10 min -->
 
 
 ### JSON mit Python
@@ -107,7 +107,7 @@ Legen Sie die Datei `m_json.py` an und fügen Sie dort Ihre Lösungen für die f
 Programmieraufgaben ein.
 
 Lesen Sie grob die
-[Dokumentation vom Modul `json`](https://docs.python.org/3/library/json.html)
+[Dokumentation des Moduls `json`](https://docs.python.org/3/library/json.html)
 bis zum Abschnitt `Encoders and Decoders`.
 
 [EQ] Zum Serialisieren und Deserialisieren stellt das Modul jeweils zwei Funktionen zur 
@@ -144,7 +144,7 @@ existiert.
 
 [ER] Schreiben Sie das geänderte Objekt in die Datei `m_json_students2.json`.
 Der Inhalt der Datei soll ebenfalls gut lesbar sein.
-`<!-- time estimate: 60 min -->`
+<!-- time estimate: 60 min -->
 [ENDSECTION]
 
 
