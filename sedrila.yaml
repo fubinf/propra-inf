@@ -54,15 +54,9 @@ participants:
 # ----- entries relevant for sedrila instructor & sedrila student:
 startdate: $SEDRILA_STARTDATE  # first day of the course
 enddate: $SEDRILA_ENDDATE  # last day of the course
-bonusrules:
-    student_yaml_attribute: course_size_hours
-    bonusperiod_type: month  # "week"/"month" for calendar week or calendar month
-    bonusperiods: 10  # how many periods (counting from the first) are eligible for a bonus
-    bonus_threshold_percent: 10  # what fraction of course_size_hours must be done to get the bonus for period
-    bonus_size_percent: 1  # what fraction of course_size_hours is deducted for each bonus
 allowed_attempts: "2 + 0.4/h"
 manual_bookings:
-    types: ['REASON-A', 'REASON-B']
+    types: ['KORREKTUR']
     explanation_url: "https://www.mi.fu-berlin.de/w/SE/Programmierpraktikum"
 instructors:
   - nameish: Lutz Prechelt
