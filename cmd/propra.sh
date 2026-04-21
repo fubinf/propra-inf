@@ -60,10 +60,10 @@ s_authorWS() {  # build released tasks for winter semester
   s_author_do --include-stage beta "$@"
 }
 
-#s_author2() {  # build released tasks for both semesters
-#  s_authorSS "$@"
-#  s_authorWS --sums "$@"
-#}
+s_author2() {  # build released tasks for all currently maintained ProPras
+  s_authorSS "$@"
+  # s_authorWS --sums "$@"  # receives no updates any more
+}
 
 s_publish_do() {
   (set -x; 
@@ -81,10 +81,10 @@ s_publishWS() {
   s_publish_do  
 }
 
-#s_publish2() {
-#  s_publishSS
-#  s_publishWS
-#}
+s_publish2() {
+  s_publishSS
+  # s_publishWS  # receives no updates any more
+}
 
 s_serve() {
   s_set_draft
