@@ -289,7 +289,7 @@ Sofern nicht in den Aufgaben anders aufgeführt, nutzen Sie diesen Weg, um Ihre
 C Programme zu bauen und auszuführen.
 
 Wenn `task.json` schon existiert, fügen Sie dort nur den Kern des obigen
-Eintrags hinzu; siehe Aufgabe [PARTREF::m_json1].
+Eintrags hinzu; siehe Aufgabe [PARTREF::m_json].
 [ENDFOLDOUT]
 
 

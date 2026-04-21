@@ -64,7 +64,7 @@ Programmabsturz zu analysieren und zu beheben.
 Sie finden die Tabelle mit dieser Information unter 
 [HREF::https://docs.python.org/3/library/json.html#encoders-and-decoders].  
 Wenn Sie sich mehr für JSON und der Handhabung von JSON in Python interessieren, 
-finden Sie in den Aufgaben [PARTREF::m_json1] und [PARTREF::m_json2] einen Einstieg.
+finden Sie in der Aufgabe [PARTREF::m_json] einen Einstieg.
 
 [HINT::Das eingegebene Argument von `json.load()`...]
 ...ist die Datei `ingredients.json`. Es handelt sich um ein JSON-Array.
