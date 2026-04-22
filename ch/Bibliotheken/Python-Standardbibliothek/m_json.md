@@ -161,9 +161,36 @@ Geben Sie ebenfalls beide JSON Dateien ab.
 JSON Objekt in [TREEREF::m_json_students.json] mit Kommandoprotokoll vergleichen.
 Bei Abweichungen oder Auffälligkeiten zusätzlich den Code prüfen.
 
+[EREFR::1]-[EREFR::1] **Knackpunkt** (BD) Die Aufgabe lässt viele Freiheiten, was die Struktur des 
+JSON Objekts betrifft.
+Eine undurchdachte Struktur kann die restlichen Aufgaben erschweren.
+Vergleichen Sie daher das JSON Objekt zuerst mit der Musterlösung.
+Gibt es starke Abweichungen, prüfen Sie genauer, ob alle Informationen enthalten sind.  
+Schauen Sie sich anschließend die Lösungen zu [EREFR::4] und [EREFR::6] im Code an.
+Sind sie unnötig tief verschachtelt oder enthalten sie komplexe Fallunterscheidungen, ist 
+vermutlich die JSON Struktur ungeeignet
+(z.B.: Wird String-Matching betrieben, sind die Werte im JSON vermutlich nicht in mehrere 
+Schlüssel getrennt).
+
+Ein Beispiel für eine akzeptable Lösung für [EREFR::4]:
+
+```python
+[SNIPPET::ITREE:m_json.py::a4]
+```
+
+[EREFR::3] (DS) Das Objekt sollte mit einer Funktion aus `json` serialisiert werden.
+Wird das Objekt unformatiert ausgegeben, wurde vmtl. der Parameter `indent` nicht angegeben.
+
+[EREFR::4]-[EREFR::5] (BS) Prüfen im Protokoll: Donnerstag → True, Freitag → False
+
+[EREFR::6]-[EREFR::8] (BS) In `m_json_students2.json` sollte die Wunschnote für Lineare Algebra 
+2.3 betragen.
+Das Programmierpraktikum sollte **keine** Wunschnote haben.
+
 [INCLUDE::ALT:]
 
-### `m_json_students.json`:
+
+### `m_json_students.json`
 
 ```JSON
 [INCLUDE::ITREE:m_json_students.json]
