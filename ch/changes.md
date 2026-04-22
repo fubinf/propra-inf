@@ -1,2 +1,3 @@
 - **2026-04-07**: Aufgaben auf `sedrila`-Version 3 umgestellt.
+- **2026-04-27**: Aufgabe [PARTREF::js-localStorage] zugefügt.
 - ...

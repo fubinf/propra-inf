@@ -1,5 +1,5 @@
 title: Persistenz im Browser – Daten mit localStorage speichern
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 assumes: js-Objektarrays-zum-DOM, js-Eventhandling
@@ -121,6 +121,7 @@ die JavaScript zum dauerhaften Speichern von Daten nutzen kann.
 
 Eine ausführlichere Beschreibung zu `localStorage` finden Sie in der 
 [MDN-Dokumentation zu localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+Lesen Sie außerdem den Glossareintrag [TERMREF::URI].
 
 #### Daten speichern: `setItem`
 
