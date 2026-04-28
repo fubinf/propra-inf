@@ -1,39 +1,35 @@
-title: "Das AAA-Muster: Strukturierte Unit-Tests mit Pytest"
-stage: alpha
+title: "Das AAA-Muster: Strukturierte Unit-Tests"
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: m_pytest, pytest_call
 ---
 
 [SECTION::goal::experience]
-
 Ich kann Unit-Tests nach dem Arrange-Act-Assert (AAA)-Muster schreiben,
 gemeinsamen Setup-Code in Hilfsfunktionen auslagern und
 mehrere Act/Assert-Blöcke sinnvoll in einem Test kombinieren.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Gut strukturierte Tests sind leicht zu lesen und schnell zu debuggen.
 Wenn ein Test fehlschlägt, sollte sofort klar sein, ob das Problem im Setup,
 bei der Ausführung oder beim Vergleich liegt.
 Das AAA-Muster (Arrange-Act-Assert) erzwingt genau diese Trennung.
 
-In der Praxis stoßen Sie bald auf zwei Situationen, die einfache AAA-Tests überfordern:
+In der Praxis stoßen Sie aber oft auf Situationen, für die die einfache AAA-Struktur nicht passt:
 
 - Viele Tests teilen dasselbe aufwändige Setup — Kopieren kostet Zeit und erzeugt Fehlerquellen.
 - Ein Testszenario besteht aus mehreren aufeinander aufbauenden Schritten,
   deren Zwischenzustände jeweils überprüft werden sollen.
 
 Diese Aufgabe behandelt beide Situationen.
-
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 ### Das AAA-Muster
-<!-- time estimate: 5 min -->
 
 Das AAA-Muster unterteilt jeden Test in drei klar abgegrenzte Schritte:
 
@@ -57,11 +53,11 @@ def test_addiere_zahlen():
 ```
 
 Diese Trennung macht sofort sichtbar, *wo* ein Fehler liegt.
-
-### Beispiel: Warenkorb
 <!-- time estimate: 5 min -->
 
-Für die folgenden Übung verwenden Sie die folgende Klasse.
+### Beispiel: Warenkorb
+
+Für die folgenden Übungen verwenden Sie die folgende Klasse.
 Legen Sie eine Datei `cart.py` mit diesem Inhalt an:
 
 ```python
@@ -94,9 +90,9 @@ class ShoppingCart:
 ```
 
 Legen Sie außerdem eine Testdatei `test_cart.py` an.
+<!-- time estimate: 5 min -->
 
 ### Tests mit Hilfsfunktionen
-<!-- time estimate: 20 min -->
 
 Wenn mehrere Tests dasselbe aufwändige Setup benötigen,
 ist es besser, den Arrange-Schritt einmal in eine Hilfsfunktion auszulagern, statt ihn zu kopieren:
@@ -131,15 +127,17 @@ def test_invalid_price_raises_value_error():
 Der Block schlägt fehl, wenn *kein* `ValueError` geworfen wird.
 Details: [pytest-Dokumentation zu `raises`](https://docs.pytest.org/en/stable/how-to/assert.html#assertions-about-expected-exceptions)
 
-[ER] Schreiben Sie mithilfe dieser Hilfsfunktion mindestens drei Tests nach dem AAA-Muster,
-   die verschiedene Szenarien abdecken:
+[ER] Schreiben Sie mindestens drei Tests nach dem AAA-Muster,
+   die mindestens folgende Szenarien abdecken:
 
 - `total()` liefert den korrekten Gesamtpreis.
 - `remove_item()` entfernt den Artikel korrekt und ändert `total()` entsprechend.
 - `add_item()` mit einem negativen Preis wirft einen `ValueError`.
 
-### Mehrere Act/Assert-Blöcke
+Verwenden Sie dabei die Hilfsfunktion, wo es sinnvoll ist.
 <!-- time estimate: 20 min -->
+
+### Mehrere Act/Assert-Blöcke
 
 Manchmal hängen Teile eines Szenarios voneinander ab oder der Arrange-Schritt ist so aufwändig,
 dass man ihn nicht für jeden einzelnen Assert neu aufbauen möchte.
@@ -181,33 +179,30 @@ def test_cart_workflow():
 
 Ändern Sie in einem Ihrer Tests den Erwartungswert in einem `assert` absichtlich
 auf einen falschen Wert und führen Sie die Tests aus.
+(Stellen Sie den korrekten Wert anschließend wieder her.)
 
 [EQ] Was zeigt pytest dabei an?
    In welchem AAA-Abschnitt liegt der gemeldete Fehler, und woran erkennen Sie das?
+<!-- time estimate: 20 min -->
 
 ### Reflexion
-<!-- time estimate: 10 min -->
 
 [EQ] Beide Techniken — Hilfsfunktionen und mehrere Act/Assert-Blöcke — helfen, wenn das Setup aufwändig ist.
-   Was ist der wesentliche Unterschied zwischen ihnen, und wann würden Sie welche Technik wählen?
+   Wann würden Sie welche Technik wählen?
 
-[EQ] Wann ist es sinnvoll, mehrere Act/Assert-Blöcke in einem einzigen Test zu verwenden,
-   und wann sollte man stattdessen lieber separate Tests schreiben?
-
-[EQ] Nennen Sie je ein Beispiel, bei dem (a) ein explizites Arrange entfallen kann und
-   (b) Act und Assert sinnvoll zusammenfallen.
+[EQ] Nennen Sie ein Beispiel, bei dem (a) ein explizites Arrange entfallen kann, und
+   eines, bei dem (b) Act und Assert sinnvoll zusammenfallen.
    Wann sollte trotzdem das vollständige AAA-Muster verwendet werden?
-
+<!-- time estimate: 10 min -->
 [ENDSECTION]
+
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
+
 [INSTRUCTOR::Prüfhilfen]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
