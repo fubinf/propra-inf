@@ -19,9 +19,6 @@ Arbeit abgeschlossen haben.
 In solchen Fällen muss die `main`-Funktion blockiert werden.
 
 Doch wie lange?
-
-Ein `time.Sleep()` ist in den seltensten Fällen die richtige Lösung.
-
 Genau dafür gibt es die `sync.WaitGroup`.
 [ENDSECTION]
 
@@ -82,7 +79,7 @@ In diesem Fall würde auf die Goroutine nicht gewartet werden.
 [ENDWARNING]
 [ENDSECTION]
 
-[SECTION::submission::information,snippet,trace]
+[SECTION::submission::information,snippet,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
