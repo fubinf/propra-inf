@@ -36,7 +36,9 @@ void printFactors(const unsigned char i) {
 // 1 -> Prim
 // -1 -> Nicht in der Liste
 int isPrime(const unsigned char i) {
-  if (i >= 101) return -1;
+  if (i >= 101) {
+    return -1;
+  }
 
   return !isNotPrime[i];
 }

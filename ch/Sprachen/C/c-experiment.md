@@ -81,10 +81,10 @@ Der optionale Header `stdbool.h` dient also nur der Schönheit, ist allerdings m
 Zukunft (C23, hier wird `bool`, `true` und `false` ein Kernbestandteil der Sprache werden)
 sehr zu empfehlen.
 
-`stdio.h` bringt die `printf`-Funktion ins Spiel, vergleichbar mit Pythons `print`.
+Anders als in Python wird in C selbst für elementare I/O eine `#include`-Direktive benötigt.
 
-Freunden Sie sich am besten direkt mit der `#include`-Direktive an, denn "built-ins" wie in Python
-gibt es in C nicht.
+`stdio.h` liefert `printf`.
+Das ist in etwa das Gegenstück zu Pythons `print`.
 
 
 ## Globale Variable `isNotPrime`
@@ -125,10 +125,6 @@ int main(void) {
 }
 ```
 
-Es mag seltsam sein als erstes ganz ans Ende der Datei zu springen, aber es macht Sinn.
-In C spielt die Reihenfolge wie Sie Funktionen und Variablen schreiben eine wichtige Rolle,
-Sie können nämlich erst in den Zeilen danach auf diese zugreifen.
-
 Ein jedes C-Programm braucht eine Funktion die `main` heißt, sie bildet den Einstiegspunkt
 des Programmes.
 Diese Funktion wird von Ihrem Computer aufgerufen, wenn Sie das Programm starten.
@@ -151,11 +147,6 @@ Zusätzlich sind zwei Modifizierer zu sehen:
 - `unsigned`, der Wertebereich des Datentyps wird rein positiv, beispielsweise wird `char` von
   [-128,127] zu [0,255],
 - `const`, der Wert ist unveränderlich.
-
-[EQ] Beschreiben Sie den Rückgabewert sowie die Parameterliste der `main`-Funktion.
-
-Funktionsaufrufe in C sind genau wie in Python, `Name(Parameter)`, wobei Parameter stets über ihre
-Position angegeben werden und nicht mit dem Namen.
 
 [EQ] Welche Funktionsaufrufe werden in der `main`-Funktion getätigt, und welche Parameter bekommen
 diese?
@@ -221,36 +212,22 @@ if (prime == 0) {
 }
 ```
 
-Das If-Else Konstrukt ist in C genau wie bei Python auch, einzige Unterschiede sind
-die notwendigen Klammern um die Bedingung (das gilt auch für andere Kontrollstrukturen, im Zweifel
-einfach Klammern drum, schaden tut es nicht), sowie `else if` anstelle von `elif`.
+Das If-Else Konstrukt in C unterscheidet sich von Python lediglich durch die notwendigen Klammern
+um die Bedingung, sowie `else if` anstelle von `elif`.
 
-[EQ] Beschreiben Sie kurz die Fälle des If-Else.
+[EQ] Was passiert mit `i == 101`, und warum liefert `isPrime` dafür nicht 0 oder 1?
+
 
 #### Logikoperatoren
 
-Python verwöhnt ein wenig was die Logikoperatoren angeht.
-C ist da etwas kryptischer unterwegs.  
-Hier eine Tabelle der Operatoren
+C hat die selben drei Logikoperatoren wie Python auch.
+Die Tabelle Zeigt die jeweiligen Schreibweisen.
 
-<table>
-  <tr>
-    <th>C</th>
-    <th>Python</th>
-  </tr>
-  <tr>
-    <td><pre>&&</pre></td>
-    <td><pre>and</pre></td>
-  </tr>
-  <tr>
-    <td><pre>||</pre></td>
-    <td><pre>or</pre></td>
-  </tr>
-  <tr>
-    <td><pre>!</pre></td>
-    <td><pre>not</pre></td>
-  </tr>
-</table>
+|Operator  | C       | Python |
+|----------| ------- | ------ |
+| Und      | `&&`    | `and`  |
+| Oder     | `||`    | `or`   |
+| Nicht    | `!`     | `not`  |
 
 
 ## `findPrimes`, der Kern des Programms
@@ -276,6 +253,8 @@ Es handelt sich um eine naive Implementierung des "Sieb des Eratosthenes".
 Einzige Neuerung hier ist ein neuer Datentyp, `short`, kurz für `short int`.
 Was genau ein `short` ist, hängt vom Betriebssystem, Übersetzer und der Prozessorarchitektur ab.
 Für das im ProPra verwendete Debian mit GCC auf amd64 Prozessoren ist `short` auf 16-Bit gesetzt.
+
+Wie auch schon zuvor wurde zusätzlich der `unsigned` sowie der `const` Modifizierer angewendet.
 
 
 ## `printFactors`, ein kleiner Helfer
@@ -303,7 +282,9 @@ Bis auf die Syntax ist hier nichts anders als in Python.
 
 ```c
 int isPrime(const unsigned char i) {
-  if (i >= 101) return -1;
+  if (i >= 101) {
+    return -1;
+  }
 
   return !isNotPrime[i];
 }
@@ -316,10 +297,9 @@ Hierfür wird das mittels `findPrimes` aufgebaute Array `isNotPrime` verwendet.
 Eine Besonderheit gibt es dennoch, und zwar eine Kurzschreibweise für Kontrollstrukturen.
 Denn, wenn Sie nur eine einzige Zeile in einem `if`, `else`, oder gar Schleifenkörper haben,
 können die `{}` weggelassen werden.  
-Es empfiehlt sich, diese dennoch zu schreiben; man spart sich so das
-nachträgliche Einfügen, sollte später doch eine zweite Zeile benötigt werden.
-Hier ist mit dem `if` ein "Early-Return"-Abbruch implementiert; solche bestehen für gewöhnlich
-nur aus einem `return`, die kompaktere Schreibweise bietet sich der Lesbarkeit halber an.
+Das Weglassen der `{}` ist im Allgemeinen ein schlechter Stil und unüblich.
+Die gesteigerte Fehleranfälligkeit bei nachträglichen Änderungen (und der Mehraufwand die`{}` dann
+einzufügen) ist die Ersparnis nicht Wert.
 
 
 # Geführte Veränderungen
@@ -372,9 +352,12 @@ entweder ein Vielfaches einer bereits geprüften Zahl, oder prim sind.
 
 [ER] Verändern Sie die Endbedingung der ersten For-Schleife des Siebes so, dass die Schleife 
 höchstens bis zur Wurzel aus 100 läuft.
+Nutzen sie dafür die Funktion `sqrt` aus `math.h`, sowie `ARRAY_SIZE`
 
-[HINT::Grenzwert]
-Nutzen Sie für die Bedingung `ARRAY_SIZE`.
+[HINT::sqrt]
+Die `sqrt` Funktion hat als Rückgabetyp `double`, eine 64-Bit Gleitkommazahl.
+Da die Schleifenvariable stets in Ganzzahlschritten inkrementiert wird muss hier nichts weiter
+beachtet werden.
 [ENDHINT]
 
 
@@ -387,12 +370,12 @@ nie ausgeführt wurde.
 [ER] Legen Sie eine neue Variable unterhalb des Arrays an.
 Die Variable soll auch Typ `bool` sein, mit dem Bezeichner `isInitialised`.
 
-[ER] Am Ende der `findPrimes`, also nach der For-Schleife aber noch vor dem Funktionsende, soll
-die Variable `isInitialised` auf `true` gesetzt werden (Achtung, anders als in Python werden
-`true` und `false` klein geschrieben).
+[ER] Setzen Sie am Ende der `findPrimes`, also nach der For-Schleife aber noch vor dem Funktionsende,
+die Variable `isInitialised` auf `true`.
+Achtung, anders als in Python werden `true` und `false` klein geschrieben.
 
-[ER] Fügen Sie vor dem `return` in der `isPrime` einen `if` Block ein, der, wenn `isInitialised`
-nicht `true` ist, `findPrimes` ausführt.
+[ER] Fügen Sie vor dem abschließenden `return` in der `isPrime` einen `if` Block ein, der, wenn
+`isInitialised` nicht `true` ist, `findPrimes` ausführt.
 
 [ER] Entfernen Sie den `findPrimes` Aufruf aus der `main`.
 
@@ -406,7 +389,8 @@ Hierfür werden zwei Dateien benötigt, eine weitere `.c` Datei mit dem Code sow
 Dateien einbinden können, um diese zu benutzen.
 
 [ER] Legen Sie ein neues .c/.h Dateipaar `utils` an.
-In CLion über New > C/C++ Source File, im Fenster den Typ auf `.c` stellen und alle Haken setzen.
+In CLion über New > C/C++ Source File, im Fenster den Typ auf `.c` stellen und die Haken bei
+`Create an associated header`, `Add to targets` sowie `c_experiment` setzen.
 
 [ER] Ersetzen Sie den Inhalt der neuen `utils.h` mit folgendem:
 ```c
