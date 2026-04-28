@@ -47,10 +47,10 @@ student_yaml_attribute_prompts:
   student_gituser: "Your git account name [git username]: "
   partner_gituser: "Your partner's git account name (or empty if you work alone): "
 # ----- entries relevant for sedrila instructor:
-participants:
-  file: "$SEDRILA_PARTICIPANTS_FILE"
-  file_column: student_gituser
-  student_attribute: student_gituser
+# participants:
+#   file: "$SEDRILA_PARTICIPANTS_FILE"
+#   file_column: student_gituser
+#   student_attribute: student_gituser
 # ----- entries relevant for sedrila instructor & sedrila student:
 startdate: $SEDRILA_STARTDATE  # first day of the course
 enddate: $SEDRILA_ENDDATE  # last day of the course
