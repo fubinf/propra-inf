@@ -88,7 +88,7 @@ Was haben wir bis hierhin gelernt?
 
 In [PARTREF::git-Funktionsweise] haben Sie bereits den Befehl `git help` kennengelernt.
 Den wollen wir jetzt wieder nutzen, um mehr über `git init` zu erfahren.
-Rufen Sie git help init auf und beantworten Sie:
+Rufen Sie `git help init` auf und beantworten Sie:
 
 [EQ] Wie können Sie beim Erstellen eines neuen Repositories einen bestimmten Namen für den initialen Branch festlegen?
 
@@ -109,7 +109,7 @@ im `gitcore-tutorial` und beantworten Sie dann die folgenden Fragen.
 [EQ] Wie heißt der Default-Branch bei Ihnen? Wie können Sie den Namen eines bereits bestehenden Branches nachträglich ändern, und wie den Standard für alle zukünftigen Repositories?
 
 In [PARTREF::git-Objektmodell] werden wir uns die Git-Objekte sehr viel genauer ansehen.
-Für den Moment reicht es zu wissen, dass Git alles, was es speichert, als Objekte im 
+Für den Moment reicht es, zu wissen, dass Git alles, was es speichert, als Objekte im 
 `.git/objects`-Verzeichnis ablegt und über Hashes referenziert.
 
 ### git status
@@ -158,7 +158,7 @@ Dazu kommen wir in einer späteren Aufgabe.
 Wir erinnern uns an das Archiv.
 Git archiviert nur die Zustände des Repos, die wir ihm *übergeben*.
 Diese Zustände nennt man [TERMREF2::Commit (git)::Commits]. 
-Der Begriff kommt vom englischen Verb *to commit*, also „etwas übergeben" oder „überlassen".
+Der Begriff kommt vom englischen Verb *to commit*, also „etwas übergeben“ oder „überlassen“.
 
 Wir übergeben Git den aktuellen Zustand bestimmter Dateien und beauftragen es mit der Archivierung.
 Dabei speichert Git nicht die Änderungen, die wir vorgenommen haben, sondern ein vollständiges Abbild 
@@ -200,14 +200,13 @@ git commit -m "calculator.py mit Additionsfunktion angelegt"
 
 [FOLDOUT::Was ist eine sinnvolle Commit-Nachricht?]
 Das ist eine sehr gute Frage. 
-So gut, dass es sogar 
-[Studien darüber gibt.](https://dl.acm.org/doi/10.1145/3510003.3510205)
+So gut, dass es sogar
+[Studien darüber gibt](https://dl.acm.org/doi/10.1145/3510003.3510205).
 Grundsätzlich gilt: Halten Sie sich kurz und beschreiben Sie klar, was der Commit beinhaltet.
 In unserem Fall z. B.: `calculator.py mit Additionsfunktion angelegt`.
 Später dann vielleicht: `fix: Division fängt Division durch Null ab`.
 Die Sprache ist dabei egal, aber im Code wird häufig Englisch verwendet.
-Mehr Tipps dazu gibt es z. B. [hier.](https://docs.wpvip.com/guidebooks/developer-best-practices/
-create-a-good-commit-message/)
+Mehr Tipps dazu gibt es z. B. im [WPVIP-Leitfaden zu Commit-Nachrichten](https://docs.wpvip.com/guidebooks/developer-best-practices/create-a-good-commit-message/).
 [ENDFOLDOUT]
 
 Führen Sie nach dem Commit noch einmal `git status` aus.
