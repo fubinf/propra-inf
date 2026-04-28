@@ -8,9 +8,9 @@ Reviewe die in $ARGUMENTS angegebene Aufgabendatei (oder Taskgroup-Indexseite).
 Lies die Datei und wende die untenstehenden Heuristiken an.
 (Wenn wir z.B. `ch/Meinkapitel/Meinegruppe/Meineaufgabe.md` begutachten,
 dann bedeutet darin `[INCLUDE::ALT:]`, dass die Datei 
-`altdir/ch/Meinkapitel/Meinegruppe/Meineaufgabe.md` eingeschlossen werden soll
-und also mitzuberücksichtigen ist. 
-Absolute oder relative Pfade kommen auch vor: `[INCLUDE::ALT:../Gruppe2/andere.md]` verweist auf
+`altdir/ch/Meinkapitel/Meinegruppe/Meineaufgabe.md` eingeschlossen werden soll.
+Lies sie also auch und berücksichtige sie mit. 
+Absolute oder relative Pfade kommen ebenfalls vor: `[INCLUDE::ALT:../Gruppe2/andere.md]` verweist auf
 `altdir/ch/Meinkapitel/Gruppe2/andere.md`, etc.)
 
 Erstelle ein Gutachten. 
