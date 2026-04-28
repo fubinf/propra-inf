@@ -3,7 +3,7 @@ stage: beta
 timevalue: 1.5
 difficulty: 2
 explains: JSON
-requires: encoding-and-open
+assumes: encoding-and-open
 ---
 
 [SECTION::goal::idea]
