@@ -2,7 +2,7 @@ title: "C Präprozessor: Include"
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: c-compiler-assembler-linker
+assumes: c-experiment
 ---
 
 [SECTION::goal::idea]
