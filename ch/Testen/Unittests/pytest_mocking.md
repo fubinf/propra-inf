@@ -230,7 +230,7 @@ Für die Attrappe des Response-Objekts empfehlen wir `MagicMock()` aus `unittest
 oder den `in`-Operator implizit aufruft.
 `patch()` verwendet intern ebenfalls `MagicMock()` als Default.
 
-Das Thema `MagicMock()` verfolgen wie hier nicht weiter, aber Sie sollten davon schon einmal
+Das Thema `MagicMock()` verfolgen wir hier nicht weiter, aber Sie sollten davon schon einmal
 gehört haben, daher hier zur Verdeutlichung, wo der Unterschied liegt.
 
 ```python
