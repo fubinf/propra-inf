@@ -1,8 +1,8 @@
 title: "C Präprozessor: Konditionale"
 stage: alpha
-timevalue: 0.5
+timevalue: 0.75
 difficulty: 2
-assumes: c-compiler-assembler-linker
+assumes: c-experiment
 ---
 [SECTION::goal::idea]
 Ich verstehe die `#if`-Präprozessor-Direktiven und kann diese anwenden.
@@ -19,11 +19,10 @@ und nur diese übersetzen. Der Code wird dadurch kleiner und schneller.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-Hier stehen bei Bedarf die Einzelheiten:
-[GCC cpp Handbook: "conditionals"](https://gcc.gnu.org/onlinedocs/cpp/Conditionals.html)
+## Theorie
 
-Im ProPra selbst werden sie Konditionale recht selten verwenden müssen.
-In der freien Wildbahn hingegen werden Sie doch sehr schnell sehr wichtig.
+Im ProPra selbst werden Sie Konditionale (Conditionals) recht selten verwenden müssen.
+In der freien Wildbahn hingegen werden sie doch sehr schnell sehr wichtig.
 
 Die gängigsten Anwendungsfälle für Konditionale sind:
 
@@ -43,47 +42,51 @@ Die gängigsten Anwendungsfälle für Konditionale sind:
   welche Features eine benutzte Bibliothek bereitstellt.
   Ein geläufiger Nutzer dessen ist die C++-Standardbibliothek.
 
-Die für diese Funktionalität verantwortlichen Direktiven sind:
+So auch in folgendem Beispiel.
+Zu sehen ist eine Stopp-Routine für ein Plugin.
+Die Routine schließt zwei Netzwerk-Sockets.
+Da Windows und Linux diese anders handhaben, müssen für die jeweiligen Betriebssysteme Anpassungen
+vorgenommen werden.
+Die Makros `_WIN32` und `__linux__` sind dabei vom jeweiligen Übersetzer-Betriebssystem-Kombination
+definiert, unter Windows wäre demnach `_WIN32` definiert, nicht aber `__linux__`.
 
-- `#if` und `#endif`: `#if` öffnet einen Konditionalblock, `#endif` schließt ihn.
-- `#ifdef` und `#ifndef`: Kurzformen für `#if defined` und `#if !defined`, wobei das `!` die
-  Boolsche Negation ist.
-- `#else` und `#elif`: Können genau wie in Python auch nach dem `#if` und vor dem `#endif`
-  als zusätzliche Fälle genutzt werden. Dabei darf `#else` höchstens einmal, als letztes, verwendet
-  werden.
+```c++
+void PluginStop(void) {
+  /* Close socket */
+  if (server != NULL) {
+    closesocket(server);
+  }
+  if (client != NULL) {
+    closesocket(client);
+  }
 
-Zusätzlich gibt es einen Sonderoperator, `defined`. Dieser Operator ist wichtig, da er auf das
-Vorhandensein eines Makros prüft und *nicht* auf den Wert des Makros.
-
-Die Allgemeine Form ist wie folgt:
-```c
-#if BEDINGUNG
-// Code
-#elif BEDINGUNG
-// Code
-#else
-// Code
+  /* Windows WSA cleanup routine */
+#ifdef _WIN32
+  WSACleanup();
 #endif
+
+  /* Arch related, based on users feedback */
+#ifdef __linux__
+  SOCKET stopper = socket(AF_INET, SOCK_STREAM, 0);
+  struct sockaddr_in serverAddress;
+  serverAddress.sin_family = AF_INET;
+  serverAddress.sin_addr.s_addr = INADDR_ANY;
+  serverAddress.sin_port = htons(DEFAULT_PORT);
+  connect(stopper, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
+  closesocket(stopper);
+#endif
+}
 ```
 
-Als `BEDINGUNG` kann alles verwendet werden, was am Ende zu einer Ganzzahl führt.
-Darunter fallen Ganzzahlkonstanten, Charakterkonstanten (z.B. 'a', es wird der ASCII-Wert
-evaluiert), Makros, der `defined` Operator, die Grundrechenarten sowie das Boolsche UND (`&&`) bzw.
-ODER (`||`).
-Makros werden vor der Evaluation expandiert, Funktionsmakros die *nicht* aufgerufen werden
-evaluieren zu Null.
-Alle Bezeichner die nicht zu einem definierten Makro gehören evaluieren ebenfalls zu Null.
-Die `BEDINGUNG` ist `false`, wenn sie zu Null evaluiert, alles andere ist `true`.
 
-Passen Sie beim Schreiben der Bedingung gut auf. Der Präprozessor kennt im gegensatz zum Übersetzer
-keine Typen und betreibt daher auch keine Typprüfungen.
+## Praxis
 
-Nachfolgend werden Sie, neben dem konditionalen `#include` von Header-Dateien, den gängigsten
-Einsatz der Konditionalen nutzen.
-Das Beispiele ist zwar ein wenig bei den Haaren herbeigezogen, findest sich in abgespeckter Form
-allerdings durchaus für zusätzliche `printf` Debugausgaben.
+Lesen Sie sich das [GCC Kapitel "Conditional-Syntax"](https://gcc.gnu.org/onlinedocs/cpp/Conditional-Syntax.html)
+durch.
+Die Spezialoperatoren (`__has_attribute` usw.) können Sie überspringen, Sie werden im ProPra
+wenn überhaupt nur die Normalen benötigen.
 
-Legen Sie das Projekt an.  
+Legen Sie ein neues CLion Projekt an.  
 Fügen Sie folgende Dateien hinzu.
 
 `lib.h`
@@ -154,15 +157,15 @@ Es können beliebig viel `-DXXX` gesetzt werden.
 
 Für alle nachfolgenden Aufgaben gilt:
 Verändern Sie keine der `.c`-Dateien, nutzen Sie nur den `-D` Kommandozeilenparameter.
-Für CLion verändern sie den `-D`Parameter in der `CMakeLists.txt`.
+Für CLion verändern sie den `-D` Parameter in der `CMakeLists.txt`.
 
-[EC] Führen Sie das Program aus.
+[EC] Bauen und führen Sie das Program aus.
 Es soll der `LOG` Block ausgeführt werden.
 
-[EC] Führen Sie das Program aus.
+[EC] Bauen und führen Sie das Program aus.
 Es soll der `ERROR` Block ausgeführt werden.
 
-[EC] Führen Sie das Program aus.
+[EC] Bauen und führen Sie das Program aus.
 Es soll der `WARN` Block ausgeführt werden.
 [ENDSECTION]
 
