@@ -3,7 +3,7 @@ stage: beta
 timevalue: 0.5
 difficulty: 2
 assumes: Markdown
-requires: Sedrila-einrichten
+requires: Sedrila-einrichten, Kommandoprotokolle
 ---
 [SECTION::goal::idea]
 Ich habe gelernt, wie ich etwas bei der Tutor_in einreiche und habe das einmal ausprobiert.
