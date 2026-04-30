@@ -26,8 +26,8 @@ Während `cp` für normale Dateien ausreicht, glänzt `dd` bei vier Szenarien:
 
 Warnung: `dd` ist auch berüchtigt dafür, dass unvorsichtige Nutzer damit massive Datenmengen 
 zerstört haben.
-Das Kommando hat wenige Parameter, aber Input `if=` und Output `of=`-Optionen sind leicht 
-zu verwechseln.
+Das Kommando hat wenige Parameter, aber Inputfile `if=` und Outputfile `of=`-Optionen sind leicht 
+zu verwechseln -- tückisch!
 [ENDSECTION]
 
 
@@ -44,7 +44,7 @@ Testbereich.
 
 Erstellen Sie das Verzeichnis `~/ws/tmp/dd` und navigieren Sie dorthin.
 
-Erstellen Sie eine Testdatei namens `quelle.txt` mit folgendem Inhalt: (ohne Zeilennummern)
+Erstellen Sie eine Testdatei namens `quelle.txt` mit folgendem Inhalt:
 ```
 Dies ist eine Testdatei für dd.
 Sie enthält drei Zeilen Text.
@@ -71,8 +71,8 @@ den Abschnitt über `bs=BYTES`.
 Standardmäßig arbeitet `dd` mit einer Blockgröße von **512 Bytes**.
 Das ist sicher, aber sehr langsam.
 
-Größere Blöcke sind schneller (weniger Systemaufrufe), verbrauchen aber mehr RAM-Speicher.
-Für Experimente: Probieren Sie Werte zwischen 1K und 64M, je nach verfügbarem RAM.
+Größere Blöcke sind schneller (weniger Systemaufrufe), verbrauchen aber mehr RAM.
+Für Experimente: Probieren Sie Werte zwischen `1K` und `64M`, je nach verfügbarem RAM.
 Das gängigste Best-Practice: `64M` für Backup/Imaging, `4K` für Standard-Dateikopien.
 
 [EC] Kopieren Sie `quelle.txt` mit einer Blockgröße von 4 Kilobytes zu `kopie2.txt`.
@@ -87,10 +87,10 @@ die Erklärungen zu `skip` und `count`.
 Achten Sie darauf, wie diese Parameter mit der Blockgröße `bs` zusammenhängen.
 
 Ein praktisches, realistisches Szenario sind **MBR-Backups**.
-Die Master Boot Record (MBR) einer Festplatte ist der allererste Block (512 Bytes) und enthält 
+Der Master Boot Record (MBR) einer Festplatte ist der allererste Block (512 Bytes) und enthält 
 den Bootloader und die Partitionstabelle.
-Sysadmins sichern sie regelmäßig, um schnell von Fehlern oder Ausfällen zu regenerieren.
-Mit `count=1 bs=512` extrahieren Sie genau diese 512 Bytes aus einer Festplatte oder eines Images:
+Sysadmins sichern ihn regelmäßig, um sich nach Fehlern oder Ausfällen schnell erholen zu können.
+Mit `count=1 bs=512` extrahieren Sie genau diese 512 Bytes aus einer Festplatte oder einem Image:
 
 [EC] Erstellen Sie zuerst eine Testdatei `festplatte.img` mit zufälligen Daten:
 ```
