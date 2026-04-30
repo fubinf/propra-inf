@@ -2,7 +2,7 @@ title: Protokolle von Kommandos und Kommandoausgaben abgeben
 stage: beta
 timevalue: 0.5
 difficulty: 2
-requires: Shellprompt
+requires: Shellprompt, Sedrila-einrichten
 ---
 [SECTION::goal::trial]
 
