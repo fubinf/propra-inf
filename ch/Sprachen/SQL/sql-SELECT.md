@@ -164,6 +164,7 @@ besser zu verstehen.
 Man vergibt Aliase mit dem Schlüsselwort `AS`.
 
 (Optional) Weiterführende Ressourcen zu 
+<!-- @LINK_SPEC: status=403 -->
 [`AS`](https://www.sqltutorial.org/sql-alias/)
 ```sql
 SELECT mycol1 AS myalias1, mycol2 AS myalias2, ...
