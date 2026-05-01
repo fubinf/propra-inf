@@ -2,7 +2,7 @@ title: "pyenv: Mehrere Python-Versionen nebeneinander benutzen"
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: venv
+assumes: venv, curl
 ---
 
 [SECTION::goal::product]
@@ -36,7 +36,6 @@ Verwenden Sie bei Bedarf die
 [pyenv Command Reference](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md).
 
 ### pyenv installieren
-<!-- time estimate: 15 min -->
 
 1. Installieren Sie `pyenv` passend zu Ihrem Betriebssystem:
 
@@ -59,15 +58,6 @@ Verwenden Sie bei Bedarf die
    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
    ```
 
-[NOTICE]
-**Und was ist mit Windows?**
-
-Das ursprüngliche `pyenv` unterstützt Windows nicht direkt.
-Es gibt jedoch `pyenv-win`, einen aktiv gepflegten Windows-Port mit ähnlicher Funktionalität.
-`pyenv-win` kann über PowerShell, Chocolatey oder pip installiert werden und
-bietet dieselben Kernfunktionen wie das originale `pyenv`.
-[ENDNOTICE]
-
 2. Fügen Sie `pyenv` zu Ihrer Shell-Konfiguration hinzu.
    Finden Sie zunächst heraus, welche Shell Sie verwenden: `echo $SHELL`
 
@@ -88,9 +78,9 @@ bietet dieselben Kernfunktionen wie das originale `pyenv`.
    - zsh: `source ~/.zshrc`
 
    Überprüfen Sie die Installation: `pyenv --version`
+<!-- time estimate: 15 min -->
 
 ### Verfügbare Python-Versionen erkunden
-<!-- time estimate: 5 min -->
 
 1. [EC] Listen Sie alle installierbaren Python-Versionen auf: `pyenv install --list`
    Die Ausgabe ist sehr lang.
@@ -108,9 +98,9 @@ Die zwei führenden Leerzeichen verhindern, dass Anaconda- oder PyPy-Einträge m
 
 2. [EC] Zeigen Sie aktuell installierte Versionen an: `pyenv versions`
    Zu Beginn sehen Sie dort nur `system` (Ihr vorhandenes System-Python).
+<!-- time estimate: 5 min -->
 
 ### Python-Versionen installieren
-<!-- time estimate: 15 min -->
 
 Suchen Sie sich aus der `pyenv install --list`-Ausgabe jeweils die neueste Patchversion von Python 3.10
 und 3.11 heraus (also z. B. `3.10.17` und `3.11.12`) und installieren Sie beide
@@ -119,9 +109,9 @@ und 3.11 heraus (also z. B. `3.10.17` und `3.11.12`) und installieren Sie beide
 1. [EC] `pyenv install 3.10.17`  _(Patchnummer ggf. anpassen)_
 2. [EC] `pyenv install 3.11.12`  _(Patchnummer ggf. anpassen)_
 3. [EC] Überprüfen Sie Ihre installierten Versionen: `pyenv versions`
+<!-- time estimate: 15 min -->
 
 ### Python-Versionen verwenden
-<!-- time estimate: 15 min -->
 
 `pyenv` kennt drei Ebenen für die aktive Python-Version:
 
@@ -140,14 +130,17 @@ und 3.11 heraus (also z. B. `3.10.17` und `3.11.12`) und installieren Sie beide
 5. [EC] Schauen Sie nach, welche Datei pyenv angelegt hat: `cat .python-version`
 6. [EQ] Verlassen Sie das Verzeichnis mit `cd ~` und prüfen Sie `python --version`.
    Welche Version ist nun aktiv und warum?
+<!-- time estimate: 15 min -->
 
 ### Überblick und Reflexion
-<!-- time estimate: 10 min -->
 
 1. [EQ] Sie haben soeben `pyenv global` und `pyenv local` ausprobiert.
    Wann im Entwicklungsalltag würden Sie welches verwenden?
    Wozu dient `pyenv shell` im Vergleich dazu?
-2. [EC] Werfen Sie einen Blick auf alle verfügbaren pyenv-Befehle: `pyenv commands`
+2. [EQ] Werfen Sie einen Blick auf alle verfügbaren pyenv-Befehle: `pyenv commands`
+   Welchen Befehl finden Sie warum hilfreich?
+
+<!-- time estimate: 10 min -->
 
 [ENDSECTION]
 
