@@ -1,5 +1,5 @@
 title: Persistente Notizen-App mit localStorage und JSON
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 2
 assumes: js-localStorage
