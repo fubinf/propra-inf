@@ -16,7 +16,7 @@ Was in Python das `import`-Statement erledigt (das Bereitstellen von Funktionen 
 wird in C mithilfe der `#include`-Präprozessor-Direktive gelöst.
 Schon für ein minimales "Hello World"-Programm benötigt man eine `#include`-Direktive.
 
-Die Aufgabe geht auf die zentrale Aufgabe der `#include`-Direktive ein.
+Die Aufgabe geht auf den zentralen Zweck der `#include`-Direktive ein.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -24,7 +24,7 @@ Die Aufgabe geht auf die zentrale Aufgabe der `#include`-Direktive ein.
 
 In C gibt es einen wichtigen Unterschied zwischen "Definition" und "Deklaration",
 zu dem es in Python keine Entsprechung gibt: Python hat nur Definitionen.
-Lesen Sie sich ein Verständnis dieser beiden Konzepte an:
+Verschaffen Sie sich ein Verständnis dieser beiden Konzepte:
 [Übersicht über Unterschiede der Deklaration und Definition](https://www.geeksforgeeks.org/compiler-design/difference-between-definition-and-declaration/)
 
 [EQ] Erläutern Sie in eigenen Worten den wesentlichen Unterschied zwischen Deklaration und Definition
@@ -36,7 +36,7 @@ Wie viele Deklarationen und wie viele Definitionen dieser Funktion werden gebrau
 
 [NOTICE]
 C hat nur wenige Namensräume:
-Einen lokalen in jeder Funktion (genauer: Jedem Block).
+Einen lokalen in jeder Funktion (genauer: in jedem Block).
 Einen lokalen in jeder Datei (`static`-Funktionen und -Variablen).
 Einen einzigen globalen.  
 Nichts dazwischen.  
@@ -86,7 +86,7 @@ int main(void) {  /* a function definition */
 ```
 
 [NOTICE]
-`printf` ist im System-Header `stdio` deklariert.
+`printf` ist im System-Header `stdio.h` deklariert.
 [ENDNOTICE]
 
 [EC] Bauen und führen Sie das Programm aus.
@@ -116,8 +116,8 @@ void print(int string) {
 }
 ```
 
-Sie sollten nun in der `print.h` eine andere Funktionsdeklaration haben als die in der `print.c` 
-definierte Funktion (Unterschied in der Parameterliste).
+Damit unterscheidet sich die Funktionsdeklaration in `print.h` bei der Parameterliste nun von 
+der Definition in `print.c`.
 
 [EC] Bauen und führen Sie das Programm aus.
 
@@ -132,7 +132,7 @@ Geben Sie die Ausgabe des Bauprozesses sowie die des Programms selbst an.
 
 Um den oben durchgespielten Fehlerfall zu umgehen ist es gebräuchlich, jede Funktion, auch wenn
 man diese nicht woanders nutzen möchte, dennoch in einer Header-Datei zu deklarieren und diese, wie
-in [EREFR::3], zu inkludieren.
+in [EREFR::2], zu inkludieren.
 
 [ENDSECTION]
 
