@@ -29,7 +29,7 @@ und gibt dem Benutzer volle Kontrolle darüber, was auf dem System läuft.
 
 Erstellen Sie zunächst ein einfaches Test-Skript, das für eine Weile läuft und Output produziert.
 
-Erstellen Sie die folgende Datei `ws/tmp/ps/test-sleep.sh`:
+Legen Sie das Verzeichnis `ws/tmp/ps/` an (`mkdir -p ws/tmp/ps`) und erstellen Sie darin die folgende Datei `test-sleep.sh`:
 
 ```bash
 #!/bin/bash
@@ -59,14 +59,15 @@ Alle folgenden Kommandos gehen davon aus, dass Sie sich in `ws/tmp/ps/` befinden
 
 ### Prozesse auflisten mit `ps`
 
-Auf einem Unix-System laufen ständig viele Prozesse — manche sichtbar, die meisten im 
-Hintergrund. Um die Kontrolle zu behalten, ist es wichtig zu wissen, welche Prozesse gerade 
-laufen, wer sie gestartet hat, wieviel Speicher und CPU sie verbrauchen, und vor allem: wie 
-sie (wenn nötig) beendet werden können.
+Auf einem Unix-System laufen ständig viele Prozesse — manche sichtbar, die meisten im Hintergrund.
+Um die Kontrolle zu behalten, ist es wichtig zu wissen,
+welche Prozesse gerade laufen, wer sie gestartet hat, wieviel Speicher und CPU sie verbrauchen,
+und vor allem: wie sie (wenn nötig) beendet werden können.
 
-Das Kommando `ps` ist das Werkzeug, um einen Snapshot aller laufenden Prozesse zu sehen. Je 
-nachdem, welche Optionen verwendet werden, zeigt `ps` völlig unterschiedliche Dinge — nur die 
-eigenen Prozesse, alle Prozesse, wenige Spalten, oder ein ausführliches Format mit allen Details.
+Das Kommando `ps` ist das Werkzeug, um einen Snapshot aller laufenden Prozesse zu sehen.
+Je nachdem, welche Optionen verwendet werden, zeigt `ps` völlig unterschiedliche Dinge —
+nur die eigenen Prozesse, alle Prozesse, wenige Spalten,
+oder ein ausführliches Format mit allen Details.
 
 Lesen Sie zum Verständnis den Abschnitt **bis einschließlich "Prozesse anzeigen"** des Beitrages
 [Prozessverwaltung](https://docs.rockylinux.org/latest/de/books/admin_guide/08-process/#allgemeines).
@@ -96,7 +97,7 @@ bash test-sleep.sh &
 [EC] Während das Skript im zweiten Terminal läuft, listen Sie die Prozesse mit dem Namen Ihres 
 Skripts im ersten Terminal auf.
 
-Sie sollten eine Zeile sehen, die `bash ./test-sleep.sh` zeigt.
+Sie sollten eine Zeile sehen, die `bash test-sleep.sh` zeigt.
 
 [HINT::Wie finde ich den Prozess?]
 Ein Weg ist, `ps` mit `grep` zu kombinieren: `ps aux | grep test-sleep.sh`.
@@ -129,13 +130,14 @@ Während `ps` einen statischen Snapshot zeigt, ist `top` ein **Live-Monitor**.
 Es aktualisiert sich standardmäßig alle 3 Sekunden (einstellbar mit `-d`) und sortiert die Prozesse
 absteigend nach CPU-Verbrauch.
 
-Die oberste Zeile von `top` ist dabei besonders wichtig: Sie zeigt die **Systemlast**, wie lange 
-das System bereits läuft, und gesamte CPU- und Memory-Nutzung. 
+Die oberste Zeile von `top` ist dabei besonders wichtig:
+Sie zeigt die **Systemlast**, wie lange das System bereits läuft,
+und gesamte CPU- und Memory-Nutzung.
 Die untere Prozess-Liste wird standardmäßig nach CPU-Verbrauch sortiert.
 Die "hungrigsten" Prozesse stehen oben.
 
-Lesen Sie den Abschnitt **field descriptions** (besonders die oberste Summary Area) aus der
-[top(1) manpage](https://man7.org/linux/man-pages/man1/top.1.html).
+Lesen Sie den Abschnitt **field descriptions** (besonders die oberste Summary Area)
+aus der [top(1) manpage](https://man7.org/linux/man-pages/man1/top.1.html).
 
 [EC] Starten Sie `top`.
 
@@ -154,14 +156,14 @@ Ab welchem `Load Average`-Wert wäre die Last für einen 4-Core-Rechner als krit
 
 ### Prozesse finden mit `pgrep`
 
-`pgrep` ist ein Shortcut für eine häufige Aufgabe: "Gib mir die PID von Prozess X". Während man
-mit `ps aux | grep Name` theoretisch dasselbe erreicht, ist `pgrep` zuverlässiger. 
-Die `grep`-Variante wird schnell kompliziert, wenn der Prozess-Name mehrfach
-vorkommt oder der Grep-Befehl selbst in der Ausgabe auftaucht.
+`pgrep` ist ein Shortcut für eine häufige Aufgabe: "Gib mir die PID von Prozess X".
+Während man mit `ps aux | grep Name` theoretisch dasselbe erreicht, ist `pgrep` zuverlässiger.
+Die `grep`-Variante wird schnell kompliziert, wenn der Prozess-Name mehrfach vorkommt
+oder der Grep-Befehl selbst in der Ausgabe auftaucht.
 
 Das ist besonders wichtig, wenn ein Prozess schnell beendet werden muss (beispielsweise mit `kill`):
-Mit `pgrep Name | xargs kill` hat man die PID sofort, ohne Umschweife. Auch für Skripte ist
-`pgrep` wertvoll — man kann sie direkt verarbeiten, statt zuerst zu parsen.
+Mit `pgrep Name | xargs kill` hat man die PID sofort, ohne Umschweife.
+Auch für Skripte ist `pgrep` wertvoll — man kann die Ausgabe direkt verarbeiten, statt zuerst zu parsen.
 
 Lesen Sie die **Synopsis** und **OPTIONS** (`-f`, `-c`) aus der 
 [pgrep(1) manpage](https://man7.org/linux/man-pages/man1/pgrep.1.html).
@@ -190,7 +192,7 @@ Manchmal brauchen Sie einen Prozess zu beenden.
 `kill` sendet dem Prozess ein Signal.
 
 Das Standard-Signal ist `TERM` (15), das den Prozess sauber beenden lässt.
-Wenn er sich weigert, gibt es `KILL` (9), der ihn sofort beendet (kann aber Daten verlieren).
+Wenn er sich weigert, gibt es `KILL` (9), der ihn sofort beendet — was aber zu Datenverlust führen kann.
 
 [EC] Starten Sie das Test-Skript nochmals im Hintergrund.
 
@@ -240,7 +242,7 @@ Drücken Sie `Ctrl+C` zum Stopp.
 
 [EC] Prüfen Sie, ob der Prozess noch läuft.
 
-Der Prozess sollte weiterhin eine PID zeigen!
+Der Prozess sollte noch laufen.
 
 [EC] Räumen Sie auf (beenden Sie den Hintergrund-Prozess).
 
@@ -263,8 +265,8 @@ Lesen und verstehen Sie den **FIELDS** Abschnitt (insbesondere %CPU, RES, VIRT, 
 python3 -c "x = sum(i * i for i in range(10**8))" &
 ```
 
-[EC] Öffnen Sie `top` in einem anderen Terminal und beobachten Sie, wie dieser Prozess das 
-CPU-Ranking dominiert.
+[EC] Öffnen Sie `top` in einem anderen Terminal
+und beobachten Sie, wie dieser Prozess das CPU-Ranking dominiert.
 
 Beachten Sie die `%CPU` Spalte.
 
