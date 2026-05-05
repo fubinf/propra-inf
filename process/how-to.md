@@ -47,7 +47,6 @@ for the technical aspects.
 Once you understood those, read on below for some content aspects.
 
 ----------------------
-----------------------
 
 # 2. For course authors: How to write tasks for a ProPra
 
@@ -557,3 +556,20 @@ Unfortunately, working with submodules in git is a bit tricky.
   you commit a submodule hash to the main project.  
   Then `commit` and `push` those changes ASAP.
   The shorter your change episodes, the fewer git problems.
+
+----------------------
+
+# 3. For course lead: Review process for alpha tasks
+
+non-portable; using example values
+
+- `git pull`
+- `claude_review`
+- `/review-task ch/Testen/Unittests/pytest_fixtures https://github.com/fubinf/propra-inf/issues/68`
+- Annotate `.claude/draft-reviews/r-pytest_fixtures.md`,
+  perhaps make manual changes to `pytest_fixtures.md`.
+- If task needs further work: Paste `r-pytest_fixtures.md` into issue #68
+- If task is ready: `stage: beta`, make entry in `changes.md`, build, publish
+- Make commit
+- `git push`
+- Make announcement in Discord
