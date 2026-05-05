@@ -52,8 +52,7 @@ in `inc` per Wert übergeben worden wäre?
 Die Go-Standardbibliothek stellt mit `sync.RWMutex` eine feingranulare Alternative zum 
 gewöhnlichen `sync.Mutex` bereit.
 
-Diese Variante unterscheidet zwischen Lese- und Schreibzugriffen und bietet vier 
-zentrale Methoden:
+Diese Variante unterscheidet zwischen Lese- und Schreibzugriffen und bietet _zwei_ Paare von Zugriffsmethoden:
 
 - Für Lesezugriffe: `RLock()` und `RUnlock()`;
 - Für Schreibzugriffe: `Lock()` und `Unlock()`.
@@ -97,10 +96,10 @@ Diese soll folgendes tun:
 - die totale Ausführungszeit messen (`time.Now()` und `time.Since()` helfen Ihnen dabei);
 - den Zähler sowie die Ausführungszeit auf die Kommandozeile ausgeben.
   Das Format soll folgendermaßen aussehen: `"testCounter - counter: %v, achieved in %v\n"`;
-- Synchronisieren Sie die Goroutine mittels einer `sync.WaitGroup`.
+- Synchronisieren Sie die Goroutinen mittels einer `sync.WaitGroup`.
 
 [ER] Implementieren Sie eine Funktion mit dem Namen `testCounterMutex`.
-Diese soll im Wesentlichen dasselbe tun, wie `testCounter`, allerdings muss in dieser Variante 
+Diese soll im Wesentlichen dasselbe tun wie `testCounter`, allerdings muss in dieser Variante 
 der kritische Abschnitt (Inkrementieren des Zählers) durch einen `sync.Mutex` geschützt werden.
 Passen Sie die Ausgabe auf die Kommandozeile entsprechend an 
 (`"testCounterMutex - counter: %v, achieved in %v\n"`).
@@ -110,7 +109,7 @@ Hier implementieren Sie dieselbe Funktionalität mithilfe einer `atomic.Int64`-V
 Passen Sie die Ausgabe auf die Kommandozeile an
 (`"testCounterAtomic - counter: %v, achieved in %v\n"`).
 
-[EC] Fügen Sie die drei Funktionen Ihrer `main`-Funktion hinzu und führen Sie 
+[EC] Rufen Sie die drei Funktionen in Ihrer `main`-Funktion auf und führen Sie 
 das Programm mittels `go run` aus.
 
 [EQ] Welche Implementierungen haben das richtige Ergebnis geliefert?
