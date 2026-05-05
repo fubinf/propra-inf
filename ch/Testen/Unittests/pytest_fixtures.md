@@ -74,11 +74,11 @@ def test_user_login():
 Pytest löst die Schwächen des obigen Codes mit "Fixtures".
 
 Fixtures sind wiederverwendbare Setup-Komponenten.
-Sie werden sehen, wie man damit jedem Test "frische" Ressourcen so mitgeben kann, 
-dass Tests nur deklarieren müssen, was sie brauchen; es ist kein einziges zusätzliches Statement nötig. 
+Sie werden sehen, wie man damit jedem Test "frische" Ressourcen so mitgeben kann,
+dass Tests nur deklarieren müssen, was sie brauchen; es ist kein einziges zusätzliches Statement nötig.
 Zugleich kann man damit die Setup-Logik übersichtlich von der Test-Logik trennen.
 
-Erstellen Sie die Datei `test_discovery.py` und implementieren Sie die folgenden Tests  
+Erstellen Sie die Datei `test_discovery.py` und implementieren Sie die folgenden Tests
 mit einer einfachen Klasse:
 
 ```python
@@ -221,7 +221,7 @@ Wenn Sie fertig sind, entfernen Sie `slow_service` und die drei zugehörigen Tes
 #### Setup und Teardown: Das Cleanup-Problem
 <!-- time estimate: 30 min -->
 
-Manche Tests erstellen Dateien, Datenbank-Einträge oder andere Ressourcen.  
+Manche Tests erstellen Dateien, Datenbank-Einträge oder andere Ressourcen.
 Was passiert, wenn diese nicht aufgeräumt werden?
 
 Betrachten Sie dieses problematische Beispiel:
@@ -260,7 +260,7 @@ Stelle benötigen.
 Dann haben wir noch eine andere - gute - Möglichkeit: Aufräumen.
 
 Hier ist eine Möglichkeit, um am Ende der Testdatei aufzuräumen.
-Sie verwenden cleanup(), um die Datei zu löschen.
+Sie verwenden `cleanup()`, um die Datei zu löschen.
 
 ```python
 @pytest.fixture(scope="module")
@@ -421,12 +421,9 @@ Folgendes haben Sie gerade beobachtet:
 2. **Fixture-Discovery:** Pytest scannt diese conftest.py Dateien nach @pytest.fixture
    Dekoratoren und registriert sie global
 3. **Namensauflösung:** Wenn ein Test einen Parameter fresh_user_service hat, sucht pytest
-   automatisch nach einer gleichnamigen Fixture in:
-
-   - Der gleichen Datei
-   - conftest.py im gleichen Verzeichnis
-   - conftest.py in übergeordneten Verzeichnissen
-   - Eingebauten pytest Fixtures
+   automatisch nach einer gleichnamigen Fixture in
+   (1) der gleichen Datei, (2) `conftest.py` im gleichen Verzeichnis, 
+   (3) `conftest.py` in übergeordneten Verzeichnissen, (4) eingebauten pytest-Fixtures.
 
 Kein Import nötig: Das ist ein spezielles Feature von pytest - normale Python-Import-Regeln
 gelten hier nicht.
@@ -443,7 +440,7 @@ def test_with_explicit_import(fresh_user_service):
     assert result.success == True
 ```
 
-[EQ] Ganz intuitiv: Welche Vor- und Nachteile sehen Sie in den beiden Varianten?
+[EQ] Welche Vor- und Nachteile sehen Sie in den beiden Varianten?
 
 #### Eingebaute Fixtures verstehen
 <!-- time estimate: 15 min -->
@@ -455,7 +452,6 @@ Pytest bringt viele eingebaute Fixtures mit. Hier sind drei wichtige:
 - `monkeypatch`: Funktionen, Umgebungsvariablen und Attribute durch Attrappen ersetzen
 
 Lesen Sie nach, was jede davon tut:
-
 [Built-in fixtures reference](https://docs.pytest.org/en/stable/reference/fixtures.html)
 
 [EQ] Skizzieren Sie für jede der drei ein Testszenario, in dem Ihnen der Einsatz sinnvoll erscheint.
@@ -485,7 +481,7 @@ def test_capsys_experiment(capsys):
 [EC] Fügen Sie beide Tests zu `test_discovery.py` hinzu und führen Sie sie aus:
 `pytest -v test_discovery.py`
 
-#### Reflexion: Wann und Warum Fixtures?
+#### Reflexion: Wann und warum Fixtures?
 <!-- time estimate: 5 min -->
 
 Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
