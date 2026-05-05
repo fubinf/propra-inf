@@ -1,5 +1,5 @@
 title: JavaScript und CSS verbinden – Zustände sichtbar machen
-stage: alpha
+stage: beta
 timevalue: 2.5
 difficulty: 2
 assumes: css-Selektoren, html-Attribute, js-Eventhandling
@@ -53,6 +53,7 @@ Man kann sich die Rollen so aufteilen:
 
 [EQ] Welche Informationen fehlen CSS, um selbst entscheiden zu können,
 wann eine Card ausgewählt ist?
+<!-- time estimate: 10 min -->
 
 
 ### Zustände mit CSS-Klassen beschreiben
@@ -72,7 +73,7 @@ Ein Beispiel dafür ist eine ausgewählte Card:
 
 Diese CSS-Regel beschreibt nicht jede Card allgemein,
 sondern nur Cards, die sich im Zustand „ausgewählt” befinden.  
-Die Klasse selected steht dabei nicht für ein konkretes Aussehen,
+Die Klasse `selected` steht dabei nicht für ein konkretes Aussehen,
 sondern für die Bedeutung: „Diese Card ist ausgewählt”.
 
 Wichtig ist: Diese Klasse wird nicht automatisch gesetzt.
@@ -88,6 +89,7 @@ Ordnen Sie die folgenden Aufgaben JavaScript oder CSS zu:
 - Festlegen, wie eine ausgewählte Card aussieht  
 
 Begründen Sie Ihre Zuordnung kurz.
+<!-- time estimate: 5 min -->
 
 
 ### Neue DOM-Eigenschaft: `classList`
@@ -121,8 +123,8 @@ Sie prüft automatisch, ob die angegebene Klasse bereits vorhanden ist:
 - Ist die Klasse nicht vorhanden, wird sie hinzugefügt.  
 - Ist die Klasse bereits vorhanden, wird sie entfernt.
 
-Man kann sich `toggle` wie einen Lichtschalter vorstellen:  
-Ein Klick schaltet das Licht ein, der nächste Klick wieder aus.  
+Man kann sich `toggle` wie einen Druckschalter vorstellen:  
+Ein Klick schaltet ein, der nächste Klick wieder aus.  
 JavaScript muss dabei nicht selbst prüfen,
 in welchem Zustand sich das Element befindet,
 `toggle` übernimmt diese Entscheidung.
@@ -133,29 +135,25 @@ Beispiel:
 card.classList.toggle("selected");
 ```
 
-- Erster Klick → selected wird hinzugefügt  
-- Zweiter Klick → selected wird entfernt  
-- Dritter Klick → selected wird wieder hinzugefügt
+- Erster Klick → `selected` wird hinzugefügt  
+- Zweiter Klick → `selected` wird entfernt  
+- Dritter Klick → `selected` wird wieder hinzugefügt
 
 Gerade für interaktive Elemente wie Buttons oder Cards ist `toggle` besonders geeignet,
 da Zustände häufig zwischen zwei Möglichkeiten wechseln.
-
-Wichtig ist dabei: JavaScript verändert keine einzelnen CSS-Eigenschaften wie Farbe oder Rahmen.  
-Stattdessen wird nur der Zustand des Elements geändert. 
-Welche visuellen Folgen dieser Zustand hat, entscheidet weiterhin CSS.
 
 Weitere Informationen finden Sie unter 
 [`classList` auf MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList).
 
 [EQ] In welcher Situation wäre `toggle` nicht geeignet,
 sodass man `add` und `remove` separat bräuchte?
+<!-- time estimate: 10 min -->
 
 
 ### Zusammenspiel: Klick → Klasse → Stil
 
 Nachdem Sie nun die einzelnen Bausteine kennengelernt haben,
-betrachten wir erstmals ein vollständiges,
-aber bewusst vereinfachtes Beispiel,
+betrachten wir jetzt ein einfaches vollständiges Beispiel,
 in dem HTML, CSS und JavaScript zusammenwirken.
 
 Das folgende Dokument enthält:
@@ -171,13 +169,13 @@ Das folgende Dokument enthält:
   <meta charset="utf-8" />
   <title>Klick → Klasse → Stil</title>
   <style>
-    .card.selected { background: lightblue;}
+    .card.selected { background: lightblue; }
   </style>
 </head>
 <body>
-  <div class="card" data-id="1">Klick mich</div>
+  <div class="card">Klick mich</div>
   <script>
-    const card = document.querySelector('.card[data-id="1"]')
+    const card = document.querySelector('.card')
 
     card.addEventListener("click", () => {
         card.classList.toggle("selected");
@@ -212,6 +210,7 @@ Erweitern Sie das obige Beispiel so, dass der Text der Card beim Klick wechselt:
 - Ist die Card ausgewählt, soll der Text „Ausgewählt“ angezeigt werden.
 
 Nutzen Sie dafür weiterhin die Klasse `selected` als Zustand.
+<!-- time estimate: 10 min -->
 
 
 ### Ausgangspunkt: HTML und CSS
@@ -274,13 +273,14 @@ Erstellen Sie eine Datei `cards.html` und übernehmen Sie folgendes Grundgerüst
 [ER]
 Erstellen Sie eine Datei `cards.js`.  
 Sorgen Sie dafür, dass ein Klick auf eine Card diese auswählt.  
-- Die angeklickte Card erhält die Klasse selected  
-- Alle anderen Cards verlieren die Klasse selected  
-- Es ist immer genau eine Card ausgewählt  
+- Die angeklickte Card erhält die Klasse `selected`  
+- Alle anderen Cards verlieren die Klasse `selected`  
+- Es ist immer genau eine Card ausgewählt
 
-[HINT::Alle Cards finden:]
+[HINT::Wie finde ich alle Cards?]
 `const cards = document.querySelectorAll(".card");`
 [ENDHINT]
+<!-- time estimate: 10 min -->
 
 
 ### Mehrere Zustände gleichzeitig modellieren
@@ -314,28 +314,14 @@ Diese Methode prüft, ob ein bestimmter Zustand aktuell gilt.
 Damit kann JavaScript Entscheidungen auf Basis des aktuellen Zustands treffen,  
 ohne auf CSS-Eigenschaften oder visuelle Merkmale zurückzugreifen.
 
-Wichtig:
-JavaScript fragt hier nicht, wie die Card aussieht,
-sondern nur, ob ein bestimmter Zustand gesetzt ist.
-
 #### Zustände gezielt kombinieren
 
 Durch die Kombination von `contains` mit `toggle` lassen sich Zustände kontrolliert verändern.
 
-Beispiel (vereinfacht):
-
-```js
-if (!card.classList.contains("disabled")) {
-  card.classList.toggle("selected");
-}
-```
-
-In diesem Fall wird der Zustand selected nur dann geändert, wenn die Card nicht deaktiviert ist.
-
 [ER]
 Erweitern Sie `cards.js` so, dass deaktivierte Cards nicht ausgewählt werden können.  
 Konkret:  
-- Eine Card mit der Klasse `disabled` soll auf Klick nicht ausgewählt werden.  
+- Eine Card mit der Klasse `disabled` soll auf Klick _nicht_ ausgewählt werden.  
 - Für alle anderen Cards soll das bisherige Verhalten unverändert bleiben.
 
 Nutzen Sie dazu `classList.contains`, um den Zustand `disabled` zu prüfen.
@@ -348,6 +334,7 @@ anstatt sie zu einem einzigen Zustand zusammenzufassen?
 [EQ]
 Warum ist es robuster, Zustände mit `classList.contains` zu prüfen,  
 anstatt z. B. Farbe oder Transparenz eines Elements auszuwerten?
+<!-- time estimate: 15 min -->
 
 
 ### Event Delegation und `data-*`-Attribute
@@ -400,7 +387,7 @@ Weitere Informationen finden Sie unter
 
 #### Buttons mit Aktionen versehen
 
-Wir nutzen `data-action`, um Buttons eindeutig zu kennzeichnen.  
+Nutzen Sue `data-action`, um Buttons eindeutig zu kennzeichnen.  
 JavaScript kann dadurch erkennen, welche Aktion ein Klick auslösen soll,
 ohne auf Textinhalte oder CSS-Klassen angewiesen zu sein.
 
@@ -477,7 +464,12 @@ Wurde irgendein Element innerhalb einer Card angeklickt
 - genau diese Card erhält die Klasse `selected`  
 - alle anderen Cards verlieren die Klasse `selected`  
 - Befindet sich die Card im Zustand `disabled`, darf sie nicht ausgewählt werden.
+<!-- time estimate: 20 min -->
 
+[HINT::Wie komme ich vom geklickten Element zur zugehörigen Card?]
+Siehe [`Element.closest()` auf MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest).
+Oder eine Schleife über die parents.
+[ENDHINT]
 [ENDSECTION]
 
 

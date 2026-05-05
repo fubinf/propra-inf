@@ -1,4 +1,5 @@
 - **2026-04-07**: Aufgaben auf `sedrila`-Version 3 umgestellt.
 - **2026-04-27**: Aufgabe [PARTREF::js-localStorage] zugefügt.
 - **2026-04-28**: Aufgabe [PARTREF::pytest_aaa] zugefügt.
+- **2026-05-05**: Aufgabe [PARTREF::js-CSS-zum-DOM] zugefügt.
 - ...
