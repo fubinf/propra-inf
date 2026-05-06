@@ -145,6 +145,10 @@ existiert.
 [ER] Schreiben Sie das geänderte Objekt in die Datei `m_json_students2.json`.
 Der Inhalt der Datei soll ebenfalls gut lesbar sein.
 <!-- time estimate: 60 min -->
+
+### Programmlauf für die Abgabe
+
+[EC] Führen Sie das gesamte so erzeugte Programm `m_re.py` einmal aus.
 [ENDSECTION]
 
 
