@@ -167,6 +167,9 @@ das dort als Bytestrom gelesene explizit dekodieren, umgefähr so:
 
 [ER] Probieren Sie das aus, indem Sie ihr Programm entsprechend umbauen
 
+### Programmlauf für die Abgabe
+
+[EC] Führen Sie das gesamte so erzeugte Programm `encoding-and-open.py` einmal aus.
 [ENDSECTION]
 
 
