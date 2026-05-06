@@ -90,6 +90,18 @@ siehe die
 Jetzt bohren wir den obigen Code auf, um die Encodings aller vier Dateien zu verstehen,
 denn die sind alle verschieden:
 
+[NOTICE]
+Wir erzeugen in den folgenden Aufgaben absichtlich "kaputte" Ausgaben.
+Je nach System und Terminal kann die Ausgabe sehr durcheinander werden.
+
+In manchen Fällen kann es auch zu merkwürdigem Verhalten des Terminals kommen, z.B. dass der 
+Output teils oder ganz abgeschnitten ist.
+Das passiert dann, wenn das Terminal im Output Steuerzeichen erkennt und versucht diese zu 
+interpretieren.
+Wenn Sie solches Verhalten bemerken, versuchen Sie, ein anderes Terminal zu verwenden, z.B. 
+das in PyCharm integrierte.
+[ENDNOTICE]
+
 [ER] Schreiben Sie zwei verschachtelte Schleifen: Die äußere läuft über die Dateinamen:  
 `filenames = [f"encoding/datei{i+1}" for i in range(4)]`
 
