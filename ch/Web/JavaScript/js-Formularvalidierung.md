@@ -8,8 +8,6 @@ assumes: html-Formulare, css-Selektoren, js-CSS-zum-DOM
 [SECTION::goal::trial]
 
 - Ich kann Benutzereingaben mit JavaScript validieren und deren Gültigkeit prüfen.  
-- Ich kann Fehlermeldungen dynamisch im DOM anzeigen und wieder entfernen.  
-- Ich kann Zustände eines Formulars über CSS-Klassen sichtbar machen.  
 - Ich kann Validierungslogik in eigene Funktionen auslagern und strukturiert aufbauen.  
 - Ich kann mehrere Validierungen zu einer Gesamtentscheidung zusammenführen.
 [ENDSECTION]
@@ -165,8 +163,6 @@ So bleibt die Kontrolle vollständig bei JavaScript.
 - Nutzen Sie das Eventobjekt als Parameter Ihrer Handlerfunktion.  
 - Rufen Sie innerhalb des Event-Handlers `event.preventDefault()` auf.
 
-Das Formular soll dadurch zunächst grundsätzlich nicht automatisch abgeschickt werden.
-
 [EQ] Was würde ohne den Aufruf von `event.preventDefault()` passieren,
 wenn das Formular abgeschickt wird?
 
@@ -215,7 +211,7 @@ Alter
 [`Number(wert)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/Number)
 wandelt einen String in eine Zahl um, ergibt `NaN`, wenn der Wert keine Zahl ist.
 [`Number.isInteger`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger)
-prüft, ob `n` eine ganze Zahl ist (gibt `false` für `NaN`, Dezimalzahlen und leere Eingaben).
+prüft, ob ein Wert eine ganze Zahl ist (gibt `false` für `NaN` und Dezimalzahlen).
 [ENDHINT]
 
 Passwort  
@@ -235,10 +231,6 @@ Der Zustand einer Checkbox ist über die Eigenschaft
 
 
 [ER] Validierungslogik vorbereiten:
-
-Bereiten Sie die Validierungslogik vor, indem Sie
-(1) die benötigten DOM-Elemente in Konstanten speichern und
-(2) leere Validierungsfunktionen anlegen.
 
 1. Greifen Sie auf alle benötigten DOM-Elemente zu und speichern Sie diese in Konstanten.  
    Legen Sie dafür Konstanten für  
@@ -334,10 +326,8 @@ Falls das Formular gültig ist:
 - zeigen Sie die Erfolgsmeldung an
 - verstecken Sie das Formular
 
-Falls das Formular ungültig ist:
-
-- Das Absenden bleibt durch `preventDefault()` unterbunden;
-  verarbeiten Sie nur weiter, wenn `validateForm()` `true` liefert.
+Falls das Formular ungültig ist, bleibt das Absenden durch `preventDefault()` unterbunden;
+es ist also nichts weiter zu tun.
 
 [EQ]
 Warum ist es sinnvoll, alle Validierungsergebnisse zu sammeln,
