@@ -387,7 +387,7 @@ Weitere Informationen finden Sie unter
 
 #### Buttons mit Aktionen versehen
 
-Nutzen Sue `data-action`, um Buttons eindeutig zu kennzeichnen.  
+Nutzen Sie `data-action`, um Buttons eindeutig zu kennzeichnen.  
 JavaScript kann dadurch erkennen, welche Aktion ein Klick auslösen soll,
 ohne auf Textinhalte oder CSS-Klassen angewiesen zu sein.
 
