@@ -4,6 +4,11 @@ timevalue: 1.0
 difficulty: 2
 explains: Encoding
 ---
+
+<!--
+TODO_3_wegner_alrwasheda: "assumes py-Context-Manager" hinzufügen.
+Eventuell ergeben sich hier thematische Überschneidungen, die vorher aufgelöst werden müssen.
+-->
 [SECTION::goal::trial,idea]
 Ich kann Dateien öffnen, lesen und schreiben.  
 Ich verstehe, was ein Encoding ist, und kann Daten in verschiedenen Enkodierungen verarbeiten.
