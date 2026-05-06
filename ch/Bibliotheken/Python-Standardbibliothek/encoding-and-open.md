@@ -165,15 +165,25 @@ das dort als Bytestrom gelesene explizit dekodieren, umgefähr so:
 
 
 [INSTRUCTOR::Die Encodings sollten stimmen]
+Prüfen Sie, ob die Encodings der vier Dateien korrekt bestimmt wurden.
+Schauen Sie auch grob, ob der Output vollständig ist.
 
-- Die Antwort für die Encodings sollte richtig sein (utf8, iso8859-1, cp500/EBCDIC-CP-BE, iso8859-9).
-- cp500 und EBCDIC-CP-BE sind ein- und dasselbe. 
-  Wenn dazu keine Anmerkung in der Antwort steht, Studi darauf hinweisen, 
-  sowas künftig aufzuklären und dann zu erklären.
-- datei2 wird auch mit iso8859-9 (Latin-5, Türkisch) korrekt dargestellt, 
-  aber das ergibt inhaltlich keinen Sinn,
-  wenn man wie gewünscht auf Wikipedia nachgelesen hat und ist deshalb falsch.
-- Der Code sollte vernünftiges Python sein, mit Schleifen über die Behälter.
-  Zusätzliche Abstraktionen sind nicht nötig.
+**BD** `datei2` wird auch mit `iso8859-9` (Latin-5, Türkisch) korrekt dargestellt, aber das ergibt 
+inhaltlich keinen Sinn, wenn man wie gewünscht auf Wikipedia nachgelesen hat und ist deshalb falsch.
 
+**BD** `cp500` und `EBCDIC-CP-BE` sind ein- und dasselbe. 
+Auch dies sollte beim Nachlesen auffallen und in irgendeiner Form in der Antwort ersichtlich sein.
+
+**BS** Das `with open()...` sollte außerhalb der inneren Schleife liegen, sodass die Datei nur 
+einmal eingelesen wird.
+
+**DS** Wenn der Kommando-Output teils abgeschnitten ist, der Code aber korrekt aussieht, haben die 
+Studierenden möglicherweise den Output nicht ganz geprüft (siehe Bemerkungsblock oben).
+Studierende ggf. hierauf hinweisen.
+
+Musterlösung siehe [TREEREF::encoding-and-open.py]
+
+[INCLUDE::ALT:]
+
+[PROT::ALT:encoding-and-open.prot]
 [ENDINSTRUCTOR]
