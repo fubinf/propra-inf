@@ -83,6 +83,7 @@ alle Bedeutungen des Parameters `mode` und den Parameter `encoding` nach.
 
 [ER] Erweitern Sie obigen Code so, dass die Verwendung von UTF-8 beim `open()` explizit wird,
 siehe die 
+[Liste der Standard-Encodings von Python](https://docs.python.org/3/library/codecs.html#standard-encodings).
 
 
 ### Encodings bestimmen
@@ -140,7 +141,7 @@ Ohne das explizit zu merken, haben wir oben zwei verschiedene Datentypen von Pyt
   String-Literale werden als `"ein String"` geschrieben.  
   Strings können alle Unicode-Zeichen darstellen; ein riesiger Vorrat, der alle Sprachen der Welt 
   ausdrücken kann.
-- Undekodierte Strings heißen auch Byte-Strings.  
+- Undekodierte Strings heißen auch Bytestrings.  
   Der Datentyp heißt `bytes` und umgangssprachlich sagt man in Python "Bytestring" oder "Bytes" dazu.  
   Bytestring-Literale werden als `b"ein Bytestring"` geschrieben.  
   Bytestrings enthalten als Zeichen nur kleine Ganzzahlen von 0 bis 255, die man erst noch 
@@ -160,12 +161,15 @@ gewählt ausdrücken, kommt aber in den meisten Gegenden halbwegs zurecht.
 
 ### Selber machen!
 
-Anstatt das Dekodieren des Encodings mit der Angabe `open(..., encoding=...)` Python zu überlassen,
-können wir es auch selber machen, indem wir die Datei im Binärmode öffnen und dann
-das dort als Bytestrom gelesene explizit dekodieren, umgefähr so:
-`content.decode(myencoding)`
+Encodings können nicht nur beim Einlesen mit `open()` angegeben werden, sondern z.B. auch auf 
+Bytestrings selbst mit der
+[`decode()`](https://docs.python.org/3/library/stdtypes.html#bytes.decode)
+Funktion von Bytestrings oder mit dem
+[`codecs`](https://docs.python.org/3/library/codecs.html)
+Modul der Standardbibliothek.
 
-[ER] Probieren Sie das aus, indem Sie ihr Programm entsprechend umbauen
+[ER] Probieren Sie das aus, indem Sie ihr Programm entsprechend umbauen, sodass jede Datei nur 
+einmal mit `open()` eingelesen wird.
 
 ### Programmlauf für die Abgabe
 
