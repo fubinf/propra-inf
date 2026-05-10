@@ -26,7 +26,7 @@ Genau dafür gibt es die `sync.WaitGroup`.
 
 ### `sync.WaitGroup`
 
-`sync.WaitGroup` ist ein weiterer Mechanismus zur Synchronisation, mit dem sich mehrere
+`sync.WaitGroup` ist ein Mechanismus zur Synchronisation, mit dem sich mehrere
 Goroutinen koordinieren lassen.
 
 In diesem Fall bedeutet das:
@@ -41,45 +41,49 @@ Zu Beginn ist dieser Zähler auf 0 gesetzt — es muss also auf nichts gewartet 
 
 Mit `wg.Add(delta int)` wird der Zähler um `delta` erhöht (beispielsweise beim Start
 neuer Goroutinen).
-Ein Aufruf von `wg.Done()` verringert ihn um 1 (wenn eine Goroutine fertig ist).
+Ein Aufruf von `wg.Done()` verringert ihn um 1 (typischerweise als letzter Schritt einer Goroutine, oft per `defer`).
 
 `wg.Wait()` blockiert, solange der interne Zähler größer als 0 ist.
 
-[EQ] Was passiert, wenn der interne Zähler einer `sync.WaitGroup` negativ wird?
-
-[EQ] Schauen Sie sich das erste Beispiel im
-[Artikel "Golang sync.WaitGroup: Powerful, but tricky"](https://wundergraph.com/blog/golang-wait-groups)
-an und skizzieren Sie, wie man eine `sync.WaitGroup` verwendet.
-
-[EQ] In der Version 1.25 wurde eine neue Methode hinzugefügt: `WaitGroup.Go()`.
-Schauen Sie sich die 
-[Dokumentation](https://pkg.go.dev/sync#WaitGroup.Go)
-und/oder den 
-[Quellcode](https://cs.opensource.google/go/go/+/refs/tags/go1.25.2:src/sync/waitgroup.go;l=235)
-der neuen Methode und erklären Sie, was diese tut.
-
-
-### Programmieren
-
-[ER] Schreiben Sie ein Programm, das 5 Goroutinen startet.
-Jede Goroutine soll `"Worker X done"` (mit X = 0 bis 4) ausgeben.
-Verwenden Sie eine `sync.WaitGroup`, um sicherzustellen, dass das Hauptprogramm erst
-`"All done"` ausgibt, wenn alle Goroutinen abgeschlossen sind.
-
-[EC] Führen Sie Ihr Programm mittels `go run` aus.
-
-<!-- time estimate: 20 min -->
-
-[WARNING]
+[NOTICE]
 `wg.Add(1)` muss immer **vor dem Start** der entsprechenden Goroutine aufgerufen werden.
 
 Wird es erst danach oder gleichzeitig aufgerufen, kann es passieren, dass der Aufruf nebenläufig
 zum `wg.Wait()` erfolgt — möglicherweise sogar erst _nach_ dem `wg.Wait()`.
 In diesem Fall würde auf die Goroutine nicht gewartet werden.
-[ENDWARNING]
+[ENDNOTICE]
+
+[EQ] Schauen Sie sich das erste Beispiel im
+[Artikel "Golang sync.WaitGroup: Powerful, but tricky"](https://wundergraph.com/blog/golang-wait-groups)
+an und skizzieren Sie, wie man eine `sync.WaitGroup` verwendet.
+
+
+### Programmieren
+
+[EQ] Probieren Sie aus:
+Was passiert, wenn `wg.Done()` öfter aufgerufen wird als `wg.Add(1)`?
+
+[ER] Schreiben Sie ein Programm, das in einer Schleife 5 Goroutinen startet.
+Jede Goroutine soll `"Worker X done"` (mit X = 0 bis 4) ausgeben.
+Verwenden Sie eine `sync.WaitGroup`, um sicherzustellen, dass das Hauptprogramm erst
+`"All workers done"` ausgibt, wenn alle Goroutinen abgeschlossen sind.
+Übergeben Sie den Schleifenindex explizit als Argument an jede Goroutine
+(`go func(index int){ ... }(i)`), damit jede Goroutine ihren eigenen Wert erhält. 
+
+[EC] Führen Sie Ihr Programm mittels `go run` aus.
+
+[EQ] In der Version 1.25 wurde eine neue Methode hinzugefügt: `WaitGroup.Go()`.
+Schauen Sie sich die
+[Dokumentation](https://pkg.go.dev/sync#WaitGroup.Go)
+und/oder den
+[Quellcode](https://cs.opensource.google/go/go/+/refs/tags/go1.25.2:src/sync/waitgroup.go;l=235)
+der neuen Methode und erklären Sie, was diese tut.
+
+<!-- time estimate: 20 min -->
+
 [ENDSECTION]
 
-[SECTION::submission::information,snippet,trace,program]
+[SECTION::submission::information,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
