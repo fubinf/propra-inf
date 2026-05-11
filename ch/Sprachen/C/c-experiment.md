@@ -11,7 +11,7 @@ Anpassungen vornehmen.
 
 
 [SECTION::background::default]
-Anstatt erst einmal lange das "wie" oder "warum" zu erklären geht es hier direkt mit einem Programm
+Anstatt erst einmal lange das "wie" oder "warum" zu erklären, geht es hier direkt mit einem Programm
 los.
 Ein Programm, das auch mehr tut als nur stumpf "Hallo Welt" auf den Bildschirm zu schreiben.
 
@@ -33,7 +33,7 @@ Während der Aufgabe werden Sie das folgende Programm analysieren und modifizier
 ```
 
 Legen Sie als Allererstes ein neues CLion Projekt für die Aufgabe an (s. [PARTREF::c-setup]).
-Ersetzen Sie den gesamten Inhalt der `main.c` mit obigem Programm.
+Ersetzen Sie den gesamten Inhalt der `main.c` durch obiges Programm.
 
 [EC] Bauen und führen Sie das Programm aus.
 
@@ -71,7 +71,7 @@ Was hingegen sehr wichtig ist, ist der `;` am Ende jeder Anweisung.
 ## Die Includes
 
 Am Anfang von C-Dateien stehen oftmals `#include`-Direktiven, vergleichbar mit Pythons `import`.
-In diesem Programm werden zwei sogenannte Header-Dateien eingebunden, `stdbool.h` und `stdio.h`
+In diesem Programm werden zwei sogenannte Header-Dateien eingebunden, `stdbool.h` und `stdio.h`.
 
 `stdbool.h` wird benötigt, um den Alias `bool` für den C Datentyp `_Bool` zu bekommen, sowie
 dedizierte `true` und `false` Konstanten.
@@ -220,11 +220,11 @@ um die Bedingung, sowie `else if` anstelle von `elif`.
 
 #### Logikoperatoren
 
-C hat die selben drei Logikoperatoren wie Python auch.
-Die Tabelle Zeigt die jeweiligen Schreibweisen.
+C hat dieselben drei Logikoperatoren wie Python auch.
+Die Tabelle zeigt die jeweiligen Schreibweisen.
 
-|Operator  | C       | Python |
-|----------| ------- | ------ |
+| Operator | C       | Python |
+|----------|---------|--------|
 | Und      | `&&`    | `and`  |
 | Oder     | `||`    | `or`   |
 | Nicht    | `!`     | `not`  |
@@ -298,15 +298,15 @@ Eine Besonderheit gibt es dennoch, und zwar eine Kurzschreibweise für Kontrolls
 Denn, wenn Sie nur eine einzige Zeile in einem `if`, `else`, oder gar Schleifenkörper haben,
 können die `{}` weggelassen werden.  
 Das Weglassen der `{}` ist im Allgemeinen ein schlechter Stil und unüblich.
-Die gesteigerte Fehleranfälligkeit bei nachträglichen Änderungen (und der Mehraufwand die`{}` dann
-einzufügen) ist die Ersparnis nicht Wert.
+Die gesteigerte Fehleranfälligkeit bei nachträglichen Änderungen (und der Mehraufwand, die `{}` dann
+einzufügen) ist die Ersparnis nicht wert.
 
 
 # Geführte Veränderungen
 
 Mit der Übersicht fertig werden Sie nun ein paar Änderungen an diesem Programm vornehmen.
 Es sind keine großen Dinge, sollen dennoch ein erstes Erlebnis mit der Programmierung in C
-erbringen.
+vermitteln.
 
 
 ## Array Indexschutz
@@ -319,11 +319,11 @@ Hier ist die Länge aber fest gesetzt, sie beträgt 101.
 
 Wenn Sie in Python auf einen Index zugreifen, der außerhalb des Arrays liegt, bekommen Sie eine
 Ausnahme, garantiert, jedes Mal.
-In C hingegen ist es ungewiss was passiert, der Standard macht keine Aussage.
+In C hingegen ist es ungewiss, was passiert, der Standard macht keine Aussage.
 Meist stürzt das Programm ab, es kann aber auch weiterlaufen mit nun beschädigten Daten (oder
-schlimmer, einer Sicherheitslücke die einen Angriffsvektor darstellt).
+schlimmer, einer Sicherheitslücke, die einen Angriffsvektor darstellt).
 
-Um das zu vermeiden müssen alle Schleifen oder sonstige Zugriffe auf ein Array vorher prüfen,
+Um das zu vermeiden, müssen alle Schleifen oder sonstige Zugriffe auf ein Array vorher prüfen,
 ob der gewünschte Index noch innerhalb des Arrays liegt.
 Dabei kann es schnell mal passieren, dass man eine falsche Arraylänge angibt.  
 Sie könnten die Länge des Arrays zwar in einer Variable speichern und diese nutzen, damit 
@@ -333,7 +333,7 @@ C bietet mittels des C-Präprozessors eine bessere Möglichkeit, eine Makrokonst
 Die Makrokonstante gibt ihnen einen Bezeichner für einen Wert.
 Während des Präprozessorschrittes der Übersetzung werden dann alle Vorkommnisse des Bezeichners
 durch den Wert ersetzt.
-Sie sparen Speicher und erhalten dennoch die Sicherheit, überall den selben Wert zu haben.
+Sie sparen Speicher und erhalten dennoch die Sicherheit, überall denselben Wert zu haben.
 
 [ER] Fügen Sie `#define ARRAY_SIZE 101` unterhalb der `#include`-Direktiven ein.
 
@@ -352,11 +352,11 @@ entweder ein Vielfaches einer bereits geprüften Zahl, oder prim sind.
 
 [ER] Verändern Sie die Endbedingung der ersten For-Schleife des Siebes so, dass die Schleife 
 höchstens bis zur Wurzel aus 100 läuft.
-Nutzen sie dafür die Funktion `sqrt` aus `math.h`, sowie `ARRAY_SIZE`
+Nutzen Sie dafür die Funktion `sqrt` aus `math.h`, sowie `ARRAY_SIZE`.
 
 [HINT::sqrt]
 Die `sqrt` Funktion hat als Rückgabetyp `double`, eine 64-Bit Gleitkommazahl.
-Da die Schleifenvariable stets in Ganzzahlschritten inkrementiert wird muss hier nichts weiter
+Da die Schleifenvariable stets in Ganzzahlschritten inkrementiert wird, muss hier nichts weiter
 beachtet werden.
 [ENDHINT]
 
