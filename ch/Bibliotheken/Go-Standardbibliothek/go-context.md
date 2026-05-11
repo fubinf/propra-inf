@@ -23,9 +23,9 @@ __Aber was, wenn es viele solcher Goroutinen gibt?__
 
 Deren Verwaltung wird zunehmend komplex und unübersichtlich.
 
-Genau hier setzt das Paket `context` an — ein Modul aus der Standardbibliothek, 
-das Werkzeuge zur Übertragung von Abbruchsignalen und Fristen sowie zur Weitergabe 
-anfragespezifischer Werte bereitstellt.
+Genau hier setzt das Paket `context` aus der Standardbibliothek an:
+Es stellt Werkzeuge zur Übertragung von Abbruchsignalen und Fristen sowie zur Weitergabe 
+anfragespezifischer Werte bereit.
 [ENDSECTION]
 
 [TOC]
@@ -55,7 +55,7 @@ abgeleitete Kontexte auswirkt.
 
 [ER] Schreiben Sie eine Funktion `doWork(parent context.Context, cancelMsg string) string`,
 die aus dem übergebenen Kontext `parent` einen eigenen Kontext erzeugt, darauf wartet, 
-dass dieser abgebrochen wird, und anschließend `cancelMsg` auf der Kommandozeile ausgibt.
+dass dieser abgebrochen wird, und anschließend `cancelMsg` als Rückgabewert liefert.
 
 [ER] Implementieren Sie eine Funktion `testCancel`:
 
@@ -66,7 +66,7 @@ dass dieser abgebrochen wird, und anschließend `cancelMsg` auf der Kommandozeil
   auf der Kommandozeile aus;
 - Übergeben Sie außerdem die Zeichenkette `"work canceled"` als `cancelMsg`.
 
-[ER] Rufen Sie die Funktion `testCancel` in Ihrer `main`-Funktion auf. 
+[ER] Rufen Sie die Funktion `testCancel` in Ihrer `main`-Funktion auf.
 
 [EQ] Wie verhalten sich verschiedene Kontexte zueinander im Falle eines Abbruchs?
 Beziehen Sie sich dabei auf das Beispiel mit `doWork`.
@@ -92,7 +92,7 @@ select {
 
 ### Übertragung von Fristen
 
-In diesem Teil lernen Sie die Methode `context.WithTimeout` praktisch kennen.
+In diesem Teil lernen Sie die Funktion `context.WithTimeout` praktisch kennen.
 
 [ER] Implementieren Sie eine Funktion `testTimeout`:
 
