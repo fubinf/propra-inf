@@ -13,7 +13,8 @@ Anpassungen vornehmen.
 [SECTION::background::default]
 Anstatt erst einmal lange das "wie" oder "warum" zu erklären, geht es hier direkt mit einem Programm
 los.
-Ein Programm, das auch mehr tut als nur stumpf "Hallo Welt" auf den Bildschirm zu schreiben.
+Der Grundaufbau eines C-Programms, kann so anschaulicher erarbeitet werden als mit einer Wand aus
+Text.
 
 [ENDSECTION]
 
@@ -136,9 +137,9 @@ mit dem Format `Datentyp Name` ist.
 
 Datentypen können Sie hier drei sehen:
 
-- `int`, eine Ganzzahl, die Größe ist von Betriebssystem, Übersetzer und Prozessorarchitektur abhängig,
-  für das im ProPra verwendete Debian mit GCC auf amd64 Prozessoren ist `int` auf 32-Bit gesetzt,
-- `char`, eine 8-Bit Ganzzahl,
+- `int`, eine Ganzzahl, meistens 32-Bit.
+- `char`, eine 8-Bit Ganzzahl, der Name stammt von Character und geht auf den ASCII-Zeichensatz
+  zurück.
 - `void`, der Nichts-Typ, verwendet um anzugeben, dass nichts zurückgegeben wird bzw. bei
   Parameterlisten keine Parameter existieren.
 
@@ -251,10 +252,7 @@ Diese Funktion bildet den Kern des Programms.
 Es handelt sich um eine naive Implementierung des "Sieb des Eratosthenes".
 
 Einzige Neuerung hier ist ein neuer Datentyp, `short`, kurz für `short int`.
-Was genau ein `short` ist, hängt vom Betriebssystem, Übersetzer und der Prozessorarchitektur ab.
-Für das im ProPra verwendete Debian mit GCC auf amd64 Prozessoren ist `short` auf 16-Bit gesetzt.
-
-Wie auch schon zuvor wurde zusätzlich der `unsigned` sowie der `const` Modifizierer angewendet.
+Ein `short` ist ebenso wie der `int` eine Ganzzahl, allerdings kleiner, meistens 16-Bit.
 
 
 ## `printFactors`, ein kleiner Helfer
@@ -294,13 +292,6 @@ Eine einfache Funktion, deren einzige Aufgabe es ist, für eine Zahl `i` auszusa
 ist oder nicht.
 Hierfür wird das mittels `findPrimes` aufgebaute Array `isNotPrime` verwendet.
 
-Eine Besonderheit gibt es dennoch, und zwar eine Kurzschreibweise für Kontrollstrukturen.
-Denn, wenn Sie nur eine einzige Zeile in einem `if`, `else`, oder gar Schleifenkörper haben,
-können die `{}` weggelassen werden.  
-Das Weglassen der `{}` ist im Allgemeinen ein schlechter Stil und unüblich.
-Die gesteigerte Fehleranfälligkeit bei nachträglichen Änderungen (und der Mehraufwand, die `{}` dann
-einzufügen) ist die Ersparnis nicht wert.
-
 
 # Geführte Veränderungen
 
@@ -312,28 +303,24 @@ vermitteln.
 ## Array Indexschutz
 
 Angefangen mit einer kleinen, aber ungemein nützlichen Veränderung.
-Das Programm arbeitet mit einem Array.
-Arrays in C sind immer fester Länge, wobei diese Länge durchaus auch aus einer Variable stammen
-darf.  
-Hier ist die Länge aber fest gesetzt, sie beträgt 101.
 
-Wenn Sie in Python auf einen Index zugreifen, der außerhalb des Arrays liegt, bekommen Sie eine
-Ausnahme, garantiert, jedes Mal.
+Wenn Sie in Python versuchen auf ein Array-Element mittels Index zugreifen, der außerhalb des
+Arrays liegt, bekommen Sie eine Ausnahme, garantiert, jedes Mal.
 In C hingegen ist es ungewiss, was passiert, der Standard macht keine Aussage.
 Meist stürzt das Programm ab, es kann aber auch weiterlaufen mit nun beschädigten Daten (oder
 schlimmer, einer Sicherheitslücke, die einen Angriffsvektor darstellt).
 
 Um das zu vermeiden, müssen alle Schleifen oder sonstige Zugriffe auf ein Array vorher prüfen,
 ob der gewünschte Index noch innerhalb des Arrays liegt.
-Dabei kann es schnell mal passieren, dass man eine falsche Arraylänge angibt.  
-Sie könnten die Länge des Arrays zwar in einer Variable speichern und diese nutzen, damit 
-verschwenden Sie allerdings Speicher.
+Sie könnten die Länge des Arrays zwar stets direkt als Wert angeben, laufen so allerdings Gefahr,
+bei einer Veränderung der Arraylänge, eine Indexprüfungen zu vergessen anzupassen.
 
 C bietet mittels des C-Präprozessors eine bessere Möglichkeit, eine Makrokonstante.
 Die Makrokonstante gibt ihnen einen Bezeichner für einen Wert.
 Während des Präprozessorschrittes der Übersetzung werden dann alle Vorkommnisse des Bezeichners
 durch den Wert ersetzt.
-Sie sparen Speicher und erhalten dennoch die Sicherheit, überall denselben Wert zu haben.
+Sie erhalten die Sicherheit, überall denselben Wert zu haben, insbesondere nach einer Veränderung
+des Wertes.
 
 [ER] Fügen Sie `#define ARRAY_SIZE 101` unterhalb der `#include`-Direktiven ein.
 
@@ -354,12 +341,6 @@ entweder ein Vielfaches einer bereits geprüften Zahl, oder prim sind.
 höchstens bis zur Wurzel aus 100 läuft.
 Nutzen Sie dafür die Funktion `sqrt` aus `math.h`, sowie `ARRAY_SIZE`.
 
-[HINT::sqrt]
-Die `sqrt` Funktion hat als Rückgabetyp `double`, eine 64-Bit Gleitkommazahl.
-Da die Schleifenvariable stets in Ganzzahlschritten inkrementiert wird, muss hier nichts weiter
-beachtet werden.
-[ENDHINT]
-
 
 ## Vereinfachung der Nutzung
 
@@ -368,7 +349,7 @@ Es wäre schöner, wenn `isPrime` das für Sie übernimmt, aber nur, wenn `findP
 nie ausgeführt wurde.
 
 [ER] Legen Sie eine neue Variable unterhalb des Arrays an.
-Die Variable soll auch Typ `bool` sein, mit dem Bezeichner `isInitialised`.
+Geben Sie der Variable den Typ `bool` und den Bezeichner `isInitialised`.
 
 [ER] Setzen Sie am Ende der `findPrimes`, also nach der For-Schleife aber noch vor dem Funktionsende,
 die Variable `isInitialised` auf `true`.
@@ -390,7 +371,8 @@ Dateien einbinden können, um diese zu benutzen.
 
 [ER] Legen Sie ein neues .c/.h Dateipaar `utils` an.
 In CLion über New > C/C++ Source File, im Fenster den Typ auf `.c` stellen und die Haken bei
-`Create an associated header`, `Add to targets` sowie `c_experiment` setzen.
+`Create an associated header`, `Add to targets` sowie `c_experiment` (`c_experiment` erscheint als
+Unterhaken zu `Add to targets`) setzen.
 
 [ER] Ersetzen Sie den Inhalt der neuen `utils.h` mit folgendem:
 ```c
