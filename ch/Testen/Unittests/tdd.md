@@ -115,8 +115,7 @@ Wechseln Sie nach jedem Zyklus die Rollen und diskutieren Sie Ihre Entscheidunge
 [HINT::Refactoring-Ideen]
 - Konstanten für 3, 5, 15 definieren
 - if-elif-else Struktur optimieren
-- Kommentare und Docstring hinzufügen
-- Edge Cases bedenken (0, negative Zahlen)
+- Docstring hinzufügen
 [ENDHINT]
 
 ### Zyklus 6: Edge Cases
