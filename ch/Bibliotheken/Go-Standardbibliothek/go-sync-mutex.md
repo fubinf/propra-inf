@@ -1,12 +1,12 @@
 title: "Go: sync.Mutex"
 stage: alpha
-timevalue: 1
+timevalue: 1.25
 difficulty: 3
 assumes: go-sync-waitgroup
 ---
 
 [SECTION::goal::idea,experience]
-Ich weiß, was ein Mutex ist und wie Mutexe in Go verwendet werden. 
+Ich kenne `sync.Mutex` und atomare Variablen in Go und kann einschätzen, wann welcher Mechanismus geeignet ist. 
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -27,7 +27,7 @@ Welche Arten es gibt, wie und wo sie eingesetzt werden und welche Alternativen z
 Das Wort "Mutex" stammt von "mutual exclusion" — "gegenseitiger Ausschluss".
 
 Ein Mutex dient dem Schutz des sogenannten _kritischen Abschnitts_ — eines Quellcodebereichs,
-der jeweils nur von einem Prozess oder Thread gleichzeitig ausgeführt werden darf.
+der jeweils nur von einer Goroutine gleichzeitig ausgeführt werden darf.
 
 Solange eine Goroutine den Mutex hält, darf keine andere Goroutine den kritischen 
 Abschnitt betreten.
@@ -36,11 +36,13 @@ Sehen Sie sich das
 [Beispiel "Go by Example: Mutexes"](https://gobyexample.com/mutexes)
 an und beantworten Sie die Fragen unten.
 
-[EQ] Welche Methoden von `sync.Mutex` werden im Beispiel verwendet, und wozu dienen sie?
-
 [EQ] Was ist der Nullwert eines `sync.Mutex`?
 
-[EQ] Wie würde sich die Funktionsweise des Beispielprogramms ändern, wenn `Container`
+[EQ] Warum steht `defer c.mu.Unlock()` direkt hinter `c.mu.Lock()` im Beispiel? 
+Was wäre die Folge, wenn man das Unlock erst am Funktionsende ohne `defer` schreibt und in der Mitte
+eine _Panik_ auftritt?
+
+[EQ] Wie und warum würde sich die Funktionsweise des Beispielprogramms ändern, wenn `Container`
 in `inc` per Wert übergeben worden wäre?
 (`(c Container) inc(name string)` anstatt von `(c *Container) inc(name string)`)
 
@@ -49,10 +51,10 @@ in `inc` per Wert übergeben worden wäre?
 
 ### `sync.RWMutex`
 
-Die Go-Standardbibliothek stellt mit `sync.RWMutex` eine feingranulare Alternative zum 
-gewöhnlichen `sync.Mutex` bereit.
+Die Go-Standardbibliothek stellt mit `sync.RWMutex` eine Variante bereit, die zwischen Lese- und Schreibzugriffen
+unterscheidet und dadurch mehrere gleichzeitige Lesezugriffe erlaubt.
 
-Diese Variante unterscheidet zwischen Lese- und Schreibzugriffen und bietet _zwei_ Paare von Zugriffsmethoden:
+Diese Variante bietet _zwei_ Paare von Zugriffsmethoden:
 
 - Für Lesezugriffe: `RLock()` und `RUnlock()`;
 - Für Schreibzugriffe: `Lock()` und `Unlock()`.
@@ -62,19 +64,37 @@ Diese Variante unterscheidet zwischen Lese- und Schreibzugriffen und bietet _zwe
 aufmerksam durch und erklären Sie selbst:
 Welches Problem löst `sync.RWMutex`?
 
-<!-- time estimate: 10 min -->
+[ER] Implementieren Sie eine Struktur `Config` mit den Feldern `mu sync.Mutex` und `data map[string]string` sowie
+einer Methode `(c *Config) Read(key string) string`, die den Mutex sperrt (und am Ende freigibt!), den Wert für `key`
+aus `data` ausliest und zurückgibt.
+Fügen Sie unmittelbar vor dem `return` ein `time.Sleep(100 * time.Millisecond)` ein, um einen teuren Lesezugriff
+zu simulieren.
+
+[ER] Implementieren Sie eine Funktion `myMutex`, die eine Instanz von `Config` mit
+`map[string]string{"theme": "dark"}` initialisiert, 5 Goroutinen startet, die gleichzeitig `c.Read("theme")` aufrufen,
+und die Gesamtausführungszeit mit `time.Now()` und `time.Since()` misst und ausgibt.
+Verwenden Sie eine [PARTREF2::go-sync-waitgroup::sync.WaitGroup] für die Synchronisierung der Goroutinen.
+
+[EQ] Rufen Sie `myMutex` auf und notieren Sie die Ausführungszeit.
+Was beobachten Sie, wenn Sie `sync.Mutex` durch `sync.RWMutex` und `Lock`/`Unlock`
+entsprechend durch `RLock` und `RUnlock` austauschen?
+Warum?
+
+<!-- time estimate: 25 min -->
 
 
 ### `sync/atomic`
 
-Eine Alternative zum Lock-Increment-Unlock-Zyklus ist das Paket `sync/atomic`.
+Für einfache Lese-, Schreib- und Update-Operationen auf einzelnen Variablen eignen sich _atomare Variablen_,
+die von der Go-Standardbibliothek im Paket `sync/atomic` bereitgestellt werden.
 
 Schauen Sie sich das
 [Beispiel "Go by Example: Atomic Counters"](https://gobyexample.com/atomic-counters)
 an und beantworten Sie die Fragen unten.
 
 [EQ] Wie verwendet man eine _atomare Variable_?
-Wie laufen die Lese- und Schreibzugriffe ab? 
+Zeigen Sie anhand eines kurzen Codeausschnitts, wie man eine solche Variable deklariert und
+wie Lese- und Schreibzugriffe aussehen.
 
 [EQ] Wann würden Sie diese Option den Mutexen bevorzugen?
 
@@ -112,7 +132,7 @@ Passen Sie die Ausgabe auf die Kommandozeile an
 [EC] Rufen Sie die drei Funktionen in Ihrer `main`-Funktion auf und führen Sie 
 das Programm mittels `go run` aus.
 
-[EQ] Welche Implementierungen haben das richtige Ergebnis geliefert?
+[EQ] Welche Implementierung liefert ein falsches Ergebnis und warum?
 
 [EQ] Diskutieren Sie die Laufzeiteffizienz der drei Varianten.
 Was ist die schnellste Implementierung und warum?
