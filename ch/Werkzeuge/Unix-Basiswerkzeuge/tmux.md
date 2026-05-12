@@ -1,4 +1,4 @@
-title: "tmux - Ein Terminal Multiplexer"
+title: "tmux: Ein Terminal-Multiplexer"
 stage: alpha
 timevalue: 1.5
 difficulty: 2
@@ -7,8 +7,8 @@ assumes: Shell-Grundlagen
 ---
 
 [SECTION::goal::experience]
-Ich verstehe das Konzept eines Terminal-Multiplexers. Ich kann `tmux`-Sessions erstellen, verwalten
-und Panes sowie Fenster zur Strukturierung meiner Arbeit nutzen. 
+Ich verstehe das Konzept eines Terminal-Multiplexers.
+Ich kann `tmux`-Sessions erstellen, verwalten und Panes sowie Fenster zur Strukturierung meiner Arbeit nutzen.
 [ENDSECTION]
 
 
@@ -53,8 +53,8 @@ Starten wir mit einer benannten Session, um die Grundkonzepte kennenzulernen.
 
 [EC] Erstellen Sie eine neue Session namens `projekt1`.
 
-Sie sehen nun am unteren Rand eine grüne Statusleiste.
-Das ist das `tmux`-Status-Fenster, das zeigt, dass wir uns innerhalb einer `tmux`-Session befinden.
+Sie sehen nun am unteren Rand eine Statusleiste.
+Das ist die `tmux`-Statusleiste, die zeigt, dass wir uns innerhalb einer `tmux`-Session befinden.
 Um eine laufende Aufgabe zu simulieren, starten wir einen Befehl, der 60 Sekunden lang jede Sekunde 
 die Zeit ausgibt.
 
@@ -92,15 +92,15 @@ Achten Sie auf die Tastenkombinationen für vertical split und horizontal split.
 Bisher haben wir eine Session mit einem einzelnen Fenster verwendet.
 Jetzt lernen wir zwei Möglichkeiten, den Bildschirm aufzuteilen:
 
-- Panes: Teilen Sie ein einzelnes Fenster in mehrere Quadranten oder Streifen auf.
-  Alle Panes gehören zum gleichen Fenster und zeigen den gleichen Tab-Index.
+- Panes: Teilen Sie ein einzelnes Fenster in mehrere Bereiche auf.
+  Alle Panes gehören zum gleichen Fenster und teilen sich dessen Fensterindex.
   Ideal für: Code links, Logs/Tests rechts nebeneinander arbeiten.
 
 - Fenster: Erstellen Sie mehrere unabhängige Fenster innerhalb einer Session.
   Jedes Fenster ist wie ein separater Tab, mit eigenem Index (z.B. 0, 1, 2, ...).
-  Ideal für: Verschiedene Aufgaben getrennt halten (z.B. Fenster 0: Kompiling, Fenster 1: Testing).
+  Ideal für: Verschiedene Aufgaben getrennt halten (z.B. Fenster 0: Kompilieren, Fenster 1: Testen).
 
-Starten Sie noch im Fenster der Session `projekt1`.
+Bleiben Sie im Fenster der Session `projekt1`.
 Teilen Sie das aktuelle Fenster in zwei Hälften nebeneinander:
 
 [EC] Splitten Sie das aktuelle Fenster vertikal.
@@ -116,11 +116,11 @@ Nun haben Sie zwei Panes nebeneinander. Um die Konzepte zu zeigen:
 
 Dieses Pane teilen wir jetzt horizontal (oben/unten):
 
-[EC] Splitten Sie das rechte Pan horizonteal.
+[EC] Splitten Sie das rechte Pane horizontal.
 
 [HINT::Eselsbrücke für Split-Tasten]
 `%` hat einen vertikalen Strich → teilt das Fenster vertikal.
-`"` sieht wie zwei Kasten übereinander aus → teilt das Fenster horizontal.
+`"` sieht wie zwei Kästen übereinander aus → teilt das Fenster horizontal.
 [ENDHINT]
 
 Sie haben nun drei Panes: links eine volle Höhe, rechts oben und rechts unten.
@@ -132,7 +132,7 @@ Sie haben nun drei Panes: links eine volle Höhe, rechts oben und rechts unten.
 
 Fenster sind ein anderes Konzept als Panes.
 
-[EC] Erstellen Sie neues leeres Fenster.
+[EC] Erstellen Sie ein neues leeres Fenster.
 
 Beobachten Sie, dass die Statusleiste unten jetzt zwei Einträge zeigt: `0` und `1`.
 
@@ -195,13 +195,12 @@ Nun sollte nur noch `server` übrig sein.
 
 ### Reflektion
 
-[EQ] Was ist der praktische Unterschied zwischen einer `tmux`-Session und einem normalen 
-Terminal-Fenster? 
+[EQ] Was ist der praktische Unterschied zwischen einer `tmux`-Session und einem normalen Terminal-Fenster?
 
 [EQ] Wann würden Sie `tmux` verwenden, wann reicht ein normales Terminal?
 
-[EQ] Beschreiben Sie den Unterschied zwischen Panes und Fenstern in `tmux`. Wann würden Sie
-welche nutzen?
+[EQ] Beschreiben Sie den Unterschied zwischen Panes und Fenstern in `tmux`.
+Wann würden Sie welche nutzen?
 
 [ENDSECTION]
 
