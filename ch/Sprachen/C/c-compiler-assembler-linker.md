@@ -86,7 +86,7 @@ In diesen Assemblercode hat `gcc` unser kleines C-Programm übersetzt.
 [EQ] `gcc` hat mehrere Optimierungsstufen zur Auswahl
 (Kommandozeilenparameter `-O`).
 Machen Sie sich mit den 
-[verschiedenen Stufen](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
+[verschiedenen Stufen](https://gcc.gnu.org/onlinedocs/gcc-12.5.0/gcc/Optimize-Options.html)
 vertraut.
 Wählen Sie für die folgenden Anwendungsfälle eine Optimierungsstufe aus
 und erläutern Sie Ihre Wahl kurz:

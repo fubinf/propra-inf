@@ -17,7 +17,7 @@ werden
 (z.B. [Win32 API A vs. W](https://medium.com/@boutnaru/windows-win32-api-working-with-strings-d2a2dabb85c8)).
 
 Wissbegierige können sich zusätzliche Informationen aus dem
-[Kapitel über Makros des GCC Präprozessor Handbuches](https://gcc.gnu.org/onlinedocs/cpp/Macros.html)
+[Kapitel über Makros des GCC Präprozessor Handbuches](https://gcc.gnu.org/onlinedocs/gcc-12.5.0/cpp/Macros.html)
 entnehmen.
 [ENDSECTION]
 

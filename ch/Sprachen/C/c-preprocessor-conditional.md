@@ -82,7 +82,7 @@ void PluginStop(void) {
 
 ## Praxis
 
-Lesen Sie sich das [GCC Kapitel "Conditional-Syntax"](https://gcc.gnu.org/onlinedocs/cpp/Conditional-Syntax.html)
+Lesen Sie sich das [GCC Kapitel "Conditional-Syntax"](https://gcc.gnu.org/onlinedocs/gcc-12.5.0/cpp/Conditional-Syntax.html)
 durch.
 Die Spezialoperatoren (`__has_attribute` usw.) können Sie überspringen, Sie werden im ProPra
 nur die Normalen benötigen.

@@ -47,14 +47,14 @@ Und die lokalen Namensräume können nirgendwo anders sichtbar gemacht oder impo
 ## Header und der Präprozessor-Include-Mechanismus
 
 Im Folgenden benutzen wir das
-[Kapitel über Header im GCC Präprozessor-Handbuch](https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html).
+[Kapitel über Header im GCC Präprozessor-Handbuch](https://gcc.gnu.org/onlinedocs/gcc-12.5.0/cpp/Header-Files.html).
 
 
-### Include
+### Header-Dateien einbinden
 
 Lesen Sie sich die Kapitel 2.1 bis 2.3 des Handbuchs durch.
 
-[EQ] Welche Vorteile bietet Ihnen das System der Header-Dateien?
+[EQ] Warum ist es ungünstig, Funktionsdeklarationen direkt in jede `.c` Datei zu schreiben, die sie aufruft?
 
 [ER] Vervollständigen Sie die `#include`-Direktiven (...).  
 Legen Sie dafür zuerst ein neues CLion Projekt (s. [PARTREF::c-setup]) an.  
@@ -95,7 +95,7 @@ int main(void) {  /* a function definition */
 entschieden haben.
 
 
-### Include Guard
+### Mehrfacheinbindung verhindern
 
 Lesen Sie sich die Kapitel 2.4 und 2.5 des Handbuchs durch.
 
@@ -125,9 +125,10 @@ der Definition in `print.c`.
 
 [EC] Bauen Sie das Programm erneut.
 
-[EC] Beheben Sie den Fehler (ignorieren Sie die Warnung bei dem `printf`) indem Sie in der
-`print.c` das `int` durch `const char *` ersetzen.  
-Bauen und führen Sie das Programm anschließend erneut aus.
+[ER] Beheben Sie den Fehler (ignorieren Sie die Warnung bei dem `printf`) indem Sie in der
+`print.c` das `int` durch `const char *` ersetzen.
+
+[EC] Bauen und führen Sie das Programm anschließend erneut aus.
 Geben Sie die Ausgabe des Bauprozesses sowie die des Programms selbst an.
 
 Um den oben durchgespielten Fehlerfall zu umgehen ist es gebräuchlich, jede Funktion, auch wenn
