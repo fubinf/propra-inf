@@ -2,7 +2,7 @@ title: Formulare validieren – Eingaben prüfen und Fehlerzustände darstellen
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-assumes: html-Formulare, css-Selektoren, js-CSS-zum-DOM
+assumes: html-Formulare, css-Selektoren, js-CSS-zum-DOM, js-Eventhandling
 ---
 
 [SECTION::goal::trial]
@@ -209,9 +209,11 @@ Alter
 
 [HINT::Zahlenwert prüfen mit `Number()` und `Number.isInteger()`]
 [`Number(wert)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/Number)
-wandelt einen String in eine Zahl um, ergibt `NaN`, wenn der Wert keine Zahl ist.
+wandelt einen String in eine Zahl um.
+
 [`Number.isInteger`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger)
-prüft, ob ein Wert eine ganze Zahl ist (gibt `false` für `NaN` und Dezimalzahlen).
+prüft, ob ein Wert eine ganze Zahl ist
+(gibt `false` für `NaN` und Dezimalzahlen).
 [ENDHINT]
 
 Passwort  
@@ -303,7 +305,7 @@ let isValid = true;
 Die Funktion soll `true` zurückgeben, wenn alle Eingaben gültig sind
 und `false`, sobald mindestens eine Eingabe ungültig ist.
 
-[HINT::`isValid` braucht man doch gar nicht!]
+[HINT::Geht das auch ohne `isValid?`]
 Alle Validierungsfunktionen aufzurufen und ihre Ergebnisse zu einem `boolean` zusammenzuführen
 geht auch ohne eine `isValid`-Variable, zum Beispiel mit einem Array und `.every(...)`:
 ```js
@@ -369,8 +371,8 @@ Berücksichtigen Sie außerdem folgende Abhängigkeit:
 
 [EQ] Warum ist für Textfelder das `input`-Event besser geeignet als `change`?
 
-[EQ] Welche Vorteile hat Live-Validierung
-gegenüber einer Validierung ausschließlich beim Abschicken des Formulars?
+[EQ] Beschreiben Sie eine Situation, in der eine Live-Validierung für Benutzer verwirrend 
+oder störend sein könnte. Wie könnte man die Benutzerfreundlichkeit verbessern?
 [ENDSECTION]
 
 
