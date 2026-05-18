@@ -1988,11 +1988,15 @@ Ein Paar aus Name und Wert, das einem Prozess eines Unix-Betriebssystems zugeord
 und an von diesem Prozess aus gestartete Unterprozesse weitergegeben wird und deshalb zur
 Ausführungsumgebung beider Prozesse gezählt wird.
 
-In der [TERMREF::Bash] kann man Umgebungsvariablen setzen,
+Viele Umgebungsvariablen werden bereits beim Start gesetzt, wie z.B. `$HOME`.
+In [TERMREF::Bash] und den meisten anderen Shells kann man auch eigene Umgebungsvariablen setzen,
 indem man das Kommando `export` benutzt
-(Beispiel: `export HOME=/home/myusername`),
+(Beispiel: `export WORKDIR=/home/user/dir`),
 und anzeigen mittels `echo`
-(Beispiel: `echo $HOME`).
+(Beispiel: `echo $WORKDIR`).
+Will man spezifisch für ein Kommando eine Umgebungsvariable setzen, kann man dies an den Anfang 
+des Befehls schreiben
+(Beispiel: `WORKDIR=/home/user/dir command`).
 [ENDTERM]
 
 
