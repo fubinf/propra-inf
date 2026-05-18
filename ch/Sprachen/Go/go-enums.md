@@ -1,6 +1,6 @@
 title: "Grundlagen von Go: Enums"
 stage: draft
-timevalue: 1.0
+timevalue: 0.75
 difficulty: 2
 assumes: go-structs1
 ---
@@ -29,105 +29,93 @@ Eine "Enum"-Definition in Go besteht üblicherweise aus folgenden Schritten:
 - Ein `const`-Block, der Werte dieses Typs definiert;
 - Verwendung von `iota` zur automatischen Nummerierung.
 
-Ein klassisches Beispiel sind Wochentage:
-
 ```go
-// 1. Eigener Typ erstellen
-type Weekday int
+// 1. Eigenen Typ definieren
+type ServerState int
 
 // 2. Konstantenblock definieren
 const (
     // 3. iota beginnt bei 0 und zählt pro Zeile hoch
-    Sunday    Weekday = iota // 0
-    Monday                   // 1
-    Tuesday                  // 2
-    Wednesday                // 3
-    Thursday                 // 4
-    Friday                   // 5
-    Saturday                 // 6
+    Idle      ServerState = iota // 0
+    Connected                    // 1
+    Error                        // 2
+    Retrying                     // 3
 )
 ```
 
-Dank des benutzerdefinierten Typs `Weekday` verhindert der Compiler, dass Sie versehentlich eine
-normale Ganzzahl an eine Funktion übergeben, die eigentlich einen `Weekday` erwartet.
-
 Der Bezeichner `iota` repräsentiert den Index der aktuellen Zeile innerhalb des `const`-Blocks.
+Der Ausdruck bleibt für jede Zeile des `const`-Blocks gleich; nur `iota` wird inkrementiert: 
 
 ```go
 const (
-    FlagA = 1 << iota  // 1 << 0 = 1
-    FlagB              // 1 << 1 = 2
-    FlagC              // 1 << 2 = 4
+    FlagA = iota * iota          // 0 * 0 = 0
+    FlagB                        // implizit 1 * 1 = 1
+    FlagC                        // implizit 2 * 2 = 4
 )
+
+fmt.Println(int(FlagC))          // 4
 ```
 
-Lesen Sie die Artikel, um die Fragen unten zu beantworten:
-
-- [`iota` auf go.dev](https://go.dev/wiki/Iota)
-- [Go by Example: Enums](https://gobyexample.com/enums)
-
-[EQ] Was passiert mit dem internen Zähler von `iota`, wenn in einer Datei ein neuer `const`-Block beginnt?
+Lesen Sie den
+[Artikel `iota` auf go.dev](https://go.dev/wiki/Iota)
+und beantworten Sie anschließend die Fragen unten.
 
 [EQ] Manchmal soll der erste Wert (`0`) ungültig sein oder übersprungen werden.
-Wie erreichen Sie, dass der erste __gültige__ Wert im `const`-Block den Wert 1 erhält?
+Wie erreichen Sie, dass die Aufzählung bei `1` beginnt?
 
-[EQ] Warum ist es sinnvoll, einen eigenen Typ (`type Status int`) zu definieren, anstatt einfach
-`const StatusRunning int = 0` zu verwenden?
+[EQ] Probieren Sie aus:
+Wie verhält sich `iota`, wenn es in einer Datei mehrere `const`-Blöcke gibt?
 
-<!-- time estimate: 20 min -->
+[ER] Definieren Sie einen Typ `Weekday` als `int`.
+Erstellen Sie mittels `const` und `iota` folgende Aufzählungswerten: `Monday`, `Tuesday`, `Wednesday`, `Thursday`,
+`Friday`, `Saturday`, `Sunday`.
+
+<!-- time estimate: 15 min -->
 
 
-### Die Stringer-Schnittstelle
+### Das Interface `fmt.Stringer`
 
-Ein Nachteil dieser `int`-basierten Enums ist, dass sie bei der Konsolenausgabe standardmäßig nur
-als Zahl erscheinen (z. B. `0` statt `Sunday`).
+[EQ] Probieren Sie aus:
+Wie sehen die Werte der Aufzählung `Weekday` auf der Kommandozeile aus?
+Welches Problem fällt Ihnen ein?
 
-Um dies zu ändern, können Sie dem Typ eine Methode `String() string` hinzufügen.
-Somit erfüllt Ihr Typ das Interface `fmt.Stringer` (mehr dazu lernen Sie in der Aufgabe [PARTREF::go-interfaces]).
+Um Variablen auf der Kommandozeile darzustellen, benutzt das Paket `fmt` das Interface `Stringer`.
+Oft lohnt es sich, dieses Interface für Ihre Aufzählungen zu implementieren.
 
-Bei Konsolenausgaben wird nun die Methode `String() string` benutzt, um herauszufinden, wie die Werte
-dieses Typs korrekt darzustellen sind.
+[ER] Schauen Sie sich das
+[Interface `Stringer` in "A Tour of Go"](https://go.dev/tour/methods/17)
+an.
+Implementieren Sie die Methode `String() string` für `Weekday`, sodass beim Ausdrucken der
+Variablen der lesbare Name (z. B. `"Monday"` oder `"Tuesday"`) ausgegeben wird.
+Sorgen Sie dafür, dass unbekannte Werte als `"Unknown"` ausgegeben werden.
 
-```go
-func (w Weekday) String() string {
-    // Ein Array oder Slice mit den Namen ist oft der einfachste Weg
-    names := [...]string{
-        "Sunday", "Monday", "Tuesday", "Wednesday",
-        "Thursday", "Friday", "Saturday",
-    }
-    // Prüfung, ob der Wert im gültigen Bereich liegt
-    if w < Sunday || w > Saturday {
-        return "Unknown"
-    }
-    return names[w]
-}
-```
-[ER] Definieren Sie einen Typ `ServerState` als `int`.
-Erstellen Sie mittels `const` und `iota` folgende Zustände: `StateIdle`, `StateConnecting`,
-`StateConnected`, `StateError`.
+(Mehr zu Interfaces lernen Sie in [PARTREF::go-interfaces].)
 
-[ER] Implementieren Sie die Methode `String() string` für `ServerState`, sodass beim Ausdrucken der
-Variablen der lesbare Name (z. B. `"Idle"` oder `"Error"`) ausgegeben wird.
-Sorgen Sie dafür, dass unbekannte Werte als `"Unknown State"` ausgegeben werden.
+[ER] Implementieren Sie eine Funktion `isWeekend(d Weekday) bool`.
+Diese Funktion soll `true` zurückgeben, falls `d` `Saturday` oder `Sunday` ist.
 
-[ER] Implementieren Sie eine Funktion `transition(current ServerState) ServerState`, die einen
-einfachen Zustandsautomaten simuliert (anhand von `current` den nächsten Zustand ermittelt):
+[EQ] Warum ist es sinnvoll, einen eigenen Typ (`type Weekday int`) zu definieren, anstatt einfach
+`const Monday int = 0` zu verwenden?
 
-- `StateIdle` wechselt zu `StateConnecting`;
-- `StateConnecting` wechselt zu `StateConnected`;
-- `StateConnected` wechselt zu `StateIdle` (Verbindung beendet);
-- `StateError` bleibt `StateError`;
-- Alle anderen Übergänge bleiben auf dem aktuellen Status.
+[HINT::Ich weiß nicht]
+In welchem Fall würde `isWeekend(8)` kompilieren?
+Wäre das im Kontext Ihres Programms sinnvoll?
+[ENDHINT]
 
 [ER] Fügen Sie folgende Testfunktion Ihrem Programm bei und rufen Sie sie aus der `main`-Funktion auf:
 
 ```go
-[INCLUDE::include/go-enums-control-snippet.go]
+func testEnums() {
+    days := []Weekday{Monday, Sunday, Weekday(8)}
+    for _, day := range days {
+        fmt.Println(day, isWeekend(day))
+    }
+}
 ```
 
-[EC] Führen Sie das Programm mittels go run aus.
+[EC] Führen Sie das Programm mittels `go run` aus.
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 [ENDSECTION]
 
 [SECTION::submission::information,trace,program]
