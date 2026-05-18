@@ -8,6 +8,8 @@ explains: Encoding
 <!--
 TODO_3_wegner_alrwasheda: "assumes py-Context-Manager" hinzufügen.
 Eventuell ergeben sich hier thematische Überschneidungen, die vorher aufgelöst werden müssen.
+TODO_3_wegner: Aufgabe umbauen, sodass encoding.zip im Hilfbereich, statt im Arbeitsbereich 
+entpackt wird. Setzt zusätzlich os.path voraus.
 -->
 [SECTION::goal::trial,idea]
 Ich kann Dateien öffnen, lesen und schreiben.  
