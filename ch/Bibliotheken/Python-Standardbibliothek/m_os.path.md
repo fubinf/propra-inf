@@ -58,11 +58,6 @@ Geben Sie das Ergebnis aus:
 Geben Sie das Ergebnis aus:  
 `print("home directory exists:", ...)`
 
-[INSTRUCTOR::home directory exists]
-Sollte immer True sein.
-Falls nicht, ist die Lösung falsch oder jemand hat seine HOME-Variable geändert.
-[ENDINSTRUCTOR]
-
 
 ### Mit Pfaden arbeiten
 
@@ -79,10 +74,11 @@ einen absoluten Pfad erhalten. Geben Sie das (z.B.) dritte Element der Liste aus
 Verzeichnis handelt. Geben Sie jeweils die Anzahl der Verzeichnisse und Dateien aus:  
 `print("# directories:", ..., ", # files:", ...)`
 
-[INSTRUCTOR::Symbolische Links]
-Falls das Verzeichnis symbolische Links enthält: `os.path` interpretiert korrekterweise
-Links auf Verzeichnisse als Verzeichnis und Links auf Dateien als Datei.
-[ENDINSTRUCTOR]
+[HINT::Abweichende Datei-/Verzeichnisanzahl]
+Womöglich enthält Ihr Home-Verzeichnis symbolische Links.
+Auch wenn es sich dabei um Dateien handelt, interpretiert `os.path` korrekterweise Links auf 
+Verzeichnisse als Verzeichnis.
+[ENDHINT]
 
 [ER] Betrachten Sie für diese Aufgabe nur alle Dateien.
 Listen Sie auf, welche Datei am größten ist, welche zuletzt erstellt wurde, welche zuletzt 
@@ -108,11 +104,6 @@ Verwenden Sie `os.path`, um den Pfad zu vereinfachen (nämlich redundantes Runte
 normalisieren):  
 `print("relative path normalized:", ...)`
 
-[INSTRUCTOR::relative normalized path]
-Wenn das cwd im Home-Verzeichnis liegt, sollte hier `.` herauskommen. Liegt die cwd außerhalb 
-kann der Pfad nicht weiter gekürzt werden.
-[ENDINSTRUCTOR]
-
 
 ### Programmlauf für die Abgabe
 
@@ -124,15 +115,11 @@ kann der Pfad nicht weiter gekürzt werden.
 [INCLUDE::../../_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Eine Ausgabe als "Muster"]
-Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_os_path.py]
+[INSTRUCTOR::Kommandoprotokoll prüfen]
+[INCLUDE::ALT:]
 
-Das Kommandoprotokoll hängt vom Inhalt des Home-Verzeichnisses ab und ist daher nur bedingt für 
-die Bewertung verwendbar.
-Führen Sie stattdessen die Musterlösung einmal aus und verwenden Sie die Ausgabe als 
-Muster-Kommandoprotokoll.
 
-Klare Defekte und übermäßig ungeschickte Konstruktionen zurückweisen, insbesondere solche, 
-die zu wenig Gebrauch von `os.path` machen.
-Wer keine list comprehensions kann, darf aber vorerst auch Schleifen schreiben.
+### Kommandoprotokoll
+
+[PROT::ALT:m_os.path.prot]
 [ENDINSTRUCTOR]
