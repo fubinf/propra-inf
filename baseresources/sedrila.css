@@ -966,10 +966,18 @@ a:link.vwr-filelink-submission {
     .prot-spec-manual,
     .prot-spec-extra {
         color: black !important;
+
+        & code {
+            color: white;
+        }
     }
 
     .prot-spec-manual p,
     .prot-spec-extra p {
         color: black !important;
+
+        & code {
+            color: white;
+        }
     }
 }
