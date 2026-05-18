@@ -5,7 +5,7 @@ difficulty: 2
 ---
 
 [SECTION::goal::idea]
-Ich kann mit in Python mit Datei- und Verzeichnispfaden umgehen.
+Ich kann in Python mit Datei- und Verzeichnispfaden umgehen.
 [ENDSECTION]
 
 
@@ -14,15 +14,15 @@ Wenn Sie mit ihrem Programm auf externe Dateien zugreifen wollen, müssen Sie si
 mit Pfadangaben auseinandersetzen.
 Möglicherweise müssen Sie dabei überprüfen, ob ein Pfad tatsächlich existiert, oder ihn 
 entsprechend bearbeiten.
-Falls Sie mit unterschiedlichen Betriebssystemen arbeiten, müssen Sie mindestens bei 
+Wenn Sie plattformunabhängige Programme erstellen wollen, müssen Sie spätestens bei 
 [absoluten Pfaden](https://www.redhat.com/sysadmin/linux-path-absolute-relative) 
-auch 
-[verschiedene Pfadformate](https://stackoverflow.com/a/62328554/2810305) 
-beachten.
+auch mit
+[verschiedenen Pfadformaten](https://stackoverflow.com/a/62328554/2810305) 
+beschäftigen.
 
 `os.path` ist ein Submodul von `os`, welches wiederum verschiedene Schnittstellen zum 
 Betriebssystem bündelt.
-`path` bietet hierbei einige grundsätzliche Interaktionsmöglichkeiten mit Pfaden.
+`os.path` bietet hierbei einige grundsätzliche Interaktionsmöglichkeiten mit Pfaden.
 [ENDSECTION]
 
 
@@ -40,21 +40,23 @@ getrennt.
 
 ### Pfad zum Home-Verzeichnis
 
-Für die Aufgabe verwenden wir ihr Home-Verzeichnis, i.d.R. unter `/home/<Username>`.
-Anstatt aber den Pfad direkt anzugeben, verwenden wir die [TERMREF::Umgebungsvariable] `$HOME`.
-So erhalten wir unabhängig vom User immer den Pfad zum Home-Verzeichnis.
+Für die Aufgabe verwenden wir Ihr Home-Verzeichnis, welches auf Linux i.d.R. unter 
+`/home/<Username>` liegt.
+Anstatt aber den Pfad direkt anzugeben, können wir die [TERMREF::Umgebungsvariable] 
+verwenden, die auf unser Home-Verzeichnis zeigt: `$HOME` auf Linux und `%USERPROFILE%` auf Windows.
 
-Alternativ gibt es auch das Symbol `~`, welches in der Shell und in `os.path` ein Synonym für 
-`$HOME` ist.
+Noch besser: `~` (Tilde) ist in vielen Shells ein Synonym für das Home-Verzeichnis und kann 
+ebenfalls mit 
+`os.path` ersetzt werden, unabhängig vom Benutzer und Betriebssystem.
 
-[ER] Wandeln Sie mittels `os.path` den String "$HOME" um in den absoluten Pfad zu ihrem 
-Home-Verzeichnis.
+[ER] Verwenden Sie `os.path`, um entweder die Tilde oder die Home-Variable in den absoluten Pfad 
+zu ihrem Home-Verzeichnis umzuwandeln.
 Geben Sie das Ergebnis aus:  
-`print("home directory: ", ...)`
+`print("home directory:", ...)`
 
 [ER] Testen Sie mithilfe von `os.path`, ob der so erhaltene Pfad wirklich existiert.
 Geben Sie das Ergebnis aus:  
-`print("home directory exists: ", ...)`
+`print("home directory exists:", ...)`
 
 [INSTRUCTOR::home directory exists]
 Sollte immer True sein.
@@ -85,25 +87,26 @@ Links auf Verzeichnisse als Verzeichnis und Links auf Dateien als Datei.
 [ER] Betrachten Sie für diese Aufgabe nur alle Dateien.
 Listen Sie auf, welche Datei am größten ist, welche zuletzt erstellt wurde, welche zuletzt 
 geändert wurde und welche Dateiendung am häufigsten vorkommt.  
-`print("biggest file:", ..., "\nlast created:", ..., "\nlast changed:", ..., "\nmost common file extension:", ...)`  
-(Eine elegante Lösung verwendet `min()`/`max()` und [PARTREF::py-List-Comprehensions].)
+`print("largest file:", ..., "\nlast created:", ..., "\nlast changed:", ..., "\nmost common file extension:", ...)`  
+(Eine elegante Lösung verwendet `min()`/`max()` und
+[PARTREF2::py-List-Comprehensions::List Comprehensions].)
 
 [ER] Verwenden Sie 
 [`os.getcwd()`](https://docs.python.org/3/library/os.html#os.getcwd), 
 um den Pfad zu ihrem aktuellen Arbeitsverzeichnis (im ProPra-Repo) zu erhalten.  
 Erstellen Sie mittels `os.path` einen relativen Pfad, der von ihrem Home-Verzeichnis zu ihrem 
 Arbeitsverzeichnis führt und geben Sie ihn aus:  
-`print("relative path from home to cwd: ", ...)`
+`print("relative path from home to cwd:", ...)`
 
 [ER] Erstellen Sie nun den relativen Pfad, der von ihrem Arbeitsverzeichnis zu ihrem 
 Home-Verzeichnis führt.
 Verknüpfen Sie die beiden Pfade miteinander und geben Sie das Resultat aus:  
-`print("path home to cwd and back: ", ...)`
+`print("path home to cwd and back:", ...)`
 
 [ER] Der erhaltene Pfad ist gültig, aber womöglich unnötig kompliziert.
 Verwenden Sie `os.path`, um den Pfad zu vereinfachen (nämlich redundantes Runter-und-Rauf zu 
 normalisieren):  
-`print("relative path normalized: ", ...)`
+`print("relative path normalized:", ...)`
 
 [INSTRUCTOR::relative normalized path]
 Wenn das cwd im Home-Verzeichnis liegt, sollte hier `.` herauskommen. Liegt die cwd außerhalb 
