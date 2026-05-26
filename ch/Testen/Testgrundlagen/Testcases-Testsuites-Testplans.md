@@ -91,7 +91,7 @@ sich zu registrieren, wenn sie noch keine Konten haben.
 
 Betrachten Sie dazu folgende [TERMREF2::User Story::-s]:
 
-1. Als Kunde möchte ich die E-Commerce-Webseite über www.e-commerce.de erreichen, um auf das Angebot
+1. Als Kunde möchte ich die E-Commerce-Website über www.e-commerce.de erreichen, um auf das Angebot
 des Händlers zugreifen zu können.
 
 2. Als nicht registrierter Kunde möchte ich mich registrieren können, damit ich jederzeit meinen
