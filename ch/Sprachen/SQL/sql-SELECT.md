@@ -177,7 +177,7 @@ oder auch eine gesamte Abfrage(Tabelle):
 SELECT * 
 FROM mytable AS myresult;
 ```
-[ER] Vergeben Sie für die erste Abfrage (`owner_id`) aus Aufgabe [EREFR::10] einen Alias.
+[ER] Vergeben Sie für die erste Abfrage (`owner_id`) aus Aufgabe [EREFR::12] einen Alias.
 
 [ER] Geben Sie die Namen (`name`) und Farben (`color`) aller Hunde zurück, wobei Sie 
 für beide Spalten aussagekräftige Aliase vergeben, z.&nbsp;B. `Hundename`, `Fellfarbe`.
