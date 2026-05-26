@@ -1,5 +1,5 @@
 title: "Go: sync.WaitGroup"
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 assumes: go-goroutines, go-advanced-control-flow
@@ -60,17 +60,17 @@ an und skizzieren Sie, wie man eine `sync.WaitGroup` verwendet.
 
 ### Programmieren
 
-[EQ] Probieren Sie aus:
-Was passiert, wenn `wg.Done()` öfter aufgerufen wird als `wg.Add(1)`?
-
 [ER] Schreiben Sie ein Programm, das in einer Schleife 5 Goroutinen startet.
 Jede Goroutine soll `"Worker X done"` (mit X = 0 bis 4) ausgeben.
 Verwenden Sie eine `sync.WaitGroup`, um sicherzustellen, dass das Hauptprogramm erst
 `"All workers done"` ausgibt, wenn alle Goroutinen abgeschlossen sind.
 Übergeben Sie den Schleifenindex explizit als Argument an jede Goroutine
-(`go func(index int){ ... }(i)`), damit jede Goroutine ihren eigenen Wert erhält. 
+(`go func(index int){ ... }(i)`), damit jede Goroutine ihren eigenen Wert erhält.
 
 [EC] Führen Sie Ihr Programm mittels `go run` aus.
+
+[EQ] Probieren Sie aus:
+Was passiert, wenn `wg.Done()` öfter aufgerufen wird als `wg.Add(1)`?
 
 [EQ] In der Version 1.25 wurde eine neue Methode hinzugefügt: `WaitGroup.Go()`.
 Schauen Sie sich die
