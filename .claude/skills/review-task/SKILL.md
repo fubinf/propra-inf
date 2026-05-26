@@ -14,7 +14,8 @@ Absolute oder relative Pfade kommen ebenfalls vor: `[INCLUDE::ALT:../Gruppe2/and
 `altdir/ch/Meinkapitel/Gruppe2/andere.md`, etc.)
 
 Erstelle ein Gutachten. 
-Verwende GitHub-Markdown-Syntax (also i.d.R. keine harten Zeilenumbrüche innerhalb des Satzes). 
+Verwende GitHub-Markdown-Syntax (also i.d.R. keine harten Zeilenumbrüche innerhalb des Satzes).
+Lutz Prechelt ("ich") wird dieses Gutachten kommentieren und in das GitHub-Issue einstellen.
 
 Beginne mit folgendem Absatz:
 "_Solcher kursiver Text ist von mir, der große Rest stammt von Claude. 
