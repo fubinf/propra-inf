@@ -1,6 +1,6 @@
 title: Formulare validieren – Eingaben prüfen und Fehlerzustände darstellen
-stage: alpha
-timevalue: 2.0
+stage: beta
+timevalue: 1.5
 difficulty: 2
 assumes: html-Formulare, css-Selektoren, js-CSS-zum-DOM, js-Eventhandling
 ---
@@ -165,7 +165,7 @@ So bleibt die Kontrolle vollständig bei JavaScript.
 
 [EQ] Was würde ohne den Aufruf von `event.preventDefault()` passieren,
 wenn das Formular abgeschickt wird?
-
+<!-- time estimate: 15 min -->
 
 ### Validierungsfunktionen erstellen
 
@@ -252,6 +252,7 @@ function validatePassword() {}
 function validatePasswordMatch() {}
 function validateTos() {}
 ```
+<!-- time estimate: 15 min -->
 
 [ER] Validierungsfunktionen implementieren:
 
@@ -270,7 +271,7 @@ um zu entscheiden, ob das gesamte Formular abgeschickt werden darf.
 [EQ]
 Warum ist es sinnvoll, für jedes Eingabefeld eine eigene Funktion zu verwenden,  
 anstatt die gesamte Validierungslogik direkt im `submit`-Event-Handler zu notieren?
-
+<!-- time estimate: 30 min -->
 
 ### Gesamtvalidierung durchführen
 
@@ -305,7 +306,7 @@ let isValid = true;
 Die Funktion soll `true` zurückgeben, wenn alle Eingaben gültig sind
 und `false`, sobald mindestens eine Eingabe ungültig ist.
 
-[HINT::Geht das auch ohne `isValid?`]
+[HINT::Geht das auch ohne `isValid`?]
 Alle Validierungsfunktionen aufzurufen und ihre Ergebnisse zu einem `boolean` zusammenzuführen
 geht auch ohne eine `isValid`-Variable, zum Beispiel mit einem Array und `.every(...)`:
 ```js
@@ -334,7 +335,7 @@ es ist also nichts weiter zu tun.
 [EQ]
 Warum ist es sinnvoll, alle Validierungsergebnisse zu sammeln,
 anstatt die Validierung beim ersten Fehler abzubrechen?
-
+<!-- time estimate: 15 min -->
 
 ### Live-Validierung
 
@@ -373,6 +374,7 @@ Berücksichtigen Sie außerdem folgende Abhängigkeit:
 
 [EQ] Beschreiben Sie eine Situation, in der eine Live-Validierung für Benutzer verwirrend 
 oder störend sein könnte. Wie könnte man die Benutzerfreundlichkeit verbessern?
+<!-- time estimate: 15 min -->
 [ENDSECTION]
 
 
