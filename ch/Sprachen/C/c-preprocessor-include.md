@@ -56,7 +56,7 @@ Lesen Sie sich die Kapitel 2.1 bis 2.3 des Handbuchs durch.
 
 [EQ] Warum ist es ungünstig, Funktionsdeklarationen direkt in jede `.c` Datei zu schreiben, die sie aufruft?
 
-[ER] Vervollständigen Sie die `#include`-Direktiven (...).  
+[ER] Vervollständigen Sie die mit `...` markierten `#include`-Direktiven in den unten stehenden Dateien.
 Legen Sie dafür zuerst ein neues CLion Projekt (s. [PARTREF::c-setup]) an.  
 Fügen Sie folgende Dateien hinzu:
 
@@ -116,8 +116,8 @@ void print(int string) {
 }
 ```
 
-Damit unterscheidet sich die Funktionsdeklaration in `print.h` bei der Parameterliste nun von 
-der Definition in `print.c`.
+Damit haben die Funktionsdeklaration in `print.h` und die Definition in `print.c` nun
+unterschiedliche Parameterlisten.
 
 [EC] Bauen und führen Sie das Programm aus.
 
