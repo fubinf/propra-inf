@@ -1,5 +1,5 @@
 title: "Go: sync.Mutex"
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 3
 assumes: go-sync-waitgroup
