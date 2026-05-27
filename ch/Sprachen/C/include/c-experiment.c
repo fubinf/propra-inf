@@ -34,7 +34,7 @@ void printFactors(const unsigned char i) {
 
 // 0 -> Nicht prim
 // 1 -> Prim
-// -1 -> Nicht in der Liste
+// -1 -> Nicht im Array
 int isPrime(const unsigned char i) {
   if (i >= 101) {
     return -1;
@@ -49,7 +49,7 @@ int main(void) {
 
   // Ausgabe
   // Bewusst über das Array-Ende hinaus iterieren für den else Block
-  for (unsigned char i = 2; i < 102; i++) {
+  for (unsigned char i = 2; i <= 101; i++) {
     const int prime = isPrime(i);
     if (prime == 0) {
       printf("%d ist keine Primzahl\n", i);
