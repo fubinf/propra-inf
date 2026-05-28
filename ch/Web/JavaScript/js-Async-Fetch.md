@@ -67,7 +67,7 @@ Nach 2 Sekunden
 
 `"Ende"` erscheint vor `"Nach 2 Sekunden"`, weil `setTimeout` nur einen Timer startet und nicht blockiert.
 JavaScript reiht den Callback in eine Warteschlange ein und verarbeitet ihn erst,
-wenn der aktuelle Code fertig ist, das nennt man die _Event Loop_.
+wenn der aktuelle Code fertig ist; das nennt man die _Event Loop_.
 Mehr dazu: [MDN setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout),
 [MDN Event Loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop).
 
@@ -210,7 +210,7 @@ Promise.resolve(10)
 
 `async`/`await` ist syntaktischer Zucker für Promises:
 Eine `async`-Funktion gibt automatisch ein Promise zurück, und `await` pausiert die Funktion,
-bis das jeweilige Promise erfüllt ist — ohne den Browser zu blockieren.
+bis das Promise abgeschlossen ist (erfüllt oder abgelehnt) — ohne den Browser zu blockieren.
 Mehr dazu in der
 [MDN-Dokumentation zu async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
 und
@@ -388,7 +388,7 @@ Stattdessen wird es erfüllt, und Sie erhalten ein `response`-Objekt, dessen `ok
 Das Promise wird nur bei Netzwerkfehlern abgelehnt,  
 also wenn die Anfrage gar nicht erst den Server erreicht (z. B. weil keine Internetverbindung besteht).
 
-Um HTTP-Fehler zu erkennen, müssen Sie hingegen `response.ok` oder `response.status` prüfen:
+Um HTTP-Fehler zu erkennen, müssen Sie `response.ok` oder `response.status` prüfen:
 
 ```js
 async function holeDaten() {
@@ -411,7 +411,7 @@ async function holeDaten() {
 Für alle anderen Statuscodes ist `ok` gleich `false`.
 `response.status` enthält den numerischen Statuscode (z. B. 404, 500, 200).
 
-Wenn wir in dem `if`-Block einen Fehler werfen (`throw new Error(...)`), 
+Wenn wir im `if`-Block einen Fehler werfen (`throw new Error(...)`), 
 wird das Promise abgelehnt und der `catch`-Block wird ausgeführt.
 Wenn Sie mit `throw new Error("HTTP-Fehler 404")` einen Fehler werfen, erzeugt JavaScript ein Error-Objekt.  
 Im `catch`-Block können Sie auf dessen Nachricht mit `.message` zugreifen:
@@ -448,7 +448,7 @@ Für eine gute Benutzererfahrung ist es wichtig, dem Nutzer zu zeigen, was gerad
 Stellen Sie sich vor, Sie klicken auf einen Button und nichts passiert.  
 Sie fragen sich: Hat der Klick funktioniert? Lädt gerade etwas? Ist die Seite abgestürzt?
 
-Deshalb sollten Sie immer vier Zustände unterscheiden und sichtbar machen:
+Deshalb sollten Sie in der Regel vier Zustände unterscheiden und sichtbar machen:
 
 1. Vor dem Laden: Neutraler Zustand  
 2. Während des Ladens: Ladeanzeige (z. B. "Lädt Daten...")  
