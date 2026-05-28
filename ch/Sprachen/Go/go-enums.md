@@ -14,7 +14,7 @@ konstruiert, und kann diese typsicher verwenden.
 In vielen Programmiersprachen (wie Java oder C++) gibt es ein explizites Schlüsselwort `enum`, um
 eine feste Menge von benannten Werten zu definieren, wie beispielsweise Wochentage oder Statusmeldungen.
 
-In Go gibt es ein solches Wort leider nicht.
+In Go gibt es ein solches Wort nicht.
 Stattdessen werden Konstanten in Kombination mit einem benutzerdefinierten Typ und dem speziellen
 Bezeichner `iota` verwendet, um dieses Verhalten idiomatisch nachzubilden.
 [ENDSECTION]
@@ -67,7 +67,7 @@ Wie erreichen Sie, dass die Aufzählung bei `1` beginnt?
 Wie verhält sich `iota`, wenn es in einer Datei mehrere `const`-Blöcke gibt?
 
 [ER] Definieren Sie einen Typ `Weekday` als `int`.
-Erstellen Sie mittels `const` und `iota` folgende Aufzählungswerten: `Monday`, `Tuesday`, `Wednesday`, `Thursday`,
+Erstellen Sie mittels `const` und `iota` folgende Aufzählungswerte: `Monday`, `Tuesday`, `Wednesday`, `Thursday`,
 `Friday`, `Saturday`, `Sunday`.
 
 <!-- time estimate: 15 min -->
@@ -97,7 +97,7 @@ Diese Funktion soll `true` zurückgeben, falls `d` `Saturday` oder `Sunday` ist.
 [EQ] Warum ist es sinnvoll, einen eigenen Typ (`type Weekday int`) zu definieren, anstatt einfach
 `const Monday int = 0` zu verwenden?
 
-[HINT::Ich weiß nicht]
+[HINT::Ich verstehe die Frage nicht]
 In welchem Fall würde `isWeekend(8)` kompilieren?
 Wäre das im Kontext Ihres Programms sinnvoll?
 [ENDHINT]
