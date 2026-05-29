@@ -1,5 +1,5 @@
 title: "Implizites vs. Explizites Interface von matplotlib"
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 2
 requires: plt-AxesAxis
@@ -14,11 +14,12 @@ weiß, wie ich beide benutze.
 [SECTION::background::default]
 In Matplotlib kann man auf zwei grundlegend verschiedene Weisen arbeiten.
 Wenn man dies nicht weiß, kann das sehr verwirrend sein, 
-weil sich z.B. passend aussehender Beispielcode evtl. nicht mit dem vorhandenen eigenen Code kombinieren lässt.
+weil sich z.B. passend aussehender Beispielcode evtl. nicht mit dem vorhandenen 
+eigenen Code kombinieren lässt.
 [ENDSECTION]
 
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 In der letzten Aufgabe haben Sie bereits einen Weg kennengelernt, Daten zu plotten:
 ```python
 import matplotlib.pyplot as plt
@@ -26,7 +27,7 @@ import matplotlib.pyplot as plt
 fig = plt.figure()
 ax = fig.subplots()
 
-x = [0, 1, 2]
+x = [10, 20, 30]
 y = [1, 2, 4]
 
 ax.plot(x, y)
@@ -41,14 +42,14 @@ Dieser Weg wird oft als "explizit" oder objektorientiert bezeichnet, weil Sie di
 (`Figure`, `Axes`) selbst erzeugen, benennen und direkt darauf zugreifen.
 
 Es gibt aber eine zweite Möglichkeit, wie man in Matplotlib etwas zeichnen kann.
-Dieser Weg wird als implizit bzw. funktional beschrieben, weil man keine eigenen Objekte erstellt, 
+Dieser Weg wird als "implicit" bzw. "state-based" beschrieben, weil man keine eigenen Objekte erstellt, 
 sondern Matplotlib _intern_ automatisch eine Grafik erzeugt und verwendet.
 Das obige Beispiel könnte man auf implizite Weise so umsetzen:
 
 ```python
 import matplotlib.pyplot as plt
 
-x = [0, 1, 2]
+x = [10, 20, 30]
 y = [1, 2, 4]
 
 plt.plot(x, y)
@@ -125,10 +126,12 @@ plt.title("Umgekehrt")
 plt.show()
 ```
 
-[EQ] Wie Sie sehen, kann man auch mehrere `Figure` und `Axes` in der impliziten Schreibweise haben. 
+[EQ] Wie Sie sehen, kann man auch mehrere `Axes` in der impliziten Schreibweise haben. 
 Für "Quadrate" gibt es nun ein `Axes` und für "Umgekehrt" auch.
-Könnten Sie in der impliziten Schreibweise auf die "Quadrate" Objekte zugreifen, nachdem Sie bereits
-ein neues `Axes` erstellt haben? (siehe Anmerkung im Code)
+Könnten Sie an der markierten Stelle (siehe Anmerkung im Code) wieder auf das `Axes`
+von "Quadrate" zugreifen? Wenn ja, wie?
+Werfen Sie dazu einen Blick in die
+[Dokumentation von `plt.subplot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html).
 
 [ER] Wandeln Sie den folgenden Code in eine implizite Schreibweise um.
 
