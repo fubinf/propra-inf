@@ -3,4 +3,5 @@
 - **2026-04-28**: Aufgabe [PARTREF::pytest_aaa] zugefügt.
 - **2026-05-05**: Aufgabe [PARTREF::js-CSS-zum-DOM] zugefügt.
 - **2026-05-26**: Aufgabe [PARTREF::js-Formularvalidierung] zugefügt.
+- **2026-05-29**: Aufgaben [PARTREF::plt-pyplot-vs-Axes], [PARTREF::plt-DiagrammArten], [PARTREF::plt-Pandas] zugefügt.
 - ...
