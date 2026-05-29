@@ -557,6 +557,17 @@ Unfortunately, working with submodules in git is a bit tricky.
   Then `commit` and `push` those changes ASAP.
   The shorter your change episodes, the fewer git problems.
 
+### 2.6.5 Using the `future-changes` branch
+
+Many kinds of change to existing tasks can only be performed inbetween one ProPra and the next.
+One can note down the intended change and perform it then
+or can perform it today on a different branch and apply it during the switch to a new ProPra.
+
+The procedure for the latter (beware: it is complicated!) is described in
+https://github.com/fubinf/propra-inf/issues/131  
+(This issue is closed, but should be reopened if changes to the procedure appear necessary.
+Or its contents could be incorporated here.)
+
 ----------------------
 
 # 3. For course lead: Review process for alpha tasks
