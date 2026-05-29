@@ -1,6 +1,6 @@
 title: "Matplotlib mit Pandas (Zweitstimmen)"
-stage: alpha
-timevalue: 1.25
+stage: beta
+timevalue: 1
 difficulty: 2
 assumes: plt-DiagrammArten, pd-Datenselektion2
 ---
@@ -38,8 +38,15 @@ party_cols = [
 ]
 ```
 
+
+### Stimmen pro Partei
+
 [ER] Summieren Sie für die nächsten Aufgaben die Stimmen der Parteien auf ihre Gesamtzahl pro
 Partei auf (`Series`).
+
+[HINT::Wie geht dieses Summieren?]
+Nutzen Sie `.sum()` auf den relevanten Spalten.
+[ENDHINT]
 
 [ER] Daten schnell zu plotten ist mit der eingebauten
 [`plot()`](https://pandas.pydata.org/docs/reference/api/pandas.Series.plot.html#pandas.Series.plot)
@@ -48,23 +55,27 @@ Schauen Sie sich die Dokumentation dazu an und plotten Sie die Stimmen der einze
 *Säulendiagramm*.
 
 [NOTICE]
-Diese eingebaute Methode von Pandas zum plotten nutzt im Hintergrund auch Matplotlib!
-Daher kann es gut sein, dass Sie `plt.show()` anwenden müssen, um sich den Plot anzeigen zu lassen,
+Diese eingebaute Methode von Pandas zum Plotten nutzt im Hintergrund auch Matplotlib!
+Daher kann es sein, dass Sie `plt.show()` anwenden müssen, um sich den Plot anzeigen zu lassen,
 auch wenn die Dokumentation das nicht explizit erwähnt.
 [ENDNOTICE]
 
-Diese Methode der Visualisierung ist kompakt und schnell, gut also wenn man sich die Daten nur kurz
-angucken möchte.
+Diese Methode der Visualisierung ist kompakt und schnell, gut also, wenn man sich die Daten nur kurz
+anschauen möchte.
 Wenn man jedoch die komplette Kontrolle über die Visualisierung haben möchte oder die
 Visualisierung selbst komplexer ist, dann ist es sinnvoll Matplotlib selbst zu benutzen.
 
 [ER] Setzen Sie das gleiche Diagramm mit der 
 [`bar()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.bar.html) 
 (explizite Schreibweise) statt mit der Pandas `plot()`-Methode um.
+<!-- time estimate: 15 min -->
+
+
+### Eine professionelle Wahlergebnis-Grafik
 
 Das geht aber noch deutlich geschickter.
-Im Folgenden werden Sie diese Grafik nachbauen:
-<img src="plt-votes-figure.png" style="width: 50%;"></img>
+Wir bauen jetzt diese Grafik nach:
+<img src="plt-votes-figure.png" style="width: 50%;" />
 
 [ER] Rechnen Sie dafür für jede Partei den Prozentwert aus und speichern diese in der Variable
 `percent`.
@@ -93,6 +104,7 @@ colors = [party_colors.get(p, "#A0A0A0") for p in major_parties.index]
 ```
 
 [ER] Plotten Sie das Säulendiagramm mit den Parteien und den richtigen Farben.
+<!-- time estimate: 15 min -->
 
 [ER] Noch zeigt das Diagramm nicht an, wie viel Prozent eigentlich jede Partei hat, man kann
 es nur ungefähr schätzen.
@@ -118,6 +130,7 @@ Geben Sie außerdem dem Diagramm den Titel "Zweitstimmen Bundestagswahl Berlin 2
 Y-Achsenbeschriftung "Zweitstimmen in %".
 
 Ihr Diagramm sollte nun so aussehen, wie im Bild oben.
+<!-- time estimate: 15 min -->
 
 ### Kuchendiagramm Wählende
 
@@ -126,10 +139,13 @@ Wahlberechtigten wählen gegangen sind und wie viele nicht.
 
 [EQ] Welche 2 Spalten sind dafür relevant? Wie können Sie den Anteil an Nicht-Wählern berechnen?
 
-[ER] Berechnen Sie die Wähler und Nicht-Wähler. Plotten Sie diese als Kreisdiagramm.
+[ER] Berechnen Sie die Wähler und Nicht-Wähler. Plotten Sie diese als Kreisdiagramm mit
+[`pie()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.pie.html).
 Setzen Sie die `labels` entsprechend auf "Wählende" und "Nicht-Wählende".
-Zeigen Sie mit `autopct` die Prozentsätze im Kreisdiagramm an.
+Zeigen Sie mit `autopct` die Prozentsätze im Kreisdiagramm an;
+`autopct` erwartet einen Formatstring wie `"%1.1f%%"`, wobei `%%` ein Prozentzeichen einfügt.
 [ENDSECTION]
+<!-- time estimate: 15 min -->
 
 
 [SECTION::submission::information]
