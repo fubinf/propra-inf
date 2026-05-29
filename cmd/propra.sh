@@ -45,7 +45,7 @@ s_author_do() {  # possible args are additional sedrila flags, esp. --stats
   (set -x;  $SEDRILA author build "$@" $PROPRA_BUILDDIR)
 }
 
-s_author() {  # build all tasks. 
+s_author() {  # build all tasks. Add --print-status manually to get progressplot data
   s_set_draft
   s_author_do --include-stage draft "$@"
 }
@@ -62,7 +62,7 @@ s_authorWS() {  # build released tasks for winter semester
 
 s_author2() {  # build released tasks for all currently maintained ProPras
   s_authorSS "$@"
-  # s_authorWS --sums "$@"  # receives no updates any more
+  # s_authorWS "$@"  # receives no updates any more
 }
 
 s_publish_do() {
