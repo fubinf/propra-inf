@@ -146,6 +146,7 @@ git submodule update --recursive
 - "der URL" (not "die")
 
 
-## Current development step
+## Instructions to coding agents
 
-None.
+Only read and modify data files (tasks, solutions, etc.), do not perform other work:
+Do not call sedrila; do not change git history.
