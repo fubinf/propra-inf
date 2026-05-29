@@ -2,7 +2,7 @@ title: "Matplotlib mit Pandas (Zweitstimmen)"
 stage: beta
 timevalue: 1
 difficulty: 2
-assumes: plt-DiagrammArten, pd-Datenselektion2
+assumes: plt-Diagrammarten, pd-Datenselektion2
 ---
 
 [SECTION::goal::idea]

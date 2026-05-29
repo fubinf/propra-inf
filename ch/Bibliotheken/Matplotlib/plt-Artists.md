@@ -2,7 +2,7 @@ title: "Artists anpassen"
 stage: alpha
 timevalue: 0.75
 difficulty: 2
-assumes: plt-DiagrammArten
+assumes: plt-Diagrammarten
 ---
 
 [SECTION::goal::idea]
