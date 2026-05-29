@@ -1,9 +1,9 @@
 title: "Diagrammtypen in Matplotlib"
-stage: alpha
+stage: beta
 timevalue: 2
 difficulty: 3
 explains:
-assumes: plt-pyplot-vs-Axes
+assumes: plt-pyplot-vs-Axes, np-Einführung
 ---
 
 [SECTION::goal::idea]
@@ -17,8 +17,12 @@ Die Wahl des passenden Diagramms hängt stark von der Art der Daten und der Frag
 die man beantworten möchte.
 [ENDSECTION]
 
-
 [SECTION::instructions::loose]
+Eine kompakte Übersicht, welcher Diagrammtyp wofür geeignet ist (und wofür nicht),
+bietet der
+[Data Viz Catalogue (deutsch)](https://datavizcatalogue.com/DE/).
+Schlagen Sie dort nach, wenn eine der folgenden „Wofür eignet sich …?"-Fragen Sie ins Grübeln bringt.
+
 ### Linien- und Scatter-Plot (`plot()`, `scatter()`)
 
 In [PARTREF::plt-pyplot-vs-Axes] haben Sie bereits zwei der Arten von Diagrammen kennengelernt:
@@ -29,14 +33,36 @@ erstellt haben und den Scatter-Plot, also einen Plot mit einzelnen Punkten, mit
 (wobei Sie da den Code fertig vorgefunden hatten).
 
 [ER] Erstellen Sie einen einfachen Linienplot von `np.sin(x)` für 
-`x = np.linspace(-np.pi,np.pi,100)`.
+`x = np.linspace(-np.pi,np.pi,100)  # 100 Datenpunkte gleichmäßig im Intervall [-π, π]`.
 
-[ER] Erstellen Sie für die gleichen Daten einen Scatter-Plot.
+Ein Linienplot verbindet aufeinanderfolgende Punkte und unterstellt damit, dass die Daten
+eine natürliche Reihenfolge haben (etwa über die Zeit).
+Die eigentliche Stärke von `scatter()` zeigt sich dagegen bei Daten *ohne* solche Reihenfolge:
+Jeder Punkt wird einzeln gezeichnet und kann individuell gestaltet werden.
+Über die Farbe (`c=`) und die Größe (`s=`) der Punkte lassen sich dadurch
+*zusätzliche* Datendimensionen darstellen, die ein Linienplot gar nicht zeigen könnte.
+
+Die folgenden Daten stammen von 300 über eine Region verteilten Wetterstationen.
+Jede Station hat eine Position (`x`, `y`) und eine dort gemessene Temperatur.
+
+[FOLDOUT::Daten der Wetterstationen (zum Kopieren)]
+```python
+[INCLUDE::include/wetterstationen.inc]
+```
+[ENDFOLDOUT]
+
+[ER] Erstellen Sie aus diesen Daten einen Scatter-Plot, der die Stationen an ihren
+Koordinaten (`x`, `y`) zeigt und die Temperatur über die Farbe der Punkte codiert (`c=temperatur`).
+Fügen Sie mit
+[`colorbar()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.colorbar.html)
+eine passende Farbskala hinzu, damit man die Farben den Temperaturwerten zuordnen kann.
 
 [EQ] Angenommen, Sie haben Daten für die Durchschnittstemperatur der vergangenen Jahre.
 Sie möchten die Veränderung der Temperatur darstellen:
 Würden Sie eher den Scatter-Plot oder den Linienplot dafür wählen?
 Begründen Sie.
+
+<!-- time estimate: 20 min -->
 
 
 ### Säulendiagramm (`bar()`, `barh()`)
@@ -74,6 +100,8 @@ maenner = [50, 55, 25, 50]
 frauen = [70, 30, 20, 15]
 ```
 
+<!-- time estimate: 20 min -->
+
 
 ### Kreisdiagramm
 
@@ -90,6 +118,8 @@ Heben Sie den Informatik-Anteil hervor mit dem Wert `0.1`.
 [EQ] Wann könnte ein Kreisdiagramm schlecht sein, auch wenn es sich um Anteile eines Ganzen
 handelt?
 
+<!-- time estimate: 10 min -->
+
 
 ### Statistische Diagramme
 
@@ -102,18 +132,30 @@ Dafür können sie sehr gut statistische Aspekte von Daten darstellen, die man o
 ### Histogramm
 
 Histogramme 
-([hist()](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.hist.html))
+([`hist()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.hist.html))
 eignen sich, um die Verteilung kontinuierlicher Daten darzustellen.  
 Dabei werden die Werte in Intervalle („Bins“) eingeteilt, und für jedes Intervall wird gezählt, 
 wie viele Datenpunkte darin liegen.  
 Auf den ersten Blick sieht ein Histogramm wie ein Balkendiagramm aus, aber im Unterschied dazu
 werden keine Kategorien, sondern Wertebereiche dargestellt.
 
-[ER] Erstellen Sie ein Histogramm mit 1000 normalverteilten Zufallszahlen (`np.random.randn(1000)`).
+Als Beispiel verwenden wir die Körpergrößen (in cm) von je 100 zufällig ausgewählten
+Männern und Frauen, die wir zu einer Stichprobe von 200 Personen zusammenfassen:
+```python
+men = np.random.normal(loc=178.9, scale=7.6, size=100)
+women = np.random.normal(loc=165.8, scale=7.1, size=100)
+groessen = np.concatenate([men, women])
+```
+
+[ER] Erstellen Sie ein Histogramm der 200 Körpergrößen `groessen`.
 
 [ER] Erhöhen Sie die Anzahl der Bins auf 50 und vergleichen Sie die Darstellung.
 
-[EQ] Was passiert, wenn Sie zu wenige oder zu viele Bins wählen? Wie beeinflusst das die Aussagekraft des Histogramms?
+[EQ] Was passiert, wenn Sie zu wenige oder zu viele Bins wählen?
+Wie beeinflusst das die Aussagekraft des Histogramms,
+also wie gut man die zugrunde liegende Verteilung der Körpergrößen erkennt?
+
+<!-- time estimate: 15 min -->
 
 
 ### Box-Plot
@@ -126,35 +168,43 @@ Schauen Sie sich die Beispiel-Boxplots in der Matplotlib-Dokumentation an:
 [Box-Plot Beispiele](https://matplotlib.org/stable/gallery/statistics/boxplot_demo.html#sphx-glr-gallery-statistics-boxplot-demo-py)
 
 Diese Darstellungen scheinen erstmal kryptisch, wenn man nicht weiß, was sie bedeuten.
-Boxplots geben folgende Informationen über die Daten:
+Ein Box-Plot fasst eine Verteilung über wenige Kennzahlen zusammen: den **Median**
+(den mittleren Wert der nach Größe sortierten Daten -- nicht zu verwechseln mit dem
+arithmetischen Mittelwert) sowie die **Quartile** Q1 und Q3, die zusammen mit dem Median die
+Daten in vier etwa gleich große Teile einteilen:
 
-Median: Der mittlere Wert, wenn die Daten der Größe nach sortiert sind.  
-(Nicht zu verwechseln mit dem arithmetischen Mittelwert.)
+- Q1: 25 % der Werte liegen unter oder auf Q1
+- Q2 = Median: 50 % der Werte liegen unter oder auf Q2
+- Q3: 75 % der Werte liegen unter oder auf Q3
 
-Quartile: Grenzen, die die Daten in vier gleich große Teile einteilen
+Die Box reicht von Q1 bis Q3, der Median ist als Linie darin eingezeichnet.
+Aus der Box ragen nach oben und unten die **Whisker** heraus; jenseits davon liegende
+Werte werden einzeln als **Ausreißer** markiert.
+Die statistischen Hintergründe (Quartil, Interquartilsabstand) finden Sie bei Bedarf kompakt im
+Artikel [Box-Plot (Wikipedia)](https://de.wikipedia.org/wiki/Box-Plot);
+hier interessiert uns vor allem, wie man eine solche Darstellung mit Matplotlib erzeugt und liest.
 
-- Q0 = Minimum
-- Q1 = 25 % der Werte liegen unter oder auf dem Wert Q1
-- Q2 = Median (50% der Werte liegen unter oder auf Q2)
-- Q3 = 75 % der Werte liegen unter oder auf Q3
-- Q4 = Maximum
-  
-Die "Whisker" zeigen, wie weit die Werte typischerweise reichen.  
+[EQ] Die Whisker reichen nicht unbedingt bis zum kleinsten und größten Wert der Daten.
+Finden Sie heraus, nach welcher Regel Matplotlib standardmäßig festlegt, wie weit die Whisker
+reichen, und was mit Werten außerhalb dieser Grenze geschieht.
+Nennen Sie die Regel und geben Sie Ihre Quelle an
+(z.B. den oben verlinkten Wikipedia-Artikel oder die
+[Dokumentation von `boxplot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.boxplot.html),
+Parameter `whis`).
 
 [EQ] Schauen Sie in die Dokumentation und beschreiben Sie für diese Informationen 
 (Median, Quartile, Whisker, Ausreißer), wodurch diese im Box-Plot dargestellt werden.
 
 [ER] Erstellen Sie einen Box-Plot für 100 normalverteilte Zufallszahlen (`np.random.randn(100)`).
 
-[ER] Erstellen Sie einen Boxplot mit zwei Datensätzen zu Körpergrößen von Männern und Frauen:
-```python
-men = np.random.normal(loc=178.9, scale=7.6, size=100)
-women = np.random.normal(loc=165.8, scale=7.1, size=100)
-```
+[ER] Erstellen Sie einen Boxplot, der die Körpergrößen von Männern und Frauen nebeneinander
+vergleicht. Verwenden Sie dazu die Daten `men` und `women` aus dem Histogramm-Abschnitt.
 
-[EQ] Schauen Sie sich den Box-Plot zu diesen beispielhaften Daten an.
+[EQ] Vergleichen Sie diesen Box-Plot mit dem Histogramm derselben Körpergrößen-Daten von weiter oben.
 Ein Histogramm zeigt die Häufigkeitsverteilung der Daten. 
 Welche Aspekte der Datenverteilung lassen sich in einem Box-Plot ergänzend erkennen?
+
+<!-- time estimate: 25 min -->
 
 
 ### Heatmap
@@ -166,10 +216,14 @@ Je höher oder niedriger ein Wert ist, desto intensiver (oder anders) ist die Fa
 Sie eignet sich besonders, um Muster in 2D-Daten oder Korrelationen sichtbar zu machen.
 
 [ER] Erstellen Sie eine 10×10-Matrix mit Zufallswerten (`np.random.rand(10,10)`) und stellen Sie
-diese mit `plt.imshow()` dar.
+diese mit `ax.imshow()` dar.
+Fügen Sie eine Farbskala (`colorbar()`) hinzu, denn ohne sie lässt sich aus den Farben kein
+Wert ablesen.
 
 [EQ] Warum ist eine Heatmap besser geeignet als eine Tabelle, 
 wenn man viele Zahlen gleichzeitig darstellen möchte?
+
+<!-- time estimate: 10 min -->
 
 
 ### Weitere Plots
@@ -184,6 +238,8 @@ wofür diese jeweils geeignet sind:
 
 - Stackplot (`stackplot()`)  
 - Quiver-Plot (`quiver()`)  
+
+<!-- time estimate: 10 min -->
 [ENDSECTION]
 
 
