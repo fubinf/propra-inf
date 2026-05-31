@@ -2,7 +2,7 @@ title: Asynchrone Programmierung – Daten aus dem Internet laden
 stage: alpha
 timevalue: 4
 difficulty: 3
-assumes: http-GET, http-Status, m_json, js-localStorage-JSON
+assumes: http-GET, http-Status, m_json, js-Eventhandling, js-Objekte-zum-DOM
 ---
 
 [SECTION::goal::idea,trial]
@@ -87,7 +87,7 @@ Was wird in welcher Reihenfolge ausgegeben und wieso?
 
 <!-- time estimate: 10 min -->
 
-[HINT::Wie funktioniert die Event Loop?]
+[HINT::Ich verstehe nicht, warum "2" zuletzt ausgegeben wird]
 JavaScript arbeitet mit einer sogenannten Event Loop:  
 Zuerst wird der gesamte synchrone Code (also alles, was nicht in Callbacks steht) ausgeführt.  
 Erst danach werden asynchrone Callbacks aus einer Warteschlange abgearbeitet,
@@ -97,8 +97,15 @@ Das bedeutet: `setTimeout(..., 0)` bedeutet nicht "sofort", sondern
 "so bald wie möglich, nachdem der aktuelle Code fertig ist".
 [ENDHINT]
 
-[EQ] Erklären Sie in eigenen Worten, warum JavaScript im Browser asynchron arbeitet.
-Was würde passieren, wenn alle Netzwerkanfragen synchron (blockierend) wären?
+[EQ] Asynchronität im Browseralltag erkennen:
+
+Geben Sie ein konkretes Beispiel aus Ihrem Browseralltag, an dem man asynchrone Ausführung erkennen kann.
+
+Beschreiben Sie dabei kurz:
+
+1. Welche Aktion startet eine länger dauernde Operation?
+2. Was kann der Nutzer währenddessen weiterhin tun?
+3. Was würde sich anders anfühlen, wenn diese Operation synchron/blockierend ausgeführt würde?
 
 <!-- time estimate: 10 min -->
 
@@ -411,14 +418,12 @@ async function holeDaten() {
 Für alle anderen Statuscodes ist `ok` gleich `false`.
 `response.status` enthält den numerischen Statuscode (z. B. 404, 500, 200).
 
-Wenn wir im `if`-Block einen Fehler werfen (`throw new Error(...)`), 
-wird das Promise abgelehnt und der `catch`-Block wird ausgeführt.
-Wenn Sie mit `throw new Error("HTTP-Fehler 404")` einen Fehler werfen, erzeugt JavaScript ein Error-Objekt.  
-Im `catch`-Block können Sie auf dessen Nachricht mit `.message` zugreifen:
+Wenn im `if`-Block ein Fehler mit `throw new Error(...)` geworfen wird, springt die Ausführung in den `catch`-Block.
+Dort kann die Fehlermeldung über die Eigenschaft `.message` ausgelesen werden:
 
 ```js
-catch (fehler) {
-  console.log(fehler.message);  // "HTTP-Fehler 404"
+catch (fehler) { 
+  console.log(fehler.message); // "HTTP-Fehler 404" 
 }
 ```
 
@@ -455,6 +460,27 @@ Deshalb sollten Sie in der Regel vier Zustände unterscheiden und sichtbar mache
 3. Nach erfolgreichem Laden: Daten anzeigen  
 4. Bei Fehler: Fehlermeldung anzeigen
 
+### Button während des Ladens deaktivieren
+
+Klickt ein Nutzer mehrmals schnell hintereinander auf "Laden", starten mehrere Anfragen parallel
+und die Ergebnisse werden mehrfach angezeigt.
+Deswegen setzt man `button.disabled = true` vor der Anfrage und `button.disabled = false` danach.
+
+Den Re-Aktivierungscode sollte man in einen `finally`-Block setzen, denn `finally` wird immer ausgeführt,
+egal ob die Anfrage erfolgreich war oder nicht.
+Steht die Re-Aktivierung nur im `try`-Block, bleibt der Button nach einem Fehler dauerhaft deaktiviert.
+```js
+button.disabled = true; 
+
+try { 
+  // Daten laden und anzeigen 
+} catch (fehler) { 
+    // Fehler anzeigen 
+} finally { 
+    button.disabled = false; 
+}
+```
+
 [ER] Liste mit Ladeanzeige laden:
 
 Erstellen Sie eine neue HTML-Datei mit folgender Struktur:
@@ -484,47 +510,27 @@ Implementieren Sie folgendes Verhalten:
 1. Beim Klick auf den Button soll im `#status`-Element "Lädt Posts..." erscheinen
 2. Laden Sie die ersten 5 Posts von `https://jsonplaceholder.typicode.com/posts?_limit=5`  
    (Die API liefert ein Array von Post-Objekten)
-3. Fügen Sie nach dem Fetch eine künstliche Verzögerung von 2 Sekunden ein,  
-   damit der Ladezustand sichtbar wird (da die API sehr schnell antwortet).  
-   Dafür können Sie folgende Hilfsfunktion verwenden:
-
-```js
-function warte(ms) {
-  return new Promise(function(resolve) {
-    setTimeout(resolve, ms);
-  });
-}
-```
-Aufruf: `await warte(2000);`
-
-4. Während des Ladens soll `#posts` leer sein  
-5. Nach erfolgreichem Laden:  
-   - `#status` zeigt "5 Posts geladen" in grüner Farbe  
+3. Während des Ladens soll `#posts` leer sein  
+4. Nach erfolgreichem Laden:  
+   - `#status` zeigt "5 Posts geladen" und wird grün hervorgehoben  
    - `#posts` zeigt alle Posts untereinander an (jeweils Titel und Inhalt)  
-6. Bei einem Fehler:  
-   - `#status` zeigt die Fehlermeldung in roter Farbe  
+5. Bei einem Fehler:  
+   - `#status` zeigt die Fehlermeldung und wird rot hervorgehoben  
    - `#posts` bleibt leer  
-7. Der Button soll während des Ladens deaktiviert sein; aktivieren Sie ihn in einem `finally`-Block wieder.  
-   Testen Sie, ob der Button auch nach einem Fehler wieder klickbar ist.
+6. Der Button soll während des Ladens deaktiviert sein.  
+   Aktivieren Sie ihn in einem `finally`-Block wieder, damit er auch nach einem Fehler erneut klickbar ist.
+
+[NOTICE]
+**Verbindung in den DevTools drosseln**
+
+Testen Sie die Ladeanzeige, indem Sie in den Browser-DevTools die Verbindung drosseln, z. B. auf **3G**.
+
+Öffnen Sie die DevTools Ihres Browsers und wechseln Sie in den Tab **Network**.
+Wählen Sie dort bei **Throttling** eine langsamere Verbindung, z. B. **3G**, aus.
+Laden Sie danach die Seite neu und testen Sie den Button erneut.
+[ENDNOTICE]
 
 <!-- time estimate: 40 min -->
-
-
-### Button während des Ladens deaktivieren
-
-Klickt ein Nutzer mehrmals schnell hintereinander auf "Laden", starten mehrere Anfragen parallel
-und die Ergebnisse werden mehrfach angezeigt.
-Deswegen setzt man `button.disabled = true` vor der Anfrage und `button.disabled = false` danach.
-
-Den Re-Aktivierungscode sollte man in einen `finally`-Block setzen, denn `finally` wird immer ausgeführt,
-egal ob die Anfrage erfolgreich war oder nicht.
-Steht die Re-Aktivierung nur im `try`-Block, bleibt der Button nach einem Fehler dauerhaft deaktiviert.
-
-[EQ] Warum ist es wichtig, Lade- und Fehlerzustände im DOM anzuzeigen?
-Beschreiben Sie, was ein Nutzer erleben würde, wenn man das nicht tut.
-
-<!-- time estimate: 5 min -->
-
 
 ### Abschlussprojekt: Benutzer-Posts-Anwendung
 
@@ -576,11 +582,11 @@ Funktionalität beim Klick auf "Posts laden":
 4. Benutzerdaten laden von `https://jsonplaceholder.typicode.com/users/{id}`  
 5. Posts des Benutzers laden von `https://jsonplaceholder.typicode.com/posts?userId={id}`  
 6. Bei Erfolg:  
-   - Status: "Daten geladen" (grün)  
+   - Status: "Daten geladen" und grün hervorgehoben
    - Benutzerinfo anzeigen: Name, E-Mail, Stadt (aus `user.address.city`)  
    - Alle Posts des Benutzers anzeigen (Titel + Inhalt)  
 7. Bei Fehler:  
-   - Status: Fehlermeldung (rot)  
+   - Status: Fehlermeldung und rot hervorgehoben 
    - Benutzerinfo und Posts leeren  
 8. Am Ende: Button wieder aktivieren (egal ob Erfolg oder Fehler)  
 
@@ -590,7 +596,7 @@ Funktionalität beim Klick auf "Posts laden":
 - Der Button soll während des Ladens deaktiviert sein
 
 [NOTICE]
-Struktur der API-Antworten  
+**Struktur der API-Antworten**
 
 Benutzer-Daten:
 ```json
