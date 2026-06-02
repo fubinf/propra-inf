@@ -14,6 +14,8 @@ sowie Test-Driven Development behandelt.
 
 ## Abhängigkeitsdiagramm der Unittest-Tasks
 
+(Inklusive solcher, die noch nicht fertig ausgearbeitet sind.)
+
 ```mermaid
 graph TD
     m_unittest["m_unittest.md"]
@@ -29,14 +31,11 @@ graph TD
     pytest_methodik_blackbox["pytest-Methodik-Blackbox.md"]
     pytest_methodik_whitebox["pytest-Methodik-Whitebox.md"]
     flake8_ext["flake8.md (extern)"]
-
-    subgraph draft_group ["In Entwicklung"]
-        testcoverage["testcoverage.md"]
-        pytest_benchmark["pytest_benchmark.md"]
-        pytest_tox["pytest_tox.md"]
-        pytest_mutation_testing["pytest_mutation_testing.md"]
-        tdd_pp["tdd_pp.md"]
-    end
+    testcoverage["testcoverage.md"]
+    pytest_benchmark["pytest_benchmark.md"]
+    pytest_tox["pytest_tox.md"]
+    pytest_mutation_testing["pytest_mutation_testing.md"]
+    tdd_pp["tdd_pp.md"]
 
     m_unittest --> m_pytest
     m_pytest --> pytest_call
