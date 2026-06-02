@@ -1,6 +1,6 @@
 title: Asynchrone Programmierung – Daten aus dem Internet laden
-stage: alpha
-timevalue: 4
+stage: beta
+timevalue: 3
 difficulty: 3
 assumes: http-GET, http-Status, m_json, js-Eventhandling, js-Objekte-zum-DOM
 ---
@@ -19,8 +19,8 @@ assumes: http-GET, http-Status, m_json, js-Eventhandling, js-Objekte-zum-DOM
 Viele Webanwendungen benötigen Daten von außen, die über das Netz geladen werden.
 Solche Netzwerkanfragen dauern eine gewisse Zeit —
 wenn JavaScript dabei blockieren würde, würde die gesamte Seite einfrieren.
-Deshalb arbeitet JavaScript asynchron: Es startet die Anfrage im Hintergrund
-und verarbeitet die Antwort wie ein Ereignis, sobald sie da ist.
+Deshalb arbeitet JavaScript asynchron: Es startet die Anfrage im Hintergrund,
+kann dann sofort anderes tun und verarbeitet die Antwort wie ein Ereignis, sobald sie da ist.
 [ENDSECTION]
 
 
@@ -116,6 +116,7 @@ Callbacks kennen Sie bereits von Event-Handlern.
 Früher wurden sie auch für Netzwerkanfragen verwendet,
 dabei entstehen schnell tief verschachtelte Strukturen (_Callback Hell_),
 die schwer zu lesen und zu warten sind.
+
 ```js
 ladeDaten1(function(daten1) {
   console.log("Daten 1 geladen");
@@ -130,6 +131,7 @@ ladeDaten1(function(daten1) {
   });
 });
 ```
+
 Deshalb wurden _Promises_ eingeführt.
 
 
@@ -203,7 +205,7 @@ Promise.resolve(10)
   })
   .then(function(x) {
     console.log("Ergebnis:", x);
-  });
+  });  // Promise.resolve(10) erzeugt ein bereits erfülltes Promise mit dem Wert 10
 ```
 
 1. Was wird ausgegeben?
@@ -262,7 +264,7 @@ Verwenden Sie `async`, `await` und `try`/`catch`.
 
 [EQ] Welche Vorteile bietet `async`/`await` gegenüber der Verwendung von `.then()` und `.catch()`?
 
-<!-- time estimate: 10 min -->
+<!-- time estimate: 5 min -->
 
 
 ### Die Fetch API: Daten aus dem Internet laden
@@ -308,6 +310,7 @@ ausgabe.innerHTML = "<h2>" + daten.title + "</h2><p>" + daten.body + "</p>";
 ```
 
 Oder Sie erzeugen die Elemente einzeln mit `createElement` und `textContent`:
+
 ```js
 const ausgabe = document.getElementById("ausgabe");
 ausgabe.innerHTML = "";  // zuerst leeren
@@ -382,7 +385,7 @@ console.log(daten.title);  // Titel
 console.log(daten.body);   // Inhalt
 ```
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 20 min -->
 
 
 ### HTTP-Fehler erkennen und behandeln
@@ -442,7 +445,7 @@ Beispiel für eine Fehlermeldung:
 Fehler beim Laden: HTTP-Fehler 404
 ```
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 
 ### Ladezustände sichtbar machen
@@ -469,6 +472,7 @@ Deswegen setzt man `button.disabled = true` vor der Anfrage und `button.disabled
 Den Re-Aktivierungscode sollte man in einen `finally`-Block setzen, denn `finally` wird immer ausgeführt,
 egal ob die Anfrage erfolgreich war oder nicht.
 Steht die Re-Aktivierung nur im `try`-Block, bleibt der Button nach einem Fehler dauerhaft deaktiviert.
+
 ```js
 button.disabled = true; 
 
@@ -585,7 +589,7 @@ Funktionalität beim Klick auf "Posts laden":
    - Status: "Daten geladen" und grün hervorgehoben
    - Benutzerinfo anzeigen: Name, E-Mail, Stadt (aus `user.address.city`)  
    - Alle Posts des Benutzers anzeigen (Titel + Inhalt)  
-7. Bei Fehler:  
+7. Bei Fehlern (z.B. durch kaputten URL mit falscher ID):  
    - Status: Fehlermeldung und rot hervorgehoben 
    - Benutzerinfo und Posts leeren  
 8. Am Ende: Button wieder aktivieren (egal ob Erfolg oder Fehler)  
@@ -636,13 +640,7 @@ Die Posts-Anfrage liefert ein Array von Post-Objekten:
 ```
 [ENDNOTICE]
 
-<!-- time estimate: 50 min -->
-
-[EQ] Sie haben in dieser Aufgabe mit einer Test-API (JSONPlaceholder) gearbeitet.  
-Welche zusätzlichen Herausforderungen würden Sie erwarten,  
-wenn Sie mit einer echten API arbeiten (z. B. Authentifizierung, Rate Limits, komplexere Daten)?
-
-<!-- time estimate: 15 min -->
+<!-- time estimate: 40 min -->
 [ENDSECTION]
 
 
