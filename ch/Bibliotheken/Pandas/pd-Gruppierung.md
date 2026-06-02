@@ -1,17 +1,15 @@
 title: "pandas: Daten gruppieren"
-stage: alpha
-timevalue: 2
+stage: beta
+timevalue: 1.25
 difficulty: 2
-requires:
 assumes: pd-Datenselektion2, pd-Transformationen
 ---
 
 [SECTION::goal::idea]
-Ich verstehe was kategorische Daten sind und wie ich sie benutzen kann.
 
-Ich kann Daten nach Gemeinsamkeiten gruppieren.
-
-Ich kann mit hierarchischen Indizes umgehen.
+- Ich verstehe, was kategorische Daten sind und wie ich sie benutzen kann.
+- Ich kann Daten nach Gemeinsamkeiten gruppieren.
+- Ich kann mit hierarchischen Indizes umgehen.
 [ENDSECTION]
 
 
@@ -50,21 +48,35 @@ Eine scharfe Grenze dafür gibt es aber nicht.
 [EQ] Die Spalte "Bezirksnummer" enthält numerische Daten. 
 Handelt es sich hierbei trotzdem um kategorische Daten oder nicht?
 Begründen Sie.
+<!-- time estimate: 10 min -->
 
 
 ### Gruppieren mit `groupby()`
 
 Kategorische Daten kann man sich als Gruppenbezeichnungen vorstellen.
-Oft kann es interessant sein, zu sehen, in welchen anderen Eigenschaften sich diese Gruppen
+Oft kann es interessant sein, zu sehen, in welchen Eigenschaften sich solche Gruppen
 unterscheiden.
 Die Methode
 [`groupby()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html)
 stellt eine entsprechende Gruppierung her.
 
+[NOTICE]
+Schreiben Sie für die folgenden Schritte ein Stück Python-Programm.
+Weisen Sie jedes Ergebnis einer sinnvoll benannten Variable zu und geben Sie es
+unter Angabe der Schrittnummer wie folgt aus:
+    print("## A1:")
+    print(meine_variable)
+Lassen Sie das Programm am Ende einmal durchlaufen; die Ausgabe ist Ihr Kommandoprotokoll.
+
+Für reine `groupby`-Objekte (z.B. bei der ersten Aufgabe) geben Sie statt des Objekts seinen Typ aus,
+`print(type(meine_variable).__name__)`, da das Objekt selbst nichts Lesbares anzeigt.  
+Für lange DataFrames geben sie nur die ersten 5 Zeilen aus: `print(meine_variable[:5])`.
+[ENDNOTICE]
+
 [ER] Schauen Sie sich die Dokumentation zu `groupby()` an und gruppieren Sie `erststimmen_df`
 nach den Bezirksnamen in die Variable `bezirks_gruppierung`.
 
-Dabei ist `bezirks_gruppierung` ein `DataFrameGroupBy` also kein normales `DataFrame`.
+Dabei ist `bezirks_gruppierung` ein `DataFrameGroupBy`, also kein normales `DataFrame`.
 
 Das klingt erstmal kompliziert, bedeutet aber nur,
 dass es sich um einen _Gruppendeskriptor_ handelt.
@@ -72,21 +84,21 @@ Es speichert also Informationen darüber, welche Zeile zu welcher Gruppe gehört
 gruppiert wurden und wie die Gruppierung generell intern organisiert ist.
 
 Wenn man versucht, sich `bezirks_gruppierung` anzusehen, 
-dann handelt es sich auch nicht um ein simples DataFrame.
+dann handelt es sich auch nicht um ein simples `DataFrame`.
 Das liegt daran, dass wir zwar die Daten gruppiert haben, `pandas` aber nicht weiß,
 welche Informationen über die Gruppen wir gerne hätten.
 
 [EQ] Beschreiben Sie, was `bezirks_gruppierung.max()` zurückgibt und in welcher Struktur.
 
-Im gleichen Stil lassen sich auch andere Funktionen wie z.b. `min()` oder `mean()` anwenden.
+Im gleichen Stil lassen sich auch andere Funktionen wie z. B. `min()` oder `mean()` anwenden.
 Bei solchen Funktionen handelt es sich um 
 [Aggregationsfunktionen](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html#aggregation),
-die Daten aus den Gruppen auf bestimmte Weisen aggregieren, in Ihrer Dimension also reduzieren.
+die Daten aus den Gruppen auf bestimmte Weisen aggregieren, in ihrer Dimension also reduzieren.
 
-Wenden Sie eine anonyme Funktion wie `apply(lambda x: x)` auf `bezirks_gruppierung` an,
-um die Daten in einer aggregierten Form betrachten zu können
+Wenden Sie `apply(lambda x: x, include_groups=False)` auf `bezirks_gruppierung` an,
+um die eigentlichen Daten hinter einer aggregierten Form zu sehen
 (siehe [PARTREF::pd-Transformationen] für mehr zu `apply()`).
-Kurz gesagt weiß `pandas` durch Aggregationen Bescheid, 
+Kurz gesagt, weiß `pandas` durch Aggregationen Bescheid, 
 welche Informationen Sie über die Gruppen haben wollen.
 
 [ER] Gruppieren Sie nach "Wahlbezirksart" und berechnen Sie die 
@@ -94,7 +106,7 @@ durchschnittliche Anzahl gültiger Stimmen.
 
 [ER] `groupby()` lässt aber nicht nur auf eine kategorische Variable filtern. 
 Gruppieren Sie `erststimmen_df` nach "Bezirksname" und "Wahlbezirksart" und
-betrachten Sie das Ergebnis mit `apply(lambda x: x)`.
+betrachten Sie das Ergebnis mit `apply(lambda x: x, include_groups=False)`.
 Speichern Sie diesen in der Variable `wahlart_df`.
 
 Wenn Sie das Ergebnis betrachten, fällt Ihnen bestimmt der eigenartige Index für die Zeilen auf.
@@ -114,9 +126,10 @@ das Level mit an in einem Tupel `loc[(Level1Wert, Level2Wert)]`.
 Geben Sie den Wert für `Friedrichshain-Kreuzberg` auf dem ersten Level und `W` auf dem zweiten Level
 aus (von `wahlart_df`).
 
-[ER] Konvertieren Sie den `MultiIndex` mittels 
+[ER] Verwandeln Sie die Teile des `MultiIndex` mittels 
 [`reset_index()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reset_index.html)
-zu einem `Index`.
+wieder in normale Spalten.
+<!-- time estimate: 30 min -->
 
 
 ### `agg()`
@@ -148,9 +161,7 @@ partei_stats = erststimmen_df.groupby('Bezirksname').agg({
 Gruppieren Sie nach "Bezirksname" und "OstWest". 
 Aggregieren Sie die Summe der Stimmen für die AfD, das Maximum für die Grünen, 
 sowie die durchschnittliche Anzahl an ungültigen Stimmen.
-
-[EQ] Können Sie `reset_index()` auch nutzen, um den _Spaltenindex_ von `MultiIndex` zu einem 
-einfachen Index zu konvertieren?
+<!-- time estimate: 15 min -->
 
 
 ### Gruppieren mit Bedingungen
@@ -165,10 +176,16 @@ grouped = df.groupby(df['Punkte'] >= 50)  # Beispiel
 als die Linke.
 
 [EQ] Beschreiben Sie die Struktur (und ihre Bedeutung) des Zeilenindex sprachlich.
+<!-- time estimate: 15 min -->
+
+[HINT::Wie kann ich den Zeilenindex sichtbar machen?]
+Verwenden Sie den `apply()`-Trick von oben.
+[ENDHINT]
 [ENDSECTION]
 
 
 [SECTION::submission::reflection]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
