@@ -80,9 +80,9 @@ Instructor hints and sample solutions
 
 ## Key Macros
 
-- `[EC]`: Render a command students should execute (which then contributes to command protocol submission)
-- `[EQ]`: Question to answer (for markdown document submission)
-- `[ER]`: Code requirement (for source code submission)
+- `[EC]`: Render a command number K1, K2, ... students should execute (which then contributes to command protocol submission)
+- `[EQ]`: Render a question number F1, F2, ... to answer (for markdown document submission)
+- `[ER]`: Render a code requirement number A1, A2, ... (for source code submission)
 - `[HINT::Title]...[ENDHINT]`: Collapsible step-specific help; can (and often should) be nested for gradual help.
 - `[PARTREF::TaskName]`: Link to another task/taskgroup/chapter
 - `[TERMREF::Term]`: Link to glossary entry
