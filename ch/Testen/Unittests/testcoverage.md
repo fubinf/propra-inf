@@ -1,6 +1,6 @@
 title: Code Coverage mit pytest-cov - Von Tool-Nutzung zur kritischen Bewertung
 stage: alpha
-timevalue: 2.7
+timevalue: 2.5
 difficulty: 3
 assumes: m_pytest, pytest-Methodik-Whitebox
 requires: pytest_call
@@ -38,37 +38,38 @@ Um diese Abfrage nicht separat durchführen zu müssen, verwenden wir das `pytes
 
 ## Teil A: pytest-cov Grundlagen mit bestehender Codebasis
 
-Zunächst lernen Sie pytest-cov an einer bestehenden Codebasis kennen und erreichen systematisch 100% Coverage.
+Zunächst lernen Sie `pytest-cov` an einer bestehenden Codebasis kennen und erreichen systematisch 100% Coverage.
+
 
 ### pytest-cov Setup
-<!-- time estimate: 5 min -->
 
 `pytest-cov` ist ein pytest-Plugin, das Coverage-Messung nahtlos in Ihren Test-Workflow integriert.
 
-[EC] Installieren Sie pytest-cov: `pip install pytest-cov`
+[EC] Installieren Sie `pytest-cov`: `pip install pytest-cov`
 
 [EC] Verifizieren Sie die Installation: `pytest --version` und `pytest --help | grep cov`
 
-### Anwendung auf bestehende Codebasis
-<!-- time estimate: 45 min -->
 
-Wenden Sie pytest-cov auf die `toolz`-Bibliothek aus [PARTREF::pytest_call] an.
+### Anwendung auf bestehende Codebasis
+
+Wenden Sie `pytest-cov` auf die `toolz`-Bibliothek aus [PARTREF::pytest_call] an.
 
 [EQ] Wie lautet der Befehl zur Coverage-Analyse für das `toolz`-Verzeichnis?
 
 [HINT::Wie starte ich die Coverage-Analyse?]
 Die Ausgabe von [EREFC::2] zeigt alle verfügbaren `--cov`-Optionen.
-Alternativ: [pytest-cov Dokumentation](https://pytest-cov.readthedocs.io/).
+Ausführlicher gibt es das in der 
+[pytest-cov Dokumentation](https://pytest-cov.readthedocs.io/).
 [ENDHINT]
 
 [EC] Führen Sie diesen Befehl aus.
 
-[EQ] Wie hoch ist die aktuelle Coverage der toolz-Bibliothek? Was sagt Ihnen das über die
-Testqualität?
+[EQ] Wie hoch ist die aktuelle Coverage der `toolz`-Bibliothek?
+Was sagt Ihnen das über die Testqualität?
 
 [EQ] Wie finden Sie heraus, welche spezifischen Zeilen nicht abgedeckt sind?
 
-[EC] Führen Sie diesen Befehl aus.
+[EC] Führen Sie den entsprechenden Befehl aus.
 
 [HINT::Missing Lines anzeigen]
 Der `--cov-report` Parameter bietet verschiedene Optionen. Suchen Sie in der pytest-cov
@@ -78,24 +79,26 @@ Dokumentation nach "missing".
 [ER] Ergänzen Sie die fehlenden Testfälle so, dass die Testabdeckung der in [PARTREF::pytest_call]
 genutzten Module auf 100% steht.
 
-[EQ] Erläutern Sie, warum Sie gerade diese Ergänzungen und Testfälle hinzugefügt haben. Was war
-schwer zu testen?
+[EQ] Erläutern Sie, warum Sie gerade diese Ergänzungen und Testfälle hinzugefügt haben.
+Was war schwer zu testen?
+<!-- time estimate: 45 min -->
+
 
 ## Teil B: Coverage-Bewertung mit realitätsnahem Beispiel
-<!-- time estimate: 10 min -->
 
 Nun entwickeln Sie ein komplexeres Verständnis von Coverage-Qualität mit einem eigenen Beispiel.
 
-Lesen Sie zunächst diesen Artikel: [Code Coverage – Kein zuverlässiges Qualitätsmaß](https://blog.ordix.de/code-coverage-kein-zuverlaessiges-qualitaetsmass),
+Lesen Sie zunächst diesen Artikel: 
+[Code Coverage – Kein zuverlässiges Qualitätsmaß](https://blog.ordix.de/code-coverage-kein-zuverlaessiges-qualitaetsmass),
 um die kritischen Aspekte von Coverage zu verstehen.
 
 [EQ] Welches Hauptargument nennt der Autor dafür, dass hohe Coverage-Werte kein Qualitätsmerkmal sind?
+<!-- time estimate: 10 min -->
 
 ### Beispiel: E-Mail Validator
-<!-- time estimate: 5 min -->
 
 Sie arbeiten mit einer E-Mail-Validierungsklasse — ein typisches Real-World-Szenario mit
-verschiedenen Edge Cases.
+verschiedenen Randfällen.
 
 [ER] Erstellen Sie die Datei `email_validator.py` mit folgendem Inhalt:
 
@@ -234,7 +237,6 @@ class EmailValidator:
 ```
 
 ### Erste Tests und Coverage-Messung
-<!-- time estimate: 15 min -->
 
 [ER] Erstellen Sie die Datei `test_email_validator.py` mit folgenden Starttests:
 
@@ -260,13 +262,13 @@ class TestEmailValidator:
 [EC] Führen Sie die Tests mit Coverage aus: `pytest --cov=email_validator test_email_validator.py`
 
 [EQ] Wie hoch ist die aktuelle Coverage? Was sagt Ihnen das über die Testqualität?
+<!-- time estimate: 15 min -->
 
 ### Coverage-Konfiguration für eigenes Projekt
-<!-- time estimate: 15 min -->
 
 Nach der Analyse bestehender Codebasis erstellen Sie nun eigene Coverage-Konfiguration.
 
-Erstellen Sie eine `pyproject.toml` für bessere Coverage-Einstellungen:
+Erstellen und verstehen Sie eine `pyproject.toml` für bessere Coverage-Einstellungen:
 
 ```toml
 [tool.pytest.ini_options]
@@ -296,25 +298,27 @@ exclude_lines = [
 (macOS: `open htmlcov/index.html`, Linux: `xdg-open htmlcov/index.html`).
 
 [EQ] Welche Code-Bereiche werden nicht getestet?
+<!-- time estimate: 15 min -->
+
 
 ### Systematischer Testausbau
-<!-- time estimate: 25 min -->
 
 [ER] Erweitern Sie die Tests, um verschiedene Edge Cases abzudecken:
 
 - Leere/None-Eingaben
-- Verschiedene Domain-Validierungsfehler  
+- Verschiedene Domain-Validierungsfehler
 - Blocked/Required Domains
 - Batch-Validierung
 - Internationale Zeichen
 
-[EQ] Nach dem Testausbau: Wie hat sich die Coverage verändert? Gibt es Code-Bereiche, die schwer zu
-testen sind?
+[EQ] Nach dem Testausbau: Wie hat sich die Coverage verändert?
+Gibt es Code-Bereiche, die schwer zu testen sind?
+<!-- time estimate: 25 min -->
+
 
 ### Coverage-Kritik
-<!-- time estimate: 20 min -->
 
-Jetzt werden Sie die Grenzen von Coverage-Metriken verstehen:
+Jetzt wollen wir die Grenzen des Coverage-Maßes verstehen:
 
 [ER] Ergänzen Sie den folgenden Testrahmen so, dass `pytest --cov=email_validator` danach
 100% Line Coverage für `email_validator.py` meldet — aber ohne eine einzige sinnvolle Assertion:
@@ -323,7 +327,7 @@ Jetzt werden Sie die Grenzen von Coverage-Metriken verstehen:
 def test_fake_coverage():
     """Dieser Test erreicht hohe Coverage, testet aber nichts Sinnvolles."""
     validator = EmailValidator()
-    # Ruft alle Code-Pfade auf, aber ohne sinnvolle Assertions
+    # Rufe alle Code-Pfade auf, prüfe aber nie die Korrektheit:
     validator.validate('')  # Empty string
     validator.validate('user@example.com')  # Valid
     validator.validate('invalid')  # No @
@@ -349,9 +353,10 @@ def test_security_critical_validation():
     result = validator.validate('<script>alert("xss")</script>@evil.com')
     assert not result['valid']
 ```
+<!-- time estimate: 20 min -->
+
 
 ### Reflexion und Best Practices
-<!-- time estimate: 20 min -->
 
 [EQ] Welches Coverage-Ziel hätten Sie für den `EmailValidator` gesetzt — und warum?
 Welche Methoden des `EmailValidator` sollten auf jeden Fall 100% Coverage haben?
@@ -365,6 +370,7 @@ Welche Methoden des `EmailValidator` sollten auf jeden Fall 100% Coverage haben?
 3. Wie würden Sie mit schwer testbarem Code umgehen?
 
 [PARTREF::pytest_mutation_testing] vertieft dieses Thema — dort lernen Sie Mutation Testing praktisch kennen.
+<!-- time estimate: 20 min -->
 
 [ENDSECTION]
 
