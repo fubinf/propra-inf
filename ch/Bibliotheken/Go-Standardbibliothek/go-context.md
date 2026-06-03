@@ -72,8 +72,10 @@ Wird ein Kontext an eine Funktion übergeben, so steht er konventionsgemäß als
 Korrigieren Sie das, falls Sie es in `doWork` anders gemacht haben.
 [ENDNOTICE]
 
-[FOLDOUT::Muss ich immer die CancelFunc aufrufen?]
-Ja.
+[WARNING]
+Muss ich immer die CancelFunc aufrufen? Ja!
+Sogar, wenn der Kontext nach Ablauf der Frist bereits abgebrochen ist,
+gibt `cancel()` die zugehörigen Ressourcen frei und sollte daher stets aufgerufen werden.
 
 Ein idiomatisches Beispiel wäre es, die CancelFunc direkt nach dem Erzeugen des Kontexts mittels `defer` aufzurufen:
 
@@ -81,10 +83,7 @@ Ein idiomatisches Beispiel wäre es, die CancelFunc direkt nach dem Erzeugen des
 ctx, cancel := ...
 defer cancel()
 ```
-
-Auch wenn der Kontext nach Ablauf der Frist bereits abgebrochen ist,
-gibt `cancel()` die zugehörigen Ressourcen frei und sollte daher stets aufgerufen werden.
-[ENDFOLDOUT]
+[ENDWARNING]
 
 [ER] Implementieren Sie eine Funktion `myCancel`:
 
