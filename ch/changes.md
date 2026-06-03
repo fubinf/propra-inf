@@ -5,4 +5,5 @@
 - **2026-05-26**: Aufgabe [PARTREF::js-Formularvalidierung] zugefügt.
 - **2026-05-29**: Aufgaben [PARTREF::plt-pyplot-vs-Axes], [PARTREF::plt-Diagrammarten], [PARTREF::plt-Pandas] zugefügt.
 - **2026-06-02**: Aufgabe [PARTREF::js-Async-Fetch] zugefügt.
-- ...
+- **2026-06-03**: Aufgabegruppe [PARTREF::Go-Standardbibliothek] mit zunächst 3 Aufgaben zugefügt.
+...

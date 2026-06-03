@@ -1,5 +1,4 @@
 title: Go-Standardbibliothek
-stage: alpha
 ---
 Go bringt von Haus aus eine bemerkenswert reichhaltige Standardbibliothek mit —
 vom Arbeiten mit Dateien und Netzwerkprotokollen bis hin zu Kryptografie und Testwerkzeugen.
@@ -11,3 +10,5 @@ manche nützlich für den Alltag, andere eher speziell.
 Ziel ist nicht Vollständigkeit, sondern Orientierung und Praxistauglichkeit:
 ein Gefühl dafür, welche Werkzeuge die Standardbibliothek bereitstellt
 und wofür sie jeweils gedacht sind.
+
+Dokumentation: https://pkg.go.dev/std
