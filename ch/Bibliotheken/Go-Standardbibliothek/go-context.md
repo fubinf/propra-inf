@@ -1,6 +1,6 @@
 title: "Go: das Paket 'context'"
-stage: alpha
-timevalue: 1.5
+stage: beta
+timevalue: 1
 difficulty: 2
 assumes: go-channels, go-advanced-control-flow
 ---
@@ -9,6 +9,7 @@ assumes: go-channels, go-advanced-control-flow
 Ich weiß, welche Funktionen das Paket `context` in Go zur Abbruchsteuerung, Fristenkontrolle und Wertübergabe in
 nebenläufigen Programmen bietet.
 [ENDSECTION]
+
 
 [SECTION::background::default]
 __Wie kann eine langlebige Goroutine abgebrochen werden?__
@@ -25,17 +26,18 @@ __Aber was, wenn es viele solcher Goroutinen gibt?__
 Deren Verwaltung wird zunehmend komplex und unübersichtlich.
 
 Genau hier setzt das Paket `context` aus der Standardbibliothek an:
-Es stellt Werkzeuge zur Übertragung von Abbruchsignalen und Fristen sowie zur Weitergabe 
+Es stellt Werkzeuge zur Übertragung von Abbruchsignalen und Fristen sowie zur Weitergabe
 anfragespezifischer Werte bereit.
 [ENDSECTION]
 
 [TOC]
 
+
 [SECTION::instructions::detailed]
 
 ### Übersicht
 
-Lesen Sie die Abschnitte "Introduction", "Context" und "Derived contexts" im 
+Lesen Sie die Abschnitte "Introduction", "Context" und "Derived contexts" im
 [Artikel "Go Concurrency Patterns: Context" im Go Blog](https://go.dev/blog/context),
 um die Fragen unten zu beantworten.
 
@@ -51,13 +53,19 @@ Skizzieren Sie in einem Codeausschnitt, wie das geht.
 
 ### Übertragung von Abbruchsignalen
 
-In diesem Abschnitt untersuchen Sie, wie sich das Abbrechen eines Kontexts auf von ihm 
+In diesem Abschnitt untersuchen Sie, wie sich das Abbrechen eines Kontexts auf von ihm
 abgeleitete Kontexte auswirkt.
 
 [ER] Schreiben Sie eine Funktion `doWork(parent context.Context, cancelMsg string) string`, um das Verhalten
 abgeleiteter Kontexte zu untersuchen.
 Die Funktion soll aus dem übergebenen Kontext `parent` einen eigenen abbrechbaren Kontext erzeugen, darauf warten, dass
 dieser abgebrochen wird, und anschließend `cancelMsg` zurückgeben.
+
+[HINT::Ich weiß nicht, wie ich auf das Abbruchsignal warten soll]
+```go
+<-ctx.Done()
+```
+[ENDHINT]
 
 [NOTICE]
 Wird ein Kontext an eine Funktion übergeben, so steht er konventionsgemäß als erster Parameter.
@@ -81,25 +89,19 @@ gibt `cancel()` die zugehörigen Ressourcen frei und sollte daher stets aufgeruf
 [ER] Implementieren Sie eine Funktion `myCancel`:
 
 - Erzeugen Sie darin einen abbrechbaren Kontext;
-- Starten Sie eine Goroutine, die eine Sekunde schläft (`time.Sleep(time.Second)`) 
-  und danach den Kontext abbricht; 
+- Starten Sie eine Goroutine, die eine Sekunde schläft (`time.Sleep(time.Second)`)
+  und danach den Kontext abbricht;
 - Übergeben Sie den Kontext sowie `"work canceled"` als `cancelMsg` an die Funktion `doWork()` und geben Sie ihren
   Rückgabewert auf der Kommandozeile aus.
 
 [EQ] Wie verhalten sich verschiedene Kontexte zueinander im Falle eines Abbruchs?
 Beziehen Sie sich dabei auf das Beispiel mit `doWork`.
 
-[EQ] Schauen Sie sich die 
+[EQ] Schauen Sie sich die
 [Dokumentation von `context.WithoutCancel()`](https://pkg.go.dev/context#WithoutCancel)
 an und überlegen Sie, in welchen Situationen ein solcher Kontext hilfreich sein könnte.
 
-[HINT::Ich weiß nicht, wie ich auf das Abbruchsignal warten soll]
-```go
-<-ctx.Done()
-```
-[ENDHINT]
-
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 
 ### Übertragung von Fristen
@@ -108,7 +110,7 @@ In diesem Teil lernen Sie die Funktion `context.WithTimeout` praktisch kennen.
 
 [ER] Implementieren Sie eine Funktion `myTimeout`:
 
-- Erzeugen Sie darin einen abbrechbaren Kontext, der automatisch nach einer Sekunde abläuft 
+- Erzeugen Sie darin einen abbrechbaren Kontext, der automatisch nach einer Sekunde abläuft
   (abgebrochen wird);
 - Übergeben Sie diesen Kontext an die Funktion `doWork()` und geben Sie deren Rückgabewert
   auf der Kommandozeile aus;
@@ -123,13 +125,14 @@ Wie lässt sich die eine Funktion durch die andere ersetzen?
 ### Übertragung von Schlüssel-Wert-Paaren
 
 Jeder Kontext kann Schlüssel-Wert-Paare speichern.
-Die Funktion `context.WithValue()` dient dazu, anfragebezogene Daten entlang der Aufrufkette 
+Die Funktion `context.WithValue()` dient dazu, anfragebezogene Daten entlang der Aufrufkette
 weiterzugeben, ohne sie an jede Funktionssignatur anhängen zu müssen.
 
-[EQ] Schauen Sie sich den 
+[EQ] Schauen Sie sich den
 [Artikel "Context abuse"](https://boldlygo.tech/archive/2025-04-10-context-abuse/)
-an und erläutern Sie kurz, wie man entscheiden kann, ob bestimmte Daten im Kontext 
-gespeichert werden sollten oder nicht. 
+an. 
+Geben Sie ein Beispiel für "user-specific configuration" an, die man im Kontext speichern sollte.
+Geben Sie ein (eigenes) Beispiel an für einen optionalen Parameter, den man nicht dort speichern sollte.
 
 [EQ] Lesen Sie den
 [Artikel "Context value key collisions"](https://boldlygo.tech/archive/2025-05-23-context-value-key-collisions/)
@@ -142,8 +145,8 @@ und schildern Sie das Problem mit eigenen Worten.
 
 und erläutern Sie, wie sich das zuvor beschriebene Problem vermeiden lässt.
 
-[ER] Sie erhalten nun eine Vorlage mit sehr einfacher Logik zur Auftragsverarbeitung. 
-Implementieren Sie die Funktionen `withRequestId` und `getRequestId` (denken Sie dabei an geeignete 
+[ER] Sie erhalten nun eine Vorlage mit sehr einfacher Logik zur Auftragsverarbeitung.
+Implementieren Sie die Funktionen `withRequestId` und `getRequestId` (denken Sie dabei an geeignete
 Schlüsseltypen) und rufen Sie die Funktion `simulateRequest` am Ende Ihrer `main`-Funktion auf.
 
 **Wichtig:** `requestId` muss über den Kontext übergeben werden!
@@ -174,14 +177,16 @@ func main() {
 
 [EC] Führen Sie das Programm mittels `go run` aus.
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 20 min -->
 [ENDSECTION]
+
 
 [SECTION::submission::information,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Lösungen]
 **Kommandoprotokoll**
