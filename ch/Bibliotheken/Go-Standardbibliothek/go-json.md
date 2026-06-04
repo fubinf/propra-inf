@@ -1,5 +1,5 @@
 title: "Go: das Paket 'encoding/json'"
-stage: draft
+stage: alpha
 timevalue: 1
 difficulty: 2
 assumes: go-interfaces, go-structs2
