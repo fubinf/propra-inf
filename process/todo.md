@@ -31,6 +31,7 @@ Einzelaufgaben:
 - `Git101`: Wie geht denn die Installation? Wo sind die Hyperlinks zu den URLs? 
   Was bedeutet Klonen?
 - `m_argparse`: Musterlösung machen; `argparsetest.py` umbenennen.
+- `pd-Datenveränderung` komplett auf Pandas 3 umstellen: Macht immer `copy_on_write`!
 
 Sonderdateien:
 

@@ -200,7 +200,7 @@ erststimmen_df[erststimmen_df["Wählende"] > 500][erststimmen_df["Gültige Stimm
 
 ### Copy On Write (Pandas-Verhalten ab Version 3.0 oder auf Verlangen)
 
-<!-- TODO_3: Copy-on-write: Wenn Pandas 3.0 erschienen ist, nächsten Satz anpassen: -->
+<!-- TODO_2: Copy-on-write: Wenn Pandas 3.0 erschienen ist, nächsten Satz + Abschnitt "Die Pandas-Art" anpassen: -->
 Es gibt einen Modus in Pandas, der ab Version `3.0` (erscheint Ende 2025) auch der Standard sein wird:
 [Copy On Write](https://pandas.pydata.org/docs/development/copy_on_write.html)
 
