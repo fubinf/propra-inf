@@ -1,5 +1,5 @@
 title: "Go: das Paket 'unsafe'"
-stage: draft
+stage: alpha
 timevalue: 1
 difficulty: 3
 assumes: go-structs1, go-arrays-and-slices
