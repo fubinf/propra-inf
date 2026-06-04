@@ -6,4 +6,6 @@
 - **2026-05-29**: Aufgaben [PARTREF::plt-pyplot-vs-Axes], [PARTREF::plt-Diagrammarten], [PARTREF::plt-Pandas] zugefügt.
 - **2026-06-02**: Aufgabe [PARTREF::js-Async-Fetch] zugefügt.
 - **2026-06-03**: Aufgabegruppe [PARTREF::Go-Standardbibliothek] mit zunächst 3 Aufgaben zugefügt.
+- **2026-06-04**: `sedrila` V3.1.2 repariert die zuvor kaputte Erkennung manueller Zeitbuchungen
+  (`pipx upgrade sedrila`)
 ...
