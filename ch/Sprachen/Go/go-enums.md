@@ -44,16 +44,17 @@ const (
 ```
 
 Der Bezeichner `iota` repräsentiert den Index der aktuellen Zeile innerhalb des `const`-Blocks.
-Der Ausdruck bleibt für jede Zeile des `const`-Blocks gleich; nur `iota` wird inkrementiert: 
+Wenn eine Zeile keinen eigenen Ausdruck angibt, wird der Ausdruck der vorherigen Zeile wiederholt;
+nur `iota` wird inkrementiert:
 
 ```go
 const (
-    FlagA = iota * iota          // 0 * 0 = 0
-    FlagB                        // implizit 1 * 1 = 1
-    FlagC                        // implizit 2 * 2 = 4
+    A = iota * iota              // 0 * 0 = 0
+    B                            // implizit 1 * 1 = 1
+    C                            // implizit 2 * 2 = 4
 )
 
-fmt.Println(int(FlagC))          // 4
+fmt.Println(C)                   // 4
 ```
 
 Lesen Sie den
@@ -69,6 +70,7 @@ Wie verhält sich `iota`, wenn es in einer Datei mehrere `const`-Blöcke gibt?
 [ER] Definieren Sie einen Typ `Weekday` als `int`.
 Erstellen Sie mittels `const` und `iota` folgende Aufzählungswerte: `Monday`, `Tuesday`, `Wednesday`, `Thursday`,
 `Friday`, `Saturday`, `Sunday`.
+`Monday` soll den Wert 0 haben, `Tuesday` 1 und so weiter — ein einfaches `iota` genügt.
 
 <!-- time estimate: 15 min -->
 
@@ -76,11 +78,12 @@ Erstellen Sie mittels `const` und `iota` folgende Aufzählungswerte: `Monday`, `
 ### Das Interface `fmt.Stringer`
 
 [EQ] Probieren Sie aus:
-Wie sehen die Werte der Aufzählung `Weekday` auf der Kommandozeile aus?
+Wie sieht die Standardausgabe von `Weekday` aus?
 Welches Problem fällt Ihnen ein?
 
 Um Variablen auf der Kommandozeile darzustellen, benutzt das Paket `fmt` das Interface `Stringer`.
 Oft lohnt es sich, dieses Interface für Ihre Aufzählungen zu implementieren.
+(Eine tiefere Behandlung von Interfaces folgt in [PARTREF::go-interfaces].)
 
 [ER] Schauen Sie sich das
 [Interface `Stringer` in "A Tour of Go"](https://go.dev/tour/methods/17)
@@ -89,7 +92,23 @@ Implementieren Sie die Methode `String() string` für `Weekday`, sodass beim Aus
 Variablen der lesbare Name (z. B. `"Monday"` oder `"Tuesday"`) ausgegeben wird.
 Sorgen Sie dafür, dass unbekannte Werte als `"Unknown"` ausgegeben werden.
 
-(Mehr zu Interfaces lernen Sie in [PARTREF::go-interfaces].)
+[HINT::Was sind diese _unbekannten Werte_?]
+Go erlaubt eine explizite Typumwandlung, die eine Zahl in einen Aufzählungstyp umwandelt:
+
+```go
+var invalidDay Weekday = Weekday(8)
+```
+
+Da `Weekday` intern ein `int` ist, akzeptiert Go das ohne Fehler — der Compiler prüft nicht, ob der Wert einer der
+benannten Konstanten entspricht.
+Das Ergebnis ist ein `Weekday`-Wert, dem kein Wochentag zugeordnet ist.
+Im Kontext von der Aufzählung `Weekday` ist ein solcher Wert ungültig.
+
+Außerdem unterstützen die Werte von `Weekday` Vergleichsoperationen, da die darunterliegenden `int`-Werte
+verglichen werden.
+Das lässt sich nutzen, um ungültige Werte in `String()` zu erkennen.
+Eine andere Möglichkeit wäre ein `switch`-Statement mit einem `default`-Zweig.
+[ENDHINT]
 
 [ER] Implementieren Sie eine Funktion `isWeekend(d Weekday) bool`.
 Diese Funktion soll `true` zurückgeben, falls `d` `Saturday` oder `Sunday` ist.
