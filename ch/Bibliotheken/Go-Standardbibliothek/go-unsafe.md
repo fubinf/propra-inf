@@ -11,7 +11,7 @@ Ich weiß, wie man das Typsystem in Go umgeht.
 
 
 [SECTION::background::default]
-In C oder C++ geben Zeiger ziemlich dem Programmierer viel Macht:
+In C oder C++ geben Zeiger dem Programmierer ziemlich viel Macht:
 Ein Zeiger ist bloß eine Zahl — eine Speicheradresse.
 Was man damit anfängt, ist einem überlassen, was ungeheure Möglichkeiten für Defekte eröffnet, die sehr subtil sein
 können.
@@ -49,7 +49,7 @@ In Go ist das nicht möglich — zumindest nicht ohne das Paket `unsafe`.
 
 #### `uintptr` und `unsafe.Pointer`
 
-Alle low-level-Manipulationen benutzten zwei Typen: `uintptr` und `unsafe.Pointer`.
+Alle low-level-Manipulationen benutzen zwei Typen: `uintptr` und `unsafe.Pointer`.
 
 - `uintptr` ist ein ganzzahliger Typ, der groß genug ist, um Bit-Muster aller Zeiger darstellen zu können.
   Wie jeder ganzzahlige Typ unterstützt `uintptr` Addition und Subtraktion.
@@ -94,7 +94,7 @@ var specimens = []Specimen{
 }
 ```
 
-[ER] Schreiben Sie eine Funktion `decode(s Specimen) Atom`, die die Proben zum Typ`Atom{atomicNumber: int}` umwandelt
+[ER] Schreiben Sie eine Funktion `decode(s Specimen) Atom`, die die Proben zum Typ `Atom{atomicNumber: int}` umwandelt
 und somit die Ordnungszahlen entschlüsselt.
 
 [EQ] Welche Elemente sind das?
