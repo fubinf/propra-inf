@@ -143,7 +143,7 @@ Gründe für `json.Marshal()`:
 Gründe für `json.NewEncoder().Encode()`:
 
 - Sie sind bereits in einem `Reader/Writer`-orientierten Kontext;
-- Sie wollen das JSON ohne das Zwischenkopieren des gesamten Inhalts in Arbeitspeicher direkt in einen Stream schreiben,
+- Sie wollen das JSON ohne das Zwischenkopieren des gesamten Inhalts in Arbeitsspeicher direkt in einen Stream schreiben,
   etwa in eine Datei oder als HTTP-Antwort.
 
 [ENDFOLDOUT]
@@ -194,7 +194,7 @@ im Go Blog und erklären Sie, wie genau die Funktion `Unmarshal` die JSON-Schlü
 [ER] Speichern Sie das Beispiel-JSON als globale Variable in Ihrem Programm und schreiben Sie eine Funktion `unmarshal`,
 in der Sie es mithilfe von `json.Unmarshal` in eine Go-Struktur konvertieren und diese auf der Kommandozeile ausgeben.
 
-[ER] Legen Sie neben Ihrem Programm eine neue Datei `car.json` an und kopieren Sie folgendes JSON in diese Datei um:
+[ER] Legen Sie neben Ihrem Programm eine neue Datei `car.json` an und kopieren Sie folgendes JSON in diese Datei:
 
 ```json
 {
@@ -217,7 +217,7 @@ func jsonFromFile() {
     f, err := os.Open("car.json")
     if err != nil {
         panic(err)
-	}
+    }
     defer f.Close()
 
     // verwenden Sie hier json.NewDecoder, 
