@@ -102,7 +102,7 @@ var invalidDay Weekday = Weekday(8)
 Da `Weekday` intern ein `int` ist, akzeptiert Go das ohne Fehler — der Compiler prüft nicht, ob der Wert einer der
 benannten Konstanten entspricht.
 Das Ergebnis ist ein `Weekday`-Wert, dem kein Wochentag zugeordnet ist.
-Im Kontext von der Aufzählung `Weekday` ist ein solcher Wert ungültig.
+Im Kontext der Aufzählung `Weekday` ist ein solcher Wert ungültig.
 
 Außerdem unterstützen die Werte von `Weekday` Vergleichsoperationen, da die darunterliegenden `int`-Werte
 verglichen werden.
@@ -132,7 +132,7 @@ func testEnums() {
 }
 ```
 
-[EC] Führen Sie das Programm mittels `go run` aus.
+[EC] Führen Sie das Programm mittels `go run` aus und überzeugen Sie sich, dass die Ausgabe korrekt ist.
 
 <!-- time estimate: 25 min -->
 [ENDSECTION]

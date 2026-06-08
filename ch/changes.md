@@ -8,4 +8,5 @@
 - **2026-06-03**: Aufgabegruppe [PARTREF::Go-Standardbibliothek] mit zunächst 3 Aufgaben zugefügt.
 - **2026-06-04**: `sedrila` V3.1.2 repariert die zuvor kaputte Erkennung manueller Zeitbuchungen
   (`pipx upgrade sedrila`)
+- **2026-06-08**: Aufgabe [PARTREF::go-enums] zugefügt.
 ...
