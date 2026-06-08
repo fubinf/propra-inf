@@ -30,6 +30,7 @@ graph TD
     tdd["tdd.md"]
     pytest_methodik_blackbox["pytest-Methodik-Blackbox.md"]
     pytest_methodik_whitebox["pytest-Methodik-Whitebox.md"]
+    pytest_methodik_rest["pytest-Methodik-REST.md"]
     flake8_ext["flake8.md (extern)"]
     testcoverage["testcoverage.md"]
     pytest_benchmark["pytest_benchmark.md"]
@@ -52,6 +53,7 @@ graph TD
     pytest_parametrize --> pytest_methodik_blackbox
     pytest_parametrize --> pytest_tox
     pytest_methodik_blackbox --> pytest_methodik_whitebox
+    pytest_methodik_blackbox --> pytest_methodik_rest
     pytest_methodik_whitebox --> testcoverage
     pytest_mocking --> pytest_mocking_freezegun
     pytest_fixtures --> pytest_benchmark
@@ -113,3 +115,5 @@ Diese Tasks sind noch nicht veröffentlicht (`stage: draft`) und werden künftig
 - **pytest_tox.md**: Testen in mehreren Python-Umgebungen mit `tox`.
   Setzt `pytest_parametrize.md` und `testcoverage.md` voraus.
 - **pytest_mutation_testing.md**: Mutation Testing zur Qualitätsbewertung von Tests. Setzt `m_pytest.md` voraus.
+- **pytest-Methodik-REST.md**: Blackbox-Testing einer REST-API über den CRUD-Lebenszyklus.
+  Setzt `pytest-Methodik-Blackbox.md`, `m_requests.md`, `m_json.md` und `http-REST.md` voraus.
