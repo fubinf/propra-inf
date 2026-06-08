@@ -83,7 +83,7 @@ an einen Dienst über das [TERMREF::Protokoll] [TERMREF::HTTP] erfolgt ("Web-API
 das von einer beliebigen Programmiersprache aus angesprochen wird.
 Die Daten werden in ebenfalls programmiersprachen-unabhängigen Formaten wie
 [TERMREF2::JSON::--Objekten] oder [TERMREF::XML] übergeben.
-Häufig wird dabei von einer REST API gesprochen (was eine bestimmte Form von Web-APIs meint),
+Häufig wird dabei von einer [TERMREF::REST] API gesprochen (was eine bestimmte Form von Web-APIs meint),
 obwohl die fragliche API die REST-Bedingungen gar nicht einhält.
 
 [HREF::https://de.wikipedia.org/wiki/Programmierschnittstelle]  
@@ -339,6 +339,8 @@ Erstellen, Lesen, Ändern, Löschen. Diese vier CRUD-Operationen bilden die grun
 für die Interaktion mit Daten in den meisten Anwendungen. [TERMREF::Regressionstest]s beziehen sich
 auf dieses Schema zum Testen von Daten und Objekten, um die Zuverlässigkeit einer Anwendung
 sicherzustellen.
+In [TERMREF::REST]-APIs werden die CRUD-Operationen typischerweise auf die HTTP-Methoden
+`POST` (Create), `GET` (Read), `PUT`/`PATCH` (Update) und `DELETE` (Delete) abgebildet.
 [ENDTERM]
 
 
@@ -585,6 +587,15 @@ Dazu gehören verschiedene Testmethoden wie [TERMREF::Modultest], [TERMREF::Inte
 Die Art und Weise, wie eine Nachricht oder ein Zeichenvorrat als Folge von Bits oder von Bytes dargestellt wird.
 
 [HREF::https://de.wikipedia.org/wiki/Zeichenkodierung]
+[ENDTERM]
+
+
+[TERM::Endpunkt|Endpoint]
+Ein Endpunkt ist eine konkrete, über eine [TERMREF::URL] ansprechbare Stelle einer [TERMREF2::REST::--API],
+über die eine bestimmte Ressource oder Operation erreichbar ist,
+z.B. `https://example.com/api/v2/pet/findByStatus`.
+Zu einem Endpunkt gehört neben der URL die Liste der zulässigen
+[TERMREF::HTTP]-Methoden (`GET`, `POST`, …).
 [ENDTERM]
 
 
@@ -851,14 +862,16 @@ Das Anfangs-Tag, der Inhalt dazwischen und das Ende-Tag bilden zusammen ein HTML
 Ein [TERMREF::Protokoll], das für die Übertragung von Daten im World Wide Web verwendet wird.
 Ermöglicht die Kommunikation zwischen Client-Anwendungen (wie Webbrowsern) und Servern,
 auf denen statische Ressourcen (wie Bilder) oder Anwendungen gehostet werden.
+Die Kommunikation erfolgt in Paaren aus [TERMREF::Request] (Anfrage) und [TERMREF::Response] (Antwort);
+der [TERMREF::HTTP-Statuscode] der Antwort zeigt deren Erfolg an.
 [ENDTERM]
 
 
 [TERM::HTTP-Statuscode]
 Ein HTTP-Statuscode ist eine dreistellige numerische Kennung, die von einem Webserver an den Client
 gesendet wird, um den Status einer HTTP-Anfrage zu kennzeichnen. Diese Statuscodes geben an, ob eine
-Anfrage erfolgreich war, eine Weiterleitung erforderlich ist, ein Fehler aufgetreten ist oder andere
-Informationen über den Status der Anfrage liefern.
+Anfrage erfolgreich war, eine Weiterleitung erforderlich ist, ein Fehler aufgetreten ist (und welche Sorte), etc.
+Der Code steht in der [TERMREF::Response] auf eine [TERMREF::HTTP]-Anfrage.
 [ENDTERM]
 
 
@@ -894,6 +907,18 @@ etwa Läufe automatisierter Tests, Inbetriebnahmen von Webanwendungen und viele 
 Wer eine IDE gut beherrscht, kann damit deutlich produktiver arbeiten als mit der
 manuellen Kombination anderer Werkzeuge.
 Dies gilt umso mehr, je größer die Codebasis wird.
+[ENDTERM]
+
+
+[TERM::Idempotenz|idempotent]
+Eine Operation ist _idempotent_, wenn ihre mehrfache Ausführung denselben Zustand hinterlässt
+wie ihre einmalige Ausführung.
+Bei [TERMREF::HTTP] sind `GET`, `PUT` und `DELETE` idempotent
+(ein zweites identisches `PUT` ändert nichts Weiteres, ein zweites `DELETE` löscht nichts Weiteres),
+`POST` dagegen nicht: Zwei gleiche `POST`-[TERMREF2::Request::-s] legen typischerweise
+zwei Ressourcen an.
+Idempotenz ist wichtig für die gefahrlose Wiederholbarkeit von Anfragen,
+etwa nach einem Netzwerkfehler.
 [ENDTERM]
 
 
@@ -1270,7 +1295,7 @@ Dazu beinhalten Objekt-Dateien zusätzliche Metadaten.
 
 [TERM::OpenAPI|Swagger]
 Ein Standard, der die Dokumentation
-von RESTful APIs (Representational State Transfer) erleichtert.
+von [TERMREF::RESTful] [TERMREF::API]s erleichtert.
 Maschinenlesbare Beschreibung einer API, die Entwicklern ermöglicht, schnell
 zu verstehen, welche Ressourcen verfügbar sind, welche
 Parameter erwartet werden und welche Antworten zurückgegeben werden können.
@@ -1508,6 +1533,7 @@ aus denen sich alle Refactorings zusammensetzen lassen:
 Ein Regressionstest ist ein Typ von Softwaretest, der durchgeführt wird, um sicherzustellen,
 dass früher funktionierende Teile einer Software nach einer Änderung weiterhin wie erwartet
 funktionieren und somit unerwünschte Seiteneffekte schnellstmöglich erkannt werden.
+Bei API- und Datenbanktests orientiert man sich dabei oft am [TERMREF::CRUD]-Schema.
 [ENDTERM]
 
 
@@ -1573,6 +1599,7 @@ um Daten anzufordern oder eine Operation auszulösen.
 
 Bei [TERMREF::HTTP] wird ein Request an eine spezifische _Ressource_ auf dem Server gesendet,
 die durch einen URI/[TERMREF::URL] identifiziert wird.
+Auf jeden Request antwortet der Server mit genau einer [TERMREF::Response].
 [ENDTERM]
 
 
@@ -1580,7 +1607,35 @@ die durch einen URI/[TERMREF::URL] identifiziert wird.
 Die Daten, die im Rahmen eines [TERMREF2::Protokoll::-s]
 ein Server an einen Client zurücksendet, als Reaktion auf eine [TERMREF::Anfrage],
 die der Client zuvor gesendet hat.
-Enthält den angeforderten Inhalt und/oder gibt Informationen darüber, ob die Anfrage erfolgreich war oder nicht.
+Enthält den angeforderten Inhalt und/oder gibt Informationen darüber, ob die Anfrage erfolgreich war oder nicht;
+bei [TERMREF::HTTP] gibt darüber der [TERMREF::HTTP-Statuscode] Auskunft.
+[ENDTERM]
+
+
+[TERM::REST|RESTful|REST-Architektur]
+REST (Representational State Transfer) ist ein _Architekturstil_ für verteilte Systeme.
+Es ist kein Protokoll und keine konkrete Technologie.
+Eine [TERMREF::API], die diesem Stil folgt, wird oft _RESTful_ genannt.
+In der Praxis werden RESTful-APIs fast immer über [TERMREF::HTTP] realisiert:
+[TERMREF2::Request::-s] richten sich an _Ressourcen_, die je durch eine [TERMREF::URL] als
+[TERMREF::Endpunkt] angesprochen werden, und die [TERMREF::CRUD]-Operationen werden auf die
+HTTP-Methoden `POST` (Create), `GET` (Read), `PUT`/`PATCH` (Update) und `DELETE` (Delete) abgebildet
+(`PUT` und `DELETE` sind dabei [TERMREF::idempotent], `POST` nicht).
+
+REST definiert sich über Architekturbedingungen (_constraints_), insbesondere:
+
+- Client-Server: Trennung von Anbieter (Server) und Nutzer (Client).
+- Zustandslosigkeit (_stateless_): Jeder Request enthält alle nötigen Informationen;
+  der Server hält zwischen zwei Requests keinen Sitzungszustand (sondern nur seine globale Datenbasis).
+- Einheitliche Schnittstelle (_uniform interface_): Ressourcen werden einheitlich über ihre
+  URL und die Standard-HTTP-Methoden angesprochen.
+
+REST bitte nicht mit HTTP verwechseln. HTTP ist ein [TERMREF::Protokoll],
+REST ein Architekturstil, der HTTP nur als (häufigste) technische Basis nutzt.
+Umgekehrt halten viele als "REST API" bezeichnete Schnittstellen die obigen Bedingungen
+gar nicht vollständig ein (siehe auch [TERMREF::API]).
+
+[HREF::https://de.wikipedia.org/wiki/Representational_State_Transfer]
 [ENDTERM]
 
 

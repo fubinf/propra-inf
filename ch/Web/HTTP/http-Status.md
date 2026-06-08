@@ -2,6 +2,7 @@ title: HTTP-Statuscodes verstehen und klassifizieren
 stage: beta
 timevalue: 1.0
 difficulty: 2
+explains: HTTP-Statuscode
 assumes: http-GET, http-POST
 ---
 

@@ -2,7 +2,6 @@ title: "HTTP GET: Abrufen von Ressourcen (request, response, status codes)"
 stage: beta
 timevalue: 1.0
 difficulty: 2
-explains: HTTP-Statuscode
 assumes: redirect
 ---
 

@@ -2,7 +2,7 @@ title: "FastAPI-CRUD"
 stage: beta
 timevalue: 1.5
 difficulty: 2
-explains:
+explains: CRUD
 assumes: m_datetime, http-POST, http-Status
 requires: FastAPI-GET
 ---
