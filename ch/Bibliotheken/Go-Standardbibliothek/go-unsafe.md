@@ -94,8 +94,15 @@ var specimens = []Specimen{
 }
 ```
 
-[ER] Schreiben Sie eine Funktion `decode(s Specimen) Atom`, die die Proben zum Typ `Atom{atomicNumber: int}` umwandelt
-und somit die Ordnungszahlen entschlüsselt.
+[ER] Schreiben Sie eine Funktion `decode(s Specimen) Atom`, die die Proben zum Typ `Atom` umwandelt und somit die
+Ordnungszahlen entschlüsselt.
+Der Typ `Atom` ist wie folgt definiert (nehmen Sie den Abschnitt in Ihren Code mit):
+
+```go
+type Atom struct {
+	atomicNumber int
+}
+```
 
 [EQ] Welche Elemente sind das?
 
@@ -110,7 +117,17 @@ Eines der bekanntesten Features von Zeigern in C ist _Zeigerarithmetik_:
 [INCLUDE::include/go-c-pointer-arithmetics-example.c]
 ```
 
-Im obigen Beispiel wurde die Variable `b` ausschließlich durch `a` und Manipulationen an Adressen verändert.
+Hier wurde die Variable `b` ausschließlich durch `a` und Manipulationen an Adressen verändert.
+
+[WARNING]
+Das obige Beispiel zeigt absichtlich _Undefined Behavior:_
+Zeigerarithmetik außerhalb eines gültigen Objekts ist laut C-Standard nicht definiert — der Compiler darf das Ergebnis
+beliebig interpretieren oder optimieren.
+
+Das Programm liefert das erwartete Ergebnis unter x86-Architektur beim Benutzen von GCC ohne Optimierungen.
+Auf ARM oder beim Verwenden von Optimierungen könnte das Programm abstürzen, falsche Werte liefern oder sich nach
+Compileroptimierungen völlig anders verhalten.
+[ENDWARNING]
 
 [FOLDOUT::Ich verstehe nicht, warum es subtrahiert wird]
 <!-- @LINK_SPEC: status=403 -->
@@ -147,6 +164,23 @@ Basierend auf der Adressendifferenz, was können Sie über die Position der Vari
   den Wert von `v.y` auf 42 setzt;
   (Für die Verschiebung von `&v.x` bietet sich `unsafe.Sizeof()` an, damit keine `int`-Größen fest eingebaut werden.)
 - anschließend `v` auf die Kommandozeile ausgibt.
+
+[WARNING]
+Alle Konvertierungen zu `uintptr` und zurück zu `unsafe.Pointer` müssen in einem einzigen Ausdruck stattfinden —
+`uintptr`-Werte dürfen nicht in Zwischenvariablen gespeichert werden:
+
+```go
+// UNGÜLTIG
+raw := uintptr(unsafe.Pointer(&v.x))
+p   := unsafe.Pointer(raw + unsafe.Sizeof(v.x))
+```
+
+Der Compiler betrachtet einen `uintptr` als gewöhnlichen Integer ohne Pointer-Semantik und gibt keine Garantie, dass das
+adressierte Objekt zwischen zwei Ausdrücken an derselben Stelle im Speicher verbleibt.
+
+Diese und andere nützliche Regeln finden Sie in der
+[Dokumentation von `unsafe.Pointer`](https://pkg.go.dev/unsafe#Pointer).
+[ENDWARNING]
 
 Für ein korrektes Kommandoprotokoll muss Ihre `main`-Funktion folgendermaßen aussehen:
 
