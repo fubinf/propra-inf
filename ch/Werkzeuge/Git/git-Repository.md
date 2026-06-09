@@ -109,7 +109,7 @@ im `gitcore-tutorial` und beantworten Sie dann die folgenden Fragen.
 
 [EQ] Wie können Sie den Namen eines bereits bestehenden Branches nachträglich ändern?
 
-Wie Sie die Standardwerte für Ihre Git-Umgebung anpassen können, z.b. auch den Namen des Default-Branches, 
+Wie Sie die Standardwerte für Ihre Git-Umgebung anpassen können, z. B. auch den Namen des Default-Branches, 
 lernen Sie in [PARTREF::git-Anpassen].
 
 In [PARTREF::git-Objektmodell] geht es dann sehr viel genauer um die Git-Objekte.
@@ -166,7 +166,7 @@ Der Begriff kommt vom englischen Verb *to commit*, also „etwas übergeben“ o
 
 Sie übergeben Git den aktuellen Zustand bestimmter Dateien und beauftragen es mit der Archivierung.
 Dabei speichert Git nicht die Änderungen, die Sie vorgenommen haben, sondern ein vollständiges Abbild 
-— einen sogenannten [TERMREF::Snapshot (git)] — aller vorgemerkten Dateien. 
+– einen sogenannten [TERMREF::Snapshot (git)] – aller vorgemerkten Dateien. 
 Was genau das bedeutet und warum das so ist, erfahren Sie in [PARTREF::git-Objektmodell].
 Git gibt Ihnen dafür einen eindeutigen Identifikator, einen Hash.
 Mit diesem Commit-Hash können Sie jederzeit auf den Zustand zum Zeitpunkt dieses Commits zurückgreifen.
@@ -226,7 +226,7 @@ Datei erstellen → `git add` → `git commit`.
 
 In [PARTREF::git-Objektmodell] sehen Sie, was dabei *wirklich* passiert –
 was Git unter der Haube mit Ihren Dateien macht und warum `git add` mehr tut, 
-als nur eine Datei „vorzumerken".
+als nur eine Datei „vorzumerken“.
 
 [ENDSECTION]
 
