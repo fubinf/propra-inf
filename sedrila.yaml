@@ -256,7 +256,6 @@ chapters:
     taskgroups:
       - name: Testgrundlagen
       - name: Unittests
-      - name: API
       - name: Testframeworks
       - name: Betriebsumgebung
   - name: Debugging
