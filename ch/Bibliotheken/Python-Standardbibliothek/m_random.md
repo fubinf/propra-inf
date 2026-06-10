@@ -52,7 +52,7 @@ immer die gleichen Zufallszahlen und das Ergebnis wird reproduzierbar.
 
 Wenn Sie keinen Seed angegeben, wird eine echte Zufallsvariable oder ein Timestamp
 als Seed verwendet. 
-Sie erhalten also bei jeder Ausführung neue Zufallszahlen, was oft erwünscht ist.
+Sie erhalten also bei jeder Ausführung neue Zufallszahlen, was oft das gewünschte Verhalten ist.
 
 [ER] Importieren Sie das Modul `random` und legen Sie als Seed `propra` fest.
 
@@ -71,6 +71,11 @@ Geben Sie das Ergebnis mit `print("normalverteilt:\t", ...)` aus.
 
 
 ### Auswahl aus Sequenzen
+
+Anstatt eine Zufallszahl zu erhalten, möchte man häufig eine zufällige Auswahl aus einer 
+festen Menge treffen.
+Anstatt dies umständlich mit `random.randint()` selbst zu implementieren, sollte man die von 
+`random` bereitgestellten Funktionen verwenden.
 
 [ER] Ordnen Sie ihre zuvor erzeugte Liste in einer zufälligen Reihenfolge. Geben Sie das Ergebnis mit
 `print("permutiert:\t", ...)` aus.
@@ -93,27 +98,18 @@ Geben Sie das Ergebnis mit `print("Würfeln:\t", ...)` aus.
 [ENDSECTION]
 
 
-[SECTION::submission::program]
+[SECTION::submission::snippet,trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
 
-[INSTRUCTOR::Codedurchsicht]
-Den Code lesen und manuell grob auf Richtigkeit prüfen.
-Das Kommandoprotokoll zur Unterstützung heranziehen.
-
-Sollte die Abgabe komplett andere Zufallszahlen beinhalten, ist eventuell beim Festlegen des 
-Seeds etwas schiefgelaufen. Prüfen Sie in dem Fall A2 genauer.
-
-Beachten Sie: Bei A7 sollen die Elemente verschieden sein, bei A8/9 kann 
-dasselbe Element mehrfach vorkommen. Schauen Sie ggf. in der Musterlösung nach den korrekten 
-Funktionen.
-
-Klare Defekte und sehr ungünstige Konstruktionen zurückweisen,
-insbesondere solche, die zu wenig Gebrauch von `random` machen.
-
-Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_pprint.py]
+[INSTRUCTOR::Kommandoprotokoll prüfen]
+Kommandoprotokoll prüfen.
+Bei Abweichungen oder Auffälligkeiten zusätzlich den Code prüfen.
+Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_random.py]
 
 [INCLUDE::ALT:]
+
+[PROT::ALT:m_random.prot]
 [ENDINSTRUCTOR]
