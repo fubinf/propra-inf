@@ -1,12 +1,12 @@
-title: Django Grundlagen und Installation
+title: Django installieren und erstes Projekt starten
 stage: alpha
-timevalue: 1.5
+timevalue: 0.5
 difficulty: 2
 ---
 
-[SECTION::goal::idea,experience]
-Ich verstehe die Grundkonzepte von Django, kann Django installieren und kenne die 
-MVT-Architektur sowie die wichtigsten Anwendungsszenarien.
+[SECTION::goal::experience]
+Ich kann Django in einer virtuellen Umgebung installieren, ein erstes Django-Projekt erstellen 
+und im Browser die Django-Willkommensseite aufrufen.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -29,176 +29,90 @@ Django folgt der Philosophie **"Don't Repeat Yourself" (DRY)** und bietet viele
 eingebaute Funktionen, die Entwicklern helfen, sich auf die Geschäftslogik zu konzentrieren, 
 anstatt Grundfunktionen neu zu implementieren.
 
-Optional: Weitere Informationen finden Sie in der offiziellen Dokumentation: 
-[Django Overview](https://docs.djangoproject.com/en/stable/intro/overview/)
+### Django installieren
 
-[EQ] Nennen Sie drei große Websites, die Django verwenden. 
-Nutzen Sie dafür die Django-Website oder andere Quellen.
-<!-- time estimate: 10 min -->
+Bevor Sie Django installieren, müssen Sie Python auf Ihrem System verfügbar haben. 
+Django unterstützt Python 3.8 oder höher. Nutzen Sie eine virtuelle Umgebung, 
+um Ihre Entwicklungsabhängigkeiten isoliert zu halten.
 
-### Django-Philosophie und Kernprinzipien
+**Schritt 1: Virtuelle Umgebung erstellen und aktivieren**:
+```bash
+python3 -m venv django_lern_env
+source django_lern_env/bin/activate    # Linux/Mac
+django_lern_env\Scripts\activate       # Windows
+```
 
-Django basiert auf mehreren wichtigen Designprinzipien:
-
-**DRY (Don't Repeat Yourself)**: Vermeidung von Code-Duplikation durch Wiederverwendung 
-von Komponenten wie Templates, Modellen und Views.
-
-**Convention over Configuration**: Django bietet sinnvolle Standardkonfigurationen 
-(z.B. automatisch generierte Admin-Oberfläche), um Entscheidungsaufwand zu reduzieren.
-
-**Rapid Development**: Schnelle Entwicklung von Prototypen bis hin zu produktionsreifen 
-Anwendungen.
-
-Optional: Mehr Details zu Djangos Design-Philosophie: 
-[Django Design Philosophy](https://docs.djangoproject.com/en/stable/misc/design-philosophies/)
-
-[EQ] Erklären Sie in eigenen Worten, was "Convention over Configuration" bedeutet.
-<!-- time estimate: 10 min -->
-
-### MVT-Architektur vs. MVC
-
-Django verwendet das **MVT (Model-View-Template)**-Muster, eine Variante des bekannten 
-**MVC (Model-View-Controller)**-Musters:
-
-**Model**: Verwaltet Daten und Geschäftslogik, kommuniziert mit der Datenbank.
-
-**View**: Fungiert als Controller, verarbeitet Requests und koordiniert Model und Template.
-
-**Template**: Zuständig für die Darstellung, generiert HTML-Ausgabe.
-
-**Ablauf in Django**:
-
-- URL-Request wird an entsprechende View weitergeleitet (`urls.py`)
-- View verarbeitet Request und ruft Model-Daten ab
-- View übergibt Daten an Template
-- Template rendert HTML und sendet Response zurück
-
-Optional: Vergleichen Sie mit der traditionellen MVC-Architektur: 
-[MVC vs MVT](https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/)
-
-
-### Djangos eingebaute Funktionen
-
-Django bietet zahlreiche eingebaute Features:
-
-| Funktion | Beschreibung |
-|----------|--------------|
-| **Admin Backend** | Automatisch generierte Verwaltungsoberfläche |
-| **ORM** | Object-Relational Mapping für Datenbankoperationen |
-| **Formular-Handling** | Eingebaute Validierung und CSRF-Schutz |
-| **Benutzer-Authentifizierung** | Login, Registrierung, Rechteverwaltung |
-| **URL-Routing** | Flexible URL-Zuordnung mit Regex-Unterstützung |
-| **Caching** | Unterstützung für Memcached, Redis etc. |
-
-Optional: Detaillierte Übersicht der Features: 
-[Django Features](https://www.djangoproject.com/start/overview/)
-
-[EQ] Recherchieren Sie für **Admin Backend**, **ORM**, **Formular-Handling** jeweils 
-ein konkretes Anwendungsbeispiel.
-<!-- time estimate: 20 min -->
-
-### Anwendungsszenarien für Django
-
-**Geeignet für Django**:
-
-- Content Management Systeme (CMS)
-- Social Media Plattformen
-- E-Commerce Websites
-- API-Backends (mit Django REST Framework)
-- Datengetriebene Webanwendungen
-
-**Weniger geeignet**:
-
-- Hochperformante Echtzeitsysteme
-- Sehr leichtgewichtige Microservices
-- Anwendungen mit extremen Performance-Anforderungen
-
-**Django vs. andere Frameworks**:
-
-- **Flask**: Leichtgewichtiger, mehr Flexibilität, weniger eingebaute Features
-- **FastAPI**: Fokus auf APIs, asynchrone Unterstützung, moderne Python-Features
-- **Ruby on Rails**: Ähnliche Philosophie, aber in Ruby
-
-[EQ] Bewerten Sie, ob Django für folgende Projekte geeignet wäre und begründen Sie:
-
-1. Ein Online-Shop mit 10.000 Produkten
-2. Eine Chat-Anwendung mit Echtzeit-Messaging
-3. Ein Blog mit 50 Artikeln
-4. Eine REST-API für eine Mobile App
-<!-- time estimate: 20 min -->
-
-
-### Entwicklungsumgebung einrichten und Django installieren
-
-**Empfohlene Entwicklungstools**:
-
-- **VS Code** mit Python-Extension
-- **PyCharm**
-- **Sublime Text** mit Python-Paketen
-
-Bevor Sie Django installieren können, muss Python auf Ihrem System verfügbar sein. 
-Django unterstützt Python 3.8 oder höher.
-
-**Installation mit pip**:
+**Schritt 2: Django im venv installieren**:
 ```bash
 pip install Django
 ```
 
-**Spezifische Version installieren (hier z.B. 5.2.5)**:
-```bash
-pip install Django==5.2.5
-```
-
-**Installation mit Paketmanager (Linux)**:
-```bash
-# Ubuntu/Debian
-sudo apt-get install python3-django
-
-# CentOS/RHEL
-sudo yum install python3-django
-```
-
-Optional: Weitere Installationsanleitung: 
-[Django Installation Guide](https://www.w3schools.com/django/django_install_django.php)
-
-**Virtuelle Umgebung erstellen** (empfohlen):
-```bash
-python -m venv django_env
-python3 -m venv django_env      # python3 unter Linux ist manchmal notwendig
-
-source django_env/bin/activate  # Linux/Mac
-django_env\Scripts\activate     # Windows
-
-pip install Django
-```
-
-
-[EC] Installieren Sie Django in einer virtuellen Umgebung mit Name `django_lern_env` auf 
-Ihrem System und dokumentieren Sie die verwendeten Befehle.
-
-[EC] Überprüfen Sie die Installation mit folgendem Befehl und notieren Sie die Ausgabe:
+**Schritt 3: Installation überprüfen**:
 ```bash
 python -m django --version
 ```
 
-<!-- time estimate: 30 min -->
+[EC] Installieren Sie Django in einer virtuellen Umgebung auf Ihrem System und dokumentieren Sie die Befehle.
+
+[EC] Überprüfen Sie die Installation und dokumentieren Sie die Ausgabe von `python -m django --version`.
+
+<!-- time estimate: 15 min -->
+
+### Erstes Projekt erstellen
+
+Sie können Ihr erstes Django-Projekt mit `startproject` erstellen:
+
+**Erstes Django-Projekt erstellen**:
+```bash
+django-admin startproject meinprojekt
+cd meinprojekt
+python manage.py runserver
+```
+
+**Häufige Probleme beim Starten des Servers**:
+
+**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
+```bash
+python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
+```
+
+**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
+```bash
+python manage.py runserver 8080  # Server auf einem alternativen Port starten
+```
+
+Nach dem Start sollte unter `http://127.0.0.1:8000/` 
+oder `http://127.0.0.1:8080/` die Django-Willkommensseite erscheinen.
+
+[EC] Erstellen Sie ein Django-Projekt namens `meinprojekt`, starten Sie den Server und öffnen Sie die Willkommensseite im Browser.
+
+### Weiterführend
+
+- [Django: Quick install guide](https://docs.djangoproject.com/en/stable/topics/install/) – offizielle Installationsanleitung
+- [Das offizielle Django-Tutorial](https://docs.djangoproject.com/en/stable/intro/tutorial01/) – schrittweiser Einstieg in Django
+
+Im nächsten Schritt erkunden Sie die Projektstruktur und schreiben Ihren ersten View:
+[PARTREF::django-project]
+
+<!-- time estimate: 15 min -->
 
 [ENDSECTION]
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-Reichen Sie Ihre Installationsbefehle und Projektstruktur ein.
+Reichen Sie Ihre Installations- und Startbefehle ein.
 
-[INCLUDE::/_include/Submission-Markdowndokument.md]
-Dokumentieren Sie Ihre Antworten zu den Recherche- und Analyseaufgaben.
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-### Fragen
-[INCLUDE::ALT:django-basics.md]
-
 ### Kommandoprotokoll
 [PROT::ALT:django-basics.prot]
+
+Knackpunkte:
+
+- Django wurde innerhalb eines venv installiert, nicht systemweit.
+- `django-admin startproject` und `runserver` wurden erfolgreich ausgeführt.
+- Die Django-Willkommensseite ist im Browser unter http://127.0.0.1:8000/ sichtbar.
 
 [ENDINSTRUCTOR]
