@@ -2,7 +2,7 @@ title: "Go: das Paket 'encoding/json'"
 stage: alpha
 timevalue: 1
 difficulty: 2
-assumes: go-interfaces, go-structs2
+assumes: go-interfaces, go-structs2, m_json
 ---
 
 [SECTION::goal::idea,experience]
@@ -11,8 +11,8 @@ Ich kann Daten in Go in das JSON-Format umwandeln und wieder zurück in Go-Daten
 
 [SECTION::background::default]
 Der Datenaustausch zwischen HTTP-Servern und HTTP-Clients erfolgt häufig im JSON-Format.
-JSON steht für _JavaScript Object Notation_ und hat sich im Laufe der Jahre als Standardformat für den Datentransfer
-im Web etabliert.
+[TERMREF::JSON] steht für _JavaScript Object Notation_ und hat sich im Laufe der Jahre als Standardformat für den
+Datentransfer im Web etabliert.
 
 In dieser Aufgabe lernen Sie, wie Sie Go-Datenstrukturen in JSON umwandeln und wieder daraus erzeugen können.
 [ENDSECTION]
@@ -21,33 +21,99 @@ In dieser Aufgabe lernen Sie, wie Sie Go-Datenstrukturen in JSON umwandeln und w
 
 [SECTION::instructions::detailed]
 
-### Was genau ist JSON?
+### Darstellungsmöglichkeiten
 
-In JavaScript ist ein Objekt eine Sammlung von Schlüssel-Wert-Paaren — im Grunde wie eine Map.
-
-```javascript
-const car = {
-    make: "Fiat", 
-    model: "500", 
-    color: "white"
-};
-```
-
-Eine valide JSON-Zeichenkette ähnelt im Wesentlichen einem JavaScript-Objekt, mit dem Unterschied, dass alle Schlüssel
-Zeichenketten (`string`) sein müssen:
+In Go gibt es mehrere Möglichkeiten, JSON-Daten darzustellen.
+Diese schauen Sie sich nun anhand der folgenden Zeichenkette an:
 
 ```json
 {
-  "car": {
-    "make": "Fiat",
-    "model": "500",
-    "color": "white"
+  "Mike": {
+    "age": 30,
+    "position": "accountant"
   }
 }
 ```
 
-Die Werte dürfen selbst wiederum Sammlungen von Schlüssel-Wert-Paaren (JSON-Objekte), primitive Datentypen
-(`int`, `float`, `string`, `bool`) oder Listen sein:
+
+#### Jedes Objekt als Struktur
+
+Die sauberste Option ist es, jeden Schlüssel im JSON als Feld einer Go-Struktur zu definieren und auf diese Art und
+Weise das komplette JSON zu konvertieren.
+Dabei bekommt jedes JSON-Objekt eine dedizierte Struktur und die gewohnte Typsicherheit bleibt erhalten.
+
+```go
+type Json struct {
+	Mike Person
+}
+
+type Person struct {
+	Age      int
+	Position string
+}
+
+var json = Json{
+	Mike: Person{
+		Age: 30,
+		Position: "accountant",
+    },
+}
+```
+
+
+#### Manche Objekte als anonyme Strukturen
+
+Anonyme Strukturen gelten oft als Einweg-Strukturen:
+Sie sind am besten für die Fälle geeignet, in denen die Struktur nur einmal definiert und verwendet wird.
+In diesem Beispiel ist die übergeordnete Struktur anonym:
+
+```go
+var myJson = struct{
+    Mike Person
+}{
+    Mike: Person{
+        Age: 30,
+        Position: "accountant",
+    },
+}
+```
+
+
+#### `map[string]any`
+
+Bei dieser Option verliert man jegliche Typsicherheit und muss die Werte immer mittels Typzusicherung zu dem erwarteten
+Typen konvertieren.
+Dies bietet sich an, wenn die JSON-Struktur zur Laufzeit unbekannt ist.
+
+```go
+var randomMap = map[string]any{
+	"Mike": map[string]any{
+		"age": 30,
+		"position": "accountant",
+	},
+}
+```
+
+Auch wenn die Definition relativ kompakt aussieht, sind es die Lesezugriffe definitiv nicht:
+
+```go
+func getMikesAge() {
+	mike := randomMap["Mike"]
+	if mike, ok := mike.(map[string]any); ok {
+		fmt.Println(mike["age"])
+	}
+}
+```
+
+Wir empfehlen für die folgenden Aufgaben eine Kombination aus der ersten und zweiten Option, wobei der Grad der
+Anonymität je nach Anwendungsfall variiert werden kann.
+
+[ER] Stellen Sie die folgende JSON-Zeichenkette als Go-Struktur dar, wobei die Schlüssel den Feldnamen entsprechen
+(kein `map[string]any`!).
+Konvertieren Sie alle kleingeschriebenen Schlüssel in großgeschriebene Namen (`"car"` -> `Car`) und wandeln Sie
+`snake_case` in `PascalCase` um.
+Sie dürfen sowohl anonyme Strukturen als auch eigene Typdefinitionen verwenden und die Struktur darf in einer globalen
+Variable gespeichert werden.
 
 ```json
 {
@@ -69,32 +135,6 @@ Die Werte dürfen selbst wiederum Sammlungen von Schlüssel-Wert-Paaren (JSON-Ob
 }
 ```
 
-[NOTICE]
-JSON-Syntax erlaubt kein abschließendes Komma (in Zeilen 5 und 10):
-
-```json
-{
-  "previous_owners": [
-    {
-      "name": "Max",
-      "age": 30,
-    },
-    {
-      "name": "Annika",
-      "age": 25
-    },
-  ]
-}
-```
-[ENDNOTICE]
-
-[ER] Stellen Sie das obige Beispiel `"car": {"make": ..., "model": ..., "color": ..., "previous_owners": ...}` als
-Go-Struktur dar, wobei die Schlüssel den Feldnamen entsprechen (kein `map[string]any`!).
-Konvertieren Sie alle kleingeschriebenen Schlüssel in großgeschriebene Namen (`"car"` -> `Car`) und wandeln Sie
-`snake_case` in `PascalCase` um.
-Sie dürfen sowohl anonyme Strukturen als auch eigene Typdefinitionen verwenden.
-Die Struktur darf in einer globalen Variable gespeichert werden.
-
 <!-- time estimate: 10 min -->
 
 
@@ -104,13 +144,13 @@ Felder einer Struktur können mit zusätzlichen Annotationen versehen werden —
 Tags sind besonders nützlich beim _Marshalling_ (Umwandeln in JSON) und _Unmarshalling_ (Einlesen von JSON) und haben
 die folgende Syntax:
 
-  `key1:"value1" key2:"value2" key3:"value3" key4:...`
+`key1:"value1" key2:"value2" key3:"value3" key4:...`
 
 Im folgenden Beispiel bedeutet der Tag, dass das Feld `Bar` beim _Marshalling_ (Konvertierung in JSON) nicht als
 `"Bar"`, sondern als `"baz"` ausgegeben wird:
 
 ```go
-struct Foo {
+type Foo struct {
     Bar string `json:"baz"`
 }
 ```
@@ -161,7 +201,7 @@ hello := string(b)
 ```
 [ENDHINT]
 
-[EQ] Lesen Sie den Abschnitt "Encoding" aus dem 
+[EQ] Lesen Sie den Abschnitt "Encoding" aus dem
 [Artikel "JSON and Go" im Go Blog](https://go.dev/blog/json#encoding)
 und erläutern Sie, warum eine solche Struktur für das Marshalling (und Unmarshalling) **nicht** geeignet ist:
 
@@ -172,6 +212,11 @@ type Employee struct {
     salary   float64  `json:"salary"`
 }
 ```
+
+[HINT::Ich weiß nicht, worauf ich achten soll]
+Erinnern Sie sich an [PARTREF::go-structs1]:
+Wie unterscheiden sich private und öffentliche/exportierte Felder einer Struktur? 
+[ENDHINT]
 
 [ER] Schreiben Sie eine Funktion `marshal`, in der Sie die Struktur `Car` aus [EREFR::1] anhand von `json.Marshal` in
 JSON-Zeichenkette umwandeln und diese auf der Kommandozeile ausgeben.
@@ -185,9 +230,12 @@ Analog wie beim Marshalling gibt es hier zwei Möglichkeiten:
 
 - `json.Unmarshal(data []byte, v any) error`;
 - Kombination aus `json.NewDecoder(r io.Reader) *Decoder` und `(*Decoder) Decode(v any) error`.
-- (in beiden Fällen ist `v` __ein Zeiger auf die Variable__, in der das Ergebnis gespeichert wird.)
 
-[EQ] Lesen Sie den Abschnitt "Decoding" aus dem 
+[NOTICE]
+In beiden Fällen ist `v` __ein Zeiger auf die Variable__, in der das Ergebnis gespeichert wird.
+[ENDNOTICE]
+
+[EQ] Lesen Sie den Abschnitt "Decoding" aus dem
 [Artikel "JSON and Go"](https://go.dev/blog/json#decoding)
 im Go Blog und erklären Sie, wie genau die Funktion `Unmarshal` die JSON-Schlüssel den Feldern einer Struktur zuordnet.
 
@@ -200,7 +248,7 @@ in der Sie es mithilfe von `json.Unmarshal` in eine Go-Struktur konvertieren und
 {
   "make": "Volkswagen",
   "model": "Golf 7",
-  "color": "silber",
+  "color": "silver",
   "previous_owners": [
     {
       "name": "Dave",
@@ -253,6 +301,7 @@ Vergewissern Sie sich, dass Ihre `main`-Funktion folgendermaßen aussieht:
 func main() {
     marshal()
     unmarshal()
+    jsonFromFile()
 }
 ```
 
