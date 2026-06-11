@@ -56,6 +56,8 @@ Alle Felder dieser Struktur haben Namen, die mit Großbuchstaben beginnen.
 Solche Felder sind öffentlich (public/exported).
 
 Felder mit Kleinbuchstaben sind hingegen privat, also nur im selben Paket zugreifbar.
+
+Merkhilfe: Große Buchstaben geben große Sichtbarkeit.
 <!-- TODO_Brandes: go-modules referenzieren, sobald die Aufgabe in beta ist -->
 [ENDNOTICE]
 
