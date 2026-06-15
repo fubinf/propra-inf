@@ -1,7 +1,7 @@
 title: Module und Pakete in Go
 stage: draft
 timevalue: 3
-difficulty: 2
+difficulty: 3
 assumes: go-basics
 ---
 
@@ -10,11 +10,10 @@ Ich weiß, wie Module in Go verwaltet, veröffentlicht und versioniert werden.
 [ENDSECTION]
 
 [SECTION::background::default]
-Manchmal reicht die Standardbibliothek nicht aus — dann greifen Programmierer
-auf externe Bibliotheken zurück.
+Manchmal reicht die Standardbibliothek nicht aus — dann greifen Programmierer auf externe Bibliotheken zurück.
 Manchmal wollen sie bestimmte Funktionalität in anderen Projekten wiederverwenden.
-In solchen Fällen bietet es sich an, ein eigenes __Modul__ zu erstellen,
-das in zukünftigen Projekten importiert werden kann.
+In solchen Fällen bietet es sich an, ein eigenes __Modul__ zu erstellen, das in zukünftigen Projekten importiert werden
+kann.
 
 Doch wie werden Bibliotheken — beziehungsweise __Module__ — öffentlich zugänglich gemacht?
 Darum geht es in dieser Aufgabe.
@@ -33,54 +32,55 @@ Diese Aufgabe orientiert sich im Wesentlichen an diesen Beiträgen auf
 ### Paket
 
 Alle Quellcodedateien müssen einem **Paket** zugeordnet sein.
-Dieses wird am Anfang der Datei in der Zeile `package {xyz}` angegeben, wobei
-`{xyz}` der Name Ihres Pakets ist.
+Dieses wird am Anfang der Datei in der Zeile `package {xyz}` angegeben, wobei `{xyz}` der Name Ihres Pakets ist.
 
 Stichpunktartig:
 
-- ein Paket ist ein Verzeichnis namens z.B. `xyz`, in dem alle Quellcodedateien
-  mit der Zeile `package xyz` anfangen müssen.
-- auf dieser Ebene wird Sichtbarkeit geregelt: Alle `lowercase` Deklarationen
-  sind privat, alle `Capitalized` Deklarationen sind öffentlich (public/exported)
-  und aus anderen Paketen sichtbar.
-  Merkhilfe: Große Buchstaben geben große Sichtbarkeit.
+- ein Paket ist ein Verzeichnis, in dem alle Quellcodedateien mit der Zeile `package xyz` anfangen.
+  Konventionsmäßig heißt dann das Verzeichnis ebenfalls `xyz`, aber das ist nicht unbedingt notwendig.
+- auf dieser Ebene wird Sichtbarkeit geregelt: Alle `lowercase` Deklarationen sind privat, alle `Capitalized`
+  Deklarationen sind öffentlich (public/exported) und aus anderen Paketen sichtbar.
+  **Merkhilfe:** Große Buchstaben geben große Sichtbarkeit.
 
 Ein Paketname unterliegt Sonderregeln: `main`.
 Dieses Paket ist das Hauptpaket; darin liegt das ausführbare Programm.
 Einstiegspunkt ist immer die Funktion `main()`.
-Dies entspricht `public static void main(String[] args)` in Java oder
-`int main()` in C.
+Dies entspricht `public static void main(String[] args)` in Java oder `int main()` in C.
 
-Alle anderen Paketnamen interpretiert der Compiler als Bibliotheken — diese
-können nicht mittels `go run` ausgeführt werden.
-Pakete entsprechen der Verzeichnisstruktur eines Moduls: Gibt es in einem Modul
-`my_module` Verzeichnisse `src`, `utils` und `test`, so beginnen die Quellcodedateien
-in den Verzeichnissen entsprechend mit den Zeilen `package src`, `package utils`
-oder `package test`.
+Alle anderen Paketnamen interpretiert das Go-Toolchain als Bibliotheken — diese können nicht mittels `go run` ausgeführt
+werden.
+Pakete entsprechen der Verzeichnisstruktur eines Moduls:
+Gibt es in einem Modul `my_module` Verzeichnisse `src`, `utils` und `test`, so beginnen die Quellcodedateien in den
+Verzeichnissen entsprechend mit den Zeilen `package src`, `package utils` oder `package test`.
+Dies ist lediglich eine extrem starke Konvention — die Namen von Verzeichnissen und Paketen müssen nicht übereinstimmen.
+Der Verzeichnisname bestimmt nur den Importpfad, wobei der Paketname beim Benutzen im Code verwendet wird.
+Ein typisches Beispiel ist ein Verzeichnis namens `v2` (für eine neue Hauptversion), dessen Quellcodedateien dennoch mit
+`package mylib` beginnen, um den Paketnamen stabil zu halten.
+
+[EQ] Überlegen Sie: Welche Vor- und Nachteile hat es, dass Sichtbarkeit über Groß-/Kleinschreibung geregelt wird?
 
 
 ### Modul
 
 Eine übergeordnete Struktur, die mehrere Pakete beinhalten kann.
-Ein Modul darf Abhängigkeiten von anderen Modulen haben und selber als Abhängigkeit
-importiert werden.
+Ein Modul darf Abhängigkeiten von anderen Modulen haben und selber als Abhängigkeit importiert werden.
 
-- ein Verzeichnis mit der Datei `go.mod`, wo Modulname, Abhängigkeiten und Go-Version
-  (beispielsweise `go 1.23`) deklariert sind.
-- in der Regel werden Sie ein Verzeichnis namens `your_module_name` anlegen und
-  dort `go mod init your_module_name` ausführen — dies initialisiert ein Modul.
+- ein Verzeichnis mit der Datei `go.mod`, wo Modulname, Abhängigkeiten und Go-Version (beispielsweise `go 1.23`)
+  deklariert sind.
+- in der Regel werden Sie ein Verzeichnis namens `your_module_name` anlegen und dort `go mod init your_module_name`
+  ausführen — dies initialisiert ein Modul.
 - die Datei `go.mod` kann auch manuell angelegt werden — unter
   [Anatomy of go.mod](https://encore.cloud/guide/go.mod)
   können Sie sich ein Beispiel anschauen.
-- ein Modul ist nicht nötig, solange Ihr Programm keine externen Abhängigkeiten benutzt.
-  Wenn Sie etwas schnell ausprobieren möchten, dürfen Sie alles unter `package main`
-  schreiben und mit `go run` ausführen.
+- für einzelne `.go`-Dateien, die Sie schnell ausprobieren möchten, können Sie `go run file.go` ohne Modul ausführen.
+- Sobald Ihr Projekt aus mehreren Dateien oder Paketen besteht, ist eine `go.mod` nötig.
 
 [FOLDOUT::Wozu das Ganze?]
 **Module** dienen Versionierung und Nachverfolgung externer Abhängigkeiten eines Projekts.
 Explizite Versionierung stellt sicher, dass Builds reproduzierbar sind.
 
-**Pakete** dienen dazu, Quellcode zu organisieren. Darunter:
+**Pakete** dienen dazu, Quellcode zu organisieren.
+Darunter:
 
 - Zusammengehörige Funktionen/Typen gruppieren
 - Sichtbarkeit kontrollieren
@@ -89,85 +89,127 @@ Explizite Versionierung stellt sicher, dass Builds reproduzierbar sind.
 Meistens wird Ihr Projekt ein einziges Modul sein, welches mehrere Pakete enthält.
 [ENDFOLDOUT]
 
+[EQ] Überlegen Sie: Ab wann lohnt es sich, ein Modul anzulegen?
+
+[EQ] Was passiert, wenn es in einem Verzeichnis sowohl Dateien mit `package abc` als auch mit `package xyz` gibt?
+Probieren Sie aus.
+
 
 ### Wie werden Module/Pakete importiert?
 
 Die Syntax einer Import-Anweisung:
 
 ```go
-import (optionales Alias) "Modulname"
+import (optionales Alias) "Paketpfad"
 ```
 
 Beispiel:
 
 ```go
-import rl "github.com/gen2brain/raylib-go/raylib"
+import "github.com/gen2brain/raylib-go/raylib"
 ```
 
-Hier gibt es zwei mögliche Fälle:
-
-1. Importieren von Paketen innerhalb eines Moduls: `import module_name/package_name`.
-   Dabei müssen Sie aufpassen, dass Ihr Abhängigkeitsgraph azyklisch bleibt.
-2. Importieren von externen Modulen — beispielsweise von einem Modul, welches
-   sich unter `github.com/username/module_name` befindet.
-    - im Root-Verzeichnis des Moduls `go get github.com/username/module_name`
-      ausführen und dann im Quellcode importieren;
-    - **oder** zuerst im Quellcode importieren (`import "github.com/username/module_name"`)
-      und danach aus dem Root-Verzeichnis des Moduls `go get` ausführen.
-      So werden alle nötigen Bibliotheken automatisch heruntergeladen.
-
-#### Ein Beispiel
-
-So könnte ein Projekt aussehen:
+Weitere Fälle betrachten wir anhand des folgenden Beispiel-Projekts:
 
     my_module/
     ├── go.mod
     ├── main.go
     ├── package_1/
-    │   ├── a.go
-    │   └── b.go
+    │   └── a.go
     └── package_2/
-        ├── c.go
-        └── d.go
+        └── c.go
 
 `go.mod` deklariert ein Modul, `main.go` ist der Einstiegspunkt, und die Verzeichnisse
 `package_1` und `package_2` sind Pakete.
 
 `a.go` und `b.go` beginnen mit der Zeile `package package_1`,
-`c.go` und `d.go` beginnen mit der Zeile `package package_2`.
+`c.go` und `d.go` beginnen mit der Zeile `package package_2` (nach Konvention).
 
-Soll eine Funktion `Foo` aus `package_2` in `a.go` benutzt werden, so lautet der Import
-`import my_module/package_2`.
-Die Funktion selbst ist dann über `package_2.Foo()` zugreifbar.
+
+#### Importieren von Paketen innerhalb des eigenen Moduls
+
+Stellen Sie sich vor, das es in `c.go` eine Funktion `Foo` definiert ist, die Sie in `a.go` verwenden wollen.
+Dann sieht der Anfang von `a.go` folgendermaßen aus:
+
+```go
+package package_1
+
+import "my_module/package_2"
+
+func A() {
+	package_2.Foo()
+}
+```
+
+Dabei müssen Sie aufpassen, dass Ihr Abhängigkeitsgraph azyklisch bleibt.
 
 [NOTICE]
-Hieße die Funktion `foo`, hätte das nicht funktioniert, da kleingeschriebene
-Deklarationen in einem Paket privat sind.
+Hieße die Funktion `foo`, hätte das nicht funktioniert, da kleingeschriebene Deklarationen in einem Paket privat sind.
 [ENDNOTICE]
+
+
+#### Importieren von externen Modulen
+
+Dafür gibt es zwei Möglichkeiten:
+
+- im Root-Verzeichnis des Moduls `go get Verzeichnis/wo/sich/das/Modul/befindet` ausführen und dann im Quellcode
+  importieren;
+- **oder** zuerst im Quellcode importieren (`import "Verzeichnis/wo/sich/das/Modul/befindet"`) und danach aus dem
+- Root-Verzeichnis des Moduls `go get` ausführen.
+  So werden alle nötigen Bibliotheken automatisch heruntergeladen.
+
+Falls beim Importieren ein Alias verwendet wurde, so greift man auf das Paket über dieses Alias zu.
+Schauen Sie sich folgende Beispiele an, wo Raylib einmal mit Alias und einmal ohne importiert wurde.
+
+[FOLDOUT::Import mit Alias]
+```go
+import foo "github.com/gen2brain/raylib-go/raylib"
+
+func main() {
+    foo.InitWindow(620, 820, "Tetris")
+    foo.SetTargetFPS(60)
+}
+```
+[ENDFOLDOUT]
+
+[FOLDOUT::Import ohne Alias]
+```go
+import "github.com/gen2brain/raylib-go/raylib"
+
+func main() {
+    rl.InitWindow(620, 820, "Tetris")
+    rl.SetTargetFPS(60)
+}
+```
+
+`rl` ist der eigentliche Paketname, da alle Dateien unter `github.com/gen2brain/raylib-go/raylib` mit `package rl`
+anfangen.
+[ENDFOLDOUT]
 
 
 ### Wie werden Module veröffentlicht?
 
-Falls Sie Ihr Modul veröffentlichen möchten, **muss** der Modulname mit der URL
-übereinstimmen, wo sich das Modul befindet.
+Falls Sie Ihr Modul veröffentlichen möchten, **muss** der Modulname mit der URL übereinstimmen, wo sich das Modul
+befindet.
 
 **Beispiel:**
 
-- Sie legen ein Repo namens `my_awesome_golang_module` auf [Github](https://github.com) an,
-  welches dann über `https://github.com/username/my_awesome_golang_module`
+- Sie legen ein Repo namens `my_awesome_golang_module` auf 
+  [Github](https://github.com)
+  an, welches dann über 
+  `https://github.com/username/my_awesome_golang_module`
   erreichbar ist.
-- Sollte das Repo ein Modul sein, so muss die `my_awesome_golang_module/go.mod`-Datei
-  mit der folgenden Zeile anfangen: `module github.com/username/my_awesome_golang_module`.
+- Sollte das Repo ein Modul sein, so muss die `my_awesome_golang_module/go.mod`-Datei mit der folgenden Zeile anfangen:
+  `module github.com/username/my_awesome_golang_module`.
 
 Das probieren Sie nun selber aus.
 
 [ER] Legen Sie ein öffentliches Github-Repo an.
-Den Modulnamen dürfen Sie beliebig wählen (um unerwartete Fehler zu vermeiden,
-benutzen Sie im Modulnamen keine Sonderzeichen).
+Den Modulnamen dürfen Sie beliebig wählen (um unerwartete Fehler zu vermeiden, benutzen Sie im Modulnamen keine
+Sonderzeichen).
 
 [ER] Das Repo muss zwei Dateien beinhalten: `go.mod` und `main.go`.
-Am Anfang beinhaltet `go.mod` nur den Modulnamen und die Go-Version
-(beispielsweise `go 1.23`).
+Am Anfang beinhaltet `go.mod` nur den Modulnamen und die Go-Version (beispielsweise `go 1.23`).
 Die Datei `go.mod` kann auf zwei verschiedene Arten angelegt werden:
 
 - entweder mittels des Kommandos `go mod init github.com/your_username/your_module_name`;
@@ -193,8 +235,8 @@ Dieses darf beliebig heißen.
 
 [ER] Legen Sie eine Datei `go.mod` an (entweder per `go mod init` oder manuell).
 
-[ER] Legen Sie eine weitere Datei `go-modules.go` an und kopieren Sie den folgenden
-Quellcodeabschnitt in diese Datei (ersetzen Sie den Import-Pfad durch den richtigen):
+[ER] Legen Sie eine weitere Datei `go-modules.go` an und kopieren Sie den folgenden Quellcodeabschnitt in diese Datei
+(ersetzen Sie den Import-Pfad durch den richtigen):
 
 ```go
 package main
@@ -206,7 +248,7 @@ func main() {
 }
 ```
 
-Und jetzt im Root-Verzeichnis des lokalen Moduls folgende Befehle ausführen:
+Und führen Sie anschließend im Root-Verzeichnis des lokalen Moduls folgende Befehle aus:
 
 [EC] `go get`
 
@@ -223,50 +265,31 @@ Führen Sie dazu folgenden Befehl im Terminal aus:
 Dadurch lassen sich Caching-Probleme vermeiden, etwa in Fällen wie:
 _"Ich habe xyz gepusht, aber im lokalen Projekt ist die Änderung nicht sichtbar."_
 
-Wenn Sie im Verlauf der Aufgabe der Endruck haben, dass etwas nicht stimmt,
-sollte `export GOPROXY=direct` Ihr erster Debugging-Schritt sein.
+Wenn Sie im Verlauf der Aufgabe der Endruck haben, dass etwas nicht stimmt, sollte `export GOPROXY=direct` Ihr erster
+Debugging-Schritt sein.
 [ENDWARNING]
 
 <!-- time estimate: 30 min -->
 
 
-### Nützliche Kommandos
-
-Erklären Sie jeweils, was die folgenden Befehle tun.
-
-Fangen Sie Ihre Suche mit der Dokumentation an: `go help <command>`.
-Falls das nicht ausreicht, dürfen Sie alle verfügbaren Quellen benutzen.
-
-[EQ] `go mod tidy`
-
-[EQ] `go mod download`
-
-[EQ] `go mod vendor`
-
-[EQ] `go mod edit -replace`
-
-<!-- time estimate: 20 min -->
-
-
 ### Versionierung
 
-Bibliotheken in Go unterliegen den Regeln semantischer Versionierung
-— Versionsnummer entsprechen dem Schema `vMAJOR.MINOR.PATCH`.
+Bibliotheken in Go unterliegen den Regeln semantischer Versionierung — Versionsnummer entsprechen dem Schema
+`vMAJOR.MINOR.PATCH`.
 
-[EQ] Finden Sie im [Artikel "Semantic Versioning 2.0.0"](https://semver.org/) eine Antwort
-auf die Frage: Wodurch unterscheiden sich Major-, Minor- und Patch-Versionen?
+[EQ] Finden Sie im [Artikel "Semantic Versioning 2.0.0"](https://semver.org/) eine Antwort auf die Frage:
+Wodurch unterscheiden sich Major-, Minor- und Patch-Versionen?
 
 <!-- time estimate: 5 min -->
 
-Während der Entwicklung (v0) und beim ersten stabilen Release (v1) befindet sich
-der Quellcode im Root-Verzeichnis des Moduls.
+Während der Entwicklung (v0) und beim ersten stabilen Release (v1) befindet sich der Quellcode im Root-Verzeichnis des
+Moduls.
 
 **Wichtig:**
-Soll es v2, v3 oder höhere Versionen geben, so muss der Quellcode in Verzeichnissen
-`your_module_name/v2` und `your_module_name/v3` liegen.
-Die Unterverzeichnisse sind selbst vollständige Module und besitzen jeweils
-eine Datei `go.mod`, wo der Modulname als `github.com/your_username/your_module_name/v2`
-beziehungsweise `.../v3` angegeben wird.
+Soll es v2, v3 oder höhere Versionen geben, so muss der Quellcode in Verzeichnissen `your_module_name/v2` und
+`your_module_name/v3` liegen.
+Die Unterverzeichnisse sind selbst vollständige Module und besitzen jeweils eine Datei `go.mod`, wo der Modulname als
+`github.com/your_username/your_module_name/v2` beziehungsweise `.../v3` angegeben wird.
 
 [NOTICE]
 Major-Versionen höher als 1 müssen im Import-Pfad angegeben werden!
@@ -300,20 +323,17 @@ Informationen darüber, wie:
 - ein Git-Tag gelöscht wird;
 - ein Git-Tag auf ein Remote-Repo gepusht wird.
 
-[ER] Taggen Sie den letzten Commit in `your_module_name` mit `v1.0.0`
-und pushen Sie den Git-Tag auf Remote.
+[ER] Taggen Sie den letzten Commit in `your_module_name` mit `v1.0.0` und pushen Sie den Git-Tag auf Remote.
 
-Dadurch wird der Stand des Repos als v1.0.0 Version "versiegelt".
-Alle Nutzer des Moduls, die das Modul mittels
-`import "github.com/your_username/your_module_name"` importieren, erhalten
-genau den Repo-Stand, der nun mit `v1.0.0` getaggt wurde.
+Dadurch wird der Stand des Repos als `v1.0.0`-Version "versiegelt".
+Alle Nutzer des Moduls, die das Modul mittels `import "github.com/your_username/your_module_name"` importieren,
+erhalten genau den Repo-Stand, der nun mit `v1.0.0` getaggt wurde.
 
-[ER] Laden Sie diese Version mittels
-`go get github.com/your_username/your_module_name@v1.0.0` herunter.
+[ER] Laden Sie diese Version mittels `go get github.com/your_username/your_module_name@v1.0.0` herunter.
 
 [ER] Kreieren Sie die nächste Major-Version: `v2`.
-Legen Sie ein Verzeichnis `your_module_name/v2` an und kopieren Sie die
-Inhalte des Moduls (`go.mod` und `main.go`) in dieses Verzeichnis um.
+Legen Sie ein Verzeichnis `your_module_name/v2` an und kopieren Sie die Inhalte des Moduls (`go.mod` und `main.go`) in
+dieses Verzeichnis.
 
 [ER] Passen Sie den Modulnamen in der Datei `v2/go.mod` an:
 Nun ist es `github.com/your_username/your_module_name/v2`.
@@ -321,8 +341,7 @@ Nun ist es `github.com/your_username/your_module_name/v2`.
 [ER] Ändern Sie die Ausgabe der Funktion `PrintFromRemote`:
 In dieser Version soll es `Hi from remote module v2!` sein.
 
-[ER] Committen Sie die Änderungen und taggen Sie den Commit mit `v2.0.0`
-(nicht zu vergessen auf Remote zu pushen!).
+[ER] Committen Sie die Änderungen und taggen Sie den Commit mit `v2.0.0` (vergessen Sie nicht, auf Remote zu pushen!).
 
 [ER] Ersetzen Sie den Inhalt von `go-modules.go` durch den Quellcode unten.
 Passen Sie die `import`s entsprechend an.
