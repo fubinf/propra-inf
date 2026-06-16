@@ -1,0 +1,18 @@
+# Authoritative, platform-independent line-ending policy.
+# Overrides every contributor's personal core.autocrlf, on Windows/Mac/Linux.
+
+# Default: auto-detect text vs. binary; text is ALWAYS stored with LF line endings in repo and worktree.
+* text=auto eol=lf
+
+# Explicit binaries (auto-detected too, but stated for safety — never normalized):
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+
+# Quasi-binary TEXT that must keep CRLF (e.g. raw HTTP traffic).
+# List the concrete paths/extensions here. Examples:
+#   *.http                       text eol=crlf
+#   path/to/raw-http-capture     -text
