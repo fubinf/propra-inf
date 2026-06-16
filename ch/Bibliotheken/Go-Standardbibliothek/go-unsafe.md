@@ -53,7 +53,7 @@ Alle low-level-Manipulationen benutzen zwei Typen: `uintptr` und `unsafe.Pointer
 
 - `uintptr` ist ein ganzzahliger Typ, der groß genug ist, um Bit-Muster aller Zeiger darstellen zu können.
   Wie jeder ganzzahlige Typ unterstützt `uintptr` Addition und Subtraktion.
-- `unsafe.Pointer` ist ein Typ, der einen typisierten Go-Zeiger zu einem beliebigen/generischen konvertiert.
+- `unsafe.Pointer` ist ein Typ, der einen typisierten Go-Zeiger zu einem beliebigen/generischen zu konvertieren erlaubt.
   `unsafe.Pointer` ist eine "Brücke" zwischen gewöhnlichen Go-Zeigern und `uintptr`-Variablen mit rohen
   Speicheradressen.
 
@@ -78,7 +78,7 @@ Statt Ordnungszahlen gibt es `float64`-Kalibrierdaten aus.
 
 Die Notiz Ihres Vorgesetzten lautet:
 "Die Ordnungszahlen sind als Bitmuster darin gefangen.
-Die `float64`-Werte sind als `int`s zu interpretieren."
+Die `float64`-Werte sind als `int`-Werte zu interpretieren."
 
 Proben:
 
@@ -151,8 +151,8 @@ Nun untersuchen Sie Adressen von Feldern einer Struktur in Go und bauen Sie die 
 
 [ER] Definieren Sie eine Struktur `Vector` mit Feldern `x int` und `y int`.
 
-[ER] Schreiben Sie eine Funktion `getAddressDifference()`, welche die Adressen von `Vector.x` und `Vector.y` sowie die
-Adressendifferenz `Vector.y - Vector.x` als `uintptr` auf die Kommandozeile ausgibt.
+[ER] Schreiben Sie eine Funktion `getAddressDifference()`, welche 
+die Adressen der Felder `x` und `y` einer `Vector`-Variablen sowie deren Differenz auf die Standardausgabe ausgibt.
 
 [EQ] Probieren Sie die Funktion `getAddressDifference()` aus.
 Basierend auf der Adressendifferenz, was können Sie über die Position der Variablen im Speicher sagen?
