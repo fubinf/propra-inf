@@ -141,7 +141,7 @@ package package_1
 import "my_module/package_2"
 
 func A() {
-	package_2.Foo()
+    package_2.Foo()
 }
 ```
 

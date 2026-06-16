@@ -73,7 +73,7 @@ die Zahl um eins inkrementiert.
 
 ```go
 func change(x int) {
-	x = 42
+    x = 42
 }
 
 func changePointer(x *int) {
@@ -81,12 +81,12 @@ func changePointer(x *int) {
 }
 
 func main() {
-	a := 0
-	b := 0
-	change(a)
+    a := 0
+    b := 0
+    change(a)
     changePointer(&b)
-	fmt.Println(a)
-	fmt.Println(b)
+    fmt.Println(a)
+    fmt.Println(b)
 }
 ```
 
