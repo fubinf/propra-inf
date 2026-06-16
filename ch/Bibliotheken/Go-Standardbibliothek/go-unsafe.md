@@ -100,7 +100,7 @@ Der Typ `Atom` ist wie folgt definiert (nehmen Sie den Abschnitt in Ihren Code m
 
 ```go
 type Atom struct {
-	atomicNumber int
+    atomicNumber int
 }
 ```
 
