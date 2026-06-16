@@ -88,7 +88,7 @@ oder `http://127.0.0.1:8080/` die Django-Willkommensseite erscheinen.
 
 ### Weiterführend
 
-- [Django: Quick install guide](https://docs.djangoproject.com/en/stable/topics/install/) – offizielle Installationsanleitung
+- [Django: Quick install guide](https://docs.djangoproject.com/en/stable/intro/install/) – offizielle Installationsanleitung
 - [Das offizielle Django-Tutorial](https://docs.djangoproject.com/en/stable/intro/tutorial01/) – schrittweiser Einstieg in Django
 
 Im nächsten Schritt erkunden Sie die Projektstruktur und schreiben Ihren ersten View:
