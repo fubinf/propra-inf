@@ -1,6 +1,6 @@
 title: Module und Pakete in Go
-stage: draft
-timevalue: 3
+stage: alpha
+timevalue: 2
 difficulty: 3
 assumes: go-basics
 ---
@@ -59,6 +59,8 @@ Ein typisches Beispiel ist ein Verzeichnis namens `v2` (für eine neue Hauptvers
 
 [EQ] Überlegen Sie: Welche Vor- und Nachteile hat es, dass Sichtbarkeit über Groß-/Kleinschreibung geregelt wird?
 
+<!-- time estimate: 15 min -->
+
 
 ### Modul
 
@@ -93,6 +95,8 @@ Meistens wird Ihr Projekt ein einziges Modul sein, welches mehrere Pakete enthä
 
 [EQ] Was passiert, wenn es in einem Verzeichnis sowohl Dateien mit `package abc` als auch mit `package xyz` gibt?
 Probieren Sie aus.
+
+<!-- time estimate: 15 min -->
 
 
 ### Wie werden Module/Pakete importiert?
@@ -147,6 +151,8 @@ Dabei müssen Sie aufpassen, dass Ihr Abhängigkeitsgraph azyklisch bleibt.
 Hieße die Funktion `foo`, hätte das nicht funktioniert, da kleingeschriebene Deklarationen in einem Paket privat sind.
 [ENDNOTICE]
 
+<!-- time estimate: 5 min -->
+
 
 #### Importieren von externen Modulen
 
@@ -186,6 +192,8 @@ func main() {
 anfangen.
 [ENDFOLDOUT]
 
+<!-- time estimate: 5 min -->
+
 
 ### Wie werden Module veröffentlicht?
 
@@ -205,7 +213,7 @@ befindet.
 Das probieren Sie nun selber aus.
 
 [ER] Legen Sie ein öffentliches Github-Repo an.
-Den Modulnamen dürfen Sie beliebig wählen (um unerwartete Fehler zu vermeiden, benutzen Sie im Modulnamen keine
+Den Modulnamen dürfen Sie beliebig wählen (um unerwartete Fehler zu vermeiden, verwenden Sie bitte im Modulnamen keine
 Sonderzeichen).
 
 [ER] Das Repo muss zwei Dateien beinhalten: `go.mod` und `main.go`.
