@@ -395,7 +395,7 @@ config for security — so each clone must run the script once
 (and again whenever the script itself changes).
 
 
-### 6.2 Line endings
+### 6.2 Line endings, TABs vs. spaces
 
 Unlike the settings above, `.gitattributes` *is* applied automatically, because
 git honors it as a tracked file of its own kind.
@@ -404,6 +404,12 @@ Do not override it with a personal `core.autocrlf`.
 
 Files that must keep CRLF (e.g. raw HTTP traffic) are listed explicitly in
 `.gitattributes`; add new ones there rather than committing stray CRLF.
+
+If allowed (e.g. for Go), we use spaces rather than TABs for indentation even in languages
+where TAB is prefered _in the task and instructor-part files_.
+In complete source code files (in `altdir/itree.zip/**`), however, we use what is most
+common or prefered in the respective language.
+For Go that would be TABs, and we would achieve it by running `gofmt` on these files. 
 
 
 ### 6.3 Working with the `altdir` submodule
