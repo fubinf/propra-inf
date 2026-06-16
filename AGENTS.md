@@ -4,9 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is **propra-inf** (Programmierpraktikum Informatik), a self-driven lab course for bachelor-level Informatics students at FU Berlin. The course content is written in German.
+This is **propra-inf** (Programmierpraktikum Informatik), a self-driven lab course for bachelor-level Informatics students at FU Berlin. 
+The course content is written in German.
 
 The project uses **sedrila** as its build tool to generate a course website from Markdown task files.
+
+See README.md for main entry points.
 
 ## Build Commands
 
