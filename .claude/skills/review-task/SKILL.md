@@ -49,6 +49,9 @@ mit einer Leerzeile hinter jedem Eintrag:
 Nenne bei jedem Befund die Zeilennummer(n) und sortiere jede Liste danach, aufsteigend.
 Beginne jeden Satz auf einer neuen Zeile und packe den ganzen Satz auf diese Zeile.
 Setze technische Syntax in Backquotes.
+Sprich weder den Reviewer (prechelt) noch den Autor direkt an, sondern benutze neutrale Sprache
+oder dritte Person.
+Füge außer dem einen oben genannten Absatz keinen kursiven Text ein. 
 
 Schreibe das Ergebnis in die Datei .claude/draft-reviews/r-<mytaskname>.md.
 Das Verzeichnis existiert bereits.
