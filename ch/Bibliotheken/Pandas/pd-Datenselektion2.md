@@ -2,8 +2,7 @@ title: "pandas: Selektion mit logischen Ausdrücken"
 stage: beta
 timevalue: 1.5
 difficulty: 2
-requires: pd-Datenselektion
-assumes: re-Metazeichen
+assumes: re-Metazeichen, pd-Datenselektion
 ---
 
 [SECTION::goal::idea]
