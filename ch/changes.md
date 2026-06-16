@@ -18,4 +18,5 @@
   Wer vor dem heutigen Tag schon mindestens 1h in diese Aufgabe investiert hatte (egal, ob abgegeben
   oder nicht), bekommt auf Antrag deshalb eine Zeitgutschrift von 1.5h.
   Sprechen Sie den Tutor darauf an und geben Sie den fraglichen Commit-Hash an.
+- **2026-06-16**: Aufgabe [PARTREF::go-json] zugefügt.
 - ...

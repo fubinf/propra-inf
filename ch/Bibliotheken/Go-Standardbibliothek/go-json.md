@@ -1,5 +1,5 @@
 title: "Go: das Paket 'encoding/json'"
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 2
 assumes: go-interfaces, go-structs2, m_json
@@ -24,7 +24,7 @@ In dieser Aufgabe lernen Sie, wie Sie Go-Datenstrukturen in JSON umwandeln und w
 ### Darstellungsmöglichkeiten
 
 In Go gibt es mehrere Möglichkeiten, JSON-Daten darzustellen.
-Diese schauen Sie sich nun anhand der folgenden Zeichenkette an:
+Diese schauen wir uns nun anhand der folgenden Zeichenkette an:
 
 ```json
 {
@@ -36,39 +36,39 @@ Diese schauen Sie sich nun anhand der folgenden Zeichenkette an:
 ```
 
 
-#### Jedes Objekt als Struktur
+#### Weg 1: Jedes Objekt als Struktur
 
 Die sauberste Option ist es, jeden Schlüssel im JSON als Feld einer Go-Struktur zu definieren und auf diese Art und
 Weise das komplette JSON zu konvertieren.
 Dabei bekommt jedes JSON-Objekt eine dedizierte Struktur und die gewohnte Typsicherheit bleibt erhalten.
 
 ```go
-type Json struct {
-	Mike Person
+type JSON struct {
+    Mike Person
 }
 
 type Person struct {
-	Age      int
-	Position string
+    Age      int
+    Position string
 }
 
-var json = Json{
-	Mike: Person{
-		Age: 30,
-		Position: "accountant",
+var mike1 = JSON{
+    Mike: Person{
+        Age: 30,
+        Position: "accountant",
     },
 }
 ```
 
 
-#### Manche Objekte als anonyme Strukturen
+#### Weg 2: Manche Objekte als anonyme Strukturen
 
 Anonyme Strukturen gelten oft als Einweg-Strukturen:
 Sie sind am besten für die Fälle geeignet, in denen die Struktur nur einmal definiert und verwendet wird.
 In diesem Beispiel ist die übergeordnete Struktur anonym:
 
 ```go
-var myJson = struct{
+var mike2 = struct{
     Mike Person
 }{
     Mike: Person{
@@ -79,29 +79,29 @@ var myJson = struct{
 ```
 
 
-#### `map[string]any`
+#### Weg 3: `map[string]any`
 
 Bei dieser Option verliert man jegliche Typsicherheit und muss die Werte immer mittels Typzusicherung zu dem erwarteten
 Typen konvertieren.
-Dies bietet sich an, wenn die JSON-Struktur zur Laufzeit unbekannt ist.
+Dies ist sinnvoll, wenn die JSON-Struktur erst zur Laufzeit bekannt ist.
 
 ```go
-var randomMap = map[string]any{
-	"Mike": map[string]any{
-		"age": 30,
-		"position": "accountant",
-	},
+var mike3 = map[string]any{
+    "Mike": map[string]any{
+        "age": 30,
+        "position": "accountant",
+    },
 }
 ```
 
 Auch wenn die Definition relativ kompakt aussieht, sind es die Lesezugriffe definitiv nicht:
 
 ```go
-func getMikesAge() {
-	mike := randomMap["Mike"]
-	if mike, ok := mike.(map[string]any); ok {
-		fmt.Println(mike["age"])
-	}
+func printMikesAge() {
+    mike := mike3["Mike"]
+    if mike, ok := mike.(map[string]any); ok {
+        fmt.Println(mike["age"])
+    }
 }
 ```
 
@@ -134,7 +134,6 @@ Variable gespeichert werden.
   }
 }
 ```
-
 <!-- time estimate: 10 min -->
 
 
@@ -144,8 +143,9 @@ Felder einer Struktur können mit zusätzlichen Annotationen versehen werden —
 Tags sind besonders nützlich beim _Marshalling_ (Umwandeln in JSON) und _Unmarshalling_ (Einlesen von JSON) und haben
 die folgende Syntax:
 
+```go
 `key1:"value1" key2:"value2" key3:"value3" key4:...`
-
+```
 Im folgenden Beispiel bedeutet der Tag, dass das Feld `Bar` beim _Marshalling_ (Konvertierung in JSON) nicht als
 `"Bar"`, sondern als `"baz"` ausgegeben wird:
 
@@ -239,7 +239,7 @@ In beiden Fällen ist `v` __ein Zeiger auf die Variable__, in der das Ergebnis g
 [Artikel "JSON and Go"](https://go.dev/blog/json#decoding)
 im Go Blog und erklären Sie, wie genau die Funktion `Unmarshal` die JSON-Schlüssel den Feldern einer Struktur zuordnet.
 
-[ER] Speichern Sie das Beispiel-JSON als globale Variable in Ihrem Programm und schreiben Sie eine Funktion `unmarshal`,
+[ER] Speichern Sie das JSON von [EREFR::1] als globale Variable in Ihrem Programm und schreiben Sie eine Funktion `unmarshal`,
 in der Sie es mithilfe von `json.Unmarshal` in eine Go-Struktur konvertieren und diese auf der Kommandozeile ausgeben.
 
 [ER] Legen Sie neben Ihrem Programm eine neue Datei `car.json` an und kopieren Sie folgendes JSON in diese Datei:
@@ -274,25 +274,7 @@ func jsonFromFile() {
 ```
 
 [WARNING]
-Die Datei `car.json` muss in dem Verzeichnis liegen, aus dem Sie `go run` ausführen.
-
-So muss das Verzeichnis aussehen, wenn Sie das Programm mittels `go run go-json.go` ausführen:
-
-```
-foo/
-├── go-json.go
-└── car.json
-```
-
-Benutzen Sie stattdessen `go run foo/go-json.go`, so ist das die gewünschte Struktur:
-
-```
-bar/
-├── car.json
-└── foo/
-    └── go-json.go
-```
-
+Die Datei `car.json` sollte zusammen mit `go-json.go` im Taskgroup-Verzeichnis liegen, aus dem Sie auch `go run` ausführen.
 [ENDWARNING]
 
 Vergewissern Sie sich, dass Ihre `main`-Funktion folgendermaßen aussieht:
