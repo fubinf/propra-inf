@@ -126,13 +126,13 @@ Weitere Fälle betrachten wir anhand des folgenden Beispiel-Projekts:
 `go.mod` deklariert ein Modul, `main.go` ist der Einstiegspunkt, und die Verzeichnisse
 `package_1` und `package_2` sind Pakete.
 
-`a.go` und `b.go` beginnen mit der Zeile `package package_1`,
-`c.go` und `d.go` beginnen mit der Zeile `package package_2` (nach Konvention).
+`a.go` beginnt mit der Zeile `package package_1`,
+`c.go` beginnt mit der Zeile `package package_2` (nach Konvention).
 
 
 #### Importieren von Paketen innerhalb des eigenen Moduls
 
-Stellen Sie sich vor, das es in `c.go` eine Funktion `Foo` definiert ist, die Sie in `a.go` verwenden wollen.
+Stellen Sie sich vor, dass in `c.go` eine Funktion `Foo` definiert ist, die Sie in `a.go` verwenden wollen.
 Dann sieht der Anfang von `a.go` folgendermaßen aus:
 
 ```go
@@ -161,7 +161,7 @@ Dafür gibt es zwei Möglichkeiten:
 - im Root-Verzeichnis des Moduls `go get Verzeichnis/wo/sich/das/Modul/befindet` ausführen und dann im Quellcode
   importieren;
 - **oder** zuerst im Quellcode importieren (`import "Verzeichnis/wo/sich/das/Modul/befindet"`) und danach aus dem
-- Root-Verzeichnis des Moduls `go get` ausführen.
+  Root-Verzeichnis des Moduls `go get` ausführen.
   So werden alle nötigen Bibliotheken automatisch heruntergeladen.
 
 Falls beim Importieren ein Alias verwendet wurde, so greift man auf das Paket über dieses Alias zu.
@@ -252,7 +252,7 @@ package main
 import m "github.com/your_username/your_module_name"
 
 func main() {
-    m.HiFromRemote()
+    m.PrintFromRemote()
 }
 ```
 
@@ -273,7 +273,7 @@ Führen Sie dazu folgenden Befehl im Terminal aus:
 Dadurch lassen sich Caching-Probleme vermeiden, etwa in Fällen wie:
 _"Ich habe xyz gepusht, aber im lokalen Projekt ist die Änderung nicht sichtbar."_
 
-Wenn Sie im Verlauf der Aufgabe der Endruck haben, dass etwas nicht stimmt, sollte `export GOPROXY=direct` Ihr erster
+Wenn Sie im Verlauf der Aufgabe den Eindruck haben, dass etwas nicht stimmt, sollte `export GOPROXY=direct` Ihr erster
 Debugging-Schritt sein.
 [ENDWARNING]
 
