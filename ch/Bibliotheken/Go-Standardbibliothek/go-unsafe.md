@@ -104,7 +104,16 @@ type Atom struct {
 }
 ```
 
-[EQ] Welche Elemente sind das?
+[EQ] Kopieren Sie die Funktion `retrieveAtoms` in Ihre Quellcodedatei und rufen Sie sie auf.
+Welche Elemente sind das?
+
+```go
+func retrieveAtoms() {
+    for _, specimen := range specimens {
+        fmt.Println(decode(specimen))
+    }
+}
+```
 
 <!-- time estimate: 10 min -->
 
@@ -186,6 +195,7 @@ Für ein korrektes Kommandoprotokoll muss Ihre `main`-Funktion folgendermaßen a
 
 ```go
 func main() {
+    retrieveAtoms()
     getAddressDifference()
     manipulate()
 }
