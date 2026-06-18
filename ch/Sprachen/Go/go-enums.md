@@ -1,5 +1,5 @@
 title: "Grundlagen von Go: Enums"
-stage: alpha
+stage: beta
 timevalue: 0.75
 difficulty: 2
 assumes: go-structs1
