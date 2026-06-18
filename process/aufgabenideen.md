@@ -206,6 +206,7 @@ Stattdessen könnte es in manchen Fällen praktischer sein, mehrere Module eines
 ### Bibliotheken/pip-popular (N.N.)
 
 - chardet (und charset-normalizer)
+- Krypto: symmetrisch, asymmetrisch, GPG
 
 
 #### Bibliotheken/pandas (saka)
@@ -670,6 +671,11 @@ Ideen:
 - `cog weather`: Zuerst nach der eigenen IP Standort nachschlagen und dann für diesen Standort das Wetter anzeigen.
   Hier bietet sich eine TUI-Integration an.
 - (etwas mit TCP/UDP Paket inspection, zwecks low-level-systemnahen Programmierens)
+
+
+### Programmierpraxis selbständig
+
+- Nur Anforderungen vorgeben, keine Entwurfshinweise. Schwierigkeitsgrad hoch.
 
 
 # Aufgabenideen ohne Heimat
