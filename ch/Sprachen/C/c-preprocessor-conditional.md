@@ -41,19 +41,19 @@ Die gängigsten Anwendungsfälle für Konditionale sind:
   optional hinzugefügt oder weggelassen werden sollen.
 - Sie schreiben ein Programm, welches die Implementierung gewisser Funktionen anpasst, je nachdem
   welche Features eine benutzte Bibliothek bereitstellt.
-  Ein geläufiger Nutzer dessen ist die C++-Standardbibliothek.
+  Die C++-Standardbibliothek nutzt dieses Konzept für die Kompatibilität zwischen den Standards (C++03, C++11, C++14, usw.).
 
 So auch in folgendem Beispiel.
 Zu sehen ist eine Stopp-Routine für ein Plugin.
 Die Routine schließt zwei Netzwerk-Sockets.
-Da Windows und Linux diese anders handhaben, müssen für die jeweiligen Betriebssysteme Anpassungen
-vorgenommen werden.
-Die Makros `_WIN32` und `__linux__` sind dabei von der jeweiligen Übersetzer-Betriebssystem-Kombination
-definiert, unter Windows wäre demnach `_WIN32` definiert, nicht aber `__linux__`.
+Da Windows, anders als Linux, zusätzliche Anforderungen hat, muss dies bedingt behandelt werden.
+Das Makro `_WIN32` ist dabei von der Übersetzer-Betriebssystem-Kombination definiert, und zwar nur,
+wenn für Windows übersetzt wird.
+
 
 ```c
 void PluginStop(void) {
-  /* Close socket */
+  /* Close sockets */
   if (server != NULL) {
     closesocket(server);
   }
@@ -65,27 +65,47 @@ void PluginStop(void) {
 #ifdef _WIN32
   WSACleanup();
 #endif
-
-  /* Arch related, based on users feedback */
-#ifdef __linux__
-  SOCKET stopper = socket(AF_INET, SOCK_STREAM, 0);
-  struct sockaddr_in serverAddress;
-  serverAddress.sin_family = AF_INET;
-  serverAddress.sin_addr.s_addr = INADDR_ANY;
-  serverAddress.sin_port = htons(DEFAULT_PORT);
-  connect(stopper, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
-  closesocket(stopper);
-#endif
 }
 ```
-
-
-## Praxis
 
 Lesen Sie sich das [GCC Kapitel "Conditional-Syntax"](https://gcc.gnu.org/onlinedocs/gcc-12.5.0/cpp/Conditional-Syntax.html)
 durch.
 Die Spezialoperatoren (`__has_attribute` usw.) können Sie überspringen, Sie werden im ProPra
 nur die Normalen benötigen.
+
+[EQ] Worin unterscheiden sich die folgenden Blöcke?
+
+```c
+#define A 1
+
+// Block 1
+#ifdef A
+....
+#endif
+
+// Block 2
+#if A
+...
+#endif
+```
+
+[EQ] Welchen Fehlerfall kann man sich bei [EREFQ::1] einfangen?
+
+[EQ] Was würde bei der Übersetzung des folgenden Codes passieren, und warum?
+
+```c
+#include <stdio.h">
+
+int main(void) {
+  printf("Hallo Welt\n");
+  #ifdef DEBUG
+  /* DEBUG
+  printf("DEBUG");
+  #endif
+}
+```
+
+## Praxis
 
 Legen Sie ein neues CLion Projekt an (s. [PARTREF::c-setup]).  
 Fügen Sie folgende Dateien hinzu.
@@ -117,25 +137,25 @@ int main(void) {
 }
 ```
 
-[ER] Vervollständigen Sie `lib.c` so, dass Sie drei konditionale Blöcke erhalten.
+[ER] Vervollständigen Sie `lib.c` so, dass Sie drei konditionale Blöcke erhalten. Wie ist Ihnen überlassen.
 
 Ein Block soll aktiv sein, wenn das Symbol `LOG` definiert ist, und folgenden Inhalt haben:
 ```c
 void print(const char *string) {
-  printf("\e[0;32mLOG: %s\e[0m\n", string);
+  printf("LOG: %s\n", string);
 }
 ```
 Ein Block soll aktiv sein, wenn das Symbol `ERROR` definiert ist, und folgenden Inhalt haben:
 ```c
 void print(const char *string) {
-  printf("\e[0;31mERROR: %s\e[0m\n", string);
+  printf("ERROR: %s\n", string);
 }
 ```
 Ein Block soll aktiv sein, wenn das Symbol `WARN` und das Symbol `BOLD` definiert sind, und folgenden
 Inhalt haben:
 ```c
 void print(const char *string) {
-  printf("\e[1;33mWARN: %s\e[0m\n", string);
+  printf("!WARN!: %s\n", string);
 }
 ```
 
@@ -171,7 +191,8 @@ Es soll der `WARN` Block ausgeführt werden.
 [ENDSECTION]
 
 
-[SECTION::submission::trace,program]
+[SECTION::submission::reflection,trace,program]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
