@@ -102,27 +102,9 @@ verursachen würde und C sehr sparsam ist.)
 
 ## `main`, der Einstiegspunkt
 
+
 ```c
-int main(void) {
-  // Initialisierung
-  findPrimes();
-
-  // Ausgabe
-  // Bewusst über das Array-Ende hinaus iterieren für den else Block
-  for (unsigned char i = 2; i <= 101; i++) {
-    const int prime = isPrime(i);
-    if (prime == 0) {
-      printf("%d ist keine Primzahl\n", i);
-      printFactors(i);
-    } else if (prime == 1) {
-      printf("%d ist eine Primzahl\n", i);
-    } else {
-      printf("%d ist nicht bekannt\n", i);
-    }
-  }
-
-  return 0;
-}
+[SNIPPET::include/c-experiment.c::main]
 ```
 
 Ein jedes C-Programm braucht eine Funktion, die `main` heißt, sie bildet den Einstiegspunkt
@@ -167,17 +149,7 @@ Format-Zeichenkette angegeben werden.
 ### Die For-Schleife
 
 ```c
-for (unsigned char i = 2; i <= 101; i++) {
-  const int prime = isPrime(i);
-  if (prime == 0) {
-    printf("%d ist keine Primzahl\n", i);
-    printFactors(i);
-  } else if (prime == 1) {
-    printf("%d ist eine Primzahl\n", i);
-  } else {
-    printf("%d ist nicht bekannt\n", i);
-  }
-}
+[SNIPPET::include/c-experiment.c::main_loop]
 ```
 
 Iteratoren gibt es in C nicht, etwas so Schönes wie `range`, Fehlanzeige.
@@ -205,14 +177,7 @@ Analog für `x--` und `--x`.
 ### If-Else
 
 ```c
-if (prime == 0) {
-  printf("%d ist keine Primzahl\n", i);
-  printFactors(i);
-} else if (prime == 1) {
-  printf("%d ist eine Primzahl\n", i);
-} else {
-  printf("%d ist nicht bekannt\n", i);
-}
+[SNIPPET::include/c-experiment.c::main_loop_if]
 ```
 
 Das If-Else Konstrukt in C unterscheidet sich von Python lediglich durch die notwendigen Klammern
@@ -236,18 +201,7 @@ Die Tabelle zeigt die jeweiligen Schreibweisen.
 ## `findPrimes`, der Kern des Programms
 
 ```c
-void findPrimes(void) {
-  // Siebe mit allen Zahlen i, wobei i der kleinste Primfaktor einer zusammengesetzten
-  // Zahl j = i * k ist.
-  for (unsigned char i = 2; i < 101; i++) {
-    if (!isNotPrime[i]) {
-      // Vielfache als 'nicht prim' markieren
-      for (unsigned short j = i * i; j < 101; j += i) {
-        isNotPrime[j] = true;
-      }
-    }
-  }
-}
+[SNIPPET::include/c-experiment.c::findPrimes]
 ```
 
 Diese Funktion bildet den Kern des Programms.
@@ -260,18 +214,7 @@ Ein `short` ist ebenso wie der `int` eine Ganzzahl, allerdings potenziell kleine
 ## `printFactors`, ein kleiner Helfer
 
 ```c
-void printFactors(const unsigned char i) {
-  // Trivialer Teiler 1
-  printf("\tTeiler: 1");
-  // Alle Zahlen j >= 2 bis i/2 prüfen, ob diese restlos (Modulo-Operator %) i teilen
-  for (unsigned char j = 2; j <= i / 2; j++) {
-    if (i % j == 0) {
-      printf(", %d", j);
-    }
-  }
-  // i selbst ist ebenso ein trivialer Teiler
-  printf(", %d\n", i);
-}
+[SNIPPET::include/c-experiment.c::printFactors]
 ```
 
 Diese Funktion gibt für eine Zahl `i` alle Teiler aus.
@@ -281,13 +224,7 @@ Bis auf die Syntax ist hier nichts anders als in Python.
 ## `isPrime`, des Kerns zweiter Teil
 
 ```c
-int isPrime(const unsigned char i) {
-  if (i >= 101) {
-    return -1;  // 'undefined'
-  }
-
-  return !isNotPrime[i];
-}
+[SNIPPET::include/c-experiment.c::isPrime]
 ```
 
 Eine einfache Funktion, deren einzige Aufgabe es ist, für eine Zahl `i` auszusagen, ob diese prim

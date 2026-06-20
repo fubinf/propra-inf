@@ -4,6 +4,7 @@
 // Index ist die Zahl, Wert gibt an ob Prim (false) oder nicht (true)
 bool isNotPrime[101];
 
+// SNIPPET::findPrimes
 // Sieb des Eratosthenes
 void findPrimes(void) {
   // Siebe mit allen Zahlen i, wobei i der kleinste Primfaktor einer zusammengesetzten
@@ -17,7 +18,9 @@ void findPrimes(void) {
     }
   }
 }
+// ENDSNIPPET
 
+// SNIPPET::printFactors
 // Ausgabe aller Faktoren von i
 void printFactors(const unsigned char i) {
   // Trivialer Teiler 1
@@ -31,7 +34,9 @@ void printFactors(const unsigned char i) {
   // i selbst ist ebenso ein trivialer Teiler
   printf(", %d\n", i);
 }
+// ENDSNIPPET
 
+// SNIPPET::isPrime
 // 0 -> Nicht prim
 // 1 -> Prim
 // -1 -> Nicht im Array
@@ -42,15 +47,19 @@ int isPrime(const unsigned char i) {
 
   return !isNotPrime[i];
 }
+// ENDSNIPPET
 
+// SNIPPET::main
 int main(void) {
   // Initialisierung
   findPrimes();
 
+  // SNIPPET::main_loop
   // Ausgabe
   // Bewusst über das Array-Ende hinaus iterieren für den else Block
   for (unsigned char i = 2; i <= 101; i++) {
     const int prime = isPrime(i);
+    // SNIPPET::main_loop_if
     if (prime == 0) {
       printf("%d ist keine Primzahl\n", i);
       printFactors(i);
@@ -59,7 +68,10 @@ int main(void) {
     } else {
       printf("%d ist nicht bekannt\n", i);
     }
+    // ENDSNIPPET
   }
+  // ENDSNIPPET
 
   return 0;
 }
+// ENDSNIPPET
