@@ -109,7 +109,7 @@ besitzen.
 
 ### Schutz vor falschen Parameterlisten
 
-Verändern Sie die `print.c`-Datei wie folgt:
+[ER] Verändern Sie die `print.c`-Datei wie folgt:
 ```c
 void print(int string) {
   printf("%s", string);
@@ -133,7 +133,7 @@ Geben Sie die Ausgabe des Bauprozesses sowie die des Programms selbst an.
 
 Um den oben durchgespielten Fehlerfall zu umgehen ist es gebräuchlich, jede Funktion, auch wenn
 man diese nicht woanders nutzen möchte, dennoch in einer Header-Datei zu deklarieren und diese, wie
-in [EREFR::2], zu inkludieren.
+in [EREFR::4], zu inkludieren.
 
 [ENDSECTION]
 
