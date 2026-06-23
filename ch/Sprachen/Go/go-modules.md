@@ -121,18 +121,18 @@ Weitere Fälle betrachten wir anhand des folgenden Beispiel-Projekts:
     ├── package_1/
     │   └── a.go
     └── package_2/
-        └── c.go
+        └── b.go
 
 `go.mod` deklariert ein Modul, `main.go` ist der Einstiegspunkt, und die Verzeichnisse
 `package_1` und `package_2` sind Pakete.
 
 `a.go` beginnt mit der Zeile `package package_1`,
-`c.go` beginnt mit der Zeile `package package_2` (nach Konvention).
+`b.go` beginnt mit der Zeile `package package_2` (nach Konvention).
 
 
 #### Importieren von Paketen innerhalb des eigenen Moduls
 
-Stellen Sie sich vor, dass in `c.go` eine Funktion `Foo` definiert ist, die Sie in `a.go` verwenden wollen.
+Stellen Sie sich vor, dass in `b.go` eine Funktion `Foo` definiert ist, die Sie in `a.go` verwenden wollen.
 Dann sieht der Anfang von `a.go` folgendermaßen aus:
 
 ```go
@@ -213,10 +213,11 @@ befindet.
 Das probieren Sie nun selber aus.
 
 [ER] Legen Sie ein öffentliches Github-Repo an.
-Den Modulnamen dürfen Sie beliebig wählen (um unerwartete Fehler zu vermeiden, verwenden Sie bitte im Modulnamen keine
-Sonderzeichen).
 
-[ER] Das Repo muss zwei Dateien beinhalten: `go.mod` und `main.go`.
+[ER] Das Repo muss zwei Dateien beinhalten:
+`go.mod` und eine Go-Quellcodedatei, die **nicht** `main.go` heißt — `main.go` impliziert eine ausführbare Datei, die
+`func main()` enthält.
+Ein passender Name wäre `remote.go` — diesen dürfen Sie übernehmen, müssen Sie aber nicht.
 Am Anfang beinhaltet `go.mod` nur den Modulnamen und die Go-Version (beispielsweise `go 1.23`).
 Die Datei `go.mod` kann auf zwei verschiedene Arten angelegt werden:
 
@@ -235,6 +236,11 @@ func PrintFromRemote() {
     fmt.Println("Hi from remote module!")
 }
 ```
+
+[NOTICE]
+Paketname muss ein gültiger Bezeichner sein — also mit einem Unterstrich (`_`) oder einem Buchstaben (a-z oder A-Z)
+anfangen und danach eine beliebige Kombination von Buchstaben, Ziffern und Unterstrichen enthalten.
+[ENDNOTICE]
 
 [ER] Committen und pushen Sie anschließend die Änderungen auf Remote.
 
@@ -373,9 +379,10 @@ func main() {
 <!-- time estimate: 40 min -->
 [ENDSECTION]
 
-[SECTION::submission::information,trace]
+[SECTION::submission::information,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Hinweise]
