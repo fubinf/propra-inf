@@ -6,26 +6,23 @@ assumes: go-arrays-and-slices, go-structs2
 ---
 
 [SECTION::goal::idea,experience]
-Ich weiß, welche Optionen Go-Standardbibliothek für Testen anbietet.
+Ich weiß, welche Optionen die Go-Standardbibliothek zum Testen anbietet.
 [ENDSECTION]
 
 [TOC]
 
 [SECTION::background::default]
-Eine der Stärken von Go ist das eingebaute Test-Framework.
+Eine der Stärken von Go ist das eingebaute Test-Framework, das nicht nur Funktionstests ("Unittests")
+erlaubt, sondern auch Fuzzing (Robustheitstests mit Zufallseingaben) und
+Laufzeitmessungen ("Benchmarking").
 
-In dieser Aufgabe lernen Sie, wie man Unit-Tests, Fuzz-Tests und Benchmarks mithilfe der Standardbibliothek schreibt.
+In dieser Aufgabe geht es hauptsächlich um das Technische: "Wie schreibe ich Tests?".
+Fragen der Art "Wie schreibt man **gute** Tests?" oder "**Was** soll man testen?" werden im Kapitel
+[PARTREF::Testen] behandelt.
+
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-
-[NOTICE]
-In dieser Aufgabe geht es hauptsächlich um das Technische, nämlich um "wie schreibe ich Tests?".
-
-Fragen wie beispielsweise "wie schreibt man **gute** Tests?" oder "**was** soll man testen?" werden im Kapitel
-[PARTREF::Testen] beantwortet.
-[ENDNOTICE]
-
 
 ### Überblick
 
@@ -36,22 +33,11 @@ Das Kommando `go test` hat folgende Voraussetzungen:
 2. alle Testfunktionen müssen sich in `*_test.go`-Dateien befinden;
 3. alle Testfunktionen müssen mit `Test`, `Benchmark` oder `Fuzz` anfangen;
 4. je nach Art des Tests muss die Testfunktion unterschiedliche Parameter annehmen:
-    - `func TestSomething(t *testing.T)` für Unit-Tests;
+    - `func TestSomething(t *testing.T)` für [TERMREF::Unittests];
     - `func FuzzSomething(f *testing.F)` für Fuzz-Tests;
     - `func BenchmarkSomething(b *testing.B)` für Benchmarks.
 
 Nach Konvention werden alle Funktionen aus `foo/foo.go` in einer Datei `foo/foo_test.go` getestet.
-
-[NOTICE]
-"Unit-Test" ist kein technischer Begriff, sondern eine Art von Tests, die die Funktionalität eines in sich
-abgeschlossenen Moduls überprüfen.
-
-Wir benutzen hier den Begriff "Unit-Test", um diese Funktionalität des Test-Frameworks klar von Fuzz-Tests und
-Benchmarks zu unterscheiden.
-
-Mithilfe von `*testing.T` können Sie auch andere Arten von Tests implementieren.
-[ENDNOTICE]
-
 <!-- time estimate: 5 min -->
 
 
@@ -71,8 +57,10 @@ func TestSomeFunction(t *testing.T) {
 }
 ```
 
-[EQ] Lesen Sie die [Dokumentation](https://pkg.go.dev/testing) und gruppieren Sie Methoden `t.Fail()`, `t.Error()`,
-`t.FailNow()` und `t.Fatal()` in zwei Kategorien:
+[EQ] Lesen Sie die 
+[Dokumentation](https://pkg.go.dev/testing)
+zu den Methoden `t.Fail()`, `t.Error()`, `t.FailNow()` und `t.Fatal()`
+(Achtung: Es gibt mehrere gleichen Namens!) und unterteilen Sie sie in zwei Kategorien:
 
 - Methoden, die einen Test sofort abbrechen;
 - Methoden, die einen Test als fehlgeschlagen markieren, aber die Ausführung fortsetzen.
@@ -80,7 +68,6 @@ func TestSomeFunction(t *testing.T) {
 [EQ] Überlegen Sie:
 In welchen Situationen kann es sinnvoll sein, einen Test nach einem Fehlschlag weiterlaufen zu lassen, statt ihn sofort
 abzubrechen?
-
 <!-- time estimate: 15 min -->
 
 
@@ -138,8 +125,7 @@ func TestStuffInParallel(t *testing.T) {
 }
 ```
 
-So können Sie die gesamte Ausführungszeit Ihrer Testsuite deutlich reduzieren.
-
+So können Sie die Ausführungszeit Ihrer Testsuite oft deutlich reduzieren.
 <!-- time estimate: 5 min -->
 
 
@@ -168,11 +154,11 @@ Denken Sie daran, Ihre Testfälle zu benennen (beispielsweise durch Definition i
 
 ### Fuzzing
 
-Fuzzing ist eine Testingmethode, welche durch eine enorme Menge von zufällig generierten Eingaben Ausführungszweige in
-einer Funktion finden.
+Fuzzing ist ein Testverfahren, welches durch eine enorme Menge zufällig generierter Eingaben Ausführungszweige in
+einer Funktion findet.
 So lassen sich Randfälle finden, die beim Unit-Testing oft übersehen werden.
 
-Diese Testingmethode ist besonders beliebt bei Testen von High Availability Systems und Computersicherheit.
+Dieses Testverfahren ist besonders beliebt beim Testen von Hochverfügbarkeitssystemen und in der Computersicherheit.
 
 Überfliegen Sie dieses 
 [Tutorial: Getting started with fuzzing](https://go.dev/doc/tutorial/fuzz)
@@ -188,9 +174,9 @@ Eine der Eigenschaften wäre `Reverse(Reverse(s)) == s`.
 Gibt es noch welche?
 [ENDHINT]
 
-[ER] Lesen Sie diese
-[Anleitung: Go Fuzzing](https://go.dev/doc/security/fuzz/)
-und Schreiben Sie einen Fuzz-Test für die folgende Funktion, die Leerzeichen aus einer Zeichenkette vorne und hinten
+[ER] Lesen Sie die Anleitung zu 
+[Go Fuzzing](https://go.dev/doc/security/fuzz/)
+und schreiben Sie einen Fuzz-Test für die folgende Funktion, die Leerzeichen aus einer Zeichenkette vorne und hinten
 entfernt (aus `"   some test string  "` wird `"some test string"`).
 Die Testfunktion soll `FuzzTrimSpaces` heißen.
 

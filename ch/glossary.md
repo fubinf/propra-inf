@@ -1186,13 +1186,18 @@ Ziele bei der Gestaltung von Modulen sind meistens Abstraktion und oft Wiederver
 [ENDTERM]
 
 
-[TERM::Modultest|Unit Test]
+[TERM::Modultest|Unit Test|Unittest]
 Ein Test, der das korrekte Funktionieren eines bestimmten Moduls prüfen soll.
 Dabei wird entweder nur dieses eine Modul ausgeführt (weil es keine weiteren davon benötigten
 Module gibt oder indem diese durch Attrappen ersetzt werden)
 oder es wird zwar der ganze darunter hängende Teilgraph von benötigten Modulen
 auch mit verwendet, aber die Testeingaben so ausgewählt, dass es voraussichtlich für das
 Ergebnis nur auf das zu testende Modul ankommt.
+
+In der Praxis wird das Wort Unittest lose auch für viele andere Arten von Tests
+benutzt, die mit einem Unittest-Framework ausgeführt werden.
+Gemeinsam ist ihnen in der Regel, dass bestimmte Erwartungen für das Verhalten überprüft
+und Abweichungen als Versagen gemeldet werden.
 [ENDTERM]
 
 
