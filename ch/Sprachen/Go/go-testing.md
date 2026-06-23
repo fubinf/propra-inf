@@ -20,10 +20,10 @@ In dieser Aufgabe lernen Sie, wie man Unit-Tests, Fuzz-Tests und Benchmarks mith
 [SECTION::instructions::detailed]
 
 [NOTICE]
-In dieser Aufgabe geht es nur um das Technische, nämlich um "wie schreibe ich Tests?".
+In dieser Aufgabe geht es hauptsächlich um das Technische, nämlich um "wie schreibe ich Tests?".
 
-Falls Sie sich Fragen wie beispielsweise "wie schreibt man **gute** Tests?" oder "**was** soll man testen?" stellen, ist
-das Kapitel [PARTREF::Testen] genau für Sie da.
+Fragen wie beispielsweise "wie schreibt man **gute** Tests?" oder "**was** soll man testen?" werden im Kapitel
+[PARTREF::Testen] beantwortet.
 [ENDNOTICE]
 
 
@@ -31,8 +31,8 @@ das Kapitel [PARTREF::Testen] genau für Sie da.
 
 Das Kommando `go test` hat folgende Voraussetzungen:
 
-1. der zu testende Quellcode sowie Tests befinden sich in einem Modul ([PARTREF2::go-modules::hier] gibt es eine
-   Aufgabe, wo Sie mehr zu Modulen lernen können);
+1. der zu testende Quellcode sowie Tests befinden sich in einem Modul; <!-- TODO_2_Brandes: 
+   add a reference to go-modules once it's live -->
 2. alle Testfunktionen müssen sich in `*_test.go`-Dateien befinden;
 3. alle Testfunktionen müssen mit `Test`, `Benchmark` oder `Fuzz` anfangen;
 4. je nach Art des Tests muss die Testfunktion unterschiedliche Parameter annehmen:
@@ -82,6 +82,32 @@ In welchen Situationen kann es sinnvoll sein, einen Test nach einem Fehlschlag w
 abzubrechen?
 
 <!-- time estimate: 15 min -->
+
+
+#### Cleanup()
+
+Die Methode `t.Cleanup()` wird nach jedem Test ausgeführt.
+Diese soll für das Aufräumen benutzt werden, beispielsweise so:
+
+```go
+func TestSomethingWithFiles(t *testing.T) {
+    file, err := os.CreateTemp("", "test-*.txt")
+    if err != nil {
+        t.Fatal(err)
+    }
+    
+    // aufräumen
+    t.Cleanup(func() {
+        os.Remove(file.Name())
+    })
+    
+    // Tests durchführen
+}
+```
+
+[EQ] Welche anderen Anwendungen der Methode `Cleanup()` fallen Ihnen ein?
+
+<!-- time estimate: 5 min -->
 
 
 #### Run() und Parallel()
@@ -138,32 +164,6 @@ Denken Sie daran, Ihre Testfälle zu benennen (beispielsweise durch Definition i
 `-v` steht für `verbose` — so können Sie genau sehen, welche Tests ausgeführt wurden.
 
 <!-- time estimate: 20 min -->
-
-
-#### Cleanup()
-
-Die Methode `t.Cleanup()` wird nach jedem Test ausgeführt.
-Diese soll für das Aufräumen benutzt werden, beispielsweise so:
-
-```go
-func TestSomethingWithFiles(t *testing.T) {
-    file, err := os.CreateTemp("", "test-*.txt")
-    if err != nil {
-        t.Fatal(err)
-    }
-    
-    // aufräumen
-    t.Cleanup(func() {
-        os.Remove(file.Name())
-    })
-    
-    // Tests durchführen
-}
-```
-
-[EQ] Welche anderen Anwendungen der Methode `Cleanup()` fallen Ihnen ein?
-
-<!-- time estimate: 5 min -->
 
 
 ### Fuzzing
