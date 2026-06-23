@@ -1,5 +1,4 @@
 title: Grundlagen von C
-stage: alpha
 ---
 C ist die Sprache, in der große Teile der heutigen Systemsoftware geschrieben sind,
 insbesondere bei Unix und Linux.
@@ -13,6 +12,6 @@ sehr viel fehleranfälliger macht als von z.B. Python gewohnt.
 C-Syntax ist Vorbild der Syntax diverser anderer Sprachen wie 
 C#, Groovy, Java, JavaScript, Kotlin, PHP und anderen.
 
-Vorkenntnisse in C sind zwar nicht vonnöten, aber wer nicht in irgendeiner anderen Sprache 
-sicher programmieren kann und deren Grundkonzepte gut verstanden hat, 
-wird hier stellenweise _sehr_ gefordert sein.
+Vorkenntnisse in C sind hier nicht vonnöten, aber: Sie sollten in irgendeiner anderen Sprache 
+sicher programmieren können und deren Grundkonzepte gut verstanden haben, 
+andernfalls werden Sie hier stellenweise _sehr_ gefordert sein.

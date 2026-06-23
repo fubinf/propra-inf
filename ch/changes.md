@@ -19,4 +19,5 @@
   oder nicht), bekommt auf Antrag deshalb eine Zeitgutschrift von 1.5h.
   Sprechen Sie den Tutor darauf an und geben Sie den fraglichen Commit-Hash an.
 - **2026-06-16**: Aufgabe [PARTREF::go-json] zugefügt.
+- **2026-06-23**: Aufgabengruppe [PARTREF::C] zugefügt, mit anfangs 4 Aufgaben.
 - ...
