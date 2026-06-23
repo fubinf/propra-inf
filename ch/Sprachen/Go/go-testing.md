@@ -1,5 +1,5 @@
 title: Testen in Go
-stage: draft
+stage: alpha
 timevalue: 2
 difficulty: 3
 assumes: go-arrays-and-slices, go-structs2
