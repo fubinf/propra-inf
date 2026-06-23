@@ -1,5 +1,5 @@
 title: "C Präprozessor: Konditionale"
-stage: alpha
+stage: beta
 timevalue: 0.75
 difficulty: 2
 assumes: c-experiment
@@ -18,6 +18,7 @@ Mit `#if` und `#ifdef` im Präprozessor können wir passende Codeteile auswähle
 und nur diese übersetzen. Der Code wird dadurch kleiner und schneller.
 [ENDSECTION]
 
+
 [SECTION::instructions::detailed]
 ## Theorie
 
@@ -27,14 +28,13 @@ Systemcode strotzt häufig geradezu davon.
 
 Die gängigsten Anwendungsfälle für Konditionale sind:
 
-- Sie schreiben ein Programm, das mehrere Kryptografiebibliotheken (openSSL, Mbed TLS, etc.)
+- Sie schreiben ein Programm, das mehrere Kryptografiebibliotheken (OpenSSL, Mbed TLS, etc.)
   unterstützen kann. Während des Bauens kann entschieden werden, welche der Bibliotheken verwendet
   werden soll.
-  Das ermöglicht es Nutzern Ihrer Bibliothek, die Wahl der Kryptografiebibliothek auf ihre
-  Bedürfnisse anzupassen.
+  Das ermöglicht es Nutzern Ihres Programms, die Kryptografiebibliothek selbst zu wählen.
 - Sie schreiben ein Programm, welches auf macOS, Linux und Windows laufen soll.
-  Code, der nur für System X gilt, wird nur eingeschlossen, wenn wir 
-  gerade die Version für X übersetzen.
+  Code, der nur für System S gilt, wird nur eingeschlossen, wenn wir 
+  gerade die Version für S übersetzen.
   Für diesen sehr häufigen Fall stellen alle gängigen C-Übersetzer vordefinierte Makros
   bereit.
 - Ein Programm kann zusätzliche Debugging-Funktionen erhalten, welche zur Übersetzungszeit
@@ -47,8 +47,8 @@ So auch in folgendem Beispiel.
 Zu sehen ist eine Stopp-Routine für ein Plugin.
 Die Routine schließt zwei Netzwerk-Sockets.
 Da Windows, anders als Linux, zusätzliche Anforderungen hat, muss dies bedingt behandelt werden.
-Das Makro `_WIN32` ist dabei von der Übersetzer-Betriebssystem-Kombination definiert, und zwar nur,
-wenn für Windows übersetzt wird.
+Das Makro `_WIN32` ist dabei vom Übersetzer automatisch definiert, wenn (und nur wenn)
+für Windows übersetzt wird.
 
 
 ```c
@@ -70,31 +70,31 @@ void PluginStop(void) {
 
 Lesen Sie sich das [GCC Kapitel "Conditional-Syntax"](https://gcc.gnu.org/onlinedocs/gcc-12.5.0/cpp/Conditional-Syntax.html)
 durch.
-Die Spezialoperatoren (`__has_attribute` usw.) können Sie überspringen, Sie werden im ProPra
-nur die Normalen benötigen.
+Die Spezialoperatoren, die mit Unterstrichen anfangen (`__has_attribute` usw.), können Sie überspringen; 
+Sie werden im ProPra nur die normalen benötigen.
 
 [EQ] Worin unterscheiden sich die folgenden Blöcke?
 
 ```c
 #define A 1
 
-// Block 1
 #ifdef A
-....
+// Block 1
+...
 #endif
 
-// Block 2
 #if A
+// Block 2
 ...
 #endif
 ```
 
-[EQ] Welchen Fehlerfall kann man sich bei [EREFQ::1] einfangen?
+[EQ] Welchen Fehlerfall kann man sich im obigen Beispiel für Block 2 einfangen?
 
 [EQ] Was würde bei der Übersetzung des folgenden Codes passieren, und warum?
 
 ```c
-#include <stdio.h">
+#include <stdio.h>
 
 int main(void) {
   printf("Hallo Welt\n");
@@ -107,7 +107,7 @@ int main(void) {
 
 ## Praxis
 
-Legen Sie ein neues CLion Projekt an (s. [PARTREF::c-setup]).  
+Legen Sie ein neues IDE-Projekt an (s. [PARTREF::c-setup]).  
 Fügen Sie folgende Dateien hinzu.
 
 `lib.h`
@@ -120,7 +120,7 @@ void print(const char *string);
 #endif
 ```
 
- `lib.c`
+`lib.c`
 ```c
 #include <stdio.h>
 
@@ -137,8 +137,7 @@ int main(void) {
 }
 ```
 
-[ER] Vervollständigen Sie `lib.c` so, dass Sie drei konditionale Blöcke erhalten. Wie ist Ihnen überlassen.
-
+[ER] Vervollständigen Sie `lib.c` so, dass Sie drei konditionale Blöcke erhalten.  
 Ein Block soll aktiv sein, wenn das Symbol `LOG` definiert ist, und folgenden Inhalt haben:
 ```c
 void print(const char *string) {
@@ -151,8 +150,8 @@ void print(const char *string) {
   printf("ERROR: %s\n", string);
 }
 ```
-Ein Block soll aktiv sein, wenn das Symbol `WARN` und das Symbol `BOLD` definiert sind, und folgenden
-Inhalt haben:
+Ein Block soll aktiv sein, wenn das Symbol `WARN` und das Symbol `BOLD` beide definiert sind, 
+und soll folgenden Inhalt haben:
 ```c
 void print(const char *string) {
   printf("!WARN!: %s\n", string);
@@ -165,29 +164,28 @@ Wählen Sie bei den nachfolgenden Schritten gemäß Ihrer IDE.
 Öffnen Sie die `CMakeLists.txt`.
 Fügen Sie `set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DXXX")` oberhalb der Zeile `add_executable(...)`
 ein.
-Ersetzen Sie XXX mit einem der in [EREFR::1] geforderten Symbole.
-Es können beliebig viel `-DXXX` gesetzt werden.
+Setzen Sie für XXX eines der in [EREFR::1] geforderten Symbole ein.
+Es können beliebig viele `-DXXX` gesetzt werden.
 [ENDFOLDOUT]
 
 [FOLDOUT::VSCode]
 Bauen Sie mit dem Befehl `gcc -DXXX main.c lib.c`.
-Der `-D` Kommandozeilenparameter erlaubt es, Objekt-Makros außerhalb von Dateien zu spezifizieren.
+Der `-D` Kommandozeilenparameter erlaubt es, Präprozessor-Makros außerhalb von Dateien zu definieren.
 Ersetzen Sie XXX mit einem der in [EREFR::1] geforderten Symbole.
-Es können beliebig viel `-DXXX` gesetzt werden.
+Es können beliebig viele `-DXXX` gesetzt werden.
 [ENDFOLDOUT]
 
-Für alle nachfolgenden Aufgaben gilt:
-Verändern Sie keine der `.c`-Dateien, nutzen Sie nur den `-D` Kommandozeilenparameter.
-Für CLion verändern Sie den `-D` Parameter in der `CMakeLists.txt`.
+Für alle nachfolgenden Schritte gilt:
+Verändern Sie keine der `.c`-Dateien, nutzen Sie nur den oder die `-D` Kommandozeilenparameter.
 
-[EC] Bauen und führen Sie das Programm aus.
-Es soll der `LOG` Block ausgeführt werden.
+[EC] Es soll der `LOG` Block ausgeführt werden.
+Bauen und führen Sie das Programm aus.
 
-[EC] Bauen und führen Sie das Programm aus.
-Es soll der `ERROR` Block ausgeführt werden.
+[EC] Es soll der `ERROR` Block ausgeführt werden.
+Bauen und führen Sie das Programm aus.
 
-[EC] Bauen und führen Sie das Programm aus.
-Es soll der `WARN` Block ausgeführt werden.
+[EC] Es soll der `WARN` Block ausgeführt werden.
+Bauen und führen Sie das Programm aus.
 [ENDSECTION]
 
 

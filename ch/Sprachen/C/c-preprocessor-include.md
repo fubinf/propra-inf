@@ -55,7 +55,7 @@ Lesen Sie sich die Kapitel 2.1 bis 2.3 des Handbuchs durch.
 [EQ] Warum ist es ungünstig, eine Funktionsdeklaration _direkt_ in jede `.c`-Datei zu schreiben, die sie aufruft?
 
 [ER] Vervollständigen Sie die mit `...` markierten `#include`-Direktiven in den unten stehenden Dateien.
-Legen Sie dafür zuerst im Hilfsbereich ein neues CLion Projekt (s. [PARTREF::c-setup]) an.  
+Legen Sie dafür zuerst im Hilfsbereich ein neues IDE-Projekt (s. [PARTREF::c-setup]) an.  
 `printf` ist im System-Header `stdio.h` deklariert.
 Fügen Sie folgende Dateien hinzu:
 
