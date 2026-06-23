@@ -1,5 +1,5 @@
 title: "Go: das Paket 'unsafe'"
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 3
 assumes: go-structs1, go-arrays-and-slices
@@ -53,7 +53,7 @@ Alle low-level-Manipulationen benutzen zwei Typen: `uintptr` und `unsafe.Pointer
 
 - `uintptr` ist ein ganzzahliger Typ, der groß genug ist, um Bit-Muster aller Zeiger darstellen zu können.
   Wie jeder ganzzahlige Typ unterstützt `uintptr` Addition und Subtraktion.
-- `unsafe.Pointer` ist ein Typ, der einen typisierten Go-Zeiger zu einem beliebigen/generischen zu konvertieren erlaubt.
+- `unsafe.Pointer` ist ein Zeigertyp, in den sich jeder typisierte Go-Zeiger umwandeln lässt und der auf einen Wert beliebigen Typs verweisen kann.
   `unsafe.Pointer` ist eine "Brücke" zwischen gewöhnlichen Go-Zeigern und `uintptr`-Variablen mit rohen
   Speicheradressen.
 
@@ -64,7 +64,7 @@ Lesen Sie nun folgende Abschnitte aus dem Artikel
 - "Background: The Role of ‘Unsafe’ in Go" (Kommentar, warum das Paket nur sehr vorsichtig zu benutzen ist)
 - "Some Notes on unsafe.Pointer and uintptr" (Konvertierung zwischen `*T`, `uintptr` und `unsafe.Pointer`)
 
-[EQ] Wie kann man einen Typ `X` als einen beliebigen Typ `Y` _interpretieren_?
+[EQ] Wie kann man einen Wert vom Typ `X` als einen beliebigen Typ `Y` _interpretieren_?
 Erklären Sie mit Worten und/oder geben Sie einen Codeausschnitt als Beispiel an.
 
 <!-- time estimate: 20 min -->
@@ -95,7 +95,8 @@ var specimens = []Specimen{
 ```
 
 [ER] Schreiben Sie eine Funktion `decode(s Specimen) Atom`, die die Proben zum Typ `Atom` umwandelt und somit die
-Ordnungszahlen entschlüsselt.
+Ordnungszahlen entschlüsselt. Es genügt, wenn Ihre Lösung auf einem 64-bit-System funktioniert,
+auf dem also `int` genauso groß ist wie `float64`.
 Der Typ `Atom` ist wie folgt definiert (nehmen Sie den Abschnitt in Ihren Code mit):
 
 ```go

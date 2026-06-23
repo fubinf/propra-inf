@@ -20,4 +20,5 @@
   Sprechen Sie den Tutor darauf an und geben Sie den fraglichen Commit-Hash an.
 - **2026-06-16**: Aufgabe [PARTREF::go-json] zugefügt.
 - **2026-06-23**: Aufgabengruppe [PARTREF::C] zugefügt, mit anfangs 4 Aufgaben.
+- **2026-06-23**: Aufgabe [PARTREF::go-unsafe] zugefügt.
 - ...
