@@ -1,12 +1,12 @@
 title: "C Präprozessor: Include"
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: c-experiment
 ---
 
 [SECTION::goal::idea]
-Ich verstehe die `#include` Präprozessor-Direktive und kann diese anwenden
+Ich verstehe die `#include`-Präprozessor-Direktive und kann diese anwenden
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -15,8 +15,6 @@ unverzichtbar.
 Was in Python das `import`-Statement erledigt (das Bereitstellen von Funktionen aus einem anderen Modul),
 wird in C mithilfe der `#include`-Präprozessor-Direktive gelöst.
 Schon für ein minimales "Hello World"-Programm benötigt man eine `#include`-Direktive.
-
-Die Aufgabe geht auf den zentralen Zweck der `#include`-Direktive ein.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -25,13 +23,13 @@ Die Aufgabe geht auf den zentralen Zweck der `#include`-Direktive ein.
 In C gibt es einen wichtigen Unterschied zwischen "Definition" und "Deklaration",
 zu dem es in Python keine Entsprechung gibt: Python hat nur Definitionen.
 Verschaffen Sie sich ein Verständnis dieser beiden Konzepte:
-[Übersicht über Unterschiede der Deklaration und Definition](https://www.geeksforgeeks.org/compiler-design/difference-between-definition-and-declaration/)
+[Unterschiede zwischen Deklaration und Definition](https://www.geeksforgeeks.org/compiler-design/difference-between-definition-and-declaration/)
 
 [EQ] Erläutern Sie in eigenen Worten den wesentlichen Unterschied zwischen Deklaration und Definition
 in einem Satz.
 
-[EQ] Angenommen, Sie haben ein Projekt bestehend aus zehn `.c` Dateien.
-Eine Funktion `myfunc`, die Sie geschrieben haben, wird in fünf Dateien verwendet.
+[EQ] Angenommen, Sie haben ein Projekt bestehend aus zehn `.c`-Dateien.
+Eine Funktion `myfunc`, die Sie in `myfuncs.c` geschrieben haben, wird in fünf anderen Dateien verwendet.
 Wie viele Deklarationen und wie viele Definitionen dieser Funktion werden gebraucht?
 
 [NOTICE]
@@ -54,10 +52,11 @@ Im Folgenden benutzen wir das
 
 Lesen Sie sich die Kapitel 2.1 bis 2.3 des Handbuchs durch.
 
-[EQ] Warum ist es ungünstig, Funktionsdeklarationen direkt in jede `.c` Datei zu schreiben, die sie aufruft?
+[EQ] Warum ist es ungünstig, eine Funktionsdeklaration _direkt_ in jede `.c`-Datei zu schreiben, die sie aufruft?
 
 [ER] Vervollständigen Sie die mit `...` markierten `#include`-Direktiven in den unten stehenden Dateien.
-Legen Sie dafür zuerst ein neues CLion Projekt (s. [PARTREF::c-setup]) an.  
+Legen Sie dafür zuerst im Hilfsbereich ein neues CLion Projekt (s. [PARTREF::c-setup]) an.  
+`printf` ist im System-Header `stdio.h` deklariert.
 Fügen Sie folgende Dateien hinzu:
 
 `print.h`
@@ -85,10 +84,6 @@ int main(void) {  /* a function definition */
 }
 ```
 
-[NOTICE]
-`printf` ist im System-Header `stdio.h` deklariert.
-[ENDNOTICE]
-
 [EC] Bauen und führen Sie das Programm aus.
 
 [EQ] Begründen Sie kurz, warum Sie sich für `#include ""` bzw. `#include <>` in [EREFR::1]
@@ -111,6 +106,8 @@ besitzen.
 
 [ER] Verändern Sie die `print.c`-Datei wie folgt:
 ```c
+#include ...
+
 void print(int string) {
   printf("%s", string);
 }
@@ -125,15 +122,15 @@ unterschiedliche Parameterlisten.
 
 [EC] Bauen Sie das Programm erneut.
 
-[ER] Beheben Sie den Fehler (ignorieren Sie die Warnung bei dem `printf`) indem Sie in der
-`print.c` das `int` durch `const char *` ersetzen.
+[ER] Beheben Sie den Fehler (ignorieren Sie die Warnung bei dem `printf`), indem Sie in der
+`print.c` das `int` wieder durch `const char *` ersetzen.
 
 [EC] Bauen und führen Sie das Programm anschließend erneut aus.
 Geben Sie die Ausgabe des Bauprozesses sowie die des Programms selbst an.
 
-Um den oben durchgespielten Fehlerfall zu umgehen ist es gebräuchlich, jede Funktion, auch wenn
-man diese nicht woanders nutzen möchte, dennoch in einer Header-Datei zu deklarieren und diese, wie
-in [EREFR::4], zu inkludieren.
+Die Deklarationen in einer `.h`-Datei beschreiben die öffentliche Schnittstelle einer Übersetzungseinheit.
+Es ist üblich, jede öffentliche Funktion in einer Header-Datei zu deklarieren und diese
+zu inkludieren -- selbst, wenn man diese Funktion aktuell gar nicht woanders nutzen möchte.
 
 [ENDSECTION]
 
