@@ -2,7 +2,8 @@ title: Django URL-Routing und Pfadkonfiguration
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: django-basics, django-project, django-admin, django-views, http-GET, http-POST
+requires: django-views
+assumes: http-GET, http-POST
 ---
 
 [SECTION::goal::idea,experience]
@@ -26,32 +27,8 @@ für die Codeorganisation und -wartung.
 
 [SECTION::instructions::detailed]
 
-### Voraussetzungen und Projektsetup
-
-Bitte lesen Sie zunächst [PARTREF::django-project] und folgen Sie den dort beschriebenen 
-Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren. 
-
-Erstellen Sie ein Projekt namens **meinprojekt**, indem Sie zunächst [PARTREF::django-project] 
-lesen und den dort beschriebenen Schritten folgen, 
-um in einer virtuellen Umgebung erfolgreich ein neues Django-Projekt anzulegen.  
-
-**Django-Server starten**:
-```bash
-cd meinprojekt
-python manage.py runserver
-```
-
-**Häufige Probleme beim Starten des Servers**:
-
-**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
-```bash
-python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
-```
-
-**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
-```bash
-python manage.py runserver 8080  # Server auf einem alternativen Port starten
-```
+Sie arbeiten weiter mit dem `meinprojekt`-Projekt, das Sie in [PARTREF::django-basics] erstellt haben.
+Alle folgenden Änderungen werden Sie in diesem Projekt durchführen.
 
 ### Grundlagen des Django URL-Routings
 
@@ -69,8 +46,6 @@ urlpatterns = [
 ]
 ```
 
-Optional: Weitere Informationen zum URL-System:
-[Django URL dispatcher](https://docs.djangoproject.com/en/4.2/topics/http/urls/)
 
 [EQ] Erklären Sie in eigenen Worten: Was ist URL-Routing und warum ist es in Webentwicklung wichtig?
 <!-- EQ1 -->
@@ -171,8 +146,6 @@ def artikel_datum(request, jahr, monat):
     return HttpResponse(f"Artikel aus {monat}/{jahr}")
 ```
 
-Optional: Wenn noch Fragen offen sind, hilft diese Ressource weiter:
-[URL patterns mit regulären Ausdrücken](https://docs.djangoproject.com/en/4.2/ref/urls/#django.urls.re_path)
 
 [ER] Erweitern Sie `blog/urls.py` um URL-Patterns mit benannten Gruppen:
 
@@ -285,8 +258,6 @@ def meine_view(request):
 <a href="{% url 'artikel_detail' artikel_id=123 %}">Artikel lesen</a>
 ```
 
-Optional: Weitere Erklärungen finden Sie hier:
-[URL names und reverse resolution](https://docs.djangoproject.com/en/4.2/topics/http/urls/#reverse-resolution-of-urls)
 
 [ER] Erweitern Sie `blog/views.py` um eine View mit Reverse Resolution:
 
@@ -441,6 +412,12 @@ Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
 Geben Sie für jeden Fall das passende Django URL-Pattern an.
 <!-- EQ5 -->
 <!-- time estimate: 15 min -->
+
+### Weiterführend
+
+- [Django URL dispatcher](https://docs.djangoproject.com/en/4.2/topics/http/urls/) – Umfassende Dokumentation zum URL-Routing-System in Django
+- [URL patterns mit regulären Ausdrücken](https://docs.djangoproject.com/en/4.2/ref/urls/#django.urls.re_path) – Detaillierte Dokumentation zu re_path und regulären Ausdrücken
+- [URL names und reverse resolution](https://docs.djangoproject.com/en/4.2/topics/http/urls/#reverse-resolution-of-urls) – Weitere Informationen zur Reverse Resolution von URLs
 
 [ENDSECTION]
 
