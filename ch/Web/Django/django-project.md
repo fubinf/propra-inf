@@ -2,7 +2,7 @@ title: Django Erstes Projekt erstellen und konfigurieren
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-assumes: django-basics
+requires: django-basics
 ---
 
 [SECTION::goal::idea,experience]
@@ -25,64 +25,15 @@ In dieser Aufgabe erstellen wir unser erstes Django-Projekt namens "meinprojekt"
 
 [SECTION::instructions::detailed]
 
-### Voraussetzungen und Installation
-
-Bitte lesen Sie zunächst [PARTREF::django-basics] und folgen Sie den dort beschriebenen 
-Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren. 
-Damit verfügen Sie über eine saubere Arbeitsumgebung für die folgenden Aufgaben.  
-
-Während dieses Prozesses können unter anderem folgende Befehle hilfreich sein:
-
-```bash
-python3 -m venv django_env        # Virtuelle Umgebung erstellen
-source django_env/bin/activate    # Virtuelle Umgebung aktivieren (Linux/Mac)
-django_env\Scripts\activate       # Virtuelle Umgebung aktivieren (Windows)
-pip install django                # Django in der virtuellen Umgebung installieren
-python -m django --version        # Installierte Django-Version prüfen
-```
-[EC] Dokumentieren Sie, dass Sie Django erfolgreich in einer virtuellen Umgebung
-installiert haben, indem Sie die Ausgabe von python -m django --version angeben.
-<!-- EC1 -->
-
-<!-- time estimate: 5 min -->
-
-### Erstes Django-Projekt erstellen
-
-Sie können Ihr erstes Django-Projekt mit `startproject` erstellen:
-
-**Erstes Django-Projekt erstellen**:
-```bash
-django-admin startproject meinprojekt
-cd meinprojekt
-python manage.py runserver
-```
-
-**Häufige Probleme beim Starten des Servers**:
-
-**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
-```bash
-python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
-```
-
-**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
-```bash
-python manage.py runserver 8080  # Server auf einem alternativen Port starten
-```
-
-Nach dem Start sollte unter `http://127.0.0.1:8000/` 
-oder `http://127.0.0.1:8080/` die Django-Willkommensseite erscheinen.
-
-[EC] Erstellen Sie ein Django-Projekt namens `testprojekt` und starten Sie den 
-Entwicklungsserver. 
-<!-- EC2 -->
-
 ### Django-Projektstruktur verstehen
+
+Sie arbeiten weiter mit dem `meinprojekt`-Projekt, das Sie in [PARTREF::django-basics] erstellt haben.
 
 Ein neues Django-Projekt hat folgende Struktur:
 ```
 meinprojekt/
 ├── manage.py                   # Django-Kommandozeilen-Tool
-└── testprojekt/                # Projekt-Konfigurationsordner
+└── meinprojekt/                # Projekt-Konfigurationsordner
     ├── __init__.py             # Python-Paket-Marker (leer)
     ├── settings.py             # Zentrale Projektkonfiguration
     ├── urls.py                 # Haupt-URL-Routing
@@ -107,7 +58,7 @@ sudo apt update
 sudo apt install tree
 tree meinprojekt
 ```
-<!-- EC3 -->
+<!-- EC2 -->
 <!-- time estimate: 15 min -->
 
 ### Django-Verwaltungswerkzeug
@@ -346,7 +297,7 @@ Drücken Sie **Strg + C** (Linux/macOS) bzw. **Ctrl + C** (Windows), um den Serv
 
 [EC] Erstellen Sie eine vollständige Übersicht Ihrer finalen Projektstruktur 
 mit dem `tree`-Befehl oder manuell.
-<!-- EC4 -->
+<!-- EC3 -->
 
 Die finale Struktur sollte etwa so aussehen:
 ```
