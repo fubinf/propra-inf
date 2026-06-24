@@ -2,7 +2,7 @@ title: Django Modelle und ORM
 stage: alpha
 timevalue: 2.25
 difficulty: 2
-assumes: django-basics, django-project, django-admin, django-views, django-routing, http-GET, http-POST
+requires: django-admin
 ---
 
 [SECTION::goal::idea,experience]
@@ -26,6 +26,9 @@ In dieser Aufgabe lernen wir, wie man Modelle definiert und grundlegende Datenba
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+
+Sie arbeiten weiter mit dem `meinprojekt`-Projekt, das Sie in [PARTREF::django-basics] erstellt haben.
+Alle folgenden Änderungen werden Sie in diesem Projekt durchführen.
 
 ### Was ist Django ORM?
 
@@ -51,21 +54,12 @@ zwischen objektorientierten Programmiersprachen und relationalen Datenbanken zu 
 - Klassenattribut ↔ Tabellenspalte
 - Klasseninstanz ↔ Tabellenzeile
 
-Optional: Weitere Erklärungen finden Sie hier:
-[Django Models](https://docs.djangoproject.com/en/4.2/topics/db/models/)
 
 [EQ] Erklären Sie in eigenen Worten, was ORM bedeutet und welche Hauptvorteile es bietet.  
 <!-- EQ1 -->  
 <!-- time estimate: 10 min -->
 
 ### Django-App für Modelle erstellen
-
-Bitte lesen Sie zunächst [PARTREF::django-basics] und folgen Sie den dort beschriebenen 
-Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren. 
-
-Erstellen Sie ein Projekt namens **meinprojekt**, indem Sie zunächst [PARTREF::django-project] 
-lesen und den dort beschriebenen Schritten folgen, 
-um in einer virtuellen Umgebung erfolgreich ein neues Django-Projekt anzulegen.  
 
 Django-Modelle müssen in einer App definiert werden.  
 Erstellen Sie eine neue App für unsere Datenbankexperimente:
@@ -123,8 +117,6 @@ class Student(models.Model):
 
 Die `__str__`-Methode legt fest, wie das Objekt als String dargestellt wird.
 
-Optional: Neugierig geworden? Dann lesen Sie hier weiter:
-[Model field reference](https://docs.djangoproject.com/en/4.2/ref/models/fields/)
 
 [EQ] Was bewirkt der Parameter `auto_now_add=True` bei einem `DateTimeField`?  
 <!-- EQ2 -->  
@@ -248,8 +240,6 @@ print("Nach Alter sortiert:", sorted_students)
 - `count()` - Anzahl der Objekte
 - `order_by()` - Sortierung
 
-Optional: Hier gibt es ein kompaktes Tutorial zum Thema:
-[Making queries](https://docs.djangoproject.com/en/4.2/topics/db/queries/)
 
 [EQ] Was passiert, wenn `get()` kein Objekt oder mehrere Objekte findet?  
 <!-- EQ5 -->  
@@ -480,6 +470,12 @@ def student_list(request):
 (Beispiel: `/students/?min_age=20&max_age=25&name=Tom`)  
 <!-- EQ9 -->  
 <!-- time estimate: 15 min -->
+
+### Weiterführend
+
+- [Django Models](https://docs.djangoproject.com/en/4.2/topics/db/models/) – Umfassende Dokumentation zu Django-Modellen und ORM
+- [Model field reference](https://docs.djangoproject.com/en/4.2/ref/models/fields/) – Detaillierte Referenz zu allen verfügbaren Feldtypen
+- [Making queries](https://docs.djangoproject.com/en/4.2/topics/db/queries/) – Dokumentation zu QuerySet-Methoden und Datenbankabfragen
 
 [ENDSECTION]
 
