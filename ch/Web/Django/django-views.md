@@ -2,7 +2,8 @@ title: Django Views
 stage: alpha
 timevalue: 2
 difficulty: 2
-assumes: django-basics, django-project, django-admin, http-GET, http-POST
+requires: django-project
+assumes: http-GET, http-POST
 ---
 
 [SECTION::goal::idea,experience]
@@ -25,32 +26,8 @@ Das Verständnis dieser fundamentalen Konzepte ist essentiell für die Django-En
 
 [SECTION::instructions::detailed]
 
-### Projektvorbereitung
-
-Bitte lesen Sie zunächst [PARTREF::django-basics] und folgen Sie den dort beschriebenen 
-Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren. 
-
-Erstellen Sie ein Projekt namens **meinprojekt**, indem Sie zunächst [PARTREF::django-project] 
-lesen und den dort beschriebenen Schritten folgen, 
-um in einer virtuellen Umgebung erfolgreich ein neues Django-Projekt anzulegen.  
-
-**Django-Server starten**:
-```bash
-cd meinprojekt
-python manage.py runserver
-```
-
-**Häufige Probleme beim Starten des Servers**:
-
-**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
-```bash
-python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
-```
-
-**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
-```bash
-python manage.py runserver 8080  # Server auf einem alternativen Port starten
-```
+Sie arbeiten weiter mit dem `meinprojekt`-Projekt, das Sie in [PARTREF::django-basics] erstellt haben.
+Alle folgenden Änderungen werden Sie in diesem Projekt durchführen.
 
 ### Views und das Request-Objekt verstehen
 
@@ -66,9 +43,6 @@ def my_view(request):
 
 Das Request-Objekt enthält alle Informationen über die HTTP-Anfrage. 
 Die wichtigsten Attribute sind:
-
-Optional: Weitere Erklärungen finden Sie hier:
-[Django Request Objects](https://docs.djangoproject.com/en/stable/ref/request-response/)
 
 <!-- time estimate: 10 min -->
 
@@ -351,6 +325,10 @@ für folgende Szenarien verwenden:
 <!-- EQ7 -->
 
 <!-- time estimate: 10 min -->
+
+### Weiterführend
+
+- [Django Request Objects](https://docs.djangoproject.com/en/4.2/ref/request-response/#django.http.HttpRequest) – Detaillierte Dokumentation zum Request-Objekt und seinen Attributen
 
 [ENDSECTION]
 
