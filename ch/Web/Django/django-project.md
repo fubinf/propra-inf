@@ -48,9 +48,6 @@ meinprojekt/
 - `urls.py`: URL-Routing-Konfiguration
 - `wsgi.py`/`asgi.py`: Deployment-Konfiguration für Webserver
 
-Optional: Möchten Sie mehr erfahren? Mehr zur 
-[Project Structure](https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project)
-
 [EC] Erkunden Sie die Projektstruktur und listen Sie alle erstellten Dateien und 
 Ordner. Benutzen Sie dazu den `tree`-Befehl oder ähnliche Tools:
 ```bash
@@ -173,9 +170,6 @@ Parameter:
 - `view` - View-Funktion, die aufgerufen wird  
 - `kwargs` - Zusätzliche Parameter (optional)
 - `name` - Eindeutiger Name für die URL (optional)
-
-Optional: Weitere Erklärungen finden Sie hier: 
-[URL dispatcher](https://docs.djangoproject.com/en/4.2/topics/http/urls/)
 
 [ER] Ändern Sie die URL-Konfiguration, damit "Hello World" unter `/hello/` erreichbar ist:
 <!-- ER3 -->
@@ -314,6 +308,11 @@ meinprojekt/
 ```
 
 <!-- time estimate: 5 min -->
+
+### Weiterführend
+
+- [Project Structure](https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project) – Mehr zur Django-Projektstruktur
+- [URL dispatcher](https://docs.djangoproject.com/en/4.2/topics/http/urls/) – Detaillierte Erklärungen zu URL-Konfiguration
 
 [ENDSECTION]
 
