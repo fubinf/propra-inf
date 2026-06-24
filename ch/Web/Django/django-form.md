@@ -2,7 +2,8 @@ title: Django Formularbehandlung
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: django-basics, django-project, django-admin, django-views, django-routing, django-template, django-model, http-GET, http-POST
+requires: django-views
+assumes: http-GET, http-POST
 ---
 
 [SECTION::goal::idea,experience]
@@ -27,32 +28,8 @@ In dieser Aufgabe lernen wir, wie man Formulare erstellt und deren Daten sicher 
 
 [SECTION::instructions::detailed]
 
-### Projekt vorbereiten
-
-Bitte lesen Sie zunächst [PARTREF::django-basics] und folgen Sie den dort beschriebenen 
-Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren. 
-
-Erstellen Sie ein Projekt namens **meinprojekt**, indem Sie zunächst [PARTREF::django-project] 
-lesen und den dort beschriebenen Schritten folgen, 
-um in einer virtuellen Umgebung erfolgreich ein neues Django-Projekt anzulegen.  
-
-**Django-Server starten**:
-```bash
-cd meinprojekt
-python manage.py runserver
-```
-
-**Häufige Probleme beim Starten des Servers**:
-
-**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
-```bash
-python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
-```
-
-**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
-```bash
-python manage.py runserver 8080  # Server auf einem alternativen Port starten
-```
+Sie arbeiten weiter mit dem `meinprojekt`-Projekt, das Sie in [PARTREF::django-basics] erstellt haben.
+Alle folgenden Änderungen werden Sie in diesem Projekt durchführen.
 
 ### HTTP-Formulare verstehen
 
@@ -64,9 +41,6 @@ Es gibt zwei Hauptmethoden für das Senden von Formulardaten:
 
 - **GET-Methode**: Daten werden in der URL übertragen (sichtbar und begrenzt)
 - **POST-Methode**: Daten werden im Request-Body übertragen (unsichtbar und unbegrenzt)
-
-Optional: Weitere Erklärungen finden Sie hier:
-[HTTP-Methoden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
 
 ### GET-Methode implementieren
 
@@ -498,6 +472,10 @@ Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
 <!-- EQ5 -->
 
 <!-- time estimate: 25 min -->
+
+### Weiterführend
+
+- [HTTP-Methoden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) – Weitere Erklärungen zu HTTP GET und POST
 
 [ENDSECTION]
 
