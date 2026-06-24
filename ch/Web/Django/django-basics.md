@@ -51,7 +51,9 @@ python -m django --version
 
 ### Erstes Projekt erstellen
 
-Sie können Ihr erstes Django-Projekt mit `startproject` erstellen:
+Sie werden Ihr erstes Django-Projekt mit `startproject` erstellen. 
+Dieses Projekt namens **meinprojekt** werden Sie in allen darauffolgenden Django-Aufgaben verwenden und 
+schrittweise erweitern. Erstellen Sie das Projekt in Ihrem Arbeitsverzeichnis:
 
 **Erstes Django-Projekt erstellen**:
 ```bash
