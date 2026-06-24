@@ -31,30 +31,21 @@ anstatt Grundfunktionen neu zu implementieren.
 
 ### Django installieren
 
-Bevor Sie Django installieren, müssen Sie Python auf Ihrem System verfügbar haben. 
-Django unterstützt Python 3.8 oder höher. Nutzen Sie eine virtuelle Umgebung, 
-um Ihre Entwicklungsabhängigkeiten isoliert zu halten.
+Installieren Sie Django in Ihrem venv:
 
-**Schritt 1: Virtuelle Umgebung erstellen und aktivieren**:
-```bash
-python3 -m venv django_lern_env
-source django_lern_env/bin/activate    # Linux/Mac
-django_lern_env\Scripts\activate       # Windows
-```
-
-**Schritt 2: Django im venv installieren**:
 ```bash
 pip install Django
 ```
 
-**Schritt 3: Installation überprüfen**:
+Überprüfen Sie die Installation:
+
 ```bash
 python -m django --version
 ```
 
-[EC] Installieren Sie Django in einer virtuellen Umgebung auf Ihrem System und dokumentieren Sie die Befehle.
+[EC] Installieren Sie Django und dokumentieren Sie die Befehle.
 
-[EC] Überprüfen Sie die Installation und dokumentieren Sie die Ausgabe von `python -m django --version`.
+[EC] Überprüfen Sie die Installation mit `python -m django --version` und dokumentieren Sie die Ausgabe.
 
 <!-- time estimate: 15 min -->
 
