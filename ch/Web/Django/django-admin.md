@@ -2,7 +2,7 @@ title: Django django-admin Kommandozeilen-Tool
 stage: alpha
 timevalue: 1.25
 difficulty: 2
-assumes: django-basics, django-project
+requires: django-basics
 ---
 
 [SECTION::goal::idea,experience]
@@ -20,14 +20,8 @@ Schnittstelle für alle wichtigen Projektverwaltungsaufgaben bereit.
 
 [SECTION::instructions::detailed]
 
-### Django Installation und erste Schritte
-
-Bitte lesen Sie zunächst [PARTREF::django-basics] und folgen Sie den dort beschriebenen 
-Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren. 
-Damit verfügen Sie über eine saubere Arbeitsumgebung für die folgenden Aufgaben.  
-
-[EC] Überprüfen Sie die Installation mit `django-admin --version`.
-<!-- EC1 -->
+Sie arbeiten weiter mit dem `meinprojekt`-Projekt, das Sie in [PARTREF::django-basics] erstellt haben.
+Alle folgenden Änderungen werden Sie in diesem Projekt durchführen.
 
 ### Verfügbare Kommandos anzeigen: `help`
 
@@ -71,30 +65,6 @@ Available subcommands:
     ...
 ```
 
-Optional: weitere Informationen zu allen verfügbaren Kommandos finden Sie in der 
-[Django Management Commands Dokumentation](https://docs.djangoproject.com/en/stable/ref/django-admin/).
-
-<!-- time estimate: 10 min -->
-
-### Neues Django-Projekt erstellen: `startproject`
-
-Das wichtigste Kommando für den Einstieg ist `startproject`, 
-das die grundlegende Projektstruktur erstellt.
-
-```bash
-django-admin startproject projektname
-```
-
-Erstellen Sie ein Projekt namens **meinprojekt**, indem Sie zunächst [PARTREF::django-project] 
-lesen und den dort beschriebenen Schritten folgen, 
-um in einer virtuellen Umgebung erfolgreich ein neues Django-Projekt anzulegen.  
-
-[EC] Erstellen Sie ein neues Django-Projekt namens `meinshop` mit 
-`django-admin startproject`.
-<!-- EC2 -->
-
-<!-- time estimate: 5 min -->
-
 ### Django-Anwendung erstellen: `startapp`
 
 Django-Projekte bestehen aus einer oder mehreren Anwendungen (Apps).
@@ -131,43 +101,11 @@ Die wichtigsten Dateien sind:
 - `admin.py`: Konfiguration für das Admin-Interface
 - `migrations/`: Datenbankmigrationen
 
-Optional: weitere Details zu Django-Apps finden Sie in der 
-[App-Dokumentation](https://docs.djangoproject.com/en/stable/ref/applications/).
-
-[EC] Wechseln Sie in Ihr `meinshop` Projektverzeichnis und erstellen Sie eine App 
-namens `produkte`.
+[EC] Wechseln Sie in Ihr `meinprojekt` Projektverzeichnis und erstellen Sie eine App 
+namens `produkte` mit `python manage.py startapp produkte`.
 <!-- time estimate: 5 min -->
 
-<!-- EC3 -->
-
-### Entwicklungsserver starten: `runserver`
-
-Um das Django-Projekt zu testen, können Sie den integrierten Entwicklungsserver starten:
-
-```bash
-python manage.py runserver
-```
-
-Standardmäßig läuft der Server auf `http://127.0.0.1:8000/`.
-Sie können Port und IP-Adresse anpassen:
-
-```bash
-python manage.py runserver 0.0.0.0:8080  # IP und Port
-python manage.py runserver 8080           # nur Port ändern
-```
-
-Zusätzliche Optionen:
-
-```bash
-python manage.py runserver --noreload     # ohne automatisches Neuladen
-python manage.py runserver --insecure     # statische Dateien in DEBUG=False
-```
-
-[NOTICE]
-Der Entwicklungsserver ist nur für die Entwicklung gedacht und sollte 
-niemals in einer Produktionsumgebung verwendet werden.
-[ENDNOTICE]
-
+<!-- EC1 -->
 
 ### Projektkonfiguration überprüfen: `check`
 
@@ -192,17 +130,14 @@ python manage.py check --tag=security    # nur Sicherheits-Checks
 python manage.py check --tag=urls        # nur URL-Checks
 ```
 
-Optional: weitere Informationen zu System-Checks finden Sie in der 
-[System Check Dokumentation](https://docs.djangoproject.com/en/stable/topics/checks/).
-
 [EC] Führen Sie `python manage.py check` in Ihrem Projekt aus und 
 dokumentieren Sie das Ergebnis.
 
-<!-- EC4 -->
+<!-- EC2 -->
 
 [EC] Führen Sie einen Security-Check mit `python manage.py check --tag=security` durch.
 
-<!-- EC5 -->
+<!-- EC3 -->
 
 <!-- time estimate: 15 min -->
 
@@ -230,19 +165,16 @@ python manage.py migrate --fake          # Migration als angewendet markieren
 python manage.py migrate --fake-initial  # nur bei existierenden Tabellen
 ```
 
-Optional: weitere Informationen zu Migrationen finden Sie in der 
-[Migrations-Dokumentation](https://docs.djangoproject.com/en/stable/topics/migrations/).
-
 [EC] Führen Sie die initialen Migrationen für Ihr Projekt aus mit 
 `python manage.py migrate`.
 
-<!-- EC6 -->
+<!-- EC4 -->
 
 
 [EC] Überprüfen Sie den Status der Migrationen mit 
 `python manage.py showmigrations`.
 
-<!-- EC7 -->
+<!-- EC5 -->
 
 <!-- time estimate: 10 min -->
 
@@ -276,7 +208,7 @@ in das Admin-Interface unter `/admin/` ein.
 
 <!-- time estimate: 5 min -->
 
-<!-- EC8 -->
+<!-- EC6 -->
 
 ### Django Shell: `shell`
 
@@ -306,12 +238,9 @@ python manage.py shell --interface=ipython  # IPython verwenden
 python manage.py shell --interface=bpython  # BPython verwenden
 ```
 
-Optional: weitere Informationen zur Django Shell finden Sie in der 
-[Shell Dokumentation](https://docs.djangoproject.com/en/stable/ref/django-admin/#shell).
-
 [EC] Öffnen Sie die Django Shell und führen Sie folgende Befehle aus:
 
-<!-- EC9 -->
+<!-- EC7 -->
 
 ```python
 from django.conf import settings
@@ -342,7 +271,7 @@ python manage.py test --parallel                # Parallele Ausführung
 [EC] Führen Sie `python manage.py test` aus und dokumentieren Sie das Ergebnis.
 
 
-<!-- EC10 -->
+<!-- EC8 -->
 
 ### Statische Dateien sammeln: `collectstatic`
 
@@ -395,10 +324,17 @@ python manage.py flush                           # Alle Daten löschen
 ```
 
 [EC] Testen Sie `python manage.py flush`, um das Zurücksetzen der Datenbank zu überprüfen.
-<!-- EC11 -->
+<!-- EC9 -->
 
 <!-- time estimate: 5 min -->
 
+### Weiterführend
+
+- [Django Management Commands Dokumentation](https://docs.djangoproject.com/en/stable/ref/django-admin/) – Übersicht aller verfügbaren Kommandos
+- [App-Dokumentation](https://docs.djangoproject.com/en/stable/ref/applications/) – Details zu Django-Apps
+- [System Check Dokumentation](https://docs.djangoproject.com/en/stable/topics/checks/) – Weitere Informationen zu System-Checks
+- [Migrations-Dokumentation](https://docs.djangoproject.com/en/stable/topics/migrations/) – Detaillierte Dokumentation zu Migrationen
+- [Shell Dokumentation](https://docs.djangoproject.com/en/stable/ref/django-admin/#shell) – Weitere Informationen zur Django Shell
 
 [ENDSECTION]
 
