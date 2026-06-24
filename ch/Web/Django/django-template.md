@@ -2,7 +2,8 @@ title: Django Template System - Trennung von Daten und Darstellung
 stage: alpha
 timevalue: 2
 difficulty: 2
-assumes: django-basics, django-project, django-admin, django-views, django-routing, http-GET, http-POST
+requires: django-routing
+assumes: http-GET, http-POST
 ---
 
 [SECTION::goal::idea,experience]
@@ -26,38 +27,8 @@ bessere Wartbarkeit und die Zusammenarbeit zwischen Entwicklern und Designern.
 
 [SECTION::instructions::detailed]
 
-### Django-Projekt vorbereiten
-
-Bitte lesen Sie zunächst [PARTREF::django-basics] und folgen Sie den dort beschriebenen 
-Schritten, um Django in einer virtuellen Umgebung erfolgreich zu installieren.
-
-Erstellen Sie ein Projekt namens **meinprojekt**, indem Sie zunächst [PARTREF::django-project] 
-lesen und den dort beschriebenen Schritten folgen, 
-um in einer virtuellen Umgebung erfolgreich ein neues Django-Projekt anzulegen.
-
-**Django-Server starten**:
-```bash
-cd meinprojekt
-python manage.py runserver
-```
-
-**Häufige Probleme beim Starten des Servers**:
-
-**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
-```bash
-python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
-```
-
-**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
-```bash
-python manage.py runserver 8080  # Server auf einem alternativen Port starten
-```
-
-[EC] Stellen Sie sicher, dass Ihr Django-Projekt läuft und zeigen Sie die erfolgreiche 
-Server-Anzeige mit `python manage.py runserver` und dann beenden Sie den Server beispielsweise 
-mit `Strg + C` (unter macOS ebenfalls `control + C`).
-<!-- EC1 -->
-<!-- time estimate: 5 min -->
+Sie arbeiten weiter mit dem `meinprojekt`-Projekt, das Sie in [PARTREF::django-basics] erstellt haben.
+Alle folgenden Änderungen werden Sie in diesem Projekt durchführen.
 
 ### Template-Verzeichnis konfigurieren
 
@@ -170,8 +141,6 @@ Welche neuen Informationen werden jetzt angezeigt? Listen Sie alle sichtbaren Te
 Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
 <!-- EQ2 -->
 
-Optional: Wenn Sie mehr über Template-Variablen erfahren möchten:
-[Django Template Variables](https://docs.djangoproject.com/en/4.2/topics/templates/#variables)
 
 <!-- time estimate: 10 min -->
 
@@ -271,8 +240,6 @@ Was wird angezeigt und welcher Django-Tag ist dafür verantwortlich?
 Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
 <!-- EQ4 -->
 
-Optional: Mehr Details zu Template-Tags finden Sie hier:
-[Django Template Tags](https://docs.djangoproject.com/en/4.2/topics/templates/#tags)
 <!-- time estimate: 15 min -->
 
 ### Template-Vererbung: Base Template
@@ -504,8 +471,6 @@ STATICFILES_DIRS = [
 ```
 <!-- ER17 -->
 
-Optional: Falls noch Fragen offen sind, hilft diese Ressource weiter:
-[Django Static Files](https://docs.djangoproject.com/en/4.2/howto/static-files/)
 <!-- time estimate: 10 min -->
 
 ### Template-Filter verwenden
@@ -580,8 +545,6 @@ urlpatterns = [
 ```
 <!-- ER20 -->
 
-Optional: Hier gibt es ein kompaktes Tutorial zum Thema:
-[Django Template Filters](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#built-in-filter-reference)
 
 <!-- time estimate: 10 min -->
 
@@ -632,6 +595,13 @@ Wenn Sie Port 8080 verwenden, ändern Sie die Links bitte entsprechend.
 <!-- EQ6 -->
 
 <!-- time estimate: 20 min -->
+
+### Weiterführend
+
+- [Django Template Variables](https://docs.djangoproject.com/en/4.2/topics/templates/#variables) – Dokumentation zu Template-Variablen und deren Verwendung
+- [Django Template Tags](https://docs.djangoproject.com/en/4.2/topics/templates/#tags) – Referenz für alle verfügbaren Template-Tags
+- [Django Static Files](https://docs.djangoproject.com/en/4.2/howto/static-files/) – Anleitung zur Verwaltung statischer Dateien in Django
+- [Django Template Filters](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#built-in-filter-reference) – Referenz zu allen verfügbaren Template-Filtern
 
 [ENDSECTION]
 
