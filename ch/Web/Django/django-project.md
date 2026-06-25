@@ -31,6 +31,7 @@ Ein neues Django-Projekt hat folgende Struktur:
 ```
 meinprojekt/
 ├── manage.py                   # Django-Kommandozeilen-Tool
+├── db.sqlite3                  # (wird automatisch erstellt)
 └── meinprojekt/                # Projekt-Konfigurationsordner
     ├── __init__.py             # Python-Paket-Marker (leer)
     ├── settings.py             # Zentrale Projektkonfiguration
@@ -47,7 +48,7 @@ meinprojekt/
 - `wsgi.py`/`asgi.py`: Deployment-Konfiguration für Webserver
 
 [EC] Erkunden Sie die Projektstruktur und listen Sie alle erstellten Dateien und 
-Ordner. Benutzen Sie dazu den `tree`-Befehl oder ähnliche Tools:
+Ordner. Benutzen Sie dazu den `tree`-Befehl:
 ```bash
 sudo apt update
 sudo apt install tree
@@ -84,32 +85,36 @@ Die `manage.py` ist ein Wrapper-Skript im Projektroot, das die richtige `DJANGO_
 Damit ist `manage.py` der zentrale Zugriffspunkt für alle projektspezifischen Django-Befehle.
 Weitere Details zu den verfügbaren Befehlen finden Sie in [PARTREF::django-admin].
 
-**urls.py - URL-Routing-Konfiguration**
-
-Die `urls.py` definiert, welche URLs zu welchen Views führen:
-
-```python
-[SNIPPET::ITREE:/Web/Django/django-routing-url.py::snippet_test_path]
-```
-
-[EQ] Untersuchen Sie `meinprojekt/urls.py`. Welche Route ist standardmäßig definiert?
-<!-- EQ2 -->
 <!-- time estimate: 20 min -->
 
 **views.py - View-Funktionen**
 
 Eine **View** ist eine Python-Funktion, die ein HTTP-Request empfängt und eine HTTP-Response zurückgibt.
 Sie ist das Herzstück jeder Django-Anwendung.
+Weitere Details zu Views finden Sie in [PARTREF::django-views].
 
 [ER] Erstellen Sie die Datei `meinprojekt/meinprojekt/views.py`:
 <!-- ER1 -->
 
 [SNIPPET::ALT::django_hello_view]
 
-[ER] Modifizieren Sie `meinprojekt/meinprojekt/urls.py` vollständig:
+**urls.py - URL-Routing-Konfiguration**
+
+Die `urls.py` definiert, welche URLs zu welchen Views führen.
+Nach der View-Erstellung müssen Sie Ihre neue View in `urls.py` registrieren:
+
+```python
+[SNIPPET::ITREE:/Web/Django/django-project-urls.py::django_project_urls]
+```
+
+[EQ] Untersuchen Sie `meinprojekt/urls.py`. Welche Route ist standardmäßig definiert?
+<!-- EQ2 -->
+
+[ER] Modifizieren Sie `meinprojekt/meinprojekt/urls.py`, um Ihre neue View einzubinden:
 <!-- ER2 -->
 
 [SNIPPET::ALT::django_hello_urls]
+
 [NOTICE]
 Der Django-Entwicklungsserver lädt Code-Änderungen automatisch neu.
 Sie müssen den Server nicht manuell neustarten!
@@ -121,25 +126,9 @@ Sie müssen den Server nicht manuell neustarten!
 
 ### Projektstruktur dokumentieren
 
-Drücken Sie **Strg + C** (Linux/macOS) bzw. **Ctrl + C** (Windows), um den Server zu beenden.
-
 [EC] Erstellen Sie eine vollständige Übersicht Ihrer finalen Projektstruktur 
 mit dem `tree`-Befehl oder manuell.
 <!-- EC2 -->
-
-Die finale Struktur sollte etwa so aussehen:
-```
-meinprojekt/
-├── manage.py
-├── db.sqlite3              # (wird automatisch erstellt)
-└── meinprojekt/
-    ├── __init__.py
-    ├── settings.py
-    ├── urls.py             # modifiziert
-    ├── views.py            # neu erstellt
-    ├── asgi.py
-    └── wsgi.py
-```
 
 <!-- time estimate: 5 min -->
 
