@@ -2,7 +2,7 @@ title: Django django-admin Kommandozeilen-Tool
 stage: alpha
 timevalue: 1.25
 difficulty: 2
-requires: django-basics
+requires: django-project
 ---
 
 [SECTION::goal::idea,experience]
