@@ -185,9 +185,9 @@ oder einem Browser bevorzugen? Nennen Sie zwei Fälle.
 
 Knackpunkte:
 
-- Mit Formulardaten: Response enthält `form`-Feld mit `myname` und `myage`.
-- Mit JSON: Response enthält `json`-Feld mit `myname` und `myage`.
-- Mit mehrteiligem Upload: Response enthält `files`-Feld (Datei) und `form`-Feld (Textfeld).
+- EC2 (Formulardaten): Response enthält `form`-Feld.
+- EC3 (JSON): Response enthält `json`-Feld.
+- EC10 (mehrteiliger Upload): Response enthält `files`-Feld (Datei) und `form`-Feld (Textfeld).
 
 ### Kommandoprotokoll
 
