@@ -1,5 +1,5 @@
 title: Module und Pakete in Go
-stage: alpha
+stage: beta
 timevalue: 2
 difficulty: 3
 assumes: go-basics
@@ -32,7 +32,7 @@ Diese Aufgabe orientiert sich im Wesentlichen an diesen Beiträgen auf
 ### Paket
 
 Alle Quellcodedateien müssen einem **Paket** zugeordnet sein.
-Dieses wird am Anfang der Datei in der Zeile `package {xyz}` angegeben, wobei `{xyz}` der Name Ihres Pakets ist.
+Dieses wird am Anfang der Datei in der Zeile `package xyz` angegeben, wobei `xyz` der Name Ihres Pakets ist.
 
 Stichpunktartig:
 
@@ -42,12 +42,12 @@ Stichpunktartig:
   Deklarationen sind öffentlich (public/exported) und aus anderen Paketen sichtbar.
   **Merkhilfe:** Große Buchstaben geben große Sichtbarkeit.
 
-Ein Paketname unterliegt Sonderregeln: `main`.
+Ein einziger Paketname unterliegt Sonderregeln: `main`.
 Dieses Paket ist das Hauptpaket; darin liegt das ausführbare Programm.
 Einstiegspunkt ist immer die Funktion `main()`.
 Dies entspricht `public static void main(String[] args)` in Java oder `int main()` in C.
 
-Alle anderen Paketnamen interpretiert das Go-Toolchain als Bibliotheken — diese können nicht mittels `go run` ausgeführt
+Alle anderen Paketnamen interpretiert die Go-Toolchain als Bibliotheken — diese können nicht mittels `go run` ausgeführt
 werden.
 Pakete entsprechen der Verzeichnisstruktur eines Moduls:
 Gibt es in einem Modul `my_module` Verzeichnisse `src`, `utils` und `test`, so beginnen die Quellcodedateien in den
@@ -64,7 +64,7 @@ Ein typisches Beispiel ist ein Verzeichnis namens `v2` (für eine neue Hauptvers
 
 ### Modul
 
-Eine übergeordnete Struktur, die mehrere Pakete beinhalten kann.
+Ein Modul ist eine übergeordnete Struktur, die mehrere Pakete beinhalten kann.
 Ein Modul darf Abhängigkeiten von anderen Modulen haben und selber als Abhängigkeit importiert werden.
 
 - ein Verzeichnis mit der Datei `go.mod`, wo Modulname, Abhängigkeiten und Go-Version (beispielsweise `go 1.23`)
@@ -88,7 +88,7 @@ Darunter:
 - Sichtbarkeit kontrollieren
 - Wiederverwendbarkeit erleichtern
 
-Meistens wird Ihr Projekt ein einziges Modul sein, welches mehrere Pakete enthält.
+Häufig wird Ihr Projekt ein einziges Modul sein, welches mehrere Pakete enthält.
 [ENDFOLDOUT]
 
 [EQ] Überlegen Sie: Ab wann lohnt es sich, ein Modul anzulegen?
@@ -212,7 +212,8 @@ befindet.
 
 Das probieren Sie nun selber aus.
 
-[ER] Legen Sie ein öffentliches Github-Repo an.
+[ER] Legen Sie ein öffentliches Repo an (auf GitHub oder anderswo; ein privates sollte für unsere Zwecke auch gehen,
+wenn Sie den Proxy abschalten, siehe unten).
 
 [ER] Das Repo muss zwei Dateien beinhalten:
 `go.mod` und eine Go-Quellcodedatei, die **nicht** `main.go` heißt — `main.go` impliziert eine ausführbare Datei, die
@@ -225,10 +226,10 @@ Die Datei `go.mod` kann auf zwei verschiedene Arten angelegt werden:
 - oder manuell im Root-Verzeichnis (siehe Beispiel
   [Anatomy of go.mod](https://encore.cloud/guide/go.mod)).
 
-Die Datei `main.go` soll folgendermaßen aussehen:
+Diese Quellcodedatei soll folgendermaßen aussehen:
 
 ```go
-package your_module_name
+package your_packagename
 
 import "fmt"
 
@@ -236,11 +237,7 @@ func PrintFromRemote() {
     fmt.Println("Hi from remote module!")
 }
 ```
-
-[NOTICE]
-Paketname muss ein gültiger Bezeichner sein — also mit einem Unterstrich (`_`) oder einem Buchstaben (a-z oder A-Z)
-anfangen und danach eine beliebige Kombination von Buchstaben, Ziffern und Unterstrichen enthalten.
-[ENDNOTICE]
+Der Paketname muss ein gültiger Bezeichner sein, kann also keine Doppelpunkte oder Schrägstriche enthalten.
 
 [ER] Committen und pushen Sie anschließend die Änderungen auf Remote.
 
@@ -271,7 +268,8 @@ Und führen Sie anschließend im Root-Verzeichnis des lokalen Moduls folgende Be
 Die Ausgabe müsste "Hi from remote module!" sein.
 
 [WARNING]
-Wir empfehlen, die Umgebungsvariable `GOPROXY` auf `direct` zu setzen.
+Wir empfehlen, die Umgebungsvariable `GOPROXY` auf `direct` zu setzen
+([Was dahintersteckt](https://proxy.golang.org/)).
 Führen Sie dazu folgenden Befehl im Terminal aus:
 
     export GOPROXY=direct
@@ -288,7 +286,7 @@ Debugging-Schritt sein.
 
 ### Versionierung
 
-Bibliotheken in Go unterliegen den Regeln semantischer Versionierung — Versionsnummer entsprechen dem Schema
+Bibliotheken in Go unterliegen den Regeln semantischer Versionierung — Versionsnummern entsprechen dem Schema
 `vMAJOR.MINOR.PATCH`.
 
 [EQ] Finden Sie im [Artikel "Semantic Versioning 2.0.0"](https://semver.org/) eine Antwort auf die Frage:
@@ -346,7 +344,7 @@ erhalten genau den Repo-Stand, der nun mit `v1.0.0` getaggt wurde.
 [ER] Laden Sie diese Version mittels `go get github.com/your_username/your_module_name@v1.0.0` herunter.
 
 [ER] Kreieren Sie die nächste Major-Version: `v2`.
-Legen Sie ein Verzeichnis `your_module_name/v2` an und kopieren Sie die Inhalte des Moduls (`go.mod` und `main.go`) in
+Legen Sie ein Verzeichnis `your_module_name/v2` an und kopieren Sie die Inhalte des Moduls (`go.mod` und die Quellcodedatei) in
 dieses Verzeichnis.
 
 [ER] Passen Sie den Modulnamen in der Datei `v2/go.mod` an:
