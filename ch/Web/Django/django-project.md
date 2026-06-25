@@ -1,25 +1,23 @@
 title: Django Erstes Projekt erstellen und konfigurieren
 stage: alpha
-timevalue: 2.0
+timevalue: 1.0
 difficulty: 2
 requires: django-basics
 ---
 
 [SECTION::goal::idea,experience]
 
-- Ich kann ein Django-Projekt mit `django-admin` erstellen und die Grundstruktur verstehen.
-- Ich verstehe die Funktionsweise von Django-Views und URL-Routing.
-- Ich kann den Django-Entwicklungsserver starten und einfache Webanwendungen erstellen.
-- Ich kenne die wichtigsten Django-Konfigurationsdateien und deren Zweck.
+- Ich verstehe die Grundstruktur eines Django-Projekts.
+- Ich kenne die Rollen der wichtigsten Konfigurationsdateien.
+- Ich kann den Django-Entwicklungsserver starten.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Django ist ein High-Level Python Web-Framework, das schnelle Entwicklung und sauberes, 
-pragmatisches Design ermöglicht. Es folgt dem Model-View-Template (MVT) Architekturmuster 
-und bietet viele eingebaute Funktionen für typische Webentwicklungsaufgaben.
-In dieser Aufgabe erstellen wir unser erstes Django-Projekt namens "meinprojekt" und lernen die Grundlagen kennen.
+Ein Django-Projekt besteht aus mehreren Dateien und Ordnern, die zusammen eine Web-Anwendung bilden.
+Das Verständnis der Projektstruktur, des URL-Routing und der Projektkonfiguration ist notwendig,
+um HTTP-Anfragen zu verarbeiten und Web-Anwendungen zu entwickeln.
 
 [ENDSECTION]
 
@@ -55,26 +53,8 @@ sudo apt update
 sudo apt install tree
 tree meinprojekt
 ```
-<!-- EC2 -->
-<!-- time estimate: 15 min -->
-
-### Django-Verwaltungswerkzeug
-
-Nach der Installation steht das Kommandozeilenwerkzeug `django-admin` zur Verfügung.
-Es bietet verschiedene Befehle für die Projektverwaltung:
-
-```bash
-django-admin
-```
-
-Die wichtigsten Befehle:
-
-- `startproject` - Erstellt ein neues Django-Projekt
-- `startapp` - Erstellt eine neue Django-App
-- `runserver` - Startet den Entwicklungsserver
-- `makemigrations` - Erstellt Datenbankmigrationen
-- `migrate` - Führt Datenbankmigrationen aus
-
+<!-- EC1 -->
+<!-- time estimate: 10 min -->
 
 ### Wichtige Konfigurationsdateien verstehen
 
@@ -84,29 +64,7 @@ Die `settings.py` enthält alle wichtigen Projekteinstellungen.
 Öffnen Sie `meinprojekt/settings.py` und betrachten Sie folgende wichtige Abschnitte:
 
 ```python
-# Entwicklungsmodus (NUR für Entwicklung!)
-DEBUG = True
-
-# Erlaubte Hosts (wichtig für Produktion)
-ALLOWED_HOSTS = []
-
-# Installierte Django-Apps
-INSTALLED_APPS = [
-    'django.contrib.admin',     # Admin-Interface
-    'django.contrib.auth',      # Authentifizierung
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',  # Sitzungsverwaltung
-    'django.contrib.messages',  # Nachrichten-Framework
-    'django.contrib.staticfiles', # Statische Dateien
-]
-
-# Datenbankeinstellungen (Standard: SQLite)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+[SNIPPET::ITREE:/Web/Django/django-project-settings.py::django_project_settings]
 ```
 
 [EQ] Öffnen Sie `settings.py` und beantworten Sie: 
@@ -115,33 +73,38 @@ Welche Datenbank wird standardmäßig verwendet?
 Wie viele Apps sind in `INSTALLED_APPS` vorkonfiguriert?
 <!-- EQ1 -->
 
+**manage.py - Projekt-Verwaltungsskript**
+
+Die `manage.py` ist ein Wrapper-Skript im Projektroot, das die richtige `DJANGO_SETTINGS_MODULE` für Ihr spezifisches Projekt setzt:
+
+```python
+[SNIPPET::ITREE:/Web/Django/django-project-manage.py::django_project_manage]
+```
+
+Damit ist `manage.py` der zentrale Zugriffspunkt für alle projektspezifischen Django-Befehle.
+Weitere Details zu den verfügbaren Befehlen finden Sie in [PARTREF::django-admin].
+
 **urls.py - URL-Routing-Konfiguration**
 
 Die `urls.py` definiert, welche URLs zu welchen Views führen:
 
 ```python
-[SNIPPET::ITREE:/Web/Django/snippet-test.py::snippet_test]
+[SNIPPET::ITREE:/Web/Django/django-routing-url.py::snippet_test_path]
 ```
-<!-- [SNIPPET::ITREE:Web/Django/snippet-test.py::snippet_test] -->
-<!-- [SNIPPET::ITREE:snippet-test.py::snippet_test] -->
 
 [EQ] Untersuchen Sie `meinprojekt/urls.py`. Welche Route ist standardmäßig definiert?
 <!-- EQ2 -->
 <!-- time estimate: 20 min -->
 
-### Erste View-Funktion erstellen
+**views.py - View-Funktionen**
 
-Jetzt erstellen wir unsere erste eigene Webseite.
+Eine **View** ist eine Python-Funktion, die ein HTTP-Request empfängt und eine HTTP-Response zurückgibt.
+Sie ist das Herzstück jeder Django-Anwendung.
 
 [ER] Erstellen Sie die Datei `meinprojekt/meinprojekt/views.py`:
 <!-- ER1 -->
 
 [SNIPPET::ALT::django_hello_view]
-
-Diese View-Funktion:
-
-- Erhält ein `request`-Objekt mit HTTP-Anfragedaten
-- Gibt ein `HttpResponse`-Objekt mit unserem Text zurück
 
 [ER] Modifizieren Sie `meinprojekt/meinprojekt/urls.py` vollständig:
 <!-- ER2 -->
@@ -153,137 +116,8 @@ Sie müssen den Server nicht manuell neustarten!
 [ENDNOTICE]
 
 [EQ] Aktualisieren Sie die Browserseite. Was sehen Sie jetzt anstelle der Willkommensseite?
-<!-- time estimate: 10 min -->
-<!-- EQ3 -->
-
-### URL-Patterns und path()-Funktion
-
-Die `path()`-Funktion hat folgende Syntax:
-```python
-[SNIPPET::/Web/Django/include/snippet-test.py::snippet_test_path]
-```
-<!-- [SNIPPET::/Web/Django/include/snippet-test.py::snippet_test_path] -->
-<!-- [SNIPPET::include/snippet-test.py::snippet_test_path] -->
-Parameter:
-
-- `route` - URL-Muster als String
-- `view` - View-Funktion, die aufgerufen wird  
-- `kwargs` - Zusätzliche Parameter (optional)
-- `name` - Eindeutiger Name für die URL (optional)
-
-[ER] Ändern Sie die URL-Konfiguration, damit "Hello World" unter `/hello/` erreichbar ist:
-<!-- ER3 -->
-
-<!-- Korrekte Referenz. Zum Testen kann sie geändert werden in: wrong_snippet_id -->
-[SNIPPET::ALT::django_hello_route]
-
-
-[EQ] Testen Sie `http://127.0.0.1:8000/hello/` im Browser. 
-Was passiert, wenn Sie `http://127.0.0.1:8000/` (ohne hello) aufrufen?
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-
-<!-- EQ4 -->
-
 <!-- time estimate: 20 min -->
-
-### Mehrere Views erstellen
-
-[ER] Erweitern Sie `views.py` um zwei weitere Funktionen:
-
-```python
-def welcome(request):
-    return HttpResponse("Willkommen bei Django!")
-
-def about(request):
-    return HttpResponse("Mein erstes Django-Projekt - meinprojekt")
-```
-<!-- ER4 -->
-
-[ER] Fügen Sie in `urls.py` entsprechende URL-Patterns hinzu:
-
-```python
-urlpatterns = [
-    path('hello/', views.hello, name='hello'),
-    path('welcome/', views.welcome, name='welcome'),
-    path('about/', views.about, name='about'),
-]
-```
-<!-- ER5 -->
-
-[ER] Testen Sie alle drei URLs im Browser mit `http://127.0.0.1:8000/hello/`, 
-`http://127.0.0.1:8000/welcome/`, `http://127.0.0.1:8000/about/`. 
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-<!-- ER6 -->
-
-<!-- time estimate: 15 min -->
-
-### URL-Parameter verwenden
-
-Django kann Parameter aus URLs extrahieren und an Views weitergeben:
-
-[ER] Erstellen Sie eine neue View-Funktion in `views.py`:
-
-```python
-def greet(request, name):
-    return HttpResponse(f"Hallo {name}! Schön, dich kennenzulernen.")
-```
-<!-- ER7 -->
-
-[ER] Fügen Sie das URL-Pattern mit Parameter hinzu:
-
-```python
-path('greet/<str:name>/', views.greet, name='greet'),
-```
-<!-- ER8 -->
-
-Die Syntax `<str:name>` bedeutet:
-- `str` - Datentyp (String)
-- `name` - Parametername, wird an die View weitergegeben
-
-[ER] Testen Sie URLs: `http://127.0.0.1:8000/greet/Anna/`, `http://127.0.0.1:8000/greet/Max/`
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-
-<!-- ER9 -->
-
-<!-- time estimate: 15 min -->
-
-### HTML-Response erstellen
-
-Views können auch HTML-Code zurückgeben:
-
-[ER] Erstellen Sie eine neue View-Funktion:
-<!-- ER10 -->
-
-```python
-def hello_html(request):
-    html = """
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Django Hello</title>
-            <meta charset="utf-8">
-        </head>
-        <body>
-            <h1>Hello Django!</h1>
-            <p>Dies ist meine erste Django-Seite mit HTML.</p>
-            <ul>
-                <li><a href="/hello/">Einfacher Text</a></li>
-                <li><a href="/welcome/">Willkommensseite</a></li>
-                <li><a href="/about/">Über diese Seite</a></li>
-            </ul>
-        </body>
-    </html>
-    """
-    return HttpResponse(html)
-```
-
-[ER] Fügen Sie das URL-Pattern hinzu und testen Sie die Seite. 
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-<!-- ER11 -->
-[HINT::Route]
-Schreiben Sie den Eintrag so wie bei den Routen `hello`, `welcome` und `about`
-[ENDHINT]
-<!-- time estimate: 15 min -->
+<!-- EQ3 -->
 
 ### Projektstruktur dokumentieren
 
@@ -291,7 +125,7 @@ Drücken Sie **Strg + C** (Linux/macOS) bzw. **Ctrl + C** (Windows), um den Serv
 
 [EC] Erstellen Sie eine vollständige Übersicht Ihrer finalen Projektstruktur 
 mit dem `tree`-Befehl oder manuell.
-<!-- EC3 -->
+<!-- EC2 -->
 
 Die finale Struktur sollte etwa so aussehen:
 ```
