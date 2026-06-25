@@ -33,7 +33,7 @@ Das Kommando `go test` hat folgende Voraussetzungen:
 2. alle Testfunktionen müssen sich in `*_test.go`-Dateien befinden;
 3. alle Testfunktionen müssen mit `Test`, `Benchmark` oder `Fuzz` anfangen;
 4. je nach Art des Tests muss die Testfunktion unterschiedliche Parameter annehmen:
-    - `func TestSomething(t *testing.T)` für [TERMREF::Unittests];
+    - `func TestSomething(t *testing.T)` für [TERMREF2::Unittest::-s];
     - `func FuzzSomething(f *testing.F)` für Fuzz-Tests;
     - `func BenchmarkSomething(b *testing.B)` für Benchmarks.
 
