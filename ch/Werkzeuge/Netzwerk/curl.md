@@ -56,11 +56,9 @@ Die wichtigsten Optionen für Request-Kontrolle:
 
 - `-X METHOD`: Spezifiziert die HTTP-Methode (GET, POST, PUT, DELETE, etc.)
 - `-d "param=value"`: Sendet ein Name/Wert-Paar als POST-Daten
-- `-d "data"`: Sendet POST-Daten in einem anderen Format
 - `-H "Header: Value"`: Fügt Custom-Headers hinzu
-- `-G`: Konvertiert POST-Daten zu GET-Parametern
 
-[EC] Führen Sie einen POST-Request mit Formulardaten `myname=Student` und `myage=25` aus:
+[EC] Führen Sie einen POST-Request mit Formulardaten `myname=Student` und `myage=25` an `https://httpbin.org/post` aus:
 
 [HINT::Formatvorlage]
 curl ermöglicht die Kombination mehrerer Parameter.
@@ -70,6 +68,8 @@ Die Syntax für einen POST-Request mit Formulardaten ist:
 ```bash
 curl -X POST -d "param1=wert1&param2=wert2" <URL>
 ```
+
+Das `-X POST` ist hier optional, da `-d` die HTTP-Methode automatisch auf POST setzt.
 [ENDHINT]
 <!-- EC2 -->
 
@@ -89,7 +89,6 @@ curl bietet verschiedene Möglichkeiten, die Ausgabe zu steuern:
 - `-o myfilename`: Speichert den Rumpf der Antwort unter angegebenem Namen 
   (statt ihn auf der Standardausgabe auszugeben)
 - `-O`: Verwendet die letzte Komponente der URL als Dateiname
-- `-s`: Stiller Modus (keine Fortschrittsanzeige)
 - `-v`: Verbose-Modus (zeigt detailliert die Kommunikation)
 
 [EC] Laden Sie die Datei `https://httpbin.org/robots.txt` herunter 
@@ -108,9 +107,7 @@ um die HTTP-Kommunikation zu analysieren:
 Für erweiterte HTTP-Kommunikation sind oft Headers und Authentifizierung relevant:
 
 - `-H "Header: Value"`: Custom Headers setzen
-- `-u username:password`: HTTP Basic Authentication
 - `-I`: Nur Response-Headers abrufen (`HEAD`-Request)
-- `-L`: Automatisches Verfolgen von Redirects
 
 [EC] Rufen Sie nur die HTTP-Headers einer Webseite `https://httpbin.org/status/200` ab.
 <!-- EC6 -->
@@ -185,6 +182,12 @@ oder einem Browser bevorzugen? Nennen Sie zwei Fälle.
 
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+Knackpunkte:
+
+- Mit Formulardaten: Response enthält `form`-Feld mit `myname` und `myage`.
+- Mit JSON: Response enthält `json`-Feld mit `myname` und `myage`.
+- Mit mehrteiligem Upload: Response enthält `files`-Feld (Datei) und `form`-Feld (Textfeld).
 
 ### Kommandoprotokoll
 
