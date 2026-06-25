@@ -3,6 +3,7 @@ stage: alpha
 timevalue: 2.25
 difficulty: 2
 requires: django-admin
+assumes: sql-basics, sql-SELECT, sql-UPDATE-VIEW-CASE
 ---
 
 [SECTION::goal::idea,experience]
@@ -48,7 +49,7 @@ zwischen objektorientierten Programmiersprachen und relationalen Datenbanken zu 
 - Weniger Kontrolle über komplexe Abfragen
 - Kann SQL-Kenntnisse vernachlässigen lassen
 
-**ORM-Entsprechungen:**
+**ORM-Entsprechungen (vgl. [PARTREF::sql-basics] für Datenbank-Konzepte):**
 
 - Python-Klasse ↔ Datenbanktabelle
 - Klassenattribut ↔ Tabellenspalte
@@ -124,7 +125,7 @@ Die `__str__`-Methode legt fest, wie das Objekt als String dargestellt wird.
 
 ### Datenbankmigrationen erstellen und anwenden
 
-Django verwendet Migrationen, um Änderungen am Datenbankschema zu verwalten:
+Django verwendet Migrationen, um Änderungen am Datenbankschema zu verwalten (vergleichbar mit SQL `ALTER TABLE`-Operationen, siehe [PARTREF::sql-basics]):
 
 [EC] Erstellen Sie eine Migration für das neue Modell:
 
@@ -169,6 +170,8 @@ python manage.py shell
 
 ### Daten erstellen (CREATE)
 
+Das Erstellen von Daten in Django entspricht SQL `INSERT`-Statements (vgl. [PARTREF::sql-SELECT]).
+
 [ER] Führen Sie in der Django Shell folgende Operationen aus:
 
 ```python
@@ -202,6 +205,8 @@ print("Studenten erstellt!")
 <!-- time estimate: 15 min -->
 
 ### Daten abfragen (READ)
+
+Django-Queries mit `filter()` entsprechen SQL `WHERE`-Klauseln (vgl. [PARTREF::sql-SELECT]).
 
 [ER] Führen Sie verschiedene Abfragen aus:
 
@@ -247,6 +252,9 @@ print("Nach Alter sortiert:", sorted_students)
 
 ### Daten aktualisieren (UPDATE)
 
+Das Aktualisieren mit Django entspricht SQL `UPDATE`-Statements (vgl. [PARTREF::sql-UPDATE-VIEW-CASE]).
+Wie in SQL ist es wichtig, genau zu spezifizieren, welche Datensätze aktualisiert werden sollen.
+
 [ER] Aktualisieren Sie Studentendaten:
 
 ```python
@@ -272,6 +280,8 @@ for s in updated_students:
 <!-- time estimate: 10 min -->
 
 ### Daten löschen (DELETE)
+
+Das Löschen in Django entspricht SQL `DELETE`-Statements (vgl. [PARTREF::sql-basics]).
 
 [ER] Löschen Sie Studentendaten:
 
