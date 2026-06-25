@@ -77,7 +77,7 @@ curl -X POST -d "param1=wert1&param2=wert2" <URL>
 mit entsprechendem Content-Type-Header:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"myname":"TestUser","myage":"999"}' https://httpbin.org/post
+curl -X POST -H "Content-Type: application/json" -d '{"myname":"Student","myage":25}' https://httpbin.org/post
 ```
 <!-- EC3 -->
 
@@ -145,14 +145,14 @@ Sie können die URL-Basis und den Endpunkt direkt zusammenfügen:
 
 ### Datei-Upload und mehrteilige Anfragen
 
-Manchmal möchten Sie nicht nur eine Datei hochladen, sondern gleichzeitig auch zusätzliche Informationen dazu senden 
-(z.B. eine Beschreibung oder Metadaten). Die `-F`-Option ermöglicht genau das, indem sie mehrere Felder in einer einzigen Anfrage verpackt:
+Manchmal möchten Sie nicht nur eine Datei hochladen, sondern gleichzeitig auch zusätzliche Informationen dazu senden (z.B. eine Beschreibung oder Metadaten).
+Die `-F`-Option ermöglicht genau das, indem sie mehrere Felder in einer einzigen Anfrage verpackt:
 
 - `-F "fieldname=value"`: Sendet ein Text-Feld mit einem einfachen Wert
 - `-F "file=@filename"`: Sendet den Inhalt einer Datei
 
-Jedes `-F` Parameter ist ein separates Feld in der Anfrage. Wenn Sie mehrere `-F` Parameter verwenden, 
-werden alle Felder zusammen mit `multipart/form-data`-Codierung in einer Anfrage versendet. 
+Jeder `-F`-Parameter ist ein separates Feld in der Anfrage.
+Wenn Sie mehrere `-F`-Parameter verwenden, werden alle Felder zusammen mit `multipart/form-data`-Codierung in einer Anfrage versendet.
 So können Sie z.B. gleichzeitig eine Beschreibung (Text) und eine Datei übertragen.
 
 [EC] Erstellen Sie eine Datei `mytestfile.txt` mit dem Text `Testdatei für curl Upload`.
@@ -178,7 +178,7 @@ oder einem Browser bevorzugen? Nennen Sie zwei Fälle.
 [ENDSECTION]
 
 
-[SECTION::submission::program,trace]
+[SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
