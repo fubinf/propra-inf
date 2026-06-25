@@ -113,7 +113,19 @@ Nach der View-Erstellung müssen Sie Ihre neue View in `urls.py` registrieren:
 [ER] Modifizieren Sie `meinprojekt/meinprojekt/urls.py`, um Ihre neue View einzubinden:
 <!-- ER2 -->
 
-[SNIPPET::ALT::django_hello_urls]
+```python
+[SNIPPET::ITREE:/Web/Django/django-project-urls2.py::django_project_urls2]
+```
+
+[HINT::Wie verbinde ich eine View mit einer URL?]
+Die `urls.py` verbindet URL-Pfade mit View-Funktionen.
+Sie müssen:
+
+1. Das `views`-Modul importieren: `from . import views`
+2. Eine Route mit `path()` definieren: `path("pfad", views.funktionname, name="name")`
+
+Der leere String `""` bedeutet die Wurzel-URL (`/`).
+[ENDHINT]
 
 [NOTICE]
 Der Django-Entwicklungsserver lädt Code-Änderungen automatisch neu.
@@ -121,13 +133,14 @@ Sie müssen den Server nicht manuell neustarten!
 [ENDNOTICE]
 
 [EQ] Aktualisieren Sie die Browserseite. Was sehen Sie jetzt anstelle der Willkommensseite?
+Erklären Sie, warum die `urls.py`-Konfiguration notwendig ist, um die View zu sehen.
 <!-- time estimate: 20 min -->
 <!-- EQ3 -->
 
 ### Projektstruktur dokumentieren
 
 [EC] Erstellen Sie eine vollständige Übersicht Ihrer finalen Projektstruktur 
-mit dem `tree`-Befehl oder manuell.
+mit dem `tree`-Befehl.
 <!-- EC2 -->
 
 <!-- time estimate: 5 min -->
@@ -139,15 +152,21 @@ mit dem `tree`-Befehl oder manuell.
 
 [ENDSECTION]
 
-[SECTION::submission::information]
+[SECTION::submission::program]
 
-[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+Knackpunkte:
+
+- views.py: Die Datei muss eine Funktion enthalten, die ein `request`-Parameter akzeptiert und ein `HttpResponse`-Objekt zurückgibt.
+- urls.py: Die Datei muss das `views`-Modul importieren und einen `path()` mit dem neuen View in `urlpatterns` registrieren.
+- Funktionalität: Die URL-Route muss auf die View-Funktion verweisen und "Hello World!" zurückgeben.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-project.md]
