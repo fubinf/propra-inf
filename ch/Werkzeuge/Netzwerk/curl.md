@@ -185,9 +185,9 @@ oder einem Browser bevorzugen? Nennen Sie zwei Fälle.
 
 Knackpunkte:
 
-- EC2 (Formulardaten): Response enthält `form`-Feld.
-- EC3 (JSON): Response enthält `json`-Feld.
-- EC10 (mehrteiliger Upload): Response enthält `files`-Feld (Datei) und `form`-Feld (Textfeld).
+- [EREFC::2]: Response enthält `form`-Feld mit `myname` und `myage`.
+- [EREFC::3]: Response enthält `json`-Feld mit `myname` und `myage`.
+- [EREFC::10]: Response enthält `files`-Feld (Datei) und `form`-Feld (Textfeld).
 
 ### Kommandoprotokoll
 
