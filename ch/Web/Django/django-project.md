@@ -9,7 +9,7 @@ requires: django-basics
 
 - Ich verstehe die Grundstruktur eines Django-Projekts.
 - Ich kenne die Rollen der wichtigsten Konfigurationsdateien.
-- Ich kann den Django-Entwicklungsserver starten.
+- Ich kann eine erste View-Funktion schreiben und über die URL-Konfiguration anbinden.
 
 [ENDSECTION]
 
@@ -47,16 +47,6 @@ meinprojekt/
 - `urls.py`: URL-Routing-Konfiguration
 - `wsgi.py`/`asgi.py`: Deployment-Konfiguration für Webserver
 
-[EC] Erkunden Sie die Projektstruktur und listen Sie alle erstellten Dateien und 
-Ordner. Benutzen Sie dazu den `tree`-Befehl:
-```bash
-sudo apt update
-sudo apt install tree
-tree meinprojekt
-```
-<!-- EC1 -->
-<!-- time estimate: 10 min -->
-
 ### Wichtige Konfigurationsdateien verstehen
 
 **settings.py - Zentrale Projekteinstellungen**
@@ -71,7 +61,6 @@ Die `settings.py` enthält alle wichtigen Projekteinstellungen.
 [EQ] Öffnen Sie `settings.py` und beantworten Sie: 
 Was ist der aktuelle Wert von `DEBUG` und warum ist dies wichtig?
 Welche Datenbank wird standardmäßig verwendet?
-Wie viele Apps sind in `INSTALLED_APPS` vorkonfiguriert?
 <!-- EQ1 -->
 
 **manage.py - Projekt-Verwaltungsskript**
@@ -85,7 +74,7 @@ Die `manage.py` ist ein Wrapper-Skript im Projektroot, das die richtige `DJANGO_
 Damit ist `manage.py` der zentrale Zugriffspunkt für alle projektspezifischen Django-Befehle.
 Weitere Details zu den verfügbaren Befehlen finden Sie in [PARTREF::django-admin].
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 **views.py - View-Funktionen**
 
@@ -101,7 +90,14 @@ Weitere Details zu Views finden Sie in [PARTREF::django-views].
 **urls.py - URL-Routing-Konfiguration**
 
 Die `urls.py` definiert, welche URLs zu welchen Views führen.
-Nach der View-Erstellung müssen Sie Ihre neue View in `urls.py` registrieren:
+Nach der View-Erstellung müssen Sie Ihre neue View in `urls.py` registrieren.
+Die zentrale Funktion dafür ist `path()` mit drei Hauptparametern:
+
+- `route`: der URL-Pfad (z.B. `""` für die Wurzel `/`)
+- `view`: die View-Funktion, die bei einem Aufruf ausgeführt wird
+- `name`: ein eindeutiger Name für die Route
+
+Eine detaillierte Erklärung der `path()`-Funktion finden Sie in [PARTREF::django-routing].
 
 ```python
 [SNIPPET::ITREE:/Web/Django/django-project-urls.py::django_project_urls]
@@ -129,21 +125,58 @@ Der leere String `""` bedeutet die Wurzel-URL (`/`).
 
 [NOTICE]
 Der Django-Entwicklungsserver lädt Code-Änderungen automatisch neu.
-Sie müssen den Server nicht manuell neustarten!
+Sie müssen den Server nach Code-Änderungen nicht manuell neustarten,
+solange er bereits läuft.
+
+Falls Sie den Entwicklungsserver nach [PARTREF::django-basics] beendet haben,
+starten Sie ihn neu mit `python manage.py runserver`.
+Öffnen Sie dann `http://localhost:8000` im Browser, bevor Sie die Seite aktualisieren.
 [ENDNOTICE]
 
 [EQ] Aktualisieren Sie die Browserseite. Was sehen Sie jetzt anstelle der Willkommensseite?
 Erklären Sie, warum die `urls.py`-Konfiguration notwendig ist, um die View zu sehen.
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 <!-- EQ3 -->
 
-### Projektstruktur dokumentieren
+### Darstellung mit Templates
 
-[EC] Erstellen Sie eine vollständige Übersicht Ihrer finalen Projektstruktur 
-mit dem `tree`-Befehl.
-<!-- EC2 -->
+**Template - HTML-Darstellung**
 
-<!-- time estimate: 5 min -->
+Ein **Template** ist eine HTML-Datei mit Platzhaltern für dynamische Inhalte.
+Es trennt die Darstellung (HTML) von der Programmlogik (Python).
+Weitere Details zu Templates finden Sie in [PARTREF::django-template].
+
+Bisher gibt Ihre View-Funktion nur einen reinen Textstring zurück.
+Ändern Sie die View, um ein Template zu laden.
+
+Die Funktion `render()` lädt ein Template und übergibt Daten an es:
+
+- `request`: das HTTP-Request-Objekt
+- `template_name`: der Dateiname des Templates
+- `context`: ein Dictionary mit Daten, die im Template verwendet werden
+
+[ER] Ersetzen Sie den Inhalt von `meinprojekt/meinprojekt/views.py` durch
+folgende Version, die ein Template verwendet:
+
+[SNIPPET::ALT::django_project_render]
+
+Erstellen Sie das Verzeichnis `meinprojekt/meinprojekt/templates/`
+und legen Sie darin die Datei `hello.html` mit folgendem Inhalt an:
+
+[SNIPPET::ALT::django_project_template]
+
+Damit Django Ihr Template findet, ergänzen Sie in 
+`meinprojekt/meinprojekt/settings.py` die `DIRS`-Option in der
+`TEMPLATES`-Konfiguration:
+
+[SNIPPET::ALT::django_project_settings_dirs]
+<!-- ER3 -->
+
+[EQ] Aktualisieren Sie die Browserseite. Was hat sich gegenüber der
+vorherigen Ansicht geändert? Warum ist die Trennung von Darstellung
+und Logik sinnvoll?
+<!-- EQ4 -->
+<!-- time estimate: 20 min -->
 
 ### Weiterführend
 
@@ -156,22 +189,20 @@ mit dem `tree`-Befehl.
 
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-Knackpunkte:
+**Knackpunkte:**
 
-- views.py: Die Datei muss eine Funktion enthalten, die ein `request`-Parameter akzeptiert und ein `HttpResponse`-Objekt zurückgibt.
-- urls.py: Die Datei muss das `views`-Modul importieren und einen `path()` mit dem neuen View in `urlpatterns` registrieren.
-- Funktionalität: Die URL-Route muss auf die View-Funktion verweisen und "Hello World!" zurückgeben.
+- `views.py`: Die finale View verwendet `render()` mit einem Template (nicht `HttpResponse`).
+- `templates/hello.html`: Die Datei existiert und enthält die Variable `{{ message }}`.
+- `settings.py`: `DIRS` ist auf `[BASE_DIR / 'meinprojekt' / 'templates']` gesetzt.
+- `urls.py`: Die Datei importiert `views` und registriert einen `path()` zur Hello-View.
+- Funktionalität: Die Ausgabe im Browser ist eine HTML-Seite (kein reiner Textstring).
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-project.md]
-
-### Kommandoprotokoll
-[PROT::ALT:django-project.prot]
 
 [ENDINSTRUCTOR]
