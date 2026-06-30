@@ -31,61 +31,73 @@ anstatt Grundfunktionen neu zu implementieren.
 
 ### Django installieren
 
-Installieren Sie Django in Ihrem venv:
+[EC] Installieren Sie Django in Ihrem venv:
 
 ```bash
 pip install Django
 ```
 
-Überprüfen Sie die Installation:
+[EC] Überprüfen Sie die Installation:
 
 ```bash
 python -m django --version
 ```
-
-[EC] Installieren Sie Django und dokumentieren Sie die Befehle.
-
-[EC] Überprüfen Sie die Installation mit `python -m django --version` und dokumentieren Sie die Ausgabe.
-
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 ### Erstes Projekt erstellen
 
 Sie werden Ihr erstes Django-Projekt mit `startproject` erstellen. 
-Dieses Projekt namens **meinprojekt** werden Sie in allen darauffolgenden Django-Aufgaben verwenden und 
-schrittweise erweitern. Erstellen Sie das Projekt in Ihrem Arbeitsverzeichnis:
+Dieses Projekt namens `meinprojekt` werden Sie in allen darauffolgenden Django-Aufgaben verwenden und 
+schrittweise erweitern. Erstellen Sie das Projekt im Verzeichnis `Web/Django`:
 
-**Erstes Django-Projekt erstellen**:
 ```bash
+cd Web/Django  # Pfad anpassen
 django-admin startproject meinprojekt
-cd meinprojekt
-python manage.py runserver
+ls meinprojekt/meinprojekt
 ```
 
-**Häufige Probleme beim Starten des Servers**:
+Wie Sie sehen, hat Django in Ihrem Verzeichnis `meinprojekt` (dem Projektverzeichnis)
+ein Unterverzeichnis gleichen Namens `meinprojekt` angelegt.
+Das ist ein Verzeichnis für eine "app", wie bei Django die einzelnen Bereiche größerer Projekte
+genannt werden, die eine gewisse Entkopplung herstellen sollen.
 
-**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
-```bash
-python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
-```
+Django bringt einen Entwicklungsserver mit, mit dem man probeweise seine Webanwendung
+starten und ausprobieren kann. Außerdem gibt es eine Standard-Startseite, die jetzt schon existiert.
+Wir starten also den Server:
 
-**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
-```bash
-python manage.py runserver 8080  # Server auf einem alternativen Port starten
-```
+[EC] `python manage.py runserver 8071`
 
-Nach dem Start sollte unter `http://127.0.0.1:8000/` 
-oder `http://127.0.0.1:8080/` die Django-Willkommensseite erscheinen.
+Die Nummer ist der verwendete Netzwerkport. 
+Sollte der Port belegt sein (dann endet der Server mit einer entsprechenden Fehlermeldung), 
+wählen Sie irgendeine andere Nummer im Bereich 8000 bis 8099.
 
-[EC] Erstellen Sie ein Django-Projekt namens `meinprojekt`, starten Sie den Server und öffnen Sie die Willkommensseite im Browser.
+Beachten Sie die Warnmeldung über "unapplied migrations", die Django (in rot) beim Starten ausgibt.
+Sie liegt daran, dass Django ab Werk eine ganze Reihe von Funktionen mitbringt, die eine
+Datenbank erfordern (z.B. für Benutzerkonten), wir aber noch kein Datenbankschema angelegt haben.
+
+Das sollten wir also nachholen. Beenden Sie dafür den Server mit Ctrl-C und machen Sie dann:
+
+[EC] `python manage.py migrate`
+
+Nun ist das Schema angelegt.
+Mit diesem Aspekt befassen wir uns genauer in [PARTREF::django-model].
+
+[EC] Starten Sie nun erneut den Server mit `python manage.py runserver 8071`
+(die Warnmeldung bleibt nun aus)
+und öffnen Sie die Homepage `http://127.0.0.1:8071/` oder welchen Port auch immer Sie benutzen.
+
+[EQ] Welche Überschrift wird auf der Homepage angezeigt?
+
+Beenden Sie den Server mit Ctrl-C.
+Das war alles: Sie haben ein Django-Projekt begonnen!
 
 ### Weiterführend
 
 - [Django: Quick install guide](https://docs.djangoproject.com/en/stable/intro/install/) – offizielle Installationsanleitung
 - [Das offizielle Django-Tutorial](https://docs.djangoproject.com/en/stable/intro/tutorial01/) – schrittweiser Einstieg in Django
 
-Im nächsten Schritt erkunden Sie die Projektstruktur und schreiben Ihren ersten View:
-[PARTREF::django-project]
+In der nächsten Aufgabe erkunden wir die Projektstruktur und schreiben unsere erste eigene
+Django-basierte Webseite ("View").
 
 <!-- time estimate: 15 min -->
 
@@ -98,14 +110,14 @@ Reichen Sie Ihre Installations- und Startbefehle ein.
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
-
-### Kommandoprotokoll
-[PROT::ALT:django-basics.prot]
-
-Knackpunkte:
+**Knackpunkte:**
 
 - Django wurde innerhalb eines venv installiert, nicht systemweit.
 - `django-admin startproject` und `runserver` wurden erfolgreich ausgeführt.
 - Die Django-Willkommensseite ist im Browser unter http://127.0.0.1:8000/ sichtbar.
+
+### Kommandoprotokoll
+[PROT::ALT:django-basics.prot]
+
 
 [ENDINSTRUCTOR]
