@@ -6,7 +6,7 @@ assumes: http-GET, http-POST, http-State
 ---
 
 [SECTION::goal::experience]
-Ich kann das curl-Kommando für verschiedene Netzwerk-Datenübertragungen verwenden und 
+Ich kann das `curl`-Kommando für verschiedene Netzwerk-Datenübertragungen verwenden und 
 verstehe die wichtigsten Optionen für HTTP-Requests, Datei-Downloads und API-Interaktionen.
 [ENDSECTION]
 
@@ -14,7 +14,7 @@ verstehe die wichtigsten Optionen für HTTP-Requests, Datei-Downloads und API-In
 [SECTION::background::default]
 In der modernen Softwareentwicklung und Systemadministration ist die Kommunikation mit 
 Webservern per HTTP alltäglich geworden. 
-Das curl-Kommando ist eine Art Schweizer Messer dafür.
+Das `curl`-Kommando ist eine Art Schweizer Messer dafür.
 Man bekommt damit von einfachen Abrufen bis zu recht komplexen maßgeschneiderten Requests
 verblüffend viele Dinge ohne Programmierung hin, direkt auf der Kommandozeile.
 [ENDSECTION]
@@ -22,16 +22,16 @@ verblüffend viele Dinge ohne Programmierung hin, direkt auf der Kommandozeile.
 
 [SECTION::instructions::detailed]
 
-### Was ist curl und warum ist es wichtig?
+### Was ist `curl` und warum ist es wichtig?
 
-curl (Client URL) ist ein Kommandozeilen-Tool zur Datenübertragung, 
+`curl` (Client URL) ist ein Kommandozeilen-Tool zur Datenübertragung, 
 das in praktisch allen Linux-Distributionen (und anderen Plattformen) verfügbar ist. 
 Es unterstützt zahlreiche Protokolle wie HTTP, HTTPS, FTP, SFTP und andere und bietet
 genaue Kontrolle über Request-Headers, Methoden und Daten.
 
 ### Grundlegende Syntax und erste Schritte
 
-Die Basissyntax von curl ist einfach strukturiert:
+Die Basissyntax von `curl` ist einfach strukturiert:
 
 ```bash
 curl [optionen] [URL...]
@@ -51,7 +51,7 @@ Die Antwort sollte JSON-Daten mit Ihren Request-Details enthalten (z.B. Ihre IP,
 
 ### HTTP-Methoden und Request-Steuerung
 
-curl unterstützt alle gängigen HTTP-Methoden. 
+`curl` unterstützt alle gängigen HTTP-Methoden. 
 Die wichtigsten Optionen für Request-Kontrolle:
 
 - `-X METHOD`: Spezifiziert die HTTP-Methode (GET, POST, PUT, DELETE, etc.)
@@ -61,7 +61,7 @@ Die wichtigsten Optionen für Request-Kontrolle:
 [EC] Führen Sie einen POST-Request mit Formulardaten `myname=Student` und `myage=25` an `https://httpbin.org/post` aus:
 
 [HINT::Wie kombiniere ich mehrere Parameter?]
-curl ermöglicht die Kombination mehrerer Parameter.
+`curl` ermöglicht die Kombination mehrerer Parameter.
 Sie können z.B. zwei Parameter gleichzeitig verwenden, um einen Request durchzuführen.
 
 Die Syntax für einen POST-Request mit Formulardaten ist:
@@ -88,7 +88,7 @@ In welchem Feld der JSON-Antwort erscheinen die Daten jeweils?
 
 ### Datei-Downloads und Output-Kontrolle
 
-curl bietet verschiedene Möglichkeiten, die Ausgabe zu steuern:
+`curl` bietet verschiedene Möglichkeiten, die Ausgabe zu steuern:
 
 - `-o myfilename`: Speichert den Rumpf der Antwort unter angegebenem Namen 
   (statt ihn auf der Standardausgabe auszugeben)
@@ -123,7 +123,7 @@ Für erweiterte HTTP-Kommunikation sind oft Headers und Authentifizierung releva
 
 ### Erweiterte Funktionen: Cookies und Sessions
 
-curl kann Cookies verwalten und Sessions aufrechterhalten:
+`curl` kann Cookies verwalten und Sessions aufrechterhalten:
 
 - `-c mycookies.txt`: Cookies in Datei speichern
 - `-b mycookies.txt`: Gespeicherte Cookies verwenden
@@ -132,10 +132,10 @@ curl kann Cookies verwalten und Sessions aufrechterhalten:
 [EC] Speichern Sie das Cookie `mysession=abc123` in der Datei `mycookies.txt`. 
 Verwenden Sie dazu den Endpunkt `/cookies/set/mysession/abc123` von `https://httpbin.org`.
 
-[NOTICE]
-Sie können die URL-Basis und den Endpunkt direkt zusammenfügen:
-`<URL-Basis><Endpunkt>` = `https://.../<endpunkt>`
-[ENDNOTICE]
+[HINT::Was ist ein "Endpunkt"?]
+Damit meint man oft einfach einen URL, der zu einer Web-API gehört (statt einer Webseite).
+In unserem Fall ist das `https://httpbin.org/cookies/set/mysession/abc123`.
+[ENDHINT]
 <!-- EC8 -->
 
 [EC] Senden Sie das gespeicherte Cookie aus `mycookies.txt` an `https://httpbin.org/cookies`.  
@@ -164,7 +164,7 @@ Verwenden Sie die `-F`-Option mit `myfile=@mytestfile.txt` für das Dateifeld un
 (schauen Sie in der JSON-Antwort nach den Keys `files` und `form`).
 <!-- EC10 -->
 
-[EQ] In welchen Situationen würden Sie curl gegenüber einem grafischen HTTP-Client 
+[EQ] In welchen Situationen würden Sie `curl` gegenüber einem grafischen HTTP-Client 
 oder einem Browser bevorzugen? Nennen Sie zwei Fälle.
 <!-- EQ2 -->
 
