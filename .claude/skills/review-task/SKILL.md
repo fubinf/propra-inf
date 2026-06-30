@@ -305,7 +305,8 @@ Die öffentliche Datei sollte nur Überschriften, INCLUDE, PROT u.ä. enthalten.
 Die zu prüfenden Punkte sollten nicht alle den gleichen Rang haben,
 sondern bei den meisten Aufgaben gibt es einige wenige, typisch sind ein bis drei,
 die am schwierigsten sind.
-Diese sollten durch das fettgedruckte Wort "Knackpunkt:" markiert sein.
+Diese sollten in der Lösung durch das fettgedruckte Wort "Knackpunkt:" markiert sein
+(entweder in der natürlichen Reihenfolge der Teile oder alternativ redundant vorangestellt als Zusammenfassung).
 Eine zurückzuweisende Lösung hat diese Punkte höchstwahrscheinlich falsch. 
 Sind sie hingegen richtig, kann man die Aufgabe als OK betrachten ohne den Rest gleichermaßen
 gründlich zu prüfen.
