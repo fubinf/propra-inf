@@ -7,9 +7,9 @@ requires: django-basics
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe die Grundstruktur eines Django-Projekts.
-- Ich kenne die Rollen der wichtigsten Konfigurationsdateien.
-- Ich kann eine erste View-Funktion schreiben und über die URL-Konfiguration anbinden.
+- Ich verstehe die Grundstruktur eines Django-Projekts und kenne die Rolle der wichtigsten Konfigurationsdateien.
+- Ich kann eine erste View-Funktion schreiben und mit einem URL verknüpfen.
+- Ich kann Logik (view) und Layout (template) voneinander trennen.
 
 [ENDSECTION]
 
@@ -78,7 +78,7 @@ Weitere Details zu den verfügbaren Befehlen finden Sie in [PARTREF::django-admi
 
 **views.py - View-Funktionen**
 
-Eine **View** ist eine Python-Funktion, die ein HTTP-Request empfängt und eine HTTP-Response zurückgibt.
+Eine **View** ist eine Python-Funktion, die einen HTTP-Request empfängt und eine HTTP-Response zurückgibt.
 Sie ist das Herzstück jeder Django-Anwendung.
 Weitere Details zu Views finden Sie in [PARTREF::django-views].
 
@@ -181,7 +181,7 @@ und Logik sinnvoll?
 ### Weiterführend
 
 - [Project Structure](https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project) – Mehr zur Django-Projektstruktur
-- [URL dispatcher](https://docs.djangoproject.com/en/4.2/topics/http/urls/) – Detaillierte Erklärungen zu URL-Konfiguration
+- [URL dispatcher](https://docs.djangoproject.com/en/stable/topics/http/urls/) – Detaillierte Erklärungen zu URL-Konfiguration
 
 [ENDSECTION]
 
