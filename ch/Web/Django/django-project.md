@@ -52,7 +52,7 @@ meinprojekt/
 **settings.py - Zentrale Projekteinstellungen**
 
 Die `settings.py` enthält alle wichtigen Projekteinstellungen.
-Öffnen Sie `meinprojekt/settings.py` und betrachten Sie folgende wichtige Abschnitte:
+Öffnen Sie `settings.py` und betrachten Sie folgende wichtige Abschnitte:
 
 ```python
 [SNIPPET::ITREE:/Web/Django/django-project-settings.py::django_project_settings]
@@ -60,7 +60,6 @@ Die `settings.py` enthält alle wichtigen Projekteinstellungen.
 
 [EQ] Öffnen Sie `settings.py` und beantworten Sie: 
 Was ist der aktuelle Wert von `DEBUG` und warum ist dies wichtig?
-Welche Datenbank wird standardmäßig verwendet?
 <!-- EQ1 -->
 
 **manage.py - Projekt-Verwaltungsskript**
@@ -82,7 +81,7 @@ Eine **View** ist eine Python-Funktion, die einen HTTP-Request empfängt und ein
 Sie ist das Herzstück jeder Django-Anwendung.
 Weitere Details zu Views finden Sie in [PARTREF::django-views].
 
-[ER] Erstellen Sie die Datei `meinprojekt/meinprojekt/views.py`:
+[ER] Erstellen Sie die Datei `views.py`:
 <!-- ER1 -->
 
 [SNIPPET::ALT::django_hello_view]
@@ -103,15 +102,13 @@ Eine detaillierte Erklärung der `path()`-Funktion finden Sie in [PARTREF::djang
 [SNIPPET::ITREE:/Web/Django/django-project-urls.py::django_project_urls]
 ```
 
-[EQ] Untersuchen Sie `meinprojekt/urls.py`. Welche Route ist standardmäßig definiert?
+[EQ] Untersuchen Sie `urls.py`. Welche Route ist standardmäßig definiert?
 <!-- EQ2 -->
 
-[ER] Modifizieren Sie `meinprojekt/meinprojekt/urls.py`, um Ihre neue View einzubinden:
+[ER] Modifizieren Sie `urls.py`, um Ihre neue View einzubinden:
 <!-- ER2 -->
 
-```python
-[SNIPPET::ITREE:/Web/Django/django-project-urls2.py::django_project_urls2]
-```
+[SNIPPET::ALT::django_project_urls2]
 
 [HINT::Wie verbinde ich eine View mit einer URL?]
 Die `urls.py` verbindet URL-Pfade mit View-Funktionen.
@@ -155,7 +152,7 @@ Die Funktion `render()` lädt ein Template und übergibt Daten an es:
 - `template_name`: der Dateiname des Templates
 - `context`: ein Dictionary mit Daten, die im Template verwendet werden
 
-[ER] Ersetzen Sie den Inhalt von `meinprojekt/meinprojekt/views.py` durch
+[ER] Ersetzen Sie den Inhalt von `views.py` durch
 folgende Version, die ein Template verwendet:
 
 [SNIPPET::ALT::django_project_render]
@@ -166,7 +163,7 @@ und legen Sie darin die Datei `hello.html` mit folgendem Inhalt an:
 [SNIPPET::ALT::django_project_template]
 
 Damit Django Ihr Template findet, ergänzen Sie in 
-`meinprojekt/meinprojekt/settings.py` die `DIRS`-Option in der
+`settings.py` die `DIRS`-Option in der
 `TEMPLATES`-Konfiguration:
 
 [SNIPPET::ALT::django_project_settings_dirs]
