@@ -1,8 +1,8 @@
 title: Django Formularbehandlung
-stage: alpha
+stage: draft
 timevalue: 1.5
 difficulty: 2
-requires: django-views
+requires: django-routing
 assumes: http-GET, http-POST
 ---
 

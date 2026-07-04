@@ -1,8 +1,8 @@
 title: Django URL-Routing und Pfadkonfiguration
-stage: alpha
+stage: draft
 timevalue: 1.5
 difficulty: 2
-requires: django-views
+requires: django-template
 assumes: http-GET, http-POST
 ---
 

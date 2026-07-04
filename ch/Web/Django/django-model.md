@@ -1,5 +1,5 @@
 title: Django Modelle und ORM
-stage: alpha
+stage: draft
 timevalue: 2.25
 difficulty: 2
 requires: django-admin

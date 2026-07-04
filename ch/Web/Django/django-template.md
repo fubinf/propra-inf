@@ -1,8 +1,8 @@
 title: Django Template System - Trennung von Daten und Darstellung
-stage: alpha
+stage: draft
 timevalue: 2
 difficulty: 2
-requires: django-routing
+requires: django-views
 assumes: http-GET, http-POST
 ---
 
