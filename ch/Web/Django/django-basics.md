@@ -36,12 +36,14 @@ anstatt Grundfunktionen neu zu implementieren.
 ```bash
 pip install Django
 ```
+<!-- EC1 -->
 
 [EC] Überprüfen Sie die Installation:
 
 ```bash
 python -m django --version
 ```
+<!-- EC2 -->
 <!-- time estimate: 10 min -->
 
 ### Erstes Projekt erstellen
@@ -66,6 +68,7 @@ starten und ausprobieren kann. Außerdem gibt es eine Standard-Startseite, die j
 Wir starten also den Server:
 
 [EC] `python manage.py runserver 8071`
+<!-- EC3 -->
 
 Die Nummer ist der verwendete Netzwerkport. 
 Sollte der Port belegt sein (dann endet der Server mit einer entsprechenden Fehlermeldung), 
@@ -78,6 +81,7 @@ Datenbank erfordern (z.B. für Benutzerkonten), wir aber noch kein Datenbanksche
 Das sollten wir also nachholen. Beenden Sie dafür den Server mit Ctrl-C und machen Sie dann:
 
 [EC] `python manage.py migrate`
+<!-- EC4 -->
 
 Nun ist das Schema angelegt.
 Mit diesem Aspekt befassen wir uns genauer in [PARTREF::django-model].
@@ -85,8 +89,10 @@ Mit diesem Aspekt befassen wir uns genauer in [PARTREF::django-model].
 [EC] Starten Sie nun erneut den Server mit `python manage.py runserver 8071`
 (die Warnmeldung bleibt nun aus)
 und öffnen Sie die Homepage `http://127.0.0.1:8071/` oder welchen Port auch immer Sie benutzen.
+<!-- EC5 -->
 
 [EQ] Welche Überschrift wird auf der Homepage angezeigt?
+<!-- EQ1 -->
 
 Beenden Sie den Server mit Ctrl-C.
 Das war alles: Sie haben ein Django-Projekt begonnen!
@@ -105,19 +111,21 @@ Django-basierte Webseite ("View").
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-Reichen Sie Ihre Installations- und Startbefehle ein.
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
 **Knackpunkte:**
 
-- Django wurde innerhalb eines venv installiert, nicht systemweit.
-- `django-admin startproject` und `runserver` wurden erfolgreich ausgeführt.
-- Die Django-Willkommensseite ist im Browser unter http://127.0.0.1:8000/ sichtbar.
+- [EREFC::1]: Django wurde innerhalb eines venv installiert, nicht systemweit.
+- [EREFC::3]/[EREFC::4]/[EREFC::5]: Migrationswarnung beim ersten Start vorhanden; nach `migrate` beim zweiten Start keine Warnung mehr.
+- [EREFQ::1]: Überschrift „The install worked successfully! Congratulations!" korrekt angegeben.
 
 ### Kommandoprotokoll
 [PROT::ALT:django-basics.prot]
 
+### Fragen
+[INCLUDE::ALT:django-basics.md]
 
 [ENDINSTRUCTOR]
