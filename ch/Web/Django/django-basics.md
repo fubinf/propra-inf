@@ -105,7 +105,7 @@ Das war alles: Sie haben ein Django-Projekt begonnen!
 In der nächsten Aufgabe erkunden wir die Projektstruktur und schreiben unsere erste eigene
 Django-basierte Webseite ("View").
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 [ENDSECTION]
 
