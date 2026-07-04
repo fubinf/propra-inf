@@ -187,7 +187,7 @@ oder einem Browser bevorzugen? Nennen Sie zwei Fälle.
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-Knackpunkte:
+**Knackpunkte:**
 
 - [EREFC::2]: Response enthält `form`-Feld mit `myname` und `myage`.
 - [EREFC::3]: Response enthält `json`-Feld mit `myname` und `myage`.
