@@ -193,11 +193,9 @@ und Logik sinnvoll?
 
 **Knackpunkte:**
 
-- `views.py`: Die finale View verwendet `render()` mit einem Template (nicht `HttpResponse`).
-- `templates/hello.html`: Die Datei existiert und enthält die Variable `{{ message }}`.
-- `settings.py`: `DIRS` ist auf `[BASE_DIR / 'meinprojekt' / 'templates']` gesetzt.
-- `urls.py`: Die Datei importiert `views` und registriert einen `path()` zur Hello-View.
-- Funktionalität: Die Ausgabe im Browser ist eine HTML-Seite (kein reiner Textstring).
+- [EREFR::2]: `urls.py` importiert `views` und enthält `path("", views.hello, name="hello")`.
+- [EREFR::3]: `views.py` verwendet `render()` (nicht `HttpResponse`); `templates/hello.html` enthält `{{ message }}`; `settings.py` setzt `DIRS` auf `[BASE_DIR / 'meinprojekt' / 'templates']`.
+- [EREFQ::3]: Browser zeigt „Hello World!" als HTML-Seite; Student erklärt die Rolle von `path()` als Verbindung zwischen URL und View.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-project.md]
