@@ -60,7 +60,7 @@ Die wichtigsten Optionen für Request-Kontrolle:
 
 [EC] Führen Sie einen POST-Request mit Formulardaten `myname=Student` und `myage=25` an `https://httpbin.org/post` aus:
 
-[HINT::Formatvorlage]
+[HINT::Wie kombiniere ich mehrere Parameter?]
 curl ermöglicht die Kombination mehrerer Parameter.
 Sie können z.B. zwei Parameter gleichzeitig verwenden, um einen Request durchzuführen.
 
@@ -80,6 +80,10 @@ mit entsprechendem Content-Type-Header:
 curl -X POST -H "Content-Type: application/json" -d '{"myname":"Student","myage":25}' https://httpbin.org/post
 ```
 <!-- EC3 -->
+
+[EQ] Vergleichen Sie die Antworten von [EREFC::2] und [EREFC::3]:
+In welchem Feld der JSON-Antwort erscheinen die Daten jeweils?
+<!-- EQ1 -->
 
 
 ### Datei-Downloads und Output-Kontrolle
@@ -162,7 +166,7 @@ Verwenden Sie die `-F`-Option mit `myfile=@mytestfile.txt` für das Dateifeld un
 
 [EQ] In welchen Situationen würden Sie curl gegenüber einem grafischen HTTP-Client 
 oder einem Browser bevorzugen? Nennen Sie zwei Fälle.
-<!-- EQ1 -->
+<!-- EQ2 -->
 
 <!-- time estimate: 15 min -->
 
