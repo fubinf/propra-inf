@@ -157,7 +157,7 @@ folgende Version, die ein Template verwendet:
 
 [SNIPPET::ALT::django_project_render]
 
-Erstellen Sie das Verzeichnis `meinprojekt/meinprojekt/templates/`
+Erstellen Sie das Verzeichnis `templates/`
 und legen Sie darin die Datei `hello.html` mit folgendem Inhalt an:
 
 [SNIPPET::ALT::django_project_template]
