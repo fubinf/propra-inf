@@ -223,30 +223,32 @@ jobs:
         if not has_failures_section:
             out.append("## Failed Tests\n\n*No failures across all environments.*\n\n")
 
+        def append_section_deduped(heading, section_name):
+            """Append a section; if all environments have identical content, show only once."""
+            entries = []
+            for artifact_id, (container, python_ver, text) in reports.items():
+                if not text:
+                    continue
+                content = extract_section(text, section_name)
+                if content:
+                    entries.append((container, python_ver, content))
+            if not entries:
+                return
+            out.append(f"## {heading}\n\n")
+            all_identical = len(set(c for _, _, c in entries)) == 1
+            if all_identical:
+                out.append("*(identical across all environments)*\n\n")
+                out.append(entries[0][2] + "\n\n")
+            else:
+                for container, python_ver, content in entries:
+                    out.append(f"### `{container}` ({python_ver})\n\n")
+                    out.append(content + "\n\n")
+
         # --- Manual tests (all environments) ---
-        has_manual_section = False
-        for artifact_id, (container, python_ver, text) in reports.items():
-            if not text:
-                continue
-            manual_content = extract_section(text, "Manual Tests")
-            if not manual_content:
-                continue
-            if not has_manual_section:
-                out.append("## Manual Tests (All Environments)\n\n")
-                has_manual_section = True
-            out.append(f"### `{container}` ({python_ver})\n\n")
-            out.append(manual_content + "\n\n")
+        append_section_deduped("Manual Tests (All Environments)", "Manual Tests")
 
         # --- Passed tests (all environments) ---
-        out.append("## Passed Tests (All Environments)\n\n")
-        for artifact_id, (container, python_ver, text) in reports.items():
-            if not text:
-                continue
-            passed_content = extract_section(text, "Passed Tests")
-            if not passed_content:
-                continue
-            out.append(f"### `{container}` ({python_ver})\n\n")
-            out.append(passed_content + "\n\n")
+        append_section_deduped("Passed Tests (All Environments)", "Passed Tests")
 
         merged = "".join(out)
 
