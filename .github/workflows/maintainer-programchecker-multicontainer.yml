@@ -145,9 +145,23 @@ jobs:
             ("ubuntu:24.04",    "python3.12", "ubuntu-24.04"),
         ]
 
-        def parse_stat(text, label):
-            m = re.search(rf'\*\*{re.escape(label)}:\*\* (\d+)', text)
-            return int(m.group(1)) if m else 0
+        def parse_block_stats(text):
+            """Parse stats from the Block-Level Statistics section only."""
+            m = re.search(r'### Block-Level Statistics\n(.*?)(?=\n###|\n##|\Z)', text, re.DOTALL)
+            if not m:
+                return {}
+            section = m.group(1)
+            result = {}
+            for label, key in [
+                ("Total @PROT_SPEC blocks", "total"),
+                ("Passed",  "passed"),
+                ("Failed",  "failed"),
+                ("Manual",  "manual"),
+                ("Skip",    "skip"),
+            ]:
+                mm = re.search(rf'\*\*{re.escape(label)}:\*\* (\d+)', section)
+                result[key] = int(mm.group(1)) if mm else 0
+            return result
 
         def extract_section(text, heading):
             """Return the content between '## heading' and the next '## ' heading."""
@@ -169,18 +183,22 @@ jobs:
 
         # --- Environment summary table ---
         out.append("## Environment Summary\n\n")
-        out.append("| Environment | Python | Total | Failed | Manual | Passed |\n")
-        out.append("|-------------|--------|------:|-------:|-------:|-------:|\n")
+        out.append("| Environment | Python | Blocks total | Failed | Manual | Skip | Passed |\n")
+        out.append("|-------------|--------|-------------:|-------:|-------:|-----:|-------:|\n")
         for artifact_id, (container, python_ver, text) in reports.items():
             if text is None:
-                out.append(f"| `{container}` | {python_ver} | — | — | — | *(no report)* |\n")
+                out.append(f"| `{container}` | {python_ver} | — | — | — | — | *(no report)* |\n")
                 continue
-            total  = parse_stat(text, "Total tests")
-            failed = parse_stat(text, "Failed")
-            manual = parse_stat(text, "Manual test required")
-            passed = parse_stat(text, "Passed")
-            status = "FAIL" if failed > 0 else "ok"
-            out.append(f"| [{status}] `{container}` | {python_ver} | {total} | {failed} | {manual} | {passed} |\n")
+            s = parse_block_stats(text)
+            status = "FAIL" if s.get("failed", 0) > 0 else "ok"
+            out.append(
+                f"| [{status}] `{container}` | {python_ver}"
+                f" | {s.get('total', 0)}"
+                f" | {s.get('failed', 0)}"
+                f" | {s.get('manual', 0)}"
+                f" | {s.get('skip', 0)}"
+                f" | {s.get('passed', 0)} |\n"
+            )
         out.append("\n")
 
         # --- Failed tests (all environments) ---
