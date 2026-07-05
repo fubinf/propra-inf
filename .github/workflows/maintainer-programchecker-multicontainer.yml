@@ -2,9 +2,8 @@ name: Maintainer-ProgramChecker-Multicontainer
 
 on:
   schedule:
-    # Run every Sunday at 04:00 UTC (offset from single-container version)
     - cron: '0 4 * * 0'
-  workflow_dispatch:  # Allow manual triggering
+  workflow_dispatch:
 
 jobs:
   check-example-programs:
@@ -74,12 +73,9 @@ jobs:
       shell: bash
       run: |
         set -e
-
         source /tmp/sedrila_venv/bin/activate
 
         echo "=== Installing Language Runtimes ==="
-
-        # Lang commands are already deduplicated by sedrila --collect
         LANG_CMDS=$(jq -r '.lang[]?' /tmp/metadata.json 2>/dev/null)
         if [ -z "$LANG_CMDS" ] || [ "$LANG_CMDS" = "null" ]; then
           echo "[No language runtimes to install]"
@@ -94,8 +90,6 @@ jobs:
 
         echo ""
         echo "=== Installing Task-Specific Dependencies ==="
-
-        # Deps commands are already deduplicated by sedrila --collect
         DEPS_CMDS=$(jq -r '.deps[]?' /tmp/metadata.json 2>/dev/null)
         if [ -z "$DEPS_CMDS" ] || [ "$DEPS_CMDS" = "null" ]; then
           echo "[No dependencies to install]"
@@ -120,31 +114,138 @@ jobs:
           /tmp/progcheck
       continue-on-error: false
 
-    - name: Process and publish program check report
-      if: always()
-      run: |
-        echo "=== Program Check Summary (${{ matrix.container }}) ==="
-        REPORT_MD="/tmp/progcheck_i/program_test_report.md"
-        if [ -f "$REPORT_MD" ]; then
-          echo "Markdown report available:"
-          ls -la "$REPORT_MD"
-          echo ""
-          echo "Report preview:"
-          head -40 "$REPORT_MD"
-          echo ""
-          echo "Publishing to job summary..."
-          echo "## Results: ${{ matrix.container }}" >> "$GITHUB_STEP_SUMMARY"
-          cat "$REPORT_MD" >> "$GITHUB_STEP_SUMMARY"
-        else
-          echo "## Results: ${{ matrix.container }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "No markdown report found" >> "$GITHUB_STEP_SUMMARY"
-        fi
-
     - name: Upload program check reports
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: program-check-reports-${{ matrix.artifact_id }}
-        path: |
-          /tmp/progcheck_i/program_test_report.md
+        path: /tmp/progcheck_i/program_test_report.md
+        retention-days: 90
+
+  merge-reports:
+    runs-on: ubuntu-latest
+    needs: check-example-programs
+    if: always()
+
+    steps:
+    - name: Download all reports
+      uses: actions/download-artifact@v4
+      with:
+        pattern: program-check-reports-*
+        path: /tmp/artifacts
+
+    - name: Merge reports and publish summary
+      run: |
+        python3 << 'EOF'
+        import re, os
+
+        ENVIRONMENTS = [
+            ("debian:bookworm", "python3.11", "debian-bookworm"),
+            ("debian:trixie",   "python3.13", "debian-trixie"),
+            ("ubuntu:24.04",    "python3.12", "ubuntu-24.04"),
+        ]
+
+        def parse_stat(text, label):
+            m = re.search(rf'\*\*{re.escape(label)}:\*\* (\d+)', text)
+            return int(m.group(1)) if m else 0
+
+        def extract_section(text, heading):
+            """Return the content between '## heading' and the next '## ' heading."""
+            pattern = rf'## {re.escape(heading)}\n(.*?)(?=\n## |\Z)'
+            m = re.search(pattern, text, re.DOTALL)
+            return m.group(1).strip() if m else ""
+
+        reports = {}
+        for container, python_ver, artifact_id in ENVIRONMENTS:
+            path = f"/tmp/artifacts/program-check-reports-{artifact_id}/program_test_report.md"
+            if os.path.exists(path):
+                with open(path) as f:
+                    reports[artifact_id] = (container, python_ver, f.read())
+            else:
+                reports[artifact_id] = (container, python_ver, None)
+
+        out = []
+        out.append("# Program Check Report (Merged)\n\n")
+
+        # --- Environment summary table ---
+        out.append("## Environment Summary\n\n")
+        out.append("| Environment | Python | Total | Failed | Manual | Passed |\n")
+        out.append("|-------------|--------|------:|-------:|-------:|-------:|\n")
+        for artifact_id, (container, python_ver, text) in reports.items():
+            if text is None:
+                out.append(f"| `{container}` | {python_ver} | — | — | — | *(no report)* |\n")
+                continue
+            total  = parse_stat(text, "Total tests")
+            failed = parse_stat(text, "Failed")
+            manual = parse_stat(text, "Manual test required")
+            passed = parse_stat(text, "Passed")
+            status = "FAIL" if failed > 0 else "ok"
+            out.append(f"| [{status}] `{container}` | {python_ver} | {total} | {failed} | {manual} | {passed} |\n")
+        out.append("\n")
+
+        # --- Failed tests (all environments) ---
+        has_failures_section = False
+        for artifact_id, (container, python_ver, text) in reports.items():
+            if not text:
+                continue
+            failed_table  = extract_section(text, "Failed Tests")
+            failed_detail = extract_section(text, "Failed Tests Detail")
+            if not failed_table and not failed_detail:
+                continue
+            if not has_failures_section:
+                out.append("## Failed Tests (All Environments)\n\n")
+                has_failures_section = True
+            out.append(f"### `{container}` ({python_ver})\n\n")
+            if failed_table:
+                out.append(failed_table + "\n\n")
+            if failed_detail:
+                out.append("#### Detail\n\n")
+                out.append(failed_detail + "\n\n")
+
+        if not has_failures_section:
+            out.append("## Failed Tests\n\n*No failures across all environments.*\n\n")
+
+        # --- Manual tests (all environments) ---
+        has_manual_section = False
+        for artifact_id, (container, python_ver, text) in reports.items():
+            if not text:
+                continue
+            manual_content = extract_section(text, "Manual Tests")
+            if not manual_content:
+                continue
+            if not has_manual_section:
+                out.append("## Manual Tests (All Environments)\n\n")
+                has_manual_section = True
+            out.append(f"### `{container}` ({python_ver})\n\n")
+            out.append(manual_content + "\n\n")
+
+        # --- Passed tests (all environments) ---
+        out.append("## Passed Tests (All Environments)\n\n")
+        for artifact_id, (container, python_ver, text) in reports.items():
+            if not text:
+                continue
+            passed_content = extract_section(text, "Passed Tests")
+            if not passed_content:
+                continue
+            out.append(f"### `{container}` ({python_ver})\n\n")
+            out.append(passed_content + "\n\n")
+
+        merged = "".join(out)
+
+        summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "/tmp/merged_report.md")
+        with open(summary_path, "w") as f:
+            f.write(merged)
+
+        with open("/tmp/merged_report.md", "w") as f:
+            f.write(merged)
+
+        print("Merged report written.")
+        EOF
+
+    - name: Upload merged report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: program-check-reports-merged
+        path: /tmp/merged_report.md
         retention-days: 90
