@@ -249,10 +249,10 @@ jobs:
                     out.append(content + "\n\n")
 
         # --- Manual tests (all environments) ---
-        append_section_deduped("Manual Tests (All Environments)", "Manual Tests")
+        append_section_deduped("Manual Tests", "Manual Tests")
 
         # --- Passed tests (all environments) ---
-        append_section_deduped("Passed Tests (All Environments)", "Passed Tests")
+        append_section_deduped("Passed Tests", "Passed Tests")
 
         merged = "".join(out)
 
