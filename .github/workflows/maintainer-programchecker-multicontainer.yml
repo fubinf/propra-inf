@@ -179,7 +179,7 @@ jobs:
                 reports[artifact_id] = (container, python_ver, None)
 
         out = []
-        out.append("# Program Check Report (Merged)\n\n")
+        out.append("# Program Check Report\n\n")
 
         # --- Environment summary table ---
         out.append("## Environment Summary\n\n")
@@ -223,6 +223,10 @@ jobs:
         if not has_failures_section:
             out.append("## Failed Tests\n\n*No failures across all environments.*\n\n")
 
+        def normalize_for_compare(content):
+            """Strip execution times so they don't cause false inequality."""
+            return re.sub(r'\d+\.\d+s', 'Xs', content)
+
         def append_section_deduped(heading, section_name):
             """Append a section; if all environments have identical content, show only once."""
             entries = []
@@ -235,7 +239,7 @@ jobs:
             if not entries:
                 return
             out.append(f"## {heading}\n\n")
-            all_identical = len(set(c for _, _, c in entries)) == 1
+            all_identical = len(set(normalize_for_compare(c) for _, _, c in entries)) == 1
             if all_identical:
                 out.append("*(identical across all environments)*\n\n")
                 out.append(entries[0][2] + "\n\n")
