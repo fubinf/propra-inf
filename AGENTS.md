@@ -1,28 +1,13 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Project Overview
+# AGENTS.md
 
 This is **propra-inf** (Programmierpraktikum Informatik), a self-driven lab course for bachelor-level Informatics students at FU Berlin. 
 The course content is written in German.
 
-The project uses **sedrila** as its build tool to generate a course website from Markdown task files.
-
-See README.md for main entry points.
-
-## Build Commands
+## Build
 
 ```bash
-# Install sedrila (one-time setup)
-pipx install sedrila
-
 # Build the course website
 sedrila author --config sedrila.yaml --include_stage beta out
-
-# Build with custom config (recommended for actual courses)
-cp sedrila.yaml my-sedrila.yaml
-sedrila author --config my-sedrila.yaml --include_stage beta out
 ```
 
 The generated website appears in `out/` (student version) and `out/instructor/` (instructor version).
@@ -117,39 +102,13 @@ Instructor hints and sample solutions
 ## Development Workflow
 
 - All commits happen directly on `main` (no branches)
-- Use `git pull --rebase` (set default: `git config pull.rebase true`)
+- Use `git pull --rebase` (set default: `git config pull.rebase true`) for main repo,
+  but merge for the `altdir` submodule (which everybody also changes all the time).
 - Task review process: Set `stage: alpha`, create GitHub issue named `Chapter/Taskgroup/Task`, assign to reviewer
 - After positive review, set `stage: beta` for publication
 - TODO markers in files: `TODO_1` (soon), `TODO_2` (soonish), `TODO_3` (later)
 
-## Working with the altdir Submodule
-
-After `git pull`, the submodule is in "detached HEAD" state. To make changes:
-
-```bash
-cd altdir
-git switch main
-git pull
-# Now make your changes and commit
-```
-
-If conflicts occur during pull:
-```bash
-git pull --rebase --no-recurse-submodules
-git submodule update --recursive
-```
-
-## Language Conventions (German)
-
-- "Verzeichnis" not "Ordner" (directory)
-- "Defekt" for software defects (vs. "Fehler" for errors)
-- "beispielsweise" not "z.B." in flowing text
-- "Repo" as abbreviation for "Repository"
-- "Git" for the software name, "git" in commands
-- "der URL" (not "die")
-
-
-## Instructions to coding agents
+## Behavior conventions for coding agents
 
 Only read and modify data files (tasks, solutions, etc.), do not perform other work:
-Do not call sedrila; do not change git history.
+Do not usually call sedrila; do not change git history.
