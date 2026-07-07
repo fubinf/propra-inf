@@ -166,13 +166,7 @@ fügen Sie sie als `GradeEntry` hier ein.
 [ER] Erstellen Sie diese Variable `fake_db`:
 
 ```py
-fake_db: list[GradeEntry] = [
-    GradeEntry(name="Alice", course="Math", grade=1.7, date=datetime(2024, 4, 10)),
-    GradeEntry(name="Bob", course="Physics", grade=2.3, date=datetime(2024, 4, 12)),
-    GradeEntry(name="Charlie", course="Physics", grade=1.3, date=datetime(2024, 4, 15)),
-    GradeEntry(name="Bob", course="Math", grade=2.0, date=datetime(2024, 4, 18)),
-    GradeEntry(name="Alice", course="Physics", grade=1.0, date=datetime(2024, 4, 20)),
-]
+[SNIPPET::ITREE:FastAPI-GET.py::fake_db]
 ```
 
 [ER] Erstellen Sie einen neuen GET-Endpunkt `read_grades()` mit dem Pfad `/grades`.
