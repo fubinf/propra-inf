@@ -3,14 +3,14 @@ stage: beta
 timevalue: 1.5
 difficulty: 3
 ---
-[SECTION::goal::trial]
 
+[SECTION::goal::trial]
 Ich verstehe, was man mit Pythons `argparse`-Modul tun kann und habe einiges davon
 erfolgreich ausprobiert.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+
+[SECTION::background::default]
 Ein Python Programm, das auf der Kommandozeile aufgerufen werden soll, muss meistens
 Argumente verarbeiten, die beim Aufruf mit auf der Kommandozeile angegeben werden, etwa bei
 `grep -n alias ~/.bashrc`.
@@ -18,8 +18,9 @@ Argumente verarbeiten, die beim Aufruf mit auf der Kommandozeile angegeben werde
 Das kann schnell ganz schön kompliziert werden,
 deshalb ist es schön, wenn eine Bibliothek diese Arbeit vereinfacht.
 Das ist der Job von `argparse`.
-
 [ENDSECTION]
+
+
 [SECTION::instructions::loose]
 
 ### Die Referenzdoku: Nicht so einfach!
@@ -36,6 +37,7 @@ Das bleibt an vielen Stellen _ziemlich_ ungefähr, nicht wahr?
 
 Deshalb nähern wir uns diesem Modul lieber über einen kleinen Kurs:
 
+
 ### Das `argparse`-Tutorial: Besser!
 
 Denken und arbeiten Sie Schritte durch, die auf der Seite
@@ -49,6 +51,7 @@ Es hilft dem Verständnis z.B. erheblich, wenn Sie den Programmtext
 selbst eintippen (statt ihn zu kopieren) und dabei ein wenig abwandeln,
 um sich davon zu überzeugen, dass das die Wirkung hat, die Sie erwarten.
 
+
 ## Und jetzt selber
 
 Bauen Sie nun einen `ArgumentParser`, der folgende Kommandosyntax verarbeiten kann:
@@ -61,6 +64,8 @@ wobei die flags auch als `-c`, `-m` oder `--depth` oder `-d`, `-b` abgekürzt we
 `file...` ist eine Liste von 1 oder mehr Dateinamen.
 
 [ENDSECTION]
+
+
 [SECTION::submission::program]
 
 Geben Sie zwei Dateien ab
@@ -72,6 +77,7 @@ Geben Sie zwei Dateien ab
   um zu zeigen, dass es wohl wie gewünscht funktioniert.
 
 [ENDSECTION]
+
 
 [INSTRUCTOR::4x add_argument()]
 Eine Lösung, die weniger oder mehr als vier `add_argument()`-Zeilen verwendet,
