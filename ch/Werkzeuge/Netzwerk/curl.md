@@ -1,5 +1,5 @@
 title: Datenübertragung mit curl
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 assumes: http-GET, http-POST, http-State

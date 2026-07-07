@@ -22,4 +22,5 @@
 - **2026-06-23**: Aufgabengruppe [PARTREF::C] zugefügt, mit anfangs 4 Aufgaben.
 - **2026-06-23**: Aufgaben [PARTREF::go-unsafe] und [PARTREF::c-preprocessor-conditional] zugefügt.
 - **2026-06-25**: Aufgabe [PARTREF::go-modules] zugefügt.
+- **2026-07-07**: Aufgabe [PARTREF::curl] zugefügt.
 - ...
