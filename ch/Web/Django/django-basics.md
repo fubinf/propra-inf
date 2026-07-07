@@ -1,5 +1,5 @@
 title: Django installieren und erstes Projekt starten
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 ---
@@ -60,7 +60,8 @@ ls meinprojekt/meinprojekt
 
 Wie Sie sehen, hat Django in Ihrem Verzeichnis `meinprojekt` (dem Projektverzeichnis)
 ein Unterverzeichnis gleichen Namens `meinprojekt` angelegt.
-Das ist ein Verzeichnis für eine "app", wie bei Django die einzelnen Bereiche größerer Projekte
+Das ist das Konfigurations-Paket des Projekts.
+Andere Unterverzeichnisse enthalten künftig je eine "app", wie bei Django die einzelnen Bereiche größerer Projekte
 genannt werden, die eine gewisse Entkopplung herstellen sollen.
 
 Django bringt einen Entwicklungsserver mit, mit dem man probeweise seine Webanwendung
@@ -120,7 +121,7 @@ Django-basierte Webseite ("View").
 
 - [EREFC::1]: Django wurde innerhalb eines venv installiert, nicht systemweit.
 - [EREFC::3]/[EREFC::4]/[EREFC::5]: Migrationswarnung beim ersten Start vorhanden; nach `migrate` beim zweiten Start keine Warnung mehr.
-- [EREFQ::1]: Überschrift „The install worked successfully! Congratulations!" korrekt angegeben.
+- [EREFQ::1]: Überschrift „The install worked successfully! Congratulations!“ korrekt angegeben.
 
 ### Kommandoprotokoll
 [PROT::ALT:django-basics.prot]
