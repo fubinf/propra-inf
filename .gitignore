@@ -6,6 +6,8 @@ outb/
 participants/
 *.bak/
 
+cmd/my-propra.sh
+
 #vscode
 *.code-workspace
 .vscode/

@@ -447,6 +447,9 @@ A good IDE (such as PyCharm) does most of the bookkeeping for you.
 
 ### 6.4 Development flow in general
 
+- For build commands, see `cmd/propra.sh`.
+  Source it into your shell and call its shell functions manually as needed.
+  If you have changed a task, always build the course before making the commit.
 - We are not using branches, all commits happen on `main` directly.
   We are a closed group and trust each other to work carefully.
 - We integrate local commits via rebase, not via merge.

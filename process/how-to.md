@@ -8,7 +8,9 @@ then the `instructor` command during the course.
    The ProPra itself assumes Debian/Ubuntu, but other variants of Linux (including on Windows WSL)
    will work just as well. Mac OS is not tested well, it may or may not work.   
    You need to know how to work with `git`.
-2. Clone the present repo (see https://github.com/fubinf) and `cd propra-inf`.
+2. Fork and then clone the present repo (see https://github.com/fubinf);
+   create a branch of your liking for the small modifications you will likely want to make;
+   `cd propra-inf`.
 3. Install the `pipx` Linux package.
 4. Perform `pipx sedrila` to install the sedrila tool.  
    It serves as the build tool for the ProPra website (using its `author` command),
@@ -19,10 +21,16 @@ then the `instructor` command during the course.
 5. `cp sedrila.yaml my-sedrila.yaml`. Review and adapt the contents of `my-sedrila.yaml`.
    Consult the respective section of the [sedrila docs](https://sedrila.readthedocs.io/en/latest/authors)
    for what the entries mean.
-   For the moment, no changes are needed.
+   Consult `cmd/propra.sh` for possible values of the environment variables and possible
+   shell commands for using them.
+   For the moment, no changes to this entire config are needed.
    For running an actual course later, make the following changes:
     - you need to change `instructors`
     - you will want to change `title` and `name`
+    - to do this, your own copy of `cmd/propra.sh` may be useful. 
+      `cmd/my-propra.sh` is already git-ignored, if you want that.
+      (Modifying `cmd/propra.sh` is less useful, as it will lead to merge conflicts when you pull
+      changes to the original propra later.)
     - perhaps you want to remove some taskgroups; simply delete the respective line
     - if the course will be served by an Apache webserver, adapt `htaccess_template`.  
       Then you can simply copy the entire generated tree (containing both the student
