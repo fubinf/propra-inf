@@ -54,28 +54,23 @@ um sich davon zu überzeugen, dass das die Wirkung hat, die Sie erwarten.
 
 ## Und jetzt selber
 
-Bauen Sie nun einen `ArgumentParser`, der folgende Kommandosyntax verarbeiten kann:
-
+[ER] Bauen Sie nun einen `ArgumentParser`, der folgende Kommandosyntax verarbeiten kann:  
 `argparsetest --config configfile --maxdepth N --batch file...`  
-(was auch immer das bedeuten soll; das soll uns hier egal sein)
-wobei die flags auch als `-c`, `-m` oder `--depth` oder `-d`, `-b` abgekürzt werden können.  
-`configfile` hat den Standardwert `argparse.config`,
+(was auch immer das bedeuten soll; das soll uns hier egal sein), wobei die flags auch als `-c`, 
+`-m` oder `--depth` oder `-d`, `-b` abgekürzt werden können.  
+`configfile` hat den Standardwert `argparse.config`.  
 `N` ist eine Zahl mit Standardwert `1`.  
 `file...` ist eine Liste von 1 oder mehr Dateinamen.
 
+[EC] Rufen Sie nun ihr Skript insgesamt viermal mit unterschiedlichen Argumenten auf, wobei 
+zweimal korrekte und zweimal unzulässige Argumente angegeben werden sollen, um zu zeigen, dass 
+der `ArgumentParser` wie gewünscht funktioniert.
 [ENDSECTION]
 
 
 [SECTION::submission::program]
-
-Geben Sie zwei Dateien ab
-
-- `argparsetest.py`
-- `m_argparse.md` mit einem [PARTREF2::Kommandoprotokolle::Kommandoprotokoll], 
-  in dem Sie `argparsetest` viermal
-  mit sehr verschiedenen Argumenten aufrufen (davon zweimal korrekt und zweimal unzulässig),
-  um zu zeigen, dass es wohl wie gewünscht funktioniert.
-
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
 
 
