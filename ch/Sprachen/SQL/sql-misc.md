@@ -59,6 +59,7 @@ WHERE mycol BETWEEN myvalue1 AND myvalue2;
 
 
 (Optional) Erweiterte Informationen unter
+<!-- @LINK_SPEC: status=403 -->
 [`BETWEEN`](https://www.sqltutorial.org/sql-between/)
 
 [ER] Wählen Sie alle Websites aus, deren `alexa`-Wert zwischen 1 und 20 liegt.
@@ -103,6 +104,7 @@ SQLite bietet verschiedene Datumsfunktionen. Die wichtigsten sind:
 - `JULIANDAY(datum1) - JULIANDAY(datum2)`: Differenz in Tagen zwischen zwei Daten
 
 (Optional) Umfassende Übersicht aller Datumsfunktionen bei
+<!-- @LINK_SPEC: status=403 -->
 [`Date Functions`](https://www.sqltutorial.org/sql-date-functions/)
 
 [ER] Wählen Sie alle Zugriffe aus, deren `date` zwischen '2016-05-10' und '2016-05-14' liegt.

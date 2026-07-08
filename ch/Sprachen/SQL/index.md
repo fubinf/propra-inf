@@ -32,18 +32,14 @@ sondern man benutzt oft eine RDBMS-spezifische:
 
 ### Allgemeine Ressourcen
 
-- [SQL Standard (ISO/IEC 9075)](https://www.iso.org/standard/76583.html)
 - [W3Schools SQL Tutorial](https://www.w3schools.com/sql/) - Guter Einstieg
 - [SQLBolt](https://sqlbolt.com/) - Interaktive Übungen
-- [SQL Cheat Sheet](https://www.sqltutorial.org/sql-cheat-sheet/)
-- [SQLTutorial](https://www.sqltutorial.org)
 - [Mode Analytics SQL Tutorial](https://mode.com/sql-tutorial/)  
 
 ### RDBMS-spezifische Dokumentation
 
 - [SQLite Documentation](https://sqlite.org/docs.html)
 - [PostgreSQL Documentation](https://www.postgresql.org/docs/devel/sql.html)
-- [MySQL Documentation](https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html)
 - [MariaDB Documentation](https://mariadb.com/kb/en/sql-statements/)
 - [Microsoft SQL Server Documentation](https://docs.microsoft.com/en-us/sql/t-sql/)
 

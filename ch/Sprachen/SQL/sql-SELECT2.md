@@ -51,6 +51,7 @@ SELECT MIN(mycolumn) FROM mytable;
 SELECT MAX(mycolumn) FROM mytable;
 ```
 (Optional) Umfassende Übersicht zu
+<!-- @LINK_SPEC: status=403 -->
 [Aggregate Functions (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`)](https://www.sqltutorial.org/sql-aggregate-functions/)
 bei sqltutorial.
 
@@ -222,6 +223,7 @@ SQL stellt einfache String-Funktionen bereit, um Texte zu transformieren oder zu
 * `LENGTH(text)` – liefert die Zeichenanzahl.
 
 (Optional) Vollständige Referenz zu
+<!-- @LINK_SPEC: status=403 -->
 [`string`](https://www.sqltutorial.org/sql-string-functions/)
 
 ```sql
