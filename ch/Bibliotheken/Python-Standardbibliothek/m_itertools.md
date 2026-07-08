@@ -95,13 +95,7 @@ werden.
 ausprobiert.
 Die Schnittstelle akzeptiert folgende Eingabeparameter:
 ```python
-statuses = ['active', 'inactive']
-regions = ['us-east', 'eu-west', 'eu-east']
-user_roles = ['admin', 'user', 'guest']
-features = {
-    'feature_a': [True, False],
-    'feature_b': [True, False]
-}
+[SNIPPET::ITREE:m_itertools.py::a3]
 ```
 Erzeugen Sie alle möglichen Kombinationen an Parametern in der Form `('active', 'us-east', 
 'admin', (True, True))`.
@@ -218,35 +212,7 @@ kann.
 Was bewirkt er und wie ist er aufgebaut?
 
 ```python
-def dice_throws_most_common_result(k: int, n: int):
-    # generate all possible dice roll results
-    results = []
-    for i in range(n):
-        if results == []:
-            results = range(1, k + 1)
-        else:
-            new_results = []
-            for j in range(1, k + 1):
-                for r in results:
-                    new_results.append(j + r)
-            results = new_results
-
-    # count the occurrences and return the most common ones
-    results.sort()
-    occurrence = []
-    last = results[0]
-    count = 0
-    for r in results:
-        if last == r:
-            count += 1
-        else:
-            occurrence.append((last, count))
-            count = 1
-        last = r
-    occurrence.append((last, count))
-    occurrence.sort(key=lambda x: x[1], reverse=True)
-
-    return [x for x in occurrence if x[1] == occurrence[0][1]]
+[SNIPPET::ITREE:m_itertools.py::a10]
 ```
 
 [ER] Implementieren Sie nun dieselbe Funktion nochmal als 
@@ -271,7 +237,7 @@ Funktionen testen:
 
 
 Zum Testen führen Sie für beide Funktionen mit 10000 Elementen aus.
-Beobachten Sie zusätzlich in einem System-Monitor (z.B. Task-Manager auf Windows oder htop auch 
+Beobachten Sie zusätzlich in einem System-Monitor (z.B. Task-Manager auf Windows oder htop auf 
 Linux) die Arbeitsspeicherauslastung ihres Systems.
 
 
