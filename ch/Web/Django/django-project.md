@@ -82,9 +82,9 @@ Sie ist das Herzstück jeder Django-Anwendung.
 Weitere Details zu Views finden Sie in [PARTREF::django-views].
 
 [ER] Erstellen Sie die Datei `views.py`:
-<!-- ER1 -->
 
 [SNIPPET::ALT::django_hello_view]
+<!-- ER1 -->
 
 **urls.py - URL-Routing-Konfiguration**
 
@@ -106,9 +106,9 @@ Eine detaillierte Erklärung der `path()`-Funktion finden Sie in [PARTREF::djang
 <!-- EQ2 -->
 
 [ER] Modifizieren Sie `urls.py`, um Ihre neue View einzubinden:
-<!-- ER2 -->
 
 [SNIPPET::ALT::django_project_urls2]
+<!-- ER2 -->
 
 [HINT::Wie verbinde ich eine View mit einer URL?]
 Die `urls.py` verbindet URL-Pfade mit View-Funktionen.
@@ -126,8 +126,8 @@ Sie müssen den Server nach Code-Änderungen nicht manuell neustarten,
 solange er bereits läuft.
 
 Falls Sie den Entwicklungsserver nach [PARTREF::django-basics] beendet haben,
-starten Sie ihn neu mit `python manage.py runserver`.
-Öffnen Sie dann `http://localhost:8000` im Browser, bevor Sie die Seite aktualisieren.
+starten Sie ihn neu mit `python manage.py runserver 8071` (oder dem von Ihnen verwendeten Port).
+Öffnen Sie dann `http://127.0.0.1:8071/` im Browser, bevor Sie die Seite aktualisieren.
 [ENDNOTICE]
 
 [EQ] Aktualisieren Sie die Browserseite. Was sehen Sie jetzt anstelle der Willkommensseite?
