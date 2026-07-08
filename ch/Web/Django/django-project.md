@@ -60,7 +60,6 @@ Die `settings.py` enthält alle wichtigen Projekteinstellungen.
 
 [EQ] Öffnen Sie `settings.py` und beantworten Sie: 
 Was ist der aktuelle Wert von `DEBUG` und warum ist dies wichtig?
-<!-- EQ1 -->
 
 **manage.py - Projekt-Verwaltungsskript**
 
@@ -84,7 +83,6 @@ Weitere Details zu Views finden Sie in [PARTREF::django-views].
 [ER] Erstellen Sie die Datei `views.py`:
 
 [SNIPPET::ALT::django_hello_view]
-<!-- ER1 -->
 
 **urls.py - URL-Routing-Konfiguration**
 
@@ -103,12 +101,10 @@ Eine detaillierte Erklärung der `path()`-Funktion finden Sie in [PARTREF::djang
 ```
 
 [EQ] Untersuchen Sie `urls.py`. Welche Route ist standardmäßig definiert?
-<!-- EQ2 -->
 
 [ER] Modifizieren Sie `urls.py`, um Ihre neue View einzubinden:
 
 [SNIPPET::ALT::django_project_urls2]
-<!-- ER2 -->
 
 [HINT::Wie verbinde ich eine View mit einer URL?]
 Die `urls.py` verbindet URL-Pfade mit View-Funktionen.
@@ -133,7 +129,6 @@ starten Sie ihn neu mit `python manage.py runserver 8071` (oder dem von Ihnen ve
 [EQ] Aktualisieren Sie die Browserseite. Was sehen Sie jetzt anstelle der Willkommensseite?
 Erklären Sie, warum die `urls.py`-Konfiguration notwendig ist, um die View zu sehen.
 <!-- time estimate: 25 min -->
-<!-- EQ3 -->
 
 ### Darstellung mit Templates
 
@@ -167,12 +162,10 @@ Damit Django Ihr Template findet, ergänzen Sie in
 `TEMPLATES`-Konfiguration:
 
 [SNIPPET::ALT::django_project_settings_dirs]
-<!-- ER3 -->
 
 [EQ] Aktualisieren Sie die Browserseite. Was hat sich gegenüber der
 vorherigen Ansicht geändert? Warum ist die Trennung von Darstellung
 und Logik sinnvoll?
-<!-- EQ4 -->
 <!-- time estimate: 20 min -->
 
 ### Weiterführend
