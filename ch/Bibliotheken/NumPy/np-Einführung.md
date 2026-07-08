@@ -6,9 +6,9 @@ difficulty: 1
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe die Bedeutung und Anwendungsgebiete von NumPy in der wissenschaftlichen Datenverarbeitung.
-- Ich kann NumPy erfolgreich installieren und die Installation verifizieren.
+- Ich kann NumPy installieren und grundlegende Arrays erstellen.
 - Ich kenne die wichtigsten NumPy-Datentypen und deren grundlegende Verwendung.
+- Ich kann grundlegende Array-Eigenschaften auslesen und einfache Operationen durchführen.
 [ENDSECTION]
 
 
@@ -22,36 +22,17 @@ andere wissenschaftliche Python-Bibliotheken wie
 
 [SECTION::instructions::detailed]
 
-### NumPy Installation und Verifikation
+### NumPy installieren
 
 NumPy ist nicht in der Standard-Python-Installation enthalten und muss separat installiert werden.
 
-**Installation mit pip:**
-```python
+[EC] Installieren Sie NumPy mit pip:
+```bash
 pip3 install numpy
 ```
+<!-- EC1 -->
 
-**Installation mit conda (bei Anaconda/Miniconda):**
-```python
-conda install numpy
-```
-
-[NOTICE]
-Die conda-Installation bringt oft optimierte mathematische Bibliotheken (wie Intel MKL) mit, 
-die die Performance erheblich verbessern können.
-[ENDNOTICE]
-
-**Verifikation der Installation:**
-```python
-import numpy as np
-print(np.__version__)
-```
-
-[ER] Schreiben Sie ein Python-Programm, das NumPy importiert, die Version ausgibt und 
-überprüft, ob die Installation erfolgreich war. Geben Sie eine entsprechende Erfolgsmeldung aus.
-<!-- ER1 -->
-
-<!-- time estimate: 15 min -->
+<!-- time estimate: 5 min -->
 
 ### Das ndarray-Objekt verstehen
 
@@ -62,37 +43,28 @@ sich wesentlich von Python-Listen:
 
 - Homogene Datentypen: Alle Elemente haben den gleichen Datentyp
 - Feste Größe: Die Größe wird bei der Erstellung festgelegt
-- Effizienter Speicher: Zusammenhängender Speicherbereich
-- Schnelle Operationen: Optimierte mathematische Berechnungen
-
-**Interne Struktur eines ndarray:**
-
-- Zeiger auf Daten im Speicher
-- Datentyp-Beschreibung (dtype) 
-- Shape-Tupel für Dimensionen
-- Stride-Tupel für Speicher-Navigation
-
-Optional: Unklar? Dann bitte hier nochmal in anderer Form nachlesen:
-[NumPy ndarray](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html)
+- Vektorisierte Operationen: Mathematische Berechnungen werden elementweise auf das gesamte Array angewendet, ohne explizite Schleifen
 
 [EQ] Erklären Sie drei wesentliche Unterschiede zwischen einem NumPy ndarray und einer Python-Liste.
 <!-- EQ1 -->
 
 ### Arrays erstellen mit numpy.array()
 
-Die grundlegende Funktion zur Array-Erstellung ist `numpy.array()`:
+Die grundlegende Funktion zur Array-Erstellung ist `numpy.array()`. Die für uns relevanten Parameter sind:
 
 ```python
-numpy.array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0)
+numpy.array(object, dtype=None, ndmin=0)
 ```
 
 **Parameter-Bedeutung:**
 
 - `object`: Array oder verschachtelte Sequenz
-- `dtype`: Datentyp der Array-Elemente (optional)
-- `copy`: Ob eine Kopie erstellt werden soll (optional)
-- `order`: Speicher-Layout ('C' für zeilenweise, 'F' für spaltenweise)
-- `ndmin`: Minimale Anzahl der Dimensionen
+- `dtype` (Standard `None`): Datentyp der Array-Elemente; bei `None` wird er automatisch aus den Daten abgeleitet
+- `ndmin` (Standard `0`): erzwungene Mindestanzahl an Dimensionen. Ohne Angabe hat z.B. `np.array([7, 8, 9])` 1 Dimension;
+  mit `ndmin=2` wird das Array künstlich auf 2 Dimensionen "aufgefüllt", `.shape` wird dann z.B. `(1, 3)` statt `(3,)`
+
+Es gibt weitere optionale Parameter (`copy`, `order`, `subok`) für Spezialfälle, die wir hier nicht brauchen;
+Details dazu finden Sie in der [offiziellen Dokumentation](https://numpy.org/doc/stable/reference/generated/numpy.array.html).
 
 **Beispiele für Array-Erstellung:**
 
@@ -116,7 +88,7 @@ print(b)
 - Ein 1D-Array mit den Zahlen 10, 20, 30, 40, 50
 - Ein 2D-Array (3x2) mit den Werten [[1, 2], [3, 4], [5, 6]]
 - Ein Array mit mindestens 2 Dimensionen aus der Liste [7, 8, 9] (verwenden Sie ndmin)
-<!-- ER2 -->
+<!-- ER1 -->
 
 <!-- time estimate: 25 min -->
 
@@ -127,20 +99,19 @@ NumPy unterstützt viel mehr Datentypen als Standard-Python und orientiert sich 
 **Wichtige NumPy-Datentypen:**
 
 - `bool_`: Boolesche Werte (True/False)
-- `int8`, `int16`, `int32`, `int64`: Vorzeichenbehaftete Ganzzahlen verschiedener Größen (in Bits)
-- `uint8`, `uint16`, `uint32`, `uint64`: Vorzeichenlose Ganzzahlen
+- `int8`, `int16`, `int32`, `int64`: Ganzzahlen verschiedener Größen (in Bits)
 - `float16`, `float32`, `float64`: Gleitkommazahlen
 - `complex64`, `complex128`: Komplexe Zahlen
 
 **Beispiel für explizite Datentyp-Angabe:**
 ```python
 # Array mit komplexen Zahlen
-c = np.array([1, 2, 3], dtype=complex)
+c = np.array([1, 2, 3], dtype=np.complex128)
 print(c)  # [1.+0.j 2.+0.j 3.+0.j]
 ```
 
-Optional: Weitere Informationen finden Sie hier:
-[NumPy Data Types](https://numpy.org/doc/stable/user/basics.types.html)
+Sie können auch den eingebauten Python-Typ `complex` schreiben (`dtype=complex`) —
+NumPy wandelt ihn automatisch in `np.complex128` um.
 
 [ER] Erstellen Sie Arrays mit verschiedenen Datentypen:
 
@@ -148,26 +119,29 @@ Optional: Weitere Informationen finden Sie hier:
 - Ein Array [1.5, 2.7, 3.14] vom Typ `float32`  
 - Ein Array [1, 2, 3] vom Typ `complex64`
 Geben Sie jeweils das Array und seinen dtype aus.
-<!-- ER3 -->
+<!-- ER2 -->
 <!-- time estimate: 15 min -->
 
 ### dtype-Objekte verwenden
 
-Das `dtype`-Objekt beschreibt die Interpretation der Bytes im Array-Speicher:
+Das `dtype`-Objekt beschreibt, welchen Datentyp die Elemente eines Arrays haben und wie viel Speicherplatz sie belegen:
 
 ```python
-# dtype aus String erstellen
-dt1 = np.dtype('i4')  # 32-bit Integer
-print(dt1)  # int32
-
-# dtype aus Typ erstellen  
+# dtype aus Typ erstellen (üblicher, pythonischer Stil)
 dt2 = np.dtype(np.int32)
 print(dt2)  # int32
 
-# Byte-Reihenfolge spezifizieren
-dt3 = np.dtype('<i4')  # Little-endian 32-bit Integer
-print(dt3)  # int32
+# dtype aus String erstellen (kompakte Kurzschreibweise)
+dt1 = np.dtype('i4')  # 32-bit Integer
+print(dt1)  # int32
 ```
+
+Die Kurzschreibweise (`'i4'`, `'f4'`, `'U20'`, ...) stammt aus der C-nahen Array-Protokoll-Konvention
+von NumPy und ist kein typischer Python-Stil (der Buchstabe steht für den Typ – `i` für Integer,
+`f` für Float, `U` für Unicode-String –, die Zahl für die Größe in Bytes bzw. bei `U` für die
+Zeichenanzahl). Für eigenen Code ist `np.int32` üblicher und lesbarer; die Kurzschreibweise begegnet
+Ihnen aber häufig bei strukturierten Datentypen (siehe unten) und in fremdem Code, weshalb Sie sie
+erkennen können sollten.
 
 **Strukturierte Datentypen:**
 ```python
@@ -186,7 +160,7 @@ print(people['name'])  # ['Alice' 'Bob']
 - `name`: String mit maximal 15 Zeichen  
 - `note`: 32-bit Float
 Fügen Sie drei Beispiel-Studenten hinzu und geben Sie nur die Namen aus.
-<!-- ER4 -->
+<!-- ER3 -->
 
 <!-- time estimate: 20 min -->
 
@@ -211,7 +185,7 @@ insgesamt, und welche Bedeutung haben die einzelnen Zahlen in der Form-Angabe?
 [ER] Erstellen Sie ein 3D-Array der Form (2, 3, 4) mit beliebigen Integer-Werten und 
 geben Sie folgende Eigenschaften aus:
 - shape, ndim, size, dtype, itemsize
-<!-- ER5 -->
+<!-- ER4 -->
 <!-- time estimate: 20 min -->
 
 ### Praktische Array-Operationen
@@ -241,28 +215,14 @@ print(reshaped)
 - Addition der beiden Arrays
 - Multiplikation des ersten Arrays mit 3
 - Umformung des Ergebnisses aus (1) in ein 2x2-Array
-<!-- ER6 -->
+<!-- ER5 -->
 
 <!-- time estimate: 10 min -->
 
-### Zusammenfassung und Ausblick
+### Weiterführend
 
-NumPy ist die Grundlage für wissenschaftliches Rechnen in Python. Die wichtigsten Konzepte sind:
-
-- **ndarray**: Effiziente N-dimensionale Arrays mit homogenen Datentypen
-- **dtype**: Flexible Datentyp-Definition für verschiedene Anwendungen
-- **Array-Operationen**: Schnelle element-weise mathematische Berechnungen
-
-Diese Grundlagen ermöglichen komplexere Datenanalysen mit Bibliotheken wie Pandas, 
-maschinelles Lernen mit scikit-learn und Visualisierungen mit Matplotlib.
-
-Optional: Falls noch Fragen offen sind, hilft diese Ressource weiter:
-[NumPy Quickstart Tutorial](https://numpy.org/doc/stable/user/quickstart.html)
-
-[EQ] Fassen Sie in eigenen Worten zusammen, warum NumPy für die wissenschaftliche 
-Datenverarbeitung in Python so wichtig ist. Nennen Sie mindestens drei Gründe.
-<!-- EQ3 -->
-<!-- time estimate: 15 min -->
+- [NumPy ndarray](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html) – Detaillierte Referenz zum `ndarray`-Objekt
+- [NumPy Data Types](https://numpy.org/doc/stable/user/basics.types.html) – Übersicht aller NumPy-Datentypen
 
 [ENDSECTION]
 
@@ -270,10 +230,19 @@ Datenverarbeitung in Python so wichtig ist. Nennen Sie mindestens drei Gründe.
 
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+**Knackpunkte:**
+
+- [EREFR::1]: Das dritte Array (`ndmin=2` auf `[7, 8, 9]`) hat die Shape `(1, 3)`, nicht `(3,)` – zeigt, ob `ndmin` wirklich verstanden wurde.
+- [EREFR::3]: Der strukturierte dtype ist korrekt mit drei benannten Feldern definiert, und `students['name']` liefert nur die Namen (nicht das gesamte Tupel).
+- [EREFQ::1]: Student nennt tatsächlich technische Unterschiede (z.B. homogene Datentypen, feste Größe, vektorisierte Operationen) statt nur allgemeiner Vorteile von NumPy.
+
+### Kommandoprotokoll
+[PROT::ALT:np-Einführung.prot]
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-Einführung.md]
