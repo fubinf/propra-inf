@@ -36,14 +36,12 @@ anstatt Grundfunktionen neu zu implementieren.
 ```bash
 pip install Django
 ```
-<!-- EC1 -->
 
 [EC] Überprüfen Sie die Installation:
 
 ```bash
 python -m django --version
 ```
-<!-- EC2 -->
 <!-- time estimate: 10 min -->
 
 ### Erstes Projekt erstellen
@@ -69,7 +67,6 @@ starten und ausprobieren kann. Außerdem gibt es eine Standard-Startseite, die j
 Wir starten also den Server:
 
 [EC] `python manage.py runserver 8071`
-<!-- EC3 -->
 
 Die Nummer ist der verwendete Netzwerkport. 
 Sollte der Port belegt sein (dann endet der Server mit einer entsprechenden Fehlermeldung), 
@@ -82,7 +79,6 @@ Datenbank erfordern (z.B. für Benutzerkonten), wir aber noch kein Datenbanksche
 Das sollten wir also nachholen. Beenden Sie dafür den Server mit Ctrl-C und machen Sie dann:
 
 [EC] `python manage.py migrate`
-<!-- EC4 -->
 
 Nun ist das Schema angelegt.
 Mit diesem Aspekt befassen wir uns genauer in [PARTREF::django-model].
@@ -90,10 +86,8 @@ Mit diesem Aspekt befassen wir uns genauer in [PARTREF::django-model].
 [EC] Starten Sie nun erneut den Server mit `python manage.py runserver 8071`
 (die Warnmeldung bleibt nun aus)
 und öffnen Sie die Homepage `http://127.0.0.1:8071/` oder welchen Port auch immer Sie benutzen.
-<!-- EC5 -->
 
 [EQ] Welche Überschrift wird auf der Homepage angezeigt?
-<!-- EQ1 -->
 
 Beenden Sie den Server mit Ctrl-C.
 Das war alles: Sie haben ein Django-Projekt begonnen!
