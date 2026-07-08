@@ -1,6 +1,6 @@
 title: Einführung von NumPy
 stage: alpha
-timevalue: 2
+timevalue: 1.5
 difficulty: 1
 ---
 
@@ -22,6 +22,12 @@ andere wissenschaftliche Python-Bibliotheken wie
 
 [SECTION::instructions::detailed]
 
+### Vorwissen
+
+Für diese Aufgabe genügen grundlegende Python-Kenntnisse (Variablen, Funktionen, Listen).
+Hardware- oder Speicher-Interna (wie Zeiger oder Byte-Reihenfolge) werden hier bewusst nicht
+behandelt und sind nicht erforderlich.
+
 ### NumPy installieren
 
 NumPy ist nicht in der Standard-Python-Installation enthalten und muss separat installiert werden.
@@ -30,7 +36,6 @@ NumPy ist nicht in der Standard-Python-Installation enthalten und muss separat i
 ```bash
 pip3 install numpy
 ```
-<!-- EC1 -->
 
 <!-- time estimate: 5 min -->
 
@@ -46,7 +51,6 @@ sich wesentlich von Python-Listen:
 - Vektorisierte Operationen: Mathematische Berechnungen werden elementweise auf das gesamte Array angewendet, ohne explizite Schleifen
 
 [EQ] Erklären Sie drei wesentliche Unterschiede zwischen einem NumPy ndarray und einer Python-Liste.
-<!-- EQ1 -->
 
 ### Arrays erstellen mit numpy.array()
 
@@ -88,7 +92,6 @@ print(b)
 - Ein 1D-Array mit den Zahlen 10, 20, 30, 40, 50
 - Ein 2D-Array (3x2) mit den Werten [[1, 2], [3, 4], [5, 6]]
 - Ein Array mit mindestens 2 Dimensionen aus der Liste [7, 8, 9] (verwenden Sie ndmin)
-<!-- ER1 -->
 
 <!-- time estimate: 25 min -->
 
@@ -119,7 +122,6 @@ NumPy wandelt ihn automatisch in `np.complex128` um.
 - Ein Array [1.5, 2.7, 3.14] vom Typ `float32`  
 - Ein Array [1, 2, 3] vom Typ `complex64`
 Geben Sie jeweils das Array und seinen dtype aus.
-<!-- ER2 -->
 <!-- time estimate: 15 min -->
 
 ### dtype-Objekte verwenden
@@ -160,7 +162,6 @@ print(people['name'])  # ['Alice' 'Bob']
 - `name`: String mit maximal 15 Zeichen  
 - `note`: 32-bit Float
 Fügen Sie drei Beispiel-Studenten hinzu und geben Sie nur die Namen aus.
-<!-- ER3 -->
 
 <!-- time estimate: 20 min -->
 
@@ -180,12 +181,10 @@ print(arr.itemsize) # 8 - Bytes pro Element
 
 [EQ] Ein Array hat die Form (4, 5, 3). Wie viele Dimensionen hat es, wie viele Elemente 
 insgesamt, und welche Bedeutung haben die einzelnen Zahlen in der Form-Angabe?
-<!-- EQ2 -->
 
 [ER] Erstellen Sie ein 3D-Array der Form (2, 3, 4) mit beliebigen Integer-Werten und 
 geben Sie folgende Eigenschaften aus:
 - shape, ndim, size, dtype, itemsize
-<!-- ER4 -->
 <!-- time estimate: 20 min -->
 
 ### Praktische Array-Operationen
@@ -215,7 +214,6 @@ print(reshaped)
 - Addition der beiden Arrays
 - Multiplikation des ersten Arrays mit 3
 - Umformung des Ergebnisses aus (1) in ein 2x2-Array
-<!-- ER5 -->
 
 <!-- time estimate: 10 min -->
 
