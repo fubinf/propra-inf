@@ -8,11 +8,9 @@ assumes: http-GET, http-POST
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe das Konzept des URL-Routings in Django und kann Pfad-zu-View-Zuordnungen konfigurieren.
-- Ich kann reguläre Ausdrücke in Django-URLs verwenden, sowohl mit benannten als auch unbenannten Gruppen.
-- Ich kann URL-Konfigurationen mithilfe von `include()` auf verschiedene Apps verteilen.
+- Ich verstehe das Konzept des URL-Routings und kann Pfad-zu-View-Zuordnungen mit `path()` sowie regulären Ausdrücken (`re_path()`, benannte und unbenannte Gruppen) konfigurieren.
+- Ich kann URL-Konfigurationen mit `include()` auf mehrere Module verteilen und mittels Namespaces organisieren.
 - Ich verstehe das Konzept der Reverse Resolution und kann URL-Namen in Views und Templates verwenden.
-- Ich kann Namespaces für URL-Konfigurationen einrichten und verwenden.
 
 [ENDSECTION]
 
@@ -77,8 +75,8 @@ Die Syntax `<typ:name>` bedeutet:
 - `typ` - Der Datentyp (z.B. `str`, `int`, `uuid`)
 - `name` - Der Parametername, wird an die View-Funktion übergeben
 
-[ER] Sie arbeiten weiter mit dem `meinprojekt`-Projekt aus [PARTREF::django-project].
-Erstellen Sie in `meinprojekt/meinprojekt/views.py` eine neue View-Funktion mit Parametern:
+[ER] Sie arbeiten weiter mit dem `meinprojekt`-Projekt aus [PARTREF::django-basics].
+Erstellen Sie in `views.py` eine neue View-Funktion mit Parametern:
 
 ```python
 def greet(request, name):
@@ -86,7 +84,7 @@ def greet(request, name):
 ```
 <!-- ER1 -->
 
-[ER] Aktualisieren Sie `meinprojekt/meinprojekt/urls.py` und fügen Sie ein URL-Pattern mit einem `<str:name>` Parameter hinzu:
+[ER] Aktualisieren Sie `urls.py` und fügen Sie ein URL-Pattern mit einem `<str:name>` Parameter hinzu:
 
 ```python
 from django.urls import path
@@ -100,10 +98,10 @@ urlpatterns = [
 <!-- ER2 -->
 
 [EC] Testen Sie die neue Route im Browser:
-- `http://127.0.0.1:8000/greet/Anna/`
-- `http://127.0.0.1:8000/greet/Max/`
+- `http://127.0.0.1:8071/greet/Anna/`
+- `http://127.0.0.1:8071/greet/Max/`
 
-Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
+Wenn Sie einen anderen Port verwenden, passen Sie die Links entsprechend an.
 <!-- EC1 -->
 
 [EQ] Welche Datentypen können Sie in `<...>` verwenden und wie werden sie validiert?
@@ -114,12 +112,6 @@ Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
 
 Django bietet verschiedene Möglichkeiten, Parameter aus URLs zu extrahieren und an View-Funktionen weiterzugeben.
 
-**Einfache Parameter mit `path()`:**
-```python
-path('artikel/<int:id>/', views.artikel_detail, name='artikel')
-path('benutzer/<str:username>/', views.profil, name='profil')
-```
-
 **Reguläre Ausdrücke mit `re_path()`:**
 ```python
 from django.urls import re_path
@@ -129,13 +121,11 @@ urlpatterns = [
 ]
 ```
 
-[EC] Erstellen Sie eine neue Django-App namens `blog` in Ihrem Projekt:
-```bash
-python manage.py startapp blog
-```
-<!-- EC2 -->
+Größere Projekte gliedern ihre Views und URLs oft in mehrere Module. Wir simulieren das hier,
+indem wir für einen Blog-Bereich eigene Dateien `blog_views.py` und `blog_urls.py` anlegen
+(die eigentliche App-Struktur mit `startapp` lernen Sie in [PARTREF::django-admin] kennen).
 
-[ER] Erstellen Sie in `blog/views.py` folgende View-Funktionen:
+[ER] Erstellen Sie eine neue Datei `blog_views.py` mit folgenden View-Funktionen:
 
 ```python
 from django.http import HttpResponse
@@ -168,7 +158,7 @@ def artikel_jahr(request, jahr):
     return HttpResponse(f"Artikel aus dem Jahr: {jahr}")
 ```
 
-[ER] Erweitern Sie `blog/views.py` um eine View-Funktion für unbenannte Gruppen:
+[ER] Erweitern Sie `blog_views.py` um eine View-Funktion für unbenannte Gruppen:
 
 ```python
 def artikel_datum(request, jahr, monat):
@@ -176,11 +166,13 @@ def artikel_datum(request, jahr, monat):
 ```
 <!-- ER4 -->
 
-[ER] Erstellen Sie `blog/urls.py` und konfigurieren Sie URL-Patterns mit unbenannten Gruppen:
+[ER] Erstellen Sie `blog_urls.py` und konfigurieren Sie URL-Patterns mit unbenannten Gruppen.
+Da `blog_urls.py` neben `blog_views.py` in Ihrem Projektverzeichnis liegt (nicht in einer eigenen App),
+importieren Sie das Modul unter einem Alias, um es von `urls.py` zu unterscheiden:
 
 ```python
 from django.urls import path, re_path
-from . import views
+from . import blog_views as views
 
 urlpatterns = [
     path('', views.index, name='blog_index'),
@@ -206,7 +198,7 @@ def artikel_datum(request, jahr, monat):
 ```
 
 
-[ER] Erweitern Sie `blog/urls.py` um URL-Patterns mit benannten Gruppen:
+[ER] Erweitern Sie `blog_urls.py` um URL-Patterns mit benannten Gruppen:
 
 ```python
 urlpatterns = [
@@ -225,8 +217,9 @@ Welche Vor- und Nachteile haben sie jeweils?
 
 ### URL-Konfiguration aufteilen: `include()`
 
-Bei größeren Projekten mit mehreren Apps wird es unübersichtlich, alle URLs in der Haupt-`urls.py` 
-zu verwalten. Django bietet `include()`, um URL-Konfigurationen auf verschiedene Apps zu verteilen.
+Bei größeren Projekten mit mehreren Bereichen wird es unübersichtlich, alle URLs in der Haupt-`urls.py` 
+zu verwalten. Django bietet `include()`, um `urlpatterns`-Listen aus anderen Modulen einzubinden –
+das funktioniert mit jedem Modul, das eine `urlpatterns`-Liste definiert, nicht nur mit Apps.
 
 **Problem:** Alle URLs in einer Datei führen zu:
 - Unübersichtlichkeit
@@ -235,7 +228,7 @@ zu verwalten. Django bietet `include()`, um URL-Konfigurationen auf verschiedene
 
 **Lösung:** URL-Verteilung mit `include()`
 
-[ER] Modifizieren Sie die Haupt-`urls.py` (`meinprojekt/urls.py`):
+[ER] Modifizieren Sie die Haupt-`urls.py`, um `blog_urls.py` einzubinden:
 
 ```python
 from django.contrib import admin
@@ -243,27 +236,22 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls')),
+    path('blog/', include('meinprojekt.blog_urls')),
 ]
 ```
 <!-- ER7 -->
 
 [EC] Testen Sie die URL-Struktur, indem Sie verschiedene URLs aufrufen:
 ```bash
-curl http://127.0.0.1:8000/blog/
+curl http://127.0.0.1:8071/blog/
 ```
-Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
-<!-- EC3 -->
+Wenn Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
+<!-- EC2 -->
 
-[EC] Erstellen Sie eine zweite App namens `portfolio` mit
-```bash
-$ python manage.py startapp portfolio
-```
-<!-- EC4 -->
-
-[ER] Implementieren Sie ähnliche URL-Patterns:
+[ER] Implementieren Sie analog zu `blog_views.py`/`blog_urls.py` einen zweiten Bereich
+`portfolio_views.py`/`portfolio_urls.py`:
 ```python
-# portfolio/views.py
+# portfolio_views.py
 from django.http import HttpResponse
 
 def index(request):
@@ -274,9 +262,9 @@ def projekt(request, projekt_id):
 ```
 
 ```python
-# portfolio/urls.py
+# portfolio_urls.py
 from django.urls import path, re_path
-from . import views
+from . import portfolio_views as views
 
 urlpatterns = [
     path('', views.index, name='portfolio_index'),
@@ -285,13 +273,13 @@ urlpatterns = [
 ```
 <!-- ER8 -->
 
-[ER] Erweitern Sie die Haupt-`urls.py` um die Portfolio-App:
+[ER] Erweitern Sie die Haupt-`urls.py` um den Portfolio-Bereich:
 
 ```python
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls')),
-    path('portfolio/', include('portfolio.urls')),
+    path('blog/', include('meinprojekt.blog_urls')),
+    path('portfolio/', include('meinprojekt.portfolio_urls')),
 ]
 ```
 <!-- ER9 -->
@@ -318,7 +306,7 @@ def meine_view(request):
 ```
 
 
-[ER] Erweitern Sie `blog/views.py` um eine View mit Reverse Resolution:
+[ER] Erweitern Sie `blog_views.py` um eine View mit Reverse Resolution:
 
 ```python
 from django.urls import reverse
@@ -330,7 +318,7 @@ def weiterleitung(request):
 ```
 <!-- ER10 -->
 
-[ER] Aktualisieren Sie `blog/urls.py` um die neue View und stellen Sie sicher, 
+[ER] Aktualisieren Sie `blog_urls.py` um die neue View und stellen Sie sicher, 
 dass alle URLs benannte Patterns haben:
 
 ```python
@@ -344,26 +332,26 @@ urlpatterns = [
 ```
 <!-- ER11 -->
 
-[EQ] Testen Sie `http://127.0.0.1:8000/blog/weiterleitung/` im Browser. 
-Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
+[EQ] Testen Sie `http://127.0.0.1:8071/blog/weiterleitung/` im Browser. 
+Wenn Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
 Beschreiben Sie, was passiert und warum dies nützlich für die Webentwicklung ist.
 <!-- EQ4 -->
 <!-- time estimate: 25 min -->
 
 ### Namespaces: URL-Namen organisieren
 
-Namespaces verhindern Namenskonflikte zwischen verschiedenen Apps, die ähnliche URL-Namen verwenden.
+Namespaces verhindern Namenskonflikte zwischen verschiedenen URL-Modulen, die ähnliche URL-Namen verwenden.
 
-**Problem:** Zwei Apps mit demselben URL-Namen `'index'` führen zu Konflikten.
+**Problem:** Zwei Module mit demselben URL-Namen `'index'` führen zu Konflikten.
 
 **Lösung:** Namespaces definieren
 
-[ER] Fügen Sie Namespaces zu Ihren App-URLs hinzu. 
+[ER] Fügen Sie Namespaces zu Ihren URL-Modulen hinzu. 
 
-Aktualisieren Sie `blog/urls.py`:
+Aktualisieren Sie `blog_urls.py`:
 ```python
 from django.urls import path, re_path
-from . import views
+from . import blog_views as views
 
 app_name = 'blog'  # Namespace definieren
 
@@ -377,10 +365,10 @@ urlpatterns = [
 ```
 <!-- ER12 -->
 
-[ER] Aktualisieren Sie `portfolio/urls.py` entsprechend:
+[ER] Aktualisieren Sie `portfolio_urls.py` entsprechend:
 ```python
 from django.urls import path, re_path
-from . import views
+from . import portfolio_views as views
 
 app_name = 'portfolio'
 
@@ -391,7 +379,7 @@ urlpatterns = [
 ```
 <!-- ER13 -->
 
-[ER] Modifizieren Sie `blog/views.py`, um Namespaces in Reverse Resolution zu verwenden:
+[ER] Modifizieren Sie `blog_views.py`, um Namespaces in Reverse Resolution zu verwenden:
 
 ```python
 def weiterleitung(request):
@@ -404,8 +392,8 @@ def weiterleitung(request):
 - In Templates: `{% url 'blog:index' %}`
 - Mit Parametern: `reverse('blog:artikel_detail', kwargs={'artikel_id': 123})`
 
-[EQ] Testen Sie `http://127.0.0.1:8000/blog/weiterleitung/` im Browser nach der Namespace-Implementierung.
-Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
+[EQ] Testen Sie `http://127.0.0.1:8071/blog/weiterleitung/` im Browser nach der Namespace-Implementierung.
+Wenn Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
 Erklären Sie, warum Namespaces in größeren Django-Projekten wichtig sind. 
 Geben Sie ein konkretes Beispiel für einen möglichen Namenskonflikt an.
 <!-- EQ5 -->
@@ -413,9 +401,9 @@ Geben Sie ein konkretes Beispiel für einen möglichen Namenskonflikt an.
 
 ### Integration und Testing
 
-[ER] Erstellen Sie eine einfache HTML-Vorlage, um die Navigation zwischen den Apps zu testen:
+[ER] Erstellen Sie eine einfache HTML-Vorlage, um die Navigation zwischen den Bereichen zu testen:
 
-Erstellen Sie `meinprojekt/templates/base.html`:
+Erstellen Sie `templates/base.html`:
 ```html
 <!DOCTYPE html>
 <html>
@@ -458,10 +446,10 @@ TEMPLATES = [
 
 [EC] Testen Sie alle implementierten URLs systematisch mit curl oder dem Browser:
 ```bash
-curl http://127.0.0.1:8000/blog/artikel/2024/03/
+curl http://127.0.0.1:8071/blog/artikel/2024/03/
 ```
-Wenn Sie Port 8080 verwenden, ändern Sie den Link entsprechend.
-<!-- EC5 -->
+Wenn Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
+<!-- EC3 -->
 
 [EQ] Welche URL-Pattern würde am besten zu folgenden Anforderungen passen:
 - Benutzerprofile abrufen: `/benutzer/max_mustermann/`
@@ -489,6 +477,11 @@ Geben Sie für jeden Fall das passende Django URL-Pattern an.
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+**Knackpunkte:**
+
+- [EREFR::5]/[EREFR::7]: `blog_urls.py` importiert `blog_views` unter dem Alias `views` (nicht `from . import views`, das würde mit der Haupt-`views.py` kollidieren); Haupt-`urls.py` bindet es korrekt mit `include('meinprojekt.blog_urls')` ein.
+- [EREFR::12]/[EREFR::13]: Beide URL-Module setzen `app_name`; [EREFR::14] verwendet `reverse('blog:index')` mit Namespace-Präfix statt des einfachen Namens.
+- [EREFQ::5]: Student nennt ein konkretes Namenskonflikt-Beispiel (z.B. zwei Module mit `name='index'`) und erklärt, warum Namespaces es lösen.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-routing.md]
