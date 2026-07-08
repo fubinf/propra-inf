@@ -45,22 +45,7 @@ Als Beispiel werden wir in der Aufgabe Logging-Daten betrachten und mit `re` ana
 Kopieren Sie den folgenden String in Ihre Datei:
 
 ```python
-log = """2025-10-22T00:48:50.008Z server01 DatabaseConnector [Warn]: Operation failed for user 421
-2025-10-22T07:30:24.452Z server01 UserService [Info]: Operation pending for user 592
-2025-10-22T08:07:45.961Z server01 PaymentGateway [Error]: Operation completed for user 664
-2025-10-22T09:13:36.468Z server01 PaymentGateway [Info]: Operation completed for user 737
-2025-10-22T10:39:19.163Z server01 PaymentGateway [Debug]: Operation failed for user 68
-2025-10-23T03:40:56.106Z server01 DatabaseConnector [Info]: Operation started for user 389
-2025-10-25T20:00:28.501Z server01 PaymentGateway [Info]: Operation completed for user 141
-2025-10-25T23:04:31.945Z server07 UserService [Warn]: Operation failed for user 999
-2025-10-26T03:38:07.881Z server01 UserService [Warn]: Operation started for user 704
-2025-10-26T20:17:23.887Z server10 UserService [Warn]: Operation failed for user 919
-2025-10-27T01:04:47.393Z server10 PaymentGateway [Warn]: Operation failed for user 999
-2025-10-27T07:43:45.078Z server01 AuthController [Debug]: Operation pending for user 447
-2025-10-27T21:05:57.722Z server01 UserService [Info]: Operation completed for user 671
-2025-10-28T01:46:13.661Z server01 UserService [Info]: Operation started for user 185
-2025-10-28T08:08:37.915Z server01 AuthController [Error]: Operation started for user 212
-"""
+[SNIPPET::ITREE:m_re.py::log]
 ```
 <!-- time estimate 10 min -->
 
