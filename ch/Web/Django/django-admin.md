@@ -103,9 +103,9 @@ Die wichtigsten Dateien sind:
 
 [EC] Wechseln Sie in Ihr `meinprojekt` Projektverzeichnis und erstellen Sie eine App 
 namens `produkte` mit `python manage.py startapp produkte`.
-<!-- time estimate: 5 min -->
-
 <!-- EC1 -->
+
+<!-- time estimate: 5 min -->
 
 ### Projektkonfiguration überprüfen: `check`
 
@@ -122,13 +122,8 @@ Es prüft unter anderem:
 - Template-Einstellungen
 - Sicherheitseinstellungen
 
-Für spezifische Checks können Sie Tags verwenden:
-
-```bash
-python manage.py check --tag=models      # nur Modell-Checks
-python manage.py check --tag=security    # nur Sicherheits-Checks
-python manage.py check --tag=urls        # nur URL-Checks
-```
+Für spezifische Checks können Sie Tags verwenden, z.B. `--tag=security` für nur die
+Sicherheits-Checks.
 
 [EC] Führen Sie `python manage.py check` in Ihrem Projekt aus und 
 dokumentieren Sie das Ergebnis.
@@ -144,46 +139,29 @@ dokumentieren Sie das Ergebnis.
 ### Datenbankmigrationen: `makemigrations` und `migrate`
 
 Django verwendet ein Migrationssystem zur Verwaltung von Datenbankschema-Änderungen.
+`makemigrations` erstellt Migrationsdateien aus Änderungen an Ihren Modellen,
+`migrate` wendet diese Migrationen auf die Datenbank an. Beide Kommandos können
+auch auf eine einzelne App beschränkt werden, z.B. `python manage.py makemigrations produkte`.
 
-```bash
-python manage.py makemigrations          # Erstellt Migrationsdateien
-python manage.py migrate                 # Wendet Migrationen an
-```
-
-Für spezifische Apps:
-
-```bash
-python manage.py makemigrations appname  # nur für eine App
-python manage.py migrate appname         # nur für eine App
-python manage.py migrate appname 0002    # zu spezifischer Migration
-```
-
-Weitere Optionen:
-
-```bash
-python manage.py migrate --fake          # Migration als angewendet markieren
-python manage.py migrate --fake-initial  # nur bei existierenden Tabellen
-```
-
-[EC] Führen Sie die initialen Migrationen für Ihr Projekt aus mit 
-`python manage.py migrate`.
-
+[EC] Führen Sie `python manage.py makemigrations produkte` für die in [EREFC::1] erstellte
+App aus. Da `produkte` noch keine Modelle enthält, erhalten Sie "No changes detected" –
+das ist hier das erwartete Ergebnis. Modelle für `produkte` erstellen wir in [PARTREF::django-model].
 <!-- EC4 -->
 
+[EC] Führen Sie `python manage.py migrate` für Ihr gesamtes Projekt aus.
+<!-- EC5 -->
 
 [EC] Überprüfen Sie den Status der Migrationen mit 
 `python manage.py showmigrations`.
+<!-- EC6 -->
 
-<!-- EC5 -->
+[EQ] In der Ausgabe von [EREFC::6] sind manche Migrationen mit `[X]` markiert, andere ggf. mit `[ ]`.
+Was bedeutet der Unterschied, und warum sollte nach [EREFC::5] keine Migration mehr mit `[ ]` markiert sein?
+<!-- EQ1 -->
 
 <!-- time estimate: 10 min -->
 
 ### Superuser erstellen: `createsuperuser`
-
-**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
-```bash
-python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
-```
 
 Für den Zugang zum Django-Admin-Interface benötigen Sie einen Superuser:
 
@@ -197,18 +175,22 @@ Das Kommando fragt interaktiv nach:
 - E-Mail-Adresse  
 - Passwort (wird zweimal zur Bestätigung eingegeben)
 
-Alternativ können Sie Parameter direkt übergeben:
-
-```bash
-python manage.py createsuperuser --username=admin --email=admin@example.com
-```
+[NOTICE]
+Für den Login im Admin-Interface muss der Entwicklungsserver laufen.
+Falls Sie ihn seit [PARTREF::django-project] beendet haben,
+starten Sie ihn in einem separaten Terminal neu mit `python manage.py runserver 8071`
+(oder dem von Ihnen verwendeten Port).
+[ENDNOTICE]
 
 [EC] Erstellen Sie einen Superuser für Ihr Projekt und loggen Sie sich 
-in das Admin-Interface unter `/admin/` ein.
+unter `http://127.0.0.1:8071/admin/` (oder Ihrem Port) in das Admin-Interface ein.
+<!-- EC7 -->
 
-<!-- time estimate: 5 min -->
+[EQ] Beschreiben Sie, was Sie nach dem Login unter `/admin/` im Browser sehen.
+Welche Modelle werden dort bereits ohne eigenes Zutun zur Verwaltung angeboten?
+<!-- EQ2 -->
 
-<!-- EC6 -->
+<!-- time estimate: 10 min -->
 
 ### Django Shell: `shell`
 
@@ -218,29 +200,11 @@ Die Django Shell bietet eine interaktive Python-Umgebung mit Zugriff auf Ihr Pro
 python manage.py shell
 ```
 
-In der Shell können Sie:
-
-- Modelle importieren und verwenden
-- Datenbankabfragen durchführen
-- Django-Einstellungen testen
-
-```python
-# Beispiel in der Django Shell
-from django.contrib.auth.models import User
-users = User.objects.all()
-print(users)
-```
-
-Für verschiedene Shell-Interpreter:
-
-```bash
-python manage.py shell --interface=ipython  # IPython verwenden
-python manage.py shell --interface=bpython  # BPython verwenden
-```
+In der Shell können Sie Modelle importieren, Datenbankabfragen durchführen und
+Django-Einstellungen inspizieren.
 
 [EC] Öffnen Sie die Django Shell und führen Sie folgende Befehle aus:
-
-<!-- EC7 -->
+<!-- EC8 -->
 
 ```python
 from django.conf import settings
@@ -248,30 +212,19 @@ print(settings.DEBUG)
 print(settings.DATABASES)
 ```
 
+[EQ] Was geben `settings.DATABASES['default']['ENGINE']` und `settings.DATABASES['default']['NAME']`
+jeweils aus, und was sagen diese beiden Werte über Ihre aktuelle Datenbank aus?
+<!-- EQ3 -->
+
 <!-- time estimate: 10 min -->
 
 ### Tests ausführen: `test`
 
-Django bietet ein integriertes Test-Framework:
-
-```bash
-python manage.py test                           # Alle Tests
-python manage.py test appname                   # Tests einer App
-python manage.py test appname.tests.TestClass   # Spezifische Testklasse
-```
-
-Weitere Test-Optionen:
-
-```bash
-python manage.py test --verbosity=2             # Ausführliche Ausgabe
-python manage.py test --keepdb                  # Test-Datenbank behalten
-python manage.py test --parallel                # Parallele Ausführung
-```
+Django bietet ein integriertes Test-Framework, das mit `python manage.py test` alle
+Tests des Projekts ausführt.
 
 [EC] Führen Sie `python manage.py test` aus und dokumentieren Sie das Ergebnis.
-
-
-<!-- EC8 -->
+<!-- EC9 -->
 
 ### Statische Dateien sammeln: `collectstatic`
 
@@ -281,50 +234,35 @@ Für die Produktionsumgebung müssen statische Dateien gesammelt werden:
 python manage.py collectstatic
 ```
 
-Weitere Optionen:
-
-```bash
-python manage.py collectstatic --noinput        # ohne Bestätigung
-python manage.py collectstatic --clear          # Zielverzeichnis leeren
-python manage.py collectstatic --dry-run        # Testlauf ohne Änderungen
-```
-
 [NOTICE]
 Dieses Kommando funktioniert nur, wenn in Ihrer settings.py die Einstellung STATIC_ROOT gesetzt ist,
-z. B.:
-```py
-STATIC_ROOT = BASE_DIR / "staticfiles"
-```
-Dadurch werden alle statischen Dateien beim Befehl collectstatic in das Verzeichnis staticfiles/ kopiert.
+z. B. `STATIC_ROOT = BASE_DIR / "staticfiles"`. Wir konfigurieren das hier nicht weiter;
+es genügt, `collectstatic` als Übersichtswissen zu kennen. Details finden Sie bei Bedarf
+in der [Django-Dokumentation zu statischen Dateien](https://docs.djangoproject.com/en/stable/howto/static-files/).
 [ENDNOTICE]
 
-<!-- time estimate: 10 min -->
+<!-- time estimate: 5 min -->
 
-### Weitere nützliche Kommandos
+### Weitere Kommandos zur Kenntnisnahme (Übersicht)
 
-**Datenbankshell: `dbshell`**
+Die folgenden Kommandos werden hier nicht praktisch geübt, sollten Ihnen aber vom Namen
+her bekannt sein, falls Sie sie in der Dokumentation oder in fremdem Code antreffen:
 
-Direkter Zugang zur Datenbank-Shell:
+- `dbshell`: direkter Zugang zur Datenbank-Shell
+- `dumpdata`/`loaddata`: Daten als JSON exportieren bzw. importieren
 
-```bash
-python manage.py dbshell
-```
-
-**Daten exportieren/importieren: `dumpdata` und `loaddata`**
-
-```bash
-python manage.py dumpdata > backup.json         # Daten exportieren
-python manage.py loaddata backup.json           # Daten importieren
-```
-
-**Datenbank zurücksetzen: `flush`**
+### Datenbank zurücksetzen: `flush`
 
 ```bash
 python manage.py flush                           # Alle Daten löschen
 ```
 
 [EC] Testen Sie `python manage.py flush`, um das Zurücksetzen der Datenbank zu überprüfen.
-<!-- EC9 -->
+<!-- EC10 -->
+
+[EQ] Worin unterscheidet sich `flush` von `migrate`? Eines der beiden Kommandos verändert
+das Datenbankschema, das andere den Dateninhalt – welches macht was?
+<!-- EQ4 -->
 
 <!-- time estimate: 5 min -->
 
@@ -341,12 +279,21 @@ python manage.py flush                           # Alle Daten löschen
 [SECTION::submission::program]
 
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+**Knackpunkte:**
+
+- [EREFC::5]/[EREFC::6]: `migrate` wendet die bereits aus [PARTREF::django-basics] bekannten Migrationen an (keine erneute Ausführung nötig); `showmigrations` zeigt sie als `[X]` angewendet.
+- [EREFC::7]/[EREFQ::2]: Superuser erfolgreich erstellt; Student beschreibt das Admin-Interface unter `/admin/` korrekt (Login-Formular, danach Übersicht über `Users` und `Groups`).
+- [EREFQ::3]: Student erklärt `ENGINE` (verwendetes Datenbank-Backend, hier sqlite3) und `NAME` (Pfad zur Datenbankdatei) korrekt.
 
 ### Kommandoprotokoll
 [PROT::ALT:django-admin.prot]
+
+### Fragen
+[INCLUDE::ALT:django-admin.md]
 
 [ENDINSTRUCTOR]
