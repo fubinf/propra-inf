@@ -38,7 +38,7 @@ mathematische Vorwissen bereits mitbringen. Wer das nur teilweise tut, kann die 
 bearbeiten, muss sich die fehlenden Grundlagen aber zusätzlich selbst aneignen (außerhalb des 
 angegebenen Zeitbudgets) — die betroffene Aufgabe verweist dafür auf eine passende Quelle.
 
-Benötigtes Vorwissen pro Aufgabe (Stichworte):
+Benötigtes Vorwissen pro Aufgabe:
 
 - **np-Einführung**, **np-array**, **np-array2**, **np-array3**, **np-index-slice**, 
   **np-bitwise-string**, **np-sort-filter**: kein zusätzliches mathematisches Vorwissen nötig

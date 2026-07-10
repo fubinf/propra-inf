@@ -35,7 +35,7 @@ der Numerik) für die jeweilige Aufgabe bereits mitbringen. Wer das nur teilweis
 Aufgaben trotzdem bearbeiten, muss sich die fehlenden Grundlagen aber zusätzlich selbst aneignen 
 (außerhalb des angegebenen Zeitbudgets) — jede Aufgabe verweist dafür auf eine passende Quelle.
 
-Benötigtes Vorwissen pro Aufgabe (Stichworte):
+Benötigtes Vorwissen pro Aufgabe:
 
 - **sp-Einführung**: Grundbegriffe der Analysis und linearen Algebra (Integral, lineares 
   Gleichungssystem, Extremstelle einer Funktion) zum Zuordnen von Aufgabenbeschreibungen zu Modulen
