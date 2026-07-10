@@ -37,10 +37,11 @@ helfen folgende Quellen:
 SciPy ist nicht in der Standard-Python-Installation enthalten und muss separat installiert werden. 
 Als Abhängigkeit wird NumPy automatisch mitinstalliert.
 
-**Installation mit pip:**
+[EC] Installation mit pip:
 ```python
 python3 -m pip install scipy
 ```
+<!-- EC1 -->
 
 **Verifikation der Installation:**
 ```python
@@ -168,6 +169,7 @@ Nachteil, wenn `pi` ebenfalls nur über `physical_constants` abrufbar wäre?
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
@@ -182,6 +184,9 @@ Nachteil, wenn `pi` ebenfalls nur über `physical_constants` abrufbar wäre?
 - [EREFQ::3] Studierende erkennen "exakt definiert vs. experimentell gemessen mit Unsicherheit" als 
   Unterscheidungskriterium — nicht die ungenaue Unterscheidung "mathematisch vs. physikalisch" 
   (Gegenbeispiel: `kilo`/`acre` sind exakt, aber keine mathematischen Konstanten).
+
+### Kommandoprotokoll
+[PROT::ALT:sp-Einführung.prot]
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-Einführung.md]
