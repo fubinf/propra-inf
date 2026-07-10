@@ -2,46 +2,25 @@ title: SciPy Grundlagen verstehen und anwenden
 stage: alpha
 timevalue: 1
 difficulty: 1
-assumes: np-Einführung 
+assumes: np-Einführung, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe die Bedeutung und Anwendungsgebiete von SciPy in der wissenschaftlichen Datenverarbeitung.
-- Ich kann SciPy erfolgreich installieren und die Installation verifizieren.
-- Ich verstehe die Grundlagen des SciPy-Ökosystems und seiner wichtigsten Module.
+- Ich kann SciPy installieren und grundlegende Funktionalität verifizieren.
+- Ich verstehe die wichtigsten Module von SciPy und ihre Anwendungsbereiche.
 - Ich kann das SciPy-Constants-Modul verwenden, um mathematische und physikalische Konstanten abzurufen.
-- Ich beherrsche die grundlegende Verwendung verschiedener SciPy-Module für wissenschaftliche Berechnungen.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-SciPy (Scientific Python) ist eine umfassende Bibliothek für wissenschaftliches und technisches Rechnen, 
-die auf NumPy aufbaut. Sie erweitert NumPy um spezialisierte Algorithmen und Funktionen für 
-fortgeschrittene mathematische Berechnungen. SciPy ist ein wichtiger Baustein des 
-wissenschaftlichen Python-Ökosystems und ermöglicht komplexe Berechnungen in Bereichen 
-wie Optimierung, Integration, lineare Algebra und Signalverarbeitung.
+SciPy erweitert [PARTREF::NumPy] um spezialisierte Algorithmen und Funktionen 
+für wissenschaftliche Berechnungen wie Optimierung, Integration und lineare Algebra.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-
-### SciPy und das wissenschaftliche Python-Ökosystem
-
-Das wissenschaftliche Python-Ökosystem besteht aus mehreren eng verzahnten Bibliotheken, 
-die gemeinsam eine leistungsstarke Plattform für wissenschaftliche Berechnungen bilden:
-
-- **NumPy**: Grundlage für N-dimensionale Arrays und grundlegende mathematische Operationen
-- **SciPy**: Erweiterte wissenschaftliche Algorithmen und spezialisierte Funktionen
-- **Matplotlib**: Visualisierung und Erstellung von Diagrammen
-- **Pandas**: Datenanalyse und Datenstrukturen
-
-Diese Kombination ermöglicht umfassende Datenanalyse und wissenschaftliche Berechnungen, 
-die eine Alternative zu MATLAB darstellen.
-
-Optional: Weitere Informationen zum SciPy-Ökosystem finden Sie hier:
-[SciPy-Dokumentation](https://docs.scipy.org/doc/scipy/tutorial/)
 
 ### SciPy Installation und Verifikation
 
@@ -50,12 +29,7 @@ Als Abhängigkeit wird NumPy automatisch mitinstalliert.
 
 **Installation mit pip:**
 ```python
-python3 -m pip install -U scipy
-```
-
-**Installation mit conda (bei Anaconda/Miniconda):**
-```python
-conda install scipy
+python3 -m pip install scipy
 ```
 
 **Verifikation der Installation:**
@@ -64,16 +38,19 @@ import scipy
 print(scipy.__version__)
 ```
 
-[NOTICE]
-Es wird empfohlen, pip vor der Installation zu aktualisieren mit: `python3 -m pip install -U pip`
-[ENDNOTICE]
+[ER] Schreiben Sie ein Python-Programm, das sowohl die installierte SciPy-Version als auch die 
+NumPy-Version ausgibt, die als Abhängigkeit automatisch mitinstalliert wurde 
+(verwenden Sie `numpy.__version__`).
 
-[EQ] Erklären Sie den Unterschied zwischen NumPy und SciPy. Warum benötigt SciPy NumPy als Abhängigkeit?
-<!-- EQ1 -->
+[EQ] Sie haben gesehen, dass beim Installieren von SciPy automatisch NumPy mitinstalliert wird. 
+Warum baut SciPy auf NumPy auf, anstatt eigene Array-Strukturen von Grund auf neu zu implementieren? 
+Welchen Nachteil hätte die Neuentwicklung für das SciPy-Team gehabt?
 
-[ER] Schreiben Sie ein Python-Programm, das SciPy importiert, die Version ausgibt und 
-überprüft, ob die Installation erfolgreich war. Geben Sie zusätzlich eine Erfolgsmeldung aus.
-<!-- ER1 -->
+[HINT::Warum baut SciPy auf NumPy auf?]
+[scipy.org](https://scipy.org/) bestätigt, dass SciPy NumPy erweitert. Überlegen Sie anhand 
+Ihrer Beobachtung aus [EREFR::1] und allgemeiner Software-Engineering-Prinzipien (Wiederverwendung, 
+Interoperabilität mit dem restlichen Python-Ökosystem).
+[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
@@ -102,9 +79,6 @@ result = optimize.minimize_scalar(lambda x: x**2 + 4*x + 1)
 print("Minimum bei x =", result.x)
 ```
 
-Optional: Detaillierte Modulbeschreibungen finden Sie hier:
-[SciPy Reference Guide](https://docs.scipy.org/doc/scipy/reference/)
-
 [EQ] Welches SciPy-Modul würden Sie für folgende Aufgaben verwenden? Begründen Sie Ihre Auswahl:
 
 - Berechnung der Fläche unter einer Kurve
@@ -112,42 +86,12 @@ Optional: Detaillierte Modulbeschreibungen finden Sie hier:
 - Filterung eines verrauschten Signals
 - Bestimmung des Minimums einer mathematischen Funktion
 
-<!-- EQ2 -->
-
 <!-- time estimate: 10 min -->
 
 ### Constants-Modul verstehen und berechnen: `constants`
 
 Das Constants-Modul (`scipy.constants`) stellt viele mathematische und physikalische Konstanten bereit. 
-Es ist besonders nützlich für wissenschaftliche Berechnungen.
-
-**Formatierte Ausgabe von Zahlen:**
-
-Bevor wir mit den Konstanten arbeiten, ist es wichtig zu verstehen, wie man Zahlen formatiert ausgibt.
-Python bietet mit f-Strings eine elegante Möglichkeit zur Formatierung:
-
-```python
-from scipy import constants
-
-# Einfache Ausgabe (viele Dezimalstellen)
-print(f"Pi = {constants.pi}")
-
-# Formatierte Ausgabe mit kontrollierten Dezimalstellen
-print(f"Pi mit 2 Nachkommastellen: {constants.pi:.2f}")
-print(f"Pi mit 6 Nachkommastellen: {constants.pi:.6f}")
-
-# Wissenschaftliche Notation
-große_zahl = constants.c ** 2  # Lichtgeschwindigkeit im Quadrat
-print(f"c² = {große_zahl:.2e}")  # 2 signifikante Stellen in wissenschaftlicher Notation
-```
-
-**Wichtige Format-Spezifizierer:**
-
-- `:.2f` - Fließkommazahl mit 2 Dezimalstellen
-- `:.6f` - Fließkommazahl mit 6 Dezimalstellen
-- `:.2e` - Wissenschaftliche Notation mit 2 signifikanten Stellen
-- `:8.4f` - Gesamt 8 Zeichen breit, 4 Dezimalstellen
-- `:,.0f` - Tausendertrennzeichen, keine Dezimalstellen
+Für formatierte Ausgabe mit Dezimalstellen siehe [PARTREF::py-Fstrings].
 
 **Grundlegende mathematische Konstanten:**
 ```python
@@ -173,77 +117,41 @@ all_constants = dir(constants)
 print(all_constants)  # Zeigt alle Attributnamen als Liste
 ```
 
-Optional: Vollständige Liste aller Konstanten finden Sie hier:
-[SciPy Constants Reference](https://docs.scipy.org/doc/scipy/reference/constants.html)
+[ER] Schreiben Sie ein Programm, das folgende Konstanten aus `scipy.constants` mit 4 Nachkommastellen 
+formatiert ausgibt (siehe [PARTREF::py-Fstrings] für die Formatierung):
 
-[EQ] Führen Sie `dir(constants)` aus, um alle verfügbaren Konstanten anzuzeigen. 
-Analysieren Sie die ausgegebene Liste: Was fällt Ihnen bei der Namensgebung der Konstanten auf? 
-Welche Muster oder Kategorien können Sie erkennen?
-<!-- EQ3 -->
+- Kreiszahl `pi` und den goldenen Schnitt `golden`
+- Zwei physikalische Konstanten Ihrer Wahl, die oben noch nicht vorkamen (z.B. `speed_of_light`, 
+  `Avogadro`, `Boltzmann` oder `elementary_charge`) — nachschlagen in der 
+  [SciPy Constants Reference](https://docs.scipy.org/doc/scipy/reference/constants.html)
+- Ein SI-Präfix Ihrer Wahl (z.B. `kilo`, `mega` oder `nano`)
 
-[ER] Schreiben Sie ein Programm, das verschiedene Konstanten aus `scipy.constants` ausgibt:
-
-- Geben Sie π (pi) und den goldenen Schnitt (golden) aus
-- Geben Sie die Größe eines Acres in Quadratmetern aus (verwenden Sie `constants.acre`)
-- Geben Sie die Größe eines Hektars in Quadratmetern aus (verwenden Sie `constants.hectare`)
-
-<!-- ER2 -->
 <!-- time estimate: 15 min -->
 
-**Einheitenumrechnungen mit Constants:**
+Das Constants-Modul bietet mit `constants.physical_constants` außerdem ein Dictionary, das zu jeder 
+physikalischen Konstante auch Einheit und Messunsicherheit liefert:
+
 ```python
 from scipy import constants
 
-# Beispiel: Energieberechnungen
-masse_kg = 1.0  # 1 kg
-energie_joule = masse_kg * constants.c**2  # E = mc²
-print(f"Energie von 1kg Masse: {energie_joule:.2e} Joule")
-
-# Beispiel: Zeitumrechnungen
-zeit_sekunden = 2 * constants.hour + 30 * constants.minute
-print(f"2 Stunden 30 Minuten = {zeit_sekunden} Sekunden")
+value, unit, uncertainty = constants.physical_constants['speed of light in vacuum']
+print(f"Wert: {value} {unit} (Unsicherheit: {uncertainty})")
 ```
 
-**Arbeiten mit verschiedenen Konstanten-Kategorien:**
-```python
-# Mathematische Konstanten
-print("π =", constants.pi)
-print("e =", constants.e)
+[ER] Geben Sie auf diese Weise Wert, Einheit und Unsicherheit für die folgenden drei physikalischen 
+Konstanten aus `physical_constants` aus: `'Planck constant'`, `'electron mass'` und eine weitere 
+Konstante Ihrer Wahl.
 
-# Physikalische Konstanten  
-print("Lichtgeschwindigkeit =", constants.c, "m/s")
-print("Planck-Konstante =", constants.h, "J⋅s")
-
-# SI-Präfixe
-print("Kilo =", constants.kilo)
-print("Mega =", constants.mega)
-```
-
-[ER] Schreiben Sie ein Programm, das grundlegende Umrechnungen mit SciPy-Konstanten durchführt:
-
-- Berechnen Sie, wie viele Sekunden 2 Stunden und 30 Minuten sind
-  (Verwenden Sie `constants.hour` und `constants.minute`)
-- Rechnen Sie 10 Acres in Quadratmeter um (verwenden Sie `constants.acre`)
-- Geben Sie π (pi) und die Lichtgeschwindigkeit (c) aus
-- Geben Sie alle Ergebnisse mit einer kurzen Beschreibung aus
-
-<!-- ER3 -->
-
-### Zusammenfassung und Ausblick
-
-SciPy erweitert NumPy um spezialisierte wissenschaftliche Funktionen und ist essentiell für:
-
-- **Wissenschaftliche Berechnungen**: Optimierung, Integration, lineare Algebra
-- **Konstanten und Einheiten**: Mathematische und physikalische Konstanten
-- **Spezialisierte Algorithmen**: Signal- und Bildverarbeitung, Statistik
-- **Interoperabilität**: Nahtlose Integration mit NumPy und anderen Bibliotheken
-
-Diese Grundlagen ermöglichen fortgeschrittene Anwendungen in der Datenanalyse, 
-Simulation und wissenschaftlichen Modellierung.
-
-Optional: Für weiterführende Tutorials siehe:
-[SciPy Lecture Notes](https://scipy-lectures.org/)
+[EQ] In [EREFR::2] haben Sie `constants.pi` als einfachen Zahlenwert abgerufen. In [EREFR::3] lieferte 
+`physical_constants` stattdessen ein Tupel aus Wert, Einheit und Unsicherheit. Warum stellt SciPy 
+physikalische Konstanten anders zur Verfügung als mathematische Konstanten wie `pi`? Was wäre der 
+Nachteil, wenn `pi` ebenfalls nur über `physical_constants` abrufbar wäre?
 <!-- time estimate: 20 min -->
+
+### Weiterführend
+
+- [SciPy Reference Guide](https://docs.scipy.org/doc/scipy/reference/) – Detaillierte Modulbeschreibungen
+- [SciPy Constants Reference](https://docs.scipy.org/doc/scipy/reference/constants.html) – Vollständige Liste aller Konstanten
 
 [ENDSECTION]
 

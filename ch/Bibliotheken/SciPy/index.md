@@ -26,3 +26,23 @@ Die offizielle SciPy-Dokumentation bietet verschiedene Einstiegspunkte:
 - **[SciPy Lecture Notes](https://scipy-lectures.org/)**: 
   Umfassende Tutorials, die SciPy im Kontext des gesamten wissenschaftlichen 
   Python-Ökosystems behandeln.
+
+[WARNING]
+**Diese Aufgabengruppe ist nicht "normal" konzipiert.**
+
+Primäre Zielgruppe sind Studierende, die das konzeptuelle mathematische Vorwissen (inkl. Grundzüge 
+der Numerik) für die jeweilige Aufgabe bereits mitbringen. Wer das nur teilweise tut, kann die 
+Aufgaben trotzdem bearbeiten, muss sich die fehlenden Grundlagen aber zusätzlich selbst aneignen 
+(außerhalb des angegebenen Zeitbudgets) — jede Aufgabe verweist dafür auf eine passende Quelle.
+
+Benötigtes Vorwissen pro Aufgabe (Stichworte):
+
+- **sp-Einführung**: Grundbegriffe der Analysis und linearen Algebra (Integral, lineares 
+  Gleichungssystem, Extremstelle einer Funktion) zum Zuordnen von Aufgabenbeschreibungen zu Modulen
+- **sp-linalg**: Lineare Algebra (Matrixzerlegungen, Eigenwerte, Vektornormen, Konditionszahl)
+- **sp-integrate**: Analysis (bestimmte Integrale), gewöhnliche Differentialgleichungen
+- **sp-optimize**: Analysis (Ableitungen, Extremstellen) — geringerer Bedarf
+- **sp-stats**: Wahrscheinlichkeitstheorie, Statistik (Verteilungen, Hypothesentests)
+- **sp-interpolate**: Analysis (Polynome, Stetigkeit) — geringerer Bedarf
+- **sp-sparse**: kaum Mathe nötig, eher Grundlagen der Algorithmik (Graphen, kürzeste Wege)
+[ENDWARNING]
