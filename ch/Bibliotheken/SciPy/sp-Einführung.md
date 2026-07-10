@@ -119,6 +119,20 @@ print(constants.acre)    # Ein Acre in Quadratmetern
 print(constants.hectare) # Ein Hektar in Quadratmetern
 ```
 
+**SI-Präfixe als Umrechnungsfaktoren:**
+
+Neben mathematischen und physikalischen Konstanten stellt `scipy.constants` auch SI-Präfixe 
+als Umrechnungsfaktoren bereit ("SI" steht für "Système International d'Unités", das 
+internationale Einheitensystem) — anders als `pi` oder `acre` handelt es sich hier nicht um eine 
+eigenständige Größe, sondern um den Faktor, mit dem ein Wert multipliziert wird:
+
+```python
+from scipy import constants
+
+print(constants.kilo)  # 1000.0 — Faktor für "Kilo" (z.B. 1 km = 1 * constants.kilo Meter)
+print(constants.nano)  # 1e-09  — Faktor für "Nano"
+```
+
 **Alle verfügbaren Konstanten anzeigen:**
 ```python
 from scipy import constants
@@ -135,7 +149,7 @@ formatiert ausgibt (siehe [PARTREF::py-Fstrings] für die Formatierung):
 - Zwei physikalische Konstanten Ihrer Wahl, die oben noch nicht vorkamen (z.B. `speed_of_light`, 
   `Avogadro`, `Boltzmann` oder `elementary_charge`) — nachschlagen in der 
   [SciPy Constants Reference](https://docs.scipy.org/doc/scipy/reference/constants.html)
-- Ein SI-Präfix Ihrer Wahl (z.B. `kilo`, `mega` oder `nano`)
+- Ein SI-Präfix Ihrer Wahl außer `kilo` und `nano` (z.B. `mega`, `milli` oder `giga`)
 
 <!-- time estimate: 15 min -->
 
