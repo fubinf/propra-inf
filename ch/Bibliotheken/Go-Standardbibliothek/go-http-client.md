@@ -136,20 +136,7 @@ Benutzen Sie die Funktion `prettyPrint(r io.Reader)`, um `Response.Body` auf der
 anzuzeigen:
 
 ```go
-func prettyPrint(r io.Reader) {
-    var buf bytes.Buffer
-    data, err := io.ReadAll(r)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    if err = json.Indent(&buf, data, "", "  "); err != nil {
-        fmt.Println(err)
-        return
-    }
-
-    fmt.Println(buf.String())
-}
+[SNIPPET::ITREE:go-http-client.go::pp]
 ```
 
 __Im Allgemeinen gilt:__ Schlägt eine Anfrage fehl, darf sie die anderen nicht beeinträchtigen.
