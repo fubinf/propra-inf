@@ -22,6 +22,16 @@ für wissenschaftliche Berechnungen wie Optimierung, Integration und lineare Alg
 
 [SECTION::instructions::detailed]
 
+### Vorwissen
+
+Für die Modulauswahl weiter unten sind Grundbegriffe der Analysis und linearen Algebra hilfreich 
+(Integral, lineares Gleichungssystem, Extremstelle einer Funktion). Falls Ihnen diese fehlen, 
+helfen folgende Quellen:
+
+- [Integralrechnung (Wikipedia)](https://de.wikipedia.org/wiki/Integralrechnung)
+- [Lineares Gleichungssystem (Wikipedia)](https://de.wikipedia.org/wiki/Lineares_Gleichungssystem)
+- [Extremwert (Wikipedia)](https://de.wikipedia.org/wiki/Extremwert)
+
 ### SciPy Installation und Verifikation
 
 SciPy ist nicht in der Standard-Python-Installation enthalten und muss separat installiert werden. 
@@ -161,6 +171,17 @@ Nachteil, wenn `pi` ebenfalls nur über `physical_constants` abrufbar wäre?
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+**Knackpunkte:**
+
+- [EREFR::2] Die gewählten physikalischen Konstanten und der SI-Präfix sind tatsächlich neu 
+  nachgeschlagen, nicht nur `pi`/`golden`/`acre`/`hectare` aus den obigen Beispielen kopiert.
+- [EREFQ::2] Alle vier Zuordnungen sind korrekt, und die Begründung bezieht sich auf das jeweilige 
+  mathematische Konzept (Integral/lineares Gleichungssystem/Extremstelle), nicht nur auf den 
+  Modulnamen selbst.
+- [EREFQ::3] Studierende erkennen "exakt definiert vs. experimentell gemessen mit Unsicherheit" als 
+  Unterscheidungskriterium — nicht die ungenaue Unterscheidung "mathematisch vs. physikalisch" 
+  (Gegenbeispiel: `kilo`/`acre` sind exakt, aber keine mathematischen Konstanten).
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-Einführung.md]
