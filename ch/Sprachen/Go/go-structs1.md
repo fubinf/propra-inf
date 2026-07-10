@@ -28,11 +28,7 @@ anderen Strukturen.
 Strukturen bestehen aus _Feldern_, die jeweils einen Namen und einen festen Typ haben:
 
 ```go
-type Person struct {
-    FirstName string
-    LastName  string
-    Age       int
-}
+[SNIPPET::ITREE:go-structs1.go::person]
 ```
 
 Lese- und Schreibzugriff auf die Felder einer Struktur erfolgt mithilfe von `.`:
@@ -89,10 +85,10 @@ in Go wird meist der Anfangsbuchstabe des Typnamens benutzt
 - `Area() float64` — Fläche berechnen;
 - benutzen Sie `math.Pi` für die Kreiszahl Pi.
 
-[ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
+Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
 ```go
-[INCLUDE::include/go-structs-methods-control-snippet.go]
+[SNIPPET::ITREE:go-structs1.go::test_methods]
 ```
 
 <!-- time estimate: 10 min -->
@@ -111,10 +107,10 @@ Feld definieren: `Position string`.
 [ER] Implementieren Sie eine neue Methode `Print` auf `Person`, die den
 vollständigen Namen und das Alter auf die Kommandozeile ausgibt.
 
-[ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
+Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
 ```go
-[INCLUDE::include/go-structs-embedding-control-snippet.go]
+[SNIPPET::ITREE:go-structs1.go::test_embedding]
 ```
 
 [NOTICE]
@@ -122,8 +118,7 @@ Da `Person` in `Employee` eingebettet wurde, können Sie auf alle Felder und
 Methoden von `Person` explizit über `e.Person.` zugreifen.
 [ENDNOTICE]
 
-[EQ] Stellen Sie sich vor, dass eine neue Methode `Print` auf `Employee`
-definiert wurde.
+[EQ] Stellen Sie sich vor, dass eine neue Methode `Print` auf `Employee` definiert wurde.
 Wie ändert sich die Ausgabe der Testfunktion?
 
 [HINT::Ich bin verwirrt]
@@ -136,10 +131,7 @@ Das gilt für Methoden ganz ähnlich wie für Felder.
 [ER] Stellen Sie sicher, dass Ihre `main`-Funktion genau so aussieht:
 
 ```go
-func main() {
-    testMethods()
-    testEmbedding()
-}
+[SNIPPET::ITREE:go-structs1.go::main]
 ```
 
 [EC] Führen Sie nun das Programm mittels `go run` aus.
