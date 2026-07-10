@@ -151,7 +151,23 @@ Schlüsseltypen) und rufen Sie die Funktion `simulateRequest` am Ende Ihrer `mai
 **Wichtig:** `requestId` muss über den Kontext übergeben werden!
 
 ```go
-[INCLUDE::include/go-context-logging-snippet.go]
+package main
+
+import (
+  "context"
+  "fmt"
+  "math/rand"
+)
+
+func withRequestId(ctx context.Context, id string) context.Context {
+    // requestId zum Kontext hinzufügen
+}
+
+func getRequestId(ctx context.Context) string {
+    // requestId aus dem Kontext auslesen
+}
+
+[SNIPPET::ITREE:go-context.go::helpers]
 ```
 
 [HINT::Ich weiß nicht, wie ich die `requestId` von `any` wieder zu `string` umwandle]
@@ -167,11 +183,7 @@ Dieses Wissen können Sie in den Aufgaben [PARTREF::go-interfaces] und [PARTREF:
 Für ein korrektes Kommandoprotokoll muss Ihre `main`-Funktion folgendermaßen aussehen:
 
 ```go
-func main() {
-    myCancel()
-    myTimeout()
-    simulateRequest()
-}
+[SNIPPET::ITREE:go-context.go::main]
 ```
 
 [EC] Führen Sie das Programm mittels `go run` aus.
