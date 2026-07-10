@@ -68,6 +68,11 @@ zu den Methoden `t.Fail()`, `t.Error()`, `t.FailNow()` und `t.Fatal()`
 [EQ] Überlegen Sie:
 In welchen Situationen kann es sinnvoll sein, einen Test nach einem Fehlschlag weiterlaufen zu lassen, statt ihn sofort
 abzubrechen?
+
+[ER] Schreiben Sie eine Testfunktion, die immer fehlschlägt.
+Den Funktionsnamen und die Fehlermeldung dürfen Sie frei wählen.
+
+[EC] Führen Sie die immer fehlschlagende Testfunktion mit `go test` aus.
 <!-- time estimate: 15 min -->
 
 
@@ -93,7 +98,6 @@ func TestSomethingWithFiles(t *testing.T) {
 ```
 
 [EQ] Welche anderen Anwendungen der Methode `Cleanup()` fallen Ihnen ein?
-
 <!-- time estimate: 5 min -->
 
 
@@ -154,8 +158,10 @@ Denken Sie daran, Ihre Testfälle zu benennen (beispielsweise durch Definition i
 
 ### Fuzzing
 
-Fuzzing ist ein Testverfahren, welches durch eine enorme Menge zufällig generierter Eingaben Ausführungszweige in
+Fuzzing ist ein Testverfahren, welches durch eine enorme Menge automatisch generierter Eingaben Ausführungszweige in
 einer Funktion findet.
+Die Eingaben werden dabei nicht rein zufällig erzeugt, sondern durch Heuristiken gesteuert, die versuchen, möglichst
+viele Code-Pfade abzudecken (Coverage-Guided Fuzzing).
 So lassen sich Randfälle finden, die beim Unit-Testing oft übersehen werden.
 
 Dieses Testverfahren ist besonders beliebt beim Testen von Hochverfügbarkeitssystemen und in der Computersicherheit.
@@ -184,8 +190,16 @@ Die Testfunktion soll `FuzzTrimSpaces` heißen.
 [INCLUDE::include/go-testing-fuzzing-snippet.go]
 ```
 
-[EC] Führen Sie den Test aus (`go test -fuzz FuzzTrimSpaces`) und geben Sie die Ausgabe im Kommandoprotokoll ab.
+[EC] Führen Sie den Test mittels `go test -run=^$ -fuzz=.` aus und geben Sie die Ausgabe im Kommandoprotokoll ab.
 (Geben Sie die Ausgabe ab, die einen Defekt entdeckt! Wiederholen Sie den Test bei Bedarf.)
+
+[FOLDOUT::Was bedeuten die Flags?]
+`^$` ist ein Regex, der die leere Zeichenkette trifft.
+Durch `-run=^$` schließen wir alle Unittests aus.
+
+`-fuzz=.` wählt den (einzigen) passenden Fuzztest aus.
+Gibt es mehrere Fuzztests, muss der Name genau angegeben werden, beispielsweise `-fuzz=FuzzTrimSpaces`.
+[ENDFOLDOUT]
 
 [NOTICE]
 Falls `go test` beim Fuzzing eine Eingabe findet, für die der Test nicht erfolgreich ist, wird diese automatisch im
@@ -243,13 +257,13 @@ Dabei werden `b.N` Iterationen automatisch über mehrere Goroutinen verteilt.
 Um die Benchmark-Funktionen auszuführen, muss der Flag `-bench` gesetzt werden.
 Hier ist eine kleine Auflistung von oft verwendeten Flags:
 
-- `go test -bench .` — alle Benchmarks in dem Modul ausführen;
-- `go test -bench BenchmarkSomeFunction` — eine konkrete Benchmark ausführen;
-- (genereller auch `go test -bench regexp`, mehr zu regulären Ausdrücken in [PARTREF::RegExp])
-- `go test -bench . -benchmem` — Benchmark mit Statistiken zur Speicherbenutzung (diese können Sie auch mit dem Aufruf
+- `go test -bench=.` — alle Benchmarks in dem Modul ausführen;
+- `go test -bench=BenchmarkSomeFunction` — eine konkrete Benchmark ausführen;
+- (genereller auch `go test -bench=regexp`, mehr zu regulären Ausdrücken in [PARTREF::RegExp])
+- `go test -bench=. -benchmem` — Benchmark mit Statistiken zur Speicherbenutzung (diese können Sie auch mit dem Aufruf
    `b.ReportAllocs()` anzeigen lassen);
-- `go test -bench . -benchtime 10s` — die Dauer einer Benchmark spezifizieren;
-- `go test -bench . -count 5` — die komplette Benchmark fünfmal ausführen.
+- `go test -bench=. -benchtime=10s` — die Dauer einer Benchmark spezifizieren;
+- `go test -bench=. -count=5` — die komplette Benchmark fünfmal ausführen.
 
 (Weitere Flags lernen Sie in der
 [Dokumentation zu Testflags](https://pkg.go.dev/cmd/go#hdr-Testing_flags)
@@ -291,7 +305,8 @@ BenchmarkIntMap-10                   24481357                  49.33 ns/op
 Uns interessiert, wie viele Nanosekunden eine Operation/Iteration gedauert hat, also `49.33` im obigen Beispiel.
 [ENDHINT]
 
-[EC] Führen Sie die Benchmark mittels `go test -bench .` aus.
+[EC] Führen Sie die Benchmark mittels `go test -run=^$ -bench=.` aus.
+(Genauso wie vorher werden alle Unittests durch `-run=^$` übersprungen.)
 
 [EQ] Diskutieren Sie die Ergebnisse.
 Welche Option ist schneller und warum?
