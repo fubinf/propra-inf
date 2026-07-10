@@ -115,24 +115,8 @@ Konvertieren Sie alle kleingeschriebenen Schlüssel in großgeschriebene Namen (
 Sie dürfen sowohl anonyme Strukturen als auch eigene Typdefinitionen verwenden und die Struktur darf in einer globalen
 Variable gespeichert werden.
 
-```json
-{
-  "car": {
-    "make": "Fiat",
-    "model": "500",
-    "color": "white",
-    "previous_owners": [
-      {
-        "name": "Max",
-        "age": 30
-      },
-      {
-        "name": "Annika",
-        "age": 25
-      }
-    ]
-  }
-}
+```go
+[SNIPPET::ITREE:go-json.go::json_string]
 ```
 <!-- time estimate: 10 min -->
 
@@ -245,32 +229,13 @@ in der Sie es mithilfe von `json.Unmarshal` in eine Go-Struktur konvertieren und
 [ER] Legen Sie neben Ihrem Programm eine neue Datei `car.json` an und kopieren Sie folgendes JSON in diese Datei:
 
 ```json
-{
-  "make": "Volkswagen",
-  "model": "Golf 7",
-  "color": "silver",
-  "previous_owners": [
-    {
-      "name": "Dave",
-      "age": 25
-    }
-  ]
-}
+[INCLUDE::ITREE:car.json]
 ```
 
 Ergänzen Sie anschließend diese Funktion:
 
 ```go
-func jsonFromFile() {
-    f, err := os.Open("car.json")
-    if err != nil {
-        panic(err)
-    }
-    defer f.Close()
-
-    // verwenden Sie hier json.NewDecoder, 
-    // um JSON aus car.json in Car umzuwandeln und auf der Kommandozeile auszugeben.
-}
+[SNIPPET::ITREE:go-json.go::helper_func]}
 ```
 
 [WARNING]
@@ -280,11 +245,7 @@ Die Datei `car.json` sollte zusammen mit `go-json.go` im Taskgroup-Verzeichnis l
 Vergewissern Sie sich, dass Ihre `main`-Funktion folgendermaßen aussieht:
 
 ```go
-func main() {
-    marshal()
-    unmarshal()
-    jsonFromFile()
-}
+[SNIPPET::ITREE:go-json.go::main]
 ```
 
 [EC] Führen Sie Ihr Programm mittels `go run` aus.
