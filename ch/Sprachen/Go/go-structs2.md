@@ -75,9 +75,7 @@ der obigen leeren Struktur erzeugt und deren Adressen auf die Kommandozeile ausg
 [ER] Stellen Sie sicher, dass Ihre `main`-Funktion genau so aussieht:
 
 ```go
-func main() {
-    testEmptyStruct()
-}
+[SNIPPET::ITREE:go-structs2.go::main]
 ```
 
 [EC] Führen Sie nun das Programm mittels `go run` aus.
