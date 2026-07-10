@@ -147,7 +147,7 @@ Denken Sie daran, Ihre Testfälle zu benennen (beispielsweise durch Definition i
 `t.Run()` zu organisieren, sodass die Ausgabe im Terminal klar und verständlich ist.
 
 ```go
-[INCLUDE::include/go-testing-tdt-snippet.go]
+[SNIPPET::ITREE:go-testing.go::reverse]
 ```
 
 [EC] Führen Sie den Test mit `go test -v` aus.
@@ -187,7 +187,7 @@ entfernt (aus `"   some test string  "` wird `"some test string"`).
 Die Testfunktion soll `FuzzTrimSpaces` heißen.
 
 ```go
-[INCLUDE::include/go-testing-fuzzing-snippet.go]
+[SNIPPET::ITREE:go-testing.go::trim_spaces]
 ```
 
 [EC] Führen Sie den Test mittels `go test -run=^$ -fuzz=.` aus und geben Sie die Ausgabe im Kommandoprotokoll ab.
