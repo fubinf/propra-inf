@@ -2,107 +2,76 @@ title: NumPy Array-Eigenschaften verstehen und anwenden
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: np-Einführung
+requires: np-Einführung
 ---
 
 [SECTION::goal::idea,experience]
 
-- Ich kann die wichtigsten Eigenschaften von NumPy-Arrays verstehen und anwenden.
-- Ich verstehe die Bedeutung von ndim, shape, size, dtype und anderen Array-Attributen.
-- Ich kann verschiedene NumPy-Arrays erstellen und ihre Eigenschaften analysieren.
-- Ich beherrsche die Grundlagen der Array-Erstellung mit numpy.empty, numpy.zeros und numpy.ones.
+- Ich kann die Achsen-Struktur von NumPy-Arrays interpretieren und besondere Attribute wie
+  Real- und Imaginärteil komplexer Arrays nutzen.
+- Ich kann Arrays mit vordefinierten Werten sowie Arrays mit gleicher Form wie ein bestehendes Array erzeugen.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-NumPy ist eine fundamentale Bibliothek für wissenschaftliches Rechnen in Python.
-Das Verständnis der Array-Eigenschaften ist essentiell für effektive Datenverarbeitung
-und numerische Berechnungen. In dieser Aufgabe lernen wir die wichtigsten Attribute
-von NumPy-Arrays kennen und verstehen ihre praktische Bedeutung.
+NumPy-Arrays haben Eigenschaften, die ihre Struktur und ihren Inhalt beschreiben. Diese Aufgabe
+behandelt die wichtigsten Attribute und die grundlegenden Funktionen zum Erstellen von Arrays.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### Voraussetzungen
+NumPy-Arrays (`ndarray`-Objekte) haben verschiedene wichtige Eigenschaften, die uns Informationen
+über die Struktur und den Inhalt der Daten geben. Die wichtigsten Eigenschaften wie `ndim`,
+`shape`, `size`, `dtype` und `itemsize` sowie die konkreten NumPy-Datentypen (z.B. `int8`,
+`int32`, `float32`, `float64`, `complex64`) wurden bereits in [PARTREF::np-Einführung] eingeführt;
+diese Aufgabe vertieft den Umgang mit ihnen und ergänzt Funktionen zum gezielten Erstellen von
+Arrays.
 
-Bitte lesen Sie zunächst [PARTREF::np-Einführung] und folgen Sie den dort beschriebenen
-Schritten, um NumPy erfolgreich zu installieren.
-Damit verfügen Sie über eine funktionsfähige NumPy-Installation für die folgenden Aufgaben.
+### Achsen verstehen: `axis`
 
-### NumPy-Arrays und ihre Grundeigenschaften
-
-NumPy-Arrays (ndarray-Objekte) haben verschiedene wichtige Eigenschaften, die uns Informationen
-über die Struktur und den Inhalt der Daten geben.
-
-Die wichtigsten Eigenschaften sind:
-
-- **ndim**: Die Anzahl der Dimensionen (Rang des Arrays)
-- **shape**: Die Größe in jeder Dimension
-- **size**: Die Gesamtanzahl der Elemente
-- **dtype**: Der Datentyp der Elemente
-- **itemsize**: Die Größe jedes Elements in Bytes
-
-Optional: Für eine umfassende Einführung siehe:
-[NumPy Array Attributes](https://numpy.org/doc/stable/reference/arrays.ndarray.html#array-attributes)
-
-### Array-Dimensionen verstehen: `ndim` und `shape`
-
-Die Dimension eines Arrays wird als "Rang" bezeichnet. Ein eindimensionales Array hat
-Rang 1, ein zweidimensionales Array hat Rang 2, usw.
+Jede einzelne Dimension wird auch als **Achse** (englisch: axis) bezeichnet und durchnummeriert:
+Achse 0 ist die erste Dimension, Achse 1 die zweite, usw. — die Zahl an Position `i` in `shape`
+gibt also die Größe von Achse `i` an. Diese Nummerierung begegnet Ihnen in späteren Aufgaben
+wieder, wenn Funktionen ein `axis`-Argument entgegennehmen, um festzulegen, entlang welcher
+Dimension eine Operation ausgeführt werden soll.
 
 ```python
 import numpy as np
 
-# Eindimensionales Array (Rang 1)
-a = np.array([1, 2, 3, 4])
-print("Dimensionen:", a.ndim)  # Ausgabe: 1
-print("Form:", a.shape)        # Ausgabe: (4,)
-
-# Zweidimensionales Array (Rang 2)
-b = np.array([[1, 2, 3], [4, 5, 6]])
-print("Dimensionen:", b.ndim)  # Ausgabe: 2
-print("Form:", b.shape)        # Ausgabe: (2, 3)
+c = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]])
+print("shape:", c.shape)              # Ausgabe: (3, 5)
+print("Achse 0 (Länge):", c.shape[0])  # Ausgabe: 3
+print("Achse 1 (Länge):", c.shape[1])  # Ausgabe: 5
 ```
 
-[EQ] Was bedeutet die Ausgabe `(2, 3)` bei `b.shape`? Erklären Sie, wie sich diese
-Zahlen auf die Struktur des Arrays beziehen.
+[EQ] Ein anderes Array `b` hat `b.shape` gleich `(2, 3)`. Welche Achse (0 oder 1) hat die
+Länge 2, welche die Länge 3? Wie kommen Sie anhand der Position in `shape` auf diese
+Zuordnung?
 <!-- EQ1 -->
 
-[ER] Erstellen Sie drei verschiedene NumPy-Arrays:
-
-- Ein eindimensionales Array mit 6 Elementen
-- Ein zweidimensionales Array mit 2 Zeilen und 4 Spalten  
-- Ein dreidimensionales Array mit den Dimensionen 2×3×2
-
-Geben Sie für jedes Array ndim und shape aus.
+[ER] Erstellen Sie ein dreidimensionales Array der Form `(3, 4, 2)` (beliebige Werte). Geben
+Sie `shape` und `ndim` aus, und listen Sie für jede der drei Achsen (0, 1, 2) auf, wie viele
+Elemente sie jeweils enthält.
 <!-- ER1 -->
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
-### Elementanzahl und Datentypen: `size`, `dtype`, `itemsize`
+### Real- und Imaginärteil: `.real` und `.imag`
+
+Bei komplexen Datentypen wie `complex64` gibt es neben `size`, `dtype` und `itemsize` noch zwei
+weitere nützliche Attribute: `.real` und `.imag` liefern Real- bzw. Imaginärteil als eigenes
+Array.
 
 ```python
 import numpy as np
 
-# Array mit verschiedenen Datentypen
-arr_int = np.array([1, 2, 3, 4, 5], dtype=np.int32)
-arr_float = np.array([1.0, 2.0, 3.0], dtype=np.float64)
-
-print("Integer Array:")
-print("Elementanzahl:", arr_int.size)      # 5
-print("Datentyp:", arr_int.dtype)          # int32
-print("Bytes pro Element:", arr_int.itemsize)  # 4
-
-print("Float Array:")
-print("Elementanzahl:", arr_float.size)    # 3
-print("Datentyp:", arr_float.dtype)        # float64
-print("Bytes pro Element:", arr_float.itemsize)  # 8
+c = np.array([1+2j, 3-4j], dtype=np.complex64)
+print("Array:", c)
+print("Realteil:", c.real)        # [1. 3.]
+print("Imaginärteil:", c.imag)    # [ 2. -4.]
+print("dtype von .real:", c.real.dtype)  # float32
 ```
-
-[EQ] Warum hat ein `float64`-Element 8 Bytes, während ein `int32`-Element nur 4 Bytes hat?
-Berechnen Sie, wie viel Speicher ein Array der Form (100, 100) mit `dtype=float64` benötigt.
-<!-- EQ2 -->
 
 [ER] Erstellen Sie Arrays mit verschiedenen Datentypen und analysieren Sie diese:
 
@@ -110,7 +79,8 @@ Berechnen Sie, wie viel Speicher ein Array der Form (100, 100) mit `dtype=float6
 - Ein Array mit `dtype=np.float32` und Werten [1.5, 2.7, 3.9]
 - Ein Array mit `dtype=np.complex64` und zwei komplexen Zahlen
 
-Geben Sie für jedes Array size, dtype und itemsize aus.
+Geben Sie für jedes Array `size`, `dtype` und `itemsize` aus. Geben Sie außerdem für das
+`complex64`-Array die Attribute `.real` und `.imag` sowie deren `dtype` aus.
 <!-- ER2 -->
 <!-- time estimate: 15 min -->
 
@@ -134,58 +104,35 @@ ones_arr = np.ones((2, 3))
 full_arr = np.full((2, 3), 7)
 ```
 
-Optional: Weitere Details finden Sie hier:
-[Array Creation Routines](https://numpy.org/doc/stable/reference/routines.array-creation.html)
+[ER] Rufen Sie sowohl `np.empty((2, 3), dtype=int)` als auch `np.zeros((2, 3), dtype=int)`
+jeweils zweimal in getrennten Aufrufen auf und geben Sie alle vier Ergebnisse aus.
+<!-- ER3 -->
+
+[EQ] In [EREFR::3] haben Sie `np.empty` und `np.zeros` jeweils zweimal mit identischen
+Argumenten aufgerufen. Warum unterscheiden sich die beiden `np.empty`-Ergebnisse, während die
+beiden `np.zeros`-Ergebnisse identisch sind?
+<!-- EQ2 -->
+
+[HINT::Was bedeutet `np.empty`?]
+Schauen Sie in der [NumPy-Dokumentation zu `np.empty`](https://numpy.org/doc/stable/reference/generated/numpy.empty.html)
+nach der Beschreibung der Funktion.
+[ENDHINT]
 
 [ER] Verwenden Sie die verschiedenen Array-Erstellungsfunktionen:
 
 - Erstellen Sie ein 3×4 Array mit `np.zeros` und `dtype=np.int32`
 - Erstellen Sie ein 2×2×3 Array mit `np.ones` und `dtype=np.float32`
 - Erstellen Sie ein 5×2 Array mit `np.full`, gefüllt mit dem Wert 3.14
+- Erstellen Sie ein 4×4 Array mit `np.empty` und `dtype=np.float64`
 
-Zeigen Sie für jedes Array seine shape, dtype und die ersten Werte an.
-<!-- ER3 -->
-<!-- time estimate: 15 min -->
-
-### Arrays umformen mit `reshape`
-
-Die `reshape`-Methode ermöglicht es, die Form eines Arrays zu ändern, ohne die Daten zu kopieren:
-
-```python
-import numpy as np
-
-# Ursprüngliches Array
-a = np.arange(12)  # [0, 1, 2, ..., 11]
-print("Original:", a.shape)  # (12,)
-
-# Umformen zu 2D
-b = a.reshape(3, 4)
-print("Umgeformt:", b.shape)  # (3, 4)
-
-# Umformen zu 3D
-c = a.reshape(2, 2, 3)
-print("3D Form:", c.shape)   # (2, 2, 3)
-```
-
-[EQ] Was passiert, wenn Sie versuchen, ein Array mit 12 Elementen in die Form (3, 5) 
-umzuformen? Erklären Sie die Regel für gültige Umformungen.
-<!-- EQ3 -->
-
-[ER] Arbeiten Sie mit reshape-Operationen:
-
-- Erstellen Sie ein Array mit `np.arange(24)`
-- Formen Sie es um in ein 4×6 Array
-- Formen Sie das Ergebnis um in ein 2×3×4 Array
-- Verwenden Sie `reshape(-1, 8)` um automatisch die erste Dimension berechnen zu lassen
-
-Geben Sie nach jeder Umformung die neue shape aus.
+Zeigen Sie für jedes Array seine `shape`, `dtype` und die ersten Werte an.
 <!-- ER4 -->
 <!-- time estimate: 15 min -->
 
 ### Arrays aus bestehenden Arrays erstellen
 
-NumPy bietet Funktionen wie `zeros_like` und `ones_like`, um Arrays mit derselben
-Form wie bestehende Arrays zu erstellen:
+NumPy bietet Funktionen wie `zeros_like`, `ones_like` und `full_like`, um Arrays
+mit derselben Form (und optional demselben `dtype`) wie ein bestehendes Array zu erstellen:
 
 ```python
 import numpy as np
@@ -194,45 +141,39 @@ import numpy as np
 original = np.array([[1, 2, 3], [4, 5, 6]])
 
 # Arrays mit gleicher Form erstellen
+# zeros_like: gleiche shape/dtype wie original, aber mit Nullen gefüllt
 zeros_similar = np.zeros_like(original)
+# ones_like: gleiche shape/dtype wie original, aber mit Einsen gefüllt
 ones_similar = np.ones_like(original)
+# full_like: gleiche shape/dtype wie original, aber mit dem Wert 9 gefüllt
+full_similar = np.full_like(original, 9)
 
 print("Original shape:", original.shape)
 print("Zeros like shape:", zeros_similar.shape)
 print("Ones like shape:", ones_similar.shape)
+print("Full like shape:", full_similar.shape)
 ```
+
+[EQ] Sie könnten `np.zeros_like(original)` auch durch `np.zeros(original.shape, dtype=original.dtype)`
+ersetzen. Welchen praktischen Vorteil bietet `zeros_like` gegenüber dieser manuellen Variante?
+<!-- EQ3 -->
 
 [ER] Erstellen Sie ein komplexes Array als Grundlage:
 
-- Beginnen Sie mit einem 3×3 Array erstellt mit `np.arange(1, 10).reshape(3, 3)`
+- Beginnen Sie mit dem Array `np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])`
 - Verwenden Sie `np.zeros_like()` um ein Array gleicher Form mit Nullen zu erstellen
 - Verwenden Sie `np.ones_like()` um ein Array gleicher Form mit Einsen zu erstellen
-- Ändern Sie den dtype beim Erstellen auf `np.float32`
+- Verwenden Sie `np.full_like()` um ein Array gleicher Form zu erstellen, gefüllt mit dem Wert 5
+- Wiederholen Sie `np.zeros_like()`, diesmal mit `dtype=np.float32`
 
-Zeigen Sie alle Arrays und ihre Eigenschaften (shape, dtype) an.
+Zeigen Sie alle Arrays und ihre Eigenschaften (`shape`, `dtype`) an.
 <!-- ER5 -->
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
-### Speicher-Layout und `flags`
+### Weiterführend
 
-Das `flags`-Attribut gibt Informationen über das Speicher-Layout des Arrays:
-
-```python
-import numpy as np
-
-arr = np.array([[1, 2, 3], [4, 5, 6]])
-print(arr.flags)
-```
-
-[EQ] Untersuchen Sie die flags eines von Ihnen erstellten Arrays. 
-Was bedeuten C_CONTIGUOUS und F_CONTIGUOUS? 
-Warum könnte das Speicher-Layout für die Performance wichtig sein?
-Um diese Frage zu beantworten, lesen Sie bitte die folgenden Ressourcen:
-[flags](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.flags.html), 
-[Row- and column-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order), 
-[Memory Layout](https://numpy.org/doc/stable/reference/arrays.ndarray.html#memory-layout)
-<!-- EQ4 -->
-<!-- time estimate: 15 min -->
+- [NumPy Array Attributes](https://numpy.org/doc/stable/reference/arrays.ndarray.html#array-attributes) – Vollständige Referenz aller ndarray-Attribute
+- [Array Creation Routines](https://numpy.org/doc/stable/reference/routines.array-creation.html) – Übersicht aller Array-Erstellungsfunktionen
 
 [ENDSECTION]
 
@@ -242,6 +183,23 @@ Um diese Frage zu beantworten, lesen Sie bitte die folgenden Ressourcen:
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+**Knackpunkte:**
+
+- [EREFQ::1] Studierende leiten die Achsen-Zuordnung korrekt aus der Position in `shape` ab
+  (Position 0 → Achse 0, Position 1 → Achse 1), statt die beiden Zahlen nur als "Zeilen und
+  Spalten" ohne Bezug zur Achsen-Nummerierung zu beschreiben.
+- [EREFR::1] Studierende ordnen allen drei Achsen des 3D-Arrays korrekt die jeweilige Länge aus
+  `shape` zu (Achse 0 → 3, Achse 1 → 4, Achse 2 → 2).
+- [EREFR::2] Studierende beobachten die Beziehung zwischen `itemsize` und der Zahl im `dtype`-Namen
+  (`int8` → 1 Byte, `float32` → 4 Bytes, `complex64` → 8 Bytes) und verstehen damit die Bedeutung
+  des Typnamens. Außerdem erkennen sie, dass `.real` und `.imag` eines `complex64`-Arrays jeweils
+  `float32`-Arrays liefern (halbe Bit-Breite des komplexen Typs).
+- [EREFQ::2] Studierende berufen sich auf die offizielle Dokumentation ("without initializing
+  entries") und erkennen, dass die Werte undefiniert sind, statt zu vermuten, es gäbe einen
+  Fehler oder Zufallszahlen würden gezielt erzeugt.
+- [EREFQ::3] Studierende nennen den praktischen Vorteil (kein manuelles Ablesen von `shape`/`dtype`
+  nötig, weniger fehleranfällig), nicht nur "es ist kürzer".
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-array.md]
