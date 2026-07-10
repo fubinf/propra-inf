@@ -29,3 +29,20 @@ Die offizielle NumPy-Dokumentation umfasst drei unterschiedliche Zugänge:
 - **[API Reference](https://numpy.org/doc/stable/reference/index.html)**: 
   Vollständige Funktions- und Klassenreferenz zum gezielten Nachschlagen von Details,
   wenn man die Konzepte kennt.
+
+[WARNING]
+**Ein Teil dieser Aufgabengruppe setzt mathematisches Vorwissen voraus.**
+
+Primäre Zielgruppe für die betroffenen Aufgaben sind Studierende, die das konzeptuelle 
+mathematische Vorwissen bereits mitbringen. Wer das nur teilweise tut, kann die Aufgaben trotzdem 
+bearbeiten, muss sich die fehlenden Grundlagen aber zusätzlich selbst aneignen (außerhalb des 
+angegebenen Zeitbudgets) — die betroffene Aufgabe verweist dafür auf eine passende Quelle.
+
+Benötigtes Vorwissen pro Aufgabe (Stichworte):
+
+- **np-Einführung**, **np-array**, **np-array2**, **np-array3**, **np-index-slice**, 
+  **np-bitwise-string**, **np-sort-filter**: kein zusätzliches mathematisches Vorwissen nötig
+- **np-math**: Statistik-Grundlagen (Varianzformel), Schul-Trigonometrie (sin/cos/tan)
+- **np-linalg**: Lineare Algebra (Eigenwerte, Matrixnormen, Rang, Konditionszahl, 
+  Singulärwertzerlegung)
+[ENDWARNING]

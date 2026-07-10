@@ -22,12 +22,6 @@ andere wissenschaftliche Python-Bibliotheken wie
 
 [SECTION::instructions::detailed]
 
-### Vorwissen
-
-Für diese Aufgabe genügen grundlegende Python-Kenntnisse (Variablen, Funktionen, Listen).
-Hardware- oder Speicher-Interna (wie Zeiger oder Byte-Reihenfolge) werden hier bewusst nicht
-behandelt und sind nicht erforderlich.
-
 ### NumPy installieren
 
 NumPy ist nicht in der Standard-Python-Installation enthalten und muss separat installiert werden.
