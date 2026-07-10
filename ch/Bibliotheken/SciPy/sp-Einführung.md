@@ -24,7 +24,7 @@ für wissenschaftliche Berechnungen wie Optimierung, Integration und lineare Alg
 
 ### Vorwissen
 
-Für die Modulauswahl weiter unten sind Grundbegriffe der Analysis und linearen Algebra hilfreich 
+Für die Teilaufgaben weiter unten sind Grundbegriffe der Analysis und linearen Algebra hilfreich 
 (Integral, lineares Gleichungssystem, Extremstelle einer Funktion). Falls Ihnen diese fehlen, 
 helfen folgende Quellen:
 
