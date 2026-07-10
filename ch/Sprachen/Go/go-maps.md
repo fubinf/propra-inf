@@ -146,17 +146,14 @@ Algorithmus:
 [ER] Fügen Sie folgende Testfunktion Ihrem Programm bei:
 
 ```go
-[INCLUDE::include/go-maps-control-snippet.go]
+[SNIPPET::ITREE:go-maps.go::test]
 ```
 
 [ER] Für ein korrektes Kommandoprotokoll muss Ihre `main`-Funktion folgendermaßen aussehen;
 bitte ebenfalls zufügen:
 
 ```go
-func main() {
-    testPopulateMap()
-    testMaps()
-}
+[SNIPPET::ITREE:go-maps.go::main]
 ```
 
 [EC] Führen Sie das Programm mittels `go run` aus.
