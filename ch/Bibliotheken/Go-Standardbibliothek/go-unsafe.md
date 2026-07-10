@@ -83,15 +83,7 @@ Die `float64`-Werte sind als `int`-Werte zu interpretieren."
 Proben:
 
 ```go
-type Specimen struct {
-    unknownData float64
-}
-
-var specimens = []Specimen{
-    {1.3e-322},
-    {1.4e-322},
-    {3.9e-322},
-}
+[SNIPPET::ITREE:go-unsafe.go::specimens]
 ```
 
 [ER] Schreiben Sie eine Funktion `decode(s Specimen) Atom`, die die Proben zum Typ `Atom` umwandelt und somit die
@@ -100,20 +92,14 @@ auf dem also `int` genauso groß ist wie `float64`.
 Der Typ `Atom` ist wie folgt definiert (nehmen Sie den Abschnitt in Ihren Code mit):
 
 ```go
-type Atom struct {
-    atomicNumber int
-}
+[SNIPPET::ITREE:go-unsafe.go::atom]
 ```
 
 [EQ] Kopieren Sie die Funktion `retrieveAtoms` in Ihre Quellcodedatei und rufen Sie sie auf.
 Welche Elemente sind das?
 
 ```go
-func retrieveAtoms() {
-    for _, specimen := range specimens {
-        fmt.Println(decode(specimen))
-    }
-}
+[SNIPPET::ITREE:go-unsafe.go::retrieve_atoms]
 ```
 
 <!-- time estimate: 10 min -->
@@ -195,11 +181,7 @@ Diese und andere nützliche Regeln finden Sie in der
 Für ein korrektes Kommandoprotokoll muss Ihre `main`-Funktion folgendermaßen aussehen:
 
 ```go
-func main() {
-    retrieveAtoms()
-    getAddressDifference()
-    manipulate()
-}
+[SNIPPET::ITREE:go-unsafe.go::main]
 ```
 
 [EC] Führen Sie Ihr Programm mittels `go run` aus.
