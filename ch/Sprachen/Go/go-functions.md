@@ -163,7 +163,7 @@ die Summe der Ganzzahlen berechnet werden.
 `main`-Funktion auf:
 
 ```go
-[INCLUDE::include/go-functions-control-snippet.go]
+[SNIPPET::ITREE:go-functions.go::test]
 ```
 
 [EC] Führen Sie das Programm mittels `go run` aus.
