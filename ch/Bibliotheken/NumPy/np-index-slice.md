@@ -2,23 +2,21 @@ title: NumPy Indexierung und Slicing
 stage: alpha
 timevalue: 2
 difficulty: 2
-assumes: np-Einführung, np-array
+requires: np-Einführung
+assumes: np-array, np-array2
 ---
 
 [SECTION::goal::idea,experience]
 
 - Ich kann NumPy-Arrays durch Indexierung und Slicing manipulieren.
 - Ich verstehe die Unterschiede zwischen grundlegender und erweiterter Indexierung.
-- Ich kann mehrdimensionale Arrays mit verschiedenen Indexierungstechniken bearbeiten.
-- Ich beherrsche erweiterte Indexierungsmethoden wie Integer-Array-, Boolean- und Fancy-Indexierung.
+- Ich kann mehrdimensionale Arrays gezielt mit fortgeschrittenen Indexierungstechniken bearbeiten.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
 NumPy-Arrays bilden das Fundament der wissenschaftlichen Datenverarbeitung in Python. 
-Die effiziente Manipulation von Array-Inhalten durch Indexierung und Slicing 
-ist essentiell für Datenanalyse und numerische Berechnungen. 
 Diese Aufgabe vermittelt die wichtigsten Techniken zur Auswahl und Bearbeitung 
 von Array-Elementen in ein- und mehrdimensionalen Strukturen.
 
@@ -26,28 +24,11 @@ von Array-Elementen in ein- und mehrdimensionalen Strukturen.
 
 [SECTION::instructions::detailed]
 
-### Voraussetzungen
-
-Bitte lesen Sie zunächst [PARTREF::np-Einführung] und [PARTREF::np-array] und folgen Sie den dort beschriebenen
-Schritten, um NumPy erfolgreich zu installieren.
-Damit verfügen Sie über eine funktionsfähige NumPy-Installation für die folgenden Aufgaben.
-
-### Grundlagen der NumPy-Indexierung
+### Eindimensionale Array-Indexierung und Slicing
 
 NumPy bietet vielfältige Möglichkeiten für den Zugriff auf Array-Elemente. 
 Die Indexierung funktioniert ähnlich wie bei Python-Listen, bietet aber 
 erweiterte Funktionalitäten für mehrdimensionale Arrays.
-
-Für alle folgenden Aufgaben verwenden wir diese grundlegenden Import-Anweisungen:
-
-```python
-import numpy as np
-```
-
-Optional: Grundlegende Informationen zur NumPy-Indexierung finden Sie hier:
-[NumPy Indexing](https://numpy.org/doc/stable/user/basics.indexing.html)
-
-### Eindimensionale Array-Indexierung und Slicing
 
 Die Grundlagen der Array-Indexierung ähneln Python-Listen, aber mit wichtigen Erweiterungen:
 
@@ -79,10 +60,14 @@ print(a[3:])            # Ausgabe: [3, 4, 5, 6, 7, 8, 9]
 - Geben Sie die Elemente von Index 2 bis 7 mit Schrittweite 2 aus
 - Geben Sie alle Elemente ab Index 2 aus  
 - Geben Sie alle Elemente bis Index 5 aus
-<!-- ER1 -->
+
+[HINT::Array mit fortlaufenden Werten erstellen]
+Für diese und die folgenden Aufgaben eignet sich `np.arange(n)` gut, um schnell ein Array mit
+fortlaufenden Werten zu erzeugen: Es funktioniert analog zu Pythons eingebautem `range()` und
+liefert ein 1D-Array mit den Werten `0` bis `n-1` (siehe Beispiel oben, `np.arange(10)`).
+[ENDHINT]
 
 [EQ] Erklären Sie den Unterschied zwischen `a[5]` und `a[2:7:2]`. Was passiert, wenn Sie `a[2:]` verwenden?
-<!-- EQ1 -->
 
 <!-- time estimate: 15 min -->
 
@@ -120,11 +105,9 @@ print(a[1:, :])         # Ab Zeile 1: [[4, 5, 6], [7, 8, 9]]
 - Auswahl einer ganzen Spalte  
 - Slicing von Zeilen (ab Zeile 1)
 - Verwendung des Ellipsis-Operators für Spalten-Zugriff
-<!-- ER2 -->
 
 [EQ] Was bewirkt der Ellipsis-Operator `...` bei der Array-Indexierung? 
 Geben Sie ein praktisches Beispiel für seine Verwendung bei hochdimensionalen Arrays.
-<!-- EQ2 -->
 
 <!-- time estimate: 15 min -->
 
@@ -157,11 +140,9 @@ Die Indizes werden paarweise kombiniert:
 - Die Elemente an den Positionen (0,1), (1,2), (2,0) zu extrahieren
 - Die vier Eckpunkte des Arrays zu selektieren
 - Eine diagonale Linie von oben-links nach unten-rechts zu wählen
-<!-- ER3 -->
 
 [EQ] Beschreiben Sie, wie Integer-Array-Indexierung funktioniert. 
 Warum gibt `x[[0,1,2], [0,1,0]]` für das obige Array die Werte `[1, 4, 5]` zurück?
-<!-- EQ3 -->
 
 <!-- time estimate: 15 min -->
 
@@ -174,7 +155,7 @@ Das Boolean-Array muss die gleiche Form wie das zu indexierende Array haben.
 ```python
 arr[arr > value]        # Elemente größer als value
 arr[arr == value]       # Elemente gleich value
-arr[(arr > a) & (arr < b)]  # Elemente zwischen a und b
+arr[(arr > a) & (arr < b)]  # Elemente zwischen a und b (& kombiniert Bedingungen, nicht 'and')
 arr[~condition]         # Negation der Bedingung (NOT)
 ```
 
@@ -190,6 +171,11 @@ np.isinf(arr)          # Findet unendliche Werte
 x = np.array([1, 2, 3, 4, 5, 6])
 mask = x > 3           # Boolean-Array: [False, False, False, True, True, True]
 result = x[mask]       # Ergebnis: [4, 5, 6]
+
+# Boolean-Indexierung erlaubt auch bedingte Änderung von Werten:
+z = np.array([1, 2, 3, 4, 5, 6])
+z[z > 3] = 0           # Alle Elemente > 3 durch 0 ersetzen
+print(z)               # Ergebnis: [1 2 3 0 0 0]
 ```
 
 [ER] Erstellen Sie ein 4x3 Array mit ganzen Zahlen von 0-11 und demonstrieren Sie:
@@ -198,11 +184,9 @@ result = x[mask]       # Ergebnis: [4, 5, 6]
 - Auswahl aller geraden Zahlen (verwenden Sie Modulo-Operation)
 - Erstellen Sie ein Array mit einigen NaN-Werten und filtern Sie diese heraus
 - Kombinieren Sie zwei Bedingungen mit logischen Operatoren
-<!-- ER4 -->
 
 [EQ] Erklären Sie die Verwendung des `~` Operators bei `arr[~np.isnan(arr)]`. 
 Welche Funktion hat er in der Boolean-Indexierung?
-<!-- EQ4 -->
 
 <!-- time estimate: 15 min -->
 
@@ -213,13 +197,14 @@ und ermöglicht die Auswahl beliebiger Zeilen oder Spalten in beliebiger Reihenf
 
 **Zeilen- und Spaltenauswahl:**
 ```python
-# Bestimmte Zeilen auswählen
+# Zeilen in beliebiger Reihenfolge auswählen (auch Wiederholungen möglich),
+# indem eine Liste von Zeilenindizes statt eines Slices übergeben wird
 arr[[row1, row2, row3], :]
 
-# Bestimmte Spalten auswählen  
+# Analog für Spalten: Liste von Spaltenindizes in beliebiger Reihenfolge
 arr[:, [col1, col2, col3]]
 
-# Negative Indizes möglich
+# Negative Indizes zählen vom Ende her, wie bei Python-Listen
 arr[[-1, -2, 0], :]    # Letzte zwei und erste Zeile
 ```
 
@@ -227,6 +212,7 @@ arr[[-1, -2, 0], :]    # Letzte zwei und erste Zeile
 ```python
 x = np.arange(32).reshape(8, 4)  # 8x4 Array
 selected = x[[4, 2, 1, 7], :]    # Zeilen 4,2,1,7 in dieser Reihenfolge
+# Ergebnis: [[16,17,18,19], [8,9,10,11], [4,5,6,7], [28,29,30,31]]
 ```
 
 [ER] Erstellen Sie ein 8x4 Array mit den Werten 0-31 und demonstrieren Sie:
@@ -235,7 +221,6 @@ selected = x[[4, 2, 1, 7], :]    # Zeilen 4,2,1,7 in dieser Reihenfolge
 - Auswahl der Spalten 3, 0, 2 in dieser Reihenfolge
 - Verwendung negativer Indizes für die letzten beiden Zeilen
 - Kombinierte Zeilen- und Spaltenauswahl für eine 3x2 Teilmatrix
-<!-- ER5 -->
 
 <!-- time estimate: 15 min -->
 
@@ -258,18 +243,24 @@ arr[np.ix_([1,2], [0,1])]  # 2x2 Teilmatrix aus Zeilen 1,2 und Spalten 0,1
 x = np.arange(32).reshape(8, 4)
 # Teilmatrix aus Zeilen [1,5,7] und Spalten [0,3,1,2]  
 result = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
+# Ergebnis: [[4,7,5,6], [20,23,21,22], [28,31,29,30]]
 ```
+
+[HINT::Warum kartesisches Produkt statt Paar?]
+Überlegen Sie zuerst, warum `arr[[1,2], [0,1]]` nur zwei einzelne Elemente liefert (die
+Index-Arrays werden paarweise kombiniert), während Sie eigentlich alle vier Kombinationen
+aus Zeilen [1,2] und Spalten [0,1] als rechteckige Teilmatrix haben wollen. `np.ix_` löst
+genau dieses Problem, indem es die Index-Arrays intern so umformt, dass beim Indexieren
+das kartesische Produkt statt der paarweisen Kombination entsteht.
+[ENDHINT]
 
 [ER] Verwenden Sie `np.ix_` für komplexe Indexierungsoperationen:
 
 - Extrahieren Sie aus einem 8x4 Array eine Teilmatrix mit den Zeilen [1,5,7,2] und Spalten [0,3,1,2]
-- Vergleichen Sie das Ergebnis mit normaler Integer-Array-Indexierung
-- Erklären Sie den Unterschied in Form und Inhalt der Ergebnisse
-<!-- ER6 -->
+- Führen Sie zum Vergleich auch die normale Integer-Array-Indexierung `x[[1,5,7,2], [0,3,1,2]]` mit denselben Indizes aus
 
-[EQ] Was ist der Unterschied zwischen normaler Integer-Array-Indexierung und der Verwendung von `np.ix_`? 
-Wann würden Sie `np.ix_` einsetzen?
-<!-- EQ5 -->
+[EQ] Vergleichen Sie die beiden Ergebnisse aus [EREFR::6]: Wie unterscheiden sie sich in Form und Inhalt,
+und warum? Wann würden Sie `np.ix_` gegenüber normaler Integer-Array-Indexierung einsetzen?
 
 <!-- time estimate: 15 min -->
 
@@ -290,7 +281,6 @@ arr[..., 1:]           # Ellipsis + Slicing
 - Kombinieren Sie Slicing mit Integer-Array-Indexierung
 - Kombinieren Sie Boolean-Indexierung mit Spalten-Slicing
 - Verwenden Sie Ellipsis-Operator mit anderen Indexierungsmethoden
-<!-- ER7 -->
 
 <!-- time estimate: 15 min -->
 
@@ -299,16 +289,18 @@ arr[..., 1:]           # Ellipsis + Slicing
 In der Praxis werden verschiedene Indexierungstechniken oft zusammen verwendet 
 für Aufgaben wie Datenfilterung, -transformation und -analyse.
 
-[ER] Führen Sie eine umfassende Datenmanipulation durch:
+[ER] Verwenden Sie das Array `data = np.array([[3, 12, 7, 18], [9, 2, 15, 6], [11, 4, 19, 1], [8, 16, 5, 13], [10, 3, 17, 14], [6, 20, 2, 9]])`
+und führen Sie eine umfassende Datenmanipulation durch:
 
-- Erstellen Sie ein 6x4 Array mit Zufallszahlen zwischen 0 und 20
-- Finden Sie alle Werte größer als 10 und geben Sie ihre Positionen aus
-- Extrahieren Sie eine Teilmatrix bestehend aus den Zeilen 0,2,4 und Spalten 1,3
+- Wählen Sie alle Werte größer als 10 aus (Boolean-Indexierung)
+- Extrahieren Sie mit `np.ix_` eine Teilmatrix bestehend aus den Zeilen 0,2,4 und Spalten 1,3
 - Ersetzen Sie alle Werte kleiner als 5 durch 0 (bedingte Ersetzung)
-- Berechnen Sie die Summe jeder Spalte der gefilterten Daten
-<!-- ER8 -->
 
 <!-- time estimate: 15 min -->
+
+### Weiterführend
+
+- [NumPy Indexing](https://numpy.org/doc/stable/user/basics.indexing.html)
 
 [ENDSECTION]
 
@@ -320,6 +312,14 @@ für Aufgaben wie Datenfilterung, -transformation und -analyse.
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+### Knackpunkte
+
+- [EREFR::1]: Alle vier Indexierungs-/Slicing-Ergebnisse korrekt (Einzelelement, Schrittweite, ab Index, bis Index)
+- [EREFR::4]: Bedingte Zuweisungen funktionieren korrekt; insbesondere `arr[condition] = value` ersetzt alle
+  Elemente, die die Bedingung erfüllen, mit dem neuen Wert (nicht nur Auswahl, sondern auch Modifikation via Boolean-Indexierung)
+- [EREFR::6] + [EREFQ::5]: `np.ix_` liefert kartesisches Produkt und 2D-Teilmatrix; normale Integer-Array-Indexierung
+  liefert paarweise Kombination und 1D-Array. Unterschied und Anwendungsfall korrekt erklärt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-index-slice.md]
