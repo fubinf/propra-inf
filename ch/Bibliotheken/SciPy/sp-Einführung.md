@@ -80,6 +80,14 @@ SciPy ist in spezialisierte Module unterteilt, die verschiedene wissenschaftlich
 - `scipy.sparse`: Sparse-Matrix-Operationen (vertieft in [PARTREF::sp-sparse])
 
 **Beispiel für Module-Import:**
+
+```python
+scipy.optimize.minimize_scalar(fun)
+```
+
+- `fun`: die zu minimierende Zielfunktion; nimmt einen Skalar entgegen und gibt einen Skalar
+  zurück (weitere Parameter wie `method`/`bounds` werden erst in [PARTREF::sp-optimize] vertieft)
+
 ```python
 from scipy import optimize, integrate, linalg
 from scipy import constants
