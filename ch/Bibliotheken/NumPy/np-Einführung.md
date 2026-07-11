@@ -1,6 +1,6 @@
 title: Einführung von NumPy
 stage: alpha
-timevalue: 1.5
+timevalue: 1.25
 difficulty: 1
 ---
 
@@ -8,7 +8,7 @@ difficulty: 1
 
 - Ich kann NumPy installieren und grundlegende Arrays erstellen.
 - Ich kenne die wichtigsten NumPy-Datentypen und deren grundlegende Verwendung.
-- Ich kann grundlegende Array-Eigenschaften auslesen und einfache Operationen durchführen.
+- Ich kann grundlegende Array-Eigenschaften auslesen.
 [ENDSECTION]
 
 
@@ -33,7 +33,7 @@ pip3 install numpy
 
 <!-- time estimate: 5 min -->
 
-### Das ndarray-Objekt verstehen
+### Das `ndarray`-Objekt verstehen
 
 Das wichtigste Element von NumPy ist das N-dimensionale Array-Objekt (`ndarray`). Es unterscheidet 
 sich wesentlich von Python-Listen:
@@ -46,7 +46,7 @@ sich wesentlich von Python-Listen:
 
 [EQ] Erklären Sie drei wesentliche Unterschiede zwischen einem NumPy ndarray und einer Python-Liste.
 
-### Arrays erstellen mit numpy.array()
+### Arrays erstellen mit `numpy.array()`
 
 Die grundlegende Funktion zur Array-Erstellung ist `numpy.array()`. Die für uns relevanten Parameter sind:
 
@@ -59,7 +59,7 @@ numpy.array(object, dtype=None, ndmin=0)
 - `object`: Array oder verschachtelte Sequenz
 - `dtype` (Standard `None`): Datentyp der Array-Elemente; bei `None` wird er automatisch aus den Daten abgeleitet
 - `ndmin` (Standard `0`): erzwungene Mindestanzahl an Dimensionen. Ohne Angabe hat z.B. `np.array([7, 8, 9])` 1 Dimension;
-  mit `ndmin=2` wird das Array künstlich auf 2 Dimensionen "aufgefüllt", `.shape` wird dann z.B. `(1, 3)` statt `(3,)`
+  mit `ndmin=2` wird das Array künstlich auf 2 Dimensionen "aufgefüllt"
 
 Es gibt weitere optionale Parameter (`copy`, `order`, `subok`) für Spezialfälle, die wir hier nicht brauchen;
 Details dazu finden Sie in der [offiziellen Dokumentation](https://numpy.org/doc/stable/reference/generated/numpy.array.html).
@@ -85,7 +85,7 @@ print(b)
 
 - Ein 1D-Array mit den Zahlen 10, 20, 30, 40, 50
 - Ein 2D-Array (3x2) mit den Werten [[1, 2], [3, 4], [5, 6]]
-- Ein Array mit mindestens 2 Dimensionen aus der Liste [7, 8, 9] (verwenden Sie ndmin)
+- Ein Array mit mindestens 2 Dimensionen aus der Liste [7, 8, 9] (verwenden Sie `ndmin`)
 
 <!-- time estimate: 25 min -->
 
@@ -115,10 +115,10 @@ NumPy wandelt ihn automatisch in `np.complex128` um.
 - Ein Array [100, 200, 300] vom Typ `int16`
 - Ein Array [1.5, 2.7, 3.14] vom Typ `float32`  
 - Ein Array [1, 2, 3] vom Typ `complex64`
-Geben Sie jeweils das Array und seinen dtype aus.
+Geben Sie jeweils das Array und seinen `dtype` aus.
 <!-- time estimate: 15 min -->
 
-### dtype-Objekte verwenden
+### `dtype`-Objekte verwenden
 
 Das `dtype`-Objekt beschreibt, welchen Datentyp die Elemente eines Arrays haben und wie viel Speicherplatz sie belegen:
 
@@ -157,59 +157,34 @@ print(people['name'])  # ['Alice' 'Bob']
 - `note`: 32-bit Float
 Fügen Sie drei Beispiel-Studenten hinzu und geben Sie nur die Namen aus.
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 ### Array-Eigenschaften erkunden
 
 NumPy-Arrays haben wichtige Eigenschaften, die bei der Datenverarbeitung nützlich sind:
 
+- `shape`: Tupel mit der Größe jeder Dimension
+- `ndim`: Anzahl der Dimensionen
+- `size`: Gesamtanzahl aller Elemente im Array
+- `dtype`: Datentyp der Elemente
+- `itemsize`: Speicherplatz eines einzelnen Elements in Bytes
+
 ```python
 arr = np.array([[1, 2, 3], [4, 5, 6]])
 
-print(arr.shape)    # (2, 3) - Dimensionen
-print(arr.ndim)     # 2 - Anzahl Dimensionen  
-print(arr.size)     # 6 - Gesamtanzahl Elemente
-print(arr.dtype)    # int64 - Datentyp
-print(arr.itemsize) # 8 - Bytes pro Element
+print(arr.shape)    # (2, 3)
+print(arr.ndim)     # 2
+print(arr.size)     # 6
+print(arr.dtype)    # int64
+print(arr.itemsize) # 8
 ```
 
 [EQ] Ein Array hat die Form (4, 5, 3). Wie viele Dimensionen hat es, wie viele Elemente 
 insgesamt, und welche Bedeutung haben die einzelnen Zahlen in der Form-Angabe?
 
 [ER] Erstellen Sie ein 3D-Array der Form (2, 3, 4) mit beliebigen Integer-Werten und 
-geben Sie folgende Eigenschaften aus:
-- shape, ndim, size, dtype, itemsize
-<!-- time estimate: 20 min -->
-
-### Praktische Array-Operationen
-
-**Einfache mathematische Operationen:**
-```python
-arr1 = np.array([1, 2, 3, 4])
-arr2 = np.array([10, 20, 30, 40])
-
-# Element-weise Operationen
-print(arr1 + arr2)   # [11 22 33 44]
-print(arr1 * 2)      # [2 4 6 8]
-print(arr2 / arr1)   # [10. 10. 10. 10.]
-```
-
-**Array-Umformung:**
-```python
-arr = np.array([1, 2, 3, 4, 5, 6])
-reshaped = arr.reshape(2, 3)
-print(reshaped)
-# [[1 2 3]
-#  [4 5 6]]
-```
-
-[ER] Erstellen Sie zwei 1D-Arrays mit je 4 Elementen und führen Sie folgende Operationen durch:
-
-- Addition der beiden Arrays
-- Multiplikation des ersten Arrays mit 3
-- Umformung des Ergebnisses aus (1) in ein 2x2-Array
-
-<!-- time estimate: 10 min -->
+geben Sie folgende Eigenschaften aus: `shape`, `ndim`, `size`, `dtype`, `itemsize`
+<!-- time estimate: 15 min -->
 
 ### Weiterführend
 
@@ -229,7 +204,7 @@ print(reshaped)
 [INSTRUCTOR::Kontrollergebnisse]
 **Knackpunkte:**
 
-- [EREFR::1]: Das dritte Array (`ndmin=2` auf `[7, 8, 9]`) hat die Shape `(1, 3)`, nicht `(3,)` – zeigt, ob `ndmin` wirklich verstanden wurde.
+- [EREFR::1]: Die Ausgabe des dritten Arrays (`ndmin=2` auf `[7, 8, 9]`) zeigt die verschachtelte Form `[[7 8 9]]` statt `[7 8 9]` – zeigt, ob `ndmin` wirklich verstanden wurde.
 - [EREFR::3]: Der strukturierte dtype ist korrekt mit drei benannten Feldern definiert, und `students['name']` liefert nur die Namen (nicht das gesamte Tupel).
 - [EREFQ::1]: Student nennt tatsächlich technische Unterschiede (z.B. homogene Datentypen, feste Größe, vektorisierte Operationen) statt nur allgemeiner Vorteile von NumPy.
 
