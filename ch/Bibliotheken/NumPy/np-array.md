@@ -51,7 +51,7 @@ Länge 2, welche die Länge 3? Wie kommen Sie anhand der Position in `shape` auf
 Zuordnung?
 <!-- EQ1 -->
 
-[ER] Erstellen Sie ein dreidimensionales Array der Form `(3, 4, 2)` (beliebige Werte). Geben
+[ER] Erstellen Sie ein dreidimensionales Array der Form `(3, 4, 2)` mit den Werten `1` bis `24`. Geben
 Sie `shape` und `ndim` aus, und listen Sie für jede der drei Achsen (0, 1, 2) auf, wie viele
 Elemente sie jeweils enthält.
 <!-- ER1 -->
