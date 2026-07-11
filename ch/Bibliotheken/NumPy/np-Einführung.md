@@ -123,6 +123,14 @@ Geben Sie jeweils das Array und seinen `dtype` aus.
 Das `dtype`-Objekt beschreibt, welchen Datentyp die Elemente eines Arrays haben und wie viel Speicherplatz sie belegen:
 
 ```python
+numpy.dtype(dtype)
+```
+
+- `dtype`: Typangabe, aus der das `dtype`-Objekt erzeugt wird — ein NumPy-Typ (`np.int32`),
+  eine Kurzschreibweise-Zeichenkette (`'i4'`) oder eine Liste von `(Feldname, Feldtyp)`-Tupeln
+  für strukturierte Datentypen
+
+```python
 # dtype aus Typ erstellen (üblicher, pythonischer Stil)
 dt2 = np.dtype(np.int32)
 print(dt2)  # int32
