@@ -1,6 +1,6 @@
 title: NumPy Array-Eigenschaften verstehen und anwenden
 stage: alpha
-timevalue: 1.5
+timevalue: 1.25
 difficulty: 2
 requires: np-Einführung
 ---
@@ -82,7 +82,13 @@ print("dtype von .real:", c.real.dtype)  # float32
 Geben Sie für jedes Array `size`, `dtype` und `itemsize` aus. Geben Sie außerdem für das
 `complex64`-Array die Attribute `.real` und `.imag` sowie deren `dtype` aus.
 <!-- ER2 -->
-<!-- time estimate: 15 min -->
+
+[EQ] Sie haben in [EREFR::2] gesehen, dass ein `complex64`-Array `itemsize=8` hat, während
+`.real` (`float32`) `itemsize=4` hat. Ohne es auszuprobieren: Welches `itemsize` erwarten Sie
+für `.real` eines `complex128`-Arrays? Warum ist das Verhältnis zwischen einem komplexen Typ und
+seinem `.real`-Typ immer exakt 2:1 und kann kein anderer Faktor sein?
+<!-- EQ2 -->
+<!-- time estimate: 25 min -->
 
 ### Array-Erstellung mit vordefinierten Werten
 
@@ -111,7 +117,7 @@ jeweils zweimal in getrennten Aufrufen auf und geben Sie alle vier Ergebnisse au
 [EQ] In [EREFR::3] haben Sie `np.empty` und `np.zeros` jeweils zweimal mit identischen
 Argumenten aufgerufen. Warum unterscheiden sich die beiden `np.empty`-Ergebnisse, während die
 beiden `np.zeros`-Ergebnisse identisch sind?
-<!-- EQ2 -->
+<!-- EQ3 -->
 
 [HINT::Was bedeutet `np.empty`?]
 Schauen Sie in der [NumPy-Dokumentation zu `np.empty`](https://numpy.org/doc/stable/reference/generated/numpy.empty.html)
@@ -156,7 +162,7 @@ print("Full like shape:", full_similar.shape)
 
 [EQ] Sie könnten `np.zeros_like(original)` auch durch `np.zeros(original.shape, dtype=original.dtype)`
 ersetzen. Welchen praktischen Vorteil bietet `zeros_like` gegenüber dieser manuellen Variante?
-<!-- EQ3 -->
+<!-- EQ4 -->
 
 [ER] Erstellen Sie ein komplexes Array als Grundlage:
 
@@ -186,20 +192,15 @@ Zeigen Sie alle Arrays und ihre Eigenschaften (`shape`, `dtype`) an.
 
 **Knackpunkte:**
 
-- [EREFQ::1] Studierende leiten die Achsen-Zuordnung korrekt aus der Position in `shape` ab
-  (Position 0 → Achse 0, Position 1 → Achse 1), statt die beiden Zahlen nur als "Zeilen und
-  Spalten" ohne Bezug zur Achsen-Nummerierung zu beschreiben.
 - [EREFR::1] Studierende ordnen allen drei Achsen des 3D-Arrays korrekt die jeweilige Länge aus
   `shape` zu (Achse 0 → 3, Achse 1 → 4, Achse 2 → 2).
-- [EREFR::2] Studierende beobachten die Beziehung zwischen `itemsize` und der Zahl im `dtype`-Namen
-  (`int8` → 1 Byte, `float32` → 4 Bytes, `complex64` → 8 Bytes) und verstehen damit die Bedeutung
-  des Typnamens. Außerdem erkennen sie, dass `.real` und `.imag` eines `complex64`-Arrays jeweils
-  `float32`-Arrays liefern (halbe Bit-Breite des komplexen Typs).
-- [EREFQ::2] Studierende berufen sich auf die offizielle Dokumentation ("without initializing
+- [EREFQ::2] Studierende erkennen, dass ein komplexer Typ intern aus zwei Fließkommazahlen
+  gleicher Präzision (Real- und Imaginärteil) besteht, weshalb das Verhältnis immer exakt 2:1
+  ist, und sagen für `complex128` korrekt `itemsize=8` für `.real` voraus (statt nur die
+  gegebenen Zahlen zu wiederholen).
+- [EREFQ::3] Studierende berufen sich auf die offizielle Dokumentation ("without initializing
   entries") und erkennen, dass die Werte undefiniert sind, statt zu vermuten, es gäbe einen
   Fehler oder Zufallszahlen würden gezielt erzeugt.
-- [EREFQ::3] Studierende nennen den praktischen Vorteil (kein manuelles Ablesen von `shape`/`dtype`
-  nötig, weniger fehleranfällig), nicht nur "es ist kürzer".
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-array.md]
