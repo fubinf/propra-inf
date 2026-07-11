@@ -49,14 +49,7 @@ arr[:]                  # Alle Elemente (Kopie)
 **Beispiel:**
 
 Für dieses und die folgenden Beispiele wird jeweils ein Array mit fortlaufenden Werten als
-Ausgangspunkt gebraucht:
-
-```python
-numpy.arange(stop)
-```
-
-- `stop`: liefert (analog zu Pythons eingebautem `range()`) ein 1D-Array mit den Werten `0`
-  bis `stop-1`
+Ausgangspunkt gebraucht; dafür eignet sich `numpy.arange()`, Details in [PARTREF::np-array2]:
 
 ```python
 a = np.arange(10)       # [0, 1, 2, ..., 9]

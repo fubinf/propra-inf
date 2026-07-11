@@ -161,6 +161,17 @@ ein mehrdimensionales Array (`for x in a`) liefert nur die Elemente der ersten A
 2D-Array also ganze Zeilen als Teil-Arrays); `np.nditer(a)` durchläuft dagegen jedes einzelne
 Element des gesamten Arrays, unabhängig von der Anzahl der Dimensionen.
 
+```python
+numpy.nditer(a, flags=None, op_flags=None, order='K')
+```
+
+- `a`: das zu iterierende Array
+- `flags` (Standard `None`): Liste zusätzlicher Iterationsmodi
+- `op_flags` (Standard `None`, entspricht `['readonly']`): Liste von Zugriffsrechten auf die
+  iterierten Elemente
+- `order` (Standard `'K'`, verhält sich bei normal erstellten Arrays wie `'C'`): legt die
+  Durchlaufreihenfolge fest — `'C'` zeilenweise, `'F'` spaltenweise
+
 **Grundlegende Iteration:**
 ```python
 a = np.array([[0, 1, 2], [3, 4, 5]])
@@ -175,14 +186,6 @@ for x in np.nditer(a):
 **Kontrolle der Iterationsreihenfolge:**
 
 ```python
-numpy.nditer(a, order='K')
-```
-
-- `a`: das zu iterierende Array
-- `order` (Standard `'K'`, verhält sich bei normal erstellten Arrays wie `'C'`): legt die
-  Durchlaufreihenfolge fest — `'C'` zeilenweise, `'F'` spaltenweise
-
-```python
 # C-Ordnung (zeilenweise)
 for x in np.nditer(a, order='C'):
     print(x, end=', ')  # Ausgabe: 0, 1, 2, 3, 4, 5
@@ -193,14 +196,6 @@ for x in np.nditer(a, order='F'):
 ```
 
 **Erweiterte nditer-Funktionen:**
-
-```python
-numpy.nditer(a, flags=None, op_flags=None)
-```
-
-- `flags` (Standard `None`): Liste zusätzlicher Iterationsmodi
-- `op_flags` (Standard `None`, entspricht `['readonly']`): Liste von Zugriffsrechten auf die
-  iterierten Elemente
 
 - `flags=['multi_index']`: liefert bei jedem Schritt zusätzlich den mehrdimensionalen Index des
   aktuellen Elements über `x.multi_index`
@@ -247,9 +242,14 @@ durch und tragen Sie für jede Kombination den passenden Wert ein.
 ### Array-Form-Manipulationen: `reshape`, `expand_dims`, `squeeze`
 
 Verschiedene Funktionen ermöglichen die Manipulation von Array-Formen. Für die folgenden Beispiele
-wird jeweils ein Array mit fortlaufenden Werten als Ausgangspunkt gebraucht; dafür eignet sich
-`np.arange(n)`, das (analog zu Pythons eingebautem `range()`) ein 1D-Array mit den Werten `0` bis
-`n-1` erzeugt.
+wird jeweils ein Array mit fortlaufenden Werten als Ausgangspunkt gebraucht; dafür eignet sich:
+
+```python
+numpy.arange(stop)
+```
+
+- `stop`: liefert (analog zu Pythons eingebautem `range()`) ein 1D-Array mit den Werten `0`
+  bis `stop-1`
 
 **Reshape-Operationen:**
 ```python

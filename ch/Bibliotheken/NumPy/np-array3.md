@@ -2,15 +2,15 @@ title: NumPy Array-Verbindung und -Teilung
 stage: alpha
 timevalue: 2
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2
+requires: np-Einführung
+assumes: np-array, np-array2
 ---
 
 [SECTION::goal::experience]
 
-- Ich kann NumPy-Arrays mit verschiedenen Methoden verbinden (concatenate, stack, hstack, vstack).
-- Ich verstehe die Unterschiede zwischen den verschiedenen Verbindungsmethoden und kann sie situationsgerecht anwenden.
-- Ich kann Arrays in mehrere Teilarrays aufteilen (split, hsplit, vsplit).
-- Ich beherrsche das Hinzufügen, Einfügen und Entfernen von Array-Elementen (resize, append, insert, delete, unique).
+- Ich kann NumPy-Arrays verbinden und in Teilarrays aufteilen.
+- Ich kann durch Hinzufügen, Einfügen und Entfernen von Elementen Größe und Struktur von Arrays verändern.
+- Ich kann doppelte und eindeutige Elemente in Arrays identifizieren und analysieren.
 
 [ENDSECTION]
 
@@ -18,17 +18,11 @@ assumes: np-Einführung, np-array, np-array2
 
 Bei der Datenverarbeitung mit NumPy ist es häufig notwendig, Arrays zu kombinieren oder aufzuteilen.
 Dies kann erforderlich sein, um Datensätze zusammenzuführen, Daten in kleinere Einheiten zu organisieren
-oder Array-Strukturen dynamisch zu verändern. NumPy bietet hierfür eine Vielzahl spezialisierter Funktionen,
-die effizient und speicherschonend arbeiten.
+oder Array-Strukturen dynamisch zu verändern.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-
-### Voraussetzungen
-
-Bitte lesen Sie zunächst  [PARTREF::np-Einführung] und [PARTREF::np-array] und stellen Sie sicher, dass Sie über eine funktionsfähige NumPy-Installation verfügen. 
-Die dort behandelten Array-Eigenschaften und Grundoperationen sind für diese Aufgabe essentiell.
 
 ### Arrays verbinden: `concatenate` und `stack`
 
@@ -36,6 +30,14 @@ NumPy bietet verschiedene Funktionen zum Verbinden von Arrays, die sich in ihrer
 Funktionsweise unterscheiden:
 
 `numpy.concatenate` verbindet Arrays entlang einer bestehenden Achse:
+
+```python
+numpy.concatenate((a1, a2, ...), axis=0)
+```
+
+- `(a1, a2, ...)`: Tupel oder Liste der zu verbindenden Arrays; bis auf die Achse `axis`
+  müssen alle Arrays in ihren übrigen Dimensionen übereinstimmen
+- `axis` (Standard `0`): die bereits vorhandene Achse, entlang derer verbunden wird
 
 ```python
 import numpy as np
@@ -61,6 +63,14 @@ print("Achse 1:", result_1)
 `numpy.stack` verbindet Arrays entlang einer neuen Achse:
 
 ```python
+numpy.stack((a1, a2, ...), axis=0)
+```
+
+- `(a1, a2, ...)`: Tupel oder Liste der zu verbindenden Arrays; alle müssen exakt dieselbe
+  Shape haben
+- `axis` (Standard `0`): Position, an der die neu erzeugte Achse eingefügt wird
+
+```python
 # Entlang neuer Achse 0
 stacked_0 = np.stack((a, b), axis=0)
 print("Stack Achse 0 Shape:", stacked_0.shape)  # (2, 2, 2)
@@ -69,13 +79,6 @@ print("Stack Achse 0 Shape:", stacked_0.shape)  # (2, 2, 2)
 stacked_1 = np.stack((a, b), axis=1)  
 print("Stack Achse 1 Shape:", stacked_1.shape)  # (2, 2, 2)
 ```
-
-Optional: Umfassende Dokumentation zu Array-Verbindungen finden Sie hier:
-[Array manipulation routines](https://numpy.org/doc/stable/reference/routines.array-manipulation.html)
-
-[EQ] Erklären Sie den grundlegenden Unterschied zwischen `concatenate` und `stack`. 
-Warum verändert sich bei `stack` die Anzahl der Dimensionen, bei `concatenate` aber nicht?
-<!-- EQ1 -->
 
 [ER] Erstellen Sie zwei 2×3 Arrays mit beliebigen Werten und verwenden Sie:
 
@@ -86,11 +89,27 @@ Warum verändert sich bei `stack` die Anzahl der Dimensionen, bei `concatenate` 
 
 Geben Sie jeweils das Ergebnis und dessen shape aus.
 <!-- ER1 -->
+
+[EQ] Betrachten Sie Ihre eigenen Ergebnisse aus [EREFR::1]: `np.concatenate((A,B), axis=0)`
+und `np.stack((A,B), axis=0)` verwenden beide `axis=0`, liefern aber unterschiedliche Shapes.
+Vergleichen Sie die beiden konkreten Shapes, die Sie berechnet haben, und erklären Sie, was
+`axis=0` bei `concatenate` tatsächlich bedeutet im Vergleich zu `axis=0` bei `stack`. Warum
+führt derselbe Parameterwert zu einer strukturell so unterschiedlichen Operation?
+<!-- EQ1 -->
 <!-- time estimate: 15 min -->
 
 ### Spezialisierte Verbindungsfunktionen: `hstack` und `vstack`
 
 Für häufige Verbindungsoperationen gibt es vereinfachte Funktionen:
+
+```python
+numpy.hstack(tup)
+numpy.vstack(tup)
+```
+
+- `tup`: Tupel oder Liste der zu verbindenden Arrays (entspricht `concatenate` mit fest
+  vorgegebener Achse: `hstack` verbindet horizontal/entlang Achse 1, `vstack` vertikal/
+  entlang Achse 0 — für 1D-Arrays gilt bei `hstack` Achse 0)
 
 ```python
 import numpy as np
@@ -131,6 +150,16 @@ NumPy bietet verschiedene Funktionen zum Aufteilen von Arrays:
 **`numpy.split`** teilt ein Array entlang einer spezifizierten Achse:
 
 ```python
+numpy.split(ary, indices_or_sections, axis=0)
+```
+
+- `ary`: das aufzuteilende Array
+- `indices_or_sections`: entweder eine ganze Zahl (Array wird in genau so viele gleich
+  große Teile geteilt, muss die Achsenlänge glatt teilen) oder eine Liste von Indizes
+  (Array wird an genau diesen Positionen zerschnitten, Teile können unterschiedlich groß sein)
+- `axis` (Standard `0`): die Achse, entlang derer geteilt wird
+
+```python
 import numpy as np
 
 # 1D Array aufteilen
@@ -139,18 +168,33 @@ arr_1d = np.arange(9)  # [0 1 2 3 4 5 6 7 8]
 # In 3 gleiche Teile
 parts_equal = np.split(arr_1d, 3)
 print("Gleiche Teile:", parts_equal)
+# [array([0, 1, 2]), array([3, 4, 5]), array([6, 7, 8])]
 
 # An spezifischen Positionen [4, 7]
 parts_custom = np.split(arr_1d, [4, 7])
 print("Custom Teilung:", parts_custom)
+# [array([0, 1, 2, 3]), array([4, 5, 6]), array([7, 8])]
 
 # 2D Array aufteilen
 arr_2d = np.arange(16).reshape(4, 4)
+# [[ 0  1  2  3]
+#  [ 4  5  6  7]
+#  [ 8  9 10 11]
+#  [12 13 14 15]]
 parts_2d = np.split(arr_2d, 2, axis=0)  # Entlang Achse 0
-print("2D Teilung:", [part.shape for part in parts_2d])
+print("2D Teilung:", [part.shape for part in parts_2d])  # Liste der Shapes aller Teilarrays
+# [(2, 4), (2, 4)]
 ```
 
 **`numpy.hsplit`** und **`numpy.vsplit`** sind spezialisierte Versionen:
+
+```python
+numpy.hsplit(ary, indices_or_sections)
+numpy.vsplit(ary, indices_or_sections)
+```
+
+- `ary`, `indices_or_sections`: wie bei `split` (Achse liegt bereits fest: `hsplit` teilt
+  entlang Achse 1/Spalten, `vsplit` entlang Achse 0/Zeilen)
 
 ```python
 # Horizontal teilen (entlang Spalten)
@@ -159,9 +203,6 @@ h_parts = np.hsplit(arr_2d, 2)
 # Vertikal teilen (entlang Zeilen)
 v_parts = np.vsplit(arr_2d, 2)
 ```
-
-Optional: Weitere Details zu Teilungsoperationen:
-[Array splitting](https://numpy.org/doc/stable/reference/routines.array-manipulation.html#splitting-arrays)
 
 [EQ] Bei welchen Array-Formen würde `np.split(arr, 3)` fehlschlagen? 
 Erklären Sie die Bedingungen, die erfüllt sein müssen, damit eine gleichmäßige Teilung möglich ist.
@@ -182,6 +223,14 @@ Geben Sie für jedes Ergebnis die Anzahl der Teilarrays und deren Formen aus.
 
 Die `resize`-Funktion ermöglicht es, die Form eines Arrays zu ändern, auch wenn die neue Größe 
 nicht der ursprünglichen Elementanzahl entspricht:
+
+```python
+numpy.resize(a, new_shape)
+```
+
+- `a`: das Ausgangsarray
+- `new_shape`: die Ziel-Shape als Tupel; enthält sie mehr Elemente als `a`, werden die
+  ursprünglichen Werte zyklisch wiederholt, enthält sie weniger, wird abgeschnitten
 
 ```python
 import numpy as np
@@ -206,11 +255,20 @@ print("Verkleinert:", resized_smaller)
 [EQ] Was ist der Unterschied zwischen `np.resize()` und der `reshape()`-Methode, 
 die Sie bereits kennen? Wann würden Sie welche Funktion verwenden?
 <!-- EQ3 -->
-<!-- time estimate: 10 min -->
+<!-- time estimate: 5 min -->
 
 ### Elemente hinzufügen: `append`
 
 Die `append`-Funktion fügt Werte am Ende eines Arrays hinzu:
+
+```python
+numpy.append(arr, values, axis=None)
+```
+
+- `arr`: das Ausgangsarray
+- `values`: die anzuhängenden Werte; müssen in den übrigen Dimensionen zu `arr` passen
+- `axis` (Standard `None`): die Achse, entlang derer angehängt wird; bei `None` werden
+  sowohl `arr` als auch `values` zuerst geflacht
 
 ```python
 import numpy as np
@@ -246,6 +304,16 @@ Vergleichen Sie die resultierenden Array-Formen und erklären Sie die Unterschie
 Die `insert`-Funktion ermöglicht das Einfügen von Werten an spezifischen Positionen:
 
 ```python
+numpy.insert(arr, obj, values, axis=None)
+```
+
+- `arr`: das Ausgangsarray
+- `obj`: Index oder Indizes, vor denen eingefügt wird
+- `values`: die einzufügenden Werte
+- `axis` (Standard `None`): die Achse, entlang derer eingefügt wird; bei `None` wird `arr`
+  zuerst geflacht
+
+```python
 import numpy as np
 
 arr = np.array([[1, 2], [3, 4], [5, 6]])
@@ -267,7 +335,7 @@ print("Flach eingefügt:", inserted_flat)
 
 - Erstellen Sie ein 3×3 Array mit `np.arange(1, 10).reshape(3, 3)`
 - Fügen Sie an Position 1 eine neue Zeile mit Werten [10, 11, 12] ein
-- Fügen Sie an Position 2 eine neue Spalte mit Werten [20, 21, 22, 23] ein
+- Fügen Sie an Position 2 eine neue Spalte mit Werten [20, 21, 22] ein
 - Fügen Sie in das ursprüngliche flache Array an Position 4 den Wert 99 ein
 <!-- ER5 -->
 <!-- time estimate: 10 min -->
@@ -275,6 +343,15 @@ print("Flach eingefügt:", inserted_flat)
 ### Elemente entfernen: `delete`
 
 Die `delete`-Funktion entfernt Elemente an spezifizierten Positionen:
+
+```python
+numpy.delete(arr, obj, axis=None)
+```
+
+- `arr`: das Ausgangsarray
+- `obj`: Index, Indizes oder Slice der zu entfernenden Elemente
+- `axis` (Standard `None`): die Achse, entlang derer entfernt wird; bei `None` wird `arr`
+  zuerst geflacht
 
 ```python
 import numpy as np
@@ -308,6 +385,18 @@ print("Flach entfernt:", deleted_flat.shape)  # (9,)
 Die `unique`-Funktion findet und gibt eindeutige Elemente eines Arrays zurück:
 
 ```python
+numpy.unique(ar, return_index=False, return_inverse=False, return_counts=False)
+```
+
+- `ar`: das Ausgangsarray (wird intern geflacht)
+- `return_index` (Standard `False`): gibt zusätzlich die Indizes der ersten Vorkommen im
+  Ursprungsarray zurück
+- `return_inverse` (Standard `False`): gibt zusätzlich ein Indexarray zurück, mit dem sich
+  das Ursprungsarray aus den eindeutigen Werten rekonstruieren lässt
+- `return_counts` (Standard `False`): gibt zusätzlich die Häufigkeit jedes eindeutigen
+  Wertes zurück
+
+```python
 import numpy as np
 
 arr = np.array([5, 2, 6, 2, 7, 5, 6, 8, 2, 9])
@@ -329,9 +418,6 @@ unique_vals, inverse = np.unique(arr, return_inverse=True)
 print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 ```
 
-Optional: Weitere Details zur `unique`-Funktion:
-[Unique elements](https://numpy.org/doc/stable/reference/generated/numpy.unique.html)
-
 [EQ] Erklären Sie die Parameter `return_index`, `return_inverse` und `return_counts` der 
 `unique`-Funktion. Für welche praktischen Anwendungsfälle wären diese Parameter nützlich?
 <!-- EQ4 -->
@@ -350,6 +436,13 @@ Verwenden Sie dabei alle vier Optionen der `unique`-Funktion.
 
 ### Kombination mehrerer Operationen
 
+[HINT::Schritt für Schritt vorgehen]
+Diese Aufgabe verkettet mehrere Operationen. Geben Sie nach jedem einzelnen Schritt die `shape`
+des Zwischenergebnisses aus, bevor Sie mit dem nächsten Schritt weitermachen – so erkennen Sie
+sofort, ob eine Operation entlang der richtigen Achse arbeitet, bevor sich ein Fehler auf die
+folgenden Schritte fortpflanzt.
+[ENDHINT]
+
 [ER] Führen Sie eine komplexe Array-Manipulation durch:
 
 - Erstellen Sie zwei 3×4 Arrays `A` und `B` mit unterschiedlichen Werten
@@ -363,6 +456,12 @@ Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form.
 <!-- ER8 -->
 <!-- time estimate: 20 min -->
 
+### Weiterführend
+
+- [Array manipulation routines](https://numpy.org/doc/stable/reference/routines.array-manipulation.html)
+- [Array splitting](https://numpy.org/doc/stable/reference/routines.array-manipulation.html#splitting-arrays)
+- [Unique elements](https://numpy.org/doc/stable/reference/generated/numpy.unique.html)
+
 [ENDSECTION]
 
 [SECTION::submission::program]
@@ -371,6 +470,16 @@ Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form.
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+### Knackpunkte
+
+- [EREFR::1]: `concatenate` (Dimension bleibt gleich) vs. `stack` (Dimension +1) liefern für alle
+  vier Kombinationen die korrekten Shapes
+- [EREFR::8]: Im 3. Schritt wird dem mittleren Teil korrekt eine **Spalte** (nicht Zeile)
+  hinzugefügt (Shape (1,8) → (1,9)); finale Shape (4,4) enthält die richtigen eindeutigen Werte
+- [EREFQ::3]: Unterschied zwischen `resize` (ändert Elementanzahl, füllt zyklisch auf/schneidet ab,
+  liefert immer eine Kopie) und `reshape` (Elementanzahl bleibt gleich, liefert meist eine View)
+  korrekt erklärt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-array3.md]
