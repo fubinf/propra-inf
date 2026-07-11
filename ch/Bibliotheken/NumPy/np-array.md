@@ -95,6 +95,18 @@ seinem `.real`-Typ immer exakt 2:1 und kann kein anderer Faktor sein?
 NumPy bietet verschiedene Funktionen zum Erstellen von Arrays mit vordefinierten Werten:
 
 ```python
+numpy.empty(shape, dtype=None)
+numpy.zeros(shape, dtype=None)
+numpy.ones(shape, dtype=None)
+numpy.full(shape, fill_value, dtype=None)
+```
+
+- `shape`: Ziel-Form des neuen Arrays (Tupel, z.B. `(2, 3)`)
+- `dtype` (Standard `None`, was intern zu `float64` aufgelöst wird; bei `full` wird ohne
+  Angabe der Typ stattdessen aus `fill_value` abgeleitet): Datentyp der Elemente
+- `fill_value` (nur `full`): der Wert, mit dem alle Elemente gefüllt werden
+
+```python
 import numpy as np
 
 # Leeres Array (uninitialisierte Werte)
@@ -139,6 +151,16 @@ Zeigen Sie für jedes Array seine `shape`, `dtype` und die ersten Werte an.
 
 NumPy bietet Funktionen wie `zeros_like`, `ones_like` und `full_like`, um Arrays
 mit derselben Form (und optional demselben `dtype`) wie ein bestehendes Array zu erstellen:
+
+```python
+numpy.zeros_like(a, dtype=None)
+numpy.ones_like(a, dtype=None)
+numpy.full_like(a, fill_value, dtype=None)
+```
+
+- `a`: das Vorlage-Array, dessen `shape` (und ohne weitere Angabe auch `dtype`) übernommen wird
+- `dtype` (Standard `None`): überschreibt bei Angabe den `dtype` von `a`
+- `fill_value` (nur `full_like`): der Wert, mit dem alle Elemente gefüllt werden
 
 ```python
 import numpy as np
