@@ -71,14 +71,13 @@ SciPy ist in spezialisierte Module unterteilt, die verschiedene wissenschaftlich
 
 **Wichtige Module:**
 
-- `scipy.optimize`: Optimierung und Nullstellenfindung
-- `scipy.integrate`: Numerische Integration
-- `scipy.linalg`: Erweiterte lineare Algebra
-- `scipy.stats`: Statistische Funktionen und Verteilungen
+- `scipy.optimize`: Optimierung und Nullstellenfindung (vertieft in [PARTREF::sp-optimize])
+- `scipy.integrate`: Numerische Integration (vertieft in [PARTREF::sp-integrate])
+- `scipy.linalg`: Erweiterte lineare Algebra (vertieft in [PARTREF::sp-linalg])
+- `scipy.stats`: Statistische Funktionen und Verteilungen (vertieft in [PARTREF::sp-stats])
 - `scipy.signal`: Signalverarbeitung
-- `scipy.interpolate`: Interpolation und Approximation
-- `scipy.fft`: Schnelle Fourier-Transformation
-- `scipy.sparse`: Sparse-Matrix-Operationen
+- `scipy.interpolate`: Interpolation und Approximation (vertieft in [PARTREF::sp-interpolate])
+- `scipy.sparse`: Sparse-Matrix-Operationen (vertieft in [PARTREF::sp-sparse])
 
 **Beispiel für Module-Import:**
 ```python
