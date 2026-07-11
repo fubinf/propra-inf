@@ -190,7 +190,7 @@ print(arr.itemsize) # 8
 [EQ] Ein Array hat die Form (4, 5, 3). Wie viele Dimensionen hat es, wie viele Elemente 
 insgesamt, und welche Bedeutung haben die einzelnen Zahlen in der Form-Angabe?
 
-[ER] Erstellen Sie ein 3D-Array der Form (2, 3, 4) mit beliebigen Integer-Werten und 
+[ER] Erstellen Sie ein 3D-Array der Form (2, 3, 4) mit den Werten `1` bis `24` und
 geben Sie folgende Eigenschaften aus: `shape`, `ndim`, `size`, `dtype`, `itemsize`
 <!-- time estimate: 15 min -->
 
