@@ -234,8 +234,9 @@ durch und tragen Sie für jede Kombination den passenden Wert ein.
 - Erstellen Sie ein 4x3 Array mit Werten 0-11
 - Implementieren Sie Iteration mit Index-Verfolgung
 - Verwenden Sie Schreibzugriff um alle Werte zu verdoppeln  
-- Testen Sie externe Schleifen mit verschiedenen Ordnungen
-- Vergleichen Sie die Ausgaben und Reihenfolgen
+- Testen Sie externe Schleifen mit `order='F'`
+
+Geben Sie für jeden Schritt die jeweilige Ausgabe aus.
 
 <!-- time estimate: 30 min -->
 
