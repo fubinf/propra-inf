@@ -80,7 +80,7 @@ stacked_1 = np.stack((a, b), axis=1)
 print("Stack Achse 1 Shape:", stacked_1.shape)  # (2, 2, 2)
 ```
 
-[ER] Erstellen Sie zwei 2×3 Arrays mit beliebigen Werten und verwenden Sie:
+[ER] Erstellen Sie `A = np.array([[1, 2, 3], [4, 5, 6]])` und `B = np.array([[7, 8, 9], [10, 11, 12]])` und verwenden Sie:
 
 - `np.concatenate` um sie entlang Achse 0 zu verbinden
 - `np.concatenate` um sie entlang Achse 1 zu verbinden  
@@ -88,14 +88,12 @@ print("Stack Achse 1 Shape:", stacked_1.shape)  # (2, 2, 2)
 - `np.stack` um sie entlang einer neuen Achse 2 zu verbinden
 
 Geben Sie jeweils das Ergebnis und dessen shape aus.
-<!-- ER1 -->
 
 [EQ] Betrachten Sie Ihre eigenen Ergebnisse aus [EREFR::1]: `np.concatenate((A,B), axis=0)`
 und `np.stack((A,B), axis=0)` verwenden beide `axis=0`, liefern aber unterschiedliche Shapes.
 Vergleichen Sie die beiden konkreten Shapes, die Sie berechnet haben, und erklären Sie, was
 `axis=0` bei `concatenate` tatsächlich bedeutet im Vergleich zu `axis=0` bei `stack`. Warum
 führt derselbe Parameterwert zu einer strukturell so unterschiedlichen Operation?
-<!-- EQ1 -->
 <!-- time estimate: 15 min -->
 
 ### Spezialisierte Verbindungsfunktionen: `hstack` und `vstack`
@@ -137,10 +135,9 @@ print("vstack:", v_result)
 - Erstellen Sie ein 1D-Array `x = np.array([1, 2, 3])`
 - Erstellen Sie ein 1D-Array `y = np.array([4, 5, 6])`
 - Verwenden Sie `hstack` und `vstack` um diese zu verbinden
-- Erstellen Sie zusätzlich zwei 3×1 Arrays und verbinden Sie diese mit `hstack` und `vstack`
+- Erstellen Sie zusätzlich `a_3x1 = np.array([[1], [2], [3]])` und `b_3x1 = np.array([[4], [5], [6]])` und verbinden Sie diese mit `hstack` und `vstack`
 
-Analysieren Sie die Unterschiede in den Ergebnissen.
-<!-- ER2 -->
+Geben Sie jeweils das Ergebnis und dessen shape aus.
 <!-- time estimate: 15 min -->
 
 ### Arrays aufteilen: `split`-Funktionen
@@ -206,7 +203,6 @@ v_parts = np.vsplit(arr_2d, 2)
 
 [EQ] Bei welchen Array-Formen würde `np.split(arr, 3)` fehlschlagen? 
 Erklären Sie die Bedingungen, die erfüllt sein müssen, damit eine gleichmäßige Teilung möglich ist.
-<!-- EQ2 -->
 
 [ER] Arbeiten Sie mit Array-Teilungen:
 
@@ -216,7 +212,6 @@ Erklären Sie die Bedingungen, die erfüllt sein müssen, damit eine gleichmäß
 - Verwenden Sie `split` mit `axis=0` und den Indizes `[2, 4]` zur ungleichmäßigen Teilung
 
 Geben Sie für jedes Ergebnis die Anzahl der Teilarrays und deren Formen aus.
-<!-- ER3 -->
 <!-- time estimate: 15 min -->
 
 ### Array-Größe ändern: `resize`
@@ -254,8 +249,7 @@ print("Verkleinert:", resized_smaller)
 
 [EQ] Was ist der Unterschied zwischen `np.resize()` und der `reshape()`-Methode, 
 die Sie bereits kennen? Wann würden Sie welche Funktion verwenden?
-<!-- EQ3 -->
-<!-- time estimate: 5 min -->
+<!-- time estimate: 10 min -->
 
 ### Elemente hinzufügen: `append`
 
@@ -288,15 +282,13 @@ appended_cols = np.append(arr, [[7], [8]], axis=1)
 print("Spalten:", appended_cols.shape)  # (2, 4)
 ```
 
-[ER] Experimentieren Sie mit `append`:
+[ER] Erstellen Sie ein 2×3 Array mit `np.array([[1, 2, 3], [4, 5, 6]])` und verwenden Sie `append`:
 
-- Beginnen Sie mit einem 2×3 Array
-- Fügen Sie eine neue Zeile hinzu
-- Fügen Sie zwei neue Spalten hinzu
-- Fügen Sie Elemente ohne axis-Parameter hinzu
+- Fügen Sie eine neue Zeile mit den Werten `[7, 8, 9]` hinzu (`axis=0`)
+- Fügen Sie zwei neue Spalten mit den Werten `[[10, 11], [12, 13]]` hinzu (`axis=1`)
+- Fügen Sie die Werte `[14, 15, 16]` ohne `axis`-Parameter hinzu
 
-Vergleichen Sie die resultierenden Array-Formen und erklären Sie die Unterschiede.
-<!-- ER4 -->
+Geben Sie jeweils das Ergebnis und dessen shape aus.
 <!-- time estimate: 10 min -->
 
 ### Elemente einfügen: `insert`
@@ -321,14 +313,22 @@ arr = np.array([[1, 2], [3, 4], [5, 6]])
 # An Position 1 entlang Achse 0 einfügen
 inserted_row = np.insert(arr, 1, [10, 11], axis=0)
 print("Zeile eingefügt:", inserted_row)
+# [[ 1  2]
+#  [10 11]
+#  [ 3  4]
+#  [ 5  6]]
 
 # An Position 1 entlang Achse 1 einfügen
 inserted_col = np.insert(arr, 1, [10, 20, 30], axis=1)  
 print("Spalte eingefügt:", inserted_col)
+# [[ 1 10  2]
+#  [ 3 20  4]
+#  [ 5 30  6]]
 
 # Ohne axis - Array wird flach gemacht
 inserted_flat = np.insert(arr, 3, [100, 200])
 print("Flach eingefügt:", inserted_flat)
+# [  1   2   3 100 200   4   5   6]
 ```
 
 [ER] Arbeiten Sie mit `insert`:
@@ -337,7 +337,6 @@ print("Flach eingefügt:", inserted_flat)
 - Fügen Sie an Position 1 eine neue Zeile mit Werten [10, 11, 12] ein
 - Fügen Sie an Position 2 eine neue Spalte mit Werten [20, 21, 22] ein
 - Fügen Sie in das ursprüngliche flache Array an Position 4 den Wert 99 ein
-<!-- ER5 -->
 <!-- time estimate: 10 min -->
 
 ### Elemente entfernen: `delete`
@@ -377,7 +376,6 @@ print("Flach entfernt:", deleted_flat.shape)  # (9,)
 - Entfernen Sie die erste und letzte Zeile
 - Entfernen Sie die mittleren zwei Spalten (Index 1 und 2)
 - Erstellen Sie das ursprüngliche Array erneut und entfernen Sie jedes dritte Element im flachen Array
-<!-- ER6 -->
 <!-- time estimate: 10 min -->
 
 ### Eindeutige Elemente finden: `unique`
@@ -418,10 +416,6 @@ unique_vals, inverse = np.unique(arr, return_inverse=True)
 print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 ```
 
-[EQ] Erklären Sie die Parameter `return_index`, `return_inverse` und `return_counts` der 
-`unique`-Funktion. Für welche praktischen Anwendungsfälle wären diese Parameter nützlich?
-<!-- EQ4 -->
-
 [ER] Arbeiten Sie umfassend mit `unique`:
 
 - Erstellen Sie ein Array mit wiederholenden Werten: `[1, 3, 2, 3, 1, 4, 2, 4, 1, 5]`
@@ -431,8 +425,7 @@ print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 - Verwenden Sie die inversen Indizes um das ursprüngliche Array zu rekonstruieren
 
 Verwenden Sie dabei alle vier Optionen der `unique`-Funktion.
-<!-- ER7 -->
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 ### Kombination mehrerer Operationen
 
@@ -445,7 +438,7 @@ folgenden Schritte fortpflanzt.
 
 [ER] Führen Sie eine komplexe Array-Manipulation durch:
 
-- Erstellen Sie zwei 3×4 Arrays `A` und `B` mit unterschiedlichen Werten
+- Erstellen Sie `A = np.arange(1, 13).reshape(3, 4)` und `B = np.arange(13, 25).reshape(3, 4)`
 - Verbinden Sie sie horizontal mit `hstack`
 - Teilen Sie das Ergebnis vertikal in 3 gleiche Teile
 - Fügen Sie dem mittleren Teil eine neue Spalte mit dem Wert 99 hinzu
@@ -453,7 +446,6 @@ folgenden Schritte fortpflanzt.
 - Ändern Sie die finale Form zu 4×4 mit `resize`
 
 Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form.
-<!-- ER8 -->
 <!-- time estimate: 20 min -->
 
 ### Weiterführend
@@ -473,13 +465,15 @@ Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form.
 
 ### Knackpunkte
 
-- [EREFR::1]: `concatenate` (Dimension bleibt gleich) vs. `stack` (Dimension +1) liefern für alle
-  vier Kombinationen die korrekten Shapes
-- [EREFR::8]: Im 3. Schritt wird dem mittleren Teil korrekt eine **Spalte** (nicht Zeile)
-  hinzugefügt (Shape (1,8) → (1,9)); finale Shape (4,4) enthält die richtigen eindeutigen Werte
+- [EREFR::1] + [EREFQ::1]: `concatenate` (Dimension bleibt gleich) vs. `stack` (Dimension +1)
+  liefern für alle vier Kombinationen die korrekten Shapes; Begründung erkennt, dass `axis=0`
+  bei `concatenate` eine bereits vorhandene Achse referenziert, bei `stack` dagegen die
+  Einfügeposition einer neu erzeugten Achse
 - [EREFQ::3]: Unterschied zwischen `resize` (ändert Elementanzahl, füllt zyklisch auf/schneidet ab,
   liefert immer eine Kopie) und `reshape` (Elementanzahl bleibt gleich, liefert meist eine View)
   korrekt erklärt
+- [EREFR::8]: Im 3. Schritt wird dem mittleren Teil korrekt eine **Spalte** (nicht Zeile)
+  hinzugefügt (Shape (1,8) → (1,9)); finale Shape (4,4) enthält die richtigen eindeutigen Werte
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-array3.md]
