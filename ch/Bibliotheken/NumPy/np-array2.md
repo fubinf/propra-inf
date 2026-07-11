@@ -118,11 +118,21 @@ skaliert jeden Wert so um, dass das Minimum einer Spalte auf `0` und das Maximum
 wird (Formel: `(x - min) / (max - min)`), während alle Werte dazwischen proportional auf den Bereich
 `[0, 1]` verteilt werden.
 
+```python
+numpy.min(a, axis=None, keepdims=False)
+numpy.max(a, axis=None, keepdims=False)
+```
+
+- `a`: das Array, aus dem das Minimum/Maximum bestimmt wird
+- `axis` (Standard `None`): die Achse, entlang derer reduziert wird; bei `None` wird über das
+  gesamte Array reduziert (ein einzelner Skalar)
+- `keepdims` (Standard `False`): bei `True` bleibt die reduzierte Achse als Länge 1 erhalten
+  (Form `(1, 5)` statt `(5,)`) — nur so bleibt die Form broadcasting-kompatibel mit dem
+  ursprünglichen Array
+
 `np.min(data, axis=0)`/`np.max(data, axis=0)` liefern das Minimum bzw. Maximum jeder Spalte
-(entlang Achse 0). `keepdims=True` sorgt zusätzlich dafür, dass die reduzierte Achse als Länge 1
-erhalten bleibt (Form `(1, 5)` statt `(5,)`) — nur so bleibt die Form broadcasting-kompatibel mit
-dem ursprünglichen `data`-Array. Ohne Broadcasting müsste man `min_vals`/`max_vals` erst manuell
-auf die Form von `data` bringen, bevor man sie elementweise verrechnen könnte:
+(entlang Achse 0). Ohne Broadcasting müsste man `min_vals`/`max_vals` erst manuell auf die Form
+von `data` bringen, bevor man sie elementweise verrechnen könnte:
 
 ```python
 # Beispieldaten: 3 Datensätze mit je 5 Merkmalen
@@ -164,9 +174,13 @@ for x in np.nditer(a):
 
 **Kontrolle der Iterationsreihenfolge:**
 
-`np.nditer` akzeptiert einen `order`-Parameter (Standard `'K'`, was sich bei normal erstellten
-Arrays wie `'C'` verhält), mit dem sich die Durchlaufreihenfolge explizit auf `'C'` oder `'F'`
-festlegen lässt:
+```python
+numpy.nditer(a, order='K')
+```
+
+- `a`: das zu iterierende Array
+- `order` (Standard `'K'`, verhält sich bei normal erstellten Arrays wie `'C'`): legt die
+  Durchlaufreihenfolge fest — `'C'` zeilenweise, `'F'` spaltenweise
 
 ```python
 # C-Ordnung (zeilenweise)
@@ -179,6 +193,14 @@ for x in np.nditer(a, order='F'):
 ```
 
 **Erweiterte nditer-Funktionen:**
+
+```python
+numpy.nditer(a, flags=None, op_flags=None)
+```
+
+- `flags` (Standard `None`): Liste zusätzlicher Iterationsmodi
+- `op_flags` (Standard `None`, entspricht `['readonly']`): Liste von Zugriffsrechten auf die
+  iterierten Elemente
 
 - `flags=['multi_index']`: liefert bei jedem Schritt zusätzlich den mehrdimensionalen Index des
   aktuellen Elements über `x.multi_index`
@@ -231,12 +253,27 @@ wird jeweils ein Array mit fortlaufenden Werten als Ausgangspunkt gebraucht; daf
 
 **Reshape-Operationen:**
 ```python
+ndarray.reshape(*shape)
+```
+
+- `*shape`: die Ziel-Form, entweder als einzelnes Tupel oder als einzelne Dimensionen; die
+  Gesamtzahl der Elemente muss unverändert bleiben, sonst schlägt der Aufruf fehl
+
+```python
 # reshape: Neue Form ohne Datenänderung
 a = np.arange(12)  # [0, 1, 2, ..., 11]
 reshaped = a.reshape(3, 4)
 ```
 
 **Dimensionsmanipulation:**
+```python
+numpy.expand_dims(a, axis)
+```
+
+- `a`: das Ausgangsarray
+- `axis`: Position, an der die neue Achse der Länge 1 eingefügt wird (kein Standardwert,
+  muss angegeben werden)
+
 ```python
 # expand_dims: Neue Achse hinzufügen
 arr_2d = np.array([[1, 2], [3, 4]])
