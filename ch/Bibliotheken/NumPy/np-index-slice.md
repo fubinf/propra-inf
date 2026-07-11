@@ -47,6 +47,17 @@ arr[:]                  # Alle Elemente (Kopie)
 ```
 
 **Beispiel:**
+
+Für dieses und die folgenden Beispiele wird jeweils ein Array mit fortlaufenden Werten als
+Ausgangspunkt gebraucht:
+
+```python
+numpy.arange(stop)
+```
+
+- `stop`: liefert (analog zu Pythons eingebautem `range()`) ein 1D-Array mit den Werten `0`
+  bis `stop-1`
+
 ```python
 a = np.arange(10)       # [0, 1, 2, ..., 9]
 print(a[5])             # Ausgabe: 5
@@ -60,12 +71,6 @@ print(a[3:])            # Ausgabe: [3, 4, 5, 6, 7, 8, 9]
 - Geben Sie die Elemente von Index 2 bis 7 mit Schrittweite 2 aus
 - Geben Sie alle Elemente ab Index 2 aus  
 - Geben Sie alle Elemente bis Index 5 aus
-
-[HINT::Array mit fortlaufenden Werten erstellen]
-Für diese und die folgenden Aufgaben eignet sich `np.arange(n)` gut, um schnell ein Array mit
-fortlaufenden Werten zu erzeugen: Es funktioniert analog zu Pythons eingebautem `range()` und
-liefert ein 1D-Array mit den Werten `0` bis `n-1` (siehe Beispiel oben, `np.arange(10)`).
-[ENDHINT]
 
 [EQ] Erklären Sie den Unterschied zwischen `a[5]` und `a[2:7:2]`. Was passiert, wenn Sie `a[2:]` verwenden?
 
@@ -228,6 +233,14 @@ selected = x[[4, 2, 1, 7], :]    # Zeilen 4,2,1,7 in dieser Reihenfolge
 
 `np.ix_` erstellt ein kartesisches Produkt aus Index-Arrays und ermöglicht 
 die Auswahl rechteckiger Teilbereiche aus Arrays.
+
+```python
+numpy.ix_(*args)
+```
+
+- `*args`: mehrere eindeutige 1D-Index-Arrays (z.B. Zeilen- und Spaltenindizes); die Funktion
+  formt sie so um, dass sich beim Indexieren ihr kartesisches Produkt statt einer paarweisen
+  Kombination ergibt
 
 **Unterschied zur normalen Integer-Array-Indexierung:**
 ```python
