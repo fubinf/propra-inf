@@ -429,13 +429,6 @@ Verwenden Sie dabei alle vier Optionen der `unique`-Funktion.
 
 ### Kombination mehrerer Operationen
 
-[HINT::Schritt für Schritt vorgehen]
-Diese Aufgabe verkettet mehrere Operationen. Geben Sie nach jedem einzelnen Schritt die `shape`
-des Zwischenergebnisses aus, bevor Sie mit dem nächsten Schritt weitermachen – so erkennen Sie
-sofort, ob eine Operation entlang der richtigen Achse arbeitet, bevor sich ein Fehler auf die
-folgenden Schritte fortpflanzt.
-[ENDHINT]
-
 [ER] Führen Sie eine komplexe Array-Manipulation durch:
 
 - Erstellen Sie `A = np.arange(1, 13).reshape(3, 4)` und `B = np.arange(13, 25).reshape(3, 4)`
@@ -446,6 +439,13 @@ folgenden Schritte fortpflanzt.
 - Ändern Sie die finale Form zu 4×4 mit `resize`
 
 Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form.
+
+[HINT::Schritt für Schritt vorgehen]
+Diese Aufgabe verkettet mehrere Operationen. Geben Sie nach jedem einzelnen Schritt die `shape`
+des Zwischenergebnisses aus, bevor Sie mit dem nächsten Schritt weitermachen – so erkennen Sie
+sofort, ob eine Operation entlang der richtigen Achse arbeitet, bevor sich ein Fehler auf die
+folgenden Schritte fortpflanzt.
+[ENDHINT]
 <!-- time estimate: 20 min -->
 
 ### Weiterführend
