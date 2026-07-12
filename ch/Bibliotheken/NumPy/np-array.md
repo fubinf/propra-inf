@@ -182,6 +182,21 @@ print("Ones like shape:", ones_similar.shape)
 print("Full like shape:", full_similar.shape)
 ```
 
+Um zu prüfen, ob zwei Arrays exakt übereinstimmen (nicht nur `shape`, sondern auch die
+Werte an jeder Position), bietet NumPy `array_equal`:
+
+```python
+numpy.array_equal(a1, a2)
+```
+
+- `a1`, `a2`: die zu vergleichenden Arrays; gibt `True` zurück, wenn beide dieselbe Form
+  und an jeder Position denselben Wert haben
+
+```python
+print("full_similar gleich original?", np.array_equal(full_similar, original))  # False
+print("original gleich original?", np.array_equal(original, original))  # True
+```
+
 [EQ] Sie könnten `np.zeros_like(original)` auch durch `np.zeros(original.shape, dtype=original.dtype)`
 ersetzen. Welchen praktischen Vorteil bietet `zeros_like` gegenüber dieser manuellen Variante?
 <!-- EQ4 -->
@@ -193,6 +208,8 @@ ersetzen. Welchen praktischen Vorteil bietet `zeros_like` gegenüber dieser manu
 - Verwenden Sie `np.ones_like()` um ein Array gleicher Form mit Einsen zu erstellen
 - Verwenden Sie `np.full_like()` um ein Array gleicher Form zu erstellen, gefüllt mit dem Wert 5
 - Wiederholen Sie `np.zeros_like()`, diesmal mit `dtype=np.float32`
+- Vergleichen Sie die beiden `zeros_like`-Ergebnisse (Standard-`dtype` und `dtype=np.float32`)
+  mit `np.array_equal()` — gelten sie trotz unterschiedlichem `dtype` als gleich?
 
 Zeigen Sie alle Arrays und ihre Eigenschaften (`shape`, `dtype`) an.
 <!-- ER5 -->
