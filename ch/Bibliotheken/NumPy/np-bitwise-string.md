@@ -3,6 +3,7 @@ stage: alpha
 timevalue: 1.5
 difficulty: 2
 requires: np-Einführung
+assumes: np-array
 ---
 
 [SECTION::goal::idea,experience]
@@ -190,12 +191,6 @@ ndarray.astype(dtype)
 - `dtype`: Ziel-Datentyp, in den die Elemente des Arrays umgewandelt werden (z. B. `np.uint8` 
   oder `str`); es wird immer ein neues Array zurückgegeben, das ursprüngliche bleibt unverändert
 
-[HINT::Bit für Bit vorgehen] Schreiben Sie sich zuerst die 8-Bit-Darstellung 
-von `1` auf (`np.binary_repr(1, width=8)`), kehren Sie jedes Bit einzeln um, und 
-prüfen Sie erst danach, welche negative Zahl dieses Bitmuster im Zweierkomplement 
-bzw. als vorzeichenlose Zahl repräsentiert.
-[ENDHINT]
-
 [ER] Untersuchen Sie den Einfluss des `dtype` auf `invert()`:
 
 - Erstellen Sie `arr = np.array([1, 2], dtype=np.int8)` und wenden Sie `np.invert()` darauf an
@@ -206,6 +201,12 @@ bzw. als vorzeichenlose Zahl repräsentiert.
 [EQ] Warum liefert `np.invert()` bei `int8` negative Werte, bei `uint8` aber nicht, obwohl 
 dieselben Bits umgekehrt werden? Nutzen Sie Ihre Ergebnisse aus der vorherigen Aufgabe für 
 Ihre Erklärung.
+
+[HINT::Bit für Bit vorgehen] Schreiben Sie sich zuerst die 8-Bit-Darstellung 
+von `1` auf (`np.binary_repr(1, width=8)`), kehren Sie jedes Bit einzeln um, und 
+prüfen Sie erst danach, welche negative Zahl dieses Bitmuster im Zweierkomplement 
+bzw. als vorzeichenlose Zahl repräsentiert.
+[ENDHINT]
 <!-- EQ2 -->
 <!-- time estimate: 20 min -->
 
