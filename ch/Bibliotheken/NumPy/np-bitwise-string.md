@@ -112,7 +112,6 @@ print("XOR:", result_xor)  # [True  True  True]
 - Führen Sie `np.bitwise_and(a, b)`, `np.bitwise_or(a, b)` und `np.bitwise_xor(a, b)` durch
 - Geben Sie sowohl die Ergebnisse als auch die binären Darstellungen aus (verwenden Sie `np.binary_repr()`)
 - Erklären Sie in Kommentaren, wie die Ergebnisse zustande kommen
-<!-- ER1 -->
 <!-- time estimate: 15 min -->
 
 ### Bit-Verschiebungen: `left_shift` und `right_shift`
@@ -143,7 +142,6 @@ print("40 >> 2 =", right_result)
 [EQ] Warum entspricht eine Links-Verschiebung um `n` Positionen einer 
 Multiplikation mit `2^n`? Berechnen Sie mental das Ergebnis von `np.left_shift(7, 3)` 
 und erklären Sie Ihren Rechenweg mit der binären Darstellung.
-<!-- EQ1 -->
 
 [ER] Arbeiten Sie mit Bit-Verschiebungen in Arrays:
 
@@ -152,7 +150,6 @@ und erklären Sie Ihren Rechenweg mit der binären Darstellung.
 - Verschieben Sie alle Werte um 2 Positionen nach rechts
 - Vergleichen Sie die Ergebnisse mit mathematischen Operationen (`*2` bzw. `//4`)
 - Dokumentieren Sie Ihre Beobachtungen
-<!-- ER2 -->
 <!-- time estimate: 20 min -->
 
 ### Bitweise Negation mit `invert`
@@ -196,7 +193,6 @@ ndarray.astype(dtype)
 - Erstellen Sie `arr = np.array([1, 2], dtype=np.int8)` und wenden Sie `np.invert()` darauf an
 - Wandeln Sie `arr` mit `arr.astype(np.uint8)` um und wenden Sie `np.invert()` auch darauf an
 - Geben Sie beide Ergebnisse aus
-<!-- ER3 -->
 
 [EQ] Warum liefert `np.invert()` bei `int8` negative Werte, bei `uint8` aber nicht, obwohl 
 dieselben Bits umgekehrt werden? Nutzen Sie Ihre Ergebnisse aus der vorherigen Aufgabe für 
@@ -207,7 +203,6 @@ von `1` auf (`np.binary_repr(1, width=8)`), kehren Sie jedes Bit einzeln um, und
 prüfen Sie erst danach, welche negative Zahl dieses Bitmuster im Zweierkomplement 
 bzw. als vorzeichenlose Zahl repräsentiert.
 [ENDHINT]
-<!-- EQ2 -->
 <!-- time estimate: 20 min -->
 
 ### NumPy String-Funktionen Grundlagen: `char.upper`, `char.lower`
@@ -271,7 +266,6 @@ print("Repeated:", repeated)  # 'Python Python Python '
 - Verbinden Sie entsprechende Elemente mit `np.char.add()` und fügen Sie ein Leerzeichen dazwischen ein
 - Verwenden Sie `np.char.multiply()`, um jeden Namen 2-mal zu wiederholen
 - Konvertieren Sie alle Namen in Großbuchstaben mit `np.char.upper()`
-<!-- ER4 -->
 <!-- time estimate: 15 min -->
 
 ### String-Formatierung und -Bearbeitung: `char.center`, `char.strip`, `char.replace`
@@ -312,7 +306,6 @@ print("Replaced:", replaced)  # ['Pithon' 'NumPi' 'Pandas']
 - Erstellen Sie ein Array mit Strings, die Leerzeichen am Anfang und Ende haben
 - Verwenden Sie `np.char.strip()` zum Entfernen der Leerzeichen
 - Nutzen Sie `np.char.replace()`, um alle 'y' durch 'i' zu ersetzen
-<!-- ER5 -->
 <!-- time estimate: 15 min -->
 
 ### String-Teilung und -Verbindung: `char.split`, `char.join`, `char.find`
@@ -358,7 +351,6 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
 - Erstellen Sie ein Array von Wörtern und verbinden Sie sie mit `np.char.join()`
 - Verwenden Sie `np.char.replace()` zum Ersetzen von Domänen-Endungen
 - Testen Sie `np.char.find()` zum Auffinden von Zeichen in Strings
-<!-- ER6 -->
 <!-- time estimate: 10 min -->
 
 ### Weiterführend
