@@ -49,12 +49,10 @@ print("Achse 1 (Länge):", c.shape[1])  # Ausgabe: 5
 [EQ] Ein anderes Array `b` hat `b.shape` gleich `(2, 3)`. Welche Achse (0 oder 1) hat die
 Länge 2, welche die Länge 3? Wie kommen Sie anhand der Position in `shape` auf diese
 Zuordnung?
-<!-- EQ1 -->
 
 [ER] Erstellen Sie ein dreidimensionales Array der Form `(3, 4, 2)` mit den Werten `1` bis `24`. Geben
 Sie `shape` und `ndim` aus, und listen Sie für jede der drei Achsen (0, 1, 2) auf, wie viele
 Elemente sie jeweils enthält.
-<!-- ER1 -->
 <!-- time estimate: 15 min -->
 
 ### Real- und Imaginärteil: `.real` und `.imag`
@@ -81,13 +79,11 @@ print("dtype von .real:", c.real.dtype)  # float32
 
 Geben Sie für jedes Array `size`, `dtype` und `itemsize` aus. Geben Sie außerdem für das
 `complex64`-Array die Attribute `.real` und `.imag` sowie deren `dtype` aus.
-<!-- ER2 -->
 
 [EQ] Sie haben in [EREFR::2] gesehen, dass ein `complex64`-Array `itemsize=8` hat, während
 `.real` (`float32`) `itemsize=4` hat. Ohne es auszuprobieren: Welches `itemsize` erwarten Sie
 für `.real` eines `complex128`-Arrays? Warum ist das Verhältnis zwischen einem komplexen Typ und
 seinem `.real`-Typ immer exakt 2:1 und kann kein anderer Faktor sein?
-<!-- EQ2 -->
 <!-- time estimate: 25 min -->
 
 ### Array-Erstellung mit vordefinierten Werten
@@ -124,12 +120,10 @@ full_arr = np.full((2, 3), 7)
 
 [ER] Rufen Sie sowohl `np.empty((2, 3), dtype=int)` als auch `np.zeros((2, 3), dtype=int)`
 jeweils zweimal in getrennten Aufrufen auf und geben Sie alle vier Ergebnisse aus.
-<!-- ER3 -->
 
 [EQ] In [EREFR::3] haben Sie `np.empty` und `np.zeros` jeweils zweimal mit identischen
 Argumenten aufgerufen. Warum unterscheiden sich die beiden `np.empty`-Ergebnisse, während die
 beiden `np.zeros`-Ergebnisse identisch sind?
-<!-- EQ3 -->
 
 [HINT::Was bedeutet `np.empty`?]
 Schauen Sie in der [NumPy-Dokumentation zu `np.empty`](https://numpy.org/doc/stable/reference/generated/numpy.empty.html)
@@ -144,7 +138,6 @@ nach der Beschreibung der Funktion.
 - Erstellen Sie ein 4×4 Array mit `np.empty` und `dtype=np.float64`
 
 Zeigen Sie für jedes Array seine `shape`, `dtype` und die ersten Werte an.
-<!-- ER4 -->
 <!-- time estimate: 15 min -->
 
 ### Arrays aus bestehenden Arrays erstellen
@@ -197,9 +190,25 @@ print("full_similar gleich original?", np.array_equal(full_similar, original))  
 print("original gleich original?", np.array_equal(original, original))  # True
 ```
 
+Bei Fließkommazahlen führen Rundungsfehler oft dazu, dass zwei eigentlich "gleiche"
+Ergebnisse sich minimal unterscheiden — `array_equal` würde das fälschlich als `False`
+werten. Für solche Fälle gibt es `allclose`, das Werte innerhalb einer kleinen Toleranz
+als gleich behandelt:
+
+```python
+numpy.allclose(a, b)
+```
+
+- `a`, `b`: die zu vergleichenden Arrays; gibt `True` zurück, wenn alle Werte innerhalb
+  einer kleinen Standardtoleranz übereinstimmen (nützlich bei Fließkomma-Rundungsfehlern)
+
+```python
+print("0.1+0.2 exakt gleich 0.3?", np.array_equal(np.array([0.1 + 0.2]), np.array([0.3])))  # False
+print("0.1+0.2 ungefähr gleich 0.3?", np.allclose(np.array([0.1 + 0.2]), np.array([0.3])))  # True
+```
+
 [EQ] Sie könnten `np.zeros_like(original)` auch durch `np.zeros(original.shape, dtype=original.dtype)`
 ersetzen. Welchen praktischen Vorteil bietet `zeros_like` gegenüber dieser manuellen Variante?
-<!-- EQ4 -->
 
 [ER] Erstellen Sie ein komplexes Array als Grundlage:
 
@@ -210,9 +219,11 @@ ersetzen. Welchen praktischen Vorteil bietet `zeros_like` gegenüber dieser manu
 - Wiederholen Sie `np.zeros_like()`, diesmal mit `dtype=np.float32`
 - Vergleichen Sie die beiden `zeros_like`-Ergebnisse (Standard-`dtype` und `dtype=np.float32`)
   mit `np.array_equal()` — gelten sie trotz unterschiedlichem `dtype` als gleich?
+- Berechnen Sie `np.full_like(original, 0.1, dtype=float) + np.full_like(original, 0.2, dtype=float)`
+  und vergleichen Sie das Ergebnis mit `np.full_like(original, 0.3, dtype=float)` einmal mit
+  `np.array_equal()` und einmal mit `np.allclose()` — stimmen die beiden Vergleiche überein?
 
 Zeigen Sie alle Arrays und ihre Eigenschaften (`shape`, `dtype`) an.
-<!-- ER5 -->
 <!-- time estimate: 20 min -->
 
 ### Weiterführend
