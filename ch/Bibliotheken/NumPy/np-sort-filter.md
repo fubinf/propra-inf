@@ -1,42 +1,39 @@
 title: NumPy Sortierung und Filterung verstehen und anwenden
 stage: alpha
-timevalue: 1.5
+timevalue: 2
 difficulty: 2
-assumes: np-Einführung, np-array, np-index-slice
+requires: np-Einführung
+assumes: np-array, np-array2, np-index-slice
 ---
 
 [SECTION::goal::idea,experience]
 
-- Ich kann verschiedene NumPy-Sortierfunktionen verstehen und situationsgerecht anwenden.
-- Ich verstehe die Unterschiede zwischen `sort`, `argsort` und `lexsort` und ihre Anwendungsbereiche.
-- Ich kann Elemente in Arrays suchen und filtern mit `argmax`, `argmin`, `where`, `nonzero` und `extract`.
-- Ich verstehe das Konzept von Array-Kopien und -Ansichten (Views) und deren praktische Bedeutung.
-- Ich kann erweiterte Sortierfunktionen wie `partition` und `sort_complex` anwenden.
+- Ich kann Arrays mit verschiedenen NumPy-Funktionen sortieren und situationsgerecht die passende auswählen.
+- Ich kann Elemente in Arrays gezielt suchen und filtern.
+- Ich verstehe das Konzept von Array-Kopien und -Ansichten und deren praktische Bedeutung.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Bei der Arbeit mit großen Datenmengen ist das effiziente Sortieren und Filtern von Arrays 
-eine fundamentale Aufgabe. NumPy bietet eine Vielzahl spezialisierter Funktionen, 
+NumPy bietet eine Vielzahl spezialisierter Funktionen zum Sortieren und Filtern von Arrays, 
 die unterschiedliche Sortieralgorithmen und Suchstrategien implementieren.
-Das Verständnis dieser Funktionen und ihrer Performance-Charakteristika ist essentiell 
-für die effektive Datenanalyse und wissenschaftliche Berechnungen.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### Voraussetzungen
-
-Bitte lesen Sie zunächst [PARTREF::np-Einführung] und [PARTREF::np-array] und stellen Sie sicher, 
-dass Sie über eine funktionsfähige NumPy-Installation verfügen. 
-Die dort behandelten Array-Eigenschaften sind für das Verständnis der folgenden 
-Sortier- und Filteroperationen wichtig.
-
 ### Grundlegende Sortierung: `sort` und `argsort`
 
 NumPy bietet verschiedene Sortierfunktionen mit unterschiedlichen Algorithmen und Eigenschaften:
+
+```python
+numpy.sort(a, axis=-1)
+numpy.argsort(a, axis=-1)
+```
+
+- `a`: das zu sortierende Array
+- `axis` (Default `-1`): Achse, entlang derer sortiert wird (`-1` = letzte Achse)
 
 ```python
 import numpy as np
@@ -44,24 +41,29 @@ import numpy as np
 # Einfaches 2D-Array
 arr = np.array([[3, 7], [9, 1]])
 print('Ursprüngliches Array:')
-print(arr)
+print(arr)  # [[3 7] [9 1]]
 
 # sort() sortiert entlang der letzten Achse (standardmäßig)
 sorted_arr = np.sort(arr)
 print('Sortiert (entlang letzter Achse):')
-print(sorted_arr)
+print(sorted_arr)  # [[3 7] [1 9]]
 
 # Sortierung entlang verschiedener Achsen
 print('Sortiert entlang Achse 0 (spaltenweise):')
-print(np.sort(arr, axis=0))
+print(np.sort(arr, axis=0))  # [[3 1] [9 7]]
 
 print('Sortiert entlang Achse 1 (zeilenweise):')
-print(np.sort(arr, axis=1))
+print(np.sort(arr, axis=1))  # [[3 7] [1 9]]
 ```
 
 **Index-basierte Sortierung mit `argsort`**
 
+`argsort` gibt nicht die sortierten Werte selbst zurück, sondern die Indices, die die 
+Elemente in sortierter Reihenfolge referenzieren:
+
 ```python
+import numpy as np
+
 # argsort() gibt Indices zurück, die zur Sortierung führen
 x = np.array([3, 1, 2])
 indices = np.argsort(x)
@@ -69,26 +71,57 @@ print('Sortierungsindices:', indices)  # [1, 2, 0]
 print('Sortiertes Array:', x[indices])  # [1, 2, 3]
 ```
 
-Optional: Für umfassende Informationen zu Sortieralgorithmen siehe:
-[NumPy Sorting Algorithms](https://numpy.org/doc/stable/reference/routines.sort.html)
+Bei einem 2D-Array liefert `argsort(a, axis=1)` für jede Zeile eigene Indices. Um damit das 
+sortierte Array zeilenweise korrekt zu rekonstruieren, reicht einfaches Fancy-Indexing 
+(`arr[indices]`) nicht mehr aus, weil die Indices pro Zeile unterschiedlich sind. Dafür gibt 
+es `take_along_axis`, das entlang einer Achse für jede Zeile (bzw. Spalte) die dort passenden 
+Indices anwendet:
 
-[EQ] Erklären Sie den Unterschied zwischen `np.sort()` und `np.argsort()`. 
-Wann würden Sie `argsort()` anstelle von `sort()` verwenden?
+```python
+numpy.take_along_axis(arr, indices, axis=-1)
+```
+
+- `arr`: das Array, aus dem Werte entnommen werden
+- `indices`: Array gleicher Form wie `arr` (entlang `axis`), das für jede Position angibt, 
+  welches Element aus `arr` entnommen wird
+- `axis` (Default `-1`): Achse, entlang derer `indices` angewendet wird
+
+
+```python
+import numpy as np
+
+arr = np.array([[5, 2, 8], [1, 9, 3]])
+row_indices = np.argsort(arr, axis=1)
+reconstructed = np.take_along_axis(arr, row_indices, axis=1)
+print('Zeilenweise sortiert über argsort-Indices:')
+print(reconstructed)
+print('Stimmt mit np.sort überein?', np.array_equal(reconstructed, np.sort(arr, axis=1)))
+```
+
+[EQ] Wann würden Sie `argsort()` anstelle von `sort()` verwenden?
 <!-- EQ1 -->
 
 [ER] Arbeiten Sie mit grundlegenden Sortierfunktionen:
 
-- Erstellen Sie ein 3×4 Array mit zufälligen Ganzzahlen zwischen 1 und 20
-- Sortieren Sie das Array entlang verschiedener Achsen
-- Verwenden Sie `argsort()` um die Sortierungsindices zu erhalten
-- Rekonstruieren Sie das sortierte Array mit den Indices
+- Erstellen Sie das Array `arr = np.array([[8, 3, 15, 6], [12, 1, 9, 20], [4, 17, 2, 11]])`
+- Sortieren Sie das Array entlang Achse 0 und entlang Achse 1
+- Verwenden Sie `argsort(arr, axis=1)` um die zeilenweisen Sortierungsindices zu erhalten
+- Rekonstruieren Sie das zeilenweise sortierte Array mit `take_along_axis` und vergleichen Sie 
+  das Ergebnis mit `np.sort(arr, axis=1)`
 
 <!-- ER1 -->
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Lexikographische Sortierung: `lexsort`
 
 `lexsort` ermöglicht die Sortierung nach mehreren Kriterien, ähnlich der Sortierung in Tabellenkalkulationen:
+
+```python
+numpy.lexsort(keys)
+```
+
+- `keys`: Sequenz von Arrays gleicher Länge; das **letzte** Array ist das primäre 
+  Sortierkriterium, das vorletzte das sekundäre, und so weiter
 
 ```python
 import numpy as np
@@ -107,21 +140,48 @@ for i in indices:
     print(f'{namen[i]}: Gesamt={gesamtnote[i]}, Mathe={mathenote[i]}')
 ```
 
-Optional: Weitere Details zur lexikographischen Sortierung:
-[Lexicographic Sorting](https://numpy.org/doc/stable/reference/generated/numpy.lexsort.html)
+`lexsort` sortiert für jedes Kriterium immer aufsteigend. Um nach einem Kriterium absteigend zu 
+sortieren, übergeben Sie stattdessen die **negierten** Werte dieses Arrays — die Reihenfolge 
+dreht sich dadurch um, ohne dass sich an den ursprünglichen Werten etwas ändert:
+
+```python
+# Absteigend nach Gesamtnote, dann aufsteigend nach Mathenote
+indices_desc = np.lexsort((mathenote, -gesamtnote))
+print('Sortierung nach Gesamtnote (absteigend), dann nach Mathenote:')
+for i in indices_desc:
+    print(f'{namen[i]}: Gesamt={gesamtnote[i]}, Mathe={mathenote[i]}')
+```
 
 [ER] Implementieren Sie eine lexikographische Sortierung:
 
-- Erstellen Sie Arrays für Produktnamen, Preise und Bewertungen
-- Sortieren Sie die Produkte erst nach Bewertung (absteigend), dann nach Preis (aufsteigend)
+- Erstellen Sie `produkte = np.array(['Laptop', 'Mouse', 'Keyboard', 'Monitor', 'Headset'])`,
+  `preise = np.array([1200, 25, 75, 300, 150])` und
+  `bewertungen = np.array([4.5, 4.2, 4.5, 4.0, 4.5])`
+- Sortieren Sie die Produkte erst nach Bewertung (absteigend), dann nach Preis (aufsteigend) — 
+  für absteigende Sortierung übergeben Sie die negierten Bewertungen an `lexsort`
 - Verwenden Sie `lexsort` und geben Sie das Ergebnis strukturiert aus
 
+[HINT::Reihenfolge der Kriterien] Die Reihenfolge in `keys` ist leicht zu verwechseln: Das 
+**zuletzt** übergebene Array bestimmt die Sortierung zuerst. Wenn Sie erst nach Bewertung, 
+dann nach Preis sortieren wollen, muss die Bewertung als **letztes** Element in `keys` stehen: 
+`np.lexsort((preise, -bewertungen))`.
+[ENDHINT]
+
 <!-- ER2 -->
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
 ### Suchen von Extremwerten: `argmax` und `argmin`
 
 Diese Funktionen finden die Indices der größten und kleinsten Elemente:
+
+```python
+numpy.argmax(a, axis=None)
+numpy.argmin(a, axis=None)
+```
+
+- `a`: das zu durchsuchende Array
+- `axis` (Default `None`): Achse, entlang derer gesucht wird; bei `None` wird das Array 
+  zunächst zu 1D abgeflacht und ein einzelner Index zurückgegeben
 
 ```python
 import numpy as np
@@ -146,24 +206,62 @@ print('Minimumindices pro Zeile:', np.argmin(data, axis=1))
 Wie verhält sich dieser Index zum flachen (1D) Array?
 <!-- EQ2 -->
 
-[ER] Analysieren Sie Daten mit Extremwertfunktionen:
+Um einen solchen flachen Index von Hand in Zeile/Spalte umzurechnen, gilt 
+`flacher_index = zeile * anzahl_spalten + spalte`. NumPy bietet dafür eine fertige Funktion, 
+die diese Umrechnung automatisch vornimmt:
 
-- Erstellen Sie ein 4×5 Array mit Zufallszahlen zwischen 1 und 100
-- Finden Sie die Positionen der größten und kleinsten Werte
-- Bestimmen Sie für jede Zeile das Maximum und für jede Spalte das Minimum
-- Verwenden Sie die Indices um die tatsächlichen Werte auszugeben
+```python
+numpy.unravel_index(indices, shape)
+```
 
-<!-- ER3 -->
-<!-- time estimate: 15 min -->
-
-### Bedingte Suche: `where`, `nonzero` und `extract`
-
-NumPy bietet mächtige Funktionen für die bedingte Suche und Filterung:
+- `indices`: flacher Index (oder Array von Indices)
+- `shape`: Form des ursprünglichen mehrdimensionalen Arrays
 
 ```python
 import numpy as np
 
-# where() findet Elemente basierend auf Bedingungen
+data = np.array([[23, 87, 45, 12, 68],
+                  [91, 34, 76, 5, 52],
+                  [18, 63, 29, 84, 41],
+                  [56, 9, 72, 38, 95]])
+
+flat_max = np.argmax(data)
+row, col = np.unravel_index(flat_max, data.shape)
+print(f'Maximum {data.flat[flat_max]} an flachem Index {flat_max} = Zeile {row}, Spalte {col}')
+```
+
+[ER] Analysieren Sie Daten mit Extremwertfunktionen:
+
+- Erstellen Sie das Array
+  `data = np.array([[12, 45, 8, 67, 23], [34, 89, 5, 41, 56], [78, 3, 62, 19, 90], [27, 51, 14, 38, 6]])`
+- Finden Sie Position und Wert des globalen Maximums und Minimums, sowohl über den flachen 
+  Index als auch mit `unravel_index` umgerechnet in Zeile/Spalte
+- Bestimmen Sie für jede Zeile das Maximum und für jede Spalte das Minimum
+- Verwenden Sie die Indices um die tatsächlichen Werte auszugeben
+
+<!-- ER3 -->
+<!-- time estimate: 20 min -->
+
+### Bedingte Suche: `where`, `nonzero` und `extract`
+
+NumPy bietet folgende Funktionen für die bedingte Suche und Filterung:
+
+```python
+numpy.where(condition)          # gibt die Indices zurück, an denen condition True ist
+numpy.where(condition, x, y)    # wählt elementweise x (bei True) oder y (bei False)
+numpy.nonzero(a)                # gibt die Indices aller Nicht-Null-Elemente zurück
+numpy.extract(condition, a)     # gibt die Werte von a zurück, an denen condition True ist
+```
+
+- `condition`: Boolean-Array oder -Ausdruck
+- `x`, `y`: Werte bzw. Arrays, aus denen elementweise ausgewählt wird, je nachdem ob 
+  `condition` an der jeweiligen Position `True` oder `False` ist (nur bei der Drei-Parameter-Form)
+- `a`: das zu durchsuchende bzw. zu filternde Array
+
+```python
+import numpy as np
+
+# where() mit einem Argument findet Indices, die die Bedingung erfüllen
 arr = np.arange(9).reshape(3, 3)
 print('Array:')
 print(arr)
@@ -173,8 +271,13 @@ indices = np.where(arr > 3)
 print('Indices wo arr > 3:', indices)
 print('Werte an diesen Positionen:', arr[indices])
 
+# where() mit drei Argumenten wählt elementweise zwischen zwei Werten
+arr_1d = np.arange(-10, 11)
+absolute_values = np.where(arr_1d >= 0, arr_1d, -arr_1d)
+print('Betrag über where(condition, x, y):', absolute_values)
+
 # nonzero() findet alle nicht-null Elemente
-sparse_arr = np.array([[30, 0, 40], [0, 20, 0], [50, 0, 60]])
+sparse_arr = np.array([[10, 0, 30], [0, 25, 0], [40, 0, 50]])
 nonzero_indices = np.nonzero(sparse_arr)
 print('Nicht-null Indices:', nonzero_indices)
 
@@ -185,17 +288,30 @@ print('Gerade Elemente:', even_elements)
 
 [ER] Verwenden Sie bedingte Suchfunktionen:
 
-- Erstellen Sie ein Array mit Werten von -10 bis 10
-- Finden Sie alle positiven Werte mit `where`
-- Erstellen Sie ein "sparse" Array mit einigen Null-Werten und verwenden Sie `nonzero`
-- Extrahieren Sie alle Werte zwischen -5 und 5 mit `extract`
+- Erstellen Sie `arr = np.arange(-15, 16)`
+- Finden Sie alle positiven Werte mit `where(condition)`
+- Berechnen Sie den Betrag aller Werte mit der Drei-Parameter-Form `where(condition, x, y)` 
+  (ohne `abs()` zu verwenden) und vergleichen Sie das Ergebnis mit `np.abs(arr)`
+- Erstellen Sie `sparse = np.array([[0, 12, 0], [34, 0, 56], [0, 78, 0]])` und finden Sie 
+  die nicht-null Elemente mit `nonzero`
+- Extrahieren Sie alle Werte zwischen -5 und 5 aus `arr` mit `extract`
 
 <!-- ER4 -->
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
 ### Partitionierung: `partition` und `argpartition`
 
 Partitionierung teilt Arrays so auf, dass kleinere Werte vor und größere nach einem Pivot-Element stehen:
+
+```python
+numpy.partition(a, kth)      # gibt eine partitionierte Kopie von a zurück
+numpy.argpartition(a, kth)   # gibt die Indices zurück, die a partitionieren würden
+```
+
+- `a`: das zu partitionierende Array
+- `kth`: Index (oder Liste von Indices), an dem das Array partitioniert wird — das Element an 
+  dieser Position steht am Ende genau dort, wo es auch in einem vollständig sortierten Array 
+  stehen würde
 
 ```python
 import numpy as np
@@ -218,23 +334,50 @@ multi_part = np.partition(arr, [2, 4])
 print('Partitioniert [2,4]:', multi_part)
 ```
 
-[EQ] Erklären Sie den Vorteil von `partition` gegenüber vollständiger Sortierung, 
-wenn Sie nur die k kleinsten Elemente benötigen.
-<!-- EQ3 -->
+Um den Zeitunterschied zwischen zwei Operationen zu messen, bietet Pythons Standardbibliothek 
+das `time`-Modul: `time.time()` gibt den aktuellen Zeitpunkt in Sekunden zurück. Ruft man es 
+vor und nach einer Operation auf, ergibt die Differenz die benötigte Laufzeit:
 
-[ER] Implementieren Sie effiziente Partitionierung:
+```python
+import time
 
-- Erstellen Sie ein Array mit 100 Zufallszahlen
-- Finden Sie die 10 kleinsten und 10 größten Werte mit `partition`
-- Vergleichen Sie die Performance mit vollständiger Sortierung (konzeptionell)
-- Verwenden Sie `argpartition` um die ursprünglichen Indices zu erhalten
+start = time.time()
+# ... Operation, deren Dauer gemessen werden soll ...
+ende = time.time()
+dauer = ende - start
+print(f'Dauer: {dauer:.4f} Sekunden')
+```
+
+[ER] Implementieren Sie effiziente Partitionierung und messen Sie den Zeitunterschied selbst:
+
+- Erstellen Sie ein großes Array mit `arr = np.arange(1_000_000, 0, -1)` (1 Million absteigend
+  angeordnete Werte)
+- Finden Sie die 10 kleinsten Werte mit `partition` und messen Sie die benötigte Zeit mit 
+  dem `time`-Modul (`time.time()` vor und nach dem Aufruf)
+- Sortieren Sie zum Vergleich dasselbe Array vollständig mit `np.sort` und messen Sie auch 
+  hier die Zeit
+- Geben Sie beide gemessenen Zeiten aus und berechnen Sie den Geschwindigkeitsfaktor
+- Verwenden Sie `argpartition` um die ursprünglichen Indices der 10 kleinsten Werte zu erhalten
 
 <!-- ER5 -->
 <!-- time estimate: 15 min -->
 
+[EQ] Sie haben in der vorherigen Aufgabe die Laufzeit von `partition` und `np.sort` auf 
+demselben großen Array gemessen. Erklären Sie anhand Ihrer eigenen Messwerte, warum 
+`partition` schneller ist, wenn Sie nur die k kleinsten Elemente benötigen, nicht aber das 
+gesamte Array in sortierter Reihenfolge.
+<!-- EQ3 -->
+<!-- time estimate: 5 min -->
+
 ### Spezielle Sortierung: `sort_complex`
 
 NumPy bietet eine spezialisierte Sortierfunktion für komplexe Zahlen:
+
+```python
+numpy.sort_complex(a)
+```
+
+- `a`: Array komplexer Zahlen
 
 ```python
 import numpy as np
@@ -250,84 +393,65 @@ print('Sortiert:', np.sort_complex(complex_arr))
 
 [ER] Arbeiten Sie mit komplexen Zahlen:
 
-- Erstellen Sie ein Array mit mindestens 5 komplexen Zahlen verschiedener Real- und Imaginärteile
+- Erstellen Sie `complex_nums = np.array([3+2j, 1+4j, 3+1j, 2+3j, 1+2j])`
 - Sortieren Sie sie mit `sort_complex` und analysieren Sie die Reihenfolge
-- Erklären Sie, nach welcher Regel die Sortierung erfolgt
 
 <!-- ER6 -->
 <!-- time estimate: 10 min -->
 
 ### Array-Kopien und -Ansichten (Views)
 
-Das Verständnis von Kopien und Ansichten ist wichtig für Speichereffizienz und korrekte Datenmanipulation:
+Manche Operationen erzeugen eine **Kopie** (unabhängiger neuer Speicherbereich), andere eine 
+**Ansicht** (teilt sich den Speicher mit dem Original). Das entscheidet darüber, ob eine 
+Änderung am Ergebnis auch das ursprüngliche Array verändert — bei komplexeren Auswertungen kann 
+das direkt die Korrektheit der Ergebnisse beeinflussen, wenn man ein Original für unverändert 
+hält, es aber über eine View doch verändert wurde:
+
+```python
+ndarray.copy()
+```
+
+- `copy()`: erzeugt immer eine unabhängige Kopie
 
 ```python
 import numpy as np
 
-# Ursprüngliches Array
 original = np.arange(6)
-print('Original:', original)
+print('Original:', original)  # [0 1 2 3 4 5]
 
-# Einfache Zuweisung (keine Kopie!)
-reference = original
-reference[0] = 999
-print('Nach Änderung der Referenz:', original)  # Auch geändert!
+# copy(): unabhängige Kopie
+kopie = original.copy()
+kopie[0] = 888
+print('Original nach Kopie-Änderung:', original)  # [0 1 2 3 4 5] - unverändert
+print('Kopie:', kopie)  # [888 1 2 3 4 5]
 
-# Echte Kopie erstellen
-original = np.arange(6)  # Zurücksetzen
-copy = original.copy()
-copy[0] = 888
-print('Original nach Kopie-Änderung:', original)  # Unverändert
-print('Kopie:', copy)
-
-# View erstellen (teilt Speicher, aber andere Form)
-original = np.arange(12)
-view = original.reshape(3, 4)
+# reshape(): View, teilt sich den Speicher
+view = original.reshape(2, 3)
 view[0, 0] = 777
-print('Original nach View-Änderung:', original)  # Geändert!
+print('Original nach View-Änderung:', original)  # [777 1 2 3 4 5] - geändert!
 ```
 
-Optional: Detaillierte Erklärung zu Kopien und Views:
-[Copies and Views](https://numpy.org/doc/stable/user/basics.copies.html)
+[ER] Untersuchen Sie den Unterschied zwischen Kopie und View:
 
-[EQ] Erklären Sie den Unterschied zwischen einer Array-Kopie und einer Array-Ansicht (View). 
-Geben Sie Beispiele für Operationen, die Views erstellen und solche, die Kopien erstellen.
-<!-- EQ4 -->
-
-[ER] Experimentieren Sie mit Kopien und Views:
-
-- Erstellen Sie ein Array und verschiedene Referenzen, Kopien und Views
-- Testen Sie, welche Änderungen sich auf das ursprüngliche Array auswirken
-- Verwenden Sie `arr.base` um zu prüfen, ob ein Array eine Ansicht ist
-- Demonstrieren Sie das Verhalten bei Slicing-Operationen
+- Erstellen Sie `original = np.arange(10, 16)`
+- Erstellen Sie eine Kopie mit `copy()` und ändern Sie deren erstes Element auf `100`
+- Erstellen Sie eine View mit `original.reshape(2, 3)` und ändern Sie deren erstes Element auf `200`
+- Geben Sie nach jeder Änderung `original` aus und stellen Sie fest, welche der beiden 
+  Operationen das Original mit verändert hat
 
 <!-- ER7 -->
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
-### Byte-Reihenfolge: `byteswap`
-
-Für die Arbeit mit Daten aus verschiedenen Systemen kann die Byte-Reihenfolge relevant sein:
-
-```python
-import numpy as np
-
-# Array mit verschiedenen Ganzzahlen
-arr = np.array([1, 256, 8755], dtype=np.int16)
-print('Ursprüngliches Array:', arr)
-
-# Byte-Reihenfolge vertauschen
-swapped = arr.byteswap()
-print('Nach Byte-Swap:', swapped)
-
-# In-place Vertauschung
-arr_copy = arr.copy()
-arr_copy.byteswap(inplace=True)
-print('In-place Byte-Swap:', arr_copy)
-```
-
-[EQ] Erklären Sie, wann die `byteswap`-Funktion in der Praxis nützlich sein könnte. 
-<!-- EQ5 -->
+[EQ] Erklären Sie anhand Ihrer eigenen Ergebnisse aus der vorherigen Aufgabe, warum die 
+Änderung über die Kopie das Original nicht beeinflusst hat, die Änderung über die View aber schon.
+<!-- EQ4 -->
 <!-- time estimate: 5 min -->
+
+### Weiterführend
+
+- [NumPy Sorting Algorithms](https://numpy.org/doc/stable/reference/routines.sort.html)
+- [Lexicographic Sorting](https://numpy.org/doc/stable/reference/generated/numpy.lexsort.html)
+- [Copies and Views](https://numpy.org/doc/stable/user/basics.copies.html)
 
 [ENDSECTION]
 
@@ -337,6 +461,16 @@ print('In-place Byte-Swap:', arr_copy)
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+### Knackpunkte
+
+- [EREFR::1]: `argsort(axis=1)` gefolgt von `take_along_axis` rekonstruiert exakt das Ergebnis 
+  von `np.sort(arr, axis=1)`
+- [EREFQ::3]: die Erklärung für die gemessene Zeitdifferenz verweist auf die eigenen Messwerte 
+  aus ER5 und darauf, dass `partition` nicht das gesamte Array vollständig ordnen muss
+- [EREFQ::4]: die Erklärung verweist korrekt darauf, dass `copy()` unabhängigen Speicher
+  erzeugt, während `reshape()` sich den Speicher mit dem Original teilt (nicht nur "es ist halt
+  so", sondern mit Bezug auf das eigene Beobachtungsergebnis aus ER7)
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-sort-filter.md]
