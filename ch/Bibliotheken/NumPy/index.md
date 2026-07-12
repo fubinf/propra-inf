@@ -45,6 +45,6 @@ Benötigtes Vorwissen pro Aufgabe:
 - **np-bitwise-string**: Binärdarstellung von Zahlen (Stellenwertsystem zur Basis 2), Zweierkomplement
 - **np-math**: Schul-Trigonometrie (sin/cos/tan und Umkehrfunktionen), Statistik-Grundlagen
   (Mittelwert, Varianz, Standardabweichung, Perzentile)
-- **np-linalg**: Lineare Algebra (Eigenwerte, Matrixnormen, Rang, Konditionszahl, 
-  Singulärwertzerlegung)
+- **np-linalg**: Lineare Algebra (Skalarprodukt, Eigenwerte, Matrixnormen, Rang,
+  Konditionszahl, Singulärwertzerlegung)
 [ENDWARNING]
