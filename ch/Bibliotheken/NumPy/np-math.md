@@ -80,7 +80,6 @@ print('Zurück in Grad:', np.degrees(angles_rad))
 - Überprüfen Sie die trigonometrische Identität sin²(x) + cos²(x) = 1 für alle Winkel
 - Geben Sie die Ergebnisse übersichtlich aus
 
-<!-- ER1 -->
 <!-- time estimate: 15 min -->
 
 ### Umkehrfunktionen: `arcsin`, `arccos`, `arctan`
@@ -120,7 +119,6 @@ print('Winkel in Grad:', angles_deg)
 - Erstellen Sie zusätzlich ein Array mit Tangenswerten [0, 1, 1.7321] und berechnen Sie mit
   `np.arctan()` die entsprechenden Winkel in Grad
 
-<!-- ER2 -->
 <!-- time estimate: 10 min -->
 
 ### Rundungsfunktionen: `around`, `floor`, `ceil`
@@ -155,7 +153,6 @@ print('Auf 2 Dezimalstellen:', np.around(numbers, decimals=2))
 [EQ] Beschreiben Sie den Unterschied zwischen `np.around()`, `np.floor()` und `np.ceil()` 
 bei negativen Zahlen. Verwenden Sie als Beispiel die Zahl `-1.7` und erklären Sie 
 das jeweilige Verhalten.
-<!-- EQ1 -->
 
 [ER] Wenden Sie Rundungsfunktionen praktisch an:
 
@@ -164,7 +161,6 @@ das jeweilige Verhalten.
 - Runden Sie auf 1 Dezimalstelle mit `around`
 - Analysieren Sie die Unterschiede der Ergebnisse
 
-<!-- ER3 -->
 <!-- time estimate: 20 min -->
 
 ### Arithmetische Funktionen: `add`, `subtract`, `multiply`, `divide`, `reciprocal`
@@ -227,7 +223,6 @@ abgeschnitten (Integer-Division) — deshalb muss das Array vorher mit `.astype(
 in Fließkommazahlen umgewandelt werden.
 [ENDHINT]
 
-<!-- ER4 -->
 <!-- time estimate: 15 min -->
 
 ### Spezielle arithmetische Funktionen: `power`, `mod`
@@ -262,7 +257,6 @@ print('Modulo:', np.mod(values, divisors))
 - Erstellen Sie ein Array mit Exponenten `exp = np.array([1, 2, 3, 4])` und berechnen Sie `np.power(base, exp)`
 - Berechnen Sie den Rest bei Division durch 3 für alle Werte in `base`
 
-<!-- ER5 -->
 <!-- time estimate: 10 min -->
 
 ### Statistische Funktionen: `amin`, `amax`, `mean`, `median`
@@ -308,7 +302,6 @@ print('Spannweite (gesamt):', np.ptp(data))
 
 [EQ] Erklären Sie den Unterschied zwischen `axis=0` und `axis=1` bei statistischen 
 Funktionen in 2D-Arrays. Welche Dimension wird in jedem Fall "kollabiert"?
-<!-- EQ2 -->
 
 [ER] Berechnen Sie statistische Kennzahlen und geben Sie die Ergebnisse aus:
 
@@ -318,7 +311,6 @@ Funktionen in 2D-Arrays. Welche Dimension wird in jedem Fall "kollabiert"?
 - Berechnen Sie dieselben Statistiken für jede Zeile und jede Spalte  
 - Verwenden Sie `np.ptp()` um die Spannweite (max - min) zu berechnen
 
-<!-- ER6 -->
 <!-- time estimate: 20 min -->
 
 ### Erweiterte statistische Funktionen: `std`, `var`, `percentile`
@@ -359,7 +351,6 @@ print('Quartile:', percentiles)
 - Berechnen Sie Mittelwert, Standardabweichung und Varianz
 - Bestimmen Sie das 10., 50. und 90. Perzentil
 
-<!-- ER7 -->
 <!-- time estimate: 15 min -->
 
 ### Weiterführend
@@ -379,7 +370,7 @@ print('Quartile:', percentiles)
 ### Knackpunkte
 
 - [EREFR::1]: die trigonometrische Identität sin²(x) + cos²(x) = 1 stimmt für alle fünf
-  Winkel (Ergebnis ≈ 1, per `np.allclose` geprüft, nicht nur für einen Winkel)
+  Winkel (Ergebnis ≈ 1), nicht nur für einen Winkel
 - [EREFR::6]: Minimum/Maximum/Mittelwert/Median pro Zeile bzw. pro Spalte sind der
   jeweils richtigen Achse zugeordnet (nicht vertauscht)
 - [EREFR::7]: die drei Perzentile (10./50./90.) sind korrekt aus dem `scores`-Array
