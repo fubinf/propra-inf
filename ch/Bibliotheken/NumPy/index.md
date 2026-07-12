@@ -41,7 +41,8 @@ angegebenen Zeitbudgets) — die betroffene Aufgabe verweist dafür auf eine pas
 Benötigtes Vorwissen pro Aufgabe:
 
 - **np-Einführung**, **np-array**, **np-array2**, **np-array3**, **np-index-slice**, 
-  **np-bitwise-string**, **np-sort-filter**: kein zusätzliches mathematisches Vorwissen nötig
+  **np-sort-filter**: kein zusätzliches mathematisches Vorwissen nötig
+- **np-bitwise-string**: Binärdarstellung von Zahlen (Stellenwertsystem zur Basis 2), Zweierkomplement
 - **np-math**: Statistik-Grundlagen (Varianzformel), Schul-Trigonometrie (sin/cos/tan)
 - **np-linalg**: Lineare Algebra (Eigenwerte, Matrixnormen, Rang, Konditionszahl, 
   Singulärwertzerlegung)
