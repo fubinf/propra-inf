@@ -252,14 +252,6 @@ result = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
 # Ergebnis: [[4,7,5,6], [20,23,21,22], [28,31,29,30]]
 ```
 
-[HINT::Warum kartesisches Produkt statt Paar?]
-Überlegen Sie zuerst, warum `arr[[1,2], [0,1]]` nur zwei einzelne Elemente liefert (die
-Index-Arrays werden paarweise kombiniert), während Sie eigentlich alle vier Kombinationen
-aus Zeilen [1,2] und Spalten [0,1] als rechteckige Teilmatrix haben wollen. `np.ix_` löst
-genau dieses Problem, indem es die Index-Arrays intern so umformt, dass beim Indexieren
-das kartesische Produkt statt der paarweisen Kombination entsteht.
-[ENDHINT]
-
 [ER] Verwenden Sie `np.ix_` für komplexe Indexierungsoperationen:
 
 - Extrahieren Sie aus einem 8x4 Array eine Teilmatrix mit den Zeilen [1,5,7,2] und Spalten [0,3,1,2]
@@ -267,6 +259,14 @@ das kartesische Produkt statt der paarweisen Kombination entsteht.
 
 [EQ] Vergleichen Sie die beiden Ergebnisse aus [EREFR::6]: Wie unterscheiden sie sich in Form und Inhalt,
 und warum? Wann würden Sie `np.ix_` gegenüber normaler Integer-Array-Indexierung einsetzen?
+
+[HINT::Warum kartesisches Produkt statt Paar?]
+Überlegen Sie zuerst, warum `arr[[1,2], [0,1]]` nur zwei einzelne Elemente liefert (die
+Index-Arrays werden paarweise kombiniert), während Sie eigentlich alle vier Kombinationen
+aus Zeilen [1,2] und Spalten [0,1] als rechteckige Teilmatrix haben wollen. `np.ix_` löst
+genau dieses Problem, indem es die Index-Arrays intern so umformt, dass beim Indexieren
+das kartesische Produkt statt der paarweisen Kombination entsteht.
+[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
