@@ -99,7 +99,6 @@ print('Stimmt mit np.sort überein?', np.array_equal(reconstructed, np.sort(arr,
 ```
 
 [EQ] Wann würden Sie `argsort()` anstelle von `sort()` verwenden?
-<!-- EQ1 -->
 
 [ER] Arbeiten Sie mit grundlegenden Sortierfunktionen:
 
@@ -109,7 +108,6 @@ print('Stimmt mit np.sort überein?', np.array_equal(reconstructed, np.sort(arr,
 - Rekonstruieren Sie das zeilenweise sortierte Array mit `take_along_axis` und vergleichen Sie 
   das Ergebnis mit `np.sort(arr, axis=1)`
 
-<!-- ER1 -->
 <!-- time estimate: 20 min -->
 
 ### Lexikographische Sortierung: `lexsort`
@@ -167,7 +165,6 @@ dann nach Preis sortieren wollen, muss die Bewertung als **letztes** Element in 
 `np.lexsort((preise, -bewertungen))`.
 [ENDHINT]
 
-<!-- ER2 -->
 <!-- time estimate: 15 min -->
 
 ### Suchen von Extremwerten: `argmax` und `argmin`
@@ -204,7 +201,6 @@ print('Minimumindices pro Zeile:', np.argmin(data, axis=1))
 
 [EQ] Erklären Sie, warum `np.argmax(data)` bei einem 2D-Array einen einzelnen Index zurückgibt. 
 Wie verhält sich dieser Index zum flachen (1D) Array?
-<!-- EQ2 -->
 
 Um einen solchen flachen Index von Hand in Zeile/Spalte umzurechnen, gilt 
 `flacher_index = zeile * anzahl_spalten + spalte`. NumPy bietet dafür eine fertige Funktion, 
@@ -239,7 +235,6 @@ print(f'Maximum {data.flat[flat_max]} an flachem Index {flat_max} = Zeile {row},
 - Bestimmen Sie für jede Zeile das Maximum und für jede Spalte das Minimum
 - Verwenden Sie die Indices um die tatsächlichen Werte auszugeben
 
-<!-- ER3 -->
 <!-- time estimate: 20 min -->
 
 ### Bedingte Suche: `where`, `nonzero` und `extract`
@@ -296,7 +291,6 @@ print('Gerade Elemente:', even_elements)
   die nicht-null Elemente mit `nonzero`
 - Extrahieren Sie alle Werte zwischen -5 und 5 aus `arr` mit `extract`
 
-<!-- ER4 -->
 <!-- time estimate: 15 min -->
 
 ### Partitionierung: `partition` und `argpartition`
@@ -359,14 +353,12 @@ print(f'Dauer: {dauer:.4f} Sekunden')
 - Geben Sie beide gemessenen Zeiten aus und berechnen Sie den Geschwindigkeitsfaktor
 - Verwenden Sie `argpartition` um die ursprünglichen Indices der 10 kleinsten Werte zu erhalten
 
-<!-- ER5 -->
 <!-- time estimate: 15 min -->
 
 [EQ] Sie haben in der vorherigen Aufgabe die Laufzeit von `partition` und `np.sort` auf 
 demselben großen Array gemessen. Erklären Sie anhand Ihrer eigenen Messwerte, warum 
 `partition` schneller ist, wenn Sie nur die k kleinsten Elemente benötigen, nicht aber das 
 gesamte Array in sortierter Reihenfolge.
-<!-- EQ3 -->
 <!-- time estimate: 5 min -->
 
 ### Spezielle Sortierung: `sort_complex`
@@ -396,7 +388,6 @@ print('Sortiert:', np.sort_complex(complex_arr))
 - Erstellen Sie `complex_nums = np.array([3+2j, 1+4j, 3+1j, 2+3j, 1+2j])`
 - Sortieren Sie sie mit `sort_complex` und analysieren Sie die Reihenfolge
 
-<!-- ER6 -->
 <!-- time estimate: 10 min -->
 
 ### Array-Kopien und -Ansichten (Views)
@@ -439,12 +430,10 @@ print('Original nach View-Änderung:', original)  # [777 1 2 3 4 5] - geändert!
 - Geben Sie nach jeder Änderung `original` aus und stellen Sie fest, welche der beiden 
   Operationen das Original mit verändert hat
 
-<!-- ER7 -->
 <!-- time estimate: 10 min -->
 
 [EQ] Erklären Sie anhand Ihrer eigenen Ergebnisse aus der vorherigen Aufgabe, warum die 
 Änderung über die Kopie das Original nicht beeinflusst hat, die Änderung über die View aber schon.
-<!-- EQ4 -->
 <!-- time estimate: 5 min -->
 
 ### Weiterführend
@@ -467,10 +456,10 @@ print('Original nach View-Änderung:', original)  # [777 1 2 3 4 5] - geändert!
 - [EREFR::1]: `argsort(axis=1)` gefolgt von `take_along_axis` rekonstruiert exakt das Ergebnis 
   von `np.sort(arr, axis=1)`
 - [EREFQ::3]: die Erklärung für die gemessene Zeitdifferenz verweist auf die eigenen Messwerte 
-  aus ER5 und darauf, dass `partition` nicht das gesamte Array vollständig ordnen muss
+  aus [EREFR::5] und darauf, dass `partition` nicht das gesamte Array vollständig ordnen muss
 - [EREFQ::4]: die Erklärung verweist korrekt darauf, dass `copy()` unabhängigen Speicher
   erzeugt, während `reshape()` sich den Speicher mit dem Original teilt (nicht nur "es ist halt
-  so", sondern mit Bezug auf das eigene Beobachtungsergebnis aus ER7)
+  so", sondern mit Bezug auf das eigene Beobachtungsergebnis aus [EREFR::7])
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-sort-filter.md]
