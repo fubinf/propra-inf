@@ -1,42 +1,57 @@
 title: NumPy mathematische Funktionen verstehen und anwenden
 stage: alpha
-timevalue: 1.5
+timevalue: 1.75
 difficulty: 2
-assumes: np-Einführung, np-array, np-index-slice
+requires: np-Einführung
+assumes: np-array, np-array2, np-bitwise-string
 ---
 
 [SECTION::goal::idea,experience]
 
-- Ich kann die wichtigsten mathematischen Funktionen von NumPy verstehen und anwenden.
-- Ich verstehe die Verwendung von trigonometrischen Funktionen wie sin, cos, tan und deren Umkehrfunktionen.
-- Ich kann Rundungsfunktionen (around, floor, ceil) situationsgerecht einsetzen.
-- Ich beherrsche die Grundlagen der NumPy-Arithmetikfunktionen für Array-Operationen.
-- Ich kann statistische Funktionen zur Datenanalyse verwenden.
+- Ich kann trigonometrische Funktionen und ihre Umkehrfunktionen anwenden.
+- Ich kann Zahlen situationsgerecht runden und grundlegende Arithmetik auf Arrays anwenden.
+- Ich kann statistische Kennzahlen zur Datenanalyse berechnen.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-NumPy bietet eine umfangreiche Sammlung mathematischer Funktionen, die für wissenschaftliche 
-Berechnungen und Datenanalyse unerlässlich sind. Diese Funktionen arbeiten effizient mit 
-Arrays und ermöglichen komplexe mathematische Operationen mit wenigen Codezeilen.
-Das Verständnis dieser Funktionen ist fundamental für die Arbeit in den Bereichen 
-Datenanalyse, maschinelles Lernen und wissenschaftliche Programmierung.
+NumPy bietet eine umfangreiche Sammlung mathematischer Funktionen für wissenschaftliche
+Berechnungen und Datenanalyse. Dieses Kapitel behandelt trigonometrische, arithmetische
+und statistische Funktionen, die element-weise auf Arrays angewendet werden.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### Voraussetzungen
+### Vorwissen
 
-Bitte lesen Sie zunächst [PARTREF::np-Einführung] und [PARTREF::np-array] und stellen Sie sicher, 
-dass Sie eine funktionsfähige NumPy-Installation besitzen. 
-Die dort behandelten Array-Eigenschaften sind für das Verständnis der folgenden 
-mathematischen Operationen wichtig.
+Für diese Aufgabe sind Schul-Trigonometrie (Sinus, Kosinus, Tangens und ihre Umkehrfunktionen)
+sowie Grundlagen der Statistik (Mittelwert, Varianz, Standardabweichung, Perzentile) hilfreich.
+Falls Ihnen diese fehlen, helfen folgende Quellen:
+
+- [Trigonometrische Funktion (Wikipedia)](https://de.wikipedia.org/wiki/Trigonometrische_Funktion)
+- [Standardabweichung (Wikipedia)](https://de.wikipedia.org/wiki/Standardabweichung)
+- [Empirisches Quantil (Wikipedia)](https://de.wikipedia.org/wiki/Empirisches_Quantil)
 
 ### Trigonometrische Funktionen: `sin`, `cos`, `tan`
 
 NumPy stellt Standard-Trigonometriefunktionen zur Verfügung, die element-weise auf Arrays angewendet werden:
+
+```python
+numpy.sin(x)
+numpy.cos(x)
+numpy.tan(x)
+numpy.degrees(x)
+```
+
+- `x` (bei `sin`/`cos`/`tan`): Array mit Winkeln im Bogenmaß
+- `x` (bei `degrees`): Array mit Winkeln im Bogenmaß, wird in Grad umgerechnet (die
+  Umkehrung der `* np.pi / 180`-Umwandlung unten)
+
+Diese Funktionen erwarten das Bogenmaß, NumPy-Winkel werden aber oft in Grad angegeben.
+Für die Umrechnung wird die Konstante `numpy.pi` benötigt (der Wert von π als `float`);
+die Umrechnungsformel lautet `Bogenmaß = Grad * np.pi / 180`.
 
 ```python
 import numpy as np
@@ -53,15 +68,10 @@ print('Winkel in Bogenmaß:', angles_rad)
 print('Sinuswerte:', np.sin(angles_rad))
 print('Kosinuswerte:', np.cos(angles_rad))
 print('Tangenswerte:', np.tan(angles_rad))
+
+# Umgekehrte Richtung: Bogenmaß zurück in Grad
+print('Zurück in Grad:', np.degrees(angles_rad))
 ```
-
-Optional: Für umfassende Informationen siehe:
-[NumPy Mathematical Functions](https://numpy.org/doc/stable/reference/routines.math.html)
-
-[EQ] Erklären Sie, warum bei der Berechnung von `np.cos(90°)` ein sehr kleiner Wert 
-(wie `6.12323400e-17`) statt exakt `0` zurückgegeben wird. Was sagt uns das über 
-Fließkomma-Arithmetik?
-<!-- EQ1 -->
 
 [ER] Implementieren Sie Berechnungen mit trigonometrischen Funktionen:
 
@@ -76,6 +86,14 @@ Fließkomma-Arithmetik?
 ### Umkehrfunktionen: `arcsin`, `arccos`, `arctan`
 
 Die Umkehrfunktionen geben Winkel zurück, deren trigonometrische Werte bekannt sind:
+
+```python
+numpy.arcsin(x)
+numpy.arccos(x)
+numpy.arctan(x)
+```
+
+- `x`: Array mit Sinus-/Kosinus-/Tangenswerten (Ergebnis liegt im Bogenmaß)
 
 ```python
 import numpy as np
@@ -99,6 +117,8 @@ print('Winkel in Grad:', angles_deg)
 - Berechnen Sie mit `np.arccos()` die entsprechenden Winkel in Bogenmaß
 - Wandeln Sie diese in Grad um
 - Verifizieren Sie Ihre Ergebnisse durch Rückrechnung mit `np.cos()`
+- Erstellen Sie zusätzlich ein Array mit Tangenswerten [0, 1, 1.7321] und berechnen Sie mit
+  `np.arctan()` die entsprechenden Winkel in Grad
 
 <!-- ER2 -->
 <!-- time estimate: 10 min -->
@@ -106,6 +126,15 @@ print('Winkel in Grad:', angles_deg)
 ### Rundungsfunktionen: `around`, `floor`, `ceil`
 
 NumPy bietet verschiedene Funktionen zum Runden von Zahlen:
+
+```python
+numpy.around(a, decimals=0)  # rundet zur nächsten (Nachkommastelle gemäß decimals)
+numpy.floor(a)                # rundet immer ab (zur nächstkleineren ganzen Zahl)
+numpy.ceil(a)                 # rundet immer auf (zur nächstgrößeren ganzen Zahl)
+```
+
+- `a`: das zu rundende Array
+- `decimals` (nur bei `around`, Default `0`): Anzahl der Nachkommastellen, auf die gerundet wird
 
 ```python
 import numpy as np
@@ -124,9 +153,9 @@ print('Auf 2 Dezimalstellen:', np.around(numbers, decimals=2))
 ```
 
 [EQ] Beschreiben Sie den Unterschied zwischen `np.around()`, `np.floor()` und `np.ceil()` 
-bei negativen Zahlen. Verwenden Sie als Beispiel die Zahl `-2.3` und erklären Sie 
+bei negativen Zahlen. Verwenden Sie als Beispiel die Zahl `-1.7` und erklären Sie 
 das jeweilige Verhalten.
-<!-- EQ2 -->
+<!-- EQ1 -->
 
 [ER] Wenden Sie Rundungsfunktionen praktisch an:
 
@@ -136,11 +165,21 @@ das jeweilige Verhalten.
 - Analysieren Sie die Unterschiede der Ergebnisse
 
 <!-- ER3 -->
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
-### Arithmetische Funktionen: `add`, `subtract`, `multiply`, `divide`
+### Arithmetische Funktionen: `add`, `subtract`, `multiply`, `divide`, `reciprocal`
 
 NumPy bietet explizite Funktionen für grundlegende arithmetische Operationen:
+
+```python
+numpy.add(x1, x2)
+numpy.subtract(x1, x2)
+numpy.multiply(x1, x2)
+numpy.divide(x1, x2)
+```
+
+- `x1`, `x2`: die beiden Arrays (oder Skalare), auf die die Operation element-weise
+  angewendet wird
 
 ```python
 import numpy as np
@@ -159,24 +198,46 @@ print('Multiplikation:', np.multiply(a, b))
 print('Division:', np.divide(a, b))
 ```
 
-Optional: Weitere Details zu Broadcasting-Regeln finden Sie hier:
-[NumPy Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html)
+`a` hat die Form (2, 3), `b` hat die Form (3,) — hier greift Broadcasting
+(siehe [PARTREF::np-array2]), damit die Operation trotz unterschiedlicher Formen
+funktioniert.
 
-[EQ] Erklären Sie das Konzept des "Broadcasting" anhand des obigen Beispiels. 
-Warum funktioniert die Operation zwischen einem 2×3-Array und einem 1×3-Array?
-<!-- EQ3 -->
+Für Kehrwerte gibt es außerdem `reciprocal`:
+
+```python
+numpy.reciprocal(x)
+```
+
+- `x`: das Array, dessen Kehrwerte berechnet werden
+
+`reciprocal` rechnet mit dem `dtype` des Eingabe-Arrays; bei einem Integer-Array werden
+Kehrwerte kleiner als 1 zu `0` abgeschnitten. Um das zu vermeiden, wandelt man das Array
+vorher mit `astype` um (Details in [PARTREF::np-bitwise-string]).
 
 [ER] Implementieren Sie verschiedene arithmetische Operationen:
 
 - Erstellen Sie zwei Arrays: `arr1 = np.arange(12).reshape(3, 4)` und `arr2 = np.array([1, 2, 3, 4])`
+  (auch hier wird `arr2` per Broadcasting auf die Form von `arr1` angewendet)
 - Führen Sie alle vier Grundrechenarten durch
-- Testen Sie `np.power(arr1, 2)` für Quadrierung
 - Berechnen Sie `np.reciprocal()` für die Kehrwerte (vermeiden Sie Division durch 0)
+
+[HINT::reciprocal bei Ganzzahlen] `np.reciprocal()` rechnet mit dem `dtype` des
+Eingabe-Arrays. Bei einem Integer-Array werden alle Kehrwerte kleiner als 1 zu `0`
+abgeschnitten (Integer-Division) — deshalb muss das Array vorher mit `.astype(float)`
+in Fließkommazahlen umgewandelt werden.
+[ENDHINT]
 
 <!-- ER4 -->
 <!-- time estimate: 15 min -->
 
-### Spezielle arithmetische Funktionen: `reciprocal`, `power`, `mod`
+### Spezielle arithmetische Funktionen: `power`, `mod`
+
+```python
+numpy.power(x1, x2)
+numpy.mod(x1, x2)
+```
+
+- `x1`, `x2`: Basis/Exponent bzw. Dividend/Divisor, element-weise angewendet
 
 ```python
 import numpy as np
@@ -184,9 +245,6 @@ import numpy as np
 # Beispiele für spezielle Funktionen
 values = np.array([2, 4, 8, 16])
 print('Originalwerte:', values)
-
-# Kehrwerte
-print('Kehrwerte:', np.reciprocal(values.astype(float)))
 
 # Potenzen
 print('Quadrate:', np.power(values, 2))
@@ -212,6 +270,20 @@ print('Modulo:', np.mod(values, divisors))
 NumPy bietet umfangreiche statistische Funktionen zur Datenanalyse:
 
 ```python
+numpy.amin(a, axis=None)
+numpy.amax(a, axis=None)
+numpy.mean(a, axis=None)
+numpy.median(a, axis=None)
+numpy.ptp(a, axis=None)
+```
+
+- `a`: das Array, dessen Statistik berechnet wird
+- `axis` (Default `None`): Achse, entlang derer die Statistik berechnet wird; bei `None`
+  wird über das gesamte (flache) Array gerechnet
+
+`ptp` ("peak to peak") berechnet dabei die Spannweite (Maximum minus Minimum).
+
+```python
 import numpy as np
 
 # 2D-Array für statistische Analyse
@@ -229,26 +301,38 @@ print('Median:', np.median(data))
 # Achsenbezogene Berechnungen
 print('Minimum pro Zeile:', np.amin(data, axis=1))
 print('Mittelwert pro Spalte:', np.mean(data, axis=0))
-```
 
-Optional: Detaillierte Erklärungen zu achsenbezogenen Operationen finden Sie hier:
-[NumPy Statistical Functions](https://numpy.org/doc/stable/reference/routines.statistics.html)
+# Spannweite
+print('Spannweite (gesamt):', np.ptp(data))
+```
 
 [EQ] Erklären Sie den Unterschied zwischen `axis=0` und `axis=1` bei statistischen 
 Funktionen in 2D-Arrays. Welche Dimension wird in jedem Fall "kollabiert"?
-<!-- EQ4 -->
+<!-- EQ2 -->
 
-[ER] Führen Sie eine statistische Analyse durch:
+[ER] Berechnen Sie statistische Kennzahlen und geben Sie die Ergebnisse aus:
 
-- Erstellen Sie ein 4×5-Array mit `np.random.randint(1, 100, (4, 5))` (setzen Sie `np.random.seed(42)` für reproduzierbare Ergebnisse)
+- Erstellen Sie das Array
+  `data = np.array([[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 21, 88]])`
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie dieselben Statistiken für jede Zeile und jede Spalte  
 - Verwenden Sie `np.ptp()` um die Spannweite (max - min) zu berechnen
 
 <!-- ER6 -->
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Erweiterte statistische Funktionen: `std`, `var`, `percentile`
+
+```python
+numpy.std(a, axis=None)             # Standardabweichung
+numpy.var(a, axis=None)             # Varianz
+numpy.percentile(a, q, axis=None)   # Wert, unter dem q Prozent der Daten liegen
+```
+
+- `a`: das Array
+- `axis` (Default `None`): wie bei den vorherigen statistischen Funktionen
+- `q` (nur bei `percentile`): das gewünschte Perzentil bzw. eine Liste von Perzentilen
+  (Werte zwischen 0 und 100)
 
 ```python
 import numpy as np
@@ -268,20 +352,20 @@ percentiles = np.percentile(data, [25, 50, 75])
 print('Quartile:', percentiles)
 ```
 
-[EQ] Was ist der Zusammenhang zwischen Standardabweichung und Varianz? 
-Berechnen Sie für das Array [2, 4, 6, 8, 10] händisch die Varianz und 
-überprüfen Sie mit NumPy-Funktionen.
-<!-- EQ5 -->
+[ER] Berechnen Sie erweiterte statistische Kennzahlen und geben Sie die Ergebnisse aus:
 
-[ER] Analysieren Sie Daten mit erweiterten statistischen Funktionen:
-
-- Erstellen Sie normalverteilte Daten mit `np.random.normal(50, 15, 100)` (verwenden Sie `np.random.seed(123)`)
+- Erstellen Sie das Array
+  `scores = np.array([42, 55, 61, 47, 58, 65, 70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53])`
 - Berechnen Sie Mittelwert, Standardabweichung und Varianz
-- Bestimmen Sie das 10., 50. und 90. Perzentil  
-- Berechnen Sie, wie viele Werte innerhalb einer Standardabweichung vom Mittelwert liegen
+- Bestimmen Sie das 10., 50. und 90. Perzentil
 
 <!-- ER7 -->
 <!-- time estimate: 15 min -->
+
+### Weiterführend
+
+- [NumPy Mathematical Functions](https://numpy.org/doc/stable/reference/routines.math.html)
+- [NumPy Statistical Functions](https://numpy.org/doc/stable/reference/routines.statistics.html)
 
 [ENDSECTION]
 
@@ -291,6 +375,15 @@ Berechnen Sie für das Array [2, 4, 6, 8, 10] händisch die Varianz und
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+### Knackpunkte
+
+- [EREFR::1]: die trigonometrische Identität sin²(x) + cos²(x) = 1 stimmt für alle fünf
+  Winkel (Ergebnis ≈ 1, per `np.allclose` geprüft, nicht nur für einen Winkel)
+- [EREFR::6]: Minimum/Maximum/Mittelwert/Median pro Zeile bzw. pro Spalte sind der
+  jeweils richtigen Achse zugeordnet (nicht vertauscht)
+- [EREFR::7]: die drei Perzentile (10./50./90.) sind korrekt aus dem `scores`-Array
+  berechnet, das 50. Perzentil stimmt mit dem Median überein
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-math.md]
