@@ -96,7 +96,10 @@ NumPy unterstützt viel mehr Datentypen als Standard-Python und orientiert sich 
 **Wichtige NumPy-Datentypen:**
 
 - `bool_`: Boolesche Werte (True/False)
-- `int8`, `int16`, `int32`, `int64`: Ganzzahlen verschiedener Größen (in Bits)
+- `int8`, `int16`, `int32`, `int64`: vorzeichenbehaftete Ganzzahlen verschiedener Größen (in Bits), 
+  können negative und positive Werte darstellen
+- `uint8`, `uint16`, `uint32`, `uint64`: vorzeichenlose Ganzzahlen ("unsigned") derselben Größen, 
+  können nur nicht-negative Werte darstellen
 - `float16`, `float32`, `float64`: Gleitkommazahlen
 - `complex64`, `complex128`: Komplexe Zahlen
 
