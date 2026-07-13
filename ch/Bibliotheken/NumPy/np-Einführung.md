@@ -166,7 +166,13 @@ print(people['name'])  # ['Alice' 'Bob']
 - `matrikelnr`: 32-bit Integer
 - `name`: String mit maximal 15 Zeichen  
 - `note`: 32-bit Float
-Fügen Sie drei Beispiel-Studenten hinzu und geben Sie nur die Namen aus.
+
+Fügen Sie folgende drei Beispiel-Studenten hinzu:
+- Matrikelnr: 12345, Name: Anna Mueller, Note: 1.7
+- Matrikelnr: 23456, Name: Max Schmidt, Note: 2.3
+- Matrikelnr: 34567, Name: Lisa Weber, Note: 1.0
+
+Geben Sie nur die Namen aus.
 
 <!-- time estimate: 15 min -->
 
@@ -193,7 +199,7 @@ print(arr.itemsize) # 8
 [EQ] Ein Array hat die Form (4, 5, 3). Wie viele Dimensionen hat es, wie viele Elemente 
 insgesamt, und welche Bedeutung haben die einzelnen Zahlen in der Form-Angabe?
 
-[ER] Erstellen Sie ein 3D-Array der Form (2, 3, 4) mit den Werten `1` bis `24` und
+[ER] Erstellen Sie ein 2D-Array der Form (3, 4) mit den Werten `1` bis `12` und
 geben Sie folgende Eigenschaften aus: `shape`, `ndim`, `size`, `dtype`, `itemsize`
 <!-- time estimate: 15 min -->
 
