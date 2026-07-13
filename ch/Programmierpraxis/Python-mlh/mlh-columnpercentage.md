@@ -164,19 +164,9 @@ def _rounded(percentage: float, precision: int) -> tg.Union[int,float]:
 ```
 
 [HINT::Und wie spielen diese Teile zusammen?]
-Ihre `execute`-Funktion _könnte_ z.B. so aussehen:
+Ihre `execute`-Funktion _könnte_ z.B. so aussehen: 
 ```python
-def execute(args: ap_sub.Namespace):
-    data = sys.stdin.readlines()  # bad idea for huge data, but makes logic much simpler
-    if len(data) == 0:
-        return  # avoid special cases
-    args.sep_re = determine_separator(args.sep, data)
-    args.colindex, has_header = determine_colindex(args.column, data[0].rstrip(), args.sep_re)
-    startindex = 1 if has_header else 0
-    precision = determine_precision(len(data)-startindex)
-    results = process(data[startindex:], args)
-    for percentage, item in sorted(results, reverse=True)[:args.numshow]:
-        print(f"{_rounded(percentage, precision)}%\t{item}")
+[SNIPPET::ITREE:Programmierpraxis/Python-mlh/mlh/mlh/subcmds/columnpercentage.py::execute]
 ```
 [ENDHINT]
 [ENDHINT]
