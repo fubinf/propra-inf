@@ -38,8 +38,8 @@ SciPy ist nicht in der Standard-Python-Installation enthalten und muss separat i
 Als Abhängigkeit wird NumPy automatisch mitinstalliert.
 
 [EC] Installation mit pip:
-```python
-python3 -m pip install scipy
+```bash
+pip install scipy
 ```
 
 **Verifikation der Installation:**
