@@ -9,7 +9,8 @@ requires: np-Einführung
 
 - Ich kann die Achsen-Struktur von NumPy-Arrays interpretieren und besondere Attribute wie
   Real- und Imaginärteil komplexer Arrays nutzen.
-- Ich kann Arrays mit vordefinierten Werten sowie Arrays mit gleicher Form wie ein bestehendes Array erzeugen.
+- Ich kann Arrays mit vordefinierten Werten sowie Arrays mit gleicher Form wie ein bestehendes
+  Array erzeugen.
 
 [ENDSECTION]
 
@@ -23,11 +24,10 @@ behandelt die wichtigsten Attribute und die grundlegenden Funktionen zum Erstell
 [SECTION::instructions::detailed]
 
 NumPy-Arrays (`ndarray`-Objekte) haben verschiedene wichtige Eigenschaften, die uns Informationen
-über die Struktur und den Inhalt der Daten geben. Die wichtigsten Eigenschaften wie `ndim`,
-`shape`, `size`, `dtype` und `itemsize` sowie die konkreten NumPy-Datentypen (z.B. `int8`,
-`int32`, `float32`, `float64`, `complex64`) wurden bereits in [PARTREF::np-Einführung] eingeführt;
-diese Aufgabe vertieft den Umgang mit ihnen und ergänzt Funktionen zum gezielten Erstellen von
-Arrays.
+über die Struktur und den Inhalt der Daten geben.
+Die wichtigsten Eigenschaften und NumPy-Datentypen wurden bereits in [PARTREF::np-Einführung]
+eingeführt; diese Aufgabe vertieft den Umgang mit ihnen und ergänzt Funktionen zum gezielten
+Erstellen von Arrays.
 
 ### Achsen verstehen: `axis`
 
@@ -50,9 +50,9 @@ print("Achse 1 (Länge):", c.shape[1])  # Ausgabe: 5
 Länge 2, welche die Länge 3? Wie kommen Sie anhand der Position in `shape` auf diese
 Zuordnung?
 
-[ER] Erstellen Sie ein dreidimensionales Array der Form `(3, 4, 2)` mit den Werten `1` bis `24`. Geben
-Sie `shape` und `ndim` aus, und listen Sie für jede der drei Achsen (0, 1, 2) auf, wie viele
-Elemente sie jeweils enthält.
+[ER] Erstellen Sie ein zweidimensionales Array der Form `(3, 4)` mit den Werten `1` bis `12`. Geben
+Sie `shape` und `ndim` aus, und listen Sie für beide Achsen (0, 1) auf, wie viele Elemente sie
+jeweils enthält.
 <!-- time estimate: 15 min -->
 
 ### Real- und Imaginärteil: `.real` und `.imag`
@@ -242,8 +242,8 @@ Zeigen Sie alle Arrays und ihre Eigenschaften (`shape`, `dtype`) an.
 
 **Knackpunkte:**
 
-- [EREFR::1] Studierende ordnen allen drei Achsen des 3D-Arrays korrekt die jeweilige Länge aus
-  `shape` zu (Achse 0 → 3, Achse 1 → 4, Achse 2 → 2).
+- [EREFR::1] Studierende ordnen beiden Achsen des 2D-Arrays korrekt die jeweilige Länge aus
+  `shape` zu (Achse 0 → 3, Achse 1 → 4).
 - [EREFQ::2] Studierende erkennen, dass ein komplexer Typ intern aus zwei Fließkommazahlen
   gleicher Präzision (Real- und Imaginärteil) besteht, weshalb das Verhältnis immer exakt 2:1
   ist, und sagen für `complex128` korrekt `itemsize=8` für `.real` voraus (statt nur die
