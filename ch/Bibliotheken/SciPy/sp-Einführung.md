@@ -41,7 +41,6 @@ Als Abhängigkeit wird NumPy automatisch mitinstalliert.
 ```python
 python3 -m pip install scipy
 ```
-<!-- EC1 -->
 
 **Verifikation der Installation:**
 ```python
@@ -54,13 +53,12 @@ NumPy-Version ausgibt, die als Abhängigkeit automatisch mitinstalliert wurde
 (verwenden Sie `numpy.__version__`).
 
 [EQ] Sie haben gesehen, dass beim Installieren von SciPy automatisch NumPy mitinstalliert wird. 
+[scipy.org](https://scipy.org/) bestätigt, dass SciPy NumPy erweitert.
 Warum baut SciPy auf NumPy auf, anstatt eigene Array-Strukturen von Grund auf neu zu implementieren? 
-Welchen Nachteil hätte die Neuentwicklung für das SciPy-Team gehabt?
 
 [HINT::Warum baut SciPy auf NumPy auf?]
-[scipy.org](https://scipy.org/) bestätigt, dass SciPy NumPy erweitert. Überlegen Sie anhand 
-Ihrer Beobachtung aus [EREFR::1] und allgemeiner Software-Engineering-Prinzipien (Wiederverwendung, 
-Interoperabilität mit dem restlichen Python-Ökosystem).
+Denken Sie an diese Software-Engineering-Prinzipien: Warum sollte ein neues Projekt statt alles 
+von Grund auf neu zu schreiben lieber auf bewährte, vorhandene Bibliotheken aufbauen?
 [ENDHINT]
 
 <!-- time estimate: 15 min -->
@@ -174,10 +172,9 @@ print(f"Wert: {value} {unit} (Unsicherheit: {uncertainty})")
 Konstanten aus `physical_constants` aus: `'Planck constant'`, `'electron mass'` und eine weitere 
 Konstante Ihrer Wahl.
 
-[EQ] In [EREFR::2] haben Sie `constants.pi` als einfachen Zahlenwert abgerufen. In [EREFR::3] lieferte 
-`physical_constants` stattdessen ein Tupel aus Wert, Einheit und Unsicherheit. Warum stellt SciPy 
-physikalische Konstanten anders zur Verfügung als mathematische Konstanten wie `pi`? Was wäre der 
-Nachteil, wenn `pi` ebenfalls nur über `physical_constants` abrufbar wäre?
+[EQ] In [EREFR::2] haben Sie `constants.pi` als einfachen Zahlenwert abgerufen. 
+In [EREFR::3] lieferte `physical_constants` stattdessen ein Tupel aus Wert, Einheit und Unsicherheit. 
+Warum stellt SciPy für die beiden Arten von Konstanten unterschiedliche Schnittstellen bereit?
 <!-- time estimate: 20 min -->
 
 ### Weiterführend
