@@ -72,44 +72,48 @@ Um den Effekt des gelernten Features sichtbar und messbar zu machen, simulieren 
 "Festplatte" mit viel leerem Speicherplatz (Nullen) und einem belegten Datenbereich.
 
 [NOTICE]
-Für die nächste Aufgabe brauchen Sie freien Speicherplatz von 10000 MB. 
-Falls Sie nicht ausreichend freien Speicherplatz haben, dann müssen Sie in der nächsten Aufgabe 
-die entsprechenden `count` und `seek` Optionen entsprechend Ihres Speicherplatzes anpassen.
+Für die nächste Aufgabe brauchen Sie freien Speicherplatz von ca. 10000 MB (10 GB). 
+Falls Sie eine herkömmliche Festplatte (HDD) nutzen oder nicht ausreichend freien Speicherplatz haben, reduzieren Sie die Dateigröße auf 3000 MB (3 GB), um extrem lange Lese-Wartezeiten zu vermeiden.
+Passen Sie in diesem Fall die Optionen `count` und `seek` in den folgenden Befehlen entsprechend an.
+Durch die Verwendung von `/dev/null` als Ziel bei den folgenden Messungen sparen wir Speicherplatz und vermeiden HDD-Schreibengpässe!
 [ENDNOTICE]
 
-[EC] Erstellen Sie, falls möglich, eine 10010 MB große Test-Datei `testdisk.img`, 
-bestehend aus 10000 MB Nullen und 10 MB Zufallsdaten:
+Erstellen Sie eine Test-Datei `testdisk.img` (standardmäßig 10010 MB groß, bestehend aus 10000 MB Nullen und 10 MB Zufallsdaten; bei HDD-Nutzung entsprechend angepasst auf 3010 MB):
 
-```
-dd if=/dev/zero of=testdisk.img bs=1M count=10000
-dd if=/dev/urandom of=testdisk.img bs=1M count=10 seek=10000
-```
+[EC] `dd if=/dev/zero of=testdisk.img bs=1M count=10000`
 
-[EC] Kopieren Sie `testdisk.img` zu `testdisk_slow.img` mit der Standard-Blockgröße von 512 Bytes. 
+[EC] `dd if=/dev/urandom of=testdisk.img bs=1M count=10 seek=10000`
+
+[WARNING]
+Diese `.img`-Datei soll NICHT in Git eingecheckt werden. Wir löschen sie am Ende wieder.
+[ENDWARNING]
+
+[EC] Kopieren Sie `testdisk.img` nach `/dev/null` mit der Standard-Blockgröße von 512 Bytes. 
 Nutzen Sie das Unix-Kommando `time` direkt vor dem `dd`-Aufruf, um die reale Zeitdauer zu messen.
 
-[EC] Kopieren Sie `testdisk.img` zu `testdisk_fast.img` mit einer optimierten Blockgröße von `4M`. 
+[EC] Kopieren Sie `testdisk.img` erneut nach `/dev/null` mit einer optimierten Blockgröße von `4M`. 
 Messen Sie auch hier die Zeit mit `time`.
 
 [EQ] Welchen Unterschied in der Ausführungszeit beobachten Sie?
 
-Jedes Mal, wenn `dd` Daten liest oder schreibt, muss es einen Systemaufruf (`read()` / `write()`) 
-an den Linux-Kernel richten. 
-Ein Systemaufruf erfordert einen teuren Kontextwechsel zwischen dem User-Space und dem Kernel-Space.
+Jedes Mal, wenn `dd` Daten liest oder schreibt, stößt dies I/O-Requests an. 
+Bei einer zu geringen Blockgröße (z. B. `bs=512` Byte) entsteht eine enorme Ineffizienz, die das 
+System sowohl im Linux-Kernel als auch direkt auf der SSD ausbremst.
 
-* Bei `bs=512` und einer 10.010 MB großen Datei muss das System ca. 41.000.960 Systemaufrufe durchführen.
-* Bei `bs=4M` genügen dafür lediglich ca. 5.006 Systemaufrufe.
+* Bei `bs=512`: Das System muss die Daten in über 20 Millionen Blöcke aufteilen. 
+Da jeder Block gelesen und geschrieben wird, führt dies zu ca. 41.000.960 I/O-Aufrufen.
+* Bei `bs=4M`: Hier genügen für dieselbe Datenmenge lediglich ca. 5.006 I/O-Aufrufe.
 
 Der immense Overhead der CPU-Kontextwechsel fällt bei der optimierten Blockgröße weg, 
-wodurch die Festplatte bzw. SSD mit ihrer maximalen Input/Output-Geschwindigkeit arbeiten kann.
+wodurch die Festplatte beziehungsweise SSD mit ihrer maximalen Input/Output-Geschwindigkeit arbeiten kann.
 
 Bei großen Datenträgern laufen Kopiervorgänge oft minutenlang im Hintergrund. Ohne Rückmeldung 
 bleibt unklar, ob das System hängt.
 
-[EC] Kopieren Sie `testdisk.img` erneut zu `testdisk_progress.img` mit `bs=4M`, aktivieren Sie 
+[EC] Kopieren Sie `testdisk.img` nochmals nach `/dev/null` mit `bs=4M`, aktivieren Sie 
 diesmal jedoch die Fortschrittsanzeige mit `status=progress`.
 
-[EQ] Welche Metriken (z. B. übertragene Bytes, verstrichene Zeit, Transferrate) gibt 
+[EQ] Welche Metriken (beispielsweise übertragene Bytes, verstrichene Zeit, Transferrate) gibt 
 `status=progress` während des laufenden Vorgangs aus? 
 
 [EQ] Unterscheidet sich diese Anzeige von der finalen Zusammenfassung am Ende?
@@ -166,6 +170,14 @@ während es bei reinen Zufallsdaten fehlschlagen würde?
 
 <!-- time estimate: 40 min -->
 
+### Aufräumen
+Um Ihren Speicherplatz freizugeben und versehentliche Git-Commits zu verhindern, bereinigen wir nun den Arbeitsbereich grundlegend.
+
+[EC] Löschen Sie alle erstellten .img- und .img.gz-Dateien aus Ihrem Verzeichnis.
+
+[WARNING]
+Die `.img`-Dateien sollen NICHT in Git eingecheckt werden.
+[ENDWARNING]
 
 [ENDSECTION]
 
