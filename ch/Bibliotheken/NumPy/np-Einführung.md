@@ -28,7 +28,7 @@ NumPy ist nicht in der Standard-Python-Installation enthalten und muss separat i
 
 [EC] Installieren Sie NumPy mit pip:
 ```bash
-pip3 install numpy
+pip install numpy
 ```
 
 <!-- time estimate: 5 min -->
@@ -42,7 +42,8 @@ sich wesentlich von Python-Listen:
 
 - Homogene Datentypen: Alle Elemente haben den gleichen Datentyp
 - Feste Größe: Die Größe wird bei der Erstellung festgelegt
-- Vektorisierte Operationen: Mathematische Berechnungen werden elementweise auf das gesamte Array angewendet, ohne explizite Schleifen
+- Vektorisierte Operationen: Mathematische Berechnungen werden elementweise auf das gesamte
+  Array angewendet, ohne explizite Schleifen
 
 [EQ] Erklären Sie drei wesentliche Unterschiede zwischen einem NumPy ndarray und einer Python-Liste.
 
@@ -118,6 +119,7 @@ NumPy wandelt ihn automatisch in `np.complex128` um.
 - Ein Array [100, 200, 300] vom Typ `int16`
 - Ein Array [1.5, 2.7, 3.14] vom Typ `float32`  
 - Ein Array [1, 2, 3] vom Typ `complex64`
+
 Geben Sie jeweils das Array und seinen `dtype` aus.
 <!-- time estimate: 15 min -->
 
@@ -146,7 +148,8 @@ print(dt1)  # int32
 Die Kurzschreibweise (`'i4'`, `'f4'`, `'U20'`, ...) stammt aus der C-nahen Array-Protokoll-Konvention
 von NumPy und ist kein typischer Python-Stil (der Buchstabe steht für den Typ – `i` für Integer,
 `f` für Float, `U` für Unicode-String –, die Zahl für die Größe in Bytes bzw. bei `U` für die
-Zeichenanzahl). Für eigenen Code ist `np.int32` üblicher und lesbarer; die Kurzschreibweise begegnet
+Zeichenanzahl). 
+Für eigenen Code ist `np.int32` üblicher und lesbarer; die Kurzschreibweise begegnet
 Ihnen aber häufig bei strukturierten Datentypen (siehe unten) und in fremdem Code, weshalb Sie sie
 erkennen können sollten.
 
@@ -168,6 +171,7 @@ print(people['name'])  # ['Alice' 'Bob']
 - `note`: 32-bit Float
 
 Fügen Sie folgende drei Beispiel-Studenten hinzu:
+
 - Matrikelnr: 12345, Name: Anna Mueller, Note: 1.7
 - Matrikelnr: 23456, Name: Max Schmidt, Note: 2.3
 - Matrikelnr: 34567, Name: Lisa Weber, Note: 1.0
