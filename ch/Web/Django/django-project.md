@@ -7,7 +7,8 @@ requires: django-basics
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe die Grundstruktur eines Django-Projekts und kenne die Rolle der wichtigsten Konfigurationsdateien.
+- Ich verstehe die Grundstruktur eines Django-Projekts und kenne die Rolle der wichtigsten
+  Konfigurationsdateien.
 - Ich kann eine erste View-Funktion schreiben und mit einem URL verknüpfen.
 - Ich kann Logik (view) und Layout (template) voneinander trennen.
 
@@ -63,7 +64,8 @@ Was ist der aktuelle Wert von `DEBUG` und warum ist dies wichtig?
 
 **manage.py - Projekt-Verwaltungsskript**
 
-Die `manage.py` ist ein Wrapper-Skript im Projektroot, das die richtige `DJANGO_SETTINGS_MODULE` für Ihr spezifisches Projekt setzt:
+Die `manage.py` ist ein Wrapper-Skript im Projektroot, das die richtige
+`DJANGO_SETTINGS_MODULE` für Ihr spezifisches Projekt setzt:
 
 ```python
 [SNIPPET::ITREE:/Web/Django/django-project-manage.py::django_project_manage]
@@ -76,7 +78,8 @@ Weitere Details zu den verfügbaren Befehlen finden Sie in [PARTREF::django-admi
 
 **views.py - View-Funktionen**
 
-Eine **View** ist eine Python-Funktion, die einen HTTP-Request empfängt und eine HTTP-Response zurückgibt.
+Eine **View** ist eine Python-Funktion, die einen HTTP-Request empfängt und eine
+HTTP-Response zurückgibt.
 Sie ist das Herzstück jeder Django-Anwendung.
 Weitere Details zu Views finden Sie in [PARTREF::django-views].
 
@@ -188,7 +191,7 @@ und Logik sinnvoll?
 
 - [EREFR::2]: `urls.py` importiert `views` und enthält `path("", views.hello, name="hello")`.
 - [EREFR::3]: `views.py` verwendet `render()` (nicht `HttpResponse`); `templates/hello.html` enthält `{{ message }}`; `settings.py` setzt `DIRS` auf `[BASE_DIR / 'meinprojekt' / 'templates']`.
-- [EREFQ::3]: Browser zeigt „Hello World!" als HTML-Seite; Student erklärt die Rolle von `path()` als Verbindung zwischen URL und View.
+- [EREFQ::3]: Browser zeigt den reinen Text „Hello World!“ ohne Formatierung (noch keine HTML-Seite); Student erklärt die Rolle von `path()` als Verbindung zwischen URL und View.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-project.md]
