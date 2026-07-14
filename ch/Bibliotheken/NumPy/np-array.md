@@ -50,7 +50,7 @@ print("Achse 1 (Länge):", c.shape[1])  # Ausgabe: 5
 Länge 2, welche die Länge 3? Wie kommen Sie anhand der Position in `shape` auf diese
 Zuordnung?
 
-[ER] Erstellen Sie ein zweidimensionales Array der Form `(3, 4)` mit den Werten `1` bis `12`. Geben
+[ER] Erstellen Sie ein zweidimensionales Array der Form `(4, 3)` mit den Werten `10` bis `21`. Geben
 Sie `shape` und `ndim` aus, und listen Sie für beide Achsen (0, 1) auf, wie viele Elemente sie
 jeweils enthält.
 <!-- time estimate: 15 min -->
@@ -73,9 +73,9 @@ print("dtype von .real:", c.real.dtype)  # float32
 
 [ER] Erstellen Sie Arrays mit verschiedenen Datentypen und analysieren Sie diese:
 
-- Ein Array mit `dtype=np.int8` und Werten [10, 20, 30, 40, 50]
-- Ein Array mit `dtype=np.float32` und Werten [1.5, 2.7, 3.9]
-- Ein Array mit `dtype=np.complex64` und zwei komplexen Zahlen
+- Ein Array mit `dtype=np.int8` und Werten [5, 15, 25, 35, 45]
+- Ein Array mit `dtype=np.float32` und Werten [0.5, 1.25, 4.75]
+- Ein Array mit `dtype=np.complex64` und den Werten [2+3j, -1+5j]
 
 Geben Sie für jedes Array `size`, `dtype` und `itemsize` aus. Geben Sie außerdem für das
 `complex64`-Array die Attribute `.real` und `.imag` sowie deren `dtype` aus.
@@ -212,15 +212,15 @@ ersetzen. Welchen praktischen Vorteil bietet `zeros_like` gegenüber dieser manu
 
 [ER] Erstellen Sie ein komplexes Array als Grundlage:
 
-- Beginnen Sie mit dem Array `np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])`
+- Beginnen Sie mit dem Array `basis_array = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])`
 - Verwenden Sie `np.zeros_like()` um ein Array gleicher Form mit Nullen zu erstellen
 - Verwenden Sie `np.ones_like()` um ein Array gleicher Form mit Einsen zu erstellen
 - Verwenden Sie `np.full_like()` um ein Array gleicher Form zu erstellen, gefüllt mit dem Wert 5
 - Wiederholen Sie `np.zeros_like()`, diesmal mit `dtype=np.float32`
 - Vergleichen Sie die beiden `zeros_like`-Ergebnisse (Standard-`dtype` und `dtype=np.float32`)
   mit `np.array_equal()` — gelten sie trotz unterschiedlichem `dtype` als gleich?
-- Berechnen Sie `np.full_like(original, 0.1, dtype=float) + np.full_like(original, 0.2, dtype=float)`
-  und vergleichen Sie das Ergebnis mit `np.full_like(original, 0.3, dtype=float)` einmal mit
+- Berechnen Sie `np.full_like(basis_array, 0.1, dtype=float) + np.full_like(basis_array, 0.2, dtype=float)`
+  und vergleichen Sie das Ergebnis mit `np.full_like(basis_array, 0.3, dtype=float)` einmal mit
   `np.array_equal()` und einmal mit `np.allclose()` — stimmen die beiden Vergleiche überein?
 
 Zeigen Sie alle Arrays und ihre Eigenschaften (`shape`, `dtype`) an.
@@ -243,7 +243,7 @@ Zeigen Sie alle Arrays und ihre Eigenschaften (`shape`, `dtype`) an.
 **Knackpunkte:**
 
 - [EREFR::1] Studierende ordnen beiden Achsen des 2D-Arrays korrekt die jeweilige Länge aus
-  `shape` zu (Achse 0 → 3, Achse 1 → 4).
+  `shape` zu (Achse 0 → 4, Achse 1 → 3).
 - [EREFQ::2] Studierende erkennen, dass ein komplexer Typ intern aus zwei Fließkommazahlen
   gleicher Präzision (Real- und Imaginärteil) besteht, weshalb das Verhältnis immer exakt 2:1
   ist, und sagen für `complex128` korrekt `itemsize=8` für `.real` voraus (statt nur die
