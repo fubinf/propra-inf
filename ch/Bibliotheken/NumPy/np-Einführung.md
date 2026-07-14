@@ -26,7 +26,7 @@ andere wissenschaftliche Python-Bibliotheken wie
 
 NumPy ist nicht in der Standard-Python-Installation enthalten und muss separat installiert werden.
 
-[EC] Installieren Sie NumPy mit pip:
+[EC] Installieren Sie NumPy mit `pip`:
 ```bash
 pip install numpy
 ```
@@ -121,6 +121,7 @@ NumPy wandelt ihn automatisch in `np.complex128` um.
 - Ein Array [1, 2, 3] vom Typ `complex64`
 
 Geben Sie jeweils das Array und seinen `dtype` aus.
+
 <!-- time estimate: 15 min -->
 
 ### `dtype`-Objekte verwenden
@@ -205,6 +206,7 @@ insgesamt, und welche Bedeutung haben die einzelnen Zahlen in der Form-Angabe?
 
 [ER] Erstellen Sie ein 2D-Array der Form (3, 4) mit den Werten `1` bis `12` und
 geben Sie folgende Eigenschaften aus: `shape`, `ndim`, `size`, `dtype`, `itemsize`
+
 <!-- time estimate: 15 min -->
 
 ### Weiterführend
