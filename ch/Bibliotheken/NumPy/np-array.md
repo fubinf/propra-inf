@@ -98,9 +98,10 @@ numpy.full(shape, fill_value, dtype=None)
 ```
 
 - `shape`: Ziel-Form des neuen Arrays (Tupel, z.B. `(2, 3)`)
-- `dtype` (Standard `None`, was intern zu `float64` aufgelöst wird; bei `full` wird ohne
-  Angabe der Typ stattdessen aus `fill_value` abgeleitet): Datentyp der Elemente
-- `fill_value` (nur `full`): der Wert, mit dem alle Elemente gefüllt werden
+- `dtype`: Datentyp der Elemente. 
+  Der Standardwert hierfür ist `None`, was dann intern zu `float64` aufgelöst wird.
+  Ausnahme: `numpy.full()` leitet den Typ aus `fill_value` ab. 
+- `fill_value`: der Wert, mit dem alle Elemente gefüllt werden
 
 ```python
 import numpy as np
@@ -111,7 +112,7 @@ empty_arr = np.empty((2, 3), dtype=int)
 # Array mit Nullen
 zeros_arr = np.zeros((2, 3))
 
-# Array mit Einsen  
+# Array mit Einsen
 ones_arr = np.ones((2, 3))
 
 # Array mit einem bestimmten Wert
@@ -228,7 +229,7 @@ Zeigen Sie alle Arrays und ihre Eigenschaften (`shape`, `dtype`) an.
 
 ### Weiterführend
 
-- [NumPy Array Attributes](https://numpy.org/doc/stable/reference/arrays.ndarray.html#array-attributes) – Vollständige Referenz aller ndarray-Attribute
+- [NumPy Array Attributes](https://numpy.org/doc/stable/reference/arrays.ndarray.html#array-attributes) – Vollständige Referenz aller `ndarray`-Attribute
 - [Array Creation Routines](https://numpy.org/doc/stable/reference/routines.array-creation.html) – Übersicht aller Array-Erstellungsfunktionen
 
 [ENDSECTION]
