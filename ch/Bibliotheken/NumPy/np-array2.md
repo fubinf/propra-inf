@@ -240,17 +240,36 @@ Geben Sie für jeden Schritt die jeweilige Ausgabe aus.
 
 <!-- time estimate: 30 min -->
 
-### Array-Form-Manipulationen: `reshape`, `expand_dims`, `squeeze`
+### Sequenzen erzeugen: `arange` und `linspace`
 
-Verschiedene Funktionen ermöglichen die Manipulation von Array-Formen. Für die folgenden Beispiele
-wird jeweils ein Array mit fortlaufenden Werten als Ausgangspunkt gebraucht; dafür eignet sich:
+Zwei Funktionen erzeugen häufig gebrauchte 1D-Arrays mit regelmäßigen Werten:
 
 ```python
 numpy.arange(stop)
+numpy.linspace(start, stop, num=50)
 ```
 
-- `stop`: liefert (analog zu Pythons eingebautem `range()`) ein 1D-Array mit den Werten `0`
-  bis `stop-1`
+- `numpy.arange(stop)`: liefert (analog zu Pythons eingebautem `range()`) ein 1D-Array mit den
+  Werten `0` bis `stop-1`
+- `numpy.linspace(start, stop, num=50)`: liefert `num` gleichmäßig verteilte Werte von `start`
+  bis `stop` (`num` Standard `50`; der Endpunkt ist standardmäßig eingeschlossen) — nützlich,
+  wenn nicht die Schrittweite, sondern die Anzahl der Punkte feststeht
+
+```python
+a = np.arange(12)          # [0, 1, 2, ..., 11]
+b = np.linspace(0, 1, 5)   # [0.  , 0.25, 0.5 , 0.75, 1.  ]
+```
+
+[ER] Erzeugen Sie zwei Arrays und geben Sie beide aus:
+
+- mit `np.arange` die ganzen Zahlen von 0 bis 9
+- mit `np.linspace` 5 gleichmäßig verteilte Werte von 0 bis 10 (Endpunkt eingeschlossen)
+
+<!-- time estimate: 10 min -->
+
+### Array-Form-Manipulationen: `reshape`, `expand_dims`, `squeeze`
+
+Verschiedene Funktionen ermöglichen die Manipulation von Array-Formen.
 
 **Reshape-Operationen:**
 ```python
@@ -286,9 +305,10 @@ squeezed = np.squeeze(expanded)  # Zurück zu (2, 2)
 
 [ER] Arbeiten Sie mit verschiedenen Array-Form-Manipulationen:
 
-- Beginnen Sie mit einem 1D-Array der Länge 24
-- Formen Sie es in verschiedene 2D- und 3D-Strukturen um
-- Experimentieren Sie mit expand_dims und squeeze
+- Erstellen Sie mit `np.arange` ein 1D-Array der Länge 24 und formen Sie es in eine
+  `(4, 6)`- und eine `(2, 3, 4)`-Struktur um
+- Fügen Sie mit `expand_dims` eine neue Achse hinzu und entfernen Sie diese anschließend
+  wieder mit `squeeze`
 
 <!-- time estimate: 15 min -->
 
