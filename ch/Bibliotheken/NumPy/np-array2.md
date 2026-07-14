@@ -28,8 +28,8 @@ drei zusammenhängenden Themen: Broadcasting, gezieltes Iterieren und Verändern
 
 ### NumPy Broadcasting: Grundlagen
 
-Broadcasting ermöglicht arithmetische Operationen zwischen Arrays unterschiedlicher Formen. 
-Wenn zwei Arrays kompatible Formen haben, "broadcasted" NumPy automatisch das kleinere Array, 
+Broadcasting ermöglicht arithmetische Operationen zwischen Arrays unterschiedlicher Formen.
+Wenn zwei Arrays kompatible Formen haben, "broadcasted" NumPy automatisch das kleinere Array,
 um es an die Form des größeren anzupassen.
 
 **Grundlegende Broadcasting-Beispiele:**
@@ -52,14 +52,14 @@ result = matrix + vector                    # Broadcasting auf (2, 3)
 ```python
 # 2D-Array mit 1D-Array
 a = np.array([[0, 0, 0],
-              [10, 10, 10], 
+              [10, 10, 10],
               [20, 20, 20],
               [30, 30, 30]])  # Form: (4, 3)
 b = np.array([0, 1, 2])      # Form: (3,)
 result = a + b               # Broadcasting erfolgt automatisch
 ```
 
-[EQ] Erklären Sie in eigenen Worten, was Broadcasting bedeutet und warum es nützlich ist. 
+[EQ] Erklären Sie in eigenen Worten, was Broadcasting bedeutet und warum es nützlich ist.
 Geben Sie ein konkretes Beispiel an, wo Broadcasting Ihnen Arbeit erspart.
 
 <!-- time estimate: 10 min -->
@@ -88,25 +88,27 @@ A: (3, 4)     +     B: (2,)      →  Fehler: 4 ≠ 2
 
 **Schritt-für-Schritt-Analyse:**
 ```python
-# Array A: Form (4, 3) 
+# Array A: Form (4, 3)
 # Array B: Form (3,) wird zu (1, 3) erweitert
 # Vergleich: 4 mit 1 (OK), 3 mit 3 (OK) → kompatibel
 ```
 
-[EQ] Analysieren Sie folgende Array-Kombinationen und bestimmen Sie, 
+[EQ] Analysieren Sie folgende Array-Kombinationen und bestimmen Sie,
 ob Broadcasting möglich ist. Begründen Sie Ihre Antwort:
 
 - Array A: Form (5, 4) mit Array B: Form (4,)
-- Array A: Form (3, 1, 4) mit Array B: Form (2, 4) 
+- Array A: Form (3, 1, 4) mit Array B: Form (2, 4)
 - Array A: Form (6, 1) mit Array B: Form (1, 5)
 
 [ER] Demonstrieren Sie Broadcasting mit verschiedenen Array-Kombinationen:
 
-- Erstellen Sie eine 3x4 Matrix mit Werten 0-11
-- Erstellen Sie einen 1D-Array mit 4 Elementen [1, 2, 3, 4]
-- Erstellen Sie einen 2D-Array der Form (3, 1) mit Werten [[10], [20], [30]]
-- Erstellen Sie zusätzlich ein 3D-Array der Form (2, 1, 4) und ein weiteres 2D-Array der Form (3, 4)
-- Führen Sie Broadcasting-Operationen zwischen diesen Arrays durch
+- Erstellen Sie `matrix` als 3x4-Matrix mit den Werten `[[2, 4, 6, 8], [10, 12, 14, 16], [18, 20, 22, 24]]`
+- Erstellen Sie `row_vec` als 1D-Array mit 4 Elementen `[1, 2, 3, 4]`
+- Erstellen Sie `col_vec` als 2D-Array der Form (3, 1) mit Werten `[[10], [20], [30]]`
+- Erstellen Sie `array_3d` als 3D-Array der Form (2, 1, 4) mit Werten `[[[1, 3, 5, 7]], [[2, 4, 6, 8]]]`
+  und `array_2d` als weiteres 2D-Array der Form (3, 4) mit Werten `[[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3]]`
+- Führen Sie folgende Broadcasting-Operationen durch: `matrix + row_vec`, `matrix + col_vec`,
+  `row_vec * col_vec`, `array_3d + array_2d`
 - Dokumentieren Sie die resultierenden Formen und zeigen Sie die ersten Zeilen
 
 <!-- time estimate: 20 min -->
@@ -147,7 +149,7 @@ normalized = (data - min_vals) / range_vals  # Broadcasting: (3, 5) mit (1, 5)
 
 [ER] Implementieren Sie eine Min-Max-Normalisierung mit Broadcasting:
 
-- Erstellen Sie eine Funktion `min_max_normalize(data, axis=0)` 
+- Erstellen Sie eine Funktion `min_max_normalize(data, axis=0)`
 - Die Funktion soll Daten auf den Bereich [0, 1] normalisieren
 - Verwenden Sie Broadcasting für die Berechnung
 - Testen Sie mit der Matrix `[[1, 20, 300], [2, 25, 280], [3, 15, 320]]`
@@ -169,8 +171,8 @@ numpy.nditer(a, flags=None, op_flags=None, order='K')
 - `flags` (Standard `None`): Liste zusätzlicher Iterationsmodi
 - `op_flags` (Standard `None`, entspricht `['readonly']`): Liste von Zugriffsrechten auf die
   iterierten Elemente
-- `order` (Standard `'K'`, verhält sich bei normal erstellten Arrays wie `'C'`): legt die
-  Durchlaufreihenfolge fest — `'C'` zeilenweise, `'F'` spaltenweise
+- `order` (Standard `'K'`): legt die Durchlaufreihenfolge fest — `'C'` zeilenweise, `'F'`
+  spaltenweise. Bei normal erstellten Arrays verhält sich `'K'` wie `'C'`
 
 **Grundlegende Iteration:**
 ```python
@@ -190,7 +192,7 @@ for x in np.nditer(a):
 for x in np.nditer(a, order='C'):
     print(x, end=', ')  # Ausgabe: 0, 1, 2, 3, 4, 5
 
-# Fortran-Ordnung (spaltenweise)  
+# Fortran-Ordnung (spaltenweise)
 for x in np.nditer(a, order='F'):
     print(x, end=', ')  # Ausgabe: 0, 3, 1, 4, 2, 5
 ```
@@ -233,7 +235,7 @@ durch und tragen Sie für jede Kombination den passenden Wert ein.
 
 - Erstellen Sie ein 4x3 Array mit Werten 0-11
 - Implementieren Sie Iteration mit Index-Verfolgung
-- Verwenden Sie Schreibzugriff um alle Werte zu verdoppeln  
+- Verwenden Sie Schreibzugriff um alle Werte zu verdoppeln
 - Testen Sie externe Schleifen mit `order='F'`
 
 Geben Sie für jeden Schritt die jeweilige Ausgabe aus.
@@ -252,8 +254,8 @@ numpy.linspace(start, stop, num=50)
 - `numpy.arange(stop)`: liefert (analog zu Pythons eingebautem `range()`) ein 1D-Array mit den
   Werten `0` bis `stop-1`
 - `numpy.linspace(start, stop, num=50)`: liefert `num` gleichmäßig verteilte Werte von `start`
-  bis `stop` (`num` Standard `50`; der Endpunkt ist standardmäßig eingeschlossen) — nützlich,
-  wenn nicht die Schrittweite, sondern die Anzahl der Punkte feststeht
+  bis `stop` (`num` Standard `50`) — nützlich, wenn nicht die Schrittweite, sondern die Anzahl
+  der Punkte feststeht. Der Endpunkt `stop` ist standardmäßig eingeschlossen
 
 ```python
 a = np.arange(12)          # [0, 1, 2, ..., 11]
@@ -320,7 +322,7 @@ NumPy kann auch mehrere Arrays gleichzeitig broadcasten:
 ```python
 # Drei Arrays mit verschiedenen Formen
 a = np.arange(12).reshape(3, 4)     # Form: (3, 4)
-b = np.arange(4)                     # Form: (4,)  
+b = np.arange(4)                     # Form: (4,)
 c = np.arange(3).reshape(3, 1)      # Form: (3, 1)
 
 # Kombinierte Operation
@@ -331,9 +333,9 @@ result = a + b + c  # Broadcasting auf (3, 4)
 ```python
 # Schritt-für-Schritt-Analyse:
 # A: (4, 1, 3)
-# B: (2, 3) → erweitert zu (1, 2, 3)  
+# B: (2, 3) → erweitert zu (1, 2, 3)
 # C: (4, 2, 1)
-# 
+#
 # Vergleich der Dimensionen (von rechts):
 # Dim 2: A=3, B=3, C=1 → OK (3 kompatibel mit 3 und 1)
 # Dim 1: A=1, B=2, C=2 → OK (1 kompatibel mit 2)
@@ -344,10 +346,10 @@ result = a + b + c  # Broadcasting auf (3, 4)
 [EQ] Gegeben sind drei Arrays:
 
 - Array X: Form (3, 1, 5)
-- Array Y: Form (2, 5)  
+- Array Y: Form (2, 5)
 - Array Z: Form (3, 2, 1)
 
-Bestimmen Sie die resultierende Form bei der Operation `X + Y + Z` 
+Bestimmen Sie die resultierende Form bei der Operation `X + Y + Z`
 oder erklären Sie, warum die Operation nicht möglich ist.
 
 <!-- time estimate: 10 min -->
