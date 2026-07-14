@@ -172,7 +172,7 @@ print(people['name'])  # ['Alice' 'Bob']
 
 Fügen Sie folgende drei Beispiel-Studenten hinzu:
 
-- Matrikelnr: 12345, Name: Anna Mueller, Note: 1.7
+- Matrikelnr: 12345, Name: Anna Müller, Note: 1.7
 - Matrikelnr: 23456, Name: Max Schmidt, Note: 2.3
 - Matrikelnr: 34567, Name: Lisa Weber, Note: 1.0
 
