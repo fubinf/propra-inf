@@ -57,15 +57,8 @@ Zeigen Sie im Browser den Quelltext an (Ctrl-U) und verstehen Sie den Aufbau des
 Inhaltsverzeichnisses mit der Liste der Kapitel, Aufgabengruppen und Aufgaben.
 
 Ein einzelner Eintrag für eine Aufgabe hat, wenn man ihn hübscher formatiert, diesen Aufbau:
-```
-  <div class='indent2 stage-beta'>
-      <a href='HTTP-GET.html'
-         title="HTTP GET: Abrufen von Ressourcen (request, response, status codes)">HTTP-GET</a>
-      <span class='difficulty2' title='Difficulty: low'>&#x26ab;&#xfe0e;</span>
-      <span class='timevalue-decoration' title='Timevalue: 1.0 hours'>1.0</span>
-      <span class='assumed-by-decoration' title='assumed by: m_requests'></span>
-      <span class='assumes-decoration' title='assumes: apt, redirect'></span>
-  </div>
+```html
+[SNIPPET::ITREE:beautifulsoup.py::toc_entry]
 ```
 
 
