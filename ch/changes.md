@@ -23,4 +23,6 @@
 - **2026-06-23**: Aufgaben [PARTREF::go-unsafe] und [PARTREF::c-preprocessor-conditional] zugefügt.
 - **2026-06-25**: Aufgabe [PARTREF::go-modules] zugefügt.
 - **2026-07-07**: Aufgabe [PARTREF::curl] zugefügt.
+- **2026-07-14**: Kapitel [PARTREF::Programmierpraxis] erlaubt jetzt die freie Wahl der Programmiersprache.
+- **2026-07-14**: Aufgabe [PARTREF::go-testing] zugefügt.
 - ...

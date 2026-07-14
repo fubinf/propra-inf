@@ -1,8 +1,8 @@
 title: Testen in Go
-stage: alpha
+stage: beta
 timevalue: 2
 difficulty: 3
-assumes: go-arrays-and-slices, go-structs2
+assumes: go-arrays-and-slices, go-structs2, go-maps
 ---
 
 [SECTION::goal::idea,experience]
@@ -78,8 +78,8 @@ Den Funktionsnamen und die Fehlermeldung dürfen Sie frei wählen.
 
 #### Cleanup()
 
-Die Methode `t.Cleanup()` wird nach jedem Test ausgeführt.
-Diese soll für das Aufräumen benutzt werden, beispielsweise so:
+Mit `t.Cleanup()` registrieren Sie eine Funktion, die nach dem Ende des Tests ausgeführt wird
+und zum Aufräumen dient, beispielsweise so:
 
 ```go
 func TestSomethingWithFiles(t *testing.T) {
@@ -97,7 +97,7 @@ func TestSomethingWithFiles(t *testing.T) {
 }
 ```
 
-[EQ] Welche anderen Anwendungen der Methode `Cleanup()` fallen Ihnen ein?
+[EQ] Welche anderen Anwendungen von `Cleanup()` fallen Ihnen ein?
 <!-- time estimate: 5 min -->
 
 
@@ -105,11 +105,11 @@ func TestSomethingWithFiles(t *testing.T) {
 
 `testing.T` verfügt über Methoden `Run()` und `Parallel()`.
 
-Bei Unit-Tests ermöglicht die Methode `Run()` strukturiertes Testen:
+Bei Unit-Tests ermöglicht `Run()` strukturiertes Testen:
 Ein Test A darf aus den Tests B, C und D bestehen.
 Schlägt einer der Tests B, C oder D fehl, so gilt auch der Test A als fehlgeschlagen.
 
-Die Methode `Parallel()` wird zusammen mit der Methode `Run()` verwendet und registriert einen Test für parallele
+`Parallel()` wird zusammen mit `Run()` verwendet und registriert einen Test für parallele
 Ausführung:
 
 ```go
@@ -139,7 +139,7 @@ Ein Sprachkonstrukt, das sich sehr gut für tabellengesteuerte Tests eignet, sin
 
 Schauen Sie sich diesen 
 [Artikel über tabellengesteuerte Tests](https://dave.cheney.net/2019/05/07/prefer-table-driven-tests)
-an und verstehen Sie, was tabellengesteuerte Tests sind.
+grob an und verstehen Sie, was tabellengesteuerte Tests sind.
 
 [ER] Definieren Sie drei Testfälle für die Funktion `Reverse()` und schreiben Sie einen Unit-Test, der diese drei Fälle
 testet.
@@ -211,7 +211,7 @@ Um die Tests komplett neu auszuführen, können Sie dieses Verzeichnis löschen.
 [ENDNOTICE]
 
 [EQ] Woran liegt das Problem?
-Welche Codezeile und wie würden Sie anpassen?
+Welche Codezeile? Wie würden Sie das korrigieren?
 
 <!-- time estimate: 30 min -->
 
@@ -259,7 +259,7 @@ Hier ist eine kleine Auflistung von oft verwendeten Flags:
 
 - `go test -bench=.` — alle Benchmarks in dem Modul ausführen;
 - `go test -bench=BenchmarkSomeFunction` — eine konkrete Benchmark ausführen;
-- (genereller auch `go test -bench=regexp`, mehr zu regulären Ausdrücken in [PARTREF::RegExp])
+  (auch als `go test -bench=regexp`, siehe [PARTREF::RegExp])
 - `go test -bench=. -benchmem` — Benchmark mit Statistiken zur Speicherbenutzung (diese können Sie auch mit dem Aufruf
    `b.ReportAllocs()` anzeigen lassen);
 - `go test -bench=. -benchtime=10s` — die Dauer einer Benchmark spezifizieren;
@@ -322,7 +322,6 @@ Welche Option ist schneller und warum?
 [ENDSECTION]
 
 [INSTRUCTOR::Hinweise]
-
 **Kommandoprotokoll**
 [PROT::ALT:go-testing.prot]
 
@@ -331,5 +330,4 @@ Welche Option ist schneller und warum?
 [INCLUDE::ALT:]
 
 Musterlösung der Programmieraufgabe siehe hier: [TREEREF::/Sprachen/Go/go-testing.go].
-
 [ENDINSTRUCTOR]
