@@ -43,6 +43,6 @@ Benötigtes Vorwissen pro Aufgabe:
 - **sp-integrate**: Analysis (bestimmte Integrale), gewöhnliche Differentialgleichungen
 - **sp-optimize**: Analysis (Ableitungen, Extremstellen) — geringerer Bedarf
 - **sp-stats**: Wahrscheinlichkeitstheorie, Statistik (Verteilungen, Hypothesentests)
-- **sp-interpolate**: Analysis (Polynome, Stetigkeit) — geringerer Bedarf
+- **sp-interpolate**: Konzept der numerischen Interpolation (Polynom-/Spline-Interpolation, radiale Basisfunktionen); Grundbegriffe der Analysis (Polynome, Stetigkeit)
 - **sp-sparse**: kaum Mathe nötig, eher Grundlagen der Algorithmik (Graphen, kürzeste Wege)
 [ENDWARNING]
