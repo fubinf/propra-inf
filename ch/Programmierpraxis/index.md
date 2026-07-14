@@ -3,7 +3,7 @@ title: "Programmierpraxis: Projekte in mehreren Schritten"
 In diesem Kapitel gibt es Aufgaben zum Programmier-Praktikum im engeren Sinne:
 Sie üben das Entwickeln von Software ganzheitlich.
 Die Aufgaben stehen hier nicht jede für sich, sondern jeweils eine komplette Aufgabengruppe
-bildet eine Einheit, ein eigenes kleines Projekt.
+bildet eine Einheit, ein eigenes kleines Projekt, das Sie wahlweise ganz oder nur teilweise bearbeiten können.
 
 [WARNING]
 Die Aufgaben in diesem Kapitel unterscheiden sich in mehrfacher Hinsicht von den anderen:
@@ -26,3 +26,19 @@ Die Aufgaben in diesem Kapitel unterscheiden sich in mehrfacher Hinsicht von den
   eigenständigem Namen angelegt und dann in folgenden Aufgaben weitergesponnen.
 [ENDWARNING]
 
+[NOTICE]
+### Programmiersprache wählbar!
+
+Die Aufgaben in diesem Kapitel sind jeweils für eine bestimmte Programmiersprache formuliert.
+Diese findet sich im Namen der jeweiligen Aufgabengruppe und Sie erhalten für diese Sprache
+eine hilfreiche Anleitung und Entwurfshinweise.
+Wenn Sie eher wenig Programmiererfahrung haben, sollten Sie diesen Weg einschlagen.
+
+Wenn Ihnen das zu einfach erscheint, dürfen Sie jede Aufgabengruppe aber auch in einer (einer!) 
+anderen Programmiersprache Ihrer Wahl implementieren.
+Sind Hinweise in den Aufgaben dadurch nicht direkt anwendbar, müssen Sie selbst eigene Wege finden.
+Soweit es dabei um die Entwurfsstruktur des Programmcodes geht, dürfen Sie nach Bedarf abweichen.
+Markdown- und .prot-Abgaben sollten Sie hingegen so genau wie möglich einhalten.
+
+Die Tutor_innen werden bei der Kontrolle entsprechend angepasste Maßstäbe anlegen.
+[ENDNOTICE]
