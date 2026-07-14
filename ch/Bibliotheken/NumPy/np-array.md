@@ -1,5 +1,5 @@
 title: NumPy Array-Eigenschaften verstehen und anwenden
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 2
 requires: np-Einführung
@@ -98,9 +98,9 @@ numpy.full(shape, fill_value, dtype=None)
 ```
 
 - `shape`: Ziel-Form des neuen Arrays (Tupel, z.B. `(2, 3)`)
-- `dtype`: Datentyp der Elemente. 
+- `dtype`: Datentyp der Elemente.
   Der Standardwert hierfür ist `None`, was dann intern zu `float64` aufgelöst wird.
-  Ausnahme: `numpy.full()` leitet den Typ aus `fill_value` ab. 
+  Ausnahme: `numpy.full()` leitet den Typ aus `fill_value` ab.
 - `fill_value`: der Wert, mit dem alle Elemente gefüllt werden
 
 ```python
@@ -229,8 +229,10 @@ Zeigen Sie alle Arrays und ihre Eigenschaften (`shape`, `dtype`) an.
 
 ### Weiterführend
 
-- [NumPy Array Attributes](https://numpy.org/doc/stable/reference/arrays.ndarray.html#array-attributes) – Vollständige Referenz aller `ndarray`-Attribute
-- [Array Creation Routines](https://numpy.org/doc/stable/reference/routines.array-creation.html) – Übersicht aller Array-Erstellungsfunktionen
+- [NumPy Array Attributes](https://numpy.org/doc/stable/reference/arrays.ndarray.html#array-attributes):
+  Vollständige Referenz aller `ndarray`-Attribute
+- [Array Creation Routines](https://numpy.org/doc/stable/reference/routines.array-creation.html):
+  Übersicht aller Array-Erstellungsfunktionen
 
 [ENDSECTION]
 
