@@ -13,10 +13,10 @@ difficulty: 1
 
 
 [SECTION::background::default]
-NumPy (Numerical Python) ist eine fundamentale Bibliothek für wissenschaftliches Rechnen in Python. 
-Sie stellt leistungsstarke N-dimensionale Array-Objekte zur Verfügung und ist die Grundlage für viele 
-andere wissenschaftliche Python-Bibliotheken wie 
-[PARTREF::Pandas], [PARTREF::SciPy] und [PARTREF::Matplotlib]. 
+NumPy (Numerical Python) ist eine fundamentale Bibliothek für wissenschaftliches Rechnen in Python.
+Sie stellt leistungsstarke N-dimensionale Array-Objekte zur Verfügung und ist die Grundlage für viele
+andere wissenschaftliche Python-Bibliotheken wie
+[PARTREF::Pandas], [PARTREF::SciPy] und [PARTREF::Matplotlib].
 [ENDSECTION]
 
 
@@ -35,7 +35,7 @@ pip install numpy
 
 ### Das `ndarray`-Objekt verstehen
 
-Das wichtigste Element von NumPy ist das N-dimensionale Array-Objekt (`ndarray`). Es unterscheidet 
+Das wichtigste Element von NumPy ist das N-dimensionale Array-Objekt (`ndarray`). Es unterscheidet
 sich wesentlich von Python-Listen:
 
 **Wichtige Eigenschaften des ndarray:**
@@ -77,7 +77,7 @@ print(a)  # [1 2 3]
 **2D-Array:**
 ```python
 b = np.array([[1, 2], [3, 4]])
-print(b)  
+print(b)
 # [[1 2]
 #  [3 4]]
 ```
@@ -97,9 +97,9 @@ NumPy unterstützt viel mehr Datentypen als Standard-Python und orientiert sich 
 **Wichtige NumPy-Datentypen:**
 
 - `bool_`: Boolesche Werte (True/False)
-- `int8`, `int16`, `int32`, `int64`: vorzeichenbehaftete Ganzzahlen verschiedener Größen (in Bits), 
+- `int8`, `int16`, `int32`, `int64`: vorzeichenbehaftete Ganzzahlen verschiedener Größen (in Bits),
   können negative und positive Werte darstellen
-- `uint8`, `uint16`, `uint32`, `uint64`: vorzeichenlose Ganzzahlen ("unsigned") derselben Größen, 
+- `uint8`, `uint16`, `uint32`, `uint64`: vorzeichenlose Ganzzahlen ("unsigned") derselben Größen,
   können nur nicht-negative Werte darstellen
 - `float16`, `float32`, `float64`: Gleitkommazahlen
 - `complex64`, `complex128`: Komplexe Zahlen
@@ -117,7 +117,7 @@ NumPy wandelt ihn automatisch in `np.complex128` um.
 [ER] Erstellen Sie Arrays mit verschiedenen Datentypen:
 
 - Ein Array [100, 200, 300] vom Typ `int16`
-- Ein Array [1.5, 2.7, 3.14] vom Typ `float32`  
+- Ein Array [1.5, 2.7, 3.14] vom Typ `float32`
 - Ein Array [1, 2, 3] vom Typ `complex64`
 
 Geben Sie jeweils das Array und seinen `dtype` aus.
@@ -148,7 +148,7 @@ print(dt1)  # int32
 Die Kurzschreibweise (`'i4'`, `'f4'`, `'U20'`, ...) stammt aus der C-nahen Array-Protokoll-Konvention
 von NumPy und ist kein typischer Python-Stil (der Buchstabe steht für den Typ – `i` für Integer,
 `f` für Float, `U` für Unicode-String –, die Zahl für die Größe in Bytes bzw. bei `U` für die
-Zeichenanzahl). 
+Zeichenanzahl).
 Für eigenen Code ist `np.int32` üblicher und lesbarer; die Kurzschreibweise begegnet
 Ihnen aber häufig bei strukturierten Datentypen (siehe unten) und in fremdem Code, weshalb Sie sie
 erkennen können sollten.
@@ -164,10 +164,10 @@ people = np.array([('Alice', 30, 165.5), ('Bob', 25, 180.0)], dtype=person_dtype
 print(people['name'])  # ['Alice' 'Bob']
 ```
 
-[ER] Erstellen Sie ein strukturiertes Array für "Studenten" mit folgenden Feldern:
+[ER] Erstellen Sie ein strukturiertes Array `students` für "Studenten" mit folgenden Feldern:
 
 - `matrikelnr`: 32-bit Integer
-- `name`: String mit maximal 15 Zeichen  
+- `name`: String mit maximal 15 Zeichen
 - `note`: 32-bit Float
 
 Fügen Sie folgende drei Beispiel-Studenten hinzu:
@@ -200,7 +200,7 @@ print(arr.dtype)    # int64
 print(arr.itemsize) # 8
 ```
 
-[EQ] Ein Array hat die Form (4, 5, 3). Wie viele Dimensionen hat es, wie viele Elemente 
+[EQ] Ein Array hat die Form (4, 5, 3). Wie viele Dimensionen hat es, wie viele Elemente
 insgesamt, und welche Bedeutung haben die einzelnen Zahlen in der Form-Angabe?
 
 [ER] Erstellen Sie ein 2D-Array der Form (3, 4) mit den Werten `1` bis `12` und
