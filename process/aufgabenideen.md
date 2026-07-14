@@ -384,6 +384,15 @@ ernstlich Aufwand sparen kann. Oft ist das im Bereich Shellprogrammierung.
 - `jq`, `jid`, `jgrep`
 
 
+### Sprachen/XML (N.N.)
+
+- XML101: Tags, Attribute, Wohlgeformtheit
+- namespaces, xmlschema
+- xslt
+- xlink
+- ...
+
+
 ### Sprachen/fish (N.N.)
 
 Ideen-Bröckchen:
