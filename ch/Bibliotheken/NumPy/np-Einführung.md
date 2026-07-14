@@ -1,7 +1,7 @@
 title: Einführung von NumPy
 stage: alpha
 timevalue: 1.25
-difficulty: 1
+difficulty: 2
 ---
 
 [SECTION::goal::idea,experience]
@@ -45,8 +45,6 @@ sich wesentlich von Python-Listen:
 - Vektorisierte Operationen: Mathematische Berechnungen werden elementweise auf das gesamte
   Array angewendet, ohne explizite Schleifen
 
-[EQ] Erklären Sie drei wesentliche Unterschiede zwischen einem NumPy ndarray und einer Python-Liste.
-
 ### Arrays erstellen mit `numpy.array()`
 
 Die grundlegende Funktion zur Array-Erstellung ist `numpy.array()`. Die für uns relevanten Parameter sind:
@@ -81,6 +79,24 @@ print(b)
 # [[1 2]
 #  [3 4]]
 ```
+
+**Homogene Datentypen**
+```python
+liste = [1, 'x', 3.5]
+array = np.array([1, 'x', 3.5])
+print("Liste:", liste)
+print("Array:", array)
+# Liste: [1, 'x', 3.5]
+# Array: ['1' 'x' '3.5']
+```
+
+Die Liste behält die ursprünglichen Datentypen (int, str, float) unverändert bei; `numpy.array()`
+vereinheitlicht dagegen alle Elemente auf einen gemeinsamen Datentyp (hier: Strings), da ein
+`ndarray` nur homogene Daten speichern kann.
+
+[EQ] Basierend auf dem Beispiel oben: Warum vereinheitlicht `numpy.array()` alle Werte auf einen
+gemeinsamen Datentyp, obwohl die ursprüngliche Liste unterschiedliche Typen enthielt? Welchen
+Vorteil bringt diese Einschränkung, wenn man mit großen numerischen Datenmengen arbeitet?
 
 [ER] Erstellen Sie die folgenden Arrays und geben Sie sie aus:
 
@@ -121,6 +137,11 @@ NumPy wandelt ihn automatisch in `np.complex128` um.
 - Ein Array [1, 2, 3] vom Typ `complex64`
 
 Geben Sie jeweils das Array und seinen `dtype` aus.
+
+[HINT::Woran erkenne ich, ob mein Ergebnis stimmt?]
+Der ausgegebene `dtype` muss exakt dem geforderten Typ entsprechen (z.B. `int16`, nicht `int64`) —
+prüfen Sie das anhand der Ausgabe von `arr.dtype`, statt sich nur auf die angezeigten Werte zu verlassen.
+[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
@@ -165,6 +186,11 @@ people = np.array([('Alice', 30, 165.5), ('Bob', 25, 180.0)], dtype=person_dtype
 print(people['name'])  # ['Alice' 'Bob']
 ```
 
+[HINT::Wie wähle ich die richtigen Feldtypen und verstehe die Kurzschreibweise?]
+Details zu strukturierten Datentypen (Feldnamen, Kurzschreibweise-Codes, Speicherlayout) finden Sie
+in der [offiziellen Dokumentation zu strukturierten Arrays](https://numpy.org/doc/stable/user/basics.rec.html).
+[ENDHINT]
+
 [ER] Erstellen Sie ein strukturiertes Array `students` für "Studenten" mit folgenden Feldern:
 
 - `matrikelnr`: 32-bit Integer
@@ -207,6 +233,11 @@ insgesamt, und welche Bedeutung haben die einzelnen Zahlen in der Form-Angabe?
 [ER] Erstellen Sie ein 2D-Array der Form (3, 4) mit den Werten `1` bis `12` und
 geben Sie folgende Eigenschaften aus: `shape`, `ndim`, `size`, `dtype`, `itemsize`
 
+[HINT::Woran erkenne ich, ob mein Ergebnis stimmt?]
+`shape`, `ndim` und `size` müssen zur tatsächlichen Form des Arrays passen — prüfen Sie das anhand
+der Ausgabe.
+[ENDHINT]
+
 <!-- time estimate: 15 min -->
 
 ### Weiterführend
@@ -227,9 +258,9 @@ geben Sie folgende Eigenschaften aus: `shape`, `ndim`, `size`, `dtype`, `itemsiz
 [INSTRUCTOR::Kontrollergebnisse]
 **Knackpunkte:**
 
+- [EREFQ::1]: Antwort nennt tatsächlich einen Grund, der mit Speicher-/Verarbeitungseffizienz bei einem festen, homogenen Datentyp zusammenhängt (z.B. kompaktere Speicherung, schnellerer Zugriff), nicht nur eine Wiederholung der Beobachtung aus dem Beispiel.
 - [EREFR::1]: Die Ausgabe des dritten Arrays (`ndmin=2` auf `[7, 8, 9]`) zeigt die verschachtelte Form `[[7 8 9]]` statt `[7 8 9]` – zeigt, ob `ndmin` wirklich verstanden wurde.
 - [EREFR::3]: Der strukturierte dtype ist korrekt mit drei benannten Feldern definiert, und `students['name']` liefert nur die Namen (nicht das gesamte Tupel).
-- [EREFQ::1]: Student nennt tatsächlich technische Unterschiede (z.B. homogene Datentypen, feste Größe, vektorisierte Operationen) statt nur allgemeiner Vorteile von NumPy.
 
 ### Kommandoprotokoll
 [PROT::ALT:np-Einführung.prot]
