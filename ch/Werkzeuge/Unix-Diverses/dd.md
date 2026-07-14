@@ -1,5 +1,5 @@
 title: "dd - Dateien und Datenträger auf niedriger Ebene kopieren"
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 3
 assumes: redirect
@@ -73,12 +73,15 @@ Um den Effekt des gelernten Features sichtbar und messbar zu machen, simulieren 
 
 [NOTICE]
 Für die nächste Aufgabe brauchen Sie freien Speicherplatz von ca. 10000 MB (10 GB). 
-Falls Sie eine herkömmliche Festplatte (HDD) nutzen oder nicht ausreichend freien Speicherplatz haben, reduzieren Sie die Dateigröße auf 3000 MB (3 GB), um extrem lange Lese-Wartezeiten zu vermeiden.
+Falls Sie eine herkömmliche Festplatte (HDD) nutzen oder nicht ausreichend freien Speicherplatz haben,
+reduzieren Sie die Dateigröße auf 3000 MB (3 GB), um extrem lange Lese-Wartezeiten zu vermeiden.
 Passen Sie in diesem Fall die Optionen `count` und `seek` in den folgenden Befehlen entsprechend an.
-Durch die Verwendung von `/dev/null` als Ziel bei den folgenden Messungen sparen wir Speicherplatz und vermeiden HDD-Schreibengpässe!
+Durch die Verwendung von `/dev/null` als Ziel bei den folgenden Messungen sparen wir Speicherplatz
+und vermeiden Schreib-Engpässe bei HDDs!
 [ENDNOTICE]
 
-Erstellen Sie eine Test-Datei `testdisk.img` (standardmäßig 10010 MB groß, bestehend aus 10000 MB Nullen und 10 MB Zufallsdaten; bei HDD-Nutzung entsprechend angepasst auf 3010 MB):
+Erstellen Sie eine Test-Datei `testdisk.img` (standardmäßig 10010 MB groß, bestehend aus 10000 MB Nullen
+und 10 MB Zufallsdaten; bei HDD-Nutzung entsprechend angepasst auf 3010 MB):
 
 [EC] `dd if=/dev/zero of=testdisk.img bs=1M count=10000`
 
@@ -104,7 +107,7 @@ System sowohl im Linux-Kernel als auch direkt auf der SSD ausbremst.
 Da jeder Block gelesen und geschrieben wird, führt dies zu ca. 41.000.960 I/O-Aufrufen.
 * Bei `bs=4M`: Hier genügen für dieselbe Datenmenge lediglich ca. 5.006 I/O-Aufrufe.
 
-Der immense Overhead der CPU-Kontextwechsel fällt bei der optimierten Blockgröße weg, 
+Bei der höheren Blockgröße fällt also viel Zusatzaufwand weg, 
 wodurch die Festplatte beziehungsweise SSD mit ihrer maximalen Input/Output-Geschwindigkeit arbeiten kann.
 
 Bei großen Datenträgern laufen Kopiervorgänge oft minutenlang im Hintergrund. Ohne Rückmeldung 
@@ -116,7 +119,7 @@ diesmal jedoch die Fortschrittsanzeige mit `status=progress`.
 [EQ] Welche Metriken (beispielsweise übertragene Bytes, verstrichene Zeit, Transferrate) gibt 
 `status=progress` während des laufenden Vorgangs aus? 
 
-[EQ] Unterscheidet sich diese Anzeige von der finalen Zusammenfassung am Ende?
+[EQ] Was vermuten Sie, warum dieser Aufruf schneller war als der gleiche davor ohne `status=progress`?
 
 <!-- time estimate: 40 min -->
 
@@ -171,7 +174,8 @@ während es bei reinen Zufallsdaten fehlschlagen würde?
 <!-- time estimate: 40 min -->
 
 ### Aufräumen
-Um Ihren Speicherplatz freizugeben und versehentliche Git-Commits zu verhindern, bereinigen wir nun den Arbeitsbereich grundlegend.
+Um Ihren Speicherplatz freizugeben und versehentliche Git-Commits zu verhindern,
+bereinigen wir nun den Arbeitsbereich grundlegend.
 
 [EC] Löschen Sie alle erstellten .img- und .img.gz-Dateien aus Ihrem Verzeichnis.
 
