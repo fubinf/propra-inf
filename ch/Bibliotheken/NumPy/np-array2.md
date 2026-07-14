@@ -109,7 +109,7 @@ ob Broadcasting möglich ist. Begründen Sie Ihre Antwort:
   und `array_2d` als weiteres 2D-Array der Form (3, 4) mit Werten `[[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3]]`
 - Führen Sie folgende Broadcasting-Operationen durch: `matrix + row_vec`, `matrix + col_vec`,
   `row_vec * col_vec`, `array_3d + array_2d`
-- Dokumentieren Sie die resultierenden Formen und zeigen Sie die ersten Zeilen
+- Dokumentieren Sie die resultierenden Formen
 
 <!-- time estimate: 20 min -->
 
