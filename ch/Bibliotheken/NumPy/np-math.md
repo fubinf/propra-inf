@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1.75
 difficulty: 2
 requires: np-Einführung
-assumes: np-array, np-array2, np-bitwise-string
+assumes: np-array, np-array2, np-bitwise-string, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
@@ -352,6 +352,14 @@ print('Quartile:', percentiles)
   70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53`
 - Berechnen Sie Mittelwert, Standardabweichung und Varianz
 - Bestimmen Sie das 10., 50. und 90. Perzentil
+
+[HINT::Lange Nachkommastellen bei der Ausgabe]
+Werte wie die Varianz können mit vielen Nachkommastellen ausgegeben werden (z. B.
+`21.410000000000004` statt `21.41`) — das liegt an der begrenzten Genauigkeit von
+Fließkommazahlen, nicht an einem Fehler. Mit einer f-String-Formatierung wie
+`f'{wert:.3f}'` (in [PARTREF::py-Fstrings]) lässt sich die Ausgabe auf sinnvolle
+Nachkommastellen begrenzen.
+[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
