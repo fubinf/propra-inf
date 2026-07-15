@@ -89,15 +89,11 @@ print("Stack Achse 1 Shape:", stacked_1.shape)  # (2, 2, 2)
 
 Geben Sie jeweils das Ergebnis und dessen shape aus.
 
-<!-- ER1 -->
-
 [EQ] Betrachten Sie Ihre eigenen Ergebnisse aus [EREFR::1]: `np.concatenate((A,B), axis=0)`
 und `np.stack((A,B), axis=0)` verwenden beide `axis=0`, liefern aber unterschiedliche Shapes.
 Vergleichen Sie die beiden konkreten Shapes, die Sie berechnet haben, und erklären Sie, was
 `axis=0` bei `concatenate` tatsächlich bedeutet im Vergleich zu `axis=0` bei `stack`. Warum
 führt derselbe Parameterwert zu einer strukturell so unterschiedlichen Operation?
-
-<!-- EQ1 -->
 
 <!-- time estimate: 15 min -->
 
@@ -143,8 +139,6 @@ print("vstack:", v_result)
 - Erstellen Sie zusätzlich `a_3x1 = np.array([[7], [14], [21]])` und `b_3x1 = np.array([[2], [9], [16]])` und verbinden Sie diese mit `hstack` und `vstack`
 
 Geben Sie jeweils das Ergebnis und dessen shape aus.
-
-<!-- ER2 -->
 
 <!-- time estimate: 15 min -->
 
@@ -212,8 +206,6 @@ v_parts = np.vsplit(arr_2d, 2)
 [EQ] Bei welchen Array-Formen würde `np.split(arr, 3)` fehlschlagen?
 Erklären Sie die Bedingungen, die erfüllt sein müssen, damit eine gleichmäßige Teilung möglich ist.
 
-<!-- EQ2 -->
-
 [ER] Arbeiten Sie mit Array-Teilungen:
 
 - Erstellen Sie ein Array mit `np.arange(24).reshape(6, 4)`
@@ -222,8 +214,6 @@ Erklären Sie die Bedingungen, die erfüllt sein müssen, damit eine gleichmäß
 - Verwenden Sie `split` mit `axis=0` und den Indizes `[2, 4]` zur ungleichmäßigen Teilung
 
 Geben Sie für jedes Ergebnis die Anzahl der Teilarrays und deren Formen aus.
-
-<!-- ER3 -->
 
 <!-- time estimate: 15 min -->
 
@@ -262,8 +252,6 @@ print("Verkleinert:", resized_smaller)
 
 [EQ] Was ist der Unterschied zwischen `np.resize()` und der `reshape()`-Methode,
 die Sie bereits kennen? Wann würden Sie welche Funktion verwenden?
-
-<!-- EQ3 -->
 
 <!-- time estimate: 10 min -->
 
@@ -305,8 +293,6 @@ print("Spalten:", appended_cols.shape)  # (2, 4)
 - Fügen Sie die Werte `[5, 17, 26]` ohne `axis`-Parameter hinzu
 
 Geben Sie jeweils das Ergebnis und dessen shape aus.
-
-<!-- ER4 -->
 
 <!-- time estimate: 10 min -->
 
@@ -357,8 +343,6 @@ print("Flach eingefügt:", inserted_flat)
 - Fügen Sie an Position 2 eine neue Spalte mit Werten [20, 21, 22] ein
 - Fügen Sie in das ursprüngliche flache Array an Position 4 den Wert 99 ein
 
-<!-- ER5 -->
-
 <!-- time estimate: 10 min -->
 
 ### Elemente entfernen: `delete`
@@ -403,8 +387,6 @@ print("Flach entfernt:", deleted_flat.shape)  # (9,)
 Nutzen Sie das bereits bekannte `np.arange` mit einer Schrittweite von 3, um die passenden
 Indizes zu erzeugen, statt sie einzeln aufzuzählen.
 [ENDHINT]
-
-<!-- ER6 -->
 
 <!-- time estimate: 10 min -->
 
@@ -456,8 +438,6 @@ print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 
 Verwenden Sie dabei alle vier Optionen der `unique`-Funktion.
 
-<!-- ER7 -->
-
 <!-- time estimate: 15 min -->
 
 ### Kombination mehrerer Operationen
@@ -479,8 +459,6 @@ des Zwischenergebnisses aus, bevor Sie mit dem nächsten Schritt weitermachen �
 sofort, ob eine Operation entlang der richtigen Achse arbeitet, bevor sich ein Fehler auf die
 folgenden Schritte fortpflanzt.
 [ENDHINT]
-
-<!-- ER8 -->
 
 <!-- time estimate: 20 min -->
 
