@@ -112,7 +112,7 @@ print('Winkel in Grad:', angles_deg)
 
 [ER] Arbeiten Sie mit Umkehrfunktionen:
 
-- Erstellen Sie ein Array mit Kosinuswerten [1.0, 0.866, 0.5, 0.0]
+- Erstellen Sie ein Array mit Kosinuswerten [0.9848, 0.766, 0.1736, -0.1736]
 - Berechnen Sie mit `np.arccos()` die entsprechenden Winkel in Bogenmaß
 - Wandeln Sie diese in Grad um
 - Verifizieren Sie Ihre Ergebnisse durch Rückrechnung mit `np.cos()`
@@ -159,7 +159,7 @@ das jeweilige Verhalten.
 - Erstellen Sie ein Array mit den Werten [2.345, -1.678, 5.999, -3.001, 0.5]
 - Runden Sie auf ganze Zahlen mit allen drei Methoden (around, floor, ceil)
 - Runden Sie auf 1 Dezimalstelle mit `around`
-- Analysieren Sie die Unterschiede der Ergebnisse
+- Vergleichen Sie die Unterschiede der Ergebnisse
 
 <!-- time estimate: 20 min -->
 
@@ -212,10 +212,11 @@ vorher mit `astype` um (Details in [PARTREF::np-bitwise-string]).
 
 [ER] Implementieren Sie verschiedene arithmetische Operationen:
 
-- Erstellen Sie zwei Arrays: `arr1 = np.arange(12).reshape(3, 4)` und `arr2 = np.array([1, 2, 3, 4])`
-  (auch hier wird `arr2` per Broadcasting auf die Form von `arr1` angewendet)
+- Erstellen Sie ein 3×4-Array `arr1` mit den Werten `7, 19, 3, 25` (Zeile 0), `14, 2, 31, 8`
+  (Zeile 1) und `16, 9, 22, 5` (Zeile 2), sowie ein 1D-Array `arr2` mit den Werten `6, 11, 3, 9`
+  (wird per Broadcasting auf die Form von `arr1` angewendet)
 - Führen Sie alle vier Grundrechenarten durch
-- Berechnen Sie `np.reciprocal()` für die Kehrwerte (vermeiden Sie Division durch 0)
+- Berechnen Sie `np.reciprocal()` für die Kehrwerte von `arr1` (achten Sie auf den `dtype`)
 
 [HINT::reciprocal bei Ganzzahlen]
 `np.reciprocal()` rechnet mit dem `dtype` des
@@ -253,9 +254,9 @@ print('Modulo:', np.mod(values, divisors))
 
 [ER] Arbeiten Sie mit speziellen arithmetischen Funktionen:
 
-- Erstellen Sie ein Array `base = np.array([2, 3, 4, 5])`
+- Erstellen Sie ein Array `base` mit den Werten `6, 9, 4, 7`
 - Berechnen Sie die 3. Potenz aller Werte
-- Erstellen Sie ein Array mit Exponenten `exp = np.array([1, 2, 3, 4])` und berechnen Sie `np.power(base, exp)`
+- Erstellen Sie ein Array `exp` mit den Exponenten `2, 4, 1, 3` und berechnen Sie `np.power(base, exp)`
 - Berechnen Sie den Rest bei Division durch 3 für alle Werte in `base`
 
 <!-- time estimate: 10 min -->
@@ -306,8 +307,8 @@ Funktionen in 2D-Arrays. Welche Dimension wird in jedem Fall "kollabiert"?
 
 [ER] Berechnen Sie statistische Kennzahlen und geben Sie die Ergebnisse aus:
 
-- Erstellen Sie das Array
-  `data = np.array([[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 21, 88]])`
+- Erstellen Sie mit `np.array` ein 4×5-Array `data` mit den Werten `47, 82, 19, 63, 8` (Zeile 0),
+  `91, 24, 56, 37, 70` (Zeile 1), `15, 68, 42, 5, 99` (Zeile 2) und `33, 77, 60, 21, 88` (Zeile 3)
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie dieselben Statistiken für jede Zeile und jede Spalte
 - Verwenden Sie `np.ptp()` um die Spannweite (max - min) zu berechnen
@@ -347,8 +348,8 @@ print('Quartile:', percentiles)
 
 [ER] Berechnen Sie erweiterte statistische Kennzahlen und geben Sie die Ergebnisse aus:
 
-- Erstellen Sie das Array
-  `scores = np.array([42, 55, 61, 47, 58, 65, 70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53])`
+- Erstellen Sie mit `np.array` ein 1D-Array `scores` mit den 20 Werten `42, 55, 61, 47, 58, 65,
+  70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53`
 - Berechnen Sie Mittelwert, Standardabweichung und Varianz
 - Bestimmen Sie das 10., 50. und 90. Perzentil
 
