@@ -86,7 +86,6 @@ numpy.take_along_axis(arr, indices, axis=-1)
   welches Element aus `arr` entnommen wird
 - `axis` (Default `-1`): Achse, entlang derer `indices` angewendet wird
 
-
 ```python
 import numpy as np
 
@@ -102,11 +101,17 @@ print('Stimmt mit np.sort überein?', np.array_equal(reconstructed, np.sort(arr,
 
 [ER] Arbeiten Sie mit grundlegenden Sortierfunktionen:
 
-- Erstellen Sie das Array `arr = np.array([[8, 3, 15, 6], [12, 1, 9, 20], [4, 17, 2, 11]])`
+- Erstellen Sie mit `np.array` ein 3×4-Array `arr` mit den Werten `8, 3, 15, 6` (Zeile 0),
+  `12, 1, 9, 20` (Zeile 1) und `4, 17, 2, 11` (Zeile 2)
 - Sortieren Sie das Array entlang Achse 0 und entlang Achse 1
 - Verwenden Sie `argsort(arr, axis=1)` um die zeilenweisen Sortierungsindices zu erhalten
 - Rekonstruieren Sie das zeilenweise sortierte Array mit `take_along_axis` und vergleichen Sie
   das Ergebnis mit `np.sort(arr, axis=1)`
+
+[HINT::Wie vergleiche ich zwei Arrays auf Gleichheit?]
+Nutzen Sie das bereits aus [PARTREF::np-array] bekannte `np.array_equal()`, um die beiden
+Arrays elementweise auf Übereinstimmung zu prüfen.
+[ENDHINT]
 
 <!-- time estimate: 20 min -->
 
@@ -130,12 +135,16 @@ gesamtnote = np.array([85, 92, 85, 88])
 mathenote = np.array([90, 85, 95, 82])
 
 # lexsort sortiert nach dem letzten Array zuerst, dann nach dem vorletzten
-# Hier: erst nach Gesamtnote, dann nach Mathenote
+# Hier: erst aufsteigend nach Gesamtnote, dann aufsteigend nach Mathenote
 indices = np.lexsort((mathenote, gesamtnote))
 
 print('Sortierung nach Gesamtnote, dann nach Mathenote:')
 for i in indices:
     print(f'{namen[i]}: Gesamt={gesamtnote[i]}, Mathe={mathenote[i]}')
+# Alice: Gesamt=85, Mathe=90
+# Charlie: Gesamt=85, Mathe=95
+# Diana: Gesamt=88, Mathe=82
+# Bob: Gesamt=92, Mathe=85
 ```
 
 `lexsort` sortiert für jedes Kriterium immer aufsteigend. Um nach einem Kriterium absteigend zu
@@ -148,13 +157,17 @@ indices_desc = np.lexsort((mathenote, -gesamtnote))
 print('Sortierung nach Gesamtnote (absteigend), dann nach Mathenote:')
 for i in indices_desc:
     print(f'{namen[i]}: Gesamt={gesamtnote[i]}, Mathe={mathenote[i]}')
+# Bob: Gesamt=92, Mathe=85
+# Diana: Gesamt=88, Mathe=82
+# Alice: Gesamt=85, Mathe=90
+# Charlie: Gesamt=85, Mathe=95
 ```
 
 [ER] Implementieren Sie eine lexikographische Sortierung:
 
-- Erstellen Sie `produkte = np.array(['Laptop', 'Mouse', 'Keyboard', 'Monitor', 'Headset'])`,
-  `preise = np.array([1200, 25, 75, 300, 150])` und
-  `bewertungen = np.array([4.5, 4.2, 4.5, 4.0, 4.5])`
+- Erstellen Sie mit `np.array` drei Arrays: `produkte` mit den Werten `Laptop, Mouse, Keyboard,
+  Monitor, Headset`, `preise` mit den Werten `1200, 25, 75, 300, 150` und `bewertungen` mit den
+  Werten `4.5, 4.2, 4.5, 4.0, 4.5`
 - Sortieren Sie die Produkte erst nach Bewertung (absteigend), dann nach Preis (aufsteigend) —
   für absteigende Sortierung übergeben Sie die negierten Bewertungen an `lexsort`
 - Verwenden Sie `lexsort` und geben Sie das Ergebnis strukturiert aus
@@ -229,8 +242,8 @@ print(f'Maximum {data.flat[flat_max]} an flachem Index {flat_max} = Zeile {row},
 
 [ER] Analysieren Sie Daten mit Extremwertfunktionen:
 
-- Erstellen Sie das Array
-  `data = np.array([[12, 45, 8, 67, 23], [34, 89, 5, 41, 56], [78, 3, 62, 19, 90], [27, 51, 14, 38, 6]])`
+- Erstellen Sie mit `np.array` ein 4×5-Array `data` mit den Werten `12, 45, 8, 67, 23` (Zeile 0),
+  `34, 89, 5, 41, 56` (Zeile 1), `78, 3, 62, 19, 90` (Zeile 2) und `27, 51, 14, 38, 6` (Zeile 3)
 - Finden Sie Position und Wert des globalen Maximums und Minimums, sowohl über den flachen
   Index als auch mit `unravel_index` umgerechnet in Zeile/Spalte
 - Bestimmen Sie für jede Zeile das Maximum und für jede Spalte das Minimum
@@ -284,12 +297,13 @@ print('Gerade Elemente:', even_elements)
 
 [ER] Verwenden Sie bedingte Suchfunktionen:
 
-- Erstellen Sie `arr = np.arange(-15, 16)`
+- Erzeugen Sie mit `arange` ein Array `arr` mit den ganzen Zahlen von -15 bis 15
 - Finden Sie alle positiven Werte mit `where(condition)`
-- Berechnen Sie den Betrag aller Werte mit der Drei-Parameter-Form `where(condition, x, y)`
-  (ohne `abs()` zu verwenden) und vergleichen Sie das Ergebnis mit `np.abs(arr)`
-- Erstellen Sie `sparse = np.array([[0, 12, 0], [34, 0, 56], [0, 78, 0]])` und finden Sie
-  die nicht-null Elemente mit `nonzero`
+- Ersetzen Sie mit der Drei-Parameter-Form `where(condition, x, y)` alle negativen Werte in `arr`
+  durch `0`, während die übrigen Werte unverändert bleiben
+- Erstellen Sie mit `np.array` ein 3×3-Array `sparse` mit den Werten `0, 12, 0` (Zeile 0),
+  `34, 0, 56` (Zeile 1) und `0, 78, 0` (Zeile 2) und finden Sie die nicht-null Elemente mit
+  `nonzero`
 - Extrahieren Sie alle Werte zwischen -5 und 5 aus `arr` mit `extract`
 
 <!-- time estimate: 15 min -->
@@ -345,8 +359,8 @@ print(f'Dauer: {dauer:.4f} Sekunden')
 
 [ER] Implementieren Sie effiziente Partitionierung und messen Sie den Zeitunterschied selbst:
 
-- Erstellen Sie ein großes Array mit `arr = np.arange(1_000_000, 0, -1)` (1 Million absteigend
-  angeordnete Werte)
+- Erzeugen Sie mit `arange` ein großes Array `arr` mit 1 Million absteigend angeordneten Werten
+  (von `1000000` bis `1`)
 - Finden Sie die 10 kleinsten Werte mit `partition` und messen Sie die benötigte Zeit mit
   dem `time`-Modul (`time.time()` vor und nach dem Aufruf)
 - Sortieren Sie zum Vergleich dasselbe Array vollständig mit `np.sort` und messen Sie auch
@@ -360,6 +374,7 @@ print(f'Dauer: {dauer:.4f} Sekunden')
 demselben großen Array gemessen. Erklären Sie anhand Ihrer eigenen Messwerte, warum
 `partition` schneller ist, wenn Sie nur die k kleinsten Elemente benötigen, nicht aber das
 gesamte Array in sortierter Reihenfolge.
+
 <!-- time estimate: 5 min -->
 
 ### Spezielle Sortierung: `sort_complex`
@@ -386,7 +401,8 @@ print('Sortiert:', np.sort_complex(complex_arr))
 
 [ER] Arbeiten Sie mit komplexen Zahlen:
 
-- Erstellen Sie `complex_nums = np.array([3+2j, 1+4j, 3+1j, 2+3j, 1+2j])`
+- Erstellen Sie mit `np.array` ein Array `complex_nums` mit den komplexen Zahlen
+  `3+2j, 1+4j, 3+1j, 2+3j, 1+2j`
 - Sortieren Sie sie mit `sort_complex` und analysieren Sie die Reihenfolge
 
 <!-- time estimate: 10 min -->
@@ -425,7 +441,7 @@ print('Original nach View-Änderung:', original)  # [777 1 2 3 4 5] - geändert!
 
 [ER] Untersuchen Sie den Unterschied zwischen Kopie und View:
 
-- Erstellen Sie `original = np.arange(10, 16)`
+- Erzeugen Sie mit `arange` ein Array `original` mit den ganzen Zahlen von 10 bis 15
 - Erstellen Sie eine Kopie mit `copy()` und ändern Sie deren erstes Element auf `100`
 - Erstellen Sie eine View mit `original.reshape(2, 3)` und ändern Sie deren erstes Element auf `200`
 - Geben Sie nach jeder Änderung `original` aus und stellen Sie fest, welche der beiden
@@ -433,8 +449,9 @@ print('Original nach View-Änderung:', original)  # [777 1 2 3 4 5] - geändert!
 
 <!-- time estimate: 10 min -->
 
-[EQ] Erklären Sie anhand Ihrer eigenen Ergebnisse aus der vorherigen Aufgabe, warum die
-Änderung über die Kopie das Original nicht beeinflusst hat, die Änderung über die View aber schon.
+[EQ] Nennen Sie je eine praktische Situation, in der Sie bewusst eine Kopie brauchen würden,
+und eine, in der eine View ausreicht bzw. sogar von Vorteil ist.
+
 <!-- time estimate: 5 min -->
 
 ### Weiterführend
@@ -458,9 +475,10 @@ print('Original nach View-Änderung:', original)  # [777 1 2 3 4 5] - geändert!
   von `np.sort(arr, axis=1)`
 - [EREFQ::3]: die Erklärung für die gemessene Zeitdifferenz verweist auf die eigenen Messwerte
   aus [EREFR::5] und darauf, dass `partition` nicht das gesamte Array vollständig ordnen muss
-- [EREFQ::4]: die Erklärung verweist korrekt darauf, dass `copy()` unabhängigen Speicher
-  erzeugt, während `reshape()` sich den Speicher mit dem Original teilt (nicht nur "es ist halt
-  so", sondern mit Bezug auf das eigene Beobachtungsergebnis aus [EREFR::7])
+- [EREFQ::4]: die genannten Situationen für Kopie und View sind jeweils sachlich sinnvoll (nicht
+  nur "man braucht halt manchmal das eine oder andere"), sondern erkennen konkret, wann
+  Unabhängigkeit vom Original nötig ist bzw. wann geteilter Speicher ausreicht oder sogar
+  gewünscht ist
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-sort-filter.md]
