@@ -15,7 +15,7 @@ assumes: np-Einführung, py-Fstrings
 
 [SECTION::background::default]
 
-SciPy erweitert [PARTREF::NumPy] um spezialisierte Algorithmen und Funktionen 
+SciPy erweitert [PARTREF::NumPy] um spezialisierte Algorithmen und Funktionen
 für wissenschaftliche Berechnungen wie Optimierung, Integration und lineare Algebra.
 
 [ENDSECTION]
@@ -24,8 +24,8 @@ für wissenschaftliche Berechnungen wie Optimierung, Integration und lineare Alg
 
 ### Vorwissen
 
-Für die Teilaufgaben weiter unten sind Grundbegriffe der Analysis und linearen Algebra hilfreich 
-(Integral, lineares Gleichungssystem, Extremstelle einer Funktion). Falls Ihnen diese fehlen, 
+Für die Teilaufgaben weiter unten sind Grundbegriffe der Analysis und linearen Algebra hilfreich
+(Integral, lineares Gleichungssystem, Extremstelle einer Funktion). Falls Ihnen diese fehlen,
 helfen folgende Quellen:
 
 - [Integralrechnung (Wikipedia)](https://de.wikipedia.org/wiki/Integralrechnung)
@@ -34,7 +34,7 @@ helfen folgende Quellen:
 
 ### SciPy Installation und Verifikation
 
-SciPy ist nicht in der Standard-Python-Installation enthalten und muss separat installiert werden. 
+SciPy ist nicht in der Standard-Python-Installation enthalten und muss separat installiert werden.
 Als Abhängigkeit wird NumPy automatisch mitinstalliert.
 
 [EC] Installation mit pip:
@@ -48,16 +48,16 @@ import scipy
 print(scipy.__version__)
 ```
 
-[ER] Schreiben Sie ein Python-Programm, das sowohl die installierte SciPy-Version als auch die 
-NumPy-Version ausgibt, die als Abhängigkeit automatisch mitinstalliert wurde 
+[ER] Schreiben Sie ein Python-Programm, das sowohl die installierte SciPy-Version als auch die
+NumPy-Version ausgibt, die als Abhängigkeit automatisch mitinstalliert wurde
 (verwenden Sie `numpy.__version__`).
 
-[EQ] Sie haben gesehen, dass beim Installieren von SciPy automatisch NumPy mitinstalliert wird. 
+[EQ] Sie haben gesehen, dass beim Installieren von SciPy automatisch NumPy mitinstalliert wird.
 [scipy.org](https://scipy.org/) bestätigt, dass SciPy NumPy erweitert.
-Warum baut SciPy auf NumPy auf, anstatt eigene Array-Strukturen von Grund auf neu zu implementieren? 
+Warum baut SciPy auf NumPy auf, anstatt eigene Array-Strukturen von Grund auf neu zu implementieren?
 
 [HINT::Warum baut SciPy auf NumPy auf?]
-Denken Sie an diese Software-Engineering-Prinzipien: Warum sollte ein neues Projekt statt alles 
+Denken Sie an diese Software-Engineering-Prinzipien: Warum sollte ein neues Projekt statt alles
 von Grund auf neu zu schreiben lieber auf bewährte, vorhandene Bibliotheken aufbauen?
 [ENDHINT]
 
@@ -98,7 +98,7 @@ print("Minimum bei x =", result.x)
 [EQ] Welches SciPy-Modul würden Sie für folgende Aufgaben verwenden? Begründen Sie Ihre Auswahl:
 
 - Berechnung der Fläche unter einer Kurve
-- Lösung eines linearen Gleichungssystems mit 1000 Variablen  
+- Lösung eines linearen Gleichungssystems mit 1000 Variablen
 - Filterung eines verrauschten Signals
 - Bestimmung des Minimums einer mathematischen Funktion
 
@@ -106,7 +106,7 @@ print("Minimum bei x =", result.x)
 
 ### Constants-Modul verstehen und berechnen: `constants`
 
-Das Constants-Modul (`scipy.constants`) stellt viele mathematische und physikalische Konstanten bereit. 
+Das Constants-Modul (`scipy.constants`) stellt viele mathematische und physikalische Konstanten bereit.
 Für formatierte Ausgabe mit Dezimalstellen siehe [PARTREF::py-Fstrings].
 
 **Grundlegende mathematische Konstanten:**
@@ -126,9 +126,9 @@ print(constants.hectare) # Ein Hektar in Quadratmetern
 
 **SI-Präfixe als Umrechnungsfaktoren:**
 
-Neben mathematischen und physikalischen Konstanten stellt `scipy.constants` auch SI-Präfixe 
-als Umrechnungsfaktoren bereit ("SI" steht für "Système International d'Unités", das 
-internationale Einheitensystem) — anders als `pi` oder `acre` handelt es sich hier nicht um eine 
+Neben mathematischen und physikalischen Konstanten stellt `scipy.constants` auch SI-Präfixe
+als Umrechnungsfaktoren bereit ("SI" steht für "Système International d'Unités", das
+internationale Einheitensystem) — anders als `pi` oder `acre` handelt es sich hier nicht um eine
 eigenständige Größe, sondern um den Faktor, mit dem ein Wert multipliziert wird:
 
 ```python
@@ -147,18 +147,19 @@ all_constants = dir(constants)
 print(all_constants)  # Zeigt alle Attributnamen als Liste
 ```
 
-[ER] Schreiben Sie ein Programm, das folgende Konstanten aus `scipy.constants` mit 4 Nachkommastellen 
-formatiert ausgibt (siehe [PARTREF::py-Fstrings] für die Formatierung):
+[ER] Schreiben Sie ein Programm, das die folgenden, auf `scipy.constants` basierenden Werte mit
+4 Nachkommastellen formatiert ausgibt (siehe [PARTREF::py-Fstrings] für die Formatierung):
 
-- Kreiszahl `pi` und den goldenen Schnitt `golden`
-- Zwei physikalische Konstanten Ihrer Wahl, die oben noch nicht vorkamen (z.B. `speed_of_light`, 
-  `Avogadro`, `Boltzmann` oder `elementary_charge`) — nachschlagen in der 
+- Den Flächeninhalt eines Kreises mit Radius 5 (mit `pi` berechnet), sowie die Probe, ob der
+  Goldene Schnitt `golden` die Gleichung x² = x + 1 erfüllt
+- Zwei physikalische Konstanten Ihrer Wahl, die oben noch nicht vorkamen (z.B. `speed_of_light`,
+  `Avogadro`, `Boltzmann` oder `elementary_charge`) — nachschlagen in der
   [SciPy Constants Reference](https://docs.scipy.org/doc/scipy/reference/constants.html)
 - Ein SI-Präfix Ihrer Wahl außer `kilo` und `nano` (z.B. `mega`, `milli` oder `giga`)
 
 <!-- time estimate: 15 min -->
 
-Das Constants-Modul bietet mit `constants.physical_constants` außerdem ein Dictionary, das zu jeder 
+Das Constants-Modul bietet mit `constants.physical_constants` außerdem ein Dictionary, das zu jeder
 physikalischen Konstante auch Einheit und Messunsicherheit liefert:
 
 ```python
@@ -168,12 +169,12 @@ value, unit, uncertainty = constants.physical_constants['speed of light in vacuu
 print(f"Wert: {value} {unit} (Unsicherheit: {uncertainty})")
 ```
 
-[ER] Geben Sie auf diese Weise Wert, Einheit und Unsicherheit für die folgenden drei physikalischen 
-Konstanten aus `physical_constants` aus: `'Planck constant'`, `'electron mass'` und eine weitere 
+[ER] Geben Sie auf diese Weise Wert, Einheit und Unsicherheit für die folgenden drei physikalischen
+Konstanten aus `physical_constants` aus: `'Planck constant'`, `'electron mass'` und eine weitere
 Konstante Ihrer Wahl.
 
-[EQ] In [EREFR::2] haben Sie `constants.pi` als einfachen Zahlenwert abgerufen. 
-In [EREFR::3] lieferte `physical_constants` stattdessen ein Tupel aus Wert, Einheit und Unsicherheit. 
+[EQ] In [EREFR::2] haben Sie `constants.pi` als einfachen Zahlenwert abgerufen.
+In [EREFR::3] lieferte `physical_constants` stattdessen ein Tupel aus Wert, Einheit und Unsicherheit.
 Warum stellt SciPy für die beiden Arten von Konstanten unterschiedliche Schnittstellen bereit?
 <!-- time estimate: 20 min -->
 
@@ -194,13 +195,14 @@ Warum stellt SciPy für die beiden Arten von Konstanten unterschiedliche Schnitt
 
 **Knackpunkte:**
 
-- [EREFR::2] Die gewählten physikalischen Konstanten und der SI-Präfix sind tatsächlich neu 
-  nachgeschlagen, nicht nur `pi`/`golden`/`acre`/`hectare` aus den obigen Beispielen kopiert.
-- [EREFQ::2] Alle vier Zuordnungen sind korrekt, und die Begründung bezieht sich auf das jeweilige 
-  mathematische Konzept (Integral/lineares Gleichungssystem/Extremstelle), nicht nur auf den 
+- [EREFR::2] Kreisfläche und Goldener-Schnitt-Probe sind korrekt berechnet (nicht nur `pi`/`golden`
+  wie im Beispiel oben ausgegeben); die gewählten physikalischen Konstanten und der SI-Präfix sind
+  tatsächlich neu nachgeschlagen, nicht nur `acre`/`hectare` bzw. `kilo`/`nano` kopiert.
+- [EREFQ::2] Alle vier Zuordnungen sind korrekt, und die Begründung bezieht sich auf das jeweilige
+  mathematische Konzept (Integral/lineares Gleichungssystem/Extremstelle), nicht nur auf den
   Modulnamen selbst.
-- [EREFQ::3] Studierende erkennen "exakt definiert vs. experimentell gemessen mit Unsicherheit" als 
-  Unterscheidungskriterium — nicht die ungenaue Unterscheidung "mathematisch vs. physikalisch" 
+- [EREFQ::3] Studierende erkennen "exakt definiert vs. experimentell gemessen mit Unsicherheit" als
+  Unterscheidungskriterium — nicht die ungenaue Unterscheidung "mathematisch vs. physikalisch"
   (Gegenbeispiel: `kilo`/`acre` sind exakt, aber keine mathematischen Konstanten).
 
 ### Kommandoprotokoll
