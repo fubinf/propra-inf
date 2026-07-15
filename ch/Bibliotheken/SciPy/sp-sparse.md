@@ -36,7 +36,7 @@ Im Gegensatz dazu hat eine Dense-Matrix viele von Null verschiedene Elemente.
 **Beispiel einer Sparse-Matrix:**
 ```
 [0  0  3  0  4]
-[0  0  0  0  0]  
+[0  0  0  0  0]
 [0  6  0  0  0]
 [7  0  0  0  0]
 [0  0  0  8  0]
@@ -223,7 +223,7 @@ print("Kürzeste Distanzen:", distances)
 Optional: Ausführliche Informationen zu Graph-Algorithmen finden Sie hier:
 [Graph Algorithms in SciPy](https://docs.scipy.org/doc/scipy/reference/sparse.csgraph.html)
 
-[ER] Implementieren Sie Pfadfindung mit dem Dijkstra-Algorithmus, 
+[ER] Implementieren Sie Pfadfindung mit dem Dijkstra-Algorithmus,
 erstellen Sie eine Gewichtsmatrix für folgenden Graphen:
 
 ```
@@ -281,7 +281,7 @@ Optional: Vergleich verschiedener Pfadalgorithmen finden Sie hier:
 [ER] Analysieren Sie ein Netzwerk mit Floyd-Warshall, verwenden Sie folgende symmetrische Gewichtsmatrix:
 ```
 [0  2  8  5]
-[2  0  4  3]  
+[2  0  4  3]
 [8  4  0  1]
 [5  3  1  0]
 ```

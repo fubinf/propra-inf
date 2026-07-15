@@ -80,7 +80,7 @@ SciPy stellt über 100 Wahrscheinlichkeitsverteilungen zur Verfügung, jede mit 
 **Wichtige Methoden für Verteilungen:**
 
 - `pdf(x)`: Wahrscheinlichkeitsdichtefunktion (kontinuierliche Verteilungen)
-- `pmf(x)`: Wahrscheinlichkeitsmassenfunktion (diskrete Verteilungen) 
+- `pmf(x)`: Wahrscheinlichkeitsmassenfunktion (diskrete Verteilungen)
 - `cdf(x)`: Kumulative Verteilungsfunktion
 - `rvs(size)`: Zufallsstichproben generieren
 - `ppf(q)`: Quantilfunktion (Umkehrung der CDF)
@@ -185,8 +185,8 @@ print(f"Normalverteilt bei α=0.05? {p_value > 0.05}")
 ```
 
 [NOTICE]
-Bei Hypothesentests ist die Interpretation des p-Werts entscheidend: 
-Ein p-Wert < α (meist 0.05) führt zur Ablehnung der Nullhypothese. 
+Bei Hypothesentests ist die Interpretation des p-Werts entscheidend:
+Ein p-Wert < α (meist 0.05) führt zur Ablehnung der Nullhypothese.
 Die praktische Signifikanz sollte zusätzlich zur statistischen Signifikanz betrachtet werden.
 [ENDNOTICE]
 
@@ -195,10 +195,10 @@ Optional: Umfassende Übersicht zu statistischen Tests finden Sie hier:
 
 **Unterschied zwischen t-Test-Varianten:**
 
-- **Ein-Stichproben t-Test**: Vergleicht den Mittelwert einer Stichprobe 
-  mit einem hypothetischen Wert (H₀: μ = μ₀). 
+- **Ein-Stichproben t-Test**: Vergleicht den Mittelwert einer Stichprobe
+  mit einem hypothetischen Wert (H₀: μ = μ₀).
   Anwendung z.B. in der Qualitätskontrolle zur Sollwert-Überprüfung.
-- **Zwei-Stichproben t-Test**: Vergleicht die Mittelwerte zweier unabhängiger Gruppen (H₀: μ₁ = μ₂). 
+- **Zwei-Stichproben t-Test**: Vergleicht die Mittelwerte zweier unabhängiger Gruppen (H₀: μ₁ = μ₂).
   Anwendung z.B. beim A/B-Testing oder Medikamentenstudien.
 - **Gepaarter t-Test**: Für abhängige Messungen (z.B. Vorher-Nachher-Vergleiche).
 
@@ -286,7 +286,7 @@ Optional: Weiterführende Informationen zu deskriptiver Statistik finden Sie hie
 
 Gegeben ist folgender Datensatz:
 ```python
-data = [12.1, 15.3, 11.8, 16.2, 13.7, 14.9, 18.1, 12.5, 15.8, 13.2, 
+data = [12.1, 15.3, 11.8, 16.2, 13.7, 14.9, 18.1, 12.5, 15.8, 13.2,
         17.4, 14.1, 16.8, 13.9, 15.5, 19.2, 12.9, 16.1, 14.7, 15.9]
 ```
 
@@ -314,7 +314,7 @@ from scipy import stats
 import numpy as np
 
 # Messdaten der letzten Charge
-measurements = [24.98, 25.02, 24.99, 25.01, 24.97, 25.03, 
+measurements = [24.98, 25.02, 24.99, 25.01, 24.97, 25.03,
                 25.00, 24.96, 25.04, 24.99, 25.02, 24.98]
 
 # 1. Ist der Produktionsprozess im Soll?
@@ -342,6 +342,7 @@ volumes = [498.2, 501.1, 499.8, 502.3, 497.9, 500.5, 499.2, 501.8,
 ```
 
 Ihre Aufgaben:
+
 - Testen Sie, ob das mittlere Füllvolumen signifikant vom Sollwert abweicht (`stats.ttest_1samp()`, α=0.01)
 - Berechnen Sie die deskriptiven Statistiken (`np.mean()`, `np.std(ddof=1)`, `stats.skew()`)
 - Überprüfen Sie die Normalverteilungsannahme (`stats.shapiro()`)

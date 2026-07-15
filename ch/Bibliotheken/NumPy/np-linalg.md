@@ -40,7 +40,7 @@ Ihnen diese fehlen, helfen folgende Quellen:
 
 ### Matrizen und Transposition: `transpose` und `.T`
 
-Eine Matrix ist eine rechteckige Anordnung von Zahlen in Zeilen und Spalten. 
+Eine Matrix ist eine rechteckige Anordnung von Zahlen in Zeilen und Spalten.
 Die Transposition vertauscht Zeilen und Spalten einer Matrix.
 
 ```python
@@ -328,7 +328,8 @@ print('Konditionszahl (schlecht konditioniert):', cond_ill)
 - Erstellen Sie `singular = np.array([[1,2,3],[2,4,6],[3,6,9]], dtype=float)` und
   testen Sie, was passiert, wenn Sie versuchen, sie zu invertieren
 
-[HINT::Singuläre Matrix invertieren] Der Versuch, eine singuläre Matrix (Determinante = 0)
+[HINT::Singuläre Matrix invertieren]
+Der Versuch, eine singuläre Matrix (Determinante = 0)
 zu invertieren, löst `numpy.linalg.LinAlgError: Singular matrix` aus — das ist kein Bug,
 sondern die korrekte Reaktion, weil eine solche Matrix mathematisch keine Inverse besitzt.
 [ENDHINT]

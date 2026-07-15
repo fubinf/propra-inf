@@ -17,11 +17,11 @@ assumes: sp-Einführung, np-Einführung, np-math, np-linalg
 
 [SECTION::background::default]
 
-Während NumPy grundlegende lineare Algebra-Operationen bereitstellt, erweitert SciPy 
-diese Funktionalität um spezialisierte und numerisch stabilere Algorithmen. 
-Das Modul `scipy.linalg` bietet erweiterte Decompositionsverfahren, 
-robuste Solver und optimierte Implementierungen für wissenschaftliche Anwendungen. 
-Diese Werkzeuge sind besonders wichtig für numerisch anspruchsvolle Probleme 
+Während NumPy grundlegende lineare Algebra-Operationen bereitstellt, erweitert SciPy
+diese Funktionalität um spezialisierte und numerisch stabilere Algorithmen.
+Das Modul `scipy.linalg` bietet erweiterte Decompositionsverfahren,
+robuste Solver und optimierte Implementierungen für wissenschaftliche Anwendungen.
+Diese Werkzeuge sind besonders wichtig für numerisch anspruchsvolle Probleme
 in der Simulation, Optimierung und im maschinellen Lernen.
 
 [ENDSECTION]
@@ -30,13 +30,13 @@ in der Simulation, Optimierung und im maschinellen Lernen.
 
 ### Voraussetzungen
 
-Bitte lesen Sie zunächst [PARTREF::sp-Einführung], [PARTREF::sp-Einführung] und [PARTREF::np-linalg] 
+Bitte lesen Sie zunächst [PARTREF::sp-Einführung], [PARTREF::sp-Einführung] und [PARTREF::np-linalg]
 und stellen Sie sicher, dass Sie über funktionsfähige SciPy- und NumPy-Installationen verfügen.
 Grundkenntnisse der NumPy-Matrixoperationen aus [PARTREF::np-math] sind essentiell.
 
 ### SciPy vs NumPy: Erweiterte lineare Algebra
 
-Das `scipy.linalg`-Modul bietet alle Funktionen von `numpy.linalg` plus zusätzliche 
+Das `scipy.linalg`-Modul bietet alle Funktionen von `numpy.linalg` plus zusätzliche
 spezialisierte Algorithmen:
 
 **Wichtige Unterschiede:**
@@ -53,7 +53,7 @@ from scipy import linalg
 
 # Matrix definieren
 A = np.array([[4, 2, 1],
-              [3, 3, 1], 
+              [3, 3, 1],
               [1, 1, 2]])
 
 # NumPy vs SciPy Determinante
@@ -69,7 +69,7 @@ Optional: Umfassende Übersicht finden Sie hier:
 
 ### Matrixdekomposition mit SciPy
 
-SciPy bietet verschiedene Matrixzerlegungsverfahren, die für unterschiedliche 
+SciPy bietet verschiedene Matrixzerlegungsverfahren, die für unterschiedliche
 mathematische Anwendungen optimiert sind:
 
 **LU-Zerlegung:**
@@ -174,9 +174,9 @@ Optional: Weitere Solver-Optionen finden Sie hier:
 [ER] Lösen Sie verschiedene Arten von linearen Gleichungssystemen:
 
 - Lösen Sie das System mit A = [[4, 1, 2], [1, 3, 1], [2, 1, 4]] und b = [7, 6, 8] (`linalg.solve()`)
-- Gegeben ist die obere Dreiecksmatrix U = [[3, 2, 1], [0, 2, 1], [0, 0, 1]] mit b = [6, 3, 1]. 
+- Gegeben ist die obere Dreiecksmatrix U = [[3, 2, 1], [0, 2, 1], [0, 0, 1]] mit b = [6, 3, 1].
   Nutzen Sie den spezialisierten Solver (`linalg.solve_triangular()`)
-- Lösen Sie das überbestimmte System A = [[1, 1], [2, 1], [3, 1], [4, 1]] mit b = [3, 5, 7, 9] 
+- Lösen Sie das überbestimmte System A = [[1, 1], [2, 1], [3, 1], [4, 1]] mit b = [3, 5, 7, 9]
   mit der Least-Squares-Methode (`linalg.lstsq()`)
 
 Verifizieren Sie alle Lösungen durch Rückmultiplikation und geben Sie Residuen aus.

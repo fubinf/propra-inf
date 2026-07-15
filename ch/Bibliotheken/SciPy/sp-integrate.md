@@ -17,11 +17,11 @@ assumes: sp-Einführung, np-Einführung, np-math
 
 [SECTION::background::default]
 
-Numerische Integration und die Lösung von Differentialgleichungen sind zentrale Werkzeuge 
-in den Naturwissenschaften und der Ingenieurswissenschaft. Während analytische Lösungen 
-oft nicht existieren oder schwer zu finden sind, ermöglichen numerische Verfahren 
-praktikable Lösungen für reale Probleme. Das SciPy-Modul `integrate` stellt bewährte 
-Algorithmen zur Verfügung, die von der Berechnung bestimmter Integrale bis zur Simulation 
+Numerische Integration und die Lösung von Differentialgleichungen sind zentrale Werkzeuge
+in den Naturwissenschaften und der Ingenieurswissenschaft. Während analytische Lösungen
+oft nicht existieren oder schwer zu finden sind, ermöglichen numerische Verfahren
+praktikable Lösungen für reale Probleme. Das SciPy-Modul `integrate` stellt bewährte
+Algorithmen zur Verfügung, die von der Berechnung bestimmter Integrale bis zur Simulation
 dynamischer Systeme reichen.
 
 [ENDSECTION]
@@ -32,12 +32,12 @@ dynamischer Systeme reichen.
 
 Bitte lesen Sie zunächst [PARTREF::sp-Einführung] und stellen Sie sicher,
 dass Sie über eine funktionsfähige SciPy-Installation verfügen.
-Grundlegende Kenntnisse von NumPy-Mathematikfunktionen aus [PARTREF::np-math] 
+Grundlegende Kenntnisse von NumPy-Mathematikfunktionen aus [PARTREF::np-math]
 sind für diese Aufgabe essentiell.
 
 ### Das SciPy Integrate-Modul: Überblick
 
-Das `scipy.integrate`-Modul bietet verschiedene Methoden für numerische Integration 
+Das `scipy.integrate`-Modul bietet verschiedene Methoden für numerische Integration
 und die Lösung von Differentialgleichungen:
 
 **Hauptfunktionen:**
@@ -76,7 +76,7 @@ Optional: Für eine umfassende Übersicht siehe:
 
 ### Numerische Integration mit `scipy.integrate.quad`
 
-Die `quad`-Funktion verwendet adaptive Algorithmen zur präzisen Berechnung 
+Die `quad`-Funktion verwendet adaptive Algorithmen zur präzisen Berechnung
 eindimensionaler Integrale.
 
 **Wichtige Parameter:**
@@ -199,7 +199,7 @@ Verwenden Sie das `args`-Parameter und geben Sie für jedes Integral Ergebnis un
 
 ### Gewöhnliche Differentialgleichungen mit `solve_ivp`
 
-Das Lösen gewöhnlicher Differentialgleichungen (ODEs) ist ein zentraler Bestandteil 
+Das Lösen gewöhnlicher Differentialgleichungen (ODEs) ist ein zentraler Bestandteil
 der wissenschaftlichen Modellierung. SciPy's `solve_ivp` löst Anfangswertprobleme der Form:
 
 **dy/dt = f(t, y)** mit **y(t₀) = y₀**
@@ -255,7 +255,7 @@ Optional: Umfassende ODE-Dokumentation finden Sie hier:
   (Analytische Lösung: y(t) = t² + 1)
 - Bestimmen Sie die Lösung von **dy/dt = -3*y + 2** mit **y(0) = 5** für t ∈ [0, 2]
   (Verwenden Sie `t_span=(0, 2)`, `y0=[5]`)
-- Lösen Sie das logistische Wachstum **dy/dt = r*y*(1 - y/K)** 
+- Lösen Sie das logistische Wachstum **dy/dt = r*y*(1 - y/K)**
   mit r=1, K=10, y(0)=1 für t ∈ [0, 5]
   (Verwenden Sie `args=(1, 10)` für Parameter r und K)
 
@@ -283,11 +283,11 @@ dyₙ/dt = fₙ(t, y₁, y₂, ..., yₙ)
 ```python
 def system_ode(t, y):
     y1, y2 = y  # Aufteilen des Zustandsvektors
-    
+
     # Systemgleichungen definieren
     dy1_dt = f1(t, y1, y2)
     dy2_dt = f2(t, y1, y2)
-    
+
     return [dy1_dt, dy2_dt]
 
 # Anfangswerte als Liste/Array
@@ -299,14 +299,14 @@ y0 = [y1_0, y2_0]
 ```python
 def lotka_volterra(t, y):
     x, y_prey = y  # x: Räuber, y: Beute
-    
+
     # Parameter
     alpha, beta, gamma, delta = 1.0, 0.1, 1.5, 0.075
-    
+
     # Systemgleichungen
     dx_dt = delta * x * y_prey - gamma * x  # Räuber
     dy_dt = alpha * y_prey - beta * x * y_prey  # Beute
-    
+
     return [dx_dt, dy_dt]
 
 # Lösung
@@ -341,7 +341,7 @@ Optional: Weitere Systembeispiele finden Sie hier:
   `dx/dt = 0.2*x - 0.1*y, dy/dt = 0.1*x + 0.3*y`
   (Ähnliche Struktur wie letztes System, verwenden Sie `y0=[1, 3]`)
 
-Geben Sie für jedes System die Zustandswerte zu drei Zeitpunkten aus (`sol.y[0][i]`, `sol.y[1][i]`) und 
+Geben Sie für jedes System die Zustandswerte zu drei Zeitpunkten aus (`sol.y[0][i]`, `sol.y[1][i]`) und
 beschreiben Sie kurz das beobachtete Verhalten.
 <!-- ER4 -->
 

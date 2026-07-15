@@ -17,11 +17,11 @@ assumes: np-Einführung, sp-Einführung
 
 [SECTION::background::default]
 
-Viele mathematische und wissenschaftliche Probleme erfordern das Finden von Nullstellen 
-nichtlinearer Gleichungen oder das Bestimmen von Minima/Maxima komplexer Funktionen. 
-Während NumPy bei polynomialen und linearen Gleichungen helfen kann, 
-sind für nichtlineare Probleme wie `x + cos(x) = 0` spezialisierte numerische Verfahren notwendig. 
-Das SciPy-Modul `optimize` stellt bewährte Algorithmen zur Verfügung, 
+Viele mathematische und wissenschaftliche Probleme erfordern das Finden von Nullstellen
+nichtlinearer Gleichungen oder das Bestimmen von Minima/Maxima komplexer Funktionen.
+Während NumPy bei polynomialen und linearen Gleichungen helfen kann,
+sind für nichtlineare Probleme wie `x + cos(x) = 0` spezialisierte numerische Verfahren notwendig.
+Das SciPy-Modul `optimize` stellt bewährte Algorithmen zur Verfügung,
 die in wissenschaftlichen Berechnungen und Ingenieuranwendungen unerlässlich sind.
 
 [ENDSECTION]
@@ -30,7 +30,7 @@ die in wissenschaftlichen Berechnungen und Ingenieuranwendungen unerlässlich si
 
 ### Voraussetzungen
 
-Bitte lesen Sie zunächst [PARTREF::sp-Einführung] und stellen Sie sicher, 
+Bitte lesen Sie zunächst [PARTREF::sp-Einführung] und stellen Sie sicher,
 dass Sie über eine funktionsfähige SciPy-Installation verfügen.
 Die dort beschriebenen Grundlagen sind für diese Aufgabe essentiell.
 
@@ -92,7 +92,7 @@ Die `root`-Funktion löst nichtlineare Gleichungssysteme der Form `f(x) = 0`.
 
 **Formatierte Ausgabe von Ergebnissen:**
 
-Bei wissenschaftlichen Berechnungen ist eine übersichtliche Ausgabe wichtig. 
+Bei wissenschaftlichen Berechnungen ist eine übersichtliche Ausgabe wichtig.
 Verwenden Sie f-Strings mit Format-Spezifizierern:
 
 ```python
@@ -119,7 +119,7 @@ Optional: Weitere Details zu Lösungsverfahren finden Sie hier:
 
 [ER] Lösen Sie verschiedene nichtlineare Gleichungen mit `scipy.optimize.root`:
 
-- Finden Sie alle Nullstellen von `f(x) = x³ - 6x² + 9x - 4` 
+- Finden Sie alle Nullstellen von `f(x) = x³ - 6x² + 9x - 4`
   (Hinweis: Probieren Sie verschiedene Startwerte wie -1, 2, 4)
 - Lösen Sie die Gleichung `x*e^x = 2` (verwenden Sie `np.exp(x)`)
 - Bestimmen Sie die Lösung von `sin(x) = x/3` im Bereich [0, 3]
@@ -163,9 +163,9 @@ Optional: Wenn noch Fragen offen sind, hilft diese Ressource weiter:
 [ER] Arbeiten Sie mit verschiedenen Minimierungsproblemen:
 
 - Finden Sie das Minimum der Funktion `f(x) = (x-2)⁴ + (x-2)² + 1`
-- Minimieren Sie `g(x) = sin(x) + 0.1*x²` im Bereich [-10, 10] 
+- Minimieren Sie `g(x) = sin(x) + 0.1*x²` im Bereich [-10, 10]
   (Hinweis: Verwenden Sie verschiedene Startwerte)
-- Vergleichen Sie für die Funktion `h(x) = x⁴ - 4*x³ + 6*x²` 
+- Vergleichen Sie für die Funktion `h(x) = x⁴ - 4*x³ + 6*x²`
   die Ergebnisse der Methoden 'BFGS', 'CG' und 'Nelder-Mead'
 
 Dokumentieren Sie für jeden Fall die gefundene Position und den Funktionswert.
@@ -185,9 +185,9 @@ Im Gegensatz zu `minimize` wird hier **kein Startwert benötigt**.
 - `method`: 'bounded' bei Verwendung von bounds, sonst automatisch
 
 [NOTICE]
-Verwenden Sie `np.abs(x)` für Absolutwerte in Funktionen. 
-Der Vergleich mit/ohne Bereichseinschränkung zeigt, ob globale Minima gefunden wurden. 
-Beachten Sie, dass kubische Funktionen kein globales Minimum ohne Bereichseinschränkung haben, 
+Verwenden Sie `np.abs(x)` für Absolutwerte in Funktionen.
+Der Vergleich mit/ohne Bereichseinschränkung zeigt, ob globale Minima gefunden wurden.
+Beachten Sie, dass kubische Funktionen kein globales Minimum ohne Bereichseinschränkung haben,
 da sie für x → -∞ gegen -∞ gehen.
 [ENDNOTICE]
 
@@ -248,6 +248,7 @@ y_data = np.array([1.1, 3.9, 7.2, 9.8, 13.1, 15.9])
 ```
 
 Ihre Aufgaben:
+
 - Definieren Sie eine lineare Modellfunktion `linear(x, a, b)` die `a*x + b` zurückgibt
 - Verwenden Sie `curve_fit(linear, x_data, y_data)` um die Parameter zu bestimmen
 - Geben Sie die geschätzten Werte für `a` und `b` aus

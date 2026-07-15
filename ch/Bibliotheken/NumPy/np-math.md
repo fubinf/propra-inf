@@ -150,8 +150,8 @@ print('Aufgerundet (ceil):', np.ceil(numbers))
 print('Auf 2 Dezimalstellen:', np.around(numbers, decimals=2))
 ```
 
-[EQ] Beschreiben Sie den Unterschied zwischen `np.around()`, `np.floor()` und `np.ceil()` 
-bei negativen Zahlen. Verwenden Sie als Beispiel die Zahl `-1.7` und erklären Sie 
+[EQ] Beschreiben Sie den Unterschied zwischen `np.around()`, `np.floor()` und `np.ceil()`
+bei negativen Zahlen. Verwenden Sie als Beispiel die Zahl `-1.7` und erklären Sie
 das jeweilige Verhalten.
 
 [ER] Wenden Sie Rundungsfunktionen praktisch an:
@@ -217,7 +217,8 @@ vorher mit `astype` um (Details in [PARTREF::np-bitwise-string]).
 - Führen Sie alle vier Grundrechenarten durch
 - Berechnen Sie `np.reciprocal()` für die Kehrwerte (vermeiden Sie Division durch 0)
 
-[HINT::reciprocal bei Ganzzahlen] `np.reciprocal()` rechnet mit dem `dtype` des
+[HINT::reciprocal bei Ganzzahlen]
+`np.reciprocal()` rechnet mit dem `dtype` des
 Eingabe-Arrays. Bei einem Integer-Array werden alle Kehrwerte kleiner als 1 zu `0`
 abgeschnitten (Integer-Division) — deshalb muss das Array vorher mit `.astype(float)`
 in Fließkommazahlen umgewandelt werden.
@@ -252,7 +253,7 @@ print('Modulo:', np.mod(values, divisors))
 
 [ER] Arbeiten Sie mit speziellen arithmetischen Funktionen:
 
-- Erstellen Sie ein Array `base = np.array([2, 3, 4, 5])`  
+- Erstellen Sie ein Array `base = np.array([2, 3, 4, 5])`
 - Berechnen Sie die 3. Potenz aller Werte
 - Erstellen Sie ein Array mit Exponenten `exp = np.array([1, 2, 3, 4])` und berechnen Sie `np.power(base, exp)`
 - Berechnen Sie den Rest bei Division durch 3 für alle Werte in `base`
@@ -281,8 +282,8 @@ numpy.ptp(a, axis=None)
 import numpy as np
 
 # 2D-Array für statistische Analyse
-data = np.array([[10, 20, 30], 
-                 [40, 50, 60], 
+data = np.array([[10, 20, 30],
+                 [40, 50, 60],
                  [70, 80, 90]])
 print('Datenarray:', data)
 
@@ -300,7 +301,7 @@ print('Mittelwert pro Spalte:', np.mean(data, axis=0))
 print('Spannweite (gesamt):', np.ptp(data))
 ```
 
-[EQ] Erklären Sie den Unterschied zwischen `axis=0` und `axis=1` bei statistischen 
+[EQ] Erklären Sie den Unterschied zwischen `axis=0` und `axis=1` bei statistischen
 Funktionen in 2D-Arrays. Welche Dimension wird in jedem Fall "kollabiert"?
 
 [ER] Berechnen Sie statistische Kennzahlen und geben Sie die Ergebnisse aus:
@@ -308,7 +309,7 @@ Funktionen in 2D-Arrays. Welche Dimension wird in jedem Fall "kollabiert"?
 - Erstellen Sie das Array
   `data = np.array([[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 21, 88]])`
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
-- Berechnen Sie dieselben Statistiken für jede Zeile und jede Spalte  
+- Berechnen Sie dieselben Statistiken für jede Zeile und jede Spalte
 - Verwenden Sie `np.ptp()` um die Spannweite (max - min) zu berechnen
 
 <!-- time estimate: 20 min -->
