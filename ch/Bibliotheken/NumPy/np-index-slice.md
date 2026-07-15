@@ -43,7 +43,7 @@ arr[start:stop:step]    # Elemente von start bis stop-1 mit Schrittweite
 # Spezielle Slicing-Formen
 arr[start:]             # Ab Position start bis Ende
 arr[:stop]              # Vom Anfang bis Position stop-1
-arr[:]                  # Alle Elemente (Kopie)
+arr[:]                  # Alle Elemente
 ```
 
 **Beispiel:**
@@ -65,7 +65,11 @@ print(a[3:])            # Ausgabe: [3, 4, 5, 6, 7, 8, 9]
 - Geben Sie alle Elemente ab Index 2 aus
 - Geben Sie alle Elemente bis Index 5 aus
 
-[EQ] Erklären Sie den Unterschied zwischen `a[5]` und `a[2:7:2]`. Was passiert, wenn Sie `a[2:]` verwenden?
+[EQ] Verwenden Sie das Array aus [EREFR::1]: `a[2]` liefert einen einzelnen Skalar zurück, während `a[2:3]` — obwohl der Slice ebenfalls nur
+ein einziges Element enthält — ein Array mit diesem einen Element zurückgibt. Warum unterscheiden
+sich die Rückgabetypen grundsätzlich, unabhängig davon, wie viele Elemente ausgewählt werden? Was
+gibt `a[7:3]` zurück (Start größer als Stop, positive Schrittweite), und warum kommt es dabei zu
+keinem Fehler?
 
 <!-- time estimate: 15 min -->
 
@@ -83,8 +87,8 @@ arr[:, col]             # Ganze Spalte
 arr[start:end, :]       # Mehrere Zeilen
 
 # Ellipsis-Operator (...)
-arr[..., col]           # Entspricht arr[:, :, ..., :, col]
-arr[row, ...]           # Entspricht arr[row, :, :, ..., :]
+arr[..., col]           # bei 2D äquivalent zu arr[:, col]
+arr[row, ...]           # bei 2D äquivalent zu arr[row, :]
 ```
 
 **Beispiel:**
@@ -94,18 +98,21 @@ print(a[1, 2])          # Element Zeile 1, Spalte 2: 6
 print(a[1, :])          # Ganze Zeile 1: [4, 5, 6]
 print(a[:, 1])          # Ganze Spalte 1: [2, 5, 8]
 print(a[1:, :])         # Ab Zeile 1: [[4, 5, 6], [7, 8, 9]]
+print(a[..., 2])        # Ellipsis für Spalte: [3, 6, 9] (equiv. zu a[:, 2])
+print(a[1, ...])        # Ellipsis für Zeile: [4, 5, 6] (equiv. zu a[1, :])
 ```
 
-[ER] Erstellen Sie ein 3x3 Array mit den Werten 11-19 und demonstrieren Sie:
+[ER] Erstellen Sie ein 4x4 Array mit den Werten 11-26 und demonstrieren Sie:
 
-- Zugriff auf ein einzelnes Element (Zeile 1, Spalte 2)
-- Auswahl einer ganzen Zeile
-- Auswahl einer ganzen Spalte
-- Slicing von Zeilen (ab Zeile 1)
-- Verwendung des Ellipsis-Operators für Spalten-Zugriff
+- Zugriff auf das Element Zeile 2, Spalte 3
+- Auswahl der ganzen Zeile 3
+- Auswahl der ganzen Spalte 1
+- Zugriff auf Spalte 0 mit dem Ellipsis-Operator
 
-[EQ] Was bewirkt der Ellipsis-Operator `...` bei der Array-Indexierung?
-Geben Sie ein praktisches Beispiel für seine Verwendung bei hochdimensionalen Arrays.
+[EQ] Bei Ihrem 4x4-Array liefert `arr[..., 0]` dasselbe Ergebnis wie `arr[:, 0]`. Erklären Sie
+anhand dieser Beobachtung, wofür der Ellipsis-Operator `...` steht und wie viele Doppelpunkte `:`
+er bei einem 2D-Array hier konkret ersetzt. Überlegen Sie außerdem: In welcher Situation würde `...`
+einen echten Vorteil gegenüber dem expliziten Ausschreiben aller `:` bieten?
 
 <!-- time estimate: 15 min -->
 
@@ -135,12 +142,14 @@ Die Indizes werden paarweise kombiniert:
 
 [ER] Erstellen Sie ein 3x4 Array mit den Werten 0-11 und verwenden Sie Integer-Array-Indexierung, um:
 
-- Die Elemente an den Positionen (0,1), (1,2), (2,0) zu extrahieren
+- Die Elemente an den Positionen (0,3), (1,0), (2,2) zu extrahieren
 - Die vier Eckpunkte des Arrays zu selektieren
 - Eine diagonale Linie von oben-links nach unten-rechts zu wählen
 
-[EQ] Beschreiben Sie, wie Integer-Array-Indexierung funktioniert.
-Warum gibt `x[[0,1,2], [0,1,0]]` für das obige Array die Werte `[1, 4, 5]` zurück?
+[EQ] Verwenden Sie Ihr Ergebnis aus [EREFR::3]: Erklären Sie anhand der Extraktion der Positionen
+(0,3), (1,0), (2,2), wie die beiden Index-Arrays paarweise kombiniert werden, um genau diese drei
+Elemente zu liefern. Wie viele Werte müssen die beiden Index-Arrays jeweils enthalten, damit die
+Kombination überhaupt funktioniert?
 
 <!-- time estimate: 15 min -->
 
@@ -176,9 +185,9 @@ z[z > 3] = 0           # Alle Elemente > 3 durch 0 ersetzen
 print(z)               # Ergebnis: [1 2 3 0 0 0]
 ```
 
-[ER] Erstellen Sie ein 4x3 Array mit ganzen Zahlen von 0-11 und demonstrieren Sie:
+[ER] Erstellen Sie ein 4x3 Array mit ganzen Zahlen von 20-31 und demonstrieren Sie:
 
-- Auswahl aller Elemente größer als 5
+- Auswahl aller Elemente größer als 25
 - Auswahl aller geraden Zahlen (verwenden Sie Modulo-Operation)
 - Erstellen Sie ein Array mit einigen NaN-Werten und filtern Sie diese heraus
 - Kombinieren Sie zwei Bedingungen mit logischen Operatoren
@@ -322,8 +331,8 @@ und führen Sie eine umfassende Datenmanipulation durch:
 ### Knackpunkte
 
 - [EREFR::1]: Alle vier Indexierungs-/Slicing-Ergebnisse korrekt (Einzelelement, Schrittweite, ab Index, bis Index)
-- [EREFR::4]: Bedingte Zuweisungen funktionieren korrekt; insbesondere `arr[condition] = value` ersetzt alle
-  Elemente, die die Bedingung erfüllen, mit dem neuen Wert (nicht nur Auswahl, sondern auch Modifikation via Boolean-Indexierung)
+- [EREFR::4]: Alle vier Boolean-Filter korrekt (größer als 25, gerade Zahlen, NaN-Filterung,
+  kombinierte Bedingung mit `&`)
 - [EREFR::6] + [EREFQ::5]: `np.ix_` liefert kartesisches Produkt und 2D-Teilmatrix; normale Integer-Array-Indexierung
   liefert paarweise Kombination und 1D-Array. Unterschied und Anwendungsfall korrekt erklärt
 
