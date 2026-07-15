@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1.5
 difficulty: 3
 requires: sp-Einführung
-assumes: np-Einführung, np-array, np-array2, np-math
+assumes: np-Einführung, np-array, np-array2, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
@@ -32,10 +32,13 @@ der Analysis (Polynome, Stetigkeit, stückweise definierte Funktionen); für den
 zusätzlich das Konzept der radialen Basisfunktionen. Falls Ihnen diese fehlen, helfen folgende
 Quellen:
 
-- [Interpolation (Wikipedia)](https://de.wikipedia.org/wiki/Interpolation_(Mathematik)) – Konzept der numerischen Interpolation, Polynom- und Spline-Interpolation
-- [Polynom (Wikipedia)](https://de.wikipedia.org/wiki/Polynom) – Grundbegriff Polynom
-- [Stetige Funktion (Wikipedia)](https://de.wikipedia.org/wiki/Stetige_Funktion) – Grundbegriff Stetigkeit
-- [Radiale Basisfunktion (Wikipedia)](https://de.wikipedia.org/wiki/Radiale_Basisfunktion) – Konzept der radialen Basisfunktionen (für den RBF-Abschnitt)
+- [Interpolation (Wikipedia)](https://de.wikipedia.org/wiki/Interpolation_(Mathematik)):
+  Konzept der numerischen Interpolation, Polynom- und Spline-Interpolation
+- [Polynom (Wikipedia)](https://de.wikipedia.org/wiki/Polynom): Grundbegriff Polynom
+- [Stetige Funktion (Wikipedia)](https://de.wikipedia.org/wiki/Stetige_Funktion):
+  Grundbegriff Stetigkeit
+- [Radiale Basisfunktion (Wikipedia)](https://de.wikipedia.org/wiki/Radiale_Basisfunktion):
+  Konzept der radialen Basisfunktionen (für den RBF-Abschnitt)
 
 ### Eindimensionale Interpolation: `make_interp_spline` und `CubicSpline`
 
@@ -82,19 +85,25 @@ print("Kubisch:", kubisch(x_neu))
 
 [ER] Führen Sie eine eindimensionale Interpolation durch:
 
-- Erstellen Sie die Datenpunkte `x = [0, 1, 2, 3, 4, 5]` und `y = [1, 3, 2, 6, 5, 8]`
+- Erstellen Sie die Datenpunkte `x` mit den Werten `[0, 1, 2, 3, 4, 5]` und `y` mit den Werten
+  `[1, 3, 2, 6, 5, 8]`
 - Erzeugen Sie mit `make_interp_spline` (`k=1`) eine lineare Interpolation
 - Erzeugen Sie mit `CubicSpline` eine kubische Interpolation
-- Berechnen Sie mit beiden die Werte an `x_neu = [0.5, 1.5, 2.5, 3.5, 4.5]`
+- Berechnen Sie mit beiden die Werte an den Stellen `x_neu` mit den Werten
+  `[0.5, 1.5, 2.5, 3.5, 4.5]`
 - Geben Sie für jede Stelle beide Werte und ihre Differenz aus
 
-<!-- ER1 -->
+[HINT::Übersichtliche Tabellenausgabe]
+Mit einer f-String-Formatierung (in [PARTREF::py-Fstrings]) lässt sich die Ausgabe als
+Tabelle gestalten, z. B.:
+```python
+[SNIPPET::ALT::sp_interpolate_tabellenausgabe]
+```
+[ENDHINT]
 
 [EQ] Betrachten Sie die Differenzen zwischen linearer und kubischer Interpolation aus [EREFR::1].
 An welchen Stellen sind sie am größten, und warum? Nennen Sie je eine Situation, in der die
 lineare bzw. die kubische Interpolation die bessere Wahl ist.
-
-<!-- EQ1 -->
 
 <!-- time estimate: 20 min -->
 
@@ -132,20 +141,17 @@ print("Glatt bei 2.5: ", glatt(2.5))
 
 [ER] Untersuchen Sie den Glättungseffekt mit den folgenden (leicht verrauschten) Daten:
 
-- `x = np.linspace(0, 10, 11)`
-- `y = [0.05, 0.90, 0.85, 0.20, -0.70, -1.00, -0.20, 0.70, 0.95, 0.35, -0.60]`
+- Erstellen Sie mit `np.linspace` 11 gleichmäßig verteilte Stützstellen `x` von 0 bis 10
+- Erstellen Sie `y` mit den Werten
+  `[0.05, 0.90, 0.85, 0.20, -0.70, -1.00, -0.20, 0.70, 0.95, 0.35, -0.60]`
 - Erzeugen Sie eine exakte Spline-Interpolation (`s=0`)
 - Erzeugen Sie eine geglättete Spline-Interpolation (`s=1.0`)
 - Werten Sie beide Splines an den ursprünglichen Stützstellen `x` aus und vergleichen Sie das
   Ergebnis mit den ursprünglichen `y`-Werten
 
-<!-- ER2 -->
-
 [EQ] Vergleichen Sie in [EREFR::2] die Ergebnisse für `s=0` und `s=1.0`. Welchen Effekt hat der
 Glättungsparameter auf die Kurve? In welcher Situation ist Glättung sinnvoll und wann würden Sie
 `s=0` bevorzugen?
-
-<!-- EQ2 -->
 
 <!-- time estimate: 20 min -->
 
@@ -190,19 +196,21 @@ Angaben. Andere (z.B. `'gaussian'`, `'multiquadric'`) benötigen zusätzlich ein
 
 [ER] Arbeiten Sie mit `RBFInterpolator`:
 
-- Erstellen Sie die Datenpunkte `x = [0, 2, 4, 6, 8, 10]` und `y = [1, 8, 12, 7, 15, 20]`
+- Erstellen Sie die Datenpunkte `x` mit den Werten `[0, 2, 4, 6, 8, 10]` und `y` mit den Werten
+  `[1, 8, 12, 7, 15, 20]`
 - Bringen Sie `x` mit `reshape(-1, 1)` in die passende Form
 - Erzeugen Sie drei Interpolatoren mit den Kerneln `'thin_plate_spline'`, `'linear'` und `'cubic'`
-- Berechnen Sie für alle drei die Werte an `x_test = [1, 3, 5, 7, 9]`
+- Berechnen Sie für alle drei die Werte an den Stellen `x_test` mit den Werten `[1, 3, 5, 7, 9]`
 - Geben Sie die Ergebnisse als Tabelle aus
 
-<!-- ER3 -->
+[HINT::Übersichtliche Tabellenausgabe]
+Auch hier lässt sich die Ausgabe mit einer f-String-Formatierung (in
+[PARTREF::py-Fstrings]) als Tabelle gestalten, analog zur Ausgabe aus [EREFR::1].
+[ENDHINT]
 
 [EQ] `RBFInterpolator` verlangt die Koordinaten als 2D-Array, während `make_interp_spline` ein
 einfaches 1D-Array akzeptiert. Warum ist diese Schnittstelle so gestaltet? Was ermöglicht die
 2D-Form, das mit einem reinen 1D-Array nicht ausdrückbar wäre?
-
-<!-- EQ3 -->
 
 <!-- time estimate: 25 min -->
 
@@ -213,39 +221,47 @@ hängt von den Daten und dem Ziel ab:
 
 | Methode | Eigenschaft | typische Anwendung |
 |---------|-------------|--------------------|
-| `make_interp_spline` (`k=1`) | linear, geht durch alle Punkte, an den Punkten "eckig" | einfache, dichte Daten |
+| `make_interp_spline` (`k=1`) | linear, an den Punkten "eckig" | einfache, dichte Daten |
 | `CubicSpline` | glatt, geht durch alle Punkte | glatte Funktionen ohne Rauschen |
 | `make_splrep` (`s>0`) | glättet, geht nicht mehr exakt durch die Punkte | verrauschte Messdaten |
-| `RBFInterpolator` | flexibel, auch für mehrdimensionale/unregelmäßige Daten | Streudaten, höhere Dimensionen |
+| `RBFInterpolator` | flexibel, auch mehrdimensional/unregelmäßig | Streudaten, höhere Dimensionen |
 
 [ER] Vergleichen Sie die Verfahren an der Sinusfunktion:
 
-- Erzeugen Sie Stützstellen `x = np.linspace(0, 2*np.pi, 9)` und `y = np.sin(x)`
+- Erzeugen Sie mit `np.linspace` 9 gleichmäßig verteilte Stützstellen `x` von 0 bis 2π und
+  berechnen Sie `y` als deren Sinuswerte
 - Interpolieren Sie diese Daten mit allen vier Verfahren (`make_interp_spline` mit `k=1`,
   `CubicSpline`, `make_splrep` mit `s=0`, `RBFInterpolator` mit `'thin_plate_spline'`)
-- Werten Sie alle vier an den Zwischenstellen `x_test = [1.0, 2.5, 4.0, 5.5]` aus und vergleichen
-  Sie mit den wahren Werten `np.sin(x_test)`
+- Werten Sie alle vier an den Zwischenstellen `x_test` mit den Werten `[1.0, 2.5, 4.0, 5.5]` aus
+  und vergleichen Sie mit den wahren Sinuswerten an diesen Stellen
 - Bestimmen Sie für jedes Verfahren den maximalen Betrag des Fehlers auf einem feinen
   Gitter `np.linspace(0, 2*np.pi, 100)` gegenüber `np.sin`
-- Ordnen Sie die vier Verfahren nach diesem Fehler und geben Sie an, welche beiden
-  (nahezu) identische Ergebnisse liefern
+- Ordnen Sie die vier Verfahren nach diesem Fehler
 
-<!-- ER4 -->
+[HINT::Fehler für alle Verfahren übersichtlich berechnen]
+Für die Fehlerberechnung auf dem feinen Gitter bietet sich folgendes Muster an:
+```python
+[SNIPPET::ALT::sp_interpolate_fehler_berechnung]
+```
+[ENDHINT]
 
-[EQ] Betrachten Sie die Ergebnisse aus [EREFR::4]. Warum schneidet die lineare Interpolation am
-schlechtesten ab? Warum liefern `CubicSpline` und `make_splrep` (mit `s=0`) (nahezu) identische
-Ergebnisse? Nennen Sie außerdem ein Kriterium (außer dem Fehler gegenüber einer bekannten Funktion),
-nach dem man in der Praxis ein Interpolationsverfahren auswählt.
+[EQ] Betrachten Sie die Ergebnisse aus [EREFR::4]:
 
-<!-- EQ4 -->
+- Welches Verfahren schneidet am schlechtesten ab, und warum?
+- Welche beiden Verfahren liefern (nahezu) identische Ergebnisse, und warum?
+- Nennen Sie außerdem ein Kriterium (außer dem Fehler gegenüber einer bekannten Funktion),
+  nach dem man in der Praxis ein Interpolationsverfahren auswählt.
 
 <!-- time estimate: 25 min -->
 
 ### Weiterführend
 
-- [1-D interpolation (SciPy)](https://docs.scipy.org/doc/scipy/tutorial/interpolate/1D.html) – Überblick über die eindimensionalen Interpolationsverfahren
-- [make_interp_spline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_interp_spline.html) – Referenz zur B-Spline-Interpolation
-- [RBFInterpolator](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.RBFInterpolator.html) – Referenz zu radialen Basisfunktionen
+- [1-D interpolation (SciPy)](https://docs.scipy.org/doc/scipy/tutorial/interpolate/1D.html):
+  Überblick über die eindimensionalen Interpolationsverfahren
+- [make_interp_spline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_interp_spline.html):
+  Referenz zur B-Spline-Interpolation
+- [RBFInterpolator](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.RBFInterpolator.html):
+  Referenz zu radialen Basisfunktionen
 
 [ENDSECTION]
 
@@ -260,13 +276,13 @@ nach dem man in der Praxis ein Interpolationsverfahren auswählt.
 
 - [EREFR::3]: Die Datenpunkte werden korrekt mit `reshape(-1, 1)` in ein 2D-Array gebracht (sowohl
   beim Erstellen als auch beim Auswerten); ohne diese Umformung läuft der Code nicht.
+- [EREFQ::3]: Studierende erkennen, dass die 2D-Form `(n_punkte, n_dimensionen)` mehrdimensionale
+  Koordinaten erlaubt — RBF ist nicht auf eine Eingabedimension beschränkt.
 - [EREFR::4] + [EREFQ::4]: Der maximale Fehler ist bei der linearen Interpolation am größten,
   `CubicSpline`/`make_splrep` sind am genauesten; die Begründung nennt, dass die lineare
   Interpolation die Krümmung zwischen den Stützstellen nicht nachbildet. Studierende erkennen
   zudem, dass `CubicSpline` und `make_splrep` (mit `s=0`) (nahezu) identisch sind, weil beide
   einen kubischen interpolierenden Spline berechnen.
-- [EREFQ::3]: Studierende erkennen, dass die 2D-Form `(n_punkte, n_dimensionen)` mehrdimensionale
-  Koordinaten erlaubt — RBF ist nicht auf eine Eingabedimension beschränkt.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-interpolate.md]
