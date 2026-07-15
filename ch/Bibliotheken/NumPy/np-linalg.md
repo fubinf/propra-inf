@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 2
 difficulty: 2
 requires: np-Einführung
-assumes: np-array, np-array2
+assumes: np-array, np-array2, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
@@ -74,8 +74,8 @@ print(transposed_alt)
 
 [ER] Arbeiten Sie mit Matrixtransposition:
 
-- Erstellen Sie eine 4×3 Matrix mit Werten von 1 bis 12 mit
-  `matrix = np.arange(1, 13).reshape(4, 3)`
+- Erstellen Sie mit `np.array` eine 4×3-Matrix `matrix` mit den Werten `5, 12, 3` (Zeile 0),
+  `8, 1, 15` (Zeile 1), `10, 6, 2` (Zeile 2) und `14, 9, 4` (Zeile 3)
 - Transponieren Sie die Matrix mit beiden Methoden (.T und np.transpose)
 - Vergleichen Sie die ursprüngliche und transponierte Form
 - Zeigen Sie, dass (A^T)^T = A gilt
@@ -210,11 +210,11 @@ print('Inner Produkt:', inner_result)
 
 [ER] Implementieren Sie verschiedene Matrixoperationen:
 
-- Erstellen Sie `A = np.array([[1,2,3],[4,5,6],[7,8,9]])` und
-  `B = np.array([[9,8,7],[6,5,4],[3,2,1]])`
+- Erstellen Sie zwei 3×3-Matrizen `A` (Zeilen `6, 11, 4` / `9, 2, 13` / `7, 10, 5`) und `B`
+  (Zeilen `3, 15, 8` / `12, 1, 9` / `6, 14, 2`)
 - Berechnen Sie ihre Matrixmultiplikation mit allen drei Methoden (dot, matmul, @)
-- Erstellen Sie `v1 = np.array([1,2,3,4])` und `v2 = np.array([5,6,7,8])` und berechnen
-  Sie deren Produkt mit `dot`, `vdot` und `inner`
+- Erstellen Sie zwei Vektoren `v1` mit den Werten `3, 9, 2, 11` und `v2` mit den Werten
+  `7, 1, 10, 4` und berechnen Sie deren Produkt mit `dot`, `vdot` und `inner`
 - Verifizieren Sie, dass A×B ≠ B×A (Matrixmultiplikation ist nicht kommutativ)
 
 <!-- time estimate: 20 min -->
@@ -260,14 +260,21 @@ print('Determinante:', det_singular)  # ≈ 0
 
 [ER] Berechnen Sie Determinanten verschiedener Matrizen:
 
-- Berechnen Sie die Determinante von `matrix_2x2 = np.array([[3,5],[2,4]])` händisch
-  (`ad - bc`) und überprüfen Sie mit NumPy
-- Erstellen Sie `matrix_3x3 = np.array([[2,1,3],[1,0,2],[3,1,1]])` und berechnen Sie
-  ihre Determinante
-- Erstellen Sie die bewusst singuläre Matrix
-  `singular = np.array([[1,2,3],[2,4,6],[1,2,3]])` (erste und dritte Zeile identisch)
-  und zeigen Sie, dass ihre Determinante ≈ 0 ist
+- Erstellen Sie eine 2×2-Matrix `matrix_2x2` mit den Zeilen `6, 4` und `3, 7`, berechnen Sie
+  ihre Determinante händisch (`ad - bc`) und überprüfen Sie mit NumPy
+- Erstellen Sie eine 3×3-Matrix `matrix_3x3` mit den Zeilen `2, 1, 3` / `1, 0, 2` / `3, 1, 1`
+  und berechnen Sie ihre Determinante
+- Erstellen Sie eine bewusst singuläre 3×3-Matrix `singular` mit den Zeilen `5, 8, 3` /
+  `9, 2, 14` / `5, 8, 3` (erste und dritte Zeile identisch) und zeigen Sie, dass ihre
+  Determinante ≈ 0 ist
 - Untersuchen Sie, wie sich die Determinante von `matrix_3x3` bei Transposition verhält
+
+[HINT::Lange Nachkommastellen bei der Ausgabe]
+NumPy-Berechnungen liefern manchmal Werte wie `79.999999999999996` statt `80.0` — das liegt
+an der begrenzten Genauigkeit von Fließkommazahlen, nicht an einem Fehler. Mit einer
+f-String-Formatierung wie `f'{wert:.3f}'` (in [PARTREF::py-Fstrings]) lässt sich die
+Ausgabe auf sinnvolle Nachkommastellen begrenzen.
+[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
@@ -310,23 +317,24 @@ numpy.linalg.cond(x, p=None)
 ```python
 # Prüfung der Konditionszahl
 cond_number = np.linalg.cond(matrix)
-print('Konditionszahl:', cond_number)
+print('Konditionszahl:', cond_number)  # ≈ 29.13
 
 # Eine Matrix mit hoher Konditionszahl (schlecht konditioniert)
 ill_conditioned = np.array([[1, 1],
                             [1, 1.0001]])
 cond_ill = np.linalg.cond(ill_conditioned)
-print('Konditionszahl (schlecht konditioniert):', cond_ill)
+print('Konditionszahl (schlecht konditioniert):', cond_ill)  # ≈ 40002
 ```
 
 [ER] Arbeiten Sie mit inversen Matrizen:
 
-- Erstellen Sie `matrix = np.array([[4,7,2],[3,6,1],[2,5,3]], dtype=float)` und
-  berechnen Sie ihre Inverse
+- Erstellen Sie eine 3×3-Matrix `matrix` (als `float`) mit den Zeilen `4, 7, 2` / `3, 6, 1` /
+  `2, 5, 3` und berechnen Sie ihre Inverse
 - Verifizieren Sie, dass A × A⁻¹ = I
 - Berechnen Sie die Konditionszahl von `matrix`
-- Erstellen Sie `singular = np.array([[1,2,3],[2,4,6],[3,6,9]], dtype=float)` und
-  testen Sie, was passiert, wenn Sie versuchen, sie zu invertieren
+- Erstellen Sie eine bewusst singuläre 3×3-Matrix `singular` (als `float`) mit den Zeilen
+  `2, 5, 4` / `4, 10, 8` (das Doppelte der ersten Zeile) / `6, 15, 12` (das Dreifache der
+  ersten Zeile) und testen Sie, was passiert, wenn Sie versuchen, sie zu invertieren
 
 [HINT::Singuläre Matrix invertieren]
 Der Versuch, eine singuläre Matrix (Determinante = 0)
@@ -373,7 +381,7 @@ print('\nLösung x =', solution)
 
 [ER] Lösen Sie verschiedene lineare Gleichungssysteme:
 
-- Lösen Sie das 2×2 System `2x + 3y = 7`, `x + 4y = 6`  mit NumPy
+- Lösen Sie das 2×2 System `5x + 2y = 19`, `3x + 4y = 17` mit NumPy
 - Lösen Sie das 3×3 System `2x + y - z = 1`, `x + 3y + z = 9`, `x - y + 2z = 3`
 
 <!-- time estimate: 15 min -->
@@ -390,9 +398,9 @@ numpy.linalg.svd(a)              # Singulärwertzerlegung
 ```
 
 - `M`/`a`/`x` (je nach Funktion): die betroffene Matrix
-- `ord` (bei `norm`, Default `None`): welche Norm berechnet wird (`'fro'` für Frobenius,
-  `1`/`2`/`np.inf` für die jeweilige Operatornorm; `None` entspricht der 2-Norm bei
-  Vektoren bzw. der Frobenius-Norm bei Matrizen)
+- `ord` (bei `norm`): welche Norm berechnet wird — mögliche Werte sind `'fro'` für die
+  Frobenius-Norm sowie `1`, `2` oder `np.inf` für die jeweilige Operatornorm. Bei Default
+  `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm bei Matrizen
 
 ```python
 import numpy as np
@@ -441,12 +449,14 @@ print(s)
 
 [ER] Experimentieren Sie mit erweiterten Operationen:
 
-- Erstellen Sie `symmetric_matrix = np.array([[4,1,2],[1,3,0],[2,0,5]], dtype=float)`,
-  berechnen Sie ihren Rang sowie ihre Eigenwerte und Eigenvektoren
-- Erstellen Sie `test_matrix = np.array([[1,2,3],[4,5,6]], dtype=float)` (2×3, nicht
-  quadratisch) und verwenden Sie SVD, um sie zu rekonstruieren
-- Erstellen Sie `norm_matrix = np.array([[1,-2,3],[-4,5,-6],[7,-8,9]], dtype=float)` und
-  vergleichen Sie alle vier Matrixnormen (Frobenius, 1-Norm, 2-Norm, ∞-Norm)
+- Erstellen Sie eine symmetrische 3×3-Matrix `symmetric_matrix` (als `float`) mit den Zeilen
+  `6, 2, 5` / `2, 4, 1` / `5, 1, 9`, berechnen Sie ihren Rang sowie ihre Eigenwerte und
+  Eigenvektoren
+- Erstellen Sie eine nicht-quadratische 2×3-Matrix `test_matrix` (als `float`) mit den Zeilen
+  `3, 8, 1` / `6, 2, 9` und verwenden Sie SVD, um sie zu rekonstruieren
+- Erstellen Sie eine 3×3-Matrix `norm_matrix` (als `float`) mit den Zeilen `4, -9, 6` /
+  `-3, 7, -5` / `8, -2, 10` und vergleichen Sie alle vier Matrixnormen (Frobenius, 1-Norm,
+  2-Norm, ∞-Norm)
 
 <!-- time estimate: 20 min -->
 
