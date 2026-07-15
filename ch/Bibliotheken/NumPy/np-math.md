@@ -212,9 +212,9 @@ vorher mit `astype` um (Details in [PARTREF::np-bitwise-string]).
 
 [ER] Implementieren Sie verschiedene arithmetische Operationen:
 
-- Erstellen Sie ein 3×4-Array `arr1` mit den Werten `7, 19, 3, 25` (Zeile 0), `14, 2, 31, 8`
-  (Zeile 1) und `16, 9, 22, 5` (Zeile 2), sowie ein 1D-Array `arr2` mit den Werten `6, 11, 3, 9`
-  (wird per Broadcasting auf die Form von `arr1` angewendet)
+- Erstellen Sie ein 3×4-Array `arr1` mit den Werten `[[7, 19, 3, 25], [14, 2, 31, 8], [16, 9, 22, 5]]`,
+  sowie ein 1D-Array `arr2` mit den Werten `[6, 11, 3, 9]` (wird per Broadcasting auf die Form
+  von `arr1` angewendet)
 - Führen Sie alle vier Grundrechenarten durch
 - Berechnen Sie `np.reciprocal()` für die Kehrwerte von `arr1` (achten Sie auf den `dtype`)
 
@@ -254,9 +254,9 @@ print('Modulo:', np.mod(values, divisors))
 
 [ER] Arbeiten Sie mit speziellen arithmetischen Funktionen:
 
-- Erstellen Sie ein Array `base` mit den Werten `6, 9, 4, 7`
+- Erstellen Sie ein Array `base` mit den Werten `[6, 9, 4, 7]`
 - Berechnen Sie die 3. Potenz aller Werte
-- Erstellen Sie ein Array `exp` mit den Exponenten `2, 4, 1, 3` und berechnen Sie `np.power(base, exp)`
+- Erstellen Sie ein Array `exp` mit den Exponenten `[2, 4, 1, 3]` und berechnen Sie `np.power(base, exp)`
 - Berechnen Sie den Rest bei Division durch 3 für alle Werte in `base`
 
 <!-- time estimate: 10 min -->
@@ -307,8 +307,8 @@ Funktionen in 2D-Arrays. Welche Dimension wird in jedem Fall "kollabiert"?
 
 [ER] Berechnen Sie statistische Kennzahlen und geben Sie die Ergebnisse aus:
 
-- Erstellen Sie mit `np.array` ein 4×5-Array `data` mit den Werten `47, 82, 19, 63, 8` (Zeile 0),
-  `91, 24, 56, 37, 70` (Zeile 1), `15, 68, 42, 5, 99` (Zeile 2) und `33, 77, 60, 21, 88` (Zeile 3)
+- Erstellen Sie mit `np.array` ein 4×5-Array `data` mit den Werten
+  `[[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 21, 88]]`
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie dieselben Statistiken für jede Zeile und jede Spalte
 - Verwenden Sie `np.ptp()` um die Spannweite (max - min) zu berechnen

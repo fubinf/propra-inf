@@ -108,7 +108,8 @@ print("XOR:", result_xor)  # [True  True  True]
 
 [ER] Implementieren Sie bitweise Operationen mit verschiedenen Datentypen:
 
-- Erstellen Sie zwei Arrays mit ganzen Zahlen: `a = np.array([13, 17])` und `b = np.array([5, 8])`
+- Erstellen Sie zwei Arrays mit ganzen Zahlen: `a` mit den Werten `[13, 17]` und `b` mit den
+  Werten `[5, 8]`
 - Führen Sie `np.bitwise_and(a, b)`, `np.bitwise_or(a, b)` und `np.bitwise_xor(a, b)` durch
 - Geben Sie sowohl die Ergebnisse als auch die binären Darstellungen aus (verwenden Sie `np.binary_repr()`)
 - Erklären Sie in Kommentaren, wie die Ergebnisse zustande kommen
@@ -146,7 +147,7 @@ und erklären Sie Ihren Rechenweg mit der binären Darstellung.
 
 [ER] Arbeiten Sie mit Bit-Verschiebungen in Arrays:
 
-- Erstellen Sie ein Array `values = np.array([5, 12, 25, 48])`
+- Erstellen Sie ein Array `values` mit den Werten `[5, 12, 25, 48]`
 - Verschieben Sie alle Werte um 1 Position nach links
 - Verschieben Sie alle Werte um 2 Positionen nach rechts
 - Vergleichen Sie die Ergebnisse mit mathematischen Operationen (`*2` bzw. `//4`)
@@ -192,7 +193,8 @@ ndarray.astype(dtype)
 
 [ER] Untersuchen Sie den Einfluss des `dtype` auf `invert()`:
 
-- Erstellen Sie `arr = np.array([3, 10], dtype=np.int8)` und wenden Sie `np.invert()` darauf an
+- Erstellen Sie ein Array `arr` mit den Werten `[3, 10]` als `np.int8` und wenden Sie
+  `np.invert()` darauf an
 - Wandeln Sie `arr` mit `arr.astype(np.uint8)` um und wenden Sie `np.invert()` auch darauf an
 - Geben Sie beide Ergebnisse aus
 
@@ -265,8 +267,8 @@ print("Repeated:", repeated)  # 'Python Python Python '
 
 [ER] Implementieren Sie verschiedene String-Operationen:
 
-- Erstellen Sie ein Array `names = np.array(['Alice', 'Bob', 'Charlie'])`
-- Erstellen Sie ein Array `greetings = np.array(['Hallo', 'Hi', 'Hey'])`
+- Erstellen Sie ein Array `names` mit den Werten `['Alice', 'Bob', 'Charlie']`
+- Erstellen Sie ein Array `greetings` mit den Werten `['Hallo', 'Hi', 'Hey']`
 - Verbinden Sie entsprechende Elemente mit `np.char.add()` und fügen Sie ein Leerzeichen dazwischen ein
 - Verwenden Sie `np.char.multiply()`, um jeden Namen 2-mal zu wiederholen
 - Konvertieren Sie alle Namen in Großbuchstaben mit `np.char.upper()`
@@ -306,7 +308,7 @@ print("Replaced:", replaced)  # ['Pithon' 'NumPi' 'Pandas']
 
 [ER] Arbeiten Sie mit String-Formatierung:
 
-- Erstellen Sie ein Array `words = np.array(['Style', 'Yellow', 'Syntax'])`
+- Erstellen Sie ein Array `words` mit den Werten `['Style', 'Yellow', 'Syntax']`
 - Zentrieren Sie jeden String in einem Feld der Breite 10 mit `np.char.center()`
 - Erstellen Sie ein Array mit Strings, die Leerzeichen am Anfang und Ende haben
 - Verwenden Sie `np.char.strip()` zum Entfernen der Leerzeichen
@@ -353,9 +355,10 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
 
 [ER] Implementieren Sie erweiterte String-Operationen:
 
-- Erstellen Sie ein Array mit Produktcodes: `codes = np.array(['AB-12-XY', 'CD-34-ZT'])`
+- Erstellen Sie ein Array mit Produktcodes `codes` mit den Werten `['AB-12-XY', 'CD-34-ZT']`
 - Verwenden Sie `np.char.split(codes, '-')` zum Aufteilen an den Bindestrichen
-- Erstellen Sie ein Array mit Kürzeln `np.array(['DE', 'FR'])` und verwenden Sie `np.char.join()`,
+- Erstellen Sie ein Array mit Kürzeln mit den Werten `['DE', 'FR']` und verwenden Sie
+  `np.char.join()`,
   um zwischen die Buchstaben jedes Kürzels einen Punkt einzufügen (z. B. wird aus `'DE'` `'D.E'`)
 - Verwenden Sie `np.char.replace()`, um in `codes` alle Bindestriche durch Unterstriche zu ersetzen
 - Testen Sie `np.char.find()`, um die Position des ersten Bindestrichs in jedem Element von `codes`

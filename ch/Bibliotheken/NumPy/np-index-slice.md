@@ -304,7 +304,8 @@ arr[..., 1:]           # Ellipsis + Slicing
 In der Praxis werden verschiedene Indexierungstechniken oft zusammen verwendet
 für Aufgaben wie Datenfilterung, -transformation und -analyse.
 
-[ER] Verwenden Sie das Array `data = np.array([[3, 12, 7, 18], [9, 2, 15, 6], [11, 4, 19, 1], [8, 16, 5, 13], [10, 3, 17, 14], [6, 20, 2, 9]])`
+[ER] Erstellen Sie ein Array `data` mit den Werten
+`[[3, 12, 7, 18], [9, 2, 15, 6], [11, 4, 19, 1], [8, 16, 5, 13], [10, 3, 17, 14], [6, 20, 2, 9]]`
 und führen Sie eine umfassende Datenmanipulation durch:
 
 - Wählen Sie alle Werte größer als 10 aus (Boolean-Indexierung)

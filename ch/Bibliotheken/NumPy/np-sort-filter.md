@@ -101,8 +101,8 @@ print('Stimmt mit np.sort überein?', np.array_equal(reconstructed, np.sort(arr,
 
 [ER] Arbeiten Sie mit grundlegenden Sortierfunktionen:
 
-- Erstellen Sie mit `np.array` ein 3×4-Array `arr` mit den Werten `8, 3, 15, 6` (Zeile 0),
-  `12, 1, 9, 20` (Zeile 1) und `4, 17, 2, 11` (Zeile 2)
+- Erstellen Sie mit `np.array` ein 3×4-Array `arr` mit den Werten
+  `[[8, 3, 15, 6], [12, 1, 9, 20], [4, 17, 2, 11]]`
 - Sortieren Sie das Array entlang Achse 0 und entlang Achse 1
 - Verwenden Sie `argsort(arr, axis=1)` um die zeilenweisen Sortierungsindices zu erhalten
 - Rekonstruieren Sie das zeilenweise sortierte Array mit `take_along_axis` und vergleichen Sie
@@ -165,9 +165,9 @@ for i in indices_desc:
 
 [ER] Implementieren Sie eine lexikographische Sortierung:
 
-- Erstellen Sie mit `np.array` drei Arrays: `produkte` mit den Werten `Laptop, Mouse, Keyboard,
-  Monitor, Headset`, `preise` mit den Werten `1200, 25, 75, 300, 150` und `bewertungen` mit den
-  Werten `4.5, 4.2, 4.5, 4.0, 4.5`
+- Erstellen Sie mit `np.array` drei Arrays: `produkte` mit den Werten
+  `['Laptop', 'Mouse', 'Keyboard', 'Monitor', 'Headset']`, `preise` mit den Werten
+  `[1200, 25, 75, 300, 150]` und `bewertungen` mit den Werten `[4.5, 4.2, 4.5, 4.0, 4.5]`
 - Sortieren Sie die Produkte erst nach Bewertung (absteigend), dann nach Preis (aufsteigend) —
   für absteigende Sortierung übergeben Sie die negierten Bewertungen an `lexsort`
 - Verwenden Sie `lexsort` und geben Sie das Ergebnis strukturiert aus
@@ -242,8 +242,8 @@ print(f'Maximum {data.flat[flat_max]} an flachem Index {flat_max} = Zeile {row},
 
 [ER] Analysieren Sie Daten mit Extremwertfunktionen:
 
-- Erstellen Sie mit `np.array` ein 4×5-Array `data` mit den Werten `12, 45, 8, 67, 23` (Zeile 0),
-  `34, 89, 5, 41, 56` (Zeile 1), `78, 3, 62, 19, 90` (Zeile 2) und `27, 51, 14, 38, 6` (Zeile 3)
+- Erstellen Sie mit `np.array` ein 4×5-Array `data` mit den Werten
+  `[[12, 45, 8, 67, 23], [34, 89, 5, 41, 56], [78, 3, 62, 19, 90], [27, 51, 14, 38, 6]]`
 - Finden Sie Position und Wert des globalen Maximums und Minimums, sowohl über den flachen
   Index als auch mit `unravel_index` umgerechnet in Zeile/Spalte
 - Bestimmen Sie für jede Zeile das Maximum und für jede Spalte das Minimum
@@ -301,8 +301,8 @@ print('Gerade Elemente:', even_elements)
 - Finden Sie alle positiven Werte mit `where(condition)`
 - Ersetzen Sie mit der Drei-Parameter-Form `where(condition, x, y)` alle negativen Werte in `arr`
   durch `0`, während die übrigen Werte unverändert bleiben
-- Erstellen Sie mit `np.array` ein 3×3-Array `sparse` mit den Werten `0, 12, 0` (Zeile 0),
-  `34, 0, 56` (Zeile 1) und `0, 78, 0` (Zeile 2) und finden Sie die nicht-null Elemente mit
+- Erstellen Sie mit `np.array` ein 3×3-Array `sparse` mit den Werten
+  `[[0, 12, 0], [34, 0, 56], [0, 78, 0]]` und finden Sie die nicht-null Elemente mit
   `nonzero`
 - Extrahieren Sie alle Werte zwischen -5 und 5 aus `arr` mit `extract`
 

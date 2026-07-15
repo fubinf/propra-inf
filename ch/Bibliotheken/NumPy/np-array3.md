@@ -80,7 +80,8 @@ stacked_1 = np.stack((a, b), axis=1)
 print("Stack Achse 1 Shape:", stacked_1.shape)  # (2, 2, 2)
 ```
 
-[ER] Erstellen Sie `A = np.array([[1, 2, 3], [4, 5, 6]])` und `B = np.array([[7, 8, 9], [10, 11, 12]])` und verwenden Sie:
+[ER] Erstellen Sie zwei Arrays `A` mit den Werten `[[1, 2, 3], [4, 5, 6]]` und `B` mit den
+Werten `[[7, 8, 9], [10, 11, 12]]` und verwenden Sie:
 
 - `np.concatenate` um sie entlang Achse 0 zu verbinden
 - `np.concatenate` um sie entlang Achse 1 zu verbinden
@@ -133,10 +134,11 @@ print("vstack:", v_result)
 
 [ER] Arbeiten Sie mit verschiedenen Array-Formen:
 
-- Erstellen Sie ein 1D-Array `x = np.array([7, 14, 21])`
-- Erstellen Sie ein 1D-Array `y = np.array([2, 9, 16])`
+- Erstellen Sie ein 1D-Array `x` mit den Werten `[7, 14, 21]`
+- Erstellen Sie ein 1D-Array `y` mit den Werten `[2, 9, 16]`
 - Verwenden Sie `hstack` und `vstack` um diese zu verbinden
-- Erstellen Sie zusätzlich `a_3x1 = np.array([[7], [14], [21]])` und `b_3x1 = np.array([[2], [9], [16]])` und verbinden Sie diese mit `hstack` und `vstack`
+- Erstellen Sie zusätzlich `a_3x1` mit den Werten `[[7], [14], [21]]` und `b_3x1` mit den
+  Werten `[[2], [9], [16]]` und verbinden Sie diese mit `hstack` und `vstack`
 
 Geben Sie jeweils das Ergebnis und dessen shape aus.
 
@@ -208,7 +210,7 @@ Erklären Sie die Bedingungen, die erfüllt sein müssen, damit eine gleichmäß
 
 [ER] Arbeiten Sie mit Array-Teilungen:
 
-- Erstellen Sie ein Array mit `np.arange(24).reshape(6, 4)`
+- Erstellen Sie mit `arange` und `reshape` ein 6×4-Array mit den ganzen Zahlen von 0 bis 23
 - Teilen Sie es mit `vsplit` in 3 gleiche Teile
 - Teilen Sie es mit `hsplit` in 2 gleiche Teile
 - Verwenden Sie `split` mit `axis=0` und den Indizes `[2, 4]` zur ungleichmäßigen Teilung
@@ -286,7 +288,8 @@ appended_cols = np.append(arr, [[7], [8]], axis=1)
 print("Spalten:", appended_cols.shape)  # (2, 4)
 ```
 
-[ER] Erstellen Sie ein 2×3 Array mit `np.array([[31, 47, 12], [58, 23, 64]])` und verwenden Sie `append`:
+[ER] Erstellen Sie ein 2×3 Array mit den Werten `[[31, 47, 12], [58, 23, 64]]` und verwenden Sie
+`append`:
 
 - Fügen Sie eine neue Zeile mit den Werten `[90, 15, 33]` hinzu (`axis=0`)
 - Fügen Sie zwei neue Spalten mit den Werten `[[71, 29], [46, 88]]` hinzu (`axis=1`)
@@ -338,7 +341,7 @@ print("Flach eingefügt:", inserted_flat)
 
 [ER] Arbeiten Sie mit `insert`:
 
-- Erstellen Sie ein 3×3 Array mit `np.arange(1, 10).reshape(3, 3)`
+- Erstellen Sie mit `arange` und `reshape` ein 3×3 Array mit den ganzen Zahlen von 1 bis 9
 - Fügen Sie an Position 1 eine neue Zeile mit Werten [10, 11, 12] ein
 - Fügen Sie an Position 2 eine neue Spalte mit Werten [20, 21, 22] ein
 - Fügen Sie in das ursprüngliche flache Array an Position 4 den Wert 99 ein
@@ -378,7 +381,8 @@ print("Flach entfernt:", deleted_flat.shape)  # (9,)
 
 [ER] Üben Sie `delete`-Operationen:
 
-- Beginnen Sie mit einem 4×5 Array erstellt mit `np.arange(20).reshape(4, 5)`
+- Beginnen Sie mit einem 4×5 Array, das mit `arange` und `reshape` aus den ganzen Zahlen von
+  0 bis 19 erstellt wird
 - Entfernen Sie die erste und letzte Zeile
 - Entfernen Sie die mittleren zwei Spalten (Index 1 und 2)
 - Erstellen Sie das ursprüngliche Array erneut und entfernen Sie jedes dritte Element im flachen Array
@@ -444,7 +448,8 @@ Verwenden Sie dabei alle vier Optionen der `unique`-Funktion.
 
 [ER] Führen Sie eine komplexe Array-Manipulation durch:
 
-- Erstellen Sie `A = np.arange(1, 13).reshape(3, 4)` und `B = np.arange(13, 25).reshape(3, 4)`
+- Erstellen Sie mit `arange` und `reshape` zwei 3×4-Arrays `A` (ganze Zahlen von 1 bis 12) und
+  `B` (ganze Zahlen von 13 bis 24)
 - Verbinden Sie sie horizontal mit `hstack`
 - Teilen Sie das Ergebnis vertikal in 3 gleiche Teile
 - Fügen Sie dem mittleren Teil eine neue Spalte mit dem Wert 99 hinzu
