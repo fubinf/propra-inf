@@ -16,7 +16,7 @@ assumes: np-array
 
 [SECTION::background::default]
 
-Bitwise-Operationen arbeiten auf der binären Darstellung von Zahlen. String-Funktionen 
+Bitwise-Operationen arbeiten auf der binären Darstellung von Zahlen. String-Funktionen
 ermöglichen vektorisierte Textverarbeitung in NumPy-Arrays.
 
 [ENDSECTION]
@@ -25,8 +25,8 @@ ermöglichen vektorisierte Textverarbeitung in NumPy-Arrays.
 
 ### Vorwissen
 
-Für die Bitwise-Operationen in dieser Aufgabe sind Grundkenntnisse der Binärdarstellung von 
-Zahlen und des Zweierkomplements hilfreich (wie Ganzzahlen als Bitfolgen dargestellt werden, 
+Für die Bitwise-Operationen in dieser Aufgabe sind Grundkenntnisse der Binärdarstellung von
+Zahlen und des Zweierkomplements hilfreich (wie Ganzzahlen als Bitfolgen dargestellt werden,
 wie negative Zahlen darin kodiert werden). Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Dualsystem (Wikipedia)](https://de.wikipedia.org/wiki/Dualsystem)
@@ -34,32 +34,32 @@ wie negative Zahlen darin kodiert werden). Falls Ihnen diese fehlen, helfen folg
 
 ### Grundlagen der NumPy Bitwise-Operationen
 
-Bitwise-Operationen arbeiten direkt auf der binären Darstellung von Zahlen: Jede Position 
-einer Binärzahl repräsentiert eine Zweierpotenz, z. B. steht `00001101` für 
+Bitwise-Operationen arbeiten direkt auf der binären Darstellung von Zahlen: Jede Position
+einer Binärzahl repräsentiert eine Zweierpotenz, z. B. steht `00001101` für
 `1×8 + 1×4 + 0×2 + 1×1 = 13`.
 
-Python selbst kennt bereits die Operatoren `&`, `|`, `^`, `~`, `<<` und `>>` für 
-Bitwise-Operationen auf einzelnen ganzen Zahlen. NumPy bietet dieselben Operationen als 
+Python selbst kennt bereits die Operatoren `&`, `|`, `^`, `~`, `<<` und `>>` für
+Bitwise-Operationen auf einzelnen ganzen Zahlen. NumPy bietet dieselben Operationen als
 Funktionen an, die zusätzlich zwei Dinge ermöglichen:
 
-- **Vektorisierung**: Die Operation wird gleichzeitig auf jedes Element eines Arrays angewendet, 
+- **Vektorisierung**: Die Operation wird gleichzeitig auf jedes Element eines Arrays angewendet,
   statt nur auf eine einzelne Zahl.
-- **Feste Bit-Breite**: Python-Ganzzahlen haben beliebig viele Stellen und laufen nie über. 
-  NumPy-Arrays haben dagegen einen festen `dtype` (z. B. `int8` mit genau 8 Bit), der die 
-  Anzahl verfügbarer Bits begrenzt. Das ist wichtig für `invert()` und die 
-  Verschiebungsoperationen weiter unten, da sich das Ergebnis innerhalb dieser festen 
+- **Feste Bit-Breite**: Python-Ganzzahlen haben beliebig viele Stellen und laufen nie über.
+  NumPy-Arrays haben dagegen einen festen `dtype` (z. B. `int8` mit genau 8 Bit), der die
+  Anzahl verfügbarer Bits begrenzt. Das ist wichtig für `invert()` und die
+  Verschiebungsoperationen weiter unten, da sich das Ergebnis innerhalb dieser festen
   Bit-Breite berechnet.
 
 Die wichtigsten Bitwise-Funktionen in NumPy sind:
 
 - `numpy.bitwise_and()`: Führt eine bitweise UND-Operation durch
-- `numpy.bitwise_or()`: Führt eine bitweise ODER-Operation durch  
+- `numpy.bitwise_or()`: Führt eine bitweise ODER-Operation durch
 - `numpy.bitwise_xor()`: Führt eine bitweise XOR-Operation durch
 - `numpy.invert()`: Führt eine bitweise Negation durch
 - `numpy.left_shift()`: Verschiebt Bits nach links
 - `numpy.right_shift()`: Verschiebt Bits nach rechts
 
-Um sich die Bitdarstellung einer Zahl ausgeben zu lassen (z. B. um Ergebnisse der obigen 
+Um sich die Bitdarstellung einer Zahl ausgeben zu lassen (z. B. um Ergebnisse der obigen
 Funktionen nachzuvollziehen), bietet NumPy die Funktion `binary_repr`:
 
 ```python
@@ -67,7 +67,7 @@ numpy.binary_repr(num, width=None)
 ```
 
 - `num`: die darzustellende Ganzzahl
-- `width` (Default `None`): Mindestanzahl der Stellen der Ausgabe, mit führenden Nullen 
+- `width` (Default `None`): Mindestanzahl der Stellen der Ausgabe, mit führenden Nullen
   aufgefüllt (z. B. `width=8` erzwingt eine 8-stellige Ausgabe wie `00001101`)
 
 ```python
@@ -86,8 +86,8 @@ numpy.bitwise_xor(x1, x2)  # bitweises XOR: 1 dort, wo genau ein Operand 1 ist
 
 - `x1`, `x2`: Ganzzahl- oder Boolean-Arrays (gleicher Shape oder broadcastbar), auf denen bitweise verknüpft wird
 
-`np.bool_` ist NumPys eigener Boolean-Datentyp für Array-Elemente (analog zu `np.int8` oder 
-`np.complex128`); bei booleschen Arrays entsprechen die Bitwise-Operationen den logischen 
+`np.bool_` ist NumPys eigener Boolean-Datentyp für Array-Elemente (analog zu `np.int8` oder
+`np.complex128`); bei booleschen Arrays entsprechen die Bitwise-Operationen den logischen
 Operationen UND/ODER/XOR.
 
 ```python
@@ -112,11 +112,12 @@ print("XOR:", result_xor)  # [True  True  True]
 - Führen Sie `np.bitwise_and(a, b)`, `np.bitwise_or(a, b)` und `np.bitwise_xor(a, b)` durch
 - Geben Sie sowohl die Ergebnisse als auch die binären Darstellungen aus (verwenden Sie `np.binary_repr()`)
 - Erklären Sie in Kommentaren, wie die Ergebnisse zustande kommen
+
 <!-- time estimate: 15 min -->
 
 ### Bit-Verschiebungen: `left_shift` und `right_shift`
 
-Bit-Verschiebungsoperationen verschieben die Bits einer Zahl um eine feste Anzahl 
+Bit-Verschiebungsoperationen verschieben die Bits einer Zahl um eine feste Anzahl
 Positionen:
 
 ```python
@@ -134,13 +135,13 @@ import numpy as np
 left_result = np.left_shift(10, 2)  # 10 << 2 = 40
 print("10 << 2 =", left_result)
 
-# Rechts-Verschiebung entspricht ganzzahliger Division durch 2^n  
+# Rechts-Verschiebung entspricht ganzzahliger Division durch 2^n
 right_result = np.right_shift(40, 2)  # 40 >> 2 = 10
 print("40 >> 2 =", right_result)
 ```
 
-[EQ] Warum entspricht eine Links-Verschiebung um `n` Positionen einer 
-Multiplikation mit `2^n`? Berechnen Sie mental das Ergebnis von `np.left_shift(7, 3)` 
+[EQ] Warum entspricht eine Links-Verschiebung um `n` Positionen einer
+Multiplikation mit `2^n`? Berechnen Sie mental das Ergebnis von `np.left_shift(7, 3)`
 und erklären Sie Ihren Rechenweg mit der binären Darstellung.
 
 [ER] Arbeiten Sie mit Bit-Verschiebungen in Arrays:
@@ -150,11 +151,12 @@ und erklären Sie Ihren Rechenweg mit der binären Darstellung.
 - Verschieben Sie alle Werte um 2 Positionen nach rechts
 - Vergleichen Sie die Ergebnisse mit mathematischen Operationen (`*2` bzw. `//4`)
 - Dokumentieren Sie Ihre Beobachtungen
+
 <!-- time estimate: 20 min -->
 
 ### Bitweise Negation mit `invert`
 
-Die `invert()`-Funktion kehrt jedes einzelne Bit einer Zahl um (aus 0 wird 1 und 
+Die `invert()`-Funktion kehrt jedes einzelne Bit einer Zahl um (aus 0 wird 1 und
 umgekehrt):
 
 ```python
@@ -163,10 +165,10 @@ numpy.invert(x)
 
 - `x`: Ganzzahl- oder Boolean-Array, dessen Bits umgekehrt werden
 
-Bei vorzeichenbehafteten Ganzzahltypen wie `int8` wird das Ergebnis als 
-Zweierkomplement interpretiert: Das höchstwertige Bit zeigt das Vorzeichen an 
-(1 = negativ), und eine negative Zahl `-n` wird als Bitmuster von `n - 1` mit 
-umgekehrten Bits dargestellt. Deshalb ergibt das Umkehren aller Bits einer Zahl `n` 
+Bei vorzeichenbehafteten Ganzzahltypen wie `int8` wird das Ergebnis als
+Zweierkomplement interpretiert: Das höchstwertige Bit zeigt das Vorzeichen an
+(1 = negativ), und eine negative Zahl `-n` wird als Bitmuster von `n - 1` mit
+umgekehrten Bits dargestellt. Deshalb ergibt das Umkehren aller Bits einer Zahl `n`
 immer `-(n + 1)`:
 
 ```python
@@ -185,32 +187,34 @@ Um ein Array in einen anderen `dtype` umzuwandeln, bietet NumPy die Methode `ast
 ndarray.astype(dtype)
 ```
 
-- `dtype`: Ziel-Datentyp, in den die Elemente des Arrays umgewandelt werden (z. B. `np.uint8` 
+- `dtype`: Ziel-Datentyp, in den die Elemente des Arrays umgewandelt werden (z. B. `np.uint8`
   oder `str`); es wird immer ein neues Array zurückgegeben, das ursprüngliche bleibt unverändert
 
 [ER] Untersuchen Sie den Einfluss des `dtype` auf `invert()`:
 
-- Erstellen Sie `arr = np.array([1, 2], dtype=np.int8)` und wenden Sie `np.invert()` darauf an
+- Erstellen Sie `arr = np.array([3, 10], dtype=np.int8)` und wenden Sie `np.invert()` darauf an
 - Wandeln Sie `arr` mit `arr.astype(np.uint8)` um und wenden Sie `np.invert()` auch darauf an
 - Geben Sie beide Ergebnisse aus
 
-[EQ] Warum liefert `np.invert()` bei `int8` negative Werte, bei `uint8` aber nicht, obwohl 
-dieselben Bits umgekehrt werden? Nutzen Sie Ihre Ergebnisse aus der vorherigen Aufgabe für 
+[EQ] Warum liefert `np.invert()` bei `int8` negative Werte, bei `uint8` aber nicht, obwohl
+dieselben Bits umgekehrt werden? Nutzen Sie Ihre Ergebnisse aus der vorherigen Aufgabe für
 Ihre Erklärung.
 
-[HINT::Bit für Bit vorgehen] Schreiben Sie sich zuerst die 8-Bit-Darstellung 
-von `1` auf (`np.binary_repr(1, width=8)`), kehren Sie jedes Bit einzeln um, und 
-prüfen Sie erst danach, welche negative Zahl dieses Bitmuster im Zweierkomplement 
+[HINT::Bit für Bit vorgehen]
+Schreiben Sie sich zuerst die 8-Bit-Darstellung
+von `1` auf (`np.binary_repr(1, width=8)`), kehren Sie jedes Bit einzeln um, und
+prüfen Sie erst danach, welche negative Zahl dieses Bitmuster im Zweierkomplement
 bzw. als vorzeichenlose Zahl repräsentiert.
 [ENDHINT]
+
 <!-- time estimate: 20 min -->
 
 ### NumPy String-Funktionen Grundlagen: `char.upper`, `char.lower`
 
-NumPy bietet umfangreiche Funktionen für String-Verarbeitung durch das `numpy.char`-Modul. 
-Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String-Operation 
-auf jedes Element eines Arrays gleichzeitig an. Wie bei einzelnen Python-Strings verändern 
-sie das ursprüngliche Array nicht, sondern geben immer ein neues Array mit den Ergebnissen 
+NumPy bietet umfangreiche Funktionen für String-Verarbeitung durch das `numpy.char`-Modul.
+Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String-Operation
+auf jedes Element eines Arrays gleichzeitig an. Wie bei einzelnen Python-Strings verändern
+sie das ursprüngliche Array nicht, sondern geben immer ein neues Array mit den Ergebnissen
 zurück.
 
 ```python
@@ -266,6 +270,7 @@ print("Repeated:", repeated)  # 'Python Python Python '
 - Verbinden Sie entsprechende Elemente mit `np.char.add()` und fügen Sie ein Leerzeichen dazwischen ein
 - Verwenden Sie `np.char.multiply()`, um jeden Namen 2-mal zu wiederholen
 - Konvertieren Sie alle Namen in Großbuchstaben mit `np.char.upper()`
+
 <!-- time estimate: 15 min -->
 
 ### String-Formatierung und -Bearbeitung: `char.center`, `char.strip`, `char.replace`
@@ -301,24 +306,26 @@ print("Replaced:", replaced)  # ['Pithon' 'NumPi' 'Pandas']
 
 [ER] Arbeiten Sie mit String-Formatierung:
 
-- Erstellen Sie ein Array `words = np.array(['Python', 'NumPy', 'Pandas'])`
+- Erstellen Sie ein Array `words = np.array(['Style', 'Yellow', 'Syntax'])`
 - Zentrieren Sie jeden String in einem Feld der Breite 10 mit `np.char.center()`
 - Erstellen Sie ein Array mit Strings, die Leerzeichen am Anfang und Ende haben
 - Verwenden Sie `np.char.strip()` zum Entfernen der Leerzeichen
 - Nutzen Sie `np.char.replace()`, um alle 'y' durch 'i' zu ersetzen
+
 <!-- time estimate: 15 min -->
 
 ### String-Teilung und -Verbindung: `char.split`, `char.join`, `char.find`
 
 ```python
 numpy.char.split(a, sep=None)  # teilt jeden String an sep in eine Liste von Teilstrings
-numpy.char.join(sep, a)        # verbindet die Teilstrings jedes Elements mit dem Trennzeichen sep
+numpy.char.join(sep, a)        # fügt sep zwischen die einzelnen Zeichen jedes Strings in a ein
 numpy.char.find(a, sub)        # gibt die erste Fundposition von sub zurück, oder -1 falls nicht enthalten
 ```
 
 - `a`: Array von Strings, das verarbeitet wird
 - `sep` (Default `None`): Trennzeichen; bei `split` ohne Angabe wird an beliebigem Leerraum
-  getrennt, bei `join` verbindet es die Teilstrings
+  getrennt; bei `join` wird `sep` zwischen die Zeichen innerhalb jedes einzelnen Strings
+  von `a` eingefügt (nicht zwischen mehrere Array-Elemente)
 - `sub`: gesuchtes Teilstück (bei `find`); der Rückgabewert ist die erste Fundposition
   oder `-1`, falls `sub` nicht enthalten ist
 
@@ -330,9 +337,9 @@ sentences = np.array(['Hello World', 'NumPy Arrays'])
 words = np.char.split(sentences)
 print("Split:", words)
 
-# String-Verbindung mit Trennzeichen
-word_list = np.array([['a', 'b', 'c'], ['x', 'y', 'z']])
-joined = np.char.join('-', word_list)
+# Trennzeichen zwischen die Zeichen jedes Strings einfügen
+codes = np.array(['abc', 'xyz'])
+joined = np.char.join('-', codes)
 print("Joined:", joined)  # ['a-b-c' 'x-y-z']
 
 # Zeichen in Strings finden
@@ -346,11 +353,14 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
 
 [ER] Implementieren Sie erweiterte String-Operationen:
 
-- Erstellen Sie ein Array mit E-Mail-Adressen: `emails = np.array(['user@domain.com', 'admin@site.org'])`
-- Verwenden Sie `np.char.split(emails, '@')` zum Aufteilen bei '@'
-- Erstellen Sie ein Array von Wörtern und verbinden Sie sie mit `np.char.join()`
-- Verwenden Sie `np.char.replace()` zum Ersetzen von Domänen-Endungen
-- Testen Sie `np.char.find()` zum Auffinden von Zeichen in Strings
+- Erstellen Sie ein Array mit Produktcodes: `codes = np.array(['AB-12-XY', 'CD-34-ZT'])`
+- Verwenden Sie `np.char.split(codes, '-')` zum Aufteilen an den Bindestrichen
+- Erstellen Sie ein Array mit Kürzeln `np.array(['DE', 'FR'])` und verwenden Sie `np.char.join()`,
+  um zwischen die Buchstaben jedes Kürzels einen Punkt einzufügen (z. B. wird aus `'DE'` `'D.E'`)
+- Verwenden Sie `np.char.replace()`, um in `codes` alle Bindestriche durch Unterstriche zu ersetzen
+- Testen Sie `np.char.find()`, um die Position des ersten Bindestrichs in jedem Element von `codes`
+  zu finden
+
 <!-- time estimate: 10 min -->
 
 ### Weiterführend
