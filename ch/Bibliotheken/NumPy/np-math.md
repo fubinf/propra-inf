@@ -169,7 +169,7 @@ das jeweilige Verhalten.
 
 <!-- time estimate: 20 min -->
 
-### Arithmetische Funktionen: `add`, `subtract`, `multiply`, `divide`, `reciprocal`
+### Arithmetische Funktionen: `add`, `subtract`, `multiply`, `divide`, `reciprocal`, `abs`
 
 NumPy bietet explizite Funktionen für grundlegende arithmetische Operationen:
 
@@ -204,13 +204,14 @@ print('Division:', np.divide(a, b))
 (siehe [PARTREF::np-array2]), damit die Operation trotz unterschiedlicher Formen
 funktioniert.
 
-Für Kehrwerte gibt es außerdem `reciprocal`:
+Für Kehrwerte und Absolutwerte gibt es außerdem `reciprocal` und `abs`:
 
 ```python
-numpy.reciprocal(x)
+numpy.reciprocal(x)   # Kehrwert 1/x, element-weise
+numpy.abs(x)          # Absolutwert |x|, element-weise
 ```
 
-- `x`: das Array, dessen Kehrwerte berechnet werden
+- `x`: das Array, auf das die Funktion element-weise angewendet wird
 
 `reciprocal` rechnet mit dem `dtype` des Eingabe-Arrays; bei einem Integer-Array werden
 Kehrwerte kleiner als 1 zu `0` abgeschnitten. Um das zu vermeiden, wandelt man das Array
@@ -223,6 +224,7 @@ vorher mit `astype` um (Details in [PARTREF::np-bitwise-string]).
   von `arr1` angewendet)
 - Führen Sie alle vier Grundrechenarten durch
 - Berechnen Sie `np.reciprocal()` für die Kehrwerte von `arr1` (achten Sie auf den `dtype`)
+- Berechnen Sie `np.abs()` für die Differenz `arr1 - arr2`
 
 [HINT::reciprocal bei Ganzzahlen]
 `np.reciprocal()` rechnet mit dem `dtype` des
@@ -233,14 +235,16 @@ in Fließkommazahlen umgewandelt werden.
 
 <!-- time estimate: 15 min -->
 
-### Spezielle arithmetische Funktionen: `power`, `mod`
+### Spezielle arithmetische Funktionen: `power`, `mod`, `exp`
 
 ```python
 numpy.power(x1, x2)
 numpy.mod(x1, x2)
+numpy.exp(x)
 ```
 
 - `x1`, `x2`: Basis/Exponent bzw. Dividend/Divisor, element-weise angewendet
+- `x`: Exponent, auf den die Eulersche Zahl `e` element-weise angewendet wird (`e^x`)
 
 ```python
 import numpy as np
@@ -256,18 +260,23 @@ print('Kubikwurzeln:', np.power(values, 1/3))
 # Modulo-Operation
 divisors = np.array([3, 3, 5, 7])
 print('Modulo:', np.mod(values, divisors))
+
+# Exponentialfunktion e^x
+print('e^x:', np.exp(np.array([0, 1, 2])))
 ```
 
 [ER] Arbeiten Sie mit speziellen arithmetischen Funktionen:
 
 - Erstellen Sie ein Array `base` mit den Werten `[6, 9, 4, 7]`
 - Berechnen Sie die 3. Potenz aller Werte
-- Erstellen Sie ein Array `exp` mit den Exponenten `[2, 4, 1, 3]` und berechnen Sie `np.power(base, exp)`
+- Erstellen Sie ein Array `exponenten` mit den Werten `[2, 4, 1, 3]` und berechnen Sie
+  `np.power(base, exponenten)`
 - Berechnen Sie den Rest bei Division durch 3 für alle Werte in `base`
+- Berechnen Sie `np.exp()` für die Werte `[0, 1, 2, 3]`
 
 <!-- time estimate: 10 min -->
 
-### Statistische Funktionen: `amin`, `amax`, `mean`, `median`
+### Statistische Funktionen: `amin`, `amax`, `mean`, `median`, `sum`
 
 NumPy bietet umfangreiche statistische Funktionen zur Datenanalyse:
 
@@ -277,13 +286,15 @@ numpy.amax(a, axis=None)
 numpy.mean(a, axis=None)
 numpy.median(a, axis=None)
 numpy.ptp(a, axis=None)
+numpy.sum(a, axis=None)
 ```
 
 - `a`: das Array, dessen Statistik berechnet wird
 - `axis` (Default `None`): Achse, entlang derer die Statistik berechnet wird; bei `None`
   wird über das gesamte (flache) Array gerechnet
 
-`ptp` ("peak to peak") berechnet dabei die Spannweite (Maximum minus Minimum).
+`ptp` ("peak to peak") berechnet dabei die Spannweite (Maximum minus Minimum), `sum` die
+Summe aller Elemente (bzw. pro Zeile/Spalte, je nach `axis`).
 
 ```python
 import numpy as np
@@ -299,10 +310,12 @@ print('Minimum:', np.amin(data))
 print('Maximum:', np.amax(data))
 print('Mittelwert:', np.mean(data))
 print('Median:', np.median(data))
+print('Summe:', np.sum(data))
 
 # Achsenbezogene Berechnungen
 print('Minimum pro Zeile:', np.amin(data, axis=1))
 print('Mittelwert pro Spalte:', np.mean(data, axis=0))
+print('Summe pro Spalte:', np.sum(data, axis=0))
 
 # Spannweite
 print('Spannweite (gesamt):', np.ptp(data))
@@ -318,6 +331,7 @@ Funktionen in 2D-Arrays. Welche Dimension wird in jedem Fall "kollabiert"?
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie dieselben Statistiken für jede Zeile und jede Spalte
 - Verwenden Sie `np.ptp()` um die Spannweite (max - min) zu berechnen
+- Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile
 
 <!-- time estimate: 20 min -->
 
