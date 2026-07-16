@@ -1,361 +1,212 @@
 title: SciPy Statistik und Wahrscheinlichkeitsverteilungen verstehen und anwenden
 stage: alpha
-timevalue: 1.5
+timevalue: 1
 difficulty: 2
-assumes: np-Einführung, sp-Einführung, np-array, np-math
+requires: sp-Einführung
+assumes: np-Einführung, np-array, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe die wichtigsten Wahrscheinlichkeitsverteilungen in SciPy und kann sie praktisch anwenden.
-- Ich kann statistische Hypothesentests mit SciPy durchführen und interpretieren.
-- Ich beherrsche erweiterte deskriptive Statistik-Funktionen von SciPy.
-- Ich kann die Unterschiede zwischen NumPy- und SciPy-Statistikfunktionen erkennen und passend wählen.
-- Ich kann statistische Analysen mit realen Daten durchführen und die Ergebnisse bewerten.
+- Ich kann Wahrscheinlichkeitsverteilungen (kontinuierlich/diskret) mit SciPy modellieren und
+  deren Kennwerte berechnen.
+- Ich kann einen Hypothesentest bzw. Korrelationskoeffizienten anwenden und das Ergebnis
+  einschließlich seiner Grenzen interpretieren.
+- Ich kann NumPy-Kennzahlen mit SciPy-Inferenzmethoden kombinieren, um Unsicherheit in
+  datengestützten Entscheidungen zu berücksichtigen.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Während NumPy grundlegende statistische Operationen wie Mittelwert und Standardabweichung bietet,
-erweitert SciPy diese Funktionalität um umfassende statistische Analysemöglichkeiten.
-Das Modul `scipy.stats` stellt eine Vielzahl von Wahrscheinlichkeitsverteilungen,
-Hypothesentests und erweiterte statistische Funktionen bereit.
-Diese Werkzeuge sind essentiell für wissenschaftliche Datenanalyse,
-Qualitätskontrolle und empirische Forschung.
+Ein Datensatz lässt sich zunächst rein deskriptiv beschreiben (Mittelwert, Streuung), aber diese
+Kennzahlen allein sagen nichts darüber aus, wie sicher eine daraus gezogene Schlussfolgerung ist.
+SciPy stellt mit `scipy.stats` Verteilungsmodelle und Inferenzmethoden bereit, mit denen sich diese
+Unsicherheit einbeziehen lässt — der Übergang von "was sagen die Daten" zu "was können wir daraus
+schließen" ist der Kern dieser Aufgabe.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### Voraussetzungen
+### Vorwissen
 
-Bitte lesen Sie zunächst [PARTREF::sp-Einführung] und stellen Sie sicher,
-dass Sie über eine funktionsfähige SciPy-Installation verfügen.
-Die dort beschriebenen Grundlagen sind für diese Aufgabe essentiell.
+Für diese Aufgabe sind folgende Konzepte hilfreich. Falls Ihnen diese fehlen, helfen folgende
+Quellen:
 
-### Das SciPy Stats-Modul: Überblick
+- [Wahrscheinlichkeitsverteilung (Wikipedia)](https://de.wikipedia.org/wiki/Wahrscheinlichkeitsverteilung):
+  Grundbegriffe zu Normal- und Binomialverteilung
+- [P-Wert (Wikipedia)](https://de.wikipedia.org/wiki/P-Wert): was ein p-Wert aussagt und was
+  nicht (u. a. typische Fehlinterpretationen), Nullhypothese
+- [Korrelationskoeffizient (Wikipedia)](https://de.wikipedia.org/wiki/Korrelationskoeffizient):
+  Voraussetzungen (lineare Beziehung), Grenzen (Korrelation ist nicht Kausalität)
 
-Das `scipy.stats`-Modul ist eine umfassende Sammlung statistischer Funktionen:
+### Wahrscheinlichkeitsverteilungen: `stats.norm` und `stats.binom`
 
-**Hauptbereiche:**
+`scipy.stats` bietet parametrisierte Verteilungsobjekte mit einheitlichen Methoden:
 
-- **Wahrscheinlichkeitsverteilungen**: Kontinuierliche und diskrete Verteilungen
-- **Hypothesentests**: t-Tests, Chi-Quadrat-Tests, Normalitätstests
-- **Deskriptive Statistik**: Schiefe, Kurtosis, Korrelationskoeffizienten
-- **Statistische Funktionen**: Überlebensfunktionen, Rangstatistiken
-
-**Grundlegendes Beispiel:**
 ```python
-import numpy as np
-from scipy import stats
-
-# Normalverteilung erstellen
-normal_dist = stats.norm(loc=0, scale=1)  # μ=0, σ=1
-
-# Wahrscheinlichkeitsdichte berechnen
-x = 1.0
-pdf_value = normal_dist.pdf(x)
-print(f"PDF bei x=1: {pdf_value:.4f}")
-
-# Zufallsstichprobe generieren
-sample = normal_dist.rvs(size=100)
-print(f"Stichprobenmittel: {np.mean(sample):.3f}")
+scipy.stats.norm(loc=0, scale=1)   # kontinuierlich: Normalverteilung
+scipy.stats.binom(n, p)            # diskret: Binomialverteilung
 ```
 
-Optional: Detaillierte Modulbeschreibungen finden Sie hier:
-[SciPy Statistics Reference](https://docs.scipy.org/doc/scipy/reference/stats.html)
+- `loc`, `scale` (Standard `0`/`1`): Erwartungswert μ und Standardabweichung σ der Normalverteilung
+- `n`, `p`: Anzahl Versuche und Erfolgswahrscheinlichkeit der Binomialverteilung
 
-**Vorteile von SciPy gegenüber NumPy:**
+| Methode | Bedeutung |
+|---------|-----------|
+| `.pdf(x)` | Wahrscheinlichkeitsdichte (nur kontinuierliche Verteilungen) |
+| `.pmf(x)` | Wahrscheinlichkeitsmasse (nur diskrete Verteilungen) |
+| `.cdf(x)` | P(X ≤ x), kumulative Verteilungsfunktion |
+| `.ppf(q)` | Quantilfunktion, Umkehrung von `.cdf` |
+| `.rvs(size)` | Zufallsstichprobe der angegebenen Größe |
+| `.stats(moments='m')` | theoretischer Erwartungswert (u. a. Momente) |
 
-SciPy bietet über 100 parametrisierte Wahrscheinlichkeitsverteilungen mit standardisierten Methoden,
-umfassende statistische Hypothesentests mit p-Werten sowie erweiterte deskriptive Statistik
-(Schiefe, Kurtosis, Korrelationskoeffizienten). Anwendungsbeispiele sind Qualitätskontrolle,
-Risikoanalyse und A/B-Testing.
-
-### Wahrscheinlichkeitsverteilungen verstehen und anwenden
-
-SciPy stellt über 100 Wahrscheinlichkeitsverteilungen zur Verfügung, jede mit standardisierten Methoden:
-
-**Wichtige Methoden für Verteilungen:**
-
-- `pdf(x)`: Wahrscheinlichkeitsdichtefunktion (kontinuierliche Verteilungen)
-- `pmf(x)`: Wahrscheinlichkeitsmassenfunktion (diskrete Verteilungen)
-- `cdf(x)`: Kumulative Verteilungsfunktion
-- `rvs(size)`: Zufallsstichproben generieren
-- `ppf(q)`: Quantilfunktion (Umkehrung der CDF)
-- `stats()`: Momente der Verteilung (Mittelwert, Varianz, etc.)
-
-**Beispiel: Normalverteilung:**
+**Beispiel:**
 ```python
 from scipy import stats
 import numpy as np
 
 # Standard-Normalverteilung N(0,1)
 std_normal = stats.norm()
+print(f"PDF bei x=0: {std_normal.pdf(0):.4f}")
+print(f"P(X ≤ 1.96): {std_normal.cdf(1.96):.4f}")
+print(f"95%-Quantil: {std_normal.ppf(0.95):.4f}")
 
-# Verschiedene Normalverteilungen
-normal_5_2 = stats.norm(loc=5, scale=2)  # N(5, 2²)
-
-# Wahrscheinlichkeitsdichte bei x=0
-print(f"PDF N(0,1) bei x=0: {std_normal.pdf(0):.4f}")
-print(f"PDF N(5,4) bei x=5: {normal_5_2.pdf(5):.4f}")
-
-# Wahrscheinlichkeit P(X ≤ 1.96) für N(0,1)
-prob = std_normal.cdf(1.96)
-print(f"P(X ≤ 1.96): {prob:.4f}")
-
-# 95%-Quantil (Umkehrung: Welcher x-Wert hat 95% unter sich?)
-quantil_95 = std_normal.ppf(0.95)
-print(f"95%-Quantil: {quantil_95:.4f}")
-```
-
-**Beispiel: Diskrete Verteilungen:**
-```python
 # Binomialverteilung: n=10 Versuche, p=0.3 Erfolgswahrscheinlichkeit
 binomial = stats.binom(n=10, p=0.3)
-
-# Wahrscheinlichkeit für genau k=3 Erfolge
-pmf_3 = binomial.pmf(3)
-print(f"P(X = 3): {pmf_3:.4f}")
-
-# Wahrscheinlichkeit für höchstens 5 Erfolge
-cdf_5 = binomial.cdf(5)
-print(f"P(X ≤ 5): {cdf_5:.4f}")
+print(f"P(X = 3): {binomial.pmf(3):.4f}")
+print(f"P(X ≤ 5): {binomial.cdf(5):.4f}")
 ```
 
-Optional: Vollständige Liste aller Verteilungen finden Sie hier:
-[Statistical functions](https://docs.scipy.org/doc/scipy/reference/stats.html#statistical-functions)
+Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit Präzisionsangabe
+(in [PARTREF::py-Fstrings]), z. B. 5 Nachkommastellen (`:.5f`).
 
 [ER] Arbeiten Sie mit verschiedenen Wahrscheinlichkeitsverteilungen:
 
-- Erstellen Sie eine Normalverteilung N(10, 3²) (`stats.norm()`) und berechnen Sie:
-  - Die Wahrscheinlichkeitsdichte bei x=10 (`.pdf()`)
-  - Die Wahrscheinlichkeit P(X ≤ 13) (`.cdf()`)
-  - Das 95%-Quantil (95. Perzentil) (`.ppf(0.95)`)
-- Erstellen Sie eine Binomialverteilung mit n=20 und p=0.4 (`stats.binom()`) und berechnen Sie:
-  - Die Wahrscheinlichkeit für genau 8 Erfolge (`.pmf()`)
-  - Die Wahrscheinlichkeit für mindestens 10 Erfolge (1 - `.cdf()`)
-- Generieren Sie je 1000 Zufallsstichproben aus beiden Verteilungen (`.rvs()`)
-  und berechnen Sie deren empirische Mittelwerte (`np.mean()`)
+- Erstellen Sie eine Normalverteilung N(10, 3²) (`stats.norm()`) und berechnen Sie die
+  Wahrscheinlichkeitsdichte bei x=10 (`.pdf()`), die Wahrscheinlichkeit P(X ≤ 13) (`.cdf()`) und
+  das 95%-Quantil (`.ppf(0.95)`)
+- Erstellen Sie eine Binomialverteilung mit n=20 und p=0.4 (`stats.binom()`) und berechnen Sie die
+  Wahrscheinlichkeit für genau 8 Erfolge (`.pmf()`) sowie für mindestens 10 Erfolge (1 - `.cdf()`)
+- Generieren Sie je 1000 Zufallsstichproben aus beiden Verteilungen (`.rvs()`), berechnen Sie deren
+  empirische Mittelwerte (`np.mean()`) und vergleichen Sie diese mit dem theoretischen Mittelwert
+  (`.stats(moments='m')`)
 
-Geben Sie alle Ergebnisse mit passenden Beschreibungen aus.
-<!-- ER1 -->
+Geben Sie alle Ergebnisse mit passenden Beschreibungen aus (4 Nachkommastellen, `:.4f`).
 
-<!-- time estimate: 20 min -->
+[EQ] Für kontinuierliche Verteilungen gibt es `.pdf()`, für diskrete `.pmf()` — zwei getrennte
+Methoden statt einer gemeinsamen. Was unterscheidet kontinuierliche von diskreten Verteilungen
+strukturell, das diese Trennung nötig macht?
+
+<!-- time estimate: 25 min -->
 
 ### Hypothesentests durchführen
 
-SciPy bietet eine Vielzahl statistischer Tests zur Überprüfung von Hypothesen:
+Hypothesentests prüfen, ob ein beobachteter Unterschied wahrscheinlich echt ist oder auch durch
+zufällige Stichprobenschwankung erklärbar wäre:
 
-**Wichtige Tests:**
+```python
+scipy.stats.ttest_ind(a, b)
+```
 
-- `stats.ttest_1samp()`: Ein-Stichproben t-Test
-- `stats.ttest_ind()`: Zwei-Stichproben t-Test (unabhängige Gruppen)
-- `stats.ttest_rel()`: Gepaarter t-Test (abhängige Gruppen)
-- `stats.chi2_contingency()`: Chi-Quadrat-Unabhängigkeitstest
-- `stats.shapiro()`: Shapiro-Wilk Normalitätstest
-- `stats.kstest()`: Kolmogorov-Smirnov Test
+- `a`, `b`: die beiden unabhängigen Stichproben (Arrays/Listen)
+- Rückgabe: `(statistic, pvalue)` — nur `pvalue` ist für die Interpretation relevant
 
-**Beispiel: Ein-Stichproben t-Test:**
+**Beispiel:**
 ```python
 from scipy import stats
 import numpy as np
 
-# Testdaten: Ist der Mittelwert signifikant verschieden von 50?
-data = np.array([48.2, 51.1, 49.8, 52.3, 47.9, 50.5, 49.2, 51.8])
+gruppe_1 = np.array([48.2, 51.1, 49.8, 52.3])
+gruppe_2 = np.array([53.9, 55.4, 52.7, 56.1])
 
-# H0: μ = 50, H1: μ ≠ 50
-t_stat, p_value = stats.ttest_1samp(data, 50)
-
-print(f"t-Statistik: {t_stat:.4f}")
-print(f"p-Wert: {p_value:.4f}")
-print(f"Signifikant bei α=0.05? {p_value < 0.05}")
+t_stat, p_value = stats.ttest_ind(gruppe_1, gruppe_2)
+print(f"p-Wert: {p_value:.2e}")               # p-Wert: 1.15e-02
+print(f"Signifikant bei α=0.05? {p_value < 0.05}")  # True
 ```
 
-**Beispiel: Normalitätstest:**
-```python
-# Shapiro-Wilk Test auf Normalverteilung
-data = np.random.normal(0, 1, 50)  # Normalverteilte Daten
-stat, p_value = stats.shapiro(data)
-
-print(f"Shapiro-Wilk Statistik: {stat:.4f}")
-print(f"p-Wert: {p_value:.4f}")
-print(f"Normalverteilt bei α=0.05? {p_value > 0.05}")
-```
+Der p-Wert kann je nach Daten extrem klein ausfallen — mit fester Nachkommastellenzahl (`:.4f`)
+würde er dann als `0.0000` erscheinen, obwohl er nie exakt 0 ist. Wissenschaftliche Notation
+(`:.2e`) zeigt die tatsächliche Größenordnung, deshalb braucht der p-Wert selbst keine feste
+Nachkommastellen-Vorgabe.
 
 [NOTICE]
-Bei Hypothesentests ist die Interpretation des p-Werts entscheidend:
-Ein p-Wert < α (meist 0.05) führt zur Ablehnung der Nullhypothese.
-Die praktische Signifikanz sollte zusätzlich zur statistischen Signifikanz betrachtet werden.
+Ein p-Wert < α (meist 0.05) führt zur Ablehnung der Nullhypothese — er sagt aber nichts über die
+praktische Bedeutsamkeit des Unterschieds aus, nur über dessen statistische Signifikanz.
 [ENDNOTICE]
 
-Optional: Umfassende Übersicht zu statistischen Tests finden Sie hier:
-[Statistical tests](https://docs.scipy.org/doc/scipy/reference/stats.html#statistical-tests)
+[ER] Vergleichen Sie zwei Gruppen von Messwerten: `gruppe_a` mit den Werten
+`[23.1, 24.8, 22.9, 25.2, 23.7, 24.1, 23.5, 24.9, 23.8, 24.3]` und `gruppe_b` mit den Werten
+`[26.2, 27.1, 25.8, 26.9, 27.3, 26.5, 26.8, 27.0, 26.1, 26.7]`.
 
-**Unterschied zwischen t-Test-Varianten:**
+- Geben Sie `np.mean()` für beide Gruppen aus (4 Nachkommastellen, `:.4f`)
+- Testen Sie mit `stats.ttest_ind()`, ob sich die Mittelwerte signifikant unterscheiden (α=0.05)
+- Geben Sie den p-Wert aus und interpretieren Sie das Ergebnis
 
-- **Ein-Stichproben t-Test**: Vergleicht den Mittelwert einer Stichprobe
-  mit einem hypothetischen Wert (H₀: μ = μ₀).
-  Anwendung z.B. in der Qualitätskontrolle zur Sollwert-Überprüfung.
-- **Zwei-Stichproben t-Test**: Vergleicht die Mittelwerte zweier unabhängiger Gruppen (H₀: μ₁ = μ₂).
-  Anwendung z.B. beim A/B-Testing oder Medikamentenstudien.
-- **Gepaarter t-Test**: Für abhängige Messungen (z.B. Vorher-Nachher-Vergleiche).
-
-[ER] Führen Sie verschiedene Hypothesentests durch:
-
-Gegeben sind zwei Datensätze:
-```python
-gruppe_a = [23.1, 24.8, 22.9, 25.2, 23.7, 24.1, 23.5, 24.9, 23.8, 24.3]
-gruppe_b = [26.2, 27.1, 25.8, 26.9, 27.3, 26.5, 26.8, 27.0, 26.1, 26.7]
-```
-
-- Testen Sie, ob der Mittelwert von Gruppe A signifikant von 24.0 abweicht (`stats.ttest_1samp()`, α=0.05)
-- Testen Sie, ob sich die Mittelwerte der beiden Gruppen signifikant unterscheiden (`stats.ttest_ind()`, α=0.05)
-- Überprüfen Sie beide Gruppen auf Normalverteilung (`stats.shapiro()`)
-- Interpretieren Sie alle Testergebnisse und geben Sie jeweils die Teststatistik und den p-Wert aus
-
-<!-- ER2 -->
-
-<!-- time estimate: 25 min -->
-
-### Erweiterte deskriptive Statistik
-
-SciPy bietet statistische Maße, die über NumPy's grundlegende Funktionen hinausgehen:
-
-**Wichtige Funktionen:**
-
-- `stats.skew()`: Schiefe (Asymmetrie der Verteilung)
-- `stats.kurtosis()`: Kurtosis (Wölbung der Verteilung)
-- `stats.pearsonr()`: Pearson-Korrelationskoeffizient
-- `stats.spearmanr()`: Spearman-Rangkorrelation
-- `stats.mode(data, keepdims=True)`: Modalwert (häufigster Wert)
-- `stats.zscore()`: Z-Score Standardisierung
-- `np.std(data, ddof=1)`: Stichprobenstandardabweichung (ddof=1 für Bessel-Korrektur)
-
-**Beispiel: Verteilungsform analysieren:**
-```python
-from scipy import stats
-import numpy as np
-
-# Verschiedene Verteilungen
-symmetric_data = np.random.normal(0, 1, 1000)  # Symmetrisch
-skewed_data = np.random.exponential(2, 1000)   # Rechtschief
-
-print("Symmetrische Daten:")
-print(f"Schiefe: {stats.skew(symmetric_data):.4f}")
-print(f"Kurtosis: {stats.kurtosis(symmetric_data):.4f}")
-
-print("\nRechtsschiefe Daten:")
-print(f"Schiefe: {stats.skew(skewed_data):.4f}")
-print(f"Kurtosis: {stats.kurtosis(skewed_data):.4f}")
-```
-
-**Interpretation der Maße:**
-- **Schiefe = 0**: Symmetrische Verteilung
-- **Schiefe > 0**: Rechtsschiefe (langer rechter Schwanz)
-- **Schiefe < 0**: Linksschiefe (langer linker Schwanz)
-- **Kurtosis = 0**: Normalverteilung (mesokurtisch)
-- **Kurtosis > 0**: Spitzere Verteilung (leptokurtisch)
-- **Kurtosis < 0**: Flachere Verteilung (platykurtisch)
-
-**Beispiel: Modalwert und Z-Scores:**
-```python
-data = [12, 15, 12, 18, 12, 20, 15]
-
-# Modalwert (häufigster Wert)
-mode_result = stats.mode(data, keepdims=True)
-print(f"Modalwert: {mode_result.mode[0]} (Häufigkeit: {mode_result.count[0]})")
-
-# Z-Scores berechnen
-z_scores = stats.zscore(data)
-print(f"Z-Scores: {z_scores}")
-```
-
-**Beispiel: Verteilungsparameter direkt verwenden:**
-```python
-# Wahrscheinlichkeit ohne Verteilungsobjekt berechnen
-prob = stats.norm.cdf(1.5, loc=10, scale=2)  # P(X ≤ 1.5) für N(10, 2²)
-print(f"P(X ≤ 1.5): {prob:.4f}")
-```
-
-Optional: Weiterführende Informationen zu deskriptiver Statistik finden Sie hier:
-[Descriptive statistics](https://docs.scipy.org/doc/scipy/reference/stats.html#summary-statistics)
-
-[ER] Führen Sie eine umfassende statistische Analyse durch:
-
-Gegeben ist folgender Datensatz:
-```python
-data = [12.1, 15.3, 11.8, 16.2, 13.7, 14.9, 18.1, 12.5, 15.8, 13.2,
-        17.4, 14.1, 16.8, 13.9, 15.5, 19.2, 12.9, 16.1, 14.7, 15.9]
-```
-
-- Berechnen Sie Mittelwert (`np.mean()`), Median (`np.median()`) und Standardabweichung (`np.std(ddof=1)`)
-- Berechnen Sie Schiefe (`stats.skew()`) und Kurtosis (`stats.kurtosis()`)
-- Bestimmen Sie den Modalwert (`stats.mode(keepdims=True)`) und die Z-Scores (`stats.zscore()`)
-- Testen Sie die Daten auf Normalverteilung (`stats.shapiro()`)
-- Interpretieren Sie die Ergebnisse: Ist die Verteilung symmetrisch? Normal verteilt?
-
-Erstellen Sie eine übersichtliche Ausgabe aller statistischen Kennwerte.
-<!-- ER3 -->
+[EQ] Sie haben für Gruppe A und Gruppe B bereits `np.mean()` ausgegeben, bevor Sie `ttest_ind`
+ausgeführt haben. Reicht der reine Vergleich der beiden Mittelwerte aus, um zu sagen, ob sich die
+Gruppen "wirklich" unterscheiden? Was beantwortet der p-Wert von `ttest_ind`, das der reine
+Mittelwertvergleich nicht beantworten kann?
 
 <!-- time estimate: 20 min -->
 
-### Praktische Anwendung: Qualitätskontrolle
+### Korrelationskoeffizient: `stats.pearsonr`
 
-Statistische Methoden sind essentiell für die Qualitätskontrolle in der Produktion:
+Der Pearson-Korrelationskoeffizient misst die Stärke eines **linearen** Zusammenhangs zwischen
+zwei Variablen:
 
-**Beispiel-Szenario:**
-Ein Hersteller produziert Schrauben mit einer Sollgröße von 25.0 mm.
-Zur Qualitätskontrolle werden regelmäßig Stichproben genommen.
+```python
+scipy.stats.pearsonr(x, y)
+```
 
+- `x`, `y`: die beiden Messreihen (gleiche Länge)
+- Rückgabe: `(r, p)` — `r` liegt zwischen -1 und 1: `0` bedeutet kein linearer Zusammenhang,
+  `+1` ein perfekter positiver Zusammenhang (steigt `x`, steigt auch `y`), `-1` ein perfekter
+  negativer Zusammenhang (steigt `x`, sinkt `y`); `p` ist der p-Wert für die Nullhypothese
+  "kein Zusammenhang"
+
+**Beispiel:**
 ```python
 from scipy import stats
-import numpy as np
 
-# Messdaten der letzten Charge
-measurements = [24.98, 25.02, 24.99, 25.01, 24.97, 25.03,
-                25.00, 24.96, 25.04, 24.99, 25.02, 24.98]
+werte_x = [1, 2, 3, 4, 5]
+werte_y = [2, 3, 5, 4, 6]
 
-# 1. Ist der Produktionsprozess im Soll?
-t_stat, p_value = stats.ttest_1samp(measurements, 25.0)
-print(f"Test gegen Sollwert 25.0 mm:")
-print(f"p-Wert: {p_value:.6f}")
-print(f"Prozess im Soll? {p_value > 0.05}")
-
-# 2. Prozessfähigkeitsindex Cp (vereinfacht)
-std_dev = np.std(measurements, ddof=1)
-tolerance = 0.1  # ±0.05 mm Toleranz
-cp_index = tolerance / (6 * std_dev)
-print(f"Cp-Index: {cp_index:.3f}")
-print(f"Prozess fähig? {cp_index > 1.33}")
+r, p = stats.pearsonr(werte_x, werte_y)
+print(f"r = {r:.4f}, p = {p:.4f}")
+# r = 0.9000, p = 0.0374 -> starker positiver Zusammenhang, bei α=0.05 signifikant
 ```
-
-[ER] Analysieren Sie einen Qualitätskontroll-Fall:
-
-Eine Getränkefirma füllt Flaschen mit einem Sollvolumen von 500 ml ab.
-Folgende Messungen wurden durchgeführt:
-
-```python
-volumes = [498.2, 501.1, 499.8, 502.3, 497.9, 500.5, 499.2, 501.8,
-           498.7, 500.9, 499.5, 501.2, 498.8, 500.1, 499.9, 501.5]
-```
-
-Ihre Aufgaben:
-
-- Testen Sie, ob das mittlere Füllvolumen signifikant vom Sollwert abweicht (`stats.ttest_1samp()`, α=0.01)
-- Berechnen Sie die deskriptiven Statistiken (`np.mean()`, `np.std(ddof=1)`, `stats.skew()`)
-- Überprüfen Sie die Normalverteilungsannahme (`stats.shapiro()`)
-- Bestimmen Sie, wie viel Prozent der Flaschen unter 499 ml gefüllt sind (`stats.norm.cdf()` mit loc und scale)
-- Geben Sie eine Empfehlung zur Prozessqualität ab
 
 [NOTICE]
-Bei Qualitätskontrollen ist oft α=0.01 statt 0.05 üblich, um falsche Alarme zu reduzieren.
+`pearsonr` misst nur **lineare** Zusammenhänge und reagiert empfindlich auf einzelne Ausreißer;
+ein hoher/niedriger r-Wert sagt außerdem nur etwas über den statistischen Zusammenhang aus, nicht
+darüber, ob eine Variable die andere verursacht (Korrelation ist nicht Kausalität).
 [ENDNOTICE]
 
-<!-- ER4 -->
+[ER] Untersuchen Sie den Zusammenhang zwischen Lernzeit und Klausurpunkten:
 
-<!-- time estimate: 25 min -->
+Gegeben sind die Werte von 10 Studierenden: `lernstunden` mit den Werten
+`[2, 3, 4, 4, 5, 6, 6, 7, 8, 9]` und `punkte` mit den Werten
+`[58, 52, 63, 60, 68, 65, 74, 70, 60, 88]`.
+
+- Berechnen Sie den Korrelationskoeffizienten und den p-Wert (`stats.pearsonr()`)
+- Geben Sie beide Werte aus (4 Nachkommastellen, `:.4f`)
+
+[EQ] `stats.pearsonr()` prüft nicht, ob Ihre Daten die Voraussetzungen überhaupt erfüllen — es
+liefert für praktisch jede beliebige `x`/`y`-Eingabe klaglos ein Ergebnis. Was sollten Sie vor
+bzw. nach einem `pearsonr()`-Aufruf zusätzlich prüfen, bevor Sie sich auf `r` und `p` verlassen?
+Nennen Sie zwei konkrete Prüfschritte.
+
+<!-- time estimate: 15 min -->
+
+### Weiterführend
+
+- [SciPy Statistics Reference](https://docs.scipy.org/doc/scipy/reference/stats.html): Überblick
+  über alle in `scipy.stats` verfügbaren Verteilungen und Funktionen
+- [Statistical tests](https://docs.scipy.org/doc/scipy/reference/stats.html#statistical-tests):
+  weitere Tests, u. a. `ttest_rel` (gepaarte Stichproben) und `spearmanr` (Rangkorrelation,
+  robuster gegenüber Ausreißern als `pearsonr`)
 
 [ENDSECTION]
 
@@ -365,6 +216,21 @@ Bei Qualitätskontrollen ist oft α=0.01 statt 0.05 üblich, um falsche Alarme z
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+**Knackpunkte:**
+
+- [EREFR::1] + [EREFQ::1]: Studierende erkennen, dass diskrete Verteilungen abzählbare Ergebnisse
+  mit positiver Einzelwahrscheinlichkeit haben (daher `pmf`), während bei kontinuierlichen
+  Verteilungen jeder Einzelpunkt Wahrscheinlichkeit 0 hat und nur die Dichte (`pdf`) definiert ist
+- [EREFR::2] + [EREFQ::2]: Gruppe A (M≈24.03) und Gruppe B (M≈26.64) unterscheiden sich im
+  Mittelwert deutlich sichtbar; `ttest_ind` liefert dazu einen extrem kleinen p-Wert
+  (p≈4·10⁻⁸) — Studierende erkennen, dass erst der p-Wert eine Aussage über die statistische
+  Absicherung des sichtbaren Unterschieds liefert, der reine Mittelwertvergleich das nicht kann
+- [EREFR::3] + [EREFQ::3]: `pearsonr` prüft selbst keine Voraussetzungen und liefert klaglos ein
+  Ergebnis; Studierende nennen mindestens zwei eigene Prüfschritte (Daten/Streudiagramm ansehen
+  wegen möglicher nicht-linearer Zusammenhänge, auf Ausreißer prüfen) und erkennen, dass der
+  Funktionsaufruf allein nicht ausreicht — diese Prüfung müssen sie selbst ergänzen, bevor sie
+  `r`/`p` als Ergebnis akzeptieren
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-stats.md]
