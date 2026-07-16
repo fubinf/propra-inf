@@ -83,6 +83,9 @@ print("Linear: ", linear(x_neu))
 print("Kubisch:", kubisch(x_neu))
 ```
 
+Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit Präzisionsangabe
+(in [PARTREF::py-Fstrings]), z. B. 3 Nachkommastellen (`:.3f`).
+
 [ER] Führen Sie eine eindimensionale Interpolation durch:
 
 - Erstellen Sie die Datenpunkte `x` mit den Werten `[0, 1, 2, 3, 4, 5]` und `y` mit den Werten
@@ -91,11 +94,10 @@ print("Kubisch:", kubisch(x_neu))
 - Erzeugen Sie mit `CubicSpline` eine kubische Interpolation
 - Berechnen Sie mit beiden die Werte an den Stellen `x_neu` mit den Werten
   `[0.5, 1.5, 2.5, 3.5, 4.5]`
-- Geben Sie für jede Stelle beide Werte und ihre Differenz aus
+- Geben Sie für jede Stelle beide Werte und ihre Differenz aus (3 Nachkommastellen)
 
 [HINT::Übersichtliche Tabellenausgabe]
-Mit einer f-String-Formatierung (in [PARTREF::py-Fstrings]) lässt sich die Ausgabe als
-Tabelle gestalten, z. B.:
+Lässt sich z. B. als Tabelle gestalten:
 ```python
 [SNIPPET::ALT::sp_interpolate_tabellenausgabe]
 ```
@@ -201,11 +203,13 @@ Angaben. Andere (z.B. `'gaussian'`, `'multiquadric'`) benötigen zusätzlich ein
 - Bringen Sie `x` mit `reshape(-1, 1)` in die passende Form
 - Erzeugen Sie drei Interpolatoren mit den Kerneln `'thin_plate_spline'`, `'linear'` und `'cubic'`
 - Berechnen Sie für alle drei die Werte an den Stellen `x_test` mit den Werten `[1, 3, 5, 7, 9]`
-- Geben Sie die Ergebnisse als Tabelle aus
+- Geben Sie die Ergebnisse als Tabelle aus (3 Nachkommastellen)
 
 [HINT::Übersichtliche Tabellenausgabe]
-Auch hier lässt sich die Ausgabe mit einer f-String-Formatierung (in
-[PARTREF::py-Fstrings]) als Tabelle gestalten, analog zur Ausgabe aus [EREFR::1].
+Auch hier lässt sich die Ausgabe als Tabelle gestalten:
+```python
+[SNIPPET::ALT::sp_interpolate_rbf_tabellenausgabe]
+```
 [ENDHINT]
 
 [EQ] `RBFInterpolator` verlangt die Koordinaten als 2D-Array, während `make_interp_spline` ein
@@ -231,11 +235,13 @@ hängt von den Daten und dem Ziel ab:
 - Erzeugen Sie mit `np.linspace` 9 gleichmäßig verteilte Stützstellen `x` von 0 bis 2π und
   berechnen Sie `y` als deren Sinuswerte
 - Interpolieren Sie diese Daten mit allen vier Verfahren (`make_interp_spline` mit `k=1`,
-  `CubicSpline`, `make_splrep` mit `s=0`, `RBFInterpolator` mit `'thin_plate_spline'`)
+  `CubicSpline`, `make_splrep` mit `s=0`, `RBFInterpolator` mit `'thin_plate_spline'` — denken
+  Sie an `reshape(-1, 1)` für die Koordinaten, siehen [EREFR::3])
 - Werten Sie alle vier an den Zwischenstellen `x_test` mit den Werten `[1.0, 2.5, 4.0, 5.5]` aus
-  und vergleichen Sie mit den wahren Sinuswerten an diesen Stellen
-- Bestimmen Sie für jedes Verfahren den maximalen Betrag des Fehlers auf einem feinen
-  Gitter `np.linspace(0, 2*np.pi, 100)` gegenüber `np.sin`
+  und vergleichen Sie mit den wahren Sinuswerten an diesen Stellen (4 Nachkommastellen,
+  `np.round(..., 4)`)
+- Bestimmen Sie für jedes Verfahren den maximalen Betrag des Fehlers (4 Nachkommastellen) auf
+  einem feinen Gitter `np.linspace(0, 2*np.pi, 100)` gegenüber `np.sin`
 - Ordnen Sie die vier Verfahren nach diesem Fehler
 
 [HINT::Fehler für alle Verfahren übersichtlich berechnen]
