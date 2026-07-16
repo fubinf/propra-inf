@@ -1,82 +1,72 @@
 title: SciPy Erweiterte Lineare Algebra verstehen und anwenden
 stage: alpha
-timevalue: 1.5
-difficulty: 2
-assumes: sp-Einführung, np-Einführung, np-math, np-linalg
+timevalue: 1.0
+difficulty: 3
+requires: sp-Einführung
+assumes: np-Einführung, np-math, np-linalg, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe die Unterschiede zwischen NumPy und SciPy bei linearen Algebra-Operationen.
-- Ich kann mit `scipy.linalg` erweiterte Matrixdekompositionsverfahren anwenden.
-- Ich beherrsche spezialisierte Solver für lineare Gleichungssysteme mit SciPy.
-- Ich kann Eigenwerte und Eigenvektoren mit verschiedenen SciPy-Algorithmen berechnen.
-- Ich verstehe die Anwendung von SciPy-Funktionen für numerisch stabile Berechnungen.
+- Ich kenne die Matrixzerlegungen, mit denen SciPy Gleichungssysteme numerisch löst.
+- Ich kann spezialisierte Solver für unterschiedliche Systemstrukturen einsetzen.
+- Ich kann anhand der Konditionszahl beurteilen, ob ein Gleichungssystem zuverlässig lösbar ist.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Während NumPy grundlegende lineare Algebra-Operationen bereitstellt, erweitert SciPy
-diese Funktionalität um spezialisierte und numerisch stabilere Algorithmen.
-Das Modul `scipy.linalg` bietet erweiterte Decompositionsverfahren,
-robuste Solver und optimierte Implementierungen für wissenschaftliche Anwendungen.
-Diese Werkzeuge sind besonders wichtig für numerisch anspruchsvolle Probleme
-in der Simulation, Optimierung und im maschinellen Lernen.
+`numpy.linalg` deckt die grundlegenden linearen Algebra-Operationen ab. `scipy.linalg` erweitert
+das um zusätzliche Matrixzerlegungen, Solver für bestimmte Systemstrukturen und Werkzeuge, mit
+denen sich vor dem eigentlichen Lösen beurteilen lässt, ob ein Gleichungssystem numerisch
+zuverlässig lösbar ist.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### Voraussetzungen
+### Vorwissen
 
-Bitte lesen Sie zunächst [PARTREF::sp-Einführung], [PARTREF::sp-Einführung] und [PARTREF::np-linalg]
-und stellen Sie sicher, dass Sie über funktionsfähige SciPy- und NumPy-Installationen verfügen.
-Grundkenntnisse der NumPy-Matrixoperationen aus [PARTREF::np-math] sind essentiell.
+Für diese Aufgabe sind die Konzepte hinter den Matrixzerlegungen hilfreich. Falls Ihnen diese
+fehlen, helfen folgende Quellen:
 
-### SciPy vs NumPy: Erweiterte lineare Algebra
+- [LU-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/LU-Zerlegung): Zerlegung A = P·L·U in
+  eine untere und obere Dreiecksmatrix
+- [QR-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/QR-Zerlegung): Zerlegung A = Q·R in
+  eine orthogonale Matrix und eine obere Dreiecksmatrix
+- [Cholesky-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Cholesky-Zerlegung): Zerlegung
+  A = L·Lᵀ für symmetrische positiv definite Matrizen
+- [Numerische Stabilität (Wikipedia)](https://de.wikipedia.org/wiki/Numerische_Stabilität): wie
+  sich kleine Störungen der Eingabedaten auf das berechnete Ergebnis auswirken können
 
-Das `scipy.linalg`-Modul bietet alle Funktionen von `numpy.linalg` plus zusätzliche
-spezialisierte Algorithmen:
-
-**Wichtige Unterschiede:**
-
-- **Vollständigkeit**: SciPy enthält mehr Decompositionsverfahren (LU, QR, SVD, Cholesky, Schur)
-- **Numerische Stabilität**: Robustere Implementierungen für schlecht konditionierte Matrizen
-- **Spezielle Strukturen**: Optimierungen für symmetrische, hermitesche und sparse Matrizen
-- **LAPACK/BLAS**: Direkter Zugriff auf optimierte Bibliotheken
-
-**Grundlegendes Beispiel:**
-```python
-import numpy as np
-from scipy import linalg
-
-# Matrix definieren
-A = np.array([[4, 2, 1],
-              [3, 3, 1],
-              [1, 1, 2]])
-
-# NumPy vs SciPy Determinante
-det_numpy = np.linalg.det(A)
-det_scipy = linalg.det(A)
-
-print(f"NumPy det: {det_numpy:.6f}")
-print(f"SciPy det: {det_scipy:.6f}")
-```
-
-Optional: Umfassende Übersicht finden Sie hier:
-[SciPy Linear Algebra](https://docs.scipy.org/doc/scipy/reference/linalg.html)
+Die Konditionszahl und ihre Bedeutung wurden bereits in [PARTREF::np-linalg] behandelt.
 
 ### Matrixdekomposition mit SciPy
 
-SciPy bietet verschiedene Matrixzerlegungsverfahren, die für unterschiedliche
-mathematische Anwendungen optimiert sind:
+`scipy.linalg` überschneidet sich weitgehend mit `numpy.linalg`, ergänzt es aber um zusätzliche
+Zerlegungsverfahren (LU, QR, Cholesky) und spezialisierte Solver, die `numpy.linalg` nicht bietet
+(z. B. `solve_triangular`, `lstsq`). Manche Funktionen, etwa `cond` oder `matrix_rank`, bleiben
+umgekehrt eine reine `numpy.linalg`-Domäne.
+
+Die drei Zerlegungsverfahren zerlegen eine Matrix jeweils in ein Produkt einfacherer Matrizen
+(Dreiecksmatrizen bzw. eine orthogonale Matrix), aus denen sich Gleichungssysteme mit weniger
+Rechenaufwand lösen lassen als mit der ursprünglichen Matrix direkt. Los geht es mit der
+LU-Zerlegung.
 
 **LU-Zerlegung:**
+
+```python
+scipy.linalg.lu(a, permute_l=False)
+```
+
+- `a`: die zu zerlegende quadratische Matrix
+- `permute_l` (Standard `False`): bei `True` wird die Permutation direkt in `L` eingearbeitet und
+  nur `(L, U)` statt `(P, L, U)` zurückgegeben
+
 ```python
 from scipy.linalg import lu
 
-# LU-Decomposition: A = P @ L @ U
+# LU-Zerlegung: A = P @ L @ U
 P, L, U = lu(A)
 print("L (untere Dreiecksmatrix):")
 print(L)
@@ -87,10 +77,19 @@ print(P @ L @ U)
 ```
 
 **QR-Zerlegung:**
+
+```python
+scipy.linalg.qr(a, mode='full')
+```
+
+- `a`: die zu zerlegende Matrix
+- `mode` (Standard `'full'`): Form der Rückgabematrizen; `'economic'` liefert bei
+  nicht-quadratischem `a` kompaktere Matrizen
+
 ```python
 from scipy.linalg import qr
 
-# QR-Decomposition: A = Q @ R
+# QR-Zerlegung: A = Q @ R
 Q, R = qr(A)
 print("Q (orthogonale Matrix):")
 print(Q)
@@ -98,12 +97,21 @@ print("\nR (obere Dreiecksmatrix):")
 print(R)
 ```
 
-**Cholesky-Zerlegung** (für positiv definite Matrizen):
+**Cholesky-Zerlegung** (nur für symmetrische positiv definite Matrizen):
+
+```python
+scipy.linalg.cholesky(a, lower=False)
+```
+
+- `a`: die zu zerlegende symmetrische positiv definite Matrix
+- `lower` (Standard `False`): bei `True` wird die untere Dreiecksmatrix `L` zurückgegeben
+  (A = L·Lᵀ), sonst die obere `U` (A = Uᵀ·U)
+
 ```python
 from scipy.linalg import cholesky
 
 # Symmetrische positiv definite Matrix
-B = np.array([[4, 2], [2, 3]])
+B = np.array([[9, 3], [3, 2]])
 L_chol = cholesky(B, lower=True)
 print("Cholesky L:")
 print(L_chol)
@@ -111,26 +119,32 @@ print("Verifikation L @ L.T:")
 print(L_chol @ L_chol.T)
 ```
 
-Optional: Details zu Matrixzerlegungen finden Sie hier:
-[Matrix Decompositions](https://docs.scipy.org/doc/scipy/reference/linalg.html#matrix-decompositions)
-
 [ER] Arbeiten Sie mit verschiedenen Matrixdekompositionsverfahren:
 
 - Gegeben ist die Matrix A = [[6, 2, 1], [2, 3, 1], [1, 1, 1]]
 - Führen Sie eine LU-Zerlegung durch (`linalg.lu()`) und verifizieren Sie das Ergebnis
 - Berechnen Sie eine QR-Zerlegung (`linalg.qr()`) und prüfen Sie die Orthogonalität von Q
-- Für die symmetrische Matrix B = [[9, 3], [3, 2]] berechnen Sie die Cholesky-Zerlegung (`linalg.cholesky()`)
+- Für die symmetrische Matrix B = [[9, 3], [3, 2]] berechnen Sie die Cholesky-Zerlegung
+  (`linalg.cholesky()`)
 
 Geben Sie alle Matrizen aus und verifizieren Sie jeweils die Dekomposition durch Rückmultiplikation.
-<!-- ER1 -->
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 15 min -->
 
 ### Erweiterte Gleichungssystem-Solver
 
-SciPy bietet spezialisierte Solver für verschiedene Arten von linearen Gleichungssystemen:
+Für Gleichungssysteme mit bestimmter Struktur bietet SciPy Solver, die diese Struktur direkt
+ausnutzen, statt sie wie ein allgemeines System zu behandeln.
 
 **Standard-Solver:**
+
+```python
+scipy.linalg.solve(a, b)
+```
+
+- `a`: die quadratische Koeffizientenmatrix
+- `b`: die rechte Seite des Gleichungssystems (Vektor oder Matrix)
+
 ```python
 from scipy.linalg import solve
 
@@ -143,7 +157,21 @@ print(f"Lösung: {x}")
 print(f"Verifikation A@x: {A @ x}")
 ```
 
-**Solver für spezielle Strukturen:**
+Der Aufruf entspricht dem bereits aus [PARTREF::np-linalg] bekannten `numpy.linalg.solve`.
+
+**Solver für obere Dreiecksmatrizen:**
+
+```python
+scipy.linalg.solve_triangular(a, b, lower=False)
+```
+
+- `a`: eine obere (oder bei `lower=True` untere) Dreiecksmatrix
+- `b`: die rechte Seite des Gleichungssystems
+- `lower` (Standard `False`): ob `a` eine untere statt oberer Dreiecksmatrix ist
+
+Bei einer Dreiecksmatrix lässt sich das System direkt durch Vorwärts-/Rückwärtseinsetzen lösen,
+ohne den allgemeinen (aufwendigeren) Lösungsweg von `solve()` zu benötigen.
+
 ```python
 from scipy.linalg import solve_triangular
 
@@ -155,157 +183,122 @@ x_tri = solve_triangular(U, b_tri)
 print(f"Dreiecks-Lösung: {x_tri}")
 ```
 
-**Least-Squares für überbestimmte Systeme:**
+**Solver für symmetrische positiv definite Systeme:**
+
 ```python
-from scipy.linalg import lstsq
-
-# Überbestimmtes System (mehr Gleichungen als Unbekannte)
-A_over = np.array([[1, 1], [1, 2], [1, 3]])
-b_over = np.array([6, 8, 10])
-
-x_lstsq, residuals, rank, s = lstsq(A_over, b_over)
-print(f"Least-Squares Lösung: {x_lstsq}")
-print(f"Residuum: {residuals}")
+scipy.linalg.cho_factor(a, lower=False)
+scipy.linalg.cho_solve(c_and_lower, b)
 ```
 
-Optional: Weitere Solver-Optionen finden Sie hier:
-[Linear System Solvers](https://docs.scipy.org/doc/scipy/reference/linalg.html#solving-linear-systems)
+- `a`: die symmetrische positiv definite Koeffizientenmatrix
+- `lower` (Standard `False`): ob die Cholesky-Zerlegung als untere oder obere Dreiecksmatrix
+  gespeichert wird
+- `c_and_lower`: das Tupel `(c, lower)`, das `cho_factor()` zurückgegeben hat
+- `b`: die rechte Seite des Gleichungssystems
+
+Für eine symmetrische positiv definite Matrix (siehe Cholesky-Zerlegung oben) lässt sich das
+System über die Dreiecksform der Zerlegung lösen, statt den allgemeinen Lösungsweg von `solve()`
+zu benutzen.
+
+```python
+from scipy.linalg import cho_factor, cho_solve
+
+# Symmetrische positiv definite Matrix
+B = np.array([[5, 2], [2, 3]])
+b_chol = np.array([9, 8])
+
+c, low = cho_factor(B)
+x_chol = cho_solve((c, low), b_chol)
+print(f"Lösung: {x_chol}")
+print(f"Verifikation B@x: {B @ x_chol}")
+```
 
 [ER] Lösen Sie verschiedene Arten von linearen Gleichungssystemen:
 
-- Lösen Sie das System mit A = [[4, 1, 2], [1, 3, 1], [2, 1, 4]] und b = [7, 6, 8] (`linalg.solve()`)
+- Lösen Sie das System mit A = [[4, 1, 2], [1, 3, 1], [2, 1, 4]] und b = [7, 6, 8]
+  (`linalg.solve()`)
 - Gegeben ist die obere Dreiecksmatrix U = [[3, 2, 1], [0, 2, 1], [0, 0, 1]] mit b = [6, 3, 1].
   Nutzen Sie den spezialisierten Solver (`linalg.solve_triangular()`)
-- Lösen Sie das überbestimmte System A = [[1, 1], [2, 1], [3, 1], [4, 1]] mit b = [3, 5, 7, 9]
-  mit der Least-Squares-Methode (`linalg.lstsq()`)
+- Gegeben ist die symmetrische positiv definite Matrix A = [[6, 1, 1], [1, 5, 2], [1, 2, 4]] mit
+  b = [10, 12, 9]. Nutzen Sie `linalg.cho_factor()` und `linalg.cho_solve()`
 
-Verifizieren Sie alle Lösungen durch Rückmultiplikation und geben Sie Residuen aus.
-<!-- ER2 -->
+Verifizieren Sie alle Lösungen durch Rückmultiplikation.
 
 <!-- time estimate: 20 min -->
 
-### Eigenwerte und Eigenvektoren
+### Konditionszahl: ist ein Gleichungssystem zuverlässig lösbar?
 
-SciPy bietet verschiedene Algorithmen zur Berechnung von Eigenwerten und Eigenvektoren:
+Die Konditionszahl beschreibt, wie stark sich Eingabefehler in einem Gleichungssystem verstärken.
+Für die Praxis heißt das: Bevor Sie sich auf die Lösung eines Systems verlassen, lohnt sich ein
+Blick auf dessen Konditionszahl.
 
-**Standard-Eigenwerte:**
 ```python
-from scipy.linalg import eig
+import numpy as np
+from scipy.linalg import solve
 
-# Symmetrische Matrix für reelle Eigenwerte
-A_sym = np.array([[4, 1], [1, 3]])
+# Gut konditioniertes System
+A_good = np.array([[4.0, 1.0], [1.0, 3.0]])
+b_good = np.array([9.0, 8.0])
+print(f"Konditionszahl (gut): {np.linalg.cond(A_good):.6f}")
+x_good = solve(A_good, b_good)
+print(f"Lösung: {x_good}")
 
-eigenvalues, eigenvectors = eig(A_sym)
-print("Eigenwerte:", eigenvalues)
-print("Eigenvektoren:\n", eigenvectors)
+# Schlecht konditioniertes, aber nicht singuläres System
+A_ill = np.array([[1.0, 2.0], [2.0, 4.0001]])
+b_ill = np.array([3.0, 6.0002])
+print(f"\nKonditionszahl (schlecht): {np.linalg.cond(A_ill):.2e}")
+x_ill = solve(A_ill, b_ill)
+print(f"Lösung: {x_ill}")
 
-# Verifikation: A @ v = λ @ v
-for i in range(len(eigenvalues)):
-    v = eigenvectors[:, i]
-    lam = eigenvalues[i]
-    print(f"\nEigenwert {i+1}: {lam:.4f}")
-    print(f"A@v: {A_sym @ v}")
-    print(f"λ*v: {lam * v}")
+# Beide b um denselben winzigen Betrag stören
+b_good_pert = b_good + np.array([1e-4, 0])
+b_ill_pert = b_ill + np.array([1e-4, 0])
+
+x_good_pert = solve(A_good, b_good_pert)
+x_ill_pert = solve(A_ill, b_ill_pert)
+
+rel_change_good = np.linalg.norm(x_good_pert - x_good) / np.linalg.norm(x_good)
+rel_change_ill = np.linalg.norm(x_ill_pert - x_ill) / np.linalg.norm(x_ill)
+
+print(f"\nRelative Änderung der Lösung (gut konditioniert): {rel_change_good:.2e}")
+print(f"Relative Änderung der Lösung (schlecht konditioniert): {rel_change_ill:.2e}")
+# Konditionszahl (gut): 1.938749
+# Lösung: [1.72727273 2.09090909]
+# Konditionszahl (schlecht): 2.50e+05
+# Lösung: [-1.  2.]
+# Relative Änderung der Lösung (gut konditioniert): 1.06e-05
+# Relative Änderung der Lösung (schlecht konditioniert): 2.00e+00
 ```
 
-**Spezialisierte Funktionen:**
-```python
-from scipy.linalg import eigvals, eigh
+`solve()` gibt für beide Systeme anstandslos eine Lösung zurück — kein Fehler, keine Warnung. Der
+Unterschied zeigt sich erst, wenn man `b` minimal stört: Bei `A_good` bleibt die Lösung nahezu
+unverändert, bei `A_ill` schlägt dieselbe winzige Störung mit um Größenordnungen stärkerer Wirkung
+auf die Lösung durch.
 
-# Nur Eigenwerte (schneller)
-eigenvals_only = eigvals(A_sym)
-print("Nur Eigenwerte:", eigenvals_only)
+Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit Präzisionsangabe
+(in [PARTREF::py-Fstrings]), wie oben im Beispiel gezeigt.
 
-# Für hermitesche/symmetrische Matrizen (numerisch stabiler)
-eigenvals_h, eigenvecs_h = eigh(A_sym)
-print("Hermitesche Eigenwerte:", eigenvals_h)
-```
+[ER] Vergleichen Sie ein gut und ein schlecht konditioniertes Gleichungssystem:
 
-**Bedingte Eigenwerte** (nur bestimmte Eigenwerte):
-```python
-from scipy.linalg import eigvals_banded
+- Berechnen Sie für `M_good` = [[6, 2], [2, 5]] mit `v_good` = [10, 7] die Konditionszahl
+  (`np.linalg.cond()`, 6 Nachkommastellen, `:.6f`) und lösen Sie das System (`linalg.solve()`)
+- Berechnen Sie für `M_ill` = [[1, 3], [3, 9.0002]] mit `v_ill` = [4, 12.0006] ebenfalls
+  Konditionszahl (wissenschaftliche Notation, `:.2e`) und Lösung
+- Stören Sie bei beiden Systemen die jeweilige rechte Seite um denselben winzigen Betrag (z. B.
+  `+1e-4` auf die erste Komponente) und lösen Sie erneut
+- Geben Sie für beide Systeme die relative Änderung der Lösung aus (6 Nachkommastellen, `:.6f`)
 
-# Für große Matrizen: nur größte/kleinste Eigenwerte
-# (Hier vereinfachtes Beispiel)
-max_eigenval = np.max(eigenvals_only)
-min_eigenval = np.min(eigenvals_only)
-print(f"Größter Eigenwert: {max_eigenval:.4f}")
-print(f"Kleinster Eigenwert: {min_eigenval:.4f}")
-```
+[HINT::Wie berechnet man die relative Änderung zwischen zwei Lösungsvektoren?]
+Die relative Änderung zwischen einer ursprünglichen Lösung `x` und der gestörten Lösung `x_pert`
+lässt sich mit `np.linalg.norm(x_pert - x) / np.linalg.norm(x)` berechnen: `x_pert - x` ist der
+Differenzvektor, dessen Norm die absolute Größe der Änderung angibt; die Division durch
+`np.linalg.norm(x)` setzt diese Änderung ins Verhältnis zur Größe der ursprünglichen Lösung.
+[ENDHINT]
 
-Optional: Erweiterte Eigenwert-Algorithmen finden Sie hier:
-[Eigenvalue Problems](https://docs.scipy.org/doc/scipy/reference/linalg.html#eigenvalue-problems)
-
-[ER] Berechnen Sie Eigenwerte und Eigenvektoren verschiedener Matrizen:
-
-- Für die Matrix A = [[5, 2], [2, 3]] berechnen Sie alle Eigenwerte und Eigenvektoren (`linalg.eig()`)
-- Verifizieren Sie für jeden Eigenvektor die Eigengleichung A*v = λ*v
-- Verwenden Sie `linalg.eigh()` für dieselbe Matrix und vergleichen Sie die Ergebnisse
-- Für die 3×3-Matrix B = [[6, 1, 1], [1, 6, 1], [1, 1, 6]] bestimmen Sie nur die Eigenwerte (`linalg.eigvals()`)
-
-Interpretieren Sie die Ergebnisse und erklären Sie die Unterschiede zwischen den Methoden.
-<!-- ER3 -->
-
-<!-- time estimate: 25 min -->
-
-### Numerische Eigenschaften und Konditionierung
-
-SciPy bietet Werkzeuge zur Analyse der numerischen Eigenschaften von Matrizen:
-
-**Normen und Konditionszahlen:**
-```python
-from scipy.linalg import norm, solve
-
-# Verschiedene Normen
-A = np.array([[1, 2], [3, 4]])
-
-norm_1 = norm(A, ord=1)          # 1-Norm (max. Spaltensumme)
-norm_2 = norm(A, ord=2)          # 2-Norm (Spektralnorm)
-norm_inf = norm(A, ord=np.inf)   # ∞-Norm (max. Zeilensumme)
-norm_fro = norm(A, ord='fro')    # Frobenius-Norm
-
-print(f"1-Norm: {norm_1:.4f}")
-print(f"2-Norm: {norm_2:.4f}")
-print(f"∞-Norm: {norm_inf:.4f}")
-print(f"Frobenius-Norm: {norm_fro:.4f}")
-
-# Konditionszahl
-cond_number = np.linalg.cond(A)
-print(f"Konditionszahl: {cond_number:.4f}")
-```
-
-**Rang und Determinante:**
-```python
-from scipy.linalg import det
-
-# Matrixeigenschaften
-rank_A = np.linalg.matrix_rank(A)
-det_A = det(A)
-
-print(f"Rang: {rank_A}")
-print(f"Determinante: {det_A:.4f}")
-
-# Singularitätstest
-if abs(det_A) < 1e-10:
-    print("Matrix ist numerisch singulär")
-else:
-    print("Matrix ist regulär")
-```
-
-Optional: Weitere numerische Eigenschaften finden Sie hier:
-[Matrix Properties](https://docs.scipy.org/doc/scipy/reference/linalg.html#matrix-functions)
-
-[ER] Analysieren Sie die numerischen Eigenschaften verschiedener Matrizen:
-
-- Für die Matrix A = [[2, 1, 1], [1, 2, 1], [1, 1, 2]] berechnen Sie:
-  - Alle vier Normen (1, 2, ∞, Frobenius) (`linalg.norm()`)
-  - Konditionszahl (`np.linalg.cond()`)
-  - Rang (`np.linalg.matrix_rank()`) und Determinante (`linalg.det()`)
-- Vergleichen Sie mit der Matrix B = [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
-- Interpretieren Sie die Unterschiede in den numerischen Eigenschaften
-
-Erklären Sie, welche Matrix numerisch stabiler für Berechnungen ist und warum.
-<!-- ER4 -->
+[EQ] Beide Systeme wurden von `solve()` ohne Fehler oder Warnung gelöst. Anhand welcher Zahl
+hätten Sie schon vor dem Lösen erkennen können, welches der beiden Systeme empfindlich auf
+Störungen reagieren würde — und was würde Sie das bei einem realen Datensatz mit unbekanntem,
+leicht verrauschtem `b` über die Vertrauenswürdigkeit der berechneten Lösung sagen?
 
 <!-- time estimate: 25 min -->
 
@@ -317,6 +310,19 @@ Erklären Sie, welche Matrix numerisch stabiler für Berechnungen ist und warum.
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+**Knackpunkte:**
+
+- [EREFR::1]: alle drei Zerlegungen (LU, QR, Cholesky) wurden tatsächlich durch Rückmultiplikation
+  verifiziert (`np.allclose` oder gleichwertig), und die Orthogonalität von Q wurde geprüft
+  (`Q.T @ Q` ≈ Einheitsmatrix), nicht nur behauptet
+- [EREFR::2]: für jedes der drei Systeme wurde der zur Struktur passende Solver verwendet
+  (`solve` für das allgemeine System, `solve_triangular` für das Dreieckssystem, `cho_factor`/
+  `cho_solve` für das symmetrische positiv definite System), nicht überall derselbe
+- [EREFR::3] + [EREFQ::1]: Studierende erkennen, dass die Konditionszahl bereits vor dem Lösen
+  anzeigt, wie empfindlich ein System auf Störungen reagiert, und dass `solve()` bei einem
+  schlecht konditionierten System trotzdem anstandslos (ohne Fehler) eine unzuverlässige Lösung
+  zurückgibt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-linalg.md]
