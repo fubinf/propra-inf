@@ -121,18 +121,23 @@ print('Winkel in Grad:', angles_deg)
 
 <!-- time estimate: 10 min -->
 
-### Rundungsfunktionen: `around`, `floor`, `ceil`
+### Rundungsfunktionen: `around`, `round`, `floor`, `ceil`
 
 NumPy bietet verschiedene Funktionen zum Runden von Zahlen:
 
 ```python
-numpy.around(a, decimals=0)  # rundet zur nächsten (Nachkommastelle gemäß decimals)
+numpy.around(a, decimals=0)   # rundet zur nächsten (Nachkommastelle gemäß decimals)
+numpy.round(a, decimals=0)    # Alias für numpy.around, identisches Verhalten
 numpy.floor(a)                # rundet immer ab (zur nächstkleineren ganzen Zahl)
 numpy.ceil(a)                 # rundet immer auf (zur nächstgrößeren ganzen Zahl)
 ```
 
 - `a`: das zu rundende Array
-- `decimals` (nur bei `around`, Default `0`): Anzahl der Nachkommastellen, auf die gerundet wird
+- `decimals` (nur bei `around`/`round`, Default `0`): Anzahl der Nachkommastellen, auf die
+  gerundet wird
+
+`numpy.round` ist ein Alias für `numpy.around` — beide Namen rufen dieselbe Funktion auf und
+lassen sich austauschbar verwenden.
 
 ```python
 import numpy as np
@@ -143,6 +148,7 @@ print('Originalzahlen:', numbers)
 
 # Verschiedene Rundungsarten
 print('Gerundet (around):', np.around(numbers))
+print('Gerundet (round): ', np.round(numbers))    # identisch zu around
 print('Abgerundet (floor):', np.floor(numbers))
 print('Aufgerundet (ceil):', np.ceil(numbers))
 
@@ -157,8 +163,8 @@ das jeweilige Verhalten.
 [ER] Wenden Sie Rundungsfunktionen praktisch an:
 
 - Erstellen Sie ein Array mit den Werten [2.345, -1.678, 5.999, -3.001, 0.5]
-- Runden Sie auf ganze Zahlen mit allen drei Methoden (around, floor, ceil)
-- Runden Sie auf 1 Dezimalstelle mit `around`
+- Runden Sie auf ganze Zahlen mit drei Methoden: `around`, `floor`, `ceil`
+- Runden Sie auf 1 Dezimalstelle mit `round`
 - Vergleichen Sie die Unterschiede der Ergebnisse
 
 <!-- time estimate: 20 min -->
