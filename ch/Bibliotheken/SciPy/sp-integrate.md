@@ -96,13 +96,11 @@ Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit P
 Geben Sie für jedes Integral das berechnete Ergebnis (`result`, 6 Nachkommastellen, `:.6f`) und
 die Fehlerabschätzung (`error`, wissenschaftliche Notation, `:.2e`) aus. Vergleichen Sie Ihre
 numerischen Ergebnisse mit den angegebenen analytischen Werten.
-<!-- ER1 -->
 
 [EQ] Für `∫₀² x³ dx` und `∫₀^π/2 cos(x) dx` können Sie `result` direkt gegen den analytischen
 Wert prüfen. Bei `∫₀^∞ x*e^(-x²) dx` kennen Sie den analytischen Wert hier nur, weil er im
 Aufgabentext angegeben ist — stellen Sie sich vor, er wäre es nicht. Woran allein anhand von
 `error` würden Sie erkennen, ob `result` vertrauenswürdig ist?
-<!-- EQ1 -->
 
 <!-- time estimate: 20 min -->
 
@@ -164,12 +162,10 @@ print(f"Oszillierendes Integral: {result:.6f}")
 
 Verwenden Sie das `args`-Parameter und geben Sie für jedes Integral das Ergebnis
 (6 Nachkommastellen, `:.6f`) und den Fehler (wissenschaftliche Notation, `:.2e`) aus.
-<!-- ER2 -->
 
 [EQ] Ohne das `args`-Parameter müssten Sie für jede Parameterkombination (z. B. `k=5` vs. `k=7`
 bei `sin(kx)`) den Wert fest in die Funktion einbauen. Was müssten Sie dann an Ihrem Code ändern,
 um ein anderes `k` zu testen — und was löst `args` an diesem Problem?
-<!-- EQ2 -->
 
 <!-- time estimate: 20 min -->
 
@@ -254,12 +250,10 @@ print(f"Werte: {sol.y[0]}")
 Geben Sie für jede Lösung `sol.success` und die Werte an drei Zeitpunkten aus
 (`t_eval=np.array([start, mitte, ende])`, ausgelesen über `sol.t` und `sol.y`,
 6 Nachkommastellen, `:.6f`).
-<!-- ER3 -->
 
 [EQ] `sol.success` war bei Ihren drei Lösungen vermutlich `True`. Unter welchen Umständen könnte
 `solve_ivp` ein Anfangswertproblem nicht bis zum Ende von `t_span` lösen, und wie würden Sie das
 allein an `sol.t`/`sol.y` erkennen (ohne die analytische Lösung zu kennen)?
-<!-- EQ3 -->
 
 <!-- time estimate: 25 min -->
 
