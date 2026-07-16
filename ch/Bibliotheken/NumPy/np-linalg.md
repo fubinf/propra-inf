@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 2
 difficulty: 2
 requires: np-Einführung
-assumes: np-array, np-array2, py-Fstrings
+assumes: np-array, np-array2, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
