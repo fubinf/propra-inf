@@ -1,5 +1,5 @@
 title: "Go: 'http.Server'"
-stage: draft
+stage: alpha
 timevalue: 0.75
 difficulty: 3
 assumes: go-context, curl
