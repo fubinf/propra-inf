@@ -1,95 +1,66 @@
 title: SciPy Numerische Integration und Differentialgleichungen verstehen und anwenden
 stage: alpha
-timevalue: 1.5
-difficulty: 2
-assumes: sp-Einführung, np-Einführung, np-math
+timevalue: 1.0
+difficulty: 3
+requires: sp-Einführung
+assumes: np-Einführung, np-array2, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe die Grundlagen der numerischen Integration mit SciPy.
-- Ich kann mit `scipy.integrate.quad` definite Integrale berechnen.
-- Ich beherrsche die Verwendung verschiedener Integrationsmethoden für unterschiedliche Funktionstypen.
-- Ich kann gewöhnliche Differentialgleichungen (ODEs) mit `scipy.integrate.solve_ivp` lösen.
-- Ich verstehe die praktische Anwendung numerischer Integration in wissenschaftlichen Berechnungen.
+- Ich kann bestimmte Integrale numerisch berechnen, auch mit Parametern oder unendlichen Grenzen.
+- Ich kann Anfangswertprobleme numerisch lösen.
+- Ich kann anhand der Rückgabewerte beurteilen, ob ein numerisches Ergebnis verlässlich ist.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Numerische Integration und die Lösung von Differentialgleichungen sind zentrale Werkzeuge
-in den Naturwissenschaften und der Ingenieurswissenschaft. Während analytische Lösungen
-oft nicht existieren oder schwer zu finden sind, ermöglichen numerische Verfahren
-praktikable Lösungen für reale Probleme. Das SciPy-Modul `integrate` stellt bewährte
-Algorithmen zur Verfügung, die von der Berechnung bestimmter Integrale bis zur Simulation
-dynamischer Systeme reichen.
+Viele Integrale und Differentialgleichungen lassen sich nicht analytisch (in geschlossener Form)
+lösen. SciPy stellt mit `scipy.integrate` numerische Verfahren bereit, die stattdessen
+Näherungslösungen berechnen — zusammen mit Diagnoseinformationen, anhand derer sich beurteilen
+lässt, wie verlässlich diese Näherung ist.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### Voraussetzungen
+### Vorwissen
 
-Bitte lesen Sie zunächst [PARTREF::sp-Einführung] und stellen Sie sicher,
-dass Sie über eine funktionsfähige SciPy-Installation verfügen.
-Grundlegende Kenntnisse von NumPy-Mathematikfunktionen aus [PARTREF::np-math]
-sind für diese Aufgabe essentiell.
+Für diese Aufgabe sind folgende Konzepte hilfreich. Falls Ihnen diese fehlen, helfen folgende
+Quellen:
 
-### Das SciPy Integrate-Modul: Überblick
-
-Das `scipy.integrate`-Modul bietet verschiedene Methoden für numerische Integration
-und die Lösung von Differentialgleichungen:
-
-**Hauptfunktionen:**
-
-- `quad`: Numerische Integration eindimensionaler Funktionen
-- `dblquad`, `tplquad`: Mehrfache Integration (2D, 3D)
-- `solve_ivp`: Lösung von Anfangswertproblemen für ODEs
-- `odeint`: Alternative ODE-Lösung (legacy Interface)
-
-**Warum numerische Integration?**
-
-Viele Integrale lassen sich nicht analytisch lösen, beispielsweise:
-
-- `∫ e^(-x²) dx` (Gaußsche Fehlerfunktion)
-- `∫ sin(x)/x dx` (Sinc-Funktion)
-- Integrale mit komplexen Grenzen oder Parametern
-
-Numerische Verfahren bieten kontrollierte Genauigkeit und praktische Umsetzbarkeit
-für solche Probleme.
-
-**Grundlegendes Beispiel:**
-```python
-import numpy as np
-from scipy import integrate
-
-# Einfaches Integral: ∫₀¹ x² dx = 1/3
-def f(x):
-    return x**2
-
-result, error = integrate.quad(f, 0, 1)
-print(f"Integral: {result:.6f} (Fehler: {error:.2e})")
-```
-
-Optional: Für eine umfassende Übersicht siehe:
-[SciPy Integration Tutorial](https://docs.scipy.org/doc/scipy/tutorial/integrate.html)
+- [Numerische Integration (Wikipedia)](https://de.wikipedia.org/wiki/Numerische_Integration):
+  warum manche Integrale sich nicht durch elementare Funktionen ausdrücken lassen
+- [Anfangswertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Anfangswertproblem): Grundbegriff
+  einer gewöhnlichen Differentialgleichung mit Anfangsbedingung (dy/dt = f(t, y), y(t₀) = y₀)
 
 ### Numerische Integration mit `scipy.integrate.quad`
 
 Die `quad`-Funktion verwendet adaptive Algorithmen zur präzisen Berechnung
 eindimensionaler Integrale.
 
-**Wichtige Parameter:**
+```python
+scipy.integrate.quad(func, a, b, args=(), epsabs=1.49e-08, epsrel=1.49e-08)
+```
 
-- `func`: Die zu integrierende Funktion
-- `a`, `b`: Untere und obere Integrationsgrenze
-- `args`: Zusätzliche Parameter für die Funktion (optional)
-- `epsabs`, `epsrel`: Absolute und relative Toleranz
+- `func`: die zu integrierende Funktion
+- `a`, `b`: untere und obere Integrationsgrenze
+- `args` (Standard `()`): zusätzliche Parameter für `func` (siehe unten)
+- `epsabs`, `epsrel` (Standard je `1.49e-08`): absolute bzw. relative Fehlertoleranz
 
 **Rückgabewerte:**
 
-- `result`: Der berechnete Integralwert
-- `error`: Geschätzte absolute Fehlergrenze
+- `result`: der berechnete Integralwert
+- `error`: geschätzte absolute Fehlergrenze
+
+**Behandlung von unendlichen Grenzen:**
+
+SciPy kann auch mit unendlichen Integrationsgrenzen umgehen:
+
+- `np.inf` für +∞
+- `-np.inf` für -∞
+- Die Algorithmen transformieren automatisch den Integrationsbereich
 
 **Häufige Integrale in der Praxis:**
 
@@ -110,16 +81,8 @@ result3, _ = integrate.quad(lambda x: np.exp(-x**2), -2, 2)
 print(f"∫₋₂² e^(-x²) dx = {result3:.6f}")
 ```
 
-**Behandlung von unendlichen Grenzen:**
-
-SciPy kann auch mit unendlichen Integrationsgrenzen umgehen:
-
-- `np.inf` für +∞
-- `-np.inf` für -∞
-- Die Algorithmen transformieren automatisch den Integrationsbereich
-
-Optional: Details zu Integrationsmethoden finden Sie hier:
-[Numerical Integration Methods](https://docs.scipy.org/doc/scipy/reference/integrate.html)
+Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit Präzisionsangabe
+(in [PARTREF::py-Fstrings]), z. B. 6 Nachkommastellen (`:.6f`).
 
 [ER] Berechnen Sie verschiedene bestimmte Integrale mit `scipy.integrate.quad`:
 
@@ -130,9 +93,16 @@ Optional: Details zu Integrationsmethoden finden Sie hier:
 - Bestimmen Sie `∫₀^∞ x*e^(-x²) dx` mit unendlicher oberer Grenze (`np.inf`, `np.exp()`)
   (Analytisches Ergebnis: 0.5)
 
-Geben Sie für jedes Integral das berechnete Ergebnis (`result`) und die Fehlerabschätzung (`error`) aus.
-Vergleichen Sie Ihre numerischen Ergebnisse mit den angegebenen analytischen Werten.
+Geben Sie für jedes Integral das berechnete Ergebnis (`result`, 6 Nachkommastellen, `:.6f`) und
+die Fehlerabschätzung (`error`, wissenschaftliche Notation, `:.2e`) aus. Vergleichen Sie Ihre
+numerischen Ergebnisse mit den angegebenen analytischen Werten.
 <!-- ER1 -->
+
+[EQ] Für `∫₀² x³ dx` und `∫₀^π/2 cos(x) dx` können Sie `result` direkt gegen den analytischen
+Wert prüfen. Bei `∫₀^∞ x*e^(-x²) dx` kennen Sie den analytischen Wert hier nur, weil er im
+Aufgabentext angegeben ist — stellen Sie sich vor, er wäre es nicht. Woran allein anhand von
+`error` würden Sie erkennen, ob `result` vertrauenswürdig ist?
+<!-- EQ1 -->
 
 <!-- time estimate: 20 min -->
 
@@ -160,9 +130,10 @@ Manche Funktionen haben Singularitäten (Pole), die besondere Behandlung erforde
 ```python
 # Funktion mit Singularität bei x=0: f(x) = 1/√x
 def singular_func(x):
-    return 1/np.sqrt(x) if x > 0 else 0
+    return 1/np.sqrt(x) if x > 0 else 0  # Rückfallwert, falls x=0 doch ausgewertet wird
 
-# Integration nahe der Singularität
+# Untere Grenze 1e-10 statt 0: quad wertet f(x) nie exakt an der Singularität aus,
+# der winzige ausgesparte Bereich [0, 1e-10] verändert das Ergebnis kaum
 result, _ = integrate.quad(singular_func, 1e-10, 1)
 print(f"Integral mit Singularität: {result:.6f}")
 ```
@@ -174,14 +145,13 @@ Für stark oszillierende Funktionen können spezielle Methoden erforderlich sein
 ```python
 # Stark oszillierende Funktion
 def oscillating(x):
-    return np.sin(100*x) / x if x != 0 else 100
+    return np.sin(100*x) / x if x != 0 else 100  # Grenzwert für x->0
 
+# quad unterteilt das Intervall automatisch feiner, wo die Funktion schnell oszilliert —
+# kein zusätzlicher Parameter nötig, das ist Teil des adaptiven Algorithmus
 result, _ = integrate.quad(oscillating, 0.01, 1)
 print(f"Oszillierendes Integral: {result:.6f}")
 ```
-
-Optional: Für Behandlung spezieller Integrale siehe:
-[Advanced Integration Techniques](https://docs.scipy.org/doc/scipy/reference/integrate.html#integrating-functions-given-function-object)
 
 [ER] Arbeiten Sie mit parametrisierten und komplexeren Integralen:
 
@@ -192,8 +162,14 @@ Optional: Für Behandlung spezieller Integrale siehe:
 - Lösen Sie das Integral `∫₀¹ x^n dx` für n=0.5
   (Verwenden Sie `args=(0.5,)`, entspricht ∫₀¹ √x dx)
 
-Verwenden Sie das `args`-Parameter und geben Sie für jedes Integral Ergebnis und Fehler aus.
+Verwenden Sie das `args`-Parameter und geben Sie für jedes Integral das Ergebnis
+(6 Nachkommastellen, `:.6f`) und den Fehler (wissenschaftliche Notation, `:.2e`) aus.
 <!-- ER2 -->
+
+[EQ] Ohne das `args`-Parameter müssten Sie für jede Parameterkombination (z. B. `k=5` vs. `k=7`
+bei `sin(kx)`) den Wert fest in die Funktion einbauen. Was müssten Sie dann an Ihrem Code ändern,
+um ein anderes `k` zu testen — und was löst `args` an diesem Problem?
+<!-- EQ2 -->
 
 <!-- time estimate: 20 min -->
 
@@ -204,148 +180,95 @@ der wissenschaftlichen Modellierung. SciPy's `solve_ivp` löst Anfangswertproble
 
 **dy/dt = f(t, y)** mit **y(t₀) = y₀**
 
-**Wichtige Parameter:**
+```python
+scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None)
+```
 
-- `fun`: Die Funktion f(t, y), die die Ableitung definiert
-- `t_span`: Tupel (t_start, t_end) für den Zeitbereich
+- `fun`: die Funktion f(t, y), die die Ableitung definiert
+- `t_span`: Tupel `(t_start, t_end)` für den Zeitbereich
 - `y0`: Anfangswerte als Array
-- `t_eval`: Spezifische Zeitpunkte für die Ausgabe (optional)
-- `method`: Lösungsverfahren ('RK45', 'RK23', 'DOP853', etc.)
+- `method` (Standard `'RK45'`): Lösungsverfahren (weitere: `'RK23'`, `'DOP853'`, ...)
+- `t_eval` (Standard `None`, dann wählt der Solver selbst Zeitpunkte): spezifische Zeitpunkte
+  für die Ausgabe
+- `args` (Standard `None`): zusätzliche Parameter für `fun`, analog zu `quad`
+
+`RK45` und `RK23` sind Runge-Kutta-Verfahren unterschiedlicher Ordnung (4./5. bzw. 2./3. Ordnung):
+Sie berechnen pro Schritt mehrere Zwischenauswertungen von `f(t, y)` und kombinieren sie gewichtet,
+um von einem Zeitpunkt zum nächsten zu gelangen — ein Verfahren höherer Ordnung braucht dafür
+größere Schritte, um dieselbe Genauigkeit zu erreichen, ist pro Schritt aber aufwendiger. Wie genau
+die Zwischenauswertungen gewichtet werden, ist über das sogenannte Butcher-Tableau festgelegt.
+Das genaue Funktionieren dieser Verfahren ist nicht Gegenstand dieser Aufgabe — bei Interesse
+finden Sie die Details unter
+[Runge-Kutta-Verfahren](https://de.wikipedia.org/wiki/Runge-Kutta-Verfahren#Allgemeine_Formulierung_und_Butcher-Schema).
 
 **Rückgabewerte:**
 
 - `sol.t`: Array der Zeitpunkte
 - `sol.y`: Array der Lösungswerte
-- `sol.success`: Ob die Integration erfolgreich war
+- `sol.success`: ob die Integration erfolgreich war
 
-**Einfaches Beispiel - Exponentieller Zerfall:**
+[NOTICE]
+Wenn die Lösung innerhalb von `t_span` z. B. gegen unendlich strebt, kann der Solver abbrechen,
+bevor er `t_end` erreicht: `sol.success` wird dann `False`, und `sol.t[-1]` (der Index `-1`
+adressiert das letzte Element) liegt deutlich vor dem angeforderten Endzeitpunkt.
+[ENDNOTICE]
 
-Das Problem **dy/dt = -k*y** mit **y(0) = y₀** beschreibt exponentiellen Zerfall:
+**Konstantes Wachstum:**
+
+Das Problem **dy/dt = k** mit **y(0) = y₀** hat die Lösung `y(t) = y₀ + k*t`:
 
 ```python
 import numpy as np
 from scipy.integrate import solve_ivp
-import matplotlib.pyplot as plt
 
-# ODE definieren: dy/dt = -k*y
-def exponential_decay(t, y, k):
-    return -k * y
+# ODE definieren: dy/dt = k
+def constant_growth(t, y, k):
+    return [k]
 
 # Parameter und Anfangsbedingungen
 k = 0.5
 y0 = [10.0]  # Anfangswert als Liste
 t_span = (0, 10)  # Zeitbereich
-t_eval = np.linspace(0, 10, 100)  # Auswertungspunkte
+t_eval = np.linspace(0, 10, 5)  # Auswertungspunkte
 
 # ODE lösen
-sol = solve_ivp(exponential_decay, t_span, y0, t_eval=t_eval, args=(k,))
+sol = solve_ivp(constant_growth, t_span, y0, t_eval=t_eval, args=(k,))
 
 print(f"Erfolgreich gelöst: {sol.success}")
-print(f"Anzahl Zeitpunkte: {len(sol.t)}")
-print(f"Endwert: y({sol.t[-1]:.1f}) = {sol.y[0][-1]:.4f}")
+print(f"Werte: {sol.y[0]}")
+# Erfolgreich gelöst: True
+# Werte: [10.   11.25 12.5  13.75 15.  ]
 ```
-
-Optional: Umfassende ODE-Dokumentation finden Sie hier:
-[Solving ODEs with SciPy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html)
 
 [ER] Lösen Sie einfache gewöhnliche Differentialgleichungen mit `solve_ivp`:
 
-- Lösen Sie **dy/dt = 2*t** mit **y(0) = 1** im Bereich t ∈ [0, 3]
+- Lösen Sie dy/dt = 2*t mit y(0) = 1 im Bereich t ∈ [0, 3]
   (Definieren Sie ODE-Funktion, verwenden Sie `solve_ivp()` mit `t_span=(0, 3)`, `y0=[1]`)
   (Analytische Lösung: y(t) = t² + 1)
-- Bestimmen Sie die Lösung von **dy/dt = -3*y + 2** mit **y(0) = 5** für t ∈ [0, 2]
+- Bestimmen Sie die Lösung von dy/dt = -3*y + 2 mit y(0) = 5 für t ∈ [0, 2]
   (Verwenden Sie `t_span=(0, 2)`, `y0=[5]`)
-- Lösen Sie das logistische Wachstum **dy/dt = r*y*(1 - y/K)**
+- Lösen Sie das logistische Wachstum dy/dt = r*y*(1 - y/K)
   mit r=1, K=10, y(0)=1 für t ∈ [0, 5]
   (Verwenden Sie `args=(1, 10)` für Parameter r und K)
 
-Geben Sie für jede Lösung die Werte an drei Zeitpunkten aus (`t_eval=np.array([start, mitte, ende])`).
-Verwenden Sie `sol.t` und `sol.y` für die Ausgabe.
+Geben Sie für jede Lösung `sol.success` und die Werte an drei Zeitpunkten aus
+(`t_eval=np.array([start, mitte, ende])`, ausgelesen über `sol.t` und `sol.y`,
+6 Nachkommastellen, `:.6f`).
 <!-- ER3 -->
 
-<!-- time estimate: 25 min -->
-
-### Systeme von Differentialgleichungen
-
-Viele reale Probleme erfordern die gleichzeitige Lösung mehrerer gekoppelter ODEs.
-Dies wird als System von Differentialgleichungen bezeichnet.
-
-**Allgemeine Form eines Systems:**
-```
-dy₁/dt = f₁(t, y₁, y₂, ..., yₙ)
-dy₂/dt = f₂(t, y₁, y₂, ..., yₙ)
-...
-dyₙ/dt = fₙ(t, y₁, y₂, ..., yₙ)
-```
-
-**Implementierung in SciPy:**
-
-```python
-def system_ode(t, y):
-    y1, y2 = y  # Aufteilen des Zustandsvektors
-
-    # Systemgleichungen definieren
-    dy1_dt = f1(t, y1, y2)
-    dy2_dt = f2(t, y1, y2)
-
-    return [dy1_dt, dy2_dt]
-
-# Anfangswerte als Liste/Array
-y0 = [y1_0, y2_0]
-```
-
-**Beispiel - Räuber-Beute-Modell (Lotka-Volterra):**
-
-```python
-def lotka_volterra(t, y):
-    x, y_prey = y  # x: Räuber, y: Beute
-
-    # Parameter
-    alpha, beta, gamma, delta = 1.0, 0.1, 1.5, 0.075
-
-    # Systemgleichungen
-    dx_dt = delta * x * y_prey - gamma * x  # Räuber
-    dy_dt = alpha * y_prey - beta * x * y_prey  # Beute
-
-    return [dx_dt, dy_dt]
-
-# Lösung
-y0 = [10, 5]  # Anfangspopulationen
-t_span = (0, 15)
-sol = solve_ivp(lotka_volterra, t_span, y0, dense_output=True)
-```
-
-**Umwandlung höherer Ordnung in 1. Ordnung:**
-
-Eine Gleichung 2. Ordnung **d²y/dt² = f(t, y, dy/dt)** wird umgewandelt:
-```python
-# Substitution: y₁ = y, y₂ = dy/dt
-def second_order_to_first(t, Y):
-    y1, y2 = Y
-    dy1_dt = y2  # dy/dt
-    dy2_dt = f(t, y1, y2)  # d²y/dt²
-    return [dy1_dt, dy2_dt]
-```
-
-Optional: Weitere Systembeispiele finden Sie hier:
-[Systems of ODEs Examples](https://docs.scipy.org/doc/scipy/tutorial/integrate.html#ordinary-differential-equations)
-
-[ER] Lösen Sie Systeme von Differentialgleichungen:
-
-- Lösen Sie das gekoppelte lineare System mit x(0)=4, y(0)=2 für t ∈ [0, 10]:
-  `dx/dt = -0.5*x + 0.2*y, dy/dt = 0.3*x - 0.4*y`
-  Definieren Sie System-Funktion mit `def system(t, Y)`, entpacken Sie `x, y = Y`
-  (Rückgabe: `[dx_dt, dy_dt]`, verwenden Sie `y0=[4, 2]`)
-
-- Lösen Sie das gekoppelte System mit x(0)=1, y(0)=3 für t ∈ [0, 8]:
-  `dx/dt = 0.2*x - 0.1*y, dy/dt = 0.1*x + 0.3*y`
-  (Ähnliche Struktur wie letztes System, verwenden Sie `y0=[1, 3]`)
-
-Geben Sie für jedes System die Zustandswerte zu drei Zeitpunkten aus (`sol.y[0][i]`, `sol.y[1][i]`) und
-beschreiben Sie kurz das beobachtete Verhalten.
-<!-- ER4 -->
+[EQ] `sol.success` war bei Ihren drei Lösungen vermutlich `True`. Unter welchen Umständen könnte
+`solve_ivp` ein Anfangswertproblem nicht bis zum Ende von `t_span` lösen, und wie würden Sie das
+allein an `sol.t`/`sol.y` erkennen (ohne die analytische Lösung zu kennen)?
+<!-- EQ3 -->
 
 <!-- time estimate: 25 min -->
+
+### Weiterführend
+
+- [SciPy Integration Tutorial](https://docs.scipy.org/doc/scipy/tutorial/integrate.html):
+  Überblick über das gesamte `integrate`-Modul
+- [scipy.integrate Reference](https://docs.scipy.org/doc/scipy/reference/integrate.html):
+  vollständige Übersicht aller Funktionen des Moduls
 
 [ENDSECTION]
 
@@ -355,6 +278,17 @@ beschreiben Sie kurz das beobachtete Verhalten.
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+**Knackpunkte:**
+
+- [EREFR::1] + [EREFQ::1]: `error3 ≈ 1.85e-09` ist rund 8 Zehnerpotenzen kleiner als
+  `result3 ≈ 0.5`; Studierende erkennen, dass man den relativen Fehler betrachten muss, nicht
+  dessen absoluten Wert allein
+- [EREFR::2] + [EREFQ::2]: Studierende erkennen, dass `args` es erlaubt, dieselbe Funktion mit
+  wechselnden Parametern (z. B. `k`) aufzurufen, ohne die Funktion selbst neu zu definieren
+- [EREFR::3] + [EREFQ::3]: Studierende erkennen, dass `sol.success=False` und ein `sol.t[-1]`
+  deutlich vor dem angeforderten Endzeitpunkt auf einen vorzeitigen Abbruch hindeuten (z. B. bei
+  divergierenden Lösungen), auch ohne die analytische Lösung zu kennen
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-integrate.md]
