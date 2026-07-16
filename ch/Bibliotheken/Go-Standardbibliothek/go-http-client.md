@@ -1,5 +1,5 @@
 title: "Go: 'http.Client' und Senden von HTTP-Anfragen"
-stage: draft
+stage: alpha
 timevalue: 0.75
 difficulty: 2
 assumes: go-interfaces
