@@ -84,13 +84,11 @@ INSTALLED_APPS = [
 ```
 
 [ER] Tragen Sie `'webapp'` in `INSTALLED_APPS` in `settings.py` ein.
-<!-- ER1 -->
 
 [EQ] `startapp` legt den `webapp`-Ordner unabhängig von `INSTALLED_APPS` an — der Ordner
 existiert also auch ohne den Eintrag. Warum schlägt `python manage.py startapp` trotzdem nicht
 fehl, wenn Sie den Eintrag vergessen, obwohl Django die App dann nicht als installiert
 betrachtet?
-<!-- EQ1 -->
 
 <!-- time estimate: 10 min -->
 
@@ -108,7 +106,6 @@ Abschnitte:
 
 [EQ] Öffnen Sie `settings.py` und beantworten Sie: 
 Was ist der aktuelle Wert von `DEBUG` und warum ist dies wichtig?
-<!-- EQ2 -->
 
 **manage.py - Projekt-Verwaltungsskript**
 
@@ -136,7 +133,6 @@ Weitere Details zu Views finden Sie in [PARTREF::django-views].
 mit folgendem Inhalt:
 
 [SNIPPET::ALT::django_hello_view]
-<!-- ER2 -->
 
 **urls.py - URL-Routing-Konfiguration**
 
@@ -158,7 +154,6 @@ Eine detaillierte Erklärung der `path()`-Funktion finden Sie in [PARTREF::djang
 [EQ] Untersuchen Sie die bisherige Projekt-`urls.py` (in `meinprojekt/`). Welche Route ist
 standardmäßig definiert, und warum existiert diese Route bereits, obwohl Sie sie nicht selbst
 mit `path()` angelegt haben?
-<!-- EQ3 -->
 
 [ER] Erstellen Sie eine `urls.py` in der App `webapp` mit einer Route für Ihre neue View:
 
@@ -167,7 +162,6 @@ mit `path()` angelegt haben?
 Binden Sie diese App-`urls.py` in der Projekt-`urls.py` mit `include()` ein:
 
 [SNIPPET::ALT::django_project_urls2]
-<!-- ER3 -->
 
 [HINT::Wie verbinde ich eine View mit einer URL?]
 Zwei Schritte:
@@ -192,7 +186,6 @@ starten Sie ihn neu mit `python manage.py runserver 8071` (oder dem von Ihnen ve
 
 [EQ] Aktualisieren Sie die Browserseite. Was sehen Sie jetzt anstelle der Willkommensseite?
 Erklären Sie, warum die `urls.py`-Konfiguration notwendig ist, um die View zu sehen.
-<!-- EQ4 -->
 <!-- time estimate: 25 min -->
 
 ### Darstellung mit Templates
@@ -221,7 +214,6 @@ Erstellen Sie in `webapp/` das Verzeichnis `templates/`
 und legen Sie darin die Datei `hello.html` mit folgendem Inhalt an:
 
 [SNIPPET::ALT::django_project_template]
-<!-- ER4 -->
 
 In der `TEMPLATES`-Konfiguration von `settings.py` ist `APP_DIRS` bereits standardmäßig `True`.
 
@@ -235,12 +227,10 @@ einen veralteten Stand geladen. Beenden Sie ihn mit Strg+C und starten Sie ihn n
 [EQ] Aktualisieren Sie die Browserseite. Was hat sich gegenüber der
 vorherigen Ansicht geändert? Warum ist die Trennung von Darstellung
 und Logik sinnvoll?
-<!-- EQ5 -->
 
 [EQ] Anders als beim Erstellen der App (wo Sie `webapp` manuell in `INSTALLED_APPS` eintragen
 mussten) mussten Sie `settings.py` diesmal nicht anfassen, damit Django Ihr Template findet.
 Warum reicht hier die Ordnerstruktur allein aus?
-<!-- EQ6 -->
 <!-- time estimate: 20 min -->
 
 ### Weiterführend
