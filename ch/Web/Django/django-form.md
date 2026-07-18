@@ -2,7 +2,7 @@ title: Django Formularbehandlung
 stage: draft
 timevalue: 1.5
 difficulty: 2
-requires: django-routing
+requires: django-template
 assumes: http-GET, http-POST
 ---
 

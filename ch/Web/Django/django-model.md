@@ -2,7 +2,7 @@ title: Django Modelle und ORM
 stage: draft
 timevalue: 2.25
 difficulty: 2
-requires: django-admin
+requires: django-project
 assumes: sql-basics, sql-SELECT, sql-UPDATE-VIEW-CASE
 ---
 

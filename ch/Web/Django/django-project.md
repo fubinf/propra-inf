@@ -117,7 +117,7 @@ Die `manage.py` ist ein Wrapper-Skript im Projektroot, das die richtige
 ```
 
 Damit ist `manage.py` der zentrale Zugriffspunkt für alle projektspezifischen Django-Befehle.
-Weitere Details zu den verfügbaren Befehlen finden Sie in [PARTREF::django-admin].
+Welche Befehle das im Einzelnen sind, lernen Sie nach Bedarf in den folgenden Aufgaben kennen.
 
 **views.py - View-Funktionen**
 
@@ -145,7 +145,7 @@ dafür ist `path()` mit drei Hauptparametern:
 - `view`: die View-Funktion, die bei einem Aufruf ausgeführt wird
 - `name`: ein eindeutiger Name für die Route
 
-Eine detaillierte Erklärung der `path()`-Funktion finden Sie in [PARTREF::django-routing].
+Eine detaillierte Erklärung der `path()`-Funktion finden Sie in [PARTREF::django-views].
 
 ```python
 [SNIPPET::ITREE:/Web/Django/django-project-urls.py::django_project_urls]
