@@ -42,14 +42,18 @@ Ein HTML-Formular sendet seine Daten mit einer von zwei Methoden:
 
 ### GET-Formular: Suche
 
+Die Suche greift auf die in [PARTREF::django-model] definierten `Student`-Objekte zu, über
+`Student.objects.filter(name=...)` — dieselbe exakte Übereinstimmungssuche, die Sie dort
+bereits kennengelernt haben.
+
 [ER] Erstellen Sie in `views.py` zwei View-Funktionen — eine zeigt das Suchformular an, die
-andere verarbeitet die Suchanfrage:
+andere verarbeitet die Suchanfrage und filtert die Studierenden nach exaktem Namen:
 
 [SNIPPET::ALT::django_form_search_views]
 <!-- ER1 -->
 
-[ER] Erstellen Sie das Template `search_form.html` mit einem Formular, das die
-GET-Methode verwendet:
+[ER] Erstellen Sie das Template `search_form.html` mit einem Formular, das die GET-Methode
+verwendet, und einer Liste für die Treffer:
 
 [SNIPPET::ALT::django_form_search_html]
 <!-- ER2 -->
@@ -59,11 +63,14 @@ GET-Methode verwendet:
 [SNIPPET::ALT::django_form_urls_search]
 <!-- ER3 -->
 
-[EQ] Rufen Sie `http://127.0.0.1:8071/search-form/` auf, geben Sie einen Suchbegriff ein und
-senden Sie ab. Wie verändert sich die URL nach dem Absenden, und wo taucht Ihr Suchbegriff
-auf? Wenn Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
+[EQ] Rufen Sie `http://127.0.0.1:8071/search-form/` auf und suchen Sie nach dem exakten
+Namen eines bereits registrierten Studierenden (aus [PARTREF::django-model]/
+[PARTREF::django-form]). Wie verändert sich die URL nach dem Absenden, und wo taucht Ihr
+Suchbegriff auf? Suchen Sie anschließend nach einem Namen, den es nicht gibt — was wird
+angezeigt, und welches Template-Tag sorgt dafür, dass die Seite dabei nicht fehlerhaft
+wird? Wenn Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
 <!-- EQ1 -->
-<!-- time estimate: 20 min -->
+<!-- time estimate: 21 min -->
 
 ### POST-Formular und CSRF-Schutz
 
@@ -87,7 +94,7 @@ echten Formularen und verwenden daher regulär `{% csrf_token %}` statt `@csrf_e
 <!-- ER4 -->
 
 [ER] Erstellen Sie das Template `search_post.html` mit einem POST-Formular (inklusive
-`{% csrf_token %}`):
+`{% csrf_token %}`) und einer Liste für die Treffer:
 
 [SNIPPET::ALT::django_form_searchpost_html]
 <!-- ER5 -->
@@ -97,12 +104,12 @@ echten Formularen und verwenden daher regulär `{% csrf_token %}` statt `@csrf_e
 [SNIPPET::ALT::django_form_urls_searchpost]
 <!-- ER6 -->
 
-[EQ] Suchen Sie unter `http://127.0.0.1:8071/search-post/` nach einem Begriff. Worin
-unterscheidet sich die URL nach dem Absenden gegenüber dem GET-Formular aus [EREFQ::1], und
-was würde passieren, wenn Sie `{% csrf_token %}` aus dem Formular entfernen? Wenn Sie einen
-anderen Port verwenden, passen Sie den Link entsprechend an.
+[EQ] Suchen Sie unter `http://127.0.0.1:8071/search-post/` nach demselben Namen wie in
+[EREFQ::1]. Worin unterscheidet sich die URL nach dem Absenden gegenüber dem GET-Formular,
+und was würde passieren, wenn Sie `{% csrf_token %}` aus dem Formular entfernen? Wenn Sie
+einen anderen Port verwenden, passen Sie den Link entsprechend an.
 <!-- EQ2 -->
-<!-- time estimate: 20 min -->
+<!-- time estimate: 21 min -->
 
 ### Registrierung mit Datenbank-Persistenz
 
@@ -199,8 +206,10 @@ passen Sie den Link entsprechend an.
   einen Datensatz an und leitet mit `redirect(reverse("student_detail", args=[student.id]))`
   auf dessen Detailseite weiter; Student erkennt an der angezeigten Detailseite, dass die
   Daten tatsächlich gespeichert (nicht nur zurückgespiegelt) wurden.
-- [EREFR::5]: Das POST-Formular enthält `{% csrf_token %}`; ohne dieses Token weist Django
-  den POST mit einem 403-Fehler ab.
+- [EREFR::1] + [EREFQ::1]: Die `search`-View verwendet `Student.objects.filter(name=...)`
+  statt `.get(...)` — eine Suche ohne Treffer liefert dadurch eine leere, aber gültige
+  Liste (abgefangen mit `{% empty %}`) statt eines Absturzes; Student erkennt diesen
+  bewussten Unterschied zur `get()`-Verwendung aus [PARTREF::django-model].
 - [EREFQ::4]: Student erkennt, dass `get()` bei mehrfach vorkommendem Feld nur einen Wert
   liefert, `getlist()` dagegen alle — Letzteres ist bei Mehrfachauswahl (Checkboxen) nötig.
 
