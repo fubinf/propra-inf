@@ -1,6 +1,6 @@
-title: Django Modelle und ORM
+title: Django Modelle und Migrationen
 stage: draft
-timevalue: 2.25
+timevalue: 2
 difficulty: 2
 requires: django-project
 assumes: sql-basics, sql-SELECT, sql-UPDATE-VIEW-CASE
@@ -8,501 +8,329 @@ assumes: sql-basics, sql-SELECT, sql-UPDATE-VIEW-CASE
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe das Konzept von Django ORM und dessen Vor- und Nachteile.
-- Ich kann Django-Modelle definieren und Datenbankmigrationen durchführen.
-- Ich kann grundlegende CRUD-Operationen (Create, Read, Update, Delete) mit Django-Modellen ausführen.
-- Ich verstehe die Beziehung zwischen Django-Modellen und Datenbanktabellen.
+- Ich verstehe, wie ein Django-Model die Struktur einer Datenbanktabelle abbildet und wie
+  Migrations Änderungen daran nachvollziehbar machen.
+- Ich kann ein eigenes Model definieren und über die Admin-Oberfläche sowie die Shell verwalten.
+- Ich kann grundlegende Datenoperationen (Anlegen, Lesen, Ändern, Löschen) auf einzelnen
+  Objekten ausführen.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Django bietet ein mächtiges Object-Relational Mapping (ORM) System, das es ermöglicht,  
-mit Datenbanken zu arbeiten, ohne direkt SQL schreiben zu müssen.  
-Das ORM fungiert als Brücke zwischen Python-Objekten und Datenbankstrukturen und  
-unterstützt verschiedene Datenbanksysteme wie SQLite, PostgreSQL, MySQL und Oracle.
-
-In dieser Aufgabe lernen wir, wie man Modelle definiert und grundlegende Datenbankoperationen durchführt.
+Datenbanktabellen von Hand per SQL zu pflegen ist fehleranfällig und bindet den Code eng an
+ein bestimmtes Datenbanksystem. Django bietet dafür ein Object-Relational Mapping (ORM): Eine
+Python-Klasse beschreibt die Tabellenstruktur, und Django übersetzt Lese- und Schreibzugriffe
+automatisch in SQL. Wie jede Abstraktion hat das seinen Preis, macht aber den alltäglichen
+Umgang mit Daten deutlich einfacher.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-Sie arbeiten weiter mit dem `meinprojekt`-Projekt, das Sie in [PARTREF::django-basics] erstellt haben.
-Alle folgenden Änderungen werden Sie in diesem Projekt durchführen.
+Sie arbeiten weiter mit dem `meinprojekt`-Projekt und der App `webapp`, die Sie in
+[PARTREF::django-project] angelegt haben. Alle folgenden Änderungen finden in `webapp` statt.
 
-### Was ist Django ORM?
+### Was ist ein Django-Model?
 
-Object-Relational Mapping (ORM) ist eine Technik, die es ermöglicht,  
-zwischen objektorientierten Programmiersprachen und relationalen Datenbanken zu übersetzen.
+Ein **Model** ist eine Python-Klasse, die eine Datenbanktabelle beschreibt:
 
-**Vorteile von ORM:**
+- Die Klasse entspricht der Tabelle.
+- Jedes Klassenattribut entspricht einer Spalte.
+- Jede Instanz der Klasse entspricht einer Zeile.
 
-- Höhere Entwicklungseffizienz
-- Datenbankwechsel ohne Code-Änderungen möglich
-- Schutz vor SQL-Injection-Angriffen
-- Automatische Validierung und Typsicherheit
+Django erzeugt aus dieser Klassendefinition automatisch die passenden SQL-Befehle (vgl.
+[PARTREF::sql-basics] für die Tabellenkonzepte selbst).
 
-**Nachteile von ORM:**
-
-- Performance-Overhead bei der SQL-Generierung
-- Weniger Kontrolle über komplexe Abfragen
-- Kann SQL-Kenntnisse vernachlässigen lassen
-
-**ORM-Entsprechungen (vgl. [PARTREF::sql-basics] für Datenbank-Konzepte):**
-
-- Python-Klasse ↔ Datenbanktabelle
-- Klassenattribut ↔ Tabellenspalte
-- Klasseninstanz ↔ Tabellenzeile
-
-
-[EQ] Erklären Sie in eigenen Worten, was ORM bedeutet und welche Hauptvorteile es bietet.  
-<!-- EQ1 -->  
+[EQ] Erklären Sie in eigenen Worten, wie eine Model-Klasse mit einer Datenbanktabelle
+zusammenhängt, und nennen Sie ein Beispiel, wie sich eine Änderung am Model (z. B. ein
+neues Attribut) auf die Tabelle auswirkt.
+<!-- EQ1 -->
 <!-- time estimate: 10 min -->
 
-### Django-App für Modelle erstellen
+### Ein Model definieren
 
-Django-Modelle müssen in einer App definiert werden.  
-Erstellen Sie eine neue App für unsere Datenbankexperimente:
+Model-Klassen werden in der Datei `models.py` der jeweiligen App definiert:
 
-[EC] Erstellen Sie eine neue Django-App namens `mymodels`:
+[ER] Öffnen Sie `models.py` in `webapp` und definieren Sie folgendes Model:
+
+[SNIPPET::ALT::django_model_student_basic]
+<!-- ER1 -->
+
+**Feldtypen** legen fest, welche Art von Daten eine Spalte speichert:
+
+- `CharField(max_length=n)`: Text mit fester maximaler Länge (`max_length` ist erforderlich).
+- `IntegerField()`: Ganzzahlen.
+- `EmailField()`: Text mit zusätzlicher Formatvalidierung für E-Mail-Adressen.
+
+**Feldoptionen** `null` und `blank` werden häufig verwechselt, regeln aber unterschiedliche
+Ebenen: `null=True` erlaubt den Datenbankwert `NULL` (Datenbankebene), während `blank=True`
+ein Feld in Formularen/Validierung als optional markiert (Eingabeebene). Ein Feld kann auch
+beides gleichzeitig sein — Standard für beide ist `False`.
+
+[HINT::Wann brauche ich null, wann blank?]
+Ein Beispiel macht den Unterschied greifbar: Ein optionales Kommentarfeld vom Typ
+`CharField` sollte `blank=True` bekommen (im Formular darf es leer bleiben), aber **nicht**
+zwingend `null=True` — Django speichert bei `CharField` einen leeren String `""` statt
+`NULL`, wenn nichts eingegeben wurde. `null=True` ist eher für Felder wie `DateField` oder
+`IntegerField` relevant, bei denen es keinen sinnvollen "leeren" Wert gibt und daher
+`NULL` in der Datenbank stehen muss.
+[ENDHINT]
+<!-- time estimate: 10 min -->
+
+### Migrationen erstellen und anwenden
+
+**Migrations** übersetzen Änderungen an Model-Klassen in Datenbankbefehle (vergleichbar mit
+SQL `CREATE TABLE`/`ALTER TABLE`, siehe [PARTREF::sql-basics]) und machen sie nachvollziehbar.
+
+[EC] Erstellen Sie eine Migration für das neue Model:
 
 ```bash
-python manage.py startapp mymodels
+python manage.py makemigrations webapp
 ```
 <!-- EC1 -->
-
-[ER] Registrieren Sie die neue App in `settings.py`:  
-
-Fügen Sie `'mymodels'` zur `INSTALLED_APPS`-Liste hinzu:
-
-```python
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'mymodels',  # Neue App hinzufügen
-]
-```
-<!-- ER1 -->  
-<!-- time estimate: 10 min -->
-
-### Erstes Django-Modell definieren
-
-[ER] Erstellen Sie in `mymodels/models.py` ein einfaches Modell:
-
-```python
-from django.db import models
-
-class Student(models.Model):
-    name = models.CharField(max_length=100)
-    age = models.IntegerField()
-    email = models.EmailField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return self.name
-```
-<!-- ER2 -->
-
-**Wichtige Feldtypen:**
-
-- `CharField(max_length=n)` - Textfeld mit maximaler Länge
-- `IntegerField()` - Ganzzahlen
-- `EmailField()` - E-Mail-Adressen (mit Validierung)
-- `DateTimeField()` - Datum und Zeit
-- `auto_now_add=True` - Automatisch beim Erstellen setzen
-
-Die `__str__`-Methode legt fest, wie das Objekt als String dargestellt wird.
-
-
-[EQ] Was bewirkt der Parameter `auto_now_add=True` bei einem `DateTimeField`?  
-<!-- EQ2 -->  
-<!-- time estimate: 10 min -->
-
-### Datenbankmigrationen erstellen und anwenden
-
-Django verwendet Migrationen, um Änderungen am Datenbankschema zu verwalten (vergleichbar mit SQL `ALTER TABLE`-Operationen, siehe [PARTREF::sql-basics]):
-
-[EC] Erstellen Sie eine Migration für das neue Modell:
-
-```bash
-python manage.py makemigrations mymodels
-```
-<!-- EC2 -->
 
 [EC] Wenden Sie die Migration an:
 
 ```bash
 python manage.py migrate
 ```
+<!-- EC2 -->
+
+[EC] Betrachten Sie die erzeugte Migrationsdatei:
+
+```bash
+cat webapp/migrations/0001_initial.py
+```
 <!-- EC3 -->
 
 [NOTICE]
-Django erstellt automatisch eine `id`-Spalte als Primärschlüssel, 
-auch wenn Sie keinen explizit definieren.
+Django legt automatisch eine `id`-Spalte als Primärschlüssel an, auch wenn Sie keine
+eigene definieren.
 [ENDNOTICE]
 
-[EC] Überprüfen Sie die erstellte Migrationsdatei:
+[EQ] Welche Datei hat `makemigrations` erzeugt, und was genau enthält sie?
+<!-- EQ2 -->
+<!-- time estimate: 8 min -->
 
-```bash
-cat mymodels/migrations/0001_initial.py
-```
-<!-- EC4 -->
+### Die `__str__()`-Methode
 
-[EQ] Welche Datei wurde durch `makemigrations` erstellt und was enthält sie?  
-<!-- EQ3 -->  
-
-### Django Shell für Datenbankoperationen
-
-Die Django Shell ermöglicht interaktive Datenbankoperationen:
-
-[EC] Starten Sie die Django Shell:
+[ER] Öffnen Sie die Shell und legen Sie einen ersten Datensatz an:
 
 ```bash
 python manage.py shell
 ```
-<!-- EC5 -->
+
+```python
+from webapp.models import Student
+Student.objects.create(name="Anna Müller", age=22, email="anna@example.com")
+print(Student.objects.all())
+```
+<!-- ER2 -->
+
+Die Ausgabe zeigt vermutlich `<QuerySet [<Student: Student object (1)>]>` — nicht besonders
+aussagekräftig. Der Grund: Ohne eigene Angabe stellt Django ein Objekt standardmäßig als
+`Klassenname object (id)` dar. Die Methode `__str__()` legt fest, wie ein Objekt als
+Text dargestellt wird — genau das lässt sich hier festlegen.
+
+[ER] Ergänzen Sie das Model um `__str__()`:
+
+[SNIPPET::ALT::django_model_student_str]
+<!-- ER3 -->
+
+[EQ] Verlassen Sie die Shell (`exit()`), starten Sie sie neu und rufen Sie erneut
+`Student.objects.all()` auf. Was hat sich an der Ausgabe geändert, und warum war dafür
+keine neue Migration nötig (anders als bei einem neuen Feld)?
+<!-- EQ3 -->
 <!-- time estimate: 10 min -->
 
-### Daten erstellen (CREATE)
+### Daten anlegen (CREATE)
 
-Das Erstellen von Daten in Django entspricht SQL `INSERT`-Statements (vgl. [PARTREF::sql-SELECT]).
-
-[ER] Führen Sie in der Django Shell folgende Operationen aus:
+Ein Objekt lässt sich auf zwei Arten anlegen:
 
 ```python
-# Modell importieren
-from mymodels.models import Student
-
-# Ersten Studenten erstellen
-student1 = Student(name="Anna Müller", age=22, email="anna@example.com")
-student1.save()
-
-# Zweiten Studenten erstellen (alternative Methode)
-student2 = Student.objects.create(
-    name="Max Schmidt", 
-    age=24, 
-    email="max@example.com"
-)
-
-# Dritten Studenten erstellen
-student3 = Student.objects.create(
-    name="Lisa Weber", 
-    age=21, 
-    email="lisa@example.com"
-)
-
-print("Studenten erstellt!")
-```
-<!-- EC6 -->
-
-[EQ] Was ist der Unterschied zwischen `Student()` + `save()` und `Student.objects.create()`?  
-<!-- EQ4 -->  
-<!-- time estimate: 15 min -->
-
-### Daten abfragen (READ)
-
-Django-Queries mit `filter()` entsprechen SQL `WHERE`-Klauseln (vgl. [PARTREF::sql-SELECT]).
-
-[ER] Führen Sie verschiedene Abfragen aus:
-
-```python
-# Alle Studenten abrufen
-all_students = Student.objects.all()
-print("Alle Studenten:", all_students)
-
-# Einzelnen Studenten nach ID abrufen
-student = Student.objects.get(id=1)
-print("Student mit ID 1:", student)
-
-# Studenten nach Name filtern
-anna = Student.objects.filter(name="Anna Müller")
-print("Anna:", anna)
-
-# Studenten nach Alter filtern
-young_students = Student.objects.filter(age__lt=23)  # Alter < 23
-print("Junge Studenten:", young_students)
-
-# Anzahl der Studenten
-count = Student.objects.count()
-print("Anzahl Studenten:", count)
-
-# Studenten sortieren
-sorted_students = Student.objects.order_by('age')
-print("Nach Alter sortiert:", sorted_students)
-```
-<!-- EC7 -->
-
-**Wichtige QuerySet-Methoden:**
-
-- `all()` - Alle Objekte
-- `get()` - Ein spezifisches Objekt (wirft Fehler wenn nicht eindeutig)
-- `filter()` - Objekte nach Bedingungen filtern
-- `count()` - Anzahl der Objekte
-- `order_by()` - Sortierung
-
-
-[EQ] Was passiert, wenn `get()` kein Objekt oder mehrere Objekte findet?  
-<!-- EQ5 -->  
-<!-- time estimate: 15 min -->
-
-### Daten aktualisieren (UPDATE)
-
-Das Aktualisieren mit Django entspricht SQL `UPDATE`-Statements (vgl. [PARTREF::sql-UPDATE-VIEW-CASE]).
-Wie in SQL ist es wichtig, genau zu spezifizieren, welche Datensätze aktualisiert werden sollen.
-
-[ER] Aktualisieren Sie Studentendaten:
-
-```python
-# Einzelnen Studenten aktualisieren
-student = Student.objects.get(id=1)
-student.age = 23
+# Variante 1: Objekt erzeugen, dann speichern
+student = Student(name="Max Schmidt", age=24, email="max@example.com")
 student.save()
-print("Anna's Alter aktualisiert")
 
-# Mehrere Studenten gleichzeitig aktualisieren
-Student.objects.filter(age__gte=23).update(age=25)
-print("Ältere Studenten aktualisiert")
-
-# Überprüfung
-updated_students = Student.objects.all()
-for s in updated_students:
-    print(f"{s.name}: {s.age} Jahre")
+# Variante 2: Erzeugen und speichern in einem Schritt
+Student.objects.create(name="Lisa Weber", age=21, email="lisa@example.com")
 ```
-<!-- EC8 -->
 
-[EQ] Was ist der Unterschied zwischen `save()` und `update()` bei der Datenaktualisierung?  
-<!-- EQ6 -->  
+[ER] Legen Sie in der Shell beide zusätzlichen Studierenden mit jeweils einer der beiden
+Varianten an und lassen Sie sich danach `Student.objects.all()` ausgeben.
+<!-- ER4 -->
+
+[EQ] Beide Varianten führen zum selben Ergebnis in der Datenbank. Gibt es dennoch eine
+Situation, in der Sie zwingend `Student(...)` + `save()` statt `objects.create()`
+verwenden müssten (Tipp: Was passiert zwischen dem Erzeugen des Objekts und dem
+Speichern)?
+<!-- EQ4 -->
+<!-- time estimate: 12 min -->
+
+### Daten lesen (READ)
+
+Lesezugriffe mit Django entsprechen SQL `SELECT`-Abfragen (vgl. [PARTREF::sql-SELECT]):
+
+```python
+Student.objects.all()                    # alle Objekte
+Student.objects.get(id=1)                # genau ein Objekt anhand der ID
+Student.objects.filter(name="Anna Müller")  # Objekte mit exaktem Feldwert
+```
+
+[ER] Rufen Sie in der Shell alle drei Varianten mit Ihren eigenen Daten auf.
+<!-- ER5 -->
+
+[EQ] `get()` und `filter()` liefern beide Objekte anhand eines Kriteriums zurück, aber
+mit unterschiedlichem Rückgabetyp. Was passiert bei `get()`, wenn kein oder mehr als ein
+Objekt zum Kriterium passt — und warum ist das bei `filter()` unproblematisch?
+<!-- EQ5 -->
 <!-- time estimate: 10 min -->
+
+### Daten ändern (UPDATE)
+
+Ändern mit Django entspricht SQL `UPDATE` (vgl. [PARTREF::sql-UPDATE-VIEW-CASE]): Ein
+Objekt wird geladen, ein Attribut verändert, dann gespeichert.
+
+[ER] Laden Sie einen Ihrer Studierenden per `get()`, ändern Sie das Attribut `age` und
+speichern Sie die Änderung mit `save()`. Bestätigen Sie die Änderung mit einem erneuten
+`get()`.
+<!-- ER6 -->
+
+[EQ] Was würde passieren, wenn Sie `save()` nach der Änderung vergessen? Woran würden Sie
+das bemerken?
+<!-- EQ6 -->
+<!-- time estimate: 7 min -->
 
 ### Daten löschen (DELETE)
 
-Das Löschen in Django entspricht SQL `DELETE`-Statements (vgl. [PARTREF::sql-basics]).
-
-[ER] Löschen Sie Studentendaten:
-
-```python
-# Einzelnen Studenten löschen
-student_to_delete = Student.objects.get(id=2)
-student_to_delete.delete()
-print("Max Schmidt gelöscht")
-
-# Mehrere Studenten nach Bedingung löschen
-Student.objects.filter(age=25).delete()
-print("Studenten mit Alter 25 gelöscht")
-
-# Verbleibende Studenten anzeigen
-remaining = Student.objects.all()
-print("Verbleibende Studenten:", remaining)
-
-# Beenden
-exit()
-```
-<!-- EC9 -->
-
-[WARNING]
-`delete()` löscht Daten permanent ohne Rückfrage!
-Seien Sie besonders vorsichtig mit `objects.all().delete()`.  
-[ENDWARNING]
-
-### Erweiterte Modellfelder
-
-[ER] Erweitern Sie das Student-Modell um weitere Felder:
-
-```python
-from django.db import models
-
-class Student(models.Model):
-    name = models.CharField(max_length=100)
-    age = models.IntegerField()
-    email = models.EmailField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField(default=True)
-    grade_average = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
-    
-    def __str__(self):
-        return f"{self.name} ({self.age})"
-```
-<!-- ER3 -->
-
-**Neue Feldtypen:**
-
-- `auto_now=True` - Automatisch bei jeder Änderung aktualisieren
-- `BooleanField()` - True/False-Werte
-- `DecimalField()` - Dezimalzahlen mit fester Präzision
-- `null=True` - NULL-Werte in der Datenbank erlaubt
-- `blank=True` - Leere Werte in Formularen erlaubt
-
-[EC] Erstellen und anwenden Sie die Migration:
-
-```bash
-python manage.py makemigrations mymodels
-python manage.py migrate
-python manage.py showmigrations mymodels
-```
-<!-- EC10 -->  
-<!-- time estimate: 15 min -->
-
-### View für Datenbankoperationen erstellen
-
-[ER] Erstellen Sie in `mymodels/views.py` eine View für Datenbankoperationen:
-
-```python
-from django.http import HttpResponse
-from django.db.models import Avg
-from .models import Student
-
-def student_list(request):
-    students = Student.objects.all().order_by('name')
-    
-    html = "<h1>Studentenliste</h1><ul>"
-    for student in students:
-        html += f"<li>{student.name} - {student.age} Jahre - {student.email}</li>"
-    html += "</ul>"
-    
-    # Statistiken hinzufügen
-    total_count = Student.objects.count()
-    avg_age = Student.objects.aggregate(Avg('age'))['age__avg']
-    
-    html += f"<p>Gesamt: {total_count} Studenten</p>"
-    if avg_age is not None:
-        html += f"<p>Durchschnittsalter: {avg_age:.1f} Jahre</p>"
-    
-    return HttpResponse(html)
-
-def add_sample_data(request):
-    # Beispieldaten hinzufügen
-    students_data = [
-        {"name": "Tom Fischer", "age": 20, "email": "tom@example.com"},
-        {"name": "Sarah Klein", "age": 22, "email": "sarah@example.com"},
-        {"name": "David Braun", "age": 19, "email": "david@example.com"},
-    ]
-    
-    for data in students_data:
-        Student.objects.get_or_create(**data)
-    
-    return HttpResponse("Beispieldaten hinzugefügt! <a href='/students/'>Zur Liste</a>")
-```
-<!-- ER4 -->
-
-[ER] Erstellen Sie `mymodels/urls.py`:
-
-```python
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.student_list, name='student_list'),
-    path('add-sample/', views.add_sample_data, name='add_sample'),
-]
-```
-<!-- ER5 -->
-
-[ER] Aktualisieren Sie die Haupt-`urls.py`:
-
-```python
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('students/', include('mymodels.urls')),
-]
-```
-<!-- ER6 -->
-
-**Django-Server starten**:
-```bash
-cd meinprojekt
-python manage.py runserver
-```
-
-**Häufige Probleme beim Starten des Servers**:
-
-**Migrationen anwenden** (wenn Sie eine Warnung über nicht angewendete Migrationen sehen)
-```bash
-python manage.py migrate  # Wendet alle ausstehenden Datenbankmigrationen an
-```
-
-**Port-Konflikt lösen** (wenn Port 8000 bereits verwendet wird)
-```bash
-python manage.py runserver 8080  # Server auf einem alternativen Port starten
-```
-
-[EQ] Testen Sie die neuen URLs:  
-- `http://127.0.0.1:8000/students/add-sample/` - Beispieldaten hinzufügen  
-- `http://127.0.0.1:8000/students/` - Studentenliste anzeigen  
-<!-- EQ7 -->
-
-[EQ] Was bewirkt die Methode `get_or_create()` und warum ist sie nützlich?  
-<!-- EQ8 -->  
-<!-- time estimate: 25 min -->
-
-### Datenbankabfragen mit Lookup-Feldern
-
-[ER] Erweitern Sie `student_list` um erweiterte Filteroptionen:
-
-```python
-def student_list(request):
-    # URL-Parameter für Filterung
-    min_age = request.GET.get('min_age')
-    max_age = request.GET.get('max_age')
-    name_contains = request.GET.get('name')
-    
-    # Basis-QuerySet
-    students = Student.objects.all()
-    
-    # Filter anwenden
-    if min_age:
-        students = students.filter(age__gte=min_age)
-    
-    if max_age:
-        students = students.filter(age__lte=max_age)
-    
-    if name_contains:
-        students = students.filter(name__icontains=name_contains)
-    
-    html = "<h1>Studentenliste</h1><ul>"
-    for student in students:
-        html += f"<li>{student.name} - {student.age} Jahre - {student.email}</li>"
-    html += "</ul>"
-    
-    return HttpResponse(html)
-```
+[ER] Laden Sie einen Ihrer Studierenden per `get()` und löschen Sie ihn mit `delete()`.
+Bestätigen Sie mit `Student.objects.all()`, dass er verschwunden ist.
 <!-- ER7 -->
 
-[EQ] Wie können Sie die Filteroptionen in der URL anpassen, um spezifische Ergebnisse zu erhalten?  
-(Beispiel: `/students/?min_age=20&max_age=25&name=Tom`)  
-<!-- EQ9 -->  
+[WARNING]
+`delete()` entfernt den Datensatz sofort und endgültig, ohne Rückfrage.
+[ENDWARNING]
+
+[EQ] `Student.objects.get(id=2).delete()` und `Student.objects.get(id=2)` (ohne
+`delete()`) unterscheiden sich nur durch den Methodenaufruf, führen aber zu ganz
+unterschiedlichen Risiken. Welches Risiko besteht bei `delete()`, das bei einem reinen
+Lesezugriff nicht besteht?
+<!-- EQ7 -->
+<!-- time estimate: 7 min -->
+
+### Weitere Feldtypen
+
+[ER] Erweitern Sie das `Student`-Model um zwei weitere Felder:
+
+[SNIPPET::ALT::django_model_student_extended]
+<!-- ER8 -->
+
+- `BooleanField(default=True)`: Wahrheitswert, hier mit Standardwert `True`.
+- `DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)`: Dezimalzahl mit
+  fester Genauigkeit (hier: bis zu 3 Ziffern gesamt, davon 2 Nachkommastellen) — als
+  `null=True, blank=True` definiert, weil nicht jeder Studierende bereits einen
+  Notendurchschnitt hat.
+
+[EC] Erstellen und wenden Sie die Migration für die neuen Felder an:
+
+```bash
+python manage.py makemigrations webapp
+python manage.py migrate
+```
+<!-- EC4 -->
 <!-- time estimate: 15 min -->
+
+### Model in der Admin-Oberfläche verwalten
+
+Django bringt eine fertige Verwaltungsoberfläche mit, in der registrierte Models über den
+Browser statt über die Shell bearbeitet werden können.
+
+[ER] Registrieren Sie `Student` in `admin.py`:
+
+[SNIPPET::ALT::django_model_admin_register]
+<!-- ER9 -->
+
+Damit Sie sich an der Admin-Oberfläche anmelden können, benötigen Sie ein
+Administrator-Konto (**Superuser**) — ein Benutzer mit vollem Zugriff auf alle
+registrierten Models.
+
+[EC] Legen Sie einen Superuser an (folgen Sie den interaktiven Eingabeaufforderungen für
+Benutzername, E-Mail und Passwort):
+
+```bash
+python manage.py createsuperuser
+```
+<!-- EC5 -->
+
+[ER] Starten Sie den Entwicklungsserver, öffnen Sie `http://127.0.0.1:8071/admin/`, melden
+Sie sich mit Ihrem Superuser an und öffnen Sie die Übersicht Ihrer `Student`-Objekte.
+<!-- ER10 -->
+
+[EQ] Welche Studierenden werden in der Übersicht angezeigt, und woran erkennen Sie, dass
+hier dieselbe `__str__()`-Darstellung verwendet wird wie zuvor in der Shell?
+<!-- EQ8 -->
+<!-- time estimate: 15 min -->
+
+### Weitere Kommandos zur Datenverwaltung (Überblick)
+
+Die folgenden Befehle werden hier nur kurz vorgestellt, ohne dass Sie sie selbst ausführen
+müssen:
+
+- `python manage.py dbshell`: öffnet eine direkte SQL-Konsole zur Datenbank — die einzige
+  Möglichkeit, komplett am ORM vorbei mit der Datenbank zu arbeiten.
+- `python manage.py dumpdata webapp`: exportiert die aktuellen Daten einer App als JSON.
+- `python manage.py loaddata <datei>`: importiert zuvor exportierte Daten wieder.
+- `python manage.py flush`: löscht alle Daten aus allen Tabellen (Tabellenstruktur bleibt
+  erhalten).
+<!-- time estimate: 5 min -->
+
+### Admin-Oberfläche und ORM
+
+[EQ] Sie haben soeben über die Shell einen Studierenden mit `.objects.create(...)`
+angelegt und einen weiteren über die Admin-Oberfläche im Browser. Beide landen in
+derselben Datenbanktabelle. Läuft der Weg über die Admin-Oberfläche ebenso über das ORM
+wie der Weg über die Shell, oder wird das ORM dabei umgangen? Begründen Sie anhand dessen,
+was ORM eigentlich bedeutet.
+<!-- EQ9 -->
+<!-- time estimate: 11 min -->
 
 ### Weiterführend
 
-- [Django Models](https://docs.djangoproject.com/en/4.2/topics/db/models/) – Umfassende Dokumentation zu Django-Modellen und ORM
-- [Model field reference](https://docs.djangoproject.com/en/4.2/ref/models/fields/) – Detaillierte Referenz zu allen verfügbaren Feldtypen
-- [Making queries](https://docs.djangoproject.com/en/4.2/topics/db/queries/) – Dokumentation zu QuerySet-Methoden und Datenbankabfragen
+- [Models](https://docs.djangoproject.com/en/stable/topics/db/models/) – Umfassende
+  Dokumentation zu Django-Modellen
+- [Model field reference](https://docs.djangoproject.com/en/stable/ref/models/fields/) –
+  Referenz zu allen verfügbaren Feldtypen und -optionen
 
 [ENDSECTION]
 
-[SECTION::submission::information]
+[SECTION::submission::program]
 
-[INCLUDE::/_include/Submission-Markdowndokument.md]  
-[INCLUDE::/_include/Submission-Quellcode.md]  
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-### Fragen und Python-Dateien  
+**Knackpunkte:**
+
+- [EREFR::3] + [EREFQ::3]: Nach Ergänzen von `__str__()` zeigt die Shell den Namen statt
+  `Student object (1)`; Student erkennt, dass dafür keine Migration nötig war, weil
+  `__str__()` kein Datenbankfeld ist, sondern nur die Python-seitige Darstellung betrifft.
+- [EREFQ::9]: Student erkennt, dass sowohl der Shell-Weg als auch die Admin-Oberfläche
+  über dasselbe ORM laufen (jeder Schreibzugriff auf ein Model geht durch die
+  ORM-Übersetzungsschicht) — die Admin-Oberfläche vermeidet nur, dass man selbst
+  ORM-Syntax tippt, nicht dass ORM stattfindet.
+- [EREFQ::5]: Student erkennt, dass `get()` bei keinem oder mehreren Treffern einen Fehler
+  auslöst (eindeutiges Einzelobjekt erwartet), während `filter()` immer ein (ggf. leeres)
+  QuerySet zurückgibt.
+
+### Fragen und Python-Dateien
 [INCLUDE::ALT:django-model.md]
 
-### Kommandoprotokoll  
+### Kommandoprotokoll
 [PROT::ALT:django-model.prot]
 
 [ENDINSTRUCTOR]
