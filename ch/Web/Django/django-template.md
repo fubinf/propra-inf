@@ -91,8 +91,8 @@ Seite. Was wird angezeigt, und welches Tag ist dafür verantwortlich?
 ### Reflexion: Warum Wiederverwendung?
 
 Bisher hat `hello.html` seine gesamte HTML-Struktur (`<!DOCTYPE>`, `<head>`, `<body>`)
-selbst enthalten. Stellen Sie sich vor, Sie brauchen eine zweite Seite `welcome.html` mit
-demselben Kopfbereich, derselben Navigation und demselben Fußbereich.
+selbst enthalten. Stellen Sie sich vor, Sie brauchen eine zweite Seite mit demselben
+Kopfbereich, derselben Navigation und demselben Fußbereich.
 
 [EQ] Angenommen, jede Seite schreibt ihren kompletten `<head>`-Bereich, eine gemeinsame
 Kopfzeile und eine gemeinsame Fußzeile selbst aus (zusammen etwa 10 Zeilen). Wie viele
@@ -101,24 +101,36 @@ sich die Fußzeile später ändert? Überlegen Sie, welches Problem dadurch ents
 <!-- EQ4 -->
 <!-- time estimate: 12 min -->
 
-### Template-Vererbung
+### Template-Vererbung: eine Studierendenliste
 
 Template-Vererbung löst genau dieses Problem: Ein **Basis-Template** definiert die
 gemeinsame Struktur und markiert mit `{% block %}` die Stellen, die einzelne Seiten füllen.
 Ein **Kind-Template** übernimmt die Struktur mit `{% extends %}` und überschreibt nur die
-Blöcke.
+Blöcke. Als Beispiel bauen Sie eine Seite, die alle bisher registrierten Studierenden
+(aus [PARTREF::django-model]/[PARTREF::django-form]) auflistet.
 
 [ER] Erstellen Sie in `webapp/templates/` die Datei `base.html`:
 
 [SNIPPET::ALT::django_template_base]
 <!-- ER5 -->
 
-[ER] Erstellen Sie `welcome.html`, das von `base.html` erbt und nur die Blöcke füllt:
+[ER] Erstellen Sie eine View, die alle `Student`-Objekte lädt (mit der bereits aus
+[PARTREF::django-model] bekannten `.objects.all()`), und ein Template
+`students_list.html`, das von `base.html` erbt und die Liste mit `{% for %}` darstellt:
 
-[SNIPPET::ALT::django_template_welcome]
+[SNIPPET::ALT::django_template_view_students_list]
+
+[SNIPPET::ALT::django_template_students_list_html]
 <!-- ER6 -->
 
-[HINT::Wie hängen die Blocknamen in base.html und welcome.html zusammen?]
+Dabei kommen drei Filter zum Einsatz:
+
+- `title`: wandelt Text in Titelschreibweise um.
+- `default:"Noch keine Note"`: zeigt einen Ersatztext, falls `grade_average` `None` ist
+  (das Feld ist laut [PARTREF::django-model] optional).
+- `yesno:"Aktiv,Inaktiv"`: übersetzt einen Wahrheitswert in zwei wählbare Textalternativen.
+
+[HINT::Wie hängen die Blocknamen in base.html und students_list.html zusammen?]
 Ein `{% block content %}` im Kind-Template ersetzt genau den gleichnamigen
 `{% block content %}` im Basis-Template — die Namen müssen also übereinstimmen. Blöcke, die
 das Kind-Template nicht überschreibt (z. B. wenn Sie `{% block title %}` weglassen), behalten
@@ -126,19 +138,19 @@ den Inhalt aus `base.html` als Standard. Sie füllen also nur die Blöcke, die s
 unterscheiden.
 [ENDHINT]
 
-[ER] Erstellen Sie eine `welcome`-View in `views.py` und eine passende Route in `urls.py`:
+[ER] Fügen Sie die passende Route in `urls.py` hinzu:
 
-[SNIPPET::ALT::django_template_view_welcome]
-
-[SNIPPET::ALT::django_template_urls_welcome]
+[SNIPPET::ALT::django_template_urls_students_list]
 <!-- ER7 -->
 
-[EQ] Rufen Sie `http://127.0.0.1:8071/welcome/` auf. Die Kopf- und Fußzeile erscheinen,
-obwohl `welcome.html` sie nicht selbst enthält — woher kommen sie? Worin liegt der Vorteil
-gegenüber der in [EREFQ::4] betrachteten Wiederholung? Wenn Sie einen anderen Port
+[EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf. Die Kopf- und Fußzeile erscheinen,
+obwohl `students_list.html` sie nicht selbst enthält — woher kommen sie? Worin liegt der
+Vorteil gegenüber der in [EREFQ::4] betrachteten Wiederholung? Falls Sie noch keine
+Studierenden registriert haben, sollte die Seite trotzdem fehlerfrei laden — welches Tag
+sorgt dafür, dass eine leere Liste kein Problem ist? Wenn Sie einen anderen Port
 verwenden, passen Sie den Link entsprechend an.
 <!-- EQ5 -->
-<!-- time estimate: 20 min -->
+<!-- time estimate: 32 min -->
 
 ### Statische Dateien einbinden
 
@@ -165,55 +177,27 @@ mkdir -p webapp/static/css
 [SNIPPET::ALT::django_template_base_static]
 <!-- ER9 -->
 
-[EQ] Rufen Sie `http://127.0.0.1:8071/welcome/` auf. Die Seite ist jetzt formatiert, obwohl
-`welcome.html` selbst kein CSS enthält. Warum genügt es, `base.html` anzupassen, damit auch
-`welcome.html` das CSS erhält? Wenn Sie einen anderen Port verwenden, passen Sie den Link
-entsprechend an.
+[EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf. Die Seite ist jetzt formatiert, obwohl
+`students_list.html` selbst kein CSS enthält. Warum genügt es, `base.html` anzupassen,
+damit auch `students_list.html` das CSS erhält? Wenn Sie einen anderen Port verwenden,
+passen Sie den Link entsprechend an.
 <!-- EQ6 -->
-<!-- time estimate: 12 min -->
-
-### Template-Filter
-
-Filter verändern die Anzeige eines Wertes, ohne die Daten selbst zu ändern. Sie werden mit
-einem senkrechten Strich `|` hinter die Variable geschrieben (z. B. `{{ name|upper }}`).
-
-[ER] Erstellen Sie eine `filter_demo`-View mit verschiedenen Datentypen und ein Template
-`filter_demo.html`, das gängige Filter demonstriert:
-
-[SNIPPET::ALT::django_template_view_filter]
-
-[SNIPPET::ALT::django_template_filter_html]
-<!-- ER10 -->
-
-Die verwendeten Filter:
-
-- `upper` / `title`: wandelt Text in Groß- bzw. Titelschreibweise um.
-- `truncatechars:20`: kürzt Text auf 20 Zeichen.
-- `floatformat:2`: zeigt eine Zahl mit 2 Nachkommastellen.
-- `date:"d.m.Y"`: formatiert ein Datum.
-- `safe`: gibt HTML unverändert aus, statt es als Text zu maskieren.
-- `default:"Kein Wert"`: zeigt einen Ersatzwert, falls die Variable leer/nicht vorhanden ist.
-
-[ER] Fügen Sie die Route für `filter_demo` in `urls.py` hinzu:
-
-[SNIPPET::ALT::django_template_urls_filter]
-<!-- ER11 -->
 <!-- time estimate: 12 min -->
 
 ### Navigation mit `{% url %}`
 
 Damit Nutzer zwischen den Seiten wechseln können, braucht `base.html` eine Navigation. Für
-die Links verwenden Sie **nicht** fest codierte Pfade wie `href="/welcome/"`, sondern das
+die Links verwenden Sie **nicht** fest codierte Pfade wie `href="/students/"`, sondern das
 `{% url %}`-Tag mit dem Routennamen — das ist die Template-Seite der Reverse Resolution,
 deren Python-Seite (`reverse()`) Sie in [PARTREF::django-views] kennengelernt haben.
 
 [ER] Erweitern Sie `base.html` um eine Navigation, die mit `{% url %}` auf die benannten
-Routen `hello` und `welcome` verweist:
+Routen `hello` und `students_list` verweist:
 
 [SNIPPET::ALT::django_template_base_nav]
-<!-- ER12 -->
+<!-- ER10 -->
 
-[EQ] Rufen Sie `http://127.0.0.1:8071/welcome/` auf und schauen Sie im Seitenquelltext
+[EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf und schauen Sie im Seitenquelltext
 nach, zu welchen Pfaden die `{% url %}`-Links aufgelöst wurden. In [PARTREF::django-views]
 haben Sie mit `reverse()` dasselbe in einer View getan. Warum ist es nützlich, dieselbe
 namensbasierte Auflösung sowohl in Python (`reverse()`) als auch im Template (`{% url %}`)
@@ -242,15 +226,17 @@ entsprechend an.
 
 **Knackpunkte:**
 
-- [EREFR::6]: `welcome.html` beginnt mit `{% extends "base.html" %}` und füllt nur die
-  Blöcke `title`/`content`; es enthält **nicht** selbst `<!DOCTYPE>`/`<head>`/`<body>` —
-  diese kommen aus `base.html`.
-- [EREFR::12] + [EREFQ::7]: Die Navigation nutzt `{% url 'hello' %}`/`{% url 'welcome' %}`
-  (nicht fest codierte Pfade); Student erkennt, dass `{% url %}` und `reverse()` dieselbe
-  namensbasierte Auflösung sind, sodass eine Routenänderung an beiden Stellen automatisch
-  greift.
+- [EREFR::6]: `students_list.html` beginnt mit `{% extends "base.html" %}` und füllt nur den
+  Block `content`; es enthält **nicht** selbst `<!DOCTYPE>`/`<head>`/`<body>` — diese kommen
+  aus `base.html`. Die Liste wird mit echten `Student`-Objekten aus der Datenbank befüllt
+  (`.objects.all()`), nicht mit erfundenen Testdaten.
+- [EREFR::10] + [EREFQ::7]: Die Navigation nutzt `{% url 'hello' %}`/
+  `{% url 'students_list' %}` (nicht fest codierte Pfade); Student erkennt, dass
+  `{% url %}` und `reverse()` dieselbe namensbasierte Auflösung sind, sodass eine
+  Routenänderung an beiden Stellen automatisch greift.
 - [EREFQ::5]: Student erkennt, dass die gemeinsame Struktur nur einmal in `base.html` steht
-  und eine Änderung dort alle erbenden Seiten betrifft (statt jede Seite einzeln zu ändern).
+  und eine Änderung dort alle erbenden Seiten betrifft (statt jede Seite einzeln zu ändern);
+  außerdem, dass `{% empty %}` die leere Liste ohne Fehler abfängt.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-template.md]
