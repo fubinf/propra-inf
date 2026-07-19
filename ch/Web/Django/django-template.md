@@ -1,619 +1,256 @@
-title: Django Template System - Trennung von Daten und Darstellung
+title: Django Template System
 stage: draft
 timevalue: 2
 difficulty: 2
 requires: django-views
-assumes: http-GET, http-POST
 ---
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe das Model-View-Template (MVT) Muster in Django und die Vorteile der Trennung von Geschäftslogik und Darstellung.
-- Ich kann Django-Templates erstellen und mit Template-Variablen arbeiten.
-- Ich kann Template-Tags für bedingte Darstellung und Schleifen verwenden.
-- Ich kann Template-Vererbung einsetzen, um wiederverwendbare HTML-Strukturen zu erstellen.
-- Ich kann statische Dateien in Templates einbinden und konfigurieren.
+- Ich verstehe, wie Templates die Darstellung (HTML) von der Programmlogik (Python) trennen.
+- Ich kann Daten mit Template-Variablen, Bedingungen, Schleifen und Filtern dynamisch
+  darstellen.
+- Ich kann mit Template-Vererbung und statischen Dateien wiederverwendbare Seitenstrukturen
+  aufbauen.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-Das Django Template System ist eine zentrale Komponente für die Trennung von Geschäftslogik und Darstellung. 
-Während Views die Datenverarbeitung übernehmen, sind Templates ausschließlich für die Präsentation der Daten zuständig. 
-Dies folgt dem Model-View-Template (MVT) Architekturmuster und ermöglicht eine saubere Codestruktur, 
-bessere Wartbarkeit und die Zusammenarbeit zwischen Entwicklern und Designern.
+Wenn eine View HTML direkt als Python-String zusammenbaut, vermischen sich Darstellung und
+Programmlogik — das wird schnell unübersichtlich und ist schwer zu pflegen. Das Django
+Template System trennt beides: Die View liefert nur die Daten, das Template bestimmt, wie
+sie als HTML dargestellt werden. So können Layout und Logik unabhängig voneinander bearbeitet
+werden.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-Sie arbeiten weiter mit dem `meinprojekt`-Projekt, das Sie in [PARTREF::django-basics] erstellt haben.
-Alle folgenden Änderungen werden Sie in diesem Projekt durchführen.
-
-### Template-Verzeichnis konfigurieren
-
-Django Templates werden in speziellen Verzeichnissen gespeichert. 
-Zunächst müssen wir die Template-Konfiguration in den Projekteinstellungen anpassen.
-
-[ER] Erstellen Sie ein `templates`-Verzeichnis im Hauptprojektordner 
-und öffnen Sie `meinprojekt/settings.py` und modifizieren Sie die `TEMPLATES`-Konfiguration:
-
-[SNIPPET::ALT::django_template1]
-
-<!-- ER1 -->
-
-### Erstes Template erstellen
-
-Templates sind HTML-Dateien mit spezieller Django-Syntax für dynamische Inhalte.
-
-[ER] Erstellen Sie die Datei `templates/hello.html`:
-
-```html
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Django Template Demo</title>
-</head>
-<body>
-    <h1>{{ greeting }}</h1>
-    <p>Willkommen bei Django Templates!</p>
-</body>
-</html>
-```
-<!-- ER2 -->
-
-Die doppelten geschweiften Klammern `{{ greeting }}` sind Template-Variablen, 
-die von der View mit Daten gefüllt werden.
-
-[ER] Erstellen Sie eine neue View-Funktion in `meinprojekt/views.py`:
-
-```python
-from django.shortcuts import render
-
-def hello_template(request):
-    context = {
-        'greeting': 'Hallo Django Templates!'
-    }
-    return render(request, 'hello.html', context)
-```
-<!-- ER3 -->
-
-[ER] Fügen Sie die neue Route in `meinprojekt/urls.py` hinzu:
-
-```python
-from django.contrib import admin
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('hello-template/', views.hello_template, name='hello_template'),
-]
-```
-<!-- ER4 -->
-
-[EQ] Testen Sie die URL `http://127.0.0.1:8000/hello-template/` im Browser. 
-Was wird anstelle von `{{ greeting }}` angezeigt und warum? 
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-<!-- EQ1 -->
-<!-- time estimate: 20 min -->
+Sie arbeiten weiter mit der App `webapp`. In [PARTREF::django-project] haben Sie bereits ein
+erstes Template `hello.html` angelegt, das die `hello`-View mit `render()` anzeigt. Darauf
+bauen die folgenden Schritte auf.
 
 ### Template-Variablen und Context
 
-Der `context`-Dictionary übergibt Daten von der View an das Template.
+Der `context`-Dictionary übergibt Daten von der View an das Template. Bisher enthielt er nur
+eine einzige Variable (`message`). Ein Template kann beliebig viele Variablen verwenden.
 
-[ER] Erweitern Sie die View `hello_template` um mehr Variablen:
+[ER] Ersetzen Sie die `hello`-View in `views.py` durch eine Version mit mehreren
+Context-Variablen:
 
-```python
-def hello_template(request):
-    context = {
-        'greeting': 'Hallo Django Templates!',
-        'user_name': 'Anna',
-        'current_year': 2024,
-        'is_logged_in': True
-    }
-    return render(request, 'hello.html', context)
-```
-<!-- ER5 -->
+[SNIPPET::ALT::django_template_view_context]
+<!-- ER1 -->
 
-[ER] Erweitern Sie `templates/hello.html` um die neuen Variablen:
+[ER] Passen Sie `hello.html` an, sodass es die neuen Variablen mit der Syntax
+`{{ variablenname }}` anzeigt:
 
-```html
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Django Template Demo</title>
-</head>
-<body>
-    <h1>{{ greeting }}</h1>
-    <p>Willkommen {{ user_name }}!</p>
-    <p>Jahr: {{ current_year }}</p>
-    <p>Angemeldet: {{ is_logged_in }}</p>
-</body>
-</html>
-```
-<!-- ER6 -->
+[SNIPPET::ALT::django_template_hello_context]
+<!-- ER2 -->
 
-[EQ] Aktualisieren Sie die Seite `http://127.0.0.1:8000/hello-template/` im Browser. 
-Welche neuen Informationen werden jetzt angezeigt? Listen Sie alle sichtbaren Template-Variablen auf.
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-<!-- EQ2 -->
-
-
-<!-- time estimate: 10 min -->
-
-### Template-Tags: Bedingte Darstellung
-
-Template-Tags verwenden geschweifte Klammern mit Prozentzeichen `{% %}` für Logik.
-
-[ER] Erweitern Sie `templates/hello.html` um bedingte Darstellung:
-
-```html
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Django Template Demo</title>
-</head>
-<body>
-    <h1>{{ greeting }}</h1>
-    
-    {% if is_logged_in %}
-        <p>Willkommen zurück, {{ user_name }}!</p>
-        <p>Sie sind erfolgreich angemeldet.</p>
-    {% else %}
-        <p>Bitte melden Sie sich an.</p>
-    {% endif %}
-    
-    <p>Jahr: {{ current_year }}</p>
-</body>
-</html>
-```
-<!-- ER7 -->
-
-[EQ] Aktualisieren Sie die Seite `http://127.0.0.1:8000/hello-template/` im Browser. 
-Ändern Sie in der View `is_logged_in` auf `False`. Was passiert mit der Anzeige?
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-<!-- EQ3 -->
-
-<!-- time estimate: 10 min -->
-
-### Template-Tags: Schleifen
-
-Listen und andere Sammlungen können mit `{% for %}` durchlaufen werden.
-
-[ER] Erweitern Sie die View um eine Liste:
-
-```python
-def hello_template(request):
-    context = {
-        'greeting': 'Hallo Django Templates!',
-        'user_name': 'Anna',
-        'current_year': 2024,
-        'is_logged_in': True,
-        'hobbies': ['Programmieren', 'Lesen', 'Sport', 'Musik']
-    }
-    return render(request, 'hello.html', context)
-```
-<!-- ER8 -->
-
-[ER] Erweitern Sie das Template um die Hobby-Liste:
-
-```html
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Django Template Demo</title>
-</head>
-<body>
-    <h1>{{ greeting }}</h1>
-    
-    {% if is_logged_in %}
-        <p>Willkommen zurück, {{ user_name }}!</p>
-        
-        <h2>Ihre Hobbies:</h2>
-        <ul>
-        {% for hobby in hobbies %}
-            <li>{{ hobby }}</li>
-        {% empty %}
-            <li>Keine Hobbies angegeben</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>Bitte melden Sie sich an.</p>
-    {% endif %}
-    
-    <p>Jahr: {{ current_year }}</p>
-</body>
-</html>
-```
-<!-- ER9 -->
-
-Das `{% empty %}` Tag zeigt alternative Inhalte, wenn die Liste leer ist.
-
-[EQ] Aktualisieren Sie die Seite `http://127.0.0.1:8000/hello-template/` im Browser. 
-Ändern Sie dann in der View die `hobbies`-Liste zu einer leeren Liste `[]`. 
-Was wird angezeigt und welcher Django-Tag ist dafür verantwortlich?
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-<!-- EQ4 -->
-
+[EQ] Rufen Sie `http://127.0.0.1:8071/` im Browser auf. Welche Werte erscheinen anstelle
+der Platzhalter `{{ greeting }}` und `{{ user_name }}`, und woher stammen diese Werte? Wenn
+Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
+<!-- EQ1 -->
 <!-- time estimate: 15 min -->
 
-### Template-Vererbung: Base Template
+### Bedingte Darstellung mit `{% if %}`
 
-Template-Vererbung vermeidet Code-Duplikation durch wiederverwendbare HTML-Strukturen.
+Neben Variablen (`{{ ... }}`) kennt die Template-Sprache auch Tags für Logik, geschrieben mit
+`{% ... %}`. Das `{% if %}`-Tag zeigt Inhalte nur unter einer Bedingung an:
 
-[ER] Erstellen Sie `templates/base.html`:
+[ER] Erweitern Sie `hello.html` um eine bedingte Darstellung, die von der Variablen
+`is_logged_in` abhängt:
 
-```html
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Django Template System{% endblock %}</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        header { background: #333; color: white; padding: 10px; margin-bottom: 20px; }
-        footer { margin-top: 40px; text-align: center; color: #666; }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Django Template Demo</h1>
-    </header>
-    
-    <main>
-        {% block content %}
-        <!-- Hier wird der Inhalt der Child-Templates eingefügt -->
-        {% endblock %}
-    </main>
-    
-    <footer>
-        <p>&copy; 2024 Django Template System</p>
-    </footer>
-</body>
-</html>
-```
-<!-- ER10 -->
+[SNIPPET::ALT::django_template_hello_if]
+<!-- ER3 -->
 
-[ER] Erstellen Sie `templates/welcome.html` mit Template-Vererbung:
+[EQ] Ändern Sie in der View `is_logged_in` auf `False` und aktualisieren Sie die Seite. Was
+wird jetzt angezeigt, und welcher Teil des Templates ist dafür verantwortlich?
+<!-- EQ2 -->
+<!-- time estimate: 12 min -->
 
-```html
-{% extends "base.html" %}
+### Schleifen mit `{% for %}`
 
-{% block title %}Willkommen - Django Templates{% endblock %}
+Listen und andere Sammlungen lassen sich mit `{% for %}` durchlaufen. Das optionale
+`{% empty %}`-Tag liefert einen Ersatzinhalt, falls die Liste leer ist.
 
-{% block content %}
-    <h2>{{ greeting }}</h2>
-    
-    {% if is_logged_in %}
-        <div style="border: 1px solid green; padding: 15px; background: #f0f8f0;">
-            <p>Willkommen zurück, <strong>{{ user_name }}</strong>!</p>
-            
-            <h3>Ihre Hobbies:</h3>
-            <ul>
-            {% for hobby in hobbies %}
-                <li>{{ hobby }}</li>
-            {% empty %}
-                <li>Keine Hobbies angegeben</li>
-            {% endfor %}
-            </ul>
-        </div>
-    {% else %}
-        <div style="border: 1px solid red; padding: 15px; background: #f8f0f0;">
-            <p>Bitte melden Sie sich an.</p>
-        </div>
-    {% endif %}
-{% endblock %}
-```
-<!-- ER11 -->
+[ER] Ergänzen Sie die `hello`-View um eine Liste `hobbies` und stellen Sie diese in
+`hello.html` mit einer Schleife dar:
 
-[ER] Erstellen Sie eine neue View für das Welcome-Template:
+[SNIPPET::ALT::django_template_view_loop]
 
-```python
-def welcome(request):
-    context = {
-        'greeting': 'Willkommen auf unserer Seite!',
-        'user_name': 'Maria',
-        'current_year': 2024,
-        'is_logged_in': True,
-        'hobbies': ['Fotografie', 'Reisen', 'Kochen']
-    }
-    return render(request, 'welcome.html', context)
-```
-<!-- ER12 -->
+[SNIPPET::ALT::django_template_hello_for]
+<!-- ER4 -->
 
-[ER] Fügen Sie die Route in `urls.py`hinzu:
+[EQ] Setzen Sie `hobbies` in der View auf eine leere Liste `[]` und aktualisieren Sie die
+Seite. Was wird angezeigt, und welches Tag ist dafür verantwortlich?
+<!-- EQ3 -->
+<!-- time estimate: 15 min -->
 
-```python
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('hello-template/', views.hello_template, name='hello_template'),
-    path('welcome/', views.welcome, name='welcome'),
-]
-```
-<!-- ER13 -->
+### Reflexion: Warum Wiederverwendung?
 
-[EQ] Testen Sie beide URLs: `http://127.0.0.1:8000/hello-template/` und `http://127.0.0.1:8000/welcome/`. 
-Was ist der Vorteil der Template-Vererbung gegenüber der Wiederholung von HTML-Code?
-Wenn Sie Port 8080 verwenden, ändern Sie die Links bitte entsprechend.
+Bisher hat `hello.html` seine gesamte HTML-Struktur (`<!DOCTYPE>`, `<head>`, `<body>`)
+selbst enthalten. Stellen Sie sich vor, Sie brauchen eine zweite Seite `welcome.html` mit
+demselben Kopfbereich, derselben Navigation und demselben Fußbereich.
+
+[EQ] Angenommen, jede Seite schreibt ihren kompletten `<head>`-Bereich, eine gemeinsame
+Kopfzeile und eine gemeinsame Fußzeile selbst aus (zusammen etwa 10 Zeilen). Wie viele
+dieser Zeilen wären bei 2 Seiten insgesamt doppelt vorhanden, und was müssten Sie tun, wenn
+sich die Fußzeile später ändert? Überlegen Sie, welches Problem dadurch entsteht.
+<!-- EQ4 -->
+<!-- time estimate: 12 min -->
+
+### Template-Vererbung
+
+Template-Vererbung löst genau dieses Problem: Ein **Basis-Template** definiert die
+gemeinsame Struktur und markiert mit `{% block %}` die Stellen, die einzelne Seiten füllen.
+Ein **Kind-Template** übernimmt die Struktur mit `{% extends %}` und überschreibt nur die
+Blöcke.
+
+[ER] Erstellen Sie in `webapp/templates/` die Datei `base.html`:
+
+[SNIPPET::ALT::django_template_base]
+<!-- ER5 -->
+
+[ER] Erstellen Sie `welcome.html`, das von `base.html` erbt und nur die Blöcke füllt:
+
+[SNIPPET::ALT::django_template_welcome]
+<!-- ER6 -->
+
+[HINT::Wie hängen die Blocknamen in base.html und welcome.html zusammen?]
+Ein `{% block content %}` im Kind-Template ersetzt genau den gleichnamigen
+`{% block content %}` im Basis-Template — die Namen müssen also übereinstimmen. Blöcke, die
+das Kind-Template nicht überschreibt (z. B. wenn Sie `{% block title %}` weglassen), behalten
+den Inhalt aus `base.html` als Standard. Sie füllen also nur die Blöcke, die sich pro Seite
+unterscheiden.
+[ENDHINT]
+
+[ER] Erstellen Sie eine `welcome`-View in `views.py` und eine passende Route in `urls.py`:
+
+[SNIPPET::ALT::django_template_view_welcome]
+
+[SNIPPET::ALT::django_template_urls_welcome]
+<!-- ER7 -->
+
+[EQ] Rufen Sie `http://127.0.0.1:8071/welcome/` auf. Die Kopf- und Fußzeile erscheinen,
+obwohl `welcome.html` sie nicht selbst enthält — woher kommen sie? Worin liegt der Vorteil
+gegenüber der in [EREFQ::4] betrachteten Wiederholung? Wenn Sie einen anderen Port
+verwenden, passen Sie den Link entsprechend an.
 <!-- EQ5 -->
 <!-- time estimate: 20 min -->
 
 ### Statische Dateien einbinden
 
-Statische Dateien wie CSS, JavaScript und Bilder werden über das `{% static %}` Tag eingebunden.
+CSS-, JavaScript- und Bilddateien werden als **statische Dateien** bezeichnet. Django
+findet sie automatisch im Ordner `static/` einer registrierten App — analog dazu, wie
+Templates im `templates/`-Ordner gefunden werden. Im Template bindet das `{% static %}`-Tag
+sie ein; dazu muss `{% load static %}` am Dateianfang stehen.
 
-[EC] Erstellen Sie Verzeichnisse für statische Dateien im Hauptprojektordner:
+[EC] Erstellen Sie in `webapp/` das Verzeichnis für die CSS-Datei:
+
 ```bash
-cd meinprojekt
-mkdir -p static/css static/js static/images
+mkdir -p webapp/static/css
 ```
-<!-- EC2 -->
+<!-- EC1 -->
 
-[ER] Erstellen Sie `static/css/style.css`:
+[ER] Legen Sie `webapp/static/css/style.css` mit etwas CSS an:
 
-```css
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-}
+[SNIPPET::ALT::django_template_css]
+<!-- ER8 -->
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+[ER] Binden Sie die CSS-Datei in `base.html` ein (`{% load static %}` am Anfang,
+`{% static %}` im `<head>`):
 
-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-}
+[SNIPPET::ALT::django_template_base_static]
+<!-- ER9 -->
 
-.hobby-list {
-    background: #e8f4fd;
-    padding: 15px;
-    border-radius: 5px;
-    border-left: 4px solid #2196F3;
-}
-
-footer {
-    margin-top: 40px;
-    text-align: center;
-    color: #666;
-    font-size: 0.9em;
-}
-```
-<!-- ER14 -->
-
-[ER] Aktualisieren Sie `settings.py` für statische Dateien:
-
-```python
-# Am Ende der Datei hinzufügen
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-```
-<!-- ER15 -->
-
-[ER] Aktualisieren Sie `templates/base.html` mit statischen Dateien:
-
-```html
-{% load static %}
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Django Template System{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Django Template Demo</h1>
-        </header>
-        
-        <main>
-            {% block content %}
-            <!-- Hier wird der Inhalt der Child-Templates eingefügt -->
-            {% endblock %}
-        </main>
-        
-        <footer>
-            <p>&copy; 2024 Django Template System</p>
-        </footer>
-    </div>
-</body>
-</html>
-```
-<!-- ER16 -->
-
-[ER] Aktualisieren Sie `templates/welcome.html` mit CSS-Klassen:
-
-```html
-{% extends "base.html" %}
-
-{% block title %}Willkommen - Django Templates{% endblock %}
-
-{% block content %}
-    <h2>{{ greeting }}</h2>
-    
-    {% if is_logged_in %}
-        <div class="hobby-list">
-            <p>Willkommen zurück, <strong>{{ user_name }}</strong>!</p>
-            
-            <h3>Ihre Hobbies:</h3>
-            <ul>
-            {% for hobby in hobbies %}
-                <li>{{ hobby }}</li>
-            {% empty %}
-                <li>Keine Hobbies angegeben</li>
-            {% endfor %}
-            </ul>
-        </div>
-    {% else %}
-        <div style="border: 1px solid red; padding: 15px; background: #f8f0f0;">
-            <p>Bitte melden Sie sich an.</p>
-        </div>
-    {% endif %}
-{% endblock %}
-```
-<!-- ER17 -->
-
-<!-- time estimate: 10 min -->
-
-### Template-Filter verwenden
-
-Template-Filter modifizieren Variablenwerte bei der Anzeige.
-
-[ER] Erstellen Sie eine neue View mit verschiedenen Datentypen:
-
-```python
-from datetime import datetime
-
-def filter_demo(request):
-    context = {
-        'current_year': 2024,
-        'long_text': 'Dies ist ein sehr langer Text, der demonstriert, wie Template-Filter funktionieren.',
-        'user_name': 'anna müller',
-        'price': 29.99,
-        'creation_date': datetime.now(),
-        'description': '<p>Dies ist <strong>HTML-Text</strong> mit Tags.</p>'
-    }
-    return render(request, 'filter_demo.html', context)
-```
-<!-- ER18 -->
-
-[ER] Erstellen Sie `templates/filter_demo.html`:
-
-```html
-{% extends "base.html" %}
-
-{% block title %}Template-Filter Demo{% endblock %}
-
-{% block content %}
-    <h2>Template-Filter Demonstration</h2>
-    
-    <div class="hobby-list">
-        <h3>String-Filter:</h3>
-        <p>Original: {{ user_name }}</p>
-        <p>Großbuchstaben: {{ user_name|upper }}</p>
-        <p>Titel-Format: {{ user_name|title }}</p>
-        <p>Erstes Zeichen: {{ user_name|first }}</p>
-        
-        <h3>Text-Filter:</h3>
-        <p>Gekürzt (30 Zeichen): {{ long_text|truncatechars:30 }}</p>
-        <p>Gekürzt (5 Wörter): {{ long_text|truncatewords:5 }}</p>
-        
-        <h3>Zahlen-Filter:</h3>
-        <p>Preis: {{ price|floatformat:2 }}€</p>
-        
-        <h3>Datum-Filter:</h3>
-        <p>Datum formatiert: {{ creation_date|date:"d.m.Y H:i" }}</p>
-        
-        <h3>HTML-Filter:</h3>
-        <p>Escaped: {{ description }}</p>
-        <p>Safe HTML: {{ description|safe }}</p>
-        
-        <h3>Standard-Werte:</h3>
-        <p>Leer oder Standardwert: {{ empty_var|default:"Kein Wert vorhanden" }}</p>
-    </div>
-{% endblock %}
-```
-<!-- ER19 -->
-
-[ER] Fügen Sie die Route in `urls.py` hinzu:
-
-```python
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('hello-template/', views.hello_template, name='hello_template'),
-    path('welcome/', views.welcome, name='welcome'),
-    path('filter-demo/', views.filter_demo, name='filter_demo'),
-]
-```
-<!-- ER20 -->
-
-
-<!-- time estimate: 10 min -->
-
-### Template-Navigation erstellen
-
-[ER] Erweitern Sie `templates/base.html` um Navigation:
-
-```html
-{% load static %}
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Django Template System{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Django Template Demo</h1>
-            <nav style="margin-top: 15px;">
-                <a href="{% url 'hello_template' %}" style="color: white; margin-right: 15px;">Hello Template</a>
-                <a href="{% url 'welcome' %}" style="color: white; margin-right: 15px;">Welcome</a>
-                <a href="{% url 'filter_demo' %}" style="color: white;">Filter Demo</a>
-            </nav>
-        </header>
-        
-        <main>
-            {% block content %}
-            <!-- Hier wird der Inhalt der Child-Templates eingefügt -->
-            {% endblock %}
-        </main>
-        
-        <footer>
-            <p>&copy; 2024 Django Template System</p>
-        </footer>
-    </div>
-</body>
-</html>
-```
-<!-- ER21 -->
-
-[EQ] Testen Sie alle drei Seiten über die Navigation: `http://127.0.0.1:8000/hello-template/`, 
-`http://127.0.0.1:8000/welcome/` und `http://127.0.0.1:8000/filter-demo/`. 
-Vergleichen Sie die visuellen Unterschiede zwischen den Seiten und erklären Sie den Vorteil 
-der `{% url %}` Tags gegenüber fest programmierten Links.
-Wenn Sie Port 8080 verwenden, ändern Sie die Links bitte entsprechend.
+[EQ] Rufen Sie `http://127.0.0.1:8071/welcome/` auf. Die Seite ist jetzt formatiert, obwohl
+`welcome.html` selbst kein CSS enthält. Warum genügt es, `base.html` anzupassen, damit auch
+`welcome.html` das CSS erhält? Wenn Sie einen anderen Port verwenden, passen Sie den Link
+entsprechend an.
 <!-- EQ6 -->
+<!-- time estimate: 12 min -->
 
-<!-- time estimate: 20 min -->
+### Template-Filter
+
+Filter verändern die Anzeige eines Wertes, ohne die Daten selbst zu ändern. Sie werden mit
+einem senkrechten Strich `|` hinter die Variable geschrieben (z. B. `{{ name|upper }}`).
+
+[ER] Erstellen Sie eine `filter_demo`-View mit verschiedenen Datentypen und ein Template
+`filter_demo.html`, das gängige Filter demonstriert:
+
+[SNIPPET::ALT::django_template_view_filter]
+
+[SNIPPET::ALT::django_template_filter_html]
+<!-- ER10 -->
+
+Die verwendeten Filter:
+
+- `upper` / `title`: wandelt Text in Groß- bzw. Titelschreibweise um.
+- `truncatechars:20`: kürzt Text auf 20 Zeichen.
+- `floatformat:2`: zeigt eine Zahl mit 2 Nachkommastellen.
+- `date:"d.m.Y"`: formatiert ein Datum.
+- `safe`: gibt HTML unverändert aus, statt es als Text zu maskieren.
+- `default:"Kein Wert"`: zeigt einen Ersatzwert, falls die Variable leer/nicht vorhanden ist.
+
+[ER] Fügen Sie die Route für `filter_demo` in `urls.py` hinzu:
+
+[SNIPPET::ALT::django_template_urls_filter]
+<!-- ER11 -->
+<!-- time estimate: 12 min -->
+
+### Navigation mit `{% url %}`
+
+Damit Nutzer zwischen den Seiten wechseln können, braucht `base.html` eine Navigation. Für
+die Links verwenden Sie **nicht** fest codierte Pfade wie `href="/welcome/"`, sondern das
+`{% url %}`-Tag mit dem Routennamen — das ist die Template-Seite der Reverse Resolution,
+deren Python-Seite (`reverse()`) Sie in [PARTREF::django-views] kennengelernt haben.
+
+[ER] Erweitern Sie `base.html` um eine Navigation, die mit `{% url %}` auf die benannten
+Routen `hello` und `welcome` verweist:
+
+[SNIPPET::ALT::django_template_base_nav]
+<!-- ER12 -->
+
+[EQ] Rufen Sie `http://127.0.0.1:8071/welcome/` auf und schauen Sie im Seitenquelltext
+nach, zu welchen Pfaden die `{% url %}`-Links aufgelöst wurden. In [PARTREF::django-views]
+haben Sie mit `reverse()` dasselbe in einer View getan. Warum ist es nützlich, dieselbe
+namensbasierte Auflösung sowohl in Python (`reverse()`) als auch im Template (`{% url %}`)
+zur Verfügung zu haben? Wenn Sie einen anderen Port verwenden, passen Sie den Link
+entsprechend an.
+<!-- EQ7 -->
+<!-- time estimate: 22 min -->
 
 ### Weiterführend
 
-- [Django Template Variables](https://docs.djangoproject.com/en/4.2/topics/templates/#variables) – Dokumentation zu Template-Variablen und deren Verwendung
-- [Django Template Tags](https://docs.djangoproject.com/en/4.2/topics/templates/#tags) – Referenz für alle verfügbaren Template-Tags
-- [Django Static Files](https://docs.djangoproject.com/en/4.2/howto/static-files/) – Anleitung zur Verwaltung statischer Dateien in Django
-- [Django Template Filters](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#built-in-filter-reference) – Referenz zu allen verfügbaren Template-Filtern
+- [Templates](https://docs.djangoproject.com/en/stable/topics/templates/) – Überblick über die Template-Sprache
+- [Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/) – Referenz zu allen Tags und Filtern
+- [Managing static files](https://docs.djangoproject.com/en/stable/howto/static-files/) – Anleitung zu statischen Dateien
 
 [ENDSECTION]
 
-[SECTION::submission::information]
+[SECTION::submission::program]
 
-[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+**Knackpunkte:**
+
+- [EREFR::6]: `welcome.html` beginnt mit `{% extends "base.html" %}` und füllt nur die
+  Blöcke `title`/`content`; es enthält **nicht** selbst `<!DOCTYPE>`/`<head>`/`<body>` —
+  diese kommen aus `base.html`.
+- [EREFR::12] + [EREFQ::7]: Die Navigation nutzt `{% url 'hello' %}`/`{% url 'welcome' %}`
+  (nicht fest codierte Pfade); Student erkennt, dass `{% url %}` und `reverse()` dieselbe
+  namensbasierte Auflösung sind, sodass eine Routenänderung an beiden Stellen automatisch
+  greift.
+- [EREFQ::5]: Student erkennt, dass die gemeinsame Struktur nur einmal in `base.html` steht
+  und eine Änderung dort alle erbenden Seiten betrifft (statt jede Seite einzeln zu ändern).
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-template.md]
