@@ -8,485 +8,206 @@ assumes: http-GET, http-POST
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe den Unterschied zwischen GET- und POST-Methoden in HTTP-Formularen.
-- Ich kann HTML-Formulare erstellen und in Django-Views verarbeiten.
-- Ich verstehe die Funktionsweise von CSRF-Token und deren Verwendung in Django.
-- Ich kenne die wichtigsten Eigenschaften des HttpRequest-Objekts.
-- Ich kann Formulardaten in Django empfangen, verarbeiten und zurückgeben.
+- Ich verstehe den Unterschied zwischen GET und POST beim Absenden von Formularen.
+- Ich kann HTML-Formulare erstellen, ihre Daten in einer View verarbeiten und dauerhaft
+  in der Datenbank speichern.
+- Ich verstehe die Rolle des CSRF-Schutzes im Formular-Workflow.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-HTML-Formulare sind die klassische Methode für die Interaktivität von Websites.
-Sie ermöglichen es Benutzern, Daten an den Server zu senden, die dann verarbeitet werden können.
-Django bietet umfangreiche Unterstützung für die Verarbeitung von Formulardaten
-sowohl über GET- als auch POST-Methoden.
-In dieser Aufgabe lernen wir, wie man Formulare erstellt und deren Daten sicher verarbeitet.
+HTML-Formulare sind der klassische Weg, über den Nutzer Daten an eine Web-Anwendung senden —
+von der Suchanfrage bis zur Registrierung. Diese Aufgabe führt die bisher getrennt
+behandelten Ebenen zusammen: Ein Formular wird in einem Template dargestellt, seine Daten in
+einer View verarbeitet und über ein Model in der Datenbank gespeichert.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-Sie arbeiten weiter mit dem `meinprojekt`-Projekt, das Sie in [PARTREF::django-basics] erstellt haben.
-Alle folgenden Änderungen werden Sie in diesem Projekt durchführen.
+Sie arbeiten weiter mit der App `webapp`. Aus den vorherigen Aufgaben stehen Ihnen bereits
+das `Student`-Model ([PARTREF::django-model]), Views mit URL-Routing ([PARTREF::django-views])
+und das Template-System ([PARTREF::django-template]) zur Verfügung. Alle Änderungen finden in
+`webapp` statt.
 
-### HTTP-Formulare verstehen
+### HTTP-Formulare: GET und POST
 
-HTTP-Protokoll arbeitet mit einem "Request-Response"-Muster.
-Der Client sendet eine Anfrage mit angehängten Daten, der Server analysiert diese
-und stellt basierend auf der URL spezifische Dienste bereit.
+Ein HTML-Formular sendet seine Daten mit einer von zwei Methoden:
 
-Es gibt zwei Hauptmethoden für das Senden von Formulardaten:
+- **GET**: Die Daten werden sichtbar an die URL angehängt (`?q=...`). Geeignet für Anfragen,
+  die nichts verändern (z. B. eine Suche), und die man als Link teilen können soll.
+- **POST**: Die Daten werden im Request-Body übertragen und erscheinen nicht in der URL.
+  Geeignet für Aktionen, die etwas verändern (z. B. einen Datensatz anlegen).
 
-- **GET-Methode**: Daten werden in der URL übertragen (sichtbar und begrenzt)
-- **POST-Methode**: Daten werden im Request-Body übertragen (unsichtbar und unbegrenzt)
+### GET-Formular: Suche
 
-### GET-Methode implementieren
+[ER] Erstellen Sie in `views.py` zwei View-Funktionen — eine zeigt das Suchformular an, die
+andere verarbeitet die Suchanfrage:
 
-[ER] Erstellen Sie die Datei `meinprojekt/meinprojekt/search.py`:
-
-```python
-from django.http import HttpResponse
-from django.shortcuts import render
-
-# Formular anzeigen
-def search_form(request):
-    return render(request, 'search_form.html')
- 
-# Anfrage verarbeiten
-def search(request):  
-    request.encoding = 'utf-8'
-    if 'q' in request.GET and request.GET['q']:
-        message = 'Sie haben gesucht nach: ' + request.GET['q']
-    else:
-        message = 'Sie haben ein leeres Formular abgeschickt'
-    return HttpResponse(message)
-```
+[SNIPPET::ALT::django_form_search_views]
 <!-- ER1 -->
 
-[ER] Erstellen Sie das Verzeichnis `templates` im Projekthauptverzeichnis und 
-die Datei `meinprojekt/templates/search_form.html`:
+[ER] Erstellen Sie das Template `search_form.html` mit einem Formular, das die
+GET-Methode verwendet:
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Django Suchformular</title>
-</head>
-<body>
-    <h1>Suchformular (GET-Methode)</h1>
-    <form action="/search/" method="get">
-        <label for="searchfield">Suchbegriff:</label>
-        <input type="text" name="q" id="searchfield" placeholder="Geben Sie einen Suchbegriff ein">
-        <input type="submit" value="Suchen">
-    </form>
-</body>
-</html>
-```
+[SNIPPET::ALT::django_form_search_html]
 <!-- ER2 -->
 
-[ER] Aktualisieren Sie `meinprojekt/meinprojekt/urls.py`:
+[ER] Ergänzen Sie `urls.py` um die beiden Routen:
 
-```python
-from django.urls import path
-from . import search
-
-urlpatterns = [
-    path('search-form/', search.search_form, name='search_form'),
-    path('search/', search.search, name='search'),
-]
-```
+[SNIPPET::ALT::django_form_urls_search]
 <!-- ER3 -->
 
-[EQ] Starten Sie die Django-Server und testen Sie die Anwendung unter `http://127.0.0.1:8000/search-form/`.
-Geben Sie verschiedene Suchbegriffe ein und beobachten Sie die URL.
-Was passiert bei einem leeren Formular?
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
+[EQ] Rufen Sie `http://127.0.0.1:8071/search-form/` auf, geben Sie einen Suchbegriff ein und
+senden Sie ab. Wie verändert sich die URL nach dem Absenden, und wo taucht Ihr Suchbegriff
+auf? Wenn Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
 <!-- EQ1 -->
-
 <!-- time estimate: 20 min -->
 
-### POST-Methode implementieren
+### POST-Formular und CSRF-Schutz
 
-POST-Methoden sind sicherer für sensible Daten und werden häufiger verwendet.
-Wir erweitern das System um eine POST-Variante:
+Bei einem POST-Formular verlangt Django ein zusätzliches Sicherheitsmerkmal: das
+`{% csrf_token %}`-Tag. **CSRF** (Cross-Site Request Forgery) bezeichnet einen Angriff, bei
+dem eine fremde Website unbemerkt eine Aktion in Ihrem Namen auslöst, während Sie
+eingeloggt sind. Um das zu verhindern, bettet Django in jedes Formular ein verstecktes,
+einmaliges Token ein (`{% csrf_token %}`) und akzeptiert einen POST nur, wenn dieses Token
+mitgeschickt wird — so kann eine fremde Seite kein gültiges Formular fälschen. Deshalb
+gehört `{% csrf_token %}` in **jedes** POST-Formular.
 
-[ER] Erstellen Sie `meinprojekt/templates/post_form.html`:
+[NOTICE]
+In [PARTREF::django-views] hatten Sie eine POST-View versuchsweise mit `@csrf_exempt` vom
+CSRF-Schutz ausgenommen, um sie ohne Formular testen zu können. Ab jetzt arbeiten Sie mit
+echten Formularen und verwenden daher regulär `{% csrf_token %}` statt `@csrf_exempt`.
+[ENDNOTICE]
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Django POST-Formular</title>
-</head>
-<body>
-    <h1>Suchformular (POST-Methode)</h1>
-    <form action="/search-post/" method="post">
-        {% csrf_token %}
-        <label for="postfield">Suchbegriff:</label>
-        <input type="text" name="q" id="postfield" placeholder="Geben Sie einen Suchbegriff ein">
-        <input type="submit" value="Suchen">
-    </form>
-    
-    {% if result %}
-        <div style="margin-top: 20px; padding: 10px; background-color: #f0f0f0;">
-            <h2>Ergebnis:</h2>
-            <p>{{ result }}</p>
-        </div>
-    {% endif %}
-</body>
-</html>
-```
+[ER] Erstellen Sie in `views.py` eine View, die dieselbe Suche per POST verarbeitet:
+
+[SNIPPET::ALT::django_form_searchpost_view]
 <!-- ER4 -->
 
-[ER] Erstellen Sie `meinprojekt/meinprojekt/search_post.py`:
+[ER] Erstellen Sie das Template `search_post.html` mit einem POST-Formular (inklusive
+`{% csrf_token %}`):
 
-```python
-from django.shortcuts import render
-
-def search_post(request):
-    context = {}
-    if request.method == 'POST':
-        if 'q' in request.POST and request.POST['q']:
-            context['result'] = 'Sie haben gesucht nach: ' + request.POST['q']
-        else:
-            context['result'] = 'Sie haben ein leeres Formular abgeschickt'
-    return render(request, 'post_form.html', context)
-```
+[SNIPPET::ALT::django_form_searchpost_html]
 <!-- ER5 -->
 
-[ER] Erweitern Sie `meinprojekt/meinprojekt/urls.py`:
+[ER] Ergänzen Sie `urls.py` um die neue Route:
 
-```python
-from django.urls import path
-from . import search, search_post
-
-urlpatterns = [
-    path('search-form/', search.search_form, name='search_form'),
-    path('search/', search.search, name='search'),
-    path('search-post/', search_post.search_post, name='search_post'),
-]
-```
+[SNIPPET::ALT::django_form_urls_searchpost]
 <!-- ER6 -->
 
-[EQ] Testen Sie die POST-Anwendung unter `http://127.0.0.1:8000/search-post/`.
-Geben Sie verschiedene Suchbegriffe ein und beobachten Sie die Ausgabe.
-Was ist der Unterschied zur GET-Methode bezüglich der URL?
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
+[EQ] Suchen Sie unter `http://127.0.0.1:8071/search-post/` nach einem Begriff. Worin
+unterscheidet sich die URL nach dem Absenden gegenüber dem GET-Formular aus [EREFQ::1], und
+was würde passieren, wenn Sie `{% csrf_token %}` aus dem Formular entfernen? Wenn Sie einen
+anderen Port verwenden, passen Sie den Link entsprechend an.
 <!-- EQ2 -->
-<!-- time estimate: 10 min -->
-
-
-### HttpRequest-Objekt verstehen
-
-Jede View-Funktion erhält ein HttpRequest-Objekt als ersten Parameter.
-Dieses Objekt enthält wichtige Informationen über die HTTP-Anfrage:
-
-[ER] Erstellen Sie `meinprojekt/meinprojekt/request_info.py`:
-
-```python
-from django.http import HttpResponse
-
-def request_info(request):
-    info = f"""
-    <html>
-    <head>
-        <title>Request-Informationen</title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <h1>HttpRequest-Objekt Informationen</h1>
-        <h2>Grundlegende Eigenschaften:</h2>
-        <ul>
-            <li><strong>Method:</strong> {request.method}</li>
-            <li><strong>Path:</strong> {request.path}</li>
-            <li><strong>User:</strong> {request.user}</li>
-        </ul>
-        
-        <h2>GET-Parameter:</h2>
-        <p>{dict(request.GET)}</p>
-        
-        <h2>POST-Parameter:</h2>
-        <p>{dict(request.POST)}</p>
-        
-        <h2>META-Informationen (Auswahl):</h2>
-        <ul>
-            <li><strong>HTTP_USER_AGENT:</strong> {request.META.get('HTTP_USER_AGENT', 'N/A')}</li>
-            <li><strong>REMOTE_ADDR:</strong> {request.META.get('REMOTE_ADDR', 'N/A')}</li>
-            <li><strong>SERVER_NAME:</strong> {request.META.get('SERVER_NAME', 'N/A')}</li>
-        </ul>
-    </body>
-    </html>
-    """
-    return HttpResponse(info)
-```
-<!-- ER7 -->
-
-[ER] Fügen Sie die neue Route zu `urls.py` hinzu:
-
-```python
-from django.urls import path
-from . import search, search_post, request_info
-
-urlpatterns = [
-    path('search-form/', search.search_form, name='search_form'),
-    path('search/', search.search, name='search'),
-    path('search-post/', search_post.search_post, name='search_post'),
-    path('request-info/', request_info.request_info, name='request_info'),
-]
-```
-<!-- ER8 -->
-
-[EQ] Analysieren Sie das HttpRequest-Objekt mit verschiedenen Aufrufen:
-1. Rufen Sie `http://127.0.0.1:8000/request-info/` ohne Parameter auf
-2. Rufen Sie `http://127.0.0.1:8000/request-info/?name=Max&alter=25` mit GET-Parametern auf
-Analysieren Sie die angezeigten Eigenschaften: Was bedeuten request.method, request.path, request.GET?
-Welche META-Informationen sehen Sie und was sagen HTTP_USER_AGENT und REMOTE_ADDR aus?
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-<!-- EQ3 -->
-
 <!-- time estimate: 20 min -->
 
-### Erweiterte Formularverarbeitung
+### Registrierung mit Datenbank-Persistenz
 
-[ER] Erstellen Sie ein komplexeres Formular `meinprojekt/templates/contact_form.html`:
+Bisher wurden die Formulardaten nur zurückgespiegelt. Jetzt speichern Sie sie dauerhaft:
+Ein Registrierungsformular legt über `Student.objects.create()` (aus [PARTREF::django-model])
+einen neuen Datensatz an und leitet anschließend auf dessen Detailseite (aus
+[PARTREF::django-views]) weiter.
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Kontaktformular</title>
-</head>
-<body>
-    <h1>Kontaktformular</h1>
-    <form action="/contact/" method="post">
-        {% csrf_token %}
-        
-        <div style="margin-bottom: 10px;">
-            <label for="name">Name:</label><br>
-            <input type="text" name="name" id="name" required>
-        </div>
-        
-        <div style="margin-bottom: 10px;">
-            <label for="email">E-Mail:</label><br>
-            <input type="email" name="email" id="email" required>
-        </div>
-        
-        <div style="margin-bottom: 10px;">
-            <label for="subject">Betreff:</label><br>
-            <select name="subject" id="subject">
-                <option value="allgemein">Allgemeine Anfrage</option>
-                <option value="support">Support</option>
-                <option value="feedback">Feedback</option>
-            </select>
-        </div>
-        
-        <div style="margin-bottom: 10px;">
-            <label for="message">Nachricht:</label><br>
-            <textarea name="message" id="message" rows="5" cols="50" required></textarea>
-        </div>
-        
-        <input type="submit" value="Nachricht senden">
-    </form>
-    
-    {% if submitted %}
-        <div style="margin-top: 20px; padding: 10px; background-color: #d4edda; border: 1px solid #c3e6cb;">
-            <h2>Nachricht erhalten!</h2>
-            <p><strong>Name:</strong> {{ form_data.name }}</p>
-            <p><strong>E-Mail:</strong> {{ form_data.email }}</p>
-            <p><strong>Betreff:</strong> {{ form_data.subject }}</p>
-            <p><strong>Nachricht:</strong> {{ form_data.message }}</p>
-        </div>
-    {% endif %}
-</body>
-</html>
-```
+[ER] Erstellen Sie in `views.py` eine `register`-View, die bei einem POST einen neuen
+`Student` anlegt und danach auf dessen Detailseite weiterleitet:
+
+[SNIPPET::ALT::django_form_register_view]
+<!-- ER7 -->
+
+[HINT::Wie leite ich nach dem Speichern auf die Detailseite weiter?]
+`Student.objects.create(...)` gibt das neu angelegte Objekt zurück. Weisen Sie es einer
+Variablen zu (`student = Student.objects.create(...)`), dann steht Ihnen über `student.id`
+die vom Datenbank vergebene ID zur Verfügung. Diese ID übergeben Sie an `reverse()`, um die
+passende Detail-URL zu erzeugen: `redirect(reverse("student_detail", args=[student.id]))`.
+[ENDHINT]
+
+[ER] Erstellen Sie das Template `register.html` mit einem POST-Formular für Name, Alter und
+E-Mail:
+
+[SNIPPET::ALT::django_form_register_html]
+<!-- ER8 -->
+
+[ER] Ergänzen Sie `urls.py` um die Registrierungs-Route:
+
+[SNIPPET::ALT::django_form_urls_register]
 <!-- ER9 -->
 
-[ER] Erstellen Sie `meinprojekt/meinprojekt/contact.py`:
+[EQ] Öffnen Sie `http://127.0.0.1:8071/register/`, füllen Sie das Formular aus und senden
+Sie es ab. Auf welcher Seite landen Sie danach, und woran erkennen Sie, dass Ihre Eingaben
+tatsächlich in der Datenbank gespeichert wurden (und nicht nur zurückgespiegelt)? Warum ist
+für diese Aktion POST die richtige Methode und nicht GET? Wenn Sie einen anderen Port
+verwenden, passen Sie den Link entsprechend an.
+<!-- EQ3 -->
+<!-- time estimate: 25 min -->
 
-```python
-from django.shortcuts import render
+### QueryDict: mehrere Werte pro Feld
 
-def contact(request):
-    context = {}
-    
-    if request.method == 'POST':
-        # Alle Formularfelder prüfen
-        required_fields = ['name', 'email', 'subject', 'message']
-        form_data = {}
-        
-        for field in required_fields:
-            if field in request.POST and request.POST[field]:
-                form_data[field] = request.POST[field]
-            else:
-                form_data[field] = ''
-        
-        # Prüfen ob alle Felder ausgefüllt sind
-        if all(form_data.values()):
-            context['submitted'] = True
-            context['form_data'] = form_data
-        else:
-            context['error'] = 'Bitte füllen Sie alle Felder aus.'
-    
-    return render(request, 'contact_form.html', context)
-```
+`request.POST` ist ein QueryDict — ein Dictionary, das pro Schlüssel mehrere Werte halten
+kann. Das ist relevant, wenn ein Formularfeld mehrfach vorkommt, etwa bei Checkboxen mit
+demselben `name`. Zwei Methoden greifen unterschiedlich darauf zu:
+
+- `request.POST.get("feld")`: liefert nur **einen** Wert (den letzten).
+- `request.POST.getlist("feld")`: liefert **alle** Werte als Liste.
+
+[ER] Erstellen Sie in `views.py` eine `survey`-View, die beide Zugriffe demonstriert:
+
+[SNIPPET::ALT::django_form_survey_view]
 <!-- ER10 -->
 
-[ER] Fügen Sie die Route zu `urls.py` hinzu und testen Sie das Kontaktformular:
+[ER] Erstellen Sie das Template `survey.html` mit mehreren Checkboxen, die denselben
+`name` verwenden:
 
-```python
-from django.urls import path
-from . import search, search_post, request_info, contact
-
-urlpatterns = [
-    path('search-form/', search.search_form, name='search_form'),
-    path('search/', search.search, name='search'),
-    path('search-post/', search_post.search_post, name='search_post'),
-    path('request-info/', request_info.request_info, name='request_info'),
-    path('contact/', contact.contact, name='contact'),
-]
-```
+[SNIPPET::ALT::django_form_survey_html]
 <!-- ER11 -->
 
-[EQ] Testen Sie das Kontaktformular unter `http://127.0.0.1:8000/contact/`.
-Füllen Sie alle Felder aus und senden Sie das Formular ab. Testen Sie dann unvollständige Eingaben.
-Was passiert bei unvollständigen Formularen? Welche HTTP-Methode wird verwendet und warum?
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-<!-- EQ4 -->
-<!-- time estimate: 15 min -->
+[ER] Ergänzen Sie `urls.py` um die Umfrage-Route:
 
-### QueryDict-Objekte verstehen
-
-Die Attribute `request.GET` und `request.POST` sind spezielle QueryDict-Objekte:
-
-[ER] Erstellen Sie `meinprojekt/meinprojekt/querydict_demo.py`:
-
-```python
-from django.shortcuts import render
-
-def querydict_demo(request):
-    context = {}
-    
-    if request.method == 'POST':
-        context['post_data'] = dict(request.POST)
-        context['test_value'] = request.POST.get('test')
-        context['option_get'] = request.POST.get('option')
-        context['option_getlist'] = request.POST.getlist('option')
-        context['post_items'] = list(request.POST.items())
-        context['show_results'] = True
-    
-    context['get_data'] = dict(request.GET)
-    
-    return render(request, 'querydict_demo.html', context)
-```
-
-[ER] Erstellen Sie die Template-Datei `meinprojekt/templates/querydict_demo.html`:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>QueryDict Demo</title>
-    <meta charset="utf-8">
-</head>
-<body>
-    <h1>QueryDict-Objekt Demonstration</h1>
-    
-    <h2>Test-Formular</h2>
-    <form method="post">
-        {% csrf_token %}
-        <div style="margin-bottom: 10px;">
-            <label for="test">Texteingabe:</label>
-            <input type="text" name="test" id="test" placeholder="Testwert" value="beispiel">
-        </div>
-        <div style="margin-bottom: 10px;">
-            <label>Optionen wählen:</label><br>
-            <input type="checkbox" name="option" value="1" id="opt1"> 
-            <label for="opt1">Option 1</label><br>
-            <input type="checkbox" name="option" value="2" id="opt2"> 
-            <label for="opt2">Option 2</label><br>
-        </div>
-        <input type="submit" value="Formular testen">
-    </form>
-    
-    <h2>QueryDict-Eigenschaften:</h2>
-    
-    {% if show_results %}
-        <h3>POST-Daten:</h3>
-        <ul>
-            <li><strong>request.POST:</strong> {{ post_data }}</li>
-            <li><strong>request.POST.get('test'):</strong> {{ test_value }}</li>
-        </ul>
-        
-        <h3>QueryDict-Methoden Vergleich:</h3>
-        <ul>
-            <li><strong>request.POST.get('option'):</strong> {{ option_get }}</li>
-            <li><strong>request.POST.getlist('option'):</strong> {{ option_getlist }}</li>
-        </ul>
-        
-        <h3>Weitere QueryDict-Eigenschaften:</h3>
-        <ul>
-            <li><strong>request.POST.items():</strong> {{ post_items }}</li>
-        </ul>
-    {% else %}
-        <p><em>Senden Sie das Formular ab, um die QueryDict-Eigenschaften zu sehen.</em></p>
-    {% endif %}
-    
-    <h3>GET-Daten (falls vorhanden):</h3>
-    <ul>
-        <li><strong>request.GET:</strong> {{ get_data }}</li>
-    </ul>
-</body>
-</html>
-```
+[SNIPPET::ALT::django_form_urls_survey]
 <!-- ER12 -->
 
-[ER] Fügen Sie die QueryDict-Demo Route zu `urls.py` hinzu:
-
-```python
-from django.urls import path
-from . import search, search_post, request_info, contact, querydict_demo
-
-urlpatterns = [
-    path('search-form/', search.search_form, name='search_form'),
-    path('search/', search.search, name='search'),
-    path('search-post/', search_post.search_post, name='search_post'),
-    path('request-info/', request_info.request_info, name='request_info'),
-    path('contact/', contact.contact, name='contact'),
-    path('querydict-demo/', querydict_demo.querydict_demo, name='querydict_demo'),
-]
-```
-<!-- ER13 -->
-
-[EQ] Testen Sie die QueryDict-Demo unter `http://127.0.0.1:8000/querydict-demo/`:
-1. Ersten Test: Wählen Sie **nur Option 1** und senden Sie das Formular
-2. Zweiten Test: Wählen Sie **beide Optionen (Option 1 und Option 2)** und senden Sie das Formular  
-3. Vergleichen Sie in der Ausgabe: `request.POST.get('option')` vs. `request.POST.getlist('option')`
-Was ist der Unterschied zwischen `.get()` und `.getlist()` bei mehreren Werten?
-Wenn Sie Port 8080 verwenden, ändern Sie den Link bitte entsprechend.
-<!-- EQ5 -->
-
+[EQ] Rufen Sie `http://127.0.0.1:8071/survey/` auf, kreuzen Sie **beide** Checkboxen an und
+senden Sie ab. Welchen Wert zeigt `get("sprache")` und welchen `getlist("sprache")`? In
+welcher Situation brauchen Sie zwingend `getlist()`? Wenn Sie einen anderen Port verwenden,
+passen Sie den Link entsprechend an.
+<!-- EQ4 -->
 <!-- time estimate: 25 min -->
 
 ### Weiterführend
 
-- [HTTP-Methoden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) – Weitere Erklärungen zu HTTP GET und POST
+- [Working with forms](https://docs.djangoproject.com/en/stable/topics/forms/) – Überblick über die Formularverarbeitung in Django
+- [Cross Site Request Forgery protection](https://docs.djangoproject.com/en/stable/ref/csrf/) – Details zum CSRF-Schutz
+- [QueryDict](https://docs.djangoproject.com/en/stable/ref/request-response/#querydict-objects) – Referenz zu QueryDict und seinen Methoden
 
 [ENDSECTION]
 
 [SECTION::submission::program]
+
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
 
+**Knackpunkte:**
+
+- [EREFR::7] + [EREFQ::3]: Die `register`-View legt bei POST per `Student.objects.create()`
+  einen Datensatz an und leitet mit `redirect(reverse("student_detail", args=[student.id]))`
+  auf dessen Detailseite weiter; Student erkennt an der angezeigten Detailseite, dass die
+  Daten tatsächlich gespeichert (nicht nur zurückgespiegelt) wurden.
+- [EREFR::5]: Das POST-Formular enthält `{% csrf_token %}`; ohne dieses Token weist Django
+  den POST mit einem 403-Fehler ab.
+- [EREFQ::4]: Student erkennt, dass `get()` bei mehrfach vorkommendem Feld nur einen Wert
+  liefert, `getlist()` dagegen alle — Letzteres ist bei Mehrfachauswahl (Checkboxen) nötig.
+
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-form.md]
+
+### Kommandoprotokoll
+[PROT::ALT:django-form.prot]
 
 [ENDINSTRUCTOR]
