@@ -29,7 +29,7 @@ drei zusammenhängenden Themen: Broadcasting, gezieltes Iterieren und Verändern
 ### NumPy Broadcasting: Grundlagen
 
 Broadcasting ermöglicht arithmetische Operationen zwischen Arrays unterschiedlicher Formen.
-Wenn zwei Arrays kompatible Formen haben, "broadcasted" NumPy automatisch das kleinere Array,
+Wenn zwei Arrays kompatible Formen haben, erweitert NumPy automatisch das kleinere Array,
 um es an die Form des größeren anzupassen.
 
 **Grundlegende Broadcasting-Beispiele:**
