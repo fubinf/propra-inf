@@ -42,7 +42,8 @@ meinprojekt/
     ├── settings.py             # Zentrale Projektkonfiguration
     ├── urls.py                 # URL-Routing-Konfiguration
     ├── wsgi.py                 # WSGI-Deployment-Konfiguration
-    └── asgi.py                 # ASGI-Konfiguration für async/WebSockets
+    └── asgi.py                 # ASGI-Einstiegspunkt für asynchrone Verarbeitung,
+                                # für uns aber nicht von Interesse
 ```
 
 ### Eine App erstellen
@@ -97,8 +98,8 @@ betrachtet?
 **settings.py - Zentrale Projekteinstellungen**
 
 Die `settings.py` enthält alle wichtigen Projekteinstellungen.
-Öffnen Sie `settings.py` (in `meinprojekt/`) und betrachten Sie folgende wichtige
-Abschnitte:
+Öffnen Sie `settings.py` (im Konfigurationsordner `meinprojekt/meinprojekt/`, nicht im
+Projektordner `meinprojekt/` selbst) und betrachten Sie folgende wichtige Abschnitte:
 
 ```python
 [SNIPPET::ITREE:/Web/Django/django-project-settings.py::django_project_settings]
@@ -151,9 +152,9 @@ Eine detaillierte Erklärung der `path()`-Funktion finden Sie in [PARTREF::djang
 [SNIPPET::ITREE:/Web/Django/django-project-urls.py::django_project_urls]
 ```
 
-[EQ] Untersuchen Sie die bisherige Projekt-`urls.py` (in `meinprojekt/`). Welche Route ist
-standardmäßig definiert, und warum existiert diese Route bereits, obwohl Sie sie nicht selbst
-mit `path()` angelegt haben?
+[EQ] Untersuchen Sie die bisherige Projekt-`urls.py` (im Konfigurationsordner
+`meinprojekt/meinprojekt/`). Welche Route ist standardmäßig definiert, und warum existiert
+diese Route bereits, obwohl Sie sie nicht selbst mit `path()` angelegt haben?
 
 [ER] Erstellen Sie eine `urls.py` in der App `webapp` mit einer Route für Ihre neue View:
 
@@ -259,9 +260,9 @@ Warum reicht hier die Ordnerstruktur allein aus?
 - [EREFR::3]: Die App-`urls.py` importiert `views` und enthält
   `path("", views.hello, name="hello")`; die Projekt-`urls.py` bindet sie mit
   `path("", include("webapp.urls"))` ein (`include` importiert).
-- [EREFQ::3]: Student erkennt, dass die `admin/`-Route nicht selbst angelegt wurde, sondern von
-  einer App stammt, die bereits ab Projekterstellung in `INSTALLED_APPS` eingetragen ist, genauso
-  wie soeben `'webapp'`.
+- [EREFQ::3]: Student erkennt, dass die `admin/`-Route bereits im von `startproject` erzeugten
+  Boilerplate-Code der `urls.py` steht (`path('admin/', admin.site.urls)`), nicht automatisch
+  durch den `INSTALLED_APPS`-Eintrag entsteht.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-project.md]
