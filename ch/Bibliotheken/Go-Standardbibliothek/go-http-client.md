@@ -2,7 +2,7 @@ title: "Go: 'http.Client' und Senden von HTTP-Anfragen"
 stage: alpha
 timevalue: 0.75
 difficulty: 2
-assumes: go-interfaces
+assumes: go-interfaces, http-GET, http-State, http-Status
 ---
 
 [SECTION::goal::idea,experience]
@@ -10,7 +10,7 @@ Ich kann HTTP-Anfragen in Go senden.
 [ENDSECTION]
 
 [SECTION::background::default]
-Die heutige Welt ist ohne HTTP-Abfragen an Webserver kaum noch vorstellbar.
+Die heutige Welt ist ohne HTTP-Anfragen an Webserver kaum noch vorstellbar.
 
 In dieser Aufgabe lernen Sie, wie solche Anfragen in Go durchgeführt werden.
 [ENDSECTION]
@@ -19,9 +19,6 @@ In dieser Aufgabe lernen Sie, wie solche Anfragen in Go durchgeführt werden.
 
 [SECTION::instructions::detailed]
 
-[NOTICE]
-Falls die Abkürzung "HTTP" für Sie eher neu ist, bietet sich die Aufgabengruppe [PARTREF::HTTP] als Einführung an.
-[ENDNOTICE]
 
 ### Überblick
 
@@ -95,8 +92,7 @@ und
 [`http.Client.Post()`](https://cs.opensource.google/go/go/+/refs/tags/go1.25.4:src/net/http/client.go;l=861)?
 
 [HINT::Ich verstehe nicht, was die Antwort sein soll]
-Betrachten Sie es aus einem anderen Blickwinkel:
-Lassen sich einige dieser Methoden durch eine einzige implementieren?
+Eine dieser Methoden kann die anderen implementieren. 
 [ENDHINT]
 <!-- time estimate: 10 min -->
 
@@ -121,11 +117,11 @@ Wie lässt sich ein `[]byte` in eine lesbare Zeichenkette konvertieren?
 [EQ] Lesen Sie die
 [Dokumentation von `io.Copy`](https://pkg.go.dev/io#Copy)
 und erklären Sie, wie diese Funktion das Ergebnis einer HTTP-Anfrage auf die Kommandozeile ausgeben kann.
-("Die Kommandozeile" wird im Go-Universum durch `os.Stdout` vom Typ `*os.File` repräsentiert.)
+("Die Kommandozeile" wird in Go durch `os.Stdout` vom Typ `*os.File` repräsentiert.)
 
 [HINT::Ich verstehe nicht, wie das funktionieren soll]
 Der Typ `*os.File` implementiert das Interface `io.ReadWriter` und kann daher sowohl als `io.Reader` als auch als
-`io.Writer` verwendet werden — darunter auch als `dst` in `io.Copy(dst io.Writer, src io.Reader)`.
+`io.Writer` verwendet werden — darunter auch als Ziel `dst` in `io.Copy(dst io.Writer, src io.Reader)`.
 [ENDHINT]
 
 [ER] Schreiben Sie ein Programm, in dem Sie die oben definierten HTTP-Anfragen (`firstRequest`, `secondRequest` und
