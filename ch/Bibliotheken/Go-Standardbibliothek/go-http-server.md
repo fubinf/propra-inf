@@ -113,9 +113,9 @@ oft als **Endpunkt** (Endpoint) bezeichnet.
 [ENDNOTICE]
 
 Schauen Sie sich die Dokumentation und Beispiele zu
-['HandleFunc'](https://pkg.go.dev/net/http#HandleFunc)
+[`HandleFunc`](https://pkg.go.dev/net/http#HandleFunc)
 und
-['ListenAndServe'](https://pkg.go.dev/net/http#ListenAndServe)
+[`ListenAndServe`](https://pkg.go.dev/net/http#ListenAndServe)
 an und schreiben Sie ein kleines Programm, in dem Sie analog zum Beispiel folgende Endpunkte registrieren:
 
 [ER] Eine GET-Anfrage auf `/foo` gibt `"Foo!"` zurück.
@@ -135,7 +135,7 @@ an.
 
 [EQ] Warum gewinnt `/users/{id}` gegenüber `/users/` bei `GET /users/5`?
 
-[EQ] Welche Routen decken jeweils `/users` und `/users/`?
+[EQ] Welche Routen deckt jeweils das Muster `/users` bzw. `/users/` ab?
 
 [EQ] Wie würden Sie einen neuen Endpunkt registrieren, der nur auf POST-Anfragen auf `/users/{id}` reagieren soll?
 
