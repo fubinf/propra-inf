@@ -94,15 +94,27 @@ Die Liste behält die ursprünglichen Datentypen (int, str, float) unverändert 
 vereinheitlicht dagegen alle Elemente auf einen gemeinsamen Datentyp (hier: Strings), da ein
 `ndarray` nur homogene Daten speichern kann.
 
-[EQ] Basierend auf dem Beispiel oben: Warum vereinheitlicht `numpy.array()` alle Werte auf einen
-gemeinsamen Datentyp, obwohl die ursprüngliche Liste unterschiedliche Typen enthielt? Welchen
-Vorteil bringt diese Einschränkung, wenn man mit großen numerischen Datenmengen arbeitet?
+Dieselbe Einschränkung wirkt auch nachträglich, bei einer einzelnen Zuweisung:
+```python
+liste = [1, 2, 3]
+liste.append(4.5)
+print(liste)  # [1, 2, 3, 4.5]
+
+array = np.array([1, 2, 3])
+array[0] = 4.5
+print(array)  # [4 2 3]  (nicht 4.5!)
+```
+
+[EQ] Die Liste übernimmt die 4.5 unverändert, das Array zeigt stattdessen 4 — kein Fehler, aber
+auch nicht 4.5. Warum ändert sich beim Array der Wert, während bei der Liste alles beim
+Erwarteten bleibt?
 
 [ER] Erstellen Sie die folgenden Arrays und geben Sie sie aus:
 
-- Ein 1D-Array mit den Zahlen 10, 20, 30, 40, 50
-- Ein 2D-Array (3x2) mit den Werten [[1, 2], [3, 4], [5, 6]]
-- Ein Array mit mindestens 2 Dimensionen aus der Liste [7, 8, 9] (verwenden Sie `ndmin`)
+- `arr_1d`: Ein 1D-Array mit den Zahlen 10, 20, 30, 40, 50
+- `arr_2d`: Ein 2D-Array (3x2) mit den Werten [[1, 2], [3, 4], [5, 6]]
+- `arr_ndmin`: Ein Array mit mindestens 2 Dimensionen aus der Liste [7, 8, 9]
+  (verwenden Sie `ndmin`)
 
 <!-- time estimate: 25 min -->
 
@@ -132,9 +144,9 @@ NumPy wandelt ihn automatisch in `np.complex128` um.
 
 [ER] Erstellen Sie Arrays mit verschiedenen Datentypen:
 
-- Ein Array [100, 200, 300] vom Typ `int16`
-- Ein Array [1.5, 2.7, 3.14] vom Typ `float32`
-- Ein Array [1, 2, 3] vom Typ `complex64`
+- `arr_int16`: Ein Array [100, 200, 300] vom Typ `int16`
+- `arr_float32`: Ein Array [1.5, 2.7, 3.14] vom Typ `float32`
+- `arr_complex64`: Ein Array [1, 2, 3] vom Typ `complex64`
 
 Geben Sie jeweils das Array und seinen `dtype` aus.
 
@@ -230,7 +242,7 @@ print(arr.itemsize) # 8
 [EQ] Ein Array hat die Form (4, 5, 3). Wie viele Dimensionen hat es, wie viele Elemente
 insgesamt, und welche Bedeutung haben die einzelnen Zahlen in der Form-Angabe?
 
-[ER] Erstellen Sie ein 2D-Array der Form (3, 4) mit den Werten `1` bis `12` und
+[ER] Erstellen Sie ein 2D-Array `arr_props` der Form (3, 4) mit den Werten `1` bis `12` und
 geben Sie folgende Eigenschaften aus: `shape`, `ndim`, `size`, `dtype`, `itemsize`
 
 [HINT::Woran erkenne ich, ob mein Ergebnis stimmt?]
@@ -258,7 +270,7 @@ der Ausgabe.
 [INSTRUCTOR::Kontrollergebnisse]
 **Knackpunkte:**
 
-- [EREFQ::1]: Antwort nennt tatsächlich einen Grund, der mit Speicher-/Verarbeitungseffizienz bei einem festen, homogenen Datentyp zusammenhängt (z.B. kompaktere Speicherung, schnellerer Zugriff), nicht nur eine Wiederholung der Beobachtung aus dem Beispiel.
+- [EREFQ::1]: Antwort erkennt, dass der `dtype` bereits bei der Array-Erstellung festgelegt wird und spätere Zuweisungen an diesen Typ angepasst (hier: nach `int` gekürzt) werden, während eine Liste keinen festen Elementtyp hat — nicht nur eine Wiederholung der beobachteten Ausgabe.
 - [EREFR::1]: Die Ausgabe des dritten Arrays (`ndmin=2` auf `[7, 8, 9]`) zeigt die verschachtelte Form `[[7 8 9]]` statt `[7 8 9]` – zeigt, ob `ndmin` wirklich verstanden wurde.
 - [EREFR::3]: Der strukturierte dtype ist korrekt mit drei benannten Feldern definiert, und `students['name']` liefert nur die Namen (nicht das gesamte Tupel).
 
