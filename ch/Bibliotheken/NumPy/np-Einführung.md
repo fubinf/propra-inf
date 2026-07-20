@@ -80,7 +80,7 @@ print(b)
 #  [3 4]]
 ```
 
-**Homogene Datentypen**
+**Homogene Datentypen:**
 ```python
 liste = [1, 'x', 3.5]
 array = np.array([1, 'x', 3.5])
