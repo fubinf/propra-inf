@@ -169,3 +169,60 @@ abgeben und das den Instructors direkt in der webapp mit anzeigen.
 https://www.drawio.com/  (Open Source, Desktop oder [online](https://app.diagrams.net/?src=about))  
 https://www.drawio.com/doc/faq/save-file-formats  
 https://machow2.com/best-free-alternatives-visio-mac/
+
+
+## Prompt
+
+Many of our tasks contain superfluous empty lines in the submission section
+that make it harder to read that section as an author.
+We want to get rid of those empty lines.
+
+Specifically, these blocks look for instance like this:
+```
+[SECTION::submission::program,information]
+
+[INCLUDE::/_include/Submission-Quellcode.md]
+
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+
+[ENDSECTION]
+```
+
+After processing, this same block should look like this:
+```
+[SECTION::submission::program,information]
+[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
+[ENDSECTION]
+```
+
+Write a script `../cmd/helper_rewrite_files.py` that does the following:
+
+It takes three commandline arguments `tree`, `pattern`, and `max`.
+Makes sure `tree` is a directory name, pattern involves a `*` or `?` (a filename glob pattern), and
+`max` is an integer or missing (in which case it defaults to 9999).
+Prints a usage hint along the lines of the above if called incorrectly.
+
+Finds all files in `tree` that match `pattern`, checks each for need of rewrite,
+rewrites those that have it (one-by-one), writes them back to the same filename.
+Stops after rewriting `max` files.
+
+For checking rewriting need, consider the section of the file between a line that starts with
+`[SECTION::submission::*]`
+(the `*` is glob syntax) and the next line that starts with
+`[ENDSECTION]`
+There can be 0 or 1 such sections.
+Report multiple such SECTION lines as an error and stop.
+Report missing ENDSECTION lines as an error and stop.
+Rewriting is needed if the section between SECTION and ENDSECTION contains one or more empty lines.
+
+If so, rewriting consists of removing these empty lines.
+
+Report each rewritten file along with the number of empty lines removed.
+
+Write the script such that it can easily be adapted to similar rewriting tasks
+that walk through the tree, find a certain block (via regexp) in each file,
+check a condition on that block, and rewrite the block if the condition is fulfilled.
+The 'block' in this sense may include or not include the start/end lines that define it.
+
+
