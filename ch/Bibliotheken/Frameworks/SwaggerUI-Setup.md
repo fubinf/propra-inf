@@ -14,7 +14,7 @@ darstellen und lesen.
 [SECTION::background::default]
 Ein Server kann im Internet eine [TERMREF::REST]-API bereitstellen.
 Damit Anwender_innen diese API nutzen können, ist es wichtig, diese genau zu spezifizieren.
-OpenAPI ist ein Standard, um eine `REST-API` in einer Datei (JSON oder YAML) zu beschreiben.
+OpenAPI ist ein Standard, um eine REST-API in einer Datei (JSON oder YAML) zu beschreiben.
 Diese Spezifikation enthält unter anderem alle Endpunkte, HTTP-Methoden, Parameter
 und Antwortformate.
 Als visuelles Tool wurde darauf aufbauend die SwaggerUI entwickelt, mit der
@@ -31,7 +31,7 @@ In dieser Aufgabe erfahren Sie, wie Sie diese Oberfläche auf Ihrem PC selbst au
 
 ### SwaggerUI
 
-Swagger ist eine JavaScript-Bibliothek, die dafür entwickelt wurde, direkt im
+SwaggerUI ist eine JavaScript-Bibliothek, die dafür entwickelt wurde, direkt im
 Browser verwendet werden zu können.
 In der
 [SwaggerUI Installationsanleitung](https://github.com/swagger-api/swagger-ui/blob/HEAD/docs/usage/installation.md#unpkg)
