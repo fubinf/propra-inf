@@ -32,7 +32,9 @@ wie negative Zahlen darin kodiert werden). Falls Ihnen diese fehlen, helfen folg
 - [Dualsystem (Wikipedia)](https://de.wikipedia.org/wiki/Dualsystem)
 - [Zweierkomplement (Wikipedia)](https://de.wikipedia.org/wiki/Zweierkomplement)
 
-### Grundlagen der NumPy Bitwise-Operationen
+Ohne dieses Vorwissen ist die Bearbeitung dieser Aufgabe nicht sinnvoll.
+
+### Grundlagen der NumPy-Bitwise-Operationen
 
 Bitwise-Operationen arbeiten direkt auf der binären Darstellung von Zahlen: Jede Position
 einer Binärzahl repräsentiert eine Zweierpotenz, z. B. steht `00001101` für
@@ -76,7 +78,7 @@ import numpy as np
 print(np.binary_repr(13, width=8))  # '00001101'
 ```
 
-### Bitweise UND, ODER und XOR Operationen: `bitwise_and`, `bitwise_or`, `bitwise_xor`
+### Bitweise UND-, ODER- und XOR-Operationen: `bitwise_and`, `bitwise_or`, `bitwise_xor`
 
 ```python
 numpy.bitwise_and(x1, x2)  # bitweises UND: 1 nur dort, wo beide Operanden 1 sind
@@ -211,7 +213,7 @@ bzw. als vorzeichenlose Zahl repräsentiert.
 
 <!-- time estimate: 20 min -->
 
-### NumPy String-Funktionen Grundlagen: `char.upper`, `char.lower`
+### Grundlagen der NumPy-String-Funktionen: `char.upper`, `char.lower`
 
 NumPy bietet umfangreiche Funktionen für String-Verarbeitung durch das `numpy.char`-Modul.
 Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String-Operation
