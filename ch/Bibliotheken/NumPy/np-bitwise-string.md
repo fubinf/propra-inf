@@ -1,9 +1,8 @@
 title: NumPy Bitwise-Operationen und String-Funktionen
 stage: alpha
-timevalue: 1.5
+timevalue: 1.75
 difficulty: 2
-requires: np-Einführung
-assumes: np-array
+assumes: np-Einführung, np-array, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
@@ -16,8 +15,10 @@ assumes: np-array
 
 [SECTION::background::default]
 
-Bitwise-Operationen arbeiten auf der binären Darstellung von Zahlen. String-Funktionen
-ermöglichen vektorisierte Textverarbeitung in NumPy-Arrays.
+NumPy bietet neben numerischen auch bitweise und stringbezogene Operationen an, die direkt auf
+der binären bzw. textuellen Darstellung der Daten arbeiten. Diese Aufgabe behandelt die
+wichtigsten Bitwise-Funktionen sowie ausgewählte NumPy-String-Funktionen für die
+Textverarbeitung.
 
 [ENDSECTION]
 
@@ -33,6 +34,11 @@ wie negative Zahlen darin kodiert werden). Falls Ihnen diese fehlen, helfen folg
 - [Zweierkomplement (Wikipedia)](https://de.wikipedia.org/wiki/Zweierkomplement)
 
 Ohne dieses Vorwissen ist die Bearbeitung dieser Aufgabe nicht sinnvoll.
+
+Die Zeitschätzungen für die Bitwise-Abschnitte dieser Aufgabe gehen davon aus, dass dieses Vorwissen
+bereits vorhanden ist. Wenn Sie sich Dualsystem und Zweierkomplement erst parallel aneignen, wird
+die Bearbeitung merklich länger dauern — das ist normal und kein Zeichen dafür, dass Sie zu langsam
+sind.
 
 ### Grundlagen der NumPy-Bitwise-Operationen
 
@@ -204,7 +210,7 @@ ndarray.astype(dtype)
 dieselben Bits umgekehrt werden? Nutzen Sie Ihre Ergebnisse aus der vorherigen Aufgabe für
 Ihre Erklärung.
 
-[HINT::Bit für Bit vorgehen]
+[HINT::Warum ergibt dasselbe Bitmuster bei int8 und uint8 unterschiedliche Zahlen?]
 Schreiben Sie sich zuerst die 8-Bit-Darstellung
 von `1` auf (`np.binary_repr(1, width=8)`), kehren Sie jedes Bit einzeln um, und
 prüfen Sie erst danach, welche negative Zahl dieses Bitmuster im Zweierkomplement
@@ -220,6 +226,14 @@ Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String
 auf jedes Element eines Arrays gleichzeitig an. Wie bei einzelnen Python-Strings verändern
 sie das ursprüngliche Array nicht, sondern geben immer ein neues Array mit den Ergebnissen
 zurück.
+
+Der Geschwindigkeitsvorteil gegenüber einer Python-Schleife fällt hier deutlich kleiner aus als
+bei numerischen NumPy-Operationen (wo Faktoren von 50-100x üblich sind): Bei einfachen,
+direkt vektorisierbaren Operationen auf großen Arrays (wie den hier gezeigten) sind eher Faktoren
+im Bereich von 2x-15x realistisch. Mit `numpy.strings` gibt es ein neueres, intern effizienteres
+Modul mit denselben Funktionsnamen (siehe
+[NumPy String Functions](https://numpy.org/doc/stable/reference/routines.strings.html)); in dieser
+Aufgabe wird weiterhin `numpy.char` verwendet, da beide Module dieselbe Schnittstelle haben.
 
 ```python
 numpy.char.upper(a)  # wandelt jedes Element in Großbuchstaben um
@@ -368,6 +382,59 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
 
 <!-- time estimate: 10 min -->
 
+### Wie groß ist der Geschwindigkeitsvorteil wirklich? `char.startswith`
+
+```python
+numpy.char.startswith(a, prefix)  # prüft für jedes Element, ob es mit prefix beginnt
+```
+
+- `a`: Array von Strings, das geprüft wird
+- `prefix`: das zu suchende Präfix
+
+```python
+import numpy as np
+
+files = np.array(['summary.txt', 'report_2023.csv', 'report_2024.csv'])
+mask = np.char.startswith(files, 'report')
+print(mask)  # [False  True  True]
+```
+
+Um den Zeitunterschied zwischen zwei Operationen zu messen, bietet Pythons Standardbibliothek
+das `time`-Modul: `time.time()` gibt den aktuellen Zeitpunkt in Sekunden zurück. Ruft man es
+vor und nach einer Operation auf, ergibt die Differenz die benötigte Laufzeit; mit der in
+[PARTREF::py-Fstrings] eingeführten f-String-Formatierung mit Präzisionsangabe (`:.4f`) lässt
+sich die Ausgabe auf sinnvolle Nachkommastellen begrenzen:
+
+```python
+import time
+
+start = time.time()
+# ... Operation, deren Dauer gemessen werden soll ...
+ende = time.time()
+dauer = ende - start
+print(f'Dauer: {dauer:.4f} Sekunden')
+```
+
+[ER] Messen Sie den Geschwindigkeitsunterschied zwischen `np.char.startswith` und einer
+Python-Schleife an einem größeren Array:
+
+- Erstellen Sie ein Array `words` mit 100000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
+  `'produkt99999'` (z. B. mit einer List Comprehension und `np.array`)
+- Messen Sie mit dem `time`-Modul die Laufzeit von `np.char.startswith(words, 'produkt123')`
+  über 5 Wiederholungen und notieren Sie die kürzeste gemessene Zeit
+- Messen Sie auf dieselbe Weise die Laufzeit der äquivalenten Python-Schleife
+  `[w.startswith('produkt123') for w in words]`
+- Geben Sie beide Zeiten (5 Nachkommastellen, `:.5f`) sowie den Faktor (1 Nachkommastelle, `:.1f`)
+  aus
+
+[HINT::Wie überprüfe ich mein Ergebnis?]
+Der Faktor sollte deutlich über 1 liegen (NumPy schneller), aber typischerweise im niedrigen
+zweistelligen Bereich — nicht im Bereich von 50-100x, wie man es von numerischen
+NumPy-Operationen kennt.
+[ENDHINT]
+
+<!-- time estimate: 15 min -->
+
 ### Weiterführend
 
 - [NumPy Bitwise Operations](https://numpy.org/doc/stable/reference/routines.bitwise.html)
@@ -391,6 +458,8 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
   Vorzeichenbit) statt auf einen Unterschied in der eigentlichen Bit-Operation
 - [EREFR::6]: `split`/`join`/`replace`/`find` liefern für alle Elemente des Arrays die
   korrekten Ergebnisse
+- [EREFR::7]: der gemessene Faktor liegt deutlich über 1x (NumPy schneller), aber im niedrigen
+  zweistelligen Bereich, nicht im Bereich von 50-100x
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-bitwise-string.md]
