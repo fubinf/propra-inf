@@ -64,24 +64,14 @@ USAGE = """\
 usage: helper_rewrite_files.py <tree> <pattern> [<max>]
 
   <tree>     directory to walk recursively
-  <pattern>  filename glob (must contain '*' or '?'), matched against basenames
+  <pattern>  filename glob (must contain '*' or '?', quote it!), matched against basenames
   <max>      max number of files to rewrite (default 9999)
 
-Inside each file's [SECTION::submission::...] ... [ENDSECTION] block, removes
-the empty lines that are immediately before or after an [INCLUDE::/_include/*.md]
-line (empty lines around other text are kept), e.g. turns
-
-    [SECTION::submission::program,information]
-
-    [INCLUDE::/_include/Submission-Quellcode.md]
-
-    [ENDSECTION]
-
-into
-
-    [SECTION::submission::program,information]
-    [INCLUDE::/_include/Submission-Quellcode.md]
-    [ENDSECTION]
+Walks through <tree>, looking for files with local names <pattern>.
+Processes each such file one by one.
+In the file, identifies blocks of lines via the BLOCK_START/BLOCK_END regexp program constants.
+Checks block for need of rewriting via the block_needs_rewrite() predicate.
+Then rewrites that block via the rewrite_block() function and writes back the modified file.
 """
 
 
@@ -89,8 +79,8 @@ into
 
 BLOCK_START = re.compile(r"^\[SECTION::submission::")
 BLOCK_END = re.compile(r"^\[ENDSECTION\]")
-INCLUDE_LINE = re.compile(r"^\[INCLUDE::/_include/.*\.md\]")
-INCLUDE_BOUNDS = False  # the empty-line check/rewrite acts on the inner lines only
+RELEVANT_LINE = re.compile(r"^\[INCLUDE::/_include/.*\.md\]")
+INCLUDE_BLOCK_START_AND_END = False  # the empty-line check/rewrite acts on the inner lines only
 
 
 def _is_empty(line):
@@ -102,7 +92,7 @@ def _removable_indices(block):
     [INCLUDE::/_include/*.md] line (adjacency judged on the original block, so
     empty lines around other text are never touched)."""
     def is_include(i):
-        return 0 <= i < len(block) and INCLUDE_LINE.match(block[i])
+        return 0 <= i < len(block) and RELEVANT_LINE.match(block[i])
     return [i for i, line in enumerate(block)
             if _is_empty(line) and (is_include(i - 1) or is_include(i + 1))]
 
@@ -148,7 +138,7 @@ def find_block(lines):
         raise RewriteError("[SECTION::submission::...] at line %d has no "
                            "following [ENDSECTION]" % (start + 1))
     end = ends[0]
-    if INCLUDE_BOUNDS:
+    if INCLUDE_BLOCK_START_AND_END:
         return start, end + 1
     return start + 1, end
 
