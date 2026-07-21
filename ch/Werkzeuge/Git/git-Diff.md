@@ -31,10 +31,11 @@ Schauen Sie sich vor allem den Abschnitt *EXAMPLES* an.
 
 Aus dem Drei-Bereiche-Modell ergeben sich drei sinnvolle Vergleiche:
 
-```
-Working Directory  ←──git diff──→  Staging Area  ←──git diff --staged──→  letzter Commit
-       ↑                                                                        ↑
-       └────────────────────git diff HEAD────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    A["Working Directory"] <-->|git diff| B["Staging Area"]
+    B <-->|"git diff --staged"| C["letzter Commit"]
+    A <-.->|"git diff HEAD"| C
 ```
 
 Um alle drei Vergleiche in Aktion zu sehen, brauchen wir einen Zustand, 

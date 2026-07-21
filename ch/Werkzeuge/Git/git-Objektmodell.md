@@ -41,17 +41,17 @@ sammeln wir auf diesem Stapel die Dateien, die ins Paket sollen.
 
 Das Modell sieht also so aus:
 
-```
-Working Directory  →  Staging Area (Index)  →  Repository
-    (Dateien            (Ablagestapel /          (Archiv /
-     bearbeiten)         Vormerkung)              Commits)
+```mermaid
+flowchart LR
+    A["Working Directory<br/><i>(Dateien bearbeiten)</i>"] -->|add| B["Staging Area (Index)<br/><i>(Ablagestapel / Vormerkung)</i>"]
+    B -->|commit| C["Repository<br/><i>(Archiv / Commits)</i>"]
 ```
 
 `git add` kopiert den **aktuellen Zustand** einer Datei in die Staging-Area.
 `git commit` nimmt alles, was in der Staging-Area liegt, und erstellt daraus einen Commit.
 
-Dabei werden nicht einzelne Änderungen gesichert, sondern immer ein vollständiges Abbild aller Dateien im Index — 
-ein Snapshot. Unveränderte Dateien übernimmt Git einfach per Referenz vom vorherigen Commit, 
+Dabei sichert Git nicht einzelne Änderungen, sondern immer ein vollständiges Abbild aller Dateien im Index – 
+einen Snapshot. Unveränderte Dateien übernimmt Git einfach per Referenz vom vorherigen Commit, 
 sodass kein Speicher verschwendet wird.
 
 Das klingt nach einem unwichtigen Zwischenschritt – aber es hat eine mächtige Konsequenz,
@@ -88,7 +88,7 @@ def multipliziere(a, b):
 Führen Sie jetzt `git status` aus.
 
 Sie sollten etwas Unerwartetes sehen: `calculator.py` taucht **zweimal** auf –
-einmal unter „Changes to be committed" und einmal unter „Changes not staged for commit".
+einmal unter „Changes to be committed“ und einmal unter „Changes not staged for commit“.
 
 [EQ] Wie ist das möglich? Was sagt uns das darüber, was `git add` wirklich tut?
 
@@ -117,7 +117,7 @@ Bevor wir weiterarbeiten, wollen wir verstehen, *was genau* Git beim `git add` u
 
 Lesen Sie dazu den Artikel 
 [Git from the inside out](https://maryrosecook.com/blog/post/git-from-the-inside-out)
-bis einschließlich des Abschnitts „Each Commit has a Parent".
+bis einschließlich des Abschnitts „Each Commit has a Parent“.
 
 [HINT::Lieber ein Video?]
 Den gleichen Inhalt gibt es auch als Vortrag:
@@ -131,7 +131,7 @@ Beantworten Sie folgende Fragen zum Artikel:
 Was ist ein Blob-Objekt, und wie wird es benannt?
 
 [EQ] Wenn wir `git add` erneut für eine veränderte Datei ausführen 
-(ohne vorher committed zu haben): Was passiert mit dem vorherigen Blob-Objekt?
+(ohne vorher committet zu haben): Was passiert mit dem vorherigen Blob-Objekt?
 
 [EQ] Was speichert Git, wenn wir einen neuen Commit erstellen?
 Welche Objekte entstehen dabei und wie verweisen sie aufeinander?
@@ -178,7 +178,7 @@ im Index und schauen Sie sich dessen Inhalt mit `git show` an.
 Es fehlt noch ein Argument – denken Sie an `git help ls-files`.
 [ENDHINT]
 
-Jetzt ein kleines Experiment, um zu sehen, was mit „alten" Blobs passiert.
+Jetzt ein kleines Experiment, um zu sehen, was mit „alten“ Blobs passiert.
 Ändern Sie die Funktionsdefinition absichtlich falsch ab:
 
 ```python
@@ -200,7 +200,7 @@ Blob-Objekte, die von keiner Dateireferenz mehr erreicht werden.
 Das passiert fast immer, wenn wir die gleiche Datei mehrfach mit `git add` zum Index hinzufügen,
 ohne zwischendurch zu committen.
 
-[EC] Schauen Sie sich den Inhalt des dangling Blob an. 
+[EC] Schauen Sie sich den Inhalt des dangling Blobs an. 
 Ist es der vorherige Zustand unserer Datei?
 
 Das ist in der Praxis selten nötig, aber es zeigt ein wichtiges Prinzip:
