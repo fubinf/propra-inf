@@ -290,10 +290,17 @@ Immer möglichst so eingekleidet, dass man einen realistischen Anwendungsfall ke
 
 ### Sprachen/Python0 (alrwasheda)
 
-Aufgaben mit Schwierigkeit der Stufe 1 als unvollkommene Starthilfe, überwiegend für Leute mit zu niedrigem Wissen.
-Kontrollstrukturen: for, while, etc.
-Datenstrukturen: list, dict, set etc.
+War gedacht als:
+
+Aufgaben mit Schwierigkeit der Stufe 1 als unvollkommene Starthilfe, überwiegend für Leute mit zu niedrigem Wissen.  
+Kontrollstrukturen: for, while, etc.  
+Datenstrukturen: list, dict, set etc.  
 Gemischtes: Bspw. Tuple unpacking
+
+Das hat sich aber als unsinnig herausgestellt; dieser Stoff eignet sich miserabel für das ProPra-Format,
+weil man kaum entscheiden kann, welches Vorwissen man noch annehmen darf.
+Wir streichen die Idee und machen keine solche Aufgabengruppe.
+
 
 ### Sprachen/Python (alrwasheda)
 
@@ -546,6 +553,10 @@ Speziellerer Kram:
 
 ### Werkzeuge/Paketmanager (N.N.)
 
+- `go install`
+- `npm`
+- `poetry` oder `uv`
+- sobald wir Java dabeihaben: `maven`?
 - Welche stehen in meiner Sprache zur Verfügung? Gibt es überhaupt welche?
 - Welche Funktionen bietet ein Paketmanager?
 - Wie finde ich Pakete?
@@ -573,7 +584,7 @@ Hmm, bringt es so eine Gruppe? Unklar.
 ### Werkzeuge/LLM (N.N.)
 
 Eines Tages, wenn wir das Thema gut genug verstanden haben und der technische Fortschritt nicht mehr
-ganz so sehr galoppiert wie derzeit (2025), sollten wir hier eine Taskgroup zum Thema 
+ganz so sehr galoppiert wie derzeit (2025), sollten wir hier vermutlich eine Taskgroup zum Thema 
 "Software entwickeln mit Codierassistenten" haben, wo man lernen kann
 
 - wie man es nicht macht (zu ungenaue Prompts, zu umfangreiche Aufträge, zu wenig Nachkontrolle)
@@ -592,23 +603,24 @@ Sollten wir eines Tages wohl ins Auge fassen:
 - `docker compose`
 - ...
 
-Doof am Thema: Geht auf WSL und Mac nur mit Verrenkungen.
+Doof ist dabei: Docker geht auf WSL und Mac nur mit Verrenkungen.
 
 
 ## ch/Web (müllers, li)
+
 - Frontend und Backend gemeinsam behandeln; Informatiker_innen sollten einen Überblick haben.
 - Behandlung von folgenden Themen: Tailwind(?), 
   evtl. TypeScript, Flask, Django, Vue(?), React(?).
 
 ### Web/CSS
+
 - Fortgeschritten: Calculated Properties und Variablen
 - Optional: Verwenden von (weiteren) CSS Frameworks als Alternative zu Bootstrap
 
 
-### Web/JavaScript (N.N.)
+### Web/JavaScript
 
-- Verwenden von Ressourcen die JS für Python-Devs erklären.
-- Auf Basis des Programms Teplates und Slots motivieren und umsetzen.
+- Auf Basis des Programms Templates und Slots motivieren und umsetzen.
   Nicht immer wieder die gleichen Elemente anlegen müssen!
 - Optional aufbauend auf Templates eigene Tags definieren.
   Hier würde ich die Semantic Tags kurz erwähnen.
