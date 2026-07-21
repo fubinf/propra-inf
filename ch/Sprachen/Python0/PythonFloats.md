@@ -120,9 +120,7 @@ können Sie für die Abgabe auch unter dem Code als Kommentar beschreiben.
 [ENDSECTION]
 
 [SECTION::submission::snippet]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Konzept der Gleitkommazahlen in Python]

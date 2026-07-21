@@ -171,10 +171,8 @@ in der offiziellen Dokumentation: [contextlib-Modul](https://docs.python.org/3/l
 [ENDSECTION]
 
 [SECTION::submission::information,program]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Musterlösungen]

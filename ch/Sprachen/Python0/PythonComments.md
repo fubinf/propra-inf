@@ -99,9 +99,7 @@ wem und wie die Kommentare wirklich helfen:
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Wichtigkeit von Kommentaren]

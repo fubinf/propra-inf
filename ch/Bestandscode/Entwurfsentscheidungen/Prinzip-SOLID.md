@@ -43,9 +43,7 @@ Machen Sie dann erstmal woanders im ProPra weiter und kommen Sie später hier he
 [ENDSECTION]
 
 [SECTION::submission::information]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Grundlagen SOLID]

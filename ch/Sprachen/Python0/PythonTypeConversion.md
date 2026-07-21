@@ -165,9 +165,7 @@ gibt die Funktion den Wert `True` bzw. `False` zurück?
 [ENDSECTION]
 
 [SECTION::submission::information]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Mögliche Antworten]

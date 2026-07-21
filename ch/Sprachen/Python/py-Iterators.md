@@ -268,10 +268,8 @@ In welchen Situationen würden Sie einen Iterator einer Liste vorziehen?
 [ENDSECTION]
 
 [SECTION::submission::information,program]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Musterlösungen]

@@ -97,9 +97,7 @@ ob ein Dreieck mit den gegebenen Seitenlängen rechtwinklig ist.`
 [ENDSECTION]
 
 [SECTION::submission::information]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Musterlösung]

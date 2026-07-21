@@ -175,7 +175,6 @@ ob Sie alle Befehle wie geschrieben ausgeführt haben.
 Sie brauchen in dieser Aufgabe keinen Code abzugeben.
 Generell sollten Sie in der Regel Objekt-Dateien (`*.o`) und 
 Executables (`*.out`, häufiger ganz ohne Suffix) nicht in Git einchecken!
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 

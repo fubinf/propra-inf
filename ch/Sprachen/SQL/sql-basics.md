@@ -271,7 +271,6 @@ Ohne `WHERE` werden alle Zeilen gelöscht!
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 Ein Kommandoprotokoll brauchen wir diesmal nicht.
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 

@@ -247,7 +247,6 @@ geben Sie die Ausgabe in Ihrem Kommandoprotokoll ab.
 
 [SECTION::submission::trace,program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 Geben Sie den Quellcode in einer ausführbaren Datei `interfaces.go` ab.
 Diese muss folgendes beinhalten:
 

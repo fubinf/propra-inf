@@ -245,10 +245,8 @@ Verwenden Sie f-Strings für die Ausgabe. Der gefüllte Teil soll proportional z
 [ENDSECTION]
 
 [SECTION::submission::program]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Musterlösungen]

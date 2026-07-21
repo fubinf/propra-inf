@@ -103,9 +103,7 @@ Nutzen Sie die `print()`-Funktion in Python für die Ausgabe der Ergebnisse.
 [ENDSECTION]
 
 [SECTION::submission::snippet]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Konzept der Ganzzahlen in Python]
