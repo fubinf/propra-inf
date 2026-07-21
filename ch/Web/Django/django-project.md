@@ -1,5 +1,5 @@
 title: Django Erstes Projekt erstellen und konfigurieren
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 2
 requires: django-basics
@@ -9,7 +9,7 @@ requires: django-basics
 
 - Ich verstehe die Grundstruktur eines Django-Projekts, die Rolle der wichtigsten
   Konfigurationsdateien, und den Unterschied zwischen Project und App.
-- Ich kann eine erste View-Funktion in einer App schreiben und mit einem URL verknüpfen.
+- Ich kann eine erste View-Funktion in einer App schreiben und mit einer URL verknüpfen.
 - Ich kann Logik (view) und Layout (template) voneinander trennen.
 
 [ENDSECTION]
@@ -52,7 +52,7 @@ Ein Django-**Project** enthält die Gesamtkonfiguration einer Website. Konkrete 
 (z. B. eine Blog-Funktion oder ein Kontaktformular) werden dagegen in einer **App** untergebracht —
 einem eigenständigen Python-Paket innerhalb des Projekts. Ein Project kann mehrere Apps enthalten.
 View, Template, Routing und Form gehören deshalb in eine App, nicht in den
-Projekt-Konfigurationsordner `meinprojekt/`.
+Projekt-Konfigurationsordner `meinprojekt/meinprojekt/`.
 
 Erzeugen Sie eine neue App mit `startapp`:
 
@@ -211,8 +211,7 @@ folgende Version, die ein Template verwendet:
 
 [SNIPPET::ALT::django_project_render]
 
-Erstellen Sie in `webapp/` das Verzeichnis `templates/`
-und legen Sie darin die Datei `hello.html` mit folgendem Inhalt an:
+Legen Sie die Datei `webapp/templates/webapp/hello.html` mit folgendem Inhalt an:
 
 [SNIPPET::ALT::django_project_template]
 
@@ -239,7 +238,6 @@ Warum reicht hier die Ordnerstruktur allein aus?
 - [Project Structure](https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project) – Mehr zur Django-Projektstruktur
 - [URL dispatcher](https://docs.djangoproject.com/en/stable/topics/http/urls/) – Detaillierte Erklärungen zu URL-Konfiguration
 - [Applications](https://docs.djangoproject.com/en/stable/ref/applications/) – Details zum App-Konzept in Django
-
 [ENDSECTION]
 
 [SECTION::submission::program]
@@ -248,7 +246,6 @@ Warum reicht hier die Ordnerstruktur allein aus?
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
-
 **Knackpunkte:**
 
 - [EREFR::1] + [EREFQ::1]: `'webapp'` ist in `INSTALLED_APPS` eingetragen; Student erkennt, dass
@@ -264,5 +261,4 @@ Warum reicht hier die Ordnerstruktur allein aus?
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-project.md]
-
 [ENDINSTRUCTOR]
