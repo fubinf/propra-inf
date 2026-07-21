@@ -219,9 +219,17 @@ bzw. als vorzeichenlose Zahl repräsentiert.
 
 <!-- time estimate: 20 min -->
 
-### Grundlagen der NumPy-String-Funktionen: `char.upper`, `char.lower`
+### Grundlagen der NumPy-String-Funktionen: `strings.upper`, `strings.lower`
 
-NumPy bietet umfangreiche Funktionen für String-Verarbeitung durch das `numpy.char`-Modul.
+NumPy bietet zwei Module für vektorisierte String-Verarbeitung: `numpy.char` (das ursprüngliche)
+und `numpy.strings` (das neuere). Laut offizieller Dokumentation
+([NumPy String Functions](https://numpy.org/doc/stable/reference/routines.strings.html))
+gilt `numpy.char` inzwischen als Legacy — es arbeitet nur auf Strings fester Breite, erhält keine
+Updates mehr und soll langfristig entfernt werden. Deshalb verwenden wir in dieser Aufgabe
+vorwiegend `numpy.strings`; nur dort, wo `numpy.char` Funktionen bietet, die es in
+`numpy.strings` (noch) nicht gibt (`split`/`join`, siehe weiter unten), greifen wir auf
+`numpy.char` zurück.
+
 Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String-Operation
 auf jedes Element eines Arrays gleichzeitig an. Wie bei einzelnen Python-Strings verändern
 sie das ursprüngliche Array nicht, sondern geben immer ein neues Array mit den Ergebnissen
@@ -230,14 +238,11 @@ zurück.
 Der Geschwindigkeitsvorteil gegenüber einer Python-Schleife fällt hier deutlich kleiner aus als
 bei numerischen NumPy-Operationen (wo Faktoren von 50-100x üblich sind): Bei einfachen,
 direkt vektorisierbaren Operationen auf großen Arrays (wie den hier gezeigten) sind eher Faktoren
-im Bereich von 2x-15x realistisch. Mit `numpy.strings` gibt es ein neueres, intern effizienteres
-Modul mit denselben Funktionsnamen (siehe
-[NumPy String Functions](https://numpy.org/doc/stable/reference/routines.strings.html)); in dieser
-Aufgabe wird weiterhin `numpy.char` verwendet, da beide Module dieselbe Schnittstelle haben.
+im Bereich von 2x-15x realistisch.
 
 ```python
-numpy.char.upper(a)  # wandelt jedes Element in Großbuchstaben um
-numpy.char.lower(a)  # wandelt jedes Element in Kleinbuchstaben um
+numpy.strings.upper(a)  # wandelt jedes Element in Großbuchstaben um
+numpy.strings.lower(a)  # wandelt jedes Element in Kleinbuchstaben um
 ```
 
 - `a`: Array von Strings, dessen Elemente umgewandelt werden
@@ -250,17 +255,17 @@ strings = np.array(['Hello', 'World', 'NumPy'])
 print("Original:", strings)
 
 # Grundlegende String-Operationen
-upper_strings = np.char.upper(strings)
-lower_strings = np.char.lower(strings)
+upper_strings = np.strings.upper(strings)
+lower_strings = np.strings.lower(strings)
 print("Uppercase:", upper_strings)
 print("Lowercase:", lower_strings)
 ```
 
-### String-Verbindungen und Multiplikationen: `char.add`, `char.multiply`
+### String-Verbindungen und Multiplikationen: `strings.add`, `strings.multiply`
 
 ```python
-numpy.char.add(x1, x2)     # hängt die Elemente von x1 und x2 paarweise aneinander
-numpy.char.multiply(a, i)  # wiederholt jedes Element von a i-mal
+numpy.strings.add(x1, x2)     # hängt die Elemente von x1 und x2 paarweise aneinander
+numpy.strings.multiply(a, i)  # wiederholt jedes Element von a i-mal
 ```
 
 - `x1`, `x2`: Arrays von Strings gleicher Länge, deren Elemente paarweise aneinandergehängt werden
@@ -273,11 +278,11 @@ import numpy as np
 # String-Verbindung
 arr1 = np.array(['Hello', 'Good'])
 arr2 = np.array([' World', 'bye'])
-combined = np.char.add(arr1, arr2)
+combined = np.strings.add(arr1, arr2)
 print("Combined:", combined)  # ['Hello World' 'Goodbye']
 
 # String-Wiederholung
-repeated = np.char.multiply('Python ', 3)
+repeated = np.strings.multiply('Python ', 3)
 print("Repeated:", repeated)  # 'Python Python Python '
 ```
 
@@ -285,18 +290,18 @@ print("Repeated:", repeated)  # 'Python Python Python '
 
 - Erstellen Sie ein Array `names` mit den Werten `['Alice', 'Bob', 'Charlie']`
 - Erstellen Sie ein Array `greetings` mit den Werten `['Hallo', 'Hi', 'Hey']`
-- Verbinden Sie entsprechende Elemente mit `np.char.add()` und fügen Sie ein Leerzeichen dazwischen ein
-- Verwenden Sie `np.char.multiply()`, um jeden Namen 2-mal zu wiederholen
-- Konvertieren Sie alle Namen in Großbuchstaben mit `np.char.upper()`
+- Verbinden Sie entsprechende Elemente mit `np.strings.add()` und fügen Sie ein Leerzeichen dazwischen ein
+- Verwenden Sie `np.strings.multiply()`, um jeden Namen 2-mal zu wiederholen
+- Konvertieren Sie alle Namen in Großbuchstaben mit `np.strings.upper()`
 
 <!-- time estimate: 15 min -->
 
-### String-Formatierung und -Bearbeitung: `char.center`, `char.strip`, `char.replace`
+### String-Formatierung und -Bearbeitung: `strings.center`, `strings.strip`, `strings.replace`
 
 ```python
-numpy.char.center(a, width, fillchar=' ')  # zentriert jeden String in einem Feld der Breite width
-numpy.char.strip(a)                        # entfernt Leerzeichen am Anfang und Ende
-numpy.char.replace(a, old, new)            # ersetzt alle Vorkommen von old durch new
+numpy.strings.center(a, width, fillchar=' ')  # zentriert jeden String in einem Feld der Breite width
+numpy.strings.strip(a)                        # entfernt Leerzeichen am Anfang und Ende
+numpy.strings.replace(a, old, new)            # ersetzt alle Vorkommen von old durch new
 ```
 
 - `a`: Array von Strings, das bearbeitet wird
@@ -308,36 +313,45 @@ numpy.char.replace(a, old, new)            # ersetzt alle Vorkommen von old durc
 import numpy as np
 
 # String-Zentrierung und Polsterung
-centered = np.char.center('NumPy', 15, fillchar='*')
+centered = np.strings.center('NumPy', 15, fillchar='*')
 print("Centered:", centered)  # '*****NumPy*****'
 
 # String-Bereinigung
 messy_strings = np.array(['  hello  ', '  world  '])
-cleaned = np.char.strip(messy_strings)
+cleaned = np.strings.strip(messy_strings)
 print("Cleaned:", cleaned)  # ['hello' 'world']
 
 # String-Ersetzung
 text = np.array(['Python', 'NumPy', 'Pandas'])
-replaced = np.char.replace(text, 'y', 'i')
+replaced = np.strings.replace(text, 'y', 'i')
 print("Replaced:", replaced)  # ['Pithon' 'NumPi' 'Pandas']
 ```
 
 [ER] Arbeiten Sie mit String-Formatierung:
 
 - Erstellen Sie ein Array `words` mit den Werten `['Style', 'Yellow', 'Syntax']`
-- Zentrieren Sie jeden String in einem Feld der Breite 10 mit `np.char.center()`
+- Zentrieren Sie jeden String in einem Feld der Breite 10 mit `np.strings.center()`
 - Erstellen Sie ein Array mit Strings, die Leerzeichen am Anfang und Ende haben
-- Verwenden Sie `np.char.strip()` zum Entfernen der Leerzeichen
-- Nutzen Sie `np.char.replace()`, um alle 'y' durch 'i' zu ersetzen
+- Verwenden Sie `np.strings.strip()` zum Entfernen der Leerzeichen
+- Nutzen Sie `np.strings.replace()`, um alle 'y' durch 'i' zu ersetzen
 
 <!-- time estimate: 15 min -->
 
-### String-Teilung und -Verbindung: `char.split`, `char.join`, `char.find`
+### String-Teilung und -Verbindung: `char.split`, `char.join`, `strings.find`
+
+`split`/`join` gibt es nur in `numpy.char`, aus unterschiedlichen Gründen: `split` liefert für
+jedes Element eine unterschiedlich lange Python-Liste von Teilstrings zurück — das lässt sich
+nicht als einheitliches Array-Element abbilden und passt daher nicht zu den übrigen Funktionen
+aus `numpy.strings`, die immer genau ein Ergebnis pro Element liefern. `join` liefert dagegen
+durchaus ein gewöhnliches String-Array zurück, wurde bei der Einführung von `numpy.strings` aber
+schlicht nicht mit übernommen. Deshalb verwenden wir hier weiterhin `numpy.char` für
+`split`/`join`; `find` gibt es dagegen in beiden Modulen, dafür nutzen wir wie zuvor
+`numpy.strings`.
 
 ```python
-numpy.char.split(a, sep=None)  # teilt jeden String an sep in eine Liste von Teilstrings
-numpy.char.join(sep, a)        # fügt sep zwischen die einzelnen Zeichen jedes Strings in a ein
-numpy.char.find(a, sub)        # gibt die erste Fundposition von sub zurück, oder -1 falls nicht enthalten
+numpy.char.split(a, sep=None)     # teilt jeden String an sep in eine Liste von Teilstrings
+numpy.char.join(sep, a)           # fügt sep zwischen die einzelnen Zeichen jedes Strings in a ein
+numpy.strings.find(a, sub)        # gibt die erste Fundposition von sub zurück, oder -1 falls nicht enthalten
 ```
 
 - `a`: Array von Strings, das verarbeitet wird
@@ -362,10 +376,10 @@ print("Joined:", joined)  # ['a-b-c' 'x-y-z']
 
 # Zeichen in Strings finden
 emails = np.array(['user@domain.com', 'admin@site.org'])
-at_positions = np.char.find(emails, '@')
+at_positions = np.strings.find(emails, '@')
 print("Position of '@':", at_positions)  # [ 4  5]
 # Gibt -1 zurück, wenn nicht gefunden
-not_found = np.char.find(emails, 'xyz')
+not_found = np.strings.find(emails, 'xyz')
 print("Position of 'xyz':", not_found)  # [-1 -1]
 ```
 
@@ -376,16 +390,16 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
 - Erstellen Sie ein Array mit Kürzeln mit den Werten `['DE', 'FR']` und verwenden Sie
   `np.char.join()`,
   um zwischen die Buchstaben jedes Kürzels einen Punkt einzufügen (z. B. wird aus `'DE'` `'D.E'`)
-- Verwenden Sie `np.char.replace()`, um in `codes` alle Bindestriche durch Unterstriche zu ersetzen
-- Testen Sie `np.char.find()`, um die Position des ersten Bindestrichs in jedem Element von `codes`
+- Verwenden Sie `np.strings.replace()`, um in `codes` alle Bindestriche durch Unterstriche zu ersetzen
+- Testen Sie `np.strings.find()`, um die Position des ersten Bindestrichs in jedem Element von `codes`
   zu finden
 
 <!-- time estimate: 10 min -->
 
-### Wie groß ist der Geschwindigkeitsvorteil wirklich? `char.startswith`
+### Wie groß ist der Geschwindigkeitsvorteil wirklich? `strings.startswith`
 
 ```python
-numpy.char.startswith(a, prefix)  # prüft für jedes Element, ob es mit prefix beginnt
+numpy.strings.startswith(a, prefix)  # prüft für jedes Element, ob es mit prefix beginnt
 ```
 
 - `a`: Array von Strings, das geprüft wird
@@ -395,7 +409,7 @@ numpy.char.startswith(a, prefix)  # prüft für jedes Element, ob es mit prefix 
 import numpy as np
 
 files = np.array(['summary.txt', 'report_2023.csv', 'report_2024.csv'])
-mask = np.char.startswith(files, 'report')
+mask = np.strings.startswith(files, 'report')
 print(mask)  # [False  True  True]
 ```
 
@@ -415,12 +429,12 @@ dauer = ende - start
 print(f'Dauer: {dauer:.4f} Sekunden')
 ```
 
-[ER] Messen Sie den Geschwindigkeitsunterschied zwischen `np.char.startswith` und einer
+[ER] Messen Sie den Geschwindigkeitsunterschied zwischen `np.strings.startswith` und einer
 Python-Schleife an einem größeren Array:
 
 - Erstellen Sie ein Array `words` mit 100000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
   `'produkt99999'` (z. B. mit einer List Comprehension und `np.array`)
-- Messen Sie mit dem `time`-Modul die Laufzeit von `np.char.startswith(words, 'produkt123')`
+- Messen Sie mit dem `time`-Modul die Laufzeit von `np.strings.startswith(words, 'produkt123')`
   über 5 Wiederholungen und notieren Sie die kürzeste gemessene Zeit
 - Messen Sie auf dieselbe Weise die Laufzeit der äquivalenten Python-Schleife
   `[w.startswith('produkt123') for w in words]`
@@ -438,7 +452,8 @@ NumPy-Operationen kennt.
 ### Weiterführend
 
 - [NumPy Bitwise Operations](https://numpy.org/doc/stable/reference/routines.bitwise.html)
-- [NumPy String Functions](https://numpy.org/doc/stable/reference/routines.char.html)
+- [NumPy String Functions (`numpy.strings`)](https://numpy.org/doc/stable/reference/routines.strings.html) – aktuelles Modul, in dieser Aufgabe überwiegend verwendet
+- [NumPy String Operations (`numpy.char`)](https://numpy.org/doc/stable/reference/routines.char.html) – Legacy-Modul, hier nur noch für `split`/`join` verwendet
 
 [ENDSECTION]
 
