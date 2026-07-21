@@ -10,17 +10,17 @@ requires: mlh-lsnew
 
 - Ich habe eine komplexe Algorithmenbibliothek eingesetzt.
 - Ich habe mir ein Hilfsprogramm gebaut, um mir beim Überblicken von git-Repos zu helfen.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+
+[SECTION::background::default]
 Manchmal führen scheinbar simple Aufgabenstellungen zu Programmlogik, 
 die man besser nicht selbst schreibt, sondern sich dafür eine Bibliothek sucht.
 Das spart viel Zeit für Debugging und führt oft zu weitaus Laufzeit-effizienteren Lösungen.
-
 [ENDSECTION]
-[SECTION::instructions::loose]
 
+
+[SECTION::instructions::loose]
 ### Aufgabenstellung
 
 Git hat ein sehr nützliches Kommando, um zu verstehen, wie viele Leute wie viele Commits
@@ -206,14 +206,15 @@ anstatt nur zu sagen, dass es irgendwo im Output eine Abweichung gibt.
 [ENDHINT]
 
 - Zum Testen gehen Sie ins Verzeichnis `mlh` und benutzen `pytest tests/test_gitmeister.py`
+[ENDSECTION]
+
 
 [SECTION::submission::program]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
-[INSTRUCTOR::Test prüfen, Entwurfsstil prüfen]
 
+
+[INSTRUCTOR::Test prüfen, Entwurfsstil prüfen]
 Beispiellösung siehe [TREEREF::mlh/mlh/subcmds/gitmeister.py] und [TREEREF::mlh/tests/test_gitmeister.py].
 
 - Enthält (oder holt sich) der Test die Testdaten?
@@ -223,5 +224,4 @@ Beispiellösung siehe [TREEREF::mlh/mlh/subcmds/gitmeister.py] und [TREEREF::mlh
 - [EREFR::7] Hat `mlh/mlh/subcmds/gitmeister.py` die gewünschte Funktion `get_committers()`?
   Mit plausibler Logik (und nicht hartkodiertem Ergebnis)?
 - [EREFR::6]/[EREFR::8]/[EREFR::9] Hat `mlh/mlh/subcmds/gitmeister.py` die gewünschte Klasse `Committer`?
-
 [ENDINSTRUCTOR]

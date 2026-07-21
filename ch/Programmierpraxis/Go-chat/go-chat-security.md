@@ -173,13 +173,9 @@ sich diese Daten schützen?
 [ENDSECTION]
 
 [SECTION::submission::trace,reflection,program]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Korrektheit, Codestruktur, Fehlerbehandlung]

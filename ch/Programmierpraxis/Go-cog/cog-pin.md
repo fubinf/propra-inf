@@ -8,20 +8,18 @@ difficulty: 3
 
 - Ich habe mich mit Dateioperationen in Go auseinandergesetzt.
 - Ich habe mir ein Hilfsprogramm gebaut, um schneller zu den gewünschten Verzeichnissen im Terminal zu kommen.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Wer viel und/oder oft im Terminal unterwegs ist, dem geht früher oder später das ständige `cd [path]` auf die Kekse.
 Wäre es nicht lieber, nur einmal dorthin navigieren zu müssen, und dieses Verzeichnis mit einem Kürzel (weiter: einem __Pin__) "anzuheften"?
 
 Aus diesem Grund bauen wir uns ein Hilfsprogramm, welches für uns eine solche Kürzelverwaltung übernimmt.
-
 [ENDSECTION]
 
-[SECTION::instructions::loose]
 
+[SECTION::instructions::loose]
 ### Anforderungen
 
 - Unser Programm kann eine Liste von Pins anzeigen. Pins sind alle Aliasse, 
@@ -105,16 +103,15 @@ Führen Sie zum Testen folgende Kommandos aus:
 - [EC] Alle Pins anzeigen: `cog pin -l`
 - [EC] System-Alias entfernen (in dem Fall - 'git add --all' aus zsh): `cog pin -rm gaa`
 - [EC] System-Alias überschreiben: `cog pin gaa`
-
 [ENDSECTION]
+
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
-[INSTRUCTOR::Hinweise für Tutor_innen]
 
+
+[INSTRUCTOR::Hinweise für Tutor_innen]
 Eine plausible Aufteilung der Logik in verschiedene Funktionen ist sehr wünschenswert - 
 eine monolithische 200-zeilige Funktion ist inakzeptabel. 
 Wir orientieren uns in erster Linie auf die Korrektheit der Funktionalität. 
@@ -123,5 +120,4 @@ Das Kommandoprotokoll sollte sich im Großen und Ganzen dem Beispiel ähneln:
 [PROT::ALT:cog-pin.prot]
 
 Quellcode siehe [TREEREF::pin/pin.go].
-
 [ENDINSTRUCTOR]

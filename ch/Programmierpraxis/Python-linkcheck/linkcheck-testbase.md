@@ -175,12 +175,10 @@ Nachtragen der (sorgfältig überprüften!) erwarteten Ausgabe leicht ändern la
 
 
 [SECTION::submission::reflection,trace,program]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 Server und Testdatei.
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Testcode inspizieren]

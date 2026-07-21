@@ -303,11 +303,8 @@ Im Wesentlichen - das war's! Wie am Anfang erwähnt, fühlen Sie sich frei die F
 erweitern.
 
 [SECTION::submission::trace,program]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Korrektheit, Entwurfsstruktur]

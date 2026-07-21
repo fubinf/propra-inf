@@ -256,7 +256,6 @@ Dokumentationlesen?
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 Künftige Aufgaben werden dieses Programm sukzessive ergänzen.
@@ -264,9 +263,7 @@ Falls Sie mehrere dieser Aufgaben zugleich einreichen, ist es nicht schlimm,
 wenn Sie nur die letzte Programmversion abgeben, die mehrere Aufgaben zugleich erledigt,
 anstatt genau die Fassung, die jetzt vorliegt.
 Sie brauchen also keine separaten Kopien zu machen.
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kommentare zum Entwurfsstil sind am hilfreichsten]

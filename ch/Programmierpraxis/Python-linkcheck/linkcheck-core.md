@@ -332,11 +332,9 @@ Sie können auch ChatGPT fragen und dessen Antwort dann mit einer Websuche valid
 [ENDSECTION]
 
 [SECTION::submission::reflection,trace,program]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Korrektheit, Entwurfsstruktur]
