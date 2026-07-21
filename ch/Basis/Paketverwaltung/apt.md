@@ -57,10 +57,8 @@ Pakete können natürlich auch explizit deinstalliert werden. Es gibt zwei versc
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll + Markdown]

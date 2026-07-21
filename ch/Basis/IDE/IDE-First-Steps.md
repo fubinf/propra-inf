@@ -181,10 +181,8 @@ zu machen, die sich nämlich nicht alle mit Undo rückgängig machen lassen.
 [ENDSECTION]
 
 [SECTION::submission::information]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Abgabe prüfen]
