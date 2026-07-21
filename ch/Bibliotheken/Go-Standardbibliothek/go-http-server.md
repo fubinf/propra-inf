@@ -40,9 +40,9 @@ Ein HTTP-Server in Go besteht aus folgenden Kernkomponenten:
 
 - **Handler-Funktionen**: Funktionen mit der Signatur `func(http.ResponseWriter, *http.Request)`, die für die
   Bearbeitung von HTTP-Anfragen zuständig sind;
-- **`ServeMux`**: Ein Router (Multiplexer), der eingehende HTTP-Anfragen den passenden, registrierten Handler-Funktionen
+- **ServeMux**: Ein Router (Multiplexer), der eingehende HTTP-Anfragen den passenden, registrierten Handler-Funktionen
   zuordnet;
-- **`http.Server`**: Eine Struktur für die erweiterte Konfiguration des Servers.
+- **http.Server**: Eine Struktur für die erweiterte Konfiguration des Servers.
 
 
 ### Handler-Funktionen
@@ -54,6 +54,11 @@ Es gibt zwei Möglichkeiten, einen HTTP-Handler zu registrieren:
   Passt eine HTTP-Anfrage zum `pattern`, wird die Methode `ServeHTTP` des `handler`s aufgerufen;
 - `HandleFunc(pattern string, handler func(ResponseWriter, *Request))` — Die übergebene Funktion `handler` wird direkt
   aufgerufen, wenn die HTTP-Anfrage mit dem `pattern` übereinstimmt.
+
+[NOTICE]
+Eine spezifische URL oder Route in einer Web-Anwendung, an der Anfragen entgegengenommen und verarbeitet werden, wird
+oft als **Endpunkt** (Endpoint) bezeichnet.
+[ENDNOTICE]
 
 Eine normale Funktion lässt sich mithilfe von `http.HandlerFunc` in einen `http.Handler` umwandeln:
 
@@ -96,22 +101,6 @@ var myHandler http.Handler = http.HandlerFunc(handle)
 Genau diese Umwandlung nimmt `http.HandlerFunc` intern automatisch vor.
 [ENDFOLDOUT]
 
-
-#### Was ist der Unterschied?
-
-Die Variante mit `http.Handler` ist interfacebasiert und bietet mehr Flexibilität in größeren Projekten.
-Sie eignet sich besonders dann, wenn Middleware zum Einsatz kommt, Handler einen eigenen Zustand oder weitere
-Abhängigkeiten (wie eine Datenbankverbindung) besitzen oder verschiedene Komponenten miteinander kombiniert werden
-sollen.
-
-Die Funktion `http.HandleFunc` hingegen ist besser für kleinere oder simplere Server geeignet, bei denen die
-Abhängigkeitsverwaltung unkompliziert ist und eine hohe Modularität keine übergeordnete Rolle spielt.
-
-[NOTICE]
-Eine spezifische URL oder Route in einer Web-Anwendung, an der Anfragen entgegengenommen und verarbeitet werden, wird
-oft als **Endpunkt** (Endpoint) bezeichnet.
-[ENDNOTICE]
-
 Schauen Sie sich die Dokumentation und Beispiele zu
 [`HandleFunc`](https://pkg.go.dev/net/http#HandleFunc)
 und
@@ -128,6 +117,11 @@ an und schreiben Sie ein kleines Programm, in dem Sie analog zum Beispiel folgen
 ([hier](https://pkg.go.dev/net/http#Request.PathValue)
 finden Sie eine geeignete Funktion dafür) und gibt (beispielsweise für den Pfad `/users/5`) `"User with ID: 5"` zurück.
 
+[HINT::Auf welche Adresse soll der Server lauschen?]
+Konventionsgemäß verwenden wir die Port `:8080`.
+In den verlinkten Beispielen erkennen Sie es an der Zeile `log.Fatal(http.ListenAndServe(":8080", nil))`.
+[ENDHINT]
+
 Beantworten Sie nun die unten stehenden Fragen.
 Schauen Sie sich bei Bedarf die
 [Dokumentation von `ServeMux`](https://pkg.go.dev/net/http#hdr-Patterns-ServeMux)
@@ -139,6 +133,15 @@ an.
 
 [EQ] Wie würden Sie einen neuen Endpunkt registrieren, der nur auf POST-Anfragen auf `/users/{id}` reagieren soll?
 
+[FOLDOUT::Warum gibt es zwei Möglichkeiten, einen Handler zu registrieren?]
+Die Variante mit `http.Handler` ist interfacebasiert und bietet mehr Flexibilität in größeren Projekten.
+Sie eignet sich besonders dann, wenn Middleware zum Einsatz kommt, Handler einen eigenen Zustand oder weitere
+Abhängigkeiten (wie eine Datenbankverbindung) besitzen oder verschiedene Komponenten miteinander kombiniert werden
+sollen.
+
+Die Funktion `http.HandleFunc` hingegen ist besser für kleinere oder simplere Server geeignet, bei denen die
+Abhängigkeitsverwaltung unkompliziert ist und eine hohe Modularität keine übergeordnete Rolle spielt.
+[ENDFOLDOUT]
 <!-- time estimate: 20 min -->
 
 
@@ -184,6 +187,27 @@ um jeder Anfrage einen Kontext zu übergeben, der den Startzeitpunkt des Servers
 Passen Sie Ihre Endpunkte so an, dass sie in der Antwort zusätzlich den Wert `time.Since(startTimestamp)` ausgeben.
 Der Wert `startTimestamp` muss dabei aus dem Kontext ausgelesen werden.
 
+[HINT::Ich weiß nicht, wo ich mit Kontexten anfangen soll]
+Mithilfe der Funktion
+[`context.WithValue(parent Context, key any, val any)`](https://pkg.go.dev/context#WithValue)
+speichern Sie in einem Kontext ein Schlüssel-Wert-Paar.
+
+Vergessen Sie nicht, einen eigenen Schlüsseltyp zu definieren.
+
+[HINT::Wie komme ich an den vordefinierten Kontext aus einem Handler?]
+Der Kontext, den Sie über `http.Server.BaseContext` übergeben haben, bekommen Sie wieder durch `http.Request.Context()`.
+
+[HINT::Wie lese ich den Startzeitpunkt aus einem Kontext aus?]
+Mithilfe der Funktion
+[`context.Context.Value(key any) any`](https://pkg.go.dev/context#Context.Value).
+
+Der Wert ist allerdings vom Typ `any`.
+Konvertierung zu `time.Time` erfolgt mittels Typzusicherung (mehr dazu in der Aufgabe [PARTREF::go-context] unter
+_"Übertragung von Schlüssel-Wert-Paaren"_).
+[ENDHINT]
+[ENDHINT]
+[ENDHINT]
+
 [NOTICE]
 Für größere Projekte ist es eine gute Praxis, alle Endpunkte in einer separaten Datei wie `routes.go` zu registrieren.
 So bleibt die API-Oberfläche Ihres Servers stets an einer zentralen Stelle übersichtlich zusammengefasst.
@@ -200,6 +224,10 @@ Starten Sie Ihren HTTP-Server und führen Sie folgende Befehle in einem anderen 
 [EC] `curl http://localhost:8080/users/23`
 
 [EC] `curl -X POST http://localhost:8080/foo`
+
+[HINT::Die Befehle liefern keine Ausgabe auf der Kommandozeile]
+Überprüfen Sie nochmal, ob Ihr Server mit der Portnummer `8080` gestartet ist. 
+[ENDHINT]
 
 <!-- time estimate: 20 min -->
 [ENDSECTION]
