@@ -126,11 +126,13 @@ Der Typ `*os.File` implementiert das Interface `io.ReadWriter` und kann daher so
 
 [ER] Schreiben Sie ein Programm, in dem Sie die oben definierten HTTP-Anfragen (`firstRequest`, `secondRequest` und
 `thirdRequest`) mit dem konfigurierten Client ausführen.
-Benutzen Sie die Funktion `prettyPrint(r io.Reader)`, um den `Response.Body` auf der Kommandozeile anzuzeigen:
+Verwenden Sie eine der oben diskutierten Funktionen (`io.ReadAll` oder `io.Copy`), um den `Response.Body` auf der
+Kommandozeile anzuzeigen.
 
-```go
-[SNIPPET::ITREE:go-http-client.go::pp]
-```
+[HINT::Ich verstehe nicht, wie die Anfragen ausgeführt werden sollen]
+Verwenden Sie die Methode
+[`http.Client.Do(req *http.Request)`](https://pkg.go.dev/net/http#Client.Do).
+[ENDHINT]
 
 Im Allgemeinen gilt:
 Schlägt eine Anfrage fehl, darf sie die anderen nicht beeinträchtigen.
@@ -149,6 +151,16 @@ if err != nil { ... }
 defer resp.Body.Close()
 ```
 [ENDWARNING]
+
+[ER] Um das Kommandoprotokoll lesbarer zu machen, passen Sie nun Ihr Programm an, indem Sie den `Response.Body` mithilfe
+der Funktion `prettyPrint(r io.Reader)` auf der Kommandozeile ausgeben.
+
+(Kopieren Sie diese Funktion in Ihr Programm; sie benutzt intern die Funktion `io.ReadAll`, um die Daten einzulesen, und
+formatiert sie anschließend als JSON.)
+
+```go
+[SNIPPET::ITREE:go-http-client.go::pp]
+```
 
 [EC] Führen Sie Ihr Programm mittels `go run` aus.
 <!-- time estimate: 20 min -->
