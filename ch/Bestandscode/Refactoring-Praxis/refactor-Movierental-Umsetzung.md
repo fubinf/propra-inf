@@ -53,10 +53,8 @@ Ausgeliehene Filme:
 [ENDSECTION]
 
 [SECTION::submission::information,program]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kein fester Lösungsweg vorgebbar]

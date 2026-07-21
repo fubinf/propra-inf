@@ -23,9 +23,7 @@ Lösung 3: ???
 [ENDSECTION]
 
 [SECTION::submission::information]
-
 [INCLUDE::../../_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Grundlagen SOLID]
