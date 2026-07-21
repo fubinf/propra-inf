@@ -113,9 +113,7 @@ Führen Sie die Funktion mit den folgenden Eingaben aus:
 [ENDSECTION]
 
 [SECTION::submission::snippet]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Nur die Defektkorrektur bitte]

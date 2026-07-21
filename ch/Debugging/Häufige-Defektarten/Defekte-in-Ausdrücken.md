@@ -173,9 +173,7 @@ hand = {"2": ["hearts", "spades"],
 [ENDSECTION]
 
 [SECTION::submission::snippet]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Nur die Defektkorrektur bitte]

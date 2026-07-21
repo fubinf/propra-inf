@@ -41,7 +41,6 @@ Machen Sie dann erstmal woanders im ProPra weiter und achten Sie auf diese Fehle
 
 [SECTION::submission::reflection]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 Die Aufgabe ist **keine** Literaturbesprechung.
 Fassen Sie sich kurz und seien Sie präzise bei Ihren Ausführungen.
 [ENDSECTION]

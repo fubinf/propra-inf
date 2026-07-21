@@ -8,9 +8,11 @@ Ich verstehe, welche Methoden Sicherheitsexperten verwenden, um aus Problemen zu
 um damit den Lösungsaufwand abschätzen oder sogar künftige Probleme verhindern zu können.
 [ENDSECTION]
 
+
 [SECTION::background::default]
 Diese Herangehensweise wird Ihnen gefallen, wenn Sie gern Daten sammeln und analysieren.
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 Lesen Sie Kapitel 11 (S. 361-384) im Buch _Debugging by Thinking_. 
@@ -65,10 +67,12 @@ für sinnvoll?
 Erwarten Sie, dass Sie je solche Umstände haben werden?
 [ENDSECTION]
 
+
 [SECTION::submission::reflection]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
-    
+
+
 [INSTRUCTOR::Echte Auseinandersetzung sichtbar?]
 Man kann bei 11.4 abstruse Dinge aussuchen, die wir nicht akzeptieren sollten.
 Aber:
@@ -77,5 +81,4 @@ Aber:
 Eine Zusammenfassung des Kapitels steht auf S. 384-385.
 
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

@@ -42,9 +42,7 @@ Beschreiben Sie in eigenen Worten:
 
 
 [SECTION::submission::information]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Mögliche Antworten]

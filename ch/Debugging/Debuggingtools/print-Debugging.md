@@ -101,9 +101,7 @@ Nehmen Sie aber einmal an, dass Sie eine Sprache benutzen, in der dieses Konzept
 [ENDSECTION]
 
 [SECTION::submission::information]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Folgende grobe Linie sollte erkennbar sein]
