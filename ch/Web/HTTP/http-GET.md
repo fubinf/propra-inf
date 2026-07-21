@@ -165,7 +165,6 @@ wenn es doch einen separaten Header `Content-Encoding` gibt?
 [ENDSECTION]
 
 [SECTION::submission::information,snippet,trace]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 Geben Sie auch die Datei `HTTP-GET-request.crlf` mit ab.

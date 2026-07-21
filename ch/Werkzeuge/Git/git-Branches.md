@@ -365,9 +365,7 @@ Was können wir hier sehen?
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::../../_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Befehle prüfen, und ob Branching und die Behebung von Merge-Conflicts verstanden wurde]

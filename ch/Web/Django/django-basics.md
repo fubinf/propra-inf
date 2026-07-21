@@ -107,7 +107,6 @@ Django-basierte Webseite ("View").
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]

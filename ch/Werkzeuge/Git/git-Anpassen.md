@@ -110,9 +110,7 @@ Ein nützliches Beispiel wollen wir uns nun anschauen:
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Hier gibt es kein richtig oder falsch. Zumindest die Funktionsweise sollte aber 
