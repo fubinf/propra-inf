@@ -3,9 +3,9 @@ This script extracts terms from a glossary file and searches for their occurrenc
 It supports filtering terms by a string or starting letter and can replace found terms with a reference format.
 
 Example usage:
-    python filter_terms.py --path ../docs/ --filter "API"
-    python filter_terms.py --path ../docs/ --letter A
-    python filter_terms.py --path ../docs/ --filter "API" --dry-run
+    python helper_filter_terms.py --path ../docs/ --filter "API"
+    python helper_filter_terms.py --path ../docs/ --letter A
+    python helper_filter_terms.py --path ../docs/ --filter "API" --dry-run
 
 Note:
     There may still be matches that are not desired because they appear in areas that are not filtered,
@@ -137,8 +137,8 @@ def main():
     parser = argparse.ArgumentParser(
         description="Filter and search terms in glossary and files.",
         epilog="Examples:\n"
-               "  python filter_terms.py --path ./docs/ --filter 'API'\n"
-               "  python filter_terms.py --letter A\n",
+               "  python helper_filter_terms.py --path ./docs/ --filter 'API'\n"
+               "  python helper_filter_terms.py --letter A\n",
         formatter_class=argparse.RawTextHelpFormatter
     )
     parser.add_argument(
