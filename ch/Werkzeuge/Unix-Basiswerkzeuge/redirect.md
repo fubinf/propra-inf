@@ -135,9 +135,7 @@ Befehlen in Unix effizient steuern und komplexe Aufgaben automatisieren.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll]

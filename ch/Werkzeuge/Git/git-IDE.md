@@ -26,11 +26,9 @@ requires:
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::TODO]

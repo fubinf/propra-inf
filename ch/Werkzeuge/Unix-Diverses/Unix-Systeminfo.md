@@ -63,10 +63,8 @@ falls diese sehr viele Dateien enthalten, damit der Prozess nicht so lange dauer
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll]

@@ -169,9 +169,7 @@ Nachdem wir das jetzt alles getestet haben, üben wir noch das ACL-Aufräumen.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandprotokoll]

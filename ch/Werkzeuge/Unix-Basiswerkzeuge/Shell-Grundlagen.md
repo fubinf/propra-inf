@@ -279,7 +279,6 @@ Welche Variante wollen Sie sich angewöhnen? Warum?
 
 
 [SECTION::submission::reflection,information]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 Schreiben Sie die neu zugefügten Inhalte von `~/.bash_profile` und/oder `~/.bashrc`
 als Codeblöcke mit in die Markdowndatei. 

@@ -126,10 +126,8 @@ der tief im Ordnerbaum des Systems ist? Begründen Sie.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll + Markdown]

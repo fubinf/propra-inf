@@ -214,9 +214,7 @@ Anregungen:
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 

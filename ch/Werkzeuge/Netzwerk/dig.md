@@ -124,9 +124,7 @@ Zielserver angezeigt wird. Bei richtiger Konfiguration werden Sie bis zu Ihrem Z
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll]
