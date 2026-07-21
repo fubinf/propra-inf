@@ -39,18 +39,26 @@ becomes
 --------------------------------------------------------------------------------
 Adapting this script to a similar rewriting task
 --------------------------------------------------------------------------------
-The generic engine below (find_block / rewrite_file / walk) walks a tree, finds
-at most one block per file (delimited by a start and end regexp), checks a
-condition on that block, and rewrites the block if the condition holds. To adapt
-it, change only the "task-specific block definition" section:
+The generic engine below (find_block / rewrite_file / walk) reads each file as a
+single string, finds at most one block in it (delimited by a start and an end
+regexp), checks a condition on that block, and rewrites the block if the
+condition holds. To adapt it, change only the "task-specific block definition":
 
-  * BLOCK_START / BLOCK_END  regexps that identify the delimiting lines
-  * INCLUDE_BOUNDS           whether the block passed to the check/rewrite
-                             functions includes its start/end lines or not
-  * block_needs_rewrite()    the condition
-  * rewrite_block()          returns (new_lines, report_metric)
+  * BLOCK_START / BLOCK_END        regexps matched against the whole file text
+                                   that identify the block's start/end delimiter
+                                   lines. Because they see the whole string they
+                                   may assert surrounding context: here
+                                   BLOCK_START requires an empty line *before* it
+                                   and BLOCK_END an empty line (or end of file)
+                                   *after* it.
+  * INCLUDE_BLOCK_START_AND_END    whether the block string handed to the
+                                   check/rewrite functions includes the delimiter
+                                   lines or only the text between them.
+  * block_needs_rewrite(block)     the condition (block is a string)
+  * rewrite_block(block)           returns (new_block_string, report_metric)
 
-Lines carry their trailing "\n"; the rest of the file is preserved byte-for-byte.
+The whole file is read and written as one string; the text outside the block is
+preserved byte-for-byte.
 """
 
 import fnmatch
@@ -69,17 +77,23 @@ usage: helper_rewrite_files.py <tree> <pattern> [<max>]
 
 Walks through <tree>, looking for files with local names <pattern>.
 Processes each such file one by one.
-In the file, identifies blocks of lines via the BLOCK_START/BLOCK_END regexp program constants.
-Checks block for need of rewriting via the block_needs_rewrite() predicate.
+In the file, identifies a block of lines via the BLOCK_START/BLOCK_END regexp program constants.
+Checks the block for need of rewriting via the block_needs_rewrite() predicate.
 Then rewrites that block via the rewrite_block() function and writes back the modified file.
 """
 
 
 # --- task-specific block definition -----------------------------------------
 
-BLOCK_START = re.compile(r"^\[SECTION::submission::")
-BLOCK_END = re.compile(r"^\[ENDSECTION\]")
-RELEVANT_LINE = re.compile(r"^\[INCLUDE::/_include/.*\.md\]")
+# The "[SECTION::submission::...]" line, required to be preceded by an empty line
+# (the (?<=\n\n) look-behind); the match spans that line including its newline.
+BLOCK_START = re.compile(r"(?<=\n\n)\[SECTION::submission::[^\n]*\n")
+
+# The "[ENDSECTION]" line, required to be followed by an empty line or the end of
+# the file; the match spans that line including its trailing newline (if any).
+BLOCK_END = re.compile(r"\[ENDSECTION\][^\n]*(?:\n(?=\n)|\n?\Z)")
+
+RELEVANT_LINE = re.compile(r"^\[INCLUDE::(?:/|(?:\.\./)+)_include/.*\.md\]")
 INCLUDE_BLOCK_START_AND_END = False  # the empty-line check/rewrite acts on the inner lines only
 
 
@@ -87,27 +101,28 @@ def _is_empty(line):
     return line.strip() == ""
 
 
-def _removable_indices(block):
+def _removable_indices(lines):
     """Indices of empty lines that sit immediately before or after an
-    [INCLUDE::/_include/*.md] line (adjacency judged on the original block, so
+    [INCLUDE::/_include/*.md] line (adjacency judged on the original lines, so
     empty lines around other text are never touched)."""
     def is_include(i):
-        return 0 <= i < len(block) and RELEVANT_LINE.match(block[i])
-    return [i for i, line in enumerate(block)
+        return 0 <= i < len(lines) and RELEVANT_LINE.match(lines[i])
+    return [i for i, line in enumerate(lines)
             if _is_empty(line) and (is_include(i - 1) or is_include(i + 1))]
 
 
 def block_needs_rewrite(block):
     """True if the block has an empty line adjacent to an INCLUDE line."""
-    return bool(_removable_indices(block))
+    return bool(_removable_indices(block.splitlines(keepends=True)))
 
 
 def rewrite_block(block):
     """Drop the INCLUDE-adjacent empty lines.
-    Returns (new_block, number_of_empty_lines_removed)."""
-    drop = set(_removable_indices(block))
-    kept = [line for i, line in enumerate(block) if i not in drop]
-    return kept, len(drop)
+    Returns (new_block_string, number_of_empty_lines_removed)."""
+    lines = block.splitlines(keepends=True)
+    drop = set(_removable_indices(lines))
+    kept = [line for i, line in enumerate(lines) if i not in drop]
+    return "".join(kept), len(drop)
 
 
 # --- generic engine ----------------------------------------------------------
@@ -116,31 +131,36 @@ class RewriteError(Exception):
     """A file is malformed and cannot be processed; abort the whole run."""
 
 
-def find_block(lines):
-    """Locate the single block in `lines`.
+def _lineno(text, pos):
+    """1-based line number of offset `pos` in `text`."""
+    return text.count("\n", 0, pos) + 1
 
-    Returns (start, end) as line indices such that lines[start:end] is the block
+
+def find_block(text):
+    """Locate the single block in `text`.
+
+    Returns (start, end) as string offsets such that text[start:end] is the block
     the check/rewrite functions operate on:
-      * INCLUDE_BOUNDS is True  -> start/end span the delimiter lines inclusively
-      * INCLUDE_BOUNDS is False -> the span covers only the lines in between
+      * INCLUDE_BLOCK_START_AND_END True  -> the span includes the delimiter lines
+      * INCLUDE_BLOCK_START_AND_END False -> the span covers only the text between
     Returns None if the file has no such block.
-    Raises RewriteError on multiple start lines or a missing end line.
+    Raises RewriteError on multiple start lines or a missing/ill-terminated end.
     """
-    starts = [i for i, line in enumerate(lines) if BLOCK_START.match(line)]
+    starts = list(BLOCK_START.finditer(text))
     if len(starts) > 1:
-        raise RewriteError("multiple [SECTION::submission::...] lines "
-                           "(at lines %s)" % ", ".join(str(s + 1) for s in starts))
+        raise RewriteError("multiple [SECTION::submission::...] lines (at lines %s)"
+                           % ", ".join(str(_lineno(text, m.start())) for m in starts))
     if not starts:
         return None
-    start = starts[0]
-    ends = [i for i in range(start + 1, len(lines)) if BLOCK_END.match(lines[i])]
-    if not ends:
-        raise RewriteError("[SECTION::submission::...] at line %d has no "
-                           "following [ENDSECTION]" % (start + 1))
-    end = ends[0]
+    start_match = starts[0]
+    end_match = BLOCK_END.search(text, start_match.end())
+    if end_match is None:
+        raise RewriteError("[SECTION::submission::...] at line %d has no following "
+                           "[ENDSECTION] that is succeeded by an empty line"
+                           % _lineno(text, start_match.start()))
     if INCLUDE_BLOCK_START_AND_END:
-        return start, end + 1
-    return start + 1, end
+        return start_match.start(), end_match.end()
+    return start_match.end(), end_match.start()
 
 
 def rewrite_file(path):
@@ -149,18 +169,18 @@ def rewrite_file(path):
     Raises RewriteError if the file is malformed.
     """
     with open(path, encoding="utf-8") as f:
-        lines = f.readlines()
-    span = find_block(lines)
+        text = f.read()
+    span = find_block(text)
     if span is None:
         return None
     start, end = span
-    block = lines[start:end]
+    block = text[start:end]
     if not block_needs_rewrite(block):
         return None
     new_block, metric = rewrite_block(block)
-    lines[start:end] = new_block
+    new_text = text[:start] + new_block + text[end:]
     with open(path, "w", encoding="utf-8") as f:
-        f.writelines(lines)
+        f.write(new_text)
     return metric
 
 
