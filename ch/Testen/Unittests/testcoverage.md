@@ -12,10 +12,10 @@ requires: pytest_call
 - Ich kann Coverage-Reports interpretieren und systematisch 100% Coverage erreichen
 - Ich verstehe die Grenzen und Fallstricke von Coverage-Metriken
 - Ich kann angemessene Coverage-Ziele für verschiedene Projekttypen definieren
-
 [ENDSECTION]
-[SECTION::background::default]
 
+
+[SECTION::background::default]
 Code Coverage misst, welcher Anteil Ihres Codes von Tests ausgeführt wird.
 Während hohe Coverage-Werte beruhigend wirken können, sind sie kein Garant für Testqualität.
 
@@ -32,10 +32,10 @@ alternativ zum vorgegebenen `EmailValidator` verwenden.
 
 Es ist hilfreich, Testergebnis und Testabdeckung gemeinsam einzusehen.
 Um diese Abfrage nicht separat durchführen zu müssen, verwenden wir das `pytest-cov`-Plugin.
-
 [ENDSECTION]
-[SECTION::instructions::detailed]
 
+
+[SECTION::instructions::detailed]
 ## Teil A: pytest-cov Grundlagen mit bestehender Codebasis
 
 Zunächst lernen Sie `pytest-cov` an einer bestehenden Codebasis kennen und erreichen systematisch 100% Coverage.
@@ -371,18 +371,16 @@ Welche Methoden des `EmailValidator` sollten auf jeden Fall 100% Coverage haben?
 
 [PARTREF::pytest_mutation_testing] vertieft dieses Thema — dort lernen Sie Mutation Testing praktisch kennen.
 <!-- time estimate: 20 min -->
-
 [ENDSECTION]
 
-[SECTION::submission::trace]
 
+[SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
+
+
 [INSTRUCTOR::Prüfhilfen]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

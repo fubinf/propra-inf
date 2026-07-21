@@ -314,7 +314,6 @@ Falls zweiter Lauf: Welches Kommando setzen Sie ein?
 Gefragt ist also überwiegend _nicht_ ein Kommandoprotokoll, sondern nur ein Shellskript `pytest_call.sh`
 mit den Kommandos darin.
 Notieren Sie darin vor jedem Kommando als Kommentar dessen Nummer.
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]

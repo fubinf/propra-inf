@@ -115,8 +115,6 @@ Wiederholen Sie das Prinzip für die Funktionen Hinzufügen, Entfernen und Marki
 [ENDSECTION]
 
 [SECTION::submission::reflection,program]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]

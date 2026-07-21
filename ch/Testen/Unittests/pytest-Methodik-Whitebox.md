@@ -527,10 +527,8 @@ gewünschten Coverage-Kriterien erfüllen.
 [ENDSECTION]
 
 [SECTION::submission::program,information]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Prüfhilfen]

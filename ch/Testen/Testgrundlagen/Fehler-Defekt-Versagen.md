@@ -108,9 +108,7 @@ Recherchieren Sie, was einen guten Problembericht aus macht: [Problembericht](ht
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Prüfhilfen]

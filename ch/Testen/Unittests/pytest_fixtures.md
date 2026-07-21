@@ -492,14 +492,14 @@ Die eigentliche Testlogik wird damit sehr viel besser erkennbar.
 Welcher Nachteil steht dem gegenüber?
 [ENDSECTION]
 
-[SECTION::submission::trace]
 
+[SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[ENDSECTION]
+
 
 [INSTRUCTOR::Prüfhilfen]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

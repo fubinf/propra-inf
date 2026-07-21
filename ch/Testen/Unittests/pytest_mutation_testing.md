@@ -44,10 +44,8 @@ TODO_2_Ruhe: https://www.testautomatisierung.org/lexikon/mutation-testing/
 [ENDSECTION]
 
 [SECTION::submission::reflection]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::(dummy)]

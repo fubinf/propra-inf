@@ -150,10 +150,8 @@ Programmtext zu benötigen und den Test verständlicher zu machen.
 [ENDSECTION]
 
 [SECTION::submission::trace]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Prüfhilfen]
