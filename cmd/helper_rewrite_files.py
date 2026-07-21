@@ -3,17 +3,23 @@
 Remove superfluous empty lines from the submission section of task files.
 
 Concretely: walk a directory tree, find files matching a filename glob, and in
-each file remove the empty lines inside the
+each file's
 
     [SECTION::submission::...]
     ...
     [ENDSECTION]
 
-block. For instance
+block remove every empty line that sits immediately before or after a line of
+the form [INCLUDE::/_include/*.md]. Empty lines that are not adjacent to such an
+INCLUDE line (e.g. between paragraphs of prose) are left alone. For instance
 
     [SECTION::submission::program,information]
 
     [INCLUDE::/_include/Submission-Quellcode.md]
+
+    Bearbeite die folgenden Punkte:
+
+    - erster Punkt
 
     [INCLUDE::/_include/Submission-Markdowndokument.md]
 
@@ -23,6 +29,10 @@ becomes
 
     [SECTION::submission::program,information]
     [INCLUDE::/_include/Submission-Quellcode.md]
+
+    Bearbeite die folgenden Punkte:
+
+    - erster Punkt
     [INCLUDE::/_include/Submission-Markdowndokument.md]
     [ENDSECTION]
 
@@ -57,9 +67,9 @@ usage: helper_rewrite_files.py <tree> <pattern> [<max>]
   <pattern>  filename glob (must contain '*' or '?'), matched against basenames
   <max>      max number of files to rewrite (default 9999)
 
-Removes empty lines inside each file's
-    [SECTION::submission::...] ... [ENDSECTION]
-block, e.g. turns
+Inside each file's [SECTION::submission::...] ... [ENDSECTION] block, removes
+the empty lines that are immediately before or after an [INCLUDE::/_include/*.md]
+line (empty lines around other text are kept), e.g. turns
 
     [SECTION::submission::program,information]
 
@@ -79,6 +89,7 @@ into
 
 BLOCK_START = re.compile(r"^\[SECTION::submission::")
 BLOCK_END = re.compile(r"^\[ENDSECTION\]")
+INCLUDE_LINE = re.compile(r"^\[INCLUDE::/_include/.*\.md\]")
 INCLUDE_BOUNDS = False  # the empty-line check/rewrite acts on the inner lines only
 
 
@@ -86,15 +97,27 @@ def _is_empty(line):
     return line.strip() == ""
 
 
+def _removable_indices(block):
+    """Indices of empty lines that sit immediately before or after an
+    [INCLUDE::/_include/*.md] line (adjacency judged on the original block, so
+    empty lines around other text are never touched)."""
+    def is_include(i):
+        return 0 <= i < len(block) and INCLUDE_LINE.match(block[i])
+    return [i for i, line in enumerate(block)
+            if _is_empty(line) and (is_include(i - 1) or is_include(i + 1))]
+
+
 def block_needs_rewrite(block):
-    """True if the block contains one or more empty lines."""
-    return any(_is_empty(line) for line in block)
+    """True if the block has an empty line adjacent to an INCLUDE line."""
+    return bool(_removable_indices(block))
 
 
 def rewrite_block(block):
-    """Drop empty lines. Returns (new_block, number_of_empty_lines_removed)."""
-    kept = [line for line in block if not _is_empty(line)]
-    return kept, len(block) - len(kept)
+    """Drop the INCLUDE-adjacent empty lines.
+    Returns (new_block, number_of_empty_lines_removed)."""
+    drop = set(_removable_indices(block))
+    kept = [line for i, line in enumerate(block) if i not in drop]
+    return kept, len(drop)
 
 
 # --- generic engine ----------------------------------------------------------
