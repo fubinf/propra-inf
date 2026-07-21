@@ -167,10 +167,8 @@ Status: 200
 [ENDSECTION]
 
 [SECTION::submission::information,snippet]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kurzer Blick auf den Code]

@@ -114,7 +114,6 @@ anstatt `dict` einsetzen werden und warum.
 [ENDSECTION]
 
 [SECTION::submission::trace,reflection]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]

@@ -8,14 +8,12 @@ assumes: m_os.path, m_subprocess, Dateiberechtigungen
 <!-- TODO_3: assumes: m_os hinzufügen für os.chmod(), falls eine solche Aufgabe erstellt wird -->
 
 [SECTION::goal::idea]
-
 Ich kann verschiedene Operationen für Dateien und Verzeichnisse verwenden und kenne deren 
 Unterschiede. Zusätzlich kann ich auch Archive erstellen und entpacken.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Neben Lesen und Schreiben von Dateiinhalten ist es häufig notwendig, komplette Dateien zu 
 verschieben, zu kopieren oder zu löschen.
 Solche Dateioperationen werden schnell komplex, wenn man beachten muss, welches Betriebs- 
@@ -23,11 +21,10 @@ und Dateisystem verwendet wird, welche [TERMREF::Dateiberechtigungen] für eine 
 und welche zusätzlichen Metadaten womöglich noch an der Datei hängen. 
 Python bietet mit `shutil` ("shell utilities") eine plattformunabhängige und hoch abstrahierte Sammlung
 von Operationen zu diesem Thema an.
-
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 ### Vorbereitungen
 
 - Machen Sie sich mit der
@@ -120,18 +117,17 @@ Python selbst unterstützt einige der häufig verwendeten Kompressionsbibliothek
 ### Programmlauf für die Abgabe
 
 - [EC] Führen Sie das gesamte so erzeugte Programm `m_shutil.py` einmal aus.
-
 [ENDSECTION]
 
-[SECTION::submission::trace,program]
 
+[SECTION::submission::trace,program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
-[INSTRUCTOR::Codedurchsicht]
 
+
+[INSTRUCTOR::Codedurchsicht]
 Den Code lesen und manuell auf Richtigkeit prüfen.
 Das Kommandoprotokoll zur Unterstützung heranziehen.
 Klare Defekte und sehr ungünstige Konstruktionen zurückweisen.
@@ -139,5 +135,4 @@ Klare Defekte und sehr ungünstige Konstruktionen zurückweisen.
 Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_shutil.py]
 
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

@@ -321,10 +321,8 @@ und führen Sie eine umfassende Datenmanipulation durch:
 [ENDSECTION]
 
 [SECTION::submission::program]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]

@@ -149,10 +149,8 @@ Voilà, Sie können Web-Scraping!
 [ENDSECTION]
 
 [SECTION::submission::program,trace]
-
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Code ansehen]

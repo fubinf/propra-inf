@@ -156,7 +156,6 @@ Der Inhalt der Datei soll ebenfalls gut lesbar sein.
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 Geben Sie ebenfalls beide JSON Dateien ab.
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 

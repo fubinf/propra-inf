@@ -103,11 +103,9 @@ und sie dann neu erzeugen, um so zu einem sauberen Abbruch zu kommen.)
 [ENDSECTION]
 
 [SECTION::submission::information,snippet,trace]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Die Details sind nicht wichtig]

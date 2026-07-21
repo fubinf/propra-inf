@@ -225,7 +225,6 @@ INSERT OR IGNORE INTO books VALUES (:title, :genre, 0)
 [SECTION::submission::trace,program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 Die Datenbankdatei ist **nicht** Teil der Abgabe.
 Löschen Sie sie oder tragen Sie sie in `.gitignore` ein; siehe Aufgabe [PARTREF::git-ignore].
 [ENDSECTION]

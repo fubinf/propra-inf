@@ -379,10 +379,8 @@ oder erklären Sie, warum die Operation nicht möglich ist.
 [ENDSECTION]
 
 [SECTION::submission::program]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]

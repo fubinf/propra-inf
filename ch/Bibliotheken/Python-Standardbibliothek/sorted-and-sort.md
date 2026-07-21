@@ -5,13 +5,12 @@ difficulty: 2
 ---
 
 [SECTION::goal::trial]
-
 Ich kenne die Sortiermechanismen von Python und kann sie auch dann anwenden,
 wenn eine besondere Sortierordnung gefragt ist.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+
+[SECTION::background::default]
 Sortieren braucht man beim Programmieren ziemlich oft.
 Wer in normalen Anwendungen selber ein Sortierverfahren implementiert,
 hat wahrscheinlich nicht mehr alle Tassen im Schrank,
@@ -26,8 +25,9 @@ Standardimplementierung die beste Alternative;
 siehe z.B. die Aufgabe [PARTREF::m_subprocess2] für ein eindrucksvolles Beispiel. 
 
 Hier lernen wir also das nötige Grundwissen über Sortieren in Python.
-
 [ENDSECTION]
+
+
 [SECTION::instructions::detailed]
 
 ### Startpunkt
@@ -162,18 +162,18 @@ Wahrscheinlich nicht. So geht es ganz hübsch:
 - Wer noch weitere Techniken für fortgeschrittenes Sortieren kennenlernen möchte,
   liest hier nach:
   [HREF::https://docs.python.org/3/howto/sorting.html]
-
 [ENDSECTION]
+
 
 [SECTION::submission::trace,program]
-
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
 [ENDSECTION]
-[INSTRUCTOR::Korrektheit und Stil prüfen]
 
+
+[INSTRUCTOR::Korrektheit und Stil prüfen]
 So sieht der korrekte Output aus:
+
 [FOLDOUT::Output von `python sorted-and-sort.py`]
 ```
 Tupel von Alter, Gewicht, Körpergröße
@@ -190,7 +190,7 @@ Sortiert in Gewichtsgruppen:
 [(22, 71, 172), (71, 59, 170), (22, 69, 177), (38, 89, 179), (48, 72, 174)]
 ```
 [ENDFOLDOUT]
+
 Außerdem bitte kurz gucken, ob die `__lt__`-Funktion nicht gar zu arg
 kompliziert geraten ist.
-
 [ENDINSTRUCTOR]

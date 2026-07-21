@@ -6,13 +6,11 @@ assumes: m_os.path, py-Iterators
 ---
 
 [SECTION::goal::idea]
-
 Ich kann Dateipfade mit `*`-Mustern im Unix-Stil durchsuchen.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Häufig möchte man bei Suchen im Verzeichnisbaum Vorkommen nach bestimmten "Mustern" (Pattern) 
 finden, z.B. "alle JPEG Bilder, die ein bestimmtes Datum im Namen haben". 
 Auf unixoiden Kommandozeilen stehen einem als Hilfsmittel dabei Spezialzeichen (wildcard characters)
@@ -21,8 +19,8 @@ zur Verfügung, mit denen das häufig sehr einfach zu bewerkstelligen ist.
 Den gleichen Mechanismus gibt es auch in Python und den lernen wir hier zu benutzen.
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 Dieser Mechanismus wird in der Unix-Shell [TERMREF::Globbing] genannt. 
 In Python können Globbing-Ausdrücke über das Modul `glob` ausgewertet werden.
 `glob` beschäftigt sich ausschließlich mit den _Namen_ von Dateien und Verzeichnissen,
@@ -114,13 +112,14 @@ Zeichenketten an beliebiger Stelle ausschließen.
 
 [ENDSECTION]
 
-[SECTION::submission::trace,program]
 
+[SECTION::submission::trace,program]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
+
+
 [INSTRUCTOR::Codedurchsicht]
 
 Den Code lesen und manuell auf Richtigkeit prüfen.
@@ -134,5 +133,4 @@ Studierenden kurz erklären, aber Abgabe nicht zurückweisen.
 Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_glob.py]
 
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

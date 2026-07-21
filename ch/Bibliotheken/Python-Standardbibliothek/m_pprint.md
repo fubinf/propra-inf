@@ -74,11 +74,9 @@ print("\nwith PrettyPrinter object:")
 [ENDSECTION]
 
 [SECTION::submission::program]
-
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
-
 [ENDSECTION]
 
 [INSTRUCTOR::Codedurchsicht]
