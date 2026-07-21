@@ -55,8 +55,13 @@ a = np.array([[0, 0, 0],
               [10, 10, 10],
               [20, 20, 20],
               [30, 30, 30]])  # Form: (4, 3)
-b = np.array([0, 1, 2])      # Form: (3,)
-result = a + b               # Broadcasting erfolgt automatisch
+b = np.array([100, 200, 300])  # Form: (3,)
+result = a + b                 # Broadcasting erfolgt automatisch
+print(result)
+# [[100 200 300]
+#  [110 210 310]
+#  [120 220 320]
+#  [130 230 330]]
 ```
 
 [EQ] Erklären Sie in eigenen Worten, was Broadcasting bedeutet und warum es nützlich ist.
@@ -154,6 +159,11 @@ normalized = (data - min_vals) / range_vals  # Broadcasting: (3, 5) mit (1, 5)
 - Verwenden Sie Broadcasting für die Berechnung
 - Testen Sie mit der Matrix `[[1, 20, 300], [2, 25, 280], [3, 15, 320]]`
 
+[HINT::Wie überprüfe ich mein Ergebnis?]
+Prüfen Sie mit `np.min`/`np.max`, dass in Ihrem normalisierten Ergebnis jede Spalte auf das
+Minimum `0` und das Maximum `1` abgebildet wird.
+[ENDHINT]
+
 <!-- time estimate: 15 min -->
 
 ### NumPy Array-Iteration mit `nditer`
@@ -202,7 +212,12 @@ for x in np.nditer(a, order='F'):
 - `flags=['multi_index']`: liefert bei jedem Schritt zusätzlich den mehrdimensionalen Index des
   aktuellen Elements über `x.multi_index`
 - `op_flags=['readwrite']`: erlaubt, den Wert direkt während der Iteration zu verändern (ohne
-  dieses Flag ist `nditer` nur lesend, ein Zuweisungsversuch würde einen Fehler auslösen)
+  dieses Flag ist `nditer` nur lesend, ein Zuweisungsversuch würde einen Fehler auslösen). Dabei
+  reicht ein Ausdruck wie `x = 2 * x` nicht aus — er bindet nur den Namen `x` innerhalb der
+  Schleife neu an ein frisch berechnetes Objekt, ohne das Array selbst zu verändern. Erst
+  `x[...] = 2 * x` schreibt den neuen Wert tatsächlich in das Array zurück (Details zu Namen vs.
+  Objekten in [PARTREF::py-Variablen]; die genaue Bedeutung von `...` folgt in
+  [PARTREF::np-index-slice])
 - `flags=['external_loop']`: fasst mehrere Elemente zu größeren Blöcken zusammen (hier: je eine
   ganze Spalte bei `order='F'`), statt jedes einzelne Element separat zu liefern
 
