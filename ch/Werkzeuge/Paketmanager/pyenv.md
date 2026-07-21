@@ -6,79 +6,37 @@ assumes: venv, curl
 ---
 
 [SECTION::goal::product]
-
 Ich kann `pyenv` verwenden, um verschiedene Python-Versionen zu installieren und zu verwalten.
-
 [ENDSECTION]
+
 
 [SECTION::background::default]
+Verschiedene Python-Projekte benötigen manchmal unterschiedliche Python-Versionen.
+Wenn man selbst eine Bibliothek veröffentlichen möchte, sollte man deren Kompatibilität mit 
+möglichst vielen Python-Versionen durch entsprechende Tests sicherstellen.
+Aber in Debian ist normalerweise immer nur eine einzige Python-Version verfügbar.
+Also wie löst man das?
+`pyenv` ermöglicht die Installation und Verwaltung mehrerer Python-Versionen nebeneinander.
 
-Verschiedene Python-Projekte benötigen oft unterschiedliche Python-Versionen.
-Während das System-Python meist nur eine Version bereitstellt, ermöglicht `pyenv`
-die Installation und Verwaltung multipler Python-Versionen nebeneinander.
-
-`pyenv` ist besonders nützlich für:
-
-- Testen von Code gegen verschiedene Python-Versionen
-- Arbeit an Projekten mit spezifischen Python-Anforderungen
-- Verwendung aktueller Python-Versionen auf älteren Systemen
-
-Mit `pyenv` können Sie Python-Versionen pro Projekt, pro Verzeichnis oder global festlegen,
-ohne das System-Python zu beeinträchtigen.
 Im Gegensatz zu `venv`, das Sie aus [PARTREF::venv] kennen, verwaltet `pyenv` nicht
-Paketumgebungen, sondern die Python-Version selbst.
+getrennte Paketumgebungen zur gleichen Python-Version, sondern die Python-Version selbst.
 
+Es stehen Hunderte von Versionen zur Verfügung, nicht nur von der Standardimplementierung CPython,
+sondern auch von anderen wie 
+PyPy (mit Just-in-Time-Compiler) oder
+MicroPython (für Mikrocontroller).
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 Verwenden Sie bei Bedarf die
 [pyenv Command Reference](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md).
 
 ### pyenv installieren
 
-1. Installieren Sie `pyenv` passend zu Ihrem Betriebssystem:
+`sudo apt update && sudo apt install pyenv`
 
-   **macOS (Homebrew)**: `brew install pyenv`
-
-   **Linux (alle Distributionen)**:
-
-   ```bash
-   curl https://pyenv.run | bash
-   ```
-
-   **Ubuntu/Debian (Alternative mit Systemabhängigkeiten)**:
-
-   ```bash
-   sudo apt update
-   sudo apt install -y make build-essential libssl-dev zlib1g-dev \
-   libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-   libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev \
-   liblzma-dev python3-openssl git
-   git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-   ```
-
-2. Fügen Sie `pyenv` zu Ihrer Shell-Konfiguration hinzu.
-   Finden Sie zunächst heraus, welche Shell Sie verwenden: `echo $SHELL`
-
-   Öffnen Sie dann die passende Konfigurationsdatei in einem Texteditor:
-   - Bei **bash**: `~/.bashrc`
-   - Bei **zsh**: `~/.zshrc`
-
-   Fügen Sie am Ende der Datei folgende drei Zeilen ein:
-
-   ```bash
-   export PYENV_ROOT="$HOME/.pyenv"
-   export PATH="$PYENV_ROOT/bin:$PATH"
-   eval "$(pyenv init -)"
-   ```
-
-3. [EC] Laden Sie die Konfiguration neu – entweder durch Öffnen einer neuen Shell oder durch:
-   - bash: `source ~/.bashrc`
-   - zsh: `source ~/.zshrc`
-
-   Überprüfen Sie die Installation: `pyenv --version`
-<!-- time estimate: 15 min -->
+[EC] Überprüfen Sie die Installation: `pyenv --version`
 
 ### Verfügbare Python-Versionen erkunden
 
@@ -92,8 +50,8 @@ Das Muster `"  3\.10\.\|  3\.11\."` sucht nach Zeilen, die eine Versionsangabe
 der Form `3.10.*` oder `3.11.*` enthalten (mit zwei führenden Leerzeichen).
 Der Punkt im Versionsmuster ist durch `\.` als Literalpunkt maskiert
 (sonst würde er für beliebige Zeichen stehen).
-`\|` ist in grep das „oder"-Symbol.
-Die zwei führenden Leerzeichen verhindern, dass Anaconda- oder PyPy-Einträge mitangezeigt werden.
+`\|` ist in grep das „oder“-Symbol.
+Die zwei führenden Leerzeichen verhindern, dass Anaconda- oder PyPy-Einträge mit angezeigt werden.
 [ENDHINT]
 
 2. [EC] Zeigen Sie aktuell installierte Versionen an: `pyenv versions`
@@ -141,17 +99,15 @@ und 3.11 heraus (also z. B. `3.10.17` und `3.11.12`) und installieren Sie beide
    Welchen Befehl finden Sie warum hilfreich?
 
 <!-- time estimate: 10 min -->
-
 [ENDSECTION]
 
-[SECTION::submission::trace]
 
+[SECTION::submission::trace,reflection]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
-
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::pyenv-Installation und -Verwendung]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
