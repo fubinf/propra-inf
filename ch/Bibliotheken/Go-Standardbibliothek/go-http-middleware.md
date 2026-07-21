@@ -1,5 +1,5 @@
 title: "Go: Adapter-Pattern im Kontext von HTTP-Middleware"
-stage: draft
+stage: alpha
 timevalue: 0.75
 difficulty: 3
 assumes: go-http-server
