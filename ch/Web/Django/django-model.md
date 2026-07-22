@@ -53,7 +53,6 @@ Model-Klassen werden in der Datei `models.py` der jeweiligen App definiert.
 [ER] Öffnen Sie `models.py` in `webapp` und definieren Sie folgendes Model:
 
 [SNIPPET::ALT::django_model_student_basic]
-<!-- ER1 -->
 
 ### Migrationen erstellen und anwenden
 
@@ -65,14 +64,12 @@ SQL `CREATE TABLE`/`ALTER TABLE`, siehe [PARTREF::sql-basics]) und machen sie na
 ```bash
 python manage.py makemigrations webapp
 ```
-<!-- EC1 -->
 
 [EC] Wenden Sie die Migration an:
 
 ```bash
 python manage.py migrate
 ```
-<!-- EC2 -->
 
 [NOTICE]
 Django legt automatisch eine `id`-Spalte als Primärschlüssel an, auch wenn Sie keine
@@ -83,7 +80,6 @@ eigene definieren.
 außerdem an, Sie fügen dem Model nachträglich das Attribut
 `phone = models.CharField(max_length=20)` hinzu: Was müssten Sie tun, damit sich diese
 Änderung auch in der Tabelle niederschlägt?
-<!-- EQ1 -->
 <!-- time estimate: 15 min -->
 
 ### Daten anlegen (CREATE)
@@ -111,7 +107,6 @@ from webapp.models import Student
 Student.objects.create(name="Anna Müller", age=22, email="anna@example.com")
 print(Student.objects.all())
 ```
-<!-- EC3 -->
 
 Die Ausgabe zeigt `<QuerySet [<Student: Student object (1)>]>`. Ein **QuerySet** ist die
 Liste von Objekten, die eine Datenbankabfrage zurückgibt; die Darstellung
@@ -131,7 +126,6 @@ def __str__(self):
 [ER] Ergänzen Sie das Model um `__str__()`:
 
 [SNIPPET::ALT::django_model_student_str]
-<!-- ER2 -->
 
 [EC] Verlassen Sie die Shell (`exit()`), starten Sie sie neu und rufen Sie erneut
 `Student.objects.all()` auf:
@@ -144,11 +138,9 @@ python manage.py shell
 from webapp.models import Student
 print(Student.objects.all())
 ```
-<!-- EC4 -->
 
 [EQ] Was hat sich an der Ausgabe geändert, und warum war dafür keine neue Migration nötig
 (anders als bei einem neuen Feld)?
-<!-- EQ2 -->
 <!-- time estimate: 15 min -->
 
 Neben `objects.create()` gibt es einen zweiten Weg, ein Objekt anzulegen: es
@@ -179,7 +171,6 @@ Student.objects.create(name="Julia Becker", age=23, email="julia@example.com")
 [EC] Legen Sie in der Shell Max Schmidt mit Variante 1 (`Student(...)` + `save()`) und Lisa
 Weber mit Variante 2 (`objects.create()`) an und lassen Sie sich danach
 `Student.objects.all()` ausgeben.
-<!-- EC5 -->
 
 [EQ] Beide Varianten führen zum selben Ergebnis in der Datenbank. Gibt es dennoch eine
 Situation, in der Sie zwingend `Student(...)` + `save()` statt `objects.create()`
@@ -188,7 +179,6 @@ verwenden müssten?
 [HINT::Worauf sollte ich achten?]
 Was passiert zwischen dem Erzeugen des Objekts und dem Speichern?
 [ENDHINT]
-<!-- EQ3 -->
 <!-- time estimate: 10 min -->
 
 ### Daten lesen (READ)
@@ -216,12 +206,10 @@ print(Student.objects.filter(name="Fritz Muster"))
 
 [EC] Öffnen Sie die Shell und rufen Sie darin `Student.objects.all()`,
 `Student.objects.get(id=1)` und `Student.objects.filter(name="Anna Müller")` auf.
-<!-- EC6 -->
 
 [EQ] `get()` und `filter()` liefern beide Objekte anhand eines Kriteriums zurück, aber
 mit unterschiedlichem Rückgabetyp. Was passiert bei `get()`, wenn kein oder mehr als ein
 Objekt zum Kriterium passt, und warum ist das bei `filter()` unproblematisch?
-<!-- EQ4 -->
 <!-- time estimate: 10 min -->
 
 ### Daten ändern (UPDATE)
@@ -238,11 +226,9 @@ student.save()
 [EC] Laden Sie den Studierenden mit `id=1` per `get()`, setzen Sie `age` auf `23` und
 speichern Sie die Änderung mit `save()`. Bestätigen Sie die Änderung mit einem erneuten
 `get(id=1)`.
-<!-- EC7 -->
 
 [EQ] Was würde passieren, wenn Sie `save()` nach der Änderung vergessen? Woran würden Sie
 das bemerken?
-<!-- EQ5 -->
 <!-- time estimate: 10 min -->
 
 ### Daten löschen (DELETE)
@@ -268,7 +254,6 @@ student.delete()
 
 [EC] Laden Sie den Studierenden mit `id=2` per `get()` und löschen Sie ihn mit `delete()`.
 Bestätigen Sie mit `Student.objects.all()`, dass er verschwunden ist.
-<!-- EC8 -->
 
 [EQ] Angenommen, Sie führen `Student.objects.get(id=2).delete()` versehentlich ein
 zweites Mal aus. Was passiert dabei, und warum? Vergleichen Sie auch das mögliche
@@ -279,7 +264,6 @@ Risiko, das `delete()` mit sich bringt, mit einem Lesezugriff wie
 Was haben Sie in [EREFQ::4] über das Verhalten von `get()` gelernt, wenn kein passendes
 Objekt existiert?
 [ENDHINT]
-<!-- EQ6 -->
 <!-- time estimate: 10 min -->
 
 ### Weitere Feldtypen
@@ -312,7 +296,6 @@ zwingend `null=True`. Django speichert bei `CharField` einen leeren String `""` 
 [ER] Erweitern Sie das `Student`-Model um zwei weitere Felder:
 
 [SNIPPET::ALT::django_model_student_extended]
-<!-- ER3 -->
 
 [EC] Erstellen und wenden Sie die Migration für die neuen Felder an:
 
@@ -320,7 +303,6 @@ zwingend `null=True`. Django speichert bei `CharField` einen leeren String `""` 
 python manage.py makemigrations webapp
 python manage.py migrate
 ```
-<!-- EC9 -->
 <!-- time estimate: 15 min -->
 
 ### Model in der Admin-Oberfläche verwalten
@@ -337,7 +319,6 @@ admin.site.register(ModelClass)
 [ER] Registrieren Sie `Student` in `webapp/admin.py`:
 
 [SNIPPET::ALT::django_model_admin_register]
-<!-- ER4 -->
 
 Damit Sie sich an der Admin-Oberfläche anmelden können, benötigen Sie ein
 Administrator-Konto (**Superuser**), einen Benutzer mit vollem Zugriff auf alle
@@ -349,23 +330,19 @@ Passwort `propraadmin` an (folgen Sie den interaktiven Eingabeaufforderungen):
 ```bash
 python manage.py createsuperuser
 ```
-<!-- EC10 -->
 
 [ER] Starten Sie den Entwicklungsserver mit `python manage.py runserver 8071`, öffnen Sie
 `http://127.0.0.1:8071/admin/`, melden Sie sich mit Ihrem Superuser an und öffnen Sie die
 Übersicht Ihrer `Student`-Objekte.
-<!-- ER5 -->
 
 [EQ] Welche Studierenden werden in der Übersicht angezeigt, und woran erkennen Sie, dass
 hier dieselbe `__str__()`-Darstellung verwendet wird wie zuvor in der Shell?
-<!-- EQ7 -->
 <!-- time estimate: 15 min -->
 
 ### Anlegen über die Admin-Oberfläche
 
 [ER] Legen Sie über die Admin-Oberfläche einen weiteren Studierenden an: Name
 `Peter Klein`, Alter `26`, E-Mail `peter@example.com`.
-<!-- ER6 -->
 <!-- time estimate: 5 min -->
 
 [EQ] Sie haben soeben über die Shell einen Studierenden mit `.objects.create(...)`
@@ -373,7 +350,6 @@ angelegt und einen weiteren über die Admin-Oberfläche im Browser. Landen beide
 tatsächlich in derselben Tabelle mit derselben Struktur, oder unterscheidet sich der über
 die Admin-Oberfläche angelegte Datensatz auf irgendeine Weise von dem über die Shell
 angelegten? Woran könnten Sie das in der Datenbank überprüfen?
-<!-- EQ8 -->
 <!-- time estimate: 10 min -->
 
 ### Weiterführend
