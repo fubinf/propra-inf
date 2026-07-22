@@ -1,4 +1,4 @@
-title: Django Views
+title: Django View
 stage: draft
 timevalue: 2.25
 difficulty: 2
@@ -8,7 +8,7 @@ assumes: http-GET, http-POST, curl
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe die Funktionsweise von Django-Views und deren Zusammenspiel mit HTTP-Requests
+- Ich verstehe die Funktionsweise von Django-View und deren Zusammenspiel mit HTTP-Requests
   und -Responses.
 - Ich kann Request-Daten aus verschiedenen Quellen (GET-Parameter, POST-Daten, URL-Pfad)
   verarbeiten und passende Response-Typen zurückgeben.
@@ -306,9 +306,9 @@ Stellen im Code müssten Sie anpassen, wenn Sie überall fest codierte Links wie
   die Route selbst in `urls.py` geändert werden muss.
 
 ### Fragen und Python-Dateien
-[INCLUDE::ALT:django-views.md]
+[INCLUDE::ALT:django-view.md]
 
 ### Kommandoprotokoll
-[PROT::ALT:django-views.prot]
+[PROT::ALT:django-view.prot]
 
 [ENDINSTRUCTOR]

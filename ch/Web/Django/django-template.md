@@ -2,7 +2,7 @@ title: Django Template System
 stage: draft
 timevalue: 2
 difficulty: 2
-requires: django-views
+requires: django-view
 ---
 
 [SECTION::goal::idea,experience]
@@ -189,7 +189,7 @@ passen Sie den Link entsprechend an.
 Damit Nutzer zwischen den Seiten wechseln können, braucht `base.html` eine Navigation. Für
 die Links verwenden Sie **nicht** fest codierte Pfade wie `href="/students/"`, sondern das
 `{% url %}`-Tag mit dem Routennamen — das ist die Template-Seite der Reverse Resolution,
-deren Python-Seite (`reverse()`) Sie in [PARTREF::django-views] kennengelernt haben.
+deren Python-Seite (`reverse()`) Sie in [PARTREF::django-view] kennengelernt haben.
 
 [ER] Erweitern Sie `base.html` um eine Navigation, die mit `{% url %}` auf die benannten
 Routen `hello` und `students_list` verweist:
@@ -198,7 +198,7 @@ Routen `hello` und `students_list` verweist:
 <!-- ER10 -->
 
 [EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf und schauen Sie im Seitenquelltext
-nach, zu welchen Pfaden die `{% url %}`-Links aufgelöst wurden. In [PARTREF::django-views]
+nach, zu welchen Pfaden die `{% url %}`-Links aufgelöst wurden. In [PARTREF::django-view]
 haben Sie mit `reverse()` dasselbe in einer View getan. Warum ist es nützlich, dieselbe
 namensbasierte Auflösung sowohl in Python (`reverse()`) als auch im Template (`{% url %}`)
 zur Verfügung zu haben? Wenn Sie einen anderen Port verwenden, passen Sie den Link

@@ -128,7 +128,7 @@ Sie ist das Herzstück jeder Django-Anwendung. Technisch ließe sich eine View a
 Projekt-Konfigurationsordner ablegen, doch die App-Modularisierung erleichtert die Verwaltung
 größerer Projekte erheblich — deshalb implementieren wir Views (und die übrigen Komponenten)
 grundsätzlich innerhalb einer App.
-Weitere Details zu Views finden Sie in [PARTREF::django-views].
+Weitere Details zu Views finden Sie in [PARTREF::django-view].
 
 [ER] `startapp` hat `views.py` bereits leer angelegt. Füllen Sie sie in Ihrer App `webapp`
 mit folgendem Inhalt:
@@ -146,7 +146,7 @@ dafür ist `path()` mit drei Hauptparametern:
 - `view`: die View-Funktion, die bei einem Aufruf ausgeführt wird
 - `name`: ein eindeutiger Name für die Route
 
-Eine detaillierte Erklärung der `path()`-Funktion finden Sie in [PARTREF::django-views].
+Eine detaillierte Erklärung der `path()`-Funktion finden Sie in [PARTREF::django-view].
 
 ```python
 [SNIPPET::ITREE:/Web/Django/django-project-urls.py::django_project_urls]

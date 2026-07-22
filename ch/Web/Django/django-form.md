@@ -27,7 +27,7 @@ einer View verarbeitet und über ein Model in der Datenbank gespeichert.
 [SECTION::instructions::detailed]
 
 Sie arbeiten weiter mit der App `webapp`. Aus den vorherigen Aufgaben stehen Ihnen bereits
-das `Student`-Model ([PARTREF::django-model]), Views mit URL-Routing ([PARTREF::django-views])
+das `Student`-Model ([PARTREF::django-model]), Views mit URL-Routing ([PARTREF::django-view])
 und das Template-System ([PARTREF::django-template]) zur Verfügung. Alle Änderungen finden in
 `webapp` statt.
 
@@ -83,7 +83,7 @@ mitgeschickt wird — so kann eine fremde Seite kein gültiges Formular fälsche
 gehört `{% csrf_token %}` in **jedes** POST-Formular.
 
 [NOTICE]
-In [PARTREF::django-views] hatten Sie eine POST-View versuchsweise mit `@csrf_exempt` vom
+In [PARTREF::django-view] hatten Sie eine POST-View versuchsweise mit `@csrf_exempt` vom
 CSRF-Schutz ausgenommen, um sie ohne Formular testen zu können. Ab jetzt arbeiten Sie mit
 echten Formularen und verwenden daher regulär `{% csrf_token %}` statt `@csrf_exempt`.
 [ENDNOTICE]
@@ -116,7 +116,7 @@ einen anderen Port verwenden, passen Sie den Link entsprechend an.
 Bisher wurden die Formulardaten nur zurückgespiegelt. Jetzt speichern Sie sie dauerhaft:
 Ein Registrierungsformular legt über `Student.objects.create()` (aus [PARTREF::django-model])
 einen neuen Datensatz an und leitet anschließend auf dessen Detailseite (aus
-[PARTREF::django-views]) weiter.
+[PARTREF::django-view]) weiter.
 
 [ER] Erstellen Sie in `views.py` eine `register`-View, die bei einem POST einen neuen
 `Student` anlegt und danach auf dessen Detailseite weiterleitet:
