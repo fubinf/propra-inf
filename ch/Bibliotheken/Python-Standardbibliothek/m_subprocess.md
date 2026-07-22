@@ -5,6 +5,17 @@ difficulty: 2
 assumes: encoding-and-open
 ---
 
+<!--
+TODO_3_wegner: Umbau der Aufgabe:
+- ps aux Aufruf mit subprocess.run() statt Popen(), weil für den Befehl die Funktionalität ausreicht
+- Hinweis auf Warning in der Doku und Auflösen der Executable mit shutil.which()
+- neues Scenario für Aufgabe mit popen(), die Interaktivität oder asynchrone Datenverarbeitung 
+benötigt
+- os.system() Hinweis entfernen, da stattdessen subprocess.run() empfohlen wird. Alternativ 
+subprocess.call()
+- Verständnisfrage, wann man run() und wann popen() verwenden sollte
+-->
+
 [SECTION::goal::trial]
 Ich kann programmatisch von Python aus ein Shell-Kommando starten und kann bei Bedarf
 seine Ausgaben verarbeiten.
