@@ -211,7 +211,7 @@ folgende Version, die ein Template verwendet:
 
 [SNIPPET::ALT::django_project_render]
 
-Legen Sie die Datei `webapp/templates/webapp/hello.html` mit folgendem Inhalt an:
+Legen Sie die Datei `webapp/templates/hello.html` mit folgendem Inhalt an:
 
 [SNIPPET::ALT::django_project_template]
 
