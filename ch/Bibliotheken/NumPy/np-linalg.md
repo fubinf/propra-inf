@@ -425,9 +425,13 @@ print('\nEigenvektoren:')
 print(eigenvectors)
 
 # Matrixnormen
+# Ohne ord-Angabe: Default None entspricht bei einer Matrix der Frobenius-Norm
+default_norm = np.linalg.norm(matrix)
+print('\nNorm ohne ord-Angabe (Default):', default_norm)
+
 # Frobenius-Norm (Wurzel der Summe aller quadrierten Elemente)
 frobenius_norm = np.linalg.norm(matrix, 'fro')
-print('\nFrobenius-Norm:', frobenius_norm)
+print('Frobenius-Norm:', frobenius_norm)
 
 # 1-Norm (Maximale Spaltensumme)
 norm_1 = np.linalg.norm(matrix, 1)
