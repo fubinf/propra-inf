@@ -117,7 +117,13 @@ das kann man z.B. für die Aufgabe [PARTREF::mlh-gitac] gebrauchen.
 [ENDSECTION]
 
 
-[INSTRUCTOR::Kurzer Blick auf das Programm]
-Das kann die Abfrage entweder als `line.endswith(b"bash")` formulieren
-oder die Ausgabe zunächst dekodieren und dann mit Strings weiterarbeiten.
+[INSTRUCTOR::Kommandoprotokoll prüfen]
+Kommandoprotokoll prüfen.
+Bei Abweichungen oder Auffälligkeiten zusätzlich den Code prüfen.
+
+Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_subprocess.py]
+
+[INCLUDE::ALT:]
+
+[PROT::ALT:m_subprocess.prot]
 [ENDINSTRUCTOR]
