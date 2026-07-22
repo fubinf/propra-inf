@@ -39,7 +39,8 @@ Ausgabezeilen von `ps aux`, die auf "bash" enden, zeigen (meist) eine interaktiv
 bash-Shell an.
 
 [EC] Probieren Sie `ps aux` aus.
-
+Sie können, um keine privaten Details über Ihr System zu veröffentlichen, den Output auf die 
+ersten 10 Prozesse einkürzen.
 
 ### Modul `subprocess`
 
