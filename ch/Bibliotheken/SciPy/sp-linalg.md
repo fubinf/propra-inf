@@ -226,36 +226,47 @@ Verifizieren Sie alle Lösungen durch Rückmultiplikation.
 
 <!-- time estimate: 20 min -->
 
-### Konditionszahl: ist ein Gleichungssystem zuverlässig lösbar?
+### Konditionszahl und LU-Zerlegung in der Praxis
 
 Die Konditionszahl beschreibt, wie stark sich Eingabefehler in einem Gleichungssystem verstärken.
 Für die Praxis heißt das: Bevor Sie sich auf die Lösung eines Systems verlassen, lohnt sich ein
-Blick auf dessen Konditionszahl.
+Blick auf dessen Konditionszahl. Sie wurde bereits in [PARTREF::np-linalg] mit `np.linalg.cond()`
+berechnet und dient auch hier unverändert als Diagnose-Grundlage.
+
+Für das eigentliche Lösen wird nun die LU-Zerlegung aus dem ersten Teil dieser Aufgabe praktisch
+angewendet: Im Folgenden wird dieselbe Matrix zweimal gelöst, einmal mit dem ursprünglichen `b`,
+einmal mit dem gestörten `b`. Für ein allgemeines System wie hier greift `solve()` intern ohnehin
+standardmäßig auf eine LU-Zerlegung zurück, berechnet sie dabei aber bei jedem Aufruf neu.
+`lu_factor()` liefert genau diese Zerlegung stattdessen einmalig zurück, und `lu_solve()` nutzt sie
+beliebig oft, ohne sie erneut zu berechnen.
 
 ```python
 import numpy as np
-from scipy.linalg import solve
+from scipy.linalg import lu_factor, lu_solve
 
 # Gut konditioniertes System
 A_good = np.array([[4.0, 1.0], [1.0, 3.0]])
 b_good = np.array([9.0, 8.0])
 print(f"Konditionszahl (gut): {np.linalg.cond(A_good):.6f}")
-x_good = solve(A_good, b_good)
+lu_good, piv_good = lu_factor(A_good)
+x_good = lu_solve((lu_good, piv_good), b_good)
 print(f"Lösung: {x_good}")
 
 # Schlecht konditioniertes, aber nicht singuläres System
 A_ill = np.array([[1.0, 2.0], [2.0, 4.0001]])
 b_ill = np.array([3.0, 6.0002])
 print(f"\nKonditionszahl (schlecht): {np.linalg.cond(A_ill):.2e}")
-x_ill = solve(A_ill, b_ill)
+lu_ill, piv_ill = lu_factor(A_ill)
+x_ill = lu_solve((lu_ill, piv_ill), b_ill)
 print(f"Lösung: {x_ill}")
 
-# Beide b um denselben winzigen Betrag stören
+# Beide b um denselben winzigen Betrag stören; die vorhandene Zerlegung wird dabei
+# wiederverwendet, es wird nicht erneut zerlegt
 b_good_pert = b_good + np.array([1e-4, 0])
 b_ill_pert = b_ill + np.array([1e-4, 0])
 
-x_good_pert = solve(A_good, b_good_pert)
-x_ill_pert = solve(A_ill, b_ill_pert)
+x_good_pert = lu_solve((lu_good, piv_good), b_good_pert)
+x_ill_pert = lu_solve((lu_ill, piv_ill), b_ill_pert)
 
 rel_change_good = np.linalg.norm(x_good_pert - x_good) / np.linalg.norm(x_good)
 rel_change_ill = np.linalg.norm(x_ill_pert - x_ill) / np.linalg.norm(x_ill)
@@ -270,7 +281,7 @@ print(f"Relative Änderung der Lösung (schlecht konditioniert): {rel_change_ill
 # Relative Änderung der Lösung (schlecht konditioniert): 2.00e+00
 ```
 
-`solve()` gibt für beide Systeme anstandslos eine Lösung zurück — kein Fehler, keine Warnung. Der
+`lu_solve()` gibt für beide Systeme anstandslos eine Lösung zurück — kein Fehler, keine Warnung. Der
 Unterschied zeigt sich erst, wenn man `b` minimal stört: Bei `A_good` bleibt die Lösung nahezu
 unverändert, bei `A_ill` schlägt dieselbe winzige Störung mit um Größenordnungen stärkerer Wirkung
 auf die Lösung durch.
@@ -281,12 +292,17 @@ Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit P
 [ER] Vergleichen Sie ein gut und ein schlecht konditioniertes Gleichungssystem:
 
 - Berechnen Sie für `M_good` = [[6, 2], [2, 5]] mit `v_good` = [10, 7] die Konditionszahl
-  (`np.linalg.cond()`, 6 Nachkommastellen, `:.6f`) und lösen Sie das System (`linalg.solve()`)
+  (`np.linalg.cond()`, 6 Nachkommastellen, `:.6f`) und zerlegen Sie die Matrix einmal mit
+  `linalg.lu_factor()`
 - Berechnen Sie für `M_ill` = [[1, 3], [3, 9.0002]] mit `v_ill` = [4, 12.0006] ebenfalls
-  Konditionszahl (wissenschaftliche Notation, `:.2e`) und Lösung
-- Stören Sie bei beiden Systemen die jeweilige rechte Seite um denselben winzigen Betrag (z. B.
-  `+1e-4` auf die erste Komponente) und lösen Sie erneut
-- Geben Sie für beide Systeme die relative Änderung der Lösung aus (6 Nachkommastellen, `:.6f`)
+  Konditionszahl (wissenschaftliche Notation, `:.2e`) und die LU-Zerlegung
+- Lösen Sie beide Systeme mit `linalg.lu_solve()` unter Verwendung der jeweiligen Zerlegung
+- Addieren Sie bei beiden Systemen `1e-4` auf die erste Komponente der jeweiligen rechten Seite und
+  lösen Sie mit dieser gestörten rechten Seite erneut mit `linalg.lu_solve()`; verwenden Sie dabei
+  dieselbe bereits berechnete Zerlegung, ohne erneut `lu_factor()` aufzurufen
+- Geben Sie für beide Systeme die relative Änderung der Lösung aus (6 Nachkommastellen, `:.6f`);
+  nutzen Sie dafür die in [PARTREF::np-linalg] behandelte Norm (`np.linalg.norm()` ohne `ord`-Angabe
+  reicht hier aus)
 
 [HINT::Wie berechnet man die relative Änderung zwischen zwei Lösungsvektoren?]
 Die relative Änderung zwischen einer ursprünglichen Lösung `x` und der gestörten Lösung `x_pert`
@@ -295,7 +311,7 @@ Differenzvektor, dessen Norm die absolute Größe der Änderung angibt; die Divi
 `np.linalg.norm(x)` setzt diese Änderung ins Verhältnis zur Größe der ursprünglichen Lösung.
 [ENDHINT]
 
-[EQ] Beide Systeme wurden von `solve()` ohne Fehler oder Warnung gelöst. Anhand welcher Zahl
+[EQ] Beide Systeme wurden von `lu_solve()` ohne Fehler oder Warnung gelöst. Anhand welcher Zahl
 hätten Sie schon vor dem Lösen erkennen können, welches der beiden Systeme empfindlich auf
 Störungen reagieren würde — und was würde Sie das bei einem realen Datensatz mit unbekanntem,
 leicht verrauschtem `b` über die Vertrauenswürdigkeit der berechneten Lösung sagen?
@@ -319,8 +335,10 @@ leicht verrauschtem `b` über die Vertrauenswürdigkeit der berechneten Lösung 
 - [EREFR::2]: für jedes der drei Systeme wurde der zur Struktur passende Solver verwendet
   (`solve` für das allgemeine System, `solve_triangular` für das Dreieckssystem, `cho_factor`/
   `cho_solve` für das symmetrische positiv definite System), nicht überall derselbe
+- [EREFR::3]: die Zerlegung wurde für jedes System nur einmal mit `lu_factor()` berechnet und beim
+  zweiten Lösen (nach der Störung von `b`) wiederverwendet, nicht erneut aufgerufen
 - [EREFR::3] + [EREFQ::1]: Studierende erkennen, dass die Konditionszahl bereits vor dem Lösen
-  anzeigt, wie empfindlich ein System auf Störungen reagiert, und dass `solve()` bei einem
+  anzeigt, wie empfindlich ein System auf Störungen reagiert, und dass `lu_solve()` bei einem
   schlecht konditionierten System trotzdem anstandslos (ohne Fehler) eine unzuverlässige Lösung
   zurückgibt
 
