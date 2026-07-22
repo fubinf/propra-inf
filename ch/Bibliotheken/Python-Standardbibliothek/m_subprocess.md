@@ -58,26 +58,22 @@ Dafür müssen Sie ein wenig über den `Popen`-Konstruktor nachlesen.
 [ER] Ergänzen Sie die nötigen Argumente des `Popen`-Aufrufs.
 Wir brauchen `args`, `stdout` und `shell`.
 
-Nun haben wir in `out` die Ausgabe des Kommandos.
-
-[ER] Die lesen wir nun zeilenweise durch,
-suchen darin alle Zeilen, für die gilt `endswith(b"bash")`, und zählen sie.
-
-[ER] Das Ergebnis geben wir mit `print()` aus. 
-
-Das war's schon!
-
 [HINT::Welches Argument brauche ich für `args`?]
 `"ps aux"` genügt.
 
-Für ein ernsthaftes Programm wäre es besser, den ganzen _Pfadnamen_
-des `ps`-Kommandos anzugeben, damit man nicht versehentlich etwas anderes erwischt,
-das zufällig bei diesem Benutzer unter diesem Namen im Aufrufpfad hängt.
-Den Pfadnamen von `ps` bekommt man mit `which -a ps` heraus
-oder mit `command -v ps` (was auf mehr Unix-Varianten funktioniert).
-Allerdings hat ein Weglassen des Pfades den Vorteil, dass der Pfad auf einem anderen
-Unix-System eventuell ein anderer sein müsste, unser Programm ohne den Pfad also
-möglicherweise weniger plattformabhängig ist.
+Für ein ernsthaftes Programm wäre es besser, den ganzen _Pfadnamen_ des `ps`-Kommandos anzugeben,
+damit man nicht versehentlich eine andere ausführbare Datei mit demselben Namen erwischt, die 
+zufällig bei diesem Benutzer im [TERMREF::PATH] hängt.
+Das Weglassen des Pfades kann den Vorteil haben, dass die [TERMREF::Executable] auf einem anderen 
+Unix-System eventuell unter einem anderen Pfad sein kann und unser Programm ohne den Pfad somit 
+plattformunabhängiger wäre.
+
+Den Pfad zu `ps` bekommt man mit `which -a ps` oder mit `command -v ps` (was auf mehr 
+Unix-Varianten funktioniert) heraus.  
+Eine andere Möglichkeit: mit `shutil.which()` lässt sich der Programmpfad dynamisch auflösen, 
+solang sich dieser in der PATH-Variable befindet.
+So lässt sich auch der Fall abfangen, dass der Befehl auf dem ausführenden System nicht 
+verfügbar ist.
 [ENDHINT]
 
 [HINT::Welches Argument brauche ich für `stdout`?]
@@ -90,9 +86,18 @@ Bitte schlagen Sie nicht sämtliche Hinweise auf.
 Selber nachdenken ist Trumpf!
 [ENDHINT]
 
+Nun haben wir in `out` die Ausgabe des Kommandos.
+
+[ER] Die lesen wir nun zeilenweise durch,
+suchen darin alle Zeilen, für die gilt `endswith(b"bash")`, und zählen sie.
+
 [HINT::Wie geht die zeilenweise Schleife?]
 Iterieren Sie über `out.split(b"\n")`
 [ENDHINT]
+
+[ER] Das Ergebnis geben wir mit `print()` aus. 
+
+Das war's schon!
 
 [EC] `python m_subprocess.py`
 
