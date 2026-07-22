@@ -2,8 +2,7 @@ title: NumPy Sortierung und Filterung verstehen und anwenden
 stage: alpha
 timevalue: 2
 difficulty: 2
-requires: np-Einführung
-assumes: np-array, np-array2, np-index-slice
+assumes: np-Einführung, np-array, np-array2, np-index-slice
 ---
 
 [SECTION::goal::idea,experience]

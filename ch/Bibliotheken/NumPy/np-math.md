@@ -2,8 +2,7 @@ title: NumPy mathematische Funktionen verstehen und anwenden
 stage: alpha
 timevalue: 1.75
 difficulty: 2
-requires: np-Einführung
-assumes: np-array, np-array2, np-bitwise-string, py-Fstrings
+assumes: np-Einführung, np-array, np-array2, np-bitwise-string, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]

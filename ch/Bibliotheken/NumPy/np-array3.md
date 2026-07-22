@@ -2,8 +2,7 @@ title: NumPy Array-Verbindung und -Teilung
 stage: alpha
 timevalue: 2
 difficulty: 2
-requires: np-Einführung
-assumes: np-array, np-array2
+assumes: np-Einführung, np-array, np-array2
 ---
 
 [SECTION::goal::experience]
