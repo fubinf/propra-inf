@@ -47,7 +47,6 @@ def my_view(request):
 
 [EQ] Schauen Sie sich die `hello`-View aus [PARTREF::django-project] an. Wie ist eine
 View-Funktion aufgebaut? Welche zwei Bestandteile sind zwingend notwendig?
-<!-- EQ1 -->
 <!-- time estimate: 10 min -->
 
 ### Request-Attribute: GET-Parameter verarbeiten
@@ -78,12 +77,10 @@ stadt = request.GET.get("stadt", "Berlin")  # "Berlin", falls "stadt" fehlt
 `Name: <name>, Alter: <age>` zurückgibt (z. B. mit einem f-String, der die Werte per
 Interpolation in den Text einsetzt, siehe [PARTREF::py-Fstrings]). Denken Sie daran,
 `HttpResponse` oben in der Datei zu importieren.
-<!-- ER1 -->
 
 [ER] Ergänzen Sie `urls.py` um eine Route für die neue View: Pfad `params/`, Ziel
 `get_params`, Name `get_params`. Fügen Sie sie nach dem bereits aus [PARTREF::django-project]
 bekannten Muster `path("pfad", views.funktionname, name="name")` zu `urlpatterns` hinzu.
-<!-- ER2 -->
 
 [EC] Rufen Sie die View einmal mit und einmal ohne GET-Parameter auf (`curl`, siehe
 [PARTREF::curl]):
@@ -94,11 +91,9 @@ curl "http://127.0.0.1:8071/params/"
 ```
 
 Wenn Sie einen anderen Port verwenden, passen Sie die Befehle entsprechend an.
-<!-- EC1 -->
 
 [EQ] Beim zweiten Aufruf fehlen die Parameter, trotzdem stürzt die View nicht ab. Warum ist das so, und welche Rolle spielt dabei das zweite Argument
 von `request.GET.get(...)`?
-<!-- EQ2 -->
 <!-- time estimate: 15 min -->
 
 ### Request-Attribute: POST-Daten verarbeiten
@@ -132,11 +127,9 @@ zu bauen. Was CSRF ist und warum es normalerweise wichtig ist, lernen Sie in
 `message` aus `request.POST` (Standardwerte `Kein Name` bzw. `Keine Nachricht`) und gibt den
 Text `Empfangen von <username>: <message>` zurück; bei jeder anderen Methode gibt sie
 stattdessen `Bitte per POST senden.` zurück. Importieren Sie dafür `csrf_exempt`.
-<!-- ER3 -->
 
 [ER] Fügen Sie in `urls.py` die Route für `post_data` hinzu: Pfad `post-data/`, Name
 `post_data`.
-<!-- ER4 -->
 
 [EC] Testen Sie die POST-View mit `curl` (`-X`/`-d`, siehe [PARTREF::curl]):
 
@@ -145,11 +138,9 @@ curl -X POST -d "username=Max&message=Hallo" http://127.0.0.1:8071/post-data/
 ```
 
 Wenn Sie einen anderen Port verwenden, passen Sie den Befehl entsprechend an.
-<!-- EC2 -->
 
 [EQ] Vergleichen Sie mit der GET-Parameter-View aus [EREFQ::2]: Was ist der wesentliche
 Unterschied bezüglich der URL-Anzeige und Datenübertragung zwischen GET und POST?
-<!-- EQ3 -->
 <!-- time estimate: 20 min -->
 
 ### Weitere Request-Attribute erforschen
@@ -169,11 +160,9 @@ Request als `HttpResponse` im Format `Methode: <...>, Pfad: <...>` zurückgibt (
 verwendete HTTP-Methode und den aufgerufenen Pfad; die passenden Attribute des
 Request-Objekts finden Sie in der
 [Django-Doku zu Request und Response](https://docs.djangoproject.com/en/stable/ref/request-response/)).
-<!-- ER5 -->
 
 [ER] Fügen Sie in `urls.py` die Route für `request_info` hinzu: Pfad `request-info/`, Name
 `request_info`.
-<!-- ER6 -->
 
 [EC] Rufen Sie die Request-Info-View auf:
 
@@ -182,11 +171,9 @@ curl http://127.0.0.1:8071/request-info/
 ```
 
 Wenn Sie einen anderen Port verwenden, passen Sie den Befehl entsprechend an.
-<!-- EC3 -->
 
 [EQ] Wozu könnte eine View die Angabe aus `request.method` auswerten? Und warum ist die
 HTTP-Methode immer `GET`, wenn Sie eine URL direkt im Browser aufrufen?
-<!-- EQ4 -->
 <!-- time estimate: 20 min -->
 
 ### Response-Objekte: HttpResponse
@@ -210,11 +197,9 @@ dem zusätzlichen Argument `content_type="application/json"`, und sonst den Text
 `Text-Antwort`. Das `content_type`-Argument von `HttpResponse` ist neu; schlagen Sie es in der
 [Django-Doku zu HttpResponse-Objekten](https://docs.djangoproject.com/en/stable/ref/request-response/#httpresponse-objects)
 nach.
-<!-- ER7 -->
 
 [ER] Fügen Sie in `urls.py` die Route für `responses` hinzu: Pfad `responses/`, Name
 `responses`.
-<!-- ER8 -->
 
 [EC] Rufen Sie alle drei Response-Typen nacheinander auf:
 
@@ -225,12 +210,10 @@ curl "http://127.0.0.1:8071/responses/?type=json"
 ```
 
 Wenn Sie einen anderen Port verwenden, passen Sie die Befehle entsprechend an.
-<!-- EC4 -->
 
 [EQ] Ein Browser stellt dieselbe zurückgegebene Zeichenkette je nach `content_type`
 unterschiedlich dar. Was entscheidet also darüber, wie eine Antwort angezeigt wird: der
 Inhalt selbst oder der mitgesendete `content_type`?
-<!-- EQ5 -->
 <!-- time estimate: 20 min -->
 
 ### Response-Objekte: redirect() für Weiterleitungen
@@ -253,7 +236,6 @@ from django.shortcuts import redirect
 def ziel_view(request):
     return HttpResponse("Angekommen!")
 
-
 def start_view(request):
     return redirect("ziel_view")
 ```
@@ -261,12 +243,10 @@ def start_view(request):
 [ER] Schreiben Sie in `views.py` zwei View-Funktionen: `redirect_target`, die als
 `HttpResponse` den Text `Sie wurden weitergeleitet!` zurückgibt, und `redirect_example`, die
 mit `redirect("redirect_target")` dorthin weiterleitet. Importieren Sie dafür `redirect`.
-<!-- ER9 -->
 
 [ER] Fügen Sie in `urls.py` beide Routen hinzu: Pfad `redirect-target/` mit Ziel
 `redirect_target` (Name `redirect_target`) und Pfad `redirect-test/` mit Ziel
 `redirect_example` (Name `redirect_example`).
-<!-- ER10 -->
 
 [EC] Rufen Sie die Umleitung auf. Mit `-i` werden die Antwort-Header sichtbar, mit `-s`
 bleibt die Ausgabe knapp:
@@ -276,12 +256,10 @@ curl -s -i http://127.0.0.1:8071/redirect-test/
 ```
 
 Wenn Sie einen anderen Port verwenden, passen Sie den Befehl entsprechend an.
-<!-- EC5 -->
 
 [EQ] Die Antwort hat den Statuscode 302 und einen `Location`-Header statt eines Seiteninhalts.
 Warum gibt `redirect_example` einen Redirect (302) zurück statt direkt eine `HttpResponse` mit
 dem Zielinhalt? Was gewinnt man dadurch?
-<!-- EQ6 -->
 
 [NOTICE]
 Neben `HttpResponse` und `redirect()` ist `render()` eine dritte Möglichkeit für
@@ -293,7 +271,6 @@ vertieft.
 
 - Direkte Anzeige einer einfachen Info-Seite mit statischem Text
 - Weiterleitung nach erfolgreicher Anmeldung
-<!-- EQ7 -->
 <!-- time estimate: 20 min -->
 
 ### URL-Parameter mit Typkonvertern
@@ -330,11 +307,9 @@ def eintrag_view(request, eintrag_id):
 den `Student` mit der übergebenen ID per `Student.objects.get()` (bekannt aus
 [PARTREF::django-model]) lädt und seine Daten im Format `<name>, <age> Jahre, <email>` als
 `HttpResponse` zurückgibt.
-<!-- ER11 -->
 
 [ER] Fügen Sie in `urls.py` die passende Route mit `int`-Typkonverter hinzu: Pfad
 `students/<int:student_id>/` mit Ziel `student_detail`, Name `student_detail`.
-<!-- ER12 -->
 
 [HINT::Warum `<int:student_id>` und nicht `<str:student_id>`?]
 Mit `<str:student_id>` würde auch `students/abc/` auf diese Route passen; die View müsste
@@ -354,11 +329,9 @@ curl -s -i http://127.0.0.1:8071/students/999/
 ```
 
 Wenn Sie einen anderen Port verwenden, passen Sie die Befehle entsprechend an.
-<!-- EC6 -->
 
 [EQ] Der zweite Aufruf endet nicht mit den Studierendendaten, sondern mit einem Fehler. Woran
 liegt das, und an welcher Stelle in der View entsteht dieser Fehler?
-<!-- EQ8 -->
 <!-- time estimate: 20 min -->
 
 [HINT::Kommt Ihnen dieses Verhalten bekannt vor?]
@@ -402,11 +375,9 @@ def einstieg_view(request):
 [ER] Schreiben Sie in `views.py` eine View-Funktion `student_redirect`, die mit `reverse()`
 die URL der Detailseite von Student `1` erzeugt und den Client per `redirect()` dorthin
 weiterleitet.
-<!-- ER13 -->
 
 [ER] Fügen Sie in `urls.py` die Route für `student_redirect` hinzu: Pfad `students/redirect/`,
 Name `student_redirect`.
-<!-- ER14 -->
 
 [EC] Rufen Sie die Weiterleitung auf und achten Sie auf den `Location`-Header:
 
@@ -415,12 +386,10 @@ curl -s -i http://127.0.0.1:8071/students/redirect/
 ```
 
 Wenn Sie einen anderen Port verwenden, passen Sie den Befehl entsprechend an.
-<!-- EC7 -->
 
 [EQ] Der `Location`-Header zeigt auf `/students/1/`. Stimmt das mit der ID überein, die Sie
 in der View an `reverse()` übergeben haben, und wie hat `reverse()` aus dem Routennamen diese
 URL erzeugt?
-<!-- EQ9 -->
 <!-- time estimate: 20 min -->
 
 [EQ] Stellen Sie sich vor, die Route für die Studierenden-Detailseite soll künftig nicht
@@ -428,7 +397,6 @@ mehr `students/<int:student_id>/`, sondern `teilnehmer/<int:student_id>/` heiße
 Stellen im Code müssten Sie anpassen, wenn Sie überall fest codierte Links wie
 `"/students/1/"` verwendet hätten? Wie viele Stellen, wenn Sie stattdessen konsequent
 `reverse("student_detail", args=[1])` verwendet hätten?
-<!-- EQ10 -->
 <!-- time estimate: 5 min -->
 
 ### Weiterführend
