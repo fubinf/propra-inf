@@ -1,5 +1,5 @@
 title: Django View
-stage: draft
+stage: alpha
 timevalue: 2.5
 difficulty: 2
 requires: django-model
