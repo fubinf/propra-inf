@@ -26,4 +26,5 @@
 - **2026-07-14**: Kapitel [PARTREF::Programmierpraxis] erlaubt jetzt die freie Wahl der Programmiersprache.
 - **2026-07-14**: Aufgaben [PARTREF::go-testing] und [PARTREF::dd] zugefügt.
 - **2026-07-14**: Aufgabengruppe [PARTREF::Matplotlib] freigegeben, mit aktuell 5 Aufgaben.
+- **2026-07-23**: Aufgabe [PARTREF::go-http-client] zugefügt.
 - ...
