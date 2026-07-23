@@ -9,26 +9,25 @@ assumes: sql-basics, sql-SELECT, sql-UPDATE-VIEW-CASE
 [SECTION::goal::idea,experience]
 
 - Ich verstehe, wie ein Django-Model die Struktur einer Datenbanktabelle abbildet und wie
-  Migrations Änderungen daran nachvollziehbar machen.
+  Migrationen Änderungen daran nachvollziehbar machen.
 - Ich kann ein eigenes Model definieren und über die Admin-Oberfläche sowie die Shell verwalten.
 - Ich kann grundlegende Datenoperationen (Anlegen, Lesen, Ändern, Löschen) auf einzelnen
   Objekten ausführen.
-
 [ENDSECTION]
+
 
 [SECTION::background::default]
-
-Datenbanktabellen von Hand per SQL zu pflegen ist fehleranfällig und bindet den Code eng an
+Datenbanktabellen von Hand per SQL zu pflegen ist umständlich, fehleranfällig und bindet den Code eng an
 ein bestimmtes Datenbanksystem. Django bietet dafür ein Object-Relational Mapping (ORM): Eine
 Python-Klasse beschreibt die Tabellenstruktur, und Django übersetzt Lese- und Schreibzugriffe
-automatisch in SQL. Wie jede Abstraktion hat das seinen Preis, macht aber den alltäglichen
-Umgang mit Daten deutlich einfacher.
-
+automatisch in SQL. 
+Das ist nicht ganz so flexibel wie die manuelle Verwaltung mit SQL, spart aber große Mengen
+Code ein und macht die Anwendung weitaus übersichtlicher und tendenziell sicherer.
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
-Sie arbeiten weiter mit dem `meinprojekt`-Projekt und der App `webapp`, die Sie in
+[SECTION::instructions::detailed]
+Wir arbeiten weiter mit dem `meinprojekt`-Projekt und der App `webapp`, die Sie in
 [PARTREF::django-project] angelegt haben. Alle folgenden Änderungen finden in `webapp` statt.
 
 ### Was ist ein Django-Model?
@@ -38,17 +37,22 @@ Ein **Model** ist eine Python-Klasse, die eine Datenbanktabelle beschreibt:
 - Die Klasse entspricht der Tabelle.
 - Jedes Klassenattribut entspricht einer Spalte.
 - Jede Instanz der Klasse entspricht einer Zeile.
+- Jedes Attribut einer Instanz der Klasse entspricht einer Zelle.
 
 Django erzeugt aus dieser Klassendefinition automatisch die passenden SQL-Befehle (vgl.
 [PARTREF::sql-basics] für die Tabellenkonzepte selbst).
 
-Model-Klassen werden in der Datei `models.py` der jeweiligen App definiert.
+Model-Klassen werden per Konvention in der Datei `models.py` der jeweiligen App definiert.
 
 **Feldtypen** legen fest, welche Art von Daten eine Spalte speichert:
 
 - `CharField(max_length=n)`: Text mit fester maximaler Länge (`max_length` ist erforderlich).
 - `IntegerField()`: Ganzzahlen.
-- `EmailField()`: Text mit zusätzlicher Formatvalidierung für E-Mail-Adressen.
+- `EmailField()`: Text, aber mit zusätzlicher Formatvalidierung für E-Mail-Adressen, wenn das
+  Feld in einem Formular verwendet wird (siehe Aufgabe [PARTREF::django-form]).
+- Es gibt 
+  [zahlreiche weitere](https://docs.djangoproject.com/en/stable/ref/models/fields/), 
+  etwa für Datumsfelder oder URLs.
 
 [ER] Öffnen Sie `models.py` in `webapp` und definieren Sie folgendes Model:
 
@@ -56,7 +60,7 @@ Model-Klassen werden in der Datei `models.py` der jeweiligen App definiert.
 
 ### Migrationen erstellen und anwenden
 
-**Migrations** übersetzen Änderungen an Model-Klassen in Datenbankbefehle (vergleichbar mit
+**Migrationen** übersetzen Änderungen an Model-Klassen in Datenbankbefehle (vergleichbar mit
 SQL `CREATE TABLE`/`ALTER TABLE`, siehe [PARTREF::sql-basics]) und machen sie nachvollziehbar.
 
 [EC] Erstellen Sie eine Migration für das neue Model:
@@ -72,8 +76,8 @@ python manage.py migrate
 ```
 
 [NOTICE]
-Django legt automatisch eine `id`-Spalte als Primärschlüssel an, auch wenn Sie keine
-eigene definieren.
+Django legt automatisch eine `id`-Spalte als Primärschlüssel an, wenn Sie keinen
+eigenen definieren.
 [ENDNOTICE]
 
 [EQ] Öffnen Sie die Datei `webapp/migrations/0001_initial.py`. Was enthält sie? Nehmen Sie
@@ -113,17 +117,17 @@ Liste von Objekten, die eine Datenbankabfrage zurückgibt; die Darstellung
 `Student object (1)` darin ist nicht besonders aussagekräftig, weil Django ein Objekt
 ohne eigene Angabe standardmäßig als `Klassenname object (id)` darstellt.
 Wie ein Objekt stattdessen als Text dargestellt wird, legt die Methode `__str__()` fest,
-die sich hier ergänzen lässt.
+die wir nun ergänzen wollen:
 
 ```python
 def __str__(self):
     ...
 ```
 
-- `self`: die Model-Instanz selbst; die Methode muss einen `str`-Wert zurückgeben, der als
-  Textdarstellung des Objekts verwendet wird
+`self` ist dabei die Model-Instanz selbst.
+Die Methode muss einen `str`-Wert zurückgeben, der dann als Textdarstellung des Objekts verwendet wird.
 
-[ER] Ergänzen Sie das Model um `__str__()`:
+[ER] Ergänzen Sie das Model um eine sinnvolle Fassung von `__str__()`:
 
 [SNIPPET::ALT::django_model_student_str]
 
@@ -283,7 +287,7 @@ Formularen/Validierung als optional markiert (Eingabeebene). Ein Feld kann auch 
 gleichzeitig sein; Standard für beide ist `False`.
 
 [NOTICE]
-**Wann brauche ich null, wann blank?**  
+**Wann brauche ich `null`, wann `blank`?**  
 Ein Beispiel macht den Unterschied greifbar: Ein optionales Kommentarfeld vom Typ
 `CharField` sollte `blank=True` bekommen (im Formular darf es leer bleiben), aber **nicht**
 zwingend `null=True`. Django speichert bei `CharField` einen leeren String `""` statt
@@ -358,17 +362,17 @@ angelegten? Woran könnten Sie das in der Datenbank überprüfen?
   Dokumentation zu Django-Modellen
 - [Model field reference](https://docs.djangoproject.com/en/stable/ref/models/fields/) –
   Referenz zu allen verfügbaren Feldtypen und -optionen
-
 [ENDSECTION]
 
+
 [SECTION::submission::program]
-[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Quellcode-files.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Kontrollergebnisse]
 
+[INSTRUCTOR::Kontrollergebnisse]
 **Knackpunkte:**
 
 - [EREFR::2] + [EREFQ::2]: Nach Ergänzen von `__str__()` zeigt die Shell den Namen statt
@@ -386,5 +390,4 @@ angelegten? Woran könnten Sie das in der Datenbank überprüfen?
 
 ### Kommandoprotokoll
 [PROT::ALT:django-model.prot]
-
 [ENDINSTRUCTOR]
