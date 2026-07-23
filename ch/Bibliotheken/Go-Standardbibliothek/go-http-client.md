@@ -1,5 +1,5 @@
 title: "Go: 'http.Client' und Senden von HTTP-Anfragen"
-stage: alpha
+stage: beta
 timevalue: 0.75
 difficulty: 2
 assumes: go-interfaces, http-GET, http-State, http-Status
@@ -156,7 +156,7 @@ defer resp.Body.Close()
 der Funktion `prettyPrint(r io.Reader)` auf der Kommandozeile ausgeben.
 
 (Kopieren Sie diese Funktion in Ihr Programm; sie benutzt intern die Funktion `io.ReadAll`, um die Daten einzulesen, und
-formatiert sie anschließend als JSON.)
+gibt sie anschließend als eingerücktes, lesbares JSON aus.)
 
 ```go
 [SNIPPET::ITREE:go-http-client.go::pp]
