@@ -215,7 +215,7 @@ entsprechend an.
 [ENDSECTION]
 
 [SECTION::submission::program]
-[INCLUDE::/_include/Submission-Quellcode.md]
+[INCLUDE::/_include/Submission-Quellcode-files.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
