@@ -60,8 +60,27 @@ Model-Klassen werden per Konvention in der Datei `models.py` der jeweiligen App 
 
 ### Migrationen erstellen und anwenden
 
-**Migrationen** übersetzen Änderungen an Model-Klassen in Datenbankbefehle (vergleichbar mit
-SQL `CREATE TABLE`/`ALTER TABLE`, siehe [PARTREF::sql-basics]) und machen sie nachvollziehbar.
+Eine Änderung an einer Model-Klasse ändert die Datenbank nicht von selbst. Den Weg von der
+geänderten Klasse zur geänderten Datenbank trennt Django bewusst in zwei Schritte:
+
+- **Migration erzeugen** (`makemigrations`): Django vergleicht die neue Model-Definition mit
+  dem bisherigen Stand und schreibt die Unterschiede als **Migration** in eine eigene,
+  versionierte und lesbare Datei im Ordner `migrations/`. Eine Migration ist also eine Art
+  Änderungsprotokoll für die Tabellenstruktur (vergleichbar mit SQL `CREATE TABLE`/`ALTER
+  TABLE`, siehe [PARTREF::sql-basics]); die Datenbank selbst wird dabei noch **nicht**
+  verändert.
+- **Migration anwenden** (`migrate`): Django liest die noch nicht angewendeten
+  Migrationsdateien und führt die darin festgehaltenen Änderungen jetzt **tatsächlich** auf
+  der Datenbank aus (übersetzt sie also in echtes SQL und lässt es laufen). Erst danach hat
+  die Tabelle wirklich die neue Struktur.
+
+Kurz: Der erste Schritt schreibt eine Änderungsliste, der zweite arbeitet diese Liste auf der
+Datenbank ab.
+
+Der Sinn dieser Trennung: Dieselbe Migration lässt sich nachvollziehbar und in derselben
+Reihenfolge auf mehrere Datenbanken anwenden, etwa auf Ihre lokale Entwicklungsdatenbank und
+später auf die Produktionsdatenbank. Die Migration wird einmal erzeugt, versioniert (und ggf.
+vor dem Einsatz geprüft) und dann dort angewendet, wo sie gebraucht wird.
 
 [EC] Erstellen Sie eine Migration für das neue Model:
 
@@ -80,10 +99,10 @@ Django legt automatisch eine `id`-Spalte als Primärschlüssel an, wenn Sie kein
 eigenen definieren.
 [ENDNOTICE]
 
-[EQ] Öffnen Sie die Datei `webapp/migrations/0001_initial.py`. Was enthält sie? Nehmen Sie
-außerdem an, Sie fügen dem Model nachträglich das Attribut
-`phone = models.CharField(max_length=20)` hinzu: Was müssten Sie tun, damit sich diese
-Änderung auch in der Tabelle niederschlägt?
+[EQ] Öffnen Sie die Datei `webapp/migrations/0001_initial.py`. Was enthält sie? Und warum
+trennt Django das Erzeugen einer Migration (`makemigrations`) vom Anwenden (`migrate`) in zwei
+Befehle, statt die Datenbank direkt zu ändern? Denken Sie dabei an den Fall, dass dieselbe
+Anwendung mehrere Datenbanken hat (z. B. eine zum Entwickeln und eine für den Produktivbetrieb).
 <!-- time estimate: 15 min -->
 
 ### Daten anlegen (CREATE)
@@ -127,9 +146,9 @@ def __str__(self):
 `self` ist dabei die Model-Instanz selbst.
 Die Methode muss einen `str`-Wert zurückgeben, der dann als Textdarstellung des Objekts verwendet wird.
 
-[ER] Ergänzen Sie das Model um eine sinnvolle Fassung von `__str__()`:
-
-[SNIPPET::ALT::django_model_student_str]
+[ER] Ergänzen Sie das Model um eine sinnvolle Fassung von `__str__()`. Überlegen Sie sich den
+Rumpf selbst: Die Methode soll eine gut lesbare Textdarstellung zurückgeben, mit der Sie ein
+`Student`-Objekt in einer Liste wiedererkennen (z. B. den Namen).
 
 [EC] Verlassen Sie die Shell (`exit()`), starten Sie sie neu und rufen Sie erneut
 `Student.objects.all()` auf:
@@ -176,11 +195,11 @@ Student.objects.create(name="Julia Becker", age=23, email="julia@example.com")
 Weber mit Variante 2 (`objects.create()`) an und lassen Sie sich danach
 `Student.objects.all()` ausgeben.
 
-[EQ] Beide Varianten führen zum selben Ergebnis in der Datenbank. Gibt es dennoch eine
-Situation, in der Sie zwingend `Student(...)` + `save()` statt `objects.create()`
-verwenden müssten?
+[EQ] Beide Varianten führen zum selben Ergebnis in der Datenbank. Wann ist es klarer oder
+notwendig, das Erzeugen und das Speichern in zwei Schritte zu trennen (`Student(...)` +
+`save()`), statt beides mit `objects.create()` in einem Schritt zu erledigen?
 
-[HINT::Worauf sollte ich achten?]
+[HINT::Ich sehe keinen Unterschied zwischen den beiden Varianten]
 Was passiert zwischen dem Erzeugen des Objekts und dem Speichern?
 [ENDHINT]
 <!-- time estimate: 10 min -->
@@ -188,25 +207,14 @@ Was passiert zwischen dem Erzeugen des Objekts und dem Speichern?
 ### Daten lesen (READ)
 
 Nachdem nun mehrere Studierende angelegt sind, lassen sie sich auch wieder auslesen.
-Lesezugriffe mit Django entsprechen SQL `SELECT`-Abfragen (vgl. [PARTREF::sql-SELECT]):
+Lesezugriffe mit Django entsprechen SQL `SELECT`-Abfragen (vgl. [PARTREF::sql-SELECT]).
+Django bietet dafür drei zentrale Methoden auf `Model.objects`: `all()`, `get(**kwargs)` und
+`filter(**kwargs)` (die `**kwargs` sind Feld-Lookup-Paare wie `id=1`).
 
-```
-Model.objects.all()
-Model.objects.get(**kwargs)
-Model.objects.filter(**kwargs)
-```
-
-- `all()`: keine Parameter; liefert ein QuerySet mit allen Objekten der Tabelle
-- `get(**kwargs)`: Feld-Lookup-Paare (z. B. `id=1`); liefert genau ein passendes Objekt
-  zurück; findet sich kein oder mehr als ein passendes Objekt, wird ein Fehler ausgelöst
-- `filter(**kwargs)`: Feld-Lookup-Paare; liefert ein QuerySet mit allen passenden Objekten,
-  auch wenn keins oder mehrere passen (kein Fehler)
-
-```python
-print(Student.objects.all())
-print(Student.objects.get(id=42))
-print(Student.objects.filter(name="Fritz Muster"))
-```
+Schlagen Sie in der Django-Doku
+([Making queries](https://docs.djangoproject.com/en/stable/topics/db/queries/)) selbst nach,
+was jede der drei Methoden zurückgibt, insbesondere den Unterschied zwischen einem einzelnen
+Objekt und einem QuerySet.
 
 [EC] Öffnen Sie die Shell und rufen Sie darin `Student.objects.all()`,
 `Student.objects.get(id=1)` und `Student.objects.filter(name="Anna Müller")` auf.
@@ -264,7 +272,7 @@ zweites Mal aus. Was passiert dabei, und warum? Vergleichen Sie auch das möglic
 Risiko, das `delete()` mit sich bringt, mit einem Lesezugriff wie
 `Student.objects.all()`.
 
-[HINT::Worauf sollte ich achten?]
+[HINT::Der zweite `delete()`-Aufruf verhält sich anders]
 Was haben Sie in [EREFQ::4] über das Verhalten von `get()` gelernt, wenn kein passendes
 Objekt existiert?
 [ENDHINT]
@@ -273,18 +281,21 @@ Objekt existiert?
 ### Weitere Feldtypen
 
 Das `Student`-Model kennt bisher nur die drei einfachen Feldtypen aus dem ersten Entwurf.
-Um weitere Datentypen abzudecken, lernen Sie zwei zusätzliche Feldtypen kennen:
+Erweitern Sie es um zwei weitere Felder, deren passende Feldtypen Sie diesmal selbst in der
+[Model field reference](https://docs.djangoproject.com/en/stable/ref/models/fields/)
+nachschlagen:
 
-- `BooleanField(default=True)`: Wahrheitswert, hier mit Standardwert `True`.
-- `DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)`: Dezimalzahl mit
-  fester Genauigkeit (hier: bis zu 3 Ziffern gesamt, davon 2 Nachkommastellen).
+- `is_active`: ein Wahrheitswert (ja/nein), ob der Studierende aktiv ist, mit Standardwert
+  `True`.
+- `grade_average`: ein Notendurchschnitt als Dezimalzahl mit fester Genauigkeit (bis zu 3
+  Ziffern gesamt, davon 2 Nachkommastellen). Da nicht jeder Studierende bereits einen
+  Notendurchschnitt hat, soll das Feld leer bleiben dürfen.
 
-Das `DecimalField` ist zusätzlich mit den **Feldoptionen** `null` und `blank` definiert,
-weil nicht jeder Studierende bereits einen Notendurchschnitt hat. Die beiden Optionen
-werden häufig verwechselt, regeln aber unterschiedliche Ebenen: `null=True` erlaubt den
-Datenbankwert `NULL` (Datenbankebene), während `blank=True` ein Feld in
-Formularen/Validierung als optional markiert (Eingabeebene). Ein Feld kann auch beides
-gleichzeitig sein; Standard für beide ist `False`.
+Damit `grade_average` leer bleiben darf, brauchen Sie zusätzlich zwei **Feldoptionen**,
+`null` und `blank`. Die beiden werden häufig verwechselt, regeln aber unterschiedliche
+Ebenen: `null=True` erlaubt den Datenbankwert `NULL` (Datenbankebene), während `blank=True`
+ein Feld in Formularen/Validierung als optional markiert (Eingabeebene). Ein Feld kann auch
+beides gleichzeitig sein; Standard für beide ist `False`.
 
 [NOTICE]
 **Wann brauche ich `null`, wann `blank`?**  
@@ -297,9 +308,8 @@ zwingend `null=True`. Django speichert bei `CharField` einen leeren String `""` 
 `NULL` in der Datenbank stehen muss.
 [ENDNOTICE]
 
-[ER] Erweitern Sie das `Student`-Model um zwei weitere Felder:
-
-[SNIPPET::ALT::django_model_student_extended]
+[ER] Erweitern Sie das `Student`-Model um die beiden Felder `is_active` und `grade_average`
+mit den passenden, selbst nachgeschlagenen Feldtypen und Optionen.
 
 [EC] Erstellen und wenden Sie die Migration für die neuen Felder an:
 
@@ -335,7 +345,7 @@ Passwort `propraadmin` an (folgen Sie den interaktiven Eingabeaufforderungen):
 python manage.py createsuperuser
 ```
 
-[ER] Starten Sie den Entwicklungsserver mit `python manage.py runserver 8071`, öffnen Sie
+Starten Sie den Entwicklungsserver mit `python manage.py runserver 8071`, öffnen Sie dann
 `http://127.0.0.1:8071/admin/`, melden Sie sich mit Ihrem Superuser an und öffnen Sie die
 Übersicht Ihrer `Student`-Objekte.
 
@@ -345,8 +355,8 @@ hier dieselbe `__str__()`-Darstellung verwendet wird wie zuvor in der Shell?
 
 ### Anlegen über die Admin-Oberfläche
 
-[ER] Legen Sie über die Admin-Oberfläche einen weiteren Studierenden an: Name
-`Peter Klein`, Alter `26`, E-Mail `peter@example.com`.
+Legen Sie über die Admin-Oberfläche einen weiteren Studierenden an: Name `Peter Klein`,
+Alter `26`, E-Mail `peter@example.com`.
 <!-- time estimate: 5 min -->
 
 [EQ] Sie haben soeben über die Shell einen Studierenden mit `.objects.create(...)`
