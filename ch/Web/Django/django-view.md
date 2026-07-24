@@ -78,9 +78,15 @@ stadt = request.GET.get("stadt", "Berlin")  # "Berlin", falls "stadt" fehlt
 Interpolation in den Text einsetzt, siehe [PARTREF::py-Fstrings]). Denken Sie daran,
 `HttpResponse` oben in der Datei zu importieren.
 
-[ER] Ergänzen Sie `urls.py` um eine Route für die neue View: Pfad `params/`, Ziel
-`get_params`, Name `get_params`. Fügen Sie sie nach dem bereits aus [PARTREF::django-project]
-bekannten Muster `path("pfad", views.funktionname, name="name")` zu `urlpatterns` hinzu.
+Damit die View über eine URL erreichbar wird, braucht sie eine Route in `urls.py`. Zur
+Erinnerung aus [PARTREF::django-project] folgt eine Route diesem Muster:
+
+```python
+path("pfad/", views.funktionsname, name="name")
+```
+
+[ER] Ergänzen Sie `urlpatterns` in `urls.py` um eine Route für die neue View: Pfad `params/`,
+Ziel `get_params`, Name `get_params`.
 
 [EC] Rufen Sie die View einmal mit und einmal ohne GET-Parameter auf (`curl`, siehe
 [PARTREF::curl]):
