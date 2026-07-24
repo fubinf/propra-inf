@@ -1,5 +1,5 @@
 title: Django Formularbehandlung
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 2
 requires: django-template
@@ -87,7 +87,6 @@ Konkretes Beispiel:
 rendert nur `search_form.html` ohne Context; `search` liest den GET-Parameter `q` aus
 (Standardwert leerer String), sucht bei nichtleerem `q` mit `objects.filter`
 (sonst `[]`) und rendert `search_form.html` mit `q` und `results` im Context.
-<!-- ER1 -->
 
 Erstellen Sie `search_form.html` mit folgender Grundstruktur, den `<body>` füllen Sie im
 nächsten Schritt:
@@ -112,11 +111,9 @@ sendet, mit einem Text-Eingabefeld `name="q"` (Wert vorbelegt mit `{{ q }}`, Pla
 über `results`: je Treffer ein Link zur Detailseite (`{% url 'student_detail' student.id
 %}`) mit dem Namen; im `{% empty %}`-Zweig den Text `Keine Treffer für "{{ q }}"` (mit dem
 eingesetzten Suchbegriff).
-<!-- ER2 -->
 
 [ER] Ergänzen Sie `urls.py` um zwei Routen: Pfad `search-form/` auf `search_form` (Name
 `search_form`), Pfad `search/` auf `search` (Name `search`).
-<!-- ER3 -->
 
 [EC] Starten Sie den Entwicklungsserver und lassen Sie ihn laufen. Testen Sie die
 GET-Suche direkt mit `curl` (der Suchbegriff ist URL-kodiert):
@@ -129,12 +126,10 @@ curl "http://127.0.0.1:8071/students/1/"
 ```
 
 Wenn Sie einen anderen Port verwenden, passen Sie die Befehle entsprechend an.
-<!-- EC1 -->
 
 [EQ] Der erste `curl`-Aufruf liefert einen Link zur Detailseite von Anna Müller. Woher weiß
 das Template `search_form.html`, welche ID es in `{% url 'student_detail' student.id %}`
 einsetzen muss, und was bestätigt Ihnen der dritte Aufruf (`/students/1/`) über diesen Link?
-<!-- EQ1 -->
 
 [EQ] Rufen Sie zusätzlich `http://127.0.0.1:8071/search-form/` im Browser auf und suchen
 Sie nach dem exakten Namen eines bereits vorhandenen Studierenden (aus
@@ -142,7 +137,6 @@ Sie nach dem exakten Namen eines bereits vorhandenen Studierenden (aus
 Suchbegriff auf? Suchen Sie anschließend nach einem Namen, den es nicht gibt: was wird
 angezeigt, und welches Template-Tag sorgt dafür, dass die Seite dabei nicht fehlerhaft
 wird? Wenn Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
-<!-- EQ2 -->
 <!-- time estimate: 30 min -->
 
 ### POST-Formular und CSRF-Schutz
@@ -190,7 +184,6 @@ liest sie den POST-Parameter `q` aus (Schlüssel `q`), sucht bei nichtleerem `q`
 `Student.objects.filter(name=q)` (sonst `[]`) und rendert `search_post.html` mit `q` und
 `results` im Context; bei jeder anderen Anfrage rendert sie `search_post.html` mit leerem
 Context.
-<!-- ER4 -->
 
 Erstellen Sie `search_post.html` mit derselben Grundstruktur wie `search_form.html` (Titel
 `Suche (POST)`), den `<body>` füllen Sie im nächsten Schritt.
@@ -202,17 +195,14 @@ Erstellen Sie `search_post.html` mit derselben Grundstruktur wie `search_form.ht
 `{% url 'search_post' %}`. Darunter denselben
 `{% if q %}`/`{% for %}`/`{% empty %}`-Aufbau wie in `search_form.html` (mit demselben
 `Keine Treffer für "{{ q }}"`-Text).
-<!-- ER5 -->
 
 [ER] Ergänzen Sie `urls.py` um die Route `search-post/` auf `search_post` (Name
 `search_post`).
-<!-- ER6 -->
 
 [EQ] Suchen Sie unter `http://127.0.0.1:8071/search-post/` nach demselben Namen wie in
 [EREFQ::2]. Worin unterscheidet sich die URL nach dem Absenden gegenüber dem GET-Formular,
 und was würde passieren, wenn Sie `{% csrf_token %}` aus dem Formular entfernen? Wenn Sie
 einen anderen Port verwenden, passen Sie den Link entsprechend an.
-<!-- EQ3 -->
 <!-- time estimate: 30 min -->
 
 ### Registrierung mit Datenbank-Persistenz
@@ -253,7 +243,6 @@ POST-Request legt sie mit `Student.objects.create()` einen neuen `Student` aus
 `request.POST['name']`, `request.POST['age']` und `request.POST['email']` an und leitet auf
 dessen Detailseite (Route `student_detail`) weiter; bei jeder anderen Anfrage rendert sie
 `register.html` ohne Context.
-<!-- ER7 -->
 
 [HINT::Was muss ich zusätzlich importieren?]
 Für diese View brauchen Sie zwei Imports: `from django.shortcuts import redirect` und
@@ -290,14 +279,11 @@ Konkretes Beispiel mit zwei Feldern:
 `{% csrf_token %}`), das an `{% url 'register' %}` sendet, mit drei nach diesem Schema
 beschrifteten und verpflichtenden Eingabefeldern (`name`: Text, "Name"; `age`: Zahl,
 "Alter"; `email`: E-Mail, "E-Mail") und einem Absende-Button mit dem Text "Registrieren".
-<!-- ER8 -->
 
 [ER] Ergänzen Sie `urls.py` um die Route `register/` auf `register` (Name `register`).
-<!-- ER9 -->
 
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und senden Sie das Formular ab, ohne das
 Feld "Name" auszufüllen. Was passiert, und welches Attribut ist dafür verantwortlich?
-<!-- EQ4 -->
 <!-- time estimate: 8 min -->
 
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und registrieren Sie einen Studierenden
@@ -306,7 +292,6 @@ landen Sie danach, und woran erkennen Sie, dass Ihre Eingaben tatsächlich in de
 gespeichert wurden (und nicht nur zurückgespiegelt)? Warum ist für diese Aktion POST die
 richtige Methode und nicht GET? Wenn Sie einen anderen Port verwenden, passen Sie den Link
 entsprechend an.
-<!-- EQ5 -->
 <!-- time estimate: 30 min -->
 
 ### Weiterführend
