@@ -36,6 +36,16 @@ Starten Sie für die folgenden Schritte den Entwicklungsserver mit
 `python manage.py runserver 8071` und lassen Sie ihn laufen, damit Sie die Seiten im Browser
 bzw. mit `curl` aufrufen können.
 
+### Aufräumen: nicht mehr benötigte Views
+
+[PARTREF::django-view] hat mehrere Views nur zu Demonstrationszwecken eingeführt
+(`get_params`, `post_data`, `request_info`, `responses`, `redirect_target`,
+`redirect_example`, `student_redirect`); keine davon wird in den folgenden Aufgaben noch
+gebraucht.
+
+Entfernen Sie diese sieben Funktionen aus `views.py` sowie ihre Routen aus `urls.py`.
+Behalten Sie `hello` und `student_detail`, die brauchen Sie weiterhin.
+
 ### Template-Variablen und Context
 
 Beim Aufruf von `render()` haben Sie bisher nur eine einzige Variable (`message`) an das
