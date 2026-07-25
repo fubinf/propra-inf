@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1.5
 difficulty: 2
 requires: django-template
-assumes: http-GET, http-POST, html-Formulare
+assumes: http-GET, http-POST, html-Formulare, curl
 ---
 
 [SECTION::goal::idea,experience]

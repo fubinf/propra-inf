@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 2
 difficulty: 2
 requires: django-view
-assumes: html-erste-Schritte, html-Semantik, css-Einführung
+assumes: html-erste-Schritte, html-Semantik, css-Einführung, curl
 ---
 
 [SECTION::goal::idea,experience]
