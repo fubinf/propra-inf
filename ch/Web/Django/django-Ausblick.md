@@ -58,7 +58,6 @@ messages.success(request, "Erfolgreich gespeichert")
 Import wie im Beispiel hinzu. Rufen Sie in `register`, zwischen dem Anlegen des
 Studierenden und der Weiterleitung, `messages.success` mit dem aktuellen Request und dem
 Text "Registrierung erfolgreich" auf.
-<!-- ER1 -->
 
 Sichtbar wird die Meldung erst, wenn ein Template sie auch anzeigt. Der `messages`-Wert
 selbst ist dafür bereits automatisch in jedem Template verfügbar, ganz ohne dass eine View
@@ -76,7 +75,6 @@ leeren Liste bleibt die Ausgabe leer.
 
 [ER] Fügen Sie in `base.html` direkt am Anfang von `{% block content %}` eine Zeile ein,
 die `messages` mit demselben Filter und dem Trennzeichen ", " ausgibt.
-<!-- ER2 -->
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
 "Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com". Sie landen auf der
@@ -87,7 +85,6 @@ ohne Menü zum Klicken). Rufen Sie danach im Browser
 [EQ] Auf welcher Seite taucht die Meldung "Registrierung erfolgreich" zum ersten Mal auf,
 und warum nicht schon direkt auf der Detailseite? Was sagt Ihnen das über den Zeitpunkt, zu
 dem eine Meldung "verbraucht" wird?
-<!-- EQ1 -->
 <!-- time estimate: 15 min -->
 
 ### CSRF-Middleware kurzzeitig deaktivieren
@@ -100,7 +97,6 @@ wirken auf jeden Request. Öffnen Sie `settings.py` im Konfigurationsordner
 `meinprojekt/meinprojekt/` und kommentieren Sie in `MIDDLEWARE` die folgende Zeile aus:
 
 [ER] Kommentieren Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
-<!-- ER3 -->
 
 [EC] Der Entwicklungsserver bemerkt die Änderung von selbst (sein Autoreloader beobachtet
 alle `.py`-Dateien, auch `settings.py`, und startet den Prozess bei einer Änderung
@@ -113,11 +109,9 @@ curl -s -o /dev/null -w "%{http_code}\n" -X POST "http://127.0.0.1:8071/search-p
 ```
 
 Kommentieren Sie die Zeile danach wieder ein und senden Sie denselben Aufruf noch einmal.
-<!-- EC1 -->
 
 [EQ] Welcher Statuscode kam mit deaktivierter Middleware zurück, und warum ist es gefährlich,
 diese Middleware in einer echten Anwendung dauerhaft auszukommentieren?
-<!-- EQ2 -->
 <!-- time estimate: 15 min -->
 
 ### X-Frame-Options-Middleware kurzzeitig deaktivieren
@@ -128,7 +122,6 @@ Seite in einem `<iframe>` auf einer fremden Website eingebettet wird.
 
 [ER] Öffnen Sie `settings.py` im Konfigurationsordner
 `meinprojekt/meinprojekt/` und kommentieren Sie in `MIDDLEWARE` die folgende Zeile aus
-<!-- ER4 -->
 
 [EC] Der Entwicklungsserver bemerkt die Änderung von selbst; warten Sie kurz. Senden Sie
 danach den folgenden Aufruf, der nur die Header abruft (`-I`): einmal jetzt und ein
@@ -137,7 +130,6 @@ zweites Mal, nachdem Sie die Zeile wieder einkommentiert haben:
 ```bash
 curl -sI "http://127.0.0.1:8071/"
 ```
-<!-- EC2 -->
 
 [EQ] Welcher Header taucht im ersten Aufruf nicht auf, der im zweiten wieder da ist? Was
 könnte eine fremde Website mit Ihrer Seite anstellen, solange dieser Header fehlt?
@@ -148,7 +140,6 @@ sich eine eigene, für den Nutzer sichtbare Oberfläche legen (z. B. ein verlock
 Button). Überlegen Sie, was passiert, wenn der Nutzer glaubt, auf diese Oberfläche zu
 klicken, tatsächlich aber durch das unsichtbare `<iframe>` hindurch auf Ihre Seite klickt.
 [ENDHINT]
-<!-- EQ3 -->
 <!-- time estimate: 15 min -->
 
 ### Weitere Bordmittel im Überblick
