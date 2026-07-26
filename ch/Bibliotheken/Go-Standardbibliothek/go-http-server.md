@@ -1,8 +1,8 @@
 title: "Go: 'http.Server'"
-stage: alpha
+stage: beta
 timevalue: 0.75
 difficulty: 3
-assumes: go-context, curl
+assumes: http-GET, http-POST, curl, go-context 
 ---
 
 [SECTION::goal::idea,experience]
@@ -11,10 +11,7 @@ Ich kann einen HTTP-Server in Go implementieren.
 
 [SECTION::background::default]
 Ein _Server_ ist ein Programm, das Anfragen von Clients (wie Webbrowsern) entgegennimmt und passende Antworten
-zurücksendet.
-Server bilden das Herzstück des Internets.
-
-In dieser Aufgabe lernen Sie, eigene HTTP-Server mithilfe der Standardbibliothek zu bauen.
+zurücksendet. Ohne Server kein World-Wide-Web und kein Internet, wie wir es kennen.
 [ENDSECTION]
 
 [TOC]
@@ -68,7 +65,7 @@ myHandler := http.HandlerFunc(handle)
 
 Dies ist in größeren Systemen besonders für den Einsatz von Middleware oder Logging nützlich.
 
-[FOLDOUT::Wie genau passiert das?]
+[FOLDOUT::Wie funktioniert das?]
 `http.HandlerFunc` ist ein eigener Typ, dessen zugrunde liegender Typ eine Funktion mit der Signatur
 `func(ResponseWriter, *Request)` ist:
 
@@ -85,7 +82,7 @@ func (f HandlerFunc) ServeHTTP(w ResponseWriter, r *Request) {
 }
 ```
 
-Die Methode ruft schlicht die zugrunde liegende Funktion auf.
+Die Methode ruft einfach die übergebene Funktion auf.
 
 Somit implementiert `HandlerFunc` das Interface `http.Handler`.
 Eine gewöhnliche Handler-Funktion kann deshalb in einen `http.Handler` konvertiert werden:
@@ -98,7 +95,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 var myHandler http.Handler = http.HandlerFunc(handle)
 ```
 
-Genau diese Umwandlung nimmt `http.HandlerFunc` intern automatisch vor.
+Diese Umwandlung nimmt `http.HandlerFunc` intern vor.
 [ENDFOLDOUT]
 
 Schauen Sie sich die Dokumentation und Beispiele zu
@@ -118,7 +115,7 @@ an und schreiben Sie ein kleines Programm, in dem Sie analog zum Beispiel folgen
 finden Sie eine geeignete Funktion dafür) und gibt (beispielsweise für den Pfad `/users/5`) `"User with ID: 5"` zurück.
 
 [HINT::Auf welche Adresse soll der Server lauschen?]
-Konventionsgemäß verwenden wir die Port `:8080`.
+Konventionsgemäß verwenden wir die Adresse `:8080`.
 In den verlinkten Beispielen erkennen Sie es an der Zeile `log.Fatal(http.ListenAndServe(":8080", nil))`.
 [ENDHINT]
 
@@ -134,12 +131,12 @@ an.
 [EQ] Wie würden Sie einen neuen Endpunkt registrieren, der nur auf POST-Anfragen auf `/users/{id}` reagieren soll?
 
 [FOLDOUT::Warum gibt es zwei Möglichkeiten, einen Handler zu registrieren?]
-Die Variante mit `http.Handler` ist interfacebasiert und bietet mehr Flexibilität in größeren Projekten.
+Die Variante mit `http.Handler` ist interface-basiert und bietet mehr Flexibilität in größeren Projekten.
 Sie eignet sich besonders dann, wenn Middleware zum Einsatz kommt, Handler einen eigenen Zustand oder weitere
 Abhängigkeiten (wie eine Datenbankverbindung) besitzen oder verschiedene Komponenten miteinander kombiniert werden
 sollen.
 
-Die Funktion `http.HandleFunc` hingegen ist besser für kleinere oder simplere Server geeignet, bei denen die
+Die Funktion `http.HandleFunc` ist gut für kleinere oder simplere Server geeignet, bei denen die
 Abhängigkeitsverwaltung unkompliziert ist und eine hohe Modularität keine übergeordnete Rolle spielt.
 [ENDFOLDOUT]
 <!-- time estimate: 20 min -->
@@ -202,15 +199,15 @@ Mithilfe der Funktion
 [`context.Context.Value(key any) any`](https://pkg.go.dev/context#Context.Value).
 
 Der Wert ist allerdings vom Typ `any`.
-Konvertierung zu `time.Time` erfolgt mittels Typzusicherung (mehr dazu in der Aufgabe [PARTREF::go-context] unter
-_"Übertragung von Schlüssel-Wert-Paaren"_).
+Konvertierung zu `time.Time` erfolgt mittels Typzusicherung (wie in [PARTREF::go-context] unter
+_"Übertragung von Schlüssel-Wert-Paaren"_ kennengelernt).
 [ENDHINT]
 [ENDHINT]
 [ENDHINT]
 
 [NOTICE]
 Für größere Projekte ist es eine gute Praxis, alle Endpunkte in einer separaten Datei wie `routes.go` zu registrieren.
-So bleibt die API-Oberfläche Ihres Servers stets an einer zentralen Stelle übersichtlich zusammengefasst.
+So ist die API-Oberfläche Ihres Servers an einer zentralen Stelle zusammengefasst.
 [ENDNOTICE]
 
 Starten Sie Ihren HTTP-Server und führen Sie folgende Befehle in einem anderen Terminal aus:
@@ -225,8 +222,10 @@ Starten Sie Ihren HTTP-Server und führen Sie folgende Befehle in einem anderen 
 
 [EC] `curl -X POST http://localhost:8080/foo`
 
+[EQ] Warum schlägt der letzte Befehl fehl?
+
 [HINT::Die Befehle liefern keine Ausgabe auf der Kommandozeile]
-Überprüfen Sie nochmal, ob Ihr Server mit der Portnummer `8080` gestartet ist. 
+Überprüfen Sie, ob Ihr Server mit der Portnummer `8080` korrekt gestartet ist. 
 [ENDHINT]
 
 <!-- time estimate: 20 min -->
