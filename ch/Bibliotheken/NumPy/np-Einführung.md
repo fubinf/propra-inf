@@ -1,5 +1,5 @@
 title: Einführung von NumPy
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 2
 ---
@@ -235,8 +235,8 @@ arr = np.array([[1, 2, 3], [4, 5, 6]])
 print(arr.shape)    # (2, 3)
 print(arr.ndim)     # 2
 print(arr.size)     # 6
-print(arr.dtype)    # int64
-print(arr.itemsize) # 8
+print(arr.dtype)    # int64 (auf unserer 64-bit-Plattform)
+print(arr.itemsize) # 8 (auf unserer 64-bit-Plattform)
 ```
 
 [EQ] Ein Array hat die Form (4, 5, 3). Wie viele Dimensionen hat es, wie viele Elemente
