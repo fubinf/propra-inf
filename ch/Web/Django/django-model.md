@@ -1,5 +1,5 @@
 title: Django Modelle und Migrationen
-stage: alpha
+stage: beta
 timevalue: 2
 difficulty: 2
 requires: django-project
@@ -99,10 +99,7 @@ Django legt automatisch eine `id`-Spalte als Primärschlüssel an, wenn Sie kein
 eigenen definieren.
 [ENDNOTICE]
 
-[EQ] Öffnen Sie die Datei `webapp/migrations/0001_initial.py`. Was enthält sie? Und warum
-trennt Django das Erzeugen einer Migration (`makemigrations`) vom Anwenden (`migrate`) in zwei
-Befehle, statt die Datenbank direkt zu ändern? Denken Sie dabei an den Fall, dass dieselbe
-Anwendung mehrere Datenbanken hat (z. B. eine zum Entwickeln und eine für den Produktivbetrieb).
+[EQ] Öffnen Sie die Datei `webapp/migrations/0001_initial.py`. Abstrakt gesprochen: Was leistet sie?
 <!-- time estimate: 15 min -->
 
 ### Daten anlegen (CREATE)
@@ -200,7 +197,8 @@ notwendig, das Erzeugen und das Speichern in zwei Schritte zu trennen (`Student(
 `save()`), statt beides mit `objects.create()` in einem Schritt zu erledigen?
 
 [HINT::Ich sehe keinen Unterschied zwischen den beiden Varianten]
-Was passiert zwischen dem Erzeugen des Objekts und dem Speichern?
+Stellen Sie sich ein komplexeres Objekt vor als in unserem Fall.
+Was, wenn Sie einen anderen Zustand speichern wollen als sich mit dem Konstruktor erzeugen lässt?
 [ENDHINT]
 <!-- time estimate: 10 min -->
 
