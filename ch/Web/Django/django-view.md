@@ -8,7 +8,7 @@ assumes: http-GET, http-POST, curl, py-Fstrings
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe die Funktionsweise von Django-View und deren Zusammenspiel mit HTTP-Requests
+- Ich verstehe die Funktionsweise von Django-Views und deren Zusammenspiel mit HTTP-Requests
   und -Responses.
 - Ich kann Request-Daten aus verschiedenen Quellen verarbeiten und passende Response-Typen
   zurückgeben.
@@ -20,8 +20,7 @@ assumes: http-GET, http-POST, curl, py-Fstrings
 
 In Django ist die View das Bindeglied zwischen den eingehenden HTTP-Requests und den
 ausgehenden HTTP-Responses. Jede View-Funktion empfängt ein Request-Objekt mit allen
-Informationen der HTTP-Anfrage und muss ein Response-Objekt zurückgeben. Das Verständnis
-dieser fundamentalen Konzepte ist essentiell für die Django-Entwicklung.
+Informationen der HTTP-Anfrage und muss ein Response-Objekt zurückgeben.
 
 [ENDSECTION]
 
@@ -29,7 +28,12 @@ dieser fundamentalen Konzepte ist essentiell für die Django-Entwicklung.
 
 Sie arbeiten weiter mit der App `webapp`, die Sie in [PARTREF::django-project] angelegt und
 in [PARTREF::django-model] um das `Student`-Model erweitert haben. Alle folgenden Änderungen
-finden in `webapp` statt.
+finden in `webapp` statt; mit `views.py` und `urls.py` sind also stets `webapp/views.py` und
+`webapp/urls.py` gemeint, nicht die gleichnamigen Dateien im Konfigurationsordner.
+
+Alle `curl`-Befehle unten verwenden den Port 8071; falls Sie den Entwicklungsserver auf einem
+anderen Port betreiben, passen Sie die Befehle entsprechend an. Starten Sie den Server, falls
+er nicht mehr läuft, mit `python manage.py runserver 8071`.
 
 ### Die View und das Request-Objekt verstehen
 
@@ -71,7 +75,7 @@ Ein konkretes Beispiel:
 stadt = request.GET.get("stadt", "Berlin")  # "Berlin", falls "stadt" fehlt
 ```
 
-[ER] Schreiben Sie selbst in `webapp/views.py` eine View-Funktion `get_params`, die die GET-Parameter
+[ER] Schreiben Sie in `views.py` eine View-Funktion `get_params`, die die GET-Parameter
 `name` und `age` mit `request.GET.get(...)` ausliest (Standardwerte `Unbekannt` bzw.
 `Nicht angegeben`, falls sie fehlen) und als `HttpResponse` den Text
 `Name: <name>, Alter: <age>` zurückgibt (z. B. mit einem f-String, der die Werte per
@@ -96,10 +100,8 @@ curl "http://127.0.0.1:8071/params/?name=Anna&age=25"
 curl "http://127.0.0.1:8071/params/"
 ```
 
-Wenn Sie einen anderen Port verwenden, passen Sie die Befehle entsprechend an.
-
-[EQ] Beim zweiten Aufruf fehlen die Parameter, trotzdem stürzt die View nicht ab. Warum ist das so, und welche Rolle spielt dabei das zweite Argument
-von `request.GET.get(...)`?
+[EQ] Beim zweiten Aufruf fehlen die Parameter, trotzdem stürzt die View nicht ab.
+Warum ist das so, und welche Rolle spielt dabei das zweite Argument von `request.GET.get(...)`?
 <!-- time estimate: 15 min -->
 
 ### Request-Attribute: POST-Daten verarbeiten
@@ -113,6 +115,8 @@ Da eine View sowohl per GET als auch per POST aufgerufen werden kann, prüft man
 `request.method`, um welche Art von Anfrage es sich handelt:
 
 ```python
+from django.views.decorators.csrf import csrf_exempt
+
 @csrf_exempt
 def beispiel_view(request):
     if request.method == "POST":
@@ -128,7 +132,7 @@ zu bauen. Was CSRF ist und warum es normalerweise wichtig ist, lernen Sie in
 [PARTREF::django-form].
 [ENDNOTICE]
 
-[ER] Schreiben Sie selbst in `views.py` eine View-Funktion `post_data`, versehen mit
+[ER] Schreiben Sie in `views.py` eine View-Funktion `post_data`, versehen mit
 `@csrf_exempt`. Sie soll `request.method` prüfen: Bei `POST` liest sie `username` und
 `message` aus `request.POST` (Standardwerte `Kein Name` bzw. `Keine Nachricht`) und gibt den
 Text `Empfangen von <username>: <message>` zurück; bei jeder anderen Methode gibt sie
@@ -143,9 +147,7 @@ stattdessen `Bitte per POST senden.` zurück. Importieren Sie dafür `csrf_exemp
 curl -X POST -d "username=Max&message=Hallo" http://127.0.0.1:8071/post-data/
 ```
 
-Wenn Sie einen anderen Port verwenden, passen Sie den Befehl entsprechend an.
-
-[EQ] Vergleichen Sie mit der GET-Parameter-View aus [EREFQ::2]: Was ist der wesentliche
+[EQ] Vergleichen Sie mit der GET-Parameter-View aus [EREFR::1]: Was ist der wesentliche
 Unterschied bezüglich der URL-Anzeige und Datenübertragung zwischen GET und POST?
 <!-- time estimate: 20 min -->
 
@@ -157,15 +159,15 @@ sich in einem f-String zusammensetzen, nach folgendem Schema:
 
 ```python
 def beispiel_view(request):
-    text = f"Teil eins: {'eins'}, Teil zwei: {'zwei'}"
+    text = f"Teil eins: {wert_eins}, Teil zwei: {wert_zwei}"
     return HttpResponse(text)
 ```
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `request_info`, die zwei Angaben aus dem
 Request als `HttpResponse` im Format `Methode: <...>, Pfad: <...>` zurückgibt (die
-verwendete HTTP-Methode und den aufgerufenen Pfad; die passenden Attribute des
-Request-Objekts finden Sie in der
-[Django-Doku zu Request und Response](https://docs.djangoproject.com/en/stable/ref/request-response/)).
+verwendete HTTP-Methode und den aufgerufenen Pfad; die passenden Attribute finden Sie im
+Abschnitt "Attributes" der
+[Django-Doku zu `HttpRequest`](https://docs.djangoproject.com/en/stable/ref/request-response/#attributes)).
 
 [ER] Fügen Sie in `urls.py` die Route für `request_info` hinzu: Pfad `request-info/`, Name
 `request_info`.
@@ -176,8 +178,6 @@ Request-Objekts finden Sie in der
 curl http://127.0.0.1:8071/request-info/
 ```
 
-Wenn Sie einen anderen Port verwenden, passen Sie den Befehl entsprechend an.
-
 [EQ] Wozu könnte eine View die Angabe aus `request.method` auswerten? Und warum ist die
 HTTP-Methode immer `GET`, wenn Sie eine URL direkt im Browser aufrufen?
 <!-- time estimate: 20 min -->
@@ -186,8 +186,8 @@ HTTP-Methode immer `GET`, wenn Sie eine URL direkt im Browser aufrufen?
 
 Bisher ging es um die eingehende Seite, also den Request. Ebenso wichtig ist die ausgehende
 Seite: die Response, die jede View zurückgeben muss. Der einfachste Response-Typ ist
-`HttpResponse`, der direkt Text oder HTML zurückgibt und je nach GET-Parameter
-unterschiedlichen Inhalt liefern kann, nach folgendem Schema:
+`HttpResponse`, der direkt Text oder HTML zurückgibt. Eine View kann dabei je nach
+GET-Parameter unterschiedliche Responses erzeugen, nach folgendem Schema:
 
 ```python
 def beispiel_view(request):
@@ -215,8 +215,6 @@ curl "http://127.0.0.1:8071/responses/?type=html"
 curl "http://127.0.0.1:8071/responses/?type=json"
 ```
 
-Wenn Sie einen anderen Port verwenden, passen Sie die Befehle entsprechend an.
-
 [EQ] Ein Browser stellt dieselbe zurückgegebene Zeichenkette je nach `content_type`
 unterschiedlich dar. Was entscheidet also darüber, wie eine Antwort angezeigt wird: der
 Inhalt selbst oder der mitgesendete `content_type`?
@@ -225,16 +223,16 @@ Inhalt selbst oder der mitgesendete `content_type`?
 ### Response-Objekte: redirect() für Weiterleitungen
 
 Statt selbst Inhalt zurückzugeben, kann eine View den Client auch an eine andere URL
-verweisen. Dafür dient `redirect()`, das Benutzer auf andere URLs umleitet:
+verweisen. Dafür dient `redirect()`, das den Client auf eine andere URL umleitet:
 
 ```
 redirect(to)
 ```
 
-- `to`: das Umleitungsziel, also ein Routenname, eine URL oder ein Objekt; Django erzeugt
-  daraus eine Weiterleitungs-Antwort mit standardmäßig Statuscode 302
+- `to`: das Umleitungsziel, also ein Routenname (der `name` aus `urls.py`), eine URL oder ein
+  Objekt; Django erzeugt daraus eine Weiterleitungs-Antwort mit standardmäßig Statuscode 302
 
-Nach folgendem Schema, mit einer Zielview und einer View, die dorthin weiterleitet:
+Das folgende Schema zeigt eine Zielview und eine View, die dorthin weiterleitet:
 
 ```python
 from django.shortcuts import redirect
@@ -243,7 +241,7 @@ def ziel_view(request):
     return HttpResponse("Angekommen!")
 
 def start_view(request):
-    return redirect("ziel_view")
+    return redirect("ziel_view")  # "ziel_view" ist der Routenname aus urls.py
 ```
 
 [ER] Schreiben Sie in `views.py` zwei View-Funktionen: `redirect_target`, die als
@@ -261,8 +259,6 @@ bleibt die Ausgabe knapp:
 curl -s -i http://127.0.0.1:8071/redirect-test/
 ```
 
-Wenn Sie einen anderen Port verwenden, passen Sie den Befehl entsprechend an.
-
 [EQ] Die Antwort hat den Statuscode 302 und einen `Location`-Header statt eines Seiteninhalts.
 Warum gibt `redirect_example` einen Redirect (302) zurück statt direkt eine `HttpResponse` mit
 dem Zielinhalt? Was gewinnt man dadurch?
@@ -273,7 +269,7 @@ Response-Objekte, die Django-Templates verwendet. Sie wird in [PARTREF::django-t
 vertieft.
 [ENDNOTICE]
 
-[EQ] Würden Sie `HttpResponse` oder `redirect` für folgende Szenarien verwenden?
+[EQ] Würden Sie `HttpResponse` oder `redirect()` für folgende Szenarien verwenden?
 
 - Direkte Anzeige einer einfachen Info-Seite mit statischem Text
 - Weiterleitung nach erfolgreicher Anmeldung
@@ -297,13 +293,15 @@ Typkonverter:
 - `str`: beliebiger Text ohne `/` (Standard, falls kein Typ angegeben wird).
 - `int`: nur Ziffern, wird als Python-`int` übergeben.
 - `slug`: Buchstaben, Ziffern, Bindestrich und Unterstrich (typisch für lesbare URLs).
-- `uuid`: ein formatierter UUID-String.
+- `uuid`: eine UUID im Standardformat mit Bindestrichen, wird als `uuid.UUID`-Objekt übergeben.
 - `path`: wie `str`, akzeptiert aber zusätzlich `/`.
 
 Der Typkonverter übergibt den extrahierten Wert als Funktionsargument; damit lässt sich ein
 Objekt anhand der URL laden, nach folgendem Schema:
 
 ```python
+from .models import MeinModel
+
 def eintrag_view(request, eintrag_id):
     objekt = MeinModel.objects.get(id=eintrag_id)
     return HttpResponse(f"Gefunden: {objekt}")
@@ -334,17 +332,14 @@ curl "http://127.0.0.1:8071/students/1/"
 curl -s -i http://127.0.0.1:8071/students/999/
 ```
 
-Wenn Sie einen anderen Port verwenden, passen Sie die Befehle entsprechend an.
-
 [EQ] Der zweite Aufruf endet nicht mit den Studierendendaten, sondern mit einem Fehler. Woran
 liegt das, und an welcher Stelle in der View entsteht dieser Fehler?
-<!-- time estimate: 20 min -->
 
-[HINT::Kommt Ihnen dieses Verhalten bekannt vor?]
-Sie kennen dieses Verhalten bereits von `.objects.get()` aus [PARTREF::django-model]: Findet
-`get()` keinen passenden Datensatz, löst es eine Exception aus. Hier wird derselbe Mechanismus
-nur über eine URL statt über die Shell ausgelöst.
+[HINT::Puh, woher soll ich das wissen?]
+Was passiert, wenn `.objects.get()` (aus [PARTREF::django-model]) keinen passenden Datensatz findet?
+Und was bedeutet der erhaltene HTTP-Statuscode?
 [ENDHINT]
+<!-- time estimate: 20 min -->
 
 ### `reverse()`: benannte Routen für Wartbarkeit
 
@@ -391,8 +386,6 @@ Name `student_redirect`.
 curl -s -i http://127.0.0.1:8071/students/redirect/
 ```
 
-Wenn Sie einen anderen Port verwenden, passen Sie den Befehl entsprechend an.
-
 [EQ] Der `Location`-Header zeigt auf `/students/1/`. Stimmt das mit der ID überein, die Sie
 in der View an `reverse()` übergeben haben, und wie hat `reverse()` aus dem Routennamen diese
 URL erzeugt?
@@ -429,7 +422,7 @@ Stellen im Code müssten Sie anpassen, wenn Sie überall fest codierte Links wie
 - [EREFR::3]/[EREFR::9]: `post_data` prüft `request.method`; `redirect_example` gibt eine
   `redirect()`-Antwort zurück (kein `HttpResponse`).
 - [EREFQ::8]: Student erkennt, dass eine nicht existierende ID zu einem Fehler führt, weil
-  `.objects.get()` (bereits aus `django-model` bekannt) ohne passenden Treffer eine
+  `.objects.get()` (bereits aus [PARTREF::django-model] bekannt) ohne passenden Treffer eine
   Exception auslöst; derselbe Mechanismus, nur diesmal über eine URL statt über die Shell
   ausgelöst.
 - [EREFQ::10]: Student erkennt, dass bei fest codierten Links jede einzelne Stelle im Code
