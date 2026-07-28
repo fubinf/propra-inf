@@ -34,7 +34,8 @@ bauen die folgenden Schritte auf.
 
 Starten Sie für die folgenden Schritte den Entwicklungsserver mit
 `python manage.py runserver 8071` und lassen Sie ihn laufen, damit Sie die Seiten im Browser
-bzw. mit `curl` aufrufen können.
+bzw. mit `curl` aufrufen können. Alle URLs und Befehle unten verwenden den Port 8071; falls
+Sie einen anderen Port betreiben, passen Sie sie entsprechend an.
 
 ### Aufräumen: nicht mehr benötigte Views
 
@@ -43,7 +44,8 @@ bzw. mit `curl` aufrufen können.
 `redirect_example`, `student_redirect`); keine davon wird in den folgenden Aufgaben noch
 gebraucht.
 
-Entfernen Sie diese sieben Funktionen aus `views.py` sowie ihre Routen aus `urls.py`.
+Entfernen Sie diese sieben Funktionen aus `views.py`, die dadurch unnötig gewordenen Importe
+(`csrf_exempt`, `redirect`, `reverse`) sowie ihre Routen aus `urls.py`.
 Behalten Sie `hello` und `student_detail`, die brauchen Sie weiterhin.
 
 ### Template-Variablen und Context
@@ -80,9 +82,9 @@ folgendem Schema:
 <p>{{ titel }}</p>
 ```
 
-Ersetzen Sie zunächst den Inhalt von `hello.html` durch die folgende Grundstruktur (gegenüber
-der einfachen Version aus [PARTREF::django-project] mit `lang`-Angabe, `<meta charset>` und
-passendem Titel). In den folgenden Schritten ändern Sie jeweils nur den `<body>`:
+Ersetzen Sie zunächst den Inhalt von `hello.html` durch die folgende Grundstruktur; sie
+ergänzt die einfache Version aus [PARTREF::django-project] um `lang`-Angabe, `<meta charset>`
+und einen passenden Titel. In den folgenden Schritten ändern Sie jeweils nur den `<body>`:
 
 ```html
 <!DOCTYPE html>
@@ -100,8 +102,7 @@ passendem Titel). In den folgenden Schritten ändern Sie jeweils nur den `<body>
 `user_name` darunter in einem Absatz `<p>` ein (jeweils mit der `{{ ... }}`-Syntax).
 
 [EQ] Rufen Sie `http://127.0.0.1:8071/` im Browser auf. Welche Werte erscheinen anstelle
-der Platzhalter `{{ greeting }}` und `{{ user_name }}`, und woher stammen diese Werte? Wenn
-Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
+der Platzhalter `{{ greeting }}` und `{{ user_name }}`, und woher stammen diese Werte?
 <!-- time estimate: 15 min -->
 
 ### Bedingte Darstellung mit `{% if %}`
@@ -139,18 +140,18 @@ Schleifenkörper und das optionale `{% empty %}`-Tag für den Fall einer leeren 
 [ER] Setzen Sie `is_logged_in` in der View wieder auf `True` und ergänzen Sie den `context`
 um eine Liste `hobbies` mit den Werten `Programmieren`, `Lesen`, `Sport`. Stellen Sie
 `hobbies` im `<body>` von `hello.html` innerhalb des `{% if is_logged_in %}`-Zweigs dar: eine
-Überschrift `Ihre Hobbies:` (`<h2>`), darunter die Hobbies als `<ul>`-Liste mit `{% for %}`
+Überschrift `Ihre Hobbys:` (`<h2>`), darunter die Hobbys als `<ul>`-Liste mit `{% for %}`
 und einem `{% empty %}`-Zweig, der als Ersatztext für den Fall einer leeren Liste den Satz
-"Keine Hobbies angegeben" in einem Listenelement anzeigt.
+"Keine Hobbys angegeben" in einem Listenelement anzeigt.
 
 [EQ] Setzen Sie `hobbies` in der View auf eine leere Liste `[]` und aktualisieren Sie die
 Seite. Was wird angezeigt, und welches Tag ist dafür verantwortlich?
-<!-- time estimate: 15 min -->
 
 Setzen Sie `hobbies` in der View wieder auf die ursprüngliche Liste
 (`['Programmieren', 'Lesen', 'Sport']`), bevor Sie fortfahren.
+<!-- time estimate: 15 min -->
 
-### Echte Daten aus dem Model darstellen
+### Echte Daten aus dem Model mit Filtern darstellen
 
 Bisher haben Sie nur Testdaten direkt im `context` der View angegeben. Wie Sie aus
 [PARTREF::django-model] wissen, liefert `Student.objects.all()` alle gespeicherten
@@ -191,8 +192,9 @@ Peter Klein `1.7` ein (mit Punkt als Dezimaltrennzeichen, nicht mit Komma); setz
 außerdem bei Peter Klein `is_active` auf deaktiviert. Lassen Sie `grade_average` bei Lisa
 Weber leer.
 
-[EQ] Rufen Sie anschließend `http://127.0.0.1:8071/students/` auf. Was erscheint für diese
-beiden Studierenden anstelle der rohen Werte, und welcher Filter ist jeweils verantwortlich?
+[EQ] Rufen Sie anschließend `http://127.0.0.1:8071/students/` auf. Was erscheint bei Lisa
+Weber (kein Notendurchschnitt) und bei Peter Klein (nicht aktiv) anstelle der rohen Werte,
+und welcher Filter ist jeweils verantwortlich?
 <!-- time estimate: 20 min -->
 
 ### Template-Vererbung
@@ -230,7 +232,7 @@ semantische HTML-Elemente wie `<header>` und `<footer>` (siehe [PARTREF::html-Se
 
 [ER] Wandeln Sie `hello.html` in ein Kind-Template um: Ersetzen Sie `<!DOCTYPE>`, `<html>`,
 `<head>` und die `<body>`-Umschließung durch `{% extends "base.html" %}` und packen Sie
-Ihren bisherigen `<body>`-Inhalt (Überschrift, Bedingungsblock mit Hobbies) in einen Block
+Ihren bisherigen `<body>`-Inhalt (Überschrift, Bedingungsblock mit Hobbys) in einen Block
 `content`.
 
 [ER] Wandeln Sie `students_list.html` auf dieselbe Weise in ein Kind-Template um.
@@ -249,8 +251,6 @@ unterscheiden.
 curl -s http://127.0.0.1:8071/
 curl -s http://127.0.0.1:8071/students/
 ```
-
-Wenn Sie einen anderen Port verwenden, passen Sie die Befehle entsprechend an.
 <!-- time estimate: 20 min -->
 
 ### Statische Dateien einbinden
@@ -286,8 +286,7 @@ Strg+C und starten Sie ihn neu.
 
 [EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf. Die Seite ist jetzt formatiert, obwohl
 `students_list.html` selbst kein CSS enthält. Warum genügt es, `base.html` anzupassen,
-damit auch `students_list.html` das CSS erhält? Wenn Sie einen anderen Port verwenden,
-passen Sie den Link entsprechend an.
+damit auch `students_list.html` das CSS erhält?
 <!-- time estimate: 20 min -->
 
 ### Navigation mit `{% url %}`
@@ -318,8 +317,6 @@ Links zu den Detailseiten:
 curl -s http://127.0.0.1:8071/students/
 ```
 
-Wenn Sie einen anderen Port verwenden, passen Sie den Befehl entsprechend an.
-
 [EQ] Zu welchen Pfaden wurden die `{% url %}`-Links im Quelltext aufgelöst? In
 [PARTREF::django-view] haben Sie mit `reverse()` dasselbe in einer View getan. Warum ist es
 nützlich, dieselbe namensbasierte Auflösung sowohl in Python (`reverse()`) als auch im
@@ -327,7 +324,7 @@ Template (`{% url %}`) zur Verfügung zu haben?
 <!-- time estimate: 20 min -->
 
 Öffnen Sie zum Abschluss `http://127.0.0.1:8071/` im Browser und klicken Sie über die
-`<nav>`-Links zwischen Startseite und Studierendenliste hin und her. Gut gemacht!
+`<nav>`-Links zwischen Startseite und Studierendenliste hin und her.
 
 ### Weiterführend
 
