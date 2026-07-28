@@ -195,6 +195,8 @@ Bei Themenausweitung entweder aufteilen oder umbenennen.
 **A4.2 Zu groß gewordene Aufgaben sollten aufgeteilt werden.**
 Wenn timevalue > ~1,5h oder die Aufgabe mehr als 2–3 verschiedene Konzepte abdeckt,
 Aufteilung erwägen. Jede Aufgabe sollte ein zusammenhängendes Thema haben.
+Größere Aufgaben sind am ehesten bei fortgeschritteneren Themen erwartet.
+Auf unpassende Zeitschätzungen achten; die Autoren sind oft spendabler als angemessen.
 
 **A4.3 Fortgeschrittenes Material gehört nicht in Grundlagenaufgaben.**
 Zu fortgeschrittenes Material für die Zielstufe sollte in eine eigene Folgeaufgabe
