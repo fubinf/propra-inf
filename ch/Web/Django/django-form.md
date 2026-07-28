@@ -31,13 +31,17 @@ das `Student`-Model ([PARTREF::django-model]), Views mit URL-Routing ([PARTREF::
 und das Template-System ([PARTREF::django-template]) zur Verfügung. Alle Änderungen finden in
 `webapp` statt.
 
+Starten Sie für die folgenden Schritte in einer separaten Shell den Entwicklungsserver mit
+`python manage.py runserver 8071` und lassen Sie ihn laufen. Alle Befehle und Links unten
+verwenden den Port 8071; falls Sie den Server auf einem anderen Port betreiben, passen Sie
+sie entsprechend an.
+
 ### HTTP-Formulare: GET und POST
 
-Die Grundelemente eines HTML-Formulars (`<form>`, `<input>`, Checkboxen,
-`<button type="submit">`) kennen Sie bereits aus [PARTREF::http-POST] und
-[PARTREF::html-Formulare]. Welche der beiden Methoden zum Einsatz kommt, legt das
-`method`-Attribut von `<form>` fest: `method="get"` oder `method="post"`. Ein HTML-Formular
-sendet seine Daten mit einer von zwei Methoden:
+Die Grundelemente eines HTML-Formulars (`<form>`, `<input>`, `<button type="submit">`)
+kennen Sie bereits aus [PARTREF::http-POST] und [PARTREF::html-Formulare]. Ein HTML-Formular
+sendet seine Daten mit einer von zwei Methoden; welche zum Einsatz kommt, legt das
+`method`-Attribut von `<form>` fest (`method="get"` oder `method="post"`):
 
 - **GET**: wirkungsfrei ("safe", siehe [PARTREF::http-GET]), verändert den Server-Zustand
   nicht. Die Daten werden sichtbar an die URL angehängt (`?q=...`), geeignet für Anfragen
@@ -69,8 +73,7 @@ bereits kennengelernt haben. Ein Formular mit GET-Methode hat folgende Bestandte
 - `action`: die Route, an die das Formular sendet, gesetzt mit `{% url %}`
 - `method="get"`: sendet die Daten als GET-Parameter an die im `action` angegebene URL
 - `name`: der Schlüssel, unter dem der eingegebene Wert als GET-Parameter ankommt
-- `value` (bei `<input type="text">`): der Text, der schon im Feld steht, anders als bei
-  einer Checkbox, wo `value` den beim Ankreuzen gesendeten Wert bestimmt
+- `value` (bei `<input type="text">`): der Text, der beim Anzeigen schon im Feld steht
 - `placeholder`: Hinweistext, der nur angezeigt wird, solange das Feld leer ist, und beim
   Absenden nicht mitgeschickt wird
 
@@ -83,13 +86,13 @@ Konkretes Beispiel:
 </form>
 ```
 
-[ER] Schreiben Sie in `views.py` zwei View-Funktionen: `search_form`
-rendert nur `search_form.html` ohne Context; `search` liest den GET-Parameter `q` aus
-(Standardwert leerer String), sucht bei nichtleerem `q` mit `objects.filter`
-(sonst `[]`) und rendert `search_form.html` mit `q` und `results` im Context.
+[ER] Schreiben Sie in `views.py` zwei View-Funktionen: `search_form` rendert nur
+`search_form.html` ohne Context; `search` liest den GET-Parameter `q` aus (Standardwert
+leerer String), sucht bei nichtleerem `q` mit `Student.objects.filter(name=q)` (sonst `[]`)
+und rendert `search_form.html` mit `q` und `results` im Context.
 
-Erstellen Sie `search_form.html` mit folgender Grundstruktur, den `<body>` füllen Sie im
-nächsten Schritt:
+Erstellen Sie `webapp/templates/search_form.html` mit folgender Grundstruktur, den `<body>`
+füllen Sie im nächsten Schritt:
 
 ```html
 <!DOCTYPE html>
@@ -107,25 +110,21 @@ nächsten Schritt:
 "Suchformular (GET)", darunter ein `<form>` mit `method="get"`, das an `{% url 'search' %}`
 sendet, mit einem Text-Eingabefeld `name="q"` (Wert vorbelegt mit `{{ q }}`, Platzhaltertext
 "Suchbegriff") und einem Absende-Button mit dem Text "Suchen". Zeigen Sie darunter, nur wenn
-`q` gesetzt ist, eine `<ul>` mit `{% for %}`
-über `results`: je Treffer ein Link zur Detailseite (`{% url 'student_detail' student.id
-%}`) mit dem Namen; im `{% empty %}`-Zweig den Text `Keine Treffer für "{{ q }}"` (mit dem
-eingesetzten Suchbegriff).
+`q` gesetzt ist, eine `<ul>` mit `{% for %}` über `results`: je Treffer ein Link zur
+Detailseite (`{% url 'student_detail' student.id %}`) mit dem Namen; im
+`{% empty %}`-Zweig den Text `Keine Treffer für "{{ q }}"` (mit dem eingesetzten
+Suchbegriff).
 
 [ER] Ergänzen Sie `urls.py` um zwei Routen: Pfad `search-form/` auf `search_form` (Name
 `search_form`), Pfad `search/` auf `search` (Name `search`).
 
-[EC] Starten Sie den Entwicklungsserver und lassen Sie ihn laufen. Testen Sie die
-GET-Suche direkt mit `curl` (der Suchbegriff ist URL-kodiert):
+[EC] Testen Sie die GET-Suche direkt mit `curl` (der Suchbegriff ist URL-kodiert):
 
 ```bash
-python manage.py runserver 8071
 curl "http://127.0.0.1:8071/search/?q=Anna%20M%C3%BCller"
 curl "http://127.0.0.1:8071/search/?q=Nichtvorhanden"
 curl "http://127.0.0.1:8071/students/1/"
 ```
-
-Wenn Sie einen anderen Port verwenden, passen Sie die Befehle entsprechend an.
 
 [EQ] Der erste `curl`-Aufruf liefert einen Link zur Detailseite von Anna Müller. Woher weiß
 das Template `search_form.html`, welche ID es in `{% url 'student_detail' student.id %}`
@@ -136,7 +135,7 @@ Sie nach dem exakten Namen eines bereits vorhandenen Studierenden (aus
 [PARTREF::django-model]). Wie verändert sich die URL nach dem Absenden, und wo taucht Ihr
 Suchbegriff auf? Suchen Sie anschließend nach einem Namen, den es nicht gibt: was wird
 angezeigt, und welches Template-Tag sorgt dafür, dass die Seite dabei nicht fehlerhaft
-wird? Wenn Sie einen anderen Port verwenden, passen Sie den Link entsprechend an.
+wird?
 <!-- time estimate: 30 min -->
 
 ### POST-Formular und CSRF-Schutz
@@ -145,9 +144,9 @@ Bei einem POST-Formular verlangt Django ein zusätzliches Sicherheitsmerkmal: da
 `{% csrf_token %}`-Tag. **CSRF** (Cross-Site Request Forgery) bezeichnet einen Angriff, bei
 dem eine fremde Website unbemerkt eine Aktion in Ihrem Namen auslöst, während Sie
 eingeloggt sind. Um das zu verhindern, bettet Django in jedes Formular ein verstecktes,
-einmaliges Token ein (`{% csrf_token %}`) und akzeptiert einen POST nur, wenn dieses Token
-mitgeschickt wird, so kann eine fremde Seite kein gültiges Formular fälschen. Deshalb
-gehört `{% csrf_token %}` in **jedes** POST-Formular.
+an Ihre Sitzung gebundenes Token ein (`{% csrf_token %}`) und akzeptiert einen POST nur, wenn
+dieses Token mitgeschickt wird; eine fremde Seite kann es nicht auslesen und daher kein
+gültiges Formular fälschen. Deshalb gehört `{% csrf_token %}` in **jedes** POST-Formular.
 
 [NOTICE]
 In [PARTREF::django-view] hatten Sie eine POST-View versuchsweise mit `@csrf_exempt` vom
@@ -180,10 +179,10 @@ Konkretes Beispiel:
 ```
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `search_post`: Bei einem POST-Request
-liest sie den POST-Parameter `q` aus (Schlüssel `q`), sucht bei nichtleerem `q` mit
-`Student.objects.filter(name=q)` (sonst `[]`) und rendert `search_post.html` mit `q` und
-`results` im Context; bei jeder anderen Anfrage rendert sie `search_post.html` mit leerem
-Context.
+liest sie den POST-Parameter `q` mit `request.POST.get('q', '')` aus, sucht bei nichtleerem
+`q` mit `Student.objects.filter(name=q)` (sonst `[]`) und rendert `search_post.html` mit `q`
+und `results` im Context; bei jeder anderen Anfrage rendert sie `search_post.html` mit
+leerem Context.
 
 Erstellen Sie `search_post.html` mit derselben Grundstruktur wie `search_form.html` (Titel
 `Suche (POST)`), den `<body>` füllen Sie im nächsten Schritt.
@@ -201,20 +200,18 @@ Erstellen Sie `search_post.html` mit derselben Grundstruktur wie `search_form.ht
 
 [EQ] Suchen Sie unter `http://127.0.0.1:8071/search-post/` nach demselben Namen wie in
 [EREFQ::2]. Worin unterscheidet sich die URL nach dem Absenden gegenüber dem GET-Formular,
-und was würde passieren, wenn Sie `{% csrf_token %}` aus dem Formular entfernen? Wenn Sie
-einen anderen Port verwenden, passen Sie den Link entsprechend an.
+und was würde passieren, wenn Sie `{% csrf_token %}` aus dem Formular entfernen?
 <!-- time estimate: 30 min -->
 
 ### Registrierung mit Datenbank-Persistenz
 
-Bisher wurden die Formulardaten nur zurückgespiegelt. Jetzt speichern Sie sie dauerhaft:
+Bisher haben die Formulare die Datenbank nur gelesen. Jetzt schreiben Sie hinein:
 Ein Registrierungsformular legt über `Student.objects.create()` (aus [PARTREF::django-model])
 einen neuen Datensatz an und leitet anschließend auf dessen Detailseite weiter. Da Name,
 Alter und E-Mail hier echte Pflichtfelder sind, greifen Sie direkt mit `request.POST['feld']`
-zu (anders als bei der optionalen Suche vorhin
-mit `.get()`): Fehlt das Feld, wirft dieser Zugriff einen `KeyError`, statt stillschweigend
-einen leeren Wert zu liefern. Eine View, die bei POST einen Datensatz anlegt und dann
-weiterleitet, hat folgenden Aufbau:
+zu (anders als bei der optionalen Suche mit `.get()`): Fehlt das Feld, wirft dieser Zugriff
+einen `KeyError`, statt stillschweigend einen leeren Wert zu liefern. Eine View, die bei
+POST einen Datensatz anlegt und dann weiterleitet, hat folgenden Aufbau:
 
 ```python
 def beispiel_view(request):
@@ -290,8 +287,7 @@ Feld "Name" auszufüllen. Was passiert, und welches Attribut ist dafür verantwo
 mit dem Namen "Tom Fischer", Alter `20` und der E-Mail "tom@example.com". Auf welcher Seite
 landen Sie danach, und woran erkennen Sie, dass Ihre Eingaben tatsächlich in der Datenbank
 gespeichert wurden (und nicht nur zurückgespiegelt)? Warum ist für diese Aktion POST die
-richtige Methode und nicht GET? Wenn Sie einen anderen Port verwenden, passen Sie den Link
-entsprechend an.
+richtige Methode und nicht GET?
 <!-- time estimate: 30 min -->
 
 ### Weiterführend
