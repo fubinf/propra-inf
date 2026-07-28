@@ -281,11 +281,19 @@ Wenn Studierende Code schreiben, aber keine Möglichkeit haben, Ergebnisse zu ü
 Wenn "Mache A oder B" zu divergierenden Pfaden führt, einen Ansatz für alle wählen,
 es sei denn, die Wahlfreiheit ist selbst didaktisch wertvoll.
 
+**A6.9 Keine trivialen Aufgaben**
+In der Regel sollte jeder Schritt eine Denk- oder Leseleistung (meist mit vorgegebenem Doku-Link) 
+der Studierenden voraussetzen.
+Die Aufgabe sollte also nicht alles "vorsagen".
+Ausnahmen gibt es oft bei `[EC]`, wenn das ein nötiger Vorbereitungsschritt ist, der nicht
+selbst zu den Lernzielen beiträgt (sondern entweder Grundlagen legt oder Reaktionen erzeugt, 
+die dann von den Studis zu interpretieren sind).
+
 ### A7. Instruktorenabschnitt
 
 **A7.1 Instruktorenabschnitt muss existieren und nützlich sein.**
-Jede Aufgabe braucht einen [INSTRUCTOR]-Abschnitt mit Frage-/Aufgabenlabels (F1, A1 usw.),
-kurzen erwarteten Antworten
+Jede Aufgabe braucht einen [INSTRUCTOR]-Abschnitt mit Frage-/Aufgabenlabels (F1, A1 usw.) und
+kurzen erwarteten Antworten.
 
 **A7.2 Offene Fragen brauchen klare Erwartungen.**
 Angeben, was eine minimal akzeptable Antwort ausmacht.
@@ -399,7 +407,8 @@ Kurzer Überblick plus wichtige Dokumentationslinks. Kein ausführliches Tutoria
 
 **B4.1 Autor muss die fertige Aufgabe selbst testen.**
 Die gesamte Aufgabe von Anfang bis Ende durcharbeiten.
-Befehle, Ausgaben, Links und Dateipfade müssen intern konsistent sein.
+Befehle, Ausgaben, Links und Dateipfade müssen intern konsistent sein
+und die Logik der Aufgabe muss zum realen Verhalten der jeweiligen technischen Bausteine passen.
 
 **B4.2 Glossareinträge für Schlüsselbegriffe.**
 Fachspezifische Terminologie braucht Glossareinträge mit TERMREF-Links.
@@ -410,7 +419,3 @@ Prüfen, ob die Anweisungen auf allen unterstützten Plattformen funktionieren
 
 **B4.4 INCLUDE-Dateiverweise müssen auflösbar sein.**
 Alle INCLUDE-Direktiven auf existierende Dateien prüfen, einschließlich altdir-Dateien.
-
----
-
-*Konsolidiert aus Review-Diskussionen zu SQL-, Go-, Web-, Werkzeuge-, Bibliotheken-, C-, Python-, RegExp- und Testen-Aufgaben.*
