@@ -22,8 +22,6 @@ Jedes Fenster lässt sich in mehrere Teilbereiche (Panes) unterteilen.
 
 [SECTION::instructions::detailed]
 
-### Anmerkung
-
 Für diese Aufgabe wird kein Kommandoprotokoll abgegeben.
 Die Aktionen erarbeiten die Konzepte praktisch und bereiten so die abschließenden Reflexionsfragen vor.
 
@@ -36,9 +34,9 @@ Aktualisieren Sie Ihr System und installieren Sie das Paket:
 `sudo apt update && sudo apt install tmux`
 
 Lesen Sie den Beitrag bis einschließlich zum Abschnitt **Reattaching to a Session**:
-[Getting Started with Tmux](https://linuxize.com/post/getting-started-with-tmux/)
+[tmux Command in Linux: Sessions, Windows, and Panes](https://linuxize.com/post/getting-started-with-tmux/)
 
-Achten Sie beim Lesen besonders auf folgende Fragen:
+Achten Sie beim Lesen besonders auf folgende Punkte:
 
 - Welche Tastenkombination leitet Befehle an `tmux` ein (Prefix-Key)?
 - Wie trennen Sie die Verbindung zu einer laufenden Session, ohne sie zu beenden (detach)?
@@ -68,9 +66,9 @@ Um eine laufende Aufgabe zu simulieren, starten wir einen Befehl, der 60 Sekunde
 
 Während die Zeitstempel durchlaufen, detachen wir uns von der Session.
 
-**AKTION:** Detachen Sie sich von der Session.
+**AKTION:** Trennen Sie sich von der Session.
 
-[HINT::Wie detache ich die Session?]
+[HINT::Wie trenne ich die Session?]
 Drücken Sie `Ctrl+b` (Prefix), lassen Sie los und drücken Sie danach `d` (detach).
 Sie kehren zur normalen Shell zurück, der Prozess läuft aber weiter!
 [ENDHINT]
@@ -83,17 +81,18 @@ Das ist das zentrale Konzept eines Terminal-Multiplexers.
 
 **AKTION:** Zeigen Sie alle laufenden Sessions an.
 
-**AKTION:** Attachen Sie sich wieder mit der Session `projekt1`.
+**AKTION:** Verbinden Sie sich wieder mit der Session `projekt1` (attach).
 
-Je nachdem, wie lange Sie für das Reattach gebraucht haben, läuft der `for`-Loop noch oder ist bereits fertig.
+Je nachdem, wie lange Sie bis zum Wiederverbinden gebraucht haben,
+läuft die `for`-Schleife noch oder ist bereits fertig.
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
 
 ### Fenster und Panes
 
-Lesen Sie die Abschnitte **Working with Windows** und **Working with Panes** des Beitrags:
-[Getting Started with Tmux](https://linuxize.com/post/getting-started-with-tmux/)
+Lesen Sie die weiteren Abschnitte **Working with Windows** und **Working with Panes** des Artikels
+[tmux Command in Linux: Sessions, Windows, and Panes](https://linuxize.com/post/getting-started-with-tmux/)
 
 Achten Sie dabei besonders auf folgende Fragen:
 
@@ -104,9 +103,10 @@ Achten Sie dabei besonders auf folgende Fragen:
 [NOTICE]
 `tmux` bezeichnet das Aufteilen in Panes nebeneinander (vertikale Trennlinie) als *horizontal split* (`%` bzw. `-h`).
 Das Aufteilen übereinander (horizontale Trennlinie) wird als *vertical split* (`"` bzw. `-v`) bezeichnet.
-Um Verwirrung zu vermeiden, verwenden wir im Folgenden die eindeutigen Bezeichnungen "nebeneinander" und "übereinander".
-Der verlinkte Artikel nennt dieselben beiden Tasten mit vertauschten Adjektiven (vertically für `%`, horizontally für `"`).
-Welche Taste welche Anordnung erzeugt, ändert sich dadurch nicht.
+Um Verwirrung zu vermeiden, verwenden wir im Folgenden die eindeutigen Bezeichnungen
+"nebeneinander" und "übereinander".
+Der verlinkte Artikel nennt dieselben beiden Tasten mit vertauschten Adjektiven
+(vertically für `%`, horizontally für `"`).
 [ENDNOTICE]
 
 Bisher haben wir eine Session mit einem einzelnen Fenster verwendet.
@@ -115,7 +115,7 @@ Jetzt lernen wir zwei Möglichkeiten kennen, um die Anzeige zu strukturieren:
 - **Panes**: Teilen ein einzelnes Fenster in mehrere Bereiche auf.
 Alle Panes gehören zum gleichen Fenster und teilen sich dessen Fensterindex.
 Ideal für: Nebeneinander arbeiten (beispielsweise Code links, Terminal/Tests rechts).
-- **Fenster**: Erstellen mehrere unabhängige Bildschirmflächen innerhalb einer Session.
+- **Fenster**: Bilden mehrere unabhängige Bildschirmflächen innerhalb einer Session.
 Jedes Fenster ist wie ein eigener Tab mit eigenem Index (beispielsweise 0, 1, 2, ...).
 Ideal für: Verschiedene Aufgaben getrennt halten (beispielsweise Fenster 0: Editor, Fenster 1: Server-Logs).
 
@@ -134,7 +134,8 @@ Da jedes Pane eine eigene Shell-Sitzung darstellt, arbeiten diese völlig unabh�
 
 **AKTION:** Lassen Sie sich im rechten Pane den Verzeichnisinhalt anzeigen.
 
-Sie sehen, dass das rechte Pane weiterhin den Inhalt Ihres Heimatverzeichnisses anzeigt.
+Sie sehen, dass das rechte Pane weiterhin den Inhalt des Verzeichnisses anzeigt,
+in dem Sie `tmux` gestartet haben.
 Die beiden Shells arbeiten unabhängig voneinander.
 
 Dieses rechte Pane teilen wir jetzt übereinander:
@@ -191,7 +192,7 @@ Verwenden Sie nicht den Befehl `exit`, da dieser die Shell geordnet beenden wür
 
 **AKTION:** Öffnen Sie ein neues Terminal-Fenster.
 
-**AKTION:** Attachen Sie sich erneut mit der Session `server`.
+**AKTION:** Verbinden Sie sich erneut mit der Session `server` (attach).
 
 Der Prozess lief die ganze Zeit weiter, obwohl das Terminal erzwungen geschlossen wurde.
 Wir sehen einen Zeitsprung in der Ausgabe.
@@ -216,11 +217,12 @@ Es gibt zwei Wege, eine Session zu beenden:
 
 Sie sollten zwei Sessions sehen: `projekt1` und `server`.
 
-**AKTION:** Attachen Sie sich mit der Session `projekt1`.
+**AKTION:** Verbinden Sie sich mit der Session `projekt1` (attach).
 
 **AKTION:** Beenden Sie alle Panes der Session `projekt1` von innen heraus.
 
-Sobald das letzte Pane geschlossen ist, werden automatisch auch das Fenster und schließlich die gesamte Session beendet.
+Sobald das letzte Pane geschlossen ist, werden automatisch auch das Fenster
+und schließlich die gesamte Session beendet.
 
 **AKTION:** Überprüfen Sie, dass `projekt1` nicht mehr existiert, indem Sie die `tmux`-Sessions auflisten.
 
@@ -229,6 +231,8 @@ Nun sollte nur noch `server` übrig sein.
 **AKTION:** Beenden Sie die Session `server` von außen über einen `tmux`-Befehl.
 
 **AKTION:** Überprüfen Sie mit `tmux ls`, dass keine Sessions mehr laufen.
+
+Die Meldung `no server running on ...` ist hier kein Fehler, sondern die erwartete Ausgabe.
 
 <!-- time estimate: 10 min -->
 
