@@ -21,6 +21,7 @@ Beginne mit folgendem Absatz:
 "_Solcher kursiver Text ist von mir, der große Rest stammt von Claude. 
 Ggf. habe ich manche Sachen direkt erledigt und in Abschnitt 3 verschoben._"
 
+Es sind für den Empfänger (die Aufgabenautor_in) also explizit zwei Sprecher am Werk. 
 Fasse dann zunächst ggf. den Ausgangsstand im Issue zusammen.
 
 Dann gib die Ergebnisse in drei Listen aus, 
@@ -292,6 +293,7 @@ Auf die zentrale Lernerkenntnis fokussieren.
 Nicht einfach Code abladen.
 Schlüsselaspekte, minimal akzeptable Lösungen und häufige Fehler hervorheben.
 Marker/Annotationen verwenden.
+`[EQ]`-Fragen wiederholen, aber lange Fragen in verkürzt paraphrasierter Form.
 
 **A7.4 Instruktorenabschnitt muss nach Überarbeitungen aktuell bleiben.**
 Nach dem Bearbeiten von Aufgabenstellungen den Instruktorenabschnitt aktualisieren:
@@ -368,7 +370,7 @@ Bezeichner in Backticks nicht flektieren (z.B. "des `DataFrame`s" vermeiden).
 Kaputte Formatierung, sichtbare Backticks, defekte Links, verirrte Makronamen finden.
 
 **B2.5 Template-/Startercode in separate INCLUDE-Dateien auslagern.**
-Templates in separate Dateien extrahieren und INCLUDE verwenden,
+Große Templates ggf. in separate Dateien extrahieren und INCLUDE verwenden,
 statt sie in das Markdown einzubetten.
 
 ### B3. Benennung und Metadaten
