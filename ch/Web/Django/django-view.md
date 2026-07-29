@@ -204,8 +204,9 @@ Den `Content-Type`-Header und die dahinterstehenden MIME-Types kennen Sie bereit
 [PARTREF::http-GET] (siehe dort auch die
 [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types)-Übersicht): Er
 entscheidet, als was der Browser eine Antwort interpretiert, unabhängig vom eigentlichen
-Inhalt. Die drei Varianten von `responses` liefern unterschiedliche `content_type`-Werte;
-mit `-i` werden die Header mit ausgegeben, nicht nur der Antwort-Rumpf:
+Inhalt. Die drei Varianten von `responses` liefern unterschiedliche `content_type`-Werte.
+Mit `-i` gibt `curl` die Header mit aus, nicht nur den Antwort-Rumpf, mit `-s` bleibt die
+Ausgabe knapp.
 
 [EC] Rufen Sie alle drei Response-Typen nacheinander auf:
 
@@ -223,7 +224,7 @@ anderen, und an welcher Stelle im Code wurde das festgelegt?
 ### Response-Objekte: redirect() für Weiterleitungen
 
 Statt selbst Inhalt zurückzugeben, kann eine View den Client auch an eine andere URL
-verweisen. Dafür dient `redirect()`, das den Client auf eine andere URL umleitet:
+verweisen. Dafür dient `redirect()`:
 
 ```
 redirect(to)
@@ -252,8 +253,7 @@ mit `redirect("redirect_target")` dorthin weiterleitet. Importieren Sie dafür `
 `redirect_target` (Name `redirect_target`) und Pfad `redirect-test/` mit Ziel
 `redirect_example` (Name `redirect_example`).
 
-[EC] Rufen Sie die Umleitung auf. Mit `-i` werden die Antwort-Header sichtbar, mit `-s`
-bleibt die Ausgabe knapp:
+[EC] Rufen Sie die Umleitung auf:
 
 ```bash
 curl -s -i http://127.0.0.1:8071/redirect-test/
@@ -290,14 +290,13 @@ Typ um und übergibt ihn als Funktionsargument; `typ` steht dabei für einen der
 Bezeichner. Dies ist bereits die vollständige Liste der standardmäßig verfügbaren
 Typkonverter:
 
-- `str`: beliebiger Text ohne `/` (Standard, falls kein Typ angegeben wird).
+- `str`: beliebiger nicht-leerer Text ohne `/` (Standard, falls kein Typ angegeben wird).
 - `int`: nur Ziffern, wird als Python-`int` übergeben.
 - `slug`: Buchstaben, Ziffern, Bindestrich und Unterstrich (typisch für lesbare URLs).
 - `uuid`: eine UUID im Standardformat mit Bindestrichen, wird als `uuid.UUID`-Objekt übergeben.
 - `path`: wie `str`, akzeptiert aber zusätzlich `/`.
 
-Der Typkonverter übergibt den extrahierten Wert als Funktionsargument; damit lässt sich ein
-Objekt anhand der URL laden, nach folgendem Schema:
+Damit lässt sich ein Objekt anhand der URL laden, nach folgendem Schema:
 
 ```python
 from .models import MeinModel
