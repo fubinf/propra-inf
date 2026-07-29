@@ -209,8 +209,10 @@ for x in np.nditer(a, order='F'):
 
 **Erweiterte nditer-Funktionen:**
 
-- `flags=['multi_index']`: liefert bei jedem Schritt zusätzlich den mehrdimensionalen Index des
-  aktuellen Elements über `x.multi_index`
+- `flags=['multi_index']`: führt bei jedem Schritt zusätzlich den mehrdimensionalen Index des
+  aktuellen Elements mit. Dieser Index gehört zum Iterator selbst, nicht zum gelieferten Element;
+  der Iterator muss deshalb an einen Namen gebunden werden, damit man im Schleifenkörper
+  `it.multi_index` abfragen kann
 - `op_flags=['readwrite']`: erlaubt, den Wert direkt während der Iteration zu verändern (ohne
   dieses Flag ist `nditer` nur lesend, ein Zuweisungsversuch würde einen Fehler auslösen). Dabei
   reicht ein Ausdruck wie `x = 2 * x` nicht aus — er bindet nur den Namen `x` innerhalb der
@@ -223,8 +225,9 @@ for x in np.nditer(a, order='F'):
 
 ```python
 # Index-Verfolgung
-for x in np.nditer(a, flags=['multi_index']):
-    print(f'Index {x.multi_index}: Wert {x}')
+it = np.nditer(a, flags=['multi_index'])
+for x in it:
+    print(f'Index {it.multi_index}: Wert {x}')
 
 # Schreibzugriff
 for x in np.nditer(a, op_flags=['readwrite']):
