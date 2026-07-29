@@ -77,46 +77,25 @@ bereits kennengelernt haben. Ein Formular mit GET-Methode hat folgende Bestandte
 - `placeholder`: Hinweistext, der nur angezeigt wird, solange das Feld leer ist, und beim
   Absenden nicht mitgeschickt wird
 
-Konkretes Beispiel:
+[ER] Schreiben Sie in `views.py` eine View-Funktion `search`: liest den GET-Parameter `q`
+aus (Standardwert leerer String), sucht bei nichtleerem `q` mit
+`Student.objects.filter(name=q)` (sonst `[]`) und rendert `search_form.html` mit `q` und
+`results` im Context. Ruft man die View ganz ohne `q` auf, ist `q` leer und die Seite zeigt
+schlicht das leere Formular.
 
-```html
-<form action="{% url 'routenname' %}" method="get">
-    <input type="text" name="feld" value="{{ variable }}" placeholder="Ihre Eingabe">
-    <button type="submit">Absenden</button>
-</form>
-```
+[ER] Erstellen Sie `webapp/templates/search_form.html` als Kind-Template von `base.html`
+(`{% extends "base.html" %}`, Titel `Suche`, Inhalt in `{% block content %}`) mit:
 
-[ER] Schreiben Sie in `views.py` zwei View-Funktionen: `search_form` rendert nur
-`search_form.html` ohne Context; `search` liest den GET-Parameter `q` aus (Standardwert
-leerer String), sucht bei nichtleerem `q` mit `Student.objects.filter(name=q)` (sonst `[]`)
-und rendert `search_form.html` mit `q` und `results` im Context.
+- einer Überschrift (`<h1>`) mit dem Text "Suchformular (GET)"
+- darunter einem `<form>` mit `method="get"`, das an `{% url 'search' %}` sendet
+- darin einem Text-Eingabefeld `name="q"` (Wert vorbelegt mit `{{ q }}`, Platzhaltertext
+  "Suchbegriff") und einem Absende-Button mit dem Text "Suchen"
+- darunter, nur wenn `q` gesetzt ist, einer `<ul>` mit `{% for %}` über `results`: je Treffer
+  ein Link zur Detailseite (`{% url 'student_detail' student.id %}`) mit dem Namen
+- im `{% empty %}`-Zweig dem Text `Keine Treffer für "{{ q }}"` (mit dem eingesetzten
+  Suchbegriff)
 
-Erstellen Sie `webapp/templates/search_form.html` mit folgender Grundstruktur, den `<body>`
-füllen Sie im nächsten Schritt:
-
-```html
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Suche</title>
-</head>
-<body>
-</body>
-</html>
-```
-
-[ER] Füllen Sie den `<body>` von `search_form.html`: eine Überschrift (`<h1>`) mit dem Text
-"Suchformular (GET)", darunter ein `<form>` mit `method="get"`, das an `{% url 'search' %}`
-sendet, mit einem Text-Eingabefeld `name="q"` (Wert vorbelegt mit `{{ q }}`, Platzhaltertext
-"Suchbegriff") und einem Absende-Button mit dem Text "Suchen". Zeigen Sie darunter, nur wenn
-`q` gesetzt ist, eine `<ul>` mit `{% for %}` über `results`: je Treffer ein Link zur
-Detailseite (`{% url 'student_detail' student.id %}`) mit dem Namen; im
-`{% empty %}`-Zweig den Text `Keine Treffer für "{{ q }}"` (mit dem eingesetzten
-Suchbegriff).
-
-[ER] Ergänzen Sie `urls.py` um zwei Routen: Pfad `search-form/` auf `search_form` (Name
-`search_form`), Pfad `search/` auf `search` (Name `search`).
+[ER] Ergänzen Sie `urls.py` um die Route: Pfad `search/` auf `search` (Name `search`).
 
 [EC] Testen Sie die GET-Suche direkt mit `curl` (der Suchbegriff ist URL-kodiert):
 
@@ -130,7 +109,7 @@ curl "http://127.0.0.1:8071/students/1/"
 das Template `search_form.html`, welche ID es in `{% url 'student_detail' student.id %}`
 einsetzen muss, und was bestätigt Ihnen der dritte Aufruf (`/students/1/`) über diesen Link?
 
-[EQ] Rufen Sie zusätzlich `http://127.0.0.1:8071/search-form/` im Browser auf und suchen
+[EQ] Rufen Sie zusätzlich `http://127.0.0.1:8071/search/` im Browser auf und suchen
 Sie nach dem exakten Namen eines bereits vorhandenen Studierenden (aus
 [PARTREF::django-model]). Wie verändert sich die URL nach dem Absenden, und wo taucht Ihr
 Suchbegriff auf? Suchen Sie anschließend nach einem Namen, den es nicht gibt: was wird
@@ -168,39 +147,43 @@ Ein Formular mit POST-Methode hat dieselben Bestandteile wie eben, mit zwei Unte
 - `{% csrf_token %}`: unmittelbar nach dem öffnenden `<form>`-Tag, bettet das oben
   beschriebene CSRF-Token ein
 
-Konkretes Beispiel:
-
-```html
-<form action="{% url 'routenname' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="feld">
-    <button type="submit">Absenden</button>
-</form>
-```
-
 [ER] Schreiben Sie in `views.py` eine View-Funktion `search_post`: Bei einem POST-Request
 liest sie den POST-Parameter `q` mit `request.POST.get('q', '')` aus, sucht bei nichtleerem
 `q` mit `Student.objects.filter(name=q)` (sonst `[]`) und rendert `search_post.html` mit `q`
 und `results` im Context; bei jeder anderen Anfrage rendert sie `search_post.html` mit
 leerem Context.
 
-Erstellen Sie `search_post.html` mit derselben Grundstruktur wie `search_form.html` (Titel
-`Suche (POST)`), den `<body>` füllen Sie im nächsten Schritt.
+[ER] Erstellen Sie `webapp/templates/search_post.html` als Kind-Template von `base.html`
+(`{% extends "base.html" %}`, Inhalt in `{% block content %}`, Titel `Suche (POST)`) mit:
 
-[ER] Füllen Sie den `<body>` von `search_post.html`: eine Überschrift (`<h1>`) mit dem Text
-"Suchformular (POST)", darunter ein `<form>` mit `method="post"`, unmittelbar nach dem
-öffnenden `<form>`-Tag `{% csrf_token %}`, ein Text-Eingabefeld `name="q"` (Platzhaltertext
-"Suchbegriff") und ein Absende-Button mit dem Text "Suchen", gesendet an
-`{% url 'search_post' %}`. Darunter denselben
-`{% if q %}`/`{% for %}`/`{% empty %}`-Aufbau wie in `search_form.html` (mit demselben
-`Keine Treffer für "{{ q }}"`-Text).
+- einer Überschrift (`<h1>`) mit dem Text "Suchformular (POST)"
+- darunter einem `<form>` mit `method="post"`, das an `{% url 'search_post' %}` sendet
+- unmittelbar nach dem öffnenden `<form>`-Tag `{% csrf_token %}`
+- einem Text-Eingabefeld `name="q"` (Wert vorbelegt mit `{{ q }}`, Platzhaltertext
+  "Suchbegriff") und einem Absende-Button mit dem Text "Suchen"
+- darunter demselben `{% if q %}`/`{% for %}`/`{% empty %}`-Aufbau wie in `search_form.html`
+  (mit demselben `Keine Treffer für "{{ q }}"`-Text)
 
 [ER] Ergänzen Sie `urls.py` um die Route `search-post/` auf `search_post` (Name
 `search_post`).
 
 [EQ] Suchen Sie unter `http://127.0.0.1:8071/search-post/` nach demselben Namen wie in
-[EREFQ::2]. Worin unterscheidet sich die URL nach dem Absenden gegenüber dem GET-Formular,
-und was würde passieren, wenn Sie `{% csrf_token %}` aus dem Formular entfernen?
+[EREFQ::2]. Worin unterscheidet sich die URL nach dem Absenden gegenüber dem GET-Formular?
+
+Ein `curl`-Aufruf durchläuft kein Formular und liefert daher, unabhängig vom Template, kein
+gültiges CSRF-Token mit; er simuliert damit genau den Angriffsfall, gegen den
+`{% csrf_token %}` schützen soll.
+
+[EC] Senden Sie per `curl` einen POST ohne Token direkt an die View (nur der Statuscode wird
+ausgegeben):
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/
+```
+
+[EQ] Welcher Statuscode kam zurück, und warum reicht das bereits vorhandene
+`{% csrf_token %}` im Template aus, um genau diesen Aufruf abzuweisen, obwohl er die
+korrekten Formulardaten mitschickt?
 <!-- time estimate: 30 min -->
 
 ### Registrierung mit Datenbank-Persistenz
@@ -258,37 +241,34 @@ Ein Formular mit mehreren Feldern hat folgende Bestandteile (aus [PARTREF::http-
 ```
 
 - `<label>Text: <input ...></label>`: verbindet die Beschriftung mit dem Feld
-- `required`: macht das Feld zur Pflichteingabe, der Browser prüft das vor dem Absenden
+- `required`: macht das Feld zur Pflichteingabe; das prüft aber nur der Browser vor dem
+  Absenden, der Server bekommt davon nichts mit
 
-Konkretes Beispiel mit zwei Feldern:
+[ER] Erstellen Sie `webapp/templates/register.html` als Kind-Template von `base.html`
+(`{% extends "base.html" %}`, Inhalt in `{% block content %}`) mit:
 
-```html
-<form action="{% url 'routenname' %}" method="post">
-    {% csrf_token %}
-    <label>Beschriftung 1: <input type="text" name="feld1" required></label><br>
-    <label>Beschriftung 2: <input type="text" name="feld2" required></label><br>
-    <button type="submit">Absenden</button>
-</form>
-```
-
-[ER] Erstellen Sie das Template `register.html`: eine Überschrift (`<h1>`) mit dem Text
-"Studierenden-Registrierung", darunter ein `<form>` mit `method="post"` (inklusive
-`{% csrf_token %}`), das an `{% url 'register' %}` sendet, mit drei nach diesem Schema
-beschrifteten und verpflichtenden Eingabefeldern (`name`: Text, "Name"; `age`: Zahl,
-"Alter"; `email`: E-Mail, "E-Mail") und einem Absende-Button mit dem Text "Registrieren".
+- einer Überschrift (`<h1>`) mit dem Text "Studierenden-Registrierung"
+- darunter einem `<form>` mit `method="post"` (inklusive `{% csrf_token %}`), das an
+  `{% url 'register' %}` sendet
+- drei nach diesem Schema beschrifteten und verpflichtenden Eingabefeldern (`name`: Text,
+  "Name"; `age`: Zahl, "Alter"; `email`: E-Mail, "E-Mail")
+- einem Absende-Button mit dem Text "Registrieren"
 
 [ER] Ergänzen Sie `urls.py` um die Route `register/` auf `register` (Name `register`).
+<!-- time estimate: 15 min -->
 
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und senden Sie das Formular ab, ohne das
-Feld "Name" auszufüllen. Was passiert, und welches Attribut ist dafür verantwortlich?
-<!-- time estimate: 8 min -->
+Feld "Name" auszufüllen. Was passiert im Browser? Nehmen Sie nun an, jemand würde stattdessen
+per `curl` direkt einen POST ohne das Feld `name` an `/register/` senden, am Browser und
+damit an `required` vorbei: Was würde in der View passieren, und woran liegt das?
 
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und registrieren Sie einen Studierenden
 mit dem Namen "Tom Fischer", Alter `20` und der E-Mail "tom@example.com". Auf welcher Seite
-landen Sie danach, und woran erkennen Sie, dass Ihre Eingaben tatsächlich in der Datenbank
-gespeichert wurden (und nicht nur zurückgespiegelt)? Warum ist für diese Aktion POST die
-richtige Methode und nicht GET?
-<!-- time estimate: 30 min -->
+landen Sie danach? Rufen Sie anschließend zusätzlich `http://127.0.0.1:8071/students/` auf: 
+Woran erkennen Sie dort, dass Ihre Eingaben tatsächlich in
+der Datenbank gespeichert wurden (und nicht nur zurückgespiegelt)? Warum ist für die
+Registrierung POST die richtige Methode und nicht GET?
+<!-- time estimate: 10 min -->
 
 ### Weiterführend
 
@@ -309,14 +289,15 @@ richtige Methode und nicht GET?
 
 **Knackpunkte:**
 
-- [EREFR::1] + [EREFQ::2]: Die `search`-View verwendet `Student.objects.filter(name=...)`
-  statt `.get(...)`, eine Suche ohne Treffer liefert dadurch eine leere, aber gültige
-  Liste (abgefangen mit `{% empty %}`) statt eines Absturzes; Student erkennt diesen
-  bewussten Unterschied zur `get()`-Verwendung aus [PARTREF::django-model].
-- [EREFR::7] + [EREFQ::5]: Die `register`-View legt bei POST per `Student.objects.create()`
+- [EREFC::2] + [EREFQ::4]: Der `curl`-Aufruf ohne CSRF-Token wird mit Statuscode 403
+  abgewiesen; Student erkennt, dass `{% csrf_token %}` im Template allein genügt, um einen
+  Angriff ohne gültige Sitzung/Token zuverlässig abzuwehren, unabhängig davon, dass die
+  Formulardaten selbst korrekt waren.
+- [EREFR::7] + [EREFQ::6]: Die `register`-View legt bei POST per `Student.objects.create()`
   einen Datensatz an und leitet mit `redirect(reverse("student_detail", args=[student.id]))`
-  auf dessen Detailseite weiter; Student erkennt an der angezeigten Detailseite, dass die
-  Daten tatsächlich gespeichert (nicht nur zurückgespiegelt) wurden.
+  auf dessen Detailseite weiter; Student erkennt am zusätzlichen Aufruf von `/students/`, dass
+  der neue Studierende dort tatsächlich in der Datenbank steht (nicht nur zurückgespiegelt
+  wurde).
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-form.md]
