@@ -49,8 +49,9 @@ def my_view(request):
     return HttpResponse("Hello World!")
 ```
 
-[EQ] Schauen Sie sich die `hello`-View aus [PARTREF::django-project] an. Wie ist eine
-View-Funktion aufgebaut? Welche zwei Bestandteile sind zwingend notwendig?
+[EQ] Schlagen Sie in der Django-Dokumentation zu
+[Writing views](https://docs.djangoproject.com/en/stable/topics/http/views/) nach: Welche
+zwei Bestandteile sind laut dieser Seite bei jeder View-Funktion notwendig?
 <!-- time estimate: 10 min -->
 
 ### Request-Attribute: GET-Parameter verarbeiten
@@ -154,14 +155,7 @@ Unterschied bezüglich der URL-Anzeige und Datenübertragung zwischen GET und PO
 ### Weitere Request-Attribute erforschen
 
 Neben `request.GET` und `request.POST` bietet das Request-Objekt weitere nützliche Attribute,
-etwa zur verwendeten HTTP-Methode oder zum aufgerufenen Pfad. Mehrere solche Angaben lassen
-sich in einem f-String zusammensetzen, nach folgendem Schema:
-
-```python
-def beispiel_view(request):
-    text = f"Teil eins: {wert_eins}, Teil zwei: {wert_zwei}"
-    return HttpResponse(text)
-```
+etwa zur verwendeten HTTP-Methode oder zum aufgerufenen Pfad.
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `request_info`, die zwei Angaben aus dem
 Request als `HttpResponse` im Format `Methode: <...>, Pfad: <...>` zurückgibt (die
@@ -178,9 +172,8 @@ Abschnitt "Attributes" der
 curl http://127.0.0.1:8071/request-info/
 ```
 
-[EQ] Wozu könnte eine View die Angabe aus `request.method` auswerten? Und warum ist die
-HTTP-Methode immer `GET`, wenn Sie eine URL direkt im Browser aufrufen?
-<!-- time estimate: 20 min -->
+[EQ] Warum ist die HTTP-Methode immer `GET`, wenn Sie eine URL direkt im Browser aufrufen?
+<!-- time estimate: 15 min -->
 
 ### Response-Objekte: HttpResponse
 
@@ -207,17 +200,24 @@ nach.
 [ER] Fügen Sie in `urls.py` die Route für `responses` hinzu: Pfad `responses/`, Name
 `responses`.
 
+Den `Content-Type`-Header und die dahinterstehenden MIME-Types kennen Sie bereits aus
+[PARTREF::http-GET] (siehe dort auch die
+[MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types)-Übersicht): Er
+entscheidet, als was der Browser eine Antwort interpretiert, unabhängig vom eigentlichen
+Inhalt. Die drei Varianten von `responses` liefern unterschiedliche `content_type`-Werte;
+mit `-i` werden die Header mit ausgegeben, nicht nur der Antwort-Rumpf:
+
 [EC] Rufen Sie alle drei Response-Typen nacheinander auf:
 
 ```bash
-curl "http://127.0.0.1:8071/responses/"
-curl "http://127.0.0.1:8071/responses/?type=html"
-curl "http://127.0.0.1:8071/responses/?type=json"
+curl -s -i "http://127.0.0.1:8071/responses/"
+curl -s -i "http://127.0.0.1:8071/responses/?type=html"
+curl -s -i "http://127.0.0.1:8071/responses/?type=json"
 ```
 
-[EQ] Ein Browser stellt dieselbe zurückgegebene Zeichenkette je nach `content_type`
-unterschiedlich dar. Was entscheidet also darüber, wie eine Antwort angezeigt wird: der
-Inhalt selbst oder der mitgesendete `content_type`?
+[EQ] Welchen `Content-Type`-Wert zeigt jede der drei Antworten in der Kopfzeile
+`Content-Type: ...`? Bei welcher der drei unterscheidet er sich vom Standardwert der beiden
+anderen, und an welcher Stelle im Code wurde das festgelegt?
 <!-- time estimate: 20 min -->
 
 ### Response-Objekte: redirect() für Weiterleitungen
@@ -341,11 +341,13 @@ Und was bedeutet der erhaltene HTTP-Statuscode?
 [ENDHINT]
 <!-- time estimate: 20 min -->
 
-### `reverse()`: benannte Routen für Wartbarkeit
+### `urls.py` wartbar halten: `reverse()` für benannte Routen
 
-Jede Route in `urls.py` hat bereits einen `name` (z. B. `name="student_detail"`); diese
-Namen dienten bisher nur der Übersicht. Mit `reverse()` lässt sich aus einem solchen Namen
-zur Laufzeit die passende URL erzeugen, statt sie fest in den Code zu schreiben:
+Jede Route in `urls.py` hat bereits einen `name` (z. B. `name="student_detail"`); bisher
+diente dieser Name nur als Sprungziel für `redirect()`, wie in `redirect_example` oben. Mit
+`reverse()` lässt sich aus einem solchen Namen an beliebiger Stelle im Code zur Laufzeit die
+passende URL erzeugen — nicht nur als Ziel eines Redirects, sondern überall dort, wo eine
+URL gebraucht wird, etwa später in Templates:
 
 ```
 reverse(viewname, args=[...])
@@ -362,7 +364,10 @@ url = reverse("student_detail", args=[2])  # ergibt "/students/2/"
 
 Der Vorteil: Ändert sich später das URL-Muster in `urls.py` (z. B. von `students/` zu
 `teilnehmer/`), passt sich jeder mit `reverse()` erzeugte Link automatisch an; nur die
-Route selbst muss geändert werden, nicht jede Stelle im Code, die auf sie verweist.
+Route selbst muss geändert werden, nicht jede Stelle im Code, die auf sie verweist. Das ist
+ein zentrales Feature von Django: Eine konsequent mit benannten Routen und `reverse()`
+geschriebene Anwendung lässt sich jederzeit lokal umstrukturieren, ohne dass an verstreuten
+Stellen im Code oder in Templates von Hand nachgezogen werden muss.
 
 In einer View lässt sich das erzeugte Ergebnis direkt an `redirect()` übergeben, etwa nach
 diesem Schema:
@@ -386,10 +391,9 @@ Name `student_redirect`.
 curl -s -i http://127.0.0.1:8071/students/redirect/
 ```
 
-[EQ] Der `Location`-Header zeigt auf `/students/1/`. Stimmt das mit der ID überein, die Sie
-in der View an `reverse()` übergeben haben, und wie hat `reverse()` aus dem Routennamen diese
-URL erzeugt?
-<!-- time estimate: 20 min -->
+[EQ] Der `Location`-Header zeigt auf `/students/1/`. Wie hat `reverse()` aus dem Routennamen
+diese URL erzeugt?
+<!-- time estimate: 15 min -->
 
 [EQ] Stellen Sie sich vor, die Route für die Studierenden-Detailseite soll künftig nicht
 mehr `students/<int:student_id>/`, sondern `teilnehmer/<int:student_id>/` heißen. Wie viele
@@ -397,6 +401,11 @@ Stellen im Code müssten Sie anpassen, wenn Sie überall fest codierte Links wie
 `"/students/1/"` verwendet hätten? Wie viele Stellen, wenn Sie stattdessen konsequent
 `reverse("student_detail", args=[1])` verwendet hätten?
 <!-- time estimate: 5 min -->
+
+[EQ] Schauen Sie sich Ihre `urls.py` jetzt komplett an: Die Reihenfolge der Einträge folgt
+bisher nur der Reihenfolge, in der die Views in dieser Aufgabe entstanden sind. Nennen Sie
+mindestens zwei sinnvolle Arten, die Einträge stattdessen zu sortieren oder zu gruppieren.
+<!-- time estimate: 10 min -->
 
 ### Weiterführend
 
@@ -419,8 +428,10 @@ Stellen im Code müssten Sie anpassen, wenn Sie überall fest codierte Links wie
 
 **Knackpunkte:**
 
-- [EREFR::3]/[EREFR::9]: `post_data` prüft `request.method`; `redirect_example` gibt eine
-  `redirect()`-Antwort zurück (kein `HttpResponse`).
+- [EREFR::13]/[EREFQ::9]: `student_redirect` kombiniert `reverse("student_detail", args=[1])`
+  mit `redirect(...)`; ein falscher Routenname oder ein fehlendes `args` führt zu einem
+  Laufzeitfehler statt zur erwarteten Weiterleitung. Student erkennt, dass `reverse()` den
+  übergebenen Routennamen tatsächlich in `urls.py` nachschlägt, statt die URL nur zu raten.
 - [EREFQ::8]: Student erkennt, dass eine nicht existierende ID zu einem Fehler führt, weil
   `.objects.get()` (bereits aus [PARTREF::django-model] bekannt) ohne passenden Treffer eine
   Exception auslöst; derselbe Mechanismus, nur diesmal über eine URL statt über die Shell
