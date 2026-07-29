@@ -264,7 +264,7 @@ damit an `required` vorbei: Was würde in der View passieren, und woran liegt da
 
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und registrieren Sie einen Studierenden
 mit dem Namen "Tom Fischer", Alter `20` und der E-Mail "tom@example.com". Auf welcher Seite
-landen Sie danach? Rufen Sie anschließend zusätzlich `http://127.0.0.1:8071/students/` auf: 
+landen Sie danach? Rufen Sie anschließend zusätzlich `http://127.0.0.1:8071/students/` auf:
 Woran erkennen Sie dort, dass Ihre Eingaben tatsächlich in
 der Datenbank gespeichert wurden (und nicht nur zurückgespiegelt)? Warum ist für die
 Registrierung POST die richtige Methode und nicht GET?
