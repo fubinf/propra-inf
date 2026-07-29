@@ -8,7 +8,7 @@ assumes: curl
 
 [SECTION::goal::idea,experience]
 
-- Ich kenne Djangos Bordmittel für Nutzer-Rückmeldungen und für Zugriffsschutz und habe sie
+- Ich kenne Djangos Bordmittel für Nutzer-Rückmeldungen und für Schutzmechanismen und habe sie
   an eigenem Code ausprobiert.
 - Ich weiß grob, welche weiteren fortgeschrittenen Bausteine Django bietet.
 
@@ -73,7 +73,7 @@ angegebene Zeichen, zu einem einzigen Text aneinander. Konkretes Beispiel:
 Bei `zutaten = ["Mehl", "Zucker", "Eier"]` ergibt das `Mehl + Zucker + Eier`; bei einer
 leeren Liste bleibt die Ausgabe leer.
 
-[ER] Fügen Sie in `base.html` direkt am Anfang von `{% block content %}` eine Zeile ein,
+[ER] Fügen Sie in `base.html` unmittelbar vor der Zeile `{% block content %}` eine Zeile ein,
 die `messages` mit demselben Filter und dem Trennzeichen ", " ausgibt.
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
@@ -93,10 +93,10 @@ Beim zweiten Bordmittel geht es um den CSRF-Schutz selbst, den Sie aus
 [PARTREF::django-form] kennen. Er wird nicht vom `{% csrf_token %}`-Tag allein
 durchgesetzt, sondern von einer Middleware, die jeden
 POST-Request vorab prüft. Middlewares sind in `settings.py` in einer Liste eingetragen und
-wirken auf jeden Request. Öffnen Sie `settings.py` im Konfigurationsordner
-`meinprojekt/meinprojekt/` und kommentieren Sie in `MIDDLEWARE` die folgende Zeile aus:
+wirken auf jeden Request.
 
-[ER] Kommentieren Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
+[ER] Öffnen Sie `settings.py` im Konfigurationsordner `meinprojekt/meinprojekt/` und
+kommentieren Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
 
 [EC] Der Entwicklungsserver bemerkt die Änderung von selbst (sein Autoreloader beobachtet
 alle `.py`-Dateien, auch `settings.py`, und startet den Prozess bei einer Änderung
