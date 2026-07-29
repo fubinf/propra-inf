@@ -29,13 +29,13 @@ werden.
 [SECTION::instructions::detailed]
 
 Sie arbeiten weiter mit der App `webapp`. In [PARTREF::django-project] haben Sie bereits ein
-erstes Template `hello.html` angelegt, das die `hello`-View mit `render()` anzeigt. Darauf
+erstes Template `hello.html` angelegt, das die `hello`-View mit `render()` ausliefert. Darauf
 bauen die folgenden Schritte auf.
 
 Starten Sie für die folgenden Schritte den Entwicklungsserver mit
 `python manage.py runserver 8071` und lassen Sie ihn laufen, damit Sie die Seiten im Browser
 bzw. mit `curl` aufrufen können. Alle URLs und Befehle unten verwenden den Port 8071; falls
-Sie einen anderen Port betreiben, passen Sie sie entsprechend an.
+Sie den Entwicklungsserver auf einem anderen Port betreiben, passen Sie sie entsprechend an.
 
 ### Aufräumen: nicht mehr benötigte Views
 
@@ -52,9 +52,9 @@ Importe (`csrf_exempt`, `redirect`, `reverse`) sowie ihre Routen aus `urls.py`. 
 ### Template-Variablen und Context
 
 Beim Aufruf von `render()` haben Sie bisher nur eine einzige Variable (`message`) an das
-Template übergeben. Zur Erinnerung aus [PARTREF::django-project] hat `render()` die Form
+Template übergeben. Wie Sie aus [PARTREF::django-project] wissen, hat `render()` die Form
 
-```
+```python
 render(request, template_name, context)
 ```
 
@@ -143,8 +143,8 @@ Schleifenkörper und das optionale `{% empty %}`-Tag für den Fall einer leeren 
 um eine Liste `hobbies` mit den Werten `Programmieren`, `Lesen`, `Sport`. Stellen Sie
 `hobbies` im `<body>` von `hello.html` innerhalb des `{% if is_logged_in %}`-Zweigs dar: eine
 Überschrift `Ihre Hobbys:` (`<h2>`), darunter die Hobbys als `<ul>`-Liste mit `{% for %}`
-und einem `{% empty %}`-Zweig, der als Ersatztext für den Fall einer leeren Liste den Satz
-"Keine Hobbys angegeben" in einem Listenelement anzeigt.
+und einem `{% empty %}`-Zweig, der für eine leere Liste "Keine Hobbys angegeben" in einem
+Listenelement anzeigt.
 
 [EQ] Setzen Sie `hobbies` in der View auf eine leere Liste `[]` und aktualisieren Sie die
 Seite. Was wird angezeigt, und welches Tag ist dafür verantwortlich?
@@ -157,8 +157,8 @@ Setzen Sie `hobbies` in der View wieder auf die ursprüngliche Liste
 
 Bisher haben Sie nur Testdaten direkt im `context` der View angegeben. Wie Sie aus
 [PARTREF::django-model] wissen, liefert `Student.objects.all()` alle gespeicherten
-`Student`-Objekte aus der Datenbank; diese lassen sich genauso wie jede andere Liste mit
-`{% for %}` darstellen.
+`Student`-Objekte aus der Datenbank; im Template lässt sich das Ergebnis genauso wie eine
+Liste mit `{% for %}` durchlaufen.
 
 Um Werte beim Anzeigen aufzubereiten, bietet die Template-Sprache zusätzlich **Filter**: Ein
 Filter wird mit `|` hinter einer Variablen angewendet, nach folgendem Schema:
@@ -271,9 +271,9 @@ curl -s http://127.0.0.1:8071/students/
 
 Neben der gemeinsamen Struktur gehört zum Aussehen einer Seite meist auch CSS (Syntax und
 Einbindung kennen Sie aus [PARTREF::css-Einführung]). Solche CSS-, JavaScript- und
-Bilddateien werden als **statische Dateien** bezeichnet. Django
-findet sie automatisch im Ordner `static/` einer registrierten App, analog dazu, wie
-Templates im `templates/`-Ordner gefunden werden. Im Template bindet das `{% static %}`-Tag
+Bilddateien werden als **statische Dateien** bezeichnet. Django findet sie automatisch im
+Ordner `static/` einer registrierten App, analog dazu, wie Templates im `templates/`-Ordner
+gefunden werden. Im Template bindet das `{% static %}`-Tag
 sie ein; dazu muss `{% load static %}` am Dateianfang stehen, nach folgendem Schema:
 
 ```html
@@ -320,14 +320,14 @@ haben, nach folgendem Schema:
 setzt: einen auf die Route `hello` mit dem Text "Start" und einen auf die Route
 `students_list` mit dem Text "Studierendenliste".
 
-Anders als eben braucht diese Route ein Argument (die `student_id`); das obige Schema deckt
-nur die argumentlose Form ab. Wie sich einer `{% url %}`-Aufruf ein Argument mitgeben lässt,
-finden Sie im Abschnitt zu `url` der
+Auch die Detailseiten der Studierenden lassen sich so verlinken. Deren Route
+`student_detail` (aus [PARTREF::django-view]) braucht allerdings ein Argument, die
+`student_id`, und das obige Schema deckt nur die argumentlose Form ab. Wie sich einem
+`{% url %}`-Aufruf ein Argument mitgeben lässt, finden Sie im Abschnitt zu `url` der
 [Django-Doku zu Built-in template tags](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#url).
 
 [ER] Verlinken Sie in `students_list.html` zusätzlich jeden Studierendennamen mit `{% url %}`
-auf dessen Detailseite: Die Route `student_detail` (aus [PARTREF::django-view]) erwartet
-dabei die `student_id` als Argument.
+auf dessen Detailseite.
 
 [EC] Sehen Sie sich erneut den Quelltext an und achten Sie auf die `<nav>`-Links sowie die
 Links zu den Detailseiten:
