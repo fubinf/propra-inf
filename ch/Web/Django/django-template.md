@@ -124,7 +124,7 @@ Neben Variablen (`{{ ... }}`) kennt die Template-Sprache auch Tags für Logik, g
 [ER] Erweitern Sie den `<body>` von `hello.html` um eine bedingte Darstellung, die von der
 Variablen `is_logged_in` abhängt: Wenn sie zutrifft, zeigen Sie einen Absatz `<p>` mit dem
 Text "Willkommen zurück, " gefolgt vom Wert von `user_name` und einem Ausrufezeichen;
-andernfalls einen Absatz `<p>` mit dem Text "Bitte melden Sie sich an.".
+andernfalls einen Absatz `<p>` mit dem Text "Bitte melden Sie sich an."
 
 [EQ] Ändern Sie in der View `is_logged_in` auf `False` und aktualisieren Sie die Seite. Was
 wird jetzt angezeigt, und welcher Teil des Templates ist dafür verantwortlich?
@@ -212,8 +212,8 @@ oder interessantesten, und warum?
 ### Template-Vererbung
 
 Sie haben jetzt zwei Seiten, `hello.html` und `students_list.html`, die beide ihren
-kompletten `<head>`-Bereich sowie eine gemeinsame Kopf- und Fußzeile selbst ausschreiben
-müssten.
+kompletten `<head>`-Bereich einzeln ausschreiben. Führen Sie zusätzlich eine gemeinsame
+Kopf- oder Fußzeile ein, müssten Sie diese in beiden Dateien duplizieren.
 
 [EQ] Wenn Sie eine gemeinsame Kopf- oder Fußzeile für beide Seiten einführen und diese
 später ändern: An welchen Stellen müssten Sie die Änderung vornehmen? Überlegen Sie, welches
@@ -308,9 +308,9 @@ damit auch `students_list.html` das CSS erhält?
 Damit Nutzer zwischen den Seiten wechseln können, braucht `base.html` eine Navigation:
 das semantische Element `<nav>` markiert einen Block mit Navigationslinks. Für die Links
 verwenden Sie nicht fest codierte Pfade wie `href="/students/"`, sondern das
-`{% url %}`-Tag mit dem Routennamen; das ist die Template-Seite der Reverse Resolution,
-deren Python-Seite (`reverse()`) Sie in [PARTREF::django-view] kennengelernt haben, nach
-folgendem Schema:
+`{% url %}`-Tag mit dem Routennamen; das ist die Template-Seite derselben namensbasierten
+Auflösung, deren Python-Seite (`reverse()`) Sie in [PARTREF::django-view] kennengelernt
+haben, nach folgendem Schema:
 
 ```html
 <a href="{% url 'routenname' %}">Linktext</a>
