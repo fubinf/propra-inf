@@ -1,6 +1,6 @@
 title: Django Template System
 stage: alpha
-timevalue: 2
+timevalue: 2.25
 difficulty: 2
 requires: django-view
 assumes: html-erste-Schritte, html-Semantik, css-Einführung, curl
@@ -44,9 +44,10 @@ Sie einen anderen Port betreiben, passen Sie sie entsprechend an.
 `redirect_example`, `student_redirect`); keine davon wird in den folgenden Aufgaben noch
 gebraucht.
 
-Entfernen Sie diese sieben Funktionen aus `views.py`, die dadurch unnötig gewordenen Importe
-(`csrf_exempt`, `redirect`, `reverse`) sowie ihre Routen aus `urls.py`.
-Behalten Sie `hello` und `student_detail`, die brauchen Sie weiterhin.
+[ER] Entfernen Sie diese sieben Funktionen aus `views.py`, die dadurch unnötig gewordenen
+Importe (`csrf_exempt`, `redirect`, `reverse`) sowie ihre Routen aus `urls.py`. Behalten Sie
+`hello` und `student_detail`, die brauchen Sie weiterhin.
+<!-- time estimate: 5 min -->
 
 ### Template-Variablen und Context
 
@@ -101,8 +102,9 @@ und einen passenden Titel. In den folgenden Schritten ändern Sie jeweils nur de
 [ER] Fügen Sie in den `<body>` von `hello.html` `greeting` als Überschrift `<h1>` und
 `user_name` darunter in einem Absatz `<p>` ein (jeweils mit der `{{ ... }}`-Syntax).
 
-[EQ] Rufen Sie `http://127.0.0.1:8071/` im Browser auf. Welche Werte erscheinen anstelle
-der Platzhalter `{{ greeting }}` und `{{ user_name }}`, und woher stammen diese Werte?
+[EQ] Fügen Sie testweise irgendwo in `hello.html` `{{ nichtvorhanden }}` ein, eine Variable,
+die im `context` gar nicht existiert, und rufen Sie `http://127.0.0.1:8071/` im Browser auf.
+Was erscheint an dieser Stelle? Entfernen Sie die Testzeile anschließend wieder.
 <!-- time estimate: 15 min -->
 
 ### Bedingte Darstellung mit `{% if %}`
@@ -167,9 +169,10 @@ Filter wird mit `|` hinter einer Variablen angewendet, nach folgendem Schema:
 
 Für die Studierendenliste sind drei Filter nützlich:
 
-- `title`: wandelt Text in Titelschreibweise um.
-- `default:"Noch keine Note"`: zeigt einen Ersatztext, falls der Wert `None` ist
-  (`grade_average` ist laut [PARTREF::django-model] optional).
+- `upper`: wandelt Text durchgehend in Großbuchstaben um.
+- `default:"Noch keine Note"`: zeigt einen Ersatztext, falls der Wert leer ist oder als
+  falsch gilt (z. B. `None`, leerer String, `0`; `grade_average` ist laut
+  [PARTREF::django-model] optional und daher oft `None`).
 - `yesno:"Aktiv,Inaktiv"`: übersetzt einen Wahrheitswert in zwei wählbare Textalternativen.
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `students_list`, die mit `.objects.all()`
@@ -179,9 +182,10 @@ alle `Student`-Objekte lädt und sie unter dem Context-Schlüssel `students` an 
 [ER] Legen Sie `webapp/templates/students_list.html` an, mit derselben Grundstruktur wie
 `hello.html` (`<!DOCTYPE>`, `<html lang="de">`, `<head>` mit `<meta charset>` und Titel,
 `<body>`). Zeigen Sie im `<body>` eine Überschrift `Alle Studierenden` (`<h2>`), darunter die
-Studierenden als `<ul>`-Liste mit `{% for %}`: je Studierendem den Namen (mit `title`),
+Studierenden als `<ul>`-Liste mit `{% for %}`: je Studierendem den Namen (mit `upper`),
 gefolgt von " — Note: " und dem Notendurchschnitt (mit `default:"Noch keine Note"`), gefolgt
-von " — " und dem Aktivstatus (mit `yesno:"Aktiv,Inaktiv"`).
+von " — " und dem Aktivstatus (mit `yesno:"Aktiv,Inaktiv"`), sowie einem `{% empty %}`-Zweig
+mit dem Text "Noch keine Studierenden registriert." in einem Listenelement.
 
 [ER] Fügen Sie in `urls.py` die Route für `students_list` hinzu: Pfad `students/`, Name
 `students_list`.
@@ -196,6 +200,14 @@ Weber leer.
 Weber (kein Notendurchschnitt) und bei Peter Klein (nicht aktiv) anstelle der rohen Werte,
 und welcher Filter ist jeweils verantwortlich?
 <!-- time estimate: 20 min -->
+
+`upper`, `default` und `yesno` sind nur drei von vielen eingebauten Filtern.
+
+[EQ] Lesen Sie die vollständige Liste in der
+[Django-Doku zu Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-filter-reference)
+durch (Abschnitt "Built-in filter reference"). Welchen Filter finden Sie dort am nützlichsten
+oder interessantesten, und warum?
+<!-- time estimate: 10 min -->
 
 ### Template-Vererbung
 
@@ -233,7 +245,9 @@ semantische HTML-Elemente wie `<header>` und `<footer>` (siehe [PARTREF::html-Se
 [ER] Wandeln Sie `hello.html` in ein Kind-Template um: Ersetzen Sie `<!DOCTYPE>`, `<html>`,
 `<head>` und die `<body>`-Umschließung durch `{% extends "base.html" %}` und packen Sie
 Ihren bisherigen `<body>`-Inhalt (Überschrift, Bedingungsblock mit Hobbys) in einen Block
-`content`.
+`content`. Stufen Sie dabei die Überschrift `<h1>{{ greeting }}</h1>` zu `<h2>{{ greeting }}</h2>`
+herab: Die Seitenüberschrift kommt jetzt aus `base.html`, ein zweites `<h1>` wäre nicht mehr
+korrekt.
 
 [ER] Wandeln Sie `students_list.html` auf dieselbe Weise in ein Kind-Template um.
 
@@ -306,6 +320,11 @@ folgendem Schema:
 setzt: einen auf die Route `hello` mit dem Text "Start" und einen auf die Route
 `students_list` mit dem Text "Studierendenliste".
 
+Anders als eben braucht diese Route ein Argument (die `student_id`); das obige Schema deckt
+nur die argumentlose Form ab. Wie sich einer `{% url %}`-Aufruf ein Argument mitgeben lässt,
+finden Sie im Abschnitt zu `url` der
+[Django-Doku zu Built-in template tags](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#url).
+
 [ER] Verlinken Sie in `students_list.html` zusätzlich jeden Studierendennamen mit `{% url %}`
 auf dessen Detailseite: Die Route `student_detail` (aus [PARTREF::django-view]) erwartet
 dabei die `student_id` als Argument.
@@ -347,18 +366,18 @@ Template (`{% url %}`) zur Verfügung zu haben?
 
 **Knackpunkte:**
 
-- [EREFR::5] + [EREFR::6]: `students_list` lädt echte `Student`-Objekte aus der Datenbank
+- [EREFR::1]: `views.py`/`urls.py` enthalten nach dem Aufräumen keine der sieben
+  Demo-Funktionen aus [PARTREF::django-view] und deren Importe/Routen mehr; das ist
+  Voraussetzung für [PARTREF::django-form].
+- [EREFR::6] + [EREFR::7]: `students_list` lädt echte `Student`-Objekte aus der Datenbank
   (`.objects.all()`), nicht erfundene Testdaten; `students_list.html` wendet die drei
   Filter korrekt auf die passenden Felder an.
-- [EREFR::10]: `students_list.html` beginnt nach der Umwandlung mit
-  `{% extends "base.html" %}` und füllt nur den Block `content`; es enthält **nicht** mehr
-  selbst `<!DOCTYPE>`/`<head>`/`<body>`; diese kommen aus `base.html`.
-- [EREFR::13] + [EREFQ::7]: Die Navigation nutzt `{% url 'hello' %}`/
-  `{% url 'students_list' %}` (nicht fest codierte Pfade); Student erkennt, dass
-  `{% url %}` und `reverse()` dieselbe namensbasierte Auflösung sind, sodass eine
-  Routenänderung an beiden Stellen automatisch greift.
-- [EREFR::14]: Der Link je Studierendem nutzt `{% url 'student_detail' student.id %}` mit
-  `student.id` als Argument (nicht ein fest codierter Pfad wie `/students/1/`).
+- [EREFR::14] + [EREFR::15] + [EREFQ::8]: Sowohl die Navigation (`{% url 'hello' %}`/
+  `{% url 'students_list' %}`) als auch der Link je Studierendem
+  (`{% url 'student_detail' student.id %}` mit `student.id` als Argument) verwenden
+  `{% url %}` statt fest codierter Pfade; Student erkennt, dass `{% url %}` und `reverse()`
+  dieselbe namensbasierte Auflösung sind, sodass eine Routenänderung an beiden Stellen
+  automatisch greift.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-template.md]
