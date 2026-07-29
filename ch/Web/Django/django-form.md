@@ -26,10 +26,9 @@ einer View verarbeitet und über ein Model in der Datenbank gespeichert.
 
 [SECTION::instructions::detailed]
 
-Sie arbeiten weiter mit der App `webapp`. Aus den vorherigen Aufgaben stehen Ihnen bereits
-das `Student`-Model ([PARTREF::django-model]), Views mit URL-Routing ([PARTREF::django-view])
-und das Template-System ([PARTREF::django-template]) zur Verfügung. Alle Änderungen finden in
-`webapp` statt.
+Sie arbeiten weiter mit der App `webapp`. Aus den vorherigen Aufgaben stehen Ihnen dort
+bereits das `Student`-Model ([PARTREF::django-model]), Views mit URL-Routing
+([PARTREF::django-view]) und das Template-System ([PARTREF::django-template]) zur Verfügung.
 
 Starten Sie für die folgenden Schritte in einer separaten Shell den Entwicklungsserver mit
 `python manage.py runserver 8071` und lassen Sie ihn laufen. Alle Befehle und Links unten
@@ -52,16 +51,16 @@ sendet seine Daten mit einer von zwei Methoden; welche zum Einsatz kommt, legt d
 
 ### GET-Formular: Suche
 
-Mit diesem Unterschied im Hinterkopf bauen Sie jetzt ein erstes konkretes Formular: eine
-Suche nach Studierenden. Da eine Suche den Server-Zustand nicht verändert, ist GET hier
-die passende Methode. In [PARTREF::django-view] haben Sie GET-Parameter bereits mit
-`request.GET.get(key, default)` gelesen, dort aber per `curl` von Hand an die URL
-angehängt. Bei einem `<form method="get">` übernimmt der Browser das für Sie: Beim Absenden
-hängt er jedes `<input name="...">` automatisch als `?name=wert` an die im `action`
-angegebene URL an, genau die Parameter, die Sie mit `request.GET.get(...)` auslesen. Die
-Suche greift auf die in [PARTREF::django-model] definierten `Student`-Objekte zu, über
-`Student.objects.filter(name=...)`, dieselbe exakte Übereinstimmungssuche, die Sie dort
-bereits kennengelernt haben. Ein Formular mit GET-Methode hat folgende Bestandteile:
+Als erstes konkretes Formular bauen Sie eine Suche nach Studierenden. Da eine Suche den
+Server-Zustand nicht verändert, ist GET hier die passende Methode. In [PARTREF::django-view]
+haben Sie GET-Parameter bereits mit `request.GET.get(key, default)` gelesen, dort aber per
+`curl` von Hand an die URL angehängt. Bei einem `<form method="get">` übernimmt der Browser
+das für Sie: Beim Absenden hängt er jedes `<input name="...">` automatisch als `?name=wert`
+an die im `action` angegebene URL an, genau die Parameter, die Sie mit
+`request.GET.get(...)` auslesen. Die Suche greift auf die in [PARTREF::django-model]
+definierten `Student`-Objekte zu, über `Student.objects.filter(name=...)`, dieselbe exakte
+Übereinstimmungssuche, die Sie dort bereits kennengelernt haben. Ein Formular mit
+GET-Methode hat folgende Bestandteile:
 
 ```html
 <form action="ZIEL" method="get">
@@ -122,10 +121,11 @@ wird?
 Bei einem POST-Formular verlangt Django ein zusätzliches Sicherheitsmerkmal: das
 `{% csrf_token %}`-Tag. **CSRF** (Cross-Site Request Forgery) bezeichnet einen Angriff, bei
 dem eine fremde Website unbemerkt eine Aktion in Ihrem Namen auslöst, während Sie
-eingeloggt sind. Um das zu verhindern, bettet Django in jedes Formular ein verstecktes,
-an Ihre Sitzung gebundenes Token ein (`{% csrf_token %}`) und akzeptiert einen POST nur, wenn
-dieses Token mitgeschickt wird; eine fremde Seite kann es nicht auslesen und daher kein
-gültiges Formular fälschen. Deshalb gehört `{% csrf_token %}` in **jedes** POST-Formular.
+eingeloggt sind. Um das zu verhindern, weist Django jeden POST ab, der kein gültiges, an
+Ihre Sitzung gebundenes Token mitschickt; eine fremde Seite kann dieses Token nicht auslesen
+und daher kein gültiges Formular fälschen. Das Tag `{% csrf_token %}` ist die Gegenseite
+davon: Es bettet das Token als verstecktes Feld in Ihr eigenes Formular ein, damit dessen
+POSTs akzeptiert werden. Deshalb gehört `{% csrf_token %}` in **jedes** POST-Formular.
 
 [NOTICE]
 In [PARTREF::django-view] hatten Sie eine POST-View versuchsweise mit `@csrf_exempt` vom
@@ -154,7 +154,7 @@ und `results` im Context; bei jeder anderen Anfrage rendert sie `search_post.htm
 leerem Context.
 
 [ER] Erstellen Sie `webapp/templates/search_post.html` als Kind-Template von `base.html`
-(`{% extends "base.html" %}`, Inhalt in `{% block content %}`, Titel `Suche (POST)`) mit:
+(`{% extends "base.html" %}`, Titel `Suche (POST)`, Inhalt in `{% block content %}`) mit:
 
 - einer Überschrift (`<h1>`) mit dem Text "Suchformular (POST)"
 - darunter einem `<form>` mit `method="post"`, das an `{% url 'search_post' %}` sendet
@@ -226,8 +226,8 @@ dessen Detailseite (Route `student_detail`) weiter; bei jeder anderen Anfrage re
 
 [HINT::Was muss ich zusätzlich importieren?]
 Für diese View brauchen Sie zwei Imports: `from django.shortcuts import redirect` und
-`from django.urls import reverse`. Falls Sie beim Aufräumen in [PARTREF::django-template]
-auch den `redirect`-Import mit entfernt haben, müssen Sie ihn hier wieder ergänzen.
+`from django.urls import reverse`. Beide hatten Sie beim Aufräumen in
+[PARTREF::django-template] entfernt, weil sie dort nicht mehr gebraucht wurden.
 [ENDHINT]
 
 Ein Formular mit mehreren Feldern hat folgende Bestandteile (aus [PARTREF::http-POST]):
@@ -245,7 +245,7 @@ Ein Formular mit mehreren Feldern hat folgende Bestandteile (aus [PARTREF::http-
   Absenden, der Server bekommt davon nichts mit
 
 [ER] Erstellen Sie `webapp/templates/register.html` als Kind-Template von `base.html`
-(`{% extends "base.html" %}`, Inhalt in `{% block content %}`) mit:
+(`{% extends "base.html" %}`, Titel `Registrierung`, Inhalt in `{% block content %}`) mit:
 
 - einer Überschrift (`<h1>`) mit dem Text "Studierenden-Registrierung"
 - darunter einem `<form>` mit `method="post"` (inklusive `{% csrf_token %}`), das an
@@ -265,9 +265,9 @@ damit an `required` vorbei: Was würde in der View passieren, und woran liegt da
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und registrieren Sie einen Studierenden
 mit dem Namen "Tom Fischer", Alter `20` und der E-Mail "tom@example.com". Auf welcher Seite
 landen Sie danach? Rufen Sie anschließend zusätzlich `http://127.0.0.1:8071/students/` auf:
-Woran erkennen Sie dort, dass Ihre Eingaben tatsächlich in
-der Datenbank gespeichert wurden (und nicht nur zurückgespiegelt)? Warum ist für die
-Registrierung POST die richtige Methode und nicht GET?
+Woran erkennen Sie dort, dass Ihre Eingaben tatsächlich in der Datenbank gespeichert wurden
+(und nicht nur zurückgespiegelt)? Warum ist für die Registrierung POST die richtige Methode
+und nicht GET?
 <!-- time estimate: 10 min -->
 
 ### Weiterführend
