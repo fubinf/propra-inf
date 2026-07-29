@@ -64,11 +64,11 @@ print(a[3:])            # Ausgabe: [3, 4, 5, 6, 7, 8, 9]
 - Geben Sie alle Elemente ab Index 2 aus
 - Geben Sie alle Elemente bis Index 5 aus
 
-[EQ] Verwenden Sie das Array aus [EREFR::1]: `a[2]` liefert einen einzelnen Skalar zurück, während `a[2:3]` — obwohl der Slice ebenfalls nur
-ein einziges Element enthält — ein Array mit diesem einen Element zurückgibt. Warum unterscheiden
-sich die Rückgabetypen grundsätzlich, unabhängig davon, wie viele Elemente ausgewählt werden? Was
-gibt `a[7:3]` zurück (Start größer als Stop, positive Schrittweite), und warum kommt es dabei zu
-keinem Fehler?
+[EQ] Verwenden Sie das Array aus [EREFR::1]: `a[2]` liefert einen einzelnen Skalar zurück,
+während `a[2:3]` — obwohl der Slice ebenfalls nur ein einziges Element enthält — ein Array mit
+diesem einen Element zurückgibt. Warum unterscheiden sich die Rückgabetypen grundsätzlich,
+unabhängig davon, wie viele Elemente ausgewählt werden? Was gibt `a[7:3]` zurück (Start größer
+als Stop, positive Schrittweite), und warum kommt es dabei zu keinem Fehler?
 
 <!-- time estimate: 15 min -->
 
@@ -228,6 +228,14 @@ selected = x[[4, 2, 1, 7], :]    # Zeilen 4,2,1,7 in dieser Reihenfolge
 - Verwendung negativer Indizes für die letzten beiden Zeilen
 - Kombinierte Zeilen- und Spaltenauswahl für eine 3x2 Teilmatrix
 
+[HINT::Beim letzten Teilschritt bekomme ich einen `IndexError`]
+Zeilen- und Spaltenindizes zusammen in einen Zugriff zu schreiben (`arr[[...], [...]]`) führt hier
+nicht zum Ziel: Das ist die Integer-Array-Indexierung aus dem vorigen Abschnitt, die die beiden
+Listen paarweise kombiniert und deshalb gleich viele Einträge in beiden erwartet.
+Die beiden Formen aus diesem Abschnitt liefern aber jeweils selbst wieder ein Array — wenden Sie
+sie also nacheinander an, statt sie in einen einzigen Zugriff zu packen.
+[ENDHINT]
+
 <!-- time estimate: 15 min -->
 
 ### Erweiterte Indexierung mit np.ix_
@@ -263,10 +271,12 @@ result = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
 [ER] Verwenden Sie `np.ix_` für komplexe Indexierungsoperationen:
 
 - Extrahieren Sie aus einem 8x4 Array eine Teilmatrix mit den Zeilen [1,5,7,2] und Spalten [0,3,1,2]
-- Führen Sie zum Vergleich auch die normale Integer-Array-Indexierung `x[[1,5,7,2], [0,3,1,2]]` mit denselben Indizes aus
+- Führen Sie zum Vergleich auch die normale Integer-Array-Indexierung `x[[1,5,7,2], [0,3,1,2]]`
+  mit denselben Indizes aus
 
-[EQ] Vergleichen Sie die beiden Ergebnisse aus [EREFR::6]: Wie unterscheiden sie sich in Form und Inhalt,
-und warum? Wann würden Sie `np.ix_` gegenüber normaler Integer-Array-Indexierung einsetzen?
+[EQ] Vergleichen Sie die beiden Ergebnisse aus [EREFR::6]: Wie unterscheiden sie sich in Form
+und Inhalt, und warum? Wann würden Sie `np.ix_` gegenüber normaler Integer-Array-Indexierung
+einsetzen?
 
 [HINT::Warum kartesisches Produkt statt Paar?]
 Überlegen Sie zuerst, warum `arr[[1,2], [0,1]]` nur zwei einzelne Elemente liefert (die
@@ -326,13 +336,15 @@ und führen Sie eine umfassende Datenmanipulation durch:
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-### Knackpunkte
+**Knackpunkte:**
 
-- [EREFR::1]: Alle vier Indexierungs-/Slicing-Ergebnisse korrekt (Einzelelement, Schrittweite, ab Index, bis Index)
+- [EREFR::1]: Alle vier Indexierungs-/Slicing-Ergebnisse korrekt (Einzelelement, Schrittweite,
+  ab Index, bis Index)
 - [EREFR::4]: Alle vier Boolean-Filter korrekt (größer als 25, gerade Zahlen, NaN-Filterung,
   kombinierte Bedingung mit `&`)
-- [EREFR::6] + [EREFQ::5]: `np.ix_` liefert kartesisches Produkt und 2D-Teilmatrix; normale Integer-Array-Indexierung
-  liefert paarweise Kombination und 1D-Array. Unterschied und Anwendungsfall korrekt erklärt
+- [EREFR::6] + [EREFQ::5]: `np.ix_` liefert kartesisches Produkt und 2D-Teilmatrix; normale
+  Integer-Array-Indexierung liefert paarweise Kombination und 1D-Array. Unterschied und
+  Anwendungsfall korrekt erklärt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-index-slice.md]
