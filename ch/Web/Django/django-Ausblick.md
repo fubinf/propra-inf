@@ -28,7 +28,7 @@ View, Template, Formular) funktionieren.
 
 [SECTION::instructions::detailed]
 
-Sie arbeiten weiter mit der App `webapp` aus [PARTREF::django-form]. 
+Sie arbeiten weiter mit der App `webapp` aus [PARTREF::django-form].
 
 ### Bestätigungsmeldungen mit `django.contrib.messages`
 
@@ -120,8 +120,8 @@ Das dritte Bordmittel ist eine weitere Sicherheits-Middleware: `XFrameOptionsMid
 setzt bei jeder Antwort den Header `X-Frame-Options: DENY`, der verhindert, dass Ihre
 Seite in einem `<iframe>` auf einer fremden Website eingebettet wird.
 
-[ER] Öffnen Sie `settings.py` im Konfigurationsordner
-`meinprojekt/meinprojekt/` und kommentieren Sie in `MIDDLEWARE` die folgende Zeile aus
+[ER] Öffnen Sie `settings.py` im Konfigurationsordner `meinprojekt/meinprojekt/` und
+kommentieren Sie in `MIDDLEWARE` die Zeile mit `XFrameOptionsMiddleware` aus.
 
 [EC] Der Entwicklungsserver bemerkt die Änderung von selbst; warten Sie kurz. Senden Sie
 danach den folgenden Aufruf, der nur die Header abruft (`-I`): einmal jetzt und ein
