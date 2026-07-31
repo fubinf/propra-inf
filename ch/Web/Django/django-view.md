@@ -49,9 +49,10 @@ def my_view(request):
     return HttpResponse("Hello World!")
 ```
 
-[EQ] Schlagen Sie in der Django-Dokumentation zu
-[Writing views](https://docs.djangoproject.com/en/stable/topics/http/views/) nach: Welche
-zwei Bestandteile sind laut dieser Seite bei jeder View-Funktion notwendig?
+[EQ] Der Name der View-Funktion (hier `my_view`) ist frei wählbar. Schlagen Sie in der
+Django-Dokumentation zu
+[Writing views](https://docs.djangoproject.com/en/stable/topics/http/views/) nach: Wodurch
+entscheidet sich laut dieser Seite trotzdem, unter welcher URL eine View erreichbar ist?
 <!-- time estimate: 10 min -->
 
 ### Request-Attribute: GET-Parameter verarbeiten
@@ -157,10 +158,11 @@ Unterschied bezüglich der URL-Anzeige und Datenübertragung zwischen GET und PO
 Neben `request.GET` und `request.POST` bietet das Request-Objekt weitere nützliche Attribute,
 etwa zur verwendeten HTTP-Methode oder zum aufgerufenen Pfad.
 
-[ER] Schreiben Sie in `views.py` eine View-Funktion `request_info`, die zwei Angaben aus dem
-Request als `HttpResponse` im Format `Methode: <...>, Pfad: <...>` zurückgibt (die
-verwendete HTTP-Methode und den aufgerufenen Pfad; die passenden Attribute finden Sie im
-Abschnitt "Attributes" der
+[ER] Schreiben Sie in `views.py` eine View-Funktion `request_info`, versehen mit
+`@csrf_exempt` (wie schon bei `post_data`, damit Sie sie gleich auch per POST aufrufen
+können), die zwei Angaben aus dem Request als `HttpResponse` im Format
+`Methode: <...>, Pfad: <...>` zurückgibt (die verwendete HTTP-Methode und den aufgerufenen
+Pfad; die passenden Attribute finden Sie im Abschnitt "Attributes" der
 [Django-Doku zu `HttpRequest`](https://docs.djangoproject.com/en/stable/ref/request-response/#attributes)).
 
 [ER] Fügen Sie in `urls.py` die Route für `request_info` hinzu: Pfad `request-info/`, Name
@@ -172,8 +174,15 @@ Abschnitt "Attributes" der
 curl http://127.0.0.1:8071/request-info/
 ```
 
-[EQ] Warum ist die HTTP-Methode immer `GET`, wenn Sie eine URL direkt im Browser aufrufen?
-<!-- time estimate: 15 min -->
+[EC] Rufen Sie dieselbe View nun per POST auf:
+
+```bash
+curl -X POST http://127.0.0.1:8071/request-info/
+```
+
+[EQ] Worin unterscheiden sich die beiden Ausgaben? Wie könnte eine View `request.method`
+nutzen, um je nach HTTP-Methode unterschiedlich zu reagieren?
+<!-- time estimate: 20 min -->
 
 ### Response-Objekte: HttpResponse
 
@@ -204,9 +213,8 @@ Den `Content-Type`-Header und die dahinterstehenden MIME-Types kennen Sie bereit
 [PARTREF::http-GET] (siehe dort auch die
 [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types)-Übersicht): Er
 entscheidet, als was der Browser eine Antwort interpretiert, unabhängig vom eigentlichen
-Inhalt. Die drei Varianten von `responses` liefern unterschiedliche `content_type`-Werte.
-Mit `-i` gibt `curl` die Header mit aus, nicht nur den Antwort-Rumpf, mit `-s` bleibt die
-Ausgabe knapp.
+Inhalt. Mit `-i` gibt `curl` die Header mit aus, nicht nur den Antwort-Rumpf, mit `-s` bleibt
+die Ausgabe knapp.
 
 [EC] Rufen Sie alle drei Response-Typen nacheinander auf:
 
@@ -361,9 +369,9 @@ from django.urls import reverse
 url = reverse("student_detail", args=[2])  # ergibt "/students/2/"
 ```
 
-Der Vorteil: Ändert sich später das URL-Muster in `urls.py` (z. B. von `students/` zu
-`teilnehmer/`), passt sich jeder mit `reverse()` erzeugte Link automatisch an; nur die
-Route selbst muss geändert werden, nicht jede Stelle im Code, die auf sie verweist. Das ist
+Der Vorteil: Ändert sich später das URL-Muster in `urls.py`, passt sich jeder mit
+`reverse()` erzeugte Link automatisch an; nur die Route selbst muss geändert werden, nicht
+jede Stelle im Code, die auf sie verweist. Das ist
 ein zentrales Feature von Django: Eine konsequent mit benannten Routen und `reverse()`
 geschriebene Anwendung lässt sich jederzeit lokal umstrukturieren, ohne dass an verstreuten
 Stellen im Code oder in Templates von Hand nachgezogen werden muss.
@@ -394,17 +402,27 @@ curl -s -i http://127.0.0.1:8071/students/redirect/
 diese URL erzeugt?
 <!-- time estimate: 15 min -->
 
-[EQ] Stellen Sie sich vor, die Route für die Studierenden-Detailseite soll künftig nicht
-mehr `students/<int:student_id>/`, sondern `teilnehmer/<int:student_id>/` heißen. Wie viele
-Stellen im Code müssten Sie anpassen, wenn Sie überall fest codierte Links wie
-`"/students/1/"` verwendet hätten? Wie viele Stellen, wenn Sie stattdessen konsequent
-`reverse("student_detail", args=[1])` verwendet hätten?
-<!-- time estimate: 5 min -->
+[ER] Ändern Sie versuchsweise in `urls.py` die Route der Detailseite von
+`students/<int:student_id>/` auf `teilnehmer/<int:student_id>/` (nur den Pfad; `views.py`
+bleibt unverändert).
+
+[EC] Rufen Sie danach erneut die Weiterleitung auf:
+
+```bash
+curl -s -i http://127.0.0.1:8071/students/redirect/
+```
+
+[EQ] Worauf zeigt der `Location`-Header jetzt, obwohl Sie an `views.py` nichts geändert
+haben? Was sagt Ihnen das über den Vorteil von `reverse()` gegenüber fest codierten Links?
+
+Machen Sie die Änderung in `urls.py` danach wieder rückgängig: Route wieder auf
+`students/<int:student_id>/` zurückbenennen.
+<!-- time estimate: 10 min -->
 
 [EQ] Schauen Sie sich Ihre `urls.py` jetzt komplett an: Die Reihenfolge der Einträge folgt
 bisher nur der Reihenfolge, in der die Views in dieser Aufgabe entstanden sind. Nennen Sie
 mindestens zwei sinnvolle Arten, die Einträge stattdessen zu sortieren oder zu gruppieren.
-<!-- time estimate: 10 min -->
+<!-- time estimate: 5 min -->
 
 ### Weiterführend
 
@@ -427,17 +445,18 @@ mindestens zwei sinnvolle Arten, die Einträge stattdessen zu sortieren oder zu 
 
 **Knackpunkte:**
 
-- [EREFR::13]/[EREFQ::9]: `student_redirect` kombiniert `reverse("student_detail", args=[1])`
-  mit `redirect(...)`; ein falscher Routenname oder ein fehlendes `args` führt zu einem
-  Laufzeitfehler statt zur erwarteten Weiterleitung. Student erkennt, dass `reverse()` den
-  übergebenen Routennamen tatsächlich in `urls.py` nachschlägt, statt die URL nur zu raten.
 - [EREFQ::8]: Student erkennt, dass eine nicht existierende ID zu einem Fehler führt, weil
   `.objects.get()` (bereits aus [PARTREF::django-model] bekannt) ohne passenden Treffer eine
   Exception auslöst; derselbe Mechanismus, nur diesmal über eine URL statt über die Shell
   ausgelöst.
-- [EREFQ::10]: Student erkennt, dass bei fest codierten Links jede einzelne Stelle im Code
-  manuell angepasst werden müsste, während bei konsequenter Verwendung von `reverse()` nur
-  die Route selbst in `urls.py` geändert werden muss.
+- [EREFR::13]/[EREFQ::9]: `student_redirect` kombiniert `reverse("student_detail", args=[1])`
+  mit `redirect(...)`; ein falscher Routenname oder ein fehlendes `args` führt zu einem
+  Laufzeitfehler statt zur erwarteten Weiterleitung. Student erkennt, dass `reverse()` den
+  übergebenen Routennamen tatsächlich in `urls.py` nachschlägt, statt die URL nur zu raten.
+- [EREFR::15]/[EREFQ::10]: Nach der Umbenennung der Route zeigt der `Location`-Header ohne
+  jede Änderung an `views.py` auf `/teilnehmer/1/`; Student erkennt, dass `reverse()` die
+  URL zur Laufzeit aus dem aktuellen Eintrag in `urls.py` erzeugt, statt eine früher
+  eingebrannte Adresse zu verwenden.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-view.md]

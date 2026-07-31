@@ -128,9 +128,9 @@ davon: Es bettet das Token als verstecktes Feld in Ihr eigenes Formular ein, dam
 POSTs akzeptiert werden. Deshalb gehört `{% csrf_token %}` in **jedes** POST-Formular.
 
 [NOTICE]
-In [PARTREF::django-view] hatten Sie eine POST-View versuchsweise mit `@csrf_exempt` vom
-CSRF-Schutz ausgenommen, um sie ohne Formular testen zu können. Ab jetzt arbeiten Sie mit
-echten Formularen und verwenden daher regulär `{% csrf_token %}` statt `@csrf_exempt`.
+In [PARTREF::django-view] hatten Sie die `post_data`-View versuchsweise mit `@csrf_exempt`
+vom CSRF-Schutz ausgenommen, um sie ohne Formular testen zu können. Ab jetzt arbeiten Sie
+mit echten Formularen und verwenden daher regulär `{% csrf_token %}` statt `@csrf_exempt`.
 [ENDNOTICE]
 
 Ein Formular mit POST-Methode hat dieselben Bestandteile wie eben, mit zwei Unterschieden:
