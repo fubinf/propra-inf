@@ -61,9 +61,9 @@ Text "Registrierung erfolgreich" auf.
 
 Sichtbar wird die Meldung erst, wenn ein Template sie auch anzeigt. Der `messages`-Wert
 selbst ist dafür bereits automatisch in jedem Template verfügbar, ganz ohne dass eine View
-ihn in den Context aufnehmen muss. Zur Anzeige eignet sich ein Filter, den Sie schon aus
-[PARTREF::django-template] kennen (`default`/`yesno`), nur mit einem neuen Namen:
-`|join:trennzeichen` reiht die Elemente eines iterierbaren Werts, getrennt durch das
+ihn in den Context aufnehmen muss. Zur Anzeige dient wieder ein Filter mit Argument, wie Sie
+ihn aus [PARTREF::django-template] von `default`/`yesno` kennen, diesmal allerdings ein
+anderer: `|join:trennzeichen` reiht die Elemente eines iterierbaren Werts, getrennt durch das
 angegebene Zeichen, zu einem einzigen Text aneinander. Konkretes Beispiel:
 
 ```
