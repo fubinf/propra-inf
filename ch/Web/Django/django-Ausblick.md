@@ -89,10 +89,9 @@ dem eine Meldung "verbraucht" wird?
 
 ### CSRF-Middleware kurzzeitig deaktivieren
 
-Beim zweiten Bordmittel geht es um den CSRF-Schutz selbst, den Sie aus
-[PARTREF::django-form] kennen. Er wird nicht vom `{% csrf_token %}`-Tag allein
-durchgesetzt, sondern von einer Middleware, die jeden
-POST-Request vorab prüft. Middlewares sind in `settings.py` in einer Liste eingetragen und
+Beim zweiten Bordmittel geht es um den CSRF-Schutz selbst. Die `CsrfViewMiddleware`, die ihn
+durchsetzt, haben Sie in [PARTREF::django-form] bereits kennengelernt; hier sehen Sie nun,
+woher sie überhaupt kommt: Middlewares sind in `settings.py` in einer Liste eingetragen und
 wirken auf jeden Request.
 
 [ER] Öffnen Sie `settings.py` im Konfigurationsordner `meinprojekt/meinprojekt/` und
