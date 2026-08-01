@@ -78,11 +78,11 @@ GET-Methode hat folgende Bestandteile:
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `search`: liest den GET-Parameter `q`
 aus (Standardwert leerer String), sucht bei nichtleerem `q` mit
-`Student.objects.filter(name=q)` (sonst `[]`) und rendert `search_form.html` mit `q` und
+`Student.objects.filter(name=q)` (sonst `[]`) und rendert `search_get.html` mit `q` und
 `results` im Context. Ruft man die View ganz ohne `q` auf, ist `q` leer und die Seite zeigt
 schlicht das leere Formular.
 
-[ER] Erstellen Sie `webapp/templates/search_form.html` als Kind-Template von `base.html`
+[ER] Erstellen Sie `webapp/templates/search_get.html` als Kind-Template von `base.html`
 (`{% extends "base.html" %}`, Titel `Suche`, Inhalt in `{% block content %}`) mit:
 
 - einer Überschrift (`<h1>`) mit dem Text "Suchformular (GET)"
@@ -105,7 +105,7 @@ curl "http://127.0.0.1:8071/students/1/"
 ```
 
 [EQ] Der erste `curl`-Aufruf liefert einen Link zur Detailseite von Anna Müller. Woher weiß
-das Template `search_form.html`, welche ID es in `{% url 'student_detail' student.id %}`
+das Template `search_get.html`, welche ID es in `{% url 'student_detail' student.id %}`
 einsetzen muss, und was bestätigt Ihnen der dritte Aufruf (`/students/1/`) über diesen Link?
 
 [EQ] Rufen Sie zusätzlich `http://127.0.0.1:8071/search/` im Browser auf und suchen
@@ -121,11 +121,11 @@ wird?
 Bei einem POST-Formular verlangt Django ein zusätzliches Sicherheitsmerkmal: das
 `{% csrf_token %}`-Tag. **CSRF** (Cross-Site Request Forgery) bezeichnet einen Angriff, bei
 dem eine fremde Website unbemerkt eine Aktion in Ihrem Namen auslöst, während Sie
-eingeloggt sind. Um das zu verhindern, weist Django jeden POST ab, der kein gültiges, an
-Ihre Sitzung gebundenes Token mitschickt; eine fremde Seite kann dieses Token nicht auslesen
-und daher kein gültiges Formular fälschen. Das Tag `{% csrf_token %}` ist die Gegenseite
-davon: Es bettet das Token als verstecktes Feld in Ihr eigenes Formular ein, damit dessen
-POSTs akzeptiert werden. Deshalb gehört `{% csrf_token %}` in **jedes** POST-Formular.
+eingeloggt sind. Um das zu verhindern, weist Django jeden POST ab, der kein gültiges Token
+mitschickt; eine fremde Seite kann dieses Token nicht auslesen und daher kein gültiges
+Formular fälschen. Das Tag `{% csrf_token %}` ist die Gegenseite davon: Es bettet das Token
+als verstecktes Feld in Ihr eigenes Formular ein, damit dessen POSTs akzeptiert werden.
+Deshalb gehört `{% csrf_token %}` in **jedes** POST-Formular.
 
 [NOTICE]
 In [PARTREF::django-view] hatten Sie die `post_data`-View versuchsweise mit `@csrf_exempt`
@@ -161,7 +161,7 @@ leerem Context.
 - unmittelbar nach dem öffnenden `<form>`-Tag `{% csrf_token %}`
 - einem Text-Eingabefeld `name="q"` (Wert vorbelegt mit `{{ q }}`, Platzhaltertext
   "Suchbegriff") und einem Absende-Button mit dem Text "Suchen"
-- darunter demselben `{% if q %}`/`{% for %}`/`{% empty %}`-Aufbau wie in `search_form.html`
+- darunter demselben `{% if q %}`/`{% for %}`/`{% empty %}`-Aufbau wie in `search_get.html`
   (mit demselben `Keine Treffer für "{{ q }}"`-Text)
 
 [ER] Ergänzen Sie `urls.py` um die Route `search-post/` auf `search_post` (Name
@@ -170,9 +170,9 @@ leerem Context.
 [EQ] Suchen Sie unter `http://127.0.0.1:8071/search-post/` nach demselben Namen wie in
 [EREFQ::2]. Worin unterscheidet sich die URL nach dem Absenden gegenüber dem GET-Formular?
 
-Ein `curl`-Aufruf durchläuft kein Formular und liefert daher, unabhängig vom Template, kein
-gültiges CSRF-Token mit; er simuliert damit genau den Angriffsfall, gegen den
-`{% csrf_token %}` schützen soll.
+<!-- time estimate: 15 min -->
+
+Ein `curl`-Aufruf durchläuft kein Formular und liefert daher kein gültiges CSRF-Token mit.
 
 [EC] Senden Sie per `curl` einen POST ohne Token direkt an die View (nur der Statuscode wird
 ausgegeben):
@@ -181,10 +181,17 @@ ausgegeben):
 curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/
 ```
 
-[EQ] Welcher Statuscode kam zurück, und warum reicht das bereits vorhandene
-`{% csrf_token %}` im Template aus, um genau diesen Aufruf abzuweisen, obwohl er die
-korrekten Formulardaten mitschickt?
-<!-- time estimate: 30 min -->
+Entfernen Sie nun versuchsweise `{% csrf_token %}` aus `search_post.html` und suchen Sie
+danach im Browser unter `http://127.0.0.1:8071/search-post/` erneut nach einem Namen: Jetzt
+wird auch dieses eigene, regulär ausgefüllte Formular abgewiesen. Lesen Sie zur
+Erklärung den Abschnitt "How it works" der
+[Django-Doku zu Cross Site Request Forgery protection](https://docs.djangoproject.com/en/stable/ref/csrf/#how-it-works)
+nach. Fügen Sie `{% csrf_token %}` danach wieder in `search_post.html` ein.
+
+[EQ] Welcher Statuscode kam beim `curl`-Aufruf zurück, und was ist Ihnen gerade im Browser
+passiert, als `{% csrf_token %}` fehlte? Welche Komponente weist beide Aufrufe ab, und
+welche Rolle spielt `{% csrf_token %}` dabei, wenn nicht die eines Türstehers?
+<!-- time estimate: 15 min -->
 
 ### Registrierung mit Datenbank-Persistenz
 
@@ -192,8 +199,8 @@ Bisher haben die Formulare die Datenbank nur gelesen. Jetzt schreiben Sie hinein
 Ein Registrierungsformular legt über `Student.objects.create()` (aus [PARTREF::django-model])
 einen neuen Datensatz an und leitet anschließend auf dessen Detailseite weiter. Da Name,
 Alter und E-Mail hier echte Pflichtfelder sind, greifen Sie direkt mit `request.POST['feld']`
-zu (anders als bei der optionalen Suche mit `.get()`): Fehlt das Feld, wirft dieser Zugriff
-einen `KeyError`, statt stillschweigend einen leeren Wert zu liefern. Eine View, die bei
+zu (anders als bei der optionalen Suche mit `.get()`): Fehlt das Feld komplett, wirft dieser
+Zugriff einen `KeyError`, statt stillschweigend einen leeren Wert zu liefern. Eine View, die bei
 POST einen Datensatz anlegt und dann weiterleitet, hat folgenden Aufbau:
 
 ```python
@@ -258,9 +265,18 @@ Ein Formular mit mehreren Feldern hat folgende Bestandteile (aus [PARTREF::http-
 <!-- time estimate: 15 min -->
 
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und senden Sie das Formular ab, ohne das
-Feld "Name" auszufüllen. Was passiert im Browser? Nehmen Sie nun an, jemand würde stattdessen
-per `curl` direkt einen POST ohne das Feld `name` an `/register/` senden, am Browser und
-damit an `required` vorbei: Was würde in der View passieren, und woran liegt das?
+Feld "Name" auszufüllen. Was passiert im Browser?
+
+Entfernen Sie nun versuchsweise das `required`-Attribut beim Namensfeld in `register.html`
+und senden Sie das Formular im Browser erneut ab, wieder ohne das Feld "Name" auszufüllen.
+Rufen Sie anschließend `http://127.0.0.1:8071/students/` auf. Fügen Sie `required` danach
+wieder ein.
+
+[EQ] Was zeigt `http://127.0.0.1:8071/students/` jetzt an? Was sagt Ihnen das über die
+serverseitige Prüfung von Pflichtfeldern?
+
+Löschen Sie den dabei entstandenen Datensatz anschließend wieder, mit `delete()` oder über
+die Admin-Oberfläche (beides aus [PARTREF::django-model]).
 
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und registrieren Sie einen Studierenden
 mit dem Namen "Tom Fischer", Alter `20` und der E-Mail "tom@example.com". Auf welcher Seite
@@ -268,7 +284,7 @@ landen Sie danach? Rufen Sie anschließend zusätzlich `http://127.0.0.1:8071/st
 Woran erkennen Sie dort, dass Ihre Eingaben tatsächlich in der Datenbank gespeichert wurden
 (und nicht nur zurückgespiegelt)? Warum ist für die Registrierung POST die richtige Methode
 und nicht GET?
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
 ### Weiterführend
 
@@ -289,15 +305,19 @@ und nicht GET?
 
 **Knackpunkte:**
 
-- [EREFC::2] + [EREFQ::4]: Der `curl`-Aufruf ohne CSRF-Token wird mit Statuscode 403
-  abgewiesen; Student erkennt, dass `{% csrf_token %}` im Template allein genügt, um einen
-  Angriff ohne gültige Sitzung/Token zuverlässig abzuwehren, unabhängig davon, dass die
-  Formulardaten selbst korrekt waren.
-- [EREFR::7] + [EREFQ::6]: Die `register`-View legt bei POST per `Student.objects.create()`
+- [EREFC::2] + [EREFQ::4]: Sowohl der `curl`-Aufruf ohne Token als auch das eigene Formular
+  ohne `{% csrf_token %}` werden mit Statuscode 403 abgewiesen; Student erkennt, dass die
+  Abweisung von Djangos `CsrfViewMiddleware` kommt, unabhängig davon, was im Template steht,
+  und dass `{% csrf_token %}` umgekehrt dafür sorgt, dass legitime Formulare gerade nicht
+  abgewiesen werden.
+- [EREFR::7] + [EREFQ::7]: Die `register`-View legt bei POST per `Student.objects.create()`
   einen Datensatz an und leitet mit `redirect(reverse("student_detail", args=[student.id]))`
   auf dessen Detailseite weiter; Student erkennt am zusätzlichen Aufruf von `/students/`, dass
   der neue Studierende dort tatsächlich in der Datenbank steht (nicht nur zurückgespiegelt
   wurde).
+- [EREFQ::6]: Nach Entfernen von `required` legt das Formular trotz leerem Namensfeld einen
+  `Student` mit leerem `name` an; Student erkennt, dass `required` reine Browser-Prüfung ist
+  und die View selbst überhaupt nichts validiert.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-form.md]
