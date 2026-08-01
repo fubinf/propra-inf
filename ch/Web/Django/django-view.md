@@ -49,8 +49,8 @@ def my_view(request):
     return HttpResponse("Hello World!")
 ```
 
-[EQ] Der Name der View-Funktion (hier `my_view`) ist frei wählbar. Schlagen Sie in der
-Django-Dokumentation zu
+[EQ] Der Name der View-Funktion (hier `my_view`) ist frei wählbar.
+Schlagen Sie in der Django-Dokumentation zu
 [Writing views](https://docs.djangoproject.com/en/stable/topics/http/views/) nach: Wodurch
 entscheidet sich laut dieser Seite trotzdem, unter welcher URL eine View erreichbar ist?
 <!-- time estimate: 10 min -->
@@ -158,12 +158,13 @@ Unterschied bezüglich der URL-Anzeige und Datenübertragung zwischen GET und PO
 Neben `request.GET` und `request.POST` bietet das Request-Objekt weitere nützliche Attribute,
 etwa zur verwendeten HTTP-Methode oder zum aufgerufenen Pfad.
 
-[ER] Schreiben Sie in `views.py` eine View-Funktion `request_info`, versehen mit
-`@csrf_exempt` (wie schon bei `post_data`, damit Sie sie gleich auch per POST aufrufen
-können), die zwei Angaben aus dem Request als `HttpResponse` im Format
-`Methode: <...>, Pfad: <...>` zurückgibt (die verwendete HTTP-Methode und den aufgerufenen
-Pfad; die passenden Attribute finden Sie im Abschnitt "Attributes" der
+[ER] Schreiben Sie in `views.py` eine View-Funktion `request_info`, die zwei Angaben aus
+dem Request als `HttpResponse` im Format `Methode: <...>, Pfad: <...>` zurückgibt (die
+verwendete HTTP-Methode und den aufgerufenen Pfad; die passenden Attribute finden Sie im
+Abschnitt "Attributes" der
 [Django-Doku zu `HttpRequest`](https://docs.djangoproject.com/en/stable/ref/request-response/#attributes)).
+Versehen Sie sie außerdem mit `@csrf_exempt` (wie schon bei `post_data`), damit Sie sie
+gleich auch per POST aufrufen können.
 
 [ER] Fügen Sie in `urls.py` die Route für `request_info` hinzu: Pfad `request-info/`, Name
 `request_info`.
@@ -180,8 +181,10 @@ curl http://127.0.0.1:8071/request-info/
 curl -X POST http://127.0.0.1:8071/request-info/
 ```
 
-[EQ] Worin unterscheiden sich die beiden Ausgaben? Wie könnte eine View `request.method`
-nutzen, um je nach HTTP-Methode unterschiedlich zu reagieren?
+[EQ] Worin unterscheiden sich die beiden Ausgaben?
+Denken Sie sich ein Szenario aus einer eigenen Anwendung aus (nicht aus dieser Aufgabe), in
+dem eine View sinnvoll unterschiedlich auf GET und POST reagieren sollte: Was wäre die
+Situation, und was sollte die View in den beiden Fällen jeweils tun?
 <!-- time estimate: 20 min -->
 
 ### Response-Objekte: HttpResponse
@@ -213,8 +216,9 @@ Den `Content-Type`-Header und die dahinterstehenden MIME-Types kennen Sie bereit
 [PARTREF::http-GET] (siehe dort auch die
 [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types)-Übersicht): Er
 entscheidet, als was der Browser eine Antwort interpretiert, unabhängig vom eigentlichen
-Inhalt. Mit `-i` gibt `curl` die Header mit aus, nicht nur den Antwort-Rumpf, mit `-s` bleibt
-die Ausgabe knapp.
+Inhalt.
+Mit `-i` gibt `curl` die Header mit aus, nicht nur den Antwort-Rumpf, mit `-s` bleibt die
+Ausgabe knapp.
 
 [EC] Rufen Sie alle drei Response-Typen nacheinander auf:
 
@@ -371,10 +375,10 @@ url = reverse("student_detail", args=[2])  # ergibt "/students/2/"
 
 Der Vorteil: Ändert sich später das URL-Muster in `urls.py`, passt sich jeder mit
 `reverse()` erzeugte Link automatisch an; nur die Route selbst muss geändert werden, nicht
-jede Stelle im Code, die auf sie verweist. Das ist
-ein zentrales Feature von Django: Eine konsequent mit benannten Routen und `reverse()`
-geschriebene Anwendung lässt sich jederzeit lokal umstrukturieren, ohne dass an verstreuten
-Stellen im Code oder in Templates von Hand nachgezogen werden muss.
+jede Stelle im Code, die auf sie verweist.
+Das ist ein zentrales Feature von Django: Eine konsequent mit benannten Routen und
+`reverse()` geschriebene Anwendung lässt sich jederzeit lokal umstrukturieren, ohne dass an
+verstreuten Stellen im Code oder in Templates von Hand nachgezogen werden muss.
 
 In einer View lässt sich das erzeugte Ergebnis direkt an `redirect()` übergeben, etwa nach
 diesem Schema:
@@ -413,7 +417,8 @@ curl -s -i http://127.0.0.1:8071/students/redirect/
 ```
 
 [EQ] Worauf zeigt der `Location`-Header jetzt, obwohl Sie an `views.py` nichts geändert
-haben? Was sagt Ihnen das über den Vorteil von `reverse()` gegenüber fest codierten Links?
+haben?
+Was sagt Ihnen das über den Vorteil von `reverse()` gegenüber fest codierten Links?
 
 Machen Sie die Änderung in `urls.py` danach wieder rückgängig: Route wieder auf
 `students/<int:student_id>/` zurückbenennen.
