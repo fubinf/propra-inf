@@ -181,7 +181,7 @@ alle `Student`-Objekte lädt und sie unter dem Context-Schlüssel `students` an 
 
 [ER] Legen Sie `webapp/templates/students_list.html` an, mit derselben Grundstruktur wie
 `hello.html` (`<!DOCTYPE>`, `<html lang="de">`, `<head>` mit `<meta charset>` und Titel,
-`<body>`). Zeigen Sie im `<body>` eine Überschrift `Alle Studierenden` (`<h2>`), darunter die
+`<body>`). Zeigen Sie im `<body>` eine Überschrift `Alle Studierenden` (`<h1>`), darunter die
 Studierenden als `<ul>`-Liste mit `{% for %}`: je Studierendem den Namen (mit `upper`),
 gefolgt von " — Note: " und dem Notendurchschnitt (mit `default:"Noch keine Note"`), gefolgt
 von " — " und dem Aktivstatus (mit `yesno:"Aktiv,Inaktiv"`), sowie einem `{% empty %}`-Zweig
@@ -212,8 +212,7 @@ oder interessantesten, und warum?
 ### Template-Vererbung
 
 Sie haben jetzt zwei Seiten, `hello.html` und `students_list.html`, die beide ihren
-kompletten `<head>`-Bereich einzeln ausschreiben. Führen Sie zusätzlich eine gemeinsame
-Kopf- oder Fußzeile ein, müssten Sie diese in beiden Dateien duplizieren.
+kompletten `<head>`-Bereich einzeln ausschreiben.
 
 [EQ] Wenn Sie eine gemeinsame Kopf- oder Fußzeile für beide Seiten einführen und diese
 später ändern: An welchen Stellen müssten Sie die Änderung vornehmen? Überlegen Sie, welches
@@ -247,9 +246,13 @@ semantische HTML-Elemente wie `<header>` und `<footer>` (siehe [PARTREF::html-Se
 Ihren bisherigen `<body>`-Inhalt (Überschrift, Bedingungsblock mit Hobbys) in einen Block
 `content`. Stufen Sie dabei die Überschrift `<h1>{{ greeting }}</h1>` zu `<h2>{{ greeting }}</h2>`
 herab: Die Seitenüberschrift kommt jetzt aus `base.html`, ein zweites `<h1>` wäre nicht mehr
-korrekt.
+korrekt. Stufen Sie aus demselben Grund auch die Unterüberschrift `<h2>Ihre Hobbys:</h2>` zu
+`<h3>Ihre Hobbys:</h3>` herab, damit sie weiterhin der (jetzt eine Ebene tieferen)
+Seitenüberschrift untergeordnet bleibt.
 
-[ER] Wandeln Sie `students_list.html` auf dieselbe Weise in ein Kind-Template um.
+[ER] Wandeln Sie `students_list.html` auf dieselbe Weise in ein Kind-Template um: Stufen Sie
+dabei ebenso die Überschrift `<h1>Alle Studierenden</h1>` zu `<h2>Alle Studierenden</h2>`
+herab, und überschreiben Sie zusätzlich `{% block title %}` mit `Studierendenliste`.
 
 [HINT::Wie hängen die Blocknamen in base.html und den Kind-Templates zusammen?]
 Ein `{% block content %}` im Kind-Template ersetzt genau den gleichnamigen
