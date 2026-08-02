@@ -360,8 +360,9 @@ Form und Ergebnis aus:
   `(4, 6)`- und eine `(2, 3, 4)`-Struktur um; erzeugen Sie die `(4, 6)`-Form zusätzlich ein
   zweites Mal, diesmal mit `-1` für die zweite Dimension
 - Versuchen Sie, das Array `np.array([10, 20, 30])` (Form `(3,)`) zu einem `(3, 4)`-Array zu
-  addieren. Der Versuch schlägt fehl; halten Sie die Fehlermeldung fest. Reparieren Sie ihn
-  anschließend mit `expand_dims`, so dass jeder der drei Werte auf eine ganze Zeile wirkt
+  addieren. Der Versuch schlägt fehl; notieren Sie die Fehlermeldung als Kommentar im Quelltext.
+  Reparieren Sie ihn anschließend mit `expand_dims`, so dass jeder der drei Werte auf eine ganze
+  Zeile wirkt
 - Wenden Sie `squeeze` auf das Ergebnis von `np.min(daten, axis=0, keepdims=True)` an (mit
   `daten` als beliebigem 2D-Array) und vergleichen Sie die Form mit der von
   `np.min(daten, axis=0)`
