@@ -1,6 +1,6 @@
 title: NumPy Bitwise-Operationen und String-Funktionen
 stage: alpha
-timevalue: 1.75
+timevalue: 2
 difficulty: 2
 assumes: np-Einführung, np-array, py-Fstrings
 ---
@@ -102,17 +102,20 @@ Operationen UND/ODER/XOR.
 import numpy as np
 
 # Bitweise Operationen mit Arrays
-arr1 = np.array([True, False, True], dtype=np.bool_)
-arr2 = np.array([False, True, False], dtype=np.bool_)
+arr1 = np.array([True, True, False], dtype=np.bool_)
+arr2 = np.array([True, False, False], dtype=np.bool_)
 
 result_and = np.bitwise_and(arr1, arr2)
 result_or = np.bitwise_or(arr1, arr2)
 result_xor = np.bitwise_xor(arr1, arr2)
 
-print("AND:", result_and)  # [False False False]
-print("OR:", result_or)    # [True  True  True]
-print("XOR:", result_xor)  # [True  True  True]
+print("AND:", result_and)  # [ True False False]
+print("OR:", result_or)    # [ True  True False]
+print("XOR:", result_xor)  # [False  True False]
 ```
+
+An der ersten Position sind beide Operanden `True`; genau dort trennen sich ODER (`True`) und
+XOR (`False`).
 
 [ER] Implementieren Sie bitweise Operationen mit verschiedenen Datentypen:
 
@@ -148,6 +151,19 @@ print("10 << 2 =", left_result)
 right_result = np.right_shift(40, 2)  # 40 >> 2 = 10
 print("40 >> 2 =", right_result)
 ```
+
+Diese Entsprechung gilt aber nur, solange das Ergebnis in den `dtype` des Arrays passt. Bits, die
+über dessen Breite hinausgeschoben werden, gehen verloren:
+
+```python
+schmal = np.array([64, 100], dtype=np.int8)
+print(np.left_shift(schmal, 2))                  # [   0 -112]
+print(np.left_shift(np.array([64, 100]), 2))     # [256 400] (Default-dtype, breit genug)
+```
+
+Bei `64 = 01000000` wandern beide gesetzten Bits aus den 8 Bit hinaus, übrig bleibt `0`. Bei
+`100 = 01100100` bleibt das Bitmuster `10010000` stehen; als `int8` gelesen ist das `-112`, denn
+dort zeigt das oberste Bit das Vorzeichen an (mehr dazu im Abschnitt zu `invert` weiter unten).
 
 [EQ] Warum entspricht eine Links-Verschiebung um `n` Positionen einer
 Multiplikation mit `2^n`? Berechnen Sie mental das Ergebnis von `np.left_shift(7, 3)`
@@ -236,9 +252,10 @@ sie das ursprüngliche Array nicht, sondern geben immer ein neues Array mit den 
 zurück.
 
 Der Geschwindigkeitsvorteil gegenüber einer Python-Schleife fällt hier deutlich kleiner aus als
-bei numerischen NumPy-Operationen (wo Faktoren von 50-100x üblich sind): Bei einfachen,
-direkt vektorisierbaren Operationen auf großen Arrays (wie den hier gezeigten) sind eher Faktoren
-im Bereich von 2x-15x realistisch.
+bei numerischen NumPy-Operationen: Bei einfachen, direkt vektorisierbaren Operationen auf großen
+Arrays (wie den hier gezeigten) bleibt er meist einstellig bis niedrig zweistellig. Wie groß er
+genau ausfällt, hängt allerdings auch davon ab, womit man vergleicht — im letzten Abschnitt
+dieser Aufgabe messen Sie das selbst nach.
 
 ```python
 numpy.strings.upper(a)  # wandelt jedes Element in Großbuchstaben um
@@ -414,40 +431,48 @@ print(mask)  # [False  True  True]
 ```
 
 Um den Zeitunterschied zwischen zwei Operationen zu messen, bietet Pythons Standardbibliothek
-das `time`-Modul: `time.time()` gibt den aktuellen Zeitpunkt in Sekunden zurück. Ruft man es
-vor und nach einer Operation auf, ergibt die Differenz die benötigte Laufzeit; mit der in
-[PARTREF::py-Fstrings] eingeführten f-String-Formatierung mit Präzisionsangabe (`:.4f`) lässt
-sich die Ausgabe auf sinnvolle Nachkommastellen begrenzen:
+das `time`-Modul: `time.perf_counter()` gibt einen Zeitpunkt in Sekunden mit der höchsten
+verfügbaren Auflösung zurück und ist damit für kurze Laufzeiten gedacht (anders als
+`time.time()`, das die verstellbare Systemuhr abliest). Ruft man es vor und nach einer Operation
+auf, ergibt die Differenz die benötigte Laufzeit; mit der in [PARTREF::py-Fstrings] eingeführten
+f-String-Formatierung mit Präzisionsangabe (`:.4f`) lässt sich die Ausgabe auf sinnvolle
+Nachkommastellen begrenzen:
 
 ```python
 import time
 
-start = time.time()
+start = time.perf_counter()
 # ... Operation, deren Dauer gemessen werden soll ...
-ende = time.time()
+ende = time.perf_counter()
 dauer = ende - start
 print(f'Dauer: {dauer:.4f} Sekunden')
 ```
 
 [ER] Messen Sie den Geschwindigkeitsunterschied zwischen `np.strings.startswith` und einer
-Python-Schleife an einem größeren Array:
+Python-Schleife an einem größeren Array. Die Schleife messen Sie dabei zweimal, einmal über das
+Array selbst und einmal über eine daraus erzeugte Python-Liste:
 
 - Erstellen Sie ein Array `words` mit 100000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
   `'produkt99999'` (z. B. mit einer List Comprehension und `np.array`)
 - Messen Sie mit dem `time`-Modul die Laufzeit von `np.strings.startswith(words, 'produkt123')`
   über 5 Wiederholungen und notieren Sie die kürzeste gemessene Zeit
-- Messen Sie auf dieselbe Weise die Laufzeit der äquivalenten Python-Schleife
-  `[w.startswith('produkt123') for w in words]`
-- Geben Sie beide Zeiten (5 Nachkommastellen, `:.5f`) sowie den Faktor (1 Nachkommastelle, `:.1f`)
-  aus
+- Messen Sie auf dieselbe Weise die Schleife `[w.startswith('produkt123') for w in words]`
+- Messen Sie auf dieselbe Weise dieselbe Schleife über `words_list = list(words)`, wobei die
+  Umwandlung selbst außerhalb der Messung stattfindet
+- Geben Sie alle drei Zeiten (5 Nachkommastellen, `:.5f`) und die beiden Faktoren gegenüber
+  `np.strings.startswith` (1 Nachkommastelle, `:.1f`) aus
 
 [HINT::Wie überprüfe ich mein Ergebnis?]
-Der Faktor sollte deutlich über 1 liegen (NumPy schneller), aber typischerweise im niedrigen
-zweistelligen Bereich — nicht im Bereich von 50-100x, wie man es von numerischen
-NumPy-Operationen kennt.
+`np.strings.startswith` ist deutlich schneller als beide Schleifen — und die Schleife über das
+Array ist noch einmal erheblich langsamer als die über die Liste. Konkrete Zahlen hängen stark
+von Ihrer Maschine ab; entscheidend ist dieses Verhältnis, nicht ein bestimmter Wert.
 [ENDHINT]
 
-<!-- time estimate: 15 min -->
+[EQ] Beide Schleifen berechnen dasselbe Ergebnis, liefern aber deutlich verschiedene Faktoren.
+Welche der beiden Messungen beantwortet die Frage "Wie viel bringt hier die Vektorisierung?"
+fairer, und was folgt daraus für eine Aussage der Form "NumPy ist N-mal schneller als Python"?
+
+<!-- time estimate: 20 min -->
 
 ### Weiterführend
 
@@ -471,10 +496,15 @@ NumPy-Operationen kennt.
 - [EREFQ::2]: die Erklärung, warum `int8` und `uint8` bei `invert()` unterschiedliche Vorzeichen
   liefern, verweist korrekt auf die Interpretation des Bitmusters (Vorzeichenbit vs. kein
   Vorzeichenbit) statt auf einen Unterschied in der eigentlichen Bit-Operation
-- [EREFR::6]: `split`/`join`/`replace`/`find` liefern für alle Elemente des Arrays die
-  korrekten Ergebnisse
-- [EREFR::7]: der gemessene Faktor liegt deutlich über 1x (NumPy schneller), aber im niedrigen
-  zweistelligen Bereich, nicht im Bereich von 50-100x
+- [EREFR::6]: `np.char.join` ist richtig verstanden — das Trennzeichen steht zwischen den
+  Zeichen jedes einzelnen Strings (`'DE'` → `'D.E'`), nicht zwischen den Array-Elementen;
+  wer es als Verbinder der Elemente auffasst, erzeugt hier ein falsches Ergebnis.
+  `split`/`replace`/`find` liefern für alle Elemente die korrekten Ergebnisse
+- [EREFR::7] + [EREFQ::3]: alle drei Zeiten sind gemessen, und die Schleife über das Array ist
+  klar langsamer als die über die Liste (konkrete Zahlen sind maschinenabhängig und daher kein
+  Prüfkriterium). Student erkennt, dass die Messung über die Liste der fairere Vergleich für die
+  Vektorisierung ist und dass ein einzelner Faktor ohne Angabe des Vergleichspartners wenig
+  aussagt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-bitwise-string.md]
