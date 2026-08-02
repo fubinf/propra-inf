@@ -39,7 +39,6 @@ Starten Sie den Server, falls er nicht mehr läuft, mit `python manage.py runser
 
 ### Die View und das Request-Objekt verstehen
 
-Eine View-Funktion ist das Herzstück der Django-Anwendung.
 Django nimmt die eingehende HTTP-Anfrage (Request und Response kennen Sie aus [PARTREF::http-GET])
 und übergibt sie der View als Python-Objekt `HttpRequest`; die View gibt ein `HttpResponse`-Objekt
 zurück, aus dem Django die HTTP-Antwort erzeugt:
@@ -193,7 +192,7 @@ unterschiedlich auf GET und POST reagieren sollte: Was wäre die Situation, und 
 View in den beiden Fällen jeweils tun?
 <!-- time estimate: 20 min -->
 
-### Response-Objekte: HttpResponse
+### Response-Objekte: `HttpResponse`
 
 Bisher ging es um die eingehende Seite, also den Request.
 Ebenso wichtig ist die ausgehende Seite: die Response, die jede View zurückgeben muss.
@@ -203,7 +202,7 @@ Schema:
 
 ```python
 def modus_view(request):
-    if request.GET.get("modus") == "x":
+    if request.GET.get("modus", "") == "x":
         return HttpResponse("Variante X")
     return HttpResponse("Variante Y")
 ```
@@ -223,8 +222,8 @@ Den `Content-Type`-Header und die dahinterstehenden MIME-Types kennen Sie bereit
 [PARTREF::http-GET] (siehe dort auch die
 [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types)-Übersicht): Er
 entscheidet, als was der Browser eine Antwort interpretiert, unabhängig vom eigentlichen Inhalt.
-Mit `-i` gibt `curl` die Header mit aus, nicht nur den Antwort-Rumpf; mit `-s` bleibt die Ausgabe
-knapp.
+Mit `-i` gibt `curl` die Header mit aus, nicht nur den Antwort-Rumpf; mit `-s` unterdrückt `curl`
+die Fortschrittsanzeige.
 
 [EC] Rufen Sie alle drei Response-Typen nacheinander auf:
 
@@ -240,7 +239,7 @@ Bei welcher der drei unterscheidet er sich vom Standardwert der beiden anderen, 
 Stelle im Code wurde das festgelegt?
 <!-- time estimate: 20 min -->
 
-### Response-Objekte: redirect() für Weiterleitungen
+### Response-Objekte: `redirect()` für Weiterleitungen
 
 Statt selbst Inhalt zurückzugeben, kann eine View den Client auch an eine andere URL verweisen.
 Dafür dient `redirect()`:
@@ -286,7 +285,7 @@ Was gewinnt man dadurch?
 
 [NOTICE]
 Neben `HttpResponse` und `redirect()` ist das aus [PARTREF::django-project] bekannte `render()`
-eine dritte Möglichkeit für Response-Objekte; es verwendet Django-Templates und wird in
+eine dritte Möglichkeit, eine Response zu erzeugen; es verwendet Django-Templates und wird in
 [PARTREF::django-template] vertieft.
 [ENDNOTICE]
 
@@ -352,8 +351,11 @@ existierenden ID auf:
 
 ```bash
 curl "http://127.0.0.1:8071/students/1/"
-curl -s -i http://127.0.0.1:8071/students/999/
+curl -s -i http://127.0.0.1:8071/students/999/ | head -20
 ```
+
+Der zweite Aufruf liefert eine lange Django-Fehlerseite; `head -20` beschränkt die Ausgabe auf
+Statuszeile, Header und den Seitenanfang.
 
 [EQ] Der zweite Aufruf endet nicht mit den Studierendendaten, sondern mit einem Fehler.
 Woran liegt das, und an welcher Stelle in der View entsteht dieser Fehler?
@@ -395,6 +397,10 @@ Stellen im Code oder in Templates von Hand nachgezogen werden muss.
 
 Da `reverse()` eine fertige URL liefert, lässt sie sich auch als Umleitungsziel von `redirect()`
 verwenden.
+Nötig ist das nicht: `redirect("student_detail", 1)` nimmt einem die Auflösung intern ab und
+liefert dieselbe Antwort.
+In der folgenden Übung steht `reverse()` trotzdem sichtbar davor, weil sich nur so beobachten
+lässt, welche URL es erzeugt.
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `student_redirect`, die mit `reverse()`
 die URL der Detailseite von Student `1` erzeugt und den Client per `redirect()` dorthin
@@ -443,8 +449,8 @@ Welche Folge hätte das für die Reihenfolge dieser beiden Einträge?
 
 ### Weiterführend
 
-- [Django Request Objects](https://docs.djangoproject.com/en/stable/ref/request-response/):
-  Detaillierte Dokumentation zum Request-Objekt und seinen Attributen
+- [Request- und Response-Objekte in Django](https://docs.djangoproject.com/en/stable/ref/request-response/):
+  Detaillierte Dokumentation zu `HttpRequest` und `HttpResponse` samt ihrer Attribute
 - [Path converters](https://docs.djangoproject.com/en/stable/topics/http/urls/#path-converters):
   Vollständige Liste der eingebauten Typkonverter für `path()`
 - [Reverse resolution of URLs](https://docs.djangoproject.com/en/stable/topics/http/urls/#reverse-resolution-of-urls):
@@ -462,15 +468,19 @@ Welche Folge hätte das für die Reihenfolge dieser beiden Einträge?
 
 **Knackpunkte:**
 
-- [EREFQ::8]: Student erkennt, dass eine nicht existierende ID zu einem Fehler führt, weil
-  `.objects.get()` (bereits aus [PARTREF::django-model] bekannt) ohne passenden Treffer eine
-  Exception auslöst; derselbe Mechanismus, nur diesmal über eine URL statt über die Shell
-  ausgelöst.
-- [EREFR::13]/[EREFQ::9]: `student_redirect` kombiniert `reverse("student_detail", args=[1])` mit
-  `redirect(...)`; ein falscher Routenname oder ein fehlendes `args` führt zu einem Laufzeitfehler
-  statt zur erwarteten Weiterleitung.
-  Student erkennt, dass `reverse()` den übergebenen Routennamen tatsächlich in `urls.py`
-  nachschlägt, statt die URL nur zu raten.
+- [EREFQ::8]: Student benennt `Student.objects.get(id=student_id)` als Fehlerstelle und erkennt
+  die Exception aus [PARTREF::django-model] wieder, nur diesmal über eine URL statt über die
+  Shell ausgelöst.
+  Wegen `head -20` steht die Fehlerzeile nicht mehr in der sichtbaren Ausgabe; sie muss aus dem
+  Exceptionnamen und dem Code der View erschlossen werden.
+- [EREFR::13]/[EREFQ::9]: `student_redirect` erzeugt die URL mit
+  `reverse("student_detail", args=[1])` und leitet mit `redirect(...)` dorthin; ein falscher
+  Routenname oder ein fehlendes `args` führt zu einem Laufzeitfehler statt zur erwarteten
+  Weiterleitung.
+  Die im Aufgabentext erwähnte Kurzform `redirect("student_detail", 1)` liefert dieselbe Antwort,
+  erfüllt die Aufgabenstellung hier aber nicht, weil dann kein `reverse()` im Code steht.
+  Student erkennt, dass `reverse()` den Routennamen tatsächlich in `urls.py` nachschlägt, statt
+  die URL nur zu raten.
 - [EREFQ::10]: Nach der Umbenennung der Route zeigt der `Location`-Header ohne jede Änderung an
   `views.py` auf `/teilnehmer/1/`; Student erkennt, dass `reverse()` die URL zur Laufzeit aus dem
   aktuellen Eintrag in `urls.py` erzeugt, statt eine früher eingebrannte Adresse zu verwenden.
