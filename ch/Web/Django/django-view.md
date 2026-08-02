@@ -113,8 +113,8 @@ Was hätte diese Schreibweise für den zweiten `curl`-Aufruf oben bedeutet?
 
 ### Request-Attribute: POST-Daten verarbeiten
 
-Während GET-Parameter sichtbar in der URL stehen, gibt es mit POST einen zweiten Weg, Daten an
-eine View zu senden.
+Während GET-Parameter sichtbar in der URL stehen, gibt es mit POST (siehe [PARTREF::http-POST])
+einen zweiten Weg, Daten an eine View zu senden.
 POST-Daten werden über `request.POST` abgerufen und sind typischerweise bei Formular-Übertragungen
 relevant.
 `request.POST` funktioniert wie `request.GET`: auch hier liest man Werte mit `.get(key, default)`.
@@ -188,9 +188,9 @@ curl -X POST http://127.0.0.1:8071/request-info/
 ```
 
 [EQ] Worin unterscheiden sich die beiden Ausgaben?
-Denken Sie sich ein Szenario aus einer eigenen Anwendung aus (nicht aus dieser Aufgabe), in dem
-eine View sinnvoll unterschiedlich auf GET und POST reagieren sollte: Was wäre die Situation, und
-was sollte die View in den beiden Fällen jeweils tun?
+Denken Sie sich außerdem eine andere View aus (keine der hier geschriebenen), die sinnvoll
+unterschiedlich auf GET und POST reagieren sollte: Was wäre die Situation, und was sollte die
+View in den beiden Fällen jeweils tun?
 <!-- time estimate: 20 min -->
 
 ### Response-Objekte: HttpResponse
@@ -249,8 +249,8 @@ Dafür dient `redirect()`:
 redirect(to)
 ```
 
-- `to`: das Umleitungsziel, also ein Routenname (der `name` aus `urls.py`), eine URL oder ein
-  Objekt; Django erzeugt daraus eine Weiterleitungs-Antwort mit standardmäßig Statuscode 302
+- `to`: das Umleitungsziel, also ein Routenname (der `name` aus `urls.py`) oder eine URL; Django
+  erzeugt daraus eine Weiterleitungs-Antwort mit standardmäßig Statuscode 302
 
 Das folgende Schema zeigt eine Zielview und eine View, die dorthin weiterleitet:
 
@@ -270,9 +270,8 @@ den Text `Sie wurden weitergeleitet!` zurückgibt, und `redirect_example`, die m
 `redirect("redirect_target")` dorthin weiterleitet.
 Importieren Sie dafür `redirect`.
 
-[ER] Fügen Sie in `urls.py` beide Routen hinzu: Pfad `redirect-target/` mit Ziel
-`redirect_target` (Name `redirect_target`) und Pfad `redirect-test/` mit Ziel
-`redirect_example` (Name `redirect_example`).
+[ER] Fügen Sie in `urls.py` beide Routen hinzu: Pfad `redirect-target/`, Ziel `redirect_target`,
+Name `redirect_target`; Pfad `redirect-test/`, Ziel `redirect_example`, Name `redirect_example`.
 
 [EC] Rufen Sie die Umleitung auf:
 
@@ -291,10 +290,12 @@ eine dritte Möglichkeit für Response-Objekte; es verwendet Django-Templates un
 [PARTREF::django-template] vertieft.
 [ENDNOTICE]
 
-[EQ] Würden Sie `HttpResponse` oder `redirect()` für folgende Szenarien verwenden?
+[EQ] Würden Sie `HttpResponse` oder `redirect()` für die folgenden beiden Fälle verwenden?
+Begründen Sie Ihre Wahl jeweils kurz.
 
-- Direkte Anzeige einer einfachen Info-Seite mit statischem Text
-- Weiterleitung nach erfolgreicher Anmeldung
+- Eine View löscht einen Studierenden aus der Datenbank; danach soll der Browser die
+  Übersichtsseite aller Studierenden zeigen, für die es bereits eine eigene Route gibt.
+- Eine View soll unter `/status/` ausgeben, wie viele Studierende gespeichert sind.
 <!-- time estimate: 20 min -->
 
 ### URL-Parameter mit Typkonvertern
@@ -334,7 +335,7 @@ den `Student` mit der übergebenen ID per `Student.objects.get()` (bekannt aus
 `HttpResponse` zurückgibt.
 
 [ER] Fügen Sie in `urls.py` die passende Route mit `int`-Typkonverter hinzu: Pfad
-`students/<int:student_id>/` mit Ziel `student_detail`, Name `student_detail`.
+`students/<int:student_id>/`, Ziel `student_detail`, Name `student_detail`.
 
 [HINT::Warum `<int:student_id>` und nicht `<str:student_id>`?]
 Mit `<str:student_id>` würde auch `students/abc/` auf diese Route passen; die View müsste dann
@@ -364,13 +365,13 @@ Und was bedeutet der erhaltene HTTP-Statuscode?
 [ENDHINT]
 <!-- time estimate: 20 min -->
 
-### `urls.py` wartbar halten: `reverse()` für benannte Routen
+### `urls.py` wartbar halten: `reverse()` und die Reihenfolge der Einträge
 
 Jede Route in `urls.py` hat bereits einen `name` (z. B. `name="student_detail"`); bisher diente
 dieser Name nur als Sprungziel für `redirect()`, wie in `redirect_example` oben.
 Mit `reverse()` lässt sich aus einem solchen Namen an beliebiger Stelle im Code zur Laufzeit die
-passende URL erzeugen — nicht nur als Ziel eines Redirects, sondern überall dort, wo eine URL
-gebraucht wird, etwa später in Templates:
+passende URL erzeugen, und zwar nicht nur als Ziel eines Redirects, sondern überall dort, wo eine
+URL gebraucht wird, etwa später in Templates:
 
 ```
 reverse(viewname, args=[...])
@@ -393,7 +394,7 @@ geschriebene Anwendung lässt sich jederzeit lokal umstrukturieren, ohne dass an
 Stellen im Code oder in Templates von Hand nachgezogen werden muss.
 
 Das Ergebnis von `reverse()` ist eine fertige URL und lässt sich daher überall dort einsetzen,
-wo eine URL erwartet wird — auch als Umleitungsziel von `redirect()`.
+wo eine URL erwartet wird, also auch als Umleitungsziel von `redirect()`.
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `student_redirect`, die mit `reverse()`
 die URL der Detailseite von Student `1` erzeugt und den Client per `redirect()` dorthin
