@@ -250,7 +250,7 @@ redirect(to)
 ```
 
 - `to`: das Umleitungsziel, also ein Routenname (der `name` aus `urls.py`) oder eine URL; Django
-  erzeugt daraus eine Weiterleitungs-Antwort mit standardmäßig Statuscode 302
+  erzeugt daraus eine Weiterleitungs-Antwort, standardmäßig mit Statuscode 302
 
 Das folgende Schema zeigt eine Zielview und eine View, die dorthin weiterleitet:
 
@@ -393,8 +393,8 @@ Das ist ein zentrales Feature von Django: Eine konsequent mit benannten Routen u
 geschriebene Anwendung lässt sich jederzeit lokal umstrukturieren, ohne dass an verstreuten
 Stellen im Code oder in Templates von Hand nachgezogen werden muss.
 
-Das Ergebnis von `reverse()` ist eine fertige URL und lässt sich daher überall dort einsetzen,
-wo eine URL erwartet wird, also auch als Umleitungsziel von `redirect()`.
+Da `reverse()` eine fertige URL liefert, lässt sie sich auch als Umleitungsziel von `redirect()`
+verwenden.
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `student_redirect`, die mit `reverse()`
 die URL der Detailseite von Student `1` erzeugt und den Client per `redirect()` dorthin
@@ -426,8 +426,8 @@ curl -s -i http://127.0.0.1:8071/students/redirect/
 [EQ] Worauf zeigt der `Location`-Header jetzt, obwohl Sie an `views.py` nichts geändert haben?
 Was sagt Ihnen das über den Vorteil von `reverse()` gegenüber fest codierten Links?
 
-Machen Sie die Änderung in `urls.py` danach wieder rückgängig: Route wieder auf
-`students/<int:student_id>/` zurückbenennen.
+Machen Sie die Änderung in `urls.py` danach rückgängig: Die Route heißt wieder
+`students/<int:student_id>/`.
 <!-- time estimate: 10 min -->
 
 [EQ] Schauen Sie sich Ihre `urls.py` jetzt komplett an: Die Reihenfolge der Einträge folgt bisher
