@@ -1,4 +1,4 @@
-title: NumPy Array-Verbindung und -Teilung
+title: NumPy-Arrays verbinden, teilen und verändern
 stage: alpha
 timevalue: 2
 difficulty: 2
@@ -15,9 +15,10 @@ assumes: np-Einführung, np-array, np-array2
 
 [SECTION::background::default]
 
-Bei der Datenverarbeitung mit NumPy ist es häufig notwendig, Arrays zu kombinieren oder aufzuteilen.
-Dies kann erforderlich sein, um Datensätze zusammenzuführen, Daten in kleinere Einheiten zu organisieren
-oder Array-Strukturen dynamisch zu verändern.
+Messreihen mehrerer Sensoren liegen zunächst als einzelne Arrays vor und müssen zu einer Matrix
+zusammengesetzt werden; später soll dieselbe Matrix wieder in einen Trainings- und einen Testteil
+zerlegt werden. Solche Aufgaben — Arrays verbinden, aufteilen und in ihrer Größe verändern —
+kommen in der Datenverarbeitung ständig vor, und NumPy hat für jede davon eigene Funktionen.
 
 [ENDSECTION]
 
@@ -70,14 +71,28 @@ numpy.stack((a1, a2, ...), axis=0)
 - `axis` (Standard `0`): Position, an der die neu erzeugte Achse eingefügt wird
 
 ```python
-# Entlang neuer Achse 0
-stacked_0 = np.stack((a, b), axis=0)
-print("Stack Achse 0 Shape:", stacked_0.shape)  # (2, 2, 2)
+c = np.arange(1, 13).reshape(3, 4)      # Werte 1..12
+d = np.arange(101, 113).reshape(3, 4)   # Werte 101..112
 
-# Entlang neuer Achse 1
-stacked_1 = np.stack((a, b), axis=1)
-print("Stack Achse 1 Shape:", stacked_1.shape)  # (2, 2, 2)
+print(np.stack((c, d), axis=0).shape)   # (2, 3, 4)
+print(np.stack((c, d), axis=1).shape)   # (3, 2, 4)
+print(np.stack((c, d), axis=2).shape)   # (3, 4, 2)
+
+# Bei axis=2 wandert die neue Achse ganz nach innen:
+print(np.stack((c, d), axis=2))
+# [[[  1 101]
+#   [  2 102]
+#   [  3 103]
+#   [  4 104]]
+#
+#  [[  5 105]
+#   ...
 ```
+
+Die Position der neuen Achse entscheidet also, wie die Werte im Ergebnis nebeneinander zu liegen
+kommen: Bei `axis=0` stehen die beiden Arrays als Ganzes hintereinander, bei `axis=1` jeweils ihre
+Zeilen paarweise, bei `axis=2` schließlich ihre einzelnen Elemente. An den Werten `1..12` gegen
+`101..112` lässt sich das in der Ausgabe direkt ablesen.
 
 [ER] Erstellen Sie zwei Arrays `A` mit den Werten `[[1, 2, 3], [4, 5, 6]]` und `B` mit den
 Werten `[[7, 8, 9], [10, 11, 12]]` und verwenden Sie:
@@ -89,11 +104,9 @@ Werten `[[7, 8, 9], [10, 11, 12]]` und verwenden Sie:
 
 Geben Sie jeweils das Ergebnis und dessen shape aus.
 
-[EQ] Betrachten Sie Ihre eigenen Ergebnisse aus [EREFR::1]: `np.concatenate((A,B), axis=0)`
-und `np.stack((A,B), axis=0)` verwenden beide `axis=0`, liefern aber unterschiedliche Shapes.
-Vergleichen Sie die beiden konkreten Shapes, die Sie berechnet haben, und erklären Sie, was
-`axis=0` bei `concatenate` tatsächlich bedeutet im Vergleich zu `axis=0` bei `stack`. Warum
-führt derselbe Parameterwert zu einer strukturell so unterschiedlichen Operation?
+[EQ] Vergleichen Sie Ihre eigenen Ergebnisse aus [EREFR::1]: `np.concatenate((A, B), axis=0)`
+und `np.stack((A, B), axis=0)` verwenden denselben Parameterwert, liefern aber unterschiedliche
+Formen. Worauf bezieht sich `axis=0` jeweils?
 
 <!-- time estimate: 15 min -->
 
@@ -163,17 +176,19 @@ numpy.split(ary, indices_or_sections, axis=0)
 import numpy as np
 
 # 1D Array aufteilen
-arr_1d = np.arange(9)  # [0 1 2 3 4 5 6 7 8]
+arr_1d = np.arange(10, 100, 10)  # [10 20 30 40 50 60 70 80 90]
 
 # In 3 gleiche Teile
 parts_equal = np.split(arr_1d, 3)
 print("Gleiche Teile:", parts_equal)
-# [array([0, 1, 2]), array([3, 4, 5]), array([6, 7, 8])]
+# [array([10, 20, 30]), array([40, 50, 60]), array([70, 80, 90])]
 
 # An spezifischen Positionen [4, 7]
 parts_custom = np.split(arr_1d, [4, 7])
-print("Custom Teilung:", parts_custom)
-# [array([0, 1, 2, 3]), array([4, 5, 6]), array([7, 8])]
+print("Geteilt an [4, 7]:", parts_custom)
+# [array([10, 20, 30, 40]), array([50, 60, 70]), array([80, 90])]
+# Die 4 und die 7 sind Positionen, keine Werte: geschnitten wird vor dem
+# 5. und vor dem 8. Element.
 
 # 2D Array aufteilen
 arr_2d = np.arange(16).reshape(4, 4)
@@ -204,19 +219,22 @@ h_parts = np.hsplit(arr_2d, 2)
 v_parts = np.vsplit(arr_2d, 2)
 ```
 
-[EQ] Bei welchen Array-Formen würde `np.split(arr, 3)` fehlschlagen?
-Erklären Sie die Bedingungen, die erfüllt sein müssen, damit eine gleichmäßige Teilung möglich ist.
+[EQ] Führen Sie `np.split(np.arange(10), 3)` aus und übernehmen Sie die Fehlermeldung in Ihre
+Antwort. Was verlangt `np.split` also von der Länge der geteilten Achse? Suchen Sie außerdem in
+der Dokumentation (siehe "Weiterführend") die Funktion, die dieselbe Aufteilung auch dann noch
+liefert, wenn die Länge nicht glatt aufgeht, und beschreiben Sie, wie sie die übrigen Elemente
+verteilt.
 
 [ER] Arbeiten Sie mit Array-Teilungen:
 
 - Erstellen Sie mit `arange` und `reshape` ein 6×4-Array mit den ganzen Zahlen von 0 bis 23
 - Teilen Sie es mit `vsplit` in 3 gleiche Teile
 - Teilen Sie es mit `hsplit` in 2 gleiche Teile
-- Verwenden Sie `split` mit `axis=0` und den Indizes `[2, 4]` zur ungleichmäßigen Teilung
+- Verwenden Sie `split` mit `axis=0` und den Indizes `[1, 4]` zur ungleichmäßigen Teilung
 
 Geben Sie für jedes Ergebnis die Anzahl der Teilarrays und deren Formen aus.
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Array-Größe ändern: `resize`
 
@@ -250,6 +268,16 @@ print("Verkleinert:", resized_smaller)
 # [[1 2]
 #  [3 4]]
 ```
+
+[NOTICE]
+Es gibt `resize` zweimal, und die beiden Varianten verhalten sich beim Vergrößern
+unterschiedlich: Die Funktion `np.resize(a, shape)` liefert ein neues Array und füllt den
+zusätzlichen Platz zyklisch mit den vorhandenen Werten (siehe Beispiel oben); die Methode
+`a.resize(shape)` ändert `a` selbst und füllt den zusätzlichen Platz mit Nullen.
+Eselsbrücke: Wer etwas neu baut, darf beliebig oft von der Vorlage abschreiben; wer das
+Original selbst umbaut, hat für den neuen Platz nichts als Nullen.
+In dieser Aufgabe wird durchgehend die Funktion verwendet.
+[ENDNOTICE]
 
 [EQ] Was ist der Unterschied zwischen `np.resize()` und der `reshape()`-Methode,
 die Sie bereits kennen? Wann würden Sie welche Funktion verwenden?
@@ -441,21 +469,27 @@ print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 
 Verwenden Sie dabei alle vier Optionen der `unique`-Funktion.
 
-<!-- time estimate: 15 min -->
+[EQ] Sehen Sie sich die von `return_index` gelieferten Indizes an: Sie sind nicht aufsteigend
+sortiert. Wonach richtet sich ihre Reihenfolge stattdessen?
+
+<!-- time estimate: 20 min -->
 
 ### Kombination mehrerer Operationen
 
 [ER] Führen Sie eine komplexe Array-Manipulation durch:
 
 - Erstellen Sie mit `arange` und `reshape` zwei 3×4-Arrays `A` (ganze Zahlen von 1 bis 12) und
-  `B` (ganze Zahlen von 13 bis 24)
+  `B` (ganze Zahlen von 7 bis 18)
 - Verbinden Sie sie horizontal mit `hstack`
 - Teilen Sie das Ergebnis vertikal in 3 gleiche Teile
 - Fügen Sie dem mittleren Teil eine neue Spalte mit dem Wert 99 hinzu
-- Entfernen Sie alle doppelten Werte aus dem gesamten resultierenden Array
+- Bringen Sie die drei Teile wieder zusammen: Flachen Sie jeden Teil einzeln ab und verketten Sie
+  die drei flachen Arrays zu einem einzigen 1D-Array
+- Entfernen Sie daraus alle doppelten Werte
 - Ändern Sie die finale Form zu 4×4 mit `resize`
 
-Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form.
+Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form und geben Sie zusätzlich vor und
+nach dem Entfernen der Duplikate die Anzahl der Werte aus.
 
 [HINT::Schritt für Schritt vorgehen]
 Diese Aufgabe verkettet mehrere Operationen. Geben Sie nach jedem einzelnen Schritt die `shape`
@@ -463,6 +497,9 @@ des Zwischenergebnisses aus, bevor Sie mit dem nächsten Schritt weitermachen �
 sofort, ob eine Operation entlang der richtigen Achse arbeitet, bevor sich ein Fehler auf die
 folgenden Schritte fortpflanzt.
 [ENDHINT]
+
+[EQ] Nach dem Entfernen der Duplikate bleiben mehr Werte übrig, als in eine 4×4-Form passen.
+Welche Werte fehlen im Endergebnis, und warum gerade diese?
 
 <!-- time estimate: 20 min -->
 
@@ -487,11 +524,15 @@ folgenden Schritte fortpflanzt.
   liefern für alle vier Kombinationen die korrekten Shapes; Begründung erkennt, dass `axis=0`
   bei `concatenate` eine bereits vorhandene Achse referenziert, bei `stack` dagegen die
   Einfügeposition einer neu erzeugten Achse
-- [EREFQ::3]: Unterschied zwischen `resize` (ändert Elementanzahl, füllt zyklisch auf/schneidet ab,
-  liefert immer eine Kopie) und `reshape` (Elementanzahl bleibt gleich, liefert meist eine View)
-  korrekt erklärt
-- [EREFR::8]: Im 3. Schritt wird dem mittleren Teil korrekt eine **Spalte** (nicht Zeile)
-  hinzugefügt (Shape (1,8) → (1,9)); finale Shape (4,4) enthält die richtigen eindeutigen Werte
+- [EREFQ::3]: Unterschied zwischen der Funktion `np.resize` (ändert Elementanzahl, füllt zyklisch
+  auf/schneidet ab, liefert immer eine Kopie) und `reshape` (Elementanzahl bleibt gleich, liefert
+  meist eine View) korrekt erklärt
+- [EREFR::8] + [EREFQ::5]: Im 3. Schritt wird dem mittleren Teil korrekt eine **Spalte** (nicht
+  Zeile) hinzugefügt (Shape (1,8) → (1,9)); das Entfernen der Duplikate reduziert die Werte
+  tatsächlich von 25 auf 19 (die Überlappung 7..12 zwischen `A` und `B` fällt weg); und der
+  Student benennt die drei beim `resize` verlorenen Werte (17, 18, 99) samt Begründung über die
+  sortierte Reihenfolge — dass ausgerechnet die zuvor eingefügte 99 wieder verschwindet, ist der
+  Punkt, an dem sich zeigt, ob der Ablauf wirklich nachvollzogen wurde
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-array3.md]
