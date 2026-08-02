@@ -98,12 +98,17 @@ A: (3, 4)     +     B: (2,)      →  Fehler: 4 ≠ 2
 # Vergleich: 4 mit 1 (OK), 3 mit 3 (OK) → kompatibel
 ```
 
-[EQ] Analysieren Sie folgende Array-Kombinationen und bestimmen Sie,
-ob Broadcasting möglich ist. Begründen Sie Ihre Antwort:
+[EQ] Analysieren Sie folgende Array-Kombinationen und bestimmen Sie jeweils, ob Broadcasting
+möglich ist. Begründen Sie Ihre Antwort mit dem Dimensionsvergleich von rechts nach links und
+geben Sie bei den kompatiblen Paaren die resultierende Form an:
 
-- Array A: Form (5, 4) mit Array B: Form (4,)
-- Array A: Form (3, 1, 4) mit Array B: Form (2, 4)
-- Array A: Form (6, 1) mit Array B: Form (1, 5)
+- Array A: Form (7, 3) mit Array B: Form (7,)
+- Array A: Form (8, 1, 6) mit Array B: Form (4, 6)
+- Array A: Form (2, 5) mit Array B: Form (5, 2)
+
+Probieren Sie die von Ihnen als inkompatibel eingestuften Fälle anschließend selbst aus (etwa mit
+`np.ones(...)` aus [PARTREF::np-array]) und übernehmen Sie die Fehlermeldung, die NumPy dabei
+ausgibt, in Ihre Antwort.
 
 [ER] Demonstrieren Sie Broadcasting mit verschiedenen Array-Kombinationen:
 
@@ -114,7 +119,7 @@ ob Broadcasting möglich ist. Begründen Sie Ihre Antwort:
   und `array_2d` als weiteres 2D-Array der Form (3, 4) mit Werten `[[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3]]`
 - Führen Sie folgende Broadcasting-Operationen durch: `matrix + row_vec`, `matrix + col_vec`,
   `row_vec * col_vec`, `array_3d + array_2d`
-- Dokumentieren Sie die resultierenden Formen
+- Geben Sie für jede Operation sowohl die resultierende Form als auch das Ergebnis-Array aus
 
 <!-- time estimate: 20 min -->
 
@@ -134,8 +139,14 @@ numpy.max(a, axis=None, keepdims=False)
 - `axis` (Standard `None`): die Achse, entlang derer reduziert wird; bei `None` wird über das
   gesamte Array reduziert (ein einzelner Skalar)
 - `keepdims` (Standard `False`): bei `True` bleibt die reduzierte Achse als Länge 1 erhalten
-  (Form `(1, 5)` statt `(5,)`) — nur so bleibt die Form broadcasting-kompatibel mit dem
-  ursprünglichen Array
+  (Form `(1, 5)` statt `(5,)`)
+
+Ob man `keepdims` braucht, hängt von der Achse ab. Bei einem `(3, 5)`-Array und `axis=0` liefert
+die Reduktion die Form `(5,)`, und `(5,)` ist mit `(3, 5)` bereits broadcasting-kompatibel — hier
+ändert `keepdims` am Ergebnis nichts. Bei `axis=1` dagegen entsteht die Form `(3,)`, die sich mit
+`(3, 5)` **nicht** kombinieren lässt (von rechts verglichen: 5 gegen 3); erst `keepdims=True`
+macht daraus `(3, 1)` und damit eine passende Form. Für Code, der mit beliebiger Achse umgehen
+soll, ist `keepdims=True` deshalb die richtige Wahl.
 
 `np.min(data, axis=0)`/`np.max(data, axis=0)` liefern das Minimum bzw. Maximum jeder Spalte
 (entlang Achse 0). Ohne Broadcasting müsste man `min_vals`/`max_vals` erst manuell auf die Form
@@ -157,7 +168,8 @@ normalized = (data - min_vals) / range_vals  # Broadcasting: (3, 5) mit (1, 5)
 - Erstellen Sie eine Funktion `min_max_normalize(data, axis=0)`
 - Die Funktion soll Daten auf den Bereich [0, 1] normalisieren
 - Verwenden Sie Broadcasting für die Berechnung
-- Testen Sie mit der Matrix `[[1, 20, 300], [2, 25, 280], [3, 15, 320]]`
+- Testen Sie mit der Matrix `[[4, 100, 7, 20], [8, 250, 3, 60], [2, 175, 9, 40]]`, und zwar
+  einmal mit `axis=0` und einmal mit `axis=1`; geben Sie beide Ergebnisse aus
 
 [HINT::Wie überprüfe ich mein Ergebnis?]
 Prüfen Sie mit `np.min`/`np.max`, dass in Ihrem normalisierten Ergebnis jede Spalte auf das
@@ -229,8 +241,10 @@ it = np.nditer(a, flags=['multi_index'])
 for x in it:
     print(f'Index {it.multi_index}: Wert {x}')
 
-# Schreibzugriff
-for x in np.nditer(a, op_flags=['readwrite']):
+# Schreibzugriff (auf einem eigenen Array, damit die Demonstration
+# darunter weiterhin die ursprünglichen Werte zeigt)
+b = np.array([[0, 1, 2], [3, 4, 5]])
+for x in np.nditer(b, op_flags=['readwrite']):
     x[...] = 2 * x  # Jeden Wert mit 2 multiplizieren
 
 # Externe Schleife
@@ -280,12 +294,25 @@ a = np.arange(12)          # [0, 1, 2, ..., 11]
 b = np.linspace(0, 1, 5)   # [0.  , 0.25, 0.5 , 0.75, 1.  ]
 ```
 
-[ER] Erzeugen Sie zwei Arrays und geben Sie beide aus:
+Beide Funktionen können mehr, als die obigen Signaturen zeigen: `arange` akzeptiert auch einen
+Startwert und eine Schrittweite, und bei `linspace` lässt sich der Endpunkt ausschließen. Die
+jeweiligen Parameter finden Sie in der Dokumentation zu
+[`numpy.arange`](https://numpy.org/doc/stable/reference/generated/numpy.arange.html) und
+[`numpy.linspace`](https://numpy.org/doc/stable/reference/generated/numpy.linspace.html).
 
-- mit `np.arange` die ganzen Zahlen von 0 bis 9
-- mit `np.linspace` 5 gleichmäßig verteilte Werte von 0 bis 10 (Endpunkt eingeschlossen)
+[ER] Erzeugen Sie **dieselbe** Zahlenfolge `[0, 2, 4, 6, 8]` auf zwei Wegen und geben Sie beide
+Ergebnisse aus:
 
-<!-- time estimate: 10 min -->
+- einmal mit `np.arange`
+- einmal mit `np.linspace`
+
+Beide Aufrufe sollen dabei denselben Bereich von `0` bis `10` beschreiben.
+
+[EQ] Beide Aufrufe liefern dieselben Werte, aber Sie mussten NumPy dabei Unterschiedliches
+mitteilen. Woran müssen Sie sich jeweils orientieren, und in welcher Situation ist welche der
+beiden Funktionen die naheliegendere Wahl?
+
+<!-- time estimate: 15 min -->
 
 ### Array-Form-Manipulationen: `reshape`, `expand_dims`, `squeeze`
 
@@ -297,12 +324,15 @@ ndarray.reshape(*shape)
 ```
 
 - `*shape`: die Ziel-Form, entweder als einzelnes Tupel oder als einzelne Dimensionen; die
-  Gesamtzahl der Elemente muss unverändert bleiben, sonst schlägt der Aufruf fehl
+  Gesamtzahl der Elemente muss unverändert bleiben, sonst schlägt der Aufruf fehl.
+  Genau eine Dimension darf `-1` sein: Diese rechnet NumPy dann selbst aus, so dass die
+  Gesamtzahl der Elemente aufgeht
 
 ```python
 # reshape: Neue Form ohne Datenänderung
 a = np.arange(12)  # [0, 1, 2, ..., 11]
 reshaped = a.reshape(3, 4)
+inferred = a.reshape(3, -1)  # ebenfalls (3, 4): 12 / 3 = 4
 ```
 
 **Dimensionsmanipulation:**
@@ -323,12 +353,18 @@ expanded = np.expand_dims(arr_2d, axis=0)  # Form: (1, 2, 2)
 squeezed = np.squeeze(expanded)  # Zurück zu (2, 2)
 ```
 
-[ER] Arbeiten Sie mit verschiedenen Array-Form-Manipulationen:
+[ER] Arbeiten Sie mit verschiedenen Array-Form-Manipulationen und geben Sie bei jedem Schritt
+Form und Ergebnis aus:
 
 - Erstellen Sie mit `np.arange` ein 1D-Array der Länge 24 und formen Sie es in eine
-  `(4, 6)`- und eine `(2, 3, 4)`-Struktur um
-- Fügen Sie mit `expand_dims` eine neue Achse hinzu und entfernen Sie diese anschließend
-  wieder mit `squeeze`
+  `(4, 6)`- und eine `(2, 3, 4)`-Struktur um; erzeugen Sie die `(4, 6)`-Form zusätzlich ein
+  zweites Mal, diesmal mit `-1` für die zweite Dimension
+- Versuchen Sie, das Array `np.array([10, 20, 30])` (Form `(3,)`) zu einem `(3, 4)`-Array zu
+  addieren. Der Versuch schlägt fehl; halten Sie die Fehlermeldung fest. Reparieren Sie ihn
+  anschließend mit `expand_dims`, so dass jeder der drei Werte auf eine ganze Zeile wirkt
+- Wenden Sie `squeeze` auf das Ergebnis von `np.min(daten, axis=0, keepdims=True)` an (mit
+  `daten` als beliebigem 2D-Array) und vergleichen Sie die Form mit der von
+  `np.min(daten, axis=0)`
 
 <!-- time estimate: 15 min -->
 
@@ -363,12 +399,13 @@ result = a + b + c  # Broadcasting auf (3, 4)
 
 [EQ] Gegeben sind drei Arrays:
 
-- Array X: Form (3, 1, 5)
-- Array Y: Form (2, 5)
-- Array Z: Form (3, 2, 1)
+- Array X: Form (4, 1, 6)
+- Array Y: Form (3, 6)
+- Array Z: Form (4, 2, 1)
 
-Bestimmen Sie die resultierende Form bei der Operation `X + Y + Z`
-oder erklären Sie, warum die Operation nicht möglich ist.
+Bestimmen Sie die resultierende Form bei der Operation `X + Y + Z` oder erklären Sie, warum die
+Operation nicht möglich ist. Benennen Sie im Fehlerfall genau, welche Dimension betroffen ist und
+welche beiden Arrays dort miteinander in Konflikt stehen.
 
 <!-- time estimate: 10 min -->
 
@@ -393,11 +430,16 @@ oder erklären Sie, warum die Operation nicht möglich ist.
 - [EREFR::1] Die resultierenden Formen und Werte aller Broadcasting-Operationen sind korrekt
   (insbesondere `row_vec * col_vec`, das zwei 1D/2D-Arrays zu einer vollen `(3, 4)`-Matrix
   broadcastet, sowie die 3D-Kombination `(2, 1, 4)` mit `(3, 4)` zu `(2, 3, 4)`).
-- [EREFQ::2] Alle drei Kompatibilitätsurteile sind korrekt, und die Begründung bezieht sich auf
-  den tatsächlichen Dimensionsvergleich von rechts nach links, nicht nur auf ein geratenes
-  Ja/Nein.
-- [EREFR::2] Die Normalisierung nutzt tatsächlich Broadcasting mit `keepdims=True` (nicht z.B.
-  eine Schleife über die Spalten), und alle normalisierten Werte liegen korrekt zwischen 0 und 1.
+- [EREFQ::2] Alle drei Kompatibilitätsurteile sind korrekt — insbesondere gilt `(7, 3)` mit
+  `(7,)` als inkompatibel; wer hier "kompatibel" antwortet, hat die Ausrichtung an der rechten
+  Achse nicht verstanden. Die Begründung bezieht sich auf den tatsächlichen Dimensionsvergleich
+  von rechts nach links, nicht nur auf ein geratenes Ja/Nein, und die beiden Fehlermeldungen
+  sind übernommen, also tatsächlich erzeugt worden.
+- [EREFR::2] Die Normalisierung nutzt tatsächlich Broadcasting (nicht z.B. eine Schleife über die
+  Spalten) und funktioniert für `axis=0` **und** `axis=1`; alle normalisierten Werte liegen
+  korrekt zwischen 0 und 1. Eine Lösung ohne `keepdims` fällt hier auf, weil sie zwar für
+  `axis=0` das richtige Ergebnis liefert, für `axis=1` aber mit einem Broadcasting-Fehler
+  abbricht.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-array2.md]
