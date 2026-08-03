@@ -490,7 +490,7 @@ Welche Folge hätte das für die Reihenfolge dieser beiden Einträge?
   `<int:student_id>` frei wählbar ist, mit `<str:student_id>` dagegen zwingend würde: Die
   Detail-Route finge `students/redirect/` mit ab, `student_redirect` käme nie zum Zug, und
   `Student.objects.get(id="redirect")` scheiterte mit einem `ValueError`.
-  Anders als bei den übrigen Knackpunkten liefert kein Versuch die Antwort; die im [HINT] zum
+  Anders als bei den übrigen Knackpunkten liefert kein Versuch die Antwort; die im `HINT` zum
   Typkonverter erklärte Arbeitsteilung zwischen URL-Matching und View muss auf dieses konkrete
   Routenpaar übertragen werden.
 
