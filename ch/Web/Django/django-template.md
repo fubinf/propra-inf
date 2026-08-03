@@ -48,7 +48,7 @@ gebraucht.
 
 [ER] Entfernen Sie diese sieben Funktionen aus `views.py`, die dadurch unnötig gewordenen
 Importe (`csrf_exempt`, `redirect`, `reverse`) sowie ihre Routen aus `urls.py`.
-Behalten Sie `hello` und `student_detail`, die brauchen Sie weiterhin.
+Behalten Sie `hello` und `student_detail`, die Sie weiterhin brauchen.
 <!-- time estimate: 5 min -->
 
 ### Template-Variablen und Context
@@ -197,8 +197,8 @@ gefolgt von " — Note: " und dem Notendurchschnitt (mit `default:"Noch keine No
 von " — " und dem Aktivstatus (mit `yesno:"Aktiv,Inaktiv"`), sowie einem `{% empty %}`-Zweig
 mit dem Text "Noch keine Studierenden registriert." in einem Listenelement.
 
-[ER] Fügen Sie in `urls.py` die Route für `students_list` hinzu: Pfad `students/`, Name
-`students_list`.
+[ER] Fügen Sie in `urls.py` die Route für `students_list` hinzu: Pfad `students/`, Ziel
+`students_list`, Name `students_list`.
 
 Öffnen Sie `http://127.0.0.1:8071/admin/` und melden Sie sich mit Ihrem Superuser an (siehe
 [PARTREF::django-model]).
@@ -257,11 +257,11 @@ semantische HTML-Elemente wie `<header>` und `<footer>` (siehe [PARTREF::html-Se
 Ihren bisherigen `<body>`-Inhalt (Überschrift, Bedingungsblock mit Hobbys) in einen Block
 `content`.
 Stufen Sie dabei die Überschrift `<h1>{{ greeting }}</h1>` zu `<h2>{{ greeting }}</h2>`
-herab: Die Seitenüberschrift kommt jetzt aus `base.html`, ein zweites `<h1>` wäre nicht mehr
+herab: Das `<h1>` der Seite kommt jetzt aus `base.html`, ein zweites `<h1>` wäre nicht mehr
 korrekt.
 Stufen Sie aus demselben Grund auch die Unterüberschrift `<h2>Ihre Hobbys:</h2>` zu
 `<h3>Ihre Hobbys:</h3>` herab, damit sie weiterhin der (jetzt eine Ebene tieferen)
-Seitenüberschrift untergeordnet bleibt.
+Überschrift des Inhaltsblocks untergeordnet bleibt.
 
 [ER] Wandeln Sie `students_list.html` auf dieselbe Weise in ein Kind-Template um: Stufen Sie
 dabei ebenso die Überschrift `<h1>Alle Studierenden</h1>` zu `<h2>Alle Studierenden</h2>`
