@@ -19,23 +19,25 @@ assumes: html-erste-Schritte, html-Semantik, css-Einführung, curl
 [SECTION::background::default]
 
 Wenn eine View HTML direkt als Python-String zusammenbaut, vermischen sich Darstellung und
-Programmlogik; das wird schnell unübersichtlich und ist schwer zu pflegen. Das Django
-Template System trennt beides: Die View liefert nur die Daten, das Template bestimmt, wie
-sie als HTML dargestellt werden. So können Layout und Logik unabhängig voneinander bearbeitet
-werden.
+Programmlogik; das wird schnell unübersichtlich und ist schwer zu pflegen.
+Das Django Template System trennt beides: Die View liefert nur die Daten, das Template
+bestimmt, wie sie als HTML dargestellt werden.
+So können Layout und Logik unabhängig voneinander bearbeitet werden.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-Sie arbeiten weiter mit der App `webapp`. In [PARTREF::django-project] haben Sie bereits ein
-erstes Template `hello.html` angelegt, das von der `hello`-View mit `render()` ausgeliefert
-wird. Darauf bauen die folgenden Schritte auf.
+Sie arbeiten weiter mit der App `webapp`.
+In [PARTREF::django-project] haben Sie bereits ein erstes Template `hello.html` angelegt, das
+von der `hello`-View mit `render()` ausgeliefert wird.
+Darauf bauen die folgenden Schritte auf.
 
 Starten Sie für die folgenden Schritte den Entwicklungsserver mit
 `python manage.py runserver 8071` und lassen Sie ihn laufen, damit Sie die Seiten im Browser
-bzw. mit `curl` aufrufen können. Alle URLs und Befehle unten verwenden den Port 8071; falls
-Sie den Entwicklungsserver auf einem anderen Port betreiben, passen Sie sie entsprechend an.
+bzw. mit `curl` aufrufen können.
+Alle URLs und Befehle unten verwenden den Port 8071; falls Sie den Entwicklungsserver auf
+einem anderen Port betreiben, passen Sie sie entsprechend an.
 
 ### Aufräumen: nicht mehr benötigte Views
 
@@ -45,14 +47,15 @@ Sie den Entwicklungsserver auf einem anderen Port betreiben, passen Sie sie ents
 gebraucht.
 
 [ER] Entfernen Sie diese sieben Funktionen aus `views.py`, die dadurch unnötig gewordenen
-Importe (`csrf_exempt`, `redirect`, `reverse`) sowie ihre Routen aus `urls.py`. Behalten Sie
-`hello` und `student_detail`, die brauchen Sie weiterhin.
+Importe (`csrf_exempt`, `redirect`, `reverse`) sowie ihre Routen aus `urls.py`.
+Behalten Sie `hello` und `student_detail`, die brauchen Sie weiterhin.
 <!-- time estimate: 5 min -->
 
 ### Template-Variablen und Context
 
 Beim Aufruf von `render()` haben Sie bisher nur eine einzige Variable (`message`) an das
-Template übergeben. Wie Sie aus [PARTREF::django-project] wissen, hat `render()` die Form
+Template übergeben.
+Wie Sie aus [PARTREF::django-project] wissen, hat `render()` die Form
 
 ```python
 render(request, template_name, context)
@@ -75,9 +78,9 @@ drei Variablen an `render()` übergibt: `greeting` mit dem Wert `Hallo Django Te
 `user_name` mit dem Wert `Anna` und `is_logged_in` mit dem Wert `True`.
 
 Ein Template ist eine HTML-Datei (HTML-Grundelemente wie `<h1>`, `<p>` und Listen kennen Sie
-aus [PARTREF::html-erste-Schritte]), in der zusätzlich die Template-Syntax vorkommt. Die
-Syntax `{{ variablenname }}` setzt an der jeweiligen Stelle den Wert aus dem Context ein, nach
-folgendem Schema:
+aus [PARTREF::html-erste-Schritte]), in der zusätzlich die Template-Syntax vorkommt.
+Die Syntax `{{ variablenname }}` setzt an der jeweiligen Stelle den Wert aus dem Context ein,
+nach folgendem Schema:
 
 ```html
 <p>{{ titel }}</p>
@@ -85,7 +88,8 @@ folgendem Schema:
 
 Ersetzen Sie zunächst den Inhalt von `hello.html` durch die folgende Grundstruktur; sie
 ergänzt die einfache Version aus [PARTREF::django-project] um `lang`-Angabe, `<meta charset>`
-und einen passenden Titel. In den folgenden Schritten ändern Sie jeweils nur den `<body>`:
+und einen passenden Titel.
+In den folgenden Schritten ändern Sie jeweils nur den `<body>`:
 
 ```html
 <!DOCTYPE html>
@@ -112,7 +116,8 @@ Entfernen Sie die Testzeile anschließend wieder.
 ### Bedingte Darstellung mit `{% if %}`
 
 Neben Variablen (`{{ ... }}`) kennt die Template-Sprache auch Tags für Logik, geschrieben mit
-`{% ... %}`. Das `{% if %}`-Tag zeigt Inhalte nur unter einer Bedingung an, mit optionalem
+`{% ... %}`.
+Das `{% if %}`-Tag zeigt Inhalte nur unter einer Bedingung an, mit optionalem
 `{% else %}`-Zweig, nach folgendem Schema:
 
 ```html
@@ -128,28 +133,30 @@ Variablen `is_logged_in` abhängt: Wenn sie zutrifft, zeigen Sie einen Absatz `<
 Text "Willkommen zurück, " gefolgt vom Wert von `user_name` und einem Ausrufezeichen;
 andernfalls einen Absatz `<p>` mit dem Text "Bitte melden Sie sich an."
 
-[EQ] Ändern Sie in der View `is_logged_in` auf `False` und aktualisieren Sie die Seite. Was
-wird jetzt angezeigt, und welcher Teil des Templates ist dafür verantwortlich?
+[EQ] Ändern Sie in der View `is_logged_in` auf `False` und aktualisieren Sie die Seite.
+Was wird jetzt angezeigt, und welcher Teil des Templates ist dafür verantwortlich?
 <!-- time estimate: 10 min -->
 
 ### Schleifen mit `{% for %}`
 
 Neben Bedingungen kennt die Template-Sprache mit `{% for %}` auch ein Tag zum Iterieren über
 Listen, ähnlich aufgebaut wie das `{% if %}`-Tag aus dem vorigen Abschnitt: ein einleitendes
-Tag, dazwischen der wiederholte Inhalt, ein abschließendes Tag. Lesen Sie in der Doku zu
+Tag, dazwischen der wiederholte Inhalt, ein abschließendes Tag.
+Lesen Sie in der Doku zu
 [Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#std-templatetag-for)
 den Abschnitt zu `for` nach, insbesondere den Zugriff auf das aktuelle Element im
 Schleifenkörper und das optionale `{% empty %}`-Tag für den Fall einer leeren Liste.
 
 [ER] Setzen Sie `is_logged_in` in der View wieder auf `True` und ergänzen Sie den `context`
-um eine Liste `hobbies` mit den Werten `Programmieren`, `Lesen`, `Sport`. Stellen Sie
-`hobbies` im `<body>` von `hello.html` innerhalb des `{% if is_logged_in %}`-Zweigs dar: eine
-Überschrift `Ihre Hobbys:` (`<h2>`), darunter die Hobbys als `<ul>`-Liste mit `{% for %}`
-und einem `{% empty %}`-Zweig, der für eine leere Liste "Keine Hobbys angegeben" in einem
-Listenelement anzeigt.
+um eine Liste `hobbies` mit den Werten `Programmieren`, `Lesen`, `Sport`.
+Stellen Sie `hobbies` im `<body>` von `hello.html` innerhalb des
+`{% if is_logged_in %}`-Zweigs dar: eine Überschrift `Ihre Hobbys:` (`<h2>`), darunter die
+Hobbys als `<ul>`-Liste mit `{% for %}` und einem `{% empty %}`-Zweig, der für eine leere
+Liste "Keine Hobbys angegeben" in einem Listenelement anzeigt.
 
 [EQ] Setzen Sie `hobbies` in der View auf eine leere Liste `[]` und aktualisieren Sie die
-Seite. Was wird angezeigt, und welches Tag ist dafür verantwortlich?
+Seite.
+Was wird angezeigt, und welches Tag ist dafür verantwortlich?
 
 Setzen Sie `hobbies` in der View wieder auf die ursprüngliche Liste
 (`['Programmieren', 'Lesen', 'Sport']`), bevor Sie fortfahren.
@@ -157,8 +164,8 @@ Setzen Sie `hobbies` in der View wieder auf die ursprüngliche Liste
 
 ### Echte Daten aus dem Model mit Filtern darstellen
 
-Bisher haben Sie nur Testdaten direkt im `context` der View angegeben. Wie Sie aus
-[PARTREF::django-model] wissen, liefert `Student.objects.all()` alle gespeicherten
+Bisher haben Sie nur Testdaten direkt im `context` der View angegeben.
+Wie Sie aus [PARTREF::django-model] wissen, liefert `Student.objects.all()` alle gespeicherten
 `Student`-Objekte aus der Datenbank; im Template lässt sich das Ergebnis genauso wie eine
 Liste mit `{% for %}` durchlaufen.
 
@@ -183,7 +190,8 @@ alle `Student`-Objekte lädt und sie unter dem Context-Schlüssel `students` an 
 
 [ER] Legen Sie `webapp/templates/students_list.html` an, mit derselben Grundstruktur wie
 `hello.html` (`<!DOCTYPE>`, `<html lang="de">`, `<head>` mit `<meta charset>` und Titel,
-`<body>`). Zeigen Sie im `<body>` eine Überschrift `Alle Studierenden` (`<h1>`), darunter die
+`<body>`).
+Zeigen Sie im `<body>` eine Überschrift `Alle Studierenden` (`<h1>`), darunter die
 Studierenden als `<ul>`-Liste mit `{% for %}`: je Studierendem den Namen (mit `upper`),
 gefolgt von " — Note: " und dem Notendurchschnitt (mit `default:"Noch keine Note"`), gefolgt
 von " — " und dem Aktivstatus (mit `yesno:"Aktiv,Inaktiv"`), sowie einem `{% empty %}`-Zweig
@@ -193,22 +201,23 @@ mit dem Text "Noch keine Studierenden registriert." in einem Listenelement.
 `students_list`.
 
 Öffnen Sie `http://127.0.0.1:8071/admin/` und melden Sie sich mit Ihrem Superuser an (siehe
-[PARTREF::django-model]). Tragen Sie dort für Anna Müller den Notendurchschnitt `2.3` und für
-Peter Klein `1.7` ein (mit Punkt als Dezimaltrennzeichen, nicht mit Komma); setzen Sie
-außerdem bei Peter Klein `is_active` auf deaktiviert. Lassen Sie `grade_average` bei Lisa
-Weber leer.
+[PARTREF::django-model]).
+Tragen Sie dort für Anna Müller den Notendurchschnitt `2.3` und für Peter Klein `1.7` ein
+(mit Punkt als Dezimaltrennzeichen, nicht mit Komma); setzen Sie außerdem bei Peter Klein
+`is_active` auf deaktiviert.
+Lassen Sie `grade_average` bei Lisa Weber leer.
 
-[EQ] Rufen Sie anschließend `http://127.0.0.1:8071/students/` auf. Was erscheint bei Lisa
-Weber (kein Notendurchschnitt) und bei Peter Klein (nicht aktiv) anstelle der rohen Werte,
-und welcher Filter ist jeweils verantwortlich?
+[EQ] Rufen Sie anschließend `http://127.0.0.1:8071/students/` auf.
+Was erscheint bei Lisa Weber (kein Notendurchschnitt) und bei Peter Klein (nicht aktiv)
+anstelle der rohen Werte, und welcher Filter ist jeweils verantwortlich?
 <!-- time estimate: 20 min -->
 
 `upper`, `default` und `yesno` sind nur drei von vielen eingebauten Filtern.
 
 [EQ] Lesen Sie die vollständige Liste in der
 [Django-Doku zu Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-filter-reference)
-durch (Abschnitt "Built-in filter reference"). Welchen Filter finden Sie dort am nützlichsten
-oder interessantesten, und warum?
+durch (Abschnitt "Built-in filter reference").
+Welchen Filter finden Sie dort am nützlichsten oder interessantesten, und warum?
 <!-- time estimate: 10 min -->
 
 ### Template-Vererbung
@@ -246,9 +255,11 @@ semantische HTML-Elemente wie `<header>` und `<footer>` (siehe [PARTREF::html-Se
 [ER] Wandeln Sie `hello.html` in ein Kind-Template um: Ersetzen Sie `<!DOCTYPE>`, `<html>`,
 `<head>` und die `<body>`-Umschließung durch `{% extends "base.html" %}` und packen Sie
 Ihren bisherigen `<body>`-Inhalt (Überschrift, Bedingungsblock mit Hobbys) in einen Block
-`content`. Stufen Sie dabei die Überschrift `<h1>{{ greeting }}</h1>` zu `<h2>{{ greeting }}</h2>`
+`content`.
+Stufen Sie dabei die Überschrift `<h1>{{ greeting }}</h1>` zu `<h2>{{ greeting }}</h2>`
 herab: Die Seitenüberschrift kommt jetzt aus `base.html`, ein zweites `<h1>` wäre nicht mehr
-korrekt. Stufen Sie aus demselben Grund auch die Unterüberschrift `<h2>Ihre Hobbys:</h2>` zu
+korrekt.
+Stufen Sie aus demselben Grund auch die Unterüberschrift `<h2>Ihre Hobbys:</h2>` zu
 `<h3>Ihre Hobbys:</h3>` herab, damit sie weiterhin der (jetzt eine Ebene tieferen)
 Seitenüberschrift untergeordnet bleibt.
 
@@ -256,12 +267,12 @@ Seitenüberschrift untergeordnet bleibt.
 dabei ebenso die Überschrift `<h1>Alle Studierenden</h1>` zu `<h2>Alle Studierenden</h2>`
 herab, und überschreiben Sie zusätzlich `{% block title %}` mit `Studierendenliste`.
 
-[HINT::Wie hängen die Blocknamen in base.html und den Kind-Templates zusammen?]
+[HINT::Wie hängen die Blocknamen in `base.html` und den Kind-Templates zusammen?]
 Ein `{% block content %}` im Kind-Template ersetzt genau den gleichnamigen
-`{% block content %}` im Basis-Template; die Namen müssen also übereinstimmen. Blöcke, die
-das Kind-Template nicht überschreibt (z. B. wenn Sie `{% block title %}` weglassen), behalten
-den Inhalt aus `base.html` als Standard. Sie füllen also nur die Blöcke, die sich pro Seite
-unterscheiden.
+`{% block content %}` im Basis-Template; die Namen müssen also übereinstimmen.
+Blöcke, die das Kind-Template nicht überschreibt (z. B. wenn Sie `{% block title %}`
+weglassen), behalten den Inhalt aus `base.html` als Standard.
+Sie füllen also nur die Blöcke, die sich pro Seite unterscheiden.
 [ENDHINT]
 
 [EC] Sehen Sie sich den Quelltext beider Seiten an:
@@ -275,11 +286,12 @@ curl -s http://127.0.0.1:8071/students/
 ### Statische Dateien einbinden
 
 Neben der gemeinsamen Struktur gehört zum Aussehen einer Seite meist auch CSS (Syntax und
-Einbindung kennen Sie aus [PARTREF::css-Einführung]). Solche CSS-, JavaScript- und
-Bilddateien werden als **statische Dateien** bezeichnet. Django findet sie automatisch im
-Ordner `static/` einer registrierten App, analog dazu, wie Templates im `templates/`-Ordner
-gefunden werden. Im Template bindet das `{% static %}`-Tag
-sie ein; dazu muss `{% load static %}` am Dateianfang stehen, nach folgendem Schema:
+Einbindung kennen Sie aus [PARTREF::css-Einführung]).
+Solche CSS-, JavaScript- und Bilddateien werden als **statische Dateien** bezeichnet.
+Django findet sie automatisch im Ordner `static/` einer registrierten App, analog dazu, wie
+Templates im `templates/`-Ordner gefunden werden.
+Im Template bindet das `{% static %}`-Tag sie ein; dazu muss `{% load static %}` am
+Dateianfang stehen, nach folgendem Schema:
 
 ```html
 {% load static %}
@@ -298,21 +310,22 @@ Dateianfang und fügen Sie im `<head>` ein `<link>`-Element ein, das die Datei
 [HINT::Warum ändert sich die Darstellung manchmal nicht?]
 Falls die Seite nach diesem Schritt unverändert aussieht, prüfen Sie mit
 `curl -s http://127.0.0.1:8071/static/css/style.css`, ob die Datei überhaupt ausgeliefert
-wird. War der Entwicklungsserver schon gestartet, bevor Sie `webapp/static/css/` angelegt
-haben, kann es sein, dass er das neue Verzeichnis noch nicht kennt: Beenden Sie ihn mit
-Strg+C und starten Sie ihn neu.
+wird.
+War der Entwicklungsserver schon gestartet, bevor Sie `webapp/static/css/` angelegt haben,
+kann es sein, dass er das neue Verzeichnis noch nicht kennt: Beenden Sie ihn mit Strg+C und
+starten Sie ihn neu.
 [ENDHINT]
 
-[EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf. Die Seite ist jetzt formatiert, obwohl
-`students_list.html` selbst kein CSS enthält. Warum genügt es, `base.html` anzupassen,
-damit auch `students_list.html` das CSS erhält?
+[EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf.
+Die Seite ist jetzt formatiert, obwohl `students_list.html` selbst kein CSS enthält.
+Warum genügt es, `base.html` anzupassen, damit auch `students_list.html` das CSS erhält?
 <!-- time estimate: 20 min -->
 
 ### Navigation mit `{% url %}`
 
 Damit Nutzer zwischen den Seiten wechseln können, braucht `base.html` eine Navigation:
-das semantische Element `<nav>` markiert einen Block mit Navigationslinks. Für die Links
-verwenden Sie nicht fest codierte Pfade wie `href="/students/"`, sondern das
+das semantische Element `<nav>` markiert einen Block mit Navigationslinks.
+Für die Links verwenden Sie nicht fest codierte Pfade wie `href="/students/"`, sondern das
 `{% url %}`-Tag mit dem Routennamen; das ist die Template-Seite derselben namensbasierten
 Auflösung, deren Python-Seite (`reverse()`) Sie in [PARTREF::django-view] kennengelernt
 haben, nach folgendem Schema:
@@ -325,10 +338,11 @@ haben, nach folgendem Schema:
 setzt: einen auf die Route `hello` mit dem Text "Start" und einen auf die Route
 `students_list` mit dem Text "Studierendenliste".
 
-Auch die Detailseiten der Studierenden lassen sich so verlinken. Deren Route
-`student_detail` (aus [PARTREF::django-view]) braucht allerdings ein Argument, die
-`student_id`, und das obige Schema deckt nur die argumentlose Form ab. Wie sich einem
-`{% url %}`-Aufruf ein Argument mitgeben lässt, finden Sie im Abschnitt zu `url` der
+Auch die Detailseiten der Studierenden lassen sich so verlinken.
+Deren Route `student_detail` (aus [PARTREF::django-view]) braucht allerdings ein Argument, die
+`student_id`, und das obige Schema deckt nur die argumentlose Form ab.
+Wie sich einem `{% url %}`-Aufruf ein Argument mitgeben lässt, finden Sie im Abschnitt zu
+`url` der
 [Django-Doku zu Built-in template tags](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#url).
 
 [ER] Verlinken Sie in `students_list.html` zusätzlich jeden Studierendennamen mit `{% url %}`
@@ -341,10 +355,10 @@ Links zu den Detailseiten:
 curl -s http://127.0.0.1:8071/students/
 ```
 
-[EQ] Zu welchen Pfaden wurden die `{% url %}`-Links im Quelltext aufgelöst? In
-[PARTREF::django-view] haben Sie mit `reverse()` dasselbe in einer View getan. Warum ist es
-nützlich, dieselbe namensbasierte Auflösung sowohl in Python (`reverse()`) als auch im
-Template (`{% url %}`) zur Verfügung zu haben?
+[EQ] Zu welchen Pfaden wurden die `{% url %}`-Links im Quelltext aufgelöst?
+In [PARTREF::django-view] haben Sie mit `reverse()` dasselbe in einer View getan.
+Warum ist es nützlich, dieselbe namensbasierte Auflösung sowohl in Python (`reverse()`) als
+auch im Template (`{% url %}`) zur Verfügung zu haben?
 
 Öffnen Sie zum Abschluss `http://127.0.0.1:8071/` im Browser und klicken Sie über die
 `<nav>`-Links zwischen Startseite und Studierendenliste hin und her.
