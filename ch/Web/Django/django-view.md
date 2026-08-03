@@ -405,6 +405,7 @@ lässt, welche URL es erzeugt.
 [ER] Schreiben Sie in `views.py` eine View-Funktion `student_redirect`, die mit `reverse()`
 die URL der Detailseite von Student `1` erzeugt und den Client per `redirect()` dorthin
 weiterleitet.
+Importieren Sie dafür `reverse`.
 
 [ER] Fügen Sie in `urls.py` die Route für `student_redirect` hinzu: Pfad `students/redirect/`,
 Ziel `student_redirect`, Name `student_redirect`.
@@ -440,7 +441,6 @@ Machen Sie die Änderung in `urls.py` danach rückgängig: Die Route heißt wied
 nur der Reihenfolge, in der die Views in dieser Aufgabe entstanden sind.
 Nennen Sie mindestens zwei sinnvolle Arten, die Einträge stattdessen zu sortieren oder zu
 gruppieren.
-
 Prüfen Sie dabei auch, ob sich wirklich jede Reihenfolge frei wählen lässt: Betrachten Sie das
 Paar `students/<int:student_id>/` und `students/redirect/`.
 Was würde passieren, wenn die Detail-Route stattdessen `<str:student_id>` verwendete?
@@ -486,6 +486,13 @@ Welche Folge hätte das für die Reihenfolge dieser beiden Einträge?
   aktuellen Eintrag in `urls.py` erzeugt, statt eine früher eingebrannte Adresse zu verwenden.
   Die Umbenennung ist nur ein Zwischenschritt: In der abgegebenen `urls.py` steht wieder
   `students/<int:student_id>/`.
+- [EREFQ::11]: Student erkennt, dass die Reihenfolge der beiden `students/`-Einträge mit
+  `<int:student_id>` frei wählbar ist, mit `<str:student_id>` dagegen zwingend würde: Die
+  Detail-Route finge `students/redirect/` mit ab, `student_redirect` käme nie zum Zug, und
+  `Student.objects.get(id="redirect")` scheiterte mit einem `ValueError`.
+  Anders als bei den übrigen Knackpunkten liefert kein Versuch die Antwort; die im [HINT] zum
+  Typkonverter erklärte Arbeitsteilung zwischen URL-Matching und View muss auf dieses konkrete
+  Routenpaar übertragen werden.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-view.md]
