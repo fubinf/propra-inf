@@ -189,8 +189,8 @@ alle `Student`-Objekte lädt und sie unter dem Context-Schlüssel `students` an 
 `students_list.html` übergibt.
 
 [ER] Legen Sie `webapp/templates/students_list.html` an, mit derselben Grundstruktur wie
-`hello.html` (`<!DOCTYPE>`, `<html lang="de">`, `<head>` mit `<meta charset>` und Titel,
-`<body>`).
+`hello.html` (`<!DOCTYPE>`, `<html lang="de">`, `<head>` mit `<meta charset>` und dem Titel
+`Studierendenliste`, `<body>`).
 Zeigen Sie im `<body>` eine Überschrift `Alle Studierenden` (`<h1>`), darunter die
 Studierenden als `<ul>`-Liste mit `{% for %}`: je Studierendem den Namen (mit `upper`),
 gefolgt von " — Note: " und dem Notendurchschnitt (mit `default:"Noch keine Note"`), gefolgt
