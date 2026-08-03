@@ -29,8 +29,8 @@ werden.
 [SECTION::instructions::detailed]
 
 Sie arbeiten weiter mit der App `webapp`. In [PARTREF::django-project] haben Sie bereits ein
-erstes Template `hello.html` angelegt, das die `hello`-View mit `render()` ausliefert. Darauf
-bauen die folgenden Schritte auf.
+erstes Template `hello.html` angelegt, das von der `hello`-View mit `render()` ausgeliefert
+wird. Darauf bauen die folgenden Schritte auf.
 
 Starten Sie für die folgenden Schritte den Entwicklungsserver mit
 `python manage.py runserver 8071` und lassen Sie ihn laufen, damit Sie die Seiten im Browser
@@ -102,9 +102,11 @@ und einen passenden Titel. In den folgenden Schritten ändern Sie jeweils nur de
 [ER] Fügen Sie in den `<body>` von `hello.html` `greeting` als Überschrift `<h1>` und
 `user_name` darunter in einem Absatz `<p>` ein (jeweils mit der `{{ ... }}`-Syntax).
 
-[EQ] Fügen Sie testweise irgendwo in `hello.html` `{{ nichtvorhanden }}` ein, eine Variable,
-die im `context` gar nicht existiert, und rufen Sie `http://127.0.0.1:8071/` im Browser auf.
-Was erscheint an dieser Stelle? Entfernen Sie die Testzeile anschließend wieder.
+[EQ] Fügen Sie testweise irgendwo in `hello.html` die Zeile `<p>[{{ nichtvorhanden }}]</p>`
+ein; `nichtvorhanden` existiert im `context` gar nicht.
+Die eckigen Klammern machen sichtbar, wo der Wert stehen würde.
+Rufen Sie `http://127.0.0.1:8071/` im Browser auf: Was steht zwischen den Klammern?
+Entfernen Sie die Testzeile anschließend wieder.
 <!-- time estimate: 15 min -->
 
 ### Bedingte Darstellung mit `{% if %}`
@@ -214,9 +216,9 @@ oder interessantesten, und warum?
 Sie haben jetzt zwei Seiten, `hello.html` und `students_list.html`, die beide ihren
 kompletten `<head>`-Bereich einzeln ausschreiben.
 
-[EQ] Wenn Sie eine gemeinsame Kopf- oder Fußzeile für beide Seiten einführen und diese
-später ändern: An welchen Stellen müssten Sie die Änderung vornehmen? Überlegen Sie, welches
-Problem dadurch entsteht.
+[EQ] Wenn Sie diesen `<head>`-Bereich später ändern wollen, etwa um eine CSS-Datei
+einzubinden: An welchen Stellen müssten Sie die Änderung vornehmen?
+Überlegen Sie, welches Problem daraus entsteht, wenn weitere Seiten hinzukommen.
 
 Template-Vererbung löst genau dieses Problem: Ein **Basis-Template** definiert die
 gemeinsame Struktur und markiert mit `{% block %}` die Stellen, die einzelne Seiten füllen.
@@ -343,10 +345,10 @@ curl -s http://127.0.0.1:8071/students/
 [PARTREF::django-view] haben Sie mit `reverse()` dasselbe in einer View getan. Warum ist es
 nützlich, dieselbe namensbasierte Auflösung sowohl in Python (`reverse()`) als auch im
 Template (`{% url %}`) zur Verfügung zu haben?
-<!-- time estimate: 20 min -->
 
 Öffnen Sie zum Abschluss `http://127.0.0.1:8071/` im Browser und klicken Sie über die
 `<nav>`-Links zwischen Startseite und Studierendenliste hin und her.
+<!-- time estimate: 20 min -->
 
 ### Weiterführend
 
