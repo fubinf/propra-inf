@@ -69,7 +69,7 @@ Ein Formular mit GET-Methode hat folgende Bestandteile:
 ```
 
 - `action`: die Route, an die das Formular sendet, gesetzt mit `{% url %}`
-- `method="get"`: sendet die Daten als GET-Parameter an die im `action` angegebene URL
+- `method="get"`: sendet die Daten als GET-Parameter an die im `action`-Attribut angegebene URL
 - `name`: der Schlüssel, unter dem der eingegebene Wert als GET-Parameter ankommt
 - `value` (bei `<input type="text">`): der Text, der beim Anzeigen schon im Feld steht
 - `placeholder`: Hinweistext, der nur angezeigt wird, solange das Feld leer ist, und beim
@@ -85,7 +85,7 @@ Formular.
 [ER] Erstellen Sie `webapp/templates/search_get.html` als Kind-Template von `base.html`
 (`{% extends "base.html" %}`, Titel `Suche`, Inhalt in `{% block content %}`) mit:
 
-- einer Überschrift (`<h1>`) mit dem Text "Suchformular (GET)"
+- einer Überschrift (`<h2>`) mit dem Text "Suchformular (GET)"
 - darunter einem `<form>` mit `method="get"`, das an `{% url 'search' %}` sendet
 - darin einem Text-Eingabefeld `name="q"` (Wert vorbelegt mit `{{ q }}`, Platzhaltertext
   "Suchbegriff") und einem Absende-Button mit dem Text "Suchen"
@@ -94,7 +94,7 @@ Formular.
 - im `{% empty %}`-Zweig dem Text `Keine Treffer für "{{ q }}"` (mit dem eingesetzten
   Suchbegriff)
 
-[ER] Ergänzen Sie `urls.py` um die Route: Pfad `search/` auf `search` (Name `search`).
+[ER] Ergänzen Sie `urls.py` um die Route `search/` auf `search` (Name `search`).
 
 [EC] Testen Sie die GET-Suche direkt mit `curl` und rufen Sie anschließend die Detailseite
 des Treffers auf (der Suchbegriff ist URL-kodiert):
@@ -113,8 +113,8 @@ Aufruf (`/students/1/`) über diesen Link?
 [EQ] Rufen Sie zusätzlich `http://127.0.0.1:8071/search/` im Browser auf und suchen Sie nach
 dem exakten Namen eines bereits vorhandenen Studierenden (aus [PARTREF::django-model]).
 Wie verändert sich die URL nach dem Absenden, und wo taucht Ihr Suchbegriff auf?
-Suchen Sie anschließend nach einem Namen, den es nicht gibt: was wird angezeigt, und welches
-Template-Tag sorgt dafür, dass die Seite dabei nicht fehlerhaft wird?
+Suchen Sie anschließend nach einem Namen, den es nicht gibt: was wird angezeigt, warum führt
+die erfolglose Suche nicht zu einem Fehler, und welches Template-Tag erzeugt die Meldung?
 <!-- time estimate: 30 min -->
 
 ### POST-Formular und CSRF-Schutz
@@ -160,7 +160,7 @@ Context.
 [ER] Erstellen Sie `webapp/templates/search_post.html` als Kind-Template von `base.html`
 (`{% extends "base.html" %}`, Titel `Suche (POST)`, Inhalt in `{% block content %}`) mit:
 
-- einer Überschrift (`<h1>`) mit dem Text "Suchformular (POST)"
+- einer Überschrift (`<h2>`) mit dem Text "Suchformular (POST)"
 - darunter einem `<form>` mit `method="post"`, das an `{% url 'search_post' %}` sendet
 - unmittelbar nach dem öffnenden `<form>`-Tag `{% csrf_token %}`
 - einem Text-Eingabefeld `name="q"` (Wert vorbelegt mit `{{ q }}`, Platzhaltertext
@@ -177,16 +177,19 @@ Worin unterscheidet sich die URL nach dem Absenden gegenüber dem GET-Formular?
 
 Ein `curl`-Aufruf durchläuft kein Formular und liefert daher kein gültiges CSRF-Token mit.
 
-[EC] Senden Sie per `curl` einen POST ohne Token direkt an die View (nur der Statuscode wird
-ausgegeben):
+[EC] Senden Sie per `curl` einen POST ohne Token direkt an die View.
+Der erste Aufruf zeigt nur den Statuscode (`-o /dev/null` verwirft die Antwortseite,
+`-w "%{http_code}\n"` gibt stattdessen den Statuscode aus), der zweite holt aus derselben
+Antwortseite die Begründung heraus, die Django dort angibt:
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/
+curl -s -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/ | grep -A2 "Reason given"
 ```
 
 Entfernen Sie nun versuchsweise `{% csrf_token %}` aus `search_post.html` und suchen Sie
-danach im Browser unter `http://127.0.0.1:8071/search-post/` erneut nach einem Namen: Jetzt
-wird auch dieses eigene, regulär ausgefüllte Formular abgewiesen.
+danach im Browser unter `http://127.0.0.1:8071/search-post/` erneut nach einem Namen.
+Achten Sie darauf, was die Seite meldet und welche Begründung sie angibt.
 Lesen Sie zur Erklärung den Abschnitt "How it works" der
 [Django-Doku zu Cross Site Request Forgery protection](https://docs.djangoproject.com/en/stable/ref/csrf/#how-it-works)
 nach.
@@ -194,6 +197,7 @@ Fügen Sie `{% csrf_token %}` danach wieder in `search_post.html` ein.
 
 [EQ] Welcher Statuscode kam beim `curl`-Aufruf zurück, und was ist Ihnen gerade im Browser
 passiert, als `{% csrf_token %}` fehlte?
+Django nennt in beiden Fällen eine Begründung, aber nicht dieselbe: woran liegt das?
 Welche Komponente weist beide Aufrufe ab, und welche Rolle spielt `{% csrf_token %}` dabei,
 wenn nicht die eines Türstehers?
 <!-- time estimate: 15 min -->
@@ -262,7 +266,7 @@ Ein Formular mit mehreren Feldern hat folgende Bestandteile (aus [PARTREF::http-
 [ER] Erstellen Sie `webapp/templates/register.html` als Kind-Template von `base.html`
 (`{% extends "base.html" %}`, Titel `Registrierung`, Inhalt in `{% block content %}`) mit:
 
-- einer Überschrift (`<h1>`) mit dem Text "Studierenden-Registrierung"
+- einer Überschrift (`<h2>`) mit dem Text "Studierenden-Registrierung"
 - darunter einem `<form>` mit `method="post"` (inklusive `{% csrf_token %}`), das an
   `{% url 'register' %}` sendet
 - drei nach diesem Schema beschrifteten und verpflichtenden Eingabefeldern (`name`: Text,
@@ -290,6 +294,9 @@ Löschen Sie diesen Datensatz jetzt wieder, mit `delete()` oder über die Admin-
 (beides aus [PARTREF::django-model]), sonst steht er Ihnen im weiteren Verlauf dauerhaft in
 der Studierendenliste.
 [ENDNOTICE]
+
+Dass die Eingaben ungeprüft in der Datenbank landen, lässt sich erst mit serverseitiger
+Validierung durch Django-Forms verhindern, siehe "Working with forms" unter Weiterführend.
 
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und registrieren Sie einen Studierenden mit
 dem Namen "Tom Fischer", Alter `20` und der E-Mail "tom@example.com".
