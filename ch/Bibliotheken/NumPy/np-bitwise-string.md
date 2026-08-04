@@ -1,6 +1,6 @@
 title: NumPy Bitwise-Operationen und String-Funktionen
 stage: alpha
-timevalue: 2
+timevalue: 2.25
 difficulty: 2
 assumes: np-Einführung, np-array, py-Fstrings, py-List-Comprehensions
 ---
@@ -55,8 +55,8 @@ NumPy bietet dieselben Operationen als Funktionen an, die zusätzlich zwei Dinge
 - **Feste Bit-Breite**: Python-Ganzzahlen haben beliebig viele Stellen und laufen nie über.
   NumPy-Arrays haben dagegen einen festen `dtype` (z. B. `int8` mit genau 8 Bit), der die Anzahl
   verfügbarer Bits begrenzt.
-  Das ist wichtig für `invert()` und die Verschiebungsoperationen weiter unten, da sich das Ergebnis
-  innerhalb dieser festen Bit-Breite berechnet.
+  Das ist wichtig für `invert()` und die Verschiebungsoperationen weiter unten, da das Ergebnis
+  innerhalb dieser festen Bit-Breite berechnet wird.
 
 Auf Arrays lassen sich auch die Operatoren selbst verwenden; sie tun dort genau dasselbe wie die
 Funktionen (`a & b` ist gleichwertig zu `np.bitwise_and(a, b)`).
@@ -88,6 +88,8 @@ import numpy as np
 print(np.binary_repr(13, width=8))  # '00001101'
 ```
 
+<!-- time estimate: 10 min -->
+
 ### Bitweise UND-, ODER- und XOR-Operationen: `bitwise_and`, `bitwise_or`, `bitwise_xor`
 
 ```python
@@ -96,8 +98,8 @@ numpy.bitwise_or(x1, x2)   # bitweises ODER: 1 dort, wo mindestens ein Operand 1
 numpy.bitwise_xor(x1, x2)  # bitweises XOR: 1 dort, wo genau ein Operand 1 ist
 ```
 
-- `x1`, `x2`: Ganzzahl- oder Boolean-Arrays (gleicher Form oder broadcastbar), auf denen bitweise
-  verknüpft wird
+- `x1`, `x2`: Ganzzahl- oder Boolean-Arrays (gleicher Form oder broadcastbar), die bitweise
+  verknüpft werden
 
 `np.bool_` ist NumPys eigener Boolean-Datentyp für Array-Elemente (analog zu `np.int8` oder
 `np.complex128`); bei booleschen Arrays entsprechen die Bitwise-Operationen den logischen
@@ -148,11 +150,11 @@ numpy.right_shift(x1, x2)  # verschiebt die Bits von x1 um x2 Positionen nach re
 ```python
 import numpy as np
 
-# Links-Verschiebung entspricht Multiplikation mit 2^n
+# Links-Verschiebung entspricht Multiplikation mit 2ⁿ
 left_result = np.left_shift(10, 2)  # 10 << 2 = 40
 print("10 << 2 =", left_result)
 
-# Rechts-Verschiebung entspricht ganzzahliger Division durch 2^n
+# Rechts-Verschiebung entspricht ganzzahliger Division durch 2ⁿ
 right_result = np.right_shift(40, 2)  # 40 >> 2 = 10
 print("40 >> 2 =", right_result)
 ```
@@ -261,8 +263,7 @@ Wie bei einzelnen Python-Strings verändern sie das ursprüngliche Array nicht, 
 ein neues Array mit den Ergebnissen zurück.
 
 Der Geschwindigkeitsvorteil gegenüber einer Python-Schleife fällt hier deutlich kleiner aus als bei
-numerischen NumPy-Operationen: Bei einfachen, direkt vektorisierbaren Operationen auf großen Arrays
-(wie den hier gezeigten) bleibt er meist einstellig bis niedrig zweistellig.
+numerischen NumPy-Operationen.
 Im letzten Abschnitt dieser Aufgabe messen Sie selbst nach, wie groß er ausfällt.
 
 ```python
@@ -285,6 +286,8 @@ lower_strings = np.strings.lower(strings)
 print("Uppercase:", upper_strings)
 print("Lowercase:", lower_strings)
 ```
+
+<!-- time estimate: 5 min -->
 
 ### String-Verbindungen und Multiplikationen: `strings.add`, `strings.multiply`
 
