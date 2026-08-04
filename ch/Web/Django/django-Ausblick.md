@@ -18,11 +18,10 @@ assumes: curl
 
 Eine Registrierung, die kommentarlos auf einer anderen Seite landet, ein Formular, das jeden
 Absender akzeptiert, oder eine Seite, die sich in eine fremde Website einbetten lässt: In
-einer echten Anwendung wären das ernste Mängel, in Ihrem Projekt ist keiner davon
-aufgetreten.
-Beim ersten Punkt fehlt bisher schlicht die passende Funktion; die beiden anderen hat Django
-von Anfang an übernommen, den CSRF-Schutz haben Sie in [PARTREF::django-form] dabei bewusst
-eingesetzt, den Schutz vor Einbettung nie bemerkt.
+einer echten Anwendung wären das ernste Mängel.
+Der erste Fall trifft auf Ihr Projekt bisher zu, denn dafür fehlt schlicht die passende
+Funktion; die beiden anderen verhindert Django von Anfang an, den CSRF-Schutz haben Sie in
+[PARTREF::django-form] dabei bewusst eingesetzt, den Schutz vor Einbettung nie bemerkt.
 Solche Bordmittel gehören zu keiner der bisher behandelten Kernkomponenten (Model, View,
 Template, Formular), sondern greifen quer dazu bei jedem Request.
 In dieser Aufgabe holen Sie die fehlende Rückmeldung nach und schalten die beiden
@@ -94,8 +93,7 @@ die `messages` mit demselben Filter und dem Trennzeichen ", " ausgibt.
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
 "Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com".
-Sie landen auf der Detailseite; sie besteht nur aus Klartext und enthält keinen Link zur
-Studierendenliste.
+Sie landen auf der Detailseite; sie enthält keinen Link zur Studierendenliste.
 Rufen Sie diese danach im Browser unter `http://127.0.0.1:8071/students/` auf.
 
 [EQ] Auf welcher Seite taucht die Meldung "Registrierung erfolgreich" zum ersten Mal auf, und
