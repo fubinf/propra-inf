@@ -20,8 +20,9 @@ Eine Registrierung, die kommentarlos auf einer anderen Seite landet, ein Formula
 Absender akzeptiert, oder eine Seite, die sich in eine fremde Website einbetten lässt: In
 einer echten Anwendung wären das ernste Mängel.
 Der erste Fall trifft auf Ihr Projekt bisher zu, denn dafür fehlt schlicht die passende
-Funktion; die beiden anderen verhindert Django von Anfang an, den CSRF-Schutz haben Sie in
-[PARTREF::django-form] dabei bewusst eingesetzt, den Schutz vor Einbettung nie bemerkt.
+Funktion.
+Die beiden anderen verhindert Django von Anfang an: Den CSRF-Schutz haben Sie in
+[PARTREF::django-form] bewusst eingesetzt, den Schutz vor Einbettung nie bemerkt.
 Solche Bordmittel gehören zu keiner der bisher behandelten Kernkomponenten (Model, View,
 Template, Formular), sondern greifen quer dazu bei jedem Request.
 In dieser Aufgabe holen Sie die fehlende Rückmeldung nach und schalten die beiden
@@ -49,8 +50,8 @@ lag.
 messages.success(request, message)
 ```
 
-- `success` ist eine von mehreren Dringlichkeitsstufen (u. a. `info`, `warning`, `error`),
-  erkennbar am jeweiligen Funktionsnamen
+- `success`: eine von mehreren Dringlichkeitsstufen (u. a. `info`, `warning`, `error`), jeweils
+  am Funktionsnamen erkennbar
 - `request`: das Request-Objekt der View, in der Sie die Meldung ablegen
 - `message`: der anzuzeigende Text
 
@@ -71,12 +72,12 @@ Rufen Sie in `register`, zwischen dem Anlegen des Studierenden und der Weiterlei
 `messages.success` mit dem aktuellen Request und dem Text "Registrierung erfolgreich" auf.
 
 Sichtbar wird die Meldung erst, wenn ein Template sie auch anzeigt.
-Der `messages`-Wert selbst ist dafür bereits automatisch in jedem Template verfügbar, ganz
-ohne dass eine View ihn in den Context aufnehmen muss.
+`messages` ist dafür bereits automatisch in jedem Template verfügbar, ganz ohne dass eine View
+es in den Context aufnehmen muss.
 Zur Anzeige dient wieder ein Filter mit Argument, wie Sie ihn aus [PARTREF::django-template]
 von `default`/`yesno` kennen, diesmal allerdings ein anderer: `|join:trennzeichen` reiht die
-Elemente eines iterierbaren Werts, getrennt durch das angegebene Zeichen, zu einem einzigen
-Text aneinander.
+Elemente eines iterierbaren Werts, getrennt durch die angegebene Zeichenfolge, zu einem
+einzigen Text aneinander.
 Konkretes Beispiel:
 
 ```html
@@ -116,9 +117,8 @@ Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
 Das ist nur ein Zwischenzustand für den folgenden Test: Am Ende dieses Abschnitts steht die
 Zeile wieder wie im Original da.
 
-[EC] Der Entwicklungsserver bemerkt die Änderung von selbst (sein Autoreloader beobachtet
-alle `.py`-Dateien, auch `settings.py`, und startet den Prozess bei einer Änderung
-automatisch neu); warten Sie kurz.
+[EC] Der Autoreloader des Entwicklungsservers erfasst auch `settings.py`, die Änderung wirkt
+also ohne Neustart; warten Sie kurz.
 Senden Sie danach den folgenden Aufruf, der einen POST ohne CSRF-Token an `/search-post/`
 schickt und nur den Statuscode ausgibt: einmal jetzt und ein zweites Mal, nachdem Sie die
 Zeile wieder einkommentiert haben:
@@ -138,7 +138,7 @@ setzt bei jeder Antwort den Header `X-Frame-Options: DENY`, der verhindert, dass
 in einem `<iframe>` auf einer fremden Website eingebettet wird.
 Lesen Sie vorab den Abschnitt "An example of clickjacking" der
 [Django-Doku zu Clickjacking](https://docs.djangoproject.com/en/stable/ref/clickjacking/#an-example-of-clickjacking).
-Dort steht das Angriffsszenario, nach dem das [EQ] am Ende dieses Abschnitts fragt.
+Dort steht das Angriffsszenario, um das es in der Frage am Ende dieses Abschnitts geht.
 
 Öffnen Sie `settings.py` erneut und kommentieren Sie in `MIDDLEWARE` die Zeile mit
 `XFrameOptionsMiddleware` aus, wieder nur für die Dauer des Tests.
@@ -167,15 +167,15 @@ Bedarf gezielt danach suchen können:
   HTTP-Methoden (GET, POST, ...) jeweils eine eigene Methode bereitstellt, statt wie bisher
   mit `if request.method == 'POST':` zu verzweigen.
 - **[ModelForm](https://docs.djangoproject.com/en/stable/topics/forms/modelforms/)**: Statt
-  wie in `register` jedes Feld einzeln mit `request.POST['feld']` auszulesen und `required`
-  im HTML zu prüfen, kann eine `ModelForm`-Klasse aus einem Model automatisch ein Formular
-  samt serverseitiger Validierung erzeugen.
+  wie in `register` jedes Feld einzeln mit `request.POST['feld']` auszulesen und sich für die
+  Pflichtfeldprüfung auf `required` im HTML zu verlassen, kann eine `ModelForm`-Klasse aus
+  einem Model automatisch ein Formular samt serverseitiger Validierung erzeugen.
 - **[Sessions und Authentifizierung](https://docs.djangoproject.com/en/stable/topics/auth/)**:
-  Sie haben sich mit `createsuperuser` bereits an der Admin-Oberfläche angemeldet
-  ([PARTREF::django-model]).
+  Mit `createsuperuser` haben Sie bereits ein Konto angelegt und sich damit an der
+  Admin-Oberfläche angemeldet ([PARTREF::django-model]).
   Dasselbe System (`django.contrib.auth`) funktioniert auch außerhalb der Admin-Oberfläche:
-  eigene Login-/Logout-Views, und einzelne Views lassen sich so absichern, dass nur
-  angemeldete Nutzer sie aufrufen dürfen.
+  Es liefert eigene Login-/Logout-Views, und einzelne Views lassen sich damit so absichern,
+  dass nur angemeldete Nutzer sie aufrufen dürfen.
 <!-- time estimate: 5 min -->
 
 ### Weiterführend
@@ -209,6 +209,10 @@ Bedarf gezielt danach suchen können:
   ohne und einmal mit `X-Frame-Options: DENY`, während die übrigen Sicherheits-Header in
   beiden Ausgaben stehen; Student erkennt, dass ohne diesen Header die Seite in ein fremdes
   `<iframe>` eingebettet werden könnte.
+- Beide Auskommentierungen waren nur Zwischenschritte: In der abgegebenen `settings.py` stehen
+  `CsrfViewMiddleware` und `XFrameOptionsMiddleware` wieder aktiv in `MIDDLEWARE`.
+  Das Kommandoprotokoll allein deckt das nicht ab, weil der jeweils zweite `curl`-Aufruf vor
+  der Abgabe liegt und deshalb auch bei vergessener Wiederherstellung korrekt aussieht.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-Ausblick.md]
