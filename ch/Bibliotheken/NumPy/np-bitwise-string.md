@@ -2,7 +2,7 @@ title: NumPy Bitwise-Operationen und String-Funktionen
 stage: alpha
 timevalue: 2
 difficulty: 2
-assumes: np-Einführung, np-array, py-Fstrings
+assumes: np-Einführung, np-array, py-Fstrings, py-List-Comprehensions
 ---
 
 [SECTION::goal::idea,experience]
@@ -27,14 +27,12 @@ für die Textverarbeitung.
 ### Vorwissen
 
 Für die Bitwise-Operationen in dieser Aufgabe sind Grundkenntnisse der Binärdarstellung von Zahlen
-und des Zweierkomplements hilfreich (wie Ganzzahlen als Bitfolgen dargestellt werden, wie negative
+und des Zweierkomplements nötig (wie Ganzzahlen als Bitfolgen dargestellt werden, wie negative
 Zahlen darin kodiert werden).
-Falls Ihnen diese fehlen, helfen folgende Quellen:
+Falls Ihnen diese fehlen, arbeiten Sie zuerst die folgenden Quellen durch:
 
 - [Dualsystem (Wikipedia)](https://de.wikipedia.org/wiki/Dualsystem)
 - [Zweierkomplement (Wikipedia)](https://de.wikipedia.org/wiki/Zweierkomplement)
-
-Ohne dieses Vorwissen ist die Bearbeitung dieser Aufgabe nicht sinnvoll.
 
 Die Zeitschätzungen für die Bitwise-Abschnitte dieser Aufgabe gehen davon aus, dass dieses Vorwissen
 bereits vorhanden ist.
@@ -164,7 +162,7 @@ print(np.left_shift(schmal, 2))                  # [   0 -112]
 print(np.left_shift(np.array([64, 100]), 2))     # [256 400] (Default-dtype, breit genug)
 ```
 
-Bei `64 = 01000000` wandern beide gesetzten Bits aus den 8 Bit hinaus, übrig bleibt `0`.
+Bei `64 = 01000000` wandert das einzige gesetzte Bit aus den 8 Bit hinaus, übrig bleibt `0`.
 Bei `100 = 01100100` bleibt das Bitmuster `10010000` stehen; als `int8` gelesen ist das `-112`, denn
 dort zeigt das oberste Bit das Vorzeichen an (mehr dazu im Abschnitt zu `invert` weiter unten).
 
@@ -182,7 +180,7 @@ Rechenweg mit der binären Darstellung.
 wäre `1.25`, die Verschiebung liefert `1`.
 Schreiben Sie die Bitmuster von `5` und des verschobenen Ergebnisses auf und benennen Sie, welche
 Bits dabei verschwinden.
-Was erklärt das darüber, warum eine Rechts-Verschiebung immer abschneidet und nie runden kann?
+Warum kann eine Rechts-Verschiebung deshalb immer nur abschneiden und nie runden?
 
 <!-- time estimate: 20 min -->
 
@@ -208,7 +206,7 @@ import numpy as np
 arr = np.array([1, 2], dtype=np.int8)
 inverted = np.invert(arr)
 print("Original:", arr)
-print("Inverted:", inverted)  # [-2, -3]
+print("Inverted:", inverted)  # [-2 -3]
 ```
 
 Um ein Array in einen anderen `dtype` umzuwandeln, bietet NumPy die Array-Methode `astype`:
@@ -229,7 +227,7 @@ ndarray.astype(dtype)
 
 [EQ] Warum liefert `np.invert()` bei `int8` negative Werte, bei `uint8` aber nicht, obwohl
 dieselben Bits umgekehrt werden?
-Nutzen Sie Ihre Ergebnisse aus der vorherigen Aufgabe für Ihre Erklärung.
+Nutzen Sie Ihre Ergebnisse aus dem vorigen Schritt für Ihre Erklärung.
 
 [HINT::Warum ergibt dasselbe Bitmuster bei int8 und uint8 unterschiedliche Zahlen?]
 Schreiben Sie sich zuerst die 8-Bit-Darstellung von `3` auf (`np.binary_repr(3, width=8)`), kehren
@@ -359,7 +357,7 @@ print("Replaced:", replaced)  # ['Pithon' 'NumPi' 'Pandas']
 - Erstellen Sie ein Array `messy_words` mit den Werten
   `['  Style  ', '   Yellow   ', ' Syntax ']`
 - Verwenden Sie `np.strings.strip()` zum Entfernen der Leerzeichen
-- Nutzen Sie `np.strings.replace()`, um alle 'y' durch 'i' zu ersetzen
+- Nutzen Sie `np.strings.replace()`, um in `words` alle `'y'` durch `'i'` zu ersetzen
 
 [EQ] Eines der drei Wörter kommt aus der Ersetzung unverändert heraus.
 Welches, und woran liegt das?
@@ -396,7 +394,7 @@ import numpy as np
 # String-Teilung
 sentences = np.array(['Hello World', 'NumPy Arrays'])
 words = np.char.split(sentences)
-print("Split:", words)
+print("Split:", words)  # [list(['Hello', 'World']) list(['NumPy', 'Arrays'])]
 
 # Trennzeichen zwischen die Zeichen jedes Strings einfügen
 codes = np.array(['abc', 'xyz'])
@@ -406,7 +404,7 @@ print("Joined:", joined)  # ['a-b-c' 'x-y-z']
 # Zeichen in Strings finden
 emails = np.array(['user@domain.com', 'admin@site.org'])
 at_positions = np.strings.find(emails, '@')
-print("Position of '@':", at_positions)  # [ 4  5]
+print("Position of '@':", at_positions)  # [4 5]
 # Gibt -1 zurück, wenn nicht gefunden
 not_found = np.strings.find(emails, 'xyz')
 print("Position of 'xyz':", not_found)  # [-1 -1]
@@ -466,7 +464,8 @@ Die Schleife messen Sie dabei zweimal, einmal über das Array selbst und einmal 
 erzeugte Python-Liste:
 
 - Erstellen Sie ein Array `words` mit 100000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
-  `'produkt99999'` (z. B. mit einer List Comprehension und `np.array`)
+  `'produkt99999'` (z. B. mit einer List Comprehension aus [PARTREF::py-List-Comprehensions] und
+  `np.array`)
 - Messen Sie mit dem `time`-Modul die Laufzeit von `np.strings.startswith(words, 'produkt123')` über
   5 Wiederholungen und notieren Sie die kürzeste gemessene Zeit
 - Messen Sie auf dieselbe Weise die Schleife `[w.startswith('produkt123') for w in words]`
@@ -507,7 +506,7 @@ und was folgt daraus für eine Aussage der Form "NumPy ist N-mal schneller als P
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-### Knackpunkte
+**Knackpunkte:**
 
 - [EREFR::1]: `bitwise_and`/`bitwise_or`/`bitwise_xor` liefern die korrekten Ergebnisse und die über
   `np.binary_repr()` ausgegebenen Bitmuster stimmen mit den Kommentaren überein
