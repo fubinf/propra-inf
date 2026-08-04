@@ -187,10 +187,10 @@ ersten Achse (bei einem 2D-Array also ganze Zeilen als Teil-Arrays); `np.nditer(
 dagegen jedes einzelne Element des gesamten Arrays, unabhängig von der Anzahl der Dimensionen.
 
 ```python
-numpy.nditer(a, flags=None, op_flags=None, order='K')
+numpy.nditer(op, flags=None, op_flags=None, order='K')
 ```
 
-- `a`: das zu iterierende Array
+- `op`: das zu iterierende Array (der "Operand"; darauf bezieht sich auch `op_flags`)
 - `flags` (Standard `None`): Liste zusätzlicher Iterationsmodi
 - `op_flags` (Standard `None`, entspricht `['readonly']`): Liste von Zugriffsrechten auf die
   iterierten Elemente
@@ -200,7 +200,7 @@ numpy.nditer(a, flags=None, op_flags=None, order='K')
 
 **Grundlegende Iteration:**
 ```python
-a = np.array([[0, 1, 2], [3, 4, 5]])
+a = np.array([[10, 20, 30], [40, 50, 60]])
 print('Originales Array:')
 print(a)
 
@@ -213,11 +213,11 @@ for x in np.nditer(a):
 ```python
 # C-Ordnung (zeilenweise)
 for x in np.nditer(a, order='C'):
-    print(x, end=', ')  # Ausgabe: 0, 1, 2, 3, 4, 5
+    print(x, end=', ')  # Ausgabe: 10, 20, 30, 40, 50, 60
 
 # Fortran-Ordnung (spaltenweise)
 for x in np.nditer(a, order='F'):
-    print(x, end=', ')  # Ausgabe: 0, 3, 1, 4, 2, 5
+    print(x, end=', ')  # Ausgabe: 10, 40, 20, 50, 30, 60
 ```
 
 **Erweiterte `nditer`-Optionen:**
@@ -238,19 +238,17 @@ for x in np.nditer(a, order='F'):
   ganze Spalte bei `order='F'`), statt jedes einzelne Element separat zu liefern
 
 ```python
-# Index-Verfolgung (eigenes Array mit markanten Werten, damit Index und Wert
-# nicht zu verwechseln sind)
-m = np.array([[10, 20, 30], [40, 50, 60]])
-it = np.nditer(m, flags=['multi_index'])
+# Index-Verfolgung
+it = np.nditer(a, flags=['multi_index'])
 for x in it:
     print(f'Index {it.multi_index}: Wert {x}')
 # Index (0, 0): Wert 10
 # Index (0, 1): Wert 20
 # ...
 
-# Schreibzugriff (auf einem eigenen Array, damit die Demonstration
+# Schreibzugriff (auf einer eigenen Kopie, damit die Demonstration
 # darunter weiterhin die ursprünglichen Werte zeigt)
-b = np.array([[0, 1, 2], [3, 4, 5]])
+b = np.array([[10, 20, 30], [40, 50, 60]])
 for x in np.nditer(b, op_flags=['readwrite']):
     x[...] = 2 * x  # Jeden Wert mit 2 multiplizieren
 
@@ -260,7 +258,8 @@ for column in np.nditer(a, flags=['external_loop'], order='F'):
 ```
 
 [EQ] Erklären Sie den Unterschied zwischen C-Ordnung und Fortran-Ordnung bei der Array-Iteration.
-Nehmen Sie das 3D-Array `a = np.array([[[0, 1, 2], [3, 4, 5]], [[6, 7, 8], [9, 10, 11]]])`
+Nehmen Sie das 3D-Array
+`a = np.array([[[10, 20, 30], [40, 50, 60]], [[70, 80, 90], [100, 110, 120]]])`
 (Form `(2, 2, 3)`): Sagen Sie voraus, in welcher Reihenfolge `np.nditer(a, order='F')` die
 Elemente durchläuft.
 
