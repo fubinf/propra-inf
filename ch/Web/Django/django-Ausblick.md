@@ -16,14 +16,17 @@ assumes: curl
 
 [SECTION::background::default]
 
-Eine Registrierung, die kommentarlos auf einer anderen Seite landet, ein Formular, das ohne
-Schutzmechanismus jeden Absender akzeptiert, oder eine Seite, die sich anstandslos in eine
-fremde Website einbetten lässt: Das sind Probleme, die in einer echten Anwendung sofort
-auffallen würden, in den bisherigen Aufgaben aber nie auftraten, weil sie dort nicht im
-Fokus standen.
-Django löst solche Probleme nicht mit Custom-Code, sondern mit eigenen, fertigen
-Bordmitteln, die unabhängig von den bisher behandelten Kernkomponenten (Model, View,
-Template, Formular) funktionieren.
+Eine Registrierung, die kommentarlos auf einer anderen Seite landet, ein Formular, das jeden
+Absender akzeptiert, oder eine Seite, die sich in eine fremde Website einbetten lässt: In
+einer echten Anwendung wären das ernste Mängel, in Ihrem Projekt ist keiner davon
+aufgetreten.
+Beim ersten Punkt fehlt bisher schlicht die passende Funktion; die beiden anderen hat Django
+von Anfang an übernommen, den CSRF-Schutz haben Sie in [PARTREF::django-form] dabei bewusst
+eingesetzt, den Schutz vor Einbettung nie bemerkt.
+Solche Bordmittel gehören zu keiner der bisher behandelten Kernkomponenten (Model, View,
+Template, Formular), sondern greifen quer dazu bei jedem Request.
+In dieser Aufgabe holen Sie die fehlende Rückmeldung nach und schalten die beiden
+Schutzmechanismen kurz ab, um zu sehen, was sie eigentlich leisten.
 
 [ENDSECTION]
 
@@ -51,6 +54,9 @@ messages.success(request, message)
   erkennbar am jeweiligen Funktionsnamen
 - `request`: das Request-Objekt der View, in der Sie die Meldung ablegen
 - `message`: der anzuzeigende Text
+
+Die weiteren Stufen und den vollen Funktionsumfang beschreibt die
+[Django-Doku zum Messages-Framework](https://docs.djangoproject.com/en/stable/ref/contrib/messages/).
 
 Konkretes Beispiel:
 
@@ -80,6 +86,8 @@ Konkretes Beispiel:
 
 Bei `zutaten = ["Mehl", "Zucker", "Eier"]` ergibt das `Mehl + Zucker + Eier`; bei einer
 leeren Liste bleibt die Ausgabe leer.
+Nachschlagen lässt sich dieser Filter wie alle anderen in der Django-Doku zu
+[Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#join).
 
 [ER] Fügen Sie in `base.html` unmittelbar vor der Zeile `{% block content %}` eine Zeile ein,
 die `messages` mit demselben Filter und dem Trennzeichen ", " ausgibt.
@@ -95,12 +103,15 @@ warum nicht schon direkt auf der Detailseite?
 Was sagt Ihnen das über den Zeitpunkt, zu dem eine Meldung "verbraucht" wird?
 <!-- time estimate: 15 min -->
 
-### CSRF-Middleware kurzzeitig deaktivieren
+### `CsrfViewMiddleware` kurzzeitig deaktivieren
 
 Beim zweiten Bordmittel geht es um den CSRF-Schutz selbst.
 Die `CsrfViewMiddleware`, die ihn durchsetzt, haben Sie in [PARTREF::django-form] bereits
 kennengelernt; hier sehen Sie nun, woher sie überhaupt kommt: Middlewares sind in
 `settings.py` in einer Liste eingetragen und wirken auf jeden Request.
+Was eine Middleware überhaupt ist und in welcher Reihenfolge die Liste abgearbeitet wird,
+erklärt die
+[Django-Doku zu Middleware](https://docs.djangoproject.com/en/stable/topics/http/middleware/).
 
 Öffnen Sie `settings.py` im Konfigurationsordner `meinprojekt/meinprojekt/` und kommentieren
 Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
@@ -115,18 +126,21 @@ schickt und nur den Statuscode ausgibt: einmal jetzt und ein zweites Mal, nachde
 Zeile wieder einkommentiert haben:
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" -X POST "http://127.0.0.1:8071/search-post/" -d "q=Anna"
+curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/
 ```
 
 [EQ] Welcher Statuscode kam mit deaktivierter Middleware zurück, und warum ist es gefährlich,
 diese Middleware in einer echten Anwendung dauerhaft auszukommentieren?
 <!-- time estimate: 15 min -->
 
-### X-Frame-Options-Middleware kurzzeitig deaktivieren
+### `XFrameOptionsMiddleware` kurzzeitig deaktivieren
 
 Das dritte Bordmittel ist eine weitere Sicherheits-Middleware: `XFrameOptionsMiddleware`
 setzt bei jeder Antwort den Header `X-Frame-Options: DENY`, der verhindert, dass Ihre Seite
 in einem `<iframe>` auf einer fremden Website eingebettet wird.
+Lesen Sie vorab den Abschnitt "An example of clickjacking" der
+[Django-Doku zu Clickjacking](https://docs.djangoproject.com/en/stable/ref/clickjacking/#an-example-of-clickjacking).
+Dort steht das Angriffsszenario, nach dem das [EQ] am Ende dieses Abschnitts fragt.
 
 Öffnen Sie `settings.py` erneut und kommentieren Sie in `MIDDLEWARE` die Zeile mit
 `XFrameOptionsMiddleware` aus, wieder nur für die Dauer des Tests.
@@ -139,14 +153,9 @@ ein zweites Mal, nachdem Sie die Zeile wieder einkommentiert haben:
 curl -sI "http://127.0.0.1:8071/"
 ```
 
-[EQ] Vergleichen Sie die beiden Ausgaben: Welche Header stehen unverändert in beiden, obwohl
-die `XFrameOptionsMiddleware` im ersten Aufruf fehlte?
+[EQ] Vergleichen Sie die beiden Ausgaben: Welche Sicherheits-Header stehen unverändert in
+beiden, obwohl die `XFrameOptionsMiddleware` im ersten Aufruf fehlte?
 Was könnte eine fremde Website mit Ihrer Seite anstellen, solange `X-Frame-Options` fehlt?
-
-[HINT::Mir fällt kein konkretes Angriffsszenario ein]
-Ein `<iframe>` kann eine fremde Seite unsichtbar über die eigene legen.
-Überlegen Sie, worauf ein Nutzer dann in Wirklichkeit klickt.
-[ENDHINT]
 <!-- time estimate: 10 min -->
 
 ### Weitere Bordmittel im Überblick
