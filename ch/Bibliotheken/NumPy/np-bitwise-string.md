@@ -101,8 +101,7 @@ numpy.bitwise_xor(x1, x2)  # bitweises XOR: 1 dort, wo genau ein Operand 1 ist
 - `x1`, `x2`: Ganzzahl- oder Boolean-Arrays (gleicher Form oder broadcastbar), die bitweise
   verknüpft werden
 
-`np.bool_` ist NumPys eigener Boolean-Datentyp für Array-Elemente (analog zu `np.int8` oder
-`np.complex128`); bei booleschen Arrays entsprechen die Bitwise-Operationen den logischen
+Bei booleschen Arrays (`dtype=np.bool_`) entsprechen die Bitwise-Operationen den logischen
 Operationen UND/ODER/XOR.
 
 ```python
@@ -182,7 +181,7 @@ Rechenweg mit der binären Darstellung.
 - Erstellen Sie ein Array `values` mit den Werten `[5, 12, 25, 48]`
 - Verschieben Sie alle Werte um 1 Position nach links
 - Verschieben Sie alle Werte um 2 Positionen nach rechts
-- Vergleichen Sie die Ergebnisse mit den arithmetischen Operationen (`*2` bzw. `//4`)
+- Vergleichen Sie die Ergebnisse mit den arithmetischen Operationen (`*2`, `//4` und `/4`)
 
 [EQ] Bei `5` und `25` weicht Ihr Verschiebungsergebnis von einer gewöhnlichen Division ab: `5 / 4`
 wäre `1.25`, die Verschiebung liefert `1`.
@@ -329,8 +328,7 @@ print("Repeated:", repeated)  # ['Python Python Python ' 'NumPy NumPy NumPy ']
 ### String-Formatierung und -Bearbeitung: `strings.center`, `strings.strip`, `strings.replace`
 
 ```python
-numpy.strings.center(a, width, fillchar=' ')  # zentriert jeden String in einem Feld der Breite
-                                              # width
+numpy.strings.center(a, width, fillchar=' ')  # zentriert jeden String auf die Breite width
 numpy.strings.strip(a)                        # entfernt Leerzeichen am Anfang und Ende
 numpy.strings.replace(a, old, new)            # ersetzt alle Vorkommen von old durch new
 ```
@@ -402,8 +400,8 @@ import numpy as np
 
 # String-Teilung
 sentences = np.array(['Hello World', 'NumPy Arrays'])
-words = np.char.split(sentences)
-print("Split:", words)  # [list(['Hello', 'World']) list(['NumPy', 'Arrays'])]
+split_words = np.char.split(sentences)
+print("Split:", split_words)  # [list(['Hello', 'World']) list(['NumPy', 'Arrays'])]
 
 # Trennzeichen zwischen die Zeichen jedes Strings einfügen
 codes = np.array(['abc', 'xyz'])
@@ -476,7 +474,8 @@ erzeugte Python-Liste:
   `'produkt99999'` (z. B. mit einer List Comprehension aus [PARTREF::py-List-Comprehensions] und
   `np.array`)
 - Messen Sie mit dem `time`-Modul die Laufzeit von `np.strings.startswith(words, 'produkt123')` über
-  5 Wiederholungen und notieren Sie die kürzeste gemessene Zeit
+  5 Wiederholungen und notieren Sie die kürzeste gemessene Zeit (sie ist am wenigsten durch andere
+  Prozesse gestört)
 - Messen Sie auf dieselbe Weise die Schleife `[w.startswith('produkt123') for w in words]`
 - Messen Sie auf dieselbe Weise dieselbe Schleife über `words_list = list(words)`, wobei die
   Umwandlung selbst außerhalb der Messung stattfindet
@@ -499,12 +498,10 @@ und was folgt daraus für eine Aussage der Form "NumPy ist N-mal schneller als P
 ### Weiterführend
 
 - [NumPy Bitwise Operations](https://numpy.org/doc/stable/reference/routines.bitwise.html)
-- [NumPy String Functions
-  (`numpy.strings`)](https://numpy.org/doc/stable/reference/routines.strings.html) – aktuelles
-  Modul, in dieser Aufgabe überwiegend verwendet
-- [NumPy String Operations
-  (`numpy.char`)](https://numpy.org/doc/stable/reference/routines.char.html) – Legacy-Modul, hier
-  nur noch für `split`/`join` verwendet
+- [NumPy String Functions (`numpy.strings`)](https://numpy.org/doc/stable/reference/routines.strings.html):
+  aktuelles Modul, in dieser Aufgabe überwiegend verwendet
+- [NumPy String Operations (`numpy.char`)](https://numpy.org/doc/stable/reference/routines.char.html):
+  Legacy-Modul, hier nur noch für `split`/`join` verwendet
 
 [ENDSECTION]
 
