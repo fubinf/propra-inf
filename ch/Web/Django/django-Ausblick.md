@@ -8,8 +8,8 @@ assumes: curl
 
 [SECTION::goal::idea,experience]
 
-- Ich kenne Djangos Bordmittel für Nutzer-Rückmeldungen und für Schutzmechanismen und habe sie
-  an eigenem Code ausprobiert.
+- Ich kenne Djangos Bordmittel für Nutzer-Rückmeldungen und für Schutzmechanismen und habe
+  ihre Wirkung selbst beobachtet.
 - Ich weiß grob, welche weiteren fortgeschrittenen Bausteine Django bietet.
 
 [ENDSECTION]
@@ -20,15 +20,21 @@ Eine Registrierung, die kommentarlos auf einer anderen Seite landet, ein Formula
 Schutzmechanismus jeden Absender akzeptiert, oder eine Seite, die sich anstandslos in eine
 fremde Website einbetten lässt: Das sind Probleme, die in einer echten Anwendung sofort
 auffallen würden, in den bisherigen Aufgaben aber nie auftraten, weil sie dort nicht im
-Fokus standen. Django löst solche Probleme nicht mit Custom-Code, sondern mit eigenen,
-fertigen Bordmitteln, die unabhängig von den bisher behandelten Kernkomponenten (Model,
-View, Template, Formular) funktionieren.
+Fokus standen.
+Django löst solche Probleme nicht mit Custom-Code, sondern mit eigenen, fertigen
+Bordmitteln, die unabhängig von den bisher behandelten Kernkomponenten (Model, View,
+Template, Formular) funktionieren.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
 Sie arbeiten weiter mit der App `webapp` aus [PARTREF::django-form].
+
+Starten Sie für die folgenden Schritte in einer separaten Shell den Entwicklungsserver mit
+`python manage.py runserver 8071` und lassen Sie ihn laufen.
+Alle Befehle und Links unten verwenden den Port 8071; falls Sie den Server auf einem anderen
+Port betreiben, passen Sie sie entsprechend an.
 
 ### Bestätigungsmeldungen mit `django.contrib.messages`
 
@@ -37,12 +43,12 @@ Redirect hinweg transportieren: Eine View legt eine Meldung ab, die nächste Sei
 Meldungen anzeigt, holt sie ab und zeigt sie an, unabhängig davon, welche View dazwischen
 lag.
 
-```
+```python
 messages.success(request, message)
 ```
 
-- `success` ist eine von mehreren Dringlichkeitsstufen (u. a. auch `info`, `warning`,
-  `error`), erkennbar am jeweiligen Funktionsnamen
+- `success` ist eine von mehreren Dringlichkeitsstufen (u. a. `info`, `warning`, `error`),
+  erkennbar am jeweiligen Funktionsnamen
 - `request`: das Request-Objekt der View, in der Sie die Meldung ablegen
 - `message`: der anzuzeigende Text
 
@@ -55,18 +61,20 @@ messages.success(request, "Erfolgreich gespeichert")
 ```
 
 [ER] Ergänzen Sie Ihre `register`-View um eine Meldung: fügen Sie oben in `views.py` den
-Import wie im Beispiel hinzu. Rufen Sie in `register`, zwischen dem Anlegen des
-Studierenden und der Weiterleitung, `messages.success` mit dem aktuellen Request und dem
-Text "Registrierung erfolgreich" auf.
+Import wie im Beispiel hinzu.
+Rufen Sie in `register`, zwischen dem Anlegen des Studierenden und der Weiterleitung,
+`messages.success` mit dem aktuellen Request und dem Text "Registrierung erfolgreich" auf.
 
-Sichtbar wird die Meldung erst, wenn ein Template sie auch anzeigt. Der `messages`-Wert
-selbst ist dafür bereits automatisch in jedem Template verfügbar, ganz ohne dass eine View
-ihn in den Context aufnehmen muss. Zur Anzeige dient wieder ein Filter mit Argument, wie Sie
-ihn aus [PARTREF::django-template] von `default`/`yesno` kennen, diesmal allerdings ein
-anderer: `|join:trennzeichen` reiht die Elemente eines iterierbaren Werts, getrennt durch das
-angegebene Zeichen, zu einem einzigen Text aneinander. Konkretes Beispiel:
+Sichtbar wird die Meldung erst, wenn ein Template sie auch anzeigt.
+Der `messages`-Wert selbst ist dafür bereits automatisch in jedem Template verfügbar, ganz
+ohne dass eine View ihn in den Context aufnehmen muss.
+Zur Anzeige dient wieder ein Filter mit Argument, wie Sie ihn aus [PARTREF::django-template]
+von `default`/`yesno` kennen, diesmal allerdings ein anderer: `|join:trennzeichen` reiht die
+Elemente eines iterierbaren Werts, getrennt durch das angegebene Zeichen, zu einem einzigen
+Text aneinander.
+Konkretes Beispiel:
 
-```
+```html
 {{ zutaten|join:" + " }}
 ```
 
@@ -77,37 +85,38 @@ leeren Liste bleibt die Ausgabe leer.
 die `messages` mit demselben Filter und dem Trennzeichen ", " ausgibt.
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
-"Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com". Sie landen auf der
-Detailseite (Klartext, ohne die neue Zeile aus `base.html`, zeigt daher keine Meldung, und
-ohne Menü zum Klicken). Rufen Sie danach im Browser
-`http://127.0.0.1:8071/students/` auf.
+"Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com".
+Sie landen auf der Detailseite; sie besteht nur aus Klartext und enthält keinen Link zur
+Studierendenliste.
+Rufen Sie diese danach im Browser unter `http://127.0.0.1:8071/students/` auf.
 
-[EQ] Auf welcher Seite taucht die Meldung "Registrierung erfolgreich" zum ersten Mal auf,
-und warum nicht schon direkt auf der Detailseite? Was sagt Ihnen das über den Zeitpunkt, zu
-dem eine Meldung "verbraucht" wird?
+[EQ] Auf welcher Seite taucht die Meldung "Registrierung erfolgreich" zum ersten Mal auf, und
+warum nicht schon direkt auf der Detailseite?
+Was sagt Ihnen das über den Zeitpunkt, zu dem eine Meldung "verbraucht" wird?
 <!-- time estimate: 15 min -->
 
 ### CSRF-Middleware kurzzeitig deaktivieren
 
-Beim zweiten Bordmittel geht es um den CSRF-Schutz selbst. Die `CsrfViewMiddleware`, die ihn
-durchsetzt, haben Sie in [PARTREF::django-form] bereits kennengelernt; hier sehen Sie nun,
-woher sie überhaupt kommt: Middlewares sind in `settings.py` in einer Liste eingetragen und
-wirken auf jeden Request.
+Beim zweiten Bordmittel geht es um den CSRF-Schutz selbst.
+Die `CsrfViewMiddleware`, die ihn durchsetzt, haben Sie in [PARTREF::django-form] bereits
+kennengelernt; hier sehen Sie nun, woher sie überhaupt kommt: Middlewares sind in
+`settings.py` in einer Liste eingetragen und wirken auf jeden Request.
 
-[ER] Öffnen Sie `settings.py` im Konfigurationsordner `meinprojekt/meinprojekt/` und
-kommentieren Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
+Öffnen Sie `settings.py` im Konfigurationsordner `meinprojekt/meinprojekt/` und kommentieren
+Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
+Das ist nur ein Zwischenzustand für den folgenden Test: Am Ende dieses Abschnitts steht die
+Zeile wieder wie im Original da.
 
 [EC] Der Entwicklungsserver bemerkt die Änderung von selbst (sein Autoreloader beobachtet
 alle `.py`-Dateien, auch `settings.py`, und startet den Prozess bei einer Änderung
-automatisch neu); warten Sie kurz. Der folgende Aufruf sendet einen POST ohne CSRF-Token
-an `/search-post/`, gibt aber nur den Statuscode aus und
-verwirft die eigentliche Antwort:
+automatisch neu); warten Sie kurz.
+Senden Sie danach den folgenden Aufruf, der einen POST ohne CSRF-Token an `/search-post/`
+schickt und nur den Statuscode ausgibt: einmal jetzt und ein zweites Mal, nachdem Sie die
+Zeile wieder einkommentiert haben:
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" -X POST "http://127.0.0.1:8071/search-post/" -d "q=Anna"
 ```
-
-Kommentieren Sie die Zeile danach wieder ein und senden Sie denselben Aufruf noch einmal.
 
 [EQ] Welcher Statuscode kam mit deaktivierter Middleware zurück, und warum ist es gefährlich,
 diese Middleware in einer echten Anwendung dauerhaft auszukommentieren?
@@ -116,36 +125,35 @@ diese Middleware in einer echten Anwendung dauerhaft auszukommentieren?
 ### X-Frame-Options-Middleware kurzzeitig deaktivieren
 
 Das dritte Bordmittel ist eine weitere Sicherheits-Middleware: `XFrameOptionsMiddleware`
-setzt bei jeder Antwort den Header `X-Frame-Options: DENY`, der verhindert, dass Ihre
-Seite in einem `<iframe>` auf einer fremden Website eingebettet wird.
+setzt bei jeder Antwort den Header `X-Frame-Options: DENY`, der verhindert, dass Ihre Seite
+in einem `<iframe>` auf einer fremden Website eingebettet wird.
 
-[ER] Öffnen Sie `settings.py` im Konfigurationsordner `meinprojekt/meinprojekt/` und
-kommentieren Sie in `MIDDLEWARE` die Zeile mit `XFrameOptionsMiddleware` aus.
+Öffnen Sie `settings.py` erneut und kommentieren Sie in `MIDDLEWARE` die Zeile mit
+`XFrameOptionsMiddleware` aus, wieder nur für die Dauer des Tests.
 
-[EC] Der Entwicklungsserver bemerkt die Änderung von selbst; warten Sie kurz. Senden Sie
-danach den folgenden Aufruf, der nur die Header abruft (`-I`): einmal jetzt und ein
-zweites Mal, nachdem Sie die Zeile wieder einkommentiert haben:
+[EC] Der Entwicklungsserver bemerkt die Änderung von selbst; warten Sie kurz.
+Senden Sie danach den folgenden Aufruf, der nur die Header abruft (`-I`): einmal jetzt und
+ein zweites Mal, nachdem Sie die Zeile wieder einkommentiert haben:
 
 ```bash
 curl -sI "http://127.0.0.1:8071/"
 ```
 
-[EQ] Welcher Header taucht im ersten Aufruf nicht auf, der im zweiten wieder da ist? Was
-könnte eine fremde Website mit Ihrer Seite anstellen, solange dieser Header fehlt?
+[EQ] Vergleichen Sie die beiden Ausgaben: Welche Header stehen unverändert in beiden, obwohl
+die `XFrameOptionsMiddleware` im ersten Aufruf fehlte?
+Was könnte eine fremde Website mit Ihrer Seite anstellen, solange `X-Frame-Options` fehlt?
 
 [HINT::Mir fällt kein konkretes Angriffsszenario ein]
-Ein `<iframe>` bettet eine fremde Seite unsichtbar in die eigene Seite ein, darüber lässt
-sich eine eigene, für den Nutzer sichtbare Oberfläche legen (z. B. ein verlockender
-Button). Überlegen Sie, was passiert, wenn der Nutzer glaubt, auf diese Oberfläche zu
-klicken, tatsächlich aber durch das unsichtbare `<iframe>` hindurch auf Ihre Seite klickt.
+Ein `<iframe>` kann eine fremde Seite unsichtbar über die eigene legen.
+Überlegen Sie, worauf ein Nutzer dann in Wirklichkeit klickt.
 [ENDHINT]
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 ### Weitere Bordmittel im Überblick
 
-Die folgenden drei Bausteine probieren Sie nicht selbst aus. Es reicht, zu wissen, dass es
-sie gibt und wofür sie sich einsetzen lassen, damit Sie bei Bedarf gezielt danach suchen
-können:
+Die folgenden drei Bausteine probieren Sie nicht selbst aus.
+Es reicht, zu wissen, dass es sie gibt und wofür sie sich einsetzen lassen, damit Sie bei
+Bedarf gezielt danach suchen können:
 
 - **[Class-based Views](https://docs.djangoproject.com/en/stable/topics/class-based-views/)**:
   Views lassen sich statt als Funktion auch als Klasse schreiben, die für unterschiedliche
@@ -157,9 +165,11 @@ können:
   samt serverseitiger Validierung erzeugen.
 - **[Sessions und Authentifizierung](https://docs.djangoproject.com/en/stable/topics/auth/)**:
   Sie haben sich mit `createsuperuser` bereits an der Admin-Oberfläche angemeldet
-  ([PARTREF::django-model]). Dasselbe System (`django.contrib.auth`) funktioniert auch
-  außerhalb der Admin-Oberfläche: eigene Login-/Logout-Views, und einzelne Views lassen
-  sich so absichern, dass nur angemeldete Nutzer sie aufrufen dürfen.
+  ([PARTREF::django-model]).
+  Dasselbe System (`django.contrib.auth`) funktioniert auch außerhalb der Admin-Oberfläche:
+  eigene Login-/Logout-Views, und einzelne Views lassen sich so absichern, dass nur
+  angemeldete Nutzer sie aufrufen dürfen.
+<!-- time estimate: 5 min -->
 
 ### Weiterführend
 
@@ -185,11 +195,13 @@ können:
   Student erkennt, dass die Meldung erst auf der nächsten Seite erscheint, die diese Zeile
   tatsächlich rendert (hier: `students_list.html` über `base.html`), nicht zwangsläufig auf
   der unmittelbar nächsten Seite überhaupt.
-- [EREFR::3] + [EREFQ::2]: Die `CsrfViewMiddleware`-Zeile ist nach dem Test wieder
-  einkommentiert; Student erkennt, dass ohne sie jeder POST ohne Token akzeptiert würde.
-- [EREFR::4] + [EREFQ::3]: Die `XFrameOptionsMiddleware`-Zeile ist nach dem Test wieder
-  einkommentiert; Student erkennt, dass ohne sie der `X-Frame-Options`-Header fehlt und die
-  Seite dadurch in ein fremdes `<iframe>` eingebettet werden könnte.
+- [EREFC::1] + [EREFQ::2]: Das Protokoll enthält denselben `curl`-Aufruf zweimal, mit `200`
+  bei ausgebauter und `403` bei wieder eingebauter `CsrfViewMiddleware`; Student erkennt,
+  dass ohne sie jeder POST ohne Token akzeptiert würde.
+- [EREFC::2] + [EREFQ::3]: Das Protokoll enthält denselben `curl -sI`-Aufruf zweimal, einmal
+  ohne und einmal mit `X-Frame-Options: DENY`, während die übrigen Sicherheits-Header in
+  beiden Ausgaben stehen; Student erkennt, dass ohne diesen Header die Seite in ein fremdes
+  `<iframe>` eingebettet werden könnte.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-Ausblick.md]
