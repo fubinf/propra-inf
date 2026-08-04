@@ -1,4 +1,4 @@
-title: NumPy Array-Broadcasting, -Iteration und -Form-Manipulationen
+title: NumPy Broadcasting, Array-Iteration, Sequenzerzeugung und Form-Manipulationen
 stage: alpha
 timevalue: 1.75
 difficulty: 2
@@ -11,7 +11,7 @@ assumes: np-array
 - Ich verstehe das Konzept des Broadcasting in NumPy, kann seine Regeln anwenden und Arrays
   mit verschiedenen Formen dadurch kombinieren.
 - Ich kann Arrays mit unterschiedlichen Iterationsstrategien durchlaufen.
-- Ich kann die Form von Arrays gezielt verändern.
+- Ich kann regelmäßige Zahlenfolgen erzeugen und die Form von Arrays gezielt verändern.
 
 [ENDSECTION]
 
@@ -19,9 +19,11 @@ assumes: np-array
 
 NumPy-Arrays unterschiedlicher Form lassen sich oft trotzdem direkt miteinander verrechnen,
 ohne dass man sie vorher manuell angleichen muss; außerdem bietet NumPy vielseitige
-Möglichkeiten, über Array-Elemente zu iterieren und ihre Form nachträglich zu verändern.
-Diese Aufgabe behandelt diese drei zusammenhängenden Themen:
-Broadcasting, gezieltes Iterieren und Verändern von Array-Formen.
+Möglichkeiten, Arrays mit regelmäßigen Werten zu erzeugen, über ihre Elemente zu iterieren und
+ihre Form nachträglich zu verändern.
+Diese Aufgabe behandelt diese vier zusammenhängenden Themen:
+Broadcasting, gezieltes Iterieren, das Erzeugen regelmäßiger Zahlenfolgen und das Verändern von
+Array-Formen.
 
 [ENDSECTION]
 
@@ -109,7 +111,8 @@ ausgibt, in Ihre Antwort.
 
 [ER] Demonstrieren Sie Broadcasting mit verschiedenen Array-Kombinationen:
 
-- Erstellen Sie `matrix` als 3x4-Matrix mit den Werten `[[2, 4, 6, 8], [10, 12, 14, 16], [18, 20, 22, 24]]`
+- Erstellen Sie `matrix` als 3x4-Matrix mit den Werten
+  `[[2, 4, 6, 8], [10, 12, 14, 16], [18, 20, 22, 24]]`
 - Erstellen Sie `row_vec` als 1D-Array mit 4 Elementen `[1, 2, 3, 4]`
 - Erstellen Sie `col_vec` als 2D-Array der Form `(3, 1)` mit Werten `[[10], [20], [30]]`
 - Erstellen Sie `array_3d` als 3D-Array der Form `(2, 1, 4)` mit Werten
@@ -142,7 +145,7 @@ numpy.max(a, axis=None, keepdims=False)
 
 Ob man `keepdims` braucht, hängt von der Achse ab.
 Bei einem `(3, 5)`-Array und `axis=0` liefert die Reduktion die Form `(5,)`, und `(5,)` ist
-mit `(3, 5)` bereits broadcasting-kompatibel — hier ändert `keepdims` am Ergebnis nichts.
+mit `(3, 5)` bereits broadcasting-kompatibel; hier ändert `keepdims` am Ergebnis nichts.
 Bei `axis=1` dagegen entsteht die Form `(3,)`, die sich mit `(3, 5)`
 **nicht** kombinieren lässt (von rechts verglichen: 5 gegen 3); erst
 `keepdims=True` macht daraus `(3, 1)` und damit eine passende Form.
@@ -195,7 +198,7 @@ numpy.nditer(op, flags=None, op_flags=None, order='K')
 - `op_flags` (Standard `None`, entspricht `['readonly']`): Liste von Zugriffsrechten auf die
   iterierten Elemente
 - `order` (Standard `'K'`): legt die Durchlaufreihenfolge
-  fest — `'C'` zeilenweise, `'F'` spaltenweise.
+  fest: `'C'` zeilenweise, `'F'` spaltenweise.
   Bei normal erstellten Arrays verhält sich `'K'` wie `'C'`
 
 **Grundlegende Iteration:**
@@ -228,7 +231,7 @@ for x in np.nditer(a, order='F'):
   an einen Namen gebunden werden, damit man im Schleifenkörper `it.multi_index` abfragen kann
 - `op_flags=['readwrite']`: erlaubt, den Wert direkt während der Iteration zu verändern (ohne
   dieses Flag ist `nditer` nur lesend, ein Zuweisungsversuch würde einen Fehler auslösen).
-  Dabei reicht ein Ausdruck wie `x = 2 * x` nicht aus — er bindet nur den Namen `x` innerhalb
+  Dabei reicht ein Ausdruck wie `x = 2 * x` nicht aus; er bindet nur den Namen `x` innerhalb
   der Schleife neu an ein frisch berechnetes Objekt, ohne das Array selbst zu verändern.
   Erst `x[...] = 2 * x` schreibt den neuen Wert
   tatsächlich in das Array zurück (Details zu Namen vs.
@@ -383,9 +386,9 @@ Form und Ergebnis aus:
   Der Versuch schlägt fehl; notieren Sie die Fehlermeldung als Kommentar im Quelltext.
   Reparieren Sie ihn anschließend mit `expand_dims`, so
   dass jeder der drei Werte auf eine ganze Zeile wirkt
-- Wenden Sie `squeeze` auf das Ergebnis von `np.min(daten, axis=0, keepdims=True)` an (mit
-  `daten` als beliebigem 2D-Array) und vergleichen Sie die Form mit der von
-  `np.min(daten, axis=0)`
+- Wenden Sie `squeeze` auf das Ergebnis von `np.min(daten, axis=0, keepdims=True)` an (als
+  `daten` nehmen Sie die Testmatrix aus dem Normalisierungsschritt) und vergleichen Sie die
+  Form mit der von `np.min(daten, axis=0)`
 
 <!-- time estimate: 15 min -->
 
@@ -449,15 +452,15 @@ und welche beiden Arrays dort miteinander in Konflikt stehen.
 
 **Knackpunkte:**
 
-- [EREFR::1] Die resultierenden Formen und Werte aller Broadcasting-Operationen sind korrekt
-  (insbesondere `row_vec * col_vec`, das zwei 1D/2D-Arrays zu einer vollen `(3, 4)`-Matrix
-  broadcastet, sowie die 3D-Kombination `(2, 1, 4)` mit `(3, 4)` zu `(2, 3, 4)`).
-- [EREFQ::1] Alle drei Kompatibilitätsurteile sind korrekt — insbesondere
+- [EREFQ::1] Alle drei Kompatibilitätsurteile sind korrekt, insbesondere
   gilt `(7, 3)` mit `(7,)` als inkompatibel; wer hier "kompatibel"
   antwortet, hat die Ausrichtung an der rechten Achse nicht verstanden.
   Die Begründung bezieht sich auf den tatsächlichen Dimensionsvergleich
   von rechts nach links, nicht nur auf ein geratenes Ja/Nein, und die
   beiden Fehlermeldungen sind übernommen, also tatsächlich erzeugt worden.
+- [EREFR::1] Die resultierenden Formen und Werte aller Broadcasting-Operationen sind korrekt
+  (insbesondere `row_vec * col_vec`, das zwei 1D/2D-Arrays zu einer vollen `(3, 4)`-Matrix
+  broadcastet, sowie die 3D-Kombination `(2, 1, 4)` mit `(3, 4)` zu `(2, 3, 4)`).
 - [EREFR::2] Die Normalisierung nutzt tatsächlich Broadcasting (nicht z.B.
   eine Schleife über die Spalten) und funktioniert für `axis=0` **und**
   `axis=1`; alle normalisierten Werte liegen korrekt zwischen 0 und 1.
