@@ -1,6 +1,6 @@
 title: NumPy-Arrays verbinden, teilen und verändern
 stage: alpha
-timevalue: 2
+timevalue: 2.25
 difficulty: 2
 assumes: np-Einführung, np-array, np-array2
 ---
@@ -17,17 +17,15 @@ assumes: np-Einführung, np-array, np-array2
 
 Messreihen mehrerer Sensoren liegen zunächst als einzelne Arrays vor und müssen zu einer Matrix
 zusammengesetzt werden; später soll dieselbe Matrix wieder in einen Trainings- und einen Testteil
-zerlegt werden. Solche Aufgaben — Arrays verbinden, aufteilen und in ihrer Größe verändern —
-kommen in der Datenverarbeitung ständig vor, und NumPy hat für jede davon eigene Funktionen.
+zerlegt werden.
+Solche Aufgaben — Arrays verbinden, aufteilen und in ihrer Größe verändern — kommen in der
+Datenverarbeitung ständig vor, und NumPy hat für jede davon eigene Funktionen.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
 ### Arrays verbinden: `concatenate` und `stack`
-
-NumPy bietet verschiedene Funktionen zum Verbinden von Arrays, die sich in ihrer
-Funktionsweise unterscheiden:
 
 `numpy.concatenate` verbindet Arrays entlang einer bestehenden Achse:
 
@@ -91,8 +89,8 @@ print(np.stack((c, d), axis=2))
 
 Die Position der neuen Achse entscheidet also, wie die Werte im Ergebnis nebeneinander zu liegen
 kommen: Bei `axis=0` stehen die beiden Arrays als Ganzes hintereinander, bei `axis=1` jeweils ihre
-Zeilen paarweise, bei `axis=2` schließlich ihre einzelnen Elemente. An den Werten `1..12` gegen
-`101..112` lässt sich das in der Ausgabe direkt ablesen.
+Zeilen paarweise, bei `axis=2` schließlich ihre einzelnen Elemente.
+An den Werten `1..12` gegen `101..112` lässt sich das in der Ausgabe direkt ablesen.
 
 [ER] Erstellen Sie zwei Arrays `A` mit den Werten `[[1, 2, 3], [4, 5, 6]]` und `B` mit den
 Werten `[[7, 8, 9], [10, 11, 12]]` und verwenden Sie:
@@ -106,13 +104,16 @@ Geben Sie jeweils das Ergebnis und dessen shape aus.
 
 [EQ] Vergleichen Sie Ihre eigenen Ergebnisse aus [EREFR::1]: `np.concatenate((A, B), axis=0)`
 und `np.stack((A, B), axis=0)` verwenden denselben Parameterwert, liefern aber unterschiedliche
-Formen. Worauf bezieht sich `axis=0` jeweils?
+Formen.
+Worauf bezieht sich `axis=0` jeweils?
+Und warum lässt sich `axis=2` zwar an `np.stack` übergeben, an `np.concatenate` mit denselben
+beiden Arrays aber nicht?
 
 <!-- time estimate: 15 min -->
 
 ### Spezialisierte Verbindungsfunktionen: `hstack` und `vstack`
 
-Für häufige Verbindungsoperationen gibt es vereinfachte Funktionen:
+`hstack` und `vstack` sind Kurzformen für die beiden häufigsten Fälle:
 
 ```python
 numpy.hstack(tup)
@@ -157,8 +158,6 @@ Geben Sie jeweils das Ergebnis und dessen shape aus.
 <!-- time estimate: 15 min -->
 
 ### Arrays aufteilen: `split`-Funktionen
-
-NumPy bietet verschiedene Funktionen zum Aufteilen von Arrays:
 
 **`numpy.split`** teilt ein Array entlang einer spezifizierten Achse:
 
@@ -220,10 +219,10 @@ v_parts = np.vsplit(arr_2d, 2)
 ```
 
 [EQ] Führen Sie `np.split(np.arange(10), 3)` aus und übernehmen Sie die Fehlermeldung in Ihre
-Antwort. Was verlangt `np.split` also von der Länge der geteilten Achse? Suchen Sie außerdem in
-der Dokumentation (siehe "Weiterführend") die Funktion, die dieselbe Aufteilung auch dann noch
-liefert, wenn die Länge nicht glatt aufgeht, und beschreiben Sie, wie sie die übrigen Elemente
-verteilt.
+Antwort.
+Suchen Sie außerdem in der Dokumentation (siehe "Weiterführend") die Funktion, die dieselbe
+Aufteilung auch dann noch liefert, wenn die Länge nicht glatt aufgeht, und beschreiben Sie, wie
+sie die übrigen Elemente verteilt.
 
 [ER] Arbeiten Sie mit Array-Teilungen:
 
@@ -248,6 +247,12 @@ numpy.resize(a, new_shape)
 - `a`: das Ausgangsarray
 - `new_shape`: die Ziel-Shape als Tupel; enthält sie mehr Elemente als `a`, werden die
   ursprünglichen Werte zyklisch wiederholt, enthält sie weniger, wird abgeschnitten
+
+`np.resize` liefert dabei immer ein neues Array, während `reshape` in der Regel nur eine andere
+Sicht (**View**) auf dieselben Daten zurückgibt — Änderungen an einer View wirken sich auf das
+Ausgangsarray aus.
+Wann NumPy eine View und wann eine Kopie liefert, beschreibt die Doku zu
+[Copies and views](https://numpy.org/doc/stable/user/basics.copies.html).
 
 ```python
 import numpy as np
@@ -280,7 +285,8 @@ In dieser Aufgabe wird durchgehend die Funktion verwendet.
 [ENDNOTICE]
 
 [EQ] Was ist der Unterschied zwischen `np.resize()` und der `reshape()`-Methode,
-die Sie bereits kennen? Wann würden Sie welche Funktion verwenden?
+die Sie bereits kennen?
+Wann würden Sie welche von beiden verwenden?
 
 <!-- time estimate: 10 min -->
 
@@ -373,6 +379,8 @@ print("Flach eingefügt:", inserted_flat)
 - Fügen Sie an Position 2 eine neue Spalte mit Werten [20, 21, 22] ein
 - Fügen Sie in das ursprüngliche flache Array an Position 4 den Wert 99 ein
 
+Geben Sie jeweils das Ergebnis und dessen shape aus.
+
 <!-- time estimate: 10 min -->
 
 ### Elemente entfernen: `delete`
@@ -411,8 +419,10 @@ print("Flach entfernt:", deleted_flat.shape)  # (9,)
 - Beginnen Sie mit einem 4×5 Array, das mit `arange` und `reshape` aus den ganzen Zahlen von
   0 bis 19 erstellt wird
 - Entfernen Sie die erste und letzte Zeile
-- Entfernen Sie die mittleren zwei Spalten (Index 1 und 2)
-- Erstellen Sie das ursprüngliche Array erneut und entfernen Sie jedes dritte Element im flachen Array
+- Entfernen Sie die Spalten mit den Indizes 1 und 2
+- Entfernen Sie aus demselben Array jedes dritte Element im flachen Array
+
+Geben Sie jeweils das Ergebnis und dessen shape aus.
 
 [HINT::Wie erzeuge ich die Indizes für "jedes dritte Element"?]
 Nutzen Sie das bereits bekannte `np.arange` mit einer Schrittweite von 3, um die passenden
@@ -469,8 +479,11 @@ print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 
 Verwenden Sie dabei alle vier Optionen der `unique`-Funktion.
 
+Geben Sie jeweils das Ergebnis aus.
+
 [EQ] Sehen Sie sich die von `return_index` gelieferten Indizes an: Sie sind nicht aufsteigend
-sortiert. Wonach richtet sich ihre Reihenfolge stattdessen?
+sortiert.
+Wonach richtet sich ihre Reihenfolge stattdessen?
 
 <!-- time estimate: 20 min -->
 
@@ -488,20 +501,20 @@ sortiert. Wonach richtet sich ihre Reihenfolge stattdessen?
 - Entfernen Sie daraus alle doppelten Werte
 - Ändern Sie die finale Form zu 4×4 mit `resize`
 
-Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form und geben Sie zusätzlich vor und
-nach dem Entfernen der Duplikate die Anzahl der Werte aus.
+Geben Sie zu jedem Schritt die Form des Zwischenergebnisses aus, außerdem vor und nach dem
+Entfernen der Duplikate die Anzahl der Werte.
 
 [HINT::Schritt für Schritt vorgehen]
-Diese Aufgabe verkettet mehrere Operationen. Geben Sie nach jedem einzelnen Schritt die `shape`
-des Zwischenergebnisses aus, bevor Sie mit dem nächsten Schritt weitermachen – so erkennen Sie
-sofort, ob eine Operation entlang der richtigen Achse arbeitet, bevor sich ein Fehler auf die
-folgenden Schritte fortpflanzt.
+Diese Aufgabe verkettet mehrere Operationen.
+Geben Sie nach jedem einzelnen Schritt die `shape` des Zwischenergebnisses aus, bevor Sie mit dem
+nächsten Schritt weitermachen – so erkennen Sie sofort, ob eine Operation entlang der richtigen
+Achse arbeitet, bevor sich ein Fehler auf die folgenden Schritte fortpflanzt.
 [ENDHINT]
 
 [EQ] Nach dem Entfernen der Duplikate bleiben mehr Werte übrig, als in eine 4×4-Form passen.
 Welche Werte fehlen im Endergebnis, und warum gerade diese?
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Weiterführend
 
@@ -523,7 +536,8 @@ Welche Werte fehlen im Endergebnis, und warum gerade diese?
 - [EREFR::1] + [EREFQ::1]: `concatenate` (Dimension bleibt gleich) vs. `stack` (Dimension +1)
   liefern für alle vier Kombinationen die korrekten Shapes; Begründung erkennt, dass `axis=0`
   bei `concatenate` eine bereits vorhandene Achse referenziert, bei `stack` dagegen die
-  Einfügeposition einer neu erzeugten Achse
+  Einfügeposition einer neu erzeugten Achse — wer das verstanden hat, kann auch begründen,
+  warum `axis=2` bei `concatenate` an den nur zwei vorhandenen Achsen scheitert
 - [EREFQ::3]: Unterschied zwischen der Funktion `np.resize` (ändert Elementanzahl, füllt zyklisch
   auf/schneidet ab, liefert immer eine Kopie) und `reshape` (Elementanzahl bleibt gleich, liefert
   meist eine View) korrekt erklärt
