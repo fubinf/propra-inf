@@ -181,7 +181,7 @@ Damit lässt sich ein Objekt auf zwei Arten anlegen:
 
 ```python
 # Variante 1: Objekt erzeugen, dann speichern
-student = Student(name="Tom Fischer", age=25, email="tom@example.com")
+student = Student(name="Nina Brandt", age=25, email="nina@example.com")
 student.save()
 
 # Variante 2: Erzeugen und speichern in einem Schritt

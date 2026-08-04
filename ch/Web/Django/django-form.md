@@ -210,8 +210,8 @@ Jetzt schreiben Sie hinein: Ein Registrierungsformular legt über `Student.objec
 Detailseite weiter.
 Da Name, Alter und E-Mail hier echte Pflichtfelder sind, greifen Sie direkt mit
 `request.POST['feld']` zu (anders als bei der optionalen Suche mit `.get()`): Fehlt das Feld
-komplett, wirft dieser Zugriff einen `KeyError`, statt stillschweigend einen leeren Wert zu
-liefern.
+komplett, wirft dieser Zugriff denselben `MultiValueDictKeyError` wie `request.GET[...]` in
+[PARTREF::django-view], statt stillschweigend einen leeren Wert zu liefern.
 Eine View, die bei POST einen Datensatz anlegt und dann weiterleitet, hat folgenden Aufbau:
 
 ```python
