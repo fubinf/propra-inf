@@ -1,18 +1,15 @@
 title: NumPy-Arrays verbinden, teilen und verändern
 stage: alpha
-timevalue: 2.25
+timevalue: 2
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2, np-index-slice
+assumes: np-Einführung, np-array, np-array2
 ---
 
-[SECTION::goal::idea,experience]
+[SECTION::goal::experience]
 
 - Ich kann NumPy-Arrays verbinden und in Teilarrays aufteilen.
-- Ich kann Größe und Struktur von Arrays verändern, indem ich Elemente hinzufüge, einfüge oder
-  entferne oder das Array auf eine neue Form bringe.
+- Ich kann durch Hinzufügen, Einfügen und Entfernen von Elementen Größe und Struktur von Arrays verändern.
 - Ich kann doppelte und eindeutige Elemente in Arrays identifizieren und analysieren.
-- Ich kann unterscheiden, wann eine Operation ein neues Array liefert und wann nur eine View auf
-  dieselben Daten.
 
 [ENDSECTION]
 
@@ -20,9 +17,8 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice
 
 Messreihen mehrerer Sensoren liegen zunächst als einzelne Arrays vor und müssen zu einer Matrix
 zusammengesetzt werden; später soll dieselbe Matrix wieder in einen Trainings- und einen Testteil
-zerlegt werden.
-Solche Aufgaben, also Arrays verbinden, aufteilen und in ihrer Größe verändern, kommen in der
-Datenverarbeitung ständig vor, und NumPy hat für jede davon eigene Funktionen.
+zerlegt werden. Solche Aufgaben — Arrays verbinden, aufteilen und in ihrer Größe verändern —
+kommen in der Datenverarbeitung ständig vor, und NumPy hat für jede davon eigene Funktionen.
 
 [ENDSECTION]
 
@@ -30,14 +26,17 @@ Datenverarbeitung ständig vor, und NumPy hat für jede davon eigene Funktionen.
 
 ### Arrays verbinden: `concatenate` und `stack`
 
+NumPy bietet verschiedene Funktionen zum Verbinden von Arrays, die sich in ihrer
+Funktionsweise unterscheiden:
+
 `numpy.concatenate` verbindet Arrays entlang einer bestehenden Achse:
 
 ```python
 numpy.concatenate((a1, a2, ...), axis=0)
 ```
 
-- `(a1, a2, ...)`: Tupel oder Liste der zu verbindenden Arrays; sie müssen in allen
-  Dimensionen außer `axis` übereinstimmen
+- `(a1, a2, ...)`: Tupel oder Liste der zu verbindenden Arrays; bis auf die Achse `axis`
+  müssen alle Arrays in ihren übrigen Dimensionen übereinstimmen
 - `axis` (Standard `0`): die bereits vorhandene Achse, entlang derer verbunden wird
 
 ```python
@@ -92,43 +91,37 @@ print(np.stack((c, d), axis=2))
 
 Die Position der neuen Achse entscheidet also, wie die Werte im Ergebnis nebeneinander zu liegen
 kommen: Bei `axis=0` stehen die beiden Arrays als Ganzes hintereinander, bei `axis=1` jeweils ihre
-Zeilen paarweise, bei `axis=2` schließlich ihre einzelnen Elemente.
-Für `axis=2` zeigt das die ausgegebene Matrix direkt: Jedes innerste Paar besteht aus einem Wert
-von `c` und dem an derselben Stelle stehenden Wert von `d`.
+Zeilen paarweise, bei `axis=2` schließlich ihre einzelnen Elemente. An den Werten `1..12` gegen
+`101..112` lässt sich das in der Ausgabe direkt ablesen.
 
-[ER] Erstellen Sie mit `arange` und `reshape` zwei 4×3-Arrays: `A` mit den ganzen Zahlen von
-21 bis 32 und `B` mit den ganzen Zahlen von 41 bis 52.
-Verwenden Sie damit:
+[ER] Erstellen Sie zwei Arrays `A` mit den Werten `[[1, 2, 3], [4, 5, 6]]` und `B` mit den
+Werten `[[7, 8, 9], [10, 11, 12]]` und verwenden Sie:
 
-- `np.concatenate`, um sie entlang Achse 0 zu verbinden
-- `np.concatenate`, um sie entlang Achse 1 zu verbinden
-- `np.stack`, um sie entlang einer neuen Achse 0 zu verbinden
-- `np.stack`, um sie entlang einer neuen Achse 2 zu verbinden
+- `np.concatenate` um sie entlang Achse 0 zu verbinden
+- `np.concatenate` um sie entlang Achse 1 zu verbinden
+- `np.stack` um sie entlang einer neuen Achse 0 zu verbinden
+- `np.stack` um sie entlang einer neuen Achse 2 zu verbinden
 
-Geben Sie jeweils das Ergebnis und dessen Form aus.
+Geben Sie jeweils das Ergebnis und dessen `shape` aus.
 
 [EQ] Vergleichen Sie Ihre eigenen Ergebnisse aus [EREFR::1]: `np.concatenate((A, B), axis=0)`
 und `np.stack((A, B), axis=0)` verwenden denselben Parameterwert, liefern aber unterschiedliche
-Formen.
-Ermitteln Sie durch Ausprobieren, welchen größten `axis`-Wert die beiden Funktionen mit diesen
-beiden Arrays jeweils noch akzeptieren, und übernehmen Sie für beide die Fehlermeldung des
-ersten abgelehnten Aufrufs in Ihre Antwort.
-Erklären Sie, warum sich die beiden Grenzen unterscheiden.
+Formen. Worauf bezieht sich `axis=0` jeweils?
 
 <!-- time estimate: 15 min -->
 
 ### Spezialisierte Verbindungsfunktionen: `hstack` und `vstack`
 
-`hstack` und `vstack` sind Kurzformen für die beiden häufigsten Fälle:
+Für häufige Verbindungsoperationen gibt es vereinfachte Funktionen:
 
 ```python
 numpy.hstack(tup)
 numpy.vstack(tup)
 ```
 
-- `tup`: Tupel oder Liste der zu verbindenden Arrays; die Achse liegt fest, `hstack` verbindet
-  horizontal (Achse 1), `vstack` vertikal (Achse 0); bei 1D-Arrays verbindet `hstack` entlang
-  Achse 0
+- `tup`: Tupel oder Liste der zu verbindenden Arrays; entspricht `concatenate` mit fest
+  vorgegebener Achse: `hstack` verbindet horizontal (entlang Achse 1), `vstack` vertikal
+  (entlang Achse 0); bei 1D-Arrays verbindet `hstack` entlang Achse 0
 
 ```python
 import numpy as np
@@ -136,13 +129,13 @@ import numpy as np
 a = np.array([[1, 2], [3, 4]])
 b = np.array([[5, 6], [7, 8]])
 
-# Horizontal stacken (bei 2D-Arrays wie concatenate mit axis=1)
+# Horizontal stacken (entspricht concatenate mit axis=1)
 h_result = np.hstack((a, b))
 print("hstack:", h_result)
 # [[1 2 5 6]
 #  [3 4 7 8]]
 
-# Vertikal stacken (bei 2D-Arrays wie concatenate mit axis=0)
+# Vertikal stacken (entspricht concatenate mit axis=0)
 v_result = np.vstack((a, b))
 print("vstack:", v_result)
 # [[1 2]
@@ -155,24 +148,19 @@ print("vstack:", v_result)
 
 - Erstellen Sie ein 1D-Array `x` mit den Werten `[7, 14, 21]`
 - Erstellen Sie ein 1D-Array `y` mit den Werten `[2, 9, 16]`
-- Verbinden Sie diese mit `hstack` und `vstack`
+- Verwenden Sie `hstack` und `vstack` um diese zu verbinden
 - Erstellen Sie zusätzlich `a_3x1` mit den Werten `[[7], [14], [21]]` und `b_3x1` mit den
   Werten `[[2], [9], [16]]` und verbinden Sie diese mit `hstack` und `vstack`
 
-Geben Sie jeweils das Ergebnis und dessen Form aus.
-
-[EQ] Vergleichen Sie Ihre beiden Ergebnisse mit den 1D-Arrays aus [EREFR::2]:
-`hstack` liefert die Form `(6,)`, `vstack` dagegen `(2, 3)` und damit eine Dimension mehr,
-obwohl beide entlang einer bestehenden Achse verbinden sollen.
-Klären Sie anhand der
-[Doku zu `numpy.vstack`](https://numpy.org/doc/stable/reference/generated/numpy.vstack.html),
-was NumPy mit den 1D-Arrays tut, bevor es sie verbindet.
+Geben Sie jeweils das Ergebnis und dessen `shape` aus.
 
 <!-- time estimate: 15 min -->
 
-### Arrays aufteilen: `split`, `hsplit` und `vsplit`
+### Arrays aufteilen: `split`-Funktionen
 
-`numpy.split` teilt ein Array entlang einer angegebenen Achse:
+NumPy bietet verschiedene Funktionen zum Aufteilen von Arrays:
+
+**`numpy.split`** teilt ein Array entlang einer angegebenen Achse:
 
 ```python
 numpy.split(ary, indices_or_sections, axis=0)
@@ -203,17 +191,17 @@ print("Geteilt an [4, 7]:", parts_custom)
 # 5. und vor dem 8. Element.
 
 # 2D Array aufteilen
-arr_2d = np.arange(10, 170, 10).reshape(4, 4)
-# [[ 10  20  30  40]
-#  [ 50  60  70  80]
-#  [ 90 100 110 120]
-#  [130 140 150 160]]
+arr_2d = np.arange(16).reshape(4, 4)
+# [[ 0  1  2  3]
+#  [ 4  5  6  7]
+#  [ 8  9 10 11]
+#  [12 13 14 15]]
 parts_2d = np.split(arr_2d, 2, axis=0)  # Entlang Achse 0
 print("2D Teilung:", [part.shape for part in parts_2d])  # Liste der Formen aller Teilarrays
 # [(2, 4), (2, 4)]
 ```
 
-`numpy.hsplit` und `numpy.vsplit` sind spezialisierte Versionen:
+**`numpy.hsplit`** und **`numpy.vsplit`** sind spezialisierte Versionen:
 
 ```python
 numpy.hsplit(ary, indices_or_sections)
@@ -226,25 +214,20 @@ numpy.vsplit(ary, indices_or_sections)
 ```python
 # Horizontal teilen (entlang Spalten)
 h_parts = np.hsplit(arr_2d, 2)
-print("hsplit:", [part.shape for part in h_parts])
-# [(4, 2), (4, 2)]
 
 # Vertikal teilen (entlang Zeilen)
 v_parts = np.vsplit(arr_2d, 2)
-print("vsplit:", [part.shape for part in v_parts])
-# [(2, 4), (2, 4)]
 ```
 
 [EQ] Führen Sie `np.split(np.arange(10), 3)` aus und übernehmen Sie die Fehlermeldung in Ihre
-Antwort.
-Suchen Sie außerdem in der Dokumentation (siehe "Weiterführend") die Funktion, die dieselbe
-Aufteilung auch dann noch liefert, wenn die Länge nicht glatt aufgeht, und beschreiben Sie, wie
-sie die übrigen Elemente verteilt.
+Antwort. Was verlangt `np.split` also von der Länge der geteilten Achse? Suchen Sie außerdem in
+der Dokumentation (siehe "Weiterführend") die Funktion, die dieselbe Aufteilung auch dann noch
+liefert, wenn die Länge nicht glatt aufgeht, und beschreiben Sie, wie sie die übrigen Elemente
+verteilt.
 
 [ER] Arbeiten Sie mit Array-Teilungen:
 
-- Erstellen Sie mit `arange` und `reshape` ein 6×4-Array `arr_6x4` mit den Werten
-  `10, 20, 30, ...` bis `240`
+- Erstellen Sie mit `arange` und `reshape` ein 6×4-Array mit den ganzen Zahlen von 0 bis 23
 - Teilen Sie es mit `vsplit` in 3 gleiche Teile
 - Teilen Sie es mit `hsplit` in 2 gleiche Teile
 - Verwenden Sie `split` mit `axis=0` und den Indizes `[1, 4]` zur ungleichmäßigen Teilung
@@ -255,7 +238,7 @@ Geben Sie für jedes Ergebnis die Anzahl der Teilarrays und deren Formen aus.
 
 ### Array-Größe ändern: `resize`
 
-`resize` ändert die Form eines Arrays, auch wenn die neue Größe nicht der ursprünglichen
+`resize` ändert die Form eines Arrays auch dann, wenn die neue Größe nicht der ursprünglichen
 Elementanzahl entspricht:
 
 ```python
@@ -263,12 +246,8 @@ numpy.resize(a, new_shape)
 ```
 
 - `a`: das Ausgangsarray
-- `new_shape`: die Zielform als Tupel; enthält sie mehr Elemente als `a`, werden die
+- `new_shape`: die Ziel-Form als Tupel; enthält sie mehr Elemente als `a`, werden die
   ursprünglichen Werte zyklisch wiederholt, enthält sie weniger, wird abgeschnitten
-
-`np.resize` und `reshape` aus [PARTREF::np-array2] unterscheiden sich außerdem darin, ob das
-Ergebnis eigene Daten besitzt oder nur eine View auf die Daten des Ausgangsarrays ist.
-Den Unterschied zwischen Kopie und View behandelt [PARTREF::np-index-slice].
 
 ```python
 import numpy as np
@@ -300,13 +279,8 @@ Original selbst umbaut, hat für den neuen Platz nichts als Nullen.
 In dieser Aufgabe wird durchgehend die Funktion verwendet.
 [ENDNOTICE]
 
-[EQ] Formen Sie ein 2×3-Array `a` einmal mit `a.reshape(3, 2)` und einmal mit
-`np.resize(a, (3, 2))` um, überschreiben Sie anschließend im jeweiligen Ergebnis das erste
-Element und geben Sie das Ausgangsarray erneut aus.
-Übernehmen Sie beide Ausgaben in Ihre Antwort.
-Bei welcher der beiden Varianten ändert sich das Ausgangsarray mit?
-Erklären Sie, was die beiden Funktionen so unterscheidet, dass nur eine von ihnen eine View
-liefern kann, obwohl die Zielform hier gleich viele Elemente hat.
+[EQ] Was ist der Unterschied zwischen `np.resize()` und der `reshape()`-Methode,
+die Sie bereits kennen? Wann würden Sie welche Funktion verwenden?
 
 <!-- time estimate: 10 min -->
 
@@ -341,21 +315,20 @@ appended_cols = np.append(arr, [[7], [8]], axis=1)
 print("Spalten:", appended_cols.shape)  # (2, 4)
 ```
 
-[ER] Erstellen Sie ein 2×3-Array `arr_2x3` mit den Werten `[[31, 47, 12], [58, 23, 64]]` und
-verwenden Sie `append`:
+[ER] Erstellen Sie ein 2×3-Array mit den Werten `[[31, 47, 12], [58, 23, 64]]` und verwenden Sie
+`append`:
 
 - Fügen Sie eine neue Zeile mit den Werten `[90, 15, 33]` hinzu (`axis=0`)
 - Fügen Sie zwei neue Spalten mit den Werten `[[71, 29], [46, 88]]` hinzu (`axis=1`)
 - Fügen Sie die Werte `[5, 17, 26]` ohne `axis`-Parameter hinzu
 
-Gehen Sie bei jedem Punkt vom ursprünglichen Array aus und geben Sie jeweils das Ergebnis und
-dessen Form aus.
+Geben Sie jeweils das Ergebnis und dessen `shape` aus.
 
 <!-- time estimate: 10 min -->
 
 ### Elemente einfügen: `insert`
 
-`insert` fügt Werte an angegebenen Positionen ein:
+`insert` fügt Werte an bestimmten Positionen ein:
 
 ```python
 numpy.insert(arr, obj, values, axis=None)
@@ -370,46 +343,41 @@ numpy.insert(arr, obj, values, axis=None)
 ```python
 import numpy as np
 
-arr = np.array([[10, 20], [30, 40], [50, 60]])
+arr = np.array([[1, 2], [3, 4], [5, 6]])
 
 # An Position 1 entlang Achse 0 einfügen
-inserted_row = np.insert(arr, 1, [70, 80], axis=0)
+inserted_row = np.insert(arr, 1, [10, 11], axis=0)
 print("Zeile eingefügt:", inserted_row)
-# [[10 20]
-#  [70 80]
-#  [30 40]
-#  [50 60]]
+# [[ 1  2]
+#  [10 11]
+#  [ 3  4]
+#  [ 5  6]]
 
 # An Position 1 entlang Achse 1 einfügen
-inserted_col = np.insert(arr, 1, [70, 80, 90], axis=1)
+inserted_col = np.insert(arr, 1, [10, 20, 30], axis=1)
 print("Spalte eingefügt:", inserted_col)
-# [[10 70 20]
-#  [30 80 40]
-#  [50 90 60]]
+# [[ 1 10  2]
+#  [ 3 20  4]
+#  [ 5 30  6]]
 
 # Ohne axis - Array wird abgeflacht
 inserted_flat = np.insert(arr, 3, [100, 200])
 print("Flach eingefügt:", inserted_flat)
-# [ 10  20  30 100 200  40  50  60]
-# Die 3 ist eine Position, kein Wert: eingefügt wird vor dem 4. Element.
+# [  1   2   3 100 200   4   5   6]
 ```
 
 [ER] Arbeiten Sie mit `insert`:
 
-- Erstellen Sie mit `arange` und `reshape` ein 3×3-Array `arr_3x3` mit den Werten
-  `10, 20, 30, ...` bis `90`
-- Fügen Sie an Position 1 eine neue Zeile mit den Werten `[100, 110, 120]` ein
-- Fügen Sie an Position 2 eine neue Spalte mit den Werten `[200, 210, 220]` ein
-- Fügen Sie ohne `axis`-Parameter an Position 4 den Wert `99` ein
-
-Gehen Sie bei jedem Punkt vom ursprünglichen Array aus und geben Sie jeweils das Ergebnis und
-dessen Form aus.
+- Erstellen Sie mit `arange` und `reshape` ein 3×3-Array mit den ganzen Zahlen von 1 bis 9
+- Fügen Sie an Position 1 eine neue Zeile mit den Werten `[10, 11, 12]` ein
+- Fügen Sie an Position 2 eine neue Spalte mit den Werten `[20, 21, 22]` ein
+- Fügen Sie ohne `axis`-Parameter an Position 4 den Wert `99` in das ursprüngliche Array ein
 
 <!-- time estimate: 10 min -->
 
 ### Elemente entfernen: `delete`
 
-`delete` entfernt Elemente an angegebenen Positionen:
+`delete` entfernt Elemente an bestimmten Positionen:
 
 ```python
 numpy.delete(arr, obj, axis=None)
@@ -423,40 +391,27 @@ numpy.delete(arr, obj, axis=None)
 ```python
 import numpy as np
 
-arr = np.arange(10, 130, 10).reshape(3, 4)
-# [[ 10  20  30  40]
-#  [ 50  60  70  80]
-#  [ 90 100 110 120]]
+arr = np.arange(12).reshape(3, 4)
 
 # Zeile 1 entfernen
 deleted_row = np.delete(arr, 1, axis=0)
-print("Zeile entfernt:", deleted_row)
-# [[ 10  20  30  40]
-#  [ 90 100 110 120]]
+print("Zeile entfernt:", deleted_row.shape)  # (2, 4)
 
 # Spalten 0 und 2 entfernen
 deleted_cols = np.delete(arr, [0, 2], axis=1)
-print("Spalten entfernt:", deleted_cols)
-# [[ 20  40]
-#  [ 60  80]
-#  [100 120]]
+print("Spalten entfernt:", deleted_cols.shape)  # (3, 2)
 
 # Ohne axis - Array wird abgeflacht
 deleted_flat = np.delete(arr, [5, 7, 9])
-print("Flach entfernt:", deleted_flat)  # [ 10  20  30  40  50  70  90 110 120]
-# Die 5, 7 und 9 sind Positionen, keine Werte: entfernt werden 60, 80 und 100.
+print("Flach entfernt:", deleted_flat.shape)  # (9,)
 ```
 
 [ER] Üben Sie `delete`-Operationen:
 
-- Erstellen Sie mit `arange` und `reshape` ein 4×5-Array `arr_4x5` mit den Werten
-  `10, 20, 30, ...` bis `200`
+- Erstellen Sie mit `arange` und `reshape` ein 4×5-Array mit den ganzen Zahlen von 0 bis 19
 - Entfernen Sie die erste und letzte Zeile
-- Entfernen Sie die Spalten mit den Indizes 1 und 2
-- Entfernen Sie ohne `axis`-Parameter jedes dritte Element, beginnend beim ersten
-
-Gehen Sie bei jedem Punkt vom ursprünglichen Array aus und geben Sie jeweils das Ergebnis und
-dessen Form aus.
+- Entfernen Sie die mittleren zwei Spalten (Index 1 und 2)
+- Entfernen Sie aus dem abgeflachten Ausgangsarray jedes dritte Element, beginnend beim ersten
 
 [HINT::Wie erzeuge ich die Indizes für "jedes dritte Element"?]
 Nutzen Sie das bereits bekannte `np.arange` mit einer Schrittweite von 3, um die passenden
@@ -484,11 +439,11 @@ numpy.unique(ar, return_index=False, return_inverse=False, return_counts=False)
 ```python
 import numpy as np
 
-arr = np.array([50, 20, 60, 20, 70, 50, 60, 80, 20, 90])
+arr = np.array([5, 2, 6, 2, 7, 5, 6, 8, 2, 9])
 
 # Nur eindeutige Werte
 unique_vals = np.unique(arr)
-print("Eindeutig:", unique_vals)  # [20 50 60 70 80 90]
+print("Eindeutig:", unique_vals)  # [2 5 6 7 8 9]
 
 # Mit Indizes der ersten Vorkommen
 unique_vals, indices = np.unique(arr, return_index=True)
@@ -503,59 +458,49 @@ unique_vals, inverse = np.unique(arr, return_inverse=True)
 print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 ```
 
-[ER] Arbeiten Sie mit `unique`:
+[ER] Arbeiten Sie umfassend mit `unique`:
 
-- Erstellen Sie ein Array `messwerte` mit mehrfach vorkommenden Werten:
-  `[10, 30, 20, 30, 10, 40, 20, 40, 10, 50]`
+- Erstellen Sie ein Array mit mehrfach vorkommenden Werten: `[1, 3, 2, 3, 1, 4, 2, 4, 1, 5]`
 - Finden Sie die eindeutigen Werte
 - Ermitteln Sie die Indizes der ersten Vorkommen
 - Bestimmen Sie die Häufigkeit jedes eindeutigen Wertes
-- Verwenden Sie die inversen Indizes, um das ursprüngliche Array zu rekonstruieren
+- Verwenden Sie die inversen Indizes um das ursprüngliche Array zu rekonstruieren
 
-Geben Sie jeweils das Ergebnis aus.
+Verwenden Sie dabei alle drei `return_*`-Optionen.
 
 [EQ] Sehen Sie sich die von `return_index` gelieferten Indizes an: Sie sind nicht aufsteigend
-sortiert.
-Wonach richtet sich ihre Reihenfolge stattdessen?
+sortiert. Wonach richtet sich ihre Reihenfolge stattdessen?
 
 <!-- time estimate: 20 min -->
 
 ### Kombination mehrerer Operationen
 
-[ER] Kombinieren Sie mehrere der bisher behandelten Operationen:
+[ER] Führen Sie eine komplexe Array-Manipulation durch:
 
-- Erstellen Sie mit `arange` und `reshape` zwei 3×4-Arrays `A_3x4` (ganze Zahlen von 1 bis 12)
-  und `B_3x4` (ganze Zahlen von 7 bis 18)
+- Erstellen Sie mit `arange` und `reshape` zwei 3×4-Arrays `A` (ganze Zahlen von 1 bis 12) und
+  `B` (ganze Zahlen von 7 bis 18)
 - Verbinden Sie sie horizontal mit `hstack`
 - Teilen Sie das Ergebnis vertikal in 3 gleiche Teile
-- Fügen Sie dem mittleren Teil eine neue Spalte mit dem Wert `99` hinzu
+- Fügen Sie dem mittleren Teil eine neue Spalte mit dem Wert 99 hinzu
 - Bringen Sie die drei Teile wieder zusammen: Flachen Sie jeden Teil einzeln ab und verketten Sie
   die drei flachen Arrays zu einem einzigen 1D-Array
 - Entfernen Sie daraus alle doppelten Werte
-- Bringen Sie das Ergebnis mit `resize` auf die Form 4×4
+- Ändern Sie die finale Form zu 4×4 mit `resize`
 
-Geben Sie zu jedem Schritt die Form des Zwischenergebnisses aus, außerdem vor und nach dem
-Entfernen der Duplikate die Anzahl der Werte.
+Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form und geben Sie zusätzlich vor und
+nach dem Entfernen der Duplikate die Anzahl der Werte aus.
 
-[HINT::Wie flache ich ein Array ab?]
-`reshape` aus [PARTREF::np-array2] genügt dafür: Als Zielform reicht die Elementanzahl, die im
-Attribut `size` steht.
-Daneben gibt es
-[`numpy.ndarray.flatten`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.flatten.html)
-als eigene Methode für genau diesen Zweck.
-[ENDHINT]
-
-[HINT::Ich verliere bei den vielen Schritten den Überblick]
-Geben Sie jedem Zwischenergebnis einen eigenen Variablennamen, statt eine Variable mehrfach zu
-überschreiben.
-Dann können Sie einen misslungenen Schritt wiederholen, ohne von vorn anzufangen, und am Ende
-stehen alle geforderten Formen noch zur Verfügung.
+[HINT::Schritt für Schritt vorgehen]
+Diese Aufgabe verkettet mehrere Operationen. Geben Sie nach jedem einzelnen Schritt die `shape`
+des Zwischenergebnisses aus, bevor Sie mit dem nächsten Schritt weitermachen – so erkennen Sie
+sofort, ob eine Operation entlang der richtigen Achse arbeitet, bevor sich ein Fehler auf die
+folgenden Schritte fortpflanzt.
 [ENDHINT]
 
 [EQ] Nach dem Entfernen der Duplikate bleiben mehr Werte übrig, als in eine 4×4-Form passen.
 Welche Werte fehlen im Endergebnis, und warum gerade diese?
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 20 min -->
 
 ### Weiterführend
 
@@ -572,24 +517,21 @@ Welche Werte fehlen im Endergebnis, und warum gerade diese?
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
+### Knackpunkte
 
-- [EREFR::1] + [EREFQ::1]: Die vier Kombinationen liefern die Formen `(8, 3)`, `(4, 6)`,
-  `(2, 4, 3)` und `(4, 3, 2)`; die beiden Grenzwerte (`axis=1` bei `concatenate`, `axis=2` bei
-  `stack`) sind tatsächlich ausprobiert und mit Fehlermeldung belegt, und die Begründung führt
-  den Unterschied darauf zurück, dass `concatenate` eine bereits vorhandene Achse referenziert,
-  `stack` dem Ergebnis dagegen eine Achse hinzufügt
-- [EREFQ::4]: Der Versuch ist tatsächlich durchgeführt und zeigt, dass die Zuweisung an das
-  `reshape`-Ergebnis das Ausgangsarray mit verändert, die an das `resize`-Ergebnis dagegen nicht;
-  die Begründung benennt View gegen neues Array und führt den Unterschied auf die feste
-  Elementanzahl bei `reshape` gegen die freie Zielgröße bei `np.resize` zurück
-- [EREFR::8] + [EREFQ::6]: Im 3. Schritt wird dem mittleren Teil korrekt eine **Spalte** (nicht
-  Zeile) hinzugefügt (Form `(1, 8)` → `(1, 9)`); das Entfernen der Duplikate reduziert die Werte
-  tatsächlich von 25 auf 19 (die Überlappung 7..12 zwischen `A_3x4` und `B_3x4` fällt weg); und die
-  Studierenden benennen die drei beim `resize` verlorenen Werte (17, 18, 99) samt Begründung über
-  die sortierte Reihenfolge.
-  Dass ausgerechnet die zuvor eingefügte 99 wieder verschwindet, ist der Punkt, an dem sich zeigt,
-  ob der Ablauf wirklich nachvollzogen wurde
+- [EREFR::1] + [EREFQ::1]: `concatenate` (Dimension bleibt gleich) vs. `stack` (Dimension +1)
+  liefern für alle vier Kombinationen die korrekten Formen; Begründung erkennt, dass `axis=0`
+  bei `concatenate` eine bereits vorhandene Achse referenziert, bei `stack` dagegen die
+  Einfügeposition einer neu erzeugten Achse
+- [EREFQ::3]: Unterschied zwischen der Funktion `np.resize` (ändert Elementanzahl, füllt zyklisch
+  auf/schneidet ab, liefert immer eine Kopie) und `reshape` (Elementanzahl bleibt gleich, liefert
+  meist eine View) korrekt erklärt
+- [EREFR::8] + [EREFQ::5]: Im 3. Schritt wird dem mittleren Teil korrekt eine **Spalte** (nicht
+  Zeile) hinzugefügt (Shape (1,8) → (1,9)); das Entfernen der Duplikate reduziert die Werte
+  tatsächlich von 25 auf 19 (die Überlappung 7..12 zwischen `A` und `B` fällt weg); und der
+  Student benennt die drei beim `resize` verlorenen Werte (17, 18, 99) samt Begründung über die
+  sortierte Reihenfolge — dass ausgerechnet die zuvor eingefügte 99 wieder verschwindet, ist der
+  Punkt, an dem sich zeigt, ob der Ablauf wirklich nachvollzogen wurde
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-array3.md]
