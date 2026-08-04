@@ -224,9 +224,13 @@ numpy.vsplit(ary, indices_or_sections)
 ```python
 # Horizontal teilen (entlang Spalten)
 h_parts = np.hsplit(arr_2d, 2)
+print("hsplit:", [part.shape for part in h_parts])
+# [(4, 2), (4, 2)]
 
 # Vertikal teilen (entlang Zeilen)
 v_parts = np.vsplit(arr_2d, 2)
+print("vsplit:", [part.shape for part in v_parts])
+# [(2, 4), (2, 4)]
 ```
 
 [EQ] Führen Sie `np.split(np.arange(10), 3)` aus und übernehmen Sie die Fehlermeldung in Ihre
@@ -237,8 +241,8 @@ sie die übrigen Elemente verteilt.
 
 [ER] Arbeiten Sie mit Array-Teilungen:
 
-- Erstellen Sie mit `arange` und `reshape` ein 6×4-Array `arr_6x4` mit den ganzen Zahlen
-  von 0 bis 23
+- Erstellen Sie mit `arange` und `reshape` ein 6×4-Array `arr_6x4` mit den Werten
+  `10, 20, 30, ...` bis `240`
 - Teilen Sie es mit `vsplit` in 3 gleiche Teile
 - Teilen Sie es mit `hsplit` in 2 gleiche Teile
 - Verwenden Sie `split` mit `axis=0` und den Indizes `[1, 4]` zur ungleichmäßigen Teilung
@@ -364,35 +368,36 @@ numpy.insert(arr, obj, values, axis=None)
 ```python
 import numpy as np
 
-arr = np.array([[1, 2], [3, 4], [5, 6]])
+arr = np.array([[10, 20], [30, 40], [50, 60]])
 
 # An Position 1 entlang Achse 0 einfügen
-inserted_row = np.insert(arr, 1, [10, 11], axis=0)
+inserted_row = np.insert(arr, 1, [70, 80], axis=0)
 print("Zeile eingefügt:", inserted_row)
-# [[ 1  2]
-#  [10 11]
-#  [ 3  4]
-#  [ 5  6]]
+# [[10 20]
+#  [70 80]
+#  [30 40]
+#  [50 60]]
 
 # An Position 1 entlang Achse 1 einfügen
-inserted_col = np.insert(arr, 1, [10, 20, 30], axis=1)
+inserted_col = np.insert(arr, 1, [70, 80, 90], axis=1)
 print("Spalte eingefügt:", inserted_col)
-# [[ 1 10  2]
-#  [ 3 20  4]
-#  [ 5 30  6]]
+# [[10 70 20]
+#  [30 80 40]
+#  [50 90 60]]
 
 # Ohne axis - Array wird abgeflacht
 inserted_flat = np.insert(arr, 3, [100, 200])
 print("Flach eingefügt:", inserted_flat)
-# [  1   2   3 100 200   4   5   6]
+# [ 10  20  30 100 200  40  50  60]
+# Die 3 ist eine Position, kein Wert: eingefügt wird vor dem 4. Element.
 ```
 
 [ER] Arbeiten Sie mit `insert`:
 
-- Erstellen Sie mit `arange` und `reshape` ein 3×3-Array `arr_3x3` mit den ganzen Zahlen
-  von 1 bis 9
-- Fügen Sie an Position 1 eine neue Zeile mit den Werten `[10, 11, 12]` ein
-- Fügen Sie an Position 2 eine neue Spalte mit den Werten `[20, 21, 22]` ein
+- Erstellen Sie mit `arange` und `reshape` ein 3×3-Array `arr_3x3` mit den Werten
+  `10, 20, 30, ...` bis `90`
+- Fügen Sie an Position 1 eine neue Zeile mit den Werten `[100, 110, 120]` ein
+- Fügen Sie an Position 2 eine neue Spalte mit den Werten `[200, 210, 220]` ein
 - Fügen Sie ohne `axis`-Parameter an Position 4 den Wert `99` in das ursprüngliche Array ein
 
 Geben Sie jeweils das Ergebnis und dessen Form aus.
@@ -503,8 +508,6 @@ print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 - Bestimmen Sie die Häufigkeit jedes eindeutigen Wertes
 - Verwenden Sie die inversen Indizes, um das ursprüngliche Array zu rekonstruieren
 
-Verwenden Sie dabei alle drei `return_*`-Optionen.
-
 Geben Sie jeweils das Ergebnis aus.
 
 [EQ] Sehen Sie sich die von `return_index` gelieferten Indizes an: Sie sind nicht aufsteigend
@@ -529,6 +532,14 @@ Wonach richtet sich ihre Reihenfolge stattdessen?
 
 Geben Sie zu jedem Schritt die Form des Zwischenergebnisses aus, außerdem vor und nach dem
 Entfernen der Duplikate die Anzahl der Werte.
+
+[HINT::Wie flache ich ein Array ab?]
+`reshape` aus [PARTREF::np-array2] genügt dafür: Als Zielform reicht die Elementanzahl, die im
+Attribut `size` steht.
+Daneben gibt es
+[`numpy.ndarray.flatten`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.flatten.html)
+als eigene Methode für genau diesen Zweck.
+[ENDHINT]
 
 [HINT::Ich verliere bei den vielen Schritten den Überblick]
 Diese Aufgabe verkettet mehrere Operationen.
@@ -569,7 +580,7 @@ Welche Werte fehlen im Endergebnis, und warum gerade diese?
   die Begründung benennt View gegen neues Array und führt den Unterschied auf die feste
   Elementanzahl bei `reshape` gegen die freie Zielgröße bei `np.resize` zurück
 - [EREFR::8] + [EREFQ::6]: Im 3. Schritt wird dem mittleren Teil korrekt eine **Spalte** (nicht
-  Zeile) hinzugefügt (Form (1,8) → (1,9)); das Entfernen der Duplikate reduziert die Werte
+  Zeile) hinzugefügt (Form `(1, 8)` → `(1, 9)`); das Entfernen der Duplikate reduziert die Werte
   tatsächlich von 25 auf 19 (die Überlappung 7..12 zwischen `A_3x4` und `B_3x4` fällt weg); und die
   Studierenden benennen die drei beim `resize` verlorenen Werte (17, 18, 99) samt Begründung über
   die sortierte Reihenfolge.
