@@ -10,6 +10,8 @@ assumes: np-Einführung, np-array, py-Fstrings, py-List-Comprehensions
 - Ich verstehe die grundlegenden Bitwise-Operationen in NumPy und kann sie anwenden.
 - Ich verstehe, wie das Ergebnis einer Bitwise-Operation vom `dtype` des Arrays abhängt.
 - Ich kann NumPy-String-Funktionen für die Textverarbeitung einsetzen.
+- Ich kann die Laufzeit einer vektorisierten Operation gegen eine Python-Schleife messen und weiß,
+  dass ein Beschleunigungsfaktor nur zusammen mit seinem Vergleichspartner aussagekräftig ist.
 
 [ENDSECTION]
 
@@ -55,6 +57,10 @@ NumPy bietet dieselben Operationen als Funktionen an, die zusätzlich zwei Dinge
   verfügbarer Bits begrenzt.
   Das ist wichtig für `invert()` und die Verschiebungsoperationen weiter unten, da sich das Ergebnis
   innerhalb dieser festen Bit-Breite berechnet.
+
+Auf Arrays lassen sich auch die Operatoren selbst verwenden; sie tun dort genau dasselbe wie die
+Funktionen (`a & b` ist gleichwertig zu `np.bitwise_and(a, b)`).
+Die Kommentare in den folgenden Beispielen nutzen diese kürzere Schreibweise.
 
 Die wichtigsten Bitwise-Funktionen in NumPy sind:
 
@@ -229,7 +235,7 @@ ndarray.astype(dtype)
 dieselben Bits umgekehrt werden?
 Nutzen Sie Ihre Ergebnisse aus dem vorigen Schritt für Ihre Erklärung.
 
-[HINT::Warum ergibt dasselbe Bitmuster bei int8 und uint8 unterschiedliche Zahlen?]
+[HINT::Warum ergibt dasselbe Bitmuster bei `int8` und `uint8` unterschiedliche Zahlen?]
 Schreiben Sie sich zuerst die 8-Bit-Darstellung von `3` auf (`np.binary_repr(3, width=8)`), kehren
 Sie jedes Bit einzeln um, und prüfen Sie erst danach, welche Zahl dieses Bitmuster im
 Zweierkomplement bzw. als vorzeichenlose Zahl repräsentiert.
@@ -257,8 +263,7 @@ ein neues Array mit den Ergebnissen zurück.
 Der Geschwindigkeitsvorteil gegenüber einer Python-Schleife fällt hier deutlich kleiner aus als bei
 numerischen NumPy-Operationen: Bei einfachen, direkt vektorisierbaren Operationen auf großen Arrays
 (wie den hier gezeigten) bleibt er meist einstellig bis niedrig zweistellig.
-Wie groß er genau ausfällt, hängt allerdings auch davon ab, womit man vergleicht; im letzten
-Abschnitt dieser Aufgabe messen Sie das selbst nach.
+Im letzten Abschnitt dieser Aufgabe messen Sie selbst nach, wie groß er ausfällt.
 
 ```python
 numpy.strings.upper(a)  # wandelt jedes Element in Großbuchstaben um
@@ -303,8 +308,8 @@ combined = np.strings.add(arr1, arr2)
 print("Combined:", combined)  # ['Hello World' 'Goodbye']
 
 # String-Wiederholung
-repeated = np.strings.multiply('Python ', 3)
-print("Repeated:", repeated)  # 'Python Python Python '
+repeated = np.strings.multiply(np.array(['Python ', 'NumPy ']), 3)
+print("Repeated:", repeated)  # ['Python Python Python ' 'NumPy NumPy NumPy ']
 ```
 
 [ER] Implementieren Sie verschiedene String-Operationen:
@@ -328,7 +333,8 @@ numpy.strings.replace(a, old, new)            # ersetzt alle Vorkommen von old d
 ```
 
 - `a`: Array von Strings, das bearbeitet wird
-- `width`: Zielbreite, auf die zentriert wird; bleibt ein Füllzeichen übrig, steht es rechts
+- `width`: Zielbreite, auf die zentriert wird; geht die Aufteilung nicht glatt auf, stehen links
+  und rechts unterschiedlich viele Füllzeichen
 - `fillchar` (Default `' '`): Füllzeichen links/rechts vom zentrierten String
 - `old`, `new`: zu ersetzendes Teilstück bzw. Ersatz-Teilstück (bei `replace`)
 
@@ -336,8 +342,8 @@ numpy.strings.replace(a, old, new)            # ersetzt alle Vorkommen von old d
 import numpy as np
 
 # String-Zentrierung und Polsterung
-centered = np.strings.center('NumPy', 15, fillchar='*')
-print("Centered:", centered)  # '*****NumPy*****'
+centered = np.strings.center(np.array(['NumPy', 'Pandas']), 12, fillchar='*')
+print("Centered:", centered)  # ['***NumPy****' '***Pandas***']
 
 # String-Bereinigung
 messy_strings = np.array(['  hello  ', '  world  '])
