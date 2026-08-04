@@ -8,17 +8,17 @@ assumes: np-Einführung, np-array, py-Fstrings
 [SECTION::goal::idea,experience]
 
 - Ich verstehe die grundlegenden Bitwise-Operationen in NumPy und kann sie anwenden.
-- Ich verstehe, wovon das Ergebnis einer Bitwise-Operation abhängt.
+- Ich verstehe, wie das Ergebnis einer Bitwise-Operation vom `dtype` des Arrays abhängt.
 - Ich kann NumPy-String-Funktionen für die Textverarbeitung einsetzen.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-NumPy bietet neben numerischen auch bitweise und stringbezogene Operationen an, die direkt auf
-der binären bzw. textuellen Darstellung der Daten arbeiten. Diese Aufgabe behandelt die
-wichtigsten Bitwise-Funktionen sowie ausgewählte NumPy-String-Funktionen für die
-Textverarbeitung.
+NumPy bietet neben numerischen auch bitweise und stringbezogene Operationen an, die direkt auf der
+binären bzw. textuellen Darstellung der Daten arbeiten.
+Diese Aufgabe behandelt die wichtigsten Bitwise-Funktionen sowie ausgewählte NumPy-String-Funktionen
+für die Textverarbeitung.
 
 [ENDSECTION]
 
@@ -26,9 +26,10 @@ Textverarbeitung.
 
 ### Vorwissen
 
-Für die Bitwise-Operationen in dieser Aufgabe sind Grundkenntnisse der Binärdarstellung von
-Zahlen und des Zweierkomplements hilfreich (wie Ganzzahlen als Bitfolgen dargestellt werden,
-wie negative Zahlen darin kodiert werden). Falls Ihnen diese fehlen, helfen folgende Quellen:
+Für die Bitwise-Operationen in dieser Aufgabe sind Grundkenntnisse der Binärdarstellung von Zahlen
+und des Zweierkomplements hilfreich (wie Ganzzahlen als Bitfolgen dargestellt werden, wie negative
+Zahlen darin kodiert werden).
+Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Dualsystem (Wikipedia)](https://de.wikipedia.org/wiki/Dualsystem)
 - [Zweierkomplement (Wikipedia)](https://de.wikipedia.org/wiki/Zweierkomplement)
@@ -36,27 +37,26 @@ wie negative Zahlen darin kodiert werden). Falls Ihnen diese fehlen, helfen folg
 Ohne dieses Vorwissen ist die Bearbeitung dieser Aufgabe nicht sinnvoll.
 
 Die Zeitschätzungen für die Bitwise-Abschnitte dieser Aufgabe gehen davon aus, dass dieses Vorwissen
-bereits vorhanden ist. Wenn Sie sich Dualsystem und Zweierkomplement erst parallel aneignen, wird
-die Bearbeitung merklich länger dauern — das ist normal und kein Zeichen dafür, dass Sie zu langsam
-sind.
+bereits vorhanden ist.
+Wenn Sie sich Dualsystem und Zweierkomplement erst parallel aneignen, wird die Bearbeitung merklich
+länger dauern; das ist normal und kein Zeichen dafür, dass Sie zu langsam sind.
 
 ### Grundlagen der NumPy-Bitwise-Operationen
 
-Bitwise-Operationen arbeiten direkt auf der binären Darstellung von Zahlen: Jede Position
-einer Binärzahl repräsentiert eine Zweierpotenz, z. B. steht `00001101` für
-`1×8 + 1×4 + 0×2 + 1×1 = 13`.
+Bitwise-Operationen arbeiten direkt auf der binären Darstellung von Zahlen: Jede Position einer
+Binärzahl repräsentiert eine Zweierpotenz, z. B. steht `00001101` für `1×8 + 1×4 + 0×2 + 1×1 = 13`.
 
-Python selbst kennt bereits die Operatoren `&`, `|`, `^`, `~`, `<<` und `>>` für
-Bitwise-Operationen auf einzelnen ganzen Zahlen. NumPy bietet dieselben Operationen als
-Funktionen an, die zusätzlich zwei Dinge ermöglichen:
+Python selbst kennt bereits die Operatoren `&`, `|`, `^`, `~`, `<<` und `>>` für Bitwise-Operationen
+auf einzelnen ganzen Zahlen.
+NumPy bietet dieselben Operationen als Funktionen an, die zusätzlich zwei Dinge ermöglichen:
 
 - **Vektorisierung**: Die Operation wird gleichzeitig auf jedes Element eines Arrays angewendet,
   statt nur auf eine einzelne Zahl.
 - **Feste Bit-Breite**: Python-Ganzzahlen haben beliebig viele Stellen und laufen nie über.
-  NumPy-Arrays haben dagegen einen festen `dtype` (z. B. `int8` mit genau 8 Bit), der die
-  Anzahl verfügbarer Bits begrenzt. Das ist wichtig für `invert()` und die
-  Verschiebungsoperationen weiter unten, da sich das Ergebnis innerhalb dieser festen
-  Bit-Breite berechnet.
+  NumPy-Arrays haben dagegen einen festen `dtype` (z. B. `int8` mit genau 8 Bit), der die Anzahl
+  verfügbarer Bits begrenzt.
+  Das ist wichtig für `invert()` und die Verschiebungsoperationen weiter unten, da sich das Ergebnis
+  innerhalb dieser festen Bit-Breite berechnet.
 
 Die wichtigsten Bitwise-Funktionen in NumPy sind:
 
@@ -67,16 +67,16 @@ Die wichtigsten Bitwise-Funktionen in NumPy sind:
 - `numpy.left_shift()`: Verschiebt Bits nach links
 - `numpy.right_shift()`: Verschiebt Bits nach rechts
 
-Um sich die Bitdarstellung einer Zahl ausgeben zu lassen (z. B. um Ergebnisse der obigen
-Funktionen nachzuvollziehen), bietet NumPy die Funktion `binary_repr`:
+Um sich die Bitdarstellung einer Zahl ausgeben zu lassen (z. B. um Ergebnisse der obigen Funktionen
+nachzuvollziehen), bietet NumPy `binary_repr`:
 
 ```python
 numpy.binary_repr(num, width=None)
 ```
 
 - `num`: die darzustellende Ganzzahl
-- `width` (Default `None`): Mindestanzahl der Stellen der Ausgabe, mit führenden Nullen
-  aufgefüllt (z. B. `width=8` erzwingt eine 8-stellige Ausgabe wie `00001101`)
+- `width` (Default `None`): Mindestanzahl der Stellen der Ausgabe, mit führenden Nullen aufgefüllt
+  (z. B. `width=8` erzwingt eine 8-stellige Ausgabe wie `00001101`)
 
 ```python
 import numpy as np
@@ -92,7 +92,8 @@ numpy.bitwise_or(x1, x2)   # bitweises ODER: 1 dort, wo mindestens ein Operand 1
 numpy.bitwise_xor(x1, x2)  # bitweises XOR: 1 dort, wo genau ein Operand 1 ist
 ```
 
-- `x1`, `x2`: Ganzzahl- oder Boolean-Arrays (gleicher Shape oder broadcastbar), auf denen bitweise verknüpft wird
+- `x1`, `x2`: Ganzzahl- oder Boolean-Arrays (gleicher Form oder broadcastbar), auf denen bitweise
+  verknüpft wird
 
 `np.bool_` ist NumPys eigener Boolean-Datentyp für Array-Elemente (analog zu `np.int8` oder
 `np.complex128`); bei booleschen Arrays entsprechen die Bitwise-Operationen den logischen
@@ -114,23 +115,23 @@ print("OR:", result_or)    # [ True  True False]
 print("XOR:", result_xor)  # [False  True False]
 ```
 
-An der ersten Position sind beide Operanden `True`; genau dort trennen sich ODER (`True`) und
-XOR (`False`).
+An der ersten Position sind beide Operanden `True`; genau dort trennen sich ODER (`True`) und XOR
+(`False`).
 
-[ER] Implementieren Sie bitweise Operationen mit verschiedenen Datentypen:
+[ER] Wenden Sie die drei Verknüpfungen auf Ganzzahl-Arrays an:
 
-- Erstellen Sie zwei Arrays mit ganzen Zahlen: `a` mit den Werten `[13, 17]` und `b` mit den
-  Werten `[5, 8]`
+- Erstellen Sie zwei Arrays mit ganzen Zahlen: `a` mit den Werten `[13, 17]` und `b` mit den Werten
+  `[5, 24]`
 - Führen Sie `np.bitwise_and(a, b)`, `np.bitwise_or(a, b)` und `np.bitwise_xor(a, b)` durch
-- Geben Sie sowohl die Ergebnisse als auch die binären Darstellungen aus (verwenden Sie `np.binary_repr()`)
+- Geben Sie sowohl die Ergebnisse als auch die binären Darstellungen aus (verwenden Sie
+  `np.binary_repr()`)
 - Erklären Sie in Kommentaren, wie die Ergebnisse zustande kommen
 
 <!-- time estimate: 15 min -->
 
 ### Bit-Verschiebungen: `left_shift` und `right_shift`
 
-Bit-Verschiebungsoperationen verschieben die Bits einer Zahl um eine feste Anzahl
-Positionen:
+Bit-Verschiebungsoperationen verschieben die Bits einer Zahl um eine feste Anzahl Positionen:
 
 ```python
 numpy.left_shift(x1, x2)   # verschiebt die Bits von x1 um x2 Positionen nach links
@@ -152,37 +153,42 @@ right_result = np.right_shift(40, 2)  # 40 >> 2 = 10
 print("40 >> 2 =", right_result)
 ```
 
-Diese Entsprechung gilt aber nur, solange das Ergebnis in den `dtype` des Arrays passt. Bits, die
-über dessen Breite hinausgeschoben werden, gehen verloren:
+Diese Entsprechung gilt aber nur, solange das Ergebnis in den `dtype` des Arrays passt.
+Bits, die über dessen Breite hinausgeschoben werden, gehen verloren:
 
 ```python
+import numpy as np
+
 schmal = np.array([64, 100], dtype=np.int8)
 print(np.left_shift(schmal, 2))                  # [   0 -112]
 print(np.left_shift(np.array([64, 100]), 2))     # [256 400] (Default-dtype, breit genug)
 ```
 
-Bei `64 = 01000000` wandern beide gesetzten Bits aus den 8 Bit hinaus, übrig bleibt `0`. Bei
-`100 = 01100100` bleibt das Bitmuster `10010000` stehen; als `int8` gelesen ist das `-112`, denn
+Bei `64 = 01000000` wandern beide gesetzten Bits aus den 8 Bit hinaus, übrig bleibt `0`.
+Bei `100 = 01100100` bleibt das Bitmuster `10010000` stehen; als `int8` gelesen ist das `-112`, denn
 dort zeigt das oberste Bit das Vorzeichen an (mehr dazu im Abschnitt zu `invert` weiter unten).
 
-[EQ] Warum entspricht eine Links-Verschiebung um `n` Positionen einer
-Multiplikation mit `2^n`? Berechnen Sie mental das Ergebnis von `np.left_shift(7, 3)`
-und erklären Sie Ihren Rechenweg mit der binären Darstellung.
+[EQ] Berechnen Sie im Kopf das Ergebnis von `np.left_shift(7, 3)` und erklären Sie Ihren
+Rechenweg mit der binären Darstellung.
 
 [ER] Arbeiten Sie mit Bit-Verschiebungen in Arrays:
 
 - Erstellen Sie ein Array `values` mit den Werten `[5, 12, 25, 48]`
 - Verschieben Sie alle Werte um 1 Position nach links
 - Verschieben Sie alle Werte um 2 Positionen nach rechts
-- Vergleichen Sie die Ergebnisse mit mathematischen Operationen (`*2` bzw. `//4`)
-- Dokumentieren Sie Ihre Beobachtungen
+- Vergleichen Sie die Ergebnisse mit den arithmetischen Operationen (`*2` bzw. `//4`)
+
+[EQ] Bei `5` und `25` weicht Ihr Verschiebungsergebnis von einer gewöhnlichen Division ab: `5 / 4`
+wäre `1.25`, die Verschiebung liefert `1`.
+Schreiben Sie die Bitmuster von `5` und des verschobenen Ergebnisses auf und benennen Sie, welche
+Bits dabei verschwinden.
+Was erklärt das darüber, warum eine Rechts-Verschiebung immer abschneidet und nie runden kann?
 
 <!-- time estimate: 20 min -->
 
 ### Bitweise Negation mit `invert`
 
-Die `invert()`-Funktion kehrt jedes einzelne Bit einer Zahl um (aus 0 wird 1 und
-umgekehrt):
+`invert()` kehrt jedes einzelne Bit einer Zahl um (aus 0 wird 1 und umgekehrt):
 
 ```python
 numpy.invert(x)
@@ -190,11 +196,10 @@ numpy.invert(x)
 
 - `x`: Ganzzahl- oder Boolean-Array, dessen Bits umgekehrt werden
 
-Bei vorzeichenbehafteten Ganzzahltypen wie `int8` wird das Ergebnis als
-Zweierkomplement interpretiert: Das höchstwertige Bit zeigt das Vorzeichen an
-(1 = negativ), und eine negative Zahl `-n` wird als Bitmuster von `n - 1` mit
-umgekehrten Bits dargestellt. Deshalb ergibt das Umkehren aller Bits einer Zahl `n`
-immer `-(n + 1)`:
+Bei vorzeichenbehafteten Ganzzahltypen wie `int8` wird das Ergebnis als Zweierkomplement
+interpretiert: Das höchstwertige Bit zeigt das Vorzeichen an (1 = negativ), und eine negative Zahl
+`-n` wird als Bitmuster von `n - 1` mit umgekehrten Bits dargestellt.
+Deshalb ergibt das Umkehren aller Bits einer Zahl `n` immer `-(n + 1)`:
 
 ```python
 import numpy as np
@@ -206,56 +211,56 @@ print("Original:", arr)
 print("Inverted:", inverted)  # [-2, -3]
 ```
 
-Um ein Array in einen anderen `dtype` umzuwandeln, bietet NumPy die Methode `astype`:
+Um ein Array in einen anderen `dtype` umzuwandeln, bietet NumPy die Array-Methode `astype`:
 
 ```python
 ndarray.astype(dtype)
 ```
 
-- `dtype`: Ziel-Datentyp, in den die Elemente des Arrays umgewandelt werden (z. B. `np.uint8`
-  oder `str`); es wird immer ein neues Array zurückgegeben, das ursprüngliche bleibt unverändert
+- `dtype`: Ziel-Datentyp, in den die Elemente des Arrays umgewandelt werden (z. B. `np.uint8`); es
+  wird immer ein neues Array zurückgegeben, das ursprüngliche bleibt unverändert
 
 [ER] Untersuchen Sie den Einfluss des `dtype` auf `invert()`:
 
-- Erstellen Sie ein Array `arr` mit den Werten `[3, 10]` als `np.int8` und wenden Sie
-  `np.invert()` darauf an
+- Erstellen Sie ein Array `arr` mit den Werten `[3, 10]` als `np.int8` und wenden Sie `np.invert()`
+  darauf an
 - Wandeln Sie `arr` mit `arr.astype(np.uint8)` um und wenden Sie `np.invert()` auch darauf an
 - Geben Sie beide Ergebnisse aus
 
 [EQ] Warum liefert `np.invert()` bei `int8` negative Werte, bei `uint8` aber nicht, obwohl
-dieselben Bits umgekehrt werden? Nutzen Sie Ihre Ergebnisse aus der vorherigen Aufgabe für
-Ihre Erklärung.
+dieselben Bits umgekehrt werden?
+Nutzen Sie Ihre Ergebnisse aus der vorherigen Aufgabe für Ihre Erklärung.
 
 [HINT::Warum ergibt dasselbe Bitmuster bei int8 und uint8 unterschiedliche Zahlen?]
-Schreiben Sie sich zuerst die 8-Bit-Darstellung
-von `1` auf (`np.binary_repr(1, width=8)`), kehren Sie jedes Bit einzeln um, und
-prüfen Sie erst danach, welche negative Zahl dieses Bitmuster im Zweierkomplement
-bzw. als vorzeichenlose Zahl repräsentiert.
+Schreiben Sie sich zuerst die 8-Bit-Darstellung von `3` auf (`np.binary_repr(3, width=8)`), kehren
+Sie jedes Bit einzeln um, und prüfen Sie erst danach, welche Zahl dieses Bitmuster im
+Zweierkomplement bzw. als vorzeichenlose Zahl repräsentiert.
 [ENDHINT]
 
 <!-- time estimate: 20 min -->
 
 ### Grundlagen der NumPy-String-Funktionen: `strings.upper`, `strings.lower`
 
-NumPy bietet zwei Module für vektorisierte String-Verarbeitung: `numpy.char` (das ursprüngliche)
-und `numpy.strings` (das neuere). Laut offizieller Dokumentation
-([NumPy String Functions](https://numpy.org/doc/stable/reference/routines.strings.html))
-gilt `numpy.char` inzwischen als Legacy — es arbeitet nur auf Strings fester Breite, erhält keine
-Updates mehr und soll langfristig entfernt werden. Deshalb verwenden wir in dieser Aufgabe
-vorwiegend `numpy.strings`; nur dort, wo `numpy.char` Funktionen bietet, die es in
-`numpy.strings` (noch) nicht gibt (`split`/`join`, siehe weiter unten), greifen wir auf
-`numpy.char` zurück.
+NumPy bietet zwei Module für vektorisierte String-Verarbeitung: `numpy.char` (das ursprüngliche) und
+`numpy.strings` (das neuere).
+Laut der offiziellen Dokumentation
+[NumPy String Functions](https://numpy.org/doc/stable/reference/routines.strings.html)
+gilt `numpy.char` inzwischen als Legacy: es arbeitet nur auf Strings fester Breite, erhält keine
+Updates mehr und könnte in einer künftigen Hauptversion entfernt werden.
+Deshalb verwenden wir in dieser Aufgabe vorwiegend `numpy.strings`; nur dort, wo `numpy.char`
+Funktionen bietet, die es in `numpy.strings` (noch) nicht gibt (`split`/`join`, siehe weiter unten),
+greifen wir auf `numpy.char` zurück.
 
-Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String-Operation
-auf jedes Element eines Arrays gleichzeitig an. Wie bei einzelnen Python-Strings verändern
-sie das ursprüngliche Array nicht, sondern geben immer ein neues Array mit den Ergebnissen
-zurück.
+Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String-Operation auf jedes
+Element eines Arrays gleichzeitig an.
+Wie bei einzelnen Python-Strings verändern sie das ursprüngliche Array nicht, sondern geben immer
+ein neues Array mit den Ergebnissen zurück.
 
-Der Geschwindigkeitsvorteil gegenüber einer Python-Schleife fällt hier deutlich kleiner aus als
-bei numerischen NumPy-Operationen: Bei einfachen, direkt vektorisierbaren Operationen auf großen
-Arrays (wie den hier gezeigten) bleibt er meist einstellig bis niedrig zweistellig. Wie groß er
-genau ausfällt, hängt allerdings auch davon ab, womit man vergleicht — im letzten Abschnitt
-dieser Aufgabe messen Sie das selbst nach.
+Der Geschwindigkeitsvorteil gegenüber einer Python-Schleife fällt hier deutlich kleiner aus als bei
+numerischen NumPy-Operationen: Bei einfachen, direkt vektorisierbaren Operationen auf großen Arrays
+(wie den hier gezeigten) bleibt er meist einstellig bis niedrig zweistellig.
+Wie groß er genau ausfällt, hängt allerdings auch davon ab, womit man vergleicht; im letzten
+Abschnitt dieser Aufgabe messen Sie das selbst nach.
 
 ```python
 numpy.strings.upper(a)  # wandelt jedes Element in Großbuchstaben um
@@ -285,7 +290,8 @@ numpy.strings.add(x1, x2)     # hängt die Elemente von x1 und x2 paarweise anei
 numpy.strings.multiply(a, i)  # wiederholt jedes Element von a i-mal
 ```
 
-- `x1`, `x2`: Arrays von Strings gleicher Länge, deren Elemente paarweise aneinandergehängt werden
+- `x1`, `x2`: Arrays von Strings gleicher Form oder broadcastbar, deren Elemente paarweise
+  aneinandergehängt werden
 - `a`: Array von Strings, das wiederholt wird
 - `i`: Anzahl der Wiederholungen pro Element
 
@@ -307,7 +313,8 @@ print("Repeated:", repeated)  # 'Python Python Python '
 
 - Erstellen Sie ein Array `names` mit den Werten `['Alice', 'Bob', 'Charlie']`
 - Erstellen Sie ein Array `greetings` mit den Werten `['Hallo', 'Hi', 'Hey']`
-- Verbinden Sie entsprechende Elemente mit `np.strings.add()` und fügen Sie ein Leerzeichen dazwischen ein
+- Verbinden Sie entsprechende Elemente mit `np.strings.add()` und fügen Sie ein Leerzeichen
+  dazwischen ein
 - Verwenden Sie `np.strings.multiply()`, um jeden Namen 2-mal zu wiederholen
 - Konvertieren Sie alle Namen in Großbuchstaben mit `np.strings.upper()`
 
@@ -316,13 +323,14 @@ print("Repeated:", repeated)  # 'Python Python Python '
 ### String-Formatierung und -Bearbeitung: `strings.center`, `strings.strip`, `strings.replace`
 
 ```python
-numpy.strings.center(a, width, fillchar=' ')  # zentriert jeden String in einem Feld der Breite width
+numpy.strings.center(a, width, fillchar=' ')  # zentriert jeden String in einem Feld der Breite
+                                              # width
 numpy.strings.strip(a)                        # entfernt Leerzeichen am Anfang und Ende
 numpy.strings.replace(a, old, new)            # ersetzt alle Vorkommen von old durch new
 ```
 
 - `a`: Array von Strings, das bearbeitet wird
-- `width`: Zielbreite, auf die zentriert wird
+- `width`: Zielbreite, auf die zentriert wird; bleibt ein Füllzeichen übrig, steht es rechts
 - `fillchar` (Default `' '`): Füllzeichen links/rechts vom zentrierten String
 - `old`, `new`: zu ersetzendes Teilstück bzw. Ersatz-Teilstück (bei `replace`)
 
@@ -348,35 +356,39 @@ print("Replaced:", replaced)  # ['Pithon' 'NumPi' 'Pandas']
 
 - Erstellen Sie ein Array `words` mit den Werten `['Style', 'Yellow', 'Syntax']`
 - Zentrieren Sie jeden String in einem Feld der Breite 10 mit `np.strings.center()`
-- Erstellen Sie ein Array mit Strings, die Leerzeichen am Anfang und Ende haben
+- Erstellen Sie ein Array `messy_words` mit den Werten
+  `['  Style  ', '   Yellow   ', ' Syntax ']`
 - Verwenden Sie `np.strings.strip()` zum Entfernen der Leerzeichen
 - Nutzen Sie `np.strings.replace()`, um alle 'y' durch 'i' zu ersetzen
 
-<!-- time estimate: 15 min -->
+[EQ] Eines der drei Wörter kommt aus der Ersetzung unverändert heraus.
+Welches, und woran liegt das?
+Was müssten Sie ändern, damit auch dort ersetzt wird?
+
+<!-- time estimate: 20 min -->
 
 ### String-Teilung und -Verbindung: `char.split`, `char.join`, `strings.find`
 
-`split`/`join` gibt es nur in `numpy.char`, aus unterschiedlichen Gründen: `split` liefert für
-jedes Element eine unterschiedlich lange Python-Liste von Teilstrings zurück — das lässt sich
-nicht als einheitliches Array-Element abbilden und passt daher nicht zu den übrigen Funktionen
-aus `numpy.strings`, die immer genau ein Ergebnis pro Element liefern. `join` liefert dagegen
-durchaus ein gewöhnliches String-Array zurück, wurde bei der Einführung von `numpy.strings` aber
-schlicht nicht mit übernommen. Deshalb verwenden wir hier weiterhin `numpy.char` für
-`split`/`join`; `find` gibt es dagegen in beiden Modulen, dafür nutzen wir wie zuvor
-`numpy.strings`.
+`split`/`join` gibt es nur in `numpy.char`, aus unterschiedlichen Gründen: `split` liefert für jedes
+Element eine unterschiedlich lange Python-Liste von Teilstrings zurück; das lässt sich nicht als
+einheitliches Array-Element abbilden und passt daher nicht zu den übrigen Funktionen aus
+`numpy.strings`, die immer genau ein Ergebnis pro Element liefern.
+`join` liefert dagegen durchaus ein gewöhnliches String-Array zurück, wurde bei der Einführung von
+`numpy.strings` aber schlicht nicht mit übernommen.
+Deshalb verwenden wir hier weiterhin `numpy.char` für `split`/`join`; `find` gibt es dagegen in
+beiden Modulen, dafür nutzen wir wie zuvor `numpy.strings`.
 
 ```python
 numpy.char.split(a, sep=None)     # teilt jeden String an sep in eine Liste von Teilstrings
 numpy.char.join(sep, a)           # fügt sep zwischen die einzelnen Zeichen jedes Strings in a ein
-numpy.strings.find(a, sub)        # gibt die erste Fundposition von sub zurück, oder -1 falls nicht enthalten
+numpy.strings.find(a, sub)        # erste Fundposition von sub, oder -1 falls nicht enthalten
 ```
 
 - `a`: Array von Strings, das verarbeitet wird
 - `sep` (Default `None`): Trennzeichen; bei `split` ohne Angabe wird an beliebigem Leerraum
-  getrennt; bei `join` wird `sep` zwischen die Zeichen innerhalb jedes einzelnen Strings
-  von `a` eingefügt (nicht zwischen mehrere Array-Elemente)
-- `sub`: gesuchtes Teilstück (bei `find`); der Rückgabewert ist die erste Fundposition
-  oder `-1`, falls `sub` nicht enthalten ist
+  getrennt; bei `join` wird `sep` zwischen die Zeichen innerhalb jedes einzelnen Strings von `a`
+  eingefügt (nicht zwischen mehrere Array-Elemente)
+- `sub`: gesuchtes Teilstück (bei `find`)
 
 ```python
 import numpy as np
@@ -402,14 +414,14 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
 
 [ER] Implementieren Sie erweiterte String-Operationen:
 
-- Erstellen Sie ein Array mit Produktcodes `codes` mit den Werten `['AB-12-XY', 'CD-34-ZT']`
+- Erstellen Sie ein Array `codes` mit den Produktcodes `['AB-12-XY', 'CD-34-ZT']`
 - Verwenden Sie `np.char.split(codes, '-')` zum Aufteilen an den Bindestrichen
-- Erstellen Sie ein Array mit Kürzeln mit den Werten `['DE', 'FR']` und verwenden Sie
-  `np.char.join()`,
-  um zwischen die Buchstaben jedes Kürzels einen Punkt einzufügen (z. B. wird aus `'DE'` `'D.E'`)
-- Verwenden Sie `np.strings.replace()`, um in `codes` alle Bindestriche durch Unterstriche zu ersetzen
-- Testen Sie `np.strings.find()`, um die Position des ersten Bindestrichs in jedem Element von `codes`
-  zu finden
+- Erstellen Sie ein Array `abbr` mit den Kürzeln `['DE', 'FR']` und fügen Sie mit `np.char.join()`
+  zwischen die Buchstaben jedes Kürzels einen Punkt ein (aus `'DE'` wird `'D.E'`)
+- Verwenden Sie `np.strings.replace()`, um in `codes` alle Bindestriche durch Unterstriche zu
+  ersetzen
+- Testen Sie `np.strings.find()`, um die Position des ersten Bindestrichs in jedem Element von
+  `codes` zu finden
 
 <!-- time estimate: 10 min -->
 
@@ -430,13 +442,13 @@ mask = np.strings.startswith(files, 'report')
 print(mask)  # [False  True  True]
 ```
 
-Um den Zeitunterschied zwischen zwei Operationen zu messen, bietet Pythons Standardbibliothek
-das `time`-Modul: `time.perf_counter()` gibt einen Zeitpunkt in Sekunden mit der höchsten
-verfügbaren Auflösung zurück und ist damit für kurze Laufzeiten gedacht (anders als
-`time.time()`, das die verstellbare Systemuhr abliest). Ruft man es vor und nach einer Operation
-auf, ergibt die Differenz die benötigte Laufzeit; mit der in [PARTREF::py-Fstrings] eingeführten
-f-String-Formatierung mit Präzisionsangabe (`:.4f`) lässt sich die Ausgabe auf sinnvolle
-Nachkommastellen begrenzen:
+Um den Zeitunterschied zwischen zwei Operationen zu messen, bietet Pythons Standardbibliothek das
+`time`-Modul: `time.perf_counter()` gibt einen Zeitpunkt in Sekunden mit der höchsten verfügbaren
+Auflösung zurück und ist damit für kurze Laufzeiten gedacht (anders als `time.time()`, das die
+verstellbare Systemuhr abliest).
+Ruft man es vor und nach einer Operation auf, ergibt die Differenz die benötigte Laufzeit; mit der
+in [PARTREF::py-Fstrings] eingeführten f-String-Formatierung mit Präzisionsangabe (`:.4f`) lässt
+sich die Ausgabe auf sinnvolle Nachkommastellen begrenzen:
 
 ```python
 import time
@@ -449,13 +461,14 @@ print(f'Dauer: {dauer:.4f} Sekunden')
 ```
 
 [ER] Messen Sie den Geschwindigkeitsunterschied zwischen `np.strings.startswith` und einer
-Python-Schleife an einem größeren Array. Die Schleife messen Sie dabei zweimal, einmal über das
-Array selbst und einmal über eine daraus erzeugte Python-Liste:
+Python-Schleife an einem größeren Array.
+Die Schleife messen Sie dabei zweimal, einmal über das Array selbst und einmal über eine daraus
+erzeugte Python-Liste:
 
 - Erstellen Sie ein Array `words` mit 100000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
   `'produkt99999'` (z. B. mit einer List Comprehension und `np.array`)
-- Messen Sie mit dem `time`-Modul die Laufzeit von `np.strings.startswith(words, 'produkt123')`
-  über 5 Wiederholungen und notieren Sie die kürzeste gemessene Zeit
+- Messen Sie mit dem `time`-Modul die Laufzeit von `np.strings.startswith(words, 'produkt123')` über
+  5 Wiederholungen und notieren Sie die kürzeste gemessene Zeit
 - Messen Sie auf dieselbe Weise die Schleife `[w.startswith('produkt123') for w in words]`
 - Messen Sie auf dieselbe Weise dieselbe Schleife über `words_list = list(words)`, wobei die
   Umwandlung selbst außerhalb der Messung stattfindet
@@ -463,22 +476,27 @@ Array selbst und einmal über eine daraus erzeugte Python-Liste:
   `np.strings.startswith` (1 Nachkommastelle, `:.1f`) aus
 
 [HINT::Wie überprüfe ich mein Ergebnis?]
-`np.strings.startswith` ist deutlich schneller als beide Schleifen — und die Schleife über das
-Array ist noch einmal erheblich langsamer als die über die Liste. Konkrete Zahlen hängen stark
-von Ihrer Maschine ab; entscheidend ist dieses Verhältnis, nicht ein bestimmter Wert.
+`np.strings.startswith` ist deutlich schneller als beide Schleifen, und die Schleife über das Array
+ist noch einmal erheblich langsamer als die über die Liste.
+Konkrete Zahlen hängen stark von Ihrer Maschine ab; entscheidend ist dieses Verhältnis, nicht ein
+bestimmter Wert.
 [ENDHINT]
 
 [EQ] Beide Schleifen berechnen dasselbe Ergebnis, liefern aber deutlich verschiedene Faktoren.
-Welche der beiden Messungen beantwortet die Frage "Wie viel bringt hier die Vektorisierung?"
-fairer, und was folgt daraus für eine Aussage der Form "NumPy ist N-mal schneller als Python"?
+Welche der beiden Messungen beantwortet die Frage "Wie viel bringt hier die Vektorisierung?" fairer,
+und was folgt daraus für eine Aussage der Form "NumPy ist N-mal schneller als Python"?
 
 <!-- time estimate: 20 min -->
 
 ### Weiterführend
 
 - [NumPy Bitwise Operations](https://numpy.org/doc/stable/reference/routines.bitwise.html)
-- [NumPy String Functions (`numpy.strings`)](https://numpy.org/doc/stable/reference/routines.strings.html) – aktuelles Modul, in dieser Aufgabe überwiegend verwendet
-- [NumPy String Operations (`numpy.char`)](https://numpy.org/doc/stable/reference/routines.char.html) – Legacy-Modul, hier nur noch für `split`/`join` verwendet
+- [NumPy String Functions
+  (`numpy.strings`)](https://numpy.org/doc/stable/reference/routines.strings.html) – aktuelles
+  Modul, in dieser Aufgabe überwiegend verwendet
+- [NumPy String Operations
+  (`numpy.char`)](https://numpy.org/doc/stable/reference/routines.char.html) – Legacy-Modul, hier
+  nur noch für `split`/`join` verwendet
 
 [ENDSECTION]
 
@@ -491,20 +509,20 @@ fairer, und was folgt daraus für eine Aussage der Form "NumPy ist N-mal schnell
 
 ### Knackpunkte
 
-- [EREFR::1]: `bitwise_and`/`bitwise_or`/`bitwise_xor` liefern die korrekten Ergebnisse und die
-  über `np.binary_repr()` ausgegebenen Bitmuster stimmen mit den Kommentaren überein
-- [EREFQ::2]: die Erklärung, warum `int8` und `uint8` bei `invert()` unterschiedliche Vorzeichen
+- [EREFR::1]: `bitwise_and`/`bitwise_or`/`bitwise_xor` liefern die korrekten Ergebnisse und die über
+  `np.binary_repr()` ausgegebenen Bitmuster stimmen mit den Kommentaren überein
+- [EREFQ::3]: die Erklärung, warum `int8` und `uint8` bei `invert()` unterschiedliche Vorzeichen
   liefern, verweist korrekt auf die Interpretation des Bitmusters (Vorzeichenbit vs. kein
   Vorzeichenbit) statt auf einen Unterschied in der eigentlichen Bit-Operation
-- [EREFR::6]: `np.char.join` ist richtig verstanden — das Trennzeichen steht zwischen den
-  Zeichen jedes einzelnen Strings (`'DE'` → `'D.E'`), nicht zwischen den Array-Elementen;
-  wer es als Verbinder der Elemente auffasst, erzeugt hier ein falsches Ergebnis.
+- [EREFR::6]: `np.char.join` ist richtig verstanden: das Trennzeichen steht zwischen den Zeichen
+  jedes einzelnen Strings (`'DE'` → `'D.E'`), nicht zwischen den Array-Elementen; wer es als
+  Verbinder der Elemente auffasst, erzeugt hier ein falsches Ergebnis.
   `split`/`replace`/`find` liefern für alle Elemente die korrekten Ergebnisse
-- [EREFR::7] + [EREFQ::3]: alle drei Zeiten sind gemessen, und die Schleife über das Array ist
-  klar langsamer als die über die Liste (konkrete Zahlen sind maschinenabhängig und daher kein
-  Prüfkriterium). Student erkennt, dass die Messung über die Liste der fairere Vergleich für die
-  Vektorisierung ist und dass ein einzelner Faktor ohne Angabe des Vergleichspartners wenig
-  aussagt
+- [EREFR::7] + [EREFQ::5]: alle drei Zeiten sind gemessen, und die Schleife über das Array ist klar
+  langsamer als die über die Liste (konkrete Zahlen sind maschinenabhängig und daher kein
+  Prüfkriterium).
+  Student erkennt, dass die Messung über die Liste der fairere Vergleich für die Vektorisierung ist
+  und dass ein einzelner Faktor ohne Angabe des Vergleichspartners wenig aussagt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-bitwise-string.md]
