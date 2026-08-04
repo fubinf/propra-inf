@@ -170,7 +170,7 @@ was NumPy mit den 1D-Arrays tut, bevor es sie verbindet.
 
 ### Arrays aufteilen: `split`-Funktionen
 
-**`numpy.split`** teilt ein Array entlang einer angegebenen Achse:
+`numpy.split` teilt ein Array entlang einer angegebenen Achse:
 
 ```python
 numpy.split(ary, indices_or_sections, axis=0)
@@ -201,17 +201,17 @@ print("Geteilt an [4, 7]:", parts_custom)
 # 5. und vor dem 8. Element.
 
 # 2D Array aufteilen
-arr_2d = np.arange(16).reshape(4, 4)
-# [[ 0  1  2  3]
-#  [ 4  5  6  7]
-#  [ 8  9 10 11]
-#  [12 13 14 15]]
+arr_2d = np.arange(10, 170, 10).reshape(4, 4)
+# [[ 10  20  30  40]
+#  [ 50  60  70  80]
+#  [ 90 100 110 120]
+#  [130 140 150 160]]
 parts_2d = np.split(arr_2d, 2, axis=0)  # Entlang Achse 0
 print("2D Teilung:", [part.shape for part in parts_2d])  # Liste der Formen aller Teilarrays
 # [(2, 4), (2, 4)]
 ```
 
-**`numpy.hsplit`** und **`numpy.vsplit`** sind spezialisierte Versionen:
+`numpy.hsplit` und `numpy.vsplit` sind spezialisierte Versionen:
 
 ```python
 numpy.hsplit(ary, indices_or_sections)
@@ -415,25 +415,34 @@ numpy.delete(arr, obj, axis=None)
 ```python
 import numpy as np
 
-arr = np.arange(12).reshape(3, 4)
+arr = np.arange(10, 130, 10).reshape(3, 4)
+# [[ 10  20  30  40]
+#  [ 50  60  70  80]
+#  [ 90 100 110 120]]
 
 # Zeile 1 entfernen
 deleted_row = np.delete(arr, 1, axis=0)
-print("Zeile entfernt:", deleted_row.shape)  # (2, 4)
+print("Zeile entfernt:", deleted_row)
+# [[ 10  20  30  40]
+#  [ 90 100 110 120]]
 
 # Spalten 0 und 2 entfernen
 deleted_cols = np.delete(arr, [0, 2], axis=1)
-print("Spalten entfernt:", deleted_cols.shape)  # (3, 2)
+print("Spalten entfernt:", deleted_cols)
+# [[ 20  40]
+#  [ 60  80]
+#  [100 120]]
 
 # Ohne axis - Array wird abgeflacht
 deleted_flat = np.delete(arr, [5, 7, 9])
-print("Flach entfernt:", deleted_flat.shape)  # (9,)
+print("Flach entfernt:", deleted_flat)  # [ 10  20  30  40  50  70  90 110 120]
+# Die 5, 7 und 9 sind Positionen, keine Werte: entfernt werden 60, 80 und 100.
 ```
 
 [ER] Üben Sie `delete`-Operationen:
 
-- Erstellen Sie mit `arange` und `reshape` ein 4×5-Array `arr_4x5` mit den ganzen Zahlen
-  von 0 bis 19
+- Erstellen Sie mit `arange` und `reshape` ein 4×5-Array `arr_4x5` mit den Werten
+  `10, 20, 30, ...` bis `200`
 - Entfernen Sie die erste und letzte Zeile
 - Entfernen Sie die Spalten mit den Indizes 1 und 2
 - Entfernen Sie ohne `axis`-Parameter jedes dritte Element, beginnend beim ersten
