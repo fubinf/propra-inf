@@ -273,8 +273,8 @@ und tragen Sie für jede Kombination den passenden Wert ein.
 
 [ER] Experimentieren Sie mit den erweiterten `nditer`-Optionen:
 
-- Erstellen Sie mit `np.arange` und `reshape` ein 4x3-Array mit den Werten
-  `10, 20, ..., 120`; so lassen sich Index und Wert in der Ausgabe nicht verwechseln
+- Erstellen Sie ein 4x3-Array mit den zeilenweise aufsteigenden Werten `10, 20, 30, ..., 120`;
+  diese markanten Werte lassen sich in der Ausgabe nicht mit den Indizes verwechseln
 - Implementieren Sie Iteration mit Index-Verfolgung
 - Verwenden Sie Schreibzugriff, um alle Werte zu verdoppeln
 - Testen Sie externe Schleifen mit `order='F'`
