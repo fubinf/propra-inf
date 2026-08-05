@@ -8,8 +8,10 @@ assumes: curl
 
 [SECTION::goal::idea,experience]
 
-- Ich kenne Djangos Bordmittel für Nutzer-Rückmeldungen und für Schutzmechanismen und habe
-  ihre Wirkung selbst beobachtet.
+- Ich kenne Djangos Bordmittel für Nutzer-Rückmeldungen und für den Schutz vor typischen
+  Angriffen und habe ihre Wirkung selbst beobachtet.
+- Ich weiß, was eine Middleware ist und warum ein Schutz, der für jeden Request gelten soll,
+  dort und nicht in einzelnen Views eingebaut wird.
 - Ich weiß grob, welche weiteren fortgeschrittenen Bausteine Django bietet.
 
 [ENDSECTION]
@@ -18,11 +20,12 @@ assumes: curl
 
 Eine Registrierung, die kommentarlos auf einer anderen Seite landet, ein Formular, das jeden
 Absender akzeptiert, oder eine Seite, die sich in eine fremde Website einbetten lässt: In
-einer echten Anwendung wäre das erste ein Ärgernis, die beiden anderen eine Sicherheitslücke.
+einer echten Anwendung wäre das erste ein Ärgernis, die beiden anderen jeweils eine
+Sicherheitslücke.
 Der erste Fall trifft auf Ihr Projekt bisher zu, denn Sie haben das passende Bordmittel
 noch nicht eingesetzt.
 Die beiden anderen verhindert Django von Anfang an: Den CSRF-Schutz haben Sie in
-[PARTREF::django-form] bewusst eingesetzt, den Schutz vor Einbettung nie bemerkt.
+[PARTREF::django-form] bereits kennengelernt, den Schutz vor Einbettung nie bemerkt.
 Solche Bordmittel gehören zu keiner der bisher behandelten Kernkomponenten (Model, View,
 Template, Formular), sondern greifen quer dazu bei jedem Request.
 In dieser Aufgabe holen Sie die fehlende Rückmeldung nach und schalten die beiden
@@ -75,9 +78,9 @@ Context aufnehmen muss; dafür sorgt der Eintrag
 `django.contrib.messages.context_processors.messages` unter `context_processors` in
 `settings.py`.
 Zur Anzeige dient wieder ein Filter mit Argument, wie Sie ihn aus [PARTREF::django-template]
-von `default`/`yesno` kennen, diesmal allerdings ein anderer: `|join:TRENNZEICHEN` reiht die
-Elemente eines iterierbaren Werts, getrennt durch die angegebene Zeichenfolge, zu einem
-einzigen Text aneinander.
+von `default`/`yesno` kennen, diesmal allerdings ein anderer.
+`|join:TRENNZEICHEN` reiht die Elemente eines iterierbaren Objekts, getrennt durch die
+angegebene Zeichenfolge, zu einem einzigen Text aneinander.
 Konkretes Beispiel:
 
 ```html
@@ -90,7 +93,7 @@ Nachschlagen lässt sich dieser Filter wie alle anderen in der Django-Doku zu
 [Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#join).
 
 [ER] Fügen Sie in `base.html` unmittelbar vor der Zeile `{% block content %}` eine Zeile ein,
-die `messages` mit dem Filter `join` und dem Trennzeichen ", " ausgibt.
+die `messages` mit dem Filter `join` und dem Trennzeichen `", "` ausgibt.
 
 Hier genügt `join`; produktiver Code verwendet an dieser Stelle eine `{% for %}`-Schleife über
 `messages`, um jede Meldung einzeln und mit ihrer Stufe darzustellen (siehe
@@ -98,8 +101,7 @@ Hier genügt `join`; produktiver Code verwendet an dieser Stelle eine `{% for %}
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
 "Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com".
-Sie landen auf der Detailseite; sie ist die einfache `HttpResponse`-Ausgabe aus
-[PARTREF::django-view] und verwendet kein Template.
+Sie landen auf der Detailseite.
 Rufen Sie die Studierendenliste danach im Browser unter `http://127.0.0.1:8071/students/` auf.
 Laden Sie dieselbe Seite anschließend noch ein zweites Mal.
 
@@ -114,6 +116,11 @@ Prüfen Sie zuerst `base.html`: Steht Ihre neue Zeile wirklich außerhalb von
 Innerhalb des Blocks überschreibt jedes Kind-Template sie, und sie wird nie ausgegeben.
 Prüfen Sie danach, ob `messages.success` in `register` vor dem `redirect` steht.
 [ENDHINT]
+
+[HINT::Ich verstehe nicht, warum ausgerechnet die Detailseite nichts anzeigt]
+Sehen Sie sich an, was `student_detail` aus [PARTREF::django-view] zurückgibt und was daran
+anders ist als bei den übrigen Views.
+[ENDHINT]
 <!-- time estimate: 15 min -->
 
 ### `CsrfViewMiddleware` kurzzeitig deaktivieren
@@ -122,10 +129,13 @@ Beim zweiten Bordmittel geht es um den CSRF-Schutz selbst.
 Seine Wirkung kennen Sie aus [PARTREF::django-form]: Ein POST ohne gültiges Token wurde dort
 mit Statuscode 403 abgewiesen.
 Zuständig dafür ist keine der Kernkomponenten, sondern eine **Middleware**: eine Komponente,
-die jeden Request auf dem Weg zur View und jede Response auf dem Rückweg durchläuft und dabei
-eingreifen kann.
+die jeder Request auf dem Weg zur View und jede Response auf dem Rückweg durchläuft und die
+dabei eingreifen kann.
 Welche Middlewares ein Projekt verwendet, steht als Liste `MIDDLEWARE` in `settings.py`; für
 den CSRF-Schutz ist der Eintrag `CsrfViewMiddleware` verantwortlich.
+Auch das Messages-Framework aus dem vorigen Abschnitt hängt an einem Eintrag dieser Liste: Die
+`MessageMiddleware` schreibt die gelesenen Meldungen beim Erzeugen der Response aus der
+Session zurück, weshalb die Meldung dort genau beim zweiten Aufruf verschwand.
 In welcher Reihenfolge die Liste abgearbeitet wird und was eine Middleware sonst noch leisten
 kann, erklärt die
 [Django-Doku zu Middleware](https://docs.djangoproject.com/en/stable/topics/http/middleware/).
@@ -147,7 +157,7 @@ schickt und nur den Statuscode ausgibt:
 curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/
 ```
 
-Kommentieren Sie die Zeile danach wieder ein und senden Sie denselben Aufruf ein zweites Mal.
+[EC] Kommentieren Sie die Zeile wieder ein und senden Sie denselben Aufruf ein zweites Mal.
 
 [EQ] Verändert haben Sie keine einzige View, sondern nur eine Zeile in `settings.py`, und
 trotzdem ändert sich das Verhalten von `/search-post/`.
@@ -175,12 +185,13 @@ Der Entwicklungsserver bemerkt die Änderung wieder von selbst; warten Sie kurz.
 curl -sI "http://127.0.0.1:8071/"
 ```
 
-Kommentieren Sie die Zeile danach wieder ein und senden Sie denselben Aufruf ein zweites Mal.
+[EC] Kommentieren Sie die Zeile wieder ein und senden Sie denselben Aufruf ein zweites Mal.
 
 [EQ] Vergleichen Sie die beiden Ausgaben: Welche Sicherheits-Header stehen unverändert in
 beiden, obwohl die `XFrameOptionsMiddleware` im ersten Aufruf fehlte, und welcher andere
-Eintrag der `MIDDLEWARE`-Liste kommt als deren Urheber in Frage?
+Eintrag der `MIDDLEWARE`-Liste kommt als Urheber dieser Header in Frage?
 Was könnte eine fremde Website mit Ihrer Seite anstellen, solange `X-Frame-Options` fehlt?
+Für die erste Frage hilft die oben verlinkte Übersicht der eingebauten Middlewares.
 <!-- time estimate: 10 min -->
 
 ### Weitere Bausteine im Überblick
@@ -209,8 +220,9 @@ Bedarf gezielt danach suchen können:
 
 - [Django API-Referenz](https://docs.djangoproject.com/en/stable/ref/): Übersicht über
   alle eingebauten Django-Komponenten
-- [Django Girls Tutorial](https://tutorial.djangogirls.org/): Ein weiteres vollständiges
-  Projekt zum Üben, falls Sie über diese Aufgabe hinaus mit Django experimentieren möchten
+- [MDN-Tutorial "Django Web Framework"](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django):
+  Ein vollständiges Projekt, in dem die drei oben nur erwähnten Bausteine tatsächlich zum
+  Einsatz kommen
 
 [ENDSECTION]
 
@@ -225,20 +237,20 @@ Bedarf gezielt danach suchen können:
 **Knackpunkte:**
 
 - [EREFR::1] + [EREFR::2] + [EREFQ::1]: `messages.success(...)` steht in `register`
-  unmittelbar vor dem `redirect(...)`, `base.html` gibt `messages` mit `|join:", "` aus;
+  unmittelbar vor dem `redirect(...)`, `base.html` gibt `messages` mit `|join:", "` aus.
   Student erkennt, dass die Meldung erst auf der nächsten Seite erscheint, die diese Zeile
-  tatsächlich rendert (hier: `students_list.html` über `base.html`), nicht zwangsläufig auf
-  der unmittelbar nächsten Seite überhaupt, und dass sie beim zweiten Aufruf derselben Seite
-  verschwunden ist.
-- [EREFC::1] + [EREFQ::2]: Das Protokoll enthält denselben `curl`-Aufruf zweimal, mit `200`
-  bei ausgebauter und `403` bei wieder eingebauter `CsrfViewMiddleware`; Student erkennt, dass
-  eine Middleware vor allen Views liegt und der Schutz deshalb an einer einzigen Stelle für
-  sämtliche POST-Views wirkt (also auch für `register`, nicht aber für die reinen GET-Views),
-  statt in jeder View einzeln programmiert werden zu müssen.
-- [EREFC::2] + [EREFQ::3]: Das Protokoll enthält denselben `curl -sI`-Aufruf zweimal, einmal
-  ohne und einmal mit `X-Frame-Options: DENY`, während die übrigen Sicherheits-Header in
-  beiden Ausgaben stehen; Student erkennt, dass ohne diesen Header die Seite in ein fremdes
-  `<iframe>` eingebettet werden könnte.
+  tatsächlich rendert (hier: `students_list.html` über `base.html`), und nicht schon auf der
+  unmittelbar nächsten Seite überhaupt.
+  Student erkennt außerdem, dass sie beim zweiten Aufruf derselben Seite verschwunden ist.
+- [EREFC::1] + [EREFC::2] + [EREFQ::2]: Beide Protokolleinträge zeigen denselben `curl`-Aufruf,
+  mit `200` bei ausgebauter und `403` bei wieder eingebauter `CsrfViewMiddleware`; Student
+  erkennt, dass eine Middleware vor allen Views liegt und der Schutz deshalb an einer einzigen
+  Stelle für sämtliche POST-Views wirkt (also auch für `register`, nicht aber für die reinen
+  GET-Views), statt in jeder View einzeln programmiert werden zu müssen.
+- [EREFC::3] + [EREFC::4] + [EREFQ::3]: Beide Protokolleinträge zeigen denselben
+  `curl -sI`-Aufruf, einmal ohne und einmal mit `X-Frame-Options: DENY`, während die übrigen
+  Sicherheits-Header in beiden Ausgaben stehen; Student erkennt, dass ohne diesen Header die
+  Seite in ein fremdes `<iframe>` eingebettet werden könnte.
 - Beide Auskommentierungen waren nur Zwischenschritte: In der abgegebenen `settings.py` stehen
   `CsrfViewMiddleware` und `XFrameOptionsMiddleware` wieder aktiv in `MIDDLEWARE`.
   Das Kommandoprotokoll allein deckt das nicht ab, weil der jeweils zweite `curl`-Aufruf vor
