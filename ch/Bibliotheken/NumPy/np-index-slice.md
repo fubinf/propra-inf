@@ -27,9 +27,8 @@ stehen dann in einer einzigen Zeile.
 
 ### Eindimensionale Array-Indexierung und Slicing
 
-NumPy bietet vielfältige Möglichkeiten für den Zugriff auf Array-Elemente.
-Die Indexierung funktioniert ähnlich wie bei Python-Listen, bietet aber
-erweiterte Funktionalitäten für mehrdimensionale Arrays.
+Die Indexierung funktioniert ähnlich wie bei Python-Listen, bietet aber erweiterte
+Funktionalitäten für mehrdimensionale Arrays.
 
 **Grundlegende Syntax:**
 ```python
@@ -42,6 +41,7 @@ arr[start:stop:step]    # Elemente von start bis stop-1 mit Schrittweite step
 # Spezielle Slicing-Formen
 arr[start:]             # Ab Position start bis Ende
 arr[:stop]              # Vom Anfang bis Position stop-1
+arr[::step]             # Jedes step-te Element des gesamten Arrays
 arr[:]                  # Alle Elemente
 ```
 
@@ -165,7 +165,7 @@ Integer-Array-Indexierung, um:
 
 - Die Elemente an den Positionen (0,3), (1,0), (2,2) zu extrahieren
 - Die vier Eckpunkte des Arrays zu selektieren
-- Eine diagonale Linie von oben-links nach unten-rechts zu wählen
+- Die Hauptdiagonale von oben-links nach unten-rechts zu wählen
 
 [EQ] Nehmen Sie die drei Positionen (0,3), (1,0), (2,2) aus [EREFR::3]: Begründen Sie, warum sich
 diese Auswahl nicht mit einem einzigen Slicing-Ausdruck erreichen lässt.
@@ -187,16 +187,18 @@ Achsen mit Slicing kombinieren (`arr[maske, :]`).
 ```python
 arr[arr > value]        # Elemente größer als value
 arr[arr == value]       # Elemente gleich value
-arr[(arr > a) & (arr < b)]  # Elemente zwischen a und b (& kombiniert Bedingungen, nicht 'and')
+arr[(arr > unten) & (arr < oben)]  # Elemente dazwischen (& kombiniert Bedingungen, nicht 'and')
 arr[~(arr > value)]     # Negation der Bedingung (NOT)
 ```
 
 Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
-`arr[arr > a & arr < b]` würde deshalb als `arr[arr > (a & arr) < b]` gelesen.
+`arr[arr > unten & arr < oben]` würde deshalb als `arr[arr > (unten & arr) < oben]` gelesen.
 Das scheitert mit einem `ValueError`, weil diese Kette aus zwei Vergleichen einen einzelnen
 Wahrheitswert verlangt, ein Array aber viele Einträge hat.
 
-Für den häufigen Fall fehlender Werte gibt es eine eigene Prüffunktion:
+Fehlende oder undefinierte Werte stellt NumPy als `np.nan` dar ("Not a Number", ein spezieller
+Fließkommawert).
+Zum Prüfen darauf gibt es eine eigene Funktion:
 
 ```python
 np.isnan(arr)          # Maske mit True an jeder Position, die NaN enthält
@@ -228,7 +230,7 @@ print(m[zeilenmaske, :])     # Ergebnis: [[30,40], [50,60]]
 [ER] Erstellen Sie ein 4x3-Array `zahlen` mit ganzen Zahlen von 20-31 und demonstrieren Sie daran:
 
 - Auswahl aller Elemente größer als 25
-- Auswahl aller geraden Zahlen (verwenden Sie die Modulo-Operation)
+- Auswahl aller geraden Zahlen (verwenden Sie den Modulo-Operator `%`)
 - Auswahl der Elemente, die größer als 22 und kleiner als 28 sind (beide Bedingungen mit `&`
   verknüpft)
 
@@ -253,8 +255,8 @@ elementweise geschehen muss und `not` das nicht leisten kann.
 
 ### Ganze Zeilen und Spalten mit Index-Arrays auswählen
 
-Derselbe Mechanismus greift auch, wenn man nur ein einziges Index-Array angibt und die übrigen
-Achsen mit `:` offenlässt.
+Die Integer-Array-Indexierung greift auch dann, wenn man nur ein einziges Index-Array angibt und
+die übrigen Achsen mit `:` offenlässt.
 Dann werden ganze Zeilen bzw. Spalten ausgewählt, in beliebiger Reihenfolge und mit
 Wiederholungen.
 
@@ -305,9 +307,7 @@ ermöglicht damit die Auswahl rechteckiger Teilbereiche aus Arrays.
 numpy.ix_(*args)
 ```
 
-- `*args`: mehrere 1D-Index-Arrays (z.B. Zeilen- und Spaltenindizes); die Funktion
-  formt sie so um, dass sich beim Indexieren ihr kartesisches Produkt statt einer paarweisen
-  Kombination ergibt
+- `*args`: mehrere 1D-Index-Arrays, typischerweise Zeilen- und Spaltenindizes
 
 Alle Einzelheiten stehen in der
 [Referenz zu `numpy.ix_`](https://numpy.org/doc/stable/reference/generated/numpy.ix_.html).
@@ -315,10 +315,10 @@ Alle Einzelheiten stehen in der
 **Unterschied zur normalen Integer-Array-Indexierung:**
 ```python
 # Normale Indexierung: paarweise Kombination
-arr[[1,2], [0,1]]      # Elemente (1,0) und (2,1)
+arr[[1, 2], [0, 1]]          # Elemente (1,0) und (2,1)
 
 # Mit np.ix_: kartesisches Produkt
-arr[np.ix_([1,2], [0,1])]  # 2x2 Teilmatrix aus Zeilen 1,2 und Spalten 0,1
+arr[np.ix_([1, 2], [0, 1])]  # 2x2 Teilmatrix aus Zeilen 1,2 und Spalten 0,1
 ```
 
 **Beispiel:**
@@ -352,7 +352,7 @@ Kommas getrennten Achsen jeweils unterschiedlich indexiert.
 
 **Kombinationsmöglichkeiten:**
 ```python
-arr[1:3, [1,2]]        # Slicing + Integer-Array
+arr[1:3, [1, 2]]       # Slicing + Integer-Array
 arr[maske, :]          # Boolean (ein Eintrag pro Zeile) + Slicing
 arr[..., 1:]           # Ellipsis + Slicing
 ```
@@ -363,7 +363,6 @@ zwei Indexierungsformen in einem einzigen Zugriff:
 - Slicing für die Zeilen mit einem Index-Array für die Spalten
 - Eine Boolean-Maske für die Zeilen (alle Zeilen, deren erster Wert größer als 11 ist) mit
   Spalten-Slicing
-- Ellipsis `...` mit Spalten-Slicing
 
 <!-- time estimate: 10 min -->
 
