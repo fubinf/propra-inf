@@ -19,8 +19,8 @@ assumes: curl
 Eine Registrierung, die kommentarlos auf einer anderen Seite landet, ein Formular, das jeden
 Absender akzeptiert, oder eine Seite, die sich in eine fremde Website einbetten lässt: In
 einer echten Anwendung wären das ernste Mängel.
-Der erste Fall trifft auf Ihr Projekt bisher zu, denn dafür fehlt schlicht die passende
-Funktion.
+Der erste Fall trifft auf Ihr Projekt bisher zu, denn dafür fehlt schlicht das passende
+Bordmittel.
 Die beiden anderen verhindert Django von Anfang an: Den CSRF-Schutz haben Sie in
 [PARTREF::django-form] bewusst eingesetzt, den Schutz vor Einbettung nie bemerkt.
 Solche Bordmittel gehören zu keiner der bisher behandelten Kernkomponenten (Model, View,
@@ -90,7 +90,7 @@ Nachschlagen lässt sich dieser Filter wie alle anderen in der Django-Doku zu
 [Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#join).
 
 [ER] Fügen Sie in `base.html` unmittelbar vor der Zeile `{% block content %}` eine Zeile ein,
-die `messages` mit demselben Filter und dem Trennzeichen ", " ausgibt.
+die `messages` mit dem Filter `join` und dem Trennzeichen ", " ausgibt.
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
 "Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com".
@@ -100,16 +100,27 @@ Rufen Sie diese danach im Browser unter `http://127.0.0.1:8071/students/` auf.
 [EQ] Auf welcher Seite taucht die Meldung "Registrierung erfolgreich" zum ersten Mal auf, und
 warum nicht schon direkt auf der Detailseite?
 Was sagt Ihnen das über den Zeitpunkt, zu dem eine Meldung "verbraucht" wird?
+
+[HINT::Ich sehe die Meldung auf keiner einzigen Seite]
+Prüfen Sie zuerst `base.html`: Steht Ihre neue Zeile wirklich außerhalb von
+`{% block content %}`?
+Innerhalb des Blocks überschreibt jedes Kind-Template sie, und sie wird nie ausgegeben.
+Prüfen Sie danach, ob `messages.success` in `register` vor dem `redirect` steht.
+[ENDHINT]
 <!-- time estimate: 15 min -->
 
 ### `CsrfViewMiddleware` kurzzeitig deaktivieren
 
 Beim zweiten Bordmittel geht es um den CSRF-Schutz selbst.
-Die `CsrfViewMiddleware`, die ihn durchsetzt, haben Sie in [PARTREF::django-form] bereits
-kennengelernt; hier sehen Sie nun, woher sie überhaupt kommt: Middlewares sind in
-`settings.py` in einer Liste eingetragen und wirken auf jeden Request.
-Was eine Middleware überhaupt ist und in welcher Reihenfolge die Liste abgearbeitet wird,
-erklärt die
+Seine Wirkung kennen Sie aus [PARTREF::django-form]: Ein POST ohne gültiges Token wurde dort
+mit Statuscode 403 abgewiesen, ganz gleich, welche View angesprochen war.
+Zuständig dafür ist keine der Kernkomponenten, sondern eine **Middleware**: eine Komponente,
+die jeden Request auf dem Weg zur View und jede Response auf dem Rückweg durchläuft und dabei
+eingreifen kann.
+Welche Middlewares ein Projekt verwendet, steht als Liste `MIDDLEWARE` in `settings.py`; für
+den CSRF-Schutz ist der Eintrag `CsrfViewMiddleware` verantwortlich.
+In welcher Reihenfolge die Liste abgearbeitet wird und was eine Middleware sonst noch leisten
+kann, erklärt die
 [Django-Doku zu Middleware](https://docs.djangoproject.com/en/stable/topics/http/middleware/).
 
 Öffnen Sie `settings.py` im Konfigurationsordner `meinprojekt/meinprojekt/` und kommentieren
@@ -117,9 +128,10 @@ Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
 Das ist nur ein Zwischenzustand für den folgenden Test: Am Ende dieses Abschnitts steht die
 Zeile wieder wie im Original da.
 
-[EC] Der Autoreloader des Entwicklungsservers erfasst auch `settings.py`, die Änderung wirkt
+Der Autoreloader des Entwicklungsservers erfasst auch `settings.py`, die Änderung wirkt
 also ohne Neustart; warten Sie kurz.
-Senden Sie danach den folgenden Aufruf, der einen POST ohne CSRF-Token an `/search-post/`
+
+[EC] Senden Sie den folgenden Aufruf, der einen POST ohne CSRF-Token an `/search-post/`
 schickt und nur den Statuscode ausgibt: einmal jetzt und ein zweites Mal, nachdem Sie die
 Zeile wieder einkommentiert haben:
 
@@ -143,8 +155,9 @@ Dort steht das Angriffsszenario, um das es in der Frage am Ende dieses Abschnitt
 Öffnen Sie `settings.py` erneut und kommentieren Sie in `MIDDLEWARE` die Zeile mit
 `XFrameOptionsMiddleware` aus, wieder nur für die Dauer des Tests.
 
-[EC] Der Entwicklungsserver bemerkt die Änderung von selbst; warten Sie kurz.
-Senden Sie danach den folgenden Aufruf, der nur die Header abruft (`-I`): einmal jetzt und
+Der Entwicklungsserver bemerkt die Änderung wieder von selbst; warten Sie kurz.
+
+[EC] Senden Sie den folgenden Aufruf, der nur die Header abruft (`-I`): einmal jetzt und
 ein zweites Mal, nachdem Sie die Zeile wieder einkommentiert haben:
 
 ```bash
@@ -152,11 +165,12 @@ curl -sI "http://127.0.0.1:8071/"
 ```
 
 [EQ] Vergleichen Sie die beiden Ausgaben: Welche Sicherheits-Header stehen unverändert in
-beiden, obwohl die `XFrameOptionsMiddleware` im ersten Aufruf fehlte?
+beiden, obwohl die `XFrameOptionsMiddleware` im ersten Aufruf fehlte, und welcher andere
+Eintrag der `MIDDLEWARE`-Liste kommt als deren Urheber in Frage?
 Was könnte eine fremde Website mit Ihrer Seite anstellen, solange `X-Frame-Options` fehlt?
 <!-- time estimate: 10 min -->
 
-### Weitere Bordmittel im Überblick
+### Weitere Bausteine im Überblick
 
 Die folgenden drei Bausteine probieren Sie nicht selbst aus.
 Es reicht, zu wissen, dass es sie gibt und wofür sie sich einsetzen lassen, damit Sie bei
