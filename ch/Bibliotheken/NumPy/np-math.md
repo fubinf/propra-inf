@@ -17,8 +17,8 @@ assumes: np-Einführung, np-array, np-array2, np-bitwise-string, py-Fstrings
 
 NumPy bietet eine umfangreiche Sammlung mathematischer Funktionen für wissenschaftliche
 Berechnungen und Datenanalyse.
-Diese Aufgabe behandelt trigonometrische, arithmetische und statistische Funktionen,
-die elementweise auf Arrays angewendet werden.
+Diese Aufgabe behandelt trigonometrische und arithmetische Funktionen, die elementweise auf
+Arrays wirken, sowie statistische Funktionen, die ein Array zu Kennzahlen zusammenfassen.
 
 [ENDSECTION]
 
@@ -26,9 +26,8 @@ die elementweise auf Arrays angewendet werden.
 
 ### Vorwissen
 
-Für diese Aufgabe werden Schul-Trigonometrie (Sinus, Kosinus, Tangens und ihre Umkehrfunktionen)
-sowie Grundlagen der Statistik (Mittelwert, Varianz, Standardabweichung, Perzentile) vorausgesetzt.
-Falls Ihnen diese fehlen, helfen folgende Quellen:
+Falls Ihnen das in der Übersicht der Aufgabengruppe genannte mathematische Vorwissen fehlt,
+helfen folgende Quellen:
 
 - [Trigonometrische Funktion (Wikipedia)](https://de.wikipedia.org/wiki/Trigonometrische_Funktion)
 - [Standardabweichung (Wikipedia)](https://de.wikipedia.org/wiki/Standardabweichung)
@@ -51,7 +50,7 @@ numpy.radians(x)
 - `x` (bei `radians`): Array mit Winkeln in Grad, wird ins Bogenmaß umgerechnet
 
 Diese Funktionen erwarten das Bogenmaß, Winkel werden aber meist in Grad angegeben.
-Für die Umrechnung wird die Konstante `numpy.pi` benötigt (der Wert von π als `float`);
+Für die Umrechnung wird die Konstante `np.pi` benötigt (der Wert von π als `float`);
 die Umrechnungsformel lautet `Bogenmaß = Grad * np.pi / 180`.
 `np.radians()` erledigt genau diese Umrechnung, `np.degrees()` die Gegenrichtung.
 Im folgenden Beispiel ist die Formel ausgeschrieben, damit der Zusammenhang sichtbar bleibt.
@@ -81,7 +80,7 @@ statt als `0`, der Tangens von 90 Grad als `1.63312394e+16` statt als "undefinie
 Beides sind Rundungsartefakte: `np.pi` ist nur die bestmögliche Fließkomma-Näherung von π,
 also ist auch `angles_rad[4]` minimal von π/2 verschieden, und der Tangens reagiert an dieser
 Polstelle extrem empfindlich auf diese Abweichung.
-`6.12e-17` ist damit die Fließkomma-Schreibweise für "praktisch null".
+`6.12323400e-17` ist damit die Fließkomma-Schreibweise für "praktisch null".
 
 [ER] Implementieren Sie Berechnungen mit trigonometrischen Funktionen:
 
@@ -89,6 +88,11 @@ Polstelle extrem empfindlich auf diese Abweichung.
 - Rechnen Sie es mit `np.radians()` ins Bogenmaß um und berechnen Sie `sin`, `cos` und `tan`
 - Überprüfen Sie die trigonometrische Identität sin²(x) + cos²(x) = 1 für alle Winkel
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
+
+[HINT::Wie quadriere ich ein ganzes Array?]
+Der Potenzoperator `**` wirkt auf Arrays elementweise:
+`sin_values**2` quadriert jeden Eintrag einzeln und liefert wieder ein Array derselben Form.
+[ENDHINT]
 
 [EQ] In Ihrem Ergebnis sind `cos` und `tan` für 105 und 135 Grad negativ, `sin` dagegen für alle
 fünf Winkel positiv.
@@ -133,11 +137,12 @@ Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den zurückge
 
 - Erstellen Sie ein Array `cos_values` mit den Kosinuswerten `[0.9848, 0.766, 0.1736, -0.1736]`
 - Berechnen Sie mit `np.arccos()` die entsprechenden Winkel im Bogenmaß und wandeln Sie sie in Grad um
-- Die Werte gehören zu den Winkeln 10, 40, 80 und 100 Grad; geben Sie mit `np.abs()` aus,
-  wie weit Ihr Ergebnis von diesen Sollwerten abweicht
+- Die Werte gehören zu den Winkeln 10, 40, 80 und 100 Grad; geben Sie die Differenz zwischen
+  Ihrem Ergebnis und diesen Sollwerten aus
 - Erstellen Sie zusätzlich ein Array `tan_values` mit den Tangenswerten `[0, 1, 1.7321]` und
   berechnen Sie mit `np.arctan()` die entsprechenden Winkel in Grad
-- Bestimmen Sie, welche der drei Winkel exakt herauskommen und welche nicht
+- Bestimmen Sie, welche der drei Winkel exakt herauskommen und welche nicht, und halten Sie das
+  Ergebnis als Kommentar im Quelltext fest
 
 <!-- time estimate: 15 min -->
 
@@ -148,8 +153,8 @@ NumPy bietet verschiedene Funktionen zum Runden von Zahlen:
 ```python
 numpy.round(a, decimals=0)    # rundet auf die durch decimals angegebene Nachkommastelle
 numpy.around(a, decimals=0)   # Alias für numpy.round, identisches Verhalten
-numpy.floor(a)                # rundet immer ab (zur nächstkleineren ganzen Zahl)
-numpy.ceil(a)                 # rundet immer auf (zur nächstgrößeren ganzen Zahl)
+numpy.floor(a)                # rundet immer ab (zur größten ganzen Zahl <= a)
+numpy.ceil(a)                 # rundet immer auf (zur kleinsten ganzen Zahl >= a)
 ```
 
 - `a`: das zu rundende Array
@@ -229,8 +234,8 @@ print('Division:', np.divide(a, b))
 (siehe [PARTREF::np-array2]), damit die Operation trotz unterschiedlicher Formen
 funktioniert.
 
-Dieselben vier Operationen lassen sich kürzer als `a + b`, `a - b`, `a * b` und `a / b` schreiben.
-Beide Formen sind gleichwertig; im Folgenden kommen deshalb beide vor.
+Dieselben vier Operationen lassen sich kürzer als `a + b`, `a - b`, `a * b` und `a / b` schreiben;
+beide Formen sind gleichwertig.
 
 Für Kehrwerte und Absolutwerte gibt es außerdem `reciprocal` und `abs`:
 
@@ -289,10 +294,17 @@ print('Modulo:', np.mod(values, divisors))
 print('e^x:', np.exp(np.array([0, 1, 2])))
 ```
 
+Ein gebrochener Exponent zieht Wurzeln, `1/3` also die Kubikwurzel.
+Dabei ändert sich auch der Ergebnistyp: `np.power(values, 2)` liefert `int64`,
+`np.power(values, 1/3)` dagegen `float64`, denn der `dtype` des Ergebnisses richtet sich nach
+Basis und Exponent gemeinsam.
+
 [ER] Arbeiten Sie mit speziellen arithmetischen Funktionen:
 
 - Erstellen Sie ein Array `base` mit den Werten `[6, 9, 4, 7]`
 - Berechnen Sie die 3. Potenz aller Werte
+- Berechnen Sie mit einem gebrochenen Exponenten die Quadratwurzel aller Werte in `base` und
+  vergleichen Sie den `dtype` dieses Ergebnisses mit dem der 3. Potenz
 - Erstellen Sie ein Array `exponents` mit den Werten `[2, 4, 1, 3]` und berechnen Sie
   `np.power(base, exponents)`
 - Berechnen Sie den Rest bei Division durch 3 für alle Werte in `base`
@@ -364,8 +376,9 @@ sortierten Daten davon unberührt bleibt.
   `[[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 21, 88]]`
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie dieselben Statistiken für jede Zeile und jede Spalte
-- Verwenden Sie `np.ptp()`, um die Spannweite (Maximum minus Minimum) zu berechnen
-- Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile
+- Verwenden Sie `np.ptp()`, um die Spannweite (Maximum minus Minimum) für das gesamte Array
+  sowie pro Zeile und pro Spalte zu berechnen
+- Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile und pro Spalte
 
 [EQ] `np.sum(data, axis=0)` liefert bei diesem 4×5-Array ein Ergebnis der Form `(5,)`,
 `np.sum(data, axis=1)` dagegen eines der Form `(4,)`.
@@ -418,13 +431,13 @@ print('Quartile:', percentiles)
 Punktzahlen.
 Werten Sie sie aus:
 
-- Erstellen Sie mit `np.array` ein 1D-Array `scores` mit den 20 Werten `42, 55, 61, 47, 58, 65,
-  70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53`
+- Erstellen Sie mit `np.array` ein 1D-Array `scores` mit den 20 Werten
+  `[42, 55, 61, 47, 58, 65, 70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53]`
 - Berechnen Sie Mittelwert, Standardabweichung und Varianz
 - Bestimmen Sie das 10., 50. und 90. Perzentil
 - Berechnen Sie zusätzlich den Median und vergleichen Sie ihn mit dem 50. Perzentil
 
-[HINT::Lange Nachkommastellen bei der Ausgabe]
+[HINT::Warum hat meine Varianz so viele Nachkommastellen?]
 Werte wie die Varianz können mit vielen Nachkommastellen ausgegeben werden (z. B.
 `61.410000000000004` statt `61.41`) — das liegt an der begrenzten Genauigkeit von
 Fließkommazahlen, nicht an einem Fehler.
