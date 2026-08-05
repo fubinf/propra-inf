@@ -49,7 +49,7 @@ arr[:]                  # Alle Elemente
 
 **Beispiel:**
 
-Für dieses und die folgenden Beispiele wird jeweils ein Array mit fortlaufenden Werten als
+Für dieses Beispiel und mehrere der folgenden wird ein Array mit fortlaufenden Werten als
 Ausgangspunkt gebraucht; dafür eignet sich `numpy.arange()`, Details in [PARTREF::np-array2]:
 
 ```python
@@ -111,18 +111,18 @@ Darauf beruht das Zurückschreiben in `np.nditer` aus [PARTREF::np-array2]: Das 
 Element ist ein Array ohne Dimensionen, und `x[...] = 2 * x` schreibt in dieses Array hinein,
 statt nur den Namen `x` neu zu binden.
 
-[ER] Erstellen Sie ein 4x4-Array `arr4x4` mit den Werten 11-26 und demonstrieren Sie:
+[ER] Erstellen Sie ein 4x4-Array `arr4x4` mit den Werten 11 bis 26 und demonstrieren Sie:
 
 - Zugriff auf das Element Zeile 2, Spalte 3
 - Auswahl der ganzen Zeile 3
 - Auswahl der ganzen Spalte 0 auf zwei Wegen: einmal mit `:` und einmal mit Ellipsis `...`
 
 Erzeugen Sie anschließend ein dreidimensionales Array `arr3d` der Form `(2, 3, 4)` mit den
-Werten 100-123 und geben Sie `arr3d[..., 0]` sowie `arr3d[:, :, 0]` aus.
+Werten 100 bis 123 und geben Sie `arr3d[..., 0]` sowie `arr3d[:, :, 0]` aus.
 
 [EQ] Vergleichen Sie Ihre Ausgaben aus [EREFR::2]: Welche davon sind paarweise gleich?
-Erklären Sie daran, wofür Ellipsis `...` steht und wie viele Doppelpunkte `:` sie bei `arr4x4`
-bzw. bei `arr3d` jeweils ersetzt.
+Bestimmen Sie daran, wie viele Doppelpunkte `:` die Ellipsis `...` bei `arr4x4` bzw. bei `arr3d`
+jeweils ersetzt.
 Wovon hängt diese Anzahl ab, und in welcher Situation lohnt sich `...` gegenüber dem expliziten
 Ausschreiben aller `:`?
 
@@ -137,7 +137,8 @@ zusammen "Advanced Indexing" oder gleichbedeutend "fancy indexing", siehe
 [NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing).
 Indexiert wird dabei nicht mit einem einzelnen Wert oder einem Slice, sondern mit einem ganzen
 Array aus Indizes bzw. Wahrheitswerten.
-Gibt man mehrere Index-Arrays an, so werden sie paarweise kombiniert.
+Gibt man mehrere Index-Arrays an, so werden sie paarweise kombiniert; ihre Formen müssen dafür
+zueinander passen.
 
 **Syntax:**
 ```python
@@ -158,7 +159,7 @@ Die Paare ergeben sich also so:
 - `x[1, 1]` → `40`
 - `x[2, 0]` → `50`
 
-[ER] Erstellen Sie ein 3x4-Array `arr3x4` mit den Werten 11-22 und verwenden Sie
+[ER] Erstellen Sie ein 3x4-Array `arr3x4` mit den Werten 11 bis 22 und verwenden Sie
 Integer-Array-Indexierung, um:
 
 - Die Elemente an den Positionen (0,3), (1,0), (2,2) zu extrahieren
@@ -202,7 +203,7 @@ Zum Prüfen darauf gibt es eine eigene Funktion:
 np.isnan(arr)          # Maske mit True an jeder Position, die NaN enthält
 ```
 
-Diese eigene Funktion ist nötig, weil sich NaN dem Vergleich entzieht: `np.nan == np.nan` ergibt
+Diese Funktion ist nötig, weil sich NaN dem Vergleich entzieht: `np.nan == np.nan` ergibt
 `False`, `arr == np.nan` liefert deshalb eine Maske aus lauter `False`.
 
 Weitere Prüffunktionen dieser Art (etwa für unendliche Werte) stehen in der
@@ -225,7 +226,8 @@ zeilenmaske = m[:, 0] > 20   # Erster Wert jeder Zeile: [False  True  True]
 print(m[zeilenmaske, :])     # Ergebnis: [[30,40], [50,60]]
 ```
 
-[ER] Erstellen Sie ein 4x3-Array `zahlen` mit ganzen Zahlen von 20-31 und demonstrieren Sie daran:
+[ER] Erstellen Sie ein 4x3-Array `zahlen` mit ganzen Zahlen von 20 bis 31 und demonstrieren Sie
+daran:
 
 - Auswahl aller Elemente größer als 25
 - Auswahl aller geraden Zahlen (verwenden Sie den Modulo-Operator `%`)
@@ -288,15 +290,15 @@ demonstrieren Sie:
 
 [HINT::Beim letzten Teilschritt bekomme ich einen `IndexError`]
 Zeilen- und Spaltenindizes zusammen in einen Zugriff zu schreiben (`arr[[...], [...]]`) führt hier
-nicht zum Ziel: Zwei Index-Arrays werden paarweise kombiniert und müssen deshalb gleich viele
-Einträge haben; drei Zeilenindizes mit zwei Spaltenindizes zu paaren geht nicht auf.
+nicht zum Ziel: Zwei Index-Arrays werden paarweise kombiniert und müssen deshalb in ihrer Form
+zueinander passen; drei Zeilenindizes mit zwei Spaltenindizes zu paaren geht nicht auf.
 Ein Zugriff mit nur einem Index-Array liefert aber selbst wieder ein Array — wenden Sie die
 beiden Formen also nacheinander an, statt sie in einen einzigen Zugriff zu packen.
 [ENDHINT]
 
 <!-- time estimate: 15 min -->
 
-### Erweiterte Indexierung mit `np.ix_`
+### Rechteckige Teilbereiche mit `np.ix_`
 
 `np.ix_` formt Index-Arrays so um, dass beim Indexieren ihr kartesisches Produkt entsteht, und
 ermöglicht damit die Auswahl rechteckiger Teilbereiche aus Arrays.
@@ -357,7 +359,14 @@ arr[maske, :]          # Boolean (ein Eintrag pro Zeile) + Slicing
 arr[..., 1:]           # Ellipsis + Slicing
 ```
 
-[ER] Erstellen Sie ein 3x3-Array `arr3x3` mit den Werten 11-19 und kombinieren Sie daran jeweils
+**Beispiel:**
+```python
+w = np.arange(10, 130, 10).reshape(4, 3)   # 4x3-Array mit den Werten 10 bis 120
+print(w[1:3, [2, 0]])       # Slicing + Integer-Array: [[60,40], [90,70]]
+print(w[w[:, 0] > 40, 1:])  # Boolean-Zeilenmaske + Slicing: [[80,90], [110,120]]
+```
+
+[ER] Erstellen Sie ein 3x3-Array `arr3x3` mit den Werten 11 bis 19 und kombinieren Sie daran jeweils
 zwei Indexierungsformen in einem einzigen Zugriff:
 
 - Slicing für die Zeilen mit einem Index-Array für die Spalten
@@ -375,6 +384,8 @@ dieselben Daten; eine Änderung an der View ändert deshalb auch das Original.
 
 Welche der beiden Formen entsteht, hängt von der Art des Zugriffs ab: Slicing liefert eine View,
 Advanced Indexing (Integer-Array und Boolean-Maske) liefert stets eine Kopie.
+Sobald in einem Zugriff ein Index-Array oder eine Boolean-Maske vorkommt, ist das Ergebnis also eine
+Kopie, auch wenn andere Achsen darin mit Slices indexiert werden.
 Einzelheiten dazu stehen im
 [NumPy-Userguide zu Copies and views](https://numpy.org/doc/stable/user/basics.copies.html).
 Wer von einem Slice eine unabhängige Kopie braucht, fordert sie ausdrücklich an:
@@ -383,7 +394,7 @@ Wer von einem Slice eine unabhängige Kopie braucht, fordert sie ausdrücklich a
 ndarray.copy()
 ```
 
-- `copy()`: liefert immer eine unabhängige Kopie, gleich worauf man die Methode anwendet
+- `copy()`: liefert immer eine unabhängige Kopie, gleichgültig worauf man die Methode anwendet
 
 **Beispiel:**
 ```python
@@ -405,12 +416,13 @@ print(d)                    # [10 20 30 40 50] - unverändert
 [ER] Legen Sie ein 1D-Array `werte` mit den Zahlen 100 bis 800 in Hunderterschritten an und prüfen
 Sie daran selbst nach, welcher Zugriff eine View und welcher eine Kopie liefert:
 
-- Wählen Sie die letzten vier Elemente einmal per Slicing und einmal per Boolean-Maske aus
+- Wählen Sie die letzten vier Elemente einmal per Slicing und einmal per Boolean-Maske aus;
+  treffen Sie beide Auswahlen, bevor Sie etwas ändern
 - Setzen Sie in beiden Ergebnissen das erste Element auf `0`
 - Geben Sie `werte` nach jeder der beiden Änderungen aus und halten Sie fest, welcher der beiden
   Zugriffe das Original mit verändert hat
-- Wiederholen Sie den Slicing-Zugriff mit `copy()` und zeigen Sie, dass `werte` dabei unverändert
-  bleibt
+- Wiederholen Sie den Slicing-Zugriff mit `copy()`, setzen Sie dort das erste Element auf `-1` und
+  zeigen Sie, dass `werte` dabei unverändert bleibt
 
 <!-- time estimate: 10 min -->
 
@@ -431,7 +443,7 @@ dieses ersten Zugriffs.
 und verändern Sie es gezielt:
 
 - Ersetzen Sie alle Werte kleiner als 5 durch 0
-- Versuchen Sie anschließend, die Positionen aus den Zeilen 0,2,4 und den Spalten 1,3 mit zwei
+- Versuchen Sie anschließend, die Positionen aus den Zeilen 0, 2, 4 und den Spalten 1, 3 mit zwei
   aufeinanderfolgenden Zugriffen auf -1 zu setzen: `data[[0, 2, 4], :][:, [1, 3]] = -1`
 - Setzen Sie dieselben Positionen danach mit `np.ix_` in einem einzigen Zugriff auf -1
 
