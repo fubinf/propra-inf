@@ -18,9 +18,9 @@ assumes: curl
 
 Eine Registrierung, die kommentarlos auf einer anderen Seite landet, ein Formular, das jeden
 Absender akzeptiert, oder eine Seite, die sich in eine fremde Website einbetten lässt: In
-einer echten Anwendung wären das ernste Mängel.
-Der erste Fall trifft auf Ihr Projekt bisher zu, denn dafür fehlt schlicht das passende
-Bordmittel.
+einer echten Anwendung wäre das erste ein Ärgernis, die beiden anderen eine Sicherheitslücke.
+Der erste Fall trifft auf Ihr Projekt bisher zu, denn Sie haben das passende Bordmittel
+schlicht noch nicht eingesetzt.
 Die beiden anderen verhindert Django von Anfang an: Den CSRF-Schutz haben Sie in
 [PARTREF::django-form] bewusst eingesetzt, den Schutz vor Einbettung nie bemerkt.
 Solche Bordmittel gehören zu keiner der bisher behandelten Kernkomponenten (Model, View,
@@ -32,7 +32,7 @@ Schutzmechanismen kurz ab, um zu sehen, was sie eigentlich leisten.
 
 [SECTION::instructions::detailed]
 
-Sie arbeiten weiter mit der App `webapp` aus [PARTREF::django-form].
+Sie arbeiten weiter mit der App `webapp` aus [PARTREF::django-project].
 
 Starten Sie für die folgenden Schritte in einer separaten Shell den Entwicklungsserver mit
 `python manage.py runserver 8071` und lassen Sie ihn laufen.
@@ -42,9 +42,7 @@ Port betreiben, passen Sie sie entsprechend an.
 ### Bestätigungsmeldungen mit `django.contrib.messages`
 
 Django kann Meldungen ("Registrierung erfolgreich", "Bitte anmelden" usw.) über einen
-Redirect hinweg transportieren: Eine View legt eine Meldung ab, die nächste Seite, die
-Meldungen anzeigt, holt sie ab und zeigt sie an, unabhängig davon, welche View dazwischen
-lag.
+Redirect hinweg transportieren: Eine View legt eine Meldung ab, eine spätere Seite zeigt sie an.
 
 ```python
 messages.success(request, message)
@@ -72,10 +70,12 @@ Rufen Sie in `register`, zwischen dem Anlegen des Studierenden und der Weiterlei
 `messages.success` mit dem aktuellen Request und dem Text "Registrierung erfolgreich" auf.
 
 Sichtbar wird die Meldung erst, wenn ein Template sie auch anzeigt.
-`messages` ist dafür bereits automatisch in jedem Template verfügbar, ganz ohne dass eine View
-es in den Context aufnehmen muss.
+`messages` ist dafür bereits in jedem Template verfügbar, ganz ohne dass eine View es in den
+Context aufnehmen muss; dafür sorgt der Eintrag
+`django.contrib.messages.context_processors.messages` unter `context_processors` in
+`settings.py`.
 Zur Anzeige dient wieder ein Filter mit Argument, wie Sie ihn aus [PARTREF::django-template]
-von `default`/`yesno` kennen, diesmal allerdings ein anderer: `|join:trennzeichen` reiht die
+von `default`/`yesno` kennen, diesmal allerdings ein anderer: `|join:TRENNZEICHEN` reiht die
 Elemente eines iterierbaren Werts, getrennt durch die angegebene Zeichenfolge, zu einem
 einzigen Text aneinander.
 Konkretes Beispiel:
@@ -92,14 +92,20 @@ Nachschlagen lässt sich dieser Filter wie alle anderen in der Django-Doku zu
 [ER] Fügen Sie in `base.html` unmittelbar vor der Zeile `{% block content %}` eine Zeile ein,
 die `messages` mit dem Filter `join` und dem Trennzeichen ", " ausgibt.
 
+Hier genügt `join`; produktiver Code verwendet an dieser Stelle eine `{% for %}`-Schleife über
+`messages`, um jede Meldung einzeln und mit ihrer Dringlichkeitsstufe darzustellen (siehe
+"Displaying messages" in der oben verlinkten Doku zum Messages-Framework).
+
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
 "Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com".
 Sie landen auf der Detailseite; sie enthält keinen Link zur Studierendenliste.
 Rufen Sie diese danach im Browser unter `http://127.0.0.1:8071/students/` auf.
+Laden Sie dieselbe Seite anschließend noch ein zweites Mal.
 
 [EQ] Auf welcher Seite taucht die Meldung "Registrierung erfolgreich" zum ersten Mal auf, und
 warum nicht schon direkt auf der Detailseite?
-Was sagt Ihnen das über den Zeitpunkt, zu dem eine Meldung "verbraucht" wird?
+Was sagen Ihnen die beiden Aufrufe der Studierendenliste über den Zeitpunkt, zu dem eine
+Meldung "verbraucht" wird?
 
 [HINT::Ich sehe die Meldung auf keiner einzigen Seite]
 Prüfen Sie zuerst `base.html`: Steht Ihre neue Zeile wirklich außerhalb von
@@ -122,25 +128,30 @@ den CSRF-Schutz ist der Eintrag `CsrfViewMiddleware` verantwortlich.
 In welcher Reihenfolge die Liste abgearbeitet wird und was eine Middleware sonst noch leisten
 kann, erklärt die
 [Django-Doku zu Middleware](https://docs.djangoproject.com/en/stable/topics/http/middleware/).
+Welche Middlewares Django mitbringt und was jede davon tut, listet die
+[Django-Doku zu den eingebauten Middlewares](https://docs.djangoproject.com/en/stable/ref/middleware/).
 
 Öffnen Sie `settings.py` im Konfigurationsordner `meinprojekt/meinprojekt/` und kommentieren
 Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
-Das ist nur ein Zwischenzustand für den folgenden Test: Am Ende dieses Abschnitts steht die
-Zeile wieder wie im Original da.
+Das ist nur ein Zwischenzustand für den folgenden Test: Am Ende dieses Abschnitts muss die
+Zeile wieder unverändert dastehen.
 
 Der Autoreloader des Entwicklungsservers erfasst auch `settings.py`, die Änderung wirkt
 also ohne Neustart; warten Sie kurz.
 
 [EC] Senden Sie den folgenden Aufruf, der einen POST ohne CSRF-Token an `/search-post/`
-schickt und nur den Statuscode ausgibt: einmal jetzt und ein zweites Mal, nachdem Sie die
-Zeile wieder einkommentiert haben:
+schickt und nur den Statuscode ausgibt:
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/
 ```
 
-[EQ] Welcher Statuscode kam mit deaktivierter Middleware zurück, und warum ist es gefährlich,
-diese Middleware in einer echten Anwendung dauerhaft auszukommentieren?
+Kommentieren Sie die Zeile danach wieder ein und senden Sie denselben Aufruf ein zweites Mal.
+
+[EQ] Verändert haben Sie keine einzige View, sondern nur eine Zeile in `settings.py`, und
+trotzdem ändert sich das Verhalten von `/search-post/`.
+Welche Ihrer übrigen Views wären von derselben Zeile ebenfalls betroffen, welche nicht?
+Was folgt daraus für die Frage, wo ein Schutz dieser Art sinnvollerweise ansetzt?
 <!-- time estimate: 15 min -->
 
 ### `XFrameOptionsMiddleware` kurzzeitig deaktivieren
@@ -157,12 +168,13 @@ Dort steht das Angriffsszenario, um das es in der Frage am Ende dieses Abschnitt
 
 Der Entwicklungsserver bemerkt die Änderung wieder von selbst; warten Sie kurz.
 
-[EC] Senden Sie den folgenden Aufruf, der nur die Header abruft (`-I`): einmal jetzt und
-ein zweites Mal, nachdem Sie die Zeile wieder einkommentiert haben:
+[EC] Senden Sie den folgenden Aufruf, der nur die Header abruft (`-I`):
 
 ```bash
 curl -sI "http://127.0.0.1:8071/"
 ```
+
+Kommentieren Sie die Zeile danach wieder ein und senden Sie denselben Aufruf ein zweites Mal.
 
 [EQ] Vergleichen Sie die beiden Ausgaben: Welche Sicherheits-Header stehen unverändert in
 beiden, obwohl die `XFrameOptionsMiddleware` im ersten Aufruf fehlte, und welcher andere
@@ -215,10 +227,13 @@ Bedarf gezielt danach suchen können:
   unmittelbar vor dem `redirect(...)`, `base.html` gibt `messages` mit `|join:", "` aus;
   Student erkennt, dass die Meldung erst auf der nächsten Seite erscheint, die diese Zeile
   tatsächlich rendert (hier: `students_list.html` über `base.html`), nicht zwangsläufig auf
-  der unmittelbar nächsten Seite überhaupt.
+  der unmittelbar nächsten Seite überhaupt, und dass sie beim zweiten Aufruf derselben Seite
+  verschwunden ist.
 - [EREFC::1] + [EREFQ::2]: Das Protokoll enthält denselben `curl`-Aufruf zweimal, mit `200`
-  bei ausgebauter und `403` bei wieder eingebauter `CsrfViewMiddleware`; Student erkennt,
-  dass ohne sie jeder POST ohne Token akzeptiert würde.
+  bei ausgebauter und `403` bei wieder eingebauter `CsrfViewMiddleware`; Student erkennt, dass
+  eine Middleware vor allen Views liegt und der Schutz deshalb an einer einzigen Stelle für
+  sämtliche POST-Views wirkt (also auch für `register`, nicht aber für die reinen GET-Views),
+  statt in jeder View einzeln programmiert werden zu müssen.
 - [EREFC::2] + [EREFQ::3]: Das Protokoll enthält denselben `curl -sI`-Aufruf zweimal, einmal
   ohne und einmal mit `X-Frame-Options: DENY`, während die übrigen Sicherheits-Header in
   beiden Ausgaben stehen; Student erkennt, dass ohne diesen Header die Seite in ein fremdes
