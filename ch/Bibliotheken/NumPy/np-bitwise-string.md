@@ -12,6 +12,8 @@ assumes: np-Einführung, np-array, np-array2, py-Fstrings, py-List-Comprehension
 - Ich kann NumPy-String-Funktionen für die Textverarbeitung einsetzen.
 - Ich kann die Laufzeit einer vektorisierten Operation gegen eine Python-Schleife messen und weiß,
   dass ein Beschleunigungsfaktor nur zusammen mit seinem Vergleichspartner aussagekräftig ist.
+- Ich habe gemessen, dass die Vektorisierung bei String-Operationen deutlich weniger einbringt als
+  bei numerischen.
 
 [ENDSECTION]
 
@@ -58,7 +60,8 @@ Zahlen unterscheiden sie sich in zwei Punkten:
   innerhalb dieser festen Bit-Breite berechnet wird.
 
 Auf Arrays lassen sich auch die Operatoren selbst verwenden; sie tun dort genau dasselbe wie die
-Funktionen (`a & b` ist gleichwertig zu `np.bitwise_and(a, b)`).
+Funktionen (`a & b` ist gleichwertig zu `np.bitwise_and(a, b)`, `a ^ b` zu `np.bitwise_xor(a, b)`,
+`~a` zu `np.invert(a)`, `a << n` zu `np.left_shift(a, n)`).
 Die Kommentare in den folgenden Beispielen nutzen diese kürzere Schreibweise.
 
 Die wichtigsten Bitwise-Funktionen in NumPy sind:
@@ -268,7 +271,7 @@ ein neues Array mit den Ergebnissen zurück.
 
 Der Geschwindigkeitsvorteil gegenüber einer Python-Schleife fällt hier deutlich kleiner aus als bei
 numerischen NumPy-Operationen.
-Im letzten Abschnitt dieser Aufgabe messen Sie selbst nach, wie groß er ausfällt.
+Im letzten Abschnitt dieser Aufgabe messen Sie beide Vorteile selbst nach und vergleichen sie.
 
 ```python
 numpy.strings.upper(a)  # wandelt jedes Element in Großbuchstaben um
@@ -385,7 +388,7 @@ Was müssten Sie ändern, damit auch dort ersetzt wird?
 
 ### String-Teilung, -Verbindung und -Suche: `char.split`, `char.join`, `strings.find`
 
-`find` gibt es in beiden Modulen, dafür nutzen wir wie zuvor `numpy.strings`; für `split`/`join`
+`find` gibt es in beiden Modulen, daher nutzen wir wie zuvor `numpy.strings`; für `split`/`join`
 bleibt es bei `numpy.char`.
 
 [FOLDOUT::Warum fehlen `split` und `join` in `numpy.strings`?]
@@ -443,7 +446,9 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
 
 <!-- time estimate: 10 min -->
 
-### Wie groß ist der Geschwindigkeitsvorteil wirklich? `strings.startswith`
+### Geschwindigkeitsvergleich mit einer Python-Schleife: `strings.startswith`
+
+Wie groß der eingangs erwähnte Geschwindigkeitsvorteil wirklich ist, messen Sie jetzt selbst nach.
 
 ```python
 numpy.strings.startswith(a, prefix)  # prüft für jedes Element, ob es mit prefix beginnt
@@ -481,7 +486,9 @@ print(f'Dauer: {dauer:.4f} Sekunden')
 [ER] Messen Sie den Geschwindigkeitsunterschied zwischen `np.strings.startswith` und einer
 Python-Schleife an einem größeren Array.
 Die Schleife messen Sie dabei zweimal, einmal über das Array selbst und einmal über eine daraus
-erzeugte Python-Liste:
+erzeugte Python-Liste.
+Zum Schluss messen Sie dasselbe für eine numerische Operation, damit Sie einen Maßstab haben, an dem
+Sie die String-Faktoren einordnen können:
 
 - Erstellen Sie ein Array `words` mit 100000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
   `'produkt99999'` (z. B. mit einer List Comprehension aus [PARTREF::py-List-Comprehensions] und
@@ -492,14 +499,19 @@ erzeugte Python-Liste:
 - Messen Sie auf dieselbe Weise die Schleife `[w.startswith('produkt123') for w in words]`
 - Messen Sie auf dieselbe Weise dieselbe Schleife über `words_list = list(words)`, wobei die
   Umwandlung selbst außerhalb der Messung stattfindet
-- Geben Sie alle drei Zeiten (5 Nachkommastellen, `:.5f`) und die beiden Faktoren gegenüber
-  `np.strings.startswith` (1 Nachkommastelle, `:.1f`) aus
+- Messen Sie nach demselben Muster eine numerische Operation: `zahlen * 2` auf einem mit
+  `np.arange(100000)` erzeugten Array gegen die Schleife `[x * 2 for x in zahlen_liste]`, wobei
+  `zahlen_liste = list(zahlen)` wieder außerhalb der Messung entsteht
+- Geben Sie alle fünf Zeiten (5 Nachkommastellen, `:.5f`) aus, dazu die beiden String-Faktoren
+  gegenüber `np.strings.startswith` und den Zahlen-Faktor gegenüber `zahlen * 2`
+  (je 1 Nachkommastelle, `:.1f`)
 
 [HINT::Wie überprüfe ich mein Ergebnis?]
 `np.strings.startswith` ist deutlich schneller als beide Schleifen, und die Schleife über das Array
 ist noch einmal erheblich langsamer als die über die Liste.
-Konkrete Zahlen hängen stark von Ihrer Maschine ab; entscheidend ist dieses Verhältnis, nicht ein
-bestimmter Wert.
+Der Zahlen-Faktor liegt klar über dem String-Faktor der Listen-Schleife.
+Konkrete Zahlen hängen stark von Ihrer Maschine ab; entscheidend sind diese Verhältnisse, nicht
+bestimmte Werte.
 [ENDHINT]
 
 [EQ] Beide Schleifen berechnen dasselbe Ergebnis, liefern aber deutlich verschiedene Faktoren.
@@ -536,11 +548,11 @@ und was folgt daraus für eine Aussage der Form "NumPy ist N-mal schneller als P
   jedes einzelnen Strings (`'DE'` → `'D.E'`), nicht zwischen den Array-Elementen; wer es als
   Verbinder der Elemente auffasst, erzeugt hier ein falsches Ergebnis.
   `split`/`replace`/`find` liefern für alle Elemente die korrekten Ergebnisse
-- [EREFR::7] + [EREFQ::5]: alle drei Zeiten sind gemessen, und die Schleife über das Array ist klar
-  langsamer als die über die Liste (konkrete Zahlen sind maschinenabhängig und daher kein
-  Prüfkriterium).
-  Student erkennt, dass die Messung über die Liste der fairere Vergleich für die Vektorisierung ist
-  und dass ein einzelner Faktor ohne Angabe des Vergleichspartners wenig aussagt
+- [EREFR::7] + [EREFQ::5]: alle fünf Zeiten sind gemessen, die Schleife über das Array ist klar
+  langsamer als die über die Liste, und der Zahlen-Faktor liegt klar über dem String-Faktor der
+  Listen-Schleife (konkrete Zahlen sind maschinenabhängig und daher kein Prüfkriterium).
+  Studierende erkennen, dass die Messung über die Liste der fairere Vergleich für die Vektorisierung
+  ist und dass ein einzelner Faktor ohne Angabe des Vergleichspartners wenig aussagt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-bitwise-string.md]
