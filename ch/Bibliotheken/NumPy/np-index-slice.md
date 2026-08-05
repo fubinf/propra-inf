@@ -16,8 +16,10 @@ assumes: np-Einführung, np-array, np-array2
 
 [SECTION::background::default]
 
-Diese Aufgabe vermittelt die wichtigsten Techniken zur Auswahl und Bearbeitung
-von Array-Elementen in ein- und mehrdimensionalen Strukturen.
+Ein großer Teil der Arbeit mit NumPy besteht darin, aus einem Array genau die Teilmenge
+herauszugreifen, um die es gerade geht, und nur diese zu verändern.
+Mit Indexausdrücken braucht man dafür keine Schleife: Auswahl und Änderung ganzer Teilmengen
+stehen dann in einer einzigen Zeile.
 
 [ENDSECTION]
 
@@ -91,16 +93,16 @@ arr[row, ...]           # bei 2D äquivalent zu arr[row, :]
 
 **Beispiel:**
 ```python
-a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-print(a[1, 2])          # Element Zeile 1, Spalte 2: 6
-print(a[1, :])          # Ganze Zeile 1: [4, 5, 6]
-print(a[:, 1])          # Ganze Spalte 1: [2, 5, 8]
-print(a[1:, :])         # Ab Zeile 1: [[4, 5, 6], [7, 8, 9]]
-print(a[..., 2])        # Ellipsis für Spalte: [3, 6, 9] (äquivalent zu a[:, 2])
-print(a[1, ...])        # Ellipsis für Zeile: [4, 5, 6] (äquivalent zu a[1, :])
+a = np.array([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
+print(a[1, 2])          # Element Zeile 1, Spalte 2: 60
+print(a[1, :])          # Ganze Zeile 1: [40, 50, 60]
+print(a[:, 1])          # Ganze Spalte 1: [20, 50, 80]
+print(a[1:, :])         # Ab Zeile 1: [[40, 50, 60], [70, 80, 90]]
+print(a[..., 2])        # Ellipsis für Spalte: [30, 60, 90] (äquivalent zu a[:, 2])
+print(a[1, ...])        # Ellipsis für Zeile: [40, 50, 60] (äquivalent zu a[1, :])
 ```
 
-[ER] Erstellen Sie ein 4x4 Array `arr4x4` mit den Werten 11-26 und demonstrieren Sie:
+[ER] Erstellen Sie ein 4x4-Array `arr4x4` mit den Werten 11-26 und demonstrieren Sie:
 
 - Zugriff auf das Element Zeile 2, Spalte 3
 - Auswahl der ganzen Zeile 3
@@ -120,11 +122,17 @@ Ausschreiben aller `:`?
 
 <!-- time estimate: 20 min -->
 
-### Integer-Array-Indexierung (Advanced Indexing)
+### Integer-Array-Indexierung
 
 Integer-Array-Indexierung ermöglicht den Zugriff auf beliebige Array-Elemente
 durch die Verwendung von Index-Arrays.
 Die Index-Arrays werden paarweise kombiniert.
+
+Diese Form und die Boolean-Indexierung des nächsten Abschnitts heißen in der NumPy-Dokumentation
+zusammen "Advanced Indexing" oder gleichbedeutend "fancy indexing", siehe
+[NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing).
+Indexiert wird dabei nicht mit einem einzelnen Wert oder einem Slice, sondern mit einem ganzen
+Array aus Indizes bzw. Wahrheitswerten.
 
 **Syntax:**
 ```python
@@ -133,28 +141,27 @@ arr[row_array, col_array]    # Paarweise: (row_array[0], col_array[0]), (row_arr
 
 **Beispiel:**
 ```python
-x = np.array([[1, 2], [3, 4], [5, 6]])
+x = np.array([[10, 20], [30, 40], [50, 60]])
 # Zugriff auf Positionen (0,0), (1,1), (2,0)
-y = x[[0, 1, 2], [0, 1, 0]]         # Ergebnis: [1, 4, 5]
+y = x[[0, 1, 2], [0, 1, 0]]         # Ergebnis: [10 40 50]
 ```
 
 Die Paare ergeben sich also so:
 
-- `x[0, 0]` → `1`
-- `x[1, 1]` → `4`
-- `x[2, 0]` → `5`
+- `x[0, 0]` → `10`
+- `x[1, 1]` → `40`
+- `x[2, 0]` → `50`
 
-[ER] Erstellen Sie ein 3x4 Array `arr3x4` mit den Werten 11-22 und verwenden Sie
+[ER] Erstellen Sie ein 3x4-Array `arr3x4` mit den Werten 11-22 und verwenden Sie
 Integer-Array-Indexierung, um:
 
 - Die Elemente an den Positionen (0,3), (1,0), (2,2) zu extrahieren
 - Die vier Eckpunkte des Arrays zu selektieren
 - Eine diagonale Linie von oben-links nach unten-rechts zu wählen
 
-[EQ] Verwenden Sie Ihr Ergebnis aus [EREFR::3]: Erklären Sie anhand der Extraktion der Positionen
-(0,3), (1,0), (2,2), wie die beiden Index-Arrays paarweise kombiniert werden, um genau diese drei
-Elemente zu liefern. Wie viele Werte müssen die beiden Index-Arrays jeweils enthalten, damit die
-Kombination überhaupt funktioniert?
+[EQ] Nehmen Sie die drei Positionen (0,3), (1,0), (2,2) aus [EREFR::3]: Begründen Sie, warum sich
+diese Auswahl nicht mit einem einzigen Slicing-Ausdruck erreichen lässt.
+Welche Eigenschaft muss eine Auswahl haben, damit Slicing für sie ausreicht?
 
 <!-- time estimate: 15 min -->
 
@@ -173,8 +180,11 @@ Achsen mit Slicing kombinieren (`arr[maske, :]`).
 arr[arr > value]        # Elemente größer als value
 arr[arr == value]       # Elemente gleich value
 arr[(arr > a) & (arr < b)]  # Elemente zwischen a und b (& kombiniert Bedingungen, nicht 'and')
-arr[~condition]         # Negation der Bedingung (NOT)
+arr[~(arr > value)]     # Negation der Bedingung (NOT)
 ```
+
+Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
+`arr[arr > a & arr < b]` würde deshalb als `arr[arr > (a & arr) < b]` gelesen und scheitern.
 
 Für den häufigen Fall fehlender Werte gibt es eine eigene Prüffunktion:
 
@@ -182,22 +192,25 @@ Für den häufigen Fall fehlender Werte gibt es eine eigene Prüffunktion:
 np.isnan(arr)          # Maske mit True an jeder Position, die NaN enthält
 ```
 
+Diese eigene Funktion ist nötig, weil sich NaN dem Vergleich entzieht: `np.nan == np.nan` ist
+unwahr, `arr == np.nan` liefert deshalb eine Maske aus lauter `False`.
+
 Weitere Prüffunktionen dieser Art (etwa für unendliche Werte) stehen in der
 [NumPy-Referenz zu den Logic functions](https://numpy.org/doc/stable/reference/routines.logic.html).
 
 **Beispiel:**
 ```python
-x = np.array([1, 2, 3, 4, 5, 6])
-mask = x > 3           # Boolean-Array: [False, False, False, True, True, True]
-result = x[mask]       # Ergebnis: [4, 5, 6]
+x = np.array([10, 20, 30, 40, 50, 60])
+mask = x > 30          # Boolean-Array: [False, False, False, True, True, True]
+result = x[mask]       # Ergebnis: [40 50 60]
 
 # Boolean-Indexierung erlaubt auch bedingte Änderung von Werten:
-z = np.array([1, 2, 3, 4, 5, 6])
-z[z > 3] = 0           # Alle Elemente > 3 durch 0 ersetzen
-print(z)               # Ergebnis: [1 2 3 0 0 0]
+z = np.array([10, 20, 30, 40, 50, 60])
+z[z > 30] = 0          # Alle Elemente > 30 durch 0 ersetzen
+print(z)               # Ergebnis: [10 20 30  0  0  0]
 ```
 
-[ER] Erstellen Sie ein 4x3 Array `zahlen` mit ganzen Zahlen von 20-31 und demonstrieren Sie daran:
+[ER] Erstellen Sie ein 4x3-Array `zahlen` mit ganzen Zahlen von 20-31 und demonstrieren Sie daran:
 
 - Auswahl aller Elemente größer als 25
 - Auswahl aller geraden Zahlen (verwenden Sie die Modulo-Operation)
@@ -228,7 +241,6 @@ Derselbe Mechanismus greift auch, wenn man nur ein einziges Index-Array angibt u
 Achsen mit `:` offenlässt.
 Dann werden ganze Zeilen bzw. Spalten ausgewählt, in beliebiger Reihenfolge und mit
 Wiederholungen.
-In der NumPy-Dokumentation wird dafür auch der Name "fancy indexing" verwendet.
 
 **Zeilen- und Spaltenauswahl:**
 ```python
@@ -250,13 +262,13 @@ selected = x[[4, 2, 1, 7], :]             # Zeilen 4,2,1,7 in dieser Reihenfolge
 # Ergebnis: [[170,180,190,200], [90,100,110,120], [50,60,70,80], [290,300,310,320]]
 ```
 
-[ER] Erstellen Sie ein 8x4 Array `x` mit den Werten 10 bis 320 in Zehnerschritten und
+[ER] Erstellen Sie ein 8x4-Array `x` mit den Werten 10 bis 320 in Zehnerschritten und
 demonstrieren Sie:
 
 - Auswahl der Zeilen 4, 2, 1, 7 in genau dieser Reihenfolge
 - Auswahl der Spalten 3, 0, 2 in dieser Reihenfolge
 - Verwendung negativer Indizes für die letzten beiden Zeilen
-- Kombinierte Zeilen- und Spaltenauswahl für eine 3x2 Teilmatrix
+- Kombinierte Zeilen- und Spaltenauswahl für eine 3x2-Teilmatrix
 
 [HINT::Beim letzten Teilschritt bekomme ich einen `IndexError`]
 Zeilen- und Spaltenindizes zusammen in einen Zugriff zu schreiben (`arr[[...], [...]]`) führt hier
@@ -329,7 +341,7 @@ arr[maske, :]          # Boolean (ein Eintrag pro Zeile) + Slicing
 arr[..., 1:]           # Ellipsis + Slicing
 ```
 
-[ER] Erstellen Sie ein 3x3 Array `arr3x3` mit den Werten 11-19 und kombinieren Sie daran jeweils
+[ER] Erstellen Sie ein 3x3-Array `arr3x3` mit den Werten 11-19 und kombinieren Sie daran jeweils
 zwei Indexierungsformen in einem einzigen Zugriff:
 
 - Slicing für die Zeilen mit einem Index-Array für die Spalten
@@ -342,8 +354,15 @@ zwei Indexierungsformen in einem einzigen Zugriff:
 ### Werte über Indexausdrücke verändern
 
 Indexausdrücke stehen nicht nur rechts, sondern auch links vom Zuweisungsoperator: Damit
-überschreibt man genau die ausgewählten Positionen, wie oben schon bei `z[z > 3] = 0` gezeigt.
-Das gilt für alle bisher behandelten Formen.
+überschreibt man genau die ausgewählten Positionen, wie oben schon bei `z[z > 30] = 0` gezeigt.
+Das gilt für alle bisher behandelten Formen, solange die Auswahl in **einem** Indexausdruck steht.
+
+Bei zwei aufeinanderfolgenden Zugriffen wie beim letzten Teilschritt von [EREFR::5] ist das anders:
+Slicing liefert eine View auf das Original, Integer-Array- und Boolean-Indexierung liefern dagegen
+stets eine Kopie, siehe
+[NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing).
+`x[[1, 3, 5], :][:, [0, 2]] = 0` schreibt deshalb in eine Kopie und lässt `x` unverändert, ohne
+dass eine Fehlermeldung darauf hinweist.
 
 [ER] Erstellen Sie ein Array `data` mit den Werten
 `[[3, 12, 7, 18], [9, 2, 15, 6], [11, 4, 19, 1], [8, 16, 5, 13], [10, 3, 17, 14], [6, 20, 2, 9]]`
@@ -376,6 +395,9 @@ Geben Sie `data` nach jedem der beiden Schritte vollständig aus.
 - [EREFQ::2]: Für beide Fälle ist die richtige Anzahl ersetzter Doppelpunkte genannt (2D: einer,
   3D: zwei) und es wird erkannt, dass sie von der Zahl der nicht explizit indexierten Achsen
   abhängt, statt `...` nur allgemein als "Platzhalter" zu bezeichnen
+- [EREFQ::3]: Die Begründung stellt darauf ab, dass die Slices verschiedener Achsen unabhängig
+  voneinander gelten und deshalb immer ein Rechteck aufspannen; "die Positionen sind unregelmäßig
+  verteilt" allein genügt nicht
 - [EREFR::5], letzter Teilschritt: Die 3x2-Teilmatrix entsteht durch zwei aufeinanderfolgende
   Zugriffe; ein einziger Zugriff `x[[1,3,5], [0,2]]` scheitert an der paarweisen Kombination
 - [EREFR::7], zweiter Teilschritt: Die Boolean-Maske ist eine Zeilenmaske mit einem Eintrag pro
