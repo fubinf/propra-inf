@@ -91,7 +91,7 @@ numpy.binary_repr(num, width=None)
   Positive Zahlen werden mit führenden Nullen aufgefüllt (`width=8` liefert für `13` die Ausgabe
   `00001101`), negative als Zweierkomplement dieser Breite (`width=8` liefert für `-4` die Ausgabe
   `11111100`).
-  Reicht die Breite für die Zahl nicht aus, gibt es einen `ValueError`
+  Reicht die Breite für die Zahl nicht aus, gibt es einen `ValueError`.
 
 ```python
 import numpy as np
@@ -143,7 +143,7 @@ An der ersten Position sind beide Operanden `True`; genau dort trennen sich ODER
   `[5, 24]`
 - Führen Sie `np.bitwise_and(a, b)`, `np.bitwise_or(a, b)` und `np.bitwise_xor(a, b)` durch
 - Geben Sie sowohl die Ergebnisse als auch die binären Darstellungen aus (verwenden Sie
-  `np.binary_repr()`)
+  `np.binary_repr()` mit `width=8`, damit die Bitmuster untereinander ausgerichtet sind)
 - Erklären Sie in Kommentaren, wie die Ergebnisse zustande kommen
 
 <!-- time estimate: 15 min -->
@@ -157,7 +157,7 @@ numpy.left_shift(x1, x2)   # verschiebt die Bits von x1 um x2 Positionen nach li
 numpy.right_shift(x1, x2)  # verschiebt die Bits von x1 um x2 Positionen nach rechts
 ```
 
-- `x1`: Ganzzahl-Array, dessen Bits verschoben werden
+- `x1`: Ganzzahl-Array (oder einzelne Ganzzahl), dessen Bits verschoben werden
 - `x2`: Anzahl der Positionen, um die verschoben wird
 
 ```python
@@ -351,7 +351,7 @@ print("Repeated:", repeated)  # ['Python Python Python ' 'NumPy NumPy NumPy ']
 - Erstellen Sie ein Array `greetings` mit den Werten `['Hallo', 'Hi', 'Hey']`
 - Verbinden Sie `greetings` und `names` mit `np.strings.add()` zu Grußformeln der Form
   `'Hallo Alice'`, also mit einem Leerzeichen zwischen Gruß und Namen
-- Verwenden Sie `np.strings.multiply()`, um jeden Namen 2-mal zu wiederholen
+- Verwenden Sie `np.strings.multiply()`, sodass jeder Name zweimal hintereinander steht
 - Konvertieren Sie alle Namen in Großbuchstaben mit `np.strings.upper()`
 
 [HINT::Ich sehe nicht, wie ich mit `np.strings.add()` ein Leerzeichen dazwischen bekomme]
@@ -515,7 +515,11 @@ Python-Schleife an einem größeren Array.
 Die Schleife messen Sie dabei zweimal, einmal über das Array selbst und einmal über eine daraus
 erzeugte Python-Liste.
 Zum Schluss messen Sie dasselbe für eine numerische Operation, damit Sie einen Maßstab haben, an dem
-Sie die String-Faktoren einordnen können:
+Sie die String-Faktoren einordnen können.
+Legen Sie alle fünf Messungen in eine gemeinsame Schleife, sodass in jedem Durchlauf jede Operation
+einmal an die Reihe kommt, jede mit ihrer eigenen Zeitenliste.
+So treffen Schwankungen der Maschine alle Messungen gleichmäßig und die Faktoren bleiben
+untereinander vergleichbar:
 
 - Erstellen Sie ein Array `words` mit 100000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
   `'produkt99999'` (z. B. mit einer List Comprehension aus [PARTREF::py-List-Comprehensions] und
@@ -527,7 +531,8 @@ Sie die String-Faktoren einordnen können:
   Umwandlung selbst außerhalb der Messung stattfindet
 - Messen Sie nach demselben Muster eine numerische Operation: `zahlen * 2` auf einem mit
   `np.arange(100000)` erzeugten Array gegen die Schleife `[x * 2 for x in zahlen_liste]`, wobei
-  `zahlen_liste = list(range(100000))` wieder außerhalb der Messung entsteht
+  `zahlen_liste = list(range(100000))` wieder außerhalb der Messung entsteht — in dieser Liste sollen
+  bewusst echte Python-Ganzzahlen stehen und nicht die Elemente des Arrays
 - Geben Sie alle fünf Zeiten (5 Nachkommastellen, `:.5f`) aus, dazu die beiden String-Faktoren
   gegenüber `np.strings.startswith` und den Zahlen-Faktor gegenüber `zahlen * 2`
   (je 1 Nachkommastelle, `:.1f`)
@@ -570,8 +575,12 @@ Begründen Sie mit Ihren Zahlen.
 
 **Knackpunkte:**
 
-- [EREFR::1]: `bitwise_and`/`bitwise_or`/`bitwise_xor` liefern die korrekten Ergebnisse und die über
-  `np.binary_repr()` ausgegebenen Bitmuster stimmen mit den Kommentaren überein
+- [EREFR::2] + [EREFQ::2]: die drei Farbanteile entstehen mit der jeweils richtigen
+  Verschiebungsweite **und** der Maskierung `np.bitwise_and(..., 0xFF)`; wer die Maske weglässt,
+  erhält für Rot und Grün Werte weit über 255 und damit keine Farbanteile mehr.
+  Die Erklärung dazu benennt, dass eine Verschiebung die herausgeschobenen Bits verwirft und die
+  übrigen stehen lässt; dieselbe Einsicht wird in der Frage am Beispiel `5 >> 2` von der anderen
+  Seite geprüft
 - [EREFQ::3]: die Erklärung, warum `int8` und `uint8` bei `invert()` unterschiedliche Vorzeichen
   liefern, verweist korrekt auf die Interpretation des Bitmusters (Vorzeichenbit vs. kein
   Vorzeichenbit) statt auf einen Unterschied in der eigentlichen Bit-Operation
