@@ -43,8 +43,8 @@ Benötigtes Vorwissen pro Aufgabe:
 - **np-Einführung**, **np-array**, **np-array2**, **np-array3**, **np-index-slice**,
   **np-sort-filter**: kein zusätzliches mathematisches Vorwissen nötig
 - **np-bitwise-string**: Binärdarstellung von Zahlen (Stellenwertsystem zur Basis 2), Zweierkomplement
-- **np-math**: Schul-Trigonometrie (sin/cos/tan und Umkehrfunktionen), Statistik-Grundlagen
-  (Mittelwert, Varianz, Standardabweichung, Perzentile)
+- **np-math**: Schul-Trigonometrie (sin/cos/tan und Umkehrfunktionen), Eulersche Zahl,
+  Statistik-Grundlagen (Mittelwert, Median, Varianz, Standardabweichung, Perzentile)
 - **np-linalg**: Lineare Algebra (Skalarprodukt, Eigenwerte, Matrixnormen, Rang,
   Konditionszahl, Singulärwertzerlegung)
 [ENDWARNING]

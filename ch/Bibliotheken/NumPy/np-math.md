@@ -2,7 +2,7 @@ title: NumPy mathematische Funktionen verstehen und anwenden
 stage: alpha
 timevalue: 2.0
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2, np-bitwise-string, py-Fstrings
+assumes: np-Einführung, np-array, np-array2, np-index-slice, np-bitwise-string, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
@@ -26,10 +26,14 @@ Arrays wirken, sowie statistische Funktionen, die ein Array zu Kennzahlen zusamm
 
 ### Vorwissen
 
-Falls Ihnen das in der Übersicht der Aufgabengruppe genannte mathematische Vorwissen fehlt,
-helfen folgende Quellen:
+Für diese Aufgabe sind Schul-Trigonometrie (Sinus, Kosinus, Tangens und ihre Umkehrfunktionen),
+die Eulersche Zahl sowie Statistik-Grundlagen (Mittelwert, Median, Varianz, Standardabweichung,
+Perzentile) nötig.
+Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Trigonometrische Funktion (Wikipedia)](https://de.wikipedia.org/wiki/Trigonometrische_Funktion)
+- [Eulersche Zahl (Wikipedia)](https://de.wikipedia.org/wiki/Eulersche_Zahl)
+- [Median (Wikipedia)](https://de.wikipedia.org/wiki/Median)
 - [Standardabweichung (Wikipedia)](https://de.wikipedia.org/wiki/Standardabweichung)
 - [Empirisches Quantil (Wikipedia)](https://de.wikipedia.org/wiki/Empirisches_Quantil)
 
@@ -78,15 +82,17 @@ print('Zurück in Grad:', np.degrees(angles_rad))
 Zwei Werte in der Ausgabe sehen falsch aus: Der Kosinus von 90 Grad erscheint als `6.12323400e-17`
 statt als `0`, der Tangens von 90 Grad als `1.63312394e+16` statt als "undefiniert".
 Beides sind Rundungsartefakte: `np.pi` ist nur die bestmögliche Fließkomma-Näherung von π,
-also ist auch `angles_rad[4]` minimal von π/2 verschieden, und der Tangens reagiert an dieser
-Polstelle extrem empfindlich auf diese Abweichung.
+also ist auch `angles_rad[4]` minimal von π/2 verschieden, und der Tangens reagiert an seiner
+Polstelle extrem empfindlich auf solche Abweichungen.
 `6.12323400e-17` ist damit die Fließkomma-Schreibweise für "praktisch null".
 
 [ER] Implementieren Sie Berechnungen mit trigonometrischen Funktionen:
 
 - Erstellen Sie ein Array `angles_deg` mit den Winkeln `[15, 45, 75, 105, 135]` Grad
-- Rechnen Sie es mit `np.radians()` ins Bogenmaß um und berechnen Sie `sin`, `cos` und `tan`
-- Überprüfen Sie die trigonometrische Identität sin²(x) + cos²(x) = 1 für alle Winkel
+- Rechnen Sie es mit `np.radians()` ins Bogenmaß um und berechnen Sie mit `np.sin()`, `np.cos()`
+  und `np.tan()` die Arrays `sin_values`, `cos_values` und `tan_values`
+- Überprüfen Sie die trigonometrische Identität sin²(x) + cos²(x) = 1 für alle Winkel: Geben Sie
+  sowohl die Summe selbst aus als auch das Ergebnis ihres elementweisen Vergleichs mit `1`
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Wie quadriere ich ein ganzes Array?]
@@ -141,41 +147,38 @@ Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den zurückge
   Ihrem Ergebnis und diesen Sollwerten aus
 - Erstellen Sie zusätzlich ein Array `tan_values` mit den Tangenswerten `[0, 1, 1.7321]` und
   berechnen Sie mit `np.arctan()` die entsprechenden Winkel in Grad
-- Bestimmen Sie, welche der drei Winkel exakt herauskommen und welche nicht, und halten Sie das
-  Ergebnis als Kommentar im Quelltext fest
+- Die Werte gehören zu den Winkeln 0, 45 und 60 Grad; bestimmen Sie, welche der drei Winkel exakt
+  herauskommen und welche nicht, und halten Sie das Ergebnis als Kommentar im Quelltext fest
 
 <!-- time estimate: 15 min -->
 
-### Rundungsfunktionen: `round`, `around`, `floor`, `ceil`
-
-NumPy bietet verschiedene Funktionen zum Runden von Zahlen:
+### Rundungsfunktionen: `round`, `floor`, `ceil`
 
 ```python
-numpy.round(a, decimals=0)    # rundet auf die durch decimals angegebene Nachkommastelle
-numpy.around(a, decimals=0)   # Alias für numpy.round, identisches Verhalten
-numpy.floor(a)                # rundet immer ab (zur größten ganzen Zahl <= a)
-numpy.ceil(a)                 # rundet immer auf (zur kleinsten ganzen Zahl >= a)
+numpy.round(a, decimals=0)   # rundet auf die durch decimals angegebene Nachkommastelle
+numpy.floor(a)               # rundet immer ab (zur größten ganzen Zahl <= a)
+numpy.ceil(a)                # rundet immer auf (zur kleinsten ganzen Zahl >= a)
 ```
 
 - `a`: das zu rundende Array
-- `decimals` (nur bei `round`/`around`, Default `0`): Anzahl der Nachkommastellen, auf die
-  gerundet wird
+- `decimals` (nur bei `round`, Default `0`): Anzahl der Nachkommastellen, auf die gerundet wird
+
+In fremdem Code begegnet Ihnen für `np.round` auch der gleichbedeutende Name `np.around`.
 
 ```python
 import numpy as np
 
 # Array mit verschiedenen Dezimalzahlen
-numbers = np.array([1.2, 2.5, -1.5, -2.3, 3.14159])
+numbers = np.array([1.2, 2.5, -1.5, -2.3, 3.14159, -4.6789])
 print('Originalzahlen:', numbers)
 
 # Verschiedene Rundungsarten
-print('Gerundet (round): ', np.round(numbers))
-print('Gerundet (around):', np.around(numbers))   # identisch zu round
+print('Gerundet (round):', np.round(numbers))
 print('Abgerundet (floor):', np.floor(numbers))
 print('Aufgerundet (ceil):', np.ceil(numbers))
 
 # Rundung mit Dezimalstellen
-print('Auf 2 Dezimalstellen:', np.around(numbers, decimals=2))
+print('Auf 2 Dezimalstellen:', np.round(numbers, decimals=2))
 ```
 
 Die 2.5 wird hier zu `2.` und nicht zu `3.`: Bei einem Wert, der genau in der Mitte liegt,
@@ -220,14 +223,19 @@ import numpy as np
 a = np.array([[1, 2, 3], [4, 5, 6]])
 b = np.array([10, 20, 30])
 
-print('Array a:', a)
+print('Array a:')
+print(a)
 print('Array b:', b)
 
 # Arithmetische Operationen
-print('Addition:', np.add(a, b))
-print('Subtraktion:', np.subtract(a, b))
-print('Multiplikation:', np.multiply(a, b))
-print('Division:', np.divide(a, b))
+print('Addition:')
+print(np.add(a, b))
+print('Subtraktion:')
+print(np.subtract(a, b))
+print('Multiplikation:')
+print(np.multiply(a, b))
+print('Division:')
+print(np.divide(a, b))
 ```
 
 `a` hat die Form `(2, 3)`, `b` hat die Form `(3,)` — hier greift Broadcasting
@@ -312,13 +320,12 @@ Basis und Exponent gemeinsam.
   Klären Sie anhand der
   [Dokumentation von `numpy.mod`](https://numpy.org/doc/stable/reference/generated/numpy.mod.html),
   woran das liegt, und halten Sie die Begründung als Kommentar im Quelltext fest
-- Berechnen Sie `np.exp()` für die Werte `[0, 1, 2, 3]`
+- Berechnen Sie `np.exp()` für die Werte `[0, 1, 2, 3]` und vergleichen Sie den zweiten
+  Ergebniswert mit der Konstanten `np.e`
 
 <!-- time estimate: 15 min -->
 
 ### Statistische Funktionen: `min`, `max`, `mean`, `median`, `ptp`, `sum`
-
-NumPy bietet umfangreiche statistische Funktionen zur Datenanalyse:
 
 ```python
 numpy.min(a, axis=None)
@@ -345,7 +352,8 @@ import numpy as np
 data = np.array([[10, 20, 30],
                  [40, 50, 60],
                  [70, 80, 180]])
-print('Datenarray:', data)
+print('Datenarray:')
+print(data)
 
 # Grundlegende Statistiken
 print('Minimum:', np.min(data))
@@ -375,9 +383,11 @@ sortierten Daten davon unberührt bleibt.
 - Erstellen Sie mit `np.array` ein 4×5-Array `data` mit den Werten
   `[[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 21, 88]]`
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
-- Berechnen Sie dieselben Statistiken für jede Zeile und jede Spalte
+- Berechnen Sie Mittelwert und Median zusätzlich für jede Zeile und für jede Spalte
+- Bestimmen Sie, in welcher Zeile Mittelwert und Median am weitesten auseinanderliegen, und
+  begründen Sie das als Kommentar im Quelltext anhand der Werte dieser Zeile
 - Verwenden Sie `np.ptp()`, um die Spannweite (Maximum minus Minimum) für das gesamte Array
-  sowie pro Zeile und pro Spalte zu berechnen
+  sowie pro Zeile zu berechnen
 - Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile und pro Spalte
 
 [EQ] `np.sum(data, axis=0)` liefert bei diesem 4×5-Array ein Ergebnis der Form `(5,)`,
@@ -433,7 +443,8 @@ Werten Sie sie aus:
 
 - Erstellen Sie mit `np.array` ein 1D-Array `scores` mit den 20 Werten
   `[42, 55, 61, 47, 58, 65, 70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53]`
-- Berechnen Sie Mittelwert, Standardabweichung und Varianz
+- Berechnen Sie Mittelwert, Standardabweichung und Varianz, letztere beiden mit dem Default
+  `ddof=0`
 - Bestimmen Sie das 10., 50. und 90. Perzentil
 - Berechnen Sie zusätzlich den Median und vergleichen Sie ihn mit dem 50. Perzentil
 
@@ -465,6 +476,15 @@ Punktzahl erreicht hat.
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
+
+### Knackpunkte
+
+- [EREFR::4]: die Umwandlung nach `float` vor `np.reciprocal()` ist erfolgt; ein Ergebnis aus
+  lauter Nullen zeigt, dass der `dtype` des Integer-Arrays nicht beachtet wurde
+- [EREFR::6]: `axis=1` liefert vier Werte (einen pro Zeile), `axis=0` fünf Werte (einen pro
+  Spalte); vertauschte Zuordnung ist der häufigste Fehler
+- [EREFR::7]: Standardabweichung und Varianz sind mit dem geforderten Default `ddof=0` gerechnet
+  (7.836 und 61.410) und nicht mit `ddof=1` (8.040 und 64.642)
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-math.md]
