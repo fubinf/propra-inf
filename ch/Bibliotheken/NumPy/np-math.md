@@ -16,8 +16,9 @@ assumes: np-Einführung, np-array, np-array2, np-bitwise-string, py-Fstrings
 [SECTION::background::default]
 
 NumPy bietet eine umfangreiche Sammlung mathematischer Funktionen für wissenschaftliche
-Berechnungen und Datenanalyse. Dieses Kapitel behandelt trigonometrische, arithmetische
-und statistische Funktionen, die elementweise auf Arrays angewendet werden.
+Berechnungen und Datenanalyse.
+Diese Aufgabe behandelt trigonometrische, arithmetische und statistische Funktionen,
+die elementweise auf Arrays angewendet werden.
 
 [ENDSECTION]
 
@@ -25,8 +26,8 @@ und statistische Funktionen, die elementweise auf Arrays angewendet werden.
 
 ### Vorwissen
 
-Für diese Aufgabe sind Schul-Trigonometrie (Sinus, Kosinus, Tangens und ihre Umkehrfunktionen)
-sowie Grundlagen der Statistik (Mittelwert, Varianz, Standardabweichung, Perzentile) hilfreich.
+Für diese Aufgabe werden Schul-Trigonometrie (Sinus, Kosinus, Tangens und ihre Umkehrfunktionen)
+sowie Grundlagen der Statistik (Mittelwert, Varianz, Standardabweichung, Perzentile) vorausgesetzt.
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Trigonometrische Funktion (Wikipedia)](https://de.wikipedia.org/wiki/Trigonometrische_Funktion)
@@ -105,7 +106,8 @@ numpy.arccos(x)
 numpy.arctan(x)
 ```
 
-- `x`: Array mit Sinus-/Kosinus-/Tangenswerten (Ergebnis liegt im Bogenmaß)
+- `x`: Array mit Sinus-/Kosinus-/Tangenswerten (Ergebnis liegt im Bogenmaß);
+  `arcsin` und `arccos` sind nur für Werte aus `[-1, 1]` definiert und liefern sonst `nan`
 
 ```python
 import numpy as np
@@ -135,7 +137,7 @@ Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den zurückge
   wie weit Ihr Ergebnis von diesen Sollwerten abweicht
 - Erstellen Sie zusätzlich ein Array `tan_values` mit den Tangenswerten `[0, 1, 1.7321]` und
   berechnen Sie mit `np.arctan()` die entsprechenden Winkel in Grad
-- Bestimmen Sie, welcher der drei Winkel exakt herauskommt und welche nicht
+- Bestimmen Sie, welche der drei Winkel exakt herauskommen und welche nicht
 
 <!-- time estimate: 15 min -->
 
@@ -173,14 +175,9 @@ print('Auf 2 Dezimalstellen:', np.around(numbers, decimals=2))
 
 Die 2.5 wird hier zu `2.` und nicht zu `3.`: Bei einem Wert, der genau in der Mitte liegt,
 rundet NumPy nicht kaufmännisch auf, sondern zur nächsten *geraden* Zahl.
-Deshalb ergibt `np.round(2.5)` den Wert `2.`, `np.round(3.5)` aber `4.`, und `np.round(0.5)`
-ergibt `0.`.
+Deshalb ergibt `np.round(2.5)` den Wert `2.`, `np.round(3.5)` aber `4.`.
 Die Details dazu stehen unter "Notes" in der
 [Dokumentation von `numpy.round`](https://numpy.org/doc/stable/reference/generated/numpy.round.html).
-
-[EQ] Beschreiben Sie den Unterschied zwischen `np.round()`, `np.floor()` und `np.ceil()`
-bei negativen Zahlen. Verwenden Sie als Beispiel die Zahl `-1.7` und erklären Sie
-das jeweilige Verhalten.
 
 [ER] Wenden Sie Rundungsfunktionen praktisch an:
 
@@ -190,6 +187,10 @@ das jeweilige Verhalten.
 - Runden Sie dann auf ganze Zahlen mit den drei Funktionen `round`, `floor` und `ceil`
   und vergleichen Sie das Ergebnis mit Ihrer Vorhersage
 - Runden Sie zusätzlich mit `round` auf 1 Dezimalstelle
+
+[EQ] In Ihrem Ergebnis liefern `np.round()` und `np.floor()` für `-1.678` denselben Wert,
+für `5.999` dagegen `np.round()` und `np.ceil()`.
+Erklären Sie, warum `round` mal mit `floor` und mal mit `ceil` übereinstimmt.
 
 <!-- time estimate: 20 min -->
 
@@ -224,7 +225,7 @@ print('Multiplikation:', np.multiply(a, b))
 print('Division:', np.divide(a, b))
 ```
 
-`a` hat die Form (2, 3), `b` hat die Form (3,) — hier greift Broadcasting
+`a` hat die Form `(2, 3)`, `b` hat die Form `(3,)` — hier greift Broadcasting
 (siehe [PARTREF::np-array2]), damit die Operation trotz unterschiedlicher Formen
 funktioniert.
 
@@ -246,7 +247,7 @@ numpy.abs(x)          # Absolutwert |x|, elementweise
   sowie ein 1D-Array `arr2` mit den Werten `[6, 11, 3, 9]` (wird per Broadcasting auf die Form
   von `arr1` angewendet)
 - Führen Sie alle vier Grundrechenarten durch
-- Berechnen Sie `np.reciprocal()` für die Kehrwerte von `arr1` (achten Sie auf den `dtype`)
+- Berechnen Sie mit `np.reciprocal()` die Kehrwerte von `arr1` (achten Sie auf den `dtype`)
 - Berechnen Sie `np.abs()` für die Differenz `arr1 - arr2`
 
 [HINT::Warum sind alle meine Kehrwerte `0`?]
@@ -292,11 +293,12 @@ print('e^x:', np.exp(np.array([0, 1, 2])))
 
 - Erstellen Sie ein Array `base` mit den Werten `[6, 9, 4, 7]`
 - Berechnen Sie die 3. Potenz aller Werte
-- Erstellen Sie ein Array `exponenten` mit den Werten `[2, 4, 1, 3]` und berechnen Sie
-  `np.power(base, exponenten)`
+- Erstellen Sie ein Array `exponents` mit den Werten `[2, 4, 1, 3]` und berechnen Sie
+  `np.power(base, exponents)`
 - Berechnen Sie den Rest bei Division durch 3 für alle Werte in `base`
-- Berechnen Sie zusätzlich `np.mod(-7, 3)`; das Ergebnis ist positiv, obwohl der Dividend negativ
-  ist. Klären Sie anhand der [Dokumentation von `numpy.mod`](https://numpy.org/doc/stable/reference/generated/numpy.mod.html),
+- Berechnen Sie zusätzlich `np.mod(-7, 3)`; das Ergebnis ist positiv, obwohl der Dividend negativ ist.
+  Klären Sie anhand der
+  [Dokumentation von `numpy.mod`](https://numpy.org/doc/stable/reference/generated/numpy.mod.html),
   woran das liegt, und halten Sie die Begründung als Kommentar im Quelltext fest
 - Berechnen Sie `np.exp()` für die Werte `[0, 1, 2, 3]`
 
@@ -330,7 +332,7 @@ import numpy as np
 # 2D-Array für statistische Analyse
 data = np.array([[10, 20, 30],
                  [40, 50, 60],
-                 [70, 80, 90]])
+                 [70, 80, 180]])
 print('Datenarray:', data)
 
 # Grundlegende Statistiken
@@ -351,13 +353,18 @@ print('Summe, axis=1:', np.sum(data, axis=1))
 print('Spannweite (gesamt):', np.ptp(data))
 ```
 
+Mittelwert und Median fallen hier auseinander: `np.mean(data)` ergibt `60.0`, `np.median(data)`
+dagegen `50.0`.
+Der große Wert `180` zieht den Mittelwert nach oben, während der Median als mittlerer Wert der
+sortierten Daten davon unberührt bleibt.
+
 [ER] Berechnen Sie statistische Kennzahlen und geben Sie die Ergebnisse aus:
 
 - Erstellen Sie mit `np.array` ein 4×5-Array `data` mit den Werten
   `[[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 21, 88]]`
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie dieselben Statistiken für jede Zeile und jede Spalte
-- Verwenden Sie `np.ptp()`, um die Spannweite (max - min) zu berechnen
+- Verwenden Sie `np.ptp()`, um die Spannweite (Maximum minus Minimum) zu berechnen
 - Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile
 
 [EQ] `np.sum(data, axis=0)` liefert bei diesem 4×5-Array ein Ergebnis der Form `(5,)`,
@@ -384,7 +391,8 @@ numpy.percentile(a, q, axis=None)   # Wert, unter dem q Prozent der Daten liegen
 Der Default `ddof=0` ist wichtig, wenn Sie Ihr Ergebnis gegen eine andere Quelle prüfen:
 Lehrbücher und Taschenrechner verwenden für Stichproben meist `1/(n-1)`, was in NumPy
 `ddof=1` entspricht und einen etwas größeren Wert ergibt.
-Einzelheiten stehen in der [Dokumentation von `numpy.std`](https://numpy.org/doc/stable/reference/generated/numpy.std.html);
+Einzelheiten stehen in der
+[Dokumentation von `numpy.std`](https://numpy.org/doc/stable/reference/generated/numpy.std.html);
 die Berechnungsvarianten von `percentile` beschreibt der Parameter `method` in der
 [Dokumentation von `numpy.percentile`](https://numpy.org/doc/stable/reference/generated/numpy.percentile.html).
 
@@ -416,17 +424,18 @@ Werten Sie sie aus:
 - Bestimmen Sie das 10., 50. und 90. Perzentil
 - Berechnen Sie zusätzlich den Median und vergleichen Sie ihn mit dem 50. Perzentil
 
-[EQ] Formulieren Sie für das 10. und das 90. Perzentil je einen Satz, der den berechneten Wert
-auf die Klausur bezieht.
-Erklären Sie außerdem, warum der Median und das 50. Perzentil denselben Wert haben.
-
 [HINT::Lange Nachkommastellen bei der Ausgabe]
 Werte wie die Varianz können mit vielen Nachkommastellen ausgegeben werden (z. B.
 `61.410000000000004` statt `61.41`) — das liegt an der begrenzten Genauigkeit von
-Fließkommazahlen, nicht an einem Fehler. Mit einer f-String-Formatierung wie
-`f'{wert:.3f}'` (in [PARTREF::py-Fstrings]) lässt sich die Ausgabe auf sinnvolle
-Nachkommastellen begrenzen.
+Fließkommazahlen, nicht an einem Fehler.
+Mit einer f-String-Formatierung wie `f'{wert:.3f}'` (in [PARTREF::py-Fstrings]) lässt sich
+die Ausgabe auf sinnvolle Nachkommastellen begrenzen.
 [ENDHINT]
+
+[EQ] Formulieren Sie für das 10. und das 90. Perzentil je einen Satz, der den berechneten Wert
+auf die Klausur bezieht.
+Erklären Sie außerdem, warum der Median `56.5` beträgt, obwohl keine Person genau diese
+Punktzahl erreicht hat.
 
 <!-- time estimate: 15 min -->
 
