@@ -73,8 +73,8 @@ Rufen Sie in `register`, zwischen dem Anlegen des Studierenden und der Weiterlei
 `messages.success` mit dem aktuellen Request und dem Text "Registrierung erfolgreich" auf.
 
 Sichtbar wird die Meldung erst, wenn ein Template sie auch anzeigt.
-`messages` ist dafür bereits in jedem Template verfügbar, ganz ohne dass eine View es in den
-Context aufnehmen muss; dafür sorgt der Eintrag
+`messages` ist dafür bereits in jedem Template verfügbar, ganz ohne dass eine View diese
+Variable in den Context aufnehmen muss; dafür sorgt der Eintrag
 `django.contrib.messages.context_processors.messages` unter `context_processors` in
 `settings.py`.
 Ein solcher Context-Prozessor ist eine Funktion, die den Context jedes mit `render()`
@@ -104,7 +104,8 @@ Meldung "verbraucht" wird?
 [HINT::Ich sehe die Meldung auf keiner einzigen Seite]
 Prüfen Sie zuerst `base.html`: Steht Ihr neuer `{% for %}`-Block wirklich außerhalb von
 `{% block content %}`?
-Innerhalb des Blocks überschreibt jedes Kind-Template ihn, und er wird nie ausgegeben.
+Was innerhalb dieses Blocks steht, ersetzt jedes Kind-Template durch seinen eigenen Inhalt;
+die Schleife käme dann nie zur Ausgabe.
 Prüfen Sie danach, ob `messages.success` in `register` vor dem `redirect` steht.
 [ENDHINT]
 
@@ -128,8 +129,6 @@ Auch das Messages-Framework aus dem vorigen Abschnitt hängt an einem Eintrag di
 Die `MessageMiddleware` speichert beim Erzeugen der Response nur die noch ungelesenen Meldungen
 wieder ab, standardmäßig in einem signierten Cookie `messages` (Cookies kennen Sie aus
 [PARTREF::http-State]).
-Die beim Rendern gelesenen Meldungen fallen dabei weg; deshalb war die Meldung beim zweiten
-Aufruf verschwunden.
 In welcher Reihenfolge die Liste abgearbeitet wird und was eine Middleware sonst noch leisten
 kann, erklärt die
 [Django-Doku zu Middleware](https://docs.djangoproject.com/en/stable/topics/http/middleware/).
@@ -144,8 +143,8 @@ Zeile wieder unverändert dastehen.
 Der Autoreloader des Entwicklungsservers erfasst auch `settings.py`, sodass die Änderung ohne
 Neustart wirkt; warten Sie kurz.
 
-[EC] Senden Sie den folgenden Aufruf, der einen POST ohne CSRF-Token an `/search-post/`
-schickt und nur den Statuscode ausgibt:
+[EC] Senden Sie denselben Aufruf wie in [PARTREF::django-form], der einen POST ohne
+CSRF-Token an `/search-post/` schickt und nur den Statuscode ausgibt:
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/
@@ -199,10 +198,11 @@ curl -sI "http://127.0.0.1:8071/"
 beiden, obwohl die `XFrameOptionsMiddleware` im ersten Aufruf fehlte, und welcher andere
 Eintrag der `MIDDLEWARE`-Liste kommt als Urheber dieser Header in Frage?
 Was könnte eine fremde Website mit Ihrer Seite anstellen, solange `X-Frame-Options` fehlt?
-Für die erste Frage hilft die oben verlinkte Übersicht der eingebauten Middlewares.
+Für die erste Frage hilft die im vorigen Abschnitt verlinkte Übersicht der eingebauten
+Middlewares.
 
-Dieser und der vorige Abschnitt haben als einzige Datei `settings.py` verändert; nehmen Sie
-diese Datei deshalb mit in Ihre `*.files`-Datei auf.
+In diesem und dem vorigen Abschnitt haben Sie als einzige Datei `settings.py` verändert;
+nehmen Sie diese Datei deshalb mit in Ihre `*.files`-Datei auf.
 <!-- time estimate: 15 min -->
 
 ### Weitere Bausteine im Überblick
@@ -225,6 +225,8 @@ Bedarf gezielt danach suchen können:
   Dasselbe System (`django.contrib.auth`) funktioniert auch außerhalb der Admin-Oberfläche:
   Es liefert eigene Login-/Logout-Views, und einzelne Views lassen sich damit so absichern,
   dass nur angemeldete Nutzer sie aufrufen dürfen.
+  Wer gerade angemeldet ist, hält Django dabei in einer Session fest, die wie die Meldungen
+  oben an einem Cookie hängt.
 
 [EQ] Welcher dieser drei Bausteine hätte Ihnen in [PARTREF::django-form] am meisten geholfen,
 an welcher konkreten Stelle, und was hätte er dort besser gemacht?
