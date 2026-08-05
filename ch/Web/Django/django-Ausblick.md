@@ -1,6 +1,6 @@
 title: Django Ausblick
 stage: alpha
-timevalue: 0.75
+timevalue: 0.85
 difficulty: 2
 requires: django-form
 assumes: curl
@@ -77,30 +77,21 @@ Sichtbar wird die Meldung erst, wenn ein Template sie auch anzeigt.
 Context aufnehmen muss; dafür sorgt der Eintrag
 `django.contrib.messages.context_processors.messages` unter `context_processors` in
 `settings.py`.
-Zur Anzeige dient wieder ein Filter mit Argument, wie Sie ihn aus [PARTREF::django-template]
-von `default`/`yesno` kennen, diesmal allerdings ein anderer.
-`|join:TRENNZEICHEN` reiht die Elemente eines iterierbaren Objekts, getrennt durch die
-angegebene Zeichenfolge, zu einem einzigen Text aneinander.
-Konkretes Beispiel:
+Ein solcher Context-Prozessor ist eine Funktion, die den Context jedes mit `render()`
+erzeugten Templates automatisch um weitere Variablen ergänzt.
+Durchlaufen lässt sich `messages` wie jede andere Liste mit einer `{% for %}`-Schleife aus
+[PARTREF::django-template].
+Jedes Element ist dabei ein Meldungsobjekt: `{{ message }}` liefert den Text,
+`{{ message.tags }}` die Stufe, unter der die Meldung abgelegt wurde.
+Ein Beispiel für einen solchen Block zeigt der Abschnitt "Displaying messages" der oben
+verlinkten Doku zum Messages-Framework.
 
-```html
-{{ zutaten|join:" + " }}
-```
-
-Bei `zutaten = ["Mehl", "Zucker", "Eier"]` ergibt das `Mehl + Zucker + Eier`; bei einer
-leeren Liste bleibt die Ausgabe leer.
-Nachschlagen lässt sich dieser Filter wie alle anderen in der Django-Doku zu
-[Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#join).
-
-[ER] Fügen Sie in `base.html` unmittelbar vor der Zeile `{% block content %}` eine Zeile ein,
-die `messages` mit dem Filter `join` und dem Trennzeichen `", "` ausgibt.
-
-Hier genügt `join`; produktiver Code verwendet an dieser Stelle eine `{% for %}`-Schleife über
-`messages`, um jede Meldung einzeln und mit ihrer Stufe darzustellen (siehe
-"Displaying messages" in der oben verlinkten Doku zum Messages-Framework).
+[ER] Fügen Sie in `base.html` unmittelbar vor der Zeile `{% block content %}` eine
+`{% for %}`-Schleife über `messages` ein, die jede Meldung als eigenen Absatz (`<p>`) in der
+Form `Stufe: Text` ausgibt.
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
-"Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com".
+`Sophie Wagner`, Alter `22` und der E-Mail `sophie@example.com`.
 Sie landen auf der Detailseite.
 Rufen Sie die Studierendenliste danach im Browser unter `http://127.0.0.1:8071/students/` auf.
 Laden Sie dieselbe Seite anschließend noch ein zweites Mal.
@@ -111,9 +102,9 @@ Was sagen Ihnen die beiden Aufrufe der Studierendenliste über den Zeitpunkt, zu
 Meldung "verbraucht" wird?
 
 [HINT::Ich sehe die Meldung auf keiner einzigen Seite]
-Prüfen Sie zuerst `base.html`: Steht Ihre neue Zeile wirklich außerhalb von
+Prüfen Sie zuerst `base.html`: Steht Ihr neuer `{% for %}`-Block wirklich außerhalb von
 `{% block content %}`?
-Innerhalb des Blocks überschreibt jedes Kind-Template sie, und sie wird nie ausgegeben.
+Innerhalb des Blocks überschreibt jedes Kind-Template ihn, und er wird nie ausgegeben.
 Prüfen Sie danach, ob `messages.success` in `register` vor dem `redirect` steht.
 [ENDHINT]
 
@@ -134,8 +125,9 @@ dabei eingreifen kann.
 Welche Middlewares ein Projekt verwendet, steht als Liste `MIDDLEWARE` in `settings.py`; für
 den CSRF-Schutz ist der Eintrag `CsrfViewMiddleware` verantwortlich.
 Auch das Messages-Framework aus dem vorigen Abschnitt hängt an einem Eintrag dieser Liste: Die
-`MessageMiddleware` schreibt die gelesenen Meldungen beim Erzeugen der Response aus der
-Session zurück, weshalb die Meldung dort genau beim zweiten Aufruf verschwand.
+`MessageMiddleware` speichert beim Erzeugen der Response nur die noch ungelesenen Meldungen
+wieder ab (standardmäßig in einem signierten Cookie `messages`), die beim Rendern gelesenen
+fallen dabei weg; deshalb war die Meldung beim zweiten Aufruf verschwunden.
 In welcher Reihenfolge die Liste abgearbeitet wird und was eine Middleware sonst noch leisten
 kann, erklärt die
 [Django-Doku zu Middleware](https://docs.djangoproject.com/en/stable/topics/http/middleware/).
@@ -147,8 +139,8 @@ Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
 Das ist nur ein Zwischenzustand für den folgenden Test: Am Ende dieses Abschnitts muss die
 Zeile wieder unverändert dastehen.
 
-Der Autoreloader des Entwicklungsservers erfasst auch `settings.py`, die Änderung wirkt
-also ohne Neustart; warten Sie kurz.
+Der Autoreloader des Entwicklungsservers erfasst auch `settings.py`, sodass die Änderung ohne
+Neustart wirkt; warten Sie kurz.
 
 [EC] Senden Sie den folgenden Aufruf, der einen POST ohne CSRF-Token an `/search-post/`
 schickt und nur den Statuscode ausgibt:
@@ -158,6 +150,13 @@ curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:80
 ```
 
 [EC] Kommentieren Sie die Zeile wieder ein und senden Sie denselben Aufruf ein zweites Mal.
+
+[HINT::Ich bekomme beide Male denselben Statuscode]
+Dann hatte der Entwicklungsserver Ihre geänderte `settings.py` beim ersten Aufruf noch nicht
+eingelesen.
+Im Serverfenster erscheint nach jeder Änderung die Zeile
+`settings.py changed, reloading.`; warten Sie diese ab und wiederholen Sie den Aufruf.
+[ENDHINT]
 
 [EQ] Verändert haben Sie keine einzige View, sondern nur eine Zeile in `settings.py`, und
 trotzdem ändert sich das Verhalten von `/search-post/`.
@@ -169,7 +168,7 @@ Was folgt daraus für die Frage, wo ein Schutz dieser Art sinnvollerweise ansetz
 
 Das dritte Bordmittel ist eine weitere Sicherheits-Middleware: `XFrameOptionsMiddleware`
 setzt bei jeder Antwort den Header `X-Frame-Options`, standardmäßig mit dem Wert `DENY`, der
-verhindert, dass Ihre Seite in einem `<iframe>` auf einer fremden Website eingebettet wird.
+jede Einbettung Ihrer Seite in einen `<iframe>` verhindert, gleich von welcher Website aus.
 Lesen Sie vorab den Abschnitt "An example of clickjacking" der
 [Django-Doku zu Clickjacking](https://docs.djangoproject.com/en/stable/ref/clickjacking/#an-example-of-clickjacking).
 Dort steht das Angriffsszenario, um das es in der Frage am Ende dieses Abschnitts geht.
@@ -186,6 +185,9 @@ curl -sI "http://127.0.0.1:8071/"
 ```
 
 [EC] Kommentieren Sie die Zeile wieder ein und senden Sie denselben Aufruf ein zweites Mal.
+
+Die beiden vorigen Abschnitte haben als einzige Datei `settings.py` verändert; nehmen Sie
+diese Datei deshalb mit in Ihre `*.files`-Datei auf.
 
 [EQ] Vergleichen Sie die beiden Ausgaben: Welche Sicherheits-Header stehen unverändert in
 beiden, obwohl die `XFrameOptionsMiddleware` im ersten Aufruf fehlte, und welcher andere
@@ -214,7 +216,10 @@ Bedarf gezielt danach suchen können:
   Dasselbe System (`django.contrib.auth`) funktioniert auch außerhalb der Admin-Oberfläche:
   Es liefert eigene Login-/Logout-Views, und einzelne Views lassen sich damit so absichern,
   dass nur angemeldete Nutzer sie aufrufen dürfen.
-<!-- time estimate: 5 min -->
+
+[EQ] Welcher dieser drei Bausteine hätte Ihnen in [PARTREF::django-form] am meisten geholfen,
+an welcher konkreten Stelle, und was hätte er dort besser gemacht?
+<!-- time estimate: 10 min -->
 
 ### Weiterführend
 
@@ -237,24 +242,22 @@ Bedarf gezielt danach suchen können:
 **Knackpunkte:**
 
 - [EREFR::1] + [EREFR::2] + [EREFQ::1]: `messages.success(...)` steht in `register`
-  unmittelbar vor dem `redirect(...)`, `base.html` gibt `messages` mit `|join:", "` aus.
-  Student erkennt, dass die Meldung erst auf der nächsten Seite erscheint, die diese Zeile
-  tatsächlich rendert (hier: `students_list.html` über `base.html`), und nicht schon auf der
-  unmittelbar nächsten Seite überhaupt.
-  Student erkennt außerdem, dass sie beim zweiten Aufruf derselben Seite verschwunden ist.
-- [EREFC::1] + [EREFC::2] + [EREFQ::2]: Beide Protokolleinträge zeigen denselben `curl`-Aufruf,
-  mit `200` bei ausgebauter und `403` bei wieder eingebauter `CsrfViewMiddleware`; Student
-  erkennt, dass eine Middleware vor allen Views liegt und der Schutz deshalb an einer einzigen
-  Stelle für sämtliche POST-Views wirkt (also auch für `register`, nicht aber für die reinen
-  GET-Views), statt in jeder View einzeln programmiert werden zu müssen.
-- [EREFC::3] + [EREFC::4] + [EREFQ::3]: Beide Protokolleinträge zeigen denselben
-  `curl -sI`-Aufruf, einmal ohne und einmal mit `X-Frame-Options: DENY`, während die übrigen
-  Sicherheits-Header in beiden Ausgaben stehen; Student erkennt, dass ohne diesen Header die
-  Seite in ein fremdes `<iframe>` eingebettet werden könnte.
+  unmittelbar vor dem `redirect(...)`, `base.html` gibt `messages` mit einer
+  `{% for %}`-Schleife außerhalb von `{% block content %}` aus; Student erkennt, dass die
+  Meldung nicht auf der unmittelbar nächsten Seite erscheint, sondern erst auf der nächsten,
+  die diesen Block tatsächlich rendert, weil `student_detail` aus [PARTREF::django-view] eine
+  `HttpResponse` ohne Template zurückgibt.
+- [EREFQ::2]: Student überträgt die an einer einzigen View beobachtete Wirkung auf alle
+  übrigen, benennt also `register` als ebenfalls betroffen und die reinen GET-Views
+  (`hello`, `students_list`, `student_detail`, `search`) als nicht betroffen; wer nur
+  `/search-post/` wiederholt, hat den Punkt verfehlt, dass ein Schutz dieser Art an einer
+  einzigen Stelle für sämtliche POST-Views wirkt, statt in jeder View einzeln programmiert
+  werden zu müssen.
 - Beide Auskommentierungen waren nur Zwischenschritte: In der abgegebenen `settings.py` stehen
   `CsrfViewMiddleware` und `XFrameOptionsMiddleware` wieder aktiv in `MIDDLEWARE`.
-  Das Kommandoprotokoll allein deckt das nicht ab, weil der jeweils zweite `curl`-Aufruf vor
-  der Abgabe liegt und deshalb auch bei vergessener Wiederherstellung korrekt aussieht.
+  Als einziger Punkt lässt sich dieser nicht aus dem Kommandoprotokoll ablesen, weil der
+  jeweils zweite `curl`-Aufruf vor der Abgabe liegt und deshalb auch bei vergessener
+  Wiederherstellung korrekt aussieht.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-Ausblick.md]
