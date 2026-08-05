@@ -1,6 +1,6 @@
 title: NumPy Bitwise-Operationen und String-Funktionen
 stage: alpha
-timevalue: 2.25
+timevalue: 2.5
 difficulty: 2
 assumes: np-Einführung, np-array, np-array2, py-Fstrings, py-List-Comprehensions
 ---
@@ -87,10 +87,11 @@ numpy.binary_repr(num, width=None)
 ```
 
 - `num`: die darzustellende Ganzzahl
-- `width` (Default `None`): genaue Stellenzahl der Ausgabe; positive Zahlen werden mit führenden
-  Nullen aufgefüllt (`width=8` liefert für `13` die Ausgabe `00001101`), negative als
-  Zweierkomplement dieser Breite (`width=8` liefert für `-4` die Ausgabe `11111100`); reicht die
-  Breite für die Zahl nicht aus, gibt es einen `ValueError`
+- `width` (Default `None`): genaue Stellenzahl der Ausgabe.
+  Positive Zahlen werden mit führenden Nullen aufgefüllt (`width=8` liefert für `13` die Ausgabe
+  `00001101`), negative als Zweierkomplement dieser Breite (`width=8` liefert für `-4` die Ausgabe
+  `11111100`).
+  Reicht die Breite für die Zahl nicht aus, gibt es einen `ValueError`
 
 ```python
 import numpy as np
@@ -196,6 +197,20 @@ Rechenweg mit der binären Darstellung.
 - Verschieben Sie alle Werte um 2 Positionen nach rechts
 - Vergleichen Sie die Ergebnisse mit den arithmetischen Operationen (`*2`, `//4` und `/4`), z. B. mit
   dem aus [PARTREF::np-array] bekannten `np.array_equal()`
+- Ein RGB-Farbwert steckt als drei Bytes in einer Zahl: bei `0xFF8800` (die Schreibweise `0x...`
+  steht für eine Hexadezimalzahl, je zwei Stellen entsprechen einem Byte) ist `0xFF` = 255 der Rot-,
+  `0x88` = 136 der Grün- und `0x00` = 0 der Blauanteil.
+  Erstellen Sie ein Array `farben` mit den Werten `[0xFF8800, 0x3366CC]` und holen Sie mit
+  `np.right_shift()` und `np.bitwise_and()` die drei Farbanteile als je ein eigenes Array heraus
+- Geben Sie zusätzlich `np.right_shift(farben, 8)` ohne die Maskierung aus und erklären Sie im
+  Kommentar, wozu `np.bitwise_and()` hier nötig ist
+
+[HINT::Ich weiß beim Farbwert nicht, um wie viele Stellen ich schieben muss]
+Ein Byte sind 8 Bit.
+Der Blauanteil steht ganz unten, der Grünanteil 8 Bit darüber, der Rotanteil noch einmal 8 Bit
+darüber.
+`np.bitwise_and(x, 0xFF)` behält von `x` genau die untersten 8 Bit.
+[ENDHINT]
 
 [EQ] Bei `5` und `25` weicht Ihr Verschiebungsergebnis von einer gewöhnlichen Division ab: `5 / 4`
 wäre `1.25`, die Verschiebung liefert `1`.
@@ -203,7 +218,7 @@ Schreiben Sie die Bitmuster von `5` und des verschobenen Ergebnisses auf und ben
 Bits dabei verschwinden.
 Warum kann eine Rechts-Verschiebung deshalb immer nur abschneiden und nie runden?
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 30 min -->
 
 ### Bitweise Negation: `invert`
 
@@ -394,10 +409,10 @@ Was müssten Sie ändern, damit auch dort ersetzt wird?
 
 <!-- time estimate: 20 min -->
 
-### String-Teilung, -Verbindung und -Suche: `char.split`, `char.join`, `strings.find`
+### String-Teilung, Zeichen-Verbindung und Teilstring-Suche: `char.split`, `char.join`, `strings.find`
 
-`find` gibt es in beiden Modulen, daher nutzen wir wie zuvor `numpy.strings`; für `split`/`join`
-bleibt es bei `numpy.char`.
+`find` gibt es in beiden Modulen; wir nutzen daher wie zuvor das aktuelle `numpy.strings`, für
+`split`/`join` bleibt es bei `numpy.char`.
 
 [FOLDOUT::Warum fehlen `split` und `join` in `numpy.strings`?]
 `split` liefert für jedes Element eine unterschiedlich lange Python-Liste von Teilstrings zurück;
@@ -444,13 +459,13 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
 [ER] Implementieren Sie erweiterte String-Operationen:
 
 - Erstellen Sie ein Array `codes` mit den Produktcodes `['AB-12-XY', 'CD-34-ZT']`
-- Verwenden Sie `np.char.split(codes, '-')` zum Aufteilen an den Bindestrichen
+- Teilen Sie `codes` mit `np.char.split()` an den Bindestrichen auf
 - Erstellen Sie ein Array `abbr` mit den Kürzeln `['DE', 'FR']` und fügen Sie mit `np.char.join()`
   zwischen die Buchstaben jedes Kürzels einen Punkt ein
 - Verwenden Sie `np.strings.replace()`, um in `codes` alle Bindestriche durch Unterstriche zu
   ersetzen
-- Testen Sie `np.strings.find()`, um die Position des ersten Bindestrichs in jedem Element von
-  `codes` zu finden
+- Ermitteln Sie mit `np.strings.find()` die Position des ersten Bindestrichs in jedem Element von
+  `codes`
 
 <!-- time estimate: 10 min -->
 
@@ -477,18 +492,22 @@ Um den Zeitunterschied zwischen zwei Operationen zu messen, bietet Pythons Stand
 `time`-Modul: `time.perf_counter()` gibt einen Zeitpunkt in Sekunden mit der höchsten verfügbaren
 Auflösung zurück und ist damit für kurze Laufzeiten gedacht (anders als `time.time()`, das die
 verstellbare Systemuhr abliest).
-Ruft man es vor und nach einer Operation auf, ergibt die Differenz die benötigte Laufzeit; mit der
-in [PARTREF::py-Fstrings] eingeführten f-String-Formatierung mit Präzisionsangabe (`:.4f`) lässt
-sich die Ausgabe auf sinnvolle Nachkommastellen begrenzen:
+Ruft man es vor und nach einer Operation auf, ergibt die Differenz die benötigte Laufzeit.
+Eine einzelne Messung schwankt allerdings stark, je nachdem was der Rechner sonst gerade tut;
+deshalb misst man mehrfach und nimmt die kürzeste Zeit, denn sie ist am wenigsten gestört.
+Mit der in [PARTREF::py-Fstrings] eingeführten f-String-Formatierung mit Präzisionsangabe (`:.5f`)
+lässt sich die Ausgabe auf sinnvolle Nachkommastellen begrenzen:
 
 ```python
 import time
 
-start = time.perf_counter()
-# ... Operation, deren Dauer gemessen werden soll ...
-ende = time.perf_counter()
-dauer = ende - start
-print(f'Dauer: {dauer:.4f} Sekunden')
+zeiten = []
+for lauf in range(5):
+    start = time.perf_counter()
+    # ... Operation, deren Dauer gemessen werden soll ...
+    zeiten.append(time.perf_counter() - start)
+dauer = min(zeiten)
+print(f'Kürzeste Dauer: {dauer:.5f} Sekunden')
 ```
 
 [ER] Messen Sie den Geschwindigkeitsunterschied zwischen `np.strings.startswith` und einer
@@ -501,9 +520,8 @@ Sie die String-Faktoren einordnen können:
 - Erstellen Sie ein Array `words` mit 100000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
   `'produkt99999'` (z. B. mit einer List Comprehension aus [PARTREF::py-List-Comprehensions] und
   `np.array`)
-- Messen Sie mit dem `time`-Modul die Laufzeit von `np.strings.startswith(words, 'produkt123')` über
-  5 Wiederholungen und notieren Sie die kürzeste gemessene Zeit (sie ist am wenigsten durch andere
-  Prozesse gestört)
+- Messen Sie mit dem `time`-Modul die Laufzeit von `np.strings.startswith(words, 'produkt123')` und
+  nehmen Sie wie oben gezeigt die kürzeste aus 5 Wiederholungen
 - Messen Sie auf dieselbe Weise die Schleife `[w.startswith('produkt123') for w in words]`
 - Messen Sie auf dieselbe Weise dieselbe Schleife über `words_list = list(words)`, wobei die
   Umwandlung selbst außerhalb der Messung stattfindet
@@ -517,7 +535,7 @@ Sie die String-Faktoren einordnen können:
 [HINT::Wie überprüfe ich mein Ergebnis?]
 `np.strings.startswith` ist deutlich schneller als beide Schleifen, und die Schleife über das Array
 ist noch einmal erheblich langsamer als die über die Liste.
-Der Zahlen-Faktor liegt klar über dem String-Faktor der Listen-Schleife.
+Auch bei der numerischen Messung ist der NumPy-Aufruf klar schneller als die Schleife.
 Konkrete Zahlen hängen stark von Ihrer Maschine ab; entscheidend sind diese Verhältnisse, nicht
 bestimmte Werte.
 [ENDHINT]
@@ -526,7 +544,12 @@ bestimmte Werte.
 Welche der beiden Messungen beantwortet die Frage "Wie viel bringt hier die Vektorisierung?" fairer,
 und was folgt daraus für eine Aussage der Form "NumPy ist N-mal schneller als Python"?
 
-<!-- time estimate: 20 min -->
+[EQ] Stellen Sie den Zahlen-Faktor und den String-Faktor der Listen-Schleife nebeneinander.
+Bestätigt Ihre Messung die Aussage vom Beginn des String-Teils, dass Vektorisierung dort weniger
+einbringt als bei numerischen Operationen?
+Begründen Sie mit Ihren Zahlen.
+
+<!-- time estimate: 25 min -->
 
 ### Weiterführend
 
@@ -556,11 +579,12 @@ und was folgt daraus für eine Aussage der Form "NumPy ist N-mal schneller als P
   jedes einzelnen Strings (`'DE'` → `'D.E'`), nicht zwischen den Array-Elementen; wer es als
   Verbinder der Elemente auffasst, erzeugt hier ein falsches Ergebnis.
   `split`/`replace`/`find` liefern für alle Elemente die korrekten Ergebnisse
-- [EREFR::7] + [EREFQ::5]: alle fünf Zeiten sind gemessen, die Schleife über das Array ist klar
-  langsamer als die über die Liste, und der Zahlen-Faktor liegt klar über dem String-Faktor der
-  Listen-Schleife (konkrete Zahlen sind maschinenabhängig und daher kein Prüfkriterium).
+- [EREFR::7] + [EREFQ::5] + [EREFQ::6]: alle fünf Zeiten sind gemessen, die Schleife über das Array
+  ist klar langsamer als die über die Liste, und der Zahlen-Faktor liegt klar über dem String-Faktor
+  der Listen-Schleife (konkrete Zahlen sind maschinenabhängig und daher kein Prüfkriterium).
   Studierende erkennen, dass die Messung über die Liste der fairere Vergleich für die Vektorisierung
-  ist und dass ein einzelner Faktor ohne Angabe des Vergleichspartners wenig aussagt
+  ist, dass ein einzelner Faktor ohne Angabe des Vergleichspartners wenig aussagt, und dass ihre
+  eigenen Zahlen die kleinere Wirkung der Vektorisierung bei String-Operationen bestätigen
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-bitwise-string.md]
