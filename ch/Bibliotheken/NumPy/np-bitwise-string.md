@@ -10,8 +10,8 @@ assumes: np-Einführung, np-array, np-array2, py-Fstrings, py-List-Comprehension
 - Ich verstehe die grundlegenden Bitwise-Operationen in NumPy und kann sie anwenden.
 - Ich verstehe, wie das Ergebnis einer Bitwise-Operation vom `dtype` des Arrays abhängt.
 - Ich kann NumPy-String-Funktionen für die Textverarbeitung einsetzen.
-- Ich kann die Laufzeit einer vektorisierten Operation gegen eine Python-Schleife messen und weiß,
-  dass ein Beschleunigungsfaktor nur zusammen mit seinem Vergleichspartner aussagekräftig ist.
+- Ich kann die Laufzeit einer vektorisierten Operation mit der einer Python-Schleife vergleichen und
+  weiß, dass ein Beschleunigungsfaktor nur zusammen mit seinem Vergleichspartner aussagekräftig ist.
 - Ich habe gemessen, dass die Vektorisierung bei String-Operationen deutlich weniger einbringt als
   bei numerischen.
 
@@ -45,6 +45,12 @@ aneignet, braucht entsprechend länger.
 
 Bitwise-Operationen arbeiten direkt auf der binären Darstellung von Zahlen: Jede Position einer
 Binärzahl repräsentiert eine Zweierpotenz, z. B. steht `00001101` für `1×8 + 1×4 + 0×2 + 1×1 = 13`.
+
+Praktisch braucht man das vor allem, um mehrere Informationen in einer einzigen Zahl unterzubringen
+und einzeln wieder herauszuholen: Statusflags oder Zugriffsrechte liegen als einzelne Bits in einem
+Integer, eine RGB-Farbe steckt als drei Bytes in einem 32-Bit-Wert.
+`bitwise_and` prüft oder maskiert dann einzelne Bits, `left_shift` und `right_shift` schieben das
+gewünschte Feld an die richtige Stelle.
 
 Python selbst kennt bereits die Operatoren `&`, `|`, `^`, `~`, `<<` und `>>` für Bitwise-Operationen
 auf einzelnen ganzen Zahlen.
@@ -81,8 +87,10 @@ numpy.binary_repr(num, width=None)
 ```
 
 - `num`: die darzustellende Ganzzahl
-- `width` (Default `None`): Mindestanzahl der Stellen der Ausgabe, mit führenden Nullen aufgefüllt
-  (z. B. `width=8` erzwingt eine 8-stellige Ausgabe wie `00001101`)
+- `width` (Default `None`): genaue Stellenzahl der Ausgabe; positive Zahlen werden mit führenden
+  Nullen aufgefüllt (`width=8` liefert für `13` die Ausgabe `00001101`), negative als
+  Zweierkomplement dieser Breite (`width=8` liefert für `-4` die Ausgabe `11111100`); reicht die
+  Breite für die Zahl nicht aus, gibt es einen `ValueError`
 
 ```python
 import numpy as np
@@ -197,7 +205,7 @@ Warum kann eine Rechts-Verschiebung deshalb immer nur abschneiden und nie runden
 
 <!-- time estimate: 20 min -->
 
-### Bitweise Negation mit `invert`
+### Bitweise Negation: `invert`
 
 `invert()` kehrt jedes einzelne Bit einer Zahl um (aus 0 wird 1 und umgekehrt):
 
@@ -210,7 +218,7 @@ numpy.invert(x)
 Bei vorzeichenbehafteten Ganzzahltypen wie `int8` wird das Ergebnis als Zweierkomplement
 interpretiert: Das höchstwertige Bit zeigt das Vorzeichen an (1 = negativ), und eine negative Zahl
 `-n` wird als Bitmuster von `n - 1` mit umgekehrten Bits dargestellt.
-Deshalb ergibt das Umkehren aller Bits einer Zahl `n` immer `-(n + 1)`:
+Deshalb ergibt das Umkehren aller Bits einer Zahl `n` dort `-(n + 1)`:
 
 ```python
 import numpy as np
@@ -264,8 +272,8 @@ Breite ausgelegt; es erhält keine Updates mehr und könnte in einer künftigen 
 werden.
 [ENDFOLDOUT]
 
-Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String-Operation auf jedes
-Element eines Arrays gleichzeitig an.
+Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String-Operation in einem
+einzigen Aufruf auf jedes Element eines Arrays an.
 Wie bei einzelnen Python-Strings verändern sie das ursprüngliche Array nicht, sondern geben immer
 ein neues Array mit den Ergebnissen zurück.
 
@@ -438,7 +446,7 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
 - Erstellen Sie ein Array `codes` mit den Produktcodes `['AB-12-XY', 'CD-34-ZT']`
 - Verwenden Sie `np.char.split(codes, '-')` zum Aufteilen an den Bindestrichen
 - Erstellen Sie ein Array `abbr` mit den Kürzeln `['DE', 'FR']` und fügen Sie mit `np.char.join()`
-  zwischen die Buchstaben jedes Kürzels einen Punkt ein (aus `'DE'` wird `'D.E'`)
+  zwischen die Buchstaben jedes Kürzels einen Punkt ein
 - Verwenden Sie `np.strings.replace()`, um in `codes` alle Bindestriche durch Unterstriche zu
   ersetzen
 - Testen Sie `np.strings.find()`, um die Position des ersten Bindestrichs in jedem Element von
@@ -501,7 +509,7 @@ Sie die String-Faktoren einordnen können:
   Umwandlung selbst außerhalb der Messung stattfindet
 - Messen Sie nach demselben Muster eine numerische Operation: `zahlen * 2` auf einem mit
   `np.arange(100000)` erzeugten Array gegen die Schleife `[x * 2 for x in zahlen_liste]`, wobei
-  `zahlen_liste = list(zahlen)` wieder außerhalb der Messung entsteht
+  `zahlen_liste = list(range(100000))` wieder außerhalb der Messung entsteht
 - Geben Sie alle fünf Zeiten (5 Nachkommastellen, `:.5f`) aus, dazu die beiden String-Faktoren
   gegenüber `np.strings.startswith` und den Zahlen-Faktor gegenüber `zahlen * 2`
   (je 1 Nachkommastelle, `:.1f`)
