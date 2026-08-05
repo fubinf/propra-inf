@@ -219,14 +219,12 @@ Bedarf gezielt danach suchen können:
   wie in `register` jedes Feld einzeln mit `request.POST['feld']` auszulesen und sich für die
   Pflichtfeldprüfung auf `required` im HTML zu verlassen, kann eine `ModelForm`-Klasse aus
   einem Model automatisch ein Formular samt serverseitiger Validierung erzeugen.
-- **[Sessions und Authentifizierung](https://docs.djangoproject.com/en/stable/topics/auth/)**:
+- **[Authentifizierung](https://docs.djangoproject.com/en/stable/topics/auth/)**:
   Mit `createsuperuser` haben Sie bereits ein Konto angelegt und sich damit an der
   Admin-Oberfläche angemeldet ([PARTREF::django-model]).
   Dasselbe System (`django.contrib.auth`) funktioniert auch außerhalb der Admin-Oberfläche:
   Es liefert eigene Login-/Logout-Views, und einzelne Views lassen sich damit so absichern,
   dass nur angemeldete Nutzer sie aufrufen dürfen.
-  Wer gerade angemeldet ist, hält Django dabei in einer Session fest, die wie die Meldungen
-  oben an einem Cookie hängt.
 
 [EQ] Welcher dieser drei Bausteine hätte Ihnen in [PARTREF::django-form] am meisten geholfen,
 an welcher konkreten Stelle, und was hätte er dort besser gemacht?
