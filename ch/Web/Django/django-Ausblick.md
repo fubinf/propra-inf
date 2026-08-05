@@ -1,9 +1,9 @@
 title: Django Ausblick
 stage: alpha
-timevalue: 0.85
+timevalue: 1.0
 difficulty: 2
 requires: django-form
-assumes: curl
+assumes: curl, http-State
 ---
 
 [SECTION::goal::idea,experience]
@@ -25,7 +25,7 @@ Sicherheitslücke.
 Der erste Fall trifft auf Ihr Projekt bisher zu, denn Sie haben das passende Bordmittel
 noch nicht eingesetzt.
 Die beiden anderen verhindert Django von Anfang an: Den CSRF-Schutz haben Sie in
-[PARTREF::django-form] bereits kennengelernt, den Schutz vor Einbettung nie bemerkt.
+[PARTREF::django-form] bereits kennengelernt, den Schutz vor Einbettung haben Sie nie bemerkt.
 Solche Bordmittel gehören zu keiner der bisher behandelten Kernkomponenten (Model, View,
 Template, Formular), sondern greifen quer dazu bei jedem Request.
 In dieser Aufgabe holen Sie die fehlende Rückmeldung nach und schalten die beiden
@@ -124,10 +124,12 @@ die jeder Request auf dem Weg zur View und jede Response auf dem Rückweg durchl
 dabei eingreifen kann.
 Welche Middlewares ein Projekt verwendet, steht als Liste `MIDDLEWARE` in `settings.py`; für
 den CSRF-Schutz ist der Eintrag `CsrfViewMiddleware` verantwortlich.
-Auch das Messages-Framework aus dem vorigen Abschnitt hängt an einem Eintrag dieser Liste: Die
-`MessageMiddleware` speichert beim Erzeugen der Response nur die noch ungelesenen Meldungen
-wieder ab (standardmäßig in einem signierten Cookie `messages`), die beim Rendern gelesenen
-fallen dabei weg; deshalb war die Meldung beim zweiten Aufruf verschwunden.
+Auch das Messages-Framework aus dem vorigen Abschnitt hängt an einem Eintrag dieser Liste.
+Die `MessageMiddleware` speichert beim Erzeugen der Response nur die noch ungelesenen Meldungen
+wieder ab, standardmäßig in einem signierten Cookie `messages` (Cookies kennen Sie aus
+[PARTREF::http-State]).
+Die beim Rendern gelesenen Meldungen fallen dabei weg; deshalb war die Meldung beim zweiten
+Aufruf verschwunden.
 In welcher Reihenfolge die Liste abgearbeitet wird und was eine Middleware sonst noch leisten
 kann, erklärt die
 [Django-Doku zu Middleware](https://docs.djangoproject.com/en/stable/topics/http/middleware/).
@@ -154,14 +156,21 @@ curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:80
 [HINT::Ich bekomme beide Male denselben Statuscode]
 Dann hatte der Entwicklungsserver Ihre geänderte `settings.py` beim ersten Aufruf noch nicht
 eingelesen.
-Im Serverfenster erscheint nach jeder Änderung die Zeile
-`settings.py changed, reloading.`; warten Sie diese ab und wiederholen Sie den Aufruf.
+Im Serverfenster erscheint nach jeder Änderung eine Zeile, die auf
+`settings.py changed, reloading.` endet; warten Sie diese ab und wiederholen Sie den Aufruf.
 [ENDHINT]
 
 [EQ] Verändert haben Sie keine einzige View, sondern nur eine Zeile in `settings.py`, und
 trotzdem ändert sich das Verhalten von `/search-post/`.
 Welche Ihrer übrigen Views wären von derselben Zeile ebenfalls betroffen, welche nicht?
 Was folgt daraus für die Frage, wo ein Schutz dieser Art sinnvollerweise ansetzt?
+
+[HINT::Ich weiß nicht, welche meiner Views überhaupt betroffen sein können]
+Sehen Sie in [PARTREF::django-form] nach, bei welcher Art von Anfrage Django ein gültiges Token
+verlangt.
+Gehen Sie danach Ihre `urls.py` durch und prüfen Sie für jede eingetragene View, ob sie solche
+Anfragen überhaupt entgegennimmt.
+[ENDHINT]
 <!-- time estimate: 15 min -->
 
 ### `XFrameOptionsMiddleware` kurzzeitig deaktivieren
@@ -186,15 +195,15 @@ curl -sI "http://127.0.0.1:8071/"
 
 [EC] Kommentieren Sie die Zeile wieder ein und senden Sie denselben Aufruf ein zweites Mal.
 
-Die beiden vorigen Abschnitte haben als einzige Datei `settings.py` verändert; nehmen Sie
-diese Datei deshalb mit in Ihre `*.files`-Datei auf.
-
 [EQ] Vergleichen Sie die beiden Ausgaben: Welche Sicherheits-Header stehen unverändert in
 beiden, obwohl die `XFrameOptionsMiddleware` im ersten Aufruf fehlte, und welcher andere
 Eintrag der `MIDDLEWARE`-Liste kommt als Urheber dieser Header in Frage?
 Was könnte eine fremde Website mit Ihrer Seite anstellen, solange `X-Frame-Options` fehlt?
 Für die erste Frage hilft die oben verlinkte Übersicht der eingebauten Middlewares.
-<!-- time estimate: 10 min -->
+
+Dieser und der vorige Abschnitt haben als einzige Datei `settings.py` verändert; nehmen Sie
+diese Datei deshalb mit in Ihre `*.files`-Datei auf.
+<!-- time estimate: 15 min -->
 
 ### Weitere Bausteine im Überblick
 
@@ -219,7 +228,7 @@ Bedarf gezielt danach suchen können:
 
 [EQ] Welcher dieser drei Bausteine hätte Ihnen in [PARTREF::django-form] am meisten geholfen,
 an welcher konkreten Stelle, und was hätte er dort besser gemacht?
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
 ### Weiterführend
 
@@ -258,6 +267,7 @@ an welcher konkreten Stelle, und was hätte er dort besser gemacht?
   Als einziger Punkt lässt sich dieser nicht aus dem Kommandoprotokoll ablesen, weil der
   jeweils zweite `curl`-Aufruf vor der Abgabe liegt und deshalb auch bei vergessener
   Wiederherstellung korrekt aussieht.
+  Voraussetzung dafür ist, dass `settings.py` in der `*.files`-Datei enthalten ist.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-Ausblick.md]
