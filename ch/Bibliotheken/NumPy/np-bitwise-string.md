@@ -2,7 +2,7 @@ title: NumPy Bitwise-Operationen und String-Funktionen
 stage: alpha
 timevalue: 2.25
 difficulty: 2
-assumes: np-Einführung, np-array, py-Fstrings, py-List-Comprehensions
+assumes: np-Einführung, np-array, np-array2, py-Fstrings, py-List-Comprehensions
 ---
 
 [SECTION::goal::idea,experience]
@@ -36,10 +36,8 @@ Falls Ihnen diese fehlen, arbeiten Sie zuerst die folgenden Quellen durch:
 - [Dualsystem (Wikipedia)](https://de.wikipedia.org/wiki/Dualsystem)
 - [Zweierkomplement (Wikipedia)](https://de.wikipedia.org/wiki/Zweierkomplement)
 
-Die Zeitschätzungen für die Bitwise-Abschnitte dieser Aufgabe gehen davon aus, dass dieses Vorwissen
-bereits vorhanden ist.
-Wenn Sie sich Dualsystem und Zweierkomplement erst parallel aneignen, wird die Bearbeitung merklich
-länger dauern; das ist normal und kein Zeichen dafür, dass Sie zu langsam sind.
+Die Zeitschätzungen der Bitwise-Abschnitte setzen dieses Vorwissen voraus; wer es sich erst parallel
+aneignet, braucht entsprechend länger.
 
 ### Grundlagen der NumPy-Bitwise-Operationen
 
@@ -48,7 +46,8 @@ Binärzahl repräsentiert eine Zweierpotenz, z. B. steht `00001101` für `1×8 +
 
 Python selbst kennt bereits die Operatoren `&`, `|`, `^`, `~`, `<<` und `>>` für Bitwise-Operationen
 auf einzelnen ganzen Zahlen.
-NumPy bietet dieselben Operationen als Funktionen an, die zusätzlich zwei Dinge ermöglichen:
+NumPy bietet dieselben Operationen als Funktionen an; gegenüber den Python-Operatoren auf einzelnen
+Zahlen unterscheiden sie sich in zwei Punkten:
 
 - **Vektorisierung**: Die Operation wird gleichzeitig auf jedes Element eines Arrays angewendet,
   statt nur auf eine einzelne Zahl.
@@ -103,6 +102,9 @@ numpy.bitwise_xor(x1, x2)  # bitweises XOR: 1 dort, wo genau ein Operand 1 ist
 
 Bei booleschen Arrays (`dtype=np.bool_`) entsprechen die Bitwise-Operationen den logischen
 Operationen UND/ODER/XOR.
+Das ist der häufigste Anlass, in NumPy überhaupt zu `&` und `|` zu greifen: Beim Filtern werden
+damit mehrere Bedingungen zu einer Maske verknüpft, etwa `arr[(arr > a) & (arr < b)]` in
+[PARTREF::np-index-slice].
 
 ```python
 import numpy as np
@@ -158,7 +160,7 @@ right_result = np.right_shift(40, 2)  # 40 >> 2 = 10
 print("40 >> 2 =", right_result)
 ```
 
-Diese Entsprechung gilt aber nur, solange das Ergebnis in den `dtype` des Arrays passt.
+Diese Entsprechung gilt aber nur, solange das Ergebnis in den verwendeten `dtype` passt.
 Bits, die über dessen Breite hinausgeschoben werden, gehen verloren:
 
 ```python
@@ -181,7 +183,8 @@ Rechenweg mit der binären Darstellung.
 - Erstellen Sie ein Array `values` mit den Werten `[5, 12, 25, 48]`
 - Verschieben Sie alle Werte um 1 Position nach links
 - Verschieben Sie alle Werte um 2 Positionen nach rechts
-- Vergleichen Sie die Ergebnisse mit den arithmetischen Operationen (`*2`, `//4` und `/4`)
+- Vergleichen Sie die Ergebnisse mit den arithmetischen Operationen (`*2`, `//4` und `/4`), z. B. mit
+  dem aus [PARTREF::np-array] bekannten `np.array_equal()`
 
 [EQ] Bei `5` und `25` weicht Ihr Verschiebungsergebnis von einer gewöhnlichen Division ab: `5 / 4`
 wäre `1.25`, die Verschiebung liefert `1`.
@@ -236,7 +239,7 @@ ndarray.astype(dtype)
 dieselben Bits umgekehrt werden?
 Nutzen Sie Ihre Ergebnisse aus dem vorigen Schritt für Ihre Erklärung.
 
-[HINT::Warum ergibt dasselbe Bitmuster bei `int8` und `uint8` unterschiedliche Zahlen?]
+[HINT::Ich sehe nicht, wie dasselbe Bitmuster zwei verschiedene Zahlen ergeben kann]
 Schreiben Sie sich zuerst die 8-Bit-Darstellung von `3` auf (`np.binary_repr(3, width=8)`), kehren
 Sie jedes Bit einzeln um, und prüfen Sie erst danach, welche Zahl dieses Bitmuster im
 Zweierkomplement bzw. als vorzeichenlose Zahl repräsentiert.
@@ -246,15 +249,17 @@ Zweierkomplement bzw. als vorzeichenlose Zahl repräsentiert.
 
 ### Grundlagen der NumPy-String-Funktionen: `strings.upper`, `strings.lower`
 
-NumPy bietet zwei Module für vektorisierte String-Verarbeitung: `numpy.char` (das ursprüngliche) und
-`numpy.strings` (das neuere).
-Laut der offiziellen Dokumentation
+NumPy bietet zwei Module für vektorisierte String-Verarbeitung: `numpy.strings` ist das aktuelle,
+`numpy.char` gilt laut
 [NumPy String Functions](https://numpy.org/doc/stable/reference/routines.strings.html)
-gilt `numpy.char` inzwischen als Legacy: es arbeitet nur auf Strings fester Breite, erhält keine
-Updates mehr und könnte in einer künftigen Hauptversion entfernt werden.
-Deshalb verwenden wir in dieser Aufgabe vorwiegend `numpy.strings`; nur dort, wo `numpy.char`
-Funktionen bietet, die es in `numpy.strings` (noch) nicht gibt (`split`/`join`, siehe weiter unten),
-greifen wir auf `numpy.char` zurück.
+als Legacy.
+Wir verwenden daher `numpy.strings`, außer für `split`/`join`, die es dort nicht gibt.
+
+[FOLDOUT::Warum gibt es zwei Module?]
+`numpy.char` war vor NumPy 2.0 der einzige Ort für String-Funktionen und nur auf Strings fester
+Breite ausgelegt; es erhält keine Updates mehr und könnte in einer künftigen Hauptversion entfernt
+werden.
+[ENDFOLDOUT]
 
 Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String-Operation auf jedes
 Element eines Arrays gleichzeitig an.
@@ -318,10 +323,16 @@ print("Repeated:", repeated)  # ['Python Python Python ' 'NumPy NumPy NumPy ']
 
 - Erstellen Sie ein Array `names` mit den Werten `['Alice', 'Bob', 'Charlie']`
 - Erstellen Sie ein Array `greetings` mit den Werten `['Hallo', 'Hi', 'Hey']`
-- Verbinden Sie entsprechende Elemente mit `np.strings.add()` und fügen Sie ein Leerzeichen
-  dazwischen ein
+- Verbinden Sie `greetings` und `names` mit `np.strings.add()` zu Grußformeln der Form
+  `'Hallo Alice'`, also mit einem Leerzeichen zwischen Gruß und Namen
 - Verwenden Sie `np.strings.multiply()`, um jeden Namen 2-mal zu wiederholen
 - Konvertieren Sie alle Namen in Großbuchstaben mit `np.strings.upper()`
+
+[HINT::Ich sehe nicht, wie ich mit `np.strings.add()` ein Leerzeichen dazwischen bekomme]
+Die Funktion nimmt genau zwei Argumente, es braucht also zwei Schritte.
+Hängen Sie zuerst an jedes Element von `greetings` ein Leerzeichen an — dank Broadcasting genügt
+dafür der einzelne String `' '` — und verbinden Sie das Ergebnis dann mit `names`.
+[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
@@ -372,27 +383,29 @@ Was müssten Sie ändern, damit auch dort ersetzt wird?
 
 <!-- time estimate: 20 min -->
 
-### String-Teilung und -Verbindung: `char.split`, `char.join`, `strings.find`
+### String-Teilung, -Verbindung und -Suche: `char.split`, `char.join`, `strings.find`
 
-`split`/`join` gibt es nur in `numpy.char`, aus unterschiedlichen Gründen: `split` liefert für jedes
-Element eine unterschiedlich lange Python-Liste von Teilstrings zurück; das lässt sich nicht als
-einheitliches Array-Element abbilden und passt daher nicht zu den übrigen Funktionen aus
-`numpy.strings`, die immer genau ein Ergebnis pro Element liefern.
+`find` gibt es in beiden Modulen, dafür nutzen wir wie zuvor `numpy.strings`; für `split`/`join`
+bleibt es bei `numpy.char`.
+
+[FOLDOUT::Warum fehlen `split` und `join` in `numpy.strings`?]
+`split` liefert für jedes Element eine unterschiedlich lange Python-Liste von Teilstrings zurück;
+das lässt sich nicht als einheitliches Array-Element abbilden und passt daher nicht zu den übrigen
+Funktionen aus `numpy.strings`, die immer genau ein Ergebnis pro Element liefern.
 `join` liefert dagegen durchaus ein gewöhnliches String-Array zurück, wurde bei der Einführung von
 `numpy.strings` aber schlicht nicht mit übernommen.
-Deshalb verwenden wir hier weiterhin `numpy.char` für `split`/`join`; `find` gibt es dagegen in
-beiden Modulen, dafür nutzen wir wie zuvor `numpy.strings`.
+[ENDFOLDOUT]
 
 ```python
 numpy.char.split(a, sep=None)     # teilt jeden String an sep in eine Liste von Teilstrings
-numpy.char.join(sep, a)           # fügt sep zwischen die einzelnen Zeichen jedes Strings in a ein
+numpy.char.join(sep, seq)         # fügt sep zwischen die einzelnen Zeichen jedes Strings in seq ein
 numpy.strings.find(a, sub)        # erste Fundposition von sub, oder -1 falls nicht enthalten
 ```
 
-- `a`: Array von Strings, das verarbeitet wird
-- `sep` (Default `None`): Trennzeichen; bei `split` ohne Angabe wird an beliebigem Leerraum
-  getrennt; bei `join` wird `sep` zwischen die Zeichen innerhalb jedes einzelnen Strings von `a`
-  eingefügt (nicht zwischen mehrere Array-Elemente)
+- `a`, `seq`: Array von Strings, das verarbeitet wird
+- `sep`: Trennzeichen; bei `split` (Default `None`) wird ohne Angabe an beliebigem Leerraum getrennt;
+  bei `join` ist `sep` verpflichtend und wird zwischen die Zeichen innerhalb jedes einzelnen Strings
+  von `seq` eingefügt (nicht zwischen mehrere Array-Elemente)
 - `sub`: gesuchtes Teilstück (bei `find`)
 
 ```python
