@@ -8,9 +8,11 @@ assumes: np-Einführung, np-array, np-array2
 [SECTION::goal::idea,experience]
 
 - Ich kann NumPy-Arrays verbinden und in Teilarrays aufteilen.
-- Ich kann durch Hinzufügen, Einfügen und Entfernen von Elementen Größe und Struktur von
-  Arrays verändern.
+- Ich kann Größe und Struktur von Arrays verändern, indem ich Elemente hinzufüge, einfüge oder
+  entferne oder das Array auf eine neue Form bringe.
 - Ich kann doppelte und eindeutige Elemente in Arrays identifizieren und analysieren.
+- Ich kann unterscheiden, wann eine Operation ein neues Array liefert und wann nur eine andere
+  Sicht (View) auf dieselben Daten.
 
 [ENDSECTION]
 
@@ -134,13 +136,13 @@ import numpy as np
 a = np.array([[1, 2], [3, 4]])
 b = np.array([[5, 6], [7, 8]])
 
-# Horizontal stacken (entspricht concatenate mit axis=1)
+# Horizontal stacken (bei 2D-Arrays wie concatenate mit axis=1)
 h_result = np.hstack((a, b))
 print("hstack:", h_result)
 # [[1 2 5 6]
 #  [3 4 7 8]]
 
-# Vertikal stacken (entspricht concatenate mit axis=0)
+# Vertikal stacken (bei 2D-Arrays wie concatenate mit axis=0)
 v_result = np.vstack((a, b))
 print("vstack:", v_result)
 # [[1 2]
@@ -168,7 +170,7 @@ was NumPy mit den 1D-Arrays tut, bevor es sie verbindet.
 
 <!-- time estimate: 15 min -->
 
-### Arrays aufteilen: `split`-Funktionen
+### Arrays aufteilen: `split`, `hsplit` und `vsplit`
 
 `numpy.split` teilt ein Array entlang einer angegebenen Achse:
 
@@ -264,8 +266,9 @@ numpy.resize(a, new_shape)
 - `new_shape`: die Zielform als Tupel; enthält sie mehr Elemente als `a`, werden die
   ursprünglichen Werte zyklisch wiederholt, enthält sie weniger, wird abgeschnitten
 
-`np.resize` liefert dabei immer ein neues Array, während `reshape` aus [PARTREF::np-array2] in
-der Regel nur eine andere Sicht (**View**) auf dieselben Daten zurückgibt.
+`np.resize` und `reshape` aus [PARTREF::np-array2] unterscheiden sich außerdem darin, ob das
+Ergebnis eigene Daten besitzt oder nur eine andere Sicht (**View**) auf die Daten des
+Ausgangsarrays ist.
 Wann NumPy eine View und wann eine Kopie liefert, beschreibt die Doku zu
 [Copies and views](https://numpy.org/doc/stable/user/basics.copies.html).
 
@@ -299,13 +302,13 @@ Original selbst umbaut, hat für den neuen Platz nichts als Nullen.
 In dieser Aufgabe wird durchgehend die Funktion verwendet.
 [ENDNOTICE]
 
-[EQ] Formen Sie ein 2×3-Array einmal mit `reshape(3, 2)` und einmal mit `np.resize(a, (3, 2))`
-um, überschreiben Sie anschließend im jeweiligen Ergebnis das erste Element und geben Sie das
-Ausgangsarray erneut aus.
+[EQ] Formen Sie ein 2×3-Array `a` einmal mit `a.reshape(3, 2)` und einmal mit
+`np.resize(a, (3, 2))` um, überschreiben Sie anschließend im jeweiligen Ergebnis das erste
+Element und geben Sie das Ausgangsarray erneut aus.
+Übernehmen Sie beide Ausgaben in Ihre Antwort.
 Bei welcher der beiden Varianten ändert sich das Ausgangsarray mit?
-Was unterscheidet die beiden Funktionen so, dass `reshape` überhaupt eine View liefern kann,
-`np.resize` dagegen immer ein neues Array anlegt, obwohl die Zielform hier gleich viele
-Elemente hat?
+Erklären Sie, was die beiden Funktionen so unterscheidet, dass nur eine von ihnen eine View
+liefern kann, obwohl die Zielform hier gleich viele Elemente hat.
 
 <!-- time estimate: 10 min -->
 
@@ -347,7 +350,8 @@ verwenden Sie `append`:
 - Fügen Sie zwei neue Spalten mit den Werten `[[71, 29], [46, 88]]` hinzu (`axis=1`)
 - Fügen Sie die Werte `[5, 17, 26]` ohne `axis`-Parameter hinzu
 
-Geben Sie jeweils das Ergebnis und dessen Form aus.
+Gehen Sie bei jedem Punkt vom ursprünglichen Array aus und geben Sie jeweils das Ergebnis und
+dessen Form aus.
 
 <!-- time estimate: 10 min -->
 
@@ -398,9 +402,10 @@ print("Flach eingefügt:", inserted_flat)
   `10, 20, 30, ...` bis `90`
 - Fügen Sie an Position 1 eine neue Zeile mit den Werten `[100, 110, 120]` ein
 - Fügen Sie an Position 2 eine neue Spalte mit den Werten `[200, 210, 220]` ein
-- Fügen Sie ohne `axis`-Parameter an Position 4 den Wert `99` in das ursprüngliche Array ein
+- Fügen Sie ohne `axis`-Parameter an Position 4 den Wert `99` ein
 
-Geben Sie jeweils das Ergebnis und dessen Form aus.
+Gehen Sie bei jedem Punkt vom ursprünglichen Array aus und geben Sie jeweils das Ergebnis und
+dessen Form aus.
 
 <!-- time estimate: 10 min -->
 
@@ -452,7 +457,8 @@ print("Flach entfernt:", deleted_flat)  # [ 10  20  30  40  50  70  90 110 120]
 - Entfernen Sie die Spalten mit den Indizes 1 und 2
 - Entfernen Sie ohne `axis`-Parameter jedes dritte Element, beginnend beim ersten
 
-Geben Sie jeweils das Ergebnis und dessen Form aus.
+Gehen Sie bei jedem Punkt vom ursprünglichen Array aus und geben Sie jeweils das Ergebnis und
+dessen Form aus.
 
 [HINT::Wie erzeuge ich die Indizes für "jedes dritte Element"?]
 Nutzen Sie das bereits bekannte `np.arange` mit einer Schrittweite von 3, um die passenden
@@ -542,10 +548,10 @@ als eigene Methode für genau diesen Zweck.
 [ENDHINT]
 
 [HINT::Ich verliere bei den vielen Schritten den Überblick]
-Diese Aufgabe verkettet mehrere Operationen.
-Geben Sie nach jedem einzelnen Schritt die `shape` des Zwischenergebnisses aus, bevor Sie mit dem
-nächsten Schritt weitermachen – so erkennen Sie sofort, ob eine Operation entlang der richtigen
-Achse arbeitet, bevor sich ein Fehler auf die folgenden Schritte fortpflanzt.
+Geben Sie jedem Zwischenergebnis einen eigenen Variablennamen, statt eine Variable mehrfach zu
+überschreiben.
+Dann können Sie einen misslungenen Schritt wiederholen, ohne von vorn anzufangen, und am Ende
+stehen alle geforderten Formen noch zur Verfügung.
 [ENDHINT]
 
 [EQ] Nach dem Entfernen der Duplikate bleiben mehr Werte übrig, als in eine 4×4-Form passen.
