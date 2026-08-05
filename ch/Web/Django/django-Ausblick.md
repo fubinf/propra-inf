@@ -20,7 +20,7 @@ Eine Registrierung, die kommentarlos auf einer anderen Seite landet, ein Formula
 Absender akzeptiert, oder eine Seite, die sich in eine fremde Website einbetten lässt: In
 einer echten Anwendung wäre das erste ein Ärgernis, die beiden anderen eine Sicherheitslücke.
 Der erste Fall trifft auf Ihr Projekt bisher zu, denn Sie haben das passende Bordmittel
-schlicht noch nicht eingesetzt.
+noch nicht eingesetzt.
 Die beiden anderen verhindert Django von Anfang an: Den CSRF-Schutz haben Sie in
 [PARTREF::django-form] bewusst eingesetzt, den Schutz vor Einbettung nie bemerkt.
 Solche Bordmittel gehören zu keiner der bisher behandelten Kernkomponenten (Model, View,
@@ -41,14 +41,14 @@ Port betreiben, passen Sie sie entsprechend an.
 
 ### Bestätigungsmeldungen mit `django.contrib.messages`
 
-Django kann Meldungen ("Registrierung erfolgreich", "Bitte anmelden" usw.) über einen
-Redirect hinweg transportieren: Eine View legt eine Meldung ab, eine spätere Seite zeigt sie an.
+Django kann Meldungen ("Registrierung erfolgreich", "Bitte anmelden" usw.) von einer View aus
+weitergeben: Die View legt die Meldung ab, eine später aufgerufene Seite zeigt sie an.
 
 ```python
 messages.success(request, message)
 ```
 
-- `success`: eine von mehreren Dringlichkeitsstufen (u. a. `info`, `warning`, `error`), jeweils
+- `success`: eine von mehreren Meldungsstufen (u. a. `info`, `warning`, `error`), jeweils
   am Funktionsnamen erkennbar
 - `request`: das Request-Objekt der View, in der Sie die Meldung ablegen
 - `message`: der anzuzeigende Text
@@ -93,13 +93,14 @@ Nachschlagen lässt sich dieser Filter wie alle anderen in der Django-Doku zu
 die `messages` mit dem Filter `join` und dem Trennzeichen ", " ausgibt.
 
 Hier genügt `join`; produktiver Code verwendet an dieser Stelle eine `{% for %}`-Schleife über
-`messages`, um jede Meldung einzeln und mit ihrer Dringlichkeitsstufe darzustellen (siehe
+`messages`, um jede Meldung einzeln und mit ihrer Stufe darzustellen (siehe
 "Displaying messages" in der oben verlinkten Doku zum Messages-Framework).
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
 "Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com".
-Sie landen auf der Detailseite; sie enthält keinen Link zur Studierendenliste.
-Rufen Sie diese danach im Browser unter `http://127.0.0.1:8071/students/` auf.
+Sie landen auf der Detailseite; sie ist die einfache `HttpResponse`-Ausgabe aus
+[PARTREF::django-view] und verwendet kein Template.
+Rufen Sie die Studierendenliste danach im Browser unter `http://127.0.0.1:8071/students/` auf.
 Laden Sie dieselbe Seite anschließend noch ein zweites Mal.
 
 [EQ] Auf welcher Seite taucht die Meldung "Registrierung erfolgreich" zum ersten Mal auf, und
@@ -119,7 +120,7 @@ Prüfen Sie danach, ob `messages.success` in `register` vor dem `redirect` steht
 
 Beim zweiten Bordmittel geht es um den CSRF-Schutz selbst.
 Seine Wirkung kennen Sie aus [PARTREF::django-form]: Ein POST ohne gültiges Token wurde dort
-mit Statuscode 403 abgewiesen, ganz gleich, welche View angesprochen war.
+mit Statuscode 403 abgewiesen.
 Zuständig dafür ist keine der Kernkomponenten, sondern eine **Middleware**: eine Komponente,
 die jeden Request auf dem Weg zur View und jede Response auf dem Rückweg durchläuft und dabei
 eingreifen kann.
@@ -157,8 +158,8 @@ Was folgt daraus für die Frage, wo ein Schutz dieser Art sinnvollerweise ansetz
 ### `XFrameOptionsMiddleware` kurzzeitig deaktivieren
 
 Das dritte Bordmittel ist eine weitere Sicherheits-Middleware: `XFrameOptionsMiddleware`
-setzt bei jeder Antwort den Header `X-Frame-Options: DENY`, der verhindert, dass Ihre Seite
-in einem `<iframe>` auf einer fremden Website eingebettet wird.
+setzt bei jeder Antwort den Header `X-Frame-Options`, standardmäßig mit dem Wert `DENY`, der
+verhindert, dass Ihre Seite in einem `<iframe>` auf einer fremden Website eingebettet wird.
 Lesen Sie vorab den Abschnitt "An example of clickjacking" der
 [Django-Doku zu Clickjacking](https://docs.djangoproject.com/en/stable/ref/clickjacking/#an-example-of-clickjacking).
 Dort steht das Angriffsszenario, um das es in der Frage am Ende dieses Abschnitts geht.
