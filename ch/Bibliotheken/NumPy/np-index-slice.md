@@ -37,7 +37,7 @@ erweiterte Funktionalitäten für mehrdimensionale Arrays.
 arr[index]              # Element an Position index
 
 # Slicing mit Start:Stop:Step
-arr[start:stop:step]    # Elemente von start bis stop-1 mit Schrittweite
+arr[start:stop:step]    # Elemente von start bis stop-1 mit Schrittweite step
 
 # Spezielle Slicing-Formen
 arr[start:]             # Ab Position start bis Ende
@@ -61,15 +61,17 @@ print(a[3:])            # Ausgabe: [13 14 15 16 17 18 19]
 Operationen durch:
 
 - Geben Sie das Element an Index 5 aus
-- Geben Sie die Elemente von Index 2 bis 7 mit Schrittweite 2 aus
+- Geben Sie jedes zweite Element des gesamten Arrays aus
 - Geben Sie alle Elemente ab Index 2 aus
-- Geben Sie alle Elemente bis Index 5 aus
+- Geben Sie alle Elemente bis ausschließlich Index 5 aus
 
 [EQ] Verwenden Sie das Array aus [EREFR::1]: `a[2]` liefert einen einzelnen Skalar zurück,
 während `a[2:3]` — obwohl der Slice ebenfalls nur ein einziges Element enthält — ein Array mit
-diesem einen Element zurückgibt. Warum unterscheiden sich die Rückgabetypen grundsätzlich,
-unabhängig davon, wie viele Elemente ausgewählt werden? Was gibt `a[7:3]` zurück (Start größer
-als Stop, positive Schrittweite), und warum kommt es dabei zu keinem Fehler?
+diesem einen Element zurückgibt.
+Warum unterscheiden sich die Rückgabetypen grundsätzlich, unabhängig davon, wie viele Elemente
+ausgewählt werden?
+Was gibt `a[7:3]` zurück (Start größer als Stop, positive Schrittweite), und warum kommt es dabei
+zu keinem Fehler?
 
 <!-- time estimate: 10 min -->
 
@@ -86,7 +88,7 @@ arr[row, :]             # Ganze Zeile
 arr[:, col]             # Ganze Spalte
 arr[start:stop, :]      # Mehrere Zeilen
 
-# Ellipsis-Operator (...)
+# Ellipsis (...)
 arr[..., col]           # bei 2D äquivalent zu arr[:, col]
 arr[row, ...]           # bei 2D äquivalent zu arr[row, :]
 ```
@@ -95,19 +97,25 @@ arr[row, ...]           # bei 2D äquivalent zu arr[row, :]
 ```python
 a = np.array([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
 print(a[1, 2])          # Element Zeile 1, Spalte 2: 60
-print(a[1, :])          # Ganze Zeile 1: [40, 50, 60]
-print(a[:, 1])          # Ganze Spalte 1: [20, 50, 80]
-print(a[1:, :])         # Ab Zeile 1: [[40, 50, 60], [70, 80, 90]]
-print(a[..., 2])        # Ellipsis für Spalte: [30, 60, 90] (äquivalent zu a[:, 2])
-print(a[1, ...])        # Ellipsis für Zeile: [40, 50, 60] (äquivalent zu a[1, :])
+print(a[1, :])          # Ganze Zeile 1: [40 50 60]
+print(a[:, 1])          # Ganze Spalte 1: [20 50 80]
+print(a[1:, :])         # Ab Zeile 1: [[40,50,60], [70,80,90]]
+print(a[..., 2])        # Ellipsis für Spalte: [30 60 90] (äquivalent zu a[:, 2])
+print(a[1, ...])        # Ellipsis für Zeile: [40 50 60] (äquivalent zu a[1, :])
 ```
+
+Allein geschrieben bezeichnet `...` das ganze Array: `a[...]` liefert alle Elemente, und
+`a[...] = 0` überschreibt sie alle.
+Darauf beruht das Zurückschreiben in `np.nditer` aus [PARTREF::np-array2]: Das dort gelieferte
+Element ist ein Array ohne Dimensionen, und `x[...] = 2 * x` schreibt in dieses Array hinein,
+statt nur den Namen `x` neu zu binden.
 
 [ER] Erstellen Sie ein 4x4-Array `arr4x4` mit den Werten 11-26 und demonstrieren Sie:
 
 - Zugriff auf das Element Zeile 2, Spalte 3
 - Auswahl der ganzen Zeile 3
-- Auswahl der ganzen Spalte 1
-- Zugriff auf Spalte 0 mit dem Ellipsis-Operator
+- Auswahl der ganzen Spalte 0 als `arr4x4[:, 0]`
+- Auswahl derselben Spalte mit Ellipsis `...`
 
 Erzeugen Sie anschließend ein dreidimensionales Array `arr3d` der Form `(2, 3, 4)` mit den
 Werten 100-123 und geben Sie `arr3d[..., 0]` sowie `arr3d[:, :, 0]` aus.
@@ -115,8 +123,8 @@ Werten 100-123 und geben Sie `arr3d[..., 0]` sowie `arr3d[:, :, 0]` aus.
 Bei `arr4x4` liefert `arr4x4[..., 0]` dasselbe Ergebnis wie `arr4x4[:, 0]`, bei `arr3d`
 liefert `arr3d[..., 0]` dasselbe wie `arr3d[:, :, 0]`.
 
-[EQ] Erklären Sie anhand dieser beiden Beobachtungen, wofür der Ellipsis-Operator `...` steht und
-wie viele Doppelpunkte `:` er in den beiden Fällen jeweils ersetzt.
+[EQ] Erklären Sie anhand dieser beiden Beobachtungen, wofür Ellipsis `...` steht und
+wie viele Doppelpunkte `:` sie in den beiden Fällen jeweils ersetzt.
 Wovon hängt diese Anzahl ab, und in welcher Situation lohnt sich `...` gegenüber dem expliziten
 Ausschreiben aller `:`?
 
@@ -175,7 +183,7 @@ als 1D-Array (`arr[maske]`).
 Eine Maske mit einem Eintrag pro Zeile wählt ganze Zeilen aus und lässt sich für die übrigen
 Achsen mit Slicing kombinieren (`arr[maske, :]`).
 
-**Grundlegende Boolean-Operationen:**
+**Formen der Boolean-Indexierung:**
 ```python
 arr[arr > value]        # Elemente größer als value
 arr[arr == value]       # Elemente gleich value
@@ -184,7 +192,9 @@ arr[~(arr > value)]     # Negation der Bedingung (NOT)
 ```
 
 Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
-`arr[arr > a & arr < b]` würde deshalb als `arr[arr > (a & arr) < b]` gelesen und scheitern.
+`arr[arr > a & arr < b]` würde deshalb als `arr[arr > (a & arr) < b]` gelesen.
+Das scheitert mit einem `ValueError`, weil diese Kette aus zwei Vergleichen einen einzelnen
+Wahrheitswert verlangt, ein Array aber viele Einträge hat.
 
 Für den häufigen Fall fehlender Werte gibt es eine eigene Prüffunktion:
 
@@ -192,8 +202,8 @@ Für den häufigen Fall fehlender Werte gibt es eine eigene Prüffunktion:
 np.isnan(arr)          # Maske mit True an jeder Position, die NaN enthält
 ```
 
-Diese eigene Funktion ist nötig, weil sich NaN dem Vergleich entzieht: `np.nan == np.nan` ist
-unwahr, `arr == np.nan` liefert deshalb eine Maske aus lauter `False`.
+Diese eigene Funktion ist nötig, weil sich NaN dem Vergleich entzieht: `np.nan == np.nan` ergibt
+`False`, `arr == np.nan` liefert deshalb eine Maske aus lauter `False`.
 
 Weitere Prüffunktionen dieser Art (etwa für unendliche Werte) stehen in der
 [NumPy-Referenz zu den Logic functions](https://numpy.org/doc/stable/reference/routines.logic.html).
@@ -201,20 +211,26 @@ Weitere Prüffunktionen dieser Art (etwa für unendliche Werte) stehen in der
 **Beispiel:**
 ```python
 x = np.array([10, 20, 30, 40, 50, 60])
-mask = x > 30          # Boolean-Array: [False, False, False, True, True, True]
+mask = x > 30          # Boolean-Array: [False False False  True  True  True]
 result = x[mask]       # Ergebnis: [40 50 60]
 
 # Boolean-Indexierung erlaubt auch bedingte Änderung von Werten:
 z = np.array([10, 20, 30, 40, 50, 60])
 z[z > 30] = 0          # Alle Elemente > 30 durch 0 ersetzen
 print(z)               # Ergebnis: [10 20 30  0  0  0]
+
+# Eine Maske mit einem Eintrag pro Zeile wählt ganze Zeilen aus
+m = np.array([[10, 20], [30, 40], [50, 60]])
+zeilenmaske = m[:, 0] > 20   # Erster Wert jeder Zeile: [False  True  True]
+print(m[zeilenmaske, :])     # Ergebnis: [[30,40], [50,60]]
 ```
 
 [ER] Erstellen Sie ein 4x3-Array `zahlen` mit ganzen Zahlen von 20-31 und demonstrieren Sie daran:
 
 - Auswahl aller Elemente größer als 25
 - Auswahl aller geraden Zahlen (verwenden Sie die Modulo-Operation)
-- Auswahl der Elemente, die zwei Bedingungen gleichzeitig erfüllen (verknüpft mit `&`)
+- Auswahl der Elemente, die größer als 22 und kleiner als 28 sind (beide Bedingungen mit `&`
+  verknüpft)
 
 Erzeugen Sie anschließend ein zusätzliches 1D-Array `mit_nan` aus Fließkommazahlen, das einige
 `np.nan`-Werte enthält, und geben Sie es ohne diese Werte aus.
@@ -280,10 +296,10 @@ beiden Formen also nacheinander an, statt sie in einen einzigen Zugriff zu packe
 
 <!-- time estimate: 15 min -->
 
-### Erweiterte Indexierung mit np.ix_
+### Erweiterte Indexierung mit `np.ix_`
 
-`np.ix_` erstellt ein kartesisches Produkt aus Index-Arrays und ermöglicht
-die Auswahl rechteckiger Teilbereiche aus Arrays.
+`np.ix_` formt Index-Arrays so um, dass beim Indexieren ihr kartesisches Produkt entsteht, und
+ermöglicht damit die Auswahl rechteckiger Teilbereiche aus Arrays.
 
 ```python
 numpy.ix_(*args)
@@ -347,9 +363,9 @@ zwei Indexierungsformen in einem einzigen Zugriff:
 - Slicing für die Zeilen mit einem Index-Array für die Spalten
 - Eine Boolean-Maske für die Zeilen (alle Zeilen, deren erster Wert größer als 11 ist) mit
   Spalten-Slicing
-- Den Ellipsis-Operator mit Spalten-Slicing
+- Ellipsis `...` mit Spalten-Slicing
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 ### Werte über Indexausdrücke verändern
 
@@ -358,9 +374,11 @@ Indexausdrücke stehen nicht nur rechts, sondern auch links vom Zuweisungsoperat
 Das gilt für alle bisher behandelten Formen, solange die Auswahl in **einem** Indexausdruck steht.
 
 Bei zwei aufeinanderfolgenden Zugriffen wie beim letzten Teilschritt von [EREFR::5] ist das anders:
-Slicing liefert eine View auf das Original, Integer-Array- und Boolean-Indexierung liefern dagegen
-stets eine Kopie, siehe
-[NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing).
+Slicing liefert eine View auf das Original, also einen zweiten Zugriffsweg auf dieselben Daten, so
+dass eine Zuweisung an die View auch im Original ankommt.
+Integer-Array- und Boolean-Indexierung liefern dagegen stets eine Kopie mit eigenen Daten, siehe
+[NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing)
+und [NumPy-Userguide zu Copies and views](https://numpy.org/doc/stable/user/basics.copies.html).
 `x[[1, 3, 5], :][:, [0, 2]] = 0` schreibt deshalb in eine Kopie und lässt `x` unverändert, ohne
 dass eine Fehlermeldung darauf hinweist.
 
@@ -369,12 +387,13 @@ dass eine Fehlermeldung darauf hinweist.
 und verändern Sie es gezielt:
 
 - Ersetzen Sie alle Werte kleiner als 5 durch 0
-- Setzen Sie anschließend die Positionen, die `np.ix_` aus den Zeilen 0,2,4 und den Spalten 1,3
-  bildet, auf -1
+- Versuchen Sie anschließend, die Positionen aus den Zeilen 0,2,4 und den Spalten 1,3 mit zwei
+  aufeinanderfolgenden Zugriffen auf -1 zu setzen: `data[[0, 2, 4], :][:, [1, 3]] = -1`
+- Setzen Sie dieselben Positionen danach mit `np.ix_` in einem einzigen Zugriff auf -1
 
-Geben Sie `data` nach jedem der beiden Schritte vollständig aus.
+Geben Sie `data` nach jedem der drei Schritte vollständig aus.
 
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
 ### Weiterführend
 
@@ -403,6 +422,9 @@ Geben Sie `data` nach jedem der beiden Schritte vollständig aus.
 - [EREFR::7], zweiter Teilschritt: Die Boolean-Maske ist eine Zeilenmaske mit einem Eintrag pro
   Zeile (hier `arr3x3[:, 0] > 11`) und wird in einem Zugriff mit dem Spalten-Slice kombiniert;
   eine elementweise Maske über das ganze Array lässt sich dort nicht einsetzen
+- [EREFR::8], zweiter Teilschritt: Die Ausgabe nach den zwei aufeinanderfolgenden Zugriffen zeigt
+  ein unverändertes `data` und keine Fehlermeldung, und die Antwort benennt die Kopie als Ursache;
+  wer dort bereits -1 ausgibt, hat den Schritt nicht wie verlangt ausgeführt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-index-slice.md]
