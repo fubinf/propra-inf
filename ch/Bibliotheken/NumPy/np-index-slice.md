@@ -1,6 +1,6 @@
 title: NumPy Indexierung und Slicing
 stage: alpha
-timevalue: 2
+timevalue: 2.25
 difficulty: 2
 assumes: np-Einführung, np-array, np-array2
 ---
@@ -11,6 +11,8 @@ assumes: np-Einführung, np-array, np-array2
   mehrdimensionalen NumPy-Arrays auswählen und verändern.
 - Ich kann für einen Zugriff die passende Indexierungsform wählen (Slice, Index-Array,
   Boolean-Maske) und weiß, welche Form das Ergebnis jeweils hat.
+- Ich kann unterscheiden, wann ein Indexzugriff eine View auf das Original liefert und wann eine
+  eigenständige Kopie, und kann eine Kopie gezielt anfordern.
 
 [ENDSECTION]
 
@@ -27,10 +29,10 @@ stehen dann in einer einzigen Zeile.
 
 ### Eindimensionale Array-Indexierung und Slicing
 
-Die Indexierung funktioniert ähnlich wie bei Python-Listen, bietet aber erweiterte
-Funktionalitäten für mehrdimensionale Arrays.
+Die Indexierung funktioniert ähnlich wie bei Python-Listen, geht bei mehrdimensionalen Arrays
+aber deutlich darüber hinaus.
 
-**Grundlegende Syntax:**
+**Syntax:**
 ```python
 # Einzelne Elemente
 arr[index]              # Element an Position index
@@ -51,19 +53,18 @@ Für dieses und die folgenden Beispiele wird jeweils ein Array mit fortlaufenden
 Ausgangspunkt gebraucht; dafür eignet sich `numpy.arange()`, Details in [PARTREF::np-array2]:
 
 ```python
-a = np.arange(10, 20)   # [10, 11, 12, ..., 19]
+a = np.arange(10, 20)   # Werte 10 bis 19
 print(a[5])             # Ausgabe: 15
 print(a[2:7:2])         # Ausgabe: [12 14 16]
 print(a[3:])            # Ausgabe: [13 14 15 16 17 18 19]
 ```
 
-[ER] Erstellen Sie ein NumPy-Array `a` mit den Zahlen 5 bis 14 und führen Sie folgende
-Operationen durch:
+[ER] Erstellen Sie ein NumPy-Array `a` mit den Zahlen 5 bis 14 und geben Sie daraus aus:
 
-- Geben Sie das Element an Index 5 aus
-- Geben Sie jedes zweite Element des gesamten Arrays aus
-- Geben Sie alle Elemente ab Index 2 aus
-- Geben Sie alle Elemente bis ausschließlich Index 5 aus
+- Das Element an Index 5
+- Alle Elemente ab Index 2
+- Die Elemente an den Indizes 1, 3, 5, 7 und 9
+- Die letzten drei Elemente
 
 [EQ] Verwenden Sie das Array aus [EREFR::1]: `a[2]` liefert einen einzelnen Skalar zurück,
 während `a[2:3]` — obwohl der Slice ebenfalls nur ein einziges Element enthält — ein Array mit
@@ -80,7 +81,7 @@ zu keinem Fehler?
 Bei mehrdimensionalen Arrays wird die Indexierung durch Kommas getrennt:
 `arr[dim1, dim2, dim3]`.
 
-**Grundlegende mehrdimensionale Syntax:**
+**Syntax:**
 ```python
 # 2D-Array Indexierung
 arr[row, col]           # Einzelnes Element
@@ -88,24 +89,24 @@ arr[row, :]             # Ganze Zeile
 arr[:, col]             # Ganze Spalte
 arr[start:stop, :]      # Mehrere Zeilen
 
-# Ellipsis (...)
-arr[..., col]           # bei 2D äquivalent zu arr[:, col]
-arr[row, ...]           # bei 2D äquivalent zu arr[row, :]
+# Ellipsis (...): steht für die nicht ausgeschriebenen Achsen
+arr[..., col]
+arr[row, ...]
 ```
 
 **Beispiel:**
 ```python
-a = np.array([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
-print(a[1, 2])          # Element Zeile 1, Spalte 2: 60
-print(a[1, :])          # Ganze Zeile 1: [40 50 60]
-print(a[:, 1])          # Ganze Spalte 1: [20 50 80]
-print(a[1:, :])         # Ab Zeile 1: [[40,50,60], [70,80,90]]
-print(a[..., 2])        # Ellipsis für Spalte: [30 60 90] (äquivalent zu a[:, 2])
-print(a[1, ...])        # Ellipsis für Zeile: [40 50 60] (äquivalent zu a[1, :])
+b = np.array([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
+print(b[1, 2])          # Element Zeile 1, Spalte 2: 60
+print(b[1, :])          # Ganze Zeile 1: [40 50 60]
+print(b[:, 1])          # Ganze Spalte 1: [20 50 80]
+print(b[1:, :])         # Ab Zeile 1: [[40,50,60], [70,80,90]]
+print(b[..., 2])        # Ellipsis für Spalte: [30 60 90] (äquivalent zu b[:, 2])
+print(b[1, ...])        # Ellipsis für Zeile: [40 50 60] (äquivalent zu b[1, :])
 ```
 
-Allein geschrieben bezeichnet `...` das ganze Array: `a[...]` liefert alle Elemente, und
-`a[...] = 0` überschreibt sie alle.
+Allein geschrieben bezeichnet `...` das ganze Array: `b[...]` liefert alle Elemente, und
+`b[...] = 0` überschreibt sie alle.
 Darauf beruht das Zurückschreiben in `np.nditer` aus [PARTREF::np-array2]: Das dort gelieferte
 Element ist ein Array ohne Dimensionen, und `x[...] = 2 * x` schreibt in dieses Array hinein,
 statt nur den Namen `x` neu zu binden.
@@ -114,17 +115,14 @@ statt nur den Namen `x` neu zu binden.
 
 - Zugriff auf das Element Zeile 2, Spalte 3
 - Auswahl der ganzen Zeile 3
-- Auswahl der ganzen Spalte 0 als `arr4x4[:, 0]`
-- Auswahl derselben Spalte mit Ellipsis `...`
+- Auswahl der ganzen Spalte 0 auf zwei Wegen: einmal mit `:` und einmal mit Ellipsis `...`
 
 Erzeugen Sie anschließend ein dreidimensionales Array `arr3d` der Form `(2, 3, 4)` mit den
 Werten 100-123 und geben Sie `arr3d[..., 0]` sowie `arr3d[:, :, 0]` aus.
 
-Bei `arr4x4` liefert `arr4x4[..., 0]` dasselbe Ergebnis wie `arr4x4[:, 0]`, bei `arr3d`
-liefert `arr3d[..., 0]` dasselbe wie `arr3d[:, :, 0]`.
-
-[EQ] Erklären Sie anhand dieser beiden Beobachtungen, wofür Ellipsis `...` steht und
-wie viele Doppelpunkte `:` sie in den beiden Fällen jeweils ersetzt.
+[EQ] Vergleichen Sie Ihre Ausgaben aus [EREFR::2]: Welche davon sind paarweise gleich?
+Erklären Sie daran, wofür Ellipsis `...` steht und wie viele Doppelpunkte `:` sie bei `arr4x4`
+bzw. bei `arr3d` jeweils ersetzt.
 Wovon hängt diese Anzahl ab, und in welcher Situation lohnt sich `...` gegenüber dem expliziten
 Ausschreiben aller `:`?
 
@@ -132,19 +130,19 @@ Ausschreiben aller `:`?
 
 ### Integer-Array-Indexierung
 
-Integer-Array-Indexierung ermöglicht den Zugriff auf beliebige Array-Elemente
-durch die Verwendung von Index-Arrays.
-Die Index-Arrays werden paarweise kombiniert.
+Integer-Array-Indexierung ermöglicht den Zugriff auf beliebige Array-Elemente mit Index-Arrays.
 
 Diese Form und die Boolean-Indexierung des nächsten Abschnitts heißen in der NumPy-Dokumentation
 zusammen "Advanced Indexing" oder gleichbedeutend "fancy indexing", siehe
 [NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing).
 Indexiert wird dabei nicht mit einem einzelnen Wert oder einem Slice, sondern mit einem ganzen
 Array aus Indizes bzw. Wahrheitswerten.
+Gibt man mehrere Index-Arrays an, so werden sie paarweise kombiniert.
 
 **Syntax:**
 ```python
-arr[row_array, col_array]    # Paarweise: (row_array[0], col_array[0]), (row_array[1], ...), ...
+# Paarweise: (row_array[0], col_array[0]), dann (row_array[1], col_array[1]) usw.
+arr[row_array, col_array]
 ```
 
 **Beispiel:**
@@ -329,17 +327,19 @@ result = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
 # Ergebnis: [[50,80,60,70], [210,240,220,230], [290,320,300,310]]
 ```
 
-[ER] Verwenden Sie `np.ix_` für komplexe Indexierungsoperationen:
+[ER] Verwenden Sie wieder Ihr Array `x` aus [EREFR::5]:
 
-- Verwenden Sie wieder Ihr Array `x` aus [EREFR::5] und extrahieren Sie daraus eine Teilmatrix
-  mit den Zeilen [1,5,7,2] und Spalten [0,3,1,2]
-- Führen Sie zum Vergleich auch die normale Integer-Array-Indexierung `x[[1,5,7,2], [0,3,1,2]]`
-  mit denselben Indizes aus
-- Geben Sie zu beiden Ergebnissen auch deren `shape` aus
+- Extrahieren Sie mit `np.ix_` die Teilmatrix aus den Zeilen 6, 0, 3, 5 und den Spalten 2, 1, 3, 0
+- Wenden Sie dieselben acht Indexwerte in derselben Reihenfolge auch ohne `np.ix_` an, also mit
+  gewöhnlicher Integer-Array-Indexierung
+- Geben Sie beide Ergebnisse samt `shape` aus
+- Geben Sie außerdem aus, was der Aufruf von `np.ix_` selbst zurückliefert, und nennen Sie die
+  Form der darin enthaltenen Arrays
 
 [EQ] Vergleichen Sie die beiden Ergebnisse aus [EREFR::6]: Aus denselben acht Indexwerten
 entstehen einmal 16 und einmal 4 Elemente.
-Erklären Sie, wie jede der beiden Anzahlen zustande kommt.
+Erklären Sie, wie jede der beiden Anzahlen zustande kommt; die Rückgabe von `np.ix_` aus dem
+letzten Teilschritt hilft dabei.
 Nennen Sie außerdem je eine Auswertungsaufgabe, für die Sie die eine bzw. die andere Form
 brauchen.
 
@@ -366,20 +366,65 @@ zwei Indexierungsformen in einem einzigen Zugriff:
 
 <!-- time estimate: 10 min -->
 
+### Kopie und View
+
+Ein Indexzugriff liefert nicht immer ein eigenständiges Array.
+Eine **Kopie** hat einen eigenen Speicherbereich und ist vom Original unabhängig.
+Eine **View** teilt sich den Speicher mit dem Original, ist also nur ein zweiter Zugriffsweg auf
+dieselben Daten; eine Änderung an der View ändert deshalb auch das Original.
+
+Welche der beiden Formen entsteht, hängt von der Art des Zugriffs ab: Slicing liefert eine View,
+Advanced Indexing (Integer-Array und Boolean-Maske) liefert stets eine Kopie.
+Einzelheiten dazu stehen im
+[NumPy-Userguide zu Copies and views](https://numpy.org/doc/stable/user/basics.copies.html).
+Wer von einem Slice eine unabhängige Kopie braucht, fordert sie ausdrücklich an:
+
+```python
+ndarray.copy()
+```
+
+- `copy()`: liefert immer eine unabhängige Kopie, gleich worauf man die Methode anwendet
+
+**Beispiel:**
+```python
+c = np.arange(10, 60, 10)   # [10 20 30 40 50]
+teil = c[1:4]               # Slicing: View
+teil[0] = 0
+print(c)                    # [10  0 30 40 50] - das Original hat sich mit geändert
+
+d = np.arange(10, 60, 10)
+auswahl = d[[1, 2, 3]]      # Integer-Array: Kopie
+auswahl[0] = 0
+print(d)                    # [10 20 30 40 50] - das Original bleibt unverändert
+
+sicher = d[1:4].copy()      # ausdrücklich angeforderte Kopie eines Slice
+sicher[0] = 0
+print(d)                    # [10 20 30 40 50] - unverändert
+```
+
+[ER] Legen Sie ein 1D-Array `werte` mit den Zahlen 100 bis 800 in Hunderterschritten an und prüfen
+Sie daran selbst nach, welcher Zugriff eine View und welcher eine Kopie liefert:
+
+- Wählen Sie die letzten vier Elemente einmal per Slicing und einmal per Boolean-Maske aus
+- Setzen Sie in beiden Ergebnissen das erste Element auf `0`
+- Geben Sie `werte` nach jeder der beiden Änderungen aus und halten Sie fest, welcher der beiden
+  Zugriffe das Original mit verändert hat
+- Wiederholen Sie den Slicing-Zugriff mit `copy()` und zeigen Sie, dass `werte` dabei unverändert
+  bleibt
+
+<!-- time estimate: 10 min -->
+
 ### Werte über Indexausdrücke verändern
 
 Indexausdrücke stehen nicht nur rechts, sondern auch links vom Zuweisungsoperator: Damit
 überschreibt man genau die ausgewählten Positionen, wie oben schon bei `z[z > 30] = 0` gezeigt.
 Das gilt für alle bisher behandelten Formen, solange die Auswahl in **einem** Indexausdruck steht.
 
-Bei zwei aufeinanderfolgenden Zugriffen wie beim letzten Teilschritt von [EREFR::5] ist das anders:
-Slicing liefert eine View auf das Original, also einen zweiten Zugriffsweg auf dieselben Daten, so
-dass eine Zuweisung an die View auch im Original ankommt.
-Integer-Array- und Boolean-Indexierung liefern dagegen stets eine Kopie mit eigenen Daten, siehe
-[NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing)
-und [NumPy-Userguide zu Copies and views](https://numpy.org/doc/stable/user/basics.copies.html).
-`x[[1, 3, 5], :][:, [0, 2]] = 0` schreibt deshalb in eine Kopie und lässt `x` unverändert, ohne
-dass eine Fehlermeldung darauf hinweist.
+Bei zwei aufeinanderfolgenden Zugriffen wie beim letzten Teilschritt von [EREFR::5] ist die Lage
+weniger eindeutig: Die Zuweisung trifft dann nicht mehr das Original, sondern das Ergebnis des
+ersten Zugriffs.
+Ob sie damit im Original ankommt, entscheidet nach den Regeln des vorigen Abschnitts die Art
+dieses ersten Zugriffs.
 
 [ER] Erstellen Sie ein Array `data` mit den Werten
 `[[3, 12, 7, 18], [9, 2, 15, 6], [11, 4, 19, 1], [8, 16, 5, 13], [10, 3, 17, 14], [6, 20, 2, 9]]`
@@ -392,7 +437,12 @@ und verändern Sie es gezielt:
 
 Geben Sie `data` nach jedem der drei Schritte vollständig aus.
 
-<!-- time estimate: 15 min -->
+[EQ] Einer der drei Schritte aus [EREFR::9] hat `data` nicht verändert, ohne dass Python etwas
+gemeldet hätte.
+Erklären Sie, warum diese Zuweisung wirkungslos bleibt und warum es dabei keine Fehlermeldung gibt.
+Woran kann man einem solchen Ausdruck schon vor dem Ausführen ansehen, dass er ins Leere läuft?
+
+<!-- time estimate: 20 min -->
 
 ### Weiterführend
 
@@ -416,14 +466,14 @@ Geben Sie `data` nach jedem der drei Schritte vollständig aus.
 - [EREFQ::3]: Die Begründung stellt darauf ab, dass die Slices verschiedener Achsen unabhängig
   voneinander gelten und deshalb immer ein Rechteck aufspannen; "die Positionen sind unregelmäßig
   verteilt" allein genügt nicht
-- [EREFR::5], letzter Teilschritt: Die 3x2-Teilmatrix entsteht durch zwei aufeinanderfolgende
-  Zugriffe; ein einziger Zugriff `x[[1,3,5], [0,2]]` scheitert an der paarweisen Kombination
-- [EREFR::7], zweiter Teilschritt: Die Boolean-Maske ist eine Zeilenmaske mit einem Eintrag pro
-  Zeile (hier `arr3x3[:, 0] > 11`) und wird in einem Zugriff mit dem Spalten-Slice kombiniert;
-  eine elementweise Maske über das ganze Array lässt sich dort nicht einsetzen
-- [EREFR::8], zweiter Teilschritt: Die Ausgabe nach den zwei aufeinanderfolgenden Zugriffen zeigt
-  ein unverändertes `data` und keine Fehlermeldung, und die Antwort benennt die Kopie als Ursache;
-  wer dort bereits -1 ausgibt, hat den Schritt nicht wie verlangt ausgeführt
+- [EREFQ::5]: Beide Anzahlen sind auf ihren Mechanismus zurückgeführt (vier Indexpaare gegen
+  4 · 4 Kombinationen), nicht nur als Beobachtung wiedergegeben; die Rückgabe von `np.ix_`
+  (Formen `(4, 1)` und `(1, 4)`) ist als Ursache erkannt
+- [EREFQ::6]: Die Ausgabe nach den zwei aufeinanderfolgenden Zugriffen zeigt ein unverändertes
+  `data` und keine Fehlermeldung, und die Antwort führt das auf die Kopie des ersten Zugriffs
+  zurück; als Erkennungsmerkmal genügt, dass der erste Zugriff ein Index-Array oder eine
+  Boolean-Maske verwendet.
+  Wer dort bereits -1 ausgibt, hat den Schritt nicht wie verlangt ausgeführt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-index-slice.md]

@@ -1,6 +1,6 @@
 title: NumPy Sortierung und Filterung verstehen und anwenden
 stage: alpha
-timevalue: 2
+timevalue: 1.75
 difficulty: 2
 assumes: np-Einführung, np-array, np-array2, np-index-slice
 ---
@@ -9,7 +9,6 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice
 
 - Ich kann Arrays mit verschiedenen NumPy-Funktionen sortieren und situationsgerecht die passende auswählen.
 - Ich kann Elemente in Arrays gezielt suchen und filtern.
-- Ich verstehe das Konzept von Array-Kopien und -Ansichten und deren praktische Bedeutung.
 
 [ENDSECTION]
 
@@ -54,6 +53,10 @@ print(np.sort(arr, axis=0))  # [[3 1] [9 7]]
 print('Sortiert entlang Achse 1 (zeilenweise):')
 print(np.sort(arr, axis=1))  # [[3 7] [1 9]]
 ```
+
+`np.sort` lässt `arr` dabei unverändert und liefert ein neues Array mit eigenen Daten, also eine
+Kopie im Sinne von [PARTREF::np-index-slice].
+Das gilt für alle Sortier-, Such- und Filterfunktionen dieser Aufgabe.
 
 **Index-basierte Sortierung mit `argsort`**
 
@@ -406,58 +409,10 @@ print('Sortiert:', np.sort_complex(complex_arr))
 
 <!-- time estimate: 10 min -->
 
-### Array-Kopien und -Ansichten (Views)
-
-Manche Operationen erzeugen eine **Kopie** (unabhängiger neuer Speicherbereich), andere eine
-**Ansicht** (teilt sich den Speicher mit dem Original). Das entscheidet darüber, ob eine
-Änderung am Ergebnis auch das ursprüngliche Array verändert — bei komplexeren Auswertungen kann
-das direkt die Korrektheit der Ergebnisse beeinflussen, wenn man ein Original für unverändert
-hält, es aber über eine View doch verändert wurde:
-
-```python
-ndarray.copy()
-```
-
-- `copy()`: erzeugt immer eine unabhängige Kopie
-
-```python
-import numpy as np
-
-original = np.arange(6)
-print('Original:', original)  # [0 1 2 3 4 5]
-
-# copy(): unabhängige Kopie
-kopie = original.copy()
-kopie[0] = 888
-print('Original nach Kopie-Änderung:', original)  # [0 1 2 3 4 5] - unverändert
-print('Kopie:', kopie)  # [888 1 2 3 4 5]
-
-# reshape(): View, teilt sich den Speicher
-view = original.reshape(2, 3)
-view[0, 0] = 777
-print('Original nach View-Änderung:', original)  # [777 1 2 3 4 5] - geändert!
-```
-
-[ER] Untersuchen Sie den Unterschied zwischen Kopie und View:
-
-- Erzeugen Sie mit `arange` ein Array `original` mit den ganzen Zahlen von 10 bis 15
-- Erstellen Sie eine Kopie mit `copy()` und ändern Sie deren erstes Element auf `100`
-- Erstellen Sie eine View mit `original.reshape(2, 3)` und ändern Sie deren erstes Element auf `200`
-- Geben Sie nach jeder Änderung `original` aus und stellen Sie fest, welche der beiden
-  Operationen das Original mit verändert hat
-
-<!-- time estimate: 10 min -->
-
-[EQ] Nennen Sie je eine praktische Situation, in der Sie bewusst eine Kopie brauchen würden,
-und eine, in der eine View ausreicht bzw. sogar von Vorteil ist.
-
-<!-- time estimate: 5 min -->
-
 ### Weiterführend
 
 - [NumPy Sorting Algorithms](https://numpy.org/doc/stable/reference/routines.sort.html)
 - [Lexicographic Sorting](https://numpy.org/doc/stable/reference/generated/numpy.lexsort.html)
-- [Copies and Views](https://numpy.org/doc/stable/user/basics.copies.html)
 
 [ENDSECTION]
 
@@ -474,10 +429,6 @@ und eine, in der eine View ausreicht bzw. sogar von Vorteil ist.
   von `np.sort(arr, axis=1)`
 - [EREFQ::3]: die Erklärung für die gemessene Zeitdifferenz verweist auf die eigenen Messwerte
   aus [EREFR::5] und darauf, dass `partition` nicht das gesamte Array vollständig ordnen muss
-- [EREFQ::4]: die genannten Situationen für Kopie und View sind jeweils sachlich sinnvoll (nicht
-  nur "man braucht halt manchmal das eine oder andere"), sondern erkennen konkret, wann
-  Unabhängigkeit vom Original nötig ist bzw. wann geteilter Speicher ausreicht oder sogar
-  gewünscht ist
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-sort-filter.md]

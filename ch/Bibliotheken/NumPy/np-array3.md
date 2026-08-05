@@ -2,7 +2,7 @@ title: NumPy-Arrays verbinden, teilen und verändern
 stage: alpha
 timevalue: 2.25
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2
+assumes: np-Einführung, np-array, np-array2, np-index-slice
 ---
 
 [SECTION::goal::idea,experience]
@@ -11,8 +11,8 @@ assumes: np-Einführung, np-array, np-array2
 - Ich kann Größe und Struktur von Arrays verändern, indem ich Elemente hinzufüge, einfüge oder
   entferne oder das Array auf eine neue Form bringe.
 - Ich kann doppelte und eindeutige Elemente in Arrays identifizieren und analysieren.
-- Ich kann unterscheiden, wann eine Operation ein neues Array liefert und wann nur eine andere
-  Sicht (View) auf dieselben Daten.
+- Ich kann unterscheiden, wann eine Operation ein neues Array liefert und wann nur eine View auf
+  dieselben Daten.
 
 [ENDSECTION]
 
@@ -267,10 +267,8 @@ numpy.resize(a, new_shape)
   ursprünglichen Werte zyklisch wiederholt, enthält sie weniger, wird abgeschnitten
 
 `np.resize` und `reshape` aus [PARTREF::np-array2] unterscheiden sich außerdem darin, ob das
-Ergebnis eigene Daten besitzt oder nur eine andere Sicht (**View**) auf die Daten des
-Ausgangsarrays ist.
-Wann NumPy eine View und wann eine Kopie liefert, beschreibt die Doku zu
-[Copies and views](https://numpy.org/doc/stable/user/basics.copies.html).
+Ergebnis eigene Daten besitzt oder nur eine View auf die Daten des Ausgangsarrays ist.
+Den Unterschied zwischen Kopie und View behandelt [PARTREF::np-index-slice].
 
 ```python
 import numpy as np
