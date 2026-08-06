@@ -9,8 +9,9 @@ assumes: np-Einführung, np-array, np-array2
 
 - Ich kann einzelne Elemente, Teilbereiche und beliebige Auswahlmuster aus ein- und
   mehrdimensionalen NumPy-Arrays auswählen und verändern.
-- Ich kann für einen Zugriff die passende Indexierungsform wählen (Slice, Ellipsis, Index-Array,
-  `np.ix_`, Boolean-Maske) und weiß, welche Form das Ergebnis jeweils hat.
+- Ich kann für einen Zugriff die passende Indexierungsform wählen (Slice, Ellipsis,
+  Index-Array, kartesisches Produkt von Indexlisten, Boolean-Maske) und weiß, welche Form
+  das Ergebnis jeweils hat.
 - Ich kann unterscheiden, wann ein Indexzugriff eine View auf das Original liefert und wann eine
   eigenständige Kopie, und kann eine Kopie gezielt anfordern.
 

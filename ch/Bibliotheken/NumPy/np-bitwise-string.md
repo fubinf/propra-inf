@@ -8,7 +8,7 @@ assumes: np-Einführung, np-array, np-array2, py-Fstrings, py-List-Comprehension
 [SECTION::goal::idea,experience]
 
 - Ich verstehe die grundlegenden Bitwise-Operationen in NumPy und kann sie anwenden.
-- Ich verstehe, wie das Ergebnis einer Bitwise-Operation vom `dtype` des Arrays abhängt.
+- Ich verstehe, wie das Ergebnis einer Bitwise-Operation vom Datentyp der Array-Elemente abhängt.
 - Ich kann NumPy-String-Funktionen für die Textverarbeitung einsetzen.
 - Ich kann die Laufzeit einer vektorisierten Operation mit der einer Python-Schleife vergleichen und
   weiß, dass ein Beschleunigungsfaktor nur zusammen mit seinem Vergleichspartner aussagekräftig ist.
