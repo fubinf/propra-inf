@@ -506,6 +506,20 @@ Punktzahl erreicht hat.
 
 [INSTRUCTOR::Kontrollergebnisse]
 
+**Knackpunkte:**
+
+- [EREFR::3]: die beiden Anwendungsrechnungen verwenden `np.ceil()` bzw. `np.floor()` und liefern
+  `[4. 1. 1. 9.]` und `[6. 15. 4. 10.]`; mit `np.round()` ergäben sich unter anderem null Kisten
+  für fünf Artikel
+- [EREFQ::2]: die Antwort nennt die Rundung zur nächsten geraden Zahl als bewusste Festlegung;
+  "Rundungsfehler" oder "Fließkomma-Ungenauigkeit" zeigt, dass die Dokumentation nicht gelesen wurde
+- [EREFR::4]: die Umwandlung nach `float` vor `np.reciprocal()` ist erfolgt; ein Ergebnis aus
+  lauter Nullen zeigt, dass der `dtype` des Integer-Arrays nicht beachtet wurde
+- [EREFR::6]: `axis=1` liefert vier Werte (einen pro Zeile), `axis=0` fünf Werte (einen pro
+  Spalte); vertauschte Zuordnung ist der häufigste Fehler
+- [EREFR::7]: Standardabweichung und Varianz sind mit dem geforderten Default `ddof=0` gerechnet
+  (7.836 und 61.410) und nicht mit `ddof=1` (8.040 und 64.642)
+
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-math.md]
 
