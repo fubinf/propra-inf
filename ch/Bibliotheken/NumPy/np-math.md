@@ -1,8 +1,8 @@
 title: NumPy mathematische Funktionen verstehen und anwenden
 stage: alpha
-timevalue: 2.0
+timevalue: 2
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2, np-index-slice, np-bitwise-string, py-Fstrings
+assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
@@ -17,8 +17,8 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, np-bitwise-string,
 
 NumPy bietet eine umfangreiche Sammlung mathematischer Funktionen für wissenschaftliche
 Berechnungen und Datenanalyse.
-Diese Aufgabe behandelt trigonometrische und arithmetische Funktionen, die elementweise auf
-Arrays wirken, sowie statistische Funktionen, die ein Array zu Kennzahlen zusammenfassen.
+Diese Aufgabe behandelt trigonometrische, Rundungs- und arithmetische Funktionen, die elementweise
+auf Arrays wirken, sowie statistische Funktionen, die ein Array zu Kennzahlen zusammenfassen.
 
 [ENDSECTION]
 
@@ -39,7 +39,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 ### Trigonometrische Funktionen: `sin`, `cos`, `tan`, `degrees`, `radians`
 
-NumPy stellt Standard-Trigonometriefunktionen zur Verfügung, die elementweise auf Arrays angewendet werden:
+NumPy stellt die trigonometrischen Funktionen zur Verfügung, die elementweise auf Arrays wirken:
 
 ```python
 numpy.sin(x)
@@ -100,15 +100,16 @@ Der Potenzoperator `**` wirkt auf Arrays elementweise:
 `sin_values**2` quadriert jeden Eintrag einzeln und liefert wieder ein Array derselben Form.
 [ENDHINT]
 
-[EQ] In Ihrem Ergebnis sind `cos` und `tan` für 105 und 135 Grad negativ, `sin` dagegen für alle
-fünf Winkel positiv.
-Erklären Sie diesen Unterschied.
+[EQ] Ihre Summe `sin²(x) + cos²(x)` wird für alle fünf Winkel als `1.` ausgegeben, der
+elementweise Vergleich mit `1` liefert aber an einer Stelle `False`.
+Erklären Sie, wie beide Ausgaben gleichzeitig zutreffen können.
 
 <!-- time estimate: 20 min -->
 
 ### Umkehrfunktionen: `arcsin`, `arccos`, `arctan`
 
-Die Umkehrfunktionen geben Winkel zurück, deren trigonometrische Werte bekannt sind:
+Die Umkehrfunktionen liefern zu einem gegebenen Sinus-, Kosinus- oder Tangenswert
+den zugehörigen Winkel:
 
 ```python
 numpy.arcsin(x)
@@ -118,6 +119,7 @@ numpy.arctan(x)
 
 - `x`: Array mit Sinus-/Kosinus-/Tangenswerten (Ergebnis liegt im Bogenmaß);
   `arcsin` und `arccos` sind nur für Werte aus `[-1, 1]` definiert und liefern sonst `nan`
+  zusammen mit einer `RuntimeWarning`
 
 ```python
 import numpy as np
@@ -147,8 +149,9 @@ Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den zurückge
   Ihrem Ergebnis und diesen Sollwerten aus
 - Erstellen Sie zusätzlich ein Array `tan_values` mit den Tangenswerten `[0, 1, 1.7321]` und
   berechnen Sie mit `np.arctan()` die entsprechenden Winkel in Grad
-- Die Werte gehören zu den Winkeln 0, 45 und 60 Grad; bestimmen Sie, welche der drei Winkel exakt
-  herauskommen und welche nicht, und halten Sie das Ergebnis als Kommentar im Quelltext fest
+- Die Werte gehören zu den Winkeln 0, 45 und 60 Grad; bestimmen Sie anhand der Differenz zu diesen
+  Sollwerten, welche der drei Winkel exakt herauskommen und welche nicht, und halten Sie das
+  Ergebnis als Kommentar im Quelltext fest
 
 <!-- time estimate: 15 min -->
 
@@ -181,24 +184,31 @@ print('Aufgerundet (ceil):', np.ceil(numbers))
 print('Auf 2 Dezimalstellen:', np.round(numbers, decimals=2))
 ```
 
-Die 2.5 wird hier zu `2.` und nicht zu `3.`: Bei einem Wert, der genau in der Mitte liegt,
-rundet NumPy nicht kaufmännisch auf, sondern zur nächsten *geraden* Zahl.
-Deshalb ergibt `np.round(2.5)` den Wert `2.`, `np.round(3.5)` aber `4.`.
-Die Details dazu stehen unter "Notes" in der
-[Dokumentation von `numpy.round`](https://numpy.org/doc/stable/reference/generated/numpy.round.html).
+Ein Ergebnis von `np.round` weicht hier von der Schulregel ab: Die `2.5` wird zu `2.` und nicht
+zu `3.`.
+Woran das liegt, klären Sie in der folgenden Übung.
 
 [ER] Wenden Sie Rundungsfunktionen praktisch an:
 
 - Erstellen Sie ein Array `numbers` mit den Werten `[2.345, -1.678, 5.999, -3.001, 0.5]`
 - Sagen Sie vorher, welches Ergebnis `np.round()` für jeden dieser fünf Werte liefert,
   und schreiben Sie Ihre Vorhersage als Kommentar in den Quelltext
-- Runden Sie dann auf ganze Zahlen mit den drei Funktionen `round`, `floor` und `ceil`
+- Runden Sie dann auf ganze Zahlen mit `np.round()`, `np.floor()` und `np.ceil()`
   und vergleichen Sie das Ergebnis mit Ihrer Vorhersage
-- Runden Sie zusätzlich mit `round` auf 1 Dezimalstelle
+- Runden Sie zusätzlich mit `np.round()` auf 1 Dezimalstelle
+- Ein Versand verpackt Artikel in Kisten zu je 12 Stück: Berechnen Sie für die Bestellmengen
+  `[37, 12, 5, 100]` die Zahl der benötigten Kisten
+- Ein Budget von 50 Euro steht zur Verfügung: Berechnen Sie für die Stückpreise
+  `[7.5, 3.2, 12.0, 4.9]`, wie viele Stück sich zu jedem Preis kaufen lassen
+- Halten Sie als Kommentar im Quelltext fest, warum die beiden letzten Rechnungen
+  verschiedene Rundungsfunktionen brauchen und `np.round()` für beide falsch wäre
 
-[EQ] In Ihrem Ergebnis liefern `np.round()` und `np.floor()` für `-1.678` denselben Wert,
-für `5.999` dagegen `np.round()` und `np.ceil()`.
-Erklären Sie, warum `round` mal mit `floor` und mal mit `ceil` übereinstimmt.
+[EQ] Für `0.5` liefert `np.round()` nicht das Ergebnis, das die Schulregel erwarten lässt.
+Klären Sie anhand des Abschnitts "Notes" in der
+[Dokumentation von `numpy.round`](https://numpy.org/doc/stable/reference/generated/numpy.round.html),
+nach welcher Regel NumPy stattdessen rundet.
+Erklären Sie außerdem, warum `np.round()` in Ihrem Ergebnis für `-1.678` denselben Wert liefert
+wie `np.floor()`, für `5.999` dagegen denselben wie `np.ceil()`.
 
 <!-- time estimate: 20 min -->
 
@@ -211,10 +221,13 @@ numpy.add(x1, x2)
 numpy.subtract(x1, x2)
 numpy.multiply(x1, x2)
 numpy.divide(x1, x2)
+numpy.reciprocal(x)     # Kehrwert 1/x
+numpy.abs(x)            # Absolutwert |x|
 ```
 
 - `x1`, `x2`: die beiden Arrays (oder Skalare), auf die die Operation elementweise
   angewendet wird
+- `x` (bei `reciprocal`/`abs`): das Array, auf das die Funktion elementweise angewendet wird
 
 ```python
 import numpy as np
@@ -243,16 +256,11 @@ print(np.divide(a, b))
 funktioniert.
 
 Dieselben vier Operationen lassen sich kürzer als `a + b`, `a - b`, `a * b` und `a / b` schreiben;
-beide Formen sind gleichwertig.
-
-Für Kehrwerte und Absolutwerte gibt es außerdem `reciprocal` und `abs`:
-
-```python
-numpy.reciprocal(x)   # Kehrwert 1/x, elementweise
-numpy.abs(x)          # Absolutwert |x|, elementweise
-```
-
-- `x`: das Array, auf das die Funktion elementweise angewendet wird
+beide Formen rechnen dasselbe.
+Die Funktionsform nimmt aber zusätzliche Argumente entgegen, die der Operator nicht kennt, etwa
+`out=` für ein bereits vorhandenes Zielarray oder `where=` für eine nur an bestimmten Positionen
+ausgeführte Rechnung; Einzelheiten stehen in der
+[Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html).
 
 [ER] Implementieren Sie verschiedene arithmetische Operationen:
 
@@ -266,8 +274,8 @@ numpy.abs(x)          # Absolutwert |x|, elementweise
 [HINT::Warum sind alle meine Kehrwerte `0`?]
 `np.reciprocal()` rechnet im `dtype` des Eingabe-Arrays.
 Bei einem Integer-Array wird deshalb ganzzahlig gerechnet und jeder Kehrwert kleiner als 1 zu `0` abgeschnitten.
-Wandeln Sie das Array vorher mit `.astype(float)` in Fließkommazahlen um
-(`astype` siehe [PARTREF::np-bitwise-string]).
+Wandeln Sie das Array vorher mit der Array-Methode `.astype(float)` um; sie liefert eine Kopie
+des Arrays mit dem angegebenen `dtype`, hier also mit Fließkommazahlen.
 [ENDHINT]
 
 <!-- time estimate: 15 min -->
@@ -281,7 +289,8 @@ numpy.exp(x)
 ```
 
 - `x1`, `x2`: Basis/Exponent bzw. Dividend/Divisor, elementweise angewendet
-- `x` (bei `exp`): Array von Exponenten; berechnet wird elementweise `e^x` mit der Eulerschen Zahl `e`
+- `x` (bei `exp`): Array von Exponenten; berechnet wird elementweise die Potenz der Eulerschen Zahl,
+  die in NumPy als Konstante `np.e` bereitsteht
 
 ```python
 import numpy as np
@@ -298,8 +307,8 @@ print('Kubikwurzeln:', np.power(values, 1/3))
 divisors = np.array([3, 3, 5, 7])
 print('Modulo:', np.mod(values, divisors))
 
-# Exponentialfunktion e^x
-print('e^x:', np.exp(np.array([0, 1, 2])))
+# Exponentialfunktion: e hoch x
+print('e hoch x:', np.exp(np.array([0, 1, 2])))
 ```
 
 Ein gebrochener Exponent zieht Wurzeln, `1/3` also die Kubikwurzel.
@@ -342,8 +351,10 @@ numpy.sum(a, axis=None)
 
 `np.min` und `np.max` kennen Sie bereits aus [PARTREF::np-array2]; in fremdem Code begegnen
 Ihnen dafür auch die gleichbedeutenden Namen `np.amin` und `np.amax`.
-`ptp` ("peak to peak") berechnet die Spannweite (Maximum minus Minimum), `sum` die
+`np.ptp` ("peak to peak") berechnet die Spannweite (Maximum minus Minimum), `np.sum` die
 Summe aller Elemente (bzw. pro Zeile/Spalte, je nach `axis`).
+`np.sum` führt die NumPy-Dokumentation allerdings nicht bei den statistischen, sondern bei den
+mathematischen Funktionen.
 
 ```python
 import numpy as np
@@ -384,8 +395,8 @@ sortierten Daten davon unberührt bleibt.
   `[[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 21, 88]]`
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie Mittelwert und Median zusätzlich für jede Zeile und für jede Spalte
-- Bestimmen Sie, in welcher Zeile Mittelwert und Median am weitesten auseinanderliegen, und
-  begründen Sie das als Kommentar im Quelltext anhand der Werte dieser Zeile
+- Bestimmen Sie mit `np.abs()`, in welcher Zeile Mittelwert und Median am weitesten
+  auseinanderliegen, und begründen Sie das als Kommentar im Quelltext anhand der Werte dieser Zeile
 - Verwenden Sie `np.ptp()`, um die Spannweite (Maximum minus Minimum) für das gesamte Array
   sowie pro Zeile zu berechnen
 - Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile und pro Spalte
@@ -479,6 +490,9 @@ Punktzahl erreicht hat.
 
 ### Knackpunkte
 
+- [EREFR::3]: die beiden Anwendungsrechnungen verwenden `np.ceil()` bzw. `np.floor()` und liefern
+  `[4. 1. 1. 9.]` und `[6. 15. 4. 10.]`; mit `np.round()` ergäben sich unter anderem null Kisten
+  für fünf Artikel
 - [EREFR::4]: die Umwandlung nach `float` vor `np.reciprocal()` ist erfolgt; ein Ergebnis aus
   lauter Nullen zeigt, dass der `dtype` des Integer-Arrays nicht beachtet wurde
 - [EREFR::6]: `axis=1` liefert vier Werte (einen pro Zeile), `axis=0` fünf Werte (einen pro
