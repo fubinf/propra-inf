@@ -7,8 +7,8 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
 
 [SECTION::goal::idea,experience]
 
-- Ich kann Arrays mit den Sortierfunktionen von NumPy sortieren und begründen, wann `argsort`
-  bzw. `partition` der vollständigen Sortierung vorzuziehen ist.
+- Ich kann Arrays mit den Sortierfunktionen von NumPy sortieren und begründen, wann `np.argsort`
+  bzw. `np.partition` der vollständigen Sortierung vorzuziehen ist.
 - Ich kann Arrays nach mehreren Kriterien mit unterschiedlicher Sortierrichtung sortieren.
 - Ich kann Elemente in Arrays gezielt suchen und filtern.
 
@@ -17,6 +17,9 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
 [SECTION::background::default]
 
 NumPy bietet spezialisierte Funktionen zum Sortieren, Suchen und Filtern von Arrays.
+Damit bringt man Datensätze nach einem oder mehreren Kriterien in eine Rangfolge, lokalisiert
+Extremwerte und wählt Teilmengen nach einer Bedingung aus.
+Solche Schritte stehen am Anfang fast jeder Datenauswertung, noch vor der eigentlichen Rechnung.
 
 [ENDSECTION]
 
@@ -54,31 +57,33 @@ print('Sortiert entlang Achse 1 (innerhalb jeder Zeile):')
 print(np.sort(arr, axis=1))  # [[3 7] [1 9]]
 ```
 
+Bei einem 2D-Array ist die letzte Achse gerade Achse 1, die ersten beiden Aufrufe sind hier also
+gleichwertig.
 `np.sort` lässt `arr` dabei unverändert und liefert ein neues Array mit eigenen Daten, also eine
 Kopie im Sinne von [PARTREF::np-index-slice].
 Keine der Sortier-, Such- und Filterfunktionen dieser Aufgabe verändert das übergebene Array.
 
-**Index-basierte Sortierung mit `argsort`**
+**Index-basierte Sortierung mit `np.argsort`**
 
-`argsort` gibt nicht die sortierten Werte selbst zurück, sondern die Indices, die die
+`np.argsort` gibt nicht die sortierten Werte selbst zurück, sondern die Indices, die die
 Elemente in sortierter Reihenfolge referenzieren:
 
 ```python
 import numpy as np
 
-# argsort() gibt Indices zurück, die zur Sortierung führen
-x = np.array([3, 1, 2])
+# np.argsort() gibt Indices zurück, die zur Sortierung führen
+x = np.array([30, 10, 20])
 indices = np.argsort(x)
 print('Sortierungsindices:', indices)  # [1 2 0]
-print('Sortiertes Array:', x[indices])  # [1 2 3]
+print('Sortiertes Array:', x[indices])  # [10 20 30]
 ```
 
-Bei einem 2D-Array liefert `argsort(a, axis=1)` für jede Zeile eigene Indices.
+Bei einem 2D-Array liefert `np.argsort(a, axis=1)` für jede Zeile eigene Indices.
 Einfaches Advanced Indexing (`arr[indices]`) rekonstruiert das sortierte Array daraus nicht,
 denn es liest die Indices als Zeilenindices und wählt damit ganze Zeilen aus: bei einem
 2×3-Array bricht es mit `IndexError` ab, bei einem 3×3-Array liefert es stillschweigend ein
 Ergebnis der Form `(3, 3, 3)`.
-Gebraucht wird stattdessen `take_along_axis`, das entlang einer Achse für jede Zeile
+Gebraucht wird stattdessen `np.take_along_axis`, das entlang einer Achse für jede Zeile
 (bzw. Spalte) die dort passenden Indices anwendet:
 
 ```python
@@ -87,8 +92,9 @@ numpy.take_along_axis(arr, indices, axis=-1)
 
 - `arr`: das Array, aus dem Werte entnommen werden
 - `indices`: Array mit derselben Anzahl Dimensionen wie `arr`, das für jede Position angibt,
-  welches Element aus `arr` entnommen wird; entlang `axis` bestimmt es die Länge des Ergebnisses,
-  in den übrigen Achsen muss es zu `arr` passen
+  welches Element aus `arr` entnommen wird.
+  Entlang `axis` bestimmt es die Länge des Ergebnisses, in den übrigen Achsen muss es zu `arr`
+  passen
 - `axis` (Standard `-1`): Achse, entlang derer `indices` angewendet wird
 
 ```python
@@ -106,9 +112,8 @@ print('Stimmt mit np.sort überein?', np.array_equal(reconstructed, np.sort(arr,
 
 - Erstellen Sie mit `np.array` ein 3×4-Array `werte` mit den Werten
   `[[8, 3, 15, 6], [12, 1, 9, 20], [4, 17, 2, 11]]`
-- Sortieren Sie das Array entlang Achse 0 und entlang Achse 1
-- Verwenden Sie `argsort(werte, axis=1)`, um die zeilenweisen Sortierungsindices zu erhalten
-- Rekonstruieren Sie das zeilenweise sortierte Array mit `take_along_axis` und vergleichen Sie
+- Verwenden Sie `np.argsort(werte, axis=1)`, um die zeilenweisen Sortierungsindices zu erhalten
+- Rekonstruieren Sie das zeilenweise sortierte Array mit `np.take_along_axis` und vergleichen Sie
   das Ergebnis mit `np.sort(werte, axis=1)`
 
 [HINT::Wie vergleiche ich zwei Arrays auf Gleichheit?]
@@ -116,15 +121,15 @@ Nutzen Sie das bereits aus [PARTREF::np-array] bekannte `np.array_equal()`, um d
 Arrays elementweise auf Übereinstimmung zu prüfen.
 [ENDHINT]
 
-[EQ] Vergleichen Sie in [EREFR::1] die `argsort`-Indices mit dem sortierten Array.
+[EQ] Vergleichen Sie in [EREFR::1] die `np.argsort`-Indices mit dem sortierten Array.
 Welche Information steckt in den Indices, die im Ergebnis von `np.sort` verloren geht?
-Nennen Sie eine Situation, in der Sie deshalb `argsort` und nicht `sort` brauchen.
+Nennen Sie eine Situation, in der Sie deshalb `np.argsort` und nicht `np.sort` brauchen.
 
 <!-- time estimate: 20 min -->
 
 ### Lexikographische Sortierung: `lexsort`
 
-`lexsort` ermöglicht die Sortierung nach mehreren Kriterien,
+`np.lexsort` ermöglicht die Sortierung nach mehreren Kriterien,
 ähnlich der Sortierung in Tabellenkalkulationen:
 
 ```python
@@ -155,7 +160,7 @@ for i in indices:
 # Bob: Gesamt=92, Mathe=85
 ```
 
-`lexsort` sortiert für jedes Kriterium immer aufsteigend.
+`np.lexsort` sortiert für jedes Kriterium immer aufsteigend.
 Um nach einem Kriterium absteigend zu sortieren, übergeben Sie stattdessen die **negierten**
 Werte dieses Arrays — die Reihenfolge dreht sich dadurch um, ohne dass sich an den
 ursprünglichen Werten etwas ändert:
@@ -179,7 +184,7 @@ for i in indices_desc:
 ```
 
 Diese Technik setzt Zahlen voraus.
-Stringarrays lassen sich nicht negieren; mit `lexsort` sind sie deshalb nur aufsteigend
+Stringarrays lassen sich nicht negieren; mit `np.lexsort` sind sie deshalb nur aufsteigend
 sortierbar.
 
 [ER] Implementieren Sie eine lexikographische Sortierung:
@@ -188,11 +193,13 @@ sortierbar.
   `['Laptop', 'Mouse', 'Keyboard', 'Monitor', 'Headset']`, `preise` mit den Werten
   `[1200, 25, 75, 300, 150]` und `bewertungen` mit den Werten `[4.5, 4.2, 4.5, 4.0, 4.5]`
 - Sortieren Sie die Produkte erst nach Bewertung (absteigend), dann nach Preis (aufsteigend) —
-  für absteigende Sortierung übergeben Sie die negierten Bewertungen an `lexsort`
-- Verwenden Sie `lexsort` und geben Sie in der sortierten Reihenfolge für jedes Produkt Name,
+  für absteigende Sortierung übergeben Sie die negierten Bewertungen an `np.lexsort`
+- Verwenden Sie `np.lexsort` und geben Sie in der sortierten Reihenfolge für jedes Produkt Name,
   Preis und Bewertung aus
+- Prüfen Sie Ihr Ergebnis: An erster Stelle steht weder das billigste noch das teuerste Produkt.
+  Begründen Sie in einem Kommentar, warum es trotzdem vorne steht
 
-[HINT::Reihenfolge der Kriterien]
+[HINT::In welcher Reihenfolge muss ich die Arrays an `keys` übergeben?]
 Die Reihenfolge in `keys` ist leicht zu verwechseln: Das **zuletzt** übergebene Array bestimmt
 die Sortierung zuerst.
 Im Notenbeispiel oben steht deshalb `gesamtnote` als letztes Element in `keys`, weil zuerst nach
@@ -264,22 +271,22 @@ print(f'Maximum {data[row, col]} an flachem Index {flat_max} = Zeile {row}, Spal
 - Erstellen Sie mit `np.array` ein 4×5-Array `data` mit den Werten
   `[[12, 45, 8, 67, 23], [34, 89, 5, 41, 56], [78, 3, 62, 19, 90], [27, 51, 14, 38, 6]]`
 - Finden Sie Position und Wert des globalen Maximums und Minimums, sowohl über den flachen
-  Index als auch mit `unravel_index` umgerechnet in Zeile/Spalte
+  Index als auch mit `np.unravel_index` umgerechnet in Zeile/Spalte
 - Bestimmen Sie für jede Zeile das Maximum und für jede Spalte das Minimum
 - Verwenden Sie die Indices, um die tatsächlichen Werte auszugeben
 
 [HINT::Welche `axis` brauche ich für "pro Zeile"?]
 Die Beispielaufrufe oben zeigen die jeweils andere Richtung, als hier verlangt ist, also nicht
 einfach abschreiben.
-Wer sich die Nummerierung der Achsen aus [PARTREF::np-array] vergegenwärtigt, kann sich die
-Bedeutung an einem kleinen 2×3-Array klarmachen: Eine Reduktion entlang einer Achse lässt genau
-diese Achse verschwinden, sodass die Länge des Ergebnisses zeigt, ob pro Zeile oder pro Spalte
-gesucht wurde.
+Machen Sie sich die Nummerierung der Achsen aus [PARTREF::np-array] an einem kleinen 2×3-Array
+klar.
+Eine Reduktion entlang einer Achse lässt genau diese Achse verschwinden; an der Länge des
+Ergebnisses erkennen Sie deshalb, ob pro Zeile oder pro Spalte gesucht wurde.
 [ENDHINT]
 
 [EQ] In [EREFR::3] haben Sie für Maximum und Minimum jeweils den flachen Index und das von
-`unravel_index` gelieferte Paar aus Zeile und Spalte ausgegeben.
-Formulieren Sie anhand dieser beiden Wertepaare eine Rechenregel, die den flachen Index aus Zeile
+`np.unravel_index` gelieferte Paar aus Zeile und Spalte ausgegeben.
+Formulieren Sie anhand dieser beiden Beispiele eine Rechenregel, die den flachen Index aus Zeile
 und Spalte bestimmt, und prüfen Sie sie an beiden Fällen nach.
 Welche Angabe über die Form des Arrays geht in die Regel ein?
 
@@ -297,11 +304,11 @@ numpy.extract(condition, a)     # gibt die Werte von a zurück, an denen conditi
 
 - `a`: das zu durchsuchende bzw. zu filternde Array
 - `condition`: Boolean-Array oder -Ausdruck
-- `x`, `y`: Werte bzw. Arrays, aus denen elementweise ausgewählt wird, je nachdem ob
+- `x`, `y`: Werte bzw. Arrays, aus denen elementweise ausgewählt wird, je nachdem, ob
   `condition` an der jeweiligen Position `True` oder `False` ist
 
 Ein Boolean-Ausdruck wie `a > 50` ist selbst ein Array aus `True` und `False`, sodass
-`nonzero(a > 50)` die Indices aller Elemente über 50 liefert.
+`np.nonzero(a > 50)` die Indices aller Elemente über 50 liefert.
 
 ```python
 import numpy as np
@@ -328,21 +335,21 @@ print('Nicht-Null-Indices:', np.nonzero(sparse_arr))
 print('Durch 30 teilbar:', np.extract(arr % 30 == 0, arr))  # [30 60 90]
 ```
 
-`nonzero` gibt keine Liste von Positionen zurück, sondern ein Tupel mit einem Indexarray je
+`np.nonzero` gibt keine Liste von Positionen zurück, sondern ein Tupel mit einem Indexarray je
 Achse des Arrays.
 Für ein 1D-Array besteht das Tupel deshalb aus genau einem Array, das man mit `[0]` herausholt.
 
 `np.extract(bedingung, a)` ist bei einer Boolean-Bedingung nichts anderes als die
 Boolean-Maske `a[bedingung]` aus [PARTREF::np-index-slice].
-Auch `np.where` kann mit nur einem Argument aufgerufen werden; die NumPy-Dokumentation empfiehlt
-für diesen Fall aber ausdrücklich `nonzero`.
+`np.where(condition)` ohne `x` und `y` liefert dasselbe wie `np.nonzero(condition)`; die
+NumPy-Dokumentation empfiehlt für diesen Fall aber ausdrücklich `np.nonzero`.
 
 [ER] Verwenden Sie bedingte Suchfunktionen:
 
-- Erzeugen Sie mit `arange` ein Array `arr` mit den ganzen Zahlen von -15 bis 15
-- Finden Sie mit `nonzero` die Indices aller positiven Werte und geben Sie auch die Werte an
+- Erzeugen Sie mit `np.arange` ein Array `arr` mit den ganzen Zahlen von -15 bis 15
+- Finden Sie mit `np.nonzero` die Indices aller positiven Werte und geben Sie auch die Werte an
   diesen Positionen aus
-- Erzeugen Sie mit der Drei-Parameter-Form `where(condition, x, y)` ein **neues** Array
+- Erzeugen Sie mit der Drei-Parameter-Form `np.where(condition, x, y)` ein **neues** Array
   `geklemmt`, in dem alle negativen Werte durch `0` ersetzt sind und die übrigen Werte
   unverändert bleiben; `arr` selbst bleibt dabei unangetastet
 - Erstellen Sie mit `np.array` ein 3×3-Array `sparse` mit den Werten
@@ -350,7 +357,7 @@ für diesen Fall aber ausdrücklich `nonzero`.
 - Klären Sie die Bedeutung des Rückgabewerts für dieses 2D-Array anhand der
   [Dokumentation zu `numpy.nonzero`](https://numpy.org/doc/stable/reference/generated/numpy.nonzero.html)
   und erklären Sie Ihre Ausgabe in einem Kommentar
-- Extrahieren Sie alle Werte zwischen -5 und 5 aus `arr` mit `extract`
+- Extrahieren Sie alle Werte zwischen -5 und 5 aus `arr` mit `np.extract`
 
 <!-- time estimate: 15 min -->
 
@@ -374,6 +381,8 @@ Garantiert ist nur diese eine Position: Vor `kth` stehen die kleineren Werte, da
 In welcher Reihenfolge sie innerhalb dieser beiden Gruppen liegen, ist offen und kann je nach
 NumPy-Version anders aussehen.
 Wer die k kleinsten Werte auch sortiert braucht, muss das Teilstück deshalb selbst noch sortieren.
+Das folgende Beispiel prüft die Garantie mit `np.all(bedingung)`, das genau dann `True` liefert,
+wenn jedes Element des Boolean-Arrays `bedingung` `True` ist.
 
 ```python
 import numpy as np
@@ -430,29 +439,29 @@ print(f'Kürzeste Dauer: {dauer:.5f} Sekunden')
 
 [ER] Implementieren Sie effiziente Partitionierung und messen Sie den Zeitunterschied selbst:
 
-- Erzeugen Sie mit `arange` ein großes Array `large_arr` mit 1 Million absteigend angeordneten
+- Erzeugen Sie mit `np.arange` ein großes Array `large_arr` mit 1 Million absteigend angeordneten
   Werten (von `1000000` bis `1`)
 - Messen Sie mit dem `time`-Modul die Laufzeit der vollständigen Sortierung mit `np.sort` und die
-  Laufzeit von `partition` für die 10 kleinsten Werte, jeweils als kürzeste aus 5 Wiederholungen
+  Laufzeit von `np.partition` für die 10 kleinsten Werte, jeweils als kürzeste aus 5 Wiederholungen
 - Legen Sie beide Messungen in eine gemeinsame Schleife, sodass in jedem Durchlauf beide
   Operationen einmal an die Reihe kommen, jede mit ihrer eigenen Zeitenliste; so treffen
   Schwankungen der Maschine beide Messungen gleichmäßig
 - Geben Sie beide gemessenen Zeiten aus und berechnen Sie den Geschwindigkeitsfaktor
-- Verwenden Sie `argpartition`, um die ursprünglichen Indices der 10 kleinsten Werte zu erhalten
+- Verwenden Sie `np.argpartition`, um die ursprünglichen Indices der 10 kleinsten Werte zu erhalten
 
 [HINT::Ich habe partitioniert, aber wie komme ich an die 10 kleinsten Werte?]
 Nach `np.partition(large_arr, 9)` stehen die 10 kleinsten Werte an den Positionen 0 bis 9, also
 im Slice `[:10]` — allerdings in unbestimmter Reihenfolge, sodass sich für die Ausgabe ein
 zusätzliches `np.sort` auf diesem Teilstück lohnt.
-Dasselbe Slice angewendet auf das Ergebnis von `argpartition` liefert die zugehörigen Indices im
+Dasselbe Slice angewendet auf das Ergebnis von `np.argpartition` liefert die zugehörigen Indices im
 ursprünglichen Array.
 [ENDHINT]
 
 <!-- time estimate: 15 min -->
 
-[EQ] In [EREFR::5] haben Sie die Laufzeit von `partition` und `np.sort` auf demselben großen
+[EQ] In [EREFR::5] haben Sie die Laufzeit von `np.partition` und `np.sort` auf demselben großen
 Array gemessen.
-Erklären Sie anhand Ihrer eigenen Messwerte, warum `partition` schneller ist, wenn Sie nur die
+Erklären Sie anhand Ihrer eigenen Messwerte, warum `np.partition` schneller ist, wenn Sie nur die
 k kleinsten Elemente benötigen, nicht aber das gesamte Array in sortierter Reihenfolge.
 
 <!-- time estimate: 5 min -->
@@ -473,12 +482,14 @@ k kleinsten Elemente benötigen, nicht aber das gesamte Array in sortierter Reih
 
 **Knackpunkte:**
 
-- [EREFR::1]: `argsort(axis=1)` gefolgt von `take_along_axis` rekonstruiert exakt das Ergebnis
-  von `np.sort(werte, axis=1)`
+- [EREFR::2]: die Reihenfolge in `keys` stimmt, die Ausgabe beginnt also mit Keyboard, Headset,
+  Laptop.
+  Bei vertauschten `keys` entsteht eine nach Preis sortierte Liste, die mit Mouse beginnt und
+  ebenfalls plausibel aussieht
 - [EREFR::4]: `geklemmt` ist ein neues Array und `arr` bleibt unverändert, sonst liefert der
   letzte Arbeitsschritt nur noch die Werte 0 bis 5 statt -5 bis 5
 - [EREFQ::3]: die Erklärung für die gemessene Zeitdifferenz verweist auf die eigenen Messwerte
-  aus [EREFR::5] und darauf, dass `partition` nicht das gesamte Array vollständig ordnen muss
+  aus [EREFR::5] und darauf, dass `np.partition` nicht das gesamte Array vollständig ordnen muss
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-sort-filter.md]
