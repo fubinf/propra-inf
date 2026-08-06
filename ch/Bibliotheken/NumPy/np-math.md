@@ -95,8 +95,8 @@ Beides sind Rundungsartefakte: `np.pi` ist nur die bestmögliche Fließkomma-Nä
 also weicht auch `angles_rad[4]` minimal vom exakten Wert π/2 ab, und der Tangens reagiert an
 seiner Polstelle extrem empfindlich auf solche Abweichungen.
 `6.12323400e-17` ist damit ein Wert, der praktisch null ist.
-Beachten Sie außerdem, dass dieser winzige Wert die Darstellung des gesamten Kosinus-Arrays
-umschaltet:
+Beachten Sie außerdem, dass dieser winzige Wert die Darstellung des gesamten Kosinus-Arrays auf
+wissenschaftliche Notation umschaltet:
 `8.66025404e-01` ist derselbe Wert wie `0.866025404`, denn `e-01` bedeutet "mal zehn hoch minus eins".
 
 [ER] Implementieren Sie Berechnungen mit trigonometrischen Funktionen:
@@ -115,9 +115,10 @@ Der Potenzoperator `**` wirkt auf Arrays elementweise:
 `sin_values**2` quadriert jeden Eintrag einzeln und liefert wieder ein Array derselben Form.
 [ENDHINT]
 
-[EQ] Ihre Summe `sin²(x) + cos²(x)` wird für alle fünf Winkel als `1.` ausgegeben, der
-elementweise Vergleich mit `1` liefert aber an einer Stelle `False`.
-Erklären Sie, wie beide Ausgaben gleichzeitig zutreffen können.
+[EQ] Ihre Summe `sin²(x) + cos²(x)` wird für alle fünf Winkel als `1.` ausgegeben.
+Der elementweise Vergleich mit `1` bestätigt das je nach Maschine aber nicht an allen fünf
+Positionen.
+Erklären Sie, wie eine Position mit `False` zustande kommt und wie sie zur Ausgabe `1.` passt.
 Erklären Sie außerdem, warum `np.allclose()` für diese Prüfung das geeignetere Werkzeug ist.
 
 [HINT::Die Summe wird überall als `1.` ausgegeben — wo steckt dann die Abweichung?]
@@ -147,8 +148,9 @@ numpy.arctan(x)
 `np.arcsin` und `np.arccos` sind nur für Werte aus `[-1, 1]` definiert und liefern sonst `nan`
 zusammen mit einer `RuntimeWarning`.
 `nan` steht für "not a number" und ist derjenige Fließkommawert, mit dem NumPy ein undefiniertes
-Ergebnis kennzeichnet; die Warnung bricht die Rechnung nicht ab, Sie erhalten also ein Array, in
-dem nur die betroffenen Positionen `nan` enthalten.
+Ergebnis kennzeichnet.
+Die Warnung bricht die Rechnung nicht ab: Sie erhalten ein Array, in dem nur die betroffenen
+Positionen `nan` enthalten.
 Zu einem Funktionswert passen mehrere Winkel; NumPy liefert stets denjenigen aus einem festen Bereich:
 `np.arcsin` einen von -90 bis 90 Grad und `np.arccos` einen von 0 bis 180 Grad (die Grenzen
 jeweils eingeschlossen), `np.arctan` einen von -90 bis 90 Grad (die Grenzen ausgeschlossen).
@@ -252,6 +254,7 @@ print('Auf 2 Nachkommastellen:', np.round(numbers, decimals=2))
   `orders` mit den Werten `[37, 12, 5, 100]` die Zahl der benötigten Kisten
 - Ein Budget von 50 Euro steht zur Verfügung: Berechnen Sie für die Stückpreise `prices` mit den
   Werten `[7.5, 3.2, 12.0, 4.9]`, wie viele Stück sich zu jedem Preis kaufen lassen
+- Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Woher weiß ich, welche Rundungsfunktion die beiden letzten Schritte brauchen?]
 Rechnen Sie je einen einzelnen Wert von Hand durch, bevor Sie sich für eine Funktion entscheiden:
@@ -334,7 +337,8 @@ ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword argume
   sowie ein 1D-Array `arr2` mit den Werten `[6, 11, 3, 9]` (wird per Broadcasting auf die Form
   von `arr1` angewendet)
 - Führen Sie mit `np.add()`, `np.subtract()`, `np.multiply()` und `np.divide()` alle vier
-  Grundrechenarten durch
+  Grundrechenarten durch und halten Sie als Kommentar im Quelltext fest, welche Form die
+  Ergebnisse haben und warum
 - Berechnen Sie mit `np.reciprocal()` die Kehrwerte von `arr1`
 - Berechnen Sie `np.abs()` für die Differenz `arr1 - arr2`
 - Erstellen Sie ein Array `arr3` mit den Werten `[6, 0, 3, 0]` und teilen Sie `arr1` mit
@@ -344,6 +348,9 @@ ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword argume
   Legen Sie mit `np.zeros(arr1.shape)` ein Zielarray an, übergeben Sie es als `out=` und
   schränken Sie die Rechnung mit `where=` auf die übrigen Positionen ein.
   Vergleichen Sie das Ergebnis mit dem der ersten Division
+- Halten Sie als Kommentar im Quelltext fest, warum `where=` auf ein mit `out=` übergebenes
+  Zielarray angewiesen ist und was ohne dieses Zielarray an den ausgelassenen Positionen stünde
+- Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Warum sind alle meine Kehrwerte `0`?]
 `np.reciprocal()` rechnet im `dtype` des Eingabe-Arrays — anders als `np.divide()`, das stets
@@ -421,6 +428,7 @@ Exponenten geübt, weil er für jede Wurzel funktioniert.
 - Berechnen Sie zusätzlich `np.mod(-7, 3)` und `np.mod(7, -3)`
 - Berechnen Sie `np.exp()` für die Werte `[0, 1, 2, 3]` und vergleichen Sie den zweiten
   Ergebniswert mit `np.e`
+- Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [EQ] Die beiden Modulo-Rechnungen aus [EREFR::5] liefern `2` und `-2`, obwohl in beiden Fällen
 dieselben Beträge 7 und 3 im Spiel sind.
@@ -527,7 +535,9 @@ numpy.percentile(a, q, axis=None)   # Wert, unter dem etwa q Prozent der Daten l
 - `a`: das Array, dessen Kennzahl berechnet wird
 - `axis` (Standard `None`): Bedeutung wie bei `mean` und `median` oben
 - `ddof` (nur bei `std`/`var`, Standard `0`): NumPy teilt die Summe der quadrierten Abweichungen
-  durch `n - ddof`, wobei `n` die Anzahl der Werte ist; standardmäßig wird also mit `1/n` gerechnet
+  durch `n - ddof`, wobei `n` die Anzahl der Werte ist; standardmäßig wird also mit `1/n` gerechnet.
+  In der vollständigen Signatur stehen vor `ddof` noch weitere Parameter, es ist deshalb als
+  Schlüsselwortargument zu übergeben
 - `q` (nur bei `percentile`): das gewünschte Perzentil bzw. eine Liste von Perzentilen
   (Werte zwischen 0 und 100)
 
@@ -543,7 +553,7 @@ die Berechnungsvarianten von `percentile` beschreibt der Parameter `method` in d
 import numpy as np
 
 # Daten für erweiterte Statistiken
-data = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+data = np.array([4, 9, 13, 18, 24, 31, 37, 42, 48, 55])
 print('Daten:', data)
 
 # Erweiterte Statistiken
@@ -557,9 +567,9 @@ percentiles = np.percentile(data, [25, 50, 75])
 print('Quartile:', percentiles)
 ```
 
-Das 25. Perzentil ist `3.25` und damit ein Wert, der in den Daten gar nicht vorkommt: die
-gesuchte Grenze liegt zwischen dem dritten und dem vierten Datenpunkt, und NumPy interpoliert
-dort linear.
+Das 25. Perzentil ist `14.25` und damit ein Wert, der in den Daten gar nicht vorkommt: die
+gesuchte Grenze liegt zwischen dem dritten und dem vierten Datenpunkt (`13` und `18`), und NumPy
+interpoliert dort linear.
 
 [ER] Ein Kurs mit 20 Teilnehmenden hat eine Klausur geschrieben.
 Werten Sie die erreichten Punktzahlen aus:
@@ -575,6 +585,7 @@ Werten Sie die erreichten Punktzahlen aus:
 - Bestimmen Sie das 10., 50. und 90. Perzentil
 - Berechnen Sie zusätzlich den Median, vergleichen Sie ihn mit dem 50. Perzentil und halten Sie
   das Ergebnis des Vergleichs als Kommentar im Quelltext fest
+- Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Warum hat meine Varianz so viele Nachkommastellen?]
 Werte wie die Varianz können mit vielen Nachkommastellen ausgegeben werden (z. B.
@@ -615,12 +626,15 @@ bildet, und begründen Sie, warum es gerade diese beiden sind.
   Die Begründung knüpft die Rundungsrichtung an die Sachlage und nicht nur an die Funktionsnamen
 - [EREFQ::2]: die Antwort nennt die Rundung zur nächsten geraden Zahl als bewusste Festlegung;
   "Rundungsfehler" oder "Fließkomma-Ungenauigkeit" zeigt, dass die Dokumentation nicht gelesen wurde
-- [EREFR::4], letzter Schritt: die Division mit `out=` und `where=` lässt sich am Ergebnis nicht
-  zuverlässig überprüfen, denn `where=` ohne `out=` hinterlässt an den ausgelassenen Positionen
-  nicht initialisierten Speicher, der in der Praxis häufig ebenfalls aus Nullen besteht.
+- [EREFR::4], letzter Schritt: die Division mit `out=` und `where=` lässt sich am Ergebnis allein
+  nicht zuverlässig überprüfen, denn `where=` ohne `out=` hinterlässt an den ausgelassenen
+  Positionen nicht initialisierten Speicher, der gelegentlich ebenfalls aus Nullen besteht.
   Nullen an diesen Positionen belegen also gerade nicht, dass ein Zielarray übergeben wurde.
-  Zu prüfen ist deshalb der Quelltext: ohne ein vorher angelegtes `float`-Zielarray in `out=`
-  ist die Lösung falsch, auch wenn die Ausgabe stimmt
+  Meist verrät sich das fehlende `out=` allerdings von selbst, nämlich durch die `UserWarning`
+  "'where' used without 'out', expect uninitialized memory in output" und durch Werte in der
+  Größenordnung `e-317` in der Ausgabe.
+  Ausschlaggebend sind Quelltext und Kommentar: ohne ein vorher angelegtes `float`-Zielarray in
+  `out=` ist die Lösung falsch, auch wenn die Ausgabe stimmt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-math.md]
