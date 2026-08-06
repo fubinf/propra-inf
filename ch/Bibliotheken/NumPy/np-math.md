@@ -101,6 +101,8 @@ Beachten Sie außerdem, dass dieser eine extreme Wert die Darstellung des gesamt
   und `np.tan()` die Arrays `sin_values`, `cos_values` und `tan_values`
 - Überprüfen Sie die trigonometrische Identität `sin²(x) + cos²(x) = 1` für alle Winkel: Geben Sie
   sowohl die Summe selbst aus als auch das Ergebnis ihres elementweisen Vergleichs mit `1`
+- Wiederholen Sie diesen Vergleich mit `np.allclose()` aus [PARTREF::np-array] und geben Sie auch
+  dessen Ergebnis aus
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Wie quadriere ich ein ganzes Array?]
@@ -111,6 +113,7 @@ Der Potenzoperator `**` wirkt auf Arrays elementweise:
 [EQ] Ihre Summe `sin²(x) + cos²(x)` wird für alle fünf Winkel als `1.` ausgegeben, der
 elementweise Vergleich mit `1` liefert aber an einer Stelle `False`.
 Erklären Sie, wie beide Ausgaben gleichzeitig zutreffen können.
+Erklären Sie außerdem, warum `np.allclose()` für diese Prüfung das geeignetere Werkzeug ist.
 
 <!-- time estimate: 20 min -->
 
@@ -126,11 +129,12 @@ numpy.arctan(x)
 ```
 
 - `x`: Array mit Sinus-/Kosinus-/Tangenswerten (Ergebnis liegt im Bogenmaß);
-  `arcsin` und `arccos` sind nur für Werte aus `[-1, 1]` definiert und liefern sonst `nan`
+  `np.arcsin` und `np.arccos` sind nur für Werte aus `[-1, 1]` definiert und liefern sonst `nan`
   zusammen mit einer `RuntimeWarning`
 
 Zu einem Funktionswert passen mehrere Winkel; NumPy liefert stets den aus einem festen Bereich:
-`arcsin` und `arctan` einen zwischen -90 und 90 Grad, `arccos` einen zwischen 0 und 180 Grad.
+`np.arcsin` und `np.arctan` einen zwischen -90 und 90 Grad, `np.arccos` einen zwischen 0 und
+180 Grad.
 
 ```python
 import numpy as np
@@ -158,6 +162,9 @@ Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den zurückge
 - Berechnen Sie mit `np.arccos()` die entsprechenden Winkel im Bogenmaß und wandeln Sie sie in Grad um
 - Die Werte gehören zu den Winkeln 10, 40, 80 und 100 Grad; geben Sie die Differenz zwischen
   Ihrem Ergebnis und diesen Sollwerten aus
+- Genau eine der vier Differenzen ist negativ.
+  Begründen Sie das als Kommentar im Quelltext; achten Sie dabei darauf, wie die vier
+  Eingabewerte gegenüber den exakten Kosinuswerten gerundet sind
 - Erstellen Sie zusätzlich ein Array `given_tan` mit den Tangenswerten `[0, 1, 1.7321]` und
   berechnen Sie mit `np.arctan()` die entsprechenden Winkel in Grad
 - Die Werte gehören zu den Winkeln 0, 45 und 60 Grad.
@@ -183,7 +190,7 @@ In fremdem Code begegnet Ihnen für `np.round` auch der gleichbedeutende Name `n
 import numpy as np
 
 # Array mit verschiedenen Dezimalzahlen
-numbers = np.array([1.2, 2.5, -1.5, -2.3, 3.14159, -4.6789])
+numbers = np.array([1.2, 2.7, -1.2, -2.3, 3.14159, -4.6789])
 print('Originalzahlen:', numbers)
 
 # Verschiedene Rundungsarten
@@ -210,7 +217,8 @@ print('Auf 2 Dezimalstellen:', np.round(numbers, decimals=2))
 - Halten Sie als Kommentar im Quelltext fest, warum die beiden letzten Rechnungen
   verschiedene Rundungsfunktionen brauchen und `np.round()` für beide falsch wäre
 
-[EQ] Für `0.5` liefert `np.round()` nicht das Ergebnis, das die Schulregel erwarten lässt.
+[EQ] Für `0.5` liefert `np.round()` nicht das Ergebnis, das die Schulregel "bei genau `.5` wird
+aufgerundet" erwarten lässt.
 Klären Sie anhand des Abschnitts "Notes" in der
 [Dokumentation von `numpy.round`](https://numpy.org/doc/stable/reference/generated/numpy.round.html),
 nach welcher Regel NumPy stattdessen rundet.
@@ -276,7 +284,7 @@ ausgeführte Rechnung; Einzelheiten stehen in der
   von `arr1` angewendet)
 - Führen Sie mit `np.add()`, `np.subtract()`, `np.multiply()` und `np.divide()` alle vier
   Grundrechenarten durch
-- Berechnen Sie mit `np.reciprocal()` die Kehrwerte von `arr1` (achten Sie auf den `dtype`)
+- Berechnen Sie mit `np.reciprocal()` die Kehrwerte von `arr1`
 - Berechnen Sie `np.abs()` für die Differenz `arr1 - arr2`
 
 [HINT::Warum sind alle meine Kehrwerte `0`?]
@@ -337,7 +345,7 @@ Exponenten geübt, weil er für jede Wurzel funktioniert.
   `np.power(base, exponents)`
 - Berechnen Sie den Rest bei Division durch 3 für alle Werte in `base`
 - Berechnen Sie zusätzlich `np.mod(-7, 3)`; das Ergebnis ist positiv, obwohl der Dividend negativ ist.
-  Klären Sie anhand der
+  Klären Sie anhand des einleitenden Beschreibungstexts in der
   [Dokumentation von `numpy.mod`](https://numpy.org/doc/stable/reference/generated/numpy.mod.html),
   woran das liegt, und halten Sie die Begründung als Kommentar im Quelltext fest
 - Berechnen Sie `np.exp()` für die Werte `[0, 1, 2, 3]` und vergleichen Sie den zweiten
@@ -364,8 +372,6 @@ numpy.sum(a, axis=None)
 Ihnen dafür auch die gleichbedeutenden Namen `np.amin` und `np.amax`.
 `np.ptp` ("peak to peak") berechnet die Spannweite (Maximum minus Minimum), `np.sum` die
 Summe aller Elemente (bzw. pro Zeile/Spalte, je nach `axis`).
-`np.sum` führt die NumPy-Dokumentation allerdings nicht bei den statistischen, sondern bei den
-mathematischen Funktionen.
 
 ```python
 import numpy as np
@@ -455,6 +461,11 @@ percentiles = np.percentile(data, [25, 50, 75])
 print('Quartile:', percentiles)
 ```
 
+Das 25. Perzentil ist `3.25` und damit ein Wert, der in den Daten gar nicht vorkommt: die
+gesuchte Grenze liegt zwischen dem dritten und dem vierten Datenpunkt, und NumPy interpoliert
+dort linear.
+Dasselbe Prinzip gilt für `np.median`, sobald ein Array eine gerade Anzahl von Werten hat.
+
 [ER] Ein Kurs mit 20 Teilnehmenden hat eine Klausur geschrieben.
 Werten Sie die erreichten Punktzahlen aus:
 
@@ -494,20 +505,6 @@ Punktzahl erreicht hat.
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
-
-**Knackpunkte:**
-
-- [EREFR::3]: die beiden Anwendungsrechnungen verwenden `np.ceil()` bzw. `np.floor()` und liefern
-  `[4. 1. 1. 9.]` und `[6. 15. 4. 10.]`; mit `np.round()` ergäben sich unter anderem null Kisten
-  für fünf Artikel
-- [EREFQ::2]: die Antwort nennt die Rundung zur nächsten geraden Zahl als bewusste Festlegung;
-  "Rundungsfehler" oder "Fließkomma-Ungenauigkeit" zeigt, dass die Dokumentation nicht gelesen wurde
-- [EREFR::4]: die Umwandlung nach `float` vor `np.reciprocal()` ist erfolgt; ein Ergebnis aus
-  lauter Nullen zeigt, dass der `dtype` des Integer-Arrays nicht beachtet wurde
-- [EREFR::6]: `axis=1` liefert vier Werte (einen pro Zeile), `axis=0` fünf Werte (einen pro
-  Spalte); vertauschte Zuordnung ist der häufigste Fehler
-- [EREFR::7]: Standardabweichung und Varianz sind mit dem geforderten Default `ddof=0` gerechnet
-  (7.836 und 61.410) und nicht mit `ddof=1` (8.040 und 64.642)
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-math.md]
