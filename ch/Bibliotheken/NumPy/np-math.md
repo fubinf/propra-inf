@@ -1,6 +1,6 @@
 title: NumPy mathematische Funktionen verstehen und anwenden
 stage: alpha
-timevalue: 2.25
+timevalue: 2.5
 difficulty: 2
 assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
 ---
@@ -19,8 +19,9 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
 
 NumPy bietet eine umfangreiche Sammlung mathematischer Funktionen für wissenschaftliche
 Berechnungen und Datenanalyse.
-Diese Aufgabe behandelt trigonometrische, Rundungs- und arithmetische Funktionen, die elementweise
-auf Arrays wirken, sowie statistische Funktionen, die ein Array zu Kennzahlen zusammenfassen.
+Diese Aufgabe behandelt trigonometrische, Rundungs-, arithmetische und Exponentialfunktionen, die
+elementweise auf Arrays wirken, sowie statistische Funktionen, die ein Array zu Kennzahlen
+zusammenfassen.
 
 [ENDSECTION]
 
@@ -93,7 +94,8 @@ Beides sind Rundungsartefakte: `np.pi` ist nur die bestmögliche Fließkomma-Nä
 also ist auch `angles_rad[4]` minimal von π/2 verschieden, und der Tangens reagiert an seiner
 Polstelle extrem empfindlich auf solche Abweichungen.
 `6.12323400e-17` ist damit ein Wert, der praktisch null ist.
-Beachten Sie außerdem, dass dieser winzige Kosinuswert die Darstellung des gesamten Arrays umschaltet:
+Beachten Sie außerdem, dass dieser winzige Wert die Darstellung des gesamten Kosinus-Arrays
+umschaltet:
 `8.66025404e-01` ist derselbe Wert wie `0.866025404`, denn `e-01` bedeutet "mal zehn hoch minus eins".
 
 [ER] Implementieren Sie Berechnungen mit trigonometrischen Funktionen:
@@ -103,8 +105,8 @@ Beachten Sie außerdem, dass dieser winzige Kosinuswert die Darstellung des gesa
   und `np.tan()` die Arrays `sin_values`, `cos_values` und `tan_values`
 - Überprüfen Sie die trigonometrische Identität `sin²(x) + cos²(x) = 1` für alle Winkel: Geben Sie
   sowohl die Summe selbst aus als auch das Ergebnis ihres elementweisen Vergleichs mit `1`
-- Wiederholen Sie diesen Vergleich mit `np.allclose()` aus [PARTREF::np-array] und geben Sie auch
-  dessen Ergebnis aus
+- Prüfen Sie dieselbe Identität zusätzlich mit `np.allclose()` aus [PARTREF::np-array] und geben
+  Sie auch dessen Ergebnis aus
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Wie quadriere ich ein ganzes Array?]
@@ -176,6 +178,10 @@ zurückgerechneten Winkel durch.
 - Genau eine der vier Differenzen ist negativ.
   Begründen Sie das als Kommentar im Quelltext; achten Sie dabei darauf, wie die vier
   Eingabewerte gegenüber den exakten Kosinuswerten gerundet sind
+- Erstellen Sie ein Array `cos_invalid` mit den Werten `[0.5, 1.5]` und wenden Sie `np.arccos()`
+  darauf an.
+  Notieren Sie die Warnung und halten Sie als Kommentar im Quelltext fest, was die beiden
+  Ergebniswerte über die Reichweite dieser Warnung aussagen
 - Erstellen Sie zusätzlich ein Array `given_tan` mit den Tangenswerten `[0, 1, 1.7321]` und
   berechnen Sie mit `np.arctan()` die entsprechenden Winkel in Grad
 - Die Werte gehören zu den Winkeln 0, 45 und 60 Grad.
@@ -191,9 +197,13 @@ Für den Schritt von dieser Richtung zum Vorzeichen der Winkeldifferenz ist ents
 `np.arccos` mit wachsendem Eingabewert steigt oder fällt.
 [ENDHINT]
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Rundungsfunktionen: `round`, `floor`, `ceil`
+
+Rundung brauchen Sie überall dort, wo aus Messwerten oder Zwischenergebnissen lesbare Zahlen
+werden sollen.
+NumPy stellt dafür drei Funktionen bereit, die sich in ihrem Verhalten unterscheiden.
 
 ```python
 numpy.round(a, decimals=0)   # rundet auf die durch decimals angegebene Nachkommastelle
@@ -202,7 +212,7 @@ numpy.ceil(a)                # rundet immer auf (zur kleinsten ganzen Zahl >= a)
 ```
 
 - `a`: das zu rundende Array
-- `decimals` (nur bei `round`, Default `0`): Anzahl der Nachkommastellen, auf die gerundet wird
+- `decimals` (nur bei `round`, Standard `0`): Anzahl der Nachkommastellen, auf die gerundet wird
 
 In fremdem Code begegnet Ihnen für `np.round` auch der gleichbedeutende Name `np.around`.
 
@@ -256,7 +266,7 @@ Begründen Sie für beide Rechnungen aus der Sachlage heraus, welche Funktion di
 Geben Sie außerdem einen Wert aus Ihren Ergebnissen an, bei dem `np.round()` ein sachlich
 falsches Ergebnis liefern würde, und sagen Sie, worin der Fehler bestünde.
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Arithmetische Funktionen: `add`, `subtract`, `multiply`, `divide`, `reciprocal`, `abs`
 
@@ -274,6 +284,8 @@ numpy.abs(x)            # Absolutwert |x|
 - `x1`, `x2`: die beiden Arrays (oder Skalare), auf die die Operation elementweise
   angewendet wird
 - `x` (bei `reciprocal`/`abs`): das Array, auf das die Funktion elementweise angewendet wird
+
+In der Dokumentation steht `np.abs` unter seinem ausgeschriebenen Namen `numpy.absolute`.
 
 ```python
 import numpy as np
@@ -305,8 +317,8 @@ Dieselben vier Operationen lassen sich kürzer als `a + b`, `a - b`, `a * b` und
 beide Formen rechnen dasselbe.
 Die Funktionsform nimmt aber zusätzliche Argumente entgegen, die der Operator nicht kennt, etwa
 `out=` für ein bereits vorhandenes Zielarray oder `where=` für eine nur an bestimmten Positionen
-ausgeführte Rechnung; Einzelheiten stehen in der
-[Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html).
+ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword arguments" der
+[Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html#optional-keyword-arguments).
 
 [ER] Implementieren Sie verschiedene arithmetische Operationen:
 
@@ -345,9 +357,11 @@ An den Positionen mit `False` rechnet NumPy nicht, sondern lässt den Wert stehe
 
 ### Potenz, Rest und Exponentialfunktion: `power`, `mod`, `exp`
 
-`np.mod` und `np.exp` haben typische Einsatzfelder: `np.mod` ordnet Werte zyklisch zu und
-bildet damit Gruppen, etwa Wochentage aus fortlaufenden Tagesnummern oder Farbkanäle aus
-Pixelpositionen.
+Die drei Funktionen dieses Abschnitts haben typische Einsatzfelder.
+`np.power` skaliert Größen, die nicht linear von einer Länge abhängen, etwa Flächen, Volumina
+oder Rechenaufwand.
+`np.mod` ordnet Werte zyklisch zu und bildet damit Gruppen, etwa Wochentage aus fortlaufenden
+Tagesnummern oder Farbkanäle aus Pixelpositionen.
 `np.exp` beschreibt Wachstums- und Zerfallsvorgänge, von Zinseszins über Populationen bis zum
 radioaktiven Zerfall.
 
@@ -405,7 +419,11 @@ Exponenten geübt, weil er für jede Wurzel funktioniert.
 
 <!-- time estimate: 15 min -->
 
-### Statistische Funktionen: `min`, `max`, `mean`, `median`, `ptp`, `sum`
+### Kennzahlen für ganze Arrays: `min`, `max`, `mean`, `median`, `ptp`, `sum`
+
+Die bisherigen Funktionen lieferten zu jedem Eingabewert einen Ergebniswert.
+Die folgenden fassen dagegen viele Werte zu einer einzigen Zahl zusammen, wie man es für den
+ersten Überblick über einen unbekannten Datensatz braucht.
 
 ```python
 numpy.min(a, axis=None)
@@ -416,17 +434,18 @@ numpy.ptp(a, axis=None)
 numpy.sum(a, axis=None)
 ```
 
-- `a`: das Array, dessen Statistik berechnet wird
-- `axis` (Default `None`): Achse, entlang derer die Statistik berechnet wird; bei `None`
+- `a`: das Array, dessen Kennzahl berechnet wird
+- `axis` (Standard `None`): Achse, entlang derer die Kennzahl berechnet wird; bei `None`
   wird über das gesamte (flache) Array gerechnet
 
 `np.min` und `np.max` kennen Sie bereits aus [PARTREF::np-array2]; in fremdem Code begegnen
 Ihnen dafür auch die gleichbedeutenden Namen `np.amin` und `np.amax`.
 `np.ptp` ("peak to peak") berechnet die Spannweite (Maximum minus Minimum), `np.sum` die
 Summe aller Elemente (bzw. pro Zeile/Spalte, je nach `axis`).
-In der NumPy-Dokumentation stehen drei dieser Funktionen nicht bei den statistischen Funktionen:
-`np.sum` findet sich bei den mathematischen Funktionen, `np.min` und `np.max` bei Sortieren und
-Suchen.
+In der NumPy-Dokumentation stehen drei dieser Funktionen nicht auf der Seite zu den statistischen
+Funktionen, sondern auf der zu den mathematischen: `np.sum` im Abschnitt "Sums, products,
+differences", `np.min` und `np.max` im Abschnitt "Extrema finding".
+Nur `np.mean`, `np.median` und `np.ptp` sind dort als Statistik geführt.
 
 ```python
 import numpy as np
@@ -480,20 +499,24 @@ und woran das liegt.
 
 ### Streuungsmaße und Perzentile: `std`, `var`, `percentile`
 
+Zwei Datensätze mit demselben Mittelwert können völlig verschieden aussehen: einmal liegen alle
+Werte dicht beieinander, einmal weit verstreut.
+Die folgenden Funktionen machen diesen Unterschied messbar.
+
 ```python
 numpy.std(a, axis=None, ddof=0)     # Standardabweichung
 numpy.var(a, axis=None, ddof=0)     # Varianz
 numpy.percentile(a, q, axis=None)   # Wert, unter dem etwa q Prozent der Daten liegen
 ```
 
-- `a`: das Array
-- `axis` (Default `None`): wie im vorigen Abschnitt
-- `ddof` (nur bei `std`/`var`, Default `0`): NumPy teilt die Summe der quadrierten Abweichungen
-  durch `n - ddof`, wobei `n` die Anzahl der Werte ist; per Default wird also mit `1/n` gerechnet
+- `a`: das Array, dessen Kennzahl berechnet wird
+- `axis` (Standard `None`): Bedeutung wie bei `mean` und `median` oben
+- `ddof` (nur bei `std`/`var`, Standard `0`): NumPy teilt die Summe der quadrierten Abweichungen
+  durch `n - ddof`, wobei `n` die Anzahl der Werte ist; standardmäßig wird also mit `1/n` gerechnet
 - `q` (nur bei `percentile`): das gewünschte Perzentil bzw. eine Liste von Perzentilen
   (Werte zwischen 0 und 100)
 
-Der Default `ddof=0` ist wichtig, wenn Sie Ihr Ergebnis gegen eine andere Quelle prüfen:
+Der Standardwert `ddof=0` ist wichtig, wenn Sie Ihr Ergebnis gegen eine andere Quelle prüfen:
 Lehrbücher und Taschenrechner verwenden für Stichproben meist `1/(n-1)`, was in NumPy
 `ddof=1` entspricht und einen etwas größeren Wert ergibt.
 Einzelheiten stehen in der
@@ -528,8 +551,12 @@ Werten Sie die erreichten Punktzahlen aus:
 
 - Erstellen Sie ein 1D-Array `scores` mit den 20 Werten
   `[42, 55, 61, 47, 58, 65, 70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53]`
-- Berechnen Sie Mittelwert, Standardabweichung und Varianz; für die beiden letzten belassen Sie
-  es beim Default `ddof=0`, setzen den Parameter also nicht
+- Berechnen Sie Mittelwert, Standardabweichung und Varianz, letztere beiden zunächst mit dem
+  Standardwert `ddof=0`
+- Berechnen Sie Standardabweichung und Varianz zusätzlich mit `ddof=1` und geben Sie beide
+  Wertepaare aus.
+  Halten Sie als Kommentar im Quelltext fest, wie der Unterschied zwischen den beiden Ergebnissen
+  aus dem Nenner `n - ddof` entsteht
 - Bestimmen Sie das 10., 50. und 90. Perzentil
 - Berechnen Sie zusätzlich den Median, vergleichen Sie ihn mit dem 50. Perzentil und halten Sie
   das Ergebnis des Vergleichs als Kommentar im Quelltext fest
@@ -549,7 +576,7 @@ Punktzahl erreicht hat.
 Benennen Sie dazu die beiden Punktzahlen aus den sortierten Daten, aus denen NumPy diesen Wert
 bildet, und begründen Sie, warum es gerade diese beiden sind.
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Weiterführend
 

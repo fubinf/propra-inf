@@ -87,7 +87,7 @@ numpy.binary_repr(num, width=None)
 ```
 
 - `num`: die darzustellende Ganzzahl
-- `width` (Default `None`): genaue Stellenzahl der Ausgabe.
+- `width` (Standard `None`): genaue Stellenzahl der Ausgabe.
   Positive Zahlen werden mit führenden Nullen aufgefüllt (`width=8` liefert für `13` die Ausgabe
   `00001101`), negative als Zweierkomplement dieser Breite (`width=8` liefert für `-4` die Ausgabe
   `11111100`).
@@ -180,7 +180,7 @@ import numpy as np
 
 schmal = np.array([64, 100], dtype=np.int8)
 print(np.left_shift(schmal, 2))                  # [   0 -112]
-print(np.left_shift(np.array([64, 100]), 2))     # [256 400] (Default-dtype, breit genug)
+print(np.left_shift(np.array([64, 100]), 2))     # [256 400] (Standard-dtype, breit genug)
 ```
 
 Bei `64 = 01000000` wandert das einzige gesetzte Bit aus den 8 Bit hinaus, übrig bleibt `0`.
@@ -373,7 +373,7 @@ numpy.strings.replace(a, old, new)            # ersetzt alle Vorkommen von old d
 - `a`: Array von Strings, das bearbeitet wird
 - `width`: Zielbreite, auf die zentriert wird; geht die Aufteilung nicht glatt auf, stehen links
   und rechts unterschiedlich viele Füllzeichen
-- `fillchar` (Default `' '`): Füllzeichen links/rechts vom zentrierten String
+- `fillchar` (Standard `' '`): Füllzeichen links/rechts vom zentrierten String
 - `old`, `new`: zu ersetzendes Teilstück bzw. Ersatz-Teilstück (bei `replace`)
 
 ```python
@@ -429,7 +429,7 @@ numpy.strings.find(a, sub)        # erste Fundposition von sub, oder -1 falls ni
 ```
 
 - `a`, `seq`: Array von Strings, das verarbeitet wird
-- `sep`: Trennzeichen; bei `split` (Default `None`) wird ohne Angabe an beliebigem Leerraum getrennt;
+- `sep`: Trennzeichen; bei `split` (Standard `None`) wird ohne Angabe an beliebigem Leerraum getrennt;
   bei `join` ist `sep` verpflichtend und wird zwischen die Zeichen innerhalb jedes einzelnen Strings
   von `seq` eingefügt (nicht zwischen mehrere Array-Elemente)
 - `sub`: gesuchtes Teilstück (bei `find`)

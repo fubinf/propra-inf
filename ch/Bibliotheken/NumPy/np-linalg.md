@@ -93,9 +93,9 @@ numpy.eye(N, M=None, k=0)       # wie identity, aber auch rechteckig + verschobe
 - `n` (bei `identity`): Größe der quadratischen Einheitsmatrix (immer `n`×`n`, kein
   `k`-Parameter)
 - `N` (bei `eye`): Anzahl der Zeilen
-- `M` (bei `eye`, Default: gleich `N`): Anzahl der Spalten; ergibt eine rechteckige
+- `M` (bei `eye`, Standard: gleich `N`): Anzahl der Spalten; ergibt eine rechteckige
   Matrix, wenn ungleich `N`
-- `k` (bei `eye`, Default `0`): Position der Diagonale mit Einsen; `0` = Hauptdiagonale,
+- `k` (bei `eye`, Standard `0`): Position der Diagonale mit Einsen; `0` = Hauptdiagonale,
   positive Werte verschieben nach rechts, negative Werte nach links
 
 ```python
@@ -310,7 +310,7 @@ numpy.linalg.cond(x, p=None)
 ```
 
 - `x`: die Matrix, deren Konditionszahl berechnet wird
-- `p` (Default `None`): welche Norm verwendet wird (Default entspricht der 2-Norm);
+- `p` (Standard `None`): welche Norm verwendet wird (der Standardwert entspricht der 2-Norm);
   eine hohe Konditionszahl bedeutet, dass kleine Eingabefehler stark verstärkt werden
 
 ```python
@@ -399,8 +399,9 @@ numpy.linalg.svd(a)              # Singulärwertzerlegung
 
 - `M`/`a`/`x` (je nach Funktion): die betroffene Matrix
 - `ord` (bei `norm`): welche Norm berechnet wird — mögliche Werte sind `'fro'` für die
-  Frobenius-Norm sowie `1`, `2` oder `np.inf` für die jeweilige Operatornorm. Bei Default
-  `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm bei Matrizen
+  Frobenius-Norm sowie `1`, `2` oder `np.inf` für die jeweilige Operatornorm.
+  Beim Standardwert `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm
+  bei Matrizen
 
 ```python
 import numpy as np
@@ -425,9 +426,9 @@ print('\nEigenvektoren:')
 print(eigenvectors)
 
 # Matrixnormen
-# Ohne ord-Angabe: Default None entspricht bei einer Matrix der Frobenius-Norm
+# Ohne ord-Angabe: Standard None entspricht bei einer Matrix der Frobenius-Norm
 default_norm = np.linalg.norm(matrix)
-print('\nNorm ohne ord-Angabe (Default):', default_norm)
+print('\nNorm ohne ord-Angabe (Standard):', default_norm)
 
 # Frobenius-Norm (Wurzel der Summe aller quadrierten Elemente)
 frobenius_norm = np.linalg.norm(matrix, 'fro')

@@ -31,7 +31,7 @@ numpy.argsort(a, axis=-1)
 ```
 
 - `a`: das zu sortierende Array
-- `axis` (Default `-1`): Achse, entlang derer sortiert wird (`-1` = letzte Achse)
+- `axis` (Standard `-1`): Achse, entlang derer sortiert wird (`-1` = letzte Achse)
 
 ```python
 import numpy as np
@@ -86,7 +86,7 @@ numpy.take_along_axis(arr, indices, axis=-1)
 - `arr`: das Array, aus dem Werte entnommen werden
 - `indices`: Array gleicher Form wie `arr` (entlang `axis`), das für jede Position angibt,
   welches Element aus `arr` entnommen wird
-- `axis` (Default `-1`): Achse, entlang derer `indices` angewendet wird
+- `axis` (Standard `-1`): Achse, entlang derer `indices` angewendet wird
 
 ```python
 import numpy as np
@@ -193,7 +193,7 @@ numpy.argmin(a, axis=None)
 ```
 
 - `a`: das zu durchsuchende Array
-- `axis` (Default `None`): Achse, entlang derer gesucht wird; bei `None` wird das Array
+- `axis` (Standard `None`): Achse, entlang derer gesucht wird; bei `None` wird das Array
   zunächst zu 1D abgeflacht und ein einzelner Index zurückgegeben
 
 ```python
