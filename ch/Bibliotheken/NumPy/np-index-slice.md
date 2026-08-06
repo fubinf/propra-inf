@@ -51,7 +51,7 @@ arr[-n:]                # Die letzten n Elemente (negative Indizes zählen vom E
 **Beispiel:**
 
 Dieses Beispiel und mehrere der folgenden brauchen ein Array mit fortlaufenden Werten; dafür
-eignet sich `np.arange()`, Details in [PARTREF::np-array2]:
+eignet sich `np.arange()` (Details in [PARTREF::np-array2]):
 
 ```python
 a = np.arange(10, 20)   # Werte 10 bis 19
@@ -60,7 +60,7 @@ print(a[2:7:2])         # Ausgabe: [12 14 16]
 print(a[3:])            # Ausgabe: [13 14 15 16 17 18 19]
 ```
 
-[ER] Erstellen Sie ein NumPy-Array `a` mit den Zahlen 5 bis 14 und geben Sie daraus aus:
+[ER] Erstellen Sie ein NumPy-Array `a` mit den Zahlen 15 bis 24 und geben Sie daraus aus:
 
 - Das Element an Index 5
 - Alle Elemente ab Index 2
@@ -195,20 +195,6 @@ Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die V
 `arr[arr > unten & arr < oben]` wird deshalb als Vergleichskette `arr[arr > (unten & arr) < oben]`
 gelesen und bricht mit einem `ValueError` ab.
 
-Fehlende oder undefinierte Werte stellt NumPy als `np.nan` dar ("Not a Number", ein spezieller
-Fließkommawert).
-Zum Prüfen darauf gibt es eine eigene Funktion:
-
-```python
-np.isnan(arr)          # Maske mit True an jeder Position, die NaN enthält
-```
-
-Diese Funktion ist nötig, weil sich NaN dem Vergleich entzieht: `np.nan == np.nan` ergibt
-`False`, `arr == np.nan` liefert deshalb eine Maske aus lauter `False`.
-
-Weitere Prüffunktionen dieser Art (etwa für unendliche Werte) stehen in der
-[NumPy-Referenz zu den Logic functions](https://numpy.org/doc/stable/reference/routines.logic.html).
-
 **Beispiel:**
 ```python
 x = np.array([10, 20, 30, 40, 50, 60])
@@ -234,24 +220,15 @@ daran:
 - Auswahl der Elemente, die größer als 22 und kleiner als 28 sind (beide Bedingungen mit `&`
   verknüpft)
 
-Erzeugen Sie anschließend ein zusätzliches 1D-Array `mit_nan` aus Fließkommazahlen, das einige
-`np.nan`-Werte enthält, und geben Sie es ohne diese Werte aus.
-
-[HINT::Kann ich die NaN-Werte nicht einfach in `zahlen` einsetzen?]
-Nein: `zahlen` enthält ganze Zahlen, `np.nan` ist aber ein Fließkommawert.
-Eine Zuweisung wie `zahlen[0, 0] = np.nan` scheitert deshalb mit
-`ValueError: cannot convert float NaN to integer`.
-NaN-Werte brauchen ein Array mit einem Fließkomma-`dtype`.
-[ENDHINT]
-
-[EQ] Probieren Sie an Ihrem Array `mit_nan` aus [EREFR::4] drei Varianten aus:
-`mit_nan[~np.isnan(mit_nan)]`, `mit_nan[np.isnan(mit_nan) == False]` und
-`mit_nan[not np.isnan(mit_nan)]`.
-Stellen Sie fest, welche beiden dasselbe liefern und welche abbricht.
+[EQ] Drei Varianten sollen dieselbe Auswahl treffen, nämlich alle Elemente Ihres Arrays `zahlen`
+aus [EREFR::4], die **nicht** größer als 25 sind: `zahlen[~(zahlen > 25)]`,
+`zahlen[(zahlen > 25) == False]` und `zahlen[not (zahlen > 25)]`.
+Probieren Sie alle drei aus und stellen Sie fest, welche beiden dasselbe liefern und welche
+abbricht.
 Übernehmen Sie die dabei auftretende Fehlermeldung in Ihre Antwort und erklären Sie, warum die
 Negation hier elementweise geschehen muss und `not` das nicht leisten kann.
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 ### Ganze Zeilen und Spalten mit Index-Arrays auswählen
 
@@ -276,8 +253,8 @@ arr[[-1, -2, 0], :]    # Letzte zwei und erste Zeile
 **Beispiel:**
 ```python
 x = np.arange(10, 330, 10).reshape(8, 4)  # 8x4-Array mit den Werten 10 bis 320
-selected = x[[4, 2, 1, 7], :]             # Zeilen 4,2,1,7 in dieser Reihenfolge
-# Ergebnis: [[170 180 190 200] [90 100 110 120] [50 60 70 80] [290 300 310 320]]
+selected = x[[2, 2, 5], :]                # Zeile 2 zweimal, danach Zeile 5
+# Ergebnis: [[90 100 110 120] [90 100 110 120] [210 220 230 240]]
 ```
 
 [ER] Erstellen Sie ein 8x4-Array `arr8x4` mit den Werten 10 bis 320 in Zehnerschritten und
@@ -301,8 +278,9 @@ beiden Formen also nacheinander an, statt sie in einen einzigen Zugriff zu packe
 
 ### Rechteckige Teilbereiche mit `np.ix_`
 
-`np.ix_` formt Index-Arrays so um, dass beim Indexieren ihr kartesisches Produkt entsteht, und
-ermöglicht damit die Auswahl rechteckiger Teilbereiche aus Arrays.
+`np.ix_` formt Index-Arrays so um, dass beim Indexieren ihr kartesisches Produkt entsteht, also
+jeder Zeilenindex mit jedem Spaltenindex kombiniert wird; damit lassen sich rechteckige
+Teilbereiche auswählen.
 Dasselbe Ergebnis liefern zwar auch zwei aufeinanderfolgende Zugriffe wie im vorigen Abschnitt,
 `np.ix_` kommt aber mit einem einzigen Indexausdruck aus.
 Warum das wichtig ist, zeigt sich weiter unten beim Verändern von Werten.
@@ -395,10 +373,10 @@ Eine **Kopie** hat einen eigenen Speicherbereich und ist vom Original unabhängi
 Eine **View** teilt sich den Speicher mit dem Original, ist also nur ein zweiter Zugriffsweg auf
 dieselben Daten; eine Änderung an der View ändert deshalb auch das Original.
 
-Welche der beiden Formen entsteht, hängt von der Art des Zugriffs ab: Slicing — und ebenso `...`
-sowie einzelne Integer-Indizes, sofern dabei noch eine Achse übrig bleibt (etwa `b[1]` bei einem
-2D-Array) — liefert eine View, Advanced Indexing (Integer-Array und Boolean-Maske) liefert stets
-eine Kopie.
+Welche der beiden Formen entsteht, hängt von der Art des Zugriffs ab.
+Slicing liefert eine View, Advanced Indexing (Integer-Array und Boolean-Maske) stets eine Kopie.
+Wie ein Slice verhalten sich auch `...` und einzelne Integer-Indizes, sofern dabei noch eine Achse
+übrig bleibt (etwa `b[1]` bei einem 2D-Array).
 Indexiert man ein Array mit Integer-Indizes dagegen vollständig, ist das Ergebnis nach [EREFQ::1]
 gar kein Array, sondern ein Skalar mit eigenem Speicher.
 Sobald in einem Zugriff ein Index-Array oder eine Boolean-Maske vorkommt, ist das Ergebnis also eine
@@ -445,7 +423,7 @@ Sie daran selbst nach, welcher Zugriff eine View und welcher eine Kopie liefert:
 - Wiederholen Sie den Slicing-Zugriff mit `copy()`, setzen Sie dort das erste Element auf `-2` und
   zeigen Sie, dass `werte` dabei unverändert bleibt
 
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
 ### Werte über Indexausdrücke verändern
 
