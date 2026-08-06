@@ -142,7 +142,7 @@ Ergebnis kennzeichnet; die Warnung bricht die Rechnung nicht ab, Sie erhalten al
 dem nur die betroffenen Positionen `nan` enthalten.
 Zu einem Funktionswert passen mehrere Winkel; NumPy liefert stets denjenigen aus einem festen Bereich:
 `np.arcsin` einen von -90 bis 90 Grad und `np.arccos` einen von 0 bis 180 Grad (die Grenzen
-jeweils eingeschlossen), `np.arctan` einen echt zwischen -90 und 90 Grad.
+jeweils eingeschlossen), `np.arctan` einen von -90 bis 90 Grad (die Grenzen ausgeschlossen).
 Auf ihrem jeweiligen Bereich sind `np.arcsin` und `np.arctan` steigend, `np.arccos` dagegen
 fallend: ein größerer Eingabewert ergibt dort einen kleineren Winkel.
 
@@ -163,8 +163,9 @@ print('Winkel in Grad:', angles_deg)
 ```
 
 Die Winkel lauten hier `44.99945053` und `59.99708907` statt der erwarteten 45 und 60 Grad.
-Grund sind die Eingabewerte: `0.7071` und `0.866` sind auf vier bzw. drei Stellen gerundete
-Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den zurückgerechneten Winkel durch.
+Grund sind die Eingabewerte: `0.7071` und `0.866` sind auf vier bzw. drei Nachkommastellen
+gerundete Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den
+zurückgerechneten Winkel durch.
 
 [ER] Arbeiten Sie mit Umkehrfunktionen:
 
@@ -180,6 +181,7 @@ Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den zurückge
 - Die Werte gehören zu den Winkeln 0, 45 und 60 Grad.
   Bestimmen Sie anhand der Differenz zu diesen Sollwerten, welche der drei Winkel exakt herauskommen.
   Halten Sie das Ergebnis als Kommentar im Quelltext fest
+- Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Woher weiß ich, ob mein Eingabewert zu groß oder zu klein ist?]
 Die exakten Kosinuswerte der vier Sollwinkel liefert `np.cos(np.radians([10, 40, 80, 100]))`.
@@ -251,7 +253,7 @@ wie `np.floor()`, für `5.999` dagegen denselben wie `np.ceil()`.
 
 [EQ] Die Kistenzahl und die Stückzahl aus [EREFR::3] brauchen verschiedene Rundungsfunktionen.
 Begründen Sie für beide Rechnungen aus der Sachlage heraus, welche Funktion die richtige ist.
-Geben Sie außerdem je einen Wert aus Ihren Ergebnissen an, bei dem `np.round()` ein sachlich
+Geben Sie außerdem einen Wert aus Ihren Ergebnissen an, bei dem `np.round()` ein sachlich
 falsches Ergebnis liefern würde, und sagen Sie, worin der Fehler bestünde.
 
 <!-- time estimate: 20 min -->
@@ -326,7 +328,8 @@ ausgeführte Rechnung; Einzelheiten stehen in der
 [HINT::Warum sind alle meine Kehrwerte `0`?]
 `np.reciprocal()` rechnet im `dtype` des Eingabe-Arrays — anders als `np.divide()`, das stets
 nach `float` wechselt.
-Bei einem Integer-Array wird deshalb ganzzahlig gerechnet und jeder Kehrwert kleiner als 1 zu `0` abgeschnitten.
+Bei einem Integer-Array wird deshalb ganzzahlig gerechnet und jeder Kehrwert kleiner als 1 zu
+`0` abgeschnitten.
 Wandeln Sie das Array vorher mit der Array-Methode `.astype(float)` um; sie liefert eine Kopie
 des Arrays mit dem angegebenen `dtype`, hier also mit Fließkommazahlen.
 [ENDHINT]
@@ -342,7 +345,7 @@ An den Positionen mit `False` rechnet NumPy nicht, sondern lässt den Wert stehe
 
 ### Potenz, Rest und Exponentialfunktion: `power`, `mod`, `exp`
 
-Diese drei Funktionen haben typische Einsatzfelder: `np.mod` ordnet Werte zyklisch zu und
+`np.mod` und `np.exp` haben typische Einsatzfelder: `np.mod` ordnet Werte zyklisch zu und
 bildet damit Gruppen, etwa Wochentage aus fortlaufenden Tagesnummern oder Farbkanäle aus
 Pixelpositionen.
 `np.exp` beschreibt Wachstums- und Zerfallsvorgänge, von Zinseszins über Populationen bis zum
@@ -398,7 +401,7 @@ Exponenten geübt, weil er für jede Wurzel funktioniert.
   [Dokumentation von `numpy.mod`](https://numpy.org/doc/stable/reference/generated/numpy.mod.html),
   woran das liegt, und halten Sie die Begründung als Kommentar im Quelltext fest
 - Berechnen Sie `np.exp()` für die Werte `[0, 1, 2, 3]` und vergleichen Sie den zweiten
-  Ergebniswert mit der Konstanten `np.e`
+  Ergebniswert mit `np.e`
 
 <!-- time estimate: 15 min -->
 
@@ -421,6 +424,9 @@ numpy.sum(a, axis=None)
 Ihnen dafür auch die gleichbedeutenden Namen `np.amin` und `np.amax`.
 `np.ptp` ("peak to peak") berechnet die Spannweite (Maximum minus Minimum), `np.sum` die
 Summe aller Elemente (bzw. pro Zeile/Spalte, je nach `axis`).
+In der NumPy-Dokumentation stehen drei dieser Funktionen nicht bei den statistischen Funktionen:
+`np.sum` findet sich bei den mathematischen Funktionen, `np.min` und `np.max` bei Sortieren und
+Suchen.
 
 ```python
 import numpy as np
@@ -461,8 +467,7 @@ sortierten Daten davon unberührt bleibt.
   `[[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 6, 88]]`
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie Mittelwert und Median zusätzlich für jede Zeile und für jede Spalte
-- Bestimmen Sie mit `np.abs()`, in welcher Zeile Mittelwert und Median am weitesten
-  auseinanderliegen (das Ablesen aus der ausgegebenen Differenz genügt)
+- Berechnen Sie mit `np.abs()` den Abstand zwischen Mittelwert und Median für jede Zeile
 - Verwenden Sie `np.ptp()`, um die Spannweite für das gesamte Array sowie pro Zeile zu berechnen
 - Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile und pro Spalte
 
@@ -568,8 +573,11 @@ bildet, und begründen Sie, warum es gerade diese beiden sind.
   Die Begründung knüpft die Rundungsrichtung an die Sachlage und nicht nur an die Funktionsnamen
 - [EREFQ::2]: die Antwort nennt die Rundung zur nächsten geraden Zahl als bewusste Festlegung;
   "Rundungsfehler" oder "Fließkomma-Ungenauigkeit" zeigt, dass die Dokumentation nicht gelesen wurde
-- [EREFR::6]: `axis=1` liefert vier Werte (einen pro Zeile), `axis=0` fünf Werte (einen pro
-  Spalte); vertauschte Zuordnung ist der häufigste Fehler
+- [EREFR::4], letzter Schritt: die Division mit `out=` und `where=` lässt sich am Ergebnis nicht
+  überprüfen, denn `where=` ohne `out=` liefert hier dieselben Zahlen und unterscheidet sich nur
+  durch eine `UserWarning`.
+  Zu prüfen ist deshalb der Quelltext: ohne ein vorher angelegtes `float`-Zielarray in `out=`
+  ist die Lösung falsch, auch wenn die Ausgabe stimmt
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-math.md]
