@@ -260,17 +260,17 @@ ergebnis = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
 - Geben Sie außerdem aus, was der Aufruf von `np.ix_` selbst zurückliefert, samt der Form jedes
   darin enthaltenen Arrays
 
+[HINT::Beim letzten Teilschritt bekomme ich für die Formen einen `AttributeError`]
+Die Rückgabe von `np.ix_` ist kein Array, sondern ein Tupel aus mehreren Arrays.
+`shape` gibt es deshalb nicht auf der Rückgabe selbst, sondern nur auf jedem Element darin.
+[ENDHINT]
+
 [EQ] Vergleichen Sie die beiden Ergebnisse aus [EREFR::5]: Aus denselben acht Indexwerten
 entstehen einmal 16 und einmal 4 Elemente.
 Erklären Sie, wie jede der beiden Anzahlen zustande kommt; die Rückgabe von `np.ix_` aus dem
 letzten Teilschritt hilft dabei.
 Nennen Sie außerdem je eine Auswertungsaufgabe, für die Sie die eine bzw. die andere Form
 brauchen.
-
-[HINT::Beim letzten Teilschritt bekomme ich für die Formen einen `AttributeError`]
-Die Rückgabe von `np.ix_` ist kein Array, sondern ein Tupel aus mehreren Arrays.
-`shape` gibt es deshalb nicht auf der Rückgabe selbst, sondern nur auf jedem Element darin.
-[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
@@ -294,7 +294,9 @@ arr[~(arr > wert)]      # Negation der Bedingung (NOT)
 
 Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
 `arr[arr > unten & arr < oben]` wird deshalb als Vergleichskette `arr[arr > (unten & arr) < oben]`
-gelesen und bricht mit einem `ValueError` ab, dessen Ursache [EREFQ::5] klärt.
+gelesen.
+Eine solche Kette `A < B < C` bedeutet in Python `A < B and B < C`, und dieses `and` löst den
+`ValueError` aus, dessen Ursache [EREFQ::5] klärt.
 
 **Beispiel:**
 ```python
@@ -419,12 +421,12 @@ Sie daran selbst nach, welcher Zugriff eine View und welcher eine Kopie liefert:
 - Wählen Sie die letzten vier Elemente einmal per Slicing und einmal per Boolean-Maske aus;
   treffen Sie beide Auswahlen, bevor Sie etwas ändern, sonst rechnet die Maske schon auf dem
   geänderten Array
-- Setzen Sie das erste Element im Slicing-Ergebnis auf `0`, das im Masken-Ergebnis auf `-1`;
+- Setzen Sie das erste Element im Slicing-Ergebnis auf 0, das im Masken-Ergebnis auf -1;
   jede Änderung braucht einen eigenen Wert, weil beide Auswahlen im Original an derselben
   Stelle beginnen
 - Geben Sie `werte` nach jeder der beiden Änderungen aus und halten Sie im Codekommentar fest,
   welcher der beiden Zugriffe das Original mit verändert hat
-- Wiederholen Sie den Slicing-Zugriff mit `copy()`, setzen Sie dort das erste Element auf `-2` und
+- Wiederholen Sie den Slicing-Zugriff mit `copy()`, setzen Sie dort das erste Element auf -2 und
   zeigen Sie, dass `werte` dabei unverändert bleibt
 
 <!-- time estimate: 15 min -->
