@@ -10,7 +10,7 @@ assumes: np-Einführung, np-array, np-array2
 - Ich kann einzelne Elemente, Teilbereiche und beliebige Auswahlmuster aus ein- und
   mehrdimensionalen NumPy-Arrays auswählen und verändern.
 - Ich kann für einen Zugriff die passende Indexierungsform wählen (Slice, Ellipsis, Index-Array,
-  Boolean-Maske, `np.ix_`) und weiß, welche Form das Ergebnis jeweils hat.
+  `np.ix_`, Boolean-Maske) und weiß, welche Form das Ergebnis jeweils hat.
 - Ich kann unterscheiden, wann ein Indexzugriff eine View auf das Original liefert und wann eine
   eigenständige Kopie, und kann eine Kopie gezielt anfordern.
 
@@ -74,9 +74,9 @@ Warum ist das grundsätzlich so, unabhängig davon, wie viele Elemente ausgewäh
 Was liefert `a[7:3]` (Start größer als Stop, positive Schrittweite), und warum kommt es dabei zu
 keinem Fehler?
 
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
-### Mehrdimensionale Array-Indexierung
+### Mehrdimensionale Array-Indexierung und Ellipsis
 
 Bei mehrdimensionalen Arrays wird pro Achse ein eigener Index angegeben, getrennt durch Kommas:
 `arr[index1, index2, index3]`.
@@ -123,15 +123,15 @@ jeweils ersetzt.
 Wovon hängt diese Anzahl ab, und in welcher Situation lohnt sich `...` gegenüber dem expliziten
 Ausschreiben aller `:`?
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 ### Integer-Array-Indexierung
 
 Mit Integer-Array-Indexierung lassen sich beliebig zusammengestellte Positionen auf einmal
 auswählen, auch solche, die kein Slice erfasst.
 
-Diese Form und die Boolean-Indexierung heißen in der NumPy-Dokumentation zusammen
-"Advanced Indexing" (im NumPy-Glossar gleichbedeutend auch "fancy indexing"), siehe
+Diese Form und die weiter unten behandelte Boolean-Indexierung heißen in der NumPy-Dokumentation
+zusammen "Advanced Indexing" (im NumPy-Glossar gleichbedeutend auch "fancy indexing"), siehe
 [NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing).
 Indexiert wird dabei nicht mit einem einzelnen Wert oder einem Slice, sondern mit einem ganzen
 Array aus Indizes bzw. Wahrheitswerten.
@@ -170,65 +170,6 @@ Welche Eigenschaft muss eine Auswahl haben, damit Slicing für sie ausreicht?
 
 <!-- time estimate: 15 min -->
 
-### Boolean-Indexierung
-
-Boolean-Indexierung ermöglicht die Auswahl von Array-Elementen anhand von Bedingungen.
-Ausgewählt wird über eine Maske, also ein Boolean-Array; welche Form die Maske braucht, hängt
-davon ab, wie man sie einsetzt.
-Eine Maske in derselben Form wie das Array wählt einzelne Elemente aus und liefert sie
-als 1D-Array (`arr[maske]`).
-Eine Maske mit einem Eintrag pro Zeile wählt ganze Zeilen aus und lässt sich für die übrigen
-Achsen mit Slicing kombinieren (`arr[maske, :]`).
-
-**Bedingungen für elementweise Masken:**
-```python
-arr[arr > value]        # Elemente größer als value
-arr[arr == value]       # Elemente gleich value
-arr[(arr > unten) & (arr < oben)]  # Elemente dazwischen (& kombiniert Bedingungen, nicht 'and')
-arr[~(arr > value)]     # Negation der Bedingung (NOT)
-```
-
-Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
-`arr[arr > unten & arr < oben]` wird deshalb als Vergleichskette `arr[arr > (unten & arr) < oben]`
-gelesen und bricht mit einem `ValueError` ab.
-
-**Beispiel:**
-```python
-x = np.array([10, 20, 30, 40, 50, 60])
-maske = x > 30         # Boolean-Array: [False False False  True  True  True]
-ergebnis = x[maske]    # Ergebnis: [40 50 60]
-
-# Boolean-Indexierung erlaubt auch bedingte Änderung von Werten:
-z = np.array([10, 20, 30, 40, 50, 60])
-z[z > 30] = 0          # Alle Elemente > 30 durch 0 ersetzen
-print(z)               # Ergebnis: [10 20 30  0  0  0]
-
-# Eine Maske mit einem Eintrag pro Zeile wählt ganze Zeilen aus
-m = np.array([[10, 20], [30, 40], [50, 60]])
-zeilenmaske = m[:, 0] > 20   # Erster Wert jeder Zeile: [False  True  True]
-print(m[zeilenmaske, :])     # Ergebnis: [[30 40] [50 60]]
-```
-
-[ER] Erstellen Sie ein 4x3-Array `zahlen` mit ganzen Zahlen von 20 bis 31 und demonstrieren Sie
-daran:
-
-- Auswahl aller Elemente größer als 25
-- Auswahl aller geraden Zahlen (verwenden Sie den Modulo-Operator `%`)
-- Auswahl der Elemente, die größer als 22 und kleiner als 28 sind (beide Bedingungen mit `&`
-  verknüpft)
-
-[EQ] Drei Varianten sollen dieselbe Auswahl treffen, nämlich alle Elemente Ihres Arrays `zahlen`
-aus [EREFR::4], die **nicht** größer als 25 sind: `zahlen[~(zahlen > 25)]`,
-`zahlen[(zahlen > 25) == False]` und `zahlen[not (zahlen > 25)]`.
-Probieren Sie alle drei aus und stellen Sie fest, welche beiden dasselbe liefern und welche
-abbricht.
-Übernehmen Sie die dabei auftretende Fehlermeldung in Ihre Antwort und erklären Sie, warum die
-Negation hier elementweise geschehen muss und `not` das nicht leisten kann.
-Probieren Sie anschließend `zahlen[(zahlen > 22) and (zahlen < 28)]` aus und begründen Sie, warum
-dieselbe Fehlermeldung erscheint; damit ist auch geklärt, warum oben `&` und nicht `and` steht.
-
-<!-- time estimate: 15 min -->
-
 ### Ganze Zeilen und Spalten mit Index-Arrays auswählen
 
 Die Integer-Array-Indexierung greift auch dann, wenn man nur ein einziges Index-Array angibt und
@@ -252,7 +193,7 @@ arr[[-1, -2, 0], :]    # Letzte zwei und erste Zeile
 **Beispiel:**
 ```python
 x = np.arange(10, 330, 10).reshape(8, 4)  # 8x4-Array mit den Werten 10 bis 320
-selected = x[[2, 2, 5], :]                # Zeile 2 zweimal, danach Zeile 5
+auswahl = x[[2, 2, 5], :]                 # Zeile 2 zweimal, danach Zeile 5
 # Ergebnis: [[90 100 110 120] [90 100 110 120] [210 220 230 240]]
 ```
 
@@ -306,11 +247,11 @@ arr[np.ix_([1, 2], [0, 1])]  # 2x2-Teilmatrix aus Zeilen 1,2 und Spalten 0,1
 ```python
 x = np.arange(10, 330, 10).reshape(8, 4)
 # Teilmatrix aus Zeilen [1,5,7] und Spalten [0,3,1,2]
-result = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
+ergebnis = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
 # Ergebnis: [[50 80 60 70] [210 240 220 230] [290 320 300 310]]
 ```
 
-[ER] Verwenden Sie wieder Ihr Array `arr8x4` aus [EREFR::5] (in derselben Datei oder neu erzeugt):
+[ER] Verwenden Sie wieder Ihr Array `arr8x4` aus [EREFR::4] (in derselben Datei oder neu erzeugt):
 
 - Extrahieren Sie mit `np.ix_` die Teilmatrix aus den Zeilen 6, 0, 3, 5 und den Spalten 2, 1, 3, 0
 - Wenden Sie dieselben acht Indexwerte in derselben Reihenfolge auch ohne `np.ix_` an, also mit
@@ -319,7 +260,7 @@ result = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
 - Geben Sie außerdem aus, was der Aufruf von `np.ix_` selbst zurückliefert, samt der Form jedes
   darin enthaltenen Arrays
 
-[EQ] Vergleichen Sie die beiden Ergebnisse aus [EREFR::6]: Aus denselben acht Indexwerten
+[EQ] Vergleichen Sie die beiden Ergebnisse aus [EREFR::5]: Aus denselben acht Indexwerten
 entstehen einmal 16 und einmal 4 Elemente.
 Erklären Sie, wie jede der beiden Anzahlen zustande kommt; die Rückgabe von `np.ix_` aus dem
 letzten Teilschritt hilft dabei.
@@ -330,6 +271,65 @@ brauchen.
 Die Rückgabe von `np.ix_` ist kein Array, sondern ein Tupel aus mehreren Arrays.
 `shape` gibt es deshalb nicht auf der Rückgabe selbst, sondern nur auf jedem Element darin.
 [ENDHINT]
+
+<!-- time estimate: 15 min -->
+
+### Boolean-Indexierung
+
+Boolean-Indexierung ermöglicht die Auswahl von Array-Elementen anhand von Bedingungen.
+Ausgewählt wird über eine Maske, also ein Boolean-Array; welche Form die Maske braucht, hängt
+davon ab, wie man sie einsetzt.
+Eine Maske in derselben Form wie das Array wählt einzelne Elemente aus und liefert sie
+als 1D-Array (`arr[maske]`).
+Eine Maske mit einem Eintrag pro Zeile wählt ganze Zeilen aus und lässt sich für die übrigen
+Achsen mit Slicing kombinieren (`arr[maske, :]`).
+
+**Bedingungen für elementweise Masken:**
+```python
+arr[arr > wert]         # Elemente größer als wert
+arr[arr == wert]        # Elemente gleich wert
+arr[(arr > unten) & (arr < oben)]  # Elemente dazwischen (& kombiniert Bedingungen, nicht 'and')
+arr[~(arr > wert)]      # Negation der Bedingung (NOT)
+```
+
+Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
+`arr[arr > unten & arr < oben]` wird deshalb als Vergleichskette `arr[arr > (unten & arr) < oben]`
+gelesen und bricht mit einem `ValueError` ab, dessen Ursache [EREFQ::5] klärt.
+
+**Beispiel:**
+```python
+x = np.array([10, 20, 30, 40, 50, 60])
+maske = x > 30         # Boolean-Array: [False False False  True  True  True]
+ergebnis = x[maske]    # Ergebnis: [40 50 60]
+
+# Boolean-Indexierung erlaubt auch bedingte Änderung von Werten:
+z = np.array([10, 20, 30, 40, 50, 60])
+z[z > 30] = 0          # Alle Elemente > 30 durch 0 ersetzen
+print(z)               # Ergebnis: [10 20 30  0  0  0]
+
+# Eine Maske mit einem Eintrag pro Zeile wählt ganze Zeilen aus
+m = np.array([[10, 20], [30, 40], [50, 60]])
+zeilenmaske = m[:, 0] > 20   # Erster Wert jeder Zeile: [False  True  True]
+print(m[zeilenmaske, :])     # Ergebnis: [[30 40] [50 60]]
+```
+
+[ER] Erstellen Sie ein 4x3-Array `zahlen` mit ganzen Zahlen von 20 bis 31 und demonstrieren Sie
+daran:
+
+- Auswahl aller Elemente größer als 25
+- Auswahl aller geraden Zahlen (verwenden Sie den Modulo-Operator `%`)
+- Auswahl der Elemente, die größer als 22 und kleiner als 28 sind (beide Bedingungen mit `&`
+  verknüpft)
+
+[EQ] Drei Varianten sollen dieselbe Auswahl treffen, nämlich alle Elemente Ihres Arrays `zahlen`
+aus [EREFR::6], die **nicht** größer als 25 sind: `zahlen[~(zahlen > 25)]`,
+`zahlen[(zahlen > 25) == False]` und `zahlen[not (zahlen > 25)]`.
+Probieren Sie alle drei aus und stellen Sie fest, welche beiden dasselbe liefern und welche
+abbricht.
+Übernehmen Sie die dabei auftretende Fehlermeldung in Ihre Antwort und erklären Sie, warum die
+Negation hier elementweise geschehen muss und `not` das nicht leisten kann.
+Probieren Sie anschließend `zahlen[(zahlen > 22) and (zahlen < 28)]` aus und begründen Sie, warum
+dieselbe Fehlermeldung erscheint; damit ist auch geklärt, warum oben `&` und nicht `and` steht.
 
 <!-- time estimate: 15 min -->
 
@@ -379,12 +379,12 @@ dieselben Daten; eine Änderung an der View ändert deshalb auch das Original.
 
 Welche der beiden Formen entsteht, hängt von der Art des Zugriffs ab.
 Slicing liefert eine View, Advanced Indexing (Integer-Array und Boolean-Maske) stets eine Kopie.
+Sobald in einem Zugriff ein Index-Array oder eine Boolean-Maske vorkommt, ist das Ergebnis also eine
+Kopie, auch wenn andere Achsen darin mit Slices indexiert werden.
 Wie ein Slice verhalten sich auch `...` und einzelne Integer-Indizes, sofern dabei noch eine Achse
 übrig bleibt (etwa `b[1]` bei einem 2D-Array).
 Indexiert man ein Array mit Integer-Indizes dagegen vollständig, ist das Ergebnis nach [EREFQ::1]
 gar kein Array, sondern ein Skalar mit eigenem Speicher.
-Sobald in einem Zugriff ein Index-Array oder eine Boolean-Maske vorkommt, ist das Ergebnis also eine
-Kopie, auch wenn andere Achsen darin mit Slices indexiert werden.
 Einzelheiten dazu stehen im
 [NumPy-Userguide zu Copies and views](https://numpy.org/doc/stable/user/basics.copies.html).
 Wer von einem Slice eine unabhängige Kopie braucht, fordert sie ausdrücklich an:
@@ -435,7 +435,7 @@ Indexausdrücke stehen nicht nur rechts, sondern auch links vom Zuweisungsoperat
 überschreibt man genau die ausgewählten Positionen, wie oben schon bei `z[z > 30] = 0` gezeigt.
 Das gilt für alle bisher behandelten Formen, solange die Auswahl in **einem** Indexausdruck steht.
 
-Bei zwei aufeinanderfolgenden Zugriffen wie beim letzten Teilschritt von [EREFR::5] trifft die
+Bei zwei aufeinanderfolgenden Zugriffen wie beim letzten Teilschritt von [EREFR::4] trifft die
 Zuweisung nicht mehr das Original, sondern das Ergebnis des ersten Zugriffs.
 Nach den Regeln des vorigen Abschnitts entscheidet die Art dieses ersten Zugriffs, ob sie damit
 im Original ankommt.
@@ -479,7 +479,7 @@ aus [EREFQ::1], sondern ein nulldimensionales Array, in das sich hineinschreiben
 
 **Knackpunkte:**
 
-- [EREFQ::5]: Beide Anzahlen sind auf ihren Mechanismus zurückgeführt (vier Indexpaare gegen
+- [EREFQ::4]: Beide Anzahlen sind auf ihren Mechanismus zurückgeführt (vier Indexpaare gegen
   4 · 4 Kombinationen), nicht nur als Beobachtung wiedergegeben; die Rückgabe von `np.ix_`
   (Formen `(4, 1)` und `(1, 4)`) ist als Ursache erkannt
 - [EREFR::8]: Beide Auswahlen umfassen vier Elemente und sind beide vor der ersten Änderung
