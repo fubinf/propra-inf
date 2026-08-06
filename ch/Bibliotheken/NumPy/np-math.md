@@ -11,6 +11,7 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
 - Ich kann Zahlen situationsgerecht runden sowie Grundrechenarten, Potenzen, Modulo und die
   Exponentialfunktion auf Arrays anwenden.
 - Ich kann statistische Kennzahlen zur Datenanalyse berechnen.
+- Ich kann typische Fließkomma-Effekte in numerischen Ergebnissen erkennen und einordnen.
 
 [ENDSECTION]
 
@@ -40,10 +41,10 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 Perzentile sind dabei der Spezialfall der Quantile, bei dem der Anteil in Prozent angegeben wird.
 
-### Trigonometrische Funktionen: `sin`, `cos`, `tan`, `degrees`, `radians`
+### Trigonometrische Funktionen und Winkelumrechnung: `sin`, `cos`, `tan`, `degrees`, `radians`
 
 Trigonometrische Funktionen auf ganzen Arrays braucht man überall dort, wo periodische Vorgänge
-oder Drehungen im Spiel sind: Schwingungen und Signale, Koordinatendrehungen in der Grafik,
+oder Drehungen eine Rolle spielen: Schwingungen und Signale, Koordinatendrehungen in der Grafik,
 Jahres- und Tagesrhythmen in Messdaten.
 NumPy stellt sie so zur Verfügung, dass sie elementweise auf Arrays wirken:
 
@@ -90,7 +91,7 @@ statt als `0`, der Tangens von 90 Grad als `1.63312394e+16` statt als "undefinie
 Beides sind Rundungsartefakte: `np.pi` ist nur die bestmögliche Fließkomma-Näherung von π,
 also ist auch `angles_rad[4]` minimal von π/2 verschieden, und der Tangens reagiert an seiner
 Polstelle extrem empfindlich auf solche Abweichungen.
-`6.12323400e-17` ist damit die Fließkomma-Schreibweise für "praktisch null".
+`6.12323400e-17` ist damit ein Wert, der praktisch null ist.
 Beachten Sie außerdem, dass dieser eine extreme Wert die Darstellung des gesamten Arrays umschaltet:
 `8.66025404e-01` ist derselbe Wert wie `0.866025404`, denn `e-01` bedeutet "mal zehn hoch minus eins".
 
@@ -128,13 +129,15 @@ numpy.arccos(x)
 numpy.arctan(x)
 ```
 
-- `x`: Array mit Sinus-/Kosinus-/Tangenswerten (Ergebnis liegt im Bogenmaß);
-  `np.arcsin` und `np.arccos` sind nur für Werte aus `[-1, 1]` definiert und liefern sonst `nan`
-  zusammen mit einer `RuntimeWarning`
+- `x`: Array mit Sinus-/Kosinus-/Tangenswerten; das Ergebnis liegt im Bogenmaß
 
+`np.arcsin` und `np.arccos` sind nur für Werte aus `[-1, 1]` definiert und liefern sonst `nan`
+zusammen mit einer `RuntimeWarning`.
 Zu einem Funktionswert passen mehrere Winkel; NumPy liefert stets den aus einem festen Bereich:
-`np.arcsin` und `np.arctan` einen zwischen -90 und 90 Grad, `np.arccos` einen zwischen 0 und
-180 Grad.
+`np.arcsin` einen von -90 bis 90 Grad und `np.arccos` einen von 0 bis 180 Grad (die Grenzen
+jeweils eingeschlossen), `np.arctan` einen echt zwischen -90 und 90 Grad.
+Auf ihrem jeweiligen Bereich sind `np.arcsin` und `np.arctan` steigend, `np.arccos` dagegen
+fallend: ein größerer Eingabewert ergibt dort einen kleineren Winkel.
 
 ```python
 import numpy as np
@@ -170,6 +173,14 @@ Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den zurückge
 - Die Werte gehören zu den Winkeln 0, 45 und 60 Grad.
   Bestimmen Sie anhand der Differenz zu diesen Sollwerten, welche der drei Winkel exakt herauskommen.
   Halten Sie das Ergebnis als Kommentar im Quelltext fest
+
+[HINT::Woher weiß ich, ob mein Eingabewert zu groß oder zu klein ist?]
+Die exakten Kosinuswerte der vier Sollwinkel liefert `np.cos(np.radians([10, 40, 80, 100]))`.
+Der Vergleich mit `given_cos` zeigt dann für jeden der vier Werte, in welche Richtung gerundet
+wurde.
+Für den Schritt von dieser Richtung zum Vorzeichen der Winkeldifferenz ist entscheidend, ob
+`np.arccos` mit wachsendem Eingabewert steigt oder fällt.
+[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
@@ -248,7 +259,7 @@ numpy.abs(x)            # Absolutwert |x|
 import numpy as np
 
 # Arrays für Operationen
-a = np.array([[1, 2, 3], [4, 5, 6]])
+a = np.array([[15, 24, 45], [35, 50, 90]])
 b = np.array([10, 20, 30])
 
 print('Array a:')
@@ -298,6 +309,12 @@ des Arrays mit dem angegebenen `dtype`, hier also mit Fließkommazahlen.
 <!-- time estimate: 15 min -->
 
 ### Spezielle arithmetische Funktionen: `power`, `mod`, `exp`
+
+Auch diese drei Funktionen haben typische Einsatzfelder: `np.mod` ordnet Werte zyklisch zu und
+bildet damit Gruppen, etwa Wochentage aus fortlaufenden Tagesnummern oder Farbkanäle aus
+Pixelpositionen.
+`np.exp` beschreibt Wachstums- und Zerfallsvorgänge, von Zinseszins über Populationen bis zum
+radioaktiven Zerfall.
 
 ```python
 numpy.power(x1, x2)
@@ -464,15 +481,14 @@ print('Quartile:', percentiles)
 Das 25. Perzentil ist `3.25` und damit ein Wert, der in den Daten gar nicht vorkommt: die
 gesuchte Grenze liegt zwischen dem dritten und dem vierten Datenpunkt, und NumPy interpoliert
 dort linear.
-Dasselbe Prinzip gilt für `np.median`, sobald ein Array eine gerade Anzahl von Werten hat.
 
 [ER] Ein Kurs mit 20 Teilnehmenden hat eine Klausur geschrieben.
 Werten Sie die erreichten Punktzahlen aus:
 
 - Erstellen Sie ein 1D-Array `scores` mit den 20 Werten
   `[42, 55, 61, 47, 58, 65, 70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53]`
-- Berechnen Sie Mittelwert, Standardabweichung und Varianz, letztere beiden mit dem Default
-  `ddof=0`
+- Berechnen Sie Mittelwert, Standardabweichung und Varianz; für die beiden letzten belassen Sie
+  es beim Default `ddof=0`, setzen den Parameter also nicht
 - Bestimmen Sie das 10., 50. und 90. Perzentil
 - Berechnen Sie zusätzlich den Median, vergleichen Sie ihn mit dem 50. Perzentil und halten Sie
   das Ergebnis des Vergleichs als Kommentar im Quelltext fest
@@ -489,6 +505,8 @@ die Ausgabe auf sinnvolle Nachkommastellen begrenzen.
 auf die Klausur bezieht.
 Erklären Sie außerdem, warum der Median `56.5` beträgt, obwohl keine Person genau diese
 Punktzahl erreicht hat.
+Benennen Sie dazu die beiden Punktzahlen aus den sortierten Daten, aus denen NumPy diesen Wert
+bildet, und begründen Sie, warum es gerade diese beiden sind.
 
 <!-- time estimate: 15 min -->
 
@@ -513,12 +531,8 @@ Punktzahl erreicht hat.
   für fünf Artikel
 - [EREFQ::2]: die Antwort nennt die Rundung zur nächsten geraden Zahl als bewusste Festlegung;
   "Rundungsfehler" oder "Fließkomma-Ungenauigkeit" zeigt, dass die Dokumentation nicht gelesen wurde
-- [EREFR::4]: die Umwandlung nach `float` vor `np.reciprocal()` ist erfolgt; ein Ergebnis aus
-  lauter Nullen zeigt, dass der `dtype` des Integer-Arrays nicht beachtet wurde
 - [EREFR::6]: `axis=1` liefert vier Werte (einen pro Zeile), `axis=0` fünf Werte (einen pro
   Spalte); vertauschte Zuordnung ist der häufigste Fehler
-- [EREFR::7]: Standardabweichung und Varianz sind mit dem geforderten Default `ddof=0` gerechnet
-  (7.836 und 61.410) und nicht mit `ddof=1` (8.040 und 64.642)
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-math.md]
