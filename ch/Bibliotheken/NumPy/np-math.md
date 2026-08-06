@@ -8,7 +8,8 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
 [SECTION::goal::idea,experience]
 
 - Ich kann trigonometrische Funktionen und ihre Umkehrfunktionen anwenden.
-- Ich kann Zahlen situationsgerecht runden und grundlegende Arithmetik auf Arrays anwenden.
+- Ich kann Zahlen situationsgerecht runden sowie Grundrechenarten, Potenzen, Modulo und die
+  Exponentialfunktion auf Arrays anwenden.
 - Ich kann statistische Kennzahlen zur Datenanalyse berechnen.
 
 [ENDSECTION]
@@ -37,9 +38,14 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 - [Standardabweichung (Wikipedia)](https://de.wikipedia.org/wiki/Standardabweichung)
 - [Empirisches Quantil (Wikipedia)](https://de.wikipedia.org/wiki/Empirisches_Quantil)
 
+Perzentile sind dabei der Spezialfall der Quantile, bei dem der Anteil in Prozent angegeben wird.
+
 ### Trigonometrische Funktionen: `sin`, `cos`, `tan`, `degrees`, `radians`
 
-NumPy stellt trigonometrische Funktionen zur Verfügung, die elementweise auf Arrays wirken:
+Trigonometrische Funktionen auf ganzen Arrays braucht man überall dort, wo periodische Vorgänge
+oder Drehungen im Spiel sind: Schwingungen und Signale, Koordinatendrehungen in der Grafik,
+Jahres- und Tagesrhythmen in Messdaten.
+NumPy stellt sie so zur Verfügung, dass sie elementweise auf Arrays wirken:
 
 ```python
 numpy.sin(x)
@@ -85,6 +91,8 @@ Beides sind Rundungsartefakte: `np.pi` ist nur die bestmögliche Fließkomma-Nä
 also ist auch `angles_rad[4]` minimal von π/2 verschieden, und der Tangens reagiert an seiner
 Polstelle extrem empfindlich auf solche Abweichungen.
 `6.12323400e-17` ist damit die Fließkomma-Schreibweise für "praktisch null".
+Beachten Sie außerdem, dass dieser eine extreme Wert die Darstellung des gesamten Arrays umschaltet:
+`8.66025404e-01` ist derselbe Wert wie `0.866025404`, denn `e-01` bedeutet "mal zehn hoch minus eins".
 
 [ER] Implementieren Sie Berechnungen mit trigonometrischen Funktionen:
 
@@ -152,9 +160,9 @@ Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den zurückge
   Ihrem Ergebnis und diesen Sollwerten aus
 - Erstellen Sie zusätzlich ein Array `given_tan` mit den Tangenswerten `[0, 1, 1.7321]` und
   berechnen Sie mit `np.arctan()` die entsprechenden Winkel in Grad
-- Die Werte gehören zu den Winkeln 0, 45 und 60 Grad; bestimmen Sie anhand der Differenz zu diesen
-  Sollwerten, welche der drei Winkel exakt herauskommen und welche nicht, und halten Sie das
-  Ergebnis als Kommentar im Quelltext fest
+- Die Werte gehören zu den Winkeln 0, 45 und 60 Grad.
+  Bestimmen Sie anhand der Differenz zu diesen Sollwerten, welche der drei Winkel exakt herauskommen.
+  Halten Sie das Ergebnis als Kommentar im Quelltext fest
 
 <!-- time estimate: 15 min -->
 
@@ -187,10 +195,6 @@ print('Aufgerundet (ceil):', np.ceil(numbers))
 print('Auf 2 Dezimalstellen:', np.round(numbers, decimals=2))
 ```
 
-Ein Ergebnis von `np.round` weicht hier von der Schulregel ab: Die `2.5` wird zu `2.` und nicht
-zu `3.`.
-Woran das liegt, klären Sie in der Frage am Ende dieses Abschnitts.
-
 [ER] Wenden Sie Rundungsfunktionen praktisch an:
 
 - Erstellen Sie ein Array `numbers` mit den Werten `[2.345, -1.678, 5.999, -3.001, 0.5]`
@@ -199,10 +203,10 @@ Woran das liegt, klären Sie in der Frage am Ende dieses Abschnitts.
 - Runden Sie dann auf ganze Zahlen mit `np.round()`, `np.floor()` und `np.ceil()`
   und vergleichen Sie das Ergebnis mit Ihrer Vorhersage
 - Runden Sie zusätzlich mit `np.round()` auf 1 Dezimalstelle
-- Ein Versand verpackt Artikel in Kisten zu je 12 Stück: Berechnen Sie für die Bestellmengen
-  `[37, 12, 5, 100]` die Zahl der benötigten Kisten
-- Ein Budget von 50 Euro steht zur Verfügung: Berechnen Sie für die Stückpreise
-  `[7.5, 3.2, 12.0, 4.9]`, wie viele Stück sich zu jedem Preis kaufen lassen
+- Ein Versandhandel verpackt Artikel in Kisten zu je 12 Stück: Berechnen Sie für die Bestellmengen
+  `orders` mit den Werten `[37, 12, 5, 100]` die Zahl der benötigten Kisten
+- Ein Budget von 50 Euro steht zur Verfügung: Berechnen Sie für die Stückpreise `prices` mit den
+  Werten `[7.5, 3.2, 12.0, 4.9]`, wie viele Stück sich zu jedem Preis kaufen lassen
 - Halten Sie als Kommentar im Quelltext fest, warum die beiden letzten Rechnungen
   verschiedene Rundungsfunktionen brauchen und `np.round()` für beide falsch wäre
 
@@ -276,7 +280,8 @@ ausgeführte Rechnung; Einzelheiten stehen in der
 - Berechnen Sie `np.abs()` für die Differenz `arr1 - arr2`
 
 [HINT::Warum sind alle meine Kehrwerte `0`?]
-`np.reciprocal()` rechnet im `dtype` des Eingabe-Arrays.
+`np.reciprocal()` rechnet im `dtype` des Eingabe-Arrays — anders als `np.divide()`, das stets
+nach `float` wechselt.
 Bei einem Integer-Array wird deshalb ganzzahlig gerechnet und jeder Kehrwert kleiner als 1 zu `0` abgeschnitten.
 Wandeln Sie das Array vorher mit der Array-Methode `.astype(float)` um; sie liefert eine Kopie
 des Arrays mit dem angegebenen `dtype`, hier also mit Fließkommazahlen.
@@ -397,15 +402,14 @@ sortierten Daten davon unberührt bleibt.
 
 [ER] Berechnen Sie statistische Kennzahlen und geben Sie die Ergebnisse aus:
 
-- Erstellen Sie mit `np.array` ein 4×5-Array `data` mit den Werten
-  `[[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 21, 88]]`
+- Erstellen Sie ein 4×5-Array `data` mit den Werten
+  `[[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 6, 88]]`
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie Mittelwert und Median zusätzlich für jede Zeile und für jede Spalte
 - Bestimmen Sie mit `np.abs()`, in welcher Zeile Mittelwert und Median am weitesten
   auseinanderliegen (das Ablesen aus der ausgegebenen Differenz genügt), und begründen Sie das
   als Kommentar im Quelltext anhand der Werte dieser Zeile
-- Verwenden Sie `np.ptp()`, um die Spannweite (Maximum minus Minimum) für das gesamte Array
-  sowie pro Zeile zu berechnen
+- Verwenden Sie `np.ptp()`, um die Spannweite für das gesamte Array sowie pro Zeile zu berechnen
 - Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile und pro Spalte
 
 <!-- time estimate: 20 min -->
@@ -415,13 +419,13 @@ sortierten Daten davon unberührt bleibt.
 ```python
 numpy.std(a, axis=None, ddof=0)     # Standardabweichung
 numpy.var(a, axis=None, ddof=0)     # Varianz
-numpy.percentile(a, q, axis=None)   # Wert, unter dem q Prozent der Daten liegen
+numpy.percentile(a, q, axis=None)   # Wert, unter dem etwa q Prozent der Daten liegen
 ```
 
 - `a`: das Array
 - `axis` (Default `None`): wie im vorigen Abschnitt
 - `ddof` (nur bei `std`/`var`, Default `0`): NumPy teilt die Summe der quadrierten Abweichungen
-  durch `n - ddof`, rechnet also per Default mit `1/n`
+  durch `n - ddof`, wobei `n` die Anzahl der Werte ist; per Default wird also mit `1/n` gerechnet
 - `q` (nur bei `percentile`): das gewünschte Perzentil bzw. eine Liste von Perzentilen
   (Werte zwischen 0 und 100)
 
@@ -454,12 +458,13 @@ print('Quartile:', percentiles)
 [ER] Ein Kurs mit 20 Teilnehmenden hat eine Klausur geschrieben.
 Werten Sie die erreichten Punktzahlen aus:
 
-- Erstellen Sie mit `np.array` ein 1D-Array `scores` mit den 20 Werten
+- Erstellen Sie ein 1D-Array `scores` mit den 20 Werten
   `[42, 55, 61, 47, 58, 65, 70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53]`
 - Berechnen Sie Mittelwert, Standardabweichung und Varianz, letztere beiden mit dem Default
   `ddof=0`
 - Bestimmen Sie das 10., 50. und 90. Perzentil
-- Berechnen Sie zusätzlich den Median und vergleichen Sie ihn mit dem 50. Perzentil
+- Berechnen Sie zusätzlich den Median, vergleichen Sie ihn mit dem 50. Perzentil und halten Sie
+  das Ergebnis des Vergleichs als Kommentar im Quelltext fest
 
 [HINT::Warum hat meine Varianz so viele Nachkommastellen?]
 Werte wie die Varianz können mit vielen Nachkommastellen ausgegeben werden (z. B.
