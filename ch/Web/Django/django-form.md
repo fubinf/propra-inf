@@ -75,7 +75,7 @@ Ein Formular mit GET-Methode hat folgende Bestandteile:
 - `placeholder`: Hinweistext, der nur angezeigt wird, solange das Feld leer ist, und beim
   Absenden nicht mitgeschickt wird
 
-[ER] Schreiben Sie in `views.py` eine View-Funktion `search`: liest den GET-Parameter `q`
+[ER] Schreiben Sie in `views.py` eine View-Funktion `search_get`: liest den GET-Parameter `q`
 aus (Standardwert leerer String), sucht bei nichtleerem `q` mit
 `Student.objects.filter(name=q)` (sonst `[]`) und rendert `search_get.html` mit `q` und
 `results` im Context.
@@ -86,7 +86,7 @@ Formular.
 (`{% extends "base.html" %}`, Titel `Suche`, Inhalt in `{% block content %}`) mit:
 
 - einer Überschrift (`<h2>`) mit dem Text "Suchformular (GET)"
-- darunter einem `<form>` mit `method="get"`, das an `{% url 'search' %}` sendet
+- darunter einem `<form>` mit `method="get"`, das an `{% url 'search_get' %}` sendet
 - darin einem Text-Eingabefeld `name="q"` (Wert vorbelegt mit `{{ q }}`, Platzhaltertext
   "Suchbegriff") und einem Absende-Button mit dem Text "Suchen"
 - darunter, nur wenn `q` gesetzt ist, einer `<ul>` mit `{% for %}` über `results`: je Treffer
@@ -94,14 +94,14 @@ Formular.
 - im `{% empty %}`-Zweig dem Text `Keine Treffer für "{{ q }}"` (mit dem eingesetzten
   Suchbegriff)
 
-[ER] Ergänzen Sie `urls.py` um die Route `search/` auf `search` (Name `search`).
+[ER] Ergänzen Sie `urls.py` um die Route `search-get/` auf `search_get` (Name `search_get`).
 
 [EC] Testen Sie die GET-Suche direkt mit `curl` und rufen Sie anschließend die Detailseite
 des Treffers auf (der Suchbegriff ist URL-kodiert):
 
 ```bash
-curl "http://127.0.0.1:8071/search/?q=Anna%20M%C3%BCller"
-curl "http://127.0.0.1:8071/search/?q=Nichtvorhanden"
+curl "http://127.0.0.1:8071/search-get/?q=Anna%20M%C3%BCller"
+curl "http://127.0.0.1:8071/search-get/?q=Nichtvorhanden"
 curl "http://127.0.0.1:8071/students/1/"
 ```
 
@@ -110,7 +110,7 @@ Woher weiß das Template `search_get.html`, welche ID es in
 `{% url 'student_detail' student.id %}` einsetzen muss, und was bestätigt Ihnen der dritte
 Aufruf (`/students/1/`) über diesen Link?
 
-[EQ] Rufen Sie zusätzlich `http://127.0.0.1:8071/search/` im Browser auf und suchen Sie nach
+[EQ] Rufen Sie zusätzlich `http://127.0.0.1:8071/search-get/` im Browser auf und suchen Sie nach
 dem exakten Namen eines bereits vorhandenen Studierenden (aus [PARTREF::django-model]).
 Wie verändert sich die URL nach dem Absenden, und wo taucht Ihr Suchbegriff auf?
 Suchen Sie anschließend nach einem Namen, den es nicht gibt: was wird angezeigt, warum führt
@@ -136,7 +136,8 @@ Ab jetzt arbeiten Sie mit echten Formularen und verwenden daher regulär `{% csr
 statt `@csrf_exempt`.
 [ENDNOTICE]
 
-Ein Formular mit POST-Methode hat dieselben Bestandteile wie eben, mit zwei Unterschieden:
+Ein Formular mit POST-Methode hat dieselben Bestandteile wie das GET-Formular, mit zwei
+Unterschieden:
 
 ```html
 <form action="ZIEL" method="post">
@@ -179,8 +180,8 @@ Ein `curl`-Aufruf durchläuft kein Formular und liefert daher kein gültiges CSR
 
 [EC] Senden Sie per `curl` einen POST ohne Token direkt an die View.
 Der erste Aufruf zeigt nur den Statuscode (`-o /dev/null` verwirft die Antwortseite,
-`-w "%{http_code}\n"` gibt stattdessen den Statuscode aus), der zweite holt aus derselben
-Antwortseite die Begründung heraus, die Django dort angibt:
+`-w "%{http_code}\n"` gibt stattdessen den Statuscode aus), der zweite wiederholt den Aufruf
+und holt aus der Antwortseite die Begründung heraus, die Django dort angibt:
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/
@@ -198,8 +199,7 @@ Fügen Sie `{% csrf_token %}` danach wieder in `search_post.html` ein.
 [EQ] Welcher Statuscode kam beim `curl`-Aufruf zurück, und was ist Ihnen gerade im Browser
 passiert, als `{% csrf_token %}` fehlte?
 Django nennt in beiden Fällen eine Begründung, aber nicht dieselbe: woran liegt das?
-Welche Komponente weist beide Aufrufe ab, und welche Rolle spielt `{% csrf_token %}` dabei,
-wenn nicht die eines Türstehers?
+Welche Komponente weist beide Aufrufe ab, und welche Rolle spielt `{% csrf_token %}` dabei?
 <!-- time estimate: 15 min -->
 
 ### Registrierung mit Datenbank-Persistenz
@@ -208,10 +208,8 @@ Bisher haben die Formulare die Datenbank nur gelesen.
 Jetzt schreiben Sie hinein: Ein Registrierungsformular legt über `Student.objects.create()`
 (aus [PARTREF::django-model]) einen neuen Datensatz an und leitet anschließend auf dessen
 Detailseite weiter.
-Da Name, Alter und E-Mail hier echte Pflichtfelder sind, greifen Sie direkt mit
-`request.POST['feld']` zu (anders als bei der optionalen Suche mit `.get()`): Fehlt das Feld
-komplett, wirft dieser Zugriff denselben `MultiValueDictKeyError` wie `request.GET[...]` in
-[PARTREF::django-view], statt stillschweigend einen leeren Wert zu liefern.
+Für die drei Formularfelder greifen Sie mit `request.POST['name']` (usw.) zu, also mit
+eckigen Klammern statt mit `.get()` wie bei der Suche.
 Eine View, die bei POST einen Datensatz anlegt und dann weiterleitet, hat folgenden Aufbau:
 
 ```python
@@ -295,8 +293,8 @@ Löschen Sie diesen Datensatz jetzt wieder, mit `delete()` oder über die Admin-
 der Studierendenliste.
 [ENDNOTICE]
 
-Dass die Eingaben ungeprüft in der Datenbank landen, lässt sich erst mit serverseitiger
-Validierung durch Django-Forms verhindern, siehe "Working with forms" unter Weiterführend.
+Ungeprüfte Eingaben lassen sich nur durch serverseitige Validierung verhindern, etwa mit
+Django-Forms (siehe "Working with forms" unter Weiterführend).
 
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und registrieren Sie einen Studierenden mit
 dem Namen "Tom Fischer", Alter `20` und der E-Mail "tom@example.com".
@@ -331,14 +329,14 @@ Warum ist für die Registrierung POST die richtige Methode und nicht GET?
   Abweisung von Djangos `CsrfViewMiddleware` kommt, unabhängig davon, was im Template steht,
   und dass `{% csrf_token %}` umgekehrt dafür sorgt, dass legitime Formulare gerade nicht
   abgewiesen werden.
+- [EREFQ::6]: Nach Entfernen von `required` legt das Formular trotz leerem Namensfeld einen
+  `Student` mit leerem `name` an; Student erkennt, dass `required` reine Browser-Prüfung ist
+  und die View selbst überhaupt nichts validiert.
 - [EREFR::7] + [EREFQ::7]: Die `register`-View legt bei POST per `Student.objects.create()`
   einen Datensatz an und leitet mit `redirect(reverse("student_detail", args=[student.id]))`
   auf dessen Detailseite weiter; Student erkennt am zusätzlichen Aufruf von `/students/`, dass
   der neue Studierende dort tatsächlich in der Datenbank steht (nicht nur zurückgespiegelt
   wurde).
-- [EREFQ::6]: Nach Entfernen von `required` legt das Formular trotz leerem Namensfeld einen
-  `Student` mit leerem `name` an; Student erkennt, dass `required` reine Browser-Prüfung ist
-  und die View selbst überhaupt nichts validiert.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-form.md]
