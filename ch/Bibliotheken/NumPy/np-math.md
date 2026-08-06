@@ -10,6 +10,7 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
 - Ich kann trigonometrische Funktionen und ihre Umkehrfunktionen anwenden.
 - Ich kann Zahlen situationsgerecht runden sowie Grundrechenarten, Potenzen, Modulo und die
   Exponentialfunktion auf Arrays anwenden.
+- Ich kann eine solche Rechnung auf ausgewählte Positionen eines Arrays beschränken.
 - Ich kann statistische Kennzahlen zur Datenanalyse berechnen.
 - Ich kann typische Fließkomma-Effekte in numerischen Ergebnissen erkennen und einordnen.
 
@@ -91,8 +92,8 @@ print('Zurück in Grad:', np.degrees(angles_rad))
 Zwei Werte in der Ausgabe sehen falsch aus: Der Kosinus von 90 Grad erscheint als `6.12323400e-17`
 statt als `0`, der Tangens von 90 Grad als `1.63312394e+16` statt als "undefiniert".
 Beides sind Rundungsartefakte: `np.pi` ist nur die bestmögliche Fließkomma-Näherung von π,
-also ist auch `angles_rad[4]` minimal von π/2 verschieden, und der Tangens reagiert an seiner
-Polstelle extrem empfindlich auf solche Abweichungen.
+also weicht auch `angles_rad[4]` minimal vom exakten Wert π/2 ab, und der Tangens reagiert an
+seiner Polstelle extrem empfindlich auf solche Abweichungen.
 `6.12323400e-17` ist damit ein Wert, der praktisch null ist.
 Beachten Sie außerdem, dass dieser winzige Wert die Darstellung des gesamten Kosinus-Arrays
 umschaltet:
@@ -101,8 +102,8 @@ umschaltet:
 [ER] Implementieren Sie Berechnungen mit trigonometrischen Funktionen:
 
 - Erstellen Sie ein Array `angles_deg` mit den Winkeln `[15, 45, 75, 105, 135]` Grad
-- Rechnen Sie es mit `np.radians()` ins Bogenmaß um und berechnen Sie mit `np.sin()`, `np.cos()`
-  und `np.tan()` die Arrays `sin_values`, `cos_values` und `tan_values`
+- Rechnen Sie es mit `np.radians()` in das Array `angles_rad` um und berechnen Sie mit
+  `np.sin()`, `np.cos()` und `np.tan()` die Arrays `sin_values`, `cos_values` und `tan_values`
 - Überprüfen Sie die trigonometrische Identität `sin²(x) + cos²(x) = 1` für alle Winkel: Geben Sie
   sowohl die Summe selbst aus als auch das Ergebnis ihres elementweisen Vergleichs mit `1`
 - Prüfen Sie dieselbe Identität zusätzlich mit `np.allclose()` aus [PARTREF::np-array] und geben
@@ -118,6 +119,12 @@ Der Potenzoperator `**` wirkt auf Arrays elementweise:
 elementweise Vergleich mit `1` liefert aber an einer Stelle `False`.
 Erklären Sie, wie beide Ausgaben gleichzeitig zutreffen können.
 Erklären Sie außerdem, warum `np.allclose()` für diese Prüfung das geeignetere Werkzeug ist.
+
+[HINT::Die Summe wird überall als `1.` ausgegeben — wo steckt dann die Abweichung?]
+`print` zeigt bei Arrays nur eine begrenzte Zahl von Stellen an.
+Geben Sie einen einzelnen Eintrag Ihrer Summe aus oder ziehen Sie `1` vom ganzen Summen-Array ab,
+dann wird sichtbar, was die gerundete Darstellung verbirgt.
+[ENDHINT]
 
 <!-- time estimate: 20 min -->
 
@@ -172,7 +179,8 @@ zurückgerechneten Winkel durch.
 [ER] Arbeiten Sie mit Umkehrfunktionen:
 
 - Erstellen Sie ein Array `given_cos` mit den Kosinuswerten `[0.9848, 0.766, 0.1736, -0.1736]`
-- Berechnen Sie mit `np.arccos()` die entsprechenden Winkel im Bogenmaß und wandeln Sie sie in Grad um
+- Berechnen Sie mit `np.arccos()` die entsprechenden Winkel `angles_rad` im Bogenmaß und wandeln
+  Sie sie als `angles_deg` in Grad um
 - Die Werte gehören zu den Winkeln 10, 40, 80 und 100 Grad; geben Sie die Differenz zwischen
   Ihrem Ergebnis und diesen Sollwerten aus
 - Genau eine der vier Differenzen ist negativ.
@@ -410,12 +418,16 @@ Exponenten geübt, weil er für jede Wurzel funktioniert.
 - Erstellen Sie ein Array `exponents` mit den Werten `[2, 4, 1, 3]` und berechnen Sie
   `np.power(base, exponents)`
 - Berechnen Sie den Rest bei Division durch 3 für alle Werte in `base`
-- Berechnen Sie zusätzlich `np.mod(-7, 3)`; das Ergebnis ist positiv, obwohl der Dividend negativ ist.
-  Klären Sie anhand des einleitenden Beschreibungstexts in der
-  [Dokumentation von `numpy.mod`](https://numpy.org/doc/stable/reference/generated/numpy.mod.html),
-  woran das liegt, und halten Sie die Begründung als Kommentar im Quelltext fest
+- Berechnen Sie zusätzlich `np.mod(-7, 3)` und `np.mod(7, -3)`
 - Berechnen Sie `np.exp()` für die Werte `[0, 1, 2, 3]` und vergleichen Sie den zweiten
   Ergebniswert mit `np.e`
+
+[EQ] Die beiden Modulo-Rechnungen aus [EREFR::5] liefern `2` und `-2`, obwohl in beiden Fällen
+dieselben Beträge 7 und 3 im Spiel sind.
+Klären Sie anhand des einleitenden Beschreibungstexts in der
+[Dokumentation von `numpy.mod`](https://numpy.org/doc/stable/reference/generated/numpy.mod.html),
+wovon das Vorzeichen des Ergebnisses abhängt.
+Sagen Sie damit das Vorzeichen von `np.mod(-7, -3)` vorher und prüfen Sie Ihre Vorhersage nach.
 
 <!-- time estimate: 15 min -->
 
@@ -445,7 +457,8 @@ Summe aller Elemente (bzw. pro Zeile/Spalte, je nach `axis`).
 In der NumPy-Dokumentation stehen drei dieser Funktionen nicht auf der Seite zu den statistischen
 Funktionen, sondern auf der zu den mathematischen: `np.sum` im Abschnitt "Sums, products,
 differences", `np.min` und `np.max` im Abschnitt "Extrema finding".
-Nur `np.mean`, `np.median` und `np.ptp` sind dort als Statistik geführt.
+Von den sechs Funktionen dieses Abschnitts sind nur `np.mean`, `np.median` und `np.ptp` dort als
+Statistik geführt.
 
 ```python
 import numpy as np
@@ -488,12 +501,14 @@ sortierten Daten davon unberührt bleibt.
 - Berechnen Sie Mittelwert und Median zusätzlich für jede Zeile und für jede Spalte
 - Berechnen Sie mit `np.abs()` den Abstand zwischen Mittelwert und Median für jede Zeile
 - Verwenden Sie `np.ptp()`, um die Spannweite für das gesamte Array sowie pro Zeile zu berechnen
-- Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile und pro Spalte
+- Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile und pro Spalte;
+  zur Kontrolle Ihrer Eingabe: die Summe aller Werte beträgt 990
 
 [EQ] Nennen Sie die Zeile aus [EREFR::6], in der Mittelwert und Median am weitesten
 auseinanderliegen, und begründen Sie den Abstand anhand der fünf Werte dieser Zeile.
-Erklären Sie dabei, welche der beiden Kennzahlen ein einzelner ausreißender Wert stärker bewegt
-und woran das liegt.
+Ersetzen Sie dann in dieser Zeile den kleinsten Wert durch `0` und berechnen Sie Mittelwert und
+Median erneut.
+Geben Sie beide neuen Werte an und erklären Sie, warum sich nur einer von beiden verändert.
 
 <!-- time estimate: 25 min -->
 
@@ -601,8 +616,9 @@ bildet, und begründen Sie, warum es gerade diese beiden sind.
 - [EREFQ::2]: die Antwort nennt die Rundung zur nächsten geraden Zahl als bewusste Festlegung;
   "Rundungsfehler" oder "Fließkomma-Ungenauigkeit" zeigt, dass die Dokumentation nicht gelesen wurde
 - [EREFR::4], letzter Schritt: die Division mit `out=` und `where=` lässt sich am Ergebnis nicht
-  überprüfen, denn `where=` ohne `out=` liefert hier dieselben Zahlen und unterscheidet sich nur
-  durch eine `UserWarning`.
+  zuverlässig überprüfen, denn `where=` ohne `out=` hinterlässt an den ausgelassenen Positionen
+  nicht initialisierten Speicher, der in der Praxis häufig ebenfalls aus Nullen besteht.
+  Nullen an diesen Positionen belegen also gerade nicht, dass ein Zielarray übergeben wurde.
   Zu prüfen ist deshalb der Quelltext: ohne ein vorher angelegtes `float`-Zielarray in `out=`
   ist die Lösung falsch, auch wenn die Ausgabe stimmt
 
