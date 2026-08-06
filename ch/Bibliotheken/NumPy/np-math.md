@@ -1,6 +1,6 @@
 title: NumPy mathematische Funktionen verstehen und anwenden
 stage: alpha
-timevalue: 2
+timevalue: 2.25
 difficulty: 2
 assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
 ---
@@ -76,6 +76,7 @@ print('Winkel in Grad:', angles_deg)
 # Umwandlung in Bogenmaß durch pi/180
 angles_rad = angles_deg * np.pi / 180
 print('Winkel in Bogenmaß:', angles_rad)
+print('dasselbe mit np.radians():', np.radians(angles_deg))
 
 # Trigonometrische Funktionen
 print('Sinuswerte:', np.sin(angles_rad))
@@ -92,7 +93,7 @@ Beides sind Rundungsartefakte: `np.pi` ist nur die bestmögliche Fließkomma-Nä
 also ist auch `angles_rad[4]` minimal von π/2 verschieden, und der Tangens reagiert an seiner
 Polstelle extrem empfindlich auf solche Abweichungen.
 `6.12323400e-17` ist damit ein Wert, der praktisch null ist.
-Beachten Sie außerdem, dass dieser eine extreme Wert die Darstellung des gesamten Arrays umschaltet:
+Beachten Sie außerdem, dass dieser winzige Kosinuswert die Darstellung des gesamten Arrays umschaltet:
 `8.66025404e-01` ist derselbe Wert wie `0.866025404`, denn `e-01` bedeutet "mal zehn hoch minus eins".
 
 [ER] Implementieren Sie Berechnungen mit trigonometrischen Funktionen:
@@ -120,6 +121,9 @@ Erklären Sie außerdem, warum `np.allclose()` für diese Prüfung das geeignete
 
 ### Umkehrfunktionen: `arcsin`, `arccos`, `arctan`
 
+Umkehrfunktionen braucht man dort, wo ein Winkel aus einem Verhältnis zurückgerechnet werden soll:
+die Blickrichtung zu einem Punkt aus dessen Koordinaten, der Steigungswinkel einer Geraden aus
+ihrer Steigung, der Drehwinkel eines Bauteils aus zwei gemessenen Längen.
 Die Umkehrfunktionen liefern zu einem gegebenen Sinus-, Kosinus- oder Tangenswert
 einen zugehörigen Winkel:
 
@@ -133,7 +137,10 @@ numpy.arctan(x)
 
 `np.arcsin` und `np.arccos` sind nur für Werte aus `[-1, 1]` definiert und liefern sonst `nan`
 zusammen mit einer `RuntimeWarning`.
-Zu einem Funktionswert passen mehrere Winkel; NumPy liefert stets den aus einem festen Bereich:
+`nan` steht für "not a number" und ist derjenige Fließkommawert, mit dem NumPy ein undefiniertes
+Ergebnis kennzeichnet; die Warnung bricht die Rechnung nicht ab, Sie erhalten also ein Array, in
+dem nur die betroffenen Positionen `nan` enthalten.
+Zu einem Funktionswert passen mehrere Winkel; NumPy liefert stets denjenigen aus einem festen Bereich:
 `np.arcsin` einen von -90 bis 90 Grad und `np.arccos` einen von 0 bis 180 Grad (die Grenzen
 jeweils eingeschlossen), `np.arctan` einen echt zwischen -90 und 90 Grad.
 Auf ihrem jeweiligen Bereich sind `np.arcsin` und `np.arctan` steigend, `np.arccos` dagegen
@@ -209,8 +216,8 @@ print('Gerundet (round):', np.round(numbers))
 print('Abgerundet (floor):', np.floor(numbers))
 print('Aufgerundet (ceil):', np.ceil(numbers))
 
-# Rundung mit Dezimalstellen
-print('Auf 2 Dezimalstellen:', np.round(numbers, decimals=2))
+# Rundung mit Nachkommastellen
+print('Auf 2 Nachkommastellen:', np.round(numbers, decimals=2))
 ```
 
 [ER] Wenden Sie Rundungsfunktionen praktisch an:
@@ -220,13 +227,19 @@ print('Auf 2 Dezimalstellen:', np.round(numbers, decimals=2))
   und schreiben Sie Ihre Vorhersage als Kommentar in den Quelltext
 - Runden Sie dann auf ganze Zahlen mit `np.round()`, `np.floor()` und `np.ceil()`
   und vergleichen Sie das Ergebnis mit Ihrer Vorhersage
-- Runden Sie zusätzlich mit `np.round()` auf 1 Dezimalstelle
+- Runden Sie zusätzlich mit `np.round()` auf 1 Nachkommastelle
 - Ein Versandhandel verpackt Artikel in Kisten zu je 12 Stück: Berechnen Sie für die Bestellmengen
   `orders` mit den Werten `[37, 12, 5, 100]` die Zahl der benötigten Kisten
 - Ein Budget von 50 Euro steht zur Verfügung: Berechnen Sie für die Stückpreise `prices` mit den
   Werten `[7.5, 3.2, 12.0, 4.9]`, wie viele Stück sich zu jedem Preis kaufen lassen
-- Halten Sie als Kommentar im Quelltext fest, warum die beiden letzten Rechnungen
-  verschiedene Rundungsfunktionen brauchen und `np.round()` für beide falsch wäre
+
+[HINT::Woher weiß ich, welche Rundungsfunktion die beiden letzten Schritte brauchen?]
+Rechnen Sie je einen einzelnen Wert von Hand durch, bevor Sie sich für eine Funktion entscheiden:
+Wie viele Kisten brauchen 5 Artikel bei 12 Stück pro Kiste, und wie viele Stück zu je 7.50 Euro
+lassen sich von 50 Euro kaufen?
+Vergleichen Sie Ihr Ergebnis mit dem, was eine Rundung zur nächstgelegenen ganzen Zahl liefern
+würde.
+[ENDHINT]
 
 [EQ] Für `0.5` liefert `np.round()` nicht das Ergebnis, das die Schulregel "bei genau `.5` wird
 aufgerundet" erwarten lässt.
@@ -235,6 +248,11 @@ Klären Sie anhand des Abschnitts "Notes" in der
 nach welcher Regel NumPy stattdessen rundet.
 Erklären Sie außerdem, warum `np.round()` in Ihrem Ergebnis für `-1.678` denselben Wert liefert
 wie `np.floor()`, für `5.999` dagegen denselben wie `np.ceil()`.
+
+[EQ] Die Kistenzahl und die Stückzahl aus [EREFR::3] brauchen verschiedene Rundungsfunktionen.
+Begründen Sie für beide Rechnungen aus der Sachlage heraus, welche Funktion die richtige ist.
+Geben Sie außerdem je einen Wert aus Ihren Ergebnissen an, bei dem `np.round()` ein sachlich
+falsches Ergebnis liefern würde, und sagen Sie, worin der Fehler bestünde.
 
 <!-- time estimate: 20 min -->
 
@@ -297,6 +315,13 @@ ausgeführte Rechnung; Einzelheiten stehen in der
   Grundrechenarten durch
 - Berechnen Sie mit `np.reciprocal()` die Kehrwerte von `arr1`
 - Berechnen Sie `np.abs()` für die Differenz `arr1 - arr2`
+- Erstellen Sie ein Array `arr3` mit den Werten `[6, 0, 3, 0]` und teilen Sie `arr1` mit
+  `np.divide()` durch `arr3`: Notieren Sie die Warnung und die Werte, die an den Nullstellen
+  entstehen (`inf` steht für "unendlich")
+- Wiederholen Sie diese Division so, dass an den Nullstellen von `arr3` gar nicht gerechnet wird:
+  Legen Sie mit `np.zeros(arr1.shape)` ein Zielarray an, übergeben Sie es als `out=` und
+  schränken Sie die Rechnung mit `where=` auf die übrigen Positionen ein.
+  Vergleichen Sie das Ergebnis mit dem der ersten Division
 
 [HINT::Warum sind alle meine Kehrwerte `0`?]
 `np.reciprocal()` rechnet im `dtype` des Eingabe-Arrays — anders als `np.divide()`, das stets
@@ -306,11 +331,18 @@ Wandeln Sie das Array vorher mit der Array-Methode `.astype(float)` um; sie lief
 des Arrays mit dem angegebenen `dtype`, hier also mit Fließkommazahlen.
 [ENDHINT]
 
-<!-- time estimate: 15 min -->
+[HINT::Was gehört bei `where=` als Bedingung hinein?]
+`where=` erwartet ein Array aus Wahrheitswerten, das dieselbe Form hat wie das Ergebnis oder
+sich darauf broadcasten lässt; ein Vergleich wie `arr3 != 0` liefert genau so ein Array.
+An den Positionen mit `False` rechnet NumPy nicht, sondern lässt den Wert stehen, der dort im
+`out=`-Array schon steht — deshalb gehören die beiden Argumente zusammen.
+[ENDHINT]
 
-### Spezielle arithmetische Funktionen: `power`, `mod`, `exp`
+<!-- time estimate: 20 min -->
 
-Auch diese drei Funktionen haben typische Einsatzfelder: `np.mod` ordnet Werte zyklisch zu und
+### Potenz, Rest und Exponentialfunktion: `power`, `mod`, `exp`
+
+Diese drei Funktionen haben typische Einsatzfelder: `np.mod` ordnet Werte zyklisch zu und
 bildet damit Gruppen, etwa Wochentage aus fortlaufenden Tagesnummern oder Farbkanäle aus
 Pixelpositionen.
 `np.exp` beschreibt Wachstums- und Zerfallsvorgänge, von Zinseszins über Populationen bis zum
@@ -430,14 +462,18 @@ sortierten Daten davon unberührt bleibt.
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie Mittelwert und Median zusätzlich für jede Zeile und für jede Spalte
 - Bestimmen Sie mit `np.abs()`, in welcher Zeile Mittelwert und Median am weitesten
-  auseinanderliegen (das Ablesen aus der ausgegebenen Differenz genügt), und begründen Sie das
-  als Kommentar im Quelltext anhand der Werte dieser Zeile
+  auseinanderliegen (das Ablesen aus der ausgegebenen Differenz genügt)
 - Verwenden Sie `np.ptp()`, um die Spannweite für das gesamte Array sowie pro Zeile zu berechnen
 - Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile und pro Spalte
 
-<!-- time estimate: 20 min -->
+[EQ] Nennen Sie die Zeile aus [EREFR::6], in der Mittelwert und Median am weitesten
+auseinanderliegen, und begründen Sie den Abstand anhand der fünf Werte dieser Zeile.
+Erklären Sie dabei, welche der beiden Kennzahlen ein einzelner ausreißender Wert stärker bewegt
+und woran das liegt.
 
-### Erweiterte statistische Funktionen: `std`, `var`, `percentile`
+<!-- time estimate: 25 min -->
+
+### Streuungsmaße und Perzentile: `std`, `var`, `percentile`
 
 ```python
 numpy.std(a, axis=None, ddof=0)     # Standardabweichung
@@ -508,7 +544,7 @@ Punktzahl erreicht hat.
 Benennen Sie dazu die beiden Punktzahlen aus den sortierten Daten, aus denen NumPy diesen Wert
 bildet, und begründen Sie, warum es gerade diese beiden sind.
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Weiterführend
 
@@ -526,9 +562,10 @@ bildet, und begründen Sie, warum es gerade diese beiden sind.
 
 **Knackpunkte:**
 
-- [EREFR::3]: die beiden Anwendungsrechnungen verwenden `np.ceil()` bzw. `np.floor()` und liefern
-  `[4. 1. 1. 9.]` und `[6. 15. 4. 10.]`; mit `np.round()` ergäben sich unter anderem null Kisten
-  für fünf Artikel
+- [EREFR::3] mit [EREFQ::3]: die beiden Anwendungsrechnungen verwenden `np.ceil()` bzw.
+  `np.floor()` und liefern `[4. 1. 1. 9.]` und `[6. 15. 4. 10.]`; mit `np.round()` ergäben sich
+  unter anderem null Kisten für fünf Artikel.
+  Die Begründung knüpft die Rundungsrichtung an die Sachlage und nicht nur an die Funktionsnamen
 - [EREFQ::2]: die Antwort nennt die Rundung zur nächsten geraden Zahl als bewusste Festlegung;
   "Rundungsfehler" oder "Fließkomma-Ungenauigkeit" zeigt, dass die Dokumentation nicht gelesen wurde
 - [EREFR::6]: `axis=1` liefert vier Werte (einen pro Zeile), `axis=0` fünf Werte (einen pro
