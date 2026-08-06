@@ -51,7 +51,7 @@ arr[-n:]                # Die letzten n Elemente (negative Indizes zählen vom E
 **Beispiel:**
 
 Dieses Beispiel und mehrere der folgenden brauchen ein Array mit fortlaufenden Werten; dafür
-eignet sich `numpy.arange()`, Details in [PARTREF::np-array2]:
+eignet sich `np.arange()`, Details in [PARTREF::np-array2]:
 
 ```python
 a = np.arange(10, 20)   # Werte 10 bis 19
@@ -133,8 +133,8 @@ Ausschreiben aller `:`?
 Mit Integer-Array-Indexierung lassen sich beliebig zusammengestellte Positionen auf einmal
 auswählen, auch solche, die kein Slice erfasst.
 
-Diese Form und die Boolean-Indexierung des nächsten Abschnitts heißen in der NumPy-Dokumentation
-zusammen "Advanced Indexing" (im Glossar gleichbedeutend auch "fancy indexing"), siehe
+Diese Form und die Boolean-Indexierung heißen in der NumPy-Dokumentation zusammen
+"Advanced Indexing" (im NumPy-Glossar gleichbedeutend auch "fancy indexing"), siehe
 [NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing).
 Indexiert wird dabei nicht mit einem einzelnen Wert oder einem Slice, sondern mit einem ganzen
 Array aus Indizes bzw. Wahrheitswerten.
@@ -183,7 +183,7 @@ als 1D-Array (`arr[maske]`).
 Eine Maske mit einem Eintrag pro Zeile wählt ganze Zeilen aus und lässt sich für die übrigen
 Achsen mit Slicing kombinieren (`arr[maske, :]`).
 
-**Formen der Boolean-Indexierung:**
+**Bedingungen für elementweise Masken:**
 ```python
 arr[arr > value]        # Elemente größer als value
 arr[arr == value]       # Elemente gleich value
@@ -192,8 +192,8 @@ arr[~(arr > value)]     # Negation der Bedingung (NOT)
 ```
 
 Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
-`arr[arr > unten & arr < oben]` würde deshalb als `arr[arr > (unten & arr) < oben]` gelesen und
-bricht mit einer Fehlermeldung ab.
+`arr[arr > unten & arr < oben]` wird deshalb als Vergleichskette `arr[arr > (unten & arr) < oben]`
+gelesen und bricht mit einem `ValueError` ab.
 
 Fehlende oder undefinierte Werte stellt NumPy als `np.nan` dar ("Not a Number", ein spezieller
 Fließkommawert).
@@ -212,8 +212,8 @@ Weitere Prüffunktionen dieser Art (etwa für unendliche Werte) stehen in der
 **Beispiel:**
 ```python
 x = np.array([10, 20, 30, 40, 50, 60])
-mask = x > 30          # Boolean-Array: [False False False  True  True  True]
-result = x[mask]       # Ergebnis: [40 50 60]
+maske = x > 30         # Boolean-Array: [False False False  True  True  True]
+ergebnis = x[maske]    # Ergebnis: [40 50 60]
 
 # Boolean-Indexierung erlaubt auch bedingte Änderung von Werten:
 z = np.array([10, 20, 30, 40, 50, 60])
@@ -322,7 +322,7 @@ Alle Einzelheiten stehen in der
 arr[[1, 2], [0, 1]]          # Elemente (1,0) und (2,1)
 
 # Mit np.ix_: kartesisches Produkt
-arr[np.ix_([1, 2], [0, 1])]  # 2x2 Teilmatrix aus Zeilen 1,2 und Spalten 0,1
+arr[np.ix_([1, 2], [0, 1])]  # 2x2-Teilmatrix aus Zeilen 1,2 und Spalten 0,1
 ```
 
 **Beispiel:**
@@ -395,9 +395,12 @@ Eine **Kopie** hat einen eigenen Speicherbereich und ist vom Original unabhängi
 Eine **View** teilt sich den Speicher mit dem Original, ist also nur ein zweiter Zugriffsweg auf
 dieselben Daten; eine Änderung an der View ändert deshalb auch das Original.
 
-Welche der beiden Formen entsteht, hängt von der Art des Zugriffs ab: Slicing — und ebenso
-einzelne Integer-Indizes und `...` — liefert eine View, Advanced Indexing (Integer-Array und
-Boolean-Maske) liefert stets eine Kopie.
+Welche der beiden Formen entsteht, hängt von der Art des Zugriffs ab: Slicing — und ebenso `...`
+sowie einzelne Integer-Indizes, sofern dabei noch eine Achse übrig bleibt (etwa `b[1]` bei einem
+2D-Array) — liefert eine View, Advanced Indexing (Integer-Array und Boolean-Maske) liefert stets
+eine Kopie.
+Indexiert man ein Array mit Integer-Indizes dagegen vollständig, ist das Ergebnis nach [EREFQ::1]
+gar kein Array, sondern ein Skalar mit eigenem Speicher.
 Sobald in einem Zugriff ein Index-Array oder eine Boolean-Maske vorkommt, ist das Ergebnis also eine
 Kopie, auch wenn andere Achsen darin mit Slices indexiert werden.
 Einzelheiten dazu stehen im
@@ -408,8 +411,8 @@ Wer von einem Slice eine unabhängige Kopie braucht, fordert sie ausdrücklich a
 ndarray.copy()
 ```
 
-- ohne Argumente aufgerufen; das Ergebnis hat stets eigenen Speicher, auch wenn `copy()` auf eine
-  View angewendet wird
+- hier ohne Argumente aufgerufen; das Ergebnis hat stets eigenen Speicher, auch wenn `copy()` auf
+  eine View angewendet wird
 
 **Beispiel:**
 ```python
@@ -435,10 +438,10 @@ Sie daran selbst nach, welcher Zugriff eine View und welcher eine Kopie liefert:
   treffen Sie beide Auswahlen, bevor Sie etwas ändern, sonst rechnet die Maske schon auf dem
   geänderten Array
 - Setzen Sie das erste Element im Slicing-Ergebnis auf `0`, das im Masken-Ergebnis auf `-1`;
-  die drei Schritte brauchen unterscheidbare Werte, weil beide Auswahlen im Original an derselben
+  jede Änderung braucht einen eigenen Wert, weil beide Auswahlen im Original an derselben
   Stelle beginnen
-- Geben Sie `werte` nach jeder der beiden Änderungen aus und halten Sie fest, welcher der beiden
-  Zugriffe das Original mit verändert hat
+- Geben Sie `werte` nach jeder der beiden Änderungen aus und halten Sie im Codekommentar fest,
+  welcher der beiden Zugriffe das Original mit verändert hat
 - Wiederholen Sie den Slicing-Zugriff mit `copy()`, setzen Sie dort das erste Element auf `-2` und
   zeigen Sie, dass `werte` dabei unverändert bleibt
 
