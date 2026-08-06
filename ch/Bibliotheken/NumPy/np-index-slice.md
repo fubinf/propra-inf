@@ -38,13 +38,14 @@ aber deutlich darüber hinaus.
 arr[index]              # Element an Position index
 
 # Slicing mit Start:Stop:Step
-arr[start:stop:step]    # Elemente von start bis stop-1 mit Schrittweite step
+arr[start:stop:step]    # Elemente ab start bis vor stop mit Schrittweite step
 
 # Spezielle Slicing-Formen
 arr[start:]             # Ab Position start bis Ende
 arr[:stop]              # Vom Anfang bis Position stop-1
 arr[::step]             # Jedes step-te Element des gesamten Arrays
 arr[:]                  # Alle Elemente
+arr[-n:]                # Die letzten n Elemente (negative Indizes zählen vom Ende her)
 ```
 
 **Beispiel:**
@@ -78,8 +79,8 @@ zu keinem Fehler?
 
 ### Mehrdimensionale Array-Indexierung
 
-Bei mehrdimensionalen Arrays wird die Indexierung durch Kommas getrennt:
-`arr[dim1, dim2, dim3]`.
+Bei mehrdimensionalen Arrays wird pro Achse ein eigener Index angegeben, getrennt durch Kommas:
+`arr[index1, index2, index3]`.
 
 **Syntax:**
 ```python
@@ -130,7 +131,8 @@ Ausschreiben aller `:`?
 
 ### Integer-Array-Indexierung
 
-Integer-Array-Indexierung ermöglicht den Zugriff auf beliebige Array-Elemente mit Index-Arrays.
+Mit Integer-Array-Indexierung lassen sich beliebig zusammengestellte Positionen auf einmal
+auswählen, auch solche, die kein Slice erfasst.
 
 Diese Form und die Boolean-Indexierung des nächsten Abschnitts heißen in der NumPy-Dokumentation
 zusammen "Advanced Indexing" oder gleichbedeutend "fancy indexing", siehe
@@ -192,8 +194,10 @@ arr[~(arr > value)]     # Negation der Bedingung (NOT)
 
 Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
 `arr[arr > unten & arr < oben]` würde deshalb als `arr[arr > (unten & arr) < oben]` gelesen.
-Das scheitert mit einem `ValueError`, weil diese Kette aus zwei Vergleichen einen einzelnen
-Wahrheitswert verlangt, ein Array aber viele Einträge hat.
+Bei einem Integer-Array scheitert das mit einem `ValueError`, weil diese Kette aus zwei Vergleichen
+einen einzelnen Wahrheitswert verlangt, ein Array aber viele Einträge hat;
+bei einem Fließkomma-Array bricht schon `&` selbst mit einem `TypeError` ab, weil es dort nicht
+definiert ist.
 
 Fehlende oder undefinierte Werte stellt NumPy als `np.nan` dar ("Not a Number", ein spezieller
 Fließkommawert).
@@ -247,9 +251,9 @@ NaN-Werte brauchen ein Array mit einem Fließkomma-`dtype`.
 [EQ] Probieren Sie an Ihrem Array `mit_nan` aus [EREFR::4] drei Varianten aus:
 `mit_nan[~np.isnan(mit_nan)]`, `mit_nan[np.isnan(mit_nan) == False]` und
 `mit_nan[not np.isnan(mit_nan)]`.
-Die ersten beiden liefern dasselbe, die dritte bricht ab.
-Übernehmen Sie deren Fehlermeldung in Ihre Antwort und erklären Sie, warum die Negation hier
-elementweise geschehen muss und `not` das nicht leisten kann.
+Stellen Sie fest, welche beiden dasselbe liefern und welche abbricht.
+Übernehmen Sie die dabei auftretende Fehlermeldung in Ihre Antwort und erklären Sie, warum die
+Negation hier elementweise geschehen muss und `not` das nicht leisten kann.
 
 <!-- time estimate: 20 min -->
 
@@ -269,7 +273,7 @@ arr[[row1, row2, row3], :]
 # Analog für Spalten: Liste von Spaltenindizes in beliebiger Reihenfolge
 arr[:, [col1, col2, col3]]
 
-# Negative Indizes zählen vom Ende her, wie bei Python-Listen
+# Auch in einem Index-Array zählen negative Indizes vom Ende her
 arr[[-1, -2, 0], :]    # Letzte zwei und erste Zeile
 ```
 
@@ -366,12 +370,21 @@ print(w[1:3, [2, 0]])       # Slicing + Integer-Array: [[60,40], [90,70]]
 print(w[w[:, 0] > 40, 1:])  # Boolean-Zeilenmaske + Slicing: [[80,90], [110,120]]
 ```
 
-[ER] Erstellen Sie ein 3x3-Array `arr3x3` mit den Werten 11 bis 19 und kombinieren Sie daran jeweils
-zwei Indexierungsformen in einem einzigen Zugriff:
+[ER] Erstellen Sie ein Array `messwerte` mit den Werten
+`[[23, 41, 15, 38], [9, 52, 27, 44], [31, 18, 63, 12], [47, 35, 21, 56], [8, 29, 14, 33]]`
+und holen Sie daraus die beiden folgenden Ausschnitte, jeden mit einem einzigen Indexausdruck, in
+dem zwei der behandelten Formen gemischt sind:
 
-- Slicing für die Zeilen mit einem Index-Array für die Spalten
-- Eine Boolean-Maske für die Zeilen (alle Zeilen, deren erster Wert größer als 11 ist) mit
-  Spalten-Slicing
+- Aus den Zeilen 1 bis 3 die Spalten 3, 1 und 0, in genau dieser Reihenfolge
+- Von allen Zeilen, deren erster Wert größer als 20 ist, die Spalten ab Spalte 1
+
+Geben Sie beide Ergebnisse samt `shape` aus.
+
+[EQ] Sehen Sie sich die Zeilenauswahl des zweiten Zugriffs aus [EREFR::7] an: Welche Zeilen wählt
+sie aus?
+Versuchen Sie, genau diese Zeilen stattdessen mit einem Slice `start:stop:step` zu treffen, und
+erklären Sie, woran das scheitert.
+Unter welcher Bedingung an die Werte der ersten Spalte hätte ein Slice hier genügt?
 
 <!-- time estimate: 10 min -->
 
@@ -394,7 +407,8 @@ Wer von einem Slice eine unabhängige Kopie braucht, fordert sie ausdrücklich a
 ndarray.copy()
 ```
 
-- `copy()`: liefert immer eine unabhängige Kopie, gleichgültig worauf man die Methode anwendet
+- ohne Parameter; das Ergebnis hat stets eigenen Speicher, auch wenn `copy()` auf eine View
+  angewendet wird
 
 **Beispiel:**
 ```python
@@ -418,10 +432,12 @@ Sie daran selbst nach, welcher Zugriff eine View und welcher eine Kopie liefert:
 
 - Wählen Sie die letzten vier Elemente einmal per Slicing und einmal per Boolean-Maske aus;
   treffen Sie beide Auswahlen, bevor Sie etwas ändern
-- Setzen Sie in beiden Ergebnissen das erste Element auf `0`
+- Setzen Sie das erste Element im Slicing-Ergebnis auf `0`, das im Masken-Ergebnis auf `-1`;
+  die drei Schritte brauchen unterscheidbare Werte, weil beide Auswahlen im Original an derselben
+  Stelle beginnen
 - Geben Sie `werte` nach jeder der beiden Änderungen aus und halten Sie fest, welcher der beiden
   Zugriffe das Original mit verändert hat
-- Wiederholen Sie den Slicing-Zugriff mit `copy()`, setzen Sie dort das erste Element auf `-1` und
+- Wiederholen Sie den Slicing-Zugriff mit `copy()`, setzen Sie dort das erste Element auf `-2` und
   zeigen Sie, dass `werte` dabei unverändert bleibt
 
 <!-- time estimate: 10 min -->
@@ -432,9 +448,8 @@ Indexausdrücke stehen nicht nur rechts, sondern auch links vom Zuweisungsoperat
 überschreibt man genau die ausgewählten Positionen, wie oben schon bei `z[z > 30] = 0` gezeigt.
 Das gilt für alle bisher behandelten Formen, solange die Auswahl in **einem** Indexausdruck steht.
 
-Bei zwei aufeinanderfolgenden Zugriffen wie beim letzten Teilschritt von [EREFR::5] ist die Lage
-weniger eindeutig: Die Zuweisung trifft dann nicht mehr das Original, sondern das Ergebnis des
-ersten Zugriffs.
+Bei zwei aufeinanderfolgenden Zugriffen wie beim letzten Teilschritt von [EREFR::5] trifft die
+Zuweisung nicht mehr das Original, sondern das Ergebnis des ersten Zugriffs.
 Ob sie damit im Original ankommt, entscheidet nach den Regeln des vorigen Abschnitts die Art
 dieses ersten Zugriffs.
 
@@ -481,7 +496,11 @@ Woran kann man einem solchen Ausdruck schon vor dem Ausführen ansehen, dass er 
 - [EREFQ::5]: Beide Anzahlen sind auf ihren Mechanismus zurückgeführt (vier Indexpaare gegen
   4 · 4 Kombinationen), nicht nur als Beobachtung wiedergegeben; die Rückgabe von `np.ix_`
   (Formen `(4, 1)` und `(1, 4)`) ist als Ursache erkannt
-- [EREFQ::6]: Die Ausgabe nach den zwei aufeinanderfolgenden Zugriffen zeigt ein unverändertes
+- [EREFR::8]: Beide Auswahlen umfassen vier Elemente und sind beide vor der ersten Änderung
+  getroffen.
+  Wird die Maske erst nach der Änderung an der Slicing-View berechnet, enthält sie nur noch drei
+  Elemente; das Ergebnis der Aufgabe stimmt dann zwar noch, die Demonstration trägt aber nicht mehr
+- [EREFQ::7]: Die Ausgabe nach den zwei aufeinanderfolgenden Zugriffen zeigt ein unverändertes
   `data` und keine Fehlermeldung, und die Antwort führt das auf die Kopie des ersten Zugriffs
   zurück; als Erkennungsmerkmal genügt, dass der erste Zugriff ein Index-Array oder eine
   Boolean-Maske verwendet.
