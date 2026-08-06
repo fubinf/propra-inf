@@ -10,7 +10,7 @@ assumes: np-Einführung, np-array, np-array2
 - Ich kann einzelne Elemente, Teilbereiche und beliebige Auswahlmuster aus ein- und
   mehrdimensionalen NumPy-Arrays auswählen und verändern.
 - Ich kann für einen Zugriff die passende Indexierungsform wählen (Slice, Index-Array,
-  Boolean-Maske) und weiß, welche Form das Ergebnis jeweils hat.
+  Boolean-Maske, `np.ix_`) und weiß, welche Form das Ergebnis jeweils hat.
 - Ich kann unterscheiden, wann ein Indexzugriff eine View auf das Original liefert und wann eine
   eigenständige Kopie, und kann eine Kopie gezielt anfordern.
 
@@ -433,8 +433,8 @@ Das gilt für alle bisher behandelten Formen, solange die Auswahl in **einem** I
 
 Bei zwei aufeinanderfolgenden Zugriffen wie beim letzten Teilschritt von [EREFR::5] trifft die
 Zuweisung nicht mehr das Original, sondern das Ergebnis des ersten Zugriffs.
-Ob sie damit im Original ankommt, entscheidet nach den Regeln des vorigen Abschnitts die Art
-dieses ersten Zugriffs.
+Nach den Regeln des vorigen Abschnitts entscheidet die Art dieses ersten Zugriffs, ob sie damit
+im Original ankommt.
 
 [ER] Erstellen Sie ein Array `data` mit den Werten
 `[[3, 12, 7, 18], [9, 2, 15, 6], [11, 4, 19, 1], [8, 16, 5, 13], [10, 3, 17, 14], [6, 20, 2, 9]]`

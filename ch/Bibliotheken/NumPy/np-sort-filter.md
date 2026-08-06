@@ -423,7 +423,7 @@ print('Sortiert:', np.sort_complex(complex_arr))
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-### Knackpunkte
+**Knackpunkte:**
 
 - [EREFR::1]: `argsort(axis=1)` gefolgt von `take_along_axis` rekonstruiert exakt das Ergebnis
   von `np.sort(arr, axis=1)`

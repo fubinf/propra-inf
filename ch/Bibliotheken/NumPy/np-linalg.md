@@ -479,7 +479,7 @@ print(s)
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-### Knackpunkte
+**Knackpunkte:**
 
 - [EREFQ::1]: die Antwort benennt konkret, was `eye()` zusätzlich zu `identity()` kann
   (rechteckige Matrizen, verschobene Diagonale), nicht nur pauschal "weil es so entworfen

@@ -572,7 +572,7 @@ Welche Werte fehlen im Endergebnis, und warum gerade diese?
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-### Knackpunkte
+**Knackpunkte:**
 
 - [EREFR::1] + [EREFQ::1]: Die vier Kombinationen liefern die Formen `(8, 3)`, `(4, 6)`,
   `(2, 4, 3)` und `(4, 3, 2)`; die beiden Grenzwerte (`axis=1` bei `concatenate`, `axis=2` bei
