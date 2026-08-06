@@ -1,4 +1,4 @@
-title: NumPy mathematische Funktionen verstehen und anwenden
+title: NumPy mathematische und statistische Funktionen verstehen und anwenden
 stage: alpha
 timevalue: 2.5
 difficulty: 2
@@ -20,7 +20,7 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
 
 NumPy bietet eine umfangreiche Sammlung mathematischer Funktionen für wissenschaftliche
 Berechnungen und Datenanalyse.
-Diese Aufgabe behandelt trigonometrische, Rundungs-, arithmetische und Exponentialfunktionen, die
+Diese Aufgabe behandelt Funktionen für Trigonometrie, Rundung, Arithmetik und Exponentiation, die
 elementweise auf Arrays wirken, sowie statistische Funktionen, die ein Array zu Kennzahlen
 zusammenfassen.
 
@@ -119,6 +119,8 @@ Der Potenzoperator `**` wirkt auf Arrays elementweise:
 Der elementweise Vergleich mit `1` bestätigt das je nach Maschine aber nicht an allen fünf
 Positionen.
 Erklären Sie, wie eine Position mit `False` zustande kommt und wie sie zur Ausgabe `1.` passt.
+Falls Ihr Vergleich überall `True` liefert, erklären Sie stattdessen, wie eine solche Position
+zustande kommen kann.
 Erklären Sie außerdem, warum `np.allclose()` für diese Prüfung das geeignetere Werkzeug ist.
 
 [HINT::Die Summe wird überall als `1.` ausgegeben — wo steckt dann die Abweichung?]
@@ -345,11 +347,14 @@ ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword argume
   `np.divide()` durch `arr3`: Notieren Sie die Warnung und die Werte, die an den Nullstellen
   entstehen (`inf` steht für "unendlich")
 - Wiederholen Sie diese Division so, dass an den Nullstellen von `arr3` gar nicht gerechnet wird:
-  Legen Sie mit `np.zeros(arr1.shape)` ein Zielarray an, übergeben Sie es als `out=` und
-  schränken Sie die Rechnung mit `where=` auf die übrigen Positionen ein.
-  Vergleichen Sie das Ergebnis mit dem der ersten Division
+  Schränken Sie sie mit `where=` auf die übrigen Positionen ein, zunächst ohne weitere Argumente.
+  Notieren Sie die Warnung und die Werte, die nun an den ausgelassenen Positionen stehen
+- Wiederholen Sie diese eingeschränkte Division ein weiteres Mal, diesmal mit einem Zielarray:
+  Legen Sie es mit `np.zeros(arr1.shape)` an und übergeben Sie es als `out=`.
+  Vergleichen Sie das Ergebnis mit dem der beiden vorherigen Divisionen
 - Halten Sie als Kommentar im Quelltext fest, warum `where=` auf ein mit `out=` übergebenes
-  Zielarray angewiesen ist und was ohne dieses Zielarray an den ausgelassenen Positionen stünde
+  Zielarray angewiesen ist und woher die Werte an den ausgelassenen Positionen in den beiden
+  eingeschränkten Divisionen jeweils stammen
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Warum sind alle meine Kehrwerte `0`?]
@@ -439,7 +444,7 @@ Sagen Sie damit das Vorzeichen von `np.mod(-7, -3)` vorher und prüfen Sie Ihre 
 
 <!-- time estimate: 15 min -->
 
-### Kennzahlen für ganze Arrays: `min`, `max`, `mean`, `median`, `ptp`, `sum`
+### Zusammenfassende Kennzahlen: `min`, `max`, `mean`, `median`, `ptp`, `sum`
 
 Die bisherigen Funktionen lieferten zu jedem Eingabewert einen Ergebniswert.
 Die folgenden fassen dagegen viele Werte zu einer einzigen Zahl zusammen, wie man es für den
@@ -462,11 +467,8 @@ numpy.sum(a, axis=None)
 Ihnen dafür auch die gleichbedeutenden Namen `np.amin` und `np.amax`.
 `np.ptp` ("peak to peak") berechnet die Spannweite (Maximum minus Minimum), `np.sum` die
 Summe aller Elemente (bzw. pro Zeile/Spalte, je nach `axis`).
-In der NumPy-Dokumentation stehen drei dieser Funktionen nicht auf der Seite zu den statistischen
-Funktionen, sondern auf der zu den mathematischen: `np.sum` im Abschnitt "Sums, products,
-differences", `np.min` und `np.max` im Abschnitt "Extrema finding".
-Von den sechs Funktionen dieses Abschnitts sind nur `np.mean`, `np.median` und `np.ptp` dort als
-Statistik geführt.
+In der NumPy-Dokumentation stehen `np.sum`, `np.min` und `np.max` nicht bei den statistischen,
+sondern bei den mathematischen Funktionen.
 
 ```python
 import numpy as np
@@ -501,7 +503,7 @@ dagegen `50.0`.
 Der große Wert `180` zieht den Mittelwert nach oben, während der Median als mittlerer Wert der
 sortierten Daten davon unberührt bleibt.
 
-[ER] Berechnen Sie statistische Kennzahlen und geben Sie die Ergebnisse aus:
+[ER] Berechnen Sie statistische Kennzahlen:
 
 - Erstellen Sie ein 4×5-Array `data` mit den Werten
   `[[47, 82, 19, 63, 8], [91, 24, 56, 37, 70], [15, 68, 42, 5, 99], [33, 77, 60, 6, 88]]`
@@ -511,6 +513,7 @@ sortierten Daten davon unberührt bleibt.
 - Verwenden Sie `np.ptp()`, um die Spannweite für das gesamte Array sowie pro Zeile zu berechnen
 - Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile und pro Spalte;
   zur Kontrolle Ihrer Eingabe: die Summe aller Werte beträgt 990
+- Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [EQ] Nennen Sie die Zeile aus [EREFR::6], in der Mittelwert und Median am weitesten
 auseinanderliegen, und begründen Sie den Abstand anhand der fünf Werte dieser Zeile.
@@ -626,15 +629,15 @@ bildet, und begründen Sie, warum es gerade diese beiden sind.
   Die Begründung knüpft die Rundungsrichtung an die Sachlage und nicht nur an die Funktionsnamen
 - [EREFQ::2]: die Antwort nennt die Rundung zur nächsten geraden Zahl als bewusste Festlegung;
   "Rundungsfehler" oder "Fließkomma-Ungenauigkeit" zeigt, dass die Dokumentation nicht gelesen wurde
-- [EREFR::4], letzter Schritt: die Division mit `out=` und `where=` lässt sich am Ergebnis allein
-  nicht zuverlässig überprüfen, denn `where=` ohne `out=` hinterlässt an den ausgelassenen
-  Positionen nicht initialisierten Speicher, der gelegentlich ebenfalls aus Nullen besteht.
-  Nullen an diesen Positionen belegen also gerade nicht, dass ein Zielarray übergeben wurde.
-  Meist verrät sich das fehlende `out=` allerdings von selbst, nämlich durch die `UserWarning`
-  "'where' used without 'out', expect uninitialized memory in output" und durch Werte in der
-  Größenordnung `e-317` in der Ausgabe.
-  Ausschlaggebend sind Quelltext und Kommentar: ohne ein vorher angelegtes `float`-Zielarray in
-  `out=` ist die Lösung falsch, auch wenn die Ausgabe stimmt
+- [EREFR::4], letzte Schritte: die Division mit `where=` ohne `out=` gibt an den ausgelassenen
+  Positionen nicht initialisierten Speicher aus, typischerweise den gerade freigegebenen Puffer
+  der vorigen Division, sodass dort erneut `inf` steht und `where=` wirkungslos aussieht.
+  Andere Werte dort (Nullen, Größenordnung `e-317`) sind ebenso möglich und kein Fehler;
+  umgekehrt belegen Nullen nicht, dass ein Zielarray übergeben wurde.
+  Ausschlaggebend sind Quelltext und Kommentar: die erste eingeschränkte Division muss ohne `out=`
+  laufen und die `UserWarning` "'where' used without 'out', expect uninitialized memory in output"
+  auslösen, die zweite mit einem vorher angelegten `float`-Zielarray;
+  "ohne `out=` steht dort 0" ist falsch
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-math.md]
