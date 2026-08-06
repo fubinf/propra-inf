@@ -42,7 +42,7 @@ arr[start:stop:step]    # Elemente ab start bis vor stop mit Schrittweite step
 
 # Spezielle Slicing-Formen
 arr[start:]             # Ab Position start bis Ende
-arr[:stop]              # Vom Anfang bis Position stop-1
+arr[:stop]              # Vom Anfang bis vor Position stop
 arr[::step]             # Jedes step-te Element des gesamten Arrays
 arr[:]                  # Alle Elemente
 arr[-n:]                # Die letzten n Elemente (negative Indizes zählen vom Ende her)
@@ -50,8 +50,8 @@ arr[-n:]                # Die letzten n Elemente (negative Indizes zählen vom E
 
 **Beispiel:**
 
-Für dieses Beispiel und mehrere der folgenden wird ein Array mit fortlaufenden Werten als
-Ausgangspunkt gebraucht; dafür eignet sich `numpy.arange()`, Details in [PARTREF::np-array2]:
+Dieses Beispiel und mehrere der folgenden brauchen ein Array mit fortlaufenden Werten; dafür
+eignet sich `numpy.arange()`, Details in [PARTREF::np-array2]:
 
 ```python
 a = np.arange(10, 20)   # Werte 10 bis 19
@@ -66,14 +66,13 @@ print(a[3:])            # Ausgabe: [13 14 15 16 17 18 19]
 - Alle Elemente ab Index 2
 - Die Elemente an den Indizes 1, 3, 5, 7 und 9
 - Die letzten drei Elemente
+- `a[2]`, `a[2:3]` und `a[7:3]`, jeweils zusammen mit dem `type()` des Ergebnisses
 
-[EQ] Verwenden Sie das Array aus [EREFR::1]: `a[2]` liefert einen einzelnen Skalar zurück,
-während `a[2:3]` — obwohl der Slice ebenfalls nur ein einziges Element enthält — ein Array mit
-diesem einen Element zurückgibt.
-Warum unterscheiden sich die Rückgabetypen grundsätzlich, unabhängig davon, wie viele Elemente
-ausgewählt werden?
-Was gibt `a[7:3]` zurück (Start größer als Stop, positive Schrittweite), und warum kommt es dabei
-zu keinem Fehler?
+[EQ] Sehen Sie sich den letzten Teilschritt aus [EREFR::1] an: `a[2]` und `a[2:3]` wählen dasselbe
+eine Element aus, ihre Rückgabetypen unterscheiden sich aber.
+Warum ist das grundsätzlich so, unabhängig davon, wie viele Elemente ausgewählt werden?
+Was liefert `a[7:3]` (Start größer als Stop, positive Schrittweite), und warum kommt es dabei zu
+keinem Fehler?
 
 <!-- time estimate: 10 min -->
 
@@ -101,7 +100,7 @@ b = np.array([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
 print(b[1, 2])          # Element Zeile 1, Spalte 2: 60
 print(b[1, :])          # Ganze Zeile 1: [40 50 60]
 print(b[:, 1])          # Ganze Spalte 1: [20 50 80]
-print(b[1:, :])         # Ab Zeile 1: [[40,50,60], [70,80,90]]
+print(b[1:, :])         # Ab Zeile 1: [[40 50 60] [70 80 90]]
 print(b[..., 2])        # Ellipsis für Spalte: [30 60 90] (äquivalent zu b[:, 2])
 print(b[1, ...])        # Ellipsis für Zeile: [40 50 60] (äquivalent zu b[1, :])
 ```
@@ -109,7 +108,7 @@ print(b[1, ...])        # Ellipsis für Zeile: [40 50 60] (äquivalent zu b[1, :
 Allein geschrieben bezeichnet `...` das ganze Array: `b[...]` liefert alle Elemente, und
 `b[...] = 0` überschreibt sie alle.
 Darauf beruht das Zurückschreiben in `np.nditer` aus [PARTREF::np-array2]: Das dort gelieferte
-Element ist ein Array ohne Dimensionen, und `x[...] = 2 * x` schreibt in dieses Array hinein,
+Element ist ein nulldimensionales Array, und `x[...] = 2 * x` schreibt in dieses Array hinein,
 statt nur den Namen `x` neu zu binden.
 
 [ER] Erstellen Sie ein 4x4-Array `arr4x4` mit den Werten 11 bis 26 und demonstrieren Sie:
@@ -135,7 +134,7 @@ Mit Integer-Array-Indexierung lassen sich beliebig zusammengestellte Positionen 
 auswählen, auch solche, die kein Slice erfasst.
 
 Diese Form und die Boolean-Indexierung des nächsten Abschnitts heißen in der NumPy-Dokumentation
-zusammen "Advanced Indexing" oder gleichbedeutend "fancy indexing", siehe
+zusammen "Advanced Indexing" (im Glossar gleichbedeutend auch "fancy indexing"), siehe
 [NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing).
 Indexiert wird dabei nicht mit einem einzelnen Wert oder einem Slice, sondern mit einem ganzen
 Array aus Indizes bzw. Wahrheitswerten.
@@ -166,7 +165,7 @@ Integer-Array-Indexierung, um:
 
 - Die Elemente an den Positionen (0,3), (1,0), (2,2) zu extrahieren
 - Die vier Eckpunkte des Arrays zu selektieren
-- Die Hauptdiagonale von oben-links nach unten-rechts zu wählen
+- Die Hauptdiagonale von oben-links nach unten-rechts zu wählen (drei Elemente)
 
 [EQ] Nehmen Sie die drei Positionen (0,3), (1,0), (2,2) aus [EREFR::3]: Begründen Sie, warum sich
 diese Auswahl nicht mit einem einzigen Slicing-Ausdruck erreichen lässt.
@@ -193,11 +192,8 @@ arr[~(arr > value)]     # Negation der Bedingung (NOT)
 ```
 
 Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
-`arr[arr > unten & arr < oben]` würde deshalb als `arr[arr > (unten & arr) < oben]` gelesen.
-Bei einem Integer-Array scheitert das mit einem `ValueError`, weil diese Kette aus zwei Vergleichen
-einen einzelnen Wahrheitswert verlangt, ein Array aber viele Einträge hat;
-bei einem Fließkomma-Array bricht schon `&` selbst mit einem `TypeError` ab, weil es dort nicht
-definiert ist.
+`arr[arr > unten & arr < oben]` würde deshalb als `arr[arr > (unten & arr) < oben]` gelesen und
+bricht mit einer Fehlermeldung ab.
 
 Fehlende oder undefinierte Werte stellt NumPy als `np.nan` dar ("Not a Number", ein spezieller
 Fließkommawert).
@@ -227,7 +223,7 @@ print(z)               # Ergebnis: [10 20 30  0  0  0]
 # Eine Maske mit einem Eintrag pro Zeile wählt ganze Zeilen aus
 m = np.array([[10, 20], [30, 40], [50, 60]])
 zeilenmaske = m[:, 0] > 20   # Erster Wert jeder Zeile: [False  True  True]
-print(m[zeilenmaske, :])     # Ergebnis: [[30,40], [50,60]]
+print(m[zeilenmaske, :])     # Ergebnis: [[30 40] [50 60]]
 ```
 
 [ER] Erstellen Sie ein 4x3-Array `zahlen` mit ganzen Zahlen von 20 bis 31 und demonstrieren Sie
@@ -261,7 +257,7 @@ Negation hier elementweise geschehen muss und `not` das nicht leisten kann.
 
 Die Integer-Array-Indexierung greift auch dann, wenn man nur ein einziges Index-Array angibt und
 die übrigen Achsen mit `:` offenlässt.
-Dann werden ganze Zeilen bzw. Spalten ausgewählt, in beliebiger Reihenfolge und mit
+Dann werden ganze Zeilen bzw. Spalten ausgewählt, in beliebiger Reihenfolge und auch mit
 Wiederholungen.
 
 **Zeilen- und Spaltenauswahl:**
@@ -279,18 +275,19 @@ arr[[-1, -2, 0], :]    # Letzte zwei und erste Zeile
 
 **Beispiel:**
 ```python
-x = np.arange(10, 330, 10).reshape(8, 4)  # 8x4 Array mit den Werten 10 bis 320
+x = np.arange(10, 330, 10).reshape(8, 4)  # 8x4-Array mit den Werten 10 bis 320
 selected = x[[4, 2, 1, 7], :]             # Zeilen 4,2,1,7 in dieser Reihenfolge
-# Ergebnis: [[170,180,190,200], [90,100,110,120], [50,60,70,80], [290,300,310,320]]
+# Ergebnis: [[170 180 190 200] [90 100 110 120] [50 60 70 80] [290 300 310 320]]
 ```
 
-[ER] Erstellen Sie ein 8x4-Array `x` mit den Werten 10 bis 320 in Zehnerschritten und
+[ER] Erstellen Sie ein 8x4-Array `arr8x4` mit den Werten 10 bis 320 in Zehnerschritten und
 demonstrieren Sie:
 
 - Auswahl der Zeilen 4, 2, 1, 7 in genau dieser Reihenfolge
 - Auswahl der Spalten 3, 0, 2 in dieser Reihenfolge
 - Verwendung negativer Indizes für die letzten beiden Zeilen
-- Kombinierte Zeilen- und Spaltenauswahl für eine 3x2-Teilmatrix
+- Kombinierte Zeilen- und Spaltenauswahl für die 3x2-Teilmatrix aus den Zeilen 1, 3, 5 und den
+  Spalten 0, 2
 
 [HINT::Beim letzten Teilschritt bekomme ich einen `IndexError`]
 Zeilen- und Spaltenindizes zusammen in einen Zugriff zu schreiben (`arr[[...], [...]]`) führt hier
@@ -306,6 +303,9 @@ beiden Formen also nacheinander an, statt sie in einen einzigen Zugriff zu packe
 
 `np.ix_` formt Index-Arrays so um, dass beim Indexieren ihr kartesisches Produkt entsteht, und
 ermöglicht damit die Auswahl rechteckiger Teilbereiche aus Arrays.
+Dasselbe Ergebnis liefern zwar auch zwei aufeinanderfolgende Zugriffe wie im vorigen Abschnitt,
+`np.ix_` kommt aber mit einem einzigen Indexausdruck aus.
+Warum das wichtig ist, zeigt sich weiter unten beim Verändern von Werten.
 
 ```python
 numpy.ix_(*args)
@@ -330,17 +330,17 @@ arr[np.ix_([1, 2], [0, 1])]  # 2x2 Teilmatrix aus Zeilen 1,2 und Spalten 0,1
 x = np.arange(10, 330, 10).reshape(8, 4)
 # Teilmatrix aus Zeilen [1,5,7] und Spalten [0,3,1,2]
 result = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
-# Ergebnis: [[50,80,60,70], [210,240,220,230], [290,320,300,310]]
+# Ergebnis: [[50 80 60 70] [210 240 220 230] [290 320 300 310]]
 ```
 
-[ER] Verwenden Sie wieder Ihr Array `x` aus [EREFR::5]:
+[ER] Verwenden Sie wieder Ihr Array `arr8x4` aus [EREFR::5]:
 
 - Extrahieren Sie mit `np.ix_` die Teilmatrix aus den Zeilen 6, 0, 3, 5 und den Spalten 2, 1, 3, 0
 - Wenden Sie dieselben acht Indexwerte in derselben Reihenfolge auch ohne `np.ix_` an, also mit
   gewöhnlicher Integer-Array-Indexierung
 - Geben Sie beide Ergebnisse samt `shape` aus
-- Geben Sie außerdem aus, was der Aufruf von `np.ix_` selbst zurückliefert, und nennen Sie die
-  Form der darin enthaltenen Arrays
+- Geben Sie außerdem aus, was der Aufruf von `np.ix_` selbst zurückliefert; es ist ein Tupel,
+  nennen Sie deshalb die Form jedes darin enthaltenen Arrays einzeln
 
 [EQ] Vergleichen Sie die beiden Ergebnisse aus [EREFR::6]: Aus denselben acht Indexwerten
 entstehen einmal 16 und einmal 4 Elemente.
@@ -366,8 +366,8 @@ arr[..., 1:]           # Ellipsis + Slicing
 **Beispiel:**
 ```python
 w = np.arange(10, 130, 10).reshape(4, 3)   # 4x3-Array mit den Werten 10 bis 120
-print(w[1:3, [2, 0]])       # Slicing + Integer-Array: [[60,40], [90,70]]
-print(w[w[:, 0] > 40, 1:])  # Boolean-Zeilenmaske + Slicing: [[80,90], [110,120]]
+print(w[1:3, [2, 0]])       # Slicing + Integer-Array: [[60 40] [90 70]]
+print(w[w[:, 0] > 40, 1:])  # Boolean-Zeilenmaske + Slicing: [[80 90] [110 120]]
 ```
 
 [ER] Erstellen Sie ein Array `messwerte` mit den Werten
@@ -375,7 +375,7 @@ print(w[w[:, 0] > 40, 1:])  # Boolean-Zeilenmaske + Slicing: [[80,90], [110,120]
 und holen Sie daraus die beiden folgenden Ausschnitte, jeden mit einem einzigen Indexausdruck, in
 dem zwei der behandelten Formen gemischt sind:
 
-- Aus den Zeilen 1 bis 3 die Spalten 3, 1 und 0, in genau dieser Reihenfolge
+- Aus den Zeilen 1, 2 und 3 die Spalten 3, 1 und 0, in genau dieser Reihenfolge
 - Von allen Zeilen, deren erster Wert größer als 20 ist, die Spalten ab Spalte 1
 
 Geben Sie beide Ergebnisse samt `shape` aus.
@@ -395,8 +395,9 @@ Eine **Kopie** hat einen eigenen Speicherbereich und ist vom Original unabhängi
 Eine **View** teilt sich den Speicher mit dem Original, ist also nur ein zweiter Zugriffsweg auf
 dieselben Daten; eine Änderung an der View ändert deshalb auch das Original.
 
-Welche der beiden Formen entsteht, hängt von der Art des Zugriffs ab: Slicing liefert eine View,
-Advanced Indexing (Integer-Array und Boolean-Maske) liefert stets eine Kopie.
+Welche der beiden Formen entsteht, hängt von der Art des Zugriffs ab: Slicing — und ebenso
+einzelne Integer-Indizes und `...` — liefert eine View, Advanced Indexing (Integer-Array und
+Boolean-Maske) liefert stets eine Kopie.
 Sobald in einem Zugriff ein Index-Array oder eine Boolean-Maske vorkommt, ist das Ergebnis also eine
 Kopie, auch wenn andere Achsen darin mit Slices indexiert werden.
 Einzelheiten dazu stehen im
@@ -407,8 +408,8 @@ Wer von einem Slice eine unabhängige Kopie braucht, fordert sie ausdrücklich a
 ndarray.copy()
 ```
 
-- ohne Parameter; das Ergebnis hat stets eigenen Speicher, auch wenn `copy()` auf eine View
-  angewendet wird
+- ohne Argumente aufgerufen; das Ergebnis hat stets eigenen Speicher, auch wenn `copy()` auf eine
+  View angewendet wird
 
 **Beispiel:**
 ```python
@@ -431,7 +432,8 @@ print(d)                    # [10 20 30 40 50] - unverändert
 Sie daran selbst nach, welcher Zugriff eine View und welcher eine Kopie liefert:
 
 - Wählen Sie die letzten vier Elemente einmal per Slicing und einmal per Boolean-Maske aus;
-  treffen Sie beide Auswahlen, bevor Sie etwas ändern
+  treffen Sie beide Auswahlen, bevor Sie etwas ändern, sonst rechnet die Maske schon auf dem
+  geänderten Array
 - Setzen Sie das erste Element im Slicing-Ergebnis auf `0`, das im Masken-Ergebnis auf `-1`;
   die drei Schritte brauchen unterscheidbare Werte, weil beide Auswahlen im Original an derselben
   Stelle beginnen
@@ -487,12 +489,6 @@ Woran kann man einem solchen Ausdruck schon vor dem Ausführen ansehen, dass er 
 
 **Knackpunkte:**
 
-- [EREFQ::2]: Für beide Fälle ist die richtige Anzahl ersetzter Doppelpunkte genannt (2D: einer,
-  3D: zwei) und es wird erkannt, dass sie von der Zahl der nicht explizit indexierten Achsen
-  abhängt, statt `...` nur allgemein als "Platzhalter" zu bezeichnen
-- [EREFQ::3]: Die Begründung stellt darauf ab, dass die Slices verschiedener Achsen unabhängig
-  voneinander gelten und deshalb immer ein Rechteck aufspannen; "die Positionen sind unregelmäßig
-  verteilt" allein genügt nicht
 - [EREFQ::5]: Beide Anzahlen sind auf ihren Mechanismus zurückgeführt (vier Indexpaare gegen
   4 · 4 Kombinationen), nicht nur als Beobachtung wiedergegeben; die Rückgabe von `np.ix_`
   (Formen `(4, 1)` und `(1, 4)`) ist als Ursache erkannt
