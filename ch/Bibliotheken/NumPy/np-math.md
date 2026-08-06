@@ -39,7 +39,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 ### Trigonometrische Funktionen: `sin`, `cos`, `tan`, `degrees`, `radians`
 
-NumPy stellt die trigonometrischen Funktionen zur Verfügung, die elementweise auf Arrays wirken:
+NumPy stellt trigonometrische Funktionen zur Verfügung, die elementweise auf Arrays wirken:
 
 ```python
 numpy.sin(x)
@@ -54,8 +54,8 @@ numpy.radians(x)
 - `x` (bei `radians`): Array mit Winkeln in Grad, wird ins Bogenmaß umgerechnet
 
 Diese Funktionen erwarten das Bogenmaß, Winkel werden aber meist in Grad angegeben.
-Für die Umrechnung wird die Konstante `np.pi` benötigt (der Wert von π als `float`);
-die Umrechnungsformel lautet `Bogenmaß = Grad * np.pi / 180`.
+Von Hand läuft die Umrechnung über die Konstante `np.pi` (der Wert von π als `float`):
+`Bogenmaß = Grad * np.pi / 180`.
 `np.radians()` erledigt genau diese Umrechnung, `np.degrees()` die Gegenrichtung.
 Im folgenden Beispiel ist die Formel ausgeschrieben, damit der Zusammenhang sichtbar bleibt.
 
@@ -91,7 +91,7 @@ Polstelle extrem empfindlich auf solche Abweichungen.
 - Erstellen Sie ein Array `angles_deg` mit den Winkeln `[15, 45, 75, 105, 135]` Grad
 - Rechnen Sie es mit `np.radians()` ins Bogenmaß um und berechnen Sie mit `np.sin()`, `np.cos()`
   und `np.tan()` die Arrays `sin_values`, `cos_values` und `tan_values`
-- Überprüfen Sie die trigonometrische Identität sin²(x) + cos²(x) = 1 für alle Winkel: Geben Sie
+- Überprüfen Sie die trigonometrische Identität `sin²(x) + cos²(x) = 1` für alle Winkel: Geben Sie
   sowohl die Summe selbst aus als auch das Ergebnis ihres elementweisen Vergleichs mit `1`
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
@@ -109,7 +109,7 @@ Erklären Sie, wie beide Ausgaben gleichzeitig zutreffen können.
 ### Umkehrfunktionen: `arcsin`, `arccos`, `arctan`
 
 Die Umkehrfunktionen liefern zu einem gegebenen Sinus-, Kosinus- oder Tangenswert
-den zugehörigen Winkel:
+einen zugehörigen Winkel:
 
 ```python
 numpy.arcsin(x)
@@ -121,15 +121,18 @@ numpy.arctan(x)
   `arcsin` und `arccos` sind nur für Werte aus `[-1, 1]` definiert und liefern sonst `nan`
   zusammen mit einer `RuntimeWarning`
 
+Zu einem Funktionswert passen mehrere Winkel; NumPy liefert stets den aus einem festen Bereich:
+`arcsin` und `arctan` einen zwischen -90 und 90 Grad, `arccos` einen zwischen 0 und 180 Grad.
+
 ```python
 import numpy as np
 
 # Sinuswerte für bekannte Winkel
-sin_values = np.array([0, 0.5, 0.7071, 0.866, 1.0])
-print('Sinuswerte:', sin_values)
+given_sin = np.array([0, 0.5, 0.7071, 0.866, 1.0])
+print('Sinuswerte:', given_sin)
 
 # Berechnung der Winkel (in Bogenmaß)
-angles_rad = np.arcsin(sin_values)
+angles_rad = np.arcsin(given_sin)
 print('Winkel in Bogenmaß:', angles_rad)
 
 # Umwandlung in Grad
@@ -143,11 +146,11 @@ Näherungen der exakten Sinuswerte, und diese Rundung schlägt auf den zurückge
 
 [ER] Arbeiten Sie mit Umkehrfunktionen:
 
-- Erstellen Sie ein Array `cos_values` mit den Kosinuswerten `[0.9848, 0.766, 0.1736, -0.1736]`
+- Erstellen Sie ein Array `given_cos` mit den Kosinuswerten `[0.9848, 0.766, 0.1736, -0.1736]`
 - Berechnen Sie mit `np.arccos()` die entsprechenden Winkel im Bogenmaß und wandeln Sie sie in Grad um
 - Die Werte gehören zu den Winkeln 10, 40, 80 und 100 Grad; geben Sie die Differenz zwischen
   Ihrem Ergebnis und diesen Sollwerten aus
-- Erstellen Sie zusätzlich ein Array `tan_values` mit den Tangenswerten `[0, 1, 1.7321]` und
+- Erstellen Sie zusätzlich ein Array `given_tan` mit den Tangenswerten `[0, 1, 1.7321]` und
   berechnen Sie mit `np.arctan()` die entsprechenden Winkel in Grad
 - Die Werte gehören zu den Winkeln 0, 45 und 60 Grad; bestimmen Sie anhand der Differenz zu diesen
   Sollwerten, welche der drei Winkel exakt herauskommen und welche nicht, und halten Sie das
@@ -186,7 +189,7 @@ print('Auf 2 Dezimalstellen:', np.round(numbers, decimals=2))
 
 Ein Ergebnis von `np.round` weicht hier von der Schulregel ab: Die `2.5` wird zu `2.` und nicht
 zu `3.`.
-Woran das liegt, klären Sie in der folgenden Übung.
+Woran das liegt, klären Sie in der Frage am Ende dieses Abschnitts.
 
 [ER] Wenden Sie Rundungsfunktionen praktisch an:
 
@@ -267,7 +270,8 @@ ausgeführte Rechnung; Einzelheiten stehen in der
 - Erstellen Sie ein 3×4-Array `arr1` mit den Werten `[[7, 19, 3, 25], [14, 2, 31, 8], [16, 9, 22, 5]]`,
   sowie ein 1D-Array `arr2` mit den Werten `[6, 11, 3, 9]` (wird per Broadcasting auf die Form
   von `arr1` angewendet)
-- Führen Sie alle vier Grundrechenarten durch
+- Führen Sie mit `np.add()`, `np.subtract()`, `np.multiply()` und `np.divide()` alle vier
+  Grundrechenarten durch
 - Berechnen Sie mit `np.reciprocal()` die Kehrwerte von `arr1` (achten Sie auf den `dtype`)
 - Berechnen Sie `np.abs()` für die Differenz `arr1 - arr2`
 
@@ -315,6 +319,8 @@ Ein gebrochener Exponent zieht Wurzeln, `1/3` also die Kubikwurzel.
 Dabei ändert sich auch der Ergebnistyp: `np.power(values, 2)` liefert `int64`,
 `np.power(values, 1/3)` dagegen `float64`, denn der `dtype` des Ergebnisses richtet sich nach
 Basis und Exponent gemeinsam.
+Für die Quadratwurzel gibt es zusätzlich `np.sqrt()`; hier wird bewusst der Weg über den
+Exponenten geübt, weil er für jede Wurzel funktioniert.
 
 [ER] Arbeiten Sie mit speziellen arithmetischen Funktionen:
 
@@ -396,14 +402,11 @@ sortierten Daten davon unberührt bleibt.
 - Berechnen Sie Minimum, Maximum, Mittelwert und Median für das gesamte Array
 - Berechnen Sie Mittelwert und Median zusätzlich für jede Zeile und für jede Spalte
 - Bestimmen Sie mit `np.abs()`, in welcher Zeile Mittelwert und Median am weitesten
-  auseinanderliegen, und begründen Sie das als Kommentar im Quelltext anhand der Werte dieser Zeile
+  auseinanderliegen (das Ablesen aus der ausgegebenen Differenz genügt), und begründen Sie das
+  als Kommentar im Quelltext anhand der Werte dieser Zeile
 - Verwenden Sie `np.ptp()`, um die Spannweite (Maximum minus Minimum) für das gesamte Array
   sowie pro Zeile zu berechnen
 - Berechnen Sie mit `np.sum()` die Summe aller Werte sowie die Summe pro Zeile und pro Spalte
-
-[EQ] `np.sum(data, axis=0)` liefert bei diesem 4×5-Array ein Ergebnis der Form `(5,)`,
-`np.sum(data, axis=1)` dagegen eines der Form `(4,)`.
-Erklären Sie, wie die Angabe von `axis` mit der Form des Ergebnisses zusammenhängt.
 
 <!-- time estimate: 20 min -->
 
@@ -416,7 +419,7 @@ numpy.percentile(a, q, axis=None)   # Wert, unter dem q Prozent der Daten liegen
 ```
 
 - `a`: das Array
-- `axis` (Default `None`): wie bei den vorherigen statistischen Funktionen
+- `axis` (Default `None`): wie im vorigen Abschnitt
 - `ddof` (nur bei `std`/`var`, Default `0`): NumPy teilt die Summe der quadrierten Abweichungen
   durch `n - ddof`, rechnet also per Default mit `1/n`
 - `q` (nur bei `percentile`): das gewünschte Perzentil bzw. eine Liste von Perzentilen
@@ -448,9 +451,8 @@ percentiles = np.percentile(data, [25, 50, 75])
 print('Quartile:', percentiles)
 ```
 
-[ER] Ein Kurs mit 20 Teilnehmenden hat eine Klausur geschrieben; `scores` enthält die erreichten
-Punktzahlen.
-Werten Sie sie aus:
+[ER] Ein Kurs mit 20 Teilnehmenden hat eine Klausur geschrieben.
+Werten Sie die erreichten Punktzahlen aus:
 
 - Erstellen Sie mit `np.array` ein 1D-Array `scores` mit den 20 Werten
   `[42, 55, 61, 47, 58, 65, 70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53]`
@@ -463,7 +465,7 @@ Werten Sie sie aus:
 Werte wie die Varianz können mit vielen Nachkommastellen ausgegeben werden (z. B.
 `61.410000000000004` statt `61.41`) — das liegt an der begrenzten Genauigkeit von
 Fließkommazahlen, nicht an einem Fehler.
-Mit einer f-String-Formatierung wie `f'{wert:.3f}'` (in [PARTREF::py-Fstrings]) lässt sich
+Mit einer f-String-Formatierung wie `f'{wert:.3f}'` (siehe [PARTREF::py-Fstrings]) lässt sich
 die Ausgabe auf sinnvolle Nachkommastellen begrenzen.
 [ENDHINT]
 
@@ -488,11 +490,13 @@ Punktzahl erreicht hat.
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-### Knackpunkte
+**Knackpunkte:**
 
 - [EREFR::3]: die beiden Anwendungsrechnungen verwenden `np.ceil()` bzw. `np.floor()` und liefern
   `[4. 1. 1. 9.]` und `[6. 15. 4. 10.]`; mit `np.round()` ergäben sich unter anderem null Kisten
   für fünf Artikel
+- [EREFQ::2]: die Antwort nennt die Rundung zur nächsten geraden Zahl als bewusste Festlegung;
+  "Rundungsfehler" oder "Fließkomma-Ungenauigkeit" zeigt, dass die Dokumentation nicht gelesen wurde
 - [EREFR::4]: die Umwandlung nach `float` vor `np.reciprocal()` ist erfolgt; ein Ergebnis aus
   lauter Nullen zeigt, dass der `dtype` des Integer-Arrays nicht beachtet wurde
 - [EREFR::6]: `axis=1` liefert vier Werte (einen pro Zeile), `axis=0` fünf Werte (einen pro
