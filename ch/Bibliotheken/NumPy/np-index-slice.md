@@ -9,7 +9,7 @@ assumes: np-Einführung, np-array, np-array2
 
 - Ich kann einzelne Elemente, Teilbereiche und beliebige Auswahlmuster aus ein- und
   mehrdimensionalen NumPy-Arrays auswählen und verändern.
-- Ich kann für einen Zugriff die passende Indexierungsform wählen (Slice, Index-Array,
+- Ich kann für einen Zugriff die passende Indexierungsform wählen (Slice, Ellipsis, Index-Array,
   Boolean-Maske, `np.ix_`) und weiß, welche Form das Ergebnis jeweils hat.
 - Ich kann unterscheiden, wann ein Indexzugriff eine View auf das Original liefert und wann eine
   eigenständige Kopie, und kann eine Kopie gezielt anfordern.
@@ -51,7 +51,7 @@ arr[-n:]                # Die letzten n Elemente (negative Indizes zählen vom E
 **Beispiel:**
 
 Dieses Beispiel und mehrere der folgenden brauchen ein Array mit fortlaufenden Werten; dafür
-eignet sich `np.arange()` (Details in [PARTREF::np-array2]):
+eignen sich `np.arange()` und `reshape()` (Details zu beiden in [PARTREF::np-array2]):
 
 ```python
 a = np.arange(10, 20)   # Werte 10 bis 19
@@ -60,7 +60,7 @@ print(a[2:7:2])         # Ausgabe: [12 14 16]
 print(a[3:])            # Ausgabe: [13 14 15 16 17 18 19]
 ```
 
-[ER] Erstellen Sie ein NumPy-Array `a` mit den Zahlen 15 bis 24 und geben Sie daraus aus:
+[ER] Erstellen Sie ein NumPy-Array `a` mit den Zahlen 15 bis 24 und geben Sie aus:
 
 - Das Element an Index 5
 - Alle Elemente ab Index 2
@@ -89,7 +89,7 @@ arr[row, :]             # Ganze Zeile
 arr[:, col]             # Ganze Spalte
 arr[start:stop, :]      # Mehrere Zeilen
 
-# Ellipsis (...): steht für die nicht ausgeschriebenen Achsen
+# Ellipsis (...): abkürzende Schreibweise für einen Teil der Indexangaben
 arr[..., col]
 arr[row, ...]
 ```
@@ -105,11 +105,8 @@ print(b[..., 2])        # Ellipsis für Spalte: [30 60 90] (äquivalent zu b[:, 
 print(b[1, ...])        # Ellipsis für Zeile: [40 50 60] (äquivalent zu b[1, :])
 ```
 
-Allein geschrieben bezeichnet `...` das ganze Array: `b[...]` liefert alle Elemente, und
-`b[...] = 0` überschreibt sie alle.
-Darauf beruht das Zurückschreiben in `np.nditer` aus [PARTREF::np-array2]: Das dort gelieferte
-Element ist ein nulldimensionales Array, und `x[...] = 2 * x` schreibt in dieses Array hinein,
-statt nur den Namen `x` neu zu binden.
+Als einziger Index geschrieben bezeichnet `...` das ganze Array: `b[...]` liefert alle Elemente,
+und `b[...] = 0` überschreibt sie alle.
 
 [ER] Erstellen Sie ein 4x4-Array `arr4x4` mit den Werten 11 bis 26 und demonstrieren Sie:
 
@@ -139,7 +136,7 @@ Diese Form und die Boolean-Indexierung heißen in der NumPy-Dokumentation zusamm
 Indexiert wird dabei nicht mit einem einzelnen Wert oder einem Slice, sondern mit einem ganzen
 Array aus Indizes bzw. Wahrheitswerten.
 Gibt man mehrere Index-Arrays an, so werden sie paarweise kombiniert; ihre Formen müssen dafür
-zueinander passen.
+per Broadcasting zueinander passen.
 
 **Syntax:**
 ```python
@@ -164,7 +161,7 @@ Die Paare ergeben sich also so:
 Integer-Array-Indexierung, um:
 
 - Die Elemente an den Positionen (0,3), (1,0), (2,2) zu extrahieren
-- Die vier Eckpunkte des Arrays zu selektieren
+- Die vier Eckelemente des Arrays zu selektieren
 - Die Hauptdiagonale von oben-links nach unten-rechts zu wählen (drei Elemente)
 
 [EQ] Nehmen Sie die drei Positionen (0,3), (1,0), (2,2) aus [EREFR::3]: Begründen Sie, warum sich
@@ -227,6 +224,8 @@ Probieren Sie alle drei aus und stellen Sie fest, welche beiden dasselbe liefern
 abbricht.
 Übernehmen Sie die dabei auftretende Fehlermeldung in Ihre Antwort und erklären Sie, warum die
 Negation hier elementweise geschehen muss und `not` das nicht leisten kann.
+Probieren Sie anschließend `zahlen[(zahlen > 22) and (zahlen < 28)]` aus und begründen Sie, warum
+dieselbe Fehlermeldung erscheint; damit ist auch geklärt, warum oben `&` und nicht `and` steht.
 
 <!-- time estimate: 15 min -->
 
@@ -311,14 +310,14 @@ result = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
 # Ergebnis: [[50 80 60 70] [210 240 220 230] [290 320 300 310]]
 ```
 
-[ER] Verwenden Sie wieder Ihr Array `arr8x4` aus [EREFR::5]:
+[ER] Verwenden Sie wieder Ihr Array `arr8x4` aus [EREFR::5] (in derselben Datei oder neu erzeugt):
 
 - Extrahieren Sie mit `np.ix_` die Teilmatrix aus den Zeilen 6, 0, 3, 5 und den Spalten 2, 1, 3, 0
 - Wenden Sie dieselben acht Indexwerte in derselben Reihenfolge auch ohne `np.ix_` an, also mit
   gewöhnlicher Integer-Array-Indexierung
 - Geben Sie beide Ergebnisse samt `shape` aus
-- Geben Sie außerdem aus, was der Aufruf von `np.ix_` selbst zurückliefert; es ist ein Tupel,
-  nennen Sie deshalb die Form jedes darin enthaltenen Arrays einzeln
+- Geben Sie außerdem aus, was der Aufruf von `np.ix_` selbst zurückliefert, samt der Form jedes
+  darin enthaltenen Arrays
 
 [EQ] Vergleichen Sie die beiden Ergebnisse aus [EREFR::6]: Aus denselben acht Indexwerten
 entstehen einmal 16 und einmal 4 Elemente.
@@ -326,6 +325,11 @@ Erklären Sie, wie jede der beiden Anzahlen zustande kommt; die Rückgabe von `n
 letzten Teilschritt hilft dabei.
 Nennen Sie außerdem je eine Auswertungsaufgabe, für die Sie die eine bzw. die andere Form
 brauchen.
+
+[HINT::Beim letzten Teilschritt bekomme ich für die Formen einen `AttributeError`]
+Die Rückgabe von `np.ix_` ist kein Array, sondern ein Tupel aus mehreren Arrays.
+`shape` gibt es deshalb nicht auf der Rückgabe selbst, sondern nur auf jedem Element darin.
+[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
@@ -451,6 +455,11 @@ Geben Sie `data` nach jedem der drei Schritte vollständig aus.
 gemeldet hätte.
 Erklären Sie, warum diese Zuweisung wirkungslos bleibt und warum es dabei keine Fehlermeldung gibt.
 Woran kann man einem solchen Ausdruck schon vor dem Ausführen ansehen, dass er ins Leere läuft?
+
+Auf demselben Unterschied beruht das Zurückschreiben mit `np.nditer` aus [PARTREF::np-array2]:
+`x[...] = 2 * x` schreibt in das gelieferte Element hinein, statt nur den Namen `x` neu zu binden.
+Das funktioniert, weil `nditer` dort kein Skalar liefert wie die vollständige Integer-Indexierung
+aus [EREFQ::1], sondern ein nulldimensionales Array, in das sich hineinschreiben lässt.
 
 <!-- time estimate: 20 min -->
 
