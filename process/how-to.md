@@ -76,3 +76,8 @@ non-portable; using example values
 - Make commit
 - `git push`
 - Make announcement in Discord
+
+Alternatively, `/review-task-auto` (same arguments as `/review-task`) automates everything from
+"Annotate..." onward except the annotation itself and the actual Discord posting: it stops once for
+you to annotate/edit, then (depending on whether the task becomes beta or not) posts to the issue, commits,
+pushes, and shows you the Discord line to paste in yourself.
