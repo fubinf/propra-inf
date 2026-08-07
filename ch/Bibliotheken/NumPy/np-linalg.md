@@ -1,23 +1,29 @@
 title: NumPy Lineare Algebra und Matrixoperationen
 stage: alpha
-timevalue: 2
+timevalue: 2.25
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2, np-math, py-Fstrings
+assumes: np-Einführung, np-array, np-array2, np-index-slice, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
 
 - Ich kann Matrizen erstellen, transponieren und multiplizieren.
 - Ich kann Determinanten und Inverse von Matrizen berechnen.
-- Ich kann lineare Gleichungssysteme lösen und weitere lineare Algebra-Kennzahlen bestimmen.
+- Ich kann lineare Gleichungssysteme lösen und meine Lösung durch eine Probe überprüfen.
+- Ich kann Rang, Eigenwerte, Normen und Singulärwertzerlegung einer Matrix mit `numpy.linalg`
+  bestimmen.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
 NumPy bietet umfangreiche Funktionalitäten für Matrixoperationen und lineare
-Algebra-Berechnungen, die in der Datenanalyse und im maschinellen Lernen häufig gebraucht
-werden.
+Algebra-Berechnungen.
+Wer etwa eine Ausgleichsgerade durch Messpunkte legt, ein Bild dreht oder skaliert, oder in
+einem neuronalen Netz eine Schicht auswertet, rechnet in allen drei Fällen dasselbe: ein
+Matrix-Vektor-Produkt bzw. ein Gleichungssystem.
+Deshalb steckt hinter vielen Bibliotheken der Datenanalyse und des maschinellen Lernens
+letztlich `numpy.linalg`.
 
 [ENDSECTION]
 
@@ -25,17 +31,27 @@ werden.
 
 ### Vorwissen
 
-Für diese Aufgabe sind Grundlagen der linearen Algebra hilfreich: Matrizen und ihre
-Operationen (Transposition, Multiplikation, Determinante, Inverse), das Skalarprodukt
-(Punktprodukt) von Vektoren, sowie fortgeschrittenere Konzepte wie Eigenwerte/
-Eigenvektoren, Matrixnormen, die Konditionszahl und die Singulärwertzerlegung. Falls
-Ihnen diese fehlen, helfen folgende Quellen:
+Diese Aufgabe lehrt nicht die lineare Algebra selbst, sondern wie man sie mit NumPy rechnet.
+Vorausgesetzt wird deshalb, was eine Matrix ist und was Transposition, Matrixmultiplikation,
+Determinante, Inverse und das
+[Skalarprodukt](https://de.wikipedia.org/wiki/Skalarprodukt) (auch Punktprodukt genannt)
+zweier Vektoren bedeuten.
 
-- [Skalarprodukt (Wikipedia)](https://de.wikipedia.org/wiki/Skalarprodukt)
-- [Eigenwertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Eigenwertproblem)
-- [Singulärwertzerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Singulärwertzerlegung)
-- [Matrixnorm (Wikipedia)](https://de.wikipedia.org/wiki/Matrixnorm)
-- [Kondition (Mathematik, Wikipedia)](https://de.wikipedia.org/wiki/Kondition_(Mathematik))
+Die zweite Hälfte der Aufgabe benutzt vier Begriffe, die in einer Anfängervorlesung oft noch
+nicht vorkommen.
+Sie müssen diese nicht von Hand rechnen können, aber Sie müssen wissen, was sie aussagen,
+sonst können Sie Ihre eigenen Ergebnisse nicht beurteilen.
+Lesen Sie dazu jeweils so weit, dass Sie die genannte Frage beantworten können:
+
+- [Eigenwertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Eigenwertproblem):
+  Was macht einen Vektor zu einem Eigenvektor einer Matrix?
+- [Matrixnorm (Wikipedia)](https://de.wikipedia.org/wiki/Matrixnorm):
+  Wozu misst man die "Größe" einer Matrix, und warum gibt es dafür mehrere Normen?
+- [Kondition (Mathematik, Wikipedia)](https://de.wikipedia.org/wiki/Kondition_(Mathematik)):
+  Wie hängt die Konditionszahl damit zusammen, wie vielen Stellen eines Ergebnisses man noch
+  trauen darf?
+- [Singulärwertzerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Singulärwertzerlegung):
+  Was sagen die Singulärwerte über die Matrix aus, die zerlegt wurde?
 
 ### Matrizen und Transposition: `transpose` und `.T`
 
@@ -46,8 +62,9 @@ Die Transposition vertauscht Zeilen und Spalten einer Matrix.
 numpy.transpose(a)
 ```
 
-- `a`: die zu transponierende Matrix (alternativ: `a.T` als Attribut, äquivalent zu
-  `numpy.transpose(a)`)
+- `a`: die zu transponierende Matrix
+
+Das Attribut `a.T` ist gleichbedeutend mit `numpy.transpose(a)`.
 
 ```python
 import numpy as np
@@ -75,9 +92,9 @@ print(transposed_alt)
 
 - Erstellen Sie mit `np.array` eine 4×3-Matrix `matrix` mit den Werten
   `[[5, 12, 3], [8, 1, 15], [10, 6, 2], [14, 9, 4]]`
-- Transponieren Sie die Matrix mit beiden Methoden (.T und np.transpose)
-- Vergleichen Sie die ursprüngliche und transponierte Form
-- Zeigen Sie, dass (A^T)^T = A gilt
+- Transponieren Sie die Matrix mit beiden Schreibweisen (`.T` und `np.transpose()`)
+- Vergleichen Sie die Form der ursprünglichen mit der der transponierten Matrix
+- Zeigen Sie, dass zweifaches Transponieren wieder die Ausgangsmatrix ergibt
 
 <!-- time estimate: 10 min -->
 
@@ -93,7 +110,7 @@ numpy.eye(N, M=None, k=0)       # wie identity, aber auch rechteckig + verschobe
 - `n` (bei `identity`): Größe der quadratischen Einheitsmatrix (immer `n`×`n`, kein
   `k`-Parameter)
 - `N` (bei `eye`): Anzahl der Zeilen
-- `M` (bei `eye`, Standard: gleich `N`): Anzahl der Spalten; ergibt eine rechteckige
+- `M` (bei `eye`, Standard `N`): Anzahl der Spalten; ergibt eine rechteckige
   Matrix, wenn ungleich `N`
 - `k` (bei `eye`, Standard `0`): Position der Diagonale mit Einsen; `0` = Hauptdiagonale,
   positive Werte verschieben nach rechts, negative Werte nach links
@@ -122,20 +139,37 @@ print('\n4×4 Matrix mit verschobener Diagonale:')
 print(eye_offset)
 ```
 
+Die Referenzseiten dazu sind
+[numpy.identity](https://numpy.org/doc/stable/reference/generated/numpy.identity.html) und
+[numpy.eye](https://numpy.org/doc/stable/reference/generated/numpy.eye.html).
+
 [ER] Erstellen Sie verschiedene spezielle Matrizen:
 
-- Eine 5×5 Einheitsmatrix mit `identity()`
-- Dieselbe 5×5 Einheitsmatrix noch einmal mit `eye()`
-- Eine 4×6 Matrix mit Einsen auf der Hauptdiagonale mit `eye()`
-- Eine 5×5 Matrix mit der Diagonale zwei Positionen unter der Hauptdiagonale (k=-2) mit
-  `eye()`
-- Zeigen Sie für jede Matrix ihre Form und ihre ersten Elemente an
+- Eine 5×5 Einheitsmatrix `eins_identity` mit `identity()`
+- Dieselbe 5×5 Einheitsmatrix noch einmal als `eins_eye` mit `eye()`
+- Eine 4×6 Matrix `rechteck` mit Einsen auf der Hauptdiagonale mit `eye()`
+- Eine 5×5 Matrix `versetzt` mit der Diagonale zwei Positionen unter der Hauptdiagonale
+  (`k=-2`) mit `eye()`
+- Geben Sie für alle vier Matrizen die Form sowie die Elemente `[0, 0]` und `[2, 0]` aus und
+  erklären Sie in einem Kommentar, warum `versetzt` dabei andere Werte liefert als die
+  übrigen drei
+- Versuchen Sie anschließend, `rechteck` und `versetzt` auch mit `identity()` zu erzeugen;
+  fangen Sie die dabei auftretenden Ausnahmen mit `try`/`except` auf und geben Sie die
+  Fehlermeldungen aus
 
-[EQ] Basierend auf Ihrem Ergebnis aus [EREFR::2]: Sie haben sowohl `eye()` als auch
-`identity()` verwendet, um Einheitsmatrizen zu erstellen. Warum bietet NumPy zwei
-Funktionen an, die sich überschneiden? Was kann `eye()` zusätzlich, das `identity()`
-nicht kann?
-<!-- time estimate: 15 min -->
+[HINT::Die Fehlermeldung von `identity()` spricht von einem Datentyp]
+`identity()` hat außer der Größe nur noch einen Parameter, und der legt den Datentyp fest,
+nicht die Spaltenzahl.
+Ein zweites Argument wird deshalb als `dtype` gelesen und die Meldung lautet sinngemäß, dass
+sich Ihre Zahl nicht als Datentyp interpretieren lässt.
+[ENDHINT]
+
+[EQ] Basierend auf Ihrem Ergebnis aus [EREFR::2]: `eye()` kann alles, was `identity()` kann,
+und Ihre Fehlermeldungen zeigen, dass das umgekehrt nicht gilt.
+Warum bietet NumPy dann überhaupt noch `identity()` an, statt nur die allgemeinere Funktion?
+Nennen Sie einen Grund, der über "das gab es historisch schon" hinausgeht.
+
+<!-- time estimate: 20 min -->
 
 ### Punktprodukte und Matrixmultiplikation: `dot`, `matmul`, `vdot`, `inner`
 
@@ -178,6 +212,31 @@ print('\nMatrixmultiplikation mit @ Operator:')
 print(result_at)
 ```
 
+Bei zwei zweidimensionalen Matrizen sind alle drei Schreibweisen gleichwertig, wie oben zu
+sehen.
+Bei allen anderen Formen sind sie es nicht:
+
+```python
+# np.dot verrechnet auch Skalare, np.matmul verlangt mindestens eindimensionale Operanden
+print('np.dot mit Skalaren:', np.dot(3, 4))
+try:
+    np.matmul(3, 4)
+except ValueError as fehler:
+    print('np.matmul mit Skalaren:', fehler)
+
+# Ein dreidimensionales Array ist ein Stapel aus zwei 2×2-Matrizen
+stapel = np.arange(8).reshape(2, 2, 2)
+print('\nForm von np.dot(stapel, stapel):   ', np.dot(stapel, stapel).shape)
+print('Form von np.matmul(stapel, stapel):', np.matmul(stapel, stapel).shape)
+```
+
+`matmul` behandelt die beiden vorderen Dimensionen als Stapel und multipliziert die
+2×2-Matrizen paarweise, das Ergebnis hat wieder die Form `(2, 2, 2)`.
+`dot` dagegen kombiniert jede Matrix des einen Stapels mit jeder des anderen und liefert die
+Form `(2, 2, 2, 2)`.
+Für Matrixmultiplikation ist deshalb `matmul` bzw. `@` die richtige Wahl; `dot` ist die
+ältere, allgemeinere Funktion.
+
 **Vektoroperationen:**
 
 ```python
@@ -198,25 +257,47 @@ v2 = np.array([4, 5, 6])
 dot_product = np.dot(v1, v2)
 print('Punktprodukt:', dot_product)  # 1*4 + 2*5 + 3*6 = 32
 
-# Vektorprodukt mit vdot (für komplexe Zahlen optimiert)
+# Punktprodukt mit vdot (konjugiert bei komplexen Zahlen den ersten Vektor)
 vdot_result = np.vdot(v1, v2)
 print('vdot Ergebnis:', vdot_result)
 
 # Inneres Produkt
 inner_result = np.inner(v1, v2)
 print('Inner Produkt:', inner_result)
+
+# Bei reellen Vektoren liefern alle drei dasselbe.
+# Der Unterschied zeigt sich erst bei komplexen Zahlen (Schreibweise: 2j ist die imaginäre
+# Einheit mal 2):
+c1 = np.array([1+2j, 3+4j])
+c2 = np.array([5+6j, 7+8j])
+print('\ndot bei komplexen Vektoren: ', np.dot(c1, c2))
+print('vdot bei komplexen Vektoren:', np.vdot(c1, c2))
 ```
+
+Nur `vdot` konjugiert dabei den ersten Vektor und liefert damit das, was in der Mathematik
+als Skalarprodukt komplexer Vektoren definiert ist.
+
+Die Referenzseiten dazu sind
+[numpy.dot](https://numpy.org/doc/stable/reference/generated/numpy.dot.html),
+[numpy.matmul](https://numpy.org/doc/stable/reference/generated/numpy.matmul.html),
+[numpy.vdot](https://numpy.org/doc/stable/reference/generated/numpy.vdot.html) und
+[numpy.inner](https://numpy.org/doc/stable/reference/generated/numpy.inner.html).
 
 [ER] Implementieren Sie verschiedene Matrixoperationen:
 
 - Erstellen Sie zwei 3×3-Matrizen `A` mit den Werten `[[6, 11, 4], [9, 2, 13], [7, 10, 5]]`
   und `B` mit den Werten `[[3, 15, 8], [12, 1, 9], [6, 14, 2]]`
-- Berechnen Sie ihre Matrixmultiplikation mit allen drei Methoden (dot, matmul, @)
+- Berechnen Sie ihre Matrixmultiplikation mit allen drei Schreibweisen (`dot`, `matmul`, `@`)
 - Erstellen Sie zwei Vektoren `v1` mit den Werten `[3, 9, 2, 11]` und `v2` mit den Werten
   `[7, 1, 10, 4]` und berechnen Sie deren Produkt mit `dot`, `vdot` und `inner`
-- Verifizieren Sie, dass A×B ≠ B×A (Matrixmultiplikation ist nicht kommutativ)
+- Verifizieren Sie, dass A × B ≠ B × A (Matrixmultiplikation ist nicht kommutativ)
+- Bilden Sie mit `np.array([A, B])` einen Stapel `stapel` der Form `(2, 3, 3)` und geben Sie
+  die Formen von `np.dot(stapel, stapel)` und `np.matmul(stapel, stapel)` aus
+- Erstellen Sie die komplexen Vektoren `c1` mit den Werten `[2+1j, 4-3j]` und `c2` mit den
+  Werten `[1+1j, 5+2j]`, berechnen Sie `dot`, `vdot` und `inner` und halten Sie in einem
+  Kommentar fest, welches der drei Ergebnisse abweicht und warum
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Determinanten: `linalg.det`
 
@@ -257,6 +338,9 @@ print(singular)
 print('Determinante:', det_singular)  # ≈ 0
 ```
 
+Die Referenzseite dazu ist
+[numpy.linalg.det](https://numpy.org/doc/stable/reference/generated/numpy.linalg.det.html).
+
 [ER] Berechnen Sie Determinanten verschiedener Matrizen:
 
 - Erstellen Sie eine 2×2-Matrix `matrix_2x2` mit den Werten `[[6, 4], [3, 7]]`, berechnen Sie
@@ -269,7 +353,7 @@ print('Determinante:', det_singular)  # ≈ 0
 - Untersuchen Sie, wie sich die Determinante von `matrix_3x3` bei Transposition verhält
 
 [HINT::Lange Nachkommastellen bei der Ausgabe]
-NumPy-Berechnungen liefern manchmal Werte wie `79.999999999999996` statt `80.0` — das liegt
+NumPy-Berechnungen liefern manchmal Werte wie `0.9999999999999964` statt `1.0` — das liegt
 an der begrenzten Genauigkeit von Fließkommazahlen, nicht an einem Fehler. Mit einer
 f-String-Formatierung wie `f'{wert:.3f}'` (in [PARTREF::py-Fstrings]) lässt sich die
 Ausgabe auf sinnvolle Nachkommastellen begrenzen.
@@ -316,7 +400,7 @@ numpy.linalg.cond(x, p=None)
 ```python
 # Prüfung der Konditionszahl
 cond_number = np.linalg.cond(matrix)
-print('Konditionszahl:', cond_number)  # ≈ 29.13
+print('Konditionszahl:', cond_number)  # ≈ 6.85
 
 # Eine Matrix mit hoher Konditionszahl (schlecht konditioniert)
 ill_conditioned = np.array([[1, 1],
@@ -324,6 +408,21 @@ ill_conditioned = np.array([[1, 1],
 cond_ill = np.linalg.cond(ill_conditioned)
 print('Konditionszahl (schlecht konditioniert):', cond_ill)  # ≈ 40002
 ```
+
+Eine Konditionszahl nahe 1 bedeutet gutartiges Verhalten.
+Bei den 40002 aus dem zweiten Beispiel dagegen kann sich ein Fehler in den Eingabedaten im
+Ergebnis um das Vierzigtausendfache verstärken, und Rundungsfehler entstehen in
+Fließkommarechnung immer.
+
+Daraus folgt eine Regel für die Praxis: Ein Gleichungssystem Ax = b löst man **nicht**, indem
+man die Inverse von A berechnet und mit b multipliziert, sondern mit `linalg.solve` aus dem
+nächsten Abschnitt.
+Das ist schneller und bei schlecht konditionierten Matrizen deutlich genauer.
+`linalg.inv` braucht man nur dann, wenn man die inverse Matrix selbst als Ergebnis benötigt.
+
+Die Referenzseiten dazu sind
+[numpy.linalg.inv](https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html) und
+[numpy.linalg.cond](https://numpy.org/doc/stable/reference/generated/numpy.linalg.cond.html).
 
 [ER] Arbeiten Sie mit inversen Matrizen:
 
@@ -333,10 +432,10 @@ print('Konditionszahl (schlecht konditioniert):', cond_ill)  # ≈ 40002
 - Berechnen Sie die Konditionszahl von `matrix`
 - Erstellen Sie eine bewusst singuläre 3×3-Matrix `singular` (als `float`) mit den Werten
   `[[2, 5, 4], [4, 10, 8], [6, 15, 12]]` (die zweite Zeile ist das Doppelte, die dritte
-  Zeile das Dreifache der ersten Zeile) und testen Sie, was passiert, wenn Sie versuchen,
-  sie zu invertieren
+  Zeile das Dreifache der ersten Zeile) und versuchen Sie, sie zu invertieren; fangen Sie
+  die Ausnahme mit `try`/`except` auf und geben Sie die Fehlermeldung aus
 
-[HINT::Singuläre Matrix invertieren]
+[HINT::Beim Invertieren erscheint eine Fehlermeldung statt einer Matrix]
 Der Versuch, eine singuläre Matrix (Determinante = 0)
 zu invertieren, löst `numpy.linalg.LinAlgError: Singular matrix` aus — das ist kein Bug,
 sondern die korrekte Reaktion, weil eine solche Matrix mathematisch keine Inverse besitzt.
@@ -379,10 +478,18 @@ solution = np.linalg.solve(A, b)
 print('\nLösung x =', solution)
 ```
 
+Die Referenzseite dazu ist
+[numpy.linalg.solve](https://numpy.org/doc/stable/reference/generated/numpy.linalg.solve.html).
+
 [ER] Lösen Sie verschiedene lineare Gleichungssysteme:
 
 - Lösen Sie das 2×2 System `5x + 2y = 19`, `3x + 4y = 17` mit NumPy
-- Lösen Sie das 3×3 System `2x + y - z = 1`, `x + 3y + z = 9`, `x - y + 2z = 3`
+- Lösen Sie das 3×3 System `2x + y - z = 1`, `x + 3y + z = 10`, `x - y + 2z = 5`
+- Machen Sie für beide Systeme die Probe, indem Sie die Koeffizientenmatrix mit der
+  gefundenen Lösung multiplizieren und das Ergebnis mit `np.allclose` gegen die rechte Seite
+  vergleichen
+- Beide Systeme haben ganzzahlige Lösungen; falls Ihre Probe fehlschlägt oder krumme Werte
+  herauskommen, haben Sie die Matrix falsch aufgestellt
 
 <!-- time estimate: 15 min -->
 
@@ -391,10 +498,11 @@ print('\nLösung x =', solution)
 NumPy bietet weitere nützliche Funktionen für die lineare Algebra:
 
 ```python
-numpy.linalg.matrix_rank(M)      # Rang der Matrix
-numpy.linalg.eig(a)              # Eigenwerte und Eigenvektoren
-numpy.linalg.norm(x, ord=None)   # Norm (Größe) einer Matrix/eines Vektors
-numpy.linalg.svd(a)              # Singulärwertzerlegung
+numpy.linalg.matrix_rank(M)              # Rang der Matrix
+numpy.linalg.eig(a)                      # Eigenwerte und Eigenvektoren
+numpy.linalg.eigh(a)                     # dasselbe, aber nur für symmetrische Matrizen
+numpy.linalg.norm(x, ord=None)           # Norm (Größe) einer Matrix/eines Vektors
+numpy.linalg.svd(a, full_matrices=True)  # Singulärwertzerlegung
 ```
 
 - `M`/`a`/`x` (je nach Funktion): die betroffene Matrix
@@ -402,6 +510,9 @@ numpy.linalg.svd(a)              # Singulärwertzerlegung
   Frobenius-Norm sowie `1`, `2` oder `np.inf` für die jeweilige Operatornorm.
   Beim Standardwert `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm
   bei Matrizen
+- `full_matrices` (bei `svd`, Standard `True`): ob die beiden Faktormatrizen quadratisch
+  aufgefüllt werden; mit `False` bekommen sie nur so viele Spalten bzw. Zeilen, wie es
+  Singulärwerte gibt
 
 ```python
 import numpy as np
@@ -424,7 +535,32 @@ print('\nEigenwerte:')
 print(eigenvalues)
 print('\nEigenvektoren:')
 print(eigenvectors)
+```
 
+Die Eigenwerte werden als `[13.08576474+0.j  2.58000566+0.j -2.66577041+0.j]` ausgegeben:
+`eig` liefert grundsätzlich komplexe Zahlen, weil eine beliebige quadratische Matrix
+komplexe Eigenwerte haben kann.
+Der Anhang `+0.j` bedeutet also nur "Imaginärteil null", der Wert ist reell.
+
+Für symmetrische Matrizen (`a` ist gleich `a.T`) gibt es `eigh`.
+Diese Funktion nutzt die Symmetrie aus, liefert reelle statt komplexer Werte und gibt die
+Eigenwerte zusätzlich in aufsteigender Reihenfolge zurück:
+
+```python
+symmetrisch = np.array([[6, 2, 5],
+                        [2, 4, 1],
+                        [5, 1, 9]], dtype=float)
+werte_eig, vektoren_eig = np.linalg.eig(symmetrisch)
+werte_eigh, vektoren_eigh = np.linalg.eigh(symmetrisch)
+print('\nmit eig: ', werte_eig)
+print('mit eigh:', werte_eigh)
+```
+
+Eine Norm fasst die "Größe" einer Matrix in einer einzigen Zahl zusammen.
+Welche der Normen dafür die richtige ist, hängt davon ab, was man messen will; die folgenden
+vier sind die gebräuchlichsten:
+
+```python
 # Matrixnormen
 # Ohne ord-Angabe: Standard None entspricht bei einer Matrix der Frobenius-Norm
 default_norm = np.linalg.norm(matrix)
@@ -434,7 +570,7 @@ print('\nNorm ohne ord-Angabe (Standard):', default_norm)
 frobenius_norm = np.linalg.norm(matrix, 'fro')
 print('Frobenius-Norm:', frobenius_norm)
 
-# 1-Norm (Maximale Spaltensumme)
+# 1-Norm (maximale Spaltensumme der Beträge)
 norm_1 = np.linalg.norm(matrix, 1)
 print('1-Norm:', norm_1)
 
@@ -442,34 +578,75 @@ print('1-Norm:', norm_1)
 norm_2 = np.linalg.norm(matrix, 2)
 print('2-Norm:', norm_2)
 
-# Unendlich-Norm (Maximale Zeilensumme)
+# ∞-Norm (maximale Zeilensumme der Beträge)
 norm_inf = np.linalg.norm(matrix, np.inf)
 print('∞-Norm:', norm_inf)
-
-# Singulärwertzerlegung (SVD)
-U, s, Vt = np.linalg.svd(matrix)
-print('\nSingulärwerte:')
-print(s)
 ```
+
+Die Singulärwertzerlegung zerlegt eine Matrix A in drei Faktoren U, Σ und Vᵀ mit A = U Σ Vᵀ.
+`svd` gibt den mittleren Faktor aber nicht als Matrix zurück, sondern nur die Singulärwerte
+als eindimensionales Array.
+Wer die Matrix aus der Zerlegung zurückgewinnen will, muss daraus erst wieder eine
+Diagonalmatrix bauen; dafür gibt es
+[numpy.diag](https://numpy.org/doc/stable/reference/generated/numpy.diag.html):
+
+```python
+# SVD einer nicht-quadratischen Matrix
+rechteckig = np.array([[1, 2, 3],
+                       [4, 5, 6]], dtype=float)
+
+U, s, Vt = np.linalg.svd(rechteckig, full_matrices=False)
+print('\nFormen:  U', U.shape, '  s', s.shape, '  Vt', Vt.shape)
+print('Singulärwerte:', s)
+
+# np.diag() macht aus dem Vektor s die zugehörige Diagonalmatrix
+print('\ns als Diagonalmatrix:')
+print(np.diag(s))
+
+# Damit lässt sich das Original zurückrechnen
+rekonstruiert = U @ np.diag(s) @ Vt
+print('\nRekonstruiert:')
+print(rekonstruiert)
+print('Gleich dem Original?', np.allclose(rekonstruiert, rechteckig))
+```
+
+Entscheidend ist hier `full_matrices=False`.
+Mit dem Standardwert `True` bekommt man für diese 2×3-Matrix ein `U` der Form `(2, 2)` und
+ein `Vt` der Form `(3, 3)`, aber weiterhin nur zwei Singulärwerte; die Faktoren passen dann
+nicht mehr zusammen und man müsste Σ von Hand als 2×3-Matrix auffüllen.
+Mit `False` passen die Formen unmittelbar zueinander.
+
+Die Referenzseiten dazu sind
+[numpy.linalg.matrix_rank](https://numpy.org/doc/stable/reference/generated/numpy.linalg.matrix_rank.html),
+[numpy.linalg.eig](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html),
+[numpy.linalg.eigh](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigh.html),
+[numpy.linalg.norm](https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html) und
+[numpy.linalg.svd](https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html).
 
 [ER] Experimentieren Sie mit erweiterten Operationen:
 
 - Erstellen Sie eine symmetrische 3×3-Matrix `symmetric_matrix` (als `float`) mit den Werten
-  `[[6, 2, 5], [2, 4, 1], [5, 1, 9]]`, berechnen Sie ihren Rang sowie ihre Eigenwerte und
-  Eigenvektoren
+  `[[6, 2, 5], [2, 4, 1], [5, 1, 9]]` und berechnen Sie ihren Rang sowie mit `eigh` ihre
+  Eigenwerte und Eigenvektoren
 - Erstellen Sie eine nicht-quadratische 2×3-Matrix `test_matrix` (als `float`) mit den Werten
-  `[[3, 8, 1], [6, 2, 9]]` und verwenden Sie SVD, um sie zu rekonstruieren
+  `[[3, 8, 1], [6, 2, 9]]`, zerlegen Sie sie mit `svd` und `full_matrices=False`,
+  rekonstruieren Sie sie aus den drei Faktoren und prüfen Sie das Ergebnis mit `np.allclose`
+  gegen das Original
 - Erstellen Sie eine 3×3-Matrix `norm_matrix` (als `float`) mit den Werten
-  `[[4, -9, 6], [-3, 7, -5], [8, -2, 10]]` und vergleichen Sie alle vier Matrixnormen (Frobenius, 1-Norm,
-  2-Norm, ∞-Norm)
+  `[[4, -9, 6], [-3, 7, -5], [8, -2, 10]]` und vergleichen Sie alle vier Matrixnormen
+  (Frobenius, 1-Norm, 2-Norm, ∞-Norm)
+- Rechnen Sie die 1-Norm und die ∞-Norm für `norm_matrix` zusätzlich von Hand nach und halten
+  Sie in einem Kommentar fest, welche Zeile bzw. Spalte den Ausschlag gibt
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Weiterführend
 
-- [Linear algebra (numpy.linalg)](https://numpy.org/doc/stable/reference/routines.linalg.html)
-- [Matrix multiplication](https://numpy.org/doc/stable/reference/generated/numpy.matmul.html)
-- [Matrix inversion](https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html)
+- [Linear algebra (numpy.linalg)](https://numpy.org/doc/stable/reference/routines.linalg.html):
+  vollständige Übersicht über alle Funktionen des Moduls
+- [numpy.linalg.lstsq](https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html):
+  löst überbestimmte Gleichungssysteme, mit denen die im Hintergrundabschnitt erwähnte
+  Ausgleichsgerade berechnet wird
 
 [ENDSECTION]
 
@@ -482,13 +659,13 @@ print(s)
 
 **Knackpunkte:**
 
-- [EREFQ::1]: die Antwort benennt konkret, was `eye()` zusätzlich zu `identity()` kann
-  (rechteckige Matrizen, verschobene Diagonale), nicht nur pauschal "weil es so entworfen
-  wurde"
-- [EREFR::5]: der Versuch, `singular` zu invertieren, löst tatsächlich
-  `numpy.linalg.LinAlgError` aus und wird als erwartetes Verhalten erkannt, nicht als Bug
-- [EREFR::7]: die SVD-Rekonstruktion von `test_matrix` stimmt mit dem Original überein
-  (Werte vergleichen), und alle vier Normen sind für `norm_matrix` korrekt berechnet
+- [EREFQ::1]: die Antwort nennt einen sachlichen Grund für die spezialisierte Funktion, etwa
+  Lesbarkeit der Absicht oder Fehlervermeidung durch den fehlenden `k`-Parameter; "eye kann
+  mehr" allein ist keine Antwort auf die gestellte Frage
+- [EREFR::3]: der Kommentar zu den komplexen Vektoren benennt `vdot` als das abweichende
+  Ergebnis und begründet das mit der Konjugation des ersten Vektors, nicht des zweiten
+- [EREFR::7]: die SVD-Rekonstruktion von `test_matrix` verwendet `full_matrices=False` und
+  `np.diag` und stimmt laut `np.allclose` mit dem Original überein
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-linalg.md]
