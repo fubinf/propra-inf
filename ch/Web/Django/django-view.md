@@ -1,5 +1,5 @@
 title: Django-Views und URL-Routen
-stage: alpha
+stage: beta
 timevalue: 2.75
 difficulty: 2
 requires: django-model
@@ -309,7 +309,11 @@ path("artikel/<typ:artikel_id>/", views.artikel_detail, name="artikel_detail")
 ```
 
 `<typ:artikel_id>` extrahiert den entsprechenden URL-Teil, wandelt ihn in den angegebenen Typ um
-und übergibt ihn als Funktionsargument; `typ` steht dabei für einen der folgenden Bezeichner.
+und übergibt ihn als Schlüsselwortargument an die View; `typ` steht dabei für einen der folgenden
+Bezeichner.
+**Der Bezeichner nach dem Doppelpunkt (hier `artikel_id`) muss dabei exakt mit dem Namen des
+entsprechenden View-Parameters übereinstimmen**, denn Django übergibt den Wert unter diesem Namen;
+bei abweichender Benennung erhalten Sie einen `TypeError`.
 Dies ist bereits die vollständige Liste der standardmäßig verfügbaren Typkonverter:
 
 - `str`: beliebiger nicht-leerer Text ohne `/` (Standard, falls kein Typ angegeben wird).
@@ -318,13 +322,22 @@ Dies ist bereits die vollständige Liste der standardmäßig verfügbaren Typkon
 - `uuid`: eine UUID im Standardformat mit Bindestrichen, wird als `uuid.UUID`-Objekt übergeben.
 - `path`: wie `str`, akzeptiert aber zusätzlich `/`.
 
+Die Wahl des Typkonverters wirkt sich dabei schon auf das URL-Matching selbst aus, nicht nur auf
+den Wert, der bei der View ankommt: Mit `<str:...>` würde jeder nicht-leere Text ohne `/` passen,
+sodass die View selbst prüfen und behandeln müsste, ob der übergebene Wert überhaupt gültig ist.
+Mit einem spezifischeren Typkonverter wie `<int:...>` übernimmt Django diese Prüfung bereits im
+URL-Matching: Passt der URL-Teil nicht auf den angegebenen Typ, greift die Route gar nicht erst,
+und Django probiert die nächste passende Route (oder gibt 404 zurück).
+Der Typkonverter verlagert damit eine Validierung, die Sie sonst manuell in der View schreiben
+müssten, in die URL-Konfiguration.
+
 Damit lässt sich ein Objekt anhand der URL laden, nach folgendem Schema:
 
 ```python
 from .models import MeinModel
 
-def eintrag_view(request, eintrag_id):
-    objekt = MeinModel.objects.get(id=eintrag_id)
+def artikel_detail(request, artikel_id):
+    objekt = MeinModel.objects.get(id=artikel_id)
     return HttpResponse(f"Gefunden: {objekt}")
 ```
 
@@ -336,16 +349,6 @@ Importieren Sie dafür `Student`.
 
 [ER] Fügen Sie in `urls.py` die passende Route mit `int`-Typkonverter hinzu: Pfad
 `students/<int:student_id>/`, Ziel `student_detail`, Name `student_detail`.
-
-[HINT::Warum `<int:student_id>` und nicht `<str:student_id>`?]
-Mit `<str:student_id>` würde auch `students/abc/` auf diese Route passen; die View müsste dann
-selbst prüfen und behandeln, dass `"abc"` keine gültige ID ist.
-Mit `<int:student_id>` übernimmt Django diese Prüfung bereits im URL-Matching: Passt der URL-Teil
-nicht auf eine Ganzzahl, greift die Route gar nicht erst, und Django probiert die nächste passende
-Route (oder gibt 404 zurück).
-Der Typkonverter verlagert eine Validierung, die Sie sonst manuell in der View schreiben müssten,
-in die URL-Konfiguration.
-[ENDHINT]
 
 [EC] Rufen Sie die Detailseite einmal mit einer existierenden und einmal mit einer nicht
 existierenden ID auf:
@@ -466,34 +469,6 @@ Welche Folge hätte das für die Reihenfolge dieser beiden Einträge?
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
-
-**Knackpunkte:**
-
-- [EREFQ::8]: Student benennt `Student.objects.get(id=student_id)` als Fehlerstelle und erkennt
-  die Exception aus [PARTREF::django-model] wieder, nur diesmal über eine URL statt über die
-  Shell ausgelöst.
-  Wegen `head -20` steht die Fehlerzeile nicht mehr in der sichtbaren Ausgabe; sie muss aus dem
-  Exceptionnamen und dem Code der View erschlossen werden.
-- [EREFR::13]/[EREFQ::9]: `student_redirect` erzeugt die URL mit
-  `reverse("student_detail", args=[1])` und leitet mit `redirect(...)` dorthin; ein falscher
-  Routenname oder ein fehlendes `args` führt zu einem Laufzeitfehler statt zur erwarteten
-  Weiterleitung.
-  Die im Aufgabentext erwähnte Kurzform `redirect("student_detail", 1)` liefert dieselbe Antwort,
-  erfüllt die Aufgabenstellung hier aber nicht, weil dann kein `reverse()` im Code steht.
-  Student erkennt, dass `reverse()` den Routennamen tatsächlich in `urls.py` nachschlägt, statt
-  die URL nur zu raten.
-- [EREFQ::10]: Nach der Umbenennung der Route zeigt der `Location`-Header ohne jede Änderung an
-  `views.py` auf `/teilnehmer/1/`; Student erkennt, dass `reverse()` die URL zur Laufzeit aus dem
-  aktuellen Eintrag in `urls.py` erzeugt, statt eine früher eingebrannte Adresse zu verwenden.
-  Die Umbenennung ist nur ein Zwischenschritt: In der abgegebenen `urls.py` steht wieder
-  `students/<int:student_id>/`.
-- [EREFQ::11]: Student erkennt, dass die Reihenfolge der beiden `students/`-Einträge mit
-  `<int:student_id>` frei wählbar ist, mit `<str:student_id>` dagegen zwingend würde: Die
-  Detail-Route finge `students/redirect/` mit ab, `student_redirect` käme nie zum Zug, und
-  `Student.objects.get(id="redirect")` scheiterte mit einem `ValueError`.
-  Anders als bei den übrigen Knackpunkten liefert kein Versuch die Antwort; die im `HINT` zum
-  Typkonverter erklärte Arbeitsteilung zwischen URL-Matching und View muss auf dieses konkrete
-  Routenpaar übertragen werden.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-view.md]
