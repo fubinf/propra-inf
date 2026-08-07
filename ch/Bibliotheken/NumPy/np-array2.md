@@ -29,11 +29,11 @@ Array-Formen.
 
 [SECTION::instructions::detailed]
 
-### Broadcasting: Grundlagen
+### NumPy Broadcasting: Grundlagen
 
 Broadcasting ermöglicht arithmetische Operationen zwischen Arrays unterschiedlicher Formen.
-Wenn zwei Arrays kompatible Formen haben, erweitert NumPy automatisch
-das kleinere Array, um es an die Form des größeren anzupassen.
+Wenn zwei Arrays kompatible Formen haben, erweitert NumPy automatisch das kleinere Array,
+um es an die Form des größeren anzupassen.
 
 **Grundlegende Broadcasting-Beispiele:**
 ```python
@@ -182,7 +182,7 @@ Minimum `0` und das Maximum `1` abgebildet wird.
 
 <!-- time estimate: 15 min -->
 
-### Array-Iteration mit `nditer`
+### NumPy Array-Iteration mit `nditer`
 
 `numpy.nditer` bietet flexible Möglichkeiten zur Array-Iteration.
 Eine direkte Schleife über ein mehrdimensionales Array (`for x in a`) liefert nur die Elemente der
@@ -213,6 +213,7 @@ for x in np.nditer(a):
 ```
 
 **Kontrolle der Iterationsreihenfolge:**
+
 ```python
 # C-Ordnung (zeilenweise)
 for x in np.nditer(a, order='C'):
