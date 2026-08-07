@@ -126,7 +126,7 @@ print('Stimmt mit np.sort überein?', np.array_equal(rekonstruiert, np.sort(arr,
 - Erstellen Sie mit `np.array` ein 3×4-Array `werte` mit den Werten
   `[[80, 30, 150, 60], [120, 10, 90, 200], [40, 170, 20, 110]]`
 - Verwenden Sie `np.argsort(werte, axis=1)`, um die zeilenweisen Sortierungsindizes in
-  `zeilenindizes` zu erhalten
+  `zeilenindizes` zu erhalten, und geben Sie sie aus
 - Versuchen Sie zunächst, das sortierte Array mit `werte[zeilenindizes]` zu rekonstruieren, und
   halten Sie in einem Kommentar fest, was dabei passiert; kommentieren Sie die Zeile danach aus,
   damit das abgegebene Skript durchläuft
@@ -213,7 +213,7 @@ sortierbar.
   (aufsteigend), und geben Sie in dieser Reihenfolge für jedes Produkt Name, Preis und
   Bewertung aus
 - Prüfen Sie Ihr Ergebnis: An erster Stelle steht weder das billigste noch das teuerste Produkt.
-  Begründen Sie in einem Kommentar, warum es trotzdem vorne steht
+  Begründen Sie in einem Kommentar, warum dieses Produkt trotzdem vorne steht
 
 [HINT::In welcher Reihenfolge muss ich die Arrays an `keys` übergeben?]
 Die Reihenfolge in `keys` ist leicht zu verwechseln: Das **zuletzt** übergebene Array bestimmt
@@ -291,7 +291,7 @@ print(f'Minimum {daten[zeile, spalte]} an flachem Index {flach_min} = Zeile {zei
   `[[12, 45, 8, 67, 23], [34, 89, 3, 41, 56], [78, 63, 62, 19, 90], [27, 51, 14, 38, 6]]`
 - Finden Sie Position und Wert des globalen Maximums und Minimums, sowohl über den flachen
   Index als auch mit `np.unravel_index` umgerechnet in Zeile/Spalte
-- Bestimmen Sie für jede Zeile das Maximum und für jede Spalte das Minimum
+- Bestimmen Sie die Indizes der Maxima jeder Zeile und der Minima jeder Spalte
 - Verwenden Sie die Indizes, um die tatsächlichen Werte auszugeben
 
 [HINT::Welche `axis` brauche ich für "pro Zeile"?]
@@ -369,8 +369,8 @@ Positionen braucht man immer dann, wenn dieselbe Auswahl noch auf ein zweites Ar
 werden soll oder wenn die Fundstelle selbst die gesuchte Information ist — dieselbe Unterscheidung
 wie zwischen `np.sort` und `np.argsort`.
 
-`np.extract(bedingung, a)` ist bei einer Boolean-Bedingung dagegen nichts anderes als die
-Boolean-Maske `a[bedingung]`.
+`np.extract(condition, a)` ist bei einer Boolean-Bedingung dagegen nichts anderes als die
+Boolean-Maske `a[condition]`.
 Als eigene Funktion begegnet sie einem trotzdem in fremdem Code und in der NumPy-Dokumentation,
 weshalb man sie wiedererkennen können sollte.
 `np.where(condition)` ohne `x` und `y` liefert dasselbe wie `np.nonzero(condition)`; die
@@ -381,7 +381,7 @@ NumPy-Dokumentation empfiehlt für diesen Fall aber ausdrücklich `np.nonzero`.
 - Erzeugen Sie mit `np.arange` ein Array `arr` mit den ganzen Zahlen von -15 bis 15
 - Finden Sie mit `np.nonzero` die Indizes aller positiven Werte und geben Sie auch die Werte an
   diesen Positionen aus
-- Erzeugen Sie mit der Drei-Parameter-Form `np.where(condition, x, y)` ein **neues** Array
+- Erzeugen Sie mit der Drei-Argument-Form `np.where(condition, x, y)` ein **neues** Array
   `begrenzt`, in dem alle negativen Werte durch `0` ersetzt sind und die übrigen Werte
   unverändert bleiben; `arr` selbst bleibt dabei unangetastet
 - Erstellen Sie mit `np.array` ein 3×3-Array `mit_nullen` mit den Werten
@@ -389,7 +389,9 @@ NumPy-Dokumentation empfiehlt für diesen Fall aber ausdrücklich `np.nonzero`.
 - Klären Sie die Bedeutung des Rückgabewerts für dieses 2D-Array anhand der
   [Dokumentation zu `numpy.nonzero`](https://numpy.org/doc/stable/reference/generated/numpy.nonzero.html)
   und erklären Sie Ihre Ausgabe in einem Kommentar
-- Extrahieren Sie mit `np.extract` alle Werte von -5 bis 5 aus `arr`, beide Grenzen eingeschlossen
+- Holen Sie alle Werte von -5 bis 5 aus `arr`, beide Grenzen eingeschlossen, auf zwei Wegen:
+  einmal mit `np.extract` und einmal mit der Boolean-Maske aus [PARTREF::np-index-slice].
+  Halten Sie in einem Kommentar fest, ob beide Wege dasselbe liefern
 
 [HINT::Wie kombiniere ich zwei Bedingungen zu einer?]
 Der letzte Arbeitsschritt braucht eine untere **und** eine obere Grenze.
@@ -420,8 +422,8 @@ In welcher Reihenfolge die Werte innerhalb dieser beiden Gruppen liegen, ist off
 NumPy-Version anders aussehen.
 Wer die k kleinsten Werte zusätzlich in sortierter Reihenfolge braucht, muss das Teilstück deshalb
 selbst noch sortieren.
-Das folgende Beispiel prüft die Garantie mit `np.all(bedingung)`, das genau dann `True` liefert,
-wenn jedes Element des Boolean-Arrays `bedingung` `True` ist.
+Das folgende Beispiel prüft die Garantie mit `np.all(condition)`, das genau dann `True` liefert,
+wenn jedes Element des Boolean-Arrays `condition` `True` ist.
 
 ```python
 import numpy as np
@@ -499,7 +501,8 @@ selbst:
 - Setzen Sie in das Messgerüst oben die vollständige Sortierung mit `np.sort` und die
   Partitionierung mit `np.partition` für die 10 kleinsten Werte ein, jeweils als kürzeste Zeit aus
   5 Wiederholungen
-- Geben Sie beide gemessenen Zeiten aus und berechnen Sie den Geschwindigkeitsfaktor.
+- Geben Sie beide gemessenen Zeiten (5 Nachkommastellen, `:.5f`) aus und berechnen Sie daraus den
+  Geschwindigkeitsfaktor (1 Nachkommastelle, `:.1f`).
   Zu erwarten ist ein einstelliger Faktor, keine Zehnerpotenz; der genaue Wert hängt von der
   Maschine ab
 - Verwenden Sie `np.argpartition`, um die ursprünglichen Indizes der 10 kleinsten Werte zu erhalten
@@ -547,8 +550,10 @@ k kleinsten Elemente benötigen, nicht aber das gesamte Array in sortierter Reih
   Die dritte Position (Zeile 3, Spalte 1, flacher Index 16) ist als Probe unverzichtbar: die beiden
   Positionen aus [EREFR::3] sind Vielfache voneinander und lassen deshalb auch falsche Regeln wie
   `zeile * 3 + spalte * 2` zu
-- [EREFR::4]: `begrenzt` ist ein neues Array und `arr` bleibt unverändert, sonst liefert der
-  letzte Arbeitsschritt nur noch die Werte 0 bis 5 statt -5 bis 5
+- [EREFR::4]: der Kommentar zum Rückgabewert von `np.nonzero` paart die beiden Arrays des Tupels
+  achsenweise und positionsweise, benennt also die Fundstellen (0,1), (1,0), (1,2) und (2,1).
+  Wer die beiden Arrays als voneinander unabhängige Zeilen- und Spaltenmengen liest, landet auch
+  auf Positionen wie (0,0), an denen eine Null steht, und hat den Rückgabewert nicht verstanden
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-sort-filter.md]
