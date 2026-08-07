@@ -46,9 +46,16 @@ einem anderen Port betreiben, passen Sie sie entsprechend an.
 `redirect_example`, `student_redirect`); keine davon wird in den folgenden Aufgaben noch
 gebraucht.
 
-[ER] Entfernen Sie diese sieben Funktionen aus `views.py`, die dadurch unnötig gewordenen
-Importe (`csrf_exempt`, `redirect`, `reverse`) sowie ihre Routen aus `urls.py`.
+[ER] Entfernen Sie diese sieben Funktionen aus `views.py`, dazu die dadurch unnötig
+gewordenen Importe sowie ihre Routen aus `urls.py`.
 Behalten Sie `hello` und `student_detail`, die Sie weiterhin brauchen.
+
+[HINT::Welche Importe werden jetzt nicht mehr gebraucht?]
+Gehen Sie die `import`-Zeilen am Dateianfang einzeln durch und suchen Sie für jeden Namen, ob
+er im verbliebenen Code überhaupt noch vorkommt.
+Drei Namen werden nur von den entfernten Funktionen benutzt: `csrf_exempt`, `redirect` und
+`reverse`.
+[ENDHINT]
 <!-- time estimate: 5 min -->
 
 ### Template-Variablen und Context
@@ -109,7 +116,9 @@ In den folgenden Schritten ändern Sie jeweils nur den `<body>`:
 [EQ] Fügen Sie testweise irgendwo in `hello.html` die Zeile `<p>[{{ nichtvorhanden }}]</p>`
 ein; `nichtvorhanden` existiert im `context` gar nicht.
 Die eckigen Klammern machen sichtbar, wo der Wert stehen würde.
-Rufen Sie `http://127.0.0.1:8071/` im Browser auf: Was steht zwischen den Klammern?
+Rufen Sie `http://127.0.0.1:8071/` im Browser auf: Was steht zwischen den Klammern, und wie
+unterscheidet sich dieses Verhalten von einem Zugriff auf einen nicht vorhandenen
+Dictionary-Schlüssel in reinem Python?
 Entfernen Sie die Testzeile anschließend wieder.
 <!-- time estimate: 15 min -->
 
@@ -129,13 +138,19 @@ Das `{% if %}`-Tag zeigt Inhalte nur unter einer Bedingung an, mit optionalem
 ```
 
 [ER] Erweitern Sie den `<body>` von `hello.html` um eine bedingte Darstellung, die von der
-Variablen `is_logged_in` abhängt: Wenn sie zutrifft, zeigen Sie einen Absatz `<p>` mit dem
+Variablen `is_logged_in` abhängt: Wenn sie wahr ist, zeigen Sie einen Absatz `<p>` mit dem
 Text "Willkommen zurück, " gefolgt vom Wert von `user_name` und einem Ausrufezeichen;
 andernfalls einen Absatz `<p>` mit dem Text "Bitte melden Sie sich an."
 
-[EQ] Ändern Sie in der View `is_logged_in` auf `False` und aktualisieren Sie die Seite.
-Was wird jetzt angezeigt, und welcher Teil des Templates ist dafür verantwortlich?
-<!-- time estimate: 10 min -->
+[EQ] Lesen Sie in der Doku zu
+[Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#std-templatetag-if)
+den Abschnitt zu `if` nach.
+Unter welchen Bedingungen behandelt `{% if %}` einen Wert als wahr?
+Setzen Sie `is_logged_in` in der View danach nacheinander auf zwei Werte, die nach dieser
+Regel falsch sind, ohne `False` zu sein, und aktualisieren Sie jeweils die Seite.
+Welche Werte haben Sie gewählt, und welcher Zweig erscheint?
+Setzen Sie `is_logged_in` anschließend wieder auf `True`.
+<!-- time estimate: 15 min -->
 
 ### Schleifen mit `{% for %}`
 
@@ -147,10 +162,10 @@ Lesen Sie in der Doku zu
 den Abschnitt zu `for` nach, insbesondere den Zugriff auf das aktuelle Element im
 Schleifenkörper und das optionale `{% empty %}`-Tag für den Fall einer leeren Liste.
 
-[ER] Setzen Sie `is_logged_in` in der View wieder auf `True` und ergänzen Sie den `context`
-um eine Liste `hobbies` mit den Werten `Programmieren`, `Lesen`, `Sport`.
+[ER] Ergänzen Sie den `context` der `hello`-View um eine Liste `hobbies` mit den Werten
+`Programmieren`, `Lesen`, `Sport`.
 Stellen Sie `hobbies` im `<body>` von `hello.html` innerhalb des
-`{% if is_logged_in %}`-Zweigs dar: eine Überschrift `Ihre Hobbys:` (`<h2>`), darunter die
+`{% if is_logged_in %}`-Zweigs dar: eine Überschrift "Ihre Hobbys:" (`<h2>`), darunter die
 Hobbys als `<ul>`-Liste mit `{% for %}` und einem `{% empty %}`-Zweig, der für eine leere
 Liste "Keine Hobbys angegeben" in einem Listenelement anzeigt.
 
@@ -182,7 +197,7 @@ Für die Studierendenliste sind drei Filter nützlich:
 - `default:"Noch keine Note"`: zeigt einen Ersatztext, falls der Wert leer ist oder als
   falsch gilt (z. B. `None`, leerer String, `0`; `grade_average` ist laut
   [PARTREF::django-model] optional und daher oft `None`).
-- `yesno:"Aktiv,Inaktiv"`: übersetzt einen Wahrheitswert in zwei wählbare Textalternativen.
+- `yesno:"Aktiv,Inaktiv"`: gibt je nach Wahrheitswert einen von zwei wählbaren Texten aus.
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `students_list`, die mit `.objects.all()`
 alle `Student`-Objekte lädt und sie unter dem Context-Schlüssel `students` an das Template
@@ -190,12 +205,14 @@ alle `Student`-Objekte lädt und sie unter dem Context-Schlüssel `students` an 
 
 [ER] Legen Sie `webapp/templates/students_list.html` an, mit derselben Grundstruktur wie
 `hello.html` (`<!DOCTYPE>`, `<html lang="de">`, `<head>` mit `<meta charset>` und dem Titel
-`Studierendenliste`, `<body>`).
-Zeigen Sie im `<body>` eine Überschrift `Alle Studierenden` (`<h1>`), darunter die
-Studierenden als `<ul>`-Liste mit `{% for %}`: je Studierendem den Namen (mit `upper`),
-gefolgt von " — Note: " und dem Notendurchschnitt (mit `default:"Noch keine Note"`), gefolgt
-von " — " und dem Aktivstatus (mit `yesno:"Aktiv,Inaktiv"`), sowie einem `{% empty %}`-Zweig
-mit dem Text "Noch keine Studierenden registriert." in einem Listenelement.
+"Studierendenliste", `<body>`).
+Zeigen Sie im `<body>` eine Überschrift "Alle Studierenden" (`<h1>`), darunter die
+Studierenden als `<ul>`-Liste mit `{% for %}`.
+Jedes Listenelement enthält den Namen (mit `upper`), gefolgt von " — Note: " und dem
+Notendurchschnitt (mit `default:"Noch keine Note"`), gefolgt von " — " und dem Aktivstatus
+(mit `yesno:"Aktiv,Inaktiv"`).
+Ergänzen Sie einen `{% empty %}`-Zweig, der "Noch keine Studierenden registriert." in einem
+Listenelement anzeigt.
 
 [ER] Fügen Sie in `urls.py` die Route für `students_list` hinzu: Pfad `students/`, Ziel
 `students_list`, Name `students_list`.
@@ -203,14 +220,14 @@ mit dem Text "Noch keine Studierenden registriert." in einem Listenelement.
 Öffnen Sie `http://127.0.0.1:8071/admin/` und melden Sie sich mit Ihrem Superuser an (siehe
 [PARTREF::django-model]).
 Tragen Sie dort für Anna Müller den Notendurchschnitt `2.3` und für Peter Klein `1.7` ein
-(mit Punkt als Dezimaltrennzeichen, nicht mit Komma); setzen Sie außerdem bei Peter Klein
-`is_active` auf deaktiviert.
+(mit Punkt als Dezimaltrennzeichen, nicht mit Komma); entfernen Sie außerdem bei Peter Klein
+den Haken bei `is_active`.
 Lassen Sie `grade_average` bei Lisa Weber leer.
 
 [EQ] Rufen Sie anschließend `http://127.0.0.1:8071/students/` auf.
 Was erscheint bei Lisa Weber (kein Notendurchschnitt) und bei Peter Klein (nicht aktiv)
 anstelle der rohen Werte, und welcher Filter ist jeweils verantwortlich?
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 `upper`, `default` und `yesno` sind nur drei von vielen eingebauten Filtern.
 
@@ -259,13 +276,13 @@ Ihren bisherigen `<body>`-Inhalt (Überschrift, Bedingungsblock mit Hobbys) in e
 Stufen Sie dabei die Überschrift `<h1>{{ greeting }}</h1>` zu `<h2>{{ greeting }}</h2>`
 herab: Das `<h1>` der Seite kommt jetzt aus `base.html`, ein zweites `<h1>` wäre nicht mehr
 korrekt.
-Stufen Sie aus demselben Grund auch die Unterüberschrift `<h2>Ihre Hobbys:</h2>` zu
-`<h3>Ihre Hobbys:</h3>` herab, damit sie weiterhin der (jetzt eine Ebene tieferen)
-Überschrift des Inhaltsblocks untergeordnet bleibt.
+Stufen Sie auch die Unterüberschrift `<h2>Ihre Hobbys:</h2>` zu `<h3>Ihre Hobbys:</h3>` herab,
+damit sie weiterhin der (jetzt eine Ebene tieferen) Überschrift des Inhaltsblocks
+untergeordnet bleibt.
 
 [ER] Wandeln Sie `students_list.html` auf dieselbe Weise in ein Kind-Template um: Stufen Sie
 dabei ebenso die Überschrift `<h1>Alle Studierenden</h1>` zu `<h2>Alle Studierenden</h2>`
-herab, und überschreiben Sie zusätzlich `{% block title %}` mit `Studierendenliste`.
+herab, und überschreiben Sie zusätzlich `{% block title %}` mit "Studierendenliste".
 
 [HINT::Wie hängen die Blocknamen in `base.html` und den Kind-Templates zusammen?]
 Ein `{% block content %}` im Kind-Template ersetzt genau den gleichnamigen
@@ -303,23 +320,25 @@ folgendem CSS an:
 
 [SNIPPET::ALT::django_template_css]
 
+Beenden Sie danach den Entwicklungsserver mit Strg+C und starten Sie ihn neu.
+
 [ER] Binden Sie die CSS-Datei in `base.html` ein: Setzen Sie `{% load static %}` an den
 Dateianfang und fügen Sie im `<head>` ein `<link>`-Element ein, das die Datei
 `css/style.css` per `{% static %}` referenziert.
 
-[HINT::Warum ändert sich die Darstellung manchmal nicht?]
-Falls die Seite nach diesem Schritt unverändert aussieht, prüfen Sie mit
-`curl -s http://127.0.0.1:8071/static/css/style.css`, ob die Datei überhaupt ausgeliefert
-wird.
-War der Entwicklungsserver schon gestartet, bevor Sie `webapp/static/css/` angelegt haben,
-kann es sein, dass er das neue Verzeichnis noch nicht kennt: Beenden Sie ihn mit Strg+C und
-starten Sie ihn neu.
+[HINT::Wozu war der Neustart des Entwicklungsservers nötig?]
+Django prüft nur beim Start, welche App einen `static/`-Ordner besitzt; ein danach angelegter
+Ordner bleibt bis zum nächsten Start unsichtbar.
+Ohne Neustart liefert der Server die Datei deshalb nicht aus, obwohl das `<link>`-Element im
+HTML steht und die Seite unverändert aussieht.
+Nachprüfen lässt sich das jederzeit mit
+`curl -s http://127.0.0.1:8071/static/css/style.css`.
 [ENDHINT]
 
 [EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf.
 Die Seite ist jetzt formatiert, obwohl `students_list.html` selbst kein CSS enthält.
 Warum genügt es, `base.html` anzupassen, damit auch `students_list.html` das CSS erhält?
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
 ### Navigation mit `{% url %}`
 
