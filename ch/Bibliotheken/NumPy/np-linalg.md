@@ -34,16 +34,23 @@ letztlich `numpy.linalg`.
 Diese Aufgabe lehrt nicht die lineare Algebra selbst, sondern wie man sie mit NumPy rechnet.
 Vorausgesetzt wird deshalb, was Matrix, Transposition, Matrixmultiplikation, Determinante,
 Inverse und Skalarprodukt (auch Punktprodukt genannt) bedeuten, für die zweite Hälfte
-zusätzlich Eigenwert, Matrixnorm, Konditionszahl und Singulärwertzerlegung.
+zusätzlich Rang, Eigenwert, Matrixnorm, Konditionszahl und Singulärwertzerlegung.
 Sie müssen davon nichts von Hand rechnen können, aber ohne zu wissen, was die Begriffe
 aussagen, können Sie Ihre eigenen Ergebnisse nicht beurteilen.
-Falls Ihnen etwas davon fehlt, arbeiten Sie zuerst die folgenden Quellen durch:
+Für die weniger geläufigen dieser Begriffe helfen folgende Quellen:
 
-- [Skalarprodukt (Wikipedia)](https://de.wikipedia.org/wiki/Skalarprodukt)
-- [Eigenwertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Eigenwertproblem)
-- [Matrixnorm (Wikipedia)](https://de.wikipedia.org/wiki/Matrixnorm)
-- [Kondition (Mathematik, Wikipedia)](https://de.wikipedia.org/wiki/Kondition_(Mathematik))
-- [Singulärwertzerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Singulärwertzerlegung)
+- [Skalarprodukt (Wikipedia)](https://de.wikipedia.org/wiki/Skalarprodukt): komponentenweises
+  Produkt zweier Vektoren, zu einer einzigen Zahl aufsummiert
+- [Rang einer Matrix (Wikipedia)](https://de.wikipedia.org/wiki/Rang_einer_Matrix): Anzahl der
+  linear unabhängigen Zeilen bzw. Spalten
+- [Eigenwertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Eigenwertproblem): Vektoren, die
+  eine Matrix nur streckt statt sie zu drehen, und der zugehörige Streckungsfaktor
+- [Matrixnorm (Wikipedia)](https://de.wikipedia.org/wiki/Matrixnorm): Maß für die "Größe" einer
+  Matrix als einzelne Zahl
+- [Kondition (Mathematik, Wikipedia)](https://de.wikipedia.org/wiki/Kondition_(Mathematik)): wie
+  stark sich Fehler der Eingabedaten im Ergebnis verstärken
+- [Singulärwertzerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Singulärwertzerlegung):
+  Zerlegung jeder beliebigen Matrix in Drehung, Streckung und Drehung
 
 Die Zeitschätzungen der Abschnitte setzen dieses Vorwissen voraus; wer es sich erst parallel
 aneignet, braucht entsprechend länger.
@@ -108,7 +115,7 @@ numpy.eye(N, M=None, k=0)       # wie identity, aber auch rechteckig + verschobe
 - `M` (bei `eye`, Standard `N`): Anzahl der Spalten; ergibt eine rechteckige
   Matrix, wenn ungleich `N`
 - `k` (bei `eye`, Standard `0`): Position der Diagonale mit Einsen; `0` = Hauptdiagonale,
-  positive Werte verschieben nach rechts, negative Werte nach links
+  positive Werte wählen eine Diagonale oberhalb, negative eine unterhalb der Hauptdiagonale
 
 ```python
 import numpy as np
@@ -152,11 +159,13 @@ Die Referenzseiten dazu sind
   fangen Sie die dabei auftretenden Ausnahmen mit `try`/`except` auf und geben Sie die
   Fehlermeldungen aus
 
-[HINT::Die Fehlermeldung von `identity()` spricht von einem Datentyp]
+[HINT::Die Fehlermeldungen von `identity()` wirken zunächst unpassend]
 `identity()` hat außer der Größe nur noch einen Parameter, und der legt den Datentyp fest,
 nicht die Spaltenzahl.
 Ein zweites Argument wird deshalb als `dtype` gelesen und die Meldung lautet sinngemäß, dass
 sich Ihre Zahl nicht als Datentyp interpretieren lässt.
+Einen Parameter `k` gibt es dagegen überhaupt nicht, weshalb die zweite Meldung ein
+unerwartetes Schlüsselwortargument beanstandet.
 [ENDHINT]
 
 [EQ] Basierend auf Ihrem Ergebnis aus [EREFR::2]: `eye()` kann alles, was `identity()` kann,
@@ -210,8 +219,7 @@ print(result_at)
 Bei zwei zweidimensionalen Matrizen sind alle drei Schreibweisen gleichwertig, wie oben zu
 sehen.
 Dasselbe gilt für zwei Vektoren und für gemischte Formen wie Matrix mal Vektor.
-Unterschiede gibt es nur in zwei Fällen: bei Skalaren und dann, wenn beide Operanden mehr als
-zwei Dimensionen haben.
+Unterschiede gibt es bei Skalaren und sobald mehr als zwei Dimensionen im Spiel sind.
 
 ```python
 # np.dot verrechnet auch Skalare, np.matmul verlangt mindestens eindimensionale Operanden
@@ -443,7 +451,12 @@ zu invertieren, löst `numpy.linalg.LinAlgError: Singular matrix` aus — das is
 sondern die korrekte Reaktion, weil eine solche Matrix mathematisch keine Inverse besitzt.
 [ENDHINT]
 
-<!-- time estimate: 20 min -->
+[EQ] Sie haben in [EREFR::5] die Konditionszahl von `matrix` bestimmt.
+Für welche der beiden oben beschriebenen Aufgaben von `linalg.inv` und `linalg.solve` ist
+dieser Wert von Belang, und was müsste an Ihrer Matrix anders sein, damit der Unterschied
+zwischen den beiden Wegen in den Ergebnissen überhaupt sichtbar wird?
+
+<!-- time estimate: 22 min -->
 
 ### Lineare Gleichungssysteme lösen: `linalg.solve`
 
@@ -492,31 +505,26 @@ Die Referenzseite dazu ist
 - Machen Sie für beide Systeme die Probe, indem Sie die Koeffizientenmatrix mit der
   gefundenen Lösung multiplizieren und das Ergebnis mit `np.allclose` gegen die rechte Seite
   vergleichen
-- Beide Systeme haben ganzzahlige Lösungen; falls Ihre Probe fehlschlägt oder krumme Werte
-  herauskommen, haben Sie die Matrix falsch aufgestellt
+
+[HINT::Meine Probe schlägt fehl oder die Lösung hat krumme Werte]
+Beide Systeme haben ganzzahlige Lösungen.
+Kommt etwas anderes heraus, ist die Koeffizientenmatrix falsch aufgestellt; prüfen Sie
+Vorzeichen und Spaltenreihenfolge gegen die Gleichungen.
+[ENDHINT]
 
 <!-- time estimate: 15 min -->
 
-### Weitere Operationen der linearen Algebra: `matrix_rank`, `eig`, `eigh`, `norm`, `svd`
+### Rang und Eigenwerte: `matrix_rank`, `eig`, `eigh`
 
-NumPy bietet weitere nützliche Funktionen für die lineare Algebra:
+Rang, Eigenwerte und Eigenvektoren einer Matrix liefert NumPy mit je einem Aufruf:
 
 ```python
-numpy.linalg.matrix_rank(M)              # Rang der Matrix
-numpy.linalg.eig(a)                      # Eigenwerte und Eigenvektoren
-numpy.linalg.eigh(a)                     # dasselbe, aber nur für symmetrische Matrizen
-numpy.linalg.norm(x, ord=None)           # Norm (Größe) einer Matrix/eines Vektors
-numpy.linalg.svd(a, full_matrices=True)  # Singulärwertzerlegung
+numpy.linalg.matrix_rank(M)   # Rang der Matrix
+numpy.linalg.eig(a)           # Eigenwerte und Eigenvektoren
+numpy.linalg.eigh(a)          # dasselbe, aber nur für symmetrische Matrizen
 ```
 
-- `M`/`a`/`x` (je nach Funktion): die betroffene Matrix
-- `ord` (bei `norm`): welche Norm berechnet wird — mögliche Werte sind `'fro'` für die
-  Frobenius-Norm sowie `1`, `2` oder `np.inf` für die jeweilige Operatornorm.
-  Beim Standardwert `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm
-  bei Matrizen
-- `full_matrices` (bei `svd`, Standard `True`): ob die beiden Faktormatrizen quadratisch
-  aufgefüllt werden; mit `False` bekommen sie nur so viele Spalten bzw. Zeilen, wie es
-  Singulärwerte gibt
+- `M` (bei `matrix_rank`) bzw. `a` (bei `eig` und `eigh`): die betroffene Matrix
 
 ```python
 import numpy as np
@@ -560,12 +568,60 @@ print('\nmit eig: ', werte_eig)
 print('mit eigh:', werte_eigh)
 ```
 
-Eine Norm fasst die "Größe" einer Matrix in einer einzigen Zahl zusammen.
-Welche der Normen dafür die richtige ist, hängt davon ab, was man messen will; die folgenden
-vier sind die gebräuchlichsten:
+`eigh` prüft allerdings nicht, ob die übergebene Matrix wirklich symmetrisch ist, sondern liest
+voreingestellt nur ihr unteres Dreieck.
+Bei einer unsymmetrischen Matrix kommt deshalb ohne jede Fehlermeldung ein falsches Ergebnis
+heraus.
+
+Die Referenzseiten dazu sind
+[numpy.linalg.matrix_rank](https://numpy.org/doc/stable/reference/generated/numpy.linalg.matrix_rank.html),
+[numpy.linalg.eig](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) und
+[numpy.linalg.eigh](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigh.html).
+
+[ER] Bestimmen Sie Rang und Eigenwerte:
+
+- Erstellen Sie eine symmetrische 3×3-Matrix `symmetric_matrix` (als `float`) mit den Werten
+  `[[5, 3, 1], [3, 8, 2], [1, 2, 6]]` und berechnen Sie ihren Rang sowie ihre Eigenwerte und
+  Eigenvektoren einmal mit `eigh` und einmal mit `eig`; halten Sie in einem Kommentar fest,
+  worin sich die beiden Eigenwertausgaben unterscheiden
+- Bestimmen Sie außerdem den Rang der singulären Matrix `singular` aus [EREFR::5] und halten
+  Sie in einem Kommentar fest, wie ihr Rang mit ihrer Determinante und dem gescheiterten
+  Invertieren zusammenhängt
+
+<!-- time estimate: 12 min -->
+
+### Normen und Singulärwertzerlegung: `norm`, `svd`
+
+Die "Größe" einer Matrix und ihre Zerlegung in einfachere Faktoren bestimmen zwei weitere
+Funktionen:
 
 ```python
-# Matrixnormen
+numpy.linalg.norm(x, ord=None)           # Norm (Größe) einer Matrix/eines Vektors
+numpy.linalg.svd(a, full_matrices=True)  # Singulärwertzerlegung
+```
+
+- `x` (bei `norm`) bzw. `a` (bei `svd`): die betroffene Matrix
+- `ord` (bei `norm`): welche Norm berechnet wird — mögliche Werte sind `'fro'` für die
+  Frobenius-Norm sowie `1`, `2` oder `np.inf` für die jeweilige Operatornorm.
+  Beim Standardwert `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm
+  bei Matrizen
+- `full_matrices` (bei `svd`, Standard `True`): ob die beiden Faktormatrizen quadratisch
+  aufgefüllt werden; mit `False` bekommen sie nur so viele Spalten bzw. Zeilen, wie es
+  Singulärwerte gibt
+
+Eine Norm fasst die "Größe" einer Matrix in einer einzigen Zahl zusammen.
+Welche der vier gebräuchlichsten die richtige ist, hängt davon ab, was man messen will:
+die Frobenius-Norm die Gesamtabweichung über alle Elemente hinweg, die 1-Norm die am stärksten
+ins Gewicht fallende Spalte, die ∞-Norm entsprechend die stärkste Zeile und die 2-Norm den
+Faktor, um den die Matrix einen Vektor höchstens verlängern kann.
+
+```python
+import numpy as np
+
+matrix = np.array([[3, 1, 4],
+                   [1, 5, 9],
+                   [2, 6, 5]])
+
 # Ohne ord-Angabe: Standard None entspricht bei einer Matrix der Frobenius-Norm
 default_norm = np.linalg.norm(matrix)
 print('\nNorm ohne ord-Angabe (Standard):', default_norm)
@@ -621,21 +677,11 @@ nicht mehr zusammen und man müsste Σ von Hand als 2×3-Matrix auffüllen.
 Mit `False` passen die Formen unmittelbar zueinander.
 
 Die Referenzseiten dazu sind
-[numpy.linalg.matrix_rank](https://numpy.org/doc/stable/reference/generated/numpy.linalg.matrix_rank.html),
-[numpy.linalg.eig](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html),
-[numpy.linalg.eigh](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigh.html),
 [numpy.linalg.norm](https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html) und
 [numpy.linalg.svd](https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html).
 
-[ER] Experimentieren Sie mit erweiterten Operationen:
+[ER] Vergleichen Sie Normen und zerlegen Sie eine Matrix:
 
-- Erstellen Sie eine symmetrische 3×3-Matrix `symmetric_matrix` (als `float`) mit den Werten
-  `[[6, 2, 5], [2, 4, 1], [5, 1, 9]]` und berechnen Sie ihren Rang sowie ihre Eigenwerte und
-  Eigenvektoren einmal mit `eigh` und einmal mit `eig`; halten Sie in einem Kommentar fest,
-  worin sich die beiden Eigenwertausgaben unterscheiden
-- Bestimmen Sie außerdem den Rang der singulären Matrix `singular` aus [EREFR::5] und halten
-  Sie in einem Kommentar fest, wie ihr Rang mit ihrer Determinante und dem gescheiterten
-  Invertieren zusammenhängt
 - Erstellen Sie eine nicht-quadratische 2×3-Matrix `test_matrix` (als `float`) mit den Werten
   `[[3, 8, 1], [6, 2, 9]]`, zerlegen Sie sie mit `svd` und `full_matrices=False`,
   rekonstruieren Sie sie aus den drei Faktoren und prüfen Sie das Ergebnis mit `np.allclose`
@@ -646,7 +692,12 @@ Die Referenzseiten dazu sind
 - Rechnen Sie die 1-Norm und die ∞-Norm für `norm_matrix` zusätzlich von Hand nach und halten
   Sie in einem Kommentar fest, welche Zeile bzw. Spalte den Ausschlag gibt
 
-<!-- time estimate: 25 min -->
+[EQ] Ohne `ord`-Angabe berechnet `norm` bei einem Vektor die 2-Norm, bei einer Matrix aber die
+Frobenius-Norm.
+Halten Sie die beiden Definitionen neben Ihre Werte aus [EREFR::8] und begründen Sie, warum
+sich hinter den zwei verschiedenen Namen dieselbe Rechnung verbirgt.
+
+<!-- time estimate: 15 min -->
 
 ### Weiterführend
 
