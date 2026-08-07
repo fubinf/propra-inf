@@ -621,24 +621,6 @@ bildet, und begründen Sie, warum es gerade diese beiden sind.
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::3] mit [EREFQ::3]: die beiden Anwendungsrechnungen verwenden `np.ceil()` bzw.
-  `np.floor()` und liefern `[4. 1. 1. 9.]` und `[6. 15. 4. 10.]`; mit `np.round()` ergäben sich
-  unter anderem null Kisten für fünf Artikel.
-  Die Begründung knüpft die Rundungsrichtung an die Sachlage und nicht nur an die Funktionsnamen
-- [EREFQ::2]: die Antwort nennt die Rundung zur nächsten geraden Zahl als bewusste Festlegung;
-  "Rundungsfehler" oder "Fließkomma-Ungenauigkeit" zeigt, dass die Dokumentation nicht gelesen wurde
-- [EREFR::4], letzte Schritte: die Division mit `where=` ohne `out=` gibt an den ausgelassenen
-  Positionen nicht initialisierten Speicher aus, typischerweise den gerade freigegebenen Puffer
-  der vorigen Division, sodass dort erneut `inf` steht und `where=` wirkungslos aussieht.
-  Andere Werte dort (Nullen, Größenordnung `e-317`) sind ebenso möglich und kein Fehler;
-  umgekehrt belegen Nullen nicht, dass ein Zielarray übergeben wurde.
-  Ausschlaggebend sind Quelltext und Kommentar: die erste eingeschränkte Division muss ohne `out=`
-  laufen und die `UserWarning` "'where' used without 'out', expect uninitialized memory in output"
-  auslösen, die zweite mit einem vorher angelegten `float`-Zielarray;
-  "ohne `out=` steht dort 0" ist falsch
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-math.md]
 

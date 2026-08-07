@@ -288,25 +288,6 @@ Exponentialfunktion als Modellfunktion) noch genauso?
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::1] + [EREFQ::1]: für die kubische Gleichung finden die Startwerte `-1` und `2` dieselbe
-  Nullstelle `x=1`, Startwert `4` die zweite Nullstelle `x=4`; Studierende erkennen beide Gründe
-  für mehrere Startwerte (alle reellen Lösungen finden; Risiko fehlender Konvergenz verringern)
-- [EREFR::2] + [EREFQ::2]: alle drei Methoden finden bei `h(x)` dasselbe Minimum; Studierende
-  wählen anhand von `result.nfev` `'BFGS'` als effizienteste Methode und begründen dies mit der
-  genutzten Ableitungsschätzung gegenüber dem gradientenfreien `'Nelder-Mead'`
-- [EREFR::2] + [EREFQ::3]: `g(x)` landet je nach Startwert in unterschiedlichen lokalen Minima;
-  Studierende erkennen, dass `success=True` allein kein hinreichender Nachweis für ein
-  brauchbares Ergebnis ist und zusätzlich `result.fun`/die Plausibilität von `result.x` prüfen
-- [EREFR::3] + [EREFQ::4]: `h(x)` liefert mit und ohne `bounds` dasselbe Ergebnis, da die
-  Funktion in beide Richtungen gegen `+∞` geht und damit ein echtes globales Minimum besitzt;
-  Studierende erkennen den Gegensatz zur kubischen Funktion `f(x)` (siehe NOTICE), die
-  unbeschränkt gegen `-∞` divergiert und daher zwingend `bounds` braucht
-- [EREFR::4] + [EREFQ::5]: ein schlechter `p0` ändert beim linearen Modell nichts am Ergebnis
-  (konvexe Fehlerfunktion, ein einziges Minimum); Studierende erkennen, dass dies bei einem
-  nichtlinearen Modell mit mehreren lokalen Minima anders sein könnte
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-optimize.md]
 

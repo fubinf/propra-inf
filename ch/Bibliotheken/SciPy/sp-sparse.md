@@ -289,19 +289,6 @@ für die Wahl der Kantengewichte bedeutet, wenn man einen Graphen auf diese Weis
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::2] Direkt nach dem Setzen von `(1, 1)` auf 0 muss `nnz` noch 5 sein (die explizite 0
-  zählt mit) und erst nach `eliminate_zeros()` auf 4 sinken; wer `nnz` mit `count_nonzero()`
-  verwechselt, hat den Unterschied zwischen gespeicherten und tatsächlich von Null verschiedenen
-  Elementen nicht verstanden.
-- [EREFQ::2] Die kürzeste Distanz von Knoten 0 nach 3 ist 5. Die Antwort muss erklären, dass
-  Knoten 0 von Knoten 1 aus `inf` (unerreichbar) ist, weil der Graph gerichtet ist und keine Kante
-  zu 0 zurückführt.
-- [EREFQ::3] Die Antwort muss erkennen, dass die 0 in der Adjazenzmatrix doppelt belegt ist
-  ("keine Kante" vs. "Kante mit Gewicht 0") und daraus folgern, dass 0 nicht als reguläres
-  Kantengewicht verwendet werden darf.
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-sparse.md]
 

@@ -248,26 +248,12 @@ an welcher konkreten Stelle, und was hätte er dort besser gemacht?
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::1] + [EREFR::2] + [EREFQ::1]: `messages.success(...)` steht in `register`
-  unmittelbar vor dem `redirect(...)`, `base.html` gibt `messages` mit einer
-  `{% for %}`-Schleife außerhalb von `{% block content %}` aus; Student erkennt, dass die
-  Meldung nicht auf der unmittelbar nächsten Seite erscheint, sondern erst auf der nächsten,
-  die diesen Block tatsächlich rendert, weil `student_detail` aus [PARTREF::django-view] eine
-  `HttpResponse` ohne Template zurückgibt.
-- [EREFQ::2]: Student überträgt die an einer einzigen View beobachtete Wirkung auf alle
-  übrigen, benennt also `register` als ebenfalls betroffen und die reinen GET-Views
-  (`hello`, `students_list`, `student_detail`, `search`) als nicht betroffen; wer nur
-  `/search-post/` wiederholt, hat den Punkt verfehlt, dass ein Schutz dieser Art an einer
-  einzigen Stelle für sämtliche POST-Views wirkt, statt in jeder View einzeln programmiert
-  werden zu müssen.
-- Beide Auskommentierungen waren nur Zwischenschritte: In der abgegebenen `settings.py` stehen
-  `CsrfViewMiddleware` und `XFrameOptionsMiddleware` wieder aktiv in `MIDDLEWARE`.
-  Als einziger Punkt lässt sich dieser nicht aus dem Kommandoprotokoll ablesen, weil der
-  jeweils zweite `curl`-Aufruf vor der Abgabe liegt und deshalb auch bei vergessener
-  Wiederherstellung korrekt aussieht.
-  Voraussetzung dafür ist, dass `settings.py` in der `*.files`-Datei enthalten ist.
+Beide Auskommentierungen in `settings.py` waren nur Zwischenschritte des Experiments: In der
+abgegebenen `settings.py` müssen `CsrfViewMiddleware` und `XFrameOptionsMiddleware` wieder aktiv
+in `MIDDLEWARE` stehen.
+Das lässt sich nicht aus dem Kommandoprotokoll ablesen, weil der jeweils zweite `curl`-Aufruf vor
+der Abgabe liegt und deshalb auch bei vergessener Wiederherstellung korrekt aussieht;
+Voraussetzung für die Prüfung ist, dass `settings.py` in der `*.files`-Datei enthalten ist.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-Ausblick.md]

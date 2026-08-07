@@ -266,11 +266,6 @@ der Ausgabe.
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
-**Knackpunkte:**
-
-- [EREFQ::1]: Antwort erkennt, dass der `dtype` bereits bei der Array-Erstellung festgelegt wird und spätere Zuweisungen an diesen Typ angepasst (hier: nach `int` gekürzt) werden, während eine Liste keinen festen Elementtyp hat — nicht nur eine Wiederholung der beobachteten Ausgabe.
-- [EREFR::1]: Die Ausgabe des dritten Arrays (`ndmin=2` auf `[7, 8, 9]`) zeigt die verschachtelte Form `[[7 8 9]]` statt `[7 8 9]` – zeigt, ob `ndmin` wirklich verstanden wurde.
-- [EREFR::3]: Der strukturierte dtype ist korrekt mit drei benannten Feldern definiert, und `students['name']` liefert nur die Namen (nicht das gesamte Tupel).
 
 ### Kommandoprotokoll
 [PROT::ALT:np-Einführung.prot]

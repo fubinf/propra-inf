@@ -243,18 +243,6 @@ Zeigen Sie alle Arrays und ihre Eigenschaften (`shape`, `dtype`) an.
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::1] Studierende ordnen beiden Achsen des 2D-Arrays korrekt die jeweilige Länge aus
-  `shape` zu (Achse 0 → 4, Achse 1 → 3).
-- [EREFQ::2] Studierende erkennen, dass ein komplexer Typ intern aus zwei Fließkommazahlen
-  gleicher Präzision (Real- und Imaginärteil) besteht, weshalb das Verhältnis immer exakt 2:1
-  ist, und sagen für `complex128` korrekt `itemsize=8` für `.real` voraus (statt nur die
-  gegebenen Zahlen zu wiederholen).
-- [EREFQ::3] Studierende berufen sich auf die offizielle Dokumentation ("without initializing
-  entries") und erkennen, dass die Werte undefiniert sind, statt zu vermuten, es gäbe einen
-  Fehler oder Zufallszahlen würden gezielt erzeugt.
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-array.md]
 

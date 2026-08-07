@@ -327,21 +327,6 @@ leicht verrauschtem `b` über die Vertrauenswürdigkeit der berechneten Lösung 
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::1]: alle drei Zerlegungen (LU, QR, Cholesky) wurden tatsächlich durch Rückmultiplikation
-  verifiziert (`np.allclose` oder gleichwertig), und die Orthogonalität von Q wurde geprüft
-  (`Q.T @ Q` ≈ Einheitsmatrix), nicht nur behauptet
-- [EREFR::2]: für jedes der drei Systeme wurde der zur Struktur passende Solver verwendet
-  (`solve` für das allgemeine System, `solve_triangular` für das Dreieckssystem, `cho_factor`/
-  `cho_solve` für das symmetrische positiv definite System), nicht überall derselbe
-- [EREFR::3]: die Zerlegung wurde für jedes System nur einmal mit `lu_factor()` berechnet und beim
-  zweiten Lösen (nach der Störung von `b`) wiederverwendet, nicht erneut aufgerufen
-- [EREFR::3] + [EREFQ::1]: Studierende erkennen, dass die Konditionszahl bereits vor dem Lösen
-  anzeigt, wie empfindlich ein System auf Störungen reagiert, und dass `lu_solve()` bei einem
-  schlecht konditionierten System trotzdem anstandslos (ohne Fehler) eine unzuverlässige Lösung
-  zurückgibt
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-linalg.md]
 

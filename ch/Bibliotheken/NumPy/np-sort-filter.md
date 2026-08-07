@@ -513,25 +513,6 @@ k kleinsten Elemente benötigen, nicht aber das gesamte Array in sortierter Reih
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::2]: die Reihenfolge in `keys` stimmt, die Ausgabe beginnt also mit Keyboard, Headset,
-  Laptop.
-  Bei vertauschten `keys` entsteht eine nach Preis sortierte Liste, die mit Mouse beginnt und
-  ebenfalls plausibel aussieht
-- [EREFR::3] mit [EREFQ::2]: in der Rechenregel für den flachen Index steht die Anzahl der
-  **Spalten**; wer die Anzahl der Zeilen einsetzt, erhält am nicht-quadratischen 4×5-Array falsche
-  Werte und hat damit auch die Frage nach der Formangabe verfehlt.
-  Die dritte Position (Zeile 3, Spalte 1, flacher Index 16) ist als Probe unverzichtbar: die beiden
-  Positionen des globalen Maximums und Minimums sind Vielfache voneinander und lassen deshalb auch
-  falsche Regeln wie `zeile * 3 + spalte * 2` zu.
-  Im Skript muss die Vorhersage aus der Regel berechnet und erst danach mit `np.unravel_index`
-  gegengeprüft sein
-- [EREFR::4]: der Kommentar zum Rückgabewert von `np.nonzero` paart die beiden Arrays des Tupels
-  achsenweise und positionsweise, benennt also die Fundstellen (0,1), (1,0), (1,2) und (2,1).
-  Wer die beiden Arrays als voneinander unabhängige Zeilen- und Spaltenmengen liest, landet auch
-  auf Positionen wie (0,0), an denen eine Null steht, und hat den Rückgabewert nicht verstanden
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-sort-filter.md]
 

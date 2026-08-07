@@ -665,20 +665,6 @@ Die Referenzseiten dazu sind
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFQ::1]: die Antwort nennt einen sachlichen Grund für die spezialisierte Funktion, etwa
-  Lesbarkeit der Absicht oder Fehlervermeidung durch den fehlenden `k`-Parameter; "eye kann
-  mehr" allein ist keine Antwort auf die gestellte Frage
-- [EREFR::3]: der Kommentar zu den komplexen Vektoren benennt `vdot` als das abweichende
-  Ergebnis und begründet das mit der Konjugation des ersten Vektors, nicht des zweiten
-- [EREFR::7]: der Kommentar zum Rang der singulären Matrix führt den Rang 1 auf die
-  voneinander abhängigen Zeilen zurück und verbindet ihn mit der Determinante 0 und dem
-  gescheiterten Invertieren; wer nur "die Matrix ist singulär" wiederholt, hat den
-  Zusammenhang nicht hergestellt.
-  Außerdem verwendet die SVD-Rekonstruktion von `test_matrix` `full_matrices=False` und
-  `np.diag` und stimmt laut `np.allclose` mit dem Original überein
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-linalg.md]
 

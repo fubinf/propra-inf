@@ -383,21 +383,6 @@ auch im Template (`{% url %}`) zur Verfügung zu haben?
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::1]: `views.py`/`urls.py` enthalten nach dem Aufräumen keine der sieben
-  Demo-Funktionen aus [PARTREF::django-view] und deren Importe/Routen mehr; das ist
-  Voraussetzung für [PARTREF::django-form].
-- [EREFR::6] + [EREFR::7]: `students_list` lädt echte `Student`-Objekte aus der Datenbank
-  (`.objects.all()`), nicht erfundene Testdaten; `students_list.html` wendet die drei
-  Filter korrekt auf die passenden Felder an.
-- [EREFR::14] + [EREFR::15] + [EREFQ::8]: Sowohl die Navigation (`{% url 'hello' %}`/
-  `{% url 'students_list' %}`) als auch der Link je Studierendem
-  (`{% url 'student_detail' student.id %}` mit `student.id` als Argument) verwenden
-  `{% url %}` statt fest codierter Pfade; Student erkennt, dass `{% url %}` und `reverse()`
-  dieselbe namensbasierte Auflösung sind, sodass eine Routenänderung an beiden Stellen
-  automatisch greift.
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-template.md]
 

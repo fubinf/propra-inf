@@ -273,17 +273,6 @@ allein an `sol.t`/`sol.y` erkennen (ohne die analytische Lösung zu kennen)?
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::1] + [EREFQ::1]: `error3 ≈ 1.85e-09` ist rund 8 Zehnerpotenzen kleiner als
-  `result3 ≈ 0.5`; Studierende erkennen, dass man den relativen Fehler betrachten muss, nicht
-  dessen absoluten Wert allein
-- [EREFR::2] + [EREFQ::2]: Studierende erkennen, dass `args` es erlaubt, dieselbe Funktion mit
-  wechselnden Parametern (z. B. `k`) aufzurufen, ohne die Funktion selbst neu zu definieren
-- [EREFR::3] + [EREFQ::3]: Studierende erkennen, dass `sol.success=False` und ein `sol.t[-1]`
-  deutlich vor dem angeforderten Endzeitpunkt auf einen vorzeitigen Abbruch hindeuten (z. B. bei
-  divergierenden Lösungen), auch ohne die analytische Lösung zu kennen
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-integrate.md]
 

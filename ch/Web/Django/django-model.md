@@ -381,17 +381,6 @@ angelegten? Woran könnten Sie das in der Datenbank überprüfen?
 
 
 [INSTRUCTOR::Kontrollergebnisse]
-**Knackpunkte:**
-
-- [EREFR::2] + [EREFQ::2]: Nach Ergänzen von `__str__()` zeigt die Shell den Namen statt
-  `Student object (1)`; Student erkennt, dass dafür keine Migration nötig war, weil
-  `__str__()` kein Datenbankfeld ist, sondern nur die Python-seitige Darstellung betrifft.
-- [EREFQ::8]: Student erkennt, dass ein über die Admin-Oberfläche angelegter Datensatz
-  sich in nichts von einem über die Shell angelegten unterscheidet (gleiche Tabelle,
-  gleiche Struktur), und kann dies z. B. mit `filter()`/`get()` in der Shell überprüfen.
-- [EREFQ::4]: Student erkennt, dass `get()` bei keinem oder mehreren Treffern einen Fehler
-  auslöst (eindeutiges Einzelobjekt erwartet), während `filter()` immer ein (ggf. leeres)
-  QuerySet zurückgibt.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-model.md]

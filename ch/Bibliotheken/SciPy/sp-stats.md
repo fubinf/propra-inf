@@ -217,21 +217,6 @@ Nennen Sie zwei konkrete Prüfschritte.
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::1] + [EREFQ::1]: Studierende erkennen, dass diskrete Verteilungen abzählbare Ergebnisse
-  mit positiver Einzelwahrscheinlichkeit haben (daher `pmf`), während bei kontinuierlichen
-  Verteilungen jeder Einzelpunkt Wahrscheinlichkeit 0 hat und nur die Dichte (`pdf`) definiert ist
-- [EREFR::2] + [EREFQ::2]: Gruppe A (M≈24.03) und Gruppe B (M≈26.64) unterscheiden sich im
-  Mittelwert deutlich sichtbar; `ttest_ind` liefert dazu einen extrem kleinen p-Wert
-  (p≈4·10⁻⁸) — Studierende erkennen, dass erst der p-Wert eine Aussage über die statistische
-  Absicherung des sichtbaren Unterschieds liefert, der reine Mittelwertvergleich das nicht kann
-- [EREFR::3] + [EREFQ::3]: `pearsonr` prüft selbst keine Voraussetzungen und liefert klaglos ein
-  Ergebnis; Studierende nennen mindestens zwei eigene Prüfschritte (Daten/Streudiagramm ansehen
-  wegen möglicher nicht-linearer Zusammenhänge, auf Ausreißer prüfen) und erkennen, dass der
-  Funktionsaufruf allein nicht ausreicht — diese Prüfung müssen sie selbst ergänzen, bevor sie
-  `r`/`p` als Ergebnis akzeptieren
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-stats.md]
 

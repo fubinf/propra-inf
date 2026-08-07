@@ -322,22 +322,6 @@ Warum ist für die Registrierung POST die richtige Methode und nicht GET?
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFC::2] + [EREFQ::4]: Sowohl der `curl`-Aufruf ohne Token als auch das eigene Formular
-  ohne `{% csrf_token %}` werden mit Statuscode 403 abgewiesen; Student erkennt, dass die
-  Abweisung von Djangos `CsrfViewMiddleware` kommt, unabhängig davon, was im Template steht,
-  und dass `{% csrf_token %}` umgekehrt dafür sorgt, dass legitime Formulare gerade nicht
-  abgewiesen werden.
-- [EREFQ::6]: Nach Entfernen von `required` legt das Formular trotz leerem Namensfeld einen
-  `Student` mit leerem `name` an; Student erkennt, dass `required` reine Browser-Prüfung ist
-  und die View selbst überhaupt nichts validiert.
-- [EREFR::7] + [EREFQ::7]: Die `register`-View legt bei POST per `Student.objects.create()`
-  einen Datensatz an und leitet mit `redirect(reverse("student_detail", args=[student.id]))`
-  auf dessen Detailseite weiter; Student erkennt am zusätzlichen Aufruf von `/students/`, dass
-  der neue Studierende dort tatsächlich in der Datenbank steht (nicht nur zurückgespiegelt
-  wurde).
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-form.md]
 

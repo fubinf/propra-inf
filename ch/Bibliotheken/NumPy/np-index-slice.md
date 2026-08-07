@@ -480,21 +480,6 @@ aus [EREFQ::1], sondern ein nulldimensionales Array, in das sich hineinschreiben
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFQ::4]: Beide Anzahlen sind auf ihren Mechanismus zurückgeführt (vier Indexpaare gegen
-  4 · 4 Kombinationen), nicht nur als Beobachtung wiedergegeben; die Rückgabe von `np.ix_`
-  (Formen `(4, 1)` und `(1, 4)`) ist als Ursache erkannt
-- [EREFR::8]: Beide Auswahlen umfassen vier Elemente und sind beide vor der ersten Änderung
-  getroffen.
-  Wird die Maske erst nach der Änderung an der Slicing-View berechnet, enthält sie nur noch drei
-  Elemente; das Ergebnis der Aufgabe stimmt dann zwar noch, die Demonstration trägt aber nicht mehr
-- [EREFQ::7]: Die Ausgabe nach den zwei aufeinanderfolgenden Zugriffen zeigt ein unverändertes
-  `data` und keine Fehlermeldung, und die Antwort führt das auf die Kopie des ersten Zugriffs
-  zurück; als Erkennungsmerkmal genügt, dass der erste Zugriff ein Index-Array oder eine
-  Boolean-Maske verwendet.
-  Wer dort bereits -1 ausgibt, hat den Schritt nicht wie verlangt ausgeführt
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-index-slice.md]
 

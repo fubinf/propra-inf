@@ -451,23 +451,6 @@ und welche beiden Arrays dort miteinander in Konflikt stehen.
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFQ::1] Alle drei Kompatibilitätsurteile sind korrekt, insbesondere
-  gilt `(7, 3)` mit `(7,)` als inkompatibel; wer hier "kompatibel"
-  antwortet, hat die Ausrichtung an der rechten Achse nicht verstanden.
-  Die Begründung bezieht sich auf den tatsächlichen Dimensionsvergleich
-  von rechts nach links, nicht nur auf ein geratenes Ja/Nein, und die
-  beiden Fehlermeldungen sind übernommen, also tatsächlich erzeugt worden.
-- [EREFR::1] Die resultierenden Formen und Werte aller Broadcasting-Operationen sind korrekt
-  (insbesondere `row_vec * col_vec`, das zwei 1D/2D-Arrays zu einer vollen `(3, 4)`-Matrix
-  broadcastet, sowie die 3D-Kombination `(2, 1, 4)` mit `(3, 4)` zu `(2, 3, 4)`).
-- [EREFR::2] Die Normalisierung nutzt tatsächlich Broadcasting (nicht z.B.
-  eine Schleife über die Spalten) und funktioniert für `axis=0` **und**
-  `axis=1`; alle normalisierten Werte liegen korrekt zwischen 0 und 1.
-  Eine Lösung ohne `keepdims` fällt hier auf, weil sie zwar für `axis=0` das richtige
-  Ergebnis liefert, für `axis=1` aber mit einem Broadcasting-Fehler abbricht.
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-array2.md]
 

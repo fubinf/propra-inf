@@ -278,18 +278,6 @@ Für die Fehlerberechnung auf dem feinen Gitter bietet sich folgendes Muster an:
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-**Knackpunkte:**
-
-- [EREFR::3]: Die Datenpunkte werden korrekt mit `reshape(-1, 1)` in ein 2D-Array gebracht (sowohl
-  beim Erstellen als auch beim Auswerten); ohne diese Umformung läuft der Code nicht.
-- [EREFQ::3]: Studierende erkennen, dass die 2D-Form `(n_punkte, n_dimensionen)` mehrdimensionale
-  Koordinaten erlaubt — RBF ist nicht auf eine Eingabedimension beschränkt.
-- [EREFR::4] + [EREFQ::4]: Der maximale Fehler ist bei der linearen Interpolation am größten,
-  `CubicSpline`/`make_splrep` sind am genauesten; die Begründung nennt, dass die lineare
-  Interpolation die Krümmung zwischen den Stützstellen nicht nachbildet. Studierende erkennen
-  zudem, dass `CubicSpline` und `make_splrep` (mit `s=0`) (nahezu) identisch sind, weil beide
-  einen kubischen interpolierenden Spline berechnen.
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-interpolate.md]
 

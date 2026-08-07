@@ -110,11 +110,10 @@ Django-basierte Webseite ("View").
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
-**Knackpunkte:**
 
-- [EREFC::1]: Django wurde innerhalb eines venv installiert, nicht systemweit.
-- [EREFC::3]/[EREFC::4]/[EREFC::5]: Migrationswarnung beim ersten Start vorhanden; nach `migrate` beim zweiten Start keine Warnung mehr.
-- [EREFQ::1]: Überschrift „The install worked successfully! Congratulations!“ korrekt angegeben.
+Zu prüfen: Django wurde innerhalb eines venv installiert, nicht systemweit ([EREFC::1]);
+die Migrationswarnung ist beim ersten Start vorhanden und nach `migrate` beim zweiten Start
+nicht mehr ([EREFC::3]/[EREFC::4]/[EREFC::5]).
 
 ### Kommandoprotokoll
 [PROT::ALT:django-basics.prot]

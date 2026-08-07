@@ -246,18 +246,6 @@ Warum reicht hier die Ordnerstruktur allein aus?
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
-**Knackpunkte:**
-
-- [EREFR::1] + [EREFQ::1]: `'webapp'` ist in `INSTALLED_APPS` eingetragen; Student erkennt, dass
-  `startapp` und die `INSTALLED_APPS`-Eintragung zwei unabhängige Schritte sind (Dateien anlegen
-  vs. Django mitteilen, dass die App installiert ist), weshalb ein vergessener Eintrag nicht zu
-  einem Fehler führt.
-- [EREFR::3]: Die App-`urls.py` importiert `views` und enthält
-  `path("", views.hello, name="hello")`; die Projekt-`urls.py` bindet sie mit
-  `path("", include("webapp.urls"))` ein (`include` importiert).
-- [EREFQ::3]: Student erkennt, dass die `admin/`-Route bereits im von `startproject` erzeugten
-  Boilerplate-Code der `urls.py` steht (`path('admin/', admin.site.urls)`), nicht automatisch
-  durch den `INSTALLED_APPS`-Eintrag entsteht.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-project.md]
