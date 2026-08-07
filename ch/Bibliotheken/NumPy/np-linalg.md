@@ -17,8 +17,8 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, np-math, py-Fstrin
 
 [SECTION::background::default]
 
-NumPy bietet umfangreiche Funktionalitäten für Matrixoperationen und lineare
-Algebra-Berechnungen.
+NumPy bietet umfangreiche Funktionalitäten für Matrixoperationen und Berechnungen der
+linearen Algebra.
 Wer etwa eine Ausgleichsgerade durch Messpunkte legt, ein Bild dreht oder skaliert, oder in
 einem neuronalen Netz eine Schicht auswertet, rechnet in allen drei Fällen dasselbe: ein
 Matrix-Vektor-Produkt bzw. ein Gleichungssystem.
@@ -32,26 +32,21 @@ letztlich `numpy.linalg`.
 ### Vorwissen
 
 Diese Aufgabe lehrt nicht die lineare Algebra selbst, sondern wie man sie mit NumPy rechnet.
-Vorausgesetzt wird deshalb, was eine Matrix ist und was Transposition, Matrixmultiplikation,
-Determinante, Inverse und das
-[Skalarprodukt](https://de.wikipedia.org/wiki/Skalarprodukt) (auch Punktprodukt genannt)
-zweier Vektoren bedeuten.
+Vorausgesetzt wird deshalb, was Matrix, Transposition, Matrixmultiplikation, Determinante,
+Inverse und Skalarprodukt (auch Punktprodukt genannt) bedeuten, für die zweite Hälfte
+zusätzlich Eigenwert, Matrixnorm, Konditionszahl und Singulärwertzerlegung.
+Sie müssen davon nichts von Hand rechnen können, aber ohne zu wissen, was die Begriffe
+aussagen, können Sie Ihre eigenen Ergebnisse nicht beurteilen.
+Falls Ihnen etwas davon fehlt, arbeiten Sie zuerst die folgenden Quellen durch:
 
-Die zweite Hälfte der Aufgabe benutzt vier Begriffe, die in einer Anfängervorlesung oft noch
-nicht vorkommen.
-Sie müssen diese nicht von Hand rechnen können, aber Sie müssen wissen, was sie aussagen,
-sonst können Sie Ihre eigenen Ergebnisse nicht beurteilen.
-Lesen Sie dazu jeweils so weit, dass Sie die genannte Frage beantworten können:
+- [Skalarprodukt (Wikipedia)](https://de.wikipedia.org/wiki/Skalarprodukt)
+- [Eigenwertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Eigenwertproblem)
+- [Matrixnorm (Wikipedia)](https://de.wikipedia.org/wiki/Matrixnorm)
+- [Kondition (Mathematik, Wikipedia)](https://de.wikipedia.org/wiki/Kondition_(Mathematik))
+- [Singulärwertzerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Singulärwertzerlegung)
 
-- [Eigenwertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Eigenwertproblem):
-  Was macht einen Vektor zu einem Eigenvektor einer Matrix?
-- [Matrixnorm (Wikipedia)](https://de.wikipedia.org/wiki/Matrixnorm):
-  Wozu misst man die "Größe" einer Matrix, und warum gibt es dafür mehrere Normen?
-- [Kondition (Mathematik, Wikipedia)](https://de.wikipedia.org/wiki/Kondition_(Mathematik)):
-  Wie hängt die Konditionszahl damit zusammen, wie vielen Stellen eines Ergebnisses man noch
-  trauen darf?
-- [Singulärwertzerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Singulärwertzerlegung):
-  Was sagen die Singulärwerte über die Matrix aus, die zerlegt wurde?
+Die Zeitschätzungen der Abschnitte setzen dieses Vorwissen voraus; wer es sich erst parallel
+aneignet, braucht entsprechend länger.
 
 ### Matrizen und Transposition: `transpose` und `.T`
 
@@ -214,7 +209,9 @@ print(result_at)
 
 Bei zwei zweidimensionalen Matrizen sind alle drei Schreibweisen gleichwertig, wie oben zu
 sehen.
-Bei allen anderen Formen sind sie es nicht:
+Dasselbe gilt für zwei Vektoren und für gemischte Formen wie Matrix mal Vektor.
+Unterschiede gibt es nur in zwei Fällen: bei Skalaren und dann, wenn beide Operanden mehr als
+zwei Dimensionen haben.
 
 ```python
 # np.dot verrechnet auch Skalare, np.matmul verlangt mindestens eindimensionale Operanden
@@ -230,8 +227,9 @@ print('\nForm von np.dot(stapel, stapel):   ', np.dot(stapel, stapel).shape)
 print('Form von np.matmul(stapel, stapel):', np.matmul(stapel, stapel).shape)
 ```
 
-`matmul` behandelt die beiden vorderen Dimensionen als Stapel und multipliziert die
-2×2-Matrizen paarweise, das Ergebnis hat wieder die Form `(2, 2, 2)`.
+`matmul` behandelt alles vor den letzten beiden Dimensionen als Stapel, hier also die
+vorderste Dimension, und multipliziert die 2×2-Matrizen paarweise; das Ergebnis hat wieder
+die Form `(2, 2, 2)`.
 `dot` dagegen kombiniert jede Matrix des einen Stapels mit jeder des anderen und liefert die
 Form `(2, 2, 2, 2)`.
 Für Matrixmultiplikation ist deshalb `matmul` bzw. `@` die richtige Wahl; `dot` ist die
@@ -246,7 +244,8 @@ numpy.inner(a, b)   # inneres Produkt
 
 - `a`, `b`: die zu verrechnenden Vektoren; `vdot` konjugiert bei komplexen Zahlen den
   ersten Vektor vor der Multiplikation (bei reellen Zahlen identisch zu `dot`), `inner`
-  ist die Verallgemeinerung des Punktprodukts auf höherdimensionale Arrays
+  summiert das Produkt über die jeweils letzte Achse beider Arrays und ist bei Vektoren
+  identisch zu `dot`
 
 ```python
 # Vektoren
@@ -263,7 +262,7 @@ print('vdot Ergebnis:', vdot_result)
 
 # Inneres Produkt
 inner_result = np.inner(v1, v2)
-print('Inner Produkt:', inner_result)
+print('Inneres Produkt:', inner_result)
 
 # Bei reellen Vektoren liefern alle drei dasselbe.
 # Der Unterschied zeigt sich erst bei komplexen Zahlen (Schreibweise: 2j ist die imaginäre
@@ -291,8 +290,10 @@ Die Referenzseiten dazu sind
 - Erstellen Sie zwei Vektoren `v1` mit den Werten `[3, 9, 2, 11]` und `v2` mit den Werten
   `[7, 1, 10, 4]` und berechnen Sie deren Produkt mit `dot`, `vdot` und `inner`
 - Verifizieren Sie, dass A × B ≠ B × A (Matrixmultiplikation ist nicht kommutativ)
-- Bilden Sie mit `np.array([A, B])` einen Stapel `stapel` der Form `(2, 3, 3)` und geben Sie
-  die Formen von `np.dot(stapel, stapel)` und `np.matmul(stapel, stapel)` aus
+- Bilden Sie mit `np.array([A, B])` einen Stapel `stapel` der Form `(2, 3, 3)`, geben Sie die
+  Formen von `np.dot(stapel, stapel)` und `np.matmul(stapel, stapel)` aus und halten Sie in
+  einem Kommentar fest, welche der beiden Formen zu einer paarweisen Matrixmultiplikation
+  gehört und woran Sie das an der Form erkennen
 - Erstellen Sie die komplexen Vektoren `c1` mit den Werten `[2+1j, 4-3j]` und `c2` mit den
   Werten `[1+1j, 5+2j]`, berechnen Sie `dot`, `vdot` und `inner` und halten Sie in einem
   Kommentar fest, welches der drei Ergebnisse abweicht und warum
@@ -329,7 +330,7 @@ print('\n3×3 Matrix:')
 print(matrix_3x3)
 print('Determinante:', det_3x3)
 
-# Spezialfall: Singulare Matrix (Determinante = 0)
+# Spezialfall: Singuläre Matrix (Determinante = 0)
 singular = np.array([[1, 2],
                      [2, 4]])  # Zweite Zeile ist Vielfache der ersten
 det_singular = np.linalg.det(singular)
@@ -354,9 +355,9 @@ Die Referenzseite dazu ist
 
 [HINT::Lange Nachkommastellen bei der Ausgabe]
 NumPy-Berechnungen liefern manchmal Werte wie `0.9999999999999964` statt `1.0` — das liegt
-an der begrenzten Genauigkeit von Fließkommazahlen, nicht an einem Fehler. Mit einer
-f-String-Formatierung wie `f'{wert:.3f}'` (in [PARTREF::py-Fstrings]) lässt sich die
-Ausgabe auf sinnvolle Nachkommastellen begrenzen.
+an der begrenzten Genauigkeit von Fließkommazahlen, nicht an einem Fehler.
+Mit einer f-String-Formatierung wie `f'{wert:.3f}'` (in [PARTREF::py-Fstrings]) lässt sich
+die Ausgabe auf sinnvolle Nachkommastellen begrenzen.
 [ENDHINT]
 
 <!-- time estimate: 15 min -->
@@ -409,7 +410,8 @@ cond_ill = np.linalg.cond(ill_conditioned)
 print('Konditionszahl (schlecht konditioniert):', cond_ill)  # ≈ 40002
 ```
 
-Eine Konditionszahl nahe 1 bedeutet gutartiges Verhalten.
+Eine Konditionszahl nahe 1 bedeutet, dass sich Eingabe- und Rundungsfehler im Ergebnis kaum
+verstärken.
 Bei den 40002 aus dem zweiten Beispiel dagegen kann sich ein Fehler in den Eingabedaten im
 Ergebnis um das Vierzigtausendfache verstärken, und Rundungsfehler entstehen in
 Fließkommarechnung immer.
@@ -483,8 +485,10 @@ Die Referenzseite dazu ist
 
 [ER] Lösen Sie verschiedene lineare Gleichungssysteme:
 
-- Lösen Sie das 2×2 System `5x + 2y = 19`, `3x + 4y = 17` mit NumPy
-- Lösen Sie das 3×3 System `2x + y - z = 1`, `x + 3y + z = 10`, `x - y + 2z = 5`
+- Lösen Sie das 2×2 System `5x + 2y = 19`, `3x + 4y = 17` mit NumPy; nennen Sie
+  Koeffizientenmatrix und rechte Seite `A_2x2` und `b_2x2`
+- Lösen Sie das 3×3 System `2x + y - z = 1`, `x + 3y + z = 10`, `x - y + 2z = 5` mit
+  `A_3x3` und `b_3x3`
 - Machen Sie für beide Systeme die Probe, indem Sie die Koeffizientenmatrix mit der
   gefundenen Lösung multiplizieren und das Ergebnis mit `np.allclose` gegen die rechte Seite
   vergleichen
@@ -493,7 +497,7 @@ Die Referenzseite dazu ist
 
 <!-- time estimate: 15 min -->
 
-### Erweiterte lineare Algebra-Operationen: `matrix_rank`, `eig`, `norm`, `svd`
+### Weitere Operationen der linearen Algebra: `matrix_rank`, `eig`, `eigh`, `norm`, `svd`
 
 NumPy bietet weitere nützliche Funktionen für die lineare Algebra:
 
@@ -540,7 +544,7 @@ print(eigenvectors)
 Die Eigenwerte werden als `[13.08576474+0.j  2.58000566+0.j -2.66577041+0.j]` ausgegeben:
 `eig` liefert grundsätzlich komplexe Zahlen, weil eine beliebige quadratische Matrix
 komplexe Eigenwerte haben kann.
-Der Anhang `+0.j` bedeutet also nur "Imaginärteil null", der Wert ist reell.
+Der Zusatz `+0.j` bedeutet also nur "Imaginärteil null", der Wert ist reell.
 
 Für symmetrische Matrizen (`a` ist gleich `a.T`) gibt es `eigh`.
 Diese Funktion nutzt die Symmetrie aus, liefert reelle statt komplexer Werte und gibt die
@@ -626,8 +630,12 @@ Die Referenzseiten dazu sind
 [ER] Experimentieren Sie mit erweiterten Operationen:
 
 - Erstellen Sie eine symmetrische 3×3-Matrix `symmetric_matrix` (als `float`) mit den Werten
-  `[[6, 2, 5], [2, 4, 1], [5, 1, 9]]` und berechnen Sie ihren Rang sowie mit `eigh` ihre
-  Eigenwerte und Eigenvektoren
+  `[[6, 2, 5], [2, 4, 1], [5, 1, 9]]` und berechnen Sie ihren Rang sowie ihre Eigenwerte und
+  Eigenvektoren einmal mit `eigh` und einmal mit `eig`; halten Sie in einem Kommentar fest,
+  worin sich die beiden Eigenwertausgaben unterscheiden
+- Bestimmen Sie außerdem den Rang der singulären Matrix `singular` aus [EREFR::5] und halten
+  Sie in einem Kommentar fest, wie ihr Rang mit ihrer Determinante und dem gescheiterten
+  Invertieren zusammenhängt
 - Erstellen Sie eine nicht-quadratische 2×3-Matrix `test_matrix` (als `float`) mit den Werten
   `[[3, 8, 1], [6, 2, 9]]`, zerlegen Sie sie mit `svd` und `full_matrices=False`,
   rekonstruieren Sie sie aus den drei Faktoren und prüfen Sie das Ergebnis mit `np.allclose`
@@ -664,7 +672,11 @@ Die Referenzseiten dazu sind
   mehr" allein ist keine Antwort auf die gestellte Frage
 - [EREFR::3]: der Kommentar zu den komplexen Vektoren benennt `vdot` als das abweichende
   Ergebnis und begründet das mit der Konjugation des ersten Vektors, nicht des zweiten
-- [EREFR::7]: die SVD-Rekonstruktion von `test_matrix` verwendet `full_matrices=False` und
+- [EREFR::7]: der Kommentar zum Rang der singulären Matrix führt den Rang 1 auf die
+  voneinander abhängigen Zeilen zurück und verbindet ihn mit der Determinante 0 und dem
+  gescheiterten Invertieren; wer nur "die Matrix ist singulär" wiederholt, hat den
+  Zusammenhang nicht hergestellt.
+  Außerdem verwendet die SVD-Rekonstruktion von `test_matrix` `full_matrices=False` und
   `np.diag` und stimmt laut `np.allclose` mit dem Original überein
 
 ### Fragen und Python-Dateien
