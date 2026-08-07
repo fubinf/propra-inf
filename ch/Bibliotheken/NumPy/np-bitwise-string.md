@@ -488,27 +488,14 @@ mask = np.strings.startswith(files, 'report')
 print(mask)  # [False  True  True]
 ```
 
-Um den Zeitunterschied zwischen zwei Operationen zu messen, bietet Pythons Standardbibliothek das
-`time`-Modul: `time.perf_counter()` gibt einen Zeitpunkt in Sekunden mit der höchsten verfügbaren
-Auflösung zurück und ist damit für kurze Laufzeiten gedacht (anders als `time.time()`, das die
-verstellbare Systemuhr abliest).
-Ruft man es vor und nach einer Operation auf, ergibt die Differenz die benötigte Laufzeit.
-Eine einzelne Messung schwankt allerdings stark, je nachdem was der Rechner sonst gerade tut;
-deshalb misst man mehrfach und nimmt die kürzeste Zeit, denn sie ist am wenigsten gestört.
-Mit der in [PARTREF::py-Fstrings] eingeführten f-String-Formatierung mit Präzisionsangabe (`:.5f`)
-lässt sich die Ausgabe auf sinnvolle Nachkommastellen begrenzen:
+[INCLUDE::_include/Zeitmessung.md]
 
-```python
-import time
-
-zeiten = []
-for lauf in range(5):
-    start = time.perf_counter()
-    # ... Operation, deren Dauer gemessen werden soll ...
-    zeiten.append(time.perf_counter() - start)
-dauer = min(zeiten)
-print(f'Kürzeste Dauer: {dauer:.5f} Sekunden')
-```
+[FOLDOUT::Warum genau so gemessen wird]
+`time.perf_counter()` liefert die höchste verfügbare Auflösung und ist deshalb für kurze Laufzeiten
+gedacht; `time.time()` liest dagegen die verstellbare Systemuhr ab.
+Von mehreren Messungen ist die kürzeste die am wenigsten gestörte, denn fremde Last auf dem Rechner
+kann eine Messung nur verlängern, nicht verkürzen.
+[ENDFOLDOUT]
 
 [ER] Messen Sie den Geschwindigkeitsunterschied zwischen `np.strings.startswith` und einer
 Python-Schleife an einem größeren Array.
@@ -516,10 +503,8 @@ Die Schleife messen Sie dabei zweimal, einmal über das Array selbst und einmal 
 erzeugte Python-Liste.
 Zum Schluss messen Sie dasselbe für eine numerische Operation, damit Sie einen Maßstab haben, an dem
 Sie die String-Faktoren einordnen können.
-Legen Sie alle fünf Messungen in eine gemeinsame Schleife, sodass in jedem Durchlauf jede Operation
-einmal an die Reihe kommt, jede mit ihrer eigenen Zeitenliste.
-So treffen Schwankungen der Maschine alle Messungen gleichmäßig und die Faktoren bleiben
-untereinander vergleichbar:
+Legen Sie alle fünf Messungen wie oben gezeigt in eine gemeinsame Schleife, jede mit ihrer eigenen
+Zeitenliste; nur so bleiben die Faktoren untereinander vergleichbar:
 
 - Erstellen Sie ein Array `words` mit 100000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
   `'produkt99999'` (z. B. mit einer List Comprehension aus [PARTREF::py-List-Comprehensions] und

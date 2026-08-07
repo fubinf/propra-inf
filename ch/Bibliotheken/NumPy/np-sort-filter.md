@@ -458,39 +458,13 @@ nicht von `np.sort` unterscheidet.
 Ab welcher Länge der Unterschied auftritt, hängt vom internen Auswahlverfahren und von den Daten ab
 und ist nicht zugesichert.
 
-Um den Zeitunterschied zwischen zwei Operationen zu messen, bietet Pythons Standardbibliothek das
-`time`-Modul: `time.perf_counter()` gibt einen Zeitpunkt in Sekunden zurück, die Differenz zweier
-Aufrufe ergibt also die Laufzeit dazwischen.
-Eine einzelne Messung schwankt stark, deshalb misst man mehrfach und nimmt die kürzeste Zeit.
-Mit der in [PARTREF::py-Fstrings] eingeführten f-String-Formatierung mit Präzisionsangabe (`:.5f`)
-lässt sich die Ausgabe auf sinnvolle Nachkommastellen begrenzen:
-
-```python
-import time
-
-zeiten_a = []
-zeiten_b = []
-for lauf in range(5):
-    start = time.perf_counter()
-    # ... erste Operation ...
-    zeiten_a.append(time.perf_counter() - start)
-
-    start = time.perf_counter()
-    # ... zweite Operation ...
-    zeiten_b.append(time.perf_counter() - start)
-dauer_a = min(zeiten_a)
-dauer_b = min(zeiten_b)
-print(f'Kürzeste Dauer der ersten Operation: {dauer_a:.5f} Sekunden')
-print(f'Kürzeste Dauer der zweiten Operation: {dauer_b:.5f} Sekunden')
-```
+[INCLUDE::_include/Zeitmessung.md]
 
 [FOLDOUT::Warum genau so gemessen wird]
 `time.perf_counter()` liefert die höchste verfügbare Auflösung und ist deshalb für kurze Laufzeiten
 gedacht; `time.time()` liest dagegen die verstellbare Systemuhr ab.
 Von mehreren Messungen ist die kürzeste die am wenigsten gestörte, denn fremde Last auf dem Rechner
 kann eine Messung nur verlängern, nicht verkürzen.
-Beide verglichenen Operationen laufen in derselben Schleife mit je eigener Zeitenliste, damit
-Schwankungen der Maschine beide Messungen gleichmäßig treffen.
 [ENDFOLDOUT]
 
 [ER] Vergleichen Sie Partitionierung und vollständige Sortierung und messen Sie den Zeitunterschied
