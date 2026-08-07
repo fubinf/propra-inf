@@ -93,7 +93,7 @@ print('Sortiertes Array:', x[indices])  # [10 20 30]
 
 Bei einem 2D-Array liefert `np.argsort(a, axis=1)` für jede Zeile eigene Indizes.
 Einfaches Advanced Indexing (`arr[indices]`) rekonstruiert das sortierte Array daraus nicht,
-denn es liest die Indizes als Zeilenindizes und wählt damit ganze Zeilen aus.
+denn es liest die Indizes als Zeilenindizes, statt sie zeilenweise auf die Spalten anzuwenden.
 Gebraucht wird stattdessen `np.take_along_axis`, das entlang einer Achse für jede Zeile
 (bzw. Spalte) die dort passenden Indizes anwendet:
 
@@ -162,7 +162,6 @@ namen = np.array(['Alice', 'Bob', 'Charlie', 'Diana'])
 gesamtpunkte = np.array([85, 92, 85, 88])
 mathepunkte = np.array([90, 85, 95, 82])
 
-# lexsort sortiert nach dem letzten Array zuerst, dann nach dem vorletzten
 # Hier: erst aufsteigend nach Gesamtpunkten, dann aufsteigend nach Mathepunkten
 indices = np.lexsort((mathepunkte, gesamtpunkte))
 
@@ -199,7 +198,7 @@ for i in indices_desc:
 ```
 
 Diese Technik setzt Zahlen voraus.
-Stringarrays lassen sich nicht negieren; mit `np.lexsort` sind sie deshalb nur aufsteigend
+Stringarrays lassen sich nicht negieren; auf diesem Weg sind sie deshalb nur aufsteigend
 sortierbar.
 
 [ER] Implementieren Sie eine lexikographische Sortierung:
@@ -404,8 +403,8 @@ wenn jedes Element des Boolean-Arrays `bedingung` `True` ist.
 ```python
 import numpy as np
 
-# 100 absteigende Werte: 100, 99, ..., 2, 1
-arr = np.arange(100, 0, -1)
+# 1000 absteigende Werte: 1000, 999, ..., 2, 1
+arr = np.arange(1000, 0, -1)
 
 # Partitionierung: 3. kleinstes Element an Index 2
 partitioned = np.partition(arr, 2)
@@ -418,7 +417,7 @@ print('Partitioniert = sortiert?', np.array_equal(partitioned, np.sort(arr)))  #
 
 # Innerhalb der Gruppen herrscht keine Ordnung, wie ein Ausschnitt aus der Mitte zeigt
 # (welche Werte dort stehen, ist nicht festgelegt)
-print('Ausschnitt ab Index 70:', partitioned[70:80])
+print('Ausschnitt ab Index 495:', partitioned[495:505])
 
 # argpartition liefert Indizes, die dieselbe Garantie erfüllen
 indices = np.argpartition(arr, 2)
@@ -429,8 +428,10 @@ multi_part = np.partition(arr, [2, 50])
 print('Elemente an Position 2 und 50:', multi_part[2], multi_part[50])  # 3 51
 ```
 
-Bei kurzen Arrays sortiert NumPy intern vollständig, sodass der Unterschied zu `np.sort` erst bei
-mehr als etwa 60 Elementen sichtbar wird.
+Bei kurzen Arrays sortiert NumPy intern ohnehin vollständig durch, sodass sich das Ergebnis dort
+nicht von `np.sort` unterscheidet.
+Ab welcher Länge der Unterschied auftritt, hängt vom internen Suchverfahren und von den Daten ab
+und ist nicht zugesichert.
 
 Um den Zeitunterschied zwischen zwei Operationen zu messen, bietet Pythons Standardbibliothek das
 `time`-Modul: `time.perf_counter()` gibt einen Zeitpunkt in Sekunden zurück, die Differenz zweier
