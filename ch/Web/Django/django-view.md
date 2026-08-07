@@ -196,7 +196,7 @@ View in den beiden Fällen jeweils tun?
 
 Bisher ging es um die eingehende Seite, also den Request.
 Ebenso wichtig ist die ausgehende Seite: die Response, die jede View zurückgeben muss.
-Der einfachste Response-Typ ist `HttpResponse`, der direkt Text oder HTML zurückgibt.
+Der einfachste Response-Typ ist `HttpResponse`; er trägt Text oder HTML direkt als Inhalt.
 Eine View kann dabei je nach GET-Parameter unterschiedliche Responses erzeugen, nach folgendem
 Schema:
 
@@ -332,6 +332,7 @@ def eintrag_view(request, eintrag_id):
 den `Student` mit der übergebenen ID per `Student.objects.get()` (bekannt aus
 [PARTREF::django-model]) lädt und seine Daten im Format `<name>, <age> Jahre, <email>` als
 `HttpResponse` zurückgibt.
+Importieren Sie dafür `Student`.
 
 [ER] Fügen Sie in `urls.py` die passende Route mit `int`-Typkonverter hinzu: Pfad
 `students/<int:student_id>/`, Ziel `student_detail`, Name `student_detail`.
@@ -397,10 +398,10 @@ Stellen im Code oder in Templates von Hand nachgezogen werden muss.
 
 Da `reverse()` eine fertige URL liefert, lässt sie sich auch als Umleitungsziel von `redirect()`
 verwenden.
-Nötig ist das nicht: `redirect("student_detail", 1)` nimmt einem die Auflösung intern ab und
-liefert dieselbe Antwort.
-In der folgenden Übung steht `reverse()` trotzdem sichtbar davor, weil sich nur so beobachten
-lässt, welche URL es erzeugt.
+Nötig ist das nicht: `redirect("student_detail", 1)` erledigt die Auflösung intern und liefert
+dieselbe Antwort.
+In der folgenden Übung steht `reverse()` trotzdem sichtbar davor, damit der Schritt vom
+Routennamen zur URL im Code erkennbar bleibt.
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `student_redirect`, die mit `reverse()`
 die URL der Detailseite von Student `1` erzeugt und den Client per `redirect()` dorthin
