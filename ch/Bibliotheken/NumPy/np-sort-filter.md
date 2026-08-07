@@ -44,28 +44,28 @@ numpy.sort(a, axis=-1)
 import numpy as np
 
 # Einfaches 2D-Array
-arr = np.array([[3, 7], [9, 1]])
+arr = np.array([[30, 70], [90, 10]])
 print('Ursprüngliches Array:')
 print(arr)
-# [[3 7]
-#  [9 1]]
+# [[30 70]
+#  [90 10]]
 
 sorted_arr = np.sort(arr)
 print('Sortiert (entlang letzter Achse):')
 print(sorted_arr)
-# [[3 7]
-#  [1 9]]
+# [[30 70]
+#  [10 90]]
 
 # Sortierung entlang verschiedener Achsen
 print('Sortiert entlang Achse 0 (innerhalb jeder Spalte):')
 print(np.sort(arr, axis=0))
-# [[3 1]
-#  [9 7]]
+# [[30 10]
+#  [90 70]]
 
 print('Sortiert entlang Achse 1 (innerhalb jeder Zeile):')
 print(np.sort(arr, axis=1))
-# [[3 7]
-#  [1 9]]
+# [[30 70]
+#  [10 90]]
 ```
 
 Bei einem 2D-Array ist die letzte Achse genau Achse 1, der erste und der letzte Aufruf sind hier
@@ -128,8 +128,8 @@ print('Stimmt mit np.sort überein?', np.array_equal(rekonstruiert, np.sort(arr,
 - Verwenden Sie `np.argsort(werte, axis=1)`, um die zeilenweisen Sortierungsindizes in
   `zeilenindizes` zu erhalten, und geben Sie sie aus
 - Versuchen Sie zunächst, das sortierte Array mit `werte[zeilenindizes]` zu rekonstruieren, und
-  halten Sie in einem Kommentar fest, was dabei passiert; kommentieren Sie die Zeile danach aus,
-  damit das abgegebene Skript durchläuft
+  halten Sie in einem Kommentar fest, was dabei passiert.
+  Kommentieren Sie die Zeile danach aus, damit das abgegebene Skript durchläuft
 - Rekonstruieren Sie das zeilenweise sortierte Array mit `np.take_along_axis` und vergleichen Sie
   das Ergebnis mit `np.sort(werte, axis=1)`
 
@@ -201,7 +201,7 @@ for i in indices_desc:
 ```
 
 Diese Technik setzt Zahlen voraus.
-Stringarrays lassen sich nicht negieren; auf diesem Weg sind sie deshalb nur aufsteigend
+String-Arrays lassen sich nicht negieren; auf diesem Weg sind sie deshalb nur aufsteigend
 sortierbar.
 
 [ER] Sortieren Sie einen Datensatz lexikographisch nach zwei Kriterien:
@@ -293,9 +293,13 @@ print(f'Minimum {daten[zeile, spalte]} an flachem Index {flach_min} = Zeile {zei
   Index als auch mit `np.unravel_index` umgerechnet in Zeile/Spalte
 - Bestimmen Sie die Indizes der Maxima jeder Zeile und der Minima jeder Spalte
 - Verwenden Sie die Indizes, um die tatsächlichen Werte auszugeben
+- Aus den beiden Positionen des globalen Maximums und Minimums lässt sich eine Rechenregel
+  ablesen, die den flachen Index aus Zeile und Spalte bestimmt.
+  Sagen Sie mit dieser Regel den flachen Index des Maximums der letzten Zeile voraus, das bei
+  Zeile 3, Spalte 1 liegt, und prüfen Sie die Vorhersage mit `np.unravel_index` nach
 
 [HINT::Welche `axis` brauche ich für "pro Zeile"?]
-Die Beispielaufrufe oben zeigen die jeweils andere Richtung, als hier verlangt ist; wer die
+Die Beispielaufrufe oben zeigen jeweils die andere Richtung als die hier verlangte; wer die
 dortigen `axis`-Werte übernimmt, erhält das falsche Ergebnis.
 Machen Sie sich die Nummerierung der Achsen aus [PARTREF::np-array] an einem kleinen 2×3-Array
 klar.
@@ -303,15 +307,11 @@ Eine Reduktion entlang einer Achse lässt genau diese Achse verschwinden; an der
 Ergebnisses erkennen Sie deshalb, ob pro Zeile oder pro Spalte gesucht wurde.
 [ENDHINT]
 
-[EQ] In [EREFR::3] haben Sie für Maximum und Minimum jeweils den flachen Index und das von
-`np.unravel_index` gelieferte Paar aus Zeile und Spalte ausgegeben.
-Formulieren Sie anhand dieser beiden Beispiele eine Rechenregel, die den flachen Index aus Zeile
-und Spalte bestimmt.
-Die beiden Positionen liegen allerdings so, dass mehrere verschiedene Regeln zu ihnen passen.
-Prüfen Sie Ihre Regel deshalb an einem dritten Fall nach: Sagen Sie den flachen Index des Maximums
-der letzten Zeile voraus, das in [EREFR::3] bei Zeile 3, Spalte 1 liegt, und prüfen Sie die
-Vorhersage mit `np.unravel_index` nach.
-Welche Angabe über die Form des Arrays geht in die Regel ein?
+[EQ] In [EREFR::3] haben Sie aus den Positionen von Maximum und Minimum eine Rechenregel für den
+flachen Index abgeleitet und an einer dritten Position nachgeprüft.
+Geben Sie diese Regel an und nennen Sie die Angabe über die Form des Arrays, die in sie eingeht.
+Die beiden ersten Positionen liegen allerdings so, dass auch andere Regeln zu ihnen passen.
+Erklären Sie anhand Ihrer dritten Position, warum die Probe deshalb nötig war.
 
 <!-- time estimate: 25 min -->
 
@@ -364,14 +364,15 @@ Achse des Arrays.
 Für ein 1D-Array besteht das Tupel deshalb aus genau einem Array, das man mit `[0]` herausholt.
 
 Der Unterschied zur Boolean-Maske aus [PARTREF::np-index-slice] liegt darin, was man zurückbekommt:
-`np.nonzero` liefert die Positionen, an denen die Bedingung zutrifft, die Maske dagegen die Werte.
+`np.nonzero` liefert die Positionen, an denen die Bedingung zutrifft, die Auswahl über die Maske
+dagegen die Werte.
 Positionen braucht man immer dann, wenn dieselbe Auswahl noch auf ein zweites Array angewendet
 werden soll oder wenn die Fundstelle selbst die gesuchte Information ist — dieselbe Unterscheidung
 wie zwischen `np.sort` und `np.argsort`.
 
 `np.extract(condition, a)` ist bei einer Boolean-Bedingung dagegen nichts anderes als die
 Boolean-Maske `a[condition]`.
-Als eigene Funktion begegnet sie einem trotzdem in fremdem Code und in der NumPy-Dokumentation,
+Als eigene Funktion taucht sie trotzdem in fremdem Code und in der NumPy-Dokumentation auf,
 weshalb man sie wiedererkennen können sollte.
 `np.where(condition)` ohne `x` und `y` liefert dasselbe wie `np.nonzero(condition)`; die
 NumPy-Dokumentation empfiehlt für diesen Fall aber ausdrücklich `np.nonzero`.
@@ -518,12 +519,14 @@ k kleinsten Elemente benötigen, nicht aber das gesamte Array in sortierter Reih
   Laptop.
   Bei vertauschten `keys` entsteht eine nach Preis sortierte Liste, die mit Mouse beginnt und
   ebenfalls plausibel aussieht
-- [EREFQ::2]: in der Rechenregel für den flachen Index steht die Anzahl der **Spalten**; wer die
-  Anzahl der Zeilen einsetzt, erhält am nicht-quadratischen 4×5-Array falsche Werte und hat damit
-  auch die Frage nach der Formangabe verfehlt.
+- [EREFR::3] mit [EREFQ::2]: in der Rechenregel für den flachen Index steht die Anzahl der
+  **Spalten**; wer die Anzahl der Zeilen einsetzt, erhält am nicht-quadratischen 4×5-Array falsche
+  Werte und hat damit auch die Frage nach der Formangabe verfehlt.
   Die dritte Position (Zeile 3, Spalte 1, flacher Index 16) ist als Probe unverzichtbar: die beiden
-  Positionen aus [EREFR::3] sind Vielfache voneinander und lassen deshalb auch falsche Regeln wie
-  `zeile * 3 + spalte * 2` zu
+  Positionen des globalen Maximums und Minimums sind Vielfache voneinander und lassen deshalb auch
+  falsche Regeln wie `zeile * 3 + spalte * 2` zu.
+  Im Skript muss die Vorhersage aus der Regel berechnet und erst danach mit `np.unravel_index`
+  gegengeprüft sein
 - [EREFR::4]: der Kommentar zum Rückgabewert von `np.nonzero` paart die beiden Arrays des Tupels
   achsenweise und positionsweise, benennt also die Fundstellen (0,1), (1,0), (1,2) und (2,1).
   Wer die beiden Arrays als voneinander unabhängige Zeilen- und Spaltenmengen liest, landet auch
