@@ -72,9 +72,9 @@ NumPy wendet beim Broadcasting folgende Regeln an:
 1. **Ausrichtung**: Arrays werden von rechts nach links verglichen
 2. **Größenkompatibilität**: Dimensionen sind kompatibel, wenn:
 
-   - Sie identisch sind, ODER
-   - Eine davon ist 1, ODER
-   - Eine davon existiert nicht (wird als 1 behandelt)
+   - sie identisch sind, ODER
+   - eine davon 1 ist, ODER
+   - eine davon nicht existiert (sie wird dann als 1 behandelt)
 
 **Beispiele für Regelanwendung:**
 ```text
@@ -91,7 +91,7 @@ A: (3, 4)     +     B: (2,)      →  Fehler: 4 ≠ 2
 ```text
 # Array A: Form (4, 3)
 # Array B: Form (3,) wird zu (1, 3) erweitert
-# Vergleich: 4 mit 1 (OK), 3 mit 3 (OK) → kompatibel
+# Vergleich von rechts: 3 mit 3 (OK), 4 mit 1 (OK) → kompatibel
 ```
 
 [EQ] Analysieren Sie folgende Array-Kombinationen und
@@ -122,6 +122,59 @@ Probieren Sie anschließend alle drei Fälle selbst aus (etwa mit `np.ones(...)`
 - Geben Sie für jede Operation sowohl die resultierende Form als auch das Ergebnis-Array aus
 
 <!-- time estimate: 20 min -->
+
+### Multi-Array-Broadcasting
+
+NumPy kann auch mehrere Arrays gleichzeitig broadcasten:
+
+**Drei-Array-Broadcasting:**
+```python
+# Drei Arrays mit verschiedenen Formen
+a = np.zeros((3, 4), dtype=int)     # Form: (3, 4)
+b = np.array([1, 2, 3, 4])          # Form: (4,)
+c = np.array([[10], [20], [30]])    # Form: (3, 1)
+
+# Kombinierte Operation
+result = a + b + c                  # Broadcasting auf (3, 4)
+print(result)
+# [[11 12 13 14]
+#  [21 22 23 24]
+#  [31 32 33 34]]
+# Die Einerstelle stammt aus b (entlang der Zeilen wiederholt),
+# die Zehnerstelle aus c (entlang der Spalten wiederholt).
+```
+
+**Broadcasting-Analyse für komplexe Formen:**
+```text
+# Schritt-für-Schritt-Analyse:
+# A: (4, 1, 3)
+# B: (2, 3) → erweitert zu (1, 2, 3)
+# C: (4, 2, 1)
+#
+# Vergleich der Dimensionen (von rechts):
+# Dim 2: A=3, B=3, C=1 → OK (3 kompatibel mit 3 und 1)
+# Dim 1: A=1, B=2, C=2 → OK (1 kompatibel mit 2)
+# Dim 0: A=4, B=1, C=4 → OK (4 kompatibel mit 1 und 4)
+# Ergebnis: (4, 2, 3)
+```
+
+[EQ] Gegeben sind drei Arrays:
+
+- Array X: Form `(4, 1, 6)`
+- Array Y: Form `(3, 6)`
+- Array Z: Form `(4, 2, 1)`
+
+Bestimmen Sie die resultierende Form bei der Operation `X + Y + Z`
+oder erklären Sie, warum die Operation nicht möglich ist.
+Benennen Sie im Fehlerfall genau, welche Dimension betroffen ist
+und welche beiden Arrays dort miteinander in Konflikt stehen.
+
+Führen Sie die Operation anschließend mit `np.ones(...)` aus und übernehmen Sie die
+Ausgabe bzw. Fehlermeldung in Ihre Antwort.
+Falls NumPy einen Fehler meldet, nennt die Meldung eine Form, die in der Aufgabenstellung
+gar nicht vorkommt: Erklären Sie, woher diese Form stammt.
+
+<!-- time estimate: 10 min -->
 
 ### Broadcasting in der Praxis: Min-Max-Normalisierung
 
@@ -194,8 +247,9 @@ Elementweise Rechnungen erledigt man in NumPy allerdings normalerweise gar nicht
 Schleife, sondern vektorisiert (`a * 2` statt einer Schleife über alle Elemente): Das ist kürzer
 und deutlich schneller.
 `nditer` lohnt sich erst, wenn das nicht ausreicht, etwa weil man zu jedem Element seinen Index
-braucht, während des Durchlaufs in das Array schreiben will oder die Durchlaufreihenfolge selbst
-festlegen muss.
+braucht, während des Durchlaufs in das Array schreiben will, die Durchlaufreihenfolge selbst
+festlegen muss oder die Schleife nicht einzelne Werte, sondern größere Teil-Arrays liefern soll,
+auf die sich dann wieder vektorisiert rechnen lässt.
 Die folgenden Beispiele zeigen die dafür nötige Mechanik an jeweils möglichst einfachen Fällen.
 
 ```python
@@ -206,17 +260,17 @@ numpy.nditer(op, flags=None, op_flags=None, order='K')
 - `flags` (Standard `None`): Liste zusätzlicher Iterationsmodi
 - `op_flags` (Standard `None`, entspricht `['readonly']`): Liste von Zugriffsrechten auf die
   iterierten Elemente
-- `order` (Standard `'K'`): legt die Durchlaufreihenfolge
-  fest: `'C'` zeilenweise, `'F'` spaltenweise.
+- `order` (Standard `'K'`): legt die Durchlaufreihenfolge fest: `'C'` zeilenweise,
+  `'F'` spaltenweise.
   Bei normal erstellten Arrays verhält sich `'K'` wie `'C'`
 
 **Grundlegende Iteration:**
 ```python
 a = np.array([[10, 20, 30], [40, 50, 60]])
-print('Originales Array:')
+print("Originales Array:")
 print(a)
 
-print('Iteration über Elemente:')
+print("Iteration über Elemente:")
 for x in np.nditer(a):
     print(x, end=', ')
 ```
@@ -242,10 +296,9 @@ for x in np.nditer(a, order='F'):
   dieses Flag ist `nditer` nur lesend, ein Zuweisungsversuch würde einen Fehler auslösen).
   Dabei reicht ein Ausdruck wie `x = 2 * x` nicht aus; er bindet nur den Namen `x` innerhalb
   der Schleife neu an ein frisch berechnetes Objekt, ohne das Array selbst zu verändern.
-  Erst `x[...] = 2 * x` schreibt den neuen Wert
-  tatsächlich in das Array zurück (Details zu Namen vs.
-  Objekten in [PARTREF::py-Variablen]; die genaue
-  Bedeutung von `...` folgt in [PARTREF::np-index-slice])
+  Erst `x[...] = 2 * x` schreibt den neuen Wert tatsächlich in das Array zurück
+  (Details zu Namen vs. Objekten in [PARTREF::py-Variablen];
+  die genaue Bedeutung von `...` folgt in [PARTREF::np-index-slice])
 - `flags=['external_loop']`: fasst mehrere Elemente zu größeren Blöcken zusammen (hier: je eine
   ganze Spalte bei `order='F'`), statt jedes einzelne Element separat zu liefern
 
@@ -253,7 +306,7 @@ for x in np.nditer(a, order='F'):
 # Index-Verfolgung
 it = np.nditer(a, flags=['multi_index'])
 for x in it:
-    print(f'Index {it.multi_index}: Wert {x}')
+    print(f"Index {it.multi_index}: Wert {x}")
 # Index (0, 0): Wert 10
 # Index (0, 1): Wert 20
 # ...
@@ -269,14 +322,18 @@ print(b)
 
 # Externe Schleife
 for column in np.nditer(a, flags=['external_loop'], order='F'):
-    print(f'Spalte: {column}')
+    print(f"Spalte: {column}")
+# Spalte: [10 40]
+# Spalte: [20 50]
+# Spalte: [30 60]
 ```
 
 [EQ] Nehmen Sie das 3D-Array
 `a = np.array([[[10, 20, 30], [40, 50, 60]], [[70, 80, 90], [100, 110, 120]]])`
 (Form `(2, 2, 3)`) und sagen Sie voraus, in welcher Reihenfolge `np.nditer(a, order='F')` die
 Elemente durchläuft.
-Formulieren Sie anhand Ihrer Vorhersage anschließend eine Regel für C- und F-Ordnung,
+Führen Sie die Iteration anschließend aus und vergleichen Sie das Ergebnis mit Ihrer Vorhersage.
+Formulieren Sie danach eine Regel für C- und F-Ordnung,
 die für beliebig viele Achsen gilt.
 
 [HINT::Wie überträgt man die F-Ordnung von 2D auf 3D?]
@@ -342,8 +399,8 @@ Ergebnisse aus:
 Beide Aufrufe sollen dabei denselben Bereich von `0` bis `10` beschreiben, damit Sie den Endpunkt
 bewusst steuern müssen.
 
-[EQ] Beide Aufrufe liefern dieselben Werte, aber Sie
-mussten NumPy dabei Unterschiedliches mitteilen.
+[EQ] Beide Aufrufe liefern dieselben Werte, aber Sie mussten NumPy dabei
+Unterschiedliches mitteilen.
 Woran müssen Sie sich jeweils orientieren, und in welcher Situation
 ist welche der beiden Funktionen die naheliegendere Wahl?
 
@@ -416,66 +473,13 @@ Form und Ergebnis aus:
 - Versuchen Sie, das Array `np.array([10, 20, 30])` (Form `(3,)`) zu dem `(3, 4)`-Array
   `[[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3]]` zu addieren.
   Der Versuch schlägt fehl; notieren Sie die Fehlermeldung als Kommentar im Quelltext.
-  Reparieren Sie ihn anschließend mit `expand_dims`, so
-  dass jeder der drei Werte auf eine ganze Zeile wirkt
+  Reparieren Sie ihn anschließend mit `expand_dims`,
+  so dass jeder der drei Werte auf eine ganze Zeile wirkt
 - Wenden Sie `squeeze` auf das Ergebnis von `np.min(daten, axis=0, keepdims=True)` an (als
   `daten` nehmen Sie die Testmatrix aus dem Normalisierungsschritt) und vergleichen Sie die
   Form mit der von `np.min(daten, axis=0)`
 
 <!-- time estimate: 15 min -->
-
-### Multi-Array-Broadcasting
-
-NumPy kann auch mehrere Arrays gleichzeitig broadcasten:
-
-**Drei-Array-Broadcasting:**
-```python
-# Drei Arrays mit verschiedenen Formen
-a = np.zeros((3, 4), dtype=int)     # Form: (3, 4)
-b = np.array([1, 2, 3, 4])          # Form: (4,)
-c = np.array([[10], [20], [30]])    # Form: (3, 1)
-
-# Kombinierte Operation
-result = a + b + c                  # Broadcasting auf (3, 4)
-print(result)
-# [[11 12 13 14]
-#  [21 22 23 24]
-#  [31 32 33 34]]
-# Die Einerstelle stammt aus b (entlang der Zeilen wiederholt),
-# die Zehnerstelle aus c (entlang der Spalten wiederholt).
-```
-
-**Broadcasting-Analyse für komplexe Formen:**
-```text
-# Schritt-für-Schritt-Analyse:
-# A: (4, 1, 3)
-# B: (2, 3) → erweitert zu (1, 2, 3)
-# C: (4, 2, 1)
-#
-# Vergleich der Dimensionen (von rechts):
-# Dim 2: A=3, B=3, C=1 → OK (3 kompatibel mit 3 und 1)
-# Dim 1: A=1, B=2, C=2 → OK (1 kompatibel mit 2)
-# Dim 0: A=4, B=1, C=4 → OK (4 kompatibel mit 1 und 4)
-# Ergebnis: (4, 2, 3)
-```
-
-[EQ] Gegeben sind drei Arrays:
-
-- Array X: Form `(4, 1, 6)`
-- Array Y: Form `(3, 6)`
-- Array Z: Form `(4, 2, 1)`
-
-Bestimmen Sie die resultierende Form bei der Operation `X + Y + Z`
-oder erklären Sie, warum die Operation nicht möglich ist.
-Benennen Sie im Fehlerfall genau, welche Dimension betroffen ist
-und welche beiden Arrays dort miteinander in Konflikt stehen.
-
-Führen Sie die Operation anschließend mit `np.ones(...)` aus und übernehmen Sie die
-Ausgabe bzw. Fehlermeldung in Ihre Antwort.
-Falls NumPy einen Fehler meldet, nennt die Meldung eine Form, die in der Aufgabenstellung
-gar nicht vorkommt: Erklären Sie, woher diese Form stammt.
-
-<!-- time estimate: 10 min -->
 
 ### Weiterführend
 
