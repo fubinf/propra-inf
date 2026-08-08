@@ -1,7 +1,7 @@
 title: SciPy Grundlagen verstehen und anwenden
 stage: alpha
 timevalue: 1
-difficulty: 2
+difficulty: 3
 assumes: np-Einführung, py-Fstrings
 ---
 
@@ -26,11 +26,13 @@ Die übrigen Module sind Gegenstand der restlichen Aufgaben dieser Gruppe.
 ### Vorwissen
 
 Für die Modulzuordnung weiter unten werden Grundbegriffe der Analysis und linearen Algebra benötigt
-(Integral, Eigenwert einer Matrix, Extremstelle einer Funktion, Kurvenanpassung).
+(Integral, lineares Gleichungssystem, dünnbesetzte Matrix, Extremstelle einer Funktion,
+Kurvenanpassung).
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Integralrechnung (Wikipedia)](https://de.wikipedia.org/wiki/Integralrechnung)
-- [Eigenwertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Eigenwertproblem)
+- [Lineares Gleichungssystem (Wikipedia)](https://de.wikipedia.org/wiki/Lineares_Gleichungssystem)
+- [Dünnbesetzte Matrix (Wikipedia)](https://de.wikipedia.org/wiki/D%C3%BCnnbesetzte_Matrix)
 - [Extremwert (Wikipedia)](https://de.wikipedia.org/wiki/Extremwert)
 - [Methode der kleinsten Quadrate (Wikipedia)](https://de.wikipedia.org/wiki/Methode_der_kleinsten_Quadrate)
 
@@ -75,6 +77,8 @@ scipy.optimize.minimize_scalar(fun)
 - `fun`: die zu minimierende Zielfunktion; nimmt einen Skalar entgegen und gibt einen Skalar
   zurück (weitere Parameter wie `method`/`bounds` werden erst in [PARTREF::sp-optimize] vertieft)
 
+Der Rückgabewert ist ein Ergebnisobjekt, dessen Attribut `x` die gefundene Minimalstelle enthält.
+
 **Import-Schreibweise:**
 
 ```python
@@ -87,10 +91,11 @@ result = optimize.minimize_scalar(zielfunktion)
 print("Minimum bei x =", result.x)  # Minimum bei x = -2.0
 ```
 
-[EQ] Welches SciPy-Modul würden Sie für folgende Aufgaben verwenden? Begründen Sie Ihre Auswahl:
+[EQ] Welches SciPy-Modul würden Sie für folgende Problemstellungen verwenden?
+Begründen Sie Ihre Auswahl:
 
-- Berechnung der Fläche unter einer Kurve
-- Bestimmung der Eigenwerte einer Matrix
+- Berechnung des zurückgelegten Wegs aus einer gemessenen Geschwindigkeitskurve
+- Lösen eines großen linearen Gleichungssystems, dessen Koeffizientenmatrix fast nur Nullen enthält
 - Schätzung eines Zwischenwerts zwischen zwei gemessenen Datenpunkten
 - Anpassung einer Modellfunktion an eine Messreihe
 
@@ -105,14 +110,14 @@ print("Minimum bei x =", result.x)  # Minimum bei x = -2.0
 ```python
 from scipy import constants
 
-print(constants.pi)      # Kreiszahl π ≈ 3.14159
-print(constants.golden)  # Goldener Schnitt ≈ 1.618
+print(constants.pi)      # 3.141592653589793 (Kreiszahl π)
+print(constants.golden)  # 1.618033988749895 (Goldener Schnitt)
 ```
 
 **Physikalische Konstanten:**
 
 ```python
-print(constants.g)  # Normfallbeschleunigung in m/s²
+print(constants.g)  # 9.80665 (Normfallbeschleunigung in m/s²)
 ```
 
 **Umrechnungsfaktoren:**
@@ -120,34 +125,37 @@ print(constants.g)  # Normfallbeschleunigung in m/s²
 `scipy.constants` stellt außerdem Umrechnungsfaktoren bereit, sowohl für Einheiten als auch für die
 SI-Präfixe ("SI" steht für "Système International d'Unités", das internationale Einheitensystem).
 Anders als `pi` oder `golden` bezeichnen diese Werte keine eigenständige Größe, sondern den Faktor,
-mit dem ein Wert multipliziert wird:
+mit dem ein in dieser Einheit bzw. mit diesem Präfix angegebener Wert in die entsprechende
+SI-Einheit umgerechnet wird:
 
 ```python
-print(constants.acre)  # ≈ 4046.86 — ein Acre in Quadratmetern
-print(constants.kilo)  #   1000.0  — Faktor für "Kilo" (z.B. 1 km = 1 * constants.kilo Meter)
-print(constants.nano)  #   1e-09   — Faktor für "Nano"
+print(constants.acre)  # 4046.8564223999992 (ein Acre in Quadratmetern)
+print(constants.kilo)  # 1000.0 (Faktor für "Kilo", z.B. 1 km = 1 * constants.kilo Meter)
+print(constants.nano)  # 1e-09 (Faktor für "Nano")
 ```
 
 [ER] Schreiben Sie ein Programm, das die folgenden, auf `scipy.constants` basierenden Werte mit
-jeweils vier Nachkommastellen ausgibt (siehe [PARTREF::py-Fstrings] für die Formatierung):
+jeweils vier Nachkommastellen ausgibt, die den Wert tatsächlich wiedergeben
+(siehe [PARTREF::py-Fstrings] für die Formatierung):
 
 - Den Flächeninhalt eines Kreises mit Radius 5, berechnet mit `pi`
 - Die Probe, ob der Goldene Schnitt `golden` die Gleichung x² = x + 1 erfüllt
 - `Boltzmann` sowie eine weitere physikalische Konstante Ihrer Wahl, die oben noch nicht vorkam
-  — nachschlagen in der
+  (also nicht `g`) — nachschlagen in der
   [SciPy Constants Reference](https://docs.scipy.org/doc/scipy/reference/constants.html)
-- Ein SI-Präfix Ihrer Wahl außer `kilo` und `nano` (z.B. `mega`, `milli` oder `giga`)
+- Ein SI-Präfix Ihrer Wahl mit einem Faktor von mindestens 10⁶ oder höchstens 10⁻⁶, außer `nano`
+  (z.B. `mega`, `giga` oder `micro`)
 
-Nicht jede dieser Größen lässt sich mit `:.4f` sinnvoll darstellen.
-Wählen Sie die Formatierung bei den beiden physikalischen Konstanten deshalb so, dass die vier
-Nachkommastellen tatsächlich Information tragen, und halten Sie Ihre Entscheidung in einem
+Nicht jede dieser Größen lässt sich dafür mit `:.4f` darstellen.
+Halten Sie Ihre Formatierungsentscheidung bei den beiden physikalischen Konstanten in einem
 Kommentar fest.
-Bei Ihrem SI-Präfix ist das nicht erreichbar; halten Sie in einem Kommentar fest, warum nicht.
+Bei Ihrem SI-Präfix lässt sich die Forderung gar nicht erfüllen; halten Sie in einem Kommentar
+fest, warum nicht.
 
 <!-- time estimate: 15 min -->
 
-Außerdem bietet `constants.physical_constants` ein Dictionary, dessen Einträge jeweils ein Tripel
-aus Wert, Einheit und Unsicherheit sind:
+Außerdem enthält `scipy.constants` das Dictionary `physical_constants`, dessen Einträge jeweils ein
+Tripel aus Wert, Einheit und Unsicherheit sind:
 
 ```python
 from scipy import constants
@@ -157,11 +165,11 @@ print(f"Wert: {value} {unit} (Unsicherheit: {uncertainty})")
 ```
 
 [ER] Geben Sie auf diese Weise Wert, Einheit und Unsicherheit für diese drei Konstanten aus:
-`'Planck constant'`, `'electron mass'` und `'Newtonian constant of gravitation'`.
+`'Boltzmann constant'`, `'electron mass'` und `'Newtonian constant of gravitation'`.
 
-[EQ] In [EREFR::1] haben Sie `constants.pi` als einfaches Modulattribut abgerufen,
-in [EREFR::2] dagegen `physical_constants` als Dictionary, das ein Tripel liefert.
-Nennen Sie zwei technische Gründe, warum SciPy hier zwei verschiedene Zugriffswege anbietet.
+[EQ] In [EREFR::1] haben Sie `Boltzmann` als einfaches Modulattribut abgerufen,
+in [EREFR::2] denselben Wert über `physical_constants` als Tripel.
+Nennen Sie zwei technische Gründe, warum `scipy.constants` beide Zugriffswege anbietet.
 Eine der drei Unsicherheiten aus [EREFR::2] ist `0.0`, die beiden anderen nicht.
 Erklären Sie, warum das Tripel trotzdem für alle Einträge dieselbe Form hat.
 
@@ -171,8 +179,6 @@ Erklären Sie, warum das Tripel trotzdem für alle Einträge dieselbe Form hat.
 
 - [SciPy Reference Guide](https://docs.scipy.org/doc/scipy/reference/):
   Detaillierte Modulbeschreibungen
-- [SciPy Constants Reference](https://docs.scipy.org/doc/scipy/reference/constants.html):
-  Vollständige Liste aller Konstanten
 
 [ENDSECTION]
 
