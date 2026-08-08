@@ -21,7 +21,7 @@ NumPy-Arrays unterschiedlicher Form lassen sich oft trotzdem direkt miteinander 
 ohne dass man sie vorher manuell angleichen muss; außerdem bietet NumPy vielseitige
 Möglichkeiten, Arrays mit regelmäßigen Werten zu erzeugen, über ihre Elemente zu iterieren und
 ihre Form nachträglich zu verändern.
-Diese Aufgabe behandelt diese vier zusammenhängenden Themen:
+Diese Aufgabe behandelt vier zusammenhängende Themen:
 Broadcasting, gezieltes Iterieren, das Erzeugen regelmäßiger Zahlenfolgen und das Verändern von
 Array-Formen.
 
@@ -32,8 +32,8 @@ Array-Formen.
 ### NumPy Broadcasting: Grundlagen
 
 Broadcasting ermöglicht arithmetische Operationen zwischen Arrays unterschiedlicher Formen.
-Wenn zwei Arrays kompatible Formen haben, erweitert NumPy automatisch das kleinere Array,
-um es an die Form des größeren anzupassen.
+Wenn zwei Arrays kompatible Formen haben, wiederholt NumPy die Werte entlang der zu kurzen
+Achsen automatisch so oft, bis beide Formen übereinstimmen.
 
 **Grundlegende Broadcasting-Beispiele:**
 ```python
@@ -128,8 +128,8 @@ ausgibt, in Ihre Antwort.
 ### Broadcasting in der Praxis: Min-Max-Normalisierung
 
 Broadcasting wird häufig für Normalisierung und Datenvorverarbeitung verwendet.
-Min-Max-Normalisierung skaliert jeden Wert so um, dass das Minimum einer Spalte auf
-`0` und das Maximum auf `1` abgebildet wird (Formel: `(x - min) / (max - min)`),
+Min-Max-Normalisierung skaliert jeden Wert so um, dass das Minimum entlang der gewählten
+Achse auf `0` und das Maximum auf `1` abgebildet wird (Formel: `(x - min) / (max - min)`),
 während alle Werte dazwischen proportional auf den Bereich `[0, 1]` verteilt werden.
 
 ```python
@@ -143,7 +143,10 @@ numpy.max(a, axis=None, keepdims=False)
 - `keepdims` (Standard `False`): bei `True` bleibt die reduzierte Achse als Länge 1 erhalten
   (Form `(1, 5)` statt `(5,)`)
 
-Ob man `keepdims` braucht, hängt von der Achse ab.
+`np.min(data, axis=0)`/`np.max(data, axis=0)` liefern
+das Minimum bzw. Maximum jeder Spalte (entlang Achse 0).
+
+Ob man dabei `keepdims` braucht, hängt von der Achse ab.
 Bei einem `(3, 5)`-Array und `axis=0` liefert die Reduktion die Form `(5,)`, und `(5,)` ist
 mit `(3, 5)` bereits broadcasting-kompatibel; hier ändert `keepdims` am Ergebnis nichts.
 Bei `axis=1` dagegen entsteht die Form `(3,)`, die sich mit `(3, 5)`
@@ -151,9 +154,7 @@ Bei `axis=1` dagegen entsteht die Form `(3,)`, die sich mit `(3, 5)`
 `keepdims=True` macht daraus `(3, 1)` und damit eine passende Form.
 Für Code, der mit beliebiger Achse umgehen soll, ist `keepdims=True` deshalb die richtige Wahl.
 
-`np.min(data, axis=0)`/`np.max(data, axis=0)` liefern
-das Minimum bzw. Maximum jeder Spalte (entlang Achse 0).
-Ohne Broadcasting müsste man `min_vals`/`max_vals` erst manuell auf die
+Ohne Broadcasting müsste man die Minima und Maxima erst manuell auf die
 Form von `data` bringen, bevor man sie elementweise verrechnen könnte:
 
 ```python
@@ -176,8 +177,9 @@ normalized = (data - min_vals) / range_vals  # Broadcasting: (3, 5) mit (1, 5)
   einmal mit `axis=0` und einmal mit `axis=1`; geben Sie beide Ergebnisse aus
 
 [HINT::Wie überprüfe ich mein Ergebnis?]
-Prüfen Sie mit `np.min`/`np.max`, dass in Ihrem normalisierten Ergebnis jede Spalte auf das
-Minimum `0` und das Maximum `1` abgebildet wird.
+Prüfen Sie mit `np.min`/`np.max` entlang derselben Achse, mit der Sie normalisiert haben.
+Im `axis=0`-Ergebnis muss jede Spalte das Minimum `0` und das Maximum `1` haben,
+im `axis=1`-Ergebnis jede Zeile.
 [ENDHINT]
 
 <!-- time estimate: 15 min -->
@@ -185,9 +187,10 @@ Minimum `0` und das Maximum `1` abgebildet wird.
 ### NumPy Array-Iteration mit `nditer`
 
 `numpy.nditer` bietet flexible Möglichkeiten zur Array-Iteration.
-Eine direkte Schleife über ein mehrdimensionales Array (`for x in a`) liefert nur die Elemente der
-ersten Achse (bei einem 2D-Array also ganze Zeilen als Teil-Arrays); `np.nditer(a)` durchläuft
-dagegen jedes einzelne Element des gesamten Arrays, unabhängig von der Anzahl der Dimensionen.
+Eine direkte Schleife über ein mehrdimensionales Array (`for x in a`) läuft nur über die
+erste Achse (bei einem 2D-Array liefert sie also ganze Zeilen als Teil-Arrays);
+`np.nditer(a)` durchläuft dagegen jedes einzelne Element des gesamten Arrays,
+unabhängig von der Anzahl der Dimensionen.
 
 ```python
 numpy.nditer(op, flags=None, op_flags=None, order='K')
@@ -276,8 +279,8 @@ und tragen Sie für jede Kombination den passenden Wert ein.
 
 [ER] Experimentieren Sie mit den erweiterten `nditer`-Optionen:
 
-- Erstellen Sie ein 4x3-Array mit den zeilenweise aufsteigenden Werten `10, 20, 30, ..., 120`;
-  diese markanten Werte lassen sich in der Ausgabe nicht mit den Indizes verwechseln
+- Erstellen Sie ein 4x3-Array mit den zeilenweise aufsteigenden Werten `10, 20, 30, ..., 120`
+  (so lassen sich Werte und Indizes in der Ausgabe nicht verwechseln)
 - Implementieren Sie Iteration mit Index-Verfolgung
 - Verwenden Sie Schreibzugriff, um alle Werte zu verdoppeln
 - Testen Sie externe Schleifen mit `order='F'`
@@ -324,6 +327,10 @@ Beide Aufrufe sollen dabei denselben Bereich von `0` bis `10` beschreiben.
 mussten NumPy dabei Unterschiedliches mitteilen.
 Woran müssen Sie sich jeweils orientieren, und in welcher Situation
 ist welche der beiden Funktionen die naheliegendere Wahl?
+
+Ihre beiden Ausgaben sehen trotz gleicher Werte nicht gleich aus.
+Prüfen Sie mit `.dtype`, woran das liegt, und erklären Sie, welche der beiden Funktionen
+ihren Ergebnistyp frei wählen kann und welche nicht.
 
 <!-- time estimate: 15 min -->
 
@@ -382,8 +389,8 @@ Form und Ergebnis aus:
 - Erstellen Sie mit `np.arange` ein 1D-Array der Länge 24 und formen Sie es in eine
   `(4, 6)`- und eine `(2, 3, 4)`-Struktur um; erzeugen Sie die `(4, 6)`-Form zusätzlich ein
   zweites Mal, diesmal mit `-1` für die zweite Dimension
-- Versuchen Sie, das Array `np.array([10, 20, 30])`
-  (Form `(3,)`) zu einem `(3, 4)`-Array zu addieren.
+- Versuchen Sie, das Array `np.array([10, 20, 30])` (Form `(3,)`) zu dem `(3, 4)`-Array
+  `[[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3]]` zu addieren.
   Der Versuch schlägt fehl; notieren Sie die Fehlermeldung als Kommentar im Quelltext.
   Reparieren Sie ihn anschließend mit `expand_dims`, so
   dass jeder der drei Werte auf eine ganze Zeile wirkt
@@ -400,12 +407,18 @@ NumPy kann auch mehrere Arrays gleichzeitig broadcasten:
 **Drei-Array-Broadcasting:**
 ```python
 # Drei Arrays mit verschiedenen Formen
-a = np.arange(12).reshape(3, 4)     # Form: (3, 4)
-b = np.arange(4)                     # Form: (4,)
-c = np.arange(3).reshape(3, 1)      # Form: (3, 1)
+a = np.zeros((3, 4), dtype=int)     # Form: (3, 4)
+b = np.array([1, 2, 3, 4])          # Form: (4,)
+c = np.array([[10], [20], [30]])    # Form: (3, 1)
 
 # Kombinierte Operation
-result = a + b + c  # Broadcasting auf (3, 4)
+result = a + b + c                  # Broadcasting auf (3, 4)
+print(result)
+# [[11 12 13 14]
+#  [21 22 23 24]
+#  [31 32 33 34]]
+# Die Einerstelle stammt aus b (entlang der Zeilen wiederholt),
+# die Zehnerstelle aus c (entlang der Spalten wiederholt).
 ```
 
 **Broadcasting-Analyse für komplexe Formen:**
@@ -432,6 +445,11 @@ Bestimmen Sie die resultierende Form bei der Operation `X + Y + Z`
 oder erklären Sie, warum die Operation nicht möglich ist.
 Benennen Sie im Fehlerfall genau, welche Dimension betroffen ist
 und welche beiden Arrays dort miteinander in Konflikt stehen.
+
+Führen Sie die Operation anschließend mit `np.ones(...)` aus und übernehmen Sie die
+Ausgabe bzw. Fehlermeldung in Ihre Antwort.
+Falls NumPy einen Fehler meldet, nennt die Meldung eine Form, die in der Aufgabenstellung
+gar nicht vorkommt: Erklären Sie, woher diese Form stammt.
 
 <!-- time estimate: 10 min -->
 
