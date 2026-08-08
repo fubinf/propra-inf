@@ -70,7 +70,7 @@ print(a[3:])            # Ausgabe: [13 14 15 16 17 18 19]
 - `a[2]`, `a[2:3]` und `a[7:3]`, jeweils zusammen mit dem `type()` des Ergebnisses
 
 [EQ] Sehen Sie sich den letzten Teilschritt aus [EREFR::1] an: `a[2]` und `a[2:3]` wählen dasselbe
-eine Element aus, ihre Rückgabetypen unterscheiden sich aber.
+einzelne Element aus, ihre Rückgabetypen unterscheiden sich aber.
 Warum ist das grundsätzlich so, unabhängig davon, wie viele Elemente ausgewählt werden?
 Was liefert `a[7:3]` (Start größer als Stop, positive Schrittweite), und warum kommt es dabei zu
 keinem Fehler?
@@ -134,8 +134,11 @@ auswählen, auch solche, die kein Slice erfasst.
 Diese Form und die weiter unten behandelte Boolean-Indexierung heißen in der NumPy-Dokumentation
 zusammen "Advanced Indexing" (im NumPy-Glossar gleichbedeutend auch "fancy indexing"), siehe
 [NumPy-Userguide zum Advanced Indexing](https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing).
-Indexiert wird dabei nicht mit einem einzelnen Wert oder einem Slice, sondern mit einem ganzen
-Array aus Indizes bzw. Wahrheitswerten.
+Die bisher behandelten Formen — Slice, Ellipsis und einzelner Integer-Index — bilden die
+Gegengruppe "Basic Indexing"; die Dokumentation ist durchgehend nach diesen beiden Begriffen
+gegliedert.
+Indexiert wird beim Advanced Indexing nicht mit einem einzelnen Wert oder einem Slice, sondern mit
+einem ganzen Array aus Indizes bzw. Wahrheitswerten.
 Gibt man mehrere Index-Arrays an, so werden sie paarweise kombiniert; ihre Formen müssen dafür
 per Broadcasting zueinander passen.
 
@@ -252,7 +255,7 @@ ergebnis = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
 # Ergebnis: [[50 80 60 70] [210 240 220 230] [290 320 300 310]]
 ```
 
-[ER] Verwenden Sie wieder Ihr Array `arr8x4` aus [EREFR::4] (in derselben Datei oder neu erzeugt):
+[ER] Verwenden Sie wieder Ihr Array `arr8x4` aus [EREFR::4] (ggf. neu erzeugen):
 
 - Extrahieren Sie mit `np.ix_` die Teilmatrix aus den Zeilen 6, 0, 3, 5 und den Spalten 2, 1, 3, 0
 - Wenden Sie dieselben acht Indexwerte in derselben Reihenfolge auch ohne `np.ix_` an, also mit
@@ -367,9 +370,10 @@ Geben Sie beide Ergebnisse samt `shape` aus.
 
 [EQ] Sehen Sie sich die Zeilenauswahl des zweiten Zugriffs aus [EREFR::7] an: Welche Zeilen wählt
 sie aus?
-Versuchen Sie, genau diese Zeilen stattdessen mit einem Slice `start:stop:step` zu treffen, und
-erklären Sie, woran das scheitert.
-Unter welcher Bedingung an die Werte der ersten Spalte hätte ein Slice hier genügt?
+Versuchen Sie, genau diese Zeilen stattdessen mit einem Slice `start:stop:step` zu treffen.
+Wonach richtet sich die Maske bei ihrer Auswahl und wonach ein Slice?
+Erklären Sie damit, warum sich vor dem Ausführen nicht sagen lässt, ob ein Slice für eine
+Maskenauswahl genügt.
 
 <!-- time estimate: 10 min -->
 
@@ -381,12 +385,12 @@ Eine **View** teilt sich den Speicher mit dem Original, ist also nur ein zweiter
 dieselben Daten; eine Änderung an der View ändert deshalb auch das Original.
 
 Welche der beiden Formen entsteht, hängt von der Art des Zugriffs ab.
-Slicing liefert eine View, Advanced Indexing (Integer-Array und Boolean-Maske) stets eine Kopie.
+Basic Indexing liefert stets eine View, Advanced Indexing stets eine Kopie.
 Sobald in einem Zugriff ein Index-Array oder eine Boolean-Maske vorkommt, ist das Ergebnis also eine
 Kopie, auch wenn andere Achsen darin mit Slices indexiert werden.
-Wie ein Slice verhalten sich auch `...` und einzelne Integer-Indizes, sofern dabei noch eine Achse
-übrig bleibt (etwa `b[1]` bei einem 2D-Array).
-Indexiert man ein Array mit Integer-Indizes dagegen vollständig, ist das Ergebnis nach [EREFQ::1]
+Ein einzelner Integer-Index liefert dabei nur so lange eine View, wie noch eine Achse übrig bleibt
+(etwa `b[1]` bei einem 2D-Array).
+Indexiert man ein Array mit Integer-Indizes vollständig, ist das Ergebnis nach [EREFQ::1]
 gar kein Array, sondern ein Skalar mit eigenem Speicher.
 Einzelheiten dazu stehen im
 [NumPy-Userguide zu Copies and views](https://numpy.org/doc/stable/user/basics.copies.html).
@@ -419,6 +423,7 @@ print(d)                    # [10 20 30 40 50] - unverändert
 [ER] Legen Sie ein 1D-Array `werte` mit den Zahlen 100 bis 800 in Hunderterschritten an und prüfen
 Sie daran selbst nach, welcher Zugriff eine View und welcher eine Kopie liefert:
 
+- Geben Sie `werte` zunächst unverändert aus, damit Sie später eine Vergleichsgrundlage haben
 - Wählen Sie die letzten vier Elemente einmal per Slicing und einmal per Boolean-Maske aus;
   treffen Sie beide Auswahlen, bevor Sie etwas ändern, sonst rechnet die Maske schon auf dem
   geänderten Array
