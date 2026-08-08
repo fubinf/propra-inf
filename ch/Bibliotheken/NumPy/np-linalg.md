@@ -7,7 +7,10 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, np-math, py-Fstrin
 
 [SECTION::goal::idea,experience]
 
-- Ich kann Matrizen erstellen, transponieren und multiplizieren.
+- Ich kann Matrizen erstellen, transponieren und Einheitsmatrizen sowie verwandte Sonderformen
+  erzeugen.
+- Ich kann Matrizen und Vektoren multiplizieren und begründen, welche der dafür angebotenen
+  Funktionen im jeweiligen Fall die richtige ist.
 - Ich kann Determinanten und Inverse von Matrizen berechnen und anhand der Konditionszahl
   beurteilen, wie zuverlässig sich damit rechnen lässt.
 - Ich kann lineare Gleichungssysteme lösen und meine Lösung durch eine Probe überprüfen.
@@ -18,7 +21,7 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, np-math, py-Fstrin
 
 [SECTION::background::default]
 
-NumPy bietet umfangreiche Funktionalitäten für Matrixoperationen und Berechnungen der
+NumPy bietet umfangreiche Funktionen für Matrixoperationen und Berechnungen der
 linearen Algebra.
 Wer etwa eine Ausgleichsgerade durch Messpunkte legt, ein Bild dreht oder skaliert, oder in
 einem neuronalen Netz eine Schicht auswertet, rechnet in allen drei Fällen dasselbe: ein
@@ -37,8 +40,11 @@ Vorausgesetzt wird deshalb, was Matrix, Transposition, Matrixmultiplikation, Det
 Inverse und Skalarprodukt (auch Punktprodukt genannt) bedeuten, ab dem Abschnitt zu den
 inversen Matrizen zusätzlich Konditionszahl, Rang, Eigenwert, Matrixnorm und
 Singulärwertzerlegung.
-Sie müssen davon nichts von Hand rechnen können, aber ohne zu wissen, was die Begriffe
-aussagen, können Sie Ihre eigenen Ergebnisse nicht beurteilen.
+Verfahren wie die Bestimmung von Eigenwerten oder größeren Determinanten müssen Sie nicht von
+Hand beherrschen; die wenigen Handrechnungen dieser Aufgabe beschränken sich auf Summen und
+Produkte einzelner Zahlen.
+Ohne zu wissen, was die Begriffe aussagen, können Sie Ihre eigenen Ergebnisse aber nicht
+beurteilen.
 Für die weniger geläufigen dieser Begriffe helfen folgende Quellen:
 
 - [Skalarprodukt (Wikipedia)](https://de.wikipedia.org/wiki/Skalarprodukt): komponentenweises
@@ -46,7 +52,7 @@ Für die weniger geläufigen dieser Begriffe helfen folgende Quellen:
 - [Rang einer Matrix (Wikipedia)](https://de.wikipedia.org/wiki/Rang_einer_Matrix): Anzahl der
   linear unabhängigen Zeilen bzw. Spalten
 - [Eigenwertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Eigenwertproblem): Vektoren, die
-  eine Matrix nur streckt statt sie zu drehen, und der zugehörige Streckungsfaktor
+  von einer Matrix nur gestreckt, nicht gedreht werden, und der zugehörige Streckungsfaktor
 - [Matrixnorm (Wikipedia)](https://de.wikipedia.org/wiki/Matrixnorm): Maß für die "Größe" einer
   Matrix als einzelne Zahl
 - [Kondition (Mathematik, Wikipedia)](https://de.wikipedia.org/wiki/Kondition_(Mathematik)): wie
@@ -80,26 +86,25 @@ print(matrix)
 print('Form:', matrix.shape)  # (2, 3)
 
 # Transposition mit .T
-transposed = matrix.T
+transponiert = matrix.T
 print('\nTransponierte Matrix:')
-print(transposed)
-print('Form:', transposed.shape)  # (3, 2)
+print(transponiert)
+print('Form:', transponiert.shape)  # (3, 2)
 
 # Alternative: np.transpose()
-transposed_alt = np.transpose(matrix)
+transponiert_alt = np.transpose(matrix)
 print('\nMit np.transpose():')
-print(transposed_alt)
+print(transponiert_alt)
 ```
 
 [ER] Arbeiten Sie mit Matrixtransposition:
 
 - Erstellen Sie mit `np.array` eine 4×3-Matrix `matrix` mit den Werten
-  `[[5, 12, 3], [8, 1, 15], [10, 6, 2], [14, 9, 4]]`
-- Transponieren Sie die Matrix mit beiden Schreibweisen (`.T` und `np.transpose()`)
-- Vergleichen Sie die Form der ursprünglichen mit der der transponierten Matrix
+  `[[5, 12, 3], [8, 1, 15], [10, 6, 2], [14, 9, 4]]`, transponieren Sie sie mit beiden
+  Schreibweisen (`.T` und `np.transpose()`) und geben Sie beide Formen aus
 - Zeigen Sie, dass zweifaches Transponieren wieder die Ausgangsmatrix ergibt
 
-<!-- time estimate: 10 min -->
+<!-- time estimate: 5 min -->
 
 ### Spezielle Matrizen: `identity` und `eye`
 
@@ -110,8 +115,7 @@ numpy.identity(n)               # quadratische Einheitsmatrix
 numpy.eye(N, M=None, k=0)       # wie identity, aber auch rechteckig + verschobene Diagonale
 ```
 
-- `n` (bei `identity`): Größe der quadratischen Einheitsmatrix (immer `n`×`n`, kein
-  `k`-Parameter)
+- `n` (bei `identity`): Größe der quadratischen Einheitsmatrix (immer `n`×`n`)
 - `N` (bei `eye`): Anzahl der Zeilen
 - `M` (bei `eye`, Standard `N`): Anzahl der Spalten; ergibt eine rechteckige
   Matrix, wenn ungleich `N`
@@ -137,9 +141,9 @@ print('\n3×4 Matrix mit Diagonale:')
 print(eye_3x4)
 
 # ...und eine verschobene Diagonale
-eye_offset = np.eye(4, k=1)  # Diagonale eine Position nach rechts
+eye_versetzt = np.eye(4, k=1)  # Diagonale eine Position nach rechts
 print('\n4×4 Matrix mit verschobener Diagonale:')
-print(eye_offset)
+print(eye_versetzt)
 ```
 
 Die Referenzseiten dazu sind
@@ -148,11 +152,11 @@ Die Referenzseiten dazu sind
 
 [ER] Erstellen Sie verschiedene spezielle Matrizen:
 
-- Eine 5×5 Einheitsmatrix `eins_identity` mit `identity()`
-- Dieselbe 5×5 Einheitsmatrix noch einmal als `eins_eye` mit `eye()`
+- Eine 5×5 Einheitsmatrix `einheit_identity` mit `identity()`
+- Dieselbe 5×5 Einheitsmatrix noch einmal als `einheit_eye` mit `eye()`
 - Eine 4×6 Matrix `rechteck` mit Einsen auf der Hauptdiagonale mit `eye()`
 - Eine 5×5 Matrix `versetzt` mit der Diagonale zwei Positionen unter der Hauptdiagonale
-  (`k=-2`) mit `eye()`
+  mit `eye()`
 - Geben Sie für alle vier Matrizen die Form sowie die Elemente `[0, 0]` und `[2, 0]` aus und
   erklären Sie in einem Kommentar, warum `versetzt` dabei andere Werte liefert als die
   übrigen drei
@@ -178,7 +182,7 @@ Nennen Sie einen Grund, der über "das gab es historisch schon" hinausgeht.
 
 ### Punktprodukte und Matrixmultiplikation: `dot`, `matmul`, `vdot`, `inner`
 
-NumPy bietet verschiedene Funktionen für Matrixoperationen:
+Für Matrixoperationen stehen mehrere Funktionen zur Verfügung:
 
 ```python
 numpy.dot(a, b)      # Skalar-/Matrixprodukt
@@ -202,25 +206,36 @@ print('Matrix B:')
 print(B)
 
 # Matrixmultiplikation mit np.dot
-result_dot = np.dot(A, B)
+ergebnis_dot = np.dot(A, B)
 print('\nMatrixmultiplikation mit np.dot():')
-print(result_dot)
+print(ergebnis_dot)
 
 # Matrixmultiplikation mit np.matmul
-result_matmul = np.matmul(A, B)
+ergebnis_matmul = np.matmul(A, B)
 print('\nMatrixmultiplikation mit np.matmul():')
-print(result_matmul)
+print(ergebnis_matmul)
 
 # Alternative: @ Operator
-result_at = A @ B
+ergebnis_at = A @ B
 print('\nMatrixmultiplikation mit @ Operator:')
-print(result_at)
+print(ergebnis_at)
 ```
 
 Bei zwei zweidimensionalen Matrizen sind alle drei Schreibweisen gleichwertig, wie oben zu
 sehen.
 Dasselbe gilt für zwei Vektoren und für gemischte Formen wie Matrix mal Vektor.
-Unterschiede gibt es bei Skalaren und sobald mehr als zwei Dimensionen im Spiel sind.
+
+[ER] Multiplizieren Sie zwei Matrizen:
+
+- Erstellen Sie zwei 3×3-Matrizen `A` mit den Werten `[[6, 11, 4], [9, 2, 13], [7, 10, 5]]`
+  und `B` mit den Werten `[[3, 15, 8], [12, 1, 9], [6, 14, 2]]`
+- Berechnen Sie ihre Matrixmultiplikation mit allen drei Schreibweisen (`dot`, `matmul`, `@`)
+- Verifizieren Sie, dass `A` × `B` ≠ `B` × `A` (Matrixmultiplikation ist nicht kommutativ)
+
+<!-- time estimate: 10 min -->
+
+Unterschiede zwischen den Schreibweisen gibt es bei Skalaren und sobald mehr als zwei
+Dimensionen im Spiel sind.
 
 ```python
 # np.dot verrechnet auch Skalare, np.matmul verlangt mindestens eindimensionale Operanden
@@ -262,16 +277,16 @@ v1 = np.array([1, 2, 3])
 v2 = np.array([4, 5, 6])
 
 # Punktprodukt (Skalarprodukt)
-dot_product = np.dot(v1, v2)
-print('Punktprodukt:', dot_product)  # 1*4 + 2*5 + 3*6 = 32
+dot_ergebnis = np.dot(v1, v2)
+print('Punktprodukt:', dot_ergebnis)  # 1*4 + 2*5 + 3*6 = 32
 
 # Punktprodukt mit vdot (konjugiert bei komplexen Zahlen den ersten Vektor)
-vdot_result = np.vdot(v1, v2)
-print('vdot Ergebnis:', vdot_result)
+vdot_ergebnis = np.vdot(v1, v2)
+print('vdot Ergebnis:', vdot_ergebnis)
 
 # Inneres Produkt
-inner_result = np.inner(v1, v2)
-print('Inneres Produkt:', inner_result)
+inner_ergebnis = np.inner(v1, v2)
+print('Inneres Produkt:', inner_ergebnis)
 
 # Bei reellen Vektoren liefern alle drei dasselbe.
 # Der Unterschied zeigt sich erst bei komplexen Zahlen (Schreibweise: 2j ist die imaginäre
@@ -282,8 +297,8 @@ print('\ndot bei komplexen Vektoren: ', np.dot(c1, c2))
 print('vdot bei komplexen Vektoren:', np.vdot(c1, c2))
 ```
 
-Nur `vdot` konjugiert dabei den ersten Vektor und liefert damit das, was in der Mathematik
-als Skalarprodukt komplexer Vektoren definiert ist.
+Erst die Konjugation liefert das, was in der Mathematik als Skalarprodukt komplexer Vektoren
+definiert ist.
 
 Die Referenzseiten dazu sind
 [numpy.dot](https://numpy.org/doc/stable/reference/generated/numpy.dot.html),
@@ -291,27 +306,24 @@ Die Referenzseiten dazu sind
 [numpy.vdot](https://numpy.org/doc/stable/reference/generated/numpy.vdot.html) und
 [numpy.inner](https://numpy.org/doc/stable/reference/generated/numpy.inner.html).
 
-[ER] Wenden Sie die Matrix- und Vektoroperationen an:
+[ER] Untersuchen Sie Stapel und Vektorprodukte:
 
-- Erstellen Sie zwei 3×3-Matrizen `A` mit den Werten `[[6, 11, 4], [9, 2, 13], [7, 10, 5]]`
-  und `B` mit den Werten `[[3, 15, 8], [12, 1, 9], [6, 14, 2]]`
-- Berechnen Sie ihre Matrixmultiplikation mit allen drei Schreibweisen (`dot`, `matmul`, `@`)
+- Legen Sie die Matrizen `A` und `B` aus [EREFR::3] erneut an, bilden Sie mit
+  `np.array([A, B])` einen Stapel `stapel` der Form `(2, 3, 3)`, geben Sie die Formen von
+  `np.dot(stapel, stapel)` und `np.matmul(stapel, stapel)` aus und halten Sie in einem
+  Kommentar fest, welche der beiden Formen zu einer paarweisen Matrixmultiplikation gehört
+  und woran Sie das an der Form erkennen
 - Erstellen Sie zwei Vektoren `v1` mit den Werten `[3, 9, 2, 11]` und `v2` mit den Werten
   `[7, 1, 10, 4]` und berechnen Sie deren Produkt mit `dot`, `vdot` und `inner`
-- Verifizieren Sie, dass A × B ≠ B × A (Matrixmultiplikation ist nicht kommutativ)
-- Bilden Sie mit `np.array([A, B])` einen Stapel `stapel` der Form `(2, 3, 3)`, geben Sie die
-  Formen von `np.dot(stapel, stapel)` und `np.matmul(stapel, stapel)` aus und halten Sie in
-  einem Kommentar fest, welche der beiden Formen zu einer paarweisen Matrixmultiplikation
-  gehört und woran Sie das an der Form erkennen
 - Erstellen Sie die komplexen Vektoren `c1` mit den Werten `[2+1j, 4-3j]` und `c2` mit den
   Werten `[1+1j, 5+2j]`, berechnen Sie `dot`, `vdot` und `inner` und halten Sie in einem
   Kommentar fest, welches der drei Ergebnisse abweicht und warum
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 15 min -->
 
 ### Determinanten: `linalg.det`
 
-Die Determinante ist ein wichtiger Skalarwert, der einer quadratischen Matrix zugeordnet wird:
+Die Determinante ist ein Skalarwert, der einer quadratischen Matrix zugeordnet wird:
 
 ```python
 numpy.linalg.det(a)
@@ -396,7 +408,7 @@ print('\nInverse Matrix:')
 print(matrix_inv)
 ```
 
-**Wichtiger Hinweis zur numerischen Stabilität:**
+**Numerische Stabilität beurteilen mit `cond`:**
 
 ```python
 numpy.linalg.cond(x, p=None)
@@ -408,14 +420,14 @@ numpy.linalg.cond(x, p=None)
 
 ```python
 # Prüfung der Konditionszahl
-cond_number = np.linalg.cond(matrix)
-print('Konditionszahl:', cond_number)  # ≈ 6.85
+konditionszahl = np.linalg.cond(matrix)
+print('Konditionszahl:', konditionszahl)  # ≈ 6.85
 
 # Eine Matrix mit hoher Konditionszahl (schlecht konditioniert)
-ill_conditioned = np.array([[1, 1],
-                            [1, 1.0001]])
-cond_ill = np.linalg.cond(ill_conditioned)
-print('Konditionszahl (schlecht konditioniert):', cond_ill)  # ≈ 40002
+schlecht_konditioniert = np.array([[1, 1],
+                                   [1, 1.0001]])
+kond_schlecht = np.linalg.cond(schlecht_konditioniert)
+print('Konditionszahl (schlecht konditioniert):', kond_schlecht)  # ≈ 40002
 ```
 
 Eine Konditionszahl nahe 1 bedeutet, dass sich Eingabe- und Rundungsfehler im Ergebnis kaum
@@ -451,9 +463,9 @@ zu invertieren, löst `numpy.linalg.LinAlgError: Singular matrix` aus — das is
 sondern die korrekte Reaktion, weil eine solche Matrix mathematisch keine Inverse besitzt.
 [ENDHINT]
 
-[EQ] Sie haben in [EREFR::5] die Konditionszahl von `matrix` bestimmt.
-Oben stehen zwei Aufgaben nebeneinander: ein Gleichungssystem lösen und die inverse Matrix
-selbst als Ergebnis brauchen.
+[EQ] Sie haben in [EREFR::6] die Konditionszahl von `matrix` bestimmt.
+Der Text oben nennt zwei Situationen: ein Gleichungssystem lösen und die inverse Matrix selbst
+als Ergebnis brauchen.
 Für welche der beiden ist dieser Wert von Belang, und was müsste an Ihrer Matrix anders sein,
 damit der Unterschied zwischen den beiden Wegen in den Ergebnissen überhaupt sichtbar wird?
 
@@ -490,8 +502,8 @@ print(A)
 print('b =', b)
 
 # Lösung mit linalg.solve
-solution = np.linalg.solve(A, b)
-print('\nLösung x =', solution)
+loesung = np.linalg.solve(A, b)
+print('\nLösung x =', loesung)
 ```
 
 Die Referenzseite dazu ist
@@ -520,12 +532,14 @@ Vorzeichen und Spaltenreihenfolge gegen die Gleichungen.
 Rang, Eigenwerte und Eigenvektoren einer Matrix liefert NumPy mit je einem Aufruf:
 
 ```python
-numpy.linalg.matrix_rank(M)   # Rang der Matrix
-numpy.linalg.eig(a)           # Eigenwerte und Eigenvektoren
-numpy.linalg.eigh(a)          # dasselbe, aber nur für symmetrische Matrizen
+numpy.linalg.matrix_rank(M)      # Rang der Matrix
+numpy.linalg.eig(a)              # Eigenwerte und Eigenvektoren
+numpy.linalg.eigh(a, UPLO='L')   # dasselbe, aber nur für symmetrische Matrizen
 ```
 
 - `M` (bei `matrix_rank`) bzw. `a` (bei `eig` und `eigh`): die betroffene Matrix
+- `UPLO` (bei `eigh`, Standard `'L'`): ob das untere (`'L'`) oder das obere (`'U'`) Dreieck
+  von `a` gelesen wird
 
 ```python
 import numpy as np
@@ -539,15 +553,15 @@ print('Matrix:')
 print(matrix)
 
 # Rang der Matrix
-rank = np.linalg.matrix_rank(matrix)
-print('Rang der Matrix:', rank)
+rang = np.linalg.matrix_rank(matrix)
+print('Rang der Matrix:', rang)
 
 # Eigenwerte und Eigenvektoren
-eigenvalues, eigenvectors = np.linalg.eig(matrix)
+eigenwerte, eigenvektoren = np.linalg.eig(matrix)
 print('\nEigenwerte:')
-print(eigenvalues)
+print(eigenwerte)
 print('\nEigenvektoren:')
-print(eigenvectors)
+print(eigenvektoren)
 ```
 
 Die Eigenwerte werden als `[13.08576474+0.j  2.58000566+0.j -2.66577041+0.j]` ausgegeben:
@@ -570,7 +584,7 @@ print('mit eigh:', werte_eigh)
 ```
 
 `eigh` prüft allerdings nicht, ob die übergebene Matrix wirklich symmetrisch ist, sondern liest
-voreingestellt nur ihr unteres Dreieck.
+mit dem Standardwert `UPLO='L'` nur ihr unteres Dreieck.
 Bei einer unsymmetrischen Matrix kommt deshalb ohne jede Fehlermeldung ein falsches Ergebnis
 heraus.
 
@@ -581,16 +595,28 @@ Die Referenzseiten dazu sind
 
 [ER] Bestimmen Sie Rang und Eigenwerte:
 
-- Erstellen Sie eine symmetrische 3×3-Matrix `symmetric_matrix` (als `float`) mit den Werten
-  `[[5, 3, 1], [3, 8, 2], [1, 2, 6]]` und berechnen Sie ihren Rang sowie ihre Eigenwerte und
-  Eigenvektoren einmal mit `eigh` und einmal mit `eig`; halten Sie in einem Kommentar fest,
-  worin sich die beiden Eigenwertausgaben unterscheiden
-- Legen Sie die singuläre Matrix `singular` aus [EREFR::5] mit den Werten
+- Erstellen Sie eine symmetrische 3×3-Matrix `symmetrische_matrix` (als `float`) mit den
+  Werten `[[5, 3, 1], [3, 8, 2], [1, 2, 6]]` und berechnen Sie ihren Rang sowie ihre
+  Eigenwerte und Eigenvektoren einmal mit `eigh` und einmal mit `eig`; halten Sie in einem
+  Kommentar fest, worin sich die beiden Eigenwertausgaben unterscheiden
+- Legen Sie eine unsymmetrische Matrix `unsymmetrische_matrix` (als `float`) mit den Werten
+  `[[5, 3, 1], [9, 8, 2], [7, 4, 6]]` an und berechnen Sie ihre Eigenwerte erneut mit beiden
+  Funktionen; halten Sie in einem Kommentar fest, welches der beiden Ergebnisse für diese
+  Matrix falsch ist und aus welcher Matrix `eigh` seine Werte tatsächlich berechnet hat
+- Legen Sie die singuläre Matrix `singular` aus [EREFR::6] mit den Werten
   `[[2, 5, 4], [4, 10, 8], [6, 15, 12]]` erneut an, bestimmen Sie ihren Rang und halten Sie in
   einem Kommentar fest, wie ihr Rang mit ihrer Determinante und dem gescheiterten Invertieren
   zusammenhängt
 
-<!-- time estimate: 15 min -->
+[HINT::Ich komme nicht darauf, welche Matrix `eigh` tatsächlich gerechnet hat]
+`eigh` liest mit dem Standardwert `UPLO='L'` nur das untere Dreieck, also die Hauptdiagonale
+und alles darunter.
+Den oberen Teil ersetzt es durch die Spiegelung des unteren an der Hauptdiagonale.
+Schreiben Sie diese Matrix auf und lassen Sie `eig` darauf laufen; die Eigenwerte müssen dann
+mit denen von `eigh` übereinstimmen.
+[ENDHINT]
+
+<!-- time estimate: 20 min -->
 
 ### Normen und Singulärwertzerlegung: `norm`, `svd`
 
@@ -604,8 +630,10 @@ numpy.linalg.svd(a, full_matrices=True)  # Singulärwertzerlegung
 
 - `x` (bei `norm`): die betroffene Matrix oder der betroffene Vektor
 - `a` (bei `svd`): die zu zerlegende Matrix
-- `ord` (bei `norm`): welche Norm berechnet wird — mögliche Werte sind `'fro'` für die
-  Frobenius-Norm sowie `1`, `2` oder `np.inf` für die jeweilige Operatornorm.
+- `ord` (bei `norm`): welche Norm berechnet wird — bei Matrizen sind `'fro'` für die
+  Frobenius-Norm sowie `1`, `2` und `np.inf` für die jeweilige Operatornorm gebräuchlich.
+  Bei einem Vektor bedeuten dieselben Zahlen etwas anderes, nämlich Betragssumme,
+  euklidische Länge und größten Betrag.
   Beim Standardwert `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm
   bei Matrizen
 - `full_matrices` (bei `svd`, Standard `True`): ob die beiden Faktormatrizen quadratisch
@@ -617,6 +645,8 @@ Welche der vier gebräuchlichsten die richtige ist, hängt davon ab, was man mes
 die Frobenius-Norm die Gesamtabweichung über alle Elemente hinweg, die 1-Norm die am stärksten
 ins Gewicht fallende Spalte, die ∞-Norm entsprechend die stärkste Zeile und die 2-Norm den
 Faktor, um den die Matrix einen Vektor höchstens verlängern kann.
+Bei einem Vektor dagegen ist die 2-Norm die Wurzel der Summe seiner quadrierten Einträge,
+also seine geometrische Länge.
 
 ```python
 import numpy as np
@@ -626,8 +656,8 @@ matrix = np.array([[3, 1, 4],
                    [2, 6, 5]])
 
 # Ohne ord-Angabe: Standard None entspricht bei einer Matrix der Frobenius-Norm
-default_norm = np.linalg.norm(matrix)
-print('\nNorm ohne ord-Angabe (Standard):', default_norm)
+norm_standard = np.linalg.norm(matrix)
+print('\nNorm ohne ord-Angabe (Standard):', norm_standard)
 
 # Frobenius-Norm (Wurzel der Summe aller quadrierten Elemente)
 frobenius_norm = np.linalg.norm(matrix, 'fro')
@@ -685,7 +715,7 @@ Die Referenzseiten dazu sind
 
 [ER] Vergleichen Sie Normen und zerlegen Sie eine Matrix:
 
-- Erstellen Sie eine nicht-quadratische 2×3-Matrix `test_matrix` (als `float`) mit den Werten
+- Erstellen Sie eine nicht-quadratische 2×3-Matrix `testmatrix` (als `float`) mit den Werten
   `[[3, 8, 1], [6, 2, 9]]`, zerlegen Sie sie mit `svd` und `full_matrices=False`,
   rekonstruieren Sie sie aus den drei Faktoren und prüfen Sie das Ergebnis mit `np.allclose`
   gegen das Original
@@ -699,7 +729,7 @@ Die Referenzseiten dazu sind
 
 [EQ] Ohne `ord`-Angabe berechnet `norm` bei einem Vektor die 2-Norm, bei einer Matrix aber die
 Frobenius-Norm.
-Halten Sie die beiden Definitionen neben Ihre Werte aus [EREFR::8] und begründen Sie, warum
+Halten Sie die beiden Definitionen neben Ihre Werte aus [EREFR::9] und begründen Sie, warum
 sich hinter den zwei verschiedenen Namen dieselbe Rechnung verbirgt.
 
 <!-- time estimate: 15 min -->
