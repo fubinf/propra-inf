@@ -2,7 +2,7 @@ title: NumPy Bitwise-Operationen und String-Funktionen
 stage: alpha
 timevalue: 2.5
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2, py-Fstrings, py-List-Comprehensions
+assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings, py-List-Comprehensions
 ---
 
 [SECTION::goal::idea,experience]
@@ -38,8 +38,8 @@ Falls Ihnen diese fehlen, arbeiten Sie zuerst die folgenden Quellen durch:
 - [Dualsystem (Wikipedia)](https://de.wikipedia.org/wiki/Dualsystem)
 - [Zweierkomplement (Wikipedia)](https://de.wikipedia.org/wiki/Zweierkomplement)
 
-Die Zeitschätzungen der Bitwise-Abschnitte setzen dieses Vorwissen voraus; wer es sich erst parallel
-aneignet, braucht entsprechend länger.
+Die Zeitschätzungen der Bitwise-Abschnitte setzen dieses Vorwissen voraus; wer es sich erst
+aneignen muss, braucht entsprechend länger.
 
 ### Grundlagen der NumPy-Bitwise-Operationen
 
@@ -187,11 +187,13 @@ Bei `64 = 01000000` wandert das einzige gesetzte Bit aus den 8 Bit hinaus, übri
 Bei `100 = 01100100` bleibt das Bitmuster `10010000` stehen; als `int8` gelesen ist das `-112`, denn
 dort zeigt das oberste Bit das Vorzeichen an (mehr dazu im Abschnitt zu `invert` weiter unten).
 
-[EQ] Berechnen Sie im Kopf das Ergebnis von `np.left_shift(7, 3)` und erklären Sie Ihren
-Rechenweg mit der binären Darstellung.
+[EQ] Sagen Sie vorher, welches Ergebnis `np.left_shift(7, 3)` liefert, ohne es auszuführen, und
+erklären Sie Ihren Rechenweg mit der binären Darstellung.
+Im nächsten Schritt prüfen Sie Ihre Vorhersage nach.
 
-[ER] Arbeiten Sie mit Bit-Verschiebungen in Arrays:
+[ER] Arbeiten Sie mit Bit-Verschiebungen:
 
+- Führen Sie `np.left_shift(7, 3)` aus und vergleichen Sie das Ergebnis mit Ihrer Vorhersage
 - Erstellen Sie ein Array `values` mit den Werten `[5, 12, 25, 48]`
 - Verschieben Sie alle Werte um 1 Position nach links
 - Verschieben Sie alle Werte um 2 Positionen nach rechts
@@ -201,7 +203,8 @@ Rechenweg mit der binären Darstellung.
   steht für eine Hexadezimalzahl, je zwei Stellen entsprechen einem Byte) ist `0xFF` = 255 der Rot-,
   `0x88` = 136 der Grün- und `0x00` = 0 der Blauanteil.
   Erstellen Sie ein Array `farben` mit den Werten `[0xFF8800, 0x3366CC]` und holen Sie mit
-  `np.right_shift()` und `np.bitwise_and()` die drei Farbanteile als je ein eigenes Array heraus
+  `np.right_shift()` und `np.bitwise_and()` die drei Farbanteile als je ein eigenes Array
+  (`rot`, `gruen`, `blau`) heraus
 - Geben Sie zusätzlich `np.right_shift(farben, 8)` ohne die Maskierung aus und erklären Sie im
   Kommentar, wozu `np.bitwise_and()` hier nötig ist
 
@@ -411,8 +414,7 @@ Was müssten Sie ändern, damit auch dort ersetzt wird?
 
 ### String-Teilung, Zeichen-Verbindung und Teilstring-Suche: `char.split`, `char.join`, `strings.find`
 
-`find` gibt es in beiden Modulen; wir nutzen daher wie zuvor das aktuelle `numpy.strings`, für
-`split`/`join` bleibt es bei `numpy.char`.
+`find` gibt es in beiden Modulen; wie zuvor wird daher `numpy.strings` verwendet.
 
 [FOLDOUT::Warum fehlen `split` und `join` in `numpy.strings`?]
 `split` liefert für jedes Element eine unterschiedlich lange Python-Liste von Teilstrings zurück;
@@ -471,7 +473,8 @@ print("Position of 'xyz':", not_found)  # [-1 -1]
 
 ### Geschwindigkeitsvergleich mit einer Python-Schleife: `strings.startswith`
 
-Wie groß der eingangs erwähnte Geschwindigkeitsvorteil wirklich ist, messen Sie jetzt selbst nach.
+Wie groß der zu Beginn des String-Teils erwähnte Geschwindigkeitsvorteil wirklich ist, messen Sie
+jetzt selbst nach.
 
 ```python
 numpy.strings.startswith(a, prefix)  # prüft für jedes Element, ob es mit prefix beginnt
@@ -485,8 +488,14 @@ import numpy as np
 
 files = np.array(['summary.txt', 'report_2023.csv', 'report_2024.csv'])
 mask = np.strings.startswith(files, 'report')
-print(mask)  # [False  True  True]
+print(mask)         # [False  True  True]
+print(files[mask])  # ['report_2023.csv' 'report_2024.csv']
 ```
+
+Das Ergebnis ist ein boolesches Array und taugt damit unmittelbar als Maske, so wie die aus
+Zahlenvergleichen gewonnenen Masken in [PARTREF::np-index-slice].
+Es lässt sich außerdem mit `&` und `|` zu einer zusammengesetzten Bedingung verknüpfen; eine
+Python-Liste von Wahrheitswerten kann das nicht.
 
 [INCLUDE::_include/Zeitmessung.md]
 
