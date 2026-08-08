@@ -9,7 +9,8 @@ assumes: np-Einführung, py-Fstrings
 
 - Ich kann SciPy installieren und die Installation überprüfen.
 - Ich verstehe die wichtigsten Module von SciPy und ihre Anwendungsbereiche.
-- Ich kann mit `scipy.constants` mathematische und physikalische Konstanten abrufen.
+- Ich kann mit `scipy.constants` mathematische und physikalische Konstanten abrufen und die beiden
+  Zugriffswege des Moduls unterscheiden.
 
 [ENDSECTION]
 
@@ -27,18 +28,23 @@ Die übrigen Module sind Gegenstand der restlichen Aufgaben dieser Gruppe.
 
 Für die Modulzuordnung weiter unten werden Grundbegriffe der Analysis und linearen Algebra benötigt
 (Integral, lineares Gleichungssystem, dünnbesetzte Matrix, Extremstelle einer Funktion,
-Kurvenanpassung).
+Interpolation, Kurvenanpassung).
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
-- [Integralrechnung (Wikipedia)](https://de.wikipedia.org/wiki/Integralrechnung)
-- [Lineares Gleichungssystem (Wikipedia)](https://de.wikipedia.org/wiki/Lineares_Gleichungssystem)
-- [Dünnbesetzte Matrix (Wikipedia)](https://de.wikipedia.org/wiki/D%C3%BCnnbesetzte_Matrix)
-- [Extremwert (Wikipedia)](https://de.wikipedia.org/wiki/Extremwert)
-- [Methode der kleinsten Quadrate (Wikipedia)](https://de.wikipedia.org/wiki/Methode_der_kleinsten_Quadrate)
+- [Integralrechnung (Wikipedia)](https://de.wikipedia.org/wiki/Integralrechnung):
+  der zurückgelegte Weg als Integral der Geschwindigkeit über die Zeit
+- [Lineares Gleichungssystem (Wikipedia)](https://de.wikipedia.org/wiki/Lineares_Gleichungssystem):
+  die Koeffizientenmatrix als Beschreibung des Systems
+- [Dünnbesetzte Matrix (Wikipedia)](https://de.wikipedia.org/wiki/D%C3%BCnnbesetzte_Matrix):
+  warum die Besetzungsdichte darüber entscheidet, wie eine Matrix gespeichert wird
+- [Extremwert (Wikipedia)](https://de.wikipedia.org/wiki/Extremwert):
+  Minimalstelle einer Funktion
+- [Interpolation (Wikipedia)](https://de.wikipedia.org/wiki/Interpolation_(Mathematik)):
+  Schätzung von Werten zwischen bekannten Stützstellen
+- [Methode der kleinsten Quadrate (Wikipedia)](https://de.wikipedia.org/wiki/Methode_der_kleinsten_Quadrate):
+  Kurvenanpassung als Minimierung der Abweichung von den Messwerten
 
 ### SciPy installieren
-
-SciPy ist nicht in der Standard-Python-Installation enthalten und muss separat installiert werden.
 
 [EC] Installieren Sie SciPy mit `pip`:
 
@@ -66,7 +72,8 @@ SciPy ist in spezialisierte Module unterteilt, die verschiedene wissenschaftlich
 - `scipy.stats`: Statistische Funktionen und Verteilungen (vertieft in [PARTREF::sp-stats])
 - `scipy.signal`: Signalverarbeitung (in dieser Aufgabengruppe nicht behandelt)
 - `scipy.interpolate`: Interpolation und Approximation (vertieft in [PARTREF::sp-interpolate])
-- `scipy.sparse`: Sparse-Matrix-Operationen (vertieft in [PARTREF::sp-sparse])
+- `scipy.sparse`: Operationen auf dünnbesetzten (sparse) Matrizen (vertieft in [PARTREF::sp-sparse])
+- `scipy.constants`: Mathematische und physikalische Konstanten (Thema dieser Aufgabe)
 
 **Aufruf einer Modulfunktion:**
 
@@ -105,25 +112,18 @@ Begründen Sie Ihre Auswahl:
 
 `scipy.constants` stellt viele mathematische und physikalische Konstanten bereit.
 
-**Grundlegende mathematische Konstanten:**
-
 ```python
 from scipy import constants
 
 print(constants.pi)      # 3.141592653589793 (Kreiszahl π)
 print(constants.golden)  # 1.618033988749895 (Goldener Schnitt)
-```
-
-**Physikalische Konstanten:**
-
-```python
-print(constants.g)  # 9.80665 (Normfallbeschleunigung in m/s²)
+print(constants.g)       # 9.80665 (Normfallbeschleunigung in m/s²)
 ```
 
 **Umrechnungsfaktoren:**
 
 `scipy.constants` stellt außerdem Umrechnungsfaktoren bereit, sowohl für Einheiten als auch für die
-SI-Präfixe ("SI" steht für "Système International d'Unités", das internationale Einheitensystem).
+SI-Präfixe.
 Anders als `pi` oder `golden` bezeichnen diese Werte keine eigenständige Größe, sondern den Faktor,
 mit dem ein in dieser Einheit bzw. mit diesem Präfix angegebener Wert in die entsprechende
 SI-Einheit umgerechnet wird:
@@ -149,10 +149,10 @@ jeweils vier Nachkommastellen ausgibt, die den Wert tatsächlich wiedergeben
 Nicht jede dieser Größen lässt sich dafür mit `:.4f` darstellen.
 Halten Sie Ihre Formatierungsentscheidung bei den beiden physikalischen Konstanten in einem
 Kommentar fest.
-Bei Ihrem SI-Präfix lässt sich die Forderung gar nicht erfüllen; halten Sie in einem Kommentar
-fest, warum nicht.
+Bei Ihrem SI-Präfix bleiben die vier Nachkommastellen in jeder Formatierung leer; halten Sie in
+einem Kommentar fest, warum das so ist.
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 Außerdem enthält `scipy.constants` das Dictionary `physical_constants`, dessen Einträge jeweils ein
 Tripel aus Wert, Einheit und Unsicherheit sind:
