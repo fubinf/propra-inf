@@ -9,7 +9,7 @@ assumes: np-Einführung, py-Fstrings
 
 - Ich kann SciPy installieren und die Installation überprüfen.
 - Ich verstehe die wichtigsten Module von SciPy und ihre Anwendungsbereiche.
-- Ich kann das SciPy-Constants-Modul verwenden, um mathematische und physikalische Konstanten abzurufen.
+- Ich kann mit `scipy.constants` mathematische und physikalische Konstanten abrufen.
 
 [ENDSECTION]
 
@@ -26,12 +26,13 @@ Die übrigen Module sind Gegenstand der restlichen Aufgaben dieser Gruppe.
 ### Vorwissen
 
 Für die Modulzuordnung weiter unten werden Grundbegriffe der Analysis und linearen Algebra benötigt
-(Integral, lineares Gleichungssystem, Extremstelle einer Funktion).
+(Integral, Eigenwert einer Matrix, Extremstelle einer Funktion, Kurvenanpassung).
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Integralrechnung (Wikipedia)](https://de.wikipedia.org/wiki/Integralrechnung)
-- [Lineares Gleichungssystem (Wikipedia)](https://de.wikipedia.org/wiki/Lineares_Gleichungssystem)
+- [Eigenwertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Eigenwertproblem)
 - [Extremwert (Wikipedia)](https://de.wikipedia.org/wiki/Extremwert)
+- [Methode der kleinsten Quadrate (Wikipedia)](https://de.wikipedia.org/wiki/Methode_der_kleinsten_Quadrate)
 
 ### SciPy installieren
 
@@ -61,7 +62,7 @@ SciPy ist in spezialisierte Module unterteilt, die verschiedene wissenschaftlich
 - `scipy.integrate`: Numerische Integration (vertieft in [PARTREF::sp-integrate])
 - `scipy.linalg`: Erweiterte lineare Algebra (vertieft in [PARTREF::sp-linalg])
 - `scipy.stats`: Statistische Funktionen und Verteilungen (vertieft in [PARTREF::sp-stats])
-- `scipy.signal`: Signalverarbeitung
+- `scipy.signal`: Signalverarbeitung (in dieser Aufgabengruppe nicht behandelt)
 - `scipy.interpolate`: Interpolation und Approximation (vertieft in [PARTREF::sp-interpolate])
 - `scipy.sparse`: Sparse-Matrix-Operationen (vertieft in [PARTREF::sp-sparse])
 
@@ -89,15 +90,15 @@ print("Minimum bei x =", result.x)  # Minimum bei x = -2.0
 [EQ] Welches SciPy-Modul würden Sie für folgende Aufgaben verwenden? Begründen Sie Ihre Auswahl:
 
 - Berechnung der Fläche unter einer Kurve
-- Lösung eines linearen Gleichungssystems mit 1000 Variablen
+- Bestimmung der Eigenwerte einer Matrix
 - Schätzung eines Zwischenwerts zwischen zwei gemessenen Datenpunkten
-- Bestimmung des Minimums einer mathematischen Funktion
+- Anpassung einer Modellfunktion an eine Messreihe
 
 <!-- time estimate: 10 min -->
 
 ### Mathematische und physikalische Konstanten mit `scipy.constants`
 
-Das Constants-Modul (`scipy.constants`) stellt viele mathematische und physikalische Konstanten bereit.
+`scipy.constants` stellt viele mathematische und physikalische Konstanten bereit.
 
 **Grundlegende mathematische Konstanten:**
 
@@ -108,46 +109,45 @@ print(constants.pi)      # Kreiszahl π ≈ 3.14159
 print(constants.golden)  # Goldener Schnitt ≈ 1.618
 ```
 
-**Physikalische Konstanten und Einheiten:**
+**Physikalische Konstanten:**
 
 ```python
-# Zwei Flächeneinheiten, jeweils umgerechnet in Quadratmeter
-print(constants.acre)    # Ein Acre in Quadratmetern
-print(constants.hectare) # Ein Hektar in Quadratmetern
+print(constants.g)  # Normfallbeschleunigung in m/s²
 ```
 
-**SI-Präfixe als Umrechnungsfaktoren:**
+**Umrechnungsfaktoren:**
 
-Neben mathematischen und physikalischen Konstanten stellt `scipy.constants` auch SI-Präfixe
-als Umrechnungsfaktoren bereit ("SI" steht für "Système International d'Unités", das
-internationale Einheitensystem) — anders als `pi` oder `acre` handelt es sich hier nicht um eine
-eigenständige Größe, sondern um den Faktor, mit dem ein Wert multipliziert wird:
+`scipy.constants` stellt außerdem Umrechnungsfaktoren bereit, sowohl für Einheiten als auch für die
+SI-Präfixe ("SI" steht für "Système International d'Unités", das internationale Einheitensystem).
+Anders als `pi` oder `golden` bezeichnen diese Werte keine eigenständige Größe, sondern den Faktor,
+mit dem ein Wert multipliziert wird:
 
 ```python
-from scipy import constants
-
-print(constants.kilo)  # 1000.0 — Faktor für "Kilo" (z.B. 1 km = 1 * constants.kilo Meter)
-print(constants.nano)  # 1e-09  — Faktor für "Nano"
+print(constants.acre)  # ≈ 4046.86 — ein Acre in Quadratmetern
+print(constants.kilo)  #   1000.0  — Faktor für "Kilo" (z.B. 1 km = 1 * constants.kilo Meter)
+print(constants.nano)  #   1e-09   — Faktor für "Nano"
 ```
 
 [ER] Schreiben Sie ein Programm, das die folgenden, auf `scipy.constants` basierenden Werte mit
 jeweils vier Nachkommastellen ausgibt (siehe [PARTREF::py-Fstrings] für die Formatierung):
 
-- Den Flächeninhalt eines Kreises mit Radius 5 (mit `pi` berechnet), sowie die Probe, ob der
-  Goldene Schnitt `golden` die Gleichung x² = x + 1 erfüllt
+- Den Flächeninhalt eines Kreises mit Radius 5, berechnet mit `pi`
+- Die Probe, ob der Goldene Schnitt `golden` die Gleichung x² = x + 1 erfüllt
 - `Boltzmann` sowie eine weitere physikalische Konstante Ihrer Wahl, die oben noch nicht vorkam
   — nachschlagen in der
   [SciPy Constants Reference](https://docs.scipy.org/doc/scipy/reference/constants.html)
 - Ein SI-Präfix Ihrer Wahl außer `kilo` und `nano` (z.B. `mega`, `milli` oder `giga`)
 
 Nicht jede dieser Größen lässt sich mit `:.4f` sinnvoll darstellen.
-Wählen Sie die Formatierung deshalb so, dass die vier Nachkommastellen bei jedem Wert tatsächlich
-Information tragen, und halten Sie Ihre Entscheidung in einem Kommentar fest.
+Wählen Sie die Formatierung bei den beiden physikalischen Konstanten deshalb so, dass die vier
+Nachkommastellen tatsächlich Information tragen, und halten Sie Ihre Entscheidung in einem
+Kommentar fest.
+Bei Ihrem SI-Präfix ist das nicht erreichbar; halten Sie in einem Kommentar fest, warum nicht.
 
 <!-- time estimate: 15 min -->
 
-Das Constants-Modul bietet mit `constants.physical_constants` außerdem ein Dictionary, dessen
-Einträge jeweils ein Tripel aus Wert, Einheit und Unsicherheit sind:
+Außerdem bietet `constants.physical_constants` ein Dictionary, dessen Einträge jeweils ein Tripel
+aus Wert, Einheit und Unsicherheit sind:
 
 ```python
 from scipy import constants
@@ -162,7 +162,6 @@ print(f"Wert: {value} {unit} (Unsicherheit: {uncertainty})")
 [EQ] In [EREFR::1] haben Sie `constants.pi` als einfaches Modulattribut abgerufen,
 in [EREFR::2] dagegen `physical_constants` als Dictionary, das ein Tripel liefert.
 Nennen Sie zwei technische Gründe, warum SciPy hier zwei verschiedene Zugriffswege anbietet.
-
 Eine der drei Unsicherheiten aus [EREFR::2] ist `0.0`, die beiden anderen nicht.
 Erklären Sie, warum das Tripel trotzdem für alle Einträge dieselbe Form hat.
 
