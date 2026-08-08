@@ -12,8 +12,6 @@ assumes: np-Einführung, np-array, np-math, py-Fstrings
   deren Kennwerte berechnen.
 - Ich kann einen Hypothesentest bzw. Korrelationskoeffizienten anwenden und das Ergebnis
   einschließlich seiner Grenzen interpretieren.
-- Ich kann NumPy-Kennzahlen mit SciPy-Inferenzmethoden kombinieren, um Unsicherheit in
-  datengestützten Entscheidungen zu berücksichtigen.
 
 [ENDSECTION]
 
@@ -31,8 +29,8 @@ schließen" ist der Kern dieser Aufgabe.
 
 ### Vorwissen
 
-Für diese Aufgabe sind folgende Konzepte hilfreich. Falls Ihnen diese fehlen, helfen folgende
-Quellen:
+Für diese Aufgabe werden folgende Konzepte benötigt.
+Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Wahrscheinlichkeitsverteilung (Wikipedia)](https://de.wikipedia.org/wiki/Wahrscheinlichkeitsverteilung):
   Grundbegriffe zu Normal- und Binomialverteilung
@@ -60,7 +58,7 @@ scipy.stats.binom(n, p)            # diskret: Binomialverteilung
 | `.cdf(x)` | P(X ≤ x), kumulative Verteilungsfunktion |
 | `.ppf(q)` | Quantilfunktion, Umkehrung von `.cdf` |
 | `.rvs(size)` | Zufallsstichprobe der angegebenen Größe |
-| `.stats(moments='m')` | theoretischer Erwartungswert (u. a. Momente) |
+| `.stats(moments=...)` | angeforderte theoretische Momente; `'m'` liefert den Erwartungswert |
 
 **Beispiel:**
 ```python
@@ -80,7 +78,7 @@ print(f"P(X ≤ 5): {binomial.cdf(5):.4f}")
 ```
 
 Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit Präzisionsangabe
-(in [PARTREF::py-Fstrings]), z. B. 5 Nachkommastellen (`:.5f`).
+(siehe [PARTREF::py-Fstrings]), in der Regel vier Nachkommastellen (`:.4f`).
 
 [ER] Arbeiten Sie mit verschiedenen Wahrscheinlichkeitsverteilungen:
 
@@ -88,20 +86,33 @@ Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit P
   Wahrscheinlichkeitsdichte bei x=10 (`.pdf()`), die Wahrscheinlichkeit P(X ≤ 13) (`.cdf()`) und
   das 95%-Quantil (`.ppf(0.95)`)
 - Erstellen Sie eine Binomialverteilung mit n=20 und p=0.4 (`stats.binom()`) und berechnen Sie die
-  Wahrscheinlichkeit für genau 8 Erfolge (`.pmf()`) sowie für mindestens 10 Erfolge (1 - `.cdf()`)
+  Wahrscheinlichkeit für genau 8 Erfolge (`.pmf()`) sowie für mindestens 10 Erfolge (`.cdf()`)
 - Generieren Sie je 1000 Zufallsstichproben aus beiden Verteilungen (`.rvs()`), berechnen Sie deren
   empirische Mittelwerte (`np.mean()`) und vergleichen Sie diese mit dem theoretischen Mittelwert
   (`.stats(moments='m')`)
 
-Geben Sie alle Ergebnisse mit passenden Beschreibungen aus (4 Nachkommastellen, `:.4f`).
+Geben Sie alle Ergebnisse mit passenden Beschreibungen aus.
+
+[HINT::Ist `scale` bei N(10, 3²) nun 3 oder 9?]
+Die Schreibweise N(μ, σ²) nennt an zweiter Stelle die Varianz, `scale` erwartet dagegen die
+Standardabweichung σ.
+Ein falscher Wert erzeugt hier keine Fehlermeldung, sondern nur stillschweigend andere Zahlen.
+[ENDHINT]
+
+[HINT::Welches Argument gehört in `.cdf()`, wenn ich "mindestens 10 Erfolge" meine?]
+`.cdf(x)` liefert P(X ≤ x), und eine Binomialverteilung nimmt nur ganzzahlige Werte an.
+Überlegen Sie, welches Gegenereignis zu "mindestens 10" gehört und bis zu welchem Wert dessen
+Wahrscheinlichkeit aufsummiert werden muss.
+[ENDHINT]
 
 [EQ] Für kontinuierliche Verteilungen gibt es `.pdf()`, für diskrete `.pmf()` — zwei getrennte
-Methoden statt einer gemeinsamen. Was unterscheidet kontinuierliche von diskreten Verteilungen
-strukturell, das diese Trennung nötig macht?
+Methoden statt einer gemeinsamen.
+Was unterscheidet kontinuierliche von diskreten Verteilungen strukturell, das diese Trennung
+nötig macht?
 
 <!-- time estimate: 25 min -->
 
-### Hypothesentests durchführen
+### Hypothesentests: `stats.ttest_ind`
 
 Hypothesentests prüfen, ob ein beobachteter Unterschied wahrscheinlich echt ist oder auch durch
 zufällige Stichprobenschwankung erklärbar wäre:
@@ -111,7 +122,9 @@ scipy.stats.ttest_ind(a, b)
 ```
 
 - `a`, `b`: die beiden unabhängigen Stichproben (Arrays/Listen)
-- Rückgabe: `(statistic, pvalue)` — nur `pvalue` ist für die Interpretation relevant
+- Rückgabe: ein `TtestResult`-Objekt, das sich in `(statistic, pvalue)` entpacken lässt.
+  `pvalue` ist der p-Wert; das Vorzeichen von `statistic` zeigt zusätzlich, welche der beiden
+  Stichproben den größeren Mittelwert hat
 
 **Beispiel:**
 ```python
@@ -127,9 +140,9 @@ print(f"Signifikant bei α=0.05? {p_value < 0.05}")  # True
 ```
 
 Der p-Wert kann je nach Daten extrem klein ausfallen — mit fester Nachkommastellenzahl (`:.4f`)
-würde er dann als `0.0000` erscheinen, obwohl er nie exakt 0 ist. Wissenschaftliche Notation
-(`:.2e`) zeigt die tatsächliche Größenordnung, deshalb braucht der p-Wert selbst keine feste
-Nachkommastellen-Vorgabe.
+würde er dann als `0.0000` erscheinen, obwohl er nie exakt 0 ist.
+Geben Sie p-Werte in dieser Aufgabe deshalb durchgehend in wissenschaftlicher Notation (`:.2e`)
+aus, die die tatsächliche Größenordnung zeigt.
 
 [NOTICE]
 Ein p-Wert < α (meist 0.05) führt zur Ablehnung der Nullhypothese — er sagt aber nichts über die
@@ -140,14 +153,16 @@ praktische Bedeutsamkeit des Unterschieds aus, nur über dessen statistische Sig
 `[23.1, 24.8, 22.9, 25.2, 23.7, 24.1, 23.5, 24.9, 23.8, 24.3]` und `gruppe_b` mit den Werten
 `[26.2, 27.1, 25.8, 26.9, 27.3, 26.5, 26.8, 27.0, 26.1, 26.7]`.
 
-- Geben Sie `np.mean()` für beide Gruppen aus (4 Nachkommastellen, `:.4f`)
+- Geben Sie `np.mean()` für beide Gruppen aus
 - Testen Sie mit `stats.ttest_ind()`, ob sich die Mittelwerte signifikant unterscheiden (α=0.05)
 - Geben Sie den p-Wert aus und interpretieren Sie das Ergebnis
 
 [EQ] Sie haben für Gruppe A und Gruppe B bereits `np.mean()` ausgegeben, bevor Sie `ttest_ind`
-ausgeführt haben. Reicht der reine Vergleich der beiden Mittelwerte aus, um zu sagen, ob sich die
-Gruppen "wirklich" unterscheiden? Was beantwortet der p-Wert von `ttest_ind`, das der reine
-Mittelwertvergleich nicht beantworten kann?
+ausgeführt haben.
+Reicht der reine Vergleich der beiden Mittelwerte aus, um zu sagen, ob sich die Gruppen "wirklich"
+unterscheiden?
+Was beantwortet der p-Wert von `ttest_ind`, das der reine Mittelwertvergleich nicht beantworten
+kann?
 
 <!-- time estimate: 20 min -->
 
@@ -161,7 +176,8 @@ scipy.stats.pearsonr(x, y)
 ```
 
 - `x`, `y`: die beiden Messreihen (gleiche Länge)
-- Rückgabe: `(r, p)` — `r` liegt zwischen -1 und 1: `0` bedeutet kein linearer Zusammenhang,
+- Rückgabe: ein `PearsonRResult`-Objekt, das sich in `(r, p)` entpacken lässt.
+  `r` liegt zwischen -1 und 1: `0` bedeutet kein linearer Zusammenhang,
   `+1` ein perfekter positiver Zusammenhang (steigt `x`, steigt auch `y`), `-1` ein perfekter
   negativer Zusammenhang (steigt `x`, sinkt `y`); `p` ist der p-Wert für die Nullhypothese
   "kein Zusammenhang"
@@ -174,14 +190,14 @@ werte_x = [1, 2, 3, 4, 5]
 werte_y = [2, 3, 5, 4, 6]
 
 r, p = stats.pearsonr(werte_x, werte_y)
-print(f"r = {r:.4f}, p = {p:.4f}")
-# r = 0.9000, p = 0.0374 -> starker positiver Zusammenhang, bei α=0.05 signifikant
+print(f"r = {r:.4f}, p = {p:.2e}")
+# r = 0.9000, p = 3.74e-02 -> starker positiver Zusammenhang, bei α=0.05 signifikant
 ```
 
 [NOTICE]
-`pearsonr` misst nur **lineare** Zusammenhänge und reagiert empfindlich auf einzelne Ausreißer;
-ein hoher/niedriger r-Wert sagt außerdem nur etwas über den statistischen Zusammenhang aus, nicht
-darüber, ob eine Variable die andere verursacht (Korrelation ist nicht Kausalität).
+`pearsonr` misst nur **lineare** Zusammenhänge; ein hoher oder niedriger r-Wert sagt außerdem nur
+etwas über den statistischen Zusammenhang aus, nicht darüber, ob eine Variable die andere
+verursacht (Korrelation ist nicht Kausalität).
 [ENDNOTICE]
 
 [ER] Untersuchen Sie den Zusammenhang zwischen Lernzeit und Klausurpunkten:
@@ -190,13 +206,20 @@ Gegeben sind die Werte von 10 Studierenden: `lernstunden` mit den Werten
 `[2, 3, 4, 4, 5, 6, 6, 7, 8, 9]` und `punkte` mit den Werten
 `[58, 52, 63, 60, 68, 65, 74, 70, 60, 88]`.
 
-- Berechnen Sie den Korrelationskoeffizienten und den p-Wert (`stats.pearsonr()`)
-- Geben Sie beide Werte aus (4 Nachkommastellen, `:.4f`)
+- Berechnen Sie mit `stats.pearsonr()` den Korrelationskoeffizienten und den p-Wert für alle zehn
+  Wertepaare und geben Sie beide aus (`r` mit `:.4f`, den p-Wert mit `:.2e`)
+- Ein Wertepaar fällt aus dem Trend der übrigen deutlich nach unten heraus: viele Lernstunden bei
+  wenig Punkten.
+  Lassen Sie dieses eine Paar weg, berechnen Sie `r` und `p` für die verbleibenden neun Paare
+  erneut und geben Sie auch diese beiden Werte aus
+- Halten Sie in einem Kommentar fest, welches Wertepaar Sie weggelassen haben
 
-[EQ] `stats.pearsonr()` prüft nicht, ob Ihre Daten die Voraussetzungen überhaupt erfüllen — es
-liefert für praktisch jede beliebige `x`/`y`-Eingabe klaglos ein Ergebnis. Was sollten Sie vor
-bzw. nach einem `pearsonr()`-Aufruf zusätzlich prüfen, bevor Sie sich auf `r` und `p` verlassen?
-Nennen Sie zwei konkrete Prüfschritte.
+[EQ] Vergleichen Sie Ihre beiden `r`-Werte aus [EREFR::3] miteinander.
+Ein einziges von zehn Wertepaaren hat den Koeffizienten verschoben, ohne dass `stats.pearsonr()`
+bei einem der beiden Aufrufe darauf hingewiesen hätte.
+Was folgt daraus für die Aussagekraft eines einzelnen `r`-Werts?
+Und woran hätten Sie das auffällige Paar erkennen können, bevor Sie `pearsonr()` überhaupt
+aufgerufen haben?
 
 <!-- time estimate: 15 min -->
 
@@ -204,7 +227,7 @@ Nennen Sie zwei konkrete Prüfschritte.
 
 - [SciPy Statistics Reference](https://docs.scipy.org/doc/scipy/reference/stats.html): Überblick
   über alle in `scipy.stats` verfügbaren Verteilungen und Funktionen
-- [Statistical tests](https://docs.scipy.org/doc/scipy/reference/stats.html#statistical-tests):
+- [Statistical tests](https://docs.scipy.org/doc/scipy/reference/stats.html#hypothesis-tests-and-related-functions):
   weitere Tests, u. a. `ttest_rel` (gepaarte Stichproben) und `spearmanr` (Rangkorrelation,
   robuster gegenüber Ausreißern als `pearsonr`)
 
