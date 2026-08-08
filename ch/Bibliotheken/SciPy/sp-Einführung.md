@@ -1,6 +1,6 @@
 title: SciPy Grundlagen verstehen und anwenden
 stage: alpha
-timevalue: 1
+timevalue: 1.0
 difficulty: 3
 assumes: np-Einführung, py-Fstrings
 ---
@@ -27,14 +27,11 @@ Die übrigen Module sind Gegenstand der restlichen Aufgaben dieser Gruppe.
 ### Vorwissen
 
 Für die Modulzuordnung weiter unten werden Grundbegriffe der Analysis und linearen Algebra benötigt
-(Integral, lineares Gleichungssystem, dünnbesetzte Matrix, Extremstelle einer Funktion,
-Interpolation, Kurvenanpassung).
+(Integral, dünnbesetzte Matrix, Extremstelle einer Funktion, Interpolation, Kurvenanpassung).
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Integralrechnung (Wikipedia)](https://de.wikipedia.org/wiki/Integralrechnung):
   der zurückgelegte Weg als Integral der Geschwindigkeit über die Zeit
-- [Lineares Gleichungssystem (Wikipedia)](https://de.wikipedia.org/wiki/Lineares_Gleichungssystem):
-  die Koeffizientenmatrix als Beschreibung des Systems
 - [Dünnbesetzte Matrix (Wikipedia)](https://de.wikipedia.org/wiki/D%C3%BCnnbesetzte_Matrix):
   warum die Besetzungsdichte darüber entscheidet, wie eine Matrix gespeichert wird
 - [Extremwert (Wikipedia)](https://de.wikipedia.org/wiki/Extremwert):
@@ -62,15 +59,14 @@ python -c "import scipy; print(scipy.__version__)"
 
 ### SciPy-Module: Überblick und Anwendungsbereiche
 
-SciPy ist in spezialisierte Module unterteilt, die verschiedene wissenschaftliche Bereiche abdecken:
-
-**Wichtige Module:**
+SciPy ist in spezialisierte Module unterteilt, die verschiedene wissenschaftliche Bereiche abdecken.
+Die folgende Auswahl umfasst nur die Module dieser Aufgabengruppe; die vollständige Liste steht im
+[SciPy Reference Guide](https://docs.scipy.org/doc/scipy/reference/index.html):
 
 - `scipy.optimize`: Optimierung und Nullstellenfindung (vertieft in [PARTREF::sp-optimize])
 - `scipy.integrate`: Numerische Integration (vertieft in [PARTREF::sp-integrate])
 - `scipy.linalg`: Erweiterte lineare Algebra (vertieft in [PARTREF::sp-linalg])
 - `scipy.stats`: Statistische Funktionen und Verteilungen (vertieft in [PARTREF::sp-stats])
-- `scipy.signal`: Signalverarbeitung (in dieser Aufgabengruppe nicht behandelt)
 - `scipy.interpolate`: Interpolation und Approximation (vertieft in [PARTREF::sp-interpolate])
 - `scipy.sparse`: Operationen auf dünnbesetzten (sparse) Matrizen (vertieft in [PARTREF::sp-sparse])
 - `scipy.constants`: Mathematische und physikalische Konstanten (Thema dieser Aufgabe)
@@ -82,11 +78,11 @@ scipy.optimize.minimize_scalar(fun)
 ```
 
 - `fun`: die zu minimierende Zielfunktion; nimmt einen Skalar entgegen und gibt einen Skalar
-  zurück (weitere Parameter wie `method`/`bounds` werden erst in [PARTREF::sp-optimize] vertieft)
+  zurück
 
 Der Rückgabewert ist ein Ergebnisobjekt, dessen Attribut `x` die gefundene Minimalstelle enthält.
 
-**Import-Schreibweise:**
+**Beispiel:**
 
 ```python
 from scipy import optimize
@@ -102,7 +98,8 @@ print("Minimum bei x =", result.x)  # Minimum bei x = -2.0
 Begründen Sie Ihre Auswahl:
 
 - Berechnung des zurückgelegten Wegs aus einer gemessenen Geschwindigkeitskurve
-- Lösen eines großen linearen Gleichungssystems, dessen Koeffizientenmatrix fast nur Nullen enthält
+- Speichern und Multiplizieren einer Matrix mit einer Million Zeilen, in der pro Zeile nur eine
+  Handvoll Einträge besetzt ist
 - Schätzung eines Zwischenwerts zwischen zwei gemessenen Datenpunkten
 - Anpassung einer Modellfunktion an eine Messreihe
 
@@ -135,7 +132,7 @@ print(constants.nano)  # 1e-09 (Faktor für "Nano")
 ```
 
 [ER] Schreiben Sie ein Programm, das die folgenden, auf `scipy.constants` basierenden Werte mit
-jeweils vier Nachkommastellen ausgibt, die den Wert tatsächlich wiedergeben
+jeweils vier Nachkommastellen ausgibt, in denen der Wert noch erkennbar ist
 (siehe [PARTREF::py-Fstrings] für die Formatierung):
 
 - Den Flächeninhalt eines Kreises mit Radius 5, berechnet mit `pi`
@@ -149,7 +146,7 @@ jeweils vier Nachkommastellen ausgibt, die den Wert tatsächlich wiedergeben
 Nicht jede dieser Größen lässt sich dafür mit `:.4f` darstellen.
 Halten Sie Ihre Formatierungsentscheidung bei den beiden physikalischen Konstanten in einem
 Kommentar fest.
-Bei Ihrem SI-Präfix bleiben die vier Nachkommastellen in jeder Formatierung leer; halten Sie in
+Bei Ihrem SI-Präfix sind die vier Nachkommastellen in jeder Formatierung `0000`; halten Sie in
 einem Kommentar fest, warum das so ist.
 
 <!-- time estimate: 20 min -->
@@ -177,8 +174,12 @@ Erklären Sie, warum das Tripel trotzdem für alle Einträge dieselbe Form hat.
 
 ### Weiterführend
 
-- [SciPy Reference Guide](https://docs.scipy.org/doc/scipy/reference/):
-  Detaillierte Modulbeschreibungen
+- [SciPy Tutorial](https://docs.scipy.org/doc/scipy/tutorial/index.html):
+  Einstieg in die einzelnen Module mit durchgerechneten Beispielen
+- [`scipy.constants.find`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.constants.find.html):
+  Suche nach Schlüsseln von `physical_constants`
+- [CODATA-Konstanten beim NIST](https://physics.nist.gov/cuu/Constants/):
+  Herkunft der Werte, Einheiten und Unsicherheiten in `physical_constants`
 
 [ENDSECTION]
 
