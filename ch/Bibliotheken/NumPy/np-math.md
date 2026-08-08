@@ -94,7 +94,7 @@ statt als `0`, der Tangens von 90 Grad als `1.63312394e+16` statt als "undefinie
 Beides sind Rundungsartefakte: `np.pi` ist nur die bestmögliche Fließkomma-Näherung von π,
 also weicht auch `angles_rad[4]` minimal vom exakten Wert π/2 ab, und der Tangens reagiert an
 seiner Polstelle extrem empfindlich auf solche Abweichungen.
-`6.12323400e-17` ist damit ein Wert, der praktisch null ist.
+`6.12323400e-17` ist damit praktisch null.
 Beachten Sie außerdem, dass dieser winzige Wert die Darstellung des gesamten Kosinus-Arrays auf
 wissenschaftliche Notation umschaltet:
 `8.66025404e-01` ist derselbe Wert wie `0.866025404`, denn `e-01` bedeutet "mal zehn hoch minus eins".
@@ -212,7 +212,7 @@ Für den Schritt von dieser Richtung zum Vorzeichen der Winkeldifferenz ist ents
 
 ### Rundungsfunktionen: `round`, `floor`, `ceil`
 
-Rundung brauchen Sie überall dort, wo aus Messwerten oder Zwischenergebnissen lesbare Zahlen
+Rundung braucht man überall dort, wo aus Messwerten oder Zwischenergebnissen lesbare Zahlen
 werden sollen.
 NumPy stellt dafür drei Funktionen bereit, die sich in ihrem Verhalten unterscheiden.
 
@@ -330,7 +330,8 @@ beide Formen rechnen dasselbe.
 Die Funktionsform nimmt aber zusätzliche Argumente entgegen, die der Operator nicht kennt, etwa
 `out=` für ein bereits vorhandenes Zielarray oder `where=` für eine nur an bestimmten Positionen
 ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword arguments" der
-[Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html#optional-keyword-arguments).
+[Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html#optional-keyword-arguments),
+wie NumPy alle elementweise arbeitenden Funktionen nennt.
 
 [ER] Implementieren Sie verschiedene arithmetische Operationen:
 
@@ -368,18 +369,16 @@ des Arrays mit dem angegebenen `dtype`, hier also mit Fließkommazahlen.
 [HINT::Was gehört bei `where=` als Bedingung hinein?]
 `where=` erwartet ein Array aus Wahrheitswerten, das dieselbe Form hat wie das Ergebnis oder
 sich darauf broadcasten lässt; ein Vergleich wie `arr3 != 0` liefert genau so ein Array.
-An den Positionen mit `False` rechnet NumPy nicht: Mit `out=` bleibt dort der Wert stehen, der im
-Zielarray schon steht.
-Ohne `out=` legt NumPy das Ergebnisarray dagegen selbst an, und zwar auf dieselbe Weise wie
-`np.empty()` aus [PARTREF::np-array], mit den dort beobachteten Folgen — deshalb gehören die
-beiden Argumente zusammen.
+An den Positionen mit `False` rechnet NumPy nicht.
+Für die Frage, woher die Werte an diesen Positionen stammen, lohnt ein Blick darauf, wie
+`np.empty()` aus [PARTREF::np-array] sein Array anlegt.
 [ENDHINT]
 
 <!-- time estimate: 25 min -->
 
 ### Potenz, Rest und Exponentialfunktion: `power`, `mod`, `exp`
 
-Die drei Funktionen dieses Abschnitts haben typische Einsatzfelder.
+Die drei Funktionen dieses Abschnitts haben jeweils ein typisches Einsatzfeld:
 `np.power` skaliert Größen, die nicht linear von einer Länge abhängen, etwa Flächen, Volumina
 oder Rechenaufwand.
 `np.mod` ordnet Werte zyklisch zu und bildet damit Gruppen, etwa Wochentage aus fortlaufenden
@@ -581,7 +580,7 @@ Werten Sie die erreichten Punktzahlen aus:
 
 - Erstellen Sie ein 1D-Array `scores` mit den 20 Werten
   `[42, 55, 61, 47, 58, 65, 70, 52, 48, 63, 59, 44, 68, 51, 56, 62, 49, 57, 66, 53]`
-- Berechnen Sie Mittelwert, Standardabweichung und Varianz, letztere beiden zunächst mit dem
+- Berechnen Sie Mittelwert, Standardabweichung und Varianz, die beiden letzteren zunächst mit dem
   Standardwert `ddof=0`
 - Berechnen Sie Standardabweichung und Varianz zusätzlich mit `ddof=1` und geben Sie beide
   Wertepaare aus.
@@ -604,8 +603,10 @@ die Ausgabe auf sinnvolle Nachkommastellen begrenzen.
 berechneten Wert auf die Klausur bezieht.
 Erklären Sie außerdem, warum der Median `56.5` beträgt, obwohl keine Person genau diese
 Punktzahl erreicht hat.
-Benennen Sie dazu die beiden Punktzahlen aus den sortierten Daten, aus denen NumPy diesen Wert
-bildet, und begründen Sie, warum es gerade diese beiden sind.
+Der Größe nach sortiert lauten die Punktzahlen
+`[42, 44, 47, 48, 49, 51, 52, 53, 55, 56, 57, 58, 59, 61, 62, 63, 65, 66, 68, 70]`.
+Benennen Sie daraus die beiden Punktzahlen, aus denen NumPy diesen Wert bildet, und begründen
+Sie, warum es gerade diese beiden sind.
 
 <!-- time estimate: 20 min -->
 
