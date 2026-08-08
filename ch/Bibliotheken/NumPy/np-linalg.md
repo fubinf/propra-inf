@@ -8,7 +8,8 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice, np-math, py-Fstrin
 [SECTION::goal::idea,experience]
 
 - Ich kann Matrizen erstellen, transponieren und multiplizieren.
-- Ich kann Determinanten und Inverse von Matrizen berechnen.
+- Ich kann Determinanten und Inverse von Matrizen berechnen und anhand der Konditionszahl
+  beurteilen, wie zuverlässig sich damit rechnen lässt.
 - Ich kann lineare Gleichungssysteme lösen und meine Lösung durch eine Probe überprüfen.
 - Ich kann Rang, Eigenwerte, Normen und Singulärwertzerlegung einer Matrix mit `numpy.linalg`
   bestimmen.
@@ -33,8 +34,9 @@ letztlich `numpy.linalg`.
 
 Diese Aufgabe lehrt nicht die lineare Algebra selbst, sondern wie man sie mit NumPy rechnet.
 Vorausgesetzt wird deshalb, was Matrix, Transposition, Matrixmultiplikation, Determinante,
-Inverse und Skalarprodukt (auch Punktprodukt genannt) bedeuten, für die zweite Hälfte
-zusätzlich Rang, Eigenwert, Matrixnorm, Konditionszahl und Singulärwertzerlegung.
+Inverse und Skalarprodukt (auch Punktprodukt genannt) bedeuten, ab dem Abschnitt zu den
+inversen Matrizen zusätzlich Konditionszahl, Rang, Eigenwert, Matrixnorm und
+Singulärwertzerlegung.
 Sie müssen davon nichts von Hand rechnen können, aber ohne zu wissen, was die Begriffe
 aussagen, können Sie Ihre eigenen Ergebnisse nicht beurteilen.
 Für die weniger geläufigen dieser Begriffe helfen folgende Quellen:
@@ -57,8 +59,7 @@ aneignet, braucht entsprechend länger.
 
 ### Matrizen und Transposition: `transpose` und `.T`
 
-Eine Matrix ist eine rechteckige Anordnung von Zahlen in Zeilen und Spalten.
-Die Transposition vertauscht Zeilen und Spalten einer Matrix.
+Für die Transposition bietet NumPy zwei gleichwertige Schreibweisen:
 
 ```python
 numpy.transpose(a)
@@ -229,7 +230,7 @@ try:
 except ValueError as fehler:
     print('np.matmul mit Skalaren:', fehler)
 
-# Ein dreidimensionales Array ist ein Stapel aus zwei 2×2-Matrizen
+# Dieses dreidimensionale Array ist ein Stapel aus zwei 2×2-Matrizen
 stapel = np.arange(8).reshape(2, 2, 2)
 print('\nForm von np.dot(stapel, stapel):   ', np.dot(stapel, stapel).shape)
 print('Form von np.matmul(stapel, stapel):', np.matmul(stapel, stapel).shape)
@@ -250,10 +251,10 @@ numpy.vdot(a, b)    # Punktprodukt (mit Konjugation bei komplexen Zahlen)
 numpy.inner(a, b)   # inneres Produkt
 ```
 
-- `a`, `b`: die zu verrechnenden Vektoren; `vdot` konjugiert bei komplexen Zahlen den
-  ersten Vektor vor der Multiplikation (bei reellen Zahlen identisch zu `dot`), `inner`
-  summiert das Produkt über die jeweils letzte Achse beider Arrays und ist bei Vektoren
-  identisch zu `dot`
+- `a`, `b`: die zu verrechnenden Vektoren
+
+`vdot` konjugiert bei komplexen Zahlen den ersten Vektor vor der Multiplikation, `inner`
+summiert das Produkt über die jeweils letzte Achse beider Arrays.
 
 ```python
 # Vektoren
@@ -290,7 +291,7 @@ Die Referenzseiten dazu sind
 [numpy.vdot](https://numpy.org/doc/stable/reference/generated/numpy.vdot.html) und
 [numpy.inner](https://numpy.org/doc/stable/reference/generated/numpy.inner.html).
 
-[ER] Implementieren Sie verschiedene Matrixoperationen:
+[ER] Wenden Sie die Matrix- und Vektoroperationen an:
 
 - Erstellen Sie zwei 3×3-Matrizen `A` mit den Werten `[[6, 11, 4], [9, 2, 13], [7, 10, 5]]`
   und `B` mit den Werten `[[3, 15, 8], [12, 1, 9], [6, 14, 2]]`
@@ -356,16 +357,15 @@ Die Referenzseite dazu ist
   ihre Determinante händisch (`ad - bc`) und überprüfen Sie mit NumPy
 - Erstellen Sie eine 3×3-Matrix `matrix_3x3` mit den Werten `[[2, 1, 3], [1, 0, 2], [3, 1, 1]]`
   und berechnen Sie ihre Determinante
-- Erstellen Sie eine bewusst singuläre 3×3-Matrix `singular` mit den Werten
+- Erstellen Sie eine bewusst singuläre 3×3-Matrix `singular_zeilengleich` mit den Werten
   `[[5, 8, 3], [9, 2, 14], [5, 8, 3]]` (erste und dritte Zeile identisch) und zeigen Sie, dass
   ihre Determinante ≈ 0 ist
 - Untersuchen Sie, wie sich die Determinante von `matrix_3x3` bei Transposition verhält
 
 [HINT::Lange Nachkommastellen bei der Ausgabe]
-NumPy-Berechnungen liefern manchmal Werte wie `0.9999999999999964` statt `1.0` — das liegt
-an der begrenzten Genauigkeit von Fließkommazahlen, nicht an einem Fehler.
-Mit einer f-String-Formatierung wie `f'{wert:.3f}'` (in [PARTREF::py-Fstrings]) lässt sich
-die Ausgabe auf sinnvolle Nachkommastellen begrenzen.
+Werte wie `0.9999999999999964` statt `1.0` sind der aus [PARTREF::np-math] bekannte
+Fließkomma-Effekt und kein Fehler.
+Mit `f'{wert:.3f}'` lässt sich die Ausgabe wieder auf sinnvolle Nachkommastellen begrenzen.
 [ENDHINT]
 
 <!-- time estimate: 15 min -->
@@ -403,8 +403,8 @@ numpy.linalg.cond(x, p=None)
 ```
 
 - `x`: die Matrix, deren Konditionszahl berechnet wird
-- `p` (Standard `None`): welche Norm verwendet wird (der Standardwert entspricht der 2-Norm);
-  eine hohe Konditionszahl bedeutet, dass kleine Eingabefehler stark verstärkt werden
+- `p` (Standard `None`): welche Norm der Berechnung zugrunde liegt; der Standardwert
+  entspricht der 2-Norm
 
 ```python
 # Prüfung der Konditionszahl
@@ -452,9 +452,10 @@ sondern die korrekte Reaktion, weil eine solche Matrix mathematisch keine Invers
 [ENDHINT]
 
 [EQ] Sie haben in [EREFR::5] die Konditionszahl von `matrix` bestimmt.
-Für welche der beiden oben beschriebenen Aufgaben von `linalg.inv` und `linalg.solve` ist
-dieser Wert von Belang, und was müsste an Ihrer Matrix anders sein, damit der Unterschied
-zwischen den beiden Wegen in den Ergebnissen überhaupt sichtbar wird?
+Oben stehen zwei Aufgaben nebeneinander: ein Gleichungssystem lösen und die inverse Matrix
+selbst als Ergebnis brauchen.
+Für welche der beiden ist dieser Wert von Belang, und was müsste an Ihrer Matrix anders sein,
+damit der Unterschied zwischen den beiden Wegen in den Ergebnissen überhaupt sichtbar wird?
 
 <!-- time estimate: 22 min -->
 
@@ -584,9 +585,10 @@ Die Referenzseiten dazu sind
   `[[5, 3, 1], [3, 8, 2], [1, 2, 6]]` und berechnen Sie ihren Rang sowie ihre Eigenwerte und
   Eigenvektoren einmal mit `eigh` und einmal mit `eig`; halten Sie in einem Kommentar fest,
   worin sich die beiden Eigenwertausgaben unterscheiden
-- Bestimmen Sie außerdem den Rang der singulären Matrix `singular` aus [EREFR::5] und halten
-  Sie in einem Kommentar fest, wie ihr Rang mit ihrer Determinante und dem gescheiterten
-  Invertieren zusammenhängt
+- Legen Sie die singuläre Matrix `singular` aus [EREFR::5] mit den Werten
+  `[[2, 5, 4], [4, 10, 8], [6, 15, 12]]` erneut an, bestimmen Sie ihren Rang und halten Sie in
+  einem Kommentar fest, wie ihr Rang mit ihrer Determinante und dem gescheiterten Invertieren
+  zusammenhängt
 
 <!-- time estimate: 12 min -->
 
@@ -600,7 +602,8 @@ numpy.linalg.norm(x, ord=None)           # Norm (Größe) einer Matrix/eines Vek
 numpy.linalg.svd(a, full_matrices=True)  # Singulärwertzerlegung
 ```
 
-- `x` (bei `norm`) bzw. `a` (bei `svd`): die betroffene Matrix
+- `x` (bei `norm`): die betroffene Matrix oder der betroffene Vektor
+- `a` (bei `svd`): die zu zerlegende Matrix
 - `ord` (bei `norm`): welche Norm berechnet wird — mögliche Werte sind `'fro'` für die
   Frobenius-Norm sowie `1`, `2` oder `np.inf` für die jeweilige Operatornorm.
   Beim Standardwert `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm
@@ -691,6 +694,8 @@ Die Referenzseiten dazu sind
   (Frobenius, 1-Norm, 2-Norm, ∞-Norm)
 - Rechnen Sie die 1-Norm und die ∞-Norm für `norm_matrix` zusätzlich von Hand nach und halten
   Sie in einem Kommentar fest, welche Zeile bzw. Spalte den Ausschlag gibt
+- Formen Sie `norm_matrix` zu einem Vektor `norm_vektor` der Länge 9 um, berechnen Sie dessen
+  Norm ohne `ord`-Angabe und vergleichen Sie den Wert mit der Frobenius-Norm der Matrix
 
 [EQ] Ohne `ord`-Angabe berechnet `norm` bei einem Vektor die 2-Norm, bei einer Matrix aber die
 Frobenius-Norm.
