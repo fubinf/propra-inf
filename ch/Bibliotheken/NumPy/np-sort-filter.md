@@ -70,8 +70,8 @@ print(np.sort(arr, axis=1))
 
 Bei einem 2D-Array ist die letzte Achse genau Achse 1, der erste und der letzte Aufruf sind hier
 also gleichwertig.
-`np.sort` lässt `arr` dabei unverändert und liefert ein neues Array mit eigenen Daten, also eine
-Kopie im Sinne von [PARTREF::np-index-slice].
+`np.sort` lässt `arr` dabei unverändert und liefert ein neues Array mit eigenen Daten, also keine
+View im Sinne von [PARTREF::np-index-slice].
 Keine der Sortier-, Such- und Filterfunktionen dieser Aufgabe verändert das übergebene Array.
 Die Methode `arr.sort()` dagegen sortiert an Ort und Stelle und überschreibt dabei die
 Ausgangsdaten.
@@ -94,8 +94,9 @@ print('Sortiertes Array:', x[indices])  # [10 20 30]
 ```
 
 Bei einem 2D-Array liefert `np.argsort(a, axis=1)` für jede Zeile eigene Indizes.
-Einfaches Advanced Indexing (`arr[indices]`) rekonstruiert das sortierte Array daraus nicht,
-denn es liest die Indizes als Zeilenindizes, statt sie zeilenweise auf die Spalten anzuwenden.
+Die Integer-Array-Indexierung `arr[indices]` aus [PARTREF::np-index-slice] rekonstruiert das
+sortierte Array daraus nicht; je nach Form des Arrays liefert sie ein falsches Ergebnis oder bricht
+mit einem `IndexError` ab.
 Gebraucht wird stattdessen `np.take_along_axis`, das entlang einer Achse für jede Zeile
 (bzw. Spalte) die dort passenden Indizes anwendet:
 
@@ -128,7 +129,7 @@ print('Stimmt mit np.sort überein?', np.array_equal(rekonstruiert, np.sort(arr,
 - Verwenden Sie `np.argsort(werte, axis=1)`, um die zeilenweisen Sortierungsindizes in
   `zeilenindizes` zu erhalten, und geben Sie sie aus
 - Versuchen Sie zunächst, das sortierte Array mit `werte[zeilenindizes]` zu rekonstruieren, und
-  halten Sie in einem Kommentar fest, was dabei passiert.
+  halten Sie in einem Kommentar fest, was dabei passiert und warum.
   Kommentieren Sie die Zeile danach aus, damit das abgegebene Skript durchläuft
 - Rekonstruieren Sie das zeilenweise sortierte Array mit `np.take_along_axis` und vergleichen Sie
   das Ergebnis mit `np.sort(werte, axis=1)`
@@ -313,6 +314,9 @@ Geben Sie diese Regel an und nennen Sie die Angabe über die Form des Arrays, di
 Die beiden ersten Positionen liegen allerdings so, dass auch andere Regeln zu ihnen passen.
 Erklären Sie anhand Ihrer dritten Position, warum die Probe deshalb nötig war.
 
+Die zeilenweise Anordnung, die dieser Regel zugrunde liegt, heißt C-Ordnung und ist in
+[PARTREF::np-array2] bei `nditer` schon als Iterationsreihenfolge `order='C'` vorgekommen.
+
 <!-- time estimate: 25 min -->
 
 ### Bedingte Suche: `nonzero`, `where` und `extract`
@@ -413,16 +417,14 @@ numpy.argpartition(a, kth)   # gibt die Indizes zurück, die a partitionieren w�
 ```
 
 - `a`: das zu partitionierende Array
-- `kth`: Index (oder Liste von Indizes), an dem das Array partitioniert wird — das Element an
-  dieser Position steht am Ende genau dort, wo es auch in einem vollständig sortierten Array
-  stehen würde
+- `kth`: Index (oder Liste von Indizes), an dem partitioniert wird
 
 Garantiert ist nur diese eine Position: Vor `kth` steht kein größerer Wert, dahinter kein
 kleinerer.
 In welcher Reihenfolge die Werte innerhalb dieser beiden Gruppen liegen, ist offen und kann je nach
 NumPy-Version anders aussehen.
-Wer die k kleinsten Werte zusätzlich in sortierter Reihenfolge braucht, muss das Teilstück deshalb
-selbst noch sortieren.
+Wer die `k` kleinsten Werte zusätzlich in sortierter Reihenfolge braucht, muss das Teilstück
+deshalb selbst noch sortieren.
 Das folgende Beispiel prüft die Garantie mit `np.all(condition)`, das genau dann `True` liefert,
 wenn jedes Element des Boolean-Arrays `condition` `True` ist.
 
@@ -441,15 +443,14 @@ print('Alles davor ist nicht größer:', np.all(partitioned[:2] <= partitioned[2
 print('Alles danach ist nicht kleiner:', np.all(partitioned[3:] >= partitioned[2]))  # True
 print('Partitioniert = sortiert?', np.array_equal(partitioned, np.sort(arr)))  # False
 
-# Innerhalb der Gruppen herrscht keine Ordnung, wie ein Ausschnitt aus der Mitte zeigt
-# (welche Werte dort stehen, ist nicht festgelegt)
-print('Ausschnitt ab Index 495:', partitioned[495:505])
+# Innerhalb der beiden Gruppen herrscht dagegen keine Ordnung
+print('Hinterer Teil sortiert?', np.array_equal(partitioned[3:], np.sort(partitioned[3:])))  # False
 
 # argpartition liefert Indizes, die dieselbe Garantie erfüllen
 indices = np.argpartition(arr, 2)
 print('3. kleinstes über Indizes:', arr[indices[2]])  # 3
 
-# Mehrere k-Werte gleichzeitig
+# Mehrere Ranggrenzen in einem Durchgang festlegen
 multi_part = np.partition(arr, [2, 50])
 print('Elemente an Position 2 und 50:', multi_part[2], multi_part[50])  # 3 51
 ```
@@ -460,13 +461,6 @@ Ab welcher Länge der Unterschied auftritt, hängt vom internen Auswahlverfahren
 und ist nicht zugesichert.
 
 [INCLUDE::_include/Zeitmessung.md]
-
-[FOLDOUT::Warum genau so gemessen wird]
-`time.perf_counter()` liefert die höchste verfügbare Auflösung und ist deshalb für kurze Laufzeiten
-gedacht; `time.time()` liest dagegen die verstellbare Systemuhr ab.
-Von mehreren Messungen ist die kürzeste die am wenigsten gestörte, denn fremde Last auf dem Rechner
-kann eine Messung nur verlängern, nicht verkürzen.
-[ENDFOLDOUT]
 
 [ER] Vergleichen Sie Partitionierung und vollständige Sortierung und messen Sie den Zeitunterschied
 selbst:
@@ -492,8 +486,9 @@ ursprünglichen Array.
 
 [EQ] In [EREFR::5] haben Sie die Laufzeit von `np.partition` und `np.sort` auf demselben großen
 Array gemessen.
-Erklären Sie anhand Ihrer eigenen Messwerte, warum `np.partition` schneller ist, wenn Sie nur die
-k kleinsten Elemente benötigen, nicht aber das gesamte Array in sortierter Reihenfolge.
+Belegen Sie mit Ihren eigenen Messwerten, dass `np.partition` schneller ist, und erklären Sie,
+woher dieser Unterschied kommt, wenn nur die `k` kleinsten Elemente gebraucht werden und nicht das
+gesamte Array in sortierter Reihenfolge.
 
 <!-- time estimate: 25 min -->
 
