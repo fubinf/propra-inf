@@ -110,11 +110,11 @@ Probieren Sie anschließend alle drei Fälle selbst aus (etwa mit `np.ones(...)`
 [ER] Demonstrieren Sie Broadcasting mit verschiedenen Array-Kombinationen:
 
 - Erstellen Sie `matrix` als 3x4-Matrix mit den Werten
-  `[[2, 4, 6, 8], [10, 12, 14, 16], [18, 20, 22, 24]]`
+  `[[100, 200, 300, 400], [500, 600, 700, 800], [900, 1000, 1100, 1200]]`
 - Erstellen Sie `row_vec` als 1D-Array mit 4 Elementen `[1, 2, 3, 4]`
 - Erstellen Sie `col_vec` als 2D-Array der Form `(3, 1)` mit Werten `[[10], [20], [30]]`
 - Erstellen Sie `array_3d` als 3D-Array der Form `(2, 1, 4)` mit Werten
-  `[[[1, 3, 5, 7]], [[2, 4, 6, 8]]]`
+  `[[[100, 200, 300, 400]], [[500, 600, 700, 800]]]`
 - Erstellen Sie `array_2d` als weiteres 2D-Array der Form `(3, 4)` mit Werten
   `[[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3]]`
 - Führen Sie folgende Broadcasting-Operationen durch: `matrix + row_vec`, `matrix + col_vec`,
@@ -172,7 +172,8 @@ und welche beiden Arrays dort miteinander in Konflikt stehen.
 Führen Sie die Operation anschließend mit `np.ones(...)` aus und übernehmen Sie die
 Ausgabe bzw. Fehlermeldung in Ihre Antwort.
 Falls NumPy einen Fehler meldet, nennt die Meldung eine Form, die in der Aufgabenstellung
-gar nicht vorkommt: Erklären Sie, woher diese Form stammt.
+gar nicht vorkommt:
+Erklären Sie, woher diese Form stammt.
 
 <!-- time estimate: 10 min -->
 
@@ -205,8 +206,8 @@ Bei `axis=1` dagegen entsteht die Form `(3,)`, die sich mit `(3, 5)`
 `keepdims=True` macht daraus `(3, 1)` und damit eine passende Form.
 Für Code, der mit beliebiger Achse umgehen soll, ist `keepdims=True` deshalb die richtige Wahl.
 
-Dank Broadcasting entfällt das manuelle Angleichen der Formen: Die Minima und Maxima lassen sich
-direkt mit `data` verrechnen, obwohl sie eine andere Form haben.
+Dank Broadcasting entfällt das manuelle Angleichen der Formen:
+Die Minima und Maxima lassen sich direkt mit `data` verrechnen, obwohl sie eine andere Form haben.
 
 ```python
 # Beispieldaten: 3 Datensätze mit je 5 Merkmalen
@@ -244,8 +245,8 @@ erste Achse (bei einem 2D-Array liefert sie also ganze Zeilen als Teil-Arrays);
 unabhängig von der Anzahl der Dimensionen.
 
 Elementweise Rechnungen erledigt man in NumPy allerdings normalerweise gar nicht mit einer
-Schleife, sondern vektorisiert (`a * 2` statt einer Schleife über alle Elemente): Das ist kürzer
-und deutlich schneller.
+Schleife, sondern vektorisiert (`a * 2` statt einer Schleife über alle Elemente):
+Das ist kürzer und deutlich schneller.
 `nditer` lohnt sich erst, wenn das nicht ausreicht, etwa weil man zu jedem Element seinen Index
 braucht, während des Durchlaufs in das Array schreiben will, die Durchlaufreihenfolge selbst
 festlegen muss oder die Schleife nicht einzelne Werte, sondern größere Teil-Arrays liefern soll,
@@ -338,7 +339,8 @@ die für beliebig viele Achsen gilt.
 
 [HINT::Wie überträgt man die F-Ordnung von 2D auf 3D?]
 Sehen Sie sich die F-Ausgabe des 2D-Beispiels oben noch einmal an und schreiben Sie zu jedem
-gelieferten Wert seinen Index dazu: Welcher der beiden Indizes zählt dabei schneller hoch?
+gelieferten Wert seinen Index dazu:
+Welcher der beiden Indizes zählt dabei schneller hoch?
 Übertragen Sie diese Beobachtung auf die drei Achsen von `a` und gehen Sie die Indexkombinationen
 in der so gefundenen Reihenfolge durch.
 [ENDHINT]
@@ -412,7 +414,10 @@ der Ergebnistyp von den Argumenten abhängt und bei welcher nicht.
 
 ### Array-Form-Manipulationen: `reshape`, `expand_dims`, `squeeze`
 
-Verschiedene Funktionen ermöglichen die Manipulation von Array-Formen.
+Die folgenden Operationen ändern die Achsenstruktur eines Arrays, ohne seine Elemente zu ändern.
+Gebraucht wird das immer dann, wenn zwei Arrays zwar zusammengehören, ihre Formen aber nicht
+zueinander passen — etwa weil eine Operation wie das Broadcasting eine bestimmte Achsenzahl
+erwartet.
 
 **Reshape-Operationen:**
 ```python
@@ -421,8 +426,8 @@ ndarray.reshape(*shape)
 
 - `*shape`: die Ziel-Form, entweder als einzelnes Tupel oder als einzelne Dimensionen;
   die Gesamtzahl der Elemente muss unverändert bleiben, sonst schlägt der Aufruf fehl.
-  Genau eine Dimension darf `-1` sein: Diese rechnet NumPy
-  dann selbst aus, so dass die Gesamtzahl der Elemente aufgeht
+  Genau eine Dimension darf `-1` sein:
+  Diese rechnet NumPy dann selbst aus, so dass die Gesamtzahl der Elemente aufgeht
 
 ```python
 # reshape: Neue Form ohne Datenänderung
@@ -431,7 +436,7 @@ reshaped = a.reshape(3, 4)
 inferred = a.reshape(3, -1)  # ebenfalls (3, 4): 12 / 3 = 4
 ```
 
-**Dimensionsmanipulation:**
+**Achsen hinzufügen und entfernen:**
 ```python
 numpy.expand_dims(a, axis)
 ```
@@ -472,7 +477,8 @@ Form und Ergebnis aus:
   zweites Mal, diesmal mit `-1` für die zweite Dimension
 - Versuchen Sie, das Array `np.array([10, 20, 30])` (Form `(3,)`) zu dem `(3, 4)`-Array
   `[[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3]]` zu addieren.
-  Der Versuch schlägt fehl; notieren Sie die Fehlermeldung als Kommentar im Quelltext.
+  Der Versuch schlägt fehl; notieren Sie die Fehlermeldung als Kommentar im Quelltext und
+  kommentieren Sie den fehlschlagenden Aufruf aus, damit die folgenden Schritte noch laufen.
   Reparieren Sie ihn anschließend mit `expand_dims`,
   so dass jeder der drei Werte auf eine ganze Zeile wirkt
 - Wenden Sie `squeeze` auf das Ergebnis von `np.min(daten, axis=0, keepdims=True)` an (als
