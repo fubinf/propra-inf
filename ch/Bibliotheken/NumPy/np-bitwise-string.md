@@ -488,23 +488,6 @@ fairer, und was folgt daraus für eine Aussage der Form "NumPy ist N-mal schnell
 
 [INSTRUCTOR::Kontrollergebnisse]
 
-### Knackpunkte
-
-- [EREFR::1]: `bitwise_and`/`bitwise_or`/`bitwise_xor` liefern die korrekten Ergebnisse und die
-  über `np.binary_repr()` ausgegebenen Bitmuster stimmen mit den Kommentaren überein
-- [EREFQ::2]: die Erklärung, warum `int8` und `uint8` bei `invert()` unterschiedliche Vorzeichen
-  liefern, verweist korrekt auf die Interpretation des Bitmusters (Vorzeichenbit vs. kein
-  Vorzeichenbit) statt auf einen Unterschied in der eigentlichen Bit-Operation
-- [EREFR::6]: `np.char.join` ist richtig verstanden — das Trennzeichen steht zwischen den
-  Zeichen jedes einzelnen Strings (`'DE'` → `'D.E'`), nicht zwischen den Array-Elementen;
-  wer es als Verbinder der Elemente auffasst, erzeugt hier ein falsches Ergebnis.
-  `split`/`replace`/`find` liefern für alle Elemente die korrekten Ergebnisse
-- [EREFR::7] + [EREFQ::3]: alle drei Zeiten sind gemessen, und die Schleife über das Array ist
-  klar langsamer als die über die Liste (konkrete Zahlen sind maschinenabhängig und daher kein
-  Prüfkriterium). Student erkennt, dass die Messung über die Liste der fairere Vergleich für die
-  Vektorisierung ist und dass ein einzelner Faktor ohne Angabe des Vergleichspartners wenig
-  aussagt
-
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-bitwise-string.md]
 
