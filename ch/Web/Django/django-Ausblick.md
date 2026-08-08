@@ -18,10 +18,10 @@ assumes: curl, http-State
 
 [SECTION::background::default]
 
-Eine Registrierung, die kommentarlos auf einer anderen Seite landet, ein Formular, das jeden
-Absender akzeptiert, oder eine Seite, die sich in eine fremde Website einbetten lässt: In
-einer echten Anwendung wäre das erste ein Ärgernis, die beiden anderen jeweils eine
-Sicherheitslücke.
+Eine Registrierung, die kommentarlos auf einer anderen Seite landet, wäre in einer echten
+Anwendung ein Ärgernis.
+Ein Formular, das jeden Absender akzeptiert, und eine Seite, die sich in eine fremde Website
+einbetten lässt, wären jeweils eine Sicherheitslücke.
 Der erste Fall trifft auf Ihr Projekt bisher zu, denn Sie haben das passende Bordmittel
 noch nicht eingesetzt.
 Die beiden anderen verhindert Django von Anfang an: Den CSRF-Schutz haben Sie in
@@ -51,8 +51,8 @@ weitergeben: Die View legt die Meldung ab, eine später aufgerufene Seite zeigt 
 messages.success(request, message)
 ```
 
-- `success`: eine von mehreren Meldungsstufen (u. a. `info`, `warning`, `error`), jeweils
-  am Funktionsnamen erkennbar
+- `success`: eine von mehreren Meldungsstufen; zu jeder gibt es eine gleichnamige Funktion
+  (u. a. `info`, `warning`, `error`)
 - `request`: das Request-Objekt der View, in der Sie die Meldung ablegen
 - `message`: der anzuzeigende Text
 
@@ -91,7 +91,7 @@ verlinkten Doku zum Messages-Framework.
 Form `Stufe: Text` ausgibt.
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
-`Sophie Wagner`, Alter `22` und der E-Mail `sophie@example.com`.
+"Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com".
 Sie landen auf der Detailseite.
 Rufen Sie die Studierendenliste danach im Browser unter `http://127.0.0.1:8071/students/` auf.
 Laden Sie dieselbe Seite anschließend noch ein zweites Mal.
@@ -104,7 +104,7 @@ Meldung "verbraucht" wird?
 [HINT::Ich sehe die Meldung auf keiner einzigen Seite]
 Prüfen Sie zuerst `base.html`: Steht Ihr neuer `{% for %}`-Block wirklich außerhalb von
 `{% block content %}`?
-Was innerhalb dieses Blocks steht, ersetzt jedes Kind-Template durch seinen eigenen Inhalt;
+Jedes Kind-Template ersetzt den Inhalt dieses Blocks durch seinen eigenen;
 die Schleife käme dann nie zur Ausgabe.
 Prüfen Sie danach, ob `messages.success` in `register` vor dem `redirect` steht.
 [ENDHINT]
@@ -113,7 +113,7 @@ Prüfen Sie danach, ob `messages.success` in `register` vor dem `redirect` steht
 Sehen Sie sich an, was `student_detail` aus [PARTREF::django-view] zurückgibt und was daran
 anders ist als bei den übrigen Views.
 [ENDHINT]
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### `CsrfViewMiddleware` kurzzeitig deaktivieren
 
@@ -127,8 +127,8 @@ Welche Middlewares ein Projekt verwendet, steht als Liste `MIDDLEWARE` in `setti
 den CSRF-Schutz ist der Eintrag `CsrfViewMiddleware` verantwortlich.
 Auch das Messages-Framework aus dem vorigen Abschnitt hängt an einem Eintrag dieser Liste.
 Die `MessageMiddleware` speichert beim Erzeugen der Response nur die noch ungelesenen Meldungen
-wieder ab, standardmäßig in einem signierten Cookie `messages` (Cookies kennen Sie aus
-[PARTREF::http-State]).
+wieder ab, standardmäßig in einem Cookie `messages`, das signiert und damit gegen Veränderung
+geschützt ist (Cookies kennen Sie aus [PARTREF::http-State]).
 In welcher Reihenfolge die Liste abgearbeitet wird und was eine Middleware sonst noch leisten
 kann, erklärt die
 [Django-Doku zu Middleware](https://docs.djangoproject.com/en/stable/topics/http/middleware/).
@@ -201,8 +201,9 @@ Was könnte eine fremde Website mit Ihrer Seite anstellen, solange `X-Frame-Opti
 Für die erste Frage hilft die im vorigen Abschnitt verlinkte Übersicht der eingebauten
 Middlewares.
 
-In diesem und dem vorigen Abschnitt haben Sie als einzige Datei `settings.py` verändert;
-nehmen Sie diese Datei deshalb mit in Ihre `*.files`-Datei auf.
+In diesem und dem vorigen Abschnitt war `settings.py` die einzige Datei, die Sie angefasst
+haben; nehmen Sie sie mit in Ihre `*.files`-Datei auf, damit sich der wiederhergestellte
+Zustand der beiden Middleware-Zeilen prüfen lässt.
 <!-- time estimate: 15 min -->
 
 ### Weitere Bausteine im Überblick
@@ -228,7 +229,7 @@ Bedarf gezielt danach suchen können:
 
 [EQ] Welcher dieser drei Bausteine hätte Ihnen in [PARTREF::django-form] am meisten geholfen,
 an welcher konkreten Stelle, und was hätte er dort besser gemacht?
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 ### Weiterführend
 
