@@ -457,7 +457,7 @@ selbst als Ergebnis brauchen.
 Für welche der beiden ist dieser Wert von Belang, und was müsste an Ihrer Matrix anders sein,
 damit der Unterschied zwischen den beiden Wegen in den Ergebnissen überhaupt sichtbar wird?
 
-<!-- time estimate: 22 min -->
+<!-- time estimate: 20 min -->
 
 ### Lineare Gleichungssysteme lösen: `linalg.solve`
 
@@ -590,7 +590,7 @@ Die Referenzseiten dazu sind
   einem Kommentar fest, wie ihr Rang mit ihrer Determinante und dem gescheiterten Invertieren
   zusammenhängt
 
-<!-- time estimate: 12 min -->
+<!-- time estimate: 15 min -->
 
 ### Normen und Singulärwertzerlegung: `norm`, `svd`
 
