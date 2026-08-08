@@ -76,6 +76,14 @@ Keine der Sortier-, Such- und Filterfunktionen dieser Aufgabe verändert das üb
 Die Methode `arr.sort()` dagegen sortiert an Ort und Stelle und überschreibt dabei die
 Ausgangsdaten.
 
+[EQ] Zwei Schreibweisen sollen für `arr = np.array([[30, 70], [90, 10]])` dieselbe zweite Zeile des
+sortierten Arrays liefern, nämlich `np.sort(arr)[1]` und `arr.sort()[1]`.
+Probieren Sie beide aus und übernehmen Sie die dabei auftretende Fehlermeldung in Ihre Antwort.
+Geben Sie außerdem aus, was `arr.sort()` selbst zurückliefert und was danach in `arr` steht.
+Erklären Sie damit, warum die eine Schreibweise abbricht.
+Nennen Sie schließlich eine Situation, in der `arr.sort()` trotzdem der passendere Aufruf ist als
+`np.sort(arr)`.
+
 <!-- time estimate: 10 min -->
 
 ### Sortierungsindizes: `argsort` und `take_along_axis`
@@ -131,8 +139,10 @@ print('Stimmt mit np.sort überein?', np.array_equal(rekonstruiert, np.sort(arr,
 - Versuchen Sie zunächst, das sortierte Array mit `werte[zeilenindizes]` zu rekonstruieren, und
   halten Sie in einem Kommentar fest, was dabei passiert und warum.
   Kommentieren Sie die Zeile danach aus, damit das abgegebene Skript durchläuft
-- Rekonstruieren Sie das zeilenweise sortierte Array mit `np.take_along_axis` und vergleichen Sie
-  das Ergebnis mit `np.sort(werte, axis=1)`
+- Rekonstruieren Sie das zeilenweise sortierte Array mit `np.take_along_axis`, geben Sie es aus und
+  vergleichen Sie das Ergebnis mit `np.sort(werte, axis=1)`
+- Ermitteln Sie ebenso die spaltenweisen Sortierungsindizes in `spaltenindizes`, rekonstruieren Sie
+  daraus das spaltenweise sortierte Array und vergleichen Sie es mit `np.sort(werte, axis=0)`
 
 [HINT::Wie vergleiche ich zwei Arrays auf Gleichheit?]
 Nutzen Sie das bereits aus [PARTREF::np-array] bekannte `np.array_equal`, um die beiden
@@ -144,12 +154,12 @@ nebeneinander ausgegeben.
 Welche Information steckt in den Indizes, die im Ergebnis von `np.sort` verloren geht?
 Nennen Sie eine Situation, in der Sie deshalb `np.argsort` und nicht `np.sort` brauchen.
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Lexikographische Sortierung: `lexsort`
 
 `np.lexsort` ermöglicht die Sortierung nach mehreren Kriterien,
-ähnlich der Sortierung in Tabellenkalkulationen:
+ähnlich dem mehrstufigen Sortieren in Tabellenkalkulationen:
 
 ```python
 numpy.lexsort(keys)
@@ -292,10 +302,11 @@ print(f'Minimum {daten[zeile, spalte]} an flachem Index {flach_min} = Zeile {zei
   `[[12, 45, 8, 67, 23], [34, 89, 3, 41, 56], [78, 63, 62, 19, 90], [27, 51, 14, 38, 6]]`
 - Finden Sie Position und Wert des globalen Maximums und Minimums, sowohl über den flachen
   Index als auch mit `np.unravel_index` umgerechnet in Zeile/Spalte
-- Bestimmen Sie die Indizes der Maxima jeder Zeile und der Minima jeder Spalte
-- Verwenden Sie die Indizes, um die tatsächlichen Werte auszugeben
+- Bestimmen Sie die Indizes der Maxima jeder Zeile in `zeilen_max_indizes` und die der Minima jeder
+  Spalte in `spalten_min_indizes`
+- Verwenden Sie diese Indizes, um die tatsächlichen Werte auszugeben
 - Aus den beiden Positionen des globalen Maximums und Minimums lässt sich eine Rechenregel
-  ablesen, die den flachen Index aus Zeile und Spalte bestimmt.
+  vermuten, die den flachen Index aus Zeile und Spalte bestimmt.
   Sagen Sie mit dieser Regel den flachen Index des Maximums der letzten Zeile voraus, das bei
   Zeile 3, Spalte 1 liegt, und prüfen Sie die Vorhersage mit `np.unravel_index` nach
 
@@ -308,16 +319,25 @@ Eine Reduktion entlang einer Achse lässt genau diese Achse verschwinden; an der
 Ergebnisses erkennen Sie deshalb, ob pro Zeile oder pro Spalte gesucht wurde.
 [ENDHINT]
 
+[HINT::Wie komme ich von den achsenweisen Indizes zu den Werten?]
+`np.argmax(daten, axis=1)` liefert pro Zeile nur die Spaltennummer; die zugehörige Zeilennummer ist
+die Position innerhalb des Ergebnisses.
+Für den Zugriff auf einen Wert werden beide Zahlen gebraucht: `daten[zeilennummer, spaltennummer]`.
+Ein Zugriff mit nur einer davon wie `daten[zeilen_max_indizes]` liest diese als Zeilennummern und
+liefert ganze Zeilen statt einzelner Werte, im Spaltenfall sogar ohne Fehlermeldung.
+Am bequemsten ist eine Schleife über das Indexarray, die mit `enumerate` die Position mitführt.
+[ENDHINT]
+
 [EQ] In [EREFR::3] haben Sie aus den Positionen von Maximum und Minimum eine Rechenregel für den
 flachen Index abgeleitet und an einer dritten Position nachgeprüft.
-Geben Sie diese Regel an und nennen Sie die Angabe über die Form des Arrays, die in sie eingeht.
+Geben Sie diese Regel an und nennen Sie, welche Angabe über die Form des Arrays in sie eingeht.
 Die beiden ersten Positionen liegen allerdings so, dass auch andere Regeln zu ihnen passen.
 Erklären Sie anhand Ihrer dritten Position, warum die Probe deshalb nötig war.
 
 Die zeilenweise Anordnung, die dieser Regel zugrunde liegt, heißt C-Ordnung und ist in
 [PARTREF::np-array2] bei `nditer` schon als Iterationsreihenfolge `order='C'` vorgekommen.
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 20 min -->
 
 ### Bedingte Suche: `nonzero`, `where` und `extract`
 
@@ -347,7 +367,7 @@ print(arr)
 
 # Indizes aller Elemente > 50
 indices = np.nonzero(arr > 50)
-print('Indizes wo arr > 50:', indices)  # (array([1, 2, 2, 2]), array([2, 0, 1, 2]))
+print('Indizes mit arr > 50:', indices)  # (array([1, 2, 2, 2]), array([2, 0, 1, 2]))
 print('Werte an diesen Positionen:', arr[indices])  # [60 70 80 90]
 
 # where() mit drei Argumenten wählt elementweise zwischen zwei Werten
@@ -370,9 +390,8 @@ Für ein 1D-Array besteht das Tupel deshalb aus genau einem Array, das man mit `
 Der Unterschied zur Boolean-Maske aus [PARTREF::np-index-slice] liegt darin, was man zurückbekommt:
 `np.nonzero` liefert die Positionen, an denen die Bedingung zutrifft, die Auswahl über die Maske
 dagegen die Werte.
-Positionen braucht man immer dann, wenn dieselbe Auswahl noch auf ein zweites Array angewendet
-werden soll oder wenn die Fundstelle selbst die gesuchte Information ist — dieselbe Unterscheidung
-wie zwischen `np.sort` und `np.argsort`.
+Wann man die Positionen statt der Werte braucht, ist dabei dieselbe Frage wie die nach `np.sort`
+gegenüber `np.argsort` aus [EREFQ::2].
 
 `np.extract(condition, a)` ist bei einer Boolean-Bedingung dagegen nichts anderes als die
 Boolean-Maske `a[condition]`.
@@ -462,8 +481,7 @@ und ist nicht zugesichert.
 
 [INCLUDE::_include/Zeitmessung.md]
 
-[ER] Vergleichen Sie Partitionierung und vollständige Sortierung und messen Sie den Zeitunterschied
-selbst:
+[ER] Vergleichen Sie Partitionierung und vollständige Sortierung anhand einer eigenen Zeitmessung:
 
 - Erzeugen Sie mit `np.arange` ein großes Array `grosses_array` mit 1 Million absteigend
   angeordneten Werten (von `1000000` bis `1`)
