@@ -17,23 +17,21 @@ assumes: np-array
 
 [SECTION::background::default]
 
-NumPy-Arrays unterschiedlicher Form lassen sich oft trotzdem direkt miteinander verrechnen,
-ohne dass man sie vorher manuell angleichen muss; außerdem bietet NumPy vielseitige
-Möglichkeiten, Arrays mit regelmäßigen Werten zu erzeugen, über ihre Elemente zu iterieren und
-ihre Form nachträglich zu verändern.
-Diese Aufgabe behandelt vier zusammenhängende Themen:
-Broadcasting, gezieltes Iterieren, das Erzeugen regelmäßiger Zahlenfolgen und das Verändern von
-Array-Formen.
+NumPy-Arrays unterschiedlicher Form lassen sich häufig direkt miteinander verrechnen,
+ohne dass man sie vorher manuell angleichen muss.
+Diese Aufgabe behandelt dieses Broadcasting und drei damit verwandte Themen:
+das gezielte Iterieren über Array-Elemente, das Erzeugen regelmäßiger Zahlenfolgen und
+das nachträgliche Verändern von Array-Formen.
 
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-### NumPy Broadcasting: Grundlagen
+### Broadcasting: Grundlagen
 
 Broadcasting ermöglicht arithmetische Operationen zwischen Arrays unterschiedlicher Formen.
-Wenn zwei Arrays kompatible Formen haben, wiederholt NumPy die Werte entlang der zu kurzen
-Achsen automatisch so oft, bis beide Formen übereinstimmen.
+Wenn zwei Arrays kompatible Formen haben, wiederholt NumPy die Werte automatisch entlang
+derjenigen Achsen, die die Länge 1 haben oder ganz fehlen, bis beide Formen übereinstimmen.
 
 **Grundlegende Broadcasting-Beispiele:**
 ```python
@@ -71,8 +69,8 @@ print(result)
 
 NumPy wendet beim Broadcasting folgende Regeln an:
 
-1. **Dimensionsanpassung**: Arrays werden von rechts nach links verglichen
-2. **Größenkompatibilität**: Dimensionen sind kompatibel wenn:
+1. **Ausrichtung**: Arrays werden von rechts nach links verglichen
+2. **Größenkompatibilität**: Dimensionen sind kompatibel, wenn:
 
    - Sie identisch sind, ODER
    - Eine davon ist 1, ODER
@@ -105,9 +103,9 @@ links und geben Sie bei den kompatiblen Paaren die resultierende Form an:
 - Array A: Form `(8, 1, 6)` mit Array B: Form `(4, 6)`
 - Array A: Form `(2, 5)` mit Array B: Form `(5, 2)`
 
-Probieren Sie die von Ihnen als inkompatibel eingestuften Fälle anschließend selbst aus (etwa mit
-`np.ones(...)` aus [PARTREF::np-array]) und übernehmen Sie die Fehlermeldung, die NumPy dabei
-ausgibt, in Ihre Antwort.
+Probieren Sie anschließend alle drei Fälle selbst aus (etwa mit `np.ones(...)` aus
+[PARTREF::np-array]) und vergleichen Sie das Ergebnis mit Ihrer Einschätzung.
+Übernehmen Sie die Fehlermeldungen, die NumPy dabei ausgibt, in Ihre Antwort.
 
 [ER] Demonstrieren Sie Broadcasting mit verschiedenen Array-Kombinationen:
 
@@ -154,8 +152,8 @@ Bei `axis=1` dagegen entsteht die Form `(3,)`, die sich mit `(3, 5)`
 `keepdims=True` macht daraus `(3, 1)` und damit eine passende Form.
 Für Code, der mit beliebiger Achse umgehen soll, ist `keepdims=True` deshalb die richtige Wahl.
 
-Ohne Broadcasting müsste man die Minima und Maxima erst manuell auf die
-Form von `data` bringen, bevor man sie elementweise verrechnen könnte:
+Dank Broadcasting entfällt das manuelle Angleichen der Formen: Die Minima und Maxima lassen sich
+direkt mit `data` verrechnen, obwohl sie eine andere Form haben.
 
 ```python
 # Beispieldaten: 3 Datensätze mit je 5 Merkmalen
@@ -184,13 +182,21 @@ im `axis=1`-Ergebnis jede Zeile.
 
 <!-- time estimate: 15 min -->
 
-### NumPy Array-Iteration mit `nditer`
+### Array-Iteration mit `nditer`
 
 `numpy.nditer` bietet flexible Möglichkeiten zur Array-Iteration.
 Eine direkte Schleife über ein mehrdimensionales Array (`for x in a`) läuft nur über die
 erste Achse (bei einem 2D-Array liefert sie also ganze Zeilen als Teil-Arrays);
 `np.nditer(a)` durchläuft dagegen jedes einzelne Element des gesamten Arrays,
 unabhängig von der Anzahl der Dimensionen.
+
+Elementweise Rechnungen erledigt man in NumPy allerdings normalerweise gar nicht mit einer
+Schleife, sondern vektorisiert (`a * 2` statt einer Schleife über alle Elemente): Das ist kürzer
+und deutlich schneller.
+`nditer` lohnt sich erst, wenn das nicht ausreicht, etwa weil man zu jedem Element seinen Index
+braucht, während des Durchlaufs in das Array schreiben will oder die Durchlaufreihenfolge selbst
+festlegen muss.
+Die folgenden Beispiele zeigen die dafür nötige Mechanik an jeweils möglichst einfachen Fällen.
 
 ```python
 numpy.nditer(op, flags=None, op_flags=None, order='K')
@@ -216,7 +222,6 @@ for x in np.nditer(a):
 ```
 
 **Kontrolle der Iterationsreihenfolge:**
-
 ```python
 # C-Ordnung (zeilenweise)
 for x in np.nditer(a, order='C'):
@@ -253,39 +258,52 @@ for x in it:
 # Index (0, 1): Wert 20
 # ...
 
-# Schreibzugriff (auf einer eigenen Kopie, damit die Demonstration
+# Schreibzugriff (auf einem eigenen Array, damit die Demonstration
 # darunter weiterhin die ursprünglichen Werte zeigt)
 b = np.array([[10, 20, 30], [40, 50, 60]])
 for x in np.nditer(b, op_flags=['readwrite']):
     x[...] = 2 * x  # Jeden Wert mit 2 multiplizieren
+print(b)
+# [[ 20  40  60]
+#  [ 80 100 120]]
 
 # Externe Schleife
 for column in np.nditer(a, flags=['external_loop'], order='F'):
     print(f'Spalte: {column}')
 ```
 
-[EQ] Erklären Sie den Unterschied zwischen C-Ordnung und Fortran-Ordnung bei der Array-Iteration.
-Nehmen Sie das 3D-Array
+[EQ] Nehmen Sie das 3D-Array
 `a = np.array([[[10, 20, 30], [40, 50, 60]], [[70, 80, 90], [100, 110, 120]]])`
-(Form `(2, 2, 3)`): Sagen Sie voraus, in welcher Reihenfolge `np.nditer(a, order='F')` die
+(Form `(2, 2, 3)`) und sagen Sie voraus, in welcher Reihenfolge `np.nditer(a, order='F')` die
 Elemente durchläuft.
+Formulieren Sie anhand Ihrer Vorhersage anschließend eine Regel für C- und F-Ordnung,
+die für beliebig viele Achsen gilt.
 
 [HINT::Wie überträgt man die F-Ordnung von 2D auf 3D?]
-Die Regel aus dem 2D-Beispiel oben gilt unverändert: Bei F-Ordnung
-ändert sich die erste Achse am schnellsten, die letzte am langsamsten.
-Gehen Sie die drei Achsen von `a` in dieser Reihenfolge durch
-und tragen Sie für jede Kombination den passenden Wert ein.
+Sehen Sie sich die F-Ausgabe des 2D-Beispiels oben noch einmal an und schreiben Sie zu jedem
+gelieferten Wert seinen Index dazu: Welcher der beiden Indizes zählt dabei schneller hoch?
+Übertragen Sie diese Beobachtung auf die drei Achsen von `a` und gehen Sie die Indexkombinationen
+in der so gefundenen Reihenfolge durch.
 [ENDHINT]
 
-[ER] Experimentieren Sie mit den erweiterten `nditer`-Optionen:
+[ER] Wenden Sie die erweiterten `nditer`-Optionen auf eine Aufgabe an, für die eine
+gewöhnliche Schleife nicht ausreicht:
 
 - Erstellen Sie ein 4x3-Array mit den zeilenweise aufsteigenden Werten `10, 20, 30, ..., 120`
   (so lassen sich Werte und Indizes in der Ausgabe nicht verwechseln)
-- Implementieren Sie Iteration mit Index-Verfolgung
-- Verwenden Sie Schreibzugriff, um alle Werte zu verdoppeln
-- Testen Sie externe Schleifen mit `order='F'`
+- Verdoppeln Sie in einem einzigen Durchlauf nur diejenigen Elemente, bei denen Zeilen- und
+  Spaltenindex übereinstimmen; alle übrigen bleiben unverändert.
+  Dafür müssen Sie zwei der oben vorgestellten Optionen miteinander kombinieren
+- Geben Sie das Array vor und nach dem Durchlauf aus
+- Durchlaufen Sie das veränderte Array anschließend mit `flags=['external_loop']` und
+  `order='F'` und geben Sie aus, was die Schleife bei jedem Schritt liefert
 
-Geben Sie für jeden Schritt die jeweilige Ausgabe aus.
+[HINT::Wie bekomme ich Index und Schreibzugriff gleichzeitig?]
+`flags` und `op_flags` sind zwei getrennte Parameter von `np.nditer` und lassen sich in
+demselben Aufruf angeben.
+Beachten Sie außerdem, was oben zum Namen des Iterators und zur Schreibweise beim Zurückschreiben
+gesagt ist.
+[ENDHINT]
 
 <!-- time estimate: 30 min -->
 
@@ -321,7 +339,8 @@ Ergebnisse aus:
 - einmal mit `np.arange`
 - einmal mit `np.linspace`
 
-Beide Aufrufe sollen dabei denselben Bereich von `0` bis `10` beschreiben.
+Beide Aufrufe sollen dabei denselben Bereich von `0` bis `10` beschreiben, damit Sie den Endpunkt
+bewusst steuern müssen.
 
 [EQ] Beide Aufrufe liefern dieselben Werte, aber Sie
 mussten NumPy dabei Unterschiedliches mitteilen.
@@ -329,8 +348,8 @@ Woran müssen Sie sich jeweils orientieren, und in welcher Situation
 ist welche der beiden Funktionen die naheliegendere Wahl?
 
 Ihre beiden Ausgaben sehen trotz gleicher Werte nicht gleich aus.
-Prüfen Sie mit `.dtype`, woran das liegt, und erklären Sie, welche der beiden Funktionen
-ihren Ergebnistyp frei wählen kann und welche nicht.
+Prüfen Sie mit `.dtype`, woran das liegt, und erklären Sie, bei welcher der beiden Funktionen
+der Ergebnistyp von den Argumenten abhängt und bei welcher nicht.
 
 <!-- time estimate: 15 min -->
 
@@ -382,6 +401,11 @@ expanded = np.expand_dims(arr_2d, axis=0)  # Form: (1, 2, 2)
 # squeeze: Entfernt Dimensionen der Größe 1
 squeezed = np.squeeze(expanded)  # Zurück zu (2, 2)
 ```
+
+Weitere Details, etwa die Reihenfolge beim Umformen (`order`), finden Sie in der Dokumentation zu
+[`numpy.reshape`](https://numpy.org/doc/stable/reference/generated/numpy.reshape.html),
+[`numpy.expand_dims`](https://numpy.org/doc/stable/reference/generated/numpy.expand_dims.html) und
+[`numpy.squeeze`](https://numpy.org/doc/stable/reference/generated/numpy.squeeze.html).
 
 [ER] Arbeiten Sie mit verschiedenen Array-Form-Manipulationen und geben Sie bei jedem Schritt
 Form und Ergebnis aus:
