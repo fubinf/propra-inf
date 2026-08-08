@@ -37,9 +37,9 @@ letztlich `numpy.linalg`.
 
 Diese Aufgabe lehrt nicht die lineare Algebra selbst, sondern wie man sie mit NumPy rechnet.
 Vorausgesetzt wird deshalb, was Matrix, Transposition, Matrixmultiplikation, Determinante,
-Inverse und Skalarprodukt (auch Punktprodukt genannt) bedeuten, ab dem Abschnitt zu den
-inversen Matrizen zusätzlich Konditionszahl, Rang, Eigenwert, Matrixnorm und
-Singulärwertzerlegung.
+Inverse und Skalarprodukt (auch Punktprodukt genannt) bedeuten.
+Ab dem Abschnitt zu den inversen Matrizen kommen Konditionszahl, Rang, Eigenwert, Matrixnorm
+und Singulärwertzerlegung hinzu.
 Verfahren wie die Bestimmung von Eigenwerten oder größeren Determinanten müssen Sie nicht von
 Hand beherrschen; die wenigen Handrechnungen dieser Aufgabe beschränken sich auf Summen und
 Produkte einzelner Zahlen.
@@ -97,6 +97,9 @@ print('\nMit np.transpose():')
 print(transponiert_alt)
 ```
 
+Die Referenzseite dazu ist
+[numpy.transpose](https://numpy.org/doc/stable/reference/generated/numpy.transpose.html).
+
 [ER] Arbeiten Sie mit Matrixtransposition:
 
 - Erstellen Sie mit `np.array` eine 4×3-Matrix `matrix` mit den Werten
@@ -150,6 +153,10 @@ Die Referenzseiten dazu sind
 [numpy.identity](https://numpy.org/doc/stable/reference/generated/numpy.identity.html) und
 [numpy.eye](https://numpy.org/doc/stable/reference/generated/numpy.eye.html).
 
+Die folgende Aufgabe verlangt außerdem, Ausnahmen aufzufangen; die Syntax dafür steht im
+Python-Tutorial unter
+[Handling Exceptions](https://docs.python.org/3/tutorial/errors.html#handling-exceptions).
+
 [ER] Erstellen Sie verschiedene spezielle Matrizen:
 
 - Eine 5×5 Einheitsmatrix `einheit_identity` mit `identity()`
@@ -171,6 +178,7 @@ Ein zweites Argument wird deshalb als `dtype` gelesen und die Meldung lautet sin
 sich Ihre Zahl nicht als Datentyp interpretieren lässt.
 Einen Parameter `k` gibt es dagegen überhaupt nicht, weshalb die zweite Meldung ein
 unerwartetes Schlüsselwortargument beanstandet.
+Beide Male ist die Ausnahme ein `TypeError`.
 [ENDHINT]
 
 [EQ] Basierend auf Ihrem Ergebnis aus [EREFR::2]: `eye()` kann alles, was `identity()` kann,
@@ -232,10 +240,8 @@ Dasselbe gilt für zwei Vektoren und für gemischte Formen wie Matrix mal Vektor
 - Berechnen Sie ihre Matrixmultiplikation mit allen drei Schreibweisen (`dot`, `matmul`, `@`)
 - Verifizieren Sie, dass `A` × `B` ≠ `B` × `A` (Matrixmultiplikation ist nicht kommutativ)
 
-<!-- time estimate: 10 min -->
-
-Unterschiede zwischen den Schreibweisen gibt es bei Skalaren und sobald mehr als zwei
-Dimensionen im Spiel sind.
+Unterschiede zwischen den Schreibweisen zeigen sich bei Skalaren und bei mehr als zwei
+Dimensionen.
 
 ```python
 # np.dot verrechnet auch Skalare, np.matmul verlangt mindestens eindimensionale Operanden
@@ -319,7 +325,7 @@ Die Referenzseiten dazu sind
   Werten `[1+1j, 5+2j]`, berechnen Sie `dot`, `vdot` und `inner` und halten Sie in einem
   Kommentar fest, welches der drei Ergebnisse abweicht und warum
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 25 min -->
 
 ### Determinanten: `linalg.det`
 
@@ -450,7 +456,7 @@ Die Referenzseiten dazu sind
 
 - Erstellen Sie eine 3×3-Matrix `matrix` (als `float`) mit den Werten
   `[[4, 7, 2], [3, 6, 1], [2, 5, 3]]` und berechnen Sie ihre Inverse
-- Verifizieren Sie, dass A × A⁻¹ = I
+- Verifizieren Sie mit `np.allclose`, dass A × A⁻¹ = I ergibt
 - Berechnen Sie die Konditionszahl von `matrix`
 - Erstellen Sie eine bewusst singuläre 3×3-Matrix `singular` (als `float`) mit den Werten
   `[[2, 5, 4], [4, 10, 8], [6, 15, 12]]` (die zweite Zeile ist das Doppelte, die dritte
@@ -726,11 +732,17 @@ Die Referenzseiten dazu sind
   Sie in einem Kommentar fest, welche Zeile bzw. Spalte den Ausschlag gibt
 - Formen Sie `norm_matrix` zu einem Vektor `norm_vektor` der Länge 9 um, berechnen Sie dessen
   Norm ohne `ord`-Angabe und vergleichen Sie den Wert mit der Frobenius-Norm der Matrix
+- Ordnen Sie dieselben neun Zahlen anders an, als `norm_matrix_umsortiert` mit den Werten
+  `[[10, 4, -2], [-9, -3, 8], [6, 7, -5]]`, und berechnen Sie auch dafür die Frobenius-Norm
+  und die 2-Norm
 
-[EQ] Ohne `ord`-Angabe berechnet `norm` bei einem Vektor die 2-Norm, bei einer Matrix aber die
-Frobenius-Norm.
-Halten Sie die beiden Definitionen neben Ihre Werte aus [EREFR::9] und begründen Sie, warum
-sich hinter den zwei verschiedenen Namen dieselbe Rechnung verbirgt.
+[EQ] Ohne `ord`-Angabe liefern `norm_matrix` und der daraus umgeformte `norm_vektor` aus
+[EREFR::9] denselben Wert; hinter der Frobenius-Norm einer Matrix und der 2-Norm eines Vektors
+steckt dieselbe Rechnung.
+Ihre Werte für `norm_matrix_umsortiert` zeigen aber, dass sich die beiden Normen beim
+Umsortieren derselben neun Zahlen unterschiedlich verhalten.
+Erklären Sie, was `ord=2` bei einer Matrix misst und warum sich dieser Wert dabei ändert, die
+Frobenius-Norm dagegen nicht.
 
 <!-- time estimate: 15 min -->
 
