@@ -37,13 +37,13 @@ Starten Sie für die folgenden Schritte in einer separaten Shell den Entwicklung
 Alle Befehle und Links unten verwenden den Port 8071; falls Sie den Server auf einem anderen
 Port betreiben, passen Sie sie entsprechend an.
 
-### HTTP-Formulare: GET und POST
+### HTML-Formulare: GET und POST
 
 Die Grundelemente eines HTML-Formulars (`<form>`, `<input>`, `<button type="submit">`)
 kennen Sie bereits aus [PARTREF::http-POST] und [PARTREF::html-Formulare], den Unterschied
 zwischen den beiden Methoden GET und POST aus [PARTREF::http-GET] und [PARTREF::http-POST].
-Neu ist hier nur die Stelle, an der ein Formular sich für eine der beiden entscheidet: das
-`method`-Attribut von `<form>` (`method="get"` oder `method="post"`).
+Das `method`-Attribut von `<form>`, an dem ein Formular sich für eine der beiden entscheidet,
+kennen Sie aus [PARTREF::http-POST] bereits als `method="POST"`; neu ist der Wert `get`.
 Welche der beiden für ein bestimmtes Formular die richtige ist, beobachten Sie in dieser
 Aufgabe an drei Beispielen selbst.
 
@@ -53,12 +53,11 @@ Als erstes konkretes Formular bauen Sie eine Suche nach Studierenden.
 Da eine Suche den Server-Zustand nicht verändert, ist GET hier die passende Methode.
 In [PARTREF::django-view] haben Sie GET-Parameter bereits mit `request.GET.get(key, default)`
 gelesen, dort aber per `curl` von Hand angehängt.
-Bei einem `<form method="get">` übernimmt der Browser das für Sie: Beim Absenden verpackt er
-jedes `<input name="...">` selbst als GET-Parameter, genau die, die Sie mit
-`request.GET.get(...)` auslesen.
-Die Suche greift auf die in [PARTREF::django-model] definierten `Student`-Objekte zu, über
-`Student.objects.filter(name=...)`, dieselbe exakte Übereinstimmungssuche, die Sie dort
-bereits kennengelernt haben.
+Bei einem `<form method="get">` übernimmt der Browser das: Beim Absenden verpackt er jedes
+`<input name="...">` als GET-Parameter, den Sie dann mit `request.GET.get(...)` auslesen.
+Die Suche greift mit `Student.objects.filter(name=...)` auf die in [PARTREF::django-model]
+definierten `Student`-Objekte zu, also mit derselben exakten Übereinstimmungssuche, die Sie
+dort bereits kennengelernt haben.
 Ein Formular mit GET-Methode hat folgende Bestandteile:
 
 ```html
@@ -75,10 +74,10 @@ Ein Formular mit GET-Methode hat folgende Bestandteile:
 - `placeholder`: Hinweistext, der nur angezeigt wird, solange das Feld leer ist, und beim
   Absenden nicht mitgeschickt wird
 
-[ER] Schreiben Sie in `views.py` eine View-Funktion `search_get`: liest den GET-Parameter `q`
-aus (Standardwert leerer String), sucht bei nichtleerem `q` mit
-`Student.objects.filter(name=q)` (sonst `[]`) und rendert `search_get.html` mit `q` und
-`results` im Context.
+[ER] Schreiben Sie in `views.py` eine View-Funktion `search_get`, die den GET-Parameter `q`
+ausliest (Standardwert leerer String), bei nichtleerem `q` mit
+`Student.objects.filter(name=q)` sucht (sonst `[]`) und `search_get.html` mit `q` und
+`results` im Context rendert.
 Ruft man die View ganz ohne `q` auf, ist `q` leer und die Seite zeigt schlicht das leere
 Formular.
 
@@ -149,7 +148,7 @@ Unterschieden:
 
 - `method="post"`: sendet die Daten mit der HTTP-Methode POST statt als GET-Parameter; sie
   sind dann über `request.POST` statt über `request.GET` zugänglich
-- `{% csrf_token %}`: unmittelbar nach dem öffnenden `<form>`-Tag, bettet das oben
+- `{% csrf_token %}`: steht unmittelbar nach dem öffnenden `<form>`-Tag und bettet das oben
   beschriebene CSRF-Token ein
 
 [ER] Schreiben Sie in `views.py` eine View-Funktion `search_post`: Bei einem POST-Request
@@ -176,12 +175,14 @@ Context.
 Worin unterscheidet sich die URL nach dem Absenden gegenüber dem GET-Formular?
 <!-- time estimate: 15 min -->
 
-Ein `curl`-Aufruf durchläuft kein Formular und liefert daher kein gültiges CSRF-Token mit.
+Ein `curl`-Aufruf durchläuft kein Formular und bringt daher weder das CSRF-Cookie noch das
+versteckte Feld mit, die Django zusammen erwartet.
 
 [EC] Senden Sie per `curl` einen POST ohne Token direkt an die View.
-Der erste Aufruf zeigt nur den Statuscode (`-o /dev/null` verwirft die Antwortseite,
-`-w "%{http_code}\n"` gibt stattdessen den Statuscode aus), der zweite wiederholt den Aufruf
-und holt aus der Antwortseite die Begründung heraus, die Django dort angibt:
+Der erste Aufruf zeigt nur den Statuscode: `-o /dev/null` verwirft die Antwortseite,
+`-w "%{http_code}\n"` gibt stattdessen den Statuscode aus.
+Der zweite Aufruf wiederholt den POST und holt aus der Antwortseite die Begründung heraus,
+die Django dort angibt:
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/
@@ -209,7 +210,8 @@ Jetzt schreiben Sie hinein: Ein Registrierungsformular legt über `Student.objec
 (aus [PARTREF::django-model]) einen neuen Datensatz an und leitet anschließend auf dessen
 Detailseite weiter.
 Für die drei Formularfelder greifen Sie mit `request.POST['name']` (usw.) zu, also mit
-eckigen Klammern statt mit `.get()` wie bei der Suche.
+eckigen Klammern statt mit `.get()` wie bei der Suche: Ein fehlendes Feld fällt so sofort
+auf, statt still zu einem leeren Wert zu werden.
 Eine View, die bei POST einen Datensatz anlegt und dann weiterleitet, hat folgenden Aufbau:
 
 ```python
@@ -279,7 +281,8 @@ Feld "Name" auszufüllen.
 Was passiert im Browser?
 
 Entfernen Sie nun versuchsweise das `required`-Attribut beim Namensfeld in `register.html`
-und senden Sie das Formular im Browser erneut ab, wieder ohne das Feld "Name" auszufüllen.
+und senden Sie das Formular im Browser erneut ab, wieder ohne das Feld "Name" auszufüllen;
+Alter und E-Mail füllen Sie dabei normal aus, denn dort steht `required` weiterhin.
 Rufen Sie anschließend `http://127.0.0.1:8071/students/` auf.
 Fügen Sie `required` danach wieder ein.
 
