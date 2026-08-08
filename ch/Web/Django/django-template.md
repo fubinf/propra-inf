@@ -11,8 +11,8 @@ assumes: html-erste-Schritte, html-Semantik, css-Einführung, curl
 - Ich verstehe, wie Templates die Darstellung (HTML) von der Programmlogik (Python) trennen.
 - Ich kann Daten mit Template-Variablen, Bedingungen, Schleifen und Filtern dynamisch
   darstellen.
-- Ich kann mit Template-Vererbung und statischen Dateien wiederverwendbare Seitenstrukturen
-  aufbauen.
+- Ich kann mit Template-Vererbung, statischen Dateien und namensbasierten Links
+  wiederverwendbare Seitenstrukturen aufbauen.
 
 [ENDSECTION]
 
@@ -39,7 +39,7 @@ bzw. mit `curl` aufrufen können.
 Alle URLs und Befehle unten verwenden den Port 8071; falls Sie den Entwicklungsserver auf
 einem anderen Port betreiben, passen Sie sie entsprechend an.
 
-### Aufräumen: nicht mehr benötigte Views
+### Aufräumen: nicht mehr benötigte Views und Routen
 
 [PARTREF::django-view] hat mehrere Views nur zu Demonstrationszwecken eingeführt
 (`get_params`, `post_data`, `request_info`, `responses`, `redirect_target`,
@@ -53,8 +53,7 @@ Behalten Sie `hello` und `student_detail`, die Sie weiterhin brauchen.
 [HINT::Welche Importe werden jetzt nicht mehr gebraucht?]
 Gehen Sie die `import`-Zeilen am Dateianfang einzeln durch und suchen Sie für jeden Namen, ob
 er im verbliebenen Code überhaupt noch vorkommt.
-Drei Namen werden nur von den entfernten Funktionen benutzt: `csrf_exempt`, `redirect` und
-`reverse`.
+Genau drei Namen werden nur von den entfernten Funktionen benutzt.
 [ENDHINT]
 <!-- time estimate: 5 min -->
 
@@ -94,8 +93,8 @@ nach folgendem Schema:
 ```
 
 Ersetzen Sie zunächst den Inhalt von `hello.html` durch die folgende Grundstruktur; sie
-ergänzt die einfache Version aus [PARTREF::django-project] um `lang`-Angabe, `<meta charset>`
-und einen passenden Titel.
+ergänzt die einfache Version aus [PARTREF::django-project] um `lang`-Angabe und
+`<meta charset>` und trägt einen zur Aufgabe passenden Titel.
 In den folgenden Schritten ändern Sie jeweils nur den `<body>`:
 
 ```html
@@ -170,11 +169,12 @@ Hobbys als `<ul>`-Liste mit `{% for %}` und einem `{% empty %}`-Zweig, der für 
 Liste "Keine Hobbys angegeben" in einem Listenelement anzeigt.
 
 [EQ] Setzen Sie `hobbies` in der View auf eine leere Liste `[]` und aktualisieren Sie die
-Seite.
-Was wird angezeigt, und welches Tag ist dafür verantwortlich?
+Seite; entfernen Sie `hobbies` danach ganz aus dem `context` und aktualisieren Sie erneut.
+Was wird in den beiden Fällen angezeigt, und was haben sie mit Ihrer Beobachtung aus
+[EREFQ::1] gemeinsam?
 
-Setzen Sie `hobbies` in der View wieder auf die ursprüngliche Liste
-(`['Programmieren', 'Lesen', 'Sport']`), bevor Sie fortfahren.
+Tragen Sie `hobbies` in der View anschließend wieder mit der ursprünglichen Liste
+(`['Programmieren', 'Lesen', 'Sport']`) ein, bevor Sie fortfahren.
 <!-- time estimate: 15 min -->
 
 ### Echte Daten aus dem Model mit Filtern darstellen
@@ -335,9 +335,12 @@ Nachprüfen lässt sich das jederzeit mit
 `curl -s http://127.0.0.1:8071/static/css/style.css`.
 [ENDHINT]
 
-[EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf.
-Die Seite ist jetzt formatiert, obwohl `students_list.html` selbst kein CSS enthält.
-Warum genügt es, `base.html` anzupassen, damit auch `students_list.html` das CSS erhält?
+[EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf: Die Seite ist jetzt formatiert, obwohl
+`students_list.html` selbst weder CSS noch ein `{% load %}` enthält.
+Entfernen Sie nun versuchsweise die Zeile `{% load static %}` aus `base.html`, laden Sie die
+Seite erneut und fügen Sie die Zeile danach wieder ein.
+Welche Fehlermeldung erscheint, und in welcher Datei müsste ein `{% load static %}` stehen,
+wenn ein Kind-Template selbst ein `{% static %}` verwenden wollte?
 <!-- time estimate: 10 min -->
 
 ### Navigation mit `{% url %}`
