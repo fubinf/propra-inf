@@ -17,8 +17,9 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice
 
 Messreihen mehrerer Sensoren liegen zunächst als einzelne Arrays vor und müssen zu einer Matrix
 zusammengesetzt werden; später soll dieselbe Matrix wieder in einen Trainings- und einen Testteil
-zerlegt werden. Solche Aufgaben — Arrays verbinden, aufteilen und in ihrer Größe verändern —
-kommen in der Datenverarbeitung ständig vor, und NumPy hat für jede davon eigene Funktionen.
+zerlegt werden.
+Solche Aufgaben — Arrays verbinden, aufteilen und in ihrer Größe verändern — kommen in der
+Datenverarbeitung ständig vor, und NumPy hat für jede davon eigene Funktionen.
 
 [ENDSECTION]
 
@@ -32,8 +33,8 @@ kommen in der Datenverarbeitung ständig vor, und NumPy hat für jede davon eige
 numpy.concatenate((a1, a2, ...), axis=0)
 ```
 
-- `(a1, a2, ...)`: Tupel oder Liste der zu verbindenden Arrays; bis auf die Achse `axis`
-  müssen alle Arrays in ihren übrigen Dimensionen übereinstimmen
+- `(a1, a2, ...)`: Tupel oder Liste der zu verbindenden Arrays; alle müssen in allen
+  Dimensionen außer `axis` übereinstimmen
 - `axis` (Standard `0`): die bereits vorhandene Achse, entlang derer verbunden wird
 
 ```python
@@ -88,8 +89,9 @@ print(np.stack((c, d), axis=2))
 
 Die Position der neuen Achse entscheidet also, wie die Werte im Ergebnis nebeneinander zu liegen
 kommen: Bei `axis=0` stehen die beiden Arrays als Ganzes hintereinander, bei `axis=1` jeweils ihre
-Zeilen paarweise, bei `axis=2` schließlich ihre einzelnen Elemente. An den Werten `1..12` gegen
-`101..112` lässt sich das in der Ausgabe direkt ablesen.
+Zeilen paarweise, bei `axis=2` schließlich ihre einzelnen Elemente.
+An den Werten `1..12` gegen `101..112` lässt sich das für `axis=2` in der Ausgabe oben direkt
+ablesen; die beiden anderen Fälle liefert die folgende Übung.
 
 [ER] Erstellen Sie mit `arange` und `reshape` zwei 4×3-Arrays `A` (Werte `21` bis `32`) und
 `B` (Werte `41` bis `52`) und verwenden Sie:
@@ -117,10 +119,11 @@ numpy.hstack(tup)
 numpy.vstack(tup)
 ```
 
-- `tup`: Tupel oder Liste der zu verbindenden Arrays; entspricht `concatenate` mit fest
-  vorgegebener Achse: `hstack` verbindet horizontal (entlang Achse 1), `vstack` vertikal
-  (entlang Achse 0); bei 1D-Arrays weichen beide von diesem Schema ab, `hstack` verbindet
-  dann entlang Achse 0
+- `tup`: Tupel oder Liste der zu verbindenden Arrays
+
+Beide entsprechen `concatenate` mit fest vorgegebener Achse: `hstack` verbindet horizontal
+(entlang Achse 1), `vstack` vertikal (entlang Achse 0).
+Bei 1D-Arrays weichen beide von diesem Schema ab; `hstack` verbindet dann entlang Achse 0.
 
 ```python
 import numpy as np
@@ -158,7 +161,7 @@ Geben Sie jeweils das Ergebnis und dessen `shape` aus.
 Schlagen Sie in der
 [Dokumentation von `numpy.vstack`](https://numpy.org/doc/stable/reference/generated/numpy.vstack.html)
 nach und benennen Sie den Schritt, den die Funktion bei 1D-Arrays vor dem eigentlichen Verbinden
-ausführt.
+ausführt und wieso er bei den 3×1-Arrays aus derselben Übung entfällt.
 
 <!-- time estimate: 15 min -->
 
@@ -229,7 +232,7 @@ print("vsplit:", [part.shape for part in v_parts])
 
 [EQ] Führen Sie `np.split(np.arange(10), 3)` aus und übernehmen Sie die Fehlermeldung in Ihre
 Antwort.
-Suchen Sie außerdem in der Dokumentation (siehe "Weiterführend") die Funktion, die dieselbe
+Suchen Sie außerdem in der Dokumentation (siehe "Weiterführend") die Funktion, die eine
 Aufteilung auch dann noch liefert, wenn die Länge nicht glatt aufgeht, und beschreiben Sie, wie
 sie die übrigen Elemente verteilt.
 
@@ -290,9 +293,9 @@ In dieser Aufgabe wird durchgehend die Funktion verwendet.
 [EQ] Bringen Sie ein 2×3-Array einmal mit der `reshape()`-Methode aus [PARTREF::np-array2] und
 einmal mit `np.resize()` auf die Form `(3, 2)`, überschreiben Sie im jeweiligen Ergebnis das
 erste Element und geben Sie danach beide Male das Ausgangsarray aus.
-Bei welcher der beiden Varianten ändert sich das Ausgangsarray mit, und was unterscheidet die
-beiden Funktionen so, dass nur eine von ihnen eine View im Sinne von [PARTREF::np-index-slice]
-liefern kann?
+Bei welcher der beiden Varianten ändert sich das Ausgangsarray mit, und was unterscheidet
+`reshape` und `np.resize` so, dass nur eine von beiden eine View im Sinne von
+[PARTREF::np-index-slice] liefern kann?
 
 <!-- time estimate: 15 min -->
 
@@ -330,8 +333,8 @@ print("Spalten:", appended_cols.shape)  # (2, 4)
 [ER] Erstellen Sie ein 2×3-Array mit den Werten `[[31, 47, 12], [58, 23, 64]]` und verwenden Sie
 `append`:
 
-- Fügen Sie eine neue Zeile mit den Werten `[90, 15, 33]` hinzu (`axis=0`)
-- Fügen Sie zwei neue Spalten mit den Werten `[[71, 29], [46, 88]]` hinzu (`axis=1`)
+- Fügen Sie eine neue Zeile mit den Werten `[90, 15, 33]` hinzu
+- Fügen Sie zwei neue Spalten mit den Werten `[[71, 29], [46, 88]]` hinzu
 - Fügen Sie die Werte `[5, 17, 26]` ohne `axis`-Parameter hinzu
 
 Geben Sie jeweils das Ergebnis und dessen `shape` aus.
@@ -484,8 +487,9 @@ print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 
 Verwenden Sie dabei alle drei `return_*`-Optionen.
 
-[EQ] Sehen Sie sich die von `return_index` gelieferten Indizes an: Sie sind nicht aufsteigend
-sortiert. Wonach richtet sich ihre Reihenfolge stattdessen?
+[EQ] Sehen Sie sich die von `return_index` in [EREFR::7] gelieferten Indizes an: Sie sind nicht
+aufsteigend sortiert.
+Wonach richtet sich ihre Reihenfolge stattdessen?
 
 <!-- time estimate: 20 min -->
 
@@ -493,24 +497,24 @@ sortiert. Wonach richtet sich ihre Reihenfolge stattdessen?
 
 [ER] Führen Sie eine komplexe Array-Manipulation durch:
 
-- Erstellen Sie mit `arange` und `reshape` zwei 3×4-Arrays `A` (ganze Zahlen von 1 bis 12) und
-  `B` (ganze Zahlen von 7 bis 18)
+- Erstellen Sie mit `arange` und `reshape` zwei 3×4-Arrays `A_3x4` (Werte `1` bis `12`) und
+  `B_3x4` (Werte `7` bis `18`)
 - Verbinden Sie sie horizontal mit `hstack`
 - Teilen Sie das Ergebnis vertikal in 3 gleiche Teile
-- Fügen Sie dem mittleren Teil eine neue Spalte mit dem Wert 99 hinzu
-- Bringen Sie die drei Teile wieder zusammen: Flachen Sie jeden Teil einzeln ab und verketten Sie
-  die drei flachen Arrays zu einem einzigen 1D-Array
+- Fügen Sie dem mittleren Teil eine neue Spalte mit dem Wert `99` hinzu
+- Bringen Sie die drei Teile wieder zusammen: Flachen Sie jeden Teil einzeln mit `reshape` ab und
+  verketten Sie die drei flachen Arrays zu einem einzigen 1D-Array
 - Entfernen Sie daraus alle doppelten Werte
 - Ändern Sie die finale Form zu 4×4 mit `resize`
 
 Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form und geben Sie zusätzlich vor und
 nach dem Entfernen der Duplikate die Anzahl der Werte aus.
 
-[HINT::Schritt für Schritt vorgehen]
-Diese Aufgabe verkettet mehrere Operationen. Geben Sie nach jedem einzelnen Schritt die `shape`
-des Zwischenergebnisses aus, bevor Sie mit dem nächsten Schritt weitermachen – so erkennen Sie
-sofort, ob eine Operation entlang der richtigen Achse arbeitet, bevor sich ein Fehler auf die
-folgenden Schritte fortpflanzt.
+[HINT::Ich verliere in der Kette den Überblick, wo etwas schiefgeht]
+Diese Aufgabe verkettet mehrere Operationen.
+Geben Sie nach jedem einzelnen Schritt die `shape` des Zwischenergebnisses aus, bevor Sie mit dem
+nächsten Schritt weitermachen — so erkennen Sie sofort, ob eine Operation entlang der richtigen
+Achse arbeitet, bevor sich ein Fehler auf die folgenden Schritte fortpflanzt.
 [ENDHINT]
 
 [EQ] Nach dem Entfernen der Duplikate bleiben mehr Werte übrig, als in eine 4×4-Form passen.
