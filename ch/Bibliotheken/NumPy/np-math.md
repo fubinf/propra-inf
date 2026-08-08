@@ -115,7 +115,7 @@ Der Potenzoperator `**` wirkt auf Arrays elementweise:
 `sin_values**2` quadriert jeden Eintrag einzeln und liefert wieder ein Array derselben Form.
 [ENDHINT]
 
-[EQ] Ihre Summe `sin²(x) + cos²(x)` wird für alle fünf Winkel als `1.` ausgegeben.
+[EQ] Ihre Summe `sin²(x) + cos²(x)` aus [EREFR::1] wird für alle fünf Winkel als `1.` ausgegeben.
 Der elementweise Vergleich mit `1` bestätigt das je nach Maschine aber nicht an allen fünf
 Positionen.
 Erklären Sie, wie eine Position mit `False` zustande kommt und wie sie zur Ausgabe `1.` passt.
@@ -151,8 +151,7 @@ numpy.arctan(x)
 zusammen mit einer `RuntimeWarning`.
 `nan` steht für "not a number" und ist derjenige Fließkommawert, mit dem NumPy ein undefiniertes
 Ergebnis kennzeichnet.
-Die Warnung bricht die Rechnung nicht ab: Sie erhalten ein Array, in dem nur die betroffenen
-Positionen `nan` enthalten.
+Die Warnung bricht die Rechnung nicht ab.
 Zu einem Funktionswert passen mehrere Winkel; NumPy liefert stets denjenigen aus einem festen Bereich:
 `np.arcsin` einen von -90 bis 90 Grad und `np.arccos` einen von 0 bis 180 Grad (die Grenzen
 jeweils eingeschlossen), `np.arctan` einen von -90 bis 90 Grad (die Grenzen ausgeschlossen).
@@ -190,7 +189,7 @@ zurückgerechneten Winkel durch.
 - Genau eine der vier Differenzen ist negativ.
   Begründen Sie das als Kommentar im Quelltext; achten Sie dabei darauf, wie die vier
   Eingabewerte gegenüber den exakten Kosinuswerten gerundet sind
-- Erstellen Sie ein Array `cos_invalid` mit den Werten `[0.5, 1.5]` und wenden Sie `np.arccos()`
+- Erstellen Sie ein Array `cos_mixed` mit den Werten `[0.5, 1.5]` und wenden Sie `np.arccos()`
   darauf an.
   Notieren Sie die Warnung und halten Sie als Kommentar im Quelltext fest, was die beiden
   Ergebniswerte über die Reichweite dieser Warnung aussagen
@@ -266,9 +265,9 @@ Vergleichen Sie Ihr Ergebnis mit dem, was eine Rundung zur nächstgelegenen ganz
 würde.
 [ENDHINT]
 
-[EQ] Für `0.5` liefert `np.round()` nicht das Ergebnis, das die Schulregel "bei genau `.5` wird
-aufgerundet" erwarten lässt.
-Klären Sie anhand des Abschnitts "Notes" in der
+[EQ] Für einen der fünf Werte aus [EREFR::3] liefert `np.round()` nicht das Ergebnis, das die
+Schulregel "bei genau `.5` wird aufgerundet" erwarten lässt.
+Benennen Sie diesen Wert und klären Sie anhand des Abschnitts "Notes" in der
 [Dokumentation von `numpy.round`](https://numpy.org/doc/stable/reference/generated/numpy.round.html),
 nach welcher Regel NumPy stattdessen rundet.
 Erklären Sie außerdem, warum `np.round()` in Ihrem Ergebnis für `-1.678` denselben Wert liefert
@@ -347,7 +346,7 @@ ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword argume
   `np.divide()` durch `arr3`: Notieren Sie die Warnung und die Werte, die an den Nullstellen
   entstehen (`inf` steht für "unendlich")
 - Wiederholen Sie diese Division so, dass an den Nullstellen von `arr3` gar nicht gerechnet wird:
-  Schränken Sie sie mit `where=` auf die übrigen Positionen ein, zunächst ohne weitere Argumente.
+  Schränken Sie sie mit `where=` auf die übrigen Positionen ein, zunächst ohne `out=`.
   Notieren Sie die Warnung und die Werte, die nun an den ausgelassenen Positionen stehen
 - Wiederholen Sie diese eingeschränkte Division ein weiteres Mal, diesmal mit einem Zielarray:
   Legen Sie es mit `np.zeros(arr1.shape)` an und übergeben Sie es als `out=`.
@@ -358,8 +357,8 @@ ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword argume
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Warum sind alle meine Kehrwerte `0`?]
-`np.reciprocal()` rechnet im `dtype` des Eingabe-Arrays — anders als `np.divide()`, das stets
-nach `float` wechselt.
+`np.reciprocal()` rechnet im `dtype` des Eingabe-Arrays — anders als `np.divide()`, das bei
+Integer-Eingaben stets nach `float` wechselt.
 Bei einem Integer-Array wird deshalb ganzzahlig gerechnet und jeder Kehrwert kleiner als 1 zu
 `0` abgeschnitten.
 Wandeln Sie das Array vorher mit der Array-Methode `.astype(float)` um; sie liefert eine Kopie
@@ -369,11 +368,14 @@ des Arrays mit dem angegebenen `dtype`, hier also mit Fließkommazahlen.
 [HINT::Was gehört bei `where=` als Bedingung hinein?]
 `where=` erwartet ein Array aus Wahrheitswerten, das dieselbe Form hat wie das Ergebnis oder
 sich darauf broadcasten lässt; ein Vergleich wie `arr3 != 0` liefert genau so ein Array.
-An den Positionen mit `False` rechnet NumPy nicht, sondern lässt den Wert stehen, der dort im
-`out=`-Array schon steht — deshalb gehören die beiden Argumente zusammen.
+An den Positionen mit `False` rechnet NumPy nicht: Mit `out=` bleibt dort der Wert stehen, der im
+Zielarray schon steht.
+Ohne `out=` legt NumPy das Ergebnisarray dagegen selbst an, und zwar auf dieselbe Weise wie
+`np.empty()` aus [PARTREF::np-array], mit den dort beobachteten Folgen — deshalb gehören die
+beiden Argumente zusammen.
 [ENDHINT]
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Potenz, Rest und Exponentialfunktion: `power`, `mod`, `exp`
 
@@ -442,7 +444,7 @@ Klären Sie anhand des einleitenden Beschreibungstexts in der
 wovon das Vorzeichen des Ergebnisses abhängt.
 Sagen Sie damit das Vorzeichen von `np.mod(-7, -3)` vorher und prüfen Sie Ihre Vorhersage nach.
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Zusammenfassende Kennzahlen: `min`, `max`, `mean`, `median`, `ptp`, `sum`
 
@@ -521,7 +523,7 @@ Ersetzen Sie dann in dieser Zeile den kleinsten Wert durch `0` und berechnen Sie
 Median erneut.
 Geben Sie beide neuen Werte an und erklären Sie, warum sich nur einer von beiden verändert.
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 20 min -->
 
 ### Streuungsmaße und Perzentile: `std`, `var`, `percentile`
 
@@ -539,7 +541,7 @@ numpy.percentile(a, q, axis=None)   # Wert, unter dem etwa q Prozent der Daten l
 - `axis` (Standard `None`): Bedeutung wie bei `mean` und `median` oben
 - `ddof` (nur bei `std`/`var`, Standard `0`): NumPy teilt die Summe der quadrierten Abweichungen
   durch `n - ddof`, wobei `n` die Anzahl der Werte ist; standardmäßig wird also mit `1/n` gerechnet.
-  In der vollständigen Signatur stehen vor `ddof` noch weitere Parameter, es ist deshalb als
+  In der vollständigen Signatur stehen vor `ddof` noch weitere Parameter; `ddof` ist deshalb als
   Schlüsselwortargument zu übergeben
 - `q` (nur bei `percentile`): das gewünschte Perzentil bzw. eine Liste von Perzentilen
   (Werte zwischen 0 und 100)
@@ -598,14 +600,14 @@ Mit einer f-String-Formatierung wie `f'{wert:.3f}'` (siehe [PARTREF::py-Fstrings
 die Ausgabe auf sinnvolle Nachkommastellen begrenzen.
 [ENDHINT]
 
-[EQ] Formulieren Sie für das 10. und das 90. Perzentil je einen Satz, der den berechneten Wert
-auf die Klausur bezieht.
+[EQ] Formulieren Sie für das 10. und das 90. Perzentil aus [EREFR::7] je einen Satz, der den
+berechneten Wert auf die Klausur bezieht.
 Erklären Sie außerdem, warum der Median `56.5` beträgt, obwohl keine Person genau diese
 Punktzahl erreicht hat.
 Benennen Sie dazu die beiden Punktzahlen aus den sortierten Daten, aus denen NumPy diesen Wert
 bildet, und begründen Sie, warum es gerade diese beiden sind.
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 20 min -->
 
 ### Weiterführend
 
