@@ -34,11 +34,13 @@ Für diese Aufgabe werden Grundbegriffe der Wahrscheinlichkeitstheorie und Stati
 (Verteilungen, Hypothesentests, Korrelationskoeffizienten).
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
-- [Wahrscheinlichkeitsverteilung (Wikipedia)](https://de.wikipedia.org/wiki/Wahrscheinlichkeitsverteilung):
-  Grundbegriffe zu Normal- und Binomialverteilung
+- [Normalverteilung (Wikipedia)](https://de.wikipedia.org/wiki/Normalverteilung):
+  Dichte, Erwartungswert μ und Standardabweichung σ
+- [Binomialverteilung (Wikipedia)](https://de.wikipedia.org/wiki/Binomialverteilung):
+  Anzahl Versuche n und Erfolgswahrscheinlichkeit p, Wahrscheinlichkeit für genau k Erfolge
 - [P-Wert (Wikipedia)](https://de.wikipedia.org/wiki/P-Wert): was ein p-Wert aussagt und was
   nicht (u. a. typische Fehlinterpretationen), Nullhypothese, Signifikanzniveau α
-- [Korrelationskoeffizient (Wikipedia)](https://de.wikipedia.org/wiki/Korrelationskoeffizient):
+- [Korrelationskoeffizient nach Bravais-Pearson (Wikipedia)](https://de.wikipedia.org/wiki/Korrelationskoeffizient):
   Voraussetzungen (lineare Beziehung), Grenzen (Korrelation ist nicht Kausalität)
 
 ### Wahrscheinlichkeitsverteilungen: `stats.norm` und `stats.binom`
@@ -89,19 +91,18 @@ Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit P
 
 [ER] Arbeiten Sie mit verschiedenen Wahrscheinlichkeitsverteilungen:
 
-- Erstellen Sie als `normal_dist` eine Normalverteilung N(10, 3²) (`stats.norm()`) und berechnen
-  Sie die Wahrscheinlichkeitsdichte bei x=10 (`.pdf()`), die Wahrscheinlichkeit P(X ≤ 13)
-  (`.cdf()`) und das 95%-Quantil (`.ppf(0.95)`)
+- Erstellen Sie als `normal_dist` eine Normalverteilung N(10, 3²) (`stats.norm()`) und berechnen Sie
+  die Wahrscheinlichkeitsdichte bei x=10, die Wahrscheinlichkeit P(X ≤ 13) und das 95%-Quantil
 - Erstellen Sie als `binomial_dist` eine Binomialverteilung mit n=20 und p=0.4 (`stats.binom()`)
-  und berechnen Sie die Wahrscheinlichkeit für genau 8 Erfolge (`.pmf()`) sowie für mindestens
-  10 Erfolge (`.cdf()`)
+  und berechnen Sie die Wahrscheinlichkeit für genau 8 Erfolge sowie mit `.cdf()` die
+  Wahrscheinlichkeit für mindestens 10 Erfolge
 - Ziehen Sie aus beiden Verteilungen je eine Zufallsstichprobe vom Umfang 1000 (`.rvs()`) als
   `normal_samples` und `binomial_samples` und geben Sie deren empirische Mittelwerte (`np.mean()`)
   zusammen mit dem jeweiligen theoretischen Mittelwert (`.mean()`) aus
 - Sehen Sie sich die beiden Stichproben genauer an: Geben Sie die ersten fünf Werte von
-  `normal_samples` aus (`normal_samples[:5]`) und bestimmen Sie mit einem Vergleich und `np.sum()`,
-  welchen Anteil der Wert 8 in `binomial_samples` ausmacht (`np.sum()` zählt dabei die
-  `True`-Werte des Vergleichs als 1)
+  `normal_samples` aus (`normal_samples[:5]`).
+  Bestimmen Sie außerdem mit einem Vergleich und `np.sum()`, welchen Anteil der Wert 8 in
+  `binomial_samples` ausmacht; `np.sum()` zählt dabei die `True`-Werte des Vergleichs als 1
 - Berechnen Sie zum Vergleich noch `stats.norm(loc=10, scale=0.1).pdf(10)`, also die
   Wahrscheinlichkeitsdichte einer sehr schmalen Normalverteilung an ihrem Erwartungswert
 
@@ -143,10 +144,8 @@ scipy.stats.ttest_ind(a, b)
 - `a`, `b`: die beiden unabhängigen Stichproben (Arrays/Listen)
 - `equal_var` (Standard `True`): setzt gleiche Varianzen in beiden Stichproben voraus; bei
   deutlich unterschiedlicher Streuung ist `equal_var=False` (Welch-Test) die passendere Wahl
-- Rückgabe: ein `TtestResult`-Objekt, das sich in `(statistic, pvalue)` entpacken lässt.
-  `pvalue` ist der p-Wert; das Vorzeichen von `statistic` zeigt zusätzlich, welche der beiden
-  Stichproben den größeren Mittelwert hat: ein negatives `statistic` bedeutet, dass `a` den
-  kleineren Mittelwert hat
+- Rückgabe: ein `TtestResult`-Objekt, das sich in `(statistic, pvalue)` entpacken lässt;
+  `pvalue` ist der p-Wert
 
 Die vollständige Parameterliste steht in der SciPy-Referenz zu
 [`scipy.stats.ttest_ind`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html).
@@ -209,7 +208,7 @@ scipy.stats.pearsonr(x, y)
   `r` liegt zwischen -1 und 1: 0 bedeutet kein linearer Zusammenhang,
   +1 ein perfekter positiver Zusammenhang (steigt `x`, steigt auch `y`), -1 ein perfekter
   negativer Zusammenhang (steigt `x`, sinkt `y`); `p` ist der p-Wert für die Nullhypothese
-  "kein Zusammenhang"
+  "kein linearer Zusammenhang"
 
 Die vollständige Parameterliste steht in der SciPy-Referenz zu
 [`scipy.stats.pearsonr`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html).
@@ -241,17 +240,16 @@ Gegeben sind die Werte von zehn Studierenden: `lernstunden` mit den Werten
 - Berechnen Sie mit `stats.pearsonr()` den Korrelationskoeffizienten und den p-Wert für alle zehn
   Wertepaare und geben Sie beide aus (`r` mit `:.4f`, den p-Wert mit `:.2e`)
 - Ein einzelnes Wertepaar fällt deutlich stärker aus dem Trend heraus als alle anderen.
-  Bestimmen Sie, welches das ist, lassen Sie es weg, berechnen Sie `r` und `p` für die
-  verbleibenden neun Paare erneut und geben Sie auch diese beiden Werte aus
+  Bestimmen Sie, welches das ist, und lassen Sie es weg.
+  Berechnen Sie `r` und `p` für die verbleibenden neun Paare erneut und geben Sie auch diese
+  beiden Werte aus
 - Halten Sie in einem Kommentar fest, welches Wertepaar Sie weggelassen haben und woran Sie es
   erkannt haben
 
 [HINT::Wie finde ich das Paar, das am stärksten aus dem Trend fällt?]
-`stats.pearsonr()` hilft dabei nicht, denn es liefert nur einen einzigen Kennwert für den gesamten
-Datensatz.
-Sehen Sie sich stattdessen die Rohdaten an: die Paare sind bereits nach `lernstunden` aufsteigend
-sortiert, so dass sich ein Einbruch im ansonsten steigenden Verlauf der `punkte` schon beim
-Durchlesen finden lässt.
+Sehen Sie sich die Rohdaten an: die Paare sind bereits nach `lernstunden` aufsteigend sortiert,
+so dass sich ein Einbruch im ansonsten steigenden Verlauf der `punkte` schon beim Durchlesen
+finden lässt.
 Gesucht ist das Paar mit dem größten vertikalen Abstand zur Ausgleichsgeraden durch alle zehn
 Punkte; wer die zehn Punkte von Hand skizziert, sieht es am deutlichsten.
 Zur Selbstkontrolle: beim richtigen Paar springt `r` auf über 0.99, bei jedem anderen bleibt es
@@ -262,7 +260,7 @@ unter 0.80.
 Ein einziges von zehn Wertepaaren hat den Koeffizienten verschoben, ohne dass `stats.pearsonr()`
 bei einem der beiden Aufrufe darauf hingewiesen hätte.
 Was folgt daraus für die Aussagekraft eines einzelnen r-Werts?
-Und was mussten Sie tun, um das auffällige Paar überhaupt zu finden — etwas, das
+Was mussten Sie tun, um das auffällige Paar überhaupt zu finden — etwas, das
 `stats.pearsonr()` selbst nicht leistet?
 
 <!-- time estimate: 15 min -->
