@@ -1,6 +1,6 @@
 title: SciPy Numerische Integration und Differentialgleichungen verstehen und anwenden
 stage: alpha
-timevalue: 1.25
+timevalue: 1.5
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array2, np-math, py-Fstrings
@@ -38,8 +38,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 ### Numerische Integration mit `scipy.integrate.quad`
 
-Die `quad`-Funktion verwendet adaptive Algorithmen zur präzisen Berechnung
-eindimensionaler Integrale.
+`quad` berechnet eindimensionale Integrale mit einem adaptiven Verfahren.
 
 ```python
 # gekürzt auf die hier benötigten Parameter
@@ -49,7 +48,7 @@ scipy.integrate.quad(func, a, b, args=(), epsabs=1.49e-08, epsrel=1.49e-08, limi
 - `func`: die zu integrierende Funktion
 - `a`, `b`: untere und obere Integrationsgrenze
 - `args` (Standard `()`): zusätzliche Parameter für `func` (siehe unten)
-- `epsabs`, `epsrel` (Standard je `1.49e-08`): absolute bzw. relative Fehlerschranke, die `quad`
+- `epsabs`, `epsrel` (Standard je `1.49e-08`): absolute bzw. relative Fehlertoleranz, die `quad`
   einzuhalten versucht
 - `limit` (Standard `50`): maximale Zahl der Teilintervalle, in die `quad` den Integrationsbereich
   zerlegen darf
@@ -129,14 +128,14 @@ Der exakte Wert ist `0.013675`, das erste Ergebnis ist also um mehr als eine Zeh
 
 [EQ] Stellen Sie Ihre drei `error`-Werte aus [EREFR::1] neben die beiden `error`-Werte des
 oszillierenden Beispiels und nehmen Sie an, Sie kennten keinen der analytischen Werte.
-Woran allein anhand von `error` würden Sie in jedem der fünf Fälle entscheiden, ob `result`
+Woran allein anhand der Rückgabewerte würden Sie in jedem der fünf Fälle entscheiden, ob `result`
 vertrauenswürdig ist?
 
 <!-- time estimate: 30 min -->
 
 ### Parametrisierte Integrale mit `args`
 
-Oft müssen Integrale mit Parametern oder komplexeren Ausdrücken berechnet werden.
+Oft muss dasselbe Integral für verschiedene Parameterwerte berechnet werden.
 `quad` unterstützt das über den Parameter `args`.
 
 ```python
@@ -147,6 +146,7 @@ def param_func(x, a, b):
 # Integration mit spezifischen Parametern
 result, _ = integrate.quad(param_func, 0, 2, args=(3, 1))
 print(f"∫₀² (3x + 1) dx = {result:.6f}")
+# ∫₀² (3x + 1) dx = 8.000000
 ```
 
 [ER] Arbeiten Sie mit parametrisierten Integralen:
@@ -164,7 +164,7 @@ Geben Sie für jedes Integral das Ergebnis (6 Nachkommastellen, `:.6f`), den Feh
 Aufruf, und was bleibt gleich?
 Was müssten Sie stattdessen jedes Mal anfassen, wenn `k` fest im Funktionskörper stünde?
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Gewöhnliche Differentialgleichungen mit `solve_ivp`
 
@@ -172,7 +172,7 @@ Das Lösen gewöhnlicher Differentialgleichungen (ODEs) ist ein zentraler Bestan
 der wissenschaftlichen Modellierung.
 `solve_ivp` löst Anfangswertprobleme der Form:
 
-**dy/dt = f(t, y)** mit **y(t₀) = y₀**
+`dy/dt = f(t, y)` mit `y(t₀) = y₀`
 
 ```python
 # gekürzt auf die hier benötigten Parameter
@@ -182,7 +182,7 @@ scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None
 
 - `fun`: die Funktion f(t, y), die die Ableitung definiert
 - `t_span`: Tupel `(t_start, t_end)` für den Zeitbereich
-- `y0`: Anfangswerte als Array
+- `y0`: Anfangswerte als Liste oder Array
 - `method` (Standard `'RK45'`): Lösungsverfahren (weitere: `'RK23'`, `'DOP853'`, ...)
 - `t_eval` (Standard `None`, dann wählt der Solver selbst Zeitpunkte): spezifische Zeitpunkte
   für die Ausgabe
@@ -209,7 +209,7 @@ finden Sie die Details unter
 **Rückgabewerte:**
 
 - `sol.t`: Array der Zeitpunkte
-- `sol.y`: Array der Lösungswerte
+- `sol.y`: Array der Lösungswerte, eine Zeile je Gleichung
 - `sol.success`: ob die Integration erfolgreich war
 
 **Exponentieller Zerfall:**
@@ -241,8 +241,9 @@ print(f"Werte: {sol.y[0]}")
 
 `solve_ivp` behandelt jedes Problem als System von Gleichungen, auch wenn es wie hier nur eine
 einzige gibt.
-Deshalb ist `y0` eine Liste, deshalb gibt `fun` eine Liste zurück, deshalb ist `y` innerhalb von
-`fun` ein Array mit dem Wert in `y[0]`, und deshalb steht die Lösung in `sol.y[0]`.
+Deshalb ist `y0` eine Liste, deshalb ist `y` innerhalb von `fun` ein Array mit dem Wert in `y[0]`,
+und deshalb steht die Lösung in `sol.y[0]`; der Rückgabewert von `fun` ist hier passend dazu
+ebenfalls als Liste geschrieben.
 
 Die exakten Werte lauten `10.000000`, `2.865048`, `0.820850`, `0.235177`, `0.067379`.
 Dass die Lösung schon in der dritten Stelle abweicht, ist kein Fehler, sondern die Voreinstellung
@@ -278,7 +279,7 @@ Zehnerpotenz unterscheidet.
 Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und was sagt
 `sol.success` demnach über die Genauigkeit einer Lösung aus?
 
-<!-- time estimate: 30 min -->
+<!-- time estimate: 40 min -->
 
 ### Weiterführend
 
