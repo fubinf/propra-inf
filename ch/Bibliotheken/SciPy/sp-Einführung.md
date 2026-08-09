@@ -8,9 +8,9 @@ assumes: np-Einführung, py-Fstrings
 [SECTION::goal::idea,experience]
 
 - Ich kann SciPy installieren und die Installation überprüfen.
-- Ich verstehe die wichtigsten Module von SciPy und ihre Anwendungsbereiche.
-- Ich kann mit `scipy.constants` mathematische und physikalische Konstanten abrufen und die beiden
-  Zugriffswege des Moduls unterscheiden.
+- Ich kann die SciPy-Module dieser Aufgabengruppe ihren Anwendungsbereichen zuordnen.
+- Ich kann mit `scipy.constants` mathematische und physikalische Konstanten sowie
+  Umrechnungsfaktoren abrufen und die beiden Zugriffswege des Moduls unterscheiden.
 
 [ENDSECTION]
 
@@ -73,7 +73,7 @@ Die folgende Auswahl umfasst nur die Module dieser Aufgabengruppe; die vollstän
 
 **Aufruf einer Modulfunktion:**
 
-Das folgende Beispiel zeigt nur, wie ein SciPy-Modul importiert und eine seiner Funktionen
+Signatur und Beispiel unten zeigen nur, wie ein SciPy-Modul importiert und eine seiner Funktionen
 aufgerufen wird; `scipy.optimize` selbst ist Gegenstand von [PARTREF::sp-optimize].
 
 ```python
@@ -102,7 +102,7 @@ Begründen Sie Ihre Auswahl:
 
 - Berechnung des zurückgelegten Wegs aus einer gemessenen Geschwindigkeitskurve
 - Speichern und Multiplizieren einer Matrix mit einer Million Zeilen, in der pro Zeile nur eine
-  Handvoll Einträge besetzt ist
+  Handvoll Einträge von Null verschieden sind
 - Schätzung eines Zwischenwerts zwischen zwei gemessenen Datenpunkten
 - Anpassung einer Modellfunktion an eine Messreihe
 
@@ -157,7 +157,7 @@ der Mantisse); halten Sie in einem Kommentar fest, warum das so ist.
 <!-- time estimate: 20 min -->
 
 Außerdem enthält `scipy.constants` das Dictionary `physical_constants`, dessen Einträge jeweils ein
-Tripel aus Wert, Einheit und Unsicherheit sind.
+Tripel (ein Tupel mit drei Elementen) aus Wert, Einheit und Unsicherheit sind.
 Die Unsicherheit gibt an, wie genau der Wert bekannt ist.
 Werte, Einheiten und Unsicherheiten stammen aus den
 [CODATA-Konstanten beim NIST](https://physics.nist.gov/cuu/Constants/).
