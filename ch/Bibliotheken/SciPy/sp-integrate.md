@@ -27,7 +27,7 @@ diese Näherung ist.
 
 ### Vorwissen
 
-Für diese Aufgabe sind folgende Konzepte hilfreich.
+Für diese Aufgabe werden folgende Konzepte benötigt.
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Numerische Integration (Wikipedia)](https://de.wikipedia.org/wiki/Numerische_Integration):
@@ -42,6 +42,7 @@ Die `quad`-Funktion verwendet adaptive Algorithmen zur präzisen Berechnung
 eindimensionaler Integrale.
 
 ```python
+# gekürzt auf die hier benötigten Parameter
 scipy.integrate.quad(func, a, b, args=(), epsabs=1.49e-08, epsrel=1.49e-08, limit=50)
 ```
 
@@ -58,10 +59,10 @@ Die vollständige Parameterliste steht in der Referenz zu
 
 **Rückgabewerte:**
 
-`quad` liefert ein Tupel aus zwei Werten, das üblicherweise so ausgepackt wird:
+`quad` liefert ein Tupel aus zwei Werten, das üblicherweise als `result, error` ausgepackt wird:
 
 - `result`: der berechnete Integralwert
-- `error`: geschätzte absolute Fehlergrenze
+- `error`: Schätzung des absoluten Fehlers im Ergebnis
 
 **Behandlung von unendlichen Grenzen:**
 
@@ -71,7 +72,7 @@ SciPy kann auch mit unendlichen Integrationsgrenzen umgehen:
 - `-np.inf` für -∞
 - Die Algorithmen transformieren automatisch den Integrationsbereich
 
-**Häufige Integrale in der Praxis:**
+**Integrand als benannte Funktion oder Lambda-Funktion:**
 
 `func` kann eine benannte Funktion sein oder eine [TERMREF::Lambda-Funktion]:
 
@@ -87,7 +88,7 @@ print(f"∫₀^π sin(x) dx = {result1:.6f}")
 result2, _ = integrate.quad(lambda x: np.exp(-x), 0, np.inf)
 print(f"∫₀^∞ e^(-x) dx = {result2:.6f}")
 
-# Gaußsche Funktion (nicht analytisch lösbar)
+# Gaußsche Funktion (keine elementare Stammfunktion)
 result3, _ = integrate.quad(lambda x: np.exp(-x**2), -2, 2)
 print(f"∫₋₂² e^(-x²) dx = {result3:.6f}")
 ```
@@ -103,31 +104,7 @@ Formatieren Sie alle Ausgaben dieser Aufgabe mit f-Strings und Präzisionsangabe
 
 Geben Sie für jedes Integral das berechnete Ergebnis (`result`, 6 Nachkommastellen, `:.6f`) und
 die Fehlerabschätzung (`error`, wissenschaftliche Notation, `:.2e`) aus.
-Vergleichen Sie Ihre numerischen Ergebnisse mit den angegebenen analytischen Werten.
-
-[EQ] Für `∫₀² x³ dx` und `∫₀^π/2 cos(x) dx` können Sie `result` direkt gegen den analytischen Wert prüfen.
-Bei `∫₀^∞ x*e^(-x²) dx` kennen Sie den analytischen Wert hier nur, weil er im Aufgabentext
-angegeben ist — stellen Sie sich vor, er wäre es nicht.
-Woran allein anhand von `error` würden Sie erkennen, ob `result` vertrauenswürdig ist?
-
-<!-- time estimate: 25 min -->
-
-### Parametrisierte Integrale und die Grenzen von `quad`
-
-Oft müssen Integrale mit Parametern oder komplexeren Ausdrücken berechnet werden.
-`quad` unterstützt das über den Parameter `args`.
-
-**Integration mit Parametern:**
-
-```python
-# Parametrisierte Funktion: f(x, a, b) = a*x + b
-def param_func(x, a, b):
-    return a * x + b
-
-# Integration mit spezifischen Parametern
-result, _ = integrate.quad(param_func, 0, 2, args=(3, 1))
-print(f"∫₀² (3x + 1) dx = {result:.6f}")
-```
+Geben Sie außerdem die Abweichung vom angegebenen analytischen Wert aus (`:.2e`).
 
 **Wenn `quad` an seine Grenze stößt:**
 
@@ -149,25 +126,45 @@ print(f"limit=1000: result = {result:.6f}, error = {error:.2e}")
 Der erste Aufruf gibt zusätzlich eine `IntegrationWarning` aus
 ("The integral is probably divergent, or slowly convergent").
 Der exakte Wert ist `0.013675`, das erste Ergebnis ist also um mehr als eine Zehnerpotenz falsch.
-Bemerkenswert ist, dass `error` das anzeigt, ohne dass man den exakten Wert kennen muss: eine
-Fehlerschätzung von `3.93e+00` zu einem Ergebnis von `0.19` ist eine unmissverständliche Warnung.
+
+[EQ] Stellen Sie Ihre drei `error`-Werte aus [EREFR::1] neben die beiden `error`-Werte des
+oszillierenden Beispiels und nehmen Sie an, Sie kennten keinen der analytischen Werte.
+Woran allein anhand von `error` würden Sie in jedem der fünf Fälle entscheiden, ob `result`
+vertrauenswürdig ist?
+
+<!-- time estimate: 30 min -->
+
+### Parametrisierte Integrale mit `args`
+
+Oft müssen Integrale mit Parametern oder komplexeren Ausdrücken berechnet werden.
+`quad` unterstützt das über den Parameter `args`.
+
+```python
+# Parametrisierte Funktion: f(x, a, b) = a*x + b
+def param_func(x, a, b):
+    return a * x + b
+
+# Integration mit spezifischen Parametern
+result, _ = integrate.quad(param_func, 0, 2, args=(3, 1))
+print(f"∫₀² (3x + 1) dx = {result:.6f}")
+```
 
 [ER] Arbeiten Sie mit parametrisierten Integralen:
 
-- `∫₀¹ (a*x² + b*x + c) dx` mit a=2, b=-1, c=3 (Analytisches Ergebnis: 19/6)
-- `∫₀^π sin(k*x) dx` für k=5 (Analytisches Ergebnis: 2/5)
-- `∫₀¹ x^n dx` für n=0.5 (Analytisches Ergebnis: 2/3)
+- `∫₀¹ (a*x² + b*x + c) dx` mit `a=2`, `b=-1`, `c=3` (Analytisches Ergebnis: 19/6)
+- `∫₀^π sin(k*x) dx` nacheinander für `k=5`, `k=7` und `k=9`, mit ein und demselben Funktionskörper
+  (Analytische Ergebnisse: 2/5, 2/7, 2/9)
+- `∫₀¹ x^n dx` für `n=0.5` (Analytisches Ergebnis: 2/3)
 
-Übergeben Sie die Parameter in allen drei Fällen über `args`.
-Geben Sie für jedes Integral das Ergebnis (6 Nachkommastellen, `:.6f`) und den Fehler
-(wissenschaftliche Notation, `:.2e`) aus und vergleichen Sie mit dem analytischen Ergebnis.
+Übergeben Sie die Parameter in allen Fällen über `args`.
+Geben Sie für jedes Integral das Ergebnis (6 Nachkommastellen, `:.6f`), den Fehler
+(wissenschaftliche Notation, `:.2e`) und die Abweichung vom analytischen Ergebnis (`:.2e`) aus.
 
-[EQ] Ohne `args` müssten Sie für jede Parameterkombination (z. B. `k=5` vs. `k=7` bei `sin(k*x)`)
-den Wert fest in die Funktion einbauen.
-Was müssten Sie dann an Ihrem Code ändern, um ein anderes `k` zu testen — und was löst `args`
-an diesem Problem?
+[EQ] Vergleichen Sie Ihre drei Aufrufe für `k=5`, `k=7` und `k=9`: Was ändert sich von Aufruf zu
+Aufruf, und was bleibt gleich?
+Was müssten Sie stattdessen jedes Mal anfassen, wenn `k` fest im Funktionskörper stünde?
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 ### Gewöhnliche Differentialgleichungen mit `solve_ivp`
 
@@ -178,6 +175,7 @@ der wissenschaftlichen Modellierung.
 **dy/dt = f(t, y)** mit **y(t₀) = y₀**
 
 ```python
+# gekürzt auf die hier benötigten Parameter
 scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None,
                           rtol=1e-3, atol=1e-6)
 ```
@@ -195,6 +193,8 @@ scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.integrate.solve_ivp`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html).
 
+[FOLDOUT::Was Runge-Kutta-Verfahren unterscheidet]
+
 `RK45` und `RK23` sind Runge-Kutta-Verfahren unterschiedlicher Ordnung (4./5. bzw. 2./3. Ordnung):
 Sie berechnen pro Schritt mehrere Zwischenauswertungen von `f(t, y)` und kombinieren sie gewichtet,
 um von einem Zeitpunkt zum nächsten zu gelangen — ein Verfahren höherer Ordnung kommt dabei für
@@ -204,6 +204,7 @@ festgelegt.
 Das genaue Funktionieren dieser Verfahren ist nicht Gegenstand dieser Aufgabe — bei Interesse
 finden Sie die Details unter
 [Runge-Kutta-Verfahren, Abschnitt "Butcher-Tableau"](https://de.wikipedia.org/wiki/Runge-Kutta-Verfahren#Butcher-Tableau).
+[ENDFOLDOUT]
 
 **Rückgabewerte:**
 
@@ -213,7 +214,7 @@ finden Sie die Details unter
 
 **Exponentieller Zerfall:**
 
-Das Problem **dy/dt = -k*y** mit **y(0) = y₀** hat die Lösung `y(t) = y₀ * e^(-k*t)`:
+Das Problem `dy/dt = -k*y` mit `y(0) = y₀` hat die Lösung `y(t) = y₀ * e^(-k*t)`:
 
 ```python
 import numpy as np
@@ -249,13 +250,13 @@ Dass die Lösung schon in der dritten Stelle abweicht, ist kein Fehler, sondern 
 
 [ER] Lösen Sie gewöhnliche Differentialgleichungen mit `solve_ivp`:
 
-- dy/dt = 2*t mit y(0) = 1 für t ∈ [0, 3]
-  (Analytische Lösung: y(t) = t² + 1)
-- dy/dt = -3*y + 2 mit y(0) = 5 für t ∈ [0, 2]
-  (Analytische Lösung: y(t) = 2/3 + (13/3)*e^(-3t))
-- Logistisches Wachstum dy/dt = r*y*(1 - y/K) mit r=1, K=10, y(0)=1 für t ∈ [0, 5];
-  übergeben Sie r und K über `args`
-  (Analytische Lösung: y(t) = 10/(1 + 9*e^(-t)))
+- `dy/dt = 2*t` mit `y(0) = 1` für `t ∈ [0, 3]`
+  (Analytische Lösung: `y(t) = t² + 1`)
+- `dy/dt = -3*y + 2` mit `y(0) = 5` für `t ∈ [0, 2]`
+  (Analytische Lösung: `y(t) = 2/3 + (13/3)*e^(-3t)`)
+- Logistisches Wachstum `dy/dt = r*y*(1 - y/K)` mit `r=1`, `K=10`, `y(0)=1` für `t ∈ [0, 5]`;
+  übergeben Sie `r` und `K` über `args`
+  (Analytische Lösung: `y(t) = 10/(1 + 9*e^(-t))`)
 
 Geben Sie für jede Lösung `sol.success` und die Werte an drei Zeitpunkten aus.
 Wählen Sie die Zeitpunkte über `t_eval=np.array([start, mitte, ende])` und lesen Sie sie über
@@ -264,15 +265,16 @@ Geben Sie zu jedem Zeitpunkt auch die Abweichung von der analytischen Lösung au
 
 [ER] Prüfen Sie, was `sol.success` über die Genauigkeit einer Lösung aussagt:
 
-- Rechnen Sie das logistische Wachstum zusätzlich mit `method='RK23'` und mit `method='DOP853'`.
+- Rechnen Sie das logistische Wachstum zusätzlich mit `method='RK23'` und mit `method='DOP853'`,
+  mit denselben Auswertungszeitpunkten wie zuvor.
   Geben Sie je Verfahren `sol.success` und die größte Abweichung von der analytischen Lösung aus.
-- Lösen Sie dy/dt = y² mit y(0) = 1 auf `t_span=(0, 5)`.
+- Lösen Sie `dy/dt = y²` mit `y(0) = 1` auf `t_span=(0, 5)`.
   Geben Sie `sol.success`, `sol.t[-1]` und `sol.y[0][-1]` aus.
   (Der Index `-1` adressiert das letzte Element.)
 
 [EQ] Bei einer der beiden Zusatzrechnungen ist `sol.success` `False`, bei der anderen dreimal
-`True` — obwohl sich die Ergebnisse dort je nach `method` um Größenordnungen in der Genauigkeit
-unterscheiden.
+`True` — obwohl sich die Genauigkeit der Ergebnisse dort je nach `method` um mehr als eine
+Zehnerpotenz unterscheidet.
 Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und was sagt
 `sol.success` demnach über die Genauigkeit einer Lösung aus?
 
