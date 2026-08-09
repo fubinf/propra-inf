@@ -34,7 +34,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
   wann sich eine Stammfunktion nicht durch elementare Funktionen ausdrücken lässt und wie
   Quadraturverfahren stattdessen vorgehen
 - [Anfangswertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Anfangswertproblem): Grundbegriff
-  einer gewöhnlichen Differentialgleichung mit Anfangsbedingung (dy/dt = f(t, y), y(t₀) = y₀)
+  einer gewöhnlichen Differentialgleichung mit Anfangsbedingung (`dy/dt = f(t, y)`, `y(t₀) = y₀`)
 
 ### Numerische Integration mit `scipy.integrate.quad`
 
@@ -47,7 +47,7 @@ scipy.integrate.quad(func, a, b, args=(), epsabs=1.49e-08, epsrel=1.49e-08, limi
 
 - `func`: die zu integrierende Funktion
 - `a`, `b`: untere und obere Integrationsgrenze
-- `args` (Standard `()`): zusätzliche Parameter für `func` (siehe unten)
+- `args` (Standard `()`): zusätzliche Parameter für `func`, als Tupel (siehe unten)
 - `epsabs`, `epsrel` (Standard je `1.49e-08`): absolute bzw. relative Fehlertoleranz, die `quad`
   einzuhalten versucht
 - `limit` (Standard `50`): maximale Zahl der Teilintervalle, in die `quad` den Integrationsbereich
@@ -65,11 +65,10 @@ Die vollständige Parameterliste steht in der Referenz zu
 
 **Behandlung von unendlichen Grenzen:**
 
-SciPy kann auch mit unendlichen Integrationsgrenzen umgehen:
-
-- `np.inf` für +∞
-- `-np.inf` für -∞
-- Die Algorithmen transformieren automatisch den Integrationsbereich
+SciPy kann auch mit unendlichen Integrationsgrenzen umgehen: `np.inf` steht für +∞, `-np.inf`
+für -∞.
+Der Integrationsbereich wird dabei automatisch so transformiert, dass ein endliches Verfahren
+darauf anwendbar ist.
 
 **Integrand als benannte Funktion oder Lambda-Funktion:**
 
@@ -90,6 +89,9 @@ print(f"∫₀^∞ e^(-x) dx = {result2:.6f}")
 # Gaußsche Funktion (keine elementare Stammfunktion)
 result3, _ = integrate.quad(lambda x: np.exp(-x**2), -2, 2)
 print(f"∫₋₂² e^(-x²) dx = {result3:.6f}")
+# ∫₀^π sin(x) dx = 2.000000
+# ∫₀^∞ e^(-x) dx = 1.000000
+# ∫₋₂² e^(-x²) dx = 1.764163
 ```
 
 Formatieren Sie alle Ausgaben dieser Aufgabe mit f-Strings und Präzisionsangabe
@@ -98,7 +100,7 @@ Formatieren Sie alle Ausgaben dieser Aufgabe mit f-Strings und Präzisionsangabe
 [ER] Berechnen Sie verschiedene bestimmte Integrale mit `scipy.integrate.quad`:
 
 - `∫₀² x³ dx` (Analytisches Ergebnis: 4)
-- `∫₀^π/2 cos(x) dx` (Analytisches Ergebnis: 1)
+- `∫₀^(π/2) cos(x) dx` (Analytisches Ergebnis: 1)
 - `∫₀^∞ x*e^(-x²) dx` mit unendlicher oberer Grenze (Analytisches Ergebnis: 0.5)
 
 Geben Sie für jedes Integral das berechnete Ergebnis (`result`, 6 Nachkommastellen, `:.6f`) und
@@ -131,7 +133,7 @@ oszillierenden Beispiels und nehmen Sie an, Sie kennten keinen der analytischen 
 Woran allein anhand der Rückgabewerte würden Sie in jedem der fünf Fälle entscheiden, ob `result`
 vertrauenswürdig ist?
 
-<!-- time estimate: 30 min -->
+<!-- time estimate: 25 min -->
 
 ### Parametrisierte Integrale mit `args`
 
@@ -149,20 +151,25 @@ print(f"∫₀² (3x + 1) dx = {result:.6f}")
 # ∫₀² (3x + 1) dx = 8.000000
 ```
 
+`args` wird als Tupel übergeben.
+Bei genau einem Parameter gehört deshalb ein Komma dahinter: `args=(3,)`, denn `(3)` ist in Python
+kein Tupel, sondern nur eine geklammerte Zahl.
+
 [ER] Arbeiten Sie mit parametrisierten Integralen:
 
 - `∫₀¹ (a*x² + b*x + c) dx` mit `a=2`, `b=-1`, `c=3` (Analytisches Ergebnis: 19/6)
-- `∫₀^π sin(k*x) dx` nacheinander für `k=5`, `k=7` und `k=9`, mit ein und demselben Funktionskörper
-  (Analytische Ergebnisse: 2/5, 2/7, 2/9)
+- `∫₀^π sin(k*x) dx` für `k=5`, `k=7` und `k=9`, mit ein und demselben Funktionskörper und einer
+  Schleife über die drei Werte (Analytische Ergebnisse: 2/5, 2/7, 2/9)
 - `∫₀¹ x^n dx` für `n=0.5` (Analytisches Ergebnis: 2/3)
 
 Übergeben Sie die Parameter in allen Fällen über `args`.
 Geben Sie für jedes Integral das Ergebnis (6 Nachkommastellen, `:.6f`), den Fehler
 (wissenschaftliche Notation, `:.2e`) und die Abweichung vom analytischen Ergebnis (`:.2e`) aus.
 
-[EQ] Vergleichen Sie Ihre drei Aufrufe für `k=5`, `k=7` und `k=9`: Was ändert sich von Aufruf zu
-Aufruf, und was bleibt gleich?
-Was müssten Sie stattdessen jedes Mal anfassen, wenn `k` fest im Funktionskörper stünde?
+[EQ] Was müssten Sie an Ihrem Code für `k=5`, `k=7` und `k=9` ändern, wenn `k` fest im
+Funktionskörper stünde (etwa `np.sin(5 * x)`) statt über `args` übergeben zu werden?
+Zählen Sie für beide Varianten, wie viele Codestellen Sie anfassen müssten, um statt drei
+`k`-Werten zwanzig zu berechnen.
 
 <!-- time estimate: 20 min -->
 
@@ -180,13 +187,14 @@ scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None
                           rtol=1e-3, atol=1e-6)
 ```
 
-- `fun`: die Funktion f(t, y), die die Ableitung definiert
+- `fun`: die Funktion `f(t, y)`, die die Ableitung definiert
 - `t_span`: Tupel `(t_start, t_end)` für den Zeitbereich
 - `y0`: Anfangswerte als Liste oder Array
 - `method` (Standard `'RK45'`): Lösungsverfahren (weitere: `'RK23'`, `'DOP853'`, ...)
 - `t_eval` (Standard `None`, dann wählt der Solver selbst Zeitpunkte): spezifische Zeitpunkte
   für die Ausgabe
-- `args` (Standard `None`): zusätzliche Parameter für `fun`, analog zu `quad`
+- `args` (Standard `None`): zusätzliche Parameter für `fun`, hier strenger als bei `quad`: nur ein
+  Tupel wird akzeptiert, ein einzelner Wert ohne Komma führt zu einem `TypeError`
 - `rtol`, `atol` (Standard `1e-3` bzw. `1e-6`): relative und absolute Fehlertoleranz, die der
   Solver pro Schritt einzuhalten versucht
 
@@ -260,8 +268,8 @@ Dass die Lösung schon in der dritten Stelle abweicht, ist kein Fehler, sondern 
   (Analytische Lösung: `y(t) = 10/(1 + 9*e^(-t))`)
 
 Geben Sie für jede Lösung `sol.success` und die Werte an drei Zeitpunkten aus.
-Wählen Sie die Zeitpunkte über `t_eval=np.array([start, mitte, ende])` und lesen Sie sie über
-`sol.t` und `sol.y` aus (6 Nachkommastellen, `:.6f`).
+Übergeben Sie die drei Zeitpunkte — Anfang, Mitte und Ende des jeweiligen Intervalls — als
+`t_eval`-Array und lesen Sie sie über `sol.t` und `sol.y` aus (6 Nachkommastellen, `:.6f`).
 Geben Sie zu jedem Zeitpunkt auch die Abweichung von der analytischen Lösung aus (`:.2e`).
 
 [ER] Prüfen Sie, was `sol.success` über die Genauigkeit einer Lösung aussagt:
@@ -273,13 +281,12 @@ Geben Sie zu jedem Zeitpunkt auch die Abweichung von der analytischen Lösung au
   Geben Sie `sol.success`, `sol.t[-1]` und `sol.y[0][-1]` aus.
   (Der Index `-1` adressiert das letzte Element.)
 
-[EQ] Bei einer der beiden Zusatzrechnungen ist `sol.success` `False`, bei der anderen dreimal
-`True` — obwohl sich die Genauigkeit der Ergebnisse dort je nach `method` um mehr als eine
-Zehnerpotenz unterscheidet.
+[EQ] Stellen Sie die vier `sol.success`-Werte aus [EREFR::4] Ihren übrigen Ausgaben aus derselben
+Anforderung gegenüber.
 Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und was sagt
 `sol.success` demnach über die Genauigkeit einer Lösung aus?
 
-<!-- time estimate: 40 min -->
+<!-- time estimate: 45 min -->
 
 ### Weiterführend
 
