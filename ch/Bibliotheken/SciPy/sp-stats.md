@@ -10,7 +10,7 @@ assumes: np-Einführung, np-array, np-math, py-Fstrings
 
 - Ich kann Wahrscheinlichkeitsverteilungen (kontinuierlich/diskret) mit SciPy modellieren und
   deren Kennwerte berechnen.
-- Ich kann einen Hypothesentest bzw. Korrelationskoeffizienten anwenden und das Ergebnis
+- Ich kann einen Hypothesentest und einen Korrelationskoeffizienten anwenden und das Ergebnis
   einschließlich seiner Grenzen interpretieren.
 
 [ENDSECTION]
@@ -36,7 +36,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 - [Wahrscheinlichkeitsverteilung (Wikipedia)](https://de.wikipedia.org/wiki/Wahrscheinlichkeitsverteilung):
   Grundbegriffe zu Normal- und Binomialverteilung
 - [P-Wert (Wikipedia)](https://de.wikipedia.org/wiki/P-Wert): was ein p-Wert aussagt und was
-  nicht (u. a. typische Fehlinterpretationen), Nullhypothese
+  nicht (u. a. typische Fehlinterpretationen), Nullhypothese, Signifikanzniveau α
 - [Korrelationskoeffizient (Wikipedia)](https://de.wikipedia.org/wiki/Korrelationskoeffizient):
   Voraussetzungen (lineare Beziehung), Grenzen (Korrelation ist nicht Kausalität)
 
@@ -89,9 +89,13 @@ Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit P
 - Erstellen Sie als `binomial_dist` eine Binomialverteilung mit n=20 und p=0.4 (`stats.binom()`)
   und berechnen Sie die Wahrscheinlichkeit für genau 8 Erfolge (`.pmf()`) sowie für mindestens
   10 Erfolge (`.cdf()`)
-- Generieren Sie aus beiden Verteilungen je 1000 Zufallsstichproben (`.rvs()`) und geben Sie deren
-  empirische Mittelwerte (`np.mean()`) zusammen mit dem jeweiligen theoretischen Mittelwert
-  (`.stats(moments='m')`) aus
+- Ziehen Sie aus beiden Verteilungen je eine Zufallsstichprobe vom Umfang 1000 (`.rvs()`) als
+  `normal_samples` und `binomial_samples` und geben Sie deren empirische Mittelwerte (`np.mean()`)
+  zusammen mit dem jeweiligen theoretischen Mittelwert (`.stats(moments='m')`) aus
+- Sehen Sie sich die beiden Stichproben genauer an: Geben Sie die ersten fünf Werte von
+  `normal_samples` aus (`normal_samples[:5]`) und bestimmen Sie mit
+  `np.sum(binomial_samples == 8) / 1000`, in welchem Anteil der Wert 8 in `binomial_samples`
+  vorkommt
 
 Geben Sie alle Ergebnisse mit passenden Beschreibungen aus.
 
@@ -113,9 +117,8 @@ Wahrscheinlichkeit aufsummiert werden muss.
 einer der beiden ist eine Wahrscheinlichkeit.
 Berechnen Sie zusätzlich `stats.norm(loc=10, scale=0.1).pdf(10)` und halten Sie das Ergebnis neben
 Ihre bisherigen Werte.
-Ziehen Sie außerdem folgende Beobachtung heran: unter Ihren 1000 Stichproben aus `binomial_dist`
-kommt der Wert 8 in ungefähr dem Anteil `.pmf(8)` vor, während unter denen aus `normal_dist` kein
-einziger Wert exakt 10 ist.
+Ziehen Sie außerdem Ihre beiden Stichprobenbefunde aus [EREFR::1] heran: den Anteil, in dem der
+Wert 8 in `binomial_samples` vorkommt, und die ersten fünf Werte von `normal_samples`.
 Welcher der beiden Werte ist demnach keine Wahrscheinlichkeit, was ist er stattdessen, und warum
 braucht `scipy.stats` deshalb zwei getrennte Methoden statt einer gemeinsamen?
 
@@ -133,19 +136,20 @@ scipy.stats.ttest_ind(a, b)
 - `a`, `b`: die beiden unabhängigen Stichproben (Arrays/Listen)
 - Rückgabe: ein `TtestResult`-Objekt, das sich in `(statistic, pvalue)` entpacken lässt.
   `pvalue` ist der p-Wert; das Vorzeichen von `statistic` zeigt zusätzlich, welche der beiden
-  Stichproben den größeren Mittelwert hat
+  Stichproben den größeren Mittelwert hat: ein negatives `statistic` bedeutet, dass `a` den
+  kleineren Mittelwert hat
 
 **Beispiel:**
 ```python
 from scipy import stats
-import numpy as np
 
-gruppe_1 = np.array([48.2, 51.1, 49.8, 52.3])
-gruppe_2 = np.array([53.9, 55.4, 52.7, 56.1])
+gruppe_1 = [48.2, 51.1, 49.8, 52.3]
+gruppe_2 = [53.9, 55.4, 52.7, 56.1]
 
 t_stat, p_value = stats.ttest_ind(gruppe_1, gruppe_2)
-print(f"p-Wert: {p_value:.2e}")               # p-Wert: 1.15e-02
-print(f"Signifikant bei α=0.05? {p_value < 0.05}")  # True
+print(f"t-Statistik: {t_stat:.4f}")                 # t-Statistik: -3.5869
+print(f"p-Wert: {p_value:.2e}")                     # p-Wert: 1.15e-02
+print(f"Signifikant bei α=0.05? {p_value < 0.05}")  # Signifikant bei α=0.05? True
 ```
 
 Der p-Wert kann je nach Daten extrem klein ausfallen — mit fester Nachkommastellenzahl (`:.4f`)
@@ -160,16 +164,16 @@ praktische Bedeutsamkeit des Unterschieds aus, nur über dessen statistische Sig
 
 [ER] Zwei Gruppen von je zehn Pflanzen wurden mit unterschiedlichem Dünger behandelt; gemessen
 wurde nach vier Wochen die Wuchshöhe in cm.
-Vergleichen Sie `gruppe_a` mit den Werten
+Gegeben sind `gruppe_a` mit den Werten
 `[23.1, 24.8, 22.9, 25.2, 23.7, 24.1, 23.5, 24.9, 23.8, 24.3]` und `gruppe_b` mit den Werten
 `[26.2, 27.1, 25.8, 26.9, 27.3, 26.5, 26.8, 27.0, 26.1, 26.7]`.
 
 - Geben Sie `np.mean()` für beide Gruppen aus
 - Testen Sie mit `stats.ttest_ind()`, ob sich die Mittelwerte signifikant unterscheiden (α=0.05)
-- Geben Sie den p-Wert aus und interpretieren Sie das Ergebnis
+- Geben Sie den p-Wert aus und interpretieren Sie das Ergebnis in einem Kommentar
 
-[EQ] Sie haben für Gruppe A und Gruppe B bereits `np.mean()` ausgegeben, bevor Sie `ttest_ind`
-ausgeführt haben.
+[EQ] Sie haben in [EREFR::2] für Gruppe A und Gruppe B bereits `np.mean()` ausgegeben, bevor Sie
+`ttest_ind` ausgeführt haben.
 Reicht der reine Vergleich der beiden Mittelwerte aus, um zu sagen, ob sich die Gruppen "wirklich"
 unterscheiden?
 Was beantwortet der p-Wert von `ttest_ind`, das der reine Mittelwertvergleich nicht beantworten
@@ -188,8 +192,8 @@ scipy.stats.pearsonr(x, y)
 
 - `x`, `y`: die beiden Messreihen (gleiche Länge)
 - Rückgabe: ein `PearsonRResult`-Objekt, das sich in `(r, p)` entpacken lässt.
-  `r` liegt zwischen -1 und 1: `0` bedeutet kein linearer Zusammenhang,
-  `+1` ein perfekter positiver Zusammenhang (steigt `x`, steigt auch `y`), `-1` ein perfekter
+  `r` liegt zwischen -1 und 1: 0 bedeutet kein linearer Zusammenhang,
+  +1 ein perfekter positiver Zusammenhang (steigt `x`, steigt auch `y`), -1 ein perfekter
   negativer Zusammenhang (steigt `x`, sinkt `y`); `p` ist der p-Wert für die Nullhypothese
   "kein Zusammenhang"
 
@@ -215,7 +219,7 @@ verursacht (Korrelation ist nicht Kausalität).
 
 Gegeben sind die Werte von 10 Studierenden: `lernstunden` mit den Werten
 `[2, 3, 4, 4, 5, 6, 6, 7, 8, 9]` und `punkte` mit den Werten
-`[58, 52, 63, 60, 68, 65, 74, 70, 60, 88]`.
+`[58, 59, 65, 63, 68, 71, 74, 58, 80, 84]`.
 
 - Berechnen Sie mit `stats.pearsonr()` den Korrelationskoeffizienten und den p-Wert für alle zehn
   Wertepaare und geben Sie beide aus (`r` mit `:.4f`, den p-Wert mit `:.2e`)
@@ -228,16 +232,16 @@ Gegeben sind die Werte von 10 Studierenden: `lernstunden` mit den Werten
 [HINT::Wie finde ich das Paar, das am stärksten aus dem Trend fällt?]
 `pearsonr()` hilft dabei nicht, denn es liefert nur eine einzige Zahl für den gesamten Datensatz.
 Sehen Sie sich stattdessen die Rohdaten an: die Paare sind bereits nach `lernstunden` aufsteigend
-sortiert, so dass sich ein Bruch im ansonsten steigenden Verlauf der `punkte` schon beim
+sortiert, so dass sich ein Einbruch im ansonsten steigenden Verlauf der `punkte` schon beim
 Durchlesen finden lässt.
-Gesucht ist das Paar mit dem größten senkrechten Abstand zu einer gedachten Geraden durch die
-übrigen Punkte; in einem Streudiagramm sieht man das am deutlichsten.
+Gesucht ist das Paar mit dem größten senkrechten Abstand zur Ausgleichsgeraden durch alle zehn
+Punkte; in einem Streudiagramm sieht man das am deutlichsten.
 [ENDHINT]
 
-[EQ] Vergleichen Sie Ihre beiden `r`-Werte aus [EREFR::3].
+[EQ] Vergleichen Sie Ihre beiden r-Werte aus [EREFR::3].
 Ein einziges von zehn Wertepaaren hat den Koeffizienten verschoben, ohne dass `stats.pearsonr()`
 bei einem der beiden Aufrufe darauf hingewiesen hätte.
-Was folgt daraus für die Aussagekraft eines einzelnen `r`-Werts?
+Was folgt daraus für die Aussagekraft eines einzelnen r-Werts?
 Und was mussten Sie tun, um das auffällige Paar überhaupt zu finden — etwas, das
 `stats.pearsonr()` selbst nicht leistet?
 
