@@ -65,7 +65,7 @@ Die vollständige Parameterliste steht in der Referenz zu
 
 **Behandlung von unendlichen Grenzen:**
 
-SciPy kann auch mit unendlichen Integrationsgrenzen umgehen: `np.inf` steht für +∞, `-np.inf`
+`quad` kann auch mit unendlichen Integrationsgrenzen umgehen: `np.inf` steht für +∞, `-np.inf`
 für -∞.
 Der Integrationsbereich wird dabei automatisch so transformiert, dass ein endliches Verfahren
 darauf anwendbar ist.
@@ -126,11 +126,12 @@ print(f"limit=1000: result = {result:.6f}, error = {error:.2e}")
 
 Der erste Aufruf gibt zusätzlich eine `IntegrationWarning` aus
 ("The integral is probably divergent, or slowly convergent").
-Der exakte Wert ist `0.013675`, das erste Ergebnis ist also um mehr als eine Zehnerpotenz falsch.
+Der exakte Wert ist gerundet `0.013675`, das erste Ergebnis ist also um mehr als eine Zehnerpotenz
+falsch.
 
 [EQ] Stellen Sie Ihre drei `error`-Werte aus [EREFR::1] neben die beiden `error`-Werte des
 oszillierenden Beispiels und nehmen Sie an, Sie kennten keinen der analytischen Werte.
-Woran allein anhand der Rückgabewerte würden Sie in jedem der fünf Fälle entscheiden, ob `result`
+Woran würden Sie in jedem der fünf Fälle allein anhand der Rückgabewerte erkennen, ob `result`
 vertrauenswürdig ist?
 
 <!-- time estimate: 25 min -->
@@ -152,15 +153,15 @@ print(f"∫₀² (3x + 1) dx = {result:.6f}")
 ```
 
 `args` wird als Tupel übergeben.
-Bei genau einem Parameter gehört deshalb ein Komma dahinter: `args=(3,)`, denn `(3)` ist in Python
+Bei genau einem Parameter schreibt man deshalb `args=(3,)` mit Komma, denn `(3)` ist in Python
 kein Tupel, sondern nur eine geklammerte Zahl.
+`quad` verzeiht an dieser Stelle auch einen nackten Wert, `solve_ivp` weiter unten jedoch nicht.
 
 [ER] Arbeiten Sie mit parametrisierten Integralen:
 
 - `∫₀¹ (a*x² + b*x + c) dx` mit `a=2`, `b=-1`, `c=3` (Analytisches Ergebnis: 19/6)
 - `∫₀^π sin(k*x) dx` für `k=5`, `k=7` und `k=9`, mit ein und demselben Funktionskörper und einer
   Schleife über die drei Werte (Analytische Ergebnisse: 2/5, 2/7, 2/9)
-- `∫₀¹ x^n dx` für `n=0.5` (Analytisches Ergebnis: 2/3)
 
 Übergeben Sie die Parameter in allen Fällen über `args`.
 Geben Sie für jedes Integral das Ergebnis (6 Nachkommastellen, `:.6f`), den Fehler
@@ -201,19 +202,6 @@ scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.integrate.solve_ivp`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html).
 
-[FOLDOUT::Was Runge-Kutta-Verfahren unterscheidet]
-
-`RK45` und `RK23` sind Runge-Kutta-Verfahren unterschiedlicher Ordnung (4./5. bzw. 2./3. Ordnung):
-Sie berechnen pro Schritt mehrere Zwischenauswertungen von `f(t, y)` und kombinieren sie gewichtet,
-um von einem Zeitpunkt zum nächsten zu gelangen — ein Verfahren höherer Ordnung kommt dabei für
-dieselbe Genauigkeit mit größeren Schritten aus, ist pro Schritt aber aufwendiger.
-Wie genau die Zwischenauswertungen gewichtet werden, ist über das sogenannte Butcher-Tableau
-festgelegt.
-Das genaue Funktionieren dieser Verfahren ist nicht Gegenstand dieser Aufgabe — bei Interesse
-finden Sie die Details unter
-[Runge-Kutta-Verfahren, Abschnitt "Butcher-Tableau"](https://de.wikipedia.org/wiki/Runge-Kutta-Verfahren#Butcher-Tableau).
-[ENDFOLDOUT]
-
 **Rückgabewerte:**
 
 - `sol.t`: Array der Zeitpunkte
@@ -223,6 +211,9 @@ finden Sie die Details unter
 **Exponentieller Zerfall:**
 
 Das Problem `dy/dt = -k*y` mit `y(0) = y₀` hat die Lösung `y(t) = y₀ * e^(-k*t)`:
+
+Der folgende Code importiert `solve_ivp` direkt statt über `from scipy import integrate`; beide
+Schreibweisen sind gebräuchlich.
 
 ```python
 import numpy as np
@@ -274,14 +265,16 @@ Geben Sie zu jedem Zeitpunkt auch die Abweichung von der analytischen Lösung au
 
 [ER] Prüfen Sie, was `sol.success` über die Genauigkeit einer Lösung aussagt:
 
-- Rechnen Sie das logistische Wachstum zusätzlich mit `method='RK23'` und mit `method='DOP853'`,
+- Rechnen Sie das logistische Wachstum mit `method='RK23'`, `method='RK45'` und `method='DOP853'`,
   mit denselben Auswertungszeitpunkten wie zuvor.
   Geben Sie je Verfahren `sol.success` und die größte Abweichung von der analytischen Lösung aus.
+- Rechnen Sie es außerdem ein viertes Mal, wieder mit `method='RK45'`, aber mit `rtol=1e-6`, und
+  geben Sie ebenfalls `sol.success` und die größte Abweichung aus.
 - Lösen Sie `dy/dt = y²` mit `y(0) = 1` auf `t_span=(0, 5)`.
   Geben Sie `sol.success`, `sol.t[-1]` und `sol.y[0][-1]` aus.
   (Der Index `-1` adressiert das letzte Element.)
 
-[EQ] Stellen Sie die vier `sol.success`-Werte aus [EREFR::4] Ihren übrigen Ausgaben aus derselben
+[EQ] Stellen Sie die fünf `sol.success`-Werte aus [EREFR::4] Ihren übrigen Ausgaben aus derselben
 Anforderung gegenüber.
 Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und was sagt
 `sol.success` demnach über die Genauigkeit einer Lösung aus?
