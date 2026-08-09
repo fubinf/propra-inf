@@ -1,6 +1,6 @@
 title: SciPy Statistik und Wahrscheinlichkeitsverteilungen verstehen und anwenden
 stage: alpha
-timevalue: 1.0
+timevalue: 1.25
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array, np-index-slice, np-math, py-Fstrings
@@ -68,7 +68,7 @@ und
 | `.cdf(x)` | P(X ≤ x), kumulative Verteilungsfunktion |
 | `.ppf(q)` | Quantilfunktion, Umkehrung von `.cdf` |
 | `.rvs(size)` | Zufallsstichprobe der angegebenen Größe |
-| `.mean()` | Theoretischer Erwartungswert der Verteilung |
+| `.mean()` | Erwartungswert der Verteilung, also ihr theoretischer Mittelwert |
 
 **Beispiel:**
 ```python
@@ -107,6 +107,8 @@ Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit P
   Wahrscheinlichkeitsdichte einer sehr schmalen Normalverteilung an ihrem Erwartungswert
 
 Geben Sie alle Ergebnisse mit passenden Beschreibungen aus.
+Die Stichprobenwerte fallen bei jedem Programmlauf anders aus; erwartet wird lediglich, dass die
+empirischen Mittelwerte nahe bei den theoretischen liegen.
 
 [HINT::Ist `scale` bei N(10, 3²) nun 3 oder 9?]
 Die Schreibweise N(μ, σ²) nennt an zweiter Stelle die Varianz, `scale` erwartet dagegen die
@@ -130,7 +132,7 @@ Werte von `normal_samples`.
 Welcher der beiden Werte ist demnach keine Wahrscheinlichkeit, was ist er stattdessen, und warum
 braucht `scipy.stats` deshalb zwei getrennte Methoden statt einer gemeinsamen?
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 30 min -->
 
 ### Hypothesentests: `stats.ttest_ind`
 
@@ -164,7 +166,7 @@ print(f"Signifikant bei α=0.05? {p_value < 0.05}")  # Signifikant bei α=0.05? 
 ```
 
 Der p-Wert kann je nach Daten extrem klein ausfallen — mit fester Nachkommastellenzahl (`:.4f`)
-würde er dann als `0.0000` erscheinen, obwohl er nie exakt 0 ist.
+würde er dann als `0.0000` erscheinen, obwohl er mathematisch nie exakt 0 ist.
 Geben Sie p-Werte in dieser Aufgabe deshalb durchgehend in wissenschaftlicher Notation (`:.2e`)
 aus, die die tatsächliche Größenordnung zeigt.
 
@@ -180,19 +182,28 @@ Gegeben sind `gruppe_a` mit den Werten
 `[26.2, 27.1, 25.8, 26.9, 27.3, 26.5, 26.8, 27.0, 26.1, 26.7]` und `gruppe_c` mit den Werten
 `[18.4, 33.2, 21.7, 29.8, 24.1, 35.6, 19.3, 27.5, 31.2, 24.2]`.
 
-- Geben Sie `np.mean()` und `np.std()` für alle drei Gruppen aus
-- Testen Sie mit `stats.ttest_ind()` zweimal gegen `gruppe_a`: einmal `gruppe_b`, einmal `gruppe_c`
+- Berechnen Sie Mittelwert (`np.mean()`) und Standardabweichung (`np.std()`) für alle drei Gruppen
+  und geben Sie sie aus
+- Testen Sie mit `stats.ttest_ind()` zweimal gegen `gruppe_a`: einmal `gruppe_b`, einmal
+  `gruppe_c`, beide Male mit der Voreinstellung `equal_var=True`
 - Geben Sie beide p-Werte aus und halten Sie in je einem Kommentar fest, ob der Unterschied bei
   α=0.05 signifikant ist
+- Vergleichen Sie nun die Standardabweichungen von `gruppe_a` und `gruppe_c`: nach dem Hinweis zu
+  `equal_var` oben ist für dieses Paar der Welch-Test die passendere Wahl.
+  Wiederholen Sie den Test `gruppe_a` gegen `gruppe_c` deshalb mit `equal_var=False` und geben Sie
+  auch diesen p-Wert aus
 
-[EQ] Vergleichen Sie Ihre beiden Testergebnisse aus [EREFR::2].
+[EQ] Vergleichen Sie aus [EREFR::2] zunächst die beiden Tests mit `equal_var=True`.
 Der Abstand der Mittelwerte ist in beiden Fällen fast gleich groß, die p-Werte unterscheiden sich
 dagegen um mehrere Größenordnungen.
 Welche Eigenschaft der Daten führt zu diesem Unterschied?
 Was folgt daraus für die Frage, ob ein Vergleich zweier Mittelwerte allein schon zeigt, dass sich
 zwei Gruppen "wirklich" unterscheiden?
+Ihr Welch-Test für `gruppe_a` gegen `gruppe_c` kommt ohne die Annahme gleicher Varianzen aus und
+liefert dennoch praktisch denselben p-Wert.
+Was gewinnt das Urteil "nicht signifikant" dadurch?
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Korrelationskoeffizient: `stats.pearsonr`
 
@@ -250,8 +261,9 @@ Gegeben sind die Werte von zehn Studierenden: `lernstunden` mit den Werten
 Sehen Sie sich die Rohdaten an: die Paare sind bereits nach `lernstunden` aufsteigend sortiert,
 so dass sich ein Einbruch im ansonsten steigenden Verlauf der `punkte` schon beim Durchlesen
 finden lässt.
-Gesucht ist das Paar mit dem größten vertikalen Abstand zur Ausgleichsgeraden durch alle zehn
-Punkte; wer die zehn Punkte von Hand skizziert, sieht es am deutlichsten.
+Gesucht ist das Paar mit dem größten vertikalen Abstand zur
+[Ausgleichsgeraden](https://de.wikipedia.org/wiki/Ausgleichsgerade) durch alle zehn Punkte;
+wer die zehn Punkte von Hand skizziert, sieht es am deutlichsten.
 Zur Selbstkontrolle: beim richtigen Paar springt `r` auf über 0.99, bei jedem anderen bleibt es
 unter 0.80.
 [ENDHINT]
@@ -260,10 +272,10 @@ unter 0.80.
 Ein einziges von zehn Wertepaaren hat den Koeffizienten verschoben, ohne dass `stats.pearsonr()`
 bei einem der beiden Aufrufe darauf hingewiesen hätte.
 Was folgt daraus für die Aussagekraft eines einzelnen r-Werts?
-Was mussten Sie tun, um das auffällige Paar überhaupt zu finden — etwas, das
-`stats.pearsonr()` selbst nicht leistet?
+Was mussten Sie tun, um das auffällige Paar überhaupt zu finden?
+Was leistet `stats.pearsonr()` dabei nicht?
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Weiterführend
 
