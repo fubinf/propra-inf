@@ -1,7 +1,7 @@
 title: SciPy Statistik und Wahrscheinlichkeitsverteilungen verstehen und anwenden
 stage: alpha
 timevalue: 1.0
-difficulty: 2
+difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array, np-index-slice, np-math, py-Fstrings
 ---
@@ -62,11 +62,11 @@ und
 | Methode | Bedeutung |
 |---------|-----------|
 | `.pdf(x)` | Wahrscheinlichkeitsdichte (nur kontinuierliche Verteilungen) |
-| `.pmf(x)` | Wahrscheinlichkeitsmasse (nur diskrete Verteilungen) |
+| `.pmf(x)` | Wahrscheinlichkeitsfunktion P(X = x) (nur diskrete Verteilungen) |
 | `.cdf(x)` | P(X ≤ x), kumulative Verteilungsfunktion |
 | `.ppf(q)` | Quantilfunktion, Umkehrung von `.cdf` |
 | `.rvs(size)` | Zufallsstichprobe der angegebenen Größe |
-| `.stats(moments=...)` | angeforderte theoretische Momente; `'m'` liefert den Erwartungswert |
+| `.mean()` | Theoretischer Erwartungswert der Verteilung |
 
 **Beispiel:**
 ```python
@@ -97,10 +97,11 @@ Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit P
   10 Erfolge (`.cdf()`)
 - Ziehen Sie aus beiden Verteilungen je eine Zufallsstichprobe vom Umfang 1000 (`.rvs()`) als
   `normal_samples` und `binomial_samples` und geben Sie deren empirische Mittelwerte (`np.mean()`)
-  zusammen mit dem jeweiligen theoretischen Mittelwert (`.stats(moments='m')`) aus
+  zusammen mit dem jeweiligen theoretischen Mittelwert (`.mean()`) aus
 - Sehen Sie sich die beiden Stichproben genauer an: Geben Sie die ersten fünf Werte von
   `normal_samples` aus (`normal_samples[:5]`) und bestimmen Sie mit einem Vergleich und `np.sum()`,
-  welchen Anteil der Wert 8 in `binomial_samples` ausmacht
+  welchen Anteil der Wert 8 in `binomial_samples` ausmacht (`np.sum()` zählt dabei die
+  `True`-Werte des Vergleichs als 1)
 - Berechnen Sie zum Vergleich noch `stats.norm(loc=10, scale=0.1).pdf(10)`, also die
   Wahrscheinlichkeitsdichte einer sehr schmalen Normalverteilung an ihrem Erwartungswert
 
@@ -140,6 +141,8 @@ scipy.stats.ttest_ind(a, b)
 ```
 
 - `a`, `b`: die beiden unabhängigen Stichproben (Arrays/Listen)
+- `equal_var` (Standard `True`): setzt gleiche Varianzen in beiden Stichproben voraus; bei
+  deutlich unterschiedlicher Streuung ist `equal_var=False` (Welch-Test) die passendere Wahl
 - Rückgabe: ein `TtestResult`-Objekt, das sich in `(statistic, pvalue)` entpacken lässt.
   `pvalue` ist der p-Wert; das Vorzeichen von `statistic` zeigt zusätzlich, welche der beiden
   Stichproben den größeren Mittelwert hat: ein negatives `statistic` bedeutet, dass `a` den
@@ -178,7 +181,7 @@ Gegeben sind `gruppe_a` mit den Werten
 `[26.2, 27.1, 25.8, 26.9, 27.3, 26.5, 26.8, 27.0, 26.1, 26.7]` und `gruppe_c` mit den Werten
 `[18.4, 33.2, 21.7, 29.8, 24.1, 35.6, 19.3, 27.5, 31.2, 24.2]`.
 
-- Geben Sie `np.mean()` für alle drei Gruppen aus
+- Geben Sie `np.mean()` und `np.std()` für alle drei Gruppen aus
 - Testen Sie mit `stats.ttest_ind()` zweimal gegen `gruppe_a`: einmal `gruppe_b`, einmal `gruppe_c`
 - Geben Sie beide p-Werte aus und halten Sie in je einem Kommentar fest, ob der Unterschied bei
   α=0.05 signifikant ist
@@ -231,7 +234,7 @@ nicht darüber, ob eine Variable die andere verursacht (Korrelation ist nicht Ka
 
 [ER] Untersuchen Sie den Zusammenhang zwischen Lernzeit und Klausurpunkten:
 
-Gegeben sind die Werte von 10 Studierenden: `lernstunden` mit den Werten
+Gegeben sind die Werte von zehn Studierenden: `lernstunden` mit den Werten
 `[2, 3, 4, 4, 5, 6, 6, 7, 8, 9]` und `punkte` mit den Werten
 `[58, 59, 65, 63, 68, 71, 74, 58, 80, 84]`.
 
@@ -244,13 +247,13 @@ Gegeben sind die Werte von 10 Studierenden: `lernstunden` mit den Werten
   erkannt haben
 
 [HINT::Wie finde ich das Paar, das am stärksten aus dem Trend fällt?]
-`stats.pearsonr()` hilft dabei nicht, denn es liefert nur eine einzige Zahl für den gesamten
+`stats.pearsonr()` hilft dabei nicht, denn es liefert nur einen einzigen Kennwert für den gesamten
 Datensatz.
 Sehen Sie sich stattdessen die Rohdaten an: die Paare sind bereits nach `lernstunden` aufsteigend
 sortiert, so dass sich ein Einbruch im ansonsten steigenden Verlauf der `punkte` schon beim
 Durchlesen finden lässt.
-Gesucht ist das Paar mit dem größten senkrechten Abstand zur Ausgleichsgeraden durch alle zehn
-Punkte; in einem Streudiagramm sieht man das am deutlichsten.
+Gesucht ist das Paar mit dem größten vertikalen Abstand zur Ausgleichsgeraden durch alle zehn
+Punkte; wer die zehn Punkte von Hand skizziert, sieht es am deutlichsten.
 Zur Selbstkontrolle: beim richtigen Paar springt `r` auf über 0.99, bei jedem anderen bleibt es
 unter 0.80.
 [ENDHINT]
