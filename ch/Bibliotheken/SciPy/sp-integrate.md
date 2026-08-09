@@ -1,6 +1,6 @@
 title: SciPy Numerische Integration und Differentialgleichungen verstehen und anwenden
 stage: alpha
-timevalue: 1.0
+timevalue: 1.25
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array2, np-math, py-Fstrings
@@ -16,10 +16,10 @@ assumes: np-Einführung, np-array2, np-math, py-Fstrings
 
 [SECTION::background::default]
 
-Viele Integrale und Differentialgleichungen lassen sich nicht analytisch (in geschlossener Form)
-lösen. SciPy stellt mit `scipy.integrate` numerische Verfahren bereit, die stattdessen
-Näherungslösungen berechnen — zusammen mit Diagnoseinformationen, anhand derer sich beurteilen
-lässt, wie verlässlich diese Näherung ist.
+Viele Integrale und Differentialgleichungen lassen sich nicht analytisch (in geschlossener Form) lösen.
+SciPy stellt mit `scipy.integrate` numerische Verfahren bereit, die stattdessen Näherungslösungen
+berechnen — zusammen mit Diagnoseinformationen, anhand derer sich beurteilen lässt, wie verlässlich
+diese Näherung ist.
 
 [ENDSECTION]
 
@@ -27,11 +27,12 @@ lässt, wie verlässlich diese Näherung ist.
 
 ### Vorwissen
 
-Für diese Aufgabe sind folgende Konzepte hilfreich. Falls Ihnen diese fehlen, helfen folgende
-Quellen:
+Für diese Aufgabe sind folgende Konzepte hilfreich.
+Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Numerische Integration (Wikipedia)](https://de.wikipedia.org/wiki/Numerische_Integration):
-  warum manche Integrale sich nicht durch elementare Funktionen ausdrücken lassen
+  wann sich eine Stammfunktion nicht durch elementare Funktionen ausdrücken lässt und wie
+  Quadraturverfahren stattdessen vorgehen
 - [Anfangswertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Anfangswertproblem): Grundbegriff
   einer gewöhnlichen Differentialgleichung mit Anfangsbedingung (dy/dt = f(t, y), y(t₀) = y₀)
 
@@ -41,15 +42,23 @@ Die `quad`-Funktion verwendet adaptive Algorithmen zur präzisen Berechnung
 eindimensionaler Integrale.
 
 ```python
-scipy.integrate.quad(func, a, b, args=(), epsabs=1.49e-08, epsrel=1.49e-08)
+scipy.integrate.quad(func, a, b, args=(), epsabs=1.49e-08, epsrel=1.49e-08, limit=50)
 ```
 
 - `func`: die zu integrierende Funktion
 - `a`, `b`: untere und obere Integrationsgrenze
 - `args` (Standard `()`): zusätzliche Parameter für `func` (siehe unten)
-- `epsabs`, `epsrel` (Standard je `1.49e-08`): absolute bzw. relative Fehlertoleranz
+- `epsabs`, `epsrel` (Standard je `1.49e-08`): absolute bzw. relative Fehlerschranke, die `quad`
+  einzuhalten versucht
+- `limit` (Standard `50`): maximale Zahl der Teilintervalle, in die `quad` den Integrationsbereich
+  zerlegen darf
+
+Die vollständige Parameterliste steht in der Referenz zu
+[`scipy.integrate.quad`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html).
 
 **Rückgabewerte:**
+
+`quad` liefert ein Tupel aus zwei Werten, das üblicherweise so ausgepackt wird:
 
 - `result`: der berechnete Integralwert
 - `error`: geschätzte absolute Fehlergrenze
@@ -63,6 +72,8 @@ SciPy kann auch mit unendlichen Integrationsgrenzen umgehen:
 - Die Algorithmen transformieren automatisch den Integrationsbereich
 
 **Häufige Integrale in der Praxis:**
+
+`func` kann eine benannte Funktion sein oder eine [TERMREF::Lambda-Funktion]:
 
 ```python
 import numpy as np
@@ -81,33 +92,30 @@ result3, _ = integrate.quad(lambda x: np.exp(-x**2), -2, 2)
 print(f"∫₋₂² e^(-x²) dx = {result3:.6f}")
 ```
 
-Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit Präzisionsangabe
-(in [PARTREF::py-Fstrings]), z. B. 6 Nachkommastellen (`:.6f`).
+Formatieren Sie alle Ausgaben dieser Aufgabe mit f-Strings und Präzisionsangabe
+(siehe [PARTREF::py-Fstrings]), z. B. `:.6f` für 6 Nachkommastellen.
 
 [ER] Berechnen Sie verschiedene bestimmte Integrale mit `scipy.integrate.quad`:
 
-- Berechnen Sie `∫₀² x³ dx` (`integrate.quad()` mit Lambda-Funktion oder def)
-  (Analytisches Ergebnis: 4)
-- Bestimmen Sie `∫₀^π/2 cos(x) dx` (verwenden Sie `np.cos`)
-  (Analytisches Ergebnis: 1)
-- Bestimmen Sie `∫₀^∞ x*e^(-x²) dx` mit unendlicher oberer Grenze (`np.inf`, `np.exp()`)
-  (Analytisches Ergebnis: 0.5)
+- `∫₀² x³ dx` (Analytisches Ergebnis: 4)
+- `∫₀^π/2 cos(x) dx` (Analytisches Ergebnis: 1)
+- `∫₀^∞ x*e^(-x²) dx` mit unendlicher oberer Grenze (Analytisches Ergebnis: 0.5)
 
 Geben Sie für jedes Integral das berechnete Ergebnis (`result`, 6 Nachkommastellen, `:.6f`) und
-die Fehlerabschätzung (`error`, wissenschaftliche Notation, `:.2e`) aus. Vergleichen Sie Ihre
-numerischen Ergebnisse mit den angegebenen analytischen Werten.
+die Fehlerabschätzung (`error`, wissenschaftliche Notation, `:.2e`) aus.
+Vergleichen Sie Ihre numerischen Ergebnisse mit den angegebenen analytischen Werten.
 
-[EQ] Für `∫₀² x³ dx` und `∫₀^π/2 cos(x) dx` können Sie `result` direkt gegen den analytischen
-Wert prüfen. Bei `∫₀^∞ x*e^(-x²) dx` kennen Sie den analytischen Wert hier nur, weil er im
-Aufgabentext angegeben ist — stellen Sie sich vor, er wäre es nicht. Woran allein anhand von
-`error` würden Sie erkennen, ob `result` vertrauenswürdig ist?
+[EQ] Für `∫₀² x³ dx` und `∫₀^π/2 cos(x) dx` können Sie `result` direkt gegen den analytischen Wert prüfen.
+Bei `∫₀^∞ x*e^(-x²) dx` kennen Sie den analytischen Wert hier nur, weil er im Aufgabentext
+angegeben ist — stellen Sie sich vor, er wäre es nicht.
+Woran allein anhand von `error` würden Sie erkennen, ob `result` vertrauenswürdig ist?
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
-### Parametrisierte Integrale und komplexere Funktionen
+### Parametrisierte Integrale und die Grenzen von `quad`
 
 Oft müssen Integrale mit Parametern oder komplexeren Ausdrücken berechnet werden.
-SciPy's `quad` unterstützt dies über das `args`-Parameter.
+`quad` unterstützt das über den Parameter `args`.
 
 **Integration mit Parametern:**
 
@@ -121,63 +129,57 @@ result, _ = integrate.quad(param_func, 0, 2, args=(3, 1))
 print(f"∫₀² (3x + 1) dx = {result:.6f}")
 ```
 
-**Umgang mit Singularitäten:**
+**Wenn `quad` an seine Grenze stößt:**
 
-Manche Funktionen haben Singularitäten (Pole), die besondere Behandlung erfordern:
-
-```python
-# Funktion mit Singularität bei x=0: f(x) = 1/√x
-def singular_func(x):
-    return 1/np.sqrt(x) if x > 0 else 0  # Rückfallwert, falls x=0 doch ausgewertet wird
-
-# Untere Grenze 1e-10 statt 0: quad wertet f(x) nie exakt an der Singularität aus,
-# der winzige ausgesparte Bereich [0, 1e-10] verändert das Ergebnis kaum
-result, _ = integrate.quad(singular_func, 1e-10, 1)
-print(f"Integral mit Singularität: {result:.6f}")
-```
-
-**Oszillierende Funktionen:**
-
-Für stark oszillierende Funktionen können spezielle Methoden erforderlich sein:
+`quad` zerlegt den Integrationsbereich adaptiv in Teilintervalle, bis `epsabs` bzw. `epsrel`
+eingehalten sind — höchstens aber in `limit` Stück.
+Bei stark oszillierenden Funktionen reicht die Voreinstellung `limit=50` dafür nicht:
 
 ```python
-# Stark oszillierende Funktion
-def oscillating(x):
-    return np.sin(100*x) / x if x != 0 else 100  # Grenzwert für x->0
+# sin(100x) durchläuft auf [0, 20] rund 318 volle Schwingungen
+result, error = integrate.quad(lambda x: np.sin(100*x), 0, 20)
+print(f"Standard:   result = {result:.6f}, error = {error:.2e}")
 
-# quad unterteilt das Intervall automatisch feiner, wo die Funktion schnell oszilliert —
-# kein zusätzlicher Parameter nötig, das ist Teil des adaptiven Algorithmus
-result, _ = integrate.quad(oscillating, 0.01, 1)
-print(f"Oszillierendes Integral: {result:.6f}")
+result, error = integrate.quad(lambda x: np.sin(100*x), 0, 20, limit=1000)
+print(f"limit=1000: result = {result:.6f}, error = {error:.2e}")
+# Standard:   result = 0.191436, error = 3.93e+00
+# limit=1000: result = 0.013675, error = 1.44e-08
 ```
 
-[ER] Arbeiten Sie mit parametrisierten und komplexeren Integralen:
+Der erste Aufruf gibt zusätzlich eine `IntegrationWarning` aus
+("The integral is probably divergent, or slowly convergent").
+Der exakte Wert ist `0.013675`, das erste Ergebnis ist also um mehr als eine Zehnerpotenz falsch.
+Bemerkenswert ist, dass `error` das anzeigt, ohne dass man den exakten Wert kennen muss: eine
+Fehlerschätzung von `3.93e+00` zu einem Ergebnis von `0.19` ist eine unmissverständliche Warnung.
 
-- Berechnen Sie `∫₀¹ a*x² + b*x + c dx` mit Parametern a=2, b=-1, c=3
-  (Definieren Sie Funktion mit Parametern, verwenden Sie `args=(2, -1, 3)`)
-- Bestimmen Sie `∫₀^π sin(kx) dx` für k=5
-  (Verwenden Sie `np.sin()` und `args=(5,)`)
-- Lösen Sie das Integral `∫₀¹ x^n dx` für n=0.5
-  (Verwenden Sie `args=(0.5,)`, entspricht ∫₀¹ √x dx)
+[ER] Arbeiten Sie mit parametrisierten Integralen:
 
-Verwenden Sie das `args`-Parameter und geben Sie für jedes Integral das Ergebnis
-(6 Nachkommastellen, `:.6f`) und den Fehler (wissenschaftliche Notation, `:.2e`) aus.
+- `∫₀¹ (a*x² + b*x + c) dx` mit a=2, b=-1, c=3 (Analytisches Ergebnis: 19/6)
+- `∫₀^π sin(k*x) dx` für k=5 (Analytisches Ergebnis: 2/5)
+- `∫₀¹ x^n dx` für n=0.5 (Analytisches Ergebnis: 2/3)
 
-[EQ] Ohne das `args`-Parameter müssten Sie für jede Parameterkombination (z. B. `k=5` vs. `k=7`
-bei `sin(kx)`) den Wert fest in die Funktion einbauen. Was müssten Sie dann an Ihrem Code ändern,
-um ein anderes `k` zu testen — und was löst `args` an diesem Problem?
+Übergeben Sie die Parameter in allen drei Fällen über `args`.
+Geben Sie für jedes Integral das Ergebnis (6 Nachkommastellen, `:.6f`) und den Fehler
+(wissenschaftliche Notation, `:.2e`) aus und vergleichen Sie mit dem analytischen Ergebnis.
+
+[EQ] Ohne `args` müssten Sie für jede Parameterkombination (z. B. `k=5` vs. `k=7` bei `sin(k*x)`)
+den Wert fest in die Funktion einbauen.
+Was müssten Sie dann an Ihrem Code ändern, um ein anderes `k` zu testen — und was löst `args`
+an diesem Problem?
 
 <!-- time estimate: 20 min -->
 
 ### Gewöhnliche Differentialgleichungen mit `solve_ivp`
 
 Das Lösen gewöhnlicher Differentialgleichungen (ODEs) ist ein zentraler Bestandteil
-der wissenschaftlichen Modellierung. SciPy's `solve_ivp` löst Anfangswertprobleme der Form:
+der wissenschaftlichen Modellierung.
+`solve_ivp` löst Anfangswertprobleme der Form:
 
 **dy/dt = f(t, y)** mit **y(t₀) = y₀**
 
 ```python
-scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None)
+scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None,
+                          rtol=1e-3, atol=1e-6)
 ```
 
 - `fun`: die Funktion f(t, y), die die Ableitung definiert
@@ -187,15 +189,21 @@ scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None
 - `t_eval` (Standard `None`, dann wählt der Solver selbst Zeitpunkte): spezifische Zeitpunkte
   für die Ausgabe
 - `args` (Standard `None`): zusätzliche Parameter für `fun`, analog zu `quad`
+- `rtol`, `atol` (Standard `1e-3` bzw. `1e-6`): relative und absolute Fehlertoleranz, die der
+  Solver pro Schritt einzuhalten versucht
+
+Die vollständige Parameterliste steht in der Referenz zu
+[`scipy.integrate.solve_ivp`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html).
 
 `RK45` und `RK23` sind Runge-Kutta-Verfahren unterschiedlicher Ordnung (4./5. bzw. 2./3. Ordnung):
 Sie berechnen pro Schritt mehrere Zwischenauswertungen von `f(t, y)` und kombinieren sie gewichtet,
-um von einem Zeitpunkt zum nächsten zu gelangen — ein Verfahren höherer Ordnung braucht dafür
-größere Schritte, um dieselbe Genauigkeit zu erreichen, ist pro Schritt aber aufwendiger. Wie genau
-die Zwischenauswertungen gewichtet werden, ist über das sogenannte Butcher-Tableau festgelegt.
+um von einem Zeitpunkt zum nächsten zu gelangen — ein Verfahren höherer Ordnung kommt dabei für
+dieselbe Genauigkeit mit größeren Schritten aus, ist pro Schritt aber aufwendiger.
+Wie genau die Zwischenauswertungen gewichtet werden, ist über das sogenannte Butcher-Tableau
+festgelegt.
 Das genaue Funktionieren dieser Verfahren ist nicht Gegenstand dieser Aufgabe — bei Interesse
 finden Sie die Details unter
-[Runge-Kutta-Verfahren](https://de.wikipedia.org/wiki/Runge-Kutta-Verfahren#Allgemeine_Formulierung_und_Butcher-Schema).
+[Runge-Kutta-Verfahren, Abschnitt "Butcher-Tableau"](https://de.wikipedia.org/wiki/Runge-Kutta-Verfahren#Butcher-Tableau).
 
 **Rückgabewerte:**
 
@@ -203,23 +211,17 @@ finden Sie die Details unter
 - `sol.y`: Array der Lösungswerte
 - `sol.success`: ob die Integration erfolgreich war
 
-[NOTICE]
-Wenn die Lösung innerhalb von `t_span` z. B. gegen unendlich strebt, kann der Solver abbrechen,
-bevor er `t_end` erreicht: `sol.success` wird dann `False`, und `sol.t[-1]` (der Index `-1`
-adressiert das letzte Element) liegt deutlich vor dem angeforderten Endzeitpunkt.
-[ENDNOTICE]
+**Exponentieller Zerfall:**
 
-**Konstantes Wachstum:**
-
-Das Problem **dy/dt = k** mit **y(0) = y₀** hat die Lösung `y(t) = y₀ + k*t`:
+Das Problem **dy/dt = -k*y** mit **y(0) = y₀** hat die Lösung `y(t) = y₀ * e^(-k*t)`:
 
 ```python
 import numpy as np
 from scipy.integrate import solve_ivp
 
-# ODE definieren: dy/dt = k
-def constant_growth(t, y, k):
-    return [k]
+# ODE definieren: dy/dt = -k*y
+def decay(t, y, k):
+    return [-k * y[0]]
 
 # Parameter und Anfangsbedingungen
 k = 0.5
@@ -228,34 +230,53 @@ t_span = (0, 10)  # Zeitbereich
 t_eval = np.linspace(0, 10, 5)  # Auswertungspunkte
 
 # ODE lösen
-sol = solve_ivp(constant_growth, t_span, y0, t_eval=t_eval, args=(k,))
+sol = solve_ivp(decay, t_span, y0, t_eval=t_eval, args=(k,))
 
 print(f"Erfolgreich gelöst: {sol.success}")
 print(f"Werte: {sol.y[0]}")
 # Erfolgreich gelöst: True
-# Werte: [10.   11.25 12.5  13.75 15.  ]
+# Werte: [10.          2.86427513  0.821665    0.23541889  0.06753899]
 ```
 
-[ER] Lösen Sie einfache gewöhnliche Differentialgleichungen mit `solve_ivp`:
+`solve_ivp` behandelt jedes Problem als System von Gleichungen, auch wenn es wie hier nur eine
+einzige gibt.
+Deshalb ist `y0` eine Liste, deshalb gibt `fun` eine Liste zurück, deshalb ist `y` innerhalb von
+`fun` ein Array mit dem Wert in `y[0]`, und deshalb steht die Lösung in `sol.y[0]`.
 
-- Lösen Sie dy/dt = 2*t mit y(0) = 1 im Bereich t ∈ [0, 3]
-  (Definieren Sie ODE-Funktion, verwenden Sie `solve_ivp()` mit `t_span=(0, 3)`, `y0=[1]`)
+Die exakten Werte lauten `10.000000`, `2.865048`, `0.820850`, `0.235177`, `0.067379`.
+Dass die Lösung schon in der dritten Stelle abweicht, ist kein Fehler, sondern die Voreinstellung
+`rtol=1e-3`: Mehr Genauigkeit muss man ausdrücklich anfordern.
+
+[ER] Lösen Sie gewöhnliche Differentialgleichungen mit `solve_ivp`:
+
+- dy/dt = 2*t mit y(0) = 1 für t ∈ [0, 3]
   (Analytische Lösung: y(t) = t² + 1)
-- Bestimmen Sie die Lösung von dy/dt = -3*y + 2 mit y(0) = 5 für t ∈ [0, 2]
-  (Verwenden Sie `t_span=(0, 2)`, `y0=[5]`)
-- Lösen Sie das logistische Wachstum dy/dt = r*y*(1 - y/K)
-  mit r=1, K=10, y(0)=1 für t ∈ [0, 5]
-  (Verwenden Sie `args=(1, 10)` für Parameter r und K)
+- dy/dt = -3*y + 2 mit y(0) = 5 für t ∈ [0, 2]
+  (Analytische Lösung: y(t) = 2/3 + (13/3)*e^(-3t))
+- Logistisches Wachstum dy/dt = r*y*(1 - y/K) mit r=1, K=10, y(0)=1 für t ∈ [0, 5];
+  übergeben Sie r und K über `args`
+  (Analytische Lösung: y(t) = 10/(1 + 9*e^(-t)))
 
-Geben Sie für jede Lösung `sol.success` und die Werte an drei Zeitpunkten aus
-(`t_eval=np.array([start, mitte, ende])`, ausgelesen über `sol.t` und `sol.y`,
-6 Nachkommastellen, `:.6f`).
+Geben Sie für jede Lösung `sol.success` und die Werte an drei Zeitpunkten aus.
+Wählen Sie die Zeitpunkte über `t_eval=np.array([start, mitte, ende])` und lesen Sie sie über
+`sol.t` und `sol.y` aus (6 Nachkommastellen, `:.6f`).
+Geben Sie zu jedem Zeitpunkt auch die Abweichung von der analytischen Lösung aus (`:.2e`).
 
-[EQ] `sol.success` war bei Ihren drei Lösungen vermutlich `True`. Unter welchen Umständen könnte
-`solve_ivp` ein Anfangswertproblem nicht bis zum Ende von `t_span` lösen, und wie würden Sie das
-allein an `sol.t`/`sol.y` erkennen (ohne die analytische Lösung zu kennen)?
+[ER] Prüfen Sie, was `sol.success` über die Genauigkeit einer Lösung aussagt:
 
-<!-- time estimate: 25 min -->
+- Rechnen Sie das logistische Wachstum zusätzlich mit `method='RK23'` und mit `method='DOP853'`.
+  Geben Sie je Verfahren `sol.success` und die größte Abweichung von der analytischen Lösung aus.
+- Lösen Sie dy/dt = y² mit y(0) = 1 auf `t_span=(0, 5)`.
+  Geben Sie `sol.success`, `sol.t[-1]` und `sol.y[0][-1]` aus.
+  (Der Index `-1` adressiert das letzte Element.)
+
+[EQ] Bei einer der beiden Zusatzrechnungen ist `sol.success` `False`, bei der anderen dreimal
+`True` — obwohl sich die Ergebnisse dort je nach `method` um Größenordnungen in der Genauigkeit
+unterscheiden.
+Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und was sagt
+`sol.success` demnach über die Genauigkeit einer Lösung aus?
+
+<!-- time estimate: 30 min -->
 
 ### Weiterführend
 
