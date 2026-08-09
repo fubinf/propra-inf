@@ -29,7 +29,8 @@ schließen" ist der Kern dieser Aufgabe.
 
 ### Vorwissen
 
-Für diese Aufgabe werden folgende Konzepte benötigt.
+Für diese Aufgabe werden Grundbegriffe der Wahrscheinlichkeitstheorie und Statistik benötigt
+(Verteilungen, Hypothesentests, Korrelationskoeffizient).
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Wahrscheinlichkeitsverteilung (Wikipedia)](https://de.wikipedia.org/wiki/Wahrscheinlichkeitsverteilung):
@@ -41,7 +42,8 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 ### Wahrscheinlichkeitsverteilungen: `stats.norm` und `stats.binom`
 
-`scipy.stats` bietet parametrisierte Verteilungsobjekte mit einheitlichen Methoden:
+`scipy.stats` bietet parametrisierte Verteilungsobjekte mit einheitlichen Methoden
+(in der SciPy-Dokumentation heißen sie "frozen distributions"):
 
 ```python
 scipy.stats.norm(loc=0, scale=1)   # kontinuierlich: Normalverteilung
@@ -63,18 +65,17 @@ scipy.stats.binom(n, p)            # diskret: Binomialverteilung
 **Beispiel:**
 ```python
 from scipy import stats
-import numpy as np
 
 # Standard-Normalverteilung N(0,1)
 std_normal = stats.norm()
-print(f"PDF bei x=0: {std_normal.pdf(0):.4f}")
-print(f"P(X ≤ 1.96): {std_normal.cdf(1.96):.4f}")
-print(f"95%-Quantil: {std_normal.ppf(0.95):.4f}")
+print(f"PDF bei x=0: {std_normal.pdf(0):.4f}")     # PDF bei x=0: 0.3989
+print(f"P(X ≤ 1.96): {std_normal.cdf(1.96):.4f}")  # P(X ≤ 1.96): 0.9750
+print(f"95%-Quantil: {std_normal.ppf(0.95):.4f}")  # 95%-Quantil: 1.6449
 
 # Binomialverteilung: n=10 Versuche, p=0.3 Erfolgswahrscheinlichkeit
 binomial = stats.binom(n=10, p=0.3)
-print(f"P(X = 3): {binomial.pmf(3):.4f}")
-print(f"P(X ≤ 5): {binomial.cdf(5):.4f}")
+print(f"P(X = 3): {binomial.pmf(3):.4f}")  # P(X = 3): 0.2668
+print(f"P(X ≤ 5): {binomial.cdf(5):.4f}")  # P(X ≤ 5): 0.9527
 ```
 
 Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit Präzisionsangabe
@@ -82,14 +83,15 @@ Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit P
 
 [ER] Arbeiten Sie mit verschiedenen Wahrscheinlichkeitsverteilungen:
 
-- Erstellen Sie eine Normalverteilung N(10, 3²) (`stats.norm()`) und berechnen Sie die
-  Wahrscheinlichkeitsdichte bei x=10 (`.pdf()`), die Wahrscheinlichkeit P(X ≤ 13) (`.cdf()`) und
-  das 95%-Quantil (`.ppf(0.95)`)
-- Erstellen Sie eine Binomialverteilung mit n=20 und p=0.4 (`stats.binom()`) und berechnen Sie die
-  Wahrscheinlichkeit für genau 8 Erfolge (`.pmf()`) sowie für mindestens 10 Erfolge (`.cdf()`)
-- Generieren Sie je 1000 Zufallsstichproben aus beiden Verteilungen (`.rvs()`), berechnen Sie deren
-  empirische Mittelwerte (`np.mean()`) und vergleichen Sie diese mit dem theoretischen Mittelwert
-  (`.stats(moments='m')`)
+- Erstellen Sie als `normal_dist` eine Normalverteilung N(10, 3²) (`stats.norm()`) und berechnen
+  Sie die Wahrscheinlichkeitsdichte bei x=10 (`.pdf()`), die Wahrscheinlichkeit P(X ≤ 13)
+  (`.cdf()`) und das 95%-Quantil (`.ppf(0.95)`)
+- Erstellen Sie als `binomial_dist` eine Binomialverteilung mit n=20 und p=0.4 (`stats.binom()`)
+  und berechnen Sie die Wahrscheinlichkeit für genau 8 Erfolge (`.pmf()`) sowie für mindestens
+  10 Erfolge (`.cdf()`)
+- Generieren Sie aus beiden Verteilungen je 1000 Zufallsstichproben (`.rvs()`) und geben Sie deren
+  empirische Mittelwerte (`np.mean()`) zusammen mit dem jeweiligen theoretischen Mittelwert
+  (`.stats(moments='m')`) aus
 
 Geben Sie alle Ergebnisse mit passenden Beschreibungen aus.
 
@@ -97,6 +99,8 @@ Geben Sie alle Ergebnisse mit passenden Beschreibungen aus.
 Die Schreibweise N(μ, σ²) nennt an zweiter Stelle die Varianz, `scale` erwartet dagegen die
 Standardabweichung σ.
 Ein falscher Wert erzeugt hier keine Fehlermeldung, sondern nur stillschweigend andere Zahlen.
+Zur Selbstkontrolle: bei korrektem `scale` liegt 13 genau eine Standardabweichung über dem
+Erwartungswert, P(X ≤ 13) muss also nach der 68-95-99.7-Regel bei etwa 0.84 herauskommen.
 [ENDHINT]
 
 [HINT::Welches Argument gehört in `.cdf()`, wenn ich "mindestens 10 Erfolge" meine?]
@@ -105,17 +109,22 @@ Ein falscher Wert erzeugt hier keine Fehlermeldung, sondern nur stillschweigend 
 Wahrscheinlichkeit aufsummiert werden muss.
 [ENDHINT]
 
-[EQ] Für kontinuierliche Verteilungen gibt es `.pdf()`, für diskrete `.pmf()` — zwei getrennte
-Methoden statt einer gemeinsamen.
-Was unterscheidet kontinuierliche von diskreten Verteilungen strukturell, das diese Trennung
-nötig macht?
+[EQ] Ihre Werte `.pdf(10)` und `.pmf(8)` aus [EREFR::1] liegen beide zwischen 0 und 1, aber nur
+einer der beiden ist eine Wahrscheinlichkeit.
+Berechnen Sie zusätzlich `stats.norm(loc=10, scale=0.1).pdf(10)` und halten Sie das Ergebnis neben
+Ihre bisherigen Werte.
+Ziehen Sie außerdem folgende Beobachtung heran: unter Ihren 1000 Stichproben aus `binomial_dist`
+kommt der Wert 8 in ungefähr dem Anteil `.pmf(8)` vor, während unter denen aus `normal_dist` kein
+einziger Wert exakt 10 ist.
+Welcher der beiden Werte ist demnach keine Wahrscheinlichkeit, was ist er stattdessen, und warum
+braucht `scipy.stats` deshalb zwei getrennte Methoden statt einer gemeinsamen?
 
 <!-- time estimate: 25 min -->
 
 ### Hypothesentests: `stats.ttest_ind`
 
-Hypothesentests prüfen, ob ein beobachteter Unterschied wahrscheinlich echt ist oder auch durch
-zufällige Stichprobenschwankung erklärbar wäre:
+Hypothesentests quantifizieren, wie gut ein beobachteter Unterschied allein durch zufällige
+Stichprobenschwankung erklärbar wäre:
 
 ```python
 scipy.stats.ttest_ind(a, b)
@@ -149,7 +158,9 @@ Ein p-Wert < α (meist 0.05) führt zur Ablehnung der Nullhypothese — er sagt 
 praktische Bedeutsamkeit des Unterschieds aus, nur über dessen statistische Signifikanz.
 [ENDNOTICE]
 
-[ER] Vergleichen Sie zwei Gruppen von Messwerten: `gruppe_a` mit den Werten
+[ER] Zwei Gruppen von je zehn Pflanzen wurden mit unterschiedlichem Dünger behandelt; gemessen
+wurde nach vier Wochen die Wuchshöhe in cm.
+Vergleichen Sie `gruppe_a` mit den Werten
 `[23.1, 24.8, 22.9, 25.2, 23.7, 24.1, 23.5, 24.9, 23.8, 24.3]` und `gruppe_b` mit den Werten
 `[26.2, 27.1, 25.8, 26.9, 27.3, 26.5, 26.8, 27.0, 26.1, 26.7]`.
 
@@ -208,18 +219,27 @@ Gegeben sind die Werte von 10 Studierenden: `lernstunden` mit den Werten
 
 - Berechnen Sie mit `stats.pearsonr()` den Korrelationskoeffizienten und den p-Wert für alle zehn
   Wertepaare und geben Sie beide aus (`r` mit `:.4f`, den p-Wert mit `:.2e`)
-- Ein Wertepaar fällt aus dem Trend der übrigen deutlich nach unten heraus: viele Lernstunden bei
-  wenig Punkten.
-  Lassen Sie dieses eine Paar weg, berechnen Sie `r` und `p` für die verbleibenden neun Paare
-  erneut und geben Sie auch diese beiden Werte aus
-- Halten Sie in einem Kommentar fest, welches Wertepaar Sie weggelassen haben
+- Ein einzelnes Wertepaar fällt deutlich stärker aus dem Trend der übrigen heraus als alle anderen.
+  Bestimmen Sie, welches das ist, lassen Sie es weg, berechnen Sie `r` und `p` für die
+  verbleibenden neun Paare erneut und geben Sie auch diese beiden Werte aus
+- Halten Sie in einem Kommentar fest, welches Wertepaar Sie weggelassen haben und woran Sie es
+  erkannt haben
 
-[EQ] Vergleichen Sie Ihre beiden `r`-Werte aus [EREFR::3] miteinander.
+[HINT::Wie finde ich das Paar, das am stärksten aus dem Trend fällt?]
+`pearsonr()` hilft dabei nicht, denn es liefert nur eine einzige Zahl für den gesamten Datensatz.
+Sehen Sie sich stattdessen die Rohdaten an: die Paare sind bereits nach `lernstunden` aufsteigend
+sortiert, so dass sich ein Bruch im ansonsten steigenden Verlauf der `punkte` schon beim
+Durchlesen finden lässt.
+Gesucht ist das Paar mit dem größten senkrechten Abstand zu einer gedachten Geraden durch die
+übrigen Punkte; in einem Streudiagramm sieht man das am deutlichsten.
+[ENDHINT]
+
+[EQ] Vergleichen Sie Ihre beiden `r`-Werte aus [EREFR::3].
 Ein einziges von zehn Wertepaaren hat den Koeffizienten verschoben, ohne dass `stats.pearsonr()`
 bei einem der beiden Aufrufe darauf hingewiesen hätte.
 Was folgt daraus für die Aussagekraft eines einzelnen `r`-Werts?
-Und woran hätten Sie das auffällige Paar erkennen können, bevor Sie `pearsonr()` überhaupt
-aufgerufen haben?
+Und was mussten Sie tun, um das auffällige Paar überhaupt zu finden — etwas, das
+`stats.pearsonr()` selbst nicht leistet?
 
 <!-- time estimate: 15 min -->
 
