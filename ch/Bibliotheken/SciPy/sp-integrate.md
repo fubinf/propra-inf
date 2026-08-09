@@ -164,8 +164,7 @@ kein Tupel, sondern nur eine geklammerte Zahl.
   Schleife über die drei Werte (Analytische Ergebnisse: 2/5, 2/7, 2/9)
 
 Übergeben Sie die Parameter in allen Fällen über `args`.
-Geben Sie für jedes Integral das Ergebnis (6 Nachkommastellen, `:.6f`), den Fehler
-(wissenschaftliche Notation, `:.2e`) und die Abweichung vom analytischen Ergebnis (`:.2e`) aus.
+Geben Sie für jedes Integral Ergebnis, Fehler und Abweichung aus, formatiert wie in [EREFR::1].
 
 [EQ] Was müssten Sie an Ihrem Code für `k=5`, `k=7` und `k=9` ändern, wenn `k` fest im
 Funktionskörper stünde (etwa `np.sin(5 * x)`) statt über `args` übergeben zu werden?
@@ -202,7 +201,10 @@ scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.integrate.solve_ivp`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html).
 
-**Rückgabewerte:**
+**Rückgabewert:**
+
+Anders als `quad` liefert `solve_ivp` kein Tupel, sondern ein einzelnes Ergebnisobjekt, im
+Folgenden `sol` genannt, mit unter anderem diesen Attributen:
 
 - `sol.t`: Array der Zeitpunkte
 - `sol.y`: Array der Lösungswerte, eine Zeile je Gleichung
@@ -210,7 +212,7 @@ Die vollständige Parameterliste steht in der Referenz zu
 
 **Exponentieller Zerfall:**
 
-Das Problem `dy/dt = -k*y` mit `y(0) = y₀` hat die Lösung `y(t) = y₀ * e^(-k*t)`:
+Das Problem `dy/dt = -k*y` mit `y(0) = y₀` hat die Lösung `y(t) = y₀ * e^(-k*t)`.
 
 Der folgende Code importiert `solve_ivp` direkt statt über `from scipy import integrate`; beide
 Schreibweisen sind gebräuchlich.
@@ -245,8 +247,8 @@ und deshalb steht die Lösung in `sol.y[0]`; der Rückgabewert von `fun` ist hie
 ebenfalls als Liste geschrieben.
 
 Die exakten Werte lauten `10.000000`, `2.865048`, `0.820850`, `0.235177`, `0.067379`.
-Dass die Lösung schon in der dritten Stelle abweicht, ist kein Fehler, sondern die Voreinstellung
-`rtol=1e-3`: Mehr Genauigkeit muss man ausdrücklich anfordern.
+Dass die Lösung schon in der dritten Nachkommastelle abweicht, ist kein Fehler, sondern die
+Voreinstellung `rtol=1e-3`: Mehr Genauigkeit muss man ausdrücklich anfordern.
 
 [ER] Lösen Sie gewöhnliche Differentialgleichungen mit `solve_ivp`:
 
@@ -258,10 +260,10 @@ Dass die Lösung schon in der dritten Stelle abweicht, ist kein Fehler, sondern 
   übergeben Sie `r` und `K` über `args`
   (Analytische Lösung: `y(t) = 10/(1 + 9*e^(-t))`)
 
-Geben Sie für jede Lösung `sol.success` und die Werte an drei Zeitpunkten aus.
-Übergeben Sie die drei Zeitpunkte — Anfang, Mitte und Ende des jeweiligen Intervalls — als
-`t_eval`-Array und lesen Sie sie über `sol.t` und `sol.y` aus (6 Nachkommastellen, `:.6f`).
-Geben Sie zu jedem Zeitpunkt auch die Abweichung von der analytischen Lösung aus (`:.2e`).
+Übergeben Sie Anfang, Mitte und Ende des jeweiligen Intervalls als `t_eval`-Array und lesen Sie
+die Ergebnisse über `sol.t` und `sol.y` aus.
+Geben Sie je Lösung `sol.success` aus sowie je Zeitpunkt den Wert und die Abweichung von der
+analytischen Lösung, formatiert wie in [EREFR::1].
 
 [ER] Prüfen Sie, was `sol.success` über die Genauigkeit einer Lösung aussagt:
 
@@ -270,7 +272,8 @@ Geben Sie zu jedem Zeitpunkt auch die Abweichung von der analytischen Lösung au
   Geben Sie je Verfahren `sol.success` und die größte Abweichung von der analytischen Lösung aus.
 - Rechnen Sie es außerdem ein viertes Mal, wieder mit `method='RK45'`, aber mit `rtol=1e-6`, und
   geben Sie ebenfalls `sol.success` und die größte Abweichung aus.
-- Lösen Sie `dy/dt = y²` mit `y(0) = 1` auf `t_span=(0, 5)`.
+- Lösen Sie `dy/dt = y²` mit `y(0) = 1` auf `t_span=(0, 5)`, diesmal ohne `t_eval`, damit `sol.t`
+  die vom Solver selbst gewählten Zeitpunkte enthält.
   Geben Sie `sol.success`, `sol.t[-1]` und `sol.y[0][-1]` aus.
   (Der Index `-1` adressiert das letzte Element.)
 
