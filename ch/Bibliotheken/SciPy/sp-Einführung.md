@@ -31,15 +31,15 @@ Für die Modulzuordnung weiter unten werden Grundbegriffe der Analysis und linea
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Integralrechnung (Wikipedia)](https://de.wikipedia.org/wiki/Integralrechnung):
-  der zurückgelegte Weg als Integral der Geschwindigkeit über die Zeit
+  Bedeutung des bestimmten Integrals
 - [Dünnbesetzte Matrix (Wikipedia)](https://de.wikipedia.org/wiki/D%C3%BCnnbesetzte_Matrix):
-  warum die Besetzungsdichte darüber entscheidet, wie eine Matrix gespeichert wird
+  Definition und Speicherung
 - [Extremwert (Wikipedia)](https://de.wikipedia.org/wiki/Extremwert):
   Minimalstelle einer Funktion
 - [Interpolation (Wikipedia)](https://de.wikipedia.org/wiki/Interpolation_(Mathematik)):
-  Schätzung von Werten zwischen bekannten Stützstellen
+  Begriff und Grundidee
 - [Methode der kleinsten Quadrate (Wikipedia)](https://de.wikipedia.org/wiki/Methode_der_kleinsten_Quadrate):
-  Kurvenanpassung als Minimierung der Abweichung von den Messwerten
+  Grundidee der Ausgleichsrechnung
 
 ### SciPy installieren
 
@@ -72,6 +72,9 @@ Die folgende Auswahl umfasst nur die Module dieser Aufgabengruppe; die vollstän
 - `scipy.constants`: Mathematische und physikalische Konstanten (Thema dieser Aufgabe)
 
 **Aufruf einer Modulfunktion:**
+
+Das folgende Beispiel zeigt nur, wie ein SciPy-Modul importiert und eine seiner Funktionen
+aufgerufen wird; `scipy.optimize` selbst ist Gegenstand von [PARTREF::sp-optimize].
 
 ```python
 scipy.optimize.minimize_scalar(fun)
@@ -108,6 +111,8 @@ Begründen Sie Ihre Auswahl:
 ### Mathematische und physikalische Konstanten mit `scipy.constants`
 
 `scipy.constants` stellt viele mathematische und physikalische Konstanten bereit.
+Der Nutzen liegt dabei weniger bei `pi`, das es auch in `math` gibt, als bei den physikalischen
+Konstanten und den Umrechnungsfaktoren für Einheiten und SI-Präfixe.
 
 ```python
 from scipy import constants
@@ -131,9 +136,9 @@ print(constants.kilo)  # 1000.0 (Faktor für "Kilo", z.B. 1 km = 1 * constants.k
 print(constants.nano)  # 1e-09 (Faktor für "Nano")
 ```
 
-[ER] Schreiben Sie ein Programm, das die folgenden, auf `scipy.constants` basierenden Werte mit
-jeweils vier Nachkommastellen ausgibt, in denen der Wert noch erkennbar ist
-(siehe [PARTREF::py-Fstrings] für die Formatierung):
+[ER] Schreiben Sie ein Programm, das die folgenden, auf `scipy.constants` basierenden Werte
+ausgibt, jeweils mit vier Nachkommastellen und in einer Darstellung, in der der Wert noch
+erkennbar ist (siehe [PARTREF::py-Fstrings] für die Formatierung):
 
 - Den Flächeninhalt eines Kreises mit Radius 5, berechnet mit `pi`
 - Die Probe, ob der Goldene Schnitt `golden` die Gleichung x² = x + 1 erfüllt
@@ -143,16 +148,20 @@ jeweils vier Nachkommastellen ausgibt, in denen der Wert noch erkennbar ist
 - Ein SI-Präfix Ihrer Wahl mit einem Faktor von mindestens 10⁶ oder höchstens 10⁻⁶, außer `nano`
   (z.B. `mega`, `giga` oder `micro`)
 
-Nicht jede dieser Größen lässt sich dafür mit `:.4f` darstellen.
+Nicht jede dieser Größen bleibt mit `:.4f` erkennbar.
 Halten Sie Ihre Formatierungsentscheidung bei den beiden physikalischen Konstanten in einem
 Kommentar fest.
-Bei Ihrem SI-Präfix sind die vier Nachkommastellen in jeder Formatierung `0000`; halten Sie in
-einem Kommentar fest, warum das so ist.
+Bei Ihrem SI-Präfix sind die vier Nachkommastellen in jeder Formatierung `0000` (bei `:.4e` die
+der Mantisse); halten Sie in einem Kommentar fest, warum das so ist.
 
 <!-- time estimate: 20 min -->
 
 Außerdem enthält `scipy.constants` das Dictionary `physical_constants`, dessen Einträge jeweils ein
-Tripel aus Wert, Einheit und Unsicherheit sind:
+Tripel aus Wert, Einheit und Unsicherheit sind.
+Die Unsicherheit gibt an, wie genau der Wert bekannt ist.
+Werte, Einheiten und Unsicherheiten stammen aus den
+[CODATA-Konstanten beim NIST](https://physics.nist.gov/cuu/Constants/).
+Ein Eintrag wird so ausgelesen:
 
 ```python
 from scipy import constants
@@ -168,6 +177,7 @@ print(f"Wert: {value} {unit} (Unsicherheit: {uncertainty})")
 in [EREFR::2] denselben Wert über `physical_constants` als Tripel.
 Nennen Sie zwei technische Gründe, warum `scipy.constants` beide Zugriffswege anbietet.
 Eine der drei Unsicherheiten aus [EREFR::2] ist `0.0`, die beiden anderen nicht.
+Man könnte erwarten, dass ein solcher Eintrag nur aus Wert und Einheit besteht.
 Erklären Sie, warum das Tripel trotzdem für alle Einträge dieselbe Form hat.
 
 <!-- time estimate: 25 min -->
@@ -178,8 +188,6 @@ Erklären Sie, warum das Tripel trotzdem für alle Einträge dieselbe Form hat.
   Einstieg in die einzelnen Module mit durchgerechneten Beispielen
 - [`scipy.constants.find`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.constants.find.html):
   Suche nach Schlüsseln von `physical_constants`
-- [CODATA-Konstanten beim NIST](https://physics.nist.gov/cuu/Constants/):
-  Herkunft der Werte, Einheiten und Unsicherheiten in `physical_constants`
 
 [ENDSECTION]
 
