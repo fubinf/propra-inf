@@ -101,10 +101,11 @@ Nutzen Sie für Ihre Ausgaben in dieser Aufgabe eine f-String-Formatierung mit P
   zusammen mit dem jeweiligen theoretischen Mittelwert (`.mean()`) aus
 - Sehen Sie sich die beiden Stichproben genauer an: Geben Sie die ersten fünf Werte von
   `normal_samples` aus (`normal_samples[:5]`).
-  Bestimmen Sie außerdem mit einem Vergleich und `np.sum()`, welchen Anteil der Wert 8 in
-  `binomial_samples` ausmacht; `np.sum()` zählt dabei die `True`-Werte des Vergleichs als 1
-- Berechnen Sie zum Vergleich noch `stats.norm(loc=10, scale=0.1).pdf(10)`, also die
-  Wahrscheinlichkeitsdichte einer sehr schmalen Normalverteilung an ihrem Erwartungswert
+  Bestimmen Sie dann mit einem Vergleich und `np.sum()`, welcher Anteil der 1000 Werte in
+  `binomial_samples` gleich 8 ist; `np.sum()` zählt dabei die `True`-Werte des Vergleichs als 1.
+  Zählen Sie mit demselben Handgriff, wie viele der 1000 Werte in `normal_samples` gleich 10 sind
+- Berechnen Sie zum Vergleich als `schmale_dichte` noch `stats.norm(loc=10, scale=0.1).pdf(10)`,
+  also die Wahrscheinlichkeitsdichte einer sehr schmalen Normalverteilung an ihrem Erwartungswert
 
 Geben Sie alle Ergebnisse mit passenden Beschreibungen aus.
 Die Stichprobenwerte fallen bei jedem Programmlauf anders aus; erwartet wird lediglich, dass die
@@ -127,8 +128,8 @@ Wahrscheinlichkeit aufsummiert werden muss.
 [EQ] Ihre Werte `.pdf(10)` und `.pmf(8)` aus [EREFR::1] liegen beide zwischen 0 und 1, aber nur
 einer der beiden ist eine Wahrscheinlichkeit.
 Ziehen Sie zur Klärung drei weitere Befunde aus [EREFR::1] heran: die Dichte der schmalen
-Normalverteilung, den Anteil, den der Wert 8 in `binomial_samples` ausmacht, und die ersten fünf
-Werte von `normal_samples`.
+Normalverteilung, den Anteil der Werte 8 in `binomial_samples` und die Anzahl der Werte 10 in
+`normal_samples`.
 Welcher der beiden Werte ist demnach keine Wahrscheinlichkeit, was ist er stattdessen, und warum
 braucht `scipy.stats` deshalb zwei getrennte Methoden statt einer gemeinsamen?
 
@@ -140,7 +141,7 @@ Hypothesentests quantifizieren, wie gut ein beobachteter Unterschied allein durc
 Stichprobenschwankung erklärbar wäre:
 
 ```python
-scipy.stats.ttest_ind(a, b)
+scipy.stats.ttest_ind(a, b, equal_var=True)
 ```
 
 - `a`, `b`: die beiden unabhängigen Stichproben (Arrays/Listen)
@@ -177,30 +178,31 @@ praktische Bedeutsamkeit des Unterschieds aus, nur über dessen statistische Sig
 
 [ER] Drei Gruppen von je zehn Pflanzen wurden mit unterschiedlichem Dünger behandelt.
 Gemessen wurde nach vier Wochen die Wuchshöhe in cm.
+Die Pflanzen der Gruppe C standen dabei an unterschiedlich hellen Standorten, die der Gruppen A
+und B jeweils einheitlich.
 Gegeben sind `gruppe_a` mit den Werten
 `[23.1, 24.8, 22.9, 25.2, 23.7, 24.1, 23.5, 24.9, 23.8, 24.3]`, `gruppe_b` mit den Werten
 `[26.2, 27.1, 25.8, 26.9, 27.3, 26.5, 26.8, 27.0, 26.1, 26.7]` und `gruppe_c` mit den Werten
 `[18.4, 33.2, 21.7, 29.8, 24.1, 35.6, 19.3, 27.5, 31.2, 24.2]`.
 
-- Berechnen Sie Mittelwert (`np.mean()`) und Standardabweichung (`np.std()`) für alle drei Gruppen
-  und geben Sie sie aus
+- Berechnen Sie Mittelwert (`np.mean()`) und Standardabweichung für alle drei Gruppen und geben
+  Sie sie aus; verwenden Sie dabei `np.std(..., ddof=1)`, damit die Streuung dieselbe Größe ist,
+  mit der `ttest_ind()` intern rechnet
 - Testen Sie mit `stats.ttest_ind()` zweimal gegen `gruppe_a`: einmal `gruppe_b`, einmal
   `gruppe_c`, beide Male mit der Voreinstellung `equal_var=True`
 - Geben Sie beide p-Werte aus und halten Sie in je einem Kommentar fest, ob der Unterschied bei
   α=0.05 signifikant ist
-- Vergleichen Sie nun die Standardabweichungen von `gruppe_a` und `gruppe_c`: nach dem Hinweis zu
-  `equal_var` oben ist für dieses Paar der Welch-Test die passendere Wahl.
-  Wiederholen Sie den Test `gruppe_a` gegen `gruppe_c` deshalb mit `equal_var=False` und geben Sie
-  auch diesen p-Wert aus
+- Entscheiden Sie anhand der drei Standardabweichungen und des Hinweises zu `equal_var` oben, bei
+  welchem der beiden getesteten Paare die Voraussetzung gleicher Varianzen verletzt ist.
+  Wiederholen Sie diesen Test mit `equal_var=False` und geben Sie auch diesen p-Wert aus
 
-[EQ] Vergleichen Sie aus [EREFR::2] zunächst die beiden Tests mit `equal_var=True`.
-Der Abstand der Mittelwerte ist in beiden Fällen fast gleich groß, die p-Werte unterscheiden sich
-dagegen um mehrere Größenordnungen.
-Welche Eigenschaft der Daten führt zu diesem Unterschied?
+[EQ] Vergleichen Sie aus [EREFR::2] zunächst die beiden Tests mit `equal_var=True`: stellen Sie
+die beiden Mittelwertabstände den beiden p-Werten gegenüber.
+Was fällt dabei auf, und welche Eigenschaft der Daten erklärt es?
 Was folgt daraus für die Frage, ob ein Vergleich zweier Mittelwerte allein schon zeigt, dass sich
 zwei Gruppen "wirklich" unterscheiden?
-Ihr Welch-Test für `gruppe_a` gegen `gruppe_c` kommt ohne die Annahme gleicher Varianzen aus und
-liefert dennoch praktisch denselben p-Wert.
+Ihr Welch-Test kommt ohne die Annahme gleicher Varianzen aus und liefert dennoch praktisch
+denselben p-Wert wie derselbe Vergleich mit `equal_var=True`.
 Was gewinnt das Urteil "nicht signifikant" dadurch?
 
 <!-- time estimate: 25 min -->
