@@ -41,8 +41,8 @@ einem anderen Port betreiben, passen Sie sie entsprechend an.
 
 ### Aufräumen: nicht mehr benötigte Views und Routen
 
-[PARTREF::django-view] hat mehrere View-Funktionen nur zu Demonstrationszwecken eingeführt
-(`get_params`, `post_data`, `request_info`, `responses`, `redirect_target`,
+In [PARTREF::django-view] wurden mehrere View-Funktionen nur zu Demonstrationszwecken
+eingeführt (`get_params`, `post_data`, `request_info`, `responses`, `redirect_target`,
 `redirect_example`, `student_redirect`); keine davon wird in den folgenden Aufgaben noch
 gebraucht.
 
@@ -95,7 +95,7 @@ nach folgendem Schema:
 Ersetzen Sie zunächst den Inhalt von `hello.html` durch die folgende Grundstruktur; sie
 ergänzt die einfache Version aus [PARTREF::django-project] um die `lang`-Angabe,
 `<meta charset>` und einen zur Aufgabe passenden Titel.
-In den folgenden Schritten ändern wir jeweils nur den `<body>`:
+In den folgenden Schritten ändert sich jeweils nur der `<body>`:
 
 ```html
 <!DOCTYPE html>
@@ -113,11 +113,18 @@ In den folgenden Schritten ändern wir jeweils nur den `<body>`:
 den von `user_name` darunter in einem Absatz `<p>` ein.
 
 [EQ] Fügen Sie testweise die Zeile `<p>[{{ nichtvorhanden }}]</p>` an;
- `nichtvorhanden` existiert im `context` gar nicht.
+`nichtvorhanden` existiert im `context` gar nicht.
 Die eckigen Klammern machen sichtbar, wo der Wert stehen würde.
 Rufen Sie `http://127.0.0.1:8071/` im Browser auf: Was steht zwischen den Klammern, und wie
 unterscheidet sich dieses Verhalten von einem Zugriff auf einen nicht vorhandenen
 Dictionary-Schlüssel in reinem Python?
+Für die Qualitätssicherung ist dieses stillschweigende Verhalten oft unerwünscht.
+Suchen Sie im Abschnitt
+[How invalid variables are handled](https://docs.djangoproject.com/en/stable/ref/templates/api/#how-invalid-variables-are-handled)
+der Django-Doku die Einstellung, mit der sich ungültige Variablen stattdessen sichtbar machen
+lassen: Wie heißt sie, welchen Wert müsste sie haben, damit der Name der fehlenden Variablen
+in der Seite erscheint, und warum rät die Doku davon ab, sie dauerhaft eingeschaltet zu
+lassen?
 Entfernen Sie die Testzeile anschließend wieder.
 <!-- time estimate: 15 min -->
 
@@ -145,9 +152,8 @@ andernfalls einen Absatz `<p>` mit dem Text "Bitte melden Sie sich an."
 [Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#std-templatetag-if)
 den Abschnitt zu `if` nach.
 Unter welchen Bedingungen behandelt `{% if %}` einen Wert als wahr?
-Setzen Sie `is_logged_in` in der View danach nacheinander auf zwei Werte, die nach dieser
-Regel falsch sind, ohne `False` zu sein, und aktualisieren Sie jeweils die Seite.
-Welche Werte haben Sie gewählt, und welcher Zweig erscheint?
+Setzen Sie `is_logged_in` in der View danach auf `False` und aktualisieren Sie die Seite:
+Welcher Zweig erscheint?
 Setzen Sie `is_logged_in` anschließend wieder auf `True`.
 <!-- time estimate: 15 min -->
 
@@ -169,9 +175,10 @@ Hobbys als `<ul>`-Liste mit `{% for %}` und einem `{% empty %}`-Zweig, der für 
 Liste "Keine Hobbys angegeben" in einem Listenelement anzeigt.
 
 [EQ] Setzen Sie `hobbies` in der View auf eine leere Liste `[]` und aktualisieren Sie die
-Seite; entfernen Sie `hobbies` danach ganz aus dem `context` und aktualisieren Sie erneut.
-Was wird in den beiden Fällen angezeigt, und was haben sie mit Ihrer Beobachtung aus
-[EREFQ::1] gemeinsam?
+Seite; setzen Sie `hobbies` danach auf den einzelnen String `'Programmieren'` (ohne Liste
+darum herum) und aktualisieren Sie erneut.
+Was wird in den beiden Fällen angezeigt, und wie kommt die Darstellung im zweiten Fall
+zustande?
 
 Tragen Sie `hobbies` in der View anschließend wieder mit der ursprünglichen Liste
 (`['Programmieren', 'Lesen', 'Sport']`) ein, bevor Sie fortfahren.
@@ -199,9 +206,9 @@ Für die Studierendenliste sind drei Filter nützlich:
   [PARTREF::django-model] optional und daher oft `None`).
 - `yesno:"Aktiv,Inaktiv"`: gibt je nach Wahrheitswert einen von zwei wählbaren Texten aus.
 
-[ER] Schreiben Sie in `views.py` eine View-Funktion `students_list`, die mit `.objects.all()`
-alle `Student`-Objekte lädt und sie unter dem Context-Schlüssel `students` an das Template
-`students_list.html` übergibt.
+[ER] Schreiben Sie in `views.py` eine View-Funktion `students_list`, die mit
+`Student.objects.all()` alle `Student`-Objekte lädt und sie unter dem Context-Schlüssel
+`students` an das Template `students_list.html` übergibt.
 
 [ER] Legen Sie `webapp/templates/students_list.html` an, mit derselben Grundstruktur wie
 `hello.html` (`<!DOCTYPE>`, `<html lang="de">`, `<head>` mit `<meta charset>` und dem Titel
@@ -262,12 +269,17 @@ Blöcke, nach folgendem Schema:
 {% block inhalt %}Mein Seiteninhalt{% endblock %}
 ```
 
-Das vollständige Basis-Template mit Kopf- und Fußbereich ist hier vorgegeben; es verwendet
-semantische HTML-Elemente wie `<header>` und `<footer>` (siehe [PARTREF::html-Semantik]).
+Das Grundgerüst des Basis-Templates mit Kopf- und Fußbereich ist hier vorgegeben; es
+verwendet semantische HTML-Elemente wie `<header>` und `<footer>` (siehe
+[PARTREF::html-Semantik]).
+Die `{% block %}`-Tags fehlen darin noch.
 
-[ER] Erstellen Sie in `webapp/templates/` die Datei `base.html`:
+[ER] Erstellen Sie in `webapp/templates/` die Datei `base.html` mit dem folgenden Grundgerüst
+und ergänzen Sie darin zwei Blöcke: einen Block `title`, der den Titeltext
+`Django Template System` umschließt, sodass dieser als Standardtitel erhalten bleibt, und
+einen leeren Block `content` innerhalb von `<main>`.
 
-[SNIPPET::ALT::django_template_base]
+[SNIPPET::ALT::django_template_base_skeleton]
 
 [ER] Wandeln Sie `hello.html` in ein Kind-Template um: Ersetzen Sie `<!DOCTYPE>`, `<html>`,
 `<head>` und die `<body>`-Umschließung durch `{% extends "base.html" %}` und packen Sie
@@ -279,8 +291,8 @@ Stufen Sie auch die Unterüberschrift `<h2>Ihre Hobbys:</h2>` zu `<h3>Ihre Hobby
 damit sie `<h2>{{ greeting }}</h2>` weiterhin untergeordnet bleibt.
 
 [ER] Wandeln Sie `students_list.html` auf dieselbe Weise in ein Kind-Template um: Stufen Sie
-dabei ebenso die Überschrift `<h1>` zu `<h2>`
-herab, und überschreiben Sie zusätzlich `{% block title %}` mit "Studierendenliste".
+dabei ebenso die Überschrift `<h1>` zu `<h2>` herab, und überschreiben Sie zusätzlich
+`{% block title %}` mit "Studierendenliste".
 
 [HINT::Wie hängen die Blocknamen in `base.html` und den Kind-Templates zusammen?]
 Ein `{% block content %}` im Kind-Template ersetzt genau den gleichnamigen
@@ -305,8 +317,8 @@ Einbindung kennen Sie aus [PARTREF::css-Einführung]).
 Solche CSS-, JavaScript- und Bilddateien werden als **statische Dateien** bezeichnet.
 Django findet sie automatisch im Ordner `static/` einer registrierten App, analog dazu, wie
 Templates im `templates/`-Ordner gefunden werden.
-Im Template bindet das `{% static %}`-Tag sie ein; dazu muss `{% load static %}` am
-Dateianfang stehen, nach folgendem Schema:
+Im Template bindet das `{% static %}`-Tag sie ein; dazu muss `{% load static %}` vor der
+ersten Verwendung von `{% static %}` stehen, nach folgendem Schema:
 
 ```html
 {% load static %}
@@ -318,23 +330,24 @@ folgendem CSS an:
 
 [SNIPPET::ALT::django_template_css]
 
-Beenden Sie danach den Entwicklungsserver mit Strg+C und starten Sie ihn neu.
-
 [ER] Binden Sie die CSS-Datei in `base.html` ein: Setzen Sie `{% load static %}` an den
 Dateianfang und fügen Sie im `<head>` ein `<link>`-Element ein, das die Datei
 `css/style.css` per `{% static %}` referenziert.
 
-[HINT::Wozu war der Neustart des Entwicklungsservers nötig?]
+Laden Sie danach `http://127.0.0.1:8071/students/` neu.
+
+[HINT::Die Seite sieht immer noch unformatiert aus]
 Django prüft nur beim Start, welche App einen `static/`-Ordner besitzt; ein danach angelegter
 Ordner bleibt bis zum nächsten Start unsichtbar.
-Ohne Neustart liefert der Server die Datei deshalb nicht aus, obwohl das `<link>`-Element im
-HTML steht und die Seite unverändert aussieht.
-Nachprüfen lässt sich das jederzeit mit
+Der Server liefert die Datei deshalb gar nicht aus, obwohl das `<link>`-Element im HTML
+steht; nachprüfen lässt sich das mit
 `curl -s http://127.0.0.1:8071/static/css/style.css`.
 [ENDHINT]
 
-[EQ] Rufen Sie `http://127.0.0.1:8071/students/` auf: Die Seite ist jetzt formatiert, obwohl
-`students_list.html` selbst weder CSS noch ein `{% load %}` enthält.
+Beenden Sie den Entwicklungsserver mit Strg+C und starten Sie ihn neu.
+
+[EQ] Rufen Sie `http://127.0.0.1:8071/students/` erneut auf: Die Seite ist jetzt formatiert,
+obwohl `students_list.html` selbst weder CSS noch ein `{% load %}` enthält.
 Entfernen Sie nun versuchsweise die Zeile `{% load static %}` aus `base.html`, laden Sie die
 Seite erneut und fügen Sie die Zeile danach wieder ein.
 Welche Fehlermeldung erscheint, und in welcher Datei müsste ein `{% load static %}` stehen,
@@ -344,7 +357,7 @@ wenn ein Kind-Template selbst ein `{% static %}` verwenden wollte?
 ### Navigation mit `{% url %}`
 
 Damit Nutzer zwischen den Seiten wechseln können, braucht `base.html` eine Navigation:
-das semantische Element `<nav>` markiert einen Block mit Navigationslinks.
+Das semantische Element `<nav>` markiert einen Block mit Navigationslinks.
 Für die Links verwenden Sie nicht fest codierte Pfade wie `href="/students/"`, sondern das
 `{% url %}`-Tag mit dem Routennamen, nach folgendem Schema:
 
