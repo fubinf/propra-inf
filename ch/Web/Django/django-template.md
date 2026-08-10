@@ -41,7 +41,7 @@ einem anderen Port betreiben, passen Sie sie entsprechend an.
 
 ### Aufräumen: nicht mehr benötigte Views und Routen
 
-[PARTREF::django-view] hat mehrere Views nur zu Demonstrationszwecken eingeführt
+[PARTREF::django-view] hat mehrere View-Funktionen nur zu Demonstrationszwecken eingeführt
 (`get_params`, `post_data`, `request_info`, `responses`, `redirect_target`,
 `redirect_example`, `student_redirect`); keine davon wird in den folgenden Aufgaben noch
 gebraucht.
@@ -53,7 +53,7 @@ Behalten Sie `hello` und `student_detail`, die Sie weiterhin brauchen.
 [HINT::Welche Importe werden jetzt nicht mehr gebraucht?]
 Gehen Sie die `import`-Zeilen am Dateianfang einzeln durch und suchen Sie für jeden Namen, ob
 er im verbliebenen Code überhaupt noch vorkommt.
-Genau drei Namen werden nur von den entfernten Funktionen benutzt.
+Drei Namen werden nur von den entfernten Funktionen benutzt.
 [ENDHINT]
 <!-- time estimate: 5 min -->
 
@@ -93,9 +93,9 @@ nach folgendem Schema:
 ```
 
 Ersetzen Sie zunächst den Inhalt von `hello.html` durch die folgende Grundstruktur; sie
-ergänzt die einfache Version aus [PARTREF::django-project] um `lang`-Angabe und
-`<meta charset>` und trägt einen zur Aufgabe passenden Titel.
-In den folgenden Schritten ändern Sie jeweils nur den `<body>`:
+ergänzt die einfache Version aus [PARTREF::django-project] um die `lang`-Angabe,
+`<meta charset>` und einen zur Aufgabe passenden Titel.
+In den folgenden Schritten ändern wir jeweils nur den `<body>`:
 
 ```html
 <!DOCTYPE html>
@@ -109,11 +109,11 @@ In den folgenden Schritten ändern Sie jeweils nur den `<body>`:
 </html>
 ```
 
-[ER] Fügen Sie in den `<body>` von `hello.html` `greeting` als Überschrift `<h1>` und
-`user_name` darunter in einem Absatz `<p>` ein (jeweils mit der `{{ ... }}`-Syntax).
+[ER] Fügen Sie in den `<body>` von `hello.html` den Inhalt von `greeting` als Überschrift `<h1>` und
+den von `user_name` darunter in einem Absatz `<p>` ein.
 
-[EQ] Fügen Sie testweise irgendwo in `hello.html` die Zeile `<p>[{{ nichtvorhanden }}]</p>`
-ein; `nichtvorhanden` existiert im `context` gar nicht.
+[EQ] Fügen Sie testweise die Zeile `<p>[{{ nichtvorhanden }}]</p>` an;
+ `nichtvorhanden` existiert im `context` gar nicht.
 Die eckigen Klammern machen sichtbar, wo der Wert stehen würde.
 Rufen Sie `http://127.0.0.1:8071/` im Browser auf: Was steht zwischen den Klammern, und wie
 unterscheidet sich dieses Verhalten von einem Zugriff auf einen nicht vorhandenen
@@ -231,9 +231,9 @@ anstelle der rohen Werte, und welcher Filter ist jeweils verantwortlich?
 
 `upper`, `default` und `yesno` sind nur drei von vielen eingebauten Filtern.
 
-[EQ] Lesen Sie die vollständige Liste in der
+[EQ] Überfliegen Sie die vollständige Liste in der
 [Django-Doku zu Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-filter-reference)
-durch (Abschnitt "Built-in filter reference").
+(Abschnitt "Built-in filter reference").
 Welchen Filter finden Sie dort am nützlichsten oder interessantesten, und warum?
 <!-- time estimate: 10 min -->
 
@@ -248,7 +248,7 @@ einzubinden: An welchen Stellen müssten Sie die Änderung vornehmen?
 
 Template-Vererbung löst genau dieses Problem: Ein **Basis-Template** definiert die
 gemeinsame Struktur und markiert mit `{% block %}` die Stellen, die einzelne Seiten füllen.
-Ein **Kind-Template** übernimmt die Struktur mit `{% extends %}` und überschreibt nur die
+Ein **Kind-Template** übernimmt die Struktur mit `{% extends %}` und überschreibt
 Blöcke, nach folgendem Schema:
 
 ```html
@@ -263,7 +263,7 @@ Blöcke, nach folgendem Schema:
 ```
 
 Das vollständige Basis-Template mit Kopf- und Fußbereich ist hier vorgegeben; es verwendet
-semantische HTML-Elemente wie `<header>` und `<footer>` (siehe [PARTREF::html-Semantik]):
+semantische HTML-Elemente wie `<header>` und `<footer>` (siehe [PARTREF::html-Semantik]).
 
 [ER] Erstellen Sie in `webapp/templates/` die Datei `base.html`:
 
@@ -274,14 +274,12 @@ semantische HTML-Elemente wie `<header>` und `<footer>` (siehe [PARTREF::html-Se
 Ihren bisherigen `<body>`-Inhalt (Überschrift, Bedingungsblock mit Hobbys) in einen Block
 `content`.
 Stufen Sie dabei die Überschrift `<h1>{{ greeting }}</h1>` zu `<h2>{{ greeting }}</h2>`
-herab: Das `<h1>` der Seite kommt jetzt aus `base.html`, ein zweites `<h1>` wäre nicht mehr
-korrekt.
+herab: Das (einzige) `<h1>` der Seite kommt jetzt aus `base.html`.
 Stufen Sie auch die Unterüberschrift `<h2>Ihre Hobbys:</h2>` zu `<h3>Ihre Hobbys:</h3>` herab,
-damit sie weiterhin der (jetzt eine Ebene tieferen) Überschrift des Inhaltsblocks
-untergeordnet bleibt.
+damit sie `<h2>{{ greeting }}</h2>` weiterhin untergeordnet bleibt.
 
 [ER] Wandeln Sie `students_list.html` auf dieselbe Weise in ein Kind-Template um: Stufen Sie
-dabei ebenso die Überschrift `<h1>Alle Studierenden</h1>` zu `<h2>Alle Studierenden</h2>`
+dabei ebenso die Überschrift `<h1>` zu `<h2>`
 herab, und überschreiben Sie zusätzlich `{% block title %}` mit "Studierendenliste".
 
 [HINT::Wie hängen die Blocknamen in `base.html` und den Kind-Templates zusammen?]
@@ -292,7 +290,7 @@ weglassen), behalten den Inhalt aus `base.html` als Standard.
 Sie füllen also nur die Blöcke, die sich pro Seite unterscheiden.
 [ENDHINT]
 
-[EC] Sehen Sie sich den Quelltext beider Seiten an:
+[EC] Sehen Sie sich den resultierenden HTML-Text beider Seiten an:
 
 ```bash
 curl -s http://127.0.0.1:8071/
@@ -348,13 +346,14 @@ wenn ein Kind-Template selbst ein `{% static %}` verwenden wollte?
 Damit Nutzer zwischen den Seiten wechseln können, braucht `base.html` eine Navigation:
 das semantische Element `<nav>` markiert einen Block mit Navigationslinks.
 Für die Links verwenden Sie nicht fest codierte Pfade wie `href="/students/"`, sondern das
-`{% url %}`-Tag mit dem Routennamen; das ist die Template-Seite derselben namensbasierten
-Auflösung, deren Python-Seite (`reverse()`) Sie in [PARTREF::django-view] kennengelernt
-haben, nach folgendem Schema:
+`{% url %}`-Tag mit dem Routennamen, nach folgendem Schema:
 
 ```html
 <a href="{% url 'routenname' %}">Linktext</a>
 ```
+
+Das ist die Template-Seite derselben namensbasierten Auflösung, deren Python-Seite
+(`reverse()`) Sie in [PARTREF::django-view] kennengelernt haben.
 
 [ER] Erweitern Sie `base.html` um eine `<nav>` im `<header>`, die mit `{% url %}` zwei Links
 setzt: einen auf die Route `hello` mit dem Text "Start" und einen auf die Route
@@ -365,7 +364,7 @@ Deren Route `student_detail` (aus [PARTREF::django-view]) braucht allerdings ein
 `student_id`, und das obige Schema deckt nur die argumentlose Form ab.
 Wie sich einem `{% url %}`-Aufruf ein Argument mitgeben lässt, finden Sie im Abschnitt zu
 `url` der
-[Django-Doku zu Built-in template tags](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#url).
+[Django-Doku zu Built-in template tags and filters](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#url).
 
 [ER] Verlinken Sie in `students_list.html` zusätzlich jeden Studierendennamen mit `{% url %}`
 auf dessen Detailseite.
