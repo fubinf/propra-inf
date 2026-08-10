@@ -21,10 +21,11 @@ assumes: np-Einführung, np-math, py-Fstrings
 
 Viele mathematische und wissenschaftliche Probleme erfordern das Finden von Nullstellen
 nichtlinearer Gleichungen oder das Bestimmen von Minima/Maxima komplexer Funktionen.
-Während NumPy bei polynomialen und linearen Gleichungen helfen kann, sind für nichtlineare
-Probleme wie `x + cos(x) = 0` spezialisierte numerische Verfahren notwendig.
-Das SciPy-Modul `optimize` stellt dafür fertige Algorithmen bereit, sodass man sie nicht selbst
-implementieren muss.
+NumPy deckt davon nur den Spezialfall der Polynome ab.
+Transzendente Gleichungen wie `x + cos(x) = 0` haben dagegen gar keine geschlossene algebraische
+Lösung, hier hilft nur ein numerisches Näherungsverfahren.
+Das SciPy-Modul `optimize` stellt solche Verfahren fertig bereit, sodass man sie nicht selbst
+implementieren muss; sie arbeiten für beliebige nichtlineare Funktionen, Polynome eingeschlossen.
 
 [ENDSECTION]
 
@@ -33,13 +34,13 @@ implementieren muss.
 ### Vorwissen
 
 Für diese Aufgabe sind zwei Konzepte hilfreich.
-Falls Ihnen diese fehlen, helfen folgende Quellen:
+Falls sie Ihnen fehlen, vermitteln folgende Quellen sie:
 
 - [Extremwert (Wikipedia)](https://de.wikipedia.org/wiki/Extremwert): Unterschied zwischen
   lokalem und globalem Extremum — wichtig für `minimize`, da die meisten Verfahren nur lokale
   Minima finden
 - [Nullstelle (Wikipedia)](https://de.wikipedia.org/wiki/Nullstelle): warum
-  nichtlineare/transzendente Gleichungen numerische Näherungsverfahren (Newton-Verfahren u. ä.)
+  nichtlineare/transzendente Gleichungen numerische Näherungsverfahren (Newton-Verfahren u. Ä.)
   statt einer algebraischen Lösung benötigen
 
 ### Nullstellenfindung mit `scipy.optimize.root`
@@ -97,11 +98,11 @@ print(f"Lösung: x = {result.x[0]:.6f}, Funktionswert: {result.fun[0]:.2e}")
 
 [ER] Lösen Sie verschiedene nichtlineare Gleichungen mit `scipy.optimize.root`:
 
-- Finden Sie alle Nullstellen von `f(x) = x³ - 6x² + 9x - 4`, indem Sie nacheinander die
+- Finden Sie alle Nullstellen von `x³ - 6x² + 9x - 4`, indem Sie nacheinander die
   Startwerte -1, 2, 3 und 4 verwenden
 - Lösen Sie die Gleichung `x*e^x = 2` mit dem Startwert 1 (verwenden Sie `np.exp(x)`)
-- Gesucht ist die nichttriviale Lösung von `sin(x) = x/3` im Bereich [0, 3] — rufen Sie `root`
-  nacheinander mit den Startwerten -3, 1.5 und 3 auf
+- Gesucht ist die nichttriviale Lösung von `sin(x) = x/3` im Bereich [0, 3] (trivial ist `x = 0`)
+  — rufen Sie `root` nacheinander mit den Startwerten -3, 1.5 und 3 auf
 
 Geben Sie für jede Lösung die gefundene Nullstelle (6 Nachkommastellen, `:.6f`) und den
 Funktionswert an der Lösung (wissenschaftliche Notation, `:.2e`) aus, außerdem jeweils
@@ -143,8 +144,8 @@ Die vollständige Liste der Verfahren und Parameter steht in der Referenz zu
 
 **Rückgabewerte des Ergebnisobjekts:**
 
-Es trägt dieselben Feldnamen wie bei `root`; hier wird zusätzlich `result.nfev` mit der Anzahl
-der Funktionsauswertungen gebraucht.
+Die oben bei `root` genannten Felder gibt es auch hier; zusätzlich wird `result.nfev` mit der
+Anzahl der Funktionsauswertungen gebraucht.
 Ein Unterschied ist wichtig: `result.x` ist weiterhin ein Array, weil `minimize` mehrere
 Unbekannte zulässt, `result.fun` dagegen ist eine einzelne Zahl, denn eine zu minimierende
 Funktion liefert pro Punkt genau einen Wert.
@@ -217,24 +218,24 @@ print(f"Mit Bereichseinschränkung [0,2]: x={result_bounded.x:.4f}, f(x)={result
 
 [ER] Verwenden Sie `minimize_scalar` für verschiedene Aufgaben:
 
-- Minimieren Sie `f(x) = x³ - 6x² + 9x + 1` im Bereich [1, 5]
-- Rufen Sie `minimize_scalar` für dieselbe Funktion `f(x)` ein zweites Mal auf, diesmal ganz ohne
+- Minimieren Sie `p(x) = x³ - 6x² + 9x + 1` im Bereich [1, 5]
+- Rufen Sie `minimize_scalar` für dieselbe Funktion `p(x)` ein zweites Mal auf, diesmal ganz ohne
   `bounds`, und geben Sie zusätzlich `result.success` aus
-- Bestimmen Sie das Minimum von `h(x) = e^x - 2x` (verwenden Sie `np.exp`) sowohl im Bereich
+- Bestimmen Sie das Minimum von `q(x) = e^x - 2x` (verwenden Sie `np.exp`) sowohl im Bereich
   [-2, 2] als auch ganz ohne Bereichseinschränkung
 
 Geben Sie für jeden Fall `result.x` und `result.fun` aus, jeweils mit 6 Nachkommastellen (`:.6f`).
-Beim unbeschränkten Aufruf für `f(x)` verwenden Sie stattdessen wissenschaftliche Notation
+Beim unbeschränkten Aufruf für `p(x)` verwenden Sie stattdessen wissenschaftliche Notation
 (`:.2e`).
 
-[HINT::Mein Skript gibt eine Reihe von `RuntimeWarning`s aus]
+[HINT::Mein Skript gibt eine Reihe von Warnungen des Typs `RuntimeWarning` aus]
 Das ist kein Fehler in Ihrem Programm.
 SciPy meldet auf diesem Weg, dass eine Rechnung in einen numerisch extremen Bereich geraten ist;
 die Warnungen erscheinen auf der Fehlerausgabe, während die normale Ausgabe weiterläuft.
 Lassen Sie die Warnungen stehen und werten Sie die ausgegebenen Zahlen wie vorgesehen aus.
 [ENDHINT]
 
-[EQ] Vergleichen Sie für `f(x)` und für `h(x)` aus [EREFR::3] jeweils den Aufruf mit `bounds` mit
+[EQ] Vergleichen Sie für `p(x)` und für `q(x)` aus [EREFR::3] jeweils den Aufruf mit `bounds` mit
 dem ohne.
 Bei welcher der beiden Funktionen ändert sich das Ergebnis, und was am Verhalten dieser Funktion
 für `x → -∞` erklärt das?
@@ -244,8 +245,8 @@ Was folgt daraus für die Aussagekraft von `result.success`?
 
 ### Kurvenanpassung mit `scipy.optimize.curve_fit`
 
-Ein häufiger Anwendungsfall ist die Anpassung von Modellparametern an Messdaten.
-`curve_fit` passt eine Modellfunktion automatisch an Daten an.
+Ein häufiger Anwendungsfall ist die Anpassung von Modellparametern an Messdaten; genau das
+leistet `curve_fit`.
 
 ```python
 scipy.optimize.curve_fit(f, xdata, ydata, p0=None)
@@ -270,7 +271,7 @@ zwei Werten, das üblicherweise als `params, pcov` ausgepackt wird:
 
 Wer `pcov` nicht braucht, schreibt dafür den Wegwerfnamen `_`, wie im folgenden Beispiel.
 
-**Beispiel** (Lineare Funktion):
+**Beispiel** (lineare Funktion):
 ```python
 import numpy as np
 from scipy.optimize import curve_fit
@@ -309,11 +310,14 @@ Ihre Aufgaben:
   `exponential(x, a, b)` mit `a * np.exp(b*x)` an, einmal mit `p0=(1, 0.5)` und einmal wieder mit
   `p0=(-100, 100)`, und geben Sie beide Parameterpaare aus (4 Nachkommastellen, `:.4f`)
 
-[HINT::Mein Skript gibt `RuntimeWarning`s und eine `OptimizeWarning` aus]
+Das Exponentialmodell passt inhaltlich nicht zu diesen Messdaten; es dient hier nur dazu,
+dieselben beiden `p0`-Läufe an einem nichtlinearen Modell zu wiederholen.
+
+[HINT::Mein Skript gibt auch hier Warnungen des Typs `RuntimeWarning` aus]
 Auch das ist kein Programmierfehler.
-Die `OptimizeWarning` bedeutet lediglich, dass `curve_fit` die Unsicherheit der Schätzung
-(also `pcov`) nicht bestimmen konnte; die geschätzten Parameter werden trotzdem zurückgegeben.
-Geben Sie sie wie vorgesehen aus.
+Die Warnungen zeigen an, dass eine Zwischenrechnung übergelaufen ist; als Folge davon kann
+`curve_fit` die Unsicherheit der Schätzung (also `pcov`) nicht mehr sinnvoll bestimmen.
+Die geschätzten Parameter werden trotzdem zurückgegeben, geben Sie sie wie vorgesehen aus.
 [ENDHINT]
 
 [EQ] Vergleichen Sie in [EREFR::4] für beide Modelle jeweils den Lauf mit gutem und den mit
