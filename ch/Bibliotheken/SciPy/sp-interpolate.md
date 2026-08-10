@@ -51,17 +51,17 @@ Grades und `CubicSpline` speziell für kubische Splines.
 
 [NOTICE]
 Viele Tutorials im Netz benutzen stattdessen `interp1d` oder `splrep`/`splev`.
-Das sind die älteren Schnittstellen von SciPy, die inzwischen als legacy gelten und für neuen Code
-nicht mehr empfohlen werden.
-Diese Aufgabe verwendet durchgehend die aktuellen Schnittstellen; `make_splrep` aus dem zweiten
-Abschnitt gibt es erst ab SciPy 1.15.
+Das sind die älteren Schnittstellen von SciPy, die inzwischen als "legacy" gelten und für neuen
+Code nicht mehr empfohlen werden.
+Diese Aufgabe verwendet durchgehend die aktuellen Schnittstellen; `make_splrep` weiter unten gibt
+es erst ab SciPy 1.15.
 [ENDNOTICE]
 
 Die Signaturen in dieser Aufgabe zeigen jeweils nur die hier benötigten Parameter, nicht die
 vollständige Parameterliste; die optionalen Parameter sind deshalb stets als
-Schlüsselwortargument zu übergeben.
+Schlüsselwortargumente zu übergeben.
 
-`make_interp_spline` erzeugt einen interpolierenden B-Spline vom Grad `k`:
+`make_interp_spline` erzeugt einen interpolierenden Spline vom Grad `k`:
 
 ```python
 scipy.interpolate.make_interp_spline(x, y, k=3)
@@ -103,8 +103,8 @@ linear = make_interp_spline(x, y, k=1)   # lineare Interpolation
 kubisch = CubicSpline(x, y)              # kubische Interpolation
 
 x_neu = np.array([0.5, 1.5, 2.5])
-print("Linear: ", linear(x_neu))
-print("Kubisch:", kubisch(x_neu))
+print("Linear: ", np.round(linear(x_neu), 3))
+print("Kubisch:", np.round(kubisch(x_neu), 3))
 ```
 
 Geben Sie Zahlen in dieser Aufgabe stets mit fester Nachkommastellenzahl aus:
@@ -189,9 +189,9 @@ print("Glatt:", np.round(glatt(x), 4))
   Sie je die größte Abweichung von `np.sin` aus, also von der wahren Funktion
   (4 Nachkommastellen)
 
-[EQ] Die beiden Vergleiche aus [EREFR::2] fallen gegenläufig aus: Gegenüber den Messwerten liegt
-`s=0` vorn, gegenüber der wahren Funktion dagegen `s=0.5`.
-Erklären Sie, wie das zusammenpasst.
+[EQ] Stellen Sie die vier Abweichungen aus [EREFR::2] nebeneinander.
+Welches der beiden Verfahren liegt gegenüber den Messwerten vorn, welches gegenüber der wahren
+Funktion, und wie passt das zusammen?
 Was folgt daraus für den Versuch, die Güte einer Interpolation an ihrer Abweichung von den
 Messwerten abzulesen?
 
@@ -288,6 +288,9 @@ Welche Methode geeignet ist, hängt von den Daten und dem Ziel ab:
 | `make_splrep` (`s>0`) | glättet, geht nicht mehr exakt durch die Punkte | verrauschte Messdaten |
 | `RBFInterpolator` | flexibel, auch mehrdimensional/unregelmäßig | Streudaten, höhere Dimensionen |
 
+`make_interp_spline` steht in der Tabelle stellvertretend für die lineare Interpolation; mit `k=3`
+liefert es dieselbe Kurve wie `CubicSpline`.
+
 [ER] Vergleichen Sie die Verfahren an der Sinusfunktion:
 
 - Erzeugen Sie mit `np.linspace` 9 gleichmäßig verteilte Stützstellen `x` von 0 bis 2π und
@@ -295,7 +298,7 @@ Welche Methode geeignet ist, hängt von den Daten und dem Ziel ab:
 - Interpolieren Sie diese Daten mit allen vier Verfahren (`make_interp_spline` mit `k=1`,
   `CubicSpline`, `make_splrep` mit `s=0`, `RBFInterpolator` mit `'thin_plate_spline'` — denken
   Sie an `reshape(-1, 1)` für die Koordinaten, siehe [EREFR::3]) und nennen Sie die vier Objekte
-  `linear`, `kubisch`, `splrep` und `rbf`
+  `linear`, `kubisch`, `splrep_spline` und `rbf`
 - Werten Sie alle vier an den Zwischenstellen `x_test` mit den Werten `[1.0, 2.5, 4.0, 5.5]` aus
   und vergleichen Sie mit den wahren Sinuswerten an diesen Stellen (4 Nachkommastellen)
 - Bestimmen Sie für jedes Verfahren den maximalen Betrag des Fehlers (4 Nachkommastellen) auf
@@ -315,7 +318,7 @@ print(f"linear: {np.max(np.abs(linear(x_fein) - np.sin(x_fein))):.4f}")
 - Welche beiden Verfahren liefern identische Ergebnisse, und warum?
 - Bei den Daten aus [EREFR::2] war die wahre Funktion ausnahmsweise bekannt, in der Praxis ist sie
   das fast nie.
-  Woran ließe sich dort entscheiden, welches Verfahren geeignet ist?
+  Woran ließe sich ohne diese Kenntnis entscheiden, welches Verfahren geeignet ist?
 
 <!-- time estimate: 30 min -->
 
@@ -324,7 +327,7 @@ print(f"linear: {np.max(np.abs(linear(x_fein) - np.sin(x_fein))):.4f}")
 - [1-D interpolation (SciPy)](https://docs.scipy.org/doc/scipy/tutorial/interpolate/1D.html):
   Überblick über die eindimensionalen Interpolationsverfahren
 - [make_interp_spline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_interp_spline.html):
-  Referenz zur B-Spline-Interpolation
+  Referenz zur Spline-Interpolation beliebigen Grades
 - [CubicSpline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html):
   Referenz zu kubischen Splines, inklusive der möglichen Randbedingungen
 - [make_splrep](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_splrep.html):
