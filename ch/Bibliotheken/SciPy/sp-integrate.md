@@ -1,6 +1,6 @@
 title: SciPy Numerische Integration und Differentialgleichungen verstehen und anwenden
 stage: alpha
-timevalue: 2.0
+timevalue: 1.5
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array2, np-math, py-Fstrings
@@ -27,8 +27,8 @@ diese Näherung ist.
 
 ### Vorwissen
 
-Für diese Aufgabe werden folgende Konzepte benötigt.
-Falls Ihnen diese fehlen, helfen folgende Quellen:
+Diese Aufgabe setzt zwei Konzepte voraus.
+Falls sie fehlen, helfen diese Quellen:
 
 - [Numerische Integration (Wikipedia)](https://de.wikipedia.org/wiki/Numerische_Integration):
   wann sich eine Stammfunktion nicht durch elementare Funktionen ausdrücken lässt und wie
@@ -122,7 +122,7 @@ print(f"Standard: result = {result:.6f}, error = {error:.2e}")
 
 Der Aufruf gibt zusätzlich eine `IntegrationWarning` aus
 ("The integral is probably divergent, or slowly convergent").
-Sobald `limit` erhöht wird, wechselt der Text dieser Warnung zu
+Sobald `limit` weit genug erhöht wird, wechselt der Text dieser Warnung zu
 "The maximum number of subdivisions (N) has been achieved" und benennt damit direkt, woran es
 noch fehlt.
 
@@ -130,18 +130,25 @@ noch fehlt.
 Rufen Sie das Integral zweimal auf, einmal mit der Voreinstellung und einmal mit einem so großen
 `limit`, dass `error` mehrere Zehnerpotenzen unter `result` liegt und die `IntegrationWarning`
 ausbleibt.
-Geben Sie für beide Läufe `result` und `error` aus, formatiert wie in [EREFR::1], und halten Sie
-fest, welchen `limit`-Wert Sie dafür gebraucht haben.
+Geben Sie für beide Läufe `result` und `error` aus, formatiert wie in [EREFR::1].
+
+[HINT::Ich habe die Toleranzen gelockert, aber es ändert sich nichts]
+`epsabs` und `epsrel` legen fest, wie genau das Ergebnis werden soll, nicht, wie viel Arbeit
+`quad` dafür aufwenden darf.
+Beide zu lockern ändert hier weder `result` noch `error` noch die Warnung, denn die Zerlegung
+scheitert nicht an der geforderten Genauigkeit, sondern an der Zahl der erlaubten Teilintervalle.
+Diese Schranke hebt nur `limit` an.
+[ENDHINT]
 
 Der exakte Wert dieses Integrals ist gerundet `0.013675`;
-das Ergebnis mit der Voreinstellung ist also rund 14-mal zu groß.
+das Ergebnis mit der Voreinstellung ist also rund 14-mal so groß.
 
 [EQ] Stellen Sie Ihre drei `error`-Werte aus [EREFR::1] neben die beiden aus [EREFR::2] und nehmen
 Sie an, Sie kennten keinen der analytischen Werte.
 Woran würden Sie in jedem der fünf Fälle allein anhand der Rückgabewerte erkennen, ob `result`
 vertrauenswürdig ist?
 
-<!-- time estimate: 30 min -->
+<!-- time estimate: 25 min -->
 
 ### Parametrisierte Integrale mit `args`
 
@@ -176,8 +183,8 @@ Geben Sie für jedes Integral Ergebnis, Fehler und Abweichung aus, formatiert wi
 
 [EQ] Was müssten Sie an Ihrem Code für `k=5`, `k=7` und `k=9` ändern, wenn `k` fest im
 Funktionskörper stünde (etwa `np.sin(5 * x)`) statt über `args` übergeben zu werden?
-Begründen Sie damit, warum der Aufwand für zwanzig statt drei `k`-Werte in der einen Variante
-gleich bleibt und in der anderen mitwächst.
+Wie viele Stellen wären in beiden Varianten zu ändern, wenn statt drei `k`-Werten zwanzig zu
+rechnen wären?
 
 <!-- time estimate: 25 min -->
 
@@ -197,13 +204,14 @@ scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None
 - `fun`: die Funktion `f(t, y)`, die die Ableitung definiert
 - `t_span`: Tupel `(t_start, t_end)` für den Zeitbereich
 - `y0`: Anfangswerte als Liste oder Array
-- `method` (Standard `'RK45'`): Lösungsverfahren (weitere: `'RK23'`, `'DOP853'`, ...)
+- `method` (Standard `'RK45'`): Lösungsverfahren (weitere: `'RK23'`, `'DOP853'`, ...);
+  `RK23`, `RK45` und `DOP853` sind Runge-Kutta-Verfahren aufsteigender Ordnung
 - `t_eval` (Standard `None`, dann wählt der Solver selbst Zeitpunkte): spezifische Zeitpunkte
   für die Ausgabe
 - `args` (Standard `None`): zusätzliche Parameter für `fun`, hier strenger als bei `quad` — nur ein
   Tupel wird akzeptiert, ein einzelner Wert ohne Komma führt zu einem `TypeError`
 - `rtol` (Standard `1e-3`): relative Fehlertoleranz, die der Solver pro Schritt einzuhalten
-  versucht
+  versucht; gehört zu den `**options` und steht in der Referenz deshalb im Abschnitt "Options"
 
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.integrate.solve_ivp`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html).
@@ -250,8 +258,8 @@ print(f"Werte: {sol.y[0]}")
 `solve_ivp` behandelt jedes Problem als System von Gleichungen, auch wenn es wie hier nur eine
 einzige gibt.
 Deshalb ist `y0` eine Liste, deshalb ist `y` innerhalb von `fun` ein Array mit dem Wert in `y[0]`,
-und deshalb steht die Lösung in `sol.y[0]`; der Rückgabewert von `fun` ist hier passend dazu
-ebenfalls als Liste geschrieben.
+und deshalb steht die Lösung in `sol.y[0]`.
+Der Rückgabewert von `fun` ist hier passend dazu ebenfalls als Liste geschrieben.
 
 Die exakten Werte lauten `10.000000`, `2.865048`, `0.820850`, `0.235177`, `0.067379`.
 Dass die Lösung schon in der dritten Nachkommastelle abweicht, ist kein Fehler, sondern eine Folge
@@ -272,7 +280,7 @@ die Ergebnisse über `sol.t` und `sol.y` aus.
 Geben Sie je Lösung `sol.success` aus sowie je Zeitpunkt den Wert und die Abweichung von der
 analytischen Lösung, formatiert wie in [EREFR::1].
 
-<!-- time estimate: 30 min -->
+<!-- time estimate: 20 min -->
 
 ### Verfahren und Toleranzen vergleichen
 
@@ -293,7 +301,7 @@ Anforderung gegenüber.
 Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und was sagt
 `sol.success` demnach über die Genauigkeit einer Lösung aus?
 
-<!-- time estimate: 35 min -->
+<!-- time estimate: 20 min -->
 
 ### Weiterführend
 
