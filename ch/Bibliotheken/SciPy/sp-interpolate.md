@@ -10,6 +10,7 @@ assumes: np-Einführung, np-array, np-array2, np-math, py-Fstrings
 
 - Ich kann eindimensionale Interpolation mit den aktuellen SciPy-Funktionen durchführen.
 - Ich kann den Übergang zwischen exakter Interpolation und Glättung gezielt steuern.
+- Ich kann Streudaten auch in mehr als einer Dimension interpolieren.
 - Ich kann verschiedene Interpolationsverfahren vergleichen und für gegebene Daten
   ein geeignetes auswählen.
 
@@ -56,6 +57,10 @@ Diese Aufgabe verwendet durchgehend die aktuellen Schnittstellen; `make_splrep` 
 Abschnitt gibt es erst ab SciPy 1.15.
 [ENDNOTICE]
 
+Die Signaturen in dieser Aufgabe zeigen jeweils nur die hier benötigten Parameter, nicht die
+vollständige Parameterliste; die optionalen Parameter sind deshalb stets als
+Schlüsselwortargument zu übergeben.
+
 `make_interp_spline` erzeugt einen interpolierenden B-Spline vom Grad `k`:
 
 ```python
@@ -84,8 +89,7 @@ Der Rückgabewert ist wie bei `make_interp_spline` ein aufrufbares Objekt.
 
 Mit `k=3` liefert `make_interp_spline` denselben Spline wie `CubicSpline`.
 Die Arbeitsteilung ist also: `make_interp_spline` beherrscht beliebige Grade, `CubicSpline` bietet
-dafür die Wahl der Randbedingung sowie `roots()` und `solve()`, um zu einem Funktionswert die
-zugehörigen x-Stellen zu finden.
+dafür `roots()` und `solve()`, um zu einem Funktionswert die zugehörigen x-Stellen zu finden.
 
 **Beispiel:**
 ```python
@@ -104,21 +108,22 @@ print("Kubisch:", kubisch(x_neu))
 ```
 
 Geben Sie Zahlen in dieser Aufgabe stets mit fester Nachkommastellenzahl aus:
-einzelne Werte mit einer f-String-Formatierung (in [PARTREF::py-Fstrings]), z. B. `:.3f`,
+einzelne Werte mit einer f-String-Formatierung (siehe [PARTREF::py-Fstrings]), z. B. `:.3f`,
 ganze Arrays mit `np.round(array, 3)`.
 
 [ER] Führen Sie eine eindimensionale Interpolation durch:
 
 - Erstellen Sie die Datenpunkte `x` mit den Werten `[0, 1, 2, 3, 4, 5]` und `y` mit den Werten
   `[1, 3, 2, 6, 5, 8]`
-- Erzeugen Sie mit `make_interp_spline` (`k=1`) eine lineare Interpolation
-- Erzeugen Sie mit `CubicSpline` eine kubische Interpolation
+- Erzeugen Sie mit `make_interp_spline` (`k=1`) eine lineare Interpolation und nennen Sie sie
+  `linear`
+- Erzeugen Sie mit `CubicSpline` eine kubische Interpolation und nennen Sie sie `kubisch`
 - Berechnen Sie mit beiden die Werte an den Stellen `x_neu` mit den Werten
   `[0.5, 1.5, 2.5, 3.5, 4.5]` und legen Sie sie in `y_linear` und `y_kubisch` ab
 - Geben Sie für jede Stelle beide Werte und ihre Differenz aus (3 Nachkommastellen)
 
 [HINT::Wie bekomme ich beide Werte nebeneinander in eine Zeile?]
-Lässt sich z. B. als Tabelle gestalten:
+Das lässt sich z. B. als Tabelle gestalten:
 ```python
 [SNIPPET::ALT::sp_interpolate_tabellenausgabe]
 ```
@@ -224,13 +229,13 @@ from scipy.interpolate import RBFInterpolator
 import numpy as np
 
 x = np.array([0, 1, 2, 3, 4])
-d = np.array([0, 1, 4, 9, 16])
+y = np.array([0, 1, 4, 9, 16])
 
 # 1D-Daten in die Form (n, 1) bringen
-rbf = RBFInterpolator(x.reshape(-1, 1), d)
+rbf = RBFInterpolator(x.reshape(-1, 1), y)
 
 x_neu = np.array([0.5, 1.5, 2.5]).reshape(-1, 1)
-print("RBF:", rbf(x_neu))
+print("RBF:", np.round(rbf(x_neu), 3))
 ```
 
 Einige Kernel (z. B. `'linear'`, `'cubic'`, `'thin_plate_spline'`) funktionieren ohne weitere
@@ -244,15 +249,16 @@ welcher Kernel welchen braucht, steht in der
 - Erstellen Sie die Datenpunkte `x` mit den Werten `[0, 2, 4, 6, 8, 10]` und `y` mit den Werten
   `[1, 8, 12, 7, 15, 20]`
 - Bringen Sie `x` mit `reshape(-1, 1)` in die passende Form
-- Erzeugen Sie drei Interpolatoren mit den Kerneln `'thin_plate_spline'`, `'linear'` und `'cubic'`
+- Erzeugen Sie drei Interpolatoren `rbf_tp`, `rbf_lin` und `rbf_cub` mit den Kerneln
+  `'thin_plate_spline'`, `'linear'` und `'cubic'`
 - Berechnen Sie für alle drei die Werte an den Stellen `x_test` mit den Werten `[1, 3, 5, 7, 9]`
   und legen Sie sie in `y_tp`, `y_lin` und `y_cub` ab
 - Geben Sie die Ergebnisse als Tabelle aus (3 Nachkommastellen)
 - Interpolieren Sie anschließend auf dieselbe Weise zweidimensional: Legen Sie die Koordinaten
   `punkte = np.array([[0, 0], [1, 0], [0, 1], [1, 1], [0.5, 0.5], [2, 1]])` und die zugehörigen
   Datenwerte `werte = np.array([0.0, 1.0, 1.0, 2.0, 1.2, 3.0])` an, erzeugen Sie damit einen
-  `RBFInterpolator` und werten Sie ihn an den Stellen `[[0.25, 0.25], [0.75, 0.75], [1.5, 0.5]]`
-  aus (3 Nachkommastellen)
+  `RBFInterpolator` namens `rbf_2d` und werten Sie ihn an den Stellen
+  `[[0.25, 0.25], [0.75, 0.75], [1.5, 0.5]]` aus (3 Nachkommastellen)
 
 [HINT::Wie vergleiche ich drei Kernel in einer Tabelle?]
 Auch hier lässt sich die Ausgabe als Tabelle gestalten:
@@ -265,7 +271,8 @@ Auch hier lässt sich die Ausgabe als Tabelle gestalten:
 Form der Koordinaten-Arrays hat sich nichts geändert.
 Erklären Sie von dieser Beobachtung ausgehend, warum `RBFInterpolator` die Koordinaten auch bei
 eindimensionalen Daten als 2D-Array verlangt.
-Warum ließe sich `make_interp_spline` nicht ebenso einfach auf zwei Dimensionen übertragen?
+Warum ließe sich `make_interp_spline` nicht ebenso einfach auf zweidimensionale Koordinaten
+übertragen?
 
 <!-- time estimate: 30 min -->
 
