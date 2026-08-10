@@ -1,6 +1,6 @@
 title: SciPy Interpolation verstehen und anwenden
 stage: alpha
-timevalue: 1.75
+timevalue: 2.0
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array, np-array2, np-math, py-Fstrings
@@ -19,7 +19,7 @@ assumes: np-Einführung, np-array, np-array2, np-math, py-Fstrings
 [SECTION::background::default]
 
 Beim Arbeiten mit Messdaten liegen oft nur einzelne, diskrete Punkte vor, man braucht aber
-Werte dazwischen — etwa um Lücken in einer Messreihe zu füllen oder aus diskreten Beobachtungen
+Werte dazwischen — etwa um Lücken in einer Messreihe zu füllen oder aus den Messpunkten
 eine durchgehende Kurve zu gewinnen.
 SciPy stellt dafür mehrere Interpolationsverfahren bereit.
 
@@ -60,8 +60,9 @@ Diese Aufgabe verwendet durchgehend die aktuellen Schnittstellen.
 
 Die Signaturen in dieser Aufgabe zeigen jeweils nur die hier benötigten Parameter, nicht die
 vollständige Parameterliste.
-Weggelassene Parameter können in der echten Signatur vor den gezeigten stehen; die optionalen
-Parameter sind deshalb stets als Schlüsselwortargumente zu übergeben.
+Weggelassene Parameter können in der echten Signatur vor den gezeigten stehen; bei `CubicSpline`
+etwa steht `axis` vor `bc_type`.
+Die optionalen Parameter sind deshalb stets als Schlüsselwortargumente zu übergeben.
 
 `make_interp_spline` erzeugt einen interpolierenden Spline vom Grad `k`:
 
@@ -91,9 +92,10 @@ scipy.interpolate.CubicSpline(x, y, bc_type='not-a-knot')
 Der Rückgabewert ist wie bei `make_interp_spline` ein aufrufbares Objekt.
 
 Mit `k=3` liefert `make_interp_spline` denselben Spline wie `CubicSpline`.
-Die Arbeitsteilung ist also: `make_interp_spline` beherrscht beliebige Grade, `CubicSpline` bietet
-dafür `solve(y)` und dessen Sonderfall `roots()`, die den umgekehrten Weg gehen und zu einem
-Funktionswert die zugehörigen x-Stellen liefern.
+Die beiden unterscheiden sich also nicht im Ergebnis, sondern im Funktionsumfang:
+`make_interp_spline` beherrscht beliebige Grade, `CubicSpline` bietet dafür `solve(y)` und dessen
+Sonderfall `roots()`, die den umgekehrten Weg gehen und zu einem Funktionswert die zugehörigen
+x-Stellen liefern.
 
 **Beispiel:**
 ```python
@@ -113,8 +115,9 @@ print("Kubisch:", np.round(kubisch(x_neu), 3))
 
 Die kubische Interpolation trifft hier die zugrunde liegende Funktion exakt: die Ausgabe `0.25`,
 `2.25`, `6.25` ist genau `0.5²`, `1.5²`, `2.5²`.
-Das gilt, weil ein kubischer Spline ein Polynom zweiten Grades exakt wiedergeben kann; die lineare
-Interpolation liegt dagegen an jeder der drei Stellen um 0.25 daneben.
+Das gilt, weil ein kubischer Spline mit der Standard-Randbedingung `'not-a-knot'` ein Polynom
+zweiten Grades exakt wiedergibt; die lineare Interpolation liegt dagegen an jeder der drei Stellen
+um 0.25 daneben.
 
 Geben Sie Zahlen in dieser Aufgabe stets mit fester Nachkommastellenzahl aus:
 einzelne Werte mit einer f-String-Formatierung (siehe [PARTREF::py-Fstrings]), z. B. `:.3f`,
@@ -129,7 +132,7 @@ ganze Arrays mit `np.round(array, 3)`.
 - Erzeugen Sie mit `CubicSpline` eine kubische Interpolation und nennen Sie sie `kubisch`
 - Berechnen Sie mit beiden die Werte an den Stellen `x_neu` mit den Werten
   `[0.5, 1.5, 2.5, 3.5, 4.5]` und legen Sie sie in `y_linear` und `y_kubisch` ab
-- Geben Sie für jede Stelle beide Werte und ihre Differenz aus (3 Nachkommastellen)
+- Geben Sie für jede Stelle beide Werte und den Betrag ihrer Differenz aus (3 Nachkommastellen)
 - Gehen Sie zum Schluss den umgekehrten Weg und bestimmen Sie mit `kubisch.solve(4)`, an welchen
   Stellen die kubische Interpolation den Wert 4 annimmt (3 Nachkommastellen); Ihre Tabelle sagt
   Ihnen bereits ungefähr, wo dieser Wert zu erwarten ist
@@ -146,7 +149,7 @@ An welchen Stellen sind sie am größten, und warum?
 Nennen Sie je eine Situation, in der die lineare bzw. die kubische Interpolation die bessere Wahl
 ist.
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 30 min -->
 
 ### Glättende Splines: `make_splrep`
 
@@ -168,6 +171,13 @@ scipy.interpolate.make_splrep(x, y, *, k=3, s=0)
 Der Stern in der Signatur bedeutet, dass `k` und `s` nur als Schlüsselwortargumente übergeben
 werden dürfen; `make_splrep(x, y, 3, 0)` scheitert mit einem `TypeError`.
 Der Rückgabewert ist wieder ein aufrufbares Objekt.
+
+`s` ist kein dimensionsloser Regler zwischen 0 und 1, sondern eine Schranke für eine Summe von
+Quadraten; der brauchbare Bereich hängt deshalb von der Punktzahl und der Streuung der Daten ab.
+Als grobe Größenordnung taugt "Anzahl der Punkte mal Quadrat der typischen Streuung", bei
+20 Punkten mit einer Streuung von rund 0.1 also 20 · 0.1² = 0.2.
+Welchen Bereich SciPy empfiehlt und wie er von den Gewichten abhängt, steht beim Parameter `s` in
+der [Referenz zu `make_splrep`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_splrep.html).
 
 **Beispiel:**
 ```python
@@ -285,8 +295,9 @@ Erklären Sie von dieser Beobachtung ausgehend, warum `RBFInterpolator` die Koor
 eindimensionalen Daten als 2D-Array verlangt.
 Warum ließe sich `make_interp_spline` nicht ebenso einfach auf zweidimensionale Koordinaten
 übertragen?
+Sehen Sie sich dazu noch einmal an, welche Anforderung dort an `x` gestellt wird.
 
-<!-- time estimate: 30 min -->
+<!-- time estimate: 35 min -->
 
 ### Interpolationsverfahren vergleichen und auswählen
 
