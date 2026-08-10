@@ -1,6 +1,6 @@
 title: SciPy Interpolation verstehen und anwenden
 stage: alpha
-timevalue: 1.5
+timevalue: 1.75
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array, np-array2, np-math, py-Fstrings
@@ -28,8 +28,8 @@ SciPy stellt dafür mehrere Interpolationsverfahren bereit.
 
 ### Vorwissen
 
-Für diese Aufgabe ist das Konzept der numerischen Interpolation hilfreich sowie Grundbegriffe
-der Analysis (Polynome, Stetigkeit, stückweise definierte Funktionen); für den letzten Abschnitt
+Für diese Aufgabe sind das Konzept der numerischen Interpolation und Grundbegriffe der Analysis
+(Polynome, Stetigkeit, stückweise definierte Funktionen) hilfreich; für den RBF-Abschnitt
 zusätzlich das Konzept der radialen Basisfunktionen.
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
@@ -76,7 +76,16 @@ scipy.interpolate.CubicSpline(x, y, bc_type='not-a-knot')
 ```
 
 - `x`, `y`: die Datenpunkte
-- `bc_type` (Standard `'not-a-knot'`): Randbedingung an den Enden des Intervalls
+- `bc_type` (Standard `'not-a-knot'`): Randbedingung an den Enden des Intervalls;
+  `'not-a-knot'` bedeutet, dass die äußersten inneren Knoten entfallen und ein Randstück daher mit
+  seinem Nachbarstück ein einziges Polynom bildet
+
+Der Rückgabewert ist wie bei `make_interp_spline` ein aufrufbares Objekt.
+
+Mit `k=3` liefert `make_interp_spline` denselben Spline wie `CubicSpline`.
+Die Arbeitsteilung ist also: `make_interp_spline` beherrscht beliebige Grade, `CubicSpline` bietet
+dafür die Wahl der Randbedingung sowie `roots()` und `solve()`, um zu einem Funktionswert die
+zugehörigen x-Stellen zu finden.
 
 **Beispiel:**
 ```python
@@ -135,7 +144,8 @@ scipy.interpolate.make_splrep(x, y, *, k=3, s=0)
 
 - `x`, `y`: die Datenpunkte
 - `k` (Standard `3`): Grad des Splines
-- `s` (Standard `0`): Glättungsparameter — `s=0` erzwingt exakte Interpolation durch alle Punkte,
+- `s` (Standard `0`): Glättungsparameter — er begrenzt die Summe der quadrierten Abweichungen
+  zwischen Spline und Datenpunkten; `s=0` erzwingt exakte Interpolation durch alle Punkte,
   größere Werte erlauben eine glattere Kurve, die die Punkte nur noch annähert
 
 Der Stern in der Signatur bedeutet, dass `k` und `s` nur als Schlüsselwortargumente übergeben
@@ -159,23 +169,28 @@ print("Exakt:", np.round(exakt(x), 4))
 print("Glatt:", np.round(glatt(x), 4))
 ```
 
-[ER] Untersuchen Sie den Glättungseffekt mit den folgenden (leicht verrauschten) Daten:
+[ER] Untersuchen Sie den Glättungseffekt an verrauschten Messwerten einer bekannten Funktion:
 
 - Erstellen Sie mit `np.linspace` 11 gleichmäßig verteilte Stützstellen `x` von 0 bis 10
 - Erstellen Sie `y` mit den Werten
-  `[0.05, 0.90, 0.85, 0.20, -0.70, -1.00, -0.20, 0.70, 0.95, 0.35, -0.60]`
-- Erzeugen Sie eine exakte Spline-Interpolation (`s=0`)
-- Erzeugen Sie eine geglättete Spline-Interpolation (`s=1.0`)
-- Werten Sie beide Splines an den ursprünglichen Stützstellen `x` aus und vergleichen Sie das
-  Ergebnis mit den ursprünglichen `y`-Werten
-- Geben Sie zusätzlich für beide Splines die größte auftretende Abweichung von den `y`-Werten aus
+  `[0.01, 0.92, 0.96, -0.08, -1.05, -0.87, -0.17, 1.13, 0.84, 0.51, -0.50]`;
+  das sind verrauschte Messwerte von `sin(x)`, die wahre Funktion ist hier also ausnahmsweise
+  bekannt
+- Erzeugen Sie eine exakte Spline-Interpolation (`s=0`) und nennen Sie sie `exakt`
+- Erzeugen Sie eine geglättete Spline-Interpolation (`s=0.5`) und nennen Sie sie `glatt`
+- Werten Sie beide Splines an den Stützstellen `x` aus und geben Sie je die größte Abweichung von
+  den gemessenen `y`-Werten aus (4 Nachkommastellen)
+- Werten Sie beide Splines außerdem auf dem feinen Gitter `np.linspace(0, 10, 200)` aus und geben
+  Sie je die größte Abweichung von `np.sin` aus, also von der wahren Funktion
   (4 Nachkommastellen)
 
-[EQ] Vergleichen Sie in [EREFR::2] die Ergebnisse für `s=0` und `s=1.0`.
-Welchen Effekt hat der Glättungsparameter auf die Kurve?
-In welcher Situation ist Glättung sinnvoll und wann würden Sie `s=0` bevorzugen?
+[EQ] Die beiden Vergleiche aus [EREFR::2] fallen gegenläufig aus: Gegenüber den Messwerten liegt
+`s=0` vorn, gegenüber der wahren Funktion dagegen `s=0.5`.
+Erklären Sie, wie das zusammenpasst.
+Was folgt daraus für den Versuch, die Güte einer Interpolation an ihrer Abweichung von den
+Messwerten abzulesen?
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Radiale Basisfunktionen: `RBFInterpolator`
 
@@ -193,11 +208,14 @@ scipy.interpolate.RBFInterpolator(y, d, smoothing=0.0, kernel='thin_plate_spline
 - `smoothing` (Standard `0.0`): Glättung; `0` interpoliert exakt durch alle Punkte
 - `kernel` (Standard `'thin_plate_spline'`): die verwendete radiale Basisfunktion
 
+In dieser Aufgabe bleibt es bei der gewohnten Benennung: `x` sind die Koordinaten, `y` sind die
+Datenwerte.
+
 [NOTICE]
 `RBFInterpolator` erwartet die Koordinaten **immer als 2D-Array**, auch bei eindimensionalen Daten.
 Ein 1D-Array `x` muss also mit `x.reshape(-1, 1)` in die Form `(n, 1)` gebracht werden — sowohl
 beim Erstellen als auch beim Auswerten.
-Ohne diese Umformung erhalten Sie einen Fehler.
+Ohne diese Umformung scheitert der Aufruf mit einem `ValueError`.
 [ENDNOTICE]
 
 **Beispiel:**
@@ -230,6 +248,11 @@ welcher Kernel welchen braucht, steht in der
 - Berechnen Sie für alle drei die Werte an den Stellen `x_test` mit den Werten `[1, 3, 5, 7, 9]`
   und legen Sie sie in `y_tp`, `y_lin` und `y_cub` ab
 - Geben Sie die Ergebnisse als Tabelle aus (3 Nachkommastellen)
+- Interpolieren Sie anschließend auf dieselbe Weise zweidimensional: Legen Sie die Koordinaten
+  `punkte = np.array([[0, 0], [1, 0], [0, 1], [1, 1], [0.5, 0.5], [2, 1]])` und die zugehörigen
+  Datenwerte `werte = np.array([0.0, 1.0, 1.0, 2.0, 1.2, 3.0])` an, erzeugen Sie damit einen
+  `RBFInterpolator` und werten Sie ihn an den Stellen `[[0.25, 0.25], [0.75, 0.75], [1.5, 0.5]]`
+  aus (3 Nachkommastellen)
 
 [HINT::Wie vergleiche ich drei Kernel in einer Tabelle?]
 Auch hier lässt sich die Ausgabe als Tabelle gestalten:
@@ -238,12 +261,13 @@ Auch hier lässt sich die Ausgabe als Tabelle gestalten:
 ```
 [ENDHINT]
 
-[EQ] `RBFInterpolator` verlangt die Koordinaten als 2D-Array, während `make_interp_spline` ein
-einfaches 1D-Array akzeptiert.
-Warum ist diese Schnittstelle so gestaltet?
-Was ermöglicht die 2D-Form, das mit einem reinen 1D-Array nicht ausdrückbar wäre?
+[EQ] Vergleichen Sie in [EREFR::3] den eindimensionalen mit dem zweidimensionalen Aufruf: Außer der
+Form der Koordinaten-Arrays hat sich nichts geändert.
+Erklären Sie von dieser Beobachtung ausgehend, warum `RBFInterpolator` die Koordinaten auch bei
+eindimensionalen Daten als 2D-Array verlangt.
+Warum ließe sich `make_interp_spline` nicht ebenso einfach auf zwei Dimensionen übertragen?
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 30 min -->
 
 ### Interpolationsverfahren vergleichen und auswählen
 
@@ -264,16 +288,17 @@ Welche Methode geeignet ist, hängt von den Daten und dem Ziel ab:
 - Interpolieren Sie diese Daten mit allen vier Verfahren (`make_interp_spline` mit `k=1`,
   `CubicSpline`, `make_splrep` mit `s=0`, `RBFInterpolator` mit `'thin_plate_spline'` — denken
   Sie an `reshape(-1, 1)` für die Koordinaten, siehe [EREFR::3]) und nennen Sie die vier Objekte
-  `linear`, `kubisch`, `spline` und `rbf`
+  `linear`, `kubisch`, `splrep` und `rbf`
 - Werten Sie alle vier an den Zwischenstellen `x_test` mit den Werten `[1.0, 2.5, 4.0, 5.5]` aus
   und vergleichen Sie mit den wahren Sinuswerten an diesen Stellen (4 Nachkommastellen)
 - Bestimmen Sie für jedes Verfahren den maximalen Betrag des Fehlers (4 Nachkommastellen) auf
   einem feinen Gitter `np.linspace(0, 2*np.pi, 100)` gegenüber `np.sin`
 
 [HINT::Wie berechne ich den Maximalfehler für alle vier Verfahren?]
-Für die Fehlerberechnung auf dem feinen Gitter bietet sich folgendes Muster an:
+Für ein Verfahren sieht die Rechnung so aus, die übrigen drei laufen analog:
 ```python
-[SNIPPET::ALT::sp_interpolate_fehler_berechnung]
+x_fein = np.linspace(0, 2 * np.pi, 100)
+print(f"linear: {np.max(np.abs(linear(x_fein) - np.sin(x_fein))):.4f}")
 ```
 [ENDHINT]
 
@@ -281,10 +306,11 @@ Für die Fehlerberechnung auf dem feinen Gitter bietet sich folgendes Muster an:
 
 - Welches Verfahren schneidet am schlechtesten ab, und warum?
 - Welche beiden Verfahren liefern identische Ergebnisse, und warum?
-- Nennen Sie außerdem ein Kriterium (außer dem Fehler gegenüber einer bekannten Funktion),
-  nach dem man in der Praxis ein Interpolationsverfahren auswählt.
+- Bei den Daten aus [EREFR::2] war die wahre Funktion ausnahmsweise bekannt, in der Praxis ist sie
+  das fast nie.
+  Woran ließe sich dort entscheiden, welches Verfahren geeignet ist?
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 30 min -->
 
 ### Weiterführend
 
