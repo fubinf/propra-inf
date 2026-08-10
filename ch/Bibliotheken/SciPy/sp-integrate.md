@@ -1,6 +1,6 @@
 title: SciPy Numerische Integration und Differentialgleichungen verstehen und anwenden
 stage: alpha
-timevalue: 1.5
+timevalue: 2.0
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array2, np-math, py-Fstrings
@@ -103,7 +103,7 @@ Formatieren Sie alle Ausgaben dieser Aufgabe mit f-Strings und Präzisionsangabe
 - `∫₀^(π/2) cos(x) dx` (Analytisches Ergebnis: 1)
 - `∫₀^∞ x*e^(-x²) dx` mit unendlicher oberer Grenze (Analytisches Ergebnis: 0.5)
 
-Geben Sie für jedes Integral das berechnete Ergebnis (`result`, 6 Nachkommastellen, `:.6f`) und
+Geben Sie für jedes Integral das berechnete Ergebnis (`result`, `:.6f`) und
 die Fehlerabschätzung (`error`, wissenschaftliche Notation, `:.2e`) aus.
 Geben Sie außerdem die Abweichung vom angegebenen analytischen Wert aus (`:.2e`).
 
@@ -122,6 +122,9 @@ print(f"Standard: result = {result:.6f}, error = {error:.2e}")
 
 Der Aufruf gibt zusätzlich eine `IntegrationWarning` aus
 ("The integral is probably divergent, or slowly convergent").
+Sobald `limit` erhöht wird, wechselt der Text dieser Warnung zu
+"The maximum number of subdivisions (N) has been achieved" und benennt damit direkt, woran es
+noch fehlt.
 
 [ER] Bringen Sie `∫₀²⁰ sin(100x) dx` zum Konvergieren:
 Rufen Sie das Integral zweimal auf, einmal mit der Voreinstellung und einmal mit einem so großen
@@ -130,20 +133,20 @@ ausbleibt.
 Geben Sie für beide Läufe `result` und `error` aus, formatiert wie in [EREFR::1], und halten Sie
 fest, welchen `limit`-Wert Sie dafür gebraucht haben.
 
-Der exakte Wert ist gerundet `0.013675`; das Ergebnis mit der Voreinstellung ist also rund
-14-mal zu groß.
+Der exakte Wert dieses Integrals ist gerundet `0.013675`;
+das Ergebnis mit der Voreinstellung ist also rund 14-mal zu groß.
 
 [EQ] Stellen Sie Ihre drei `error`-Werte aus [EREFR::1] neben die beiden aus [EREFR::2] und nehmen
 Sie an, Sie kennten keinen der analytischen Werte.
 Woran würden Sie in jedem der fünf Fälle allein anhand der Rückgabewerte erkennen, ob `result`
 vertrauenswürdig ist?
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 30 min -->
 
 ### Parametrisierte Integrale mit `args`
 
 Oft muss dasselbe Integral für verschiedene Parameterwerte berechnet werden.
-`quad` unterstützt das über den Parameter `args`.
+`quad` unterstützt das über `args`.
 
 ```python
 # Parametrisierte Funktion: f(x, a, b) = a*x + b
@@ -159,7 +162,8 @@ print(f"∫₀² (3x + 1) dx = {result:.6f}")
 `args` wird als Tupel übergeben.
 Bei genau einem Parameter schreibt man deshalb `args=(3,)` mit Komma, denn `(3)` ist in Python
 kein Tupel, sondern nur eine geklammerte Zahl.
-`quad` verzeiht an dieser Stelle auch einen nackten Wert, `solve_ivp` weiter unten jedoch nicht.
+`quad` verzeiht an dieser Stelle auch einen einzelnen Wert ohne Komma, `solve_ivp` weiter unten
+jedoch nicht.
 
 [ER] Arbeiten Sie mit parametrisierten Integralen:
 
@@ -172,10 +176,10 @@ Geben Sie für jedes Integral Ergebnis, Fehler und Abweichung aus, formatiert wi
 
 [EQ] Was müssten Sie an Ihrem Code für `k=5`, `k=7` und `k=9` ändern, wenn `k` fest im
 Funktionskörper stünde (etwa `np.sin(5 * x)`) statt über `args` übergeben zu werden?
-Schätzen Sie für beide Varianten ab, wie viele Codestellen Sie anfassen müssten, um statt drei
-`k`-Werten zwanzig zu berechnen.
+Begründen Sie damit, warum der Aufwand für zwanzig statt drei `k`-Werte in der einen Variante
+gleich bleibt und in der anderen mitwächst.
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Gewöhnliche Differentialgleichungen mit `solve_ivp`
 
@@ -207,7 +211,7 @@ Die vollständige Parameterliste steht in der Referenz zu
 **Rückgabewert:**
 
 Anders als `quad` liefert `solve_ivp` kein Tupel, sondern ein einzelnes Ergebnisobjekt, im
-Folgenden `sol` genannt, mit unter anderem diesen Attributen:
+Folgenden `sol` genannt, unter anderem mit diesen Attributen:
 
 - `sol.t`: Array der Zeitpunkte
 - `sol.y`: Array der Lösungswerte, eine Zeile je Gleichung
@@ -250,8 +254,8 @@ und deshalb steht die Lösung in `sol.y[0]`; der Rückgabewert von `fun` ist hie
 ebenfalls als Liste geschrieben.
 
 Die exakten Werte lauten `10.000000`, `2.865048`, `0.820850`, `0.235177`, `0.067379`.
-Dass die Lösung schon in der dritten Nachkommastelle abweicht, ist kein Fehler, sondern die
-Voreinstellung `rtol=1e-3`: Mehr Genauigkeit muss man ausdrücklich anfordern.
+Dass die Lösung schon in der dritten Nachkommastelle abweicht, ist kein Fehler, sondern eine Folge
+der Voreinstellung `rtol=1e-3`: Mehr Genauigkeit muss man ausdrücklich anfordern.
 
 [ER] Lösen Sie gewöhnliche Differentialgleichungen mit `solve_ivp`:
 
@@ -268,7 +272,9 @@ die Ergebnisse über `sol.t` und `sol.y` aus.
 Geben Sie je Lösung `sol.success` aus sowie je Zeitpunkt den Wert und die Abweichung von der
 analytischen Lösung, formatiert wie in [EREFR::1].
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 30 min -->
+
+### Verfahren und Toleranzen vergleichen
 
 [ER] Vergleichen Sie verschiedene Verfahren und Toleranzen:
 
@@ -287,7 +293,7 @@ Anforderung gegenüber.
 Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und was sagt
 `sol.success` demnach über die Genauigkeit einer Lösung aus?
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 35 min -->
 
 ### Weiterführend
 
