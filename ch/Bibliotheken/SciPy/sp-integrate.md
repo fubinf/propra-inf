@@ -116,21 +116,25 @@ Bei stark oszillierenden Funktionen reicht die Voreinstellung `limit=50` dafür 
 ```python
 # sin(100x) durchläuft auf [0, 20] rund 318 volle Schwingungen
 result, error = integrate.quad(lambda x: np.sin(100*x), 0, 20)
-print(f"Standard:   result = {result:.6f}, error = {error:.2e}")
-
-result, error = integrate.quad(lambda x: np.sin(100*x), 0, 20, limit=1000)
-print(f"limit=1000: result = {result:.6f}, error = {error:.2e}")
-# Standard:   result = 0.191436, error = 3.93e+00
-# limit=1000: result = 0.013675, error = 1.44e-08
+print(f"Standard: result = {result:.6f}, error = {error:.2e}")
+# Standard: result = 0.191436, error = 3.93e+00
 ```
 
-Der erste Aufruf gibt zusätzlich eine `IntegrationWarning` aus
+Der Aufruf gibt zusätzlich eine `IntegrationWarning` aus
 ("The integral is probably divergent, or slowly convergent").
-Der exakte Wert ist gerundet `0.013675`, das erste Ergebnis ist also um mehr als eine Zehnerpotenz
-falsch.
 
-[EQ] Stellen Sie Ihre drei `error`-Werte aus [EREFR::1] neben die beiden `error`-Werte des
-oszillierenden Beispiels und nehmen Sie an, Sie kennten keinen der analytischen Werte.
+[ER] Bringen Sie `∫₀²⁰ sin(100x) dx` zum Konvergieren:
+Rufen Sie das Integral zweimal auf, einmal mit der Voreinstellung und einmal mit einem so großen
+`limit`, dass `error` mehrere Zehnerpotenzen unter `result` liegt und die `IntegrationWarning`
+ausbleibt.
+Geben Sie für beide Läufe `result` und `error` aus, formatiert wie in [EREFR::1], und halten Sie
+fest, welchen `limit`-Wert Sie dafür gebraucht haben.
+
+Der exakte Wert ist gerundet `0.013675`; das Ergebnis mit der Voreinstellung ist also rund
+14-mal zu groß.
+
+[EQ] Stellen Sie Ihre drei `error`-Werte aus [EREFR::1] neben die beiden aus [EREFR::2] und nehmen
+Sie an, Sie kennten keinen der analytischen Werte.
 Woran würden Sie in jedem der fünf Fälle allein anhand der Rückgabewerte erkennen, ob `result`
 vertrauenswürdig ist?
 
@@ -168,7 +172,7 @@ Geben Sie für jedes Integral Ergebnis, Fehler und Abweichung aus, formatiert wi
 
 [EQ] Was müssten Sie an Ihrem Code für `k=5`, `k=7` und `k=9` ändern, wenn `k` fest im
 Funktionskörper stünde (etwa `np.sin(5 * x)`) statt über `args` übergeben zu werden?
-Zählen Sie für beide Varianten, wie viele Codestellen Sie anfassen müssten, um statt drei
+Schätzen Sie für beide Varianten ab, wie viele Codestellen Sie anfassen müssten, um statt drei
 `k`-Werten zwanzig zu berechnen.
 
 <!-- time estimate: 20 min -->
@@ -183,8 +187,7 @@ der wissenschaftlichen Modellierung.
 
 ```python
 # gekürzt auf die hier benötigten Parameter
-scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None,
-                          rtol=1e-3, atol=1e-6)
+scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None, rtol=1e-3)
 ```
 
 - `fun`: die Funktion `f(t, y)`, die die Ableitung definiert
@@ -193,10 +196,10 @@ scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None
 - `method` (Standard `'RK45'`): Lösungsverfahren (weitere: `'RK23'`, `'DOP853'`, ...)
 - `t_eval` (Standard `None`, dann wählt der Solver selbst Zeitpunkte): spezifische Zeitpunkte
   für die Ausgabe
-- `args` (Standard `None`): zusätzliche Parameter für `fun`, hier strenger als bei `quad`: nur ein
+- `args` (Standard `None`): zusätzliche Parameter für `fun`, hier strenger als bei `quad` — nur ein
   Tupel wird akzeptiert, ein einzelner Wert ohne Komma führt zu einem `TypeError`
-- `rtol`, `atol` (Standard `1e-3` bzw. `1e-6`): relative und absolute Fehlertoleranz, die der
-  Solver pro Schritt einzuhalten versucht
+- `rtol` (Standard `1e-3`): relative Fehlertoleranz, die der Solver pro Schritt einzuhalten
+  versucht
 
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.integrate.solve_ivp`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html).
@@ -265,7 +268,9 @@ die Ergebnisse über `sol.t` und `sol.y` aus.
 Geben Sie je Lösung `sol.success` aus sowie je Zeitpunkt den Wert und die Abweichung von der
 analytischen Lösung, formatiert wie in [EREFR::1].
 
-[ER] Prüfen Sie, was `sol.success` über die Genauigkeit einer Lösung aussagt:
+<!-- time estimate: 20 min -->
+
+[ER] Vergleichen Sie verschiedene Verfahren und Toleranzen:
 
 - Rechnen Sie das logistische Wachstum mit `method='RK23'`, `method='RK45'` und `method='DOP853'`,
   mit denselben Auswertungszeitpunkten wie zuvor.
@@ -277,12 +282,12 @@ analytischen Lösung, formatiert wie in [EREFR::1].
   Geben Sie `sol.success`, `sol.t[-1]` und `sol.y[0][-1]` aus.
   (Der Index `-1` adressiert das letzte Element.)
 
-[EQ] Stellen Sie die fünf `sol.success`-Werte aus [EREFR::4] Ihren übrigen Ausgaben aus derselben
+[EQ] Stellen Sie die fünf `sol.success`-Werte aus [EREFR::5] Ihren übrigen Ausgaben aus derselben
 Anforderung gegenüber.
 Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und was sagt
 `sol.success` demnach über die Genauigkeit einer Lösung aus?
 
-<!-- time estimate: 45 min -->
+<!-- time estimate: 25 min -->
 
 ### Weiterführend
 
