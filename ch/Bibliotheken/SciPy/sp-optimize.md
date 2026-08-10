@@ -32,15 +32,15 @@ implementieren muss.
 
 ### Vorwissen
 
-Für diese Aufgabe sind folgende Konzepte hilfreich.
+Für diese Aufgabe sind zwei Konzepte hilfreich.
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Extremwert (Wikipedia)](https://de.wikipedia.org/wiki/Extremwert): Unterschied zwischen
   lokalem und globalem Extremum — wichtig für `minimize`, da die meisten Verfahren nur lokale
   Minima finden
-- [Nullstelle (Wikipedia)](https://de.wikipedia.org/wiki/Nullstelle): warum nichtlineare/
-  transzendente Gleichungen numerische Näherungsverfahren (Newton-Verfahren u.ä.) statt einer
-  algebraischen Lösung benötigen
+- [Nullstelle (Wikipedia)](https://de.wikipedia.org/wiki/Nullstelle): warum
+  nichtlineare/transzendente Gleichungen numerische Näherungsverfahren (Newton-Verfahren u. ä.)
+  statt einer algebraischen Lösung benötigen
 
 ### Nullstellenfindung mit `scipy.optimize.root`
 
@@ -56,6 +56,9 @@ scipy.optimize.root(fun, x0, method='hybr')
 - `fun`: die zu lösende Funktion
 - `x0`: Startwert für die Iteration
 - `method` (Standard `'hybr'`): Lösungsverfahren
+
+Die vollständige Parameterliste steht in der Referenz zu
+[`scipy.optimize.root`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html).
 
 **Rückgabewerte des Ergebnisobjekts:**
 
@@ -84,9 +87,9 @@ print("Erfolgreich?", result.success)
 
 **Formatierte Ausgabe von Ergebnissen:**
 
-Bei wissenschaftlichen Berechnungen ist eine übersichtliche Ausgabe wichtig.
-Nutzen Sie dafür die f-String-Formatierung aus [PARTREF::py-Fstrings], z. B. `:.6f` für
-6 Nachkommastellen oder `:.2e` für wissenschaftliche Notation (`1.23e-05`):
+Formatieren Sie alle Ausgaben dieser Aufgabe mit f-Strings und Präzisionsangabe
+(siehe [PARTREF::py-Fstrings]), z. B. `:.6f` für 6 Nachkommastellen oder `:.2e` für
+wissenschaftliche Notation (`1.23e-05`):
 
 ```python
 print(f"Lösung: x = {result.x[0]:.6f}, Funktionswert: {result.fun[0]:.2e}")
@@ -96,9 +99,9 @@ print(f"Lösung: x = {result.x[0]:.6f}, Funktionswert: {result.fun[0]:.2e}")
 
 - Finden Sie alle Nullstellen von `f(x) = x³ - 6x² + 9x - 4`, indem Sie nacheinander die
   Startwerte -1, 2, 3 und 4 verwenden
-- Lösen Sie die Gleichung `x*e^x = 2` (verwenden Sie `np.exp(x)`)
-- Bestimmen Sie die nichttriviale Lösung von `sin(x) = x/3` im Bereich [0, 3], indem Sie
-  nacheinander die Startwerte -3, 1.5 und 3 verwenden
+- Lösen Sie die Gleichung `x*e^x = 2` mit dem Startwert 1 (verwenden Sie `np.exp(x)`)
+- Gesucht ist die nichttriviale Lösung von `sin(x) = x/3` im Bereich [0, 3] — rufen Sie `root`
+  nacheinander mit den Startwerten -3, 1.5 und 3 auf
 
 Geben Sie für jede Lösung die gefundene Nullstelle (6 Nachkommastellen, `:.6f`) und den
 Funktionswert an der Lösung (wissenschaftliche Notation, `:.2e`) aus, außerdem jeweils
@@ -108,7 +111,7 @@ Bei Aufrufen mit `success=False` geben Sie statt der Nullstelle `result.message`
 [EQ] Bei der kubischen und der trigonometrischen Gleichung in [EREFR::1] wird mit mehreren
 Startwerten gearbeitet, statt nur einem.
 Warum ist das sinnvoll — welche zwei unterschiedlichen Risiken eines einzelnen Aufrufs
-verringert man dadurch?
+verringert oder erkennt man dadurch?
 Belegen Sie beide Risiken mit je einer Zeile aus Ihrer eigenen Ausgabe.
 
 <!-- time estimate: 25 min -->
@@ -135,10 +138,13 @@ scipy.optimize.minimize(fun, x0, method=None)
 | `'CG'` | konjugierte Gradienten, sparsamer im Speicher als `'BFGS'` |
 | `'Nelder-Mead'` | gradientenfreies Simplex-Verfahren, robuster bei nicht glatten Funktionen, braucht dafür meist mehr Funktionsauswertungen |
 
+Die vollständige Liste der Verfahren und Parameter steht in der Referenz zu
+[`scipy.optimize.minimize`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html).
+
 **Rückgabewerte des Ergebnisobjekts:**
 
-Es trägt dieselben Feldnamen wie bei `root`, dazu `result.nfev` mit der Anzahl der
-Funktionsauswertungen.
+Es trägt dieselben Feldnamen wie bei `root`; hier wird zusätzlich `result.nfev` mit der Anzahl
+der Funktionsauswertungen gebraucht.
 Ein Unterschied ist wichtig: `result.x` ist weiterhin ein Array, weil `minimize` mehrere
 Unbekannte zulässt, `result.fun` dagegen ist eine einzelne Zahl, denn eine zu minimierende
 Funktion liefert pro Punkt genau einen Wert.
@@ -146,9 +152,9 @@ Funktion liefert pro Punkt genau einen Wert.
 [ER] Arbeiten Sie mit verschiedenen Minimierungsproblemen:
 
 - Finden Sie das Minimum der Funktion `f(x) = (x-2)⁴ + (x-2)² + 1`, ausgehend von `x0 = 0`
-- Minimieren Sie `g(x) = sin(x) + 0.1*x²` nacheinander mit den Startwerten -10, -5, 0, 5 und 10
+- Minimieren Sie `g(x) = sin(x) + 0.1x²` nacheinander mit den Startwerten -10, -5, 0, 5 und 10
   und geben Sie neben `result.x`/`result.fun` auch `result.success` aus
-- Vergleichen Sie für die Funktion `h(x) = x⁴ - 4*x³ + 6*x²` die Ergebnisse der Methoden
+- Vergleichen Sie für die Funktion `h(x) = x⁴ - 4x³ + 6x²` die Ergebnisse der Methoden
   `'BFGS'`, `'CG'` und `'Nelder-Mead'`, jeweils ausgehend von `x0 = 1.5` — geben Sie neben
   `result.x`/`result.fun` auch `result.nfev` (Anzahl Funktionsauswertungen) aus
 
@@ -173,7 +179,7 @@ vertrauenswürdig einzustufen, und warum reicht "kein Fehler aufgetreten" allein
 
 <!-- time estimate: 30 min -->
 
-### Skalarminimierung mit `minimize_scalar`
+### Skalarminimierung mit `scipy.optimize.minimize_scalar`
 
 Für eindimensionale Optimierung gibt es `minimize_scalar`.
 Im Gegensatz zu `minimize` wird hier **kein Startwert benötigt**.
@@ -188,6 +194,9 @@ scipy.optimize.minimize_scalar(fun, bounds=None, method=None)
 - `bounds` (Standard `None`): Tupel `(min, max)` für Bereichseinschränkung
 - `method` (Standard `None`, wählt automatisch `'brent'` ohne bzw. `'bounded'` mit `bounds`):
   explizites Verfahren
+
+Die vollständige Parameterliste steht in der Referenz zu
+[`scipy.optimize.minimize_scalar`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize_scalar.html).
 
 **Beispiel:**
 ```python
@@ -211,13 +220,19 @@ print(f"Mit Bereichseinschränkung [0,2]: x={result_bounded.x:.4f}, f(x)={result
 - Minimieren Sie `f(x) = x³ - 6x² + 9x + 1` im Bereich [1, 5]
 - Rufen Sie `minimize_scalar` für dieselbe Funktion `f(x)` ein zweites Mal auf, diesmal ganz ohne
   `bounds`, und geben Sie zusätzlich `result.success` aus
-- Finden Sie das Minimum von `g(x) = |sin(x)| + 0.1*x²` im Bereich [2, 10]
-- Bestimmen Sie das Minimum von `h(x) = e^x - 2*x` (verwenden Sie `np.exp`) sowohl im Bereich
+- Bestimmen Sie das Minimum von `h(x) = e^x - 2x` (verwenden Sie `np.exp`) sowohl im Bereich
   [-2, 2] als auch ganz ohne Bereichseinschränkung
 
 Geben Sie für jeden Fall `result.x` und `result.fun` aus, jeweils mit 6 Nachkommastellen (`:.6f`).
-Nur beim unbeschränkten Aufruf für `f(x)` verwenden Sie wissenschaftliche Notation (`:.2e`), sonst
-wird die Zahl unlesbar lang.
+Beim unbeschränkten Aufruf für `f(x)` verwenden Sie stattdessen wissenschaftliche Notation
+(`:.2e`).
+
+[HINT::Mein Skript gibt eine Reihe von `RuntimeWarning`s aus]
+Das ist kein Fehler in Ihrem Programm.
+SciPy meldet auf diesem Weg, dass eine Rechnung in einen numerisch extremen Bereich geraten ist;
+die Warnungen erscheinen auf der Fehlerausgabe, während die normale Ausgabe weiterläuft.
+Lassen Sie die Warnungen stehen und werten Sie die ausgegebenen Zahlen wie vorgesehen aus.
+[ENDHINT]
 
 [EQ] Vergleichen Sie für `f(x)` und für `h(x)` aus [EREFR::3] jeweils den Aufruf mit `bounds` mit
 dem ohne.
@@ -227,7 +242,7 @@ Was folgt daraus für die Aussagekraft von `result.success`?
 
 <!-- time estimate: 20 min -->
 
-### Praktische Anwendung: Kurvenanpassung mit `curve_fit`
+### Kurvenanpassung mit `scipy.optimize.curve_fit`
 
 Ein häufiger Anwendungsfall ist die Anpassung von Modellparametern an Messdaten.
 `curve_fit` passt eine Modellfunktion automatisch an Daten an.
@@ -240,6 +255,20 @@ scipy.optimize.curve_fit(f, xdata, ydata, p0=None)
 - `xdata`, `ydata`: die Messdaten
 - `p0` (Standard `None`, entspricht dann intern `1.0` für jeden Parameter): Startwerte für die
   Modellparameter, ähnlich `x0` bei `minimize`
+
+Die vollständige Parameterliste steht in der Referenz zu
+[`scipy.optimize.curve_fit`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html).
+
+**Rückgabewerte:**
+
+Anders als `root` und `minimize` liefert `curve_fit` kein Ergebnisobjekt, sondern ein Tupel aus
+zwei Werten, das üblicherweise als `params, pcov` ausgepackt wird:
+
+- `params`: die geschätzten Modellparameter, in der Reihenfolge der Signatur von `f`
+- `pcov`: die geschätzte Kovarianzmatrix dieser Parameter, also ein Maß für die Unsicherheit
+  der Schätzung
+
+Wer `pcov` nicht braucht, schreibt dafür den Wegwerfnamen `_`, wie im folgenden Beispiel.
 
 **Beispiel** (Lineare Funktion):
 ```python
@@ -268,8 +297,8 @@ Gegeben sind folgende Messdaten einer linearen Beziehung `y = a*x + b`: `x_data`
 
 Ihre Aufgaben:
 
-- Definieren Sie eine lineare Modellfunktion `linear(x, a, b)` die `a*x + b` zurückgibt
-- Verwenden Sie `curve_fit(linear, x_data, y_data)` (ohne `p0`) um die Parameter zu bestimmen
+- Definieren Sie eine lineare Modellfunktion `linear(x, a, b)`, die `a*x + b` zurückgibt
+- Verwenden Sie `curve_fit(linear, x_data, y_data)` (ohne `p0`), um die Parameter zu bestimmen
 - Geben Sie die geschätzten Werte für `a` und `b` aus (4 Nachkommastellen, `:.4f`)
 - Wiederholen Sie den Aufruf mit einem bewusst schlechten Startwert `p0=(-100, 100)` und
   vergleichen Sie das Ergebnis mit dem Aufruf ohne `p0`
@@ -279,6 +308,13 @@ Ihre Aufgaben:
 - Passen Sie an dieselben Messdaten zusätzlich das nichtlineare Modell
   `exponential(x, a, b)` mit `a * np.exp(b*x)` an, einmal mit `p0=(1, 0.5)` und einmal wieder mit
   `p0=(-100, 100)`, und geben Sie beide Parameterpaare aus (4 Nachkommastellen, `:.4f`)
+
+[HINT::Mein Skript gibt `RuntimeWarning`s und eine `OptimizeWarning` aus]
+Auch das ist kein Programmierfehler.
+Die `OptimizeWarning` bedeutet lediglich, dass `curve_fit` die Unsicherheit der Schätzung
+(also `pcov`) nicht bestimmen konnte; die geschätzten Parameter werden trotzdem zurückgegeben.
+Geben Sie sie wie vorgesehen aus.
+[ENDHINT]
 
 [EQ] Vergleichen Sie in [EREFR::4] für beide Modelle jeweils den Lauf mit gutem und den mit
 schlechtem `p0`.
@@ -297,8 +333,6 @@ Was an der Fehlerfunktion des jeweiligen Modells erklärt das?
   Referenz zu den von `minimize` unterstützten Verfahren
 - [Scalar functions optimization](https://docs.scipy.org/doc/scipy/reference/optimize.html#scalar-functions-optimization):
   Referenz zu den von `minimize_scalar` unterstützten Verfahren
-- [curve_fit Dokumentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html):
-  vollständige Parameterliste, u. a. zu `sigma`/`bounds`
 
 [ENDSECTION]
 
