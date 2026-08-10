@@ -9,7 +9,7 @@ assumes: np-Einführung, np-array, np-array2, np-math, py-Fstrings
 [SECTION::goal::idea,experience]
 
 - Ich kann eindimensionale Interpolation mit den aktuellen SciPy-Funktionen durchführen.
-- Ich kann den Übergang zwischen exakter Interpolation und Glättung gezielt steuern.
+- Ich kann den Einfluss des Glättungsparameters auf das Interpolationsergebnis beurteilen.
 - Ich kann Streudaten auch in mehr als einer Dimension interpolieren.
 - Ich kann verschiedene Interpolationsverfahren vergleichen und für gegebene Daten
   ein geeignetes auswählen.
@@ -46,20 +46,22 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 Interpolation erzeugt aus gegebenen Datenpunkten eine Funktion, mit der sich Werte zwischen den
 Punkten berechnen lassen.
-SciPy bietet dafür heute vor allem zwei Werkzeuge: `make_interp_spline` für Splines beliebigen
+SciPy bietet dafür vor allem zwei Werkzeuge: `make_interp_spline` für Splines beliebigen
 Grades und `CubicSpline` speziell für kubische Splines.
 
 [NOTICE]
 Viele Tutorials im Netz benutzen stattdessen `interp1d` oder `splrep`/`splev`.
 Das sind die älteren Schnittstellen von SciPy, die inzwischen als "legacy" gelten und für neuen
 Code nicht mehr empfohlen werden.
-Diese Aufgabe verwendet durchgehend die aktuellen Schnittstellen; `make_splrep` weiter unten gibt
-es erst ab SciPy 1.15.
+Diese Aufgabe verwendet durchgehend die aktuellen Schnittstellen.
+`make_splrep` weiter unten gibt es erst ab SciPy 1.15; prüfen Sie Ihre Version notfalls wie in
+[PARTREF::sp-Einführung] und aktualisieren Sie mit `pip install -U scipy`.
 [ENDNOTICE]
 
 Die Signaturen in dieser Aufgabe zeigen jeweils nur die hier benötigten Parameter, nicht die
-vollständige Parameterliste; die optionalen Parameter sind deshalb stets als
-Schlüsselwortargumente zu übergeben.
+vollständige Parameterliste.
+Weggelassene Parameter können in der echten Signatur vor den gezeigten stehen; die optionalen
+Parameter sind deshalb stets als Schlüsselwortargumente zu übergeben.
 
 `make_interp_spline` erzeugt einen interpolierenden Spline vom Grad `k`:
 
@@ -82,14 +84,16 @@ scipy.interpolate.CubicSpline(x, y, bc_type='not-a-knot')
 
 - `x`, `y`: die Datenpunkte
 - `bc_type` (Standard `'not-a-knot'`): Randbedingung an den Enden des Intervalls;
-  `'not-a-knot'` bedeutet, dass die äußersten inneren Knoten entfallen und ein Randstück daher mit
-  seinem Nachbarstück ein einziges Polynom bildet
+  `'not-a-knot'` bedeutet, dass die äußersten inneren Knoten (so heißen die Stellen, an denen zwei
+  Polynomstücke aneinanderstoßen) entfallen und ein Randstück daher mit seinem Nachbarstück ein
+  einziges Polynom bildet
 
 Der Rückgabewert ist wie bei `make_interp_spline` ein aufrufbares Objekt.
 
 Mit `k=3` liefert `make_interp_spline` denselben Spline wie `CubicSpline`.
 Die Arbeitsteilung ist also: `make_interp_spline` beherrscht beliebige Grade, `CubicSpline` bietet
-dafür `roots()` und `solve()`, um zu einem Funktionswert die zugehörigen x-Stellen zu finden.
+dafür `solve(y)` und dessen Sonderfall `roots()`, die den umgekehrten Weg gehen und zu einem
+Funktionswert die zugehörigen x-Stellen liefern.
 
 **Beispiel:**
 ```python
@@ -107,6 +111,11 @@ print("Linear: ", np.round(linear(x_neu), 3))
 print("Kubisch:", np.round(kubisch(x_neu), 3))
 ```
 
+Die kubische Interpolation trifft hier die zugrunde liegende Funktion exakt: die Ausgabe `0.25`,
+`2.25`, `6.25` ist genau `0.5²`, `1.5²`, `2.5²`.
+Das gilt, weil ein kubischer Spline ein Polynom zweiten Grades exakt wiedergeben kann; die lineare
+Interpolation liegt dagegen an jeder der drei Stellen um 0.25 daneben.
+
 Geben Sie Zahlen in dieser Aufgabe stets mit fester Nachkommastellenzahl aus:
 einzelne Werte mit einer f-String-Formatierung (siehe [PARTREF::py-Fstrings]), z. B. `:.3f`,
 ganze Arrays mit `np.round(array, 3)`.
@@ -121,6 +130,9 @@ ganze Arrays mit `np.round(array, 3)`.
 - Berechnen Sie mit beiden die Werte an den Stellen `x_neu` mit den Werten
   `[0.5, 1.5, 2.5, 3.5, 4.5]` und legen Sie sie in `y_linear` und `y_kubisch` ab
 - Geben Sie für jede Stelle beide Werte und ihre Differenz aus (3 Nachkommastellen)
+- Gehen Sie zum Schluss den umgekehrten Weg und bestimmen Sie mit `kubisch.solve(4)`, an welchen
+  Stellen die kubische Interpolation den Wert 4 annimmt (3 Nachkommastellen); Ihre Tabelle sagt
+  Ihnen bereits ungefähr, wo dieser Wert zu erwarten ist
 
 [HINT::Wie bekomme ich beide Werte nebeneinander in eine Zeile?]
 Das lässt sich z. B. als Tabelle gestalten:
@@ -258,7 +270,7 @@ welcher Kernel welchen braucht, steht in der
   `punkte = np.array([[0, 0], [1, 0], [0, 1], [1, 1], [0.5, 0.5], [2, 1]])` und die zugehörigen
   Datenwerte `werte = np.array([0.0, 1.0, 1.0, 2.0, 1.2, 3.0])` an, erzeugen Sie damit einen
   `RBFInterpolator` namens `rbf_2d` und werten Sie ihn an den Stellen
-  `[[0.25, 0.25], [0.75, 0.75], [1.5, 0.5]]` aus (3 Nachkommastellen)
+  `stellen = np.array([[0.25, 0.25], [0.75, 0.75], [1.5, 0.5]])` aus (3 Nachkommastellen)
 
 [HINT::Wie vergleiche ich drei Kernel in einer Tabelle?]
 Auch hier lässt sich die Ausgabe als Tabelle gestalten:
@@ -279,10 +291,10 @@ Warum ließe sich `make_interp_spline` nicht ebenso einfach auf zweidimensionale
 ### Interpolationsverfahren vergleichen und auswählen
 
 Die vorgestellten Verfahren haben unterschiedliche Eigenschaften.
-Welche Methode geeignet ist, hängt von den Daten und dem Ziel ab:
+Welches Verfahren geeignet ist, hängt von den Daten und dem Ziel ab:
 
-| Methode | Eigenschaft | typische Anwendung |
-|---------|-------------|--------------------|
+| Verfahren | Eigenschaft | typische Anwendung |
+|-----------|-------------|--------------------|
 | `make_interp_spline` (`k=1`) | linear, an den Punkten "eckig" | einfache, dichte Daten |
 | `CubicSpline` | glatt, geht durch alle Punkte | glatte Funktionen ohne Rauschen |
 | `make_splrep` (`s>0`) | glättet, geht nicht mehr exakt durch die Punkte | verrauschte Messdaten |
@@ -299,7 +311,7 @@ liefert es dieselbe Kurve wie `CubicSpline`.
   `CubicSpline`, `make_splrep` mit `s=0`, `RBFInterpolator` mit `'thin_plate_spline'` — denken
   Sie an `reshape(-1, 1)` für die Koordinaten, siehe [EREFR::3]) und nennen Sie die vier Objekte
   `linear`, `kubisch`, `splrep_spline` und `rbf`
-- Werten Sie alle vier an den Zwischenstellen `x_test` mit den Werten `[1.0, 2.5, 4.0, 5.5]` aus
+- Werten Sie alle vier an den Zwischenstellen `x_test` mit den Werten `[1.0, 2.5, 4.0, 5.9]` aus
   und vergleichen Sie mit den wahren Sinuswerten an diesen Stellen (4 Nachkommastellen)
 - Bestimmen Sie für jedes Verfahren den maximalen Betrag des Fehlers (4 Nachkommastellen) auf
   einem feinen Gitter `np.linspace(0, 2*np.pi, 100)` gegenüber `np.sin`
@@ -310,6 +322,7 @@ Für ein Verfahren sieht die Rechnung so aus, die übrigen drei laufen analog:
 x_fein = np.linspace(0, 2 * np.pi, 100)
 print(f"linear: {np.max(np.abs(linear(x_fein) - np.sin(x_fein))):.4f}")
 ```
+Bei `rbf` ist dabei wieder `x_fein.reshape(-1, 1)` einzusetzen.
 [ENDHINT]
 
 [EQ] Betrachten Sie die Ergebnisse aus [EREFR::4]:
