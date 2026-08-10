@@ -1,6 +1,6 @@
 title: SciPy Numerische Integration und Differentialgleichungen verstehen und anwenden
 stage: alpha
-timevalue: 1.5
+timevalue: 1.75
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array2, np-math, py-Fstrings
@@ -140,13 +140,12 @@ scheitert nicht an der geforderten Genauigkeit, sondern an der Zahl der erlaubte
 Diese Schranke hebt nur `limit` an.
 [ENDHINT]
 
-Der exakte Wert dieses Integrals ist gerundet `0.013675`;
-das Ergebnis mit der Voreinstellung ist also rund 14-mal so groß.
-
-[EQ] Stellen Sie Ihre drei `error`-Werte aus [EREFR::1] neben die beiden aus [EREFR::2] und nehmen
-Sie an, Sie kennten keinen der analytischen Werte.
+[EQ] Stellen Sie Ihre drei `error`-Werte aus [EREFR::1] neben die beiden aus [EREFR::2].
 Woran würden Sie in jedem der fünf Fälle allein anhand der Rückgabewerte erkennen, ob `result`
 vertrauenswürdig ist?
+
+Der exakte Wert des Integrals aus [EREFR::2] ist gerundet `0.013675`;
+das Ergebnis mit der Voreinstellung ist also rund 14-mal so groß.
 
 <!-- time estimate: 25 min -->
 
@@ -204,14 +203,15 @@ scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, args=None
 - `fun`: die Funktion `f(t, y)`, die die Ableitung definiert
 - `t_span`: Tupel `(t_start, t_end)` für den Zeitbereich
 - `y0`: Anfangswerte als Liste oder Array
-- `method` (Standard `'RK45'`): Lösungsverfahren (weitere: `'RK23'`, `'DOP853'`, ...);
-  `RK23`, `RK45` und `DOP853` sind Runge-Kutta-Verfahren aufsteigender Ordnung
+- `method` (Standard `'RK45'`): Lösungsverfahren (weitere: `'RK23'`, `'DOP853'`, ...)
 - `t_eval` (Standard `None`, dann wählt der Solver selbst Zeitpunkte): spezifische Zeitpunkte
   für die Ausgabe
-- `args` (Standard `None`): zusätzliche Parameter für `fun`, hier strenger als bei `quad` — nur ein
-  Tupel wird akzeptiert, ein einzelner Wert ohne Komma führt zu einem `TypeError`
+- `args` (Standard `None`): zusätzliche Parameter für `fun`, hier strenger als bei `quad` — die
+  Parameter müssen in einer Sequenz stehen (üblicherweise ein Tupel); ein einzelner Wert ohne
+  Komma führt zu einem `TypeError`
 - `rtol` (Standard `1e-3`): relative Fehlertoleranz, die der Solver pro Schritt einzuhalten
-  versucht; gehört zu den `**options` und steht in der Referenz deshalb im Abschnitt "Options"
+  versucht; gehört zu den `**options` und steht in der Referenz deshalb nicht bei den übrigen
+  Parametern, sondern in der Liste unterhalb von `**options`
 
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.integrate.solve_ivp`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html).
@@ -280,9 +280,9 @@ die Ergebnisse über `sol.t` und `sol.y` aus.
 Geben Sie je Lösung `sol.success` aus sowie je Zeitpunkt den Wert und die Abweichung von der
 analytischen Lösung, formatiert wie in [EREFR::1].
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
-### Verfahren und Toleranzen vergleichen
+### Verfahren und Toleranzen vergleichen, Abbrüche erkennen
 
 [ER] Vergleichen Sie verschiedene Verfahren und Toleranzen:
 
@@ -301,7 +301,7 @@ Anforderung gegenüber.
 Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und was sagt
 `sol.success` demnach über die Genauigkeit einer Lösung aus?
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 30 min -->
 
 ### Weiterführend
 
