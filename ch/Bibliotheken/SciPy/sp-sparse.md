@@ -114,7 +114,7 @@ print(sparse_arr)
 
 **Ausgabeformat verstehen:**
 Die Ausgabe `(0, 2) 30` bedeutet: In Zeile 0, Spalte 2 steht der Wert 30.
-Die Kopfzeilen nennen zusätzlich die Anzahl der gespeicherten Werte und die Form (`shape`) des
+Die Kopfzeilen nennen zusätzlich die Anzahl der gespeicherten Elemente und die Form (`shape`) des
 Arrays.
 
 [ER] Erstellen Sie ein CSR-Array aus dem Array `[[0, 5, 0], [7, 0, 0], [0, 9, 0]]` und geben Sie
@@ -137,7 +137,7 @@ Den genauen Aufbau beschreibt
 [Compressed Row Storage (Wikipedia)](https://de.wikipedia.org/wiki/Compressed_Row_Storage);
 dort heißen die drei Arrays `val`, `colInd` und `rowPtr`.
 
-Zum Prüfen und Bereinigen des Inhalts kommen zwei Eigenschaften und zwei Methoden hinzu:
+Zum Prüfen und Verändern des Inhalts kommen zwei Eigenschaften und zwei Methoden hinzu:
 
 - `sparse_arr.data`: Array der gespeicherten Werte
 - `sparse_arr.nnz`: Anzahl der gespeicherten Elemente (einschließlich explizit gespeicherter Nullen)
@@ -147,7 +147,7 @@ Zum Prüfen und Bereinigen des Inhalts kommen zwei Eigenschaften und zwei Method
 Ein CSR-Array kann Nullen auch ausdrücklich speichern, etwa wenn ein zuvor gespeicherter Wert
 nachträglich auf 0 gesetzt wird.
 Solche expliziten Nullen belegen weiterhin einen Speicherplatz (`nnz` zählt sie mit), obwohl sie
-nichts zum Inhalt beitragen.
+den Wert der Matrix nicht verändern.
 `eliminate_zeros()` entfernt sie:
 
 ```python
@@ -173,6 +173,10 @@ sparse_arr.eliminate_zeros()
 print("nnz nach eliminate_zeros:", sparse_arr.nnz)
 # nnz nach eliminate_zeros: 3
 ```
+
+Die Ausgabe `indptr: [0 2 3 4]` besagt: Zeile 0 belegt die Positionen 0 und 1 von `data` und
+`indices`, Zeile 1 die Position 2 und Zeile 2 die Position 3.
+Der letzte Eintrag schließt die letzte Zeile ab und ist der Grund für den zusätzlichen Eintrag.
 
 [ER] Arbeiten Sie mit den Eigenschaften und Methoden eines CSR-Arrays:
 
@@ -296,11 +300,11 @@ Knoten 2 → Knoten 3 (Gewicht 4)
   ermitteln Sie die kürzesten Pfade von Knoten 1 ein viertes Mal
 
 [EQ] Interpretieren Sie Ihre Ergebnisse für Knoten 0 und Knoten 1 aus [EREFR::3].
-Der kürzeste Pfad von Knoten 0 nach Knoten 3 hat die Länge 5: Nennen Sie die Kantenfolgen, die
-diese Länge ergeben, und erklären Sie, ob sich diese Kantenfolgen aus der Rückgabe von `dijkstra`
+Die kürzeste Distanz von Knoten 0 nach Knoten 3 beträgt 5: Nennen Sie die Kantenfolgen, die diese
+Länge ergeben, und erklären Sie, ob sich diese Kantenfolgen aus der Rückgabe von `dijkstra`
 ablesen lassen.
-Von Knoten 1 aus erhält genau ein Knoten die Distanz `inf`: Erklären Sie, warum dieser Knoten von
-Knoten 1 aus nicht erreichbar ist, obwohl eine Kante die beiden Knoten verbindet.
+Im ersten Ergebnis für Knoten 1 erhält genau ein Knoten die Distanz `inf`: Erklären Sie, warum
+dieser Knoten von Knoten 1 aus nicht erreichbar ist, obwohl eine Kante die beiden Knoten verbindet.
 
 [EQ] Vergleichen Sie Ihre vier Ergebnisse für Knoten 1 aus [EREFR::3].
 Erklären Sie, was das CSR-Array nach dem Setzen des Gewichts auf 0 über die Kante von Knoten 1 zu
