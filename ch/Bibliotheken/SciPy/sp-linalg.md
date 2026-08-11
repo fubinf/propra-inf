@@ -1,6 +1,6 @@
 title: SciPy Erweiterte Lineare Algebra verstehen und anwenden
 stage: alpha
-timevalue: 1.0
+timevalue: 1.25
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-math, np-linalg, py-Fstrings
@@ -33,6 +33,8 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [LU-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/LU-Zerlegung):
   Zerlegung A = P·L·U in eine untere und obere Dreiecksmatrix
+  (der Artikel schreibt R statt U und stellt die Zerlegung als P·A = L·R dar,
+  was dasselbe besagt; SciPy liefert die hier verwendete Form A = P·L·U)
 - [QR-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/QR-Zerlegung):
   Zerlegung A = Q·R in eine orthogonale Matrix und eine obere Dreiecksmatrix
 - [Cholesky-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Cholesky-Zerlegung):
@@ -41,6 +43,8 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
   wie sich kleine Störungen der Eingabedaten auf das berechnete Ergebnis auswirken können
 
 Die Konditionszahl und ihre Bedeutung wurden bereits in [PARTREF::np-linalg] behandelt.
+
+### Formatierte Ausgabe von Ergebnissen
 
 Geben Sie Ihre Ergebnisse in dieser Aufgabe mit f-Strings aus.
 Wo unten eine Anzahl Nachkommastellen oder wissenschaftliche Notation verlangt wird, stellen Sie
@@ -52,7 +56,7 @@ diese mit einer Präzisionsangabe ein (siehe [PARTREF::py-Fstrings]).
 oder `inv` gibt es in beiden Modulen, wobei die SciPy-Varianten meist mehr Optionen bieten.
 Nur in `scipy.linalg` finden sich dagegen die LU-Zerlegung sowie die Solver, die eine bekannte
 Struktur der Matrix ausnutzen (z. B. `solve_triangular` oder `cho_solve`).
-Umgekehrt bleiben `cond` und `matrix_rank` eine reine `numpy.linalg`-Domäne.
+Umgekehrt gibt es `cond` und `matrix_rank` nur in `numpy.linalg`.
 
 Die drei Zerlegungen dieses Abschnitts zerlegen eine Matrix jeweils in ein Produkt einfacherer
 Matrizen (Dreiecksmatrizen bzw. eine orthogonale Matrix), aus denen sich Gleichungssysteme mit
@@ -94,12 +98,10 @@ Ist keine Vertauschung nötig, steht dort die Einheitsmatrix.
 **QR-Zerlegung:**
 
 ```python
-scipy.linalg.qr(a, mode='full')
+scipy.linalg.qr(a)
 ```
 
 - `a`: die zu zerlegende Matrix
-- `mode` (Standard `'full'`): Form der Rückgabematrizen; `'economic'` liefert bei
-  nicht-quadratischem `a` kompaktere Matrizen
 
 ```python
 from scipy.linalg import qr
@@ -126,8 +128,8 @@ scipy.linalg.cholesky(a, lower=False)
 from scipy.linalg import cholesky
 
 # Symmetrische positiv definite Matrix
-B = np.array([[9, 3], [3, 2]])
-L_chol = cholesky(B, lower=True)
+B_chol = np.array([[9, 3], [3, 2]])
+L_chol = cholesky(B_chol, lower=True)
 print("Cholesky L:")
 print(L_chol)
 print("Verifikation L @ L.T:")
@@ -143,10 +145,21 @@ print(L_chol @ L_chol.T)
 - Berechnen Sie eine QR-Zerlegung (`linalg.qr()`) und prüfen Sie die Orthogonalität von `Q`
 - `A` ist symmetrisch und positiv definit und lässt sich deshalb zusätzlich mit
   `linalg.cholesky()` zerlegen; berechnen Sie auch diese Zerlegung
+- Legen Sie zusätzlich die ebenfalls symmetrische Matrix `C` = `[[1, 2], [2, 1]]` an und geben Sie
+  deren Eigenwerte aus (`np.linalg.eigh()`, siehe [PARTREF::np-linalg])
+- Versuchen Sie als **letzten** Schritt Ihres Skripts, auch `C` mit `linalg.cholesky()` zu zerlegen,
+  und halten Sie in einem Kommentar fest, wie SciPy darauf reagiert und was die Eigenwerte von `C`
+  damit zu tun haben
 
 Geben Sie alle Matrizen aus und verifizieren Sie jeweils die Zerlegung durch Rückmultiplikation.
 
-<!-- time estimate: 15 min -->
+[HINT::Die Fehlermeldung von `cholesky()` sagt mir nichts]
+Der Meldungstext benennt eine LAPACK-interne Routine und hilft nicht weiter.
+Aussagekräftig sind nur die Tatsache, dass der Aufruf überhaupt abbricht, und die Bedingung, unter
+der die Cholesky-Zerlegung laut Abschnittsüberschrift oben definiert ist.
+[ENDHINT]
+
+<!-- time estimate: 20 min -->
 
 ### Erweiterte Gleichungssystem-Solver
 
@@ -166,13 +179,13 @@ scipy.linalg.solve(a, b)
 import numpy as np
 from scipy.linalg import solve
 
-# Gleichungssystem Ax = b
-A = np.array([[3, 1], [1, 2]])
-b = np.array([9, 8])
+# Gleichungssystem A_std x = b_std
+A_std = np.array([[3, 1], [1, 2]])
+b_std = np.array([9, 8])
 
-x = solve(A, b)
-print(f"Lösung: {x}")
-print(f"Verifikation A@x: {A @ x}")
+x_std = solve(A_std, b_std)
+print(f"Lösung: {x_std}")
+print(f"Verifikation A_std@x: {A_std @ x_std}")
 ```
 
 Der Aufruf entspricht dem bereits aus [PARTREF::np-linalg] bekannten `numpy.linalg.solve`.
@@ -194,11 +207,11 @@ ohne den allgemeinen (aufwendigeren) Lösungsweg von `solve()` zu benötigen.
 from scipy.linalg import solve_triangular
 
 # Obere Dreiecksmatrix
-U = np.array([[2, 1, 1], [0, 1, 1], [0, 0, 1]])
-b_tri = np.array([4, 2, 1])
+U_tri = np.array([[2, 1, 1], [0, 1, 1], [0, 0, 1]])
+b_utri = np.array([7, 1, 2])
 
-x_tri = solve_triangular(U, b_tri)
-print(f"Dreiecks-Lösung: {x_tri}")
+x_utri = solve_triangular(U_tri, b_utri)
+print(f"Dreiecks-Lösung: {x_utri}")
 ```
 
 **Solver für symmetrische positiv definite Systeme:**
@@ -222,13 +235,13 @@ zu benutzen.
 from scipy.linalg import cho_factor, cho_solve
 
 # Symmetrische positiv definite Matrix
-B = np.array([[5, 2], [2, 3]])
-b_chol = np.array([9, 8])
+B_spd = np.array([[5, 2], [2, 3]])
+b_spd = np.array([9, 8])
 
-c, low = cho_factor(B)
-x_chol = cho_solve((c, low), b_chol)
-print(f"Lösung: {x_chol}")
-print(f"Verifikation B@x: {B @ x_chol}")
+c, low = cho_factor(B_spd)
+x_spd = cho_solve((c, low), b_spd)
+print(f"Lösung: {x_spd}")
+print(f"Verifikation B_spd@x: {B_spd @ x_spd}")
 ```
 
 [ER] Lösen Sie verschiedene Arten von linearen Gleichungssystemen:
@@ -236,7 +249,7 @@ print(f"Verifikation B@x: {B @ x_chol}")
 - Lösen Sie das System mit `A_gen` = `[[4, 1, 2], [1, 3, 1], [2, 1, 4]]` und `b_gen` = `[7, 6, 8]`
   mit `linalg.solve()`
 - Gegeben ist die obere Dreiecksmatrix `A_tri` = `[[3, 2, 1], [0, 2, 1], [0, 0, 1]]` mit
-  `b_tri` = `[6, 3, 1]`; lösen Sie dieses System mit `linalg.solve_triangular()`
+  `b_tri` = `[11, 8, 2]`; lösen Sie dieses System mit `linalg.solve_triangular()`
 - Lösen Sie nun `A_gen` und `b_gen` ein zweites Mal, diesmal mit `linalg.solve_triangular()`
   statt mit `linalg.solve()`, und vergleichen Sie beide Lösungen; halten Sie in einem Kommentar
   fest, welche Einträge von `A_gen` in die zweite Rechnung offenbar eingegangen sind und welche
@@ -318,6 +331,8 @@ rel_change_ill = np.linalg.norm(x_ill_pert - x_ill) / np.linalg.norm(x_ill)
 
 print(f"\nRelative Änderung der Lösung (gut konditioniert): {rel_change_good:.2e}")
 print(f"Relative Änderung der Lösung (schlecht konditioniert): {rel_change_ill:.2e}")
+
+# Ausgabe:
 # Konditionszahl (gut): 1.938749
 # Lösung: [1.72727273 2.09090909]
 # Konditionszahl (schlecht): 2.50e+05
