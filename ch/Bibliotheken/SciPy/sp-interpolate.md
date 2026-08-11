@@ -29,16 +29,12 @@ SciPy stellt dafür mehrere Interpolationsverfahren bereit.
 
 ### Vorwissen
 
-Für diese Aufgabe sind das Konzept der numerischen Interpolation und Grundbegriffe der Analysis
-(Polynome, Stetigkeit, stückweise definierte Funktionen) hilfreich; für den RBF-Abschnitt
+Für diese Aufgabe ist das Konzept der numerischen Interpolation hilfreich, für den RBF-Abschnitt
 zusätzlich das Konzept der radialen Basisfunktionen.
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Interpolation (Wikipedia)](https://de.wikipedia.org/wiki/Interpolation_(Mathematik)):
   Konzept der numerischen Interpolation, Polynom- und Spline-Interpolation
-- [Polynom (Wikipedia)](https://de.wikipedia.org/wiki/Polynom): Grundbegriff Polynom
-- [Stetige Funktion (Wikipedia)](https://de.wikipedia.org/wiki/Stetige_Funktion):
-  Grundbegriff Stetigkeit
 - [Radiale Basisfunktion (Wikipedia)](https://de.wikipedia.org/wiki/Radiale_Basisfunktion):
   Konzept der radialen Basisfunktionen (für den RBF-Abschnitt)
 
@@ -46,6 +42,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 Interpolation erzeugt aus gegebenen Datenpunkten eine Funktion, mit der sich Werte zwischen den
 Punkten berechnen lassen.
+Die x-Koordinaten dieser Punkte heißen Stützstellen.
 SciPy bietet dafür vor allem zwei Werkzeuge: `make_interp_spline` für Splines beliebigen
 Grades und `CubicSpline` speziell für kubische Splines.
 
@@ -57,12 +54,6 @@ Diese Aufgabe verwendet durchgehend die aktuellen Schnittstellen.
 `make_splrep` weiter unten gibt es erst ab SciPy 1.15; prüfen Sie Ihre Version notfalls wie in
 [PARTREF::sp-Einführung] und aktualisieren Sie mit `pip install -U scipy`.
 [ENDNOTICE]
-
-Die Signaturen in dieser Aufgabe zeigen jeweils nur die hier benötigten Parameter, nicht die
-vollständige Parameterliste.
-Weggelassene Parameter können in der echten Signatur vor den gezeigten stehen; bei `CubicSpline`
-etwa steht `axis` vor `bc_type`.
-Die optionalen Parameter sind deshalb stets als Schlüsselwortargumente zu übergeben.
 
 `make_interp_spline` erzeugt einen interpolierenden Spline vom Grad `k`:
 
@@ -77,6 +68,12 @@ scipy.interpolate.make_interp_spline(x, y, k=3)
 Der Rückgabewert ist ein aufrufbares Objekt: mit neuen x-Werten aufgerufen liefert es die
 interpolierten y-Werte (siehe Beispiel unten).
 
+Die Signaturen in dieser Aufgabe zeigen jeweils nur die hier benötigten Parameter, nicht die
+vollständige Parameterliste.
+Weggelassene Parameter können in der echten Signatur vor den gezeigten stehen; bei `CubicSpline`
+etwa steht `axis` vor `bc_type`.
+Die optionalen Parameter sind deshalb stets als Schlüsselwortargumente zu übergeben.
+
 `CubicSpline` ist auf kubische Splines spezialisiert:
 
 ```python
@@ -87,7 +84,9 @@ scipy.interpolate.CubicSpline(x, y, bc_type='not-a-knot')
 - `bc_type` (Standard `'not-a-knot'`): Randbedingung an den Enden des Intervalls.
   Knoten heißen die Stellen, an denen zwei Polynomstücke aneinanderstoßen.
   `'not-a-knot'` bedeutet, dass die äußersten inneren Knoten entfallen und ein Randstück daher mit
-  seinem Nachbarstück ein einziges Polynom bildet
+  seinem Nachbarstück ein einziges Polynom bildet.
+  Dieses eine Polynom muss dann drei Datenpunkte treffen, während ein Stück im Inneren nur zwei zu
+  treffen hat
 
 Der Rückgabewert ist wie bei `make_interp_spline` ein aufrufbares Objekt.
 
@@ -197,6 +196,9 @@ print("Exakt:", np.round(exakt(x), 4))
 print("Glatt:", np.round(glatt(x), 4))
 ```
 
+`exakt` gibt die Datenwerte unverändert wieder, `glatt` weicht an jeder Stützstelle um einige
+Hundertstel davon ab — genau das ist die Wirkung von `s`.
+
 [ER] Untersuchen Sie den Glättungseffekt an verrauschten Messwerten einer bekannten Funktion:
 
 - Erstellen Sie mit `np.linspace` 11 gleichmäßig verteilte Stützstellen `x` von 0 bis 10
@@ -207,7 +209,7 @@ print("Glatt:", np.round(glatt(x), 4))
 - Erzeugen Sie eine exakte Spline-Interpolation (`s=0`) und nennen Sie sie `exakt`
 - Schätzen Sie mit der Faustregel von oben eine Größenordnung für `s` ab und geben Sie sie aus
   (4 Nachkommastellen); die dafür nötige Streuung ist die Standardabweichung der Abweichungen
-  `y - np.sin(x)`, denn die wahre Funktion ist hier bekannt
+  `y - np.sin(x)` mit dem Standardwert `ddof=0`, denn die wahre Funktion ist hier bekannt
 - Erzeugen Sie danach eine geglättete Spline-Interpolation mit `s=0.5` und nennen Sie sie `glatt`;
   Ihre Schätzung sollte in derselben Größenordnung liegen wie dieser vorgegebene Wert
 - Werten Sie beide Splines an den Stützstellen `x` aus und geben Sie je den größten Betrag der
@@ -286,8 +288,8 @@ welcher Kernel welchen braucht, steht in der
   Datenwerte `werte = np.array([0.0, 1.0, 1.0, 2.0, 1.2, 3.0])` an
 - Erzeugen Sie damit einen `RBFInterpolator` namens `rbf_2d` (wieder mit `'thin_plate_spline'`) und
   werten Sie ihn an den Stellen `stellen = np.array([[0.25, 0.25], [0.75, 0.75], [1.5, 0.5]])` aus
-  (3 Nachkommastellen); eine der drei Stellen liegt genau in der Mitte zwischen zwei Ihrer
-  Datenpunkte, daran können Sie Ihr Ergebnis grob prüfen
+  (3 Nachkommastellen); jede der drei Stellen liegt genau in der Mitte zwischen zwei Ihrer
+  Datenpunkte, daran können Sie Ihre Ergebnisse grob prüfen
 
 [HINT::Wie vergleiche ich drei Kernel in einer Tabelle?]
 Auch hier lässt sich die Ausgabe als Tabelle gestalten:
@@ -296,8 +298,8 @@ Auch hier lässt sich die Ausgabe als Tabelle gestalten:
 ```
 [ENDHINT]
 
-[EQ] Vergleichen Sie in [EREFR::3] den eindimensionalen mit dem zweidimensionalen Aufruf: Außer der
-Form der Koordinaten-Arrays hat sich nichts geändert.
+[EQ] Vergleichen Sie in [EREFR::3] den eindimensionalen mit dem zweidimensionalen Aufruf: Am Aufruf
+selbst ändert sich nichts, nur die Koordinaten bekommen statt der Form `(n, 1)` die Form `(n, 2)`.
 Erklären Sie von dieser Beobachtung ausgehend, warum `RBFInterpolator` die Koordinaten auch bei
 eindimensionalen Daten als 2D-Array verlangt.
 Warum ließe sich `make_interp_spline` nicht ebenso einfach auf zweidimensionale Koordinaten
@@ -313,7 +315,7 @@ Welches Verfahren geeignet ist, hängt von den Daten und dem Ziel ab:
 
 | Verfahren | Eigenschaft | typische Anwendung |
 |-----------|-------------|--------------------|
-| `make_interp_spline` (`k=1`) | linear, an den Punkten "eckig" | einfache, dichte Daten |
+| `make_interp_spline` (`k=1`) | linear, geht durch alle Punkte, dort "eckig" | einfache, dichte Daten |
 | `CubicSpline` | glatt, geht durch alle Punkte | glatte Funktionen ohne Rauschen |
 | `make_splrep` (`s>0`) | glättet, geht nicht mehr exakt durch die Punkte | verrauschte Messdaten |
 | `RBFInterpolator` | flexibel, auch mehrdimensional/unregelmäßig | Streudaten, höhere Dimensionen |
