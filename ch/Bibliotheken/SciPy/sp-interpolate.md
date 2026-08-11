@@ -30,8 +30,8 @@ SciPy stellt dafür mehrere Interpolationsverfahren bereit.
 ### Vorwissen
 
 Für diese Aufgabe sind das Konzept der numerischen Interpolation und Grundbegriffe der Analysis
-(Polynome, Stetigkeit) hilfreich; für den RBF-Abschnitt zusätzlich das Konzept der radialen
-Basisfunktionen.
+(Polynome, Stetigkeit, stückweise definierte Funktionen) hilfreich; für den RBF-Abschnitt
+zusätzlich das Konzept der radialen Basisfunktionen.
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Interpolation (Wikipedia)](https://de.wikipedia.org/wiki/Interpolation_(Mathematik)):
@@ -84,10 +84,10 @@ scipy.interpolate.CubicSpline(x, y, bc_type='not-a-knot')
 ```
 
 - `x`, `y`: die Datenpunkte
-- `bc_type` (Standard `'not-a-knot'`): Randbedingung an den Enden des Intervalls;
-  `'not-a-knot'` bedeutet, dass die äußersten inneren Knoten (so heißen die Stellen, an denen zwei
-  Polynomstücke aneinanderstoßen) entfallen und ein Randstück daher mit seinem Nachbarstück ein
-  einziges Polynom bildet
+- `bc_type` (Standard `'not-a-knot'`): Randbedingung an den Enden des Intervalls.
+  Knoten heißen die Stellen, an denen zwei Polynomstücke aneinanderstoßen.
+  `'not-a-knot'` bedeutet, dass die äußersten inneren Knoten entfallen und ein Randstück daher mit
+  seinem Nachbarstück ein einziges Polynom bildet
 
 Der Rückgabewert ist wie bei `make_interp_spline` ein aufrufbares Objekt.
 
@@ -146,7 +146,7 @@ Das lässt sich z. B. als Tabelle gestalten:
 
 [EQ] Betrachten Sie die Differenzen zwischen linearer und kubischer Interpolation aus [EREFR::1].
 An welchen Stellen sind sie am größten, und warum?
-An einer der fünf Stellen ist die Differenz dagegen sehr klein.
+An welcher der fünf Stellen ist die Differenz dagegen sehr klein?
 Was müsste für die Daten insgesamt gelten, damit die lineare Interpolation überall so brauchbar
 wäre wie dort?
 
@@ -206,13 +206,14 @@ print("Glatt:", np.round(glatt(x), 4))
   bekannt
 - Erzeugen Sie eine exakte Spline-Interpolation (`s=0`) und nennen Sie sie `exakt`
 - Schätzen Sie mit der Faustregel von oben eine Größenordnung für `s` ab und geben Sie sie aus
-  (4 Nachkommastellen); die dafür nötige Streuung steckt in den Abweichungen `y - np.sin(x)`,
-  denn die wahre Funktion ist hier bekannt
-- Erzeugen Sie danach eine geglättete Spline-Interpolation mit `s=0.5` und nennen Sie sie `glatt`
-- Werten Sie beide Splines an den Stützstellen `x` aus und geben Sie je die größte Abweichung von
-  den gemessenen `y`-Werten aus (4 Nachkommastellen)
+  (4 Nachkommastellen); die dafür nötige Streuung ist die Standardabweichung der Abweichungen
+  `y - np.sin(x)`, denn die wahre Funktion ist hier bekannt
+- Erzeugen Sie danach eine geglättete Spline-Interpolation mit `s=0.5` und nennen Sie sie `glatt`;
+  Ihre Schätzung sollte in derselben Größenordnung liegen wie dieser vorgegebene Wert
+- Werten Sie beide Splines an den Stützstellen `x` aus und geben Sie je den größten Betrag der
+  Abweichung von den gemessenen `y`-Werten aus (4 Nachkommastellen)
 - Werten Sie beide Splines außerdem auf dem feinen Gitter `np.linspace(0, 10, 200)` aus und geben
-  Sie je die größte Abweichung von `np.sin` aus, also von der wahren Funktion
+  Sie je den größten Betrag der Abweichung von `np.sin` aus, also von der wahren Funktion
   (4 Nachkommastellen)
 
 [EQ] Stellen Sie die vier Abweichungen aus [EREFR::2] nebeneinander.
@@ -227,7 +228,7 @@ Messwerten abzulesen?
 
 Radiale Basisfunktionen (RBF) interpolieren anhand des Abstands zu den Datenpunkten und eignen
 sich auch für unregelmäßig verteilte Daten (Streudaten).
-In SciPy stellt `RBFInterpolator` diese Methode bereit:
+In SciPy stellt `RBFInterpolator` dieses Verfahren bereit:
 
 ```python
 scipy.interpolate.RBFInterpolator(y, d, smoothing=0.0, kernel='thin_plate_spline')
@@ -282,11 +283,11 @@ welcher Kernel welchen braucht, steht in der
 - Geben Sie die Ergebnisse als Tabelle aus (3 Nachkommastellen)
 - Interpolieren Sie anschließend auf dieselbe Weise zweidimensional: Legen Sie die Koordinaten
   `punkte = np.array([[0, 0], [1, 0], [0, 1], [1, 1], [0.5, 0.5], [2, 1]])` und die zugehörigen
-  Datenwerte `werte = np.array([0.0, 1.0, 1.0, 2.0, 1.2, 3.0])` an, erzeugen Sie damit einen
-  `RBFInterpolator` namens `rbf_2d` (wieder mit `'thin_plate_spline'`) und werten Sie ihn an den
-  Stellen `stellen = np.array([[0.25, 0.25], [0.75, 0.75], [1.5, 0.5]])` aus (3 Nachkommastellen);
-  eine der drei Stellen liegt genau in der Mitte zwischen zwei Ihrer Datenpunkte, daran können Sie
-  Ihr Ergebnis grob prüfen
+  Datenwerte `werte = np.array([0.0, 1.0, 1.0, 2.0, 1.2, 3.0])` an
+- Erzeugen Sie damit einen `RBFInterpolator` namens `rbf_2d` (wieder mit `'thin_plate_spline'`) und
+  werten Sie ihn an den Stellen `stellen = np.array([[0.25, 0.25], [0.75, 0.75], [1.5, 0.5]])` aus
+  (3 Nachkommastellen); eine der drei Stellen liegt genau in der Mitte zwischen zwei Ihrer
+  Datenpunkte, daran können Sie Ihr Ergebnis grob prüfen
 
 [HINT::Wie vergleiche ich drei Kernel in einer Tabelle?]
 Auch hier lässt sich die Ausgabe als Tabelle gestalten:
@@ -317,8 +318,6 @@ Welches Verfahren geeignet ist, hängt von den Daten und dem Ziel ab:
 | `make_splrep` (`s>0`) | glättet, geht nicht mehr exakt durch die Punkte | verrauschte Messdaten |
 | `RBFInterpolator` | flexibel, auch mehrdimensional/unregelmäßig | Streudaten, höhere Dimensionen |
 
-`make_interp_spline` steht in der Tabelle stellvertretend für die lineare Interpolation.
-
 [ER] Vergleichen Sie die Verfahren an der Sinusfunktion:
 
 - Erzeugen Sie mit `np.linspace` 9 gleichmäßig verteilte Stützstellen `x` von 0 bis 2π und
@@ -343,7 +342,11 @@ Bei `rbf` ist dabei wieder `x_fein.reshape(-1, 1)` einzusetzen.
 
 [EQ] Betrachten Sie die Ergebnisse aus [EREFR::4]:
 
-- Welches Verfahren schneidet am schlechtesten ab, und warum?
+- `RBFInterpolator` landet zwischen den beiden kubischen Splines und der linearen Interpolation.
+  Sehen Sie sich seine Abweichungen an den vier Zwischenstellen an: eine davon fällt deutlich aus
+  der Reihe.
+  Wo liegt diese Stelle relativ zu den Stützstellen, und was leisten die kubischen Splines dort,
+  was `RBFInterpolator` nicht leistet?
 - Welche beiden Verfahren liefern identische Ergebnisse, und warum?
 - Bei den Daten aus [EREFR::2] war die wahre Funktion ausnahmsweise bekannt, in der Praxis ist sie
   das fast nie.
