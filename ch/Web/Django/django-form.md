@@ -43,7 +43,8 @@ Die Grundelemente eines HTML-Formulars (`<form>`, `<input>`, `<button type="subm
 kennen Sie bereits aus [PARTREF::http-POST] und [PARTREF::html-Formulare], den Unterschied
 zwischen den beiden Methoden GET und POST aus [PARTREF::http-GET] und [PARTREF::http-POST].
 Das `method`-Attribut von `<form>`, an dem ein Formular sich für eine der beiden entscheidet,
-kennen Sie aus [PARTREF::http-POST] bereits als `method="POST"`; neu ist der Wert `get`.
+kennen Sie aus [PARTREF::http-POST] bereits als `method="POST"`; die unten durchgehend
+verwendete Kleinschreibung `method="post"` ist gleichwertig, neu ist nur der Wert `get`.
 Welche der beiden für ein bestimmtes Formular die richtige ist, beobachten Sie in dieser
 Aufgabe an drei Beispielen selbst.
 
@@ -141,7 +142,7 @@ Unterschieden:
 ```html
 <form action="ZIEL" method="post">
     {% csrf_token %}
-    <input type="text" name="FELDNAME">
+    <input type="text" name="FELDNAME" value="VOREINGESTELLTER_TEXT" placeholder="HINWEISTEXT">
     <button type="submit">BESCHRIFTUNG</button>
 </form>
 ```
@@ -210,8 +211,8 @@ Jetzt schreiben Sie hinein: Ein Registrierungsformular legt über `Student.objec
 (aus [PARTREF::django-model]) einen neuen Datensatz an und leitet anschließend auf dessen
 Detailseite weiter.
 Für die drei Formularfelder greifen Sie mit `request.POST['name']` (usw.) zu, also mit
-eckigen Klammern statt mit `.get()` wie bei der Suche: Ein fehlendes Feld fällt so sofort
-auf, statt still zu einem leeren Wert zu werden.
+eckigen Klammern statt mit `.get()` wie bei der Suche: Ein fehlendes Feld bricht die View
+dann mit einem `MultiValueDictKeyError` ab, statt still zu einem leeren Wert zu werden.
 Eine View, die bei POST einen Datensatz anlegt und dann weiterleitet, hat folgenden Aufbau:
 
 ```python
@@ -259,9 +260,9 @@ Ein Formular mit mehreren Feldern hat folgende Bestandteile (aus [PARTREF::http-
 </form>
 ```
 
-- `<label>Text: <input ...></label>`: verbindet die Beschriftung mit dem Feld
+- `<label>Text: <input ...></label>`: verbindet die Beschriftung mit dem Feld.
 - `required`: macht das Feld zur Pflichteingabe; das prüft aber nur der Browser vor dem
-  Absenden, der Server bekommt davon nichts mit
+  Absenden, der Server bekommt davon nichts mit.
 
 [ER] Erstellen Sie `webapp/templates/register.html` als Kind-Template von `base.html`
 (`{% extends "base.html" %}`, Titel `Registrierung`, Inhalt in `{% block content %}`) mit:
@@ -296,8 +297,9 @@ Löschen Sie diesen Datensatz jetzt wieder, mit `delete()` oder über die Admin-
 der Studierendenliste.
 [ENDNOTICE]
 
-Ungeprüfte Eingaben lassen sich nur durch serverseitige Validierung verhindern, etwa mit
-Django-Forms (siehe "Working with forms" unter Weiterführend).
+Dass ungültige Eingaben in der Datenbank landen, lässt sich nur durch serverseitige
+Validierung verhindern, etwa mit Django-Forms (siehe "Working with forms" unter
+Weiterführend).
 
 [EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und registrieren Sie einen Studierenden mit
 dem Namen "Tom Fischer", Alter `20` und der E-Mail "tom@example.com".
