@@ -29,8 +29,8 @@ SciPy stellt dafür mehrere Interpolationsverfahren bereit.
 
 ### Vorwissen
 
-Für diese Aufgabe ist das Konzept der numerischen Interpolation hilfreich, für den RBF-Abschnitt
-zusätzlich das Konzept der radialen Basisfunktionen.
+Für diese Aufgabe ist das Konzept der numerischen Interpolation hilfreich, für den Abschnitt über
+radiale Basisfunktionen (RBF) zusätzlich das Konzept dieser Funktionen.
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Interpolation (Wikipedia)](https://de.wikipedia.org/wiki/Interpolation_(Mathematik)):
@@ -57,6 +57,12 @@ Diese Aufgabe verwendet durchgehend die aktuellen Schnittstellen.
 [PARTREF::sp-Einführung] und aktualisieren Sie mit `pip install -U scipy`.
 [ENDNOTICE]
 
+Die Signaturen in dieser Aufgabe zeigen jeweils nur die hier benötigten Parameter, nicht die
+vollständige Parameterliste.
+Weggelassene Parameter können in der echten Signatur vor den gezeigten stehen; bei `CubicSpline`
+etwa steht `axis` vor `bc_type`.
+Die optionalen Parameter sind deshalb stets als Schlüsselwortargumente zu übergeben.
+
 `make_interp_spline` erzeugt einen interpolierenden Spline vom Grad `k`:
 
 ```python
@@ -69,12 +75,6 @@ scipy.interpolate.make_interp_spline(x, y, k=3)
 
 Der Rückgabewert ist ein aufrufbares Objekt: mit neuen x-Werten aufgerufen liefert es die
 interpolierten y-Werte (siehe Beispiel unten).
-
-Die Signaturen in dieser Aufgabe zeigen jeweils nur die hier benötigten Parameter, nicht die
-vollständige Parameterliste.
-Weggelassene Parameter können in der echten Signatur vor den gezeigten stehen; bei `CubicSpline`
-etwa steht `axis` vor `bc_type`.
-Die optionalen Parameter sind deshalb stets als Schlüsselwortargumente zu übergeben.
 
 `CubicSpline` ist auf kubische Splines spezialisiert:
 
@@ -172,6 +172,8 @@ scipy.interpolate.make_splrep(x, y, *, k=3, s=0)
 
 Der Stern in der Signatur bedeutet, dass `k` und `s` nur als Schlüsselwortargumente übergeben
 werden dürfen; `make_splrep(x, y, 3, 0)` scheitert mit einem `TypeError`.
+Die Randbedingung an den Enden lässt sich über den Parameter `bc_type` einstellen; ihr
+Standardwert ist `'not-a-knot'`.
 Der Rückgabewert ist wieder ein aufrufbares Objekt.
 
 `s` ist kein dimensionsloser Regler zwischen 0 und 1, sondern eine Schranke für eine Summe von
@@ -272,8 +274,8 @@ print("RBF:", np.round(rbf(x_neu), 3))
 Anders als die kubischen Splines gibt `RBFInterpolator` die zugrunde liegende Funktion `x²` nicht
 exakt wieder: Das Verfahren rechnet ausschließlich mit Abständen zwischen den Datenpunkten und ist
 auf keinen Polynomgrad festgelegt.
-Wie groß die Abweichung ausfällt, ist von Stelle zu Stelle verschieden; der vierte Abschnitt geht
-dem systematisch nach.
+Wie groß die Abweichung ausfällt, ist von Stelle zu Stelle verschieden; der Abschnitt zum
+Verfahrensvergleich geht dem systematisch nach.
 
 Einige Kernel (z. B. `'linear'`, `'cubic'`, `'thin_plate_spline'`) funktionieren ohne weitere
 Angaben.
@@ -323,7 +325,6 @@ Auch hier lässt sich die Ausgabe als Tabelle gestalten:
 
 ### Interpolationsverfahren vergleichen und auswählen
 
-Die vorgestellten Verfahren haben unterschiedliche Eigenschaften.
 Welches Verfahren geeignet ist, hängt von den Daten und dem Ziel ab:
 
 | Verfahren | Eigenschaft | typische Anwendung |
@@ -358,7 +359,7 @@ Bei `rbf` ist dabei wieder `x_fein.reshape(-1, 1)` einzusetzen.
 
 [EQ] Betrachten Sie die Ergebnisse aus [EREFR::4]:
 
-- `RBFInterpolator` landet zwischen den beiden kubischen Splines und der linearen Interpolation.
+- `RBFInterpolator` liegt zwischen den beiden kubischen Splines und der linearen Interpolation.
   Sehen Sie sich seine Abweichungen an den vier Zwischenstellen an: eine davon fällt deutlich aus
   der Reihe.
   Wo liegt diese Stelle relativ zu den Stützstellen, und was leisten die kubischen Splines dort,
