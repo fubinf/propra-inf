@@ -1,24 +1,26 @@
-title: SciPy Sparse-Matrix-Operationen verstehen und anwenden
+title: SciPy Sparse-Arrays verstehen und anwenden
 stage: alpha
 timevalue: 1.75
 difficulty: 3
 requires: sp-Einführung
-assumes: np-Einführung, np-array, py-Fstrings
+assumes: np-Einführung, np-array, np-linalg, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
 
-- Ich verstehe, wann sich eine Matrix in einer Sparse-Darstellung statt dicht speichern lässt, und
-  kann den Vorteil an Speicher und Laufzeit messen.
+- Ich verstehe, wann es sich lohnt, eine Matrix in einer Sparse-Darstellung statt dicht zu
+  speichern, und kann den Vorteil an Speicher und Laufzeit messen.
 - Ich kann Matrizen im CSR-Format erstellen und ihre gespeicherten Werte analysieren.
 - Ich kann Graphen als Adjazenzmatrix darstellen und darauf kürzeste Pfade berechnen.
+- Ich kann eine explizit gespeicherte Null von einer nicht gespeicherten unterscheiden und
+  erklären, was dieser Unterschied für einen als Adjazenzmatrix gespeicherten Graphen bedeutet.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
 `scipy.linalg` arbeitet mit dicht besetzten Matrizen, bei denen jeder Eintrag gespeichert wird.
-In vielen Anwendungen sind jedoch fast alle Einträge einer großen Matrix Null – etwa in der
+In vielen Anwendungen sind jedoch fast alle Einträge einer großen Matrix Null — etwa in der
 numerischen Lösung partieller Differentialgleichungen, in der Netzwerkanalyse und bei
 Machine-Learning-Problemen.
 `scipy.sparse` ergänzt die lineare Algebra um Datenstrukturen, die nur die von Null verschiedenen
@@ -33,17 +35,17 @@ Einträge festhalten, und um Algorithmen, die auf dieser Darstellung direkt rech
 Diese Aufgabe stellt Graphen als Adjazenzmatrix dar und berechnet darauf kürzeste Pfade.
 Falls Ihnen diese Konzepte fehlen, helfen folgende Quellen:
 
-- [Adjazenzmatrix (Wikipedia)](https://de.wikipedia.org/wiki/Adjazenzmatrix): Darstellung eines
-  Graphen als Matrix, deren Eintrag `matrix[i,j]` das Gewicht der Kante von Knoten i zu Knoten j
-  angibt
+- [Adjazenzmatrix (Wikipedia)](https://de.wikipedia.org/wiki/Adjazenzmatrix#Graphen_mit_Kantengewichten,_ohne_Mehrfachkanten):
+  Darstellung eines Graphen als Matrix; im verlinkten Abschnitt "Graphen mit Kantengewichten" gibt
+  der Eintrag `matrix[i,j]` das Gewicht der Kante von Knoten `i` zu Knoten `j` an
 - [Dijkstra-Algorithmus (Wikipedia)](https://de.wikipedia.org/wiki/Dijkstra-Algorithmus):
   Verfahren zur Berechnung der kürzesten Pfade von einem Startknoten zu allen übrigen Knoten
 
-Es geht in dieser Aufgabe nicht darum, den Dijkstra-Algorithmus selbst zu implementieren, sondern
-darum, wie SciPy einen in einer Sparse-Darstellung gespeicherten Graphen aufnimmt und die
-fertigen Algorithmen darauf anwendet.
+Es geht in dieser Aufgabe nicht darum, den Dijkstra-Algorithmus selbst zu implementieren.
+Gezeigt wird stattdessen, wie SciPy einen in einer Sparse-Darstellung gespeicherten Graphen
+aufnimmt und die fertigen Algorithmen darauf anwendet.
 
-### Sparse-Matrizen: Wann und warum
+### Dünn besetzte Matrizen und ihre zwei Speicherformen
 
 Dünn besetzt (englisch *sparse*) heißt eine Matrix, bei der die meisten Elemente Null sind.
 Das ist eine Eigenschaft der Zahlen in der Matrix und noch keine Entscheidung darüber, wie sie
@@ -52,24 +54,25 @@ oder in einer Sparse-Darstellung (nur die von Null verschiedenen Einträge bekom
 
 **Beispiel einer dünn besetzten Matrix:**
 ```
-[0  0  3  0  4]
-[0  0  0  0  0]
-[0  6  0  0  0]
-[7  0  0  0  0]
-[0  0  0  8  0]
+[ 0   0  30   0  40]
+[ 0   0   0   0   0]
+[ 0  60   0   0   0]
+[70   0   0   0   0]
+[ 0   0   0  80   0]
 ```
 
 Diese 5×5-Matrix hat nur 5 von 25 Elementen ungleich Null; die Sparsity, also der Anteil der
 Null-Elemente, beträgt damit 80%.
 
 Der entscheidende Gedanke: Die dichte Speicherung legt für jeden der 25 Einträge Speicher an und
-bezieht ihn in jede Rechnung ein – auch die 20 Nullen.
+bezieht ihn in jede Rechnung ein — auch die 20 Nullen.
 Die Sparse-Darstellung hält nur die 5 Nicht-Null-Werte samt ihrer Position fest und überspringt
 die Nullen bei Operationen.
-Bei einer 5×5-Matrix ist das nebensächlich; bei einer quadratischen Matrix mit einer Million Zeilen,
-in der pro Zeile nur eine Handvoll Einträge besetzt ist, entscheidet genau dieser Verzicht auf das
-Speichern und Berechnen der Nullen darüber, ob die Matrix überhaupt in den Speicher passt und
-Rechnungen in vertretbarer Zeit ablaufen.
+Bei einer 5×5-Matrix ist das nebensächlich.
+Bei einer quadratischen Matrix mit einer Million Zeilen, in der pro Zeile nur eine Handvoll
+Einträge besetzt ist, entscheidet dieser Verzicht auf das Speichern und Berechnen der Nullen
+darüber, ob die Matrix überhaupt in den Speicher passt und Rechnungen in vertretbarer Zeit
+ablaufen.
 
 ### CSR-Arrays erstellen und untersuchen: `csr_array`
 
@@ -87,7 +90,7 @@ In älterem Code und in vielen Anleitungen im Netz begegnet Ihnen weiterhin `csr
 scipy.sparse.csr_array(arg1)
 ```
 
-- `arg1`: die Eingabe, aus der das Sparse-Array entsteht – üblicherweise ein dichtes
+- `arg1`: die Eingabe, aus der das Sparse-Array entsteht — üblicherweise ein dichtes
   zweidimensionales NumPy-Array, dessen von Null verschiedene Einträge übernommen werden
 
 **Grundlegende Erstellung:**
@@ -96,21 +99,21 @@ import numpy as np
 from scipy.sparse import csr_array
 
 # Aus einem dichten Array erstellen
-dense_array = np.array([[0, 0, 3, 0, 4],
-                        [0, 0, 0, 0, 0],
-                        [0, 6, 0, 0, 0]])
+dense_array = np.array([[0, 0, 30, 0, 40],
+                        [0, 0,  0, 0,  0],
+                        [0, 60, 0, 0,  0]])
 sparse_arr = csr_array(dense_array)
 print(sparse_arr)
 # <Compressed Sparse Row sparse array of dtype 'int64'
 #         with 3 stored elements and shape (3, 5)>
 #   Coords    Values
-#   (0, 2)    3
-#   (0, 4)    4
-#   (2, 1)    6
+#   (0, 2)    30
+#   (0, 4)    40
+#   (2, 1)    60
 ```
 
 **Ausgabeformat verstehen:**
-Die Ausgabe `(0, 2) 3` bedeutet: In Zeile 0, Spalte 2 steht der Wert 3.
+Die Ausgabe `(0, 2) 30` bedeutet: In Zeile 0, Spalte 2 steht der Wert 30.
 Die Kopfzeilen nennen zusätzlich die Anzahl der gespeicherten Werte und die Form (`shape`) des
 Arrays.
 
@@ -128,8 +131,8 @@ Prüfen Sie dabei, ob die Form dafür nötig ist oder sich schon aus den Koordin
 
 Ein CSR-Array besteht aus drei eindimensionalen Arrays: `data` enthält die gespeicherten Werte
 zeilenweise hintereinander, `indices` nennt zu jedem dieser Werte dessen Spalte, und `indptr` gibt
-für jede Zeile an, welcher Abschnitt von `data` und `indices` zu ihr gehört; `indptr` hat deshalb
-einen Eintrag mehr, als die Matrix Zeilen hat.
+für jede Zeile an, welcher Abschnitt von `data` und `indices` zu ihr gehört.
+`indptr` hat deshalb einen Eintrag mehr, als die Matrix Zeilen hat.
 Den genauen Aufbau beschreibt
 [Compressed Row Storage (Wikipedia)](https://de.wikipedia.org/wiki/Compressed_Row_Storage);
 dort heißen die drei Arrays `val`, `colInd` und `rowPtr`.
@@ -151,10 +154,10 @@ nichts zum Inhalt beitragen.
 from scipy.sparse import csr_array
 import numpy as np
 
-dense = np.array([[1, 0, 2], [0, 0, 3], [4, 0, 0]])
+dense = np.array([[10, 0, 20], [0, 0, 30], [40, 0, 0]])
 sparse_arr = csr_array(dense)
 print("data:", sparse_arr.data, "indices:", sparse_arr.indices, "indptr:", sparse_arr.indptr)
-# data: [1 2 3 4] indices: [0 2 2 0] indptr: [0 2 3 4]
+# data: [10 20 30 40] indices: [0 2 2 0] indptr: [0 2 3 4]
 print("Gespeicherte Elemente:", sparse_arr.nnz)
 # Gespeicherte Elemente: 4
 
@@ -173,9 +176,9 @@ print("nnz nach eliminate_zeros:", sparse_arr.nnz)
 
 [ER] Arbeiten Sie mit den Eigenschaften und Methoden eines CSR-Arrays:
 
-- Erstellen Sie aus `[[1, 0, 3, 0], [0, 2, 0, 4], [5, 0, 0, 0]]` ein CSR-Array und nennen Sie es
-  `sparse_arr`
-- Geben Sie `data`, `indices` und `indptr` aus sowie `nnz` (Anzahl gespeicherter Elemente)
+- Erstellen Sie aus `[[10, 0, 30, 0], [0, 20, 0, 40], [50, 0, 0, 0]]` ein CSR-Array und nennen Sie
+  es `sparse_arr`
+- Geben Sie `data`, `indices`, `indptr` und `nnz` aus
 - Setzen Sie den gespeicherten Wert an Position `(1, 1)` auf 0 und vergleichen Sie `nnz` mit
   `count_nonzero()`
 - Führen Sie `eliminate_zeros()` aus und prüfen Sie, ob sich `nnz` dadurch ändert
@@ -194,14 +197,14 @@ aller.
 Daraus ergibt sich die Sparsity als `(gesamt - nicht_null) / gesamt * 100`.
 [ENDHINT]
 
-[EQ] Ihr `sparse_arr` aus [EREFR::2] hat nach `eliminate_zeros()` eine Sparsity von 66,7%,
-speichert also nur 4 der 12 Werte.
+[EQ] Als Kontrollwert: Nach `eliminate_zeros()` speichert `sparse_arr` aus [EREFR::2] 4 der 12
+Elemente, die Sparsity beträgt also 66,7%.
 Zählen Sie, wie viele Zahlen es dafür in `data`, `indices` und `indptr` insgesamt festhält, und
 vergleichen Sie diese Anzahl mit der Anzahl der Zahlen, die die dichte Speicherung des
 Ausgangs-Arrays braucht.
-Erklären Sie mit diesem Vergleich und dem Beispiel der quadratischen Matrix mit einer Million
-Zeilen aus dem Abschnitt "Sparse-Matrizen: Wann und warum", warum eine hohe Sparsity allein noch
-kein Grund für die Sparse-Darstellung ist.
+Erklären Sie mit diesem Vergleich und dem Beispiel der quadratischen Matrix mit einer Million Zeilen
+aus dem Abschnitt "Dünn besetzte Matrizen und ihre zwei Speicherformen", warum eine hohe Sparsity
+allein noch kein Grund für die Sparse-Darstellung ist.
 
 <!-- time estimate: 30 min -->
 
@@ -211,7 +214,7 @@ Ein häufiger Anwendungsfall für die Sparse-Darstellung ist die Speicherung von
 **Adjazenzmatrix**.
 
 Weil in großen Graphen die meisten Knotenpaare nicht direkt verbunden sind, ist die Adjazenzmatrix
-überwiegend mit Nullen besetzt – genau der Fall, für den sich die Sparse-Darstellung eignet.
+überwiegend mit Nullen besetzt — genau der Fall, für den sich die Sparse-Darstellung eignet.
 Die Algorithmen in `scipy.sparse.csgraph` nehmen einen so gespeicherten Graphen direkt entgegen,
 darunter `dijkstra`:
 
@@ -264,6 +267,8 @@ Der Aufruf belässt `directed` beim Standardwert `True`, obwohl der Graph ungeri
 Bei einer symmetrischen Adjazenzmatrix macht das keinen Unterschied, denn zu jeder Kante `i → j`
 steht die Gegenkante `j → i` schon in der Matrix.
 `directed=False` wird erst dort nötig, wo nur eine der beiden Richtungen gespeichert ist.
+Auf einen gerichteten Graphen angewandt macht `directed=False` dagegen jede Kante in beiden
+Richtungen begehbar und kann dadurch Knoten erreichbar machen, die gerichtet unerreichbar sind.
 
 In der Adjazenzmatrix steht die 0 für "keine Kante".
 Denkbar wäre aber auch eine Kante mit dem Gewicht 0, also eine Verbindung, die nichts kostet.
@@ -317,12 +322,16 @@ Laufzeit über eine Rechnung mit der Matrix.
 Große Testmatrizen mit vorgegebener Dichte liefert `random_array`:
 
 ```python
-scipy.sparse.random_array(shape, density=0.01, format="coo")
+scipy.sparse.random_array(shape, *, density=0.01, format="coo")
 ```
 
 - `shape`: Form der Matrix als Tupel
-- `density`: Anteil der besetzten Einträge; `0.01` bedeutet 1%
-- `format`: Sparse-Format des Ergebnisses
+- `density` (Standard `0.01`): Anteil der besetzten Einträge; `0.01` bedeutet 1%
+- `format` (Standard `"coo"`): Sparse-Format des Ergebnisses; `"coo"` ist eines der weiteren
+  Sparse-Formate (siehe "Weiterführend"), diese Aufgabe braucht `"csr"`
+
+Der Stern in der Signatur bedeutet, dass `density` und `format` nur als Schlüsselwortargumente
+übergeben werden dürfen; `random_array((5, 5), 0.01, "csr")` scheitert mit einem `TypeError`.
 
 Die Laufzeit einer einzelnen Operation misst `time.perf_counter()` aus der Standardbibliothek:
 
@@ -337,16 +346,18 @@ dauer = time.perf_counter() - start
 Einzelne Zeitmessungen schwanken; aussagekräftig ist nur die Größenordnung des Unterschieds.
 
 [ER] Vergleichen Sie Speicherbedarf und Laufzeit der beiden Darstellungen für eine Matrix mit 5000
-Zeilen und 5000 Spalten, einmal mit der Dichte 0.001 und einmal mit der Dichte 0.2:
+Zeilen und 5000 Spalten, und zwar für die drei Dichten 0.001, 0.01 und 0.2:
 
 - Erzeugen Sie die Matrix mit `random_array` im Format `"csr"` und daraus mit `toarray()` die
   dichte Variante
 - Bestimmen Sie den Speicherbedarf beider Varianten in Byte; das Attribut `nbytes` eines
   NumPy-Arrays nennt den Speicherbedarf seiner Werte
-- Multiplizieren Sie beide Varianten mit einem Vektor aus 5000 Einsen (`A @ x`) und messen Sie
-  jeweils die Laufzeit
-- Geben Sie für beide Dichten die beiden Speicherwerte, die beiden Laufzeiten und jeweils das
+- Multiplizieren Sie beide Varianten mit einem Vektor aus 5000 Einsen (Matrix-Vektor-Produkt mit
+  dem Operator `@`) und messen Sie jeweils die Laufzeit
+- Geben Sie für jede Dichte die beiden Speicherwerte, die beiden Laufzeiten und jeweils das
   Verhältnis von dicht zu sparse aus
+- Geben Sie außerdem für jede Dichte aus, wie viele Zahlen die Sparse-Darstellung insgesamt
+  festhält (`data.size + indices.size + indptr.size`) und wie viele die dichte Variante braucht
 
 [HINT::Wie komme ich an den Speicherbedarf eines CSR-Arrays?]
 Ein CSR-Array hat selbst kein `nbytes`, aber jedes der Arrays, aus denen es besteht, hat eines.
@@ -354,11 +365,12 @@ Ein CSR-Array hat selbst kein `nbytes`, aber jedes der Arrays, aus denen es best
 
 [EQ] Vergleichen Sie Ihre Messwerte aus [EREFR::4].
 Erklären Sie, warum der Vorteil der Sparse-Darstellung bei der Dichte 0.2 viel kleiner ausfällt als
-bei der Dichte 0.001, und welche Bedingung damit neben einer hohen Sparsity erfüllt sein muss,
-damit sich die Sparse-Darstellung lohnt.
+bei der Dichte 0.001, obwohl schon die Dichte 0.2 einer Sparsity von 80% entspricht.
+Halten Sie fest, ob die Sparse-Darstellung bei der Dichte 0.2 überhaupt noch im Vorteil ist, und
+grenzen Sie mit Ihren drei Messpunkten ein, zwischen welchen beiden Dichten der Speichervorteil
+unter eine Größenordnung fällt.
 Vergleichen Sie für die Dichte 0.001 außerdem den gemessenen Speicherfaktor mit dem Verhältnis der
-Anzahl gespeicherter Zahlen (`data.size + indices.size + indptr.size` gegen `size` des dichten
-Arrays) und erklären Sie, warum die beiden Faktoren nicht gleich groß sind.
+Anzahl gespeicherter Zahlen und erklären Sie, warum die beiden Faktoren nicht gleich groß sind.
 
 [HINT::Warum unterscheiden sich Anzahl der Zahlen und Anzahl der Bytes?]
 Geben Sie zu den drei Arrays des CSR-Formats jeweils `dtype` aus.
