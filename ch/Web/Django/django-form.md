@@ -68,7 +68,7 @@ Ein Formular mit GET-Methode hat folgende Bestandteile:
 </form>
 ```
 
-- `action`: die Route, an die das Formular sendet, gesetzt mit `{% url %}`
+- `action`: die URL, an die das Formular sendet, gesetzt mit `{% url %}`
 - `method="get"`: sendet die Daten als GET-Parameter an die im `action`-Attribut angegebene URL
 - `name`: der Schlüssel, unter dem der eingegebene Wert als GET-Parameter ankommt
 - `value` (bei `<input type="text">`): der Text, der beim Anzeigen schon im Feld steht
@@ -158,6 +158,9 @@ liest sie den POST-Parameter `q` mit `request.POST.get('q', '')` aus, sucht bei 
 und `results` im Context; bei jeder anderen Anfrage rendert sie `search_post.html` mit leerem
 Context.
 
+Die Fallunterscheidung nach `request.method` ist das übliche Django-Muster für Views, die ein
+POST-Formular verarbeiten; bei `register` weiter unten brauchen Sie es erneut.
+
 [ER] Erstellen Sie `webapp/templates/search_post.html` als Kind-Template von `base.html`
 (`{% extends "base.html" %}`, Titel `Suche (POST)`, Inhalt in `{% block content %}`) mit:
 
@@ -190,8 +193,9 @@ curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:80
 curl -s -X POST -d "q=Anna" http://127.0.0.1:8071/search-post/ | grep -A2 "Reason given"
 ```
 
-Entfernen Sie nun versuchsweise `{% csrf_token %}` aus `search_post.html` und suchen Sie
-danach im Browser unter `http://127.0.0.1:8071/search-post/` erneut nach einem Namen.
+Entfernen Sie nun versuchsweise `{% csrf_token %}` aus `search_post.html` und laden Sie
+`http://127.0.0.1:8071/search-post/` im Browser neu, damit das Formular ohne das Tag neu
+aufgebaut wird; suchen Sie dann erneut nach einem Namen.
 Achten Sie darauf, was die Seite meldet und welche Begründung sie angibt.
 Lesen Sie zur Erklärung den Abschnitt "How it works" der
 [Django-Doku zu Cross Site Request Forgery protection](https://docs.djangoproject.com/en/stable/ref/csrf/#how-it-works)
@@ -211,8 +215,9 @@ Jetzt schreiben Sie hinein: Ein Registrierungsformular legt über `Student.objec
 (aus [PARTREF::django-model]) einen neuen Datensatz an und leitet anschließend auf dessen
 Detailseite weiter.
 Für die drei Formularfelder greifen Sie mit `request.POST['name']` (usw.) zu, also mit
-eckigen Klammern statt mit `.get()` wie bei der Suche: Ein fehlendes Feld bricht die View
-dann mit einem `MultiValueDictKeyError` ab, statt still zu einem leeren Wert zu werden.
+eckigen Klammern statt mit `.get()` wie bei der Suche: Ein Feld, das im Request gar nicht
+vorkommt, bricht die View dann mit einem `MultiValueDictKeyError` ab, statt still zu einem
+leeren Wert zu werden.
 Eine View, die bei POST einen Datensatz anlegt und dann weiterleitet, hat folgenden Aufbau:
 
 ```python
@@ -260,9 +265,8 @@ Ein Formular mit mehreren Feldern hat folgende Bestandteile (aus [PARTREF::http-
 </form>
 ```
 
-- `<label>Text: <input ...></label>`: verbindet die Beschriftung mit dem Feld.
-- `required`: macht das Feld zur Pflichteingabe; das prüft aber nur der Browser vor dem
-  Absenden, der Server bekommt davon nichts mit.
+- `<label>Text: <input ...></label>`: verbindet die Beschriftung mit dem Feld
+- `required`: macht das Feld zur Pflichteingabe
 
 [ER] Erstellen Sie `webapp/templates/register.html` als Kind-Template von `base.html`
 (`{% extends "base.html" %}`, Titel `Registrierung`, Inhalt in `{% block content %}`) mit:
@@ -277,18 +281,24 @@ Ein Formular mit mehreren Feldern hat folgende Bestandteile (aus [PARTREF::http-
 [ER] Ergänzen Sie `urls.py` um die Route `register/` auf `register` (Name `register`).
 <!-- time estimate: 15 min -->
 
-[EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und senden Sie das Formular ab, ohne das
-Feld "Name" auszufüllen.
-Was passiert im Browser?
+[EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und registrieren Sie einen Studierenden mit
+dem Namen "Tom Fischer", Alter `20` und der E-Mail "tom@example.com".
+Auf welcher Seite landen Sie danach?
+Rufen Sie anschließend zusätzlich `http://127.0.0.1:8071/students/` auf: Woran erkennen Sie
+dort, dass Ihre Eingaben tatsächlich in der Datenbank gespeichert wurden (und nicht nur
+zurückgespiegelt)?
+Warum ist für die Registrierung POST die richtige Methode und nicht GET?
 
-Entfernen Sie nun versuchsweise das `required`-Attribut beim Namensfeld in `register.html`
-und senden Sie das Formular im Browser erneut ab, wieder ohne das Feld "Name" auszufüllen;
-Alter und E-Mail füllen Sie dabei normal aus, denn dort steht `required` weiterhin.
-Rufen Sie anschließend `http://127.0.0.1:8071/students/` auf.
+Führen Sie nun zwei weitere Absendeversuche durch, bei denen Sie das Feld "Name" jeweils leer
+lassen: einen mit dem `required`-Attribut am Namensfeld, so wie es jetzt dasteht, und einen,
+nachdem Sie das Attribut in `register.html` entfernt und die Seite neu geladen haben.
+Alter und E-Mail füllen Sie dabei beide Male normal aus, denn dort steht `required` weiterhin.
+Rufen Sie nach dem zweiten Versuch `http://127.0.0.1:8071/students/` auf.
 Fügen Sie `required` danach wieder ein.
 
-[EQ] Was zeigt `http://127.0.0.1:8071/students/` jetzt an?
-Was sagt Ihnen das über die serverseitige Prüfung von Pflichtfeldern?
+[EQ] Wie hat der Browser auf die beiden Absendeversuche jeweils reagiert?
+Was zeigt `http://127.0.0.1:8071/students/` danach an, und was sagt Ihnen das darüber, wo die
+Prüfung von `required` stattfindet?
 
 [NOTICE]
 Bei diesem Versuch ist ein `Student` mit leerem Namen in der Datenbank gelandet.
@@ -300,14 +310,6 @@ der Studierendenliste.
 Dass ungültige Eingaben in der Datenbank landen, lässt sich nur durch serverseitige
 Validierung verhindern, etwa mit Django-Forms (siehe "Working with forms" unter
 Weiterführend).
-
-[EQ] Öffnen Sie `http://127.0.0.1:8071/register/` und registrieren Sie einen Studierenden mit
-dem Namen "Tom Fischer", Alter `20` und der E-Mail "tom@example.com".
-Auf welcher Seite landen Sie danach?
-Rufen Sie anschließend zusätzlich `http://127.0.0.1:8071/students/` auf: Woran erkennen Sie
-dort, dass Ihre Eingaben tatsächlich in der Datenbank gespeichert wurden (und nicht nur
-zurückgespiegelt)?
-Warum ist für die Registrierung POST die richtige Methode und nicht GET?
 <!-- time estimate: 15 min -->
 
 ### Weiterführend
