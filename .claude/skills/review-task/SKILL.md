@@ -81,6 +81,7 @@ und zur Komplexität passt.
 Schwierigkeitsgrad 2 ("leicht") bedeutet schrittweise Anleitung mit Dokumentationsverweisen
 und [HINT]-Blöcken für schwierigere Schritte.
 Wenn die Aufgabe eigenständiges Problemlösen erfordert, kann sie nicht Schwierigkeitsgrad 2 sein.
+Umgekehrt ist sie ohne Dokulesen in der Regel zu einfach.
 
 **A1.2 Leichte Aufgaben müssen schrittweise anleiten.**
 Bei Schwierigkeitsgrad 2 sollen Studierende, "mundgerecht gefüttert werden":
