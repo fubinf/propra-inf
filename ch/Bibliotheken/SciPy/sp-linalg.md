@@ -17,8 +17,8 @@ assumes: np-Einführung, np-math, np-linalg, py-Fstrings
 [SECTION::background::default]
 
 `numpy.linalg` deckt die grundlegenden Operationen der linearen Algebra ab.
-`scipy.linalg` erweitert das um weitere Matrixzerlegungen und um Solver, die eine bekannte
-Struktur der Koeffizientenmatrix ausnutzen, statt jedes System gleich zu behandeln.
+`scipy.linalg` erweitert das um weitere Matrixzerlegungen und um Solver, die auf eine bekannte
+Struktur der Koeffizientenmatrix zugeschnitten sind.
 Wer numerisch rechnet, braucht außerdem ein Urteil darüber, wie belastbar das Ergebnis ist:
 Ein Gleichungssystem liefert immer eine Antwort, aber nicht immer eine verlässliche.
 
@@ -33,22 +33,23 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [LU-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/LU-Zerlegung):
   Zerlegung A = P·L·U in eine untere und obere Dreiecksmatrix
-  (der Artikel schreibt R statt U und stellt die Zerlegung als P·A = L·R dar,
-  was dasselbe besagt; SciPy liefert die hier verwendete Form A = P·L·U)
+  (der Artikel schreibt R statt U und stellt die Zerlegung als P·A = L·R dar;
+  das ist dieselbe Aussage, sein P ist aber die Transponierte des P, das SciPy zurückgibt)
 - [QR-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/QR-Zerlegung):
   Zerlegung A = Q·R in eine orthogonale Matrix und eine obere Dreiecksmatrix
 - [Cholesky-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Cholesky-Zerlegung):
   Zerlegung A = L·Lᵀ für symmetrische positiv definite Matrizen
+- [Definitheit (Wikipedia)](https://de.wikipedia.org/wiki/Definitheit):
+  wann eine symmetrische Matrix positiv definit heißt; der Abschnitt "Kriterien für Definitheit"
+  nennt eine Bedingung, die sich an den Eigenwerten ablesen lässt
 - [Numerische Stabilität (Wikipedia)](https://de.wikipedia.org/wiki/Numerische_Stabilität):
   wie sich kleine Störungen der Eingabedaten auf das berechnete Ergebnis auswirken können
 
 Die Konditionszahl und ihre Bedeutung wurden bereits in [PARTREF::np-linalg] behandelt.
 
-### Formatierte Ausgabe von Ergebnissen
-
 Geben Sie Ihre Ergebnisse in dieser Aufgabe mit f-Strings aus.
 Wo unten eine Anzahl Nachkommastellen oder wissenschaftliche Notation verlangt wird, stellen Sie
-diese mit einer Präzisionsangabe ein (siehe [PARTREF::py-Fstrings]).
+das über die Formatierungsanweisung des f-Strings ein (siehe [PARTREF::py-Fstrings]).
 
 ### Matrixzerlegungen mit SciPy
 
@@ -59,8 +60,12 @@ Struktur der Matrix ausnutzen (z. B. `solve_triangular` oder `cho_solve`).
 Umgekehrt gibt es `cond` und `matrix_rank` nur in `numpy.linalg`.
 
 Die drei Zerlegungen dieses Abschnitts zerlegen eine Matrix jeweils in ein Produkt einfacherer
-Matrizen (Dreiecksmatrizen bzw. eine orthogonale Matrix), aus denen sich Gleichungssysteme mit
-weniger Rechenaufwand lösen lassen als mit der ursprünglichen Matrix direkt.
+Matrizen (Dreiecksmatrizen bzw. eine orthogonale Matrix), mit denen sich ein Gleichungssystem
+anschließend durch bloßes Einsetzen lösen lässt.
+Ein einzelnes System wird dadurch nicht schneller gelöst — `solve()` berechnet intern ohnehin eine
+solche Zerlegung.
+Der Gewinn liegt darin, dass man eine einmal berechnete Zerlegung für beliebig viele rechte Seiten
+wiederverwenden kann; der dritte Abschnitt kommt darauf zurück.
 
 **LU-Zerlegung:**
 
@@ -74,14 +79,14 @@ scipy.linalg.lu(a, permute_l=False)
 
 ```python
 import numpy as np
-from scipy.linalg import lu
+from scipy import linalg
 
 A = np.array([[2, 3, 1],
               [6, 1, 4],
               [3, 5, 2]])
 
 # LU-Zerlegung: A = P @ L @ U
-P, L, U = lu(A)
+P, L, U = linalg.lu(A)
 print("P (Permutationsmatrix):")
 print(P)
 print("\nL (untere Dreiecksmatrix):")
@@ -104,10 +109,8 @@ scipy.linalg.qr(a)
 - `a`: die zu zerlegende Matrix
 
 ```python
-from scipy.linalg import qr
-
 # QR-Zerlegung: A = Q @ R
-Q, R = qr(A)
+Q, R = linalg.qr(A)
 print("Q (orthogonale Matrix):")
 print(Q)
 print("\nR (obere Dreiecksmatrix):")
@@ -125,11 +128,9 @@ scipy.linalg.cholesky(a, lower=False)
   (A = L·Lᵀ), sonst die obere `U` (A = Uᵀ·U)
 
 ```python
-from scipy.linalg import cholesky
-
 # Symmetrische positiv definite Matrix
 B_chol = np.array([[9, 3], [3, 2]])
-L_chol = cholesky(B_chol, lower=True)
+L_chol = linalg.cholesky(B_chol, lower=True)
 print("Cholesky L:")
 print(L_chol)
 print("Verifikation L @ L.T:")
@@ -147,43 +148,52 @@ print(L_chol @ L_chol.T)
   `linalg.cholesky()` zerlegen; berechnen Sie auch diese Zerlegung
 - Legen Sie zusätzlich die ebenfalls symmetrische Matrix `C` = `[[1, 2], [2, 1]]` an und geben Sie
   deren Eigenwerte aus (`np.linalg.eigh()`, siehe [PARTREF::np-linalg])
-- Versuchen Sie als **letzten** Schritt Ihres Skripts, auch `C` mit `linalg.cholesky()` zu zerlegen,
-  und halten Sie in einem Kommentar fest, wie SciPy darauf reagiert und was die Eigenwerte von `C`
+- Versuchen Sie, auch `C` mit `linalg.cholesky()` zu zerlegen; fangen Sie dabei auftretende
+  Ausnahmen mit `try`/`except` auf und geben Sie die Fehlermeldung aus (wie in [PARTREF::np-linalg])
+- Halten Sie in einem Kommentar fest, wie SciPy auf `C` reagiert und was die Eigenwerte von `C`
   damit zu tun haben
 
-Geben Sie alle Matrizen aus und verifizieren Sie jeweils die Zerlegung durch Rückmultiplikation.
+Geben Sie alle Matrizen aus und verifizieren Sie jede gelungene Zerlegung durch
+Rückmultiplikation.
 
 [HINT::Die Fehlermeldung von `cholesky()` sagt mir nichts]
 Der Meldungstext benennt eine LAPACK-interne Routine und hilft nicht weiter.
 Aussagekräftig sind nur die Tatsache, dass der Aufruf überhaupt abbricht, und die Bedingung, unter
-der die Cholesky-Zerlegung laut Abschnittsüberschrift oben definiert ist.
+der die Cholesky-Zerlegung laut der Beschreibung von `cholesky()` oben überhaupt definiert ist.
 [ENDHINT]
 
 <!-- time estimate: 20 min -->
 
 ### Erweiterte Gleichungssystem-Solver
 
-Für Gleichungssysteme mit bestimmter Struktur bietet SciPy Solver, die diese Struktur direkt
-ausnutzen, statt sie wie ein allgemeines System zu behandeln.
+`solve()` ist der allgemeine Einstieg für Gleichungssysteme.
+Es untersucht die Koeffizientenmatrix zunächst daraufhin, ob sie eine besondere Struktur hat, und
+wählt danach das dazu passende Verfahren aus.
+Wer die Struktur seiner Matrix ohnehin kennt, kann diese Untersuchung überspringen und gleich den
+zugehörigen spezialisierten Solver aufrufen.
+Zwei solche Solver zeigt dieser Abschnitt.
 
 **Standard-Solver:**
 
 ```python
-scipy.linalg.solve(a, b)
+scipy.linalg.solve(a, b, assume_a=None)
 ```
 
 - `a`: die quadratische Koeffizientenmatrix
 - `b`: die rechte Seite des Gleichungssystems (Vektor oder Matrix)
+- `assume_a` (Standard `None`): welche Struktur `a` hat; bei `None` ermittelt SciPy sie selbst.
+  Angeben lassen sich unter anderem `'gen'` (allgemein), `'sym'` (symmetrisch),
+  `'pos'` (symmetrisch positiv definit) und `'upper triangular'`
 
 ```python
 import numpy as np
-from scipy.linalg import solve
+from scipy import linalg
 
 # Gleichungssystem A_std x = b_std
 A_std = np.array([[3, 1], [1, 2]])
 b_std = np.array([9, 8])
 
-x_std = solve(A_std, b_std)
+x_std = linalg.solve(A_std, b_std)
 print(f"Lösung: {x_std}")
 print(f"Verifikation A_std@x: {A_std @ x_std}")
 ```
@@ -200,18 +210,17 @@ scipy.linalg.solve_triangular(a, b, lower=False)
 - `b`: die rechte Seite des Gleichungssystems
 - `lower` (Standard `False`): ob `a` eine untere statt einer oberen Dreiecksmatrix ist
 
-Bei einer Dreiecksmatrix lässt sich das System direkt durch Vorwärts-/Rückwärtseinsetzen lösen,
-ohne den allgemeinen (aufwendigeren) Lösungsweg von `solve()` zu benötigen.
+Bei einer Dreiecksmatrix genügt Vorwärts- bzw. Rückwärtseinsetzen, um das System zu lösen; genau
+diese Rechnung führt `solve_triangular()` aus.
 
 ```python
-from scipy.linalg import solve_triangular
-
 # Obere Dreiecksmatrix
 U_tri = np.array([[2, 1, 1], [0, 1, 1], [0, 0, 1]])
 b_utri = np.array([7, 1, 2])
 
-x_utri = solve_triangular(U_tri, b_utri)
+x_utri = linalg.solve_triangular(U_tri, b_utri)
 print(f"Dreiecks-Lösung: {x_utri}")
+print(f"Verifikation U_tri@x: {U_tri @ x_utri}")
 ```
 
 **Solver für symmetrische positiv definite Systeme:**
@@ -227,19 +236,17 @@ scipy.linalg.cho_solve(c_and_lower, b)
 - `c_and_lower`: das Tupel `(c, lower)`, das `cho_factor()` zurückgegeben hat
 - `b`: die rechte Seite des Gleichungssystems
 
-Für eine symmetrische positiv definite Matrix (siehe Cholesky-Zerlegung oben) lässt sich das
-System über die Dreiecksform der Zerlegung lösen, statt den allgemeinen Lösungsweg von `solve()`
-zu benutzen.
+`cho_factor()` berechnet die Cholesky-Zerlegung (siehe oben), `cho_solve()` löst damit das System.
+Die Aufteilung auf zwei Aufrufe hat einen Zweck: Dieselbe Zerlegung lässt sich anschließend für
+weitere rechte Seiten wiederverwenden, ohne sie neu zu berechnen.
 
 ```python
-from scipy.linalg import cho_factor, cho_solve
-
 # Symmetrische positiv definite Matrix
 B_spd = np.array([[5, 2], [2, 3]])
 b_spd = np.array([9, 8])
 
-c, low = cho_factor(B_spd)
-x_spd = cho_solve((c, low), b_spd)
+c, low = linalg.cho_factor(B_spd)
+x_spd = linalg.cho_solve((c, low), b_spd)
 print(f"Lösung: {x_spd}")
 print(f"Verifikation B_spd@x: {B_spd @ x_spd}")
 ```
@@ -250,10 +257,10 @@ print(f"Verifikation B_spd@x: {B_spd @ x_spd}")
   mit `linalg.solve()`
 - Gegeben ist die obere Dreiecksmatrix `A_tri` = `[[3, 2, 1], [0, 2, 1], [0, 0, 1]]` mit
   `b_tri` = `[11, 8, 2]`; lösen Sie dieses System mit `linalg.solve_triangular()`
-- Lösen Sie nun `A_gen` und `b_gen` ein zweites Mal, diesmal mit `linalg.solve_triangular()`
-  statt mit `linalg.solve()`, und vergleichen Sie beide Lösungen; halten Sie in einem Kommentar
-  fest, welche Einträge von `A_gen` in die zweite Rechnung offenbar eingegangen sind und welche
-  nicht
+- Lösen Sie nun das System aus `A_gen` und `b_gen` ein zweites Mal, diesmal mit
+  `linalg.solve_triangular()` statt mit `linalg.solve()`, und vergleichen Sie beide Lösungen;
+  halten Sie in einem Kommentar fest, welche Einträge von `A_gen` in die zweite Rechnung offenbar
+  eingegangen sind und welche nicht
 - Gegeben ist die symmetrische positiv definite Matrix
   `A_spd` = `[[6, 1, 1], [1, 5, 2], [1, 2, 4]]` mit `b_spd` = `[10, 12, 9]`;
   nutzen Sie `linalg.cho_factor()` und `linalg.cho_solve()`
@@ -300,22 +307,22 @@ sie beliebig oft, ohne sie erneut zu berechnen.
 
 ```python
 import numpy as np
-from scipy.linalg import lu_factor, lu_solve
+from scipy import linalg
 
 # Gut konditioniertes System
 A_good = np.array([[4.0, 1.0], [1.0, 3.0]])
 b_good = np.array([9.0, 8.0])
 print(f"Konditionszahl (gut): {np.linalg.cond(A_good):.6f}")
-lu_good, piv_good = lu_factor(A_good)
-x_good = lu_solve((lu_good, piv_good), b_good)
+lu_good, piv_good = linalg.lu_factor(A_good)
+x_good = linalg.lu_solve((lu_good, piv_good), b_good)
 print(f"Lösung: {x_good}")
 
 # Schlecht konditioniertes, aber nicht singuläres System
 A_ill = np.array([[1.0, 2.0], [2.0, 4.0001]])
 b_ill = np.array([3.0, 6.0002])
 print(f"\nKonditionszahl (schlecht): {np.linalg.cond(A_ill):.2e}")
-lu_ill, piv_ill = lu_factor(A_ill)
-x_ill = lu_solve((lu_ill, piv_ill), b_ill)
+lu_ill, piv_ill = linalg.lu_factor(A_ill)
+x_ill = linalg.lu_solve((lu_ill, piv_ill), b_ill)
 print(f"Lösung: {x_ill}")
 
 # Beide b um denselben winzigen Betrag stören; die vorhandene Zerlegung wird dabei
@@ -323,8 +330,8 @@ print(f"Lösung: {x_ill}")
 b_good_pert = b_good + np.array([1e-4, 0])
 b_ill_pert = b_ill + np.array([1e-4, 0])
 
-x_good_pert = lu_solve((lu_good, piv_good), b_good_pert)
-x_ill_pert = lu_solve((lu_ill, piv_ill), b_ill_pert)
+x_good_pert = linalg.lu_solve((lu_good, piv_good), b_good_pert)
+x_ill_pert = linalg.lu_solve((lu_ill, piv_ill), b_ill_pert)
 
 rel_change_good = np.linalg.norm(x_good_pert - x_good) / np.linalg.norm(x_good)
 rel_change_ill = np.linalg.norm(x_ill_pert - x_ill) / np.linalg.norm(x_ill)
@@ -354,24 +361,22 @@ auf die Lösung durch.
 - Berechnen Sie für `M_ill` = `[[1, 3], [3, 9.0002]]` mit `v_ill` = `[4, 12.0006]` ebenfalls
   Konditionszahl (wissenschaftliche Notation, `:.2e`) und die LU-Zerlegung
 - Lösen Sie beide Systeme mit `linalg.lu_solve()` unter Verwendung der jeweiligen Zerlegung
-- Addieren Sie bei beiden Systemen `1e-4` auf die erste Komponente der jeweiligen rechten Seite und
-  lösen Sie mit dieser gestörten rechten Seite erneut mit `linalg.lu_solve()`; verwenden Sie dabei
-  dieselbe bereits berechnete Zerlegung, ohne erneut `lu_factor()` aufzurufen
-- Geben Sie für beide Systeme die relative Änderung der Lösung aus (wissenschaftliche Notation,
-  `:.2e`); nutzen Sie dafür die in [PARTREF::np-linalg] behandelte Norm (`np.linalg.norm()` ohne
-  `ord`-Angabe reicht hier aus)
+- Stören Sie nun jede der beiden rechten Seiten nacheinander um `1e-6`, `1e-4` und `1e-2` auf ihrer
+  ersten Komponente und lösen Sie jedes Mal erneut mit `linalg.lu_solve()`; in Ihrem gesamten
+  Skript darf `lu_factor()` dabei nur die beiden Male vorkommen, die Sie oben schon geschrieben
+  haben
+- Geben Sie für jeden dieser sechs Fälle die relative Änderung gegenüber der ungestörten Lösung
+  desselben Systems aus (wissenschaftliche Notation, `:.2e`); nutzen Sie dafür die in
+  [PARTREF::np-linalg] behandelte Norm (`np.linalg.norm()` ohne `ord`-Angabe reicht hier aus)
 
-[HINT::Wie berechnet man die relative Änderung zwischen zwei Lösungsvektoren?]
-Die relative Änderung zwischen einer ursprünglichen Lösung `x` und der gestörten Lösung `x_pert`
-lässt sich mit `np.linalg.norm(x_pert - x) / np.linalg.norm(x)` berechnen: `x_pert - x` ist der
-Differenzvektor, dessen Norm die absolute Größe der Änderung angibt; die Division durch
-`np.linalg.norm(x)` setzt diese Änderung ins Verhältnis zur Größe der ursprünglichen Lösung.
-[ENDHINT]
-
-[EQ] Beide Systeme wurden von `lu_solve()` ohne Fehler oder Warnung gelöst.
-Anhand welcher Zahl hätten Sie schon vor dem Lösen erkennen können, welches der beiden Systeme
-empfindlich auf Störungen reagieren würde — und was würde Sie das bei einem realen Datensatz mit
-unbekanntem, leicht verrauschtem `b` über die Vertrauenswürdigkeit der berechneten Lösung sagen?
+[EQ] Sie haben in [EREFR::3] für beide Systeme je drei relative Änderungen ermittelt.
+Betrachten Sie zunächst ein System für sich: Wie verändert sich seine relative Änderung, wenn die
+Störung um den Faktor 100 wächst, und fällt das bei beiden Systemen gleich aus?
+Stellen Sie dem gegenüber, wie weit die beiden Systeme bei ein und derselben Störung
+auseinanderliegen.
+Welche dieser beiden Beobachtungen kündigt die Konditionszahl an und welche nicht?
+Was bedeutet das für einen realen Datensatz, dessen `b` unbekanntes Messrauschen enthält, während
+`lu_solve()` die Lösung ohne Fehler und ohne Warnung zurückgibt?
 
 <!-- time estimate: 25 min -->
 
