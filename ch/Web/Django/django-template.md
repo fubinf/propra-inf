@@ -1,5 +1,5 @@
 title: Django Template System
-stage: alpha
+stage: beta
 timevalue: 2.25
 difficulty: 2
 requires: django-view
@@ -112,7 +112,7 @@ In den folgenden Schritten ändert sich jeweils nur der `<body>`:
 [ER] Fügen Sie in den `<body>` von `hello.html` den Inhalt von `greeting` als Überschrift `<h1>` und
 den von `user_name` darunter in einem Absatz `<p>` ein.
 
-[EQ] Fügen Sie testweise die Zeile `<p>[{{ nichtvorhanden }}]</p>` an;
+[EQ] Fügen Sie im `<body>` testweise die Zeile `<p>[{{ nichtvorhanden }}]</p>` an;
 `nichtvorhanden` existiert im `context` gar nicht.
 Die eckigen Klammern machen sichtbar, wo der Wert stehen würde.
 Rufen Sie `http://127.0.0.1:8071/` im Browser auf: Was steht zwischen den Klammern, und wie
@@ -122,10 +122,12 @@ Für die Qualitätssicherung ist dieses stillschweigende Verhalten oft unerwüns
 Suchen Sie im Abschnitt
 [How invalid variables are handled](https://docs.djangoproject.com/en/stable/ref/templates/api/#how-invalid-variables-are-handled)
 der Django-Doku die Einstellung, mit der sich ungültige Variablen stattdessen sichtbar machen
-lassen: Wie heißt sie, welchen Wert müsste sie haben, damit der Name der fehlenden Variablen
-in der Seite erscheint, und warum rät die Doku davon ab, sie dauerhaft eingeschaltet zu
-lassen?
-Entfernen Sie die Testzeile anschließend wieder.
+lassen. 
+Probieren Sie sie aus: Tragen Sie in den `OPTIONS` des Template-Backends in `settings.py` 
+den Wert `FEHLT: %s` dafür ein, laden Sie die Seite neu und nehmen Sie die Einstellung danach wieder heraus.
+Nun zur Antwort: Wie heißt die Einstellung und warum (in ihren eigenen Worten!) rät die Doku davon ab, 
+sie dauerhaft eingeschaltet zu lassen?
+Entfernen Sie den ganzen Testabsatz anschließend wieder.
 <!-- time estimate: 15 min -->
 
 ### Bedingte Darstellung mit `{% if %}`
@@ -143,8 +145,8 @@ Das `{% if %}`-Tag zeigt Inhalte nur unter einer Bedingung an, mit optionalem
 {% endif %}
 ```
 
-[ER] Erweitern Sie den `<body>` von `hello.html` um eine bedingte Darstellung, die von der
-Variablen `is_logged_in` abhängt: Wenn sie wahr ist, zeigen Sie einen Absatz `<p>` mit dem
+[ER] Ersetzen Sie den Absatz mit `user_name` im `<body>` von `hello.html` durch eine bedingte Darstellung, 
+die von der Variablen `is_logged_in` abhängt: Wenn sie wahr ist, zeigen Sie einen Absatz `<p>` mit dem
 Text "Willkommen zurück, " gefolgt vom Wert von `user_name` und einem Ausrufezeichen;
 andernfalls einen Absatz `<p>` mit dem Text "Bitte melden Sie sich an."
 
@@ -302,7 +304,7 @@ weglassen), behalten den Inhalt aus `base.html` als Standard.
 Sie füllen also nur die Blöcke, die sich pro Seite unterscheiden.
 [ENDHINT]
 
-[EC] Sehen Sie sich den resultierenden HTML-Text beider Seiten an:
+[EC] Sehen Sie sich den resultierenden Quelltext beider Seiten an:
 
 ```bash
 curl -s http://127.0.0.1:8071/
@@ -357,7 +359,7 @@ wenn ein Kind-Template selbst ein `{% static %}` verwenden wollte?
 ### Navigation mit `{% url %}`
 
 Damit Nutzer zwischen den Seiten wechseln können, braucht `base.html` eine Navigation:
-Das semantische Element `<nav>` markiert einen Block mit Navigationslinks.
+Das semantische Element `<nav>` markiert einen Bereich mit Navigationslinks.
 Für die Links verwenden Sie nicht fest codierte Pfade wie `href="/students/"`, sondern das
 `{% url %}`-Tag mit dem Routennamen, nach folgendem Schema:
 
