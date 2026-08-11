@@ -43,6 +43,8 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 Interpolation erzeugt aus gegebenen Datenpunkten eine Funktion, mit der sich Werte zwischen den
 Punkten berechnen lassen.
 Die x-Koordinaten dieser Punkte heißen Stützstellen.
+Am gebräuchlichsten sind Splines: keine einzelne Formel für den gesamten Wertebereich, sondern eine
+stückweise aus Polynomen zusammengesetzte Funktion.
 SciPy bietet dafür vor allem zwei Werkzeuge: `make_interp_spline` für Splines beliebigen
 Grades und `CubicSpline` speziell für kubische Splines.
 
@@ -86,7 +88,7 @@ scipy.interpolate.CubicSpline(x, y, bc_type='not-a-knot')
   `'not-a-knot'` bedeutet, dass die äußersten inneren Knoten entfallen und ein Randstück daher mit
   seinem Nachbarstück ein einziges Polynom bildet.
   Dieses eine Polynom muss dann drei Datenpunkte treffen, während ein Stück im Inneren nur zwei zu
-  treffen hat
+  treffen hat.
 
 Der Rückgabewert ist wie bei `make_interp_spline` ein aufrufbares Objekt.
 
@@ -267,6 +269,12 @@ x_neu = np.array([0.5, 1.5, 2.5]).reshape(-1, 1)
 print("RBF:", np.round(rbf(x_neu), 3))
 ```
 
+Anders als die kubischen Splines gibt `RBFInterpolator` die zugrunde liegende Funktion `x²` nicht
+exakt wieder: Das Verfahren rechnet ausschließlich mit Abständen zwischen den Datenpunkten und ist
+auf keinen Polynomgrad festgelegt.
+Wie groß die Abweichung ausfällt, ist von Stelle zu Stelle verschieden; der vierte Abschnitt geht
+dem systematisch nach.
+
 Einige Kernel (z. B. `'linear'`, `'cubic'`, `'thin_plate_spline'`) funktionieren ohne weitere
 Angaben.
 Andere (z. B. `'gaussian'`, `'multiquadric'`) benötigen zusätzlich einen Formparameter `epsilon`;
@@ -277,7 +285,7 @@ welcher Kernel welchen braucht, steht in der
 
 - Erstellen Sie die Datenpunkte `x` mit den Werten `[0, 2, 4, 6, 8, 10]` und `y` mit den Werten
   `[1, 8, 12, 7, 15, 20]`
-- Bringen Sie `x` mit `reshape(-1, 1)` in die passende Form
+- Bringen Sie `x` mit `reshape(-1, 1)` in die passende Form und nennen Sie das Ergebnis `X`
 - Erzeugen Sie drei Interpolatoren `rbf_tp`, `rbf_lin` und `rbf_cub` mit den Kerneln
   `'thin_plate_spline'`, `'linear'` und `'cubic'`
 - Berechnen Sie für alle drei die Werte an den Stellen `x_test` mit den Werten `[1, 3, 5, 7, 9]`
@@ -298,13 +306,18 @@ Auch hier lässt sich die Ausgabe als Tabelle gestalten:
 ```
 [ENDHINT]
 
-[EQ] Vergleichen Sie in [EREFR::3] den eindimensionalen mit dem zweidimensionalen Aufruf: Am Aufruf
-selbst ändert sich nichts, nur die Koordinaten bekommen statt der Form `(n, 1)` die Form `(n, 2)`.
-Erklären Sie von dieser Beobachtung ausgehend, warum `RBFInterpolator` die Koordinaten auch bei
-eindimensionalen Daten als 2D-Array verlangt.
-Warum ließe sich `make_interp_spline` nicht ebenso einfach auf zweidimensionale Koordinaten
-übertragen?
-Sehen Sie sich dazu noch einmal an, welche Anforderung dort an `x` gestellt wird.
+[EQ] Betrachten Sie die Ergebnisse aus [EREFR::3]:
+
+- Eine der drei Kernelspalten lässt sich allein aus den `y`-Werten nachrechnen, ohne etwas über
+  radiale Basisfunktionen zu wissen.
+  Welche ist es, welche Rechnung steckt dahinter, und was sagt das über die Rolle des Kernels aus?
+- Vergleichen Sie den eindimensionalen mit dem zweidimensionalen Aufruf: Am Aufruf selbst ändert
+  sich nichts, nur die Koordinaten bekommen statt der Form `(n, 1)` die Form `(n, 2)`.
+  Erklären Sie von dieser Beobachtung ausgehend, warum `RBFInterpolator` die Koordinaten auch bei
+  eindimensionalen Daten als 2D-Array verlangt.
+- Warum ließe sich `make_interp_spline` nicht ebenso einfach auf zweidimensionale Koordinaten
+  übertragen?
+  Sehen Sie sich dazu noch einmal an, welche Anforderung dort an `x` gestellt wird.
 
 <!-- time estimate: 35 min -->
 
@@ -329,7 +342,8 @@ Welches Verfahren geeignet ist, hängt von den Daten und dem Ziel ab:
   Sie an `reshape(-1, 1)` für die Koordinaten, siehe [EREFR::3]) und nennen Sie die vier Objekte
   `linear`, `kubisch`, `splrep_spline` und `rbf`
 - Werten Sie alle vier an den Zwischenstellen `x_test` mit den Werten `[1.0, 2.5, 4.0, 5.9]` aus
-  und vergleichen Sie mit den wahren Sinuswerten an diesen Stellen (4 Nachkommastellen)
+  und geben Sie neben den Werten auch den Betrag der Abweichung vom wahren Sinuswert aus
+  (4 Nachkommastellen)
 - Bestimmen Sie für jedes Verfahren den maximalen Betrag des Fehlers (4 Nachkommastellen) auf
   einem feinen Gitter `np.linspace(0, 2*np.pi, 100)` gegenüber `np.sin`
 
