@@ -67,7 +67,7 @@ nur `'hybr'`.
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.optimize.root`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html).
 
-**Felder des Ergebnisobjekts:**
+**Attribute des Ergebnisobjekts:**
 
 - `result.x`: die gefundene Lösung
 - `result.fun`: Funktionswert an der Lösung (sollte ≈ 0 sein)
@@ -107,7 +107,7 @@ print(f"Lösung: x = {result.x[0]:.6f}, Funktionswert: {result.fun[0]:.2e}")
 - Bestimmen Sie die Nullstellen von `x³ - 6x² + 9x - 4` — rufen Sie `root` nacheinander mit den
   Startwerten -1, 2, 3 und 4 auf
 - Lösen Sie die Gleichung `x*e^x = 2` mit dem Startwert 1 (verwenden Sie `np.exp`)
-- Gesucht ist die nichttriviale Lösung von `sin(x) = x/3` im Bereich [0, 3] (trivial ist `x = 0`)
+- Bestimmen Sie die nichttriviale Lösung von `sin(x) = x/3` im Bereich [0, 3] (trivial ist `x = 0`)
   — rufen Sie `root` nacheinander mit den Startwerten -3, 1.5 und 3 auf
 
 Geben Sie für jeden Aufruf die gefundene Nullstelle (6 Nachkommastellen, `:.6f`) und den
@@ -152,9 +152,9 @@ scipy.optimize.minimize(fun, x0, method=None)
 Die vollständige Liste der Verfahren und Parameter steht in der Referenz zu
 [`scipy.optimize.minimize`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html).
 
-**Felder des Ergebnisobjekts:**
+**Attribute des Ergebnisobjekts:**
 
-Die oben bei `root` genannten Felder gibt es auch hier; in dieser Aufgabe wird zusätzlich
+Die oben bei `root` genannten Attribute gibt es auch hier; in dieser Aufgabe wird zusätzlich
 `result.nfev` gebraucht, die Anzahl der Funktionsauswertungen.
 Ein Unterschied ist wichtig: `result.x` ist weiterhin ein Array, weil `minimize` mehrere
 Unbekannte zulässt, `result.fun` dagegen ist eine einzelne Zahl, denn eine zu minimierende
@@ -172,7 +172,7 @@ print(f"Minimum: x = {result.x[0]:.4f}, parabel(x) = {result.fun:.4f}")
 # Minimum: x = 1.0000, parabel(x) = 3.0000
 ```
 
-[ER] Arbeiten Sie mit verschiedenen Minimierungsproblemen:
+[ER] Lösen Sie verschiedene Minimierungsprobleme mit `minimize`:
 
 - Finden Sie das Minimum der Funktion `f(x) = (x-2)⁴ + (x-2)² + 1`, ausgehend von `x0 = 0`
 - Minimieren Sie `g(x) = sin(x) + 0.1x²` nacheinander mit den Startwerten -10, -5, 0, 5 und 10
@@ -214,7 +214,7 @@ in der Tabelle oben.
 
 [EQ] Vergleichen Sie Ihre fünf Ergebnisse für `g(x)` aus [EREFR::2]: Was meldet `result.success`
 jeweils, und wie viele verschiedene Minima haben Sie gefunden?
-Welche Felder des Ergebnisobjekts müssen Sie zusätzlich zu `success` prüfen, um ein Ergebnis als
+Welche Attribute des Ergebnisobjekts müssen Sie zusätzlich zu `success` prüfen, um ein Ergebnis als
 vertrauenswürdig einzustufen, und warum reicht "kein Fehler aufgetreten" allein nicht aus?
 
 <!-- time estimate: 30 min -->
@@ -281,8 +281,8 @@ sie erscheinen auf der Fehlerausgabe, während die normale Ausgabe weiterläuft.
 Lassen Sie die Warnungen stehen und werten Sie die ausgegebenen Zahlen wie vorgesehen aus.
 [ENDHINT]
 
-[EQ] Vergleichen Sie für `p(x)` und für `q(x)` aus [EREFR::3] jeweils den Aufruf mit `bounds` mit
-dem ohne.
+[EQ] Vergleichen Sie für `p(x)` und für `q(x)` aus [EREFR::3] jeweils den Aufruf mit `bounds` und
+den ohne.
 Bei welcher der beiden Funktionen ändert sich das Ergebnis, und was am Verhalten dieser Funktion
 für `x → -∞` erklärt das?
 Was kommt damit zu Ihrer Feststellung über `result.success` aus [EREFQ::3] hinzu?
@@ -362,10 +362,10 @@ Ihre Teilschritte:
 
 - Passen Sie mit einer Modellfunktion `linear(x, a, b)` und `curve_fit` ohne `p0` die Parameter an
   `x_data`/`y_data` an und geben Sie `a` und `b` aus (4 Nachkommastellen, `:.4f`)
-- Wiederholen Sie den Aufruf mit einem bewusst schlechten Startwert `p0=(-100, 100)` und
-  vergleichen Sie das Ergebnis mit dem Aufruf ohne `p0`
+- Wiederholen Sie den Aufruf mit einem bewusst schlechten Startwert `p0=(-100, 100)` und geben Sie
+  `a` und `b` auch für diesen Lauf aus
 - Berechnen Sie die vorhergesagten y-Werte mit den (ohne `p0` geschätzten) Parametern und geben
-  Sie die Abweichungen gemessen minus vorhergesagt aus (2 Nachkommastellen, `:.2f`); an ihnen
+  Sie die Abweichungen (gemessen minus vorhergesagt) aus (2 Nachkommastellen, `:.2f`); an ihnen
   lesen Sie ab, wie gut das angepasste Modell die Messdaten trifft
 - Wiederholen Sie beide `p0`-Läufe an einem nichtlinearen Modell: Passen Sie
   `exponential(x, a, b)` mit `a * np.exp(b*x)` an `x_exp`/`y_exp` an, einmal mit `p0=(1, 0.5)`
@@ -385,9 +385,10 @@ Bei welchem der beiden Modelle macht der Startwert einen Unterschied?
 Begründen Sie das auf zwei Ebenen: erstens aus der Gestalt, die die Fehlerquadratsumme beim
 linearen Modell als Funktion von `a` und `b` hat, zweitens aus dem Zahlenbereich, in den
 `a * np.exp(b*x)` bei `b = 100` für die gegebenen `x`-Werte gerät.
-Sehen Sie sich außerdem die sechs Abweichungen aus [EREFR::4] an: Wie groß sind sie im Vergleich
-zu den gemessenen `y`-Werten, und wechseln sie das Vorzeichen oder liegen die vorhergesagten
-Werte systematisch zu hoch oder zu niedrig?
+
+[EQ] Sehen Sie sich die sechs Abweichungen aus [EREFR::4] an: Wie groß sind sie im Vergleich zu
+den gemessenen `y`-Werten, und wechseln sie das Vorzeichen oder liegen die vorhergesagten Werte
+systematisch zu hoch oder zu niedrig?
 Was folgt daraus für die Brauchbarkeit des linearen Modells?
 
 <!-- time estimate: 30 min -->
