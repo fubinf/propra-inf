@@ -46,9 +46,9 @@ Falls sie fehlen, helfen diese Quellen:
 
 ### Nullstellenfindung mit `scipy.optimize.root`
 
-Das `scipy.optimize`-Modul bietet verschiedene Algorithmen für Optimierungsprobleme: `root` für
-nichtlineare Gleichungen, `minimize`/`minimize_scalar` für Funktionsminima und `curve_fit` zum
-Anpassen von Modellparametern an Messdaten.
+Das `scipy.optimize`-Modul bietet verschiedene Verfahren für Optimierung und
+Nullstellenfindung: `root` für nichtlineare Gleichungen, `minimize`/`minimize_scalar` für
+Funktionsminima und `curve_fit` zum Anpassen von Modellparametern an Messdaten.
 Den Anfang macht `root`, das nichtlineare Gleichungssysteme der Form `f(x) = 0` löst.
 
 ```python
@@ -110,7 +110,7 @@ print(f"Lösung: x = {result.x[0]:.6f}, Funktionswert: {result.fun[0]:.2e}")
 - Gesucht ist die nichttriviale Lösung von `sin(x) = x/3` im Bereich [0, 3] (trivial ist `x = 0`)
   — rufen Sie `root` nacheinander mit den Startwerten -3, 1.5 und 3 auf
 
-Geben Sie für jede Lösung die gefundene Nullstelle (6 Nachkommastellen, `:.6f`) und den
+Geben Sie für jeden Aufruf die gefundene Nullstelle (6 Nachkommastellen, `:.6f`) und den
 Funktionswert an der Lösung (wissenschaftliche Notation, `:.2e`) aus, außerdem jeweils
 `result.success`.
 Bei Aufrufen mit `success=False` geben Sie statt Nullstelle und Funktionswert `result.message` aus.
@@ -131,8 +131,8 @@ eine Kostengröße senken, einen Entwurfsparameter günstig wählen.
 
 `minimize` findet lokale Minima skalarwertiger Funktionen (Unterschied lokal/global:
 siehe Vorwissen oben).
-Der Startwert `x0` ist deshalb entscheidend: Je nach Startpunkt kann der Algorithmus in
-verschiedenen lokalen Minima landen.
+Der Startwert `x0` ist deshalb entscheidend: Je nachdem, wo die Suche beginnt, kann der
+Algorithmus in verschiedenen lokalen Minima landen.
 
 ```python
 scipy.optimize.minimize(fun, x0, method=None)
@@ -181,13 +181,20 @@ print(f"Minimum: x = {result.x[0]:.4f}, parabel(x) = {result.fun:.4f}")
   `'BFGS'`, `'CG'` und `'Nelder-Mead'`, jeweils ausgehend von `x0 = 1.5` — geben Sie neben
   `result.x`/`result.fun` auch `result.nfev` aus
 
-Dokumentieren Sie für jeden Fall die gefundene Position und den Funktionswert, jeweils mit
+Geben Sie für jeden Fall die gefundene Position und den Funktionswert aus, jeweils mit
 4 Nachkommastellen und Feldbreite 8 (`:8.4f`).
 
 [HINT::Mein Skript bricht mit `IndexError: invalid index to scalar variable` ab]
 Vermutlich haben Sie das Ausgabemuster aus dem `root`-Abschnitt übernommen.
 `result.fun[0]` gibt es nur dort; bei `minimize` schreiben Sie `result.fun` ohne Index, während
 `result.x[0]` weiterhin nötig ist.
+[ENDHINT]
+
+[HINT::Die Startwerte für `g(x)` liefern nicht die Minima, die ich erwartet hätte]
+Das ist die tatsächliche Ausgabe und kein Fehler in Ihrem Skript.
+Der erste Schritt eines Quasi-Newton-Verfahrens kann beliebig weit tragen; dass ein Minimum nahe
+am Startwert liegt, heißt also nicht, dass gerade dieses gefunden wird.
+Übernehmen Sie die Zuordnung so, wie Ihr Programm sie ausgibt.
 [ENDHINT]
 
 [EQ] Vergleichen Sie Ihre drei Ergebnisse für `h(x)` aus [EREFR::2]: Unterscheiden sich die
@@ -233,7 +240,7 @@ scipy.optimize.minimize_scalar(fun, bounds=None, method=None)
 - `fun`: zu minimierende Funktion
 - `bounds` (Standard `None`): Tupel `(min, max)` für Bereichseinschränkung
 - `method` (Standard `None`, wählt automatisch `'brent'` ohne bzw. `'bounded'` mit `bounds`):
-  explizites Verfahren
+  explizites Optimierungsverfahren
 
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.optimize.minimize_scalar`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize_scalar.html).
@@ -335,7 +342,7 @@ a_fit, b_fit = params
 print(f"Geschätzte Parameter: a={a_fit:.2f}, b={b_fit:.2f}")  # a=2.01, b=1.06
 ```
 
-[ER] Führen Sie Kurvenanpassungen mit `curve_fit` durch:
+[ER] Führen Sie Kurvenanpassungen mit `curve_fit` durch.
 
 Gegeben sind folgende Messdaten einer linearen Beziehung `y = a*x + b`:
 
@@ -375,9 +382,13 @@ Die geschätzten Parameter werden trotzdem zurückgegeben, geben Sie sie wie vor
 [EQ] Vergleichen Sie in [EREFR::4] für jedes der beiden Modelle den brauchbaren Lauf (linear:
 ohne `p0`, exponentiell: mit `p0=(1, 0.5)`) mit dem Lauf mit `p0=(-100, 100)`.
 Bei welchem der beiden Modelle macht der Startwert einen Unterschied?
-Begründen Sie das auf zwei Ebenen: erstens aus der Gestalt der Fehlerquadratsumme als Funktion
-der beiden gesuchten Parameter, zweitens aus dem Zahlenbereich, in den `a * np.exp(b*x)` bei
-`b = 100` für die gegebenen `x`-Werte gerät.
+Begründen Sie das auf zwei Ebenen: erstens aus der Gestalt, die die Fehlerquadratsumme beim
+linearen Modell als Funktion von `a` und `b` hat, zweitens aus dem Zahlenbereich, in den
+`a * np.exp(b*x)` bei `b = 100` für die gegebenen `x`-Werte gerät.
+Sehen Sie sich außerdem die sechs Abweichungen aus [EREFR::4] an: Wie groß sind sie im Vergleich
+zu den gemessenen `y`-Werten, und wechseln sie das Vorzeichen oder liegen die vorhergesagten
+Werte systematisch zu hoch oder zu niedrig?
+Was folgt daraus für die Brauchbarkeit des linearen Modells?
 
 <!-- time estimate: 30 min -->
 
@@ -391,6 +402,8 @@ der beiden gesuchten Parameter, zweitens aus dem Zahlenbereich, in den `a * np.e
   Referenz zu den von `minimize` unterstützten Verfahren
 - [Scalar functions optimization](https://docs.scipy.org/doc/scipy/reference/optimize.html#scalar-functions-optimization):
   Referenz zu den von `minimize_scalar` unterstützten Verfahren
+- [Least-squares and curve fitting](https://docs.scipy.org/doc/scipy/reference/optimize.html#least-squares-and-curve-fitting):
+  Referenz zu `curve_fit` und den verwandten Least-Squares-Verfahren
 
 [ENDSECTION]
 
