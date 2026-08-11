@@ -30,8 +30,8 @@ SciPy stellt dafür mehrere Interpolationsverfahren bereit.
 ### Vorwissen
 
 Für diese Aufgabe sind das Konzept der numerischen Interpolation und Grundbegriffe der Analysis
-(Polynome, Stetigkeit, stückweise definierte Funktionen) hilfreich; für den RBF-Abschnitt
-zusätzlich das Konzept der radialen Basisfunktionen.
+(Polynome, Stetigkeit) hilfreich; für den RBF-Abschnitt zusätzlich das Konzept der radialen
+Basisfunktionen.
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [Interpolation (Wikipedia)](https://de.wikipedia.org/wiki/Interpolation_(Mathematik)):
@@ -115,9 +115,9 @@ print("Kubisch:", np.round(kubisch(x_neu), 3))
 
 Die kubische Interpolation trifft hier die zugrunde liegende Funktion exakt: die Ausgabe `0.25`,
 `2.25`, `6.25` ist genau `0.5²`, `1.5²`, `2.5²`.
-Das gilt, weil ein kubischer Spline mit der Standard-Randbedingung `'not-a-knot'` ein Polynom
-zweiten Grades exakt wiedergibt; die lineare Interpolation liegt dagegen an jeder der drei Stellen
-um 0.25 daneben.
+Das gilt, weil ein kubischer Spline mit der Standard-Randbedingung `'not-a-knot'` Polynome bis
+zum dritten Grad exakt wiedergibt; die lineare Interpolation liegt dagegen an jeder der drei
+Stellen um 0.25 daneben.
 
 Geben Sie Zahlen in dieser Aufgabe stets mit fester Nachkommastellenzahl aus:
 einzelne Werte mit einer f-String-Formatierung (siehe [PARTREF::py-Fstrings]), z. B. `:.3f`,
@@ -146,8 +146,9 @@ Das lässt sich z. B. als Tabelle gestalten:
 
 [EQ] Betrachten Sie die Differenzen zwischen linearer und kubischer Interpolation aus [EREFR::1].
 An welchen Stellen sind sie am größten, und warum?
-Nennen Sie je eine Situation, in der die lineare bzw. die kubische Interpolation die bessere Wahl
-ist.
+An einer der fünf Stellen ist die Differenz dagegen sehr klein.
+Was müsste für die Daten insgesamt gelten, damit die lineare Interpolation überall so brauchbar
+wäre wie dort?
 
 <!-- time estimate: 30 min -->
 
@@ -176,8 +177,8 @@ Der Rückgabewert ist wieder ein aufrufbares Objekt.
 Quadraten; der brauchbare Bereich hängt deshalb von der Punktzahl und der Streuung der Daten ab.
 Als grobe Größenordnung taugt "Anzahl der Punkte mal Quadrat der typischen Streuung", bei
 20 Punkten mit einer Streuung von rund 0.1 also 20 · 0.1² = 0.2.
-Welchen Bereich SciPy empfiehlt und wie er von den Gewichten abhängt, steht beim Parameter `s` in
-der [Referenz zu `make_splrep`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_splrep.html).
+Welchen Bereich SciPy empfiehlt und wie er von den Gewichten abhängt, steht beim Parameter `s` in der
+[Referenz zu `make_splrep`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_splrep.html).
 
 **Beispiel:**
 ```python
@@ -204,7 +205,10 @@ print("Glatt:", np.round(glatt(x), 4))
   das sind verrauschte Messwerte von `sin(x)`, die wahre Funktion ist hier also ausnahmsweise
   bekannt
 - Erzeugen Sie eine exakte Spline-Interpolation (`s=0`) und nennen Sie sie `exakt`
-- Erzeugen Sie eine geglättete Spline-Interpolation (`s=0.5`) und nennen Sie sie `glatt`
+- Schätzen Sie mit der Faustregel von oben eine Größenordnung für `s` ab und geben Sie sie aus
+  (4 Nachkommastellen); die dafür nötige Streuung steckt in den Abweichungen `y - np.sin(x)`,
+  denn die wahre Funktion ist hier bekannt
+- Erzeugen Sie danach eine geglättete Spline-Interpolation mit `s=0.5` und nennen Sie sie `glatt`
 - Werten Sie beide Splines an den Stützstellen `x` aus und geben Sie je die größte Abweichung von
   den gemessenen `y`-Werten aus (4 Nachkommastellen)
 - Werten Sie beide Splines außerdem auf dem feinen Gitter `np.linspace(0, 10, 200)` aus und geben
@@ -222,7 +226,7 @@ Messwerten abzulesen?
 ### Radiale Basisfunktionen: `RBFInterpolator`
 
 Radiale Basisfunktionen (RBF) interpolieren anhand des Abstands zu den Datenpunkten und eignen
-sich auch für unregelmäßig verteilte Daten.
+sich auch für unregelmäßig verteilte Daten (Streudaten).
 In SciPy stellt `RBFInterpolator` diese Methode bereit:
 
 ```python
@@ -279,8 +283,10 @@ welcher Kernel welchen braucht, steht in der
 - Interpolieren Sie anschließend auf dieselbe Weise zweidimensional: Legen Sie die Koordinaten
   `punkte = np.array([[0, 0], [1, 0], [0, 1], [1, 1], [0.5, 0.5], [2, 1]])` und die zugehörigen
   Datenwerte `werte = np.array([0.0, 1.0, 1.0, 2.0, 1.2, 3.0])` an, erzeugen Sie damit einen
-  `RBFInterpolator` namens `rbf_2d` und werten Sie ihn an den Stellen
-  `stellen = np.array([[0.25, 0.25], [0.75, 0.75], [1.5, 0.5]])` aus (3 Nachkommastellen)
+  `RBFInterpolator` namens `rbf_2d` (wieder mit `'thin_plate_spline'`) und werten Sie ihn an den
+  Stellen `stellen = np.array([[0.25, 0.25], [0.75, 0.75], [1.5, 0.5]])` aus (3 Nachkommastellen);
+  eine der drei Stellen liegt genau in der Mitte zwischen zwei Ihrer Datenpunkte, daran können Sie
+  Ihr Ergebnis grob prüfen
 
 [HINT::Wie vergleiche ich drei Kernel in einer Tabelle?]
 Auch hier lässt sich die Ausgabe als Tabelle gestalten:
@@ -311,8 +317,7 @@ Welches Verfahren geeignet ist, hängt von den Daten und dem Ziel ab:
 | `make_splrep` (`s>0`) | glättet, geht nicht mehr exakt durch die Punkte | verrauschte Messdaten |
 | `RBFInterpolator` | flexibel, auch mehrdimensional/unregelmäßig | Streudaten, höhere Dimensionen |
 
-`make_interp_spline` steht in der Tabelle stellvertretend für die lineare Interpolation; mit `k=3`
-liefert es dieselbe Kurve wie `CubicSpline`.
+`make_interp_spline` steht in der Tabelle stellvertretend für die lineare Interpolation.
 
 [ER] Vergleichen Sie die Verfahren an der Sinusfunktion:
 
