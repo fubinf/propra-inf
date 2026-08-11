@@ -36,14 +36,15 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
   (der Artikel schreibt R statt U und stellt die Zerlegung als P·A = L·R dar;
   das ist dieselbe Aussage, sein P ist aber die Transponierte des P, das SciPy zurückgibt)
 - [QR-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/QR-Zerlegung):
-  Zerlegung A = Q·R in eine orthogonale Matrix und eine obere Dreiecksmatrix
+  Zerlegung A = Q·R in eine orthogonale Matrix und eine obere Dreiecksmatrix;
+  orthogonal heißt, dass Qᵀ·Q die Einheitsmatrix ergibt
 - [Cholesky-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Cholesky-Zerlegung):
   Zerlegung A = L·Lᵀ für symmetrische positiv definite Matrizen
 - [Definitheit (Wikipedia)](https://de.wikipedia.org/wiki/Definitheit):
   wann eine symmetrische Matrix positiv definit heißt; der Abschnitt "Kriterien für Definitheit"
   nennt eine Bedingung, die sich an den Eigenwerten ablesen lässt
-- [Numerische Stabilität (Wikipedia)](https://de.wikipedia.org/wiki/Numerische_Stabilität):
-  wie sich kleine Störungen der Eingabedaten auf das berechnete Ergebnis auswirken können
+- [Kondition (Mathematik, Wikipedia)](https://de.wikipedia.org/wiki/Kondition_(Mathematik)):
+  wie stark sich Fehler der Eingabedaten im Ergebnis verstärken
 
 Die Konditionszahl und ihre Bedeutung wurden bereits in [PARTREF::np-linalg] behandelt.
 
@@ -59,13 +60,13 @@ Nur in `scipy.linalg` finden sich dagegen die LU-Zerlegung sowie die Solver, die
 Struktur der Matrix ausnutzen (z. B. `solve_triangular` oder `cho_solve`).
 Umgekehrt gibt es `cond` und `matrix_rank` nur in `numpy.linalg`.
 
-Die drei Zerlegungen dieses Abschnitts zerlegen eine Matrix jeweils in ein Produkt einfacherer
+Die drei Zerlegungen dieses Abschnitts schreiben eine Matrix jeweils als Produkt einfacherer
 Matrizen (Dreiecksmatrizen bzw. eine orthogonale Matrix), mit denen sich ein Gleichungssystem
 anschließend durch bloßes Einsetzen lösen lässt.
 Ein einzelnes System wird dadurch nicht schneller gelöst — `solve()` berechnet intern ohnehin eine
 solche Zerlegung.
 Der Gewinn liegt darin, dass man eine einmal berechnete Zerlegung für beliebig viele rechte Seiten
-wiederverwenden kann; der dritte Abschnitt kommt darauf zurück.
+wiederverwenden kann; die beiden folgenden Abschnitte kommen darauf zurück.
 
 **LU-Zerlegung:**
 
@@ -117,7 +118,11 @@ print("\nR (obere Dreiecksmatrix):")
 print(R)
 ```
 
-**Cholesky-Zerlegung** (nur für symmetrische positiv definite Matrizen):
+Ihre Stärke spielt die QR-Zerlegung bei überbestimmten Systemen aus, die mehr Gleichungen als
+Unbekannte haben und deshalb keine exakte Lösung besitzen; auf sie greift das unter
+"Weiterführend" genannte `lstsq()` zurück.
+
+**Cholesky-Zerlegung (nur für symmetrische positiv definite Matrizen):**
 
 ```python
 scipy.linalg.cholesky(a, lower=False)
@@ -153,8 +158,7 @@ print(L_chol @ L_chol.T)
 - Halten Sie in einem Kommentar fest, wie SciPy auf `C` reagiert und was die Eigenwerte von `C`
   damit zu tun haben
 
-Geben Sie alle Matrizen aus und verifizieren Sie jede gelungene Zerlegung durch
-Rückmultiplikation.
+Geben Sie alle Matrizen aus und verifizieren Sie jede gelungene Zerlegung durch Rückmultiplikation.
 
 [HINT::Die Fehlermeldung von `cholesky()` sagt mir nichts]
 Der Meldungstext benennt eine LAPACK-interne Routine und hilft nicht weiter.
@@ -162,7 +166,7 @@ Aussagekräftig sind nur die Tatsache, dass der Aufruf überhaupt abbricht, und 
 der die Cholesky-Zerlegung laut der Beschreibung von `cholesky()` oben überhaupt definiert ist.
 [ENDHINT]
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Erweiterte Gleichungssystem-Solver
 
@@ -243,12 +247,12 @@ weitere rechte Seiten wiederverwenden, ohne sie neu zu berechnen.
 ```python
 # Symmetrische positiv definite Matrix
 B_spd = np.array([[5, 2], [2, 3]])
-b_spd = np.array([9, 8])
+b_bspd = np.array([9, 8])
 
 c, low = linalg.cho_factor(B_spd)
-x_spd = linalg.cho_solve((c, low), b_spd)
-print(f"Lösung: {x_spd}")
-print(f"Verifikation B_spd@x: {B_spd @ x_spd}")
+x_bspd = linalg.cho_solve((c, low), b_bspd)
+print(f"Lösung: {x_bspd}")
+print(f"Verifikation B_spd@x: {B_spd @ x_bspd}")
 ```
 
 [ER] Lösen Sie verschiedene Arten von linearen Gleichungssystemen:
@@ -264,6 +268,10 @@ print(f"Verifikation B_spd@x: {B_spd @ x_spd}")
 - Gegeben ist die symmetrische positiv definite Matrix
   `A_spd` = `[[6, 1, 1], [1, 5, 2], [1, 2, 4]]` mit `b_spd` = `[10, 12, 9]`;
   nutzen Sie `linalg.cho_factor()` und `linalg.cho_solve()`
+- Lösen Sie dasselbe System noch einmal mit `linalg.solve()` und `assume_a='pos'` und vergleichen
+  Sie das Ergebnis mit der Lösung aus `cho_solve()`; halten Sie in einem Kommentar fest, was der
+  eine Aufruf gegenüber dem Paar `cho_factor()`/`cho_solve()` einfacher macht und was er
+  verschenkt, sobald zu demselben `A_spd` mehrere rechte Seiten zu lösen sind
 
 Machen Sie für jede Lösung die Probe durch Rückmultiplikation.
 
@@ -273,7 +281,7 @@ Stellen Sie die Matrix auf, die entsteht, wenn man in `A_gen` alles unterhalb de
 durch Nullen ersetzt, und lösen Sie dieses System mit `linalg.solve()`.
 [ENDHINT]
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 ### Konditionszahl und LU-Zerlegung in der Praxis
 
@@ -361,10 +369,10 @@ auf die Lösung durch.
 - Berechnen Sie für `M_ill` = `[[1, 3], [3, 9.0002]]` mit `v_ill` = `[4, 12.0006]` ebenfalls
   Konditionszahl (wissenschaftliche Notation, `:.2e`) und die LU-Zerlegung
 - Lösen Sie beide Systeme mit `linalg.lu_solve()` unter Verwendung der jeweiligen Zerlegung
-- Stören Sie nun jede der beiden rechten Seiten nacheinander um `1e-6`, `1e-4` und `1e-2` auf ihrer
-  ersten Komponente und lösen Sie jedes Mal erneut mit `linalg.lu_solve()`; in Ihrem gesamten
-  Skript darf `lu_factor()` dabei nur die beiden Male vorkommen, die Sie oben schon geschrieben
-  haben
+- Stören Sie nun jede der beiden rechten Seiten um `1e-6`, `1e-4` und `1e-2` auf ihrer ersten
+  Komponente, jeweils ausgehend von der ungestörten rechten Seite, und lösen Sie jedes Mal erneut
+  mit `linalg.lu_solve()`; in Ihrem gesamten Skript darf `lu_factor()` dabei nur die beiden Male
+  vorkommen, die Sie oben schon geschrieben haben
 - Geben Sie für jeden dieser sechs Fälle die relative Änderung gegenüber der ungestörten Lösung
   desselben Systems aus (wissenschaftliche Notation, `:.2e`); nutzen Sie dafür die in
   [PARTREF::np-linalg] behandelte Norm (`np.linalg.norm()` ohne `ord`-Angabe reicht hier aus)
