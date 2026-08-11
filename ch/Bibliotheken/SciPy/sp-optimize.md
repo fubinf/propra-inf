@@ -59,8 +59,8 @@ scipy.optimize.root(fun, x0, method='hybr')
 - `x0`: Startwert für die Iteration
 - `method` (Standard `'hybr'`): Lösungsverfahren
 
-Die Signaturen in dieser Aufgabe zeigen nur die jeweils relevanten Parameter; im Original liegen
-weitere dazwischen.
+Die Signaturen in dieser Aufgabe zeigen nur die jeweils relevanten Parameter; in der
+tatsächlichen Signatur stehen weitere dazwischen.
 Übergeben Sie die optionalen Parameter deshalb immer benannt, also z. B. `method='hybr'` statt
 nur `'hybr'`.
 
@@ -118,7 +118,7 @@ Bei Aufrufen mit `success=False` geben Sie statt Nullstelle und Funktionswert `r
 [EQ] Bei der kubischen und der trigonometrischen Gleichung in [EREFR::1] wird mit mehreren
 Startwerten gearbeitet, statt nur einem.
 Warum ist das sinnvoll — welche mindestens zwei unterschiedlichen Risiken eines einzelnen
-Aufrufs verringert oder erkennt man dadurch?
+Aufrufs werden dadurch verringert oder überhaupt erst sichtbar?
 Belegen Sie jedes genannte Risiko mit einer Zeile aus Ihrer eigenen Ausgabe.
 
 <!-- time estimate: 30 min -->
@@ -154,11 +154,23 @@ Die vollständige Liste der Verfahren und Parameter steht in der Referenz zu
 
 **Felder des Ergebnisobjekts:**
 
-Die oben bei `root` genannten Felder gibt es auch hier; hier wird zusätzlich `result.nfev`
-gebraucht, die Anzahl der Funktionsauswertungen.
+Die oben bei `root` genannten Felder gibt es auch hier; in dieser Aufgabe wird zusätzlich
+`result.nfev` gebraucht, die Anzahl der Funktionsauswertungen.
 Ein Unterschied ist wichtig: `result.x` ist weiterhin ein Array, weil `minimize` mehrere
 Unbekannte zulässt, `result.fun` dagegen ist eine einzelne Zahl, denn eine zu minimierende
 Funktion liefert pro Punkt genau einen Wert.
+
+**Beispiel:**
+```python
+from scipy.optimize import minimize
+
+def parabel(x):
+    return (x - 1)**2 + 3
+
+result = minimize(parabel, 0)  # 0 ist der Startwert
+print(f"Minimum: x = {result.x[0]:.4f}, parabel(x) = {result.fun:.4f}")
+# Minimum: x = 1.0000, parabel(x) = 3.0000
+```
 
 [ER] Arbeiten Sie mit verschiedenen Minimierungsproblemen:
 
@@ -185,6 +197,13 @@ effizientesten?
 Für `'Nelder-Mead'` liefert die Tabelle oben die Erklärung bereits mit; begründen Sie den
 Unterschied zwischen `'BFGS'` und `'CG'`, die beide mit numerisch geschätzten Ableitungen
 arbeiten.
+
+[HINT::Ich sehe nicht, worin sich `'BFGS'` und `'CG'` unterscheiden]
+Beide schätzen die Ableitung numerisch, verwerten sie aber unterschiedlich weiter.
+Was ein [Quasi-Newton-Verfahren](https://de.wikipedia.org/wiki/Quasi-Newton-Verfahren) über den
+Gradienten hinaus mitführt, steht im ersten Absatz des verlinkten Artikels; was das kostet, steht
+in der Tabelle oben.
+[ENDHINT]
 
 [EQ] Vergleichen Sie Ihre fünf Ergebnisse für `g(x)` aus [EREFR::2]: Was meldet `result.success`
 jeweils, und wie viele verschiedene Minima haben Sie gefunden?
@@ -339,7 +358,8 @@ Ihre Teilschritte:
 - Wiederholen Sie den Aufruf mit einem bewusst schlechten Startwert `p0=(-100, 100)` und
   vergleichen Sie das Ergebnis mit dem Aufruf ohne `p0`
 - Berechnen Sie die vorhergesagten y-Werte mit den (ohne `p0` geschätzten) Parametern und geben
-  Sie die Abweichungen gemessen minus vorhergesagt aus (2 Nachkommastellen, `:.2f`)
+  Sie die Abweichungen gemessen minus vorhergesagt aus (2 Nachkommastellen, `:.2f`); an ihnen
+  lesen Sie ab, wie gut das angepasste Modell die Messdaten trifft
 - Wiederholen Sie beide `p0`-Läufe an einem nichtlinearen Modell: Passen Sie
   `exponential(x, a, b)` mit `a * np.exp(b*x)` an `x_exp`/`y_exp` an, einmal mit `p0=(1, 0.5)`
   und einmal mit `p0=(-100, 100)`, und geben Sie beide Parameterpaare aus (4 Nachkommastellen,
@@ -347,15 +367,17 @@ Ihre Teilschritte:
 
 [HINT::Mein Skript gibt auch hier Warnungen des Typs `RuntimeWarning` aus]
 Auch das ist kein Programmierfehler.
-Die Warnungen zeigen an, dass eine Zwischenrechnung übergelaufen ist; als Folge davon kann
+Die Warnungen stammen aus demselben numerisch extremen Bereich wie oben; als Folge davon kann
 `curve_fit` die Unsicherheit der Schätzung (also `pcov`) nicht mehr sinnvoll bestimmen.
 Die geschätzten Parameter werden trotzdem zurückgegeben, geben Sie sie wie vorgesehen aus.
 [ENDHINT]
 
-[EQ] Vergleichen Sie in [EREFR::4] für beide Modelle jeweils den Lauf mit brauchbarem bzw. ohne
-`p0` gegen den Lauf mit `p0=(-100, 100)`.
+[EQ] Vergleichen Sie in [EREFR::4] für jedes der beiden Modelle den brauchbaren Lauf (linear:
+ohne `p0`, exponentiell: mit `p0=(1, 0.5)`) mit dem Lauf mit `p0=(-100, 100)`.
 Bei welchem der beiden Modelle macht der Startwert einen Unterschied?
-Was an der Fehlerfunktion des jeweiligen Modells erklärt das?
+Begründen Sie das auf zwei Ebenen: erstens aus der Gestalt der Fehlerquadratsumme als Funktion
+der beiden gesuchten Parameter, zweitens aus dem Zahlenbereich, in den `a * np.exp(b*x)` bei
+`b = 100` für die gegebenen `x`-Werte gerät.
 
 <!-- time estimate: 30 min -->
 
