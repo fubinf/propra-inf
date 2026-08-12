@@ -1,5 +1,5 @@
 title: NumPy Indexierung und Slicing
-stage: alpha
+stage: beta
 timevalue: 2.25
 difficulty: 2
 assumes: np-Einführung, np-array, np-array2
@@ -55,10 +55,10 @@ Dieses Beispiel und mehrere der folgenden brauchen ein Array mit fortlaufenden W
 eignen sich `np.arange()` und `reshape()` (Details zu beiden in [PARTREF::np-array2]):
 
 ```python
-a = np.arange(10, 20)   # Werte 10 bis 19
-print(a[5])             # Ausgabe: 15
-print(a[2:7:2])         # Ausgabe: [12 14 16]
-print(a[3:])            # Ausgabe: [13 14 15 16 17 18 19]
+beispiel = np.arange(10, 20)   # Werte 10 bis 19
+print(beispiel[5])             # Ausgabe: 15
+print(beispiel[2:7:2])         # Ausgabe: [12 14 16]
+print(beispiel[3:])            # Ausgabe: [13 14 15 16 17 18 19]
 ```
 
 [ER] Erstellen Sie ein NumPy-Array `a` mit den Zahlen 15 bis 24 und geben Sie aus:
@@ -297,11 +297,8 @@ arr[(arr > unten) & (arr < oben)]  # Elemente dazwischen (& kombiniert Bedingung
 arr[~(arr > wert)]      # Negation der Bedingung (NOT)
 ```
 
-Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
-`arr[arr > unten & arr < oben]` wird deshalb als Vergleichskette `arr[arr > (unten & arr) < oben]`
-gelesen.
-Eine solche Kette `A > B < C` bedeutet in Python `A > B and B < C`, und dieses `and` löst den
-`ValueError` aus, dessen Ursache [EREFQ::5] klärt.
+Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die
+Vergleichsoperatoren, ohne Klammern entsteht deshalb ein ganz anderer Ausdruck.
 
 **Beispiel:**
 ```python
