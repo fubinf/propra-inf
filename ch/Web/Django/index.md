@@ -1,5 +1,4 @@
 title: Django
-stage: alpha
 ---
 
 Django ist ein Web-Framework für Python, das die schnelle Entwicklung von Webanwendungen 

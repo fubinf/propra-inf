@@ -28,4 +28,6 @@
 - **2026-07-14**: Aufgabengruppe [PARTREF::Matplotlib] freigegeben, mit aktuell 5 Aufgaben.
 - **2026-07-23**: Aufgabe [PARTREF::go-http-client] zugefügt.
 - **2026-07-26**: Aufgabe [PARTREF::go-http-server] zugefügt.
+- **2026-08-12**: Aufgabengruppe [PARTREF::Django] zugefügt, mit derzeit 6 Aufgaben.
+  Eine weitere folgt noch.
 - ...
