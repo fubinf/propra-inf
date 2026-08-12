@@ -1,5 +1,5 @@
 title: Django Formularbehandlung
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 requires: django-template
@@ -12,21 +12,19 @@ assumes: http-GET, http-POST, html-Formulare, curl
 - Ich kann HTML-Formulare erstellen, ihre Daten in einer View verarbeiten und dauerhaft
   in der Datenbank speichern.
 - Ich verstehe die Rolle des CSRF-Schutzes im Formular-Workflow.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 HTML-Formulare sind der klassische Weg, über den Nutzer Daten an eine Web-Anwendung senden,
 von der Suchanfrage bis zur Registrierung.
 Diese Aufgabe führt die bisher getrennt behandelten Ebenen zusammen: Ein Formular wird in
 einem Template dargestellt, seine Daten in einer View verarbeitet und über ein Model in der
 Datenbank gespeichert.
-
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 Sie arbeiten weiter mit der App `webapp`.
 Aus den vorherigen Aufgaben stehen Ihnen dort bereits das `Student`-Model
 ([PARTREF::django-model]), Views mit URL-Routing ([PARTREF::django-view]) und das
@@ -42,7 +40,7 @@ Port betreiben, passen Sie sie entsprechend an.
 Die Grundelemente eines HTML-Formulars (`<form>`, `<input>`, `<button type="submit">`)
 kennen Sie bereits aus [PARTREF::http-POST] und [PARTREF::html-Formulare], den Unterschied
 zwischen den beiden Methoden GET und POST aus [PARTREF::http-GET] und [PARTREF::http-POST].
-Das `method`-Attribut von `<form>`, an dem ein Formular sich für eine der beiden entscheidet,
+Das `method`-Attribut von `<form>`, mit dem ein Formular sich für eine der beiden entscheidet,
 kennen Sie aus [PARTREF::http-POST] bereits als `method="POST"`; die unten durchgehend
 verwendete Kleinschreibung `method="post"` ist gleichwertig, neu ist nur der Wert `get`.
 Welche der beiden für ein bestimmtes Formular die richtige ist, beobachten Sie in dieser
@@ -119,8 +117,7 @@ die erfolglose Suche nicht zu einem Fehler, und welches Template-Tag erzeugt die
 
 ### POST-Formular und CSRF-Schutz
 
-Bei einem POST-Formular verlangt Django ein zusätzliches Sicherheitsmerkmal: das
-`{% csrf_token %}`-Tag.
+Bei einem POST-Formular verlangt Django ein zusätzliches Sicherheitsmerkmal: ein CSRF-Token.
 **CSRF** (Cross-Site Request Forgery) bezeichnet einen Angriff, bei dem eine fremde Website
 unbemerkt eine Aktion in Ihrem Namen auslöst, während Sie eingeloggt sind.
 Um das zu verhindern, weist Django jeden POST ab, der kein gültiges Token mitschickt; eine
@@ -318,8 +315,8 @@ Weiterführend).
   Überblick über die Formularverarbeitung in Django
 - [Cross Site Request Forgery protection](https://docs.djangoproject.com/en/stable/ref/csrf/):
   Details zum CSRF-Schutz
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode-files.md]
@@ -327,12 +324,11 @@ Weiterführend).
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Kontrollergebnisse]
 
+[INSTRUCTOR::Kontrollergebnisse]
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-form.md]
 
 ### Kommandoprotokoll
 [PROT::ALT:django-form.prot]
-
 [ENDINSTRUCTOR]
