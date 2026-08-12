@@ -1,5 +1,5 @@
 title: NumPy Broadcasting, Array-Iteration, Sequenzerzeugung und Form-Manipulationen
-stage: alpha
+stage: beta
 timevalue: 1.75
 difficulty: 2
 assumes: np-Einführung, np-array
@@ -207,18 +207,14 @@ Bei `axis=1` dagegen entsteht die Form `(3,)`, die sich mit `(3, 5)`
 `keepdims=True` macht daraus `(3, 1)` und damit eine passende Form.
 Für Code, der mit beliebiger Achse umgehen soll, ist `keepdims=True` deshalb die richtige Wahl.
 
-Dank Broadcasting entfällt das manuelle Angleichen der Formen:
-Die Minima und Maxima lassen sich direkt mit `data` verrechnen, obwohl sie eine andere Form haben.
+Dank Broadcasting entfällt das manuelle Angleichen der Formen: Eine so reduzierte Form lässt
+sich unmittelbar mit `data` selbst kombinieren.
 
 ```python
 # Beispieldaten: 3 Datensätze mit je 5 Merkmalen
 data = np.array([[1, 20, 300, 4, 50], [2, 25, 280, 6, 45], [3, 15, 320, 5, 55]])
 
-# Min-Max-Normalisierung auf [0, 1]
-min_vals = np.min(data, axis=0, keepdims=True)  # Form: (1, 5)
-max_vals = np.max(data, axis=0, keepdims=True)  # Form: (1, 5)
-range_vals = max_vals - min_vals
-normalized = (data - min_vals) / range_vals  # Broadcasting: (3, 5) mit (1, 5)
+min_vals = np.min(data, axis=0, keepdims=True)  # Form: (1, 5), kombinierbar mit (3, 5)
 ```
 
 [ER] Implementieren Sie eine Min-Max-Normalisierung mit Broadcasting:
