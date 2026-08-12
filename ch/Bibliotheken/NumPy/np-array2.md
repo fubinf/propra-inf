@@ -2,8 +2,7 @@ title: NumPy Broadcasting, Array-Iteration, Sequenzerzeugung und Form-Manipulati
 stage: alpha
 timevalue: 1.75
 difficulty: 2
-requires: np-Einführung
-assumes: np-array
+assumes: np-Einführung, np-array
 ---
 
 [SECTION::goal::idea,experience]
@@ -19,7 +18,8 @@ assumes: np-array
 
 NumPy-Arrays unterschiedlicher Form lassen sich häufig direkt miteinander verrechnen,
 ohne dass man sie vorher manuell angleichen muss.
-Diese Aufgabe behandelt dieses Broadcasting und drei damit verwandte Themen:
+Dieses Verfahren heißt Broadcasting.
+Die Aufgabe behandelt es und drei damit verwandte Themen:
 das gezielte Iterieren über Array-Elemente, das Erzeugen regelmäßiger Zahlenfolgen und
 das nachträgliche Verändern von Array-Formen.
 
@@ -29,6 +29,7 @@ das nachträgliche Verändern von Array-Formen.
 
 ### Broadcasting: Grundlagen
 
+<!-- TERM::Broadcasting einführen?? -->
 Broadcasting ermöglicht arithmetische Operationen zwischen Arrays unterschiedlicher Formen.
 Wenn zwei Arrays kompatible Formen haben, wiederholt NumPy die Werte automatisch entlang
 derjenigen Achsen, die die Länge 1 haben oder ganz fehlen, bis beide Formen übereinstimmen.
@@ -307,9 +308,9 @@ for x in np.nditer(a, order='F'):
 # Index-Verfolgung
 it = np.nditer(a, flags=['multi_index'])
 for x in it:
-    print(f"Index {it.multi_index}: Wert {x}")
-# Index (0, 0): Wert 10
-# Index (0, 1): Wert 20
+    print("Index", it.multi_index, "Wert", x)
+# Index (0, 0) Wert 10
+# Index (0, 1) Wert 20
 # ...
 
 # Schreibzugriff (auf einem eigenen Array, damit die Demonstration
@@ -323,7 +324,7 @@ print(b)
 
 # Externe Schleife
 for column in np.nditer(a, flags=['external_loop'], order='F'):
-    print(f"Spalte: {column}")
+    print("Spalte:", column)
 # Spalte: [10 40]
 # Spalte: [20 50]
 # Spalte: [30 60]
@@ -337,7 +338,7 @@ Führen Sie die Iteration anschließend aus und vergleichen Sie das Ergebnis mit
 Formulieren Sie danach eine Regel für C- und F-Ordnung,
 die für beliebig viele Achsen gilt.
 
-[HINT::Wie überträgt man die F-Ordnung von 2D auf 3D?]
+[HINT::Wie übertrage ich die F-Ordnung von 2D auf 3D?]
 Sehen Sie sich die F-Ausgabe des 2D-Beispiels oben noch einmal an und schreiben Sie zu jedem
 gelieferten Wert seinen Index dazu:
 Welcher der beiden Indizes zählt dabei schneller hoch?

@@ -2,7 +2,7 @@ title: NumPy Array-Eigenschaften verstehen und anwenden
 stage: beta
 timevalue: 1.25
 difficulty: 2
-requires: np-Einführung
+assumes: np-Einführung
 ---
 
 [SECTION::goal::idea,experience]
