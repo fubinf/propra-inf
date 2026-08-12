@@ -46,14 +46,14 @@ Es geht in dieser Aufgabe nicht darum, den Dijkstra-Algorithmus selbst zu implem
 Gezeigt wird stattdessen, wie SciPy einen in einer Sparse-Darstellung gespeicherten Graphen
 aufnimmt und die fertigen Algorithmen darauf anwendet.
 
-### Dünn besetzte Matrizen und ihre zwei Speicherformen
+### Dünnbesetzte Matrizen: dichte und Sparse-Speicherung
 
-Dünn besetzt (englisch *sparse*) heißt eine Matrix, bei der die meisten Elemente Null sind.
+Dünnbesetzt (englisch *sparse*) heißt eine Matrix, bei der die meisten Elemente Null sind.
 Das ist eine Eigenschaft der Zahlen in der Matrix und noch keine Entscheidung darüber, wie sie
 gespeichert wird: Dieselbe Matrix lässt sich dicht speichern (jeder Eintrag bekommt Speicherplatz)
 oder in einer Sparse-Darstellung (nur die von Null verschiedenen Einträge bekommen Speicherplatz).
 
-**Beispiel einer dünn besetzten Matrix:**
+**Beispiel einer dünnbesetzten Matrix:**
 
 ```
 [ 0   0  30   0  40]
@@ -79,7 +79,8 @@ ablaufen.
 ### CSR-Arrays erstellen und untersuchen: `csr_array`
 
 Das **Compressed-Sparse-Row-Format** (CSR) ist eines der wichtigsten Sparse-Formate.
-Es speichert zeilenweise komprimiert und eignet sich für arithmetische Operationen.
+Es speichert zeilenweise komprimiert und eignet sich besonders für arithmetische Operationen und
+Matrix-Vektor-Produkte.
 
 `scipy.sparse` bietet dieses Format über zwei Schnittstellen an: die ältere `csr_matrix` und die
 neuere `csr_array`, die sich wie ein NumPy-Array verhält.
@@ -143,6 +144,11 @@ Den genauen Aufbau beschreibt
 [Compressed Row Storage (Wikipedia)](https://de.wikipedia.org/wiki/Compressed_Row_Storage);
 dort heißen die drei Arrays `val`, `colInd` und `rowPtr`.
 
+Ein CSR-Array kann Nullen auch ausdrücklich speichern, etwa wenn ein zuvor gespeicherter Wert
+nachträglich auf 0 gesetzt wird.
+Solche expliziten Nullen belegen weiterhin einen Speicherplatz, obwohl sie den Wert der Matrix
+nicht verändern.
+
 Zum Prüfen, Verändern und Umwandeln des Inhalts stehen diese Eigenschaften und Methoden bereit:
 
 - `sparse_arr.data`: Array der gespeicherten Werte
@@ -153,11 +159,8 @@ Zum Prüfen, Verändern und Umwandeln des Inhalts stehen diese Eigenschaften und
 - `sparse_arr.eliminate_zeros()`: entfernt explizit gespeicherte Nullen
 - `sparse_arr.toarray()`: liefert die dichte Variante als NumPy-Array
 
-Ein CSR-Array kann Nullen auch ausdrücklich speichern, etwa wenn ein zuvor gespeicherter Wert
-nachträglich auf 0 gesetzt wird.
-Solche expliziten Nullen belegen weiterhin einen Speicherplatz (`nnz` zählt sie mit), obwohl sie
-den Wert der Matrix nicht verändern.
-`eliminate_zeros()` entfernt sie:
+Das folgende Beispiel führt die drei Arrays vor, erzeugt eine explizite Null und entfernt sie
+wieder:
 
 ```python
 from scipy.sparse import csr_array
@@ -197,9 +200,9 @@ Der letzte Eintrag schließt die letzte Zeile ab und ist der Grund für den zus�
 - Führen Sie `eliminate_zeros()` aus und prüfen Sie, ob sich `nnz` dadurch ändert
 - Geben Sie `data`, `indices` und `indptr` danach erneut aus
 - Berechnen Sie die Sparsity (Anteil der Null-Elemente) für `sparse_arr` in seinem jetzigen
-  Zustand, also nach `eliminate_zeros()`, nennen Sie das Ergebnis `sparsity` und geben Sie es in
-  Prozent mit einer f-String-Formatierung auf eine Nachkommastelle (`:.1f`) aus; die zugehörige
-  Syntax finden Sie in [PARTREF::py-Fstrings]
+  Zustand, also nach `eliminate_zeros()`, und nennen Sie das Ergebnis `sparsity`
+- Geben Sie `sparsity` in Prozent mit einer f-String-Formatierung auf eine Nachkommastelle
+  (`:.1f`) aus; die zugehörige Syntax finden Sie in [PARTREF::py-Fstrings]
 
 [HINT::Wie komme ich vom Nicht-Null-Zähler zur Sparsity in Prozent?]
 Die Sparsity ist der Anteil der Null-Elemente an allen Elementen.
@@ -336,8 +339,8 @@ haben können.
 
 Wie groß der Vorteil der Sparse-Darstellung ausfällt, hängt von der Größe der Matrix und von ihrer
 Dichte ab, also vom Anteil der besetzten Einträge.
-Beides lässt sich messen: den Speicherbedarf über die Arrays, aus denen das CSR-Format besteht, die
-Laufzeit über eine Rechnung mit der Matrix.
+Beides lässt sich messen: den Speicherbedarf über die Arrays, aus denen das CSR-Format besteht, und
+die Laufzeit über eine Rechnung mit der Matrix.
 
 Große Testmatrizen mit vorgegebener Dichte liefert `random_array`:
 
@@ -348,7 +351,7 @@ scipy.sparse.random_array(shape, *, density=0.01, format="coo")
 - `shape`: Form der Matrix als Tupel
 - `density` (Standard `0.01`): Anteil der besetzten Einträge; `0.01` bedeutet 1%
 - `format` (Standard `"coo"`): Sparse-Format des Ergebnisses; `"coo"` ist eines der anderen
-  Sparse-Formate neben CSR (siehe "Weiterführend"), diese Aufgabe braucht `"csr"`
+  Sparse-Formate neben CSR (siehe "Weiterführend"); diese Aufgabe braucht `"csr"`
 
 Der Stern in der Signatur bedeutet, dass `density` und `format` nur als Schlüsselwortargumente
 übergeben werden dürfen; `random_array((5, 5), 0.01, "csr")` scheitert mit einem `TypeError`.
@@ -363,7 +366,11 @@ start = time.perf_counter()
 dauer = time.perf_counter() - start
 ```
 
-Einzelne Zeitmessungen schwanken; aussagekräftig ist nur die Größenordnung des Unterschieds.
+Einzelne Zeitmessungen schwanken stark, unter anderem weil der erste Aufruf einer Operation noch
+Initialisierungsarbeit mit erledigt.
+Wiederholt man eine Messung mehrfach und behält den kleinsten der gemessenen Werte, fällt dieser
+Anteil weg.
+Auch dann bleiben die Werte rechnerabhängig; aussagekräftig ist die Größenordnung des Unterschieds.
 
 [ER] Vergleichen Sie Speicherbedarf und Laufzeit der beiden Darstellungen für je eine Matrix mit
 5000 Zeilen und 5000 Spalten in den drei Dichten 0.001, 0.01 und 0.2:
@@ -373,7 +380,8 @@ Einzelne Zeitmessungen schwanken; aussagekräftig ist nur die Größenordnung de
 - Bestimmen Sie den Speicherbedarf beider Varianten in Byte; das Attribut `nbytes` eines
   NumPy-Arrays nennt den Speicherbedarf seiner Werte
 - Multiplizieren Sie beide Varianten mit einem Vektor aus 5000 Einsen (Matrix-Vektor-Produkt mit
-  dem Operator `@`) und messen Sie jeweils die Laufzeit
+  dem Operator `@`) und messen Sie jeweils die Laufzeit; führen Sie jede der beiden Messungen
+  fünfmal aus und rechnen Sie mit dem kleinsten der fünf Werte weiter
 - Geben Sie für jede Dichte die beiden Speicherwerte, die beiden Laufzeiten und jeweils das
   Verhältnis von dicht zu sparse aus
 - Geben Sie außerdem für jede Dichte aus, wie viele Zahlen die Sparse-Darstellung insgesamt
@@ -386,9 +394,10 @@ Ein CSR-Array hat selbst kein `nbytes`, aber jedes der Arrays, aus denen es best
 [EQ] Vergleichen Sie Ihre Messwerte aus [EREFR::4].
 Erklären Sie, warum der Vorteil der Sparse-Darstellung bei der Dichte 0.2 viel kleiner ausfällt als
 bei der Dichte 0.001, obwohl schon die Dichte 0.2 einer Sparsity von 80% entspricht.
-Halten Sie fest, ob die Sparse-Darstellung bei der Dichte 0.2 überhaupt noch im Vorteil ist, und
-grenzen Sie mit Ihren drei Messpunkten ein, zwischen welchen beiden Dichten der Speichervorteil
-unter eine Größenordnung fällt.
+Halten Sie fest, ob die Sparse-Darstellung bei der Dichte 0.2 noch im Vorteil ist, und zwar getrennt
+für Speicher und Laufzeit.
+Grenzen Sie außerdem mit Ihren drei Messpunkten ein, zwischen welchen beiden Dichten der
+Speichervorteil unter eine Größenordnung fällt.
 Vergleichen Sie für die Dichte 0.001 außerdem den gemessenen Speicherfaktor mit dem Verhältnis der
 Anzahl gespeicherter Zahlen und erklären Sie, warum die beiden Faktoren nicht gleich groß sind.
 
