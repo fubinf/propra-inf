@@ -1,8 +1,8 @@
 title: "Go: Adapter-Pattern im Kontext von HTTP-Middleware"
-stage: alpha
+stage: beta
 timevalue: 1
 difficulty: 3
-assumes: go-http-server
+assumes: go-interfaces, go-http-server
 ---
 
 [SECTION::goal::idea,experience]
@@ -23,15 +23,15 @@ zusätzliche Funktionalität einfügen.
 
 ### Daten aus `http.Request` auslesen
 
-Stellen Sie sich vor, dass es auf Ihrer Webseite einen Bereich `api` gibt mit Pfaden `"/api/dashboard"`,
-`"/api/healthcheck"` und `"/api/usage"`.
+Stellen Sie sich vor, dass es auf Ihrer Webseite einen Bereich `api` mit den Pfaden `"/api/dashboard"`,
+`"/api/healthcheck"` und `"/api/usage"` gibt.
 
 Nun wollen Sie für den Bereich Logging einbauen, jedoch völlig transparent (unsichtbar)
 für die existierenden Handler.
 
 [ER] Implementieren Sie einen HTTP-Server auf Port `8080`, der die obigen Endpunkte in einem `ServeMux` namens `mainMux`
 registriert.
-Die Endpoints sollen jeweils ihren Namen zurückgeben (also `dashboard`, `healthcheck` und `usage`).
+Die Endpunkte sollen jeweils ihren Namen zurückgeben (also `dashboard`, `healthcheck` und `usage`).
 
 [ER] Lesen Sie die
 [Dokumentation zu `http.StripPrefix(prefix string, h http.Handler) http.Handler`](https://pkg.go.dev/net/http#StripPrefix)
