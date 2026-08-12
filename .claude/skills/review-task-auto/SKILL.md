@@ -4,15 +4,14 @@ description: Begutachte eine Task oder Taskgroup-Indexseite und erledige dabei a
 
 # Aufgaben-Review, automatisiert
 
-Automatisiert den Review-Workflow für die in $ARGUMENTS angegebene Aufgabendatei (oder
+Teilautomatisiert den Review-Workflow für die in $ARGUMENTS angegebene Aufgabendatei (oder
 Taskgroup-Indexseite) um die technischen Begleitschritte herum, die sonst manuell erledigt werden:
-`git pull`, Review erzeugen, warten auf Bearbeitung, `sedrila`-Build, Commit, `git push`,
-GitHub-Kommentar, Discord-Ankündigung (als Entwurf).
+`git pull` anfordern, Review erzeugen, warten auf Bearbeitung, `sedrila`-Build, Commit anfordern, `git push` anfordern,
+GitHub-Kommentar posten, Discord-Ankündigung entwerfen.
 
 Dieser Skill ruft für die inhaltliche Begutachtung selbst den Skill `review-task` auf und ändert
 an dessen Verhalten nichts. Er wird typischerweise über den Shell-Alias `claude_review`
-(`claude --permission-mode auto`) gestartet; unter anderen Permission-Modi fragt die Umgebung bei
-den einzelnen Bash/`gh`-Aufrufen ganz normal nach, das ist hier nicht zusätzlich nachzubilden.
+(`claude --permission-mode auto`) gestartet.
 
 Halte dich strikt an die Reihenfolge unten. Nach Schritt 2 gibt es **keinen** weiteren
 Rückfrage-Punkt mehr außer bei echten Fehlern (Build schlägt fehl, echter Merge-Konflikt) --
@@ -23,7 +22,7 @@ dort wird angehalten und nachgefragt statt geraten.
 1. `git status` prüfen. Falls unerwartete uncommittete Änderungen vorhanden sind, die nichts mit
    dieser Review zu tun haben, diese mit `git stash` und `git stash pop` aus dem Pull ausklammern und
    bei den späteren Commit-Schritten ignorieren.
-2. `git pull --rebase` ausführen.
+2. `git pull --rebase` anfordern (oder falls möglich selber machen; meist hast Du aber keinen ssh-agent dafür).
    Falls dabei ein Konflikt bei `altdir` als Gitlink auftritt (`both modified: altdir`),
    die im Memory `submodule_pull_conflict_runbook` dokumentierte mechanische Auflösung anwenden --
    das deckt den Fall ab, dass beide Seiten sich zu einem gemeinsamen Nachfolgestand mergen lassen.
@@ -37,7 +36,7 @@ Rufe den Skill `review-task` mit denselben $ARGUMENTS auf (über das Skill-Werkz
 Das erzeugt bzw. aktualisiert `.claude/draft-reviews/r-<taskname>.md` genau wie beim direkten
 Aufruf von `/review-task`.
 
-## Schritt 2: Der einzige Rückfrage-Punkt
+## Schritt 2: Review kommentieren
 
 Halte an und bitte den Nutzer, jetzt
 
@@ -65,8 +64,8 @@ welcher Fall gemeint ist, frage gezielt nach, bevor du weitermachst.
    Falls dabei auch `altdir`-Dateien geändert wurden, committe zuerst innerhalb von `altdir`,
    dann den aktualisierten Submodul-Pointer im Hauptrepo mit derselben Commit-Message.
    Falls eine substanzielle Änderung an Aufgabe oder altdir-Pendant dabei war,
-   ersetze "minor changes" durch eine sehr knappe Charakterisierung (auf English!) dieser Änderung.
-3. `git push`.
+   ersetze "minor changes" durch eine sehr knappe Charakterisierung (in English!) dieser Änderung.
+3. `git push` machen (wenn oben `git pull` ging) bzw. anfordern.
 4. Zeige dem Nutzer folgende Zeile zum manuellen Einfügen in Discord (Du kannst sie nicht selbst posten;
    wir haben keine Discord-Automatisierung):
 
