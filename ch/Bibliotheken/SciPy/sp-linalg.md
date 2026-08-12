@@ -60,8 +60,8 @@ Struktur der Matrix ausnutzen (z. B. `solve_triangular` oder `cho_solve`).
 Umgekehrt gibt es `cond` und `matrix_rank` nur in `numpy.linalg`.
 
 Die drei Zerlegungen dieses Abschnitts schreiben eine Matrix jeweils als Produkt einfacherer
-Matrizen (Dreiecksmatrizen bzw. eine orthogonale Matrix), mit denen sich ein Gleichungssystem
-anschließend durch bloßes Einsetzen lösen lässt.
+Matrizen (Dreiecksmatrizen bzw. eine orthogonale Matrix); an einer Dreiecksmatrix lässt sich ein
+Gleichungssystem anschließend durch bloßes Einsetzen lösen.
 Ein einzelnes System wird dadurch nicht schneller gelöst — `solve()` berechnet intern ohnehin eine
 LU- oder eine Cholesky-Zerlegung.
 Der Gewinn liegt darin, dass man eine einmal berechnete Zerlegung für beliebig viele rechte Seiten
@@ -129,8 +129,8 @@ print(R)
 ```
 
 Ihre Stärke spielt die QR-Zerlegung bei überbestimmten Systemen aus, die mehr Gleichungen als
-Unbekannte haben und deshalb keine exakte Lösung besitzen; für solche Systeme ist das unter
-"Weiterführend" genannte `lstsq()` zuständig.
+Unbekannte haben und deshalb in aller Regel keine exakte Lösung besitzen; für solche Systeme ist
+das unter "Weiterführend" genannte `lstsq()` zuständig.
 Auch für quadratische Systeme ist sie brauchbar und gilt dort als numerisch besonders gutartig,
 weil orthogonale Matrizen die Länge eines Vektors nicht verändern und Rundungsfehler dadurch nicht
 verstärkt werden.
@@ -195,6 +195,16 @@ wählt danach das dazu passende Verfahren aus.
 Wer die Struktur seiner Matrix ohnehin kennt, kann diese Untersuchung überspringen und gleich den
 zugehörigen spezialisierten Solver aufrufen.
 Zwei solche Solver zeigt dieser Abschnitt.
+
+[NOTICE]
+Dieser Abschnitt setzt SciPy 1.15 oder neuer voraus.
+Ältere Versionen untersuchen die Koeffizientenmatrix nicht, sondern behandeln sie stets als
+allgemeine Matrix, und kennen die weiter unten genannte Strukturangabe `'upper triangular'` noch
+nicht.
+Prüfen Sie Ihre Version notfalls wie in [PARTREF::sp-Einführung] und aktualisieren Sie mit
+`pip install -U scipy`; ein bloßes `pip install scipy` aktualisiert eine vorhandene Installation
+nicht.
+[ENDNOTICE]
 
 **Standard-Solver:**
 
@@ -404,11 +414,11 @@ auf die Lösung durch.
 
 [ER] Vergleichen Sie ein gut und ein schlecht konditioniertes Gleichungssystem:
 
-- Berechnen Sie für `M_good` = `[[6, 2], [2, 5]]` mit `v_good` = `[10, 7]` die Konditionszahl
-  (`np.linalg.cond()`, 6 Nachkommastellen, `:.6f`) und zerlegen Sie die Matrix einmal mit
-  `linalg.lu_factor()`
-- Berechnen Sie für `M_ill` = `[[1, 3], [3, 9.0002]]` mit `v_ill` = `[4, 12.0006]` ebenfalls
-  Konditionszahl (wissenschaftliche Notation, `:.2e`) und die LU-Zerlegung
+- Berechnen Sie für `M_good` = `[[6.0, 2.0], [2.0, 5.0]]` mit `v_good` = `[10.0, 7.0]` die
+  Konditionszahl (`np.linalg.cond()`, 6 Nachkommastellen, `:.6f`) und zerlegen Sie die Matrix
+  einmal mit `linalg.lu_factor()`
+- Berechnen Sie für `M_ill` = `[[1.0, 3.0], [3.0, 9.0002]]` mit `v_ill` = `[4.0, 12.0006]`
+  ebenfalls Konditionszahl (wissenschaftliche Notation, `:.2e`) und die LU-Zerlegung
 - Lösen Sie beide Systeme mit `linalg.lu_solve()` unter Verwendung der jeweiligen Zerlegung
 - Stören Sie nun jede der beiden rechten Seiten um `1e-6`, `1e-4` und `1e-2` auf ihrer ersten
   Komponente, jeweils ausgehend von der ungestörten rechten Seite, und lösen Sie jedes Mal erneut
