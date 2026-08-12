@@ -36,8 +36,9 @@ Diese Aufgabe stellt Graphen als Adjazenzmatrix dar und berechnet darauf kürzes
 Falls Ihnen diese Konzepte fehlen, helfen folgende Quellen:
 
 - [Adjazenzmatrix (Wikipedia)](https://de.wikipedia.org/wiki/Adjazenzmatrix#Graphen_mit_Kantengewichten,_ohne_Mehrfachkanten):
-  Darstellung eines Graphen als Matrix; im verlinkten Abschnitt "Graphen mit Kantengewichten" gibt
-  der Eintrag `matrix[i,j]` das Gewicht der Kante von Knoten `i` zu Knoten `j` an
+  Darstellung eines Graphen als Matrix; im verlinkten Abschnitt "Graphen mit Kantengewichten, ohne
+  Mehrfachkanten" gibt der Eintrag `matrix[i,j]` das Gewicht der Kante von Knoten `i` zu Knoten `j`
+  an
 - [Dijkstra-Algorithmus (Wikipedia)](https://de.wikipedia.org/wiki/Dijkstra-Algorithmus):
   Verfahren zur Berechnung der kürzesten Pfade von einem Startknoten zu allen übrigen Knoten
 
@@ -137,9 +138,11 @@ Den genauen Aufbau beschreibt
 [Compressed Row Storage (Wikipedia)](https://de.wikipedia.org/wiki/Compressed_Row_Storage);
 dort heißen die drei Arrays `val`, `colInd` und `rowPtr`.
 
-Zum Prüfen und Verändern des Inhalts kommen zwei Eigenschaften und zwei Methoden hinzu:
+Zum Prüfen und Verändern des Inhalts stehen diese Eigenschaften und Methoden bereit:
 
 - `sparse_arr.data`: Array der gespeicherten Werte
+- `sparse_arr.indices`: Array der zugehörigen Spalten
+- `sparse_arr.indptr`: Array der Zeilenabschnitte
 - `sparse_arr.nnz`: Anzahl der gespeicherten Elemente (einschließlich explizit gespeicherter Nullen)
 - `sparse_arr.count_nonzero()`: Anzahl der tatsächlich von Null verschiedenen Elemente
 - `sparse_arr.eliminate_zeros()`: entfernt explizit gespeicherte Nullen
@@ -189,7 +192,7 @@ Der letzte Eintrag schließt die letzte Zeile ab und ist der Grund für den zus�
 - Geben Sie `data`, `indices` und `indptr` danach erneut aus
 - Berechnen Sie die Sparsity (Anteil der Null-Elemente) für `sparse_arr` in seinem jetzigen
   Zustand, also nach `eliminate_zeros()`, nennen Sie das Ergebnis `sparsity` und geben Sie es in
-  Prozent mit einer f-String-Formatierung mit einer Nachkommastelle (`:.1f`) aus; die zugehörige
+  Prozent mit einer f-String-Formatierung auf eine Nachkommastelle (`:.1f`) aus; die zugehörige
   Syntax finden Sie in [PARTREF::py-Fstrings]
 
 [HINT::Wie komme ich vom Nicht-Null-Zähler zur Sparsity in Prozent?]
@@ -231,6 +234,9 @@ scipy.sparse.csgraph.dijkstra(csgraph, directed=True, indices=None)
   gespeicherte Kante in beiden Richtungen
 - `indices`: Startknoten, von dem aus die kürzesten Pfade berechnet werden; ohne Angabe (Standard
   `None`) werden alle Knoten als Start verwendet
+
+Der Parameter `indices` hat trotz des gleichen Namens nichts mit dem Spaltenindex-Array
+`sparse_arr.indices` aus dem vorigen Abschnitt zu tun.
 
 Das folgende Beispiel verwendet einen ungerichteten Graphen mit vier Knoten und diesen Kanten:
 
