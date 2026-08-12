@@ -1,6 +1,6 @@
 title: SciPy Sparse-Arrays verstehen und anwenden
 stage: alpha
-timevalue: 1.75
+timevalue: 2.0
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array, np-linalg, py-Fstrings
@@ -66,7 +66,7 @@ Diese 5×5-Matrix hat nur 5 von 25 Elementen ungleich Null; die Sparsity, also d
 Null-Elemente, beträgt damit 80%.
 
 Der entscheidende Gedanke: Die dichte Speicherung legt für jeden der 25 Einträge Speicher an und
-bezieht ihn in jede Rechnung ein — auch die 20 Nullen.
+bezieht jeden davon in jede Rechnung ein — auch die 20 Nullen.
 Die Sparse-Darstellung hält nur die 5 Nicht-Null-Werte samt ihrer Position fest und überspringt
 die Nullen bei Operationen.
 Bei einer 5×5-Matrix ist das nebensächlich.
@@ -117,6 +117,8 @@ print(sparse_arr)
 Die Ausgabe `(0, 2) 30` bedeutet: In Zeile 0, Spalte 2 steht der Wert 30.
 Die Kopfzeilen nennen zusätzlich die Anzahl der gespeicherten Elemente und die Form (`shape`) des
 Arrays.
+Diese Ausgabeform gibt es ab SciPy 1.14; ältere Versionen verwenden ein abweichendes Format.
+Welche Version installiert ist, nennt `scipy.__version__`.
 
 [ER] Erstellen Sie ein CSR-Array aus dem Array `[[0, 5, 0], [7, 0, 0], [0, 9, 0]]` und geben Sie
 seine Sparse-Darstellung aus.
@@ -138,14 +140,15 @@ Den genauen Aufbau beschreibt
 [Compressed Row Storage (Wikipedia)](https://de.wikipedia.org/wiki/Compressed_Row_Storage);
 dort heißen die drei Arrays `val`, `colInd` und `rowPtr`.
 
-Zum Prüfen und Verändern des Inhalts stehen diese Eigenschaften und Methoden bereit:
+Zum Prüfen, Verändern und Umwandeln des Inhalts stehen diese Eigenschaften und Methoden bereit:
 
 - `sparse_arr.data`: Array der gespeicherten Werte
-- `sparse_arr.indices`: Array der zugehörigen Spalten
-- `sparse_arr.indptr`: Array der Zeilenabschnitte
+- `sparse_arr.indices`: Array der zugehörigen Spaltenindizes
+- `sparse_arr.indptr`: Array der Zeilengrenzen in `data` und `indices`
 - `sparse_arr.nnz`: Anzahl der gespeicherten Elemente (einschließlich explizit gespeicherter Nullen)
 - `sparse_arr.count_nonzero()`: Anzahl der tatsächlich von Null verschiedenen Elemente
 - `sparse_arr.eliminate_zeros()`: entfernt explizit gespeicherte Nullen
+- `sparse_arr.toarray()`: liefert die dichte Variante als NumPy-Array
 
 Ein CSR-Array kann Nullen auch ausdrücklich speichern, etwa wenn ein zuvor gespeicherter Wert
 nachträglich auf 0 gesetzt wird.
@@ -206,12 +209,13 @@ Daraus ergibt sich die Sparsity als `(gesamt - nicht_null) / gesamt * 100`.
 
 [EQ] Als Kontrollwert: Nach `eliminate_zeros()` speichert `sparse_arr` aus [EREFR::2] 4 der 12
 Elemente, die Sparsity beträgt also 66,7%.
-Zählen Sie, wie viele Zahlen es dafür in `data`, `indices` und `indptr` insgesamt festhält, und
-vergleichen Sie diese Anzahl mit der Anzahl der Zahlen, die die dichte Speicherung des
+Zählen Sie, wie viele Zahlen `sparse_arr` dafür in `data`, `indices` und `indptr` insgesamt
+festhält, und vergleichen Sie diese Anzahl mit der Anzahl der Zahlen, die die dichte Speicherung des
 Ausgangs-Arrays braucht.
-Erklären Sie mit diesem Vergleich und dem Beispiel der quadratischen Matrix mit einer Million Zeilen
-aus dem Abschnitt "Dünn besetzte Matrizen und ihre zwei Speicherformen", warum eine hohe Sparsity
-allein noch kein Grund für die Sparse-Darstellung ist.
+Erklären Sie mit diesem Vergleich, wieso trotz einer Sparsity von 66,7% keine einzige Zahl
+eingespart wird.
+Trennen Sie dabei die beiden Posten, die zu den gespeicherten Werten hinzukommen, und geben Sie an,
+welcher der beiden bei einer Matrix mit sehr vielen Spalten kaum noch ins Gewicht fällt.
 
 <!-- time estimate: 30 min -->
 
@@ -320,7 +324,7 @@ einer der ersten drei Schritte.
 Leiten Sie daraus ab, wie ein Graph gespeichert werden muss, dessen Kanten auch das Gewicht 0
 haben können.
 
-<!-- time estimate: 35 min -->
+<!-- time estimate: 40 min -->
 
 ### Wann sich die Sparse-Darstellung auszahlt: Speicher und Laufzeit messen
 
@@ -337,8 +341,8 @@ scipy.sparse.random_array(shape, *, density=0.01, format="coo")
 
 - `shape`: Form der Matrix als Tupel
 - `density` (Standard `0.01`): Anteil der besetzten Einträge; `0.01` bedeutet 1%
-- `format` (Standard `"coo"`): Sparse-Format des Ergebnisses; `"coo"` ist eines der weiteren
-  Sparse-Formate (siehe "Weiterführend"), diese Aufgabe braucht `"csr"`
+- `format` (Standard `"coo"`): Sparse-Format des Ergebnisses; `"coo"` ist eines der anderen
+  Sparse-Formate neben CSR (siehe "Weiterführend"), diese Aufgabe braucht `"csr"`
 
 Der Stern in der Signatur bedeutet, dass `density` und `format` nur als Schlüsselwortargumente
 übergeben werden dürfen; `random_array((5, 5), 0.01, "csr")` scheitert mit einem `TypeError`.
@@ -355,8 +359,8 @@ dauer = time.perf_counter() - start
 
 Einzelne Zeitmessungen schwanken; aussagekräftig ist nur die Größenordnung des Unterschieds.
 
-[ER] Vergleichen Sie Speicherbedarf und Laufzeit der beiden Darstellungen für eine Matrix mit 5000
-Zeilen und 5000 Spalten, und zwar für die drei Dichten 0.001, 0.01 und 0.2:
+[ER] Vergleichen Sie Speicherbedarf und Laufzeit der beiden Darstellungen für je eine Matrix mit
+5000 Zeilen und 5000 Spalten in den drei Dichten 0.001, 0.01 und 0.2:
 
 - Erzeugen Sie die Matrix mit `random_array` im Format `"csr"` und daraus mit `toarray()` die
   dichte Variante
@@ -386,7 +390,7 @@ Anzahl gespeicherter Zahlen und erklären Sie, warum die beiden Faktoren nicht g
 Geben Sie zu den drei Arrays des CSR-Formats jeweils `dtype` aus.
 [ENDHINT]
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 35 min -->
 
 ### Weiterführend
 
@@ -400,6 +404,9 @@ Geben Sie zu den drei Arrays des CSR-Formats jeweils `dtype` aus.
   weitere Verfahren zur Analyse von Graphen auf Basis einer Adjazenzmatrix
 - [dijkstra (SciPy Reference)](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.dijkstra.html):
   alle Parameter, u.a. `return_predecessors` für die Rekonstruktion der Pfade
+- [Lineare Algebra für Sparse-Arrays (`scipy.sparse.linalg`)](https://docs.scipy.org/doc/scipy/reference/sparse.linalg.html):
+  Gleichungssysteme, Zerlegungen und Eigenwerte direkt auf der Sparse-Darstellung, also das
+  Gegenstück zu `scipy.linalg` aus dem Hintergrundabschnitt
 
 [ENDSECTION]
 
