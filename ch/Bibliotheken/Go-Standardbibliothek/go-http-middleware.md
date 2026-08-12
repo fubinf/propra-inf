@@ -1,6 +1,6 @@
 title: "Go: Adapter-Pattern im Kontext von HTTP-Middleware"
 stage: alpha
-timevalue: 0.75
+timevalue: 1
 difficulty: 3
 assumes: go-http-server
 ---
@@ -13,7 +13,7 @@ Ich kann das Adapter-Pattern im Kontext von HTTP-Middleware in Go anwenden.
 In [PARTREF::go-http-server] haben Sie gelernt, dass `http.Handle` flexibler ist als `http.HandleFunc`.
 Doch was bedeutet das genau?
 
-Mit `http.Handle` lässt sich das Adapter-Pattern anwenden — in Go oft als _Middleware_ bekannt.
+Mit `http.Handle` lässt sich das Adapter-Pattern anwenden — in Go oft als [TERMREF::Middleware] bekannt.
 
 Dank der interfacebasierten Struktur können wir an jeder Stelle der Verarbeitungskette
 zusätzliche Funktionalität einfügen.
@@ -59,10 +59,9 @@ http.StripPrefix("/api", apiMux)
 [Abschnitt "The adapter pattern for middleware" im Artikel "How I write HTTP services in Go after 13 years"](https://grafana.com/blog/2024/02/09/how-i-write-http-services-in-go-after-13-years/#the-adapter-pattern-for-middleware)
 und erläutern Sie, wie eine solche Schicht integriert werden kann.
 
-[WARNING]
-Der Aufruf `h(w, r)` in dem Beispiel ist falsch, da `h` ein `http.Handler` ist und keine Funktion.
-Gemeint ist stattdessen `h.ServeHTTP(w, r)`.
-[ENDWARNING]
+[EQ] Der Beispielcode im Artikel lässt sich in dieser Form nicht kompilieren.
+Identifizieren Sie die fehlerhafte Zeile, erklären Sie, warum der Compiler an dieser Stelle einen Fehler wirft, und
+geben Sie den korrekten Aufruf an.
 
 [ER] Fügen Sie — analog zum Beispiel `adminOnly` — den `api`-Endpunkten Logging hinzu.
 Die Logik muss sich in einer Funktion `withLogging(next http.Handler) http.Handler` befinden.
@@ -70,7 +69,7 @@ Dabei sollen die HTTP-Methode der Anfrage (`GET`, `POST`, und so weiter), der Pf
 `time.Now().Format(time.RFC3339)` auf der Kommandozeile ausgegeben werden.
 Verwenden Sie das Format `("[%v] [%v] %v\n", currentTime, method, path)`.
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 30 min -->
 
 
 ### Schreibzugriffe auf `http.ResponseWriter` abfangen
@@ -78,7 +77,7 @@ Verwenden Sie das Format `("[%v] [%v] %v\n", currentTime, method, path)`.
 Was ist, wenn die Antwort auch geloggt werden muss?
 
 Da jede Antwort über das Interface `http.ResponseWriter` geschrieben wird, müssen Sie einen eigenen
-`http.ResponseWriter` implementieren und dort die Methoden überschreiben, die für das Schreiben verwendet werden.
+`http.ResponseWriter` implementieren und dort die Methoden _überdecken_, die für das Schreiben verwendet werden.
 In dem Fall ist
 [Interfaceeinbettung in Strukturen](https://eli.thegreenplace.net/2020/embedding-in-go-part-3-interfaces-in-structs/)
 hilfreich:
@@ -89,20 +88,11 @@ type LoggingWriter struct {
 }
 ```
 
-Mithilfe dieser Wrapper-Struktur können Sie alle Methoden eines "echten" `http.ResponseWriter` überschreiben.
-
-[NOTICE]
-Ein `LoggingWriter` benötigt bei der Initialisierung immer einen konkreten `http.ResponseWriter` als Argument.
-
-Auf diese Weise können Sie jederzeit die Methoden des konkreten `http.ResponseWriter` über den `LoggingWriter`
-aufrufen:
-
-```go
-func (lw LoggingWriter) someMethod() {
-    lw.ResponseWriter.someMethod()
-}
-```
-[ENDNOTICE]
+Mithilfe dieser Wrapper-Struktur können Sie alle Methoden eines "echten" `http.ResponseWriter` überdecken.
+Beachten Sie hier die Begrifflichkeit: In Go sprechen wir nicht vom Überschreiben, sondern vom Überdecken.
+Anders als bei der klassischen Vererbung, wo Methoden dynamisch überschrieben werden, handelt es sich in Go um ein
+statisches Überdecken (_Shadowing of embedded fields_, wie in [PARTREF::go-structs1] eingeführt) basierend auf der
+Einbettungstiefe.
 
 [HINT::Ich verstehe nicht, was diese Deklaration bedeutet]
 Hier wird ein Interface in eine Struktur eingebettet.
@@ -150,7 +140,7 @@ func (lw LoggingWriter) someMethod(b []byte) {
 ```
 [ENDHINT]
 
-[ER] Überschreiben Sie die Methode `Write(b []byte) (int, error)`, indem Sie zuerst `log(b)`
+[ER] Überdecken Sie die Methode `Write(b []byte) (int, error)`, indem Sie zuerst `log(b)`
 aufrufen und dann die Ausführung an die "echte" Methode `Write` des eingebetteten `http.ResponseWriter` weiterleiten.
 
 [ER] Verwenden Sie den `LoggingWriter` in der Funktion `withLogging`:
@@ -159,13 +149,20 @@ anstelle des ursprünglichen `http.ResponseWriter`.
 Die Funktion `log` soll die Antwort-Bytefolge zu einer Zeichenkette umwandeln und diese im Format `"response: %v\n"` auf
 der Kommandozeile ausgeben.
 
-[EC] Starten Sie Ihren HTTP-Server und führen Sie in einem anderen Terminal folgende Befehle aus:
+[EC] Starten Sie Ihren HTTP-Server mittels `go run` und führen Sie in einem anderen Terminal folgende Befehle aus:
 
 - `curl http://localhost:8080/api/dashboard`
 - `curl -X POST http://localhost:8080/api/usage`
 - `curl http://localhost:8080/api/healthcheck`
 
-<!-- time estimate: 20 min -->
+**Wichtig:** Geben Sie nur die Ausgaben von der Server-Sitzung ab!
+Die `curl`-Befehle sind nur der Auslöser und gehören nicht ins Kommandoprotokoll.
+
+[EQ] Wie und warum ändert sich das Logging, wenn Sie die Zeile
+`mainMux.Handle("/api/", withLogging(http.StripPrefix("/api", apiMux)))` durch die Zeile
+`mainMux.Handle("/api/", http.StripPrefix("/api", withLogging(apiMux)))` ersetzen?
+
+<!-- time estimate: 30 min -->
 [ENDSECTION]
 
 [SECTION::submission::information,trace,program]

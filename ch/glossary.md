@@ -1169,6 +1169,17 @@ Metadaten können z.B. sein aus welcher Quelle eine Information stammt oder eine
 [ENDTERM]
 
 
+[TERM::Middleware]
+Middleware ist Code, der sich zwischen den eigentlichen Empfang einer Anfrage und ihre Verarbeitung durch die
+eigentliche Anwendungslogik schaltet.
+Sie kann vor und/oder nach der eigentlichen Verarbeitung zusätzliche Aufgaben übernehmen — etwa Logging,
+Authentifizierung, das Setzen oder Auswerten von Headern, Fehlerbehandlung oder Kompression — ohne dass die eigentliche
+Anwendungslogik davon weiß.
+Middleware lässt sich meist verketten, sodass mehrere solcher Schichten nacheinander auf dieselbe Anfrage angewendet
+werden, bevor (und nachdem) sie die eigentliche Verarbeitung durchläuft.
+[ENDTERM]
+
+
 [TERM::Modul|Module]
 "Modul" ist in der Softwaretechnik ein abstraktes Konzept.
 Es beschreibt eine Sammlung von Programmelementen, die zusammen entworfen werden
