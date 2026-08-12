@@ -8,7 +8,7 @@ assumes: np-Einführung, np-array, np-math, np-linalg, py-Fstrings
 
 [SECTION::goal::idea,experience]
 
-- Ich kenne die Matrixzerlegungen, mit denen SciPy Gleichungssysteme numerisch löst.
+- Ich kenne die Matrixzerlegungen, mit denen sich Gleichungssysteme numerisch lösen lassen.
 - Ich kann spezialisierte Solver für unterschiedliche Systemstrukturen einsetzen.
 - Ich kann anhand der Konditionszahl beurteilen, ob ein Gleichungssystem zuverlässig lösbar ist.
 
@@ -31,7 +31,7 @@ Ein Solver liefert fast immer eine Antwort, aber nicht immer eine verlässliche.
 Für diese Aufgabe werden die Konzepte hinter den Matrixzerlegungen benötigt.
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
-- [LU-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/LU-Zerlegung):
+- [LR-Zerlegung im Artikel Gaußsches Eliminationsverfahren (Wikipedia)](https://de.wikipedia.org/wiki/Gaußsches_Eliminationsverfahren#LR-Zerlegung):
   Zerlegung A = P·L·U in eine untere und obere Dreiecksmatrix
   (der Artikel schreibt R statt U und stellt die Zerlegung als P·A = L·R dar;
   das ist dieselbe Aussage, sein P ist aber die Transponierte des P, das SciPy zurückgibt)
@@ -63,7 +63,7 @@ Die drei Zerlegungen dieses Abschnitts schreiben eine Matrix jeweils als Produkt
 Matrizen (Dreiecksmatrizen bzw. eine orthogonale Matrix), mit denen sich ein Gleichungssystem
 anschließend durch bloßes Einsetzen lösen lässt.
 Ein einzelnes System wird dadurch nicht schneller gelöst — `solve()` berechnet intern ohnehin eine
-solche Zerlegung.
+LU- oder eine Cholesky-Zerlegung.
 Der Gewinn liegt darin, dass man eine einmal berechnete Zerlegung für beliebig viele rechte Seiten
 wiederverwenden kann; die beiden folgenden Abschnitte kommen darauf zurück.
 
@@ -76,11 +76,6 @@ scipy.linalg.lu(a, permute_l=False)
 - `a`: die zu zerlegende quadratische Matrix
 - `permute_l` (Standard `False`): bei `True` wird die Permutation direkt in `L` eingearbeitet und
   statt `(P, L, U)` nur `(P·L, U)` zurückgegeben; `P·L` ist dann keine Dreiecksmatrix mehr
-
-Die Signaturen in dieser Aufgabe zeigen nur die jeweils relevanten Parameter; in der tatsächlichen
-Signatur stehen weitere dazwischen.
-Übergeben Sie die optionalen Parameter deshalb immer benannt, also z. B. `permute_l=True` statt
-nur `True`.
 
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.linalg.lu`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu.html).
@@ -108,6 +103,11 @@ print(P @ L @ U)
 `P` hält fest, welche Zeilen die Zerlegung vertauscht hat.
 Ist keine Vertauschung nötig, steht dort die Einheitsmatrix.
 
+Die Signaturen in dieser Aufgabe zeigen nur die jeweils relevanten Parameter; in der tatsächlichen
+Signatur stehen weitere dazwischen.
+Übergeben Sie die optionalen Parameter deshalb immer benannt, also z. B. `permute_l=True` statt
+nur `True`.
+
 **QR-Zerlegung:**
 
 ```python
@@ -132,7 +132,10 @@ Ihre Stärke spielt die QR-Zerlegung bei überbestimmten Systemen aus, die mehr 
 Unbekannte haben und deshalb keine exakte Lösung besitzen; für solche Systeme ist das unter
 "Weiterführend" genannte `lstsq()` zuständig.
 Auch für quadratische Systeme ist sie brauchbar und gilt dort als numerisch besonders gutartig,
-weil sie ohne die Zeilenvertauschungen der LU-Zerlegung auskommt.
+weil orthogonale Matrizen die Länge eines Vektors nicht verändern und Rundungsfehler dadurch nicht
+verstärkt werden.
+Sie erfordert dafür rund den doppelten Rechenaufwand der LU-Zerlegung, auf die `solve()` deshalb
+zurückgreift.
 
 **Cholesky-Zerlegung (nur für symmetrische positiv definite Matrizen):**
 
@@ -258,11 +261,11 @@ scipy.linalg.cho_factor(a, lower=False)
 scipy.linalg.cho_solve(c_and_lower, b)
 ```
 
-- `a`: die symmetrische positiv definite Koeffizientenmatrix
-- `lower` (Standard `False`): ob die Cholesky-Zerlegung als untere oder obere Dreiecksmatrix
-  gespeichert wird
-- `c_and_lower`: das Tupel `(c, lower)`, das `cho_factor()` zurückgegeben hat
-- `b`: die rechte Seite des Gleichungssystems
+- `a` (bei `cho_factor()`): die symmetrische positiv definite Koeffizientenmatrix
+- `lower` (bei `cho_factor()`, Standard `False`): ob die Cholesky-Zerlegung als untere oder
+  obere Dreiecksmatrix gespeichert wird
+- `c_and_lower` (bei `cho_solve()`): das Tupel `(c, lower)`, das `cho_factor()` zurückgegeben hat
+- `b` (bei `cho_solve()`): die rechte Seite des Gleichungssystems
 
 `cho_factor()` berechnet die Cholesky-Zerlegung (siehe oben), `cho_solve()` löst damit das System.
 Die Aufteilung auf zwei Aufrufe hat einen Zweck: Dieselbe Zerlegung lässt sich anschließend für
@@ -326,20 +329,20 @@ liegen, und behandelt beide völlig gleich.
 Für das Lösen wird dabei die LU-Zerlegung aus dem Abschnitt "Matrixzerlegungen mit SciPy"
 angewendet, allerdings in einer anderen Darstellung.
 `lu()` liefert die drei Matrizen `P`, `L` und `U` einzeln, was zum Ansehen praktisch ist.
-Zum Weiterrechnen benutzt SciPy stattdessen `lu_factor()`: Dort stecken `L` und `U` platzsparend
-in einer einzigen Matrix, und die Zeilenvertauschungen stehen als Indexliste daneben statt als
-Matrix `P`.
+Zum Weiterrechnen bietet SciPy stattdessen `lu_factor()` an: Dort stecken `L` und `U`
+platzsparend in einer einzigen Matrix, und die Zeilenvertauschungen stehen als Indexliste
+daneben statt als Matrix `P`.
 
 ```python
 scipy.linalg.lu_factor(a)
 scipy.linalg.lu_solve(lu_and_piv, b)
 ```
 
-- `a`: die zu zerlegende quadratische Matrix
+- `a` (bei `lu_factor()`): die zu zerlegende quadratische Matrix
 - Rückgabe von `lu_factor()`: das Tupel `(lu, piv)` aus der gepackten Zerlegung `lu` und den
   Pivot-Indizes `piv`, die die Zeilenvertauschungen festhalten
-- `lu_and_piv`: genau dieses Tupel, so wie `lu_factor()` es zurückgegeben hat
-- `b`: die rechte Seite des Gleichungssystems
+- `lu_and_piv` (bei `lu_solve()`): genau dieses Tupel, so wie `lu_factor()` es zurückgegeben hat
+- `b` (bei `lu_solve()`): die rechte Seite des Gleichungssystems
 
 Für ein allgemeines System greift `solve()` intern ohnehin standardmäßig auf eine LU-Zerlegung
 zurück, berechnet sie dabei aber bei jedem Aufruf neu.
