@@ -10,24 +10,24 @@ assumes: np-Einführung, np-array, np-array2
 - Ich kann einzelne Elemente, Teilbereiche und beliebige Auswahlmuster aus ein- und
   mehrdimensionalen NumPy-Arrays auswählen und verändern.
 - Ich kann für einen Zugriff die passende Indexierungsform wählen (Slice, Ellipsis,
-  Index-Array, kartesisches Produkt von Indexlisten, Boolean-Maske) und weiß, welche Form
-  das Ergebnis jeweils hat.
+  Index-Array, kartesisches Produkt von Indexlisten, Boolean-Maske) und weiß, welche
+  Form (`shape`) das Ergebnis jeweils hat.
 - Ich kann unterscheiden, wann ein Indexzugriff eine View auf das Original liefert und wann eine
   eigenständige Kopie, und kann eine Kopie gezielt anfordern.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Ein großer Teil der Arbeit mit NumPy besteht darin, aus einem Array genau die Teilmenge
 herauszugreifen, um die es gerade geht, und nur diese zu verändern.
 Mit Indexausdrücken braucht man dafür keine Schleife: Auswahl und Änderung ganzer Teilmengen
 stehen dann in einer einzigen Zeile.
 
+Diese Aufgabe sollten Sie mit frischer Konzentration bearbeiten, nicht wenn Sie müde sind.
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 ### Eindimensionale Array-Indexierung und Slicing
 
 Die Indexierung funktioniert ähnlich wie bei Python-Listen, geht bei mehrdimensionalen Arrays
@@ -102,8 +102,8 @@ print(b[1, 2])          # Element Zeile 1, Spalte 2: 60
 print(b[1, :])          # Ganze Zeile 1: [40 50 60]
 print(b[:, 1])          # Ganze Spalte 1: [20 50 80]
 print(b[1:, :])         # Ab Zeile 1: [[40 50 60] [70 80 90]]
-print(b[..., 2])        # Ellipsis für Spalte: [30 60 90] (äquivalent zu b[:, 2])
-print(b[1, ...])        # Ellipsis für Zeile: [40 50 60] (äquivalent zu b[1, :])
+print(b[..., 2])        # Spalte 2 mit Ellipsis: [30 60 90] (äquivalent zu b[:, 2])
+print(b[1, ...])        # Zeile 1 mit Ellipsis: [40 50 60] (äquivalent zu b[1, :])
 ```
 
 Als einziger Index geschrieben bezeichnet `...` das ganze Array: `b[...]` liefert alle Elemente,
@@ -191,7 +191,7 @@ arr[[row1, row2, row3], :]
 arr[:, [col1, col2, col3]]
 
 # Auch in einem Index-Array zählen negative Indizes vom Ende her
-arr[[-1, -2, 0], :]    # Letzte zwei und erste Zeile
+arr[[-1, -2, 0], :]    # Letzte, vorletzte und erste Zeile
 ```
 
 **Beispiel:**
@@ -222,6 +222,7 @@ beiden Formen also nacheinander an, statt sie in einen einzigen Zugriff zu packe
 
 ### Rechteckige Teilbereiche mit `np.ix_`
 
+Achtung, langsam lesen, sonst ist folgendes verwirrend:
 `np.ix_` formt Index-Arrays so um, dass beim Indexieren ihr kartesisches Produkt entsteht, also
 jeder Zeilenindex mit jedem Spaltenindex kombiniert wird; damit lassen sich rechteckige
 Teilbereiche auswählen.
@@ -261,8 +262,8 @@ ergebnis = x[np.ix_([1, 5, 7], [0, 3, 1, 2])]  # Form: (3, 4)
 - Wenden Sie dieselben acht Indexwerte in derselben Reihenfolge auch ohne `np.ix_` an, also mit
   gewöhnlicher Integer-Array-Indexierung
 - Geben Sie beide Ergebnisse samt `shape` aus
-- Geben Sie außerdem aus, was der Aufruf von `np.ix_` selbst zurückliefert, samt der Form jedes
-  darin enthaltenen Arrays
+- Geben Sie außerdem aus, was `np.ix_` selbst zurückliefert, samt der Form jedes darin
+  enthaltenen Arrays
 
 [HINT::Beim letzten Teilschritt bekomme ich für die Formen einen `AttributeError`]
 Die Rückgabe von `np.ix_` ist kein Array, sondern ein Tupel aus mehreren Arrays.
@@ -299,7 +300,7 @@ arr[~(arr > wert)]      # Negation der Bedingung (NOT)
 Die Klammern um die beiden Vergleiche sind nötig: `&` bindet stärker als die Vergleichsoperatoren,
 `arr[arr > unten & arr < oben]` wird deshalb als Vergleichskette `arr[arr > (unten & arr) < oben]`
 gelesen.
-Eine solche Kette `A < B < C` bedeutet in Python `A < B and B < C`, und dieses `and` löst den
+Eine solche Kette `A > B < C` bedeutet in Python `A > B and B < C`, und dieses `and` löst den
 `ValueError` aus, dessen Ursache [EREFQ::5] klärt.
 
 **Beispiel:**
@@ -319,8 +320,7 @@ zeilenmaske = m[:, 0] > 20   # Erster Wert jeder Zeile: [False  True  True]
 print(m[zeilenmaske, :])     # Ergebnis: [[30 40] [50 60]]
 ```
 
-[ER] Erstellen Sie ein 4x3-Array `zahlen` mit ganzen Zahlen von 20 bis 31 und demonstrieren Sie
-daran:
+[ER] Erstellen Sie ein 4x3-Array `zahlen` mit den Werten 20 bis 31 und demonstrieren Sie daran:
 
 - Auswahl aller Elemente größer als 25
 - Auswahl aller geraden Zahlen (verwenden Sie den Modulo-Operator `%`)
@@ -390,7 +390,7 @@ Sobald in einem Zugriff ein Index-Array oder eine Boolean-Maske vorkommt, ist da
 Kopie, auch wenn andere Achsen darin mit Slices indexiert werden.
 Ein einzelner Integer-Index liefert dabei nur so lange eine View, wie noch eine Achse übrig bleibt
 (etwa `b[1]` bei einem 2D-Array).
-Indexiert man ein Array mit Integer-Indizes vollständig, ist das Ergebnis nach [EREFQ::1]
+Indexiert man alle Achsen eines Arrays mit Integer-Indizes, ist das Ergebnis nach [EREFQ::1]
 gar kein Array, sondern ein Skalar mit eigenem Speicher.
 Einzelheiten dazu stehen im
 [NumPy-Userguide zu Copies and views](https://numpy.org/doc/stable/user/basics.copies.html).
@@ -475,17 +475,16 @@ aus [EREFQ::1], sondern ein nulldimensionales Array, in das sich hineinschreiben
 
 - [NumPy-Userguide zur Indexierung](https://numpy.org/doc/stable/user/basics.indexing.html):
   alle Indexierungsformen im Zusammenhang, mit weiteren Sonderfällen
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Kontrollergebnisse]
 
+[INSTRUCTOR::Kontrollergebnisse]
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-index-slice.md]
-
 [ENDINSTRUCTOR]
