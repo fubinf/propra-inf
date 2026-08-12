@@ -38,6 +38,9 @@ Sonderdateien:
 - `glossary.md`: Bitte jeder durchgehen und ergänzen:  
   Was fehlt an Begriffen zu eigenen Aufgaben?  
   Was fehlt an Verweisen zwischen existierenden Begriffen und Aufgaben?
+  In Zweifelsfällen, ob man einen Glossarbegriff einführen sollte oder nicht, einen Kommentar
+  `<!-- TERM::mein-begriff einführen? -->` an die passendste Stelle in der Aufgabe schreiben.
+  (`TERM::`, nicht `TERMREF::`: Nach dieser Form kann man später gut suchen.)
 - `sedrila.css`: Farben besser abstimmen. 
   Evtl. Farbschema von creativecommons benutzen?
   https://creativecommons.org/mission/downloads/ ganz unten.
