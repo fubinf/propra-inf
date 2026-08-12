@@ -54,6 +54,7 @@ gespeichert wird: Dieselbe Matrix lässt sich dicht speichern (jeder Eintrag bek
 oder in einer Sparse-Darstellung (nur die von Null verschiedenen Einträge bekommen Speicherplatz).
 
 **Beispiel einer dünn besetzten Matrix:**
+
 ```
 [ 0   0  30   0  40]
 [ 0   0   0   0   0]
@@ -95,6 +96,7 @@ scipy.sparse.csr_array(arg1)
   zweidimensionales NumPy-Array, dessen von Null verschiedene Einträge übernommen werden
 
 **Grundlegende Erstellung:**
+
 ```python
 import numpy as np
 from scipy.sparse import csr_array
@@ -114,6 +116,7 @@ print(sparse_arr)
 ```
 
 **Ausgabeformat verstehen:**
+
 Die Ausgabe `(0, 2) 30` bedeutet: In Zeile 0, Spalte 2 steht der Wert 30.
 Die Kopfzeilen nennen zusätzlich die Anzahl der gespeicherten Elemente und die Form (`shape`) des
 Arrays.
@@ -186,8 +189,8 @@ Der letzte Eintrag schließt die letzte Zeile ab und ist der Grund für den zus�
 
 [ER] Arbeiten Sie mit den Eigenschaften und Methoden eines CSR-Arrays:
 
-- Erstellen Sie aus `[[10, 0, 30, 0], [0, 20, 0, 40], [50, 0, 0, 0]]` ein CSR-Array und nennen Sie
-  es `sparse_arr`
+- Legen Sie das dichte Array `[[10, 0, 30, 0], [0, 20, 0, 40], [50, 0, 0, 0]]` unter dem Namen
+  `dense` an und erstellen Sie daraus ein CSR-Array namens `sparse_arr`
 - Geben Sie `data`, `indices`, `indptr` und `nnz` aus
 - Setzen Sie den gespeicherten Wert an Position `(1, 1)` auf 0 und vergleichen Sie `nnz` mit
   `count_nonzero()`
@@ -302,6 +305,8 @@ Knoten 2 → Knoten 3 (Gewicht 4)
 - Konvertieren Sie die Matrix mit `csr_array` ins CSR-Format
 - Berechnen Sie mit `dijkstra` die kürzesten Pfade von Knoten 0 zu allen anderen
 - Ermitteln Sie auch die kürzesten Pfade von Knoten 1 aus
+- Ermitteln Sie die kürzesten Pfade von Knoten 3 aus, einmal mit dem Standardwert von `directed`
+  und einmal mit `directed=False`
 - Setzen Sie im CSR-Array das Gewicht der Kante von Knoten 1 zu Knoten 2 auf 0 und ermitteln Sie
   die kürzesten Pfade von Knoten 1 erneut
 - Führen Sie `eliminate_zeros()` aus und ermitteln Sie die kürzesten Pfade von Knoten 1 ein drittes
@@ -309,18 +314,19 @@ Knoten 2 → Knoten 3 (Gewicht 4)
 - Setzen Sie die 0 stattdessen im dichten NumPy-Array, erzeugen Sie daraus ein neues CSR-Array und
   ermitteln Sie die kürzesten Pfade von Knoten 1 ein viertes Mal
 
-[EQ] Interpretieren Sie Ihre Ergebnisse für Knoten 0 und Knoten 1 aus [EREFR::3].
+[EQ] Interpretieren Sie Ihre Ergebnisse für die Knoten 0, 1 und 3 aus [EREFR::3].
 Die kürzeste Distanz von Knoten 0 nach Knoten 3 beträgt 5: Nennen Sie die Kantenfolgen, die diese
 Länge ergeben, und erklären Sie, ob sich diese Kantenfolgen aus der Rückgabe von `dijkstra`
 ablesen lassen.
 Im ersten Ergebnis für Knoten 1 erhält genau ein Knoten die Distanz `inf`: Erklären Sie, warum
 dieser Knoten von Knoten 1 aus nicht erreichbar ist, obwohl eine Kante die beiden Knoten verbindet.
+Vergleichen Sie schließlich Ihre beiden Ergebnisse für Knoten 3 und erklären Sie den Unterschied.
 
 [EQ] Vergleichen Sie Ihre vier Ergebnisse für Knoten 1 aus [EREFR::3].
 Erklären Sie, was das CSR-Array nach dem Setzen des Gewichts auf 0 über die Kante von Knoten 1 zu
 Knoten 2 noch weiß und was `eliminate_zeros()` daran ändert.
 Erklären Sie außerdem, warum der Weg über das dichte NumPy-Array dasselbe Ergebnis liefert wie
-einer der ersten drei Schritte.
+eines der drei vorherigen Ergebnisse.
 Leiten Sie daraus ab, wie ein Graph gespeichert werden muss, dessen Kanten auch das Gewicht 0
 haben können.
 
@@ -401,7 +407,8 @@ Geben Sie zu den drei Arrays des CSR-Formats jeweils `dtype` aus.
 - [csr_array (SciPy Reference)](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_array.html):
   vollständige Methodenübersicht des CSR-Formats
 - [Graph-Algorithmen in `scipy.sparse.csgraph`](https://docs.scipy.org/doc/scipy/reference/sparse.csgraph.html):
-  weitere Verfahren zur Analyse von Graphen auf Basis einer Adjazenzmatrix
+  weitere Verfahren zur Analyse von Graphen sowie die Darstellungsformen, in denen `csgraph` einen
+  Graphen entgegennimmt
 - [dijkstra (SciPy Reference)](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.dijkstra.html):
   alle Parameter, u.a. `return_predecessors` für die Rekonstruktion der Pfade
 - [Lineare Algebra für Sparse-Arrays (`scipy.sparse.linalg`)](https://docs.scipy.org/doc/scipy/reference/sparse.linalg.html):
