@@ -93,8 +93,9 @@ In älterem Code und in vielen Anleitungen im Netz begegnet Ihnen weiterhin `csr
 scipy.sparse.csr_array(arg1)
 ```
 
-- `arg1`: die Eingabe, aus der das Sparse-Array entsteht — üblicherweise ein dichtes
-  zweidimensionales NumPy-Array, dessen von Null verschiedene Einträge übernommen werden
+- `arg1` (so heißt der Parameter in der SciPy-Dokumentation): die Eingabe, aus der das Sparse-Array
+  entsteht — üblicherweise ein dichtes zweidimensionales NumPy-Array, dessen von Null verschiedene
+  Einträge übernommen werden
 
 **Grundlegende Erstellung:**
 
@@ -140,6 +141,8 @@ Ein CSR-Array besteht aus drei eindimensionalen Arrays: `data` enthält die gesp
 zeilenweise hintereinander, `indices` nennt zu jedem dieser Werte dessen Spalte, und `indptr` gibt
 für jede Zeile an, welcher Abschnitt von `data` und `indices` zu ihr gehört.
 `indptr` hat deshalb einen Eintrag mehr, als die Matrix Zeilen hat.
+Der Namensbestandteil *Compressed* bezieht sich auf diese Zeileninformation: Sie steckt nicht bei
+jedem einzelnen Wert, sondern zusammengefasst in `indptr`.
 Den genauen Aufbau beschreibt
 [Compressed Row Storage (Wikipedia)](https://de.wikipedia.org/wiki/Compressed_Row_Storage);
 dort heißen die drei Arrays `val`, `colInd` und `rowPtr`.
@@ -154,7 +157,8 @@ Zum Prüfen, Verändern und Umwandeln des Inhalts stehen diese Eigenschaften und
 - `sparse_arr.data`: Array der gespeicherten Werte
 - `sparse_arr.indices`: Array der zugehörigen Spaltenindizes
 - `sparse_arr.indptr`: Array der Zeilengrenzen in `data` und `indices`
-- `sparse_arr.nnz`: Anzahl der gespeicherten Elemente (einschließlich explizit gespeicherter Nullen)
+- `sparse_arr.nnz`: Anzahl der gespeicherten Elemente (einschließlich explizit gespeicherter
+  Nullen); die Abkürzung steht für "number of non-zeros", gezählt werden aber Speicherplätze
 - `sparse_arr.count_nonzero()`: Anzahl der tatsächlich von Null verschiedenen Elemente
 - `sparse_arr.eliminate_zeros()`: entfernt explizit gespeicherte Nullen
 - `sparse_arr.toarray()`: liefert die dichte Variante als NumPy-Array
