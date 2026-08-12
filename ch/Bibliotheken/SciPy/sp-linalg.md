@@ -3,7 +3,7 @@ stage: alpha
 timevalue: 1.5
 difficulty: 3
 requires: sp-Einführung
-assumes: np-Einführung, np-math, np-linalg, py-Fstrings
+assumes: np-Einführung, np-array, np-math, np-linalg, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
@@ -46,9 +46,8 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 - [Kondition (Mathematik, Wikipedia)](https://de.wikipedia.org/wiki/Kondition_(Mathematik)):
   wie stark sich Fehler der Eingabedaten im Ergebnis verstärken
 
-Die Konditionszahl und ihre Bedeutung wurden bereits in [PARTREF::np-linalg] behandelt.
-
-Geben Sie Ihre Ergebnisse in dieser Aufgabe mit f-Strings aus.
+Geben Sie einzelne Zahlenwerte in dieser Aufgabe mit f-Strings aus; für ganze Matrizen genügt
+`print()`.
 Wo unten eine Anzahl Nachkommastellen oder wissenschaftliche Notation verlangt wird, stellen Sie
 das über die Formatierungsanweisung des f-Strings ein (siehe [PARTREF::py-Fstrings]).
 
@@ -76,7 +75,7 @@ scipy.linalg.lu(a, permute_l=False)
 
 - `a`: die zu zerlegende quadratische Matrix
 - `permute_l` (Standard `False`): bei `True` wird die Permutation direkt in `L` eingearbeitet und
-  nur `(L, U)` statt `(P, L, U)` zurückgegeben
+  statt `(P, L, U)` nur `(P·L, U)` zurückgegeben; `P·L` ist dann keine Dreiecksmatrix mehr
 
 Die Signaturen in dieser Aufgabe zeigen nur die jeweils relevanten Parameter; in der tatsächlichen
 Signatur stehen weitere dazwischen.
@@ -132,6 +131,8 @@ print(R)
 Ihre Stärke spielt die QR-Zerlegung bei überbestimmten Systemen aus, die mehr Gleichungen als
 Unbekannte haben und deshalb keine exakte Lösung besitzen; für solche Systeme ist das unter
 "Weiterführend" genannte `lstsq()` zuständig.
+Auch für quadratische Systeme ist sie brauchbar und gilt dort als numerisch besonders gutartig,
+weil sie ohne die Zeilenvertauschungen der LU-Zerlegung auskommt.
 
 **Cholesky-Zerlegung (nur für symmetrische positiv definite Matrizen):**
 
@@ -285,7 +286,7 @@ print(f"Verifikation B_spd@x: {B_spd @ x_bspd}")
 
 [ER] Lösen Sie verschiedene Arten von linearen Gleichungssystemen:
 
-- Lösen Sie das System mit `A_gen` = `[[4, 1, 2], [1, 3, 1], [2, 1, 4]]` und `b_gen` = `[7, 6, 8]`
+- Lösen Sie das System mit `A_gen` = `[[4, 1, 2], [3, 3, 1], [2, 5, 4]]` und `b_gen` = `[7, 6, 8]`
   mit `linalg.solve()`
 - Gegeben ist die obere Dreiecksmatrix `A_tri` = `[[3, 2, 1], [0, 2, 1], [0, 0, 1]]` mit
   `b_tri` = `[11, 8, 2]`; lösen Sie dieses System mit `linalg.solve_triangular()`
