@@ -1,6 +1,6 @@
 title: SciPy Erweiterte Lineare Algebra verstehen und anwenden
 stage: alpha
-timevalue: 1.25
+timevalue: 1.5
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-math, np-linalg, py-Fstrings
@@ -20,7 +20,7 @@ assumes: np-Einführung, np-math, np-linalg, py-Fstrings
 `scipy.linalg` erweitert das um weitere Matrixzerlegungen und um Solver, die auf eine bekannte
 Struktur der Koeffizientenmatrix zugeschnitten sind.
 Wer numerisch rechnet, braucht außerdem ein Urteil darüber, wie belastbar das Ergebnis ist:
-Ein Gleichungssystem liefert immer eine Antwort, aber nicht immer eine verlässliche.
+Ein Solver liefert fast immer eine Antwort, aber nicht immer eine verlässliche.
 
 [ENDSECTION]
 
@@ -28,7 +28,7 @@ Ein Gleichungssystem liefert immer eine Antwort, aber nicht immer eine verlässl
 
 ### Vorwissen
 
-Für diese Aufgabe sind die Konzepte hinter den Matrixzerlegungen hilfreich.
+Für diese Aufgabe werden die Konzepte hinter den Matrixzerlegungen benötigt.
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
 - [LU-Zerlegung (Wikipedia)](https://de.wikipedia.org/wiki/LU-Zerlegung):
@@ -78,6 +78,14 @@ scipy.linalg.lu(a, permute_l=False)
 - `permute_l` (Standard `False`): bei `True` wird die Permutation direkt in `L` eingearbeitet und
   nur `(L, U)` statt `(P, L, U)` zurückgegeben
 
+Die Signaturen in dieser Aufgabe zeigen nur die jeweils relevanten Parameter; in der tatsächlichen
+Signatur stehen weitere dazwischen.
+Übergeben Sie die optionalen Parameter deshalb immer benannt, also z. B. `permute_l=True` statt
+nur `True`.
+
+Die vollständige Parameterliste steht in der Referenz zu
+[`scipy.linalg.lu`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu.html).
+
 ```python
 import numpy as np
 from scipy import linalg
@@ -109,6 +117,9 @@ scipy.linalg.qr(a)
 
 - `a`: die zu zerlegende Matrix
 
+Die vollständige Parameterliste steht in der Referenz zu
+[`scipy.linalg.qr`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.qr.html).
+
 ```python
 # QR-Zerlegung: A = Q @ R
 Q, R = linalg.qr(A)
@@ -119,8 +130,8 @@ print(R)
 ```
 
 Ihre Stärke spielt die QR-Zerlegung bei überbestimmten Systemen aus, die mehr Gleichungen als
-Unbekannte haben und deshalb keine exakte Lösung besitzen; auf sie greift das unter
-"Weiterführend" genannte `lstsq()` zurück.
+Unbekannte haben und deshalb keine exakte Lösung besitzen; für solche Systeme ist das unter
+"Weiterführend" genannte `lstsq()` zuständig.
 
 **Cholesky-Zerlegung (nur für symmetrische positiv definite Matrizen):**
 
@@ -131,6 +142,9 @@ scipy.linalg.cholesky(a, lower=False)
 - `a`: die zu zerlegende symmetrische positiv definite Matrix
 - `lower` (Standard `False`): bei `True` wird die untere Dreiecksmatrix `L` zurückgegeben
   (A = L·Lᵀ), sonst die obere `U` (A = Uᵀ·U)
+
+Die vollständige Parameterliste steht in der Referenz zu
+[`scipy.linalg.cholesky`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.cholesky.html).
 
 ```python
 # Symmetrische positiv definite Matrix
@@ -161,7 +175,8 @@ print(L_chol @ L_chol.T)
 Geben Sie alle Matrizen aus und verifizieren Sie jede gelungene Zerlegung durch Rückmultiplikation.
 
 [HINT::Die Fehlermeldung von `cholesky()` sagt mir nichts]
-Der Meldungstext benennt eine LAPACK-interne Routine und hilft nicht weiter.
+Je nach SciPy-Version benennt der Meldungstext nur eine bibliotheksinterne Routine und hilft
+dann nicht weiter.
 Aussagekräftig sind nur die Tatsache, dass der Aufruf überhaupt abbricht, und die Bedingung, unter
 der die Cholesky-Zerlegung laut der Beschreibung von `cholesky()` oben überhaupt definiert ist.
 [ENDHINT]
@@ -187,7 +202,10 @@ scipy.linalg.solve(a, b, assume_a=None)
 - `b`: die rechte Seite des Gleichungssystems (Vektor oder Matrix)
 - `assume_a` (Standard `None`): welche Struktur `a` hat; bei `None` ermittelt SciPy sie selbst.
   Angeben lassen sich unter anderem `'gen'` (allgemein), `'sym'` (symmetrisch),
-  `'pos'` (symmetrisch positiv definit) und `'upper triangular'`
+  `'pos'` (symmetrisch positiv definit) und `'upper triangular'` (obere Dreiecksmatrix)
+
+Die vollständige Parameterliste steht in der Referenz zu
+[`scipy.linalg.solve`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve.html).
 
 ```python
 import numpy as np
@@ -216,6 +234,11 @@ scipy.linalg.solve_triangular(a, b, lower=False)
 
 Bei einer Dreiecksmatrix genügt Vorwärts- bzw. Rückwärtseinsetzen, um das System zu lösen; genau
 diese Rechnung führt `solve_triangular()` aus.
+Solche Dreiecksmatrizen liefern gerade die Zerlegungen des vorigen Abschnitts, weshalb
+`solve_triangular()` typischerweise als Folgeschritt einer Zerlegung auftritt.
+
+Die vollständige Parameterliste steht in der Referenz zu
+[`scipy.linalg.solve_triangular`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.solve_triangular.html).
 
 ```python
 # Obere Dreiecksmatrix
@@ -244,6 +267,11 @@ scipy.linalg.cho_solve(c_and_lower, b)
 Die Aufteilung auf zwei Aufrufe hat einen Zweck: Dieselbe Zerlegung lässt sich anschließend für
 weitere rechte Seiten wiederverwenden, ohne sie neu zu berechnen.
 
+Die vollständigen Parameterlisten stehen in der Referenz zu
+[`scipy.linalg.cho_factor`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.cho_factor.html)
+und
+[`scipy.linalg.cho_solve`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.cho_solve.html).
+
 ```python
 # Symmetrische positiv definite Matrix
 B_spd = np.array([[5, 2], [2, 3]])
@@ -265,6 +293,10 @@ print(f"Verifikation B_spd@x: {B_spd @ x_bspd}")
   `linalg.solve_triangular()` statt mit `linalg.solve()`, und vergleichen Sie beide Lösungen;
   halten Sie in einem Kommentar fest, welche Einträge von `A_gen` in die zweite Rechnung offenbar
   eingegangen sind und welche nicht
+- Lösen Sie das System aus `A_gen` und `b_gen` ein drittes Mal, diesmal über seine QR-Zerlegung:
+  Zerlegen Sie `A_gen` mit `linalg.qr()`; aus A = Q·R folgt R·x = Qᵀ·b, und dieses Dreieckssystem
+  lösen Sie mit `linalg.solve_triangular()`; halten Sie in einem Kommentar fest, welche
+  Eigenschaft von `Q` den Übergang von A·x = b zu R·x = Qᵀ·b erlaubt
 - Gegeben ist die symmetrische positiv definite Matrix
   `A_spd` = `[[6, 1, 1], [1, 5, 2], [1, 2, 4]]` mit `b_spd` = `[10, 12, 9]`;
   nutzen Sie `linalg.cho_factor()` und `linalg.cho_solve()`
@@ -281,7 +313,7 @@ Stellen Sie die Matrix auf, die entsteht, wenn man in `A_gen` alles unterhalb de
 durch Nullen ersetzt, und lösen Sie dieses System mit `linalg.solve()`.
 [ENDHINT]
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 30 min -->
 
 ### Konditionszahl und LU-Zerlegung in der Praxis
 
@@ -290,8 +322,8 @@ berechnet wurde sie bereits in [PARTREF::np-linalg] mit `np.linalg.cond()`.
 Der folgende Versuch stellt zwei Systeme nebeneinander, deren Konditionszahlen weit auseinander
 liegen, und behandelt beide völlig gleich.
 
-Für das Lösen wird dabei die LU-Zerlegung aus dem ersten Abschnitt angewendet, allerdings in einer
-anderen Darstellung.
+Für das Lösen wird dabei die LU-Zerlegung aus dem Abschnitt "Matrixzerlegungen mit SciPy"
+angewendet, allerdings in einer anderen Darstellung.
 `lu()` liefert die drei Matrizen `P`, `L` und `U` einzeln, was zum Ansehen praktisch ist.
 Zum Weiterrechnen benutzt SciPy stattdessen `lu_factor()`: Dort stecken `L` und `U` platzsparend
 in einer einzigen Matrix, und die Zeilenvertauschungen stehen als Indexliste daneben statt als
@@ -312,6 +344,11 @@ Für ein allgemeines System greift `solve()` intern ohnehin standardmäßig auf 
 zurück, berechnet sie dabei aber bei jedem Aufruf neu.
 `lu_factor()` liefert genau diese Zerlegung stattdessen einmalig zurück, und `lu_solve()` nutzt
 sie beliebig oft, ohne sie erneut zu berechnen.
+
+Die vollständigen Parameterlisten stehen in der Referenz zu
+[`scipy.linalg.lu_factor`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu_factor.html)
+und
+[`scipy.linalg.lu_solve`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu_solve.html).
 
 ```python
 import numpy as np
@@ -386,7 +423,7 @@ Welche dieser beiden Beobachtungen kündigt die Konditionszahl an und welche nic
 Was bedeutet das für einen realen Datensatz, dessen `b` unbekanntes Messrauschen enthält, während
 `lu_solve()` die Lösung ohne Fehler und ohne Warnung zurückgibt?
 
-<!-- time estimate: 25 min -->
+<!-- time estimate: 35 min -->
 
 ### Weiterführend
 
