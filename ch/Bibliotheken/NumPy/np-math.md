@@ -259,7 +259,7 @@ print('Auf 2 Nachkommastellen:', np.round(numbers, decimals=2))
 
 [HINT::Woher weiß ich, welche Rundungsfunktion die beiden letzten Schritte brauchen?]
 Rechnen Sie je einen einzelnen Wert von Hand durch, bevor Sie sich für eine Funktion entscheiden:
-Wie viele Kisten brauchen 5 Artikel bei 12 Stück pro Kiste, und wie viele Stück zu je 7.50 Euro
+Wie viele Kisten brauchen 5 Artikel bei 12 Stück pro Kiste, und wie viele Stück zu je 7,50 Euro
 lassen sich von 50 Euro kaufen?
 Vergleichen Sie Ihr Ergebnis mit dem, was eine Rundung zur nächstgelegenen ganzen Zahl liefern
 würde.
@@ -319,6 +319,12 @@ print('Multiplikation:')
 print(np.multiply(a, b))
 print('Division:')
 print(np.divide(a, b))
+
+# Kehrwert und Absolutwert
+c = np.array([0.5, 2.0, 4.0])
+print('Kehrwerte von c:', np.reciprocal(c))
+print('Absolutwerte von b - a:')
+print(np.abs(np.subtract(b, a)))
 ```
 
 `a` hat die Form `(2, 3)`, `b` hat die Form `(3,)` — hier greift Broadcasting
@@ -331,7 +337,8 @@ Die Funktionsform nimmt aber zusätzliche Argumente entgegen, die der Operator n
 `out=` für ein bereits vorhandenes Zielarray oder `where=` für eine nur an bestimmten Positionen
 ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword arguments" der
 [Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html#optional-keyword-arguments),
-wie NumPy alle elementweise arbeitenden Funktionen nennt.
+wie NumPy die meisten seiner elementweise arbeitenden Funktionen nennt;
+`np.round` gehört zum Beispiel nicht dazu und kennt deshalb kein `where=`.
 
 [ER] Implementieren Sie verschiedene arithmetische Operationen:
 
@@ -352,9 +359,9 @@ wie NumPy alle elementweise arbeitenden Funktionen nennt.
 - Wiederholen Sie diese eingeschränkte Division ein weiteres Mal, diesmal mit einem Zielarray:
   Legen Sie es mit `np.zeros(arr1.shape)` an und übergeben Sie es als `out=`.
   Vergleichen Sie das Ergebnis mit dem der beiden vorherigen Divisionen
-- Halten Sie als Kommentar im Quelltext fest, warum `where=` auf ein mit `out=` übergebenes
-  Zielarray angewiesen ist und woher die Werte an den ausgelassenen Positionen in den beiden
-  eingeschränkten Divisionen jeweils stammen
+- Halten Sie als Kommentar im Quelltext fest, warum `where=` erst zusammen mit `out=` ein
+  vollständig definiertes Ergebnis liefert und woher die Werte an den ausgelassenen Positionen
+  in den beiden eingeschränkten Divisionen jeweils stammen
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Warum sind alle meine Kehrwerte `0`?]
@@ -399,7 +406,7 @@ numpy.exp(x)
 ```python
 import numpy as np
 
-# Beispiele für spezielle Funktionen
+# Basiswerte für Potenz, Rest und Exponentialfunktion
 values = np.array([2, 4, 8, 16])
 print('Originalwerte:', values)
 
@@ -422,7 +429,7 @@ Basis und Exponent gemeinsam.
 Für die Quadratwurzel gibt es zusätzlich `np.sqrt()`; hier wird bewusst der Weg über den
 Exponenten geübt, weil er für jede Wurzel funktioniert.
 
-[ER] Arbeiten Sie mit speziellen arithmetischen Funktionen:
+[ER] Arbeiten Sie mit Potenz, Rest und Exponentialfunktion:
 
 - Erstellen Sie ein Array `base` mit den Werten `[6, 9, 4, 7]`
 - Berechnen Sie die 3. Potenz aller Werte
@@ -488,8 +495,7 @@ print('Mittelwert:', np.mean(data))
 print('Median:', np.median(data))
 print('Summe:', np.sum(data))
 
-# Achsenbezogene Berechnungen: welches Ergebnis zu welcher Achse gehört,
-# lässt sich durch Vergleich mit dem Datenarray ablesen
+# Achsenbezogene Berechnungen
 print('Minimum, axis=0:', np.min(data, axis=0))
 print('Minimum, axis=1:', np.min(data, axis=1))
 print('Mittelwert, axis=0:', np.mean(data, axis=0))
