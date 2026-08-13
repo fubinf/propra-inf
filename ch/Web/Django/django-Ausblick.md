@@ -28,7 +28,7 @@ Die beiden anderen verhindert Django von Anfang an: Den CSRF-Schutz haben Sie in
 [PARTREF::django-form] bereits kennengelernt, den Schutz vor Einbettung haben Sie nie bemerkt.
 Solche Bordmittel gehören zu keiner der bisher behandelten Kernkomponenten (Model, View,
 Template, Formular), sondern greifen quer dazu bei jedem Request.
-In dieser Aufgabe holen Sie die fehlende Rückmeldung nach und schalten die beiden
+In dieser Aufgabe bauen Sie die fehlende Rückmeldung ein und schalten die beiden
 Schutzmechanismen kurz ab, um zu sehen, was sie eigentlich leisten.
 
 [ENDSECTION]
@@ -75,20 +75,20 @@ Rufen Sie in `register`, zwischen dem Anlegen des Studierenden und der Weiterlei
 Sichtbar wird die Meldung erst, wenn ein Template sie auch anzeigt.
 `messages` ist dafür bereits in jedem Template verfügbar, ganz ohne dass eine View diese
 Variable in den Context aufnehmen muss; dafür sorgt der Eintrag
-`django.contrib.messages.context_processors.messages` unter `context_processors` in
-`settings.py`.
+`django.contrib.messages.context_processors.messages` in `settings.py` unter
+`TEMPLATES` → `OPTIONS` → `context_processors`.
 Ein solcher Context-Prozessor ist eine Funktion, die den Context jedes mit `render()`
 erzeugten Templates automatisch um weitere Variablen ergänzt.
 Durchlaufen lässt sich `messages` wie jede andere Liste mit einer `{% for %}`-Schleife aus
 [PARTREF::django-template].
-Jedes Element ist dabei ein Meldungsobjekt: `{{ message }}` liefert den Text,
-`{{ message.tags }}` die Stufe, unter der die Meldung abgelegt wurde.
+Jedes Element ist dabei ein Meldungsobjekt: `{{ message }}` liefert den Text und
+`{{ message.tags }}` als Textmarke die Stufe, unter der die Meldung abgelegt wurde.
 Ein Beispiel für einen solchen Block zeigt der Abschnitt "Displaying messages" der oben
 verlinkten Doku zum Messages-Framework.
 
-[ER] Fügen Sie in `base.html` unmittelbar vor der Zeile `{% block content %}` eine
-`{% for %}`-Schleife über `messages` ein, die jede Meldung als eigenen Absatz (`<p>`) in der
-Form `Stufe: Text` ausgibt.
+[ER] Fügen Sie in `base.html` eine `{% for %}`-Schleife über `messages` ein, die jede Meldung
+als eigenen Absatz (`<p>`) in der Form `Stufe: Text` ausgibt.
+Platzieren Sie sie so, dass jedes Kind-Template die Ausgabe erbt.
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
 "Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com".
@@ -113,6 +113,9 @@ Prüfen Sie danach, ob `messages.success` in `register` vor dem `redirect` steht
 Sehen Sie sich an, was `student_detail` aus [PARTREF::django-view] zurückgibt und was daran
 anders ist als bei den übrigen Views.
 [ENDHINT]
+
+Dass die Meldung damit noch nicht dort steht, wo sie hingehört, ist Absicht; woran es liegt,
+steht in Ihrer Antwort auf die vorige Frage.
 <!-- time estimate: 20 min -->
 
 ### `CsrfViewMiddleware` kurzzeitig deaktivieren
@@ -126,9 +129,9 @@ dabei eingreifen kann.
 Welche Middlewares ein Projekt verwendet, steht als Liste `MIDDLEWARE` in `settings.py`; für
 den CSRF-Schutz ist der Eintrag `CsrfViewMiddleware` verantwortlich.
 Auch das Messages-Framework aus dem vorigen Abschnitt hängt an einem Eintrag dieser Liste.
-Die `MessageMiddleware` speichert beim Erzeugen der Response nur die noch ungelesenen Meldungen
-wieder ab, standardmäßig in einem Cookie `messages`, das signiert und damit gegen Veränderung
-geschützt ist (Cookies kennen Sie aus [PARTREF::http-State]).
+Die `MessageMiddleware` speichert die Meldungen beim Erzeugen der Response wieder ab,
+standardmäßig in einem Cookie `messages`, das signiert und damit gegen Veränderung geschützt
+ist (Cookies kennen Sie aus [PARTREF::http-State]).
 In welcher Reihenfolge die Liste abgearbeitet wird und was eine Middleware sonst noch leisten
 kann, erklärt die
 [Django-Doku zu Middleware](https://docs.djangoproject.com/en/stable/topics/http/middleware/).
@@ -248,13 +251,6 @@ an welcher konkreten Stelle, und was hätte er dort besser gemacht?
 [ENDSECTION]
 
 [INSTRUCTOR::Kontrollergebnisse]
-
-Beide Auskommentierungen in `settings.py` waren nur Zwischenschritte des Experiments: In der
-abgegebenen `settings.py` müssen `CsrfViewMiddleware` und `XFrameOptionsMiddleware` wieder aktiv
-in `MIDDLEWARE` stehen.
-Das lässt sich nicht aus dem Kommandoprotokoll ablesen, weil der jeweils zweite `curl`-Aufruf vor
-der Abgabe liegt und deshalb auch bei vergessener Wiederherstellung korrekt aussieht;
-Voraussetzung für die Prüfung ist, dass `settings.py` in der `*.files`-Datei enthalten ist.
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:django-Ausblick.md]
