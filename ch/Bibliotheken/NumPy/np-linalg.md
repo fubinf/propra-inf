@@ -39,7 +39,8 @@ Diese Aufgabe lehrt nicht die lineare Algebra selbst, sondern wie man sie mit Nu
 Vorausgesetzt wird deshalb, was Matrix, Transposition, Matrixmultiplikation, Determinante,
 Inverse und Skalarprodukt (auch Punktprodukt genannt) bedeuten.
 Ab dem Abschnitt zu den inversen Matrizen kommen Konditionszahl, Rang, Eigenwert, Matrixnorm
-und Singulärwertzerlegung hinzu.
+und Singulärwertzerlegung hinzu; die unten verlinkten Quellen dazu lesen Sie am besten erst
+unmittelbar vor dem jeweiligen Abschnitt statt alle auf einmal.
 Verfahren wie die Bestimmung von Eigenwerten oder größeren Determinanten müssen Sie nicht von
 Hand beherrschen; die wenigen Handrechnungen dieser Aufgabe beschränken sich auf Summen und
 Produkte einzelner Zahlen.
@@ -58,13 +59,17 @@ Für die weniger geläufigen dieser Begriffe helfen folgende Quellen:
 - [Kondition (Mathematik, Wikipedia)](https://de.wikipedia.org/wiki/Kondition_(Mathematik)): wie
   stark sich Fehler der Eingabedaten im Ergebnis verstärken
 - [Singulärwertzerlegung (Wikipedia)](https://de.wikipedia.org/wiki/Singulärwertzerlegung):
-  Zerlegung jeder beliebigen Matrix in Drehung, Streckung und Drehung
+  Zerlegung jeder beliebigen Matrix in zwei Drehungen (ggf. mit Spiegelung) und eine
+  Streckung dazwischen
 
-Die Zeitschätzungen der Abschnitte setzen dieses Vorwissen voraus; wer es sich erst parallel
+Die Zeitschätzung dieser Aufgabe setzt dieses Vorwissen voraus; wer es sich erst parallel
 aneignet, braucht entsprechend länger.
 
 ### Transposition: `transpose` und `.T`
 
+Transponieren braucht man überall dort, wo Daten in der falschen Ausrichtung vorliegen: eine
+Messreihe steht spaltenweise statt zeilenweise, oder zwei Matrizen passen der Form nach noch
+nicht zueinander.
 Für die Transposition bietet NumPy zwei gleichwertige Schreibweisen:
 
 ```python
@@ -111,6 +116,10 @@ Die Referenzseite dazu ist
 
 ### Spezielle Matrizen: `identity` und `eye`
 
+Die Einheitsmatrix ist das neutrale Element der Matrixmultiplikation und dient deshalb als
+Startwert für Ketten von Transformationen sowie als Vergleichsgröße bei Proben.
+Matrizen mit versetzter Diagonale braucht man, wo benachbarte Elemente einer Reihe miteinander
+verrechnet werden, etwa für Differenzen aufeinanderfolgender Messwerte.
 NumPy bietet Funktionen zur Erstellung spezieller Matrixtypen:
 
 ```python
@@ -120,8 +129,8 @@ numpy.eye(N, M=None, k=0)       # wie identity, aber auch rechteckig und mit ver
 
 - `n` (bei `identity`): Größe der quadratischen Einheitsmatrix (immer `n`×`n`)
 - `N` (bei `eye`): Anzahl der Zeilen
-- `M` (bei `eye`, Standard `N`): Anzahl der Spalten; ergibt eine rechteckige
-  Matrix, wenn ungleich `N`
+- `M` (bei `eye`, Standard `None`, was `N` bedeutet): Anzahl der Spalten; ergibt eine
+  rechteckige Matrix, wenn ungleich `N`
 - `k` (bei `eye`, Standard `0`): Position der Diagonale mit Einsen; `0` = Hauptdiagonale,
   positive Werte wählen eine Diagonale oberhalb, negative eine unterhalb der Hauptdiagonale
 
@@ -153,7 +162,7 @@ Die Referenzseiten dazu sind
 [numpy.identity](https://numpy.org/doc/stable/reference/generated/numpy.identity.html) und
 [numpy.eye](https://numpy.org/doc/stable/reference/generated/numpy.eye.html).
 
-Die folgende Aufgabe verlangt außerdem, Ausnahmen aufzufangen; die Syntax dafür steht im
+Die folgende Übung verlangt außerdem, Ausnahmen aufzufangen; die Syntax dafür steht im
 Python-Tutorial unter
 [Handling Exceptions](https://docs.python.org/3/tutorial/errors.html#handling-exceptions).
 
@@ -190,6 +199,9 @@ Nennen Sie einen Grund, der über "das gab es historisch schon" hinausgeht.
 
 ### Skalarprodukte und Matrixmultiplikation: `dot`, `matmul`, `vdot`, `inner`
 
+Das Matrixprodukt steckt hinter fast jeder Koordinatentransformation: Drehung, Skalierung und
+Verschiebung hintereinander ergeben zusammen wieder eine Matrix, mit der sich alle Punkte auf
+einmal umrechnen lassen.
 Für Matrixoperationen stehen mehrere Funktionen zur Verfügung:
 
 ```python
@@ -242,6 +254,8 @@ Dasselbe gilt für zwei Vektoren und für gemischte Formen wie Matrix mal Vektor
 
 Unterschiede zwischen den Schreibweisen zeigen sich bei Skalaren und bei mehr als zwei
 Dimensionen.
+Die folgenden Codeblöcke dieses Abschnitts setzen den obigen Code fort und verwenden `np`, `A`
+und `B` weiter.
 
 ```python
 # np.dot verrechnet auch Skalare, np.matmul verlangt mindestens eindimensionale Operanden
@@ -252,7 +266,7 @@ except ValueError as fehler:
     print('np.matmul mit Skalaren:', fehler)
 
 # Dieses dreidimensionale Array ist ein Stapel aus zwei 2×2-Matrizen
-stapel = np.arange(8).reshape(2, 2, 2)
+stapel = np.arange(10, 90, 10).reshape(2, 2, 2)
 print('\nForm von np.dot(stapel, stapel):   ', np.dot(stapel, stapel).shape)
 print('Form von np.matmul(stapel, stapel):', np.matmul(stapel, stapel).shape)
 ```
@@ -353,6 +367,11 @@ transponieren.
 
 ### Determinanten: `linalg.det`
 
+Geometrisch gibt der Betrag der Determinante an, um welchen Faktor eine Matrix Flächen bzw.
+Volumina verändert.
+In der Praxis dient sie vor allem als schnell berechnete Kennzahl, mit der sich eine Matrix vor
+der weiteren Verwendung prüfen lässt.
+
 Die Determinante ist ein Skalarwert, der einer quadratischen Matrix zugeordnet wird:
 
 ```python
@@ -415,6 +434,9 @@ Mit `f'{wert:.3f}'` lässt sich die Ausgabe wieder auf sinnvolle Nachkommastelle
 
 ### Inverse Matrizen und Konditionszahl: `linalg.inv` und `linalg.cond`
 
+Die Inverse ist das Gegenstück zur Matrixmultiplikation: Sie macht eine Transformation wieder
+rückgängig, dreht also etwa eine Bildverzerrung oder einen Koordinatenwechsel zurück.
+
 Die inverse Matrix A⁻¹ erfüllt die Eigenschaft A × A⁻¹ = I (Einheitsmatrix):
 
 ```python
@@ -470,7 +492,8 @@ Fließkommarechnung immer.
 Daraus folgt eine Regel für die Praxis: Ein Gleichungssystem Ax = b löst man **nicht**, indem
 man die Inverse von A berechnet und mit b multipliziert, sondern mit `linalg.solve` aus dem
 nächsten Abschnitt.
-Das ist schneller und bei schlecht konditionierten Matrizen deutlich genauer.
+Das ist schneller, weil die Inverse als Zwischenergebnis gar nicht erst berechnet werden muss,
+und spart zugleich die Rundungsfehler dieses Zwischenschritts ein.
 `linalg.inv` braucht man nur dann, wenn man die inverse Matrix selbst als Ergebnis benötigt.
 
 Die Referenzseiten dazu sind
@@ -494,19 +517,13 @@ zu invertieren, löst `numpy.linalg.LinAlgError: Singular matrix` aus — das is
 sondern die korrekte Reaktion, weil eine solche Matrix mathematisch keine Inverse besitzt.
 [ENDHINT]
 
-[EQ] Stellen Sie die Konditionszahl, die Sie in [EREFR::6] für `matrix` erhalten haben, neben
-die 40002 aus dem Text oben.
-Ein Gleichungssystem `matrix @ x = b` ließe sich sowohl mit `np.linalg.solve(matrix, b)` als
-auch mit `np.linalg.inv(matrix) @ b` lösen.
-Begründen Sie aus der Bedeutung der Konditionszahl heraus, ob die beiden Wege bei Ihrer Matrix
-voneinander abweichende Ergebnisse liefern würden und wie es sich bei der anderen Matrix
-verhielte.
-Sobald man die inverse Matrix selbst als Ergebnis braucht, entfällt diese Wahl.
-Erklären Sie, welchen Nutzen die Konditionszahl dann noch hat.
-
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 ### Lineare Gleichungssysteme lösen: `linalg.solve`
+
+Lineare Gleichungssysteme entstehen überall dort, wo mehrere Größen gleichzeitig mehrere
+Bedingungen erfüllen müssen: Stoffmengen in einer Reaktionsgleichung, Ströme in einem
+Schaltnetz, Kräfte in einem Fachwerk.
 
 NumPy kann lineare Gleichungssysteme der Form Ax = b lösen:
 
@@ -553,16 +570,39 @@ Die Referenzseite dazu ist
 - Machen Sie für beide Systeme die Probe, indem Sie die Koeffizientenmatrix mit der
   gefundenen Lösung multiplizieren und das Ergebnis mit `np.allclose` gegen die rechte Seite
   vergleichen
+- Lösen Sie außerdem `matrix @ x = b` mit der Matrix `matrix` aus [EREFR::6] einmal für
+  `b = [13, 10, 10]` und einmal für `b = [13.000001, 10, 10]`
+- Legen Sie die Matrix `schlecht_konditioniert` mit den Werten `[[1, 1], [1, 1.0001]]` aus dem
+  vorigen Abschnitt erneut an und lösen Sie ebenso zweimal, einmal für `b = [2, 2.0001]` und
+  einmal für `b = [2.000001, 2.0001]`
+- Geben Sie die vier Lösungen sowie die Konditionszahlen beider Matrizen aus und halten Sie in
+  einem Kommentar fest, ab welcher Nachkommastelle sich die jeweils zweite Lösung von der
+  ersten unterscheidet
 
 [HINT::Meine Probe schlägt fehl oder die Lösung hat krumme Werte]
-Beide Systeme haben ganzzahlige Lösungen.
+Die beiden Systeme aus den ersten zwei Punkten haben ganzzahlige Lösungen.
 Kommt etwas anderes heraus, ist die Koeffizientenmatrix falsch aufgestellt; prüfen Sie
 Vorzeichen und Spaltenreihenfolge gegen die Gleichungen.
 [ENDHINT]
 
-<!-- time estimate: 15 min -->
+[EQ] In [EREFR::7] haben Sie dieselbe winzige Änderung an der rechten Seite einmal bei `matrix`
+und einmal bei `schlecht_konditioniert` vorgenommen.
+Erklären Sie den Unterschied zwischen den beiden Ergebnissen aus der Bedeutung der
+Konditionszahl heraus.
+Erklären Sie außerdem, was daraus für ein Gleichungssystem folgt, dessen rechte Seite aus
+Messwerten besteht und deshalb ohnehin nur auf wenige Stellen genau bekannt ist.
+Braucht man nach [EREFR::6] die inverse Matrix selbst als Ergebnis, gibt es kein
+Gleichungssystem, dessen Lösung man beurteilen könnte.
+Erklären Sie, welchen Nutzen die Konditionszahl dann noch hat.
+
+<!-- time estimate: 20 min -->
 
 ### Rang und Eigenwerte: `matrix_rank`, `eig`, `eigh`
+
+Der Rang sagt, wie viele Zeilen einer Datenmatrix eigenständige Information tragen.
+Eigenwerte und Eigenvektoren beschreiben die Richtungen, in denen eine Transformation nur
+streckt oder staucht; darauf beruhen unter anderem Schwingungsanalysen und die
+Hauptkomponentenanalyse.
 
 Rang, Eigenwerte und Eigenvektoren einer Matrix liefert NumPy mit je einem Aufruf:
 
@@ -655,6 +695,10 @@ mit denen von `eigh` übereinstimmen.
 
 ### Normen: `norm`
 
+Eine Norm braucht man, sobald Matrizen oder Vektoren verglichen werden sollen: Wie groß ist der
+Abstand zwischen berechnetem und gemessenem Ergebnis, und ist er kleiner geworden als im
+vorigen Rechenschritt?
+
 Die "Größe" einer Matrix oder eines Vektors in einer einzigen Zahl liefert `norm`:
 
 ```python
@@ -668,8 +712,7 @@ numpy.linalg.norm(x, ord=None)
   Beim Standardwert `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm
   bei Matrizen
 
-Eine Norm fasst die "Größe" einer Matrix in einer einzigen Zahl zusammen.
-Welche der vier gebräuchlichsten die richtige ist, hängt davon ab, was man messen will:
+Welche der vier gebräuchlichsten Normen die richtige ist, hängt davon ab, was man messen will:
 die Frobenius-Norm die Gesamtgröße über alle Elemente hinweg, die 1-Norm die am stärksten
 ins Gewicht fallende Spalte, die ∞-Norm entsprechend die stärkste Zeile und die 2-Norm den
 Faktor, um den die Matrix einen Vektor höchstens verlängern kann.
@@ -732,6 +775,10 @@ Frobenius-Norm dagegen nicht.
 <!-- time estimate: 15 min -->
 
 ### Singulärwertzerlegung: `svd`
+
+Die Singulärwertzerlegung ist das Arbeitspferd hinter Datenkompression und Rauschunterdrückung:
+Behält man von der Zerlegung nur die größten Anteile und verwirft den Rest, bleibt von einem
+Bild oder einem Datensatz das Wesentliche übrig.
 
 Die Singulärwertzerlegung zerlegt eine Matrix A in drei Faktoren U, Σ und Vᵀ mit A = U Σ Vᵀ:
 
