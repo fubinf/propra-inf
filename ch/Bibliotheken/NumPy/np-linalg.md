@@ -1,6 +1,6 @@
 title: NumPy Lineare Algebra und Matrixoperationen
 stage: alpha
-timevalue: 2.25
+timevalue: 2.5
 difficulty: 2
 assumes: np-Einführung, np-array, np-array2, np-index-slice, np-math, py-Fstrings
 ---
@@ -63,7 +63,7 @@ Für die weniger geläufigen dieser Begriffe helfen folgende Quellen:
 Die Zeitschätzungen der Abschnitte setzen dieses Vorwissen voraus; wer es sich erst parallel
 aneignet, braucht entsprechend länger.
 
-### Matrizen und Transposition: `transpose` und `.T`
+### Transposition: `transpose` und `.T`
 
 Für die Transposition bietet NumPy zwei gleichwertige Schreibweisen:
 
@@ -115,7 +115,7 @@ NumPy bietet Funktionen zur Erstellung spezieller Matrixtypen:
 
 ```python
 numpy.identity(n)               # quadratische Einheitsmatrix
-numpy.eye(N, M=None, k=0)       # wie identity, aber auch rechteckig + verschobene Diagonale
+numpy.eye(N, M=None, k=0)       # wie identity, aber auch rechteckig und mit versetzter Diagonale
 ```
 
 - `n` (bei `identity`): Größe der quadratischen Einheitsmatrix (immer `n`×`n`)
@@ -172,8 +172,8 @@ Python-Tutorial unter
   Fehlermeldungen aus
 
 [HINT::Die Fehlermeldungen von `identity()` wirken zunächst unpassend]
-`identity()` hat außer der Größe nur noch einen Parameter, und der legt den Datentyp fest,
-nicht die Spaltenzahl.
+`identity()` hat außer der Größe nur noch einen weiteren Positionsparameter, und der legt den
+Datentyp fest, nicht die Spaltenzahl.
 Ein zweites Argument wird deshalb als `dtype` gelesen und die Meldung lautet sinngemäß, dass
 sich Ihre Zahl nicht als Datentyp interpretieren lässt.
 Einen Parameter `k` gibt es dagegen überhaupt nicht, weshalb die zweite Meldung ein
@@ -188,7 +188,7 @@ Nennen Sie einen Grund, der über "das gab es historisch schon" hinausgeht.
 
 <!-- time estimate: 20 min -->
 
-### Punktprodukte und Matrixmultiplikation: `dot`, `matmul`, `vdot`, `inner`
+### Skalarprodukte und Matrixmultiplikation: `dot`, `matmul`, `vdot`, `inner`
 
 Für Matrixoperationen stehen mehrere Funktionen zur Verfügung:
 
@@ -260,15 +260,16 @@ print('Form von np.matmul(stapel, stapel):', np.matmul(stapel, stapel).shape)
 `matmul` behandelt alles vor den letzten beiden Dimensionen als Stapel, hier also die
 vorderste Dimension, und multipliziert die 2×2-Matrizen paarweise; das Ergebnis hat wieder
 die Form `(2, 2, 2)`.
-`dot` dagegen kombiniert jede Matrix des einen Stapels mit jeder des anderen und liefert die
-Form `(2, 2, 2, 2)`.
+`dot` dagegen summiert über die letzte Achse des ersten und die vorletzte Achse des zweiten
+Arrays und hängt die übrigen Achsen aneinander, hat also die Form
+`a.shape[:-1] + b.shape[:-2] + b.shape[-1:]` und hier deshalb `(2, 2, 2, 2)`.
 Für Matrixmultiplikation ist deshalb `matmul` bzw. `@` die richtige Wahl; `dot` ist die
 ältere, allgemeinere Funktion.
 
 **Vektoroperationen:**
 
 ```python
-numpy.vdot(a, b)    # Punktprodukt (mit Konjugation bei komplexen Zahlen)
+numpy.vdot(a, b)    # Skalarprodukt (mit Konjugation bei komplexen Zahlen)
 numpy.inner(a, b)   # inneres Produkt
 ```
 
@@ -282,11 +283,11 @@ summiert das Produkt über die jeweils letzte Achse beider Arrays.
 v1 = np.array([1, 2, 3])
 v2 = np.array([4, 5, 6])
 
-# Punktprodukt (Skalarprodukt)
+# Skalarprodukt
 dot_ergebnis = np.dot(v1, v2)
-print('Punktprodukt:', dot_ergebnis)  # 1*4 + 2*5 + 3*6 = 32
+print('Skalarprodukt:', dot_ergebnis)  # 1*4 + 2*5 + 3*6 = 32
 
-# Punktprodukt mit vdot (konjugiert bei komplexen Zahlen den ersten Vektor)
+# Skalarprodukt mit vdot (konjugiert bei komplexen Zahlen den ersten Vektor)
 vdot_ergebnis = np.vdot(v1, v2)
 print('vdot Ergebnis:', vdot_ergebnis)
 
@@ -306,6 +307,17 @@ print('vdot bei komplexen Vektoren:', np.vdot(c1, c2))
 Erst die Konjugation liefert das, was in der Mathematik als Skalarprodukt komplexer Vektoren
 definiert ist.
 
+Von `dot` unterscheidet sich `inner` erst ab zwei Dimensionen, weil beide über verschiedene
+Achsen summieren: `dot` über die letzte Achse des ersten und die vorletzte des zweiten Arrays,
+`inner` über die jeweils letzte Achse beider.
+
+```python
+print('\nnp.inner(A, B):')
+print(np.inner(A, B))
+print('np.dot(A, B):')
+print(np.dot(A, B))
+```
+
 Die Referenzseiten dazu sind
 [numpy.dot](https://numpy.org/doc/stable/reference/generated/numpy.dot.html),
 [numpy.matmul](https://numpy.org/doc/stable/reference/generated/numpy.matmul.html),
@@ -314,16 +326,28 @@ Die Referenzseiten dazu sind
 
 [ER] Untersuchen Sie Stapel und Vektorprodukte:
 
-- Legen Sie die Matrizen `A` und `B` aus [EREFR::3] erneut an, bilden Sie mit
+- Legen Sie die Matrizen `A` mit den Werten `[[6, 11, 4], [9, 2, 13], [7, 10, 5]]` und `B` mit
+  den Werten `[[3, 15, 8], [12, 1, 9], [6, 14, 2]]` aus [EREFR::3] erneut an, bilden Sie mit
   `np.array([A, B])` einen Stapel `stapel` der Form `(2, 3, 3)`, geben Sie die Formen von
   `np.dot(stapel, stapel)` und `np.matmul(stapel, stapel)` aus und halten Sie in einem
   Kommentar fest, welche der beiden Formen zu einer paarweisen Matrixmultiplikation gehört
   und woran Sie das an der Form erkennen
+- Berechnen Sie `np.inner(A, B)` und `np.dot(A, B)`; genau einer der beiden Aufrufe lässt sich
+  auch als Ausdruck mit `@` und `.T` schreiben.
+  Finden Sie diesen Ausdruck heraus, prüfen Sie ihn mit `np.array_equal` und halten Sie ihn in
+  einem Kommentar fest
 - Erstellen Sie zwei Vektoren `v1` mit den Werten `[3, 9, 2, 11]` und `v2` mit den Werten
   `[7, 1, 10, 4]` und berechnen Sie deren Produkt mit `dot`, `vdot` und `inner`
 - Erstellen Sie die komplexen Vektoren `c1` mit den Werten `[2+1j, 4-3j]` und `c2` mit den
   Werten `[1+1j, 5+2j]`, berechnen Sie `dot`, `vdot` und `inner` und halten Sie in einem
   Kommentar fest, welches der drei Ergebnisse abweicht und warum
+
+[HINT::Ich finde den Ausdruck mit `@` und `.T` nicht]
+`@` verrechnet die Zeilen des linken Operanden mit den **Spalten** des rechten, `inner`
+dagegen die Zeilen des einen mit den **Zeilen** des anderen.
+Probieren Sie aus, was mit `@` herauskommt, wenn Sie vorher einen der beiden Operanden
+transponieren.
+[ENDHINT]
 
 <!-- time estimate: 25 min -->
 
@@ -372,13 +396,14 @@ Die Referenzseite dazu ist
 [ER] Berechnen Sie Determinanten verschiedener Matrizen:
 
 - Erstellen Sie eine 2×2-Matrix `matrix_2x2` mit den Werten `[[6, 4], [3, 7]]`, berechnen Sie
-  ihre Determinante händisch (`ad - bc`) und überprüfen Sie mit NumPy
+  ihre Determinante händisch als ad - bc und überprüfen Sie mit NumPy
 - Erstellen Sie eine 3×3-Matrix `matrix_3x3` mit den Werten `[[2, 1, 3], [1, 0, 2], [3, 1, 1]]`
   und berechnen Sie ihre Determinante
 - Erstellen Sie eine bewusst singuläre 3×3-Matrix `singular_zeilengleich` mit den Werten
   `[[5, 8, 3], [9, 2, 14], [5, 8, 3]]` (erste und dritte Zeile identisch) und zeigen Sie, dass
   ihre Determinante ≈ 0 ist
-- Untersuchen Sie, wie sich die Determinante von `matrix_3x3` bei Transposition verhält
+- Untersuchen Sie, wie sich die Determinante von `matrix_3x3` bei Transposition verhält, und
+  halten Sie das Ergebnis in einem Kommentar fest
 
 [HINT::Lange Nachkommastellen bei der Ausgabe]
 Werte wie `0.9999999999999964` statt `1.0` sind der aus [PARTREF::np-math] bekannte
@@ -388,7 +413,7 @@ Mit `f'{wert:.3f}'` lässt sich die Ausgabe wieder auf sinnvolle Nachkommastelle
 
 <!-- time estimate: 15 min -->
 
-### Inverse Matrizen: `linalg.inv`
+### Inverse Matrizen und Konditionszahl: `linalg.inv` und `linalg.cond`
 
 Die inverse Matrix A⁻¹ erfüllt die Eigenschaft A × A⁻¹ = I (Einheitsmatrix):
 
@@ -469,11 +494,15 @@ zu invertieren, löst `numpy.linalg.LinAlgError: Singular matrix` aus — das is
 sondern die korrekte Reaktion, weil eine solche Matrix mathematisch keine Inverse besitzt.
 [ENDHINT]
 
-[EQ] Sie haben in [EREFR::6] die Konditionszahl von `matrix` bestimmt.
-Der Text oben nennt zwei Situationen: ein Gleichungssystem lösen und die inverse Matrix selbst
-als Ergebnis brauchen.
-Für welche der beiden ist dieser Wert von Belang, und was müsste an Ihrer Matrix anders sein,
-damit der Unterschied zwischen den beiden Wegen in den Ergebnissen überhaupt sichtbar wird?
+[EQ] Stellen Sie die Konditionszahl, die Sie in [EREFR::6] für `matrix` erhalten haben, neben
+die 40002 aus dem Text oben.
+Ein Gleichungssystem `matrix @ x = b` ließe sich sowohl mit `np.linalg.solve(matrix, b)` als
+auch mit `np.linalg.inv(matrix) @ b` lösen.
+Begründen Sie aus der Bedeutung der Konditionszahl heraus, ob die beiden Wege bei Ihrer Matrix
+voneinander abweichende Ergebnisse liefern würden und wie es sich bei der anderen Matrix
+verhielte.
+Sobald man die inverse Matrix selbst als Ergebnis braucht, entfällt diese Wahl.
+Erklären Sie, welchen Nutzen die Konditionszahl dann noch hat.
 
 <!-- time estimate: 20 min -->
 
@@ -624,35 +653,29 @@ mit denen von `eigh` übereinstimmen.
 
 <!-- time estimate: 20 min -->
 
-### Normen und Singulärwertzerlegung: `norm`, `svd`
+### Normen: `norm`
 
-Die "Größe" einer Matrix und ihre Zerlegung in einfachere Faktoren bestimmen zwei weitere
-Funktionen:
+Die "Größe" einer Matrix oder eines Vektors in einer einzigen Zahl liefert `norm`:
 
 ```python
-numpy.linalg.norm(x, ord=None)           # Norm (Größe) einer Matrix/eines Vektors
-numpy.linalg.svd(a, full_matrices=True)  # Singulärwertzerlegung
+numpy.linalg.norm(x, ord=None)
 ```
 
-- `x` (bei `norm`): die betroffene Matrix oder der betroffene Vektor
-- `a` (bei `svd`): die zu zerlegende Matrix
-- `ord` (bei `norm`): welche Norm berechnet wird — bei Matrizen sind `'fro'` für die
-  Frobenius-Norm sowie `1`, `2` und `np.inf` für die jeweilige Operatornorm gebräuchlich.
-  Bei einem Vektor bedeuten dieselben Zahlen etwas anderes, nämlich Betragssumme,
-  euklidische Länge und größten Betrag.
+- `x`: die betroffene Matrix oder der betroffene Vektor
+- `ord`: welche Norm berechnet wird — bei Matrizen sind `'fro'` für die Frobenius-Norm sowie
+  `1`, `2` und `np.inf` (NumPys Konstante für Unendlich) für die jeweilige Operatornorm
+  gebräuchlich; bei Vektoren bedeuten dieselben Angaben etwas anderes, siehe unten.
   Beim Standardwert `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm
   bei Matrizen
-- `full_matrices` (bei `svd`, Standard `True`): ob die beiden Faktormatrizen quadratisch
-  aufgefüllt werden; mit `False` bekommen sie nur so viele Spalten bzw. Zeilen, wie es
-  Singulärwerte gibt
 
 Eine Norm fasst die "Größe" einer Matrix in einer einzigen Zahl zusammen.
 Welche der vier gebräuchlichsten die richtige ist, hängt davon ab, was man messen will:
-die Frobenius-Norm die Gesamtabweichung über alle Elemente hinweg, die 1-Norm die am stärksten
+die Frobenius-Norm die Gesamtgröße über alle Elemente hinweg, die 1-Norm die am stärksten
 ins Gewicht fallende Spalte, die ∞-Norm entsprechend die stärkste Zeile und die 2-Norm den
 Faktor, um den die Matrix einen Vektor höchstens verlängern kann.
-Bei einem Vektor dagegen ist die 2-Norm die Wurzel der Summe seiner quadrierten Einträge,
-also seine geometrische Länge.
+Bei einem Vektor bedeuten dieselben Angaben etwas anderes: die 1-Norm ist dort die Summe der
+Beträge, die 2-Norm die Wurzel der Summe der quadrierten Einträge, also die geometrische
+Länge, und `np.inf` der größte vorkommende Betrag.
 
 ```python
 import numpy as np
@@ -682,14 +705,53 @@ norm_inf = np.linalg.norm(matrix, np.inf)
 print('∞-Norm:', norm_inf)
 ```
 
-Die Singulärwertzerlegung zerlegt eine Matrix A in drei Faktoren U, Σ und Vᵀ mit A = U Σ Vᵀ.
-`svd` gibt den mittleren Faktor aber nicht als Matrix zurück, sondern nur die Singulärwerte
+Die Referenzseite dazu ist
+[numpy.linalg.norm](https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html).
+
+[ER] Vergleichen Sie Normen:
+
+- Erstellen Sie eine 3×3-Matrix `norm_matrix` (als `float`) mit den Werten
+  `[[4, -9, 6], [-3, 7, -5], [8, -2, 10]]` und vergleichen Sie alle vier Matrixnormen
+  (Frobenius, 1-Norm, 2-Norm, ∞-Norm)
+- Rechnen Sie die 1-Norm und die ∞-Norm für `norm_matrix` zusätzlich von Hand nach und halten
+  Sie in einem Kommentar fest, welche Zeile bzw. Spalte den Ausschlag gibt
+- Formen Sie `norm_matrix` zu einem Vektor `norm_vektor` der Länge 9 um, berechnen Sie dessen
+  Norm ohne `ord`-Angabe und vergleichen Sie den Wert mit der Frobenius-Norm der Matrix
+- Ordnen Sie dieselben neun Zahlen anders an, als `norm_matrix_umsortiert` mit den Werten
+  `[[10, 4, -2], [-9, -3, 8], [6, 7, -5]]`, und berechnen Sie auch dafür die Frobenius-Norm
+  und die 2-Norm
+
+[EQ] Ohne `ord`-Angabe liefern `norm_matrix` und der daraus umgeformte `norm_vektor` aus
+[EREFR::9] denselben Wert; hinter der Frobenius-Norm einer Matrix und der 2-Norm eines Vektors
+steckt dieselbe Rechnung.
+Ihre Werte für `norm_matrix_umsortiert` zeigen aber, dass sich die beiden Normen beim
+Umsortieren derselben neun Zahlen unterschiedlich verhalten.
+Erklären Sie, was `ord=2` bei einer Matrix misst und warum sich dieser Wert dabei ändert, die
+Frobenius-Norm dagegen nicht.
+
+<!-- time estimate: 15 min -->
+
+### Singulärwertzerlegung: `svd`
+
+Die Singulärwertzerlegung zerlegt eine Matrix A in drei Faktoren U, Σ und Vᵀ mit A = U Σ Vᵀ:
+
+```python
+numpy.linalg.svd(a, full_matrices=True)
+```
+
+- `a`: die zu zerlegende Matrix
+- `full_matrices` (Standard `True`): ob die beiden Faktormatrizen quadratisch aufgefüllt
+  werden; mit `False` bekommen sie nur so viele Spalten bzw. Zeilen, wie es Singulärwerte gibt
+
+`svd` gibt den mittleren Faktor nicht als Matrix zurück, sondern nur die Singulärwerte
 als eindimensionales Array.
 Wer die Matrix aus der Zerlegung zurückgewinnen will, muss daraus erst wieder eine
 Diagonalmatrix bauen; dafür gibt es
 [numpy.diag](https://numpy.org/doc/stable/reference/generated/numpy.diag.html):
 
 ```python
+import numpy as np
+
 # SVD einer nicht-quadratischen Matrix
 rechteckig = np.array([[1, 2, 3],
                        [4, 5, 6]], dtype=float)
@@ -715,34 +777,20 @@ ein `Vt` der Form `(3, 3)`, aber weiterhin nur zwei Singulärwerte; die Faktoren
 nicht mehr zusammen und man müsste Σ von Hand als 2×3-Matrix auffüllen.
 Mit `False` passen die Formen unmittelbar zueinander.
 
-Die Referenzseiten dazu sind
-[numpy.linalg.norm](https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html) und
+Die Referenzseite dazu ist
 [numpy.linalg.svd](https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html).
 
-[ER] Vergleichen Sie Normen und zerlegen Sie eine Matrix:
+[ER] Zerlegen Sie zwei Matrizen:
 
 - Erstellen Sie eine nicht-quadratische 2×3-Matrix `testmatrix` (als `float`) mit den Werten
   `[[3, 8, 1], [6, 2, 9]]`, zerlegen Sie sie mit `svd` und `full_matrices=False`,
   rekonstruieren Sie sie aus den drei Faktoren und prüfen Sie das Ergebnis mit `np.allclose`
   gegen das Original
-- Erstellen Sie eine 3×3-Matrix `norm_matrix` (als `float`) mit den Werten
-  `[[4, -9, 6], [-3, 7, -5], [8, -2, 10]]` und vergleichen Sie alle vier Matrixnormen
-  (Frobenius, 1-Norm, 2-Norm, ∞-Norm)
-- Rechnen Sie die 1-Norm und die ∞-Norm für `norm_matrix` zusätzlich von Hand nach und halten
-  Sie in einem Kommentar fest, welche Zeile bzw. Spalte den Ausschlag gibt
-- Formen Sie `norm_matrix` zu einem Vektor `norm_vektor` der Länge 9 um, berechnen Sie dessen
-  Norm ohne `ord`-Angabe und vergleichen Sie den Wert mit der Frobenius-Norm der Matrix
-- Ordnen Sie dieselben neun Zahlen anders an, als `norm_matrix_umsortiert` mit den Werten
-  `[[10, 4, -2], [-9, -3, 8], [6, 7, -5]]`, und berechnen Sie auch dafür die Frobenius-Norm
-  und die 2-Norm
-
-[EQ] Ohne `ord`-Angabe liefern `norm_matrix` und der daraus umgeformte `norm_vektor` aus
-[EREFR::9] denselben Wert; hinter der Frobenius-Norm einer Matrix und der 2-Norm eines Vektors
-steckt dieselbe Rechnung.
-Ihre Werte für `norm_matrix_umsortiert` zeigen aber, dass sich die beiden Normen beim
-Umsortieren derselben neun Zahlen unterschiedlich verhalten.
-Erklären Sie, was `ord=2` bei einer Matrix misst und warum sich dieser Wert dabei ändert, die
-Frobenius-Norm dagegen nicht.
+- Zerlegen Sie ebenso eine 4×3-Matrix `hochformat` (als `float`) mit den Werten
+  `[[2, 7, 1], [9, 3, 8], [4, 11, 6], [5, 10, 12]]`
+- Geben Sie für beide Zerlegungen die Formen von `U`, `s` und `Vt` aus und halten Sie in einem
+  Kommentar fest, wie viele Singulärwerte die beiden Matrizen jeweils haben und wovon diese
+  Anzahl abhängt
 
 <!-- time estimate: 15 min -->
 
