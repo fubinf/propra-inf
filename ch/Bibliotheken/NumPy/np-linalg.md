@@ -289,8 +289,9 @@ numpy.inner(a, b)   # inneres Produkt
 
 - `a`, `b`: die zu verrechnenden Vektoren
 
-`vdot` konjugiert bei komplexen Zahlen den ersten Vektor vor der Multiplikation, `inner`
-summiert das Produkt über die jeweils letzte Achse beider Arrays.
+`vdot` konjugiert bei komplexen Zahlen den ersten Vektor vor der Multiplikation; die Konjugation
+kehrt das Vorzeichen des Imaginärteils um, aus `1+2j` wird also `1-2j`.
+`inner` summiert das Produkt über die jeweils letzte Achse beider Arrays.
 
 ```python
 # Vektoren
@@ -406,7 +407,7 @@ singular = np.array([[1, 2],
 det_singular = np.linalg.det(singular)
 print('\nSinguläre Matrix:')
 print(singular)
-print('Determinante:', det_singular)  # ≈ 0
+print('Determinante:', det_singular)  # hier exakt 0.0, oft aber nur ein Wert nahe null
 ```
 
 Die Referenzseite dazu ist
@@ -424,7 +425,7 @@ Die Referenzseite dazu ist
 - Untersuchen Sie, wie sich die Determinante von `matrix_3x3` bei Transposition verhält, und
   halten Sie das Ergebnis in einem Kommentar fest
 
-[HINT::Lange Nachkommastellen bei der Ausgabe]
+[HINT::Meine Determinanten haben lange Nachkommastellen]
 Werte wie `0.9999999999999964` statt `1.0` sind der aus [PARTREF::np-math] bekannte
 Fließkomma-Effekt und kein Fehler.
 Mit `f'{wert:.3f}'` lässt sich die Ausgabe wieder auf sinnvolle Nachkommastellen begrenzen.
@@ -591,13 +592,13 @@ Erklären Sie den Unterschied zwischen den beiden Ergebnissen aus der Bedeutung 
 Konditionszahl heraus.
 Erklären Sie außerdem, was daraus für ein Gleichungssystem folgt, dessen rechte Seite aus
 Messwerten besteht und deshalb ohnehin nur auf wenige Stellen genau bekannt ist.
-Braucht man nach [EREFR::6] die inverse Matrix selbst als Ergebnis, gibt es kein
-Gleichungssystem, dessen Lösung man beurteilen könnte.
-Erklären Sie, welchen Nutzen die Konditionszahl dann noch hat.
+Manchmal braucht man die inverse Matrix selbst als Ergebnis, so wie Sie sie in [EREFR::6]
+berechnet haben; dann gibt es kein Gleichungssystem, dessen Lösung man beurteilen könnte.
+Erklären Sie, welchen Nutzen die Konditionszahl in diesem Fall noch hat.
 
 <!-- time estimate: 20 min -->
 
-### Rang und Eigenwerte: `matrix_rank`, `eig`, `eigh`
+### Rang und Eigenwerte: `linalg.matrix_rank`, `linalg.eig`, `linalg.eigh`
 
 Der Rang sagt, wie viele Zeilen einer Datenmatrix eigenständige Information tragen.
 Eigenwerte und Eigenvektoren beschreiben die Richtungen, in denen eine Transformation nur
@@ -693,7 +694,7 @@ mit denen von `eigh` übereinstimmen.
 
 <!-- time estimate: 20 min -->
 
-### Normen: `norm`
+### Normen: `linalg.norm`
 
 Eine Norm braucht man, sobald Matrizen oder Vektoren verglichen werden sollen: Wie groß ist der
 Abstand zwischen berechnetem und gemessenem Ergebnis, und ist er kleiner geworden als im
@@ -769,12 +770,13 @@ Die Referenzseite dazu ist
 steckt dieselbe Rechnung.
 Ihre Werte für `norm_matrix_umsortiert` zeigen aber, dass sich die beiden Normen beim
 Umsortieren derselben neun Zahlen unterschiedlich verhalten.
-Erklären Sie, was `ord=2` bei einer Matrix misst und warum sich dieser Wert dabei ändert, die
-Frobenius-Norm dagegen nicht.
+Was `ord=2` bei einer Matrix misst, steht weiter oben in diesem Abschnitt.
+Erklären Sie damit, warum sich dieser Wert beim Umsortieren ändert, die Frobenius-Norm dagegen
+nicht.
 
 <!-- time estimate: 15 min -->
 
-### Singulärwertzerlegung: `svd`
+### Singulärwertzerlegung: `linalg.svd`
 
 Die Singulärwertzerlegung ist das Arbeitspferd hinter Datenkompression und Rauschunterdrückung:
 Behält man von der Zerlegung nur die größten Anteile und verwirft den Rest, bleibt von einem
