@@ -45,7 +45,7 @@ b = np.array([[5, 6], [7, 8]])
 
 # Entlang Achse 0 (vertikal)
 result_0 = np.concatenate((a, b), axis=0)
-print("Achse 0:", result_0)
+print("Achse 0:\n", result_0)
 # [[1 2]
 #  [3 4]
 #  [5 6]
@@ -53,7 +53,7 @@ print("Achse 0:", result_0)
 
 # Entlang Achse 1 (horizontal)
 result_1 = np.concatenate((a, b), axis=1)
-print("Achse 1:", result_1)
+print("Achse 1:\n", result_1)
 # [[1 2 5 6]
 #  [3 4 7 8]]
 ```
@@ -133,13 +133,13 @@ b = np.array([[5, 6], [7, 8]])
 
 # Horizontal stacken (entspricht concatenate mit axis=1)
 h_result = np.hstack((a, b))
-print("hstack:", h_result)
+print("hstack:\n", h_result)
 # [[1 2 5 6]
 #  [3 4 7 8]]
 
 # Vertikal stacken (entspricht concatenate mit axis=0)
 v_result = np.vstack((a, b))
-print("vstack:", v_result)
+print("vstack:\n", v_result)
 # [[1 2]
 #  [3 4]
 #  [5 6]
@@ -268,14 +268,14 @@ print("Original shape:", original.shape)
 
 # Größer machen - Elemente werden wiederholt
 resized_larger = np.resize(original, (3, 4))
-print("Vergrößert:", resized_larger)
+print("Vergrößert:\n", resized_larger)
 # [[1 2 3 4]
 #  [5 6 1 2]
 #  [3 4 5 6]]
 
 # Kleiner machen - Elemente werden abgeschnitten
 resized_smaller = np.resize(original, (2, 2))
-print("Verkleinert:", resized_smaller)
+print("Verkleinert:\n", resized_smaller)
 # [[1 2]
 #  [3 4]]
 ```
@@ -358,27 +358,28 @@ numpy.insert(arr, obj, values, axis=None)
 ```python
 import numpy as np
 
-arr = np.array([[1, 2], [3, 4], [5, 6]])
+arr = np.array([[11, 12], [13, 14], [15, 16]])
 
 # An Position 1 entlang Achse 0 einfügen
-inserted_row = np.insert(arr, 1, [10, 11], axis=0)
-print("Zeile eingefügt:", inserted_row)
-# [[ 1  2]
-#  [10 11]
-#  [ 3  4]
-#  [ 5  6]]
+inserted_row = np.insert(arr, 1, [70, 80], axis=0)
+print("Zeile eingefügt:\n", inserted_row)
+# [[11 12]
+#  [70 80]
+#  [13 14]
+#  [15 16]]
 
 # An Position 1 entlang Achse 1 einfügen
-inserted_col = np.insert(arr, 1, [10, 20, 30], axis=1)
-print("Spalte eingefügt:", inserted_col)
-# [[ 1 10  2]
-#  [ 3 20  4]
-#  [ 5 30  6]]
+inserted_col = np.insert(arr, 1, [70, 80, 90], axis=1)
+print("Spalte eingefügt:\n", inserted_col)
+# [[11 70 12]
+#  [13 80 14]
+#  [15 90 16]]
 
 # Ohne axis - Array wird abgeflacht
 inserted_flat = np.insert(arr, 3, [100, 200])
 print("Flach eingefügt:", inserted_flat)
-# [  1   2   3 100 200   4   5   6]
+# [ 11  12  13 100 200  14  15  16]
+# Die 3 ist eine Position, kein Wert: eingefügt wird vor dem 4. Element.
 ```
 
 [ER] Arbeiten Sie mit `insert`:
@@ -408,7 +409,7 @@ numpy.delete(arr, obj, axis=None)
 ```python
 import numpy as np
 
-arr = np.arange(12).reshape(3, 4)
+arr = np.arange(10, 130, 10).reshape(3, 4)
 
 # Zeile 1 entfernen
 deleted_row = np.delete(arr, 1, axis=0)
@@ -427,7 +428,7 @@ print("Flach entfernt:", deleted_flat.shape)  # (9,)
 
 - Erstellen Sie mit `arange` und `reshape` ein 4×5-Array mit den Werten `10, 20, ..., 200`
 - Entfernen Sie die erste und letzte Zeile
-- Entfernen Sie die mittleren zwei Spalten (Index 1 und 2)
+- Entfernen Sie die Spalten mit Index 1 und 2
 - Entfernen Sie aus dem abgeflachten Ausgangsarray jedes dritte Element, beginnend beim ersten
 
 Geben Sie jeweils das Ergebnis und dessen `shape` aus.
@@ -458,11 +459,11 @@ numpy.unique(ar, return_index=False, return_inverse=False, return_counts=False)
 ```python
 import numpy as np
 
-arr = np.array([5, 2, 6, 2, 7, 5, 6, 8, 2, 9])
+arr = np.array([50, 20, 60, 20, 70, 50, 60, 80, 20, 90])
 
 # Nur eindeutige Werte
 unique_vals = np.unique(arr)
-print("Eindeutig:", unique_vals)  # [2 5 6 7 8 9]
+print("Eindeutig:", unique_vals)  # [20 50 60 70 80 90]
 
 # Mit Indizes der ersten Vorkommen
 unique_vals, indices = np.unique(arr, return_index=True)
