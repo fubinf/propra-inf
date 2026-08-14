@@ -25,7 +25,7 @@ der Daten durch die Daten selbst bestätigt werden kann.
 ### Programmiersprache auswählen
 <!-- time estimate: 10 min -->
 
-In diesem Programmierprojekt ist die Programmiersprache freiwählbar.
+In diesem Programmierprojekt ist die Programmiersprache frei wählbar.
 Im Rahmen dieses Projekts müssen JSON-Daten verarbeitet, im Dateisystem gespeichert
 und eine REST-API bereitgestellt werden.
 Hierbei sollte eine Sprache genutzt werden, in der Sie diese Anforderungen umsetzen können.
@@ -99,7 +99,8 @@ den ersten Commit bearbeitet haben.
 Dies ist durch das oben beschriebene Prinzip begründet.
 Git verknüpft die Commits über die Commit-Hashes miteinander.
 Wenn ein Commit bearbeitet wird, ändern sich alle Hashes der nachfolgenden Commits.
-Die Daten selbst bilden keine Blockchain, sondern die Commit-Hashes.
+Nicht die Dateiinhalte bilden also die Kette, sondern die über die Commit-Hashes
+verknüpften Commits.
 In Sedricoin wird diese Idee nachgebaut:
 Jeder Block verweist über seinen Hash auf seinen Vorgänger.
 
@@ -108,8 +109,8 @@ es existieren beide Dateien mit Inhalt.
 Durch die veränderten Commit-Hashes kann erkannt werden, dass die Dateien verändert wurden.
 
 Dass diese Manipulation in Git so einfach möglich ist, ist an dieser Stelle gewollt.
-In kryptografischen Blockchains allerdings nicht.
-Hier soll eine Manipulation so aufwendig sein, dass sie praktisch nicht möglich ist.
+In einer Kryptowährungs-Blockchain ist sie dagegen unerwünscht:
+Dort soll eine Manipulation so aufwendig sein, dass sie praktisch nicht möglich ist.
 Inwiefern und auf welche Art das in Bitcoin und Sedricoin geschützt wird,
 wird in einer späteren Aufgabe erläutert.
 
@@ -121,7 +122,8 @@ wird in einer späteren Aufgabe erläutert.
 Nutzen Sie dieses Verzeichnis für Ihre Sedricoin-Implementierung.
 
 Die Anforderungen in dieser Aufgabengruppe beschreiben vor allem,
-was Ihre Anwendung erfüllen soll. Wie genau, müssen Sie selbst herausfinden.
+was Ihre Anwendung erfüllen soll.
+Wie genau, müssen Sie selbst herausfinden.
 In den Hinweisen folgen Tipps, wie Sie eine Anforderung erfüllen können.
 Wichtige Dependencies werden explizit erwähnt, grundsätzlich dürfen Sie
 die Standardbibliothek Ihrer Sprache verwenden.
@@ -180,13 +182,13 @@ echo $SEDRICOIN_STORAGE_PATH
 
 [WARNING]
 Ihre Anwendung darf keine Umgebungsvariablen überschreiben.
-Es dürfen höchsten Standardwerte verwendet werden, falls die entsprechende
+Es dürfen höchstens Standardwerte verwendet werden, falls die entsprechende
 Umgebungsvariable nicht gesetzt wurde.
 [ENDWARNING]
 
 
+### `Block`-Modell
 <!-- time estimate: 30 min -->
-### `Block` Modell
 
 Die Sedricoin-Blockchain soll als JSON-Dateien im Dateisystem gespeichert werden.
 Pro Block soll im Verzeichnis eine Datei existieren.
@@ -196,7 +198,7 @@ Ein `Block` besteht aus dem `BlockHeader` und den Transaktionsdaten.
 Die Daten werden vorerst weggelassen.
 Der `BlockHeader` beschreibt den `Block` und beinhaltet aktuell die Felder:
 
-- `previous_hash`: `String` (Hex-Repräsentation des vorherigen Block-Hash; nur *lower-case*)
+- `previous_hash`: `String` (Hex-Repräsentation des vorherigen Block-Hashes; nur *lower-case*)
 - `timestamp`: `unsigned Integer` (Unix-Timestamp in Sekunden)
 
 Im Verlauf dieses Projekts werden die Modelle immer wieder erweitert, bis die
@@ -228,7 +230,7 @@ Wenn Sie das Projekt in Python implementieren, nutzen Sie dafür die [PARTREF::m
 [HINT::Wie kann ich Daten mit Pydantic modellieren?]
 Legen Sie ein neues Modul `models.py` an, in dem Sie Ihre Datenmodelle implementieren.
 Teilen Sie dabei den `Block` in mehrere Modelle auf: `Block` und `BlockHeader`.
-Erstellen Sie im `Block` das Attribute `header: BlockHeader`, um die Modell zu verschachteln.
+Erstellen Sie im `Block` das Attribut `header: BlockHeader`, um die Modelle zu verschachteln.
 
 In einer späteren Aufgabe werden dem `Block` auch noch Transaktionsdaten hinzugefügt.
 
@@ -246,7 +248,7 @@ Dieser wird nicht explizit gespeichert, sondern kann nach folgenden Regeln berec
 3. Alle Zeichen in `lower-case` umwandeln.
 4. Leerzeichen entfernen.
 5. Den doppelten `SHA256`-Hash berechnen; also `SHA256(SHA256(x))`.
-   Dabei muss der `String` im Inneren Hash mit `UTF-8` enkodiert werden.
+   Dabei muss der `String` im inneren Hash mit `UTF-8` enkodiert werden.
    Der äußere Hash wird über die Bytes des ersten Hashs gebildet.
 6. Der Block-Hash ist die Hex-Repräsentation des Ergebnisses.
 
@@ -339,7 +341,7 @@ Block-Hash:
 Erst in den folgenden Aufgaben implementieren Sie die REST-API.
 Allerdings müssen beim Starten, wie oben schon implementiert, die Umgebungsvariablen
 eingelesen werden und der *Genesis-Block* (wie folgt) erzeugt werden.
-Auch wenn das Programm in dieser Aufgabe noch nicht dauerhauft weiterläuft, 
+Auch wenn das Programm in dieser Aufgabe noch nicht dauerhaft weiterläuft,
 wird hier bereits von *Server* gesprochen.
 
 [ER] Wenn der Server ausgeführt wird, soll ein neuer `Block` mit dem aktuellen Unix-Timestamp
@@ -354,10 +356,10 @@ Dieser wird nur berechnet, aber nicht im `Block` gespeichert.
 Der Genesis-Block hat die Block-Höhe `0`.
 
 [ER] Beim Ausführen der Anwendung soll die aktuelle Blockchain auf der Konsole ausgegeben werden.
-Pro Zeile soll ein Block ausgegeben werden, im Format `<Blockhöhe>: <Block-Hash>`
-und `New Block <Blockhöhe>: <Block-Has>`.
+Pro Zeile soll ein Block ausgegeben werden, im Format `<Block-Höhe>: <Block-Hash>`
+bzw. `New Block <Block-Höhe>: <Block-Hash>`.
 Falls beim Laden die Blockchain ungültig ist, wird auf der Konsole ausgegeben,
-an welcher Stelle die Kette ungültig ist (`Blockchain Error at Block <Blockhöhe>.`),
+an welcher Stelle die Kette ungültig ist (`Blockchain Error at Block <Block-Höhe>.`),
 und es wird kein neuer `Block` berechnet.
 Für die Gültigkeit müssen aktuell die folgenden Kriterien erfüllt sein:
 
@@ -371,7 +373,7 @@ späteren Aufgabe ausführlicher beschrieben.
 [ENDNOTICE]
 
 [EC] Rufen Sie Ihren Server zweimal auf.
-Ändern Sie anschließend den `timestamp` im `Block` mit der Blockhöhe `1` und rufen
+Ändern Sie anschließend den `timestamp` im `Block` mit der Block-Höhe `1` und rufen
 Sie den Server erneut auf.
 
 
