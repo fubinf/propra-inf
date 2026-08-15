@@ -1,9 +1,9 @@
 title: "tmux: Ein Terminal-Multiplexer"
 stage: alpha
-timevalue: 1.5
+timevalue: 1.25
 difficulty: 2
 explains: tmux
-assumes: Shell-Grundlagen
+assumes: Shell-Grundlagen, ssh
 ---
 
 [SECTION::goal::experience]
@@ -17,6 +17,7 @@ Ich kann `tmux`-Sessions erstellen, verwalten und Panes sowie Fenster zur Strukt
 Er ermöglicht es, mehrere unabhängige Shells in einem einzigen Terminal-Fenster auszuführen.
 Sessions können in mehrere Fenster aufgeteilt werden.
 Jedes Fenster lässt sich in mehrere Teilbereiche (Panes) unterteilen.
+Eine zentrale Eigenschaft ist, dass Prozesse innerhalb einer Session unabhängig vom Terminal weiterlaufen.
 [ENDSECTION]
 
 
@@ -28,10 +29,9 @@ Die Aktionen erarbeiten die Konzepte praktisch und bereiten so die abschließend
 
 ### Vorbereitung und der Prefix-Key
 
-Stellen Sie zunächst sicher, dass `tmux` auf Ihrem System vorhanden ist.
-
-Aktualisieren Sie Ihr System und installieren Sie das Paket:
-`sudo apt update && sudo apt install tmux`
+<replacement id='tmux-targetserver'>
+Zielserver = `andorra.imp.fu-berlin.de`
+</replacement>
 
 Lesen Sie den Beitrag bis einschließlich zum Abschnitt **Reattaching to a Session**:
 [tmux Command in Linux: Sessions, Windows, and Panes](https://linuxize.com/post/getting-started-with-tmux/)
@@ -39,6 +39,7 @@ Lesen Sie den Beitrag bis einschließlich zum Abschnitt **Reattaching to a Sessi
 Achten Sie beim Lesen besonders auf folgende Punkte:
 
 - Welche Tastenkombination leitet Befehle an `tmux` ein (Prefix-Key)?
+- Wie erstellen Sie eine neue Session?
 - Wie trennen Sie die Verbindung zu einer laufenden Session, ohne sie zu beenden (detach)?
 - Wie verbinden Sie sich wieder mit einer existierenden Session (attach)?
 
@@ -49,56 +50,77 @@ Um eine Aktion auszuführen, drücken Sie zuerst den Prefix `Ctrl+b` und danach 
 <!-- time estimate: 15 min -->
 
 
-### Sessionverwaltung
+### Das Kernproblem: Verbindungsabbruch
 
-Eine Session ist die oberste Ebene der `tmux`-Hierarchie: Session > Fenster > Panes.
-Jede Session kann unabhängig existieren, und mehrere können gleichzeitig aktiv sein.
-Erstellen Sie als Erstes eine benannte Session, um die Grundkonzepte kennenzulernen.
+Eine gewöhnliche SSH-Verbindung ist an das Terminal gebunden, das sie geöffnet hat.
+Bricht die Verbindung ab, sterben alle Prozesse, die in dieser Shell liefen.
+Wir provozieren diesen Fall bewusst und vergleichen ihn mit `tmux`.
 
-**AKTION:** Erstellen Sie eine neue Session namens `projekt1`.
+**AKTION:** Öffnen Sie zwei Terminalfenster.
 
-Sie sehen nun am unteren Rand eine Statusleiste.
-Das ist die `tmux`-Statusleiste, die zeigt, dass wir uns innerhalb einer `tmux`-Session befinden.
-Um eine laufende Aufgabe zu simulieren, starten wir einen Befehl, der 60 Sekunden lang jede Sekunde die Zeit ausgibt.
+**AKTION:** Verbinden Sie sich in Terminalfenster 1 per SSH mit dem Zielserver.
 
-**AKTION:** Starten Sie die Zeitausgabe in der `tmux`-Session:
-`for i in {1..60}; do date; sleep 1; done`
+**AKTION:** Starten Sie dort direkt, ohne `tmux`, eine lange Zählschleife:
+`for i in {1..1000}; do echo $i; sleep 1; done`
 
-Während die Zeitstempel durchlaufen, detachen wir uns von der Session.
+**AKTION:** Verbinden Sie sich in Terminalfenster 2 ebenfalls per SSH mit demselben Zielserver.
 
-**AKTION:** Trennen Sie sich von der Session.
+**AKTION:** Erstellen Sie dort eine neue `tmux`-Session namens `projekt1`.
 
-[HINT::Wie trenne ich die Session?]
-Drücken Sie `Ctrl+b` (Prefix), lassen Sie los und drücken Sie danach `d` (detach).
-Sie kehren zur normalen Shell zurück, der Prozess läuft aber weiter!
+**AKTION:** Starten Sie in dieser Session dieselbe Zählschleife:
+`for i in {1..1000}; do echo $i; sleep 1; done`
+
+Jetzt provozieren wir einen Verbindungsabbruch, wie er in der Praxis etwa durch einen Netzwerkwechsel
+oder das Zuklappen des Laptops passiert.
+
+**AKTION:** Versetzen Sie Ihren Rechner für etwa eine Minute in den Standby-Modus und wecken Sie ihn danach wieder auf.
+
+[HINT::Standby funktioniert bei mir nicht, oder die Verbindung bleibt bestehen]
+Trennen Sie stattdessen kurz die Netzwerkverbindung (WLAN aus/ein).
+Falls Sie stattdessen ein Terminalfenster hart schließen möchten, um die SSH-Verbindung zu kappen:
+Nutzen Sie dafür nicht Ihr letztes offenes Fenster.
+Unter WSL kann das Schließen des letzten Fensters die gesamte WSL-VM und damit auch alle laufenden
+Hintergrundprozesse beenden -- öffnen Sie also vorher ein weiteres (WSL-)Terminalfenster,
+bevor Sie eines davon schließen.
 [ENDHINT]
 
-Wir befinden uns nun wieder in der normalen Shell.
-Die Schleife läuft im Hintergrund weiter, obwohl wir die Session verlassen haben.
-Das ist das zentrale Konzept eines Terminal-Multiplexers.
+Nach dem Aufwachen sind beide SSH-Verbindungen unterbrochen.
 
-Überprüfen Sie den Status der laufenden Sessions:
+**AKTION:** Verbinden Sie sich in Terminalfenster 1 erneut per SSH mit dem Zielserver.
 
-**AKTION:** Zeigen Sie alle laufenden Sessions an.
+Die Zählschleife läuft nicht mehr: Sie wurde mit dem Abbruch der SSH-Verbindung beendet, ihre Ausgabe ist verloren.
 
-**AKTION:** Verbinden Sie sich wieder mit der Session `projekt1` (attach).
+**AKTION:** Verbinden Sie sich in Terminalfenster 2 erneut per SSH mit dem Zielserver.
 
-Je nachdem, wie lange Sie bis zum Wiederverbinden gebraucht haben,
-läuft die `for`-Schleife noch oder ist bereits fertig.
+Sie befinden sich nun wieder in einer normalen Shell auf dem Server, aber außerhalb von `tmux`.
 
-<!-- time estimate: 10 min -->
+**AKTION:** Verbinden Sie sich mit der Session `projekt1` (attach).
+
+Die Zählschleife läuft weiter, ohne Lücke in der Zählung.
+`tmux` schreibt die Ausgabe eines Prozesses fortlaufend in seinen Pane-Puffer, auch wenn kein Client verbunden ist.
+Der Prozess hängt nicht am Terminal, sondern an der Session -- und die überlebt den Verbindungsabbruch.
+Das ist der entscheidende Vorteil gegenüber einer gewöhnlichen SSH-Shell.
+
+**AKTION:** Beenden Sie die Zählschleife mit `Ctrl+c`, falls sie noch läuft.
+
+Terminalfenster 1 benötigen Sie ab jetzt nicht mehr.
+
+<!-- time estimate: 20 min -->
 
 
-### Fenster und Panes
+### Fenster und Panes: Eine Session strukturieren
 
-Lesen Sie die weiteren Abschnitte **Working with Windows** und **Working with Panes** des Artikels
+Für einen Zielserver reicht in der Praxis meist eine einzige `tmux`-Session, die über mehrere Fenster
+oder Panes strukturiert wird, statt mehrere Sessions parallel zu verwalten.
+
+Lesen Sie nun die Abschnitte **Working with Windows** und **Working with Panes** desselben Artikels:
 [tmux Command in Linux: Sessions, Windows, and Panes](https://linuxize.com/post/getting-started-with-tmux/)
 
 Achten Sie dabei besonders auf folgende Fragen:
 
+- Wie erstellt, wechselt und schließt man Fenster?
 - Welche Tastenkombinationen teilen ein Fenster nebeneinander bzw. übereinander auf?
 - Wie wechselt man zwischen verschiedenen Panes?
-- Wie erstellt, wechselt und schließt man Fenster?
 
 [NOTICE]
 `tmux` bezeichnet das Aufteilen in Panes nebeneinander (vertikale Trennlinie) als *horizontal split* (`%` bzw. `-h`).
@@ -109,36 +131,43 @@ Der verlinkte Artikel nennt dieselben beiden Tasten mit vertauschten Adjektiven
 (vertically für `%`, horizontally für `"`).
 [ENDNOTICE]
 
-Bisher haben wir eine Session mit einem einzelnen Fenster verwendet.
-Jetzt lernen wir zwei Möglichkeiten kennen, um die Anzeige zu strukturieren:
+Es gibt zwei Möglichkeiten, die Anzeige zu strukturieren:
 
-- **Panes**: Teilen ein einzelnes Fenster in mehrere Bereiche auf.
-Alle Panes gehören zum gleichen Fenster und teilen sich dessen Fensterindex.
-Ideal für: Nebeneinander arbeiten (beispielsweise Code links, Terminal/Tests rechts).
 - **Fenster**: Bilden mehrere unabhängige Bildschirmflächen innerhalb einer Session.
 Jedes Fenster ist wie ein eigener Tab mit eigenem Index (beispielsweise 0, 1, 2, ...).
 Ideal für: Verschiedene Aufgaben getrennt halten (beispielsweise Fenster 0: Editor, Fenster 1: Server-Logs).
+- **Panes**: Teilen ein einzelnes Fenster in mehrere Bereiche auf.
+Alle Panes gehören zum gleichen Fenster und sind gleichzeitig sichtbar.
+Ideal für: Nebeneinander arbeiten (beispielsweise Code links, Terminal/Tests rechts).
 
-Bleiben Sie im Fenster der Session `projekt1`.
+**AKTION:** Bleiben Sie in der Session `projekt1` (Terminalfenster 2).
 
-**AKTION:** Teilen Sie das aktuelle Fenster nebeneinander.
+**AKTION:** Erstellen Sie ein neues leeres Fenster.
 
-Sie haben nun zwei Panes nebeneinander.
-Da jedes Pane eine eigene Shell-Sitzung darstellt, arbeiten diese völlig unabhängig voneinander:
+Beachten Sie die Statusleiste: Sie zeigt jetzt zwei Fenster, `0` und `1`.
 
-**AKTION:** Wechseln Sie zum linken Pane.
+**AKTION:** Lassen Sie sich im neuen Fenster `1` den Inhalt von `/etc` anzeigen.
 
-**AKTION:** Wechseln Sie im linken Pane in das Verzeichnis `/tmp` und lassen Sie sich dessen Inhalt anzeigen.
+**AKTION:** Wechseln Sie zurück zu Fenster `0`.
 
-**AKTION:** Wechseln Sie zum rechten Pane.
+Sie sehen wieder die ursprüngliche Shell.
+Fenster sind unabhängige Bildschirmflächen: Es ist immer nur eines davon sichtbar.
 
-**AKTION:** Lassen Sie sich im rechten Pane den Verzeichnisinhalt anzeigen.
+**AKTION:** Wechseln Sie erneut zu Fenster `1`.
 
-Sie sehen, dass das rechte Pane weiterhin den Inhalt des Verzeichnisses anzeigt,
-in dem Sie `tmux` gestartet haben.
-Die beiden Shells arbeiten unabhängig voneinander.
+**AKTION:** Schließen Sie Fenster `1`, indem Sie darin `exit` eingeben.
 
-Dieses rechte Pane teilen wir jetzt übereinander:
+Sie kehren automatisch zu Fenster `0` zurück.
+
+Nun lernen wir die zweite Strukturierungsebene kennen: Panes innerhalb eines Fensters.
+
+**AKTION:** Teilen Sie das aktuelle Fenster (Fenster `0`) nebeneinander.
+
+**AKTION:** Wechseln Sie zum linken Pane und lassen Sie sich dort den Inhalt von `/tmp` anzeigen.
+
+**AKTION:** Wechseln Sie zum rechten Pane und lassen Sie sich dort den Inhalt des aktuellen Verzeichnisses anzeigen.
+
+Beide Panes zeigen unterschiedliche Verzeichnisse: Jedes Pane ist eine eigenständige Shell.
 
 **AKTION:** Teilen Sie das rechte Pane übereinander.
 
@@ -147,88 +176,48 @@ Dieses rechte Pane teilen wir jetzt übereinander:
 `"` sieht aus wie zwei Kästen übereinander → teilt das Fenster übereinander.
 [ENDHINT]
 
-Sie haben nun drei Panes: links volle Höhe, rechts oben und rechts unten.
+Das neu entstandene, untere rechte Pane ist automatisch aktiv.
 
-**AKTION:** Wechseln Sie in das untere rechte Pane.
+**AKTION:** Lassen Sie sich dort den Inhalt von `/var/log` anzeigen.
 
-**AKTION:** Wechseln Sie dort in das Verzeichnis `/var/log` und lassen Sie sich den Inhalt anzeigen.
+Sie haben nun drei Panes gleichzeitig sichtbar: links volle Höhe, rechts oben und rechts unten.
 
-Nun nutzen wir die zweite Ebene der Strukturierung: eigene Fenster.
-
-**AKTION:** Erstellen Sie ein neues leeres Fenster.
-
-Beobachten Sie, dass die Statusleiste unten jetzt zwei Einträge zeigt: `0` und `1`.
-
-**AKTION:** Wechseln Sie zwischen den Fenstern.
-
-**AKTION:** Schließen Sie Fenster `1`, indem Sie darin `exit` eingeben.
-
-Sie sollten automatisch zu Fenster `0` zurückkehren.
-
-**AKTION:** Detachen Sie sich von der Session.
+Beachten Sie den Unterschied zum Fensterwechsel vorhin:
+Beim Wechsel zwischen Fenster `0` und `1` war jeweils nur eines sichtbar.
+Bei den Panes dagegen sehen Sie alle drei gleichzeitig.
+Das ist der zentrale Unterschied zwischen beiden Strukturierungsebenen:
+Von den Fenstern einer Session sehen Sie immer nur eines, von den Panes eines Fensters dagegen alle gleichzeitig.
 
 <!-- time estimate: 20 min -->
-
-
-### Persistenz: Der "Server-Test"
-
-Das wichtigste Feature von `tmux` ist seine Persistenz.
-Wir simulieren einen realistischen Fall: Eine SSH-Verbindung zu einem Remote-Server wird unerwartet unterbrochen.
-
-[NOTICE]
-Falls Sie WSL (Windows Subsystem for Linux) nutzen:
-Das Schließen des letzten WSL-Terminalfensters kann unter Umständen die gesamte WSL-VM beenden.
-Dadurch werden auch alle darin laufenden Hintergrundprozesse gestoppt.
-In nativen Linux- oder macOS-Umgebungen bleibt die `tmux`-Session unberührt, solange das System eingeschaltet bleibt.
-[ENDNOTICE]
-
-**AKTION:** Erstellen Sie eine neue Session namens `server`.
-
-**AKTION:** Starten Sie die Zeitausgabe in der `tmux`-Session:
-`for i in {1..120}; do date; sleep 1; done`
-
-**AKTION:** Schließen Sie das komplette Terminal-Fenster über den Schließ-Button des Fensters.
-Verwenden Sie nicht den Befehl `exit`, da dieser die Shell geordnet beenden würde.
-
-**AKTION:** Öffnen Sie ein neues Terminal-Fenster.
-
-**AKTION:** Verbinden Sie sich erneut mit der Session `server` (attach).
-
-Der Prozess lief die ganze Zeit weiter, obwohl das Terminal erzwungen geschlossen wurde.
-Wir sehen einen Zeitsprung in der Ausgabe.
-Das ist das Kernprinzip von `tmux`:
-Eine unterbrochene SSH-Verbindung beendet die Prozesse innerhalb einer `tmux`-Session nicht.
-Dasselbe gilt für ein geschlossenes Terminal-Fenster.
-
-**AKTION:** Detachen Sie sich von der Session.
-
-<!-- time estimate: 15 min -->
 
 
 ### Sessions beenden
 
 Wenn eine Session nicht mehr benötigt wird, sollte sie geschlossen werden, um Systemressourcen freizugeben.
+
 Es gibt zwei Wege, eine Session zu beenden:
 
-- von innen heraus durch Schließen aller Shells (beispielsweise mit `exit`)
-- von außen mit dem Befehl (beispielsweise `tmux kill-session -t <sessionname>`)
-
-**AKTION:** Listen Sie alle laufenden Sessions auf.
-
-Sie sollten zwei Sessions sehen: `projekt1` und `server`.
-
-**AKTION:** Verbinden Sie sich mit der Session `projekt1` (attach).
+- von innen heraus durch Schließen aller Shells
+- von außen mit einem `tmux`-Befehl
 
 **AKTION:** Beenden Sie alle Panes der Session `projekt1` von innen heraus.
 
-Sobald das letzte Pane geschlossen ist, werden automatisch auch das Fenster
-und schließlich die gesamte Session beendet.
+Sobald das letzte Pane geschlossen ist, werden automatisch auch das Fenster und schließlich die gesamte Session beendet.
 
-**AKTION:** Überprüfen Sie, dass `projekt1` nicht mehr existiert, indem Sie die `tmux`-Sessions auflisten.
+**AKTION:** Überprüfen Sie durch Anzeigen der Sessionliste, dass `projekt1` nicht mehr existiert.
 
-Nun sollte nur noch `server` übrig sein.
+Für den zweiten Weg braucht es noch eine laufende Session:
 
-**AKTION:** Beenden Sie die Session `server` von außen über einen `tmux`-Befehl.
+**AKTION:** Erstellen Sie kurz eine neue, leere Session namens `test`.
+
+**AKTION:** Trennen Sie sich von der Session `test` (detach).
+
+[HINT::Wie trenne ich die Session?]
+Drücken Sie `Ctrl+b` (Prefix), lassen Sie los und drücken Sie danach `d` (detach).
+Sie kehren zur normalen Shell zurück, der Prozess läuft aber weiter.
+[ENDHINT]
+
+**AKTION:** Beenden Sie die Session `test` von außen mit einem `tmux`-Befehl.
 
 **AKTION:** Überprüfen Sie mit `tmux ls`, dass keine Sessions mehr laufen.
 
@@ -237,13 +226,25 @@ Die Meldung `no server running on ...` ist hier kein Fehler, sondern die erwarte
 <!-- time estimate: 10 min -->
 
 
+[FOLDOUT::Lokales tmux und verschachteltes tmux (optional)]
+`tmux` kann auch lokal auf dem eigenen Rechner verwendet werden, um mehrere Shells in einem Fenster zu organisieren.
+Da moderne Terminalanwendungen aber meist bereits Tabs und Splits anbieten, ist der Zusatznutzen lokal oft gering;
+wer es dennoch ausprobieren möchte, findet sich nach dieser Aufgabe leicht selbst zurecht.
+
+Wer lokal und remote gleichzeitig `tmux` verwendet, bekommt ein Problem: Der Prefix `Ctrl+b` wird immer
+vom äußeren (lokalen) `tmux` abgefangen, das innere (entfernte) bekommt ihn nie zu sehen.
+Eine gängige Lösung ist, dem inneren `tmux` einen zweiten Prefix zuzuweisen, der an das äußere weitergereicht wird,
+z. B. mit `bind-key b send-prefix` in der Konfiguration.
+[ENDFOLDOUT]
+
+
 ### Reflexion
 
 [EQ] Beschreiben Sie ein konkretes Szenario aus Ihrem Arbeits- oder Studienalltag.
 Erläutern Sie, welchen entscheidenden Vorteil die Persistenz einer `tmux`-Session dabei bietet.
 
 [EQ] In welchen Situationen würden Sie `tmux` einsetzen?
-Wann reicht ein gewöhnliches Terminal-Fenster ohne Multiplexer aus?
+Wann reicht eine gewöhnliche SSH-Shell ohne Multiplexer aus?
 
 [EQ] Stellen Sie sich vor, Sie arbeiten an einem Programmierprojekt.
 Sie müssen gleichzeitig Code editieren, einen Entwicklungsserver ausführen und Git-Befehle eingeben.
