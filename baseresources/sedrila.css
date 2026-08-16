@@ -744,6 +744,16 @@ a:link.vwr-filelink-submission {
 
 .breadcrumbs {}
 
+.mermaid {
+    text-align: center;
+    margin: 1em 0;
+}
+
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+
 
 /********** Modifications for dark mode: */
 
