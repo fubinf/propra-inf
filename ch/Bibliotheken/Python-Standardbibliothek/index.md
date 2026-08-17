@@ -13,4 +13,4 @@ dann kann man den Rest jeweils im Bedarfsfall nachschlagen.
 In dieser Aufgabengruppe gibt es lauter kleine Aufgaben, die sich mit jeweils (meist)
 einem solchen Bibliotheksmodul befassen.
 Ziel ist nur ein Kennenlernen, keine gründliche Beherrschung.
-Aber erst danach kann man sinnvoll sagen: Ich kann Python.
+Aber erst danach kann man sinnvoll sagen "Ich kann Python".
