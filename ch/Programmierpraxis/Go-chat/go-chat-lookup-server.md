@@ -11,11 +11,9 @@ Ich habe einen Lookup-Server implementiert, wo sich Benutzer des Chats ein- und 
 
 [SECTION::background::default]
 Der Lookup-Server behält den Überblick über alle eingeloggten Benutzer des Chats.
-Will Person A mit Person B schreiben, so fragt "Peer A" beim Lookup-Server nach, was die Adresse vom
-"Peer B" ist.
+Will Alice mit Bob schreiben, so fragt Alice beim Lookup-Server nach, was die Adresse von Bob ist.
 
-Ist die Person B zu diesem Zeitpunkt im Chat eingeloggt, so bekommt Person A die Adresse und kann Person B
-direkt anschreiben.
+Ist Bob zu diesem Zeitpunkt im Chat eingeloggt, so bekommt Alice seine Adresse und kann ihn anschreiben.
 
 In dieser Aufgabe implementieren Sie nur das Ein- und Ausloggen sowie das Nachschlagen.
 [ENDSECTION]
