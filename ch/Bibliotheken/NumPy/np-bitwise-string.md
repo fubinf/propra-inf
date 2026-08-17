@@ -1,5 +1,5 @@
 title: NumPy Bitwise-Operationen und String-Funktionen
-stage: alpha
+stage: beta
 timevalue: 2.5
 difficulty: 2
 assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings, py-List-Comprehensions
@@ -296,8 +296,9 @@ Wie bei einzelnen Python-Strings verändern sie das ursprüngliche Array nicht, 
 ein neues Array mit den Ergebnissen zurück.
 
 Der Geschwindigkeitsvorteil gegenüber einer Python-Schleife fällt hier deutlich kleiner aus als bei
-numerischen NumPy-Operationen, weil die schnellsten Operationen der CPU (SIMD, Vektorisierung)
-nur für Objekte fester Größe (wie `int`, `float`) funktionieren, nicht für solche mit variabler Größe (wie Strings).
+numerischen NumPy-Operationen: Die schnellsten Operationen der CPU (SIMD, Vektorisierung)
+verarbeiten mehrere kleine Zahlen mit einer einzigen Instruktion, während ein String-Element ein
+Vielfaches an Speicher belegt und zudem Zeichen für Zeichen geprüft werden muss.
 Im letzten Abschnitt dieser Aufgabe messen Sie beide Vorteile selbst nach und vergleichen sie.
 
 ```python
