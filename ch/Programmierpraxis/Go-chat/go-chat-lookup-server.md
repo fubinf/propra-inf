@@ -1,5 +1,5 @@
 title: "HTTP Chat: Lookup-Server"
-stage: draft
+stage: alpha
 timevalue: 1.25
 difficulty: 3
 assumes: go-http-server, go-json
