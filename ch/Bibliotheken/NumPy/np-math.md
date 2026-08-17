@@ -333,12 +333,8 @@ funktioniert.
 
 Dieselben vier Operationen lassen sich kürzer als `a + b`, `a - b`, `a * b` und `a / b` schreiben;
 beide Formen rechnen dasselbe.
-Die Funktionsform nimmt aber zusätzliche Argumente entgegen, die der Operator nicht kennt, etwa
-`out=` für ein bereits vorhandenes Zielarray oder `where=` für eine nur an bestimmten Positionen
-ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword arguments" der
-[Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html#optional-keyword-arguments),
-wie NumPy die meisten seiner elementweise arbeitenden Funktionen nennt;
-`np.round` gehört zum Beispiel nicht dazu und kennt deshalb kein `where=`.
+Die Funktionsform nimmt aber zusätzliche Argumente entgegen, die der Operator nicht kennt; damit
+befasst sich der nächste Abschnitt.
 
 [ER] Implementieren Sie verschiedene arithmetische Operationen:
 
@@ -351,17 +347,8 @@ wie NumPy die meisten seiner elementweise arbeitenden Funktionen nennt;
 - Berechnen Sie mit `np.reciprocal()` die Kehrwerte von `arr1`
 - Berechnen Sie `np.abs()` für die Differenz `arr1 - arr2`
 - Erstellen Sie ein Array `arr3` mit den Werten `[6, 0, 3, 0]` und teilen Sie `arr1` mit
-  `np.divide()` durch `arr3`: Notieren Sie die Warnung und die Werte, die an den Nullstellen
-  entstehen (`inf` steht für "unendlich")
-- Wiederholen Sie diese Division so, dass an den Nullstellen von `arr3` gar nicht gerechnet wird:
-  Schränken Sie sie mit `where=` auf die übrigen Positionen ein, zunächst ohne `out=`.
-  Notieren Sie die Warnung und die Werte, die nun an den ausgelassenen Positionen stehen
-- Wiederholen Sie diese eingeschränkte Division ein weiteres Mal, diesmal mit einem Zielarray:
-  Legen Sie es mit `np.zeros(arr1.shape)` an und übergeben Sie es als `out=`.
-  Vergleichen Sie das Ergebnis mit dem der beiden vorherigen Divisionen
-- Halten Sie als Kommentar im Quelltext fest, warum `where=` erst zusammen mit `out=` ein
-  vollständig definiertes Ergebnis liefert und woher die Werte an den ausgelassenen Positionen
-  in den beiden eingeschränkten Divisionen jeweils stammen
+  `np.divide()` durch `arr3`: Halten Sie als Kommentar im Quelltext fest, welche Werte an den
+  Nullstellen entstehen (`inf` steht für "unendlich")
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Warum sind alle meine Kehrwerte `0`?]
@@ -373,6 +360,30 @@ Wandeln Sie das Array vorher mit der Array-Methode `.astype(float)` um; sie lief
 des Arrays mit dem angegebenen `dtype`, hier also mit Fließkommazahlen.
 [ENDHINT]
 
+<!-- time estimate: 15 min -->
+
+### Zusatzargumente universeller Funktionen: `out=` und `where=`
+
+Die Funktionsform nimmt zusätzliche Argumente entgegen, die der Operator nicht kennt, etwa
+`out=` für ein bereits vorhandenes Zielarray oder `where=` für eine nur an bestimmten Positionen
+ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword arguments" der
+[Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html#optional-keyword-arguments),
+wie NumPy die meisten seiner elementweise arbeitenden Funktionen nennt;
+`np.round` gehört zum Beispiel nicht dazu und kennt deshalb kein `where=`.
+
+[ER] Untersuchen Sie `where=` mit und ohne `out=`, ausgehend von `arr1` und `arr3` aus
+[EREFR::4]:
+
+- Teilen Sie `arr1` mit `np.divide()` durch `arr3`, diesmal eingeschränkt mit
+  `where=(arr3 != 0)` und zunächst ohne `out=`.
+  Halten Sie als Kommentar im Quelltext fest, welche Werte an den ausgelassenen Positionen
+  stehen und ob sie sich als Ergebnis einer Rechnung erklären lassen
+- Wiederholen Sie diese eingeschränkte Division mit einem Zielarray: Legen Sie es mit
+  `np.zeros(arr1.shape)` an und übergeben Sie es als `out=`
+- Halten Sie als Kommentar im Quelltext fest, warum `where=` erst zusammen mit `out=` ein
+  vollständig definiertes Ergebnis liefert
+- Geben Sie beide Ergebnisse mit einer beschrifteten `print`-Zeile aus
+
 [HINT::Was gehört bei `where=` als Bedingung hinein?]
 `where=` erwartet ein Array aus Wahrheitswerten, das dieselbe Form hat wie das Ergebnis oder
 sich darauf broadcasten lässt; ein Vergleich wie `arr3 != 0` liefert genau so ein Array.
@@ -381,7 +392,16 @@ Für die Frage, woher die Werte an diesen Positionen stammen, lohnt ein Blick da
 `np.empty()` aus [PARTREF::np-array] sein Array anlegt.
 [ENDHINT]
 
-<!-- time estimate: 25 min -->
+[HINT::An den ausgelassenen Positionen stehen unsinnig kleine Zahlen oder Nullen]
+Das ist zu erwarten und kein Fehler Ihrerseits.
+Diese Werte hat NumPy nicht ausgerechnet, sondern in dem Speicher vorgefunden, den es für das
+Ergebnis verwendet.
+Welche es genau sind, ändert sich deshalb von Lauf zu Lauf und von Maschine zu Maschine.
+Eine `0` an einer solchen Position ist dabei genauso zufällig wie jede andere Zahl und bedeutet
+nicht, dass dort gerechnet worden wäre.
+[ENDHINT]
+
+<!-- time estimate: 10 min -->
 
 ### Potenz, Rest und Exponentialfunktion: `power`, `mod`, `exp`
 
@@ -443,7 +463,7 @@ Exponenten geübt, weil er für jede Wurzel funktioniert.
   Ergebniswert mit `np.e`
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
-[EQ] Die beiden Modulo-Rechnungen aus [EREFR::5] liefern `2` und `-2`, obwohl in beiden Fällen
+[EQ] Die beiden Modulo-Rechnungen aus [EREFR::6] liefern `2` und `-2`, obwohl in beiden Fällen
 dieselben Beträge 7 und 3 im Spiel sind.
 Klären Sie anhand des einleitenden Beschreibungstexts in der
 [Dokumentation von `numpy.mod`](https://numpy.org/doc/stable/reference/generated/numpy.mod.html),
@@ -522,7 +542,7 @@ sortierten Daten davon unberührt bleibt.
   zur Kontrolle Ihrer Eingabe: die Summe aller Werte beträgt 990
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
-[EQ] Nennen Sie die Zeile aus [EREFR::6], in der Mittelwert und Median am weitesten
+[EQ] Nennen Sie die Zeile aus [EREFR::7], in der Mittelwert und Median am weitesten
 auseinanderliegen, und begründen Sie den Abstand anhand der fünf Werte dieser Zeile.
 Ersetzen Sie dann in dieser Zeile den kleinsten Wert durch `0` und berechnen Sie Mittelwert und
 Median erneut.
@@ -605,7 +625,7 @@ Mit einer f-String-Formatierung wie `f'{wert:.3f}'` (siehe [PARTREF::py-Fstrings
 die Ausgabe auf sinnvolle Nachkommastellen begrenzen.
 [ENDHINT]
 
-[EQ] Formulieren Sie für das 10. und das 90. Perzentil aus [EREFR::7] je einen Satz, der den
+[EQ] Formulieren Sie für das 10. und das 90. Perzentil aus [EREFR::8] je einen Satz, der den
 berechneten Wert auf die Klausur bezieht.
 Erklären Sie außerdem, warum der Median `56.5` beträgt, obwohl keine Person genau diese
 Punktzahl erreicht hat.
