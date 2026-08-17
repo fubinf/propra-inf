@@ -131,13 +131,13 @@ import numpy as np
 a = np.array([[1, 2], [3, 4]])
 b = np.array([[5, 6], [7, 8]])
 
-# Horizontal stacken (entspricht concatenate mit axis=1)
+# Horizontal verbinden (entspricht concatenate mit axis=1)
 h_result = np.hstack((a, b))
 print("hstack:\n", h_result)
 # [[1 2 5 6]
 #  [3 4 7 8]]
 
-# Vertikal stacken (entspricht concatenate mit axis=0)
+# Vertikal verbinden (entspricht concatenate mit axis=0)
 v_result = np.vstack((a, b))
 print("vstack:\n", v_result)
 # [[1 2]
@@ -208,6 +208,12 @@ print("2D Teilung:", [part.shape for part in parts_2d])  # Liste der Formen alle
 # [(2, 4), (2, 4)]
 ```
 
+[EQ] Führen Sie `np.split(np.arange(10), 3)` aus und übernehmen Sie die Fehlermeldung in Ihre
+Antwort.
+Suchen Sie außerdem in der Dokumentation (siehe "Weiterführend") die Funktion, die eine
+Aufteilung auch dann noch liefert, wenn die Länge nicht glatt aufgeht, und beschreiben Sie, wie
+sie die übrigen Elemente verteilt.
+
 `numpy.hsplit` und `numpy.vsplit` sind spezialisierte Versionen:
 
 ```python
@@ -216,7 +222,7 @@ numpy.vsplit(ary, indices_or_sections)
 ```
 
 - `ary`, `indices_or_sections`: wie bei `split` (Achse liegt bereits fest: `hsplit` teilt
-  entlang Achse 1/Spalten, `vsplit` entlang Achse 0/Zeilen)
+  entlang Achse 1, also spaltenweise, `vsplit` entlang Achse 0, also zeilenweise)
 
 ```python
 # Horizontal teilen (entlang Spalten)
@@ -230,15 +236,10 @@ print("vsplit:", [part.shape for part in v_parts])
 # [(2, 4), (2, 4)]
 ```
 
-[EQ] Führen Sie `np.split(np.arange(10), 3)` aus und übernehmen Sie die Fehlermeldung in Ihre
-Antwort.
-Suchen Sie außerdem in der Dokumentation (siehe "Weiterführend") die Funktion, die eine
-Aufteilung auch dann noch liefert, wenn die Länge nicht glatt aufgeht, und beschreiben Sie, wie
-sie die übrigen Elemente verteilt.
-
 [ER] Arbeiten Sie mit Array-Teilungen:
 
-- Erstellen Sie mit `arange` und `reshape` ein 6×4-Array mit den Werten `10, 20, ..., 240`
+- Erstellen Sie mit `arange` und `reshape` ein 6×4-Array `arr_6x4` mit den Werten
+  `10, 20, ..., 240`
 - Teilen Sie es mit `vsplit` in 3 gleiche Teile
 - Teilen Sie es mit `hsplit` in 2 gleiche Teile
 - Verwenden Sie `split` mit `axis=0` und den Indizes `[1, 4]` zur ungleichmäßigen Teilung
@@ -257,7 +258,7 @@ numpy.resize(a, new_shape)
 ```
 
 - `a`: das Ausgangsarray
-- `new_shape`: die Ziel-Form als Tupel; enthält sie mehr Elemente als `a`, werden die
+- `new_shape`: die Zielform als Tupel; enthält sie mehr Elemente als `a`, werden die
   ursprünglichen Werte zyklisch wiederholt, enthält sie weniger, wird abgeschnitten
 
 ```python
@@ -308,9 +309,10 @@ numpy.append(arr, values, axis=None)
 ```
 
 - `arr`: das Ausgangsarray
-- `values`: die anzuhängenden Werte; müssen in den übrigen Dimensionen zu `arr` passen
+- `values`: die anzuhängenden Werte; bei gesetztem `axis` müssen sie dieselbe Achsenzahl
+  haben wie `arr` und in allen Dimensionen außer `axis` mit ihm übereinstimmen
 - `axis` (Standard `None`): die Achse, entlang derer angehängt wird; bei `None` werden
-  sowohl `arr` als auch `values` zuerst abgeflacht
+  sowohl `arr` als auch `values` zuerst abgeflacht, also in ein 1D-Array umgeformt
 
 ```python
 import numpy as np
@@ -330,16 +332,9 @@ appended_cols = np.append(arr, [[7], [8]], axis=1)
 print("Spalten:", appended_cols.shape)  # (2, 4)
 ```
 
-[ER] Erstellen Sie ein 2×3-Array mit den Werten `[[31, 47, 12], [58, 23, 64]]` und verwenden Sie
-`append`:
+Geübt wird `append` zusammen mit `insert` im nächsten Abschnitt.
 
-- Fügen Sie eine neue Zeile mit den Werten `[90, 15, 33]` hinzu
-- Fügen Sie zwei neue Spalten mit den Werten `[[71, 29], [46, 88]]` hinzu
-- Fügen Sie die Werte `[5, 17, 26]` ohne `axis`-Parameter hinzu
-
-Geben Sie jeweils das Ergebnis und dessen `shape` aus.
-
-<!-- time estimate: 10 min -->
+<!-- time estimate: 5 min -->
 
 ### Elemente einfügen: `insert`
 
@@ -382,16 +377,29 @@ print("Flach eingefügt:", inserted_flat)
 # Die 3 ist eine Position, kein Wert: eingefügt wird vor dem 4. Element.
 ```
 
-[ER] Arbeiten Sie mit `insert`:
+[ER] Vergleichen Sie `append` und `insert` an demselben Array:
 
-- Erstellen Sie mit `arange` und `reshape` ein 3×3-Array mit den Werten `10, 20, ..., 90`
-- Fügen Sie an Position 1 eine neue Zeile mit den Werten `[100, 110, 120]` ein
-- Fügen Sie an Position 2 eine neue Spalte mit den Werten `[200, 210, 220]` ein
-- Fügen Sie ohne `axis`-Parameter an Position 4 den Wert `99` in das ursprüngliche Array ein
+- Erstellen Sie mit `arange` und `reshape` ein 3×3-Array `arr_3x3` mit den Werten
+  `10, 20, ..., 90`
+- Hängen Sie mit `append` die Zeile `[100, 110, 120]` an `arr_3x3` an
+- Fügen Sie dieselbe Zeile mit `insert` an Position 1 in `arr_3x3` ein
+- Fügen Sie mit `insert` an Position 2 eine neue Spalte mit den Werten `[200, 210, 220]` in
+  `arr_3x3` ein
+- Fügen Sie mit `insert` ohne `axis`-Parameter an Position 4 den Wert `99` in `arr_3x3` ein
 
 Geben Sie jeweils das Ergebnis und dessen `shape` aus.
+Halten Sie in einem Kommentar fest, worin sich die beiden ersten Ergebnisse unterscheiden und
+welche Angabe `insert` dafür braucht, die `append` nicht kennt.
 
-<!-- time estimate: 10 min -->
+[HINT::Mein `append`-Aufruf meldet "must have same number of dimensions"]
+Die beiden Funktionen sind an dieser Stelle unterschiedlich streng: `append` verlangt bei
+gesetztem `axis` für `values` dieselbe Achsenzahl wie in `arr`, `insert` nimmt die Zeile auch
+eindimensional entgegen.
+Eine einzelne Zeile für ein 2D-Array muss für `append` also selbst zweidimensional geschrieben
+werden; das Beispiel oben zeigt, wie das aussieht.
+[ENDHINT]
+
+<!-- time estimate: 15 min -->
 
 ### Elemente entfernen: `delete`
 
@@ -426,7 +434,8 @@ print("Flach entfernt:", deleted_flat.shape)  # (9,)
 
 [ER] Üben Sie `delete`-Operationen:
 
-- Erstellen Sie mit `arange` und `reshape` ein 4×5-Array mit den Werten `10, 20, ..., 200`
+- Erstellen Sie mit `arange` und `reshape` ein 4×5-Array `arr_4x5` mit den Werten
+  `10, 20, ..., 200`
 - Entfernen Sie die erste und letzte Zeile
 - Entfernen Sie die Spalten mit Index 1 und 2
 - Entfernen Sie aus dem abgeflachten Ausgangsarray jedes dritte Element, beginnend beim ersten
@@ -480,7 +489,8 @@ print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 
 [ER] Arbeiten Sie umfassend mit `unique`:
 
-- Erstellen Sie ein Array mit mehrfach vorkommenden Werten: `[10, 30, 20, 30, 10, 40, 20, 40, 10, 50]`
+- Erstellen Sie ein Array `messwerte` mit mehrfach vorkommenden Werten:
+  `[10, 30, 20, 30, 10, 40, 20, 40, 10, 50]`
 - Finden Sie die eindeutigen Werte
 - Ermitteln Sie die Indizes der ersten Vorkommen
 - Bestimmen Sie die Häufigkeit jedes eindeutigen Wertes
@@ -488,7 +498,7 @@ print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 
 Verwenden Sie dabei alle drei `return_*`-Optionen.
 
-[EQ] Sehen Sie sich die von `return_index` in [EREFR::7] gelieferten Indizes an: Sie sind nicht
+[EQ] Sehen Sie sich die von `return_index` in [EREFR::6] gelieferten Indizes an: Sie sind nicht
 aufsteigend sortiert.
 Wonach richtet sich ihre Reihenfolge stattdessen?
 
@@ -503,8 +513,11 @@ Wonach richtet sich ihre Reihenfolge stattdessen?
 - Verbinden Sie sie horizontal mit `hstack`
 - Teilen Sie das Ergebnis vertikal in 3 gleiche Teile
 - Fügen Sie dem mittleren Teil eine neue Spalte mit dem Wert `99` hinzu
-- Bringen Sie die drei Teile wieder zusammen: Flachen Sie jeden Teil einzeln mit `reshape` ab und
-  verketten Sie die drei flachen Arrays zu einem einzigen 1D-Array
+- Bringen Sie die drei Teile wieder zusammen: Flachen Sie jeden Teil einzeln mit `reshape` ab
+  (oder mit den eigentlich eher dafür vorgesehenen Operationen
+  [`ravel`](https://numpy.org/doc/stable/reference/generated/numpy.ravel.html) oder
+  [`flatten`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.flatten.html))
+  und verketten Sie die drei flachen Arrays zu einem einzigen 1D-Array
 - Entfernen Sie daraus alle doppelten Werte
 - Ändern Sie die finale Form zu 4×4 mit `resize`
 
