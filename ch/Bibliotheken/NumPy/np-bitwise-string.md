@@ -115,7 +115,7 @@ numpy.bitwise_xor(x1, x2)  # bitweises XOR: 1 dort, wo genau ein Operand 1 ist
 Bei booleschen Arrays (`dtype=np.bool_`) entsprechen die Bitwise-Operationen den logischen
 Operationen UND/ODER/XOR.
 Das ist der häufigste Anlass, in NumPy überhaupt zu `&` und `|` zu greifen: Beim Filtern werden
-damit mehrere Bedingungen zu einer Maske verknüpft, etwa `arr[(arr > a) & (arr < b)]` in
+damit mehrere Bedingungen zu einer Maske verknüpft, etwa `arr[(arr > unten) & (arr < oben)]` in
 [PARTREF::np-index-slice].
 
 ```python
@@ -278,8 +278,8 @@ Zweierkomplement bzw. als vorzeichenlose Zahl repräsentiert.
 
 ### Grundlagen der NumPy-String-Funktionen: `strings.upper`, `strings.lower`
 
-NumPy bietet zwei Module für vektorisierte String-Verarbeitung: `numpy.strings` ist das aktuelle,
-`numpy.char` gilt laut
+NumPy bietet zwei Module für vektorisierte String-Verarbeitung: `numpy.strings` ist das aktuelle
+(vorhanden ab NumPy 2.0), `numpy.char` gilt laut
 [NumPy String Functions](https://numpy.org/doc/stable/reference/routines.strings.html)
 als Legacy.
 Wir verwenden daher `numpy.strings`, außer für `split`/`join`, die es dort nicht gibt.
@@ -290,13 +290,14 @@ Breite ausgelegt; es erhält keine Updates mehr und könnte in einer künftigen 
 werden.
 [ENDFOLDOUT]
 
-Diese Funktionen arbeiten vektorisiert auf String-Arrays: Sie wenden eine String-Operation in einem
-einzigen Aufruf auf jedes Element eines Arrays an.
+Die Funktionen dieser Module arbeiten vektorisiert auf String-Arrays: Sie wenden eine
+String-Operation in einem einzigen Aufruf auf jedes Element eines Arrays an.
 Wie bei einzelnen Python-Strings verändern sie das ursprüngliche Array nicht, sondern geben immer
 ein neues Array mit den Ergebnissen zurück.
 
 Der Geschwindigkeitsvorteil gegenüber einer Python-Schleife fällt hier deutlich kleiner aus als bei
-numerischen NumPy-Operationen.
+numerischen NumPy-Operationen, weil die schnellsten Operationen der CPU (SIMD, Vektorisierung)
+nur für Objekte fester Größe (wie `int`, `float`) funktionieren, nicht für solche mit variabler Größe (wie Strings).
 Im letzten Abschnitt dieser Aufgabe messen Sie beide Vorteile selbst nach und vergleichen sie.
 
 ```python
@@ -322,7 +323,7 @@ print("Lowercase:", lower_strings)
 
 <!-- time estimate: 5 min -->
 
-### String-Verbindungen und Multiplikationen: `strings.add`, `strings.multiply`
+### String-Verbindung und -Wiederholung: `strings.add`, `strings.multiply`
 
 ```python
 numpy.strings.add(x1, x2)     # hängt die Elemente von x1 und x2 paarweise aneinander
@@ -420,8 +421,8 @@ Was müssten Sie ändern, damit auch dort ersetzt wird?
 `split` liefert für jedes Element eine unterschiedlich lange Python-Liste von Teilstrings zurück;
 das lässt sich nicht als einheitliches Array-Element abbilden und passt daher nicht zu den übrigen
 Funktionen aus `numpy.strings`, die immer genau ein Ergebnis pro Element liefern.
-`join` liefert dagegen durchaus ein gewöhnliches String-Array zurück, wurde bei der Einführung von
-`numpy.strings` aber schlicht nicht mit übernommen.
+`join` liefert dagegen durchaus ein gewöhnliches String-Array zurück und fehlt in `numpy.strings`
+bislang ohne dokumentierten Grund.
 [ENDFOLDOUT]
 
 ```python
@@ -508,7 +509,7 @@ Sie die String-Faktoren einordnen können.
 Legen Sie alle fünf Messungen wie oben gezeigt in eine gemeinsame Schleife, jede mit ihrer eigenen
 Zeitenliste; nur so bleiben die Faktoren untereinander vergleichbar:
 
-- Erstellen Sie ein Array `words` mit 100000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
+- Erstellen Sie ein Array `words` mit 1000000 Strings der Form `'produkt0'`, `'produkt1'`, ...,
   `'produkt99999'` (z. B. mit einer List Comprehension aus [PARTREF::py-List-Comprehensions] und
   `np.array`)
 - Messen Sie mit dem `time`-Modul die Laufzeit von `np.strings.startswith(words, 'produkt123')` und
@@ -517,8 +518,8 @@ Zeitenliste; nur so bleiben die Faktoren untereinander vergleichbar:
 - Messen Sie auf dieselbe Weise dieselbe Schleife über `words_list = list(words)`, wobei die
   Umwandlung selbst außerhalb der Messung stattfindet
 - Messen Sie nach demselben Muster eine numerische Operation: `zahlen * 2` auf einem mit
-  `np.arange(100000)` erzeugten Array gegen die Schleife `[x * 2 for x in zahlen_liste]`, wobei
-  `zahlen_liste = list(range(100000))` wieder außerhalb der Messung entsteht — in dieser Liste sollen
+  `np.arange(1000000)` erzeugten Array gegen die Schleife `[x * 2 for x in zahlen_liste]`, wobei
+  `zahlen_liste = list(range(1000000))` wieder außerhalb der Messung entsteht — in dieser Liste sollen
   bewusst echte Python-Ganzzahlen stehen und nicht die Elemente des Arrays
 - Geben Sie alle fünf Zeiten (5 Nachkommastellen, `:.5f`) aus, dazu die beiden String-Faktoren
   gegenüber `np.strings.startswith` und den Zahlen-Faktor gegenüber `zahlen * 2`
@@ -528,8 +529,8 @@ Zeitenliste; nur so bleiben die Faktoren untereinander vergleichbar:
 `np.strings.startswith` ist deutlich schneller als beide Schleifen, und die Schleife über das Array
 ist noch einmal erheblich langsamer als die über die Liste.
 Auch bei der numerischen Messung ist der NumPy-Aufruf klar schneller als die Schleife.
-Konkrete Zahlen hängen stark von Ihrer Maschine ab; entscheidend sind diese Verhältnisse, nicht
-bestimmte Werte.
+Konkrete Zahlen hängen stark von Ihrer Maschine ab; entscheidend ist die relative Geschwindigkeit,
+nicht die absolute.
 [ENDHINT]
 
 [EQ] Beide Schleifen berechnen dasselbe Ergebnis, liefern aber deutlich verschiedene Faktoren.
