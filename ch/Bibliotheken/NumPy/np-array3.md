@@ -96,10 +96,10 @@ ablesen; die beiden anderen Fälle liefert die folgende Übung.
 [ER] Erstellen Sie mit `arange` und `reshape` zwei 4×3-Arrays `A` (Werte `21` bis `32`) und
 `B` (Werte `41` bis `52`) und verwenden Sie:
 
-- `np.concatenate` um sie entlang Achse 0 zu verbinden
-- `np.concatenate` um sie entlang Achse 1 zu verbinden
-- `np.stack` um sie entlang einer neuen Achse 0 zu verbinden
-- `np.stack` um sie entlang einer neuen Achse 2 zu verbinden
+- `np.concatenate`, um sie entlang Achse 0 zu verbinden
+- `np.concatenate`, um sie entlang Achse 1 zu verbinden
+- `np.stack`, um sie entlang einer neuen Achse 0 zu verbinden
+- `np.stack`, um sie entlang einer neuen Achse 2 zu verbinden
 
 Geben Sie jeweils das Ergebnis und dessen `shape` aus.
 
@@ -123,7 +123,8 @@ numpy.vstack(tup)
 
 Beide entsprechen `concatenate` mit fest vorgegebener Achse: `hstack` verbindet horizontal
 (entlang Achse 1), `vstack` vertikal (entlang Achse 0).
-Bei 1D-Arrays weichen beide von diesem Schema ab; `hstack` verbindet dann entlang Achse 0.
+Bei 1D-Arrays weichen beide von diesem Schema ab: `hstack` verbindet dann entlang Achse 0, und was
+`vstack` stattdessen tut, klären die folgende Übung und die Frage dazu.
 
 ```python
 import numpy as np
@@ -150,7 +151,7 @@ print("vstack:\n", v_result)
 
 - Erstellen Sie ein 1D-Array `x` mit den Werten `[7, 14, 21]`
 - Erstellen Sie ein 1D-Array `y` mit den Werten `[2, 9, 16]`
-- Verwenden Sie `hstack` und `vstack` um diese zu verbinden
+- Verwenden Sie `hstack` und `vstack`, um diese zu verbinden
 - Erstellen Sie zusätzlich `a_3x1` mit den Werten `[[7], [14], [21]]` und `b_3x1` mit den
   Werten `[[2], [9], [16]]` und verbinden Sie diese mit `hstack` und `vstack`
 
@@ -174,9 +175,10 @@ numpy.split(ary, indices_or_sections, axis=0)
 ```
 
 - `ary`: das aufzuteilende Array
-- `indices_or_sections`: entweder eine ganze Zahl (Array wird in genau so viele gleich
-  große Teile geteilt, muss die Achsenlänge glatt teilen) oder eine Liste von Indizes
-  (Array wird an genau diesen Positionen zerschnitten, Teile können unterschiedlich groß sein)
+- `indices_or_sections`: entweder eine ganze Zahl (das Array wird in genau so viele gleich
+  große Teile geteilt; die Zahl muss die Achsenlänge glatt teilen) oder eine Liste von Indizes
+  (das Array wird an genau diesen Positionen zerschnitten, die Teile können unterschiedlich
+  groß sein)
 - `axis` (Standard `0`): die Achse, entlang derer geteilt wird
 
 ```python
@@ -236,11 +238,12 @@ print("vsplit:", [part.shape for part in v_parts])
 # [(2, 4), (2, 4)]
 ```
 
-[ER] Arbeiten Sie mit Array-Teilungen:
+[ER] Zerlegen Sie eine Messdaten-Matrix, wie im Hintergrund beschrieben:
 
 - Erstellen Sie mit `arange` und `reshape` ein 6×4-Array `arr_6x4` mit den Werten
-  `10, 20, ..., 240`
-- Teilen Sie es mit `vsplit` in 3 gleiche Teile
+  `10, 20, ..., 240`; es steht für sechs Messreihen mit je vier Messwerten
+- Teilen Sie es mit `vsplit` in 3 gleiche Teile; die ersten beiden sind der Trainings-,
+  der letzte der Testteil
 - Teilen Sie es mit `hsplit` in 2 gleiche Teile
 - Verwenden Sie `split` mit `axis=0` und den Indizes `[1, 4]` zur ungleichmäßigen Teilung
 
@@ -250,16 +253,16 @@ Geben Sie für jedes Ergebnis die Anzahl der Teilarrays und deren Formen aus.
 
 ### Array-Größe ändern: `resize`
 
-`resize` ändert die Form eines Arrays auch dann, wenn die neue Größe nicht der ursprünglichen
-Elementanzahl entspricht:
+`resize` ändert die Form eines Arrays auch dann, wenn die neue Form eine andere Elementanzahl
+hat als das Ausgangsarray:
 
 ```python
 numpy.resize(a, new_shape)
 ```
 
 - `a`: das Ausgangsarray
-- `new_shape`: die Zielform als Tupel; enthält sie mehr Elemente als `a`, werden die
-  ursprünglichen Werte zyklisch wiederholt, enthält sie weniger, wird abgeschnitten
+- `new_shape`: die Zielform als Tupel; beschreibt sie mehr Elemente, als `a` hat, werden die
+  ursprünglichen Werte zyklisch wiederholt, beschreibt sie weniger, wird abgeschnitten
 
 ```python
 import numpy as np
@@ -325,11 +328,16 @@ print("Flach:", appended_flat)  # [1 2 3 4 5 6 7 8 9]
 
 # Mit axis=0 - Zeilen hinzufügen
 appended_rows = np.append(arr, [[7, 8, 9]], axis=0)
-print("Zeilen:", appended_rows.shape)  # (3, 3)
+print("Zeilen:\n", appended_rows)
+# [[1 2 3]
+#  [4 5 6]
+#  [7 8 9]]
 
 # Mit axis=1 - Spalten hinzufügen
 appended_cols = np.append(arr, [[7], [8]], axis=1)
-print("Spalten:", appended_cols.shape)  # (2, 4)
+print("Spalten:\n", appended_cols)
+# [[1 2 3 7]
+#  [4 5 6 8]]
 ```
 
 Geübt wird `append` zusammen mit `insert` im nächsten Abschnitt.
@@ -418,18 +426,30 @@ numpy.delete(arr, obj, axis=None)
 import numpy as np
 
 arr = np.arange(10, 130, 10).reshape(3, 4)
+print("Ausgangsarray:\n", arr)
+# [[ 10  20  30  40]
+#  [ 50  60  70  80]
+#  [ 90 100 110 120]]
 
 # Zeile 1 entfernen
 deleted_row = np.delete(arr, 1, axis=0)
-print("Zeile entfernt:", deleted_row.shape)  # (2, 4)
+print("Zeile entfernt:\n", deleted_row)
+# [[ 10  20  30  40]
+#  [ 90 100 110 120]]
 
 # Spalten 0 und 2 entfernen
 deleted_cols = np.delete(arr, [0, 2], axis=1)
-print("Spalten entfernt:", deleted_cols.shape)  # (3, 2)
+print("Spalten entfernt:\n", deleted_cols)
+# [[ 20  40]
+#  [ 60  80]
+#  [100 120]]
 
 # Ohne axis - Array wird abgeflacht
 deleted_flat = np.delete(arr, [5, 7, 9])
-print("Flach entfernt:", deleted_flat.shape)  # (9,)
+print("Flach entfernt:", deleted_flat)
+# [ 10  20  30  40  50  70  90 110 120]
+# Die 5, 7 und 9 sind Positionen, keine Werte: entfernt werden das
+# 6., 8. und 10. Element.
 ```
 
 [ER] Üben Sie `delete`-Operationen:
@@ -487,16 +507,16 @@ unique_vals, inverse = np.unique(arr, return_inverse=True)
 print("Rekonstruiert:", unique_vals[inverse])  # ursprüngliches Array
 ```
 
-[ER] Arbeiten Sie umfassend mit `unique`:
+[ER] Analysieren Sie ein Array mit `unique` und seinen drei `return_*`-Optionen:
 
 - Erstellen Sie ein Array `messwerte` mit mehrfach vorkommenden Werten:
   `[10, 30, 20, 30, 10, 40, 20, 40, 10, 50]`
 - Finden Sie die eindeutigen Werte
 - Ermitteln Sie die Indizes der ersten Vorkommen
 - Bestimmen Sie die Häufigkeit jedes eindeutigen Wertes
-- Verwenden Sie die inversen Indizes um das ursprüngliche Array zu rekonstruieren
+- Verwenden Sie die inversen Indizes, um das ursprüngliche Array zu rekonstruieren
 
-Verwenden Sie dabei alle drei `return_*`-Optionen.
+Geben Sie jedes Teilergebnis aus.
 
 [EQ] Sehen Sie sich die von `return_index` in [EREFR::6] gelieferten Indizes an: Sie sind nicht
 aufsteigend sortiert.
