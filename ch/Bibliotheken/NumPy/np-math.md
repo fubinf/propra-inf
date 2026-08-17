@@ -153,8 +153,8 @@ zusammen mit einer `RuntimeWarning`.
 Ergebnis kennzeichnet.
 Die Warnung bricht die Rechnung nicht ab.
 Zu einem Funktionswert passen mehrere Winkel; NumPy liefert stets denjenigen aus einem festen Bereich:
-`np.arcsin` einen von -90 bis 90 Grad und `np.arccos` einen von 0 bis 180 Grad (die Grenzen
-jeweils eingeschlossen), `np.arctan` einen von -90 bis 90 Grad (die Grenzen ausgeschlossen).
+`np.arcsin` und `np.arctan` einen von -90 bis 90 Grad, `np.arccos` einen von 0 bis 180 Grad
+(die Grenzen jeweils eingeschlossen).
 Auf ihrem jeweiligen Bereich sind `np.arcsin` und `np.arctan` steigend, `np.arccos` dagegen
 fallend: ein größerer Eingabewert ergibt dort einen kleineren Winkel.
 
@@ -191,8 +191,8 @@ zurückgerechneten Winkel durch.
   Eingabewerte gegenüber den exakten Kosinuswerten gerundet sind
 - Erstellen Sie ein Array `cos_mixed` mit den Werten `[0.5, 1.5]` und wenden Sie `np.arccos()`
   darauf an.
-  Notieren Sie die Warnung und halten Sie als Kommentar im Quelltext fest, was die beiden
-  Ergebniswerte über die Reichweite dieser Warnung aussagen
+  Halten Sie als Kommentar im Quelltext fest, was die beiden Ergebniswerte über die Reichweite
+  der dabei ausgegebenen Warnung aussagen
 - Erstellen Sie zusätzlich ein Array `given_tan` mit den Tangenswerten `[0, 1, 1.7321]` und
   berechnen Sie mit `np.arctan()` die entsprechenden Winkel in Grad
 - Die Werte gehören zu den Winkeln 0, 45 und 60 Grad.
@@ -328,8 +328,7 @@ print(np.abs(np.subtract(b, a)))
 ```
 
 `a` hat die Form `(2, 3)`, `b` hat die Form `(3,)` — hier greift Broadcasting
-(siehe [PARTREF::np-array2]), damit die Operation trotz unterschiedlicher Formen
-funktioniert.
+(siehe [PARTREF::np-array2]), damit die Operation trotz unterschiedlicher Formen funktioniert.
 
 Dieselben vier Operationen lassen sich kürzer als `a + b`, `a - b`, `a * b` und `a / b` schreiben;
 beide Formen rechnen dasselbe.
@@ -348,7 +347,8 @@ befasst sich der nächste Abschnitt.
 - Berechnen Sie `np.abs()` für die Differenz `arr1 - arr2`
 - Erstellen Sie ein Array `arr3` mit den Werten `[6, 0, 3, 0]` und teilen Sie `arr1` mit
   `np.divide()` durch `arr3`: Halten Sie als Kommentar im Quelltext fest, welche Werte an den
-  Nullstellen entstehen (`inf` steht für "unendlich")
+  Nullstellen entstehen (`inf` steht für "unendlich").
+  NumPy gibt dabei eine Warnung aus, rechnet aber weiter
 - Geben Sie alle Ergebnisse mit einer beschrifteten `print`-Zeile pro Größe aus
 
 [HINT::Warum sind alle meine Kehrwerte `0`?]
@@ -366,9 +366,10 @@ des Arrays mit dem angegebenen `dtype`, hier also mit Fließkommazahlen.
 
 Die Funktionsform nimmt zusätzliche Argumente entgegen, die der Operator nicht kennt, etwa
 `out=` für ein bereits vorhandenes Zielarray oder `where=` für eine nur an bestimmten Positionen
-ausgeführte Rechnung; Einzelheiten stehen im Abschnitt "Optional keyword arguments" der
-[Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html#optional-keyword-arguments),
-wie NumPy die meisten seiner elementweise arbeitenden Funktionen nennt;
+ausgeführte Rechnung.
+Solche Argumente kennen die universellen Funktionen, wie NumPy die meisten seiner elementweise
+arbeitenden Funktionen nennt; Einzelheiten stehen im Abschnitt "Optional keyword arguments" der
+[Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html#optional-keyword-arguments).
 `np.round` gehört zum Beispiel nicht dazu und kennt deshalb kein `where=`.
 
 [ER] Untersuchen Sie `where=` mit und ohne `out=`, ausgehend von `arr1` und `arr3` aus
@@ -380,8 +381,8 @@ wie NumPy die meisten seiner elementweise arbeitenden Funktionen nennt;
   stehen und ob sie sich als Ergebnis einer Rechnung erklären lassen
 - Wiederholen Sie diese eingeschränkte Division mit einem Zielarray: Legen Sie es mit
   `np.zeros(arr1.shape)` an und übergeben Sie es als `out=`
-- Halten Sie als Kommentar im Quelltext fest, warum `where=` erst zusammen mit `out=` ein
-  vollständig definiertes Ergebnis liefert
+- Halten Sie als Kommentar im Quelltext fest, warum das Ergebnis erst mit einem vorbelegten
+  Zielarray aus `out=` an allen Positionen definiert ist
 - Geben Sie beide Ergebnisse mit einer beschrifteten `print`-Zeile aus
 
 [HINT::Was gehört bei `where=` als Bedingung hinein?]
@@ -392,13 +393,15 @@ Für die Frage, woher die Werte an diesen Positionen stammen, lohnt ein Blick da
 `np.empty()` aus [PARTREF::np-array] sein Array anlegt.
 [ENDHINT]
 
-[HINT::An den ausgelassenen Positionen stehen unsinnig kleine Zahlen oder Nullen]
+[HINT::An den ausgelassenen Positionen stehen `inf`, Nullen oder unsinnig kleine Zahlen]
 Das ist zu erwarten und kein Fehler Ihrerseits.
 Diese Werte hat NumPy nicht ausgerechnet, sondern in dem Speicher vorgefunden, den es für das
 Ergebnis verwendet.
-Welche es genau sind, ändert sich deshalb von Lauf zu Lauf und von Maschine zu Maschine.
-Eine `0` an einer solchen Position ist dabei genauso zufällig wie jede andere Zahl und bedeutet
-nicht, dass dort gerechnet worden wäre.
+Welche es genau sind, hängt davon ab, was diesen Speicher zuletzt belegt hat: Steht in Ihrem
+Programm die Division ohne `where=` unmittelbar davor, dann kann hier deren Ergebnis samt `inf`
+wieder auftauchen; sonst wechseln die Werte von Lauf zu Lauf und von Maschine zu Maschine.
+Ein `inf` oder eine `0` an einer solchen Position ist dabei genauso zufällig wie jede andere Zahl
+und bedeutet nicht, dass dort gerechnet worden wäre.
 [ENDHINT]
 
 <!-- time estimate: 10 min -->
