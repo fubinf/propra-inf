@@ -2,7 +2,7 @@ title: NumPy Bitwise-Operationen und String-Funktionen
 stage: beta
 timevalue: 2.5
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings, py-List-Comprehensions
+assumes: np-array2, np-index-slice, py-Fstrings, py-List-Comprehensions
 ---
 
 [SECTION::goal::idea,experience]

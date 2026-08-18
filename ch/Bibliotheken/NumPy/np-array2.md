@@ -2,7 +2,7 @@ title: NumPy Broadcasting, Array-Iteration, Sequenzerzeugung und Form-Manipulati
 stage: beta
 timevalue: 1.75
 difficulty: 2
-assumes: np-Einführung, np-array
+assumes: np-array
 ---
 
 [SECTION::goal::idea,experience]

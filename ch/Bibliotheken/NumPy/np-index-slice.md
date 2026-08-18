@@ -2,7 +2,7 @@ title: NumPy Indexierung und Slicing
 stage: beta
 timevalue: 2.25
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2
+assumes: np-array2
 ---
 
 [SECTION::goal::idea,experience]

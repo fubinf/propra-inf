@@ -2,7 +2,7 @@ title: NumPy Sortieren, Suchen und Filtern verstehen und anwenden
 stage: alpha
 timevalue: 2
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
+assumes: np-array2, np-index-slice, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]

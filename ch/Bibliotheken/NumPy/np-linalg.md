@@ -2,7 +2,7 @@ title: NumPy Lineare Algebra und Matrixoperationen
 stage: alpha
 timevalue: 2.5
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2, np-index-slice, np-math, py-Fstrings
+assumes: np-index-slice, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]

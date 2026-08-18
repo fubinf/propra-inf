@@ -2,7 +2,7 @@ title: NumPy-Arrays verbinden, teilen und verändern
 stage: beta
 timevalue: 2.25
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2, np-index-slice
+assumes: np-array, np-array2, np-index-slice
 ---
 
 [SECTION::goal::idea,experience]
