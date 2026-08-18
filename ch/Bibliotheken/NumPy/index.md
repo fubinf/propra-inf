@@ -1,5 +1,4 @@
 title: NumPy (Numerical Python)
-stage: alpha
 ---
 
 NumPy ist die fundamentale, hoch effiziente Bibliothek für wissenschaftliches Rechnen in Python,
