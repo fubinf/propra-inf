@@ -1,5 +1,5 @@
 title: NumPy-Arrays verbinden, teilen und verändern
-stage: alpha
+stage: beta
 timevalue: 2.25
 difficulty: 2
 assumes: np-Einführung, np-array, np-array2, np-index-slice
@@ -10,18 +10,17 @@ assumes: np-Einführung, np-array, np-array2, np-index-slice
 - Ich kann NumPy-Arrays verbinden und in Teilarrays aufteilen.
 - Ich kann durch Hinzufügen, Einfügen und Entfernen von Elementen Größe und Struktur von Arrays verändern.
 - Ich kann doppelte und eindeutige Elemente in Arrays identifizieren und analysieren.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Messreihen mehrerer Sensoren liegen zunächst als einzelne Arrays vor und müssen zu einer Matrix
 zusammengesetzt werden; später soll dieselbe Matrix wieder in einen Trainings- und einen Testteil
 zerlegt werden.
 Solche Aufgaben — Arrays verbinden, aufteilen und in ihrer Größe verändern — kommen in der
 Datenverarbeitung ständig vor, und NumPy hat für jede davon eigene Funktionen.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -69,8 +68,8 @@ numpy.stack((a1, a2, ...), axis=0)
 - `axis` (Standard `0`): Position, an der die neu erzeugte Achse eingefügt wird
 
 ```python
-c = np.arange(1, 13).reshape(3, 4)      # Werte 1..12
-d = np.arange(101, 113).reshape(3, 4)   # Werte 101..112
+c = np.arange(1, 13).reshape(3, 4)      # Werte 1 bis 12
+d = np.arange(101, 113).reshape(3, 4)   # Werte 101 bis 112
 
 print(np.stack((c, d), axis=0).shape)   # (2, 3, 4)
 print(np.stack((c, d), axis=1).shape)   # (3, 2, 4)
@@ -90,8 +89,8 @@ print(np.stack((c, d), axis=2))
 Die Position der neuen Achse entscheidet also, wie die Werte im Ergebnis nebeneinander zu liegen
 kommen: Bei `axis=0` stehen die beiden Arrays als Ganzes hintereinander, bei `axis=1` jeweils ihre
 Zeilen paarweise, bei `axis=2` schließlich ihre einzelnen Elemente.
-An den Werten `1..12` gegen `101..112` lässt sich das für `axis=2` in der Ausgabe oben direkt
-ablesen; die beiden anderen Fälle liefert die folgende Übung.
+An den Werten `1` bis `12` gegenüber `101` bis `112` lässt sich das für `axis=2` in der
+Ausgabe oben direkt ablesen; die beiden anderen Fälle liefert die folgende Übung.
 
 [ER] Erstellen Sie mit `arange` und `reshape` zwei 4×3-Arrays `A` (Werte `21` bis `32`) und
 `B` (Werte `41` bis `52`) und verwenden Sie:
@@ -103,8 +102,8 @@ ablesen; die beiden anderen Fälle liefert die folgende Übung.
 
 Geben Sie jeweils das Ergebnis und dessen `shape` aus.
 
-[EQ] Probieren Sie mit `A` und `B` aus [EREFR::1] aus, wie groß `axis` bei `np.concatenate` und
-bei `np.stack` jeweils höchstens sein darf.
+[EQ] Ermitteln Sie durch Ausprobieren mit `A` und `B` aus [EREFR::1], wie groß `axis` bei
+`np.concatenate` und bei `np.stack` jeweils höchstens sein darf.
 Übernehmen Sie die Fehlermeldung des jeweils ersten abgelehnten Aufrufs in Ihre Antwort und
 erklären Sie, warum die Grenze bei den beiden Funktionen nicht gleich hoch liegt.
 
@@ -184,7 +183,7 @@ numpy.split(ary, indices_or_sections, axis=0)
 ```python
 import numpy as np
 
-# 1D Array aufteilen
+# 1D-Array aufteilen
 arr_1d = np.arange(10, 100, 10)  # [10 20 30 40 50 60 70 80 90]
 
 # In 3 gleiche Teile
@@ -199,14 +198,14 @@ print("Geteilt an [4, 7]:", parts_custom)
 # Die 4 und die 7 sind Positionen, keine Werte: geschnitten wird vor dem
 # 5. und vor dem 8. Element.
 
-# 2D Array aufteilen
+# 2D-Array aufteilen
 arr_2d = np.arange(10, 170, 10).reshape(4, 4)
 # [[ 10  20  30  40]
 #  [ 50  60  70  80]
 #  [ 90 100 110 120]
 #  [130 140 150 160]]
 parts_2d = np.split(arr_2d, 2, axis=0)  # Entlang Achse 0
-print("2D Teilung:", [part.shape for part in parts_2d])  # Liste der Formen aller Teilarrays
+print("2D-Teilung:", [part.shape for part in parts_2d])  # Liste der Formen aller Teilarrays
 # [(2, 4), (2, 4)]
 ```
 
@@ -238,7 +237,7 @@ print("vsplit:", [part.shape for part in v_parts])
 # [(2, 4), (2, 4)]
 ```
 
-[ER] Zerlegen Sie eine Messdaten-Matrix, wie im Hintergrund beschrieben:
+[ER] Zerlegen Sie eine Messdaten-Matrix, wie im Hintergrundabschnitt beschrieben:
 
 - Erstellen Sie mit `arange` und `reshape` ein 6×4-Array `arr_6x4` mit den Werten
   `10, 20, ..., 240`; es steht für sechs Messreihen mit je vier Messwerten
@@ -539,7 +538,7 @@ Wonach richtet sich ihre Reihenfolge stattdessen?
   [`flatten`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.flatten.html))
   und verketten Sie die drei flachen Arrays zu einem einzigen 1D-Array
 - Entfernen Sie daraus alle doppelten Werte
-- Ändern Sie die finale Form zu 4×4 mit `resize`
+- Bringen Sie das Ergebnis mit `resize` auf die Form 4×4
 
 Dokumentieren Sie jeden Schritt mit der jeweiligen Array-Form und geben Sie zusätzlich vor und
 nach dem Entfernen der Duplikate die Anzahl der Werte aus.
@@ -561,17 +560,16 @@ Welche Werte fehlen im Endergebnis, und warum gerade diese?
 - [Array manipulation routines](https://numpy.org/doc/stable/reference/routines.array-manipulation.html)
 - [Array splitting](https://numpy.org/doc/stable/reference/routines.array-manipulation.html#splitting-arrays)
 - [Unique elements](https://numpy.org/doc/stable/reference/generated/numpy.unique.html)
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Kontrollergebnisse]
 
+[INSTRUCTOR::Kontrollergebnisse]
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-array3.md]
-
 [ENDINSTRUCTOR]
