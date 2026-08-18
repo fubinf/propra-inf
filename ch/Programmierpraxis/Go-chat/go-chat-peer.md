@@ -148,7 +148,6 @@ __Benutzer hat `Enter` bzw `Eingabe` gedrückt__
 [ENDSECTION]
 
 [INSTRUCTOR::Lösungen]
-Quellcode siehe [TREEREF::server/main.go].
 
 In erster Linie orientieren wir uns auf korrekte Funktionsweise.
 
