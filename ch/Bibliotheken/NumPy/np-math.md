@@ -1,8 +1,8 @@
 title: NumPy mathematische und statistische Funktionen verstehen und anwenden
-stage: alpha
+stage: beta
 timevalue: 2.5
 difficulty: 2
-assumes: np-Einführung, np-array, np-array2, np-index-slice, py-Fstrings
+assumes: np-index-slice, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
@@ -332,8 +332,7 @@ print(np.abs(np.subtract(b, a)))
 
 Dieselben vier Operationen lassen sich kürzer als `a + b`, `a - b`, `a * b` und `a / b` schreiben;
 beide Formen rechnen dasselbe.
-Die Funktionsform nimmt aber zusätzliche Argumente entgegen, die der Operator nicht kennt; damit
-befasst sich der nächste Abschnitt.
+Die Funktionsform kann aber mehr als der Operator; damit befasst sich der nächste Abschnitt.
 
 [ER] Implementieren Sie verschiedene arithmetische Operationen:
 
@@ -365,8 +364,8 @@ des Arrays mit dem angegebenen `dtype`, hier also mit Fließkommazahlen.
 ### Zusatzargumente universeller Funktionen: `out=` und `where=`
 
 Die Funktionsform nimmt zusätzliche Argumente entgegen, die der Operator nicht kennt, etwa
-`out=` für ein bereits vorhandenes Zielarray oder `where=` für eine nur an bestimmten Positionen
-ausgeführte Rechnung.
+`out=` für ein bereits vorhandenes Zielarray (was aus Effizienzgründen sinnvoll sein kann)
+oder `where=` für eine nur an bestimmten Positionen ausgeführte Rechnung.
 Solche Argumente kennen die universellen Funktionen, wie NumPy die meisten seiner elementweise
 arbeitenden Funktionen nennt; Einzelheiten stehen im Abschnitt "Optional keyword arguments" der
 [Dokumentation der universellen Funktionen](https://numpy.org/doc/stable/reference/ufuncs.html#optional-keyword-arguments).
@@ -380,10 +379,10 @@ arbeitenden Funktionen nennt; Einzelheiten stehen im Abschnitt "Optional keyword
   Halten Sie als Kommentar im Quelltext fest, welche Werte an den ausgelassenen Positionen
   stehen und ob sie sich als Ergebnis einer Rechnung erklären lassen
 - Wiederholen Sie diese eingeschränkte Division mit einem Zielarray: Legen Sie es mit
-  `np.zeros(arr1.shape)` an und übergeben Sie es als `out=`
+  `np.zeros(arr1.shape)` an und übergeben Sie es an `out=`
 - Halten Sie als Kommentar im Quelltext fest, warum das Ergebnis erst mit einem vorbelegten
   Zielarray aus `out=` an allen Positionen definiert ist
-- Geben Sie beide Ergebnisse mit einer beschrifteten `print`-Zeile aus
+- Geben Sie beide Ergebnisse mit je einer beschrifteten `print`-Zeile aus
 
 [HINT::Was gehört bei `where=` als Bedingung hinein?]
 `where=` erwartet ein Array aus Wahrheitswerten, das dieselbe Form hat wie das Ergebnis oder
