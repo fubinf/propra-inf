@@ -24,7 +24,7 @@ Eine zentrale Eigenschaft ist, dass Prozesse innerhalb einer Session unabhängig
 [SECTION::instructions::detailed]
 
 Für diese Aufgabe wird kein Kommandoprotokoll abgegeben.
-Die Aktionen erarbeiten die Konzepte praktisch und bereiten so die abschließenden Reflexionsfragen vor.
+In den Aktionen erarbeiten Sie die Konzepte praktisch und bereiten so die abschließenden Reflexionsfragen vor.
 
 
 ### Vorbereitung und der Prefix-Key
@@ -140,7 +140,7 @@ Ideal für: Verschiedene Aufgaben getrennt halten (beispielsweise Fenster 0: Edi
 Alle Panes gehören zum gleichen Fenster und sind gleichzeitig sichtbar.
 Ideal für: Nebeneinander arbeiten (beispielsweise Code links, Terminal/Tests rechts).
 
-**AKTION:** Bleiben Sie in der Session `projekt1` (Terminalfenster 2).
+Die folgenden Schritte finden alle in der Session `projekt1` in Terminalfenster 2 statt.
 
 **AKTION:** Erstellen Sie ein neues leeres Fenster.
 
@@ -173,7 +173,7 @@ Beide Panes zeigen unterschiedliche Verzeichnisse: Jedes Pane ist eine eigenstä
 
 [HINT::Eselsbrücke für Split-Tasten]
 `%` besitzt einen vertikalen Strich → teilt das Fenster nebeneinander.
-`"` sieht aus wie zwei Kästen übereinander → teilt das Fenster übereinander.
+`"` hat keinen → teilt das Fenster übereinander.
 [ENDHINT]
 
 Das neu entstandene, untere rechte Pane ist automatisch aktiv.
@@ -202,9 +202,13 @@ Es gibt zwei Wege, eine Session zu beenden:
 
 **AKTION:** Beenden Sie alle Panes der Session `projekt1` von innen heraus.
 
-Sobald das letzte Pane geschlossen ist, werden automatisch auch das Fenster und schließlich die gesamte Session beendet.
+Sobald das letzte Pane geschlossen ist, werden automatisch auch das Fenster
+und schließlich die gesamte Session beendet.
 
 **AKTION:** Überprüfen Sie durch Anzeigen der Sessionliste, dass `projekt1` nicht mehr existiert.
+
+Die Meldung `no server running on ...` ist dabei kein Fehler, sondern die erwartete Ausgabe:
+Mit der letzten Session endet auch der `tmux`-Server.
 
 Für den zweiten Weg braucht es noch eine laufende Session:
 
@@ -221,7 +225,7 @@ Sie kehren zur normalen Shell zurück, der Prozess läuft aber weiter.
 
 **AKTION:** Überprüfen Sie mit `tmux ls`, dass keine Sessions mehr laufen.
 
-Die Meldung `no server running on ...` ist hier kein Fehler, sondern die erwartete Ausgabe.
+Auch hier ist `no server running on ...` die erwartete Ausgabe.
 
 <!-- time estimate: 10 min -->
 
