@@ -11,8 +11,7 @@ assumes: np-array2, np-index-slice, py-Fstrings
   brauche.
 - Ich kann aus zeilen- oder spaltenweisen Sortierungsindizes das sortierte Array rekonstruieren.
 - Ich kann Arrays nach mehreren Kriterien mit unterschiedlicher Sortierrichtung sortieren.
-- Ich kann Extremwerte lokalisieren und weiß, wie flacher Index und Zeilen-/Spaltenindex
-  zusammenhängen.
+- Ich kann Extremwerte lokalisieren und einen flachen Index in Zeile und Spalte umrechnen.
 - Ich kann Arrays nach einer Bedingung durchsuchen und filtern.
 - Ich kann begründen, wann eine Partitionierung der vollständigen Sortierung vorzuziehen ist.
 [ENDSECTION]
@@ -76,15 +75,16 @@ Alle `np.`-Funktionen dieser Aufgabe lassen das übergebene Array unverändert;
 an Ort und Stelle arbeiten nur Methoden wie `arr.sort()`.
 
 [EQ] Für `arr = np.array([[30, 70], [90, 10]])` sollen die beiden Schreibweisen `np.sort(arr)[1]`
-und `arr.sort()[1]` dieselbe zweite Zeile des sortierten Arrays liefern.
-Probieren Sie beide aus und übernehmen Sie die dabei auftretende Fehlermeldung in Ihre Antwort;
-kommentieren Sie die abbrechende Zeile danach aus, damit Ihr Skript durchläuft.
-Geben Sie außerdem aus, was `arr.sort()` selbst zurückliefert und was danach in `arr` steht.
-Erklären Sie damit, warum die eine Schreibweise abbricht.
-Nennen Sie schließlich eine Situation, in der `arr.sort()` trotzdem der passendere Aufruf ist als
-`np.sort(arr)`.
+und `arr.sort()[1]` dieselbe zweite Zeile des sortierten Arrays liefern:
 
-<!-- time estimate: 10 min -->
+- Probieren Sie beide Schreibweisen aus und übernehmen Sie die dabei auftretende Fehlermeldung in
+  Ihre Antwort; kommentieren Sie die abbrechende Zeile danach aus, damit Ihr Skript durchläuft
+- Geben Sie aus, was `arr.sort()` selbst zurückliefert und was danach in `arr` steht
+- Erklären Sie damit, warum die eine Schreibweise abbricht
+- Nennen Sie eine Situation, in der `arr.sort()` trotzdem der passendere Aufruf ist als
+  `np.sort(arr)`
+
+<!-- time estimate: 15 min -->
 
 ### Sortierungsindizes: `argsort` und `take_along_axis`
 
@@ -142,11 +142,6 @@ print('Stimmt mit np.sort überein?', np.array_equal(rekonstruiert, np.sort(arr,
 - Ermitteln Sie ebenso die spaltenweisen Sortierungsindizes in `spaltenindizes`, rekonstruieren Sie
   daraus das spaltenweise sortierte Array und vergleichen Sie es mit `np.sort(werte, axis=0)`
 
-[HINT::Wie vergleiche ich zwei Arrays auf Gleichheit?]
-Nutzen Sie das bereits aus [PARTREF::np-array] bekannte `np.array_equal`, das die beiden Arrays
-auf gleiche Form und gleiche Werte an jeder Position prüft.
-[ENDHINT]
-
 [EQ] In [EREFR::1] haben Sie die `np.argsort`-Indizes und das zeilenweise sortierte Array
 nebeneinander ausgegeben.
 Welche Information steckt in den Indizes, die im Ergebnis von `np.sort` verloren geht?
@@ -169,15 +164,15 @@ numpy.lexsort(keys)
 ```python
 import numpy as np
 
-# Beispiel: Studierendendaten nach Gesamtpunkten, dann nach Mathepunkten
+# Beispiel: Studierendendaten, primär nach Gesamtpunkten, sekundär nach Mathepunkten
 namen = np.array(['Alice', 'Bob', 'Charlie', 'Diana'])
 gesamtpunkte = np.array([85, 92, 85, 88])
 mathepunkte = np.array([90, 85, 95, 82])
 
-# Hier: erst aufsteigend nach Gesamtpunkten, dann aufsteigend nach Mathepunkten
+# Vorrang haben die Gesamtpunkte (aufsteigend), bei Gleichstand die Mathepunkte (aufsteigend)
 indices = np.lexsort((mathepunkte, gesamtpunkte))
 
-print('Sortierung nach Gesamtpunkten, dann nach Mathepunkten:')
+print('Vorrang Gesamtpunkte, bei Gleichstand Mathepunkte:')
 for i in indices:
     print(f'{namen[i]}: Gesamt={gesamtpunkte[i]}, Mathe={mathepunkte[i]}')
 # Alice: Gesamt=85, Mathe=90
@@ -198,9 +193,9 @@ namen = np.array(['Alice', 'Bob', 'Charlie', 'Diana'])
 gesamtpunkte = np.array([85, 92, 85, 88])
 mathepunkte = np.array([90, 85, 95, 82])
 
-# Absteigend nach Gesamtpunkten, dann aufsteigend nach Mathepunkten
+# Vorrang haben die Gesamtpunkte (absteigend), bei Gleichstand die Mathepunkte (aufsteigend)
 indices_desc = np.lexsort((mathepunkte, -gesamtpunkte))
-print('Sortierung nach Gesamtpunkten (absteigend), dann nach Mathepunkten:')
+print('Vorrang Gesamtpunkte (absteigend), bei Gleichstand Mathepunkte (aufsteigend):')
 for i in indices_desc:
     print(f'{namen[i]}: Gesamt={gesamtpunkte[i]}, Mathe={mathepunkte[i]}')
 # Bob: Gesamt=92, Mathe=85
@@ -218,23 +213,23 @@ sortierbar.
 - Erstellen Sie mit `np.array` drei Arrays: `produkte` mit den Werten
   `['Laptop', 'Mouse', 'Keyboard', 'Monitor', 'Headset']`, `preise` mit den Werten
   `[1200, 25, 75, 300, 150]` und `bewertungen` mit den Werten `[4.5, 4.2, 4.5, 4.0, 4.5]`
-- Sortieren Sie die Produkte mit `np.lexsort` erst nach Bewertung (absteigend), dann nach Preis
-  (aufsteigend), und geben Sie in dieser Reihenfolge für jedes Produkt Name, Preis und
-  Bewertung aus
+- Sortieren Sie die Produkte mit `np.lexsort` nach zwei Kriterien: Vorrang hat die Bewertung
+  (absteigend); nur bei gleicher Bewertung entscheidet der Preis (aufsteigend).
+  Geben Sie in dieser Reihenfolge für jedes Produkt Name, Preis und Bewertung aus
 - Prüfen Sie Ihr Ergebnis: An erster Stelle steht weder das billigste noch das teuerste Produkt.
   Begründen Sie in einem Kommentar, warum es dennoch an erster Stelle landet
 
 [HINT::In welcher Reihenfolge muss ich die Arrays an `keys` übergeben?]
-Die Reihenfolge in `keys` ist leicht zu verwechseln: Das **zuletzt** übergebene Array bestimmt
-die Sortierung zuerst.
-Im Punktebeispiel oben steht deshalb `gesamtpunkte` als letztes Element in `keys`, weil zuerst nach
-der Gesamtpunktzahl sortiert werden soll und die Mathepunktzahl nur die Reihenfolge innerhalb
+Die Reihenfolge in `keys` ist leicht zu verwechseln: Das **zuletzt** übergebene Array hat den
+Vorrang.
+Im Punktebeispiel oben steht deshalb `gesamtpunkte` als letztes Element in `keys`, weil die
+Gesamtpunktzahl den Vorrang haben soll und die Mathepunktzahl nur die Reihenfolge innerhalb
 gleicher Gesamtpunktzahlen festlegt.
 [ENDHINT]
 
 <!-- time estimate: 20 min -->
 
-### Suchen von Extremwerten: `argmax`, `argmin` und `unravel_index`
+### Extremwerte finden und Indizes umrechnen: `argmax`, `argmin` und `unravel_index`
 
 Diese Funktionen finden die Indizes der größten und kleinsten Elemente:
 
@@ -278,6 +273,9 @@ numpy.unravel_index(indices, shape)
 - `indices`: flacher Index (oder Array von Indizes)
 - `shape`: Form des ursprünglichen mehrdimensionalen Arrays
 
+Die zeilenweise Anordnung, die dieser Umrechnung zugrunde liegt, heißt C-Ordnung und ist in
+[PARTREF::np-array2] bei `nditer` schon als Iterationsreihenfolge `order='C'` vorgekommen.
+
 ```python
 import numpy as np
 
@@ -303,10 +301,6 @@ print(f'Minimum {daten[zeile, spalte]} an flachem Index {flach_min} = Zeile {zei
 - Bestimmen Sie die Indizes der Maxima jeder Zeile in `zeilen_max_indizes` und die der Minima jeder
   Spalte in `spalten_min_indizes`
 - Verwenden Sie diese Indizes, um die tatsächlichen Werte auszugeben
-- Aus den beiden Positionen des globalen Maximums und Minimums lässt sich eine Rechenregel
-  vermuten, die den flachen Index aus Zeile und Spalte bestimmt.
-  Sagen Sie mit dieser Regel den flachen Index des Maximums der letzten Zeile voraus, das bei
-  Zeile 3, Spalte 1 liegt, und prüfen Sie die Vorhersage mit `np.unravel_index` nach
 
 [HINT::Welche `axis` brauche ich für "pro Zeile"?]
 Die Beispielaufrufe oben zeigen jeweils die andere Richtung als die hier verlangte; wer die
@@ -328,16 +322,7 @@ Am bequemsten ist eine Schleife über das Indexarray, die mit
 [`enumerate`](https://docs.python.org/3/library/functions.html#enumerate) die Position mitführt.
 [ENDHINT]
 
-[EQ] In [EREFR::3] haben Sie aus den Positionen von Maximum und Minimum eine Rechenregel für den
-flachen Index abgeleitet und an einer dritten Position nachgeprüft.
-Geben Sie diese Regel an und nennen Sie, welche Angabe über die Form des Arrays in sie eingeht.
-Die beiden ersten Positionen liegen allerdings so, dass auch andere Regeln zu ihnen passen.
-Erklären Sie anhand Ihrer dritten Position, warum die Probe deshalb nötig war.
-
-Die zeilenweise Anordnung, die dieser Regel zugrunde liegt, heißt C-Ordnung und ist in
-[PARTREF::np-array2] bei `nditer` schon als Iterationsreihenfolge `order='C'` vorgekommen.
-
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 ### Bedingte Suche und Filterung: `nonzero`, `where` und `extract`
 
@@ -411,9 +396,10 @@ NumPy-Dokumentation empfiehlt für diesen Fall aber ausdrücklich `np.nonzero`.
   unverändert bleiben; `arr` selbst bleibt dabei unangetastet
 - Erstellen Sie mit `np.array` ein 3×3-Array `mit_nullen` mit den Werten
   `[[0, 12, 0], [34, 0, 56], [0, 78, 0]]` und finden Sie darin die Nicht-Null-Elemente
-- Klären Sie die Bedeutung des Rückgabewerts für dieses 2D-Array anhand der
-  [Dokumentation zu `numpy.nonzero`](https://numpy.org/doc/stable/reference/generated/numpy.nonzero.html)
-  und erklären Sie Ihre Ausgabe in einem Kommentar
+- Klären Sie anhand der
+  [Dokumentation zu `numpy.nonzero`](https://numpy.org/doc/stable/reference/generated/numpy.nonzero.html),
+  welche Positionen die beiden Indexarrays gemeinsam bezeichnen, und erklären Sie Ihre Ausgabe in
+  einem Kommentar
 - Holen Sie alle Werte von -5 bis 5 aus `arr`, beide Grenzen eingeschlossen, auf zwei Wegen:
   einmal mit `np.extract` und einmal mit der Boolean-Maske aus [PARTREF::np-index-slice].
   Halten Sie in einem Kommentar fest, ob beide Wege dasselbe liefern
@@ -487,8 +473,7 @@ und ist nicht zugesichert.
 - Erzeugen Sie mit `np.arange` ein großes Array `grosses_array` mit 1 Million absteigend
   angeordneten Werten (von `1000000` bis `1`)
 - Setzen Sie in das Messgerüst oben die vollständige Sortierung mit `np.sort` und die
-  Partitionierung mit `np.partition` für die 10 kleinsten Werte ein, jeweils als kürzeste Zeit aus
-  5 Wiederholungen
+  Partitionierung mit `np.partition` für die 10 kleinsten Werte ein
 - Geben Sie beide gemessenen Zeiten (5 Nachkommastellen, `:.5f`) aus und berechnen Sie daraus den
   Geschwindigkeitsfaktor (1 Nachkommastelle, `:.1f`).
   Zu erwarten ist ein einstelliger Faktor, keine Zehnerpotenz; der genaue Wert hängt von der
