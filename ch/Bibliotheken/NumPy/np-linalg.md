@@ -6,7 +6,6 @@ assumes: np-index-slice, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
-
 - Ich kann Matrizen erstellen, transponieren und Einheitsmatrizen sowie verwandte Sonderformen
   erzeugen.
 - Ich kann Matrizen und Vektoren multiplizieren und begründen, welche der dafür angebotenen
@@ -16,11 +15,10 @@ assumes: np-index-slice, np-math, py-Fstrings
 - Ich kann lineare Gleichungssysteme lösen und meine Lösung durch eine Probe überprüfen.
 - Ich kann Rang, Eigenwerte, Normen und Singulärwertzerlegung einer Matrix mit `numpy.linalg`
   bestimmen.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 NumPy bietet umfangreiche Funktionen für Matrixoperationen und Berechnungen der
 linearen Algebra.
 Wer etwa eine Ausgleichsgerade durch Messpunkte legt, ein Bild dreht oder skaliert, oder in
@@ -28,8 +26,8 @@ einem neuronalen Netz eine Schicht auswertet, rechnet in allen drei Fällen dass
 Matrix-Vektor-Produkt bzw. ein Gleichungssystem.
 Deshalb steckt hinter vielen Bibliotheken der Datenanalyse und des maschinellen Lernens
 letztlich `numpy.linalg`.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -64,6 +62,7 @@ Für die weniger geläufigen dieser Begriffe helfen folgende Quellen:
 
 Die Zeitschätzung dieser Aufgabe setzt dieses Vorwissen voraus; wer es sich erst parallel
 aneignet, braucht entsprechend länger.
+
 
 ### Transposition: `transpose` und `.T`
 
@@ -113,6 +112,7 @@ Die Referenzseite dazu ist
 - Zeigen Sie, dass zweifaches Transponieren wieder die Ausgangsmatrix ergibt
 
 <!-- time estimate: 5 min -->
+
 
 ### Spezielle Matrizen: `identity` und `eye`
 
@@ -196,6 +196,7 @@ Warum bietet NumPy dann überhaupt noch `identity()` an, statt nur die allgemein
 Nennen Sie einen Grund, der über "das gab es historisch schon" hinausgeht.
 
 <!-- time estimate: 20 min -->
+
 
 ### Skalarprodukte und Matrixmultiplikation: `dot`, `matmul`, `vdot`, `inner`
 
@@ -366,6 +367,7 @@ transponieren.
 
 <!-- time estimate: 25 min -->
 
+
 ### Determinanten: `linalg.det`
 
 Geometrisch gibt der Betrag der Determinante an, um welchen Faktor eine Matrix Flächen bzw.
@@ -432,6 +434,7 @@ Mit `f'{wert:.3f}'` lässt sich die Ausgabe wieder auf sinnvolle Nachkommastelle
 [ENDHINT]
 
 <!-- time estimate: 15 min -->
+
 
 ### Inverse Matrizen und Konditionszahl: `linalg.inv` und `linalg.cond`
 
@@ -520,6 +523,7 @@ sondern die korrekte Reaktion, weil eine solche Matrix mathematisch keine Invers
 
 <!-- time estimate: 15 min -->
 
+
 ### Lineare Gleichungssysteme lösen: `linalg.solve`
 
 Lineare Gleichungssysteme entstehen überall dort, wo mehrere Größen gleichzeitig mehrere
@@ -597,6 +601,7 @@ berechnet haben; dann gibt es kein Gleichungssystem, dessen Lösung man beurteil
 Erklären Sie, welchen Nutzen die Konditionszahl in diesem Fall noch hat.
 
 <!-- time estimate: 20 min -->
+
 
 ### Rang und Eigenwerte: `linalg.matrix_rank`, `linalg.eig`, `linalg.eigh`
 
@@ -694,6 +699,7 @@ mit denen von `eigh` übereinstimmen.
 
 <!-- time estimate: 20 min -->
 
+
 ### Normen: `linalg.norm`
 
 Eine Norm braucht man, sobald Matrizen oder Vektoren verglichen werden sollen: Wie groß ist der
@@ -776,6 +782,7 @@ nicht.
 
 <!-- time estimate: 15 min -->
 
+
 ### Singulärwertzerlegung: `linalg.svd`
 
 Die Singulärwertzerlegung ist das Arbeitspferd hinter Datenkompression und Rauschunterdrückung:
@@ -843,6 +850,7 @@ Die Referenzseite dazu ist
 
 <!-- time estimate: 15 min -->
 
+
 ### Weiterführend
 
 - [Linear algebra (numpy.linalg)](https://numpy.org/doc/stable/reference/routines.linalg.html):
@@ -850,17 +858,17 @@ Die Referenzseite dazu ist
 - [numpy.linalg.lstsq](https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html):
   löst überbestimmte Gleichungssysteme, mit denen die im Hintergrundabschnitt erwähnte
   Ausgleichsgerade berechnet wird
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-linalg.md]
-
 [ENDINSTRUCTOR]
