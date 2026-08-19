@@ -1170,13 +1170,17 @@ Metadaten können z.B. sein aus welcher Quelle eine Information stammt oder eine
 
 
 [TERM::Middleware]
-Middleware ist Code, der sich zwischen den eigentlichen Empfang einer Anfrage und ihre Verarbeitung durch die
-eigentliche Anwendungslogik schaltet.
-Sie kann vor und/oder nach der eigentlichen Verarbeitung zusätzliche Aufgaben übernehmen — etwa Logging,
-Authentifizierung, das Setzen oder Auswerten von Headern, Fehlerbehandlung oder Kompression — ohne dass die eigentliche
-Anwendungslogik davon weiß.
-Middleware lässt sich meist verketten, sodass mehrere solcher Schichten nacheinander auf dieselbe Anfrage angewendet
-werden, bevor (und nachdem) sie die eigentliche Verarbeitung durchläuft.
+Middleware ist Infrastruktur-Software, die zwischen Betriebssystem bzw. Netzwerk und der eigentlichen
+Anwendungslogik sitzt und dieser wiederkehrende technische Aufgaben abnimmt.
+Der Begriff ist weit gefasst und umfasst jedenfalls Software mit Frameworkcharakter: Message Broker,
+Transaktionsverwaltung, Fernaufrufmechanismen (RPC), einheitlichen Datenbankzugriff (ODBC/JDBC) und anderes mehr.
+
+Ein besonders verbreiteter Spezialfall ist die Middleware in Web-Frameworks:
+Code, der sich zwischen den Empfang einer Anfrage und ihre Verarbeitung durch die Anwendungslogik schaltet und
+vor und/oder nach dieser Verarbeitung zusätzliche Aufgaben übernimmt (etwa Logging, Authentifizierung, das
+Setzen oder Auswerten von Headern, Fehlerbehandlung oder Kompression), ohne dass die Anwendungslogik davon weiß.
+Solche Middleware lässt sich meist verketten, sodass mehrere Schichten nacheinander auf dieselbe Anfrage
+angewendet werden: in Django als Liste `MIDDLEWARE`, in Go durch Verschachteln von `http.Handler`.
 [ENDTERM]
 
 

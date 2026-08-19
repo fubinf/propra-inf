@@ -4,6 +4,7 @@ timevalue: 1.0
 difficulty: 2
 requires: django-form
 assumes: curl, http-State
+explains: Middleware
 ---
 
 [SECTION::goal::idea,experience]
@@ -51,16 +52,14 @@ messages.success(request, message)
 Die weiteren Stufen und den vollen Funktionsumfang beschreibt die
 [Django-Doku zum Messages-Framework](https://docs.djangoproject.com/en/stable/ref/contrib/messages/).
 
-Konkretes Beispiel:
+Nicht offensichtlich ist dabei nur, woher `messages` kommt:
 
 ```python
 from django.contrib import messages
-
-messages.success(request, "Erfolgreich gespeichert")
 ```
 
-[ER] Ergänzen Sie Ihre `register`-View um eine Meldung: fügen Sie oben in `views.py` den
-Import wie im Beispiel hinzu.
+[ER] Ergänzen Sie Ihre `register`-View um eine Meldung: fügen Sie oben in `views.py` diesen
+Import hinzu.
 Rufen Sie in `register`, zwischen dem Anlegen des Studierenden und der Weiterleitung,
 `messages.success` mit dem aktuellen Request und dem Text "Registrierung erfolgreich" auf.
 
@@ -111,6 +110,11 @@ anders ist als bei den übrigen Views.
 [ENDHINT]
 
 Damit erscheint die Meldung also nicht dort, wo sie hingehört: auf der Detailseite.
+
+Zwischen dem Ablegen in der einen View und dem Anzeigen auf der nächsten Seite muss die Meldung
+irgendwo überdauern: Django speichert sie beim Erzeugen der Response wieder ab, standardmäßig in
+einem Cookie `messages`, das signiert und damit gegen Veränderung geschützt ist (Cookies kennen
+Sie aus [PARTREF::http-State]).
 <!-- time estimate: 20 min -->
 
 ### `CsrfViewMiddleware` kurzzeitig deaktivieren
@@ -121,12 +125,11 @@ mit Statuscode 403 abgewiesen.
 Zuständig dafür ist eine weitere **Middleware**: eine Komponente,
 die jeder Request auf dem Weg zur View und jede Response auf dem Rückweg durchläuft und die
 dabei eingreifen kann.
+Das ist die Ausprägung, die der allgemeine Begriff aus dem Glossar in einem Web-Framework
+annimmt; außerhalb davon bezeichnet er auch ganz andere Infrastruktur-Software.
 Welche Middlewares ein Projekt verwendet, steht als Liste `MIDDLEWARE` in `settings.py`; für
 den CSRF-Schutz ist der Eintrag `CsrfViewMiddleware` verantwortlich.
 Auch das Messages-Framework aus dem vorigen Abschnitt hängt an einem Eintrag dieser Liste.
-Die `MessageMiddleware` speichert die Meldungen beim Erzeugen der Response wieder ab,
-standardmäßig in einem Cookie `messages`, das signiert und damit gegen Veränderung geschützt
-ist (Cookies kennen Sie aus [PARTREF::http-State]).
 In welcher Reihenfolge die Liste abgearbeitet wird und was eine Middleware sonst noch leisten
 kann, erklärt die
 [Django-Doku zu Middleware](https://docs.djangoproject.com/en/stable/topics/http/middleware/).
@@ -196,8 +199,9 @@ Für die erste Frage hilft die im vorigen Abschnitt verlinkte Übersicht der ein
 Middlewares.
 
 In diesem und dem vorigen Abschnitt war `settings.py` die einzige Datei, die Sie angefasst
-haben; nehmen Sie sie mit in Ihre `*.files`-Datei auf, damit sich der wiederhergestellte
-Zustand der beiden Middleware-Zeilen prüfen lässt.
+haben; nehmen Sie sie neben `views.py` und `base.html` aus Abschnitt 1 mit in Ihre
+`*.files`-Datei auf, damit sich der wiederhergestellte Zustand der beiden Middleware-Zeilen
+prüfen lässt.
 <!-- time estimate: 15 min -->
 
 ### Weitere Bausteine im Überblick
