@@ -10,31 +10,22 @@ assumes: curl, http-State
 
 - Ich kenne Djangos Bordmittel für Nutzer-Rückmeldungen und für den Schutz vor typischen
   Angriffen und habe ihre Wirkung selbst beobachtet.
-- Ich weiß, was eine Middleware ist und warum ein Schutz, der für jeden Request gelten soll,
-  dort und nicht in einzelnen Views eingebaut wird.
+- Ich weiß, was eine Middleware ist und warum Aktionen, die für jeden Request getan werden müssen,
+  dort eingebaut werden.
 - Ich weiß grob, welche weiteren fortgeschrittenen Bausteine Django bietet.
-
 [ENDSECTION]
+
 
 [SECTION::background::default]
-
-Eine Registrierung, die kommentarlos auf einer anderen Seite landet, wäre in einer echten
-Anwendung ein Ärgernis.
-Ein Formular, das jeden Absender akzeptiert, und eine Seite, die sich in eine fremde Website
-einbetten lässt, wären jeweils eine Sicherheitslücke.
-Der erste Fall trifft auf Ihr Projekt bisher zu, denn Sie haben das passende Bordmittel
-noch nicht eingesetzt.
-Die beiden anderen verhindert Django von Anfang an: Den CSRF-Schutz haben Sie in
-[PARTREF::django-form] bereits kennengelernt, den Schutz vor Einbettung haben Sie nie bemerkt.
-Solche Bordmittel gehören zu keiner der bisher behandelten Kernkomponenten (Model, View,
-Template, Formular), sondern greifen quer dazu bei jedem Request.
-In dieser Aufgabe bauen Sie die fehlende Rückmeldung ein und schalten die beiden
-Schutzmechanismen kurz ab, um zu sehen, was sie eigentlich leisten.
-
+Wenn etwas in jeder View passieren muss, selbst wenn man davon hunderte hat,
+ist es schön, wenn man das einmal an einer zentralen Stelle realisieren kann,
+anstatt in jeder View daran denken zu müssen.
+Django hat diverse Bordmittel von dieser Art und man kann leicht eigene ergänzen.
+Sie heißen [TERMREF::Middleware].
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 Sie arbeiten weiter mit der App `webapp` aus [PARTREF::django-project].
 
 Starten Sie für die folgenden Schritte in einer separaten Shell den Entwicklungsserver mit
@@ -45,7 +36,8 @@ Port betreiben, passen Sie sie entsprechend an.
 ### Bestätigungsmeldungen mit `django.contrib.messages`
 
 Django kann Meldungen ("Registrierung erfolgreich", "Bitte anmelden" usw.) von einer View aus
-weitergeben: Die View legt die Meldung ab, eine später aufgerufene Seite zeigt sie an.
+weitergeben: Die View legt die Meldung ab, die anschließend angezeigte Seite zeigt sie an,
+und zwar egal, welche Folgeseite dies ist.
 
 ```python
 messages.success(request, message)
@@ -72,23 +64,27 @@ Import wie im Beispiel hinzu.
 Rufen Sie in `register`, zwischen dem Anlegen des Studierenden und der Weiterleitung,
 `messages.success` mit dem aktuellen Request und dem Text "Registrierung erfolgreich" auf.
 
-Sichtbar wird die Meldung erst, wenn ein Template sie auch anzeigt.
-`messages` ist dafür bereits in jedem Template verfügbar, ganz ohne dass eine View diese
+Sichtbar wird die Meldung aber nur, wenn das Template der Folgeseite sie auch anzeigt.
+Ein Objekt `messages` ist dafür bereits in jedem Template verfügbar, ganz ohne dass eine View diese
 Variable in den Context aufnehmen muss; dafür sorgt der Eintrag
 `django.contrib.messages.context_processors.messages` in `settings.py` unter
 `TEMPLATES` → `OPTIONS` → `context_processors`.
 Ein solcher Context-Prozessor ist eine Funktion, die den Context jedes mit `render()`
 erzeugten Templates automatisch um weitere Variablen ergänzt.
-Durchlaufen lässt sich `messages` wie jede andere Liste mit einer `{% for %}`-Schleife aus
+
+`messages` verhält sich wie eine Liste, denn es könnten mehrere Meldungen zugleich relevant sein.
+Man durchläuft sie wie jede andere Liste mit einer `{% for %}`-Schleife aus
 [PARTREF::django-template].
-Jedes Element ist dabei ein Meldungsobjekt: `{{ message }}` liefert den Text und
-`{{ message.tags }}` als Textmarke die Stufe, unter der die Meldung abgelegt wurde.
+Jedes Element ist dabei ein Meldungsobjekt, nennen wir es `message`:
+`{{ message }}` liefert den Text und
+`{{ message.tags }}` liefert die Stufe, unter der die Meldung abgelegt wurde;
+oben war das `success`.
 Ein Beispiel für einen solchen Block zeigt der Abschnitt "Displaying messages" der oben
 verlinkten Doku zum Messages-Framework.
 
 [ER] Fügen Sie in `base.html` eine `{% for %}`-Schleife über `messages` ein, die jede Meldung
-als eigenen Absatz (`<p>`) in der Form `Stufe: Text` ausgibt.
-Platzieren Sie sie so, dass jedes Kind-Template die Ausgabe erbt.
+als eigenen Absatz (`<p>`) in der Form `<stufe>: <text>` ausgibt.
+Platzieren Sie sie so, dass jedes Kind-Template die Ausgabe übernimmt.
 
 Registrieren Sie über `http://127.0.0.1:8071/register/` einen Studierenden mit dem Namen
 "Sophie Wagner", Alter `22` und der E-Mail "sophie@example.com".
@@ -102,11 +98,11 @@ Was sagen Ihnen die beiden Aufrufe der Studierendenliste über den Zeitpunkt, zu
 Meldung "verbraucht" wird?
 
 [HINT::Ich sehe die Meldung auf keiner einzigen Seite]
-Prüfen Sie zuerst `base.html`: Steht Ihr neuer `{% for %}`-Block wirklich außerhalb von
+Prüfen Sie zuerst `base.html`: Steht Ihr neuer `{% for %}`-Block _außerhalb_ von
 `{% block content %}`?
-Jedes Kind-Template ersetzt den Inhalt dieses Blocks durch seinen eigenen;
+Denn innerhalb gilt: Jedes Kind-Template ersetzt den Inhalt dieses Blocks durch seinen eigenen;
 die Schleife käme dann nie zur Ausgabe.
-Prüfen Sie danach, ob `messages.success` in `register` vor dem `redirect` steht.
+Prüfen Sie danach, ob `messages.success` in `register` _vor_ dem `redirect` steht.
 [ENDHINT]
 
 [HINT::Ich verstehe nicht, warum ausgerechnet die Detailseite nichts anzeigt]
@@ -114,8 +110,7 @@ Sehen Sie sich an, was `student_detail` aus [PARTREF::django-view] zurückgibt u
 anders ist als bei den übrigen Views.
 [ENDHINT]
 
-Dass die Meldung damit noch nicht dort steht, wo sie hingehört, ist Absicht; woran es liegt,
-steht in Ihrer Antwort auf die vorige Frage.
+Damit erscheint die Meldung also nicht dort, wo sie hingehört: auf der Detailseite.
 <!-- time estimate: 20 min -->
 
 ### `CsrfViewMiddleware` kurzzeitig deaktivieren
@@ -123,7 +118,7 @@ steht in Ihrer Antwort auf die vorige Frage.
 Beim zweiten Bordmittel geht es um den CSRF-Schutz selbst.
 Seine Wirkung kennen Sie aus [PARTREF::django-form]: Ein POST ohne gültiges Token wurde dort
 mit Statuscode 403 abgewiesen.
-Zuständig dafür ist keine der Kernkomponenten, sondern eine **Middleware**: eine Komponente,
+Zuständig dafür ist eine weitere **Middleware**: eine Komponente,
 die jeder Request auf dem Weg zur View und jede Response auf dem Rückweg durchläuft und die
 dabei eingreifen kann.
 Welche Middlewares ein Projekt verwendet, steht als Liste `MIDDLEWARE` in `settings.py`; für
@@ -140,13 +135,10 @@ Welche Middlewares Django mitbringt und was jede davon tut, listet die
 
 Öffnen Sie `settings.py` im Konfigurationsordner `meinprojekt/meinprojekt/` und kommentieren
 Sie in `MIDDLEWARE` die Zeile mit `CsrfViewMiddleware` aus.
-Das ist nur ein Zwischenzustand für den folgenden Test: Am Ende dieses Abschnitts muss die
-Zeile wieder unverändert dastehen.
+Das ist nur ein Zwischenzustand für den folgenden Test; am Ende dieses Abschnitts muss die
+Zeile wieder dastehen wie zu Beginn.
 
-Der Autoreloader des Entwicklungsservers erfasst auch `settings.py`, sodass die Änderung ohne
-Neustart wirkt; warten Sie kurz.
-
-[EC] Senden Sie denselben Aufruf wie in [PARTREF::django-form], der einen POST ohne
+[EC] Senden Sie den gleichen Aufruf wie in [PARTREF::django-form], der einen POST ohne
 CSRF-Token an `/search-post/` schickt und nur den Statuscode ausgibt:
 
 ```bash
@@ -155,9 +147,8 @@ curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "q=Anna" http://127.0.0.1:80
 
 [EC] Kommentieren Sie die Zeile wieder ein und senden Sie denselben Aufruf ein zweites Mal.
 
-[HINT::Ich bekomme beide Male denselben Statuscode]
-Dann hatte der Entwicklungsserver Ihre geänderte `settings.py` beim ersten Aufruf noch nicht
-eingelesen.
+[HINT::Ich bekomme nicht die richtigen Statuscodes]
+Dann hatte der Entwicklungsserver Ihre geänderte `settings.py` noch nicht fertig eingelesen.
 Im Serverfenster erscheint nach jeder Änderung eine Zeile, die auf
 `settings.py changed, reloading.` endet; warten Sie diese ab und wiederholen Sie den Aufruf.
 [ENDHINT]
@@ -165,7 +156,7 @@ Im Serverfenster erscheint nach jeder Änderung eine Zeile, die auf
 [EQ] Verändert haben Sie keine einzige View, sondern nur eine Zeile in `settings.py`, und
 trotzdem ändert sich das Verhalten von `/search-post/`.
 Welche Ihrer übrigen Views wären von derselben Zeile ebenfalls betroffen, welche nicht?
-Was folgt daraus für die Frage, wo ein Schutz dieser Art sinnvollerweise ansetzt?
+Für welche Zwecke ist so etwas sinnvoll?
 
 [HINT::Ich weiß nicht, welche meiner Views überhaupt betroffen sein können]
 Sehen Sie in [PARTREF::django-form] nach, bei welcher Art von Anfrage Django ein gültiges Token
@@ -211,7 +202,7 @@ Zustand der beiden Middleware-Zeilen prüfen lässt.
 
 ### Weitere Bausteine im Überblick
 
-Die folgenden drei Bausteine probieren Sie nicht selbst aus.
+Die folgenden drei Bausteine probieren wir nicht selbst aus.
 Es reicht, zu wissen, dass es sie gibt und wofür sie sich einsetzen lassen, damit Sie bei
 Bedarf gezielt danach suchen können:
 
