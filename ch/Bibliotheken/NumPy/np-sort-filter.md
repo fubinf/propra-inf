@@ -15,20 +15,18 @@ assumes: np-array2, np-index-slice, py-Fstrings
   zusammenhängen.
 - Ich kann Arrays nach einer Bedingung durchsuchen und filtern.
 - Ich kann begründen, wann eine Partitionierung der vollständigen Sortierung vorzuziehen ist.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 NumPy bietet spezialisierte Funktionen zum Sortieren, Suchen und Filtern von Arrays.
 Damit bringt man Datensätze nach einem oder mehreren Kriterien in eine Rangfolge, lokalisiert
 Extremwerte und wählt Teilmengen nach einer Bedingung aus.
 Solche Schritte stehen am Anfang fast jeder Datenauswertung, noch vor der eigentlichen Rechnung.
-
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 ### Grundlegende Sortierung: `sort`
 
 Die grundlegende Sortierfunktion sortiert entlang einer wählbaren Achse:
@@ -74,7 +72,8 @@ also gleichwertig.
 View im Sinne von [PARTREF::np-index-slice].
 Die Methode `arr.sort()` dagegen sortiert an Ort und Stelle und überschreibt dabei die
 Ausgangsdaten.
-Keine der Sortier-, Such- und Filterfunktionen dieser Aufgabe verändert das übergebene Array.
+Alle `np.`-Funktionen dieser Aufgabe lassen das übergebene Array unverändert;
+an Ort und Stelle arbeiten nur Methoden wie `arr.sort()`.
 
 [EQ] Für `arr = np.array([[30, 70], [90, 10]])` sollen die beiden Schreibweisen `np.sort(arr)[1]`
 und `arr.sort()[1]` dieselbe zweite Zeile des sortierten Arrays liefern.
@@ -129,7 +128,7 @@ print(rekonstruiert)
 print('Stimmt mit np.sort überein?', np.array_equal(rekonstruiert, np.sort(arr, axis=1)))
 ```
 
-[ER] Arbeiten Sie mit grundlegenden Sortierfunktionen:
+[ER] Rekonstruieren Sie sortierte Arrays aus Sortierungsindizes:
 
 - Erstellen Sie mit `np.array` ein 3×4-Array `werte` mit den Werten
   `[[80, 30, 150, 60], [120, 10, 90, 200], [40, 170, 20, 110]]`
@@ -170,7 +169,7 @@ numpy.lexsort(keys)
 ```python
 import numpy as np
 
-# Beispiel: Studierendendaten nach Gesamtpunkten, dann nach Mathematikpunkten
+# Beispiel: Studierendendaten nach Gesamtpunkten, dann nach Mathepunkten
 namen = np.array(['Alice', 'Bob', 'Charlie', 'Diana'])
 gesamtpunkte = np.array([85, 92, 85, 88])
 mathepunkte = np.array([90, 85, 95, 82])
@@ -223,7 +222,7 @@ sortierbar.
   (aufsteigend), und geben Sie in dieser Reihenfolge für jedes Produkt Name, Preis und
   Bewertung aus
 - Prüfen Sie Ihr Ergebnis: An erster Stelle steht weder das billigste noch das teuerste Produkt.
-  Begründen Sie in einem Kommentar, warum dieses Produkt trotzdem vorne steht
+  Begründen Sie in einem Kommentar, warum es dennoch an erster Stelle landet
 
 [HINT::In welcher Reihenfolge muss ich die Arrays an `keys` übergeben?]
 Die Reihenfolge in `keys` ist leicht zu verwechseln: Das **zuletzt** übergebene Array bestimmt
@@ -340,7 +339,7 @@ Die zeilenweise Anordnung, die dieser Regel zugrunde liegt, heißt C-Ordnung und
 
 <!-- time estimate: 20 min -->
 
-### Bedingte Suche: `nonzero`, `where` und `extract`
+### Bedingte Suche und Filterung: `nonzero`, `where` und `extract`
 
 NumPy bietet folgende Funktionen für die bedingte Suche und Filterung:
 
@@ -444,7 +443,7 @@ Garantiert ist nur diese eine Position: Vor `kth` steht kein größerer Wert, da
 kleinerer.
 In welcher Reihenfolge die Werte innerhalb dieser beiden Gruppen liegen, ist offen und kann je nach
 NumPy-Version anders aussehen.
-Wer die `k` kleinsten Werte zusätzlich in sortierter Reihenfolge braucht, muss das Teilstück
+Wer die kleinsten Werte zusätzlich in sortierter Reihenfolge braucht, muss das Teilstück
 deshalb selbst noch sortieren.
 Das folgende Beispiel prüft die Garantie mit `np.all(condition)`, das genau dann `True` liefert,
 wenn jedes Element des Boolean-Arrays `condition` `True` ist.
@@ -517,17 +516,16 @@ woher dieser Unterschied kommt.
 - [NumPy-Referenz zu `numpy.lexsort`](https://numpy.org/doc/stable/reference/generated/numpy.lexsort.html)
 - [NumPy-Referenz: Indexierungs-Routinen](https://numpy.org/doc/stable/reference/routines.indexing.html):
   darunter `numpy.take_along_axis` und `numpy.unravel_index`
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Kontrollergebnisse]
 
+[INSTRUCTOR::Kontrollergebnisse]
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:np-sort-filter.md]
-
 [ENDINSTRUCTOR]
