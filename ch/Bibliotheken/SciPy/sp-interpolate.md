@@ -7,23 +7,21 @@ assumes: np-Einführung, np-array, np-array2, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
-
 - Ich kann eindimensionale Interpolation mit den aktuellen SciPy-Funktionen durchführen.
 - Ich kann den Einfluss des Glättungsparameters auf das Interpolationsergebnis beurteilen.
 - Ich kann Streudaten auch in mehr als einer Dimension interpolieren.
 - Ich kann verschiedene Interpolationsverfahren vergleichen und für gegebene Daten
   ein geeignetes auswählen.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Beim Arbeiten mit Messdaten liegen oft nur einzelne, diskrete Punkte vor, man braucht aber
 Werte dazwischen — etwa um Lücken in einer Messreihe zu füllen oder aus den Messpunkten
 eine durchgehende Kurve zu gewinnen.
 SciPy stellt dafür mehrere Interpolationsverfahren bereit.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -37,6 +35,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
   Konzept der numerischen Interpolation, Polynom- und Spline-Interpolation
 - [Radiale Basisfunktion (Wikipedia)](https://de.wikipedia.org/wiki/Radiale_Basisfunktion):
   Konzept der radialen Basisfunktionen (für den RBF-Abschnitt)
+
 
 ### Eindimensionale Interpolation: `make_interp_spline` und `CubicSpline`
 
@@ -153,6 +152,7 @@ wäre wie dort?
 
 <!-- time estimate: 30 min -->
 
+
 ### Glättende Splines: `make_splrep`
 
 Bei verrauschten Messdaten ist eine exakte Interpolation durch jeden Punkt oft nicht erwünscht —
@@ -180,7 +180,8 @@ Der Rückgabewert ist wieder ein aufrufbares Objekt.
 Quadraten; der brauchbare Bereich hängt deshalb von der Punktzahl und der Streuung der Daten ab.
 Als grobe Größenordnung taugt "Anzahl der Punkte mal Quadrat der typischen Streuung", bei
 20 Punkten mit einer Streuung von rund 0.1 also 20 · 0.1² = 0.2.
-Welchen Bereich SciPy empfiehlt und wie er von den Gewichten abhängt, steht beim Parameter `s` in der
+Welchen Bereich SciPy empfiehlt und wie er von den Gewichten abhängt,
+steht beim Parameter `s` in der
 [Referenz zu `make_splrep`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_splrep.html).
 
 **Beispiel:**
@@ -229,6 +230,7 @@ Was folgt daraus für den Versuch, die Güte einer Interpolation an ihrer Abweic
 Messwerten abzulesen?
 
 <!-- time estimate: 25 min -->
+
 
 ### Radiale Basisfunktionen: `RBFInterpolator`
 
@@ -323,13 +325,14 @@ Auch hier lässt sich die Ausgabe als Tabelle gestalten:
 
 <!-- time estimate: 35 min -->
 
+
 ### Interpolationsverfahren vergleichen und auswählen
 
 Welches Verfahren geeignet ist, hängt von den Daten und dem Ziel ab:
 
 | Verfahren | Eigenschaft | typische Anwendung |
 |-----------|-------------|--------------------|
-| `make_interp_spline` (`k=1`) | linear, geht durch alle Punkte, dort "eckig" | einfache, dichte Daten |
+| `make_interp_spline` (`k=1`) | linear, geht durch alle Punkte, dort "eckig" | dichte Daten |
 | `CubicSpline` | glatt, geht durch alle Punkte | glatte Funktionen ohne Rauschen |
 | `make_splrep` (`s>0`) | glättet, geht nicht mehr exakt durch die Punkte | verrauschte Messdaten |
 | `RBFInterpolator` | flexibel, auch mehrdimensional/unregelmäßig | Streudaten, höhere Dimensionen |
@@ -371,6 +374,7 @@ Bei `rbf` ist dabei wieder `x_fein.reshape(-1, 1)` einzusetzen.
 
 <!-- time estimate: 30 min -->
 
+
 ### Weiterführend
 
 - [1-D interpolation (SciPy)](https://docs.scipy.org/doc/scipy/tutorial/interpolate/1D.html):
@@ -383,17 +387,17 @@ Bei `rbf` ist dabei wieder `x_fein.reshape(-1, 1)` einzusetzen.
   Referenz zu glättenden Splines
 - [RBFInterpolator](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.RBFInterpolator.html):
   Referenz zu radialen Basisfunktionen
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-interpolate.md]
-
 [ENDINSTRUCTOR]

@@ -6,21 +6,19 @@ assumes: np-Einführung, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
-
 - Ich kann SciPy installieren und die Installation überprüfen.
 - Ich kann die SciPy-Module dieser Aufgabengruppe ihren Anwendungsbereichen zuordnen.
 - Ich kann mit `scipy.constants` mathematische und physikalische Konstanten sowie
   Umrechnungsfaktoren abrufen und die beiden Zugriffswege des Moduls unterscheiden.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Diese Aufgabe verschafft einen Überblick über die Modulgliederung von SciPy und übt den Zugriff
 auf `scipy.constants`.
 Die übrigen Module sind Gegenstand der restlichen Aufgaben dieser Gruppe.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -41,6 +39,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 - [Methode der kleinsten Quadrate (Wikipedia)](https://de.wikipedia.org/wiki/Methode_der_kleinsten_Quadrate):
   Grundidee der Ausgleichsrechnung
 
+
 ### SciPy installieren
 
 [EC] Installieren Sie SciPy mit `pip`:
@@ -56,6 +55,7 @@ python -c "import scipy; print(scipy.__version__)"
 ```
 
 <!-- time estimate: 5 min -->
+
 
 ### SciPy-Module: Überblick und Anwendungsbereiche
 
@@ -107,6 +107,7 @@ Begründen Sie Ihre Auswahl:
 - Anpassung einer Modellfunktion an eine Messreihe
 
 <!-- time estimate: 10 min -->
+
 
 ### Mathematische und physikalische Konstanten mit `scipy.constants`
 
@@ -182,14 +183,15 @@ Erklären Sie, warum das Tripel trotzdem für alle Einträge dieselbe Form hat.
 
 <!-- time estimate: 25 min -->
 
+
 ### Weiterführend
 
 - [SciPy Tutorial](https://docs.scipy.org/doc/scipy/tutorial/index.html):
   Einstieg in die einzelnen Module mit durchgerechneten Beispielen
 - [`scipy.constants.find`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.constants.find.html):
   Suche nach Schlüsseln von `physical_constants`
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
@@ -197,12 +199,13 @@ Erklären Sie, warum das Tripel trotzdem für alle Einträge dieselbe Form hat.
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Kommandoprotokoll
 [PROT::ALT:sp-Einführung.prot]
 
+
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-Einführung.md]
-
 [ENDINSTRUCTOR]

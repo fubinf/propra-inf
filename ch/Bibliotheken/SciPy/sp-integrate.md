@@ -7,21 +7,20 @@ assumes: np-Einführung, np-array2, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
-
 - Ich kann bestimmte Integrale numerisch berechnen, auch mit Parametern oder unendlichen Grenzen.
 - Ich kann Anfangswertprobleme numerisch lösen.
 - Ich kann anhand der Rückgabewerte beurteilen, ob ein numerisches Ergebnis verlässlich ist.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
-Viele Integrale und Differentialgleichungen lassen sich nicht analytisch (in geschlossener Form) lösen.
+[SECTION::background::default]
+Viele Integrale und Differentialgleichungen lassen sich nicht analytisch
+(in geschlossener Form) lösen.
 SciPy stellt mit `scipy.integrate` numerische Verfahren bereit, die stattdessen Näherungslösungen
 berechnen — zusammen mit Diagnoseinformationen, anhand derer sich beurteilen lässt, wie verlässlich
 diese Näherung ist.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -35,6 +34,7 @@ Falls sie fehlen, helfen diese Quellen:
   Quadraturverfahren stattdessen vorgehen
 - [Anfangswertproblem (Wikipedia)](https://de.wikipedia.org/wiki/Anfangswertproblem): Grundbegriff
   einer gewöhnlichen Differentialgleichung mit Anfangsbedingung (`dy/dt = f(t, y)`, `y(t₀) = y₀`)
+
 
 ### Numerische Integration mit `scipy.integrate.quad`
 
@@ -149,6 +149,7 @@ das Ergebnis mit der Voreinstellung ist also rund 14-mal so groß.
 
 <!-- time estimate: 25 min -->
 
+
 ### Parametrisierte Integrale mit `args`
 
 Oft muss dasselbe Integral für verschiedene Parameterwerte berechnet werden.
@@ -186,6 +187,7 @@ Wie viele Stellen wären in beiden Varianten zu ändern, wenn statt drei `k`-Wer
 rechnen wären?
 
 <!-- time estimate: 25 min -->
+
 
 ### Gewöhnliche Differentialgleichungen mit `solve_ivp`
 
@@ -282,6 +284,7 @@ analytischen Lösung, formatiert wie in [EREFR::1].
 
 <!-- time estimate: 25 min -->
 
+
 ### Verfahren und Toleranzen vergleichen, Abbrüche erkennen
 
 [ER] Vergleichen Sie verschiedene Verfahren und Toleranzen:
@@ -303,23 +306,24 @@ Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und w
 
 <!-- time estimate: 30 min -->
 
+
 ### Weiterführend
 
 - [SciPy Integration Tutorial](https://docs.scipy.org/doc/scipy/tutorial/integrate.html):
   Überblick über das gesamte `integrate`-Modul
 - [scipy.integrate Reference](https://docs.scipy.org/doc/scipy/reference/integrate.html):
   vollständige Übersicht aller Funktionen des Moduls
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-integrate.md]
-
 [ENDINSTRUCTOR]

@@ -7,26 +7,24 @@ assumes: np-Einführung, np-array, np-linalg, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
-
 - Ich verstehe, wann es sich lohnt, eine Matrix in einer Sparse-Darstellung statt dicht zu
   speichern, und kann den Vorteil an Speicher und Laufzeit messen.
 - Ich kann Matrizen im CSR-Format erstellen und ihre gespeicherten Werte analysieren.
 - Ich kann Graphen als Adjazenzmatrix darstellen und darauf kürzeste Pfade berechnen.
 - Ich kann eine explizit gespeicherte Null von einer nicht gespeicherten unterscheiden und
   erklären, was dieser Unterschied für einen als Adjazenzmatrix gespeicherten Graphen bedeutet.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 `scipy.linalg` arbeitet mit dicht besetzten Matrizen, bei denen jeder Eintrag gespeichert wird.
 In vielen Anwendungen sind jedoch fast alle Einträge einer großen Matrix Null — etwa in der
 numerischen Lösung partieller Differentialgleichungen, in der Netzwerkanalyse und bei
 Machine-Learning-Problemen.
 `scipy.sparse` ergänzt die lineare Algebra um Datenstrukturen, die nur die von Null verschiedenen
 Einträge festhalten, und um Algorithmen, die auf dieser Darstellung direkt rechnen.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -45,6 +43,7 @@ Falls Ihnen diese Konzepte fehlen, helfen folgende Quellen:
 Es geht in dieser Aufgabe nicht darum, den Dijkstra-Algorithmus selbst zu implementieren.
 Gezeigt wird stattdessen, wie SciPy einen in einer Sparse-Darstellung gespeicherten Graphen
 aufnimmt und die fertigen Algorithmen darauf anwendet.
+
 
 ### Dünnbesetzte Matrizen: dichte und Sparse-Speicherung
 
@@ -75,6 +74,7 @@ Bei einer quadratischen Matrix mit einer Million Zeilen, in der pro Zeile nur ei
 Einträge besetzt ist, entscheidet dieser Verzicht auf das Speichern und Berechnen der Nullen
 darüber, ob die Matrix überhaupt in den Speicher passt und Rechnungen in vertretbarer Zeit
 ablaufen.
+
 
 ### CSR-Arrays erstellen und untersuchen: `csr_array`
 
@@ -134,6 +134,7 @@ Form (`shape`) wieder vollständig herstellen lässt.
 Prüfen Sie dabei, ob die Form dafür nötig ist oder sich schon aus den Koordinaten ergibt.
 
 <!-- time estimate: 15 min -->
+
 
 ### Gespeicherte Werte, Positionen und explizite Nullen
 
@@ -228,6 +229,7 @@ Trennen Sie dabei die beiden Posten, die zu den gespeicherten Werten hinzukommen
 welcher der beiden bei einer Matrix mit sehr vielen Spalten kaum noch ins Gewicht fällt.
 
 <!-- time estimate: 30 min -->
+
 
 ### Graphen als Adjazenzmatrix: kürzeste Pfade mit `csgraph`
 
@@ -339,6 +341,7 @@ haben können.
 
 <!-- time estimate: 40 min -->
 
+
 ### Wann sich die Sparse-Darstellung auszahlt: Speicher und Laufzeit messen
 
 Wie groß der Vorteil der Sparse-Darstellung ausfällt, hängt von der Größe der Matrix und von ihrer
@@ -411,6 +414,7 @@ Geben Sie zu den drei Arrays des CSR-Formats jeweils `dtype` aus.
 
 <!-- time estimate: 35 min -->
 
+
 ### Weiterführend
 
 - [SciPy Sparse Documentation](https://docs.scipy.org/doc/scipy/reference/sparse.html): Überblick
@@ -427,17 +431,17 @@ Geben Sie zu den drei Arrays des CSR-Formats jeweils `dtype` aus.
 - [Lineare Algebra für Sparse-Arrays (`scipy.sparse.linalg`)](https://docs.scipy.org/doc/scipy/reference/sparse.linalg.html):
   Gleichungssysteme, Zerlegungen und Eigenwerte direkt auf der Sparse-Darstellung, also das
   Gegenstück zu `scipy.linalg` aus dem Hintergrundabschnitt
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-sparse.md]
-
 [ENDINSTRUCTOR]

@@ -7,18 +7,16 @@ assumes: np-Einführung, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
-
 - Ich kann mit SciPy Nullstellen nichtlinearer Gleichungen und Minima von Funktionen numerisch
   bestimmen sowie Modellparameter an Messdaten anpassen.
 - Ich kann verschiedene Optimierungsverfahren und Startwerte vergleichen und für ein gegebenes
   Problem eine begründete Wahl treffen.
 - Ich kann anhand des Ergebnisobjekts beurteilen, ob ein Optimierungsaufruf ein verlässliches
   Ergebnis geliefert hat.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Viele mathematische und wissenschaftliche Probleme erfordern das Finden von Nullstellen
 nichtlinearer Gleichungen oder das Bestimmen von Minima komplexer Funktionen.
 NumPy deckt davon nur die Nullstellen von Polynomen ab.
@@ -27,8 +25,8 @@ geschlossen auflösen, hier hilft nur ein numerisches Näherungsverfahren.
 Das SciPy-Modul `optimize` stellt solche Verfahren fertig bereit, sodass man sie nicht selbst
 implementieren muss; sie sind auf beliebige nichtlineare Funktionen anwendbar, Polynome
 eingeschlossen.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -43,6 +41,7 @@ Falls sie fehlen, helfen diese Quellen:
 - [Nullstelle (Wikipedia)](https://de.wikipedia.org/wiki/Nullstelle): warum
   nichtlineare/transzendente Gleichungen numerische Näherungsverfahren (Newton-Verfahren u. Ä.)
   statt einer algebraischen Lösung benötigen
+
 
 ### Nullstellenfindung mit `scipy.optimize.root`
 
@@ -123,6 +122,7 @@ Belegen Sie jedes genannte Risiko mit einer Zeile aus Ihrer eigenen Ausgabe.
 
 <!-- time estimate: 30 min -->
 
+
 ### Funktionsminimierung mit `scipy.optimize.minimize`
 
 Sehr viele Anwendungen laufen auf eine Minimierung hinaus: ein Modell an Messdaten anpassen,
@@ -145,9 +145,9 @@ scipy.optimize.minimize(fun, x0, method=None)
 
 | Methode | Eigenschaft |
 |---------|-------------|
-| `'BFGS'` | Quasi-Newton-Verfahren mit numerisch geschätzter Ableitung, meist schnell bei glatten Funktionen |
+| `'BFGS'` | Quasi-Newton, numerisch geschätzte Ableitung, schnell bei glatten Funktionen |
 | `'CG'` | konjugierte Gradienten, sparsamer im Speicher als `'BFGS'` |
-| `'Nelder-Mead'` | gradientenfreies Simplex-Verfahren, robuster bei nicht glatten Funktionen, braucht dafür meist mehr Funktionsauswertungen |
+| `'Nelder-Mead'` | ohne Ableitung, robust bei nicht glatten Funktionen, dafür mehr Auswertungen |
 
 Die vollständige Liste der Verfahren und Parameter steht in der Referenz zu
 [`scipy.optimize.minimize`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html).
@@ -219,6 +219,7 @@ vertrauenswürdig einzustufen, und warum reicht "kein Fehler aufgetreten" allein
 
 <!-- time estimate: 30 min -->
 
+
 ### Skalarminimierung mit `scipy.optimize.minimize_scalar`
 
 Viele praktische Fragen haben nur eine Stellgröße — die günstigste Losgröße, die beste Dosierung,
@@ -288,6 +289,7 @@ für `x → -∞` erklärt das?
 Was kommt damit zu Ihrer Feststellung über `result.success` aus [EREFQ::3] hinzu?
 
 <!-- time estimate: 30 min -->
+
 
 ### Kurvenanpassung mit `scipy.optimize.curve_fit`
 
@@ -393,6 +395,7 @@ Was folgt daraus für die Brauchbarkeit des linearen Modells?
 
 <!-- time estimate: 30 min -->
 
+
 ### Weiterführend
 
 - [SciPy Optimization Guide](https://docs.scipy.org/doc/scipy/tutorial/optimize.html): Überblick
@@ -405,17 +408,17 @@ Was folgt daraus für die Brauchbarkeit des linearen Modells?
   Referenz zu den von `minimize_scalar` unterstützten Verfahren
 - [Least-squares and curve fitting](https://docs.scipy.org/doc/scipy/reference/optimize.html#least-squares-and-curve-fitting):
   Referenz zu `curve_fit` und den verwandten Least-Squares-Verfahren
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-optimize.md]
-
 [ENDINSTRUCTOR]

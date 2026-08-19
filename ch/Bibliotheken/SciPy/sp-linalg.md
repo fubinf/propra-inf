@@ -7,22 +7,20 @@ assumes: np-Einführung, np-array, np-math, np-linalg, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
-
 - Ich kenne die Matrixzerlegungen, mit denen sich Gleichungssysteme numerisch lösen lassen.
 - Ich kann spezialisierte Solver für unterschiedliche Systemstrukturen einsetzen.
 - Ich kann anhand der Konditionszahl beurteilen, ob ein Gleichungssystem zuverlässig lösbar ist.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 `numpy.linalg` deckt die grundlegenden Operationen der linearen Algebra ab.
 `scipy.linalg` erweitert das um weitere Matrixzerlegungen und um Solver, die auf eine bekannte
 Struktur der Koeffizientenmatrix zugeschnitten sind.
 Wer numerisch rechnet, braucht außerdem ein Urteil darüber, wie belastbar das Ergebnis ist:
 Ein Solver liefert fast immer eine Antwort, aber nicht immer eine verlässliche.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -50,6 +48,7 @@ Geben Sie einzelne Zahlenwerte in dieser Aufgabe mit f-Strings aus; für ganze M
 `print()`.
 Wo unten eine Anzahl Nachkommastellen oder wissenschaftliche Notation verlangt wird, stellen Sie
 das über die Formatierungsanweisung des f-Strings ein (siehe [PARTREF::py-Fstrings]).
+
 
 ### Matrixzerlegungen mit SciPy
 
@@ -186,6 +185,7 @@ der die Cholesky-Zerlegung laut der Beschreibung von `cholesky()` oben überhaup
 [ENDHINT]
 
 <!-- time estimate: 25 min -->
+
 
 ### Erweiterte Gleichungssystem-Solver
 
@@ -329,6 +329,7 @@ durch Nullen ersetzt, und lösen Sie dieses System mit `linalg.solve()`.
 
 <!-- time estimate: 30 min -->
 
+
 ### Konditionszahl und LU-Zerlegung in der Praxis
 
 Die Konditionszahl beschreibt, wie stark sich Eingabefehler in einem Gleichungssystem verstärken;
@@ -439,6 +440,7 @@ Was bedeutet das für einen realen Datensatz, dessen `b` unbekanntes Messrausche
 
 <!-- time estimate: 35 min -->
 
+
 ### Weiterführend
 
 - [scipy.linalg Reference](https://docs.scipy.org/doc/scipy/reference/linalg.html):
@@ -447,17 +449,17 @@ Was bedeutet das für einen realen Datensatz, dessen `b` unbekanntes Messrausche
   Einführung in `scipy.linalg` mit weiteren Beispielen
 - [scipy.linalg.lstsq](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html):
   löst überbestimmte Systeme, für die es keine exakte Lösung gibt
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-linalg.md]
-
 [ENDINSTRUCTOR]

@@ -7,24 +7,22 @@ assumes: np-Einführung, np-array, np-index-slice, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
-
 - Ich kann Wahrscheinlichkeitsverteilungen (kontinuierlich/diskret) mit SciPy modellieren und
   deren Kennwerte berechnen.
 - Ich kann einen Hypothesentest und einen Korrelationskoeffizienten anwenden und das Ergebnis
   einschließlich seiner Grenzen interpretieren.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 Ein Datensatz lässt sich zunächst rein deskriptiv beschreiben (Mittelwert, Streuung), aber diese
 Kennzahlen allein sagen nichts darüber aus, wie sicher eine daraus gezogene Schlussfolgerung ist.
 SciPy stellt mit `scipy.stats` Verteilungsmodelle und Inferenzmethoden bereit, mit denen sich diese
 Unsicherheit einbeziehen lässt.
 Der Übergang von "was sagen die Daten" zu "was können wir daraus schließen" ist der Kern dieser
 Aufgabe.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -42,6 +40,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
   nicht (u. a. typische Fehlinterpretationen), Nullhypothese, Signifikanzniveau α
 - [Korrelationskoeffizient nach Bravais-Pearson (Wikipedia)](https://de.wikipedia.org/wiki/Korrelationskoeffizient):
   Voraussetzungen (lineare Beziehung), Grenzen (Korrelation ist nicht Kausalität)
+
 
 ### Wahrscheinlichkeitsverteilungen: `stats.norm` und `stats.binom`
 
@@ -135,6 +134,7 @@ braucht `scipy.stats` deshalb zwei getrennte Methoden statt einer gemeinsamen?
 
 <!-- time estimate: 30 min -->
 
+
 ### Hypothesentests: `stats.ttest_ind`
 
 Hypothesentests quantifizieren, wie gut ein beobachteter Unterschied allein durch zufällige
@@ -206,6 +206,7 @@ denselben p-Wert wie derselbe Vergleich mit `equal_var=True`.
 Was gewinnt das Urteil "nicht signifikant" dadurch?
 
 <!-- time estimate: 25 min -->
+
 
 ### Korrelationskoeffizient: `stats.pearsonr`
 
@@ -279,6 +280,7 @@ Was leistet `stats.pearsonr()` dabei nicht?
 
 <!-- time estimate: 20 min -->
 
+
 ### Weiterführend
 
 - [SciPy Statistics Reference](https://docs.scipy.org/doc/scipy/reference/stats.html): Überblick
@@ -286,17 +288,17 @@ Was leistet `stats.pearsonr()` dabei nicht?
 - [Statistical tests](https://docs.scipy.org/doc/scipy/reference/stats.html#hypothesis-tests-and-related-functions):
   weitere Tests, u. a. `ttest_rel` (gepaarte Stichproben) und `spearmanr` (Rangkorrelation,
   robuster gegenüber Ausreißern als `pearsonr`)
-
 [ENDSECTION]
+
 
 [SECTION::submission::program]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Kontrollergebnisse]
 
 ### Fragen und Python-Dateien
 [INCLUDE::ALT:sp-stats.md]
-
 [ENDINSTRUCTOR]
