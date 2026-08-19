@@ -47,9 +47,9 @@ print(arr)
 # [[30 70]
 #  [90 10]]
 
-sorted_arr = np.sort(arr)
+sortiert = np.sort(arr)
 print('Sortiert (entlang letzter Achse):')
-print(sorted_arr)
+print(sortiert)
 # [[30 70]
 #  [10 90]]
 
@@ -78,7 +78,7 @@ an Ort und Stelle arbeiten nur Methoden wie `arr.sort()`.
 und `arr.sort()[1]` dieselbe zweite Zeile des sortierten Arrays liefern:
 
 - Probieren Sie beide Schreibweisen aus und übernehmen Sie die dabei auftretende Fehlermeldung in
-  Ihre Antwort; kommentieren Sie die abbrechende Zeile danach aus, damit Ihr Skript durchläuft
+  Ihre Antwort; kommentieren Sie die abbrechende Zeile danach aus, um weiterarbeiten zu können
 - Geben Sie aus, was `arr.sort()` selbst zurückliefert und was danach in `arr` steht
 - Erklären Sie damit, warum die eine Schreibweise abbricht
 - Nennen Sie eine Situation, in der `arr.sort()` trotzdem der passendere Aufruf ist als
@@ -96,13 +96,14 @@ import numpy as np
 
 # np.argsort() gibt Indizes zurück, die zur Sortierung führen
 x = np.array([30, 10, 20])
-indices = np.argsort(x)
-print('Sortierungsindizes:', indices)  # [1 2 0]
-print('Sortiertes Array:', x[indices])  # [10 20 30]
+indizes = np.argsort(x)
+print('Sortierungsindizes:', indizes)  # [1 2 0]
+print('Sortiertes Array:', x[indizes])  # [10 20 30]
 ```
 
 Bei einem 2D-Array liefert `np.argsort(a, axis=1)` für jede Zeile eigene Indizes.
-Die Integer-Array-Indexierung `arr[indices]` aus [PARTREF::np-index-slice] leistet das nicht.
+Diese zeilenweisen Indizes lassen sich mit der Integer-Array-Indexierung `arr[indices]` aus
+[PARTREF::np-index-slice] nicht anwenden.
 Gebraucht wird stattdessen `np.take_along_axis`, das entlang einer Achse für jede Zeile
 (bzw. Spalte) die dort passenden Indizes anwendet:
 
@@ -111,10 +112,9 @@ numpy.take_along_axis(arr, indices, axis=-1)
 ```
 
 - `arr`: das Array, aus dem Werte entnommen werden
-- `indices`: Array mit derselben Anzahl Dimensionen wie `arr`, das für jede Position angibt,
-  welches Element aus `arr` entnommen wird;
-  entlang `axis` bestimmt es die Länge des Ergebnisses, in den übrigen Achsen muss es zu `arr`
-  passen
+- `indices`: Array, das für jede Position angibt, welches Element aus `arr` entnommen wird;
+  in dieser Aufgabe stets das unveränderte Ergebnis von `np.argsort` und damit formgleich
+  mit `arr`
 - `axis` (Standard `-1`): Achse, entlang derer `indices` angewendet wird
 
 ```python
@@ -170,10 +170,10 @@ gesamtpunkte = np.array([85, 92, 85, 88])
 mathepunkte = np.array([90, 85, 95, 82])
 
 # Vorrang haben die Gesamtpunkte (aufsteigend), bei Gleichstand die Mathepunkte (aufsteigend)
-indices = np.lexsort((mathepunkte, gesamtpunkte))
+indizes = np.lexsort((mathepunkte, gesamtpunkte))
 
 print('Vorrang Gesamtpunkte, bei Gleichstand Mathepunkte:')
-for i in indices:
+for i in indizes:
     print(f'{namen[i]}: Gesamt={gesamtpunkte[i]}, Mathe={mathepunkte[i]}')
 # Alice: Gesamt=85, Mathe=90
 # Charlie: Gesamt=85, Mathe=95
@@ -194,9 +194,9 @@ gesamtpunkte = np.array([85, 92, 85, 88])
 mathepunkte = np.array([90, 85, 95, 82])
 
 # Vorrang haben die Gesamtpunkte (absteigend), bei Gleichstand die Mathepunkte (aufsteigend)
-indices_desc = np.lexsort((mathepunkte, -gesamtpunkte))
+indizes_absteigend = np.lexsort((mathepunkte, -gesamtpunkte))
 print('Vorrang Gesamtpunkte (absteigend), bei Gleichstand Mathepunkte (aufsteigend):')
-for i in indices_desc:
+for i in indizes_absteigend:
     print(f'{namen[i]}: Gesamt={gesamtpunkte[i]}, Mathe={mathepunkte[i]}')
 # Bob: Gesamt=92, Mathe=85
 # Diana: Gesamt=88, Mathe=82
@@ -351,18 +351,14 @@ print('Array:')
 print(arr)
 
 # Indizes aller Elemente > 50
-indices = np.nonzero(arr > 50)
-print('Indizes mit arr > 50:', indices)  # (array([1, 2, 2, 2]), array([2, 0, 1, 2]))
-print('Werte an diesen Positionen:', arr[indices])  # [60 70 80 90]
+indizes = np.nonzero(arr > 50)
+print('Indizes mit arr > 50:', indizes)  # (array([1, 2, 2, 2]), array([2, 0, 1, 2]))
+print('Werte an diesen Positionen:', arr[indizes])  # [60 70 80 90]
 
 # where() mit drei Argumenten wählt elementweise zwischen zwei Werten
-arr_1d = np.arange(-10, 11)
-absolute_values = np.where(arr_1d >= 0, arr_1d, -arr_1d)
-print('Betrag über where(condition, x, y):', absolute_values)
-
-# nonzero() ohne Vergleich findet die von Null verschiedenen Elemente
-arr_mit_nullen = np.array([[10, 0, 30], [0, 25, 0], [40, 0, 50]])
-print('Nicht-Null-Indizes:', np.nonzero(arr_mit_nullen))
+zahlen = np.arange(-3, 4)
+betraege = np.where(zahlen >= 0, zahlen, -zahlen)
+print('Betrag über where(condition, x, y):', betraege)  # [3 2 1 0 1 2 3]
 
 # extract() liefert die Werte statt der Indizes
 print('Durch 30 teilbar:', np.extract(arr % 30 == 0, arr))  # [30 60 90]
@@ -441,24 +437,24 @@ import numpy as np
 arr = np.arange(10000, 0, -10)
 
 # Partitionierung: 3. kleinstes Element an Index 2
-partitioned = np.partition(arr, 2)
-print('3. kleinstes Element:', partitioned[2])  # 30
+partitioniert = np.partition(arr, 2)
+print('3. kleinstes Element:', partitioniert[2])  # 30
 
 # Nur diese Position ist garantiert
-print('Alles davor ist nicht größer:', np.all(partitioned[:2] <= partitioned[2]))  # True
-print('Alles danach ist nicht kleiner:', np.all(partitioned[3:] >= partitioned[2]))  # True
-print('Partitioniert = sortiert?', np.array_equal(partitioned, np.sort(arr)))  # False
+print('Alles davor ist nicht größer:', np.all(partitioniert[:2] <= partitioniert[2]))  # True
+print('Alles danach ist nicht kleiner:', np.all(partitioniert[3:] >= partitioniert[2]))  # True
+print('Partitioniert = sortiert?', np.array_equal(partitioniert, np.sort(arr)))  # False
 
 # Innerhalb der beiden Gruppen herrscht dagegen keine Ordnung
-print('Hinterer Teil sortiert?', np.array_equal(partitioned[3:], np.sort(partitioned[3:])))  # False
+print('Hinterer Teil sortiert?', np.array_equal(partitioniert[3:], np.sort(partitioniert[3:])))  # False
 
 # argpartition liefert Indizes, die dieselbe Garantie erfüllen
-indices = np.argpartition(arr, 2)
-print('3. kleinstes über Indizes:', arr[indices[2]])  # 30
+indizes = np.argpartition(arr, 2)
+print('3. kleinstes über Indizes:', arr[indizes[2]])  # 30
 
 # Mehrere Ranggrenzen in einem Durchgang festlegen
-multi_part = np.partition(arr, [2, 50])
-print('Elemente an Position 2 und 50:', multi_part[2], multi_part[50])  # 30 510
+mehrfach_partitioniert = np.partition(arr, [2, 50])
+print('Elemente an Position 2 und 50:', mehrfach_partitioniert[2], mehrfach_partitioniert[50])  # 30 510
 ```
 
 Bei kurzen Arrays sortiert NumPy intern ohnehin vollständig durch, sodass sich das Ergebnis dort
