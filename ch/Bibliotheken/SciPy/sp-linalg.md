@@ -196,16 +196,6 @@ Wer die Struktur seiner Matrix ohnehin kennt, kann diese Untersuchung übersprin
 zugehörigen spezialisierten Solver aufrufen.
 Zwei solche Solver zeigt dieser Abschnitt.
 
-[NOTICE]
-Dieser Abschnitt setzt SciPy 1.15 oder neuer voraus.
-Ältere Versionen untersuchen die Koeffizientenmatrix nicht, sondern behandeln sie stets als
-allgemeine Matrix, und kennen die weiter unten genannte Strukturangabe `'upper triangular'` noch
-nicht.
-Prüfen Sie Ihre Version notfalls wie in [PARTREF::sp-Einführung] und aktualisieren Sie mit
-`pip install -U scipy`; ein bloßes `pip install scipy` aktualisiert eine vorhandene Installation
-nicht.
-[ENDNOTICE]
-
 **Standard-Solver:**
 
 ```python

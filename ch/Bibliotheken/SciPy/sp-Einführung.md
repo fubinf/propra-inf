@@ -45,8 +45,12 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 [EC] Installieren Sie SciPy mit `pip`:
 
 ```bash
-pip install scipy
+pip install "scipy==1.18.*"
 ```
+<!-- TODO_3: ggf. ändern und Aufgaben anpassen -->
+
+Die Versionsangabe legt die Minor-Version fest, auf die alle Aufgaben dieser Gruppe abgestimmt
+sind; der Stern lässt Patch-Versionen wie 1.18.0 oder 1.18.1 zu.
 
 [EC] Überprüfen Sie die Installation:
 

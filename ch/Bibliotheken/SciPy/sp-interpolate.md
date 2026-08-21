@@ -52,8 +52,6 @@ Viele Tutorials im Netz benutzen stattdessen `interp1d` oder `splrep`/`splev`.
 Das sind die älteren Schnittstellen von SciPy, die inzwischen als "legacy" gelten und für neuen
 Code nicht mehr empfohlen werden.
 Diese Aufgabe verwendet durchgehend die aktuellen Schnittstellen.
-`make_splrep` weiter unten gibt es erst ab SciPy 1.15; prüfen Sie Ihre Version notfalls wie in
-[PARTREF::sp-Einführung] und aktualisieren Sie mit `pip install -U scipy`.
 [ENDNOTICE]
 
 Die Signaturen in dieser Aufgabe zeigen jeweils nur die hier benötigten Parameter, nicht die

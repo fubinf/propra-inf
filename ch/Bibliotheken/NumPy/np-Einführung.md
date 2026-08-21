@@ -28,8 +28,12 @@ NumPy ist nicht in der Standard-Python-Installation enthalten und muss separat i
 
 [EC] Installieren Sie NumPy mit `pip`:
 ```bash
-pip install numpy
+pip install "numpy==2.5.*"
 ```
+<!-- TODO_3: ggf. ändern und Aufgaben anpassen -->
+
+Die Versionsangabe legt die Minor-Version fest, auf die alle Aufgaben dieser Gruppe abgestimmt
+sind; der Stern lässt Patch-Versionen wie 2.5.1 oder 2.5.2 zu.
 
 <!-- time estimate: 5 min -->
 
