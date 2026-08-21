@@ -224,6 +224,10 @@ The instruction section
   what they like/dislike (and why) etc. (SOLO 5).
   (At difficulty 2, we will accept almost any response, 
   at levels 3+4, the responses should be sensible.)
+- `[EQ]` questions can also be useful to steer selective reading when pointing students
+  to documentation, i.e., make sure the student has seen the relevant parts when they are asked
+  to read longer docs in a faster manner. These would be facts questions, not reflection questions.
+  Such questions should usually not have a `[HINT]` attached.
 
 For the authors, tasks at difficulty 2 (easy) are much more work and also harder to get right 
 than those at difficulties 3 or 4.
