@@ -33,5 +33,5 @@
 - **2026-08-18**: Aufgabengruppe [PARTREF::NumPy] zugefügt, mit derzeit 7 Aufgaben.
 - **2026-08-21**: Die Landeseite jeder Aufgabengruppe enthält jetzt ein Übersichtsdiagramm,
   das die Abhängigkeiten zeigt. Die Tasknamen sind darin Hyperlinks.
-- **2026-08-21**: Aufgabe [PARTREF::django-Ausblick] zugefügt.
+- **2026-08-21**: Aufgaben [PARTREF::django-Ausblick] und [PARTREF::np-sort-filter] zugefügt.
 - ...

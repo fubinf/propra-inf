@@ -1,5 +1,5 @@
 title: NumPy Sortieren, Suchen und Filtern verstehen und anwenden
-stage: alpha
+stage: beta
 timevalue: 2
 difficulty: 2
 assumes: np-array2, np-index-slice, py-Fstrings
@@ -72,10 +72,10 @@ View im Sinne von [PARTREF::np-index-slice].
 Die Methode `arr.sort()` dagegen sortiert an Ort und Stelle und überschreibt dabei die
 Ausgangsdaten.
 Dieser Unterschied gilt durchgängig: Alle `np.`-Funktionen dieser Aufgabe lassen das übergebene
-Array unverändert; an Ort und Stelle arbeiten nur Methoden.
+Array unverändert; an Ort und Stelle arbeiten hier nur Methoden.
 
-[EQ] Für `arr = np.array([[30, 70], [90, 10]])` sollen die beiden Schreibweisen `np.sort(arr)[1]`
-und `arr.sort()[1]` dieselbe zweite Zeile des sortierten Arrays liefern:
+[EQ] Für `arr = np.array([[30, 70], [90, 10]])` könnte man erwarten, dass die beiden Schreibweisen
+`np.sort(arr)[1]` und `arr.sort()[1]` dieselbe zweite Zeile des sortierten Arrays liefern:
 
 - Probieren Sie beide Schreibweisen aus und übernehmen Sie die dabei auftretende Fehlermeldung in
   Ihre Antwort; kommentieren Sie die abbrechende Zeile danach aus, um weiterarbeiten zu können
@@ -103,8 +103,8 @@ print('Sortiertes Array:', x[indizes])  # [10 20 30]
 ```
 
 Bei einem 2D-Array liefert `np.argsort(a, axis=1)` für jede Zeile eigene Indizes.
-Diese zeilenweisen Indizes lassen sich mit der Integer-Array-Indexierung `arr[indizes]` aus
-[PARTREF::np-index-slice] nicht verwenden.
+Auf diese zeilenweisen Indizes lässt sich die Integer-Array-Indexierung `arr[indizes]` aus
+[PARTREF::np-index-slice] nicht anwenden.
 Gebraucht wird stattdessen `np.take_along_axis`, das entlang einer Achse für jede Zeile
 (bzw. Spalte) die dort passenden Indizes anwendet:
 
