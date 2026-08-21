@@ -1,5 +1,5 @@
 title: Django Ausblick
-stage: alpha
+stage: beta
 timevalue: 1.0
 difficulty: 2
 requires: django-form
@@ -18,7 +18,7 @@ explains: Middleware
 
 
 [SECTION::background::default]
-Wenn etwas in jeder View passieren muss, selbst wenn man davon hunderte hat,
+Wenn etwas in jeder View passieren muss, selbst wenn man davon Hunderte hat,
 ist es schön, wenn man das einmal an einer zentralen Stelle realisieren kann,
 anstatt in jeder View daran denken zu müssen.
 Django hat diverse Bordmittel von dieser Art und man kann leicht eigene ergänzen.
@@ -40,31 +40,19 @@ Django kann Meldungen ("Registrierung erfolgreich", "Bitte anmelden" usw.) von e
 weitergeben: Die View legt die Meldung ab, die anschließend angezeigte Seite zeigt sie an,
 und zwar egal, welche Folgeseite dies ist.
 
-```python
-messages.success(request, message)
-```
-
-- `success`: eine von mehreren Meldungsstufen; zu jeder gibt es eine gleichnamige Funktion
-  (u. a. `info`, `warning`, `error`)
-- `request`: das Request-Objekt der View, in der Sie die Meldung ablegen
-- `message`: der anzuzeigende Text
-
-Die weiteren Stufen und den vollen Funktionsumfang beschreibt die
-[Django-Doku zum Messages-Framework](https://docs.djangoproject.com/en/stable/ref/contrib/messages/).
-
-Nicht offensichtlich ist dabei nur, woher `messages` kommt:
-
-```python
-from django.contrib import messages
-```
+Lesen Sie in der
+[Django-Doku zum Messages-Framework](https://docs.djangoproject.com/en/stable/ref/contrib/messages/)
+nach, wie das geht. 
+Das Wesentliche steht in den zwei kurzen Abschnitten "Adding a message" (d.h. was in der View zu tun ist) und
+"Displaying messages" (d.h. was in der Template zu tun ist).
 
 [ER] Ergänzen Sie Ihre `register`-View um eine Meldung: fügen Sie oben in `views.py` diesen
 Import hinzu.
 Rufen Sie in `register`, zwischen dem Anlegen des Studierenden und der Weiterleitung,
-`messages.success` mit dem aktuellen Request und dem Text "Registrierung erfolgreich" auf.
+`messages.success` mit dem Text "Registrierung erfolgreich" auf.
 
 Sichtbar wird die Meldung aber nur, wenn das Template der Folgeseite sie auch anzeigt.
-Ein Objekt `messages` ist dafür bereits in jedem Template verfügbar, ganz ohne dass eine View diese
+Ein Objekt `messages` ist dafür bereits in jedem Template verfügbar, ohne dass eine View diese
 Variable in den Context aufnehmen muss; dafür sorgt der Eintrag
 `django.contrib.messages.context_processors.messages` in `settings.py` unter
 `TEMPLATES` → `OPTIONS` → `context_processors`.
@@ -95,6 +83,7 @@ Laden Sie dieselbe Seite anschließend noch ein zweites Mal.
 warum nicht schon direkt auf der Detailseite?
 Was sagen Ihnen die beiden Aufrufe der Studierendenliste über den Zeitpunkt, zu dem eine
 Meldung "verbraucht" wird?
+Was müssten Sie an `student_detail` ändern, damit die Meldung schon auf der Detailseite erscheint?
 
 [HINT::Ich sehe die Meldung auf keiner einzigen Seite]
 Prüfen Sie zuerst `base.html`: Steht Ihr neuer `{% for %}`-Block _außerhalb_ von
@@ -125,8 +114,8 @@ mit Statuscode 403 abgewiesen.
 Zuständig dafür ist eine weitere **Middleware**: eine Komponente,
 die jeder Request auf dem Weg zur View und jede Response auf dem Rückweg durchläuft und die
 dabei eingreifen kann.
-Das ist die Ausprägung, die der allgemeine Begriff aus dem Glossar in einem Web-Framework
-annimmt; außerhalb davon bezeichnet er auch ganz andere Infrastruktur-Software.
+Das ist die Ausprägung, die der allgemeine Begriff [TERMREF::Middleware] aus dem Glossar in
+einem Web-Framework annimmt; außerhalb davon bezeichnet er auch ganz andere Infrastruktur-Software.
 Welche Middlewares ein Projekt verwendet, steht als Liste `MIDDLEWARE` in `settings.py`; für
 den CSRF-Schutz ist der Eintrag `CsrfViewMiddleware` verantwortlich.
 Auch das Messages-Framework aus dem vorigen Abschnitt hängt an einem Eintrag dieser Liste.
@@ -198,10 +187,10 @@ Was könnte eine fremde Website mit Ihrer Seite anstellen, solange `X-Frame-Opti
 Für die erste Frage hilft die im vorigen Abschnitt verlinkte Übersicht der eingebauten
 Middlewares.
 
-In diesem und dem vorigen Abschnitt war `settings.py` die einzige Datei, die Sie angefasst
-haben; nehmen Sie sie neben `views.py` und `base.html` aus Abschnitt 1 mit in Ihre
-`*.files`-Datei auf, damit sich der wiederhergestellte Zustand der beiden Middleware-Zeilen
-prüfen lässt.
+In diesem und dem vorigen Abschnitt war `settings.py` die einzige Datei, die Sie angefasst haben.
+Nehmen Sie diese Datei zusammen mit `views.py` und `base.html` aus dem ersten Abschnitt in Ihre
+`*.files`-Datei auf; nur so lässt sich der wiederhergestellte Zustand der beiden
+Middleware-Zeilen prüfen.
 <!-- time estimate: 15 min -->
 
 ### Weitere Bausteine im Überblick
