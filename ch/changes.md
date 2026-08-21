@@ -31,4 +31,6 @@
 - **2026-08-12**: Aufgabengruppe [PARTREF::Django] zugefügt, mit derzeit 6 Aufgaben.
 - **2026-08-12**: Aufgabe [PARTREF::go-http-middleware] zugefügt.
 - **2026-08-18**: Aufgabengruppe [PARTREF::NumPy] zugefügt, mit derzeit 7 Aufgaben.
+- **2026-08-21**: Die Landeseite jeder Aufgabengruppe enthält jetzt ein Übersichtsdiagramm,
+  das die Abhängigkeiten zeigt. Die Tasknamen sind darin Hyperlinks.
 - ...
