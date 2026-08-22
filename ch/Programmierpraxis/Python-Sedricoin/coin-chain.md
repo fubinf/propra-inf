@@ -153,6 +153,8 @@ Sie müssen hier einen Pfad angeben, der im _Hilfsbereich_ ist, damit die Daten
 nicht Teil Ihres Repos sind.
 Wenn das angegebene Verzeichnis beim Start der Anwendung nicht existiert, soll es erstellt werden.
 Scheitert dies, bricht die Anwendung ab.
+Sie dürfen im Rahmen Ihrer Implementierung auch Unterverzeichnisse erstellen,
+falls das für Sie sinnvoll/notwendig ist.
 
 [HINT::Umgebungsvariablen in Python einlesen]
 Umgebungsvariablen können Sie mit der Funktion `getenv()` des Moduls
@@ -266,7 +268,7 @@ berechnet werden.
 Außerdem muss der `String` in `UTF-8` enkodiert werden, und der Hash über die
 Bytes berechnet werden.
 
-[HINT::Musterlösung in Python]
+[HINT::Ich komme nicht auf die richtige Reihenfolge der Schritte.]
 
 In Python muss der Hash wie folgt berechnet werden:
 
@@ -290,6 +292,10 @@ Nutzen Sie im Test die vorgegebenen Testfälle.
 In Python können Sie dafür das [PARTREF::m_pytest]-Framework nutzen.
 
 [FOLDOUT::Testfälle Block-Hash]
+
+Die folgenden Testfälle verstoßen bewusst gegen die defnierten Anforderungen
+and einen Block, um ihre Hash Funktion zu testen.
+
 1. Genesis-Block-Test
 
 ```json
@@ -344,22 +350,30 @@ eingelesen werden und der *Genesis-Block* (wie folgt) erzeugt werden.
 Auch wenn das Programm in dieser Aufgabe noch nicht dauerhaft weiterläuft,
 wird hier bereits von *Server* gesprochen.
 
-[ER] Wenn der Server ausgeführt wird, soll ein neuer `Block` mit dem aktuellen Unix-Timestamp
-berechnet und der Blockchain hinzugefügt werden.
-Falls die Blockchain noch nicht existiert, wird im angegebenen Verzeichnis der *Genesis-Block*
-als erste Datei angelegt.
+[ER] Beim Aufruf des Servers wird die Blockchain initialisiert.
+Dazu wird das angegebene Verzeichnis (`SEDRICOIN_STORAGE_PATH`) geprüft und ggf. erstellt.
+Falls in diesem Verzeichnis noch keine Blockchain gespeichert ist, wird der
+*Genesis-Block* als erste Datei erzeugt.
 Dieser Genesis-Block entspricht genau dem oben angegebenen JSON-Block.
 Jede Sedricoin-Implementierung verwendet denselben Genesis-Block.
+Bei **jedem** Aufruf (also auch beim ersten) wird anschließend ein neuer `Block` mit dem aktuellen
+Unix-Timestamp berechnet und der Blockchain hinzugefügt.
 Benennen Sie die Block-Dateien nach der Block-Höhe.
 Die Block-Höhe ist der Index des Blocks in der Blockchain.
 Dieser wird nur berechnet, aber nicht im `Block` gespeichert.
 Der Genesis-Block hat die Block-Höhe `0`.
 
+[NOTICE]
+Zur Vereinfachung meint in diesem Projekt: "`Block` 1" das selbe, wie
+"`Block` mit der Block-Höhe 1".
+[ENDNOTICE]
+
 [ER] Beim Ausführen der Anwendung soll die aktuelle Blockchain auf der Konsole ausgegeben werden.
-Pro Zeile soll ein Block ausgegeben werden, im Format `<Block-Höhe>: <Block-Hash>`
-bzw. `New Block <Block-Höhe>: <Block-Hash>`.
+Pro Zeile soll ein Block ausgegeben werden.
+Die bestehenden Blöcke werden im Format: `<Block-Höhe>: <Block-Hash>` ausgegeben
+und der neu erzeugte im Format: `New Block <Block-Höhe>: <Block-Hash>`.
 Falls beim Laden die Blockchain ungültig ist, wird auf der Konsole ausgegeben,
-an welcher Stelle die Kette ungültig ist (`Blockchain Error at Block <Block-Höhe>.`),
+welcher Block ungültig ist (Fehlermeldung: `Blockchain Error at Block <Block-Höhe>.`),
 und es wird kein neuer `Block` berechnet.
 Für die Gültigkeit müssen aktuell die folgenden Kriterien erfüllt sein:
 
@@ -368,14 +382,24 @@ Für die Gültigkeit müssen aktuell die folgenden Kriterien erfüllt sein:
 - Der `timestamp` muss größer als der des Vorgängers sein.
 
 [NOTICE]
-Zur Validierung sind vorerst keine Tests erforderlich, diese Tests werden in einer
-späteren Aufgabe ausführlicher beschrieben.
+Je nach Manipulation kann ein Fehler erst im nachfolgenden `Block` erkannt werden.
+Wird also der `Block` 1 verändert, sodass er selbst gültig ist,
+wird der Fehler erst beim `Block` 2 erkannt, da hier mindestens der `previous_hash` inkorrekt ist.
+[ENDNOTICE]
+
+[NOTICE]
+Zur Validierung sind vorerst keine Tests erforderlich.
+Diese Tests werden in einer späteren Aufgabe ausführlicher beschrieben.
 [ENDNOTICE]
 
 [EC] Rufen Sie Ihren Server zweimal auf.
-Ändern Sie anschließend den `timestamp` im `Block` mit der Block-Höhe `1` und rufen
-Sie den Server erneut auf.
 
+[ER] Manipulieren Sie nun die Blockchain manuell, indem Sie die JSON-Datei des `Blocks` 1
+in ihrem Editor öffnen und den `timestamp` um `1` erhöhen.
+Auf diese Weise wird die Blockchain ungültig, da nun der Block-Hash von `Block` 1
+verändert wurde, ohne den `previous_hash` in `Block` 2 anzupassen.
+
+[EC] Rufen Sie Ihren Server einmal auf, dieser sollte die Manipulation erkennen.
 
 ### Projektbeschreibung
 <!-- time estimate: 10 min -->
@@ -438,6 +462,6 @@ Tests ausführen:
 [INCLUDE::/_include/Submission-Quellcode-files.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Codedurchsicht]
+[INSTRUCTOR::Kontrollergebnisse]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
