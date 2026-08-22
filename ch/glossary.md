@@ -1282,7 +1282,7 @@ Es gibt 65536 Ports, die in drei Hauptkategorien unterteilt sind:
 Ein Unix-Kommando, das einen Prozess vor dem Signal `SIGHUP` ("Hang Up") schützt.
 Dieses Signal wird normalerweise an alle Prozesse einer Shell-Sitzung gesendet,
 wenn die Sitzung beendet wird.
-`nohup` sorgt dafür, dass Befehle auch nachdem Abmelden weiterlaufen.
+`nohup` sorgt dafür, dass Befehle auch nach dem Abmelden weiterlaufen.
 `nohup` ist eine einfache Alternative zu [TERMREF::tmux], wenn man nur einen einzigen
 Prozess persistent im Hintergrund laufen lassen möchte, ohne eine vollständige
 Terminal-Session aufrechtzuerhalten.
@@ -1446,6 +1446,13 @@ und unter welchen Umständen welcher Nachrichtentyp gesendet werden darf oder mu
 
 Es gibt zahlreiche Kommunikationsprotokolle.
 Hier im ProPra ist meist nur [TERMREF::HTTP] von Interesse.
+[ENDTERM]
+
+
+[TERM::Prozess|Prozesse]
+Ein laufendes Programm mit eigenem Speicherbereich und einer eindeutigen Prozess-ID (`PID`).
+Der Kernel verwaltet alle Prozesse und vermittelt ihren Zugriff auf CPU, Speicher und Ein-/Ausgabe;
+das ermöglicht Isolation, gezieltes Scheduling und Ressourcenkontrolle.
 [ENDTERM]
 
 
@@ -1731,6 +1738,15 @@ Eine Prozedur, die in der [TERMREF::Unix-Shell] einmal definiert wird,
 z.B. in [TERMREF::.bashrc] oder einem Shellskript,
 und sich dann immer wieder aufrufen lässt.
 Fasst mehrere Kommandos zu einem zusammen, ggf. auch mit Schleifen oder Fallunterscheidungen.
+[ENDTERM]
+
+
+[TERM::Signal|Signale]
+Eine Benachrichtigung, die der Kernel oder ein anderer [TERMREF::Prozess] an einen Prozess sendet,
+um ihn zu einer bestimmten Reaktion zu veranlassen, z.B. zum Beenden, Anhalten oder Aufräumen.
+Bekannte Beispiele sind `SIGTERM` (bittet um geordnetes Beenden, kann abgefangen werden),
+`SIGKILL` (erzwingt sofortiges Beenden, kann nicht abgefangen werden)
+und `SIGHUP` (wird u.a. beim Schließen eines Terminals an dessen Prozesse gesendet).
 [ENDTERM]
 
 
