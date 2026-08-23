@@ -478,21 +478,10 @@ Aufgabenbereiche:
 
 ### Werkzeuge/Bash2 (condric+hüster?)
 
-- Umgang mit Dateien: ls, mv, rm, cp, mkdir, rmdir, ...  
-  Lernziel: die Fälle verstehen, in denen das einer GUI überlegen ist: mit Globbing, mit mehreren Argumenten, mit speziellen Optionen
 - Typische Helfer für die Shellprogrammierung: touch, cat, head, tail, grep, uniq, sort, find, awk, sed, xargs, tee, ...  
   Lernziel: Je mindestens einen gut erinnerbaren Anwendungsfall ausprobieren, in dem das Helferlein gute Dienste leistet.  
   Hier kommen natürlich nur noch die dran, die man nicht schon oben bei Sprachen/sh eingeführt hat.
 - Typische Idiome der Shellprogrammierung.
-
-Beispiele für interaktive Idiome:
-- `cd -` zum Hin- und Herwechseln zwischen zwei Verzeichnissen
-- Shellvars als Abkürzung für lange Verzeichnisnamen 
-- `find`, um junge Dateien in Baum zu finden
-- `grep`, um eine Datei per eindeutigen Inhaltsschlagwort wiederzufinden (etc.)
-- `find` mit `grep`, um Dateien mit Wort X drin zu finden, dann `ls -lt` um davon die jüngste zu finden
-  (mit entsprechender Story dazu, warum das praktisch sein kann: Nadel im Heuhaufen finden)
-- .bashrc: persönlicher PATH, ein schöner Prompt, praktische aliases u.v.a.m.
 
 Beispiele für programmatische Idiome:
 - ...
@@ -500,17 +489,15 @@ Beispiele für programmatische Idiome:
 
 ### Werkzeuge/Netzwerk (condric)
 
-- tmux
 - ...
 
 Lernziel ist immer, typische Anwendungsfälle und Stärken zu verstehen.
 
 
-### Werkzeuge/??? (condric)
+### Werkzeuge/Unix-Diverses (condric)
 
-- Dateisystemaufbau: /bin, /usr, /var, /etc, /mnt, ...  
-  Lernziel: Grobes Verständnis von "Was ist wo?"
-- fortgeschrittenes Dateihandling: file, dd, tar, zip, gzip, ...
+- fortgeschrittenes Dateihandling: file, zip, ...
+
 
 ### Werkzeuge/Git (hüster)
 
