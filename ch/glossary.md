@@ -583,6 +583,24 @@ Dazu gehören verschiedene Testmethoden wie [TERMREF::Modultest], [TERMREF::Inte
 
 ## E
 
+[TERM::einhängen|mounten|Einhängepunkt|Mountpoint]
+Unix kennt keine Laufwerksbuchstaben, sondern nur einen einzigen Dateibaum, der bei `/` beginnt.
+Ein Dateisystem (eine Platte, eine Partition, ein USB-Stick, ein Netzlaufwerk oder eine rein
+virtuelle Datenquelle wie `/proc`) wird benutzbar, indem man es an einer Stelle dieses Baums
+*einhängt* (englisch: *to mount*).
+Diese Stelle ist ein gewöhnliches Verzeichnis und heißt Einhängepunkt (englisch: *mountpoint*);
+unterhalb davon erscheint dann der Inhalt des eingehängten Dateisystems.
+
+Welche Dateisysteme gerade wo eingehängt sind, zeigen die Kommandos `df` (unter Linux z.B. `df -hT`),
+`mount` und `findmnt`.
+Einem Pfad sieht man nicht an, auf welchem Gerät er liegt – und beim Arbeiten muss man das
+auch nicht wissen.
+Unter WSL sind aus diesem Grund die Windows-Laufwerke unter `/mnt/c`, `/mnt/d` usw. eingehängt
+(siehe [TERMREF::Download unter WSL]).
+Laut [TERMREF::FHS] ist `/mnt` genau dafür gedacht: als Ort für zeitweilig eingehängte Dateisysteme.
+[ENDTERM]
+
+
 [TERM::Encoding|Zeichenkodierung]
 Die Art und Weise, wie eine Nachricht oder ein Zeichenvorrat als Folge von Bits oder von Bytes dargestellt wird.
 
@@ -621,6 +639,27 @@ Weitere Unterscheidungen:
 Ein Fehlerzustand tritt auf, wenn das System aufgrund eines Fehlers in einen nicht beabsichtigten
 oder inkonsistenten Zustand gerät. Das kann dazu führen, dass das System unerwartete Ergebnisse
 produziert oder nicht ordnungsgemäß funktioniert.
+[ENDTERM]
+
+
+[TERM::FHS|Filesystem Hierarchy Standard]
+Der Standard, der festlegt, welche Art von Dateien auf einem Linuxsystem in welchem Verzeichnis
+des einen, bei `/` beginnenden Dateibaums liegt.
+Die wichtigste Aufteilung ist die zwischen
+`/etc` (Konfiguration, von Hand gepflegt), `/var` (was das System im Betrieb schreibt, etwa Logdateien
+in `/var/log`), `/usr` (was die Distribution mitbringt, etwa Programme in `/usr/bin`),
+`/usr/local` (was die lokale Administration selbst installiert hat) und `/home` (Benutzerdaten).
+Fremdsoftware, die ihr eigenes Unterverzeichnis mitbringt, gehört nach `/opt`.
+`/bin`, `/sbin` und `/lib` sind auf den meisten aktuellen Distributionen nur noch Verweise
+auf die entsprechenden Verzeichnisse unterhalb von `/usr` ("merged `/usr`").
+Hinzu kommen Verzeichnisse ohne Speicherplatz auf der Platte:
+`/proc` und `/sys` erzeugt der Kernel bei jedem Zugriff neu,
+`/run` liegt im Arbeitsspeicher.
+Auf den Fortbestand von `/run` und `/tmp` kann man sich nicht verlassen:
+Je nach System wird deren Inhalt beim Neustart geleert oder in Abständen automatisch aufgeräumt.
+Jedes Unixsystem beschreibt seinen eigenen Dateibaum in der Manpage `hier` für hierarchy
+(`man 7 hier`); unter Linux folgt sie weitgehend dem FHS.
+[HREF::https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html]
 [ENDTERM]
 
 
