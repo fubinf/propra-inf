@@ -1,4 +1,4 @@
-title: "HTTP Chat: Peer – Registrierung & Gesprächspartner"
+title: "Go HTTP Chat: Peer — Registrierung und Gesprächspartner"
 stage: alpha
 timevalue: 2.25
 difficulty: 3
