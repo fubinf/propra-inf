@@ -1,7 +1,7 @@
 title: "OpenAPI mit SwaggerUI lesen"
 stage: alpha
 timevalue: 0.5
-difficulty: 1
+difficulty: 2
 explains: OpenAPI
 ---
 
@@ -38,10 +38,11 @@ In der
 ist auch ein Beispiel, wie eine minimale Webseite geschrieben werden kann,
 um die SwaggerUI direkt in einer HTML-Seite einzubinden.
 
-[ER] Erstellen Sie die Datei `index.html` und kopieren Sie dort den folgenden Code hinein.
+Erstellen Sie einen neuen Ordner `SwaggerUI-Viewer/` in Ihrem *Hilfsverzeichnis*
+(dieser soll nicht Teil der Abgabe sein), erstellen Sie in diesem Verzeichnis die
+Datei `index.html` und kopieren Sie dort den folgenden Code hinein.
 
 [FOLDOUT::SwaggerUI HTML Vorlage]
-
 ```html
 [INCLUDE::_include/swaggerui-template.html]
 ```
@@ -49,8 +50,8 @@ um die SwaggerUI direkt in einer HTML-Seite einzubinden.
 
 Wenn Sie die Datei nun in Ihrem Browser öffnen, wird die Beispiel-OpenAPI-Spezifikation geladen.
 
-[ER] Kopieren Sie die folgende OpenAPI-Spezifikation in eine zweite Datei
-`api.json` im selben Verzeichnis.
+Kopieren Sie die folgende OpenAPI-Spezifikation in eine zweite Datei
+`api.json` in dasselbe Verzeichnis.
 Ändern Sie in der HTML-Datei die zu öffnende URL in `/api.json`.
 
 [FOLDOUT::Beispiel OpenAPI Spezifikation]
@@ -77,7 +78,7 @@ die URL nicht gefunden werden konnte.
 Damit die URL aufgelöst werden kann, muss die Seite von einem Webserver ausgeliefert werden.
 Die Python-Standardbibliothek bietet mit dem `http.server`-Modul einen simplen Webserver dafür.
 
-[ER] Öffnen Sie ein Terminal und wechseln Sie in den gleichen Ordner.
+Öffnen Sie ein Terminal und wechseln Sie in den erstellten Ordner im Hilfsverzeichnis.
 Starten Sie dort mit dem folgenden Befehl den Webserver:
 
 
@@ -102,28 +103,43 @@ in Ihrem Browser öffnen können.
 
 ### OpenAPI lesen
 
-Pro Endpunkt werden die folgenden Details beschrieben:
+In einer OpenAPI-Spezifikation werden API-Funktionen über Pfade und HTTP-Methoden beschrieben.
+Ein Pfad wird auch [TERMREF::Endpunkt] genannt, über diesen sind verschiedene
+HTTP-Methoden, die auch *Operation* genannt werden, erreichbar.
 
-- Pfad des Endpunkts
-- Parameter (im Pfad selbst oder als Query-Parameter)
-- HTTP-Methode (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, ...)
-- mögliche Antwortstatuscodes
-- Schema der Antwort oder des Body
+Ein Endpunkt bezeichnet dabei einen Pfad, beispielsweise `/grades`.
+Eine Operation ist die konkrete HTTP-Methode, beispielsweise
+`GET /grades` oder `POST /grades`.
 
-[EQ] Wie viele Endpunkte sind in der gegebenen Spezifikation beschrieben?
-Welche HTTP-Methoden kommen dabei vor?
+Pro Endpunkt und Operation werden die folgenden Werte spezifiziert:
+
+- Endpunkt (Pfad)
+- Operation (HTTP-Methode)
+- mögliche Parameter (im Pfad oder in der Query)
+- Schema der Anfragedaten (Request Body)
+- Schema der Antwortdaten (Responses) bestehend aus Status Code und Datenobjekt
 
 In der
-[OpenAPI Dokumentation](https://learn.openapis.org/specification/http-methods.html)
+[OpenAPI Dokumentation](https://learn.openapis.org/specification/paths)
 werden die einzelnen Komponenten der Spezifikation detailliert erklärt.
 
-[ER] Löschen Sie die Datei `api.json`, diese soll nicht Teil Ihrer Abgabe sein.
+[NOTICE]
+In der SwaggerUI werden die Kombinationen von Pfad und einer Operation jeweils als
+einzelnen Punkt dargestellt, wenn Sie aber in die JSON-Datei sehen, dann erkennen Sie,
+das pro Pfad mehrere Operationen möglich sein können.
 
+Diese Trennung ist in der SwaggerUI notwendig, da die einzelnen Operationen, mit dem
+"Try it out"-Button, getestet werden können.
+[ENDNOTICE]
+
+[EQ] Nennen Sie, wie viele Endpunkte und welche Operationen jeweils, in der gegeben
+Spezifikation, spezifiziert sind.
+
+Sie haben nun die Möglichkeit die erstellte `index.html` als SwaggerUI-Viewer
+in weiteren Projekte zu verwenden, um eine gegebene OpenAPI-Spezifikation lokal darzustellen.
 [ENDSECTION]
 
-
 [SECTION::submission::information]
-[INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
