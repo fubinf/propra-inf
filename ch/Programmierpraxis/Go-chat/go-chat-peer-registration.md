@@ -247,7 +247,7 @@ Peer-Programms (`go run . lookup=localhost:8083`).
 [INSTRUCTOR::Lösungen]
 
 **Kommandoprotokoll**
-[PROT::ALT:go-chat-lookup-server.prot]
+[PROT::ALT:go-chat-peer-registration.prot]
 
 [INCLUDE::ALT:]
 
