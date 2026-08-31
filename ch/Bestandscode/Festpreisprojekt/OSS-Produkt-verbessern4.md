@@ -100,7 +100,7 @@ Ganz im Gegenteil: **Eine Person übernimmt die alleinige Führung bei dieser Au
 
 ### Stellungnahme prüfen
 
-- Waren Sie auf Email-Antwort. (Wie schnell eine Kundin reagiert, kann man leider nie wissen.)
+- Warten Sie auf Email-Antwort. (Wie schnell eine Kundin reagiert, kann man leider nie wissen.)
 - Sie finden dann in Ihrem Repo eine ergänzte Fassung Ihrer Markdown-Datei mit
   einem zusätzlichen Abschnitt  
   `# Stellungnahme <datum>`
