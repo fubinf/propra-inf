@@ -103,7 +103,7 @@ def what_to_eat(month):
   Achten Sie darauf ausdrucksstarke Variablennamen zu vergeben!
 - Machen Sie einen Commit mit der Datei `Extraction-Of-Code.py`.
 - [EC] `git -P show HEAD`
-- Das Programm sieht jetzt aufgeräumt auf.
+- Das Programm sieht jetzt aufgeräumt aus.
   Es existieren Funktionen, die die beiden Boolschen Werte für die Austern- und Tomatensaison 
   berechnen und diese Ergebnisse sind mittels einer Variable erreichbar.
   Um eine gute Testbarkeit zu erreichen, wären aber Klassen sehr angenehm.
@@ -113,7 +113,7 @@ def what_to_eat(month):
 - [ER] Erstellen Sie die zwei Klassen `OystersGood` und `TomatoesGood`.
   Bilden Sie die Funktionen aus [EREFR::2] in diesen Klassen ab.  
   Implementieren Sie hierfür die Methode `__init__(self, month)`, um die Logik der Funktionen 
-  abzubilden und `__bool__(self, month)`, um den Rückgabewert der Funktionen abzubilden.
+  abzubilden und `__bool__(self)`, um den Rückgabewert der Funktionen abzubilden.
   Ersetzen Sie danach die Funktionsaufrufe aus [EREFR::3] durch `OystersGood(month)` bzw. 
   `TomatoesGood(month)`.
 - Machen Sie einen Commit mit der Datei `Extraction-Of-Code.py`.
@@ -147,11 +147,11 @@ def what_to_eat(month):
 - Bei der Variablenextraktion können Lösungen mit 3 bis 5 Variablen entstehen. 
   Weniger bzw. mehr Variablen sind fragwürdig. 
   Bitte nachfragen und bei schwachen Begründungen abweisen.
-- Bei der Funktionsextraktion werden exakt zwei Funktionen benötigtm, beide mit einem Parameter `month``.  
+- Bei der Funktionsextraktion werden exakt zwei Funktionen benötigt, beide mit einem Parameter `month``.  
   Die Variablen aus der ersten Extraktion gehören _in_ die Funktionen.
   Sind diese Variablen noch außerhalb der Funktionen zu sehen, ist die Abgabe abzuweisen.
 - Die Klassenextraktion benötigt nur die beiden Methoden `__init__(self, month)` und 
-  `__bool__(self, month)`.
+  `__bool__(self)`.
   Die vorher definierten Variablen werden in `__init__` als Attribute definiert.
 
 [ENDINSTRUCTOR]
