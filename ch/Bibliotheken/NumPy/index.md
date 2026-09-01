@@ -30,6 +30,14 @@ Die offizielle NumPy-Dokumentation umfasst drei unterschiedliche Zugänge:
   wenn man die Konzepte kennt.
 
 [WARNING]
+**Diese Aufgabengruppe benötigt Python 3.12 oder neuer.**
+
+Die Aufgaben sind auf NumPy 2.5 abgestimmt, und NumPy 2.5 lässt sich mit älteren
+Python-Versionen nicht installieren.
+Wie Sie Ihre Version prüfen und was Sie sonst tun können, steht in [PARTREF::np-Einführung].
+[ENDWARNING]
+
+[WARNING]
 **Ein Teil dieser Aufgabengruppe setzt mathematisches Vorwissen voraus.**
 
 Primäre Zielgruppe für die betroffenen Aufgaben sind Studierende, die das konzeptuelle

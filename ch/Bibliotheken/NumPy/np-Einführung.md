@@ -22,6 +22,19 @@ andere wissenschaftliche Python-Bibliotheken wie
 
 [SECTION::instructions::detailed]
 
+[WARNING]
+**Diese Aufgabengruppe benötigt Python 3.12 oder neuer.**
+
+Prüfen Sie das vor dem Weiterlesen mit `python --version`.
+Die hier verwendete NumPy-Version 2.5 lässt sich mit älteren Python-Versionen nicht
+installieren; mit einer älteren NumPy-Version weichen die Ergebnisse mehrerer Aufgaben
+dieser Gruppe ab.
+Falls Sie eine ältere Python-Version haben, installieren Sie eine neuere,
+etwa mit [PARTREF::pyenv].
+[ENDWARNING]
+<!-- TODO_3 ProPra setzt Python 3.12 voraus: diesen Hinweis entfernen -->
+
+
 ### NumPy installieren
 
 NumPy ist nicht in der Standard-Python-Installation enthalten und muss separat installiert werden.
@@ -34,6 +47,12 @@ pip install "numpy==2.5.*"
 
 Die Versionsangabe legt die Minor-Version fest, auf die alle Aufgaben dieser Gruppe abgestimmt
 sind; der Stern lässt Patch-Versionen wie 2.5.1 oder 2.5.2 zu.
+
+[EC] Überprüfen Sie, welche Python- und NumPy-Version Sie tatsächlich benutzen:
+
+```bash
+python -c "import sys, numpy; print(sys.version.split()[0], numpy.__version__)"
+```
 
 <!-- time estimate: 5 min -->
 
