@@ -1,9 +1,9 @@
 title: "tmux: Ein Terminal-Multiplexer"
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 2
 explains: tmux
-assumes: ssh
+assumes: ssh, Prozessmanagement
 ---
 
 [SECTION::goal::experience]
@@ -63,34 +63,42 @@ nicht zu verwechseln mit dem eigenen "Fenster"-Begriff von `tmux`, den Sie weite
 **AKTION:** Verbinden Sie sich in Terminal-Programmfenster 1 per SSH mit dem Zielserver.
 
 **AKTION:** Starten Sie dort direkt, ohne `tmux`, eine lange Zählschleife:
-`for i in {1..1000}; do echo $i; sleep 1; done`
+`for i in {1..10000}; do echo $i; sleep 1; done`
 
 **AKTION:** Verbinden Sie sich in Terminal-Programmfenster 2 ebenfalls per SSH mit demselben Zielserver.
 
 **AKTION:** Erstellen Sie dort eine neue `tmux`-Session namens `projekt1`.
 
-**AKTION:** Starten Sie in dieser Session dieselbe Zählschleife:
-`for i in {1..1000}; do echo $i; sleep 1; done`
-
-**AKTION:** Merken Sie sich die zuletzt in Terminal-Programmfenster 2 angezeigte Zahl der Zählschleife.
+**AKTION:** Starten Sie in dieser Session eine gleiche Zählschleife:
+`for i in {1..10000}; do echo $i; sleep 1; done`
 
 Jetzt provozieren wir einen Verbindungsabbruch, wie er in der Praxis etwa durch einen Netzwerkwechsel,
 das Zuklappen des Laptops oder instabiles WLAN passiert.
 
-**AKTION:** Schließen Sie beide Terminal-Programmfenster (beispielsweise über das Schließen-Kreuz).
+**AKTION:** Notieren Sie sich die zuletzt in Terminal-Programmfenster 2 angezeigte Zahl der Zählschleife
+und schließen Sie unmittelbar danach beide Terminal-Programmfenster
+(beispielsweise über das Schließen-Kreuz).
 
 Das Schließen der Programmfenster beendet die beiden lokalen SSH-Clients abrupt
 und simuliert so die Wirkung eines länger andauernden Verbindungsabbruchs.
 
 **AKTION:** Öffnen Sie nun zwei neue Terminal-Programmfenster (Terminal-Programmfenster 1 und 2)
 und warten Sie etwa eine halbe Minute,
-damit die Zählschleife beim späteren Wiederverbinden erkennbar über die gemerkte Zahl hinaus weitergelaufen ist.
+damit die Zählschleife beim späteren Wiederverbinden erkennbar über die notierte Zahl hinaus weitergelaufen ist.
 
 **AKTION:** Verbinden Sie sich in Terminal-Programmfenster 1 erneut per SSH mit dem Zielserver.
 
 Sie erhalten eine frische Shell.
-Die Zählschleife und ihre bisherige Ausgabe sind für Sie unwiederbringlich verloren –
-der Prozess wurde beim Verbindungsabbruch vom System beendet.
+Die Zählschleife und ihre bisherige Ausgabe sind für Sie unwiederbringlich verloren.
+
+**AKTION:** Zählen Sie mit `pgrep -c -u $USER sleep`, wie viele Ihrer beiden Zählschleifen noch laufen.
+Die Option `-u $USER` beschränkt die Suche auf Ihre eigenen Prozesse,
+denn auf dem Server arbeiten ja vielleicht auch andere Leute.
+
+Die Ausgabe ist `1`: Nur eine der beiden Schleifen läuft noch.
+Die andere hat der Server beim Verbindungsabbruch mit dem Signal `SIGHUP` beendet
+(siehe [PARTREF::Prozessmanagement]), weil mit der SSH-Verbindung auch ihr Terminal weggefallen ist.
+Welche der beiden überlebt hat, sehen Sie gleich.
 
 **AKTION:** Verbinden Sie sich in Terminal-Programmfenster 2 erneut per SSH mit dem Zielserver.
 
@@ -99,8 +107,8 @@ Sie befinden sich nun wieder in einer normalen Shell auf dem Server, aber außer
 **AKTION:** Verbinden Sie sich mit der Session `projekt1` (attach).
 
 Die Zählschleife läuft kontinuierlich weiter:
-Die angezeigte Zahl ist um die Anzahl der verstrichenen Sekunden weitergelaufen,
-statt an der gemerkten Stelle stehengeblieben oder verloren zu sein.
+Die angezeigte Zahl ist deutlich größer als die notierte,
+statt an der notierten Stelle stehengeblieben oder verloren zu sein.
 `tmux` schreibt die Ausgabe eines Prozesses fortlaufend in seinen Pane-Puffer, auch wenn kein Client verbunden ist.
 Der Prozess hängt nicht am lokalen Terminal oder an der SSH-Verbindung,
 sondern an der Session auf dem Server – und die überlebt den Verbindungsabbruch.
@@ -108,7 +116,7 @@ Das ist der entscheidende Vorteil gegenüber einer gewöhnlichen SSH-Shell.
 
 **AKTION:** Beenden Sie die Zählschleife mit `Ctrl+c`.
 
-Terminal-Programmfenster 1 benötigen Sie ab jetzt nicht mehr.
+Terminal-Programmfenster 1 benötigen Sie ab jetzt nicht mehr; Sie können es schließen.
 
 <!-- time estimate: 20 min -->
 
@@ -121,29 +129,27 @@ oder Panes strukturiert wird, statt mehrere Sessions parallel zu verwalten.
 Lesen Sie nun die Abschnitte **Working with Windows** und **Working with Panes** desselben Artikels:
 [tmux Command in Linux: Sessions, Windows, and Panes](https://linuxize.com/post/getting-started-with-tmux/)
 
+[NOTICE]
+`tmux` bezeichnet das Aufteilen in Panes nebeneinander (vertikale Trennlinie) als *horizontal split* (`%` bzw. `-h`).
+Das Aufteilen übereinander (horizontale Trennlinie) wird als *vertical split* (`"` bzw. `-v`) bezeichnet.
+Um Verwirrung zu vermeiden, verwenden wir im Folgenden die Bezeichnungen
+"nebeneinander" und "übereinander".
+Der verlinkte Artikel nennt dieselben beiden Tasten leider mit vertauschten Adjektiven
+(*vertically* für `%`, *horizontally* für `"`).
+[ENDNOTICE]
+
 Achten Sie dabei besonders auf folgende Fragen:
 
 - Wie erstellt, wechselt und schließt man Fenster?
 - Welche Tastenkombinationen teilen ein Fenster nebeneinander bzw. übereinander auf?
 - Wie wechselt man zwischen verschiedenen Panes?
 
-[NOTICE]
-`tmux` bezeichnet das Aufteilen in Panes nebeneinander (vertikale Trennlinie) als *horizontal split* (`%` bzw. `-h`).
-Das Aufteilen übereinander (horizontale Trennlinie) wird als *vertical split* (`"` bzw. `-v`) bezeichnet.
-Um Verwirrung zu vermeiden, verwenden wir im Folgenden die eindeutigen Bezeichnungen
-"nebeneinander" und "übereinander".
-Der verlinkte Artikel nennt dieselben beiden Tasten mit vertauschten Adjektiven
-(vertically für `%`, horizontally für `"`).
-[ENDNOTICE]
-
 Es gibt zwei Möglichkeiten, die Anzeige zu strukturieren:
 
 - **Fenster**: Bilden mehrere unabhängige Bildschirmflächen innerhalb einer Session (wie Tabs).
 Jedes Fenster hat einen eigenen Index (beispielsweise 0, 1, 2, ...).
-Ideal für: Verschiedene Aufgaben getrennt halten (beispielsweise Fenster 0: Editor, Fenster 1: Server-Logs).
 - **Panes**: Teilen ein einzelnes Fenster in mehrere Bereiche auf.
 Alle Panes gehören zum gleichen Fenster und sind gleichzeitig sichtbar.
-Ideal für: Nebeneinander arbeiten (beispielsweise Code links, Terminal/Tests rechts).
 
 Die folgenden Schritte finden alle in der Session `projekt1` in Terminal-Programmfenster 2 statt.
 
@@ -252,7 +258,7 @@ Sie kehren zur normalen Shell zurück, die Session läuft aber im Hintergrund we
 
 **AKTION:** Beenden Sie die Session `test` von der normalen Shell aus, ohne sich vorher mit ihr zu verbinden.
 
-[HINT::Wie beende ich eine Session, ohne mich vorher mit ihr verbinden zu müssen?]
+[HINT::Ich kenne keinen Befehl zum Beenden von außen]
 Siehe den Abschnitt **Killing Sessions** im oben verlinkten Artikel:
 Mit `tmux kill-session -t <Name>` beenden Sie eine Session gezielt von außen.
 [ENDHINT]

@@ -34,5 +34,5 @@
 - **2026-08-21**: Die Landeseite jeder Aufgabengruppe enthält jetzt ein Übersichtsdiagramm,
   das die Abhängigkeiten zeigt. Die Tasknamen sind darin Hyperlinks.
 - **2026-08-21**: Aufgaben [PARTREF::django-Ausblick] und [PARTREF::np-sort-filter] zugefügt.
-- **2026-09-01**: Aufgabe [PARTREF::np-linalg] zugefügt. 
+- **2026-09-01**: Aufgaben [PARTREF::np-linalg] und [PARTREF::tmux] zugefügt. 
 - ...
