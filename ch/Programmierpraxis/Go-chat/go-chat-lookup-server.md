@@ -35,7 +35,7 @@ In diesem Modul werden Sie den Lookup-Server als eigenständiges Programm implem
 Der Lookup-Server soll auf Port `8083` lauschen.
 
 [NOTICE]
-Für eigene, triviale Anwendungen wie diese ist es sinnvoll, sich einen zufälligen Port aus dem Bereich `8001`—`8099`
+Für eigene, triviale Anwendungen wie diese ist es sinnvoll, sich einen zufälligen Port aus dem Bereich `8001` bis `8099`
 als Standard zu wählen, statt naheliegende Ports wie `8080` oder `3000` zu verwenden.
 Solche gut bekannten Ports sind auf Ihrem Rechner oft schon von anderen Tools oder Ihren eigenen Programmen aus früheren
 Aufgaben belegt — ein zufälliger Port aus einem selten genutzten Bereich minimiert das Risiko solcher Konflikte.
@@ -61,9 +61,8 @@ zugreifbar sind.
 
 [ER] Registrieren Sie einen POST-Endpunkt `/register`, der aus dem JSON-Payload die Felder `username`
 und `port` ausliest und in `AddressTable` speichert.
-Der Parameter `name` ist der Benutzername;
-Der Parameter `address` wird aus der IP-Adresse und dem Port gebildet, getrennt durch einen Doppelpunkt
-(`ip_addr:port`).
+`Add` erwartet dabei in `name` den Benutzernamen und in `address` die aus IP-Adresse und Port gebildete
+Adresse, getrennt durch einen Doppelpunkt (`ip_addr:port`).
 `ip_addr` kann der Server dem Feld
 [`RemoteAddr`](https://pkg.go.dev/net/http#Request)
 des Parameters `r *http.Request` entnehmen.
@@ -74,7 +73,7 @@ verwendet werden; bei IPv6-Adressen das Format `[ip_addr]:port`) und verwenden S
 und
 [`net.IP.To4`](https://pkg.go.dev/net#IP.To4).
 
-Hat alles geklappt, so ist der Statuscode `200` und der Server antwortet mit `OK`.
+Bei Erfolg ist der Statuscode `200` und der Server antwortet mit `OK`.
 Lesen Sie selbst nach in der Dokumentation von `net/http`, wie man in Go bei einem `http.ResponseWriter`
 den Statuscode setzt.
 
@@ -92,7 +91,7 @@ vergebener _ephemeral port_ (siehe
 [Wikipedia: Ephemeral port](https://en.wikipedia.org/wiki/Ephemeral_port)).
 Er hat nichts mit dem Port zu tun, auf dem der Peer selbst später auf eingehende Chat-Nachrichten lauscht.
 Deshalb muss der Peer seinen tatsächlichen, dauerhaften Port explizit mitschicken — nur die IP-Adresse darf unverändert
-aus der Anfrage übernommen werden, da sie sich zwischen Ephemeral- und dauerhaftem Port nicht unterscheidet.
+aus der Anfrage übernommen werden, da sie für beide Verbindungen dieselbe ist.
 [ENDFOLDOUT]
 
 <!-- time estimate: 30 min -->
@@ -156,13 +155,15 @@ Starten Sie Ihren Lookup-Server und führen Sie in einem anderen Terminal folgen
 
 [EC] `curl -i -X GET http://localhost:8083/alice`
 
-[EQ] Warum antwortet der Server mit "user not found" auf `curl -X GET http://localhost:8083/register`?
+[EQ] Warum antwortet der Server auf `curl -X GET http://localhost:8083/register` mit Statuscode `404`,
+obwohl `/register` doch ein Endpunkt dieses Servers ist?
 
 <!-- time estimate: 15 min -->
 
 [ENDSECTION]
 
-[SECTION::submission::trace,program]
+[SECTION::submission::information,trace,program]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
