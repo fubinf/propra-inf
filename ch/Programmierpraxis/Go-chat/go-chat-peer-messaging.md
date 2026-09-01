@@ -1,5 +1,5 @@
 title: "Go HTTP Chat: Peer — Nachrichtenaustausch"
-stage: draft
+stage: alpha
 timevalue: 2.25
 difficulty: 3
 assumes: go-goroutines, go-channels, go-http-client, go-http-server
