@@ -135,10 +135,14 @@ Optional: Wer es genauer wissen möchte, findet detaillierte Informationen zu Co
 ### Sessions und Sitzungsverwaltung
 
 Sessions sind temporäre Speicherbereiche, die auf dem Server für jeden Benutzer erstellt werden.  
-Genau genommen speichert der Server nicht „die Session selbst“, sondern nur die zugehörigen Daten, 
-die durch die Session-ID referenziert werden. Alternativ könnte man auch Mechanismen wie 
-`localStorage` nutzen, um clientseitig Daten zu halten.  
+Alternativ könnte man auch Mechanismen wie `localStorage` nutzen, 
+um clientseitig Daten zu halten.  
 Sessions enthalten Informationen über die Benutzeraktivität und den aktuellen Zustand.
+
+[NOTICE]
+Genau genommen speichert der Server nicht „die Session selbst“, sondern nur die zugehörigen Daten, 
+die durch die Session-ID referenziert werden.
+[ENDNOTICE]
 
 Cookies und Sessions arbeiten zusammen:
 
@@ -155,10 +159,6 @@ entsprechend personalisierte Antworten senden.
 Warum werden beide Mechanismen oft zusammen verwendet?
 <!-- EQ2 -->
 
-[NOTICE]
-Der Server speichert nicht „die Session selbst“, sondern nur die dazugehörigen Daten, 
-die durch die Session-ID referenziert werden. 
-[ENDNOTICE]
 <!-- time estimate: 10 min -->
 
 
