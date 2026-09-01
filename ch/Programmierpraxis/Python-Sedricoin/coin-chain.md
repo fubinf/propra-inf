@@ -21,7 +21,6 @@ der Daten durch die Daten selbst bestätigt werden kann.
 
 [SECTION::instructions::loose]
 
-
 ### Programmiersprache auswählen
 <!-- time estimate: 10 min -->
 
@@ -41,14 +40,14 @@ Sie müssen Probleme selbständig lösen.
 
 In einer Blockchain werden Daten in sogenannten Blöcken gespeichert.
 In jedem Block gibt es eine Referenz auf den vorherigen Block.
-Diese Referenz wird in der Regel durch eine [TERMREF::kryptografische Hashfunktion]
-über den Block erstellt: den *Block-Hash*.
+Diese Referenz ist in der Regel der *Block-Hash*:
+Auf den vorherigen Block wird eine [TERMREF::kryptografische Hashfunktion] angewandt.
 
 Wenn nun der erste Block geändert wird, muss sich der zweite ändern.
 In einer Blockchain ist es nicht möglich, einen Block zu verändern, ohne
 **alle** Blöcke danach zu verändern.
 
-Wechseln Sie in Ihr Hilfsverzeichnis.
+Wechseln Sie in Ihren [TERMREF::Hilfsbereich].
 Erstellen Sie dort (also _nicht_ in Ihrem normalen Repo) ein neues
 Verzeichnis `blockchain_example`.
 Initialisieren Sie in diesem Verzeichnis ein neues Git-Repo und erstellen Sie dort
@@ -68,28 +67,27 @@ Die Git-History können Sie mit dem Kommando `git log` ausgeben, siehe
 [git-log-Dokumentation](https://git-scm.com/docs/git-log).
 
 [HINT::Wie kann ich nur eine Zeile pro Commit ausgeben?]
-Wenn Sie nur eine Zeile ausgeben wollen, können Sie die Flag `--oneline`
-dem Kommando hinzufügen.
+Wenn Sie nur eine Zeile ausgeben wollen, können Sie dem Kommando die Option `--oneline` hinzufügen.
 [ENDHINT]
 
 [ENDHINT]
 
-[HINT::Die Ausgabe wird nicht in die Shell gedruckt.]
+[HINT::Die Ausgabe erscheint nicht im Terminal.]
 Standardmäßig wird die Ausgabe von `git` an einen sogenannten *Pager* übergeben.
 Ein Pager wird in Unix-Systemen genutzt, um lange Dateien im Terminal zu lesen
 und scrollen zu können.
 Sie können dies mit
-[der Flag `--no-pager`](https://git-scm.com/docs/git#Documentation/git.txt---no-pager)
-verhindern, um die Ausgabe direkt in das Terminal zu drucken.
+[der Option `--no-pager`](https://git-scm.com/docs/git#Documentation/git.txt---no-pager)
+verhindern, um die Ausgabe direkt im Terminal auszugeben.
 
 ```
 git --no-pager log --oneline
 ```
 [ENDHINT]
 
-Nutzen Sie
+Nutzen Sie interaktives
 [git-rebase](https://git-scm.com/docs/git-rebase),
-um im ersten Commit (`Block1`) die Datei `Block1.txt` zu verändern.
+mit "edit", um im ersten Commit (`Block1`) die Datei `Block1.txt` zu verändern.
 Der zweite Commit `Block2` soll unverändert übernommen werden.
 
 [EC] Geben Sie die einzeilige Git-History aus.
@@ -104,13 +102,13 @@ verknüpften Commits.
 In Sedricoin wird diese Idee nachgebaut:
 Jeder Block verweist über seinen Hash auf seinen Vorgänger.
 
-Das Verzeichnis sieht nach dem Rebase genauso aus wie vorher,
+Das Verzeichnis sieht nach dem Rebase auf den ersten Blick genauso aus wie vorher,
 es existieren beide Dateien mit Inhalt.
-Durch die veränderten Commit-Hashes kann erkannt werden, dass die Dateien verändert wurden.
+Durch die veränderten Commit-Hashes kann aber sofort erkannt werden, dass irgendetwas verändert wurde.
 
-Dass diese Manipulation in Git so einfach möglich ist, ist an dieser Stelle gewollt.
-In einer Kryptowährungs-Blockchain ist sie dagegen unerwünscht:
-Dort soll eine Manipulation so aufwendig sein, dass sie praktisch nicht möglich ist.
+Dass diese Änderung in Git so einfach möglich ist, ist gewollt.
+In einer Kryptowährungs-Blockchain darf von vielen möglichen Änderungen aber nur eine als die richtige akzeptiert werden.
+Dort muss eine heimliche Manipulation so aufwendig sein, dass sie praktisch nicht möglich ist.
 Inwiefern und auf welche Art das in Bitcoin und Sedricoin geschützt wird,
 wird in einer späteren Aufgabe erläutert.
 
@@ -118,7 +116,7 @@ wird in einer späteren Aufgabe erläutert.
 ### Programmaufbau
 <!-- time estimate: 5 min -->
 
-[ER] Legen Sie ein Verzeichnis `Sedricoin` in Ihrem Arbeitsverzeichnis an.
+[ER] Legen Sie ein Verzeichnis `Sedricoin` in Ihrem Repo an.
 Nutzen Sie dieses Verzeichnis für Ihre Sedricoin-Implementierung.
 
 Die Anforderungen in dieser Aufgabengruppe beschreiben vor allem,
@@ -149,8 +147,8 @@ Darüber können Einstellungen für das Programm gesetzt werden.
 Alle Umgebungsvariablen bekommen das Präfix `SEDRICOIN_`.
 Vorerst soll nur die Variable `SEDRICOIN_STORAGE_PATH` unterstützt werden.
 Diese gibt den Speicherort der Blockchain an.
-Sie müssen hier einen Pfad angeben, der im _Hilfsbereich_ ist, damit die Daten
-nicht Teil Ihres Repos sind.
+Sie müssen hier einen Pfad angeben, der in Ihrem [TERMREF::Hilfsbereich] liegt,
+damit die Daten nicht Teil Ihres Repos sind.
 Wenn das angegebene Verzeichnis beim Start der Anwendung nicht existiert, soll es erstellt werden.
 Scheitert dies, bricht die Anwendung ab.
 Sie dürfen im Rahmen Ihrer Implementierung auch Unterverzeichnisse erstellen,
@@ -241,7 +239,8 @@ schreiben, die den `Block` in gültiges JSON umwandelt.
 [ENDHINT]
 
 Jeder Block hat einen Block-Hash.
-Dieser wird nicht explizit gespeichert, sondern kann nach folgenden Regeln berechnet werden:
+Dieser wird nicht explizit gespeichert, sondern nach folgenden Regeln über die Felder
+des `BlockHeader` berechnet:
 
 1. Die Werte der Felder mit `;` getrennt zu einem `String` aneinanderreihen.
    Die Reihenfolge der Werte muss dem gegebenen JSON-Modell entsprechen.
@@ -255,7 +254,7 @@ Dieser wird nicht explizit gespeichert, sondern kann nach folgenden Regeln berec
 6. Der Block-Hash ist die Hex-Repräsentation des Ergebnisses.
 
 <!-- time estimate: 20 min -->
-[ER] Implementieren Sie eine Funktion mit der der Block-Hash berechnet werden kann.
+[ER] Implementieren Sie eine Funktion, mit der der Block-Hash berechnet werden kann.
 Der gegebene Block hat also den Block-Hash
 `807eee99f5758108077c7be5ca7c2ef37c8b5b3f3046260ed9867b4eb08f7e3b`.
 
@@ -293,8 +292,8 @@ In Python können Sie dafür das [PARTREF::m_pytest]-Framework nutzen.
 
 [FOLDOUT::Testfälle Block-Hash]
 
-Die folgenden Testfälle verstoßen bewusst gegen die defnierten Anforderungen
-and einen Block, um ihre Hash Funktion zu testen.
+Die folgenden Testfälle verstoßen bewusst gegen die oben definierten Anforderungen an einen
+gültigen `Block`; sie prüfen gezielt die Normalisierungsregeln Ihrer Hash-Funktion.
 
 1. Genesis-Block-Test
 
@@ -360,18 +359,18 @@ Bei **jedem** Aufruf (also auch beim ersten) wird anschließend ein neuer `Block
 Unix-Timestamp berechnet und der Blockchain hinzugefügt.
 Benennen Sie die Block-Dateien nach der Block-Höhe.
 Die Block-Höhe ist der Index des Blocks in der Blockchain.
-Dieser wird nur berechnet, aber nicht im `Block` gespeichert.
+Diese wird nur berechnet, aber nicht im `Block` gespeichert.
 Der Genesis-Block hat die Block-Höhe `0`.
 
 [NOTICE]
-Zur Vereinfachung meint in diesem Projekt: "`Block` 1" das selbe, wie
+Zur Vereinfachung meint "`Block` 1" in diesem Projekt dasselbe wie
 "`Block` mit der Block-Höhe 1".
 [ENDNOTICE]
 
 [ER] Beim Ausführen der Anwendung soll die aktuelle Blockchain auf der Konsole ausgegeben werden.
 Pro Zeile soll ein Block ausgegeben werden.
-Die bestehenden Blöcke werden im Format: `<Block-Höhe>: <Block-Hash>` ausgegeben
-und der neu erzeugte im Format: `New Block <Block-Höhe>: <Block-Hash>`.
+Die bestehenden Blöcke werden im Format `<Block-Höhe>: <Block-Hash>` ausgegeben
+und der neu erzeugte im Format `New Block <Block-Höhe>: <Block-Hash>`.
 Falls beim Laden die Blockchain ungültig ist, wird auf der Konsole ausgegeben,
 welcher Block ungültig ist (Fehlermeldung: `Blockchain Error at Block <Block-Höhe>.`),
 und es wird kein neuer `Block` berechnet.
@@ -394,12 +393,12 @@ Diese Tests werden in einer späteren Aufgabe ausführlicher beschrieben.
 
 [EC] Rufen Sie Ihren Server zweimal auf.
 
-[ER] Manipulieren Sie nun die Blockchain manuell, indem Sie die JSON-Datei des `Blocks` 1
-in ihrem Editor öffnen und den `timestamp` um `1` erhöhen.
+[ER] Manipulieren Sie nun die Blockchain manuell, indem Sie die JSON-Datei von `Block` 1
+in Ihrem Editor öffnen und den `timestamp` um `1` erhöhen.
 Auf diese Weise wird die Blockchain ungültig, da nun der Block-Hash von `Block` 1
 verändert wurde, ohne den `previous_hash` in `Block` 2 anzupassen.
 
-[EC] Rufen Sie Ihren Server einmal auf, dieser sollte die Manipulation erkennen.
+[EC] Rufen Sie Ihren Server einmal auf; er sollte die Manipulation erkennen.
 
 ### Projektbeschreibung
 <!-- time estimate: 10 min -->
@@ -407,7 +406,7 @@ verändert wurde, ohne den `previous_hash` in `Block` 2 anzupassen.
 Zur Korrektur ist es notwendig, dass die Tutor_innen wissen, wie sie Ihre
 Anwendung verwenden können.
 
-[ER] Legen Sie dafür in Ihrem Verzeichnis `Sedricoin` die folgende, ausgefüllte `README.md`-Datei
+[ER] Legen Sie dafür in Ihrem Verzeichnis `Sedricoin` die folgende ausgefüllte `README.md`-Datei
 an und pflegen Sie diese Dokumentation Ihrer Anwendung im Verlauf dieses Projekts.
 Erklären Sie darin:
 
@@ -427,12 +426,13 @@ Zuletzt bearbeitete Aufgabe: coin-chain
 ## Umgebungsvariablen
 
 ```
-SEDRICOIN_STORAGE_PATH=/home/adrian/sedricoin
+SEDRICOIN_STORAGE_PATH=/home/ich/ws/tmp/sedricoin
 ```
 
 ## Server
 
 Sprache: `<Ihre gewählte Programmiersprache eintragen>`
+
 Dependencies installieren:
 
 ```
@@ -453,14 +453,15 @@ Tests ausführen:
 
 ````
 [ENDFOLDOUT]
-
 [ENDSECTION]
+
 
 [SECTION::submission::trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode-files.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Kontrollergebnisse]
 [INCLUDE::ALT:]

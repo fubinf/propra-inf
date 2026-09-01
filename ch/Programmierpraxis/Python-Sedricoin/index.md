@@ -1,5 +1,5 @@
 title: "Sedricoin"
-stage: draft
+stage: alpha
 ---
 Bitcoin, Ethereum und Tether gehören derzeit zu den 
 [größten](https://coinmarketcap.com/) 
@@ -21,7 +21,7 @@ Das Vorbild ist dabei Bitcoin.
 - In den ersten Aufgaben implementieren Sie die Grundlagen einer Blockchain:
   Blöcke verketten, Transaktionsdaten speichern und die Blockchain gegen Manipulation
   schützen.
-- Achließend wird das Berechnen neuer Blöcke implementiert.
+- Anschließend wird das Berechnen neuer Blöcke implementiert.
 - Am Ende des Projekts wird die Anwendung so erweitert, dass ein simples
   Peer-to-Peer-Netzwerk aufgespannt werden kann.
 
