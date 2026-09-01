@@ -69,6 +69,9 @@ Ein Vergleich der Aufgabe mit früheren Dateirevisionen in git sollte selten nö
 Die Tendenz sollte sein, dass die resultierende Liste der Kritikpunkte in der Regel bei jedem Durchgang
 deutlich kürzer wird.
 
+Uncommittete andere Dateien und Dateien, die sich von alleine ändern, sind normal.
+Bitte einfach ignorieren.
+
 ---
 
 ## A. Inhaltliche Probleme
