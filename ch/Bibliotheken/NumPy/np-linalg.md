@@ -1,5 +1,5 @@
 title: NumPy Lineare Algebra und Matrixoperationen
-stage: alpha
+stage: beta
 timevalue: 2.5
 difficulty: 2
 assumes: np-index-slice, np-math, py-Fstrings
@@ -110,6 +110,16 @@ Die Referenzseite dazu ist
   `[[5, 12, 3], [8, 1, 15], [10, 6, 2], [14, 9, 4]]`, transponieren Sie sie mit beiden
   Schreibweisen (`.T` und `np.transpose()`) und geben Sie beide Formen aus
 - Zeigen Sie, dass zweifaches Transponieren wieder die Ausgangsmatrix ergibt
+- Finden Sie durch ein Experiment heraus, ob `.T` eine View im Sinne von
+  [PARTREF::np-index-slice] liefert oder eine Kopie, und halten Sie Vorgehen und Ergebnis in
+  einem Kommentar fest
+
+[HINT::Wie weise ich View oder Kopie nach?]
+Ein Vergleich der Werte hilft nicht weiter, denn eine Kopie enthält dieselben Zahlen wie eine
+View.
+Aussagekräftig ist nur, ob sich die beiden Arrays denselben Speicher teilen: Ändern Sie ein
+Element der transponierten Matrix und sehen Sie nach, was aus der Ausgangsmatrix geworden ist.
+[ENDHINT]
 
 <!-- time estimate: 5 min -->
 
@@ -255,8 +265,8 @@ Dasselbe gilt für zwei Vektoren und für gemischte Formen wie Matrix mal Vektor
 
 Unterschiede zwischen den Schreibweisen zeigen sich bei Skalaren und bei mehr als zwei
 Dimensionen.
-Die folgenden Codeblöcke dieses Abschnitts setzen den obigen Code fort und verwenden `np`, `A`
-und `B` weiter.
+Die folgenden Codeblöcke dieses Abschnitts setzen den Beispielcode oben fort und verwenden
+dessen `np` sowie die beiden 2×2-Matrizen `A` und `B` weiter.
 
 ```python
 # np.dot verrechnet auch Skalare, np.matmul verlangt mindestens eindimensionale Operanden
@@ -273,13 +283,14 @@ print('Form von np.matmul(stapel, stapel):', np.matmul(stapel, stapel).shape)
 ```
 
 `matmul` behandelt alles vor den letzten beiden Dimensionen als Stapel, hier also die
-vorderste Dimension, und multipliziert die 2×2-Matrizen paarweise; das Ergebnis hat wieder
-die Form `(2, 2, 2)`.
+vorderste Dimension, und multipliziert die darin liegenden Matrizen paarweise.
 `dot` dagegen summiert über die letzte Achse des ersten und die vorletzte Achse des zweiten
 Arrays und hängt die übrigen Achsen aneinander, hat also die Form
-`a.shape[:-1] + b.shape[:-2] + b.shape[-1:]` und hier deshalb `(2, 2, 2, 2)`.
-Für Matrixmultiplikation ist deshalb `matmul` bzw. `@` die richtige Wahl; `dot` ist die
-ältere, allgemeinere Funktion.
+`a.shape[:-1] + b.shape[:-2] + b.shape[-1:]`.
+Welche der beiden oben ausgegebenen Formen aus welcher der beiden Regeln folgt, arbeiten Sie
+in der Übung am Ende dieses Abschnitts heraus.
+Für Matrixmultiplikation ist `matmul` bzw. `@` die richtige Wahl; `dot` ist die ältere,
+allgemeinere Funktion.
 
 **Vektoroperationen:**
 
@@ -358,6 +369,11 @@ Die Referenzseiten dazu sind
   Werten `[1+1j, 5+2j]`, berechnen Sie `dot`, `vdot` und `inner` und halten Sie in einem
   Kommentar fest, welches der drei Ergebnisse abweicht und warum
 
+[HINT::Ich sehe nicht, welche Form zur paarweisen Multiplikation gehört]
+Halten Sie die beiden Ergebnisformen neben die Form von `stapel` selbst.
+Zwei paarweise multiplizierte 3×3-Matrizen ergeben wieder zwei 3×3-Matrizen.
+[ENDHINT]
+
 [HINT::Ich finde den Ausdruck mit `@` und `.T` nicht]
 `@` verrechnet die Zeilen des linken Operanden mit den **Spalten** des rechten, `inner`
 dagegen die Zeilen des einen mit den **Zeilen** des anderen.
@@ -418,7 +434,8 @@ Die Referenzseite dazu ist
 [ER] Berechnen Sie Determinanten verschiedener Matrizen:
 
 - Erstellen Sie eine 2×2-Matrix `matrix_2x2` mit den Werten `[[6, 4], [3, 7]]`, berechnen Sie
-  ihre Determinante händisch als ad - bc und überprüfen Sie mit NumPy
+  ihre Determinante händisch nach der Regel `ad - bc` für `[[a, b], [c, d]]` und überprüfen
+  Sie das Ergebnis mit NumPy
 - Erstellen Sie eine 3×3-Matrix `matrix_3x3` mit den Werten `[[2, 1, 3], [1, 0, 2], [3, 1, 1]]`
   und berechnen Sie ihre Determinante
 - Erstellen Sie eine bewusst singuläre 3×3-Matrix `singular_zeilengleich` mit den Werten
@@ -575,8 +592,9 @@ Die Referenzseite dazu ist
 - Machen Sie für beide Systeme die Probe, indem Sie die Koeffizientenmatrix mit der
   gefundenen Lösung multiplizieren und das Ergebnis mit `np.allclose` gegen die rechte Seite
   vergleichen
-- Lösen Sie außerdem `matrix @ x = b` mit der Matrix `matrix` aus [EREFR::6] einmal für
-  `b = [13, 10, 10]` und einmal für `b = [13.000001, 10, 10]`
+- Lösen Sie außerdem `matrix @ x = b` mit der Matrix `matrix` aus [EREFR::6] mit den Werten
+  `[[4, 7, 2], [3, 6, 1], [2, 5, 3]]` einmal für `b = [13, 10, 10]` und einmal für
+  `b = [13.000001, 10, 10]`
 - Legen Sie die Matrix `schlecht_konditioniert` mit den Werten `[[1, 1], [1, 1.0001]]` aus dem
   vorigen Abschnitt erneut an und lösen Sie ebenso zweimal, einmal für `b = [2, 2.0001]` und
   einmal für `b = [2.000001, 2.0001]`
@@ -590,8 +608,8 @@ Kommt etwas anderes heraus, ist die Koeffizientenmatrix falsch aufgestellt; prü
 Vorzeichen und Spaltenreihenfolge gegen die Gleichungen.
 [ENDHINT]
 
-[EQ] In [EREFR::7] haben Sie dieselbe winzige Änderung an der rechten Seite einmal bei `matrix`
-und einmal bei `schlecht_konditioniert` vorgenommen.
+[EQ] In [EREFR::7] haben Sie dieselbe winzige absolute Änderung an der rechten Seite einmal
+bei `matrix` und einmal bei `schlecht_konditioniert` vorgenommen.
 Erklären Sie den Unterschied zwischen den beiden Ergebnissen aus der Bedeutung der
 Konditionszahl heraus.
 Erklären Sie außerdem, was daraus für ein Gleichungssystem folgt, dessen rechte Seite aus
@@ -715,7 +733,7 @@ numpy.linalg.norm(x, ord=None)
 - `x`: die betroffene Matrix oder der betroffene Vektor
 - `ord`: welche Norm berechnet wird — bei Matrizen sind `'fro'` für die Frobenius-Norm sowie
   `1`, `2` und `np.inf` (NumPys Konstante für Unendlich) für die jeweilige Operatornorm
-  gebräuchlich; bei Vektoren bedeuten dieselben Angaben etwas anderes, siehe unten.
+  gebräuchlich.
   Beim Standardwert `None` entspricht das der 2-Norm bei Vektoren bzw. der Frobenius-Norm
   bei Matrizen
 
@@ -746,7 +764,7 @@ print('Frobenius-Norm:', frobenius_norm)
 norm_1 = np.linalg.norm(matrix, 1)
 print('1-Norm:', norm_1)
 
-# 2-Norm (Spektralnorm, größter Singulärwert)
+# 2-Norm (Spektralnorm, größter Singulärwert, siehe unten bei SVD)
 norm_2 = np.linalg.norm(matrix, 2)
 print('2-Norm:', norm_2)
 
@@ -787,7 +805,7 @@ nicht.
 
 Die Singulärwertzerlegung ist das Arbeitspferd hinter Datenkompression und Rauschunterdrückung:
 Behält man von der Zerlegung nur die größten Anteile und verwirft den Rest, bleibt von einem
-Bild oder einem Datensatz das Wesentliche übrig.
+Bild oder einem Datensatz "das Wesentliche" übrig.
 
 Die Singulärwertzerlegung zerlegt eine Matrix A in drei Faktoren U, Σ und Vᵀ mit A = U Σ Vᵀ:
 
@@ -800,7 +818,7 @@ numpy.linalg.svd(a, full_matrices=True)
   werden; mit `False` bekommen sie nur so viele Spalten bzw. Zeilen, wie es Singulärwerte gibt
 
 `svd` gibt den mittleren Faktor nicht als Matrix zurück, sondern nur die Singulärwerte
-als eindimensionales Array.
+als eindimensionales Array (und der größte davon ist die 2-Norm).
 Wer die Matrix aus der Zerlegung zurückgewinnen will, muss daraus erst wieder eine
 Diagonalmatrix bauen; dafür gibt es
 [numpy.diag](https://numpy.org/doc/stable/reference/generated/numpy.diag.html):
