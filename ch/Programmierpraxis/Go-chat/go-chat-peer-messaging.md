@@ -1,6 +1,6 @@
 title: "Go HTTP Chat: Peer — Nachrichtenaustausch"
 stage: draft
-timevalue: 2
+timevalue: 2.25
 difficulty: 3
 assumes: go-goroutines, go-channels, go-http-client, go-http-server
 requires: go-chat-lookup-server, go-chat-peer-registration
@@ -19,14 +19,12 @@ Unser Chat hat keinen zentralen Relay-Server — Nachrichten gehen direkt von Pe
 Jeder Peer ist gleichzeitig **HTTP-Client** (zum Verschicken) und **HTTP-Server** (zum Empfangen).
 Beide müssen nebenläufig laufen, während gleichzeitig die Terminal-Eingabe verarbeitet wird.
 
-Außerdem wollen wir, dass Benutzer_innen jederzeit mit `:q` eine Stufe zurückspringen können (beispielsweise vom Chat
-zurück zur Partnerwahl).
-Dafür bauen wir den Programmablauf selbst als kleine Zustandsmaschine.
+Außerdem soll es jederzeit möglich sein, mit `:q` eine Stufe zurückzuspringen
+(beispielsweise vom Chat zurück zur Partnerwahl).
+Dazu bauen wir den Programmablauf als kleine Zustandsmaschine.
 [ENDSECTION]
 
-
 [TOC]
-
 
 [SECTION::instructions::detailed]
 
@@ -34,33 +32,37 @@ Dafür bauen wir den Programmablauf selbst als kleine Zustandsmaschine.
 
 [ER] Definieren Sie im Paket `types` einen Typ `Message` mit den Feldern `Sender`, `Receiver`, `Content`
 (vom Typ `string`) und `CreatedAt` (`time.Time`).
-Fügen Sie den Feldern entsprechende JSON-Tags hinzu.
+Fügen Sie den Feldern passende JSON-Tags hinzu.
+
+<!-- time estimate: 5 min -->
 
 
 ### Empfänger-Server (Receiver)
 
 Jeder Peer verfügt über einen HTTP-Server, an dem er eingehende Nachrichten entgegennimmt.
-Einen Teil davon haben Sie bereits — die in [PARTREF::go-chat-peer-registration] implementierte Funktion
-`MustGetFreeListener` gibt einen `net.Listener` zurück, den Sie für den Server verwenden können.
+Ein Teil davon ist bereits vorhanden — die in [PARTREF::go-chat-peer-registration] implementierte Funktion
+`MustGetFreeListener` liefert einen `net.Listener`, den Sie für den Server nutzen können.
 
 [ER] Verwenden Sie die Methode
 [`http.Server.Serve()`](https://pkg.go.dev/net/http#Server.Serve)
 und implementieren Sie in einem neuen Paket `receiver` die Funktion
-`Receiver(ctx context.Context, cfg *config.Config, messages chan<- types.Message)`:
+`Receiver(ctx context.Context, cfg *config.Config, messages chan<- types.Message)`, die Folgendes tut:
 
-- mit dem in `Config` vorhandenen `net.Listener` einen Server startet;
-- einen Endpunkt `"/"+config.Username()` registriert, der eingehende `POST`-Requests als `types.Message` dekodiert
-  und auf den Channel `messages` schreibt.
-- Fährt den Server mittels
-  [`server.Shutdown(ctx)`](https://pkg.go.dev/net/http#Server.Shutdown)
-  sauber herunter, sobald `ctx` abgebrochen wird.
+- startet mit dem in `Config` hinterlegten `net.Listener` einen Server;
+- registriert den Endpunkt `"/"+config.Username()` und dekodiert eingehende `POST`-Requests als `types.Message`,
+  die er auf den Channel `messages` schreibt;
+- fährt den Server über `server.Shutdown(ctx)` sauber herunter, sobald `ctx` abgebrochen wird.
 
-Sie können den Receiver nun testen, indem Sie diese Funktion in `main` aufrufen und eine HTTP-Anfrage mit
-`curl -i -X POST -d '{"sender":"bob", "content": "hi there"}' http://localhost:51373/alice;` senden —
-die Portnummer und den Pfad müssen Sie so anpassen, wie Ihr Empfänger-Server es erwartet.
+Testen Sie den Receiver, indem Sie die Funktion in `main` aufrufen und eine HTTP-Anfrage mit
+
+```bash
+curl -i -X POST -d '{"sender":"bob", "receiver":"alice", "content":"hi there"}' http://localhost:51373/alice
+```
+
+senden — passen Sie Port, Pfad und `receiver` an die Konfiguration Ihres Empfänger-Servers an.
 
 [HINT::Wie starte ich den Server und warte gleichzeitig auf Shutdown?]
-`http.Server.Serve` blockiert, `Shutdown` muss aber aus einer anderen Goroutine aufgerufen werden.
+`http.Server.Serve` blockiert, `Shutdown` muss aus einer anderen Goroutine aufgerufen werden.
 Eine mögliche Lösung:
 
 ```go
@@ -71,25 +73,26 @@ go func() {
 }()
 
 <-ctx.Done()
-...
-// shutdown
+... // shutdown
 ```
 [ENDHINT]
+
+<!-- time estimate: 15 min -->
 
 
 ### Sender
 
 [ER] Implementieren Sie eine Methode `(p Peer) FullAddress() string`, die aus `Peer.Address` und `Peer.Username`
-eine vollständige URL der Form `http://address/username` zusammenstellt (beispielsweise `http://127.0.0.1:51043/alice`).
+die vollständige URL `http://address/username` erzeugt (beispielsweise `http://127.0.0.1:51043/alice`).
 
 <!-- time estimate: 5 min -->
 
 [ER] Implementieren Sie in einem neuen Paket `sender` die Funktion
 `Sender(ctx context.Context, cfg *config.Config, messages <-chan types.Message)`, welche:
 
-- Nachrichten vom Channel `messages` liest und jede per `POST` an `cfg.Peer().FullAddress()` schickt;
-- Schlägt das Verschicken fehl, wird der Fehler geloggt (beispielsweise mit `fmt.Println()`), das Programm läuft
-  aber weiter;
+- Nachrichten vom Channel `messages` liest;
+- jede Nachricht per `POST` an `cfg.Peer().FullAddress()` sendet;
+- Fehler protokolliert (beispielsweise mit `fmt.Println()`), das Programm aber weiterlaufen lässt;
 - sich beendet, sobald `ctx` abgebrochen wird.
 
 <!-- time estimate: 20 min -->
@@ -98,108 +101,109 @@ eine vollständige URL der Form `http://address/username` zusammenstellt (beispi
 ### Der Ablauf als Zustandsmaschine
 
 Bisher war Ihr Programmablauf linear.
-Jetzt wollen wir zwischen drei Stufen wechseln können — `login`, `choosePartner` und `chat` — und dabei jederzeit mit
-`:q` eine Stufe zurückspringen (und aus jeder Stufe mit `Ctrl+C` ganz aussteigen).
+Nun wollen wir zwischen drei Stufen wechseln — `login`, `choosePartner` und `chat` — und jederzeit mit `:q` eine Stufe
+zurückspringen sowie mit `Ctrl+C` das Programm beenden.
 
-[ER] Definieren Sie einen Aufzählungstyp `stage int` mit den Aufzählungswerten `login`, `choosePartner`,
-`chat` und `exit`.
+[ER] Definieren Sie einen Aufzählungstyp `stage int` mit den Werten `login`, `choosePartner`, `chat` und `exit`.
 
 <!-- time estimate: 5 min -->
 
-[ER] Definieren Sie eine Funktion
-`act(ctx context.Context, cfg *config.Config, currentStage stage, setNewStage func(stage))`, welche je nach
-`currentStage` in einem `switch`-Block entscheidet, was passieren soll:
+[ER] Definieren Sie die Funktion
+`act(ctx context.Context, cfg *config.Config, currentStage stage, setNewStage func(stage))`
+und lassen Sie sie in einem `switch`-Block je nach `currentStage` folgendes ausführen:
 
-- `login`
-   - einloggen;
-   - beim Erfolg den Benutzernamen in der `Config` speichern und weiter zu `choosePartner` gehen;
-   - beim Fehlschlagen nochmal versuchen, bis der Benutzer die Anwendung verlässt oder das Anmelden funktioniert;
-- `choosePartner`
-   - einen Peer aussuchen;
-   - beim Erfolg den Peer in der `Config` speichern und weiter zu `chat` gehen;
-   - beim Fehlschlagen den Benutzer abmelden und zurück zur Stufe `login` gehen;
-- `chat`
-   - zwei Kanäle für die eingehenden und ausgehenden Nachrichten anlegen (`incoming, outgoing chan types.Message`);
-   - einen abbrechbaren Kontext erzeugen und mit diesem nebenläufig Sender und Receiver starten.
-     Die Abbruchsfunktion verwenden Sie später im `onGoBack`-Callback-Parameter von der Funktion `processChat`;
-   - eine Funktion `processChat()` aufrufen, die Sie im nächsten Schritt implementieren.
+- **login**
+    - einloggen,
+    - bei Erfolg den Benutzernamen in `Config` speichern und zu `choosePartner` wechseln,
+    - bei Fehlschlag erneut versuchen, bis der Benutzer die Anwendung verlässt oder die Anmeldung klappt.
+- **choosePartner**
+    - einen Peer auswählen,
+    - bei Erfolg den Peer in `Config` speichern und zu `chat` wechseln,
+    - bei Fehlschlag abmelden und zurück zu `login`.
+- **chat**
+    - zwei Kanäle für eingehende und ausgehende Nachrichten anlegen (`incoming, outgoing chan types.Message`),
+    - einen abbrechbaren Kontext erzeugen und damit nebenläufig Sender und Receiver starten (die Abbruchfunktion
+      verwenden Sie später im `onGoBack`-Callback von `processChat`),
+    - die Funktion `processChat()` aufrufen (siehe nächster Schritt).
 
 <!-- time estimate: 20 min -->
 
+[ER] Legen Sie in `main` einen Kanal `stageChan chan stage` an und bauen Sie eine zentrale Schleife, die mit
+`select` auf `stageChan` und `ctx.Done()` wartet:
 
-[ER] Legen Sie in `main` einen Kanal `stageChan chan stage` und eine zentrale Schleife an, die unter einem `select`
-auf Kanäle `stageChan` und `ctx.Done()` hört.
-
-- Beim Abbrechen soll der Benutzer abgemeldet werden und das Programm endet;
-- Beim Empfangen von `exit` aus `stagesChan` wird das Programm beendet;
-  ansonsten wird nebenläufig die Funktion `act` aufgerufen.
+- Beim Abbruch wird der Benutzer abgemeldet und das Programm endet.
+- Beim Empfang von `exit` aus `stageChan` beendet das Programm ebenfalls; sonst startet `act` nebenläufig.
 
 <!-- time estimate: 10 min -->
 
 
 ### Chat-Stufe: Eingabe und Anzeige
 
-Wie in den meisten Chat-Programmen soll die Eingabezeile immer ganz unten stehen, neue Nachrichten
-erscheinen direkt darüber.
-Dafür nutzen wir einen ANSI-Escape-Trick:
+Wir wollen, dass die Eingabezeile immer ganz unten steht und neue Nachrichten direkt darüber erscheinen.
+Dazu nutzen wir folgenden ANSI-Escape-Trick:
 
 ```go
 func insertAboveInput(text string, promptLength int, senderIsSelf bool) {
     if senderIsSelf {
         fmt.Printf("\033[1A\r%v\033[%vC", text, promptLength)
-    } else {
+	} else {
         fmt.Printf("\033[1L\r%v\033[%vC", text, promptLength)
     }
 }
 ```
 
 [FOLDOUT::Was bedeuten diese Zeichen?]
-Jede Zeichenkette ist nur eine Folge von Ansi-Escape-Codes.
+`\033[1A` — bewegt den Textcursor eine Zeile nach oben.
 
-`\033[1A` bewegt den Textcursor eine Zeile nach oben, `\r` bewegt ihn zum Anfang der Zeile, `\033[%vC` bewegt ihn um
-`%v` Stellen nach rechts.
+`\r` — setzt den Textcursor an den Zeilenanfang.
 
-`\033[1L` fügt eine leere Zeile oberhalb der aktuellen Zeile ein (sie wird nach unten geschoben), `\r` bewegt den
-Textcursor zum Anfang der Zeile, `\033[%vC` bewegt ihn um `%v` Stellen nach rechts.
+`\033[%vC` — bewegt den Textursor `%v` Stellen nach rechts.
 
-Sie dürfen die oben vorgestellte Funktion beliebig modifizieren; sie dient nur als ein Ausgangspunkt.
+`\033[1L` — fügt eine leere Zeile oberhalb der aktuellen Zeile ein.
+
+Sie dürfen die Funktion beliebig modifizieren; sie dient nur als Ausgangspunkt.
+
+[In diesem Artikel von Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code)
+können Sie nachlesen, was die ANSI Escape Codes überhaupt sind; falls Sie wissen möchten, welche anderen Codes es gibt,
+wäre die
+[Seite "ANSI Escape Codes" auf GitHub Gist](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
+eine gute Quelle.
 [ENDFOLDOUT]
 
 [ER] Implementieren Sie die Funktion
 `observeInput(ctx context.Context, cfg *config.Config, prompt string, outgoing chan<- types.Message, onGoBack func())`,
-die Folgendes tut:
+welche:
 
-- liest Zeilen von `os.Stdin` in einer separaten Goroutine ein;
-- Verpackt jede nichtleere Zeile in eine `Message` und schickt sie auf `outgoing`;
-- Zeigt vor jeder Eingabe den Prompt `"[Me to <peerName>]: "` an;
-- Beendet bei `:q` die Eingabeschleife und ruft `onGoBack()` auf (zurück zur Partnerwahl).
+- Zeilen von `os.Stdin` in einer separaten Goroutine liest;
+- jede nichtleere Zeile in eine `Message` verpackt und sie auf `outgoing` schickt;
+- vor jeder Eingabe den Prompt `"[Me to <peerName>]: "` anzeigt;
+- bei `:q` die Eingabeschleife beendet und `onGoBack()` aufruft (zurück zur Partnerwahl).
 
 <!-- time estimate: 15 min -->
 
 [ER] Implementieren Sie die Funktion
 `displayMessages(cfg *config.Config, prompt string, incoming <-chan types.Message)`, welche:
 
-- Liest Nachrichten vom Channel `incoming` und gibt sie über `insertAboveInput` aus;
-- Nachrichten von einem selbst werden anders formatiert als Nachrichten vom Gesprächspartner
-  (beispielsweise `"[Me (alice) to bob at 15:04:03]: ..."` vs. `"[bob to Me (alice) at 15:04:05]: ..."`).
+- Nachrichten vom Channel `incoming` liest;
+- sie mit `insertAboveInput` ausgibt;
+- eigene Nachrichten anders formatiert als Nachrichten des Gesprächspartners, zum Beispiel
+  `"[Me (alice) to bob at 15:04:03]: ..."`(ausgehend) und `"[bob to Me (alice) at 15:04:05]: ..."` (eingehend).
 
 <!-- time estimate: 10 min -->
 
-[ER] Implementieren Sie die Funktion
-`processChat` mit Parametern `ctx context.Context`, `cfg *config.Config`, `incoming <-chan types.Message`,
-`outgoing chan<- types.Message` und `onGoBack func()`, die folgendes tut:
+[ER] Implementieren Sie die Funktion `processChat` mit den Parametern
+`ctx context.Context`, `cfg *config.Config`, `incoming <-chan types.Message`, `outgoing chan<- types.Message`,
+`onGoBack func()`, welche:
 
 - `observeInput` in einer Goroutine startet; jede eingegebene Nachricht muss **zwei** Ziele erreichen:
-  den `Sender` (damit sie tatsächlich verschickt wird) und die lokale Anzeige (damit man seine eigene Nachricht auch
-  sieht);
-- `displayMessages` für die eigenen (soeben gesendeten) und für die eingehenden Nachrichten jeweils in einer eigenen
-  Goroutine startet.
+den `Sender` (damit sie verschickt wird) und die lokale Anzeige (damit man die eigene Nachricht sieht);
+- `displayMessages` für eigene und eingehende Nachrichten jeweils in einer eigenen Goroutine startet.
 
 [FOLDOUT::Ein Wert, zwei Abnehmer]
-Ein Kanal hat pro Nachricht immer nur einen Empfänger.
-Wollen Sie dieselbe Nachricht sowohl verschicken als auch lokal anzeigen, brauchen Sie entweder zwei separate
-Sende-Operationen auf zwei verschiedene Kanäle, oder eine kleine Verteiler-Goroutine, die von einem Eingabekanal
-liest und auf zwei Ausgabekanäle weiterreicht.
+Ein Kanal hat pro Nachricht nur einen Empfänger.
+Um dieselbe Nachricht sowohl zu verschicken als auch lokal anzuzeigen, benötigen Sie entweder zwei separate
+Sende-Operationen auf verschiedene Kanäle oder eine kleine Verteiler-Goroutine, die von einem Eingabekanal liest
+und die Nachricht auf zwei Ausgabekanäle verteilt.
 [ENDFOLDOUT]
 
 <!-- time estimate: 10 min -->
@@ -207,35 +211,39 @@ liest und auf zwei Ausgabekanäle weiterreicht.
 
 ### Alles starten
 
-Erweitern Sie `main` (manche Schritte haben Sie bereits implementiert — dies ist nur eine Checkliste):
+Erweitern Sie `main` (einige Schritte haben Sie bereits erledigt – dies ist nur eine Checkliste):
 
-1. Erzeugen Sie einen Kontext, der beim Empfangen von `syscall.SIGTERM` abbricht;
-2. Erzeugen Sie eine `Config`, verwenden Sie dabei die Funktionen `setup.MustGetFreeListener` und
-   `setup.MustGetLookupUrl`;
-3. Stoßen Sie die Ausführung an, indem Sie in einer separaten Goroutine `login` auf den Kanal `stagesChan` senden;
-4. In einer Schleife unter `select` auf `ctx.Done()` und `stagesChan` hören und die nächste Stufe an die Funktion
-   `act()` weitergeben.
+1. Erzeugen Sie einen Kontext, der bei `syscall.SIGTERM` abbricht.
+2. Erzeugen Sie eine `Config` und nutzen Sie dabei `setup.MustGetFreeListener` sowie `setup.MustGetLookupUrl`.
+3. Starten Sie die Ausführung, indem Sie in einer separaten Goroutine `login` auf den Kanal `stageChan` senden.
+4. Bauen Sie eine Schleife mit `select`, die auf `ctx.Done()` und `stageChan` wartet und die nächste Stufe an `act()`
+   weitergibt.
 
-Nun ist es Ihnen überlassen, die Funktionsweise der Anwendung zu überprüfen und nachzubessern.
+Nun können Sie die Funktionsweise der Anwendung prüfen und nachbessern.
 
 <!-- time estimate: 5 min -->
 
 
 ### Testen
 
-Starten Sie den Lookup-Server und zwei Peer-Instanzen (`alice`, `bob`).
+Starten Sie den Lookup-Server und zwei Peer-Instanzen (`Alice`, `Bob`).
 
-1. Beide melden sich an, Alice sucht nach Bob.
-2. Alice schreibt Bob zwei Nachrichten, Bob antwortet einmal.
-3. Bob verlässt den Chat mit `:q`, sucht stattdessen nach einer nicht existierenden `carol`, dann
-   erneut nach `alice` und schreibt weiter.
-4. Alice beendet ihr Programm mit `Ctrl+C`, während Bob noch eine Nachricht schickt.
+1. Beide melden sich an;
+2. Beide geben den Namen des Gesprächspartners ein (Alice gibt "Bob" ein, Bob gibt "Alice" ein);
+3. Alice schreibt Bob zwei Nachrichten, Bob antwortet einmal;
+4. Bob verlässt den Chat mit `:q`, sucht nach einer nicht existierenden `carol`, dann erneut nach `alice` und schreibt
+   Alice noch eine Nachricht;
+5. Alice beendet ihr Programm mit `Ctrl+C`;
+6. Bob versucht noch eine Nachricht an Alice zu schicken;
+7. Bob verlässt den Chat mit `:q` und sucht erneut nach Alice;
+8. Bob verlässt die Anwendung mit `:q` (wird mehrmals eingegeben).
 
-- [EC] (Terminal-Trace Alice)
-- [EC] (Terminal-Trace Bob)
-- [EC] (Terminal-Trace Lookup-Server)
+[EC] (Terminal-Trace Alice)
+
+[EC] (Terminal-Trace Bob)
 
 <!-- time estimate: 10 min -->
+
 [ENDSECTION]
 
 [SECTION::submission::trace,program]
