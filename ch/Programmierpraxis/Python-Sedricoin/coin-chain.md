@@ -253,7 +253,10 @@ des `BlockHeader` berechnet:
    Der äußere Hash wird über die Bytes des ersten Hashs gebildet.
 6. Der Block-Hash ist die Hex-Repräsentation des Ergebnisses.
 
+
+### Block-Hash berechnen
 <!-- time estimate: 20 min -->
+
 [ER] Implementieren Sie eine Funktion, mit der der Block-Hash berechnet werden kann.
 Der gegebene Block hat also den Block-Hash
 `807eee99f5758108077c7be5ca7c2ef37c8b5b3f3046260ed9867b4eb08f7e3b`.
@@ -283,7 +286,10 @@ print(block_hash)
 [ENDHINT]
 [ENDHINT]
 
+
+### Block-Hash testen
 <!-- time estimate: 25 min -->
+
 [ER] Die Funktion zur Berechnung des Block-Hashes ist zentral für die Blockchain.
 Schreiben Sie daher einen [TERMREF::Unittest], um sicherzustellen, dass die
 Funktion korrekt funktioniert.
@@ -393,7 +399,7 @@ Diese Tests werden in einer späteren Aufgabe ausführlicher beschrieben.
 
 [EC] Rufen Sie Ihren Server zweimal auf.
 
-[ER] Manipulieren Sie nun die Blockchain manuell, indem Sie die JSON-Datei von `Block` 1
+Manipulieren Sie nun die Blockchain manuell, indem Sie die JSON-Datei von `Block` 1
 in Ihrem Editor öffnen und den `timestamp` um `1` erhöhen.
 Auf diese Weise wird die Blockchain ungültig, da nun der Block-Hash von `Block` 1
 verändert wurde, ohne den `previous_hash` in `Block` 2 anzupassen.
