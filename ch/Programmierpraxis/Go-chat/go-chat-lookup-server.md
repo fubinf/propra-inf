@@ -2,7 +2,7 @@ title: "Go HTTP Chat: Lookup-Server"
 stage: alpha
 timevalue: 1.5
 difficulty: 3
-assumes: go-http-server, go-json, go-modules, http-Status
+assumes: go-sync-mutex, go-http-server, go-json, go-modules, http-Status
 ---
 
 [SECTION::goal::experience,product]
@@ -39,18 +39,25 @@ Für eigene, triviale Anwendungen wie diese ist es sinnvoll, sich einen zufälli
 als Standard zu wählen, statt naheliegende Ports wie `8080` oder `3000` zu verwenden.
 Solche gut bekannten Ports sind auf Ihrem Rechner oft schon von anderen Tools oder Ihren eigenen Programmen aus früheren
 Aufgaben belegt — ein zufälliger Port aus einem selten genutzten Bereich minimiert das Risiko solcher Konflikte.
+
+Aus diesem Grund legen wir in dieser Aufgabe Port `8083` fest.
 [ENDNOTICE]
 
 [ER] Implementieren Sie eine Struktur `AddressTable` mit den Feldern `mu sync.Mutex` und
 `addressesByName map[string]string`.
 Implementieren Sie außerdem die Konstruktorfunktion `New() *AddressTable` sowie folgende Methoden:
 
-- `(t *AddressTable) Add(name, address string)`
+- `(t *AddressTable) AddIfAbsent(name, address string) (ok bool)`
+    - gibt es bereits einen Benutzer mit dem Namen `name`, gibt die Methode `false` zurück;
+    - gibt es keinen solchen Benutzer, speichert die Methode das Paar `name` und `address` und gibt `true` zurück.
 - `(t *AddressTable) GetAddrOf(name string) (addr string, ok bool)`
 - `(t *AddressTable) RemoveAddrOf(name string)`
 
 Die Map `addressesByName` soll ausschließlich über diese Methoden zugreifbar sein.
 Schützen Sie den Zugriff auf die Map mit dem Mutex `mu`.
+
+Dies ist notwendig, da jede HTTP-Anfrage in einer eigenen Goroutine verarbeitet wird und die Handler dadurch
+nebenläufig auf `AddressTable` zugreifen können.
 
 **Verwenden Sie die Sichtbarkeitsregeln von Go:**
 Implementieren Sie `AddressTable` und alle genannten Funktionen und Methoden im eigenen Paket `addresstable`.
@@ -61,7 +68,7 @@ zugreifbar sind.
 
 [ER] Registrieren Sie einen POST-Endpunkt `/register`, der aus dem JSON-Payload die Felder `username`
 und `port` ausliest und in `AddressTable` speichert.
-`Add` erwartet dabei in `name` den Benutzernamen und in `address` die aus IP-Adresse und Port gebildete
+`AddIfAbsent` erwartet dabei in `name` den Benutzernamen und in `address` die aus IP-Adresse und Port gebildete
 Adresse, getrennt durch einen Doppelpunkt (`ip_addr:port`).
 `ip_addr` kann der Server dem Feld
 [`RemoteAddr`](https://pkg.go.dev/net/http#Request)
@@ -73,12 +80,14 @@ verwendet werden; bei IPv6-Adressen das Format `[ip_addr]:port`) und verwenden S
 und
 [`net.IP.To4`](https://pkg.go.dev/net#IP.To4).
 
-Bei Erfolg ist der Statuscode `200` und der Server antwortet mit `OK`.
-Lesen Sie selbst nach in der Dokumentation von `net/http`, wie man in Go bei einem `http.ResponseWriter`
-den Statuscode setzt.
+Bei Erfolg ist der Statuscode `200` — esen Sie selbst nach in der Dokumentation von `net/http`, wie man in Go bei einem
+`http.ResponseWriter` den Statuscode setzt.
 
 Ist ein solcher Name bereits vergeben, dann gibt der Server Statuscode `409` ("Conflict") und eine informative
 Fehlermeldung zurück.
+
+Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig, so antwortet der
+Server mit `400` ("Bad Request").
 
 (Eine Auffrischung zu Servern und JSON finden Sie in den Aufgaben [PARTREF::go-http-server] und [PARTREF::go-json]).
 
@@ -100,6 +109,14 @@ aus der Anfrage übernommen werden, da sie für beide Verbindungen dieselbe ist.
 Feld `addr` die Adresse von `username` steht, oder den Statuscode `404` ("Not Found"), falls es
 keinen solchen Benutzer gibt.
 
+Setzen Sie vor dem Schreiben des JSON-Payloads den passenden Header:
+
+```go
+w.Header().Set("Content-Type", "application/json")
+```
+
+So wissen alle Konsumenten des Endpunkts, worum es sich bei der Antwort handelt.
+
 <!-- time estimate: 15 min -->
 
 [ER] Implementieren Sie abschließend noch einen POST-Endpunkt `/unregister`.
@@ -108,8 +125,9 @@ Tabelle entfernen, sofern ein solches Benutzername-Adresse-Paar existiert.
 Der gespeicherte Eintrag für `username` muss dabei exakt aus der IP-Adresse der aktuellen Anfrage und dem übergebenen
 `port` bestehen (also derselben Berechnung wie bei `/register`).
 
-Bei Erfolg gibt der Server `OK` mit Statuscode `200` zurück; gibt es keinen solchen Benutzer, so ist der Statuscode
-`404` ("Not Found").
+Bei Erfolg ist der Statuscode `200` ("OK"); gibt es keinen solchen Benutzer, so ist der Statuscode `404` ("Not Found").
+Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig, antwortet der Server
+mit `400` ("Bad Request").
 
 (So kann sich niemand mit einer fremden IP-Adresse oder einem fremden Port für einen Benutzernamen ausloggen, der ihm
 gar nicht gehört — deshalb wird `port` hier überhaupt im Payload gebraucht, obwohl `/unregister` streng genommen
@@ -154,6 +172,8 @@ Starten Sie Ihren Lookup-Server und führen Sie in einem anderen Terminal folgen
 [EC] `curl -i -X POST -d '{"username":"alice","port":"8081"}' http://localhost:8083/unregister`
 
 [EC] `curl -i -X GET http://localhost:8083/alice`
+
+[EC] `curl -i -X GET http://localhost:8083/register`
 
 [EQ] Warum antwortet der Server auf `curl -X GET http://localhost:8083/register` mit Statuscode `404`,
 obwohl `/register` doch ein Endpunkt dieses Servers ist?
