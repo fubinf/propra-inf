@@ -7,7 +7,7 @@ assumes: git-Funktionsweise
 ---
 
 [SECTION::goal::experience]
-Ich lerne, was ein Git-Repository ist, wie es aufgebaut ist, und erstelle meinen ersten Commit 
+Ich lerne, was ein Git-Repository ist und wie es aufgebaut ist, und erstelle meinen ersten Commit 
 in einem frischen Repository.
 [ENDSECTION]
 
@@ -31,12 +31,12 @@ So verstehen Sie besser, was in diesem Schritt passiert, und führen die Repo-Er
 einmal selbst durch, anstatt sie wie üblich Tools wie GitLab zu überlassen. 
 Erstellen Sie dafür ein neues Verzeichnis **außerhalb Ihres bestehenden ProPra-Repositories**, 
 z. B. im [TERMREF::Hilfsbereich], den Sie in den ProPra-Grundlagen eingerichtet haben.
-Navigieren Sie mit Ihrer Kommandozeile dort hinein und führen Sie den Befehl `git init` aus. 
+Wechseln Sie in der Kommandozeile in dieses Verzeichnis und führen Sie dort den Befehl `git init` aus. 
 
 [HINT::Kann ich ein neues Repository in meinem bestehenden erstellen?]
 Jein. Git bietet die Möglichkeit, weitere Repos mithilfe sogenannter Submodules einzubinden. 
-Submodules sind auch bei kompetenten Git-Nutzer_innen dafür bekannt, dass sie die Arbeit
-erheblich verkomplizieren. Wir gehen diesen Weg hier also lieber nicht,
+Submodules sind allerdings auch unter erfahrenen Git-Nutzer_innen dafür bekannt, 
+die Arbeit erheblich zu verkomplizieren. Wir gehen diesen Weg hier also lieber nicht,
 sondern trennen unser Übungs-Repo vom ProPra-Repo.
 [ENDHINT]
 
@@ -59,13 +59,13 @@ Jedes Mal, wenn Sie den Zustand einer Datei dauerhaft sichern möchten,
 Dieses Archiv teilen Sie später mit anderen Nutzer_innen oder laden es auf einen Git-Server hoch.
 Andere können dann jeden gespeicherten Zustand wiederherstellen oder eigene Zustände hinzufügen.
 
-Gespeicherte Dateien lassen sich nicht ohne Weiteres ändern – das ist wichtig zu wissen!
+Gespeicherte Zustände lassen sich nicht ohne Weiteres nachträglich ändern – das ist wichtig zu wissen!
 Haben Sie z. B. versehentlich Passwörter oder andere sensible Daten committet und auf den 
 Git-Server gepusht, wird es mühsam, diese wieder zu entfernen.
 Mehr dazu in späteren Aufgaben.
 
 Neben dem *Repository Directory* gibt es auch das [TERMREF::Working Directory] (dt. Arbeitsverzeichnis), 
-manchmal *Working Tree* genannt.
+manchmal auch *Working Tree* genannt.
 Das Arbeitsverzeichnis enthält den aktuellen Zustand Ihres Projekts. 
 Mit diesen Dateien arbeiten Sie und können daran grundsätzlich alles ändern, 
 denn alte Zustände lassen sich jederzeit aus dem Archiv wiederherstellen.
@@ -86,7 +86,7 @@ Was haben Sie bis hierhin gelernt?
 ### `git help init` lesen
 
 In [PARTREF::git-Funktionsweise] haben Sie bereits den Befehl `git help` kennengelernt.
-Den nutzen Sie jetzt erneut, um mehr über `git init` zu erfahren.
+Diesen nutzen Sie jetzt erneut, um mehr über `git init` zu erfahren.
 Rufen Sie `git help init` auf und beantworten Sie:
 
 [EQ] Wie können Sie beim Erstellen eines neuen Repositories einen bestimmten Namen für den initialen Branch festlegen?
@@ -113,8 +113,8 @@ Wie Sie die Standardwerte für Ihre Git-Umgebung anpassen können, z. B. auch de
 lernen Sie in [PARTREF::git-Anpassen].
 
 In [PARTREF::git-Objektmodell] geht es dann sehr viel genauer um die Git-Objekte.
-Für den Moment reicht es, zu wissen, dass Git alles, was es speichert, als Objekte im 
-`.git/objects`-Verzeichnis ablegt und über Hashes referenziert.
+Für den Moment reicht es zu wissen, dass Git alles, was es speichert, als Objekte im 
+Verzeichnis `.git/objects` ablegt und über Hashes referenziert.
 
 ### git status
 
@@ -124,7 +124,7 @@ Um den Unterschied zu sehen, gibt es ein hilfreiches Kommando: `git status`.
 Es zeigt an, welche Dateien Git erkennt, 
 welche es verfolgt (engl. *trackt*) und ob es Änderungen seit dem letzten Commit gibt.
 
-Führen Sie `git status` in Ihrem neuen Repository aus, sehen Sie folgende Ausgabe:
+Wenn Sie `git status` in Ihrem neuen Repository ausführen, sehen Sie folgende Ausgabe:
 
 ```terminaloutput
 On branch main
@@ -142,8 +142,8 @@ Falls bei Ihnen `master` steht, ist das kein Fehler.
 
 ### Was bedeutet *Tracking*?
 
-*To track something* bedeutet *etwas zu verfolgen*.
-Genau das macht Git hier. Für jede getrackte Datei prüft Git, 
+*To track something* bedeutet *etwas verfolgen*.
+Genau das macht Git hier: Für jede getrackte Datei prüft Git, 
 ob seit der letzten Archivierung Änderungen vorgenommen wurden.
 
 Mit `git add` teilen Sie Git mit, welche Dateien Sie tracken wollen.
@@ -151,7 +151,7 @@ Nicht getrackte Dateien kann Git zwar sehen, aber es speichert ihren Zustand nic
 
 [NOTICE]
 Es gibt auch eine Möglichkeit, bestimmte Dateien oder Verzeichnisse komplett zu ignorieren:
-die `.gitignore`-Datei.
+die Datei `.gitignore`.
 Git wird dann nie vorschlagen, diese Dateien zu tracken oder ihre Inhalte zu sichern.
 Dazu kommen wir in einer späteren Aufgabe.
 [ENDNOTICE]
@@ -168,7 +168,7 @@ Sie übergeben Git den aktuellen Zustand bestimmter Dateien und beauftragen es m
 Dabei speichert Git nicht die Änderungen, die Sie vorgenommen haben, sondern ein vollständiges Abbild 
 – einen sogenannten [TERMREF::Snapshot (git)] – aller vorgemerkten Dateien. 
 Was genau das bedeutet und warum das so ist, erfahren Sie in [PARTREF::git-Objektmodell].
-Git gibt Ihnen dafür einen eindeutigen Identifikator, einen Hash.
+Git vergibt für jeden Commit einen eindeutigen Identifikator, einen Hash.
 Mit diesem Commit-Hash können Sie jederzeit auf den Zustand zum Zeitpunkt dieses Commits zurückgreifen.
 
 Für jetzt reicht es zu wissen: `git add` merkt Dateien vor, `git commit` speichert sie dauerhaft.
@@ -209,7 +209,7 @@ So gut, dass es sogar
 Grundsätzlich gilt: Halten Sie sich kurz und beschreiben Sie klar, was der Commit beinhaltet.
 Hier zum Beispiel: `calculator.py mit Additionsfunktion angelegt`.
 Später dann vielleicht: `fix: Division fängt Division durch Null ab`.
-Die Sprache ist dabei egal, aber üblicherweise wird Englisch verwendet.
+Die Sprache ist dabei egal, üblicherweise wird aber Englisch verwendet.
 Mehr Tipps dazu gibt es z. B. im [WPVIP-Leitfaden zu Commit-Nachrichten](https://docs.wpvip.com/guidebooks/developer-best-practices/create-a-good-commit-message/).
 [ENDFOLDOUT]
 
