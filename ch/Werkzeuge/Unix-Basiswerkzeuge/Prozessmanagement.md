@@ -28,7 +28,7 @@ Das ermöglicht Isolation, gezieltes Scheduling und Ressourcenkontrolle.
 
 Zwischen den gängigen Linux-Distributionen (Ubuntu, Fedora, Arch, ...) gibt es bei den
 in dieser Aufgabe verwendeten Werkzeugen keine relevanten Unterschiede,
-da diese überall aus denselben Paketen (`procps`/`procps-ng`) stammen.
+da diese überall aus denselben Paketen (`procps`/`procps-ng` und `coreutils`) stammen.
 
 [FOLDOUT::Abweichungen unter macOS]
 `ps`, `top`, `pgrep` und `kill` sind auch unter macOS verfügbar;
@@ -141,8 +141,7 @@ Auch dies ist eine Aktion ohne Kommandonummer, wie beim ersten Terminalwechsel o
 
 Der Unterschied ist jetzt direkt sichtbar: `my-process.log` wächst weiter,
 `ohne-nohup.log` dagegen nicht mehr.
-Der Prozess ohne `nohup` wurde beim Schließen des Fensters durch das Signal `SIGHUP` beendet —
-genau das, was zu Beginn dieses Abschnitts angekündigt wurde.
+Der Prozess ohne `nohup` wurde beim Schließen des Fensters durch das Signal `SIGHUP` beendet.
 
 Das Skript hat jetzt kein Terminal mehr; in `ps` (siehe nächster Abschnitt) steht deshalb `?`
 in der Spalte `TTY`, und der Prozess erscheint nur noch in Auflistungen,
@@ -170,7 +169,8 @@ und **OUTPUT FORMAT CONTROL** (wozu `u` und `-f` dienen).
 
 **AKTION:** Öffnen Sie zusätzlich ein zweites Terminalfenster
 und starten Sie dort probeweise etwas Langlebiges, z.B. mit `sleep 1800`.
-Lassen Sie dieses Fenster geöffnet und wechseln Sie für die folgenden Schritte zurück in Ihr erstes Terminal.
+Lassen Sie dieses Fenster geöffnet und wechseln Sie für die folgenden Schritte
+zurück in das Terminal, in dem Sie Ihr Kommandoprotokoll führen.
 
 Auch dies ist eine reine Aktion ohne Kommandonummer.
 
@@ -272,9 +272,9 @@ Das Standard-Signal beim Aufruf von `kill <PID>` ist `TERM` (15);
 ein weiteres häufig genutztes Signal ist `KILL` (9).
 In den Manpages heißen diese Signale `SIGTERM` und `SIGKILL`;
 bei `kill` kann man das Präfix `SIG` weglassen.
-Mit der sogenannten *Command Substitution* `$(...)`, die Sie im Testskript schon gesehen haben,
-setzt die Shell die Ausgabe eines Befehls direkt in einen anderen Befehl ein;
-so lässt sich die von `pgrep` ermittelte `PID` an `kill` übergeben.
+Die *Command Substitution* `$(...)` haben Sie im Testskript schon gesehen:
+Damit setzt die Shell die Ausgabe eines Befehls direkt in einen anderen Befehl ein.
+So lässt sich die von `pgrep` ermittelte `PID` an `kill` übergeben.
 
 Lesen Sie in **DESCRIPTION** den Unterabschnitt **Standard signals**
 (insbesondere `SIGHUP`, `SIGTERM`, `SIGKILL`) aus der
@@ -337,10 +337,12 @@ Skript und Logdateien können Sie bei Bedarf löschen.
 
 Falls im Protokoll `ohne-nohup.log` unerwartet weiterwächst statt nach dem Fensterwechsel
 stehenzubleiben: Die Studierenden haben das Terminalfenster vermutlich mit `exit` verlassen
-statt es zu schließen. Nur ein geschlossenes Fenster schickt `SIGHUP` an seine Jobs weiter;
-`exit` in einer Nicht-Login-Shell tut das nicht. Das ist kein bloßer Flüchtigkeitsfehler,
-sondern verfehlt den Kernpunkt des Abschnitts (Prozess ohne `nohup` überlebt das Schließen
-des Terminals nicht).
+statt es zu schließen.
+Nur ein geschlossenes Fenster schickt `SIGHUP` an seine Jobs weiter;
+`exit` in einer Nicht-Login-Shell tut das nicht.
+Das ist kein bloßer Flüchtigkeitsfehler,
+sondern verfehlt den Kernpunkt des Abschnitts
+(Prozess ohne `nohup` überlebt das Schließen des Terminals nicht).
 
 ## Kommandoprotokoll
 [PROT::ALT:Prozessmanagement.prot]
