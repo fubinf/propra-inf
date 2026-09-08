@@ -1,4 +1,4 @@
-title: Staging Area und Git-Objekte
+title: Staging-Area und Git-Objekte
 stage: draft
 timevalue: 2
 difficulty: 3
@@ -7,59 +7,59 @@ requires: git-Repository
 ---
 
 [SECTION::goal::experience]
-Ich verstehe das Drei-Bereiche-Modell (Working Directory, Staging Area, Repository),
+Ich verstehe das Drei-Bereiche-Modell (Working Directory, Staging-Area, Repository),
 weiß, was Git-Objekte (Blobs, Trees, Commits) sind, und kann sie inspizieren.
 [ENDSECTION]
 
 [SECTION::background::default]
-In [PARTREF::git-Repository] haben wir `git add` und `git commit` benutzt, 
+In [PARTREF::git-Repository] haben Sie `git add` und `git commit` benutzt, 
 ohne genau zu verstehen, was dabei passiert.
-In dieser Aufgabe schauen wir unter die Haube:
-Was tut `git add` wirklich? Was speichert Git, wenn wir committen?
+In dieser Aufgabe schauen Sie unter die Haube:
+Was tut `git add` wirklich? Was speichert Git bei einem Commit?
 Und warum ist die Staging-Area so zentral für die Arbeitsweise von Git?
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
-Wir arbeiten weiter in dem Repository aus [PARTREF::git-Repository].
-Dort haben wir einen Commit mit der Datei `calculator.py` (Additionsfunktion als Skelett).
+Sie arbeiten weiter in dem Repository aus [PARTREF::git-Repository].
+Dort haben Sie einen Commit mit der Datei `calculator.py` erstellt (Additionsfunktion als Skelett).
 
 ### Das Drei-Bereiche-Modell
 
-In der letzten Aufgabe haben wir den Zyklus `git add` → `git commit` kennengelernt.
+In der letzten Aufgabe haben Sie den Zyklus `git add` → `git commit` kennengelernt.
 Aber was passiert dabei eigentlich genau?
 
-Bisher konnten wir uns Git als zwei Bereiche vorstellen:
-das Arbeitsverzeichnis (wo wir Dateien bearbeiten) und das Repository (wo Git sie archiviert).
+Bisher konnten Sie sich Git als zwei Bereiche vorstellen:
+das Arbeitsverzeichnis (wo Sie Dateien bearbeiten) und das Repository (wo Git sie archiviert).
 Das ist nicht falsch, aber es fehlt ein entscheidendes Puzzleteil: die **Staging-Area**.
 
-Die Staging-Area (auch *Index* genannt – beide Begriffe meinen dasselbe) ist eine Art 
+Die Staging-Area (auch *Index* genannt, beide Begriffe meinen dasselbe) ist eine Art 
 Zwischenablage zwischen Arbeitsverzeichnis und Repository.
 Man kann sie sich als Ablagestapel vorstellen:
-Bevor wir ein Paket (einen Commit) schnüren und ins Archiv legen,
-sammeln wir auf diesem Stapel die Dateien, die ins Paket sollen.
+Bevor Sie ein Paket (einen Commit) schnüren und ins Archiv legen,
+sammeln Sie auf diesem Stapel die Dateien, die ins Paket sollen.
 
 Das Modell sieht also so aus:
 
 ```mermaid
 flowchart LR
-    A["Working Directory<br/><i>(Dateien bearbeiten)</i>"] -->|add| B["Staging Area (Index)<br/><i>(Ablagestapel / Vormerkung)</i>"]
+    A["Working Directory<br/><i>(Dateien bearbeiten)</i>"] -->|add| B["Staging-Area (Index)<br/><i>(Ablagestapel / Vormerkung)</i>"]
     B -->|commit| C["Repository<br/><i>(Archiv / Commits)</i>"]
 ```
 
 `git add` kopiert den **aktuellen Zustand** einer Datei in die Staging-Area.
 `git commit` nimmt alles, was in der Staging-Area liegt, und erstellt daraus einen Commit.
 
-Dabei sichert Git nicht einzelne Änderungen, sondern immer ein vollständiges Abbild aller Dateien im Index – 
+Dabei sichert Git nicht einzelne Änderungen, sondern immer ein vollständiges Abbild aller Dateien im Index, 
 einen Snapshot. Unveränderte Dateien übernimmt Git einfach per Referenz vom vorherigen Commit, 
 sodass kein Speicher verschwendet wird.
 
-Das klingt nach einem unwichtigen Zwischenschritt – aber es hat eine mächtige Konsequenz,
-die wir jetzt direkt ausprobieren.
+Das klingt nach einem unwichtigen Zwischenschritt, aber es hat eine wichtige Konsequenz,
+die Sie jetzt direkt ausprobieren.
 
 ### Das Doppel-Änderungs-Experiment
 
-Implementieren wir die Additionsfunktion. Ändern Sie `calculator.py` zu:
+Implementieren Sie zunächst die Additionsfunktion. Ändern Sie `calculator.py` zu:
 
 ```python
 # Ein einfacher Rechner
@@ -72,7 +72,7 @@ def addiere(a, b):
 
 Fügen Sie die Datei mit `git add calculator.py` zur Staging-Area hinzu.
 
-Jetzt, **bevor wir committen**, fügen wir gleich noch eine neue Funktion hinzu:
+Jetzt, **bevor Sie committen**, fügen Sie gleich noch eine neue Funktion hinzu:
 
 ```python
 # Ein einfacher Rechner
@@ -82,37 +82,40 @@ def addiere(a, b):
     return a + b
 
 def multipliziere(a, b):
-    
+    ...
+
 ```
 
 Führen Sie jetzt `git status` aus.
 
-Sie sollten etwas Unerwartetes sehen: `calculator.py` taucht **zweimal** auf –
+Sie sollten etwas Unerwartetes sehen: `calculator.py` taucht **zweimal** auf:
 einmal unter „Changes to be committed“ und einmal unter „Changes not staged for commit“.
-
-[EQ] Wie ist das möglich? Was sagt uns das darüber, was `git add` wirklich tut?
 
 Die Erklärung: `git add` merkt nicht einfach eine Datei vor.
 Es kopiert den **exakten Inhalt** der Datei zum Zeitpunkt des `git add` in die Staging-Area.
 Spätere Änderungen an der Datei im Arbeitsverzeichnis landen **nicht** automatisch in der 
-Staging-Area – dafür müsste man erneut `git add` ausführen.
+Staging-Area. Dafür müssten Sie erneut `git add` ausführen.
 
-Die Staging-Area erlaubt uns auch, Änderungen gezielt zusammenzustellen:
-Wir können z. B. nur bestimmte Dateien in einen Commit aufnehmen 
+Die Staging-Area erlaubt es Ihnen auch, Änderungen gezielt zusammenzustellen:
+Sie können z. B. nur bestimmte Dateien in einen Commit aufnehmen 
 und andere Änderungen für einen späteren Commit aufheben.
+
+[EQ] Angenommen, Sie würden jetzt sofort committen: 
+Welche Version von `calculator.py` läge im Commit, die mit oder die ohne `multipliziere`? 
+Begründen Sie mit dem Drei-Bereiche-Modell.
 
 [NOTICE]
 Die Staging-Area bietet eine gewisse Sicherheit:
-Dateien, die wir dort abgelegt haben, können wir wiederherstellen,
-selbst wenn wir die Arbeitskopie danach weiter verändern.
+Dateien, die Sie dort abgelegt haben, können Sie wiederherstellen,
+selbst wenn Sie die Arbeitskopie danach weiter verändern.
 Aber Vorsicht: Ein echtes Backup ist das nicht.
-Wirklich dauerhaft gesichert sind Änderungen erst nach einem Commit –
-und idealerweise auch erst, wenn dieser auf einen Git-Server gepusht wurde.
+Wirklich dauerhaft gesichert sind Änderungen erst nach einem Commit,
+und idealerweise erst, wenn dieser auf einen Git-Server gepusht wurde.
 [ENDNOTICE]
 
 ### Git-Objekte: Was speichert Git wirklich?
 
-Bevor wir weiterarbeiten, wollen wir verstehen, *was genau* Git beim `git add` und 
+Bevor Sie weiterarbeiten, sollen Sie verstehen, *was genau* Git bei `git add` und 
 `git commit` eigentlich speichert.
 
 Lesen Sie dazu den Artikel 
@@ -130,10 +133,10 @@ Beantworten Sie folgende Fragen zum Artikel:
 [EQ] Wie speichert Git eine Datei, wenn `git add` ausgeführt wird? 
 Was ist ein Blob-Objekt, und wie wird es benannt?
 
-[EQ] Wenn wir `git add` erneut für eine veränderte Datei ausführen 
-(ohne vorher committet zu haben): Was passiert mit dem vorherigen Blob-Objekt?
+[EQ] Sie führen `git add` erneut für eine veränderte Datei aus, 
+ohne vorher committet zu haben. Was passiert mit dem vorherigen Blob-Objekt?
 
-[EQ] Was speichert Git, wenn wir einen neuen Commit erstellen?
+[EQ] Was speichert Git, wenn Sie einen neuen Commit erstellen?
 Welche Objekte entstehen dabei und wie verweisen sie aufeinander?
 
 [EQ] Kann es zwei Commits mit identischem Hash geben? Warum bzw. warum nicht?
@@ -144,30 +147,32 @@ dasselbe Objekt zeigen. Welche zwei, und warum?
 
 ### Objekte selbst inspizieren
 
-Git stellt uns einige Befehle zur Verfügung, mit denen wir die gespeicherten Objekte 
+Git stellt einige Befehle zur Verfügung, mit denen Sie die gespeicherten Objekte 
 direkt betrachten können.
 
-Erstellen wir zunächst einen Commit mit der implementierten Additionsfunktion.
-Ihre Staging-Area enthält bereits die korrekte Version (die ohne `multipliziere`).
+Erstellen Sie zunächst einen Commit mit der implementierten Additionsfunktion.
+Ihre Staging-Area enthält bereits die passende Version (die ohne `multipliziere`).
 Committen Sie also:
 
 ```bash
 git commit -m "Additionsfunktion implementiert"
 ```
 
-Jetzt haben wir Commit-Objekte, Tree-Objekte und Blob-Objekte im Repository.
-Schauen wir sie uns an:
+Jetzt liegen Commit-Objekte, Tree-Objekte und Blob-Objekte im Repository.
+Schauen Sie sie sich an:
 
 [EC] Benutzen Sie `git cat-file -p HEAD`, um das Commit-Objekt zu betrachten.
 Folgen Sie dann der Referenz auf das Tree-Objekt und von dort auf das Blob-Objekt.
-Überprüfen Sie, dass der Blob-Inhalt mit Ihrer Datei übereinstimmt.
 
-Damit haben wir die Kette Commit → Tree → Blob einmal komplett nachverfolgt.
+[EQ] Vergleichen Sie den Inhalt des Blobs mit `calculator.py` in Ihrem Arbeitsverzeichnis.
+Worin unterscheiden sie sich? Stimmt das mit Ihrer Antwort auf die Frage nach dem Doppel-Änderungs-Experiment überein?
+
+Damit haben Sie die Kette Commit → Tree → Blob einmal komplett nachverfolgt.
 Das ist die grundlegende Datenstruktur von Git.
 
 ### Dateien im Index anschauen und verlorene Blobs finden
 
-Git gibt uns auch Befehle, um den Index (die Staging-Area) direkt einzusehen.
+Git bietet auch Befehle, um den Index (die Staging-Area) direkt einzusehen.
 Die wichtigsten sind `git ls-files` und `git show`.
 
 [EC] Finden Sie mit `git ls-files` den Hash des Blob-Objekts von `calculator.py` 
@@ -175,7 +180,7 @@ im Index und schauen Sie sich dessen Inhalt mit `git show` an.
 
 [HINT::Wie finde ich den Hash?]
 `git ls-files` gibt standardmäßig nur den Dateinamen aus, nicht den Hash.
-Es fehlt noch ein Argument – denken Sie an `git help ls-files`.
+Es fehlt noch ein Argument, denken Sie an `git help ls-files`.
 [ENDHINT]
 
 Jetzt ein kleines Experiment, um zu sehen, was mit „alten“ Blobs passiert.
@@ -188,33 +193,15 @@ def addiere(a, c):
     # Diese Funktion addiert zwei Zahlen
     return a + c
 
+def multipliziere(a, b):
+    ...
+
 ```
 
-Fügen Sie die Datei erneut mit `git add` zum Index hinzu.
-Git hat jetzt einen neuen Blob für den neuen Dateiinhalt erstellt.
-Aber was ist mit dem vorherigen Blob?
+Fügen Sie die Datei mit `git add` zum Index hinzu.
+Git hat jetzt einen neuen Blob für diesen Dateiinhalt erstellt, und der Index zeigt darauf.
 
-Führen Sie `git fsck` aus. 
-Unter den Ausgaben finden Sie sogenannte *dangling blobs* –
-Blob-Objekte, die von keiner Dateireferenz mehr erreicht werden.
-Das passiert fast immer, wenn wir die gleiche Datei mehrfach mit `git add` zum Index hinzufügen,
-ohne zwischendurch zu committen.
-
-[EC] Schauen Sie sich den Inhalt des dangling Blobs an. 
-Ist es der vorherige Zustand unserer Datei?
-
-Das ist in der Praxis selten nötig, aber es zeigt ein wichtiges Prinzip:
-Git löscht Objekte nicht sofort. Solange sie existieren, kann man sie wiederfinden –
-auch wenn keine Referenz mehr auf sie zeigt.
-
-Setzen Sie jetzt die Datei wieder auf den korrekten Zustand zurück 
-(mit `(a, b)` statt `(a, c)`) und fügen Sie sie erneut dem Index hinzu.
-
-### Zweiter Commit: Multiplikation
-
-Ihre Datei im Arbeitsverzeichnis enthält noch die Multiplikationsfunktion, die sich nicht im Index befindet.
-Falls Sie sie bei den vorherigen Experimenten verloren haben, 
-bringen Sie `calculator.py` auf diesen Stand:
+Korrigieren Sie den Fehler nun wieder und implementieren Sie dabei gleich die Multiplikation:
 
 ```python
 # Ein einfacher Rechner
@@ -229,21 +216,41 @@ def multipliziere(a, b):
 
 ```
 
-Fügen Sie die Datei zum Index hinzu und erstellen Sie einen zweiten Commit.
+Fügen Sie die Datei erneut mit `git add` zum Index hinzu.
+Der Index zeigt jetzt auf einen dritten Blob. 
+Aber was ist mit dem Blob der fehlerhaften Version, den Sie nie committet haben?
+
+Führen Sie `git fsck` aus. 
+Unter den Ausgaben finden Sie einen sogenannten *dangling blob*,
+ein Blob-Objekt, das weder von einem Commit noch vom Index mehr erreicht wird.
+Das passiert immer, wenn Sie die gleiche Datei mehrfach mit `git add` zum Index hinzufügen,
+ohne zwischendurch zu committen.
+
+[EC] Schauen Sie sich den Inhalt des dangling Blobs an. 
+Ist es die fehlerhafte Version Ihrer Datei?
+
+In der Praxis brauchen Sie das selten, aber es zeigt ein wichtiges Prinzip:
+Git löscht Objekte nicht sofort. Solange sie existieren, kann man sie wiederfinden,
+auch wenn keine Referenz mehr auf sie zeigt.
+
+### Zweiter Commit: Multiplikation
+
+Die implementierte Multiplikation liegt bereits im Index.
+Erstellen Sie damit einen zweiten Commit.
 
 Prüfen Sie mit `git log`, dass Sie jetzt zwei Commits sehen.
 
-### Zwischenfazit
+### Fazit
 
 Sie verstehen jetzt das Drei-Bereiche-Modell: 
-Working Directory → Staging Area → Repository.
+Working Directory → Staging-Area → Repository.
 Sie wissen:
 
 - dass `git add` den exakten Dateiinhalt als Blob-Objekt speichert,
 - dass Commits auf Tree-Objekte verweisen, die wiederum auf Blobs zeigen,
 - und dass Git Objekte über SHA-1-Hashes referenziert.
 
-In der nächsten Aufgabe lernen wir, diese Informationen praktisch zu nutzen:
+In der nächsten Aufgabe lernen Sie, diese Informationen praktisch zu nutzen:
 mit `git diff` Änderungen vergleichen und mit `git log` die Historie durchsuchen.
 
 [ENDSECTION]
