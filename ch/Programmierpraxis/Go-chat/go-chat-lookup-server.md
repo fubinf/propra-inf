@@ -35,10 +35,11 @@ In diesem Modul werden Sie den Lookup-Server als eigenständiges Programm implem
 Der Lookup-Server soll auf Port `8083` lauschen.
 
 [NOTICE]
-Für eigene, triviale Anwendungen wie diese ist es sinnvoll, sich einen zufälligen Port aus dem Bereich `8001` bis `8099`
-als Standard zu wählen, statt naheliegende Ports wie `8080` oder `3000` zu verwenden.
-Solche gut bekannten Ports sind auf Ihrem Rechner oft schon von anderen Tools oder Ihren eigenen Programmen aus früheren
-Aufgaben belegt — ein zufälliger Port aus einem selten genutzten Bereich minimiert das Risiko solcher Konflikte.
+Für eigene, triviale Anwendungen wie diese ist es sinnvoll, sich einen zufälligen Port aus dem Bereich
+`8001` bis `8099` als Standard zu wählen, statt naheliegende Ports wie `8080` oder `3000` zu verwenden.
+Solche gut bekannten Ports sind auf Ihrem Rechner oft schon von anderen Tools oder Ihren eigenen Programmen
+aus früheren Aufgaben belegt — ein zufälliger Port aus einem selten genutzten Bereich minimiert das Risiko
+solcher Konflikte.
 
 Aus diesem Grund legen wir in dieser Aufgabe Port `8083` fest.
 [ENDNOTICE]
@@ -80,14 +81,14 @@ verwendet werden; bei IPv6-Adressen das Format `[ip_addr]:port`) und verwenden S
 und
 [`net.IP.To4`](https://pkg.go.dev/net#IP.To4).
 
-Bei Erfolg ist der Statuscode `200` — esen Sie selbst nach in der Dokumentation von `net/http`, wie man in Go bei einem
-`http.ResponseWriter` den Statuscode setzt.
+Bei Erfolg ist der Statuscode `200` ("OK").
+Lesen Sie in der Dokumentation von `net/http` nach, wie man bei einem `http.ResponseWriter` den Statuscode setzt.
 
 Ist ein solcher Name bereits vergeben, dann gibt der Server Statuscode `409` ("Conflict") und eine informative
 Fehlermeldung zurück.
 
-Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig, so antwortet der
-Server mit `400` ("Bad Request").
+Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig, so
+antwortet der Server mit `400` ("Bad Request").
 
 (Eine Auffrischung zu Servern und JSON finden Sie in den Aufgaben [PARTREF::go-http-server] und [PARTREF::go-json]).
 
@@ -99,8 +100,8 @@ Der Port, über den der Peer diese Registrierungsanfrage sendet, ist ein kurzleb
 vergebener _ephemeral port_ (siehe
 [Wikipedia: Ephemeral port](https://en.wikipedia.org/wiki/Ephemeral_port)).
 Er hat nichts mit dem Port zu tun, auf dem der Peer selbst später auf eingehende Chat-Nachrichten lauscht.
-Deshalb muss der Peer seinen tatsächlichen, dauerhaften Port explizit mitschicken — nur die IP-Adresse darf unverändert
-aus der Anfrage übernommen werden, da sie für beide Verbindungen dieselbe ist.
+Deshalb muss der Peer seinen tatsächlichen, dauerhaften Port explizit mitschicken — nur die IP-Adresse darf
+unverändert aus der Anfrage übernommen werden, da sie für beide Verbindungen dieselbe ist.
 [ENDFOLDOUT]
 
 <!-- time estimate: 30 min -->
@@ -126,8 +127,8 @@ Der gespeicherte Eintrag für `username` muss dabei exakt aus der IP-Adresse der
 `port` bestehen (also derselben Berechnung wie bei `/register`).
 
 Bei Erfolg ist der Statuscode `200` ("OK"); gibt es keinen solchen Benutzer, so ist der Statuscode `404` ("Not Found").
-Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig, antwortet der Server
-mit `400` ("Bad Request").
+Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig, so
+antwortet der Server mit `400` ("Bad Request").
 
 (So kann sich niemand mit einer fremden IP-Adresse oder einem fremden Port für einen Benutzernamen ausloggen, der ihm
 gar nicht gehört — deshalb wird `port` hier überhaupt im Payload gebraucht, obwohl `/unregister` streng genommen
@@ -141,13 +142,13 @@ Die Funktionsfähigkeit des Lookup-Servers können Sie mittels [PARTREF::curl] �
 Eine POST-Anfrage mit JSON-Payload:
 
 ```bash
-curl -X POST -d '{"username":"alice","port":"8081"}' http://localhost:8083/register
+curl -i -X POST -d '{"username":"alice","port":"8081"}' http://localhost:8083/register
 ```
 
 Eine GET-Anfrage:
 
 ```bash
-curl -X GET http://localhost:8083/alice
+curl -i -X GET http://localhost:8083/alice
 ```
 
 Probieren Sie ein paar Kombinationen aus, um sicherzustellen, dass Ihr Lookup-Server tatsächlich
