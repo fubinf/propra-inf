@@ -1860,18 +1860,19 @@ und Sicherheit.
 
 
 [TERM::Staging-Area|git-Index]
-Die Staging Area, auch Index genannt, bezeichnet in git einen Zwischenspeicher, in dem neue Dateien,
-Änderungen an bestehenden Dateien oder Löschungen vorgemerkt werden.
-Dateien werden mit git add zur staging area hinzugefügt und können auch wieder entfernt werden.
+Die Staging-Area, auch Index genannt, ist in Git ein Zwischenspeicher, in dem neue Dateien,
+Änderungen an bestehenden Dateien oder Löschungen für den nächsten Commit vorgemerkt werden.
+Dateien werden mit `git add` in die Staging-Area aufgenommen und können auch wieder daraus entfernt werden.
 
-Der Index funktioniert dabei wie, jetzt füge ich hier einige wörter ein eine Art Puffer oder
-Merkzettel: Man bereitet damit gezielt vor, was im nächsten Commit landen soll.
+Der Index funktioniert wie ein Merkzettel:
+Man stellt damit gezielt zusammen, was im nächsten Commit landen soll.
+Dabei kopiert `git add` den Inhalt der Datei zum Zeitpunkt des Aufrufs;
+spätere Änderungen im Arbeitsverzeichnis gelangen erst durch ein erneutes `git add` in den Index.
 
-Beim Erstellen eines git-Commits wird der Inhalt der Staging area zu einem Commit-Objekt
+Beim Erstellen eines Commits wird der gesamte Inhalt der Staging-Area zu einem Commit-Objekt
 zusammengefasst und dauerhaft gespeichert.
-Wichtig ist auch hierbei zu bedenken, dass git keine Änderungen speichert, sondern immer ein 
-vollständiges Abbild (Snapshot) einer Datei anlegt.
-Nachträgliche Änderungen an bestehenden Commits sind nicht ohne Weiteres möglich.
+Git speichert dabei keine einzelnen Änderungen, sondern immer ein
+vollständiges Abbild (Snapshot) aller vorgemerkten Dateien.
 [ENDTERM]
 
 
