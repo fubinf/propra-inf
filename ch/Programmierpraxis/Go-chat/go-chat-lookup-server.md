@@ -52,7 +52,10 @@ Implementieren Sie außerdem die Konstruktorfunktion `New() *AddressTable` sowie
     - gibt es bereits einen Benutzer mit dem Namen `name`, gibt die Methode `false` zurück;
     - gibt es keinen solchen Benutzer, speichert die Methode das Paar `name` und `address` und gibt `true` zurück.
 - `(t *AddressTable) GetAddrOf(name string) (addr string, ok bool)`
-- `(t *AddressTable) RemoveAddrOf(name string)`
+- `(t *AddressTable) RemoveIfMatches(name, address string) (ok bool)`
+    - gibt es bereits einen Benutzer mit dem Namen `name` und der Adresse `address`, löscht die Methode den
+      entsprechenden Eintrag aus `AddressTable` und gibt `true` zurück;
+    - gibt es keinen Benutzer mit dem Namen `name` und der Adresse `address`, gibt die Methode `false` zurück.
 
 Die Map `addressesByName` soll ausschließlich über diese Methoden zugreifbar sein.
 Schützen Sie den Zugriff auf die Map mit dem Mutex `mu`.
@@ -82,7 +85,9 @@ und
 [`net.IP.To4`](https://pkg.go.dev/net#IP.To4).
 
 Bei Erfolg ist der Statuscode `200` ("OK").
-Lesen Sie in der Dokumentation von `net/http` nach, wie man bei einem `http.ResponseWriter` den Statuscode setzt.
+Bei einem Fehler verwenden Sie hier und auch bei den weiteren HTTP-Handlern die Funktion
+[`http.Error()`](https://pkg.go.dev/net/http#Error).
+Diese schreibt eine Fehlermeldung auf den `http.ResponseWriter w` und setzt den Statuscode.
 
 Ist ein solcher Name bereits vergeben, dann gibt der Server Statuscode `409` ("Conflict") und eine informative
 Fehlermeldung zurück.
@@ -91,6 +96,13 @@ Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sin
 antwortet der Server mit `400` ("Bad Request").
 
 (Eine Auffrischung zu Servern und JSON finden Sie in den Aufgaben [PARTREF::go-http-server] und [PARTREF::go-json]).
+
+[FOLDOUT::Warum soll ich `http.Error()` verwenden?]
+Diese Funktion ermöglicht es, mit einem Aufruf sowohl den Statuscode als auch die Fehlermeldung zu setzen.
+
+Ohne `http.Error` müsste man den Statuscode zunächst selbst setzen und anschließend die Fehlermeldung schreiben.
+Außerdem müsste man selbst ein `\n` hinzufügen, damit die Ausgabe im Terminal schön formatiert ist.
+[ENDFOLDOUT]
 
 [FOLDOUT::Warum kommt der Port aus dem Payload und nicht aus der Anfrage?]
 Man könnte auf die Idee kommen, Port und IP-Adresse beide aus `r.RemoteAddr` auszulesen — schließlich steckt dort ja
@@ -110,13 +122,11 @@ unverändert aus der Anfrage übernommen werden, da sie für beide Verbindungen 
 Feld `addr` die Adresse von `username` steht, oder den Statuscode `404` ("Not Found"), falls es
 keinen solchen Benutzer gibt.
 
-Setzen Sie vor dem Schreiben des JSON-Payloads den passenden Header:
-
-```go
-w.Header().Set("Content-Type", "application/json")
-```
-
-So wissen alle Konsumenten des Endpunkts, worum es sich bei der Antwort handelt.
+Setzen Sie vor dem Schreiben des JSON-Payloads den Header `Content-Type: application/json`, damit alle Konsumenten des
+Endpunkts wissen, worum es sich bei der Antwort handelt.
+Lesen Sie in der
+[Dokumentation von `http.ResponseWriter`](https://pkg.go.dev/net/http#ResponseWriter.Header)
+nach, wie das genau funktioniert.
 
 <!-- time estimate: 15 min -->
 
@@ -178,6 +188,8 @@ Starten Sie Ihren Lookup-Server und führen Sie in einem anderen Terminal folgen
 
 [EQ] Warum antwortet der Server auf `curl -X GET http://localhost:8083/register` mit Statuscode `404`,
 obwohl `/register` doch ein Endpunkt dieses Servers ist?
+
+[EC] `curl -i -X POST -d '{"username":"alice"}' http://localhost:8083/register`
 
 <!-- time estimate: 15 min -->
 
