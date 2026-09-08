@@ -86,8 +86,8 @@ git --no-pager log --oneline
 [ENDHINT]
 
 Nutzen Sie interaktives
-[git-rebase](https://git-scm.com/docs/git-rebase),
-mit "edit", um im ersten Commit (`Block1`) die Datei `Block1.txt` zu verändern.
+[git-rebase](https://git-scm.com/docs/git-rebase)
+mit `edit`, um im ersten Commit (`Block1`) die Datei `Block1.txt` zu verändern.
 Der zweite Commit `Block2` soll unverändert übernommen werden.
 
 [EC] Geben Sie die einzeilige Git-History aus.
@@ -169,7 +169,7 @@ Variablen, die auf diese Weise gesetzt werden, sind nur temporär
 (bis Sie die Shell schließen) verfügbar.
 
 ```sh
-export SEDRICOIN_STORAGE_PATH="/pfad/zum/sedricoin/blockchain/Verzeichnis"
+export SEDRICOIN_STORAGE_PATH="/home/ich/ws/tmp/sedricoin"
 ```
 
 Wollen Sie nun testen, ob die Variable korrekt gesetzt wurde, können Sie diese
@@ -198,7 +198,7 @@ Ein `Block` besteht aus dem `BlockHeader` und den Transaktionsdaten.
 Die Daten werden vorerst weggelassen.
 Der `BlockHeader` beschreibt den `Block` und beinhaltet aktuell die Felder:
 
-- `previous_hash`: `String` (Hex-Repräsentation des vorherigen Block-Hashes; nur *lower-case*)
+- `previous_hash`: `String` (Hex-Repräsentation des Block-Hashes des Vorgängerblocks; nur *lower-case*)
 - `timestamp`: `unsigned Integer` (Unix-Timestamp in Sekunden)
 
 Im Verlauf dieses Projekts werden die Modelle immer wieder erweitert, bis die
@@ -217,7 +217,7 @@ So sieht das `Block`-Modell aktuell aus:
 
 [WARNING]
 Achten Sie darauf, dass Ihre Implementierung die Feldnamen exakt übernimmt:
-`previous_hash != previous_Hash` oder `previous_hash != previousHash`.
+Es heißt `previous_hash`, nicht `previous_Hash` und nicht `previousHash`.
 [ENDWARNING]
 
 Da der erste Block noch keinen Vorgänger hat, wird dieser Null-Hash eingetragen.
@@ -258,7 +258,7 @@ des `BlockHeader` berechnet:
 <!-- time estimate: 20 min -->
 
 [ER] Implementieren Sie eine Funktion, mit der der Block-Hash berechnet werden kann.
-Der gegebene Block hat also den Block-Hash
+Der oben angegebene `Block` hat den Block-Hash
 `807eee99f5758108077c7be5ca7c2ef37c8b5b3f3046260ed9867b4eb08f7e3b`.
 
 [HINT::Ich berechne einen anderen Block-Hash]
@@ -271,8 +271,7 @@ Außerdem muss der `String` in `UTF-8` enkodiert werden, und der Hash über die
 Bytes berechnet werden.
 
 [HINT::Ich komme nicht auf die richtige Reihenfolge der Schritte.]
-
-In Python muss der Hash wie folgt berechnet werden:
+In Python kann der Hash zum Beispiel so berechnet werden:
 
 ```py
 from hashlib import sha256
@@ -290,8 +289,9 @@ print(block_hash)
 ### Block-Hash testen
 <!-- time estimate: 25 min -->
 
-[ER] Die Funktion zur Berechnung des Block-Hashes ist zentral für die Blockchain.
-Schreiben Sie daher einen [TERMREF::Unittest], um sicherzustellen, dass die
+Die Funktion zur Berechnung des Block-Hashes ist zentral für die Blockchain.
+
+[ER] Schreiben Sie daher einen [TERMREF::Unittest], um sicherzustellen, dass die
 Funktion korrekt funktioniert.
 Nutzen Sie im Test die vorgegebenen Testfälle.
 In Python können Sie dafür das [PARTREF::m_pytest]-Framework nutzen.
@@ -351,7 +351,7 @@ Block-Hash:
 
 Erst in den folgenden Aufgaben implementieren Sie die REST-API.
 Allerdings müssen beim Starten, wie oben schon implementiert, die Umgebungsvariablen
-eingelesen werden und der *Genesis-Block* (wie folgt) erzeugt werden.
+eingelesen werden und der *Genesis-Block* erzeugt werden.
 Auch wenn das Programm in dieser Aufgabe noch nicht dauerhaft weiterläuft,
 wird hier bereits von *Server* gesprochen.
 
@@ -373,7 +373,7 @@ Zur Vereinfachung meint "`Block` 1" in diesem Projekt dasselbe wie
 "`Block` mit der Block-Höhe 1".
 [ENDNOTICE]
 
-[ER] Beim Ausführen der Anwendung soll die aktuelle Blockchain auf der Konsole ausgegeben werden.
+[ER] Beim Aufruf des Servers soll die aktuelle Blockchain auf der Konsole ausgegeben werden.
 Pro Zeile soll ein Block ausgegeben werden.
 Die bestehenden Blöcke werden im Format `<Block-Höhe>: <Block-Hash>` ausgegeben
 und der neu erzeugte im Format `New Block <Block-Höhe>: <Block-Hash>`.
@@ -405,6 +405,7 @@ Auf diese Weise wird die Blockchain ungültig, da nun der Block-Hash von `Block`
 verändert wurde, ohne den `previous_hash` in `Block` 2 anzupassen.
 
 [EC] Rufen Sie Ihren Server einmal auf; er sollte die Manipulation erkennen.
+
 
 ### Projektbeschreibung
 <!-- time estimate: 10 min -->
@@ -462,7 +463,7 @@ Tests ausführen:
 [ENDSECTION]
 
 
-[SECTION::submission::trace,program]
+[SECTION::submission::reflection,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode-files.md]
