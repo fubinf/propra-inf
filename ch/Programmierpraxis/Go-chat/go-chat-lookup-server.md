@@ -100,7 +100,7 @@ antwortet der Server mit `400` ("Bad Request").
 [FOLDOUT::Warum soll ich `http.Error()` verwenden?]
 Diese Funktion ermöglicht es, mit einem Aufruf sowohl den Statuscode als auch die Fehlermeldung zu setzen.
 
-Ohne `http.Error` müsste man den Statuscode zunächst selbst setzen und anschließend die Fehlermeldung schreiben.
+Ohne `http.Error()` müsste man den Statuscode zunächst selbst setzen und anschließend die Fehlermeldung schreiben.
 Außerdem müsste man selbst ein `\n` hinzufügen, damit die Ausgabe im Terminal schön formatiert ist.
 [ENDFOLDOUT]
 
