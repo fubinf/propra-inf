@@ -30,13 +30,15 @@ Anders als bei den meisten Aufgaben benötigen Sie diesmal ein ganz neues Repo.
 So verstehen Sie besser, was in diesem Schritt passiert, und führen die Repo-Erstellung 
 einmal selbst durch, anstatt sie wie üblich Tools wie GitLab zu überlassen. 
 Erstellen Sie dafür ein neues Verzeichnis **außerhalb Ihres bestehenden ProPra-Repositories**, 
-z. B. im [TERMREF::Hilfsbereich], den Sie in den ProPra-Grundlagen eingerichtet haben.
+z.B. im [TERMREF::Hilfsbereich], den Sie in den ProPra-Grundlagen eingerichtet haben.
 Wechseln Sie in der Kommandozeile in dieses Verzeichnis und führen Sie dort den Befehl `git init` aus. 
 
 [HINT::Kann ich ein neues Repository in meinem bestehenden erstellen?]
-Jein. Git bietet die Möglichkeit, weitere Repos mithilfe sogenannter Submodules einzubinden. 
+Jein.
+Git bietet die Möglichkeit, weitere Repos mithilfe sogenannter Submodules einzubinden.
 Submodules sind allerdings auch unter erfahrenen Git-Nutzer_innen dafür bekannt, 
-die Arbeit erheblich zu verkomplizieren. Wir gehen diesen Weg hier also lieber nicht,
+die Arbeit erheblich zu verkomplizieren.
+Wir gehen diesen Weg hier also lieber nicht,
 sondern trennen unser Übungs-Repo vom ProPra-Repo.
 [ENDHINT]
 
@@ -51,7 +53,8 @@ Führen Sie `ls -a` aus oder lassen Sie sich im Dateimanager versteckte Verzeich
 um diesen Ordner zu sehen.
 
 Der Ordner `.git` wird auch [TERMREF::Repository-Verzeichnis] (engl. Repository Directory) genannt.
-*Repository* bedeutet *Lager* oder *Speicher*. Man kann es sich wie ein Archiv vorstellen, 
+*Repository* bedeutet *Lager* oder *Speicher*.
+Man kann es sich wie ein Archiv vorstellen, 
 in dem Git alle Informationen über Ihr Projekt speichert – sowohl Dateiinhalte als auch Metadaten.
 
 Jedes Mal, wenn Sie den Zustand einer Datei dauerhaft sichern möchten, 
@@ -60,11 +63,11 @@ Dieses Archiv teilen Sie später mit anderen Nutzer_innen oder laden es auf eine
 Andere können dann jeden gespeicherten Zustand wiederherstellen oder eigene Zustände hinzufügen.
 
 Gespeicherte Zustände lassen sich nicht ohne Weiteres nachträglich ändern – das ist wichtig zu wissen!
-Haben Sie z. B. versehentlich Passwörter oder andere sensible Daten committet und auf den 
+Haben Sie z.B. versehentlich Passwörter oder andere sensible Daten committet und auf den 
 Git-Server gepusht, wird es mühsam, diese wieder zu entfernen.
 Mehr dazu in späteren Aufgaben.
 
-Neben dem *Repository Directory* gibt es auch das [TERMREF::Working Directory] (dt. Arbeitsverzeichnis), 
+Neben dem Repository-Verzeichnis gibt es auch das [TERMREF::Working Directory] (dt. Arbeitsverzeichnis), 
 manchmal auch *Working Tree* genannt.
 Das Arbeitsverzeichnis enthält den aktuellen Zustand Ihres Projekts. 
 Mit diesen Dateien arbeiten Sie und können daran grundsätzlich alles ändern, 
@@ -75,7 +78,7 @@ Weil Git Verzeichnisse grundsätzlich als Baumstrukturen versteht.
 
 Was haben Sie bis hierhin gelernt?
 
-* `git init` erzeugt das Repository-Verzeichnis und legt es im Ordner `.git` an.
+* `git init` erzeugt das Repository-Verzeichnis in Gestalt des Ordners `.git`.
 * Im Repository-Verzeichnis befinden sich alle Informationen und Daten zu Ihrem Projekt.
 * Sie können jederzeit zu jedem einmal abgelegten Zustand des Repositorys zurückkehren.
 * Das Arbeitsverzeichnis (Working Directory) ist Ihre lokale Arbeitskopie des Repos. 
@@ -98,7 +101,7 @@ Zwar müssen Sie im Idealfall nie direkt in diesem Ordner arbeiten,
 aber für das Verständnis hilft es zu wissen, was sich darin befindet und wie Git ihn verwaltet.
 
 Lesen Sie dazu den Abschnitt
-[Creating a git repository](https://git-scm.com/docs/gitcore-tutorial)
+[Creating a Git repository](https://git-scm.com/docs/gitcore-tutorial)
 im `gitcore-tutorial` und beantworten Sie dann die folgenden Fragen.
 
 [EQ] Was wird im Verzeichnis `.git/objects` abgelegt?
@@ -109,14 +112,14 @@ im `gitcore-tutorial` und beantworten Sie dann die folgenden Fragen.
 
 [EQ] Wie können Sie den Namen eines bereits bestehenden Branches nachträglich ändern?
 
-Wie Sie die Standardwerte für Ihre Git-Umgebung anpassen können, z. B. auch den Namen des Default-Branches, 
+Wie Sie die Standardwerte für Ihre Git-Umgebung anpassen können, z.B. auch den Namen des Default-Branches, 
 lernen Sie in [PARTREF::git-Anpassen].
 
 In [PARTREF::git-Objektmodell] geht es dann sehr viel genauer um die Git-Objekte.
 Für den Moment reicht es zu wissen, dass Git alles, was es speichert, als Objekte im 
 Verzeichnis `.git/objects` ablegt und über Hashes referenziert.
 
-### git status
+### `git status`
 
 Wie Sie wissen, können Sie im Arbeitsverzeichnis nach Belieben Änderungen vornehmen.
 Git hat jedoch eine andere Sicht auf das Arbeitsverzeichnis.
@@ -153,7 +156,7 @@ Nicht getrackte Dateien kann Git zwar sehen, aber es speichert ihren Zustand nic
 Es gibt auch eine Möglichkeit, bestimmte Dateien oder Verzeichnisse komplett zu ignorieren:
 die Datei `.gitignore`.
 Git wird dann nie vorschlagen, diese Dateien zu tracken oder ihre Inhalte zu sichern.
-Dazu kommen wir in einer späteren Aufgabe.
+Dazu kommen wir in [PARTREF::git-ignore].
 [ENDNOTICE]
 
 
@@ -166,7 +169,7 @@ Der Begriff kommt vom englischen Verb *to commit*, also „etwas übergeben“ o
 
 Sie übergeben Git den aktuellen Zustand bestimmter Dateien und beauftragen es mit der Archivierung.
 Dabei speichert Git nicht die Änderungen, die Sie vorgenommen haben, sondern ein vollständiges Abbild 
-– einen sogenannten [TERMREF::Snapshot (git)] – aller vorgemerkten Dateien. 
+– einen sogenannten [TERMREF::Snapshot (git)] – aller getrackten Dateien. 
 Was genau das bedeutet und warum das so ist, erfahren Sie in [PARTREF::git-Objektmodell].
 Git vergibt für jeden Commit einen eindeutigen Identifikator, einen Hash.
 Mit diesem Commit-Hash können Sie jederzeit auf den Zustand zum Zeitpunkt dieses Commits zurückgreifen.
@@ -203,14 +206,14 @@ git commit -m "calculator.py mit Additionsfunktion angelegt"
 ```
 
 [FOLDOUT::Was ist eine sinnvolle Commit-Nachricht?]
-Das ist eine sehr gute Frage. 
-So gut, dass es sogar
-[Studien darüber gibt](https://dl.acm.org/doi/10.1145/3510003.3510205).
+Dazu gibt es sogar
+[wissenschaftliche Untersuchungen](https://dl.acm.org/doi/10.1145/3510003.3510205).
 Grundsätzlich gilt: Halten Sie sich kurz und beschreiben Sie klar, was der Commit beinhaltet.
 Hier zum Beispiel: `calculator.py mit Additionsfunktion angelegt`.
 Später dann vielleicht: `fix: Division fängt Division durch Null ab`.
 Die Sprache ist dabei egal, üblicherweise wird aber Englisch verwendet.
-Mehr Tipps dazu gibt es z. B. im [WPVIP-Leitfaden zu Commit-Nachrichten](https://docs.wpvip.com/guidebooks/developer-best-practices/create-a-good-commit-message/).
+Mehr Tipps dazu gibt es z.B. im
+[WPVIP-Leitfaden zu Commit-Nachrichten](https://docs.wpvip.com/guidebooks/developer-best-practices/create-a-good-commit-message/).
 [ENDFOLDOUT]
 
 Führen Sie nach dem Commit noch einmal `git status` aus.
@@ -224,6 +227,7 @@ Sie kennen jetzt den Unterschied zwischen Repository-Verzeichnis (`.git`) und Ar
 wissen, was Tracking bedeutet, und haben den grundlegenden Zyklus durchlaufen:
 Datei erstellen → `git add` → `git commit`.
 
+Behalten Sie dieses Repository, denn Sie arbeiten darin weiter:
 In [PARTREF::git-Objektmodell] sehen Sie, was dabei *wirklich* passiert –
 was Git unter der Haube mit Ihren Dateien macht und warum `git add` mehr tut, 
 als nur eine Datei „vorzumerken“.
@@ -236,8 +240,8 @@ als nur eine Datei „vorzumerken“.
 [ENDSECTION]
 
 [INSTRUCTOR::Prüfhinweise]
-Prüfen Sie das Protokoll auf:
-- Korrekte Ausführung von `git init`, `git status`, `git add`, `git commit`
+Prüfen Sie die Antworten sowie das Protokoll auf korrekte Ausführung von
+`git init`, `git status`, `git add` und `git commit`.
 
 [INCLUDE::ALT:]
 
