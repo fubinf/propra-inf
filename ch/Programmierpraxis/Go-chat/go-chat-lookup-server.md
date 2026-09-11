@@ -6,7 +6,8 @@ assumes: go-sync-mutex, go-http-server, go-json, go-modules, http-Status
 ---
 
 [SECTION::goal::experience,product]
-Ich habe einen Lookup-Server implementiert, bei dem sich Benutzer des Chats ein- und ausloggen können.
+Ich habe einen Lookup-Server implementiert, bei dem sich Benutzer des Chats ein- und ausloggen können
+und dessen nebenläufig genutzte Benutzertabelle gegen gleichzeitige Zugriffe abgesichert ist.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -52,8 +53,9 @@ Implementieren Sie außerdem die Konstruktorfunktion `New() *AddressTable` sowie
     - gibt es bereits einen Benutzer mit dem Namen `name`, gibt die Methode `false` zurück;
     - gibt es keinen solchen Benutzer, speichert die Methode das Paar `name` und `address` und gibt `true` zurück.
 - `(t *AddressTable) GetAddrOf(name string) (addr string, ok bool)`
+    - liefert die gespeicherte Adresse des Benutzers `name`; `ok` zeigt an, ob es einen solchen Eintrag gibt.
 - `(t *AddressTable) RemoveIfMatches(name, address string) (ok bool)`
-    - gibt es bereits einen Benutzer mit dem Namen `name` und der Adresse `address`, löscht die Methode den
+    - gibt es einen Benutzer mit dem Namen `name` und der Adresse `address`, löscht die Methode den
       entsprechenden Eintrag aus `AddressTable` und gibt `true` zurück;
     - gibt es keinen Benutzer mit dem Namen `name` und der Adresse `address`, gibt die Methode `false` zurück.
 
