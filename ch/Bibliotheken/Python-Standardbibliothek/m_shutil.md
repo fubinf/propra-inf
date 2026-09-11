@@ -54,7 +54,7 @@ os.chmod(..., os.stat(...).st_mode | stat.S_IEXEC)
 
 [NOTICE]
 Um den Tutoren die Korrektur zu erleichtern, vermeiden Sie absolute Pfadangaben zu Ihrem 
-Hilfsverzeichnis und verwenden Sie stattdessen `os.path`, um dynamisch auf ihr Home-Verzeichnis 
+Hilfsbereich und verwenden Sie stattdessen `os.path`, um dynamisch auf ihr Home-Verzeichnis 
 zu navigieren.
 [ENDNOTICE]
 

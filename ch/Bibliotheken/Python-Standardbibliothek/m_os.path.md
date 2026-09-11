@@ -8,7 +8,7 @@ difficulty: 2
 TODO_3_wegner: Aufgabe umbauen, sodass "Werkzeuge/Unix-Basiswerkzeuge/Dateibaum-beschaffen" als 
 Dateibaum verwendet wird anstatt des Home-Verzeichnisses.
 Dadurch kann das Kommandoprotokoll zur effizienteren Kontrolle verwendet werden.
-Die Aufgabe sollte außerdem bei allen pythonbasierten Aufgaben, die das Hilfsverzeichnis verwenden, 
+Die Aufgabe sollte außerdem bei allen pythonbasierten Aufgaben, die den Hilfsbereich verwenden, 
 als assumes angegeben werden, um das Home-Verzeichnis dynamisch auflösen zu können.
 -->
 [SECTION::goal::idea]
