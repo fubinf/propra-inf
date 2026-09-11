@@ -88,15 +88,17 @@ Instructor hints and sample solutions
 
 - `assumes`: names of other tasks. Students need to know the material of these and can have done the task or not.
 - `requires`: names of other tasks. This task will build on top of products that students created in them.
+- `explains`: names of glossary entries treated in this task. Leads to a reference from the glossary entry to the task.
 - `difficulty`: 1: very easy; hardly ever used. 
   2: easy; guiding students through the work step-by-step. At least three quarters of
   all second-semester CS students should be able to solve the task with no major problems
   if (and often indeed only if) they read and work carefully.
-  3: medium; the task steps are larger and students need to do some searching, thinking, or solving 
-  without explicit instructions.
+  3: medium; the task steps are larger and students need to do some nontrivial searching, thinking, or solving 
+  without explicit instructions. Strong students can do such tasks from the beginning, average ones should get
+  there in the last third of their course.
   4: difficult: suitable only for students that are highly intelligent or had much more previous
   programming practice than most.
-- `timevalue`: how long (in hours) the average student should need for the task if they follow instructions
+- `timevalue`: how long (in hours) a typical student should need for the task if they follow instructions
   carefully and make no major mistake. Granularity is 15 minutes up to 1.25 and 30 minutes beyond.
 
 ## Development Workflow
