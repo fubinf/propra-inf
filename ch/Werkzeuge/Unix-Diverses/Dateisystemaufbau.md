@@ -28,7 +28,6 @@ Wer diese Aufteilung kennt, sucht nicht lange, sondern schaut nach.
 
 
 [SECTION::instructions::detailed]
-
 In dieser Aufgabe erkunden Sie den Dateibaum Ihres eigenen Systems.
 Die Ausgaben der Kommandos unterscheiden sich deshalb von System zu System.
 Das ist beabsichtigt: Gerade die Unterschiede zeigen, was der Standard festlegt und was nicht.
@@ -61,16 +60,16 @@ Für die übrigen gilt:
   `ls -ld /bin /sbin /lib` meldet dafür "No such file or directory".
   `/bin`, `/sbin`, `/usr/bin` und `/usr/lib` gibt es dort dagegen sehr wohl,
   und zwar als eigenständige Verzeichnisse:
-  Das Zusammenlegen zu "merged `/usr`", um das es in diesem Schritt geht,
+  Das Zusammenlegen zu "merged `/usr`", um das es bei diesem Kommando geht,
   ist eine Entscheidung der Linux-Distributionen und keine von Unix.
 - Für die Systemdateien von macOS gibt es keinen Paketmanager;
   `/usr/bin/ls` gehört zum Betriebssystem und stammt aus keinem einzeln nachvollziehbaren Paket.
-  Haben Sie Homebrew installiert, stellen Sie die beiden Fragen nach dem Paket
+  Haben Sie Homebrew installiert, führen Sie die beiden Abfragen zum Paket
   stattdessen für ein Homebrew-Programm, zum Beispiel `wget`:
   `ls -l $(command -v wget)` zeigt, dass die Datei in `/opt/homebrew/bin` nur ein Symlink ist
   und auf `../Cellar/wget/<version>/bin/wget` zeigt – der Name der Formel steht also im Zielpfad.
   Welche Dateien diese Formel mitgebracht hat, listet `brew list wget`.
-  (`brew which-formula wget` beantwortet die erste Frage bequemer,
+  (`brew which-formula wget` erledigt die erste Abfrage bequemer,
   verlangt aber einmalig `brew tap homebrew/command-not-found`
   und schlägt die Antwort dann in einer Datenbank aller Formeln nach
   statt an der Datei auf Ihrer Platte.)
@@ -234,7 +233,7 @@ Legen Sie dort also niemals etwas ab, das Sie behalten möchten.
 ### Wo die Programme liegen
 
 [EC] Finden Sie heraus, in welchem Verzeichnis die Programmdatei zum Kommando `ls` liegt.
-Die Antwort ist ein Pfad.
+Die Antwort ist ein Pfad, kein Alias.
 
 [HINT::Wie finde ich das heraus?]
 Das passende Kommando dafür steht in [PARTREF::Shell-Grundlagen],
@@ -251,7 +250,7 @@ die Datei dahinter zeigt, oder mit `which ls`, das ohnehin nur Dateien im `PATH`
 [ENDHINT]
 
 [EC] Prüfen Sie in einem einzigen Kommando, ob `/bin`, `/sbin` und `/lib` auf Ihrem System
-eigenständige Verzeichnisse oder nur Verweise sind.
+eigenständige Verzeichnisse oder nur Verweise (Symlinks) sind.
 
 [HINT::Welches Kommando eignet sich dafür?]
 `ls -l` mit der zusätzlichen [TERMREF2::Optionen::Option] `-d`/`--directory`
@@ -327,7 +326,7 @@ Damit sind die drei Zuständigkeitsbereiche für Programme beisammen:
 - `/usr/bin` gehört dem [PARTREF2::apt::Paketmanager].
   Jede Datei dort stammt aus einem Paket und kann beim nächsten Update ungefragt ersetzt werden.
 - `/usr/local/bin` gehört der lokalen Administration.
-  Hier landet, was Sie selbst übersetzt oder per Skript installiert haben.
+  Hier landet, was Sie selbst kompiliert oder per Skript installiert haben.
   Der Paketmanager fasst dieses Verzeichnis nicht an.
 - `/opt` ist für in sich geschlossene Fremdsoftware gedacht,
   die ihr eigenes Unterverzeichnis mitbringt (z.B. `/opt/google/chrome`).
