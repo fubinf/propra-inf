@@ -6,21 +6,20 @@ explains: OpenAPI
 ---
 
 [SECTION::goal::idea]
-Ich kann eine OpenAPI-Spezifikation auf meinem PC lokal mit der SwaggerUI
-darstellen und lesen.
+Ich kann eine OpenAPI-Spezifikation lokal mit der SwaggerUI darstellen und lesen.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-Ein Server kann im Internet eine [TERMREF::REST]-API bereitstellen.
-Damit Anwender_innen diese API nutzen können, ist es wichtig, diese genau zu spezifizieren.
+Ein Server kann im Internet eine [TERMREF::REST-API] bereitstellen.
+Damit Anwender_innen sie nutzen können, muss sie genau spezifiziert sein.
 OpenAPI ist ein Standard, um eine REST-API in einer Datei (JSON oder YAML) zu beschreiben.
 Diese Spezifikation enthält unter anderem alle Endpunkte, HTTP-Methoden, Parameter
 und Antwortformate.
-Als visuelles Tool wurde darauf aufbauend die SwaggerUI entwickelt, mit der
-diese Spezifikation grafisch ansprechend dargestellt wird.
+Darauf aufbauend wurde die SwaggerUI entwickelt, die eine solche Spezifikation
+übersichtlich im Browser darstellt.
 
-Eigentlich ist die SwaggerUI dafür konzipiert, in anderen Frameworks eingebunden zu werden.
+Eigentlich ist die SwaggerUI dafür konzipiert, in Web-Frameworks eingebunden zu werden.
 Sie ist aber auch praktisch, um lokale OpenAPI-Spezifikationen zu lesen.
 In dieser Aufgabe erfahren Sie, wie Sie diese Oberfläche auf Ihrem PC selbst aufsetzen können.
 [ENDSECTION]
@@ -31,12 +30,10 @@ In dieser Aufgabe erfahren Sie, wie Sie diese Oberfläche auf Ihrem PC selbst au
 
 ### SwaggerUI
 
-SwaggerUI ist eine JavaScript-Bibliothek, die dafür entwickelt wurde, direkt im
-Browser verwendet werden zu können.
+SwaggerUI ist eine JavaScript-Bibliothek, die direkt im Browser läuft.
 In der
-[SwaggerUI Installationsanleitung](https://github.com/swagger-api/swagger-ui/blob/HEAD/docs/usage/installation.md#unpkg)
-ist auch ein Beispiel, wie eine minimale Webseite geschrieben werden kann,
-um die SwaggerUI direkt in einer HTML-Seite einzubinden.
+[SwaggerUI-Installationsanleitung](https://github.com/swagger-api/swagger-ui/blob/HEAD/docs/usage/installation.md#unpkg)
+findet sich auch ein Beispiel für eine minimale HTML-Seite, die die SwaggerUI einbindet.
 
 Erstellen Sie einen neuen Ordner `SwaggerUI-Viewer/` in Ihrem *Hilfsverzeichnis*
 (dieser soll nicht Teil der Abgabe sein), erstellen Sie in diesem Verzeichnis die
@@ -104,39 +101,35 @@ in Ihrem Browser öffnen können.
 ### OpenAPI lesen
 
 In einer OpenAPI-Spezifikation werden API-Funktionen über Pfade und HTTP-Methoden beschrieben.
-Ein Pfad wird auch [TERMREF::Endpunkt] genannt, über diesen sind verschiedene
-HTTP-Methoden, die auch *Operation* genannt werden, erreichbar.
-
-Ein Endpunkt bezeichnet dabei einen Pfad, beispielsweise `/grades`.
-Eine Operation ist die konkrete HTTP-Methode, beispielsweise
+Ein Pfad heißt auch [TERMREF::Endpunkt], beispielsweise `/grades`.
+Die über ihn erreichbaren HTTP-Methoden heißen *Operationen*, beispielsweise
 `GET /grades` oder `POST /grades`.
 
-Pro Endpunkt und Operation werden die folgenden Werte spezifiziert:
+Jede Operation wird durch die folgenden Angaben beschrieben:
 
 - Endpunkt (Pfad)
 - Operation (HTTP-Methode)
-- mögliche Parameter (im Pfad oder in der Query)
+- mögliche Parameter (im Pfad oder als Query-Parameter)
 - Schema der Anfragedaten (Request Body)
-- Schema der Antwortdaten (Responses) bestehend aus Status Code und Datenobjekt
+- Schema der Antwortdaten (Responses), bestehend aus Statuscode und Datenobjekt
 
 In der
 [OpenAPI Dokumentation](https://learn.openapis.org/specification/paths)
 werden die einzelnen Komponenten der Spezifikation detailliert erklärt.
 
 [NOTICE]
-In der SwaggerUI werden die Kombinationen von Pfad und einer Operation jeweils als
-einzelnen Punkt dargestellt, wenn Sie aber in die JSON-Datei sehen, dann erkennen Sie,
-das pro Pfad mehrere Operationen möglich sein können.
+In der SwaggerUI wird jede Kombination aus Pfad und Operation als eigener Punkt dargestellt.
+In der JSON-Datei sehen Sie dagegen, dass pro Pfad mehrere Operationen stehen können.
 
-Diese Trennung ist in der SwaggerUI notwendig, da die einzelnen Operationen, mit dem
-"Try it out"-Button, getestet werden können.
+Diese Trennung ist in der SwaggerUI nötig, weil sich jede Operation einzeln
+mit dem "Try it out"-Button ausprobieren lässt.
 [ENDNOTICE]
 
-[EQ] Nennen Sie, wie viele Endpunkte und welche Operationen jeweils, in der gegeben
-Spezifikation, spezifiziert sind.
+[EQ] Welche Endpunkte enthält die gegebene Spezifikation
+und welche Operationen bietet jeder davon?
 
-Sie haben nun die Möglichkeit die erstellte `index.html` als SwaggerUI-Viewer
-in weiteren Projekte zu verwenden, um eine gegebene OpenAPI-Spezifikation lokal darzustellen.
+Sie können die erstellte `index.html` künftig als SwaggerUI-Viewer wiederverwenden,
+um beliebige OpenAPI-Spezifikationen lokal darzustellen.
 [ENDSECTION]
 
 [SECTION::submission::information]
