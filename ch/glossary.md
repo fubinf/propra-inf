@@ -583,24 +583,6 @@ Dazu gehören verschiedene Testmethoden wie [TERMREF::Modultest], [TERMREF::Inte
 
 ## E
 
-[TERM::einhängen|mounten|Einhängepunkt|Mountpoint]
-Unix kennt keine Laufwerksbuchstaben, sondern nur einen einzigen Dateibaum, der bei `/` beginnt.
-Ein Dateisystem (eine Platte, eine Partition, ein USB-Stick, ein Netzlaufwerk oder eine rein
-virtuelle Datenquelle wie `/proc`) wird benutzbar, indem man es an einer Stelle dieses Baums
-*einhängt* (englisch: *to mount*).
-Diese Stelle ist ein gewöhnliches Verzeichnis und heißt Einhängepunkt (englisch: *mountpoint*);
-unterhalb davon erscheint dann der Inhalt des eingehängten Dateisystems.
-
-Welche Dateisysteme gerade wo eingehängt sind, zeigen die Kommandos `df` (unter Linux z.B. `df -hT`),
-`mount` und `findmnt`.
-Einem Pfad sieht man nicht an, auf welchem Gerät er liegt – und beim Arbeiten muss man das
-auch nicht wissen.
-Unter WSL sind aus diesem Grund die Windows-Laufwerke unter `/mnt/c`, `/mnt/d` usw. eingehängt
-(siehe [TERMREF::Download unter WSL]).
-Laut [TERMREF::FHS] ist `/mnt` genau dafür gedacht: als Ort für zeitweilig eingehängte Dateisysteme.
-[ENDTERM]
-
-
 [TERM::Encoding|Zeichenkodierung]
 Die Art und Weise, wie eine Nachricht oder ein Zeichenvorrat als Folge von Bits oder von Bytes dargestellt wird.
 
@@ -1252,6 +1234,24 @@ In der Praxis wird das Wort Unittest lose auch für viele andere Arten von Tests
 benutzt, die mit einem Unittest-Framework ausgeführt werden.
 Gemeinsam ist ihnen in der Regel, dass bestimmte Erwartungen für das Verhalten überprüft
 und Abweichungen als Versagen gemeldet werden.
+[ENDTERM]
+
+
+[TERM::Mountpoint|mounten|einhängen|Einhängepunkt]
+Unix kennt keine Laufwerksbuchstaben, sondern nur einen einzigen Dateibaum, der bei `/` beginnt.
+Ein Dateisystem (eine Platte, eine Partition, ein USB-Stick, ein Netzlaufwerk oder eine rein
+virtuelle Datenquelle wie `/proc`) wird benutzbar, indem man es an einer Stelle dieses Baums
+*einhängt* (englisch: *to mount*).
+Diese Stelle ist ein gewöhnliches Verzeichnis und heißt Einhängepunkt (englisch: *mountpoint*);
+unterhalb davon erscheint dann der Inhalt des eingehängten Dateisystems.
+
+Welche Dateisysteme gerade wo eingehängt sind, zeigen die Kommandos `df` (unter Linux z.B. `df -hT`),
+`mount` und `findmnt`.
+Einem Pfad sieht man nicht an, auf welchem Gerät er liegt – und beim Arbeiten muss man das
+auch nicht wissen.
+Unter WSL sind aus diesem Grund die Windows-Laufwerke unter `/mnt/c`, `/mnt/d` usw. eingehängt
+(siehe [TERMREF::Download unter WSL]).
+Laut [TERMREF::FHS] ist `/mnt` genau dafür gedacht: als Ort für zeitweilig eingehängte Dateisysteme.
 [ENDTERM]
 
 
