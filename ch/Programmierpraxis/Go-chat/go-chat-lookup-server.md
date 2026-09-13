@@ -70,10 +70,14 @@ Implementieren Sie `AddressTable` und alle genannten Funktionen und Methoden im 
 Die Felder `mu` und `addressesByName` sollen nicht exportiert werden, sodass sie aus anderen Paketen nicht direkt
 zugreifbar sind.
 
+[EQ] Warum sind `AddIfAbsent` und `RemoveIfMatches` jeweils als eine einzige Methode vorgegeben, statt sie aus
+`GetAddrOf` und einer separaten Schreiboperation zusammenzusetzen?
+Was kann passieren, wenn sich zwei Peers gleichzeitig mit demselben Benutzernamen registrieren?
+
 <!-- time estimate: 15 min -->
 
-[ER] Registrieren Sie einen POST-Endpunkt `/register`, der aus dem JSON-Payload die Felder `username`
-und `port` ausliest und in `AddressTable` speichert.
+[ER] Registrieren Sie einen POST-Endpunkt `/register`, der aus dem JSON-Payload die Felder `username string`
+und `port int` ausliest und in `AddressTable` speichert.
 `AddIfAbsent` erwartet dabei in `name` den Benutzernamen und in `address` die aus IP-Adresse und Port gebildete
 Adresse, getrennt durch einen Doppelpunkt (`ip_addr:port`).
 `ip_addr` kann der Server dem Feld
@@ -94,10 +98,17 @@ Diese schreibt eine Fehlermeldung auf den `http.ResponseWriter w` und setzt den 
 Ist ein solcher Name bereits vergeben, dann gibt der Server Statuscode `409` ("Conflict") und eine informative
 Fehlermeldung zurück.
 
-Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig, so
-antwortet der Server mit `400` ("Bad Request").
+Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig (beispielsweise eine
+Portnummer, die kleiner als 1 oder größer als 65535 ist), so antwortet der Server mit `400` ("Bad Request").
 
 (Eine Auffrischung zu Servern und JSON finden Sie in den Aufgaben [PARTREF::go-http-server] und [PARTREF::go-json]).
+
+[HINT::Mein Server antwortet auf `/register` gar nicht mehr]
+Ein möglicher Grund dafür ist ein Deadlock:
+Falls Ihre Methode `AddIfAbsent` den Mutex selbst sperrt (`t.mu.Lock()`) und dann eine andere Methode von `AddressTable`
+aufruft (beispielsweise `t.GetAddrOf()`), die denselben Mutex erneut zu sperren versucht, blockiert diese Goroutine für
+immer. 
+[ENDHINT]
 
 [FOLDOUT::Warum soll ich `http.Error()` verwenden?]
 Diese Funktion ermöglicht es, mit einem Aufruf sowohl den Statuscode als auch die Fehlermeldung zu setzen.
