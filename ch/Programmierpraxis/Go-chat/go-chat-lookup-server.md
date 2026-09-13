@@ -165,7 +165,7 @@ Die Funktionsfähigkeit des Lookup-Servers können Sie mittels [PARTREF::curl] �
 Eine POST-Anfrage mit JSON-Payload:
 
 ```bash
-curl -i -X POST -d '{"username":"alice","port":"8081"}' http://localhost:8083/register
+curl -i -X POST -d '{"username":"alice","port":8081}' http://localhost:8083/register
 ```
 
 Eine GET-Anfrage:
@@ -185,15 +185,15 @@ Starten Sie Ihren Lookup-Server und führen Sie in einem anderen Terminal folgen
 
 [EC] `curl -i -X GET http://localhost:8083/alice`
 
-[EC] `curl -i -X POST -d '{"username":"alice","port":"8081"}' http://localhost:8083/unregister`
+[EC] `curl -i -X POST -d '{"username":"alice","port":8081}' http://localhost:8083/unregister`
 
-[EC] `curl -i -X POST -d '{"username":"alice","port":"8081"}' http://localhost:8083/register`
+[EC] `curl -i -X POST -d '{"username":"alice","port":8081}' http://localhost:8083/register`
 
-[EC] `curl -i -X POST -d '{"username":"alice","port":"8081"}' http://localhost:8083/register`
+[EC] `curl -i -X POST -d '{"username":"alice","port":8081}' http://localhost:8083/register`
 
 [EC] `curl -i -X GET http://localhost:8083/alice`
 
-[EC] `curl -i -X POST -d '{"username":"alice","port":"8081"}' http://localhost:8083/unregister`
+[EC] `curl -i -X POST -d '{"username":"alice","port":8081}' http://localhost:8083/unregister`
 
 [EC] `curl -i -X GET http://localhost:8083/alice`
 
