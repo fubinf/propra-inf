@@ -126,7 +126,7 @@ konkreten Typ `*net.TCPAddr`, um an dessen Feld `Port` zu gelangen.
 - den Benutzernamen in einer Schleife abfragt (`"What's your username?: "`).
   Diese Schleife kann mit `:q` abgebrochen werden;
 - einen `POST` an `cfg.LookupUrl()+path` mit JSON-Payload `{"username": ..., "port": ... }` schickt
-  (hier muss `port` eine Zeichenkette sein!)
+  (hier muss `port` eine Ganzzahl sein!)
 - den Benutzernamen zurückgibt, falls die Registrierung erfolgreich war (Statuscode `200`);
 - die Fehlermeldung des Servers ausgibt und erneut nach einem Benutzernamen fragt, falls die Registrierung fehlschlägt;
 - die Funktion `onExit()` aufruft und einen leeren String zurückgibt, sobald der Benutzer `:q` eingegeben hat;
@@ -176,7 +176,7 @@ hier reicht dieser Kontext aus.)
 
 [ER] Login und Logout verschicken denselben JSON-Payload.
 Fassen Sie ihn im Paket `types` als gemeinsame Struktur `NameAndPortMessage` zusammen, die die Felder `Name string` und
-`Port string` mit den JSON-Tags `username` und `port` entsprechend beinhaltet.
+`Port int` mit den JSON-Tags `username` und `port` entsprechend beinhaltet.
 
 <!-- time estimate: 20 min -->
 
