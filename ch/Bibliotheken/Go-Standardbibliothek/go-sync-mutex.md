@@ -59,6 +59,7 @@ Diese Variante bietet _zwei_ Paare von Zugriffsmethoden:
 - Für Lesezugriffe: `RLock()` und `RUnlock()`;
 - Für Schreibzugriffe: `Lock()` und `Unlock()`.
 
+<!-- @LINK_SPEC: status=403 -->
 [EQ] Lesen Sie diese
 [Antwort auf Stack Overflow](https://stackoverflow.com/questions/19148809/how-to-use-rwmutex/19168242#19168242) 
 aufmerksam durch und erklären Sie selbst:

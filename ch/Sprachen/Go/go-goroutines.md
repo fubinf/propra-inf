@@ -178,8 +178,8 @@ Diese werden heute oft synonym verwendet und sind im Grunde verschiedene Sorten 
   Außerdem sind die Stacks von Goroutinen zu Beginn sehr klein — nur 2 KB.
 
 [FOLDOUT::Tiefenwissen: Scheduler-Details]
-Wenn Sie genau wissen wollen, wie der Go-Scheduler die Last verteilt ("Work Stealing"), lesen Sie z.B.
-["Understanding the Go Scheduler"](https://rickkoch.github.io/posts/go-scheduler/).
+Wenn Sie genau wissen wollen, wie der Go-Scheduler die Last verteilt ("Work Stealing"), lesen Sie z.B. den
+[Beitrag "Go Scheduler"](https://nghiant3223.github.io/2025/04/15/go-scheduler.html).
 Für unsere Aufgaben hier ist das aber nicht nötig.
 [ENDFOLDOUT]
 

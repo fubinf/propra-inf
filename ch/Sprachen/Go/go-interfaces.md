@@ -167,8 +167,8 @@ Es darf kein echtes Szenario geben, wo `FileError`s neben `HTTPError`s behandelt
 Referenzen:
 
 - Ein Beispiel in 
-  [A Tour Of Go: Errors](https://go.dev/tour/methods/19)
-- Eine ausführlichere Erklärung, was ein `error` ist und wie er benutzt wird: 
+  [A Tour Of Go: Errors](https://go.dev/tour/methods/19) <!-- @LINK_SPEC: status=403 -->
+- Eine ausführlichere Erklärung, was ein `error` ist und wie er benutzt wird:
   [Exercism.org: Errors](https://exercism.org/tracks/go/concepts/errors)
 
 
