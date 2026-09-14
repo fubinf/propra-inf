@@ -77,8 +77,8 @@ Zusätzlich können wir mit `LIMIT <int>` (häufig in Kombination mit `OFFSET <s
 also nur einen definierten Ausschnitt (z.&nbsp;B. Seite 1 mit 3 Einträgen) der Treffermenge zurückgeben. 
 Numerische Vergleichsoperatoren wie `<` oder `>` grenzen Werte ebenfalls ein. 
 
-(Optional) Detaillierte Erläuterungen zu 
 <!-- @LINK_SPEC: status=403 -->
+(Optional) Detaillierte Erläuterungen zu 
 [`LIMIT`,`OFFSET`](https://www.sqltutorial.org/sql-limit/)
 
 ```sql
@@ -89,9 +89,6 @@ SELECT mycol FROM mytable WHERE mycondition LIMIT mynumber OFFSET myoffset;
 
 Und zu guter Letzt möchte man auch noch Bedingungen mit `AND` oder `OR` kombinieren. 
 
-(Optional) Vertiefende Informationen zu 
-<!-- @LINK_SPEC: status=403 -->
-[`AND`](https://www.sqltutorial.org/sql-and/), [`OR`](https://www.sqltutorial.org/sql-or/)
 ```sql
 SELECT mycol FROM mytable WHERE mycondition1 AND mycondition2;
 ```

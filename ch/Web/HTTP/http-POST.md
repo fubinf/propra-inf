@@ -142,6 +142,7 @@ statt `application/x-www-form-urlencoded` verwenden?
 
 [HINT::Wo finde ich im Netz dazu eine gute Diskussion?]
 [MDN: Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)   
+<!-- @LINK_SPEC: status=403 -->
 [JSON vs Form Data](https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data)
 [ENDHINT]
 <!-- time estimate: 15 min -->

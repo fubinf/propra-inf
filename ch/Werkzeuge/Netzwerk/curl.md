@@ -174,7 +174,7 @@ oder einem Browser bevorzugen? Nennen Sie zwei Fälle.
 
 - [curl Tutorial Basics](https://curl.se/docs/tutorial.html) – Grundlegende Einführung in curl
 - [HTTP Methods with curl](https://everything.curl.dev/http/index.html) – Detaillierte Referenz zu HTTP-Methoden
-- [Authentication with curl](https://everything.curl.dev/http/auth) – Weitere Authentifizierungsmethoden
+- [Authentication with curl](https://everything.curl.dev/http/auth.html) – Weitere Authentifizierungsmethoden
 
 [ENDSECTION]
 
