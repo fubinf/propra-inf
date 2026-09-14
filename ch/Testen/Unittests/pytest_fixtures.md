@@ -14,7 +14,11 @@ Ich kann Fixtures mit dem Pytest Framework anwenden.
 Oftmals benötigt ein Test, dass bestimmte Voraussetzungen hergestellt werden.
 Fixtures sind ein zentrales Konzept in Pytest, das es ermöglicht,
 wiederverwendbaren Code zur Vor- und Nachbereitung (Setup und Teardown) von Tests bereitzustellen.
-Somit sind sie insbesondere dafür geeignet, um Testdaten bereitzustellen.
+Gerade bei vielen Tests wird dabei schnell sichtbar, wie nützlich es ist,
+Setup- und Testlogik sauber zu trennen.
+In dieser Aufgabe lernen Sie deshalb Schritt für Schritt, wie Sie dieselben Voraussetzungen
+für mehrere Tests wiederverwenden, wie Sie ihre Lebensdauer steuern und wie Sie
+beim Arbeiten mit gemeinsamen Ressourcen die richtige Aufräumlogik einbauen.
 [ENDSECTION]
 
 
@@ -24,6 +28,9 @@ Nutzen Sie die folgende Übersicht parallel zum Bearbeiten der Aufgaben:
 [Pytest Fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
 
 Wir betrachten zuerst das Grundlegende.
+In diesem Abschnitt geht es um einen sehr einfachen Fall: Ein Test braucht ein Objekt,
+das mehrfach verwendet wird. Statt den gleichen Setup-Code in jedem Test zu wiederholen,
+werden wir ihn einmal als Fixture definieren und dann als Abhängigkeit deklarieren.
 
 ### Das Problem ohne Fixtures
 <!-- time estimate: 5 min -->
@@ -31,6 +38,9 @@ Wir betrachten zuerst das Grundlegende.
 Betrachten Sie folgenden Testcode für eine Webanwendung:
 
 ```python
+import os
+
+
 def test_user_registration():
     # Setup
     db = Database("test.db")
@@ -74,11 +84,12 @@ def test_user_login():
 Pytest löst die Schwächen des obigen Codes mit "Fixtures".
 
 Fixtures sind wiederverwendbare Setup-Komponenten.
-Sie werden sehen, wie man damit jedem Test "frische" Ressourcen so mitgeben kann,
-dass Tests nur deklarieren müssen, was sie brauchen; es ist kein einziges zusätzliches Statement nötig.
-Zugleich kann man damit die Setup-Logik übersichtlich von der Test-Logik trennen.
+Sie geben einem Test genau die Objekte mit, die er braucht, ohne dass der Test selbst den
+Setup-Code erneut schreiben muss.
+Damit wird der Test lesbarer, weil die benötigten Abhängigkeiten direkt in der Signatur
+ersichtlich sind, und zugleich bleibt die Setup-Logik an einer klaren Stelle gebündelt.
 
-Erstellen Sie die Datei `test_discovery.py` und implementieren Sie die folgenden Tests
+Erstellen Sie die Datei `test_userservice.py` und implementieren Sie die folgenden Tests
 mit einer einfachen Klasse:
 
 ```python
@@ -111,7 +122,7 @@ def test_user_login():
 ```
 
 
-#### Setup deklarativ machen
+### Setup deklarativ machen
 <!-- time estimate: 15 min -->
 
 Pytest Fixtures lösen das, indem man Setup-Code einmal als Fixture definiert und ihn in beliebig vielen Tests wiederverwendet.
@@ -125,7 +136,7 @@ def test_user_registration(user_service):
     ...
 ```
 
-[ER] Ergänzen Sie Ihre `test_discovery.py` um diese Fixture, und modifizieren Sie beide Tests,
+[ER] Ergänzen Sie Ihre `test_userservice.py` um diese Fixture, und modifizieren Sie beide Tests,
 um die Fixture zu nutzen.
 
 Ein Test kann auch mehrere Fixtures gleichzeitig verwenden – er listet sie einfach als mehrere
@@ -151,7 +162,7 @@ von Fixtures verwenden.
 Welchen Vorteil hat es, wenn alle benötigten Fixtures als Parameter in der Signatur stehen?
 
 
-#### Fixture Scopes: wann welcher?
+### Fixture Scopes: wann welcher?
 <!-- time estimate: 25 min -->
 
 Manche Fixtures sind aufwendig: eine Datenbankverbindung aufbauen, Testdaten laden oder
@@ -180,8 +191,8 @@ def test_slow_3(slow_service):
     assert True
 ```
 
-[EC] Fügen Sie diesen Code zu `test_discovery.py` hinzu und messen Sie die Laufzeit:
-`pytest -v test_discovery.py`
+[EC] Fügen Sie diesen Code zu `test_userservice.py` hinzu und messen Sie die Laufzeit:
+`pytest -v test_userservice.py`
 
 [EQ] Wie viele Sekunden dauert die Testsuite insgesamt?
 Was wäre bei 100 Tests, die diese Fixture verwenden?
@@ -202,7 +213,7 @@ def slow_service():
     return PseudoUserservice()
 ```
 
-[EC] Führen Sie die Tests erneut aus: `pytest -v test_discovery.py`
+[EC] Führen Sie die Tests erneut aus: `pytest -v test_userservice.py`
 
 [EQ] Wie verändert sich die Laufzeit, und warum?
 Was müssen Sie beachten, wenn mehrere Tests dieselbe Instanz teilen?
@@ -216,9 +227,10 @@ Tests müssen deshalb so geschrieben sein, dass sie nicht auf Zustand angewiesen
 den ein anderer Test hinterlassen hat.
 [ENDHINT]
 
-Wenn Sie fertig sind, entfernen Sie `slow_service` und die drei zugehörigen Tests wieder.
+Wenn Sie fertig sind, entfernen Sie `slow_service` und die drei zugehörigen Tests wieder,
+damit der Rest der Datei nicht durch das `sleep()` ausgebremst wird.
 
-#### Setup und Teardown: Das Cleanup-Problem
+### Setup und Teardown: Das Cleanup-Problem
 <!-- time estimate: 30 min -->
 
 Manche Tests erstellen Dateien, Datenbank-Einträge oder andere Ressourcen.
@@ -280,6 +292,10 @@ def temp_file(request):  # <- request muss Parameter sein!
 ```
 
 Jedoch benötigen wir das Zurücksetzen der Datei *zwischen* den Tests, nicht erst am Ende.
+Der wichtige Unterschied ist hier: `cleanup()` räumt nur am Ende der Fixture-Lebensdauer auf,
+aber nicht zwischen zwei aufeinanderfolgenden Tests.
+Wenn mehrere Tests dieselbe `module`-Fixture teilen, müssen wir deshalb explizit den
+Ausgangszustand der Ressource wiederherstellen, bevor der nächste Test beginnt.
 
 ```python
 @pytest.fixture(scope="module")
@@ -330,7 +346,7 @@ def test_another_temp_file(temp_file_manager):
 ```
 
 [ER] Implementieren Sie die `temp_file_manager`-Fixture aus dem Codebeispiel oben in Ihrer
-`test_discovery.py` und ersetzen Sie damit `temp_file` in beiden Tests.
+`test_userservice.py` und ersetzen Sie damit `temp_file` in beiden Tests.
 Stellen Sie sicher, dass `test_another_temp_file` besteht – unabhängig davon,
 ob `test_creates_temp_file` vorher gelaufen ist.
 
@@ -375,7 +391,7 @@ def test_another_temp_file(file_manager):
 Hier stellen wir in unserer Fixture sicher, dass `request.addfinalizer(manager.cleanup)`
 nach Ablauf des Fixture-Scopes ausgeführt wird – also nach dem letzten Test, der die Fixture nutzt.
 
-#### Fixtures teilen: conftest.py
+### Fixtures teilen: conftest.py
 <!-- time estimate: 15 min -->
 
 Sie haben mehrere Test-Dateien, die alle ähnliche Fixtures brauchen.
@@ -411,7 +427,7 @@ def test_in_other_file(fresh_user_service):
     assert result.success == True
 ```
 
-Wenn Sie den Test ausführen, sehen Sie, dass es magischerweise funktioniert.
+Wenn Sie den Test ausführen, sehen Sie, dass Pytest die Fixture automatisch findet.
 Dabei haben wir `conftest.py` doch gar nicht in `test_sharing.py` importiert.
 
 Folgendes haben Sie gerade beobachtet:
@@ -427,34 +443,29 @@ Folgendes haben Sie gerade beobachtet:
 
 Kein Import nötig: Das ist ein spezielles Feature von pytest - normale Python-Import-Regeln
 gelten hier nicht.
-Und warum nehmen wir nicht einfach den Import?
-
-Vorweg, natürlich geht auch das!
-Sie könnten es wie folgt umsetzen:
-
-```python
-from conftest import fresh_user_service
-
-def test_with_explicit_import(fresh_user_service):
-    result = fresh_user_service.register("charlie", "charlie@test.com", "pass")
-    assert result.success == True
-```
+Technisch wäre ein Import aus `conftest.py` ebenfalls möglich, aber das ist nicht der
+üblichere Pytest-Weg und kann deshalb verwirren.
+In den meisten Tests nutzen Sie lieber die automatische Fixture-Erkennung, weil dann die
+Abhängigkeit an der Signatur des Tests sichtbar bleibt und die Quelle der Fixture klarer
+wird.
 
 [EQ] Welche Vor- und Nachteile sehen Sie in den beiden Varianten?
 
-#### Eingebaute Fixtures verstehen
+### Eingebaute Fixtures verstehen
 <!-- time estimate: 15 min -->
 
-Pytest bringt viele eingebaute Fixtures mit. Hier sind drei wichtige:
+Pytest bringt viele eingebaute Fixtures mit. Für diese Aufgabe sind vor allem zwei davon wichtig:
 
 - `tmp_path`: Temporäre Dateien/Verzeichnisse für File-IO-Tests
 - `capsys`: Output-Testing, Debug-Ausgaben validieren
-- `monkeypatch`: Funktionen, Umgebungsvariablen und Attribute durch Attrappen ersetzen
+
+Ziel dieses Abschnitts ist es, zwei typische Muster zu erkennen:
+`tmp_path` für temporäre Dateisystem-Ressourcen und `capsys` für die Prüfung von Ausgaben.
 
 Lesen Sie nach, was jede davon tut:
 [Built-in fixtures reference](https://docs.pytest.org/en/stable/reference/fixtures.html)
 
-[EQ] Skizzieren Sie für jede der drei ein Testszenario, in dem Ihnen der Einsatz sinnvoll erscheint.
+[EQ] Skizzieren Sie für jede der beiden ein Testszenario, in dem Ihnen der Einsatz sinnvoll erscheint.
 
 Experimentieren Sie mit eingebauten Fixtures:
 
@@ -478,10 +489,10 @@ def test_capsys_experiment(capsys):
     assert "noch eine Zeile" in captured.err
 ```
 
-[EC] Fügen Sie beide Tests zu `test_discovery.py` hinzu und führen Sie sie aus:
-`pytest -v test_discovery.py`
+[EC] Fügen Sie beide Tests zu `test_userservice.py` hinzu und führen Sie sie aus:
+`pytest -v test_userservice.py`
 
-#### Reflexion: Wann und warum Fixtures?
+### Reflexion: Wann und warum Fixtures?
 <!-- time estimate: 5 min -->
 
 Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
@@ -489,7 +500,7 @@ Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
 [EQ] Fixtures verändern die Art, wie Sie über Tests nachdenken:
 weg von "Setup-Code schreiben" hin zu "Dependencies deklarieren".
 Die eigentliche Testlogik wird damit sehr viel besser erkennbar.
-Welcher Nachteil steht dem gegenüber?
+Welcher Nachteil entsteht dadurch, dass das Setup nicht mehr direkt im Testrumpf steht?
 [ENDSECTION]
 
 
