@@ -14,7 +14,7 @@ die bei der Entwicklung eines Chats entstehen:
 
 Die Anwendung besteht aus einem __Lookup-Server__ (Programm 1, Produkt von
 [PARTREF::go-chat-lookup-server]) und mehreren __Peers__ (Programm 2, Produkt von
-[PARTREF::go-chat-peer]), die miteinander kommunizieren.
+[PARTREF::go-chat-peer-registration] und [PARTREF::go-chat-peer-messaging]), die miteinander kommunizieren.
 
 So läuft das Ganze ab:
 
