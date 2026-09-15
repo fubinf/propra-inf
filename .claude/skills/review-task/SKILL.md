@@ -24,7 +24,7 @@ Ggf. habe ich manche Sachen direkt erledigt und in Abschnitt 3 verschoben._"
 Es sind für den Empfänger (die Aufgabenautor_in) also explizit zwei Sprecher am Werk. 
 Fasse dann zunächst ggf. den Ausgangsstand im Issue zusammen.
 
-Dann gib die Ergebnisse in drei Listen aus, 
+Dann gib die Ergebnisse in zwei Listen aus, 
 mit gerade genug Erläuterung, um das Problem zu verstehen,
 je mit H3-Überschrift, durchgehend wie eine einzige Liste nummeriert,
 mit einer Leerzeile hinter jedem Eintrag:
@@ -33,17 +33,16 @@ mit einer Leerzeile hinter jedem Eintrag:
    Falsche Faktenbehauptungen, falsche Begriffe,
    logische Fehler, größere didaktische Mängel, 
    fehlende oder falsche Markierung von Aufgabenschritten ([EQ] etc.), 
-   mangelnde Anleitung der Instructors u.ä..
+   mangelnde Anleitung der Instructors u.ä.
+   Ferner Dinge, die eigentlich in Kategorie 2 gehören, aber genügend Geschmackssache sind,
+   un eine menschliche Entscheidung zu brauchen. 
+   Ändere insbesondere niemals eigenmächtig Aufgabennamen oder schreibe Glossareinträge.
 
-2. "Kleinere Sachen" für die Dinge, die nur die Form, aber nicht die Substanz der Aufgabe betreffen
-   (etwa unnötig komplizierte Formulierungen, Layoutmängel, verwirrende Schwankungen in der Ausdrucksweise u.ä.),
-   soweit sie nicht von 3. erfasst sind.
-
-3. "Schon erledigt" für Punkte aus Kategorie 2, deren Korrektur vermutlich so unstreitig ist,
-   dass es nicht lohnt, einen Autor damit zu belästigen: insbesondere Mängel bei Markup,
-   Orthografie, Begriffsschwankungen mit klarem bestem Begriff, eindeutig zerlegbare komplizierte Formulierungen,
-   sowie höhere Präzision mit nur marginal mehr Text.
-   In den meisten Fällen wird Kategorie 3 mehr Einträge haben als der verbleibende Rest von Kategorie 2.
+2. "Schon erledigt" für Dinge, die nur die Form, aber nicht die Substanz der Aufgabe betreffen
+   und die du sofort selbst gelöst hast.
+   Hierzu gehören etwa unnötig komplizierte Formulierungen, Orthografie- und Layoutmängel, 
+   verwirrende Schwankungen in der Ausdrucksweise u.ä., aber nur solche, die nur eine einzige
+   ziemlich klar beste Lösung besitzen.
    Hierfür führe die entsprechende Korrektur in der begutachteten Quelle direkt selbst durch und
    schreibe knapp ins Review, was Du warum getan hast.
 
