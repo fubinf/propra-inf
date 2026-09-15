@@ -86,7 +86,7 @@ def get_weather_and_notify(city, user_email):
 [EQ] Was sind die Probleme oder Nachteile, wenn Sie diesen Code direkt testen wollten?
 Nennen Sie mindestens einen Punkt für jeden der drei Schritte.
 
-Diese Probleme können wir mit folgenden Methoden umgehen:
+Wie man diese Probleme umgeht, zeigen die folgenden Abschnitte.
 <!-- time estimate: 5 min -->
 
 ### Was ist eine Attrappe?
@@ -127,9 +127,10 @@ Vorbedingungen benötigen.
 Zu jeder kommenden Aufgabe wird es eine zu testende Funktion geben, die in der Aufgabe vorgegeben
 ist oder von Ihnen erstellt werden soll.
 Der Name der Datei ist jeweils oben in dem Codeblock als Kommentar angegeben,
-z.B.  `mock_example_1.py`.
+z.B. `weather_simple.py`.
 
-Lassen Sie uns mit einem einfachen Beispiel beginnen. Erstellen Sie folgende Datei `weather_simple.py`:
+Wir beginnen mit einem einfachen Beispiel.
+Erstellen Sie folgende Datei `weather_simple.py`:
 
 ```python
 # weather_simple.py
@@ -217,23 +218,16 @@ def get_weather_summary(cities):
 
 [ER] Schreiben Sie einen Test für `get_weather_summary(['Berlin', 'Stuttgart', 'Hamburg'])` mit Monkeypatching.
 
-[HINT::Wie baut man mehrere verschiedene Resultate im selben Patch?]
-Da die Funktion mehrere API-Aufrufe macht (einen pro Stadt), können Sie nicht einfach
-`return_value` verwenden.
-Nutzen Sie `side_effect` mit einer Funktion,
-um für jede Stadt unterschiedliche Antworten zu geben.
-[ENDHINT]
-
 Für die Attrappe des Response-Objekts empfehlen wir `MagicMock()` aus `unittest.mock`.
 `MagicMock()` ist eine Unterklasse von `Mock()` und unterstützt zusätzlich Dunder-Methoden
 (`__len__()`, `__iter__()`, `__contains__()` usw.), die Python z. B. für `len()`, `for`-Schleifen
 oder den `in`-Operator implizit aufruft.
 `patch()` verwendet intern ebenfalls `MagicMock()` als Default.
-
-Das Thema `MagicMock()` verfolgen wir hier nicht weiter, aber Sie sollten davon schon einmal
-gehört haben, daher hier zur Verdeutlichung, wo der Unterschied liegt.
+Weiter verfolgen wir `MagicMock()` hier nicht; das folgende Beispiel zeigt nur den Unterschied.
 
 ```python
+from unittest.mock import Mock, MagicMock
+
 # Mit Mock() fehlt Unterstützung für implizit aufgerufene Dunder-Methoden:
 m = Mock()
 print(len(m))   # TypeError: object of type 'Mock' has no len()
@@ -243,9 +237,17 @@ mm = MagicMock()
 print(len(mm))  # 0 – MagicMock implementiert __len__() automatisch
 ```
 
+[HINT::Wie baut man mehrere verschiedene Resultate im selben Patch?]
+Da die Funktion mehrere API-Aufrufe macht (einen pro Stadt), können Sie nicht einfach
+`return_value` verwenden.
+Nutzen Sie `side_effect` mit einer Funktion,
+um für jede Stadt unterschiedliche Antworten zu geben.
+[ENDHINT]
+
 [HINT::Wie baut man das Response-Objekt?]
 `requests.get()` gibt ein Response-Objekt zurück, das eine `.json()` Methode hat.
-Ihre Attrappe muss das nachahmen. Am einfachsten geht das mit `unittest.mock.MagicMock`.
+Ihre Attrappe muss das nachahmen.
+Am einfachsten geht das mit `unittest.mock.MagicMock`.
 
 [HINT::Ich verstehe den Aufbau des Response-Objekts nicht.]
 
@@ -346,18 +348,15 @@ und guter Testbarkeit (der Testcode kann ohne Umstände die gewünschte Attrappe
 ### Praxis: Verschiedene Szenarien
 
 Nachdem Sie die beiden Grundtechniken kennengelernt haben, wenden wir sie nun
-auf verschiedene praxistypische Szenarien an. Dabei können Sie selbst entscheiden,
-welche Technik für das jeweilige Problem besser geeignet ist.
+auf verschiedene praxistypische Szenarien an.
 
 #### Szenario 1: Dateioperationen
 
 Hier wird die eingebaute `open`-Funktion per Monkeypatching ersetzt.
 
-In dieser Aufgabe geht es darum, Dateioperationen beim Testen gezielt zu isolieren.
-Der Zugriff auf das Dateisystem ist fehleranfällig, langsam und macht Tests oft unhandlich,
+Der Zugriff auf das Dateisystem ist langsam und macht Tests unhandlich,
 weil echte Dateien erstellt oder bereitgestellt werden müssten.
-Stattdessen lernen Sie hier, wie man die eingebaute `open`-Funktion mit `mock_open` ersetzt,
-um gezielt das gewünschte Leseverhalten zu simulieren.
+Mit einer Attrappe lässt sich das gewünschte Leseverhalten stattdessen direkt im Test festlegen.
 
 [ER] Schreiben Sie einen Test für die Funktion `read_log_file()`, die sich in der Datei
 `file_example.py` befinden soll und eine Datei liest und verarbeitet.
@@ -399,8 +398,7 @@ ob unser Code robust reagiert (Fehlerbehandlung, Logging, Retry, Defaults etc.).
 
 [ER] Schreiben Sie einen Test für `get_weather_data()`, bei dem `requests.get()` absichtlich eine
 Ausnahme (`requests.exceptions.ConnectionError`) auslöst.
-Testen Sie, ob `get_weather_data()` damit richtig umgeht und z. B. `None` oder eine passende
-Fehlermeldung zurückgibt.
+Prüfen Sie, dass `get_weather_data()` damit richtig umgeht und `None` zurückgibt.
 Verwenden Sie `patch()`, um den Fehler gezielt auszulösen.
 Die getestete Funktion soll in `error_example.py` liegen.
 
@@ -424,8 +422,7 @@ def get_weather_data(city):
 
 Lesen Sie den Abschnitt "The Difference Between Mocks and Stubs" im
 [Artikel von Martin Fowler zu "Mocking"](https://martinfowler.com/articles/mocksArentStubs.html).
-Der Artikel behandelt Mock, Stub und Fake.
-Für diese Aufgabe verwenden wir die vollständige Taxonomie nach Gerard Meszaros,
+Der Abschnitt stellt die Taxonomie von Gerard Meszaros vor,
 die fünf Arten von Testdoubles unterscheidet:
 
 - **Dummy**: Wird als Parameter übergeben, aber nie wirklich benutzt (reiner Platzhalter).
@@ -446,8 +443,8 @@ def send_email_to_users(users, email_service):
         email_service.send_email(user['email'], "Welcome!", "Hello, welcome to our service!")
 ```
 
-[EQ] Reflektieren Sie: Warum haben Sie sich für das entsprechende Testdouble aus der Testdoubles-Aufgabe
-entschieden, und nicht für die anderen Möglichkeiten?
+[EQ] Warum haben Sie sich gerade für dieses Testdouble entschieden
+und nicht für eine der vier anderen Arten?
 <!-- time estimate: 20 min -->
 
 #### Vor- und Nachteile von Attrappen
