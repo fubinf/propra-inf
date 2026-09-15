@@ -2,7 +2,7 @@ title: Staging-Area und Git-Objekte
 stage: draft
 timevalue: 2
 difficulty: 3
-explains:
+explains: Staging-Area, Blob (git), Snapshot (git)
 requires: git-Repository
 ---
 
@@ -10,6 +10,7 @@ requires: git-Repository
 Ich verstehe das Drei-Bereiche-Modell (Working Directory, Staging-Area, Repository),
 weiß, was Git-Objekte (Blobs, Trees, Commits) sind, und kann sie inspizieren.
 [ENDSECTION]
+
 
 [SECTION::background::default]
 In [PARTREF::git-Repository] haben Sie `git add` und `git commit` benutzt, 
@@ -19,21 +20,21 @@ Was tut `git add` wirklich? Was speichert Git bei einem Commit?
 Und warum ist die Staging-Area so zentral für die Arbeitsweise von Git?
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 Sie arbeiten weiter in dem Repository aus [PARTREF::git-Repository].
 Dort haben Sie einen Commit mit der Datei `calculator.py` erstellt (Additionsfunktion als Skelett).
 
 ### Das Drei-Bereiche-Modell
 
-In der letzten Aufgabe haben Sie den Zyklus `git add` → `git commit` kennengelernt.
+In [PARTREF::git-Repository] haben Sie den Zyklus `git add` → `git commit` kennengelernt.
 Aber was passiert dabei eigentlich genau?
 
 Bisher konnten Sie sich Git als zwei Bereiche vorstellen:
 das Arbeitsverzeichnis (wo Sie Dateien bearbeiten) und das Repository (wo Git sie archiviert).
 Das ist nicht falsch, aber es fehlt ein entscheidendes Puzzleteil: die **Staging-Area**.
 
-Die Staging-Area (auch *Index* genannt, beide Begriffe meinen dasselbe) ist eine Art 
+Die [TERMREF::Staging-Area] (auch *Index* genannt, beide Begriffe meinen dasselbe) ist eine Art
 Zwischenablage zwischen Arbeitsverzeichnis und Repository.
 Man kann sie sich als Ablagestapel vorstellen:
 Bevor Sie ein Paket (einen Commit) schnüren und ins Archiv legen,
@@ -50,8 +51,9 @@ flowchart LR
 `git add` kopiert den **aktuellen Zustand** einer Datei in die Staging-Area.
 `git commit` nimmt alles, was in der Staging-Area liegt, und erstellt daraus einen Commit.
 
-Dabei sichert Git nicht einzelne Änderungen, sondern immer ein vollständiges Abbild aller Dateien im Index, 
-einen Snapshot. Unveränderte Dateien übernimmt Git einfach per Referenz vom vorherigen Commit, 
+Dabei sichert Git nicht einzelne Änderungen, sondern immer ein vollständiges Abbild aller Dateien im Index,
+einen [TERMREF2::Snapshot (git)::Snapshot].
+Unveränderte Dateien übernimmt Git einfach per Referenz vom vorherigen Commit,
 sodass kein Speicher verschwendet wird.
 
 Das klingt nach einem unwichtigen Zwischenschritt, aber es hat eine wichtige Konsequenz,
@@ -59,7 +61,8 @@ die Sie jetzt direkt ausprobieren.
 
 ### Das Doppel-Änderungs-Experiment
 
-Implementieren Sie zunächst die Additionsfunktion. Ändern Sie `calculator.py` zu:
+Implementieren Sie zunächst die Additionsfunktion.
+Ändern Sie `calculator.py` zu:
 
 ```python
 # Ein einfacher Rechner
@@ -93,8 +96,8 @@ einmal unter „Changes to be committed“ und einmal unter „Changes not stage
 
 Die Erklärung: `git add` merkt nicht einfach eine Datei vor.
 Es kopiert den **exakten Inhalt** der Datei zum Zeitpunkt des `git add` in die Staging-Area.
-Spätere Änderungen an der Datei im Arbeitsverzeichnis landen **nicht** automatisch in der 
-Staging-Area. Dafür müssten Sie erneut `git add` ausführen.
+Spätere Änderungen an der Datei im Arbeitsverzeichnis landen **nicht** automatisch in der Staging-Area.
+Dafür müssten Sie erneut `git add` ausführen.
 
 Die Staging-Area erlaubt es Ihnen auch, Änderungen gezielt zusammenzustellen:
 Sie können z. B. nur bestimmte Dateien in einen Commit aufnehmen 
@@ -115,8 +118,7 @@ und idealerweise erst, wenn dieser auf einen Git-Server gepusht wurde.
 
 ### Git-Objekte: Was speichert Git wirklich?
 
-Bevor Sie weiterarbeiten, sollen Sie verstehen, *was genau* Git bei `git add` und 
-`git commit` eigentlich speichert.
+Als Nächstes geht es darum, *was genau* Git bei `git add` und `git commit` speichert.
 
 Lesen Sie dazu den Artikel 
 [Git from the inside out](https://maryrosecook.com/blog/post/git-from-the-inside-out)
@@ -133,17 +135,17 @@ Beantworten Sie folgende Fragen zum Artikel:
 [EQ] Wie speichert Git eine Datei, wenn `git add` ausgeführt wird? 
 Was ist ein Blob-Objekt, und wie wird es benannt?
 
-[EQ] Sie führen `git add` erneut für eine veränderte Datei aus, 
-ohne vorher committet zu haben. Was passiert mit dem vorherigen Blob-Objekt?
+[EQ] Sie führen `git add` erneut für eine veränderte Datei aus, ohne vorher committet zu haben.
+Was passiert mit dem vorherigen Blob-Objekt?
 
 [EQ] Was speichert Git, wenn Sie einen neuen Commit erstellen?
 Welche Objekte entstehen dabei und wie verweisen sie aufeinander?
 
 [EQ] Kann es zwei Commits mit identischem Hash geben? Warum bzw. warum nicht?
 
-[EQ] Working Directory, Staging-Area und der letzte Commit können scheinbar 
-auf die gleichen Daten zeigen. Allerdings können nur zwei davon *tatsächlich* auf 
-dasselbe Objekt zeigen. Welche zwei, und warum?
+[EQ] Working Directory, Staging-Area und der letzte Commit können scheinbar auf die gleichen Daten zeigen.
+Allerdings können nur zwei davon *tatsächlich* auf dasselbe Objekt zeigen.
+Welche zwei, und warum?
 
 ### Objekte selbst inspizieren
 
@@ -158,14 +160,15 @@ Committen Sie also:
 git commit -m "Additionsfunktion implementiert"
 ```
 
-Jetzt liegen Commit-Objekte, Tree-Objekte und Blob-Objekte im Repository.
+Jetzt liegen Commit-Objekte, Tree-Objekte und [TERMREF2::Blob (git)::Blob-Objekte] im Repository.
 Schauen Sie sie sich an:
 
 [EC] Benutzen Sie `git cat-file -p HEAD`, um das Commit-Objekt zu betrachten.
 Folgen Sie dann der Referenz auf das Tree-Objekt und von dort auf das Blob-Objekt.
 
 [EQ] Vergleichen Sie den Inhalt des Blobs mit `calculator.py` in Ihrem Arbeitsverzeichnis.
-Worin unterscheiden sie sich? Stimmt das mit Ihrer Antwort auf die Frage nach dem Doppel-Änderungs-Experiment überein?
+Worin unterscheiden sie sich?
+Stimmt das mit Ihrer Antwort auf die Frage nach dem Doppel-Änderungs-Experiment überein?
 
 Damit haben Sie die Kette Commit → Tree → Blob einmal komplett nachverfolgt.
 Das ist die grundlegende Datenstruktur von Git.
@@ -173,7 +176,7 @@ Das ist die grundlegende Datenstruktur von Git.
 ### Dateien im Index anschauen und verlorene Blobs finden
 
 Git bietet auch Befehle, um den Index (die Staging-Area) direkt einzusehen.
-Die wichtigsten sind `git ls-files` und `git show`.
+`git ls-files` zeigt, welche Einträge der Index enthält; `git show` gibt den Inhalt eines Objekts aus.
 
 [EC] Finden Sie mit `git ls-files` den Hash des Blob-Objekts von `calculator.py` 
 im Index und schauen Sie sich dessen Inhalt mit `git show` an.
@@ -223,15 +226,16 @@ Aber was ist mit dem Blob der fehlerhaften Version, den Sie nie committet haben?
 Führen Sie `git fsck` aus. 
 Unter den Ausgaben finden Sie einen sogenannten *dangling blob*,
 ein Blob-Objekt, das weder von einem Commit noch vom Index mehr erreicht wird.
-Das passiert immer, wenn Sie die gleiche Datei mehrfach mit `git add` zum Index hinzufügen,
-ohne zwischendurch zu committen.
+Das passiert immer, wenn Sie dieselbe Datei mit zwischenzeitlich geändertem Inhalt mehrfach mit `git add`
+zum Index hinzufügen, ohne zwischendurch zu committen.
+Falls Sie zwischendurch weitere Versionen hinzugefügt haben, finden Sie entsprechend mehrere solcher Blobs.
 
-[EC] Schauen Sie sich den Inhalt des dangling Blobs an. 
-Ist es die fehlerhafte Version Ihrer Datei?
+[EC] Schauen Sie sich den Inhalt des dangling Blobs an und prüfen Sie,
+ob es die fehlerhafte Version Ihrer Datei ist.
 
 In der Praxis brauchen Sie das selten, aber es zeigt ein wichtiges Prinzip:
-Git löscht Objekte nicht sofort. Solange sie existieren, kann man sie wiederfinden,
-auch wenn keine Referenz mehr auf sie zeigt.
+Git löscht Objekte nicht sofort.
+Solange sie existieren, kann man sie wiederfinden, auch wenn keine Referenz mehr auf sie zeigt.
 
 ### Zweiter Commit: Multiplikation
 
@@ -250,19 +254,17 @@ Sie wissen:
 - dass Commits auf Tree-Objekte verweisen, die wiederum auf Blobs zeigen,
 - und dass Git Objekte über SHA-1-Hashes referenziert.
 
-In der nächsten Aufgabe lernen Sie, diese Informationen praktisch zu nutzen:
+In [PARTREF::git-Diff] lernen Sie, diese Informationen praktisch zu nutzen:
 mit `git diff` Änderungen vergleichen und mit `git log` die Historie durchsuchen.
-
 [ENDSECTION]
+
 
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Prüfhinweise]
-Prüfen Sie das Protokoll und die Antworten.
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

@@ -29,8 +29,7 @@ Am Ende steht Ihr erster Commit.
 Anders als bei den meisten Aufgaben benötigen Sie diesmal ein ganz neues Repo. 
 So verstehen Sie besser, was in diesem Schritt passiert, und führen die Repo-Erstellung 
 einmal selbst durch, anstatt sie wie üblich Tools wie GitLab zu überlassen. 
-Erstellen Sie dafür ein neues Verzeichnis **außerhalb Ihres bestehenden ProPra-Repositories**, 
-z.B. im [TERMREF::Hilfsbereich], den Sie in den ProPra-Grundlagen eingerichtet haben.
+Erstellen Sie dafür ein neues Verzeichnis im [TERMREF::Hilfsbereich].
 Wechseln Sie in der Kommandozeile in dieses Verzeichnis und führen Sie dort den Befehl `git init` aus. 
 
 [HINT::Kann ich ein neues Repository in meinem bestehenden erstellen?]
