@@ -21,6 +21,7 @@ Diese Aufgabe wird die nur primitiven Datentypen (Zahlen) behandeln.
 Komplexere Datentypen haben ihre eigenen Aufgaben.
 
 Wenn Sie direkt den vollen Schlag des Typsystems wollen, dann bietet Ihnen das
+<!-- @LINK_SPEC: status=403 -->
 [Kapitel des Typsystems im C Standard](https://en.cppreference.com/w/c/language/compatible_type.html)
 einen ausgiebigen Lesegenuss.
 
@@ -67,6 +68,7 @@ Spätestens jetzt sollte klar werden: C-Code für mehr als ein Betriebssystem ka
 Das haben auch die Verantwortlichen für den C Standrad erkannt, und den `<stdint.h>`-Header
 eingeführt.
 Dieser definiert für Sie
+<!-- @LINK_SPEC: status=403 -->
 [Ganzzahltypen mit bekannter Länge](https://en.cppreference.com/w/c/types/integer.html#Types).
 Mit diesen Typen müssen Sie sich nicht mehr darum kümmern, ob `unsigned long` nun 32 Bit oder 64
 Bit breit ist, Sie schreiben einfach `unit64_t` und bekommen immer einen vorzeichenlosen, 64 Bit
@@ -84,6 +86,7 @@ Nachfolgend wird die Dezimalzahl `16` in den gängigsten Literalformen aufgelist
 - Binär' `0b00010000`, `0b` als Prefix.
 
 Weitere Literalformen im
+<!-- @LINK_SPEC: status=403 -->
 [Kapitel der Ganzzahlliterale des C Standards](https://en.cppreference.com/w/c/language/integer_constant.html).
 
 
@@ -95,6 +98,7 @@ Sie können allerdings ebenso eines der 256 ASCII-Zeichen nutzen, z.B. `'A'`.
 Dabei muss das Zeichen zwischen `'` stehen, in C dienen `'` und `"` für unterschiedliche Literale.
 
 Wenn sie exotischere Zeichen benötigen bietet das
+<!-- @LINK_SPEC: status=403 -->
 [Kapitel der Characterliterale des C Standards](https://en.cppreference.com/w/c/language/character_constant.html)
 noch einige andere Möglichkeiten.
 
@@ -109,6 +113,7 @@ Bei den Gleitkommazahlen geht es bescheidener zu.
 Zusätzlich gibt es auch noch `long double` sowie `_Complex`
 (gepaart mit einem der anderen Gleitkommatypen), deren Nutzen übersteigt jedoch das ProPra.
 Das
+<!-- @LINK_SPEC: status=403 -->
 [Kapitel über Arithmetische Datentypen des C Standards](https://en.cppreference.com/w/c/language/arithmetic_types.html)
 bietet einen tieferen Einblick.
 
@@ -119,6 +124,7 @@ Für `float`: `1.7f`, das `f` ist zwingend notwendig um es als 32 Bit `float` zu
 Für `double`: `1.7`, wie asu Python gewohnt.
 
 Weitere Literalformen im
+<!-- @LINK_SPEC: status=403 -->
 [Kapitel der Gleitkommaliterale des C Standards](https://en.cppreference.com/w/c/language/floating_constant.html).
 
 

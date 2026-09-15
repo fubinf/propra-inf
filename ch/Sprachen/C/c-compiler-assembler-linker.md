@@ -20,7 +20,8 @@ vertraut.
 Wir benutzen hier die Programme von GCC, der GNU Compiler Collection,
 der gängigsten Lösung auf Linux-Systemen;
 es gibt aber auch andere Compiler für C.
-Neugierige können bei Bedarf noch viel mehr über den 
+Neugierige können bei Bedarf noch viel mehr über den
+<!-- @LINK_SPEC: status=403 -->
 [inneren Aufbau des GCC C-Übersetzers](https://en.wikibooks.org/wiki/GNU_C_Compiler_Internals/GNU_C_Compiler_Architecture)
 nachlesen.
 [ENDSECTION]
@@ -85,7 +86,8 @@ In diesen Assemblercode hat `gcc` unser kleines C-Programm übersetzt.
 
 [EQ] `gcc` hat mehrere Optimierungsstufen zur Auswahl
 (Kommandozeilenparameter `-O`).
-Machen Sie sich mit den 
+Machen Sie sich mit den
+<!-- @LINK_SPEC: status=403 -->
 [verschiedenen Stufen](https://gcc.gnu.org/onlinedocs/gcc-12.5.0/gcc/Optimize-Options.html)
 vertraut.
 Wählen Sie für die folgenden Anwendungsfälle eine Optimierungsstufe aus

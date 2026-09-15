@@ -45,6 +45,7 @@ Und die lokalen Namensräume können nirgendwo anders sichtbar gemacht oder impo
 ## Header und der Präprozessor-Include-Mechanismus
 
 Im Folgenden benutzen wir das
+<!-- @LINK_SPEC: status=403 -->
 [Kapitel über Header im GCC Präprozessor-Handbuch](https://gcc.gnu.org/onlinedocs/gcc-12.5.0/cpp/Header-Files.html).
 
 

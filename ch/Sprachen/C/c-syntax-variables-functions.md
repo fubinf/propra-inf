@@ -73,6 +73,7 @@ Sie den Typ, die Speicherklasse oder die Qualifizierung einer Variable anpassen 
 Sie nicht erst alles auseinander friemeln.
 [ENDNOTICE]
 
+<!-- @LINK_SPEC: status=403 -->
 [Weitere Beispiele an Variablendeklarationen](https://en.cppreference.com/w/c/language/declarations)
 finden Sie hier.
 
@@ -164,8 +165,10 @@ Nutzen Sie `void` um ausdrücklich keine Parameter anzugeben.
 [ENDNOTICE]
 
 Weiteres zu
+<!-- @LINK_SPEC: status=403 -->
 [Deklarationen](https://en.cppreference.com/w/c/language/function_declaration)
 sowie
+<!-- @LINK_SPEC: status=403 -->
 [Definitionen](https://en.cppreference.com/w/c/language/function_definition)
 finden Sie hier.
 
