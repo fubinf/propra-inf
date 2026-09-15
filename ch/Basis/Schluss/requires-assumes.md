@@ -69,6 +69,14 @@ Vollziehen Sie das mit den Aufgaben Ihrer oben gefundenen "required"-Kette
 nach. Starten Sie beim vorletzten Element, navigieren Sie mit den oberen Links
 zurück zum Start und dann mit den unteren Links nach und nach bis zum Ende der Kette.
 
+### Überblick in der Aufgabengruppe
+
+Die Landeseite jeder Aufgabengruppe, beispielsweise die von [PARTREF::Repo]
+enthält eine Übersichtsgrafik, die diese Beziehungen anzeigt.
+Die grünen Pfeile sind als "assumed-by" zu lesen,
+die roten als "required-by".
+
+
 [ENDSECTION]
 [SECTION::submission::information]
 
