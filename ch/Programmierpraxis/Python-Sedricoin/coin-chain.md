@@ -74,8 +74,8 @@ Wenn Sie nur eine Zeile ausgeben wollen, können Sie dem Kommando die Option `--
 
 [HINT::Die Ausgabe erscheint nicht im Terminal.]
 Standardmäßig wird die Ausgabe von `git` an einen sogenannten *Pager* übergeben.
-Ein Pager wird in Unix-Systemen genutzt, um lange Dateien im Terminal zu lesen
-und scrollen zu können.
+Ein Pager wird in Unix-Systemen genutzt, um lange Dateien im Terminal lesen
+und darin scrollen zu können.
 Sie können dies mit
 [der Option `--no-pager`](https://git-scm.com/docs/git#Documentation/git.txt---no-pager)
 verhindern, um die Ausgabe direkt im Terminal auszugeben.
@@ -88,7 +88,7 @@ git --no-pager log --oneline
 <!-- TODO_3: Der folgende Abschnitt kann gekürzt werden, sobald die Aufgabe `git-Rebase-interaktiv` existiert. -->
 
 Lesen Sie in der
-[git-rebase Dokumentation](https://git-scm.com/docs/git-rebase#_interactive_mode)
+[git-rebase-Dokumentation](https://git-scm.com/docs/git-rebase#_interactive_mode)
 nach, wie Sie den interaktiven Rebase durchführen, um im ersten Commit (`Block1`)
 mit `edit` die Datei `Block1.txt` zu verändern.
 Nach der Änderung kann diese mit `git commit --amend` dem Commit (`Block1`) hinzugefügt werden
@@ -174,7 +174,7 @@ können Sie das Kommando `env` im Terminal ausführen.
 [ENDHINT]
 
 [HINT::Umgebungsvariablen im Terminal setzen]
-Umgebungsvariablen können im Terminal mit dem Befehl `export` gesetzt werden.
+Umgebungsvariablen können im Terminal mit dem Kommando `export` gesetzt werden.
 Variablen, die auf diese Weise gesetzt werden, sind nur temporär
 (bis Sie die Shell schließen) verfügbar.
 
@@ -260,11 +260,11 @@ des `BlockHeader` berechnet:
    Die Reihenfolge der Werte muss dem gegebenen JSON-Modell entsprechen.
    Zukünftige Erweiterungen werden immer hinten angefügt.
 2. Alle Werte, die nicht `String` sind, müssen in einen `String` umgewandelt werden.
-3. Alle Zeichen in `lower-case` umwandeln.
+3. Alle Zeichen in *lower-case* umwandeln.
 4. Leerzeichen entfernen.
 5. Den doppelten `SHA256`-Hash berechnen; also `SHA256(SHA256(x))`.
    Dabei muss der `String` im inneren Hash mit `UTF-8` enkodiert werden.
-   Der äußere Hash wird über die Bytes des ersten Hashs gebildet.
+   Der äußere Hash wird über die Bytes des ersten Hashes gebildet.
 6. Der Block-Hash ist die Hex-Repräsentation des Ergebnisses.
 
 [ER] Implementieren Sie eine Funktion, mit der der Block-Hash berechnet werden kann.
@@ -301,8 +301,7 @@ print(block_hash)
 
 Die Funktion zur Berechnung des Block-Hashes ist zentral für die Blockchain.
 
-[ER] Schreiben Sie daher einen [TERMREF::Unittest], um sicherzustellen, dass die
-Funktion korrekt funktioniert.
+[ER] Schreiben Sie daher einen [TERMREF::Unittest], um sicherzustellen, dass sie korrekt arbeitet.
 Nutzen Sie im Test die vorgegebenen Testfälle.
 In Python können Sie dafür das [PARTREF::m_pytest]-Framework nutzen.
 
@@ -360,8 +359,8 @@ Block-Hash:
 <!-- time estimate: 30 min -->
 
 Erst in den folgenden Aufgaben implementieren Sie die REST-API.
-Allerdings müssen beim Starten, wie oben schon implementiert, die Umgebungsvariablen
-eingelesen werden und der *Genesis-Block* erzeugt werden.
+Allerdings müssen beim Starten die Umgebungsvariablen eingelesen werden (wie oben schon implementiert)
+und der *Genesis-Block* erzeugt werden.
 Auch wenn das Programm in dieser Aufgabe noch nicht dauerhaft weiterläuft,
 wird hier bereits von *Server* gesprochen.
 
@@ -407,9 +406,9 @@ Zur Validierung sind vorerst keine Tests erforderlich.
 Diese Tests werden in einer späteren Aufgabe ausführlicher beschrieben.
 [ENDNOTICE]
 
-Wenn Sie Ihre manipulierte Blockchain wieder gültig machen wollen,
-können Sie entweder die Manipulation rückgängig machen (sofern Sie diese kennen),
-oder manuell den betroffenen Block und alle Nachfolger löschen.
+Wenn eine Blockchain durch eine Manipulation ungültig geworden ist,
+können Sie entweder die Manipulation rückgängig machen (sofern Sie sie kennen)
+oder den betroffenen Block und alle Nachfolger löschen.
 
 [EC] Rufen Sie Ihren Server zweimal auf.
 
