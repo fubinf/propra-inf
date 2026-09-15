@@ -98,8 +98,9 @@ Diese schreibt eine Fehlermeldung auf den `http.ResponseWriter w` und setzt den 
 Ist ein solcher Name bereits vergeben, dann gibt der Server Statuscode `409` ("Conflict") und eine informative
 Fehlermeldung zurück.
 
-Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig (beispielsweise eine
-Portnummer, die kleiner als 1 oder größer als 65535 ist), so antwortet der Server mit `400` ("Bad Request").
+Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig
+(beispielsweise eine Portnummer, die kleiner als 1 oder größer als 65535 ist),
+so antwortet der Server mit `400` ("Bad Request").
 
 (Eine Auffrischung zu Servern und JSON finden Sie in den Aufgaben [PARTREF::go-http-server] und [PARTREF::go-json]).
 
@@ -107,7 +108,7 @@ Portnummer, die kleiner als 1 oder größer als 65535 ist), so antwortet der Ser
 Ein möglicher Grund dafür ist ein Deadlock:
 Falls Ihre Methode `AddIfAbsent` den Mutex selbst sperrt (`t.mu.Lock()`) und dann eine andere Methode von `AddressTable`
 aufruft (beispielsweise `t.GetAddrOf()`), die denselben Mutex erneut zu sperren versucht, blockiert diese Goroutine für
-immer. 
+immer.
 [ENDHINT]
 
 [FOLDOUT::Warum soll ich `http.Error()` verwenden?]
@@ -149,7 +150,7 @@ Tabelle entfernen, sofern ein solches Benutzername-Adresse-Paar existiert.
 Der gespeicherte Eintrag für `username` muss dabei exakt aus der IP-Adresse der aktuellen Anfrage und dem übergebenen
 `port` bestehen (also derselben Berechnung wie bei `/register`).
 
-Bei Erfolg ist der Statuscode `200` ("OK"); gibt es keinen solchen Benutzer, so ist der Statuscode `404` ("Not Found").
+Bei Erfolg ist der Statuscode `200` ("OK"); gibt es keinen solchen Eintrag, so ist der Statuscode `404` ("Not Found").
 Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig, so
 antwortet der Server mit `400` ("Bad Request").
 
