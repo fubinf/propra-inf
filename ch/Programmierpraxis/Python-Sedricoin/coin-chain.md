@@ -2,7 +2,7 @@ title: "Blockchain verketten"
 stage: alpha
 timevalue: 3.0
 difficulty: 3
-assumes: git-Repository, git-Rebase, m_json, m_hashlib, m_pydantic, m_pytest
+assumes: git-Repository, m_json, m_hashlib, m_pydantic, m_pytest
 ---
 
 [SECTION::goal::product]
@@ -85,10 +85,20 @@ git --no-pager log --oneline
 ```
 [ENDHINT]
 
-Nutzen Sie interaktives
-[git-rebase](https://git-scm.com/docs/git-rebase)
-mit `edit`, um im ersten Commit (`Block1`) die Datei `Block1.txt` zu verändern.
+<!-- TODO_3: Der folgende Abschnitt kann gekürzt werden, sobald die Aufgabe `git-Rebase-interaktiv` existiert. -->
+
+Lesen Sie in der
+[git-rebase Dokumentation](https://git-scm.com/docs/git-rebase#_interactive_mode)
+nach, wie Sie den interaktiven Rebase durchführen, um im ersten Commit (`Block1`)
+mit `edit` die Datei `Block1.txt` zu verändern.
+Nach der Änderung kann diese mit `git commit --amend` dem Commit (`Block1`) hinzugefügt werden
+und mit `git rebase --continue` der Rebase fortgesetzt werden.
 Der zweite Commit `Block2` soll unverändert übernommen werden.
+
+[HINT::Fehlermeldung `fatal: invalid upstream 'HEAD~2'`]
+Um den ersten Commit zu verändern, muss explizit die Option `--root` mit angegeben werden.
+Nutzen Sie daher das Kommando `git rebase -i --root`, um den Rebase zu starten.
+[ENDHINT]
 
 [EC] Geben Sie die einzeilige Git-History aus.
 
@@ -238,6 +248,10 @@ Falls Sie eine andere Sprache nutzen, müssen Sie sich ggf. selbst eine Funktion
 schreiben, die den `Block` in gültiges JSON umwandelt.
 [ENDHINT]
 
+
+### Block-Hash berechnen
+<!-- time estimate: 20 min -->
+
 Jeder Block hat einen Block-Hash.
 Dieser wird nicht explizit gespeichert, sondern nach folgenden Regeln über die Felder
 des `BlockHeader` berechnet:
@@ -252,10 +266,6 @@ des `BlockHeader` berechnet:
    Dabei muss der `String` im inneren Hash mit `UTF-8` enkodiert werden.
    Der äußere Hash wird über die Bytes des ersten Hashs gebildet.
 6. Der Block-Hash ist die Hex-Repräsentation des Ergebnisses.
-
-
-### Block-Hash berechnen
-<!-- time estimate: 20 min -->
 
 [ER] Implementieren Sie eine Funktion, mit der der Block-Hash berechnet werden kann.
 Der oben angegebene `Block` hat den Block-Hash
@@ -384,7 +394,7 @@ Für die Gültigkeit müssen aktuell die folgenden Kriterien erfüllt sein:
 
 - Der `previous_hash` entspricht dem Block-Hash des Vorgängers.
   Achten Sie darauf, diesen selbst zu berechnen und nicht blind den Dateien zu vertrauen.
-- Der `timestamp` muss größer als der des Vorgängers sein.
+- Der `timestamp` muss **größer** oder **gleich** dem des Vorgängers sein.
 
 [NOTICE]
 Je nach Manipulation kann ein Fehler erst im nachfolgenden `Block` erkannt werden.
@@ -396,6 +406,10 @@ wird der Fehler erst beim `Block` 2 erkannt, da hier mindestens der `previous_ha
 Zur Validierung sind vorerst keine Tests erforderlich.
 Diese Tests werden in einer späteren Aufgabe ausführlicher beschrieben.
 [ENDNOTICE]
+
+Wenn Sie Ihre manipulierte Blockchain wieder gültig machen wollen,
+können Sie entweder die Manipulation rückgängig machen (sofern Sie diese kennen),
+oder manuell den betroffenen Block und alle Nachfolger löschen.
 
 [EC] Rufen Sie Ihren Server zweimal auf.
 
