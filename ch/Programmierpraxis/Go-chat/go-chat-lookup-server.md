@@ -151,8 +151,8 @@ Der gespeicherte Eintrag für `username` muss dabei exakt aus der IP-Adresse der
 `port` bestehen (also derselben Berechnung wie bei `/register`).
 
 Bei Erfolg ist der Statuscode `200` ("OK"); gibt es keinen solchen Eintrag, so ist der Statuscode `404` ("Not Found").
-Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig, so
-antwortet der Server mit `400` ("Bad Request").
+Können die nötigen Daten aus dem JSON-Payload nicht ausgelesen werden oder sind die Daten ungültig (beispielsweise
+eine Portnummer, die kleiner als 1 oder größer als 65535 ist), so antwortet der Server mit `400` ("Bad Request").
 
 (So kann sich niemand mit einer fremden IP-Adresse oder einem fremden Port für einen Benutzernamen ausloggen, der ihm
 gar nicht gehört — deshalb wird `port` hier überhaupt im Payload gebraucht, obwohl `/unregister` streng genommen
