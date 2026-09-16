@@ -191,25 +191,16 @@ einmal mit `open()` eingelesen wird.
 
 
 [INSTRUCTOR::Die Encodings sollten stimmen]
-Prüfen Sie, ob die Encodings der vier Dateien korrekt bestimmt wurden.
-Schauen Sie auch grob, ob der Output vollständig ist.
-
-**BD** `datei2` wird auch mit `iso8859-9` (Latin-5, Türkisch) korrekt dargestellt, aber das ergibt 
-inhaltlich keinen Sinn, wenn man wie gewünscht auf Wikipedia nachgelesen hat und ist deshalb falsch.
-
-**BD** `cp500` und `EBCDIC-CP-BE` sind ein- und dasselbe. 
-Auch dies sollte beim Nachlesen auffallen und in irgendeiner Form in der Antwort ersichtlich sein.
-
-**BS** Das `with open()...` sollte außerhalb der inneren Schleife liegen, sodass die Datei nur 
-einmal eingelesen wird.
-
-**DS** Wenn der Kommando-Output teils abgeschnitten ist, der Code aber korrekt aussieht, haben die 
-Studierenden möglicherweise den Output nicht ganz geprüft (siehe Bemerkungsblock oben).
-Studierende ggf. hierauf hinweisen.
+Prüfen, ob die Encodings der vier Dateien korrekt bestimmt wurden.
+Auch das Kommandoprotokoll auf Vollständigkeit prüfen.
+Bei Abweichungen den Code überprüfen.
 
 Musterlösung siehe [TREEREF::encoding-and-open.py]
 
 [INCLUDE::ALT:]
+
+
+### Kommandoprotokoll
 
 [PROT::ALT:encoding-and-open.prot]
 [ENDINSTRUCTOR]
