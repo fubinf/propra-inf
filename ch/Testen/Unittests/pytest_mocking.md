@@ -2,7 +2,7 @@ title: "'unittest.mock': Ersetzen von Objekten für Testzwecke"
 stage: alpha
 timevalue: 2.5
 difficulty: 3
-assumes: m_pytest
+assumes: m_pytest, m_requests
 ---
 
 [SECTION::goal::idea]
@@ -39,8 +39,6 @@ zuschneidern lassen.
 
 Nutzen Sie zum Bearbeiten der Aufgaben die folgende Dokumentation nach Bedarf:
 
-- die Übersicht [Pytest Fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html),
-  insbesondere den Abschnitt "How to monkeypatch/mock";
 - die [Dokumentation von `unittest.mock`](https://docs.python.org/3/library/unittest.mock.html).
 
 Für diese Aufgabe benötigen Sie ein ganzes Verzeichnis `pytest_mocking/`.
