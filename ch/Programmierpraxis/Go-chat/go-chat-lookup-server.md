@@ -7,7 +7,7 @@ assumes: go-sync-mutex, go-http-server, go-json, go-modules, http-Status
 
 [SECTION::goal::experience,product]
 Ich habe einen Lookup-Server implementiert, bei dem sich Benutzer des Chats ein- und ausloggen können
-und dessen nebenläufig genutzte Benutzertabelle gegen gleichzeitige Zugriffe abgesichert ist.
+und dessen nebenläufig genutzte Adresstabelle gegen gleichzeitige Zugriffe abgesichert ist.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -20,7 +20,7 @@ Ihre IP-Adresse ändert sich je nachdem, von wo sie sich verbinden, und der Port
 Der Lookup-Server schafft hier Abhilfe, indem er unter einer festen, allen Peers bekannten Adresse erreichbar ist und
 die Zuordnung von Benutzername zu IP-Adresse und Port verwaltet.
 
-Will Alice mit Bob schreiben, so fragt Alice beim Lookup-Server nach, was die Adresse von Bob ist.
+Will Alice mit Bob schreiben, so fragt Alice beim Lookup-Server nach der Adresse von Bob.
 Ist Bob zu diesem Zeitpunkt im Chat eingeloggt, so bekommt Alice seine Adresse und kann ihn anschreiben.
 
 In dieser Aufgabe implementieren Sie nur das Ein- und Ausloggen sowie das Nachschlagen.
@@ -139,7 +139,7 @@ keinen solchen Benutzer gibt.
 Setzen Sie vor dem Schreiben des JSON-Payloads den Header `Content-Type: application/json`, damit alle Konsumenten des
 Endpunkts wissen, worum es sich bei der Antwort handelt.
 Lesen Sie in der
-[Dokumentation von `http.ResponseWriter`](https://pkg.go.dev/net/http#ResponseWriter.Header)
+[Dokumentation von `http.ResponseWriter.Header`](https://pkg.go.dev/net/http#ResponseWriter.Header)
 nach, wie das genau funktioniert.
 
 <!-- time estimate: 15 min -->
@@ -182,7 +182,8 @@ funktioniert.
 
 ### Testen
 
-Starten Sie Ihren Lookup-Server und führen Sie in einem anderen Terminal folgende Kommandos aus:
+Starten Sie Ihren Lookup-Server neu, damit die Adresstabelle leer ist,
+und führen Sie in einem anderen Terminal folgende Kommandos aus:
 
 [EC] `curl -i -X GET http://localhost:8083/alice`
 
@@ -200,7 +201,7 @@ Starten Sie Ihren Lookup-Server und führen Sie in einem anderen Terminal folgen
 
 [EC] `curl -i -X GET http://localhost:8083/register`
 
-[EQ] Warum antwortet der Server auf `curl -X GET http://localhost:8083/register` mit Statuscode `404`,
+[EQ] Warum antwortet der Server auf `curl -i -X GET http://localhost:8083/register` mit Statuscode `404`,
 obwohl `/register` doch ein Endpunkt dieses Servers ist?
 
 [EC] `curl -i -X POST -d '{"username":"alice"}' http://localhost:8083/register`
