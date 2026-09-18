@@ -63,7 +63,7 @@ Bei `>` wird die Datei überschrieben.
 
 [EC] `cat redirect_hallo.txt`
 
-Bei `>>´ wird der Output an die Datei angehängt:
+Bei `>>` wird der Output an die Datei angehängt:
 
 [EC] `echo "Hallo Welt!" >> redirect_hallo.txt`
 
