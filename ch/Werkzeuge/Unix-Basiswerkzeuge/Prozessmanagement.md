@@ -1,5 +1,5 @@
 title: "Prozessmanagement in Unix: Prozesse überwachen und steuern"
-stage: alpha
+stage: beta
 timevalue: 1.75
 difficulty: 2
 explains: nohup, Prozess, Signal
@@ -7,23 +7,23 @@ assumes: redirect, Shell-Grundlagen2
 ---
 
 [SECTION::goal::experience]
-Ich kann Prozesse auf einem Unix-System auflisten, einzelne davon gezielt finden und beenden.
-Ich verstehe die wichtigsten Prozesszustände und Signale.
-Ich kann kleine Skripte starten, die auch nach dem Schließen des Terminals weiterlaufen.
-Ich kann die CPU-Last eines Systems einschätzen und einzelne Prozesse als Verursacher erkennen.
+
+- Ich kann Prozesse auf einem Unix-System auflisten, einzelne davon gezielt finden und beenden.
+- Ich verstehe die wichtigsten Prozesszustände und Signale.
+- Ich kann Skripte starten, die auch nach dem Schließen des Terminals weiterlaufen.
+- Ich kann die CPU-Last eines Systems einschätzen und einzelne Prozesse als Verursacher erkennen.
 [ENDSECTION]
 
 
 [SECTION::background::default]
 Ein Programm, das Sie gestartet haben, läuft als [TERMREF::Prozess] weiter,
-bis es sich selbst beendet oder von außen beendet wird — auch dann, wenn Sie nicht mehr hinsehen.
-Genau daraus entstehen im Alltag die typischen Fragen:
+bis es sich selbst beendet oder von außen beendet wird -- auch dann, wenn Sie nicht mehr hinsehen.
+Daraus entstehen im Alltag immer wieder Fragen:
 Warum läuft der Lüfter seit einer halben Stunde, und welches Programm ist schuld?
 Warum ist die Datei noch gesperrt, obwohl das Fenster längst zu ist?
 Und wie bringt man einen Testlauf dazu, das Schließen der SSH-Verbindung zu überleben?
 Diese Aufgabe stellt Ihnen die fünf Werkzeuge vor, mit denen man solche Fragen beantwortet:
-eines zum terminalunabhängigen Starten, eines zum Auflisten, eines zum Live-Beobachten,
-eines zum gezielten Finden und eines zum Beenden.
+Prozesse terminalunabhängig starten, Prozesse auflisten, live beobachten, finden oder beenden.
 [ENDSECTION]
 
 
@@ -34,11 +34,11 @@ eines zum gezielten Finden und eines zum Beenden.
 Zwischen den gängigen Linux-Distributionen (Ubuntu, Fedora, Arch, ...) gibt es bei den
 in dieser Aufgabe verwendeten Werkzeugen keine relevanten Unterschiede,
 da diese überall aus denselben Paketen (`procps`/`procps-ng` und `coreutils`) stammen.
-Einzige Ausnahme ist `kill`: Davon gibt es zwei Fassungen,
-eine aus `procps`/`procps-ng` und eine aus `util-linux`,
-und je nach Distribution ist die eine oder die andere installiert.
-Für diese Aufgabe verhalten sich beide gleich,
-ihre Manpages sind aber unterschiedlich aufgebaut — mehr dazu im Abschnitt zu `kill`.
+Einzige Ausnahme ist `kill`: Davon gibt es gleich drei(!) Fassungen,
+eine aus `procps`/`procps-ng`, eine aus `util-linux`, und eine eingebaut in `bash`.
+Je nach Distribution und Shell begegnet man also verschiedenen Dingen.
+Für diese Aufgabe verhalten sich alle drei gleich,
+die Manpages sind aber unterschiedlich aufgebaut — mehr dazu im Abschnitt zu `kill`.
 
 [FOLDOUT::Abweichungen unter macOS]
 `ps`, `top`, `pgrep` und `kill` sind auch unter macOS verfügbar;
@@ -57,7 +57,7 @@ Dadurch gibt es kleine Unterschiede:
 
 Die auf dieser Seite verlinkten Manpages sind durchweg die Linux-Fassungen;
 die dort genannten Abschnitte (z.B. **PROCESS STATE CODES**) können unter macOS
-anders heißen oder ganz fehlen — nutzen Sie in diesem Fall die lokale `man`-Seite.
+anders heißen oder ganz fehlen — nutzen Sie dort die lokale `man`-Seite.
 Abweichende Abschnittsnamen gibt es (wie bei `kill`) sogar zwischen Linux-Distributionen,
 wenn ein Werkzeug dort aus einem anderen Paket stammt.
 [ENDFOLDOUT]
@@ -77,7 +77,7 @@ done
 echo "Prozess beendet."
 ```
 
-Die Shebang-Zeile ist Konvention; gestartet wird das Skript hier aber durchgehend
+Die [TERMREF::Shebang-Zeile] ist Konvention; gestartet wird das Skript hier aber durchgehend
 mit `bash Prozessmanagement.sh` statt mit `./Prozessmanagement.sh`,
 damit Sie sich das Setzen des Ausführungsrechts (`chmod +x`) sparen können.
 
@@ -174,14 +174,17 @@ oder ein ausführliches Format mit allen Details.
 
 Lesen Sie in der
 [ps(1) manpage](https://man7.org/linux/man-pages/man1/ps.1.html)
-die Abschnitte **DESCRIPTION** (zu UNIX- vs. BSD-Optionsstilen),
+die Abschnitte **DESCRIPTION** (zu UNIX- vs. BSD-Optionsstilen
+und zu deren Wirkung auf die Prozessauswahl),
 **SIMPLE PROCESS SELECTION** (wozu `a`, `x` und `-e` dienen)
 und **OUTPUT FORMAT CONTROL** (wozu `u` und `-f` dienen).
 
-An der Option `u` sehen Sie gleich, dass sich dieselbe Option je nach Unix-Variante
-unterschiedlich verhalten kann:
-Ob `u` nur die angezeigten Spalten ändert oder auch die Auswahl der angezeigten Prozesse,
-ist unter Linux und unter macOS nicht gleich, und die Manpage schweigt dazu.
+In **DESCRIPTION** steht eine Nebenwirkung des BSD-Optionsstils:
+Schon eine einzige BSD-Option (also auch `u` allein) erweitert die Auswahl
+auf alle Prozesse, die Ihnen gehören und an irgendeinem Terminal hängen.
+`u` selbst steuert dagegen nur das Ausgabeformat.
+Diese Nebenwirkung gibt es allerdings nur beim Linux-`ps`;
+das BSD-`ps` von macOS bleibt beim aktuellen Terminal.
 Welcher der beiden Fälle auf Ihrem System gilt, stellen Sie deshalb selbst fest —
 dafür brauchen Sie ein zweites Terminal mit einem gut erkennbaren Prozess darin.
 
@@ -376,10 +379,10 @@ Skript und Logdateien können Sie bei Bedarf löschen.
 [INSTRUCTOR::Kommandoprotokoll + Markdowndokument]
 
 Falls im Protokoll `ohne-nohup.log` unerwartet weiterwächst statt nach dem Fensterwechsel
-stehenzubleiben: Die Studierenden haben das Terminalfenster vermutlich mit `exit` verlassen
+stehen zu bleiben: Die Studierenden haben das Terminalfenster vermutlich mit `exit` verlassen
 statt es zu schließen.
 Nur ein geschlossenes Fenster schickt `SIGHUP` an seine Jobs weiter;
-`exit` in einer Nicht-Login-Shell tut das nicht.
+`exit` tut das standardmäßig nicht, denn die Shell-Option `huponexit` ist normalerweise aus.
 Das ist kein bloßer Flüchtigkeitsfehler,
 sondern verfehlt den Kernpunkt des Abschnitts
 (Prozess ohne `nohup` überlebt das Schließen des Terminals nicht).
