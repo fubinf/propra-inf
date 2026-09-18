@@ -61,7 +61,8 @@ Das Grundkonzept von `dd` ist simpel: Lesen vom Input, Schreiben zum Output.
 <!-- time estimate: 20 min -->
 
 ### Blockgröße, Geschwindigkeit und Live-Status verstehen
-Lesen Sie im 
+Lesen Sie im
+<!-- @LINK_SPEC: status=403 -->
 [GNU coreutils manual](https://www.gnu.org/software/coreutils/manual/coreutils.html#dd-invocation)
 den Abschnitt über `bs=BYTES` sowie die Dokumentation zur Option `status`.
 

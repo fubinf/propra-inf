@@ -19,8 +19,10 @@ organisieren, Speicherplatz zu sparen und die Verwaltung von Dateien zu erleicht
 
 ### Erstellen von Links
 
-Lesen Sie die Beschreibung im obigen Teil, die **Examples** am Ende und die Option **-s** aus dem 
-[GNU Manual](https://www.gnu.org/software/coreutils/manual/html_node/ln-invocation.html) über Links.
+Lesen Sie die Beschreibung im obigen Teil, die **Examples** am Ende und die Option **-s** aus dem
+<!-- @LINK_SPEC: status=403 -->
+[GNU Manual](https://www.gnu.org/software/coreutils/manual/html_node/ln-invocation.html)
+über Links.
 
 Wir brauchen einen Ordner und Dateien, damit wir darauf die Links verknüpfen können.
 Wir verwenden hierfür den [TERMREF::Hilfsbereich].
