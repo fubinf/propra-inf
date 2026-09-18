@@ -24,6 +24,7 @@ Webseiten zu finden sind:
 
 [HREF::https://www.linuxteck.com/linux-system-information-command-cheat-sheet/]
 
+<!-- @LINK_SPEC: status=403 -->
 [HREF::https://www.cyberciti.biz/open-source/linux-commands-to-know-the-system/]
 
 Verwenden Sie diese Informationen, um die nachfolgenden Aufgaben zu lösen.

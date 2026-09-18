@@ -83,6 +83,7 @@ Die oben frisch erstellten Nutzer sollen erstmal keine Rechte auf die Daten habe
 
 ### Überblick verschaffen
 
+<!-- @LINK_SPEC: status=403 -->
 Lesen Sie die [getfacl(1) manpage](https://linux.die.net/man/1/getfacl) bis einschließlich 
 **Permissions**.
 
@@ -94,6 +95,7 @@ Setzen wir ein paar ACLs.
 
 ### ACLs setzen
 
+<!-- @LINK_SPEC: status=403 -->
 Lesen Sie die [setfacl(1) manpage](https://linux.die.net/man/1/setfacl) bis einschließlich 
 **Permissions**, die Optionen **-m, -R, -b, -k**, die **Examples** und die **ACL Entries**.
 

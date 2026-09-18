@@ -114,6 +114,7 @@ zu Rate ziehen muss.
 `dig` kann sich als DNS-Server ausgeben und den so entstehenden Pfad von DNS-Abfragen wiedergeben.
 Dieser Befehl kann nützlich sein, wenn Sie eine neue Webseite angemeldet haben und prüfen wollen, ob 
 die Nameserver richtig eingestellt sind.
+<!-- @LINK_SPEC: status=403 -->
 Lesen Sie die `trace`-Option aus der [dig(1) manpage](https://linux.die.net/man/1/dig).
 
 [EC] Nutzen Sie die `trace`-Option um den DNS-Pfad des Zielservers herauszufinden.

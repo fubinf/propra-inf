@@ -40,6 +40,7 @@ Verstehen Sie die **Synopsis** (insbesondere die Punkte des Befehls `addgroup`) 
   und keine Rechte (---) für Other.
 
 Verstehen Sie die **Synopsis**, lesen Sie die **Description** (Einleitung reicht) und die **Examples** der
+<!-- @LINK_SPEC: status=403 -->
 [chgrp(1) manpage](https://linux.die.net/man/1/chgrp)
 
 [EC] Wechseln Sie zurück zu Ihrem personlichen Nutzer.
@@ -60,6 +61,7 @@ Das Ändern dieser Gruppe kann sinnvoll sein,
 wenn man über eine gemeinsame Gruppe Dateien mit anderen Benutzern teilen möchte.
 
 Lesen Sie die Abschnitte **Synopsis**, **Description** und die **Optionen** **-a, -g, -G** der 
+<!-- @LINK_SPEC: status=403 -->
 [usermod(8) manpage](https://linux.die.net/man/8/usermod)
 
 [EC] Wechseln Sie zu `nutzer1`.

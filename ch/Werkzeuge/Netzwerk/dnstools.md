@@ -82,9 +82,11 @@ Lesen Sie insbesondere die **Synopsis** und die **Description**.
 
 ### Arbeiten mit `[TERMREF::dig]`
 
+<!-- @LINK_SPEC: status=403 -->
 Sichten Sie die [dig(1) manpage](https://linux.die.net/man/1/dig) und lesen Sie insbesondere 
 die **Description**, die **Simple Usage** und die Option **-t**.
 
+<!-- @LINK_SPEC: status=403 -->
 Lesen Sie im [Beitrag über dig](https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/) 
 von nixcraft die **DNS record types** nach.
 
