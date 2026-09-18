@@ -15,10 +15,15 @@ Ich kann die CPU-Last eines Systems einschätzen und einzelne Prozesse als Verur
 
 
 [SECTION::background::default]
-Ein [TERMREF::Prozess] ist ein laufendes Programm mit eigenem Speicherbereich
-und einer eindeutigen Prozess-ID (`PID`).
-Der Kernel verwaltet alle Prozesse und vermittelt ihren Zugang zu CPU, Speicher und Ein-/Ausgabe.
-Das ermöglicht Isolation, gezieltes Scheduling und Ressourcenkontrolle.
+Ein Programm, das Sie gestartet haben, läuft als [TERMREF::Prozess] weiter,
+bis es sich selbst beendet oder von außen beendet wird — auch dann, wenn Sie nicht mehr hinsehen.
+Genau daraus entstehen im Alltag die typischen Fragen:
+Warum läuft der Lüfter seit einer halben Stunde, und welches Programm ist schuld?
+Warum ist die Datei noch gesperrt, obwohl das Fenster längst zu ist?
+Und wie bringt man einen Testlauf dazu, das Schließen der SSH-Verbindung zu überleben?
+Diese Aufgabe stellt Ihnen die fünf Werkzeuge vor, mit denen man solche Fragen beantwortet:
+eines zum terminalunabhängigen Starten, eines zum Auflisten, eines zum Live-Beobachten,
+eines zum gezielten Finden und eines zum Beenden.
 [ENDSECTION]
 
 
@@ -29,6 +34,11 @@ Das ermöglicht Isolation, gezieltes Scheduling und Ressourcenkontrolle.
 Zwischen den gängigen Linux-Distributionen (Ubuntu, Fedora, Arch, ...) gibt es bei den
 in dieser Aufgabe verwendeten Werkzeugen keine relevanten Unterschiede,
 da diese überall aus denselben Paketen (`procps`/`procps-ng` und `coreutils`) stammen.
+Einzige Ausnahme ist `kill`: Davon gibt es zwei Fassungen,
+eine aus `procps`/`procps-ng` und eine aus `util-linux`,
+und je nach Distribution ist die eine oder die andere installiert.
+Für diese Aufgabe verhalten sich beide gleich,
+ihre Manpages sind aber unterschiedlich aufgebaut — mehr dazu im Abschnitt zu `kill`.
 
 [FOLDOUT::Abweichungen unter macOS]
 `ps`, `top`, `pgrep` und `kill` sind auch unter macOS verfügbar;
@@ -42,14 +52,14 @@ Dadurch gibt es kleine Unterschiede:
 - Unter macOS sortiert `top` standardmäßig nach `PID` statt nach `%CPU`;
   starten Sie es dort mit `top -o cpu`.
 - In `ps` werden schlafende Prozesse teilweise mit `I` (Idle) statt `S` gekennzeichnet.
-- Unter macOS erweitert `u` die Auswahl nicht; dort zeigt `ps u` dieselben Prozesse wie `ps`,
-  nur mit mehr Spalten und nach CPU sortiert.
 - `nproc` gehört zu den GNU coreutils und ist unter macOS nicht vorhanden;
   ermitteln Sie die Kernzahl dort stattdessen mit `sysctl -n hw.ncpu`.
 
 Die auf dieser Seite verlinkten Manpages sind durchweg die Linux-Fassungen;
 die dort genannten Abschnitte (z.B. **PROCESS STATE CODES**) können unter macOS
 anders heißen oder ganz fehlen — nutzen Sie in diesem Fall die lokale `man`-Seite.
+Abweichende Abschnittsnamen gibt es (wie bei `kill`) sogar zwischen Linux-Distributionen,
+wenn ein Werkzeug dort aus einem anderen Paket stammt.
 [ENDFOLDOUT]
 
 Als Testobjekt brauchen Sie ein Skript, das lange läuft und dabei fortlaufend Ausgaben produziert.
@@ -92,7 +102,8 @@ Drücken Sie `Ctrl+C`, um das Skript wieder zu beenden.
 Wie Sie einen Befehl mit `&` im Hintergrund ausführen, kennen Sie bereits aus [PARTREF::Shell-Grundlagen2].
 Allerdings schreibt ein Prozess im Hintergrund standardmäßig weiterhin in Ihr Terminal,
 was Ihre weiteren Eingaben unübersichtlich macht und den Prompt stört.
-Außerdem würde der Prozess beendet, sobald Sie das Terminal schließen (Signal `SIGHUP`).
+Außerdem würde der Prozess beendet, sobald Sie das Terminal schließen
+(durch das [TERMREF::Signal] `SIGHUP`).
 
 Hier hilft `nohup` in Kombination mit einer Ausgabeumleitung.
 
@@ -133,7 +144,7 @@ Nach dem Schließen des Fensters im nächsten Schritt ist dessen Scrollback unwi
 wirklich (nicht `exit` eingeben — sonst bleibt der Prozess ohne `nohup` am Leben)
 und wechseln Sie in Ihren Hilfsbereich.
 
-Auch dies ist eine Aktion ohne Kommandonummer, wie beim ersten Terminalwechsel oben.
+Auch dies ist eine Aktion ohne Kommandonummer, wie der Wechsel in den Hilfsbereich oben.
 
 [EC] Prüfen Sie mit `tail my-process.log`, ob die Ausgabe weiterläuft.
 
@@ -167,6 +178,13 @@ die Abschnitte **DESCRIPTION** (zu UNIX- vs. BSD-Optionsstilen),
 **SIMPLE PROCESS SELECTION** (wozu `a`, `x` und `-e` dienen)
 und **OUTPUT FORMAT CONTROL** (wozu `u` und `-f` dienen).
 
+An der Option `u` sehen Sie gleich, dass sich dieselbe Option je nach Unix-Variante
+unterschiedlich verhalten kann:
+Ob `u` nur die angezeigten Spalten ändert oder auch die Auswahl der angezeigten Prozesse,
+ist unter Linux und unter macOS nicht gleich, und die Manpage schweigt dazu.
+Welcher der beiden Fälle auf Ihrem System gilt, stellen Sie deshalb selbst fest —
+dafür brauchen Sie ein zweites Terminal mit einem gut erkennbaren Prozess darin.
+
 **AKTION:** Öffnen Sie zusätzlich ein zweites Terminalfenster
 und starten Sie dort probeweise etwas Langlebiges, z.B. mit `sleep 1800`.
 Lassen Sie dieses Fenster geöffnet und wechseln Sie für die folgenden Schritte
@@ -178,8 +196,7 @@ Auch dies ist eine reine Aktion ohne Kommandonummer.
 die Ihnen gehören und an Ihrem aktuellen Terminal hängen.
 
 [EC] Wiederholen Sie die Anzeige anschließend mit `ps u` im BSD-Format
-und vergleichen Sie, welche Prozesse zusätzlich erscheinen
-(unter macOS zeigt `ps u` hier keine zusätzlichen Prozesse, siehe den aufklappbaren macOS-Hinweis oben).
+und achten Sie darauf, ob der `sleep 1800` aus dem zweiten Terminalfenster dabei ist.
 Beachten Sie außerdem die wichtigsten Spalten des BSD-Formats (`USER`, `PID`, `%CPU`, `%MEM`,
 `TTY`, `STAT`, `TIME`, `COMMAND`).
 
@@ -197,7 +214,9 @@ Ein besseres Werkzeug (`pgrep`) lernen Sie weiter unten kennen.
 [ENDHINT]
 
 [EQ] Worin unterscheiden sich die Aufrufe `ps u`, `ps aux` und `ps -ef`?
-Welcher dieser Befehle zeigt alle Prozesse im System an?
+Halten Sie bei `ps u` fest, was Sie auf Ihrem System beobachtet haben:
+Erscheint der `sleep 1800` des zweiten Terminals in der Liste oder nicht?
+Welche dieser Befehle zeigen alle Prozesse im System an?
 Was ist das Besondere an der Darstellung durch `ps -ef` im Vergleich zu `ps aux`?
 
 <!-- time estimate: 15 min -->
@@ -254,11 +273,20 @@ Begründen Sie mit Ihrem `Load Average` und Ihrer zuvor ermittelten Kernzahl.
 Lesen Sie die Abschnitte **SYNOPSIS** und **OPTIONS** (`-f`, `-c`) aus der
 [pgrep(1) manpage](https://man7.org/linux/man-pages/man1/pgrep.1.html).
 
-[EC] Finden Sie die `PID` Ihres Skripts und vergleichen Sie das Ergebnis
-mit der `PID`, die Ihre Shell beim Start mit `nohup` angezeigt hat
-(scrollen Sie dafür in Ihrem Terminal nach oben).
-(Der Skriptname taucht wegen des Aufrufs über `bash` nicht als eigenständiger Kommandoname auf —
-nutzen Sie die zuvor gelesene Option `-f`.)
+[EC] Finden Sie die `PID` Ihres Skripts.
+Der Skriptname taucht wegen des Aufrufs über `bash` nicht als eigenständiger Kommandoname auf —
+nutzen Sie deshalb die zuvor gelesene Option `-f`.
+
+Vergleichen Sie das Ergebnis mit der `PID`,
+die Ihre Shell beim Start mit `nohup` als `[1] <PID>` gemeldet hat.
+Diese Zeile steht in Ihrer Protokolldatei, denn Sie haben den Inhalt des ersten Terminals
+vor dem Schließen des Fensters dorthin übertragen;
+im Scrollback des jetzigen Fensters finden Sie sie nicht mehr.
+Dieselbe Zahl hat auch Ihr Skript selbst ausgegeben;
+sie steht deshalb am Anfang von `my-process.log`.
+(Davor kann noch eine Meldung von `nohup` stehen, unter Linux z.B. `nohup: ignoring input`.
+Dieser Hinweis geht nach stderr und landet durch `2>&1` mit in der Logdatei;
+je nach System und Spracheinstellung lautet er anders oder fehlt ganz.)
 
 [EC] Zählen Sie alle `bash`-Prozesse auf dem System.
 
@@ -279,8 +307,13 @@ So lässt sich die von `pgrep` ermittelte `PID` an `kill` übergeben.
 Lesen Sie in **DESCRIPTION** den Unterabschnitt **Standard signals**
 (insbesondere `SIGHUP`, `SIGTERM`, `SIGKILL`) aus der
 [signal(7) manpage](https://man7.org/linux/man-pages/man7/signal.7.html)
-sowie **SYNOPSIS** und **ARGUMENTS** aus der
-[kill(1) manpage](https://man7.org/linux/man-pages/man1/kill.1.html).
+sowie **SYNOPSIS**, **DESCRIPTION** und **OPTIONS** aus der
+[kill(1) manpage](https://manpages.debian.org/stable/procps/kill.1.en.html).
+
+Das ist die `kill`-Fassung aus `procps`/`procps-ng`.
+Enthält Ihr lokales `man kill` stattdessen einen Abschnitt **ARGUMENTS**,
+dann stammt Ihr `kill` aus `util-linux` und die Signalangabe steht dort unter **ARGUMENTS**
+statt unter **DESCRIPTION**; inhaltlich gilt aber dasselbe.
 
 [EC] Beenden Sie das im Hintergrund laufende Skript sauber mit dem Signal `TERM`.
 
@@ -309,8 +342,15 @@ Lesen Sie den Abschnitt **3a. DESCRIPTIONS of Fields**
 yes > /dev/null &
 ```
 
-[EC] Öffnen Sie `top` und vergleichen Sie `%CPU` und `TIME+` von `yes`
-mit denen eines schon lange laufenden Prozesses weiter unten in der Liste.
+Der nächste Schritt sollte unmittelbar folgen:
+`yes` sammelt bei 100 % Auslastung pro Minute eine Minute Rechenzeit an,
+sein `TIME+` ist also nur ganz am Anfang klein.
+
+[EC] Öffnen Sie sofort `top` und vergleichen Sie `%CPU` und `TIME+` von `yes`
+mit den Werten des Prozesses mit der `PID` 1
+(unter Linux `systemd` oder `init`, unter macOS `launchd`).
+Dieser Prozess läuft seit dem Einschalten des Rechners und steht in der
+nach `%CPU` sortierten Liste meist direkt unterhalb der gerade aktiven Prozesse.
 
 [EQ] Welche Prozesse stehen ganz oben in der nach `%CPU` sortierten Liste, und warum?
 
@@ -343,6 +383,12 @@ Nur ein geschlossenes Fenster schickt `SIGHUP` an seine Jobs weiter;
 Das ist kein bloßer Flüchtigkeitsfehler,
 sondern verfehlt den Kernpunkt des Abschnitts
 (Prozess ohne `nohup` überlebt das Schließen des Terminals nicht).
+
+Weil das erste Terminalfenster geschlossen statt mit `exit` verlassen wird,
+schreibt dessen Shell ihre History nicht mehr weg;
+im Ersatzfenster beginnt die Nummerierung von `\!` deshalb erneut unterhalb
+des zuletzt erreichten Werts, einige Kommandonummern kommen also doppelt vor.
+Das ist die erwartete Folge des geforderten Fensterschließens, kein Fehlalarm.
 
 ## Kommandoprotokoll
 [PROT::ALT:Prozessmanagement.prot]
