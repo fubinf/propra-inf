@@ -1,11 +1,11 @@
 title: "'unittest.mock': Ersetzen von Objekten für Testzwecke"
-stage: alpha
+stage: beta
 timevalue: 2.5
 difficulty: 3
-assumes: m_pytest, m_requests
+assumes: m_re, m_pytest, m_requests
 ---
 
-[SECTION::goal::idea]
+[SECTION::goal::trial]
 
 - Ich kann beschreiben, was Attrappen sind und warum sie für Tests nützlich sind.
 - Ich kann verschiedene Techniken zur Verwendung von Attrappen in pytest anwenden.
@@ -41,7 +41,7 @@ Nutzen Sie zum Bearbeiten der Aufgaben die folgende Dokumentation nach Bedarf:
 
 - die [Dokumentation von `unittest.mock`](https://docs.python.org/3/library/unittest.mock.html).
 
-Für diese Aufgabe benötigen Sie ein ganzes Verzeichnis `pytest_mocking/`.
+Legen Sie für diese Aufgabe ein eigenes Verzeichnis `pytest_mocking/` an.
 
 ### Warum Attrappen? Das Problem verstehen
 
@@ -106,7 +106,8 @@ Es gibt grundsätzlich zwei Techniken, um Abhängigkeiten durch Attrappen zu ers
 **Monkeypatching:** Zur Laufzeit wird das Original durch die Attrappe ersetzt.
 
 - Vorteil: Funktioniert ohne Codeänderung an der zu testenden Funktion
-- Nachteil: "Magisch", schwieriger zu verstehen, Testcode benötigt komplexen Patching-Schritt
+- Nachteile: "Magisch" also schwieriger zu verstehen; Testcode benötigt komplexen Patching-Schritt;
+  nicht in jeder Programmiersprache möglich.
 
 **Dependency Injection:** Die Abhängigkeit wird als Parameter übergeben.
 Man übergibt im echten Produktionscode einen echten Web-Client, eine echte Datenbankverbindung
@@ -122,7 +123,7 @@ Vorbedingungen benötigen.
 
 #### Erste Schritte: Monkeypatching mit `patch()`
 
-Zu jeder kommenden Aufgabe wird es eine zu testende Funktion geben, die in der Aufgabe vorgegeben
+Zu jedem folgenden Arbeitsschritt gibt es eine zu testende Funktion, die entweder vorgegeben
 ist oder von Ihnen erstellt werden soll.
 Der Name der Datei ist jeweils oben in dem Codeblock als Kommentar angegeben,
 z.B. `weather_simple.py`.
@@ -243,11 +244,11 @@ um für jede Stadt unterschiedliche Antworten zu geben.
 [ENDHINT]
 
 [HINT::Wie baut man das Response-Objekt?]
-`requests.get()` gibt ein Response-Objekt zurück, das eine `.json()` Methode hat.
+`requests.get()` gibt ein Response-Objekt zurück, das eine Methode `json()` hat.
 Ihre Attrappe muss das nachahmen.
 Am einfachsten geht das mit `unittest.mock.MagicMock`.
 
-[HINT::Ich verstehe den Aufbau des Response-Objekts nicht.]
+[HINT::Ich brauche ein Codebeispiel dafür]
 
 ```python
 mock_response = MagicMock()
@@ -259,14 +260,11 @@ mock_response.json.return_value = {'main': {'temp': 25.0}, 'weather': [{'descrip
 [ENDHINT]
 
 [HINT::Das mit dem URL wird aber ziemlich unelegant, oder?]
-Um zu wissen, welche Antwort für welche Stadt zurückgegeben werden soll, müssen Sie
-den URL analysieren. 
-Dafür muss man aber nicht den ganzen URL im Mock-Code reproduzieren.
-Eine einfache Lösung ist, darin nach `f"q={city}"` zu suchen.
+Nö. Um zu wissen, welche Antwort für welche Stadt zurückgegeben werden soll, müssen Sie
+im URL nach `f"q={city}"` suchen und daraus die Stadt extrahieren.
 [ENDHINT]
 
-Eventuell sind Sie bei der Testfallerstellung mit Monkeypatching nicht so gut vorangekommen, wie Sie
-es sich vielleicht erhofft haben.
+Möglicherweise war die Testfallerstellung mit Monkeypatching mühsamer als erhofft.
 
 [EQ] Was stört Sie an Ihrem Testcode? Welche Teile der ursprünglichen Funktion haben Sie im
 Testcode "nachbauen" müssen?
@@ -331,16 +329,16 @@ def test_get_temperature_injectable():
     assert "München" in mock_api.called_cities
 ```
 
-[ER] Implementieren Sie beide Dateien und führen Sie den Test aus.
-
-[ER] Implementieren Sie analog eine Dependency Injection für die Funktion `get_weather_summary()` von vorhin.
-
 [NOTICE]
 Für die genaue Form der Injektion gibt es verschiedene Ansätze.
-Wir verwenden hier das sogenannte `None-Pattern`; es liefert eine Kombination von
+Wir verwenden hier das sogenannte None-Pattern; es liefert eine Kombination von
 guter Benutzbarkeit (nur der Testcode muss eine Attrappe injizieren; der Produktivcode tut nichts dergleichen)
 und guter Testbarkeit (der Testcode kann ohne Umstände die gewünschte Attrappe injizieren).
 [ENDNOTICE]
+
+[ER] Implementieren Sie beide Dateien und führen Sie den Test aus.
+
+[ER] Implementieren Sie als `weather_summary.py` analog eine Dependency Injection für die Funktion `get_weather_summary()` von vorhin.
 <!-- time estimate: 10 min -->
 
 ### Praxis: Verschiedene Szenarien
@@ -352,7 +350,7 @@ auf verschiedene praxistypische Szenarien an.
 
 Hier wird die eingebaute `open`-Funktion per Monkeypatching ersetzt.
 
-Der Zugriff auf das Dateisystem ist langsam und macht Tests unhandlich,
+Der Zugriff auf das Dateisystem ist vergleichsweise langsam und macht Tests unhandlich,
 weil echte Dateien erstellt oder bereitgestellt werden müssten.
 Mit einer Attrappe lässt sich das gewünschte Leseverhalten stattdessen direkt im Test festlegen.
 
@@ -374,25 +372,24 @@ def read_log_file(file_path):
 ```
 
 [HINT::Meine Attrappenidee macht ganz schön viel Arbeit!]
-Eine File Handle hat ganz schön viel Funktionalität und sogar schon in unserem Minibeispiel
-ist der Aufwand, dafür selbst eine Attrappe zu schreiben, nicht ganz klein.
+Ein Dateihandle hat ganz schön viel Funktionalität und sogar schon in unserem Minibeispiel
+ist der Aufwand, dafür selbst eine Attrappe zu schreiben, recht erheblich.
 
 Aber es gibt eine bequeme Lösung für Monkeypatching in der Standardbibliothek:
 Betrachten Sie den Abschnitt `mock_open` in der offiziellen Dokumentation.
-Nehmen Sie sich Zeit, die Dokumentation ist nicht ganz einfach zu verstehen.
-Sie können `mock_open` nutzen, um die eingebaute open-Funktion durch eine Attrappe zu ersetzen
+Nehmen Sie sich Zeit, die Dokumentation ist leider nicht ganz einfach zu verstehen.
+Sie können `mock_open` nutzen, um die eingebaute `open`-Funktion durch eine Attrappe zu ersetzen
 und dann Dateizugriffe zu simulieren, ohne tatsächlich Dateien lesen oder schreiben zu müssen.
 [ENDHINT]
 
-**Warum Attrappen hier sinnvoll sind**: Dateioperationen können langsam sein und das Hantieren
-mit mehreren kleinen Testdateien ist unnötig umständlich.
 <!-- time estimate: 10 min -->
 
 #### Szenario 2: Fehlerzustände simulieren
 
-Fehler treten in der echten Welt auf – aber selten dann, wenn man es im Test braucht.
-Attrappen erlauben es uns, genau diese Situationen gezielt herbeizuführen, um zu überprüfen,
-ob unser Code robust reagiert (Fehlerbehandlung, Logging, Retry, Defaults etc.).
+Fehler treten in der echten Welt oft unvorhersehbar auf -– aber für Tests brauche ich sie im genau
+richtigen Moment.
+Attrappen erlauben es uns, die gewünschten Fehlersituationen gezielt herbeizuführen, um zu überprüfen,
+ob unser Code wie vorgesehen reagiert (Fehlerbehandlung, Logging, Retry, Defaults etc.).
 
 [ER] Schreiben Sie einen Test für `get_weather_data()`, bei dem `requests.get()` absichtlich eine
 Ausnahme (`requests.exceptions.ConnectionError`) auslöst.
@@ -414,20 +411,23 @@ def get_weather_data(city):
 ```
 <!-- time estimate: 10 min -->
 
-### Reflexion: "Wann sollte man Attrappen verwenden und wann lieber nicht?"
+### Reflexion: Wann sollte man Attrappen verwenden und wann lieber nicht?
 
-#### Testdoubles: "Attrappen sind nicht alle gleich"
+#### Testdoubles: Attrappen sind nicht alle gleich
 
 Lesen Sie den Abschnitt "The Difference Between Mocks and Stubs" im
 [Artikel von Martin Fowler zu "Mocking"](https://martinfowler.com/articles/mocksArentStubs.html).
 Der Abschnitt stellt die Taxonomie von Gerard Meszaros vor,
 die fünf Arten von Testdoubles unterscheidet:
 
-- **Dummy**: Wird als Parameter übergeben, aber nie wirklich benutzt (reiner Platzhalter).
-- **Fake**: Funktionierende, aber vereinfachte Implementierung (z. B. In-Memory statt Datenbank).
-- **Stub**: Gibt kontrollierte, vordefinierte Antworten zurück; prüft keine Aufrufe.
-- **Spy**: Zeichnet Aufrufe auf, damit der Test sie hinterher verifizieren kann.
-- **Mock**: Vorkonfiguriert mit Erwartungen; schlägt fehl, wenn diese nicht erfüllt werden.
+- **Dummy**: Reiner Platzhalter.
+- **Fake**: Extrem vereinfachte Implementierung.
+- **Stub**: Gibt feste Antworten.
+- **Spy**: Zeichnet Aufrufe auf.
+- **Mock**: Prüft Erwartungen.
+
+Leider verwenden die wenigsten Menschen diese klaren Unterscheidungen, sondern sehr oft
+heißt heutzutage auch ein Fake, Stub oder Spy ebenfalls "Mock".
 
 [ER] Betrachten Sie die folgende Funktion `send_email_to_users(users, email_service)`, die sich in
 der Datei `testdoubles_example.py` befinden soll, und entscheiden Sie, welche Art von Testdouble
@@ -463,7 +463,7 @@ Begründen Sie Ihre Antwort anhand eines konkreten Beispiels aus den Aufgaben ob
 
 [ENDSECTION]
 
-[SECTION::submission::snippet,reflection]
+[SECTION::submission::program,trace,reflection]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]

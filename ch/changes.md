@@ -35,4 +35,5 @@
   das die Abhängigkeiten zeigt. Die Tasknamen sind darin Hyperlinks.
 - **2026-08-21**: Aufgaben [PARTREF::django-Ausblick] und [PARTREF::np-sort-filter] zugefügt.
 - **2026-09-01**: Aufgaben [PARTREF::np-linalg] und [PARTREF::tmux] zugefügt. 
+- **2026-09-18**: Aufgabe [PARTREF::pytest_mocking] zugefügt. 
 - ...
