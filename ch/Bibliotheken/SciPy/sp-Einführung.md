@@ -7,16 +7,17 @@ assumes: np-Einführung, py-Fstrings
 
 [SECTION::goal::idea,experience]
 - Ich kann SciPy installieren und die Installation überprüfen.
-- Ich kann die SciPy-Module dieser Aufgabengruppe ihren Anwendungsbereichen zuordnen.
+- Ich kann ausgewählte SciPy-Module dieser Aufgabengruppe ihren Anwendungsbereichen zuordnen.
 - Ich kann mit `scipy.constants` mathematische und physikalische Konstanten sowie
   Umrechnungsfaktoren abrufen und die beiden Zugriffswege des Moduls unterscheiden.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-Diese Aufgabe verschafft einen Überblick über die Modulgliederung von SciPy und übt den Zugriff
-auf `scipy.constants`.
-Die übrigen Module sind Gegenstand der restlichen Aufgaben dieser Gruppe.
+SciPys Funktionsumfang ist auf spezialisierte Module verteilt, von denen jedes ein eigenes
+Anwendungsgebiet abdeckt.
+Wer ein Problem mit SciPy lösen will, muss deshalb zuerst entscheiden, in welches Modul es gehört;
+erst danach lohnt es sich, dort nach einer passenden Funktion zu suchen.
 [ENDSECTION]
 
 
@@ -24,7 +25,7 @@ Die übrigen Module sind Gegenstand der restlichen Aufgaben dieser Gruppe.
 
 ### Vorwissen
 
-Für die Modulzuordnung weiter unten werden Grundbegriffe der Analysis und linearen Algebra benötigt
+Diese Aufgabe setzt Grundbegriffe der Analysis und der linearen Algebra voraus
 (Integral, dünnbesetzte Matrix, Extremstelle einer Funktion, Interpolation, Kurvenanpassung).
 Falls Ihnen diese fehlen, helfen folgende Quellen:
 
@@ -33,11 +34,14 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 - [Dünnbesetzte Matrix (Wikipedia)](https://de.wikipedia.org/wiki/D%C3%BCnnbesetzte_Matrix):
   Definition und Speicherung
 - [Extremwert (Wikipedia)](https://de.wikipedia.org/wiki/Extremwert):
-  Minimalstelle einer Funktion
+  Extremstelle einer Funktion
 - [Interpolation (Wikipedia)](https://de.wikipedia.org/wiki/Interpolation_(Mathematik)):
   Begriff und Grundidee
 - [Methode der kleinsten Quadrate (Wikipedia)](https://de.wikipedia.org/wiki/Methode_der_kleinsten_Quadrate):
   Grundidee der Ausgleichsrechnung
+
+Die Zeitschätzungen dieser Aufgabe setzen dieses Vorwissen voraus; wer es sich erst aneignen muss,
+braucht entsprechend länger.
 
 
 ### SciPy installieren
@@ -50,9 +54,9 @@ pip install "scipy==1.18.*"
 <!-- TODO_3: ggf. ändern und Aufgaben anpassen -->
 
 Die Versionsangabe legt die Minor-Version fest, auf die alle Aufgaben dieser Gruppe abgestimmt
-sind; der Stern lässt Patch-Versionen wie 1.18.0 oder 1.18.1 zu.
+sind; der Stern lässt Patch-Versionen wie `1.18.0` oder `1.18.1` zu.
 
-[EC] Überprüfen Sie die Installation:
+[EC] Überprüfen Sie, welche SciPy-Version Sie tatsächlich benutzen:
 
 ```bash
 python -c "import scipy; print(scipy.__version__)"
@@ -63,7 +67,6 @@ python -c "import scipy; print(scipy.__version__)"
 
 ### SciPy-Module: Überblick und Anwendungsbereiche
 
-SciPy ist in spezialisierte Module unterteilt, die verschiedene wissenschaftliche Bereiche abdecken.
 Die folgende Auswahl umfasst nur die Module dieser Aufgabengruppe; die vollständige Liste steht im
 [SciPy Reference Guide](https://docs.scipy.org/doc/scipy/reference/index.html):
 
@@ -71,35 +74,9 @@ Die folgende Auswahl umfasst nur die Module dieser Aufgabengruppe; die vollstän
 - `scipy.integrate`: Numerische Integration (vertieft in [PARTREF::sp-integrate])
 - `scipy.linalg`: Erweiterte lineare Algebra (vertieft in [PARTREF::sp-linalg])
 - `scipy.stats`: Statistische Funktionen und Verteilungen (vertieft in [PARTREF::sp-stats])
-- `scipy.interpolate`: Interpolation und Approximation (vertieft in [PARTREF::sp-interpolate])
+- `scipy.interpolate`: Interpolation zwischen Stützstellen (vertieft in [PARTREF::sp-interpolate])
 - `scipy.sparse`: Operationen auf dünnbesetzten (sparse) Matrizen (vertieft in [PARTREF::sp-sparse])
 - `scipy.constants`: Mathematische und physikalische Konstanten (Thema dieser Aufgabe)
-
-**Aufruf einer Modulfunktion:**
-
-Signatur und Beispiel unten zeigen nur, wie ein SciPy-Modul importiert und eine seiner Funktionen
-aufgerufen wird; `scipy.optimize` selbst ist Gegenstand von [PARTREF::sp-optimize].
-
-```python
-scipy.optimize.minimize_scalar(fun)
-```
-
-- `fun`: die zu minimierende Zielfunktion; nimmt einen Skalar entgegen und gibt einen Skalar
-  zurück
-
-Der Rückgabewert ist ein Ergebnisobjekt, dessen Attribut `x` die gefundene Minimalstelle enthält.
-
-**Beispiel:**
-
-```python
-from scipy import optimize
-
-def zielfunktion(x):
-    return x**2 + 4*x + 1
-
-result = optimize.minimize_scalar(zielfunktion)
-print("Minimum bei x =", result.x)  # Minimum bei x = -2.0
-```
 
 [EQ] Welches SciPy-Modul würden Sie für folgende Problemstellungen verwenden?
 Begründen Sie Ihre Auswahl:
@@ -107,7 +84,7 @@ Begründen Sie Ihre Auswahl:
 - Berechnung des zurückgelegten Wegs aus einer gemessenen Geschwindigkeitskurve
 - Speichern und Multiplizieren einer Matrix mit einer Million Zeilen, in der pro Zeile nur eine
   Handvoll Einträge von Null verschieden sind
-- Schätzung eines Zwischenwerts zwischen zwei gemessenen Datenpunkten
+- Bestimmung der Temperatur um 14:30 Uhr aus einer stündlich aufgezeichneten Messreihe
 - Anpassung einer Modellfunktion an eine Messreihe
 
 <!-- time estimate: 10 min -->
@@ -148,8 +125,8 @@ erkennbar ist (siehe [PARTREF::py-Fstrings] für die Formatierung):
 - Den Flächeninhalt eines Kreises mit Radius 5, berechnet mit `pi`
 - Die Probe, ob der Goldene Schnitt `golden` die Gleichung x² = x + 1 erfüllt
 - `Boltzmann` sowie eine weitere physikalische Konstante Ihrer Wahl, die oben noch nicht vorkam
-  (also nicht `g`) — nachschlagen in der
-  [SciPy Constants Reference](https://docs.scipy.org/doc/scipy/reference/constants.html)
+  (also nicht `g`); schlagen Sie dafür in der
+  [SciPy Constants Reference](https://docs.scipy.org/doc/scipy/reference/constants.html) nach
 - Ein SI-Präfix Ihrer Wahl mit einem Faktor von mindestens 10⁶ oder höchstens 10⁻⁶, außer `nano`
   (z.B. `mega`, `giga` oder `micro`)
 
@@ -177,12 +154,15 @@ print(f"Wert: {value} {unit} (Unsicherheit: {uncertainty})")
 
 [ER] Geben Sie auf diese Weise Wert, Einheit und Unsicherheit für diese drei Konstanten aus:
 `'Boltzmann constant'`, `'electron mass'` und `'Newtonian constant of gravitation'`.
+Geben Sie danach in einer weiteren Zeile das Modulattribut `constants.Boltzmann` und den Wert aus
+dem Tripel von `'Boltzmann constant'` direkt nebeneinander aus.
 
-[EQ] In [EREFR::1] haben Sie `Boltzmann` als einfaches Modulattribut abgerufen,
-in [EREFR::2] denselben Wert über `physical_constants` als Tripel.
-Nennen Sie zwei technische Gründe, warum `scipy.constants` beide Zugriffswege anbietet.
-Eine der drei Unsicherheiten aus [EREFR::2] ist `0.0`, die beiden anderen nicht.
-Man könnte erwarten, dass ein solcher Eintrag nur aus Wert und Einheit besteht.
+[EQ] Nennen Sie zwei technische Gründe, warum `scipy.constants` seine Konstanten sowohl als
+Modulattribut als auch über `physical_constants` anbietet.
+Ziehen Sie dafür Ihre eigene Ausgabe aus [EREFR::2] heran: die beiden nebeneinander
+ausgegebenen Zahlen, die drei Unsicherheiten und die ausgeschriebenen Schlüsselnamen.
+Man könnte erwarten, dass ein Eintrag ohne echte Messunsicherheit nur aus Wert und Einheit
+besteht.
 Erklären Sie, warum das Tripel trotzdem für alle Einträge dieselbe Form hat.
 
 <!-- time estimate: 25 min -->
