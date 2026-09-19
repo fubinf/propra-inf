@@ -1,7 +1,7 @@
 title: Fixtures mit dem Pytest-Framework
 stage: alpha
 timevalue: 2.0
-difficulty: 2
+difficulty: 3
 assumes: m_pytest
 ---
 
