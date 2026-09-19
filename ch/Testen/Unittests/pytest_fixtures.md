@@ -271,125 +271,56 @@ Wir könnten den Scope ändern, aber nehmen wir mal an, dass wir ihn für unsere
 Stelle benötigen.
 Dann haben wir noch eine andere - gute - Möglichkeit: Aufräumen.
 
-Hier ist eine Möglichkeit, um am Ende der Testdatei aufzuräumen.
-Sie verwenden `cleanup()`, um die Datei zu löschen.
+Der wichtige Unterschied ist hier: `request.addfinalizer()` räumt nur am Ende der Fixture-Lebensdauer
+auf, aber nicht zwischen zwei aufeinanderfolgenden Tests.
+Wenn mehrere Tests dieselbe `module`-Fixture teilen, muss der Ausgangszustand der Ressource deshalb
+explizit wiederhergestellt werden, bevor der nächste Test beginnt.
 
 ```python
 @pytest.fixture(scope="module")
-def temp_file(request):  # <- request muss Parameter sein!
-    filename = "debug_output.txt"
-    print(f"Setup: Erstelle {filename}")
-    with open(filename, "w") as f:
-        f.write("Test war hier!")
-    
-    def cleanup():
-        print(f"Teardown: Lösche {filename}")
-        if os.path.exists(filename):
-            os.remove(filename)
-    
-    request.addfinalizer(cleanup)
-    return filename
-```
-
-Jedoch benötigen wir das Zurücksetzen der Datei *zwischen* den Tests, nicht erst am Ende.
-Der wichtige Unterschied ist hier: `cleanup()` räumt nur am Ende der Fixture-Lebensdauer auf,
-aber nicht zwischen zwei aufeinanderfolgenden Tests.
-Wenn mehrere Tests dieselbe `module`-Fixture teilen, müssen wir deshalb explizit den
-Ausgangszustand der Ressource wiederherstellen, bevor der nächste Test beginnt.
-
-```python
-@pytest.fixture(scope="module")
-def temp_file_manager(request):
+def temp_file(request):
     filename = "debug_output.txt"
     original_content = "Test war hier!"
-    
+
     def reset_file():
         print(f"Reset: Setze {filename} zurück")
         with open(filename, "w") as f:
             f.write(original_content)
-    
+
     def cleanup():
         print(f"Teardown: Lösche {filename}")
         if os.path.exists(filename):
             os.remove(filename)
-    
-    # Erste Erstellung
+
     reset_file()
     request.addfinalizer(cleanup)
-    
-    class FileManager:
-        def __init__(self):
-            self.filename = filename
-            self.original_content = original_content
-        
-        def reset(self):
-            reset_file()
-    
-    return FileManager()
 
-def test_creates_temp_file(temp_file_manager):
-    assert os.path.exists(temp_file_manager.filename)
-    with open(temp_file_manager.filename) as f:
+    return {"filename": filename, "reset": reset_file}
+
+
+def test_creates_temp_file(temp_file):
+    assert os.path.exists(temp_file["filename"])
+    with open(temp_file["filename"]) as f:
         assert "Test war hier" in f.read()
-    
-    with open(temp_file_manager.filename, "a") as f:
+
+    with open(temp_file["filename"], "a") as f:
         f.write(" - Test 1 war hier!")
 
-def test_another_temp_file(temp_file_manager):
-    # Datei vor diesem Test zurücksetzen
-    temp_file_manager.reset()
-    
-    with open(temp_file_manager.filename) as f:
+
+def test_another_temp_file(temp_file):
+    temp_file["reset"]()  # Datei vor diesem Test zurücksetzen
+
+    with open(temp_file["filename"]) as f:
         content = f.read()
     print(f"Dateiinhalt: {content}")
-    assert content == "Test war hier!"  # Funktioniert jetzt!
+    assert content == "Test war hier!"
 ```
 
-[ER] Implementieren Sie die `temp_file_manager`-Fixture aus dem Codebeispiel oben in Ihrer
-`test_userservice.py` und ersetzen Sie damit `temp_file` in beiden Tests.
-Stellen Sie sicher, dass `test_another_temp_file` besteht – unabhängig davon,
-ob `test_creates_temp_file` vorher gelaufen ist.
+[ER] Implementieren Sie diese `temp_file`-Fixture in Ihrer `test_userservice.py` und nutzen Sie sie in
+beiden Tests. Stellen Sie sicher, dass `test_another_temp_file` auch dann funktioniert, wenn
+`test_creates_temp_file` vorher gelaufen ist.
 
 [EQ] Was passiert, wenn ein Test einen Fehler wirft? Wird Cleanup trotzdem ausgeführt?
-
-Das Ganze kann man auch mit Hilfe einer Hilfsklasse umsetzen, was es übersichtlicher gestaltet.
-
-```python
-class TempFileManager:
-    def __init__(self, filename):
-        self.filename = filename
-        with open(filename, "w") as f:
-            f.write("Standardinhalt")
-    
-    def write(self, content):
-        with open(self.filename, "w") as f:
-            f.write(content)
-    
-    def read(self):
-        with open(self.filename) as f:
-            return f.read()
-    
-    def cleanup(self):
-        if os.path.exists(self.filename):
-            os.remove(self.filename)
-
-@pytest.fixture
-def file_manager(request):
-    manager = TempFileManager("managed_file.txt")
-    request.addfinalizer(manager.cleanup)
-    return manager
-
-def test_creates_temp_file(file_manager):
-    file_manager.write("Test content")
-    assert file_manager.read() == "Test content"
-
-def test_another_temp_file(file_manager):
-    file_manager.write("Test content")
-    assert file_manager.read() == "Test content"
-```
-
-Hier stellen wir in unserer Fixture sicher, dass `request.addfinalizer(manager.cleanup)`
-nach Ablauf des Fixture-Scopes ausgeführt wird – also nach dem letzten Test, der die Fixture nutzt.
 
 ### Fixtures teilen: conftest.py
 <!-- time estimate: 15 min -->
