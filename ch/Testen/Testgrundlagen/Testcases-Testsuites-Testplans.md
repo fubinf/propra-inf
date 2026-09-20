@@ -1,126 +1,149 @@
-title: Aufbau von Testfällen und Testsammlungen
+title: Aufbau von Testfällen
 stage: alpha
-timevalue: 1.5
-difficulty: 2
+timevalue: 1.0
+difficulty: 1
 ---
-
 
 [SECTION::goal::trial]
 
-- Ich kann Testfälle lesen und erstellen.
-- Ich kann Testsammlungen aus Testfällen aufbauen.
-- Ich kenne den Unterschied zwischen statischen und generischen Testfällen.
+- Ich kann einen Testfall mit Vorbedingungen, Schritten und erwartetem Ergebnis strukturieren.
+- Ich kann zwischen einem konkreten Erfolgsfall, einem datengetriebenen Testfall, einem
+  Negativ-Testfall und funktionalen bzw. nicht-funktionalen Testfällen unterscheiden.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
-In der [TERMREF::QS] gibt es viele Begriffe, die mit "Test" beginnen und sich fein voneinander
-unterscheiden.
-Ein Testfall beschreibt einen konkreten Testablauf: Ausgangssituation, Schritte,
-Eingabedaten und das erwartete Ergebnis.
-Eine [TERMREF::Testsammlung] fasst mehrere thematisch zusammengehörige Testfälle zu einer
-wiederverwendbaren Gruppe zusammen.
+Beim Testen entsteht ein Testfall nicht aus der Luft, sondern aus einer Anforderung.
+Typische Quellen sind User Stories und Akzeptanzkriterien.
+Eine User Story beschreibt, was ein Nutzer möchte.
+Akzeptanzkriterien ergänzen diese Story mit klaren Bedingungen für die Erfüllung.
 
-Strukturiertes Testen erfordert, dass Testfälle verständlich und einheitlich formuliert sind,
-damit sie auch von Personen ausgeführt werden können, die sie nicht selbst erstellt haben.
+Aus einem gut formulierten Akzeptanzkriterium lässt sich ein Testfall ableiten:
+Es beschreibt eine Vorbedingung, eine Handlung und ein erwartetes Ergebnis.
+
+Als Quelle für die Grundbegriffe können Sie folgendes lesen:
+
+- [Testfall auf Wikipedia](https://de.wikipedia.org/wiki/Testfall)
 
 [ENDSECTION]
+
 [SECTION::instructions::detailed]
 
+<!-- time estimate: 20 min -->
+### Woher kommen Testfälle?
+
+Ein Testfall entsteht typischerweise aus einer User Story und den daraus abgeleiteten
+Akzeptanzkriterien (AK).
+Eine User Story beschreibt das Bedürfnis.
+Ein Akzeptanzkriterium sagt, wann es als erfüllt gilt.
+
+Ein guter Testfall ist eindeutig, nachvollziehbar und wiederholbar.
+
+Beispiel:
+
+- User Story: Als Kunde möchte ich mich anmelden, damit ich auf mein Konto zugreifen kann.
+- Akzeptanzkriterium: Wenn ich mit einer gültigen E-Mail und einem gültigen Passwort anmelde,
+  werde ich auf mein Konto weitergeleitet.
+
+- [EQ] Formulieren Sie eine User Story und drei Akzeptanzkriterien für die Registrierung auf einer
+  E-Commerce-Seite.
+
+[HINT::Testbarkeit von Akzeptanzkriterien]
+Nicht jedes Akzeptanzkriterium ist gut testbar. Wenn ein Kriterium zu vage, zu subjektiv oder zu
+unbeobachtbar formuliert ist, kann man daraus keinen verlässlichen Testfall ableiten.
+In solchen Fällen sollte die User Story oder das Akzeptanzkriterium vor dem Testen überarbeitet
+werden.
+
+Das ist auch ein wichtiger Reviewpunkt: Testbarkeit sollte bei der Formulierung von Anforderungen
+mitgedacht werden.
+[ENDHINT]
+
+Mit den Anforderungen im Blick prüfen Sie nun, welche davon gut testbar sind.
+
+[NOTICE]
+Nicht nur eine Rolle ist beteiligt: Ein [TERMREF::Test Analyst] prüft Anforderungen auf
+Testbarkeit, [TERMREF::Test Designer] formulieren Testfälle und ein
+[TERMREF::Testautomatisierer] setzt passende Fälle in automatisierte Tests um.
+[ENDNOTICE]
+
+<!-- time estimate: 20 min -->
+### Testbarkeit prüfen
+
+Setzen wir einmal die Brille des Test-Analysten auf.
+Wenn Sie eine User Story oder ein Akzeptanzkriterium formulieren, sollten Sie immer auch fragen:
+
+- Ist das Kriterium beobachtbar?
+- Kann man daraus einen eindeutigen Testfall ableiten?
+- Gibt es mögliche Mehrdeutigkeiten?
+
+- [EQ] Nennen Sie ein Akzeptanzkriterium, das gut testbar ist, und ein Akzeptanzkriterium, das
+  eher problematisch ist. Begründen Sie in zwei bis drei Sätzen, warum.
+
 <!-- time estimate: 30 min -->
-### Definitionen
+### Konkreter Testfall
 
-Recherchieren Sie anhand der folgenden Leitfragen unter Beachtung der Quelle:
+Ein Testfall beschreibt einen konkreten Ablauf. Beispiel: "Ein registrierter Nutzer meldet sich mit
+korrektem Passwort an."
+Dieses Verhalten kann in einem klaren Muster vom Test Designer beschrieben werden.
 
-[Testfall auf Wikipedia](https://de.wikipedia.org/wiki/Testfall)
-
-- [EQ] Skizzieren Sie, wie ein Testfall und [TERMREF::Testsammlung] miteinander
-  zusammenhängen.
-  Welche Beziehung hat ein Testfall zu einer Testsammlung (1:1, 1:n, m:n)?
-- [EQ] Können Sie sich ein Projekt vorstellen, das nur auf einzelne Testfälle setzt, ganz ohne
-  Testsammlungen?
-- [EQ] Warum sind [TERMREF2::Testsammlung::-en] für größere Projekte besonders wertvoll?
-
-<!-- time estimate: 60 min -->
-### Arten von Testfällen
-
-Testfälle unterscheiden sich darin, wie konkret ihre Eingabedaten angegeben sind:
-
-Ein **statischer Testfall** legt alle Eingabewerte und erwarteten Ergebnisse fest.
-Er beschreibt genau einen konkreten Ablauf mit konkreten Daten.
-
-Ein **generischer Testfall** (auch: parametrisierter oder datengetriebener Testfall) verwendet
-Platzhalter statt konkreter Werte.
-Die Testdaten werden separat in einer Tabelle gepflegt und der Testfall wird für jede Datenzeile
-einmal ausgeführt.
-Das ist praktisch, wenn viele Eingabevarianten denselben Ablauf durchlaufen sollen.
-
-Ein **Negativ-Testfall** prüft, wie das System auf ungültige oder fehlerhafte Eingaben reagiert.
-Das erwartete Ergebnis ist hier eine Fehlermeldung oder Ablehnung, kein Erfolg.
-
-Ein Testfall wird typischerweise mit folgenden Feldern dokumentiert:
+Ein typischer Testfall hat die folgende allgemeine Struktur:
 
 | Feld | Beschreibung |
 | --- | --- |
 | ID | Eindeutige Kennung, z.B. `TC-01` |
-| Name | Kurzer, beschreibender Titel |
 | Vorbedingung | Systemzustand vor dem Test |
 | Schritte | Nummerierte Abfolge der Aktionen |
-| Eingabedaten | Konkrete Werte (statisch) oder Platzhalter wie `<<Email>>` (generisch) |
-| Erwartetes Ergebnis | Was soll nach den Schritten passieren? |
+| Eingabedaten | Konkrete Werte oder Platzhalter |
+| Erwartetes Ergebnis | Was soll am Ende passieren? |
 
-Bei einem generischen Testfall ergänzen Sie eine Testdatentabelle mit einer Zeile pro
-Testdurchlauf:
+- [EQ] Wählen Sie eines Ihrer Akzeptanzkriterien aus und formulieren Sie daraus einen konkreten
+  Testfall für eine erfolgreiche Registrierung auf einer E-Commerce-Seite. Verwenden Sie dabei die
+  Felder ID, Vorbedingung, Schritte, Eingabedaten und erwartetes Ergebnis.
 
-| `<<Email>>` | `<<Passwort>>` | `<<ErwartetesErgebnis>>` |
+Wenn mehrere Testfälle dieselbe Logik mit unterschiedlichen Eingabewerten prüfen, spricht man von
+einem datengetriebenen Testfall.
+Dieses Muster ist besonders nützlich, wenn ähnliche Fälle mit verschiedenen Eingaben überprüft
+werden sollen.
+
+<!-- time estimate: 30 min -->
+### Datengetriebene Testfälle
+
+Manchmal ist es sinnvoll, denselben Ablauf mit mehreren Eingabedaten zu prüfen.
+Dann spricht man von einem datengetriebenen Testfall.
+
+Beispiel: Login mit drei Varianten:
+
+| E-Mail | Passwort | Erwartetes Ergebnis |
 | --- | --- | --- |
-| `alice@example.com` | `geheim123` | Login erfolgreich |
-| `bob@example.com` | `falsch` | Fehlermeldung |
+| `alice@example.com` | `geheim123` | Anmeldung erfolgreich |
+| `bob@example.com` | `nochgeheimer123` | Anmeldung erfolgreich |
+| `aliceundbob@example.com` | `wenigergeheim123` | Anmeldung erfolgreich |
 
-- [EQ] Welchen Vorteil sehen Sie darin, nur statische Testfälle in einem Projekt zu entwickeln?
-- [EQ] Sie sollen 1000 registrierte Nutzer auf Anmeldbarkeit testen. Wählen Sie einen statischen
-  oder generischen Testfall? Begründen Sie.
+- [EQ] Formulieren Sie diese drei Login-Fälle als einen zusammenhängenden datengetriebenen Testfall.
+  Notieren Sie dabei die gemeinsame Testbeschreibung und die drei Zeilen mit Testdaten.
 
-### Anwendungen
+<!-- time estimate: 20 min -->
+### Negativ-Testfall
 
-Jetzt sollen Sie Testfälle für die Anmelde- und Registrierungsfunktion einer E-Commerce-Website
-erstellen.
+Ein Negativ-Testfall prüft, was passiert, wenn etwas nicht gültig ist.
+Zum Beispiel eine ungültige E-Mail-Adresse oder ein zu kurzes Passwort bei der Registrierung.
 
-Die Website ermöglicht es Benutzern, sich anzumelden, auf ihre Konten zuzugreifen und
-sich zu registrieren, wenn sie noch keine Konten haben.
+- [EQ] Formulieren Sie zusätzlich zu dem obigen Beispiel zwei Negativ-Testfälle zum Login.
+  Das erwartete Ergebnis soll eine Fehlermeldung sein.
 
-Betrachten Sie dazu folgende [TERMREF2::User Story::-s]:
+<!-- time estimate: 15 min -->
+### Funktionale und nicht-funktionale Testfälle
 
-1. Als Kunde möchte ich die E-Commerce-Website über www.e-commerce.de erreichen, um auf das Angebot
-des Händlers zugreifen zu können.
+Funktionale Testfälle prüfen, ob ein System das erwartete Verhalten zeigt.
+Beispiel: Eine gültige Anmeldung führt zur Weiterleitung auf das Benutzerkonto.
 
-2. Als nicht registrierter Kunde möchte ich mich registrieren können, damit ich jederzeit meinen
-Bestellverlauf beim Händler einsehen kann.
+Nicht-funktionale Testfälle prüfen Qualitätsmerkmale wie Performance, Sicherheit, Bedienbarkeit oder
+Zuverlässigkeit. Beispiel: Die Anmeldung dauert weniger als zwei Sekunden.
 
-3. Als registrierter Kunde möchte ich mich am Portal anmelden können, damit ich auf meine
-Profilinformationen und Bestellungen zugreifen kann.
-
-4. Als angemeldeter Kunde möchte ich meine Bestellungen einsehen können, damit ich meine
-Rechnungen herunterladen kann.
-
-Erstellen Sie folgende Testfälle:
-
-- [EQ] Erstellen Sie einen **statischen** Testfall für:
-  eine erfolgreiche Registrierung,
-  eine erfolgreiche Anmeldung,
-  einen erfolgreichen Aufruf meiner Bestellübersicht
-- [EQ] Erstellen Sie einen **negativen** Testfall zu User Story 1.
-- [EQ] Erstellen Sie einen **generischen** Testfall, der 5 unterschiedliche Kunden erfolgreich anmeldet.
-- [EQ] Erstellen Sie einen **statischen** und **generischen** Testfall, um Ihren angegebenen Benutzernamen
-zu überprüfen.
-- [EQ] Erstellen Sie **zwei** Testsammlungen mit den zuvor erstellten Testfällen. Erweitern Sie sinnvoll
-weitere Testfälle, um die Testsammlungen voneinander zu unterscheiden.
-- [EQ] Schreiben Sie Ihre **statischen** Testfälle in **generische** Testfälle um und hinterlegen Sie die
-benötigten Testdaten in der Testsammlung.
-
-Wenn Sie Testfallentwurf praktisch mit automatisierten Tests vertiefen wollen:
-In [PARTREF::pytest-Methodik-Blackbox] und [PARTREF::pytest-Methodik-Whitebox]
-wenden Sie Blackbox- und Whitebox-Methoden direkt auf Python-Code an.
+- [EQ] Nennen Sie je ein funktionales und ein nicht-funktionales Testkriterium für die
+  Registrierung oder Anmeldung. Erklären Sie in einem Satz, warum das Kriterium zu dieser Kategorie
+  gehört.
 
 [ENDSECTION]
 
