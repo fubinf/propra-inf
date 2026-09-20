@@ -6,6 +6,7 @@ assumes: np-Einführung, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
+
 - Ich kann SciPy installieren und die Installation überprüfen.
 - Ich kann ausgewählte SciPy-Module dieser Aufgabengruppe ihren Anwendungsbereichen zuordnen.
 - Ich kann mit `scipy.constants` mathematische und physikalische Konstanten sowie
@@ -25,6 +26,7 @@ erst danach lohnt es sich, dort nach einer passenden Funktion zu suchen.
 
 ### Vorwissen
 
+Mathematisches Vorwissen vermittelt das ProPra nicht.
 Diese Aufgabe setzt Grundbegriffe der Analysis und der linearen Algebra voraus
 (Integral, dünnbesetzte Matrix, Extremstelle einer Funktion, Interpolation, Kurvenanpassung).
 Falls Ihnen diese fehlen, helfen folgende Quellen:
