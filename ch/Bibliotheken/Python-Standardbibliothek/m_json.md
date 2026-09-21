@@ -96,7 +96,7 @@ Speichern Sie das Objekt als Datei unter dem Namen `m_json_students.json`.
 
 [ER] Ergänzen Sie einen weiteren Eintrag für einen zweiten Studenten in das JSON-Objekt.
 Sie brauchen nur einen Namen anzugeben, die übrigen Felder können entfallen.
-<!-- time estimate: 10 min -->
+<!-- time estimate: 20 min -->
 
 
 ### JSON mit Python
@@ -122,7 +122,7 @@ Der String sollte leserlich formatiert sein.
 [NOTICE]
 Zum formatierten Ausgeben eines JSON-Objektes und anderer Datenstrukturen in der Konsole ist das 
 Modul [PARTREF2::m_pprint::pprint] noch besser geeignet.
-Verwenden Sie in dieser Aufgabe zu Übungszwecken nur Funktionen aus `json`.
+Verwenden Sie aber in dieser Aufgabe zu Übungszwecken **nur** Funktionen aus `json`.
 [ENDNOTICE]
 
 [ER] Erstellen Sie eine Funktion 
@@ -144,7 +144,7 @@ existiert.
 
 [ER] Schreiben Sie das geänderte Objekt in die Datei `m_json_students2.json`.
 Der Inhalt der Datei soll ebenfalls gut lesbar sein.
-<!-- time estimate: 60 min -->
+<!-- time estimate: 50 min -->
 
 ### Programmlauf für die Abgabe
 
@@ -161,43 +161,8 @@ Geben Sie ebenfalls beide JSON Dateien ab.
 
 
 [INSTRUCTOR::JSON Objekt und Kommandoprotokoll prüfen]
-JSON Objekt in [TREEREF::m_json_students.json] mit Kommandoprotokoll vergleichen.
-Bei Abweichungen oder Auffälligkeiten zusätzlich den Code prüfen.
-
-[EREFR::1]-[EREFR::1] **Knackpunkt** (BD) Die Aufgabe lässt viele Freiheiten, was die Struktur des 
-JSON Objekts betrifft.
-Eine undurchdachte Struktur kann die restlichen Aufgaben erschweren.
-Vergleichen Sie daher das JSON Objekt zuerst mit der Musterlösung.
-Gibt es starke Abweichungen, prüfen Sie genauer, ob alle Informationen enthalten sind.  
-Schauen Sie sich anschließend die Lösungen zu [EREFR::4] und [EREFR::6] im Code an.
-Sind sie unnötig tief verschachtelt oder enthalten sie komplexe Fallunterscheidungen, ist 
-vermutlich die JSON Struktur ungeeignet
-(z.B.: Wird String-Matching betrieben, sind die Werte im JSON vermutlich nicht in mehrere 
-Schlüssel getrennt).
-
-Ein Beispiel für eine akzeptable Lösung für [EREFR::4]:
-
-```python
-[SNIPPET::ITREE:m_json.py::a4]
-```
-
-[EREFR::3] (DS) Das Objekt sollte mit einer Funktion aus `json` serialisiert werden.
-Wird das Objekt unformatiert ausgegeben, wurde vmtl. der Parameter `indent` nicht angegeben.
-
-[EREFR::4]-[EREFR::5] (BS) Prüfen im Protokoll: Donnerstag → True, Freitag → False
-
-[EREFR::6]-[EREFR::8] (BS) In `m_json_students2.json` sollte die Wunschnote für Lineare Algebra 
-2.3 betragen.
-Das Programmierpraktikum sollte **keine** Wunschnote haben.
-
 [INCLUDE::ALT:]
 
-
-### `m_json_students.json`
-
-```JSON
-[INCLUDE::ITREE:m_json_students.json]
-```
 
 ### Kommandoprotokoll
 
