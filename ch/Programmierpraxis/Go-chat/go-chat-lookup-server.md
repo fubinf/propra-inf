@@ -76,19 +76,51 @@ Was kann passieren, wenn sich zwei Peers gleichzeitig mit demselben Benutzername
 
 <!-- time estimate: 15 min -->
 
-[ER] Registrieren Sie einen POST-Endpunkt `/register`, der aus dem JSON-Payload die Felder `username string`
-und `port int` ausliest und in `AddressTable` speichert.
-`AddIfAbsent` erwartet dabei in `name` den Benutzernamen und in `address` die aus IP-Adresse und Port gebildete
-Adresse, getrennt durch einen Doppelpunkt (`ip_addr:port`).
-`ip_addr` kann der Server dem Feld
-[`RemoteAddr`](https://pkg.go.dev/net/http#Request)
-des Parameters `r *http.Request` entnehmen.
-Beachten Sie die Unterschiede zwischen IPv4- und IPv6-Adressen (bei IPv4-Adressen soll das Format `ip_addr:port`
-verwendet werden; bei IPv6-Adressen das Format `[ip_addr]:port`) und verwenden Sie bei Bedarf die Funktionen
-[`net.SplitHostPort`](https://pkg.go.dev/net#SplitHostPort),
-[`net.ParseIP`](https://pkg.go.dev/net#ParseIP)
-und
-[`net.IP.To4`](https://pkg.go.dev/net#IP.To4).
+[ER] Implementieren Sie eine Struktur `NameAndPortMessage` mit den Feldern `Name string` und `Port int`.
+Versehen Sie diese mit JSON-Struct-Tags: `name` für `Name` und `port` für `Port`.
+
+[ER] Implementieren Sie für die Struktur `NameAndPortMessage` eine Methode `Validate() (err error)`,
+die einen Fehler zurückgibt, wenn `Name` leer ist oder `Port` nicht im Bereich von 1 bis 65535 (jeweils einschließlich)
+liegt.
+Verwenden Sie für die Erzeugung der Fehler (mit einer informativen Fehlermeldung!) die Funktion
+[`errors.New`](https://pkg.go.dev/errors#New).
+
+<!-- time estimate: 10 min -->
+
+In dieser Aufgabe implementieren Sie zwei HTTP-Handler, die fast dasselbe tun:
+Beide dekodieren eine `NameAndPortMessage` aus dem JSON-Payload, validieren sie und konstruieren aus der Absenderadresse
+und dem Port eine Adresse der Form `host:port`.
+Der Unterschied ist nur, dass `/register` den Eintrag (Name und Adresse) speichert, während `/unregister` ihn entfernt.
+Diese gemeinsame Logik sollen Sie nicht doppelt implementieren; sie gehört in eine eigenständige Funktion.
+
+[ER] Implementieren Sie eine Funktion `extractNameAndAddress(r *http.Request) (name, addr string, err error)`.
+Diese soll:
+
+- eine `NameAndPortMessage` aus dem JSON-Payload dekodieren; schlägt das fehl, gibt die Funktion den Fehler
+  `error while decoding JSON: %v` zurück, wobei `%v` durch den ursprünglichen Fehler ersetzt wird (verwenden Sie dafür
+  [`fmt.Errorf`](https://pkg.go.dev/fmt#Errorf));
+- die `NameAndPortMessage` validieren; schlägt das fehl, gibt die Funktion den Fehler zurück;
+- aus dem Host der Absenderadresse (siehe
+  [`http.Request.RemoteAddr`](https://pkg.go.dev/net/http#Request))
+  und dem Port der `NameAndPortMessage` eine Adresse der Form `host:port` bilden; schlägt das fehl, gibt die Funktion
+  den Fehler zurück.
+
+Im Fehlerfall müssen `name` und `addr` konventionsgemäß leer sein.
+
+Verwenden Sie die Funktionen
+[`net.SplitHostPort`](https://pkg.go.dev/net#SplitHostPort)
+(um den Host aus der Adresse auszulesen),
+[`net.JoinHostPort`](https://pkg.go.dev/net#JoinHostPort)
+(um Host und Port wieder zusammenzusetzen) und
+[`strconv.Itoa`](https://pkg.go.dev/strconv#Itoa)
+(um einen `int` in einen `string` zu konvertieren).
+`net.JoinHostPort` setzt bei IPv6-Adressen automatisch die nötigen eckigen Klammern, sodass Sie nicht zwischen
+IPv4 und IPv6 unterscheiden müssen.
+
+<!-- time estimate: 10 min -->
+
+[ER] Registrieren Sie einen POST-Endpunkt `/register`, der aus dem JSON-Payload mithilfe von `extractNameAndAddress` den
+Benutzernamen und die Adresse ausliest und in `AddressTable` speichert.
 
 Bei Erfolg ist der Statuscode `200` ("OK").
 Bei einem Fehler verwenden Sie hier und auch bei den weiteren HTTP-Handlern die Funktion
@@ -130,7 +162,7 @@ Deshalb muss der Peer seinen tatsächlichen, dauerhaften Port explizit mitschick
 unverändert aus der Anfrage übernommen werden, da sie für beide Verbindungen dieselbe ist.
 [ENDFOLDOUT]
 
-<!-- time estimate: 30 min -->
+<!-- time estimate: 10 min -->
 
 [ER] Registrieren Sie einen GET-Endpunkt `/{username}`, der entweder ein JSON zurückgibt, in dessen
 Feld `addr` die Adresse von `username` steht, oder den Statuscode `404` ("Not Found"), falls es
@@ -145,8 +177,8 @@ nach, wie das genau funktioniert.
 <!-- time estimate: 15 min -->
 
 [ER] Implementieren Sie abschließend noch einen POST-Endpunkt `/unregister`.
-Dieser soll aus dem JSON-Payload die Felder `username` und `port` auslesen und den entsprechenden Eintrag aus der
-Tabelle entfernen, sofern ein solches Benutzername-Adresse-Paar existiert.
+Dieser soll analog zu `/register` eine `NameAndPortMessage` aus dem JSON-Payload auslesen und den entsprechenden Eintrag
+aus der Tabelle entfernen, sofern ein solches Benutzername-Adresse-Paar existiert.
 Der gespeicherte Eintrag für `username` muss dabei exakt aus der IP-Adresse der aktuellen Anfrage und dem übergebenen
 `port` bestehen (also derselben Berechnung wie bei `/register`).
 
@@ -158,7 +190,7 @@ eine Portnummer, die kleiner als 1 oder größer als 65535 ist), so antwortet de
 gar nicht gehört — deshalb wird `port` hier überhaupt im Payload gebraucht, obwohl `/unregister` streng genommen
 nur den `username` bräuchte, um den passenden Tabelleneintrag zu finden.)
 
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 
 [HINT::Wie teste ich das?]
 Die Funktionsfähigkeit des Lookup-Servers können Sie mittels [PARTREF::curl] überprüfen.
