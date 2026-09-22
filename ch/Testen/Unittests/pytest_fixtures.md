@@ -324,7 +324,9 @@ def temp_file(tmp_path_factory):
     temp_dir = tmp_path_factory.mktemp("shared-temp")
     path = temp_dir / "debug_output.txt"
     path.write_text("Test war hier!")
-    return path
+    yield path
+    print(f"Cleanup: {path} wird entfernt.")
+    path.unlink(missing_ok=True)
 
 
 def test_creates_temp_file(temp_file):
@@ -344,7 +346,17 @@ def test_another_temp_file(temp_file):
 [EQ] Warum ist `tmp_path` oder `tempfile` in diesem Fall besser als eine feste Datei im
 Arbeitsverzeichnis? Welche Vorteile hat das für Wiederholbarkeit und sauberes Cleanup?
 
-[EQ] Was passiert, wenn ein Test einen Fehler wirft? Wird Cleanup trotzdem ausgeführt?
+[EC] Verändern Sie jetzt absichtlich einen Test so, dass er fehlschlägt:
+
+```python
+def test_another_temp_file(temp_file):
+    assert False
+```
+
+Führen Sie danach erneut `pytest -v test_userservice.py` aus.
+
+[EQ] Welche Ausgabe sehen Sie in der pytest-Konsole? Wird der Cleanup im Fixture noch ausgeführt,
+wenn der Test selbst fehlschlägt? Warum ist das wichtig?
 
 ### Fixtures teilen: conftest.py
 <!-- time estimate: 15 min -->
