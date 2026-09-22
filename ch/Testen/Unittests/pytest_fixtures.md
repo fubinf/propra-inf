@@ -310,10 +310,17 @@ Wir könnten den Scope ändern, aber nehmen wir mal an, dass wir ihn für unsere
 Stelle benötigen.
 Dann haben wir noch eine andere (gute!) Möglichkeit: Aufräumen.
 
+[NOTICE]
+Pytest injiziert in eine Fixture automatisch eine besondere eingebaute Fixture namens `request`.
+Mit `request.addfinalizer(...)` kann ein Fixture zusätzliche Cleanup-Aufgaben registrieren, die am Ende
+der Fixture-Lebensdauer ausgeführt werden. Weitere Details finden Sie in der
+[pytest-Doku zum request fixture](https://docs.pytest.org/en/stable/reference/reference.html#request).
+[ENDNOTICE]
+
 Der wichtige Unterschied ist hier: `request.addfinalizer()` räumt nur am Ende der Fixture-Lebensdauer
-auf, aber nicht zwischen zwei aufeinanderfolgenden Tests.
-Wenn mehrere Tests dieselbe `module`-Fixture teilen, muss der Ausgangszustand der Ressource deshalb
-explizit wiederhergestellt werden, bevor der nächste Test beginnt.
+auf, aber nicht zwischen zwei aufeinanderfolgenden Tests. Wenn mehrere Tests dieselbe `module`-Fixture
+teilen, muss der Ausgangszustand der Ressource deshalb explizit wiederhergestellt werden, bevor der
+nächste Test beginnt.
 
 ```python
 @pytest.fixture(scope="module")
