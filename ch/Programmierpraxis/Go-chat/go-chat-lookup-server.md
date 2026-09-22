@@ -77,17 +77,17 @@ Was kann passieren, wenn sich zwei Peers gleichzeitig mit demselben Benutzername
 <!-- time estimate: 15 min -->
 
 [ER] Implementieren Sie eine Struktur `NameAndPortMessage` mit den Feldern `Name string` und `Port int`.
-Versehen Sie diese mit JSON-Struct-Tags: `name` für `Name` und `port` für `Port`.
+Versehen Sie diese mit JSON-Struct-Tags: `username` für `Name` und `port` für `Port`.
 
 [ER] Implementieren Sie für die Struktur `NameAndPortMessage` eine Methode `Validate() (err error)`,
-die einen Fehler zurückgibt, wenn `Name` leer ist oder `Port` nicht im Bereich von 1 bis 65535 (jeweils einschließlich)
-liegt.
+die einen Fehler zurückgibt, wenn `Name` leer ist oder `Port` nicht im Bereich von 1 bis 65535
+(jeweils einschließlich) liegt.
 Verwenden Sie für die Erzeugung der Fehler (mit einer informativen Fehlermeldung!) die Funktion
 [`errors.New`](https://pkg.go.dev/errors#New).
 
 <!-- time estimate: 10 min -->
 
-In dieser Aufgabe implementieren Sie zwei HTTP-Handler, die fast dasselbe tun:
+Zwei der HTTP-Handler, die Sie in dieser Aufgabe implementieren, tun fast dasselbe:
 Beide dekodieren eine `NameAndPortMessage` aus dem JSON-Payload, validieren sie und konstruieren aus der Absenderadresse
 und dem Port eine Adresse der Form `host:port`.
 Der Unterschied ist nur, dass `/register` den Eintrag (Name und Adresse) speichert, während `/unregister` ihn entfernt.
@@ -97,7 +97,8 @@ Diese gemeinsame Logik sollen Sie nicht doppelt implementieren; sie gehört in e
 Diese soll:
 
 - eine `NameAndPortMessage` aus dem JSON-Payload dekodieren; schlägt das fehl, gibt die Funktion den Fehler
-  `error while decoding JSON: %v` zurück, wobei `%v` durch den ursprünglichen Fehler ersetzt wird (verwenden Sie dafür
+  `error while decoding JSON: %v` zurück, wobei `%v` durch den ursprünglichen Fehler ersetzt wird
+  (verwenden Sie dafür
   [`fmt.Errorf`](https://pkg.go.dev/fmt#Errorf));
 - die `NameAndPortMessage` validieren; schlägt das fehl, gibt die Funktion den Fehler zurück;
 - aus dem Host der Absenderadresse (siehe
