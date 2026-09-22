@@ -302,7 +302,9 @@ def test_another_temp_file(temp_file):
     assert content == "Test war hier!"
 ```
 
-[EQ] Führen Sie den Code aus. Was ist hier das Problem?
+[EC] Führen Sie den folgenden Code aus: `pytest -v test_userservice.py`
+
+[EQ] Was ist hier das Problem?
 
 Wir könnten den Scope ändern, aber nehmen wir mal an, dass wir ihn für unsere Testsammlung an dieser
 Stelle benötigen.
