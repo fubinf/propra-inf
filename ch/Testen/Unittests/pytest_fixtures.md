@@ -273,6 +273,10 @@ damit der Rest der Datei nicht durch das `sleep()` ausgebremst wird.
 Manche Tests erstellen Dateien, Datenbank-Einträge oder andere Ressourcen.
 Was passiert, wenn diese nicht aufgeräumt werden?
 
+Ein guter erster Gedanke ist: Für temporäre Dateien benutzen wir nicht manuell einen festen
+Dateinamen im Arbeitsverzeichnis, sondern die Standard-Mechanismen von Python oder pytest.
+Siehe auch [PARTREF::m_tempfile].
+
 Betrachten Sie dieses problematische Beispiel:
 
 ```python
@@ -308,63 +312,37 @@ def test_another_temp_file(temp_file):
 
 Wir könnten den Scope ändern, aber nehmen wir mal an, dass wir ihn für unsere Testsammlung an dieser
 Stelle benötigen.
-Dann haben wir noch eine andere (gute!) Möglichkeit: Aufräumen.
-
-[NOTICE]
-Pytest injiziert in eine Fixture automatisch eine besondere eingebaute Fixture namens `request`.
-Mit `request.addfinalizer(...)` kann ein Fixture zusätzliche Cleanup-Aufgaben registrieren, die am Ende
-der Fixture-Lebensdauer ausgeführt werden. Weitere Details finden Sie in der
-[pytest-Doku zum request fixture](https://docs.pytest.org/en/stable/reference/reference.html#request).
-[ENDNOTICE]
-
-Der wichtige Unterschied ist hier: `request.addfinalizer()` räumt nur am Ende der Fixture-Lebensdauer
-auf, aber nicht zwischen zwei aufeinanderfolgenden Tests. Wenn mehrere Tests dieselbe `module`-Fixture
-teilen, muss der Ausgangszustand der Ressource deshalb explizit wiederhergestellt werden, bevor der
-nächste Test beginnt.
+Dann ist die sauberere Lösung, die Datei nicht im Projektverzeichnis anzulegen, sondern ein eigenes
+Verzeichnis für temporäre Testdaten zu verwenden. pytest bietet dafür `tmp_path` an, und das Modul
+`tempfile` stellt ähnliche Mechanismen bereit. Siehe auch [PARTREF::m_tempfile].
 
 ```python
+import pytest
+
 @pytest.fixture(scope="module")
-def temp_file(request):
-    filename = "debug_output.txt"
-    original_content = "Test war hier!"
-
-    def reset_file():
-        print(f"Reset: Setze {filename} zurück")
-        with open(filename, "w") as f:
-            f.write(original_content)
-
-    def cleanup():
-        print(f"Teardown: Lösche {filename}")
-        if os.path.exists(filename):
-            os.remove(filename)
-
-    reset_file()
-    request.addfinalizer(cleanup)
-
-    return {"filename": filename, "reset": reset_file}
+def temp_file(tmp_path_factory):
+    temp_dir = tmp_path_factory.mktemp("shared-temp")
+    path = temp_dir / "debug_output.txt"
+    path.write_text("Test war hier!")
+    return path
 
 
 def test_creates_temp_file(temp_file):
-    assert os.path.exists(temp_file["filename"])
-    with open(temp_file["filename"]) as f:
-        assert "Test war hier" in f.read()
-
-    with open(temp_file["filename"], "a") as f:
+    assert temp_file.exists()
+    with open(temp_file, "a") as f:
         f.write(" - Test 1 war hier!")
+    assert "Test war hier" in temp_file.read_text()
 
 
 def test_another_temp_file(temp_file):
-    temp_file["reset"]()  # Datei vor diesem Test zurücksetzen
-
-    with open(temp_file["filename"]) as f:
-        content = f.read()
+    temp_file.write_text("Test war hier!")
+    content = temp_file.read_text()
     print(f"Dateiinhalt: {content}")
     assert content == "Test war hier!"
 ```
 
-[ER] Implementieren Sie diese `temp_file`-Fixture in Ihrer `test_userservice.py` und nutzen Sie sie in
-beiden Tests. Stellen Sie sicher, dass `test_another_temp_file` auch dann funktioniert, wenn
-`test_creates_temp_file` vorher gelaufen ist.
+[EQ] Warum ist `tmp_path` oder `tempfile` in diesem Fall besser als eine feste Datei im
+Arbeitsverzeichnis? Welche Vorteile hat das für Wiederholbarkeit und sauberes Cleanup?
 
 [EQ] Was passiert, wenn ein Test einen Fehler wirft? Wird Cleanup trotzdem ausgeführt?
 
