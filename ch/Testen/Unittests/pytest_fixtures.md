@@ -364,7 +364,8 @@ wenn der Test selbst fehlschlägt? Warum ist das wichtig?
 Sie haben mehrere Test-Dateien, die alle ähnliche Fixtures brauchen.
 Jetzt schauen wir uns an, wie pytest dieses Problem lösen kann.
 
-Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures:
+Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures und der gemeinsam genutzten
+Hilfsklasse:
 
 ```python
 import pytest
@@ -386,22 +387,32 @@ class PseudoUserservice:
         self.users[username] = {'email': email, 'password': password}
         return Result(True)
 
+
 @pytest.fixture
 def fresh_user_service():
     """Frischer UserService für jeden Test."""
     return PseudoUserservice()
 ```
 
-Erstellen Sie eine zweite Testdatei `test_sharing.py`:
+Erstellen Sie eine zweite Testdatei `test_sharing.py` und importieren Sie die gemeinsame Klasse
+explizit:
 
 ```python
+from conftest import PseudoUserservice
+
+
 def test_in_other_file(fresh_user_service):
+    assert isinstance(fresh_user_service, PseudoUserservice)
     result = fresh_user_service.register("bob", "bob@test.com", "pass")
     assert result.success
 ```
 
+Damit gibt es die Klasse nur noch an einer Stelle. Die Fixture-Definition bleibt über pytest
+automatisch sichtbar, aber die gemeinsame Test-Hilfsklasse wird nicht doppelt definiert.
+
 Wenn Sie den Test ausführen, sehen Sie, dass pytest die Fixture automatisch findet.
-Dabei haben wir `conftest.py` doch gar nicht in `test_sharing.py` importiert.
+Die gemeinsame Klasse `PseudoUserservice` liegt aber nur noch an einer Stelle in `conftest.py`
+und wird in `test_sharing.py` explizit importiert.
 
 Folgendes haben Sie gerade beobachtet:
 
@@ -414,13 +425,12 @@ Folgendes haben Sie gerade beobachtet:
    (1) der gleichen Datei, (2) `conftest.py` im gleichen Verzeichnis,
    (3) `conftest.py` in übergeordneten Verzeichnissen, (4) eingebauten pytest-Fixtures.
 
-Kein Import nötig: Das ist ein spezielles Feature von pytest; normale Python-Import-Regeln
-gelten hier nicht.
-Technisch wäre ein Import aus `conftest.py` ebenfalls möglich, aber das ist nicht der
-üblichere pytest-Weg und kann deshalb verwirren.
-In den meisten Tests nutzen Sie lieber die automatische Fixture-Erkennung, weil dann die
-Abhängigkeit an der Signatur des Tests sichtbar bleibt und die Quelle der Fixture klarer
-wird.
+Die Fixture selbst ist also über die pytest-Discovery sichtbar, ohne dass ein normaler
+Python-Import notwendig ist. Die gemeinsame Hilfsklasse wird aber bewusst importiert, damit
+es nicht zu einer zweiten, von der echten Klasse abweichenden Definition kommt.
+
+Das ist ein guter Mittelweg für eine Einsteiger-Aufgabe: Die Abhängigkeit des Tests bleibt in
+seiner Signatur sichtbar, und die gemeinsame Klasse wird nicht doppelt definiert.
 
 [EQ] Welche Vor- und Nachteile sehen Sie in den beiden Varianten?
 
