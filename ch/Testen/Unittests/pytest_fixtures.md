@@ -223,6 +223,24 @@ pytest bietet verschiedene Scopes für Fixtures:
 - `module`: Eine Instanz für alle Tests einer Datei
 - `session`: Eine Instanz für die gesamte Test-Session
 
+Die allgemeine Faustregel ist: Behalten Sie in der Regel `function` bei. Nutzen Sie einen größeren
+Scope nur dann, wenn das Setup wirklich teuer ist und der gemeinsame Zustand bewusst kontrolliert
+werden kann. Wenn ein Test zu viele Zustandsänderungen hinterlässt, ist `function` die sichere
+Standardwahl.
+
+Ein sinnvoller Fall für einen größeren Scope ist zum Beispiel das einmalige Laden einer großen
+Konfigurationsdatei oder eines Testdaten-Containers: Das ist aufwendig, aber danach nur lesbar.
+
+```python
+@pytest.fixture(scope="session")
+def app_config():
+    return load_big_test_config()
+```
+
+Wenn Sie einen größeren Scope wählen, müssen Sie selbst dafür sorgen, dass der Zustand zwischen
+Tests sauber zurückgesetzt wird. Die gemeinsame Nutzung hat nur dann Sinn, wenn die Ressource
+unverändert bleibt oder bewusst wieder in einen Ausgangszustand gebracht wird.
+
 Ändern Sie nun den Scope auf `"module"`:
 
 ```python
