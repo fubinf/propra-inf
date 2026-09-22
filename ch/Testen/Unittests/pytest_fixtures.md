@@ -410,6 +410,9 @@ def test_in_other_file(fresh_user_service):
 Damit gibt es die Klasse nur noch an einer Stelle. Die Fixture-Definition bleibt über pytest
 automatisch sichtbar, aber die gemeinsame Test-Hilfsklasse wird nicht doppelt definiert.
 
+[EC] Führen Sie die beiden Dateien `test_userservice.py` und `test_sharing.py` mit pytest aus:
+`pytest -v test_userservice.py test_sharing.py`
+
 Wenn Sie den Test ausführen, sehen Sie, dass pytest die Fixture automatisch findet.
 Die gemeinsame Klasse `PseudoUserservice` liegt aber nur noch an einer Stelle in `conftest.py`
 und wird in `test_sharing.py` explizit importiert.
@@ -432,7 +435,9 @@ es nicht zu einer zweiten, von der echten Klasse abweichenden Definition kommt.
 Das ist ein guter Mittelweg für eine Einsteiger-Aufgabe: Die Abhängigkeit des Tests bleibt in
 seiner Signatur sichtbar, und die gemeinsame Klasse wird nicht doppelt definiert.
 
-[EQ] Welche Vor- und Nachteile sehen Sie in den beiden Varianten?
+[EQ] Warum kann die automatische Auflösung über `conftest.py` in einem übergeordneten Verzeichnis
+plötzlich unangenehm werden, wenn ein Projekt wächst? Nennen Sie ein konkretes Beispiel für ein
+Problem, das dadurch entstehen kann, und vergleichen Sie das mit einer expliziten Import-Variante.
 
 ### Eingebaute Fixtures verstehen
 <!-- time estimate: 15 min -->
