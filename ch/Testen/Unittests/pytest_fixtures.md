@@ -1,4 +1,4 @@
-title: Fixtures mit dem Pytest-Framework
+title: Fixtures mit dem pytest-Framework
 stage: alpha
 timevalue: 2.0
 difficulty: 3
@@ -6,13 +6,13 @@ assumes: m_pytest
 ---
 
 [SECTION::goal::idea]
-Ich kann Fixtures mit dem Pytest Framework anwenden.
+Ich kann Fixtures mit dem pytest-Framework anwenden.
 [ENDSECTION]
 
 
 [SECTION::background::default]
 Oftmals benötigt ein Test, dass bestimmte Voraussetzungen hergestellt werden.
-Fixtures sind ein zentrales Konzept in Pytest, das es ermöglicht,
+Fixtures sind ein zentrales Konzept in pytest, das es ermöglicht,
 wiederverwendbaren Code zur Vor- und Nachbereitung (Setup und Teardown) von Tests bereitzustellen.
 Gerade bei vielen Tests wird dabei schnell sichtbar, wie nützlich es ist,
 Setup- und Testlogik sauber zu trennen.
@@ -25,7 +25,7 @@ beim Arbeiten mit gemeinsamen Ressourcen die richtige Aufräumlogik einbauen.
 [SECTION::instructions::detailed]
 Nutzen Sie die folgende Übersicht parallel zum Bearbeiten der Aufgaben:
 
-[Pytest Fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
+[pytest-Doku: How to use fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
 
 Wir betrachten zuerst das Grundlegende.
 In diesem Abschnitt geht es um einen sehr einfachen Fall: Ein Test braucht ein Objekt,
@@ -47,11 +47,11 @@ def test_user_registration():
     db.connect()
     db.create_tables()
     user_service = UserService(db)
-    
+
     # Test
     result = user_service.register("alice", "alice@test.com", "password123")
-    assert result.success == True
-    
+    assert result.success
+
     # Cleanup
     db.delete_all_users()
     db.disconnect()
@@ -60,28 +60,27 @@ def test_user_registration():
 def test_user_login():
     # Setup
     db = Database("test.db")
-    db.connect() 
+    db.connect()
     db.create_tables()
     user_service = UserService(db)
-    user_service.register("alice", "alice@test.com", "password123") 
-    
+    user_service.register("alice", "alice@test.com", "password123")
+
     # Test
     result = user_service.login("alice", "password123")
-    assert result.success == True
-    
+    assert result.success
+
     # Cleanup
     db.delete_all_users()
     db.disconnect()
     os.remove("test.db")
 ```
 
-[EQ] Welche Probleme erkennen Sie in diesem Code? Notieren Sie mindestens 3 Probleme.
-
+[EQ] Welche Probleme erkennen Sie in diesem Code? Notieren Sie mindestens drei Probleme.
 
 ### Das Fixture-Konzept entdecken
 <!-- time estimate: 10 min -->
 
-Pytest löst die Schwächen des obigen Codes mit "Fixtures".
+pytest löst die Schwächen des obigen Codes mit "Fixtures".
 
 Fixtures sind wiederverwendbare Setup-Komponenten.
 Sie geben einem Test genau die Objekte mit, die er braucht, ohne dass der Test selbst den
@@ -96,13 +95,13 @@ mit einer einfachen Klasse:
 class PseudoUserservice:
     def __init__(self):
         self.users = {}
-    
+
     def register(self, username, email, password):
         if username in self.users:
             return type('Result', (), {'success': False})()
         self.users[username] = {'email': email, 'password': password}
         return type('Result', (), {'success': True})()
-    
+
     def login(self, username, password):
         user = self.users.get(username)
         if user and user['password'] == password:
@@ -111,23 +110,26 @@ class PseudoUserservice:
 
 def test_user_registration():
     service = PseudoUserservice()
-    result = service.register("alice", "alice@test.com", "password123") 
-    assert result.success == True
+    result = service.register("alice", "alice@test.com", "password123")
+    assert result.success
 
 def test_user_login():
     service = PseudoUserservice()
     service.register("alice", "alice@test.com", "password123")  # Pre-condition
     result = service.login("alice", "password123")
-    assert result.success == True
+    assert result.success
 ```
-
 
 ### Setup deklarativ machen
 <!-- time estimate: 15 min -->
 
-Pytest Fixtures lösen das, indem man Setup-Code einmal als Fixture definiert und ihn in beliebig vielen Tests wiederverwendet.
+Diese Wiederholung vermeidet man, indem man den Setup-Code einmal als Fixture definiert
+und ihn in beliebig vielen Tests wiederverwendet.
 
 ```python
+import pytest
+
+
 @pytest.fixture
 def user_service():
     return PseudoUserservice()
@@ -141,8 +143,8 @@ um die Fixture zu nutzen.
 
 Ein Test kann auch mehrere Fixtures gleichzeitig verwenden – er listet sie einfach als mehrere
 Parameter auf.
-Suchen Sie in der oben verlinkten Pytest-Übersicht nach dem Abschnitt
-„A test/fixture can request more than one fixture at a time" und lesen Sie ihn.
+Suchen Sie in der oben verlinkten pytest-Doku nach dem Abschnitt
+„A test/fixture can request more than one fixture at a time“ und lesen Sie ihn.
 
 Zum Beispiel:
 
@@ -154,13 +156,12 @@ def credentials():
 def test_login(user_service, credentials):
     user_service.register("alice", credentials["email"], credentials["password"])
     result = user_service.login("alice", credentials["password"])
-    assert result.success == True
+    assert result.success
 ```
 
 [EQ] Stellen Sie sich eine Testdatei mit Dutzenden Tests vor, die verschiedene Kombinationen
 von Fixtures verwenden.
 Welchen Vorteil hat es, wenn alle benötigten Fixtures als Parameter in der Signatur stehen?
-
 
 ### Fixture Scopes: wann welcher?
 <!-- time estimate: 25 min -->
@@ -197,7 +198,7 @@ def test_slow_3(slow_service):
 [EQ] Wie viele Sekunden dauert die Testsuite insgesamt?
 Was wäre bei 100 Tests, die diese Fixture verwenden?
 
-Pytest bietet verschiedene Scopes für Fixtures:
+pytest bietet verschiedene Scopes für Fixtures:
 
 - `function`: Neue Instanz für jeden Test (Standard, beste Isolation)
 - `class`: Eine Instanz für alle Tests einer Test-Klasse
@@ -254,7 +255,7 @@ def test_creates_temp_file(temp_file):
     assert os.path.exists(temp_file)
     with open(temp_file) as f:
         assert "Test war hier" in f.read()
-    
+
     with open(temp_file, "a") as f:
         f.write(" - Test 1 war hier!")
 
@@ -269,7 +270,7 @@ def test_another_temp_file(temp_file):
 
 Wir könnten den Scope ändern, aber nehmen wir mal an, dass wir ihn für unsere Testsammlung an dieser
 Stelle benötigen.
-Dann haben wir noch eine andere - gute - Möglichkeit: Aufräumen.
+Dann haben wir noch eine andere (gute!) Möglichkeit: Aufräumen.
 
 Der wichtige Unterschied ist hier: `request.addfinalizer()` räumt nur am Ende der Fixture-Lebensdauer
 auf, aber nicht zwischen zwei aufeinanderfolgenden Tests.
@@ -326,7 +327,7 @@ beiden Tests. Stellen Sie sicher, dass `test_another_temp_file` auch dann funkti
 <!-- time estimate: 15 min -->
 
 Sie haben mehrere Test-Dateien, die alle ähnliche Fixtures brauchen.
-Jetzt schauen wir uns an, wie Pytest dieses Problem lösen kann.
+Jetzt schauen wir uns an, wie pytest dieses Problem lösen kann.
 
 Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures:
 
@@ -337,7 +338,7 @@ class PseudoUserservice:
     def __init__(self):
         self.users = {}
         print(f"Neuer UserService erstellt (ID: {id(self)})")
-    
+
     def register(self, username, email, password):
         if username in self.users:
             return type('Result', (), {'success': False})()
@@ -355,27 +356,27 @@ Erstellen Sie eine zweite Testdatei `test_sharing.py`:
 ```python
 def test_in_other_file(fresh_user_service):
     result = fresh_user_service.register("bob", "bob@test.com", "pass")
-    assert result.success == True
+    assert result.success
 ```
 
-Wenn Sie den Test ausführen, sehen Sie, dass Pytest die Fixture automatisch findet.
+Wenn Sie den Test ausführen, sehen Sie, dass pytest die Fixture automatisch findet.
 Dabei haben wir `conftest.py` doch gar nicht in `test_sharing.py` importiert.
 
 Folgendes haben Sie gerade beobachtet:
 
-1. **Automatisches Laden:** Pytest lädt automatisch alle `conftest.py` Dateien im aktuellen
+1. **Automatisches Laden:** pytest lädt automatisch alle `conftest.py` Dateien im aktuellen
    Verzeichnis und allen übergeordneten Verzeichnissen
-2. **Fixture-Discovery:** Pytest scannt diese conftest.py Dateien nach @pytest.fixture
+2. **Fixture-Discovery:** pytest scannt diese `conftest.py`-Dateien nach `@pytest.fixture`-
    Dekoratoren und registriert sie global
-3. **Namensauflösung:** Wenn ein Test einen Parameter fresh_user_service hat, sucht pytest
+3. **Namensauflösung:** Wenn ein Test einen Parameter `fresh_user_service` hat, sucht pytest
    automatisch nach einer gleichnamigen Fixture in
-   (1) der gleichen Datei, (2) `conftest.py` im gleichen Verzeichnis, 
+   (1) der gleichen Datei, (2) `conftest.py` im gleichen Verzeichnis,
    (3) `conftest.py` in übergeordneten Verzeichnissen, (4) eingebauten pytest-Fixtures.
 
-Kein Import nötig: Das ist ein spezielles Feature von pytest - normale Python-Import-Regeln
+Kein Import nötig: Das ist ein spezielles Feature von pytest; normale Python-Import-Regeln
 gelten hier nicht.
 Technisch wäre ein Import aus `conftest.py` ebenfalls möglich, aber das ist nicht der
-üblichere Pytest-Weg und kann deshalb verwirren.
+üblichere pytest-Weg und kann deshalb verwirren.
 In den meisten Tests nutzen Sie lieber die automatische Fixture-Erkennung, weil dann die
 Abhängigkeit an der Signatur des Tests sichtbar bleibt und die Quelle der Fixture klarer
 wird.
@@ -385,13 +386,11 @@ wird.
 ### Eingebaute Fixtures verstehen
 <!-- time estimate: 15 min -->
 
-Pytest bringt viele eingebaute Fixtures mit. Für diese Aufgabe sind vor allem zwei davon wichtig:
+pytest bringt viele eingebaute Fixtures mit.
+Für diese Aufgabe sind vor allem zwei davon wichtig:
 
 - `tmp_path`: Temporäre Dateien/Verzeichnisse für File-IO-Tests
 - `capsys`: Output-Testing, Debug-Ausgaben validieren
-
-Ziel dieses Abschnitts ist es, zwei typische Muster zu erkennen:
-`tmp_path` für temporäre Dateisystem-Ressourcen und `capsys` für die Prüfung von Ausgaben.
 
 Lesen Sie nach, was jede davon tut:
 [Built-in fixtures reference](https://docs.pytest.org/en/stable/reference/fixtures.html)
@@ -407,15 +406,15 @@ def test_tmp_path_experiment(tmp_path):
     # tmp_path ist ein pathlib.Path zu einem temporären Verzeichnis
     test_file = tmp_path / "experiment.txt"
     test_file.write_text("Das ist ein Test")
-    
+
     assert test_file.read_text() == "Das ist ein Test"
     print(f"Temporäres Verzeichnis: {tmp_path}")
 
 def test_capsys_experiment(capsys):
     print("Das ist eine Debug-Ausgabe")
     print("Und noch eine Zeile", file=sys.stderr)
-    
-    captured = capsys.readouterr() 
+
+    captured = capsys.readouterr()
     assert "Debug-Ausgabe" in captured.out
     assert "noch eine Zeile" in captured.err
 ```
@@ -426,7 +425,8 @@ def test_capsys_experiment(capsys):
 ### Reflexion: Wann und warum Fixtures?
 <!-- time estimate: 5 min -->
 
-Sie haben verschiedene Fixture-Konzepte kennengelernt. Reflektieren Sie:
+Sie haben verschiedene Fixture-Konzepte kennengelernt.
+Reflektieren Sie:
 
 [EQ] Fixtures verändern die Art, wie Sie über Tests nachdenken:
 weg von "Setup-Code schreiben" hin zu "Dependencies deklarieren".
