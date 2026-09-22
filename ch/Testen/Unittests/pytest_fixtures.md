@@ -35,44 +35,57 @@ werden wir ihn einmal als Fixture definieren und dann als Abhängigkeit deklarie
 ### Das Problem ohne Fixtures
 <!-- time estimate: 5 min -->
 
-Betrachten Sie folgenden Testcode für eine Webanwendung:
+Betrachten Sie folgenden Testcode für einen kleinen Nutzer-Dienst.
 
 ```python
-import os
+class Result:
+    def __init__(self, success):
+        self.success = success
+
+
+class PseudoUserservice:
+    def __init__(self):
+        self.users = {}
+
+    def register(self, username, email, password):
+        if username in self.users:
+            return Result(False)
+        self.users[username] = {'email': email, 'password': password}
+        return Result(True)
+
+    def login(self, username, password):
+        user = self.users.get(username)
+        if user and user['password'] == password:
+            return Result(True)
+        return Result(False)
 
 
 def test_user_registration():
+    service = PseudoUserservice()
+
     # Setup
-    db = Database("test.db")
-    db.connect()
-    db.create_tables()
-    user_service = UserService(db)
+    service.register("alice", "alice@test.com", "password123")
 
     # Test
-    result = user_service.register("alice", "alice@test.com", "password123")
+    result = service.login("alice", "password123")
     assert result.success
 
     # Cleanup
-    db.delete_all_users()
-    db.disconnect()
-    os.remove("test.db")
+    service.users.clear()
+
 
 def test_user_login():
+    service = PseudoUserservice()
+
     # Setup
-    db = Database("test.db")
-    db.connect()
-    db.create_tables()
-    user_service = UserService(db)
-    user_service.register("alice", "alice@test.com", "password123")
+    service.register("alice", "alice@test.com", "password123")
 
     # Test
-    result = user_service.login("alice", "password123")
+    result = service.login("alice", "password123")
     assert result.success
 
     # Cleanup
-    db.delete_all_users()
-    db.disconnect()
-    os.remove("test.db")
+    service.users.clear()
 ```
 
 [EQ] Welche Probleme erkennen Sie in diesem Code? Notieren Sie mindestens drei Probleme.
@@ -92,21 +105,26 @@ Erstellen Sie die Datei `test_userservice.py` und implementieren Sie die folgend
 mit einer einfachen Klasse:
 
 ```python
+class Result:
+    def __init__(self, success):
+        self.success = success
+
+
 class PseudoUserservice:
     def __init__(self):
         self.users = {}
 
     def register(self, username, email, password):
         if username in self.users:
-            return type('Result', (), {'success': False})()
+            return Result(False)
         self.users[username] = {'email': email, 'password': password}
-        return type('Result', (), {'success': True})()
+        return Result(True)
 
     def login(self, username, password):
         user = self.users.get(username)
         if user and user['password'] == password:
-            return type('Result', (), {'success': True})()
-        return type('Result', (), {'success': False})()
+            return Result(True)
+        return Result(False)
 
 def test_user_registration():
     service = PseudoUserservice()
@@ -334,6 +352,12 @@ Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures:
 ```python
 import pytest
 
+
+class Result:
+    def __init__(self, success):
+        self.success = success
+
+
 class PseudoUserservice:
     def __init__(self):
         self.users = {}
@@ -341,9 +365,9 @@ class PseudoUserservice:
 
     def register(self, username, email, password):
         if username in self.users:
-            return type('Result', (), {'success': False})()
+            return Result(False)
         self.users[username] = {'email': email, 'password': password}
-        return type('Result', (), {'success': True})()
+        return Result(True)
 
 @pytest.fixture
 def fresh_user_service():
