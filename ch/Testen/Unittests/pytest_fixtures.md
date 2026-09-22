@@ -3,6 +3,7 @@ stage: alpha
 timevalue: 2.0
 difficulty: 3
 assumes: m_pytest
+explains: Fixture
 ---
 
 [SECTION::goal::idea]
@@ -12,7 +13,8 @@ Ich kann Fixtures mit dem pytest-Framework anwenden.
 
 [SECTION::background::default]
 Oftmals benötigt ein Test, dass bestimmte Voraussetzungen hergestellt werden.
-Fixtures sind ein zentrales Konzept in pytest, das es ermöglicht,
+
+[TERMREF::Fixture] sind ein zentrales Konzept in pytest, das es ermöglicht,
 wiederverwendbaren Code zur Vor- und Nachbereitung (Setup und Teardown) von Tests bereitzustellen.
 Gerade bei vielen Tests wird dabei schnell sichtbar, wie nützlich es ist,
 Setup- und Testlogik sauber zu trennen.

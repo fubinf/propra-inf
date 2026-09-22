@@ -665,7 +665,6 @@ Bei Programmen wie `grep`, die Teile der Eingabe weglassen, leuchtet die Bezeich
 aber sie gilt auch für Programme wie `sort`, die die Eingabe nur umformen.
 [ENDTERM]
 
-
 [TERM::Firewall]
 Eine **Firewall** ist ein Sicherheitsmechanismus, der den Netzwerkverkehr überwacht und filtert, 
 um einen Computer oder ein Netzwerk vor unbefugtem Zugriff und schädlichen Daten zu schützen. 
@@ -703,6 +702,11 @@ Programmiersprachen, wie Python, erfüllen aber auch Funktionen diese Eigenschaf
 [TERMREF2::higher-order function::Funktionen höherer Ordnung] ermöglicht werden.
 [ENDTERM]
 
+[TERM::Fixture]
+Ein Fixture ist in pytest eine wiederverwendbare Testvoraussetzung.
+Es stellt Objekte oder Ressourcen bereit, die mehrere Tests benötigen, und kann zugleich
+für das Setup und das Cleanup eines Tests sorgen.
+[ENDTERM]
 
 [TERM::Flask]
 Flask ist ein leichtgewichtiges und flexibles Web-Framework für Python, das es Entwicklern
