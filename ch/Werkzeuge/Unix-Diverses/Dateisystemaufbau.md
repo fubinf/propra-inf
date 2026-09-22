@@ -85,7 +85,7 @@ Ein Teil davon ist ohnehin nur noch von historischem Interesse
 (`/usr/X11R6` etwa ist in der Manpage selbst als "removed in FHS 3.0" vermerkt).
 Unter macOS beschreibt die lokale `man 7 hier` nur einen Teil dieser Einträge.
 `/home`, `/lib`, `/opt`, `/proc`, `/run` und `/sys` fehlen dort.
-Siehe dazu den Aufklapp-Hinweis oben.
+Siehe dazu den Aufklapp-Kasten oben.
 
 <!-- time estimate: 10 min -->
 
@@ -232,8 +232,7 @@ Das passende Kommando dafür steht in [PARTREF::Shell-Grundlagen],
 im Abschnitt "Konzept 1: Vier Arten von Kommandos, `PATH`, `which`, `command -v`".
 
 [HINT::Ich bekomme keinen Pfad, sondern einen Alias]
-Auf vielen Systemen ist `ls` per [TERMREF::Alias] vorbelegt (Ubuntu tut das in der mitgelieferten
-`~/.bashrc`).
+Auf vielen Systemen ist `ls` per [TERMREF::Alias] vorbelegt (Ubuntu tut das in der mitgelieferten `~/.bashrc`).
 Dann nennt Ihnen die Ausgabe nur diesen Alias und keinen Pfad.
 Das ist genau die Eigenschaft, die dort als Vorzug gegenüber `which` beschrieben wird.
 Hier steht sie Ihnen ausnahmsweise im Weg.
@@ -291,7 +290,7 @@ Den verlinkten Beitrag zu `dpkg` lesen Sie deshalb nur als Beispiel für das Pri
 Haben Sie Homebrew installiert, führen Sie die beiden folgenden Abfragen
 stattdessen für ein Homebrew-Programm, zum Beispiel `wget`:
 `ls -l $(command -v wget)` zeigt, dass die Datei im `bin`-Verzeichnis von Homebrew nur ein Symlink ist
-und auf `../Cellar/wget/<version>/bin/wget` zeigt.
+und auf `../Cellar/wget/<version>/bin/wget` verweist.
 Der Name der Formel steht also im Zielpfad.
 Welche Dateien diese Formel mitgebracht hat, listet `brew list wget`.
 (`brew which-formula wget` erledigt die erste Abfrage bequemer,
@@ -415,7 +414,7 @@ Um das Werkzeug selbst geht es hier nicht, nur um seine Dateien.
 Die Kommandos dieses Blocks setzen einen Debian-Paketmanager voraus.
 Für die Systemdateien von macOS gibt es keinen, und Homebrew ist hier kein Ersatz.
 Die Frage am Ende bearbeiten Sie in jedem Fall;
-die dafür nötigen Ausgaben stehen unten zum Aufklappen bereit.
+die dafür nötigen Ausgaben stehen weiter unten zum Aufklappen bereit.
 [ENDNOTICE]
 
 [FOLDOUT::Unter macOS]
@@ -433,7 +432,7 @@ Sofern Sie `rsnapshot` nicht schon installiert haben, lautet die Antwort: nein.
 Haben Sie es doch schon installiert, führen Sie die Kommandos dieses Blocks nicht aus,
 sondern lesen Sie ihn nur:
 Das `apt purge` am Ende würde Ihre eigene `/etc/rsnapshot.conf` löschen.
-Auch für diesen Fall gilt der Hinweis von oben.
+Auch für diesen Fall gilt die Bemerkung oben.
 
 [EC] Installieren Sie das Paket `rsnapshot` mit [PARTREF::apt].
 Das geht nur mit [PARTREF::sudo].
@@ -461,8 +460,7 @@ nicht bei der Programmdatei.
 Die Datei ist rund 250 Zeilen lang und besteht überwiegend aus Kommentaren.
 Auch das ist typisch für `/etc`: Die Pakete liefern ihre Voreinstellungen samt Erklärung mit,
 damit die Administration weiß, was sie da ändert.
-Die Einstellung `snapshot_root` in Zeile 23 legt fest, wohin `rsnapshot` seine Sicherungen
-schreibt.
+Die Einstellung `snapshot_root` in Zeile 23 legt fest, wohin `rsnapshot` seine Sicherungen schreibt.
 Voreingestellt ist `/var/cache/rsnapshot/`.
 
 [FOLDOUT::Die beiden Ausgaben, falls Sie die Kommandos nicht ausführen]
@@ -582,8 +580,7 @@ und begründen Sie Ihre Wahl in einem Satz.
 
 [EQ] Sie sollen das Backup eines Servers planen.
 Der Platz dafür ist knapp.
-Welche der Verzeichnisse `/etc`, `/home`, `/proc`, `/tmp`, `/usr` und `/var` sichern Sie,
-welche nicht?
+Welche der Verzeichnisse `/etc`, `/home`, `/proc`, `/tmp`, `/usr` und `/var` sichern Sie, welche nicht?
 Begründen Sie jede Entscheidung kurz.
 
 [EQ] Auf einem System gibt es ein Programm namens `backup` sowohl als `/usr/bin/backup`
