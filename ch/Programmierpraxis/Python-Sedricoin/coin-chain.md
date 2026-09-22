@@ -91,8 +91,8 @@ Lesen Sie in der
 [git-rebase-Dokumentation](https://git-scm.com/docs/git-rebase#_interactive_mode)
 nach, wie Sie den interaktiven Rebase durchführen, um im ersten Commit (`Block1`)
 mit `edit` die Datei `Block1.txt` zu verändern.
-Nach der Änderung kann diese mit `git commit --amend` dem Commit (`Block1`) hinzugefügt werden
-und mit `git rebase --continue` der Rebase fortgesetzt werden.
+Nach der Änderung kann diese mit `git add .` und `git commit --amend` dem Commit (`Block1`)
+hinzugefügt werden und anschließend mit `git rebase --continue` der Rebase fortgesetzt werden.
 Der zweite Commit `Block2` soll unverändert übernommen werden.
 
 [HINT::Fehlermeldung `fatal: invalid upstream 'HEAD~2'`]
@@ -151,6 +151,9 @@ um welchen Teil der Anwendung es sich handelt.
 
 ### Einstellungen über Umgebungsvariablen
 <!-- time estimate: 20 min -->
+
+Auch wenn das Programm in dieser Aufgabe noch nicht dauerhaft weiterläuft,
+wird im Folgenden bereits von *Server* gesprochen.
 
 [ER] Beim Starten soll der Server die Umgebungsvariablen einlesen.
 Darüber können Einstellungen für das Programm gesetzt werden.
@@ -361,8 +364,6 @@ Block-Hash:
 Erst in den folgenden Aufgaben implementieren Sie die REST-API.
 Allerdings müssen beim Starten die Umgebungsvariablen eingelesen werden (wie oben schon implementiert)
 und der *Genesis-Block* erzeugt werden.
-Auch wenn das Programm in dieser Aufgabe noch nicht dauerhaft weiterläuft,
-wird hier bereits von *Server* gesprochen.
 
 [ER] Beim Aufruf des Servers wird die Blockchain initialisiert.
 Dazu wird das angegebene Verzeichnis (`SEDRICOIN_STORAGE_PATH`) geprüft und ggf. erstellt.
