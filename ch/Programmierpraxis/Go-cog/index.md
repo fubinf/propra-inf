@@ -1,5 +1,5 @@
 title: "cog: Cogs of Go"
-state: alpha
+state: draft
 ---
 Im Gegensatz zu schicken Benutzeroberflächen moderner Software scheint das 
 rudimentäre Unix-Terminal auf den ersten Blick etwas (benutzer-)unfreundlich.
