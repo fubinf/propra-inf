@@ -47,21 +47,15 @@ Lesen Sie deshalb die unten verlinkte Online-Fassung von `hier(7)`
 und schauen Sie in die lokale nur zum Vergleich.
 
 Der größte Teil der Kommandos dieser Aufgabe läuft unter macOS unverändert.
-Zu beachten ist nur dies:
+Das BSD-`df` von macOS kennt zwar ein `-T`, aber mit ganz anderer Bedeutung:
+Dort *wählt* es Dateisysteme nach Typ aus und verlangt dafür ein Argument,
+weshalb `df -hT` mit einer Fehlermeldung abbricht.
+*Ausgeben* lässt sich der Typ dort mit `-Y`.
+Benutzen Sie also überall `df -hY` statt `df -hT`.
+Die Spalte heißt auch dort `Type`.
 
-- Das BSD-`df` von macOS kennt zwar ein `-T`, aber mit ganz anderer Bedeutung:
-  Dort *wählt* es Dateisysteme nach Typ aus und verlangt dafür ein Argument,
-  weshalb `df -hT` mit einer Fehlermeldung abbricht.
-  *Ausgeben* lässt sich der Typ dort stattdessen mit `-Y`.
-  Benutzen Sie also überall `df -hY` statt `df -hT`.
-  Die Spalte heißt auch dort `Type`.
-- Im Abschnitt **Verzeichnisse, die gar nicht auf der Platte liegen** und im Block
-  **Ein Paket und seine Konfigurationsdatei** entfallen unter macOS die Kommandos,
-  nicht aber die jeweilige Frage.
-  Siehe jeweils die Bemerkung dort.
-
-Wo einzelne weitere Kommandos unter macOS anders lauten oder entfallen,
-steht das direkt beim betreffenden Schritt.
+Wo weitere Kommandos unter macOS anders lauten oder ganz entfallen,
+steht das direkt beim betreffenden Schritt oder Abschnitt.
 [ENDFOLDOUT]
 
 
@@ -74,8 +68,8 @@ Bevor Sie irgendwo nachlesen, schauen Sie sich an, was auf Ihrem eigenen System 
 Es sind rund zwei Dutzend Namen, und die meisten davon sagen Ihnen vermutlich noch nichts.
 Nachschlagen können Sie jeden einzelnen davon, denn jedes Unixsystem bringt eine Beschreibung
 seines eigenen Dateibaums mit:
-die [TERMREF2::manpage::Manpage] `hier` im Abschnitt 7, lokal abrufbar mit `man 7 hier`
-oder online als [hier(7) manpage](https://manpages.debian.org/stable/manpages/hier.7.en.html).
+die [TERMREF2::manpage::Manpage] `hier` im Abschnitt 7, lokal abrufbar mit `man 7 hier` oder online als
+[hier(7) manpage](https://manpages.debian.org/stable/manpages/hier.7.en.html).
 Sie beschreibt den Dateibaum Ihres Systems, der unter Linux weitgehend dem [TERMREF::FHS] folgt.
 
 Lesen Sie im Abschnitt DESCRIPTION die Einträge zu
@@ -96,12 +90,13 @@ Siehe dazu den Aufklapp-Kasten oben.
 
 ### Ein Baum aus mehreren Geräten
 
-Lesen Sie den Abschnitt **Geräte zugreifbar machen - Das „Einhängen“** des
+Lesen Sie den Abschnitt **Geräte zugreifbar machen - Das "Einhängen"** des
 [Datenverwaltung-Beitrags](https://wiki.ubuntuusers.de/Datenverwaltung/)
 von ubuntuusers.
 
-Lesen Sie außerdem den [df-Beitrag](https://wiki.ubuntuusers.de/df/) von ubuntuusers,
-insbesondere das Beispiel unter "Ausgabe auf einer ext4-Partition".
+Lesen Sie außerdem den
+[df-Beitrag](https://wiki.ubuntuusers.de/df/)
+von ubuntuusers, insbesondere das Beispiel unter "Ausgabe auf einer ext4-Partition".
 
 [EC] Lassen Sie sich anzeigen, welche Dateisysteme gerade wo im Baum eingehängt sind,
 jeweils mit Typ und in menschenfreundlichen Größenangaben.
@@ -120,8 +115,7 @@ Beim Arbeiten muss man das auch nicht wissen.
 Ist auf Ihrem System Snap installiert (auf Ubuntu standardmäßig),
 so wird die Ausgabe lang: Jedes einzelne Snap-Paket erscheint als eigene `squashfs`-Zeile
 mit einem Einhängepunkt unterhalb von `/snap`.
-Diese Zeilen sind hier ohne Belang.
-Überspringen Sie sie.
+Diese Zeilen können Sie überspringen.
 
 [NOTICE]
 Unter WSL finden Sie in dieser Liste zusätzlich Ihre Windows-Laufwerke,
@@ -167,8 +161,7 @@ Manche Bereiche erzeugt der Kernel bei jedem Zugriff neu, andere liegen nur im A
 [NOTICE]
 Die Kommandos dieses Abschnitts setzen Linux voraus, nativ oder unter WSL:
 `/proc` und `/run` gibt es unter macOS nicht.
-Unter macOS lassen Sie diese Kommandos aus.
-Ein Linux-System eigens dafür aufzusetzen lohnt nicht.
+Dort lassen Sie diese Kommandos aus, ohne eigens ein Linux-System dafür aufzusetzen.
 Die Frage am Ende des Abschnitts bearbeiten Sie trotzdem.
 Die dafür nötigen Ausgaben stehen dort zum Aufklappen bereit.
 [ENDNOTICE]
@@ -291,8 +284,9 @@ Zu jedem installierten Paket ist vermerkt, welche Dateien es mitgebracht hat.
 Diese Buchführung lässt sich in beide Richtungen abfragen:
 vom Paket zu seinen Dateien und von einer Datei zurück zu ihrem Paket.
 
-Lesen Sie dazu im [dpkg-Beitrag](https://wiki.ubuntuusers.de/dpkg/) von ubuntuusers
-den Abschnitt **Hilfsprogramme → dpkg-query** mit seiner Optionstabelle.
+Lesen Sie dazu im
+[dpkg-Beitrag](https://wiki.ubuntuusers.de/dpkg/)
+von ubuntuusers unter **Hilfsprogramme** den Abschnitt **dpkg-query** mit seiner Optionstabelle.
 Der übrige Beitrag ist hier nicht nötig.
 Die dort genannten Optionen funktionieren auch direkt an `dpkg`, das sie an `dpkg-query` weiterreicht.
 `dpkg` ist auf Debian und Ubuntu die Schicht unterhalb von [PARTREF::apt]:
@@ -343,12 +337,11 @@ Bei Bedarf hängen Sie noch `| head -30` oder einen Pager an.
 [EQ] Nennen Sie außer `/usr/bin` drei weitere Verzeichnisse, in die dieses Paket Dateien
 gelegt hat, und sagen Sie zu jedem, was für eine Art von Datei dort liegt.
 
-Die Dateien eines Pakets verteilen sich also quer über den Baum.
-Sortiert wird im FHS nach der Art der Datei, nicht nach ihrer Herkunft.
+Der FHS ordnet Dateien nach ihrer Art und nicht nach dem Paket, aus dem sie stammen.
+Deshalb verteilen sich die Dateien eines Pakets über den ganzen Baum.
 
 [EC] Lassen Sie sich den Inhalt von `/usr/local/bin`, `/opt` und `/usr/local` anzeigen.
-(Die ersten beiden dürfen leer sein.
-Das ist ein normaler Befund.)
+(Die ersten beiden dürfen leer sein.)
 
 [FOLDOUT::Unter macOS]
 Das naheliegende Beispiel für `/opt` ist dort `/opt/homebrew`:
@@ -421,13 +414,13 @@ Für die folgenden Abschnitte reicht sie trotzdem.
 Die Zahl von oben sagt noch nichts darüber, wie die Einträge in `/etc` dorthin gelangt sind.
 Das sehen Sie am deutlichsten an einem Paket, das Sie noch nicht haben.
 Wir nehmen `rsnapshot`, ein Werkzeug, das Sicherungskopien mit `rsync` anlegt.
-Um das Werkzeug selbst geht es hier nicht, nur um seine Dateien.
+Hier interessieren nur die Dateien, die das Paket mitbringt.
 
 [NOTICE]
 Die Kommandos dieses Blocks setzen einen Debian-Paketmanager voraus.
 Für die Systemdateien von macOS gibt es keinen, und Homebrew ist hier kein Ersatz.
-Die Frage in diesem Block bearbeiten Sie in jedem Fall;
-die dafür nötigen Ausgaben stehen weiter unten zum Aufklappen bereit.
+Die Frage in diesem Block bearbeiten Sie in jedem Fall.
+Die dafür nötigen Ausgaben stehen weiter unten zum Aufklappen bereit.
 [ENDNOTICE]
 
 [FOLDOUT::Unter macOS]
@@ -464,8 +457,8 @@ Dieselbe Abfrage wie im vorigen Abschnitt, gefiltert mit [PARTREF::grep]:
 Es sind drei Dateien: die Konfiguration `/etc/rsnapshot.conf`,
 ein Eintrag in `/etc/cron.d` für die zeitgesteuerte Ausführung
 und einer in `/etc/logrotate.d` für das Aufräumen der Logdateien.
-Das Paket bringt seine Voreinstellungen selbst mit und legt sie in `/etc` ab,
-nicht bei der Programmdatei.
+Seine Voreinstellungen legt das Paket also in `/etc` ab,
+während die Programmdatei in `/usr/bin` liegt.
 
 [EC] Sehen Sie sich die ersten 30 Zeilen von `/etc/rsnapshot.conf` an.
 
@@ -534,8 +527,8 @@ Das geht wie die Installation nur mit [PARTREF::sudo].
 [EC] Sehen Sie erneut nach, ob die Datei `/etc/rsnapshot.conf` existiert:
 dasselbe Kommando wie im ersten Schritt dieses Blocks.
 
-Das Programm ist weg, die Konfigurationsdatei ist noch da.
-Was `remove` von `purge` unterscheidet, wissen Sie aus [PARTREF::apt].
+`apt remove` hat das Programm entfernt, die Konfigurationsdatei aber stehen lassen.
+Darin unterscheidet es sich von `purge` (siehe [PARTREF::apt]).
 
 [EC] Entfernen Sie nun auch die Konfigurationsdateien des Pakets.
 
