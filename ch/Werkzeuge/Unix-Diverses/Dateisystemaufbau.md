@@ -29,7 +29,7 @@ Konfiguration liegt in `/etc`, Logdateien liegen in `/var/log`, Programme in `/u
 [SECTION::instructions::detailed]
 In dieser Aufgabe erkunden Sie den Dateibaum Ihres eigenen Systems.
 Die Ausgaben der Kommandos unterscheiden sich deshalb von System zu System.
-Gerade an den Unterschieden sehen Sie, was der Standard festlegt.
+Gerade an den Unterschieden sehen Sie, was der Standard festlegt und was er offenlässt.
 
 Zwischen den gängigen Linux-Distributionen gibt es bei den hier verwendeten Werkzeugen
 keine relevanten Unterschiede.
@@ -55,12 +55,13 @@ Zu beachten ist nur dies:
   *Ausgeben* lässt sich der Typ dort stattdessen mit `-Y`.
   Benutzen Sie also überall `df -hY` statt `df -hT`.
   Die Spalte heißt auch dort `Type`.
-- Im Abschnitt **Verzeichnisse, die gar nicht auf der Platte liegen** entfallen unter macOS
-  die Kommandos, nicht aber die Frage.
-  Siehe den Hinweis dort.
+- Im Abschnitt **Verzeichnisse, die gar nicht auf der Platte liegen** und im Block
+  **Ein Paket und seine Konfigurationsdatei** entfallen unter macOS die Kommandos,
+  nicht aber die jeweilige Frage.
+  Siehe jeweils die Bemerkung dort.
 
 Wo einzelne weitere Kommandos unter macOS anders lauten oder entfallen,
-steht das als Hinweis direkt beim betreffenden Schritt.
+steht das direkt beim betreffenden Schritt.
 [ENDFOLDOUT]
 
 
@@ -83,9 +84,12 @@ Lesen Sie im Abschnitt DESCRIPTION die Einträge zu
 Den langen Rest der Liste überfliegen Sie nur.
 Ein Teil davon ist ohnehin nur noch von historischem Interesse
 (`/usr/X11R6` etwa ist in der Manpage selbst als "removed in FHS 3.0" vermerkt).
-Unter macOS beschreibt die lokale `man 7 hier` nur einen Teil dieser Einträge.
-`/home`, `/lib`, `/opt`, `/proc`, `/run` und `/sys` fehlen dort.
+
+[FOLDOUT::Unter macOS]
+Die lokale `man 7 hier` beschreibt dort nur einen Teil dieser Einträge.
+`/home`, `/lib`, `/opt`, `/proc`, `/run` und `/sys` fehlen darin.
 Siehe dazu den Aufklapp-Kasten oben.
+[ENDFOLDOUT]
 
 <!-- time estimate: 10 min -->
 
@@ -113,18 +117,6 @@ Anders als bei Laufwerksbuchstaben sieht man einem Pfad nicht an,
 ob `/home` auf derselben Platte liegt wie `/` oder auf einer ganz anderen.
 Beim Arbeiten muss man das auch nicht wissen.
 
-[EQ] Auf welchem Dateisystem liegt Ihr Home-Verzeichnis,
-und woran sehen Sie das in Ihrer `df`-Ausgabe?
-
-[HINT::Woran sehe ich das?]
-Suchen Sie in der Spalte `Mounted on` den *längsten* Eintrag,
-der ein Anfangsstück Ihres Home-Pfades ist.
-Diese Zeile ist die gesuchte.
-Auf vielen Systemen gibt es gar keine eigene Zeile für `/home`.
-Dann bleibt `/` als längster passender Einhängepunkt übrig,
-und Ihr Home-Verzeichnis liegt auf demselben Dateisystem wie der Rest des Baums.
-[ENDHINT]
-
 Ist auf Ihrem System Snap installiert (auf Ubuntu standardmäßig),
 so wird die Ausgabe lang: Jedes einzelne Snap-Paket erscheint als eigene `squashfs`-Zeile
 mit einem Einhängepunkt unterhalb von `/snap`.
@@ -139,6 +131,30 @@ Außerdem tauchen WSL-interne Einträge auf, etwa mit den Typen `overlay`, `9p` 
 und Einhängepunkten wie `/mnt/wsl`, `/mnt/wslg` und `/init`.
 Das sind Interna von WSL selbst und können ignoriert werden.
 [ENDNOTICE]
+
+[EQ] Welche Zeile Ihrer `df`-Ausgabe beschreibt das Dateisystem,
+auf dem Ihr Home-Verzeichnis liegt, und woran erkennen Sie sie?
+
+[HINT::Woran erkenne ich die Zeile?]
+Suchen Sie in der Spalte `Mounted on` den *längsten* Eintrag,
+der ein Anfangsstück Ihres Home-Pfades ist.
+Diese Zeile ist die gesuchte.
+Auf vielen Systemen gibt es gar keine eigene Zeile für `/home`.
+Dann bleibt `/` als längster passender Einhängepunkt übrig,
+und Ihr Home-Verzeichnis liegt auf demselben Dateisystem wie der Rest des Baums.
+[ENDHINT]
+
+[FOLDOUT::Unter macOS]
+Dort führt die Regel aus dem Hinweis in die Irre:
+Ihr Home-Verzeichnis liegt auf einem eigenen Datenvolume, eingehängt unter `/System/Volumes/Data`,
+und erscheint unter `/Users` nur über einen Verweis, der in der `df`-Liste nicht auftaucht.
+Fragen Sie `df` deshalb direkt nach Ihrem Home-Verzeichnis: `df -hY ~`.
+[ENDFOLDOUT]
+
+[EQ] Lesen Sie aus dieser Zeile ab, auf welchem Gerät das Dateisystem liegt und welchen Typ es hat.
+Angenommen, dasselbe Dateisystem würde stattdessen unter `/mnt/daten` eingehängt:
+Welche der drei Angaben (Gerät, Typ, Einhängepunkt) änderten sich, welche nicht,
+und was hieße das für den Pfad Ihres Home-Verzeichnisses?
 
 <!-- time estimate: 10 min -->
 
@@ -288,14 +304,13 @@ Für die Systemdateien von macOS gibt es keinen Paketmanager.
 `/usr/bin/ls` gehört zum Betriebssystem und stammt aus keinem einzeln nachvollziehbaren Paket.
 Den verlinkten Beitrag zu `dpkg` lesen Sie deshalb nur als Beispiel für das Prinzip.
 Haben Sie Homebrew installiert, führen Sie die beiden folgenden Abfragen
-stattdessen für ein Homebrew-Programm, zum Beispiel `wget`:
+stattdessen für ein Homebrew-Programm aus, zum Beispiel für `wget`:
 `ls -l $(command -v wget)` zeigt, dass die Datei im `bin`-Verzeichnis von Homebrew nur ein Symlink ist
 und auf `../Cellar/wget/<version>/bin/wget` verweist.
 Der Name der Formel steht also im Zielpfad.
 Welche Dateien diese Formel mitgebracht hat, listet `brew list wget`.
 (`brew which-formula wget` erledigt die erste Abfrage bequemer,
-verlangt aber einmalig `brew tap homebrew/command-not-found`
-und schlägt die Antwort dann in einer Datenbank aller Formeln nach
+schlägt die Antwort aber in einer Datenbank aller Formeln nach
 statt an der Datei auf Ihrer Platte.)
 [ENDFOLDOUT]
 
@@ -352,9 +367,7 @@ Die Struktur von `/usr` ist dort noch einmal nachgebildet.
 - `/usr/local/bin` gehört der lokalen Administration.
   Hier landet, was Sie selbst kompiliert oder per Skript installiert haben.
   Der Paketmanager fasst dieses Verzeichnis nicht an.
-  Dass dieses Verzeichnis im `PATH` üblicherweise vor `/usr/bin` steht, ist Absicht:
-  Eine selbst installierte Fassung eines Programms soll die der Distribution verdecken
-  und nicht umgekehrt.
+  Im `PATH` steht es üblicherweise vor `/usr/bin`.
 - `/opt` ist für in sich geschlossene Fremdsoftware gedacht,
   die ihr eigenes Unterverzeichnis mitbringt (z.B. `/opt/google/chrome`).
 
@@ -413,7 +426,7 @@ Um das Werkzeug selbst geht es hier nicht, nur um seine Dateien.
 [NOTICE]
 Die Kommandos dieses Blocks setzen einen Debian-Paketmanager voraus.
 Für die Systemdateien von macOS gibt es keinen, und Homebrew ist hier kein Ersatz.
-Die Frage am Ende bearbeiten Sie in jedem Fall;
+Die Frage in diesem Block bearbeiten Sie in jedem Fall;
 die dafür nötigen Ausgaben stehen weiter unten zum Aufklappen bereit.
 [ENDNOTICE]
 
@@ -430,8 +443,7 @@ Im Original des Werkzeugs steht dort `/.snapshots/`.
 [EC] Sehen Sie nach, ob die Datei `/etc/rsnapshot.conf` auf Ihrem System existiert.
 Sofern Sie `rsnapshot` nicht schon installiert haben, lautet die Antwort: nein.
 Haben Sie es doch schon installiert, führen Sie die Kommandos dieses Blocks nicht aus,
-sondern lesen Sie ihn nur:
-Das `apt purge` am Ende würde Ihre eigene `/etc/rsnapshot.conf` löschen.
+sondern lesen Sie ihn nur, denn am Ende wird das Paket wieder vollständig entfernt.
 Auch für diesen Fall gilt die Bemerkung oben.
 
 [EC] Installieren Sie das Paket `rsnapshot` mit [PARTREF::apt].
@@ -468,7 +480,7 @@ Damit Sie die folgende Frage auch ohne eigene Ausführung bearbeiten können,
 hier die Ausgaben der beiden Kommandos auf einem Debian-System
 (Paketversion 1.5.1, bei anderen Versionen weichen Kleinigkeiten ab):
 
-```console
+```text
 $ dpkg -L rsnapshot | grep '^/etc'
 /etc
 /etc/cron.d
@@ -508,11 +520,6 @@ snapshot_root	/var/cache/rsnapshot/
 #
 #no_create_root	1
 ```
-
-Die Datei `/etc/rsnapshot.conf` gibt es vor der Installation nicht.
-Nach `apt remove` ist sie immer noch da, und erst nach `apt purge` ist sie wieder weg.
-Das erste und das letzte Kommando dieses Blocks liefern deshalb beide dieselbe Meldung
-"No such file or directory", die Kontrolle dazwischen dagegen eine gewöhnliche `ls`-Zeile.
 [ENDFOLDOUT]
 
 [EQ] Die Einstellung steht in `/etc`, die Sicherungen selbst landen unter `/var`.
@@ -541,16 +548,21 @@ Die mitinstallierten Abhängigkeiten (mindestens `liblchown-perl`) brauchen Sie 
 
 [EC] Prüfen Sie, dass `/etc/rsnapshot.conf` jetzt verschwunden ist.
 
+[FOLDOUT::Die drei Kontrollen, falls Sie die Kommandos nicht ausführen]
+Die Datei `/etc/rsnapshot.conf` gibt es vor der Installation nicht.
+Nach `apt remove` ist sie immer noch da, und erst nach `apt purge` ist sie wieder weg.
+Die erste und die letzte Kontrolle liefern deshalb dieselbe Meldung
+"No such file or directory", die Kontrolle dazwischen dagegen eine gewöhnliche `ls`-Zeile.
+[ENDFOLDOUT]
+
 
 #### `/etc`, `/var` und `/usr` im Vergleich
 
-`/etc`, `/var` und `/usr` unterscheiden sich darin, wie ihre Dateien entstehen
-und was ihr Verlust bedeutet:
+`/etc`, `/var` und `/usr` unterscheiden sich darin, wie ihre Dateien entstehen:
 
 - `/etc` enthält, was am System **eingestellt** ist:
   Konfiguration, fast durchweg Textdateien.
   Die Voreinstellungen bringen die Pakete mit, die Anpassungen macht die Administration von Hand.
-  Diese Anpassungen sind nicht wiederbeschaffbar.
   Es sind viele Einträge, aber zusammen belegen sie nur wenige Megabyte.
 - `/var` enthält, was das **System im Betrieb schreibt**:
   Logdateien, Datenbanken, Mail- und Druckerwarteschlangen, Paketcaches.
@@ -560,8 +572,9 @@ und was ihr Verlust bedeutet:
   Auf einem frisch aufgesetzten System kann es dagegen noch kleiner sein.
 - `/usr` enthält, was die **Distribution mitbringt**:
   Programme und Bibliotheken.
-  Sie ändern sich im laufenden Betrieb nicht und lassen sich jederzeit
-  aus den Paketen wiederherstellen.
+  Sie ändern sich im laufenden Betrieb nicht,
+  sondern nur, wenn Pakete installiert, aktualisiert oder entfernt werden.
+  Ausgenommen ist `/usr/local`, das, wie oben gesehen, der lokalen Administration gehört.
 
 <!-- time estimate: 25 min -->
 
@@ -583,10 +596,12 @@ Der Platz dafür ist knapp.
 Welche der Verzeichnisse `/etc`, `/home`, `/proc`, `/tmp`, `/usr` und `/var` sichern Sie, welche nicht?
 Begründen Sie jede Entscheidung kurz.
 
-[EQ] Auf einem System gibt es ein Programm namens `backup` sowohl als `/usr/bin/backup`
-als auch als `/usr/local/bin/backup`.
-Sie tippen `backup` ein.
-Welches der beiden wird ausgeführt, und wie finden Sie das zuverlässig heraus, ohne zu raten?
+[EQ] Angenommen, auf Ihrem System gäbe es ein Programm namens `backup` sowohl als `/usr/bin/backup`
+als auch als `/usr/local/bin/backup`, und Sie tippen `backup` ein.
+Welches der beiden würde ausgeführt?
+Belegen Sie es mit Ihrer `PATH`-Ausgabe von oben, und nennen Sie ein Kommando,
+das die Frage zuverlässig beantwortet, sobald es beide Dateien wirklich gibt.
+Wann ist die Reihenfolge, die Sie bei sich vorfinden, eine gute Wahl, und wann wäre die umgekehrte besser?
 
 <!-- time estimate: 15 min -->
 
@@ -601,8 +616,7 @@ Welches der beiden wird ausgeführt, und wie finden Sie das zuverlässig heraus,
 
 [INSTRUCTOR::Kommandoprotokoll]
 Die Ausgaben sind stark systemabhängig.
-Bewertet wird, ob das jeweils passende Kommando
-gewählt wurde, nicht die konkrete Ausgabe.
+Bewertet wird, ob das jeweils passende Kommando gewählt wurde, nicht die konkrete Ausgabe.
 Was zu jedem einzelnen Kommando zu prüfen ist und welche Abweichungen in Ordnung sind,
 steht als Anmerkung direkt über dem betreffenden Eintrag.
 [PROT::ALT:Dateisystemaufbau.prot]
