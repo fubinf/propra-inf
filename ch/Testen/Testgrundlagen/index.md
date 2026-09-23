@@ -12,4 +12,4 @@ Auch darin gibt es diverse Arten.
 
 Diese Taskgruppe legt das begriffliche und handwerkliche Fundament:
 die Terminologie zum Erkennen und Beschreiben von Softwareproblemen
-sowie den Aufbau von Testfällen und Testsammlungen.
+sowie den Aufbau von Testfällen.

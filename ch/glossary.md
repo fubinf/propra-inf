@@ -1981,25 +1981,6 @@ meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
 [ENDTERM]
 
 
-[TERM::Test Analyst|Testanalyst]
-Eine Rolle im Testprozess, die Anforderungen, Spezifikationen und User Stories auf Klarheit,
-Vollständigkeit und Testbarkeit prüft. Ziel ist es, Mehrdeutigkeiten früh zu erkennen und die
-Grundlage für gute Testfälle zu schaffen.
-[ENDTERM]
-
-
-[TERM::Test Designer|Testdesigner]
-Eine Rolle, die aus Anforderungen, User Stories oder Akzeptanzkriterien konkrete Testfälle
-formuliert. Der Test Designer beschreibt dabei Vorbedingungen, Schritte und erwartete Ergebnisse.
-[ENDTERM]
-
-
-[TERM::Testautomatisierer|Test Automatisierer]
-Eine Rolle, die geeignete Testfälle in automatisierte Tests übersetzt, damit sie wiederholt und
-systematisch ausgeführt werden können.
-[ENDTERM]
-
-
 [TERM::Testiteration]
 Eine Testiteration bezieht sich auf einen Zyklus oder eine Runde von Testaktivitäten, die
 durchgeführt werden, um bestimmte Aspekte einer Software zu überprüfen oder zu testen. Während
