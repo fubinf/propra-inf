@@ -12,15 +12,17 @@ Ich kann Fixtures mit dem pytest-Framework anwenden.
 
 
 [SECTION::background::default]
-Oftmals benötigt ein Test, dass bestimmte Voraussetzungen hergestellt werden.
+Oftmals braucht ein Test bestimmte Voraussetzungen, bevor er überhaupt sinnvoll prüfen kann,
+was er prüfen soll. Ein Test kann zum Beispiel eine Benutzer-Instanz, eine Konfiguration oder
+eine vorbereitete Datei brauchen.
 
-[TERMREF::Fixture] sind ein zentrales Konzept in pytest, das es ermöglicht,
-wiederverwendbaren Code zur Vor- und Nachbereitung (Setup und Teardown) von Tests bereitzustellen.
-Gerade bei vielen Tests wird dabei schnell sichtbar, wie nützlich es ist,
-Setup- und Testlogik sauber zu trennen.
-In dieser Aufgabe lernen Sie deshalb Schritt für Schritt, wie Sie dieselben Voraussetzungen
-für mehrere Tests wiederverwenden, wie Sie ihre Lebensdauer steuern und wie Sie
-beim Arbeiten mit gemeinsamen Ressourcen die richtige Aufräumlogik einbauen.
+[TERMREF::Fixture] ist in pytest genau dafür gedacht: Es kapselt das Setup und das Cleanup
+und macht die Abhängigkeiten eines Tests deutlich. Dadurch bleibt der eigentliche Test
+lesbarer, und dieselben Vorbereitungen können leicht in mehreren Tests wiederverwendet werden.
+
+In dieser Aufgabe lernen Sie Schritt für Schritt, wie Sie solche Voraussetzungen sauber
+vorbereiten, wie Sie ihre Lebensdauer steuern und wann es wichtig ist, Ressourcen nach dem
+Test wieder aufzuräumen.
 [ENDSECTION]
 
 
@@ -29,10 +31,9 @@ Nutzen Sie die folgende Übersicht parallel zum Bearbeiten der Aufgaben:
 
 [pytest-Doku: How to use fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
 
-Wir betrachten zuerst das Grundlegende.
-In diesem Abschnitt geht es um einen sehr einfachen Fall: Ein Test braucht ein Objekt,
-das mehrfach verwendet wird. Statt den gleichen Setup-Code in jedem Test zu wiederholen,
-werden wir ihn einmal als Fixture definieren und dann als Abhängigkeit deklarieren.
+Wir beginnen mit einem sehr einfachen Fall: Ein Test braucht ein Objekt, das mehrfach
+verwendet wird. Statt in jedem Test denselben Setup-Code neu zu schreiben, definieren wir ihn
+an einer Stelle und verlangen das Objekt dann als Abhängigkeit.
 
 ### Das Problem ohne Fixtures
 <!-- time estimate: 5 min -->
@@ -163,8 +164,8 @@ def test_user_registration(user_service):
 [ER] Ergänzen Sie Ihre `test_userservice.py` um diese Fixture, und modifizieren Sie beide Tests,
 um die Fixture zu nutzen.
 
-Ein Test kann auch mehrere Fixtures gleichzeitig verwenden: Sie einfach als mehrere Parameter
-in der Signatur auflisten.
+Ein Test kann auch mehrere Fixtures gleichzeitig verwenden: Sie listen einfach mehrere
+Parameter in der Signatur auf.
 Suchen Sie in der oben verlinkten pytest-Doku nach dem Abschnitt
 „A test/fixture can request more than one fixture at a time“ und lesen Sie ihn.
 
@@ -189,8 +190,8 @@ Welchen Vorteil hat es, wenn alle benötigten Fixtures als Parameter in der Sign
 <!-- time estimate: 25 min -->
 
 Manche Fixtures sind aufwendig: Eine Datenbankverbindung aufzubauen, Testdaten zu laden oder
-einen Server zu starten kann Sekunden dauern. Das ist genau der Fall, in dem es relevant wird,
-wie lange ein Fixture lebt.
+einen Server zu starten kann Sekunden dauern. Genau in solchen Fällen wird wichtig,
+wie lange ein Fixture bestehen bleibt.
 
 Mit dem Standard-Scope `"function"` wird das Setup für jeden einzelnen Test erneut ausgeführt.
 
@@ -232,7 +233,7 @@ pytest bietet verschiedene Scopes für Fixtures:
 Die allgemeine Faustregel ist unkompliziert: Behalten Sie in der Regel `function` bei. Nutzen Sie
 einen größeren Scope nur dann, wenn das Setup wirklich teuer ist und der gemeinsame Zustand
 bewusst kontrolliert werden kann. Wenn ein Test zu viele Zustandsänderungen hinterlässt, ist
-`function` die sichere Standardwahl.
+`function` die sichere Standardwahl und damit meist die klügste Entscheidung.
 
 Ein sinnvoller Fall für einen größeren Scope ist zum Beispiel das einmalige Laden einer großen
 Konfigurationsdatei oder eines Testdaten-Containers: Das ist aufwendig, aber danach nur lesbar.
@@ -367,8 +368,8 @@ wenn der Test selbst fehlschlägt? Warum ist das wichtig?
 ### Fixtures teilen: conftest.py
 <!-- time estimate: 15 min -->
 
-Wenn Sie mehrere Testdateien haben, die dieselben Fixtures brauchen, gibt es dafür eine
-praktische Lösung in pytest. Lassen Sie uns genau anschauen, wie das funktioniert.
+Wenn Sie mehrere Testdateien haben, die dieselben Fixtures brauchen, gibt es dafür in pytest
+eine praktische Lösung. Lassen Sie uns genau anschauen, wie das funktioniert.
 
 Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures und der gemeinsam genutzten
 Hilfsklasse:
@@ -439,8 +440,8 @@ Die Fixture selbst ist also über die pytest-Discovery sichtbar, ohne dass ein n
 Python-Import notwendig ist. Die gemeinsame Hilfsklasse wird aber bewusst importiert, damit
 es nicht zu einer zweiten, von der echten Klasse abweichenden Definition kommt.
 
-Das ist ein guter Mittelweg für eine Einsteiger-Aufgabe: Die Abhängigkeit des Tests bleibt in
-seiner Signatur sichtbar, und die gemeinsame Klasse wird nicht doppelt definiert.
+Die Abhängigkeit des Tests bleibt in seiner Signatur sichtbar, und die gemeinsame Klasse wird nicht
+doppelt definiert.
 Damit bleibt beides nachvollziehbar:
 Das Setup ist klar sichtbar, aber die gemeinsame Hilfsklasse muss nicht
 in jeder Datei erneut geschrieben werden.
