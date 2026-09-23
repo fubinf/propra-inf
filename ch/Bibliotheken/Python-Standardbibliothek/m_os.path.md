@@ -122,7 +122,7 @@ normalisieren):
 [INCLUDE::../../_include/Submission-Quellcode.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Kommandoprotokoll prüfen]
+[INSTRUCTOR::Kommandoprotokoll und Code prüfen]
 [INCLUDE::ALT:]
 
 
