@@ -13,12 +13,13 @@ Ich kann Fixtures mit dem pytest-Framework anwenden.
 
 [SECTION::background::default]
 Oftmals braucht ein Test bestimmte Voraussetzungen, bevor er überhaupt sinnvoll prüfen kann,
-was er prüfen soll. Ein Test kann zum Beispiel eine Benutzer-Instanz, eine Konfiguration oder
-eine vorbereitete Datei brauchen.
+was er prüfen soll.
+Ein Test kann zum Beispiel eine Benutzer-Instanz, eine Konfiguration oder eine vorbereitete Datei brauchen.
 
 [TERMREF::Fixture] ist in pytest genau dafür gedacht: Es kapselt das Setup und das Cleanup
-und macht die Abhängigkeiten eines Tests deutlich. Dadurch bleibt der eigentliche Test
-lesbarer, und dieselben Vorbereitungen können leicht in mehreren Tests wiederverwendet werden.
+und macht die Abhängigkeiten eines Tests deutlich.
+Dadurch bleibt der eigentliche Test lesbarer,
+und dieselben Vorbereitungen können leicht in mehreren Tests wiederverwendet werden.
 
 In dieser Aufgabe lernen Sie Schritt für Schritt, wie Sie solche Voraussetzungen sauber
 vorbereiten, wie Sie ihre Lebensdauer steuern und wann es wichtig ist, Ressourcen nach dem
@@ -32,14 +33,15 @@ Nutzen Sie die folgende Übersicht parallel zum Bearbeiten der Aufgaben:
 [pytest-Doku: How to use fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
 
 Wir beginnen mit einem sehr einfachen Fall: Ein Test braucht ein Objekt, das mehrfach
-verwendet wird. Statt in jedem Test denselben Setup-Code neu zu schreiben, definieren wir ihn
+verwendet wird.
+Statt in jedem Test denselben Setup-Code neu zu schreiben, definieren wir ihn
 an einer Stelle und verlangen das Objekt dann als Abhängigkeit.
 
 ### Das Problem ohne Fixtures
 <!-- time estimate: 5 min -->
 
-Betrachten Sie zunächst diesen kleinen Test für einen Benutzer-Dienst. Der Code ist bewusst
-noch etwas unordentlich, damit Sie das Problem direkt sehen können.
+Betrachten Sie zunächst diesen kleinen Test für einen Benutzer-Dienst.
+Der Code ist bewusst noch etwas unordentlich, damit Sie das Problem direkt sehen können.
 
 ```python
 class Result:
@@ -64,9 +66,10 @@ class PseudoUserservice:
         return Result(False)
 
 
-def test_user_registration():
-    service = PseudoUserservice()
+service = PseudoUserservice()  # wird von allen Tests gemeinsam benutzt
 
+
+def test_user_login():
     # Setup
     service.register("alice", "alice@test.com", "password123")
 
@@ -78,14 +81,9 @@ def test_user_registration():
     service.users.clear()
 
 
-def test_user_login():
-    service = PseudoUserservice()
-
-    # Setup
-    service.register("alice", "alice@test.com", "password123")
-
+def test_user_registration():
     # Test
-    result = service.login("alice", "password123")
+    result = service.register("alice", "alice@test.com", "password123")
     assert result.success
 
     # Cleanup
@@ -94,42 +92,30 @@ def test_user_login():
 
 [EQ] Welche Probleme erkennen Sie in diesem Code? Notieren Sie mindestens drei Probleme.
 
-### Das Fixture-Konzept entdecken
+### Die Fixture-Idee und der Ausgangscode
 <!-- time estimate: 10 min -->
 
 pytest löst genau diese Schwächen mit sogenannten "Fixtures".
 
 Ein Fixture ist im Grunde ein wiederverwendbares Setup, das ein Test als Abhängigkeit
-anfordern kann. Statt in jedem Test denselben Initialisierungscode neu zu schreiben, definieren
-Sie ihn einmal und referenzieren ihn dann über die Test-Signatur.
+anfordern kann.
+Statt in jedem Test denselben Initialisierungscode neu zu schreiben,
+definieren Sie ihn einmal und referenzieren ihn dann über die Test-Signatur.
 
 Das hat zwei Vorteile: Der eigentliche Test wird viel lesbarer, weil die Abhängigkeiten sofort
 sichtbar sind, und die Einrichtung bleibt an einer Stelle zentralisiert.
 
-Erstellen Sie die Datei `test_userservice.py` und implementieren Sie die folgenden Tests
-mit einer einfachen Klasse:
+Bevor wir Fixtures einsetzen, legen wir den Ausgangscode an.
+Der zu testende Code gehört nicht in eine Testdatei.
+Legen Sie deshalb eine Datei `userservice.py` an und übernehmen Sie dorthin
+die Klassen `Result` und `PseudoUserservice` aus dem Beispiel oben.
+
+Legen Sie im selben Verzeichnis die Datei `test_userservice.py` mit folgenden Tests an,
+die jeweils eine eigene, frische Instanz benutzen:
 
 ```python
-class Result:
-    def __init__(self, success):
-        self.success = success
+from userservice import PseudoUserservice
 
-
-class PseudoUserservice:
-    def __init__(self):
-        self.users = {}
-
-    def register(self, username, email, password):
-        if username in self.users:
-            return Result(False)
-        self.users[username] = {'email': email, 'password': password}
-        return Result(True)
-
-    def login(self, username, password):
-        user = self.users.get(username)
-        if user and user['password'] == password:
-            return Result(True)
-        return Result(False)
 
 def test_user_registration():
     service = PseudoUserservice()
@@ -190,8 +176,8 @@ Welchen Vorteil hat es, wenn alle benötigten Fixtures als Parameter in der Sign
 <!-- time estimate: 25 min -->
 
 Manche Fixtures sind aufwendig: Eine Datenbankverbindung aufzubauen, Testdaten zu laden oder
-einen Server zu starten kann Sekunden dauern. Genau in solchen Fällen wird wichtig,
-wie lange ein Fixture bestehen bleibt.
+einen Server zu starten kann Sekunden dauern.
+Genau in solchen Fällen wird wichtig, wie lange ein Fixture bestehen bleibt.
 
 Mit dem Standard-Scope `"function"` wird das Setup für jeden einzelnen Test erneut ausgeführt.
 
@@ -230,10 +216,9 @@ pytest bietet verschiedene Scopes für Fixtures:
 - `module`: Eine Instanz für alle Tests einer Datei
 - `session`: Eine Instanz für die gesamte Test-Session
 
-Die allgemeine Faustregel ist unkompliziert: Behalten Sie in der Regel `function` bei. Nutzen Sie
-einen größeren Scope nur dann, wenn das Setup wirklich teuer ist und der gemeinsame Zustand
-bewusst kontrolliert werden kann. Wenn ein Test zu viele Zustandsänderungen hinterlässt, ist
-`function` die sichere Standardwahl und damit meist die klügste Entscheidung.
+Faustregel: Behalten Sie in der Regel `function` bei.
+Nutzen Sie einen größeren Scope nur dann, wenn das Setup wirklich teuer ist
+und der gemeinsame Zustand bewusst kontrolliert werden kann.
 
 Ein sinnvoller Fall für einen größeren Scope ist zum Beispiel das einmalige Laden einer großen
 Konfigurationsdatei oder eines Testdaten-Containers: Das ist aufwendig, aber danach nur lesbar.
@@ -245,8 +230,9 @@ def app_config():
 ```
 
 Wenn Sie einen größeren Scope wählen, müssen Sie selbst dafür sorgen, dass der Zustand zwischen
-den Tests sauber zurückgesetzt wird. Die gemeinsame Nutzung hat nur dann Sinn, wenn die Ressource
-unverändert bleibt oder bewusst wieder in einen Ausgangszustand gebracht wird.
+den Tests sauber zurückgesetzt wird.
+Die gemeinsame Nutzung hat nur dann Sinn, wenn die Ressource unverändert bleibt
+oder bewusst wieder in einen Ausgangszustand gebracht wird.
 
 Ändern Sie nun den Scope auf `"module"`:
 
@@ -263,12 +249,8 @@ def slow_service():
 Was müssen Sie beachten, wenn mehrere Tests dieselbe Instanz teilen?
 
 [HINT::Ich verstehe nicht, was dabei schiefgehen kann]
-Im `function`-Scope bekommt jeder Test eine frische Instanz – Zustandsänderungen eines Tests
-sind für andere Tests unsichtbar.
-Im `module`-Scope teilen sich alle Tests dieselbe Instanz: Wenn ein Test Nutzerdaten speichert
-oder andere Zustandsänderungen vornimmt, sehen das alle nachfolgenden Tests ebenfalls.
-Tests müssen deshalb so geschrieben sein, dass sie nicht auf Zustand angewiesen sind,
-den ein anderer Test hinterlassen hat.
+Was passiert, wenn `test_slow_1` einen Nutzer registriert und ein weiterer Test sich darauf
+verlässt, dass noch kein Nutzer registriert ist?
 [ENDHINT]
 
 Wenn Sie fertig sind, entfernen Sie `slow_service` und die drei zugehörigen Tests wieder,
@@ -279,10 +261,6 @@ damit der Rest der Datei nicht durch das `sleep()` ausgebremst wird.
 
 Manche Tests erstellen Dateien, Datenbank-Einträge oder andere Ressourcen.
 Was passiert, wenn diese nicht aufgeräumt werden?
-
-Ein guter erster Gedanke ist: Für temporäre Dateien benutzen wir nicht manuell einen festen
-Dateinamen im Arbeitsverzeichnis, sondern die Standard-Mechanismen von Python oder pytest.
-Siehe auch [PARTREF::m_tempfile].
 
 Betrachten Sie dieses problematische Beispiel:
 
@@ -313,19 +291,46 @@ def test_another_temp_file(temp_file):
     assert content == "Test war hier!"
 ```
 
-[EC] Führen Sie den folgenden Code aus: `pytest -v test_userservice.py`
+[EC] Fügen Sie diesen Code zu `test_userservice.py` hinzu und führen Sie die Tests aus:
+`pytest -v test_userservice.py`
 
 [EQ] Was ist hier das Problem?
 
-Wir könnten den Scope ändern, aber nehmen wir mal an, dass wir ihn für unsere Testsammlung an dieser
-Stelle benötigen.
-Dann ist die sauberere Lösung, die Datei nicht im Projektverzeichnis anzulegen, sondern ein eigenes
-Verzeichnis für temporäre Testdaten zu verwenden. pytest bietet dafür `tmp_path` an, und das Modul
-`tempfile` stellt ähnliche Mechanismen bereit. Siehe auch [PARTREF::m_tempfile].
+In diesem Beispiel stecken zwei verschiedene Probleme:
+
+- **Zustandsleckage:** Beide Tests teilen sich wegen `scope="module"` dieselbe Datei.
+  Was der erste Test hineinschreibt, sieht der zweite.
+  Am einfachsten wäre `function`-Scope.
+  Nehmen wir aber an, die Datei sei teuer zu erzeugen und wir bräuchten `module`-Scope.
+  Dann muss jeder Test, der sich auf den Ausgangszustand verlässt, diesen selbst herstellen.
+- **Aufräumen:** `debug_output.txt` liegt fest im Arbeitsverzeichnis und bleibt nach dem Testlauf
+  dort liegen.
+  Laufen zwei Testläufe gleichzeitig oder aus einem anderen Verzeichnis, kommen sie sich in die Quere.
+  Besser ist ein eigenes Verzeichnis für temporäre Testdaten.
+  pytest bietet dafür `tmp_path` an; das Modul `tempfile` stellt ähnliche Mechanismen bereit.
+  Siehe auch [PARTREF::m_tempfile].
+
+`tmp_path` selbst hat `function`-Scope und lässt sich deshalb in einer `module`-Fixture nicht
+verwenden.
+Für diesen Fall gibt es
+[`tmp_path_factory`](https://docs.pytest.org/en/stable/reference/reference.html#tmp-path-factory):
+Sein `mktemp()` legt ein neues temporäres Verzeichnis an.
+
+Außerdem soll die Fixture ihre Datei am Ende selbst wieder entfernen.
+Dafür schreibt man eine Fixture mit `yield` statt `return`:
+Der Code vor `yield` ist das Setup, der mit `yield` übergebene Wert ist das, was der Test bekommt,
+und der Code nach `yield` ist der Teardown.
+pytest führt den Teardown aus, sobald das Fixture-Exemplar nicht mehr gebraucht wird,
+bei `function`-Scope also nach jedem Test, bei `module`-Scope erst nach dem letzten Test der Datei.
+Wie `yield` in Python allgemein funktioniert, müssen Sie hierfür nicht wissen; das Muster genügt.
+Lesen Sie dazu in der pytest-Doku den Anfang des Abschnitts
+[Teardown/Cleanup (AKA Fixture finalization)](https://docs.pytest.org/en/stable/how-to/fixtures.html#teardown-cleanup-aka-fixture-finalization)
+über Yield-Fixtures.
+
+Ersetzen Sie in `test_userservice.py` die Fixture `temp_file` und die beiden Tests
+durch folgende Fassung:
 
 ```python
-import pytest
-
 @pytest.fixture(scope="module")
 def temp_file(tmp_path_factory):
     temp_dir = tmp_path_factory.mktemp("shared-temp")
@@ -344,14 +349,24 @@ def test_creates_temp_file(temp_file):
 
 
 def test_another_temp_file(temp_file):
-    temp_file.write_text("Test war hier!")
+    temp_file.write_text("Test war hier!")  # Ausgangszustand selbst herstellen
     content = temp_file.read_text()
     print(f"Dateiinhalt: {content}")
     assert content == "Test war hier!"
 ```
 
-[EQ] Warum ist `tmp_path` oder `tempfile` in diesem Fall besser als eine feste Datei im
-Arbeitsverzeichnis? Welche Vorteile hat das für Wiederholbarkeit und sauberes Cleanup?
+Löschen Sie außerdem die übrig gebliebene `debug_output.txt` aus Ihrem Arbeitsverzeichnis.
+
+Wohin legt pytest diese temporären Verzeichnisse eigentlich, und was bleibt davon übrig?
+
+[EC] Führen Sie die Tests viermal hintereinander aus: `pytest -v -s test_userservice.py`.
+Die Cleanup-Meldung zeigt den vollständigen Pfad der Datei.
+Listen Sie danach mit `ls -l` den Inhalt des Verzeichnisses `pytest-of-<Benutzername>` auf,
+das in diesem Pfad vorkommt, und ebenso den Inhalt eines der darin liegenden `pytest-<Nummer>`-Verzeichnisse.
+
+[EQ] Welche Verzeichnisse finden Sie, und wie viele davon?
+Was ist aus den Verzeichnissen der älteren Läufe geworden, und wo ist `debug_output.txt` geblieben?
+Was bedeutet das im Vergleich zur festen Datei im Arbeitsverzeichnis?
 
 [EC] Verändern Sie jetzt absichtlich einen Test so, dass er fehlschlägt:
 
@@ -362,102 +377,82 @@ def test_another_temp_file(temp_file):
 
 Führen Sie danach erneut `pytest -v test_userservice.py` aus.
 
-[EQ] Welche Ausgabe sehen Sie in der pytest-Konsole? Wird der Cleanup im Fixture noch ausgeführt,
-wenn der Test selbst fehlschlägt? Warum ist das wichtig?
+[EQ] Welche Ausgabe sehen Sie in der pytest-Konsole?
+Wird der Cleanup im Fixture noch ausgeführt, wenn der Test selbst fehlschlägt?
+Warum ist das wichtig?
+
+Machen Sie die Änderung an `test_another_temp_file` danach wieder rückgängig.
 
 ### Fixtures teilen: conftest.py
 <!-- time estimate: 15 min -->
 
 Wenn Sie mehrere Testdateien haben, die dieselben Fixtures brauchen, gibt es dafür in pytest
-eine praktische Lösung. Lassen Sie uns genau anschauen, wie das funktioniert.
+eine praktische Lösung.
 
-Erstellen Sie eine Datei `conftest.py` mit geteilten Fixtures und der gemeinsam genutzten
-Hilfsklasse:
+Verschieben Sie die Fixture `user_service` aus `test_userservice.py` in eine neue Datei
+`conftest.py` im selben Verzeichnis:
 
 ```python
 import pytest
 
-
-class Result:
-    def __init__(self, success):
-        self.success = success
-
-
-class PseudoUserservice:
-    def __init__(self):
-        self.users = {}
-        print(f"Neuer UserService erstellt (ID: {id(self)})")
-
-    def register(self, username, email, password):
-        if username in self.users:
-            return Result(False)
-        self.users[username] = {'email': email, 'password': password}
-        return Result(True)
+from userservice import PseudoUserservice
 
 
 @pytest.fixture
-def fresh_user_service():
-    """Frischer UserService für jeden Test."""
+def user_service():
     return PseudoUserservice()
 ```
 
-Erstellen Sie eine zweite Testdatei `test_sharing.py` und importieren Sie die gemeinsame Klasse
-explizit:
+Den Import von `PseudoUserservice` braucht `test_userservice.py` danach nicht mehr.
+
+Erstellen Sie eine zweite Testdatei `test_sharing.py`, die dieselbe Fixture benutzt:
 
 ```python
-from conftest import PseudoUserservice
+from userservice import PseudoUserservice
 
 
-def test_in_other_file(fresh_user_service):
-    assert isinstance(fresh_user_service, PseudoUserservice)
-    result = fresh_user_service.register("bob", "bob@test.com", "pass")
+def test_in_other_file(user_service):
+    assert isinstance(user_service, PseudoUserservice)
+    result = user_service.register("bob", "bob@test.com", "pass")
     assert result.success
 ```
 
-Damit gibt es die Klasse nur noch an einer Stelle. Die Fixture-Definition bleibt über pytest
-automatisch sichtbar, aber die gemeinsame Test-Hilfsklasse wird nicht doppelt definiert.
-Das macht das Beispiel leicht nachvollziehbar und vermeidet eine unnötige Verdopplung.
+Keine der beiden Testdateien definiert oder importiert `user_service`.
 
-[EC] Führen Sie die beiden Dateien `test_userservice.py` und `test_sharing.py` mit pytest aus:
+[EC] Führen Sie beide Testdateien mit pytest aus:
 `pytest -v test_userservice.py test_sharing.py`
 
-Wenn Sie den Test ausführen, sehen Sie, dass pytest die Fixture automatisch findet.
-Die gemeinsame Klasse `PseudoUserservice` liegt aber nur noch an einer Stelle in `conftest.py`
-und wird in `test_sharing.py` explizit importiert.
+pytest findet die Fixture trotzdem, und beide Dateien benutzen dieselbe Definition.
+Dahinter steckt Folgendes:
 
-Folgendes haben Sie gerade beobachtet:
-
-1. **Automatisches Laden:** pytest lädt automatisch alle `conftest.py` Dateien im aktuellen
-   Verzeichnis und allen übergeordneten Verzeichnissen
-2. **Fixture-Discovery:** pytest scannt diese `conftest.py`-Dateien nach `@pytest.fixture`-
-   Dekoratoren und registriert sie global
-3. **Namensauflösung:** Wenn ein Test einen Parameter `fresh_user_service` hat, sucht pytest
-   automatisch nach einer gleichnamigen Fixture in
+1. **Automatisches Laden:** Beim Sammeln der Tests lädt pytest automatisch die `conftest.py`-Dateien
+   im Verzeichnis der Testdateien und in den übergeordneten Verzeichnissen.
+2. **Sichtbarkeit:** Fixtures aus einer `conftest.py` stehen allen Tests in deren Verzeichnis
+   und dessen Unterverzeichnissen zur Verfügung, aber nicht darüber hinaus.
+3. **Namensauflösung:** Wenn ein Test einen Parameter `user_service` hat, sucht pytest
+   nach einer gleichnamigen Fixture in
    (1) der gleichen Datei, (2) `conftest.py` im gleichen Verzeichnis,
-   (3) `conftest.py` in übergeordneten Verzeichnissen, (4) eingebauten pytest-Fixtures.
+   (3) `conftest.py` in übergeordneten Verzeichnissen, (4) Plugins, darunter die eingebauten pytest-Fixtures.
 
-Die Fixture selbst ist also über die pytest-Discovery sichtbar, ohne dass ein normaler
-Python-Import notwendig ist. Die gemeinsame Hilfsklasse wird aber bewusst importiert, damit
-es nicht zu einer zweiten, von der echten Klasse abweichenden Definition kommt.
-
-Die Abhängigkeit des Tests bleibt in seiner Signatur sichtbar, und die gemeinsame Klasse wird nicht
-doppelt definiert.
-Damit bleibt beides nachvollziehbar:
-Das Setup ist klar sichtbar, aber die gemeinsame Hilfsklasse muss nicht
-in jeder Datei erneut geschrieben werden.
+Die Fixture ist also ohne normalen Python-Import sichtbar.
+Die Klasse `PseudoUserservice` dagegen wird ganz normal aus `userservice.py` importiert;
+`conftest.py` selbst sollte man nicht importieren, sie ist allein für pytest da.
 
 [EQ] Warum kann die automatische Auflösung über `conftest.py` in einem übergeordneten Verzeichnis
-plötzlich unangenehm werden, wenn ein Projekt wächst? Nennen Sie ein konkretes Beispiel für ein
-Problem, das dadurch entstehen kann, und vergleichen Sie das mit einer expliziten Import-Variante.
+plötzlich unangenehm werden, wenn ein Projekt wächst?
+Nennen Sie ein konkretes Beispiel für ein Problem, das dadurch entstehen kann,
+und vergleichen Sie das mit einer expliziten Import-Variante.
 
 ### Eingebaute Fixtures verstehen
 <!-- time estimate: 15 min -->
 
-pytest bringt viele eingebaute Fixtures mit. Für diese Aufgabe sind vor allem zwei davon
-relevant:
+pytest bringt viele eingebaute Fixtures mit.
+Zwei davon kennen bzw. brauchen Sie:
 
-- `tmp_path`: Temporäre Dateien/Verzeichnisse für File-IO-Tests
-- `capsys`: Output-Testing, Debug-Ausgaben validieren
+- `tmp_path`: Temporäres Verzeichnis für Datei-Tests.
+  Sie kennen es schon als `function`-Variante von `tmp_path_factory`:
+  Jeder Test bekommt ein eigenes, frisches Verzeichnis.
+- `capsys`: Fängt die Ausgaben auf stdout und stderr ab, damit ein Test sie prüfen kann.
 
 Lesen Sie nach, was jede davon tut:
 [Built-in fixtures reference](https://docs.pytest.org/en/stable/reference/fixtures.html)
@@ -487,16 +482,18 @@ def test_capsys_experiment(capsys):
 ```
 
 [EC] Fügen Sie beide Tests zu `test_userservice.py` hinzu und führen Sie sie aus:
-`pytest -v test_userservice.py`
+`pytest -v -s test_userservice.py`
+(Mit `-s` zeigt pytest auch die `print()`-Ausgaben bestandener Tests an.)
 
 ### Reflexion: Wann und warum Fixtures?
 <!-- time estimate: 5 min -->
 
 Sie haben jetzt verschiedene Möglichkeiten kennengelernt, wie pytest beim Aufbau eines Tests
-helfen kann. Denken Sie kurz darüber nach, wie das Ihr Vorgehen verändert:
+helfen kann.
+Denken Sie kurz darüber nach, wie das Ihr Vorgehen verändert:
 
 [EQ] Fixtures verändern die Art, wie Sie über Tests nachdenken:
-weg von "Setup-Code schreiben" hin zu "Dependencies deklarieren".
+weg von "Setup-Code schreiben" hin zu "Abhängigkeiten deklarieren".
 Die eigentliche Testlogik wird dadurch deutlich besser erkennbar.
 Welcher Nachteil entsteht dadurch, dass das Setup nicht mehr direkt im Testrumpf steht?
 [ENDSECTION]
