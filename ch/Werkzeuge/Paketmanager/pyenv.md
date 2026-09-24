@@ -2,17 +2,17 @@ title: "pyenv: Mehrere Python-Versionen nebeneinander benutzen"
 stage: alpha
 timevalue: 1.0
 difficulty: 2
-assumes: venv, curl
+assumes: venv
 ---
 
-[SECTION::goal::product]
+[SECTION::goal::experience]
 Ich kann `pyenv` verwenden, um verschiedene Python-Versionen zu installieren und zu verwalten.
 [ENDSECTION]
 
 
 [SECTION::background::default]
 Verschiedene Python-Projekte benötigen manchmal unterschiedliche Python-Versionen.
-Wenn man selbst eine Bibliothek veröffentlichen möchte, sollte man deren Kompatibilität mit 
+Wenn man selbst eine Bibliothek veröffentlichen möchte, sollte man deren Kompatibilität mit
 möglichst vielen Python-Versionen durch entsprechende Tests sicherstellen.
 Aber in Debian ist normalerweise immer nur eine einzige Python-Version verfügbar.
 Also wie löst man das?
@@ -22,7 +22,7 @@ Im Gegensatz zu `venv`, das Sie aus [PARTREF::venv] kennen, verwaltet `pyenv` ni
 getrennte Paketumgebungen zur gleichen Python-Version, sondern die Python-Version selbst.
 
 Es stehen Hunderte von Versionen zur Verfügung, nicht nur von der Standardimplementierung CPython,
-sondern auch von anderen wie 
+sondern auch von anderen wie
 PyPy (mit Just-in-Time-Compiler) oder
 MicroPython (für Mikrocontroller).
 [ENDSECTION]
@@ -32,70 +32,105 @@ MicroPython (für Mikrocontroller).
 Verwenden Sie bei Bedarf die
 [pyenv Command Reference](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md).
 
-### pyenv installieren
+### `pyenv` installieren und einrichten
 
 `sudo apt update && sudo apt install pyenv`
 
 [EC] Überprüfen Sie die Installation: `pyenv --version`
 
-### Verfügbare Python-Versionen erkunden
+`pyenv` arbeitet mit sogenannten _Shims_: kleinen Platzhalterprogrammen namens `python`, `python3`, `pip` usw.
+im Verzeichnis `~/.pyenv/shims`.
+Steht dieses Verzeichnis im `PATH` vor dem System-Python, landet jeder Aufruf von `python` beim Shim,
+und der ruft die gerade gewählte Python-Version auf.
 
-1. [EC] Listen Sie alle installierbaren Python-Versionen auf: `pyenv install --list`
-   Die Ausgabe ist sehr lang.
-   Filtern Sie mit `grep` nach den Versionen 3.10 und 3.11:
-   `pyenv install --list | grep "  3\.10\.\|  3\.11\."`
+Außerdem braucht `pyenv` eine Shellfunktion gleichen Namens:
+`pyenv shell` und `pyenv rehash` müssen den Zustand der laufenden Shell verändern
+(Umgebungsvariablen bzw. den Befehls-Cache).
+Das kann das Programm `pyenv` nicht, denn als Kindprozess kann es die Umgebung seiner Shell nicht ändern.
 
-[HINT::Was bedeutet das grep-Muster?]
-Das Muster `"  3\.10\.\|  3\.11\."` sucht nach Zeilen, die eine Versionsangabe
-der Form `3.10.*` oder `3.11.*` enthalten (mit zwei führenden Leerzeichen).
-Der Punkt im Versionsmuster ist durch `\.` als Literalpunkt maskiert
-(sonst würde er für beliebige Zeichen stehen).
-`\|` ist in grep das „oder“-Symbol.
-Die zwei führenden Leerzeichen verhindern, dass Anaconda- oder PyPy-Einträge mit angezeigt werden.
+Beides richtet `pyenv init` ein.
+Es gibt die nötigen Shell-Befehle aus, und `eval` führt sie in der aktuellen Shell aus.
+
+[EC] Tragen Sie den Aufruf in Ihre `~/.bashrc` ein und laden Sie sie neu:
+`echo 'eval "$(pyenv init - bash)"' >> ~/.bashrc && source ~/.bashrc`
+
+[HINT::Ich benutze `zsh` statt `bash`]
+Verwenden Sie `~/.zshrc` statt `~/.bashrc` und `pyenv init - zsh` statt `pyenv init - bash`.
 [ENDHINT]
 
-2. [EC] Zeigen Sie aktuell installierte Versionen an: `pyenv versions`
+[EC] Prüfen Sie die Einrichtung: `type pyenv` sollte melden, dass `pyenv` eine Shellfunktion ist,
+und `echo $PATH` sollte `~/.pyenv/shims` ganz vorn enthalten.
+<!-- time estimate: 10 min -->
+
+### Verfügbare Python-Versionen erkunden
+
+Lesen Sie in der Command Reference die Abschnitte zu
+[`pyenv install`](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-install),
+[`pyenv versions`](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-versions) und
+[`pyenv latest`](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-latest).
+
+1. [EC] Lassen Sie sich alle installierbaren Versionen von CPython 3.10 und 3.11 anzeigen.
+
+[HINT::Die Liste ist viel zu lang]
+Filtern Sie die Ausgabe mit `grep`.
+
+[HINT::Welches `grep`-Muster brauche ich?]
+`pyenv install --list | grep "  3\.10\.\|  3\.11\."`
+
+Der Punkt ist durch `\.` als Literalpunkt maskiert (sonst stünde er für ein beliebiges Zeichen).
+`\|` ist in `grep` das „oder“-Symbol.
+Die zwei führenden Leerzeichen verhindern, dass Anaconda- oder PyPy-Einträge mit angezeigt werden.
+[ENDHINT]
+[ENDHINT]
+
+2. [EC] Ermitteln Sie mit einem einzigen Befehl die neueste bekannte Patchversion von Python 3.10
+   und ebenso von 3.11.
+3. [EC] Zeigen Sie die aktuell installierten Versionen an.
    Zu Beginn sehen Sie dort nur `system` (Ihr vorhandenes System-Python).
-<!-- time estimate: 5 min -->
+<!-- time estimate: 10 min -->
 
 ### Python-Versionen installieren
 
-Suchen Sie sich aus der `pyenv install --list`-Ausgabe jeweils die neueste Patchversion von Python 3.10
-und 3.11 heraus (also z. B. `3.10.17` und `3.11.12`) und installieren Sie beide
-(jede Installation dauert einige Minuten):
+1. [EC] Installieren Sie die neuesten Patchversionen von Python 3.10 und 3.11
+   (jede Installation dauert einige Minuten, weil Python dabei aus dem Quellcode übersetzt wird).
+2. [EC] Überprüfen Sie Ihre installierten Versionen.
 
-1. [EC] `pyenv install 3.10.17`  _(Patchnummer ggf. anpassen)_
-2. [EC] `pyenv install 3.11.12`  _(Patchnummer ggf. anpassen)_
-3. [EC] Überprüfen Sie Ihre installierten Versionen: `pyenv versions`
+[HINT::Muss ich die volle Versionsnummer angeben?]
+Nein. Lesen Sie im Abschnitt zu `pyenv install` nach, was bei Angabe eines Präfixes wie `3.10` passiert.
+[ENDHINT]
 <!-- time estimate: 15 min -->
 
 ### Python-Versionen verwenden
 
 `pyenv` kennt drei Ebenen für die aktive Python-Version:
 
-- `pyenv global <version>` – gilt systemweit als Standard
+- `pyenv global <version>` – gilt als Standard für Ihren Benutzer
 - `pyenv local <version>` – gilt im aktuellen Verzeichnis (und allen Unterverzeichnissen),
   gespeichert in einer Datei `.python-version` im Verzeichnis
 - `pyenv shell <version>` – gilt nur in der aktuellen Shell-Sitzung, temporär ohne Datei
 
-1. [EC] Zeigen Sie die aktuell aktive Python-Version: `python --version`
-2. [EC] Wechseln Sie global zu Python 3.10: `pyenv global 3.10.17`  _(Patchnummer anpassen)_
-   Überprüfen Sie: `python --version`
-3. [EC] Erstellen Sie ein Testverzeichnis und wechseln Sie hinein:
-   `mkdir ~/pyenv_test && cd ~/pyenv_test`
-4. [EC] Setzen Sie für dieses Verzeichnis Python 3.11: `pyenv local 3.11.12`  _(Patchnummer anpassen)_
-   Überprüfen Sie: `python --version`
-5. [EC] Schauen Sie nach, welche Datei pyenv angelegt hat: `cat .python-version`
-6. [EQ] Verlassen Sie das Verzeichnis mit `cd ~` und prüfen Sie `python --version`.
+Geben Sie dabei jeweils die volle Versionsnummer an, wie `pyenv versions` sie anzeigt.
+
+1. [EC] Zeigen Sie die Version Ihres System-Pythons: `python3 --version`
+2. [EC] Probieren Sie nun `python --version`.
+   Debian liefert kein Kommando `python` (nur `python3`), aber Ihre `pyenv`-Versionen tun es.
+   Die Meldung des Shims sagt Ihnen, wo es `python` gibt.
+3. [EC] Stellen Sie Python 3.10 als globale Version ein und prüfen Sie mit `python --version`.
+4. [EC] Erstellen Sie ein Testverzeichnis `~/pyenv_test` und wechseln Sie hinein.
+5. [EC] Stellen Sie für dieses Verzeichnis Python 3.11 ein und prüfen Sie mit `python --version`.
+6. [EC] Schauen Sie nach, welche Datei `pyenv` angelegt hat und was darin steht.
+7. [EQ] Verlassen Sie das Verzeichnis mit `cd ~` und prüfen Sie `python --version`.
    Welche Version ist nun aktiv und warum?
-<!-- time estimate: 15 min -->
+8. [EC] Stellen Sie (weiterhin in `~`) nur für die aktuelle Shell Python 3.11 ein
+   und prüfen Sie mit `python --version`.
+9. [EC] Öffnen Sie ein neues Terminalfenster und prüfen Sie dort erneut `python --version`.
+<!-- time estimate: 20 min -->
 
 ### Überblick und Reflexion
 
-1. [EQ] Sie haben soeben `pyenv global` und `pyenv local` ausprobiert.
+1. [EQ] Sie haben soeben `pyenv global`, `pyenv local` und `pyenv shell` ausprobiert.
    Wann im Entwicklungsalltag würden Sie welches verwenden?
-   Wozu dient `pyenv shell` im Vergleich dazu?
-2. [EQ] Werfen Sie einen Blick auf alle verfügbaren pyenv-Befehle: `pyenv commands`
+2. [EQ] Werfen Sie einen Blick auf alle verfügbaren `pyenv`-Befehle: `pyenv commands`
    Welchen Befehl finden Sie warum hilfreich?
 
 <!-- time estimate: 10 min -->
