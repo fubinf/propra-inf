@@ -2,7 +2,7 @@ title: Code Coverage mit pytest-cov - Von Tool-Nutzung zur kritischen Bewertung
 stage: alpha
 timevalue: 2.5
 difficulty: 3
-assumes: m_pytest, pytest-Methodik-Whitebox
+assumes: m_pytest, pytest-Methodik-Blackbox
 requires: pytest_call
 ---
 
@@ -26,9 +26,6 @@ Im Folgenden verwenden wir „Testabdeckung“ und „Coverage“ synonym.
 
 In dieser Aufgabe lernen Sie `pytest-cov` zunächst an bestehender Codebasis kennen.
 Anschließend entwickeln Sie ein realitätsnahes Beispiel und bauen ein kritisches Verständnis für Coverage-Metriken auf.
-
-Die in [PARTREF::pytest-Methodik-Whitebox] erstellten Artefakte können Sie in Teil B
-alternativ zum vorgegebenen `EmailValidator` verwenden.
 
 Es ist hilfreich, Testergebnis und Testabdeckung gemeinsam einzusehen.
 Um diese Abfrage nicht separat durchführen zu müssen, verwenden wir das `pytest-cov`-Plugin.
