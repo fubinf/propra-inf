@@ -2126,6 +2126,18 @@ Reihenfolge ankommen können, ohne dass sie neu gesendet werden.
 [ENDTERM]
 
 
+[TERM::Überdeckung|Testabdeckung|Coverage|Überdeckungskriterium]
+Ein Maß dafür, wie gründlich eine Testmenge den Code durchläuft.
+Ein Überdeckungskriterium legt fest, welche Situationen im Code herbeigeführt werden müssen,
+z.B. jede Anweisung ausgeführt (Anweisungsüberdeckung), jeder Zweig jeder Entscheidung genommen
+(Zweigüberdeckung) oder jede atomare Bedingung einmal wahr und einmal falsch ausgewertet
+(Bedingungsüberdeckung).
+Die Überdeckung ist der Anteil dieser Situationen, den die Tests tatsächlich erreicht haben.
+Hohe Überdeckung allein macht noch keine guten Tests:
+Sie sagt nichts darüber, ob die Tests die Ergebnisse auch prüfen.
+[ENDTERM]
+
+
 [TERM::Umgebungsvariable|Umgebungsvariablen|environment variable]
 Ein Paar aus Name und Wert, das einem Prozess eines Unix-Betriebssystems zugeordnet ist
 und an von diesem Prozess aus gestartete Unterprozesse weitergegeben wird und deshalb zur

@@ -54,7 +54,7 @@ graph TD
     pytest_parametrize --> pytest_tox
     pytest_methodik_blackbox --> pytest_methodik_whitebox
     pytest_methodik_blackbox --> pytest_methodik_rest
-    pytest_methodik_whitebox --> testcoverage
+    pytest_methodik_blackbox --> testcoverage
     pytest_mocking --> pytest_mocking_freezegun
     pytest_fixtures --> pytest_benchmark
     tdd --> tdd_pp
@@ -109,7 +109,7 @@ graph TD
 Diese Tasks sind noch nicht veröffentlicht (`stage: draft`) und werden künftig verfügbar sein:
 
 - **testcoverage.md**: Code Coverage mit `pytest-cov` messen, interpretieren und kritisch bewerten.
-  Setzt `pytest_call.md` und `pytest-Methodik-Whitebox.md` voraus.
+  Setzt `pytest_call.md` und `pytest-Methodik-Blackbox.md` voraus.
 - **tdd_pp.md**: TDD im Pair Programming. Setzt `tdd.md` voraus.
 - **pytest_benchmark.md**: Performance-Benchmarks mit `pytest-benchmark`. Setzt `pytest_fixtures.md` voraus.
 - **pytest_tox.md**: Testen in mehreren Python-Umgebungen mit `tox`.
