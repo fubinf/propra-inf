@@ -43,7 +43,7 @@ Die dazu nötigen diversen Schritte bilden eine Kette, die fehlschlägt, sobald 
 fehlschlägt.
 Eine solche Kette heißt auf Build-Servern meist [TERMREF::Pipeline].
 
-### Repository Klonen
+### Repository forken
 
 Der Einfachheit halber klonen wir dieses Repo nicht, sondern machen die wenigen nötigen Schritte
 damit direkt in GitHub.
@@ -58,11 +58,11 @@ folgende GitHub-Hilfeseite:
 
 ### Workflow anlegen
 
-Als nächstes Benötigen wir eine Workflow-Datei, die Github Anweisungen gibt, was unsere Pipeline
+Als Nächstes benötigen wir eine Workflow-Datei, die GitHub sagt, was unsere Pipeline
 tun soll.
 
-Erstellen Sie in Ihrem abgezweigten Repository im Verzeichnis `.github/workflow/` eine Datei
-`sut.yaml` und fügen Sie folgenden Inhalt ein:
+Erstellen Sie in Ihrem Fork im Verzeichnis `.github/workflows/` eine Datei
+`sut.yaml` mit dem unten stehenden Inhalt.
 
 [HINT::Workflow]
 Um eine Datei über die GitHub GUI zu erstellen, gehen Sie wie
@@ -70,11 +70,11 @@ Um eine Datei über die GitHub GUI zu erstellen, gehen Sie wie
 beschrieben vor.
 [ENDHINT]
 
-Diese YAML-Datei verwendet Jobs, um Tasks auszuführen. Die Syntax ist
+Die Datei beschreibt Jobs, die aus einzelnen Schritten (`steps`) bestehen.
+Die Syntax ist
 [hier](https://docs.github.com/de/actions/writing-workflows/workflow-syntax-for-github-actions)
-dokumentiert und ist sehr hilfreich als Nachschlagewerk. (Muss nicht vollständig gelesen werden.)
-
-Nutzen Sie folgende Vorlage für unsere nächsten Schritte.
+dokumentiert; das brauchen Sie nicht vollständig zu lesen, aber Sie werden es gleich
+zum Nachschlagen brauchen.
 
 ```yaml
 name: System under Test
@@ -115,24 +115,26 @@ jobs:
 ```
 
 [NOTICE]
-Das verwendete Repository verwendet das Python Paket [TERMREF::Flask]. In dieser Pipeline werden wir
-[TERMREF::Flask] nutzen, um einen Webserver mit diesem Codestand zu starten. Wenn das klappt, scheint
-das Grundgerüst der Entwicklung erstmal stabil zu sein.
+Das Repository ist eine Webanwendung auf Basis von [TERMREF::Flask].
+Die Pipeline startet damit einen Webserver mit dem aktuellen Codestand.
+Klappt das, ist das Grundgerüst zumindest nicht kaputt.
 [ENDNOTICE]
 
-- [ER] Ersetzen Sie in der Datei die Schrittnamen S3 bis S5 durch sinnvolle, informative Bezeichnungen
-  für das, was der Schritt ausführt und pushen Sie Ihr Ergebnis
+- [ER] Ersetzen Sie die Schrittnamen S3 bis S5 durch Bezeichnungen, die sagen, was der Schritt tut.
+  Committen Sie die Datei.
 
-Sobald Sie diese Datei committet haben, sollte die Pipeline direkt ausgeführt.
-Sollte dies nicht der Fall sein, prüfen Sie Ihre YAML-Datei und korrigieren Sie ggf. den Fehler.
+Eigentlich sollte die Pipeline jetzt nach jedem Commit von allein loslaufen.
+Schauen Sie im Reiter "Actions" Ihres Forks nach: Es passiert nichts.
+Die Vorlage enthält absichtlich einen Fehler.
 
-- [EQ] Welcher Bereich sorgt dafür, dass die Pipeline automatisch gestartet wird?
+- [EQ] Welcher Bereich der YAML-Datei legt fest, wann die Pipeline automatisch gestartet wird?
 - [EQ] Was hat die automatische Ausführung verhindert?
 
-In der Regel wird bei einer Entwicklung nicht direkt mit dem `main`-Branche gearbeitet.
+Beheben Sie den Fehler.
+Da man in der Regel nicht direkt auf `main` entwickelt, soll die Pipeline aber nicht nur dort laufen:
 
-- [ER] Ergänzen Sie einen Trigger so, dass sowohl der `main`-, als auch alle Branches unter `feature\*`
-  automatisch getriggert werden.
+- [ER] Ändern Sie den Trigger so, dass die Pipeline bei Pushes auf `main` und auf alle Branches
+  unter `feature/*` startet.
 
 - [EQ] Tragen Sie in Ihre Abgabedatei einen GitHub-URL ein, über den man die obige Datei Ihres
   Forks betrachten kann.
@@ -144,7 +146,7 @@ Um den Status der Pipeline zu inspizieren, gehen Sie wie
 
 - Öffnen Sie den Workflow `System under Test`.
   Auf der rechten Seite sehen Sie alle Workflow-Durchläufe.
-- Klicken Sie auf den obersten Eintrag, der Ihrer Commit-Nachricht enthalten sollte.
+- Klicken Sie auf den obersten Eintrag; er trägt Ihre letzte Commit-Nachricht.
   Innerhalb dieses Laufs sehen Sie die definierten Jobs.
 - Klicken Sie auf den Job (hier ist nur einer vorhanden: `build`) und nehmen Sie die einzelnen
   Schritte genauer unter die Lupe.
@@ -152,29 +154,29 @@ Um den Status der Pipeline zu inspizieren, gehen Sie wie
 
 ### Erfolgreiche Pipeline
 
-Tatsächlich, so fern Sie nicht vorgegriffen haben, sollte der Pipelinedurchlauf nicht _grün_ sein.
-Das liegt an den ersten beiden `steps` in der Yaml-Datei.
+Jetzt läuft die Pipeline zwar los, aber sofern Sie nicht vorgegriffen haben, ist der Durchlauf
+nicht _grün_.
+Schuld sind die ersten beiden `steps`: Sie haben einen Namen, tun aber nichts.
 
-Lesen Sie die Bereiche `checkout` und `setup-python` in der o.a. Dokumentation nach.
+Lesen Sie in der obigen Dokumentation nach, wie man die fertigen Actions `actions/checkout` und
+`actions/setup-python` einbindet.
 
-- [ER] Beheben Sie die Abhängigkeiten.
+- [ER] Ergänzen Sie die beiden Schritte `Checkout` und `Setup Python`, sodass die Pipeline grün wird.
 
-Hm, auch wenn wir direkt in unserem Repository unsewre Arbeit verricdhten, scheint das folgende ja
-wichtig zu sein, da es fehlt.
+Merkwürdig: Die Workflow-Datei liegt doch in unserem Repository.
+Wieso muss man das Repository dann erst noch auschecken?
 
-- [EQ] Warum ist `checkout` so wichtig und was macht es?
+- [EQ] Was macht `checkout` und warum ist es nötig?
 
-Wir verwenden für unsere Ausführung die aktuellste Ubuntu Version, die bereits mit Python ausgeliefert
-wird.
-Auch wenn Python schon vorhanden ist, ...
+Die Pipeline läuft auf `ubuntu-latest`, und das bringt bereits ein Python mit.
 
-- [EQ] ... warum ist es dennoch sinnvoll Python direkt über die Pipeline zu installieren?
+- [EQ] Warum ist es trotzdem sinnvoll, Python in der Pipeline ausdrücklich einzurichten?
 
 ### Pipeline pimpen
 
-Viel macht die Pipeline bisher noch nicht.
-Wir prüfen lediglich, ob sich die [TERMREF::Flask]-Anwendung starten lässt und geben einige Information aus,
-die im Durchlauf eingesehen werden können.
+Viel macht die Pipeline bisher nicht.
+Sie prüft lediglich, ob sich die [TERMREF::Flask]-Anwendung starten lässt, und gibt dabei einige
+Informationen im Protokoll aus.
 
 - [EQ] Unter welcher URL ist Flask erreichbar?
 
@@ -185,24 +187,22 @@ da diese in einer Umgebung ausgeführt wird, auf die Sie nicht (ohne großen Auf
 Rechner aus zugreifen können.
 [ENDHINT]
 
-Unabhängig von der Validierung, ob die Anwendung erfolgreich startet, wollen wir noch ein weiteres
-sogenannte [TERMREF::Gate] einbauen, um die Qualität zu erhöhen.
+Als Nächstes bauen wir ein weiteres sogenanntes [TERMREF::Gate] ein:
+eine Prüfung, die den Durchlauf rot werden lässt, wenn der Code bestimmte Anforderungen nicht erfüllt.
+`flake8` ist bereits installiert (siehe Schritt S3), wird aber nirgends aufgerufen.
 
-Sorgen Sie dafür, dass das bereits installierte `flake8`-Paket an der richtigen Stelle in der
-Yaml-Datei seinen Dienst ausnimmt.
+- [ER] Ergänzen Sie einen Schritt, der `flake8` auf den Code der Anwendung anwendet.
 
-- [ER] Erstellen Sie eine Flake8-Lintingüberprüfung.
+Vermutlich ist Ihre Pipeline jetzt rot.
+Für ein echtes Gate fehlen uns aber vereinbarte Code-Vorgaben; vorerst wollen wir das
+flake8-Ergebnis nur sehen, nicht daran scheitern.
 
-Da wir lediglich Informationen über unsere Codequalität haben wollen und kein wirkliches
-[TERMREF::Gate] - uns fehlen dazu definierte Code-Vorgaben - wollen wir diesen Schritt
-unabhängig des Ergebnisses auf _bestanden_ setzen.
+- [ER] Sorgen Sie mit der Option `continue-on-error: true` dafür, dass der Linting-Schritt die
+  Pipeline nicht mehr scheitern lässt, seine Meldungen aber weiterhin im Protokoll erscheinen.
 
-- [ER] Probieren Sie aus, wie sie die Option `continue-on-error: true` für das Liniting verwenden
-  können.
+### Reflexion
 
-### Reflektion
-
-- [EQ] Wie empfanden Sie die Ergänzung des flake8-task?
+- [EQ] Wie empfanden Sie die Ergänzung des flake8-Schritts?
 - [EQ] Welches weitere [TERMREF::Gate] könnte aus Ihrer Sicht sinnvoll sein bzw. wäre der nächste
   Schritt?
 
