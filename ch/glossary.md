@@ -292,6 +292,14 @@ in formaler und struktureller Hinsicht gestaltet sein soll –
 unabhängig davon, „was“ das Programm leisten soll.
 [ENDTERM]
 
+[TERM::Codeformatierer|Formatierer|Code Formatter]
+Ein Werkzeug, das das Layout von Quellcode (Einrückung, Leerzeichen, Zeilenumbrüche, Anführungszeichen u.ä.)
+automatisch nach festen Regeln umschreibt, ohne die Bedeutung des Programms zu verändern.
+Anders als ein [TERMREF::Linter] meldet ein Codeformatierer also keine Probleme,
+sondern behebt Layoutabweichungen direkt.
+Beispiele sind `black` für Python und `gofmt` für Go.
+[ENDTERM]
+
 [TERM::Commit (git)|Commit]
 Ein Commit ist ein dauerhaft gespeicherter Zustand eines Git-Repositorys.
 Beim Erstellen eines Commits speichert Git ein vollständiges Abbild

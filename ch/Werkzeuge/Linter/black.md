@@ -1,132 +1,196 @@
-title: Linting mit black
-stage: draft
-timevalue: 0
+title: Code automatisch formatieren mit black
+stage: alpha
+timevalue: 1.0
 difficulty: 2
-explains: Linter
-assumes: venv, flake8
+explains: Codeformatierer
+assumes: venv, git-Branches
+requires: flake8
 ---
 
-TODO_2_ruhe:
+[SECTION::goal::experience]
 
-Ich stelle mir (gegeben die Aufgaben PEP8 und flake8) den Rest so vor:  
-Aufgabe black:
+Ich kann meinen Python-Code mit `black` automatisch formatieren und das Ergebnis beurteilen.
 
-- Die gleichen Dateien wieder benutzen wie bei flake8, aber nochmal die Fassung auschecken,
-  die vor flake8 vorlag.
-- black drüberlaufen lassen und gucken, a) ob was Wichtiges am Format kaputt gegangen ist (Kommentare)
-  und b) wo mir das Resultat zusagt (gut oder akzeptabel) und wo vielleicht nicht
-- flake8 auf das Ergebnis laufen lassen. Das sollte doch jetzt still sein? Ist es nicht!
-- Verstehen, woher die Abweichungen kommen (nämlich: a) flake8-Meldungen, die gar nicht auf das
-  Format abheben, das black verändert; b) flake8-Meldungen, wo ein anderes Format erwartet wird
-  als die Defaults von black vorsehen).
-- black-Einstellungen so vornehmen, dass die Meldungen aus Kategorie b) verschwinden.
-- Reflektieren, wie mir selektives manuelles Korrigieren gefällt (wie in der flake8-Aufgabe) im Vergleich zum
-  totalen automatischen Korrigieren durch black.
+Ich verstehe, warum `flake8` nach `black` nicht still ist, und kann die beiden Werkzeuge
+aufeinander abstimmen.
 
-Aufgabe Lint-PyCharm:
-
-- Die gleichen Dateien wieder benutzen wie bei flake8, aber nochmal die Fassung auschecken,
-  die vor flake8 vorlag.
-- Die immer vorhandenen Linter-Meldungen in PyCharm erkunden: oben rechts im Editorfenster anklicken.
-- Die Leute in der JetBrains-Doku herausfinden lassen, was das alles enthält
-  (bei Python mindestens die Ausgaben von flake8 und vom pypy-Typchecker; Querverweis (ohne assumes)
-  zur noch nicht existenten Aufgabe über Typdeklarationen machen, die Herr Alrwasheda in Gruppe `Python` anlegen sollte)
-- Für mindestens eine Datei alle Meldungen bearbeiten und lösen
-- EQ: Reflektieren, wie mir das im Vergleich zum manuellen Aufruf von flake8 gefällt? Warum? (vermutlich sehr
-  viel besser, denn es ist recht komfortabel).
-- Diese Anzeige für die flake8-Meldungen so konfigurieren wie in der Aufgabe flake8
-  und dann noch darüber hinaus so, dass nur noch Meldungen erscheinen, die ich auch lösenswert finde.
-- EQ: Wenn ich die nun gelöschten Meldungen mittels nur 2-4 Kategorien beschreiben möchte,
-  welche Kategorien wären das dann. Mit anderen Worten: Was sind meine Kriterien dafür, welche
-  Meldungen ich haben will und welche nicht? Warum?
-- Jetzt auch noch die black-Formatierung in PyCharm einschalten.
-- Nochmal die Fassung der benutzten Python-Quellen auschecken,
-  die vor flake8 vorlag. black anwenden. Jetzt wieder die Meldungen anschauen.
-  Vermutlich weniger als eben?
-- EQ: Da ich nun die bequemsten technischen Mittel dafür kenne:
-  Wie gründlich möchte ich meinen Code bezüglich PEP8 säubern?
-  Falls nicht komplett: Warum nicht?
-  Will ich dafür black nutzen oder es lieber manuell machen? Warum?
-  (Z.B.: Falls ich den Anspruch habe, es gleich richtig einzutippen, liefert eine manuelle Korrektur
-  wünschenswerte Rückmeldung darüber, wie gut das klappt.)
-
-Aufgabe flake8_SUT:
-
-- Ergibt die jetzt noch Sinn? Vermutlich streichen?
-
-
-[SECTION::goal::trial]
-
-- Ich kann black auf einen Python Code ausführen
-- Ich kann black konfigurieren, um nach meinem Bedarf die Codeformatierung vorzunehmen
+Ich habe darüber reflektiert, ob ich lieber selektiv von Hand oder vollständig automatisch korrigiere.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Black ist ein leistungsstarker Python-Codeformatter, der entwickelt wurde, um die manuelle
-Formatierung von Python-Code überflüssig zu machen. Anders als traditionelle Linter wie
-[PARTREF::flake8], die nur Stilrichtlinien überprüfen, formatiert Black den Code automatisch gemäß
-einem festgelegten Satz von Regeln. Dies führt zu einem konsistenten und einheitlichen Codestil im
-gesamten Projekt.
+Ein [TERMREF::Linter] wie `flake8` meldet Probleme, lässt den Code aber unverändert.
+Ein [TERMREF::Codeformatierer] wie `black` meldet nichts, sondern schreibt das Layout des Codes
+(Leerzeichen, Zeilenumbrüche, Anführungszeichen, Klammern) einfach nach festen Regeln um.
+`black` bietet dabei absichtlich kaum Einstellmöglichkeiten:
+Wer es benutzt, soll nicht mehr über Formatierungsfragen nachdenken oder im Team diskutieren müssen.
 
 [ENDSECTION]
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
-### Black Überblick
+### Die Fassung vor `flake8` wiederherstellen
 
-Machen Sie sich mit der offiziellen Dokumentation von [black](https://black.readthedocs.io/en/stable/)
-vertraut und beantworten Sie die folgenden Fragen.
+Wir verwenden denselben Code wie in [PARTREF::flake8],
+und zwar in der Fassung _vor_ Ihren dortigen Korrekturen.
+Damit Ihre Korrekturen erhalten bleiben, arbeiten wir auf einem eigenen Branch.
 
-- [EQ] Was ist black und wofür wird es in der Python-Entwicklung verwendet?
-- [EQ] Steht black in Verbindung zu [TERMREF::PEP 8]?
-- [EQ] Welche Formatierungen kann black am Code vornehmen?
-- [EQ] Welche Funktionen bietet black zur Verbesserung der Codequalität und -lesbarkeit?
-- [EQ] Welche Ressourcen stehen zur Verfügung, um black zu erlernen und effektiv einzusetzen,
-  wie z.B. Dokumentation, Tutorials oder Beispiele?
-- [EQ] Gehört black zu den aktiven oder passiven Lintern?
+- [EC] `git log --oneline -10`
+- Suchen Sie darin den Commit mit Ihren `flake8`-Korrekturen.
+  Dessen Vorgänger ist die gesuchte Fassung.
+- [EC] `git switch -c black-versuch <commit>`, wobei Sie für `<commit>` die Kennung des
+  Vorgänger-Commits einsetzen.
 
-### Black installieren
+[HINT::Ich finde den Commit mit den `flake8`-Korrekturen nicht]
+Das ist der Commit, den Sie in [PARTREF::flake8] direkt vor `git show HEAD` gemacht haben.
+Falls Sie seitdem nichts mehr eingecheckt haben, können Sie einfach `HEAD~1` als `<commit>` benutzen.
+Mit `git show <commit>` können Sie nachsehen, ob Sie den richtigen erwischt haben.
+[ENDHINT]
 
-- [ER] Installieren Sie black in einer neuen Virtuellen Umgebung.
+- [EC] Rufen Sie `flake8 --count --statistics` für dieselben Dateien auf wie in [PARTREF::flake8]
+  (ohne Ihre dortige Konfiguration mit `--ignore` oder `--select`).
+  `--statistics` zeigt am Ende, wie oft jeder Meldungstyp vorkommt.
 
-### Black verwenden
+[HINT::Ich habe in der Aufgabe `flake8` einen Alias oder eine Shellfunktion namens `flake8` angelegt]
+Dann ruft `flake8` Ihre gefilterte Konfiguration auf, und Sie sehen hier nicht alle Meldungen.
+Umgehen Sie den Alias bzw. die Shellfunktion, indem Sie `command flake8 ...` statt `flake8 ...` schreiben.
+Das gilt auch für alle weiteren `flake8`-Aufrufe in dieser Aufgabe.
+[ENDHINT]
 
-Im Folgenden ist ein Codeabschnitt gegeben. Kopieren Sie diesen Teil in eine Datei und verwenden Sie
-black, um diesen Code zu analysieren.
-
-```Python
-import math,sys
-
-def func(  x ) :
-    print( "foo" ,x ) 
-
-def calculate_circle_area (radius ) :
-    area = math.pi*radius**2
-    return area 
-
-def print_circle_info (radius ) :
-    area = calculate_circle_area(radius)
-    print("Kreis mit Radius:",radius)
-print("Fläche:",area)
+<!-- time estimate: 10 min -->
 
 
-if __name__ == "__main__" :
-    print_circle_info(5)
-```
+### `black` anwenden
 
-- [ER] Verbessern Sie den gegebenen Code mit black.
-- [EQ] Welche Verbesserungen werden auf welcher Zeile durchgeführt?
-- [EQ] Angenommen, Sie wollen eine projektdefinierte Zeilenlänge von 120 Zeichen festsetzen. Wie
-  definieren Sie das mit black?
+- [EC] Installieren Sie `black` in Ihrer virtuellen Umgebung mit `pip install black`.
+- [EC] Wenden Sie `black` auf dieselben Dateien an.
+  Die Dateien werden dabei direkt überschrieben.
+- [EC] `git diff --stat`
+- Sehen Sie sich mit `git diff` (nicht im Kommandoprotokoll) an, was `black` verändert hat.
+- [EQ] Hat `black` etwas Wichtiges verschlechtert?
+  Achten Sie besonders auf Kommentare und auf Stellen, die Sie absichtlich besonders ausgerichtet hatten
+  (z.B. tabellenartige Listen oder Dictionaries).
+- [EQ] Nennen Sie zwei Stellen, an denen Ihnen das Ergebnis gut gefällt oder zumindest akzeptabel ist,
+  und (falls vorhanden) eine, an der es Ihnen nicht gefällt.
+  Warum?
+
+[HINT::`black` hat eine Stelle verschlechtert, die ich so behalten will]
+Mit Kommentaren wie `# fmt: skip` oder `# fmt: off`/`# fmt: on` lässt sich `black` stellenweise abschalten,
+siehe
+[Ignoring sections](https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#ignoring-sections).
+Für diese Aufgabe ist das aber nicht nötig.
+[ENDHINT]
+
+- [EC] `git commit -am "black angewendet"`
+
+<!-- time estimate: 15 min -->
+
+
+### `flake8` erneut anwenden
+
+Jetzt ist der Code sauber formatiert, also müsste `flake8` doch still sein?
+
+- [EC] Rufen Sie `flake8 --count --statistics` wie oben erneut auf.
+- [EQ] Welche Meldungstypen sind im Vergleich zum ersten Aufruf verschwunden,
+  welche sind geblieben?
+
+Die verbliebenen Meldungen haben zwei verschiedene Ursachen:
+
+**Kategorie a)**: Die Meldung betrifft etwas, das `black` nicht anfasst.
+Das sind vor allem Dinge jenseits des Layouts, z.B. ungenutzte Importe, Variablennamen
+oder die Programmlogik, aber auch einige Layoutfragen, die `black` bewusst in Ruhe lässt,
+etwa den Inhalt von Kommentaren und String-Literalen.
+
+**Kategorie b)**: Die Meldung betrifft das Layout, aber `flake8` erwartet ein anderes Format
+als das, was `black` standardmäßig erzeugt.
+
+- [EQ] Ordnen Sie jeden verbliebenen Meldungstyp (Code und Kurztext) einer der beiden Kategorien zu.
+  Nutzen Sie dafür die
+  [Meldungscodes von flake8](https://flake8.pycqa.org/en/latest/user/error-codes.html)
+  und die
+  [Meldungscodes von pycodestyle](https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes).
+
+[HINT::Ich weiß nicht, wie ich einen Meldungstyp einordnen soll]
+Fragen Sie sich: Würde die Meldung verschwinden, wenn man nur Leerzeichen und Zeilenumbrüche ändert?
+Und würde `black` genau diese Änderung von sich aus vornehmen, nur eben anders als `flake8` es will?
+Dann gehört sie zu Kategorie b), sonst zu a).
+Für Kategorie b) lohnt sich ein Blick in den Abschnitt
+[Line length](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#line-length)
+der Beschreibung des `black`-Codestils:
+Welche maximale Zeilenlänge benutzt `black`, welche `flake8`?
+[ENDHINT]
+
+<!-- time estimate: 15 min -->
+
+
+### `black` und `flake8` aufeinander abstimmen
+
+Wir versuchen nun, die Meldungen aus Kategorie b) loszuwerden, indem wir `black` passend einstellen.
+Damit die Einstellung nicht bei jedem Aufruf neu angegeben werden muss, legen wir sie in einer
+Konfigurationsdatei ab.
+
+- Lesen Sie in
+  [Configuration via a file](https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#configuration-via-a-file)
+  nach, wie man `black` über eine Datei `pyproject.toml` konfiguriert.
+  Die verfügbaren Optionen stehen weiter oben auf derselben Seite unter
+  [Command line options](https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#command-line-options).
+- [ER] Legen Sie im Wurzelverzeichnis Ihres Projekts eine `pyproject.toml` mit einem Abschnitt
+  `[tool.black]` an, in dem Sie die Zeilenlänge auf den Wert einstellen, den `flake8` erwartet.
+- [EC] Wenden Sie `black` erneut auf dieselben Dateien an (ohne Optionen).
+- [EC] Rufen Sie `flake8 --count --statistics` erneut auf.
+- [EQ] Welche Meldungen aus Kategorie b) sind verschwunden, welche nicht?
+  Warum lässt sich nicht jede `E501`-Meldung durch `black` beseitigen?
+
+[HINT::Es sind immer noch `E501`-Meldungen da]
+Schauen Sie sich die betreffenden Zeilen an.
+Was steht dort, das `black` nicht umbrechen kann, ohne die Bedeutung des Programms zu ändern?
+[ENDHINT]
+
+Manche Meldungen aus Kategorie b), z.B. `E203`, erzeugt `black` absichtlich und lässt sich davon
+auch durch keine Einstellung abbringen.
+Hier muss man stattdessen `flake8` anpassen.
+
+- Lesen Sie den Abschnitt
+  [flake8](https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html#flake8)
+  in der `black`-Dokumentation.
+- [EQ] Warum hält die `black`-Dokumentation die Meldung `E203` für falsch?
+- Die `black`-Dokumentation geht bei der Zeilenlänge den umgekehrten Weg als wir:
+  Sie empfiehlt, `flake8` mit `max-line-length = 88` an `black` anzupassen.
+  Wir haben stattdessen `black` auf die 79 Zeichen eingestellt, die [TERMREF::PEP8] vorsieht.
+- [EQ] Welchen der beiden Wege finden Sie besser? Warum?
+- [EC] Rufen Sie `flake8 --count --statistics` nun mit der dort empfohlenen Option `--extend-ignore`
+  auf (die Zeilenlänge haben Sie ja schon in `black` angepasst).
+  Jetzt sollten nur noch Meldungen aus Kategorie a) übrig sein.
+
+[HINT::Bei mir kam gar keine `E203`-Meldung vor]
+`E203` entsteht nur bei bestimmten Slices wie `liste[start + 1 :]`.
+Falls Ihr Code so etwas nicht enthält, beantworten Sie die Frage trotzdem anhand der Dokumentation.
+[ENDHINT]
+
+<!-- time estimate: 15 min -->
+
 
 ### Reflexion
 
-- [EQ] Können Sie sich vorstellen, diesen Codeverbesserer in einem Projekt einzusetzen?
-  Diskutieren Sie Ihre Antwort.
+- [EQ] In [PARTREF::flake8] haben Sie selektiv von Hand korrigiert, hier hat `black` alles auf einmal
+  automatisch umformatiert.
+  Welches Vorgehen würden Sie für ein eigenes Projekt wählen, welches für ein Teamprojekt?
+  Warum?
+- Ihr Hauptbranch bleibt von alledem unberührt.
+  Mit `git switch -` kommen Sie dorthin zurück.
+
+<!-- time estimate: 5 min -->
 
 [ENDSECTION]
+[SECTION::submission::reflection,trace,snippet]
 
-[SECTION::submission::trace]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
+(Damit ist die `pyproject.toml` gemeint.)
+
 [ENDSECTION]
+[INSTRUCTOR::Kategorien a) und b) sauber getrennt?]
+
+[INCLUDE::ALT:]
+
+[ENDINSTRUCTOR]
