@@ -2,46 +2,73 @@ title: "'tox': automatisierte Tests in virtuellen Umgebungen"
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: pip, venv, m_pytest
+assumes: pip, venv, m_pytest, flake8
+requires: pyenv
 ---
 
 [SECTION::goal::trial]
-Ich kann das Python-Paket `tox` verwenden, um Tests automatisiert in verschiedenen virtuellen
-Umgebungen auszuführen.
+Ich kann das Python-Paket `tox` verwenden, um Tests und andere Prüfwerkzeuge automatisiert
+in verschiedenen virtuellen Umgebungen und unter mehreren Python-Versionen auszuführen.
 [ENDSECTION]
-
 
 [SECTION::background::default]
-Moderne Python-Projekte müssen oft auf verschiedenen Python-Versionen funktionieren und mit
-unterschiedlichen Abhängigkeiten getestet werden.
-Außerdem sollen Tests in einer sauberen, isolierten Umgebung laufen, um sicherzustellen,
-dass keine lokalen Installationen die Ergebnisse verfälschen.
-Das manuelle Erstellen und Verwalten mehrerer virtueller Umgebungen ist mühsam und fehleranfällig.
+Python-Projekte müssen oft auf verschiedenen Python-Versionen funktionieren.
+Außerdem sollen Tests in einer sauberen, isolierten Umgebung laufen, damit keine lokalen Installationen
+die Ergebnisse verfälschen.
+Mehrere virtuelle Umgebungen von Hand zu erstellen und aktuell zu halten, ist mühsam und fehleranfällig.
 
-[`tox`](https://tox.wiki/) automatisiert genau diesen Prozess: Es erstellt automatisch virtuelle
-Umgebungen, installiert Abhängigkeiten und führt Tests aus – und das für beliebig viele
-Python-Versionen und Konfigurationen parallel.
-
+[`tox`](https://tox.wiki/) automatisiert genau das: Es erstellt virtuelle Umgebungen, installiert
+Abhängigkeiten und führt Tests oder andere Werkzeuge darin aus – für beliebig viele
+Python-Versionen und Konfigurationen.
 [ENDSECTION]
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
-Benutzen Sie bei Bedarf die 
-[Dokumentation von `tox`](https://tox.wiki/).
+### Wozu tox?
 
-### Installation und Vorbereitung
+Lesen Sie in der tox-Dokumentation die Abschnitte
+[Overview und System overview](https://tox.wiki/en/stable/explanation.html#overview).
 
-- Installieren Sie `tox` mittels [PARTREF::pip].
+[EQ] Welche Arten von Werkzeugen kann tox für ein Projekt ausführen?
+Welche Schritte führt tox für jede Umgebung nacheinander aus?
+
+<!-- time estimate: 10 min -->
+
+### Projekt vorbereiten
+
 - Erstellen Sie einen neuen Ordner `tox_example` und wechseln Sie in diesen.
-- Erstellen Sie eine einfache Python-Datei `calculator.py` mit folgenden Funktionen:
+- In [PARTREF::pyenv] haben Sie Python 3.10 als globale Version eingestellt.
+  Schalten Sie mit `pyenv global system` wieder auf Ihr System-Python zurück
+  und ermitteln Sie mit `python3 --version` dessen Version (z. B. 3.13).
+- Legen Sie wie in [PARTREF::venv] eine virtuelle Umgebung `.venv` an, aktivieren Sie sie
+  und installieren Sie `tox` darin mittels [PARTREF::pip].
+- Machen Sie im Ordner die beiden Python-Versionen aus [PARTREF::pyenv] und Ihr System-Python verfügbar:
+  `pyenv local 3.10.17 3.11.12 system` _(Patchnummern ggf. anpassen)_.
+
+[HINT::Warum brauche ich `pyenv local` mit mehreren Versionen?]
+tox sucht die Interpreter über Namen wie `python3.10` im `PATH`.
+Die Platzhalter-Programme (shims) von `pyenv` funktionieren aber nur für Versionen,
+die gerade aktiviert sind.
+Mit `pyenv local` können Sie mehrere Versionen gleichzeitig aktivieren.
+Ihre aktivierte `.venv` bleibt davon unberührt, weil sie im `PATH` vor den shims steht.
+[ENDHINT]
+
+[HINT::`pip install tox` meldet "externally-managed-environment"]
+Sie versuchen, ins System-Python zu installieren.
+Aktivieren Sie zuerst Ihre `.venv` (`source .venv/bin/activate`).
+[ENDHINT]
+
+Erstellen Sie die Datei `calculator.py`:
 ```python
 def add(a, b):
     """Addiert zwei Zahlen."""
     return a + b
 
+
 def multiply(a, b):
     """Multipliziert zwei Zahlen."""
     return a * b
+
 
 def divide(a, b):
     """Dividiert zwei Zahlen."""
@@ -50,273 +77,206 @@ def divide(a, b):
     return a / b
 ```
 
-Erstellen Sie eine Testdatei `test_calculator.py` mit pytest-Tests für diese Funktionen:
+Erstellen Sie die Testdatei `test_calculator.py`:
 ```python
-import pytest
 from calculator import add, multiply, divide
+
 
 def test_add():
     assert add(2, 3) == 5
     assert add(-1, 1) == 0
 
+
 def test_multiply():
     assert multiply(3, 4) == 12
     assert multiply(-2, 5) == -10
 
+
 def test_divide():
     assert divide(10, 2) == 5
     assert divide(7, 2) == 3.5
-
-def test_divide_by_zero():
-    with pytest.raises(ValueError):
-        divide(5, 0)
 ```
 
-### Grundlegende tox-Konfiguration
+<!-- time estimate: 10 min -->
 
-Wir starten mit der wichtigsten Datei, ohne die tox gar nicht erst funktioniert.
+### Die erste `tox.ini`
 
-Erstellen Sie eine `tox.ini`-Datei im Projektordner mit folgendem Grundgerüst:
+tox liest seine Konfiguration aus der Datei `tox.ini` im Projektordner.
+Erstellen Sie sie mit folgendem Inhalt und ersetzen Sie dabei `py3XX` durch Ihre System-Version
+(z. B. `py313` für Python 3.13):
 ```ini
 [tox]
-envlist = py39, py310, py311
+envlist = py38, py310, py311, py3XX
 
 [testenv]
 deps = pytest
 commands = pytest test_calculator.py -v
 ```
 
-Führen Sie `tox` aus und beobachten Sie, was passiert.
+`envlist` nennt die Umgebungen, die ein einfaches `tox` ausführt.
+Wie tox aus einem Namen wie `py310` die Python-Version ableitet, steht unter
+[Environment names and Python versions](https://tox.wiki/en/stable/tutorial/getting-started.html#environment-names-and-python-versions).
+Python 3.8 haben Sie absichtlich _nicht_ installiert.
 
-- [EQ] Untersuchen Sie die Ausgabe: Für welche Python-Versionen werden Umgebungen erstellt und welche werden übersprungen? Was bedeutet "SKIP" und ist das ein Fehler?
-- [EQ] Erkunden Sie das Dateisystem: In welchem Verzeichnis erstellt tox die virtuellen Umgebungen? Wie ist die Ordnerstruktur aufgebaut?
+Führen Sie `tox` aus und betrachten Sie vor allem die Zusammenfassung am Ende der Ausgabe.
 
-### Tox-Umgebungen erkunden
+[EQ] Welche Umgebungen laufen erfolgreich, welche nicht?
+Mit welcher Meldung scheitert `py38`, und wie lautet das Gesamtergebnis?
 
-[NOTICE]
-Wenn Sie Debian-Nutzer sind, werden Sie sicherlich nicht mehrere Python-Versionen
-installiert haben – es sei denn, Sie verwenden `pyenv` oder [PARTREF::apt]/`apt-get`.
-Sie können sich daher entweder im Selbststudium mit diesen Tools beschäftigen
-oder diese Aufgabe überspringen.
+[HINT::Auch `py310` oder `py311` scheitern mit "could not find python interpreter"]
+tox findet die pyenv-Versionen nicht.
+Prüfen Sie mit `python3.10 --version` im Projektordner, ob der Aufruf funktioniert.
+Falls nicht, haben Sie `pyenv local` nicht im Projektordner ausgeführt
+oder die Patchnummern passen nicht zu `pyenv versions`.
+[ENDHINT]
 
-Eine passende Aufgabe zu `pyenv` wird es zeitnah geben.
+Ergänzen Sie im Abschnitt `[tox]` die Zeile `skip_missing_interpreters = true`
+(siehe [`skip_missing_interpreters`](https://tox.wiki/en/stable/reference/config.html#skip_missing_interpreters))
+und führen Sie `tox` erneut aus.
 
-Für vollständige Tests können Sie im Schnellmodus zusätzliche Python-Versionen installieren:
+[EQ] Was ändert sich an der Zusammenfassung und am Gesamtergebnis?
+In welcher Situation wäre diese Einstellung gefährlich, weil sie ein Problem verdeckt?
 
-- **Ubuntu/Debian**: `sudo apt install python3.9 python3.10 python3.11`
-- **macOS**: Homebrew (`brew install python@3.9`) oder pyenv
-- **Alle Systeme**: pyenv für Versionsverwaltung
+Schauen Sie sich nun den Ordner `.tox` in Ihrem Projektordner an.
 
-Die Aufgabe funktioniert auch mit nur einer Python-Version.
-[ENDNOTICE]
+[EQ] Welche Unterordner gibt es darin, und was enthält ein solcher Unterordner (z. B. `.tox/py311`)?
+Womit aus [PARTREF::venv] ist das vergleichbar?
 
-Natürlich gibt es nicht nur stumpf den `tox`-Befehl.
+<!-- time estimate: 20 min -->
 
-Führen Sie folgende Kommandos aus und beschreiben Sie die Ausgabe:
+### Einzelne Umgebungen
 
-- `tox -l` (oder `tox --list`)
-- `tox -e py39` (nur eine bestimmte Umgebung)
-- `tox -r` (recreate – Umgebungen neu erstellen)
+Führen Sie `tox -l` und `tox -e py311` aus
+(siehe [Listing available environments](https://tox.wiki/en/stable/tutorial/getting-started.html#listing-available-environments)).
 
-[EQ] Was ist der Unterschied zwischen den ersten beiden Kommandos?
+[EQ] Was tun die beiden Kommandos jeweils?
+Wann ist `-e` im Alltag nützlich?
 
-### Abhängigkeiten hinzufügen
+<!-- time estimate: 5 min -->
 
-Ein Projekt kann bekanntlich viele Abhängigkeiten haben, die es nutzt. Tox hilft auch hier.
+### Abhängigkeiten
 
-Erstellen Sie eine `requirements.txt`-Datei:
-```sh
-pytest>=6.0
-requests>=2.25.0
+Bisher installiert tox nur `pytest`.
+Wir wollen zusätzlich die Testabdeckung messen, also welche Codezeilen die Tests ausführen.
+Das leistet das pytest-Plugin `pytest-cov`.
+
+Erstellen Sie eine `requirements.txt`:
+```text
+pytest
+pytest-cov
 ```
 
-Erweitern Sie die `tox.ini` um diese Abhängigkeiten:
+Ändern Sie den Abschnitt `[testenv]` Ihrer `tox.ini`:
+```ini
+[testenv]
+deps = -r{toxinidir}/requirements.txt
+commands = pytest test_calculator.py -v --cov=calculator --cov-report=term-missing
+```
+
+`{toxinidir}` ist eine tox-Variable für das Verzeichnis, in dem die `tox.ini` liegt.
+Führen Sie `tox` aus, und zwar _ohne_ `-r` (`--recreate`).
+Führen Sie es danach gleich noch einmal aus.
+Lesen Sie dann
+[Dependency change detection](https://tox.wiki/en/stable/explanation.html#dependency-change-detection).
+
+[EQ] Woran erkennen Sie in der Ausgabe des ersten Laufs, dass tox die neue Abhängigkeit installiert hat,
+und was ist beim zweiten Lauf anders?
+Wann braucht man `tox -r` überhaupt noch?
+
+Die Spalte `Missing` im Coverage-Bericht nennt die Zeilen von `calculator.py`, die kein Test ausführt.
+
+[ER] Ergänzen Sie in `test_calculator.py` einen Test `test_divide_by_zero`,
+der mit `pytest.raises` prüft, dass `divide(5, 0)` einen `ValueError` auslöst,
+sodass `calculator.py` zu 100 % abgedeckt ist.
+
+<!-- time estimate: 15 min -->
+
+### Eine Umgebung für den Linter
+
+tox kann nicht nur Tests ausführen, sondern beliebige Prüfwerkzeuge,
+also neben [TERMREF::Dynamische analytische Qualitätssicherung]
+auch [TERMREF::Statische analytische Qualitätssicherung].
+
+Ergänzen Sie Ihre `tox.ini` um eine Umgebung für [PARTREF::flake8]
+und nehmen Sie diese in die `envlist` auf:
 ```ini
 [tox]
-envlist = py39, py310, py311
-
-[testenv]
-deps = -r{toxinidir}/requirements.txt
-commands = pytest test_calculator.py -v
-```
-
-Erstellen Sie einen neuen Test in `test_calculator.py`, der das `requests`-Paket verwendet:
-```python
-import requests
-
-def test_requests_available():
-    response = requests.get('https://httpbin.org/get')
-    assert response.status_code == 200
-    assert 'headers' in response.json()
-```
-
-Führen Sie `tox -r` aus, um die Umgebungen mit den neuen Abhängigkeiten neu zu erstellen.
-
-- [EQ] Wie verhält sich tox, wenn Sie jetzt `tox` ohne `-r` ausführen? Warum?
-
-### Mehrere Testkommandos
-
-Tox kann auch als Automatisierungstool verwendet werden, um verschiedene Schritte auszuführen.
-
-Erweitern Sie Ihre `tox.ini` um mehrere Kommandos:
-```ini
-[testenv]
-deps = -r{toxinidir}/requirements.txt
-commands = 
-    python --version
-    pip list
-    pytest test_calculator.py -v --tb=short
-```
-
-Führen Sie tox aus und analysieren Sie die Ausgabe.
-
-- [EQ] Was zeigen die zusätzlichen Kommandos? Warum könnte das nützlich sein?
-
-### Spezielle Umgebungen definieren
-
-Kommen wir zu weiteren tollen Features, die tox uns mitgibt.
-Wir können tox nicht nur für [TERMREF::Dynamische analytische Qualitätssicherung] verwenden,
-sondern auch für [TERMREF::Statische analytische Qualitätssicherung].
-
-Fügen Sie spezielle Umgebungen zu Ihrer `tox.ini` hinzu:
-```ini
-[tox]
-envlist = py39, py310, py311, lint, docs
-
-[testenv]
-deps = -r{toxinidir}/requirements.txt
-commands = 
-    python --version
-    pytest test_calculator.py -v
+envlist = py38, py310, py311, py3XX, lint
+skip_missing_interpreters = true
 
 [testenv:lint]
 deps = flake8
 commands = flake8 calculator.py test_calculator.py
-
-[testenv:docs]
-deps = 
-commands = python -c "print('Dokumentation würde hier erstellt werden')"
 ```
 
-Führen Sie `tox -e lint` aus. Was passiert?
+Der Abschnitt `[testenv]` bleibt wie bisher.
+Führen Sie `tox -e lint` aus.
+Prüfen Sie außerdem mit `flake8 --version` direkt in Ihrer Shell (außerhalb von tox),
+ob `flake8` dort überhaupt verfügbar ist.
 
-Installieren Sie `flake8` in Ihrer lokalen Umgebung und führen Sie `tox -e lint` erneut aus.
+[EQ] Wieso funktioniert `tox -e lint` unabhängig davon, ob `flake8` in Ihrer Shell installiert ist?
+Welche Python-Version verwendet die `lint`-Umgebung?
 
-- [EQ] Müssen Sie flake8 lokal installieren, damit es in der tox-Umgebung funktioniert? Erklären Sie!
+<!-- time estimate: 10 min -->
 
-### Fehlerbehandlung erkunden
+### Ein Fehlschlag
 
-Bisher lief doch alles gut?
-Was aber, wenn es nicht immer so gut läuft?
-Schauen wir uns einmal einen Fehlschlag an.
+Bauen Sie absichtlich einen Syntaxfehler in `calculator.py` ein
+(z. B. den Doppelpunkt hinter `def add(a, b)` löschen) und führen Sie `tox` aus.
 
-Fügen Sie absichtlich einen Fehler in `calculator.py` ein (z. B. Syntaxfehler) und führen Sie `tox` aus.
+[EQ] Welche Umgebungen schlagen fehl, einschließlich `lint`?
+Bricht tox nach der ersten fehlgeschlagenen Umgebung ab?
 
-- [EQ] Wie verhält sich tox bei Fehlern? Bricht es alle Umgebungen ab oder nur die betroffene?
-- [EQ] Wo finden Sie detaillierte Fehlermeldungen?
+[EQ] tox protokolliert jeden Schritt zusätzlich in Dateien.
+In welchem Verzeichnis liegen diese Protokolle für `py311`, und wie sind die Dateien benannt?
 
 Korrigieren Sie den Fehler wieder.
 
-### Konfiguration verstehen
+<!-- time estimate: 10 min -->
 
-Nicht alle Schritte sind trivial in die Datei einzutragen. Manchmal bedarf es auch etwas mehr.
+### Arbeitsverzeichnis und externe Kommandos
 
-Experimentieren Sie mit verschiedenen Konfigurationsoptionen in der `tox.ini`:
+Standardmäßig führt tox die Kommandos im Projektordner aus.
+Mit [`changedir`](https://tox.wiki/en/stable/reference/config.html#changedir)
+lässt sich das ändern, etwa damit Tests nicht versehentlich von Dateien im Projektordner abhängen.
+Ändern Sie den Abschnitt `[testenv]` wie folgt:
 ```ini
 [testenv]
 deps = -r{toxinidir}/requirements.txt
-changedir = {toxworkdir}
-allowlist_externals = 
+changedir = {envtmpdir}
+commands =
     pwd
-    ls
-commands = 
-    python --version
-    pwd
-    ls -la
-    pytest {toxinidir}/test_calculator.py -v
+    pytest {toxinidir}/test_calculator.py -v --cov=calculator --cov-report=term-missing
 ```
 
-- [EQ] Was bewirkt `changedir = {toxworkdir}`?
-- [EQ] Warum müssen Sie jetzt `{toxinidir}/test_calculator.py` statt nur `test_calculator.py` verwenden?
-- [EQ] Wozu dient `allowlist_externals` und warum ist es nötig?
+Führen Sie `tox -e py311` aus.
 
-### Umgebungsvariablen und Vererbung
+[EQ] Mit welcher Meldung scheitert die Umgebung?
+Lesen Sie zu [`allowlist_externals`](https://tox.wiki/en/stable/reference/config.html#allowlist_externals)
+nach: Welches Problem soll tox verhindern, indem es solche Kommandos standardmäßig ablehnt?
 
-Wir können auch tiefer ins System eingreifen, um zum Beispiel bestimmte Konfigurationen
-über Systemvariablen zu setzen oder Pfade zu definieren.
+Ergänzen Sie im Abschnitt `[testenv]` die Zeile `allowlist_externals = pwd` und führen Sie `tox -e py311` erneut aus.
 
-Erstellen Sie eine erweiterte Konfiguration:
-```ini
-[tox]
-envlist = py39, py310, coverage
+[EQ] Welches Verzeichnis gibt `pwd` aus?
+Warum steht beim `pytest`-Aufruf jetzt `{toxinidir}/test_calculator.py` statt nur `test_calculator.py`?
 
-[testenv]
-deps = -r{toxinidir}/requirements.txt
-setenv = 
-    PYTHONPATH = {toxinidir}
-passenv = HOME
-commands = pytest test_calculator.py -v
+Führen Sie nun `tox -e lint` aus.
 
-[testenv:coverage]
-deps = 
-    {[testenv]deps}
-    pytest-cov
-commands = pytest test_calculator.py --cov=calculator --cov-report=term-missing
-```
+[EQ] Warum schlägt `lint` jetzt fehl, obwohl Sie `[testenv:lint]` gar nicht geändert haben?
+Beheben Sie das Problem mit einer zusätzlichen Zeile in `[testenv:lint]`.
 
-Führen Sie `tox -e coverage` aus.
+[ER] Ihre finale `tox.ini` führt mit `tox` alle Umgebungen außer der nicht vorhandenen `py38` erfolgreich aus.
 
-- [EQ] Was bewirkt `{[testenv]deps}` in der coverage-Umgebung?
-- [EQ] Welche Coverage-Informationen erhalten Sie?
-
-### Parallele Ausführung
-
-Manchmal haben wir für aufwendige Tests wenig Zeit, vor allem, wenn es viele Testumgebungen gibt.
-Dann können wir das mit genügend Rechenpower auch parallel laufen lassen.
-
-Führen Sie `tox -p`/`tox --parallel` aus und beobachten Sie das Verhalten.
-
-- [EQ] Was ist der Unterschied zur normalen Ausführung? Welche Vor- und Nachteile sehen Sie?
-
-### Projekt-Integration
-
-Erstellen Sie eine `setup.py` oder `pyproject.toml` für Ihr Testprojekt:
-
-**setup.py**-Variante:
-```python
-from setuptools import setup
-
-setup(
-    name="calculator-example",
-    version="0.1.0",
-    py_modules=["calculator"],
-    install_requires=[],
-    extras_require={
-        "test": ["pytest", "requests"],
-    },
-)
-```
-
-Anpassung der `tox.ini` für die Installation des eigenen Pakets:
-```ini
-[testenv]
-deps = -r{toxinidir}/requirements.txt
-commands = 
-    pip install -e .
-    pytest test_calculator.py -v
-```
-
-- [EQ] Welchen Vorteil hat die Installation mit `pip install -e .` in der tox-Umgebung?
+<!-- time estimate: 20 min -->
 
 [ENDSECTION]
 
-[SECTION::submission::information,snippet]
-[INCLUDE::/_include/Submission-Quellcode.md]
+[SECTION::submission::information,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+Reichen Sie `tox.ini` und `test_calculator.py` ein.
 [ENDSECTION]
 
 [INSTRUCTOR::Erste Schritte mit tox]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
