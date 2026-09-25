@@ -2,7 +2,7 @@ title: "C Syntax: Kontrollstrukturen"
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: c-syntax-variables-functions, c-types
+assumes: c-syntax-variables-functions, c-arithmetic-types
 ---
 [SECTION::goal::idea]
 Ich verstehe die Syntax der Kontrollstrukturen (`if - else`, Schleifen, etc.) in C.

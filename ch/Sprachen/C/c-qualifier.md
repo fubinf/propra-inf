@@ -2,7 +2,7 @@ title: "C Qualifizierer"
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: c-syntax-variables-functions, c-types
+assumes: c-syntax-variables-functions, c-arithmetic-types
 ---
 [SECTION::goal::idea]
 Ich verstehe die Qualifizierer und kann diese Anwenden.

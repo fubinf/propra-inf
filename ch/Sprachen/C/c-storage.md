@@ -2,7 +2,7 @@ title: "C Speicherklassen"
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: c-types
+assumes: c-arithmetic-types
 ---
 [SECTION::goal::idea]
 Ich verstehe die Speicherklassen und kann diese anwenden.

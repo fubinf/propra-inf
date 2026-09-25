@@ -2,7 +2,7 @@ title: "C Präprozessor: Makros"
 stage: alpha
 timevalue: 0.5
 difficulty: 2
-assumes: c-compiler-assembler-linker
+assumes: c-arithmetic-types
 ---
 [SECTION::goal::idea]
 Ich verstehe die `#define` Präprozessor-Direktive und kann diese anwenden.

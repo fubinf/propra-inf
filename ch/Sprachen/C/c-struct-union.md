@@ -2,7 +2,7 @@ title: "C Struct und Union"
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: c-syntax-variables-functions, c-types
+assumes: c-syntax-variables-functions, c-arithmetic-types
 ---
 [SECTION::goal::idea]
 Ich verstehe was ein `struct` und `union` Typ ist.

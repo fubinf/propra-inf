@@ -47,7 +47,7 @@ const int *d = &a;
 
 Dabei gilt:
 
-- Es muss genau eine Typspezifizierung geben (s. [PARTREF::c-types]).
+- Es muss genau eine Typspezifizierung geben (s. [PARTREF::c-arithmetic-types]).
 - Es darf maximal eine Speicherklassenspezifizierung geben (s. [PARTREF::c-storage]).
 - Es darf maximal eine Qualifizierung geben (s. [PARTREF::c-qualifier]).
 - Die Reihenfolge der Spezifizierer und Qualifizierer ist nicht wichtig.
