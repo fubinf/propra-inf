@@ -28,7 +28,6 @@ Das funktioniert sogar dann, wenn einem niemand eine schriftliche Spezifikation 
 [SECTION::instructions::detailed]
 
 ### Worum es geht
-<!-- time estimate: 10 min -->
 
 Whitebox-Tests (auch: strukturelle Tests) nutzen die Struktur des Codes, um Testeingaben auszuwählen.
 Ziel ist, dass der Code _robust_ ist: Er soll sich auch in selten durchlaufenen Ecken richtig verhalten.
@@ -51,9 +50,9 @@ Die passenden Testfälle auszudenken bleibt Ihre Aufgabe.
 
 Ein Kriterium A ist **schärfer** als ein Kriterium B, wenn jede Testmenge, die A vollständig erfüllt,
 automatisch auch B vollständig erfüllt, aber nicht umgekehrt.
+<!-- time estimate: 10 min -->
 
 ### Vorbereitung
-<!-- time estimate: 5 min -->
 
 Die beiden folgenden Funktionen stammen aus dem Open-Source-Projekt keon/algorithms von GitHub,
 einer Sammlung von Algorithmen in Python.
@@ -125,9 +124,9 @@ Die Option `--cov=whitebox` misst die Überdeckung des Moduls `whitebox`,
 `--cov-report=term-missing` listet zusätzlich die Zeilen auf, die nie ausgeführt wurden.
 Mehr zu `pytest-cov` (Konfiguration, HTML-Berichte, Aussagekraft von Überdeckungswerten)
 finden Sie in [PARTREF::testcoverage].
+<!-- time estimate: 5 min -->
 
 ### Anweisungsüberdeckung
-<!-- time estimate: 15 min -->
 
 **Anweisungsüberdeckung** (statement coverage) verlangt, dass jede Anweisung mindestens einmal
 ausgeführt wird.
@@ -152,9 +151,9 @@ Die `def`-Zeilen sind also schon durch den Import überdeckt.
 Rufen Sie die Funktion so auf, wie ein Benutzer es tun würde: mit `low=0` und `high=len(array)-1`.
 Wann kommt es dann im Laufe der Rekursion zu `low > high`?
 [ENDHINT]
+<!-- time estimate: 15 min -->
 
 ### Zweigüberdeckung
-<!-- time estimate: 20 min -->
 
 Eine **Entscheidung** ist eine Stelle, an der das Programm zwischen zwei Fortsetzungen wählt:
 `if`, `elif`, `while` sowie `for` (noch ein Element da oder nicht?).
@@ -185,9 +184,9 @@ Die `while`-Schleife endet regulär nur, wenn im Rückwärtslauf nichts mehr zu 
 im Vorwärtslauf davor aber schon.
 Welche kurze Liste wird durch einen einzigen Tausch im Vorwärtslauf vollständig sortiert?
 [ENDHINT]
+<!-- time estimate: 20 min -->
 
 ### Schleifenüberdeckung
-<!-- time estimate: 20 min -->
 
 Schleifen sind besonders fehleranfällig, vor allem an ihren Grenzen.
 Zweigüberdeckung verlangt aber nur, dass eine Schleife irgendwann betreten und irgendwann verlassen wird.
@@ -207,9 +206,9 @@ Manche dieser Fälle sind bei einer bestimmten Schleife unmöglich; die entfalle
 Rechnen Sie für `n = 0, 1, 2, 3, 4` aus, wie viele Werte `range(1, n - 1)` bzw. `range(n - 1, 0, -1)` liefern.
 Beachten Sie außerdem, unter welcher Bedingung der Rückwärtslauf überhaupt erreicht wird.
 [ENDHINT]
+<!-- time estimate: 20 min -->
 
 ### Den Defekt finden
-<!-- time estimate: 10 min -->
 
 Spätestens jetzt sollte einer Ihrer Tests fehlschlagen.
 Reparieren Sie `whitebox.py` nicht; der fehlschlagende Test bleibt in Ihrer Abgabe stehen
@@ -222,9 +221,9 @@ wirklich etwas zu sortieren hatten.
   und warum führt sie zu dem Versagen?
 - [EQ] Welches Überdeckungskriterium hat Sie zu dem entscheidenden Testfall geführt?
   Hätte Zweigüberdeckung allein zuverlässig dorthin geführt?
+<!-- time estimate: 10 min -->
 
 ### Bedingungsüberdeckung
-<!-- time estimate: 20 min -->
 
 Der Ausdruck hinter `if` oder `while` kann aus mehreren Teilen zusammengesetzt sein,
 z.B. `if (a > 0 and b > 0) or c > 10:`.
@@ -266,9 +265,9 @@ Für die Bedingungsüberdeckung zählen nur Bedingungen, die tatsächlich ausgew
 Betrachten Sie die Bedingung, die in der Entscheidung ganz rechts steht.
 Wann wird sie überhaupt ausgewertet, und was bestimmt dann ihr Wert?
 [ENDHINT]
+<!-- time estimate: 20 min -->
 
 ### Pfadüberdeckung
-<!-- time estimate: 10 min -->
 
 Ein **Pfad** ist die komplette Folge der Zweige, die ein Aufruf von Anfang bis Ende nimmt.
 **Pfadüberdeckung** (path coverage) verlangt, dass jeder mögliche Pfad einmal durchlaufen wird.
@@ -288,15 +287,16 @@ Die Schleifenüberdeckung ist gewissermaßen ihr bezahlbarer Ersatz.
 Neben den hier behandelten Kriterien gibt es weitere, z.B. Datenflusskriterien,
 die verfolgen, wo eine Variable gesetzt und wo sie später gelesen wird.
 Dafür haben wir kein Messwerkzeug, deshalb lassen wir sie beiseite.
+<!-- time estimate: 10 min -->
 
 ### Reflexion
-<!-- time estimate: 10 min -->
 
 - [EQ] Ordnen Sie Anweisungs-, Zweig-, Bedingungs- und Pfadüberdeckung nach ihrer Schärfe.
   Stützen Sie sich dabei auf Ihre Ergebnisse aus den vorigen Schritten.
 - [EQ] Welches Kriterium würden Sie nach Ihren Erfahrungen mit den beiden Funktionen
   aus `whitebox.py` im Alltag als Standard verwenden, und wann würden Sie zusätzlich ein anderes heranziehen?
   Berücksichtigen Sie dabei Aufwand, Nutzen und ob es ein Messwerkzeug gibt.
+<!-- time estimate: 10 min -->
 
 [ENDSECTION]
 
