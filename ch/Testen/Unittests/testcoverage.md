@@ -8,10 +8,10 @@ requires: pytest_call
 
 [SECTION::goal::idea]
 
-- Ich kann Code Coverage mit pytest-cov für bestehende und neue Codebasis anwenden
-- Ich kann Coverage-Reports interpretieren und systematisch 100% Coverage erreichen
-- Ich verstehe die Grenzen und Fallstricke von Coverage-Metriken
-- Ich kann angemessene Coverage-Ziele für verschiedene Projekttypen definieren
+- Ich kann Code Coverage mit `pytest-cov` messen und Coverage-Reports interpretieren
+- Ich kann gezielt Tests für nicht abgedeckte Codezeilen ergänzen
+- Ich verstehe, dass Coverage misst, welcher Code ausgeführt wird, aber nicht, ob sein Verhalten geprüft wird
+- Ich kann ein begründetes Coverage-Ziel für ein konkretes Modul festlegen
 [ENDSECTION]
 
 
@@ -34,7 +34,7 @@ Im Folgenden verwenden wir „Testabdeckung“ und „Coverage“ synonym.
 
 ## Teil A: pytest-cov Grundlagen mit bestehender Codebasis
 
-Zunächst lernen Sie `pytest-cov` an einer bestehenden Codebasis kennen und erreichen systematisch 100% Coverage.
+Zunächst lernen Sie `pytest-cov` an einer bestehenden Codebasis kennen und schließen gezielt einige Abdeckungslücken.
 
 
 ### pytest-cov Setup
@@ -59,7 +59,7 @@ Wenden Sie `pytest-cov` auf die `requests`-Bibliothek aus [PARTREF::pytest_call]
 [HINT::Wie starte ich die Coverage-Analyse?]
 Die Ausgabe von [EREFC::2] zeigt alle verfügbaren `--cov`-Optionen.
 Ausführlicher gibt es das in der 
-[pytest-cov Dokumentation](https://pytest-cov.readthedocs.io/).
+[`pytest-cov`-Dokumentation](https://pytest-cov.readthedocs.io/).
 [ENDHINT]
 
 [EC] Führen Sie diesen Befehl aus.
@@ -70,12 +70,12 @@ Was sagt Ihnen das über die Testqualität?
 
 [EQ] Wie finden Sie heraus, welche spezifischen Zeilen nicht abgedeckt sind?
 
-[EC] Führen Sie den entsprechenden Befehl aus.
-
 [HINT::Missing Lines anzeigen]
-Der `--cov-report` Parameter bietet verschiedene Optionen. Suchen Sie in der pytest-cov
-Dokumentation nach "missing".
+Der Parameter `--cov-report` bietet verschiedene Optionen.
+Suchen Sie in der `pytest-cov`-Dokumentation nach "missing".
 [ENDHINT]
+
+[EC] Führen Sie den entsprechenden Befehl aus.
 
 [ER] Wählen Sie ein Modul von `requests`, das nicht vollständig abgedeckt ist.
 Ergänzen Sie in der passenden Testdatei unter `tests/` Testfälle,
@@ -99,8 +99,14 @@ um die kritischen Aspekte von Coverage zu verstehen.
 
 ### Beispiel: E-Mail Validator
 
-Sie arbeiten mit einer E-Mail-Validierungsklasse — ein typisches Real-World-Szenario mit
+Sie arbeiten mit einer E-Mail-Validierungsklasse — ein realistisches Szenario mit
 verschiedenen Randfällen.
+
+Legen Sie dafür in Ihrem [TERMREF::Hilfsbereich] ein neues Verzeichnis `coverage-demo` an
+und arbeiten Sie dort mit dem `venv` aus Teil A weiter.
+Bleiben Sie nicht im `requests`-Repository:
+Das hat bereits eine eigene `pyproject.toml` mit `pytest`-Einstellungen,
+die mit Ihrer Konfiguration weiter unten kollidieren würde.
 
 [ER] Erstellen Sie die Datei `email_validator.py` mit folgendem Inhalt:
 
@@ -263,38 +269,38 @@ class TestEmailValidator:
 
 [EC] Führen Sie die Tests mit Coverage aus: `pytest --cov=email_validator test_email_validator.py`
 
-[EQ] Wie hoch ist die aktuelle Coverage? Was sagt Ihnen das über die Testqualität?
+[EQ] Wie hoch ist die aktuelle Coverage?
+Was sagt Ihnen das über die Testqualität?
 <!-- time estimate: 15 min -->
 
 ### Coverage-Konfiguration für eigenes Projekt
 
-Nach der Analyse bestehender Codebasis erstellen Sie nun eigene Coverage-Konfiguration.
+Nach der Analyse der bestehenden Codebasis erstellen Sie nun eine eigene Coverage-Konfiguration.
 
-Erstellen und verstehen Sie eine `pyproject.toml` für bessere Coverage-Einstellungen:
+Damit Sie die Optionen nicht bei jedem Aufruf angeben müssen,
+legen Sie im Verzeichnis `coverage-demo` eine `pyproject.toml` mit folgendem Inhalt an:
 
 ```toml
 [tool.pytest.ini_options]
 addopts = "--cov=email_validator --cov-report=term-missing --cov-report=html"
 
 [tool.coverage.run]
-omit = [
-    "test_*.py",
-    "*test*.py"
-]
 branch = true
-
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "raise AssertionError",
-    "raise NotImplementedError"
-]
 ```
+
+`addopts` hängt die angegebenen Optionen an jeden `pytest`-Aufruf an;
+`--cov-report=html` erzeugt zusätzlich einen HTML-Report im Verzeichnis `htmlcov/`.
+`branch = true` schaltet Branch Coverage ein:
+Dabei wird zusätzlich gezählt, ob bei jeder Verzweigung (z.B. `if`) beide Richtungen durchlaufen wurden.
+Näheres dazu in der
+[`coverage.py`-Dokumentation zur Branch Coverage](https://coverage.readthedocs.io/en/latest/branch.html)
+und zu weiteren Einstellungen in der
+[`coverage.py`-Dokumentation zur Konfiguration](https://coverage.readthedocs.io/en/latest/config.html).
 
 [EC] Führen Sie Tests erneut aus: `pytest`
 
-[EQ] Was hat sich geändert?
+[EQ] Was hat sich an der Ausgabe geändert?
+Warum ist die Coverage-Prozentzahl jetzt eine andere als vorher, obwohl die Tests gleich geblieben sind?
 
 Öffnen Sie den HTML-Report in `htmlcov/index.html`
 (macOS: `open htmlcov/index.html`, Linux: `xdg-open htmlcov/index.html`).
@@ -340,21 +346,23 @@ def test_fake_coverage():
 
 [EQ] Was zeigt dieser Test über die Aussagekraft von Coverage-Metriken?
 
-[ER] Erstellen Sie jetzt einen fokussierten Test mit wenigen, aber kritischen Assertions:
+Nun die Gegenrichtung: ein Test mit wenigen, aber wichtigen Assertions.
+Ein E-Mail-Validator steht oft vor Code, der die Adresse weiterverarbeitet,
+z.B. in eine Datenbankabfrage einsetzt oder in eine Webseite einbaut.
+Er sollte daher Eingaben ablehnen, die dort Schaden anrichten könnten.
 
-```python
-def test_security_critical_validation():
-    """Testet kritische Sicherheitsaspekte mit wenigen, aber wichtigen Assertions."""
-    validator = EmailValidator()
-    
-    # SQL Injection Attempt
-    result = validator.validate("'; DROP TABLE users; --@evil.com")
-    assert not result['valid']
-    
-    # XSS Attempt
-    result = validator.validate('<script>alert("xss")</script>@evil.com')
-    assert not result['valid']
-```
+[ER] Schreiben Sie einen Test `test_security_critical_validation`,
+der für mindestens drei solche gefährlichen Eingaben prüft, dass `validate()` sie als ungültig ablehnt.
+Beispiel für eine solche Eingabe: `"'; DROP TABLE users; --@evil.com"` (ein SQL-Injection-Versuch).
+
+[HINT::Mir fallen keine gefährlichen Eingaben ein]
+Denken Sie an Zeichen, die in anderen Sprachen eine Sonderbedeutung haben:
+HTML-Tags wie `<script>...</script>`, Pfadangaben wie `../../`
+oder Shell-Befehle wie `; rm -rf /`.
+[ENDHINT]
+
+[EQ] Um wie viel erhöht dieser Test die Coverage, wenn Sie alle Ihre bisherigen Tests mitlaufen lassen?
+Warum ist er trotzdem wertvoller als `test_fake_coverage`?
 <!-- time estimate: 20 min -->
 
 
