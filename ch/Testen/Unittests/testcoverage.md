@@ -22,17 +22,16 @@ Während hohe Coverage-Werte beruhigend wirken können, sind sie kein Garant fü
 Eine 100%ige Zeilenabdeckung kann existieren, ohne dass ein einziger sinnvoller Test geschrieben wurde.
 Umgekehrt können gut durchdachte Tests mit 80% Coverage mehr Vertrauen schaffen als oberflächliche Tests mit 100% Coverage.
 
-Im Folgenden verwenden wir „Testabdeckung“ und „Coverage“ synonym.
-
 In dieser Aufgabe lernen Sie `pytest-cov` zunächst an bestehender Codebasis kennen.
 Anschließend entwickeln Sie ein realitätsnahes Beispiel und bauen ein kritisches Verständnis für Coverage-Metriken auf.
 
-Es ist hilfreich, Testergebnis und Testabdeckung gemeinsam einzusehen.
-Um diese Abfrage nicht separat durchführen zu müssen, verwenden wir das `pytest-cov`-Plugin.
 [ENDSECTION]
 
 
 [SECTION::instructions::detailed]
+
+Im Folgenden verwenden wir „Testabdeckung“ und „Coverage“ synonym.
+
 ## Teil A: pytest-cov Grundlagen mit bestehender Codebasis
 
 Zunächst lernen Sie `pytest-cov` an einer bestehenden Codebasis kennen und erreichen systematisch 100% Coverage.
@@ -42,16 +41,20 @@ Zunächst lernen Sie `pytest-cov` an einer bestehenden Codebasis kennen und erre
 
 `pytest-cov` ist ein pytest-Plugin, das Coverage-Messung nahtlos in Ihren Test-Workflow integriert.
 
+Arbeiten Sie in Teil A im `requests`-Repository und dessen `venv` aus [PARTREF::pytest_call].
+
 [EC] Installieren Sie `pytest-cov`: `pip install pytest-cov`
+(Da `pytest-cov` zu den Entwicklungsabhängigkeiten von `requests` gehört,
+meldet `pip` vermutlich, dass es bereits installiert ist.)
 
 [EC] Verifizieren Sie die Installation: `pytest --version` und `pytest --help | grep cov`
 
 
 ### Anwendung auf bestehende Codebasis
 
-Wenden Sie `pytest-cov` auf die `toolz`-Bibliothek aus [PARTREF::pytest_call] an.
+Wenden Sie `pytest-cov` auf die `requests`-Bibliothek aus [PARTREF::pytest_call] an.
 
-[EQ] Wie lautet der Befehl zur Coverage-Analyse für das `toolz`-Verzeichnis?
+[EQ] Wie lautet der Befehl zur Coverage-Analyse für das Paket `requests`?
 
 [HINT::Wie starte ich die Coverage-Analyse?]
 Die Ausgabe von [EREFC::2] zeigt alle verfügbaren `--cov`-Optionen.
@@ -60,8 +63,9 @@ Ausführlicher gibt es das in der
 [ENDHINT]
 
 [EC] Führen Sie diesen Befehl aus.
+Falls einzelne Tests fehlschlagen, ignorieren Sie das; die Coverage wird trotzdem gemessen.
 
-[EQ] Wie hoch ist die aktuelle Coverage der `toolz`-Bibliothek?
+[EQ] Wie hoch ist die aktuelle Coverage der `requests`-Bibliothek?
 Was sagt Ihnen das über die Testqualität?
 
 [EQ] Wie finden Sie heraus, welche spezifischen Zeilen nicht abgedeckt sind?
@@ -73,8 +77,9 @@ Der `--cov-report` Parameter bietet verschiedene Optionen. Suchen Sie in der pyt
 Dokumentation nach "missing".
 [ENDHINT]
 
-[ER] Ergänzen Sie die fehlenden Testfälle so, dass die Testabdeckung der in [PARTREF::pytest_call]
-genutzten Module auf 100% steht.
+[ER] Wählen Sie ein Modul von `requests`, das nicht vollständig abgedeckt ist.
+Ergänzen Sie in der passenden Testdatei unter `tests/` Testfälle,
+die mindestens drei der bisher fehlenden Zeilen dieses Moduls abdecken.
 
 [EQ] Erläutern Sie, warum Sie gerade diese Ergänzungen und Testfälle hinzugefügt haben.
 Was war schwer zu testen?
@@ -358,15 +363,11 @@ def test_security_critical_validation():
 [EQ] Welches Coverage-Ziel hätten Sie für den `EmailValidator` gesetzt — und warum?
 Welche Methoden des `EmailValidator` sollten auf jeden Fall 100% Coverage haben?
 
-[EQ] Was hat `test_fake_coverage` konkret gezeigt: Was sagt eine hohe Coverage-Prozentzahl aus, und was nicht?
-
 [EQ] **Quality Gates:** Angenommen, Sie fügen Coverage-Checks für den `EmailValidator` in eine CI/CD-Pipeline ein:
 
 1. Welche Coverage-Metriken würden Sie überwachen? (Line/Branch/Function Coverage?)
 2. Bei welchen Coverage-Abfällen würden Sie Builds fehlschlagen lassen?
 3. Wie würden Sie mit schwer testbarem Code umgehen?
-
-[PARTREF::pytest_mutation_testing] vertieft dieses Thema — dort lernen Sie Mutation Testing praktisch kennen.
 <!-- time estimate: 20 min -->
 [ENDSECTION]
 
