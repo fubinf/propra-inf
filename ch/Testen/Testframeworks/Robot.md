@@ -1,14 +1,15 @@
 title: Funktionale Tests mit dem Robot Framework
-stage: draft
+stage: alpha
 timevalue: 1.5
 difficulty: 3
 explains: BDD
 ---
 
-[SECTION::goal::experience,product]
+[SECTION::goal::experience]
 
-- Ich verstehe den dreischichtigen Aufbau von Testfällen im Robot Framework
-- Ich habe BDD kennengelernt
+- Ich verstehe, wie im Robot Framework Testfälle, selbstdefinierte Keywords und Python-Bibliotheken zusammenspielen.
+- Ich kann eigene Keywords definieren und das Testprotokoll `log.html` lesen.
+- Ich habe BDD-artige Testfälle ausprobiert und weiß, was einen guten BDD-Test ausmacht.
 
 [ENDSECTION]
 [SECTION::background::default]
@@ -23,62 +24,68 @@ Einsatz von einfach lesbaren Skripten für [TERMREF::Keyword-Driven Testing].
 Anstelle von Tests können die Skripte ebensogut Automatisierungsaufgaben in beliebigen
 Geschäftsprozessen übernehmen.
 
-Robot Framework hat Komponenten zum Ansteuern vieler Arten von Software,
+Robot Framework hat Komponenten zum Ansteuern vieler Arten von Software
 (z.B. Web-[TERMREF2::GUI::-s] im Browser, Desktop-GUIs, [TERMREF::SSH])
 und Komponenten zur Erzeugung detaillierter Ablaufberichte in HTML.
 
 [ENDSECTION]
 [SECTION::instructions::loose]
 
-### Einstieg: Umschauen
+### Einstieg: Das "Simple Example"
 
-Installieren Sie Robot Framework:
-`pip install robotframework`.
-(Wir beschränken uns in dieser Aufgabe aber auf das Ausprobieren in einer
-fertigen Online-Umgebung und nutzen diese Installation gar nicht.)
+Wir arbeiten in dieser Aufgabe ausschließlich mit der Online-Umgebung von Robot Framework,
+Sie müssen also nichts installieren.
+(Lokal würde man es mit `pip install robotframework` installieren.)
 
-Überfliegen Sie die Einstiegs-Dokumentation
+Öffnen Sie die Einstiegsseite
 [HREF::https://robotframework.org/#getting-started].
-Nutzen Sie den Online Editor/Laufzeitumgebung auf dieser Seite, 
-um erste Schritte mit Robot-Testfällen zu machen.
+Dort gibt es einen Editor, in dem Sie Robot-Testfälle direkt im Browser bearbeiten und ausführen können.
+Wählen Sie oben in der Editorbox das Beispiel **Simple Example** aus und sehen Sie sich die drei Dateien an.
 
-Betrachten Sie das Beispiel **"Simple Example"**:
+- [EQ] Welche Aufgabe hat jede der drei Dateien? Ein Satz pro Datei genügt.
 
-- [EQ] Was enthält jede der drei Dateien, die dieses Beispiel bilden?
-- [EQ] Welche Testfälle beinhaltet das Beispiel?
-- Lassen Sie den Test ablaufen
-- [EQ] Erkunden Sie die Ausgabedatei `log.html`.
-  Wie lautet der dritte Aufruf einer Operation aus `CustomLibrary.py`, der darin verzeichnet ist?
+Starten Sie nun den Testlauf mit dem Knopf "Run".
 
 [HINT::Wo ist die Ausgabedatei?]
-Nach dem Testlauf erscheinen am unteren Rand der Editorbox neue Links.
+Nach dem Testlauf erscheinen in der Editorbox die Knöpfe `log.html` und `report.html`.
 [ENDHINT]
 
-Sie sollten jetzt ein (ungenaues) intuitives Verständnis dafür haben,
+- [EQ] Öffnen Sie `log.html` und klappen Sie die Einträge des ersten Testfalls auf.
+  Welches ist das dritte Keyword aus `CustomLibrary.py`, das dort aufgerufen wird?
+  Welches Argument steht beim Aufruf, und welchen Wert hat es in diesem Testfall?
+
+[HINT::Woran erkenne ich, woher ein Keyword stammt?]
+In `log.html` steht vor jedem Keyword-Namen, aus welcher Bibliothek oder Resource-Datei es kommt,
+z.B. `CustomLibrary . Connect` oder `keywords . Connect to Server`.
+[ENDHINT]
+
+Sie sollten jetzt ein grobes, intuitives Verständnis dafür haben,
 was die Notation in `TestSuite.robot` und `keywords.resource` bedeutet.
 
+<!-- time estimate: 20 min -->
 
-### Eigenen Testfall ergänzen und Syntax verstehen
 
-- Ergänzen Sie den folgenden Testfall und lassen Sie _nur_ diesen laufen.
+### Eigene Testfälle ergänzen
 
-```python
+Fügen Sie in `TestSuite.robot` am Ende des Abschnitts `*** Test Cases ***` diesen Testfall ein
+und lassen Sie _nur_ ihn laufen:
+
+```
 Administrator login
     Connect to Server
     Login Admin
 ```
 
-[HINT::Wie geht das?]
-Der Code kann per copy and paste in die Web-Konsole eingefügt und mit dem 
-"Run Test"-Link über dem Testfall separat ausgeführt werden.
-Zur Erfüllung der Aufgaben ist es nicht nötig, `CustomLibrary.py` zu erweitern.
+[HINT::Wie lasse ich nur einen Testfall laufen?]
+Kopieren Sie den Code in den Editor.
+Über jedem Testfall erscheint ein "Run Test"-Link, mit dem Sie ihn einzeln starten können.
+`CustomLibrary.py` müssen Sie in dieser Aufgabe nirgends erweitern.
 [ENDHINT]
 
-- Vollziehen Sie in `log.html` nach, was der Testfall genau getan hat.
-- [EQ] Ergänzen Sie folgenden Testfall und lassen Sie ihn ablaufen.
-  Welche Fehlermeldung erhalten Sie?
+Sehen Sie in `log.html` nach, was der Testfall im Einzelnen getan hat.
+Fügen Sie dann noch diesen Testfall ein und lassen Sie ihn laufen:
 
-```python
+```
 Request Userlist as User
     Connect to Server
     Login User            ironman    1234567890
@@ -86,84 +93,113 @@ Request Userlist as User
     [Teardown]    Close Server Connection
 ```
 
+- [EQ] Welche Fehlermeldung erhalten Sie?
 - [EQ] Woher weiß Robot Framework, dass bei `Get Userlist` das Wort `Userlist`
-  zum Kommandonamen gehört und nicht ein Argument ist (wie das `ironman` beim Kommando davor)?
-  Sie finden die Antwort im Kapitel 2 des 
+  zum Keyword-Namen gehört und nicht ein Argument ist (wie das `ironman` beim Keyword davor)?
+  Sie finden die Antwort im Kapitel 2 des
   [User Guide](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html).
   Zitieren Sie als Antwort den betreffenden Satz.
 
 [HINT::Ich finde die Information in Kapitel 2 nicht]
-Ja, leider ist die Dokumentation nicht gut formuliert.
-Der natürliche Ort wäre laut Inhaltsverzeichnis der Abschnitt _"2.2.1 Test case syntax"_
-(Bitte nachvollziehen).
-Dort ist von "columns" die Rede (Bitte nachlesen). Doch was ist das?
-Eine Textsuche nach "columns" hilft nicht (Bitte ausprobieren). Bäh!
+Ja, leider ist die Dokumentation hier nicht gut gegliedert.
+Der naheliegende Ort wäre laut Inhaltsverzeichnis der Abschnitt _"2.2.1 Test case syntax"_
+(bitte nachvollziehen).
+Dort ist von "columns" die Rede, aber was damit gemeint ist, steht dort nicht.
+Eine Textsuche nach "columns" hilft auch nicht weiter (bitte ausprobieren).
 
-Also nochmal in Inhaltsverzeichnis suchen: 
-Abschnitt _"2.1 Test data syntax"_ klingt doch auch ganz vielversprechend?
-Dessen Sub-Inhaltsverzeichnis (Bitte ansehen) führt unter 2.1.3 den Punkt _"Space separated format"_ auf.
-Darin steht die gesuchte Information.
+Also noch einmal ins Inhaltsverzeichnis schauen:
+Abschnitt _"2.1 Test data syntax"_ klingt ebenfalls vielversprechend.
+Dessen Unter-Inhaltsverzeichnis führt unter 2.1.3 den Punkt _"Space separated format"_ auf.
+Dort steht die gesuchte Information.
 
-Man braucht etwas Übung im Umgang mit nicht-so-guten Dokumentationen, 
-um dort zügig hinzufinden.
+Man braucht etwas Übung im Umgang mit nicht so guten Dokumentationen,
+um zügig an die richtige Stelle zu finden.
 [ENDHINT]
 
-- [EQ] Zurück zu unserem Testfall: Wo müsste das fehlende Kommando deklariert werden? Warum dort?
-  Nehmen Sie an, dass `Get Userlist` nur ein Synonym von `Get All Users` sein soll
-  und deklarieren Sie es in diesem Sinne.
-  Probieren Sie Ihre Antwort aus und überzeugen Sie sich, dass der Testfall sich nun anders verhält.
-  (Er schlägt aber immer noch fehl.)
-- [EQ] Welches Versagen bekommen Sie für diesen Testfall nun?
+Zurück zu unserem Testfall.
+Nehmen Sie an, dass `Get Userlist` nur ein anderer Name für das vorhandene Keyword `Get All Users` sein soll.
+
+- [EQ] Definieren Sie das Keyword `Get Userlist` entsprechend.
+  In welche Datei gehört die Definition am besten, und warum?
+  Geben Sie Ihre Definition mit an.
+
+[HINT::Wie definiere ich ein Keyword?]
+Schauen Sie sich in `keywords.resource` an, wie z.B. `Login Admin` definiert ist:
+Der Name steht am Zeilenanfang, die Schritte darunter sind eingerückt.
+[ENDHINT]
+
+- [EQ] Lassen Sie den Testfall erneut laufen.
+  Er schlägt immer noch fehl, aber mit einer anderen Meldung.
+  Wie lautet sie, und woran liegt das?
+
+[HINT::Ich verstehe nicht, warum der Test fehlschlägt]
+Lesen Sie in `CustomLibrary.py` den Docstring von `get_all_users` und
+vergleichen Sie ihn mit dem Benutzer, der sich im Testfall anmeldet.
+[ENDHINT]
+
+<!-- time estimate: 35 min -->
 
 
 ### Zweites Beispiel: BDD-Example
 
-Wechseln Sie oben in der Editorbox zum Beispiel **BDD-Example**.
-
-- [EQ] Machen Sie sich mit dem Thema [TERMREF::BDD] vertraut, indem Sie das BDD-Example
-  und seine Erläuterung studieren. 
+Wechseln Sie oben in der Editorbox zum Beispiel **BDD-Example** und lesen Sie die zugehörige Erläuterung.
+Der Testfall liest sich fast wie ein englischer Satz.
+Genau darum geht es bei [TERMREF::BDD]:
+Testfälle sollen so formuliert sein, dass auch Menschen ohne Programmierkenntnisse sie verstehen.
 
 [HINT::Was bedeuten `Given`, `When`, `Then`, `And`?]
-Das stammt von der verwandten Sprache 
-[Gherkin](https://en.wikipedia.org/wiki/Cucumber_(software)#Gherkin_language) 
+Das stammt von der Sprache
+[Gherkin](https://en.wikipedia.org/wiki/Cucumber_(software)#Gherkin_language)
 des verwandten Werkzeugs `Cucumber` aus der Ruby-Welt.
 
 Dort ist `Given`/`When`/`Then` eine fest vorgegebene Struktur eines jeden Tests.
-`Given` beschreibt Vorbereitsungsschritte,
+`Given` beschreibt Vorbereitungsschritte,
 `When` beschreibt die Testoperationen und
 `Then` beschreibt die Ergebnisprüfungen des Tests.
-`And` fügt dem vorangegangenen Konstrukt einen weiteren Teil zu.
+`And` fügt dem vorangegangenen Konstrukt einen weiteren Teil hinzu.
 
-Bei Robot Framework werden diese Schlüsselworte einfach ignoriert,
-sie stehen also sozusagen nur zur Dekoration da und man könnte z.b. auch `Given` statt `Then`
-hinschreiben, ohne dass sich die Wirkung ändert -- was in der Praxis keine tolle Eigenschaft
-ist, da es zu recht verwirrenden Formulierungen führen kann.
+Robot Framework ignoriert diese Wörter einfach.
+Sie stehen also nur zur Dekoration da, und man könnte z.B. auch `Given` statt `Then`
+hinschreiben, ohne dass sich die Wirkung ändert.
+In der Praxis ist das keine gute Eigenschaft, weil es zu recht verwirrenden Formulierungen führen kann.
 [ENDHINT]
 
-- [EQ] Betrachten Sie `Calculator.py` und setzen Sie die vier `.robot`-Zeilen des Testfalls
-  in vier Zeilen Python-Code auf Basis von `Calculator.py` um.
+- [EQ] Betrachten Sie `Calculator.py`. Übersetzen Sie die vier Zeilen des Testfalls aus `Calculator_Test_Suite.robot`
+  in vier Zeilen Python-Code, die `Calculator.py` benutzen.
 
 [HINT::Und was ist mit `Calc_keywords.resource`?]
-Dort könnten Sie den genauen Zusammenhang von Testfall und Python-Code nachlesen,
-aber der Testfall ist so einfach, dass die Aufgabe wahrscheinlich schneller erledigt ist,
-wenn Sie die Python-Struktur selbst überlegen -- das spart nämlich viele Kontextwechsel.
+Dort könnten Sie den genauen Zusammenhang von Testfall und Python-Code nachlesen.
+Der Testfall ist aber so einfach, dass Sie wahrscheinlich schneller sind,
+wenn Sie sich die Python-Fassung selbst überlegen.
 [ENDHINT]
 
-- [EQ] Ergänzen Sie in `Calculator_Test_Suite.robot` die Bedingung 
-  `Then The Result Should Not Be "1"`.  
-  Was müssen Sie in `Calc_keywords.resource` zufügen, damit der Testfall wieder ausführbar wird?
+In `Calc_keywords.resource` steht im Keyword `The User Enters The Term "${term}"`
+die Zeile `Set Test Variable    ${term}`.
 
-[HINT::Was kann ich denn dabei alles benutzen?]
-In `Calc_keywords.resource` werden diverse "Schlüsselworte" (Kommandos) benutzt,
-die von nirgendwo sichtbar importiert werden, sondern einfach so vorhanden sind.
+- [EQ] Setzen Sie ein `#` an den Anfang dieser Zeile, um sie auszukommentieren,
+  und lassen Sie den Test laufen.
+  Was passiert?
+  Was schließen Sie daraus über die Sichtbarkeit von Variablen in Robot Framework?
+  Entfernen Sie das `#` danach wieder.
+
+- [EQ] Ergänzen Sie am Ende des Testfalls in `Calculator_Test_Suite.robot` die Zeile
+  `And The Result Should Not Be "1"`.
+  Was müssen Sie in `Calc_keywords.resource` hinzufügen, damit der Test wieder läuft?
+  Geben Sie Ihr neues Keyword an.
+
+[HINT::Was kann ich dafür benutzen?]
+Schauen Sie sich an, wie `The Result Should Be "${expected}"` gebaut ist:
+Der Wert in Anführungszeichen landet als Argument im Keyword.
 Neben `Should Be Equal As Numbers` gibt es auch `Should Not Be Equal As Numbers`.
-Beides stammt aus der umfangreichen
-[`BuiltIns`-Standardbibliothek](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#standard-libraries),
-die ohne Import verfügbar ist; ähnlich wie in Python.
+Beide stammen aus der
+[`BuiltIn`-Standardbibliothek](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html),
+die ohne Import verfügbar ist, ähnlich wie die eingebauten Funktionen in Python.
 [ENDHINT]
 
+<!-- time estimate: 25 min -->
 
-### BDD-Diskussion
+
+### Was macht einen guten BDD-Test aus?
 
 BDD ist nicht nur eine Syntax für Testfälle, sondern eine Methode dafür,
 wie man Akzeptanztests formulieren sollte, die von nichttechnischen Menschen
@@ -179,14 +215,17 @@ die Ihnen neu erscheinen.
 
 - [EQ] Formulieren Sie diese zwei Ideen in eigenen Worten.
 
+<!-- time estimate: 10 min -->
+
 [ENDSECTION]
 [SECTION::submission::trace]
 
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 
 [ENDSECTION]
-[INSTRUCTOR::Musterlösung]
 
-TODO_2_ruhe
+[INSTRUCTOR::Prüfhilfen]
+
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
