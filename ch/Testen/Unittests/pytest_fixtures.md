@@ -38,7 +38,6 @@ Statt in jedem Test denselben Setup-Code neu zu schreiben, definieren wir ihn
 an einer Stelle und verlangen das Objekt dann als Abhängigkeit.
 
 ### Das Problem ohne Fixtures
-<!-- time estimate: 5 min -->
 
 Betrachten Sie zunächst diesen kleinen Test für einen Benutzer-Dienst.
 Der Code ist bewusst noch etwas unordentlich, damit Sie das Problem direkt sehen können.
@@ -91,9 +90,9 @@ def test_user_registration():
 ```
 
 [EQ] Welche Probleme erkennen Sie in diesem Code? Notieren Sie mindestens drei Probleme.
+<!-- time estimate: 5 min -->
 
 ### Die Fixture-Idee und der Ausgangscode
-<!-- time estimate: 10 min -->
 
 pytest löst genau diese Schwächen mit sogenannten "Fixtures".
 
@@ -128,9 +127,9 @@ def test_user_login():
     result = service.login("alice", "password123")
     assert result.success
 ```
+<!-- time estimate: 10 min -->
 
 ### Setup deklarativ machen
-<!-- time estimate: 15 min -->
 
 Anstatt in jedem Test den gleichen Setup-Code zu kopieren, definieren Sie ihn einmal als
 Fixture und verwenden ihn dann an den Stellen, an denen ein Test ihn braucht.
@@ -171,9 +170,9 @@ def test_login(user_service, credentials):
 [EQ] Stellen Sie sich eine Testdatei mit Dutzenden Tests vor, die verschiedene Kombinationen
 von Fixtures verwenden.
 Welchen Vorteil hat es, wenn alle benötigten Fixtures als Parameter in der Signatur stehen?
+<!-- time estimate: 15 min -->
 
 ### Fixture Scopes: wann welcher?
-<!-- time estimate: 25 min -->
 
 Manche Fixtures sind aufwendig: Eine Datenbankverbindung aufzubauen, Testdaten zu laden oder
 einen Server zu starten kann Sekunden dauern.
@@ -255,9 +254,9 @@ verlässt, dass noch kein Nutzer registriert ist?
 
 Wenn Sie fertig sind, entfernen Sie `slow_service` und die drei zugehörigen Tests wieder,
 damit der Rest der Datei nicht durch das `sleep()` ausgebremst wird.
+<!-- time estimate: 25 min -->
 
 ### Setup und Teardown: Das Cleanup-Problem
-<!-- time estimate: 30 min -->
 
 Manche Tests erstellen Dateien, Datenbank-Einträge oder andere Ressourcen.
 Was passiert, wenn diese nicht aufgeräumt werden?
@@ -382,9 +381,9 @@ Wird der Cleanup im Fixture noch ausgeführt, wenn der Test selbst fehlschlägt?
 Warum ist das wichtig?
 
 Machen Sie die Änderung an `test_another_temp_file` danach wieder rückgängig.
+<!-- time estimate: 30 min -->
 
 ### Fixtures teilen: conftest.py
-<!-- time estimate: 15 min -->
 
 Wenn Sie mehrere Testdateien haben, die dieselben Fixtures brauchen, gibt es dafür in pytest
 eine praktische Lösung.
@@ -442,9 +441,9 @@ Die Klasse `PseudoUserservice` dagegen wird ganz normal aus `userservice.py` imp
 plötzlich unangenehm werden, wenn ein Projekt wächst?
 Nennen Sie ein konkretes Beispiel für ein Problem, das dadurch entstehen kann,
 und vergleichen Sie das mit einer expliziten Import-Variante.
+<!-- time estimate: 15 min -->
 
 ### Eingebaute Fixtures verstehen
-<!-- time estimate: 15 min -->
 
 pytest bringt viele eingebaute Fixtures mit.
 Zwei davon kennen bzw. brauchen Sie:
@@ -484,9 +483,9 @@ def test_capsys_experiment(capsys):
 [EC] Fügen Sie beide Tests zu `test_userservice.py` hinzu und führen Sie sie aus:
 `pytest -v -s test_userservice.py`
 (Mit `-s` zeigt pytest auch die `print()`-Ausgaben bestandener Tests an.)
+<!-- time estimate: 15 min -->
 
 ### Reflexion: Wann und warum Fixtures?
-<!-- time estimate: 5 min -->
 
 Sie haben jetzt verschiedene Möglichkeiten kennengelernt, wie pytest beim Aufbau eines Tests
 helfen kann.
@@ -496,6 +495,7 @@ Denken Sie kurz darüber nach, wie das Ihr Vorgehen verändert:
 weg von "Setup-Code schreiben" hin zu "Abhängigkeiten deklarieren".
 Die eigentliche Testlogik wird dadurch deutlich besser erkennbar.
 Welcher Nachteil entsteht dadurch, dass das Setup nicht mehr direkt im Testrumpf steht?
+<!-- time estimate: 5 min -->
 [ENDSECTION]
 
 
