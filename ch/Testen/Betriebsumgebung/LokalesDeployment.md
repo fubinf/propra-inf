@@ -1,168 +1,151 @@
-title: Lokale Bereitstellung des System unter Test
-stage: draft
-timevalue: 1
-difficulty: 1
+title: Lokale Bereitstellung des Testobjekts
+stage: alpha
+timevalue: 0.75
+difficulty: 2
 explains: SUT
-assumes: venv, pip, Shell-Grundlagen, Git101, apt
+assumes: venv, pip, Shell-Grundlagen, Git101
 ---
 
-[SECTION::goal::idea]
+[SECTION::goal::experience]
 
-- Ich kann das SUT lokal starten und verwenden.
+- Ich kann das Testobjekt lokal starten und im Browser benutzen.
 
 [ENDSECTION]
 [SECTION::background::default]
 
-Das SUT ist eine einfache Webanwendung, die eigens zu dem Zweck des ProPra für die
-Testautomatisierung entwickelt wurde. Diese Webanwendung ist darauf ausgerichtet, nur geringe
-Vorbedingungen für die Bereitstellung zu erfordern und fungiert gleichzeitig als praktisches
-Beispiel für eine gut zu testende Webanwendung.
+Ein System under Test ([TERMREF::SUT]) ist das System, das bei einem Test geprüft wird.
+In den Testaufgaben des ProPra ist das meist das _Testobjekt_, eine einfache Flask-Webanwendung,
+die eigens für Übungen zur Testautomatisierung entwickelt wurde.
+Damit Sie es testen können, müssen Sie es zunächst auf Ihrem Rechner zum Laufen bringen.
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-### Warum benutze ich das SUT?
-
-Es werden Aufgaben zur Verfügung stehen, die eine besondere Grundlage benötigen, um korrekt gelöst
-werden zu können. Primär ist das SUT für den Bereich TEST vorgesehen, kann auch auch für alle
-anderen Bereiche der Softwareentwicklung verwendet werden, um z.B. die Webentwicklung im Front- und
-Backend zu erkunden, oder sich mit der Bereitstellung (Deployment) von Anwendungen zu befassen.
-In jedem Fall wird es ein Hinweis geben, der sich auf diese Grundlagen bezieht.
-
-Natürlich können Sie auch jederzeit explorativ das SUT erkunden, verbessern oder erweitern. Sollten
-Ihnen merkwürdige Verhaltensmuster an der Software auffallen, können Sie ebenfalls die Gelegenheit
-nutzen dies in GitHub als Issue kenntlich zu machen und so an der Entwicklung teilnehmen.
+### Das Testobjekt kennenlernen
 
 <replacement id="LokalesDeployment-SUTCopyRepoLink">
-Verschaffen Sie sich einen Überblick über den Entwicklungsstand, welchen Sie im
-[GitHub Repository](https://github.com/fubinf/propra-inf-testobjekt) finden.
+Der Quellcode des Testobjekts liegt im
+[GitHub-Repository propra-inf-testobjekt](https://github.com/fubinf/propra-inf-testobjekt).
 </replacement>
 
-- [EQ] Welche Versionen befinden sich im Repository?
+Lesen Sie dort im `README.md` den Abschnitt "Welche Versionen gibt es" und sehen Sie sich die Versionsverzeichnisse an.
 
-### Repository pullen
+- [EQ] Welche der Versionen enthalten derzeit lauffähigen Code, welche nicht?
 
-Starten Sie ein eine neue Terminal Session. Wir wollen unser SUT gleich strukturiert ablegen.
+Sollten Ihnen später merkwürdige Verhaltensmuster am Testobjekt auffallen, dürfen Sie diese gern
+im Repository als Issue melden.
+<!-- time estimate: 5 min -->
 
-- Legen Sie dazu ein neues Verzeichnis an: `mkdir ~/ws/sut`.
-- Navigieren Sie anschließend in dieses Verzeichnis: `cd ~/ws/sut`.
-- Jetzt beschaffen wir uns den Quellcode mit `git clone https://github.com/fubinf/propra-inf-testobjekt.git`.
+### Repository klonen
 
-- [EQ] Wie heißt das erstellte Verzeichnis unter `~/ws/sut/`?
+Legen Sie in einer neuen Terminal-Sitzung ein Verzeichnis für das Testobjekt an und klonen Sie
+das Repository dorthin:
+
+- [EC] `mkdir ~/ws/sut`
+- [EC] `cd ~/ws/sut`
+- [EC] `git clone https://github.com/fubinf/propra-inf-testobjekt.git`
 
 [WARNING]
-Achten Sie darauf, dass Sie sich **im** Verzeichnis *sut* befinden und nach dem pullen nicht die
-Überraschung entdecken, dass sich Ihr Repo auf einmal wo anders befindet.
+Achten Sie darauf, dass Sie sich beim Klonen **im** Verzeichnis `~/ws/sut` befinden,
+sonst landet das Repository woanders.
 [ENDWARNING]
+<!-- time estimate: 5 min -->
 
-### Anforderungen erfüllen
+### Umgebung einrichten
 
-Bevor wir die Anwendung starten können, benötigen wir die für diese Webanwendung genutzten
-Entwicklungsvorbedingungen. Da dieser Webauftritt ein Python Projekt ist, wird als aller erstes
-Python benötigt.
+Das Testobjekt ist ein Python-Projekt.
+Eine aktuelle Python-3-Version genügt.
 
-- [EC] Aktualisieren Sie, falls notwendig, auf Python Version 3.11
+- [EC] Prüfen Sie Ihre Python-Version mit `python3 --version`.
 
-Wenn Sie mit mehreren Python Projekten arbeiten, werden Sie auch auf unterschiedliche Vorbedingen
-oder Abhängigkeiten treffen. Daher bietet es sich an diese Projekte in unterschiedlichen Umgebungen
-mit Hilfe von [TERMREF::venv] zu verwenden. Tiefer gehende Informationen finden Sie im Kapitel
-[PARTREF::venv].
+Die Abhängigkeiten des Testobjekts installieren Sie in eine eigene virtuelle Umgebung,
+wie in [PARTREF::venv] beschrieben.
+Legen Sie diese außerhalb des Repositorys an, damit sie nicht in `git status` auftaucht:
 
-- [EQ] Wie setzt sich Ihr [TERMREF::Prompt] zusammen?
+- [EC] Legen Sie eine virtuelle Umgebung `~/venv/sut` an.
+- [EC] Aktivieren Sie diese virtuelle Umgebung.
 
-[HINT:: VENV einrichten]
-
-- Zu erst wechseln wir in das vom GitHub gepullte Verzeichnis mit dem Kommando `cd`. Hier
-  müssen Sie noch das aus [EREFQ::1] erkannte Verzeichnis ergänzen.
-- Installieren Sie in Ihrem Verzeichnis eine neue Virtuelle Umgebung mit: `python -m venv ./sut`
-- Wechseln sie in diese Virtuelle Umgebung: `source ./sut/bin/active`
-
+[HINT::Ich weiß nicht mehr, wie man eine venv anlegt und aktiviert]
+Anlegen: `python3 -m venv ~/venv/sut`  
+Aktivieren: `source ~/venv/sut/bin/activate`  
+Danach sollte Ihr [TERMREF::Prompt] mit `(sut)` beginnen.
 [ENDHINT]
 
-Neben der Entwicklungssprache Python werden auch weitere [TERMREF::Framework]s verwendet, um diese
-Seite zu realisieren. Diese Erweiterungen werden in einer einzelnen Datei dokumentiert. Diese
-finden Sie standardmäßig im Stammverzeichnis unter `requirements.txt`. Mit dieser Datei haben Sie
-die Möglichkeit Abhängigkeiten schnell und unkompliziert zu installieren.
+Das Testobjekt verwendet das Web-Framework Flask und einige Flask-Erweiterungen.
+Diese Abhängigkeiten sind je Version in einer Datei `requirements.txt` im Versionsverzeichnis aufgeführt.
+Welche Version Sie verwenden sollen, gibt die jeweilige Aufgabe vor; hier nehmen wir `v1.0.0`.
 
-Da das SUT aus unterschiedlichen Versionen besteht, müssen wir uns für eins entscheiden (bzw. wird
-ihnen die Version in der jeweiligen Aufgabe nahegelegt).
-
-- [EC] Wechseln Sie in das vorgesehene Verzeichnis mit der angegebenen Versionsnummer (hier
-  exemplarisch v1.0.0)
-- [EC] Anschließend installieren Sie einmalig die hinterlegten Abhängigkeiten über die Datei
-  `requirements.txt`
-
-[WARNING]
-Da Sie die Virtuelle Umgebung `sut` verwenden, sind die installierten Abhängigkeiten nur für diese
-Umgebung gültig. Wechseln Sie in eine andere Umgebung, die diese Abhängigkeiten nicht installiert
-hat, wird beim folgenden Ausführen eine Fehlermeldung auftauchen.
-[ENDWARNING]
+- [EC] Wechseln Sie in das Verzeichnis `propra-inf-testobjekt/v1.0.0`.
+- [EC] Installieren Sie die Abhängigkeiten aus `requirements.txt` mit `pip`.
+<!-- time estimate: 10 min -->
 
 ### Anwendung starten
 
-Jetzt haben wir alles, was wir zum Starten benötigen. Jedoch wir müssen unsere Anwendung noch zum
-Laufen bringen. Das realisieren wir mit dem folgenden Kommando:
+Die Hauptdatei der Anwendung heißt `app.py`.
 
-- [EC] Starten Sie die Anwendung mit Python, indem Sie die Hauptdatei aufrufen.
+- [EC] Starten Sie die Anwendung, indem Sie `app.py` mit Python ausführen.
 
-[HINT::Datei nicht gefunden]
-Sollte die Datei nicht gefunden werden, müssen die den Pfad anpassen oder ins Verzeichnis der
-vorgeschriebenen Version wechseln.
+Die Anwendung läuft nun im Vordergrund des Terminals, bis Sie sie mit `Strg-C` beenden.
+Lassen Sie dieses Terminal also geöffnet.
+
+Lesen Sie die Startmeldung und den Abschnitt
+[Debug Mode in der Flask-Dokumentation](https://flask.palletsprojects.com/en/stable/quickstart/#debug-mode).
+
+- [EQ] Laut Startmeldung ist die Anwendung unter `127.0.0.1` erreichbar.
+  Was bedeutet diese [TERMREF::IP-Adresse] und könnten andere Rechner die Anwendung aufrufen?
+- [EQ] Die Startmeldung sagt `Debugger is active!`.
+  Was bewirkt der Debug-Modus und warum darf man ihn nie auf einem öffentlich erreichbaren Server einschalten?
+
+[HINT::`Address already in use` oder der Browser zeigt eine fremde Seite (macOS)]
+Unter macOS belegt der AirPlay-Empfänger standardmäßig Port 5000.
+Entweder schalten Sie ihn in den Systemeinstellungen unter "Allgemein → AirDrop & Handoff" ab,
+oder Sie starten die Anwendung auf einem anderen Port:
+`flask --app app run --debug --port 5001`.
+Verwenden Sie dann im Folgenden überall `5001` statt `5000`.
 [ENDHINT]
-
-Jetzt läuft im Hintergrund die bereitgestellte Webanwendung. Diese wartet auf Interaktionen auf der
-lokalen Schnittstelle 127.0.0.1 über den Port 5000.
-
-[WARNING]
-In unserem Fall muss das Terminalfenster, aus dem wir unsere Anwendung gestartet haben, geöffnet
-bleiben, um damit arbeiten zu können.
-[ENDWARNING]
-
-[HINT::Anwendung beenden]
-In Ihrer geöffneten Terminalsitzung läuft die Anwendung im Vordergrund mit. Um diese zu beenden,
-drücken Sie die Tastenkombination `Control + C`, oder schließen das Terminalfenster.
-[ENDHINT]
+<!-- time estimate: 15 min -->
 
 ### Anwendung aufrufen
 
-Um mit der Webanwednung zu interagieren zu können, benötigen Sie ein Browserfenster.
+Rufen Sie im Browser `http://127.0.0.1:5000` auf.
+Sie sehen eine Anmeldeseite.
+Die Benutzernamen stehen in `data/users.json`, das zugehörige Passwort finden Sie in `app.py`
+dort, wo die Benutzer angelegt werden.
 
-- Rufen Sie im Browser die folgende Seite auf: `http://127.0.0.1:5000`
+- [EQ] Melden Sie sich an.
+  Mit welchem Benutzernamen und Passwort ist Ihnen das gelungen und was zeigt die Seite danach an?
 
-Wenn Sie jetzt eine Webseite sehen, hat alles funktioniert.
+[HINT::Die Anmeldung schlägt trotz richtigem Passwort fehl]
+Möglicherweise wurde das Passwort in der Datenbank geändert.
+Rufen Sie `http://127.0.0.1:5000/reset-password` auf; das setzt alle Passwörter auf den Ausgangswert zurück.
+[ENDHINT]
 
-Natürlich werden Sie in die Versuchung kommen, Änderungen am Code vorzunehmen, indem Sie Anpassungen
-vornehmen, Dinge Löschen oder Hinzufügen.
+Die Startseite können Sie auch auf der Kommandozeile abrufen.
+Öffnen Sie dazu ein zweites Terminal (die Anwendung muss im ersten weiterlaufen).
+`curl` ruft eine URL ab und gibt die Antwort aus; `-s` unterdrückt dabei die Fortschrittsanzeige.
 
-- [EQ] Welche Auswirkung hat eine Änderung auf das GitHub Repository?
+- [EC] `curl -s http://127.0.0.1:5000 | head -n 10`
+<!-- time estimate: 10 min -->
 
-Win diesem Task geht es darum, das SUT lokal zu starten und eine Änderung nicht online zur Verfügung
-zu stellen. Doch ..
+### Warum lokal?
 
-- [EQ] Warum arbeiten wir lokal und nicht permanent mit eine online bereitgestellten Version?
+Die Aufgabengruppe [PARTREF::Betriebsumgebung] nennt verschiedene Betriebsumgebungen für Tests.
 
+- [EQ] Welche Vorteile hat es beim Testen, dass jede_r ein eigenes lokales Exemplar des Testobjekts startet,
+  statt dass alle gemeinsam einen zentral bereitgestellten Testserver benutzen?
+  Nennen Sie mindestens zwei.
+
+Beenden Sie zum Schluss die Anwendung im ersten Terminal mit `Strg-C`.
+<!-- time estimate: 5 min -->
+
+[ENDSECTION]
 [SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::heading]
+[INSTRUCTOR::Prüfhilfen]
 
-- [EREFQ::1] Versionen v1.0.0, v1.1.0 und v3.0.0, wobei v1.0.0 Code enthält.
-- [EREFQ::2] Nach diesen Schritten sollte das folgende Verzeichnis `propra-inf-testobjekt` unter
-  `~/ws/sut/` gefunden worden sein.
-- [EREFC::1] `apt install python3.11` könnte eine Lösung sein.
-- [EREFQ::3] Hier soll kenntlich gemacht werden, dass die venv im Prompt angezeigt wird. Wenn
-  der Hinweis befolgt wird, sollte folgendes erscheinen: **(sut)**
-- [EREFC::2] `cd v1.0.0`
-- [EREFC::3] `pip install -r requirements.txt`
-- [EREFC::4] `python3 app.py`
-- [EREFQ::4] Gar keine, da alle Änderungen lediglich lokal geschehen und GitHub gar nichts davon
-  mitbekommt, so fern man keine Commits pushed.
-- [EREFQ::5] Die wesentlichsten Vorteile sind:
-  - Schneller Zugriff auf ein laufendes SUT
-  - Debugging Möglichkeit
-  - Zum Testen immer ein SUT mit ein und dem selben Zustand (Testdaten)
-  - unabhängig und flexibel mit der Anwendung
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
