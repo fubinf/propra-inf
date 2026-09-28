@@ -228,6 +228,8 @@ und führen Sie in einem anderen Terminal folgende Kommandos aus:
 
 [EC] `curl -i -X GET http://localhost:8083/alice`
 
+[EC] `curl -i -X POST -d '{"username":"alice","port":9999}' http://localhost:8083/unregister`
+
 [EC] `curl -i -X POST -d '{"username":"alice","port":8081}' http://localhost:8083/unregister`
 
 [EC] `curl -i -X GET http://localhost:8083/alice`
