@@ -435,7 +435,7 @@ Im Original des Werkzeugs steht dort `/.snapshots/`.
 
 [EC] Sehen Sie nach, ob die Datei `/etc/rsnapshot.conf` auf Ihrem System existiert.
 Sofern Sie `rsnapshot` nicht schon installiert haben, lautet die Antwort: nein.
-Haben Sie es doch schon installiert, führen Sie die Kommandos dieses Blocks nicht aus,
+Haben Sie es doch schon installiert, führen Sie die weiteren Kommandos dieses Blocks nicht aus,
 sondern lesen Sie ihn nur, denn am Ende wird das Paket wieder vollständig entfernt.
 Auch für diesen Fall gilt die Bemerkung oben.
 
