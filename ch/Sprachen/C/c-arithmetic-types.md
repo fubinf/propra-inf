@@ -1,4 +1,4 @@
-title: "C algebraische Typen"
+title: "C arithmetische Typen"
 stage: alpha
 timevalue: 1.5
 difficulty: 2
@@ -19,15 +19,14 @@ Das Angeben der Typen wird hier auf den Programmierer abgeschoben.
 
 [SECTION::instructions::detailed]
 Es werden hier nur die arithmetischen Typen behandelt.
-Komplexere Datentypen (z.B. `struct` oder Pointer) haben ihre eigenen Aufgaben.
+Komplexere Datentypen (z.B. `struct` oder Pointer) werden in separaten Aufgaben behandelt.
 
 Für die Aufgaben wird hauptsächlich folgende Referenz verwendet:
-<!-- @LINK_SPEC: status=403 -->
-[Arithmetische Typen](https://en.cppreference.com/c/language/arithmetic_types).
+<!-- @LINK_SPEC: status=403 -->[Arithmetische Typen](https://en.cppreference.com/c/language/arithmetic_types).
 Überspringen Sie komplexe und imaginäre Typen, `_Decimal`, `_BitInt` und alles mit "since C23" 
 (das ProPra nutzt C17).
 
-Die für die Aufgaben zu verwendenden `printf` Formatangaben sind hier gelistet:
+Die für die Aufgaben zu verwendenden `printf`-Formatangaben sind hier gelistet:
 
 - `%d` für `int`, `%u` für `unsigned int`, `%ld` für `long`
 - `%zu` für `size_t` (das Ergebnis von `sizeof`)
@@ -36,18 +35,17 @@ Die für die Aufgaben zu verwendenden `printf` Formatangaben sind hier gelistet:
   (wandeln Sie 64-Bit-Werte dafür mit entsprechenden Wandlungen um)
 
 Sollten Sie noch weitere benötigen (z.B. weil Ihr Betriebssystem leicht andere Definitionen
-besitzt), finden Sie
-<!-- @LINK_SPEC: status=403 -->
-[hier](https://en.cppreference.com/c/io/fprintf) eine Beschreibung aller Formatangaben.
+besitzt), finden Sie alle Formatangaben in der
+<!-- @LINK_SPEC: status=403 -->[Beschreibung von `printf`](https://en.cppreference.com/c/io/fprintf).
 
 
 ### Projekt anlegen
 
-Legen Sie ein neues CLion Projekt für die Aufgabe an (s. [PARTREF::c-setup]).
+Legen Sie ein neues CLion-Projekt für die Aufgabe an (s. [PARTREF::c-setup]).
 Löschen Sie die von CLion erzeugte `main.c` und die zugehörige `add_executable`-Zeile in der
 `CMakeLists.txt`.
 
-Für die weiteren Aufgaben ist der Ablauf stets derselbe:
+Für die weiteren Schritte unten ist der Ablauf stets derselbe:
 
 - Neue Quelldatei anlegen (New > C/C++ Source File, vgl. [PARTREF::c-experiment]).
   Entfernen Sie im Dialog den Haken bei "Add to targets".
@@ -74,7 +72,7 @@ Was könnte passieren, wenn Sie dies nicht beachten?
 `<stdint.h>`).
 
 [EC] Bauen und führen Sie das Target `sizes` aus.
- 
+
 [EQ] Wann würden Sie `int` verwenden, wann `int32_t`?
 Begründen Sie mit den Ergebnissen dieses Teils.
 
@@ -82,8 +80,7 @@ Begründen Sie mit den Ergebnissen dieses Teils.
 ### Überläufe bei `unsigned` Datentypen
 
 Lesen Sie den Abschnitt über
-<!-- @LINK_SPEC: status=403 -->
-[Überläufe](https://en.cppreference.com/c/language/operator_arithmetic#Overflows).
+<!-- @LINK_SPEC: status=403 -->[Überläufe](https://en.cppreference.com/c/language/operator_arithmetic#Overflows).
 
 [ER] Legen Sie `overflow.c` mit folgendem Inhalt an:
 
@@ -95,9 +92,9 @@ int main(void) {
   uint8_t f8 = 1;
   uint32_t f32 = 1;
   uint64_t f64 = 1;
- 
+
   for (int n = 1; n <= 25; n++) {
-    f8 *= (uint8_t)n; // *= ist equivalent mit f8 = f8 * n
+    f8 *= (uint8_t)n; // *= ist äquivalent zu f8 = f8 * n
     f32 *= (uint32_t)n;
     f64 *= (uint64_t)n;
 
@@ -118,21 +115,21 @@ zum ersten Mal falsch wird?
 
 ### Überläufe bei `signed` Datentypen
 
-Was Überläufe bei vorzeichenbehafteten Typen angeht, hat der C Standard eine Gemeinheit.
+Was Überläufe bei vorzeichenbehafteten Typen angeht, hat der C-Standard eine Gemeinheit.
 Denn dies ist ein Beispiel von "undefined behavior" (UB), der Standard hat für dieses Verhalten
 keinerlei Definition.
 Sie können demnach nicht darauf vertrauen, was passiert, UB ist also zu vermeiden.
 
 [ER] Legen Sie `signedoverflow.c` an:
- 
+
 ```c
 #include <limits.h>
 #include <stdio.h>
- 
+
 int isBigger(int x) {
   return x + 1 > x;
 }
- 
+
 int main(void) {
   printf("%d\n", isBigger(INT_MAX));
 
@@ -147,8 +144,8 @@ int main(void) {
 [EQ] Ist die Ausgabe mit einem Umlauf vereinbar?
 Was hat der Übersetzer offenbar angenommen?
 
-[ER] Ändern Sie in `isBigger` den Typ von `int` auf `unsigned int` und in `main` `INT_MAX` auf
-`UINT_MAX`.
+[ER] Ändern Sie in `isBigger` den Typ des Parameters `x` von `int` auf `unsigned int`
+und in `main` `INT_MAX` auf `UINT_MAX`.
 
 [EC] Bauen und führen Sie das Target aus.
 
@@ -166,21 +163,19 @@ Nennen Sie eine Möglichkeit, das zu vermeiden.
 
 ### Typumwandlungen
 
-Lesen Sie den Abschnitt "Boolean type", sowie auf der Seite
-<!-- @LINK_SPEC: status=403 -->
-[Implizite Umwandlungen](https://en.cppreference.com/c/language/conversion)
+Lesen Sie auf der Seite zu den arithmetischen Typen den Abschnitt "Boolean type" sowie auf der Seite
+<!-- @LINK_SPEC: status=403 -->[Implizite Umwandlungen](https://en.cppreference.com/c/language/conversion)
 die Abschnitte "Integer promotions" und "Usual arithmetic conversions".
 Für Literale wie `100000ULL` hilft
-<!-- @LINK_SPEC: status=403 -->
-[Integer constants](https://en.cppreference.com/c/language/integer_constant).
+<!-- @LINK_SPEC: status=403 -->[Integer constants](https://en.cppreference.com/c/language/integer_constant).
 
 [ER] Legen Sie `convert.c` an.
 Das Programm enthält vier Fehler, welche alle aus den Umwandlungsregeln folgen.
- 
+
 ```c
 #include <stdint.h>
 #include <stdio.h>
- 
+
 void average(void) {
   int a = 7;
   int b = 2;
@@ -188,7 +183,7 @@ void average(void) {
 
   printf("Durchschnitt: %f\n", avg);
 }
- 
+
 void countdown(void) {
   int guard = 0;
 
@@ -202,7 +197,7 @@ void countdown(void) {
 
   printf("\n");
 }
- 
+
 void lengthCheck(void) {
   int len = -1;
 
@@ -212,13 +207,13 @@ void lengthCheck(void) {
     printf("len ist NICHT kleiner als int\n");
   }
 }
- 
+
 void seconds(void) {
   uint64_t total = 100000 * 100000;
 
   printf("Sekunden: %llu\n", (unsigned long long)total);
 }
- 
+
 int main(void) {
   average();
   countdown();
@@ -234,8 +229,8 @@ Welche Ausgabe wäre jeweils die richtige?
 
 [EC] Bauen Sie das Target `convert` und führen Sie es aus.
 
-[EQ] Ordnen Sie jeder falschen Ausgabe die passende Warnung des Übersetzers zu und erklären Sie
-den Fehler mit den Umwandlungsregeln der Seite.
+[EQ] Ordnen Sie jeder falschen Ausgabe die passende Warnung des Übersetzers zu (sofern es eine gibt)
+und erklären Sie den Fehler mit den Umwandlungsregeln der Seite.
 
 [ER] Beheben Sie alle vier Fehler, sodass die richtigen Ausgaben erscheinen und keine Warnung
 mehr bleibt.
@@ -275,7 +270,7 @@ int main(void) {
   printf("%.17f\n", 0.1 + 0.2);
   printf("%d\n", 0.1 + 0.2 == 0.3);
   printf("%d\n", nearlyEqual(0.1 + 0.2, 0.3));
- 
+
   /* Summe */
   float sum = 0.0f;
 
@@ -317,7 +312,7 @@ nicht aus?
 
 [EQ] Was sagt die Seite über den Wert `NaN`, und was gibt `printf` dafür aus?
 
-[EQ] Der Übersetzer warnt in der Zeile mit `sum`.
+[EQ] Der Übersetzer warnt in der `printf`-Zeile mit `sum`.
 Was geschieht mit `sum` beim Aufruf von `printf`?
 (Die Option `-Wdouble-promotion` erklärt [PARTREF::c-setup].)
 
@@ -338,15 +333,17 @@ Was geschieht mit `sum` beim Aufruf von `printf`?
 - einfache Cookie-Zustimmung
 
 [ER] Legen Sie `choose.c` an.
-Deklarieren Sie für jeden Wert eine Variable mit Ihrem Typ (`<stdint.h>` und `<stdbool.h>` helfen) aus [EREFQ::16],
-setzen Sie einen passenden Beispielwert und geben Sie alle sechs Werte mittels `printf` aus.
+Deklarieren Sie für jeden Wert eine Variable mit dem in [EREFQ::16] gewählten Typ
+(`<stdint.h>` und `<stdbool.h>` helfen), setzen Sie einen passenden Beispielwert
+und geben Sie alle sechs Werte mittels `printf` aus.
 Es darf keine Warnung bleiben.
 
 [EC] Bauen und führen Sie das Target `choose` aus.
 
-[ER] Mithilfe von `typedef` können sie einen Alias für einen Typen anlegen, z.B.
-legt `typedef int64_t cents_t` einen neuen Alias `cents_t` für `int64_t` an.
-Legen Sie für die in [EREFR::13] gesetzten Variablen sinnige `typedef`s an und ändern Sie die Variablendeklarationen um die `typedef`s zu nutzen.
+[ER] Mithilfe von `typedef` können Sie einen Alias für einen Typ anlegen, z.B.
+legt `typedef int64_t cents_t;` einen neuen Alias `cents_t` für `int64_t` an.
+Legen Sie für die in [EREFR::13] deklarierten Variablen sinnvolle `typedef`-Aliase an
+und ändern Sie die Variablendeklarationen so, dass sie diese Aliase nutzen.
 
 [EC] Bauen und führen Sie das Target `choose` erneut aus.
 
