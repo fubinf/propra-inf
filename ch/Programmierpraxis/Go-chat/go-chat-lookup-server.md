@@ -1,5 +1,5 @@
 title: "Go HTTP Chat: Lookup-Server"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 assumes: go-sync-mutex, go-http-server, go-json, go-modules, http-Status
