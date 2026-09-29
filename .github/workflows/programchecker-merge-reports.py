@@ -45,7 +45,7 @@ out.append("# Program Check Report\n\n")
 out.append(
     "This report describes the results of running `sedrila maintainer check-programs` in\n"
     "several different environments as described below.  \n"
-    "https://sedrila.readthedocs.io/en/latest/maintainers/#5-program-testing-check-programs  \n"
+    "https://sedrila.readthedocs.io/en/latest/maintainers/#4-program-testing-check-programs  \n"
     "Manual and passed tests are listed only once if all environments agree "
     "(execution times are ignored in that comparison). Failed tests are always listed per environment.\n\n"
 )
@@ -131,7 +131,7 @@ append_section_deduped(
     note="A test is listed here if at least one of its `@PROT_SPEC` blocks is manual "
          "(`manual=` in the block, reason shown in the table). "
          "Such blocks are not run in CI and must be checked by hand. "
-         "The other blocks of the test were run as usual.")
+         "The Blocks column shows what happened to the other blocks of the test.")
 
 # --- Passed tests (all environments) ---
 append_section_deduped("Passed Tests", "Passed Tests")
