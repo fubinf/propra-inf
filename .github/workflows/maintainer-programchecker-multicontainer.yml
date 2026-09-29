@@ -128,6 +128,11 @@ jobs:
     if: always()
 
     steps:
+    - name: Checkout merge script
+      uses: actions/checkout@v4
+      with:
+        sparse-checkout: .github/workflows
+
     - name: Download all reports
       uses: actions/download-artifact@v4
       with:
@@ -135,145 +140,7 @@ jobs:
         path: /tmp/artifacts
 
     - name: Merge reports and publish summary
-      run: |
-        python3 << 'EOF'
-        import re, os
-
-        ENVIRONMENTS = [
-            ("debian:bookworm", "python3.11", "debian-bookworm"),
-            ("debian:trixie",   "python3.13", "debian-trixie"),
-            ("ubuntu:24.04",    "python3.12", "ubuntu-24.04"),
-        ]
-
-        def parse_block_stats(text):
-            """Parse stats from the Block-Level Statistics section only."""
-            m = re.search(r'### Block-Level Statistics\n(.*?)(?=\n###|\n##|\Z)', text, re.DOTALL)
-            if not m:
-                return {}
-            section = m.group(1)
-            result = {}
-            for label, key in [
-                ("Total @PROT_SPEC blocks", "total"),
-                ("Passed",  "passed"),
-                ("Failed",  "failed"),
-                ("Manual",  "manual"),
-                ("Skip",    "skip"),
-            ]:
-                mm = re.search(rf'\*\*{re.escape(label)}:\*\* (\d+)', section)
-                result[key] = int(mm.group(1)) if mm else 0
-            return result
-
-        def extract_section(text, heading):
-            """Return the content between '## heading' and the next '## ' heading."""
-            pattern = rf'## {re.escape(heading)}\n(.*?)(?=\n## |\Z)'
-            m = re.search(pattern, text, re.DOTALL)
-            return m.group(1).strip() if m else ""
-
-        reports = {}
-        for container, python_ver, artifact_id in ENVIRONMENTS:
-            path = f"/tmp/artifacts/program-check-reports-{artifact_id}/program_test_report.md"
-            if os.path.exists(path):
-                with open(path) as f:
-                    reports[artifact_id] = (container, python_ver, f.read())
-            else:
-                reports[artifact_id] = (container, python_ver, None)
-
-        out = []
-        out.append("# Program Check Report\n\n")
-        out.append("""
-          This report describes the results of running `sedrila maintainer check-programs` in
-          several different environments as described below.  
-          https://sedrila.readthedocs.io/en/latest/maintainers/#4-program-testing-check-programs  
-          Where all environments report the same results, the parts are joined into a single report.
-        """)
-
-        # --- Environment summary table ---
-        out.append("## Environment Summary\n\n")
-        out.append("| Environment | Python | Blocks total | Failed | Manual | Skip | Passed |\n")
-        out.append("|-------------|--------|-------------:|-------:|-------:|-----:|-------:|\n")
-        for artifact_id, (container, python_ver, text) in reports.items():
-            if text is None:
-                out.append(f"| `{container}` | {python_ver} | — | — | — | — | *(no report)* |\n")
-                continue
-            s = parse_block_stats(text)
-            status = "FAIL" if s.get("failed", 0) > 0 else "ok"
-            out.append(
-                f"| [{status}] `{container}` | {python_ver}"
-                f" | {s.get('total', 0)}"
-                f" | {s.get('failed', 0)}"
-                f" | {s.get('manual', 0)}"
-                f" | {s.get('skip', 0)}"
-                f" | {s.get('passed', 0)} |\n"
-            )
-        out.append("\n")
-
-        # --- Failed tests (all environments) ---
-        has_failures_section = False
-        for artifact_id, (container, python_ver, text) in reports.items():
-            if not text:
-                continue
-            failed_table  = extract_section(text, "Failed Tests")
-            failed_detail = extract_section(text, "Failed Tests Detail")
-            if not failed_table and not failed_detail:
-                continue
-            if not has_failures_section:
-                out.append("## Failed Tests (All Environments)\n\n")
-                has_failures_section = True
-            out.append(f"### `{container}` ({python_ver})\n\n")
-            if failed_table:
-                out.append(failed_table + "\n\n")
-            if failed_detail:
-                out.append("#### Detail\n\n")
-                out.append(failed_detail + "\n\n")
-
-        if not has_failures_section:
-            out.append("## Failed Tests\n\n*No failures across all environments.*\n\n")
-
-        def normalize_for_compare(content):
-            """Strip execution times so they don't cause false inequality."""
-            return re.sub(r'\d+\.\d+s', 'Xs', content)
-
-        def append_section_deduped(heading, section_name):
-            """Append a section; if all environments have identical content, show only once."""
-            entries = []
-            for artifact_id, (container, python_ver, text) in reports.items():
-                if not text:
-                    continue
-                content = extract_section(text, section_name)
-                if content:
-                    entries.append((container, python_ver, content))
-            if not entries:
-                return
-            out.append(f"## {heading}\n\n")
-            all_identical = len(set(normalize_for_compare(c) for _, _, c in entries)) == 1
-            if all_identical:
-                out.append("*(identical across all environments)*\n\n")
-                out.append(entries[0][2] + "\n\n")
-            else:
-                for container, python_ver, content in entries:
-                    out.append(f"### `{container}` ({python_ver})\n\n")
-                    out.append(content + "\n\n")
-
-        # --- Manual tests (all environments) ---
-        append_section_deduped("Manual Tests", "Manual Tests")
-        out.append("""
-          A test being "manual" means that this CI run has done nothing about that particular test.
-        """)
-
-        # --- Passed tests (all environments) ---
-        append_section_deduped("Passed Tests", "Passed Tests")
-
-        merged = "".join(out)
-
-        summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "/tmp/merged_report.md")
-        with open(summary_path, "w") as f:
-            f.write(merged)
-
-        with open("/tmp/merged_report.md", "w") as f:
-            f.write(merged)
-
-        print("Merged report written.")
-        EOF
+      run: python3 .github/workflows/programchecker-merge-reports.py
 
     - name: Upload merged report
       uses: actions/upload-artifact@v4
