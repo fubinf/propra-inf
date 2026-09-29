@@ -180,6 +180,12 @@ jobs:
 
         out = []
         out.append("# Program Check Report\n\n")
+        out.append("""
+          This report describes the results of running `sedrila maintainer check-programs` in
+          several different environments as described below.  
+          https://sedrila.readthedocs.io/en/latest/maintainers/#4-program-testing-check-programs  
+          Where all environments report the same results, the parts are joined into a single report.
+        """)
 
         # --- Environment summary table ---
         out.append("## Environment Summary\n\n")
@@ -250,6 +256,9 @@ jobs:
 
         # --- Manual tests (all environments) ---
         append_section_deduped("Manual Tests", "Manual Tests")
+        out.append("""
+          A test being "manual" means that this CI run has done nothing about that particular test.
+        """)
 
         # --- Passed tests (all environments) ---
         append_section_deduped("Passed Tests", "Passed Tests")
