@@ -70,9 +70,12 @@ for artifact_id, (container, python_ver, text) in reports.items():
     )
 out.append("\n")
 out.append(
-    "*Blocks* are `@PROT_SPEC` blocks. *Skip* blocks have no `@PROT_SPEC` or say `skip=1`: "
-    "they are not run and not counted as failures. "
-    "`[FAIL]` means at least one block failed; `no report` means the job produced no report.\n\n"
+    "*Blocks* are `@PROT_SPEC` blocks.  \n"
+    "*Manual* blocks are not run, see Manual Tests below.  \n"
+    "*Skip* blocks have no `@PROT_SPEC` or say `skip=1`: "
+    "they are not run and not counted as failures.  \n"
+    "`[FAIL]` means at least one block failed.  \n"
+    "`no report` means the job produced no report.\n\n"
 )
 
 # --- Failed tests (all environments) ---
