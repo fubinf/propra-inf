@@ -1,284 +1,227 @@
-title: "Pytest und tox: professionelles Test-Management"
+title: "pytest und tox: eine fremde Test-Suite reproduzierbar ausführen"
 stage: draft
-timevalue: 0
-difficulty: 4
-assumes: m_pytest, pytest_parametrize, testcoverage, m_tox
+timevalue: 2.0
+difficulty: 3
+assumes: Git101, m_pytest, flake8, m_tox
+requires: pyenv
 ---
 
-[SECTION::goal::trial]
+[SECTION::goal::product]
 
-Ich kann `pytest` und `tox` zusammen verwenden, um professionelle Test-Suites zu erstellen,
-die verschiedene Python-Versionen, Coverage-Berichte, Linting und CI/CD-Vorbereitung umfassen.
+- Ich kann für ein bestehendes Projekt eine `tox.ini` schreiben, die dessen pytest-Test-Suite
+  so ausführt wie die CI des Projekts.
+- Ich kann mit einer tox-Umgebungsmatrix herausfinden, ob ein Fehlschlag am Code
+  oder an einer Abhängigkeitsversion liegt.
+- Ich kann erkennen, ob die Tests den Quellcode im Projektordner oder das installierte Paket prüfen.
 
 [ENDSECTION]
 
 [SECTION::background::default]
 
-In professionellen Python-Projekten reicht es nicht, Tests nur lokal auszuführen.
-Man muss sicherstellen, dass:
+In [PARTREF::m_tox] haben Sie tox an einem Projekt aus zwei Dateien kennengelernt.
+Echte Projekte bringen ihre eigene pytest-Konfiguration, viele Testabhängigkeiten
+und eine CI mit, und sie altern:
+Ein Projekt, das vor einem Jahr fehlerfrei getestet wurde, kann heute scheitern,
+ohne dass jemand eine Zeile seines Codes geändert hat.
 
-- Tests auf verschiedenen Python-Versionen funktionieren
-- Die Code-Coverage hoch ist und überwacht wird
-- Code-Quality-Standards eingehalten werden
-- Tests isoliert und reproduzierbar sind
-- Die Test-Umgebung der späteren Produktionsumgebung ähnelt
-
-[`tox`](https://tox.wiki/) in Kombination mit [`pytest`](https://docs.pytest.org/) bietet
-eine mächtige Lösung für all diese Anforderungen. Aufbauend auf den Grundlagen aus
-[PARTREF::m_tox] werden wir hier fortgeschrittene pytest-spezifische Tox-Features erkunden.
+Wir nehmen die Bibliothek [MechanicalSoup](https://github.com/MechanicalSoup/MechanicalSoup)
+in der Version 1.4.0 vom Mai 2025.
+Sie hat eine gute Test-Suite und eine CI mit GitHub Actions, aber keine `tox.ini`.
+Stellen Sie sich vor, Sie wollen zu MechanicalSoup beitragen und vor einem Pull Request
+lokal dasselbe prüfen, was die CI prüft.
 
 [ENDSECTION]
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
-Benutzen Sie bei Bedarf die [Dokumentation von `tox`](https://tox.wiki/), 
-[pytest](https://docs.pytest.org/) und [MechanicalSoup](https://mechanicalsoup.readthedocs.io/).
+### Projekt holen und verstehen
 
-### Projekt-Setup: MechanicalSoup Repository für pytest+tox-Testing
+- Klonen Sie das Repository _außerhalb_ Ihres ProPra-Arbeitsverzeichnisses
+  und wechseln Sie auf die Version 1.4.0:
+  `git clone https://github.com/MechanicalSoup/MechanicalSoup.git`, `cd MechanicalSoup`, `git checkout v1.4.0`.
+- Richten Sie im Ordner `MechanicalSoup` wie in [PARTREF::m_tox] eine `.venv` mit `tox` ein
+  und machen Sie mit `pyenv local` Ihre beiden pyenv-Versionen und Ihr System-Python verfügbar.
 
-Wir werden mit dem echten [MechanicalSoup](https://github.com/MechanicalSoup/MechanicalSoup)
-Repository arbeiten und dessen Test-Infrastruktur erweitern und analysieren.
-MechanicalSoup ist eine professionelle Python-Bibliothek für Web-Scraping und
-Formular-Automatisierung mit einer ausgezeichneten Test-Suite.
+Lesen Sie die CI-Konfiguration `.github/workflows/python-package.yml`
+sowie in `setup.cfg` den Abschnitt `[tool:pytest]`.
+Dieser Abschnitt ist eine der Stellen, an denen pytest seine
+[Konfiguration sucht](https://docs.pytest.org/en/stable/reference/customize.html#setup-cfg).
+Was `addopts` bedeutet, steht unter
+[`addopts`](https://docs.pytest.org/en/stable/reference/reference.html#confval-addopts).
 
-[ER] Klonen Sie das MechanicalSoup Repository in der folgenden spezifischen Version: `1.3.0`
+[EQ] Unter welchen Python-Versionen testet die CI, und welche Kommandos führt sie
+(außer beim Sonderfall PyPy) zum Installieren und Testen aus?
+Was bewirken die Angaben in `addopts`, und aus welchen Paketen in `tests/requirements.txt`
+stammen die Optionen `--cov` und `--flake8`?
 
-[ER] Erstellen Sie einen neuen Branch für Ihre Erweiterungen:
+<!-- time estimate: 20 min -->
 
-Verschaffen Sie sich vorab einen Überblick über diese Bibliothek,
-mit dem Sie in dieser Aufgabe arbeiten sollen.
-Analysieren Sie die vorhandene Projektstruktur.
-Sie sollten folgende Struktur vorfinden.
+### Erster Versuch
 
-```sh
-MechanicalSoup/
-├── .github/                        # GitHub Actions CI/CD Workflows
-├── assets/                         # Projekt-Assets
-├── mechanicalsoup/                 # Hauptbibliothek
-│   ├── __init__.py                 # Package-Initialisierung, Version
-│   ├── stateful_browser.py         # StatefulBrowser-Hauptklasse
-│   ├── browser.py                  # Browser-Basisklasse
-│   ├── form.py                     # Formular-Handling
-│   └── utils.py                    # Hilfsfunktionen
-├── tests/                          # Vorhandene Test-Suite
-│   ├── requirements.txt            # Test-Abhängigkeiten
-│   ├── test_browser.py             # Tests für Browser-Klasse
-│   ├── test_stateful_browser.py    # Tests für StatefulBrowser
-│   ├── test_form.py                # Formular-Tests
-│   ├── utils.py                    # Test-Hilfsfunktionen
-│   └── setpath.py                  # Pfad-Setup für Tests
-├── examples/                       # Anwendungsbeispiele
-├── docs/                           # Dokumentationen
-├── .coveragerc                     # Coverage-Konfiguration
-├── .gitignore                      # Git-Ausschlüsse
-├── .mention-bot                    # GitHub Bot-Konfiguration
-├── MANIFEST.in                     # Package-Manifest für setup.py
-├── LICENSE                         # MIT-Lizenz
-├── CONTRIBUTING.rst                # Contribution-Guidelines
-├── setup.py                        # Package-Setup und -Metadaten
-├── setup.cfg                       # Setup-Konfiguration
-├── requirements.txt                # Laufzeit-Abhängigkeiten
-└── README.rst                      # Projekt-Dokumentation
-```
-
-[EQ] Entdecken Sie auf dem ersten Blick etwas, das ungewohnt / unbekannt für Sie ist oder eventuell
-sogar vermissen bzw. erwartet haben?
-
-### Bestehende Test-Infrastruktur analysieren
-
-Sie sollen ja nicht nur schauen, sondern auch etwas mit dem Repository machen.
-Daher sollten Sie das Projekt auch lokal zum laufen bringen.
-Zunächst müssen Sie die benötigten Abhängigkeiten bereitstellen.
-
-[ER] Installieren Sie die Entwicklungsabhängigkeiten:
-
-[HINT::Parameter]
-Ziehen Sie `pip` mit dem Parameter in Betracht, der die Editierbarkeit berücksichtigt.
-[ENDHINT]
-
-Wir beschäftigen uns in diesem Kapitel mit der Qualität einer Softwarelösung,
-daher sind Sie natürlich ersteinmal an den Entwicklertests interessiert.
-
-[ER] Führen Sie die vorhandene Test-Suite aus.
-
-[ER] Analysieren Sie die CI/CD-Konfiguration.
-
-[NOTICE]
-MechanicalSoup v1.3.0 hat **keine** _tox.ini_-Datei. Die Multi-Python-Version-Tests werden über GitHub Actions durchgeführt.
-[ENDNOTICE]
-
-[EQ] Welche Python-Versionen werden in den GitHub Actions getestet?
-
-[EQ] Wie unterscheidet sich das von einer tox-basierten Konfiguration?
-
-### Erweiterte Test-Szenarien entwickeln
-
-[ER] Erstellen Sie eine neue Datei `tests/test_learning_scenarios.py` mit **pedagogischen** Tests.
-
-Diese Tests dienen dem **Lernen von pytest-Konzepten**, nicht der Funktionalitätserweiterung:
-
-**1. TestPytestBasics:**
-
-- Test für pytest Fixtures (erstellen Sie eine `sample_browser` Fixture)
-- Test für pytest Parametrisierung (testen Sie verschiedene HTML-Parser)
-- Test für pytest Markers (markieren Sie Tests als `@pytest.mark.slow`)
-
-**2. TestMockingAndFakes:**
-
-- Test mit `open_fake_page()` vs. echten HTTP-Requests (Vergleich)
-- Test mit `unittest.mock` für externe Dependencies
-- Test für verschiedene HTML-Strukturen (valid/invalid)
-
-**3. TestAssertionPatterns:**
-
-- Test für verschiedene pytest Assertion-Stile
-- Test für Exception-Handling mit `pytest.raises()`
-- Test für ungefähre Werte mit `pytest.approx()` (z.B. Performance-Zeiten)
-
-[HINT::pytest Fixtures Beispiel]
-Erstellen Sie wiederverwendbare Test-Komponenten:
-
-```python
-@pytest.fixture
-def sample_browser():
-    """Fixture für einen konfigurierten Browser."""
-    return mechanicalsoup.StatefulBrowser(user_agent="Learning/1.0")
-
-def test_fixture_usage(sample_browser):
-    assert sample_browser.session.headers['User-Agent'] == "Learning/1.0"
-```
-
-[ENDHINT]
-
-[HINT::Parametrisierung und Mocking]
-Siehe [pytest Parametrize](https://docs.pytest.org/en/stable/example/parametrize.html) für Daten-getriebene Tests und [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) für Test-Doubles.
-[ENDHINT]
-
-[EQ] Welche Herausforderungen ergeben sich beim Testen von Web-Scraping-Bibliotheken?
-
-[EQ] Wie können Sie Tests schreiben, die sowohl lokal als auch in CI/CD-Umgebungen funktionieren?
-
-### Performance-Tests mit pytest-benchmark
-
-[ER] Installieren Sie pytest-benchmark und führen Sie Performance-Tests aus.
-
-[EQ] Welche Performance-Charakteristika können Sie für die Browser-Erstellung messen?
-
-### Coverage-Analyse erweitern
-
-[ER] Führen Sie eine detaillierte Coverage-Analyse durch.
-
-[ER] Öffnen Sie den HTML-Coverage-Report und analysieren Sie.
-
-[EQ] Welche Module haben die niedrigste Coverage? Welche Bereiche sind nicht getestet?
-
-### Tox.ini
-
-Da MechanicalSoup v1.3.0 keine tox.ini hat (zufälle gibt`s), erstellen wir eine eigene in dieser Lernübung.
-
-[ER] Erstellen Sie eine eigene `tox.ini` für das MechanicalSoup-Projekt:
-
-Ihre `tox.ini` sollte folgende Umgebungen und Konfigurationen enthalten:
-
-1. Basis-Konfiguration:
-
-   - `envlist` mit Python-Versionen: py39, py310, py311, py312
-   - Zusätzliche Umgebungen: lint, coverage, benchmark  
-   - `isolated_build = true` für moderne Python-Pakete
-
-2. Standard-Testumgebung `[testenv]`:
-
-   - Dependencies: pytest, pytest-benchmark, requests, beautifulsoup4
-   - Kommando: `pytest tests/ -v --tb=short`
-
-3. Coverage-Umgebung `[testenv:coverage]`:
-
-   - Erbt von `[testenv]`, zusätzlich pytest-cov
-   - Kommando mit Coverage-Report: HTML und Terminal
-   - Coverage-Threshold: mindestens 85%
-
-4. Linting-Umgebung `[testenv:lint]`:
-
-   - Tools: flake8, black, isort
-   - Überprüft Code-Style in mechanicalsoup/ und tests/
-   - Ausschluss: tests/setpath.py (Legacy-Datei)
-
-5. Benchmark-Umgebung `[testenv:benchmark]`:
-
-   - Für Performance-Tests mit pytest-benchmark
-   - Fokus auf Ihre pytorch-Lern-Tests
-
-[HINT::tox.ini Struktur]
-Orientieren Sie sich an der [tox-Dokumentation](https://tox.wiki/en/4.61.4/reference/config.html#system-requirements) für Syntax-Details:
+Legen Sie im Projektordner eine `tox.ini` an und ersetzen Sie `py3XX` durch Ihre System-Version:
 
 ```ini
 [tox]
-envlist = # Komma-separierte Liste
-isolated_build = true
+envlist = py3XX
 
 [testenv]
-deps = 
-    # Dependencies hier
-commands = 
-    # Test-Kommandos
-
-[testenv:spezial]
-deps = 
-    {[testenv]deps}  # Erbt Standard-Dependencies
-    # zusätzliche Dependencies
-commands = 
-    # spezielle Kommandos
+deps = pytest
+commands = pytest
 ```
 
+Führen Sie `tox` aus.
+
+[EQ] Mit welcher Meldung scheitert pytest?
+Woher kommen die beanstandeten Argumente, obwohl `commands` nur `pytest` enthält,
+und warum kennt pytest sie in der tox-Umgebung nicht?
+
+Ändern Sie `deps` so, dass tox dieselben Testabhängigkeiten installiert wie die CI.
+
+[HINT::Ich weiß nicht, wie ich die Abhängigkeiten angeben soll]
+In [PARTREF::m_tox] haben Sie mit `-r` eine Requirements-Datei in `deps` eingebunden.
+Die CI installiert die Testabhängigkeiten aus `tests/requirements.txt`.
 [ENDHINT]
 
-[ER] Testen Sie die tox-Konfiguration:
+Die CI installiert außerdem `requirements.txt`, Ihre `tox.ini` erwähnt diese Datei aber nicht.
+Suchen Sie in der Ausgabe von `tox` die Zeilen, die mit `py3XX: install_package_deps>`
+und `py3XX: install_package>` beginnen.
+Hintergrund dazu steht in der tox-Dokumentation unter
+[Packaging](https://tox.wiki/en/stable/explanation.html#packaging).
 
-[EQ] Welche Vorteile bietet tox gegenüber dem direkten Ausführen von pytest?
+[EQ] Was installiert tox in diesen beiden Schritten, und woher kennt es die Pakete
+im Schritt `install_package_deps`?
+(Ein Blick in `setup.py` hilft.)
 
-### Pytest-Marker und Konfiguration erweitern
+<!-- time estimate: 20 min -->
 
-[ER] Erweitern Sie die bestehende Pytest-Konfiguration durch eine `pytest.ini`:
+### Zweiter Fehlschlag: ein Plugin passt nicht mehr
 
-```ini
-[tool:pytest]
-testpaths = tests
-addopts = 
-    --strict-markers
-    --tb=short
-    -v
-markers =
-    slow: marks tests as slow (deselect with '-m "not slow"')
-    integration: marks tests as integration tests
-    benchmark: marks tests as performance benchmarks
-    network: marks tests that require network access
-    edge_case: marks tests for edge cases
-    unit: marks tests as unit tests
-```
+Jetzt scheitert pytest vermutlich mit einem langen Traceback.
+Entscheidend sind die letzten Zeilen.
+Welche Paketversionen in der Umgebung installiert sind, zeigt `.tox/py3XX/bin/python -m pip list`.
 
-[EQ] Warum ist es wichtig, Test-Marker zu definieren und zu verwenden?
+[HINT::Bei mir scheitert an dieser Stelle nichts]
+Diese Aufgabe beschreibt den Stand vom Herbst 2026.
+Prüfen Sie mit `pip list` wie oben, welche Versionen von `pytest` und `pytest-flake8` installiert sind,
+und beantworten Sie die folgenden Fragen anhand der unten verlinkten pytest-Dokumentation.
+[ENDHINT]
 
-[ER] Führen Sie verschiedene Test-Szenarien aus:
+[EQ] Welches Plugin scheitert, und was beanstandet pytest daran?
+Welche Versionen von pytest und diesem Plugin sind installiert?
+Lesen Sie den Abschnitt
+[`py.path.local` arguments for hooks replaced with `pathlib.Path`](https://docs.pytest.org/en/stable/deprecations.html#legacy-path-hooks-deprecated):
+Seit welcher pytest-Version war diese Änderung angekündigt, und seit welcher ist sie wirksam?
 
-[EQ] Führen Sie folgende Kommandos aus und analysieren Sie die Ergebnisse:
+Beheben Sie das Problem allein in Ihrer `tox.ini` durch eine Versionsbeschränkung;
+`tests/requirements.txt` bleibt unverändert.
+Die Schreibweise von Versionsbeschränkungen steht unter
+[Requirement Specifiers](https://pip.pypa.io/en/stable/reference/requirement-specifiers/).
 
-1. `pytest --collect-only` - Wie viele Tests werden gesammelt?
-2. `pytest -m "slow" --collect-only` - Wie viele langsame Tests gibt es?
-3. `pytest --benchmark-only` - Welche Performance-Metriken werden erfasst?
+[EQ] Am Code von MechanicalSoup 1.4.0 hat sich seit Mai 2025 nichts geändert,
+und damals lief die CI erfolgreich.
+Warum scheitert der Testlauf trotzdem?
+Was an `tests/requirements.txt` macht das Projekt dafür anfällig,
+und welchen Nachteil hätte es, stattdessen alle Versionen exakt festzulegen?
 
-[EQ] Welche Verbesserungen würden Sie an der bestehenden MechanicalSoup-Test-Suite vorschlagen?
+<!-- time estimate: 25 min -->
 
-[EQ] Reflektieren Sie: Welche Erkenntnisse haben Sie über professionelle Test-Infrastrukturen gewonnen?
+### Dritter Fehlschlag: Code oder Umgebung?
+
+Nun laufen die Tests, aber einer schlägt fehl.
+(Warnungen wie `flasgger is not installed` stammen vom Test-Webserver und sind harmlos.)
+Bevor Sie einen Defekt in MechanicalSoup vermuten, prüfen Sie, ob der Fehlschlag an der Umgebung liegt.
+
+Damit Sie nicht jedes Mal die ganze Suite abwarten müssen, soll `tox` Argumente an pytest durchreichen.
+Ändern Sie dafür `commands` zu `pytest {posargs}`
+(siehe [positional arguments](https://tox.wiki/en/stable/reference/config.html#positional-argument-reference))
+und führen Sie nur den fehlschlagenden Test aus:
+`tox -e py3XX -- tests/test_stateful_browser.py::test_select_form_associated_elements`.
+Alles hinter `--` landet anstelle von `{posargs}` im pytest-Aufruf.
+
+MechanicalSoup lässt HTML standardmäßig mit dem Parser `lxml` zerlegen
+(siehe `soup_config` in `mechanicalsoup/browser.py`).
+Ein Kandidat für die Ursache ist also eine neuere `lxml`-Version, die es im Mai 2025 noch nicht gab.
+
+[HINT::Wie finde ich heraus, welche `lxml`-Versionen nach Mai 2025 erschienen sind?]
+Die [Release history von lxml auf PyPI](https://pypi.org/project/lxml/#history)
+nennt zu jeder Version das Datum.
+Suchen Sie die erste Hauptversion, die nach dem 29.05.2025 erschienen ist.
+[ENDHINT]
+
+Ob diese Vermutung stimmt, klärt eine Umgebungsmatrix:
+tox kann aus einer Zeile wie `py{310,311}-foo{1,2}` vier Umgebungen erzeugen
+([generative environment list](https://tox.wiki/en/stable/reference/config.html#generative-environment-list)),
+und Einstellungen können nur für Umgebungen mit einem bestimmten Namensbestandteil (_Faktor_) gelten
+([conditional settings](https://tox.wiki/en/stable/reference/config.html#conditional-settings)).
+
+[ER] Erweitern Sie Ihre `tox.ini` so, dass `envlist` für jede Ihrer drei Python-Versionen
+zwei Umgebungen erzeugt: eine mit dem Faktor `lxml5`, in der `lxml` kleiner als 6 ist,
+und eine mit dem Faktor `lxml6`, in der pip die neueste Version installiert.
+
+Führen Sie alle Umgebungen mit `tox -p` parallel aus
+(siehe [`tox run-parallel`](https://tox.wiki/en/stable/reference/cli.html#tox-run-parallel-%28p%29)).
+Die Zusammenfassung am Ende genügt.
+
+[HINT::Die Installation von `lxml<6` scheitert mit einem Compilerfehler]
+Für sehr neue Python-Versionen (z. B. 3.14) gibt es `lxml` 5 nicht als fertiges Paket (_wheel_),
+sodass pip versucht, es aus dem Quellcode zu übersetzen.
+Das scheitert, wenn Header-Dateien von `libxml2` und `libxslt` fehlen.
+Lassen Sie diese eine Kombination weg, indem Sie die Umgebungen in `envlist` für diese Python-Version
+einzeln statt generativ aufführen.
+[ENDHINT]
+
+[EQ] Welche Umgebungen scheitern, welche nicht?
+Was folgt daraus über die Ursache des Fehlschlags?
+Formulieren Sie in zwei bis drei Sätzen den Kern eines Fehlerberichts an das MechanicalSoup-Projekt:
+Was scheitert, unter welchen Versionen, und mit welchem Aufruf lässt es sich reproduzieren?
+
+<!-- time estimate: 30 min -->
+
+### Welcher Code wird eigentlich getestet?
+
+tox baut bei jedem Lauf ein Paket aus dem Projekt und installiert es in die Umgebung.
+Ob die Tests dieses installierte Paket prüfen, ist aber nicht selbstverständlich.
+Sehen Sie sich im Coverage-Bericht eines `lxml5`-Laufs die Spalte `Name` an
+und lesen Sie `tests/setpath.py` samt Docstring.
+
+[EQ] Prüfen die Tests den Code im Projektordner oder das Paket unter `.tox/`?
+Woran erkennen Sie das, und welche Zeile in `tests/setpath.py` bewirkt es?
+
+Ersetzen Sie in `tests/setpath.py` die Zeile `sys.path.insert(0, os.path.join(PROJ_DIR))`
+durch `sys.path.append(PROJ_DIR)` und führen Sie eine Ihrer `lxml5`-Umgebungen erneut aus.
+
+[EQ] Was zeigt der Coverage-Bericht jetzt, und warum bewirkt diese kleine Änderung das?
+Nennen Sie eine Art von Defekt, die nur die zweite Variante entdecken kann.
+
+[HINT::Ich verstehe nicht, warum `insert` und `append` einen Unterschied machen]
+Python durchsucht die Einträge von `sys.path` der Reihe nach und nimmt den ersten Treffer für
+`mechanicalsoup`.
+Überlegen Sie, wo in dieser Liste das Verzeichnis `site-packages` der tox-Umgebung steht.
+[ENDHINT]
+
+Machen Sie die Änderung mit `git restore tests/setpath.py` wieder rückgängig.
+
+<!-- time estimate: 20 min -->
+
+### Abschluss
+
+[ER] Ihre fertige `tox.ini` erfüllt Folgendes:
+`tox -p` führt alle Umgebungen der `envlist` aus;
+alle `lxml5`-Umgebungen sind erfolgreich,
+und die `lxml6`-Umgebungen scheitern nur an `test_select_form_associated_elements`;
+`tox -e <umgebung> -- <pytest-Argumente>` reicht die Argumente an pytest durch.
+Außer `tox.ini` haben Sie keine Datei des Projekts dauerhaft verändert.
+
+<!-- time estimate: 5 min -->
 
 [ENDSECTION]
 
-[SECTION::submission::information,snippet]
-[INCLUDE::/_include/Submission-Quellcode.md]
+[SECTION::submission::information,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
+[INCLUDE::/_include/Submission-Quellcode.md]
+Reichen Sie Ihre `tox.ini` ein.
 [ENDSECTION]
 
-[INSTRUCTOR::Prüfhilfen]
-
+[INSTRUCTOR::Knackpunkte: Herkunft der Argumente, Matrix, installiertes Paket]
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
