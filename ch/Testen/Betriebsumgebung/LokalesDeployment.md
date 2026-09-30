@@ -2,7 +2,7 @@ title: Lokale Bereitstellung des Testobjekts
 stage: alpha
 timevalue: 0.75
 difficulty: 2
-explains: SUT
+explains: SUT, Flask
 assumes: venv, pip, Shell-Grundlagen, Git101
 ---
 
@@ -71,7 +71,7 @@ Aktivieren: `source ~/venv/sut/bin/activate`
 Danach sollte Ihr [TERMREF::Prompt] mit `(sut)` beginnen.
 [ENDHINT]
 
-Das Testobjekt verwendet das Web-Framework Flask und einige Flask-Erweiterungen.
+Das Testobjekt verwendet das Web-Framework [TERMREF::Flask] und einige Flask-Erweiterungen.
 Diese Abhängigkeiten sind je Version in einer Datei `requirements.txt` im Versionsverzeichnis aufgeführt.
 Welche Version Sie verwenden sollen, gibt die jeweilige Aufgabe vor; hier nehmen wir `v1.0.0`.
 
