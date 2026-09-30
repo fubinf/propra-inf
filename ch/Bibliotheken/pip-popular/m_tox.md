@@ -2,7 +2,7 @@ title: "'tox': automatisierte Tests in virtuellen Umgebungen"
 stage: alpha
 timevalue: 1.5
 difficulty: 2
-assumes: pip, venv, m_pytest, flake8
+assumes: pip, venv, m_pytest, flake8, pytest_aaa
 requires: pyenv
 ---
 
@@ -37,19 +37,19 @@ Welche Schritte führt tox für jede Umgebung nacheinander aus?
 ### Projekt vorbereiten
 
 - Erstellen Sie einen neuen Ordner `tox_example` und wechseln Sie in diesen.
-- In [PARTREF::pyenv] haben Sie Python 3.10 als globale Version eingestellt.
-  Schalten Sie mit `pyenv global system` wieder auf Ihr System-Python zurück
-  und ermitteln Sie mit `python3 --version` dessen Version (z. B. 3.13).
+- Machen Sie im Ordner Ihr System-Python und die beiden Python-Versionen aus [PARTREF::pyenv] verfügbar:
+  `pyenv local system 3.10.17 3.11.12` _(Patchnummern ggf. anpassen)_.
+- Ermitteln Sie mit `python3 --version` die Version Ihres System-Pythons (z. B. 3.13).
 - Legen Sie wie in [PARTREF::venv] eine virtuelle Umgebung `.venv` an, aktivieren Sie sie
   und installieren Sie `tox` darin mittels [PARTREF::pip].
-- Machen Sie im Ordner die beiden Python-Versionen aus [PARTREF::pyenv] und Ihr System-Python verfügbar:
-  `pyenv local 3.10.17 3.11.12 system` _(Patchnummern ggf. anpassen)_.
 
 [HINT::Warum brauche ich `pyenv local` mit mehreren Versionen?]
 tox sucht die Interpreter über Namen wie `python3.10` im `PATH`.
 Die Platzhalter-Programme (shims) von `pyenv` funktionieren aber nur für Versionen,
 die gerade aktiviert sind.
 Mit `pyenv local` können Sie mehrere Versionen gleichzeitig aktivieren.
+Die erste Version der Liste bestimmt, welches Python `python3` aufruft;
+deshalb steht `system` vorn.
 Ihre aktivierte `.venv` bleibt davon unberührt, weil sie im `PATH` vor den shims steht.
 [ENDHINT]
 
@@ -217,6 +217,14 @@ ob `flake8` dort überhaupt verfügbar ist.
 [EQ] Wieso funktioniert `tox -e lint` unabhängig davon, ob `flake8` in Ihrer Shell installiert ist?
 Welche Python-Version verwendet die `lint`-Umgebung?
 
+[HINT::Ich weiß nicht, wie ich die Python-Version von `lint` herausfinde]
+Die Ausgabe von tox nennt sie nicht.
+Schauen Sie in die Datei `pyvenv.cfg` der Umgebung unter `.tox/lint`
+oder lesen Sie in der Doku zu
+[`base_python`](https://tox.wiki/en/stable/reference/config.html#base_python)
+nach, welches Python tox verwendet, wenn der Umgebungsname keine Version enthält.
+[ENDHINT]
+
 <!-- time estimate: 10 min -->
 
 ### Ein Fehlschlag
@@ -238,7 +246,8 @@ Korrigieren Sie den Fehler wieder.
 
 Standardmäßig führt tox die Kommandos im Projektordner aus.
 Mit [`changedir`](https://tox.wiki/en/stable/reference/config.html#changedir)
-lässt sich das ändern, etwa damit Tests nicht versehentlich von Dateien im Projektordner abhängen.
+lässt sich das ändern, etwa damit Dateien, die die Kommandos erzeugen
+(wie die Coverage-Datei `.coverage`), nicht im Projektordner landen.
 Ändern Sie den Abschnitt `[testenv]` wie folgt:
 ```ini
 [testenv]
@@ -255,7 +264,8 @@ Führen Sie `tox -e py311` aus.
 Lesen Sie zu [`allowlist_externals`](https://tox.wiki/en/stable/reference/config.html#allowlist_externals)
 nach: Welches Problem soll tox verhindern, indem es solche Kommandos standardmäßig ablehnt?
 
-Ergänzen Sie im Abschnitt `[testenv]` die Zeile `allowlist_externals = pwd` und führen Sie `tox -e py311` erneut aus.
+Ergänzen Sie im Abschnitt `[testenv]` die Zeile `allowlist_externals = pwd`
+und führen Sie `tox -e py311` erneut aus.
 
 [EQ] Welches Verzeichnis gibt `pwd` aus?
 Warum steht beim `pytest`-Aufruf jetzt `{toxinidir}/test_calculator.py` statt nur `test_calculator.py`?
@@ -274,7 +284,7 @@ Beheben Sie das Problem mit einer zusätzlichen Zeile in `[testenv:lint]`.
 [SECTION::submission::information,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
-Reichen Sie `tox.ini` und `test_calculator.py` ein.
+Reichen Sie `tox.ini`, `requirements.txt` und `test_calculator.py` ein.
 [ENDSECTION]
 
 [INSTRUCTOR::Erste Schritte mit tox]
