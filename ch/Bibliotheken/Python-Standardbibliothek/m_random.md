@@ -105,10 +105,6 @@ Geben Sie das Ergebnis mit `print("Würfeln:\t", ...)` aus.
 
 
 [INSTRUCTOR::Kommandoprotokoll prüfen]
-Kommandoprotokoll prüfen.
-Bei Abweichungen oder Auffälligkeiten zusätzlich den Code prüfen.
-Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_random.py]
-
 [INCLUDE::ALT:]
 
 [PROT::ALT:m_random.prot]
