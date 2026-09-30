@@ -1,6 +1,6 @@
 title: "Dateisystemaufbau: Was liegt wo?"
 stage: alpha
-timevalue: 1.5
+timevalue: 1.75
 difficulty: 2
 explains: FHS, einhängen
 assumes: Shell-Grundlagen, Manpages, Umgang-mit-Verzeichnissen, Unix-Links, redirect, grep, apt, sudo
@@ -33,8 +33,8 @@ Gerade an den Unterschieden sehen Sie, was der Standard festlegt und was er offe
 
 Zwischen den gängigen Linux-Distributionen gibt es bei den hier verwendeten Werkzeugen
 keine relevanten Unterschiede.
-Nur beim Paketmanager weiter unten gehen wir von einem Debian-basierten System
-(Debian, Ubuntu, ...) aus.
+Nur beim Paketmanager weiter unten setzt die Aufgabe ein Debian-basiertes System
+(Debian, Ubuntu, ...) voraus.
 
 [FOLDOUT::Abweichungen unter macOS]
 Auch macOS ist ein Unix und hat denselben einen Dateibaum ab `/`.
@@ -150,7 +150,7 @@ Angenommen, dasselbe Dateisystem würde stattdessen unter `/mnt/daten` eingehän
 Welche der drei Angaben (Gerät, Typ, Einhängepunkt) änderten sich, welche nicht,
 und was hieße das für den Pfad Ihres Home-Verzeichnisses?
 
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
 
 ### Verzeichnisse, die gar nicht auf der Platte liegen
@@ -275,8 +275,7 @@ Finden Sie sie auf Ihrem System noch getrennt vor, ist das ebenfalls FHS-konform
 `ls -ld /bin /sbin /lib` meldet dafür "No such file or directory".
 `/bin`, `/sbin`, `/usr/bin` und `/usr/lib` gibt es dagegen sehr wohl,
 und zwar als eigenständige Verzeichnisse:
-Das Zusammenlegen zu "merged `/usr`" ist eine Entscheidung der Linux-Distributionen
-und keine von Unix.
+Zu "merged `/usr`" zusammengelegt haben nur die Linux-Distributionen.
 [ENDFOLDOUT]
 
 Über die Dateien in `/usr/bin` führt der Paketmanager Buch:
@@ -288,7 +287,7 @@ Lesen Sie dazu im
 [dpkg-Beitrag](https://wiki.ubuntuusers.de/dpkg/)
 von ubuntuusers unter **Hilfsprogramme** den Abschnitt **dpkg-query** mit seiner Optionstabelle.
 Der übrige Beitrag ist hier nicht nötig.
-Die dort genannten Optionen funktionieren auch direkt an `dpkg`, das sie an `dpkg-query` weiterreicht.
+Die dort genannten Optionen funktionieren auch direkt mit `dpkg`, das sie an `dpkg-query` weiterreicht.
 `dpkg` ist auf Debian und Ubuntu die Schicht unterhalb von [PARTREF::apt]:
 `apt` holt Pakete aus den Paketquellen und löst Abhängigkeiten auf,
 `dpkg` installiert die einzelnen Pakete und verwaltet die Datenbank darüber, was installiert ist.
@@ -314,6 +313,14 @@ statt an der Datei auf Ihrer Platte.)
 `dpkg -S /usr/bin/ls`
 [ENDHINT]
 
+[HINT::`dpkg` meldet "no path found matching pattern /usr/bin/ls"]
+Dann führt die Paketdatenbank Ihrer Distribution `ls` noch unter dem Ort aus der Zeit vor "merged `/usr`",
+also als `/bin/ls`, obwohl `/bin` auf Ihrem System schon ein Verweis auf `/usr/bin` ist.
+`dpkg -S` vergleicht nur mit den gespeicherten Dateilisten und folgt keinen Verweisen.
+Fragen Sie deshalb nach `/bin/ls`: `dpkg -S /bin/ls`.
+Das betrifft zum Beispiel Debian 12 und Ubuntu 22.04.
+[ENDHINT]
+
 [EC] Lassen Sie sich umgekehrt anzeigen, welche Dateien dieses Paket sonst noch mitgebracht hat.
 
 [HINT::Wie frage ich die Dateien eines Pakets ab?]
@@ -327,6 +334,9 @@ Wo die Dateien *sonst* noch liegen, sehen Sie, wenn Sie diesen Block ausblenden:
 `dpkg -L coreutils | grep -v '^/usr/bin/'`.
 Die [TERMREF2::Optionen::Option] `-v` von [PARTREF::grep] gibt die Zeilen aus, die *nicht*
 passen, und `^` verankert das Muster am Zeilenanfang.
+Hat Ihre Distribution `ls` unter `/bin/ls` geführt (siehe oben), steht vor dem `/usr/bin`-Block noch ein Block aus `/bin`.
+Das ist nur der alte Name desselben Verzeichnisses.
+Ein weiteres `| grep -v '^/bin/'` blendet ihn ebenfalls aus.
 Den weitaus größten Teil des Rests machen die Übersetzungen unter `/usr/share/locale` aus.
 Blenden Sie die ebenfalls aus, bleibt eine überschaubare Liste:
 `dpkg -L coreutils | grep -v '^/usr/bin/' | grep -v '^/usr/share/locale/'`.
@@ -413,7 +423,7 @@ Für die folgenden Abschnitte reicht sie trotzdem.
 
 Die Zahl von oben sagt noch nichts darüber, wie die Einträge in `/etc` dorthin gelangt sind.
 Das sehen Sie am deutlichsten an einem Paket, das Sie noch nicht haben.
-Wir nehmen `rsnapshot`, ein Werkzeug, das Sicherungskopien mit `rsync` anlegt.
+Das Beispiel ist `rsnapshot`, ein Werkzeug, das Sicherungskopien mit `rsync` anlegt.
 Hier interessieren nur die Dateien, die das Paket mitbringt.
 
 [NOTICE]
@@ -465,7 +475,7 @@ während die Programmdatei in `/usr/bin` liegt.
 Die Datei ist rund 250 Zeilen lang und besteht überwiegend aus Kommentaren.
 Auch das ist typisch für `/etc`: Die Pakete liefern ihre Voreinstellungen samt Erklärung mit,
 damit die Administration weiß, was sie da ändert.
-Die Einstellung `snapshot_root` in Zeile 23 legt fest, wohin `rsnapshot` seine Sicherungen schreibt.
+Die Einstellung `snapshot_root` in Zeile 23 der Datei legt fest, wohin `rsnapshot` seine Sicherungen schreibt.
 Voreingestellt ist `/var/cache/rsnapshot/`.
 
 [FOLDOUT::Die beiden Ausgaben, falls Sie die Kommandos nicht ausführen]
@@ -473,7 +483,7 @@ Damit Sie die folgende Frage auch ohne eigene Ausführung bearbeiten können,
 hier die Ausgaben der beiden Kommandos auf einem Debian-System
 (Paketversion 1.5.1, bei anderen Versionen weichen Kleinigkeiten ab):
 
-```text
+```console
 $ dpkg -L rsnapshot | grep '^/etc'
 /etc
 /etc/cron.d
@@ -520,33 +530,20 @@ Begründen Sie, warum diese Aufteilung richtig ist:
 Was für eine Art von Daten steht in der Konfigurationsdatei,
 was für eine an dem Ort, den sie benennt?
 
-[EC] Deinstallieren Sie das Paket wieder, und zwar mit `apt remove`
-(noch nicht mit `purge`).
+[EC] Entfernen Sie das Paket wieder, und zwar samt seiner Konfigurationsdateien.
 Das geht wie die Installation nur mit [PARTREF::sudo].
 
-[EC] Sehen Sie erneut nach, ob die Datei `/etc/rsnapshot.conf` existiert:
-dasselbe Kommando wie im ersten Schritt dieses Blocks.
-
-`apt remove` hat das Programm entfernt, die Konfigurationsdatei aber stehen lassen.
-Darin unterscheidet es sich von `purge` (siehe [PARTREF::apt]).
-
-[EC] Entfernen Sie nun auch die Konfigurationsdateien des Pakets.
-
-[HINT::Womit werde ich sie los?]
-`sudo apt purge rsnapshot` löscht auch die Dateien in `/etc`.
-Hier holt es also nur noch nach, was `remove` liegen gelassen hat.
+[HINT::Womit werde ich es vollständig los?]
+`sudo apt purge rsnapshot` entfernt das Programm und die Dateien in `/etc`.
 Die mitinstallierten Abhängigkeiten (mindestens `liblchown-perl`) brauchen Sie ebenfalls nicht mehr.
 `sudo apt autoremove` wird sie los.
 [ENDHINT]
 
-[EC] Prüfen Sie, dass `/etc/rsnapshot.conf` jetzt verschwunden ist.
+Ein bloßes `apt remove` hätte die Dateien in `/etc` stehen lassen (siehe [PARTREF::apt]).
+Das ist Absicht: In `/etc` liegen die Anpassungen der Administration,
+und die sollen eine spätere Neuinstallation überleben.
 
-[FOLDOUT::Die drei Kontrollen, falls Sie die Kommandos nicht ausführen]
-Die Datei `/etc/rsnapshot.conf` gibt es vor der Installation nicht.
-Nach `apt remove` ist sie immer noch da, und erst nach `apt purge` ist sie wieder weg.
-Die erste und die letzte Kontrolle liefern deshalb dieselbe Meldung
-"No such file or directory", die Kontrolle dazwischen dagegen eine gewöhnliche `ls`-Zeile.
-[ENDFOLDOUT]
+[EC] Prüfen Sie, dass `/etc/rsnapshot.conf` jetzt wieder verschwunden ist.
 
 
 #### `/etc`, `/var` und `/usr` im Vergleich
@@ -578,11 +575,11 @@ Die erste und die letzte Kontrolle liefern deshalb dieselbe Meldung
 Nennen Sie das Verzeichnis und, soweit möglich, die konkrete Datei,
 und begründen Sie Ihre Wahl in einem Satz.
 
-- a) Der SSH-Server eines Rechners nimmt keine Verbindungen mehr an
+- Der SSH-Server eines Rechners nimmt keine Verbindungen mehr an
   und Sie wollen seine Konfiguration prüfen.
   Sagen Sie außerdem, woran Sie auf Ihrem eigenen Rechner feststellen,
   ob dort überhaupt ein SSH-*Server* installiert ist und nicht nur der Client.
-- b) Ein Dienst ist heute Nacht abgestürzt und Sie suchen die zugehörige Fehlermeldung.
+- Ein Dienst ist heute Nacht abgestürzt und Sie suchen die zugehörige Fehlermeldung.
 
 [EQ] Sie sollen das Backup eines Servers planen.
 Der Platz dafür ist knapp.
@@ -596,7 +593,7 @@ Belegen Sie es mit Ihrer `PATH`-Ausgabe von oben, und nennen Sie ein Kommando,
 das die Frage zuverlässig beantwortet, sobald es beide Dateien wirklich gibt.
 Wann ist die Reihenfolge, die Sie bei sich vorfinden, eine gute Wahl, und wann wäre die umgekehrte besser?
 
-<!-- time estimate: 15 min -->
+<!-- time estimate: 25 min -->
 
 [ENDSECTION]
 
