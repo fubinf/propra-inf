@@ -734,7 +734,7 @@ Seiteneffekten.
 
 ## G
 
-[TERM::Gate|Gatekkeeper]
+[TERM::Gate|Gatekeeper]
 Der Begriff bezeichnet eine Kontroll- oder Entscheidungsstelle, die den Fortschritt eines
 Softwareentwicklungsprozesses an bestimmten Punkten überprüft und steuert.
 Gates werden häufig in [TERMREF::CI/CD]-Pipelines eingesetzt, um sicherzustellen, dass bestimmte
