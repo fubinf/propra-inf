@@ -14,25 +14,25 @@ SEDRILA=~/venv/sedrila/bin/python\ /ws/fubinf/sedrila/py/sedrila.py  # which com
 # user must set PROPRA_BASEDIR: common prefix of both propra deploy dirs (which end in PROPRA_TARGETDIR)
 
 s_setSS() {
-  export SEDRILA_TITLE="Programmierpraktikum SoSe 2026, Bachelor Informatik, FU Berlin"
-  export SEDRILA_NAME="ProPra-2026-04"
+  printf 'Are you sure? ProPra-2027-04? Press Ctrl-C if not.  '
+  read answer
+  export SEDRILA_TITLE="Programmierpraktikum SoSe 2027, Bachelor Informatik, FU Berlin"
+  export SEDRILA_NAME="ProPra-2027-04"
   export SEDRILA_PARTICIPANTS_FILE=""
-  export SEDRILA_STARTDATE="2026-04-21"
-  export SEDRILA_ENDDATE="2027-03-31"
-  PROPRA_BUILDDIR="out/2026-04"
-  PROPRA_TARGETDIR="K-ProPra-2026-04"
+  export SEDRILA_STARTDATE="2027-04-21"
+  export SEDRILA_ENDDATE="2028-03-31"
+  PROPRA_BUILDDIR="out/2027-04"
+  PROPRA_TARGETDIR="K-ProPra-2027-04"
 }
 
 s_setWS() {
-  printf 'Are you sure? ProPra-2025-10? Press Ctrl-C if not.  '
-  read answer
-  export SEDRILA_TITLE="Programmierpraktikum WiSe 2025/2026, Bachelor Informatik, FU Berlin"
-  export SEDRILA_NAME="ProPra-2025-10"
-  export SEDRILA_PARTICIPANTS_FILE="participants/propra-2025-10.tsv"
-  export SEDRILA_STARTDATE="2025-10-15"
-  export SEDRILA_ENDDATE="2026-09-30"
-  PROPRA_BUILDDIR="out/2025-10"
-  PROPRA_TARGETDIR="K-ProPra-2025-10"
+  export SEDRILA_TITLE="Programmierpraktikum WiSe 2026/2027, Bachelor Informatik, FU Berlin"
+  export SEDRILA_NAME="ProPra-2026-10"
+  export SEDRILA_PARTICIPANTS_FILE="participants/propra-2026-10.tsv"
+  export SEDRILA_STARTDATE="2026-10-20"
+  export SEDRILA_ENDDATE="2027-09-30"
+  PROPRA_BUILDDIR="out/2026-10"
+  PROPRA_TARGETDIR="K-ProPra-2026-10"
 }
 
 s_set_draft() {
@@ -61,14 +61,13 @@ s_authorWS() {  # build released tasks for winter semester
 }
 
 s_author2() {  # build released tasks for all currently maintained ProPras
-  s_authorSS "$@"
-  # s_authorWS "$@"  # receives no updates any more
+  # s_authorSS "$@"  # receives no updates any more
+  s_authorWS "$@"
 }
 
 s_publish_do() {
   (set -x; 
    rsync -cir --delete --exclude='instructor/.sedrila_cache.*' $PROPRA_BUILDDIR/ $PROPRA_BASEDIR/$PROPRA_TARGETDIR)
-   
 }
 
 s_publishSS() {  
@@ -82,8 +81,8 @@ s_publishWS() {
 }
 
 s_publish2() {
-  s_publishSS
-  # s_publishWS  # receives no updates any more
+  # s_publishSS  # receives no updates any more
+  s_publishWS
 }
 
 s_serve() {
