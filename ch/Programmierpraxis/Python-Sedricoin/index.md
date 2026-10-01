@@ -29,3 +29,11 @@ Falls Sie sich für die theoretischen Hintergründe interessieren, können Sie h
 
 - [Bitcoin-Whitepaper](https://bitcoin.org/bitcoin.pdf)
 - [Bitcoin Developer Guide](https://developer.bitcoin.org/devguide/index.html)
+
+In diesem Programmierprojekt ist die **Programmiersprache frei wählbar**.
+Im Rahmen dieses Projekts müssen JSON-Daten verarbeitet, im Dateisystem gespeichert
+und eine REST-API bereitgestellt werden.
+
+**Die Hinweise und Code-Beispiele gehen von Python aus.**
+Wenn Sie eine andere Sprache wählen, erhöht sich der Schwierigkeitsgrad und
+Sie müssen durch die Unterschiede verursachte Probleme selbständig lösen.

@@ -12,31 +12,24 @@ Ich kann Blöcke mithilfe von SHA256-Hashes kryptografisch verketten, sodass
 
 
 [SECTION::background::default]
-Eine Blockchain ist eine Möglichkeit, Daten zu speichern und die Gültigkeit der Daten
-ohne zentrale Vertrauensstelle zu überprüfen.
-Innerhalb einer Blockchain gibt es definierte Regeln, sodass die Gültigkeit
-der Daten durch die Daten selbst bestätigt werden kann.
+Eine Blockchain ist eine Möglichkeit, viele Daten zu speichern und durch Überprüfung einer einzigen Zahl
+festzustellen, ob an den Daten irgendwelche Veränderungen vorgenommen wurden.
+Es werden nur Daten zugefügt (neuer Block), nicht bestehende verändert, und man kann die 
+neue Überprüfungszahl berechnen, ohne die alten Daten nochmals mit verarbeiten zu müssen. 
+Dadurch kann man eine große Datenmenge vertrauenswürdig von Beteiligten verwalten lassen,
+ohne ihnen vertrauen zu müssen; man muss sich nur die Überprüfungszahl merken.
 [ENDSECTION]
 
 
 [SECTION::instructions::loose]
 
 ### Programmiersprache auswählen
-<!-- time estimate: 10 min -->
 
-In diesem Programmierprojekt ist die Programmiersprache frei wählbar.
-Im Rahmen dieses Projekts müssen JSON-Daten verarbeitet, im Dateisystem gespeichert
-und eine REST-API bereitgestellt werden.
-Hierbei sollte eine Sprache genutzt werden, in der Sie diese Anforderungen umsetzen können.
-Die Hinweise und Code-Beispiele gehen davon aus, dass Sie das Projekt in Python implementieren.
-Wenn Sie eine andere Sprache wählen, erhöht sich der Schwierigkeitsgrad und
-Sie müssen Probleme selbständig lösen.
-
-[EQ] Erläutern Sie kurz, warum Sie sich für die gewählte Programmiersprache entschieden haben.
+[EQ] Welche Programmiersprache werden Sie benutzen? Warum diese?
+<!-- time estimate: 5 min -->
 
 
 ### Daten verketten
-<!-- time estimate: 30 min -->
 
 In einer Blockchain werden Daten in sogenannten Blöcken gespeichert.
 In jedem Block gibt es eine Referenz auf den vorherigen Block.
@@ -55,6 +48,7 @@ eine Datei `Block1.txt` mit beliebigem Inhalt.
 Erzeugen Sie anschließend einen Commit mit der Nachricht `Block1`.
 Wiederholen Sie dies analog mit der Datei `Block2.txt` und dem Commit `Block2`.
 
+<!-- TODO_3_hüster: nachfolgende HINTS entfernen und durch passende assumes auf git-Aufgaben ersetzen -->
 [HINT::Neues Git-Repo erstellen]
 Ein Git-Repo können Sie mit dem Kommando `git init` erstellen, siehe
 [git-init-Dokumentation](https://git-scm.com/docs/git-init).
@@ -85,8 +79,7 @@ git --no-pager log --oneline
 ```
 [ENDHINT]
 
-<!-- TODO_3: Der folgende Abschnitt kann gekürzt werden, sobald die Aufgabe `git-Rebase-interaktiv` existiert. -->
-
+<!-- TODO_3_hüster: nachfolgenden Abschnitt kürzen, sobald `git-Rebase-interaktiv` existiert. -->
 Lesen Sie in der
 [git-rebase-Dokumentation](https://git-scm.com/docs/git-rebase#_interactive_mode)
 nach, wie Sie den interaktiven Rebase durchführen, um im ersten Commit (`Block1`)
@@ -117,14 +110,15 @@ es existieren beide Dateien mit Inhalt.
 Durch die veränderten Commit-Hashes kann aber sofort erkannt werden, dass irgendetwas verändert wurde.
 
 Dass diese Änderung in Git so einfach möglich ist, ist gewollt.
-In einer Kryptowährungs-Blockchain darf von vielen möglichen Änderungen aber nur eine als die richtige akzeptiert werden.
-Dort muss eine heimliche Manipulation so aufwendig sein, dass sie praktisch nicht möglich ist.
+In einer Kryptowährungs-Blockchain darf von vielen möglichen Änderungen aber nur eine
+als die richtige akzeptiert werden.
+Dort muss eine heimliche Manipulation so aufwendig sein, dass sie praktisch unmöglich ist.
 Inwiefern und auf welche Art das in Bitcoin und Sedricoin geschützt wird,
 wird in einer späteren Aufgabe erläutert.
+<!-- time estimate: 30 min -->
 
 
 ### Programmaufbau
-<!-- time estimate: 5 min -->
 
 [ER] Legen Sie ein Verzeichnis `Sedricoin` in Ihrem Repo an.
 Nutzen Sie dieses Verzeichnis für Ihre Sedricoin-Implementierung.
@@ -143,14 +137,14 @@ Sie werden in diesem Projekt keine Vorgaben über die genaue Softwarearchitektur
 Durch die freie Wahl der Programmiersprache gibt es keine Vorgaben zur
 Benennung der Dateien, Variablen oder Funktionen.
 Halten Sie sich an die Namenskonvention Ihrer Sprache, beispielsweise in Python
-an die Verwendung von Snake-Case (`foo_bar`, nicht `fooBar`).
+an die Verwendung von Snake-Case (`foo_bar`, nicht `fooBar`, außer bei Klassennamen).
 Benennen Sie Ihre einzelnen Module sinnvoll, sodass ersichtlich ist,
 um welchen Teil der Anwendung es sich handelt.
 [ENDNOTICE]
+<!-- time estimate: 5 min -->
 
 
 ### Einstellungen über Umgebungsvariablen
-<!-- time estimate: 20 min -->
 
 Auch wenn das Programm in dieser Aufgabe noch nicht dauerhaft weiterläuft,
 wird im Folgenden bereits von *Server* gesprochen.
@@ -198,10 +192,10 @@ Ihre Anwendung darf keine Umgebungsvariablen überschreiben.
 Es dürfen höchstens Standardwerte verwendet werden, falls die entsprechende
 Umgebungsvariable nicht gesetzt wurde.
 [ENDWARNING]
+<!-- time estimate: 20 min -->
 
 
 ### `Block`-Modell
-<!-- time estimate: 30 min -->
 
 Die Sedricoin-Blockchain soll als JSON-Dateien im Dateisystem gespeichert werden.
 Pro Block soll im Verzeichnis eine Datei existieren.
@@ -233,7 +227,7 @@ Achten Sie darauf, dass Ihre Implementierung die Feldnamen exakt übernimmt:
 Es heißt `previous_hash`, nicht `previous_Hash` und nicht `previousHash`.
 [ENDWARNING]
 
-Da der erste Block noch keinen Vorgänger hat, wird dieser Null-Hash eingetragen.
+Da der erste Block noch keinen Vorgänger hat, steht in seinem `previous_hash` der Null-Hash aus 64 Nullen.
 
 [ER] Implementieren Sie das `Block`-Modell.
 Dieses soll aus einer JSON-Datei gelesen und als solche im Dateisystem gespeichert werden können.
@@ -250,10 +244,10 @@ In einer späteren Aufgabe werden dem `Block` auch noch Transaktionsdaten hinzug
 Falls Sie eine andere Sprache nutzen, müssen Sie sich ggf. selbst eine Funktion
 schreiben, die den `Block` in gültiges JSON umwandelt.
 [ENDHINT]
+<!-- time estimate: 30 min -->
 
 
 ### Block-Hash berechnen
-<!-- time estimate: 20 min -->
 
 Jeder Block hat einen Block-Hash.
 Dieser wird nicht explizit gespeichert, sondern nach folgenden Regeln über die Felder
@@ -280,7 +274,7 @@ Er muss über den `String`
 `"0000000000000000000000000000000000000000000000000000000000000000;1783428541"`
 berechnet werden.
 
-Außerdem muss der `String` in `UTF-8` enkodiert werden, und der Hash über die
+Außerdem muss der `String` in `UTF-8` enkodiert und der Hash über die
 Bytes berechnet werden.
 
 [HINT::Ich komme nicht auf die richtige Reihenfolge der Schritte.]
@@ -297,10 +291,10 @@ print(block_hash)
 ```
 [ENDHINT]
 [ENDHINT]
+<!-- time estimate: 20 min -->
 
 
 ### Block-Hash testen
-<!-- time estimate: 25 min -->
 
 Die Funktion zur Berechnung des Block-Hashes ist zentral für die Blockchain.
 
@@ -309,7 +303,6 @@ Nutzen Sie im Test die vorgegebenen Testfälle.
 In Python können Sie dafür das [PARTREF::m_pytest]-Framework nutzen.
 
 [FOLDOUT::Testfälle Block-Hash]
-
 Die folgenden Testfälle verstoßen bewusst gegen die oben definierten Anforderungen an einen
 gültigen `Block`; sie prüfen gezielt die Normalisierungsregeln Ihrer Hash-Funktion.
 
@@ -354,20 +347,18 @@ Block-Hash:
 
 Block-Hash:
 `2093d1fa0b62abb409954fc97030e8c0bf4a4af499def428685a2c3617ee0c1f`
-
 [ENDFOLDOUT]
+<!-- time estimate: 25 min -->
 
 
 ### Server aufrufen
-<!-- time estimate: 30 min -->
 
 Erst in den folgenden Aufgaben implementieren Sie die REST-API.
 Allerdings müssen beim Starten die Umgebungsvariablen eingelesen werden (wie oben schon implementiert)
 und der *Genesis-Block* erzeugt werden.
 
 [ER] Beim Aufruf des Servers wird die Blockchain initialisiert.
-Dazu wird das angegebene Verzeichnis (`SEDRICOIN_STORAGE_PATH`) geprüft und ggf. erstellt.
-Falls in diesem Verzeichnis noch keine Blockchain gespeichert ist, wird der
+Falls im Verzeichnis `SEDRICOIN_STORAGE_PATH` noch keine Blockchain gespeichert ist, wird der
 *Genesis-Block* als erste Datei erzeugt.
 Dieser Genesis-Block entspricht genau dem oben angegebenen JSON-Block.
 Jede Sedricoin-Implementierung verwendet denselben Genesis-Block.
@@ -419,15 +410,15 @@ Auf diese Weise wird die Blockchain ungültig, da nun der Block-Hash von `Block`
 verändert wurde, ohne den `previous_hash` in `Block` 2 anzupassen.
 
 [EC] Rufen Sie Ihren Server einmal auf; er sollte die Manipulation erkennen.
+<!-- time estimate: 30 min -->
 
 
 ### Projektbeschreibung
-<!-- time estimate: 10 min -->
 
 Zur Korrektur ist es notwendig, dass die Tutor_innen wissen, wie sie Ihre
 Anwendung verwenden können.
 
-[ER] Legen Sie dafür in Ihrem Verzeichnis `Sedricoin` die folgende ausgefüllte `README.md`-Datei
+[ER] Legen Sie dafür in Ihrem Verzeichnis `Sedricoin` nach der folgenden Vorlage eine `README.md`-Datei
 an und pflegen Sie diese Dokumentation Ihrer Anwendung im Verlauf dieses Projekts.
 Erklären Sie darin:
 
@@ -475,6 +466,7 @@ Tests ausführen:
 ````
 [ENDFOLDOUT]
 [ENDSECTION]
+<!-- time estimate: 10 min -->
 
 
 [SECTION::submission::reflection,trace,program]
