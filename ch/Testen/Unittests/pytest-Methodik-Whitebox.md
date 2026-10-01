@@ -137,7 +137,7 @@ und auch die `def`-Zeile selbst.
 Sie erzeugt ein Funktionsobjekt und bindet es an den Namen.
 Definiert man denselben Namen später ein zweites Mal, gewinnt die zweite Definition;
 wer die erste vorher einer anderen Variablen zugewiesen hat, kann sie trotzdem weiter benutzen.
-Die `def`-Zeilen sind also schon durch den Import überdeckt.
+Die `def`-Zeilen auf Modulebene sind also schon durch den Import überdeckt.
 
 - [ER] Schreiben Sie eine Testfunktion `test_statement_coverage_binary_search()`,
   die jede Anweisung von `binary_search_recur()` mindestens einmal ausführt.
@@ -208,7 +208,6 @@ Rechnen Sie für `n = 0, 1, 2, 3, 4` aus, wie viele Werte `range(1, n - 1)` bzw.
 Beachten Sie außerdem, unter welcher Bedingung der Rückwärtslauf überhaupt erreicht wird.
 [ENDHINT]
 <!-- time estimate: 20 min -->
-
 
 **Den Defekt finden**: Spätestens jetzt sollte einer Ihrer Tests fehlschlagen.
 Reparieren Sie `whitebox.py` _nicht_; der fehlschlagende Test bleibt in Ihrer Abgabe stehen
@@ -292,13 +291,15 @@ Dafür haben wir kein Messwerkzeug, deshalb lassen wir sie beiseite.
 
 ### Reflexion
 
-- [EQ] Ordnen Sie Anweisungs-, Zweig-, Bedingungs- und Pfadüberdeckung nach ihrer Schärfe (soweit möglich).
-  Stützen Sie sich dabei auf Ihre Ergebnisse aus den vorigen Schritten.
-  Erläutern Sie den kompliziertesten Fall mit Beispielen.
+- [EQ] Ordnen Sie Anweisungs-, Zweig-, Bedingungs- und Pfadüberdeckung nach ihrer Schärfe, soweit das möglich ist.
+  Stützen Sie sich dabei auf den Text und Ihre Ergebnisse aus den vorigen Schritten.
+  Für ein Paar von Kriterien steht die Antwort noch nirgends; belegen Sie sie mit Beispielen:
+  Ist A schärfer als B, geben Sie eine Testmenge an, die B erfüllt, aber nicht A.
+  Sind A und B unvergleichbar, geben Sie zusätzlich eine Testmenge an, die A erfüllt, aber nicht B.
 - [EQ] Welches Kriterium würden Sie nach Ihren Erfahrungen mit den beiden Funktionen
   aus `whitebox.py` im Alltag als Standard verwenden, und wann würden Sie zusätzlich ein anderes heranziehen?
   Berücksichtigen Sie dabei Aufwand, Nutzen und ob es ein Messwerkzeug gibt.
-<!-- time estimate: 10 min -->
+<!-- time estimate: 15 min -->
 
 [ENDSECTION]
 
