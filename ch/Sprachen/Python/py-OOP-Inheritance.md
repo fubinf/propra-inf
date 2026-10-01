@@ -34,6 +34,7 @@ die Modellierung um eine neue Ebene bereichert.
 
 [SECTION::instructions::loose]
 
+<!-- @LINK_SPEC: status=403 -->
 [*"Python Inheritance"*](https://www.programiz.com/python-programming/inheritance)
 kann Ihnen helfen und Sie durch die Konzepte leiten. 
 

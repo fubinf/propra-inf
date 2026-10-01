@@ -135,7 +135,7 @@ wieder in normale Spalten.
 ### `agg()`
 
 [ER] Schauen Sie sich die Dokumentation zu 
-[`agg()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.groupby.DataFrameGroupBy.agg.html)
+[`agg()`](https://pandas.pydata.org/docs/reference/api/pandas.api.typing.DataFrameGroupBy.agg.html)
 an und formulieren Sie `bezirks_gruppierung.max()` so um, dass es `agg()` nutzt.
 
 [ER] Mit `agg()` lassen sich die Gruppierungen noch flexibler nutzen.

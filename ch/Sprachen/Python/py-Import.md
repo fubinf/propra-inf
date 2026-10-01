@@ -216,7 +216,8 @@ Diese Konventionen werden Ihnen nach und nach vertraut,
 wenn Sie sich intensiver mit Python beschäftigen. 
 Importkonventionen können sogar auf Projektebene oder innerhalb eines Teams variieren.
 
-In dem Beitrag [Verwendung der `import`-Anweisung](https://stackoverflow.com/a/29193752/2810305)
+In dem Beitrag 
+<!-- @LINK_SPEC: status=403 -->[Verwendung der `import`-Anweisung](https://stackoverflow.com/a/29193752/2810305)
 auf *"Stack Overflow"* finden Sie einige Meinungen zu den verschiedenen Varianten,
 die `import` in Python anbietet.  
 Ihre eigene Meinung zu diesem Thema werden Sie sicherlich selbst entwickeln, 

@@ -72,6 +72,7 @@ auf "e" enden (z. B. "Arche", "Ameise", "Alte", aber nicht "Abgründe").
 ### "Greedy" und "Lazy" Quantoren
 
 [EQ] Lesen Sie diese StackOverflow-Diskussion: 
+<!-- @LINK_SPEC: status=403 -->
 [HREF::https://stackoverflow.com/questions/2301285/what-do-lazy-and-greedy-mean-in-the-context-of-regular-expressions].
 Erklären Sie, was der Unterschied zwischen "greedy" und "lazy" Quantoren ist.
 <!-- time estimate: 15 min -->

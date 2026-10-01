@@ -24,7 +24,7 @@ entsprechend bearbeiten.
 Wenn Sie plattformunabhängige Programme erstellen wollen, müssen Sie spätestens bei 
 [absoluten Pfaden](https://www.redhat.com/sysadmin/linux-path-absolute-relative) 
 auch mit
-[verschiedenen Pfadformaten](https://stackoverflow.com/a/62328554/2810305) 
+<!-- @LINK_SPEC: status=403 -->[verschiedenen Pfadformaten](https://stackoverflow.com/a/62328554/2810305) 
 beschäftigen.
 
 `os.path` ist ein Submodul von `os`, welches wiederum verschiedene Schnittstellen zum 

@@ -21,7 +21,9 @@ TODO_2_hüster:
   Dafür dürfen und sollten wir uns viel Zeit nehmen und hilfreiche Verständnisfragen formulieren.  
   Das sollte bei git-Fehlerbehebung los- und hier weitergehen und darf gern dazu führen,
   dass aus diesen zwei Aufgaben drei oder vier oder fünf werden.
-- Siehe https://stackoverflow.com/questions/40617288/a-commit-in-git-is-it-a-snapshot-state-image-or-is-it-a-change-diff-patch-delta  
+- Siehe 
+  <!-- @LINK_SPEC: status=403 -->
+  https://stackoverflow.com/questions/40617288/a-commit-in-git-is-it-a-snapshot-state-image-or-is-it-a-change-diff-patch-delta  
   Dass diese Frage so wenig Views hat und dass so viele Leute bei git nicht durchblicken,
   hat meiner Ansicht nach viel miteinander zu tun.  
   ProPra-Teilnehmer_innen sollen in dieser Hinsicht bitte auf einem hohen Verständnisniveau rauskommen.
