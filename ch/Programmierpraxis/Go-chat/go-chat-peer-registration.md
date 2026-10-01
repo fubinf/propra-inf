@@ -45,7 +45,7 @@ peer/
 [ER] Implementieren Sie im Paket `setup` eine Funktion `MustGetLookupUrl() string`, welche die Kommandozeilenargumente
 nach einem Eintrag der Form `lookup=192.168.178.76:8083` durchsucht (siehe
 [Go by Example: Command-Line Arguments](https://gobyexample.com/command-line-arguments)),
-die Lookup-Url zusammenstellt und zurückgibt (beispielsweise `"http://192.168.178.76:8083"`).
+die Lookup-URL zusammenstellt und zurückgibt (beispielsweise `"http://192.168.178.76:8083"`).
 Fehlt das Argument, so soll die Funktion mit `panic` abbrechen — ohne Lookup-Server-Adresse kann der Peer nichts tun.
 
 <!-- time estimate: 10 min -->
@@ -64,7 +64,7 @@ beendet.
 ### Eine Konfiguration, die mehrere Goroutinen überleben wird
 
 Auch wenn Sie in dieser Aufgabe noch keine eigenen Goroutinen starten:
-Der `Config`-Typ wird in der nächsten Aufgabe aus mehreren Goroutinen gleichzeitig gelesen und geschrieben.
+Der `Config`-Typ wird in [PARTREF::go-chat-peer-messaging] aus mehreren Goroutinen gleichzeitig gelesen und geschrieben.
 Bauen Sie ihn deshalb von Anfang an thread-sicher.
 
 [ER] Legen Sie eine Struktur `Peer` im Paket `types` an.
@@ -78,7 +78,7 @@ type Peer struct {
 ```
 
 [ER] Definieren Sie im Paket `config` eine Struktur `Config` mit (mindestens) folgenden unexportierten Feldern:
-`lookupUrl`, `username string`, `peer *Peer` (der aktuelle Gesprächspartner) und `listener net.Listener`
+`lookupUrl string`, `username string`, `peer *types.Peer` (der aktuelle Gesprächspartner) und `listener net.Listener`
 (für eingehende Anfragen), geschützt durch einen `mu sync.Mutex`.
 Fügen Sie außerdem ein exportiertes Feld `Client *http.Client` (für ausgehende Anfragen) hinzu, das sich alle
 HTTP-Aufrufe teilen.
@@ -126,12 +126,12 @@ konkreten Typ `*net.TCPAddr`, um an dessen Feld `Port` zu gelangen.
 - den Benutzernamen in einer Schleife abfragt (`"What's your username?: "`).
   Diese Schleife kann mit `:q` abgebrochen werden;
 - einen `POST` an `cfg.LookupUrl()+path` mit JSON-Payload `{"username": ..., "port": ... }` schickt
-  (hier muss `port` eine Ganzzahl sein!)
+  (hier muss `port` eine Ganzzahl sein!);
 - den Benutzernamen zurückgibt, falls die Registrierung erfolgreich war (Statuscode `200`);
 - die Fehlermeldung des Servers ausgibt und erneut nach einem Benutzernamen fragt, falls die Registrierung fehlschlägt;
 - die Funktion `onExit()` aufruft und einen leeren String zurückgibt, sobald der Benutzer `:q` eingegeben hat;
-- sofort abbricht, sobald `ctx` abgebrochen wurde.
-- gibt bei Erfolg `nil` als Fehler zurück; bei `:q` oder Abbruch des Kontexts einen Fehler Ihrer Wahl.
+- sofort abbricht, sobald `ctx` abgebrochen wurde;
+- bei Erfolg `nil` als Fehler zurückgibt, bei `:q` oder Abbruch des Kontexts einen Fehler Ihrer Wahl.
 
 [HINT::Wie kombiniere ich Terminal-Eingabe mit `ctx.Done()`?]
 Lesen Sie die Eingabe in einer eigenen Goroutine und schicken Sie das Ergebnis über einen Kanal.
@@ -161,7 +161,7 @@ case username := <-input:
 ctx, _ := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 ```
 
-(Eine vollständige nebenläufige Ablaufsteuerung mit mehreren Goroutinen folgt erst in der nächsten Aufgabe —
+(Eine vollständige nebenläufige Ablaufsteuerung mit mehreren Goroutinen folgt erst in [PARTREF::go-chat-peer-messaging] —
 hier reicht dieser Kontext aus.)
 
 <!-- time estimate: 5 min -->
@@ -169,7 +169,7 @@ hier reicht dieser Kontext aus.)
 
 ### Abmelden (Logout)
 
-[ER] Implementieren Sie die Funktion `Logout(cfg *types.Config, path string) error`:
+[ER] Implementieren Sie im Paket `registration` die Funktion `Logout(cfg *config.Config, path string) error`:
 
 - Schickt einen `POST` an `cfg.LookupUrl()+path` mit demselben JSON-Payload wie beim Einloggen.
 - Gibt bei Erfolg `nil` zurück, sonst einen Fehler mit einer informativen Meldung (Statuscode + Server-Antwort).
@@ -184,16 +184,16 @@ Fassen Sie ihn im Paket `types` als gemeinsame Struktur `NameAndPortMessage` zus
 ### Gesprächspartner suchen
 
 [ER] Implementieren Sie im Paket `setup` die Funktion
-`GetPeer(ctx context.Context, config *types.Config, onGoBack func()) (peer types.Peer, err error)`,
-welche sich im Wesentlichen der Funktion `Login` ähnelt und folgendes tut:
+`GetPeer(ctx context.Context, cfg *config.Config, onGoBack func()) (peer types.Peer, err error)`,
+die im Wesentlichen der Funktion `Login` ähnelt und Folgendes tut:
 
 - fragt `"Who do you want to chat with?: "` in einer Schleife ab;
 - ruft `onGoBack()` auf und gibt einen Fehler zurück, falls der Benutzer `:q` eingegeben hat;
-- schickt eine GET-Anfrage an `config.LookupUrl()+"/"+username` und dekodiert die Antwort (`{"addr": "..."}`), wenn der
+- schickt eine GET-Anfrage an `cfg.LookupUrl()+"/"+username` und dekodiert die Antwort (`{"addr": "..."}`), wenn der
   Benutzer etwas eingegeben hat (`username`);
 - zeigt eine informative Fehlermeldung an und fragt erneut nach einem Benutzernamen, wenn der Server mit einem Fehler
   antwortet oder die empfangene Adresse `addr` leer ist;
-- Bricht ab, sobald `ctx` abgebrochen wurde.
+- bricht ab, sobald `ctx` abgebrochen wurde.
 
 <!-- time estimate: 20 min -->
 
