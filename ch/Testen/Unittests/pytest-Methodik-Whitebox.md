@@ -14,6 +14,7 @@ explains: Überdeckung
 - Ich kann Anweisungs- und Zweigüberdeckung mit `pytest-cov` messen.
 
 [ENDSECTION]
+
 [SECTION::background::default]
 
 Beim Blackbox-Testen denkt man sich Testfälle nur anhand der Spezifikation aus.
@@ -54,7 +55,7 @@ automatisch auch B vollständig erfüllt, aber nicht umgekehrt.
 
 ### Vorbereitung
 
-Die beiden folgenden Funktionen stammen aus dem Open-Source-Projekt keon/algorithms von GitHub,
+Die beiden folgenden Funktionen stammen aus dem Open-Source-Projekt `keon/algorithms` von GitHub,
 einer Sammlung von Algorithmen in Python.
 Eine der beiden Funktionen haben wir gegenüber dem Original leicht verändert:
 Sie enthält jetzt einen Defekt.
@@ -191,7 +192,7 @@ Welche kurze Liste wird durch einen einzigen Tausch im Vorwärtslauf vollständi
 Schleifen sind besonders fehleranfällig, vor allem an ihren Grenzen.
 Zweigüberdeckung verlangt aber nur, dass eine Schleife irgendwann betreten und irgendwann verlassen wird.
 **Schleifenüberdeckung** (loop coverage) verlangt deshalb zusätzlich, dass jede Schleife in den Tests
-einmal **0-mal**, einmal **genau 1-mal** und einmal **mehrmals** durchlaufen wird.
+mindestens einmal **0-mal**, einmal **genau 1-mal** und einmal **mehrmals** durchlaufen wird.
 Manche dieser Fälle sind bei einer bestimmten Schleife unmöglich; die entfallen dann.
 `pytest-cov` misst Schleifenüberdeckung nicht, hier müssen Sie selbst nachdenken.
 
@@ -208,10 +209,9 @@ Beachten Sie außerdem, unter welcher Bedingung der Rückwärtslauf überhaupt e
 [ENDHINT]
 <!-- time estimate: 20 min -->
 
-### Den Defekt finden
 
-Spätestens jetzt sollte einer Ihrer Tests fehlschlagen.
-Reparieren Sie `whitebox.py` nicht; der fehlschlagende Test bleibt in Ihrer Abgabe stehen
+**Den Defekt finden**: Spätestens jetzt sollte einer Ihrer Tests fehlschlagen.
+Reparieren Sie `whitebox.py` _nicht_; der fehlschlagende Test bleibt in Ihrer Abgabe stehen
 und dokumentiert das Versagen.
 Falls noch keiner Ihrer Tests fehlschlägt, prüfen Sie, ob Ihre Tests zur Schleifenüberdeckung
 wirklich etwas zu sortieren hatten.
@@ -248,7 +248,8 @@ def complex_check(a, b, c):
 **Kurzschlussauswertung:** Python wertet `and` und `or` von links nach rechts aus
 und hört auf, sobald das Ergebnis feststeht.
 Bei `a > 0 and b > 0` wird `b > 0` also gar nicht erst ausgewertet, wenn `a > 0` schon `False` ist.
-Für die Bedingungsüberdeckung zählen nur Bedingungen, die tatsächlich ausgewertet wurden.
+Für die Bedingungsüberdeckung zählen nur tatsächliche Auswertungen:
+Eine nicht ausgewertete Bedingung hat in diesem Aufruf weder den Wert `True` noch `False`.
 
 `pytest-cov` misst Bedingungsüberdeckung nicht; auch hier sind Sie selbst gefragt.
 
@@ -277,7 +278,7 @@ Bei Schleifen ist jede Anzahl von Durchläufen ein eigener Pfad:
 Eine Schleife, die 0- bis 10-mal laufen kann, ergibt 11 Pfade;
 zwei solche Schleifen hintereinander 11 · 11 = 121.
 Weil jeder Zweig auf irgendeinem Pfad liegt, ist Pfadüberdeckung schärfer als Zweigüberdeckung;
-praktikabel ist sie aber meist nicht.
+praktikabel ist sie aber meist nicht, weil die Zahl von Schleifendurchläufen selten begrenzt ist.
 Die Schleifenüberdeckung ist gewissermaßen ihr bezahlbarer Ersatz.
 
 - [EQ] Wie viele verschiedene Pfade gibt es durch `binary_search_recur()` (samt aller rekursiven Aufrufe),
@@ -291,8 +292,9 @@ Dafür haben wir kein Messwerkzeug, deshalb lassen wir sie beiseite.
 
 ### Reflexion
 
-- [EQ] Ordnen Sie Anweisungs-, Zweig-, Bedingungs- und Pfadüberdeckung nach ihrer Schärfe.
+- [EQ] Ordnen Sie Anweisungs-, Zweig-, Bedingungs- und Pfadüberdeckung nach ihrer Schärfe (soweit möglich).
   Stützen Sie sich dabei auf Ihre Ergebnisse aus den vorigen Schritten.
+  Erläutern Sie den kompliziertesten Fall mit Beispielen.
 - [EQ] Welches Kriterium würden Sie nach Ihren Erfahrungen mit den beiden Funktionen
   aus `whitebox.py` im Alltag als Standard verwenden, und wann würden Sie zusätzlich ein anderes heranziehen?
   Berücksichtigen Sie dabei Aufwand, Nutzen und ob es ein Messwerkzeug gibt.
