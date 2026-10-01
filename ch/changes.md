@@ -36,4 +36,6 @@
 - **2026-08-21**: Aufgaben [PARTREF::django-Ausblick] und [PARTREF::np-sort-filter] zugefügt.
 - **2026-09-01**: Aufgaben [PARTREF::np-linalg] und [PARTREF::tmux] zugefügt. 
 - **2026-09-18**: Aufgaben [PARTREF::pytest_mocking] und [PARTREF::Prozessmanagement] zugefügt. 
+- **2026-10-01**: Ende der Updates. Ab jetzt kommen neue Aufgaben nur noch im neuen ProPra an,
+  das in ein paar Tagen startet, weil wir auch ein paar inkompatible Änderungen machen müssen.
 - ...
