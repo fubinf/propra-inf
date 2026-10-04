@@ -56,6 +56,7 @@ graph TD
     pytest_methodik_blackbox --> pytest_methodik_rest
     pytest_methodik_blackbox --> testcoverage
     pytest_mocking --> pytest_mocking_freezegun
+    pytest_aaa --> pytest_mocking_freezegun
     pytest_fixtures --> pytest_benchmark
     tdd --> tdd_pp
     testcoverage --> pytest_tox
@@ -91,7 +92,7 @@ graph TD
 - **pytest_mocking.md**: Abhängigkeiten mit `unittest.mock` isolieren und ersetzen.
   Setzt `m_pytest.md` voraus.
 - **pytest_mocking_freezegun.md**: Zeitabhängige Tests mit der `freezegun`-Bibliothek.
-  Setzt `pytest_mocking.md` voraus.
+  Setzt `pytest_mocking.md` und `pytest_aaa.md` voraus.
 
 ### Werkzeuge & Integration
 
