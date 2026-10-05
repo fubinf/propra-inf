@@ -65,16 +65,8 @@ Zum Installieren folgen Sie den Anweisungen auf der [Homebrew-Website](https://b
 
 Danach können Sie, wie dort ebenfalls beschrieben, Programme mit dem Befehl
 `brew install programm-name` installieren.
-Genau wie das Installieren übernimmt Homebrew auch das Update dieser Programme.
-Dies passiert nicht automatisch. Mit dem Befehl `brew update` lassen sich alle mit
-Homebrew installierten Anwendungen auf einmal aktualisieren.
-
-Wenn alle Pakete aktualisiert sind, sollte die Ausgabe von `brew update` so aussehen:
-
-```
-$ brew update
-Already up-to-date.
-```
+Genau wie das Installieren übernimmt Homebrew auch das Aktualisieren dieser Programme:
+`brew upgrade` aktualisiert alles Installierte.
 
 Die Aufgabe für diesen Teilabschnitt besteht darin, Homebrew zu installieren, und zu überprüfen, dass
 diese Installation korrekt abgeschlossen wurde. Dazu reicht die Ausgabe von `brew --version`.
