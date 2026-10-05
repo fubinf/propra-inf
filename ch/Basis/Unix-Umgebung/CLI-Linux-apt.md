@@ -23,9 +23,9 @@ Superuser-Rechte (root-Rechte).
 Das heißt, Sie können die in manchen Aufgaben vorkommenden Kommandos, 
 die mit `sudo` beginnen, nicht ausführen.  
 Soweit dies Kommandos zur Installation von Linux-Paketen sind (`sudo apt install ...`),
-wird das meistens nichts ausmachen, weil die betreffenden Pakete dort schon installiert sind.  
+wird das manchmal nichts ausmachen, weil die betreffenden Pakete dort schon installiert sind.  
 Die übrigen solchen Aufgaben kann man auf einem Poolrechner nicht bearbeiten;
-Sie müssen sich eine neue aussuchen.
+Sie müssen sich andere aussuchen.
 [ENDNOTICE]
 [ENDSECTION]
 
@@ -48,7 +48,7 @@ Sie müssen sich eine neue aussuchen.
   In diesem Fall müssen Sie folgendes mit Hilfe geeigneter Web-Recherche selbst herausfinden:
     - Wie man darauf Bash aufruft (meist einfach mit `bash`)
     - Oder falls keine Bash installiert ist: 
-        - Was für eine Linux-Distribution Sie haben (Diagnose mittels `cat /etc/os-release`)
+        - Was für eine Linux-Distribution Sie haben (Diagnose geht u.U. mittels `cat /etc/os-release`)
         - Wie man darauf Pakete installiert (anstatt mit `apt-get` oder `apt` wie auf Debian)
         - Wie man konkret Bash installiert und dann aufruft
 

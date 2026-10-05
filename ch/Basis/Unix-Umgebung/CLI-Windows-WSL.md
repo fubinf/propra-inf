@@ -85,7 +85,8 @@ Der Output davon findet sich im Kommandoprotokoll von [PARTREF::Kommandoprotokol
 
 Standardmäßig wird WSL 2 installiert.
 Sollte jemand irgendwie WSL 1 installiert haben, kann es bei manchen (wenigen) Aufgaben zu Problemen kommen.
-Die WSL-Version der Linux-Distributionen lässt sich in Powershell mittels `wsl -l -v` sehen.
+Die WSL-Version der Linux-Distributionen lässt sich 
+auf der Windows-Ebene in Powershell mittels `wsl -l -v` sehen.
 Man kann ein Upgrade der Version mittels `wsl --set-version <distro name> 2` 
 durchführen, dabei ist `<distro name>` der Name der Distribution, der unter `wsl -l -v` zu sehen ist.
 Sollten mehrere Distributionen installiert worden sein, kann mit 
