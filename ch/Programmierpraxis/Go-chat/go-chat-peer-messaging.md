@@ -49,7 +49,7 @@ und implementieren Sie in einem neuen Paket `receiver` die Funktion
 `Receiver(ctx context.Context, cfg *config.Config, messages chan<- types.Message)`, die Folgendes tut:
 
 - startet mit dem in `Config` hinterlegten `net.Listener` einen Server;
-- registriert den Endpunkt `"/"+config.Username()` und dekodiert eingehende `POST`-Requests als `types.Message`,
+- registriert den Endpunkt `"/"+cfg.Username()` und dekodiert eingehende `POST`-Requests als `types.Message`,
   die er auf den Channel `messages` schreibt;
 - fährt den Server über `server.Shutdown(ctx)` sauber herunter, sobald `ctx` abgebrochen wird.
 
@@ -124,7 +124,7 @@ und lassen Sie sie in einem `switch`-Block je nach `currentStage` folgendes ausf
     - zwei Kanäle für eingehende und ausgehende Nachrichten anlegen (`incoming, outgoing chan types.Message`),
     - einen abbrechbaren Kontext erzeugen und damit nebenläufig Sender und Receiver starten (die Abbruchfunktion
       verwenden Sie später im `onGoBack`-Callback von `processChat`),
-    - die Funktion `processChat()` aufrufen (siehe nächster Schritt).
+    - die Funktion `processChat()` aufrufen (siehe unten).
 
 <!-- time estimate: 20 min -->
 
@@ -132,7 +132,7 @@ und lassen Sie sie in einem `switch`-Block je nach `currentStage` folgendes ausf
 `select` auf `stageChan` und `ctx.Done()` wartet:
 
 - Beim Abbruch wird der Benutzer abgemeldet und das Programm endet.
-- Beim Empfang von `exit` aus `stageChan` beendet das Programm ebenfalls; sonst startet `act` nebenläufig.
+- Beim Empfang von `exit` aus `stageChan` endet das Programm ebenfalls; sonst startet `act` nebenläufig.
 
 <!-- time estimate: 10 min -->
 
@@ -146,7 +146,7 @@ Dazu nutzen wir folgenden ANSI-Escape-Trick:
 func insertAboveInput(text string, promptLength int, senderIsSelf bool) {
     if senderIsSelf {
         fmt.Printf("\033[1A\r%v\033[%vC", text, promptLength)
-	} else {
+    } else {
         fmt.Printf("\033[1L\r%v\033[%vC", text, promptLength)
     }
 }
@@ -157,7 +157,7 @@ func insertAboveInput(text string, promptLength int, senderIsSelf bool) {
 
 `\r` — setzt den Textcursor an den Zeilenanfang.
 
-`\033[%vC` — bewegt den Textursor `%v` Stellen nach rechts.
+`\033[%vC` — bewegt den Textcursor `%v` Stellen nach rechts.
 
 `\033[1L` — fügt eine leere Zeile oberhalb der aktuellen Zeile ein.
 
@@ -187,7 +187,7 @@ welche:
 - Nachrichten vom Channel `incoming` liest;
 - sie mit `insertAboveInput` ausgibt;
 - eigene Nachrichten anders formatiert als Nachrichten des Gesprächspartners, zum Beispiel
-  `"[Me (alice) to bob at 15:04:03]: ..."`(ausgehend) und `"[bob to Me (alice) at 15:04:05]: ..."` (eingehend).
+  `"[Me (alice) to bob at 15:04:03]: ..."` (ausgehend) und `"[bob to Me (alice) at 15:04:05]: ..."` (eingehend).
 
 <!-- time estimate: 10 min -->
 
@@ -196,7 +196,7 @@ welche:
 `onGoBack func()`, welche:
 
 - `observeInput` in einer Goroutine startet; jede eingegebene Nachricht muss **zwei** Ziele erreichen:
-den `Sender` (damit sie verschickt wird) und die lokale Anzeige (damit man die eigene Nachricht sieht);
+  den `Sender` (damit sie verschickt wird) und die lokale Anzeige (damit man die eigene Nachricht sieht);
 - `displayMessages` für eigene und eingehende Nachrichten jeweils in einer eigenen Goroutine startet.
 
 [FOLDOUT::Ein Wert, zwei Abnehmer]
@@ -213,7 +213,7 @@ und die Nachricht auf zwei Ausgabekanäle verteilt.
 
 Erweitern Sie `main` (einige Schritte haben Sie bereits erledigt – dies ist nur eine Checkliste):
 
-1. Erzeugen Sie einen Kontext, der bei `syscall.SIGTERM` abbricht.
+1. Erzeugen Sie einen Kontext, der bei `Ctrl+C` (`os.Interrupt`) oder `syscall.SIGTERM` abbricht.
 2. Erzeugen Sie eine `Config` und nutzen Sie dabei `setup.MustGetFreeListener` sowie `setup.MustGetLookupUrl`.
 3. Starten Sie die Ausführung, indem Sie in einer separaten Goroutine `login` auf den Kanal `stageChan` senden.
 4. Bauen Sie eine Schleife mit `select`, die auf `ctx.Done()` und `stageChan` wartet und die nächste Stufe an `act()`
@@ -229,9 +229,9 @@ Nun können Sie die Funktionsweise der Anwendung prüfen und nachbessern.
 Starten Sie den Lookup-Server und zwei Peer-Instanzen (`Alice`, `Bob`).
 
 1. Beide melden sich an;
-2. Beide geben den Namen des Gesprächspartners ein (Alice gibt "Bob" ein, Bob gibt "Alice" ein);
+2. Beide geben den Namen des Gesprächspartners ein (Alice gibt `Bob` ein, Bob gibt `Alice` ein);
 3. Alice schreibt Bob zwei Nachrichten, Bob antwortet einmal;
-4. Bob verlässt den Chat mit `:q`, sucht nach einer nicht existierenden `carol`, dann erneut nach `alice` und schreibt
+4. Bob verlässt den Chat mit `:q`, sucht nach einer nicht existierenden `carol`, dann erneut nach `Alice` und schreibt
    Alice noch eine Nachricht;
 5. Alice beendet ihr Programm mit `Ctrl+C`;
 6. Bob versucht noch eine Nachricht an Alice zu schicken;
