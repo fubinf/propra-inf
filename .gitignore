@@ -8,6 +8,9 @@ participants/
 
 cmd/my-propra.sh
 
+#claude
+.claude/settings.local.json
+
 #vscode
 *.code-workspace
 .vscode/
@@ -15,6 +18,3 @@ cmd/my-propra.sh
 #macos
 .DS_Store
 
-# Act local testing
-.secrets
-.actrc
