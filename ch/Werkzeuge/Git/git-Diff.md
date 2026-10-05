@@ -104,7 +104,7 @@ Wie erzeugt es dann die Ausgabe von `git diff`?
 ### `git status` mit neuen Augen
 
 Führen Sie `git status` aus. 
-In der vorherigen Aufgabe haben Sie gesehen, dass `git status` auch Befehle vorschlägt.
+In seiner Ausgabe schlägt `git status` auch Befehle vor.
 
 [EQ] Welche Befehle schlägt `git status` vor, und was tun sie?
 Schauen Sie bei unbekannten Befehlen in `git help` nach.
@@ -119,7 +119,7 @@ die noch nicht in der Staging-Area sind.
 
 ### Commit erstellen
 
-Fügen Sie die verbleibenden Änderungen dem Index hinzu und erstellen Sie einen Commit 
+Fügen Sie die verbleibenden Änderungen der Staging-Area hinzu und erstellen Sie einen Commit 
 mit einer passenden Nachricht.
 
 ### `git log`: Die Commit-Historie
@@ -129,7 +129,7 @@ sondern auch in die Vergangenheit schauen,
 sei es, um einen alten Zustand zu betrachten oder um zu prüfen, 
 welche Commits im Repository existieren.
 
-`git log` ist Ihr Git-Tagebuch. 
+`git log` zeigt die Commit-Historie.
 Wenn Sie es ohne Argumente aufrufen, sehen Sie für jeden Commit:
 
 1. den Commit-Hash
@@ -140,9 +140,9 @@ Wenn Sie es ohne Argumente aufrufen, sehen Sie für jeden Commit:
 Das ist bei drei Commits noch übersichtlich, 
 aber bei Hunderten oder Tausenden Commits wird es schnell unübersichtlich.
 Deswegen hat `git log` viele nützliche Optionen.
-Schauen Sie ruhig in die Dokumentation. 
-Dort werden Sie *sehr viele* Optionen finden, 
-von denen Sie die meisten aktuell nicht brauchen werden.
+Die Dokumentation dazu finden Sie unter `git help log`.
+Dort stehen *sehr viele* Optionen,
+von denen Sie die meisten vorerst nicht brauchen.
 
 Für den Anfang sind folgende besonders nützlich:
 
@@ -182,7 +182,7 @@ git log --author="Max Mustermann"
 git log --author=Max
 ```
 
-Das Argument wird entweder als vollständiger Autorenname oder als Teilstring gesucht.
+Das Argument ist ein Suchmuster; ein Teil des Namens genügt.
 Das ist besonders hilfreich, wenn mehrere Personen am gleichen Repository arbeiten.
 
 Eine weitere Option, die in einer späteren Aufgabe über Branches sehr nützlich wird:
