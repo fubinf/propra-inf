@@ -1,5 +1,5 @@
 title: "Dateisystemaufbau: Was liegt wo?"
-stage: alpha
+stage: beta
 timevalue: 1.75
 difficulty: 2
 explains: FHS, einhängen
@@ -8,14 +8,13 @@ assumes: Shell-Grundlagen, Manpages, Umgang-mit-Verzeichnissen, Unix-Links, redi
 
 [SECTION::goal::idea]
 Ich kenne den standardisierten Aufbau des Linux-Dateibaums
-und weiß, in welchem Verzeichnis ich welche Art von Dateien zu erwarten habe.
+und weiß, in welchem Verzeichnis ich welche Art von Dateien zu erwarten habe.  
 Ich weiß, dass dieser eine Baum aus mehreren eingehängten Dateisystemen zusammengesetzt ist.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-Unter Windows ist man Laufwerksbuchstaben gewöhnt: `C:`, `D:` und so weiter.
-Unix kennt dagegen nur einen einzigen Dateibaum, der bei `/` beginnt.
+Unix verwendet keine Laufwerke wie Windows, sondern nur einen einzigen Dateibaum, der bei `/` beginnt.
 Platten, Partitionen, USB-Sticks und sogar rein virtuelle Datenquellen
 werden alle an irgendeiner Stelle in diesen einen Baum [TERMREF2::einhängen::eingehängt].
 
@@ -37,7 +36,7 @@ Nur beim Paketmanager weiter unten setzt die Aufgabe ein Debian-basiertes System
 (Debian, Ubuntu, ...) voraus.
 
 [FOLDOUT::Abweichungen unter macOS]
-Auch macOS ist ein Unix und hat denselben einen Dateibaum ab `/`.
+Auch macOS ist ein Unix (vom "BSD"-Typ) und hat dasselbe Konzept eines einzigen Dateibaums ab `/`.
 Es folgt aber nicht dem [TERMREF::FHS]: Der sichtbare Teil hat eine eigene Struktur
 (`/Applications`, `/Library`, `/System`, `/Users`).
 Die lokale `man 7 hier` beschreibt dagegen nur den historischen BSD-Baum
@@ -88,7 +87,7 @@ Siehe dazu den Aufklapp-Kasten oben.
 <!-- time estimate: 10 min -->
 
 
-### Ein Baum aus mehreren Geräten
+### Ein Baum über mehrere Geräte hinweg
 
 Lesen Sie den Abschnitt **Geräte zugreifbar machen - Das "Einhängen"** des
 [Datenverwaltung-Beitrags](https://wiki.ubuntuusers.de/Datenverwaltung/)
@@ -334,7 +333,8 @@ Wo die Dateien *sonst* noch liegen, sehen Sie, wenn Sie diesen Block ausblenden:
 `dpkg -L coreutils | grep -v '^/usr/bin/'`.
 Die [TERMREF2::Optionen::Option] `-v` von [PARTREF::grep] gibt die Zeilen aus, die *nicht*
 passen, und `^` verankert das Muster am Zeilenanfang.
-Hat Ihre Distribution `ls` unter `/bin/ls` geführt (siehe oben), steht vor dem `/usr/bin`-Block noch ein Block aus `/bin`.
+Hat Ihre Distribution `ls` unter `/bin/ls` geführt (siehe oben),
+steht vor dem `/usr/bin`-Block noch ein Block aus `/bin`.
 Das ist nur der alte Name desselben Verzeichnisses.
 Ein weiteres `| grep -v '^/bin/'` blendet ihn ebenfalls aus.
 Den weitaus größten Teil des Rests machen die Übersetzungen unter `/usr/share/locale` aus.
@@ -475,7 +475,7 @@ während die Programmdatei in `/usr/bin` liegt.
 Die Datei ist rund 250 Zeilen lang und besteht überwiegend aus Kommentaren.
 Auch das ist typisch für `/etc`: Die Pakete liefern ihre Voreinstellungen samt Erklärung mit,
 damit die Administration weiß, was sie da ändert.
-Die Einstellung `snapshot_root` in Zeile 23 der Datei legt fest, wohin `rsnapshot` seine Sicherungen schreibt.
+Die Einstellung `snapshot_root` legt z.B. fest, wohin `rsnapshot` seine Sicherungen schreibt.
 Voreingestellt ist `/var/cache/rsnapshot/`.
 
 [FOLDOUT::Die beiden Ausgaben, falls Sie die Kommandos nicht ausführen]
@@ -571,18 +571,18 @@ und die sollen eine spätere Neuinstallation überleben.
 
 ### Reflexion
 
-[EQ] In welchem Verzeichnis würden Sie jeweils zuerst nachsehen?
-Nennen Sie das Verzeichnis und, soweit möglich, die konkrete Datei,
+[EQ] In welchem Verzeichnis würden Sie für die nachfolgenden Szenarios jeweils zuerst nachsehen?
+Nennen Sie das Verzeichnis (falls möglich auch die konkrete Datei),
 und begründen Sie Ihre Wahl in einem Satz.
 
 - Der SSH-Server eines Rechners nimmt keine Verbindungen mehr an
   und Sie wollen seine Konfiguration prüfen.
   Sagen Sie außerdem, woran Sie auf Ihrem eigenen Rechner feststellen,
-  ob dort überhaupt ein SSH-*Server* installiert ist und nicht nur der Client.
+  ob dort überhaupt ein SSH-Server installiert ist (anstatt nur der Client).
 - Ein Dienst ist heute Nacht abgestürzt und Sie suchen die zugehörige Fehlermeldung.
 
 [EQ] Sie sollen das Backup eines Servers planen.
-Der Platz dafür ist knapp.
+Der Platz dafür ist knapp und Sie möchten nur Unverzichtbares in die Sicherung einschließen.
 Welche der Verzeichnisse `/etc`, `/home`, `/proc`, `/tmp`, `/usr` und `/var` sichern Sie, welche nicht?
 Begründen Sie jede Entscheidung kurz.
 
