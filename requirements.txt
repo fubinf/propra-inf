@@ -1,0 +1,8 @@
+# propra assumes at least Python 3.11
+# some modules helpful for scripts here and for reviewing respective tasks:
+bs4>=0.0.2
+matplotlib>=3.11.2
+numpy>=2.5.3
+pandas>=3.0.6
+requests>=2.34.2
+scipy>=1.18.1
