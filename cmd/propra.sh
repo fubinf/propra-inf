@@ -10,7 +10,7 @@
 # We use a single sedrila.yaml for building both of them, parameterized by environment variables
 # and separate participants files.
 
-SEDRILA=~/venv/sedrila/bin/python\ /ws/fubinf/sedrila/py/sedrila.py  # which command to use
+SEDRILA=dsedrila  # which command to use, e.g. define a suitable shell function
 # user must set PROPRA_BASEDIR: common prefix of both propra deploy dirs (which end in PROPRA_TARGETDIR)
 
 s_setSS() {
@@ -36,7 +36,7 @@ s_setWS() {
 }
 
 s_set_draft() {
-  s_setSS
+  s_setWS
   PROPRA_BUILDDIR="out/draft"
   unset PROPRA_TARGETDIR
 }
