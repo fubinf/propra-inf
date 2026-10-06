@@ -300,6 +300,21 @@ sondern behebt Layoutabweichungen direkt.
 Beispiele sind `black` für Python und `gofmt` für Go.
 [ENDTERM]
 
+[TERM::Command Injection]
+Eine Angriffsmethode, bei der durch geschickt gewählte Eingaben
+eigene Kommandos auf dem angegriffenen Rechner ausgeführt werden können.
+Möglich wird das, wenn ein Programm Eingaben per Zeichenkettenverknüpfung in ein Kommando einbaut,
+das dann eine [TERMREF::Shell] ausführt:
+Zeichen wie `;`, `|` oder `$(...)` haben dort eine eigene Bedeutung.
+Die wichtigste Abwehr ist, keine Shell zu beteiligen:
+Man startet das Programm direkt mit einer Liste von Argumenten
+(in Python `subprocess.run([...])` ohne `shell=True`)
+oder kommt ganz ohne fremdes Programm aus.
+Verwandt ist [TERMREF::SQL Injection].
+
+[HREF::https://cwe.mitre.org/data/definitions/78.html]
+[ENDTERM]
+
 [TERM::Commit (git)|Commit]
 Ein Commit ist ein dauerhaft gespeicherter Zustand eines Git-Repositorys.
 Beim Erstellen eines Commits speichert Git ein vollständiges Abbild
@@ -614,6 +629,18 @@ oder mit einer [TERMREF::Shebang-Zeile] beginnt.
 [ENDTERM]
 
 ## F
+
+[TERM::Fehlalarm|false positive]
+Eine Meldung eines Prüfwerkzeugs (z.B. eines Linters oder Virenscanners),
+die ein Problem anzeigt, wo keines ist:
+Die geprüfte Stelle passt auf ein Muster, das das Werkzeug für verdächtig hält,
+ist im konkreten Zusammenhang aber in Ordnung.
+Das Gegenstück ist ein unbemerktes Problem (engl. _false negative_):
+Das Werkzeug schweigt, obwohl ein Problem vorliegt.
+Viele Fehlalarme verleiten dazu, Meldungen ungeprüft abzuschalten;
+deshalb unterdrückt man einzelne Fehlalarme gezielt und mit Begründung.
+[ENDTERM]
+
 
 [TERM::Fehler|Error]
 Ein menschliches Verhalten, das u.U. zu einem [TERMREF::Defekt] führt.
@@ -1845,10 +1872,13 @@ inkrementiert wird, um sekundäre Nameserver über Aktualisierungen zu informier
 
 
 [TERM::SQL Injection]
-Eine Angriffsmethode bei SQL Datenbanken, bei der durch geschickte Manipulation einer SQL Query 
-Befehle auf der Datenbank ausgeführt werden können. Um solche Injections zu verhindern, 
-sollten Vorkehrungen, wie die Bereinigung von User-Eingaben oder strikte Berechtigungsverwaltung,
-getroffen werden.
+Eine Angriffsmethode bei SQL-Datenbanken, bei der durch geschickt gewählte Eingaben
+eigene SQL-Befehle auf der Datenbank ausgeführt werden können.
+Möglich wird das, wenn ein Programm Eingaben per Zeichenkettenverknüpfung in einen SQL-Befehl einbaut.
+Die wichtigste Abwehr sind Platzhalter (parametrisierte Abfragen):
+Der SQL-Befehl enthält nur Platzhalter wie `?`, die Werte werden getrennt übergeben,
+und die Datenbank behandelt sie nie als SQL-Code.
+Strikte Berechtigungen begrenzen zusätzlich den möglichen Schaden.
 
 [HREF::https://de.wikipedia.org/wiki/SQL-Injection]  
 [HREF::https://xkcd.com/327/]
