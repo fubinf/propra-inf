@@ -327,6 +327,19 @@ Mit `git add` werden Änderungen in der [TERMREF::Staging-Area] vorgemerkt;
 `git commit` fasst deren Inhalt zu einem neuen Commit-Objekt zusammen.
 [ENDTERM]
 
+[TERM::CommonMark]
+Eine genaue Spezifikation von [TERMREF::Markdown].
+Die ursprüngliche Beschreibung von Markdown aus dem Jahr 2004 lässt viele Fälle offen,
+weshalb verschiedene Programme dasselbe Dokument unterschiedlich darstellen.
+CommonMark legt für jeden dieser Fälle fest, was herauskommen soll,
+und belegt das mit Hunderten von Beispielen.
+Viele verbreitete Programme halten sich daran, z.B. GitHub, GitLab und die Markdown-Vorschau von VS Code.
+GitHub ergänzt CommonMark um einige Erweiterungen wie Tabellen ("GitHub Flavored Markdown", GFM).
+Andere Programme, etwa die Python-Bibliothek Python-Markdown, folgen weiterhin der ursprünglichen Beschreibung.
+
+[HREF::https://commonmark.org/]
+[ENDTERM]
+
 [TERM::Compiler|Übersetzer]
 Ein Übersetzer ist ein Programm, welches Quellcode einer Sprache in eine andere
 Sprache übersetzt.  
