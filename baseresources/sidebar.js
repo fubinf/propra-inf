@@ -107,3 +107,39 @@ if (searchContainer && filename == "glossary") {
   searchContainer.appendChild(searchText);
   searchContainer.appendChild(searchResults);
 }
+
+// ----- copy-to-clipboard button for each code block:
+function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  // fallback for insecure contexts (e.g. http:// from a non-localhost address):
+  const textarea = document.body.appendChild(document.createElement("textarea"));
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  textarea.select();
+  const ok = document.execCommand("copy");
+  textarea.remove();
+  return ok ? Promise.resolve() : Promise.reject();
+}
+
+document.querySelectorAll("div.codehilite").forEach(block => {
+  // with linenums, the code sits in td.code next to a td.linenos column that must not be copied:
+  const pre = block.querySelector("td.code pre") || block.querySelector("pre");
+  if (!pre) return;
+  const button = block.appendChild(document.createElement("button"));
+  button.type = "button";
+  button.className = "copybutton";
+  button.title = "Copy to clipboard";
+  button.setAttribute("aria-label", button.title);
+  button.onclick = () => {
+    const showResult = (state) => {
+      clearTimeout(button.resetTimer);
+      button.className = "copybutton " + state;
+      button.resetTimer = setTimeout(() => button.className = "copybutton", 1500);
+    };
+    copyToClipboard(pre.textContent.replace(/\n$/, ""))  // trailing newline would run a shell command
+      .then(() => showResult("copied"), () => showResult("copyfailed"));
+  };
+});
