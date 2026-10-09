@@ -16,8 +16,7 @@ Oftmals braucht ein Test bestimmte Voraussetzungen, bevor er überhaupt sinnvoll
 was er prüfen soll.
 Ein Test kann zum Beispiel eine Benutzer-Instanz, eine Konfiguration oder eine vorbereitete Datei brauchen.
 
-Eine [TERMREF::Fixture] ist in pytest genau dafür gedacht: Sie kapselt das Setup und das Cleanup
-und macht die Abhängigkeiten eines Tests deutlich.
+Eine [TERMREF::Fixture] ist in pytest genau dafür gedacht: Sie kapselt das Setup und das Cleanup.
 Dadurch bleibt der eigentliche Test lesbarer,
 und dieselben Vorbereitungen können leicht in mehreren Tests wiederverwendet werden.
 
@@ -34,8 +33,8 @@ Nutzen Sie die folgende Übersicht parallel zum Bearbeiten der Aufgaben:
 
 ### Das Problem ohne Fixtures
 
-Betrachten Sie zunächst diesen kleinen Test für einen Benutzer-Dienst.
-Der Code ist bewusst noch etwas unordentlich, damit Sie das Problem direkt sehen können.
+Betrachten Sie zunächst diese kleinen Tests für einen Benutzer-Dienst.
+Der Code ist bewusst noch etwas unordentlich, damit Sie die Probleme direkt sehen können.
 
 ```python
 class Result:
@@ -113,7 +112,7 @@ def test_user_registration_duplicate():
 
 ### Die Fixture-Idee und der Ausgangscode
 
-pytest löst genau diese Schwächen mit sogenannten "Fixtures".
+pytest löst genau diese Schwächen mit Fixtures.
 
 Eine Fixture ist im Grunde ein wiederverwendbares Setup, das ein Test als Abhängigkeit
 anfordern kann.
@@ -187,19 +186,6 @@ weiterhin in drei Tests.
 
 Ein Test kann auch mehrere Fixtures gleichzeitig verwenden: Sie listen einfach mehrere
 Parameter in der Signatur auf.
-Zum Beispiel:
-
-```python
-@pytest.fixture
-def credentials():
-    return {"email": "alice@test.com", "password": "secret"}
-
-def test_login(user_service, credentials):
-    user_service.register("alice", credentials["email"], credentials["password"])
-    result = user_service.login("alice", credentials["password"])
-    assert result.success
-```
-
 Auf dieselbe Weise kann auch eine Fixture ihrerseits andere Fixtures anfordern.
 Suchen Sie in der oben verlinkten pytest-Doku nach den Abschnitten
 „Fixtures can request other fixtures“ und
@@ -398,6 +384,7 @@ def test_another_temp_file(temp_file):
     assert content == "Test war hier!"
 ```
 
+Den Import von `os` braucht `test_userservice.py` danach nicht mehr.
 Löschen Sie außerdem die übrig gebliebene `debug_output.txt` aus Ihrem Arbeitsverzeichnis.
 
 Wohin legt pytest diese temporären Verzeichnisse eigentlich, und was bleibt davon übrig?
@@ -412,14 +399,14 @@ das in diesem Pfad vorkommt, und ebenso den Inhalt eines der darin liegenden `py
 Was ist aus den Verzeichnissen der älteren Läufe geworden, und wo ist `debug_output.txt` geblieben?
 Was bedeutet das im Vergleich zur festen Datei im Arbeitsverzeichnis?
 
-[EC] Verändern Sie jetzt absichtlich einen Test so, dass er fehlschlägt:
+Verändern Sie jetzt absichtlich einen Test so, dass er fehlschlägt:
 
 ```python
 def test_another_temp_file(temp_file):
     assert False
 ```
 
-Führen Sie danach erneut `pytest -v test_userservice.py` aus.
+[EC] Führen Sie danach erneut `pytest -v test_userservice.py` aus.
 
 [EQ] Welche Ausgabe sehen Sie in der pytest-Konsole?
 Wird der Cleanup in der Fixture noch ausgeführt, wenn der Test selbst fehlschlägt?
@@ -428,7 +415,7 @@ Warum ist das wichtig?
 Machen Sie die Änderung an `test_another_temp_file` danach wieder rückgängig.
 <!-- time estimate: 30 min -->
 
-### Fixtures teilen: conftest.py
+### Fixtures teilen: `conftest.py`
 
 Wenn Sie mehrere Testdateien haben, die dieselben Fixtures brauchen, gibt es dafür in pytest
 eine praktische Lösung.

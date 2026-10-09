@@ -751,8 +751,8 @@ Programmiersprachen, wie Python, erfüllen aber auch Funktionen diese Eigenschaf
 [ENDTERM]
 
 [TERM::Fixture]
-Ein Fixture ist in pytest eine wiederverwendbare Testvoraussetzung.
-Es stellt Objekte oder Ressourcen bereit, die mehrere Tests benötigen, und kann zugleich
+Eine Fixture ist in pytest eine wiederverwendbare Testvoraussetzung.
+Sie stellt Objekte oder Ressourcen bereit, die mehrere Tests benötigen, und kann zugleich
 für das Setup und das Cleanup eines Tests sorgen.
 [ENDTERM]
 
