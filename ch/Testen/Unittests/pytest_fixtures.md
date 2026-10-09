@@ -16,7 +16,7 @@ Oftmals braucht ein Test bestimmte Voraussetzungen, bevor er überhaupt sinnvoll
 was er prüfen soll.
 Ein Test kann zum Beispiel eine Benutzer-Instanz, eine Konfiguration oder eine vorbereitete Datei brauchen.
 
-[TERMREF::Fixture] ist in pytest genau dafür gedacht: Es kapselt das Setup und das Cleanup
+Eine [TERMREF::Fixture] ist in pytest genau dafür gedacht: Sie kapselt das Setup und das Cleanup
 und macht die Abhängigkeiten eines Tests deutlich.
 Dadurch bleibt der eigentliche Test lesbarer,
 und dieselben Vorbereitungen können leicht in mehreren Tests wiederverwendet werden.
@@ -31,11 +31,6 @@ Test wieder aufzuräumen.
 Nutzen Sie die folgende Übersicht parallel zum Bearbeiten der Aufgaben:
 
 [pytest-Doku: How to use fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html)
-
-Wir beginnen mit einem sehr einfachen Fall: Ein Test braucht ein Objekt, das mehrfach
-verwendet wird.
-Statt in jedem Test denselben Setup-Code neu zu schreiben, definieren wir ihn
-an einer Stelle und verlangen das Objekt dann als Abhängigkeit.
 
 ### Das Problem ohne Fixtures
 
@@ -96,7 +91,7 @@ def test_user_registration():
 
 pytest löst genau diese Schwächen mit sogenannten "Fixtures".
 
-Ein Fixture ist im Grunde ein wiederverwendbares Setup, das ein Test als Abhängigkeit
+Eine Fixture ist im Grunde ein wiederverwendbares Setup, das ein Test als Abhängigkeit
 anfordern kann.
 Statt in jedem Test denselben Initialisierungscode neu zu schreiben,
 definieren Sie ihn einmal und referenzieren ihn dann über die Test-Signatur.
@@ -176,7 +171,7 @@ Welchen Vorteil hat es, wenn alle benötigten Fixtures als Parameter in der Sign
 
 Manche Fixtures sind aufwendig: Eine Datenbankverbindung aufzubauen, Testdaten zu laden oder
 einen Server zu starten kann Sekunden dauern.
-Genau in solchen Fällen wird wichtig, wie lange ein Fixture bestehen bleibt.
+Genau in solchen Fällen wird wichtig, wie lange eine Fixture bestehen bleibt.
 
 Mit dem Standard-Scope `"function"` wird das Setup für jeden einzelnen Test erneut ausgeführt.
 
@@ -220,7 +215,7 @@ Nutzen Sie einen größeren Scope nur dann, wenn das Setup wirklich teuer ist
 und der gemeinsame Zustand bewusst kontrolliert werden kann.
 
 Ein sinnvoller Fall für einen größeren Scope ist zum Beispiel das einmalige Laden einer großen
-Konfigurationsdatei oder eines Testdaten-Containers: Das ist aufwendig, aber danach nur lesbar.
+Konfigurationsdatei: Das ist aufwendig, aber danach nur lesbar.
 
 ```python
 @pytest.fixture(scope="session")
