@@ -82,6 +82,30 @@ def test_user_registration():
 
     # Cleanup
     service.users.clear()
+
+
+def test_user_login_wrong_password():
+    # Setup
+    service.register("alice", "alice@test.com", "password123")
+
+    # Test
+    result = service.login("alice", "wrong")
+    assert not result.success
+
+    # Cleanup
+    service.users.clear()
+
+
+def test_user_registration_duplicate():
+    # Setup
+    service.register("alice", "alice@test.com", "password123")
+
+    # Test
+    result = service.register("alice", "other@test.com", "secret")
+    assert not result.success
+
+    # Cleanup
+    service.users.clear()
 ```
 
 [EQ] Welche Probleme erkennen Sie in diesem Code? Notieren Sie mindestens drei Probleme.
@@ -96,16 +120,18 @@ anfordern kann.
 Statt in jedem Test denselben Initialisierungscode neu zu schreiben,
 definieren Sie ihn einmal und referenzieren ihn dann über die Test-Signatur.
 
-Das hat zwei Vorteile: Der eigentliche Test wird viel lesbarer, weil die Abhängigkeiten sofort
-sichtbar sind, und die Einrichtung bleibt an einer Stelle zentralisiert.
+Das hat zwei Vorteile: Der eigentliche Test wird viel lesbarer,
+und die Einrichtung bleibt an einer Stelle zentralisiert.
 
 Bevor wir Fixtures einsetzen, legen wir den Ausgangscode an.
 Der zu testende Code gehört nicht in eine Testdatei.
 Legen Sie deshalb eine Datei `userservice.py` an und übernehmen Sie dorthin
 die Klassen `Result` und `PseudoUserservice` aus dem Beispiel oben.
 
-Legen Sie im selben Verzeichnis die Datei `test_userservice.py` mit folgenden Tests an,
-die jeweils eine eigene, frische Instanz benutzen:
+Den ersten Schritt machen wir noch ohne Fixtures:
+Das gemeinsame globale `service` entfällt, jeder Test erzeugt sich eine eigene, frische Instanz.
+Dann kann kein Test einem anderen Zustand hinterlassen, und das Cleanup entfällt.
+Legen Sie im selben Verzeichnis die Datei `test_userservice.py` mit folgenden Tests an:
 
 ```python
 from userservice import PseudoUserservice
@@ -116,12 +142,27 @@ def test_user_registration():
     result = service.register("alice", "alice@test.com", "password123")
     assert result.success
 
+def test_user_registration_duplicate():
+    service = PseudoUserservice()
+    service.register("alice", "alice@test.com", "password123")  # Pre-condition
+    result = service.register("alice", "other@test.com", "secret")
+    assert not result.success
+
 def test_user_login():
     service = PseudoUserservice()
     service.register("alice", "alice@test.com", "password123")  # Pre-condition
     result = service.login("alice", "password123")
     assert result.success
+
+def test_user_login_wrong_password():
+    service = PseudoUserservice()
+    service.register("alice", "alice@test.com", "password123")  # Pre-condition
+    result = service.login("alice", "wrong")
+    assert not result.success
 ```
+
+Das duplizierte Setup ist dabei geblieben:
+Jeder Test erzeugt seine Instanz selbst, und drei der vier Tests registrieren vorab dieselbe `alice`.
 <!-- time estimate: 10 min -->
 
 ### Setup deklarativ machen
@@ -141,14 +182,11 @@ def test_user_registration(user_service):
     ...
 ```
 
-[ER] Ergänzen Sie Ihre `test_userservice.py` um diese Fixture, und modifizieren Sie beide Tests,
-um die Fixture zu nutzen.
+Damit wäre erst das Erzeugen der Instanz zentralisiert; die Registrierung von `alice` stünde
+weiterhin in drei Tests.
 
 Ein Test kann auch mehrere Fixtures gleichzeitig verwenden: Sie listen einfach mehrere
 Parameter in der Signatur auf.
-Suchen Sie in der oben verlinkten pytest-Doku nach dem Abschnitt
-„A test/fixture can request more than one fixture at a time“ und lesen Sie ihn.
-
 Zum Beispiel:
 
 ```python
@@ -162,10 +200,21 @@ def test_login(user_service, credentials):
     assert result.success
 ```
 
+Auf dieselbe Weise kann auch eine Fixture ihrerseits andere Fixtures anfordern.
+Suchen Sie in der oben verlinkten pytest-Doku nach den Abschnitten
+„Fixtures can request other fixtures“ und
+„A test/fixture can request more than one fixture at a time“ und lesen Sie sie.
+
+[ER] Ergänzen Sie Ihre `test_userservice.py` um die Fixture `user_service` von oben
+und um eine zweite Fixture `registered_service`, die `user_service` anfordert
+und darin `alice` registriert.
+Stellen Sie alle vier Tests auf diese beiden Fixtures um:
+Kein Test soll mehr selbst eine Instanz erzeugen oder `alice` vorab registrieren.
+
 [EQ] Stellen Sie sich eine Testdatei mit Dutzenden Tests vor, die verschiedene Kombinationen
 von Fixtures verwenden.
 Welchen Vorteil hat es, wenn alle benötigten Fixtures als Parameter in der Signatur stehen?
-<!-- time estimate: 15 min -->
+<!-- time estimate: 20 min -->
 
 ### Fixture Scopes: wann welcher?
 
@@ -223,11 +272,6 @@ def app_config():
     return load_big_test_config()
 ```
 
-Wenn Sie einen größeren Scope wählen, müssen Sie selbst dafür sorgen, dass der Zustand zwischen
-den Tests sauber zurückgesetzt wird.
-Die gemeinsame Nutzung hat nur dann Sinn, wenn die Ressource unverändert bleibt
-oder bewusst wieder in einen Ausgangszustand gebracht wird.
-
 Ändern Sie nun den Scope auf `"module"`:
 
 ```python
@@ -247,7 +291,12 @@ Was passiert, wenn `test_slow_1` einen Nutzer registriert und ein weiterer Test 
 verlässt, dass noch kein Nutzer registriert ist?
 [ENDHINT]
 
-Wenn Sie fertig sind, entfernen Sie `slow_service` und die drei zugehörigen Tests wieder,
+Wenn Sie einen größeren Scope wählen, müssen Sie selbst dafür sorgen, dass der Zustand zwischen
+den Tests sauber zurückgesetzt wird.
+Die gemeinsame Nutzung hat nur dann Sinn, wenn die Ressource unverändert bleibt
+oder bewusst wieder in einen Ausgangszustand gebracht wird.
+
+Entfernen Sie danach `slow_service` und die drei zugehörigen Tests wieder,
 damit der Rest der Datei nicht durch das `sleep()` ausgebremst wird.
 <!-- time estimate: 25 min -->
 
@@ -354,7 +403,8 @@ Löschen Sie außerdem die übrig gebliebene `debug_output.txt` aus Ihrem Arbeit
 Wohin legt pytest diese temporären Verzeichnisse eigentlich, und was bleibt davon übrig?
 
 [EC] Führen Sie die Tests viermal hintereinander aus: `pytest -v -s test_userservice.py`.
-Die Cleanup-Meldung zeigt den vollständigen Pfad der Datei.
+Mit `-s` zeigt pytest auch die `print()`-Ausgaben bestandener Tests an,
+hier die Cleanup-Meldung mit dem vollständigen Pfad der Datei.
 Listen Sie danach mit `ls -l` den Inhalt des Verzeichnisses `pytest-of-<Benutzername>` auf,
 das in diesem Pfad vorkommt, und ebenso den Inhalt eines der darin liegenden `pytest-<Nummer>`-Verzeichnisse.
 
@@ -372,7 +422,7 @@ def test_another_temp_file(temp_file):
 Führen Sie danach erneut `pytest -v test_userservice.py` aus.
 
 [EQ] Welche Ausgabe sehen Sie in der pytest-Konsole?
-Wird der Cleanup im Fixture noch ausgeführt, wenn der Test selbst fehlschlägt?
+Wird der Cleanup in der Fixture noch ausgeführt, wenn der Test selbst fehlschlägt?
 Warum ist das wichtig?
 
 Machen Sie die Änderung an `test_another_temp_file` danach wieder rückgängig.
@@ -397,6 +447,7 @@ def user_service():
     return PseudoUserservice()
 ```
 
+`registered_service` bleibt in `test_userservice.py` und bekommt `user_service` nun aus `conftest.py`.
 Den Import von `PseudoUserservice` braucht `test_userservice.py` danach nicht mehr.
 
 Erstellen Sie eine zweite Testdatei `test_sharing.py`, die dieselbe Fixture benutzt:
@@ -432,65 +483,50 @@ Die Fixture ist also ohne normalen Python-Import sichtbar.
 Die Klasse `PseudoUserservice` dagegen wird ganz normal aus `userservice.py` importiert;
 `conftest.py` selbst sollte man nicht importieren, sie ist allein für pytest da.
 
+Fixtures so zu teilen, ist zugleich die von pytest empfohlene Praxis:
+Fixtures, die mehrere Testdateien brauchen, gehören in eine `conftest.py`
+(projektübergreifend in ein Plugin); aus anderen Modulen importiert man sie nicht.
+Die pytest-Doku rät davon ausdrücklich ab, siehe
+[Using fixtures from other projects](https://docs.pytest.org/en/stable/how-to/fixtures.html#using-fixtures-from-other-projects).
+
 [EQ] Warum kann die automatische Auflösung über `conftest.py` in einem übergeordneten Verzeichnis
 plötzlich unangenehm werden, wenn ein Projekt wächst?
-Nennen Sie ein konkretes Beispiel für ein Problem, das dadurch entstehen kann,
-und vergleichen Sie das mit einer expliziten Import-Variante.
+Nennen Sie ein konkretes Beispiel für ein Problem, das dadurch entstehen kann.
+
+Um nachzusehen, welche Fixtures ein Test tatsächlich bekommt und in welcher Datei sie definiert sind,
+gibt es `pytest --fixtures-per-test`.
 <!-- time estimate: 15 min -->
 
-### Eingebaute Fixtures verstehen
+### Eingebaute Fixtures: Ausgaben prüfen mit `capsys`
 
-pytest bringt viele eingebaute Fixtures mit.
-Zwei davon kennen bzw. brauchen Sie:
+pytest bringt viele eingebaute Fixtures mit; eine Übersicht gibt die
+[Built-in fixtures reference](https://docs.pytest.org/en/stable/reference/fixtures.html).
+`tmp_path` und `tmp_path_factory` kennen Sie schon.
+Eine weitere häufig gebrauchte ist `capsys`: Sie fängt die Ausgaben auf stdout und stderr ab,
+damit ein Test sie prüfen kann.
+Lesen Sie dazu in der pytest-Doku den Abschnitt
+[Accessing captured output from a test function](https://docs.pytest.org/en/stable/how-to/capture-stdout-stderr.html#accessing-captured-output-from-a-test-function).
 
-- `tmp_path`: Temporäres Verzeichnis für Datei-Tests.
-  Sie kennen es schon als `function`-Variante von `tmp_path_factory`:
-  Jeder Test bekommt ein eigenes, frisches Verzeichnis.
-- `capsys`: Fängt die Ausgaben auf stdout und stderr ab, damit ein Test sie prüfen kann.
-
-Lesen Sie nach, was jede davon tut:
-[Built-in fixtures reference](https://docs.pytest.org/en/stable/reference/fixtures.html)
-
-[EQ] Skizzieren Sie für jede der beiden ein Testszenario, in dem Ihnen der Einsatz sinnvoll erscheint.
-
-Experimentieren Sie mit eingebauten Fixtures:
+Damit es etwas zu prüfen gibt, soll `register()` einen bereits vergebenen Benutzernamen
+künftig mit einer Fehlermeldung auf stderr quittieren.
+Ändern Sie `register()` in `userservice.py` wie folgt und ergänzen Sie dort oben `import sys`:
 
 ```python
-import sys
-
-def test_tmp_path_experiment(tmp_path):
-    # tmp_path ist ein pathlib.Path zu einem temporären Verzeichnis
-    test_file = tmp_path / "experiment.txt"
-    test_file.write_text("Das ist ein Test")
-
-    assert test_file.read_text() == "Das ist ein Test"
-    print(f"Temporäres Verzeichnis: {tmp_path}")
-
-def test_capsys_experiment(capsys):
-    print("Das ist eine Debug-Ausgabe")
-    print("Und noch eine Zeile", file=sys.stderr)
-
-    captured = capsys.readouterr()
-    assert "Debug-Ausgabe" in captured.out
-    assert "noch eine Zeile" in captured.err
+    def register(self, username, email, password):
+        if username in self.users:
+            print(f"Benutzername {username} ist bereits vergeben.", file=sys.stderr)
+            return Result(False)
+        self.users[username] = {'email': email, 'password': password}
+        return Result(True)
 ```
 
-[EC] Fügen Sie beide Tests zu `test_userservice.py` hinzu und führen Sie sie aus:
-`pytest -v -s test_userservice.py`
-(Mit `-s` zeigt pytest auch die `print()`-Ausgaben bestandener Tests an.)
+[ER] Schreiben Sie in `test_userservice.py` einen Test `test_duplicate_registration_message`,
+der mit `capsys` prüft, dass eine doppelte Registrierung genau diese Meldung auf stderr ausgibt
+und auf stdout nichts.
+Verwenden Sie dafür Ihre Fixture `registered_service`.
+
+[EC] Führen Sie die Tests aus: `pytest -v test_userservice.py`
 <!-- time estimate: 15 min -->
-
-### Reflexion: Wann und warum Fixtures?
-
-Sie haben jetzt verschiedene Möglichkeiten kennengelernt, wie pytest beim Aufbau eines Tests
-helfen kann.
-Denken Sie kurz darüber nach, wie das Ihr Vorgehen verändert:
-
-[EQ] Fixtures verändern die Art, wie Sie über Tests nachdenken:
-weg von "Setup-Code schreiben" hin zu "Abhängigkeiten deklarieren".
-Die eigentliche Testlogik wird dadurch deutlich besser erkennbar.
-Welcher Nachteil entsteht dadurch, dass das Setup nicht mehr direkt im Testrumpf steht?
-<!-- time estimate: 5 min -->
 [ENDSECTION]
 
 
