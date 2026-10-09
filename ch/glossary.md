@@ -1174,6 +1174,21 @@ sowie auf einem umfangreichen Universum von Softwarepaketen.
 [ENDTERM]
 
 
+[TERM::localhost|Loopback-Adresse]
+`localhost` ist der Name, mit dem ein Rechner sich selbst anspricht.
+Dazu gehört die IP-Adresse `127.0.0.1` ([TERMREF::IPv4]) bzw. `::1` ([TERMREF::IPv6]).
+Diese Zuordnung steht in der Datei `/etc/hosts`.
+Daten an diese Adressen (und an jede andere Adresse, die mit `127.` beginnt)
+bleiben auf dem eigenen Rechner und gehen nie ins Netz.
+
+Beim Start eines Servers legt man fest, auf welcher Adresse er auf Verbindungen wartet
+(man sagt: er horcht auf dieser Adresse).
+Horcht er auf `127.0.0.1`, können ihn nur Programme auf demselben Rechner erreichen.
+Horcht er auf `0.0.0.0`, ist er über alle Adressen des Rechners erreichbar,
+also auch von anderen Rechnern im Netz.
+[ENDTERM]
+
+
 [TERM::Logfile|Logdatei]
 Eine Textdatei (selten auch Binärdatei), in der Logdatensätze stehen,
 die gewisse Abläufe protokollieren.
@@ -1347,26 +1362,34 @@ Handhabung von Fehlern oder ungültigen Daten.
 [ENDTERM]
 
 
+[TERM::netcat|nc]
+`nc` (netcat) ist ein Kommandozeilenwerkzeug, das eine [TERMREF::TCP]-Verbindung
+(mit Option `-u` auch [TERMREF::UDP]) zu einem [TERMREF::Netzwerkport] aufbaut.
+Es schickt die Standardeingabe unverändert zur Gegenseite und gibt alles,
+was von dort ankommt, auf der Standardausgabe aus.
+Mit `-l` wartet es stattdessen auf einem Port auf eine eingehende Verbindung.
+[ENDTERM]
+
+
 [TERM::Netzwerkport]
-Ein Netzwerkport ist ein virtueller, logischer Punkt, an dem Netzwerkverbindungen beginnen und enden. 
-Stellen Sie sich das, wie einen nummerierten Dock in einem geschäftigen Seehafen vor. 
-So wie verschiedene Schiffe an bestimmten Docks ankommen, um bestimmte Arten von Fracht zu laden oder zu entladen, 
-kommen Netzwerkdaten an bestimmten Ports an, um von bestimmten Anwendungen oder Diensten verarbeitet zu werden.
+Ein Netzwerkport ist eine Nummer zwischen 0 und 65535,
+mit der das Betriebssystem ankommende Netzwerkdaten dem richtigen Programm zuordnet.
+Die [TERMREF::IP-Adresse] findet den richtigen Rechner,
+die Portnummer auf diesem Rechner das richtige Programm.
 
-Wenn Ihr Computer Daten über ein Netzwerk sendet oder empfängt, verwendet er sowohl eine IP-Adresse, 
-um das richtige Gerät zu finden, als auch eine Portnummer, um die richtige Anwendung auf diesem Gerät zu finden.
+Die IANA, die Organisation, die Portnummern weltweit vergibt,
+teilt sie in drei Bereiche ein:
 
-Es gibt 65536 Ports, die in drei Hauptkategorien unterteilt sind:
-
-* **System Ports (0-1023):** Diese sind für gängige, weit verbreitete Dienste und Anwendungen reserviert. 
-    Zum Beispiel verwenden Webbrowser typischerweise Port **80** für HTTP und Port **443** für HTTPS.
-    Diese Ports sollten nicht genutzt werden, aber können mit Adminrechten geändert werden.
-* **User Ports (1024-49151):** Diese können von Unternehmen oder Organisationen für ihre 
-    spezifischen Anwendungen registriert werden. Diese sind frei nutzbar.
-    [List von registrierten Ports](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Registered_ports)
-* **Dynamic Ports (49152-65535):** Diese werden oft von Client-Programmen verwendet, 
-    wenn sie eine Verbindung zu einem Dienst herstellen, oder von Anwendungen, die einen temporären 
-    Port benötigen.
+* System Ports (0-1023): für gängige, weit verbreitete Dienste.
+    Zum Beispiel verwenden Webserver Port 80 für HTTP und Port 443 für HTTPS.
+    Unter Linux dürfen standardmäßig nur Prozesse mit Root-Rechten einen solchen Port belegen.
+* User Ports (1024-49151): Hier können Firmen oder Projekte einen Port für ihre Anwendung
+    registrieren lassen.
+    Benutzen darf diese Ports trotzdem jeder.
+    [Liste registrierter Ports](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Registered_ports)
+* Dynamic Ports (49152-65535): Aus diesem Bereich soll das Betriebssystem
+    einem Client-Programm automatisch einen freien Port zuteilen,
+    wenn es eine Verbindung aufbaut (sogenannter "ephemerer Port").
 [ENDTERM]
 
 [TERM::nohup]
@@ -1881,6 +1904,27 @@ DNS-Daten von einem primären zu sekundären Nameservern repliziert werden.
 Der SOA-Record enthält detaillierte Informationen wie den primären Nameserver (MNAME), die 
 E-Mail-Adresse des Zonenadministrators (RNAME) und eine Seriennummer (SERIAL), die bei jeder Zonenänderung 
 inkrementiert wird, um sekundäre Nameserver über Aktualisierungen zu informieren.
+[ENDTERM]
+
+
+[TERM::Socket|Netzwerksocket]
+Wenn ein Programm Daten über das Netz senden oder empfangen will,
+lässt es sich vom Betriebssystem einen Socket geben.
+In den Socket schreibt es Daten hinein und liest Daten heraus.
+Das funktioniert wie bei einer geöffneten Datei:
+Das Programm greift über einen [TERMREF::Filedeskriptor] auf den Socket zu.
+
+Jeder Socket benutzt ein Transportprotokoll ([TERMREF::TCP] oder [TERMREF::UDP])
+und hat auf dem eigenen Rechner eine [TERMREF::IP-Adresse] und einen [TERMREF::Netzwerkport].
+
+Ein TCP-Server öffnet zuerst einen Socket, auf dem er auf neue Verbindungen wartet
+(Zustand `LISTEN`).
+Für jede Verbindung, die er annimmt, bekommt er einen weiteren Socket,
+der nur für diese eine Verbindung da ist.
+Dieser Socket kennt zusätzlich Adresse und Port der Gegenseite.
+Der Client hat für dieselbe Verbindung auf seiner Seite ebenfalls einen Socket.
+
+Die Kommandos `ss` und `lsof -i` zeigen die Sockets eines Rechners an.
 [ENDTERM]
 
 
