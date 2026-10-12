@@ -18,7 +18,7 @@ Viele Unix-Kommandos lesen Text von der Standardeingabe, verändern ihn ein weni
 schreiben das Ergebnis auf die Standardausgabe.
 Solche Programme heißen [TERMREF::Filter].
 Jeder einzelne Filter kann nur wenig, aber mit Pipes kombiniert lösen sie viele
-Auswertungsaufgaben, für die man sonst ein Programm schreiben würde.
+Auswertungsaufgaben, für die man sonst ein Programm schreiben müsste.
 
 Ein berühmtes Beispiel:
 1986 schrieb Donald Knuth für eine Zeitschriftenkolumne ein sorgfältig dokumentiertes
@@ -37,16 +37,16 @@ Dateinamen wie `passwd` oder `services` meinen immer die Dateien dort,
 nicht die gleichnamigen Dateien in `/etc` Ihres eigenen Rechners.
 
 Unser Hauptbeispiel ist die Datei `passwd`,
-die Benutzerkonten eines echten Linux-Rechners beschreibt.
-Jede Zeile ist ein Konto und besteht aus sieben Feldern, die durch `:` getrennt sind:
+die (einige der) Benutzerkonten eines echten Linux-Rechners beschreibt.
+Jede Zeile repräsentiert ein Konto und besteht aus sieben Feldern, die durch `:` getrennt sind:
 
 ```
 name:passwort:UID:GID:beschreibung:heimatverzeichnis:login-shell
 ```
 
 UID (user ID) und GID (group ID) sind die Nummer des Kontos und die seiner Hauptgruppe.
-Das Passwortfeld enthält heute nur noch ein `x`,
-weil die eigentlichen Passwort-Hashes woanders stehen.
+Das traditionelle Passwortfeld enthält heutzutage nur noch ein `x`,
+weil die eigentlichen Passwort-Hashes inzwischen woanders stehen.
 Schauen Sie sich die Datei kurz mit `less passwd` an.
 
 <!-- time estimate: 5 min -->
@@ -67,8 +67,8 @@ zum Beispiel um das Format einer Datei zu erkennen.
 
 [EC] Geben Sie die letzten 3 Zeilen von `passwd` aus.
 
-Mit `tail -n +K` erhält man alles _ab_ Zeile K.
-Das braucht man zum Beispiel, um die Kopfzeile einer CSV-Datei loszuwerden.
+Mit `tail -n +K` erhält man alles _ab_ Zeile K (Eselsbrücke: Das Plus steht für "ab").
+Das benutzt man zum Beispiel, um die Kopfzeile einer CSV-Datei loszuwerden.
 
 [EC] Geben Sie `passwd` ab Zeile 60 aus.
 
@@ -79,13 +79,13 @@ Dort stehen unter anderem die Einträge für `ftp` und `ssh`.
 
 [HINT::Weder `head` noch `tail` können das allein]
 Kombinieren Sie beide mit einer Pipe.
-Überlegen Sie, wie viele Zeilen `head` durchlassen muss und wie viele davon `tail` dann noch
+Überlegen Sie, wie viele Zeilen `head` durchlassen muss und welche oder wie viele davon `tail` dann
 übrig lassen soll.
 [ENDHINT]
 
 Mit `tail -f` ("follow") wartet `tail` am Dateiende und gibt neu
 hinzukommende Zeilen laufend aus.
-Damit beobachtet man Logdateien, wie in [PARTREF::Prozessmanagement].
+Damit beobachtet man typischerweise Logdateien, wie in [PARTREF::Prozessmanagement].
 
 <!-- time estimate: 15 min -->
 
@@ -103,7 +103,7 @@ die Optionen `-l`, `-w` und `-c`.
 [EQ] Welche der drei Zahlen ist für die Datei `passwd` aussagekräftig, welche eher nicht?
 Warum?
 
-[EC] Ermitteln Sie, wie viele Zeilen die Datei `services` hat.
+[EC] Ermitteln Sie nun nur, wie viele Zeilen die Datei `services` hat.
 
 Viele dieser Zeilen sind aber Kommentare (beginnen mit `#`) oder leer.
 
@@ -160,14 +160,14 @@ Nach welcher Regel hat `sort` sortiert?
 
 [EC] Wiederholen Sie das mit numerischer Sortierung.
 
-Oft will man ganze Zeilen _nach_ einer bestimmten Spalte sortieren.
+Oft will man Zeilen nach einer bestimmten Spalte sortieren.
 
-[EC] Sortieren Sie die ganzen Zeilen von `passwd` numerisch nach UID, ohne vorher `cut` zu benutzen.
+[EC] Sortieren Sie die (vollständigen) Zeilen von `passwd` numerisch nach UID, ohne vorher `cut` zu benutzen.
 Geben Sie von den 5 Konten mit den höchsten UIDs nur Benutzername, UID und Login-Shell aus.
 
 [HINT::`sort` findet meine Spalte nicht]
 `sort` trennt Felder standardmäßig an Leerraum, nicht an `:`.
-Das Trennzeichen stellt man mit `-t` ein, die Sortierspalte mit `-k`.
+Man kann aber ein anderes Trennzeichen angeben, sowie die gewünschte Sortierspalte.
 
 [HINT::Und die Reihenfolge der Filter?]
 Erst sortieren (dafür braucht `sort` die ganzen Zeilen), dann die letzten 5 Zeilen nehmen,
@@ -214,7 +214,7 @@ Was ist schiefgegangen?
 
 [EC] Lassen Sie nun zusätzlich ausgeben, wie viele Konten jede Shell benutzen.
 
-[EC] Zählen Sie, wie viele Start-Skripte (`S`) und wie viele Kill-Skripte (`K`) es in `rc2.d` gibt.
+[EC] Zählen Sie automatisch, wie viele Start-Skripte (`S`) und wie viele Kill-Skripte (`K`) es in `rc2.d` gibt.
 
 [EQ] Bisher haben wir vor `uniq` immer sortiert.
 Nennen Sie eine Situation, in der `uniq` _ohne_ vorheriges `sort` genau das richtige Werkzeug ist.
@@ -236,11 +236,12 @@ Jedes Zeichen aus `SET1` wird durch das Zeichen an derselben Position in `SET2` 
 Anders als die übrigen Filter dieser Aufgabe nimmt `tr` keine Dateinamen als Argumente
 und liest nur von der Standardeingabe.
 
-[EC] Geben Sie die ersten 3 Zeilen von `passwd` in Großbuchstaben aus.
+[EC] Geben Sie die ersten 3 Zeilen von `passwd` IN LAUTER GROSSBUCHSTABEN aus.
+Sie dürfen annehmen, dass dort nur die Buchstaben A bis Z vorkommen.
 
 Die [TERMREF::Umgebungsvariable] `PATH` enthält eine durch `:` getrennte Liste von Verzeichnissen,
-in denen die Shell nach Kommandos sucht (mehr dazu in [PARTREF::Shell-Grundlagen]).
-In einer Zeile ist sie schlecht lesbar.
+in denen die Shell nach Kommandos sucht (siehe [PARTREF::Shell-Grundlagen]).
+In ihrer normalen Form ist sie schlecht lesbar.
 
 [EC] Geben Sie mit `echo $PATH` und `tr` jedes Verzeichnis aus `PATH` auf einer eigenen Zeile aus.
 
@@ -285,8 +286,8 @@ Mit einem abschließenden Sortieren wird daraus eine Rangliste:
 ```
 
 So findet man zum Beispiel die häufigsten Fehlermeldungen in einer Logdatei
-oder die Rechner, die einen Webserver am häufigsten aufrufen.
-Auch der Kern von McIlroys Pipeline aus dem Hintergrundtext ist genau dieses Idiom
+oder die Rechner, die einen Webserver am häufigsten anfragen.
+Auch der Kern von McIlroys Pipeline aus der Einleitung besteht aus diesem Idiom
 (Jon Bentley, Donald Knuth, Doug McIlroy: "Programming Pearls: A Literate Program",
 Communications of the ACM 29(6), 1986).
 Hier die Pipeline in leicht modernisierter Form:
@@ -316,7 +317,7 @@ Probieren Sie dazu aus, was ohne `-s` herauskommt.
 Die Datei `mime.types` ordnet Medientypen wie `image/png` den passenden Dateiendungen zu.
 Der Teil vor dem `/` ist die Hauptkategorie (`image`, `text`, `audio`, ...).
 
-[EC] Ermitteln Sie, wie viele Einträge (ohne Kommentar- und Leerzeilen) es in `mime.types`
+[EC] Ermitteln Sie, wie viele Einträge (echte Einträge, also ohne Kommentar- und Leerzeilen) es in `mime.types`
 zu jeder Hauptkategorie gibt, die häufigste zuerst.
 
 [EC] Ermitteln Sie mit `find` und Filtern die 5 Unterverzeichnisse von `propra_etc`,
