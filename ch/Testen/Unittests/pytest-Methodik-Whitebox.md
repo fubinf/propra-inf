@@ -1,5 +1,5 @@
 title: "Whitebox-Testing: Testmethodik und Anwendung mit pytest"
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 3
 assumes: m_pytest, pytest-Methodik-Blackbox, Fehler-Defekt-Versagen
@@ -131,13 +131,7 @@ finden Sie in [PARTREF::testcoverage].
 
 **Anweisungsüberdeckung** (statement coverage) verlangt, dass jede Anweisung mindestens einmal
 ausgeführt wird.
-Eine Anweisung ist in Python z.B. eine Zuweisung, ein `return`, ein `if` samt seiner Bedingung –
-und auch die `def`-Zeile selbst.
-`def` ist nämlich keine bloße Deklaration, sondern wird beim Import ausgeführt:
-Sie erzeugt ein Funktionsobjekt und bindet es an den Namen.
-Definiert man denselben Namen später ein zweites Mal, gewinnt die zweite Definition;
-wer die erste vorher einer anderen Variablen zugewiesen hat, kann sie trotzdem weiter benutzen.
-Die `def`-Zeilen auf Modulebene sind also schon durch den Import überdeckt.
+Eine Anweisung ist in Python z.B. eine Zuweisung, ein `return`, ein `if` samt seiner Bedingung, ein `def`.
 
 - [ER] Schreiben Sie eine Testfunktion `test_statement_coverage_binary_search()`,
   die jede Anweisung von `binary_search_recur()` mindestens einmal ausführt.
