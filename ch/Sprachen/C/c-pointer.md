@@ -2,7 +2,7 @@ title: "C Pointer"
 stage: draft
 timevalue: 0
 difficulty: 3
-assumes: c-arithmetic-types
+assumes: c-float-types
 ---
 [SECTION::goal::idea]
 Ich verstehe was ein Pointer ist und kann diese anwenden.

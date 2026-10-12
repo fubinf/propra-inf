@@ -201,6 +201,24 @@ cmake-build-*/
   Ebenso ist es ratsam, Programme und [TERMREF2::Objekt-Datei::-en] aus dem
   Repository auszuschließen.
   [ENDWARNING]
+
+Sollte eine Aufgabe mehrere Targets bauen, so gehen Sie wie folgt vor um ein neues Target anzulegen:
+
+- Neue Quelldatei anlegen (New > C/C++ Source File, vgl. [PARTREF::c-experiment]).
+  Entfernen Sie im Dialog den Haken bei "Add to targets".
+- In `CMakeLists.txt` eine `add_executable`-Zeile ergänzen, z.B. `add_executable(sizes sizes.c)`.
+- Die Meldung "Reload changes" bestätigen (oder File > Reload CMake Project).
+- Oben rechts im Auswahlfeld neben dem Run-Button das Target wählen, bauen und ausführen.
+
+Sollte eine Aufgabe weitere Kommandozeilenparameter verlangen, fügen Sie der `CMakeLists.txt`
+unterhalb der `add_executable`-Zeile eine Zeile mit
+`target_compile_options(_TARGET_ PRIVATE _PARAMS_)` ein.
+
+Beispiel, dem Target `main` wird der Parameter `-Werror` hinzugefügt:
+```
+add_executable(main main.c)
+target_compile_options(main PRIVATE -Werror)
+```
 [ENDFOLDOUT]
 
 [FOLDOUT::VSCode]
@@ -208,7 +226,7 @@ cmake-build-*/
 - Jede Aufgabe muss in einem eigenen Verzeichnis liegen.
 - Legen sie im Hauptverzeichnis des ProPra ein neues Unterverzeichnis
   `.vscode` an.
-- Legen Sie darin eine Datei `task.json` an mit folgendem Inhalt (achten Sie
+- Legen Sie darin eine Datei `tasks.json` an mit folgendem Inhalt (achten Sie
   bei macOS darauf, `gcc` korrekt durch Ihren `gcc` Befehl zu ersetzen):  
 ```json
 {
@@ -288,9 +306,14 @@ Dies ermöglicht es Ihnen, eine `.c`-Datei über den Run-Button rechts oben
 Sofern nicht in den Aufgaben anders aufgeführt, nutzen Sie diesen Weg, um Ihre
 C Programme zu bauen und auszuführen.
 
-Wenn `task.json` schon existiert, fügen Sie dort nur den Kern des obigen
+Wenn `tasks.json` schon existiert, fügen Sie dort nur den Kern des obigen
 Eintrags hinzu; siehe Aufgabe [PARTREF::m_json].
 [ENDFOLDOUT]
+
+Sollte eine Aufgabe weitere Kommandozeilenparameter verlangen, fügen Sie diese hinter `-pedantic`in
+das `args` Array ein.
+Achten Sie darauf diese nach Abschluss der Aufgabe zu entfernen, um andere Aufgaben nicht zu
+beeinflussen.
 
 
 #### Erläuterung der Kommandozeilenparameter

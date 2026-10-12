@@ -1,26 +1,29 @@
-title: "C arithmetische Typen"
+title: "C Ganzzahl-Typen"
 stage: alpha
-timevalue: 1.5
+timevalue: 1.75
 difficulty: 2
 assumes: c-preprocessor-include
 ---
 [SECTION::goal::idea]
-Ich verstehe die arithmetischen Datentypen in C, sowie die Besonderheiten im Umgang mit ihnen.
+Ich verstehe die Ganzzahl-Datentypen in C, sowie die Besonderheiten im Umgang mit ihnen.
 [ENDSECTION]
 
 [SECTION::background::default]
 Python ist eine dynamisch typisierte Sprache.
-Eine Variable hat hier erst zur Laufzeit einen festen Typ, welcher nicht von Ihnen sondern vom
-Interpreter spezifiziert wird.
+In Python haben nur Werte (Objekte) einen Typ, Namen sind lediglich Verweise darauf.
+Derselbe Name kann nacheinander auf Werte unterschiedlichen Typs zeigen.
 C hingegen ist eine statisch typisierte Sprache.
 Hier muss schon zur Übersetzungszeit der Typ einer Variable bekannt sein.
 Das Angeben der Typen wird hier auf den Programmierer abgeschoben.
+
+Mit der Typangabe legen Sie in C aber nicht nur fest, was eine Variable enthält, sondern auch wie
+viel.
+Sie legen sich im Voraus auf eine Größe fest, und der Übersetzer hält sich strikt daran, auch wenn
+das Ergebnis dann nicht mehr hineinpasst.
+Python `int`s haben dagegen kein Limit, Sie können beliebig große oder kleine Werte darin speichern.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
-Es werden hier nur die arithmetischen Typen behandelt.
-Komplexere Datentypen (z.B. `struct` oder Pointer) werden in separaten Aufgaben behandelt.
-
 Für die Aufgaben wird hauptsächlich folgende Referenz verwendet:
 <!-- @LINK_SPEC: status=403 -->[Arithmetische Typen](https://en.cppreference.com/c/language/arithmetic_types).
 Überspringen Sie komplexe und imaginäre Typen, `_Decimal`, `_BitInt` und alles mit "since C23" 
@@ -30,9 +33,16 @@ Die für die Aufgaben zu verwendenden `printf`-Formatangaben sind hier gelistet:
 
 - `%d` für `int`, `%u` für `unsigned int`, `%ld` für `long`
 - `%zu` für `size_t` (das Ergebnis von `sizeof`)
-- `%f` für `double`
 - `%lld` bzw. `%llu` für `long long` bzw. `unsigned long long`
   (wandeln Sie 64-Bit-Werte dafür mit entsprechenden Wandlungen um)
+
+Eine Wandlung (Cast) erzwingt die Umwandlung eines Werts in einen anderen Typ, Schema
+`(zieltyp)ausdruck`, z.B. `(unsigned long long)64`.
+
+Eine Formatangabe mit einer Zahl zwischen dem `%` und den Buchstaben dient dazu, die Mindestbreite
+der Ausgabe in Zeichen anzugeben.
+So wird `%2d` mindestens zwei Zeichen breit sein; `%04d` mindestens vier Zeichen, mit führender
+Null falls notwendig.
 
 Sollten Sie noch weitere benötigen (z.B. weil Ihr Betriebssystem leicht andere Definitionen
 besitzt), finden Sie alle Formatangaben in der
@@ -42,17 +52,7 @@ besitzt), finden Sie alle Formatangaben in der
 ### Projekt anlegen
 
 Legen Sie ein neues CLion-Projekt für die Aufgabe an (s. [PARTREF::c-setup]).
-Löschen Sie die von CLion erzeugte `main.c` und die zugehörige `add_executable`-Zeile in der
-`CMakeLists.txt`.
-
-Für die weiteren Schritte unten ist der Ablauf stets derselbe:
-
-- Neue Quelldatei anlegen (New > C/C++ Source File, vgl. [PARTREF::c-experiment]).
-  Entfernen Sie im Dialog den Haken bei "Add to targets".
-  Die Targets tragen Sie stattdessen selbst in die `CMakeLists.txt` ein.
-- In `CMakeLists.txt` eine `add_executable`-Zeile ergänzen, z.B. `add_executable(sizes sizes.c)`.
-- Die Meldung "Reload changes" bestätigen (oder File > Reload CMake Project).
-- Oben rechts im Auswahlfeld neben dem Run-Button das Target wählen, bauen und ausführen.
+Diese Aufgabe nutzt für jeden Teil ein eigenes Target.
 
 
 ### Größen und Grenzen
@@ -75,6 +75,7 @@ Was könnte passieren, wenn Sie dies nicht beachten?
 
 [EQ] Wann würden Sie `int` verwenden, wann `int32_t`?
 Begründen Sie mit den Ergebnissen dieses Teils.
+<!-- time estimate: 25 min -->
 
 
 ### Überläufe bei `unsigned` Datentypen
@@ -111,14 +112,16 @@ zum ersten Mal falsch wird?
 [EC] Bauen Sie das Target `overflow` und führen Sie es aus.
 
 [EQ] Weshalb tritt dieses Verhalten auf?
+<!-- time estimate: 15 min -->
 
 
 ### Überläufe bei `signed` Datentypen
 
-Was Überläufe bei vorzeichenbehafteten Typen angeht, hat der C-Standard eine Gemeinheit.
-Denn dies ist ein Beispiel von "undefined behavior" (UB), der Standard hat für dieses Verhalten
-keinerlei Definition.
-Sie können demnach nicht darauf vertrauen, was passiert, UB ist also zu vermeiden.
+Was Überläufe bei vorzeichenbehafteten Typen angeht, hat der C-Standard eine Gemeinheit auf Lager.
+Es handelt sich um "undefined behavior" (UB).
+Der Standard macht dazu buchstäblich keine Aussage, der Übersetzer darf also tun, was er will.
+Worauf Sie sich hier nicht verlassen können, ist also so ziemlich alles.
+UB ist entsprechend zu vermeiden.
 
 [ER] Legen Sie `signedoverflow.c` an:
 
@@ -144,6 +147,14 @@ int main(void) {
 [EQ] Ist die Ausgabe mit einem Umlauf vereinbar?
 Was hat der Übersetzer offenbar angenommen?
 
+[HINT::Was ist passiert]
+Der C-Standard sagt explizit, dass Überläufe bei `signed` nicht auftreten dürfen (UB).
+Der Übersetzer hält sich daran und nimmt an, `x + 1 > x` ist stets wahr.
+Daraus resultiert eine Optimierung, die trotz `-O0` geschieht.
+Schon bemerkenswert, eine Optimierungsstufe, die laut Namen gar nicht optimiert, optimiert hier
+trotzdem.
+[ENDHINT]
+
 [ER] Ändern Sie in `isBigger` den Typ des Parameters `x` von `int` auf `unsigned int`
 und in `main` `INT_MAX` auf `UINT_MAX`.
 
@@ -151,7 +162,7 @@ und in `main` `INT_MAX` auf `UINT_MAX`.
 
 [ER] Stellen Sie `int` und `INT_MAX` wieder her.
 Ergänzen Sie in der `CMakeLists.txt` `target_compile_options(signedoverflow PRIVATE -fwrapv)`, bei
-VSCode fügen Sie dies für die Dauer der Aufgabe in der `task.json` entsprechend der anderen
+VSCode fügen Sie dies für die Dauer der Aufgabe in der `tasks.json` entsprechend der anderen
 Optionen ein.
 Die Option legt fest, dass ein Überlauf bei vorzeichenbehafteten Typen umläuft.
 
@@ -159,6 +170,7 @@ Die Option legt fest, dass ein Überlauf bei vorzeichenbehafteten Typen umläuft
 
 [EQ] Warum darf man sich bei `int` nicht auf einen Umlauf verlassen?
 Nennen Sie eine Möglichkeit, das zu vermeiden.
+<!-- time estimate: 30 min -->
 
 
 ### Typumwandlungen
@@ -252,100 +264,7 @@ printf("%d %d %d %d\n", (bool)0.5, (int)0.5, (bool)v, (unsigned char)v);
 Was sagt der Abschnitt "Boolean type" über die Umwandlung nach `bool`?
 
 [EC] Bauen und führen Sie das Target aus.
-
-
-### Gleitkommazahlen
-
-Lesen Sie den Abschnitt "Real floating types" und die Zeilen zu `binary floating-point` in
-"Range of values".
-
-[ER] Legen Sie `floats.c` an:
-
-```c
-#include <math.h>
-#include <stdio.h>
-
-int main(void) {
-  /* Darstellung */
-  printf("%.17f\n", 0.1 + 0.2);
-  printf("%d\n", 0.1 + 0.2 == 0.3);
-  printf("%d\n", nearlyEqual(0.1 + 0.2, 0.3));
-
-  /* Summe */
-  float sum = 0.0f;
-
-  for (int i = 0; i < 10; i++) {
-    sum += 0.1f;
-  }
-
-  printf("%.9f %d\n", sum, sum == 1.0f);
-
-  /* Genauigkeit */
-  float big = 16777216.0f;
-
-  printf("%d\n", big + 1.0f == big);
-
-  /* Sonderwerte */
-  double zero = 0.0;
-  double notANumber = zero / zero;
-
-  printf("%f %f\n", 1.0 / zero, notANumber);
-  printf("%d\n", notANumber == notANumber);
-
-  return 0;
-}
-```
-
-[ER] Schreiben Sie vor `main` die Funktion `int nearlyEqual(double a, double b)`.
-Sie liefert 1, wenn sich `a` und `b` um weniger als `1e-9` unterscheiden, sonst 0.
-`fabs`, die Gleitkommavariante von `abs`, steht in `<math.h>`.
-
-[EQ] Welche Ausgabe erwarten Sie für jede der sieben `printf`-Zeilen?
-
-[EC] Bauen Sie das Target `floats` und führen Sie es aus.
-
-[EQ] Erklären Sie mit dem Abschnitt "Real floating types", warum `0.1 + 0.2 == 0.3` falsch ist.
-Warum ist der Vergleich mit `nearlyEqual` besser, und wann reicht ein fester Abstand wie `1e-9`
-nicht aus?
-
-[EQ] Warum ist `big + 1.0f == big` wahr?
-
-[EQ] Was sagt die Seite über den Wert `NaN`, und was gibt `printf` dafür aus?
-
-[EQ] Der Übersetzer warnt in der `printf`-Zeile mit `sum`.
-Was geschieht mit `sum` beim Aufruf von `printf`?
-(Die Option `-Wdouble-promotion` erklärt [PARTREF::c-setup].)
-
-[ER] Beheben Sie die Warnung mit einer Wandlung.
-
-[EC] Bauen und führen Sie das Target `floats` erneut aus.
-
-
-### Typwahl und `typedef`
-
-[EQ] Wählen Sie für diese Werte je einen Typ und begründen Sie ihn.
-
-- Alter eines Menschen
-- Geldbetrag in Cent, bis 30 Millionen Euro
-- Messwert (z.B. 21,7)
-- Einwohnerzahl Deutschlands (ca. 83 Millionen)
-- Weltbevölkerung (ca. 8,1 Milliarden)
-- einfache Cookie-Zustimmung
-
-[ER] Legen Sie `choose.c` an.
-Deklarieren Sie für jeden Wert eine Variable mit dem in [EREFQ::16] gewählten Typ
-(`<stdint.h>` und `<stdbool.h>` helfen), setzen Sie einen passenden Beispielwert
-und geben Sie alle sechs Werte mittels `printf` aus.
-Es darf keine Warnung bleiben.
-
-[EC] Bauen und führen Sie das Target `choose` aus.
-
-[ER] Mithilfe von `typedef` können Sie einen Alias für einen Typ anlegen, z.B.
-legt `typedef int64_t cents_t;` einen neuen Alias `cents_t` für `int64_t` an.
-Legen Sie für die in [EREFR::13] deklarierten Variablen sinnvolle `typedef`-Aliase an
-und ändern Sie die Variablendeklarationen so, dass sie diese Aliase nutzen.
-
-[EC] Bauen und führen Sie das Target `choose` erneut aus.
+<!-- time estimate: 25 min -->
 
 
 ### Abschluss
@@ -353,6 +272,7 @@ und ändern Sie die Variablendeklarationen so, dass sie diese Aliase nutzen.
 [EQ] Nennen Sie drei Stellen aus dieser Aufgabe, an denen C ohne Fehlermeldung etwas anderes tut
 als Python.
 Woran haben Sie es jeweils bemerkt (Warnung, Vergleich mit Python, Rechnung, gar nicht)?
+<!-- time estimate: 10 min -->
 
 [ENDSECTION]
 
