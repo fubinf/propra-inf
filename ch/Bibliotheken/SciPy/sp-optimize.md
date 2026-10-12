@@ -70,7 +70,7 @@ Die vollständige Parameterliste steht in der Referenz zu
 
 - `result.x`: die gefundene Lösung
 - `result.fun`: Funktionswert an der Lösung (sollte ≈ 0 sein)
-- `result.success`: ob die Optimierung erfolgreich war
+- `result.success`: ob das Verfahren erfolgreich war
 - `result.message`: Klartextmeldung des Verfahrens, aufschlussreich vor allem bei `success=False`
 
 `root` ist für Gleichungssysteme mit mehreren Unbekannten ausgelegt.
@@ -293,8 +293,8 @@ Was kommt damit zu Ihrer Feststellung über `result.success` aus [EREFQ::3] hinz
 
 ### Kurvenanpassung mit `scipy.optimize.curve_fit`
 
-Ein häufiger Anwendungsfall ist die Anpassung von Modellparametern an Messdaten; genau das
-leistet `curve_fit`.
+Ein häufiger Anwendungsfall ist die Anpassung von Modellparametern an Messdaten; 
+das leistet `curve_fit`.
 
 ```python
 scipy.optimize.curve_fit(f, xdata, ydata, p0=None)
@@ -364,7 +364,7 @@ Ihre Teilschritte:
 
 - Passen Sie mit einer Modellfunktion `linear(x, a, b)` und `curve_fit` ohne `p0` die Parameter an
   `x_data`/`y_data` an und geben Sie `a` und `b` aus (4 Nachkommastellen, `:.4f`)
-- Wiederholen Sie den Aufruf mit einem bewusst schlechten Startwert `p0=(-100, 100)` und geben Sie
+- Wiederholen Sie den Aufruf mit einem absichtlich schlechten Startwert `p0=(-100, 100)` und geben Sie
   `a` und `b` auch für diesen Lauf aus
 - Berechnen Sie die vorhergesagten y-Werte mit den (ohne `p0` geschätzten) Parametern und geben
   Sie die Abweichungen (gemessen minus vorhergesagt) aus (2 Nachkommastellen, `:.2f`); an ihnen
