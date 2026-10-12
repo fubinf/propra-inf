@@ -71,7 +71,7 @@ blockquote p {
 
 code {
     background-color: #eee;
-    white-space: pre;
+    white-space: pre-wrap;  /* keep spaces, but allow line breaks so long commands cannot widen the page */
     padding: 0 .4em;
     border-radius: 1px;
 }
@@ -129,6 +129,10 @@ li {
 pre {
     margin-left: .3em;
     padding-left: .3em;
+
+    & code {
+        white-space: pre;  /* code blocks scroll (see .codehilite) instead of wrapping */
+    }
 }
 
 summary {
@@ -158,6 +162,7 @@ summary {
     margin-right: 16px;
     box-shadow: 4px 0 6px -2px rgba(0, 0, 0, 0.2);
     scrollbar-width: thin;
+    background-color: white;  /* hide .main content that is scrolled underneath */
 
     &.sidebarhide {
         left: calc(-20px - var(--sidebar-width));
@@ -177,6 +182,7 @@ summary {
     margin-left: calc(10px + var(--sidebar-width));
     padding-top: calc(var(--header-height) + 16px);
     transition: all 0.3s ease-out;
+    overflow-wrap: break-word;  /* long URLs etc. must not widen the page */
 }
 
 .main.mainfull {
@@ -752,6 +758,21 @@ a:link.vwr-filelink-submission {
 .mermaid svg {
     max-width: 100%;
     height: auto;
+}
+
+.taskgroup-overview-diagram-container {
+    overflow-x: auto;
+    margin: 1em 0 0 0;
+}
+
+.taskgroup-overview-diagram {
+    border: none;
+    display: block;
+}
+
+.taskgroup-overview-diagram-solo {
+    margin: 0.3em 0 1em 0;
+    font-size: 90%;
 }
 
 
