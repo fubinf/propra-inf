@@ -756,6 +756,15 @@ Sie stellt Objekte oder Ressourcen bereit, die mehrere Tests benötigen, und kan
 für das Setup und das Cleanup eines Tests sorgen.
 [ENDTERM]
 
+[TERM::Flaky Test]
+Ein Test, der ohne jede Änderung an Code oder Testdaten mal besteht und mal fehlschlägt
+(engl. _flaky_: unzuverlässig).
+Häufige Ursachen sind Abhängigkeiten von Zeitabläufen, etwa wenn ein Test etwas prüft,
+bevor die Anwendung damit fertig ist, oder Tests, die sich gegenseitig beeinflussen.
+Flaky Tests sind teuer: Man muss jedem Fehlschlag nachgehen
+und gewöhnt sich leicht an, Fehlschläge zu ignorieren, auch die echten.
+[ENDTERM]
+
 [TERM::Flask]
 Flask ist ein leichtgewichtiges und flexibles Web-Framework für Python, das es Entwicklern
 ermöglicht, schnell und einfach Webanwendungen zu erstellen. Es folgt dem WSGI
