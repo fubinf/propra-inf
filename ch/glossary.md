@@ -1133,6 +1133,16 @@ oder für ein eingebautes Shell-Kommando
 
 ## L
 
+[TERM::Lasttest|Load Test]
+Ein [TERMREF::Leistungstest], der prüft, wie sich eine Anwendung verhält,
+wenn viele Nutzer sie gleichzeitig benutzen.
+Dazu erzeugt ein Werkzeug viele simulierte Nutzer, die Anfragen schicken,
+und misst Antwortzeiten, Durchsatz (Anfragen pro Sekunde) und Fehler.
+Steigert man die Last absichtlich über die erwartete Spitzenlast hinaus,
+um die Belastungsgrenze zu finden, spricht man auch von einem Stresstest (engl. _stress test_).
+[ENDTERM]
+
+
 [TERM::Lazy Evaluation]
 Ein Verfahren von Programmiersprachen, bei dem ein Ausdruck erst dann ausgewertet wird, wenn er 
 benötigt wird. Diese 
@@ -1499,6 +1509,15 @@ Reihe von Regeln und Best Practices für die Formatierung von Python-Code, um di
 verbessern und eine konsistente und einheitliche Codebasis zu fördern.
 
 Dokumentation: [HREF::https://peps.python.org/pep-0008/]
+[ENDTERM]
+
+
+[TERM::Perzentil|Percentile]
+Das p%-Perzentil einer Reihe von Messwerten ist der Wert, den p Prozent der Messwerte nicht überschreiten.
+Das 50%-Perzentil ist also der [TERMREF::Median].
+Bei Antwortzeiten bedeutet etwa ein 95%-Perzentil von 300 ms:
+95 % der Anfragen wurden in höchstens 300 ms beantwortet, die übrigen 5 % brauchten länger.
+Perzentile sind der Spezialfall der Quantile, bei dem der Anteil in Prozent angegeben wird.
 [ENDTERM]
 
 
