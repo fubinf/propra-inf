@@ -340,7 +340,7 @@ die (samt ihrer Unterverzeichnisse) die meisten Dateien enthalten.
 Welches Feld ist der Verzeichnisname, wenn man an `/` schneidet?
 [ENDHINT]
 
-[EC] Ermitteln Sie die 5 häufigsten Dateiendungen unter den gewöhnlichen Dateien (`find -type f`) im Dateibaum.
+[EC] Ermitteln Sie die 5 häufigsten Dateiendungen unter den gewöhnlichen Dateien (`find . -type f`) im Dateibaum.
 
 [HINT::`cut` kann nur von vorn zählen, die Endung steht aber hinten]
 Es gibt einen Filter namens `rev`, der jede Zeile rückwärts ausgibt.
@@ -349,7 +349,7 @@ Es gibt einen Filter namens `rev`, der jede Zeile rückwärts ausgibt.
 Wenn man die Zeile umdreht, steht die Endung vorn, bis zum ersten Punkt.
 Danach muss man sie wieder richtig herum drehen.
 Nehmen Sie vorher nur Dateien mit, deren Name überhaupt einen Punkt enthält
-(`find -type f -name ...`).
+(`find . -type f -name ...`).
 [ENDHINT]
 [ENDHINT]
 
