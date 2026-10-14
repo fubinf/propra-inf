@@ -67,10 +67,10 @@ zum Beispiel um das Format einer Datei zu erkennen.
 
 [EC] Geben Sie die letzten 3 Zeilen von `passwd` aus.
 
-Mit `tail -n +K` erhält man alles _ab_ Zeile K (Eselsbrücke: Das Plus steht für "ab").
+Mit `tail -n +K` erhält man alles ab Zeile K (Eselsbrücke: Das Plus steht für "ab").
 Das benutzt man zum Beispiel, um die Kopfzeile einer CSV-Datei loszuwerden.
 
-[EC] Geben Sie `passwd` ab Zeile 60 aus.
+[EC] Geben Sie `passwd` ab Zeile 48 aus.
 
 Die Datei `services` ordnet Netzwerkdiensten wie `ftp` oder `ssh` ihre Portnummern zu.
 
@@ -150,7 +150,8 @@ Zeigen Sie nur die ersten 10 an.
 
 Lesen Sie in
 [sort(1)](https://man7.org/linux/man-pages/man1/sort.1.html)
-die Optionen `-n`, `-r`, `-t`, `-k` und `-h`.
+die Optionen `-n`, `-r`, `-t` und `-k`.
+Das ist noch nicht alles, was Sie in diesem Abschnitt brauchen werden.
 
 [EC] Geben Sie die UIDs (Feld 3) aus `passwd` sortiert aus.
 Zeigen Sie nur die letzten 5 an.
@@ -161,13 +162,16 @@ Nach welcher Regel hat `sort` sortiert?
 [EC] Wiederholen Sie das mit numerischer Sortierung.
 
 Oft will man Zeilen nach einer bestimmten Spalte sortieren.
+Dafür gibt man bei `-k` normalerweise Anfangs- und Endfeld an,
+beispielsweise `-k2,2` für "nur Feld 2".
+`-k2` allein bedeutet "ab Feld 2 bis zum Zeilenende" und führt leicht zu überraschenden Reihenfolgen.
 
 [EC] Sortieren Sie die (vollständigen) Zeilen von `passwd` numerisch nach UID, ohne vorher `cut` zu benutzen.
 Geben Sie von den 5 Konten mit den höchsten UIDs nur Benutzername, UID und Login-Shell aus.
 
 [HINT::`sort` findet meine Spalte nicht]
 `sort` trennt Felder standardmäßig an Leerraum, nicht an `:`.
-Man kann aber ein anderes Trennzeichen angeben, sowie die gewünschte Sortierspalte.
+Man kann aber ein anderes Trennzeichen und die gewünschte Sortierspalte angeben.
 
 [HINT::Und die Reihenfolge der Filter?]
 Erst sortieren (dafür braucht `sort` die ganzen Zeilen), dann die letzten 5 Zeilen nehmen,
@@ -184,9 +188,18 @@ Wir wollen die drei größten Verzeichnisse finden.
 `du -sh */ | sort -n | tail -3`
 
 Vergleichen Sie das Ergebnis mit der vollständigen Ausgabe von `du -sh */`.
-Das sind nicht die drei größten Verzeichnisse.
+Dort finden Sie größere Verzeichnisse als die drei angezeigten.
+Suchen Sie in der Manpage von `sort` eine Option, die mit solchen Größenangaben umgehen kann.
 
-[EC] Korrigieren Sie die Pipeline mit der passenden Option von `sort`.
+[EC] Korrigieren Sie die Pipeline mit dieser Option.
+
+[HINT::Wie finde ich die Option in der langen Manpage?]
+Siehe den Abschnitt "Anzeige und Suche" in [PARTREF::Manpages].
+
+[HINT::Welcher Suchbegriff?]
+Suchen Sie nach `human`.
+[ENDHINT]
+[ENDHINT]
 
 <!-- time estimate: 20 min -->
 
@@ -217,7 +230,7 @@ Was ist schiefgegangen?
 [EC] Zählen Sie automatisch, wie viele Start-Skripte (`S`) und wie viele Kill-Skripte (`K`) es in `rc2.d` gibt.
 
 [EQ] Bisher haben wir vor `uniq` immer sortiert.
-Nennen Sie eine Situation, in der `uniq` _ohne_ vorheriges `sort` genau das richtige Werkzeug ist.
+Nennen Sie eine Situation, in der `uniq` ohne vorheriges `sort` genau das richtige Werkzeug ist.
 Begründen Sie, warum `sort` dort schaden oder überflüssig sein würde.
 
 <!-- time estimate: 15 min -->
@@ -259,9 +272,8 @@ Das dritte Feld ist der Typ des Dateisystems.
 [EC] Versuchen Sie, die Dateisystemtypen mit `cut` auszuschneiden:
 `grep -v '^#' fstab | cut -d' ' -f3`
 
-Das sind keine Dateisystemtypen:
-`cut` betrachtet jedes einzelne Leerzeichen als Trenner,
-zwischen zwei aufeinanderfolgenden Leerzeichen steht für `cut` also ein leeres Feld.
+`cut` liefert hier keine Dateisystemtypen, weil es jedes einzelne Leerzeichen als Trenner betrachtet.
+Zwischen zwei aufeinanderfolgenden Leerzeichen steht für `cut` also ein leeres Feld.
 
 [EC] Ermitteln Sie, wie oft jeder Dateisystemtyp in `fstab` vorkommt.
 
@@ -317,8 +329,8 @@ Probieren Sie dazu aus, was ohne `-s` herauskommt.
 Die Datei `mime.types` ordnet Medientypen wie `image/png` den passenden Dateiendungen zu.
 Der Teil vor dem `/` ist die Hauptkategorie (`image`, `text`, `audio`, ...).
 
-[EC] Ermitteln Sie, wie viele Einträge (echte Einträge, also ohne Kommentar- und Leerzeilen) es in `mime.types`
-zu jeder Hauptkategorie gibt, die häufigste zuerst.
+[EC] Ermitteln Sie, wie viele Einträge (echte Einträge, also ohne Kommentar- und Leerzeilen)
+es in `mime.types` zu jeder Hauptkategorie gibt, die häufigste zuerst.
 
 [EC] Ermitteln Sie mit `find` und Filtern die 5 Unterverzeichnisse von `propra_etc`,
 die (samt ihrer Unterverzeichnisse) die meisten Dateien enthalten.
@@ -335,8 +347,9 @@ Es gibt einen Filter namens `rev`, der jede Zeile rückwärts ausgibt.
 
 [HINT::Und dann?]
 Wenn man die Zeile umdreht, steht die Endung vorn, bis zum ersten Punkt.
-Danach muss man sie natürlich wieder richtig herum drehen.
-Nehmen Sie vorher nur Dateien mit, deren Name überhaupt einen Punkt enthält (`find -type f -name ...`).
+Danach muss man sie wieder richtig herum drehen.
+Nehmen Sie vorher nur Dateien mit, deren Name überhaupt einen Punkt enthält
+(`find -type f -name ...`).
 [ENDHINT]
 [ENDHINT]
 
