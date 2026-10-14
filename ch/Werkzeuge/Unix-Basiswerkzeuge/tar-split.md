@@ -34,7 +34,7 @@ Das Skript erstellt 100 Dateien im aktuellen Verzeichnis.
 [ENDWARNING]
 
 [EC] Führen Sie diesen Befehl aus: 
-`for i in {001..100}; do echo "Ich bin der Inhalt der Datei $i" > "tar_datei_$i"; done`
+`for i in $(seq -w 1 100); do echo "Ich bin der Inhalt der Datei $i" > "tar_datei_$i"; done`
 
 
 ### `tar`-Archive erstellen
@@ -45,6 +45,17 @@ Lesen Sie den Abschnitt **Syntax** und verstehen Sie insbesondere die **Optionen
 
 Verstehen Sie im Abschnitt **Beispiele** den Teil "Anlegen" der 
 [ubuntuusers tar-Seite](https://wiki.ubuntuusers.de/tar/).
+
+[FOLDOUT::Abweichungen unter macOS]
+macOS bringt ein BSD-`tar` mit, nicht das GNU-`tar` von Debian.
+Die Optionen c, t, v, x, f, z, J und C funktionieren genauso,
+nur die Ausgabe mit `v` sieht etwas anders aus.
+
+Arbeiten Sie nicht im mitgelieferten Terminal (Terminal.app), sondern z. B. in iTerm2,
+packt `tar` womöglich zusätzliche Einträge `._Dateiname` ins Archiv.
+Sehen Sie solche Einträge beim Anzeigen des Archivs,
+dann erstellen Sie die Archive neu mit `COPYFILE_DISABLE=1 tar …`.
+[ENDFOLDOUT]
 
 [EC] Erstellen Sie ein `.tar`-Archiv `meinarchiv.tar` mit den gerade erstellten 100 Dateien.
 
