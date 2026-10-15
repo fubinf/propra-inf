@@ -37,7 +37,7 @@ Zuweisung granularer Berechtigungen für einzelne Benutzer oder Gruppen.
 Spezifische, überprüfbare Bedingungen, die definieren,
 wann eine User Story oder eine Funktion als vollständig und akzeptabel
 (und hoffentlich korrekt) betrachtet wird.
-Sie legen die Erwartungen und Anforderungen fest, die erfüllt sein müssen,
+Sie legen die Erwartungen und [TERMREF2::Anforderung::-en] fest, die erfüllt sein müssen,
 damit das Produkt oder die Funktion als erfolgreich betrachtet wird.
 Akzeptanzkriterien dienen dazu, Missverständnisse zu vermeiden, indem sie
 klare Richtlinien für die Entwicklung und das Testen geben.
@@ -49,6 +49,22 @@ Ein alternativer Name (meist im Sinne einer Abkürzung) für ein Kommando
 (meist mit Optionen und deshalb länger) in der [TERMREF::Shell].
 Weniger flexibel, aber in einfachen Fällen bequemer hinzuschreiben als eine
 [TERMREF::Shellfunktion].
+[ENDTERM]
+
+
+[TERM::Anforderung|Requirement]
+Eine Aussage darüber, welche Eigenschaft oder Fähigkeit ein System haben muss,
+damit es für seine Stakeholder nützlich ist.
+Man unterscheidet funktionale Anforderungen (was das System tun soll,
+z.B. "Benutzer können ihr Passwort zurücksetzen") und nichtfunktionale Anforderungen
+(wie gut es das tun soll, z.B. Antwortzeiten, Sicherheit, Bedienbarkeit).
+
+Gute Anforderungen sind prüfbar: Aus ihnen werden Testfälle abgeleitet,
+und gegen sie findet die [TERMREF::Verifizierung] statt.
+Ob die Anforderungen selbst die tatsächlichen Bedürfnisse treffen,
+klärt dagegen die [TERMREF::Validierung].
+In agilen Projekten werden Anforderungen oft als [TERMREF2::User Story::User Stories]
+mit [TERMREF::Akzeptanzkriterien] formuliert.
 [ENDTERM]
 
 
@@ -190,7 +206,7 @@ Richtig genau steht es in der Dokumentation von Bash.
 [TERM::BDD|Behavior Driven Development]
 Eine agile Softwareentwicklungsmethode, die sich auf die Zusammenarbeit
 zwischen Entwicklern, Testern und nicht-technischen Stakeholdern konzentriert.
-In BDD werden Anforderungen
+In BDD werden [TERMREF2::Anforderung::-en]
 in verständlichen, semi-natürlichsprachlichen ([TERMREF::DSL]) Szenarien formuliert,
 die dann mithilfe handgeschriebener Adapter als automatisierte Tests ausgeführt werden.
 
@@ -2361,7 +2377,7 @@ Kurze, informelle Beschreibung einer Funktion aus der Perspektive eines Endbenut
 Umfasst meist mindestens, wer die Funktion nutzt, was getan werden soll und wozu es relevant ist.
 
 User Stories dienen als Kommunikationsmittel zwischen Entwicklern, Kunden und anderen Stakeholdern,
-um Anforderungen klar zu definieren und das Verständnis zu verbessern.
+um [TERMREF2::Anforderung::-en] klar zu definieren und das Verständnis zu verbessern.
 Oft werden begleitend [TERMREF::Akzeptanzkriterien] definiert.
 [ENDTERM]
 
@@ -2394,15 +2410,13 @@ das gleiche Paket X in unterschiedlichen Versionen benötigen.
 [TERM::Verifizierung|verifizieren]
 Verifizierung oder Verifikation (von lateinisch veritas "Wahrheit" und facere "machen") ist
 die Bestätigung durch Bereitstellung eines objektiven Nachweises, dass festgelegte
-Anforderungen erfüllt worden sind.
-
-[HREF::https://glossary.istqb.org/de_DE/term/verifizierung]  TODO_2_ruhe/prechelt: AchduliebeGüte!
+[TERMREF2::Anforderung::-en] erfüllt worden sind.
 [ENDTERM]
 
 
 [TERM::Versagen|Failure|Symptom]
 Falsches Verhalten eines Programms relativ zur
-Spezifikation, der Anforderung oder den Erwartungen.
+Spezifikation, der [TERMREF::Anforderung] oder den Erwartungen.
 Ist ein Symptom eines [TERMREF2::Defekt::-s].
 [ENDTERM]
 
