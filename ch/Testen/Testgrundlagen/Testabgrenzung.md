@@ -1,120 +1,168 @@
-title: Testabgrenzung zum Debugging
-stage: draft
-timevalue: 0.1
-difficulty: 3
-assumes: Debuggingtools
+title: Testen und Debugging voneinander abgrenzen
+stage: alpha
+timevalue: 1.0
+difficulty: 2
+explains: Debugging, Test
+assumes: m_pytest, venv, print-Debugging, Fehler-Defekt-Versagen
 ---
 
-TODO_2_ruhe:
+[SECTION::goal::idea]
 
-Ich glaube, diese Aufgabe sollten wir auflösen und verteilen:
-
-- Der "Was ist"-Teil gehört in die Softwaretechnik-Vorlesung, nicht ins ProPra.
-- Der "Reflektion"-Teil unterstellt eine Rollenaufteilung, die mir viel zu starr ist.
-  Viele Teams im Webbereich kommen heute prima ganz ohne Tester aus.
-  Die brauchen dann andere Maßnahmen. Auch das gehört, wenn überhaupt, in die Vorlesung.
-  Hier sprengt es den Rahmen.
-- Die Abgrenzung Testen/Debugging finde ich hingegen einschlägig für das ProPra.
-  Dafür brauchen wir passende Glossareinträge und an den richtigen Stellen in den
-  Kapiteln Debugging und Testen Verweise auf die.
-  Bitte betätigen Sie sich in diese Richtung.
-- Sehen Sie vor diesem Hintergrund noch etwas, das praktisch ist und in diese Aufgabe passt?
-  Mir fällt nichts ein. Dann sollte die Aufgabe ganz weg.
-
-[SECTION::goal::trial]
-
-- Ich kann die Abgrenzungen des Testens zum Debuggen und zur [TERMREF::Qualitätssicherung] (QS)
-  benennen und anwenden
+- Ich kann an einem konkreten Defekt zeigen, was Testen leistet und was Debugging leistet.
+- Ich kann begründen, warum ein fehlschlagender Test den Defekt meist nur grob eingrenzt
+  und ein bestandener Test keine Defektfreiheit belegt.
 
 [ENDSECTION]
+
 
 [SECTION::background::default]
 
-Testen und Debuggen gehören zur Qualitätssicherung, haben jedoch unterschiedliche Ziele und
-Herangehensweisen, die wichtig sind zu verstehen, wenn man sie genau einordnen möchte.
+Ein Test ist rot – und jetzt?
+Wer Testen und Debugging nicht auseinanderhält, sucht den Defekt gern dort, wo `pytest` gerade
+hinzeigt, oder hält einen grünen Testlauf für den Beweis, dass alles stimmt.
+Beides kostet im Alltag viel Zeit.
+An einem kleinen Beispiel erleben Sie hier, wo das eine aufhört und das andere anfängt.
 
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
-### Was ist .. ?
+### Vorbereitung
 
-Recherchieren Sie selbstständig anhand der folgenden Leitfragen (falls notwendig):
+Ein Verkehrsbetrieb berechnet mit einem kleinen Python-Modul die Fahrpreise für Reisegruppen.
+Welche Altersgruppe welchen Tarif zahlt, steht im Docstring von `tarifgruppe()`.
 
-- [EQ] Was versteht man unter Software-Testing?
-- [EQ] Was versteht man unter Debugging?
-- [EQ] Was versteht man unter QS?
-- [EQ] Was ist der Unterschied zwischen der QS und dem Testen?
+- Legen Sie in Ihrem [TERMREF::Hilfsbereich] ein Verzeichnis `testabgrenzung` an
+  und wechseln Sie hinein.
+- Aktivieren Sie ein `venv`, in dem `pytest` installiert ist
+  (siehe [PARTREF::venv] und [PARTREF::m_pytest]).
+- Legen Sie die Datei `tarif.py` mit folgendem Inhalt an:
 
-#### Reflektion
+```python
+PREISE = {"frei": 0.00, "kind": 2.50, "erwachsen": 4.00, "senior": 3.00}
 
-- [EQ] Sollten Tester jeden [TERMREF::Defekt] debuggen können?
-- [EQ] Warum übernehmen Entwickler nicht auch die Rolle des Softwaretesten?
 
-### Ein klein wenig Debugging
+def tarifgruppe(alter):
+    """Kinder unter 6 fahren frei, Kinder unter 14 zahlen den Kindertarif,
+    ab 65 gilt der Seniorentarif, alle anderen zahlen den Erwachsenentarif."""
+    if alter < 6:
+        return "frei"
+    if alter < 14:
+        return "kind"
+    if alter > 65:
+        return "senior"
+    return "erwachsen"
 
-- [EQ] Debuggen Sie folgenden Python Code:
-Geben Sie den/die gefundenen Fehler zusammengefasst wieder und beschreiben Sie Ihre Anpassung(en).
 
-```Python
-def add_numbers():
-  num1 = input("Geben Sie die erste Zahl ein: ")
-  num2 = input("Geben Sie die zweite Zahl ein: ")
-  
-  result = num1 + num2
-  
-  print("Das Ergebnis der Addition ist:", result)
-
-add_numbers()
+def gesamtpreis(alter_liste):
+    """Summe der Fahrpreise für eine Reisegruppe."""
+    summe = 0.0
+    for alter in alter_liste:
+        gruppe = tarifgruppe(alter)
+        summe += PREISE[gruppe]
+    return summe
 ```
 
-- [EQ] Debuggen Sie folgenden Python Code:
-Geben Sie den/die gefundenen Fehler zusammengefasst wieder und beschreiben Sie Ihre Anpassung(en).
+- Legen Sie daneben die Testdatei `test_tarif.py` an:
 
-```Python
-numbers = [0, 1, 2, 3, 4, 5]
+```python
+from tarif import gesamtpreis
 
-for i in range(5):
-    print(numbers[i])
 
+def test_familie():
+    assert gesamtpreis([41, 39, 10, 4]) == 10.50
+
+
+def test_grossfamilie():
+    assert gesamtpreis([70, 65, 41, 14, 13, 6, 5]) == 19.00
 ```
 
-*Betrachten Sie folgendes Szenario:*
-In einem agilen Projekt mit 2 Testern wird nach einem QS Audit festgestellt, dass 20% aller
-Testfälle nahezu identisch sind. Die Tester haben gemäß dem Testkonzept gearbeitet. Dieser sieht
-vor, dass jeder Tester seine Testfälle selber schreibt und ausführt. Eine Zusammenarbeit unter den
-Testern wurde hier nicht festgelegt.
+<!-- time estimate: 10 min -->
 
-- [EQ] Erarbeiten Sie ein Konzept zur Verbesserung dieser erkannten Problematik durch mindestens 2
-  Prozessen. Beschreiben Sie, wie dadurch die Zusammenarbeit verbessert wird und warum doppelte
-  Testfälle stark minimiert werden können.
+
+### Testen: Ein Versagen wird sichtbar
+
+Ein [TERMREF::Test] vergleicht das tatsächliche Verhalten eines Programms mit einer Erwartung.
+Hier stecken die Erwartungen in den beiden `assert`-Zeilen.
+
+[EC] `pytest test_tarif.py`
+
+[EQ] Was erfahren Sie aus der Ausgabe über das [TERMREF::Versagen]:
+Welcher Test schlägt fehl, mit welcher Eingabe, welcher Wert wurde erwartet und welcher geliefert?
+Auf welche Codezeile zeigt `pytest`, und steckt der [TERMREF::Defekt] in dieser Zeile?
+
+[HINT::Wie kann ich das beurteilen, ohne den Defekt zu kennen?]
+Rechnen Sie die Erwartung `19.00` anhand des Docstrings von `tarifgruppe()`
+und der Preise in `PREISE` nach.
+[ENDHINT]
+
+<!-- time estimate: 10 min -->
+
+
+### Debugging: Vom Versagen zum Defekt
+
+Sie wissen jetzt, _dass_ `gesamtpreis()` falsch rechnet, aber noch nicht, _wo_ der Defekt steckt.
+Diese Suche ist [TERMREF::Debugging].
+Der fehlschlagende Test ist dafür ein guter Ausgangspunkt:
+Er führt das Versagen bei jedem Aufruf zuverlässig wieder herbei.
+
+Grenzen Sie den Defekt mit print-Debugging ein, wie Sie es aus [PARTREF::print-Debugging] kennen.
+Auch wenn Sie den Defekt beim Lesen des Codes schon vermuten:
+Prüfen Sie Ihre Vermutung an der tatsächlichen Ausführung, statt zu raten.
+Ergänzen Sie dazu in der Schleife von `gesamtpreis()` eine `print()`-Anweisung,
+die für jede Person das Alter, die ermittelte Tarifgruppe und die Zwischensumme ausgibt.
+
+[HINT::Wie sieht die `print()`-Anweisung aus?]
+Direkt nach der Zeile `summe += PREISE[gruppe]` passt
+`print(f"{alter=} {gruppe=} {summe=}")`.
+Die Schreibweise `{alter=}` gibt Name und Wert der Variable aus.
+[ENDHINT]
+
+[EC] `pytest test_tarif.py`
+
+Ihre Ausgaben zeigt `pytest` nur beim fehlschlagenden Test an, im Abschnitt `Captured stdout call`.
+
+[EQ] Bei welcher Person geht die Rechnung schief?
+In welcher Zeile von `tarif.py` steckt der Defekt, und wie lautet die Korrektur?
+Beschreiben Sie für diesen Fall den Weg vom Defekt über den [TERMREF::Fehlerzustand]
+bis zum Versagen.
+
+<!-- time estimate: 15 min -->
+
+
+### Korrigieren und erneut testen
+
+- Korrigieren Sie den Defekt in `tarif.py`.
+- Entfernen Sie die `print()`-Anweisung wieder.
+
+[EC] `pytest -v test_tarif.py`
+
+[EQ] Die `print()`-Anweisung haben Sie wieder gelöscht, die Tests dagegen behalten Sie.
+Warum ist das sinnvoll?
+Welche Aufgabe übernimmt `test_grossfamilie` von nun an?
+
+<!-- time estimate: 10 min -->
+
+
+### Was ein grüner Test aussagt
+
+[EQ] `test_familie` war schon vor Ihrer Korrektur grün, obwohl der Defekt im Code steckte.
+Warum hat der Defekt bei diesem Test kein Versagen ausgelöst?
+Was sagt ein grüner Testlauf demnach über die Defektfreiheit eines Programms aus?
+
+<!-- time estimate: 10 min -->
 
 [ENDSECTION]
 
-[SECTION::submission::trace]
+
+[SECTION::submission::reflection,trace]
+[INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Prüfhilfen]
 
-- [EREFQ::1]: Prozess der Bewertung und Überprüfung, ob ein Softwareprodukt oder eine Anwendung das
-  tut, was sie tun soll
-- [EREFQ::2]: Ein Vorgang, Fehler oder unerwartetes Verhalten zu diagnostizieren und zu beheben.
-- [EREFQ::3]: Sammelbegriff für unterschiedliche Ansätze und Maßnahmen zur Sicherstellung festgelegter Qualitätsanforderungen
-- [EREFQ::4]: Testen ist mehr auf das Produkt ausgerichtet, während die Qualitätssicherung mehr auf
-  den Prozess der Qualitätssicherung des Produkts ausgerichtet ist
-- [EREFQ::5]: Tester sollten in der Lage sein, Defekte zu identifizieren und zu dokumentieren, aber
-  es ist nicht zwingend notwendig, dass sie jeden Defekt debuggen können, da dies oft die Aufgabe der
-  Entwickler ist.
-- [EREFQ::6]: Entwickler übernehmen oft nicht die Rolle des Softwaretestens, da sie in der Regel sehr
-  detailliert in dem ganz konkreten Funktionsaufbau stecken und dadurch 'blind' werden für Randtests
-  und möglichen Problemen
-- [EREFQ::7]: Eingabewerte sind vom Datentyp String und werden mit '+' kaskadiert und nicht addiert
-- [EREFQ::8]: Array hat 6 Elemente, range(5) gibt nur die ersten 5 Elemente zurück
-- [EREFQ::9]: Einführung eines Testfall-Review-Prozesses, bei dem jeder Tester die Testfälle des
-  anderen überprüft; Testfall-Pair-Programming: gemeinsam ZTestfälle ertellen; Testfall-Refactopring:
-  Gemeinsames Überabriten vorhandener Testfälle
-  => fördert die Zusammenarbeit, findet schneller doppelte Testfälle, erhöht die Qualität zukünftiger
-  Testfälle im Projekt
-
+[INSTRUCTOR::Testen zeigt das Versagen, Debugging findet den Defekt]
+[INCLUDE::ALT:]
+[PROT::ALT:Testabgrenzung.prot]
 [ENDINSTRUCTOR]

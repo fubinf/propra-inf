@@ -9,4 +9,4 @@ Wir lernen hauptsächlich Methoden kennen.
 Bei deren Umsetzung hilft bisweilen ein Werkzeug: der _Debugger_.
 
 Debugging geht Hand in Hand mit dem Thema [PARTREF::Testen]:
-Testen deckt ein Versagen auf, dann ist Debugging nötig, um den Defekt zu lokalisieren.
+Testen deckt ein Versagen auf, dann ist [TERMREF::Debugging] nötig, um den Defekt zu lokalisieren.

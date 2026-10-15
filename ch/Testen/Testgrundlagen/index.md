@@ -11,5 +11,6 @@ Manuelles Überprüfen von Dokumenten (Review) gehört hingegen in die Kategorie
 Auch darin gibt es diverse Arten.
 
 Diese Taskgruppe legt das begriffliche und handwerkliche Fundament:
-die Terminologie zum Erkennen und Beschreiben von Softwareproblemen
+die Terminologie zum Erkennen und Beschreiben von Softwareproblemen,
+die Abgrenzung des Testens vom [TERMREF::Debugging]
 sowie den Aufbau von Testfällen.

@@ -484,6 +484,16 @@ Sie lauten:
 [ENDTERM]
 
 
+[TERM::Debugging|Defektlokalisierung|debuggen]
+Die Suche nach dem [TERMREF::Defekt], der ein beobachtetes [TERMREF::Versagen] verursacht,
+meist samt dessen Korrektur.
+Debugging setzt dort an, wo ein [TERMREF::Test] (oder eine Nutzer_in) ein Versagen aufgedeckt hat:
+Der Test zeigt, _dass_ sich das Programm falsch verhält, aber in der Regel nicht, _wo_ der Defekt
+steckt.
+Den findet man durch schrittweises Eingrenzen, etwa mit `print()`-Ausgaben oder einem Debugger.
+[ENDTERM]
+
+
 [TERM::Decorator|Dekorierer]
 Eine Funktion in einer Programmiersprache, die eine andere Funktion oder eine Klasse
 modifiziert oder erweitert. Es ermöglicht, das Verhalten einer Funktion oder Klasse zu ändern,
@@ -692,8 +702,9 @@ Weitere Unterscheidungen:
 
 
 [TERM::Fehlerzustand|invalid state]
-Ein Fehlerzustand tritt auf, wenn das System aufgrund eines Fehlers in einen nicht beabsichtigten
-oder inkonsistenten Zustand gerät. Das kann dazu führen, dass das System unerwartete Ergebnisse
+Ein Fehlerzustand tritt auf, wenn das System durch einen [TERMREF::Defekt]
+in einen nicht beabsichtigten oder inkonsistenten Zustand gerät.
+Das kann dazu führen, dass das System unerwartete Ergebnisse
 produziert oder nicht ordnungsgemäß funktioniert.
 [ENDTERM]
 
