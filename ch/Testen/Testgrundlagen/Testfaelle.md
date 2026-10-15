@@ -13,7 +13,7 @@ difficulty: 2
 
 [SECTION::background::default]
 
-Beim Testen entsteht ein Testfall nicht aus der Luft, sondern aus einer Anforderung.
+Beim Testen entsteht ein Testfall nicht aus der Luft, sondern aus einer [TERMREF::Anforderung].
 Typische Quellen sind User Stories und Akzeptanzkriterien.
 Eine [TERMREF::User Story] beschreibt, was ein Nutzer möchte.
 [TERMREF::Akzeptanzkriterien] ergänzen diese Story mit klaren Bedingungen für die Erfüllung.
