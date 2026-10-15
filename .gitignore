@@ -8,13 +8,15 @@ participants/
 
 cmd/my-propra.sh
 
-#claude
+# Python
+.venv/
+
+# Claude
 .claude/settings.local.json
 
-#vscode
+# VScode
 *.code-workspace
 .vscode/
 
-#macos
+# macOS
 .DS_Store
-
