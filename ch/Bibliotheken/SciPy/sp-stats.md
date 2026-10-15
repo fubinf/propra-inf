@@ -1,5 +1,5 @@
 title: SciPy Statistik und Wahrscheinlichkeitsverteilungen verstehen und anwenden
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 3
 requires: sp-Einführung
@@ -50,6 +50,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 ```python
 scipy.stats.norm(loc=0, scale=1)   # kontinuierlich: Normalverteilung
 scipy.stats.binom(n, p)            # diskret: Binomialverteilung
+# u.v.a.m. (alle gängigen Verteilungen)
 ```
 
 - `loc`, `scale` (Standard `0`/`1`): Erwartungswert μ und Standardabweichung σ der Normalverteilung
@@ -115,7 +116,8 @@ Die Schreibweise N(μ, σ²) nennt an zweiter Stelle die Varianz, `scale` erwart
 Standardabweichung σ.
 Ein falscher Wert erzeugt hier keine Fehlermeldung, sondern nur stillschweigend andere Zahlen.
 Zur Selbstkontrolle: bei korrektem `scale` liegt 13 genau eine Standardabweichung über dem
-Erwartungswert, P(X ≤ 13) muss also nach der 68-95-99.7-Regel bei etwa 0.84 herauskommen.
+Erwartungswert, für P(X ≤ 13) muss also der Wert von `stats.norm().cdf(1)` herauskommen.
+Nach der Faustformel für die Normalverteilung ist das etwa 0.5 + 0.68/2 also 0.84.
 [ENDHINT]
 
 [HINT::Welches Argument gehört in `.cdf()`, wenn ich "mindestens 10 Erfolge" meine?]
@@ -127,7 +129,7 @@ Wahrscheinlichkeit aufsummiert werden muss.
 [EQ] Ihre Werte `.pdf(10)` und `.pmf(8)` aus [EREFR::1] liegen beide zwischen 0 und 1, aber nur
 einer der beiden ist eine Wahrscheinlichkeit.
 Ziehen Sie zur Klärung drei weitere Befunde aus [EREFR::1] heran: die Dichte der schmalen
-Normalverteilung, den Anteil der Werte 8 in `binomial_samples` und die Anzahl der Werte 10 in
+Normalverteilung, den Anteil der Werte `8` in `binomial_samples` und die Anzahl der Werte `10` in
 `normal_samples`.
 Welcher der beiden Werte ist demnach keine Wahrscheinlichkeit, was ist er stattdessen, und warum
 braucht `scipy.stats` deshalb zwei getrennte Methoden statt einer gemeinsamen?
@@ -137,8 +139,8 @@ braucht `scipy.stats` deshalb zwei getrennte Methoden statt einer gemeinsamen?
 
 ### Hypothesentests: `stats.ttest_ind`
 
-Hypothesentests quantifizieren, wie gut ein beobachteter Unterschied allein durch zufällige
-Stichprobenschwankung erklärbar wäre:
+Hypothesentests quantifizieren, wie wahrscheinlich ein beobachteter Unterschied allein durch zufällige
+Stichprobenschwankung zustande kommt:
 
 ```python
 scipy.stats.ttest_ind(a, b, equal_var=True)
@@ -170,6 +172,9 @@ Der p-Wert kann je nach Daten extrem klein ausfallen — mit fester Nachkommaste
 würde er dann als `0.0000` erscheinen, obwohl er mathematisch nie exakt 0 ist.
 Geben Sie p-Werte in dieser Aufgabe deshalb durchgehend in wissenschaftlicher Notation (`:.2e`)
 aus, die die tatsächliche Größenordnung zeigt.
+(Achtung: Wirklich sinnvoll ist das nicht, denn bei sehr kleinen Werten wird die Ungenauigkeit des
+Zutreffens der Verteilungsannahme der dominante Effekt; das Ergebnis ist nicht verlässlich.
+Kleinere Werte als ein Tausendstel sollte man als `p < 0.001` angeben.)
 
 [NOTICE]
 Ein p-Wert < α (meist 0.05) führt zur Ablehnung der Nullhypothese — er sagt aber nichts über die
@@ -181,20 +186,22 @@ Gemessen wurde nach vier Wochen die Wuchshöhe in cm.
 Die Pflanzen der Gruppe C standen dabei an unterschiedlich hellen Standorten, die der Gruppen A
 und B jeweils einheitlich.
 Gegeben sind `gruppe_a` mit den Werten
-`[23.1, 24.8, 22.9, 25.2, 23.7, 24.1, 23.5, 24.9, 23.8, 24.3]`, `gruppe_b` mit den Werten
-`[26.2, 27.1, 25.8, 26.9, 27.3, 26.5, 26.8, 27.0, 26.1, 26.7]` und `gruppe_c` mit den Werten
+`[23.1, 24.8, 22.9, 25.2, 23.7, 24.1, 23.5, 24.9, 23.8, 24.3]`, 
+`gruppe_b` mit den Werten
+`[26.2, 27.1, 25.8, 26.9, 27.3, 26.5, 26.8, 27.0, 26.1, 26.7]` und 
+`gruppe_c` mit den Werten
 `[18.4, 33.2, 21.7, 29.8, 24.1, 35.6, 19.3, 27.5, 31.2, 24.2]`.
 
 - Berechnen Sie Mittelwert (`np.mean()`) und Standardabweichung für alle drei Gruppen und geben
   Sie sie aus; verwenden Sie dabei `np.std(..., ddof=1)`, damit die Streuung dieselbe Größe ist,
-  mit der `ttest_ind()` intern rechnet
+  mit der `ttest_ind()` intern rechnet.
 - Testen Sie mit `stats.ttest_ind()` zweimal gegen `gruppe_a`: einmal `gruppe_b`, einmal
-  `gruppe_c`, beide Male mit der Voreinstellung `equal_var=True`
+  `gruppe_c`, beide Male mit der Voreinstellung `equal_var=True`.
 - Geben Sie beide p-Werte aus und halten Sie in je einem Kommentar fest, ob der Unterschied bei
   α=0.05 signifikant ist
 - Entscheiden Sie anhand der drei Standardabweichungen und des Hinweises zu `equal_var` oben, bei
   welchem der beiden getesteten Paare die Voraussetzung gleicher Varianzen verletzt ist.
-  Wiederholen Sie diesen Test mit `equal_var=False` und geben Sie auch diesen p-Wert aus
+  Wiederholen Sie diesen Test mit `equal_var=False` und geben Sie auch diesen p-Wert aus.
 
 [EQ] Vergleichen Sie aus [EREFR::2] zunächst die beiden Tests mit `equal_var=True`: stellen Sie
 die beiden Mittelwertabstände den beiden p-Werten gegenüber.
