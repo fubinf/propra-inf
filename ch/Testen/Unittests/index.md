@@ -32,11 +32,13 @@ graph TD
     pytest_methodik_whitebox["pytest-Methodik-Whitebox.md"]
     pytest_methodik_rest["pytest-Methodik-REST.md"]
     flake8_ext["flake8.md (extern)"]
+    fastapi_get_ext["FastAPI-GET.md (extern)"]
     testcoverage["testcoverage.md"]
     pytest_benchmark["pytest_benchmark.md"]
     pytest_tox["pytest_tox.md"]
     pytest_mutation_testing["pytest_mutation_testing.md"]
     tdd_pp["tdd_pp.md"]
+    pytest_bugsinpy["pytest_bugsinpy.md"]
 
     m_unittest --> m_pytest
     m_pytest --> pytest_call
@@ -47,6 +49,7 @@ graph TD
     m_pytest --> tdd
     m_pytest --> pytest_methodik_blackbox
     m_pytest --> pytest_mutation_testing
+    m_pytest --> pytest_bugsinpy
     pytest_call --> pytest_aaa
     pytest_call --> pytest_plugin_linter_flake8
     pytest_call --> testcoverage
@@ -62,6 +65,8 @@ graph TD
     tdd --> tdd_pp
     testcoverage --> pytest_tox
     flake8_ext --> pytest_plugin_linter_flake8
+    flake8_ext --> pytest_bugsinpy
+    fastapi_get_ext --> pytest_bugsinpy
 ```
 
 ## Thematische Übersicht
@@ -120,3 +125,9 @@ Diese Tasks sind noch nicht veröffentlicht (`stage: draft`) und werden künftig
   Setzt `m_pytest.md` und `pytest-Methodik-Blackbox.md` voraus.
 - **pytest-Methodik-REST.md**: Blackbox-Testing einer REST-API über den CRUD-Lebenszyklus.
   Setzt `pytest-Methodik-Blackbox.md`, `m_requests.md`, `m_json.md` und `http-REST.md` voraus.
+- **pytest_bugsinpy.md**: Reale Defekte aus der Sammlung BugsInPy (PySnooper, FastAPI) nachstellen,
+  defektaufdeckende Tests erkennen und mit `TestClient` selbst einen Regressionstest schreiben.
+  Setzt `m_pytest.md` sowie die externen Tasks
+  [`Fehler-Defekt-Versagen.md`](../Testgrundlagen/Fehler-Defekt-Versagen.md),
+  [`flake8.md`](../../Werkzeuge/Linter/flake8.md) und
+  [`FastAPI-GET.md`](../../Bibliotheken/Frameworks/FastAPI-GET.md) voraus.

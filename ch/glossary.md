@@ -501,6 +501,16 @@ Zur Korrektur eines Defekts wird in der Regel das Produkt (z.B. der Code) verän
 [ENDTERM]
 
 
+[TERM::Defektaufdeckender Test|fail-to-pass test|triggering test]
+Ein Test, der auf dem Stand des Codes mit einem bestimmten [TERMREF::Defekt] fehlschlägt
+und auf dem Stand nach dessen Korrektur besteht.
+Erst dieser Wechsel von rot zu grün belegt, dass der Test genau diesen Defekt zeigt;
+ein Test, der auf beiden Ständen fehlschlägt, sagt über den Defekt nichts aus.
+Bleibt ein defektaufdeckender Test nach der Korrektur in der Testsuite,
+wird er zum [TERMREF::Regressionstest].
+[ENDTERM]
+
+
 [TERM::Dependency Injection]
 Dependency Injection ist ein Entwurfsmuster, bei dem externe Abhängigkeiten explizit an ein Objekt
 oder eine Funktion übergeben werden – statt sie intern zu erstellen.
@@ -1703,6 +1713,9 @@ Ein Regressionstest ist ein Typ von Softwaretest, der durchgeführt wird, um sic
 dass früher funktionierende Teile einer Software nach einer Änderung weiterhin wie erwartet
 funktionieren und somit unerwünschte Seiteneffekte schnellstmöglich erkannt werden.
 Bei API- und Datenbanktests orientiert man sich dabei oft am [TERMREF::CRUD]-Schema.
+Eine wichtige Art von Regressionstest entsteht zusammen mit der Korrektur eines
+[TERMREF2::Defekt::-s]: Ein [TERMREF::Defektaufdeckender Test] bleibt danach in der Testsuite
+und läuft bei jeder späteren Änderung mit, sodass der Defekt nicht unbemerkt zurückkehren kann.
 [ENDTERM]
 
 
