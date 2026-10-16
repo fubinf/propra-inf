@@ -5,7 +5,7 @@ difficulty: 2
 assumes: c-preprocessor-include
 ---
 [SECTION::goal::idea]
-Ich verstehe die Ganzzahl-Datentypen in C, sowie die Besonderheiten im Umgang mit ihnen.
+Ich verstehe die Ganzzahl-Datentypen in C sowie die Besonderheiten im Umgang mit ihnen.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -20,7 +20,8 @@ Mit der Typangabe legen Sie in C aber nicht nur fest, was eine Variable enthält
 viel.
 Sie legen sich im Voraus auf eine Größe fest, und der Übersetzer hält sich strikt daran, auch wenn
 das Ergebnis dann nicht mehr hineinpasst.
-Python `int`s haben dagegen kein Limit, Sie können beliebig große oder kleine Werte darin speichern.
+Python-`int`-Werte haben dagegen keine Größengrenze.
+Sie können beliebig große oder kleine Werte darin speichern.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -117,11 +118,9 @@ zum ersten Mal falsch wird?
 
 ### Überläufe bei `signed` Datentypen
 
-Was Überläufe bei vorzeichenbehafteten Typen angeht, hat der C-Standard eine Gemeinheit auf Lager.
-Es handelt sich um "undefined behavior" (UB).
-Der Standard macht dazu buchstäblich keine Aussage, der Übersetzer darf also tun, was er will.
-Worauf Sie sich hier nicht verlassen können, ist also so ziemlich alles.
-UB ist entsprechend zu vermeiden.
+Ein Überlauf bei vorzeichenbehafteten Typen ist laut C-Standard "undefined behavior" (UB).
+Der Standard stellt für diesen Fall keinerlei Anforderungen, der Übersetzer darf also tun, was er will.
+UB ist deshalb unbedingt zu vermeiden.
 
 [ER] Legen Sie `signedoverflow.c` an:
 
@@ -147,12 +146,10 @@ int main(void) {
 [EQ] Ist die Ausgabe mit einem Umlauf vereinbar?
 Was hat der Übersetzer offenbar angenommen?
 
-[HINT::Was ist passiert]
-Der C-Standard sagt explizit, dass Überläufe bei `signed` nicht auftreten dürfen (UB).
-Der Übersetzer hält sich daran und nimmt an, `x + 1 > x` ist stets wahr.
-Daraus resultiert eine Optimierung, die trotz `-O0` geschieht.
-Schon bemerkenswert, eine Optimierungsstufe, die laut Namen gar nicht optimiert, optimiert hier
-trotzdem.
+[HINT::Ich verstehe die Ausgabe nicht]
+Da ein `signed`-Überlauf UB ist, darf der Übersetzer annehmen, dass er nie auftritt.
+Unter dieser Annahme ist `x + 1 > x` stets wahr und der Übersetzer ersetzt den Vergleich durch `1`.
+`gcc` tut das sogar mit `-O0`, also obwohl Optimierungen abgeschaltet sind.
 [ENDHINT]
 
 [ER] Ändern Sie in `isBigger` den Typ des Parameters `x` von `int` auf `unsigned int`
@@ -247,8 +244,6 @@ und erklären Sie den Fehler mit den Umwandlungsregeln der Seite.
 [ER] Beheben Sie alle vier Fehler, sodass die richtigen Ausgaben erscheinen und keine Warnung
 mehr bleibt.
 Ändern Sie dazu nur Typen, Literale oder Wandlungen (Casts).
-Eine Wandlung ist eine explizite Umwandlung nach dem Schema `(int)a`, wobei hier die Variable `a`
-in den Typ `int` gewandelt wird.
 
 [EC] Bauen und führen Sie das Target `convert` aus.
 
