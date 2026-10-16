@@ -37,9 +37,9 @@ Es handelt sich um erweitertes Markdown. Ausdrücke mit folgenden Formen sind Ma
 Solche Makroaufrufe sollten in der Regel unverändert bleiben.
 Allenfalls Argumente mit Text aus mehreren Wörtern können ggf. mit angepasst werden.
 
-Drei dieser Makros jeweils einen Absatz ein, in dem eine einzelne konkrete Aufgabe gestellt wird:
+Drei dieser Makros leiten jeweils einen nummerierten Absatz ein, in dem eine einzelne konkrete Aufgabe gestellt wird:
 [EQ] ("Question") ist ein Absatz mit einer Sachfrage oder Reflektionsfrage.
-[EC] ("Command") ist ein Auftrag, wo die Studierenden ein Kommando (evtl. mehrere) auf der 
+[EC] ("Command") ist ein Auftrag, wo die Studierenden ein Kommando auf der 
 Unix-Kommandozeile ausführen sollen.
 [ER] ("Requirement") ist ein Auftrag, das Programm zu ergänzen oder zu modifizieren, um das es in dieser Aufgabe geht.
 
@@ -56,7 +56,7 @@ Vereinfache unnötig komplexe Satzkonstruktionen, insbesondere durch Anwendung d
 - Satzanteile ohne eigenen Sinngehalt ggf. weglassen
 - Unschöne Passivkonstruktionen durch Aktiv ersetzen
 - Unnötig lange Sätze in kürzere zerlegen (aber bitte kein Stakkato-Stil)
-- Tiefe Schachtelsätze möglichst "flachklopfen", indem die Aspekte der Reihe nach besprochen werden
+- Tiefe Schachtelsätze möglichst "flacherklopfen", indem die Aspekte der Reihe nach besprochen werden
 - Sätze mit längeren Aufzählungen (ab drei langen oder vier mittellangen Elementen) in Spiegelstrich-Listen verwandeln.
   Unser Markdown-Prozessor benötigt vor dem ersten Spiegelstrich eine Leerzeile.
 
