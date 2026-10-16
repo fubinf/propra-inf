@@ -27,18 +27,15 @@ Sie können beliebig große oder kleine Werte darin speichern.
 [SECTION::instructions::detailed]
 Für die Aufgaben wird hauptsächlich folgende Referenz verwendet:
 <!-- @LINK_SPEC: status=403 -->[Arithmetische Typen](https://en.cppreference.com/c/language/arithmetic_types).
-Überspringen Sie komplexe und imaginäre Typen, `_Decimal`, `_BitInt` und alles mit "since C23" 
-(das ProPra nutzt C17).
+Die Teilabschnitte geben jeweils an, welche Abschnitte der Referenz Sie lesen sollen.
+Komplexe und imaginäre Typen, `_Decimal`, `_BitInt` und alles mit "since C23" (das ProPra nutzt
+C17) brauchen Sie dabei nicht.
 
 Die für die Aufgaben zu verwendenden `printf`-Formatangaben sind hier gelistet:
 
-- `%d` für `int`, `%u` für `unsigned int`, `%ld` für `long`
+- `%d` für `int`, `%u` für `unsigned int`
 - `%zu` für `size_t` (das Ergebnis von `sizeof`)
-- `%lld` bzw. `%llu` für `long long` bzw. `unsigned long long`
-  (wandeln Sie 64-Bit-Werte dafür mit entsprechenden Wandlungen um)
-
-Eine Wandlung (Cast) erzwingt die Umwandlung eines Werts in einen anderen Typ, Schema
-`(zieltyp)ausdruck`, z.B. `(unsigned long long)64`.
+- `%ld` bzw. `%lu` für `long` bzw. `unsigned long`
 
 Eine Formatangabe mit einer Zahl zwischen dem `%` und den Buchstaben dient dazu, die Mindestbreite
 der Ausgabe in Zeichen anzugeben.
@@ -75,7 +72,7 @@ Was könnte passieren, wenn Sie dies nicht beachten?
 [EC] Bauen und führen Sie das Target `sizes` aus.
 
 [EQ] Wann würden Sie `int` verwenden, wann `int32_t`?
-Begründen Sie mit den Ergebnissen dieses Teils.
+Begründen Sie mit der Tabelle "Data models" (garantierte Mindestgrößen) und Ihren Ergebnissen.
 <!-- time estimate: 25 min -->
 
 
@@ -83,6 +80,9 @@ Begründen Sie mit den Ergebnissen dieses Teils.
 
 Lesen Sie den Abschnitt über
 <!-- @LINK_SPEC: status=403 -->[Überläufe](https://en.cppreference.com/c/language/operator_arithmetic#Overflows).
+
+Läuft ein Wert über das Maximum seines Typs hinaus, ist das ein Überlauf.
+Bei `unsigned` beginnt er dann wieder bei 0 (er "läuft um").
 
 [ER] Legen Sie `overflow.c` mit folgendem Inhalt an:
 
@@ -96,11 +96,11 @@ int main(void) {
   uint64_t f64 = 1;
 
   for (int n = 1; n <= 25; n++) {
-    f8 *= (uint8_t)n; // *= ist äquivalent zu f8 = f8 * n
+    f8 *= (uint8_t)n; // *= ist äquivalent zu a = a * b
     f32 *= (uint32_t)n;
     f64 *= (uint64_t)n;
 
-    printf("%2d! %3u %10u %20llu\n", n, f8, f32, (unsigned long long)f64);
+    printf("%2d! %3u %10u %20lu\n", n, f8, f32, f64);
   }
 
   return 0;
@@ -119,7 +119,8 @@ zum ersten Mal falsch wird?
 ### Überläufe bei `signed` Datentypen
 
 Ein Überlauf bei vorzeichenbehafteten Typen ist laut C-Standard "undefined behavior" (UB).
-Der Standard stellt für diesen Fall keinerlei Anforderungen, der Übersetzer darf also tun, was er will.
+Der Standard stellt für diesen Fall keinerlei Anforderungen, der Übersetzer darf also tun, was er
+will.
 UB ist deshalb unbedingt zu vermeiden.
 
 [ER] Legen Sie `signedoverflow.c` an:
@@ -174,9 +175,8 @@ Nennen Sie eine Möglichkeit, das zu vermeiden.
 
 Lesen Sie auf der Seite zu den arithmetischen Typen den Abschnitt "Boolean type" sowie auf der Seite
 <!-- @LINK_SPEC: status=403 -->[Implizite Umwandlungen](https://en.cppreference.com/c/language/conversion)
-die Abschnitte "Integer promotions" und "Usual arithmetic conversions".
-Für Literale wie `100000ULL` hilft
-<!-- @LINK_SPEC: status=403 -->[Integer constants](https://en.cppreference.com/c/language/integer_constant).
+die Abschnitte "Usual arithmetic conversions", "Integer promotions", "Integer conversions" sowie
+"Boolean conversion".
 
 [ER] Legen Sie `convert.c` an.
 Das Programm enthält vier Fehler, welche alle aus den Umwandlungsregeln folgen.
@@ -220,7 +220,7 @@ void lengthCheck(void) {
 void seconds(void) {
   uint64_t total = 100000 * 100000;
 
-  printf("Sekunden: %llu\n", (unsigned long long)total);
+  printf("Sekunden: %lu\n", total);
 }
 
 int main(void) {
@@ -244,6 +244,8 @@ und erklären Sie den Fehler mit den Umwandlungsregeln der Seite.
 [ER] Beheben Sie alle vier Fehler, sodass die richtigen Ausgaben erscheinen und keine Warnung
 mehr bleibt.
 Ändern Sie dazu nur Typen, Literale oder Wandlungen (Casts).
+Eine Wandlung ist eine explizite Umwandlung nach dem Schema `(int)a`, wobei hier die Variable `a`
+in den Typ `int` gewandelt wird.
 
 [EC] Bauen und führen Sie das Target `convert` aus.
 
@@ -252,13 +254,14 @@ mehr bleibt.
 ```c
 int v = 256;
 
-printf("%d %d %d %d\n", (bool)0.5, (int)0.5, (bool)v, (unsigned char)v);
+printf("%d %d\n", (bool)v, (unsigned char)v);
 ```
 
-[EQ] Welche vier Werte erwarten Sie?
-Was sagt der Abschnitt "Boolean type" über die Umwandlung nach `bool`?
+[EQ] Welche Werte erwarten Sie in der hinzugefügten Ausgabe?
 
 [EC] Bauen und führen Sie das Target aus.
+
+[EQ] Welche Regel erklärt die Werte?
 <!-- time estimate: 25 min -->
 
 
