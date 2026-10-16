@@ -1,5 +1,5 @@
 title: "'tox': automatisierte Tests in virtuellen Umgebungen"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 assumes: pip, venv, m_pytest, flake8, pytest_aaa
@@ -18,7 +18,7 @@ die Ergebnisse verfälschen.
 Mehrere virtuelle Umgebungen von Hand zu erstellen und aktuell zu halten, ist mühsam und fehleranfällig.
 
 [`tox`](https://tox.wiki/) automatisiert genau das: Es erstellt virtuelle Umgebungen, installiert
-Abhängigkeiten und führt Tests oder andere Werkzeuge darin aus – für beliebig viele
+Abhängigkeiten und führt Tests oder andere Werkzeuge darin aus –- für beliebig viele
 Python-Versionen und Konfigurationen.
 [ENDSECTION]
 
@@ -37,11 +37,11 @@ Welche Schritte führt tox für jede Umgebung nacheinander aus?
 ### Projekt vorbereiten
 
 - Erstellen Sie einen neuen Ordner `tox_example` und wechseln Sie in diesen.
-- Machen Sie im Ordner Ihr System-Python und die beiden Python-Versionen aus [PARTREF::pyenv] verfügbar:
-  `pyenv local system 3.10.17 3.11.12` _(Patchnummern ggf. anpassen)_.
+- Machen Sie mittels `pyenv local` in diesem Ordner Ihr System-Python sowie diejenigen beiden Python-Versionen verfügbar,
+  die Sie in Aufgabe [PARTREF::pyenv] installiert haben.
 - Ermitteln Sie mit `python3 --version` die Version Ihres System-Pythons (z. B. 3.13).
-- Legen Sie wie in [PARTREF::venv] eine virtuelle Umgebung `.venv` an, aktivieren Sie sie
-  und installieren Sie `tox` darin mittels [PARTREF::pip].
+- Legen Sie wie in [PARTREF::venv] gelernt eine virtuelle Umgebung `.venv` an, nun jedoch im [TERMREF::Hilfsbereich]. 
+  Aktivieren Sie sie und installieren Sie `tox` darin mittels [PARTREF::pip].
 
 [HINT::Warum brauche ich `pyenv local` mit mehreren Versionen?]
 tox sucht die Interpreter über Namen wie `python3.10` im `PATH`.
@@ -54,7 +54,7 @@ Ihre aktivierte `.venv` bleibt davon unberührt, weil sie im `PATH` vor den shim
 [ENDHINT]
 
 [HINT::`pip install tox` meldet "externally-managed-environment"]
-Sie versuchen, ins System-Python zu installieren.
+Sie versuchen, das Paket ins System-Python zu installieren, was auf Debian nicht erlaubt ist.
 Aktivieren Sie zuerst Ihre `.venv` (`source .venv/bin/activate`).
 [ENDHINT]
 
@@ -232,7 +232,7 @@ nach, welches Python tox verwendet, wenn der Umgebungsname keine Version enthäl
 Bauen Sie absichtlich einen Syntaxfehler in `calculator.py` ein
 (z. B. den Doppelpunkt hinter `def add(a, b)` löschen) und führen Sie `tox` aus.
 
-[EQ] Welche Umgebungen schlagen fehl, einschließlich `lint`?
+[EQ] Welche Umgebungen schlagen fehl, und gehört `lint` dazu?
 Bricht tox nach der ersten fehlgeschlagenen Umgebung ab?
 
 [EQ] tox protokolliert jeden Schritt zusätzlich in Dateien.
@@ -275,6 +275,10 @@ Führen Sie nun `tox -e lint` aus.
 [EQ] Warum schlägt `lint` jetzt fehl, obwohl Sie `[testenv:lint]` gar nicht geändert haben?
 Beheben Sie das Problem mit einer zusätzlichen Zeile in `[testenv:lint]`.
 
+[HINT::Ja, warum nur??]
+Vererbung von `[testenv]` aus! Siehe in der Dokumentation.
+[ENDHINT]
+
 [ER] Ihre finale `tox.ini` führt mit `tox` alle Umgebungen außer der nicht vorhandenen `py38` erfolgreich aus.
 
 <!-- time estimate: 20 min -->
@@ -284,7 +288,8 @@ Beheben Sie das Problem mit einer zusätzlichen Zeile in `[testenv:lint]`.
 [SECTION::submission::information,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
-Reichen Sie `tox.ini`, `requirements.txt` und `test_calculator.py` ein.
+Reichen Sie `tox.ini`, `requirements.txt` und `test_calculator.py` ein, 
+aber keinesfalls die kompletten Bäume der tox-Läufe; die gehören nur in den Hilfsbereich.
 [ENDSECTION]
 
 [INSTRUCTOR::Erste Schritte mit tox]
