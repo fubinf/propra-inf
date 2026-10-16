@@ -5,7 +5,7 @@ difficulty: 2
 assumes: c-int-types
 ---
 [SECTION::goal::idea]
-Ich verstehe die Gleitkomma-Datentypen in C, sowie die Besonderheiten im Umgang mit ihnen.
+Ich verstehe die Gleitkomma-Datentypen in C sowie die Besonderheiten im Umgang mit ihnen.
 [ENDSECTION]
 
 [SECTION::background::default]
@@ -20,8 +20,9 @@ Keine wirkliche Falle, dennoch etwas, das zu beachten ist.
 [SECTION::instructions::detailed]
 Für die Aufgaben wird hauptsächlich folgende Referenz verwendet:
 <!-- @LINK_SPEC: status=403 -->[Arithmetische Typen](https://en.cppreference.com/c/language/arithmetic_types).
-Überspringen Sie komplexe und imaginäre Typen, `_Decimal`, `_BitInt` und alles mit "since C23" 
-(das ProPra nutzt C17).
+Die Teilabschnitte geben jeweils an, welche Abschnitte der Referenz Sie lesen sollen.
+Komplexe und imaginäre Typen, `_Decimal`, `_BitInt` und alles mit "since C23" (das ProPra nutzt
+C17) brauchen Sie dabei nicht.
 
 Zusätzlich zu den schon bekannten Formatangaben für `printf` kommt hier noch `%f` für die
 Gleitkomma-Typen hinzu.
@@ -32,10 +33,6 @@ Wichtig hierbei zu erwähnen, dass eine Mindestbreite sowohl Vorkomma- und Nachk
 das Komma selbst abdeckt, wahlweise mit führender Null.
 `%10.6f` ist demnach eine Ausgabe, die mindestens zehn Zeichen lang ist, wovon sechs die
 Nachkommastellen sind und eines das Komma.
-
-Sollten Sie noch weitere benötigen (z.B. weil Ihr Betriebssystem leicht andere Definitionen
-besitzt), finden Sie alle Formatangaben in der
-<!-- @LINK_SPEC: status=403 -->[Beschreibung von `printf`](https://en.cppreference.com/c/io/fprintf).
 
 
 ### Projekt anlegen
@@ -157,6 +154,7 @@ Zudem erlaubt es Ihnen, den eigentlichen Typ später leichter anzupassen, ohne d
 zu ändern (`cents_t` bleibt für Centbeträge, egal ob `int32_t` oder `int64_t`).
 Legen Sie für die in [EREFR::4] deklarierten Variablen sinnvolle `typedef`-Aliase an
 und ändern Sie die Variablendeklarationen so, dass sie diese Aliase nutzen.
+Passen Sie bei Bedarf die Formatangaben der printf-Aufrufe an.
 
 [EC] Bauen und führen Sie das Target `choose` erneut aus.
 <!-- time estimate: 20 min -->
