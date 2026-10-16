@@ -21,6 +21,7 @@ graph TD
     m_unittest["m_unittest.md"]
     m_pytest["m_pytest.md"]
     m_doctest["m_doctest.md"]
+    m_hypothesis["m_hypothesis.md"]
     pytest_call["pytest_call.md"]
     pytest_parametrize["pytest_parametrize.md"]
     pytest_aaa["pytest_aaa.md"]
@@ -52,15 +53,18 @@ graph TD
     m_pytest --> pytest_mutation_testing
     m_pytest --> pytest_bugsinpy
     m_pytest --> m_doctest
+    m_pytest --> m_hypothesis
     pytest_call --> pytest_aaa
     pytest_call --> pytest_plugin_linter_flake8
     pytest_call --> testcoverage
     pytest_parametrize --> pytest_methodik_blackbox
     pytest_parametrize --> pytest_tox
+    pytest_parametrize --> m_hypothesis
     pytest_methodik_blackbox --> pytest_methodik_whitebox
     pytest_methodik_blackbox --> pytest_methodik_rest
     pytest_methodik_blackbox --> testcoverage
     pytest_methodik_blackbox --> pytest_mutation_testing
+    pytest_methodik_blackbox --> m_hypothesis
     pytest_mocking --> pytest_mocking_freezegun
     pytest_aaa --> pytest_mocking_freezegun
     pytest_fixtures --> pytest_benchmark
@@ -136,3 +140,7 @@ Diese Tasks sind noch nicht veröffentlicht (`stage: draft`) und werden künftig
 - **m_doctest.md**: Ausführbare Beispiele in Docstrings mit dem Standardmodul `doctest` schreiben
   und mit `pytest --doctest-modules` zusammen mit gewöhnlichen Tests ausführen.
   Setzt `m_pytest.md` voraus.
+- **m_hypothesis.md**: Eigenschaftsbasiertes Testen mit `hypothesis`:
+  Eigenschaften formulieren, die für alle gültigen Eingaben gelten,
+  und von `hypothesis` gefundene und verkleinerte Gegenbeispiele auswerten.
+  Setzt `m_pytest.md`, `pytest_parametrize.md` und `pytest-Methodik-Blackbox.md` voraus.

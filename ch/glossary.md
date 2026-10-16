@@ -666,6 +666,20 @@ Dazu gehören verschiedene Testmethoden wie [TERMREF::Modultest], [TERMREF::Inte
 
 ## E
 
+[TERM::Eigenschaftsbasiertes Testen|Property-Based Testing]
+Eine Testtechnik, bei der man statt einzelner Eingaben mit erwarteten Ausgaben
+eine Eigenschaft formuliert, die für alle gültigen Eingaben gelten soll,
+z.B. "Die Anteile ergeben zusammen den Gesamtbetrag"
+oder "Kodieren und anschließendes Dekodieren liefert die Eingabe zurück".
+Ein Werkzeug erzeugt dann viele Eingaben, meist zufällig, und prüft die Eigenschaft für jede.
+Findet es ein Gegenbeispiel, verkleinert es dieses ("Shrinking"),
+damit der [TERMREF::Defekt] leichter zu verstehen ist.
+In Python leistet das z.B. die Bibliothek `hypothesis`.
+Ein bestandener Test ist kein Beweis, denn geprüft werden nur endlich viele Eingaben;
+eigenschaftsbasierte Tests ergänzen beispielbasierte Tests, statt sie zu ersetzen.
+[ENDTERM]
+
+
 [TERM::Encoding|Zeichenkodierung]
 Die Art und Weise, wie eine Nachricht oder ein Zeichenvorrat als Folge von Bits oder von Bytes dargestellt wird.
 
