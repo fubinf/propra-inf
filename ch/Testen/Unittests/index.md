@@ -20,6 +20,7 @@ sowie Test-Driven Development behandelt.
 graph TD
     m_unittest["m_unittest.md"]
     m_pytest["m_pytest.md"]
+    m_doctest["m_doctest.md"]
     pytest_call["pytest_call.md"]
     pytest_parametrize["pytest_parametrize.md"]
     pytest_aaa["pytest_aaa.md"]
@@ -50,6 +51,7 @@ graph TD
     m_pytest --> pytest_methodik_blackbox
     m_pytest --> pytest_mutation_testing
     m_pytest --> pytest_bugsinpy
+    m_pytest --> m_doctest
     pytest_call --> pytest_aaa
     pytest_call --> pytest_plugin_linter_flake8
     pytest_call --> testcoverage
@@ -131,3 +133,6 @@ Diese Tasks sind noch nicht veröffentlicht (`stage: draft`) und werden künftig
   [`Fehler-Defekt-Versagen.md`](../Testgrundlagen/Fehler-Defekt-Versagen.md),
   [`flake8.md`](../../Werkzeuge/Linter/flake8.md) und
   [`FastAPI-GET.md`](../../Bibliotheken/Frameworks/FastAPI-GET.md) voraus.
+- **m_doctest.md**: Ausführbare Beispiele in Docstrings mit dem Standardmodul `doctest` schreiben
+  und mit `pytest --doctest-modules` zusammen mit gewöhnlichen Tests ausführen.
+  Setzt `m_pytest.md` voraus.

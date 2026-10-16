@@ -614,6 +614,17 @@ Eine Übersicht aller [TERMREF::DNS-Record-Types] findet man auf
 [ENDTERM]
 
 
+[TERM::Doctest]
+Ein Beispiel in der Dokumentation, meist in einem Docstring, das wie eine Sitzung im interaktiven
+Python aussieht (eine Zeile mit `>>>` und der Eingabe, darunter die erwartete Ausgabe)
+und automatisch ausgeführt und geprüft wird.
+In Python erledigt das das Standardmodul `doctest`;
+`pytest` führt solche Beispiele mit der Option `--doctest-modules` mit aus.
+Doctests halten Dokumentation korrekt, eignen sich aber kaum für systematisches Testen,
+denn sie vergleichen Text statt Werte und ihres Zwecks und ihrer Wortfülle.
+[ENDTERM]
+
+
 [TERM::Download unter WSL]
 Wenn Sie unter Windows Dateien herunterladen, stehen diese zunächst nicht direkt in Ihrer 
 Unix-Umgebung zur Verfügung.
