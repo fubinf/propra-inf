@@ -191,9 +191,7 @@ rechnen wären?
 
 ### Gewöhnliche Differentialgleichungen mit `solve_ivp`
 
-Das Lösen gewöhnlicher Differentialgleichungen (ODEs) ist ein zentraler Bestandteil
-der wissenschaftlichen Modellierung.
-`solve_ivp` löst Anfangswertprobleme der Form:
+`solve_ivp` löst Anfangswertprobleme gewöhnlicher Differentialgleichungen (ODEs) der Form:
 
 `dy/dt = f(t, y)` mit `y(t₀) = y₀`
 
