@@ -1,5 +1,5 @@
 title: Fixtures mit dem pytest-Framework
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 3
 assumes: m_pytest
@@ -16,11 +16,12 @@ Oftmals braucht ein Test bestimmte Voraussetzungen, bevor er überhaupt sinnvoll
 was er prüfen soll.
 Ein Test kann zum Beispiel eine Benutzer-Instanz, eine Konfiguration oder eine vorbereitete Datei brauchen.
 
-Eine [TERMREF::Fixture] ist in pytest genau dafür gedacht: Sie kapselt das Setup und das Cleanup.
+Eine [TERMREF::Fixture] ist in pytest dafür gedacht, solche Voraussetzungen herzustellen: 
+Sie kapselt das Setup (und ggf. das Cleanup).
 Dadurch bleibt der eigentliche Test lesbarer,
 und dieselben Vorbereitungen können leicht in mehreren Tests wiederverwendet werden.
 
-In dieser Aufgabe lernen Sie Schritt für Schritt, wie Sie solche Voraussetzungen sauber
+In dieser Aufgabe lernen Sie Schritt für Schritt, wie Sie solche Voraussetzungen ("Ressourcen") sauber
 vorbereiten, wie Sie ihre Lebensdauer steuern und wann es wichtig ist, Ressourcen nach dem
 Test wieder aufzuräumen.
 [ENDSECTION]
@@ -112,14 +113,12 @@ def test_user_registration_duplicate():
 
 ### Die Fixture-Idee und der Ausgangscode
 
-pytest löst genau diese Schwächen mit Fixtures.
-
 Eine Fixture ist im Grunde ein wiederverwendbares Setup, das ein Test als Abhängigkeit
 anfordern kann.
 Statt in jedem Test denselben Initialisierungscode neu zu schreiben,
 definieren Sie ihn einmal und referenzieren ihn dann über die Test-Signatur.
 
-Das hat zwei Vorteile: Der eigentliche Test wird viel lesbarer,
+Das hat zwei Vorteile: Der eigentliche Test wird lesbarer,
 und die Einrichtung bleibt an einer Stelle zentralisiert.
 
 Bevor wir Fixtures einsetzen, legen wir den Ausgangscode an.
@@ -129,7 +128,7 @@ die Klassen `Result` und `PseudoUserservice` aus dem Beispiel oben.
 
 Den ersten Schritt machen wir noch ohne Fixtures:
 Das gemeinsame globale `service` entfällt, jeder Test erzeugt sich eine eigene, frische Instanz.
-Dann kann kein Test einem anderen Zustand hinterlassen, und das Cleanup entfällt.
+Dann kann kein Test einem anderen Zustand hinterlassen, und ein Cleanup entfällt.
 Legen Sie im selben Verzeichnis die Datei `test_userservice.py` mit folgenden Tests an:
 
 ```python
@@ -166,8 +165,8 @@ Jeder Test erzeugt seine Instanz selbst, und drei der vier Tests registrieren vo
 
 ### Setup deklarativ machen
 
-Anstatt in jedem Test den gleichen Setup-Code zu kopieren, definieren Sie ihn einmal als
-Fixture und verwenden ihn dann an den Stellen, an denen ein Test ihn braucht.
+Anstatt in jedem Test den gleichen Setup-Code zu kopieren, definieren Sie ihn jetzt einmal als
+Fixture und verwenden ihn dann jedes mal, wo ein Test ihn braucht.
 
 ```python
 import pytest
@@ -181,8 +180,8 @@ def test_user_registration(user_service):
     ...
 ```
 
-Damit wäre erst das Erzeugen der Instanz zentralisiert; die Registrierung von `alice` stünde
-weiterhin in drei Tests.
+Damit wäre schon mal das Erzeugen der Instanz zentralisiert; die Registrierung von `alice` stünde
+weiterhin separat in drei Tests.
 
 Ein Test kann auch mehrere Fixtures gleichzeitig verwenden: Sie listen einfach mehrere
 Parameter in der Signatur auf.
@@ -206,7 +205,8 @@ Welchen Vorteil hat es, wenn alle benötigten Fixtures als Parameter in der Sign
 
 Manche Fixtures sind aufwendig: Eine Datenbankverbindung aufzubauen, Testdaten zu laden oder
 einen Server zu starten kann Sekunden dauern.
-Genau in solchen Fällen wird wichtig, wie lange eine Fixture bestehen bleibt.
+In solchen Fällen wird wichtig, wie oft wir das wiederholen; anders ausgedrückt: 
+Wie lange das Resultat einer Fixture am Leben bleibt.
 
 Mit dem Standard-Scope `"function"` wird das Setup für jeden einzelnen Test erneut ausgeführt.
 
@@ -243,14 +243,15 @@ pytest bietet verschiedene Scopes für Fixtures:
 - `function`: Neue Instanz für jeden Test (Standard, beste Isolation)
 - `class`: Eine Instanz für alle Tests einer Test-Klasse
 - `module`: Eine Instanz für alle Tests einer Datei
-- `session`: Eine Instanz für die gesamte Test-Session
+- `session`: Eine Instanz für den gesamten `pytest`-Aufruf
 
 Faustregel: Behalten Sie in der Regel `function` bei.
 Nutzen Sie einen größeren Scope nur dann, wenn das Setup wirklich teuer ist
 und der gemeinsame Zustand bewusst kontrolliert werden kann.
 
 Ein sinnvoller Fall für einen größeren Scope ist zum Beispiel das einmalige Laden einer großen
-Konfigurationsdatei: Das ist aufwendig, aber danach nur lesbar.
+Konfigurationsdatei: Das ist aufwendig, aber wenn das Ergebnis von den Tests nicht verändert wird,
+braucht man das Einlesen auch nicht zu wiederholen.
 
 ```python
 @pytest.fixture(scope="session")
@@ -277,10 +278,10 @@ Was passiert, wenn `test_slow_1` einen Nutzer registriert und ein weiterer Test 
 verlässt, dass noch kein Nutzer registriert ist?
 [ENDHINT]
 
-Wenn Sie einen größeren Scope wählen, müssen Sie selbst dafür sorgen, dass der Zustand zwischen
+Wenn Sie einen größeren Scope wählen, müssen Sie ggf. selbst dafür sorgen, dass der Zustand zwischen
 den Tests sauber zurückgesetzt wird.
 Die gemeinsame Nutzung hat nur dann Sinn, wenn die Ressource unverändert bleibt
-oder bewusst wieder in einen Ausgangszustand gebracht wird.
+oder verlässlich wieder in ihren Ausgangszustand zurückgesetzt wird.
 
 Entfernen Sie danach `slow_service` und die drei zugehörigen Tests wieder,
 damit der Rest der Datei nicht durch das `sleep()` ausgebremst wird.
@@ -294,8 +295,8 @@ Was passiert, wenn diese nicht aufgeräumt werden?
 Betrachten Sie dieses problematische Beispiel:
 
 ```python
+# SCHLECHT!
 import os
-import pytest
 
 @pytest.fixture(scope="module")
 def temp_file():
@@ -332,18 +333,19 @@ In diesem Beispiel stecken zwei verschiedene Probleme:
   Am einfachsten wäre `function`-Scope.
   Nehmen wir aber an, die Datei sei teuer zu erzeugen und wir bräuchten `module`-Scope.
   Dann muss jeder Test, der sich auf den Ausgangszustand verlässt, diesen selbst herstellen.
-- **Aufräumen:** `debug_output.txt` liegt fest im Arbeitsverzeichnis und bleibt nach dem Testlauf
+- **Fehlende Isolation:** `debug_output.txt` liegt fest im Arbeitsverzeichnis und bleibt nach dem Testlauf
   dort liegen.
-  Laufen zwei Testläufe gleichzeitig oder aus einem anderen Verzeichnis, kommen sie sich in die Quere.
+  Laufen zwei Testläufe gleichzeitig, kommen sie sich in die Quere.
   Besser ist ein eigenes Verzeichnis für temporäre Testdaten.
   pytest bietet dafür `tmp_path` an; das Modul `tempfile` stellt ähnliche Mechanismen bereit.
   Siehe auch [PARTREF::m_tempfile].
+  Das hat im Prinzip mit Fixtures nichts zu tun, aber:
 
 `tmp_path` selbst hat `function`-Scope und lässt sich deshalb in einer `module`-Fixture nicht
 verwenden.
 Für diesen Fall gibt es
 [`tmp_path_factory`](https://docs.pytest.org/en/stable/reference/reference.html#tmp-path-factory):
-Sein `mktemp()` legt ein neues temporäres Verzeichnis an.
+`tmp_path_factory.mktemp()` legt ein neues temporäres Verzeichnis an.
 
 Außerdem soll die Fixture ihre Datei am Ende selbst wieder entfernen.
 Dafür schreibt man eine Fixture mit `yield` statt `return`:
@@ -387,7 +389,9 @@ def test_another_temp_file(temp_file):
 Den Import von `os` braucht `test_userservice.py` danach nicht mehr.
 Löschen Sie außerdem die übrig gebliebene `debug_output.txt` aus Ihrem Arbeitsverzeichnis.
 
-Wohin legt pytest diese temporären Verzeichnisse eigentlich, und was bleibt davon übrig?
+### Setup und Teardown mit temporären Dateien
+
+Nächstes Thema: Wohin legt pytest diese temporären Verzeichnisse eigentlich, und was bleibt davon übrig?
 
 [EC] Führen Sie die Tests viermal hintereinander aus: `pytest -v -s test_userservice.py`.
 Mit `-s` zeigt pytest auch die `print()`-Ausgaben bestandener Tests an,
@@ -410,18 +414,17 @@ def test_another_temp_file(temp_file):
 
 [EQ] Welche Ausgabe sehen Sie in der pytest-Konsole?
 Wird der Cleanup in der Fixture noch ausgeführt, wenn der Test selbst fehlschlägt?
-Warum ist das wichtig?
+Warum ist das richtig so?
 
 Machen Sie die Änderung an `test_another_temp_file` danach wieder rückgängig.
 <!-- time estimate: 30 min -->
 
 ### Fixtures teilen: `conftest.py`
 
-Wenn Sie mehrere Testdateien haben, die dieselben Fixtures brauchen, gibt es dafür in pytest
-eine praktische Lösung.
-
+Wenn Sie mehrere Testdateien haben, die dieselben Fixtures brauchen, kann man diese in ein separates Modul tun
+und pytest kümmert sich um den Import.
 Verschieben Sie die Fixture `user_service` aus `test_userservice.py` in eine neue Datei
-`conftest.py` im selben Verzeichnis:
+`conftest.py` (magischer Name!) im selben Verzeichnis:
 
 ```python
 import pytest
@@ -514,6 +517,9 @@ Verwenden Sie dafür Ihre Fixture `registered_service`.
 
 [EC] Führen Sie die Tests aus: `pytest -v test_userservice.py`
 <!-- time estimate: 15 min -->
+
+Fazit: Fixtures machen Tests aufgeräumter und dadurch leichter lesbar und selbst weniger fehleranfällig.
+Je komplexer die Tests, desto größer der Vorteil.
 [ENDSECTION]
 
 
