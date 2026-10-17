@@ -104,7 +104,7 @@ der _nur unwichtige Daten_ enthält, die problemlos öffentlich werden dürfen, 
 der Befehl öffnet den Port 9007 des Zielservers u.U. öffentlich sichtbar für das gesamte Internet.
 [ENDWARNING]
 
-[EC] Auf dem Zielserver: Starten sie den Webserver `python -m http.server 9007`.
+[EC] Auf dem Zielserver: Starten Sie den Webserver `python3 -m http.server 9007`.
      (Wenn 9007 dort nicht frei ist, benutzen Sie einen anderen Port; aber lokal bleibt es bei 9009.)
 
 - Auf Ihrem Rechner: Öffnen Sie einen Browser und greifen Sie auf localhost mit Port 9009 zu.
@@ -126,7 +126,7 @@ der dazugehörigen Seite.
 
 Schauen Sie sich diesmal die Option `-R` von der [ssh(1) manpage](https://man.openbsd.org/ssh) an.
 
-[EC] Auf Ihrem Rechner: Starten sie den Webserver `python -m http.server 9007`.
+[EC] Auf Ihrem Rechner: Starten Sie den Webserver `python3 -m http.server 9007`.
 Für das Arbeitsverzeichnis gilt die gleiche Warnung wie oben.
 
 [EC] Auf Ihrem Rechner: Öffnen Sie einen Porttunnel vom Port 9007 Ihres Rechners 
