@@ -25,7 +25,12 @@ Zielserver = `andorra.imp.fu-berlin.de`
 ### Secure Shell installieren
 
 Aktualisieren Sie Ihr System und Installieren Sie das Paket `openssh-client`:
-`sudo apt update && sudo apt upgrade -y && sudo apt install openssh-client`
+`sudo apt update && sudo apt install openssh-client`
+
+[FOLDOUT::Abweichungen unter macOS]
+`ssh`, `ssh-keygen`, `ssh-copy-id`, `ssh-agent` und `ssh-add` sind unter macOS schon installiert.
+Der Installationsschritt oben entfällt.
+[ENDFOLDOUT]
 
 [NOTICE]
 Stellen Sie sicher, dass Sie sich im Netz der Hochschule befinden, nötigenfalls über VPN. 
@@ -63,7 +68,7 @@ von [HREF::https://wiki.ubuntuusers.de/SSH/].
 [EQ] Was wären mögliche Gründe, wenn Ihnen das System meldet, dass sich der `host_key` des 
 entfernten Rechners geändert hat? Nennen Sie zwei Beispiele.
 
-[EC] Schließen Sie ihre SSH-Sitzung.
+**AKTION:** Schließen Sie Ihre SSH-Sitzung wieder.
 
 
 ### Per [TERMREF::Schlüsselpaar] auf einem entfernten Rechner anmelden
@@ -72,7 +77,7 @@ Sie haben sich vorhin mit Ihrem Passwort angemeldet.
 Dabei wurde zum Übermitteln des Passworts an den Server eine symmetrische Verschlüsselung benutzt.
 Jetzt werden wir uns mit einem asymmetrischen Verfahren auf dem Zielserver anmelden,
 sodass der Server den privaten Schlüssel nie erfahren muss.
-Dafür müssen wir und erstmal ein Schlüsselpaar erstellen, dieses mit einem Passwort schützen und 
+Dafür müssen wir uns erstmal ein Schlüsselpaar erstellen, dieses mit einem Passwort schützen und 
 dann den öffentlichen Schlüssel auf den Server kopieren.
 
 Lesen Sie den Abschnitt **Asymmetric Encryption** von 
@@ -93,8 +98,8 @@ verbreitet.
 Setzen Sie ein Passwort für das Schlüsselpaar, das Sie sonst nirgends benutzen, denn Sie werden
 mit diesem Schlüsselpaar nach einiger Zeit enorm vieles abgesichert haben.
 
-Es sollten nun zwei neue Dateien unter `~/.ssh/` vorhanden sein. `ed25519` ist Ihr privater Schlüssel 
-und sollte von Ihnen gut aufbewahrt werden. `ed25519.pub` ist Ihr öffentlicher Schlüssel. Diesen 
+Es sollten nun zwei neue Dateien unter `~/.ssh/` vorhanden sein. `id_ed25519` ist Ihr privater Schlüssel 
+und sollte von Ihnen gut aufbewahrt werden. `id_ed25519.pub` ist Ihr öffentlicher Schlüssel. Diesen 
 kopieren wir auf den Zielserver, damit Sie sich damit anmelden können.  
 
 Lesen Sie die ssh-copy-id(1) 
@@ -130,13 +135,26 @@ Lesen Sie die Absätze am Anfang und am Ende der **Description** der
 Lesen Sie die 3 Absätze am Anfang der **Description** der
 [Manpage von ssh-add(1)](https://man.openbsd.org/ssh-add.1).
 
+[FOLDOUT::Abweichungen unter macOS]
+Unter macOS läuft bereits ein SSH-Agent, den das System bei Bedarf startet,
+und die Variable `SSH_AUTH_SOCK` zeigt schon auf ihn.
+`ssh-add` würde also auch ohne den folgenden Schritt funktionieren.
+Starten Sie trotzdem wie beschrieben einen eigenen Agenten.
+Er gilt dann für die Shell, in der Sie ihn gestartet haben.
+
+Für den Alltag auf dem Mac praktisch: `ssh-add --apple-use-keychain` speichert die Passphrase
+zusätzlich im Schlüsselbund von macOS (Details in `man ssh-add` auf Ihrem Mac).
+[ENDFOLDOUT]
+
 [EC] Starten Sie den SSH-Agenten.
 
-[EC] Fügen Sie Ihren Schlüssel dem Agenten hinzu.  
+[EC] Fügen Sie Ihren Schlüssel dem Agenten hinzu.
 
 [EC] Verbinden Sie sich mit dem Zielserver.
 
-[EQ] Was hat sich geändert?  
+[EQ] Was hat sich geändert?
+
+**AKTION:** Schließen Sie Ihre SSH-Sitzung wieder.
 
 
 ### Automatisieren
@@ -147,7 +165,15 @@ Deswegen erstellen wir uns einen Alias, der das für uns erledigt.
 Lesen Sie die **Syntax** und die **Dauerhafte Verwendung** im
 [Beitrag über `alias`](https://wiki.ubuntuusers.de/alias/) auf ubuntuusers.
 
-[EC] Erstellen Sie einen Alias `ssha`, welches den Agenten startet und Ihre Schlüssel in den Agenten 
+[FOLDOUT::Abweichungen unter macOS]
+Der Beitrag nennt `~/.bashrc` als Ort für dauerhafte Aliase.
+Terminal.app startet jede Shell aber als Login-Shell, und eine Login-Bash liest `~/.bash_profile`,
+nicht `~/.bashrc`.
+Tragen Sie den Alias deshalb in `~/.bash_profile` ein.
+Falls Sie bei der `zsh` geblieben sind (siehe [PARTREF::CLI-MacOS-brew]), nehmen Sie `~/.zshrc`.
+[ENDFOLDOUT]
+
+[EC] Erstellen Sie einen Alias `ssha`, der den Agenten startet und Ihre Schlüssel in den Agenten 
 kopiert. Zeigen Sie ihn im Kommandoprotokoll vor, z.B. mit `grep`.
 
 Jetzt haben Sie eine schnelle Möglichkeit den SSH-Agenten zu starten.  
