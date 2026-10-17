@@ -21,7 +21,13 @@ Es prüft vor dem Kopieren, welche Dateien sich geändert haben und überträgt 
 ### rsync installieren
 
 Aktualisieren Sie Ihr System und installieren Sie das Paket `rsync`:
-`sudo apt update && sudo apt upgrade -y && sudo apt install rsync`
+`sudo apt update && sudo apt install rsync`
+
+[FOLDOUT::Abweichungen unter macOS]
+`rsync` ist unter macOS schon installiert, der Installationsschritt oben entfällt.
+Es handelt sich um eine ältere Version (2.6.9, ab macOS 15.4 das kompatible `openrsync`).
+Alle hier benutzten Optionen funktionieren damit genauso, nur die Ausgaben sehen etwas anders aus.
+[ENDFOLDOUT]
 
 Lesen Sie die Abschnitte **Description und Usage** der 
 [rsync(1) manpage](https://manpages.debian.org/stable/rsync/rsync.1.en.html).
