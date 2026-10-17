@@ -51,7 +51,34 @@ aliquam erat volutpat.
 ### Nano installieren
 
 Aktualisieren Sie Ihr System und installieren Sie das Paket `nano`:
-`sudo apt update && sudo apt upgrade -y && sudo apt install nano`
+`sudo apt update && sudo apt install nano`
+
+[FOLDOUT::Abweichungen unter macOS]
+Seit macOS 12.3 startet der Befehl `nano` den Editor `pico`.
+Diesem fehlen die meisten Funktionen, die Sie in dieser Aufgabe üben.
+Installieren Sie deshalb das echte `nano`: `brew install nano`.
+Prüfen Sie mit `nano --version`, dass jetzt GNU nano startet.
+Falls weiterhin `pico` startet, öffnen Sie ein neues Terminalfenster.
+
+In der Doku von `nano` steht `^` für die Taste `control`, nicht für `command`.
+`M-` steht für die Meta-Taste, die eine Mac-Tastatur nicht hat.
+Drücken Sie stattdessen vor der Taste kurz `esc` (`M-6` wird dann zu `esc` und danach `6`).
+Alternativ aktivieren Sie in Terminal.app unter Einstellungen > Profile > Tastatur
+"Wahltaste als Metataste verwenden".
+Auf einer deutschen Tastatur können Sie dann aber Zeichen wie `@`, `|`, `~`, `[` und `{`
+nicht mehr tippen, weil diese die Wahltaste brauchen.
+Schalten Sie die Einstellung nach dieser Aufgabe also wieder ab.
+
+Für `Pos1` und `End` gibt es auf der Mac-Tastatur `fn`+`←` und `fn`+`→`.
+In Terminal.app blättern diese Kombinationen aber im Terminalverlauf, statt an `nano` zu gehen.
+Benutzen Sie stattdessen `shift`+`fn`+`←`/`→` oder die nano-eigenen Kürzel `^A` und `^E`.
+Für `Ctrl`+`Pos1` und `Ctrl`+`End` nehmen Sie die gleichwertigen Kürzel `M-\` und `M-/`.
+
+`control`+`←`/`→` wechselt in macOS normalerweise zwischen den Schreibtischen (Spaces),
+`control`+`↑` öffnet Mission Control und `control`+`↓` zeigt die Fenster des aktuellen Programms.
+Damit `nano` diese Tasten bekommt, schalten Sie die Kürzel unter
+Systemeinstellungen > Tastatur > Tastaturkurzbefehle > Mission Control ab.
+[ENDFOLDOUT]
 
 ### Arbeiten mit Nano
 
@@ -106,7 +133,11 @@ Lesen Sie Kapitel **3.6** des [nano Handbuchs](https://www.nano-editor.org/dist/
 ### Vim installieren
 
 Aktualisieren Sie Ihr System und installieren Sie das Paket `vim`:
-`sudo apt update && sudo apt upgrade -y && sudo apt install vim`
+`sudo apt update && sudo apt install vim`
+
+[FOLDOUT::Abweichungen unter macOS]
+`vim` und `vimtutor` sind unter macOS schon installiert. Der Schritt oben entfällt.
+[ENDFOLDOUT]
 
 ### Arbeiten mit Vim
 
