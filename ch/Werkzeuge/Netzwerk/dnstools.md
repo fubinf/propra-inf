@@ -29,11 +29,18 @@ Wir zeigen Ihnen hier Befehle zur Analyse solch eines Problems.
 
 ### Werkzeuge installieren
 
-Die hier besprochenen Werkzeuge gehören meist nicht zum Basisumfang des Systems, also:
+Die hier besprochenen Werkzeuge gehören meist nicht zum Basisumfang des Systems.
+Installieren Sie deshalb die Pakete `dnsutils` und `traceroute`:
+`sudo apt update && sudo apt install dnsutils traceroute`
 
-[EC] `sudo apt update && sudo apt upgrade`
+[FOLDOUT::Abweichungen unter macOS]
+`ping`, `host`, `dig` und `traceroute` sind unter macOS schon installiert.
+Der Installationsschritt oben entfällt.
 
-[EC] `sudo apt install dnsutils`
+Das `ping` unter macOS stammt aus BSD und weicht in einem Punkt von der unten verlinkten Debian-Manpage ab:
+`-c` und `-i` funktionieren genauso, die Gesamtlaufzeit begrenzen Sie aber mit `-t` statt `-w`.
+`STRG+C` heißt auf dem Mac `control`+`C`.
+[ENDFOLDOUT]
 
 
 [NOTICE]
