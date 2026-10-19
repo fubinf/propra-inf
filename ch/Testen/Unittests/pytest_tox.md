@@ -1,5 +1,5 @@
 title: "pytest und tox: eine fremde Test-Suite reproduzierbar ausführen"
-stage: draft
+stage: alpha
 timevalue: 2.0
 difficulty: 3
 assumes: Git101, m_pytest, flake8, m_tox
@@ -12,34 +12,37 @@ requires: pyenv
   so ausführt wie die CI des Projekts.
 - Ich kann mit einer tox-Umgebungsmatrix herausfinden, ob ein Fehlschlag am Code
   oder an einer Abhängigkeitsversion liegt.
-- Ich kann erkennen, ob die Tests den Quellcode im Projektordner oder das installierte Paket prüfen.
+- Ich kann erkennen, ob die Tests den Quellcode im Projektverzeichnis
+  oder das installierte Paket prüfen.
 
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 In [PARTREF::m_tox] haben Sie tox an einem Projekt aus zwei Dateien kennengelernt.
 Echte Projekte bringen ihre eigene pytest-Konfiguration, viele Testabhängigkeiten
 und eine CI mit, und sie altern:
 Ein Projekt, das vor einem Jahr fehlerfrei getestet wurde, kann heute scheitern,
 ohne dass jemand eine Zeile seines Codes geändert hat.
 
-Wir nehmen die Bibliothek [MechanicalSoup](https://github.com/MechanicalSoup/MechanicalSoup)
+Wir nehmen die Bibliothek
+[MechanicalSoup](https://github.com/MechanicalSoup/MechanicalSoup)
 in der Version 1.4.0 vom Mai 2025.
 Sie hat eine gute Test-Suite und eine CI mit GitHub Actions, aber keine `tox.ini`.
 Stellen Sie sich vor, Sie wollen zu MechanicalSoup beitragen und vor einem Pull Request
 lokal dasselbe prüfen, was die CI prüft.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
 ### Projekt holen und verstehen
 
-- Klonen Sie das Repository _außerhalb_ Ihres ProPra-Arbeitsverzeichnisses
+- Klonen Sie das Repository in Ihren [TERMREF::Hilfsbereich]
   und wechseln Sie auf die Version 1.4.0:
-  `git clone https://github.com/MechanicalSoup/MechanicalSoup.git`, `cd MechanicalSoup`, `git checkout v1.4.0`.
-- Richten Sie im Ordner `MechanicalSoup` wie in [PARTREF::m_tox] eine `.venv` mit `tox` ein
+  `git clone https://github.com/MechanicalSoup/MechanicalSoup.git`,
+  `cd MechanicalSoup`, `git checkout v1.4.0`.
+- Richten Sie im Verzeichnis `MechanicalSoup` wie in [PARTREF::m_tox] eine `.venv` mit `tox` ein
   und machen Sie mit `pyenv local` Ihre beiden pyenv-Versionen und Ihr System-Python verfügbar.
 
 Lesen Sie die CI-Konfiguration `.github/workflows/python-package.yml`
@@ -51,14 +54,15 @@ Was `addopts` bedeutet, steht unter
 
 [EQ] Unter welchen Python-Versionen testet die CI, und welche Kommandos führt sie
 (außer beim Sonderfall PyPy) zum Installieren und Testen aus?
-Was bewirken die Angaben in `addopts`, und aus welchen Paketen in `tests/requirements.txt`
-stammen die Optionen `--cov` und `--flake8`?
+Was bewirken die Angaben in `addopts`?
 
 <!-- time estimate: 20 min -->
 
+
 ### Erster Versuch
 
-Legen Sie im Projektordner eine `tox.ini` an und ersetzen Sie `py3XX` durch Ihre System-Version:
+Legen Sie im Projektverzeichnis eine `tox.ini` an
+und ersetzen Sie `py3XX` durch Ihre System-Version:
 
 ```ini
 [tox]
@@ -75,7 +79,8 @@ Führen Sie `tox` aus.
 Woher kommen die beanstandeten Argumente, obwohl `commands` nur `pytest` enthält,
 und warum kennt pytest sie in der tox-Umgebung nicht?
 
-Ändern Sie `deps` so, dass tox dieselben Testabhängigkeiten installiert wie die CI.
+Ändern Sie `deps` so, dass tox dieselben Testabhängigkeiten installiert wie die CI,
+und führen Sie `tox` erneut aus.
 
 [HINT::Ich weiß nicht, wie ich die Abhängigkeiten angeben soll]
 In [PARTREF::m_tox] haben Sie mit `-r` eine Requirements-Datei in `deps` eingebunden.
@@ -94,6 +99,7 @@ im Schritt `install_package_deps`?
 
 <!-- time estimate: 20 min -->
 
+
 ### Zweiter Fehlschlag: ein Plugin passt nicht mehr
 
 Jetzt scheitert pytest vermutlich mit einem langen Traceback.
@@ -102,14 +108,18 @@ Welche Paketversionen in der Umgebung installiert sind, zeigt `.tox/py3XX/bin/py
 
 [HINT::Bei mir scheitert an dieser Stelle nichts]
 Diese Aufgabe beschreibt den Stand vom Herbst 2026.
-Prüfen Sie mit `pip list` wie oben, welche Versionen von `pytest` und `pytest-flake8` installiert sind,
-und beantworten Sie die folgenden Fragen anhand der unten verlinkten pytest-Dokumentation.
+Prüfen Sie mit `pip list` wie oben,
+welche Versionen von `pytest` und `pytest-flake8` installiert sind.
+Stellen Sie den damaligen Stand her, indem Sie in `deps` zusätzlich
+`pytest==9.1.1` und `pytest-flake8==1.3.0` angeben, und führen Sie `tox` erneut aus.
+Beim Beheben ersetzen Sie dann `pytest==9.1.1` durch Ihre eigene Versionsbeschränkung.
 [ENDHINT]
 
 [EQ] Welches Plugin scheitert, und was beanstandet pytest daran?
 Welche Versionen von pytest und diesem Plugin sind installiert?
-Lesen Sie den Abschnitt
-[`py.path.local` arguments for hooks replaced with `pathlib.Path`](https://docs.pytest.org/en/stable/deprecations.html#legacy-path-hooks-deprecated):
+Suchen Sie auf der pytest-Seite
+[Deprecations and Removals](https://docs.pytest.org/en/stable/deprecations.html)
+den Abschnitt zu dieser Fehlermeldung (der Hook-Name hilft beim Suchen):
 Seit welcher pytest-Version war diese Änderung angekündigt, und seit welcher ist sie wirksam?
 
 Beheben Sie das Problem allein in Ihrer `tox.ini` durch eine Versionsbeschränkung;
@@ -125,66 +135,71 @@ und welchen Nachteil hätte es, stattdessen alle Versionen exakt festzulegen?
 
 <!-- time estimate: 25 min -->
 
+
 ### Dritter Fehlschlag: Code oder Umgebung?
 
 Nun laufen die Tests, aber einer schlägt fehl.
 (Warnungen wie `flasgger is not installed` stammen vom Test-Webserver und sind harmlos.)
-Bevor Sie einen Defekt in MechanicalSoup vermuten, prüfen Sie, ob der Fehlschlag an der Umgebung liegt.
+Bevor Sie einen Defekt in MechanicalSoup vermuten,
+prüfen Sie, ob der Fehlschlag an der Umgebung liegt.
 
-Damit Sie nicht jedes Mal die ganze Suite abwarten müssen, soll `tox` Argumente an pytest durchreichen.
-Ändern Sie dafür `commands` zu `pytest {posargs}`
-(siehe [positional arguments](https://tox.wiki/en/stable/reference/config.html#positional-argument-reference))
+Damit Sie nicht jedes Mal die ganze Suite abwarten müssen,
+soll `tox` Argumente an pytest durchreichen.
+Ändern Sie dafür `commands` in `pytest {posargs}`
+(siehe [positional arguments](https://tox.wiki/en/stable/reference/config.html#substitutions-for-positional-arguments-in-commands))
 und führen Sie nur den fehlschlagenden Test aus:
 `tox -e py3XX -- tests/test_stateful_browser.py::test_select_form_associated_elements`.
 Alles hinter `--` landet anstelle von `{posargs}` im pytest-Aufruf.
 
 MechanicalSoup lässt HTML standardmäßig mit dem Parser `lxml` zerlegen
 (siehe `soup_config` in `mechanicalsoup/browser.py`).
-Ein Kandidat für die Ursache ist also eine neuere `lxml`-Version, die es im Mai 2025 noch nicht gab.
-
-[HINT::Wie finde ich heraus, welche `lxml`-Versionen nach Mai 2025 erschienen sind?]
-Die [Release history von lxml auf PyPI](https://pypi.org/project/lxml/#history)
-nennt zu jeder Version das Datum.
-Suchen Sie die erste Hauptversion, die nach dem 29.05.2025 erschienen ist.
-[ENDHINT]
+Ein Kandidat für die Ursache ist also eine `lxml`-Version,
+die nach MechanicalSoup 1.4.0 (29.05.2025) erschienen ist:
+Am 26.06.2025 erschien die neue Hauptversion `lxml` 6.0.0
+([Release history von lxml auf PyPI](https://pypi.org/project/lxml/#history)).
 
 Ob diese Vermutung stimmt, klärt eine Umgebungsmatrix:
 tox kann aus einer Zeile wie `py{310,311}-foo{1,2}` vier Umgebungen erzeugen
 ([generative environment list](https://tox.wiki/en/stable/reference/config.html#generative-environment-list)),
-und Einstellungen können nur für Umgebungen mit einem bestimmten Namensbestandteil (_Faktor_) gelten
+und Einstellungen können nur für Umgebungen
+mit einem bestimmten Namensbestandteil (_Faktor_) gelten
 ([conditional settings](https://tox.wiki/en/stable/reference/config.html#conditional-settings)).
 
 [ER] Erweitern Sie Ihre `tox.ini` so, dass `envlist` für jede Ihrer drei Python-Versionen
 zwei Umgebungen erzeugt: eine mit dem Faktor `lxml5`, in der `lxml` kleiner als 6 ist,
-und eine mit dem Faktor `lxml6`, in der pip die neueste Version installiert.
+und eine mit dem Faktor `lxml6`, in der `lxml` mindestens 6 und kleiner als 7 ist.
 
 Führen Sie alle Umgebungen mit `tox -p` parallel aus
 (siehe [`tox run-parallel`](https://tox.wiki/en/stable/reference/cli.html#tox-run-parallel-%28p%29)).
 Die Zusammenfassung am Ende genügt.
 
 [HINT::Die Installation von `lxml<6` scheitert mit einem Compilerfehler]
-Für sehr neue Python-Versionen (z. B. 3.14) gibt es `lxml` 5 nicht als fertiges Paket (_wheel_),
-sodass pip versucht, es aus dem Quellcode zu übersetzen.
+Für sehr neue Python-Versionen (beispielsweise 3.14) gibt es `lxml` 5
+nicht als fertiges Paket (_wheel_), sodass pip versucht, es aus dem Quellcode zu übersetzen.
 Das scheitert, wenn Header-Dateien von `libxml2` und `libxslt` fehlen.
-Lassen Sie diese eine Kombination weg, indem Sie die Umgebungen in `envlist` für diese Python-Version
-einzeln statt generativ aufführen.
+Lassen Sie diese eine Kombination weg, indem Sie die Umgebungen in `envlist`
+für diese Python-Version einzeln statt generativ aufführen.
 [ENDHINT]
 
 [EQ] Welche Umgebungen scheitern, welche nicht?
 Was folgt daraus über die Ursache des Fehlschlags?
-Formulieren Sie in zwei bis drei Sätzen den Kern eines Fehlerberichts an das MechanicalSoup-Projekt:
+Formulieren Sie in zwei bis drei Sätzen den Kern eines Fehlerberichts
+an das MechanicalSoup-Projekt:
 Was scheitert, unter welchen Versionen, und mit welchem Aufruf lässt es sich reproduzieren?
 
 <!-- time estimate: 30 min -->
+
 
 ### Welcher Code wird eigentlich getestet?
 
 tox baut bei jedem Lauf ein Paket aus dem Projekt und installiert es in die Umgebung.
 Ob die Tests dieses installierte Paket prüfen, ist aber nicht selbstverständlich.
-Sehen Sie sich im Coverage-Bericht eines `lxml5`-Laufs die Spalte `Name` an
+Führen Sie eine Ihrer `lxml5`-Umgebungen einzeln aus (beispielsweise `tox -e py311-lxml5`),
+denn `tox -p` zeigt die Ausgabe erfolgreicher Umgebungen nicht.
+Sehen Sie sich im Coverage-Bericht die Spalte `Name` an
 und lesen Sie `tests/setpath.py` samt Docstring.
 
-[EQ] Prüfen die Tests den Code im Projektordner oder das Paket unter `.tox/`?
+[EQ] Prüfen die Tests den Code im Projektverzeichnis oder das Paket unter `.tox/`?
 Woran erkennen Sie das, und welche Zeile in `tests/setpath.py` bewirkt es?
 
 Ersetzen Sie in `tests/setpath.py` die Zeile `sys.path.insert(0, os.path.join(PROJ_DIR))`
@@ -199,9 +214,18 @@ Python durchsucht die Einträge von `sys.path` der Reihe nach und nimmt den erst
 Überlegen Sie, wo in dieser Liste das Verzeichnis `site-packages` der tox-Umgebung steht.
 [ENDHINT]
 
+MechanicalSoup testet mit `setpath.py` also absichtlich den Quellcode.
+Eine verbreitete Alternative ist das sogenannte "src-Layout":
+Der Code liegt in einem Unterverzeichnis `src/`
+und lässt sich erst nach einer Installation importieren,
+sodass die Tests zwangsläufig das installierte Paket prüfen.
+Vor- und Nachteile beschreibt der Python Packaging User Guide unter
+[src layout vs flat layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
+
 Machen Sie die Änderung mit `git restore tests/setpath.py` wieder rückgängig.
 
 <!-- time estimate: 20 min -->
+
 
 ### Abschluss
 
@@ -213,14 +237,15 @@ und die `lxml6`-Umgebungen scheitern nur an `test_select_form_associated_element
 Außer `tox.ini` haben Sie keine Datei des Projekts dauerhaft verändert.
 
 <!-- time estimate: 5 min -->
-
 [ENDSECTION]
+
 
 [SECTION::submission::information,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 Reichen Sie Ihre `tox.ini` ein.
 [ENDSECTION]
+
 
 [INSTRUCTOR::Knackpunkte: Herkunft der Argumente, Matrix, installiertes Paket]
 [INCLUDE::ALT:]

@@ -35,6 +35,8 @@ graph TD
     pytest_methodik_rest["pytest-Methodik-REST.md"]
     flake8_ext["flake8.md (extern)"]
     fastapi_get_ext["FastAPI-GET.md (extern)"]
+    m_tox_ext["m_tox.md (extern)"]
+    pyenv_ext["pyenv.md (extern)"]
     testcoverage["testcoverage.md"]
     pytest_benchmark["pytest_benchmark.md"]
     pytest_tox["pytest_tox.md"]
@@ -54,11 +56,11 @@ graph TD
     m_pytest --> pytest_bugsinpy
     m_pytest --> m_doctest
     m_pytest --> m_hypothesis
+    m_pytest --> pytest_tox
     pytest_call --> pytest_aaa
     pytest_call --> pytest_plugin_linter_flake8
     pytest_call --> testcoverage
     pytest_parametrize --> pytest_methodik_blackbox
-    pytest_parametrize --> pytest_tox
     pytest_parametrize --> m_hypothesis
     pytest_methodik_blackbox --> pytest_methodik_whitebox
     pytest_methodik_blackbox --> pytest_methodik_rest
@@ -69,10 +71,12 @@ graph TD
     pytest_aaa --> pytest_mocking_freezegun
     pytest_fixtures --> pytest_benchmark
     tdd --> tdd_pp
-    testcoverage --> pytest_tox
     flake8_ext --> pytest_plugin_linter_flake8
     flake8_ext --> pytest_bugsinpy
+    flake8_ext --> pytest_tox
     fastapi_get_ext --> pytest_bugsinpy
+    m_tox_ext --> pytest_tox
+    pyenv_ext --> pytest_tox
 ```
 
 ## Thematische Übersicht
@@ -125,8 +129,13 @@ Diese Tasks sind noch nicht veröffentlicht (`stage: draft`) und werden künftig
   Setzt `pytest_call.md` und `pytest-Methodik-Blackbox.md` voraus.
 - **tdd_pp.md**: TDD im Pair Programming. Setzt `tdd.md` voraus.
 - **pytest_benchmark.md**: Performance-Benchmarks mit `pytest-benchmark`. Setzt `pytest_fixtures.md` voraus.
-- **pytest_tox.md**: Testen in mehreren Python-Umgebungen mit `tox`.
-  Setzt `pytest_parametrize.md` und `testcoverage.md` voraus.
+- **pytest_tox.md**: Eine fremde Test-Suite (MechanicalSoup) mit `tox` so ausführen wie deren CI,
+  Fehlschläge per Umgebungsmatrix auf Code oder Abhängigkeitsversion zurückführen
+  und erkennen, ob die Tests den Quellcode oder das installierte Paket prüfen.
+  Setzt `m_pytest.md` sowie die externen Tasks
+  [`flake8.md`](../../Werkzeuge/Linter/flake8.md),
+  [`m_tox.md`](../../Bibliotheken/pip-popular/m_tox.md) und
+  [`pyenv.md`](../../Werkzeuge/Paketmanager/pyenv.md) voraus.
 - **pytest_mutation_testing.md**: Mutation Testing mit `mutmut` zur Qualitätsbewertung von Tests.
   Setzt `m_pytest.md` und `pytest-Methodik-Blackbox.md` voraus.
 - **pytest-Methodik-REST.md**: Blackbox-Testing einer REST-API über den CRUD-Lebenszyklus.
