@@ -158,72 +158,54 @@ instructors:
       R2eQ/r2dXJgjNr8Lpj+fLcYExMQO
       =1pk3
       -----END PGP PUBLIC KEY BLOCK-----
-former_instructors:
-  - nameish: Mert Yaylaci
-    email: merty03@zedat.fu-berlin.de
-    gitaccount: merty03
-    webaccount: merty03
-    keyfingerprint: "BA0BBC35D857F3D514F2F7F1C86F30558ECD281C"
+  - nameish: Jonathan Hertting
+    email: jonathan.hertting@fu-berlin.de
+    gitaccount: lu0077fu
+    webaccount: jonathan
+    keyfingerprint: "8F17D88095011C4795F16B6C539B28592435ECE8"
     pubkey: |
       -----BEGIN PGP PUBLIC KEY BLOCK-----
-      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
-      =zJzw
-      -----END PGP PUBLIC KEY BLOCK-----
-  - nameish: Alexander Stage
-    email: staa00@zedat.fu-berlin.de
-    gitaccount: staa00
-    webaccount: staa00
-    keyfingerprint: 79DB7A5565E0EE1412F5C54C357DB40C2D1A01C1
-    pubkey: |
-      -----BEGIN PGP PUBLIC KEY BLOCK-----
-      mDMEaOlDpBYJKwYBBAHaRw8BAQdA3vmJr9xci2GEQd9mmIj0AQ+YecgGTJz0wSLr
-      2OPqThG0NkFsZXhhbmRlciBTdGFnZSAoVHV0b3IpIDxhbGV4YW5kZXIuc3RhZ2VA
-      ZnUtYmVybGluLmRlPoiWBBMWCgA+FiEEedt6VWXg7hQS9cVMNX20DC0aAcEFAmjp
-      Q6QCGwMFCQDtTgAFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQNX20DC0aAcGD
-      iwEAqkcPxOWSvjPiv6kedqDmjOXZkbVhkcZ2HXn/u4pyk1MA/RU715uB4N+AHp3Y
-      CU5GO3H9obYZWY/hwTjoZyS0TysFuDgEaOlDpBIKKwYBBAGXVQEFAQEHQI30gk3q
-      QwVclFlZzk1hhxLgL8ylHS9ff+svJuJnVXlyAwEIB4h+BBgWCgAmFiEEedt6VWXg
-      7hQS9cVMNX20DC0aAcEFAmjpQ6QCGwwFCQDtTgAACgkQNX20DC0aAcHSdgEAuydq
-      WzaB+KlwTsSYVszvenTYZlM2uYCc5tEAnnAijtUBAIkcZ622azCUdcQDS7McRxAT
-      vfIEfhsZsv8t92A3TaEM
-      =6Qc+
-      -----END PGP PUBLIC KEY BLOCK-----
+      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
+      =jnAY
+      -----END PGP PUBLIC KEY BLOCK-----\n"
+former_instructors: []
 # ----- entries relevant for all roles:
 chapters:
   - name: Basis
