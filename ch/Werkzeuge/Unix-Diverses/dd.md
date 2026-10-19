@@ -66,6 +66,16 @@ Lesen Sie im
 [GNU coreutils manual](https://www.gnu.org/software/coreutils/manual/coreutils.html#dd-invocation)
 den Abschnitt über `bs=BYTES` sowie die Dokumentation zur Option `status`.
 
+[FOLDOUT::Abweichungen unter macOS]
+Das `dd` unter macOS stammt aus BSD.
+Ab macOS 12.3 versteht es `bs=1M`, `bs=4M` und `status=progress` genau wie das GNU-`dd`,
+nur die letzte Zeile der Ausgabe sieht anders aus (`... bytes transferred in ... secs (... bytes/sec)`).
+
+Auf älteren macOS-Versionen schreiben Sie die Einheiten klein (`bs=1m`, `bs=4m`).
+`status=progress` gibt es dort nicht.
+Drücken Sie stattdessen während des Kopierens `control`+`T`, dann gibt `dd` den aktuellen Stand aus.
+[ENDFOLDOUT]
+
 Standardmäßig arbeitet `dd` mit einer Blockgröße von 512 Bytes. 
 Bei winzigen Dateien wie `quelle.txt` ist der Performance-Unterschied alternativer Blockgrößen 
 nicht messbar. 
@@ -102,7 +112,7 @@ Messen Sie auch hier die Zeit mit `time`.
 
 Jedes Mal, wenn `dd` Daten liest oder schreibt, stößt dies I/O-Requests an. 
 Bei einer zu geringen Blockgröße (z. B. `bs=512` Byte) entsteht eine enorme Ineffizienz, die das 
-System sowohl im Linux-Kernel als auch direkt auf der SSD ausbremst.
+System sowohl im Kernel als auch direkt auf der SSD ausbremst.
 
 * Bei `bs=512`: Das System muss die Daten in über 20 Millionen Blöcke aufteilen. 
 Da jeder Block gelesen und geschrieben wird, führt dies zu ca. 41.000.960 I/O-Aufrufen.
