@@ -18,6 +18,12 @@ diesem einen, recht einfachen Mechanismus verblüffend viel bewerkstelligen.
 
 [SECTION::instructions::detailed]
 
+[FOLDOUT::Abweichungen unter macOS]
+Diese Aufgabe ist nicht für macOS gedacht.
+Die Benutzerverwaltung unter macOS weicht zu stark von Linux ab:
+Die hier benutzten Kommandos und Dateien gibt es dort teils nicht, teils verhalten sie sich anders.
+[ENDFOLDOUT]
+
 ### Dateiberechtigungen
 
 Lesen Sie den Eintrag [TERMREF::Dateiberechtigungen].

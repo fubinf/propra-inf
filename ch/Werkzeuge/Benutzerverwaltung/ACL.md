@@ -22,6 +22,12 @@ ACLs werden bei Bedarf zusätzlich zu den Unix-Standardberechtigungen gesetzt.
 
 [SECTION::instructions::detailed]
 
+[FOLDOUT::Abweichungen unter macOS]
+Diese Aufgabe ist nicht für macOS gedacht.
+Die Benutzerverwaltung unter macOS weicht zu stark von Linux ab:
+Die hier benutzten Kommandos und Dateien gibt es dort teils nicht, teils verhalten sie sich anders.
+[ENDFOLDOUT]
+
 Stellen Sie sich vor, Sie arbeiten in einer Firma mit zwei Geschäftsführern und einer Abteilung 
 Rechnungswesen. 
 Die Geschäftsführer und die Abteilung Rechnungswesen haben im System jeweils ihre 

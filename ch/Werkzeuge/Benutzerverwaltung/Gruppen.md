@@ -16,6 +16,13 @@ Man braucht sie, wenn Dateien von mehreren aber nicht allen Benutzern zugreifbar
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
+
+[FOLDOUT::Abweichungen unter macOS]
+Diese Aufgabe ist nicht für macOS gedacht.
+Die Benutzerverwaltung unter macOS weicht zu stark von Linux ab:
+Die hier benutzten Kommandos und Dateien gibt es dort teils nicht, teils verhalten sie sich anders.
+[ENDFOLDOUT]
+
 ### Nutzer erstellen
 
 [EC] Erstellen Sie zwei neue Nutzer namens `nutzer1` und `nutzer2`.

@@ -18,6 +18,12 @@ arbeiten und Ressourcen zu nutzen.
 
 [SECTION::instructions::detailed]
 
+[FOLDOUT::Abweichungen unter macOS]
+Diese Aufgabe ist nicht für macOS gedacht.
+Die Benutzerverwaltung unter macOS weicht zu stark von Linux ab:
+Die hier benutzten Kommandos und Dateien gibt es dort teils nicht, teils verhalten sie sich anders.
+[ENDFOLDOUT]
+
 ### Differenzierung nötig!
 
 Für den Umgang mit Accounts ist es wichtig, beim Denken stets zu unterscheiden,

@@ -22,6 +22,12 @@ Wir haben Sie gewarnt...
 
 [SECTION::instructions::detailed]
 
+[FOLDOUT::Abweichungen unter macOS]
+Diese Aufgabe ist nicht für macOS gedacht.
+Die Benutzerverwaltung unter macOS weicht zu stark von Linux ab:
+Die hier benutzten Kommandos und Dateien gibt es dort teils nicht, teils verhalten sie sich anders.
+[ENDFOLDOUT]
+
 ### Sudo verstehen und nutzen
 
 Lesen Sie [HREF::https://wiki.ubuntuusers.de/sudo] bis zum (teilweise unsinnigen)
