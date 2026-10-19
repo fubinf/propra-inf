@@ -1,5 +1,5 @@
 title: "Textfilter: head, tail, wc, cut, sort, uniq, tr"
-stage: alpha
+stage: beta
 timevalue: 2
 difficulty: 2
 explains: Filter
@@ -181,7 +181,8 @@ dann erst die Felder ausschneiden.
 
 Zum Schluss noch eine Sortierart für Größenangaben mit Einheiten:
 `du -sh */` zeigt für jedes Unterverzeichnis (`*/`) die Gesamtgröße (`-s`, "summarize")
-"human-readable" (`-h`) an, also mit Einheiten wie `K`, `M` und `G` für Kilo-, Mega- und Gigabyte.
+"human-readable" (`-h`) an, also mit Einheiten wie `K`, `M` und `G` für Kilo-, Mega- und Gigabyte
+(mit Basis 1024, also genauer genannt Kibi-, Mebi- und Gibibytes).
 Wir wollen die drei größten Verzeichnisse finden.
 
 [EC] Probieren Sie es zunächst mit der numerischen Sortierung, die Sie schon kennen:
