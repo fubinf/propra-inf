@@ -12,9 +12,8 @@ Ich verstehe die Gleitkomma-Datentypen in C sowie die Besonderheiten im Umgang m
 Das Verhalten der Gleitkomma-Typen in C ist gleich dem in Python.
 Anders als bei den Ganzzahltypen gibt es hier kaum Stolperfallen, die an C statt an
 Gleitkommazahlen im Allgemeinen liegen.
-Eine Ausnahme gibt es dann doch, `float`.
-Python arbeitet immer mit `double`, also 64-Bit gegenüber `float`s 32-Bit.
-Keine wirkliche Falle, dennoch etwas, das zu beachten ist.
+Der wesentliche Unterschied: Python kennt nur einen Gleitkommatyp, der `double` (64 Bit) entspricht;
+C hat zusätzlich `float` mit nur 32 Bit.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
@@ -29,10 +28,10 @@ Gleitkomma-Typen hinzu.
 `%f` kann ebenso wie die Ganzzahl-Formatangaben eine Zahl für die Mindestbreite in Zeichen bekommen.
 Zusätzlich können Sie bei `%f` auch die Präzision (Anzahl der Nachkommastellen) angeben, `%.17f`
 für eine Zahl mit 17 Nachkommastellen.
-Wichtig hierbei zu erwähnen, dass eine Mindestbreite sowohl Vorkomma- und Nachkommastellen als auch
-das Komma selbst abdeckt, wahlweise mit führender Null.
+Die Mindestbreite umfasst Vorkommastellen, Dezimalpunkt und Nachkommastellen.
 `%10.6f` ist demnach eine Ausgabe, die mindestens zehn Zeichen lang ist, wovon sechs die
-Nachkommastellen sind und eines das Komma.
+Nachkommastellen sind und eines der Dezimalpunkt.
+Mit führender `0` (`%010.6f`) wird links mit Nullen statt mit Leerzeichen aufgefüllt.
 
 
 ### Projekt anlegen
@@ -94,8 +93,7 @@ Sie liefert 1, wenn sich `a` und `b` um weniger als `1e-9` unterscheiden, sonst 
 [EQ] Warum ist der Vergleich mit `nearlyEqual` besser, und wann reicht ein fester Abstand wie
 `1e-9` nicht aus?
 
-[HINT::Warum ist 0.1 + 0.2 nicht 0.3]
-Der Klassiker unter den Gleitkomma-Fallen schlechthin.  
+[HINT::Ich verstehe nicht, warum 0.1 + 0.2 nicht 0.3 ist]
 Genau wie bei Dezimalzahlen können nicht alle Werte mit einer endlichen Anzahl an Ziffern
 abgebildet werden.
 [Floating-Point Arithmetic: Issues and Limitations](https://docs.python.org/3/tutorial/floatingpoint.html)
@@ -110,12 +108,12 @@ aus der Python-Dokumentation geht auf die Gründe ein.
 Was geschieht mit `sum` beim Aufruf von `printf`?
 (Die Option `-Wdouble-promotion` erklärt [PARTREF::c-setup].)
 
-[HINT::Default Argument Promotion]
-Beim Aufruf von variadic-Funktionen, also Funktionen wie `printf`, denen nach der Formatangabe
+[HINT::Ich verstehe nicht, was mit `sum` beim Aufruf geschieht]
+Beim Aufruf von variadischen Funktionen, also Funktionen wie `printf`, denen nach der Formatangabe
 beliebig viele weitere Argumente übergeben werden können, werden bestimmte Typen zusätzlich
 gewandelt.
 Diese Wandlungen sind die
-<!-- @LINK_SPEC: status=403 -->[default argument promotions](https://en.cppreference.com/c/language/conversion#Default_argument_promotions)
+<!-- @LINK_SPEC: status=403 -->[default argument promotions](https://en.cppreference.com/c/language/conversion#Default_argument_promotions).
 [ENDHINT]
 
 [ER] Machen Sie die Wandlung explizit.
@@ -154,7 +152,7 @@ Zudem erlaubt es Ihnen, den eigentlichen Typ später leichter anzupassen, ohne d
 zu ändern (`cents_t` bleibt für Centbeträge, egal ob `int32_t` oder `int64_t`).
 Legen Sie für die in [EREFR::4] deklarierten Variablen sinnvolle `typedef`-Aliase an
 und ändern Sie die Variablendeklarationen so, dass sie diese Aliase nutzen.
-Passen Sie bei Bedarf die Formatangaben der printf-Aufrufe an.
+Passen Sie bei Bedarf die Formatangaben der `printf`-Aufrufe an.
 
 [EC] Bauen und führen Sie das Target `choose` erneut aus.
 <!-- time estimate: 20 min -->
