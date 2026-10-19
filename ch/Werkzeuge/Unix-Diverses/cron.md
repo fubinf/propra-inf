@@ -11,7 +11,7 @@ Ich verstehe, wie `cronjobs` geplant, bearbeitet und überwacht werden können.
 
 
 [SECTION::background::default]
-Cron ist ein Linux-Dienst, mit dem zeitgesteuerte Aufgaben (`cronjobs`) automatisch ausgeführt 
+Cron ist ein Unix-Dienst, mit dem zeitgesteuerte Aufgaben (`cronjobs`) automatisch ausgeführt 
 werden können. 
 Systemadministratoren nutzen Cron, um Backups, Wartungsskripte oder periodische Prüfungen 
 ohne manuelles Eingreifen zu automatisieren.
@@ -36,6 +36,11 @@ Ihr WSL-Debian ist aber kein "normales" Linux in diesem Sinne, dort laufen näml
 Damit Sie diese Übung machen können, müssen Sie einmal `sudo service cron start` ausführen.
 `cron` läuft dann, bis Sie das nächste Mal alle WSL-Fenster schließen.
 [ENDNOTICE]
+
+[FOLDOUT::Abweichungen unter macOS]
+Unter macOS müssen Sie `cron` nicht selbst starten:
+`launchd` startet `cron` automatisch, sobald es eine `crontab` gibt.
+[ENDFOLDOUT]
 
 ### `cronjobs` auflisten
 
@@ -62,6 +67,16 @@ bauen wir uns stattdessen ein einfaches Testbeispiel.
 
 Erstellen Sie für den aktuellen Benutzer einen `cronjob`, der _jede Minute_ ausgeführt wird und 
 in die Datei `cron/uhrzeit.txt` in Ihrem [TERMREF::Hilfsbereich] eine Zeile mit der aktuellen Uhrzeit ergänzt.
+
+[FOLDOUT::Abweichungen unter macOS]
+`crontab -e` öffnet unter macOS den Editor `vi`, wenn die Umgebungsvariable `EDITOR` nicht gesetzt ist.
+Mit `EDITOR=nano crontab -e` bearbeiten Sie die `crontab` stattdessen in `nano` (bzw. `pico`).
+
+Falls `cron/uhrzeit.txt` nach zwei Minuten noch nicht existiert:
+Ab macOS 15 gibt es unter Systemeinstellungen > Allgemein > Anmeldeobjekte & Erweiterungen
+einen Schalter für ältere Hintergrundaufgaben (englisch "Legacy Background Tasks").
+Ist er aus, führt `cron` keine `cronjobs` aus.
+[ENDFOLDOUT]
 
 [HINT::Spezielle Zeichen in Crontab]
 Innerhalb von `crontab` werden `%`-Zeichen speziell behandelt: `cron` interpretiert sie als 
