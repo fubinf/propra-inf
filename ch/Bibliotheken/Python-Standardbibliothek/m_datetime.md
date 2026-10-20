@@ -5,8 +5,8 @@ difficulty: 2
 ---
 
 [SECTION::goal::trial]
-- Ich kann in Python Zeit- und Datumswerte erstellen, formatieren und verrechnen.
-- Ich kenne den Unterschied zwischen aware und naive `datetime`.
+Ich kann in Python Zeit- und Datumswerte erstellen, formatieren und verrechnen.  
+Ich kenne den Unterschied zwischen aware und naive `datetime`.
 [ENDSECTION]
 
 
@@ -83,8 +83,17 @@ Konzepte für Zeitzonen "naive" (naiv) und "aware" (gewahr) nach. Ist Ihr letzte
 [ER] Sorgen Sie dafür, dass es in der hiesigen Zeitzone (Europe/Berlin) gewahr wird. Geben Sie 
 das Ergebnis mit `print("Berliner Zeit:", ...)` aus.  
 Für diese Aufgabe kann das Modul [`zoneinfo`](https://docs.python.org/3/library/zoneinfo.html#module-zoneinfo)
-nützlich sein, welches eine konkrete Implementierung der Klasse `datetime.tzinfo` bietet. 
-Andere Module von Drittanbietern sollen in dieser Aufgabe **nicht** verwendet werden.
+nützlich sein, welches eine konkrete Implementierung der Klasse `datetime.tzinfo` bietet und 
+damit echte Zeitzoneninformationen bereitstellt.
+
+[NOTICE]
+Viele Tutorials empfehlen beim Thema Zeitzonen noch das Drittanbietermodul `pytz`.
+Dieses gilt mittlerweile aber als deprecated. Die Entwickler verweisen stattdessen selbst auf das 
+Modul `zoneinfo` in der stdlib, das für die allermeisten Anwendungsfälle ausreichend ist und 
+daher das Installieren weiterer Module häufig unnötig macht.
+
+Verwenden Sie für die Aufgabe daher **keine** Drittanbietermodule.
+[ENDNOTICE]
 
 [ER] Erzeugen Sie ein zweites Objekt zum textuell selben Zeitpunkt wie das vorherige, aber in der 
 Zeitzone "America/Caracas".
@@ -142,10 +151,10 @@ def time_average(logs: list[tuple[str,int,str]]) -> dt.timedelta:
     return _____
 ```
 
+
 ### Programmlauf für die Abgabe
 
 [EC] Führen Sie das gesamte so erzeugte Programm `m_datetime.py` einmal aus.
-
 [ENDSECTION]
 
 
@@ -156,14 +165,11 @@ def time_average(logs: list[tuple[str,int,str]]) -> dt.timedelta:
 [ENDSECTION]
 
 
-[INSTRUCTOR::Codedurchsicht]
-Den Code lesen und manuell ungefähr auf Richtigkeit prüfen.
-Das Kommandoprotokoll zur Unterstützung heranziehen.
-Klare Defekte und sehr ungünstige Konstruktionen zurückweisen,
-insbesondere solche, die zu wenig Gebrauch von `datetime` machen.
-
-Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_datetime.py]
-
+[INSTRUCTOR::Kommandoprotokoll und Code prüfen]
 [INCLUDE::ALT:]
 
+
+### Kommandoprotokoll
+
+[PROT::ALT:m_datetime.prot]
 [ENDINSTRUCTOR]
