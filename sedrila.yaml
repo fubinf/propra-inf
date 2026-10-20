@@ -161,7 +161,7 @@ instructors:
   - nameish: Jonathan Hertting
     email: jonathan.hertting@fu-berlin.de
     gitaccount: lu0077fu
-    webaccount: jonathan
+    webaccount: lu0077fu
     keyfingerprint: "8F17D88095011C4795F16B6C539B28592435ECE8"
     pubkey: |
       -----BEGIN PGP PUBLIC KEY BLOCK-----
