@@ -1,5 +1,4 @@
 title: Paketmanager zur Installation (etc.) von Bibliotheken
-stage: alpha
 ---
 Wenn [TERMREF2::Bibliothek::-en] der Treibstoff der modernen Softwareentwicklung sind,
 dann ist der Paketmanager die Tankstelle, wo man sich diesen Treibstoff in der Regel beschafft.
