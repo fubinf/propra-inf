@@ -134,15 +134,10 @@ Optional: Wer es genauer wissen möchte, findet detaillierte Informationen zu Co
 
 ### Sessions und Sitzungsverwaltung
 
-Sessions sind temporäre Speicherbereiche, die auf dem Server für jeden Benutzer erstellt werden.  
-Alternativ könnte man auch Mechanismen wie `localStorage` nutzen, 
-um clientseitig Daten zu halten.  
+Eine Session ist ein temporärer Speicherbereich, der auf dem Server für eine Sitzung eines Benutzers verwaltet wird.  
+(Alternativ könnte man auch Mechanismen wie `localStorage` nutzen, 
+um clientseitig Daten zu halten.)  
 Sessions enthalten Informationen über die Benutzeraktivität und den aktuellen Zustand.
-
-[NOTICE]
-Genau genommen speichert der Server nicht „die Session selbst“, sondern nur die zugehörigen Daten, 
-die durch die Session-ID referenziert werden.
-[ENDNOTICE]
 
 Cookies und Sessions arbeiten zusammen:
 
@@ -180,11 +175,13 @@ Cookies besitzen Attribute, die ihr Verhalten und ihre Lebensdauer steuern:
 - **Expires**: Ablaufdatum eines Cookies (z. B. `Expires=Thu, 31 Oct 2025 07:28:00 GMT`).  
 - **Max-Age**: Lebensdauer in Sekunden, Alternative zu `Expires` (z. B. `Max-Age=2592000` für 30 Tage).  
 - **HttpOnly**: Verhindert den Zugriff auf Cookies durch JavaScript (Schutz vor XSS-Angriffen).  
+- **Path**: Cookie wird nur an Seiten übertragen, deren Pfad mit diesem Wert beginnt 
+  (z.B. `Path=/mytree`) und andernfalls eingespart. Dient zur Optimierung, nicht zur Sicherheit.
 - **Secure**: Cookie wird nur über HTTPS übertragen.  
 - **SameSite**: Schutz gegen CSRF-Angriffe. Mögliche Werte:  
-  - `Strict` – Cookie wird nur für Anfragen von derselben Site gesendet.  
-  - `Lax` – Cookie wird für Top-Level-Navigationen gesendet (Standard).  
-  - `None` – Cookie wird auch bei Cross-Site-Requests gesendet (nur mit `Secure` erlaubt).  
+    - `Strict` – Cookie wird nur für Anfragen von derselben Site gesendet.  
+    - `Lax` – Cookie wird für Top-Level-Navigationen gesendet (Standard).  
+    - `None` – Cookie wird auch bei Cross-Site-Requests gesendet (nur mit `Secure` erlaubt).  
 
 Darüber hinaus spielt die Lebensdauer der Cookies eine Rolle:
 
