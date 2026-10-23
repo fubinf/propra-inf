@@ -1,6 +1,6 @@
 title: "C Gleitkomma-Typen"
 stage: alpha
-timevalue: 1
+timevalue: 1.25
 difficulty: 2
 assumes: c-int-types
 ---
@@ -67,7 +67,7 @@ int main(void) {
   printf("%.9f %d\n", sum, sum == 1.0f);
 
   /* Genauigkeit */
-  float big = 16777216.0f;
+  float big = 16777216.0f; // 2^24
 
   printf("%d\n", big + 1.0f == big);
 
@@ -90,8 +90,9 @@ Sie liefert 1, wenn sich `a` und `b` um weniger als `1e-9` unterscheiden, sonst 
 
 [EC] Bauen Sie das Target `floats` und führen Sie es aus.
 
-[EQ] Warum ist der Vergleich mit `nearlyEqual` besser, und wann reicht ein fester Abstand wie
-`1e-9` nicht aus?
+[EQ] Decken sich Ihre Vermutungen mit der tatsächlichen Ausgabe?
+Wählen Sie eine abweichende Zeile und beschreiben Sie, welche Annahme nicht stimmte.
+Falls alles gestimmt hat, begründen Sie eine Zeile ausführlicher.
 
 [HINT::Ich verstehe nicht, warum 0.1 + 0.2 nicht 0.3 ist]
 Genau wie bei Dezimalzahlen können nicht alle Werte mit einer endlichen Anzahl an Ziffern
@@ -100,9 +101,44 @@ abgebildet werden.
 aus der Python-Dokumentation geht auf die Gründe ein.
 [ENDHINT]
 
-[EQ] Warum ist `big + 1.0f == big` wahr?
+[ER] Fügen Sie vor dem `return 0` folgendes ein:
+```c
+printf("%d\n", nearlyEqual(1e-10, 1e-20));
+printf("%d\n", nearlyEqual(1e20 + 1e5, 1e20));
+```
 
-[EQ] Was sagt die Seite über den Wert `NaN`, und was gibt `printf` dafür aus?
+[EC] Bauen Sie das Target `floats` und führen Sie es aus.
+
+[EQ] Erklären Sie die beiden neuen Ausgaben.
+Warum ist `nearlyEqual` besser als `==`, und wann reicht ein fester Abstand wie `1e-9` nicht aus?
+
+[EQ] Warum ist `big + 1.0f == big` wahr?
+C nutzt den [IEEE754 Standard für 32-Bit `float`](https://en.wikipedia.org/wiki/Single-precision_floating-point_format).
+
+[HINT::Ich verstehe nicht, warum big + 1.0f == big wahr ist]
+`16777216` ist `2^24`. Wie viele Bit hat die Mantisse eines `float`?
+
+[HINT::Mantissenbreite]
+binary32 speichert 23 Mantissenbits plus ein implizites führendes Bit, also 24 signifikante Bits.
+
+[HINT::Rundung]
+Oberhalb von `2^24` ist der Abstand benachbarter `float` mindestens 2.
+`2^24 + 1` liegt genau in der Mitte zweier darstellbarer Zahlen und wird auf die mit gerader Mantisse gerundet, also zurück auf
+`2^24`.
+[ENDHINT]
+[ENDHINT]
+[ENDHINT]
+
+[EQ] Erklären Sie die beiden Ausgaben aus dem Abschnitt Sonderwerte.
+Was sagt die Referenzseite über `nan`, und was gibt `printf` aus?
+
+[HINT::IEEE754 Arithmetik]
+IEEE754, dem Standard für Gleitkommaarithmetik, dem C in der Regel folgt, definiert
+`x/0 = ±inf für x ≠ 0` und `0/0` als `nan`.
+Durch das in der IEEE754 vorgesehene Vorzeichenbit ergibt sich, dass es sowohl `nan` als auch `-nan`
+gibt.
+Welches davon bei `printf` ausgegeben wird ist plattformabhängig.
+[ENDHINT]
 
 [EQ] Der Übersetzer warnt in der `printf`-Zeile mit `sum`.
 Was geschieht mit `sum` beim Aufruf von `printf`?
@@ -119,7 +155,7 @@ Diese Wandlungen sind die
 [ER] Machen Sie die Wandlung explizit.
 
 [EC] Bauen und führen Sie das Target `floats` erneut aus.
-<!-- time estimate: 40 min -->
+<!-- time estimate: 50 min -->
 
 
 ### Typwahl und `typedef`
@@ -138,7 +174,7 @@ gelernt haben.
 - einfache Cookie-Zustimmung
 
 [ER] Legen Sie `choose.c` an.
-Deklarieren Sie für jeden Wert eine Variable mit dem in [EREFQ::6] gewählten Typ
+Deklarieren Sie für jeden Wert eine Variable mit dem in [EREFQ::7] gewählten Typ
 (`<stdint.h>` und `<stdbool.h>` helfen), setzen Sie einen passenden Beispielwert
 und geben Sie alle sechs Werte mittels `printf` aus.
 Es darf keine Warnung bleiben.
@@ -150,12 +186,12 @@ legt `typedef int64_t cents_t;` einen neuen Alias `cents_t` für `int64_t` an.
 Mit einem `typedef` können Sie die Bedeutung eines Typs besser sichtbar machen.
 Zudem erlaubt es Ihnen, den eigentlichen Typ später leichter anzupassen, ohne dabei die Bedeutung
 zu ändern (`cents_t` bleibt für Centbeträge, egal ob `int32_t` oder `int64_t`).
-Legen Sie für die in [EREFR::4] deklarierten Variablen sinnvolle `typedef`-Aliase an
+Legen Sie für die in [EREFR::5] deklarierten Variablen sinnvolle `typedef`-Aliase an
 und ändern Sie die Variablendeklarationen so, dass sie diese Aliase nutzen.
 Passen Sie bei Bedarf die Formatangaben der `printf`-Aufrufe an.
 
 [EC] Bauen und führen Sie das Target `choose` erneut aus.
-<!-- time estimate: 20 min -->
+<!-- time estimate: 25 min -->
 
 [ENDSECTION]
 
