@@ -121,6 +121,22 @@ Wie lässt sich die eine Funktion durch die andere ersetzen?
 <!-- time estimate: 10 min -->
 
 
+### Abbruch durch Signale des Betriebssystems
+
+Ein Kontext kann nicht nur durch das eigene Programm abgebrochen werden, sondern auch von außen:
+[`signal.NotifyContext()`](https://pkg.go.dev/os/signal#NotifyContext) aus dem Paket `os/signal` liefert einen Kontext, der abgebrochen wird, sobald
+der Prozess eines der angegebenen Signale empfängt, wie beispielsweise `os.Interrupt` (`Ctrl+C`) oder `syscall.SIGTERM`.
+So kann ein Programm bei `Ctrl+C` alle laufenden Goroutinen geordnet beenden und aufräumen:
+
+```go
+ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+defer stop()
+```
+
+Genauso wie die `CancelFunc` oben muss auch `stop` stets aufgerufen werden:
+Erst dann wird die Signalbehandlung wieder freigegeben.
+
+
 ### Übertragung von Schlüssel-Wert-Paaren
 
 Jeder Kontext kann Schlüssel-Wert-Paare speichern.
