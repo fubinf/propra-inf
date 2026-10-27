@@ -66,6 +66,11 @@ LU- oder eine Cholesky-Zerlegung.
 Der Gewinn liegt darin, dass man eine einmal berechnete Zerlegung für beliebig viele rechte Seiten
 wiederverwenden kann; die beiden folgenden Abschnitte kommen darauf zurück.
 
+Die Signaturen in dieser Aufgabe zeigen nur die jeweils relevanten Parameter; in der tatsächlichen
+Signatur stehen weitere dazwischen.
+Übergeben Sie die optionalen Parameter deshalb immer benannt, also z. B. `permute_l=True` statt
+nur `True`.
+
 **LU-Zerlegung:**
 
 ```python
@@ -101,11 +106,6 @@ print(P @ L @ U)
 
 `P` hält fest, welche Zeilen die Zerlegung vertauscht hat.
 Ist keine Vertauschung nötig, steht dort die Einheitsmatrix.
-
-Die Signaturen in dieser Aufgabe zeigen nur die jeweils relevanten Parameter; in der tatsächlichen
-Signatur stehen weitere dazwischen.
-Übergeben Sie die optionalen Parameter deshalb immer benannt, also z. B. `permute_l=True` statt
-nur `True`.
 
 **QR-Zerlegung:**
 
