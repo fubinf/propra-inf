@@ -65,7 +65,7 @@ weil dadurch der Code effizienter und weniger fehleranfällig gemacht wird.
 
 Lesen Sie den folgenden 
 <!-- @LINK_SPEC: status=403 -->
-[Artikel zu Funktionen](https://www.programiz.com/python-programming/function) und 
+<!-- @LINK_SPEC: status=403 -->[Artikel zu Funktionen](https://www.programiz.com/python-programming/function) und 
 bearbeiten Sie danach Folgendes:
 
 [EQ] Weches [TERMREF::Schlüsselwort] in Python wird verwendet, um eine Funktion zu erstellen?

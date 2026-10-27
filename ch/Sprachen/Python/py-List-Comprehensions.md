@@ -11,7 +11,7 @@ Ich kann Python-List-Comprehensions in meinem Code richtig einsetzen.
 [SECTION::instructions::loose]
 In dieser Aufgabe wenden wir die Techniken an, die in diesem Artikel über
 <!-- @LINK_SPEC: status=403 -->
-[List-Comprehension in Python](https://www.programiz.com/python-programming/list-comprehension) 
+<!-- @LINK_SPEC: status=403 -->[List-Comprehension in Python](https://www.programiz.com/python-programming/list-comprehension) 
 beschrieben sind. Überfliegen Sie den also bitte jetzt.
 (Bitte sagen Sie nie "execute an expression", wie es der Artikel tut:
  Ausdrücke (expressions) werden ausgewertet (evaluated), nicht ausgeführt (executed).
@@ -84,7 +84,7 @@ durch eine gleichwertige List-Comprehension ersetzen? Warum?
 
 Dieser folgende kleine Artikel vermittelt Ihnen ein Gefühl darüber,
 <!-- @LINK_SPEC: status=403 -->
-[wann Listen-Comprehensions in Python nicht verwendet werden sollten](https://medium.com/@ivjot/when-not-to-use-list-comprehensions-in-python-ad3257a227b).
+<!-- @LINK_SPEC: status=403 -->[wann Listen-Comprehensions in Python nicht verwendet werden sollten](https://medium.com/@ivjot/when-not-to-use-list-comprehensions-in-python-ad3257a227b).
 
 Versuchen Sie hierbei anhand der Beispiele zu verstehen,
 dass eine List-Comprehension nicht immer die beste Lösung ist.

@@ -49,7 +49,7 @@ anderen Datensatzes angibt.
 
 Hier ist ein 
 [Beispiel](https://www.programiz.com/sites/tutorial2program/files/related-tables.png);
-es stammt von [HREF::https://www.programiz.com/sql/database-introduction]
+es stammt von <!-- @LINK_SPEC: status=403 -->[HREF::https://www.programiz.com/sql/database-introduction]
 
 Welche andere Tabelle dabei gemeint ist, steht im "Datenbankschema";
 ebenso, welchen Datentyp jedes Attribut hat.
