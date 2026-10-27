@@ -54,12 +54,12 @@ jobs:
         source /tmp/sedrila_venv/bin/activate
         python --version
         ls -la
-        ls -la sedrila/py/
+        ls -la sedrila/sedrila/
 
     - name: Run link checker
       run: |
         source /tmp/sedrila_venv/bin/activate
-        python sedrila/py/sedrila.py maintainer check-links --batch -- /tmp/linkcheck
+        python sedrila/sedrila/__main__.py maintainer check-links --batch -- /tmp/linkcheck
       continue-on-error: false
     
     - name: Publish markdown report to job summary
