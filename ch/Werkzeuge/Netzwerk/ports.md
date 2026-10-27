@@ -7,6 +7,7 @@ assumes: Prozessmanagement, grep, apt101
 ---
 
 [SECTION::goal::experience]
+
 - Ich kann herausfinden, welche Programme auf meinem Rechner auf welchen Ports horchen.
 - Ich kann die Ursache der Fehlermeldung `Address already in use` finden und beheben.
 - Ich verstehe, warum ein Server, der nur auf `127.0.0.1` horcht, von anderen Rechnern aus
@@ -45,17 +46,16 @@ Eine solche Aktion hat keine Kommandonummer und gehört nicht ins Kommandoprotok
 Ersetzen Sie in dieser Aufgabe
 
 - `ss -tln` und `ss -tlpn` durch `lsof -iTCP -sTCP:LISTEN -n -P`,
-- `sudo ss -tlpn` durch `sudo lsof -iTCP -sTCP:LISTEN -n -P`,
 - `ss -tn` durch `lsof -iTCP -sTCP:ESTABLISHED -n -P`,
-- `lsof -i :8000` durch `lsof -i :8000 -P` (ebenso bei Port 8002 und mit `sudo`),
+- `lsof -i :8000` durch `lsof -i :8000 -P` (ebenso für Port 8002 und mit `sudo`),
 - `hostname -I` durch `ipconfig getifaddr en0`
   (liefert das keine Adresse, versuchen Sie `en1`),
 - `cat /proc/sys/net/ipv4/ip_local_port_range` durch
   `sysctl net.inet.ip.portrange.first net.inet.ip.portrange.last`.
 
-`-iTCP` wählt die TCP-Sockets aus,
-`-sTCP:LISTEN` bzw. `-sTCP:ESTABLISHED` davon die im genannten Zustand.
-`-n` zeigt IP-Adressen statt Rechnernamen.
+`-iTCP` wählt die TCP-Sockets aus,  
+`-sTCP:LISTEN` bzw. `-sTCP:ESTABLISHED` davon die im genannten Zustand.  
+`-n` zeigt IP-Adressen statt Rechnernamen.  
 `-P` zeigt Portnummern statt Dienstnamen:
 Ohne `-P` schlägt `lsof` jeden Port in `/etc/services` nach
 und zeigt beispielsweise für Port 8000 den Namen `irdmi`, der dort unter macOS eingetragen ist.
@@ -107,7 +107,7 @@ Jede Zeile ist ein Socket, an dem ein Programm auf Verbindungen wartet.
 Die Spalte `Local Address:Port` sagt, auf welcher Adresse und welchem [TERMREF::Netzwerkport] das Programm wartet.
 
 Welcher Dienst üblicherweise welchen Port verwendet, steht in der Datei `/etc/services`.
-Die hohen Portnummern aus Ihrer Ausgabe finden Sie dort meist nicht:
+Hohe Portnummern aus Ihrer Ausgabe finden Sie dort meist nicht:
 Viele Programme (beispielsweise IDEs) wählen sich irgendeinen freien Port aus.
 Welches Programm dahintersteckt, erfahren Sie im nächsten Abschnitt mit `ss -tlpn`.
 

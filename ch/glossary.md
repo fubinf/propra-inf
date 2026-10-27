@@ -1452,8 +1452,8 @@ Mit `-l` wartet es stattdessen auf einem Port auf eine eingehende Verbindung.
 [ENDTERM]
 
 
-[TERM::Netzwerkport]
-Ein Netzwerkport ist eine Nummer zwischen 0 und 65535,
+[TERM::Netzwerkport|Port]
+Ein Netzwerkport (meist kurz "Port") ist eine Nummer zwischen 0 und 65535,
 mit der das Betriebssystem ankommende Netzwerkdaten dem richtigen Programm zuordnet.
 Die [TERMREF::IP-Adresse] findet den richtigen Rechner,
 die Portnummer auf diesem Rechner das richtige Programm.
@@ -2014,7 +2014,7 @@ Ein TCP-Server öffnet zuerst einen Socket, auf dem er auf neue Verbindungen war
 (Zustand `LISTEN`).
 Für jede Verbindung, die er annimmt, bekommt er einen weiteren Socket,
 der nur für diese eine Verbindung da ist.
-Dieser Socket kennt zusätzlich Adresse und Port der Gegenseite.
+Dieser Socket kennt zusätzlich IP-Adresse und Port der Gegenseite.
 Der Client hat für dieselbe Verbindung auf seiner Seite ebenfalls einen Socket.
 
 Die Kommandos `ss` und `lsof -i` zeigen die Sockets eines Rechners an.
