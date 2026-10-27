@@ -20,7 +20,7 @@ die man beantworten möchte.
 [SECTION::instructions::loose]
 Eine kompakte Übersicht, welcher Diagrammtyp wofür geeignet ist (und wofür nicht),
 bietet der
-[Data Viz Catalogue (deutsch)](https://datavizcatalogue.com/DE/).
+[Data Viz Catalogue](https://datavizcatalogue.com/).
 Schlagen Sie dort nach, wenn eine der folgenden „Wofür eignet sich …?"-Fragen Sie ins Grübeln bringt.
 
 ### Linien- und Scatter-Plot (`plot()`, `scatter()`)
