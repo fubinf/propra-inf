@@ -206,7 +206,7 @@ git commit -m "calculator.py mit Additionsfunktion angelegt"
 
 [FOLDOUT::Was ist eine sinnvolle Commit-Nachricht?]
 Dazu gibt es sogar
-[wissenschaftliche Untersuchungen](https://dl.acm.org/doi/10.1145/3510003.3510205).
+<!-- @LINK_SPEC: status=403 -->[wissenschaftliche Untersuchungen](https://dl.acm.org/doi/10.1145/3510003.3510205).
 Grundsätzlich gilt: Halten Sie sich kurz und beschreiben Sie klar, was der Commit beinhaltet.
 Hier zum Beispiel: `calculator.py mit Additionsfunktion angelegt`.
 Später dann vielleicht: `fix: Division fängt Division durch Null ab`.

@@ -238,7 +238,7 @@ Lesen Sie die Kapitel 1-4 von register aus der
 Falls Ihnen nicht einfallen sollte, was Sie im Reflektionsteil schreiben sollen, sind hier ein paar 
 Anregungen:
 
-[i dont understand why anyone would use nano/vim](https://www.reddit.com/r/learnprogramming/comments/xhghsg/i_dont_understand_why_anyone_would_use_nanovim/)
+<!-- @LINK_SPEC: status=403 -->[i dont understand why anyone would use nano/vim](https://www.reddit.com/r/learnprogramming/comments/xhghsg/i_dont_understand_why_anyone_would_use_nanovim/)
 [Vim vs Nano: What Should You Choose?](https://itsfoss.com/vim-vs-nano/)
 [ENDHINT]
 

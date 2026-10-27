@@ -21,17 +21,17 @@ Hier probieren wir diese Dinge "im Sandkasten" aus: in einer Extraumgebung,
 mit nur wenig Angst, wertvolle Arbeit zu verlieren.
 Hier können Sie lernen, sich nicht wie die 
 <!-- @LINK_SPEC: status=403 -->
-[armen Git-Stümper_innen](https://stackoverflow.com/questions/40503417/how-can-i-add-a-file-to-the-last-commit-in-git)
+<!-- @LINK_SPEC: status=403 -->[armen Git-Stümper_innen](https://stackoverflow.com/questions/40503417/how-can-i-add-a-file-to-the-last-commit-in-git)
 zu verhalten, die versehentlich 
 <!-- @LINK_SPEC: status=403 -->
-[ihr ganzes Repo](https://stackoverflow.com/questions/66394191/accidentally-deleted-overwrote-local-files-in-git-repo)
+<!-- @LINK_SPEC: status=403 -->[ihr ganzes Repo](https://stackoverflow.com/questions/66394191/accidentally-deleted-overwrote-local-files-in-git-repo)
 oder 
 <!-- @LINK_SPEC: status=403 -->
-[ihre letzten Änderungen löschen](https://stackoverflow.com/questions/5788037/recover-from-losing-uncommitted-changes-by-git-reset-hard) 
+<!-- @LINK_SPEC: status=403 -->[ihre letzten Änderungen löschen](https://stackoverflow.com/questions/5788037/recover-from-losing-uncommitted-changes-by-git-reset-hard) 
 oder sich durch 
 <!-- @LINK_SPEC: status=403 -->
-[fehlende git-Kenntnis mithilfe von ChatGPT ihr Arbeit zerstören](https://stackoverflow.com/questions/75908629/i-mistakenly-deleted-most-of-my-files-with-git-is-there-a-way-to-recover). 
-Nur um dann [nochmal umständlich von vorne zu beginnen](https://www.reddit.com/r/git/comments/17kte2s/newbie_screwed_up_and_i_need_to_start_over/).
+<!-- @LINK_SPEC: status=403 -->[fehlende git-Kenntnis mithilfe von ChatGPT ihr Arbeit zerstören](https://stackoverflow.com/questions/75908629/i-mistakenly-deleted-most-of-my-files-with-git-is-there-a-way-to-recover). 
+Nur um dann <!-- @LINK_SPEC: status=403 -->[nochmal umständlich von vorne zu beginnen](https://www.reddit.com/r/git/comments/17kte2s/newbie_screwed_up_and_i_need_to_start_over/).
 
 [ENDSECTION]
 [SECTION::instructions::detailed]
