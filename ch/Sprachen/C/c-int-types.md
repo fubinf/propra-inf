@@ -1,5 +1,5 @@
 title: "C Ganzzahl-Typen"
-stage: alpha
+stage: beta
 timevalue: 1.75
 difficulty: 2
 assumes: c-preprocessor-include
@@ -7,6 +7,7 @@ assumes: c-preprocessor-include
 [SECTION::goal::idea]
 Ich verstehe die Ganzzahl-Datentypen in C sowie die Besonderheiten im Umgang mit ihnen.
 [ENDSECTION]
+
 
 [SECTION::background::default]
 Python ist eine dynamisch typisierte Sprache.
@@ -24,6 +25,7 @@ Python-`int`-Werte haben dagegen keine Größengrenze.
 Sie können beliebig große oder kleine Werte darin speichern.
 [ENDSECTION]
 
+
 [SECTION::instructions::detailed]
 Für die Aufgaben wird hauptsächlich folgende Referenz verwendet:
 <!-- @LINK_SPEC: status=403 -->[Arithmetische Typen](https://en.cppreference.com/c/language/arithmetic_types).
@@ -36,6 +38,7 @@ Die für die Aufgaben zu verwendenden `printf`-Formatangaben sind hier gelistet:
 - `%d` für `int`, `%u` für `unsigned int`
 - `%zu` für `size_t` (das Ergebnis von `sizeof`)
 - `%ld` bzw. `%lu` für `long` bzw. `unsigned long`
+- `%llu` für `unsigned long long`
 
 Eine Formatangabe mit einer Zahl zwischen dem `%` und den Buchstaben dient dazu, die Mindestbreite
 der Ausgabe in Zeichen anzugeben.
@@ -84,6 +87,10 @@ Lesen Sie den Abschnitt über
 Läuft ein Wert über das Maximum seines Typs hinaus, ist das ein Überlauf.
 Bei `unsigned` beginnt er dann wieder bei 0 (er "läuft um").
 
+Der folgende Code nutzt Wandlungen (Casts).
+Eine Wandlung ist eine explizite Umwandlung nach dem Schema `(int)a`, wobei hier die Variable `a`
+in den Typ `int` gewandelt wird.
+
 [ER] Legen Sie `overflow.c` mit folgendem Inhalt an:
 
 ```c
@@ -93,26 +100,31 @@ Bei `unsigned` beginnt er dann wieder bei 0 (er "läuft um").
 int main(void) {
   uint8_t f8 = 1;
   uint32_t f32 = 1;
-  uint64_t f64 = 1;
+  unsigned long long f64 = 1;
 
   for (int n = 1; n <= 25; n++) {
     f8 *= (uint8_t)n; // *= ist äquivalent zu a = a * b
     f32 *= (uint32_t)n;
-    f64 *= (uint64_t)n;
+    f64 *= (unsigned long long)n;
 
-    printf("%2d! %3u %10u %20lu\n", n, f8, f32, f64);
+    printf("%2d! %3u %10u %20llu\n", n, f8, f32, f64);
   }
 
   return 0;
 }
 ```
 
-[EQ] Bei welchem `n` erwarten Sie, dass die Spalte für `uint8_t`, `uint32_t` und `uint64_t` jeweils
+(Warum steht oben statt `unsigned long long f64` nicht `uint64_t f64`?
+Weil das auf Linux einen anderen Typ hat (`unsigned long`) als auf macOS (`unsigned long long`)
+und somit müssten wir je nach Plattform einen anderen Formatspezifizierer schreiben (`%lu` bzw. `%llu`).
+Das ist ungünstig, also nehmen wir lieber den unregelmäßigeren Typnamen in Kauf.)
+
+[EQ] Bei welchem `n` erwarten Sie, dass die Spalte für `uint8_t`, `uint32_t` und `unsigned long long` jeweils
 zum ersten Mal falsch wird?
 
 [EC] Bauen Sie das Target `overflow` und führen Sie es aus.
 
-[EQ] Weshalb tritt dieses Verhalten auf?
+[EQ] Welches Verhalten sehen Sie und weshalb tritt es auf?
 <!-- time estimate: 15 min -->
 
 
@@ -160,7 +172,7 @@ und in `main` `INT_MAX` auf `UINT_MAX`.
 
 [ER] Stellen Sie `int` und `INT_MAX` wieder her.
 Ergänzen Sie in der `CMakeLists.txt` `target_compile_options(signedoverflow PRIVATE -fwrapv)`, bei
-VSCode fügen Sie dies für die Dauer der Aufgabe in der `tasks.json` entsprechend der anderen
+VSCode fügen Sie `-fwrapv` für die Dauer der Aufgabe in der `tasks.json` entsprechend der anderen
 Optionen ein.
 Die Option legt fest, dass ein Überlauf bei vorzeichenbehafteten Typen umläuft.
 
@@ -218,9 +230,9 @@ void lengthCheck(void) {
 }
 
 void seconds(void) {
-  uint64_t total = 100000 * 100000;
+  unsigned long long total = 100000 * 100000;
 
-  printf("Sekunden: %lu\n", total);
+  printf("Sekunden: %llu\n", total);
 }
 
 int main(void) {
@@ -243,9 +255,7 @@ und erklären Sie den Fehler mit den Umwandlungsregeln der Seite.
 
 [ER] Beheben Sie alle vier Fehler, sodass die richtigen Ausgaben erscheinen und keine Warnung
 mehr bleibt.
-Ändern Sie dazu nur Typen, Literale oder Wandlungen (Casts).
-Eine Wandlung ist eine explizite Umwandlung nach dem Schema `(int)a`, wobei hier die Variable `a`
-in den Typ `int` gewandelt wird.
+Ändern Sie dazu nur Typen, Literale oder Wandlungen.
 
 [EC] Bauen und führen Sie das Target `convert` aus.
 
@@ -271,14 +281,15 @@ printf("%d %d\n", (bool)v, (unsigned char)v);
 als Python.
 Woran haben Sie es jeweils bemerkt (Warnung, Vergleich mit Python, Rechnung, gar nicht)?
 <!-- time estimate: 10 min -->
-
 [ENDSECTION]
+
 
 [SECTION::submission::reflection,trace,program]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Quellcode.md]
 [ENDSECTION]
+
 
 [INSTRUCTOR::Abgabe prüfen]
 [INCLUDE::ALT:]
