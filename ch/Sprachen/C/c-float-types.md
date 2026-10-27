@@ -1,5 +1,5 @@
 title: "C Gleitkomma-Typen"
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 2
 assumes: c-int-types
@@ -9,10 +9,10 @@ Ich verstehe die Gleitkomma-Datentypen in C sowie die Besonderheiten im Umgang m
 [ENDSECTION]
 
 [SECTION::background::default]
-Das Verhalten der Gleitkomma-Typen in C ist gleich dem in Python.
-Anders als bei den Ganzzahltypen gibt es hier kaum Stolperfallen, die an C statt an
-Gleitkommazahlen im Allgemeinen liegen.
-Der wesentliche Unterschied: Python kennt nur einen Gleitkommatyp, der `double` (64 Bit) entspricht;
+Darstellung und Rundung der Gleitkomma-Typen in C sind gleich wie in Python.
+Anders als bei den Ganzzahltypen gibt es hier kaum Stolperfallen, die an der Sprache liegen,
+aber die Aufgabe beleuchtet diverse Besonderheiten von Gleitkommazahlen an sich.
+Python kennt nur einen Gleitkommatyp, der `double` (64 Bit) entspricht;
 C hat zusätzlich `float` mit nur 32 Bit.
 [ENDSECTION]
 
@@ -118,13 +118,13 @@ C nutzt den [IEEE754 Standard für 32-Bit `float`](https://en.wikipedia.org/wiki
 [HINT::Ich verstehe nicht, warum big + 1.0f == big wahr ist]
 `16777216` ist `2^24`. Wie viele Bit hat die Mantisse eines `float`?
 
-[HINT::Mantissenbreite]
+[HINT::Ich weiß nicht, wie breit die Mantisse eines `float` ist]
 binary32 speichert 23 Mantissenbits plus ein implizites führendes Bit, also 24 signifikante Bits.
 
-[HINT::Rundung]
+[HINT::Ich verstehe nicht, was die Mantissenbreite mit `2^24` zu tun hat]
 Oberhalb von `2^24` ist der Abstand benachbarter `float` mindestens 2.
-`2^24 + 1` liegt genau in der Mitte zweier darstellbarer Zahlen und wird auf die mit gerader Mantisse gerundet, also zurück auf
-`2^24`.
+`2^24 + 1` liegt genau in der Mitte zweier darstellbarer Zahlen und wird auf die mit gerader
+Mantisse gerundet, also zurück auf `2^24`.
 [ENDHINT]
 [ENDHINT]
 [ENDHINT]
@@ -132,12 +132,12 @@ Oberhalb von `2^24` ist der Abstand benachbarter `float` mindestens 2.
 [EQ] Erklären Sie die beiden Ausgaben aus dem Abschnitt Sonderwerte.
 Was sagt die Referenzseite über `nan`, und was gibt `printf` aus?
 
-[HINT::IEEE754 Arithmetik]
-IEEE754, dem Standard für Gleitkommaarithmetik, dem C in der Regel folgt, definiert
-`x/0 = ±inf für x ≠ 0` und `0/0` als `nan`.
+[HINT::Ich verstehe die Ausgaben `inf` und `-nan` nicht]
+IEEE754, der Standard für Gleitkommaarithmetik, dem C in der Regel folgt, definiert
+`x/0` für `x ≠ 0` als `±inf` und `0/0` als `nan`.
 Durch das in der IEEE754 vorgesehene Vorzeichenbit ergibt sich, dass es sowohl `nan` als auch `-nan`
 gibt.
-Welches davon bei `printf` ausgegeben wird ist plattformabhängig.
+Welches davon bei `printf` ausgegeben wird, ist plattformabhängig.
 [ENDHINT]
 
 [EQ] Der Übersetzer warnt in der `printf`-Zeile mit `sum`.
@@ -186,6 +186,8 @@ legt `typedef int64_t cents_t;` einen neuen Alias `cents_t` für `int64_t` an.
 Mit einem `typedef` können Sie die Bedeutung eines Typs besser sichtbar machen.
 Zudem erlaubt es Ihnen, den eigentlichen Typ später leichter anzupassen, ohne dabei die Bedeutung
 zu ändern (`cents_t` bleibt für Centbeträge, egal ob `int32_t` oder `int64_t`).
+Achtung: Streng genommen ist der Suffix `_t` in POSIX für Systemtypen reserviert und
+man sollte ihn für eigene Typen nicht benutzen; das wird in der Praxis aber dennoch bisweilen gemacht.
 Legen Sie für die in [EREFR::5] deklarierten Variablen sinnvolle `typedef`-Aliase an
 und ändern Sie die Variablendeklarationen so, dass sie diese Aliase nutzen.
 Passen Sie bei Bedarf die Formatangaben der `printf`-Aufrufe an.
