@@ -94,7 +94,7 @@ plt.show()
 begegnet Ihnen die jeweils andere bei z.B. Recherche nach Problemen, die Sie haben.
 Schauen Sie sich 
 <!-- @LINK_SPEC: status=403 -->
-[diese Frage zu `matplotlib` auf Stackoverflow](https://stackoverflow.com/questions/28269157/plotting-in-a-non-blocking-way-with-matplotlib)
+<!-- @LINK_SPEC: status=403 -->[diese Frage zu `matplotlib` auf Stackoverflow](https://stackoverflow.com/questions/28269157/plotting-in-a-non-blocking-way-with-matplotlib)
 an. 
 Was haben wir hier vor uns, implizite oder explizite Schreibweise?
 Sie müssen den Code der Frage nicht vollständig verstehen.
