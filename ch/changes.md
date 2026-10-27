@@ -1,2 +1,3 @@
 - **2026-10-27:** Aufgaben [PARTREF::c-int-types] und [PARTREF::c-float-types] zugefügt.
+  Aufgabe [PARTREF::pytest_mocking_freezegun] zugefügt.
 - ...

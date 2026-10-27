@@ -1,5 +1,5 @@
 title: "'freezegun': Zeitabhängigen Code testen"
-stage: alpha
+stage: beta
 timevalue: 2
 difficulty: 3
 assumes: pytest_mocking, m_pytest, pytest_aaa
