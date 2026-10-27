@@ -21,7 +21,6 @@ Wir benutzen hier die Programme von GCC, der GNU Compiler Collection,
 der gängigsten Lösung auf Linux-Systemen;
 es gibt aber auch andere Compiler für C.
 Neugierige können bei Bedarf noch viel mehr über den
-<!-- @LINK_SPEC: status=403 -->
 [inneren Aufbau des GCC C-Übersetzers](https://en.wikibooks.org/wiki/GNU_C_Compiler_Internals/GNU_C_Compiler_Architecture)
 nachlesen.
 [ENDSECTION]
