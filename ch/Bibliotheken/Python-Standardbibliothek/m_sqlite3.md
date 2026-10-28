@@ -17,16 +17,19 @@ Einen Datenbankserver aufzusetzen und anschließend zu administrieren ist zeit- 
 Für viele Projekte ist so eine Infrastruktur aber gar nicht notwendig, z.B. wenn Daten nur 
 lokal auf dem System vorliegen müssen.
 
-Dann kann SQLite hilfreich sein: eine C-Bibliothek, die leichtgewichtig lokale SQL Datenbanken 
-erzeugt und verwendet. 
-Um diese Bibliothek in Python verwenden zu können, gibt es das Modul 
-[sqlite3](https://docs.python.org/3/library/sqlite3.html).
+Dann kann [SQLite](https://sqlite.org/index.html) hilfreich sein: eine C-Bibliothek, die 
+leichtgewichtige lokale SQL Datenbanken erzeugt und verwendet.
+Um diese Bibliothek auch in Python verwenden zu können, stellt die Standardbibliothek das Modul 
+`sqlite3` bereit.
 
 [NOTICE]
-Diese Aufgabe beschäftigt sich hauptsächlich mit der Verwendung der SQLite-Bibliothek. 
+Diese Aufgabe beschäftigt sich hauptsächlich mit der Verwendung der `sqlite3`-Bibliothek. 
 Kenntnisse in Datenbanksystemen und SQL werden nicht vorausgesetzt, aber auch nicht 
-vermittelt. Sobald SQL-Queries gebraucht werden, werden diese als Hints bereitgestellt. Nutzen 
-Sie diese, wenn Sie keine SQL Kenntnisse haben oder eine Musterlösung zur Kontrolle benötigen.
+vermittelt.
+Schauen Sie bei Bedarf daher vorher in die Aufgabengruppe [PARTREF::SQL] rein.
+Außerdem stellt die Aufgabe SQL-Queries als Hints bereit, wenn diese erforderlich sind. 
+Nutzen Sie diese, wenn Ihre SQL Kenntnisse nicht ausreichen oder Sie eine Musterlösung zur 
+Kontrolle benötigen.
 [ENDNOTICE]
 [ENDSECTION]
 
@@ -102,7 +105,7 @@ CREATE TABLE IF NOT EXISTS books (
 ```
 [ENDHINT]
 
-ER] Sie besitzen u.a. die folgenden Bücher: "The Lord of The Rings" (Fantasy), "1984" (Fiction) 
+[ER] Sie besitzen u.a. die folgenden Bücher: "The Lord of The Rings" (Fantasy), "1984" (Fiction) 
 und "The Art of Computer Programming" (Monograph). Die ersten beiden Bücher haben Sie bereits 
 gelesen. Tragen Sie alle drei Bücher entsprechend in die Tabelle `books` ein.
 
@@ -208,7 +211,7 @@ und halten Sie sich an die gezeigte Vorgehensweise.
 
 [HINT::SQL-Befehl]
 ```SQL
-INSERT OR IGNORE INTO books VALUES (:title, :genre, 0)
+INSERT OR IGNORE INTO books VALUES (...)
 ```
 [ENDHINT]
 
@@ -230,25 +233,12 @@ Löschen Sie sie oder tragen Sie sie in `.gitignore` ein; siehe Aufgabe [PARTREF
 [ENDSECTION]
 
 
-[INSTRUCTOR::Codedurchsicht]
-Das Programm muss 4 mal mit verschiedenen Parametern ausgeführt werden:
+[INSTRUCTOR::Kommandoprotokoll und Code prüfen]
+[INCLUDE::ALT:]
 
-- `python m_sqlite3 create` erstellt eine Datenbankdatei `m_sqlite3.db` im Ausführungsverzeichnis.
-  Keine Ausgabe.
-- `python m_sqlite3 query` fragt Daten aus der Datenbank ab und zeigt sie an.
-- `python m_sqlite3 import` importiert Daten aus `m_sqlite3.json`. Keine Ausgabe.
-- `python m_sqlite3 query` fragt die erweiterten Daten nach dem Import erneut ab,
-  mit entsprechend geänderten Ausgaben.
+### Kommandoprotokoll
 
-Ausgabe mit Kommandoprotokoll und Musterausgabe vergleichen.  
-Den Code lesen und grob auf Richtigkeit prüfen.  
-Klare Defekte und sehr ungünstige Konstruktionen zurückweisen.
-
-Prüfen Sie insbesondere die korrekte Verwendung von Placeholdern in [EREFR::11]. 
-Der SQL Befehl darf nicht durch Verknüpfung von Strings erstellt werden, 
-weil das Zerbrechlichkeit und Sicherheitslücken verursacht.
-
-Beispiellösung siehe [TREEREF::/Bibliotheken/Python-Standardbibliothek/m_sqlite3.py]
+Das erstellte Programm wird viermal mit verschiedenen Parametern ausgeführt.
 
 [PROT::ALT:m_sqlite3.prot]
 [ENDINSTRUCTOR]
