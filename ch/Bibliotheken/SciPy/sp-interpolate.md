@@ -7,7 +7,8 @@ assumes: np-Einführung, np-array, np-array2, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
-- Ich kann eindimensionale Interpolation mit den aktuellen SciPy-Funktionen durchführen.
+
+- Ich kann eindimensionale Interpolation mit SciPy-Funktionen durchführen.
 - Ich kann den Einfluss des Glättungsparameters auf das Interpolationsergebnis beurteilen.
 - Ich kann Streudaten auch in mehr als einer Dimension interpolieren.
 - Ich kann verschiedene Interpolationsverfahren vergleichen und für gegebene Daten
@@ -42,15 +43,14 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 Interpolation erzeugt aus gegebenen Datenpunkten eine Funktion, mit der sich Werte zwischen den
 Punkten berechnen lassen.
 Die x-Koordinaten dieser Punkte heißen Stützstellen.
-Am gebräuchlichsten sind Splines: keine einzelne Formel für den gesamten Wertebereich, sondern eine
-stückweise aus Polynomen zusammengesetzte Funktion.
+Am gebräuchlichsten (hinter der simplen linearen Interpolation) sind Splines: 
+stückweise aus Polynomen zusammengesetzte Funktionen.
 SciPy bietet dafür vor allem zwei Werkzeuge: `make_interp_spline` für Splines beliebigen
 Grades und `CubicSpline` speziell für kubische Splines.
 
 [NOTICE]
 Viele Tutorials im Netz benutzen stattdessen `interp1d` oder `splrep`/`splev`.
-Das sind die älteren Schnittstellen von SciPy, die inzwischen als "legacy" gelten und für neuen
-Code nicht mehr empfohlen werden.
+Das sind ältere Schnittstellen von SciPy, die für neuen Code nicht mehr empfohlen werden.
 Diese Aufgabe verwendet durchgehend die aktuellen Schnittstellen.
 [ENDNOTICE]
 
@@ -154,9 +154,9 @@ wäre wie dort?
 ### Glättende Splines: `make_splrep`
 
 Bei verrauschten Messdaten ist eine exakte Interpolation durch jeden Punkt oft nicht erwünscht —
-sie überträgt das Rauschen direkt in die Kurve.
-`make_splrep` erzeugt einen Spline, der die Daten je nach Glättungsparameter `s` mehr oder weniger
-genau nachbildet:
+sie übertrüge das Rauschen voll in die Kurve.
+`make_splrep` erzeugt für solche Situationen einen Spline, der die Daten je nach Glättungsparameter `s` 
+mehr oder weniger genau nachbildet:
 
 ```python
 scipy.interpolate.make_splrep(x, y, *, k=3, s=0)
@@ -166,7 +166,7 @@ scipy.interpolate.make_splrep(x, y, *, k=3, s=0)
 - `k` (Standard `3`): Grad des Splines
 - `s` (Standard `0`): Glättungsparameter — er begrenzt die Summe der quadrierten Abweichungen
   zwischen Spline und Datenpunkten; `s=0` erzwingt exakte Interpolation durch alle Punkte,
-  größere Werte erlauben eine glattere Kurve, die die Punkte nur noch annähert
+  größere Werte erlauben eine glattere Kurve, die die Punkte nur noch annähert.
 
 Der Stern in der Signatur bedeutet, dass `k` und `s` nur als Schlüsselwortargumente übergeben
 werden dürfen; `make_splrep(x, y, 3, 0)` scheitert mit einem `TypeError`.
@@ -200,26 +200,26 @@ print("Glatt:", np.round(glatt(x), 4))
 ```
 
 `exakt` gibt die Datenwerte unverändert wieder, `glatt` weicht an jeder Stützstelle um einige
-Hundertstel davon ab — genau das ist die Wirkung von `s`.
+Hundertstel davon ab; so weit, wie es der Wert von `s` erlaubt.
 
 [ER] Untersuchen Sie den Glättungseffekt an verrauschten Messwerten einer bekannten Funktion:
 
-- Erstellen Sie mit `np.linspace` 11 gleichmäßig verteilte Stützstellen `x` von 0 bis 10
+- Erstellen Sie mit `np.linspace` 11 gleichmäßig verteilte Stützstellen `x` von 0 bis 10.
 - Erstellen Sie `y` mit den Werten
   `[0.01, 0.92, 0.96, -0.08, -1.05, -0.87, -0.17, 1.13, 0.84, 0.51, -0.50]`;
   das sind verrauschte Messwerte von `sin(x)`, die wahre Funktion ist hier also ausnahmsweise
-  bekannt
-- Erzeugen Sie eine exakte Spline-Interpolation (`s=0`) und nennen Sie sie `exakt`
+  bekannt.
+- Erzeugen Sie eine exakte Spline-Interpolation (`s=0`) und nennen Sie sie `exakt`.
 - Schätzen Sie mit der Faustregel von oben eine Größenordnung für `s` ab und geben Sie sie aus
   (4 Nachkommastellen); die dafür nötige Streuung ist die Standardabweichung der Abweichungen
-  `y - np.sin(x)` mit dem Standardwert `ddof=0`, denn die wahre Funktion ist hier bekannt
+  `y - np.sin(x)` mit dem Standardwert `ddof=0`, denn die wahre Funktion ist hier bekannt.
 - Erzeugen Sie danach eine geglättete Spline-Interpolation mit `s=0.5` und nennen Sie sie `glatt`;
-  Ihre Schätzung sollte in derselben Größenordnung liegen wie dieser vorgegebene Wert
+  Ihre Schätzung sollte in derselben Größenordnung liegen wie dieser vorgegebene Wert.
 - Werten Sie beide Splines an den Stützstellen `x` aus und geben Sie je den größten Betrag der
-  Abweichung von den gemessenen `y`-Werten aus (4 Nachkommastellen)
+  Abweichung von den gemessenen `y`-Werten aus (4 Nachkommastellen).
 - Werten Sie beide Splines außerdem auf dem feinen Gitter `np.linspace(0, 10, 200)` aus und geben
   Sie je den größten Betrag der Abweichung von `np.sin` aus, also von der wahren Funktion
-  (4 Nachkommastellen)
+  (4 Nachkommastellen).
 
 [EQ] Stellen Sie die vier Abweichungen aus [EREFR::2] nebeneinander.
 Welches der beiden Verfahren liegt gegenüber den Messwerten vorn, welches gegenüber der wahren
@@ -233,7 +233,7 @@ Messwerten abzulesen?
 ### Radiale Basisfunktionen: `RBFInterpolator`
 
 Radiale Basisfunktionen (RBF) interpolieren anhand des Abstands zu den Datenpunkten und eignen
-sich auch für unregelmäßig verteilte Daten (Streudaten).
+sich auch für unregelmäßig verteilte Daten (Streudaten) in mehr als einer Dimension.
 In SciPy stellt `RBFInterpolator` dieses Verfahren bereit:
 
 ```python
@@ -272,8 +272,9 @@ print("RBF:", np.round(rbf(x_neu), 3))
 ```
 
 Anders als die kubischen Splines gibt `RBFInterpolator` die zugrunde liegende Funktion `x²` nicht
-exakt wieder: Das Verfahren rechnet ausschließlich mit Abständen zwischen den Datenpunkten und ist
-auf keinen Polynomgrad festgelegt.
+exakt wieder: 
+`RBFInterpolator` ergänzt die Kernelfunktionen standardmäßig nur um ein lineares Polynom;
+schon ein quadratischer Verlauf lässt sich damit also nicht exakt darstellen.
 Wie groß die Abweichung ausfällt, ist von Stelle zu Stelle verschieden; der Abschnitt zum
 Verfahrensvergleich geht dem systematisch nach.
 
