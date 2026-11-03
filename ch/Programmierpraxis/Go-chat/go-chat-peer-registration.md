@@ -1,5 +1,5 @@
 title: "Go HTTP Chat: Peer — Registrierung und Gesprächspartner"
-stage: alpha
+stage: beta
 timevalue: 2.5
 difficulty: 3
 assumes: go-http-client, go-json, go-sync-mutex, go-goroutines, go-channels, go-context
@@ -148,8 +148,9 @@ konkreten Typ `*net.TCPAddr`, um an dessen Feld `Port` zu gelangen.
 Der Peer liest an mehreren Stellen Zeilen vom Terminal: beim Login, bei der Partnersuche und in
 [PARTREF::go-chat-peer-messaging] im Chat.
 
-Das Lesen vom Terminal blockiert, bis eine Zeile kommt; währenddessen kann das Programm nicht auf `Ctrl+C` reagieren.
-Deshalb findet es in einer separaten Goroutine statt.
+Das Lesen vom Terminal blockiert, bis eine Zeile kommt; 
+währenddessen kann das Programm nicht gezielt auf `Ctrl+C` reagieren.
+Deshalb findet das in einer separaten Goroutine statt.
 Wenn aber jeder dieser drei Teile eine eigene Leser-Goroutine starten würde, könnten sie sich gegenseitig
 Zeilen wegnehmen, und zwar zufällig.
 Stattdessen implementieren Sie in Ihrem Chat eine zentrale Goroutine, die von `os.Stdin` liest und die Zeilen
@@ -219,11 +220,11 @@ Entfernen Sie dabei Leerzeichen und Zeilenumbrüche am Anfang und Ende mittels d
   Diese Schleife kann mit `:q` abgebrochen werden;
 - eine `NameAndPortMessage` mittels `httpjson.PostJSON()` an `cfg.LookupUrl()+path` schickt.
   `path` ist dabei der Pfad, unter dem Ihr Lookup-Server Registrierungen entgegennimmt;
-- den Benutzernamen zurückgibt, falls `httpjson.PostJSON()` keinen Fehler liefert;
+- den Benutzernamen und `nil` zurückgibt, falls `httpjson.PostJSON()` keinen Fehler liefert;
 - die Fehlermeldung von `httpjson.PostJSON()` ausgibt und erneut nach einem Benutzernamen fragt, falls
   die Registrierung fehlschlägt;
-- bei Erfolg `nil` als Fehler zurückgibt, bei `:q`, Ende der Eingabe oder Abbruch des Kontexts
-  (`ReadLine` liefert in diesem Fall `ok == false`) einen Fehler mit der Nachricht `canceled`.
+- bei `:q`, Ende der Eingabe oder Abbruch des Kontexts (`ReadLine` liefert in diesem Fall `ok == false`)
+  einen Fehler mit der Nachricht `canceled` zurückgibt.
 
 [HINT::Welchen Wert übergebe ich für `path`?]
 Schauen Sie in [PARTREF::go-chat-lookup-server] nach, unter welchen Pfaden Ihr Lookup-Server seine Handler
@@ -274,8 +275,7 @@ die im Wesentlichen der Funktion `Login` ähnelt und Folgendes tut:
 - gibt bei `:q`, Ende der Eingabe oder Abbruch von `ctx` einen Fehler mit der Nachricht `canceled` zurück;
 - gibt `you cannot chat with yourself` aus und fragt erneut, falls der Benutzer seinen eigenen Namen
   (`cfg.Username()`) eingegeben hat;
-- schickt eine GET-Anfrage an `cfg.LookupUrl()+"/"+username` und dekodiert die Antwort (`{"addr": "..."}`), wenn der
-  Benutzer etwas eingegeben hat (`username`);
+- schickt sonst eine GET-Anfrage an `cfg.LookupUrl()+"/"+username` und dekodiert die Antwort (`{"addr": "..."}`);
 - zeigt eine informative Fehlermeldung an und fragt erneut nach einem Benutzernamen, wenn der Server mit einem Fehler
   antwortet oder die empfangene Adresse `addr` leer ist.
 
@@ -296,8 +296,11 @@ die im Wesentlichen der Funktion `Login` ähnelt und Folgendes tut:
 (Bei `bob` sind die Meldungen entsprechend `Logged in as bob`, `alice is at xyz` und `bob logged out`.)
 
 Rufen Sie die Funktion `testScenario` in Ihrer `main`-Funktion auf.
-Denken Sie daran, `Logout()` auch dann aufzurufen, wenn das Programm mittels `Ctrl+C` beendet wird (`defer`).
+Sorgen Sie dafür, dass `Logout()` auch dann aufgerufen wird, wenn `Ctrl+C` den Kontext abbricht.
 
+[HINT::Wie stelle ich sicher, dass `Logout()` auf jeden Fall aufgerufen wird?]
+`defer`
+[ENDHINT]
 <!-- time estimate: 10 min -->
 
 
