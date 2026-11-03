@@ -2,6 +2,7 @@ title: Aufbau von Testfällen
 stage: alpha
 timevalue: 0.75
 difficulty: 2
+explains: Negativtest
 ---
 
 [SECTION::goal::trial]
@@ -62,7 +63,9 @@ stehen in einer Tabelle.
 Positive und negative Fälle lassen sich so in einem einzigen Testfall zusammenfassen.
 
 Beispiel: Registrierung mit verschiedenen E-Mail-Adressen (Passwort jeweils gültig).
-Vorbedingung: Für `bob@example.com` existiert bereits ein Konto, für `alice@example.com` nicht.
+
+- Vorbedingung: Für `bob@example.com` existiert bereits ein Konto, für `alice@example.com` nicht.
+- Schritte: (1) E-Mail eingeben, (2) Passwort eingeben, (3) Registrieren klicken.
 
 | E-Mail | Erwartetes Ergebnis |
 | --- | --- |
@@ -73,7 +76,6 @@ Vorbedingung: Für `bob@example.com` existiert bereits ein Konto, für `alice@ex
 - [EQ] Formulieren Sie einen datengetriebenen Testfall für den Login.
   Beschreiben Sie Vorbedingung und Schritte einmal und geben Sie eine Tabelle mit drei Zeilen an:
   erfolgreiche Anmeldung, falsches Passwort, unbekannter Nutzer.
-  Achten Sie darauf, dass die Vorbedingung zu allen drei Zeilen passt.
 
 <!-- time estimate: 25 min -->
 
