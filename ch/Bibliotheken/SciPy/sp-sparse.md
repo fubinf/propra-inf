@@ -7,6 +7,7 @@ assumes: np-Einführung, np-array, np-linalg, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
+
 - Ich verstehe, wann es sich lohnt, eine Matrix in einer Sparse-Darstellung statt dicht zu
   speichern, und kann den Vorteil an Speicher und Laufzeit messen.
 - Ich kann Matrizen im CSR-Format erstellen und ihre gespeicherten Werte analysieren.
@@ -48,7 +49,7 @@ aufnimmt und die fertigen Algorithmen darauf anwendet.
 ### Dünnbesetzte Matrizen: dichte und Sparse-Speicherung
 
 Dünnbesetzt (englisch *sparse*) heißt eine Matrix, bei der die meisten Elemente Null sind.
-Das ist eine Eigenschaft der Zahlen in der Matrix und noch keine Entscheidung darüber, wie sie
+Das ist zunächst eine mathematische Eigenschaft der Matrix und noch keine Entscheidung darüber, wie sie
 gespeichert wird: Dieselbe Matrix lässt sich dicht speichern (jeder Eintrag bekommt Speicherplatz)
 oder in einer Sparse-Darstellung (nur die von Null verschiedenen Einträge bekommen Speicherplatz).
 
@@ -84,8 +85,9 @@ Matrix-Vektor-Produkte.
 
 `scipy.sparse` bietet dieses Format über zwei Schnittstellen an: die ältere `csr_matrix` und die
 neuere `csr_array`, die sich wie ein NumPy-Array verhält.
-Laut [SciPy-Dokumentation](https://docs.scipy.org/doc/scipy/reference/sparse.html) wird die
-Matrix-Schnittstelle voraussichtlich abgeschafft, deshalb verwendet diese Aufgabe durchgehend
+Laut 
+[SciPy-Dokumentation](https://docs.scipy.org/doc/scipy/reference/sparse.html) 
+wird die Matrix-Schnittstelle voraussichtlich abgeschafft, deshalb verwendet diese Aufgabe durchgehend
 `csr_array`.
 In älterem Code und in vielen Anleitungen im Netz begegnet Ihnen weiterhin `csr_matrix`.
 
@@ -122,8 +124,6 @@ print(sparse_arr)
 Die Ausgabe `(0, 2) 30` bedeutet: In Zeile 0, Spalte 2 steht der Wert 30.
 Die Kopfzeilen nennen zusätzlich die Anzahl der gespeicherten Elemente und die Form (`shape`) des
 Arrays.
-Diese Ausgabeform gibt es ab SciPy 1.14; ältere Versionen verwenden ein abweichendes Format.
-Welche Version installiert ist, nennt `scipy.__version__`.
 
 [ER] Erstellen Sie ein CSR-Array aus dem Array `[[0, 5, 0], [7, 0, 0], [0, 9, 0]]` und geben Sie
 seine Sparse-Darstellung aus.
@@ -132,7 +132,6 @@ seine Sparse-Darstellung aus.
 Erklären Sie, wie sich das ursprüngliche Array aus den ausgegebenen Koordinaten, Werten und der
 Form (`shape`) wieder vollständig herstellen lässt.
 Prüfen Sie dabei, ob die Form dafür nötig ist oder sich schon aus den Koordinaten ergibt.
-
 <!-- time estimate: 15 min -->
 
 
@@ -237,7 +236,7 @@ Ein häufiger Anwendungsfall für die Sparse-Darstellung ist die Speicherung von
 **Adjazenzmatrix**.
 
 Weil in großen Graphen die meisten Knotenpaare nicht direkt verbunden sind, ist die Adjazenzmatrix
-überwiegend mit Nullen besetzt — genau der Fall, für den sich die Sparse-Darstellung eignet.
+überwiegend mit Nullen besetzt, sodass sich die Sparse-Darstellung eignet.
 Die Algorithmen in `scipy.sparse.csgraph` nehmen einen so gespeicherten Graphen direkt entgegen,
 darunter `dijkstra`:
 
@@ -293,8 +292,6 @@ Der Aufruf belässt `directed` beim Standardwert `True`, obwohl der Graph ungeri
 Bei einer symmetrischen Adjazenzmatrix macht das keinen Unterschied, denn zu jeder Kante `i → j`
 steht die Gegenkante `j → i` schon in der Matrix.
 `directed=False` wird erst dort nötig, wo nur eine der beiden Richtungen gespeichert ist.
-Auf einen gerichteten Graphen angewandt macht `directed=False` dagegen jede Kante in beiden
-Richtungen begehbar und kann dadurch Knoten erreichbar machen, die gerichtet unerreichbar sind.
 
 In der Adjazenzmatrix steht die 0 für "keine Kante".
 Denkbar wäre aber auch eine Kante mit dem Gewicht 0, also eine Verbindung, die nichts kostet.
@@ -338,7 +335,6 @@ Erklären Sie außerdem, warum der Weg über das dichte NumPy-Array dasselbe Erg
 eines der drei vorherigen Ergebnisse.
 Leiten Sie daraus ab, wie ein Graph gespeichert werden muss, dessen Kanten auch das Gewicht 0
 haben können.
-
 <!-- time estimate: 40 min -->
 
 
