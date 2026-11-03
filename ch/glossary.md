@@ -2169,6 +2169,13 @@ meistens die Frage, ob die Software korrekte Ergebnisse liefert (Defekttest).
 [ENDTERM]
 
 
+[TERM::Testfall|test case]
+Genaue Beschreibung eines einzelnen [TERMREF2::Test::-s]:
+die Vorbedingung, die auszuführenden Schritte mit ihren Eingabedaten und das erwartete Ergebnis.
+Testfälle werden von Hand oder automatisiert ausgeführt, z.B. als Testfunktion in `pytest`.
+[ENDTERM]
+
+
 [TERM::Testiteration]
 Eine Testiteration bezieht sich auf einen Zyklus oder eine Runde von Testaktivitäten, die
 durchgeführt werden, um bestimmte Aspekte einer Software zu überprüfen oder zu testen. Während

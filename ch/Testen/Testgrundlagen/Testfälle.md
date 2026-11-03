@@ -2,7 +2,7 @@ title: Aufbau von Testfällen
 stage: alpha
 timevalue: 0.75
 difficulty: 2
-explains: Negativtest
+explains: Negativtest, Testfall
 ---
 
 [SECTION::goal::trial]
@@ -14,13 +14,13 @@ explains: Negativtest
 
 [SECTION::background::default]
 
-Testfälle werden aus [TERMREF2::Anforderung::Anforderungen] abgeleitet.
+[TERMREF2::Testfall::Testfälle] werden aus [TERMREF2::Anforderung::Anforderungen] abgeleitet.
 Typische Quellen sind User Stories und Akzeptanzkriterien.
 Eine [TERMREF::User Story] beschreibt, was ein Nutzer möchte.
 [TERMREF::Akzeptanzkriterien] ergänzen diese Story mit klaren Bedingungen für die Erfüllung.
 
 Aus einem gut formulierten Akzeptanzkriterium lässt sich ein Testfall ableiten:
-Er beschreibt eine Vorbedingung, eine Handlung und ein erwartetes Ergebnis.
+Er beschreibt eine Vorbedingung, Schritte und ein erwartetes Ergebnis.
 
 [ENDSECTION]
 
@@ -41,7 +41,7 @@ Ein typischer Testfall hat die folgende allgemeine Struktur:
 | Eingabedaten | Konkrete Werte |
 | Erwartetes Ergebnis | Was soll am Ende passieren? |
 
-Das Akzeptanzkriterium für die Registrierung auf einer E-Commerce-Seite lautet:
+Das Akzeptanzkriterium für die Registrierung auf einer E-Commerce-Website lautet:
 "Bei gültiger E-Mail-Adresse und gültigem Passwort wird ein Konto angelegt und eine Bestätigung angezeigt."
 
 - [EQ] Formulieren Sie aus diesem Akzeptanzkriterium einen konkreten Testfall für eine erfolgreiche
@@ -61,8 +61,10 @@ Dann spricht man von einem datengetriebenen Testfall:
 Vorbedingung und Schritte werden einmal beschrieben, die Eingabedaten und erwarteten Ergebnisse
 stehen in einer Tabelle.
 Positive und negative Fälle lassen sich so in einem einzigen Testfall zusammenfassen.
+Wie man das mit `pytest` automatisiert, zeigt [PARTREF::pytest_parametrize];
+dort heißen solche Testfälle tabellengesteuert.
 
-Beispiel: Registrierung mit verschiedenen E-Mail-Adressen (Passwort jeweils gültig).
+Beispiel: Registrierung mit verschiedenen E-Mail-Adressen (Passwort jeweils `geheim123`).
 
 - Vorbedingung: Für `bob@example.com` existiert bereits ein Konto, für `alice@example.com` nicht.
 - Schritte: (1) E-Mail eingeben, (2) Passwort eingeben, (3) Registrieren klicken.
