@@ -145,11 +145,17 @@ propra_pullpush() (  # usable only for the tip of main
     while [ -d "$(git rev-parse --git-path rebase-merge)" ] \
        || [ -d "$(git rev-parse --git-path rebase-apply)" ]; do
       # the only tolerated conflict is the altdir pointer: take altdir's merged HEAD
-      [ "$(git diff --name-only --diff-filter=U)" = altdir ] || fail "unexpected rebase conflict"
+      conflicts=$(git diff --name-only --diff-filter=U)
+      say "rebase stopped; conflicting files: ${conflicts:-(none)}"
+      [ "$conflicts" = altdir ] || fail "unexpected rebase conflict (files: ${conflicts:-none})"
       say "rebase conflict only in altdir pointer: use altdir's merged HEAD"
       run git add altdir
+      # --continue/--skip exit nonzero when the next commit conflicts again: tolerate that only
       if git diff --cached --quiet; then run git rebase --skip
-      else GIT_EDITOR=true run git rebase --continue; fi || true
+      else GIT_EDITOR=true run git rebase --continue; fi || {
+        [ -n "$(git diff --name-only --diff-filter=U)" ] \
+          || fail "rebase --continue/--skip failed without a conflict"
+      }
     done
   }
 
