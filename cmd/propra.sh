@@ -6,14 +6,21 @@
 # one called summer semester (SS), starting in April
 # one called winter semester (WS), starting in October
 # each of them runs for 12 months.
-# We want to be able to keep their content in sync to allow for additions/modifications after start.
-# We use a single sedrila.yaml for building both of them, parameterized by environment variables
-# and separate participants files.
+# There are two possible modes:
+# (1) We keep their content in sync to allow for additions/modifications after start.
+#     We use a single sedrila.yaml for building both of them, parameterized by environment variables
+#     and separate participants files.
+#     The organizer uses commands s_author2 and s_publish2.
+# (2) Only one propra gets updates, the other usually remains fixed.
+#     They live on separate branches, each with their own version of sedrila.yaml.
+#     The organizer switches branches manually and uses either s_authorSS;s_publishSS or s_authorWS;s_publishWS.
+#     Changing the old propra is needed when instructors change or major errors need to be fixed.
+# In both cases, development works with s_author and s_serve on the branch of the younger propra.
 
 SEDRILA=dsedrila  # which command to use, e.g. define a suitable shell function
 # user must set PROPRA_BASEDIR: common prefix of both propra deploy dirs (which end in PROPRA_TARGETDIR)
 
-s_setSS() {
+s_setSS27() {
   printf 'Are you sure? ProPra-2027-04? Press Ctrl-C if not.  '
   read answer
   export SEDRILA_TITLE="Programmierpraktikum SoSe 2027, Bachelor Informatik, FU Berlin"
@@ -23,6 +30,19 @@ s_setSS() {
   export SEDRILA_ENDDATE="2028-03-31"
   PROPRA_BUILDDIR="out/2027-04"
   PROPRA_TARGETDIR="K-ProPra-2027-04"
+  PROPRA_BRANCH="main"  # at least from some day in the future
+}
+
+s_setSS() {
+  export SEDRILA_TITLE="Programmierpraktikum SoSe 2026, Bachelor Informatik, FU Berlin"
+  export SEDRILA_NAME="ProPra-2026-04"
+  export SEDRILA_PARTICIPANTS_FILE=""
+  export SEDRILA_STARTDATE="2026-04-21"
+  export SEDRILA_ENDDATE="2027-03-31"
+  PROPRA_BUILDDIR="out/2026-04"
+  PROPRA_TARGETDIR="K-ProPra-2026-04"
+  PROPRA_BRANCH="2026-04"
+  __ensure_branch $PROPRA_BRANCH
 }
 
 s_setWS() {
@@ -33,10 +53,12 @@ s_setWS() {
   export SEDRILA_ENDDATE="2027-09-30"
   PROPRA_BUILDDIR="out/2026-10"
   PROPRA_TARGETDIR="K-ProPra-2026-10"
+  PROPRA_BRANCH="main"
+  __ensure_branch $PROPRA_BRANCH
 }
 
 s_set_draft() {
-  s_setWS
+  s_setWS  # use settings of current propra
   PROPRA_BUILDDIR="out/draft"
   unset PROPRA_TARGETDIR
 }
@@ -60,8 +82,8 @@ s_authorWS() {  # build released tasks for winter semester
   s_author_do --include-stage beta "$@"
 }
 
-s_author2() {  # build released tasks for all currently maintained ProPras
-  # s_authorSS "$@"  # receives no updates any more
+s_author2() {  # build released tasks for all currently maintained ProPras (only possible if they are the same version)
+  s_authorSS "$@"
   s_authorWS "$@"
 }
 
@@ -81,7 +103,7 @@ s_publishWS() {
 }
 
 s_publish2() {
-  # s_publishSS  # receives no updates any more
+  s_publishSS
   s_publishWS
 }
 
@@ -90,8 +112,9 @@ s_serve() {
   (cd $PROPRA_BUILDDIR; $SEDRILA server --quiet --port 8099 .)
 }
 
-propra_pullpush() (
+propra_pullpush() (  # usable only for the tip of main
   # do git pull, then git push, and handle the complicated case of merge-altdir + rebased-propra:
+  __ensure_branch main
   set -eu
   fail() { echo "propra_sync: $*" >&2; exit 1; }
   say()  { echo "###   $*" >&2; }
@@ -142,3 +165,12 @@ propra_pullpush() (
   run git -C altdir push origin main
   run git push origin main
 )
+
+__ensure_branch() {  # abort the entire enclosing command unless current git branch is $1
+  local branch
+  branch=$(git symbolic-ref -q --short HEAD || echo DETACHED)
+  if [ "$branch" != "$1" ]; then
+    echo "This command requires git branch '$1', your current branch is '$branch'" >&2
+    kill -INT $$  # like Ctrl-C: interactive shell abandons the whole command line; a script terminates
+  fi
+}
