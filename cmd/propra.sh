@@ -141,7 +141,12 @@ propra_pullpush() (  # usable only for the tip of main
 
   say "main repo: rebase onto remote main"
   [ "$(git symbolic-ref -q --short HEAD)" = main ] || fail "main repo not on branch main"
-  run git pull --rebase --autostash origin main || {
+  # fetch + 'rebase -m': 'git pull --rebase' fails with "cannot rebase with locally recorded
+  # submodule modifications" when the commits to replay touch the altdir pointer
+  run git fetch origin main
+  run git rebase -m --autostash FETCH_HEAD || {
+    [ -d "$(git rev-parse --git-path rebase-merge)" ] || [ -d "$(git rev-parse --git-path rebase-apply)" ] \
+      || fail "rebase failed before it started (no rebase in progress)"
     while [ -d "$(git rev-parse --git-path rebase-merge)" ] \
        || [ -d "$(git rev-parse --git-path rebase-apply)" ]; do
       # the only tolerated conflict is the altdir pointer: take altdir's merged HEAD
