@@ -1,5 +1,5 @@
 title: "Pytest: Code-Qualität mit Flake8-Plugin prüfen"
-stage: alpha
+stage: beta
 timevalue: 1.25
 difficulty: 2
 assumes: m_pytest, flake8, pytest_call
@@ -8,32 +8,32 @@ assumes: m_pytest, flake8, pytest_call
 [SECTION::goal::trial]
 
 - Ich kann `flake8`-Prüfungen mit dem Plugin `pytest-flake8` in einen `pytest`-Lauf einbinden
-  und diese Prüfungen gezielt auswählen.
+  und die zugehörigen Testfälle gezielt auswählen.
 - Ich kenne den Unterschied zwischen `ignore` und `extend-ignore` in der `flake8`-Konfiguration.
 - Ich weiß, wann der Cache des Plugins veraltete Ergebnisse liefert.
 - Ich weiß, welche Folgen es hat, ob eine Regel in `.flake8` oder in `pytest.ini` konfiguriert ist.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+
+[SECTION::background::default]
 In [PARTREF::flake8] haben Sie `flake8` als eigenständiges Kommandozeilenwerkzeug benutzt.
 Das Plugin `pytest-flake8` macht aus der `flake8`-Prüfung jeder Python-Datei einen zusätzlichen Testfall.
 Dann genügt ein einziger `pytest`-Aufruf, um Funktionalität und Code-Stil zu prüfen.
 Das ist praktisch, hat aber ein paar Eigenheiten, die man kennen sollte.
-
 [ENDSECTION]
+
+
 [SECTION::instructions::detailed]
 
 ### Plugin installieren
 
-Arbeiten Sie in einem eigenen [PARTREF::venv].
-Legen Sie es _neben_ (nicht in) dem Verzeichnis `flake8_demo` an, das Sie gleich erzeugen,
-sonst prüft `flake8 .` später auch alle Bibliotheken im venv.
+Arbeiten Sie mit einem eigenen [PARTREF::venv] für diese Aufgabe (anzulegen natürlich im [TERMREF::Hilfsbereich])
+und einem separaten Verzeichnis für die Aufgabe im Arbeitsbereich.
 
 Die letzte Version von `pytest-flake8` (1.3.0) funktioniert nicht mit `pytest` 9:
 Dort bricht jeder `pytest`-Aufruf mit einem `PluginValidationError` ab.
 Wir installieren deshalb eine ältere `pytest`-Version mit.
-Solche Versionskonflikte zwischen Werkzeug und Plugin sind im Alltag häufig.
+(Solche Versionskonflikte zwischen Werkzeug und Plugin kommen im Alltag immer wieder mal vor.)
 
 - [EC] `pip install "pytest<9" pytest-flake8`
 - [EC] `pytest --help | grep -A3 flake8`
@@ -120,8 +120,8 @@ Die Meldung `E302` (zwei Leerzeilen vor einer Funktions- oder Klassendefinition)
 `flake8` liest seine Einstellungen nicht nur von der Kommandozeile, sondern auch aus einer
 Konfigurationsdatei im Projektverzeichnis, z.B. `.flake8`, siehe
 [Configuring Flake8](https://flake8.pycqa.org/en/stable/user/configuration.html).
-Die Einträge darin heißen wie die Kommandozeilenoptionen, nur ohne `--`:
-`ignore = E302` in der Datei wirkt wie `--ignore E302` auf der Kommandozeile.
+Die Einträge darin heißen wie die Kommandozeilenoptionen. 
+Das heißt konkret, `ignore = E302` in der Datei wirkt wie `--ignore E302` auf der Kommandozeile.
 
 Legen Sie in `flake8_demo` eine Datei `.flake8` mit folgendem Inhalt an:
 
@@ -153,9 +153,9 @@ Achten Sie auf den Standardwert von `--ignore`.
 
 ### Code bereinigen
 
-- [ER] Beseitigen Sie alle verbleibenden Meldungen in `demo_code.py`, ohne `.flake8` weiter zu ändern.
+- [ER] Beseitigen Sie alle verbleibenden Gründe für Meldungen in `demo_code.py` (`.flake8` bleibt, wie es ist).
   Die Bedeutung der Meldungscodes kennen Sie aus [PARTREF::flake8].
-  Lassen Sie `a+b` und `x*y` dabei unverändert; dazu gibt es ja keine Meldung.
+  Lassen Sie `a+b` und `x*y` unverändert; dazu gibt es ja keine Meldung.
 - [EC] `pytest --flake8`
 
 <!-- time estimate: 10 min -->
