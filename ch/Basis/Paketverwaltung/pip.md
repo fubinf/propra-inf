@@ -1,7 +1,7 @@
 title: pip, der Paketmanager von Python
 stage: beta
 timevalue: 0.5
-difficulty: 2
+difficulty: 1
 explains: pip
 requires: venv
 ---
