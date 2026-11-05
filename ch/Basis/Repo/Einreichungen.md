@@ -29,7 +29,7 @@ Dann kann man in der Commit-Nachricht die betreffende Aufgabe so markieren,
 dass sich das automatisch verarbeiten lässt -- und das macht `sedrila` sich zunutze.
 [ENDSECTION]
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
 ### Übliches Abgabeformat
 

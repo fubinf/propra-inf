@@ -21,7 +21,7 @@ in gleicher oder ähnlicher Version unter Mac OS X zu installieren.
 [ENDSECTION]
 
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
 
 ### Bash-Shell sicherstellen

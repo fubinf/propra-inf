@@ -33,7 +33,7 @@ Es gibt nur wenige solche Aufgaben.
 
 "schwierig [DIFF::4]" ist umgekehrt vor allem für besonders leistungsstarke Studierende gedacht
 (wozu man gern auch im Verlauf des Programmierpraktikums _werden_ darf).
-Auch hiervon gibt es nicht allzu viele Aufgaben
+Auch hiervon gibt es nicht allzu viele Aufgaben.
 
 Der normale Schwierigkeitsbereich ist also "einfach [DIFF::2]" und "mittel [DIFF::3]".
 

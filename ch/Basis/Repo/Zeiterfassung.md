@@ -67,7 +67,7 @@ Es gibt oben rechts auf jeder Seite ein einfaches Timing-Script, das Sie verwend
 Es zeigt beim Stoppen den Eintrag für die Commit-Nachricht der aktuellen Aufgabe.
 
 [ENDSECTION]
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
 Treffen Sie anhand der unten angegebenen Fragen eine Entscheidung, 
 ob Sie diese Form der Arbeitszeiterfassung nutzen möchten.

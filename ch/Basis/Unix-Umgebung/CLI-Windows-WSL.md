@@ -23,7 +23,7 @@ Grundvoraussetzung hierfür ist Windows 10 (Version 2004 oder höher) oder Windo
 [ENDSECTION]
 
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
 
 ### WSL installieren

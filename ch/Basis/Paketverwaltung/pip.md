@@ -32,7 +32,7 @@ Der Paketmanager `pip` kann
 [ENDSECTION]
 
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
 [NOTICE]
 Wer `pip` schon gut kennt, kann diese Aufgabe überspringen.

@@ -30,7 +30,7 @@ Sie müssen sich andere aussuchen.
 [ENDSECTION]
 
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 
 ### Bash-Shell sicherstellen
 

@@ -24,7 +24,7 @@ sollte diese Aufgabe überspringen.
 [ENDSECTION]
 
 
-[SECTION::instructions::loose]
+[SECTION::instructions::detailed]
 [TERMREF::Markdown] ist eine Markup-Sprache, die (anders als [TERMREF::HTML]) 
 einfach schreibbar und gut lesbar ist.
 Man kann damit schnell und einfach strukturierte Texte schreiben. 
