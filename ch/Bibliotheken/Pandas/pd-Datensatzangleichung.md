@@ -122,6 +122,19 @@ benutzen.
 <!-- time estimate: 15 min -->
 
 
+### Zwischenstand speichern
+
+Beide Datensätze sind jetzt gleich aufgebaut und noch vollständig.
+[PARTREF::pd-DatenKombinieren] arbeitet mit diesem Stand weiter.
+
+[ER] Speichern Sie `wetter_df_dahlem` und `wetter_df_aigen` mit
+[`to_csv()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html)
+in Ihrem [TERMREF::Hilfsbereich] als `wetter-dahlem-angeglichen.csv` und `wetter-aigen-angeglichen.csv`.
+Der Index soll dabei nicht mitgespeichert werden;
+den passenden Parameter finden Sie in der Dokumentation.
+<!-- time estimate: 5 min -->
+
+
 ### Vergleichbare Zeiträume 
 
 Jetzt gibt es jedoch noch ein Problem:
