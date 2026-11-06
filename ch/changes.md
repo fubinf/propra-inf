@@ -2,4 +2,6 @@
   Aufgabe [PARTREF::pytest_mocking_freezegun] zugefügt.
 - **2026-11-05:** Aufgabe [PARTREF::pytest_plugin_linter_flake8] zugefügt.
   Schwierigkeitsstufe von 4 optionalen Aufgaben im Kapitel [PARTREF::Basis] von 'leicht' auf 'sehr leicht' korrigiert.
+- **2026-11-06:** Aufgaben [PARTREF::pd-Datenaufbereitung], [PARTREF::pd-Datenbereinigung],
+  [PARTREF::pd-Datensatzangleichung] und [PARTREF::pd-DatenKombinieren] zugefügt.
 - ...
