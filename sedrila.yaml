@@ -270,7 +270,6 @@ chapters:
   - name: Programmierpraxis
     taskgroups:
       - name: Go-chat
-      - name: Go-cog
       - name: Python-mlh
       - name: Python-linkcheck
       - name: Python-Sedricoin
