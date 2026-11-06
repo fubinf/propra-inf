@@ -160,7 +160,9 @@ größeren Mehrwert:
 - abc: assumes-Abhängigkeit; abc ist ein Modul der stdlib, abstract base classes sind aber ein 
   eigenes Programmierkonzept, weshalb eine Aufgabe hierzu auch in die Python-Taskgroup passen würde.
 - os: sehr umfangreich, daher wahrscheinlich nur auf die wichtigsten Funktionen begrenzt oder 
-  in weitere Aufgaben unterteilt, wie z.B. bei os.path
+  in weitere Aufgaben unterteilt
+- os.path: Gibt es, sollte aber nicht Homedir benutzen sondern Dateien von Dateibaum-beschaffen
+  und sollte auch pathlib behandeln.
 - logging
 - time: ggf. mit spezifischer Betrachtung der Unterschiede zum Modul datetime
 - collections
@@ -660,11 +662,11 @@ Weitere Ideen für Teilanwendungen (in alphabetischer Reihenfolge):
 - `linkcheck-mlh`: als Subkommando in `mlh` integrieren.
 
 
-### Prgrammierpraxis/Go-chat (brandes)
+### Prgrammierpraxis/Go-chat (N.N.)
 
 Eine Chat-Anwendung im Terminal, die Nachrichtenaustausch über HTTP zwischen zwei Rechnern im selben WLAN ermöglicht.
+Grundfunktionalität ist vorhanden. Zu ergänzen kommen in Frage:
 
-- Grundfunktionalität (brandes)
 - Datenbankintegration: sqlite oder postgres (N.N.)
 - End-to-End-Verschlüsselung (N.N.)
 
@@ -679,6 +681,8 @@ Ideen:
 - `cog weather`: Zuerst nach der eigenen IP Standort nachschlagen und dann für diesen Standort das Wetter anzeigen.
   Hier bietet sich eine TUI-Integration an.
 - (etwas mit TCP/UDP Paket inspection, zwecks low-level-systemnahen Programmierens)
+
+Hier gab es schon mal Anfänge, die 2026-11 gelöscht wurden; siehe Issue #66.
 
 
 ### Programmierpraxis selbständig
