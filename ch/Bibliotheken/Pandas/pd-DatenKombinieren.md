@@ -6,7 +6,7 @@ requires: pd-Datensatzangleichung
 ---
 
 [SECTION::goal::idea]
-Ich verstehe, wie man Daten in Pandas kombinieren kann und wie die unterschiedlichen Joins 
+Ich verstehe, wie man Daten in Pandas kombinieren kann und wie die unterschiedlichen Joins
 funktionieren.
 [ENDSECTION]
 
@@ -65,7 +65,7 @@ df4 = pd.DataFrame({
 
 [ER] Nutzen Sie den Parameter `keys`, um beim Zusammenfügen von `df1` und `df3` zu kennzeichnen, aus
 welchem `DataFrame` die Zeilen stammen.
-<!-- time estimate: 20 min -->
+<!-- time estimate: 15 min -->
 
 
 ### `join`-Parameter
@@ -103,7 +103,7 @@ Welche der beiden Join-Arten verwendet `concat()`, wenn man `join` weglässt?
 Die Dokumentation beschreibt aber auch, wie man mit `concat()` die Wirkung eines "Left Join" erreicht:
 Das Ergebnis behält genau die Zeilen des ersten `DataFrame`.
 Setzen Sie das für `df1` und `df5` um.
-<!-- time estimate: 30 min -->
+<!-- time estimate: 25 min -->
 
 
 ### `merge()`
@@ -131,12 +131,17 @@ Diese eignet sich als Schlüsselspalte zum Verbinden.
 Speichern Sie das Ergebnis in einer neuen Variable `wetter_merged_inner`.
 Das Ergebnis muss genau so viele Zeilen haben wie `wetter_df_aigen`.
 
+[EQ] Rufen Sie `pd.merge()` noch einmal ohne `on` auf und überschreiben Sie `wetter_merged_inner` dabei nicht.
+Wie viele Zeilen hat dieses Ergebnis und warum?
+Die Erklärung steht bei `on` in der Dokumentation von `merge()`.
+
 Spalten, die in beiden DataFrames vorkommen, tragen in `wetter_merged_inner` nun zur
 Unterscheidung die Suffixe `_x` und `_y`.
 Nur die Schlüsselspalte kommt einfach und ohne Suffix vor.
 
 [ER] Nutzen Sie den Parameter `suffixes`, um die gleichnamigen Spalten aussagekräftiger zu benennen.
-Wählen Sie `suffixes=("_dahlem", "_aigen")` und prüfen Sie die Spaltennamen im Ergebnis.
+Wählen Sie `suffixes=("_dahlem", "_aigen")`, speichern Sie das Ergebnis wieder in `wetter_merged_inner`
+und prüfen Sie die Spaltennamen.
 
 [EQ] Vergleichen Sie die Zeilenzahlen von `wetter_df_dahlem`, `wetter_df_aigen` und `wetter_merged_inner`.
 Was ist mit den Zeilen passiert, die nur in einem der beiden DataFrames vorkommen?
@@ -149,6 +154,11 @@ Speichern Sie das Ergebnis in `wetter_merged_left`.
 [EQ] Erklären Sie, warum das Ergebnis mehr Zeilen enthält als der `inner`-Join.
 Was bestimmt hier die Anzahl der Zeilen im Ergebnis?
 Welchen Wert hat `MO_TT_aigen` im Januar 1719 und warum?
+
+[EQ] Überlegen Sie zuerst, ohne es auszuprobieren:
+Wie viele Zeilen ergeben `how="right"` und `how="outer"` für dieselben beiden DataFrames?
+Prüfen Sie Ihre Vorhersage und erklären Sie, warum hier jeweils dieselbe Zeilenzahl herauskommt
+wie bei einem der beiden bisherigen Joins.
 <!-- time estimate: 30 min -->
 
 
@@ -156,10 +166,8 @@ Welchen Wert hat `MO_TT_aigen` im Januar 1719 und warum?
 
 Mit [`join()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
 können Sie zwei DataFrames anhand ihres *Index* verbinden.
-Das ist praktisch, wenn die Spalte, die als Schlüssel dienen soll, bereits als Index gesetzt ist.
 
-Beide DataFrames enthalten die Spalte `MESS_DATUM_BEGINN`.
-Setzen Sie diese zunächst als Index:
+Setzen Sie dafür zunächst `MESS_DATUM_BEGINN` als Index:
 
 ```python
 wetter_df_dahlem_idx = wetter_df_dahlem.set_index("MESS_DATUM_BEGINN")
@@ -174,10 +182,16 @@ Anders als `merge()` vergibt `join()` für gleichnamige Spalten nicht von selbst
 Die beiden dafür nötigen Parameter finden Sie in der oben verlinkten Dokumentation von `join()`.
 [ENDHINT]
 
+[ER] Auch `merge()` kann über den Index verbinden.
+Schreiben Sie mit `wetter_df_dahlem_idx` und `wetter_df_aigen_idx` einen Aufruf von `pd.merge()`,
+der dasselbe Ergebnis liefert wie `wetter_joined`.
+Prüfen Sie das mit
+[`equals()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.equals.html).
+
 [EQ] Was unterscheidet `wetter_joined` von `wetter_merged_inner`?
 Welche Join-Art verwenden `merge()` und `join()` jeweils, wenn man `how` weglässt?
-In welchen Situationen könnte `join()` den praktischeren Weg darstellen?
-<!-- time estimate: 10 min -->
+Vergleichen Sie Ihre beiden letzten Aufrufe: In welchen Situationen ist `join()` der praktischere Weg?
+<!-- time estimate: 15 min -->
 
 
 ### Andere hilfreiche Funktionen
@@ -185,18 +199,34 @@ In welchen Situationen könnte `join()` den praktischeren Weg darstellen?
 Neben `concat()`, `merge()` und `join()` gibt es in Pandas noch weitere Möglichkeiten,
 Daten aus mehreren Quellen zu kombinieren oder gegeneinander abzugleichen:
 
-- [`combine_first`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.combine_first.html):  
-  Nutzt zwei DataFrames und füllt fehlende Werte (`NaN`) im ersten `DataFrame` mit den
+- [`combine_first()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.combine_first.html):  
+  Füllt fehlende Werte (`NaN`) im ersten `DataFrame` mit den
   entsprechenden Werten aus dem zweiten auf.
   Vorhandene Werte im ersten `DataFrame` bleiben erhalten.
-- [`update`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.update.html):  
+- [`update()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.update.html):  
   Überschreibt Werte im ersten `DataFrame` mit denen aus einem zweiten, falls Index und Spalte übereinstimmen.
-  Im Unterschied zu `combine_first` gewinnt hier also der zweite `DataFrame`, außer wo er selbst `NaN` enthält.
-  `update` ändert das erste `DataFrame` direkt und liefert kein neues zurück.
-- [`compare`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.compare.html):  
+  Im Unterschied zu `combine_first()` gewinnt hier also das zweite `DataFrame`, außer wo es selbst `NaN` enthält.
+  `update()` ändert das erste `DataFrame` direkt und liefert kein neues zurück.
+- [`compare()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.compare.html):  
   Zeigt die Unterschiede zwischen zwei DataFrames übersichtlich an.
   Besonders nützlich, wenn man prüfen möchte, welche Werte sich nach einer Bereinigung
   oder Transformation verändert haben.
+
+Eine Messreihe mit Lücke und eine zweite Quelle, die für dieselben Monate teils andere Werte liefert:
+
+```python
+messung = pd.DataFrame({"T": [1.5, None, 3.0]}, index=["Jan", "Feb", "Mrz"])
+korrektur = pd.DataFrame({"T": [2.0, 4.0, None]}, index=["Jan", "Feb", "Mrz"])
+```
+
+[ER] Erzeugen Sie `messung_gefuellt` mit `combine_first()`.
+Erzeugen Sie `messung_korrigiert` mit `update()` auf einer Kopie von `messung`
+([`copy()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.copy.html)).
+Lassen Sie sich dann mit `compare()` die Unterschiede zwischen `messung` und `messung_korrigiert` anzeigen.
+
+[EQ] Welche Werte enthalten `messung_gefuellt` und `messung_korrigiert`?
+Wann ist bei echten Messdaten `combine_first()` das Richtige, wann `update()`?
+<!-- time estimate: 10 min -->
 [ENDSECTION]
 
 
