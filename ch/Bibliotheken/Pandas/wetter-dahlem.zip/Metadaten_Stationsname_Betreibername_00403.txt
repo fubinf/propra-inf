@@ -1,0 +1,6 @@
+Stations_ID;Stationsname;Von_Datum;Bis_Datum
+   403;Berlin-Dahlem (FU);19500101;
+
+Stations_ID;Betreibername;Von_Datum;Bis_Datum
+   403;Freie Universität Berlin;19500101;
+generiert: 27.07.2026 --  Deutscher Wetterdienst  --

@@ -1,0 +1,28 @@
+Stations_ID;Stations_Name;Parameter;Von_Datum;Bis_Datum;Anzahl_Fehlwerte;Beschreibung;eor;                                                                                                              
+403;Berlin-Dahlem (FU);MO_RR;01.03.2025;31.03.2025;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_FK;01.07.2009;31.07.2009;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_FK;01.11.2012;30.11.2012;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_FK;01.07.2018;31.07.2018;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_FK;01.03.2025;31.03.2025;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_TT;01.01.1722;31.12.1727;72;;eor;                                                                                                                                             
+403;Berlin-Dahlem (FU);MO_TT;01.05.1729;31.12.1729;8;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_TT;01.11.1751;31.12.1754;38;;eor;                                                                                                                                             
+403;Berlin-Dahlem (FU);MO_TT;01.03.1755;31.07.1755;5;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_TT;01.09.1755;30.11.1755;3;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_TT;01.03.2025;31.03.2025;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_TX;01.03.2025;31.03.2025;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MX_TX;02.03.2025;17.03.2025;16;;eor;                                                                                                                                             
+403;Berlin-Dahlem (FU);MX_TN;02.03.2025;17.03.2025;16;;eor;                                                                                                                                             
+403;Berlin-Dahlem (FU);MX_FX;06.07.2009;28.07.2009;23;;eor;                                                                                                                                             
+403;Berlin-Dahlem (FU);MX_FX;12.11.2012;12.11.2012;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MX_FX;12.07.2018;12.07.2018;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MX_FX;24.11.2018;24.11.2018;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MX_FX;02.03.2025;18.03.2025;17;;eor;                                                                                                                                             
+403;Berlin-Dahlem (FU);MX_RS;03.03.2025;17.03.2025;15;;eor;                                                                                                                                             
+403;Berlin-Dahlem (FU);MO_TN;01.07.1866;31.07.1866;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_TN;01.04.1945;31.10.1945;7;Kriegsjahre;eor;                                                                                                                                   
+403;Berlin-Dahlem (FU);MO_TN;01.03.2025;31.03.2025;1;;eor;                                                                                                                                              
+403;Berlin-Dahlem (FU);MO_N;01.03.2025;31.03.2025;1;;eor;                                                                                                                                               
+403;Berlin-Dahlem (FU);MO_SD_S;01.08.2002;30.09.2002;2;;eor;                                                                                                                                            
+403;Berlin-Dahlem (FU);MO_SD_S;01.03.2025;31.03.2025;1;;eor;                                                                                                                                            
+generiert: 27.07.2026 --  Deutscher Wetterdienst  --                                                                                                                                                    

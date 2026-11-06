@@ -1,0 +1,5 @@
+Stations_ID;Stationsname;Geo. Laenge [Grad];Geo. Breite [Grad];Stationshoehe [m];Geberhoehe ueber Grund [m];Von_Datum;Bis_Datum;Geraetetyp Name;Messverfahren;eor;
+403;Berlin-Dahlem (FU);13.3;52.46;51;1;19500101;19970711;Hellmann;Niederschlagsmenge, konv.;eor;
+403;Berlin-Dahlem (FU);13.3;52.45;51;1;19970712;19971012;Hellmann;Niederschlagsmenge, konv.;eor;
+403;Berlin-Dahlem (FU);13.3;52.45;51;1;20020128;20260419;Niederschlagsmesser Wippe;Niederschlagsmenge, elektr.;eor;
+generiert: 27.07.2026 --  Deutscher Wetterdienst  --
