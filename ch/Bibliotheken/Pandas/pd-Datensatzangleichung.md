@@ -1,5 +1,5 @@
 title: "Mit mehreren Datensätzen arbeiten"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 requires: pd-Datenbereinigung
@@ -122,7 +122,7 @@ Gibt es Monate, in denen es an einer Station durchschnittlich 10 Grad Celsius k�
 war als an der anderen?
 Benennen Sie diese.
 
-[EQ] An welcher Station wurde die höchste Temperatur (im Monatsmitttel) gemessen und wie viel Grad
+[EQ] An welcher Station wurde die höchste Temperatur (im Monatsmittel) gemessen und wie viel Grad
 waren das?
 
 
