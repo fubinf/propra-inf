@@ -35,10 +35,8 @@ Mit `ss` und `lsof` finden Sie das in Sekunden heraus.
 `ss` ("socket statistics") gehört unter Debian zum Paket `iproute2` und ist normalerweise
 schon installiert.
 
-**AKTION:** Installieren Sie die übrigen Werkzeuge dieser Aufgabe:
+Installieren Sie die übrigen Werkzeuge dieser Aufgabe:
 `sudo apt update && sudo apt install lsof netcat-openbsd curl`
-
-Eine solche Aktion hat keine Kommandonummer und gehört nicht ins Kommandoprotokoll.
 
 [FOLDOUT::Abweichungen unter macOS]
 `ss` gibt es unter macOS nicht.
@@ -53,12 +51,14 @@ Ersetzen Sie in dieser Aufgabe
 - `cat /proc/sys/net/ipv4/ip_local_port_range` durch
   `sysctl net.inet.ip.portrange.first net.inet.ip.portrange.last`.
 
-`-iTCP` wählt die TCP-Sockets aus,  
-`-sTCP:LISTEN` bzw. `-sTCP:ESTABLISHED` davon die im genannten Zustand.  
-`-n` zeigt IP-Adressen statt Rechnernamen.  
-`-P` zeigt Portnummern statt Dienstnamen:
-Ohne `-P` schlägt `lsof` jeden Port in `/etc/services` nach
-und zeigt beispielsweise für Port 8000 den Namen `irdmi`, der dort unter macOS eingetragen ist.
+Die Optionen von `lsof` bedeuten:
+
+- `-iTCP` wählt die TCP-Sockets aus,
+  `-sTCP:LISTEN` bzw. `-sTCP:ESTABLISHED` davon die im genannten Zustand.
+- `-n` zeigt IP-Adressen statt Rechnernamen.
+- `-P` zeigt Portnummern statt Dienstnamen:
+  Ohne `-P` schlägt `lsof` jeden Port in `/etc/services` nach
+  und zeigt beispielsweise für Port 8000 den Namen `irdmi`, der dort unter macOS eingetragen ist.
 
 Die Spalten heißen bei `lsof` anders als bei `ss`:
 Adresse und Port stehen in der Spalte `NAME`,
@@ -78,7 +78,7 @@ Server, die Sie in WSL starten, erreichen Sie übrigens auch aus dem Windows-Bro
 unter `localhost`, weil WSL solche Ports nach Windows weiterreicht.
 [ENDFOLDOUT]
 
-**AKTION:** Legen Sie in Ihrem [TERMREF::Hilfsbereich] ein leeres Verzeichnis `ports` an
+Legen Sie in Ihrem [TERMREF::Hilfsbereich] ein leeres Verzeichnis `ports` an
 und wechseln Sie hinein.
 Bleiben Sie für die gesamte Aufgabe dort.
 Der Webserver, den wir gleich starten, liefert jede Datei unterhalb des Verzeichnisses aus,
@@ -139,13 +139,18 @@ Auf einem frisch eingerichteten Rechner horchen oft nur Ihre eigenen Prozesse.
 Damit Sie auch einen fremden Prozess sehen, starten wir einen weiteren Server
 als Systembenutzer `nobody`.
 
-[EC] `sudo -b -u nobody python3 -m http.server 8002 --bind 127.0.0.1 --directory /tmp >/dev/null 2>&1`
+[EC] `sudo -b -u nobody python3 -m http.server 8002 --bind 127.0.0.1 --directory /tmp >server8002.log 2>&1`
 
 `-u nobody` lässt das Kommando als Benutzer `nobody` laufen.
 `-b` schickt es in den Hintergrund.
 Ein `&` geht hier nicht,
 weil `sudo` vorher nach Ihrem Passwort fragt.
 Was `--bind 127.0.0.1` bewirkt, sehen wir weiter unten.
+
+[EC] Prüfen Sie auch hier, ob der Server antwortet:
+`curl -sI http://localhost:8002/ | head -1`
+
+Kommt keine Zeile mit `200 OK`, steht in `server8002.log`, warum der Start gescheitert ist.
 
 [EC] Lassen Sie sich die Liste der Ports noch einmal anzeigen, jetzt mit `-p` auch mit den Prozessen:
 `ss -tlpn`
@@ -317,11 +322,11 @@ Jetzt bauen wir eine echte Verbindung auf und schauen sie uns von beiden Seiten 
 `nc` ([TERMREF::netcat]) schickt alles, was Sie eintippen, über eine TCP-Verbindung zur Gegenseite
 und gibt aus, was von dort ankommt.
 
-**AKTION:** Öffnen Sie ein zweites Terminalfenster (oder ein Pane in [TERMREF::tmux])
+Öffnen Sie ein zweites Terminalfenster (oder ein Pane in [TERMREF::tmux])
 und starten Sie dort `nc -l 9000`.
 `nc` horcht nun auf Port 9000 und wartet.
 
-**AKTION:** Öffnen Sie ein drittes Terminalfenster und verbinden Sie sich mit
+Öffnen Sie ein drittes Terminalfenster und verbinden Sie sich mit
 `nc localhost 9000`.
 Tippen Sie ein paar Zeilen in beiden Fenstern und beobachten Sie, wo sie ankommen.
 
@@ -348,7 +353,7 @@ wofür die "Dynamic Ports" gedacht sind.
 [EQ] Passt dieser Bereich zu den "Dynamic Ports" im Glossareintrag [TERMREF::Netzwerkport]?
 Was schließen Sie daraus über die Bereichseinteilung im Glossar?
 
-**AKTION:** Beenden Sie beide `nc` mit `Ctrl+C`.
+Beenden Sie beide `nc` mit `Ctrl+C`.
 
 <!-- time estimate: 15 min -->
 
