@@ -6,7 +6,7 @@ dann ist der Paketmanager die Tankstelle, wo man sich diesen Treibstoff in der R
 Das Ökosystem jeder modernen Programmiersprache hat einen solchen Paketmanager
 (manchmal sogar mehrere) und zugehörige Hilfsprogramme.
 Aus dem Basiskapitel kennen Sie bereits zwei Paketmanager 
-([PARTREF::apt], [PARTREF::pip]) und ein Hilfsprogramm zum Einrichten von 
+([PARTREF::apt101], [PARTREF::pip]) und ein Hilfsprogramm zum Einrichten von 
 separaten Arbeitsbereichen ([PARTREF::venv]).
 
 Ein paar weitere solche Werkzeuge wollen wir hier grob kennenlernen.
