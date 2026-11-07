@@ -158,6 +158,7 @@ Erklären Sie damit den Unterschied zwischen `apt remove` und `apt purge`.
 [ENDSECTION]
 
 [INSTRUCTOR::Kommandoprotokoll + Markdown]
+### Kommandoprotokoll
 [PROT::ALT:apt.prot]
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
