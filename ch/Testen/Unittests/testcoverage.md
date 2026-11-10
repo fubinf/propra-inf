@@ -238,6 +238,14 @@ class EmailValidator:
         }
 ```
 
+Der Kommentar `# pragma: no cover` hinter `except ValueError:` sorgt dafür,
+dass `coverage.py` diesen Zweig in seinen Berichten nicht als fehlend zählt.
+Das ist für Code gedacht, von dem man weiß, dass die Tests ihn nicht ausführen;
+hier kann der `ValueError` gar nicht auftreten,
+weil nach der Prüfung auf `@` immer zwei Teile entstehen.
+Näheres in der
+[`coverage.py`-Dokumentation zum Ausschließen von Code](https://coverage.readthedocs.io/en/7.17.2/excluding.html).
+
 ### Erste Tests und Coverage-Messung
 
 [ER] Erstellen Sie die Datei `test_email_validator.py` mit folgenden Starttests:
@@ -285,9 +293,9 @@ branch = true
 `branch = true` schaltet Branch Coverage ein:
 Dabei wird zusätzlich gezählt, ob bei jeder Verzweigung (z.B. `if`) beide Richtungen durchlaufen wurden.
 Näheres dazu in der
-[`coverage.py`-Dokumentation zur Branch Coverage](https://coverage.readthedocs.io/en/stable/branch.html)
+[`coverage.py`-Dokumentation zur Branch Coverage](https://coverage.readthedocs.io/en/7.17.2/branch.html)
 und zu weiteren Einstellungen in der
-[`coverage.py`-Dokumentation zur Konfiguration](https://coverage.readthedocs.io/en/stable/config.html).
+[`coverage.py`-Dokumentation zur Konfiguration](https://coverage.readthedocs.io/en/7.17.2/config.html).
 
 [EC] Führen Sie Tests erneut aus: `pytest`
 
