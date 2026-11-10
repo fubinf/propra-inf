@@ -1,5 +1,5 @@
 title: "Netzwerkports: Wer belegt welchen Port?"
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 2
 explains: localhost, Socket, Netzwerkport, netcat
@@ -9,19 +9,18 @@ assumes: Prozessmanagement, grep, apt101
 [SECTION::goal::experience]
 
 - Ich kann herausfinden, welche Programme auf meinem Rechner auf welchen Ports horchen.
-- Ich kann die Ursache der Fehlermeldung `Address already in use` finden und beheben.
+- Ich kann die Ursache der Fehlermeldung "Address already in use" finden und beheben.
 - Ich verstehe, warum ein Server, der nur auf `127.0.0.1` horcht, von anderen Rechnern aus
   nicht erreichbar ist, und warum das oft genau richtig ist.
 - Ich kann in der Ausgabe von `ss` die beiden Enden einer TCP-Verbindung zuordnen
   und weiß, woher der Port des Clients stammt.
-
 [ENDSECTION]
 
 
 [SECTION::background::default]
 Wer Webanwendungen entwickelt, startet ständig lokale Server:
 einen Entwicklungsserver, eine Datenbank, ein Testwerkzeug.
-Früher oder später meldet einer davon beim Start `Address already in use`.
+Früher oder später meldet einer davon beim Start "Address already in use".
 Die übliche Reaktion ist, auf einen anderen Port auszuweichen.
 Das hilft für den Moment, lässt aber offen, welcher vergessene Prozess den Port belegt
 und was der eigentlich gerade tut.
@@ -184,7 +183,7 @@ Diese Zeile brauchen Sie in Ihrer Antwort nicht zu erklären.
 <!-- time estimate: 15 min -->
 
 
-### `Address already in use`
+### "Address already in use"
 
 Im wahren Leben haben Sie den Server vor Stunden in einem anderen Terminalfenster gestartet
 und längst vergessen.
@@ -366,9 +365,7 @@ Beenden Sie beide `nc` mit `Ctrl+C`.
 [EC] Beenden Sie beide Server mit einem einzigen `kill` und den Jobnummern aus `jobs` (beispielsweise `%1`).
 
 [EC] Prüfen Sie mit `ss -tln | grep :800`, dass beide Ports wieder frei sind.
-
 <!-- time estimate: 5 min -->
-
 [ENDSECTION]
 
 
