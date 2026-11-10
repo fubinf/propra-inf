@@ -67,9 +67,11 @@ Der Parameter `--cov-report` bietet verschiedene Optionen.
 Suchen Sie in der `pytest-cov`-Dokumentation nach "missing".
 [ENDHINT]
 
-[ER] Wählen Sie ein Modul von `requests`, das nicht vollständig abgedeckt ist.
+Wählen Sie ein Modul von `requests`, das nicht vollständig abgedeckt ist.
 Ergänzen Sie in der passenden Testdatei unter `tests/` Testfälle,
 die mindestens drei der bisher fehlenden Zeilen dieses Moduls abdecken.
+
+[EC] Zeigen Sie Ihre Ergänzungen mit `git diff tests/`.
 
 [EQ] Erläutern Sie, warum Sie gerade diese Ergänzungen und Testfälle hinzugefügt haben.
 Was war schwer zu testen?
@@ -84,11 +86,21 @@ Nun entwickeln Sie ein komplexeres Verständnis von Coverage-Qualität mit einem
 
 Sie arbeiten mit einer E-Mail-Validierungsklasse, die viele Randfälle unterscheidet.
 
-Legen Sie dafür in Ihrem [TERMREF::Hilfsbereich] ein neues Verzeichnis `coverage-demo` an
+Legen Sie dafür in Ihrem [TERMREF::Arbeitsbereich] ein Verzeichnis `testcoverage/` an
 und arbeiten Sie dort mit dem `venv` aus Teil A weiter.
 Bleiben Sie nicht im `requests`-Repository:
 Das hat bereits eine eigene `pyproject.toml` mit `pytest`-Einstellungen,
 die mit Ihrer Konfiguration weiter unten kollidieren würde.
+
+Damit die Dateien, die `pytest` und `pytest-cov` erzeugen, nicht eingecheckt werden,
+legen Sie in `testcoverage/` eine Datei `.gitignore` mit folgendem Inhalt an:
+
+```text
+.coverage
+htmlcov/
+__pycache__/
+.pytest_cache/
+```
 
 [ER] Erstellen Sie die Datei `email_validator.py` mit folgendem Inhalt:
 
@@ -258,7 +270,7 @@ Was sagt Ihnen das über die Testqualität?
 ### Coverage-Konfiguration in `pyproject.toml`
 
 Damit Sie die Optionen nicht bei jedem Aufruf angeben müssen,
-legen Sie im Verzeichnis `coverage-demo` eine `pyproject.toml` mit folgendem Inhalt an:
+legen Sie im Verzeichnis `testcoverage/` eine `pyproject.toml` mit folgendem Inhalt an:
 
 ```toml
 [tool.pytest.ini_options]
