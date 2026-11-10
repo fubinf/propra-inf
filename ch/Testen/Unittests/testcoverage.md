@@ -16,11 +16,9 @@ requires: pytest_call
 
 
 [SECTION::background::default]
-Code Coverage misst, welcher Anteil Ihres Codes von Tests ausgeführt wird.
+Code Coverage ([TERMREF::Überdeckung]) misst,
+welcher Anteil Ihres Codes von Tests ausgeführt wird.
 Während hohe Coverage-Werte beruhigend wirken können, sind sie kein Garant für Testqualität.
-
-Eine 100%ige Zeilenabdeckung kann existieren, ohne dass ein einziger sinnvoller Test geschrieben wurde.
-Umgekehrt können gut durchdachte Tests mit 80% Coverage mehr Vertrauen schaffen als oberflächliche Tests mit 100% Coverage.
 
 In dieser Aufgabe lernen Sie `pytest-cov` zunächst an bestehender Codebasis kennen.
 Anschließend entwickeln Sie ein realitätsnahes Beispiel und bauen ein kritisches Verständnis für Coverage-Metriken auf.
@@ -62,7 +60,6 @@ Ausführlicher gibt es das in der
 Falls einzelne Tests fehlschlagen, ignorieren Sie das; die Coverage wird trotzdem gemessen.
 
 [EQ] Wie hoch ist die aktuelle Coverage der `requests`-Bibliothek?
-Was sagt Ihnen das über die Testqualität?
 
 [EQ] Wie finden Sie heraus, welche spezifischen Zeilen nicht abgedeckt sind?
 
@@ -85,13 +82,6 @@ Was war schwer zu testen?
 ## Teil B: Coverage-Bewertung mit realitätsnahem Beispiel
 
 Nun entwickeln Sie ein komplexeres Verständnis von Coverage-Qualität mit einem eigenen Beispiel.
-
-Lesen Sie zunächst diesen Artikel: 
-[Code Coverage – Kein zuverlässiges Qualitätsmaß](https://blog.ordix.de/code-coverage-kein-zuverlaessiges-qualitaetsmass),
-um die kritischen Aspekte von Coverage zu verstehen.
-
-[EQ] Welches Hauptargument nennt der Autor dafür, dass hohe Coverage-Werte kein Qualitätsmerkmal sind?
-<!-- time estimate: 10 min -->
 
 ### Beispiel: E-Mail Validator
 
