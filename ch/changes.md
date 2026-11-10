@@ -4,4 +4,5 @@
   Schwierigkeitsstufe von 4 optionalen Aufgaben im Kapitel [PARTREF::Basis] von 'leicht' auf 'sehr leicht' korrigiert.
 - **2026-11-06:** Aufgaben [PARTREF::pd-Datenaufbereitung], [PARTREF::pd-Datenbereinigung],
   [PARTREF::pd-Datensatzangleichung] und [PARTREF::pd-DatenKombinieren] zugefügt.
+- **2026-11-10:** Für die Tutoren: Aufgabe [PARTREF::apt101] hat jetzt auch Lösungshinweise für macOS. 
 - ...
