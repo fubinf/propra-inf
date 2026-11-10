@@ -325,10 +325,14 @@ Gibt es Code-Bereiche, die schwer zu testen sind?
 
 ### Coverage-Kritik
 
-[ER] Ergänzen Sie den folgenden Testrahmen so, dass `pytest --cov=email_validator` danach
-100% Line Coverage für `email_validator.py` meldet — aber ohne eine einzige sinnvolle Assertion:
+[ER] Legen Sie die Datei `test_fake_coverage.py` an
+und ergänzen Sie darin den folgenden Testrahmen so,
+dass `pytest test_fake_coverage.py` danach 100% Line Coverage für `email_validator.py` meldet —
+aber ohne eine einzige sinnvolle Assertion:
 
 ```python
+from email_validator import EmailValidator
+
 def test_fake_coverage():
     """Dieser Test erreicht hohe Coverage, testet aber nichts Sinnvolles."""
     validator = EmailValidator()
@@ -336,10 +340,12 @@ def test_fake_coverage():
     validator.validate('')  # Empty string
     validator.validate('user@example.com')  # Valid
     validator.validate('invalid')  # No @
+    # ... weitere Aufrufe ohne Assertions
     validator.block_domain('spam.com')
     validator.require_domain('company.com')
-    # ... weitere Aufrufe ohne Assertions
 ```
+
+[EC] Führen Sie diesen Test allein aus: `pytest test_fake_coverage.py`
 
 [EQ] Was zeigt dieser Test über die Aussagekraft von Coverage-Metriken?
 
