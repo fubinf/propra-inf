@@ -376,7 +376,6 @@ Warum ist er trotzdem wertvoller als `test_fake_coverage`?
 ### Reflexion und Best Practices
 
 [EQ] Welches Coverage-Ziel hätten Sie für den `EmailValidator` gesetzt und warum?
-Welche Methoden des `EmailValidator` sollten auf jeden Fall 100% Coverage haben?
 
 [EQ] **Quality Gates:** Angenommen, Sie fügen Coverage-Checks für den `EmailValidator` in eine CI/CD-Pipeline ein:
 
