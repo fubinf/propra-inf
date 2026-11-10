@@ -1,6 +1,6 @@
 title: Code Coverage mit pytest-cov - Von Tool-Nutzung zur kritischen Bewertung
 stage: alpha
-timevalue: 2.5
+timevalue: 2.0
 difficulty: 3
 assumes: m_pytest, pytest-Methodik-Blackbox
 requires: pytest_call
@@ -376,13 +376,7 @@ Warum ist er trotzdem wertvoller als `test_fake_coverage`?
 ### Reflexion und Best Practices
 
 [EQ] Welches Coverage-Ziel hätten Sie für den `EmailValidator` gesetzt und warum?
-
-[EQ] **Quality Gates:** Angenommen, Sie fügen Coverage-Checks für den `EmailValidator` in eine CI/CD-Pipeline ein:
-
-1. Welche Coverage-Metriken würden Sie überwachen? (Line/Branch/Function Coverage?)
-2. Bei welchen Coverage-Abfällen würden Sie Builds fehlschlagen lassen?
-3. Wie würden Sie mit schwer testbarem Code umgehen?
-<!-- time estimate: 20 min -->
+<!-- time estimate: 10 min -->
 [ENDSECTION]
 
 
