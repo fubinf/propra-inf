@@ -302,8 +302,7 @@ und zu weiteren Einstellungen in der
 [EQ] Was hat sich an der Ausgabe geändert?
 Warum ist die Coverage-Prozentzahl jetzt eine andere als vorher, obwohl die Tests gleich geblieben sind?
 
-Öffnen Sie den HTML-Report in `htmlcov/index.html`
-(macOS: `open htmlcov/index.html`, Linux: `xdg-open htmlcov/index.html`).
+Öffnen Sie den HTML-Report in `htmlcov/index.html`.
 
 [EQ] Welche Code-Bereiche werden nicht getestet?
 <!-- time estimate: 15 min -->
