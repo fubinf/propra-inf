@@ -1,32 +1,24 @@
-title: "OpenAPI mit SwaggerUI lesen"
+title: "SwaggerUI-Viewer lokal einrichten"
 stage: alpha
 timevalue: 0.5
 difficulty: 2
-explains: OpenAPI
+assumes: http-REST
 ---
 
 [SECTION::goal::idea]
-Ich kann eine OpenAPI-Spezifikation lokal mit der SwaggerUI darstellen und lesen.
+Ich kann eine OpenAPI-Spezifikation lokal mit der SwaggerUI darstellen.
 [ENDSECTION]
 
 
 [SECTION::background::default]
-Ein Server kann im Internet eine [TERMREF::REST-API] bereitstellen.
-Damit Anwender_innen sie nutzen können, muss sie genau spezifiziert sein.
-OpenAPI ist ein Standard, um eine REST-API in einer Datei (JSON oder YAML) zu beschreiben.
-Diese Spezifikation enthält unter anderem alle Endpunkte, HTTP-Methoden, Parameter
-und Antwortformate.
-Darauf aufbauend wurde die SwaggerUI entwickelt, die eine solche Spezifikation
-übersichtlich im Browser darstellt.
-
-Eigentlich ist die SwaggerUI dafür konzipiert, in Web-Frameworks eingebunden zu werden.
-Sie ist aber auch praktisch, um lokale OpenAPI-Spezifikationen zu lesen.
-In dieser Aufgabe erfahren Sie, wie Sie diese Oberfläche auf Ihrem PC selbst aufsetzen können.
+Sie kennen [TERMREF2::OpenAPI::OpenAPI und die SwaggerUI] bereits aus [PARTREF::http-REST].
+Die SwaggerUI ist eigentlich dafür gedacht, in Web-Frameworks eingebunden zu werden.
+In dieser Aufgabe richten Sie sich die SwaggerUI lokal ein, sodass Sie damit beliebige
+OpenAPI-Spezifikationen darstellen können.
 [ENDSECTION]
 
 
 [SECTION::instructions::detailed]
-
 
 ### SwaggerUI
 
@@ -35,9 +27,9 @@ In der
 [SwaggerUI-Installationsanleitung](https://github.com/swagger-api/swagger-ui/blob/HEAD/docs/usage/installation.md#unpkg)
 findet sich auch ein Beispiel für eine minimale HTML-Seite, die die SwaggerUI einbindet.
 
-Erstellen Sie einen neuen Ordner `SwaggerUI-Viewer/` in Ihrem *Hilfsverzeichnis*
+Erstellen Sie einen neuen Ordner `SwaggerUI-Viewer/` in Ihrem [TERMREF::Hilfsbereich]
 (dieser soll nicht Teil der Abgabe sein), erstellen Sie in diesem Verzeichnis die
-Datei `index.html` und kopieren Sie dort den folgenden Code hinein.
+Datei `swagger-viewer.html` und kopieren Sie den folgenden Code hinein.
 
 [FOLDOUT::SwaggerUI HTML Vorlage]
 ```html
@@ -45,11 +37,8 @@ Datei `index.html` und kopieren Sie dort den folgenden Code hinein.
 ```
 [ENDFOLDOUT]
 
-Wenn Sie die Datei nun in Ihrem Browser öffnen, wird die Beispiel-OpenAPI-Spezifikation geladen.
-
-Kopieren Sie die folgende OpenAPI-Spezifikation in eine zweite Datei
-`api.json` in dasselbe Verzeichnis.
-Ändern Sie in der HTML-Datei die zu öffnende URL in `/api.json`.
+Kopieren Sie außerdem die folgende OpenAPI-Spezifikation in eine zweite Datei
+`example-api.json` in dasselbe Verzeichnis.
 
 [FOLDOUT::Beispiel OpenAPI Spezifikation]
 
@@ -58,78 +47,24 @@ Kopieren Sie die folgende OpenAPI-Spezifikation in eine zweite Datei
 ```
 [ENDFOLDOUT]
 
-[HINT::Wie ändere ich die URL?]
-Die URL der anzuzeigenden Spezifikation wird in `SwaggerUIBundle` gesetzt.
-
-
-```js
-window.ui = SwaggerUIBundle({
-  url: "/api.json", // hier muss die URL der Spezifikation gesetzt werden.
-  dom_id: "#swagger-ui",
-});
-```
-[ENDHINT]
-
-Wenn Sie die Seite neu laden, bekommen Sie allerdings eine Fehlermeldung, dass
-die URL nicht gefunden werden konnte.
-Damit die URL aufgelöst werden kann, muss die Seite von einem Webserver ausgeliefert werden.
-Die Python-Standardbibliothek bietet mit dem `http.server`-Modul einen simplen Webserver dafür.
-
-Öffnen Sie ein Terminal und wechseln Sie in den erstellten Ordner im Hilfsverzeichnis.
-Starten Sie dort mit dem folgenden Befehl den Webserver:
-
-
-```sh
-python -m http.server
-```
-
-[HINT::Fehlermeldung: `Address already in use`]
-Wie die Fehlermeldung bereits andeutet, läuft auf Ihrem PC bereits ein Dienst,
-der den gleichen Port benutzt wie der Webserver.
-Sie können dem Webserver einen anderen Port als Argument übergeben:
-
-
-```sh
-python -m http.server 8080
-```
-[ENDHINT]
-
-Nach dem Starten wird in Ihrem Terminal die URL angezeigt, mit der Sie die Webseite
-in Ihrem Browser öffnen können.
-
-
-### OpenAPI lesen
-
-In einer OpenAPI-Spezifikation werden API-Funktionen über Pfade und HTTP-Methoden beschrieben.
-Ein Pfad heißt auch [TERMREF::Endpunkt], beispielsweise `/grades`.
-Die über ihn erreichbaren HTTP-Methoden heißen *Operationen*, beispielsweise
-`GET /grades` oder `POST /grades`.
-
-Jede Operation wird durch die folgenden Angaben beschrieben:
-
-- Endpunkt (Pfad)
-- Operation (HTTP-Methode)
-- mögliche Parameter (im Pfad oder als Query-Parameter)
-- Schema der Anfragedaten (Request Body)
-- Schema der Antwortdaten (Responses), bestehend aus Statuscode und Datenobjekt
-
-In der
-[OpenAPI Dokumentation](https://learn.openapis.org/specification/paths)
-werden die einzelnen Komponenten der Spezifikation detailliert erklärt.
+Öffnen Sie nun die Datei `swagger-viewer.html` in Ihrem Browser.
+Dort sehen Sie dann einen Button, um eine OpenAPI-JSON-Datei auszuwählen und ein
+aufklappbares Feld "OpenAPI Text" (dort können Sie auch eine Spezifikation direkt hineinkopieren).
+Klicken Sie auf den Button, um die `example-api.json` zu laden.
+Anschließend wird die entsprechende Spezifikation in der SwaggerUI lokal dargestellt
+und der Inhalt der Datei in "OpenAPI Text" angezeigt.
 
 [NOTICE]
-In der SwaggerUI wird jede Kombination aus Pfad und Operation als eigener Punkt dargestellt.
-In der JSON-Datei sehen Sie dagegen, dass pro Pfad mehrere Operationen stehen können.
-
-Diese Trennung ist in der SwaggerUI nötig, weil sich jede Operation einzeln
-mit dem "Try it out"-Button ausprobieren lässt.
+Die SwaggerUI-Bibliothek wird aus dem Internet nachgeladen.
+Sie benötigen eine aktive Internetverbindung, damit die Webseite funktioniert.
 [ENDNOTICE]
 
-[EQ] Welche Endpunkte enthält die gegebene Spezifikation
-und welche Operationen bietet jeder davon?
+`swagger-viewer.html` können Sie nun nutzen, um lokal OpenAPI Spezifikationen darzustellen.
 
-Sie können die erstellte `index.html` künftig als SwaggerUI-Viewer wiederverwenden,
-um beliebige OpenAPI-Spezifikationen lokal darzustellen.
+- [EQ] Sie kennen aus [PARTREF::http-REST] bereits den Unterschied zwischen
+  Operation und [TERMREF::Endpunkt].
+  Wie viele Operationen werden von Swagger dargestellt, und wie viele Endpunkte?
+
 [ENDSECTION]
 
 [SECTION::submission::information]
@@ -139,11 +74,4 @@ um beliebige OpenAPI-Spezifikationen lokal darzustellen.
 
 [INSTRUCTOR::SwaggerUI]
 [INCLUDE::ALT:]
-
-Musterlösung:
-[TREEREF::swaggerui.html]
-
-```html
-[INCLUDE::ITREE:swaggerui.html]
-```
 [ENDINSTRUCTOR]

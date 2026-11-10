@@ -1,27 +1,49 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="SwaggerUI" />
-    <title>SwaggerUI</title>
+    <title>Swagger Viewer</title>
     <link
       rel="stylesheet"
       href="https://unpkg.com/swagger-ui-dist@latest/swagger-ui.css"
     />
   </head>
   <body>
+    <div>
+      <label for="file">OpenAPI JSON Datei auswählen: </label>
+      <input id="file" type="file" accept=".json,.yaml,.yml" />
+    </div>
+    <details>
+      <summary>OpenAPI JSON Text</summary>
+      <textarea id="text" rows="10" cols="80"></textarea><br />
+      <button id="load">Laden</button>
+    </details>
+    <hr />
     <div id="swagger-ui"></div>
-    <script
-      src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js"
-      crossorigin
-    ></script>
+    <script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js"></script>
     <script>
-      window.onload = () => {
-        window.ui = SwaggerUIBundle({
-          url: "https://petstore3.swagger.io/api/v3/openapi.json",
-          dom_id: "#swagger-ui",
-        });
+      function show(text, name) {
+        const ui = SwaggerUIBundle({ dom_id: "#swagger-ui" });
+        ui.specActions.updateUrl(
+          "https://local.invalid/" + encodeURIComponent(name),
+        );
+        ui.specActions.updateSpec(text);
+      }
+      document.getElementById("file").onchange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+          let text = reader.result;
+          try {
+            text = JSON.stringify(JSON.parse(text), null, 2);
+          } catch (e) {}
+          document.getElementById("text").value = text;
+          show(text, file.name);
+        };
+        reader.readAsText(file);
+      };
+      document.getElementById("load").onclick = () => {
+        show(document.getElementById("text").value, "pasted.json");
       };
     </script>
   </body>
