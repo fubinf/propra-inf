@@ -48,7 +48,8 @@ meldet `pip` vermutlich, dass es bereits installiert ist.)
 
 ### Anwendung auf bestehende Codebasis
 
-[EQ] Wie lautet der Befehl zur Coverage-Analyse für das Paket `requests`?
+[EC] Ermitteln Sie den Befehl zur Coverage-Analyse für das Paket `requests` und führen Sie ihn aus.
+Falls einzelne Tests fehlschlagen, ignorieren Sie das; die Coverage wird trotzdem gemessen.
 
 [HINT::Wie starte ich die Coverage-Analyse?]
 Die Ausgabe von [EREFC::2] zeigt alle verfügbaren `--cov`-Optionen.
@@ -56,19 +57,15 @@ Ausführlicher gibt es das in der
 [`pytest-cov`-Dokumentation](https://pytest-cov.readthedocs.io/).
 [ENDHINT]
 
-[EC] Führen Sie diesen Befehl aus.
-Falls einzelne Tests fehlschlagen, ignorieren Sie das; die Coverage wird trotzdem gemessen.
-
 [EQ] Wie hoch ist die aktuelle Coverage der `requests`-Bibliothek?
 
-[EQ] Wie finden Sie heraus, welche spezifischen Zeilen nicht abgedeckt sind?
+[EC] Ermitteln Sie den Befehl, der zusätzlich die nicht abgedeckten Zeilen anzeigt,
+und führen Sie ihn aus.
 
 [HINT::Missing Lines anzeigen]
 Der Parameter `--cov-report` bietet verschiedene Optionen.
 Suchen Sie in der `pytest-cov`-Dokumentation nach "missing".
 [ENDHINT]
-
-[EC] Führen Sie den entsprechenden Befehl aus.
 
 [ER] Wählen Sie ein Modul von `requests`, das nicht vollständig abgedeckt ist.
 Ergänzen Sie in der passenden Testdatei unter `tests/` Testfälle,
