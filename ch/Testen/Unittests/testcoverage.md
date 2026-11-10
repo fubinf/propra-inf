@@ -2,7 +2,7 @@ title: Code Coverage mit pytest-cov - Von Tool-Nutzung zur kritischen Bewertung
 stage: alpha
 timevalue: 2.0
 difficulty: 3
-assumes: m_pytest, pytest-Methodik-Blackbox
+assumes: m_pytest, pytest-Methodik-Whitebox
 requires: pytest_call
 ---
 
@@ -20,8 +20,9 @@ Code Coverage ([TERMREF::Überdeckung]) misst,
 welcher Anteil Ihres Codes von Tests ausgeführt wird.
 Während hohe Coverage-Werte beruhigend wirken können, sind sie kein Garant für Testqualität.
 
-In dieser Aufgabe lernen Sie `pytest-cov` zunächst an bestehender Codebasis kennen.
-Anschließend entwickeln Sie ein realitätsnahes Beispiel und bauen ein kritisches Verständnis für Coverage-Metriken auf.
+In dieser Aufgabe lernen Sie `pytest-cov` zunächst an einer bestehenden Codebasis kennen.
+Anschließend testen Sie ein realitätsnahes Beispiel
+und bauen dabei ein kritisches Verständnis für Coverage-Metriken auf.
 
 [ENDSECTION]
 
@@ -30,20 +31,18 @@ Anschließend entwickeln Sie ein realitätsnahes Beispiel und bauen ein kritisch
 
 Im Folgenden verwenden wir „Testabdeckung“ und „Coverage“ synonym.
 
-## Teil A: pytest-cov Grundlagen mit bestehender Codebasis
+## Teil A: `pytest-cov`-Grundlagen mit bestehender Codebasis
 
 
-### pytest-cov Setup
-
-`pytest-cov` ist ein `pytest`-Plugin, das Coverage-Messung in `pytest` integriert.
+### Vorbereitung
 
 Arbeiten Sie in Teil A im `requests`-Repository und dessen `venv` aus [PARTREF::pytest_call].
+`pytest-cov` ist dort bereits installiert,
+weil es zu den Entwicklungsabhängigkeiten von `requests` gehört.
 
-[EC] Installieren Sie `pytest-cov`: `pip install pytest-cov`
-(Da `pytest-cov` zu den Entwicklungsabhängigkeiten von `requests` gehört,
-meldet `pip` vermutlich, dass es bereits installiert ist.)
-
-[EC] Verifizieren Sie die Installation: `pytest --version` und `pytest --help | grep cov`
+Machen Sie dort zuerst mit `git restore tests/` Ihre Änderungen an den Testdateien rückgängig,
+beispielsweise die `@pytest.mark.fixme`-Markierungen.
+Dann zeigt `git diff` später nur Ihre neuen Tests.
 
 
 ### Anwendung auf bestehende Codebasis
@@ -52,8 +51,8 @@ meldet `pip` vermutlich, dass es bereits installiert ist.)
 Falls einzelne Tests fehlschlagen, ignorieren Sie das; die Coverage wird trotzdem gemessen.
 
 [HINT::Wie starte ich die Coverage-Analyse?]
-Die Ausgabe von [EREFC::2] zeigt alle verfügbaren `--cov`-Optionen.
-Ausführlicher gibt es das in der 
+`pytest --help | grep cov` zeigt alle verfügbaren `--cov`-Optionen.
+Ausführlicher gibt es das in der
 [`pytest-cov`-Dokumentation](https://pytest-cov.readthedocs.io/).
 [ENDHINT]
 
@@ -62,27 +61,29 @@ Ausführlicher gibt es das in der
 [EC] Ermitteln Sie den Befehl, der zusätzlich die nicht abgedeckten Zeilen anzeigt,
 und führen Sie ihn aus.
 
-[HINT::Missing Lines anzeigen]
+[HINT::Wie zeige ich die fehlenden Zeilen an?]
 Der Parameter `--cov-report` bietet verschiedene Optionen.
-Suchen Sie in der `pytest-cov`-Dokumentation nach "missing".
+Suchen Sie in der `pytest-cov`-Dokumentation nach `missing`.
 [ENDHINT]
 
 Wählen Sie ein Modul von `requests`, das nicht vollständig abgedeckt ist.
 Ergänzen Sie in der passenden Testdatei unter `tests/` Testfälle,
 die mindestens drei der bisher fehlenden Zeilen dieses Moduls abdecken.
 
+[EC] Wiederholen Sie die Messung aus [EREFC::2]
+und prüfen Sie, dass die gewählten Zeilen nicht mehr unter `Missing` stehen.
+
 [EC] Zeigen Sie Ihre Ergänzungen mit `git diff tests/`.
 
-[EQ] Erläutern Sie, warum Sie gerade diese Ergänzungen und Testfälle hinzugefügt haben.
+[EQ] Erläutern Sie, warum Sie gerade diese Testfälle ergänzt haben.
 Was war schwer zu testen?
 <!-- time estimate: 45 min -->
 
 
 ## Teil B: Coverage-Bewertung mit realitätsnahem Beispiel
 
-Nun entwickeln Sie ein komplexeres Verständnis von Coverage-Qualität mit einem eigenen Beispiel.
 
-### Beispiel: E-Mail Validator
+### Beispiel: E-Mail-Validator
 
 Sie arbeiten mit einer E-Mail-Validierungsklasse, die viele Randfälle unterscheidet.
 
@@ -290,14 +291,12 @@ branch = true
 
 `addopts` hängt die angegebenen Optionen an jeden `pytest`-Aufruf an;
 `--cov-report=html` erzeugt zusätzlich einen HTML-Report im Verzeichnis `htmlcov/`.
-`branch = true` schaltet Branch Coverage ein:
-Dabei wird zusätzlich gezählt, ob bei jeder Verzweigung (z.B. `if`) beide Richtungen durchlaufen wurden.
-Näheres dazu in der
-[`coverage.py`-Dokumentation zur Branch Coverage](https://coverage.readthedocs.io/en/7.17.2/branch.html)
-und zu weiteren Einstellungen in der
+`branch = true` schaltet wie `--cov-branch` aus [PARTREF::pytest-Methodik-Whitebox]
+die Zweigüberdeckung (Branch Coverage) ein.
+Weitere Einstellungen beschreibt die
 [`coverage.py`-Dokumentation zur Konfiguration](https://coverage.readthedocs.io/en/7.17.2/config.html).
 
-[EC] Führen Sie Tests erneut aus: `pytest`
+[EC] Führen Sie die Tests erneut aus: `pytest`
 
 [EQ] Was hat sich an der Ausgabe geändert?
 Warum ist die Coverage-Prozentzahl jetzt eine andere als vorher, obwohl die Tests gleich geblieben sind?
@@ -310,7 +309,7 @@ Warum ist die Coverage-Prozentzahl jetzt eine andere als vorher, obwohl die Test
 
 ### Systematischer Testausbau
 
-[ER] Erweitern Sie die Tests, um verschiedene Edge Cases abzudecken:
+[ER] Erweitern Sie die Tests, um verschiedene Randfälle abzudecken:
 
 - Leere/None-Eingaben
 - Verschiedene Domain-Validierungsfehler
@@ -358,7 +357,7 @@ und mit Escaping beim Einbau in HTML.
 Der Validator ist eine zusätzliche Verteidigungslinie:
 Er sollte Eingaben ablehnen, die dort Schaden anrichten könnten.
 
-[ER] Schreiben Sie einen Test `test_security_critical_validation`,
+[ER] Schreiben Sie in `test_email_validator.py` einen Test `test_security_critical_validation`,
 der für mindestens drei solche gefährlichen Eingaben prüft, dass `validate()` sie als ungültig ablehnt.
 Beispiel für eine solche Eingabe: `"'; DROP TABLE users; --@evil.com"` (ein SQL-Injection-Versuch).
 
@@ -368,12 +367,13 @@ HTML-Tags wie `<script>...</script>`, Pfadangaben wie `../../`
 oder Shell-Befehle wie `; rm -rf /`.
 [ENDHINT]
 
-[EQ] Um wie viel erhöht dieser Test die Coverage, wenn Sie alle Ihre bisherigen Tests mitlaufen lassen?
+[EQ] Führen Sie `pytest test_email_validator.py` aus, also ohne `test_fake_coverage`.
+Um wie viel erhöht der neue Test die Coverage gegenüber Ihrem Stand nach dem Testausbau?
 Warum ist er trotzdem wertvoller als `test_fake_coverage`?
 <!-- time estimate: 20 min -->
 
 
-### Reflexion und Best Practices
+### Reflexion
 
 [EQ] Welches Coverage-Ziel hätten Sie für den `EmailValidator` gesetzt und warum?
 <!-- time estimate: 10 min -->
