@@ -352,7 +352,11 @@ def test_fake_coverage():
 Nun die Gegenrichtung: ein Test mit wenigen, aber wichtigen Assertions.
 Ein E-Mail-Validator steht oft vor Code, der die Adresse weiterverarbeitet,
 z.B. in eine Datenbankabfrage einsetzt oder in eine Webseite einbaut.
-Er sollte daher Eingaben ablehnen, die dort Schaden anrichten könnten.
+Vor Angriffen schützt dort vor allem dieser Code selbst,
+z.B. mit parametrisierten Abfragen gegen [TERMREF::SQL Injection]
+und mit Escaping beim Einbau in HTML.
+Der Validator ist eine zusätzliche Verteidigungslinie:
+Er sollte Eingaben ablehnen, die dort Schaden anrichten könnten.
 
 [ER] Schreiben Sie einen Test `test_security_critical_validation`,
 der für mindestens drei solche gefährlichen Eingaben prüft, dass `validate()` sie als ungültig ablehnt.
