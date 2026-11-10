@@ -34,12 +34,10 @@ Im Folgenden verwenden wir „Testabdeckung“ und „Coverage“ synonym.
 
 ## Teil A: pytest-cov Grundlagen mit bestehender Codebasis
 
-Zunächst lernen Sie `pytest-cov` an einer bestehenden Codebasis kennen und schließen gezielt einige Abdeckungslücken.
-
 
 ### pytest-cov Setup
 
-`pytest-cov` ist ein pytest-Plugin, das Coverage-Messung nahtlos in Ihren Test-Workflow integriert.
+`pytest-cov` ist ein `pytest`-Plugin, das Coverage-Messung in `pytest` integriert.
 
 Arbeiten Sie in Teil A im `requests`-Repository und dessen `venv` aus [PARTREF::pytest_call].
 
@@ -51,8 +49,6 @@ meldet `pip` vermutlich, dass es bereits installiert ist.)
 
 
 ### Anwendung auf bestehende Codebasis
-
-Wenden Sie `pytest-cov` auf die `requests`-Bibliothek aus [PARTREF::pytest_call] an.
 
 [EQ] Wie lautet der Befehl zur Coverage-Analyse für das Paket `requests`?
 
@@ -99,8 +95,7 @@ um die kritischen Aspekte von Coverage zu verstehen.
 
 ### Beispiel: E-Mail Validator
 
-Sie arbeiten mit einer E-Mail-Validierungsklasse — ein realistisches Szenario mit
-verschiedenen Randfällen.
+Sie arbeiten mit einer E-Mail-Validierungsklasse, die viele Randfälle unterscheidet.
 
 Legen Sie dafür in Ihrem [TERMREF::Hilfsbereich] ein neues Verzeichnis `coverage-demo` an
 und arbeiten Sie dort mit dem `venv` aus Teil A weiter.
@@ -273,9 +268,7 @@ class TestEmailValidator:
 Was sagt Ihnen das über die Testqualität?
 <!-- time estimate: 15 min -->
 
-### Coverage-Konfiguration für eigenes Projekt
-
-Nach der Analyse der bestehenden Codebasis erstellen Sie nun eine eigene Coverage-Konfiguration.
+### Coverage-Konfiguration in `pyproject.toml`
 
 Damit Sie die Optionen nicht bei jedem Aufruf angeben müssen,
 legen Sie im Verzeichnis `coverage-demo` eine `pyproject.toml` mit folgendem Inhalt an:
@@ -293,9 +286,9 @@ branch = true
 `branch = true` schaltet Branch Coverage ein:
 Dabei wird zusätzlich gezählt, ob bei jeder Verzweigung (z.B. `if`) beide Richtungen durchlaufen wurden.
 Näheres dazu in der
-[`coverage.py`-Dokumentation zur Branch Coverage](https://coverage.readthedocs.io/en/latest/branch.html)
+[`coverage.py`-Dokumentation zur Branch Coverage](https://coverage.readthedocs.io/en/stable/branch.html)
 und zu weiteren Einstellungen in der
-[`coverage.py`-Dokumentation zur Konfiguration](https://coverage.readthedocs.io/en/latest/config.html).
+[`coverage.py`-Dokumentation zur Konfiguration](https://coverage.readthedocs.io/en/stable/config.html).
 
 [EC] Führen Sie Tests erneut aus: `pytest`
 
@@ -325,8 +318,6 @@ Gibt es Code-Bereiche, die schwer zu testen sind?
 
 
 ### Coverage-Kritik
-
-Jetzt wollen wir die Grenzen des Coverage-Maßes verstehen:
 
 [ER] Ergänzen Sie den folgenden Testrahmen so, dass `pytest --cov=email_validator` danach
 100% Line Coverage für `email_validator.py` meldet — aber ohne eine einzige sinnvolle Assertion:
@@ -368,7 +359,7 @@ Warum ist er trotzdem wertvoller als `test_fake_coverage`?
 
 ### Reflexion und Best Practices
 
-[EQ] Welches Coverage-Ziel hätten Sie für den `EmailValidator` gesetzt — und warum?
+[EQ] Welches Coverage-Ziel hätten Sie für den `EmailValidator` gesetzt und warum?
 Welche Methoden des `EmailValidator` sollten auf jeden Fall 100% Coverage haben?
 
 [EQ] **Quality Gates:** Angenommen, Sie fügen Coverage-Checks für den `EmailValidator` in eine CI/CD-Pipeline ein:
