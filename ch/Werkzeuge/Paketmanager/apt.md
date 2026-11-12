@@ -2,7 +2,7 @@ title: APT Paketverwaltung
 stage: beta
 timevalue: 1.0
 difficulty: 2
-assumes: apt101, sudo
+assumes: apt101
 ---
 
 [SECTION::goal::trial]
@@ -12,16 +12,16 @@ Ich kann `apt` zur Verwaltung von Debian-Softwarepaketen anwenden.
 [SECTION::background::default]
 In [PARTREF::apt101] haben Sie mit `sudo apt install` ein Paket installiert.
 Auf einem selbstverwalteten Debian-System braucht man `apt` aber für mehr.
-Man hält mit `apt` das System aktuell und wird Pakete auch wieder los,
+Man hält mit `apt` das System aktuell und wird Pakete bei Bedarf auch wieder los,
 samt der Abhängigkeiten, die beim Installieren automatisch mitgekommen sind.
-Wer gut damit umgehen kann, darf sich oft wie ein Wizard fühlen.
+Auch der Wechsel auf eine komplett neue Betriebssystemversion wird von `apt` erledigt.
 [ENDSECTION]
 
 [SECTION::instructions::detailed]
 
 [NOTICE]
 Für diese Aufgabe brauchen Sie ein Debian-System, auf dem Sie Administratorrechte haben.
-Auf einem Poolrechner der Uni und auf dem Mac können Sie sie deshalb nicht bearbeiten.
+Auf einem Poolrechner der Uni oder auf dem Mac lässt Sie sich nicht bearbeiten.
 Wie man auf dem Mac stattdessen Pakete installiert, steht in [PARTREF::apt101].
 [ENDNOTICE]
 
@@ -30,7 +30,7 @@ Grundlage dieser Aufgabe ist der
 im Wiki von ubuntuusers.
 Er ist für Ubuntu geschrieben, die Befehle, die wir hier brauchen, funktionieren auf Debian aber genauso.
 Lesen Sie dort zuerst den Abschnitt **Benutzung**.
-Root-Rechte bekommen Sie mit `sudo`, das Sie aus [PARTREF::apt101] und [PARTREF::sudo] kennen.
+Root-Rechte bekommen Sie mit `sudo`, das Sie aus [PARTREF::apt101] kennen.
 Die Abschnitte **Historie anzeigen / rückgängigmachen / wiederholen und zurücksetzen**,
 **sources.list editieren** und **Problembehebung** brauchen Sie nicht.
 Die `history`-Befehle gibt es im `apt` von Debian 13 noch gar nicht.
@@ -97,7 +97,7 @@ Setzen Sie das Muster in Anführungszeichen, damit die Shell es unverändert an 
 [ENDHINT]
 
 Hinter jedem Paket steht in eckigen Klammern entweder `[installed]`
-oder `[installed,automatic]` (bzw. `[installiert]` und `[Installiert,automatisch]`).
+oder `[installed,automatic]` (bzw. `[installiert]` und `[installiert,automatisch]`).
 
 [EQ] Warum steht beim Paket des Midnight Commanders `installed`, beim Paket `mc-data` dagegen `installed,automatic`?
 
