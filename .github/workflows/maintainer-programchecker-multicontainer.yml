@@ -66,7 +66,7 @@ jobs:
       shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
-        python sedrila/py/sedrila.py maintainer collect-dependencies -o /tmp/metadata.json 2>/dev/null || echo '{"lang": [], "deps": [], "tasks": {}}' > /tmp/metadata.json
+        python sedrila/sedrila/__main__.py maintainer collect-dependencies -o /tmp/metadata.json 2>/dev/null || echo '{"lang": [], "deps": [], "tasks": {}}' > /tmp/metadata.json
         echo "Lang: $(jq -r '.lang | length' /tmp/metadata.json) commands, Deps: $(jq -r '.deps | length' /tmp/metadata.json) commands, Tasks: $(jq -r '.tasks | length' /tmp/metadata.json)"
 
     - name: Install language runtimes and task dependencies globally
@@ -109,7 +109,7 @@ jobs:
       shell: bash
       run: |
         source /tmp/sedrila_venv/bin/activate
-        python sedrila/py/sedrila.py maintainer check-programs \
+        python sedrila/sedrila/__main__.py maintainer check-programs \
           --batch \
           /tmp/progcheck
       continue-on-error: false
