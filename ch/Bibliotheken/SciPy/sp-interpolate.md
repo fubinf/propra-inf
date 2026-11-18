@@ -43,7 +43,7 @@ Falls Ihnen diese fehlen, helfen folgende Quellen:
 Interpolation erzeugt aus gegebenen Datenpunkten eine Funktion, mit der sich Werte zwischen den
 Punkten berechnen lassen.
 Die x-Koordinaten dieser Punkte heißen Stützstellen.
-Am gebräuchlichsten (hinter der simplen linearen Interpolation) sind Splines: 
+Am gebräuchlichsten (hinter der simplen linearen Interpolation) sind Splines:
 stückweise aus Polynomen zusammengesetzte Funktionen.
 SciPy bietet dafür vor allem zwei Werkzeuge: `make_interp_spline` für Splines beliebigen
 Grades und `CubicSpline` speziell für kubische Splines.
@@ -155,8 +155,8 @@ wäre wie dort?
 
 Bei verrauschten Messdaten ist eine exakte Interpolation durch jeden Punkt oft nicht erwünscht —
 sie übertrüge das Rauschen voll in die Kurve.
-`make_splrep` erzeugt für solche Situationen einen Spline, der die Daten je nach Glättungsparameter `s` 
-mehr oder weniger genau nachbildet:
+`make_splrep` erzeugt für solche Situationen einen Spline, der die Daten je nach
+Glättungsparameter `s` mehr oder weniger genau nachbildet:
 
 ```python
 scipy.interpolate.make_splrep(x, y, *, k=3, s=0)
@@ -191,7 +191,7 @@ x = np.array([0.0, 1.0, 2.0, 3.0, 4.0])
 y = np.array([0.0, 0.8, 0.9, 0.1, -0.8])
 
 exakt = make_splrep(x, y, s=0)      # geht durch alle Punkte
-glatt = make_splrep(x, y, s=1.0)    # glättet
+glatt = make_splrep(x, y, s=0.01)   # glättet
 
 # beide an den Stützstellen auswerten und mit den Daten vergleichen
 print("Daten:", y)
@@ -272,7 +272,7 @@ print("RBF:", np.round(rbf(x_neu), 3))
 ```
 
 Anders als die kubischen Splines gibt `RBFInterpolator` die zugrunde liegende Funktion `x²` nicht
-exakt wieder: 
+exakt wieder:
 `RBFInterpolator` ergänzt die Kernelfunktionen standardmäßig nur um ein lineares Polynom;
 schon ein quadratischer Verlauf lässt sich damit also nicht exakt darstellen.
 Wie groß die Abweichung ausfällt, ist von Stelle zu Stelle verschieden; der Abschnitt zum
@@ -344,28 +344,31 @@ Welches Verfahren geeignet ist, hängt von den Daten und dem Ziel ab:
   `CubicSpline`, `make_splrep` mit `s=0`, `RBFInterpolator` mit `'thin_plate_spline'` — denken
   Sie an `reshape(-1, 1)` für die Koordinaten, siehe [EREFR::3]) und nennen Sie die vier Objekte
   `linear`, `kubisch`, `splrep_spline` und `rbf`
-- Werten Sie alle vier an den Zwischenstellen `x_test` mit den Werten `[1.0, 2.5, 4.0, 5.9]` aus
-  und geben Sie neben den Werten auch den Betrag der Abweichung vom wahren Sinuswert aus
-  (4 Nachkommastellen)
-- Bestimmen Sie für jedes Verfahren den maximalen Betrag des Fehlers (4 Nachkommastellen) auf
-  einem feinen Gitter `np.linspace(0, 2*np.pi, 100)` gegenüber `np.sin`
+- Erzeugen Sie zusätzlich einen zweiten `RBFInterpolator` mit dem Kernel `'cubic'` und nennen Sie
+  ihn `rbf_cub`
+- Werten Sie alle fünf Objekte an den Zwischenstellen `x_test` mit den Werten
+  `[1.0, 2.5, 4.0, 5.9]` aus und geben Sie neben den Werten auch den Betrag der Abweichung vom
+  wahren Sinuswert aus (4 Nachkommastellen)
+- Bestimmen Sie für jedes der fünf Objekte den maximalen Betrag des Fehlers (4 Nachkommastellen)
+  auf einem feinen Gitter `np.linspace(0, 2*np.pi, 100)` gegenüber `np.sin`
 
-[HINT::Wie berechne ich den Maximalfehler für alle vier Verfahren?]
-Für ein Verfahren sieht die Rechnung so aus, die übrigen drei laufen analog:
+[HINT::Wie berechne ich den Maximalfehler für alle fünf Objekte?]
+Für ein Objekt sieht die Rechnung so aus, die übrigen vier laufen analog:
 ```python
 x_fein = np.linspace(0, 2 * np.pi, 100)
 print(f"linear: {np.max(np.abs(linear(x_fein) - np.sin(x_fein))):.4f}")
 ```
-Bei `rbf` ist dabei wieder `x_fein.reshape(-1, 1)` einzusetzen.
+Bei `rbf` und `rbf_cub` ist dabei wieder `x_fein.reshape(-1, 1)` einzusetzen.
 [ENDHINT]
 
 [EQ] Betrachten Sie die Ergebnisse aus [EREFR::4]:
 
-- `RBFInterpolator` liegt zwischen den beiden kubischen Splines und der linearen Interpolation.
+- `rbf` liegt zwischen den beiden kubischen Splines und der linearen Interpolation.
   Sehen Sie sich seine Abweichungen an den vier Zwischenstellen an: eine davon fällt deutlich aus
   der Reihe.
-  Wo liegt diese Stelle relativ zu den Stützstellen, und was leisten die kubischen Splines dort,
-  was `RBFInterpolator` nicht leistet?
+  Wo liegt diese Stelle relativ zu den Stützstellen?
+  Vergleichen Sie dort und beim Maximalfehler `rbf` mit `rbf_cub`: Was sagt das über die Rolle des
+  Kernels aus, über das hinaus, was Sie dazu schon in [EREFQ::3] festgestellt haben?
 - Welche beiden Verfahren liefern identische Ergebnisse, und warum?
 - Bei den Daten aus [EREFR::2] war die wahre Funktion ausnahmsweise bekannt, in der Praxis ist sie
   das fast nie.
