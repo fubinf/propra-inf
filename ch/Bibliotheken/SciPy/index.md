@@ -35,6 +35,12 @@ der Numerik) für die jeweilige Aufgabe bereits mitbringen. Wer das nur teilweis
 Aufgaben trotzdem bearbeiten, muss sich die fehlenden Grundlagen aber zusätzlich selbst aneignen
 (außerhalb des angegebenen Zeitbudgets) — jede Aufgabe verweist dafür auf eine passende Quelle.
 
+Wie ein numerisches Verfahren im Einzelnen arbeitet, erklären die Aufgabentexte nicht.
+Wo Sie zwischen Verfahren wählen oder sie vergleichen, nennt die Aufgabe zu jedem Verfahren in
+einem Satz oder einer Tabellenzeile die Eigenschaft, auf die es dabei ankommt (etwa Genauigkeit,
+Aufwand oder Voraussetzungen), höchstens mit einer knappen Begründung.
+Verlangt eine Frage mehr, lesen Sie es in der verlinkten Dokumentation nach.
+
 Benötigtes Vorwissen pro Aufgabe:
 
 - **sp-Einführung**: Grundbegriffe der Analysis und linearen Algebra (Integral, dünnbesetzte

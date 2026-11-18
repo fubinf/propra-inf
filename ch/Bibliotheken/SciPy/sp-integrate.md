@@ -1,6 +1,6 @@
 title: SciPy Numerische Integration und Differentialgleichungen verstehen und anwenden
 stage: alpha
-timevalue: 1.75
+timevalue: 1.5
 difficulty: 3
 requires: sp-Einführung
 assumes: np-Einführung, np-array2, np-math, py-Fstrings
@@ -128,8 +128,7 @@ noch fehlt.
 
 [ER] Bringen Sie `∫₀²⁰ sin(100x) dx` zum Konvergieren:
 Rufen Sie das Integral zweimal auf, einmal mit der Voreinstellung und einmal mit einem so großen
-`limit`, dass `error` mehrere Zehnerpotenzen unter `result` liegt und die `IntegrationWarning`
-ausbleibt.
+`limit`, dass die `IntegrationWarning` ausbleibt.
 Geben Sie für beide Läufe `result` und `error` aus, formatiert wie in [EREFR::1].
 
 [HINT::Ich habe die Toleranzen gelockert, aber es ändert sich nichts]
@@ -143,9 +142,6 @@ Diese Schranke hebt nur `limit` an.
 [EQ] Stellen Sie Ihre drei `error`-Werte aus [EREFR::1] neben die beiden aus [EREFR::2].
 Woran würden Sie in jedem der fünf Fälle allein anhand der Rückgabewerte erkennen, ob `result`
 vertrauenswürdig ist?
-
-Der exakte Wert des Integrals aus [EREFR::2] ist gerundet `0.013675`;
-das Ergebnis mit der Voreinstellung ist also rund 14-mal so groß.
 
 <!-- time estimate: 25 min -->
 
@@ -181,12 +177,7 @@ jedoch nicht.
 Übergeben Sie die Parameter in allen Fällen über `args`.
 Geben Sie für jedes Integral Ergebnis, Fehler und Abweichung aus, formatiert wie in [EREFR::1].
 
-[EQ] Was müssten Sie an Ihrem Code für `k=5`, `k=7` und `k=9` ändern, wenn `k` fest im
-Funktionskörper stünde (etwa `np.sin(5 * x)`) statt über `args` übergeben zu werden?
-Wie viele Stellen wären in beiden Varianten zu ändern, wenn statt drei `k`-Werten zwanzig zu
-rechnen wären?
-
-<!-- time estimate: 25 min -->
+<!-- time estimate: 15 min -->
 
 
 ### Gewöhnliche Differentialgleichungen mit `solve_ivp`
@@ -285,6 +276,11 @@ analytischen Lösung, formatiert wie in [EREFR::1].
 
 ### Verfahren und Toleranzen vergleichen, Abbrüche erkennen
 
+`'RK23'`, `'RK45'` und `'DOP853'` sind Runge-Kutta-Verfahren der Ordnung 3, 5 und 8.
+Ein Verfahren höherer Ordnung rechnet pro Schritt aufwendiger, eignet sich aber besser, wenn hohe
+Genauigkeit gefragt ist; Einzelheiten stehen bei `method` in der Referenz zu
+[`scipy.integrate.solve_ivp`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html).
+
 [ER] Vergleichen Sie verschiedene Verfahren und Toleranzen:
 
 - Rechnen Sie das logistische Wachstum mit `method='RK23'`, `method='RK45'` und `method='DOP853'`,
@@ -302,7 +298,7 @@ Anforderung gegenüber.
 Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und was sagt
 `sol.success` demnach über die Genauigkeit einer Lösung aus?
 
-<!-- time estimate: 30 min -->
+<!-- time estimate: 25 min -->
 
 
 ### Weiterführend
