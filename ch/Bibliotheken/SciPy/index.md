@@ -43,9 +43,9 @@ Verlangt eine Frage mehr, lesen Sie es in der verlinkten Dokumentation nach.
 
 Benötigtes Vorwissen pro Aufgabe:
 
-- **sp-Einführung**: Grundbegriffe der Analysis und linearen Algebra (Integral, dünnbesetzte
-  Matrix, Extremstelle einer Funktion, Interpolation, Kurvenanpassung) zum Zuordnen von
-  Aufgabenbeschreibungen zu Modulen
+- **sp-Einführung**: Grundbegriffe der Analysis und Numerik (Integral, gewöhnliche
+  Differentialgleichung, Nullstelle, Kurvenanpassung) zum Zuordnen von Aufgabenbeschreibungen zu
+  Modulen
 - **sp-linalg**: Lineare Algebra (Matrixzerlegungen, Konditionszahl)
 - **sp-integrate**: Analysis (bestimmte Integrale), gewöhnliche Differentialgleichungen
 - **sp-optimize**: Analysis (Nullstellen, lokale/globale Extremstellen) — geringerer Bedarf
