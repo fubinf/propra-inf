@@ -85,8 +85,8 @@ Matrix-Vektor-Produkte.
 
 `scipy.sparse` bietet dieses Format über zwei Schnittstellen an: die ältere `csr_matrix` und die
 neuere `csr_array`, die sich wie ein NumPy-Array verhält.
-Laut 
-[SciPy-Dokumentation](https://docs.scipy.org/doc/scipy/reference/sparse.html) 
+Laut
+[SciPy-Dokumentation](https://docs.scipy.org/doc/scipy/reference/sparse.html)
 wird die Matrix-Schnittstelle voraussichtlich abgeschafft, deshalb verwendet diese Aufgabe durchgehend
 `csr_array`.
 In älterem Code und in vielen Anleitungen im Netz begegnet Ihnen weiterhin `csr_matrix`.
@@ -217,7 +217,7 @@ aller.
 Daraus ergibt sich die Sparsity als `(gesamt - nicht_null) / gesamt * 100`.
 [ENDHINT]
 
-[EQ] Als Kontrollwert: Nach `eliminate_zeros()` speichert `sparse_arr` aus [EREFR::2] 4 der 12
+[EQ] Als Kontrollwert: `sparse_arr` aus [EREFR::2] speichert nach `eliminate_zeros()` 4 der 12
 Elemente, die Sparsity beträgt also 66,7%.
 Zählen Sie, wie viele Zahlen `sparse_arr` dafür in `data`, `indices` und `indptr` insgesamt
 festhält, und vergleichen Sie diese Anzahl mit der Anzahl der Zahlen, die die dichte Speicherung des
@@ -288,7 +288,12 @@ die kürzeste Distanz vom Startknoten dorthin.
 `[0. 3. 2. 8.]` bedeutet also: von Knoten 0 zu Knoten 0 ist die Distanz 0, zu Knoten 1 gleich 3,
 zu Knoten 2 gleich 2 und zu Knoten 3 gleich 8.
 
-Der Aufruf belässt `directed` beim Standardwert `True`, obwohl der Graph ungerichtet ist.
+Statt über ein dichtes Array lässt sich ein Graph auch direkt aus seiner Kantenliste erzeugen:
+`csr_array((data, (row, col)), shape=(n, n))` übernimmt aus drei gleich langen Arrays für jede
+Kante den Wert `data[k]` an die Position `(row[k], col[k])`; `n` ist die Anzahl der Knoten.
+
+Der `dijkstra`-Aufruf im Beispiel belässt `directed` beim Standardwert `True`, obwohl der Graph
+ungerichtet ist.
 Bei einer symmetrischen Adjazenzmatrix macht das keinen Unterschied, denn zu jeder Kante `i → j`
 steht die Gegenkante `j → i` schon in der Matrix.
 `directed=False` wird erst dort nötig, wo nur eine der beiden Richtungen gespeichert ist.
@@ -320,12 +325,10 @@ Knoten 2 → Knoten 3 (Gewicht 4)
 - Setzen Sie die 0 stattdessen im dichten NumPy-Array, erzeugen Sie daraus ein neues CSR-Array und
   ermitteln Sie die kürzesten Pfade von Knoten 1 ein viertes Mal
 
-[EQ] Interpretieren Sie Ihre Ergebnisse für die Knoten 0, 1 und 3 aus [EREFR::3].
+[EQ] Interpretieren Sie Ihre Ergebnisse für die Knoten 0 und 3 aus [EREFR::3].
 Die kürzeste Distanz von Knoten 0 nach Knoten 3 beträgt 5: Nennen Sie die Kantenfolgen, die diese
 Länge ergeben, und erklären Sie, ob sich diese Kantenfolgen aus der Rückgabe von `dijkstra`
 ablesen lassen.
-Im ersten Ergebnis für Knoten 1 erhält genau ein Knoten die Distanz `inf`: Erklären Sie, warum
-dieser Knoten von Knoten 1 aus nicht erreichbar ist, obwohl eine Kante die beiden Knoten verbindet.
 Vergleichen Sie schließlich Ihre beiden Ergebnisse für Knoten 3 und erklären Sie den Unterschied.
 
 [EQ] Vergleichen Sie Ihre vier Ergebnisse für Knoten 1 aus [EREFR::3].
@@ -397,10 +400,6 @@ Ein CSR-Array hat selbst kein `nbytes`, aber jedes der Arrays, aus denen es best
 [EQ] Vergleichen Sie Ihre Messwerte aus [EREFR::4].
 Erklären Sie, warum der Vorteil der Sparse-Darstellung bei der Dichte 0.2 viel kleiner ausfällt als
 bei der Dichte 0.001, obwohl schon die Dichte 0.2 einer Sparsity von 80% entspricht.
-Halten Sie fest, ob die Sparse-Darstellung bei der Dichte 0.2 noch im Vorteil ist, und zwar getrennt
-für Speicher und Laufzeit.
-Grenzen Sie außerdem mit Ihren drei Messpunkten ein, zwischen welchen beiden Dichten der
-Speichervorteil unter eine Größenordnung fällt.
 Vergleichen Sie für die Dichte 0.001 außerdem den gemessenen Speicherfaktor mit dem Verhältnis der
 Anzahl gespeicherter Zahlen und erklären Sie, warum die beiden Faktoren nicht gleich groß sind.
 
