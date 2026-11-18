@@ -61,8 +61,8 @@ Umgekehrt gibt es `cond` und `matrix_rank` nur in `numpy.linalg`.
 Die drei Zerlegungen dieses Abschnitts schreiben eine Matrix jeweils als Produkt einfacherer
 Matrizen (Dreiecksmatrizen bzw. eine orthogonale Matrix); an einer Dreiecksmatrix lässt sich ein
 Gleichungssystem anschließend durch bloßes Einsetzen lösen.
-Ein einzelnes System wird dadurch nicht schneller gelöst — `solve()` berechnet intern ohnehin eine
-LU- oder eine Cholesky-Zerlegung.
+Ein einzelnes System wird dadurch nicht schneller gelöst — `solve()` berechnet bei einer
+allgemeinen Matrix intern ohnehin eine LU-Zerlegung.
 Der Gewinn liegt darin, dass man eine einmal berechnete Zerlegung für beliebig viele rechte Seiten
 wiederverwenden kann; die beiden folgenden Abschnitte kommen darauf zurück.
 
@@ -79,7 +79,8 @@ scipy.linalg.lu(a, permute_l=False)
 
 - `a`: die zu zerlegende quadratische Matrix
 - `permute_l` (Standard `False`): bei `True` wird die Permutation direkt in `L` eingearbeitet und
-  statt `(P, L, U)` nur `(P·L, U)` zurückgegeben; `P·L` ist dann keine Dreiecksmatrix mehr
+  statt `(P, L, U)` nur `(P·L, U)` zurückgegeben; `P·L` ist dann im Allgemeinen keine
+  Dreiecksmatrix mehr
 
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.linalg.lu`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu.html).
@@ -104,8 +105,12 @@ print("\nVerifikation P@L@U:")
 print(P @ L @ U)
 ```
 
-`P` hält fest, welche Zeilen die Zerlegung vertauscht hat.
-Ist keine Vertauschung nötig, steht dort die Einheitsmatrix.
+`P` hält fest, welche Zeilen die Zerlegung vertauscht hat; ohne Vertauschung ist `P` die
+Einheitsmatrix.
+SciPy vertauscht dabei nicht nur, wenn es nötig ist: Vor jedem Eliminationsschritt holt es den
+betragsgrößten Wert der aktuellen Spalte nach oben (Spaltenpivotsuche), weil das Rundungsfehler
+klein hält.
+Im Beispiel oben wird deshalb vertauscht, obwohl die Zerlegung auch mit der `2` oben links ginge.
 
 **QR-Zerlegung:**
 
@@ -128,8 +133,10 @@ print(R)
 ```
 
 Ihre Stärke spielt die QR-Zerlegung bei überbestimmten Systemen aus, die mehr Gleichungen als
-Unbekannte haben und deshalb in aller Regel keine exakte Lösung besitzen; für solche Systeme ist
-das unter "Weiterführend" genannte `lstsq()` zuständig.
+Unbekannte haben und deshalb in aller Regel keine exakte Lösung besitzen.
+In SciPy ist für solche Systeme das unter "Weiterführend" genannte `lstsq()` zuständig; es rechnet
+standardmäßig allerdings über die Singulärwertzerlegung und greift nur mit
+`lapack_driver='gelsy'` auf eine QR-Zerlegung (mit Spaltenvertauschungen) zurück.
 Auch für quadratische Systeme ist sie brauchbar und gilt dort als numerisch besonders gutartig,
 weil orthogonale Matrizen die Länge eines Vektors nicht verändern und Rundungsfehler dadurch nicht
 verstärkt werden.
@@ -163,8 +170,8 @@ print(L_chol @ L_chol.T)
 
 - Gegeben ist die Matrix `A` = `[[6, 2, 1], [2, 3, 1], [1, 1, 1]]`
 - Führen Sie eine LU-Zerlegung durch (`linalg.lu()`) und verifizieren Sie das Ergebnis
-- Halten Sie in einem Kommentar fest, ob die Zerlegung von `A` eine Zeilenvertauschung benötigt
-  und woran Sie das sehen
+- Halten Sie in einem Kommentar fest, ob die Zerlegung von `A` Zeilen vertauscht und woran Sie
+  das sehen
 - Berechnen Sie eine QR-Zerlegung (`linalg.qr()`) und prüfen Sie die Orthogonalität von `Q`
 - `A` ist symmetrisch und positiv definit und lässt sich deshalb zusätzlich mit
   `linalg.cholesky()` zerlegen; berechnen Sie auch diese Zerlegung
@@ -181,7 +188,7 @@ Geben Sie alle Matrizen aus und verifizieren Sie jede gelungene Zerlegung durch 
 Je nach SciPy-Version benennt der Meldungstext nur eine bibliotheksinterne Routine und hilft
 dann nicht weiter.
 Aussagekräftig sind nur die Tatsache, dass der Aufruf überhaupt abbricht, und die Bedingung, unter
-der die Cholesky-Zerlegung laut der Beschreibung von `cholesky()` oben überhaupt definiert ist.
+der die Cholesky-Zerlegung laut der Beschreibung von `cholesky()` oben definiert ist.
 [ENDHINT]
 
 <!-- time estimate: 25 min -->
@@ -324,8 +331,8 @@ durch Nullen ersetzt, und lösen Sie dieses System mit `linalg.solve()`.
 
 Die Konditionszahl beschreibt, wie stark sich Eingabefehler in einem Gleichungssystem verstärken;
 berechnet wurde sie bereits in [PARTREF::np-linalg] mit `np.linalg.cond()`.
-Der folgende Versuch stellt zwei Systeme nebeneinander, deren Konditionszahlen weit auseinander
-liegen, und behandelt beide völlig gleich.
+Am Ende dieses Abschnitts stellen Sie zwei Systeme nebeneinander, deren Konditionszahlen weit
+auseinander liegen, und behandeln beide völlig gleich.
 
 Für das Lösen wird dabei die LU-Zerlegung aus dem Abschnitt "Matrixzerlegungen mit SciPy"
 angewendet, allerdings in einer anderen Darstellung.
@@ -359,49 +366,21 @@ und
 import numpy as np
 from scipy import linalg
 
-# Gut konditioniertes System
-A_good = np.array([[4.0, 1.0], [1.0, 3.0]])
-b_good = np.array([9.0, 8.0])
-print(f"Konditionszahl (gut): {np.linalg.cond(A_good):.6f}")
-lu_good, piv_good = linalg.lu_factor(A_good)
-x_good = linalg.lu_solve((lu_good, piv_good), b_good)
-print(f"Lösung: {x_good}")
+A_lu = np.array([[4.0, 1.0], [1.0, 3.0]])
+b1 = np.array([9.0, 8.0])
+b2 = np.array([1.0, 2.0])
 
-# Schlecht konditioniertes, aber nicht singuläres System
-A_ill = np.array([[1.0, 2.0], [2.0, 4.0001]])
-b_ill = np.array([3.0, 6.0002])
-print(f"\nKonditionszahl (schlecht): {np.linalg.cond(A_ill):.2e}")
-lu_ill, piv_ill = linalg.lu_factor(A_ill)
-x_ill = linalg.lu_solve((lu_ill, piv_ill), b_ill)
-print(f"Lösung: {x_ill}")
+# Einmal zerlegen ...
+lu, piv = linalg.lu_factor(A_lu)
 
-# Beide b um denselben winzigen Betrag stören; die vorhandene Zerlegung wird dabei
-# wiederverwendet, es wird nicht erneut zerlegt
-b_good_pert = b_good + np.array([1e-4, 0])
-b_ill_pert = b_ill + np.array([1e-4, 0])
-
-x_good_pert = linalg.lu_solve((lu_good, piv_good), b_good_pert)
-x_ill_pert = linalg.lu_solve((lu_ill, piv_ill), b_ill_pert)
-
-rel_change_good = np.linalg.norm(x_good_pert - x_good) / np.linalg.norm(x_good)
-rel_change_ill = np.linalg.norm(x_ill_pert - x_ill) / np.linalg.norm(x_ill)
-
-print(f"\nRelative Änderung der Lösung (gut konditioniert): {rel_change_good:.2e}")
-print(f"Relative Änderung der Lösung (schlecht konditioniert): {rel_change_ill:.2e}")
-
-# Ausgabe:
-# Konditionszahl (gut): 1.938749
-# Lösung: [1.72727273 2.09090909]
-# Konditionszahl (schlecht): 2.50e+05
-# Lösung: [-1.  2.]
-# Relative Änderung der Lösung (gut konditioniert): 1.06e-05
-# Relative Änderung der Lösung (schlecht konditioniert): 2.00e+00
+# ... und die Zerlegung für beliebig viele rechte Seiten wiederverwenden
+x1 = linalg.lu_solve((lu, piv), b1)
+x2 = linalg.lu_solve((lu, piv), b2)
+print(f"Lösung für b1: {x1}")
+print(f"Verifikation A_lu@x1: {A_lu @ x1}")
+print(f"Lösung für b2: {x2}")
+print(f"Verifikation A_lu@x2: {A_lu @ x2}")
 ```
-
-`lu_solve()` gibt für beide Systeme anstandslos eine Lösung zurück — kein Fehler, keine Warnung.
-Der Unterschied zeigt sich erst, wenn man `b` minimal stört: Bei `A_good` bleibt die Lösung nahezu
-unverändert, bei `A_ill` schlägt dieselbe winzige Störung mit um Größenordnungen stärkerer Wirkung
-auf die Lösung durch.
 
 [ER] Vergleichen Sie ein gut und ein schlecht konditioniertes Gleichungssystem:
 
@@ -415,9 +394,10 @@ auf die Lösung durch.
   Komponente, jeweils ausgehend von der ungestörten rechten Seite, und lösen Sie jedes Mal erneut
   mit `linalg.lu_solve()`; in Ihrem gesamten Skript darf `lu_factor()` dabei nur die beiden Male
   vorkommen, die Sie oben schon geschrieben haben
-- Geben Sie für jeden dieser sechs Fälle die relative Änderung gegenüber der ungestörten Lösung
-  desselben Systems aus (wissenschaftliche Notation, `:.2e`); nutzen Sie dafür die in
-  [PARTREF::np-linalg] behandelte Norm (`np.linalg.norm()` ohne `ord`-Angabe reicht hier aus)
+- Geben Sie für jeden dieser sechs Fälle die relative Änderung ‖Δx‖ / ‖x‖ aus, wobei x die
+  ungestörte Lösung desselben Systems und Δx die Differenz zwischen gestörter und ungestörter
+  Lösung ist (wissenschaftliche Notation, `:.2e`); nutzen Sie dafür die in [PARTREF::np-linalg]
+  behandelte Norm (`np.linalg.norm()` ohne `ord`-Angabe reicht hier aus)
 
 [EQ] Sie haben in [EREFR::3] für beide Systeme je drei relative Änderungen ermittelt.
 Betrachten Sie zunächst ein System für sich: Wie verändert sich seine relative Änderung, wenn die
