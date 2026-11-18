@@ -32,7 +32,7 @@ Dazu bauen wir den Programmablauf als kleine Zustandsmaschine.
 
 [ER] Definieren Sie im Paket `types` einen Typ `Message` mit den Feldern `Sender`, `Receiver`, `Content`
 (vom Typ `string`) und `CreatedAt` (`time.Time`).
-Fügen Sie den Feldern passende JSON-Tags hinzu.
+Geben Sie den Feldern die JSON-Tags `sender`, `receiver`, `content` und `created_at`.
 
 <!-- time estimate: 5 min -->
 
@@ -53,7 +53,7 @@ Lesen Sie diesen Abschnitt deshalb sorgfältig; die Anforderungen weiter unten s
 #### Zwischen zwei Peers (HTTP)
 
 - Jeder Peer betreibt ab Programmstart für seine gesamte Laufzeit **einen** Empfänger-Server, und zwar auf dem Port,
-  den er beim Lookup-Server angemeldet hat;
+  den er beim Lookup-Server angemeldet hat.
 - Eine Nachricht wird als `POST /{username}` mit einer `Message` als JSON-Body verschickt;
   `{username}` ist der Name des Empfängers.
 - Der Empfänger antwortet so:
@@ -62,7 +62,7 @@ Lesen Sie diesen Abschnitt deshalb sorgfältig; die Anforderungen weiter unten s
     - `404 Not Found`: Unter diesem Namen ist auf diesem Peer niemand angemeldet;
     - `409 Conflict`: Der Empfänger chattet gerade nicht mit dem Absender (er ist beispielsweise in der Partnerwahl
       oder chattet mit jemand anderem);
-    - `503 Service Unavailable`: Der Empfänger kommt mit dem Anzeigen nicht hinterher;
+    - `503 Service Unavailable`: Der Empfänger kommt mit dem Anzeigen nicht hinterher.
 - Bei jedem Status außer `200` zeigt der Absender eine Fehlermeldung an;
   die Nachricht ist dann verloren.
 
@@ -153,6 +153,7 @@ Nehmen Sie stattdessen einen frischen Kontext mit Frist:
 Testen Sie den Receiver, bevor der Rest des Peers fertig ist.
 Ersetzen Sie dazu in `main` vorübergehend den Aufruf von `testScenario` durch Testcode, der
 
+- wie in `testScenario` eine `Config` erstellt;
 - mit `cfg.SetUsername("alice")` und `cfg.SetPeer(&types.Peer{Username: "bob"})` einen Benutzer und
   einen Partner einträgt (ohne Lookup-Server);
 - einen Kanal anlegt und den Receiver mit `go` startet;
@@ -167,10 +168,8 @@ curl -i -X POST -d '{"sender":"bob", "receiver":"alice", "content":"hi there"}' 
 
 Passen Sie den Port an Ihren Listener an (diesen können Sie beim Start eines Peers mit `cfg.Port()` ausgeben lassen).
 
-Prüfen Sie die Statuscodes aus dem Protokoll:
-Was antwortet der Receiver, wenn Sie den Pfad `/carol` verwenden?
-Wenn `carol` als Absender schreibt?
-Wenn die Nachricht keine gültige `types.Message` ist?
+Prüfen Sie so die Statuscodes aus dem Protokoll:
+Pfad `/carol`, Absender `carol` und ein Body, der keine gültige `types.Message` ist.
 
 <!-- time estimate: 20 min -->
 
