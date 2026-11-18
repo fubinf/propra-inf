@@ -89,7 +89,7 @@ zeigt die Überschrift seiner Seite in der SciPy API Reference.
 
 ### Mathematische und physikalische Konstanten mit `scipy.constants`
 
-`scipy.constants` stellt viele mathematische und physikalische Konstanten bereit.
+`scipy.constants` stellt wenige mathematische und viele physikalische Konstanten bereit.
 Der Nutzen liegt dabei weniger bei `pi`, das es auch in `math` gibt, als bei den physikalischen
 Konstanten.
 
@@ -124,8 +124,8 @@ wählen Sie den passenden aus.
 Geben Sie danach in einer weiteren Zeile das Modulattribut `constants.Boltzmann` und den Wert aus
 dem Tripel von `'Boltzmann constant'` direkt nebeneinander aus.
 
-[EQ] Nennen Sie zwei technische Gründe, warum `scipy.constants` seine Konstanten sowohl als
-Modulattribut als auch über `physical_constants` anbietet.
+[EQ] Nennen Sie zwei technische Gründe, warum `scipy.constants` sowohl Modulattribute als auch
+das Dictionary `physical_constants` anbietet.
 Ziehen Sie dafür Ihre eigene Ausgabe aus [EREFR::1] heran: die beiden nebeneinander
 ausgegebenen Zahlen, die drei Unsicherheiten und die ausgeschriebenen Schlüsselnamen.
 Man könnte erwarten, dass ein Eintrag ohne echte Messunsicherheit nur aus Wert und Einheit
