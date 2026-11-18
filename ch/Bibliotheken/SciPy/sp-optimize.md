@@ -230,9 +230,12 @@ Im Gegensatz zu `minimize` wird hier **kein Startwert benötigt**.
 Auch das Ergebnisobjekt ist einfacher: `result.x` und `result.fun` sind beide einzelne Zahlen,
 hier entfällt der Index also ganz.
 
-Dieselbe Aufteilung gibt es bei der Nullstellenfindung: Für eine einzelne Gleichung erspart
-[`scipy.optimize.root_scalar`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root_scalar.html)
-den Indexzugriff, den `root` nötig macht.
+Auch für die Nullstellenfindung gibt es eine eigene Funktion für den eindimensionalen Fall,
+[`scipy.optimize.root_scalar`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root_scalar.html).
+Ihr eigentlicher Vorteil sind Einschlussverfahren: Mit `bracket=(a, b)` sucht sie nur zwischen zwei
+Stellen, an denen die Funktion unterschiedliche Vorzeichen hat, und findet dort bei stetigen
+Funktionen garantiert eine Nullstelle.
+Die Lösung steht bei `root_scalar` in `result.root`, nicht in `result.x`.
 
 ```python
 scipy.optimize.minimize_scalar(fun, bounds=None, method=None)
@@ -293,7 +296,7 @@ Was kommt damit zu Ihrer Feststellung über `result.success` aus [EREFQ::3] hinz
 
 ### Kurvenanpassung mit `scipy.optimize.curve_fit`
 
-Ein häufiger Anwendungsfall ist die Anpassung von Modellparametern an Messdaten; 
+Ein häufiger Anwendungsfall ist die Anpassung von Modellparametern an Messdaten;
 das leistet `curve_fit`.
 
 ```python
@@ -308,7 +311,7 @@ scipy.optimize.curve_fit(f, xdata, ydata, p0=None)
 Die vollständige Parameterliste steht in der Referenz zu
 [`scipy.optimize.curve_fit`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html).
 
-Im Kern ist `curve_fit` selbst ein Minimierungsproblem: Gesucht sind die Parameterwerte, für die
+Im Kern löst `curve_fit` selbst ein Minimierungsproblem: Gesucht sind die Parameterwerte, für die
 die Summe der quadrierten Abweichungen zwischen Modellwerten und Messdaten am kleinsten wird.
 Diese Fehlerquadratsumme ist eine Funktion der gesuchten Parameter, in der `curve_fit` ein
 Minimum sucht — ähnlich wie `minimize` in der ihm übergebenen Funktion.
@@ -366,9 +369,6 @@ Ihre Teilschritte:
   `x_data`/`y_data` an und geben Sie `a` und `b` aus (4 Nachkommastellen, `:.4f`)
 - Wiederholen Sie den Aufruf mit einem absichtlich schlechten Startwert `p0=(-100, 100)` und geben Sie
   `a` und `b` auch für diesen Lauf aus
-- Berechnen Sie die vorhergesagten y-Werte mit den (ohne `p0` geschätzten) Parametern und geben
-  Sie die Abweichungen (gemessen minus vorhergesagt) aus (2 Nachkommastellen, `:.2f`); an ihnen
-  lesen Sie ab, wie gut das angepasste Modell die Messdaten trifft
 - Wiederholen Sie beide `p0`-Läufe an einem nichtlinearen Modell: Passen Sie
   `exponential(x, a, b)` mit `a * np.exp(b*x)` an `x_exp`/`y_exp` an, einmal mit `p0=(1, 0.5)`
   und einmal mit `p0=(-100, 100)`, und geben Sie beide Parameterpaare aus (4 Nachkommastellen,
@@ -387,11 +387,6 @@ Bei welchem der beiden Modelle macht der Startwert einen Unterschied?
 Begründen Sie das auf zwei Ebenen: erstens aus der Gestalt, die die Fehlerquadratsumme beim
 linearen Modell als Funktion von `a` und `b` hat, zweitens aus dem Zahlenbereich, in den
 `a * np.exp(b*x)` bei `b = 100` für die gegebenen `x`-Werte gerät.
-
-[EQ] Sehen Sie sich die sechs Abweichungen aus [EREFR::4] an: Wie groß sind sie im Vergleich zu
-den gemessenen `y`-Werten, und wechseln sie das Vorzeichen oder liegen die vorhergesagten Werte
-systematisch zu hoch oder zu niedrig?
-Was folgt daraus für die Brauchbarkeit des linearen Modells?
 
 <!-- time estimate: 30 min -->
 
