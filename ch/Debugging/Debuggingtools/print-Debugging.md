@@ -88,7 +88,6 @@ und machen Sie evtl. die Aufgabe [PARTREF::m_pprint].
 ### Teil 3: `print()`-Debugging außerhalb der Python-Welt
 
 In Python gibt es kein `private`-Schlüsselwort 
-<!-- @LINK_SPEC: status=403 -->
 <!-- @LINK_SPEC: status=403 -->[wie in Java](https://stackoverflow.com/questions/215497/what-is-the-difference-between-public-protected-package-private-and-private-in), 
 Scala oder C++.
 Sprachen, die dieses Schlüsselwort benutzen, können damit Variablen und Methoden für Code außerhalb der
