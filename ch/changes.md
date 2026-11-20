@@ -6,4 +6,5 @@
   [PARTREF::pd-Datensatzangleichung] und [PARTREF::pd-DatenKombinieren] zugefügt.
 - **2026-11-10:** Aufgabe [PARTREF::apt101] zugefügt.  
   Für die Tutoren: Aufgabe [PARTREF::apt101] hat jetzt auch Lösungshinweise für macOS. 
+- **2026-11-20:** Aufgabengruppe [PARTREF::SciPy] (mit derzeit 5 Aufgaben) zugefügt.
 - ...
