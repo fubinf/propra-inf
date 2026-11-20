@@ -1,5 +1,5 @@
 title: SciPy Interpolation verstehen und anwenden
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 3
 requires: sp-Einführung
