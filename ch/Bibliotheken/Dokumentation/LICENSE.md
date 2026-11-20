@@ -29,7 +29,7 @@ und darf mit der Software sehr vieles machen.
 
 - Lesen Sie [HREF::https://github.com/readme/guides/open-source-licensing]
   und nötigenfalls (oder bei Interesse) auch noch
-  [HREF::https://opensource.org/licenses] und
+  <!-- @LINK_SPEC: status=403 -->[HREF::https://opensource.org/licenses] und
   [HREF::https://tldrlegal.com/].
 
 
