@@ -21,7 +21,7 @@ Mit einem Beispiel wird eine erste simple Webseite erstellt, anhand deren grundl
 [ENDSECTION]
 [SECTION::instructions::detailed]
 
-In dieser Aufgabe, angelehnt an die ersten Schritte des [SelfHTML](http://de.selfhtml.org)-Tutorials, 
+In dieser Aufgabe, angelehnt an die ersten Schritte des [SelfHTML](http://wiki.selfhtml.org)-Tutorials, 
 soll eine exemplarische Firmenwebseite von einem Konzepttext ohne jegliche Auszeichnungen in ein HTML-Dokument ausgebaut werden.
 
 ```text
