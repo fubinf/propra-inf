@@ -135,10 +135,6 @@ View-Definition, nicht die zugrundeliegenden Tabellendaten.
 DROP VIEW IF EXISTS myview;
 ```
 
-(Optional) Weitere Details zum Löschen von Views unter
-<!-- @LINK_SPEC: status=403 -->
-[`DROP VIEW`](https://www.sqltutorial.org/sql-drop-view/)
-
 [ER] Löschen Sie die View `usa_websites`.
 
 [ER] Versuchen Sie, die gelöschte View abzufragen, um den Fehler zu sehen.
