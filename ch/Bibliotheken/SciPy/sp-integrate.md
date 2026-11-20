@@ -1,5 +1,5 @@
 title: SciPy Numerische Integration und Differentialgleichungen verstehen und anwenden
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 requires: sp-Einführung
@@ -7,6 +7,7 @@ assumes: np-Einführung, np-array2, np-math, py-Fstrings
 ---
 
 [SECTION::goal::idea,experience]
+
 - Ich kann bestimmte Integrale numerisch berechnen, auch mit Parametern oder unendlichen Grenzen.
 - Ich kann Anfangswertprobleme numerisch lösen.
 - Ich kann anhand der Rückgabewerte beurteilen, ob ein numerisches Ergebnis verlässlich ist.
@@ -305,7 +306,7 @@ Woran hätten Sie den vorzeitigen Abbruch auch ohne `sol.success` erkannt, und w
 
 - [SciPy Integration Tutorial](https://docs.scipy.org/doc/scipy/tutorial/integrate.html):
   Überblick über das gesamte `integrate`-Modul
-- [scipy.integrate Reference](https://docs.scipy.org/doc/scipy/reference/integrate.html):
+- [Referenz zu `scipy.integrate`](https://docs.scipy.org/doc/scipy/reference/integrate.html):
   vollständige Übersicht aller Funktionen des Moduls
 [ENDSECTION]
 
