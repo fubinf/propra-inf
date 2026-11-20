@@ -1,5 +1,5 @@
 title: Aufbau von Testfällen
-stage: alpha
+stage: beta
 timevalue: 0.75
 difficulty: 2
 explains: Negativtest, Testfall
@@ -9,11 +9,10 @@ explains: Negativtest, Testfall
 
 - Ich kann einen Testfall mit Vorbedingungen, Schritten und erwartetem Ergebnis strukturieren.
 - Ich kann konkrete, datengetriebene und Negativ-Testfälle formulieren.
-
 [ENDSECTION]
 
-[SECTION::background::default]
 
+[SECTION::background::default]
 [TERMREF2::Testfall::Testfälle] werden aus [TERMREF2::Anforderung::Anforderungen] abgeleitet.
 Typische Quellen sind User Stories und Akzeptanzkriterien.
 Eine [TERMREF::User Story] beschreibt, was ein Nutzer möchte.
@@ -21,8 +20,8 @@ Eine [TERMREF::User Story] beschreibt, was ein Nutzer möchte.
 
 Aus einem gut formulierten Akzeptanzkriterium lässt sich ein Testfall ableiten:
 Er beschreibt eine Vorbedingung, Schritte und ein erwartetes Ergebnis.
-
 [ENDSECTION]
+
 
 [SECTION::instructions::detailed]
 
@@ -31,7 +30,7 @@ Er beschreibt eine Vorbedingung, Schritte und ein erwartetes Ergebnis.
 Ein konkreter Testfall beschreibt einen Ablauf mit festen Eingabedaten.
 Beispiel: "Nutzer `alice@example.com` meldet sich mit Passwort `geheim123` an."
 
-Ein typischer Testfall hat die folgende allgemeine Struktur:
+Ein Testfall hat typischerweise folgende Felder:
 
 | Feld | Beschreibung |
 | --- | --- |
@@ -44,9 +43,9 @@ Ein typischer Testfall hat die folgende allgemeine Struktur:
 Das Akzeptanzkriterium für die Registrierung auf einer E-Commerce-Website lautet:
 "Bei gültiger E-Mail-Adresse und gültigem Passwort wird ein Konto angelegt und eine Bestätigung angezeigt."
 
-- [EQ] Formulieren Sie aus diesem Akzeptanzkriterium einen konkreten Testfall für eine erfolgreiche
-  Registrierung.
-  Verwenden Sie dabei die Felder ID, Vorbedingung, Schritte, Eingabedaten und erwartetes Ergebnis.
+[EQ] Formulieren Sie aus diesem Akzeptanzkriterium einen konkreten Testfall für eine erfolgreiche
+Registrierung.
+Verwenden Sie dabei die Felder ID, Vorbedingung, Schritte, Eingabedaten und erwartetes Ergebnis.
 
 <!-- time estimate: 20 min -->
 
@@ -75,20 +74,18 @@ Beispiel: Registrierung mit verschiedenen E-Mail-Adressen (Passwort jeweils `geh
 | `alice@` | Fehlermeldung "E-Mail-Adresse ungültig" |
 | `bob@example.com` | Fehlermeldung "E-Mail-Adresse bereits vergeben" |
 
-- [EQ] Formulieren Sie einen datengetriebenen Testfall für den Login.
-  Beschreiben Sie Vorbedingung und Schritte einmal und geben Sie eine Tabelle mit drei Zeilen an:
-  erfolgreiche Anmeldung, falsches Passwort, unbekannter Nutzer.
-
+[EQ] Formulieren Sie einen datengetriebenen Testfall für den Login.
+Beschreiben Sie Vorbedingung und Schritte einmal und geben Sie eine Tabelle mit drei Zeilen an:
+erfolgreiche Anmeldung, falsches Passwort, unbekannter Nutzer.
 <!-- time estimate: 25 min -->
-
 [ENDSECTION]
+
 
 [SECTION::submission::snippet]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
+
 [INSTRUCTOR::Prüfhilfen]
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]
