@@ -77,7 +77,6 @@ Zusätzlich können wir mit `LIMIT <int>` (häufig in Kombination mit `OFFSET <s
 also nur einen definierten Ausschnitt (z.&nbsp;B. Seite 1 mit 3 Einträgen) der Treffermenge zurückgeben. 
 Numerische Vergleichsoperatoren wie `<` oder `>` grenzen Werte ebenfalls ein. 
 
-<!-- @LINK_SPEC: status=403 -->
 (Optional) Detaillierte Erläuterungen zu 
 [`LIMIT`,`OFFSET`](https://www.sqltutorial.org/sql-limit/)
 
@@ -163,7 +162,6 @@ besser zu verstehen.
 Man vergibt Aliase mit dem Schlüsselwort `AS`.
 
 (Optional) Weiterführende Ressourcen zu 
-<!-- @LINK_SPEC: status=403 -->
 [`AS`](https://www.sqltutorial.org/sql-alias/)
 ```sql
 SELECT mycol1 AS myalias1, mycol2 AS myalias2, ...

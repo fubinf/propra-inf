@@ -100,7 +100,6 @@ sollte es dokumentiert und kommuniziert werden.
 Dazu sind einige Informationen wichtig, um den Bericht zuordnen zu können und um den
 Entwickler_innen bestmöglich Informationen zum Debugging und Nachstellen des Problems zu liefern.
 Recherchieren Sie, was einen guten Problembericht aus macht: 
-<!-- @LINK_SPEC: status=403 -->
 [Problembericht](https://www.guru99.com/de/how-to-write-a-bug-report.html)
 
 - [EQ] Erstellen Sie zu einem der oben entdeckten Versagen einen konkreten und genauen Problembericht.

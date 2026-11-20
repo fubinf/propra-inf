@@ -137,7 +137,7 @@ Falls der Port 10007 belegt ist, nehmen Sie einen anderen Port aus dem 10000er-B
 [ENDNOTICE]
 
 Verstehen Sie auf folgender Seite den Abschnitt 
-[Download files or webpage using curl](https://itsfoss.com/download-files-from-linux-terminal/#download-files-or-webpage-using-curl).
+<!-- @LINK_SPEC: status=403 -->[Download files or webpage using curl](https://itsfoss.com/download-files-from-linux-terminal/#download-files-or-webpage-using-curl).
 
 [EC] Auf dem Zielserver: Laden Sie eine Datei aus Ihrem Dateibaum mit `curl` herunter.
 

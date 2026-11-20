@@ -24,7 +24,7 @@ Lesen Sie sich diesen kurzen
 durch.
 Damit kann man schon mal loslegen, aber wer Manpages gründlich verstehen will,
 sollte bei diesem
-[längeren Beitrag](https://itsfoss.com/linux-man-page-guide/) 
+<!-- @LINK_SPEC: status=403 -->[längeren Beitrag](https://itsfoss.com/linux-man-page-guide/) 
 weiterlesen.
 
 

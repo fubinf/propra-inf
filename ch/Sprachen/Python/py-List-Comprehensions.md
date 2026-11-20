@@ -11,7 +11,7 @@ Ich kann Python-List-Comprehensions in meinem Code richtig einsetzen.
 [SECTION::instructions::loose]
 In dieser Aufgabe wenden wir die Techniken an, die in diesem Artikel über
 <!-- @LINK_SPEC: status=403 -->
-<!-- @LINK_SPEC: status=403 -->[List-Comprehension in Python](https://www.programiz.com/python-programming/list-comprehension) 
+[List-Comprehension in Python](https://www.programiz.com/python-programming/list-comprehension) 
 beschrieben sind. Überfliegen Sie den also bitte jetzt.
 (Bitte sagen Sie nie "execute an expression", wie es der Artikel tut:
  Ausdrücke (expressions) werden ausgewertet (evaluated), nicht ausgeführt (executed).

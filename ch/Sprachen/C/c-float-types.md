@@ -18,7 +18,7 @@ C hat zusätzlich `float` mit nur 32 Bit.
 
 [SECTION::instructions::detailed]
 Für die Aufgaben wird hauptsächlich folgende Referenz verwendet:
-<!-- @LINK_SPEC: status=403 -->[Arithmetische Typen](https://en.cppreference.com/c/language/arithmetic_types).
+[Arithmetische Typen](https://en.cppreference.com/c/language/arithmetic_types).
 Die Teilabschnitte geben jeweils an, welche Abschnitte der Referenz Sie lesen sollen.
 Komplexe und imaginäre Typen, `_Decimal`, `_BitInt` und alles mit "since C23" (das ProPra nutzt
 C17) brauchen Sie dabei nicht.
@@ -149,7 +149,7 @@ Beim Aufruf von variadischen Funktionen, also Funktionen wie `printf`, denen nac
 beliebig viele weitere Argumente übergeben werden können, werden bestimmte Typen zusätzlich
 gewandelt.
 Diese Wandlungen sind die
-<!-- @LINK_SPEC: status=403 -->[default argument promotions](https://en.cppreference.com/c/language/conversion#Default_argument_promotions).
+[default argument promotions](https://en.cppreference.com/c/language/conversion#Default_argument_promotions).
 [ENDHINT]
 
 [ER] Machen Sie die Wandlung explizit.

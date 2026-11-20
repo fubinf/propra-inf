@@ -156,7 +156,7 @@ Strings hingegen können mit `'` umklammert werden:
 [EQ] Wie Sie merken, ist es eher eine Stilfrage, ob man `query()` verwendet
 oder beim herkömmlichen Boolean-Indexing bleibt.
 Lesen Sie diesen 
-[Blog-Artikel zu den Vor- und Nachteilen von `query()`](https://faun.pub/querying-in-pandas-easy-fast-efficient-eec7538766a1).
+<!-- @LINK_SPEC: status=403 -->[Blog-Artikel zu den Vor- und Nachteilen von `query()`](https://faun.pub/querying-in-pandas-easy-fast-efficient-eec7538766a1).
 Zu welcher Variante neigen Sie und warum?
 Begründen Sie.
 

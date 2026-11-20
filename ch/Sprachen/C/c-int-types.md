@@ -28,7 +28,7 @@ Sie können beliebig große oder kleine Werte darin speichern.
 
 [SECTION::instructions::detailed]
 Für die Aufgaben wird hauptsächlich folgende Referenz verwendet:
-<!-- @LINK_SPEC: status=403 -->[Arithmetische Typen](https://en.cppreference.com/c/language/arithmetic_types).
+[Arithmetische Typen](https://en.cppreference.com/c/language/arithmetic_types).
 Die Teilabschnitte geben jeweils an, welche Abschnitte der Referenz Sie lesen sollen.
 Komplexe und imaginäre Typen, `_Decimal`, `_BitInt` und alles mit "since C23" (das ProPra nutzt
 C17) brauchen Sie dabei nicht.
@@ -47,7 +47,7 @@ Null falls notwendig.
 
 Sollten Sie noch weitere benötigen (z.B. weil Ihr Betriebssystem leicht andere Definitionen
 besitzt), finden Sie alle Formatangaben in der
-<!-- @LINK_SPEC: status=403 -->[Beschreibung von `printf`](https://en.cppreference.com/c/io/fprintf).
+[Beschreibung von `printf`](https://en.cppreference.com/c/io/fprintf).
 
 
 ### Projekt anlegen
@@ -82,7 +82,7 @@ Begründen Sie mit der Tabelle "Data models" (garantierte Mindestgrößen) und I
 ### Überläufe bei `unsigned` Datentypen
 
 Lesen Sie den Abschnitt über
-<!-- @LINK_SPEC: status=403 -->[Überläufe](https://en.cppreference.com/c/language/operator_arithmetic#Overflows).
+[Überläufe](https://en.cppreference.com/c/language/operator_arithmetic#Overflows).
 
 Läuft ein Wert über das Maximum seines Typs hinaus, ist das ein Überlauf.
 Bei `unsigned` beginnt er dann wieder bei 0 (er "läuft um").
@@ -186,7 +186,7 @@ Nennen Sie eine Möglichkeit, das zu vermeiden.
 ### Typumwandlungen
 
 Lesen Sie auf der Seite zu den arithmetischen Typen den Abschnitt "Boolean type" sowie auf der Seite
-<!-- @LINK_SPEC: status=403 -->[Implizite Umwandlungen](https://en.cppreference.com/c/language/conversion)
+[Implizite Umwandlungen](https://en.cppreference.com/c/language/conversion)
 die Abschnitte "Usual arithmetic conversions", "Integer promotions", "Integer conversions" sowie
 "Boolean conversion".
 

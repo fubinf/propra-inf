@@ -7,12 +7,11 @@ requires: git-Zweitrepo
 ---
 
 [SECTION::goal::experience]
-
 Ich kann einige kleine Pannen beheben, wie sie beim Arbeiten mit git oft vorkommen.
-
 [ENDSECTION]
-[SECTION::background::default]
 
+
+[SECTION::background::default]
 Wer arbeitet, macht Fehler; das Arbeiten mit git ist da keine Ausnahme.
 Wenn man sich dann schlecht mit git auskennt, ist das oft sofort sehr stressig,
 denn man muss für die Korrektur des Fehlers die gewohnten Abläufe verlassen.
@@ -31,11 +30,12 @@ oder
 oder sich durch 
 <!-- @LINK_SPEC: status=403 -->
 <!-- @LINK_SPEC: status=403 -->[fehlende git-Kenntnis mithilfe von ChatGPT ihr Arbeit zerstören](https://stackoverflow.com/questions/75908629/i-mistakenly-deleted-most-of-my-files-with-git-is-there-a-way-to-recover). 
-Nur um dann <!-- @LINK_SPEC: status=403 -->[nochmal umständlich von vorne zu beginnen](https://www.reddit.com/r/git/comments/17kte2s/newbie_screwed_up_and_i_need_to_start_over/).
-
+Nur um dann
+[nochmal umständlich von vorne zu beginnen](https://www.reddit.com/r/git/comments/17kte2s/newbie_screwed_up_and_i_need_to_start_over/).
 [ENDSECTION]
-[SECTION::instructions::detailed]
 
+
+[SECTION::instructions::detailed]
 In dieser Aufgabe beschäftigen wir uns hauptsächlich mit der git-Book-Seite 
 [2.4 Git Basics: Undoing Things](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things),
 die davon handelt, wie wir Dinge rückgängig machen können.
@@ -161,22 +161,18 @@ weil es so wichtig ist:
 > you made to that file are gone — Git just replaced that file with the last staged or committed 
 > version. Don’t ever use this command unless you absolutely know that you don’t want those 
 > unsaved local changes."
-
 [ENDWARNING]
-
 [ENDSECTION]
-[SECTION::submission::trace]
 
+
+[SECTION::submission::trace]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
-
 [ENDSECTION]
 
-[INSTRUCTOR::Pfusch zurückweisen]
 
+[INSTRUCTOR::Pfusch zurückweisen]
 Kleine Abweichungen sind kein Problem, aber wer ganz andere Dinge getan hat als vorgesehen,
 muss nochmal antreten. Das sollte aber vermutlich selten sein.
-
 [INCLUDE::ALT:]
-
 [ENDINSTRUCTOR]

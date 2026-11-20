@@ -48,7 +48,7 @@ Wir wollen lernen, wie die `crontab` bearbeitet wird und wie die Zeitfelder funk
 Lesen Sie dafür den ersten Absatz und die letzten fünf Absätze der **Description** der 
 [crontab(1) manpage](https://manpages.debian.org/stable/cron/crontab.1.en.html)
 sowie den Abschnitt **Getting started with Cron** des
-[IT'S FOSS: Cron Job Beginner Guide](https://itsfoss.com/cron-job/).
+<!-- @LINK_SPEC: status=403 -->[IT'S FOSS: Cron Job Beginner Guide](https://itsfoss.com/cron-job/).
 
 Unser Szenario ist wie folgt:
 Sie übernehmen einen Server, auf dem verschiedene Skripte automatisch regelmäßig per `cron` laufen.

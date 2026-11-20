@@ -8,6 +8,7 @@ difficulty: 2
 Ich kann ansatzweise mit den Editoren `nano` und `vim` im Texterminal umgehen.
 [ENDSECTION]
 
+
 [SECTION::background::default]
 Als Administrator hat man häufig keine IDE zur Hand,
 sondern editiert Dateien im Textterminal mit einem Texteditor ohne GUI.
@@ -15,8 +16,8 @@ Dabei kommen häufig `vim` oder `nano` zum Einsatz, da diese bei vielen Systemen
 Standardausstattung gehören.
 [ENDSECTION]
 
-[SECTION::instructions::detailed]
 
+[SECTION::instructions::detailed]
 ### Anmerkung
 Hier stehen zwar überall entsprechende Marker, aber Sie werden am Ende dieser Aufgabe
 ausnahmsweise _nicht_ nach einem Kommandoprotokoll gefragt. 
@@ -238,11 +239,11 @@ Lesen Sie die Kapitel 1-4 von register aus der
 Falls Ihnen nicht einfallen sollte, was Sie im Reflektionsteil schreiben sollen, sind hier ein paar 
 Anregungen:
 
-<!-- @LINK_SPEC: status=403 -->[i dont understand why anyone would use nano/vim](https://www.reddit.com/r/learnprogramming/comments/xhghsg/i_dont_understand_why_anyone_would_use_nanovim/)
-[Vim vs Nano: What Should You Choose?](https://itsfoss.com/vim-vs-nano/)
+[i dont understand why anyone would use nano/vim](https://www.reddit.com/r/learnprogramming/comments/xhghsg/i_dont_understand_why_anyone_would_use_nanovim/)
+<!-- @LINK_SPEC: status=403 -->[Vim vs Nano: What Should You Choose?](https://itsfoss.com/vim-vs-nano/)
 [ENDHINT]
-
 [ENDSECTION]
+
 
 [SECTION::submission::reflection]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
@@ -250,7 +251,5 @@ Anregungen:
 
 
 [INSTRUCTOR::Erwartung]
-
 [INCLUDE::/_include/Instructor-Auseinandersetzung.md]
-
 [ENDINSTRUCTOR]

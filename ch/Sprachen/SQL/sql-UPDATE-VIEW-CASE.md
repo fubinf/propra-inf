@@ -115,7 +115,6 @@ WHERE mycondition;
 ```
 
 (Optional) Erweiterte View-Konzepte bei
-<!-- @LINK_SPEC: status=403 -->
 [`CREATE VIEW`](https://www.sqltutorial.org/sql-views/)
 
 [ER] Erstellen Sie eine View `usa_websites`, die nur Websites aus den USA anzeigt.
