@@ -1,5 +1,5 @@
 title: SciPy Grundlagen verstehen und anwenden
-stage: alpha
+stage: beta
 timevalue: 0.5
 difficulty: 2
 assumes: np-Einführung, py-Fstrings
