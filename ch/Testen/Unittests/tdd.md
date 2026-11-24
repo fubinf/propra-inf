@@ -1,4 +1,4 @@
-title: "Test Driven Development: FizzBuzz mit pytest"
+title: "Test-Driven Development: FizzBuzz mit pytest"
 stage: alpha
 timevalue: 2
 difficulty: 2
@@ -8,7 +8,7 @@ explains: TDD
 
 [SECTION::goal::experience]
 
-Ich habe eine kleine Funktion mittels Test Driven Development entwickelt
+Ich habe eine kleine Funktion mittels Test-Driven Development entwickelt
 und dabei den Red-Green-Refactor-Zyklus mehrfach durchlaufen.
 
 [ENDSECTION]
@@ -34,12 +34,12 @@ TDD besteht aus der ständigen Wiederholung von drei Schritten:
    Ziel ist nur: grün.
 3. **Refactor**: Verbessern Sie nun die Struktur des Codes, z.B. indem Sie hart kodierte Werte
    durch eine allgemeine Lösung ersetzen.
-   Dabei ändern Sie das geprüfte Verhalten nicht; die Tests müssen grün bleiben und sichern Sie so ab.
+   Dabei ändern Sie das _geprüfte_ Verhalten nicht; die Tests müssen grün bleiben und sichern Sie so ab.
 
 Lesen Sie Martin Fowlers kurzen Artikel
 [Test Driven Development](https://martinfowler.com/bliki/TestDrivenDevelopment.html).
 Achten Sie darauf, welchen Fehler Fowler als den häufigsten beim Anwenden von TDD nennt.
-Genau diesen Fehler sollen Sie hier vermeiden.
+Diesen Fehler sollen Sie hier vermeiden.
 
 Als Übungsgegenstand dient die Funktion `fizzbuzz(n)`.
 Sie soll für eine positive ganze Zahl `n` zurückgeben:
@@ -48,7 +48,8 @@ Sie soll für eine positive ganze Zahl `n` zurückgeben:
 - sonst `"Fizz"`, wenn `n` durch 3 teilbar ist,
 - sonst `"Buzz"`, wenn `n` durch 5 teilbar ist,
 - sonst die Zahl selbst als String, z.B. `"7"`.
-- Für `n <= 0` soll ein `ValueError` ausgelöst werden.
+
+Für `n <= 0` soll sie einen `ValueError` auslösen.
 
 Diese Spezifikation setzen Sie aber nicht auf einmal um, sondern Stück für Stück, Test für Test.
 
