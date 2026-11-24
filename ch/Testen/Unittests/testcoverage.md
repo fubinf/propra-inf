@@ -307,9 +307,16 @@ Warum ist die Coverage-Prozentzahl jetzt eine andere als vorher, obwohl die Test
 
 ### Systematischer Testausbau
 
-[ER] Erweitern Sie die Tests, um verschiedene Randfälle abzudecken:
+Der Coverage-Bericht zeigt, welche Fälle Ihre Tests noch nicht ausführen.
+Jede nicht ausgeführte Zeile legt ein Verhalten fest, das noch kein Test prüft.
+Beispiel: `errors.append('Local part cannot be empty')` legt fest,
+dass `'@example.com'` mit genau dieser Meldung abgelehnt wird.
+Ein guter Test führt die Zeile deshalb nicht nur aus, sondern prüft auch diese Meldung.
+
+[ER] Erweitern Sie die Tests so, dass sie folgende Randfälle ausführen und ihr Ergebnis prüfen:
 
 - Leere/None-Eingaben
+- Verschiedene Fehler im Local Part
 - Verschiedene Domain-Validierungsfehler
 - Blocked/Required Domains
 - Batch-Validierung
@@ -324,7 +331,8 @@ Gibt es Code-Bereiche, die schwer zu testen sind?
 
 [ER] Legen Sie die Datei `test_fake_coverage.py` an
 und ergänzen Sie darin den folgenden Testrahmen so,
-dass `pytest test_fake_coverage.py` danach 100% Line Coverage für `email_validator.py` meldet —
+dass `pytest test_fake_coverage.py` danach für `email_validator.py`
+in der Spalte `Cover` 100% meldet —
 aber ohne eine einzige sinnvolle Assertion:
 
 ```python

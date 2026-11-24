@@ -59,7 +59,6 @@ sowie Test-Driven Development behandelt.
 Diese Tasks sind noch nicht veröffentlicht (`stage: draft`) und werden künftig verfügbar sein:
 
 - **testcoverage.md**: Code Coverage mit `pytest-cov` messen, interpretieren und kritisch bewerten.
-  Setzt `pytest_call.md` und `pytest-Methodik-Blackbox.md` voraus.
 - **tdd_pp.md**: TDD im Pair Programming. Setzt `tdd.md` voraus.
 - **pytest_benchmark.md**: Performance-Benchmarks mit `pytest-benchmark`. Setzt `pytest_fixtures.md` voraus.
 - **pytest_tox.md**: Eine fremde Test-Suite (MechanicalSoup) mit `tox` so ausführen wie deren CI,

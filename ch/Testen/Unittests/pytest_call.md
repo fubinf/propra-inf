@@ -23,7 +23,7 @@ was besonders in großen Projekten viel Zeit spart und die Übersicht verbessert
 
 ### Testgrundlage beschaffen
 
-Legen Sie in Ihrem [TERMREF::Hilfsbereich] ein `venv` an (das wir nur für diese eine Aufgabe brauchen)
+Legen Sie in Ihrem [TERMREF::Hilfsbereich] ein `venv` an (das auch andere Aufgaben weiterverwenden)
 und aktivieren Sie es.
 
 Beschaffen Sie den Projektbaum, an dem wir hier üben wollen.
