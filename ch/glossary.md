@@ -2147,12 +2147,16 @@ So wird eine vollständige und fehlerfreie Datenübertragung sichergestellt.
 [ENDTERM]
 
 
-[TERM::TDD|Test-Driven Development|Test-Driven Design|Testgetriebener Entwicklung]
+[TERM::TDD|Test-Driven Development|Test-Driven Design|Testgetriebene Entwicklung]
 Eine Softwareentwicklungsmethode, bei der [TERMREF2::Test::-s] vor der eigentlichen Implementierung
-des Codes geschrieben werden. Der Prozess beginnt mit dem Schreiben eines Tests, der das
-erwartete Verhalten der Funktionalität beschreibt. Dann wird der minimal notwendige Code
-implementiert, um den Test erfolgreich durchzuführen. Dieser iterative Prozess von Schreiben
-von Tests, Implementieren des Codes wird fortgesetzt, bis die gewünschte Funktionalität erreicht ist.
+des Codes geschrieben werden.
+Man wiederholt dabei ständig einen Zyklus aus drei kleinen Schritten ("Red-Green-Refactor"):
+Zuerst schreibt man einen Test, der das gewünschte Verhalten beschreibt
+und noch fehlschlägt (Red).
+Dann implementiert man den minimal notwendigen Code, damit der Test besteht (Green).
+Schließlich verbessert man die Struktur des Codes durch [TERMREF::Refactoring],
+wobei alle Tests grün bleiben müssen (Refactor).
+Dieser Zyklus wird fortgesetzt, bis die gewünschte Funktionalität erreicht ist.
 [ENDTERM]
 
 

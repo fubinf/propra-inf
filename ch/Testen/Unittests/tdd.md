@@ -1,6 +1,6 @@
 title: "Test-Driven Development: FizzBuzz mit pytest"
 stage: alpha
-timevalue: 2
+timevalue: 1.5
 difficulty: 2
 assumes: m_pytest, Git101
 explains: TDD
@@ -96,7 +96,7 @@ from fizzbuzz import fizzbuzz
 
 
 ### Zyklus 1: Eine normale Zahl
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 **Red:**
 
@@ -128,7 +128,7 @@ Die allgemeine Form dessen, was der Test verlangt, ist: die Zahl als String.
 
 
 ### Zyklus 2: Fizz
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 **Red:**
 
@@ -163,7 +163,7 @@ mit einer Commit-Botschaft nach dem obigen Muster.
 
 
 ### Zyklus 4: FizzBuzz
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 Gehen Sie genauso vor für `fizzbuzz(15)` → `"FizzBuzz"` mit einem Test `test_fizzbuzz`.
 
@@ -183,7 +183,7 @@ Mögliche Ansatzpunkte:
 
 
 ### Zyklus 5: Ungültige Eingaben
-<!-- time estimate: 15 min -->
+<!-- time estimate: 10 min -->
 
 Laut Spezifikation soll für `n <= 0` ein `ValueError` ausgelöst werden.
 Wie man in `pytest` prüft, dass eine Ausnahme ausgelöst wird, steht in der `pytest`-Dokumentation unter
@@ -205,8 +205,23 @@ Genau deshalb braucht es eine ausdrückliche Regel für diesen Fall.
 Machen Sie dann wie gewohnt Commits für Red, Green und (falls es etwas zu verbessern gibt) Refactor.
 
 
+### Tests ergänzen
+<!-- time estimate: 5 min -->
+
+Ihre Tests prüfen für Zahl, Fizz, Buzz und FizzBuzz bisher nur je einen Wert: 1, 3, 5 und 15.
+Die Verallgemeinerungen aus den Refactor-Schritten (z.B. von `n == 3` zu `n % 3 == 0`)
+sichert damit noch kein Test ab.
+Einen passenden Test haben Sie sich schon bei der Frage in Zyklus 2 überlegt.
+
+- Ergänzen Sie einen Test `test_multiples`, der prüft, dass `fizzbuzz(6)` den Wert `"Fizz"`,
+  `fizzbuzz(10)` den Wert `"Buzz"` und `fizzbuzz(30)` den Wert `"FizzBuzz"` liefert.
+- Prüfen Sie mit `pytest test_fizzbuzz.py`, dass alle Tests bestehen.
+  Das ist hier kein Red-Schritt: Der neue Test sichert nur Verhalten ab, das es schon gibt.
+- Commit: `git add . && git commit -m "Tests: Vielfache von 3, 5 und 15"`
+
+
 ### Abschluss und Reflexion
-<!-- time estimate: 10 min -->
+<!-- time estimate: 20 min -->
 
 Damit beide Personen ein eigenes Kommandoprotokoll abgeben können,
 packt die Person, auf deren Rechner Sie gearbeitet haben, das Verzeichnis samt Git-Historie ein:
@@ -221,8 +236,10 @@ Führen Sie dann beide jeweils auf Ihrem eigenen Rechner im Verzeichnis `tdd` au
 - [EC] `pytest -v test_fizzbuzz.py`
 - [EC] `git -P log -p --reverse`
 
-Prüfen Sie in der Ausgabe von `git log`, dass jeder Red-Commit (abgesehen vom allerersten) nur Testcode ändert,
-jeder Green-Commit nur Programmcode, und dass bei Refactor-Commits die Tests unverändert bleiben.
+Prüfen Sie in der Ausgabe von `git log`, dass jeder Red-Commit (abgesehen vom allerersten)
+und der Commit aus "Tests ergänzen" nur Testcode ändern,
+jeder Green-Commit nur Programmcode
+und jeder Refactor-Commit die Tests unverändert lässt.
 
 [EQ] In welchem Refactoring-Schritt haben Sie Ihren Code am stärksten verändert?
 Was genau haben Sie dort geändert und was hat Ihnen die Sicherheit gegeben,
