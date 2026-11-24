@@ -29,8 +29,6 @@ und bauen dabei ein kritisches Verständnis für Coverage-Metriken auf.
 
 [SECTION::instructions::detailed]
 
-Im Folgenden verwenden wir „Testabdeckung“ und „Coverage“ synonym.
-
 ## Teil A: `pytest-cov`-Grundlagen mit bestehender Codebasis
 
 
