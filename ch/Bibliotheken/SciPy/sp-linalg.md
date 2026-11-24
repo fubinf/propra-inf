@@ -1,5 +1,5 @@
 title: SciPy Erweiterte Lineare Algebra verstehen und anwenden
-stage: alpha
+stage: beta
 timevalue: 1.5
 difficulty: 3
 requires: sp-Einführung

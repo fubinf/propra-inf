@@ -8,4 +8,5 @@
   Für die Tutoren: Aufgabe [PARTREF::apt101] hat jetzt auch Lösungshinweise für macOS. 
 - **2026-11-20:** Aufgabengruppe [PARTREF::SciPy] (mit derzeit 5 Aufgaben) zugefügt.
   Aufgabe [PARTREF::Testfälle] zugefügt.
+- **2026-11-24:** Aufgabe [sp-linalg] zugefügt.
 - ...
