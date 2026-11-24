@@ -2,7 +2,7 @@ title: "Blockchain verketten"
 stage: alpha
 timevalue: 3.0
 difficulty: 3
-assumes: git-Repository, m_json, m_hashlib, m_pydantic, m_pytest
+assumes: git-Repository, m_json, m_hashlib, m_pydantic, m_pytest, pytest_fixtures
 ---
 
 [SECTION::goal::product]
@@ -14,10 +14,10 @@ Ich kann Blöcke mithilfe von SHA256-Hashes kryptografisch verketten, sodass
 [SECTION::background::default]
 Eine Blockchain ist eine Möglichkeit, viele Daten zu speichern und durch Überprüfung einer einzigen Zahl
 festzustellen, ob an den Daten irgendwelche Veränderungen vorgenommen wurden.
-Es werden nur Daten zugefügt (neuer Block), nicht bestehende verändert, und man kann die 
-neue Überprüfungszahl berechnen, ohne die alten Daten nochmals mit verarbeiten zu müssen. 
+Es werden nur Daten hinzugefügt (neuer Block), nicht bestehende verändert, und man kann die 
+neue Überprüfungszahl (Block-Hash) berechnen, ohne die alten Daten nochmals mit verarbeiten zu müssen. 
 Dadurch kann man eine große Datenmenge vertrauenswürdig von Beteiligten verwalten lassen,
-ohne ihnen vertrauen zu müssen; man muss sich nur die Überprüfungszahl merken.
+ohne ihnen vertrauen zu müssen; man muss sich nur den Block-Hash merken.
 [ENDSECTION]
 
 
@@ -95,12 +95,14 @@ Nutzen Sie daher das Kommando `git rebase -i --root`, um den Rebase zu starten.
 
 [EC] Geben Sie die einzeilige Git-History aus.
 
+[EQ] Welche Commit-Hashes haben sich geändert und welche nicht?
+
 Sie können sehen, dass sich beide Commit-Hashes verändert haben, obwohl Sie lediglich
 den ersten Commit bearbeitet haben.
 Dies ist durch das oben beschriebene Prinzip begründet.
 Git verknüpft die Commits über die Commit-Hashes miteinander.
 Wenn ein Commit bearbeitet wird, ändern sich alle Hashes der nachfolgenden Commits.
-Nicht die Dateiinhalte bilden also die Kette, sondern die über die Commit-Hashes
+Nicht die Dateiinhalte bilden die Kette, sondern die über die Commit-Hashes
 verknüpften Commits.
 In Sedricoin wird diese Idee nachgebaut:
 Jeder Block verweist über seinen Hash auf seinen Vorgänger.
@@ -120,34 +122,47 @@ wird in einer späteren Aufgabe erläutert.
 
 ### Programmaufbau
 
-[ER] Legen Sie ein Verzeichnis `Sedricoin` in Ihrem Repo an.
-Nutzen Sie dieses Verzeichnis für Ihre Sedricoin-Implementierung.
+[ER] Legen Sie das Verzeichnis `Sedricoin` in ihrem repo an.
+Darin implementieren Sie alle Aufgaben dieser Aufgabengruppe.
 
-Die Anforderungen in dieser Aufgabengruppe beschreiben vor allem,
-was Ihre Anwendung erfüllen soll.
+Die Anforderungen beschreiben vor allem, was Ihre Anwendung erfüllen soll.
 Wie genau, müssen Sie selbst herausfinden.
 In den Hinweisen folgen Tipps, wie Sie eine Anforderung erfüllen können.
-Wichtige Dependencies werden explizit erwähnt, grundsätzlich dürfen Sie
-die Standardbibliothek Ihrer Sprache verwenden.
+Wichtige Dependencies werden explizit erwähnt (aber nur in Python).
+Falls Sie eine andere Sprache gewählt haben, helfen diese Hinweise nur bedingt.
+Grundsätzlich dürfen Sie die Standardbibliothek Ihrer Sprache verwenden.
 Ihre Implementierung darf mehrere Dateien umfassen.
-Sie werden in diesem Projekt keine Vorgaben über die genaue Softwarearchitektur erhalten.
-Überlegen Sie sich eine sinnvolle Struktur und passen Sie diese, falls nötig, an.
+An einigen Stellen werden Modul-, Funktionsnamen oder auch Funktionssignaturen vorgegeben,
+diese müssen Sie beachten.
+Gibt es keine Vorgabe geben, vergeben Sie nachvollziehbare eigene Namen.
 
 [NOTICE]
-Durch die freie Wahl der Programmiersprache gibt es keine Vorgaben zur
-Benennung der Dateien, Variablen oder Funktionen.
 Halten Sie sich an die Namenskonvention Ihrer Sprache, beispielsweise in Python
 an die Verwendung von Snake-Case (`foo_bar`, nicht `fooBar`, außer bei Klassennamen).
-Benennen Sie Ihre einzelnen Module sinnvoll, sodass ersichtlich ist,
-um welchen Teil der Anwendung es sich handelt.
 [ENDNOTICE]
+
+[ER] Legen Sie das Modul `server` an.
+Dieses Modul bildet den Einstiegspunkt in Ihre Implementierung.
+
+Auch wenn das Programm in dieser Aufgabe noch nicht dauerhaft weiterläuft,
+wird im Folgenden bereits von *Server* gesprochen, daher ergibt sich auch der
+Modulname `server`.
+
+[HINT::Ich implementiere Sedricoin nicht in Python, wie soll ich sie benennen?]
+Kein Problem!
+Beachten sie trotzdem die vorgeschriebenen Namen und passen Sie diese an.
+Wenn Sie also Java nutzen, sollte die Datei `Server.java` heißen.
+
+Die vorgeschriebenen Anforderungen und Entwurfsmuster lassen sich in allen
+Programmiersprachen implementieren.
+[ENDHINT]
+
 <!-- time estimate: 5 min -->
 
 
 ### Einstellungen über Umgebungsvariablen
 
-Auch wenn das Programm in dieser Aufgabe noch nicht dauerhaft weiterläuft,
-wird im Folgenden bereits von *Server* gesprochen.
+[ER] Legen Sie ein weiteres Modul `config` an.
 
 [ER] Beim Starten soll der Server die Umgebungsvariablen einlesen.
 Darüber können Einstellungen für das Programm gesetzt werden.
@@ -223,13 +238,14 @@ So sieht das `Block`-Modell aktuell aus:
 ```
 
 [WARNING]
-Achten Sie darauf, dass Ihre Implementierung die Feldnamen exakt übernimmt:
+Achten Sie darauf, dass Ihre Implementierung die Feldnamen in JSON exakt übernimmt:
 Es heißt `previous_hash`, nicht `previous_Hash` und nicht `previousHash`.
+Dies gilt für alle Programmiersprachen.
 [ENDWARNING]
 
 Da der erste Block noch keinen Vorgänger hat, steht in seinem `previous_hash` der Null-Hash aus 64 Nullen.
 
-[ER] Implementieren Sie das `Block`-Modell.
+[ER] Implementieren Sie das `Block`-Modell im Modul `models`.
 Dieses soll aus einer JSON-Datei gelesen und als solche im Dateisystem gespeichert werden können.
 Außerdem muss das Modell auch intern in der Anwendung verwendbar sein.
 Wenn Sie das Projekt in Python implementieren, nutzen Sie dafür die [PARTREF::m_pydantic]-Bibliothek.
@@ -351,20 +367,9 @@ Block-Hash:
 <!-- time estimate: 25 min -->
 
 
-### Server aufrufen
+### Blockchain initialisieren
 
-Erst in den folgenden Aufgaben implementieren Sie die REST-API.
-Allerdings müssen beim Starten die Umgebungsvariablen eingelesen werden (wie oben schon implementiert)
-und der *Genesis-Block* erzeugt werden.
-
-[ER] Beim Aufruf des Servers wird die Blockchain initialisiert.
-Falls im Verzeichnis `SEDRICOIN_STORAGE_PATH` noch keine Blockchain gespeichert ist, wird der
-*Genesis-Block* als erste Datei erzeugt.
-Dieser Genesis-Block entspricht genau dem oben angegebenen JSON-Block.
-Jede Sedricoin-Implementierung verwendet denselben Genesis-Block.
-Bei **jedem** Aufruf (also auch beim ersten) wird anschließend ein neuer `Block` mit dem aktuellen
-Unix-Timestamp berechnet und der Blockchain hinzugefügt.
-Benennen Sie die Block-Dateien nach der Block-Höhe.
+In einer Blockchain hat jeder Block eine *Block-Höhe*.
 Die Block-Höhe ist der Index des Blocks in der Blockchain.
 Diese wird nur berechnet, aber nicht im `Block` gespeichert.
 Der Genesis-Block hat die Block-Höhe `0`.
@@ -374,42 +379,90 @@ Zur Vereinfachung meint "`Block` 1" in diesem Projekt dasselbe wie
 "`Block` mit der Block-Höhe 1".
 [ENDNOTICE]
 
-[ER] Beim Aufruf des Servers soll die aktuelle Blockchain auf der Konsole ausgegeben werden.
-Pro Zeile soll ein Block ausgegeben werden.
-Die bestehenden Blöcke werden im Format `<Block-Höhe>: <Block-Hash>` ausgegeben
-und der neu erzeugte im Format `New Block <Block-Höhe>: <Block-Hash>`.
-Falls beim Laden die Blockchain ungültig ist, wird auf der Konsole ausgegeben,
-welcher Block ungültig ist (Fehlermeldung: `Blockchain Error at Block <Block-Höhe>.`),
-und es wird kein neuer `Block` berechnet.
-Für die Gültigkeit müssen aktuell die folgenden Kriterien erfüllt sein:
+[ER] Legen Sie ein weiteres Modul `blockchain` an.
+Implementieren Sie darin folgenden Hilfsfunktionen:
 
-- Der `previous_hash` entspricht dem Block-Hash des Vorgängers.
-  Achten Sie darauf, diesen selbst zu berechnen und nicht blind den Dateien zu vertrauen.
-- Der `timestamp` muss **größer** oder **gleich** dem des Vorgängers sein.
+
+```py
+def get_block_head() -> int:
+    """
+    Gibt die aktuelle Blockhöhe zurück.
+    """
+
+
+def get_block(height: int) -> Block | None:
+    """
+    Liest den Block mit angegebener Höhe `height` aus der JSON Datei aus.
+    Falls der Block nicht existiert, wird `None` zurückgegeben ohne einen Fehler zu werfen.
+    """
+
+def validate_block(previous_block: Block, new_block: Block) -> bool:
+    """
+    Prüft ob `new_block` ein gültiger Nachfolger von `previous_block` ist.
+
+    Für die Gültigkeit müssen die folgenden Kriterien erfüllt sein:
+
+    - Der `previous_hash` entspricht dem Block-Hash des Vorgängers.
+      Achten Sie darauf, diesen selbst zu berechnen und nicht blind den Dateien zu vertrauen.
+    - Der `timestamp` muss **größer** oder **gleich** dem des Vorgängers sein.
+    """
+
+def write_block(block: Block, height: int) -> None:
+    """
+    Schreibt einen neuen Block in die JSON Datei.
+    (Dies ist nur eine Hilfsfunktion, hier wird nicht geprüft,
+     ob der Block oder Blockhöhe gültig oder sinnvoll sind.)
+    """
+
+def init() -> None:
+    """
+    Prüft die Gültigkeit der Blockchain (dazu muss jeder Block nachgerechnet werden).
+    Falls ein Fehler festgestellt wird, das Starten abbrechen und den Fehler `InvalidBlockchain`
+    mit der Nachricht `Blockchain Error at Block <Block-Höhe>` werfen.
+
+    Falls noch keine Blockchain in SEDRICOIN_STORAGE_PATH exisitiert, wird sie angelegt,
+    in dem der Genesis-Block erzeugt und wird.
+    """
+```
 
 [NOTICE]
-Je nach Manipulation kann ein Fehler erst im nachfolgenden `Block` erkannt werden.
+Je nach Manipulation, kann ein Fehler erst im nachfolgenden `Block` erkannt werden.
 Wird also der `Block` 1 verändert, sodass er selbst gültig ist,
 wird der Fehler erst beim `Block` 2 erkannt, da hier mindestens der `previous_hash` inkorrekt ist.
+Das ist eine Limitierung, die hingenommen wird.
 [ENDNOTICE]
 
-[NOTICE]
-Zur Validierung sind vorerst keine Tests erforderlich.
-Diese Tests werden in einer späteren Aufgabe ausführlicher beschrieben.
-[ENDNOTICE]
+Das diese Funktionen korrekt funktionieren ist essenziell und zum Glück auch von
+Ihnen selbst überprüfbar, in dem Sie Tests dafür schreiben.
 
-Wenn eine Blockchain durch eine Manipulation ungültig geworden ist,
-können Sie entweder die Manipulation rückgängig machen (sofern Sie sie kennen)
-oder den betroffenen Block und alle Nachfolger löschen.
+[ER] Legen Sie das Modul `test_blockchain` an.
+Schreiben Sie darin die folgenden `pytest`-Tests.
+Nutzen Sie für die Testumgebung ein temporäres Verzeichnis als `SEDRICOIN_STORAGE_PATH`
+(beispielsweise mit dem `tmp_path`-Fixture), damit Ihre Tests isoliert und unabhängig voneinander laufen.
+Sie müssen die Umgebungsvariablen für die Tests überschreiben und danach wiederherstellen.
 
-[EC] Rufen Sie Ihren Server zweimal auf.
+- `test_init`: Testet die Initialisierung des Verzeichnisses sowie `get_block(0)`.
+- `def test_init_invalid_blockchain`: testet ob `init()` korrekt den Fehler
+  `InvalidBlockchain` bei einer inkorrekten Blockchain wirft.
+- `test_validate_block`: Testet `validate_block(...)`.
+  Es muss ein gültiges Pärchen und dann jeweils die Bedingungen getestet werden.
+- `test_write_block`: Testet `write_block(...)`.
+  In diesem Test können `init()` aufrufen, um das Verzeichnis zu initialisieren.
+  Testen Sie auch ob `get_block_head()` danach `1` zurückgibt.
+  Nutzen Sie als korrekten Block diesen gültigen Nachfolger:
 
-Manipulieren Sie nun die Blockchain manuell, indem Sie die JSON-Datei von `Block` 1
-in Ihrem Editor öffnen und den `timestamp` um `1` erhöhen.
-Auf diese Weise wird die Blockchain ungültig, da nun der Block-Hash von `Block` 1
-verändert wurde, ohne den `previous_hash` in `Block` 2 anzupassen.
+```json
+{
+  "header": {
+    "previous_hash": "807eee99f5758108077c7be5ca7c2ef37c8b5b3f3046260ed9867b4eb08f7e3b",
+    "timestamp": 1786395962
+  }
+}
+```
 
-[EC] Rufen Sie Ihren Server einmal auf; er sollte die Manipulation erkennen.
+[ER] Ergänzen Sie, das beim Start des Servers die Blockchain initialisiert wird.
+
+[EC] Führen Sie Ihre Tests-Suite einmal aus (`python -m pytest -v`).
 <!-- time estimate: 30 min -->
 
 
