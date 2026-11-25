@@ -35,9 +35,9 @@ die Sie benutzen, bauen (beispielsweise in [PARTREF::FastAPI-GET]) oder testen.
 Dies ist die grafische Darstellung der Petstore API.
 Öffnen Sie dort die Operation `GET /pet/findByStatus`.
 Sie können diese mit dem Button "Try it out" und anschließend "Execute" ausprobieren.
+Damit dies funktioniert müssen Sie den Parameter `status` auswählen.
 
-- [EQ] Nennen Sie, welche HTTP-Methode verwendet und welcher HTTP-Statuscode
-  in der Antwort zurückgesendet wird.
+- [EQ] Wo finden Sie den `status` in der Request-URL?
 
 [HINT::Fehlermeldung `For 'status': Required field is not provided.`]
 Diese Operation erwartet, dass Sie einen Status auswählen, nach welchem gefiltert werden soll.
@@ -60,11 +60,10 @@ Die JSON-Datei finden Sie am Anfang der Seite unter der Überschrift
 
 In einer OpenAPI-Spezifikation werden API-Funktionen über Pfade und HTTP-Methoden beschrieben.
 Je Pfad können mehrere unterschiedliche HTTP-Methoden verfügbar sein.
-Die Kombination von Pfad, HTTP-Methode und Pfadparametern wird in [TERMREF::Swagger] *Operation*
-genannt.
+Die Kombination von Pfad und HTTP-Methode in [TERMREF::OpenAPI] *Operation* genannt.
 
 [NOTICE]
-In der SwaggerUI wird jede Operation als eigener Punkt dargestellt.
+In der Swagger HUI wird jede Operation als eigener Punkt dargestellt.
 In der JSON-Datei sehen Sie dagegen, dass je Pfad mehrere Operationen stehen können.
 
 Diese Trennung ist in der SwaggerUI nötig, weil sich jede Operation einzeln
@@ -81,26 +80,32 @@ und zusätzlich, wenn Sie die Operation ausprobieren,
 - wie die HTTP-Anfrage (Request) aussah.
 - welche HTTP-Antwort (Response) (Header + Body) vom Server zurückgesendet wurde.
 
+Allerdings ist dies nur eine Spezifikation und nicht eine Garantie, dass sich der
+Server genauso antwortet.
 
 - [EQ] Betrachten Sie die Operation `GET /pet/{petId}`.
-  Welche Parameter können angegeben werden und welche Antworten sind möglich?
-  Nennen Sie jeweils den HTTP-Statuscode und das Schema der Daten.
+  Nennen (HTTP-Statuscode und Schema) Sie welche Antworten in der Spezifikation dokumentiert sind?
+
+Testen Sie nun eine existierende und eine nicht existierende ID.
+
+- [EQ] Wie unterscheiden sich die realen Antworten des Servers von der Spezifikation?
 
 <!-- time estimate: 10 min -->
 
 
 ### Was REST ist (und was nicht)
 
-Lesen Sie den Glossareintrag [TERMREF::REST] sowie als vertiefende Quelle den Abschnitt
+Lesen Sie den Grosssareintrag [TERMREF::REST] sowie als vertiefende Quelle den Abschnitt
 "Guiding Principles of REST" auf
 [restfulapi.net](https://restfulapi.net/).
 
-- [EQ] Nennen Sie die REST-Bedingungen und erklären Sie zwei davon in je einem Satz
-  mit eigenen Worten anhand jeweils einer Operation der Petstore-API.
+- [EQ] Nennen Sie die REST-Bedingungen und erklären Sie zwei, die sich im Petstore
+  gut erkennen lassen, davon in je einem Satz mit eigenen Worten anhand jeweils
+  einer Operation der Petstore-API.
 
 - [EQ] Eine der REST-Bedingungen kennen Sie als HTTP-Eigenschaft bereits aus [PARTREF::http-State].
   Erklären Sie, welche es ist und was sie für einen einzelnen Request konkret bedeutet.
-  Nennen Sie eine Operation in Petstore, an der dies deutlich wird.
+  Nennen Sie Operationen in Petstore, an der gegen dieses Konzept verstoßen wird.
 
 - [EQ] REST und HTTP unterscheiden sich.
   Nennen Sie etwas, das REST fordert, aber HTTP nicht erzwingt.
@@ -142,17 +147,35 @@ zugeordnet werden.
 
 Erstellen Sie nun ein eigenes `Pet` mit der Operation `POST /pet`.
 Wenn Sie eine Operation ausprobieren, füllt Swagger den Body bereits mit Beispieldaten aus.
+Dort steht `"id": 0`.
+Dies bedeutet, dass ein neues `Pet` erstellt werden soll und der Server eine neue `id` vergibt.
+Dies ist ein typisches Muster, das zwar von REST nicht vorgegeben wird, aber in vielen
+APIs gefunden werden kann.
+Sie können diese `id` in der Response des Servers ablesen.
+Führen Sie den selben Request erneut aus.
+Es wird ein neues `Pet` erstellt, das können Sie daran erkennen, das eine andere `id`
+in der Response steht.
+
 Aktualisieren Sie anschließend Ihr erstelltes `Pet` mit der Operation `PUT /pet`.
 Sie müssen dafür im Body die `id` Ihres `Pet` anpassen und eine Änderung vornehmen,
 beispielsweise indem Sie den Namen ändern.
+Wenn Sie diesen Request erneut ausführen, bekommen Sie genau die selbe Response.
+Dieses Konzept wird [TERMREF::Idempotenz] genannt.
+
+Aktualisieren Sie Ihr Pet abschließend noch einmal, nutzen Sie diesmal aber
+`POST /pet` (mit Ihrer vergebenen `id` im Body).
+In der konkreten Implementierung des Petstores funktioniert das als sogenanntes
+Upsert (Update oder Insert), ist aber nicht offiziell dokumentiert und in REST-APIs untypisch,
+da POST eigentlich für das Anlegen neuer Ressourcen vorgesehen ist.
+
+[HINT::Mein Pet ist plötzlich weg/verändert]
+Petstore ist ein öffentlicher Server.
+Es können mehrere Menschen gleichzeitig darauf zugreifen und auch Änderungen vornehmen.
+Sie können ja mal auf Ihrem PC ein `Pet` erstellen und auf dem PC Ihrer_s Partner_in ändern.
+[ENDHINT]
 
 - [EQ] Wie unterscheiden sich die verwendeten Operationen `PUT` und `POST`?
-  Erläutern Sie den Unterschied mithilfe des Begriffs [TERMREF::Idempotenz].
-
-Allerdings ist auch dies nur Konvention, die Idempotenz muss serverseitig implementiert werden.
-Aktualisieren Sie Ihr `Pet` erneut und nutzen Sie diesmal die Operation `POST /pet`.
-Dies geht in Petstore problemlos, ist aber eher untypisch in REST-APIs.
-REST gibt Konventionen für Operationen vor, kann diese aber nicht garantieren.
+  Wann sind sie [TERMREF::idempotent]?
 
 <!-- time estimate: 10 min -->
 

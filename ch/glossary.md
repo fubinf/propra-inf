@@ -1514,6 +1514,7 @@ von [TERMREF::RESTful] [TERMREF::API]s erleichtert.
 Maschinenlesbare Beschreibung einer API, die Entwicklern ermöglicht, schnell
 zu verstehen, welche Ressourcen verfügbar sind, welche
 Parameter erwartet werden und welche Antworten zurückgegeben werden können.
+Mit der SwaggerUI lässt sich diese Dokumentation interaktiv im Browser darstellen und testen.
 [ENDTERM]
 
 
