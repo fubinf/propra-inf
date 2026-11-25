@@ -129,17 +129,54 @@ Die eine Kopie geht wieder in `stdout`, die andere in eine Datei:
 
 [EC] `ls -l /tmp | tee redirect_tmp.txt`
 
+### Reflexion: Eingabe und Ausgabe in derselben Datei
+
+Sie haben eine Namensliste und wollen sie sortiert in derselben Datei haben.
+
+[EC] `printf "Zoe\nAnna\nMax\n" > redirect_namen.txt`
+
+[EC] `sort redirect_namen.txt > redirect_namen.txt`
+
+[EC] `cat redirect_namen.txt`
+
+[EQ] Die Datei ist jetzt leer.
+Was geschieht zuerst: das Öffnen von `redirect_namen.txt` durch die Shell oder der Start von `sort`?
+Erklären Sie damit, warum nichts übrig bleibt.
+
+[HINT::Wer öffnet die Datei?]
+Die Umleitung `>` erledigt die Shell, bevor sie `sort` überhaupt startet.
+Lesen Sie oben nach, was `>` mit dem bisherigen Inhalt einer Datei macht.
+[ENDHINT]
+
+[EC] Erzeugen Sie die Liste noch einmal wie oben.
+
+[EC] Sortieren Sie die Liste mit einem einzigen Kommando so, dass das Ergebnis
+am Ende in `redirect_namen.txt` steht.
+
+[HINT::Wie geht das?]
+Schauen Sie in der [sort(1) manpage](https://manpages.debian.org/stable/coreutils/sort.1.en.html)
+nach der Option `-o`.
+Alternativ geht es über eine Zwischendatei und `mv`, mit `&&` zu einer Zeile verbunden.
+[ENDHINT]
+
+[EC] `cat redirect_namen.txt`
+
 Mit diesen Kenntnissen über Redirect-Operatoren und Pipes können Sie die Eingabe und Ausgabe von 
 Befehlen in Unix effizient steuern und komplexe Aufgaben automatisieren.
 
 [ENDSECTION]
 
-[SECTION::submission::trace]
+[SECTION::submission::reflection]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
-[INSTRUCTOR::Kommandoprotokoll]
+[INSTRUCTOR::Kommandoprotokoll + Markdowndokument]
 
 [PROT::ALT:redirect.prot]
+
+### Markdowndokument
+
+[INCLUDE::ALT:]
 
 [ENDINSTRUCTOR]
