@@ -21,7 +21,7 @@ Auch der Wechsel auf eine komplett neue Betriebssystemversion wird von `apt` erl
 
 [NOTICE]
 Für diese Aufgabe brauchen Sie ein Debian-System, auf dem Sie Administratorrechte haben.
-Auf einem Poolrechner der Uni oder auf dem Mac lässt Sie sich nicht bearbeiten.
+Auf einem Poolrechner der Uni oder auf dem Mac lässt sie sich nicht bearbeiten.
 Wie man auf dem Mac stattdessen Pakete installiert, steht in [PARTREF::apt101].
 [ENDNOTICE]
 
@@ -29,7 +29,7 @@ Grundlage dieser Aufgabe ist der
 [Beitrag über `apt`](https://wiki.ubuntuusers.de/apt/apt/)
 im Wiki von ubuntuusers.
 Er ist für Ubuntu geschrieben, die Befehle, die wir hier brauchen, funktionieren auf Debian aber genauso.
-Lesen Sie dort zuerst den Abschnitt **Benutzung**.
+Lesen Sie dort zuerst den Anfang des Abschnitts **Benutzung** bis **Pakete verwalten**.
 Root-Rechte bekommen Sie mit `sudo`, das Sie aus [PARTREF::apt101] kennen.
 Die Abschnitte **Historie anzeigen / rückgängigmachen / wiederholen und zurücksetzen**,
 **sources.list editieren** und **Problembehebung** brauchen Sie nicht.
@@ -49,17 +49,23 @@ und danach den Abschnitt **Vergleiche apt-get/apt**.
 Aktualisieren Sie den Paketkatalog.
 Dieser Aufruf gehört nicht ins Kommandoprotokoll.
 
+`apt` schickt die Ausgabe von `list`, `search` und `show` im Terminal durch die `less`-Ansicht.
+Diese schneidet lange Zeilen ab, und was Sie darin nicht durchblättern,
+fehlt hinterher im Terminal und damit auch im Kommandoprotokoll.
+Welches Programm `apt` dafür benutzt, legt die [TERMREF::Umgebungsvariable] `APT_PAGER` fest.
+`cat` gibt die Ausgabe unverändert aus.
+
+[EC] Schalten Sie die `less`-Ansicht für diese Shell ab:  
+`export APT_PAGER=cat`  
+Wenn Sie später in einem neuen Terminal weiterarbeiten, wiederholen Sie das dort.
+
 [EC] Lassen Sie sich die Pakete auflisten, für die es eine neuere Version gibt:  
 `apt list --upgradable`
-
-Passt eine Ausgabe nicht auf einen Bildschirm, zeigt `apt` sie in der `less`-Ansicht an.
-Blättern Sie dann mit der Leertaste bis zum Ende und verlassen Sie die Ansicht mit `q`.
-Sonst fehlt der Rest der Ausgabe im Terminal und damit auch im Kommandoprotokoll.
 
 Ist die Liste leer, ist Ihr System schon aktuell
 und der nächste Schritt hat nichts zu tun.
 
-Aktualisieren Sie die installierten Pakete.
+Aktualisieren Sie die installierten Pakete so, dass dabei kein Paket entfernt wird.
 Lesen Sie wie in [PARTREF::apt101] die Paketliste, bevor Sie mit `y` bzw. `j` bestätigen.
 Auch dieser Aufruf gehört nicht ins Kommandoprotokoll, weil seine Ausgabe sehr lang ist.
 
@@ -79,8 +85,7 @@ Lesen Sie den Abschnitt **Suchen/Durchsuchen**.
 In dieser Aufgabe nehmen wir als Beispiel den Midnight Commander.
 Das ist ein textbasierter, halbgrafischer Dateimanager -- ziemlich praktisch.
 
-[EC] Suchen Sie mit `apt` nach dem Begriff `midnight commander`.  
-Blättern Sie wie oben bis zum Ende der Ausgabe.
+[EC] Suchen Sie mit `apt` nach dem Begriff `midnight commander`.
 
 [EC] Geben Sie die Paketinformationen des Paketes für den Midnight Commander aus.
 
@@ -96,7 +101,7 @@ Liegt dort etwa eine Datei `main.py`, sucht `apt` nach einem Paket namens `main.
 Setzen Sie das Muster in Anführungszeichen, damit die Shell es unverändert an `apt` weitergibt.
 [ENDHINT]
 
-Hinter jedem Paket steht in eckigen Klammern entweder `[installed]`
+Hinter jedem Paket steht in eckigen Klammern meist `[installed]`
 oder `[installed,automatic]` (bzw. `[installiert]` und `[installiert,automatisch]`).
 
 [EQ] Warum steht beim Paket des Midnight Commanders `installed`, beim Paket `mc-data` dagegen `installed,automatic`?
@@ -128,7 +133,7 @@ obwohl sie jetzt niemand mehr braucht.
 Darauf hat Sie schon `apt remove` in seiner Ausgabe hingewiesen.
 
 [EC] Entfernen Sie mit `apt autoremove` die nicht mehr benötigten Pakete.
-Vergleichen Sie die Paketliste vor dem `[Y/n]` mit den Paketen,
+Vergleichen Sie die Paketliste vor dem `[Y/n]` bzw. `[J/n]` mit den Paketen,
 die beim Installieren des Midnight Commanders zusätzlich installiert wurden.
 
 [HINT::`autoremove` will auch Pakete entfernen, die ich behalten möchte]
