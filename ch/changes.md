@@ -8,6 +8,9 @@
   Für die Tutoren: Aufgabe [PARTREF::apt101] hat jetzt auch Lösungshinweise für macOS. 
 - **2026-11-20:** Aufgabengruppe [PARTREF::SciPy] (mit derzeit 5 Aufgaben) zugefügt.
   Aufgabe [PARTREF::Testfälle] zugefügt.
-- **2026-11-24:** Aufgabe [sp-linalg] zugefügt.
-- **2026-11-27:** Aufgabe [sp-sparse] zugefügt.
+- **2026-11-24:** Aufgabe [PARTREF::sp-linalg] zugefügt.
+- **2026-11-27:** Aufgabe [PARTREF::sp-sparse] zugefügt.
+- **2026-11-27:** Die Aufgaben [PARTREF::ACL], [PARTREF::apt], [PARTREF::dig], [PARTREF::find], [PARTREF::grep], 
+  [PARTREF::redirect] und [PARTREF::sudo] wurden verbessert und enthalten jetzt insbesondere mehr Reflektionsschritte.
+  Wer eine solche Aufgabe bereits angerechnet bekommen hat, hat Bestandsschutz und braucht nichts nachzubessern.
 - ...
