@@ -3,6 +3,7 @@ stage: beta
 timevalue: 1.0
 difficulty: 2
 explains: sudo, su
+assumes: redirect
 ---
 
 [SECTION::goal::idea]
@@ -87,11 +88,6 @@ und fügen Sie `sudotest` der Gruppe `sudo` hinzu:
 ### Reflexion: Wer schreibt eigentlich?
 
 Arbeiten Sie für diesen Abschnitt wieder als Ihr normaler Nutzer.
-
-Mit `>` schreibt man die Ausgabe eines Kommandos in eine Datei,
-beispielsweise `echo "hallo" > hallo.txt`.
-Dieses Kommando schreibt den Text `hallo` in die Datei `hallo.txt`.
-Mit `|` reicht man die Ausgabe eines Kommandos als Eingabe an ein anderes Kommando weiter.
 
 [EC] Versuchen Sie, eine Zeile in eine neue Datei unter `/etc` zu schreiben:
 `sudo echo "propra" > /etc/propra-sudo-test.txt`
