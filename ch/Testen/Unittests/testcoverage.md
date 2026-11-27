@@ -39,7 +39,7 @@ Arbeiten Sie in Teil A im `requests`-Repository und dessen `venv` aus [PARTREF::
 weil es zu den Entwicklungsabhängigkeiten von `requests` gehört.
 
 Machen Sie dort zuerst mit `git restore tests/` Ihre Änderungen an den Testdateien rückgängig,
-beispielsweise die `@pytest.mark.fixme`-Markierungen.
+beispielsweise die `@pytest.mark.skip`-Markierungen.
 Dann zeigt `git diff` später nur Ihre neuen Tests.
 
 
@@ -332,7 +332,7 @@ Gibt es Code-Bereiche, die schwer zu testen sind?
 [ER] Legen Sie die Datei `test_fake_coverage.py` an
 und ergänzen Sie darin den folgenden Testrahmen so,
 dass `pytest test_fake_coverage.py` danach für `email_validator.py`
-in der Spalte `Cover` 100% meldet —
+in der Spalte `Cover` 100% meldet,
 aber ohne eine einzige sinnvolle Assertion:
 
 ```python
