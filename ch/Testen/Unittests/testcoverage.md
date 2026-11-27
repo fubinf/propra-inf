@@ -8,7 +8,7 @@ requires: pytest_call
 
 [SECTION::goal::idea]
 
-- Ich kann Code Coverage mit `pytest-cov` messen und Coverage-Reports interpretieren
+- Ich kann Coverage-Reports von `pytest-cov` interpretieren
 - Ich kann gezielt Tests für nicht abgedeckte Codezeilen ergänzen
 - Ich verstehe, dass Coverage misst, welcher Code ausgeführt wird, aber nicht, ob sein Verhalten geprüft wird
 - Ich kann ein begründetes Coverage-Ziel für ein konkretes Modul festlegen
@@ -20,7 +20,10 @@ Code Coverage ([TERMREF::Überdeckung]) misst,
 welcher Anteil Ihres Codes von Tests ausgeführt wird.
 Während hohe Coverage-Werte beruhigend wirken können, sind sie kein Garant für Testqualität.
 
-In dieser Aufgabe lernen Sie `pytest-cov` zunächst an einer bestehenden Codebasis kennen.
+Wie man mit `pytest-cov` Anweisungs- und Zweigüberdeckung misst,
+kennen Sie aus [PARTREF::pytest-Methodik-Whitebox].
+Darauf baut diese Aufgabe auf:
+Sie wenden `pytest-cov` zunächst auf eine bestehende Codebasis an.
 Anschließend testen Sie ein realitätsnahes Beispiel
 und bauen dabei ein kritisches Verständnis für Coverage-Metriken auf.
 
@@ -29,7 +32,7 @@ und bauen dabei ein kritisches Verständnis für Coverage-Metriken auf.
 
 [SECTION::instructions::detailed]
 
-## Teil A: `pytest-cov`-Grundlagen mit bestehender Codebasis
+## Teil A: Coverage einer bestehenden Codebasis
 
 
 ### Vorbereitung
@@ -45,37 +48,22 @@ Dann zeigt `git diff` später nur Ihre neuen Tests.
 
 ### Anwendung auf bestehende Codebasis
 
-[EC] Ermitteln Sie den Befehl zur Coverage-Analyse für das Paket `requests` und führen Sie ihn aus.
+[EC] Messen Sie die Coverage des Pakets `requests` samt der nicht abgedeckten Zeilen:
+`pytest --cov=requests --cov-report=term-missing`.
 Falls einzelne Tests fehlschlagen, ignorieren Sie das; die Coverage wird trotzdem gemessen.
-
-[HINT::Wie starte ich die Coverage-Analyse?]
-`pytest --help | grep cov` zeigt alle verfügbaren `--cov`-Optionen.
-Ausführlicher gibt es das in der
-[`pytest-cov`-Dokumentation](https://pytest-cov.readthedocs.io/).
-[ENDHINT]
-
-[EQ] Wie hoch ist die aktuelle Coverage der `requests`-Bibliothek?
-
-[EC] Ermitteln Sie den Befehl, der zusätzlich die nicht abgedeckten Zeilen anzeigt,
-und führen Sie ihn aus.
-
-[HINT::Wie zeige ich die fehlenden Zeilen an?]
-Der Parameter `--cov-report` bietet verschiedene Optionen.
-Suchen Sie in der `pytest-cov`-Dokumentation nach `missing`.
-[ENDHINT]
 
 Wählen Sie ein Modul von `requests`, das nicht vollständig abgedeckt ist.
 Ergänzen Sie in der passenden Testdatei unter `tests/` Testfälle,
 die mindestens drei der bisher fehlenden Zeilen dieses Moduls abdecken.
 
-[EC] Wiederholen Sie die Messung aus [EREFC::2]
+[EC] Wiederholen Sie die Messung aus [EREFC::1]
 und prüfen Sie, dass die gewählten Zeilen nicht mehr unter `Missing` stehen.
 
 [EC] Zeigen Sie Ihre Ergänzungen mit `git diff tests/`.
 
 [EQ] Erläutern Sie, warum Sie gerade diese Testfälle ergänzt haben.
 Was war schwer zu testen?
-<!-- time estimate: 45 min -->
+<!-- time estimate: 35 min -->
 
 
 ## Teil B: Coverage-Bewertung mit realitätsnahem Beispiel
