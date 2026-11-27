@@ -8,20 +8,23 @@ requires: Dateibaum-beschaffen
 
 [SECTION::goal::idea]
 Ich verstehe, wie `find` funktioniert, und weiß, wie ich damit Dateien finden kann.
+Ich weiß, warum ich Muster wie `*.py` bei `find` in Anführungszeichen setze.
 [ENDSECTION]
 
 
 [SECTION::background::default]
 Das Kommando `find` durchsucht Verzeichnisbäume.
-Als Suchkriterien kann man beispielsweise Namen, Dateitypen, Änderungszeiten oder Berechtigungen angeben.
+Als Suchkriterien kann man beispielsweise Namen, Dateitypen, Änderungszeiten
+oder Berechtigungen angeben.
 Die gefundenen Dateien kann `find` bearbeiten oder (meistens) einfach ihre Pfadnamen ausgeben.
 [ENDSECTION]
 
 
 [SECTION::instructions::detailed]
-[EC] Wechseln Sie in das Verzeichnis Ihres [TERMREF2::Hilfsbereich::-s], in dem der Dateibaum entpackt wurde.
+[EC] Wechseln Sie in das Verzeichnis Ihres [TERMREF2::Hilfsbereich::-s],
+in dem der Dateibaum entpackt wurde.
 
-Lesen und verstehen Sie die Synopsis der
+Lesen und verstehen Sie den Abschnitt **SYNOPSIS** der
 [find(1) Manpage](https://manpages.debian.org/stable/findutils/find.1.en.html).
 Nutzen Sie die Manpage als Plan B, falls in den anderen Quellen etwas nicht klar genug wird.
 
@@ -36,32 +39,40 @@ Für diese Aufgabe reicht das BSD-`find`, aber beachten Sie zwei Unterschiede:
 - Das BSD-`find` verlangt immer einen Startpfad.
   `find -name x` bricht mit `illegal option` ab.
   Schreiben Sie stattdessen `find . -name x`.
-- Einige GNU-Optionen fehlen, z. B. `-printf` und `-daystart`.
+- Einige GNU-Optionen fehlen, beispielsweise `-printf` und `-daystart`.
   Welche Optionen es gibt, steht in `man find`.
 
 Wer trotzdem das GNU-`find` möchte: `brew install findutils`.
 Es heißt danach `gfind`.
+
+Im Abschnitt zur Reflexion am Ende verhält sich die `zsh`, die Standardshell von macOS,
+an einer Stelle anders als die `bash`:
+Findet sie zu einem Muster keine passende Datei, bricht sie mit `zsh: no matches found` ab.
+Beschreiben Sie in Ihrer Antwort, was Sie bei sich beobachtet haben.
 [ENDFOLDOUT]
 
 
 ### `find` auf Dateien und Verzeichnisse anwenden
 
-Sie untersuchen ein Linux-System, bei dem die Passwortregeln für Benutzerkonten angepasst werden sollen.
+Sie untersuchen ein Linux-System,
+bei dem die Passwortregeln für Benutzerkonten angepasst werden sollen.
 Ein Kollege erzählt Ihnen, dass diese Regeln nicht in `/etc/shadow` oder `/etc/login.defs` stehen,
 sondern in einer Konfigurationsdatei im Verzeichnisbaum von `pam.d/`.
-Er ist sich sicher, dass die Datei `common-password` heißt, weiß aber nicht mehr genau, wo sie liegt.
+Er ist sich sicher, dass die Datei `common-password` heißt,
+weiß aber nicht mehr genau, wo sie liegt.
 Statt die vielen Konfigurationsdateien in `pam.d/` einzeln durchzusehen, lassen Sie `find` suchen.
 
 [EC] Finden Sie die Datei `common-password`.
 
 Sie arbeiten an einem Projekt, in dessen Unterverzeichnissen viele Python-Skripte verstreut liegen.
-Für eine Übersicht wollen Sie alle `.py`-Dateien finden, ohne jedes Verzeichnis einzeln zu durchsuchen.
+Für eine Übersicht wollen Sie alle `.py`-Dateien finden,
+ohne jedes Verzeichnis einzeln zu durchsuchen.
 
 [EC] Finden Sie alle Python-Dateien, die auf `.py` enden, im aktuellen Verzeichnis und
 allen Unterverzeichnissen.
 
 In vielen Projekten entstehen temporäre Dateien mit unterschiedlich geschriebener Endung,
-z. B. `.tmp`, `.TMP` oder `.Tmp`.
+beispielsweise `.tmp`, `.TMP` oder `.Tmp`.
 Eine Suche nach exakt `.tmp` würde einen Teil davon übersehen.
 Probieren Sie das Prinzip am Namen `default` aus.
 
@@ -74,8 +85,8 @@ Lesen und verstehen Sie die Unterabschnitte **Pfad** und **Typ** auf der
 Bisher hat `find` Dateien und Verzeichnisse gleichermaßen gefunden.
 Oft möchte man aber nur nach dem einen oder dem anderen suchen.
 
-Angenommen, Sie möchten in einem großen Projekt alle Konfigurationsverzeichnisse namens `config` finden,
-um deren Inhalte zu überprüfen.
+Angenommen, Sie möchten in einem großen Projekt alle Konfigurationsverzeichnisse
+namens `config` finden, um deren Inhalte zu überprüfen.
 Sie wissen, dass es daneben auch Dateien namens `config` gibt, möglicherweise viele.
 Die sollen nicht in der Ausgabe erscheinen.
 
@@ -102,7 +113,8 @@ Sie erinnern sich, dass Sie nach der letzten Änderung an `apt/sources.list` noc
 `apt`-Konfigurationsdatei geändert haben.
 Die möchten Sie jetzt erneut bearbeiten, wissen aber nicht mehr, welche es war.
 
-[EC] Finden Sie alle Dateien (nicht Verzeichnisse) im Teilbaum `apt`, die jünger sind als `apt/sources.list`.
+[EC] Finden Sie alle Dateien (nicht Verzeichnisse) im Teilbaum `apt`,
+die jünger sind als `apt/sources.list`.
 
 
 ### Aktionen auf Dateien ausführen
@@ -110,15 +122,16 @@ Die möchten Sie jetzt erneut bearbeiten, wissen aber nicht mehr, welche es war.
 Lesen und verstehen Sie die **Tabelle 5** aus dem Abschnitt **Aktionen** auf der
 [ubuntuusers find-Seite](https://wiki.ubuntuusers.de/find/).
 
-Im Verzeichnisbaum liegen viele Konfigurationsdateien, die von verschiedenen Diensten genutzt werden.
+Im Verzeichnisbaum liegen viele Konfigurationsdateien,
+die von verschiedenen Diensten genutzt werden.
 Oft möchte man sich einen Überblick verschaffen, welche Konfigurationsdateien existieren
-und welche Eigenschaften (z. B. Größe, Änderungsdatum oder Berechtigungen) sie haben.
-So können Sie leichter entscheiden, ob eine Datei überprüft, bearbeitet oder gesichert werden sollte.
+und welche Eigenschaften (beispielsweise Größe, Änderungsdatum oder Berechtigungen) sie haben.
+So können Sie leichter entscheiden,
+ob eine Datei überprüft, bearbeitet oder gesichert werden sollte.
 
 [EC] Finden Sie alle `*.conf`-Dateien im aktuellen Verzeichnisbaum und zeigen Sie deren
 Systeminformationen an.
 Kürzen Sie die Ausgabe mit `head -10` ab.
-
 
 Lesen und verstehen Sie die **Tabelle 3a** aus dem Abschnitt **Suchkriterien** auf der
 [ubuntuusers find-Seite](https://wiki.ubuntuusers.de/find/).
@@ -132,14 +145,60 @@ War es irgendwas mit "session"?
 Sie sind nicht sicher.
 
 [EC] Finden Sie alle `*.conf`-Dateien, die auf Ebene 4 des Baums oder noch tiefer liegen.
+
+
+### Reflexion: Wer wertet den Stern aus?
+
+Bisher haben Sie Muster wie `*.py` in Anführungszeichen geschrieben.
+Probieren Sie aus, was ohne Anführungszeichen passiert.
+
+[EC] `find . -name *.py`
+
+[EC] `find . -name *.conf`
+
+[EC] `find . -name *.sh`
+
+[EC] Zählen Sie zum Vergleich mit `find . -name '*.sh' | wc -l`,
+wie viele `.sh`-Dateien es tatsächlich gibt.
+
+Lesen Sie in der
+[bash(1) Manpage](https://manpages.debian.org/stable/bash/bash.1.en.html)
+den ersten Absatz des Abschnitts **Pathname Expansion**.
+Das dort beschriebene Ersetzen heißt [TERMREF::Globbing].
+
+Sehen Sie sich an, was nach dem Globbing übrig bleibt:
+
+[EC] `echo *.py`
+
+[EC] `echo *.sh`
+
+[EC] `echo *.conf`.
+
+[EQ] Erklären Sie mit dem Gelesenen, wie die drei Ergebnisse von `find` zustande kommen.
+Welcher der drei Fälle ist im Alltag am gefährlichsten, und warum?
+
+[HINT::Ich verstehe den Fehler bei `*.conf` nicht]
+`-name` erwartet genau ein Wort.
+Was macht `find` mit den restlichen Dateinamen, die hinter dem ersten stehen?
+[ENDHINT]
+
+[HINT::Ich weiß nicht, welcher Fall am gefährlichsten ist]
+Bei welchem Fall merken Sie überhaupt, dass etwas schiefgegangen ist?
+[ENDHINT]
 [ENDSECTION]
 
 
-[SECTION::submission::trace]
+[SECTION::submission::reflection]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
+[INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
 
 
-[INSTRUCTOR::Kommandoprotokoll]
+[INSTRUCTOR::Kommandoprotokoll + Markdowndokument]
 [PROT::ALT:find.prot]
+
+
+### Markdowndokument
+
+[INCLUDE::ALT:]
 [ENDINSTRUCTOR]
