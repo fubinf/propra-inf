@@ -8,6 +8,7 @@ requires: Dateibaum-beschaffen
 
 [SECTION::goal::idea]
 Ich kann mit `grep` einzelne Zeilen aus Textdaten herausfiltern.
+Ich prüfe, ob eine Trefferzahl von `grep` wirklich das misst, was ich wissen will.
 [ENDSECTION]
 
 
@@ -22,16 +23,15 @@ wenn dabei gar nicht `grep` benutzt wird.
 
 
 [SECTION::instructions::detailed]
-
 [EC] Wechseln Sie in das Verzeichnis Ihres [TERMREF2::Hilfsbereich::-s],
 wo der Dateibaum entpackt wurde.
 
 
 ### Lernschritt vorab
 
-Lesen und verstehen Sie die Abschnitte SYNOPSIS und DESCRIPTION sowie
+Lesen und verstehen Sie die Abschnitte **SYNOPSIS** und **DESCRIPTION** sowie
 die Optionen `-c`, `-i`, `-n`, `-v`, `-w` und `-r` aus der
-[grep(1) Manpage](https://man7.org/linux/man-pages/man1/grep.1.html).
+[grep(1) Manpage](https://manpages.debian.org/stable/grep/grep.1.en.html).
 
 [FOLDOUT::Abweichungen unter macOS]
 macOS bringt ein BSD-`grep` mit, nicht das GNU-`grep` von Debian.
@@ -203,10 +203,47 @@ Mit einem regulären Ausdruck genügt ein einziger Aufruf.
 unabhängig von ihrer Groß- und Kleinschreibung.
 Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 
+
+### Reflexion: Was hat `grep` da gezählt?
+
+Im Abschnitt "Treffer zählen" sollte die Ausgabe zeigen,
+in welchen Dateien viele Paketquellen eingetragen sind.
+Prüfen Sie, ob das stimmt.
+
+[EC] Lassen Sie sich mit `grep -nw deb apt/sources.list` die Zeilen anzeigen,
+die zur höchsten Zahl in Ihrer Zählung geführt haben.
+
+Lesen Sie in der
+[grep(1) Manpage](https://manpages.debian.org/stable/grep/grep.1.en.html)
+im Abschnitt **Matching Control** die Beschreibung der Option `-w`.
+
+[EQ] Welche Arten von Zeilen hat `grep -w deb` mitgezählt,
+obwohl sie keine aktive Paketquelle eintragen?
+Erklären Sie für jede Art, warum `-w` sie nicht ausschließt.
+
+[HINT::Ich sehe nur `deb`-Zeilen, was soll daran falsch sein?]
+Achten Sie auf den Anfang jeder Zeile und auf das Zeichen direkt hinter `deb`.
+[ENDHINT]
+
+[HINT::Warum passt `deb-src` auf `-w deb`?]
+Welche Zeichen nennt die Manpage bei `-w` als "word constituent characters"?
+Gehört `-` dazu?
+[ENDHINT]
+
+[EC] Zählen Sie rekursiv unter `apt` nur die Zeilen, die eine aktive Paketquelle eintragen.
+Sortieren und kürzen Sie für das Kommandoprotokoll die Ausgabe mit
+`sort -nr -k2 -t: | head -5`.
+
+[HINT::Mir fällt kein passendes Muster ein]
+Eine aktive Zeile beginnt direkt mit `deb`, danach folgt ein Leerzeichen.
+[ENDHINT]
+
+[EQ] Welche Annahme über den Aufbau der Dateien steckt in Ihrem Muster?
+Bei welcher Zeile würde es trotzdem falsch zählen?
 [ENDSECTION]
 
 
-[SECTION::submission::trace]
+[SECTION::submission::reflection]
 [INCLUDE::/_include/Submission-Kommandoprotokoll.md]
 [INCLUDE::/_include/Submission-Markdowndokument.md]
 [ENDSECTION]
@@ -214,5 +251,9 @@ Kürzen Sie für das Kommandoprotokoll mit `head -10` ab.
 
 [INSTRUCTOR::Kommandoprotokoll + Markdowndokument]
 [PROT::ALT:grep.prot]
+
+
+### Markdowndokument
+
 [INCLUDE::ALT:]
 [ENDINSTRUCTOR]
