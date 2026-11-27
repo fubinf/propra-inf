@@ -9,4 +9,5 @@
 - **2026-11-20:** Aufgabengruppe [PARTREF::SciPy] (mit derzeit 5 Aufgaben) zugefügt.
   Aufgabe [PARTREF::Testfälle] zugefügt.
 - **2026-11-24:** Aufgabe [sp-linalg] zugefügt.
+- **2026-11-27:** Aufgabe [sp-sparse] zugefügt.
 - ...

@@ -1,5 +1,5 @@
 title: SciPy Sparse-Arrays verstehen und anwenden
-stage: alpha
+stage: beta
 timevalue: 2.0
 difficulty: 3
 requires: sp-Einführung
@@ -414,8 +414,6 @@ Geben Sie zu den drei Arrays des CSR-Formats jeweils `dtype` aus.
 
 - [SciPy Sparse Documentation](https://docs.scipy.org/doc/scipy/reference/sparse.html): Überblick
   über alle Sparse-Formate und ihre Anwendungsfälle
-- [Compressed Row Storage (Wikipedia)](https://de.wikipedia.org/wiki/Compressed_Row_Storage):
-  interner Aufbau des CSR-Formats über die drei Arrays `val`, `colInd` und `rowPtr`
 - [csr_array (SciPy Reference)](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_array.html):
   vollständige Methodenübersicht des CSR-Formats
 - [Graph-Algorithmen in `scipy.sparse.csgraph`](https://docs.scipy.org/doc/scipy/reference/sparse.csgraph.html):
